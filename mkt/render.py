@@ -9,6 +9,7 @@ Output per post and language, in campaigns/<slug>/export/<lang>/<post>/:
 
 from __future__ import annotations
 
+import hashlib
 import json
 import os
 import re
@@ -106,6 +107,7 @@ def render_posts(campaign: Campaign, posts: list[Post], config: dict, *, html_on
             page.locator(".slide").screenshot(path=str(out / name))
             names.append(name)
         texts = write_texts(campaign, post, out)
+        hashes = {name: hashlib.sha256((out / name).read_bytes()).hexdigest() for name in names + texts}
         (out / "manifest.json").write_text(json.dumps({
             "sha": content_sha(campaign, post, config),
             "rendered_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
@@ -115,6 +117,7 @@ def render_posts(campaign: Campaign, posts: list[Post], config: dict, *, html_on
             "texts": texts,
             "overflow": overflow,
             "scales": scales,
+            "files": hashes,
         }, indent=2, ensure_ascii=False), encoding="utf-8")
         log(f"{where}: {len(names)} image(s) → {out.relative_to(campaign.root)}")
 

@@ -22,11 +22,15 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from . import secrets
-from .approvals import approval_state, content_sha, manifest
+from .approvals import approval_state, content_sha, export_problems, manifest
+from .links import is_configured
 from .model import Campaign, Post, dump_yaml, load_yaml
 from .platforms import PLATFORMS
 
 DEFAULT_GRAPH_VERSION = "v23.0"
+# Graph API "unknown error" and "service temporarily unavailable": the request may have been
+# applied. Unverified against live docs from here; treating them as unknown is the safe side.
+TRANSIENT_CODES = (1, 2)
 STATE_DIR = ".studio"
 
 
@@ -60,6 +64,9 @@ def build_pack(campaign: Campaign, post: Post, platform: str, config: dict) -> P
         raise PublishError("not rendered yet: run `studio.py render` first")
     if shown.get("sha") != content_sha(campaign, post, config):
         raise PublishError("the images are older than the post: render again")
+    problems = export_problems(campaign, post)
+    if problems:
+        raise PublishError("; ".join(problems))
     files = pack_files(campaign, post, platform)
     if not any(f.name == f"{platform}.txt" or f.name == "x-thread.txt" for f in files):
         raise PublishError(f"the post has no '{platform}' text: add platforms.{platform} to it")
@@ -124,12 +131,15 @@ def resolve(campaign: Campaign, post: Post, platform: str, outcome: str, url: st
     """A human settles a `pending` row after looking at the Page: it did go out (done) or did not (failed)."""
     if outcome not in ("done", "failed"):
         raise PublishError("resolve as 'done' or 'failed'")
+    if url and not is_configured(url):
+        raise PublishError("the URL must start with http:// or https://")
     key = ledger_key(post, platform)
-    row = load_ledger(campaign).get(key)
-    if not row or row.get("state") != "pending":
-        raise PublishError(f"{key} is not pending")
-    return update_ledger(campaign, key, state=outcome, resolved_at=now(), resolved_by="human",
-                         **({"url": url} if url else {}))
+    with publish_lock(campaign.root):
+        row = load_ledger(campaign).get(key)
+        if not row or row.get("state") != "pending":
+            raise PublishError(f"{key} is not pending")
+        return update_ledger(campaign, key, state=outcome, resolved_at=now(), resolved_by="human",
+                             **({"url": url} if url else {}))
 
 
 # ---------------------------------------------------------------- Facebook Page
@@ -176,13 +186,22 @@ class FacebookPage:
                                             timeout=60)
         except Exception as exc:  # network: the outcome is unknown
             raise UnknownOutcome(secrets.redact(exc, [self.token])) from None
+        status = response.status_code
         try:
             body = response.json()
         except ValueError:
-            body = {}
-        if response.status_code >= 400 or "error" in body:
-            message = (body.get("error") or {}).get("message") or f"HTTP {response.status_code}"
-            raise PublishError(secrets.redact(f"Facebook refused: {message}", [self.token]))
+            body = None
+        if status >= 500 or not isinstance(body, dict):
+            # A gateway error or an unreadable answer says nothing about whether the request
+            # was applied: for a feed post that means it may be live.
+            raise UnknownOutcome(f"Facebook answered HTTP {status} without a usable body: it may have gone through")
+        error = body.get("error")
+        if status >= 400 or error:
+            error = error if isinstance(error, dict) else {}
+            message = secrets.redact(f"Facebook refused: {error.get('message') or f'HTTP {status}'}", [self.token])
+            if error.get("code") in TRANSIENT_CODES or error.get("is_transient"):
+                raise UnknownOutcome(message + " (temporary error: it may have gone through)")
+            raise PublishError(message)
         return body
 
     def whoami(self) -> dict:
@@ -210,8 +229,10 @@ def smoke_facebook(root: Path, *, session=None) -> dict:
     if str(me.get("id")) != str(page.page_id):
         raise PublishError(f"the token belongs to '{me.get('name')}' ({me.get('id')}), not FB_PAGE_ID {page.page_id}: "
                            "use a Page access token for that Page")
+    if not str(me.get("name") or "").strip():
+        raise PublishError("Facebook returned no Page name, so publishing could not be confirmed by name")
     state = load_state(root)
-    state["facebook"] = {"page_id": page.page_id, "page_name": me.get("name", ""),
+    state["facebook"] = {"page_id": page.page_id, "page_name": str(me["name"]).strip(),
                          "graph_version": page.version, "checked_at": now()}
     _save_state(root, state)
     return state["facebook"]
@@ -227,12 +248,16 @@ def preconditions(campaign: Campaign, post: Post, platform: str, config: dict) -
         reasons.append(f"'{platform}' has no API publishing here: download its pack and post by hand")
     if platform not in campaign.platforms:
         reasons.append(f"'{platform}' is not in the campaign's platforms")
+    if post.status not in ("ready", "posted"):
+        reasons.append(f"status is '{post.status}': only a ready post can be published")
     approved, why = approval_state(campaign, post, config)
     if not approved:
         reasons.append(why)
     shown = manifest(campaign, post)
     if not shown or shown.get("sha") != content_sha(campaign, post, config):
         reasons.append("the images are not up to date: render again")
+    else:
+        reasons += export_problems(campaign, post)
     row = load_ledger(campaign).get(ledger_key(post, platform)) or {}
     if row.get("state") == "done":
         reasons.append(f"already published: {row.get('url', '')}")

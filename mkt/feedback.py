@@ -55,9 +55,10 @@ def add_manual(campaign: Campaign, post_id: str, lang: str, platform: str, paste
     data = load_feedback(campaign, post_id, lang, platform)
     data["comments"] = _merge(data.get("comments") or [],
                               [{"text": p, "source": "pasted", "added_at": now()} for p in paragraphs])
-    if totals:
-        data["totals"] = {**(data.get("totals") or {}),
-                          **{k: int(v) for k, v in totals.items() if str(v).strip().isdigit()}}
+    if isinstance(totals, dict):
+        clean = {k: int(str(v).strip()) for k, v in totals.items()
+                 if k in ("reactions", "comments", "shares") and str(v).strip().isdecimal()}
+        data["totals"] = {**(data.get("totals") or {}), **clean}
     data["updated_at"] = now()
     _save(campaign, post_id, lang, platform, data)
     return data

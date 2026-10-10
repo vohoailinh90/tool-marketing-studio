@@ -23,3 +23,8 @@ export function createId() {
   }
   return `id-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`
 }
+
+/** A link from stored data, or undefined: only http(s) URLs become clickable. */
+export function safeHref(url: string | undefined | null): string | undefined {
+  return url && /^https?:\/\//i.test(url) ? url : undefined
+}

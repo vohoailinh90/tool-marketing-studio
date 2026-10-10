@@ -14,7 +14,9 @@ they are commercialised. It holds:
   FastAPI server bound to 127.0.0.1.
 
 Development of the engine and the app follows the routing and agent-team rules below,
-inherited from `vohoailinh90/claude-agent-routing-template`. Writing marketing content is
+inherited from `vohoailinh90/claude-agent-routing-template`. The three lanes that can do
+the work — Claude subagents, Codex, and the free-model team on the VPS — and how CI picks
+its runner are in `docs/agent-team.md`. Writing marketing content is
 not a routed software requirement: follow `.claude/skills/tool-campaign/SKILL.md`.
 
 Your primary job is to select the lowest-cost profile that safely handles a requirement,

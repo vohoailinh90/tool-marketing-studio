@@ -37,4 +37,3 @@ artifacts/reviews/*
 artifacts/handoff/*
 !artifacts/handoff/.gitkeep
 
-# Generated eval reports. A committed baseline is the exception: it is the

@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 from datetime import datetime, timezone
 
 
@@ -61,6 +62,27 @@ def manifest(campaign: Campaign, post: Post) -> dict:
         return {}
 
 
+EXPORT_NAME = re.compile(r"^[A-Za-z0-9._-]+$")
+
+
+def export_problems(campaign: Campaign, post: Post) -> list[str]:
+    """The exported images and texts must be exactly what `render` wrote (manifest hashes)."""
+    shown = manifest(campaign, post)
+    out = campaign.export_dir(post)
+    hashes = shown.get("files")
+    if not isinstance(hashes, dict) or not hashes:
+        return ["the export has no file hashes: render again"]
+    problems = []
+    for name in list(shown.get("slides") or []) + list(shown.get("texts") or []):
+        path = out / str(name)
+        if not EXPORT_NAME.match(str(name)) or not path.is_file():
+            problems.append(f"export file missing or invalid: {name}")
+        elif hashes.get(name) != hashlib.sha256(path.read_bytes()).hexdigest():
+            problems.append(f"{name} changed after rendering: render again")
+    return problems
+
+
+
 def _approvals_path(campaign: Campaign):
     return campaign.dir / "approvals.yaml"
 
@@ -84,6 +106,8 @@ def blockers(campaign: Campaign, post: Post, config: dict) -> list[str]:
         reasons.append("the images are older than the post: render again")
     elif shown.get("overflow"):
         reasons.append(f"text overflows on slide(s) {shown['overflow']}: shorten it and render again")
+    else:
+        reasons += export_problems(campaign, post)
     return reasons
 
 
@@ -106,6 +130,8 @@ def approval_state(campaign: Campaign, post: Post, config: dict) -> tuple[bool, 
     entry = (load_approvals(campaign).get(post.id) or {}).get(post.lang)
     if not entry:
         return False, "not approved"
+    if post.status not in ("ready", "posted"):
+        return False, f"status is '{post.status}': set it back to ready to use the approval"
     if entry.get("sha") != content_sha(campaign, post, config):
         return False, "edited since it was approved: review and approve again"
     if has_errors(check_post(campaign, post)):

@@ -1,0 +1,9 @@
+# Mutation manifest — see scripts/mutation_check.py
+# The fixes for the independent review of REQ-MKT-001, each removed in turn.
+target: mkt/layouts.py
+note: Values that end up in a class name are whitelisted and escaped.
+mutations:
+- label: an unknown pains tone reaches the page
+  find: '    tone = enum(s.get("tone"), "tone", "bad")'
+  replace: '    tone = s.get("tone", "bad")'
+  test: tests.test_review_fixes.EscapingTests.test_no_field_of_any_layout_can_open_a_tag

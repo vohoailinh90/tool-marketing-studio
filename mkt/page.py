@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import base64
+import hashlib
 from pathlib import Path
 
 from .layouts import Ctx, render_body
@@ -42,6 +44,18 @@ window.fit = async () => {
 """
 
 
+# The page is opened from a file:// URL in a browser with JavaScript on, so even though every
+# string is escaped, the page also declares what it may load: no frames, no network but the
+# fonts, no script but fit() itself. A slip in escaping cannot then read a local file into
+# the image or call out.
+FIT_HASH = base64.b64encode(hashlib.sha256(FIT_JS.encode("utf-8")).digest()).decode("ascii")
+CSP = ("default-src 'none'; "
+       f"script-src 'sha256-{FIT_HASH}'; "
+       "style-src 'unsafe-inline' https://fonts.googleapis.com; "
+       "font-src https://fonts.studio.invalid https://fonts.gstatic.com; "
+       "img-src file: data:")
+
+
 def build_page(slide: dict, ctx: Ctx, *, brand: dict, tool_name: str, series: str,
                handle: str, index: int, total: int, fmt_name: str, font_css: str = "") -> str:
     """One slide as a standalone page. With `font_css` (cached fonts) the page needs no network;
@@ -61,6 +75,7 @@ def build_page(slide: dict, ctx: Ctx, *, brand: dict, tool_name: str, series: st
 <html lang="{esc(ctx.lang)}">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="{CSP}">
 <meta name="viewport" content="width={width}">
 {fonts}
 <style>{THEME_CSS}</style>

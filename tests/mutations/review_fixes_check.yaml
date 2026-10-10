@@ -1,0 +1,12 @@
+# Mutation manifest — see scripts/mutation_check.py
+target: mkt/check.py
+note: Links in any spelling, and {link} only where a link belongs.
+mutations:
+- label: text is not normalised before the link check
+  find: '    return bool(URL.search(unicodedata.normalize("NFKC", text)))'
+  replace: '    return bool(URL.search(text))'
+  test: tests.test_review_fixes.LinkTests.test_links_in_any_spelling_are_found
+- label: '{link} is allowed anywhere'
+  find: '            if (platform, field) not in LINK_ALLOWED and any("{link}" in text for text in strings(value)):'
+  replace: '            if False:'
+  test: tests.test_review_fixes.LinkTests.test_link_placeholder_only_where_a_link_belongs

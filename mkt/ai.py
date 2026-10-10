@@ -18,7 +18,7 @@ from datetime import date
 
 import yaml
 
-from .check import POST_KEYS, URL, Issue, check_post, has_errors, strings, unsourced_numbers
+from .check import POST_KEYS, Issue, check_post, has_errors, has_url, strings, unsourced_numbers
 from .i18n import LANG_NAMES
 from .layouts import LAYOUT_DOCS
 from .model import Campaign, Post, dump_yaml, load_yaml
@@ -208,7 +208,7 @@ def sanitize_positioning(data: dict, lang: str) -> tuple[dict, list[Issue]]:
     clean = {"lang": lang, **{key: data[key] for key in keys if key in data}}
     issues = [Issue("error", f"positioning/{lang}", f"missing '{key}'")
               for key in ("one_liner", "audience", "pains") if not clean.get(key)]
-    if any(URL.search(text) for text in strings(clean)):
+    if any(has_url(text) for text in strings(clean)):
         issues.append(Issue("error", f"positioning/{lang}", "contains a URL"))
     return clean, issues
 
@@ -387,33 +387,63 @@ def insights_prompt(campaign: Campaign, lang: str, **data) -> tuple[str, str]:
 
 
 LEVELS = ("strong", "moderate", "weak", "unclear")
+EFFORTS = ("S", "M", "L")
+MIN_QUOTE = 10   # characters: a quote shorter than this proves nothing about the comments
+
+
+def _norm(text) -> str:
+    return " ".join(str(text or "").split())
+
+
+def _int(value):
+    try:
+        return int(value)
+    except (TypeError, ValueError):
+        return None
 
 
 def check_insights(report: dict, feedback: list[dict]) -> list[Issue]:
-    """What is computable about an insights report: quotes exist, counts fit, levels are known."""
+    """What is computable about an insights report: quotes exist, counts fit, enums are known.
+    Fixes what it can in place (drops quotes, caps counts) and reports the rest."""
     issues = []
-    corpus = [c.get("text", "") for f in feedback for c in f.get("comments") or []]
-    level = ((report.get("demand") or {}).get("level"))
-    if level not in LEVELS:
+    corpus = [_norm(c.get("text", "")) for f in feedback for c in f.get("comments") or []]
+    if ((report.get("demand") or {}).get("level")) not in LEVELS:
         issues.append(Issue("error", "insights", f"demand.level must be one of {', '.join(LEVELS)}"))
+    for row in report.get("by_language") or []:
+        if isinstance(row, dict) and row.get("signal") not in LEVELS:
+            issues.append(Issue("warn", "insights", f"by_language {row.get('lang')}: unknown signal, set to unclear"))
+            row["signal"] = "unclear"
     for item in report.get("requests") or []:
         if not isinstance(item, dict):
             continue
         kept = []
         for quote in item.get("quotes") or []:
-            if any(str(quote).strip() and str(quote).strip() in text for text in corpus):
-                kept.append(quote)
+            text = _norm(quote)
+            if len(text) >= MIN_QUOTE and any(text in comment for comment in corpus):
+                kept.append(text)
             else:
-                issues.append(Issue("warn", "insights", f"dropped a quote not found in the comments: {str(quote)[:60]}"))
+                issues.append(Issue("warn", "insights", f"dropped a quote not found verbatim in the comments: {text[:60]}"))
         item["quotes"] = kept
     for section in ("requests", "objections"):
         for item in report.get(section) or []:
-            if isinstance(item, dict) and isinstance(item.get("mentions"), int) and item["mentions"] > len(corpus):
-                issues.append(Issue("warn", "insights", f"{section}: {item['mentions']} mentions but only "
-                                                        f"{len(corpus)} comments; capped"))
+            if not isinstance(item, dict):
+                continue
+            count = _int(item.get("mentions"))
+            if count is None or count < 0:
+                item["mentions"] = 0
+            elif count > len(corpus):
+                issues.append(Issue("warn", "insights", f"{section}: {count} mentions but only {len(corpus)} comments; capped"))
                 item["mentions"] = len(corpus)
-    if not report.get("next_steps"):
+            else:
+                item["mentions"] = count
+    steps = [s for s in report.get("next_steps") or [] if isinstance(s, dict)]
+    if not steps:
         issues.append(Issue("error", "insights", "no next_steps"))
+    for index, step in enumerate(steps, 1):
+        step["priority"] = _int(step.get("priority")) or index
+        if step.get("effort") not in EFFORTS:
+            step["effort"] = "?"
+    report["next_steps"] = steps
     return issues
 
 
@@ -437,7 +467,7 @@ def insights_markdown(report: dict, *, tool: str, lang: str, at: str) -> str:
         "## Requests", items(report.get("requests"), lambda r: f"- {r.get('need')} ({r.get('mentions', 0)})"
                              + "".join(f"\n  > {q}" for q in r.get("quotes") or [])), "",
         "## Objections", items(report.get("objections"), lambda r: f"- {r.get('objection')} ({r.get('mentions', 0)}) → {r.get('response', '')}"), "",
-        "## Next steps", items(sorted(report.get("next_steps") or [], key=lambda r: r.get("priority", 99) if isinstance(r, dict) else 99),
+        "## Next steps", items(sorted(report.get("next_steps") or [], key=lambda r: _int(r.get("priority")) or 99 if isinstance(r, dict) else 99),
                                lambda r: f"{r.get('priority')}. **{r.get('action')}** [{r.get('effort', '?')}] — {r.get('why', '')} _(evidence: {r.get('evidence', '')})_"), "",
         "## Next posts", "\n".join(f"- {p}" for p in report.get("next_posts") or []) or "—", "",
         "## Questions to ask", "\n".join(f"- {q}" for q in report.get("questions") or []) or "—", "",
@@ -445,10 +475,13 @@ def insights_markdown(report: dict, *, tool: str, lang: str, at: str) -> str:
 
 
 def save_insights(campaign: Campaign, lang: str, report: dict, *, day: str) -> tuple:
+    # Build both texts before writing either, so a failure never leaves half a report.
+    markdown = insights_markdown(report, tool=campaign.tool_name, lang=lang, at=day)
+    data = dump_yaml(report)
     base = campaign.dir / "insights"
     base.mkdir(parents=True, exist_ok=True)
     stem = f"{day}-{lang}"
     data_path, text_path = base / f"{stem}.yaml", base / f"{stem}.md"
-    data_path.write_text(dump_yaml(report), encoding="utf-8")
-    text_path.write_text(insights_markdown(report, tool=campaign.tool_name, lang=lang, at=day), encoding="utf-8")
+    data_path.write_text(data, encoding="utf-8")
+    text_path.write_text(markdown, encoding="utf-8")
     return data_path, text_path

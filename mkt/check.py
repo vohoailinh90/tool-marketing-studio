@@ -4,10 +4,11 @@ anything is rendered, approved or published."""
 from __future__ import annotations
 
 import re
+import unicodedata
 from dataclasses import dataclass
 
 from .i18n import LANGS
-from .layouts import LAYOUTS, AssetError, resolve_asset
+from .layouts import ENUMS, FIELDS, LAYOUTS, AssetError, resolve_asset
 from .links import PLACEHOLDER, is_configured
 from .model import POST_STATUSES, SLUG, TOOL_STATUSES, Campaign, Post
 from .page import FORMATS
@@ -16,7 +17,23 @@ from .text import plain
 
 HEX = re.compile(r"^#[0-9a-fA-F]{6}$")
 TODO = re.compile(r"\bTODO\b")
-URL = re.compile(r"(?i)\b(?:https?://|www\.)")
+# A link in any spelling a platform would still turn into a link: scheme (also hxxp and
+# with spaces), www., or a bare domain. Text is NFKC-normalised first, so full-width
+# letters and dots are caught too.
+URL = re.compile(
+    r"(?i)(?:\bh[tx]{2}ps?\s*:\s*//|\bwww\.|"
+    r"\b[a-z0-9][a-z0-9-]*(?:\.[a-z0-9-]+)*\.(?:com|net|org|info|biz|io|ai|app|dev|co|me|ly|gl|gg|to|tv|cc|"
+    r"xyz|link|site|online|page|shop|store|club|top|so|sh|im|fm|us|uk|de|fr|ru|cn|kr|tw|hk|sg|in|jp|vn|asia)"
+    r"(?![a-z0-9-])(?:[/?#:]|\b)|"
+    r"\b[a-z0-9-]+(?:\.[a-z0-9-]+)*\.[a-z]{2,}/[\w/%-])")   # any domain followed by a path
+
+
+def has_url(text: str) -> bool:
+    return bool(URL.search(unicodedata.normalize("NFKC", text)))
+
+
+# Where a post may say {link}: the comment under a Facebook post, a LinkedIn caption, an X thread.
+LINK_ALLOWED = {("facebook", "first_comment"), ("linkedin", "caption"), ("x", "thread")}
 NUMBER = re.compile(r"\d+(?:[.,]\d+)*")
 FULLWIDTH = str.maketrans("０１２３４５６７８９", "0123456789")
 HOOK_LIMIT = 125        # Facebook folds a post behind "See more" after about this many characters
@@ -139,9 +156,15 @@ def check_post(campaign: Campaign, post: Post) -> list[Issue]:
         add("warn", f"{len(post.slides)} slides; keep a post to {MAX_SLIDES} or fewer")
 
     for text in strings({k: data.get(k) for k in ("series", "slides", "platforms")}):
-        if URL.search(text):
+        if has_url(text):
             add("error", "a URL is written into the post; links come only from campaign `links:` via {link}")
             break
+    if any("{link}" in text for text in strings({k: data.get(k) for k in ("series", "slides")})):
+        add("error", "{link} cannot go on an image; put it in the first comment")
+    for platform, spec in post.platforms.items():
+        for field, value in (spec.items() if isinstance(spec, dict) else []):
+            if (platform, field) not in LINK_ALLOWED and any("{link}" in text for text in strings(value)):
+                add("error", f"{{link}} is not allowed in {platform}.{field}")
     if any(TODO.search(text) for text in strings(data)):
         add("error" if final else "warn", "still contains TODO")
 
@@ -158,6 +181,16 @@ def check_post(campaign: Campaign, post: Post) -> list[Issue]:
         for key in LAYOUTS[name][1]:
             if slide.get(key) in (None, "", [], {}):
                 add("error", f"layout '{name}' needs '{key}'", spot)
+        for key in slide:
+            if key != "layout" and key not in FIELDS[name]:
+                add("error", f"layout '{name}' has no field '{key}' (fields: {', '.join(FIELDS[name])})", spot)
+        for key, kind in (("tone", "tone"), ("variant", "variant"), ("style", "style")):
+            if key in slide and slide[key] not in ENUMS[kind]:
+                add("error", f"'{key}' must be one of {', '.join(ENUMS[kind])}", spot)
+        for row in slide.get("rows") or [] if name == "table" else []:
+            for cell in row if isinstance(row, list) else []:
+                if isinstance(cell, dict) and "tone" in cell and cell["tone"] not in ENUMS["cell_tone"]:
+                    add("error", f"table cell tone must be one of {', '.join(ENUMS['cell_tone'])}", spot)
         if name == "image" and slide.get("src"):
             try:
                 resolve_asset(slide["src"], roots)

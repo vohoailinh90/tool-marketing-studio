@@ -1,0 +1,30 @@
+# Campaign: introduce Outlook RSVP Tool and measure real demand before building more.
+tool: outlook-rsvp-tool
+langs: [vi, ja, en]           # every post exists once per language, written for that audience
+platforms: [facebook]         # add linkedin / x to get those packs (their texts go in each post)
+goal: >-
+  Validate demand for Outlook RSVP Tool: find out how many organisers feel this pain, how they
+  work today, and whether they (or their company) would pay — before packaging it for sale.
+
+links:
+  # Google Forms pre-filled link: replace FORM_ID and entry.NNN with your form's "source" question,
+  # e.g. https://docs.google.com/forms/d/e/FORM_ID/viewform?usp=pp_url&entry.123456={source}
+  survey: "https://REPLACE_ME/survey?src={source}"
+  waitlist: "https://REPLACE_ME/waitlist"
+
+utm:
+  medium: social
+  campaign: rsvp-validation
+
+# Suggested rhythm: one post every 2–3 days, evenings (20:00–21:30) when office workers scroll.
+schedule:
+  - {post: 01-pain, lang: vi, platform: facebook, date: TBD}
+  - {post: 01-pain, lang: ja, platform: facebook, date: TBD}
+  - {post: 01-pain, lang: en, platform: facebook, date: TBD}
+
+validation:
+  window_days: 30
+  # Below these counts the verdict is INSUFFICIENT_DATA, whatever the rates say.
+  min_counts: {reach: 1000, link_clicks: 30, survey_responses: 15}
+  # GO when every target is met (per language). signups = people who asked to try it: intent, not reach.
+  go_if: {survey_responses: 30, signups: 10, click_rate: 0.01}

@@ -1,0 +1,97 @@
+# Language-neutral FACTS about the tool. Every post, in every language, may only claim
+# what is written here. Per-language positioning lives in positioning/<lang>.yaml.
+slug: outlook-rsvp-tool
+name: Outlook RSVP Tool
+repo: vohoailinh90/Outlook-RSVP-Tool_Event-follow-up-tool
+status: beta          # idea | prototype | beta | launched — works end to end for its author, not packaged yet
+brand:
+  emoji: "📅"
+  accent: "#0f6cbd"   # Outlook blue
+
+what_it_is: >-
+  A Windows desktop app that runs the whole internal-event workflow through the Outlook
+  Desktop the user already has: Yes/No/Maybe voting-button invites, automatic collection of
+  replies, calendar invites, attendance and multi-round payments, gift contributions,
+  reminders and a full event history.
+
+requirements:
+  - Windows (Outlook COM automation — no Mac, no Outlook on the web)
+  - Outlook Desktop installed and signed in
+  - Python 3.8+ with pywin32 and openpyxl (no installer yet)
+
+features:            # each is in the tool's README
+  - id: event-setup
+    fact: Event setup with Event ID, date, place, deadline, budget; modes Event, Gift, Event + Gift
+  - id: recipients
+    fact: Recipient list imported from Excel (name in column A, e-mail in column B) or typed in
+  - id: voting-invite
+    fact: Invites with Outlook voting buttons Yes / No / Maybe; recipients answer with one click
+  - id: invite-languages
+    fact: Invites in English, Japanese, Vietnamese, or bilingual Japanese + English
+  - id: copilot-bridge
+    fact: Translation via a copy-paste bridge with Microsoft Copilot (no API)
+  - id: scan-inbox
+    fact: Scan Inbox reads the Yes/No/Maybe replies from every mail folder and counts them
+  - id: reminders
+    fact: Reminder e-mails to people who have not answered, sent from the app (manually, not on a schedule)
+  - id: calendar
+    fact: Calendar invites sent to Yes/Maybe recipients
+  - id: payments
+    fact: Attendance and payment tracking over several rounds (main event, second venue…), with a Free exemption
+  - id: thank-you
+    fact: Thank-you e-mail with a table of every round's money and an Excel attachment
+  - id: gift
+    fact: Gift contribution tracking — who gave, how much, gift price, remaining money
+  - id: history
+    fact: Full event history; department fund balance computed as a running total
+  - id: template
+    fact: Load a past event as a template for a new one
+  - id: how-to-vote
+    fact: An image explaining how to click the vote buttons is attached to every invite
+
+claims:              # anything a post states as a benefit must be one of these
+  - id: no-api-key
+    text: No API key and no Azure app registration needed — it drives Outlook through COM
+    evidence: README
+    verified: true
+  - id: local-data
+    text: All data stays in one SQLite file on the user's PC
+    evidence: README
+    verified: true
+  - id: one-click
+    text: Recipients answer with one click on a vote button, no typing
+    evidence: README
+    verified: true
+  - id: three-languages
+    text: Invites in Vietnamese, Japanese, English or bilingual JA+EN
+    evidence: README
+    verified: true
+  - id: manual-time
+    text: "A ~30-person event done by hand takes about 3 h 20 min of organiser time (20 + 60 + 30 + 15 + 45 + 30 minutes)"
+    evidence: author's estimate — not measured
+    verified: false
+  - id: tool-time
+    text: "With the tool, the repetitive part takes about 30 minutes"
+    evidence: author's estimate — not measured; measure with beta users before using as a headline
+    verified: false
+
+limitations:         # say these openly: they decide who should NOT try it
+  - Windows + Outlook Desktop only
+  - Two people sharing one e-mail address cannot be told apart
+  - Scheduled automatic reminders are not built; reminders are sent by hand from the app
+  - Needs Python installed — there is no one-click installer yet
+
+story_to_confirm:    # posts 02-story use these; the author must confirm or rewrite them
+  - The author has organised internal events and gift collections several times
+  - It started as an Excel file that grew too complex (columns for money, second venue, gifts)
+  - The deciding idea was to let Outlook — already approved at work — do the repetitive part
+
+commercial_readiness: # what must exist before charging money (see playbooks/05-thuong-mai-hoa.md)
+  - One-click Windows installer (.exe / MSIX), no Python setup for the user
+  - Licence and a short terms-of-use page
+  - Onboarding guide with screenshots in VI / JA / EN
+  - A support channel and an update path
+
+pricing_hypotheses:  # to test in the survey, not to announce
+  - Free for personal use, paid team licence for departments
+  - One-time personal licence vs. small yearly subscription

@@ -1,0 +1,76 @@
+id: 01-pain
+status: draft
+format: portrait
+series: "Tool văn phòng · #1"
+link: survey
+slides:
+  - layout: cover
+    emoji: "🎉"
+    eyebrow: "Dân văn phòng ơi"
+    title: "Bạn có phải là **người bị giao** tổ chức tiệc công ty?"
+    subtitle: "Tất niên, sinh nhật, chia tay đồng nghiệp… vui là của cả phòng, còn việc mời, đếm, nhắc, thu tiền thì dồn về **một người**."
+    badge: "Xem hết các ảnh nhé 👉"
+
+  - layout: chat
+    title: "Nghe quen không?"
+    group: "Phòng Kinh doanh 🎉"
+    messages:
+      - {from: "Chị Hà", text: "Tối thứ Sáu ai đi tất niên thì báo nha 🙏"}
+      - {from: "Minh", text: "Em đi ạ!"}
+      - {from: "Tuấn", text: "Chắc đi, để anh xem lịch đã"}
+      - {me: true, text: "Còn 8 bạn chưa trả lời, mọi người rep giúp mình với 😭"}
+      - {from: "Lan", text: "Ủa nhà hàng ở đâu vậy?"}
+      - {me: true, text: "Ai chưa đóng tiền tăng 2 nhỉ…?"}
+
+  - layout: pains
+    title: "Người tổ chức thường phải…"
+    items:
+      - {emoji: "😵", text: "Đếm **Yes/No** bằng tay giữa hàng chục email trả lời"}
+      - {emoji: "🔁", text: "Nhắc đi nhắc lại những người **chưa trả lời**"}
+      - {emoji: "📅", text: "Gửi lịch hẹn riêng cho người **đồng ý tham gia**"}
+      - {emoji: "💸", text: "Ghi ai **đã đóng tiền**, ai được miễn, tăng 2 tính sao"}
+      - {emoji: "🎁", text: "Thu tiền quà chia tay và tính **còn dư bao nhiêu**"}
+      - {emoji: "📂", text: "Lần sau lại **làm từ đầu** vì không ai lưu lịch sử"}
+
+  - layout: flow
+    variant: before
+    title: "Một buổi tiệc ~30 người, làm thủ công:"
+    total_label: "Tổng (ước tính)"
+    steps:
+      - {text: "Soạn & gửi email mời", minutes: 20}
+      - {text: "Đọc từng email trả lời, đếm ai đi", minutes: 60}
+      - {text: "Nhắc người chưa trả lời (2–3 lần)", minutes: 30}
+      - {text: "Gửi lịch hẹn cho người tham gia", minutes: 15}
+      - {text: "Ghi chép tiền, tính tiền tăng 2", minutes: 45}
+      - {text: "Email cảm ơn + báo cáo chi tiêu", minutes: 30}
+    note: "Ước tính từ kinh nghiệm của mình — còn bạn thì mất bao lâu?"
+
+  - layout: poll
+    eyebrow: "Hỏi nhanh"
+    question: "Bạn đang theo dõi ai tham gia bằng cách nào?"
+    options:
+      - "File Excel tự làm"
+      - "Đếm tay trong hộp thư"
+      - "Google Forms / Microsoft Forms"
+      - "Nhớ trong đầu 🙃"
+
+  - layout: cta
+    title: "Mình đang làm một tool để **tự động hoá** việc này"
+    text: "Chạy ngay trên Outlook bạn đang dùng ở công ty. Bài sau mình kể vì sao mình làm nó."
+    keyword: "RSVP"
+
+platforms:
+  facebook:
+    caption: |
+      Ai từng là "người được giao" tổ chức tiệc công ty thì sẽ hiểu cảm giác này 😅
+
+      Việc vui là của cả phòng. Còn việc mời, đếm người, nhắc người chưa trả lời, thu tiền, tính tiền tăng 2… thường dồn hết về một người.
+
+      Mình đã làm việc đó không ít lần, và phần mệt nhất chưa bao giờ là buổi tiệc — mà là đối chiếu xem ai đi, ai chưa trả lời, ai chưa đóng tiền. Nên mình bắt đầu viết một tool nhỏ chạy trên Outlook để làm hộ phần lặp lại.
+
+      Trước khi giới thiệu chi tiết, cho mình hỏi: bạn đang theo dõi người tham gia bằng cách nào? Trả lời A / B / C / D ở comment nhé 👇
+
+      Comment "RSVP" nếu bạn muốn được báo khi tool mở dùng thử.
+    first_comment: |
+      📋 Khảo sát 3 phút để mình hiểu mọi người đang tổ chức sự kiện thế nào (người trả lời được ưu tiên dùng thử): {link}
+    hashtags: [tudonghoa, vanphong, Outlook, nangsuat, tochucsukien]

@@ -1,0 +1,24 @@
+# Secrets: API keys and Page tokens live only here, never in YAML or git.
+.env
+.env.*
+!.env.example
+
+# Local state: smoke-check result, publish lock, cached webfonts, HTML build pages.
+.studio/
+.fonts/
+build/
+
+# People's words and personal data stay out of git: raw survey exports, scanned comments.
+research/raw/
+campaigns/*/feedback/
+
+# Regenerated on demand.
+campaigns/*/packs/
+*.part
+
+# Python / Node.
+__pycache__/
+*.pyc
+.pytest_cache/
+web/node_modules/
+web/node_modules/.tmp/

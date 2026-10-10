@@ -29,6 +29,7 @@ def _posts(campaign, ids, langs):
 
 def cmd_list(args, root, config):
     from .approvals import approval_state
+    from .history import is_published
     from .publish import load_ledger
     for slug in campaign_slugs(root):
         campaign = load_campaign(root, slug)
@@ -36,7 +37,7 @@ def cmd_list(args, root, config):
         print(f"{slug}  ({campaign.tool_name}; {', '.join(campaign.langs)}; {', '.join(campaign.platforms)})")
         for post in campaign.posts:
             approved, why = approval_state(campaign, post, config)
-            sent = [p for p in campaign.platforms if (ledger.get(f"{post.id}/{post.lang}/{p}") or {}).get("state") == "done"]
+            sent = [p for p in campaign.platforms if is_published(ledger, post.id, post.lang, p)]
             print(f"  {post.id:<18} {post.lang}  {post.status:<6}  {'approved' if approved else why}"
                   f"{'  published: ' + ', '.join(sent) if sent else ''}")
 

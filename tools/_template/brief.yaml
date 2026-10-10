@@ -1,0 +1,37 @@
+# Language-neutral FACTS about the tool. Every post, in every language, may only claim
+# what is written here. Per-language positioning lives in positioning/<lang>.yaml.
+slug: __SLUG__
+name: "__NAME__"
+repo: __REPO__
+status: prototype      # idea | prototype | beta | launched
+brand:
+  emoji: "🧰"
+  accent: "#2563eb"
+
+what_it_is: >-
+  TODO: one paragraph, from the tool's README.
+
+requirements:
+  - TODO: platform, accounts, installs the user needs
+
+features:
+  - id: TODO
+    fact: TODO — one feature, as the README states it
+
+claims:                 # every benefit a post may state
+  - id: TODO
+    text: TODO
+    evidence: TODO — README / measured / author's estimate
+    verified: false
+
+limitations:
+  - TODO: say these openly — they decide who should not try it
+
+story_to_confirm:       # the author's own story: the author must confirm before posting
+  - TODO
+
+commercial_readiness:
+  - TODO: what must exist before charging money
+
+pricing_hypotheses:
+  - TODO: to test in the survey, not to announce

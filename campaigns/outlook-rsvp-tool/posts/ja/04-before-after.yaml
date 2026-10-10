@@ -1,0 +1,73 @@
+id: 04-before-after
+status: draft
+format: portrait
+series: "幹事の業務効率化 · #4"
+link: survey
+slides:
+  - layout: cover
+    emoji: "⏱️"
+    eyebrow: "ビフォー・アフター"
+    title: "同じ飲み会、**ふたつのやり方**"
+    subtitle: "左は以前のやり方。右は今のやり方です。"
+
+  - layout: compare
+    title: "何が違うのか"
+    before:
+      items:
+        - "受信トレイで出欠を手作業で数える"
+        - "回答済みの人にもまとめてリマインド"
+        - "集金をExcelに手入力、漏れやすい"
+        - "次回もゼロからやり直し"
+    after:
+      items:
+        - "Scan Inbox を押せば集計完了"
+        - "未回答の人にだけリマインド"
+        - "回ごとの金額を自動で合計・残高も"
+        - "過去のイベントをひな形に再利用"
+
+  - layout: table
+    style: sheet
+    title: "幹事のExcel、こうなっていませんか？"
+    columns: ["名前", "出欠", "会費", "メモ"]
+    rows:
+      - ["佐藤", "○", "5000", "済"]
+      - ["田中", {text: "たぶん？", tone: warn}, "", {text: "要確認", tone: warn}]
+      - ["鈴木", "", "5000", {text: "二次会??", tone: bad}]
+      - ["高橋", "×", "", ""]
+      - ["佐藤(2)", {text: "重複？", tone: bad}, "", ""]
+    note: "1つの入力ミスで、夜まで突き合わせ作業。"
+
+  - layout: stat
+    eyebrow: "約30人の飲み会の場合（目安）"
+    before: "約3時間20分"
+    after: "約30分"
+    label: "繰り返し作業にかかる時間"
+    caption: "私の見積もりで、まだ計測はしていません。試用者のみなさんと一緒に測ります。"
+
+  - layout: checklist
+    title: "こんな方におすすめです"
+    items:
+      - "社内の飲み会やイベントの幹事をよく任される"
+      - "会社で **Windows の Outlook** を使っている"
+      - "複数回の集金や餞別の取りまとめがある"
+      - "日本人以外のメンバーもいるチーム"
+    note: "Mac と Web 版 Outlook には未対応です。"
+
+  - layout: cta
+    emoji: "💬"
+    title: "どんな**機能があれば**使いたいですか？"
+    text: "次に何を作るかを決めているところです。みなさんの声で順番が決まります。"
+
+platforms:
+  facebook:
+    caption: |
+      幹事をExcelでやるのをやめる前と後📊
+
+      以前：受信トレイで出欠を数え、回答済みの人にもまとめてリマインドし、どんどんカラフルになるExcelに会費を手入力。今：Scan Inbox で表ができ、未回答の人にだけリマインド、回ごとの金額は自動で合計。
+
+      「約3時間20分 → 約30分」は約30人の飲み会での私の見積もりで、まだ計測した数字ではありません。最初の試用者のみなさんと一緒に測り、結果は正直に共有します。
+
+      Mac と Web 版 Outlook にはまだ対応していません。Windows の Outlook をお使いの方、どんな機能があれば使いたいですか？
+    first_comment: |
+      📋 次に作る機能へのご意見は、3分のアンケートで：{link}
+    hashtags: [幹事, Outlook, Excel, 業務効率化, 自動化]

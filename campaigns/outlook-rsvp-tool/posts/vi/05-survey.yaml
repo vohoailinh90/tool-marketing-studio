@@ -1,0 +1,47 @@
+id: 05-survey
+status: draft
+format: portrait
+series: "Tool văn phòng · #5"
+link: survey
+slides:
+  - layout: cover
+    emoji: "📋"
+    eyebrow: "Nhờ bạn 3 phút"
+    title: "Giúp mình hiểu **bạn đang tổ chức sự kiện thế nào**"
+    subtitle: "Khảo sát ngắn, không cần đăng nhập."
+
+  - layout: pains
+    tone: accent
+    title: "Mình muốn biết…"
+    items:
+      - {emoji: "❓", text: "Bạn tổ chức sự kiện **bao lâu một lần**?"}
+      - {emoji: "❓", text: "Phần nào **tốn thời gian nhất**?"}
+      - {emoji: "❓", text: "Bạn đang dùng **công cụ gì**?"}
+      - {emoji: "❓", text: "Công cụ như vậy **đáng giá bao nhiêu** với bạn hoặc công ty?"}
+
+  - layout: checklist
+    title: "Bạn nhận được gì?"
+    items:
+      - "**Ưu tiên dùng thử** bản beta khi mở"
+      - "Bản tóm tắt **kết quả khảo sát** (ẩn danh)"
+      - "Góp ý trực tiếp cho tính năng tiếp theo"
+
+  - layout: cta
+    emoji: "👇"
+    title: "Làm khảo sát ngay"
+    text: "Khoảng 3 phút. Cảm ơn bạn rất nhiều 🙏"
+    button: "Mở khảo sát"
+
+platforms:
+  facebook:
+    caption: |
+      Mình cần 3 phút của bạn 🙏
+
+      Trước khi đầu tư thêm cho Outlook RSVP Tool, mình muốn hiểu thật sự: mọi người đang tổ chức sự kiện công ty thế nào, phần nào mệt nhất, và một công cụ như vậy có đáng để trả tiền không — với bạn, hay với công ty bạn.
+
+      Khảo sát ngắn, không cần đăng nhập. Người trả lời sẽ được ưu tiên dùng thử bản beta và nhận bản tóm tắt kết quả (ẩn danh).
+
+      Link ở comment đầu tiên 👇 Cảm ơn bạn rất nhiều!
+    first_comment: |
+      📋 Khảo sát 3 phút: {link}
+    hashtags: [khaosat, Outlook, tochucsukien, vanphong]

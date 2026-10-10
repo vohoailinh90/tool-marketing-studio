@@ -1,0 +1,72 @@
+id: 03-how-it-works
+status: draft
+format: portrait
+series: "幹事の業務効率化 · #3"
+link: survey
+slides:
+  - layout: cover
+    emoji: "⚙️"
+    eyebrow: "しくみ"
+    title: "案内メールから会計報告まで、**1つのアプリで**"
+    subtitle: "7ステップ、それぞれが1つのタブです。"
+
+  - layout: email
+    title: "参加者はボタンを押すだけ"
+    subject: "【EVT-12】営業部 忘年会のご案内（出欠確認）"
+    from: "幹事（あなた）"
+    infobar: "このメッセージには投票ボタンがあります。上の［はい］［いいえ］［未定］から選んでください。"
+    buttons: ["はい", "いいえ", "未定"]
+    body: "お疲れさまです。\n忘年会を **12月の金曜 18:30** から会社近くのお店で行います。\n上の投票ボタンで出欠をお知らせください。"
+    note: "投票ボタンの押し方を説明する画像も自動で添付されます。"
+
+  - layout: flow
+    variant: after
+    title: "7ステップ、それぞれが1つのタブ"
+    steps:
+      - {emoji: "📝", text: "イベント情報を入力：日時・場所・予算"}
+      - {emoji: "👥", text: "参加者リストをExcelから取り込み"}
+      - {emoji: "✉️", text: "投票ボタン付きの案内メールを送信"}
+      - {emoji: "📥", text: "**Scan Inbox** で返信を自動で読み取り・集計"}
+      - {emoji: "📅", text: "会議出席依頼・出席確認・**複数回の集金**"}
+      - {emoji: "🎁", text: "餞別の集金を管理"}
+      - {emoji: "📚", text: "履歴を保存し、**部費の残高**を自動計算"}
+
+  - layout: table
+    title: "Scan Inbox を押したあと"
+    columns: ["名前", "回答", "1次会", "2次会"]
+    rows:
+      - ["佐藤", {text: "✅ はい", tone: ok}, "5,000", "3,000"]
+      - ["田中", {text: "✅ はい", tone: ok}, "5,000", {text: "—", tone: muted}]
+      - ["鈴木", {text: "🤔 未定", tone: warn}, {text: "—", tone: muted}, {text: "—", tone: muted}]
+      - ["高橋", {text: "❌ いいえ", tone: bad}, {text: "—", tone: muted}, {text: "—", tone: muted}]
+      - ["合計", "はい2・未定1・いいえ1", "10,000", "3,000"]
+    total_row: true
+    note: "数字はイメージです。"
+
+  - layout: features
+    title: "ツールが代わりにやること"
+    items:
+      - {emoji: "🔔", title: "必要な人だけにリマインド", text: "まだボタンを押していない人にだけ送ります"}
+      - {emoji: "💰", title: "複数回の集金", text: "1次会・2次会…回ごとに参加者と金額を管理"}
+      - {emoji: "🌏", title: "日英併記のメール", text: "1通で日本語と英語。翻訳は Copilot へのコピペで"}
+      - {emoji: "📊", title: "Excelで報告", text: "出欠と会計の表をそのまま上司に"}
+
+  - layout: cta
+    emoji: "🙋"
+    title: "試用版を使ってみませんか？"
+    text: "Windows ＋ Outlook デスクトップ版で動きます。最初の試用者を探しています。"
+    keyword: "試したい"
+
+platforms:
+  facebook:
+    caption: |
+      「どうやって動くの？」という質問が多かったので、ステップごとに紹介します👇
+
+      ポイントは Outlook の投票ボタンです。参加者はメールの中で「はい・いいえ・未定」を押すだけ。リンクもログインも不要です。幹事は Scan Inbox を押すだけで、全員の返信が表になります。
+
+      残りは、以前Excelでやっていた作業です。参加者への会議出席依頼、出席確認、回ごとの集金、餞別の管理、そして部署への会計報告。
+
+      Windows で Outlook を使っていて、試用版に興味がある方は「試したい」とコメントしてください。
+    first_comment: |
+      📋 3分のアンケート（回答者には試用版を優先的にご案内します）：{link}
+    hashtags: [幹事, Outlook, 業務効率化, 自動化, 出欠確認]

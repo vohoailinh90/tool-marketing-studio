@@ -22,3 +22,19 @@ __pycache__/
 .pytest_cache/
 web/node_modules/
 web/node_modules/.tmp/
+# Generated artifacts (keep folders, ignore run outputs)
+artifacts/architecture/*
+!artifacts/architecture/.gitkeep
+artifacts/critiques/*
+!artifacts/critiques/.gitkeep
+artifacts/plans/*
+!artifacts/plans/.gitkeep
+artifacts/reviews/*
+!artifacts/reviews/.gitkeep
+
+# Session handoff is local session state, not repository content:
+# it quotes the last prompt and the working tree of one machine's run.
+artifacts/handoff/*
+!artifacts/handoff/.gitkeep
+
+# Generated eval reports. A committed baseline is the exception: it is the

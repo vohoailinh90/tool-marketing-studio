@@ -1,0 +1,12 @@
+# Mutation manifest — see scripts/mutation_check.py
+target: mkt/approvals.py
+note: An approval covers exactly the version that was read.
+mutations:
+- label: an edited post stays approved
+  find: '    if entry.get("sha") != content_sha(campaign, post, config):'
+  replace: '    if False:'
+  test: tests.test_publish.PublishTests.test_edit_voids_approval
+- label: stale images can be approved
+  find: '    elif shown.get("sha") != content_sha(campaign, post, config):'
+  replace: '    elif False:'
+  test: tests.test_publish.PublishTests.test_stale_images_cannot_be_approved

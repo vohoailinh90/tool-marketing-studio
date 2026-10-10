@@ -1,0 +1,18 @@
+# The owner's tools and where each stands in the studio. `studio.py new <slug>` scaffolds a
+# brief and campaign; the tool-campaign skill fills them from the tool's repository.
+# status: backlog | brief | campaign | posted | validated | dropped
+tools:
+  - {slug: outlook-rsvp-tool, repo: vohoailinh90/Outlook-RSVP-Tool_Event-follow-up-tool, status: campaign}
+  - {slug: excel-to-planner, repo: vohoailinh90/Excel-to-planner, status: backlog}
+  - {slug: office-translator, repo: vohoailinh90/office_translator, status: backlog}
+  - {slug: excel-mcp-server, repo: vohoailinh90/Excel_MCP_Server, status: backlog}
+  - {slug: doc-tools, repo: vohoailinh90/doc-tools, status: backlog}
+  - {slug: document-ai-editor, repo: vohoailinh90/DocumentAIEditor, status: backlog}
+  - {slug: email-bridge, repo: vohoailinh90/Email_Bridge, status: backlog}
+  - {slug: customer-tcd-sync, repo: vohoailinh90/Customer-tcd-sync, status: backlog}
+  - {slug: shipping-inspection, repo: vohoailinh90/Shipping_Inspection, status: backlog}
+  - {slug: step-file-review, repo: vohoailinh90/Step_File_Review, status: backlog}
+  - {slug: test-order-tracker, repo: vohoailinh90/Test-order-tracker, status: backlog}
+  - {slug: habit-coach, repo: vohoailinh90/Habit-Coach, status: backlog}
+  - {slug: reading-vocab-tracker, repo: vohoailinh90/reading-vocab-tracker, status: backlog}
+  - {slug: ai-video-on-facebook, repo: vohoailinh90/AI-Video-on-Facebook, status: backlog}

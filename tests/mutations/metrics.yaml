@@ -1,0 +1,8 @@
+# Mutation manifest — see scripts/mutation_check.py
+target: mkt/metrics.py
+note: No verdict below the minimum counts.
+mutations:
+- label: thin data still gets a verdict
+  find: '        short |= not ok'
+  replace: '        short |= False'
+  test: tests.test_metrics.MetricsTests.test_below_minimum_counts_is_insufficient_data

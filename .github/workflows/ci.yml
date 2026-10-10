@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  engine:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install
+        run: |
+          pip install -r requirements-dev.txt
+          python -m playwright install --with-deps chromium
+      - name: Repository layout
+        run: python scripts/layout_check.py
+      - name: UI catalogs (vi / ja / en)
+        run: python scripts/i18n_check.py
+      - name: Campaign checks
+        run: python studio.py check
+      - name: Tests
+        run: python -m pytest -q
+      - name: Mutation check (safety-rail tests catch their own removal)
+        run: python scripts/mutation_check.py --all
+
+  web:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - run: npm ci
+      - name: Typecheck and build
+        run: npm run build
+      - name: Committed web/dist matches the source
+        run: git diff --exit-code -- dist

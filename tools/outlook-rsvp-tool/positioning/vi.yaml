@@ -1,0 +1,26 @@
+lang: vi
+one_liner: "Ứng dụng chạy trên Outlook giúp người được giao tổ chức sự kiện công ty mời, đếm người, nhắc, thu tiền và báo cáo — không cần Excel rối rắm."
+audience: >-
+  Nhân viên văn phòng người Việt (ở Việt Nam hoặc làm cho công ty Nhật, công ty nước ngoài) hay được giao
+  tổ chức tất niên, sinh nhật, chia tay đồng nghiệp, góp quà, quản lý quỹ phòng; công ty dùng Outlook trên Windows.
+pains:
+  - "Đếm Yes/No bằng tay giữa cả chục email trả lời viết đủ kiểu"
+  - "Phải nhắc đi nhắc lại những người chưa trả lời, mà không nhớ ai đã trả lời"
+  - "Ghi tiền vào Excel: ai đóng rồi, ai được miễn, tăng 2 chia thế nào"
+  - "Thu tiền quà chia tay, tính còn dư bao nhiêu, báo lại cho mọi người"
+  - "Team có người Nhật/nước ngoài nên phải viết email hai thứ tiếng"
+  - "Lần sau người khác làm lại từ đầu vì không có lịch sử"
+promise: "Phần lặp lại (mời, đếm, nhắc, ghi tiền, báo cáo) do Outlook làm; bạn chỉ còn việc chọn nhà hàng."
+objections:
+  - {q: "Có phải gửi dữ liệu lên server nào không?", a: "Không. Mọi thứ nằm trong một file SQLite trên máy bạn."}
+  - {q: "Có cần IT cấp quyền hay API key không?", a: "Không cần API key hay đăng ký ứng dụng; tool điều khiển Outlook Desktop bạn đang dùng."}
+  - {q: "Dùng trên Mac được không?", a: "Chưa. Hiện chỉ chạy trên Windows với Outlook Desktop."}
+  - {q: "Người nhận có phải cài gì không?", a: "Không. Họ chỉ bấm nút Yes / No / Maybe ngay trong email."}
+vocabulary: [tất niên, tiệc chia tay, tăng 2, quỹ phòng, góp quà, thu tiền, rep email, ban tổ chức, người được giao]
+angles:
+  - "Chat nhóm hỗn loạn khi hỏi ai đi tiệc"
+  - "Thời gian thật sự của việc tổ chức một buổi tiệc 30 người"
+  - "Vì sao mình chọn làm trên Outlook thay vì một app mới"
+  - "Trước và sau: file Excel tô màu vs bảng tự cộng"
+  - "Khảo sát: bạn đang tổ chức sự kiện thế nào"
+tone: "Thân thiện, xưng mình – bạn, hài hước nhẹ về chuyện văn phòng; trung thực về giới hạn."

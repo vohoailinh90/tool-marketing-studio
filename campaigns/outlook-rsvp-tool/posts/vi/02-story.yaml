@@ -1,0 +1,51 @@
+id: 02-story
+status: draft
+format: portrait
+series: "Tool văn phòng · #2"
+link: survey
+slides:
+  - layout: cover
+    emoji: "🛠️"
+    eyebrow: "Câu chuyện phía sau"
+    title: "Vì sao mình tự viết một tool cho **việc tổ chức sự kiện**?"
+    subtitle: "Không phải vì thích code. Mà vì đã quá mệt với một file Excel."
+
+  - layout: timeline
+    title: "Từ một file Excel đến một ứng dụng"
+    items:
+      - {when: "Lúc đầu", text: "Một file Excel: tên, email, cột Yes/No — và rất nhiều ô tô màu bằng tay."}
+      - {when: "Rồi", text: "Thêm cột tiền, cột tăng 2, cột quà chia tay. File ngày càng khó đọc."}
+      - {when: "Vấn đề", text: "Câu trả lời nằm rải rác trong hộp thư. Mỗi lần cập nhật lại phải **đọc lại từ đầu**."}
+      - {when: "Quyết định", text: "Để **Outlook** — thứ công ty đã có sẵn — làm phần việc lặp lại."}
+
+  - layout: quote
+    text: "Công cụ tốt nhất là công cụ **không cần xin IT cấp quyền** thêm gì cả."
+    author: "Nguyên tắc #1"
+    role: "khi mình bắt đầu làm tool"
+
+  - layout: checklist
+    title: "4 nguyên tắc mình giữ khi làm tool"
+    items:
+      - "Chạy trên **Outlook Desktop** sẵn có — không API key, không đăng ký ứng dụng"
+      - "Dữ liệu nằm **trên máy bạn** (một file SQLite), không gửi đi đâu"
+      - "Người nhận chỉ cần **bấm một nút** Yes / No / Maybe"
+      - "Email bằng **tiếng Việt, tiếng Nhật, tiếng Anh** hoặc song ngữ Nhật–Anh"
+
+  - layout: cta
+    emoji: "👀"
+    title: "Bài sau: tool chạy thế nào trong **7 bước**"
+    text: "Bạn muốn xem kỹ phần nào nhất? Comment cho mình biết nhé."
+
+platforms:
+  facebook:
+    caption: |
+      Có người hỏi mình: sao không dùng Google Forms cho nhanh? 🤔
+
+      Vì ở công ty, mọi người sống trong Outlook. Email mời đến Outlook, câu trả lời về Outlook, lịch hẹn cũng nằm trong Outlook. Mỗi lần bắt mọi người chuyển sang công cụ khác là thêm một lý do để họ quên trả lời.
+
+      Nên khi file Excel tổ chức sự kiện của mình phình to đến mức không đọc nổi, mình làm ngược lại: để chính Outlook làm phần lặp lại — gửi mời có nút bấm, đọc câu trả lời, nhắc người chưa trả lời, ghi tiền.
+
+      4 nguyên tắc mình giữ từ ngày đầu nằm trong ảnh. Với bạn, nguyên tắc nào quan trọng nhất?
+    first_comment: |
+      📋 Nếu bạn hay phải tổ chức sự kiện, giúp mình 3 phút khảo sát nhé: {link}
+    hashtags: [tudonghoa, Outlook, vanphong, cauchuyen, nangsuat]

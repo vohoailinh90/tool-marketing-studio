@@ -1,0 +1,76 @@
+id: 01-pain
+status: draft
+format: portrait
+series: "Office tools · #1"
+link: survey
+slides:
+  - layout: cover
+    emoji: "🎉"
+    eyebrow: "Office life"
+    title: "Are you the one who **always ends up** organising the team party?"
+    subtitle: "Year-end dinners, farewells, birthdays… fun for the team, hours of admin for **one person**."
+    badge: "See all the pictures 👉"
+
+  - layout: chat
+    title: "Sound familiar?"
+    group: "Sales Team 🎉"
+    messages:
+      - {from: "Hannah", text: "Anyone coming on Friday, please let me know 🙏"}
+      - {from: "Mike", text: "I'm in!"}
+      - {from: "Tom", text: "Probably — let me check my calendar"}
+      - {me: true, text: "Still 8 people haven't replied… 😭"}
+      - {from: "Lisa", text: "Wait, where's the restaurant?"}
+      - {me: true, text: "Has everyone paid for the after-party…?"}
+
+  - layout: pains
+    title: "What organisers end up doing"
+    items:
+      - {emoji: "😵", text: "Counting **yes/no replies** by hand across dozens of emails"}
+      - {emoji: "🔁", text: "Chasing the people who **haven't answered** — again"}
+      - {emoji: "📅", text: "Sending invites only to **the ones who said yes**"}
+      - {emoji: "💸", text: "Tracking **who paid**, who's exempt, how to split round two"}
+      - {emoji: "🎁", text: "Collecting for a farewell gift and **working out what's left**"}
+      - {emoji: "📂", text: "Starting **from scratch** next time — nothing was kept"}
+
+  - layout: flow
+    variant: before
+    title: "A ~30-person dinner, done by hand:"
+    total_label: "Total (rough estimate)"
+    steps:
+      - {text: "Write and send the invitation", minutes: 20}
+      - {text: "Read every reply, count who's coming", minutes: 60}
+      - {text: "Chase non-responders (2–3 times)", minutes: 30}
+      - {text: "Send calendar invites to attendees", minutes: 15}
+      - {text: "Track payments, split round two", minutes: 45}
+      - {text: "Thank-you email + spending report", minutes: 30}
+    note: "My own estimate — how long does it take you?"
+
+  - layout: poll
+    eyebrow: "Quick question"
+    question: "How do you track who's coming today?"
+    options:
+      - "A spreadsheet I made"
+      - "Counting replies in my inbox"
+      - "Microsoft Forms / Google Forms"
+      - "Pure memory 🙃"
+
+  - layout: cta
+    title: "I'm building a tool to **automate this**"
+    text: "It runs on the Outlook you already use at work. Next post: why I built it."
+    keyword: "RSVP"
+
+platforms:
+  facebook:
+    caption: |
+      If you've ever been "the one who organises the team party", you know this feeling 😅
+
+      The party belongs to everyone. The invites, the head count, chasing people who haven't replied, collecting money, splitting the after-party… usually land on one person.
+
+      I've done it more than once, and the hard part was never the evening itself — it was working out who's coming, who hasn't answered and who hasn't paid. So I started building a small tool that runs on Outlook to do the repetitive part.
+
+      Before I show it: how do you track who's coming today? Answer A / B / C / D in the comments 👇
+
+      Comment "RSVP" if you'd like to hear when the beta opens.
+    first_comment: |
+      📋 A 3-minute survey on how you organise team events (respondents get early beta access): {link}
+    hashtags: [productivity, Outlook, automation, officelife, teamevents]

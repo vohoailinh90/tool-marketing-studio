@@ -1,0 +1,24 @@
+# Mutation manifest — see scripts/mutation_check.py
+target: mkt/publish.py
+note: Nothing goes public by accident, and nothing goes public twice.
+mutations:
+- label: dry run sends for real
+  find: '    if dry_run:'
+  replace: '    if False:'
+  test: tests.test_publish.PublishTests.test_dry_run_sends_nothing
+- label: no smoke check needed
+  find: '    if smoke.get("page_id") != page.page_id or smoke.get("graph_version") != page.version:'
+  replace: '    if False:'
+  test: tests.test_publish.PublishTests.test_real_send_requires_smoke
+- label: the Page name is not checked
+  find: '    if confirm_page_name is None or confirm_page_name.strip() != smoke.get("page_name", "").strip():'
+  replace: '    if confirm_page_name is None:'
+  test: tests.test_publish.PublishTests.test_real_send_requires_the_page_name
+- label: a pending attempt does not block a second send
+  find: '    if row.get("state") == "pending":'
+  replace: '    if False:'
+  test: tests.test_publish.PublishTests.test_feed_network_error_stays_pending_and_blocks
+- label: Facebook errors are not redacted
+  find: '            raise PublishError(secrets.redact(f"Facebook refused: {message}", [self.token]))'
+  replace: '            raise PublishError(f"Facebook refused: {message}")'
+  test: tests.test_publish.PublishTests.test_token_is_redacted_from_errors

@@ -1,0 +1,12 @@
+# Mutation manifest — see scripts/mutation_check.py
+target: mkt/server.py
+note: Only the page the server served can drive its API.
+mutations:
+- label: the session token is not checked
+  find: '            if not hmac.compare_digest(given, session_token):'
+  replace: '            if False:'
+  test: tests.test_server.ServerGuardTests.test_missing_token_is_refused
+- label: any Host header is accepted
+  find: '        if request.headers.get("host") not in allowed_hosts:'
+  replace: '        if False:'
+  test: tests.test_server.ServerGuardTests.test_other_hosts_are_refused

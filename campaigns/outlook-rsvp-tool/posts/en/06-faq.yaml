@@ -1,0 +1,45 @@
+id: 06-faq
+status: draft
+format: portrait
+series: "Office tools · #6"
+link: survey
+slides:
+  - layout: cover
+    emoji: "💬"
+    eyebrow: "Quick answers"
+    title: "What people ask most about **Outlook RSVP Tool**"
+
+  - layout: features
+    title: "Q&A"
+    items:
+      - {emoji: "🔐", title: "Does my data go anywhere?", text: "No. Everything stays in one file on your PC."}
+      - {emoji: "🧩", title: "Do I need IT approval?", text: "No API key, no app registration — just Outlook Desktop, signed in."}
+      - {emoji: "🍎", title: "Does it work on a Mac?", text: "Not yet. Windows + Outlook Desktop only for now."}
+      - {emoji: "👥", title: "Do recipients install anything?", text: "No. They just click a button in the email."}
+
+  - layout: pains
+    tone: accent
+    title: "Current limits (honestly)"
+    items:
+      - {emoji: "⚠️", text: "Can't tell apart 2 people who share one email address"}
+      - {emoji: "⚠️", text: "No scheduled automatic reminders yet — you send them from the app"}
+      - {emoji: "⚠️", text: "Needs Python installed — **no one-click installer yet**"}
+
+  - layout: cta
+    emoji: "🙌"
+    title: "Any other questions?"
+    text: "Ask in the comments — I'll answer every one."
+
+platforms:
+  facebook:
+    caption: |
+      The questions I get most about Outlook RSVP Tool, in one place 👇
+
+      In short: your data never leaves your PC, there's no API key and no app registration to request from IT, and recipients install nothing — they just click a button in the email.
+
+      And honestly, what it does NOT do yet: no Mac, no scheduled automatic reminders, and it still needs Python installed (no one-click installer yet). If one of these is your reason not to use it, please tell me — it helps me decide what comes first.
+
+      Any other questions? Ask away in the comments.
+    first_comment: |
+      📋 Help me prioritise with a 3-minute survey: {link}
+    hashtags: [Outlook, FAQ, automation, productivity]

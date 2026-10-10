@@ -1,0 +1,8 @@
+# Mutation manifest — see scripts/mutation_check.py
+target: mkt/layouts.py
+note: An image slide may only show a file inside the campaign or tool folder.
+mutations:
+- label: a symlink out of the campaign is followed
+  find: '        if candidate.is_relative_to(root.resolve()) and candidate.is_file():'
+  replace: '        if candidate.is_file():'
+  test: tests.test_check.CheckTests.test_a_symlink_out_of_the_campaign_is_refused

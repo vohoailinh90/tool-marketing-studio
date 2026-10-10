@@ -1,0 +1,12 @@
+# Mutation manifest — see scripts/mutation_check.py
+target: mkt/ai.py
+note: AI output is always a draft; insight quotes must be real.
+mutations:
+- label: the AI can mark its own post ready
+  find: '    clean["status"] = "draft"'
+  replace: '    clean["status"] = data.get("status", "draft")'
+  test: tests.test_ai.DraftTests.test_draft_forces_draft_and_drops_what_was_not_asked
+- label: invented quotes are kept
+  find: '            if any(str(quote).strip() and str(quote).strip() in text for text in corpus):'
+  replace: '            if True:'
+  test: tests.test_ai.InsightTests.test_quotes_must_come_from_the_comments

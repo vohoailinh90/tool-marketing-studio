@@ -1,0 +1,47 @@
+id: 05-survey
+status: draft
+format: portrait
+series: "Office tools · #5"
+link: survey
+slides:
+  - layout: cover
+    emoji: "📋"
+    eyebrow: "3 minutes of your time"
+    title: "Help me understand **how you organise team events**"
+    subtitle: "A short survey, no login needed."
+
+  - layout: pains
+    tone: accent
+    title: "I'd love to know…"
+    items:
+      - {emoji: "❓", text: "**How often** do you organise events?"}
+      - {emoji: "❓", text: "Which part **takes the most time**?"}
+      - {emoji: "❓", text: "**What do you use** today?"}
+      - {emoji: "❓", text: "What would a tool like this be **worth** to you or your company?"}
+
+  - layout: checklist
+    title: "What you get"
+    items:
+      - "**Early access** to the beta"
+      - "A summary of the **survey results** (anonymous)"
+      - "A direct say in the next feature"
+
+  - layout: cta
+    emoji: "👇"
+    title: "Take the survey"
+    text: "About 3 minutes. Thank you so much 🙏"
+    button: "Open the survey"
+
+platforms:
+  facebook:
+    caption: |
+      Could I borrow 3 minutes of your time? 🙏
+
+      Before I put more work into Outlook RSVP Tool, I want to understand how people really organise team events, which part hurts most, and whether a tool like this is worth paying for — for you, or for your company.
+
+      It's a short survey, no login needed. Everyone who answers gets early beta access and an anonymous summary of the results.
+
+      Link in the first comment 👇 Thank you!
+    first_comment: |
+      📋 3-minute survey: {link}
+    hashtags: [survey, Outlook, teamevents, productivity]

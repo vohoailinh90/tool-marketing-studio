@@ -1,0 +1,73 @@
+id: 04-before-after
+status: draft
+format: portrait
+series: "Office tools · #4"
+link: survey
+slides:
+  - layout: cover
+    emoji: "⏱️"
+    eyebrow: "Before & after"
+    title: "Same party, **two ways to organise it**"
+    subtitle: "Left: how I used to do it. Right: how it works now."
+
+  - layout: compare
+    title: "What changes?"
+    before:
+      items:
+        - "Count yes/no by hand in the inbox"
+        - "Remind everyone, even those who replied"
+        - "Type payments into a spreadsheet, miss some"
+        - "Start from scratch next time"
+    after:
+      items:
+        - "Click Scan Inbox, get the numbers"
+        - "Remind only the people who haven't replied"
+        - "Totals per round, balance included"
+        - "Reuse a past event as a template"
+
+  - layout: table
+    style: sheet
+    title: "Does your spreadsheet look like this?"
+    columns: ["Name", "Coming?", "Paid", "Notes"]
+    rows:
+      - ["Hannah", "ok", "40", "paid"]
+      - ["Mike", {text: "yes?", tone: warn}, "", {text: "ask again", tone: warn}]
+      - ["Lisa", "", "40", {text: "round 2??", tone: bad}]
+      - ["Tom", "no", "", ""]
+      - ["Hannah (2)", {text: "dupe?", tone: bad}, "", ""]
+    note: "One wrong cell = one evening of cross-checking."
+
+  - layout: stat
+    eyebrow: "Rough estimate, ~30-person dinner"
+    before: "~3 h 20 min"
+    after: "~30 min"
+    label: "for the repetitive part"
+    caption: "My own estimate, not yet measured. I'll measure it with the first testers."
+
+  - layout: checklist
+    title: "This tool is for you if…"
+    items:
+      - "You often get asked to organise team events"
+      - "Your company uses **Outlook on Windows**"
+      - "You collect money over several rounds, or for gifts"
+      - "Your team works across languages (Japanese + English)"
+    note: "Not available for Mac or Outlook on the web yet."
+
+  - layout: cta
+    emoji: "💬"
+    title: "What **feature** would make you use it?"
+    text: "I'm choosing what to build next. Your answers decide the order."
+
+platforms:
+  facebook:
+    caption: |
+      Before & after I stopped organising team events in a spreadsheet 📊
+
+      Before: counting yes/no in the inbox, reminding everyone (including people who'd replied), typing payments into an ever more colourful file. Now: Scan Inbox builds the table, reminders go only to people who haven't answered, totals per round add themselves up.
+
+      The "~3 h 20 min → ~30 min" is my estimate for a ~30-person dinner — not a measurement yet. I'll measure it with the first testers and share the real result.
+
+      It doesn't run on a Mac or Outlook on the web yet. If you're on Windows Outlook: what would you want it to do?
+    first_comment: |
+      📋 Tell me what to build next in a 3-minute survey: {link}
+    hashtags: [Outlook, Excel, automation, productivity, officelife]

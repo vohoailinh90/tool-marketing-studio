@@ -1,0 +1,45 @@
+id: 06-faq
+status: draft
+format: portrait
+series: "幹事の業務効率化 · #6"
+link: survey
+slides:
+  - layout: cover
+    emoji: "💬"
+    eyebrow: "よくある質問"
+    title: "**Outlook RSVP Tool** についてよく聞かれること"
+
+  - layout: features
+    title: "Q&A"
+    items:
+      - {emoji: "🔐", title: "データは外部に送られますか？", text: "送られません。すべてPC内のファイルひとつに保存されます。"}
+      - {emoji: "🧩", title: "情シスの許可は必要？", text: "APIキーもアプリ登録も不要。サインイン済みの Outlook デスクトップ版があれば動きます。"}
+      - {emoji: "🍎", title: "Macで使えますか？", text: "まだです。現在は Windows ＋ Outlook デスクトップ版のみです。"}
+      - {emoji: "👥", title: "参加者に準備は必要？", text: "不要です。メールのボタンを押すだけです。"}
+
+  - layout: pains
+    tone: accent
+    title: "現時点での制約（正直に）"
+    items:
+      - {emoji: "⚠️", text: "同じメールアドレスを使う2人を区別できません"}
+      - {emoji: "⚠️", text: "スケジュールによる自動リマインドは未実装 — アプリから手動で送ります"}
+      - {emoji: "⚠️", text: "Python のインストールが必要 — **ワンクリックのインストーラーはまだありません**"}
+
+  - layout: cta
+    emoji: "🙌"
+    title: "ほかにも質問はありますか？"
+    text: "コメント欄にどうぞ。すべてお答えします。"
+
+platforms:
+  facebook:
+    caption: |
+      Outlook RSVP Tool について、よくいただく質問をまとめました👇
+
+      要点：データはPCから出ません。APIキーも情シスへのアプリ登録依頼も不要で、参加者は何もインストールせず、メールのボタンを押すだけです。
+
+      そして、まだできないことも正直に。Mac 非対応、スケジュールによる自動リマインドは未実装、Python のインストールが必要（ワンクリックのインストーラーはまだありません）。これが使わない理由になっている方は、ぜひ教えてください。優先順位を決める参考になります。
+
+      ほかにも質問があれば、コメントでどうぞ。
+    first_comment: |
+      📋 優先順位を決めるための3分アンケート：{link}
+    hashtags: [幹事, Outlook, よくある質問, 業務効率化]

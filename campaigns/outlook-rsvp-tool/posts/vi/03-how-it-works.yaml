@@ -1,0 +1,72 @@
+id: 03-how-it-works
+status: draft
+format: portrait
+series: "Tool văn phòng · #3"
+link: survey
+slides:
+  - layout: cover
+    emoji: "⚙️"
+    eyebrow: "Cách hoạt động"
+    title: "Từ email mời đến báo cáo chi tiêu — **trong một ứng dụng**"
+    subtitle: "7 bước, mỗi bước là một tab. Đây là cách nó chạy."
+
+  - layout: email
+    title: "Người nhận chỉ cần bấm một nút"
+    subject: "[EVT-12] Tiệc tất niên phòng Kinh doanh — xác nhận tham gia"
+    from: "Ban tổ chức (bạn)"
+    infobar: "Thư này có nút biểu quyết. Bấm Yes / No / Maybe ở trên."
+    buttons: ["Yes", "No", "Maybe"]
+    body: "Chào mọi người,\nTiệc tất niên sẽ diễn ra **18:30 thứ Sáu** tại nhà hàng gần công ty.\nMọi người bấm Yes / No / Maybe ở phía trên giúp mình nhé!"
+    note: "Tool tự đính kèm ảnh hướng dẫn cách bấm nút."
+
+  - layout: flow
+    variant: after
+    title: "7 bước, mỗi bước một tab"
+    steps:
+      - {emoji: "📝", text: "Nhập thông tin sự kiện: thời gian, địa điểm, ngân sách"}
+      - {emoji: "👥", text: "Nhập danh sách người nhận từ Excel"}
+      - {emoji: "✉️", text: "Gửi email mời có nút Yes / No / Maybe"}
+      - {emoji: "📥", text: "Bấm **Scan Inbox** — tool tự đọc và đếm câu trả lời"}
+      - {emoji: "📅", text: "Gửi lịch hẹn, điểm danh, ghi tiền **nhiều vòng**"}
+      - {emoji: "🎁", text: "Theo dõi tiền góp quà"}
+      - {emoji: "📚", text: "Lưu lịch sử, tự tính **quỹ còn lại**"}
+
+  - layout: table
+    title: "Sau khi bấm Scan Inbox"
+    columns: ["Tên", "Trả lời", "Vòng 1", "Vòng 2"]
+    rows:
+      - ["Hà", {text: "✅ Yes", tone: ok}, "500.000", "200.000"]
+      - ["Minh", {text: "✅ Yes", tone: ok}, "500.000", {text: "—", tone: muted}]
+      - ["Lan", {text: "🤔 Maybe", tone: warn}, {text: "—", tone: muted}, {text: "—", tone: muted}]
+      - ["Tuấn", {text: "❌ No", tone: bad}, {text: "—", tone: muted}, {text: "—", tone: muted}]
+      - ["Tổng", "2 Yes · 1 Maybe · 1 No", "1.000.000", "200.000"]
+    total_row: true
+    note: "Số liệu minh hoạ."
+
+  - layout: features
+    title: "Những việc tool lo giúp bạn"
+    items:
+      - {emoji: "🔔", title: "Nhắc đúng người", text: "Chỉ gửi nhắc cho người chưa bấm nút"}
+      - {emoji: "💰", title: "Nhiều vòng thanh toán", text: "Vòng 1, vòng 2… mỗi vòng có người và số tiền riêng"}
+      - {emoji: "🌏", title: "Email song ngữ", text: "Nhật + Anh trong một email; dịch qua Copilot bằng copy-paste"}
+      - {emoji: "📊", title: "Báo cáo Excel", text: "Bảng tham gia & chi tiêu để gửi sếp"}
+
+  - layout: cta
+    emoji: "🙋"
+    title: "Muốn dùng thử bản beta?"
+    text: "Tool chạy trên Windows + Outlook Desktop. Mình đang tìm những người dùng thử đầu tiên."
+    keyword: "BETA"
+
+platforms:
+  facebook:
+    caption: |
+      Nhiều bạn hỏi tool chạy thế nào, nên bài này mình đi qua từng bước 👇
+
+      Mấu chốt nằm ở nút biểu quyết của Outlook: người nhận chỉ bấm Yes / No / Maybe ngay trong email, không cần mở link, không cần đăng nhập. Sau đó mình bấm Scan Inbox — tool tự đọc mọi câu trả lời và đếm thành bảng.
+
+      Phần còn lại là những việc trước đây mình làm bằng Excel: gửi lịch hẹn cho người tham gia, điểm danh, ghi tiền từng vòng, theo dõi tiền góp quà, và một báo cáo để gửi lại cả phòng.
+
+      Nếu bạn dùng Outlook trên Windows và muốn thử bản beta, comment "BETA" nhé.
+    first_comment: |
+      📋 Khảo sát 3 phút — người trả lời được ưu tiên dùng thử: {link}
+    hashtags: [Outlook, tudonghoa, vanphong, tochucsukien, Excel]

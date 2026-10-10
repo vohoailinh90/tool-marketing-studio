@@ -1,0 +1,72 @@
+id: 03-how-it-works
+status: draft
+format: portrait
+series: "Office tools · #3"
+link: survey
+slides:
+  - layout: cover
+    emoji: "⚙️"
+    eyebrow: "How it works"
+    title: "From invitation to spending report — **in one app**"
+    subtitle: "7 steps, one tab each. Here's how it runs."
+
+  - layout: email
+    title: "Recipients just click a button"
+    subject: "[EVT-12] Sales team year-end dinner — are you coming?"
+    from: "The organiser (you)"
+    infobar: "This message has voting buttons. Click Yes / No / Maybe above."
+    buttons: ["Yes", "No", "Maybe"]
+    body: "Hi all,\nOur year-end dinner is on **Friday at 6:30 pm** at a restaurant near the office.\nPlease click Yes / No / Maybe above so I can book!"
+    note: "A how-to-vote picture is attached automatically."
+
+  - layout: flow
+    variant: after
+    title: "7 steps, one tab each"
+    steps:
+      - {emoji: "📝", text: "Event details: time, place, budget"}
+      - {emoji: "👥", text: "Import the recipient list from Excel"}
+      - {emoji: "✉️", text: "Send invites with Yes / No / Maybe buttons"}
+      - {emoji: "📥", text: "Click **Scan Inbox** — replies are read and counted"}
+      - {emoji: "📅", text: "Calendar invites, attendance, **several payment rounds**"}
+      - {emoji: "🎁", text: "Track gift contributions"}
+      - {emoji: "📚", text: "Keep the history, compute the **fund balance**"}
+
+  - layout: table
+    title: "After you click Scan Inbox"
+    columns: ["Name", "Reply", "Round 1", "Round 2"]
+    rows:
+      - ["Hannah", {text: "✅ Yes", tone: ok}, "40", "15"]
+      - ["Mike", {text: "✅ Yes", tone: ok}, "40", {text: "—", tone: muted}]
+      - ["Lisa", {text: "🤔 Maybe", tone: warn}, {text: "—", tone: muted}, {text: "—", tone: muted}]
+      - ["Tom", {text: "❌ No", tone: bad}, {text: "—", tone: muted}, {text: "—", tone: muted}]
+      - ["Total", "2 Yes · 1 Maybe · 1 No", "80", "15"]
+    total_row: true
+    note: "Illustrative numbers."
+
+  - layout: features
+    title: "What the tool takes off your plate"
+    items:
+      - {emoji: "🔔", title: "Reminds the right people", text: "Only those who haven't clicked yet"}
+      - {emoji: "💰", title: "Several payment rounds", text: "Round 1, round 2… each with its own people and amounts"}
+      - {emoji: "🌏", title: "Bilingual emails", text: "Japanese + English in one email; translate via Copilot copy-paste"}
+      - {emoji: "📊", title: "Excel reports", text: "Attendance and spending, ready for your manager"}
+
+  - layout: cta
+    emoji: "🙋"
+    title: "Want to try the beta?"
+    text: "It runs on Windows + Outlook Desktop. I'm looking for the first testers."
+    keyword: "BETA"
+
+platforms:
+  facebook:
+    caption: |
+      A few of you asked how it actually works, so here it is, step by step 👇
+
+      The key is Outlook's voting buttons: recipients click Yes / No / Maybe right inside the email — no link, no login. Then I click Scan Inbox and every reply lands in a table.
+
+      The rest is what I used to do in a spreadsheet: calendar invites for attendees, attendance, money per round, gift contributions, and a report back to the team.
+
+      If you're on Windows with Outlook and want to try the beta, comment "BETA".
+    first_comment: |
+      📋 3-minute survey — respondents get the beta first: {link}
+    hashtags: [Outlook, automation, productivity, teamevents, Excel]

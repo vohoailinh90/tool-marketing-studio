@@ -1,0 +1,29 @@
+id: 01-pain
+status: draft
+format: portrait
+series: "TODO · #1"
+link: survey
+slides:
+  - layout: cover
+    emoji: "🧰"
+    eyebrow: "TODO"
+    title: "TODO: the hook — the pain, in the reader's words"
+    subtitle: "TODO"
+  - layout: pains
+    title: "TODO"
+    items:
+      - {emoji: "😵", text: "TODO"}
+      - {emoji: "🔁", text: "TODO"}
+      - {emoji: "📂", text: "TODO"}
+  - layout: cta
+    title: "TODO"
+    text: "TODO"
+platforms:
+  facebook:
+    caption: |
+      TODO: hook line under 125 characters
+
+      TODO
+    first_comment: |
+      TODO {link}
+    hashtags: []

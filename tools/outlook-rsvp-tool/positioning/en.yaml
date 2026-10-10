@@ -1,0 +1,26 @@
+lang: en
+one_liner: "A Windows app that runs your team-event admin — invites, RSVPs, reminders, payments and reports — through the Outlook you already use."
+audience: >-
+  Office workers and team leads in international companies who keep ending up as the organiser of team dinners,
+  farewells and gift collections, on Windows with Outlook Desktop.
+pains:
+  - "Counting yes/no replies by hand across dozens of emails"
+  - "Chasing the people who haven't answered, without knowing who has"
+  - "Tracking who paid, who's exempt, and how to split the second venue"
+  - "Collecting for a farewell gift and reporting what's left"
+  - "Writing every email twice for a bilingual team"
+  - "Starting from scratch next time because nothing was kept"
+promise: "Outlook does the repetitive part — invites, counting, reminders, money tracking, the report — so you just pick the place."
+objections:
+  - {q: "Does my data go to a server?", a: "No. Everything stays in one SQLite file on your PC."}
+  - {q: "Do I need IT approval or an API key?", a: "No API key and no app registration: it drives the Outlook Desktop you already have."}
+  - {q: "Does it work on a Mac?", a: "Not yet. Windows with Outlook Desktop only."}
+  - {q: "Do recipients need to install anything?", a: "No. They click a Yes / No / Maybe button in the email."}
+vocabulary: [team dinner, farewell, RSVP, chasing replies, after-party, gift collection, organiser, voting buttons]
+angles:
+  - "The group chat every organiser knows"
+  - "What organising a 30-person dinner really costs in time"
+  - "Why build on Outlook instead of yet another app"
+  - "Before / after: colour-coded spreadsheet vs. automatic totals"
+  - "Survey: how do you organise team events today?"
+tone: "Crisp and friendly, a little self-deprecating about office life; honest about limits."

@@ -1,0 +1,16 @@
+# Mutation manifest — see scripts/mutation_check.py
+#
+# Each entry removes one safety rail of the studio and names the test that must fail.
+# A mutation that SURVIVES means that rail is unguarded.
+
+target: mkt/check.py
+note: What may enter a post — no links, no files outside the campaign.
+mutations:
+- label: a URL in post text is accepted
+  find: '        if URL.search(text):'
+  replace: '        if False:'
+  test: tests.test_check.CheckTests.test_url_in_slide_text_is_an_error
+- label: invented numbers in an AI draft are accepted
+  find: '    bad = sorted(claim_numbers(post) - allowed, key=lambda n: (len(n), n))'
+  replace: '    bad = []'
+  test: tests.test_ai.DraftTests.test_invented_numbers_are_errors

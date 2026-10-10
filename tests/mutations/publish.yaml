@@ -19,6 +19,8 @@ mutations:
   replace: '    if False:'
   test: tests.test_publish.PublishTests.test_feed_network_error_stays_pending_and_blocks
 - label: Facebook errors are not redacted
-  find: '            raise PublishError(secrets.redact(f"Facebook refused: {message}", [self.token]))'
-  replace: '            raise PublishError(f"Facebook refused: {message}")'
+  find: |2-
+                message = secrets.redact(f"Facebook refused: {error.get('message') or f'HTTP {status}'}", [self.token])
+  replace: |2-
+                message = f"Facebook refused: {error.get('message') or f'HTTP {status}'}"
   test: tests.test_publish.PublishTests.test_token_is_redacted_from_errors

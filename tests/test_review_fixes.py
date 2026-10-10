@@ -48,6 +48,18 @@ class EscapingTests(unittest.TestCase):
             self.assertNotIn("<iframe", html, name)
             self.assertNotIn("<x ", html, name)
 
+    def test_unknown_enum_values_fall_back_to_defaults(self):
+        ctx = Ctx(lang="vi", campaign_dir=Path("."))
+        html = render_body({"layout": "pains", "title": "t", "items": ["a"], "tone": "evil"}, ctx)
+        self.assertIn("card--bad", html)
+        self.assertNotIn("evil", html)
+        html = render_body({"layout": "flow", "title": "t", "steps": [{"text": "a"}], "variant": "evil"}, ctx)
+        self.assertIn("flow--after", html)
+        html = render_body({"layout": "table", "columns": ["a"], "rows": [[{"text": "x", "tone": "evil"}]],
+                            "style": "evil"}, ctx)
+        self.assertIn("table--app", html)
+        self.assertNotIn("evil", html)
+
     def test_enumerations_must_be_known_values(self):
         root = make_root(slides=[{"layout": "pains", "title": "t", "items": ["a"], "tone": PAYLOAD},
                                  {"layout": "cover", "title": "t", "colour": "red"}])

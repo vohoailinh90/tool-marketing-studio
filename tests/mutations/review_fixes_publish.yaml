@@ -11,10 +11,10 @@ mutations:
   replace: '            if False:'
   test: tests.test_review_fixes.PublishOutcomeTests.test_a_transient_graph_error_stays_pending
 - label: a draft can be published
-  find: '    if post.status not in ("ready", "posted"):
-        reasons.append(f"status is ''{post.status}'': only a ready post can be published")'
-  replace: '    if False:
-        pass'
+  find: |2-
+            reasons.append(f"status is '{post.status}': only a ready post can be published")
+  replace: |2-
+            pass
   test: tests.test_review_fixes.PublishOutcomeTests.test_a_post_sent_back_to_draft_cannot_be_published
 - label: an empty Page name passes the smoke check
   find: '    if not str(me.get("name") or "").strip():'

@@ -6,43 +6,43 @@ link: ~
 slides:
   - layout: cover
     emoji: "🗓️"
-    eyebrow: "Họp xuyên bộ phận"
+    eyebrow: "Họp xuyên bộ phận, xuyên quốc gia"
     title: "Quản lý **kín lịch**?\n4 cách chốt giờ họp"
-    subtitle: "Không cần hỏi từng người từng lần. Mình mô phỏng xem mỗi cách cải thiện được bao nhiêu."
+    subtitle: "Ở nhiều nước khác nhau thì càng khó. Mình mô phỏng xem mỗi cách cải thiện được bao nhiêu."
     badge: "Xem hết các ảnh nhé 👉"
 
   - layout: stat
     eyebrow: "Điểm xuất phát"
-    value: "~7%"
-    label: "khả năng một tuần có khung 60 phút\nai cũng rảnh: 10 người cùng bộ phận,\n2 quản lý bận gấp đôi"
-    caption: "Mô phỏng (như bài trước): người thường bận khoảng 30% giờ làm, quản lý khoảng 60%."
+    value: "~3%"
+    label: "khả năng một tuần có khung 60 phút\nai cũng rảnh: 10 người ở 3 nước,\n2 quản lý bận gấp đôi"
+    caption: "Cùng bộ phận, cùng một nước thì khoảng 7%. Mô phỏng như bài trước: người thường bận khoảng 30% giờ làm, quản lý khoảng 60%."
 
   - layout: stat
     eyebrow: "Cách 1: bớt người bắt buộc"
-    before: "7%"
-    after: "61%"
+    before: "3%"
+    after: "39%"
     label: "Chỉ bắt buộc 8 người thường rảnh, quản lý đến được thì tốt"
-    caption: "Nếu cần thêm ít nhất 1 trong 2 quản lý: khoảng 35%."
+    caption: "Nếu cần thêm ít nhất 1 trong 2 quản lý: khoảng 20%. Cùng một nước: 61% và 35%."
 
   - layout: stat
     eyebrow: "Cách 2: họp ngắn hơn"
-    before: "7%"
-    after: "65%"
+    before: "3%"
+    after: "36%"
     label: "Họp 30 phút thay vì 60 phút"
-    caption: "Cùng điều kiện, khả năng cả 10 người cùng rảnh cho khung đó."
+    caption: "Cùng điều kiện, khả năng cả 10 người cùng rảnh cho khung đó. Cùng một nước: 65%."
 
   - layout: stat
     eyebrow: "Cách 3: tìm xa hơn"
-    before: "7%"
-    after: "30%"
+    before: "3%"
+    after: "10%"
     label: "Tìm trong 4 tuần thay vì 1 tuần"
-    caption: "Tìm trong 2 tuần: khoảng 14%."
+    caption: "Tìm trong 2 tuần: khoảng 7%. Cùng một nước: 30% và 14%."
 
   - layout: stat
     eyebrow: "Cách 4: chỉ xin một người dời họp"
-    value: "~57%"
-    label: "số tuần có khung mà\nnhiều nhất một người bận"
-    caption: "Ở khoảng 48% số khung như vậy, người bận đó là quản lý: biết xin ai nhường."
+    value: "~32%"
+    label: "số tuần có khung mà\nnhiều nhất một người không rảnh"
+    caption: "Ở khoảng 55% số khung như vậy, người đó là quản lý: biết xin ai nhường. Cùng một nước: 57% và 48%."
 
   - layout: poll
     eyebrow: "Hỏi nhanh"
@@ -62,16 +62,16 @@ slides:
 platforms:
   facebook:
     caption: |
-      Quản lý kín lịch thì làm sao chốt được giờ họp cho cả nhóm? Mình thử mô phỏng 4 cách 🗓️
+      Quản lý kín lịch, lại ở nhiều nước khác nhau, thì làm sao chốt được giờ họp? Mình thử mô phỏng 4 cách 🗓️
 
-      Tình huống: 10 người cùng bộ phận, 8 người bận khoảng 30% giờ làm, 2 quản lý bận gấp đôi (khoảng 60%). Khả năng một tuần có khung 60 phút ai cũng rảnh chỉ khoảng 7%. Thử từng cách:
+      Tình huống: 10 người ở Việt Nam, Ấn Độ, Hàn Quốc; 8 người bận khoảng 30% giờ làm, 2 quản lý bận gấp đôi (khoảng 60%). Khả năng một tuần có khung 60 phút ai cũng rảnh chỉ khoảng 3% (nếu cùng bộ phận, cùng một nước: khoảng 7%). Vì ngoài việc ai bận, mỗi người còn phải nằm trong giờ làm của nước mình. Thử từng cách (3 nước / cùng một nước):
 
-      1) Chỉ bắt buộc người cần thiết, quản lý đến được thì tốt: khoảng 61% (nếu cần thêm ít nhất 1 trong 2 quản lý: khoảng 35%).
-      2) Họp 30 phút thay vì 60 phút: khoảng 65%.
-      3) Tìm trong 4 tuần thay vì 1 tuần: khoảng 30% (2 tuần: khoảng 14%).
-      4) Chỉ xin một người dời một cuộc họp: khoảng 57% số tuần có khung mà nhiều nhất một người bận, và ở khoảng 48% số khung như vậy người bận là quản lý, nên biết xin ai nhường.
+      1) Chỉ bắt buộc người cần thiết, quản lý đến được thì tốt: khoảng 39% / 61% (cần thêm ít nhất 1 trong 2 quản lý: khoảng 20% / 35%).
+      2) Họp 30 phút thay vì 60 phút: khoảng 36% / 65%.
+      3) Tìm trong 4 tuần thay vì 1 tuần: khoảng 10% / 30% (2 tuần: khoảng 7% / 14%).
+      4) Chỉ xin một người dời một cuộc họp: khoảng 32% / 57% số tuần có khung mà nhiều nhất một người không rảnh; ở khoảng 55% / 48% số khung như vậy người đó là quản lý, nên biết xin ai nhường.
 
-      Thêm một mẹo không cần mô phỏng: gửi 2–3 khung để mọi người chọn, thay vì hỏi từng người từng lần.
+      Nhìn chung, khác quốc gia thì cách nào cũng kém hiệu quả hơn. Thêm một mẹo không cần mô phỏng: gửi 2–3 khung để mọi người chọn, thay vì hỏi từng người từng lần.
 
       (Đây là mô phỏng với lịch ngẫu nhiên; "quản lý bận gấp đôi" là giả định của mình, không phải số đo trên một nhóm thật.)
 

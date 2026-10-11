@@ -30,6 +30,19 @@ bận 30% giờ làm, "quản lý" **giả định** bận 60%, 2000 lần chạ
 Nhóm 5 người cùng một nước: 100% khi không có quản lý, 89% khi có 1 quản lý. Chạy thô hơn (300 lần mỗi ô, người chia đều ba nước) cho thấy
 số người tăng thì khung chung sụp rất nhanh: ở mức bận 20/30/40%, nhóm 3 người 100/100/98%, nhóm 10 người 73/12/2%, nhóm 15 người 23/1/0%.
 
+**Khi nhóm trải ra nhiều nước, mọi cách đều kém hiệu quả hơn** (10 người, 8 người thường bận 30% + 2 quản lý bận 60%, mô phỏng; số trong ngoặc là cùng một nước):
+
+| Cách | Xác suất có khung chung / tuần |
+|---|---|
+| Nền (60 phút, 1 tuần) | 3% (7%) |
+| Chỉ bắt buộc 8 người thường | 39% (61%) |
+| 8 người thường + ít nhất 1 quản lý | 20% (35%) |
+| Họp 30 phút | 36% (65%) |
+| Tìm 2 tuần / 4 tuần | 7% / 10% (14% / 30%) |
+| Có khung mà nhiều nhất 1 người không rảnh | 32% (57%) |
+
+Trong các khung đó, người không rảnh duy nhất là quản lý ở 55% số khung (48% khi cùng một nước).
+
 Lưu ý: giả định họp độc lập, không nghỉ trưa, không ngày lễ, và "quản lý bận hơn" là giả định chứ chưa đo trên lịch thật; lịch thật dồn cục
 hơn nên chỉ dùng để minh hoạ xu hướng. Quan trọng nhất: **ngay cả khi không có múi giờ nào để đổ lỗi, chỉ riêng việc người này họp khung này,
 người kia họp khung khác đã đủ làm khung chung gần như biến mất.**

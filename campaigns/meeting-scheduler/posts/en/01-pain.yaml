@@ -43,7 +43,7 @@ slides:
     eyebrow: "Even inside one department"
     value: "~7%"
     label: "chance of a 60-minute slot where all 10 are free, even in the same department and time zone"
-    caption: "Simulation: 2 managers are twice as busy (about 60% of working time), the other 8 about 30%. With no one busier it is about 28%."
+    caption: "Simulation: 2 managers are twice as busy (about 60% of working time), the other 8 about 30%. With no one busier it is about 28%; spread over 3 countries, about 3%."
 
   - layout: pains
     title: "And then there is…"
@@ -76,7 +76,7 @@ platforms:
 
       Working 09:00–18:00, the three countries overlap for 5.5 hours a day. Roomy, right? But with 10 people, each busy about 30% of their working time, my simple simulation found a 60-minute slot where everyone is free in only about 14% of weeks (with 3 people, almost always).
 
-      Add a few managers, booked in different slots, and even 10 people in the same department and time zone have a 60-minute slot where all are free in only about 7% of weeks (about 28% if no one is busier).
+      Add a few managers, booked in different slots, and even 10 people in the same department and time zone have a 60-minute slot where all are free in only about 7% of weeks (about 28% if no one is busier), and about 3% if those 10 are spread over 3 countries as above.
 
       Then add public holidays that differ by country, India's 30-minute offset that makes hand conversion error-prone, and calendars outside your organisation that are usually not visible.
 

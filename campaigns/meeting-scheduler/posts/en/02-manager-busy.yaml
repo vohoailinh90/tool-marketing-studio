@@ -6,43 +6,43 @@ link: ~
 slides:
   - layout: cover
     emoji: "🗓️"
-    eyebrow: "Meetings across a department"
+    eyebrow: "Across departments and countries"
     title: "Managers **fully booked**?\n4 ways to land a meeting time"
-    subtitle: "No need to ask everyone every time. A simulation shows how much each one helps."
+    subtitle: "Spread across countries it gets harder still. A simulation shows how much each way helps."
     badge: "Swipe through 👉"
 
   - layout: stat
     eyebrow: "Starting point"
-    value: "~7%"
-    label: "chance a week has a 60-minute slot where all 10 are free: one department, 2 managers twice as busy"
-    caption: "Simulation (same setup as the previous post): staff are busy about 30% of working time, managers about 60%."
+    value: "~3%"
+    label: "chance a week has a 60-minute slot where all 10 are free: 3 countries, 2 managers twice as busy"
+    caption: "In one department in one country it is about 7%. Simulation as in the previous post: staff busy about 30% of working time, managers about 60%."
 
   - layout: stat
     eyebrow: "Way 1: fewer must-attend"
-    before: "7%"
-    after: "61%"
+    before: "3%"
+    after: "39%"
     label: "Only the 8 staff must be free; managers join if they can"
-    caption: "If at least 1 of the 2 managers must also be free: about 35%."
+    caption: "If at least 1 of the 2 managers must also be free: about 20%. One country: 61% and 35%."
 
   - layout: stat
     eyebrow: "Way 2: shorter"
-    before: "7%"
-    after: "65%"
+    before: "3%"
+    after: "36%"
     label: "Make it 30 minutes instead of 60"
-    caption: "Same setup: chance that all 10 are free for the slot."
+    caption: "Same setup: chance that all 10 are free for the slot. One country: 65%."
 
   - layout: stat
     eyebrow: "Way 3: look further ahead"
-    before: "7%"
-    after: "30%"
+    before: "3%"
+    after: "10%"
     label: "Search 4 weeks instead of 1 week"
-    caption: "Searching 2 weeks: about 14%."
+    caption: "Searching 2 weeks: about 7%. One country: 30% and 14%."
 
   - layout: stat
     eyebrow: "Way 4: move just one meeting"
-    value: "~57%"
-    label: "of weeks have a slot where at most one person is busy"
-    caption: "In about 48% of such slots that person is a manager: you know who to ask."
+    value: "~32%"
+    label: "of weeks have a slot where at most one person is not free"
+    caption: "In about 55% of such slots that person is a manager: you know who to ask. One country: 57% and 48%."
 
   - layout: poll
     eyebrow: "Quick question"
@@ -62,16 +62,16 @@ slides:
 platforms:
   facebook:
     caption: |
-      Managers fully booked: how do you land a time for the whole group? I simulated 4 ways 🗓️
+      Managers fully booked, and spread across countries too: how do you land a time? I simulated 4 ways 🗓️
 
-      Setup: 10 people in one department, 8 busy about 30% of their working time and 2 managers twice as busy (about 60%). The chance that a week has a 60-minute slot where everyone is free is only about 7%. Then each way:
+      Setup: 10 people in Vietnam, India and South Korea; 8 busy about 30% of their working time and 2 managers twice as busy (about 60%). The chance that a week has a 60-minute slot where everyone is free is only about 3% (one department in one country: about 7%). On top of who is busy, everyone must also fall inside their own country's working hours. Then each way (3 countries / one country):
 
-      1) Make only the essential people must-attend, managers join if they can: about 61% (if at least 1 of the 2 managers must also be free: about 35%).
-      2) Make it 30 minutes instead of 60: about 65%.
-      3) Search 4 weeks instead of 1 week: about 30% (2 weeks: about 14%).
-      4) Ask just one person to move one meeting: about 57% of weeks have a slot where at most one person is busy, and in about 48% of such slots that person is a manager, so you know who to ask.
+      1) Make only the essential people must-attend, managers join if they can: about 39% / 61% (if at least 1 of the 2 managers must also be free: about 20% / 35%).
+      2) Make it 30 minutes instead of 60: about 36% / 65%.
+      3) Search 4 weeks instead of 1 week: about 10% / 30% (2 weeks: about 7% / 14%).
+      4) Ask just one person to move one meeting: about 32% / 57% of weeks have a slot where at most one person is not free, and in about 55% / 48% of such slots that person is a manager, so you know who to ask.
 
-      One tip that needs no simulation: offer 2–3 options to pick from instead of asking each person every time.
+      Overall, every way helps less once people are in different countries. One tip that needs no simulation: offer 2–3 options to pick from instead of asking each person every time.
 
       (That is a simulation with random calendars; "managers twice as busy" is my assumption, not a measurement of a real team.)
 

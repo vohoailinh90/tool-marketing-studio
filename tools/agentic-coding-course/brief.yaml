@@ -1,0 +1,829 @@
+slug: agentic-coding-course
+name: Agentic Coding
+repo: vohoailinh90/Agentic-coding-course
+status: prototype
+brand:
+  emoji: 🎓
+  accent: '#2563eb'
+what_it_is: An educational course for beginners learning to direct AI agents and verify software
+  results. This campaign covers every lesson in chapters 1, 2 and 3, in curriculum order.
+requirements:
+- Exercises use invented data in a practice folder.
+- Use only permitted tools and accounts; observe workplace rules.
+- Tool-specific setup and pricing can change; consult current provider documentation.
+features:
+- id: chatbot-to-agent
+  fact: 'Từ chatbot đến AI agent: AI không chỉ trả lời mà còn làm việc'
+  minutes: 8
+- id: agent-parts-and-loop
+  fact: 'Bộ não, đôi tay và vòng lặp: AI agent được ghép từ gì?'
+  minutes: 8
+- id: watch-an-agent-build
+  fact: Xem AI agent làm và tự kiểm tra một trang web nhỏ
+  minutes: 10
+- id: choose-your-learning-setup
+  fact: 'Chọn cách thực hành: trình duyệt, máy cá nhân hay máy công ty'
+  minutes: 10
+- id: data-safety-and-permissions
+  fact: 'Trước khi để agent làm việc: việc an toàn, việc phải hỏi, việc bị cấm'
+  minutes: 10
+- id: first-agent-session
+  fact: 'Buổi đầu với agent: làm một trang "Việc của tôi trong tuần"'
+  minutes: 25
+- id: how-to-learn-this-course
+  fact: Chọn lộ trình và ghi nhật ký học
+  minutes: 8
+- id: lead-not-typist
+  fact: 'Tư duy mới: bạn là trưởng nhóm, không phải người gõ code'
+  minutes: 8
+- id: writing-good-specs
+  fact: 'Viết yêu cầu tốt: mô tả việc và tiêu chí hoàn thành'
+  minutes: 12
+- id: explore-plan-build-verify
+  fact: 'Quy trình 4 bước: Tìm hiểu → Lập kế hoạch → Thực hiện → Kiểm chứng'
+  minutes: 12
+- id: files-folders-paths
+  fact: 'File, thư mục và đường dẫn: tấm bản đồ bên trong máy tính'
+  minutes: 10
+- id: reviewing-agent-changes
+  fact: Đọc và review thay đổi của agent (diff)
+  minutes: 15
+- id: testing-basics
+  fact: Từ "trông có vẻ đúng" đến phép kiểm tra
+  minutes: 12
+- id: errors-and-debugging
+  fact: Đọc thông báo lỗi và gỡ lỗi như một thám tử
+  minutes: 12
+- id: project-personal-page
+  fact: 'Dự án: trang web cá nhân của bạn'
+  minutes: 60
+- id: what-is-software
+  fact: Phần mềm là gì? Chương trình giống một công thức nấu ăn
+  minutes: 8
+- id: project-anatomy
+  fact: 'Giải phẫu một dự án: frontend, backend, database, API'
+  minutes: 10
+- id: data-formats
+  fact: 'Dữ liệu trông như thế nào: JSON, CSV, YAML'
+  minutes: 10
+- id: programming-building-blocks
+  fact: 'Biến, hàm, điều kiện, vòng lặp: 4 viên gạch thường gặp'
+  minutes: 12
+- id: git-version-control
+  fact: 'Git: nút Undo thần kỳ cho cả dự án'
+  minutes: 15
+- id: command-line-basics
+  fact: 'Terminal không đáng sợ: 5 lệnh an toàn đầu tiên'
+  minutes: 15
+- id: security-basics
+  fact: 'An toàn cơ bản: API key, mật khẩu và dữ liệu cá nhân'
+  minutes: 12
+claims:
+- id: chatbot-to-agent
+  text: 'Agentic coding: agent làm các bước, bạn quyết định làm gì và thế nào là đạt.'
+  key_points:
+  - icon: 💬
+    name: Chatbot trả lời
+    caption: AI nghĩ, còn bạn tự làm từng bước
+  - icon: 🤖
+    name: AI agent hành động
+    caption: Nhận một mục tiêu rồi tự làm các bước
+  - icon: ❓
+    name: 'Hỏi: ai làm các bước?'
+    caption: Một câu hỏi phân biệt mọi loại AI
+  - icon: ✅
+    name: Bạn chỉ đạo và nghiệm thu
+    caption: Giao việc rõ ràng, kiểm tra kết quả
+  lesson_notes_vi: '- Chatbot **trả lời**; AI agent **hành động** để đạt mục tiêu.
+
+    - Câu hỏi phân biệt: **ai thực hiện các bước?**
+
+    - Agentic coding = làm phần mềm cùng AI agent: agent làm các bước, **bạn giao việc và kiểm
+    tra kết quả**.
+
+
+    <!-- section: quiz -->'
+  evidence:
+  - course/vi/lessons/chatbot-to-agent.md
+  - course/data/diagrams/chatbot-to-agent-recap.yaml
+  - course/data/curriculum.yaml
+  verified: true
+- id: agent-parts-and-loop
+  text: Agent tự sửa lỗi được đến đâu tùy vào công cụ, quyền hạn và phản hồi mà nó nhận được.
+  key_points:
+  - icon: 🧠
+    name: 'Bộ não: LLM'
+    caption: Hiểu yêu cầu, chọn bước tiếp theo
+  - icon: 🔧
+    name: 'Đôi tay: công cụ'
+    caption: Đọc, ghi file, chạy lệnh — trong phạm vi được phép
+  - icon: 🔁
+    name: Vòng lặp
+    caption: Suy nghĩ → hành động → quan sát, rồi lặp lại
+  - icon: 🛑
+    name: Biết lúc dừng
+    caption: Khi xong việc, hoặc cần bạn quyết định
+  lesson_notes_vi: '- Agent = **LLM** (bộ não) + **công cụ** (đôi tay) + **vòng lặp** suy nghĩ
+    → hành động → quan sát.
+
+    - Vòng lặp dừng khi xong việc, hoặc khi cần bạn quyết định.
+
+    - Agent tự sửa lỗi được đến đâu tùy vào công cụ, quyền hạn và phản hồi — bước kiểm tra cuối
+    cùng vẫn là của bạn.
+
+
+    <!-- section: quiz -->'
+  evidence:
+  - course/vi/lessons/agent-parts-and-loop.md
+  - course/data/diagrams/agent-parts-and-loop-recap.yaml
+  - course/data/curriculum.yaml
+  verified: true
+- id: watch-an-agent-build
+  text: Quan sát agent làm việc giúp bạn học cách giám sát bằng tình huống cụ thể.
+  key_points:
+  - icon: 🔮
+    name: Đoán trước từng bước
+    caption: Đoán sai là dấu hiệu cần hỏi lại
+  - icon: 🔁
+    name: Làm – chạy – xem – sửa
+    caption: Vòng lặp agent trong thực tế
+  - icon: 📋
+    name: Tiêu chí rõ ràng
+    caption: Agent kiểm tra được vì bạn đã nói "thế nào là xong"
+  - icon: ✅
+    name: Bạn nghiệm thu
+    caption: Tự mở, tự bấm, tự so với tiêu chí
+  lesson_notes_vi: '- Một phiên làm việc của agent: đọc mục tiêu → xem thư mục → tạo file →
+    chạy và kiểm tra → sửa → báo cáo.
+
+    - Xem có chủ đích: đoán trước từng bước; đoán sai là dấu hiệu nên hỏi lại.
+
+    - Agent kiểm tra được vì bạn đã nói *thế nào là xong*; tiêu chí càng rõ, nó kiểm tra càng
+    kỹ.
+
+    - Agent báo "xong" chưa phải là xong: bạn tự mở, tự bấm, tự so với tiêu chí.
+
+
+    <!-- section: quiz -->'
+  evidence:
+  - course/vi/lessons/watch-an-agent-build.md
+  - course/data/diagrams/watch-an-agent-build-recap.yaml
+  - course/data/curriculum.yaml
+  verified: true
+- id: choose-your-learning-setup
+  text: Chọn đường hợp với máy và quy định của bạn — rồi bắt đầu.
+  key_points:
+  - icon: 💻
+    name: Máy cá nhân là đường chính
+    caption: Ứng dụng agent + thư mục ai-practice
+  - icon: ☁️
+    name: 'Trình duyệt: không cần cài'
+    caption: File nằm trong kho code trên mạng
+  - icon: 🏢
+    name: 'Máy công ty: hỏi trước'
+    caption: Không cài lén, không lách quy định
+  - icon: 📁
+    name: Một thư mục ai-practice
+    caption: Cho mọi bài tập, chỉ dữ liệu giả
+  - icon: 👀
+    name: Chưa sẵn sàng? Xem trước
+    caption: Đọc nhật ký phiên làm việc và đoán
+  lesson_notes_vi: '- Ba đường thực hành: **máy cá nhân** (đường chính), **trình duyệt** (không
+    cần cài, file nằm trên mạng), **máy công ty** (chỉ khi được phép).
+
+    - Máy công ty: chỉ công cụ được duyệt; không cài lén, không lách quy định, không đưa dữ
+    liệu công ty vào tài khoản cá nhân.
+
+    - Mọi bài tập diễn ra trong thư mục `ai-practice`, chỉ với dữ liệu giả.
+
+    - Chưa sẵn sàng cài đặt? Học theo đường chỉ xem trước.
+
+
+    <!-- section: quiz -->'
+  evidence:
+  - course/vi/lessons/choose-your-learning-setup.md
+  - course/data/diagrams/choose-your-learning-setup-recap.yaml
+  - course/data/curriculum.yaml
+  verified: true
+- id: data-safety-and-permissions
+  text: Thư mục là ranh giới bạn vẽ; quyền hạn và sự chú ý của bạn mới giữ được nó.
+  key_points:
+  - icon: ✅
+    name: Việc an toàn
+    caption: Trong ai-practice, với dữ liệu giả
+  - icon: ✋
+    name: Việc phải hỏi
+    caption: Cài, xóa, gửi, ra ngoài thư mục
+  - icon: ⛔
+    name: Không bao giờ
+    caption: Dữ liệu thật, mật khẩu, lách quy định
+  - icon: 🔐
+    name: Đọc rồi mới cho phép
+    caption: Bắt đầu ở chế độ agent hỏi trước
+  lesson_notes_vi: '- ✅ An toàn: trong `ai-practice`, với dữ liệu giả — agent cứ làm, rồi báo
+    cáo.
+
+    - ✋ Hỏi trước: cài, xóa, gửi, ra ngoài thư mục, lệnh bạn không hiểu. Chưa chắc thì xếp vào
+    đây.
+
+    - ⛔ Không bao giờ: dữ liệu thật của công ty và khách hàng, mật khẩu và API key, lách quy
+    định.
+
+    - Thư mục là ranh giới; quyền hạn và việc bạn đọc kỹ trước khi cho phép mới giữ được nó.
+
+
+    <!-- section: quiz -->'
+  evidence:
+  - course/vi/lessons/data-safety-and-permissions.md
+  - course/data/diagrams/data-safety-and-permissions-recap.yaml
+  - course/data/curriculum.yaml
+  verified: true
+- id: first-agent-session
+  text: Thẻ "Việc của tôi trong tuần" sẽ còn đi cùng bạn ở các bài sau.
+  key_points:
+  - icon: 📋
+    name: Yêu cầu có tiêu chí
+    caption: Việc cần làm và thế nào là xong
+  - icon: 🔐
+    name: Chế độ hỏi trước
+    caption: Đọc từng thay đổi rồi mới chấp nhận
+  - icon: 🗣️
+    name: Nói rõ chỗ sai
+    caption: Mình làm gì, thấy gì, mong đợi gì
+  - icon: ✅
+    name: Tự nghiệm thu, ghi bằng chứng
+    caption: Ba dòng cho sản phẩm đầu tiên
+  lesson_notes_vi: '- Một buổi làm việc: mở đúng chỗ → dán yêu cầu có tiêu chí → theo dõi và
+    duyệt → tự nghiệm thu → ghi bằng chứng.
+
+    - Khi mới học, chọn chế độ agent hỏi trước và đọc từng thay đổi rồi mới chấp nhận.
+
+    - Chưa đạt? Nói rõ mình đã làm gì, thấy gì, mong đợi gì.
+
+    - Buổi đầu thành công khi **bạn** kiểm tra được kết quả, không phải khi agent báo xong.
+
+
+    <!-- section: quiz -->'
+  evidence:
+  - course/vi/lessons/first-agent-session.md
+  - course/data/diagrams/first-agent-session-recap.yaml
+  - course/data/curriculum.yaml
+  verified: true
+- id: how-to-learn-this-course
+  text: Nhật ký học là bằng chứng rằng bạn đang tiến bộ.
+  key_points:
+  - icon: ⭐
+    name: Bắt đầu từ lộ trình tối thiểu
+    caption: Các bài có dấu ⭐ trên trang chính
+  - icon: 📓
+    name: Ghi nhật ký mỗi buổi
+    caption: Sản phẩm, bằng chứng, một câu hỏi
+  - icon: ❓
+    name: Giữ một câu hỏi còn mở
+    caption: Mang theo sang buổi sau
+  - icon: 🌱
+    name: Lỡ một tuần không sao
+    caption: Mở nhật ký, học tiếp từ đó
+  lesson_notes_vi: '- Không chắc nên học gì? Bắt đầu từ lộ trình tối thiểu — các bài có dấu
+    ⭐.
+
+    - Sau mỗi buổi: sản phẩm, ba dòng bằng chứng, một câu hỏi còn mở.
+
+    - Câu hỏi còn mở là điểm bắt đầu của buổi sau.
+
+    - Lỡ một tuần không sao: mở nhật ký và học tiếp.
+
+
+    <!-- section: quiz -->'
+  evidence:
+  - course/vi/lessons/how-to-learn-this-course.md
+  - course/data/diagrams/how-to-learn-this-course-recap.yaml
+  - course/data/curriculum.yaml
+  verified: true
+- id: lead-not-typist
+  text: Càng ít gõ, bạn càng cần nghĩ rõ và kiểm tra kỹ.
+  key_points:
+  - icon: 🎯
+    name: Mục tiêu và lý do
+    caption: Làm gì, cho ai, để làm gì
+  - icon: ✅
+    name: Thế nào là xong
+    caption: Tiêu chí kiểm tra được
+  - icon: 🚧
+    name: Ranh giới
+    caption: An toàn, hỏi trước, không bao giờ
+  - icon: 🔍
+    name: Kiểm tra ở điểm then chốt
+    caption: Mục tiêu, thay đổi, kết quả
+  - icon: 🙋
+    name: Chịu trách nhiệm kết quả
+    caption: Agent làm, bạn ký tên
+  lesson_notes_vi: '- Khi làm cùng agent, bạn chuyển từ người gõ code sang trưởng nhóm.
+
+    - Năm việc: mục tiêu và lý do, thế nào là xong, ranh giới, kiểm tra ở điểm then chốt, chịu
+    trách nhiệm kết quả.
+
+    - Yêu cầu tốt nói về kết quả và cách kiểm tra, không chỉ về đoạn code.
+
+    - Càng ít gõ, càng cần nghĩ rõ và kiểm tra kỹ.
+
+
+    <!-- section: quiz -->'
+  evidence:
+  - course/vi/lessons/lead-not-typist.md
+  - course/data/diagrams/lead-not-typist-recap.yaml
+  - course/data/curriculum.yaml
+  verified: true
+- id: writing-good-specs
+  text: Yêu cầu càng rõ, bạn càng ít phải sửa.
+  key_points:
+  - icon: 🎯
+    name: Mục tiêu và lý do
+    caption: Làm gì, cho ai, để làm gì
+  - icon: 🗂️
+    name: Chỉ đúng chỗ
+    caption: Tên file, dữ liệu, ví dụ mẫu
+  - icon: 🚧
+    name: Nói điều không được làm
+    caption: Không sửa file gốc, không cài thêm
+  - icon: ✅
+    name: Tiêu chí đo được
+    caption: Con số, hành vi — không "đẹp" chung chung
+  - icon: 🔁
+    name: Nhờ agent nhắc lại
+    caption: Và hỏi trước nếu chưa rõ
+  lesson_notes_vi: '- Spec = **mục tiêu** + **bối cảnh** + **ràng buộc** + **tiêu chí nghiệm
+    thu**.
+
+    - Tiêu chí tốt là tiêu chí người khác tự kiểm tra được: con số, hành vi, không phải "đẹp"
+    hay "nhanh" chung chung.
+
+    - Kết thúc spec bằng: nhắc lại mục tiêu và tiêu chí, hỏi trước nếu chưa rõ.
+
+    - Học được điều mới khi nghiệm thu? Thêm nó vào tiêu chí.
+
+
+    <!-- section: quiz -->'
+  evidence:
+  - course/vi/lessons/writing-good-specs.md
+  - course/data/diagrams/writing-good-specs-recap.yaml
+  - course/data/curriculum.yaml
+  verified: true
+- id: explore-plan-build-verify
+  text: Vài phút tìm hiểu và lên kế hoạch tránh được cả buổi làm sai hướng.
+  key_points:
+  - icon: 🔍
+    name: Tìm hiểu trước
+    caption: Agent đọc và giải thích, chưa sửa gì
+  - icon: 🗺️
+    name: Đọc kỹ kế hoạch
+    caption: File nào đổi, quyết định nào là của bạn
+  - icon: 🛠️
+    name: Làm theo kế hoạch
+    caption: Lệch kế hoạch thì dừng lại hỏi
+  - icon: ✅
+    name: Kiểm chứng rồi mới nhận
+    caption: So với tiêu chí, từng điều một
+  - icon: ✂️
+    name: Việc nhỏ thì bỏ qua kế hoạch
+    caption: Tả được thay đổi trong một câu
+  lesson_notes_vi: '- Bốn bước: tìm hiểu (chỉ đọc) → lập kế hoạch (bạn duyệt) → thực hiện →
+    kiểm chứng.
+
+    - Đọc kế hoạch với ba câu hỏi: file nào đổi, có gì mới thêm vào, quyết định nào là của bạn.
+
+    - Tả được thay đổi trong một câu? Bỏ qua kế hoạch, giao thẳng.
+
+    - Có điều mới khi kiểm chứng? Quay lại tìm hiểu.
+
+
+    <!-- section: quiz -->'
+  evidence:
+  - course/vi/lessons/explore-plan-build-verify.md
+  - course/data/diagrams/explore-plan-build-verify-recap.yaml
+  - course/data/curriculum.yaml
+  verified: true
+- id: files-folders-paths
+  text: Agent nói chuyện bằng đường dẫn — giờ bạn đọc được chúng.
+  key_points:
+  - icon: 📄
+    name: File có tên và đuôi
+    caption: .html, .csv, .txt cho biết mở bằng gì
+  - icon: 📁
+    name: Thư mục lồng nhau
+    caption: Như một cái cây
+  - icon: 🧭
+    name: Đường dẫn là địa chỉ
+    caption: Từ gốc đến file
+  - icon: 🔗
+    name: Đường dẫn tương đối
+    caption: Tính từ nơi đang đứng; .. là lên một cấp
+  - icon: 🚧
+    name: Nhìn đường dẫn trước khi cho phép
+    caption: Ra ngoài ai-practice thì hỏi lại
+  lesson_notes_vi: '- File có tên và đuôi; thư mục chứa file và thư mục khác, như một cái cây.
+
+    - Đường dẫn là địa chỉ từ gốc đến file: `\` trên Windows, `/` trên Mac.
+
+    - Đường dẫn tương đối tính từ nơi đang đứng; `..` là lên một cấp.
+
+    - Trước khi cho phép, nhìn đường dẫn: ra ngoài `ai-practice` thì hỏi lại vì sao.
+
+
+    <!-- section: quiz -->'
+  evidence:
+  - course/vi/lessons/files-folders-paths.md
+  - course/data/diagrams/files-folders-paths-recap.yaml
+  - course/data/curriculum.yaml
+  verified: true
+- id: reviewing-agent-changes
+  text: Không cần hiểu từng dòng code mới review được — cần biết nhìn vào đâu.
+  key_points:
+  - icon: 📂
+    name: File nào đổi?
+    caption: Có đúng file bạn nghĩ không
+  - icon: 📏
+    name: To hay nhỏ?
+    caption: Việc nhỏ mà diff to là lạ
+  - icon: 🔎
+    name: Đọc phần bạn hiểu
+    caption: Chữ, số, tên hiển thị
+  - icon: 🚩
+    name: Tìm dấu hiệu lạ
+    caption: Dòng bị xóa, file mới, mật khẩu
+  - icon: 🚦
+    name: Giữ, hỏi hay từ chối
+    caption: Và nói rõ vì sao
+  lesson_notes_vi: '- Diff: `-` là dòng bị xóa, `+` là dòng được thêm; một dòng bị sửa là một
+    cặp `-` và `+`.
+
+    - Bốn câu hỏi: file nào đổi, to hay nhỏ, phần mình hiểu có đúng không, có dấu hiệu lạ không.
+
+    - Quyết định giữ, hỏi hay từ chối — và nói rõ vì sao.
+
+    - Diff quá dài để đọc? Chia việc nhỏ hơn.
+
+
+    <!-- section: quiz -->'
+  evidence:
+  - course/vi/lessons/reviewing-agent-changes.md
+  - course/data/diagrams/reviewing-agent-changes-recap.yaml
+  - course/data/curriculum.yaml
+  verified: true
+- id: testing-basics
+  text: Cho agent một phép kiểm tra để tự chạy — bạn khỏi phải tự phát hiện mọi lỗi.
+  key_points:
+  - icon: 👀
+    name: Trông đúng chưa đủ
+    caption: Nhìn một lần, dễ sót
+  - icon: 🧪
+    name: Ví dụ + kết quả + so sánh
+    caption: Đó là một phép kiểm tra
+  - icon: 🧱
+    name: Thử trường hợp biên
+    caption: Trống, số 0, rất lớn, sai kiểu
+  - icon: 💥
+    name: Làm hỏng thử
+    caption: Phép kiểm tra phải báo lỗi
+  lesson_notes_vi: '- Phép kiểm tra = ví dụ cụ thể + kết quả mong đợi + so sánh tự động.
+
+    - Agent chạy được phép kiểm tra sau mỗi lần sửa — bạn khỏi phải tự phát hiện mọi lỗi.
+
+    - Thử cả trường hợp biên: trống, số 0, rất lớn, sai kiểu.
+
+    - Làm hỏng thử: phép kiểm tra phải báo KHÔNG ĐẠT, nếu không nó chưa chứng minh được gì.
+
+
+    <!-- section: quiz -->'
+  evidence:
+  - course/vi/lessons/testing-basics.md
+  - course/data/diagrams/testing-basics-recap.yaml
+  - course/data/curriculum.yaml
+  verified: true
+- id: errors-and-debugging
+  text: Sửa xong, thêm một phép kiểm tra để lỗi không quay lại.
+  key_points:
+  - icon: 🔁
+    name: Tái hiện trước
+    caption: Biết cách làm lỗi xảy ra lại
+  - icon: 📜
+    name: Đọc dòng cuối trước
+    caption: Lỗi gì, ở file nào, dòng nào
+  - icon: 📋
+    name: Dán nguyên văn
+    caption: Kèm việc đã làm và điều mong đợi
+  - icon: 🔧
+    name: Mỗi lần một thay đổi
+    caption: Để biết cái gì đã sửa được lỗi
+  - icon: 🧹
+    name: Hai lần hỏng thì làm lại
+    caption: Bắt đầu lại với yêu cầu tốt hơn
+  lesson_notes_vi: '- Thông báo lỗi = manh mối: lỗi gì (dòng cuối), ở đâu (file, số dòng).
+
+    - Vòng thám tử: tái hiện → đọc → đoán nguyên nhân → sửa một chỗ → kiểm chứng.
+
+    - Báo lỗi cho agent: dán nguyên văn, kèm việc đã làm và điều mong đợi; nhờ giải thích trước
+    khi sửa.
+
+    - Hai lần sửa hỏng? Bắt đầu lại với yêu cầu tốt hơn. Sửa xong, thêm phép kiểm tra.
+
+
+    <!-- section: quiz -->'
+  evidence:
+  - course/vi/lessons/errors-and-debugging.md
+  - course/data/diagrams/errors-and-debugging-recap.yaml
+  - course/data/curriculum.yaml
+  verified: true
+- id: project-personal-page
+  text: 'Dự án luyện một vòng agentic coding: yêu cầu, kế hoạch, thực hiện và kiểm chứng.'
+  key_points:
+  - icon: ✍️
+    name: Nội dung là của bạn
+    caption: Agent trình bày, không bịa thêm
+  - icon: 🔐
+    name: Chỉ những gì muốn công khai
+    caption: Không điện thoại, địa chỉ, email riêng
+  - icon: 🗺️
+    name: Spec và kế hoạch trước
+    caption: Rồi mới làm
+  - icon: 🧪
+    name: Kiểm tra được
+    caption: Có phép kiểm tra đã từng thất bại
+  - icon: 🏁
+    name: Sản phẩm đầu tiên
+    caption: Kèm ba dòng bằng chứng
+  lesson_notes_vi: '- Nội dung về bạn thì bạn viết; agent trình bày, không bịa thêm.
+
+    - Chỉ đưa lên trang những gì bạn muốn công khai.
+
+    - Spec → kế hoạch → làm và đọc diff → phép kiểm tra → bằng chứng: đó là một vòng làm việc
+    trọn vẹn với agent.
+
+    - Có người gọi cách làm có kỷ luật này — giao việc có tiêu chí, duyệt kế hoạch và thay đổi,
+    kiểm chứng bằng phép kiểm tra — là *agentic engineering*. Trong khóa học, ta vẫn gọi là
+    agentic coding.
+
+
+    <!-- section: sources -->'
+  evidence:
+  - course/vi/lessons/project-personal-page.md
+  - course/data/diagrams/project-personal-page-recap.yaml
+  - course/data/curriculum.yaml
+  verified: true
+- id: what-is-software
+  text: Nói rõ dữ liệu vào, các bước xử lý và kết quả cần kiểm tra.
+  key_points:
+  - icon: 💻
+    name: Phần mềm
+    caption: Chương trình + dữ liệu, chạy trên phần cứng
+  - icon: 📋
+    name: Chương trình
+    caption: 'Các bước chính xác
+
+      cho máy làm theo'
+  - icon: 📝
+    name: Code
+    caption: 'Văn bản ghi chỉ dẫn,
+
+      lưu trong file'
+  - icon: 🍲
+    name: Không đoán ý
+    caption: “Nêm vừa ăn” chưa đủ chính xác
+  - icon: ✅
+    name: Bạn đã làm rồi
+    caption: 'Thẻ việc tuần
+
+      cũng là phần mềm'
+  lesson_notes_vi: '- Phần mềm là chương trình cộng với dữ liệu, chạy trên phần cứng.
+
+    - Chương trình là các bước chính xác; máy tính không thể làm theo “nêm vừa ăn”.
+
+    - Code là văn bản của chương trình và thường được lưu trong file.
+
+    - Thẻ việc tuần trong `ai-practice` là phần mềm bạn đã làm.
+
+
+    <!-- section: quiz -->'
+  evidence:
+  - course/vi/lessons/what-is-software.md
+  - course/data/diagrams/what-is-software-recap.yaml
+  - course/data/curriculum.yaml
+  verified: true
+- id: project-anatomy
+  text: Biết vai trò và đường đi giúp bạn giao đúng phần cho agent.
+  key_points:
+  - icon: 🖥️
+    name: Frontend
+    caption: 'Người dùng nhìn
+
+      và tương tác'
+  - icon: 🔧
+    name: Backend
+    caption: Xử lý yêu cầu và quy tắc
+  - icon: 🗄️
+    name: Database
+    caption: Giữ dữ liệu để dùng lại
+  - icon: 📖
+    name: API như thực đơn
+    caption: Cách các phần yêu cầu nhau
+  - icon: 🔎
+    name: Giao đúng phạm vi
+    caption: 'Chỉ đúng phần,
+
+      kiểm tra diff'
+  lesson_notes_vi: '- Frontend nhận tương tác; backend xử lý quy tắc; database giữ dữ liệu.
+
+    - API là cách giao tiếp đã quy định — giống thực đơn, không phải căn bếp hay kho.
+
+    - Một yêu cầu đi từ màn hình tới dữ liệu và kết quả quay lại màn hình.
+
+    - Hãy giao đúng phần và kiểm tra thư mục cùng nội dung trong diff.
+
+
+    <!-- section: quiz -->'
+  evidence:
+  - course/vi/lessons/project-anatomy.md
+  - course/data/diagrams/project-anatomy-recap.yaml
+  - course/data/curriculum.yaml
+  verified: true
+- id: data-formats
+  text: Đổi định dạng xong, so số bản ghi và vài giá trị.
+  key_points:
+  - icon: 📊
+    name: CSV là bảng
+    caption: Mỗi dòng một bản ghi, cột ngăn bằng dấu phẩy
+  - icon: 🧩
+    name: JSON cho chương trình
+    caption: Tên và giá trị, lồng nhau được
+  - icon: 📝
+    name: YAML cho người viết
+    caption: Thụt lề chính là cấu trúc
+  - icon: 🔍
+    name: Nói rõ định dạng trong spec
+    caption: Tên cột, mã hóa UTF-8, cách kiểm tra
+  lesson_notes_vi: '- CSV là bảng; JSON cho chương trình; YAML cho file người viết tay.
+
+    - Chỗ hay vấp: dấu phẩy trong ô CSV, một dấu thiếu trong JSON, thụt lề lệch trong YAML.
+
+    - Ghi rõ định dạng, tên cột và mã hóa (UTF-8) trong spec.
+
+    - Sau khi chuyển đổi, so số bản ghi và vài giá trị.
+
+
+    <!-- section: quiz -->'
+  evidence:
+  - course/vi/lessons/data-formats.md
+  - course/data/diagrams/data-formats-recap.yaml
+  - course/data/curriculum.yaml
+  verified: true
+- id: programming-building-blocks
+  text: Không cần tự viết code — cần đọc ra được bốn viên gạch và nói đúng tên.
+  key_points:
+  - icon: 📦
+    name: Biến giữ một giá trị có tên
+    caption: Đổi một chỗ, mọi nơi đổi theo
+  - icon: 🧩
+    name: Hàm là việc có tên
+    caption: Nhận đầu vào, trả kết quả, dùng lại
+  - icon: 🔀
+    name: Điều kiện rẽ nhánh
+    caption: 'Chỗ lỗi hay nấp: > hay >= ?'
+  - icon: 🔁
+    name: 'Vòng lặp: từng dòng'
+    caption: Hết danh sách thì dừng
+  - icon: 🎯
+    name: Giao việc đúng tên
+    caption: Đổi một biến, thêm một điều kiện
+  lesson_notes_vi: '- Phần lớn chương trình kết hợp biến, hàm, điều kiện và vòng lặp; chương
+    trình nhỏ có thể chỉ dùng một hoặc hai.
+
+    - Biến giữ một giá trị có tên; hàm là một việc có tên, dùng lại được; điều kiện rẽ nhánh;
+    vòng lặp làm lại cho từng phần tử.
+
+    - Bạn đã gặp cả bốn ý tưởng trong Excel: ô có tên, `SUM`, `IF`; kéo công thức xuống hoạt
+    động giống vòng lặp.
+
+    - Đọc code agent viết bằng cách tìm bốn viên gạch rồi nói lại bằng lời thường.
+
+    - Giao việc bằng đúng tên — đổi một biến, thêm một điều kiện — rồi xem thay đổi có chỉ ở
+    đúng chỗ đó không.
+
+
+    <!-- section: quiz -->'
+  evidence:
+  - course/vi/lessons/programming-building-blocks.md
+  - course/data/diagrams/programming-building-blocks-recap.yaml
+  - course/data/curriculum.yaml
+  verified: true
+- id: git-version-control
+  text: Có Git, thử nghiệm cùng agent không còn đáng sợ.
+  key_points:
+  - icon: 📸
+    name: Commit là ảnh chụp
+    caption: Cả dự án, kèm một câu mô tả
+  - icon: 🛟
+    name: Commit trước khi giao việc
+    caption: Điểm an toàn để quay về
+  - icon: 🔍
+    name: git diff
+    caption: Xem đã đổi gì từ lần commit trước
+  - icon: ⏪
+    name: Quay lại được
+    caption: Nhưng bỏ thay đổi chưa commit là mất hẳn
+  lesson_notes_vi: '- Commit = ảnh chụp cả dự án, kèm một câu mô tả.
+
+    - Commit trước mỗi việc lớn; xem `git diff`; vừa ý thì commit mới, không thì quay lại.
+
+    - Bỏ thay đổi chưa commit là mất hẳn — việc ✋ phải cân nhắc.
+
+    - Agent gõ lệnh Git; bạn quyết định khi nào và đọc kỹ trước khi cho phép.
+
+
+    <!-- section: quiz -->'
+  evidence:
+  - course/vi/lessons/git-version-control.md
+  - course/data/diagrams/git-version-control-recap.yaml
+  - course/data/curriculum.yaml
+  verified: true
+- id: command-line-basics
+  text: Gõ sai một lệnh chỉ xem thì không hỏng gì; cho phép một lệnh xóa mà không đọc mới đáng
+    sợ.
+  key_points:
+  - icon: 💻
+    name: 'Terminal: nơi gõ lệnh'
+    caption: Agent cũng làm việc ở đây
+  - icon: 📍
+    name: Luôn ở trong một thư mục
+    caption: pwd cho biết đang ở đâu
+  - icon: 🧰
+    name: 5 lệnh an toàn
+    caption: pwd, ls, cd, cat, mkdir
+  - icon: 🔍
+    name: Đọc lệnh trước khi cho phép
+    caption: Chỉ xem hay thay đổi? Ở đâu?
+  - icon: ❓
+    name: Chưa hiểu thì hỏi
+    caption: Nhờ agent giải thích lệnh
+  lesson_notes_vi: '- Terminal là cửa sổ gõ lệnh bằng chữ — và là nơi agent làm việc.
+
+    - Terminal luôn đứng trong một thư mục; `pwd` cho biết thư mục nào.
+
+    - Năm lệnh an toàn: `pwd`, `ls`, `cd`, `cat` chỉ xem; `mkdir` tạo thêm.
+
+    - Trước khi cho phép một lệnh: nó chỉ xem hay thay đổi? Ở đâu? Lấy lại được không?
+
+    - Lệnh nào chưa hiểu thì chưa cho phép — hỏi agent giải thích trước.
+
+
+    <!-- section: quiz -->'
+  evidence:
+  - course/vi/lessons/command-line-basics.md
+  - course/data/diagrams/command-line-basics-recap.yaml
+  - course/data/curriculum.yaml
+  verified: true
+- id: security-basics
+  text: Xóa một dòng không vô hiệu hóa bí mật đã bị sao chép.
+  key_points:
+  - icon: 🔑
+    name: Key là mật khẩu
+    caption: Có thể mở quyền dưới tên bạn
+  - icon: 📦
+    name: Cất ngoài code
+    caption: Biến môi trường hoặc file bỏ qua
+  - icon: ⛔
+    name: Không chia sẻ
+    caption: Không chat, ảnh chụp, kho công khai
+  - icon: ♻️
+    name: Lộ thì thu hồi
+    caption: Tạo lại và kiểm tra lượt dùng
+  lesson_notes_vi: '- API key là mật khẩu của chương trình; người có nó có thể dùng quyền dưới
+    tên bạn.
+
+    - Cất bí mật trong biến môi trường hoặc file cục bộ được Git bỏ qua, không cất trong code.
+
+    - Không đưa mật khẩu, API key hay dữ liệu cá nhân thật vào AI, ảnh chụp hoặc kho công khai.
+
+    - Bí mật đã lộ thì thu hồi, tạo lại và kiểm tra — xóa dòng code là chưa đủ.
+
+
+    <!-- section: quiz -->'
+  evidence:
+  - course/vi/lessons/security-basics.md
+  - course/data/diagrams/security-basics-recap.yaml
+  - course/data/curriculum.yaml
+  verified: true
+limitations:
+- Agent output can be wrong; a completion message is not acceptance evidence.
+- No claim of measured time savings, guaranteed accuracy, certification, pricing or learner
+  results.
+- The course is a draft; advertised lesson minutes are curriculum estimates, not measured completion
+  times.
+- Chapters 4, 5 and 6 are outside this campaign.
+story_to_confirm: []
+commercial_readiness:
+- Educational sharing campaign; no product sale or demand-validation survey is claimed.
+source_snapshot:
+  repo_commit: 412bbb2f1a549b8eafd7b138f9ee627b8a9d1fc3
+  scope: chapters 1–3
+  lessons: 22
+  curriculum: course/data/curriculum.yaml

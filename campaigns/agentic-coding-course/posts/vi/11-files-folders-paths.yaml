@@ -1,0 +1,78 @@
+id: 11-files-folders-paths
+status: draft
+format: portrait
+series: Học cùng AI · 2.2.1
+link: files-folders-paths-vi
+slides:
+- layout: cover
+  emoji: 🧭
+  eyebrow: Học cùng AI
+  title: Agent sửa file. **File đó ở đâu**?
+  subtitle: Kiểm tra kết quả
+- layout: cover
+  emoji: 📄
+  eyebrow: Hiểu để làm đúng
+  title: '**File có tên và đuôi**'
+  subtitle: .html, .csv, .txt cho biết mở bằng gì
+- layout: cover
+  emoji: 📁
+  eyebrow: Hiểu để làm đúng
+  title: '**Thư mục lồng nhau**'
+  subtitle: Như một cái cây
+- layout: cover
+  emoji: 🧭
+  eyebrow: Hiểu để làm đúng
+  title: '**Đường dẫn là địa chỉ**'
+  subtitle: Từ gốc đến file
+- layout: cover
+  emoji: 🔗
+  eyebrow: Hiểu để làm đúng
+  title: '**Đường dẫn tương đối**'
+  subtitle: Tính từ nơi đang đứng; .. là lên một cấp
+- layout: cover
+  emoji: 🚧
+  eyebrow: Hiểu để làm đúng
+  title: '**Nhìn đường dẫn trước khi cho phép**'
+  subtitle: Ra ngoài ai-practice thì hỏi lại
+- layout: quote
+  text: Agent nói chuyện bằng đường dẫn — giờ bạn đọc được chúng.
+  author: Ghi nhớ từ bài học
+- layout: cta
+  emoji: 💬
+  eyebrow: Hỏi bạn
+  title: Bạn có tự tìm được file agent vừa sửa không?
+  text: Chia sẻ cách bạn làm.
+  hint: Link bài ở bình luận đầu.
+  show_link: false
+platforms:
+  facebook:
+    caption: 'Agent sửa file. File đó ở đâu?
+
+
+      File, thư mục và đường dẫn: tấm bản đồ bên trong máy tính
+
+
+      • File có tên và đuôi: .html, .csv, .txt cho biết mở bằng gì
+
+      • Thư mục lồng nhau: Như một cái cây
+
+      • Đường dẫn là địa chỉ: Từ gốc đến file
+
+      • Đường dẫn tương đối: Tính từ nơi đang đứng; .. là lên một cấp
+
+      • Nhìn đường dẫn trước khi cho phép: Ra ngoài ai-practice thì hỏi lại
+
+
+      Agent nói chuyện bằng đường dẫn — giờ bạn đọc được chúng.
+
+
+      Bạn có tự tìm được file agent vừa sửa không?
+
+      Link bài ở bình luận đầu.'
+    first_comment: 'Đọc bài học và thử bằng dữ liệu giả: {link}'
+    hashtags:
+    - AgenticCoding
+    - AI
+    - HocAI
+notes: 'Source claim: files-folders-paths. Chapter 2; curriculum lesson 2.2.1. Educational recap,
+  not a testimonial. Draft for owner review.'

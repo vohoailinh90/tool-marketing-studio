@@ -1,0 +1,59 @@
+id: 11-languages
+status: draft
+format: portrait
+series: "Office tools · #11"
+link: survey
+slides:
+  - layout: cover
+    emoji: "🌏"
+    eyebrow: "Multilingual invites"
+    title: "One e-mail, **two languages**, no API key"
+    subtitle: "English, Japanese, Vietnamese or bilingual Japanese + English. Translate through Copilot by copy-paste."
+
+  - layout: email
+    title: "A bilingual Japanese + English invite"
+    subject: "【EVT-12】忘年会のご案内 / Year-end party"
+    from: "The organiser (you)"
+    infobar: "This message has voting buttons. / このメッセージには投票ボタンがあります。"
+    buttons: ["Yes", "No", "Maybe"]
+    body: "お疲れさまです。忘年会のご案内です。\n日時・場所は下記をご確認ください。\n――――――\nHello everyone,\nHere are the details for our year-end party.\nPlease vote with the buttons above."
+    note: "Each half has its own greeting: Japanese first, English second."
+
+  - layout: flow
+    variant: after
+    title: "Translating through Copilot"
+    steps:
+      - {emoji: "✍️", text: "Write your note **in any language**"}
+      - {emoji: "📋", text: "Click **Copy note + fixed part + prompt**"}
+      - {emoji: "🤖", text: "Paste into Microsoft Copilot — it answers with a Japanese and an English version"}
+      - {emoji: "📥", text: "Paste the answer back into the app and click Save"}
+
+  - layout: checklist
+    title: "Why copy-paste?"
+    items:
+      - "**No API key** and no app registration"
+      - "You can preview it and **edit by hand** before sending"
+      - "The fixed part is already in both languages, so you can send without translating"
+      - "Wording you add to the fixed part is translated too"
+    note: "The copy-paste is a manual step — this is not automatic translation."
+
+  - layout: cta
+    emoji: "🌏"
+    title: "Which **languages** does your team use for event e-mails?"
+    text: "English, Japanese, Vietnamese, a mix? Tell me in the comments."
+
+platforms:
+  facebook:
+    caption: |
+      Bilingual invites without an API key: Copilot does the translating, you do the pasting 🌏
+
+      Pick English, Japanese, Vietnamese, or bilingual Japanese + English. For the bilingual one, write your note in any language, copy it with the event details and a ready-made prompt, paste it into Microsoft Copilot, and paste the answer back. Each half of the e-mail gets its own greeting — Japanese first, English second.
+
+      You can preview and edit before sending, and wording you add to the fixed part is translated too.
+
+      Honest limit: the copy-paste is a manual step, not automatic translation.
+
+      Which languages does your team use for event e-mails? 👇
+    first_comment: |
+      📋 Short survey — which languages does your team use? {link}
+    hashtags: [Outlook, Copilot, automation, productivity, bilingual]

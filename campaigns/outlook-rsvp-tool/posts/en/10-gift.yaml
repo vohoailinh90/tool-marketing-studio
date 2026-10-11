@@ -1,0 +1,75 @@
+id: 10-gift
+status: draft
+format: portrait
+series: "Office tools · #10"
+link: survey
+slides:
+  - layout: cover
+    emoji: "🎁"
+    eyebrow: "Gift collection"
+    title: "Farewell gift: **who chipped in, how much, what's left?**"
+    subtitle: "A tab just for gift money. Kept apart from the dinner money, but easy to combine."
+
+  - layout: chat
+    title: "Gift money by group chat…"
+    group: "Farewell gift for Lisa 🎁"
+    messages:
+      - {from: "Hannah", text: "Sent my 20, thanks!"}
+      - {from: "Mike", text: "I paid too but I'm not on the list?"}
+      - {me: true, text: "Let me check the transfers again… 🥲"}
+      - {from: "Tom", text: "How much was the gift? What happens to the rest?"}
+      - {me: true, text: "Let me work it out… 😵"}
+
+  - layout: checklist
+    title: "Three modes for an event"
+    items:
+      - "**Event** — a normal dinner or outing"
+      - "**Gift** — gift money only (adds Organizer, Guest of Honor, Expected Gift Budget and a contribution deadline)"
+      - "**Event + Gift** — both in one event"
+
+  - layout: table
+    title: "Who has contributed?"
+    columns: ["Name", "Contributed", "Amount", "Send report"]
+    rows:
+      - ["Hannah", "✅", "20", "✅"]
+      - ["Mike", "✅", "30", "✅"]
+      - ["Tom", "⬜", {text: "—", tone: muted}, "✅"]
+      - ["Total", "2 / 3 people", "50", ""]
+    total_row: true
+    note: "Illustrative numbers. “Send report” is chosen separately from “Contributed”."
+
+  - layout: flow
+    variant: after
+    title: "From gift to what's left"
+    steps:
+      - {emoji: "🎁", text: "Enter the gift's name, order link and price"}
+      - {emoji: "✅", text: "Tick who contributed; double-click to type the real amount"}
+      - {emoji: "🧮", text: "The tool works out the **gift's remaining money**"}
+      - {emoji: "🔗", text: "Tick **Add the party's money** to fold the dinner money into one summary"}
+
+  - layout: features
+    title: "Asking and reporting, from the tool"
+    items:
+      - {emoji: "📣", title: "The ask", text: "Send a Gift Contribution Notice to call for contributions"}
+      - {emoji: "📊", title: "A real table", text: "The report is HTML: aligned columns, a clickable order link"}
+      - {emoji: "📎", title: "Spreadsheet attached", text: "It lists only the people who contributed"}
+      - {emoji: "🎯", title: "You pick who gets it", text: "Recipients don't have to be contributors"}
+
+  - layout: cta
+    emoji: "💬"
+    title: "How do you **collect gift money** today?"
+    text: "Bank transfer, cash, a spreadsheet, a chat thread? Tell me in the comments."
+
+platforms:
+  facebook:
+    caption: |
+      Gift money gets its own tab — who chipped in, what the gift cost, what's left 🎁
+
+      Tick who contributed and double-click to type the real amount. Enter the gift's name, order link and price and the tool works out the remaining money. Want one summary with the dinner? Tick “Add the party's money”.
+
+      The report is an HTML e-mail (aligned table, clickable order link) with a spreadsheet of contributors only. You pick who gets it — they don't have to be contributors.
+
+      In a group chat the answers tend to end up scattered. How do you collect gift money today? 👇
+    first_comment: |
+      📋 Short survey — how does gift collection work in your team? {link}
+    hashtags: [Outlook, automation, teamevents, giftcollection, productivity]

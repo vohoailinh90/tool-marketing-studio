@@ -1,0 +1,69 @@
+id: 09-payments
+status: draft
+format: portrait
+series: "Tool văn phòng · #9"
+link: survey
+slides:
+  - layout: cover
+    emoji: "💰"
+    eyebrow: "Điểm danh & thu tiền"
+    title: "Có tăng 2 không? **Mỗi vòng một cột tiền**"
+    subtitle: "Điểm danh sau buổi tiệc, ghi tiền theo từng vòng, có người được miễn cũng không rối."
+
+  - layout: table
+    title: "Mỗi vòng có cột tham gia & số tiền riêng"
+    columns: ["Tên", "Vòng 1", "Vòng 2", "Miễn"]
+    rows:
+      - ["Hà", "✓ 500.000", "✓ 200.000", ""]
+      - ["Minh", "✓ 500.000", {text: "—", tone: muted}, ""]
+      - ["Lan (khách mời)", {text: "Miễn", tone: ok}, {text: "Miễn", tone: ok}, "✓"]
+      - ["Tổng", "1.000.000", "200.000", ""]
+    total_row: true
+    note: "Số liệu minh hoạ. Chọn Miễn là miễn cho mọi vòng."
+
+  - layout: features
+    title: "Mỗi vòng, tool tính giúp"
+    items:
+      - {emoji: "👥", title: "Số người", text: "Có bao nhiêu người tham gia vòng đó"}
+      - {emoji: "💵", title: "Đã thu", text: "Tổng tiền thu được của vòng"}
+      - {emoji: "🧾", title: "Đã chi", text: "Số tiền thực tế đã trả, bạn tự nhập"}
+      - {emoji: "🧮", title: "Còn lại", text: "Số dư của vòng; phía trên là tổng của mọi vòng"}
+    note: "Tick tham gia là điền sẵn tiền theo ngân sách dự kiến; bấm đúp vào ô để sửa số thật."
+
+  - layout: flow
+    variant: after
+    title: "Sau buổi tiệc, bạn làm gì?"
+    steps:
+      - {emoji: "☑️", text: "Tick những người **đã đến** (bấm tiêu đề cột để tick cả nhóm)"}
+      - {emoji: "✏️", text: "Bấm đúp vào ô tiền để sửa thành số thực tế"}
+      - {emoji: "➕", text: "Có tăng 2? **Thêm vòng** mới, đổi tên vòng tuỳ ý"}
+      - {emoji: "🙏", text: "Gửi email cảm ơn kèm bảng tiền"}
+
+  - layout: email
+    title: "Email cảm ơn có bảng tiền từng vòng"
+    subject: "[EVT-12] Cảm ơn cả nhà đã đến tất niên! 🎉"
+    from: "Ban tổ chức (bạn)"
+    infobar: "Đính kèm: bảng điểm danh & thanh toán (Excel), lịch hẹn."
+    body: "Cảm ơn mọi người đã đến buổi tất niên!\nBảng tiền từng vòng ở bên dưới, file Excel đính kèm để mọi người đối chiếu.\n\n**Vòng 1** · thu 1.000.000\n**Vòng 2** · thu 200.000\n**Tổng thu** · 1.200.000"
+    note: "Bảng gửi dạng HTML nên các cột thẳng hàng trong Outlook. Lịch hẹn được tìm theo tên sự kiện (tiêu đề lịch phải trùng tên sự kiện) và việc tìm chỉ ở mức cố gắng nên vẫn có thể không thấy."
+
+  - layout: cta
+    emoji: "💬"
+    title: "Buổi tiệc của bạn thường có **mấy vòng**?"
+    text: "Một vòng, hay còn tăng hai, tăng ba? Comment cho mình biết cách bạn đang ghi tiền nhé."
+
+platforms:
+  facebook:
+    caption: |
+      Tăng 2 ai đóng, ai được miễn, ai đến muộn… file Excel tô màu của bạn còn chịu nổi không? 😅
+
+      Thu tiền nhiều vòng là phần rất dễ sai. Lúc nào cũng phải hỏi lại: người này đóng vòng 1 chưa, vòng 2 có đi không, ai được miễn.
+
+      Trong tool, mỗi vòng có cột tham gia và số tiền riêng. Sau buổi tiệc, bạn tick ai đã đến — tool điền sẵn tiền theo ngân sách dự kiến, chỗ nào khác thì bấm đúp sửa. Người được miễn thì chọn Miễn, áp dụng cho mọi vòng. Mỗi vòng hiện số người, tiền đã thu, tiền đã chi và còn lại; phía trên là tổng của tất cả các vòng.
+
+      Cuối cùng, email cảm ơn đi kèm bảng tiền từng vòng và file Excel.
+
+      Buổi tiệc của bạn thường có mấy vòng? Comment cho mình biết nhé 👇
+    first_comment: |
+      📋 Khảo sát ngắn — bạn thu tiền sự kiện thế nào? {link}
+    hashtags: [Outlook, Excel, tudonghoa, tochucsukien, vanphong]

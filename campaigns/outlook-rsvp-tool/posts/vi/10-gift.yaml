@@ -1,0 +1,77 @@
+id: 10-gift
+status: draft
+format: portrait
+series: "Tool văn phòng · #10"
+link: survey
+slides:
+  - layout: cover
+    emoji: "🎁"
+    eyebrow: "Góp quà"
+    title: "Góp quà chia tay: **ai góp, bao nhiêu, còn dư bao nhiêu?**"
+    subtitle: "Một tab riêng cho tiền quà. Tách khỏi tiền tiệc, nhưng gộp lại được khi cần."
+
+  - layout: chat
+    title: "Góp quà qua tin nhắn nhóm…"
+    group: "Quà chia tay chị Lan 🎁"
+    messages:
+      - {from: "Hà", text: "Em chuyển 200k rồi nha chị"}
+      - {from: "Minh", text: "Mình chuyển rồi mà chưa thấy tên trong danh sách?"}
+      - {me: true, text: "Đợi mình đối chiếu lại nhé… 🥲"}
+      - {from: "Tuấn", text: "Quà hết bao nhiêu vậy? Dư thì tính sao?"}
+      - {me: true, text: "Để mình tính… 😵"}
+
+  - layout: checklist
+    title: "Ba chế độ cho một sự kiện"
+    items:
+      - "**Event** — buổi tiệc bình thường"
+      - "**Gift** — chỉ thu tiền quà (thêm người tổ chức, người nhận quà, ngân sách quà dự kiến, hạn góp)"
+      - "**Event + Gift** — cả hai trong một sự kiện"
+
+  - layout: table
+    title: "Ai đã góp?"
+    columns: ["Tên", "Đã góp", "Số tiền", "Gửi báo cáo"]
+    rows:
+      - ["Hà", "✅", "200.000", "✅"]
+      - ["Minh", "✅", "300.000", "✅"]
+      - ["Tuấn", "⬜", {text: "—", tone: muted}, "✅"]
+      - ["Tổng", "2 / 3 người", "500.000", ""]
+    total_row: true
+    note: "Số liệu minh hoạ. Cột “Gửi báo cáo” chọn riêng, độc lập với “Đã góp”."
+
+  - layout: flow
+    variant: after
+    title: "Từ món quà đến số tiền còn lại"
+    steps:
+      - {emoji: "🎁", text: "Nhập tên quà, link đặt hàng và giá quà"}
+      - {emoji: "✅", text: "Tick ai đã góp, bấm đúp để gõ số tiền thật"}
+      - {emoji: "🧮", text: "Tool tính **tiền quà còn lại**"}
+      - {emoji: "🔗", text: "Tick **Add the party's money** để gộp tiền tiệc thành một báo cáo Sự kiện + Quà"}
+
+  - layout: features
+    title: "Email góp quà & báo cáo"
+    items:
+      - {emoji: "📣", title: "Thư kêu gọi", text: "Gửi email kêu gọi góp quà (Gift Contribution Notice)"}
+      - {emoji: "📊", title: "Báo cáo dạng bảng", text: "Gửi dạng HTML: bảng thẳng hàng, link đặt hàng bấm được"}
+      - {emoji: "📎", title: "Kèm file Excel", text: "Chỉ liệt kê những người đã góp"}
+      - {emoji: "🎯", title: "Chọn người nhận", text: "Bạn quyết định ai nhận báo cáo, không nhất thiết là người đã góp"}
+
+  - layout: cta
+    emoji: "💬"
+    title: "Bạn thu tiền quà **bằng cách nào**?"
+    text: "Chuyển khoản, tiền mặt, hay ghi vào một file nào đó? Comment cho mình biết nhé."
+
+platforms:
+  facebook:
+    caption: |
+      Góp quà chia tay: ai góp rồi, bao nhiêu, quà hết bao nhiêu, còn dư bao nhiêu? 🎁😵
+
+      Hỏi trong nhóm chat thì câu trả lời dễ nằm rải rác, đến lúc báo lại cho mọi người là phải lật tin nhắn từ đầu.
+
+      Trong tool, tiền quà có một tab riêng: tick ai đã góp, bấm đúp để gõ số tiền thật, nhập tên quà, link đặt hàng và giá — tool tính số tiền quà còn lại. Muốn một báo cáo chung thì tick “Add the party's money” để gộp tiền tiệc vào.
+
+      Email báo cáo gửi dạng bảng, có link đặt hàng bấm được, kèm file Excel chỉ liệt kê người đã góp. Bạn chọn ai nhận báo cáo.
+
+      Bạn thu tiền quà bằng cách nào? Comment cho mình biết nhé 👇
+    first_comment: |
+      📋 Khảo sát ngắn — chuyện góp quà ở chỗ bạn thế nào? {link}
+    hashtags: [Outlook, gopqua, tudonghoa, tochucsukien, vanphong]

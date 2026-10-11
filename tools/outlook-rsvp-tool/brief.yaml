@@ -48,6 +48,37 @@ features:            # each is in the tool's README
     fact: Load a past event as a template for a new one
   - id: how-to-vote
     fact: An image explaining how to click the vote buttons is attached to every invite
+  # Detail used by the feature posts 07–12 (all from the tool's README, tab by tab)
+  - id: import-rules
+    fact: Excel import takes the name from column A and the e-mail from column B on any row; title and header rows are skipped and repeated addresses are dropped; the list is saved after every change
+  - id: scan-detail
+    fact: Scan Inbox reads replies from every folder of the mailbox; a vote can be corrected by hand and the correction is kept by later scans unless a newer reply from that person is found; replies are matched to an event by its Event ID, which Scan Inbox looks for in the subject of each vote reply (tool code, outlook_com.py) - the vote button produces that reply, so recipients type nothing, but the README says to check that the Event ID on the setup tab matches the one used when the invite was sent
+  - id: send-guard
+    fact: The RSVP reminder and the Calendar Invite can only be sent once the event open on the setup tab has been scanned, so they cannot go to another event's list (the gift reminder has no such check); reminders can be sent from the Collect Responses and Gift Contribution tabs
+  - id: reminder-detail
+    fact: Reminders go to the people who have not answered, and the app only opens each reminder as a draft in Outlook for the user to check and send (auto_send is always false in the tool code); Calendar Invites go to the people who answered Yes or Maybe; the how-to-vote image is attached to invites and reminders; the vote buttons are labelled Yes, No and Maybe in every language (VotingOptions in the tool code)
+  - id: payment-rounds
+    fact: Round 1 is the main event; Add round adds a follow-up (second venue, another evening) with its own Attend and amount columns, and a round can be renamed or removed; ticking Attend fills the amount from the expected event budget, a double-click corrects it; clicking an Attend or Free cell ticks it and clicking a column header ticks everyone; Free exempts a person from every round
+  - id: round-figures
+    fact: Each round shows its attendees, collected, paid out (typed by hand) and remaining; the tiles at the top show the totals over all rounds
+  - id: thank-you-detail
+    fact: The Thank You e-mail is sent as HTML with a table of every round's money, with the Attendance & Payment Excel file and the Calendar Invite attached; the Calendar Invite is found by a best-effort search on its subject, which must match the event name
+  - id: gift-detail
+    fact: Gift tab tracks who contributed with a checkbox and an amount typed by double-clicking the Amount cell (a typed amount is kept when Contributed is ticked again), with name/e-mail search; the gift's name, order link and price give the gift's remaining money; ticking "Add the party's money" adds the Attendance & Payment totals for one Event + Gift summary
+  - id: gift-report
+    fact: The gift report e-mail is HTML (aligned table, clickable order link) with an Excel file listing only the contributors; who receives it is chosen in a "Send email" column independent of "Contributed"; a Gift Contribution Notice e-mail asks for contributions
+  - id: event-modes
+    fact: Event modes are Event, Gift (gift collection only; adds Organizer, Guest of Honor, Expected Gift Budget and Gift Contribution Deadline) and Event + Gift
+  - id: bilingual-detail
+    fact: In Bilingual JP+EN mode the note box holds only the organiser's note in any language and the fixed part holds the event details in Japanese and English; one copy-paste prompt goes to Copilot, which answers under [JA NOTE], [JA DETAILS], [EN NOTE] and [EN DETAILS]; each half of the e-mail gets its own greeting, Japanese first; the fixed part is already bilingual, so an e-mail can be sent without translating; wording added to the fixed part is translated too; the content can be hand-edited
+  - id: history-detail
+    fact: History lists every event with its Yes/No/Maybe counts and send status; double-click a cell to edit and Save changes writes only the edited cells; renaming an Event ID moves the whole event; columns can be dragged into a remembered order
+  - id: history-money
+    fact: Money columns are calculated, not typed - Actual Att. (main) and Cost/Person describe round 1; Income, Expense and Balance cover every round and the gift; Dept. Fund Left is the running total of Balance from the first event down to that row
+  - id: template-detail
+    fact: An event can be found with a search box (any field, or one chosen field such as Location); Load setup from selected event replaces everything the app holds for the current event; to use it as a template, load it and change the Event ID - the recipient list follows the new ID while votes, attendance, gift ticks and amounts paid stay with the original event; the app asks first when this would discard Copilot translations or hand-edited text
+  - id: backup
+    fact: All data is one database file next to the app; the README says to back it up regularly
 
 claims:              # anything a post states as a benefit must be one of these
   - id: no-api-key
@@ -80,11 +111,18 @@ limitations:         # say these openly: they decide who should NOT try it
   - Two people sharing one e-mail address cannot be told apart
   - Scheduled automatic reminders are not built; reminders are sent by hand from the app
   - Needs Python installed — there is no one-click installer yet
+  - Outlook's search index can lag about a minute behind new mail, so a scan can miss fresh replies; scan again shortly
+  - The Calendar Invite attached to the Thank You e-mail is found by a best-effort search, and its subject in Outlook must match the event name exactly
+  - Outlook Desktop must be open and signed in, or sending fails
 
 story_to_confirm:    # posts 02-story use these; the author must confirm or rewrite them
   - The author has organised internal events and gift collections several times
   - It started as an Excel file that grew too complex (columns for money, second venue, gifts)
   - The deciding idea was to let Outlook — already approved at work — do the repetitive part
+
+survey:               # facts about the owner's validation survey, not about the tool
+  duration_minutes: 3   # research/survey-template.md titles every language version "3 minutes"; unconfirmed until the form is built, so posts 07-12 say "short survey"
+  incentive: none recorded  # a priority-beta promise is the owner's decision; posts 07-12 do not make it
 
 commercial_readiness: # what must exist before charging money (see playbooks/05-thuong-mai-hoa.md)
   - One-click Windows installer (.exe / MSIX), no Python setup for the user

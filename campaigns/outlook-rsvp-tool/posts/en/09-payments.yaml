@@ -1,0 +1,69 @@
+id: 09-payments
+status: draft
+format: portrait
+series: "Office tools · #9"
+link: survey
+slides:
+  - layout: cover
+    emoji: "💰"
+    eyebrow: "Attendance & money"
+    title: "Round 2 at another venue? **One column of money per round**"
+    subtitle: "Tick who came, record the money round by round, and handle exemptions without the mess."
+
+  - layout: table
+    title: "Each round has its own attendance and amount"
+    columns: ["Name", "Round 1", "Round 2", "Free"]
+    rows:
+      - ["Hannah", "✓ 40", "✓ 15", ""]
+      - ["Mike", "✓ 40", {text: "—", tone: muted}, ""]
+      - ["Sam (guest)", {text: "Free", tone: ok}, {text: "Free", tone: ok}, "✓"]
+      - ["Total", "80", "15", ""]
+    total_row: true
+    note: "Illustrative numbers. Free exempts a person from every round."
+
+  - layout: features
+    title: "Per round, the tool works out"
+    items:
+      - {emoji: "👥", title: "Attendees", text: "How many people joined that round"}
+      - {emoji: "💵", title: "Collected", text: "The money collected for the round"}
+      - {emoji: "🧾", title: "Paid out", text: "What was actually paid, typed in by you"}
+      - {emoji: "🧮", title: "Remaining", text: "What's left for the round; the totals over all rounds sit at the top"}
+    note: "Ticking Attend fills in the amount from the expected event budget; double-click a cell to type the real figure."
+
+  - layout: flow
+    variant: after
+    title: "After the dinner"
+    steps:
+      - {emoji: "☑️", text: "Tick **who came** (click a column header to tick everyone)"}
+      - {emoji: "✏️", text: "Double-click an amount to correct it"}
+      - {emoji: "➕", text: "Round 2? **Add a round** and rename it as you like"}
+      - {emoji: "🙏", text: "Send a thank-you e-mail with the money table"}
+
+  - layout: email
+    title: "A thank-you with every round's money"
+    subject: "[EVT-12] Thanks for coming to the year-end dinner! 🎉"
+    from: "The organiser (you)"
+    infobar: "Attached: attendance & payment spreadsheet, calendar invite."
+    body: "Thanks for joining us!\nThe money for each round is below, and the spreadsheet is attached so you can check it.\n\n**Round 1** · collected 80\n**Round 2** · collected 15\n**Total collected** · 95"
+    note: "The table is sent as HTML so the columns line up in Outlook. The calendar invite is found by a best-effort search on its subject, which must match the event name — so it can still be missed."
+
+  - layout: cta
+    emoji: "💬"
+    title: "How many **rounds** does your team dinner have?"
+    text: "Just one, or does it roll on to a second and third venue? Tell me how you track the money."
+
+platforms:
+  facebook:
+    caption: |
+      One column of money per round — that's how the tool handles a dinner that rolls on to round 2 💰
+
+      Each round — round 1, round 2 and so on — has its own attendance and amount columns. Tick who came and the amount fills in from the expected budget; double-click anything that differs. Free exempts someone from every round.
+
+      Each round shows attendees, collected, paid out and remaining, and the totals over all rounds sit at the top.
+
+      Then the thank-you e-mail goes out with a table of every round's money and the spreadsheet attached.
+
+      How many rounds does your team dinner usually have? 👇
+    first_comment: |
+      📋 Short survey — how do you handle event money? {link}
+    hashtags: [Outlook, Excel, automation, teamevents, productivity]

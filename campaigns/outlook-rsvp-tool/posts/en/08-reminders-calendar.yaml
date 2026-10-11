@@ -1,0 +1,72 @@
+id: 08-reminders-calendar
+status: draft
+format: portrait
+series: "Office tools · #8"
+link: survey
+slides:
+  - layout: cover
+    emoji: "🔔"
+    eyebrow: "Reminders & calendar"
+    title: "Remind **the right people**. Invite **the right people**."
+    subtitle: "After a scan, the tool knows who hasn't replied and who answered Yes or Maybe."
+
+  - layout: chat
+    title: "Nudge everyone and the early repliers get annoyed"
+    group: "Ops team farewell 🎉"
+    messages:
+      - {me: true, text: "Gentle reminder: if you haven't replied to the invite, please do 🙏"}
+      - {from: "Hannah", text: "I replied yesterday! 😅"}
+      - {from: "Mike", text: "Same, I clicked Yes"}
+      - {from: "Tom", text: "Which email? Let me dig it out"}
+      - {me: true, text: "Sorry — I lost track of who answered 😭"}
+
+  - layout: compare
+    title: "Reminders & calendar: before and after"
+    before:
+      items:
+        - "Nudge the whole group, even people who already replied"
+        - "Keep track of who answered in your head"
+        - "Send calendar invites to each person who said yes"
+    after:
+      items:
+        - "Reminder e-mails go only to people who **haven't replied**"
+        - "The tool knows from Scan Inbox"
+        - "Calendar invites go to people who answered **Yes or Maybe**"
+
+  - layout: features
+    title: "What the tool keeps safe for you"
+    items:
+      - {emoji: "🔒", title: "No sends to another event's list", text: "The reminder to non-responders and the calendar invite only go out once the open event has been scanned, so they can't reach another event's list"}
+      - {emoji: "🖼️", title: "How-to-vote picture", text: "Invites and reminders both carry a picture showing how to click the buttons"}
+      - {emoji: "🎁", title: "Gift reminders too", text: "Send them from the Collect Responses and Gift Contribution tabs"}
+
+  - layout: pains
+    tone: accent
+    title: "Honest limits"
+    items:
+      - {emoji: "⚠️", text: "Reminders are **sent by hand**: the app opens the e-mail in Outlook, you check it and click Send — no scheduled sending yet"}
+      - {emoji: "⚠️", text: "Outlook Desktop must be open and signed in"}
+      - {emoji: "⚠️", text: "2 people sharing one e-mail address can't be told apart"}
+
+  - layout: cta
+    emoji: "🙋"
+    title: "Would you want **scheduled reminders**?"
+    text: "It's not built yet. If you'd use it, tell me."
+    keyword: "REMIND"
+
+platforms:
+  facebook:
+    caption: |
+      Reminders without the “I already replied!” 🔔
+
+      After a scan, the tool knows who hasn't answered. So:
+      → the reminder e-mail goes only to people who haven't replied
+      → the calendar invite goes only to people who said Yes or Maybe
+      → both only go out once the open event has been scanned, so they can't land on another event's list
+
+      Honest limit: the app opens each reminder in Outlook and you check it and click Send. Scheduled, automatic reminders aren't built yet.
+
+      Would you use them? Comment “REMIND” if so 👇
+    first_comment: |
+      📋 Short survey — tell me which features matter most to you: {link}
+    hashtags: [Outlook, automation, productivity, teamevents, RSVP]

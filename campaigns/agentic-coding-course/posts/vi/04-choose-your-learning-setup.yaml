@@ -1,0 +1,78 @@
+id: 04-choose-your-learning-setup
+status: draft
+format: portrait
+series: Học cùng AI · 1.2.1
+link: choose-your-learning-setup-vi
+slides:
+- layout: cover
+  emoji: 🚀
+  eyebrow: Học cùng AI
+  title: Học với AI trên **máy nào**?
+  subtitle: Chọn cách học an toàn
+- layout: cover
+  emoji: 💻
+  eyebrow: Hiểu để làm đúng
+  title: '**Máy cá nhân là đường chính**'
+  subtitle: Ứng dụng agent + thư mục ai-practice
+- layout: cover
+  emoji: ☁️
+  eyebrow: Hiểu để làm đúng
+  title: '**Trình duyệt: không cần cài**'
+  subtitle: File nằm trong kho code trên mạng
+- layout: cover
+  emoji: 🏢
+  eyebrow: Hiểu để làm đúng
+  title: '**Máy công ty: hỏi trước**'
+  subtitle: Không cài lén, không lách quy định
+- layout: cover
+  emoji: 📁
+  eyebrow: Hiểu để làm đúng
+  title: '**1 thư mục ai-practice**'
+  subtitle: Cho mọi bài tập, chỉ dữ liệu giả
+- layout: cover
+  emoji: 👀
+  eyebrow: Hiểu để làm đúng
+  title: '**Chưa sẵn sàng? Xem trước**'
+  subtitle: Đọc nhật ký phiên làm việc và đoán
+- layout: quote
+  text: Chọn đường hợp với máy và quy định của bạn — rồi bắt đầu.
+  author: Ghi nhớ từ bài học
+- layout: cta
+  emoji: 💬
+  eyebrow: Hỏi bạn
+  title: Bạn chọn máy cá nhân, trình duyệt hay đường chỉ xem?
+  text: Chia sẻ cách bạn làm.
+  hint: Link bài ở bình luận đầu.
+  show_link: false
+platforms:
+  facebook:
+    caption: 'Học với AI trên máy nào?
+
+
+      Chọn cách thực hành: trình duyệt, máy cá nhân hay máy công ty
+
+
+      • Máy cá nhân là đường chính: Ứng dụng agent + thư mục ai-practice
+
+      • Trình duyệt: không cần cài: File nằm trong kho code trên mạng
+
+      • Máy công ty: hỏi trước: Không cài lén, không lách quy định
+
+      • 1 thư mục ai-practice: Cho mọi bài tập, chỉ dữ liệu giả
+
+      • Chưa sẵn sàng? Xem trước: Đọc nhật ký phiên làm việc và đoán
+
+
+      Chọn đường hợp với máy và quy định của bạn — rồi bắt đầu.
+
+
+      Bạn chọn máy cá nhân, trình duyệt hay đường chỉ xem?
+
+      Link bài ở bình luận đầu.'
+    first_comment: 'Đọc bài học và thử bằng dữ liệu giả: {link}'
+    hashtags:
+    - AgenticCoding
+    - AI
+    - HocAI
+notes: 'Source claim: choose-your-learning-setup. Chapter 1; curriculum lesson 1.2.1. Educational
+  recap, not a testimonial. Draft for owner review.'

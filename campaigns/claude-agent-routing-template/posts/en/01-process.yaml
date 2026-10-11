@@ -26,13 +26,13 @@ slides:
       - ["T1", "3–5", "1", "0"]
       - ["T2", "6–8", "2", "0"]
       - ["T3", "9–12", "3", "1"]
-    note: "Six dimensions, each scored 0–2. A typo fix stays with the main session; payments, auth or data migrations are pushed up a tier whatever the score. Extra slots: +1 requirement analyst at T3 if the ask is ambiguous, +1 test engineer at T2/T3 once the reviewer reports that verification needs its own design."
+    note: "Six dimensions, each scored 0–2. A typo fix stays with the main session; payments, auth or data migrations are pushed up a tier whatever the score. Extra slots: +1 requirement analyst at T3 when the ambiguity score is 2, +1 test engineer at T2/T3 once the reviewer reports that verification needs its own design."
 
   - layout: features
     title: "The cast: 1 main session, 8 roles, and Codex"
     items:
       - {emoji: "🧠", title: "Main session", text: "Analyses, designs, builds and fixes at every tier. Not counted in the cap."}
-      - {emoji: "📋", title: "Before the design", text: "requirement-analyst (T3, ambiguity 2) · architect (T2, architecture or outside contract changes)"}
+      - {emoji: "📋", title: "Before the design", text: "requirement-analyst (T3, ambiguity 2) · architect (T2, architecture score 2 or an outside contract changes)"}
       - {emoji: "🔍", title: "Judging the work", text: "architecture-critic (T3) · code-reviewer (T1, T2) · code-reviewer-t3 (T3)"}
       - {emoji: "🧪", title: "Only on escalation", text: "code-reviewer-verify (takes the reviewer's slot) · test-engineer · implementer"}
       - {emoji: "🛰️", title: "Codex", text: "No standing agent. A fresh task per call: design critique, PR review, security review. Writes no code."}
@@ -53,7 +53,7 @@ slides:
     title: "The brakes"
     columns: ["What", "Max"]
     rows:
-      - ["Design ↔ critique rounds", "2"]
+      - ["Design critique rounds", "1 (a 2nd only if serious findings stay open)"]
       - ["Fix rounds", "2"]
       - ["Review rounds per PR", "3"]
       - ["Codex requests in flight, per thread", "1"]

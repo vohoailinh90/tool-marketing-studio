@@ -39,7 +39,7 @@ slides:
     title: "Phía Claude: 1 phiên chính + 8 vai phụ"
     items:
       - {emoji: "🧠", title: "Phiên chính", text: "Phân tích, thiết kế, viết code, sửa lỗi ở mọi mức. Không tính vào trần agent"}
-      - {emoji: "📋", title: "Làm rõ và thiết kế", text: "requirement-analyst (T3, yêu cầu mơ hồ) · architect (T2, đổi kiến trúc hoặc hợp đồng ngoài)"}
+      - {emoji: "📋", title: "Làm rõ và thiết kế", text: "requirement-analyst (T3, điểm mơ hồ = 2) · architect (T2, điểm kiến trúc = 2 hoặc hợp đồng ngoài đổi)"}
       - {emoji: "🔍", title: "Phản biện và duyệt", text: "architecture-critic (T3) · code-reviewer (T1, T2) · code-reviewer-t3 (T3)"}
       - {emoji: "🧪", title: "Khi cần thêm", text: "code-reviewer-verify (thay reviewer) · test-engineer (reviewer báo cần kiểm chứng riêng) · implementer"}
     note: "Mọi vai phụ trừ implementer chỉ đọc, không sửa file."
@@ -61,13 +61,13 @@ slides:
       - ["T1", "3–5", "1", "0"]
       - ["T2", "6–8", "2", "0"]
       - ["T3", "9–12", "3", "1"]
-    note: "Chấm 6 tiêu chí, mỗi tiêu chí 0–2. Việc chạm tiền, quyền truy cập, chuyển dữ liệu bị đẩy lên mức cao dù điểm thấp. Thêm khi cần: +1 phân tích viên ở T3 nếu yêu cầu mơ hồ, +1 test-engineer ở T2/T3 khi reviewer báo việc kiểm chứng cần được thiết kế riêng. Ở T3 vẫn giữ 1 reviewer chạy kiểm chứng, vì Codex chỉ đọc diff."
+    note: "Chấm 6 tiêu chí, mỗi tiêu chí 0–2. Việc chạm tiền, quyền truy cập, chuyển dữ liệu bị đẩy lên mức cao dù điểm thấp. Thêm khi cần: +1 phân tích viên ở T3 khi điểm mơ hồ bằng 2, +1 test-engineer ở T2/T3 khi reviewer báo việc kiểm chứng cần được thiết kế riêng. Ở T3 vẫn giữ 1 reviewer chạy kiểm chứng, vì Codex chỉ đọc diff."
 
   - layout: stat
     eyebrow: "Phanh"
     value: "3"
     label: "vòng review tối đa cho mỗi PR"
-    caption: "Sửa lỗi tối đa 2 vòng, phản biện thiết kế tối đa 2 vòng. Mỗi luồng (Issue hoặc PR) chỉ có một yêu cầu gửi Codex tại một thời điểm, và số vòng do script đếm từ GitHub."
+    caption: "Sửa lỗi tối đa 2 vòng, phản biện thiết kế mặc định 1 vòng, vòng hai chỉ khi còn lỗi nặng chưa giải quyết. Mỗi luồng (Issue hoặc PR) chỉ có một yêu cầu gửi Codex tại một thời điểm, và số vòng do script đếm từ GitHub."
 
   - layout: checklist
     title: "Khi nào mới gọi là xong"

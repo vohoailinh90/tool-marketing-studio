@@ -1,0 +1,78 @@
+id: 10-explore-plan-build-verify
+status: draft
+format: portrait
+series: Học cùng AI · 2.1.3
+link: explore-plan-build-verify-vi
+slides:
+- layout: cover
+  emoji: 🧭
+  eyebrow: Học cùng AI
+  title: Bấm làm ngay, hay **tìm hiểu trước**?
+  subtitle: Giao việc rõ ràng
+- layout: cover
+  emoji: 🔍
+  eyebrow: Hiểu để làm đúng
+  title: '**Tìm hiểu trước**'
+  subtitle: Agent đọc và giải thích, chưa sửa gì
+- layout: cover
+  emoji: 🗺️
+  eyebrow: Hiểu để làm đúng
+  title: '**Đọc kỹ kế hoạch**'
+  subtitle: File nào đổi, quyết định nào là của bạn
+- layout: cover
+  emoji: 🛠️
+  eyebrow: Hiểu để làm đúng
+  title: '**Làm theo kế hoạch**'
+  subtitle: Lệch kế hoạch thì dừng lại hỏi
+- layout: cover
+  emoji: ✅
+  eyebrow: Hiểu để làm đúng
+  title: '**Kiểm chứng rồi mới nhận**'
+  subtitle: So với tiêu chí, từng điều một
+- layout: cover
+  emoji: ✂️
+  eyebrow: Hiểu để làm đúng
+  title: '**Việc nhỏ thì bỏ qua kế hoạch**'
+  subtitle: Tả được thay đổi trong một câu
+- layout: quote
+  text: Vài phút tìm hiểu và lên kế hoạch tránh được cả buổi làm sai hướng.
+  author: Ghi nhớ từ bài học
+- layout: cta
+  emoji: 💬
+  eyebrow: Hỏi bạn
+  title: Bạn hay bỏ qua bước nào khi làm với AI?
+  text: Chia sẻ cách bạn làm.
+  hint: Link bài ở bình luận đầu.
+  show_link: false
+platforms:
+  facebook:
+    caption: 'Bấm làm ngay, hay tìm hiểu trước?
+
+
+      Quy trình 4 bước: Tìm hiểu → Lập kế hoạch → Thực hiện → Kiểm chứng
+
+
+      • Tìm hiểu trước: Agent đọc và giải thích, chưa sửa gì
+
+      • Đọc kỹ kế hoạch: File nào đổi, quyết định nào là của bạn
+
+      • Làm theo kế hoạch: Lệch kế hoạch thì dừng lại hỏi
+
+      • Kiểm chứng rồi mới nhận: So với tiêu chí, từng điều một
+
+      • Việc nhỏ thì bỏ qua kế hoạch: Tả được thay đổi trong một câu
+
+
+      Vài phút tìm hiểu và lên kế hoạch tránh được cả buổi làm sai hướng.
+
+
+      Bạn hay bỏ qua bước nào khi làm với AI?
+
+      Link bài ở bình luận đầu.'
+    first_comment: 'Đọc bài học và thử bằng dữ liệu giả: {link}'
+    hashtags:
+    - AgenticCoding
+    - AI
+    - HocAI
+notes: 'Source claim: explore-plan-build-verify. Chapter 2; curriculum lesson 2.1.3. Educational
+  recap, not a testimonial. Draft for owner review.'

@@ -334,6 +334,10 @@ def publish_facebook(campaign: Campaign, post: Post, config: dict, *, confirm_pa
             try:
                 made = page.call("POST", f"{post_id}/comments", data={"message": comment})
                 steps["comment"] = made.get("id", "")
+            except UnknownOutcome as exc:   # it may be there already: adding it by hand could post it twice
+                steps["comment_unknown"] = str(exc)
+                log(f"the post is live, but the first comment may or may not have gone through: {exc} "
+                    "— look at the post before adding it by hand")
             except PublishError as exc:   # the post is live; only the comment is missing
                 steps["comment_error"] = str(exc)
                 log(f"the post is live, but the first comment failed: {exc} — add it by hand")

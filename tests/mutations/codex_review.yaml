@@ -70,3 +70,8 @@ mutations:
   find: '    caption, comment = (_read(out / name) if name in texts else "" for name in ("facebook.txt", "facebook-comment.txt"))'
   replace: '    caption, comment = (_read(out / name) for name in ("facebook.txt", "facebook-comment.txt"))'
   test: tests.test_codex_review.UnlistedExportFileTests.test_a_comment_file_added_after_rendering_is_not_posted
+- label: a first comment that may be live is sent to be added by hand
+  file: mkt/publish.py
+  find: '            except UnknownOutcome as exc:   # it may be there already: adding it by hand could post it twice'
+  replace: '            except ZeroDivisionError as exc:   # mutated: UnknownOutcome falls through to PublishError'
+  test: tests.test_codex_review.FirstCommentOutcomeTests.test_a_comment_that_may_have_gone_through_is_not_sent_to_be_added_by_hand

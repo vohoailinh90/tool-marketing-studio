@@ -137,5 +137,40 @@ class UnlistedExportFileTests(unittest.TestCase):
         self.assertFalse(any("/comments" in step for step in plan["steps"]))
 
 
+class FirstCommentOutcomeTests(unittest.TestCase):
+    def setUp(self):
+        self.root = make_root()
+        self.env = mock.patch.dict(os.environ, ENV)
+        self.env.start()
+        self.campaign = load_campaign(self.root, "demo")
+        self.post = self.campaign.post("01-pain", "vi")
+        fake_render(self.campaign, self.post)
+        approve(self.campaign, self.post, {})
+        smoke_facebook(self.root, session=FakeSession([(200, {"id": "555", "name": "Demo Page"})]))
+
+    def tearDown(self):
+        self.env.stop()
+        cleanup(self.root)
+
+    def publish(self, comment_answer):
+        session = FakeSession([(200, {"id": "p1"}), (200, {"id": "p2"}), (200, {"id": "555_9"}), comment_answer])
+        lines = []
+        row = publish_facebook(self.campaign, self.post, {}, confirm_page_name="Demo Page", dry_run=False,
+                               session=session, log=lines.append)
+        return row, " ".join(lines)
+
+    def test_a_comment_that_may_have_gone_through_is_not_sent_to_be_added_by_hand(self):
+        row, said = self.publish((502, {}))
+        self.assertEqual(row["state"], "done")
+        self.assertIn("comment_unknown", row["steps"])
+        self.assertNotIn("comment_error", row["steps"])
+        self.assertIn("look at the post before adding it", said)
+
+    def test_a_refused_comment_is_still_added_by_hand(self):
+        row, said = self.publish((400, {"error": {"code": 100, "message": "bad"}}))
+        self.assertIn("comment_error", row["steps"])
+        self.assertIn("add it by hand", said)
+
+
 if __name__ == "__main__":
     unittest.main()

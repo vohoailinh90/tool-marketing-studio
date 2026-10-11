@@ -25,26 +25,31 @@ học sẽ có PR riêng sau khi kế hoạch được chốt.
 
 | # | Phần bài học | Layout | Ghi chú |
 |---|---|---|---|
-| 1 | `social.hook` + tiêu đề | `cover` | eyebrow: "Bài 1.1.2 · 8 phút"; badge: loại bài (Khái niệm / Thực hành / Dự án) |
+| 1 | `social.hook` + tiêu đề + **mục tiêu** | `cover` | eyebrow: "Bài 1.1.2 · 8 phút"; subtitle: mục tiêu chính của bài ("Sau bài này bạn…"); badge: loại bài (Khái niệm / Thực hành / Dự án) |
 | 2 | Mở đầu (vì sao cần biết) | `chat` hoặc `pains` | câu hỏi người mới hay hỏi, đúng như phần "Mở đầu" |
 | 3–5 | Nội dung chính | `image` (sơ đồ của bài) + `features` / `flow` / `checklist` | mỗi khái niệm con một ảnh; sơ đồ có sẵn thì dùng sơ đồ |
 | 6 | Ví dụ đời thường | `features` hoặc `compare` | ánh xạ từng phần; "chỗ chưa khớp" vào `note` |
 | 7 | Ví dụ thực tế | `flow` / `chat` / `table` | giữ nguyên các bước của bài |
 | 8 | Hiểu lầm thường gặp | `compare` | trái "Hiểu lầm", phải "Thực tế" |
 | 9 | Tóm tắt bằng hình | `image` (sơ đồ recap của bài) | ảnh "nhớ cả bài trong 1 hình" — dễ được lưu nhất |
-| 10 | Đố vui | `poll` | 1 câu trong 3 câu đố của bài, "Comment A, B hay C" |
+| 10 | Đố vui | `poll` | 1 câu trong 3 câu đố của bài, "Comment A, B hay C"; 2 câu còn lại nằm trong caption |
 
-Caption (Facebook): hook → 2–3 câu tóm nội dung → 3 ý "Ghi nhớ" → `social.question` → nhắc lưu bài
-→ tên nguồn tham khảo (không URL). Bình luận đầu: đáp án đố vui + giải thích của bài + `{link}`.
+Caption (Facebook): hook → **mọi mục tiêu của bài** ("Sau bài này bạn sẽ…") → 2–3 câu tóm nội dung →
+các ý "Ghi nhớ" → **2 câu đố còn lại** (đủ phương án A/B/C) → `social.question` → nhắc lưu bài → tên
+nguồn tham khảo (không URL). Bình luận đầu: **đáp án cả 3 câu đố** kèm lời giải thích của bài + `{link}`.
+Đường link chỉ là để đọc thêm, không phải nơi chứa kiến thức: bỏ link đi thì ảnh + caption vẫn đủ bài.
 
-Bài loại **Dự án** (60–120 phút) không nhồi vào 10 ảnh: đề xuất một bộ ảnh "lộ trình dự án" (các
-bước + sản phẩm cuối + tiêu chí hoàn thành) và để chi tiết trong bài học.
+Các phần của bài thay đổi theo loại bài: bài **Dự án** và một số bài Thực hành có phần `try-it` (các
+bước làm) thay cho "Ví dụ đời thường"/"Ví dụ thực tế", và có thể không có đố vui. Khung trên áp dụng
+cho **đúng các phần mà bài đó có**: mỗi phần vẫn phải nằm trên ảnh hoặc trong caption. Với bài Dự án,
+ảnh 6–8 là các bước `try-it` (`flow`, mỗi ảnh ≤ 7 bước, chia nhiều ảnh nếu dài) + sản phẩm cuối +
+tiêu chí hoàn thành; chi tiết từng bước được nén vào caption, không đẩy sang link.
 
 ### Ví dụ: bài 1.1.2 "Bộ não, đôi tay và vòng lặp"
 
 | # | Layout | Nội dung |
 |---|---|---|
-| 1 | `cover` | "AI agent = **bộ não + đôi tay + một vòng lặp**" — "Thiếu một thứ là nó không làm được việc." |
+| 1 | `cover` | "AI agent = **bộ não + đôi tay + một vòng lặp**" — subtitle: "Sau bài này bạn biết agent được ghép từ gì và khi nào nó dừng để hỏi bạn." |
 | 2 | `chat` | "LLM chỉ tạo ra chữ… vậy làm sao agent **mở được file**?" |
 | 3 | `image` | `agent-formula` — công thức 3 phần |
 | 4 | `checklist` | LLM chỉ *yêu cầu* dùng công cụ; phần mềm của agent quyết định cho phép và mới thật sự "bấm nút" |
@@ -53,7 +58,7 @@ bước + sản phẩm cuối + tiêu chí hoàn thành) và để chi tiết tr
 | 7 | `flow` | Đổi tên 50 ảnh: liệt kê → 3 ảnh thiếu ngày chụp → **hỏi bạn** → đổi tên → kiểm lại → dừng |
 | 8 | `compare` | "LLM tự mở file được" / "Agent nào cũng tự sửa lỗi" → thực tế |
 | 9 | `image` | `agent-parts-and-loop-recap` |
-| 10 | `poll` | Câu 2: agent không được chạy thử trang web — điều gì dễ xảy ra nhất? |
+| 10 | `poll` | Câu 2: agent không được chạy thử trang web — điều gì dễ xảy ra nhất? (câu 1 và 3 trong caption; đáp án cả 3 ở bình luận đầu) |
 
 Đã thử render cục bộ (không commit): sơ đồ của khóa học chuyển sang PNG đặt trong layout `image`
 1080×1350 vẫn rõ và đúng nhận diện của khóa học.

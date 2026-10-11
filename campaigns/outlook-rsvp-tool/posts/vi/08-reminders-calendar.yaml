@@ -8,7 +8,7 @@ slides:
     emoji: "🔔"
     eyebrow: "Nhắc & gửi lịch"
     title: "Nhắc **đúng người**, gửi lịch **đúng người**"
-    subtitle: "Sau khi quét hộp thư, tool biết ai chưa trả lời và ai sẽ đến."
+    subtitle: "Sau khi quét hộp thư, tool biết ai chưa trả lời và ai đã trả lời Yes hoặc Maybe."
 
   - layout: chat
     title: "Nhắc cả nhóm thì ai cũng thấy phiền"
@@ -51,7 +51,7 @@ slides:
   - layout: cta
     emoji: "🙋"
     title: "Bạn có cần nhắc **tự động theo lịch** không?"
-    text: "Đây là tính năng mình chưa làm. Nếu bạn cần, hãy cho mình biết — ý kiến của bạn quyết định thứ tự làm."
+    text: "Đây là tính năng mình chưa làm. Nếu bạn cần, hãy cho mình biết — ý kiến của bạn giúp mình cân nhắc nên làm gì trước."
     keyword: "NHẮC"
 
 platforms:
@@ -67,5 +67,5 @@ platforms:
 
       Bạn có cần tính năng nhắc tự động không? Comment “NHẮC” nếu có nhé 👇
     first_comment: |
-      📋 Khảo sát 3 phút — chọn giúp mình tính năng nên làm tiếp: {link}
+      📋 Khảo sát ngắn — cho mình biết tính năng nào quan trọng với bạn: {link}
     hashtags: [Outlook, tudonghoa, vanphong, tochucsukien, nangsuat]

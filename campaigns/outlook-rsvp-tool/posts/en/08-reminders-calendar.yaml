@@ -8,7 +8,7 @@ slides:
     emoji: "🔔"
     eyebrow: "Reminders & calendar"
     title: "Remind **the right people**. Invite **the right people**."
-    subtitle: "After a scan, the tool knows who hasn't replied and who's coming."
+    subtitle: "After a scan, the tool knows who hasn't replied and who answered Yes or Maybe."
 
   - layout: chat
     title: "Nudge everyone and the early repliers get annoyed"
@@ -51,7 +51,7 @@ slides:
   - layout: cta
     emoji: "🙋"
     title: "Would you want **scheduled reminders**?"
-    text: "It's not built yet. If you'd use it, tell me — your votes decide what I build next."
+    text: "It's not built yet. If you'd use it, tell me — your answers help me weigh what to build next."
     keyword: "REMIND"
 
 platforms:
@@ -68,5 +68,5 @@ platforms:
 
       Would you use them? Comment “REMIND” if so 👇
     first_comment: |
-      📋 3-minute survey — help me pick what to build next: {link}
+      📋 Short survey — tell me which features matter most to you: {link}
     hashtags: [Outlook, automation, productivity, teamevents, RSVP]

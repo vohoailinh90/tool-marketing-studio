@@ -121,7 +121,7 @@ story_to_confirm:    # posts 02-story use these; the author must confirm or rewr
   - The deciding idea was to let Outlook — already approved at work — do the repetitive part
 
 survey:               # facts about the owner's validation survey, not about the tool
-  duration_minutes: 3   # research/survey-template.md titles every language version "3 minutes"; confirm after the form is built
+  duration_minutes: 3   # research/survey-template.md titles every language version "3 minutes"; unconfirmed until the form is built, so posts 07-12 say "short survey"
   incentive: none recorded  # a priority-beta promise is the owner's decision; posts 07-12 do not make it
 
 commercial_readiness: # what must exist before charging money (see playbooks/05-thuong-mai-hoa.md)

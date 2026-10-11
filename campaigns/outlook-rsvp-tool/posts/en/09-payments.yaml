@@ -45,7 +45,7 @@ slides:
     from: "The organiser (you)"
     infobar: "Attached: attendance & payment spreadsheet, calendar invite."
     body: "Thanks for joining us!\nThe money for each round is below, and the spreadsheet is attached so you can check it.\n\n**Round 1** · collected 80\n**Round 2** · collected 15\n**Total collected** · 95"
-    note: "The table is sent as HTML so the columns line up in Outlook. The calendar invite is found by its subject — it must match the event name."
+    note: "The table is sent as HTML so the columns line up in Outlook. The calendar invite is found by a best-effort search on its subject, which must match the event name — so it can still be missed."
 
   - layout: cta
     emoji: "💬"
@@ -65,5 +65,5 @@ platforms:
 
       How many rounds does your team dinner usually have? 👇
     first_comment: |
-      📋 3-minute survey — how do you handle event money? {link}
+      📋 Short survey — how do you handle event money? {link}
     hashtags: [Outlook, Excel, automation, teamevents, productivity]

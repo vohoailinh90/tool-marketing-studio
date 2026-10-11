@@ -1,6 +1,6 @@
-“Năm ngoái mình ăn tất niên ở đâu nhỉ?” “Quỹ phòng còn bao nhiêu?” — hỏi nhau mãi mà không ai nhớ 😅
+“Năm ngoái mình ăn tất niên ở đâu nhỉ?” “Quỹ phòng còn bao nhiêu?” — hỏi nhau mãi mới nhớ ra 😅
 
-Điều đáng tiếc nhất khi tổ chức bằng Excel là không có lịch sử: người sau lại làm từ đầu.
+Nếu mỗi lần tổ chức là một file riêng, lịch sử rất dễ thất lạc và người sau dễ phải làm lại từ đầu.
 
 Trong tool, mỗi sự kiện được lưu lại cùng số Yes/No/Maybe và tình trạng gửi email. Các cột tiền do tool tính — thu, chi, dư của mọi vòng và tiền quà — và quỹ phòng còn lại là tổng cộng dồn từ sự kiện đầu tiên. Muốn tổ chức lại một buổi tương tự thì nạp sự kiện cũ, đổi Event ID, danh sách người nhận đi theo mã mới. Phiếu bầu, điểm danh và tiền đã trả vẫn ở lại với sự kiện gốc.
 

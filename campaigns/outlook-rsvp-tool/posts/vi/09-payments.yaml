@@ -45,7 +45,7 @@ slides:
     from: "Ban tổ chức (bạn)"
     infobar: "Đính kèm: bảng điểm danh & thanh toán (Excel), lịch hẹn."
     body: "Cảm ơn mọi người đã đến buổi tất niên!\nBảng tiền từng vòng ở bên dưới, file Excel đính kèm để mọi người đối chiếu.\n\n**Vòng 1** · thu 1.000.000\n**Vòng 2** · thu 200.000\n**Tổng thu** · 1.200.000"
-    note: "Bảng gửi dạng HTML nên các cột thẳng hàng trong Outlook. Lịch hẹn được tìm theo tên sự kiện — tiêu đề lịch phải trùng tên sự kiện."
+    note: "Bảng gửi dạng HTML nên các cột thẳng hàng trong Outlook. Lịch hẹn được tìm theo tên sự kiện (tiêu đề lịch phải trùng tên sự kiện) và việc tìm chỉ ở mức cố gắng nên vẫn có thể không thấy."
 
   - layout: cta
     emoji: "💬"
@@ -57,7 +57,7 @@ platforms:
     caption: |
       Tăng 2 ai đóng, ai được miễn, ai đến muộn… file Excel tô màu của bạn còn chịu nổi không? 😅
 
-      Thu tiền nhiều vòng là phần dễ sai nhất. Lúc nào cũng phải hỏi lại: người này đóng vòng 1 chưa, vòng 2 có đi không, ai được miễn.
+      Thu tiền nhiều vòng là phần rất dễ sai. Lúc nào cũng phải hỏi lại: người này đóng vòng 1 chưa, vòng 2 có đi không, ai được miễn.
 
       Trong tool, mỗi vòng có cột tham gia và số tiền riêng. Sau buổi tiệc, mình tick ai đã đến — tool điền sẵn tiền theo ngân sách dự kiến, chỗ nào khác thì bấm đúp sửa. Người được miễn thì chọn Miễn, áp dụng cho mọi vòng. Mỗi vòng hiện số người, tiền đã thu, tiền đã chi và còn lại; phía trên là tổng của tất cả các vòng.
 
@@ -65,5 +65,5 @@ platforms:
 
       Buổi tiệc của bạn thường có mấy vòng? Comment cho mình biết nhé 👇
     first_comment: |
-      📋 Khảo sát 3 phút — bạn thu tiền sự kiện thế nào? {link}
+      📋 Khảo sát ngắn — bạn thu tiền sự kiện thế nào? {link}
     hashtags: [Outlook, Excel, tudonghoa, tochucsukien, vanphong]

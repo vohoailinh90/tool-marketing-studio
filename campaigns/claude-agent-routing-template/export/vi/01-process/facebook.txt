@@ -1,0 +1,17 @@
+Claude thiết kế, Codex phản biện, rồi chạy tới khi xong — mà không chạy vô hạn 👇
+
+Mình hay tự hỏi: AI viết code xong rồi tự duyệt thì ai bắt lỗi? Nên mình làm theo quy trình trong repo mẫu mình tự dựng (hiện đang private):
+
+1️⃣ Chấm điểm yêu cầu trên 6 tiêu chí, mỗi tiêu chí 0–2. Một script đổi điểm thành mức T0–T3 và quyết định cần mấy người duyệt — không để AI tự quyết.
+2️⃣ Claude thiết kế. Codex phản biện: chỉ nêu lỗi nặng, kèm bằng chứng và kịch bản hỏng.
+3️⃣ Claude viết code, mở PR, nhờ Codex review. Claude tự đọc lại diff và chạy lại test; chỉ lỗi đã xác nhận mới được sửa.
+4️⃣ Có phanh: tối đa 2 vòng sửa, 3 vòng review mỗi PR.
+5️⃣ "Xong" nghĩa là có bằng chứng cho từng tiêu chí, check xanh, không còn lỗi P0/P1. Lúc đó mới merge.
+
+Để chạy liên tục, mình dùng sổ bàn giao: khoảng 70% context thì ghi sổ, 85% thì thu dọn. Phiên mới đọc sổ thay vì làm lại.
+
+Nói thật về giới hạn: cần Codex Cloud nối với GitHub và còn quota; chỉ nên tự merge khi nhánh chính bắt buộc cập nhật trước khi merge.
+
+Còn bạn: ai đang kiểm tra việc AI làm cho bạn?
+
+#Claude #Codex #AI #tudonghoa #laptrinh

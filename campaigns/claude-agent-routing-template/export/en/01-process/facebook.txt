@@ -1,0 +1,17 @@
+Claude designs, Codex pushes back, and the loop runs until it's actually done 👇
+
+If an AI writes the code and then reviews it, who catches what it missed? Here's the process I follow, from a template repo of mine (private for now):
+
+1️⃣ Score the requirement on 6 dimensions, 0–2 each. A script turns the score into a tier, T0–T3, and decides how many reviewers it gets — not the AI's mood.
+2️⃣ Claude designs. Codex critiques: serious findings only, each with evidence and a failure scenario.
+3️⃣ Claude builds it, opens the PR, and asks Codex to review. Claude re-reads the diff and re-runs the tests itself; only confirmed findings get fixed.
+4️⃣ There are brakes: at most 2 fix rounds and 3 review rounds per PR.
+5️⃣ "Done" means evidence for every acceptance criterion, green checks and no P0/P1 left. Only then does it merge.
+
+To keep it running I use a handoff file: around 70% of context I write the notes, around 85% I wrap up, and a new session picks up from the file.
+
+The honest limits: you need Codex Cloud connected to GitHub with quota left, and auto-merge is only safe when the main branch requires up-to-date branches.
+
+Who checks your AI's work today?
+
+#Claude #Codex #AI #automation #softwaredevelopment

@@ -51,7 +51,9 @@ def pack_files(campaign: Campaign, post: Post, platform: str) -> list[Path]:
     limit = PLATFORMS[platform].get("max_images")
     if limit:
         images = images[:limit]
-    texts = sorted(p for p in out.glob(f"{platform}*.txt"))
+    # Only the texts render listed (and export_problems verified), never whatever else is in the folder.
+    texts = sorted(out / name for name in map(str, shown.get("texts", []))
+                   if name == f"{platform}.txt" or name.startswith(f"{platform}-"))
     return images + texts
 
 
@@ -272,9 +274,10 @@ def publish_facebook(campaign: Campaign, post: Post, config: dict, *, confirm_pa
     reasons = preconditions(campaign, post, "facebook", config)
     if reasons:
         raise PublishError("; ".join(reasons))
-    out = campaign.export_dir(post)
-    images = [out / name for name in manifest(campaign, post)["slides"]]
-    caption, comment = _read(out / "facebook.txt"), _read(out / "facebook-comment.txt")
+    out, shown = campaign.export_dir(post), manifest(campaign, post)
+    images = [out / name for name in shown["slides"]]
+    texts = set(map(str, shown.get("texts", [])))   # a file render did not write is never sent
+    caption, comment = (_read(out / name) if name in texts else "" for name in ("facebook.txt", "facebook-comment.txt"))
     page = FacebookPage(secrets.get("FB_PAGE_ID"), secrets.get("FB_PAGE_TOKEN"),
                         secrets.get("FB_GRAPH_VERSION", DEFAULT_GRAPH_VERSION), session)
     if dry_run:

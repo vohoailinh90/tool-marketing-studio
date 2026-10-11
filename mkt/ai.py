@@ -389,6 +389,8 @@ def insights_prompt(campaign: Campaign, lang: str, **data) -> tuple[str, str]:
 LEVELS = ("strong", "moderate", "weak", "unclear")
 EFFORTS = ("S", "M", "L")
 MIN_QUOTE = 10   # characters: a quote shorter than this proves nothing about the comments
+MAPPING_LISTS = ("by_language", "requests", "objections", "next_steps")
+TEXT_LISTS = ("next_posts", "questions")
 
 
 def _norm(text) -> str:
@@ -407,7 +409,21 @@ def check_insights(report: dict, feedback: list[dict]) -> list[Issue]:
     Fixes what it can in place (drops quotes, caps counts) and reports the rest."""
     issues = []
     corpus = [_norm(c.get("text", "")) for f in feedback for c in f.get("comments") or []]
-    if ((report.get("demand") or {}).get("level")) not in LEVELS:
+    # The insights page maps over every list, so a scalar where a list belongs would break it.
+    for section in MAPPING_LISTS + TEXT_LISTS:
+        value = report.get(section)
+        if value is None:
+            continue
+        if not isinstance(value, list):
+            issues.append(Issue("error", "insights", f"{section} must be a list"))
+            report[section] = []
+        elif section in MAPPING_LISTS:
+            report[section] = [row for row in value if isinstance(row, dict)]
+        else:
+            report[section] = [str(item) for item in value if isinstance(item, (str, int, float))]
+    if not isinstance(report.get("demand"), dict):
+        issues.append(Issue("error", "insights", "demand must be a mapping with a level"))
+    elif report["demand"].get("level") not in LEVELS:
         issues.append(Issue("error", "insights", f"demand.level must be one of {', '.join(LEVELS)}"))
     for row in report.get("by_language") or []:
         if isinstance(row, dict) and row.get("signal") not in LEVELS:

@@ -6,6 +6,7 @@ from __future__ import annotations
 import re
 import unicodedata
 from dataclasses import dataclass
+from pathlib import Path
 
 from .i18n import LANGS
 from .layouts import ENUMS, FIELDS, LAYOUTS, AssetError, resolve_asset
@@ -17,14 +18,15 @@ from .text import plain
 
 HEX = re.compile(r"^#[0-9a-fA-F]{6}$")
 TODO = re.compile(r"\bTODO\b")
+# Every top-level domain in the root zone, so a bare domain is caught whatever its ending.
+TLDS = sorted({word for line in (Path(__file__).with_name("tlds.txt")).read_text(encoding="utf-8").splitlines()
+               if not line.startswith("#") for word in line.split()}, key=len, reverse=True)
 # A link in any spelling a platform would still turn into a link: scheme (also hxxp and
 # with spaces), www., or a bare domain. Text is NFKC-normalised first, so full-width
-# letters and dots are caught too.
+# letters and dots are caught too. A domain must not run on into a letter (`TP.Huế` is not `.hu`).
 URL = re.compile(
     r"(?i)(?:\bh[tx]{2}ps?\s*:\s*//|\bwww\.|"
-    r"\b[a-z0-9][a-z0-9-]*(?:\.[a-z0-9-]+)*\.(?:com|net|org|info|biz|io|ai|app|dev|co|me|ly|gl|gg|to|tv|cc|"
-    r"xyz|link|site|online|page|shop|store|club|top|so|sh|im|fm|us|uk|de|fr|ru|cn|kr|tw|hk|sg|in|jp|vn|asia)"
-    r"(?![a-z0-9-])(?:[/?#:]|\b)|"
+    r"\b[a-z0-9][a-z0-9-]*(?:\.[a-z0-9-]+)*\.(?:" + "|".join(TLDS) + r")(?![\w-])|"
     r"\b[a-z0-9-]+(?:\.[a-z0-9-]+)*\.[a-z]{2,}/[\w/%-])")   # any domain followed by a path
 
 
@@ -148,7 +150,7 @@ def check_post(campaign: Campaign, post: Post) -> list[Issue]:
             add("warn", f"unknown key '{key}' is ignored")
     if post.status not in POST_STATUSES:
         add("error", f"status must be one of {', '.join(POST_STATUSES)}")
-    if post.format not in FORMATS:
+    if not isinstance(post.format, str) or post.format not in FORMATS:
         add("error", f"format must be one of {', '.join(FORMATS)}")
     if not post.slides:
         add("error", "no slides")
@@ -175,7 +177,7 @@ def check_post(campaign: Campaign, post: Post) -> list[Issue]:
             add("error", "a slide needs a 'layout'", spot)
             continue
         name = slide["layout"]
-        if name not in LAYOUTS:
+        if not isinstance(name, str) or name not in LAYOUTS:
             add("error", f"unknown layout '{name}' (known: {', '.join(sorted(LAYOUTS))})", spot)
             continue
         for key in LAYOUTS[name][1]:
@@ -232,7 +234,9 @@ def check_post(campaign: Campaign, post: Post) -> list[Issue]:
             add("error" if final else "warn", f"no text for campaign platform '{platform}'")
 
     target = data.get("link", "survey")
-    if target:
+    if target and not isinstance(target, str):
+        add("error", "link must name one of the campaign links")
+    elif target:
         url = (campaign.data.get("links") or {}).get(target)
         if url is None:
             add("error", f"link '{target}' is not defined in campaign links")

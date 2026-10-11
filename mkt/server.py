@@ -30,7 +30,7 @@ from .feedback import add_manual, all_feedback, scan_facebook
 from .history import is_published, manual_rows, mark_posted, rows as history_rows, today
 from .insights import gather
 from .metrics import MetricsError, RATES, append_row, read_rows, totals, verdict
-from .model import ROOT, SLUG, SpecError, campaign_slugs, load_campaign, load_config, load_yaml
+from .model import ROOT, SLUG, Post, SpecError, campaign_slugs, load_campaign, load_config, load_yaml
 from .platforms import PLATFORMS
 from .publish import (PublishError, build_pack, load_ledger, load_state, publish_facebook, resolve,
                       smoke_facebook)
@@ -177,9 +177,14 @@ def create_app(root: Path = ROOT, *, port: int = 8765, dist: Path | None = None,
             fail("slides must be a list and platforms a mapping")
         if data.get("id") not in (None, post_id):
             fail(f"id must stay '{post_id}'")
+        # Check the new version before it replaces the file: a shape the checker cannot read
+        # must not overwrite a post that worked.
+        try:
+            issues = check_post(c, Post(post_id, lang, p.path, data))
+        except (TypeError, AttributeError, ValueError, KeyError) as exc:
+            fail(f"the post's structure is invalid: {exc}")
         p.path.write_text(text, encoding="utf-8")
-        c = campaign(slug)
-        return {"issues": issue_dicts(check_post(c, c.post(post_id, lang)))}
+        return {"issues": issue_dicts(issues)}
 
     @app.post("/api/campaigns/{slug}/posts/{lang}/{post_id}/status")
     def post_status(slug: str, lang: str, post_id: str, body: dict = Body(...)):

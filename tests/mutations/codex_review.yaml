@@ -1,0 +1,64 @@
+# Mutation manifest — see scripts/mutation_check.py
+target: mkt/check.py
+note: Codex review of PR 1 — forks stay off the VPS, bare domains, insight shapes, safe saves, exact exports.
+mutations:
+- label: a fork's pull request runs the engine job on the VPS
+  file: .github/workflows/ci.yml
+  find: |2-
+        # from a fork never runs on it (the same commits still run once someone with access pushes them).
+        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+  replace: |2-
+        # from a fork never runs on it (the same commits still run once someone with access pushes them).
+  test: tests.test_codex_review.CiRunnerTests.test_pull_requests_from_forks_never_reach_the_self_hosted_runner
+- label: a fork's pull request runs the web job on the VPS
+  file: .github/workflows/ci.yml
+  find: |2-
+      web:
+        runs-on: ${{ vars.CI_RUNNER || 'self-hosted' }}
+        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+  replace: |2-
+      web:
+        runs-on: ${{ vars.CI_RUNNER || 'self-hosted' }}
+  test: tests.test_codex_review.CiRunnerTests.test_pull_requests_from_forks_never_reach_the_self_hosted_runner
+- label: only a short list of domain endings counts as a link
+  find: '               if not line.startswith("#") for word in line.split()}, key=len, reverse=True)'
+  replace: '               if not line.startswith("#") for word in line.split() if word in ("com", "vn", "jp")}, key=len, reverse=True)'
+  test: tests.test_codex_review.BareDomainTests.test_a_bare_domain_with_any_real_ending_is_a_link
+- label: a domain ending may run on into a letter
+  find: '    r"\b[a-z0-9][a-z0-9-]*(?:\.[a-z0-9-]+)*\.(?:" + "|".join(TLDS) + r")(?![\w-])|"'
+  replace: '    r"\b[a-z0-9][a-z0-9-]*(?:\.[a-z0-9-]+)*\.(?:" + "|".join(TLDS) + r")(?![a-z0-9-])|"'
+  test: tests.test_codex_review.BareDomainTests.test_abbreviations_and_file_names_that_are_not_domains_pass
+- label: an unhashable layout crashes the checker
+  find: '        if not isinstance(name, str) or name not in LAYOUTS:'
+  replace: '        if name not in LAYOUTS:'
+  test: tests.test_codex_review.NestedPostShapeTests.test_a_shape_the_checker_cannot_read_is_reported_and_not_saved
+- label: a scalar where the insights page expects a list is saved
+  file: mkt/ai.py
+  find: '        if not isinstance(value, list):'
+  replace: '        if False:'
+  test: tests.test_codex_review.InsightShapeTests.test_a_scalar_where_a_list_belongs_is_refused
+- label: a demand that is not a mapping crashes the insight check
+  file: mkt/ai.py
+  find: '    if not isinstance(report.get("demand"), dict):'
+  replace: '    if False:'
+  test: tests.test_codex_review.InsightShapeTests.test_a_demand_that_is_not_a_mapping_is_an_error_not_a_crash
+- label: the editor writes the file before checking it
+  file: mkt/server.py
+  find: '        # Check the new version before it replaces the file: a shape the checker cannot read'
+  replace: |2-
+            p.path.write_text(text, encoding="utf-8")
+            # Check the new version before it replaces the file: a shape the checker cannot read
+  test: tests.test_codex_review.NestedPostShapeTests.test_a_crashing_check_leaves_the_file_as_it_was
+- label: a pack takes every matching text file in the folder
+  file: mkt/publish.py
+  find: |2-
+        texts = sorted(out / name for name in map(str, shown.get("texts", []))
+                       if name == f"{platform}.txt" or name.startswith(f"{platform}-"))
+  replace: |2-
+        texts = sorted(out.glob(f"{platform}*.txt"))
+  test: tests.test_codex_review.UnlistedExportFileTests.test_a_text_file_added_after_rendering_stays_out_of_the_pack
+- label: Facebook posts a comment file render never wrote
+  file: mkt/publish.py
+  find: '    caption, comment = (_read(out / name) if name in texts else "" for name in ("facebook.txt", "facebook-comment.txt"))'
+  replace: '    caption, comment = (_read(out / name) for name in ("facebook.txt", "facebook-comment.txt"))'
+  test: tests.test_codex_review.UnlistedExportFileTests.test_a_comment_file_added_after_rendering_is_not_posted

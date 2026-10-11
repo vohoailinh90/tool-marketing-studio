@@ -41,7 +41,7 @@ slides:
       - {emoji: "🧠", title: "Phiên chính", text: "Phân tích, thiết kế, viết code, sửa lỗi ở mọi mức. Không tính vào trần agent"}
       - {emoji: "📋", title: "Làm rõ và thiết kế", text: "requirement-analyst (T3, yêu cầu mơ hồ) · architect (T2, đổi kiến trúc hoặc hợp đồng ngoài)"}
       - {emoji: "🔍", title: "Phản biện và duyệt", text: "architecture-critic (T3) · code-reviewer (T1, T2) · code-reviewer-t3 (T3)"}
-      - {emoji: "🧪", title: "Khi cần thêm", text: "code-reviewer-verify (thay reviewer) · test-engineer (reviewer đề nghị) · implementer"}
+      - {emoji: "🧪", title: "Khi cần thêm", text: "code-reviewer-verify (thay reviewer) · test-engineer (reviewer báo cần kiểm chứng riêng) · implementer"}
     note: "Mọi vai phụ trừ implementer chỉ đọc, không sửa file."
 
   - layout: checklist
@@ -49,8 +49,8 @@ slides:
     items:
       - "Không có agent thường trực: mỗi lần gọi là một task mới, ngữ cảnh riêng"
       - "Ba loại lượt: phản biện thiết kế, review PR, security review khi việc nhạy cảm"
-      - "Chỉ nêu lỗi critical/high, kèm bằng chứng và kịch bản hỏng"
-      - "Kết luận: chấp nhận · chấp nhận có sửa · bác"
+      - "Phản biện thiết kế: chỉ nêu lỗi critical/high, kèm bằng chứng và kịch bản hỏng"
+      - "Kết luận của phản biện thiết kế: chấp nhận · chấp nhận có sửa · bác"
     note: "Sửa lỗi là việc của Claude, sau khi đã tự kiểm lại lỗi đó trên code."
 
   - layout: table
@@ -61,22 +61,24 @@ slides:
       - ["T1", "3–5", "1", "0"]
       - ["T2", "6–8", "2", "0"]
       - ["T3", "9–12", "3", "1"]
-    note: "Chấm 6 tiêu chí, mỗi tiêu chí 0–2. Việc chạm tiền, quyền truy cập, chuyển dữ liệu bị đẩy lên mức cao dù điểm thấp. Thêm khi cần: +1 phân tích viên ở T3 nếu yêu cầu mơ hồ, +1 test-engineer ở T2/T3 nếu reviewer đề nghị. Ở T3 vẫn giữ 1 reviewer chạy kiểm chứng, vì Codex chỉ đọc diff."
+    note: "Chấm 6 tiêu chí, mỗi tiêu chí 0–2. Việc chạm tiền, quyền truy cập, chuyển dữ liệu bị đẩy lên mức cao dù điểm thấp. Thêm khi cần: +1 phân tích viên ở T3 nếu yêu cầu mơ hồ, +1 test-engineer ở T2/T3 khi reviewer báo việc kiểm chứng cần được thiết kế riêng. Ở T3 vẫn giữ 1 reviewer chạy kiểm chứng, vì Codex chỉ đọc diff."
 
   - layout: stat
     eyebrow: "Phanh"
     value: "3"
     label: "vòng review tối đa cho mỗi PR"
-    caption: "Sửa lỗi tối đa 2 vòng, phản biện thiết kế tối đa 2 vòng. Mỗi lúc chỉ một yêu cầu gửi Codex, và số vòng do script đếm từ GitHub."
+    caption: "Sửa lỗi tối đa 2 vòng, phản biện thiết kế tối đa 2 vòng. Mỗi luồng (Issue hoặc PR) chỉ có một yêu cầu gửi Codex tại một thời điểm, và số vòng do script đếm từ GitHub."
 
   - layout: checklist
     title: "Khi nào mới gọi là xong"
     tone: ok
     items:
-      - "Codex chạy đúng loại việc, đúng commit"
+      - "Codex có dấu vết đã chạy, đúng loại việc, đúng commit"
+      - "Claude tự đọc toàn bộ diff, không chỉ tin bản tóm tắt"
       - "Mỗi tiêu chí nghiệm thu đều có bằng chứng"
-      - "Test và check bắt buộc của repo đều xanh"
-      - "Không còn lỗi P0/P1, không làm lố phạm vi"
+      - "Test, check và review bắt buộc của repo đều xanh"
+      - "Không còn lỗi P0/P1"
+      - "Phạm vi không bị làm lố"
     note: "Mình để nó tự merge, nhưng chỉ khi nhánh chính bắt buộc cập nhật (hoặc có merge queue), danh tính merge không bypass được, và lệnh merge gắn đúng commit đã kiểm. Người chỉ vào cuộc khi có quyết định máy không tự quyết được, hoặc yêu cầu gốc đổi."
 
   - layout: features
@@ -109,7 +111,7 @@ platforms:
 
       Đội hình thì mình nói cho đủ. Phía Claude có 1 phiên chính và 8 vai phụ: làm rõ yêu cầu, thiết kế, phản biện thiết kế, 3 loại reviewer, kiểm chứng, viết code. Trần agent là 0, 1, 2, 3 cho T0 đến T3, và còn 0, 0, 0, 1 khi Codex làm phản biện. Phía Codex không có agent thường trực: mỗi lần gọi là một task mới.
 
-      Phanh: tối đa 2 vòng sửa, 3 vòng review mỗi PR. "Xong" nghĩa là mỗi tiêu chí có bằng chứng, check xanh, không còn lỗi P0/P1. Mình để nó tự merge, nhưng chỉ khi nhánh chính bắt buộc cập nhật (hoặc có merge queue), danh tính merge không bypass được, và lệnh merge gắn đúng commit đã kiểm.
+      Phanh: tối đa 2 vòng sửa, 3 vòng review mỗi PR. "Xong" nghĩa là Codex đã chạy đúng commit, Claude tự đọc cả diff, mỗi tiêu chí có bằng chứng, test, check và review bắt buộc đều xanh, không còn lỗi P0/P1 và phạm vi không bị làm lố. Mình để nó tự merge, nhưng chỉ khi nhánh chính bắt buộc cập nhật (hoặc có merge queue), danh tính merge không bypass được, và lệnh merge gắn đúng commit đã kiểm.
 
       Để chạy một mạch, mình dùng sổ bàn giao: khoảng 70% context thì ghi sổ, khoảng 85% thì thu dọn. Phiên mới đọc sổ thay vì làm lại.
 

@@ -5,8 +5,8 @@ Here is the working agreement I use, taken from a template repo of mine (private
 → Claude designs, builds and fixes. Codex only critiques: the design, then the PR. It writes no code.
 → Score first: 6 dimensions, 0–2 each, which gives a tier from T0 to T3. A script decides, not the AI. A typo fix stays with Claude alone; payments or auth get pushed up a tier.
 → The cast: Claude has 1 main session plus 8 roles (requirements, design, design critic, 3 kinds of reviewer, verification, implementation). The agent cap is 0, 1, 2, 3 for T0–T3, and 0, 0, 0, 1 when Codex takes the critic's seat. Codex has no standing agents; every call is a fresh task.
-→ Brakes: 2 fix rounds, 3 review rounds per PR, one request in flight.
-→ Done = evidence for every acceptance criterion, green checks, no P0/P1 left. Then it merges on its own, but only if the base branch requires up-to-date branches (or there's a merge queue), the merging identity can't bypass that, and the merge is pinned to the validated commit.
+→ Brakes: 2 fix rounds, 3 review rounds per PR, one request in flight per thread.
+→ Done = Codex ran on the intended commit, Claude inspected the full diff, every acceptance criterion has evidence, required tests, checks and reviews are green, no P0/P1 is left, and the scope did not grow. Then it merges on its own, but only if the base branch requires up-to-date branches (or there's a merge queue), the merging identity can't bypass that, and the merge is pinned to the validated commit.
 → To keep it running: a handoff file, notes at about 70% of context, wrap-up at about 85%.
 
 Honest limit: you need Codex Cloud connected to GitHub, with quota left.

@@ -8,6 +8,8 @@ If an AI writes the code and then reviews it, who catches what it missed? Here's
 4️⃣ There are brakes: at most 2 fix rounds and 3 review rounds per PR.
 5️⃣ "Done" means evidence for every acceptance criterion, green checks and no P0/P1 left. Only then does it merge.
 
+The full cast, since people ask: Claude's side is 1 main session plus 8 roles (requirement analyst, architect, design critic, 3 kinds of reviewer, implementer, test engineer). The agent cap is 0, 1, 2, 3 for T0–T3, and only 0, 0, 0, 1 when Codex takes the critic's seat. Codex has no standing agents: every call is a fresh task, and it only critiques — it writes no code and fixes nothing.
+
 To keep it running I use a handoff file: around 70% of context I write the notes, around 85% I wrap up, and a new session picks up from the file.
 
 The honest limits: you need Codex Cloud connected to GitHub with quota left, and auto-merge is only safe when the main branch requires up-to-date branches.

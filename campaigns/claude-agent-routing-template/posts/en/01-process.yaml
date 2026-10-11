@@ -20,14 +20,39 @@ slides:
       - {emoji: "♾️", text: "Unattended runs can loop, burn quota and drift out of scope"}
 
   - layout: table
-    title: "Small jobs don't need a crowd"
-    columns: ["Tier", "Score", "Who joins"]
+    title: "How many agents per tier"
+    columns: ["Tier", "Score", "Claude only", "With Codex critiquing"]
     rows:
-      - ["T0", "0–2", "Main Claude session only"]
-      - ["T1", "3–5", "Main session + 1 reviewer"]
-      - ["T2", "6–8", "Reviewer; an architect only if the architecture changes"]
-      - ["T3", "9–12", "Design critic + reviewer"]
-    note: "Six dimensions, each scored 0–2. A script turns the score into a tier, not vibes."
+      - ["T0", "0–2", "0", "0 (Codex not used)"]
+      - ["T1", "3–5", "1", "0"]
+      - ["T2", "6–8", "2", "0"]
+      - ["T3", "9–12", "3", "1"]
+    note: "Six dimensions scored 0–2; a script sets the tier and the cap. Extra slots when needed: +1 requirement analyst at T3 if the requirement is ambiguous, +1 test engineer at T2/T3 if the reviewer asks for one."
+
+  - layout: table
+    title: "Claude: 1 main + 8 roles"
+    columns: ["Role", "Job", "When"]
+    rows:
+      - ["requirement-analyst", "Clarifies the ask", "T3, ambiguity 2"]
+      - ["architect", "Drafts a design", "T2, new design"]
+      - ["architecture-critic", "Critiques design", "T3"]
+      - ["code-reviewer", "Reviews, verifies", "T1, T2"]
+      - ["code-reviewer-t3", "Same, more turns", "T3"]
+      - ["code-reviewer-verify", "Same, probe-heavy", "If chosen"]
+      - ["test-engineer", "Plans verification", "If reviewer asks"]
+      - ["implementer", "Builds the plan", "Escalation only"]
+    note: "The main session analyses, designs and builds at every tier and isn't counted in the cap. Every role except the implementer is read-only; code-reviewer-verify only takes the reviewer's slot."
+
+  - layout: checklist
+    title: "Codex's side: critique only"
+    items:
+      - "No standing agent: every call is a fresh Codex Cloud task with its own context"
+      - "Three kinds of run: design critique, PR review, and a security review for sensitive changes"
+      - "Design critique: critical and high findings only, each with evidence and a failure scenario"
+      - "One of three verdicts: accept, accept with changes, reject"
+      - "It writes no code and fixes nothing — that stays with Claude"
+      - "At T3 Claude keeps 1 reviewer that runs checks; Codex only reads the diff"
+    note: "Design critique: 2 rounds at most. PR review: 3 rounds at most per PR. One request in flight per thread."
 
   - layout: flow
     variant: after
@@ -42,15 +67,6 @@ slides:
       - {emoji: "🚀", text: "Meets the definition of done? Merge."}
     note: "The lower the tier, the fewer the steps."
 
-  - layout: checklist
-    title: "What a critique must contain"
-    items:
-      - "Critical and high findings only — no nitpicks for show"
-      - "Every finding comes with evidence and a concrete failure scenario"
-      - "One of three verdicts: accept, accept with changes, reject"
-      - "One round; a second only if serious findings are still open"
-    note: "Stop when serious findings are fixed or rejected with evidence. No arguing until everyone agrees."
-
   - layout: table
     title: "A loop with brakes"
     columns: ["What", "Max"]
@@ -60,7 +76,7 @@ slides:
       - ["Review rounds per PR", "3"]
       - ["Codex requests in flight", "1"]
       - ["Same request type on the same commit", "never repeated"]
-    note: "A script counts review rounds from GitHub — not the AI's memory."
+    note: "A script counts review rounds from GitHub — not the AI's memory. Stop when serious findings are fixed or rejected with evidence; no arguing until everyone agrees."
 
   - layout: checklist
     title: "When it counts as done"
@@ -103,6 +119,8 @@ platforms:
       3️⃣ Claude builds it, opens the PR, and asks Codex to review. Claude re-reads the diff and re-runs the tests itself; only confirmed findings get fixed.
       4️⃣ There are brakes: at most 2 fix rounds and 3 review rounds per PR.
       5️⃣ "Done" means evidence for every acceptance criterion, green checks and no P0/P1 left. Only then does it merge.
+
+      The full cast, since people ask: Claude's side is 1 main session plus 8 roles (requirement analyst, architect, design critic, 3 kinds of reviewer, implementer, test engineer). The agent cap is 0, 1, 2, 3 for T0–T3, and only 0, 0, 0, 1 when Codex takes the critic's seat. Codex has no standing agents: every call is a fresh task, and it only critiques — it writes no code and fixes nothing.
 
       To keep it running I use a handoff file: around 70% of context I write the notes, around 85% I wrap up, and a new session picks up from the file.
 

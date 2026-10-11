@@ -31,6 +31,18 @@ features:            # each is in the template's docs
     fact: Six dimensions (ambiguity, scope, architecture, dependencies, risk, verification) are each scored 0, 1 or 2; the raw score 0–12 maps to T0 (0–2), T1 (3–5), T2 (6–8), T3 (9–12), and a risk override can raise the tier but never lower it
   - id: route-by-script
     fact: scripts/route.py applies agent-routing/policy.yaml to the scores and signals and returns the tier, the required agents and the agent budget; the model does not apply those rules by hand
+  - id: claude-roster
+    fact: The Claude side is the main session plus 8 subagent roles, each a file in .claude/agents/ — requirement-analyst, architect, architecture-critic, code-reviewer, code-reviewer-t3, code-reviewer-verify, test-engineer, implementer; every role except the implementer is read-only (no Write or Edit)
+  - id: roster-by-tier
+    fact: By default T0 spawns none, T1 spawns code-reviewer, T2 spawns code-reviewer plus architect only when architecture scores 2 or an outside contract changes, T3 spawns architecture-critic and code-reviewer-t3 plus requirement-analyst only when ambiguity scores 2; implementer, test-engineer and code-reviewer-verify are escalation-only (code-reviewer-verify substitutes for the tier's reviewer)
+  - id: reserves
+    fact: Beyond the ceiling there are two reserves of one invocation each — requirement-analyst at T3 when ambiguity is 2, and test-engineer at T2 and T3 once the reviewer reports that verification needs its own design; at most 2 subagents run at once and a subagent does not spawn further subagents
+  - id: codex-has-no-standing-agents
+    fact: Codex has no standing agents; each GitHub comment that mentions Codex starts a new Codex Cloud task with its own context, and only one Codex request is active per thread
+  - id: codex-run-kinds
+    fact: Codex is used for three kinds of run — a design critique (a read-only BRAINSTORM task on an Issue), a pull-request review, and a security review when the requirement is flagged security-sensitive; the template also defines IMPLEMENT and FIX tasks for Codex, which the author does not use
+  - id: ceilings-with-codex
+    fact: When Codex takes the critic and reviewer seats the Claude subagent ceiling is T1 0, T2 0, T3 1 (code-reviewer-t3 stays, because a Codex review reads a diff while T3 verification must be designed and run), with the same reserves; T0 is main-session only in every lane
   - id: agent-budget
     fact: The agent budget is 0 at T0, 1 at T1, 2 at T2 and 3 at T3 (4 when a requirement-analyst is needed); a PreToolUse hook refuses a spawn past the ceiling
   - id: main-session-owns
@@ -93,8 +105,8 @@ claims:              # anything a post states as a benefit must be one of these
     verified: true
   - id: claude-designs-codex-critiques
     text: The author runs Claude as the designer and Codex as the critic of the design and of the pull request, and lets the loop run to the definition of done
-    evidence: the author's own way of combining the documented parts — the template's two documented lanes are Claude subagents as critics, or Codex as designer, implementer and reviewer
-    verified: false
+    evidence: the author's own way of combining the documented parts, confirmed by the author on 2026-10-11 (Codex only critiques; Claude designs, builds and fixes) — the template's two documented lanes are Claude subagents as critics, or Codex as designer, implementer and reviewer
+    verified: true
 
 limitations:         # say these openly: they decide who should NOT try it
   - The repository is private; this campaign shares the process, not the code
@@ -105,7 +117,7 @@ limitations:         # say these openly: they decide who should NOT try it
   - Built for software requirements; writing marketing content is not routed through it
 
 story_to_confirm:    # the author's own story: the author must confirm before posting
-  - The author designs with Claude and uses Codex only as the critic (design critique and pull-request review); if Codex also writes the code in the author's real runs, the post must say so
+  - Which of the 8 Claude roles the author keeps running when Codex is the critic: the post uses the template's own codex-lane ceilings (T1 0, T2 0, T3 1)
   - Why the author added Codex as the critic (for example, a second model family catching what the first one missed)
   - Whether the author runs the loop unattended end to end, including the autonomous merge, or approves the merge by hand
   - Whether the author is willing to name the private repository and its script names (route.py, codex_round_count.py, codex_task.py) in public

@@ -8,6 +8,8 @@ Mình hay tự hỏi: AI viết code xong rồi tự duyệt thì ai bắt lỗi
 4️⃣ Có phanh: tối đa 2 vòng sửa, 3 vòng review mỗi PR.
 5️⃣ "Xong" nghĩa là có bằng chứng cho từng tiêu chí, check xanh, không còn lỗi P0/P1. Lúc đó mới merge.
 
+Đội hình, nói cho đủ: phía Claude là 1 phiên chính cộng 8 vai (làm rõ yêu cầu, thiết kế, phản biện thiết kế, 3 loại reviewer, viết code, thiết kế kiểm chứng). Trần agent là 0, 1, 2, 3 cho T0–T3, và chỉ còn 0, 0, 0, 1 khi Codex ngồi ghế phản biện. Phía Codex không có agent thường trực: mỗi lần gọi là một task mới, và nó chỉ phản biện — không viết code, không sửa lỗi.
+
 Để chạy liên tục, mình dùng sổ bàn giao: khoảng 70% context thì ghi sổ, 85% thì thu dọn. Phiên mới đọc sổ thay vì làm lại.
 
 Nói thật về giới hạn: cần Codex Cloud nối với GitHub và còn quota; chỉ nên tự merge khi nhánh chính bắt buộc cập nhật trước khi merge.

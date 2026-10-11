@@ -20,14 +20,39 @@ slides:
       - {emoji: "♾️", text: "Cho chạy tự động thì lo lặp mãi, lệch phạm vi"}
 
   - layout: table
-    title: "Việc nhỏ khỏi cần cả đội"
-    columns: ["Mức", "Điểm", "Ai tham gia"]
+    title: "Mỗi mức được dùng mấy agent"
+    columns: ["Mức", "Điểm", "Chỉ Claude", "Có Codex phản biện"]
     rows:
-      - ["T0", "0–2", "Chỉ Claude chính"]
-      - ["T1", "3–5", "Claude chính + 1 người duyệt"]
-      - ["T2", "6–8", "Người duyệt; thêm thiết kế khi đổi kiến trúc"]
-      - ["T3", "9–12", "Người phản biện thiết kế + người duyệt"]
-    note: "Chấm 6 tiêu chí, mỗi tiêu chí 0–2. Một script đổi điểm ra mức — không theo cảm tính."
+      - ["T0", "0–2", "0", "0 (không gọi Codex)"]
+      - ["T1", "3–5", "1", "0"]
+      - ["T2", "6–8", "2", "0"]
+      - ["T3", "9–12", "3", "1"]
+    note: "Chấm 6 tiêu chí, mỗi tiêu chí 0–2; script đổi điểm ra mức và trần agent. Thêm khi cần: +1 phân tích viên ở T3 nếu yêu cầu mơ hồ, +1 test-engineer ở T2/T3 nếu reviewer đề nghị."
+
+  - layout: table
+    title: "Claude: 1 phiên chính + 8 vai"
+    columns: ["Vai", "Việc", "Khi nào"]
+    rows:
+      - ["requirement-analyst", "Làm rõ yêu cầu", "T3, mơ hồ = 2"]
+      - ["architect", "Đề xuất thiết kế", "T2, đổi kiến trúc"]
+      - ["architecture-critic", "Phản biện thiết kế", "T3"]
+      - ["code-reviewer", "Đọc diff, kiểm chứng", "T1, T2"]
+      - ["code-reviewer-t3", "Như trên, rộng hơn", "T3"]
+      - ["code-reviewer-verify", "Như trên, nhiều phép thử", "Khi chọn"]
+      - ["test-engineer", "Thiết kế kiểm chứng", "Khi reviewer đề nghị"]
+      - ["implementer", "Viết code theo kế hoạch", "Chỉ khi nâng cấp"]
+    note: "Phiên chính phân tích, thiết kế, viết code ở mọi mức, không tính vào trần. Mọi vai trừ implementer chỉ đọc, không sửa file; code-reviewer-verify chỉ thay chỗ reviewer."
+
+  - layout: checklist
+    title: "Phía Codex: chỉ phản biện"
+    items:
+      - "Không có agent thường trực: mỗi lần gọi là một task Codex Cloud mới, ngữ cảnh riêng"
+      - "Ba loại lượt: phản biện thiết kế, review PR, và security review khi việc nhạy cảm"
+      - "Phản biện thiết kế: chỉ lỗi critical/high, mỗi lỗi có bằng chứng và kịch bản hỏng"
+      - "Kết luận một trong ba: chấp nhận · chấp nhận có sửa · bác"
+      - "Không viết code, không sửa lỗi — việc đó của Claude"
+      - "Ở T3 Claude vẫn giữ 1 reviewer chạy kiểm chứng; Codex chỉ đọc diff"
+    note: "Phản biện thiết kế tối đa 2 vòng, review tối đa 3 vòng mỗi PR; mỗi luồng chỉ một yêu cầu chạy cùng lúc."
 
   - layout: flow
     variant: after
@@ -42,15 +67,6 @@ slides:
       - {emoji: "🚀", text: "Đủ điều kiện \"xong\" thì merge"}
     note: "Mức càng thấp, càng ít bước."
 
-  - layout: checklist
-    title: "Một lời phản biện phải có gì"
-    items:
-      - "Chỉ nêu lỗi mức critical và high — không chê cho có"
-      - "Mỗi lỗi kèm bằng chứng và một kịch bản hỏng cụ thể"
-      - "Kết luận một trong ba: chấp nhận · chấp nhận có sửa · bác"
-      - "Một vòng; vòng hai chỉ khi còn lỗi nặng chưa giải quyết"
-    note: "Dừng khi lỗi nặng đã sửa hoặc bị bác kèm bằng chứng. Không cãi tới khi hai bên đồng ý."
-
   - layout: table
     title: "Vòng lặp có phanh"
     columns: ["Việc", "Tối đa"]
@@ -60,7 +76,7 @@ slides:
       - ["Vòng review mỗi PR", "3"]
       - ["Yêu cầu Codex chạy cùng lúc", "1"]
       - ["Cùng loại việc trên cùng commit", "không lặp"]
-    note: "Số vòng review do script đếm từ GitHub, không dựa vào trí nhớ của AI."
+    note: "Số vòng review do script đếm từ GitHub, không dựa vào trí nhớ của AI. Dừng khi lỗi nặng đã sửa hoặc bị bác kèm bằng chứng — không cãi tới khi hai bên đồng ý."
 
   - layout: checklist
     title: "Khi nào mới gọi là xong"
@@ -103,6 +119,8 @@ platforms:
       3️⃣ Claude viết code, mở PR, nhờ Codex review. Claude tự đọc lại diff và chạy lại test; chỉ lỗi đã xác nhận mới được sửa.
       4️⃣ Có phanh: tối đa 2 vòng sửa, 3 vòng review mỗi PR.
       5️⃣ "Xong" nghĩa là có bằng chứng cho từng tiêu chí, check xanh, không còn lỗi P0/P1. Lúc đó mới merge.
+
+      Đội hình, nói cho đủ: phía Claude là 1 phiên chính cộng 8 vai (làm rõ yêu cầu, thiết kế, phản biện thiết kế, 3 loại reviewer, viết code, thiết kế kiểm chứng). Trần agent là 0, 1, 2, 3 cho T0–T3, và chỉ còn 0, 0, 0, 1 khi Codex ngồi ghế phản biện. Phía Codex không có agent thường trực: mỗi lần gọi là một task mới, và nó chỉ phản biện — không viết code, không sửa lỗi.
 
       Để chạy liên tục, mình dùng sổ bàn giao: khoảng 70% context thì ghi sổ, 85% thì thu dọn. Phiên mới đọc sổ thay vì làm lại.
 

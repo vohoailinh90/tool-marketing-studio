@@ -1,0 +1,57 @@
+id: 11-languages
+status: draft
+format: portrait
+series: "Tool văn phòng · #11"
+link: survey
+slides:
+  - layout: cover
+    emoji: "🌏"
+    eyebrow: "Email đa ngữ"
+    title: "Một email, **hai ngôn ngữ**, không cần API key"
+    subtitle: "Tiếng Việt, tiếng Nhật, tiếng Anh hoặc song ngữ Nhật–Anh. Dịch bằng Copilot qua copy–paste."
+
+  - layout: email
+    title: "Email song ngữ Nhật + Anh"
+    subject: "【EVT-12】忘年会のご案内 / Year-end party"
+    from: "Ban tổ chức (bạn)"
+    infobar: "このメッセージには投票ボタンがあります。 / This message has voting buttons."
+    buttons: ["Yes", "No", "Maybe"]
+    body: "お疲れさまです。忘年会のご案内です。\n日時・場所は下記をご確認ください。\n――――――\nHello everyone,\nHere are the details for our year-end party.\nPlease vote with the buttons above."
+    note: "Mỗi nửa email có lời chào riêng: tiếng Nhật trước, tiếng Anh sau."
+
+  - layout: flow
+    variant: after
+    title: "Dịch qua Copilot, từng bước"
+    steps:
+      - {emoji: "✍️", text: "Viết lời nhắn của bạn **bằng ngôn ngữ nào cũng được**"}
+      - {emoji: "📋", text: "Bấm **Copy note + fixed part + prompt**"}
+      - {emoji: "🤖", text: "Dán vào Microsoft Copilot — nó trả về bản Nhật và bản Anh"}
+      - {emoji: "📥", text: "Dán câu trả lời lại vào app rồi bấm Save"}
+
+  - layout: checklist
+    title: "Vì sao qua copy–paste?"
+    items:
+      - "**Không cần API key** hay đăng ký ứng dụng"
+      - "Xem trước và **sửa tay** được trước khi gửi"
+      - "Phần cố định đã có sẵn cả tiếng Nhật lẫn tiếng Anh — có thể gửi luôn không cần dịch"
+      - "Chữ bạn thêm vào phần cố định cũng được dịch"
+    note: "Đây là bước copy–paste bằng tay, chưa phải dịch tự động."
+
+  - layout: cta
+    emoji: "🌏"
+    title: "Team bạn dùng **ngôn ngữ nào** trong email sự kiện?"
+    text: "Việt, Nhật, Anh hay trộn cả ba? Comment cho mình biết nhé."
+
+platforms:
+  facebook:
+    caption: |
+      Team có người Nhật, người nước ngoài — email mời nào cũng phải viết hai lần? 🌏
+
+      Tool gửi được email bằng tiếng Việt, tiếng Nhật, tiếng Anh, hoặc song ngữ Nhật–Anh. Với bản song ngữ, bạn chỉ viết lời nhắn bằng ngôn ngữ nào cũng được, bấm một nút để copy cả lời nhắn lẫn phần chi tiết sự kiện kèm sẵn lời dặn, rồi dán vào Microsoft Copilot. Copilot trả về bản Nhật và bản Anh, bạn dán lại vào app. Mỗi nửa email có lời chào riêng, tiếng Nhật trước, tiếng Anh sau.
+
+      Cách này không cần API key hay đăng ký ứng dụng, và bạn xem, sửa tay được trước khi gửi. Nói thật: đó là bước copy–paste bằng tay, chưa phải dịch tự động.
+
+      Team bạn dùng ngôn ngữ nào trong email sự kiện? Comment cho mình biết nhé 👇
+    first_comment: |
+      📋 Khảo sát 3 phút — team bạn dùng những ngôn ngữ nào? {link}
+    hashtags: [Outlook, Copilot, tudonghoa, vanphong, songngu]

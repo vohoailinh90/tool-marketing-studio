@@ -1,0 +1,71 @@
+id: 08-reminders-calendar
+status: draft
+format: portrait
+series: "Tool văn phòng · #8"
+link: survey
+slides:
+  - layout: cover
+    emoji: "🔔"
+    eyebrow: "Nhắc & gửi lịch"
+    title: "Nhắc **đúng người**, gửi lịch **đúng người**"
+    subtitle: "Sau khi quét hộp thư, tool biết ai chưa trả lời và ai sẽ đến."
+
+  - layout: chat
+    title: "Nhắc cả nhóm thì ai cũng thấy phiền"
+    group: "Phòng Hành chính 🎂"
+    messages:
+      - {me: true, text: "Nhắc lần hai: ai chưa trả lời mail mời thì báo mình nhé 🙏"}
+      - {from: "Hà", text: "Em trả lời từ hôm qua rồi mà chị 😅"}
+      - {from: "Minh", text: "Em cũng bấm rồi nha"}
+      - {from: "Tuấn", text: "Mail nào vậy ạ? Để em tìm lại"}
+      - {me: true, text: "Mình cũng quên ai trả lời rồi, ai chưa… 😭"}
+
+  - layout: compare
+    title: "Nhắc & gửi lịch: trước và sau"
+    before:
+      items:
+        - "Nhắn cả nhóm, người đã trả lời cũng bị nhắc"
+        - "Tự nhớ trong đầu ai đã trả lời"
+        - "Gửi lịch hẹn riêng cho từng người đồng ý"
+    after:
+      items:
+        - "Email nhắc chỉ đến người **chưa trả lời**"
+        - "Tool biết nhờ Scan Inbox"
+        - "Lịch hẹn đến người trả lời **Yes hoặc Maybe**"
+
+  - layout: features
+    title: "Những điều tool giữ cho bạn"
+    items:
+      - {emoji: "🔒", title: "Không gửi nhầm", text: "Nhắc và gửi lịch chỉ chạy khi sự kiện đang mở đã được quét — không lẫn sang danh sách sự kiện khác"}
+      - {emoji: "🖼️", title: "Kèm ảnh hướng dẫn", text: "Email mời và email nhắc đều đính ảnh cách bấm nút"}
+      - {emoji: "🎁", title: "Nhắc cả tiền góp quà", text: "Gửi nhắc được từ tab Thu thập trả lời và tab Góp quà"}
+
+  - layout: pains
+    tone: accent
+    title: "Nói thật về nhắc nhở"
+    items:
+      - {emoji: "⚠️", text: "Nhắc nhở **gửi bằng tay** trong app — chưa có nhắc tự động theo lịch"}
+      - {emoji: "⚠️", text: "Cần Outlook Desktop đang mở và đã đăng nhập"}
+      - {emoji: "⚠️", text: "Chưa phân biệt được 2 người dùng chung một email"}
+
+  - layout: cta
+    emoji: "🙋"
+    title: "Bạn có cần nhắc **tự động theo lịch** không?"
+    text: "Đây là tính năng mình chưa làm. Nếu bạn cần, hãy cho mình biết — ý kiến của bạn quyết định thứ tự làm."
+    keyword: "NHẮC"
+
+platforms:
+  facebook:
+    caption: |
+      “Em trả lời rồi mà chị!” — câu mà người đi nhắc nào cũng từng nghe 😅
+
+      Nhắc cả nhóm thì người đã trả lời thấy phiền, mà không nhắc thì thiếu người. Nặng nhất là mình không nhớ nổi ai trả lời rồi, ai chưa.
+
+      Trong tool, sau khi bấm Scan Inbox, mình gửi email nhắc chỉ cho người chưa trả lời, và gửi lịch hẹn cho người trả lời Yes hoặc Maybe. Cả hai chỉ chạy khi sự kiện đang mở đã được quét, nên không lẫn sang danh sách của sự kiện khác.
+
+      Nói thật: nhắc nhở hiện vẫn gửi bằng tay trong app, chưa có nhắc tự động theo lịch.
+
+      Bạn có cần tính năng nhắc tự động không? Comment “NHẮC” nếu có nhé 👇
+    first_comment: |
+      📋 Khảo sát 3 phút — chọn giúp mình tính năng nên làm tiếp: {link}
+    hashtags: [Outlook, tudonghoa, vanphong, tochucsukien, nangsuat]

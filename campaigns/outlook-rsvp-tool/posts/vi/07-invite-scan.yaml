@@ -1,0 +1,71 @@
+id: 07-invite-scan
+status: draft
+format: portrait
+series: "Tool văn phòng · #7"
+link: survey
+slides:
+  - layout: cover
+    emoji: "📥"
+    eyebrow: "Mời & đếm"
+    title: "Hết cảnh **đọc từng email** để đếm ai đi"
+    subtitle: "Mời bằng nút bấm, đếm bằng một cú click. Đây là những bước đầu tiên của tool."
+
+  - layout: compare
+    title: "Trả lời bằng chữ vs. bấm một nút"
+    before:
+      label: "Trả lời tự do"
+      items:
+        - "“Ok em”, “chắc đi”, “để anh xem lịch”…"
+        - "Phải đọc từng email để đoán ý"
+        - "Có thư mới là đếm lại từ đầu"
+    after:
+      label: "Nút bấm trong email"
+      items:
+        - "Chỉ có Yes / No / Maybe"
+        - "Không gõ chữ, không cần giữ nguyên tiêu đề"
+        - "Bấm **Scan Inbox** là có số đếm"
+
+  - layout: checklist
+    title: "Đưa danh sách người nhận vào"
+    items:
+      - "Nhập từ Excel: **tên ở cột A, email ở cột B**"
+      - "Dòng tiêu đề tự bỏ qua, email trùng tự loại"
+      - "Hoặc gõ tay từng người"
+      - "Danh sách được lưu sau mỗi thay đổi"
+
+  - layout: features
+    title: "Scan Inbox làm gì?"
+    items:
+      - {emoji: "📂", title: "Đọc mọi thư mục", text: "Tìm câu trả lời ở tất cả thư mục trong hộp thư, không chỉ Inbox"}
+      - {emoji: "🔢", title: "Đếm sẵn cho bạn", text: "Số Yes / No / Maybe được đếm và lưu vào lịch sử"}
+      - {emoji: "✏️", title: "Sửa tay được", text: "Phiếu nào cần chỉnh thì sửa; lần quét sau vẫn giữ, trừ khi người đó gửi trả lời mới hơn"}
+      - {emoji: "🏷️", title: "Khớp bằng Event ID", text: "Mỗi sự kiện có một mã để câu trả lời không lẫn sang sự kiện khác"}
+
+  - layout: pains
+    tone: accent
+    title: "Nói thật về giới hạn"
+    items:
+      - {emoji: "⚠️", text: "Chưa phân biệt được 2 người dùng chung một email"}
+      - {emoji: "⚠️", text: "Chỉ mục tìm kiếm của Outlook có thể trễ khoảng 1 phút — chưa thấy thư mới thì quét lại sau"}
+      - {emoji: "⚠️", text: "Chỉ chạy trên Windows + Outlook Desktop"}
+
+  - layout: cta
+    emoji: "💬"
+    title: "Bây giờ bạn đang đếm người đi **bằng cách nào**?"
+    text: "Hộp thư, chat nhóm, Excel hay form? Comment cho mình biết nhé."
+
+platforms:
+  facebook:
+    caption: |
+      “Ok em”, “chắc đi”, “để anh xem lịch”… đếm xong mấy câu trả lời kiểu này là hết một buổi tối 😵
+
+      Mình từng ngồi mở từng email, ghi vào Excel ai đi, ai không, ai “để xem”. Xong lại có thư mới và phải đếm lại.
+
+      Nên bước đầu của tool là bỏ hẳn chuyện trả lời bằng chữ: email mời có nút Yes / No / Maybe của Outlook, người nhận chỉ bấm một nút. Mình bấm Scan Inbox, tool đọc câu trả lời ở mọi thư mục trong hộp thư và đếm thành bảng. Phiếu nào cần chỉnh thì sửa tay được, lần quét sau vẫn giữ.
+
+      Nói thật: tool chưa phân biệt được 2 người dùng chung một email.
+
+      Hộp thư của bạn bây giờ đang có bao nhiêu email trả lời chưa đếm? 😅
+    first_comment: |
+      📋 Khảo sát 3 phút — người trả lời được ưu tiên dùng thử bản beta: {link}
+    hashtags: [tudonghoa, Outlook, vanphong, tochucsukien, nangsuat]

@@ -1,0 +1,71 @@
+id: 07-invite-scan
+status: draft
+format: portrait
+series: "Office tools · #7"
+link: survey
+slides:
+  - layout: cover
+    emoji: "📥"
+    eyebrow: "Invite & count"
+    title: "Stop **reading every reply** to count who's coming"
+    subtitle: "Invite with buttons, count with one click. These are the first steps of the tool."
+
+  - layout: compare
+    title: "Typed replies vs. one button"
+    before:
+      label: "Free-text replies"
+      items:
+        - "“Sure!”, “Probably”, “Let me check my calendar…”"
+        - "Open every email to work out what it means"
+        - "New replies arrive, so you count again"
+    after:
+      label: "Voting buttons"
+      items:
+        - "Just Yes / No / Maybe"
+        - "No typing, and the subject line can change"
+        - "Click **Scan Inbox** for the count"
+
+  - layout: checklist
+    title: "Getting your guest list in"
+    items:
+      - "Import from Excel: **names in column A, e-mails in column B**"
+      - "Title rows are skipped, repeated addresses dropped"
+      - "Or add people by hand"
+      - "The list is saved after every change"
+
+  - layout: features
+    title: "What Scan Inbox does"
+    items:
+      - {emoji: "📂", title: "Every folder", text: "Looks for replies in every folder of your mailbox, not just the Inbox"}
+      - {emoji: "🔢", title: "Counts for you", text: "Yes / No / Maybe totals are counted and saved to History"}
+      - {emoji: "✏️", title: "Fix by hand", text: "Correct any vote; your edit survives later scans unless that person sends a newer reply"}
+      - {emoji: "🏷️", title: "Matched by Event ID", text: "Each event has an ID, so replies are matched to the right event"}
+
+  - layout: pains
+    tone: accent
+    title: "Honest limits"
+    items:
+      - {emoji: "⚠️", text: "2 people sharing one e-mail address can't be told apart"}
+      - {emoji: "⚠️", text: "Outlook's search index can lag about 1 minute — scan again if replies seem missing"}
+      - {emoji: "⚠️", text: "Windows + Outlook Desktop only"}
+
+  - layout: cta
+    emoji: "💬"
+    title: "How are you counting RSVPs **right now**?"
+    text: "Inbox, group chat, a spreadsheet, a form? Tell me in the comments."
+
+platforms:
+  facebook:
+    caption: |
+      “Sure!”, “Probably”, “Let me check my calendar”… counting replies like these can eat a whole evening 😵
+
+      I used to open every email, type who's in, who's out and who's “maybe” into a spreadsheet, then start over when new replies landed.
+
+      So the first step of the tool is to stop asking for typed replies. The invite carries Outlook's voting buttons — Yes / No / Maybe — and recipients just click one. Then I click Scan Inbox: it reads replies from every folder in the mailbox and turns them into a table. Any vote can be corrected by hand, and the correction is kept on later scans.
+
+      Honest limit: 2 people sharing one e-mail address can't be told apart.
+
+      How many uncounted replies are sitting in your inbox right now? 😅
+    first_comment: |
+      📋 3-minute survey — respondents get the beta first: {link}
+    hashtags: [Outlook, automation, productivity, teamevents, RSVP]

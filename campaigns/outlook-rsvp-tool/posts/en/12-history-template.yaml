@@ -1,0 +1,67 @@
+id: 12-history-template
+status: draft
+format: portrait
+series: "Office tools · #12"
+link: survey
+slides:
+  - layout: cover
+    emoji: "📚"
+    eyebrow: "History & templates"
+    title: "Every event is **kept**, so next time you don't start from scratch"
+    subtitle: "History, the department fund balance, and past events as templates."
+
+  - layout: table
+    title: "The History tab"
+    columns: ["Event", "Income", "Expense", "Balance", "Fund left"]
+    rows:
+      - ["Year-end dinner", "1,500", "1,420", {text: "80", tone: ok}, "80"]
+      - ["Birthday", "150", "170", {text: "-20", tone: bad}, "60"]
+      - ["Farewell", "300", "250", {text: "50", tone: ok}, "110"]
+    note: "Illustrative numbers. Fund left is the running total of Balance."
+
+  - layout: features
+    title: "The money columns are calculated, not typed"
+    items:
+      - {emoji: "💵", title: "Income / Expense / Balance", text: "Cover every round and the gift money"}
+      - {emoji: "👤", title: "Cost per person", text: "Actual attendance and cost per person for round 1"}
+      - {emoji: "🏦", title: "Dept. Fund Left", text: "The running total of Balance from the first event down to that row"}
+      - {emoji: "✏️", title: "Edit in place", text: "Double-click a cell; only the cells you edited are saved"}
+
+  - layout: flow
+    variant: after
+    title: "Reuse a past event as a template"
+    steps:
+      - {emoji: "🔎", text: "Find it in the search box (any field, or one such as Location)"}
+      - {emoji: "⬅️", text: "Click **Load setup from selected event**"}
+      - {emoji: "🏷️", text: "Change the **Event ID** to a new one"}
+      - {emoji: "✉️", text: "Send the invites — the recipient list follows the new ID"}
+
+  - layout: pains
+    tone: accent
+    title: "Good to know when reusing"
+    items:
+      - {emoji: "ℹ️", text: "Everything for the open event is **replaced** by the one you load"}
+      - {emoji: "ℹ️", text: "Votes, attendance and amounts paid **stay** with the original event"}
+      - {emoji: "ℹ️", text: "If it would discard Copilot translations or text you edited by hand, the app asks first"}
+    note: "All your data is one file on your PC — back it up regularly."
+
+  - layout: cta
+    emoji: "📂"
+    title: "Where is **last year's event** recorded?"
+    text: "A spreadsheet, an old e-mail, someone's memory? Tell me in the comments."
+
+platforms:
+  facebook:
+    caption: |
+      “Where did we go last year?” “How much is left in the department fund?” Every hand-over starts like this 😅
+
+      The saddest thing about running events from a spreadsheet is that nothing is kept, so the next organiser starts from scratch.
+
+      In the tool, every event stays in History with its Yes/No/Maybe counts and send status. The money columns are calculated: income, expense and balance cover every round and the gift money, and the department fund is the running total of balance from the first event. To repeat a similar event, load the old one, change the Event ID, and the recipient list follows the new ID. Votes, attendance and amounts paid stay with the original event.
+
+      It's all one file on your PC, so back it up regularly.
+
+      Where is last year's event recorded? Tell me below 👇
+    first_comment: |
+      📋 3-minute survey — how do you keep your event history? {link}
+    hashtags: [Outlook, Excel, automation, teamevents, productivity]

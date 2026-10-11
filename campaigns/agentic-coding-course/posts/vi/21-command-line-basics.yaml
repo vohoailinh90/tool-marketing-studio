@@ -1,0 +1,80 @@
+id: 21-command-line-basics
+status: draft
+format: portrait
+series: Học cùng AI · 3.2.3
+link: command-line-basics-vi
+slides:
+- layout: cover
+  emoji: 🧱
+  eyebrow: Học cùng AI
+  title: Agent xin chạy lệnh. **Bạn hiểu chưa**?
+  subtitle: Mã và lịch sử thay đổi
+- layout: cover
+  emoji: 💻
+  eyebrow: Hiểu để làm đúng
+  title: '**Terminal: nơi gõ lệnh**'
+  subtitle: Agent cũng làm việc ở đây
+- layout: cover
+  emoji: 📍
+  eyebrow: Hiểu để làm đúng
+  title: '**Luôn ở trong một thư mục**'
+  subtitle: pwd cho biết đang ở đâu
+- layout: cover
+  emoji: 🧰
+  eyebrow: Hiểu để làm đúng
+  title: '**5 lệnh an toàn**'
+  subtitle: pwd, ls, cd, cat, mkdir
+- layout: cover
+  emoji: 🔍
+  eyebrow: Hiểu để làm đúng
+  title: '**Đọc lệnh trước khi cho phép**'
+  subtitle: Chỉ xem hay thay đổi? Ở đâu?
+- layout: cover
+  emoji: ❓
+  eyebrow: Hiểu để làm đúng
+  title: '**Chưa hiểu thì hỏi**'
+  subtitle: Nhờ agent giải thích lệnh
+- layout: quote
+  text: Gõ sai một lệnh chỉ xem thì không hỏng gì; cho phép một lệnh xóa mà không đọc mới đáng
+    sợ.
+  author: Ghi nhớ từ bài học
+- layout: cta
+  emoji: 💬
+  eyebrow: Hỏi bạn
+  title: Bạn muốn agent giải thích phần nào của một lệnh trước khi cho chạy?
+  text: Chia sẻ cách bạn làm.
+  hint: Link bài ở bình luận đầu.
+  show_link: false
+platforms:
+  facebook:
+    caption: 'Agent xin chạy lệnh. Bạn hiểu chưa?
+
+
+      Terminal không đáng sợ: 5 lệnh an toàn đầu tiên
+
+
+      • Terminal: nơi gõ lệnh: Agent cũng làm việc ở đây
+
+      • Luôn ở trong một thư mục: pwd cho biết đang ở đâu
+
+      • 5 lệnh an toàn: pwd, ls, cd, cat, mkdir
+
+      • Đọc lệnh trước khi cho phép: Chỉ xem hay thay đổi? Ở đâu?
+
+      • Chưa hiểu thì hỏi: Nhờ agent giải thích lệnh
+
+
+      Gõ sai một lệnh chỉ xem thì không hỏng gì; cho phép một lệnh xóa mà không đọc mới đáng
+      sợ.
+
+
+      Bạn muốn agent giải thích phần nào của một lệnh trước khi cho chạy?
+
+      Link bài ở bình luận đầu.'
+    first_comment: 'Đọc bài học và thử bằng dữ liệu giả: {link}'
+    hashtags:
+    - AgenticCoding
+    - AI
+    - HocAI
+notes: 'Source claim: command-line-basics. Chapter 3; curriculum lesson 3.2.3. Educational recap,
+  not a testimonial. Draft for owner review.'

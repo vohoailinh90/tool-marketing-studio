@@ -1,9 +1,17 @@
 import json
+import struct
 import unittest
 
 from mkt.layouts import Ctx, render_body
 from mkt.model import load_campaign
 from tests.support import PNG, cleanup, make_root, post_data, write_yaml
+
+
+def png_size(path) -> tuple[int, int]:
+    """Width and height from the PNG header (IHDR), without an imaging library."""
+    data = path.read_bytes()[:24]
+    assert data[:8] == b"\x89PNG\r\n\x1a\n", "not a PNG"
+    return struct.unpack(">II", data[16:24])
 
 
 def chromium_available() -> bool:
@@ -43,8 +51,7 @@ class RenderSmokeTests(unittest.TestCase):
             manifest = json.loads((out / "manifest.json").read_text(encoding="utf-8"))
             self.assertEqual(len(manifest["slides"]), 4)
             self.assertEqual(warnings, [])
-            from PIL import Image
-            self.assertEqual(Image.open(out / "04.png").size, (1080, 1350))
+            self.assertEqual(png_size(out / "04.png"), (1080, 1350))
             self.assertTrue((out / "facebook.txt").read_text(encoding="utf-8").startswith("Một dòng mở đầu"))
         finally:
             cleanup(root)

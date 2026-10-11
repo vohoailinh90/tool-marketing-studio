@@ -1,0 +1,22 @@
+lang: vi
+one_liner: "Cách mình cho Claude thiết kế, Codex phản biện và vòng lặp chạy tới khi xong — có phanh và có định nghĩa \"xong\" rõ ràng."
+audience: >-
+  Người Việt đi làm văn phòng (ở Việt Nam hoặc công ty Nhật) đang tự xây tool, script hay file Excel
+  tự động bằng AI (Claude, Codex) và muốn bài làm của AI đáng tin hơn, không phải ngồi canh từng bước.
+pains:
+  - "Một AI vừa viết vừa tự duyệt thì khó thấy lỗi của chính nó"
+  - "Nhờ AI làm cả buổi, quay lại thì chỉ có \"đã xong\" mà không có bằng chứng"
+  - "Cho AI chạy tự động mà không có giới hạn số vòng và điều kiện dừng"
+  - "Phiên làm việc đứt giữa chừng thì phải kể lại từ đầu"
+promise: "Một quy trình ghi rõ ai thiết kế, ai bắt lỗi, mỗi bên được hỏi mấy vòng, và khi nào được gọi là xong."
+objections:
+  - {q: "Vậy là cứ để AI chạy một mình luôn à?", a: "Không. Vòng lặp có giới hạn số vòng, có định nghĩa xong; chỉ cần người khi gặp quyết định mà máy không tự quyết được, hoặc khi yêu cầu ban đầu đổi."}
+  - {q: "Codex sửa luôn lỗi nó tìm ra à?", a: "Không. Lỗi phải được kiểm lại trên code trước, rồi mới nhờ sửa. Không nhờ sửa một lỗi mới chỉ là phỏng đoán."}
+  - {q: "Bạn có chia sẻ repo không?", a: "Repo hiện là private, bài này chia sẻ cách làm chứ không phát hành repo."}
+vocabulary: [kiến thiết, thiết kế, phản biện, vòng lặp, định nghĩa xong, tiêu chí nghiệm thu, bằng chứng, giới hạn vòng, phạm vi]
+angles:
+  - "Vì sao AI viết xong không nên tự duyệt"
+  - "Một vòng làm việc: chấm điểm → thiết kế → phản biện → code → review → xong"
+  - "Vòng lặp có phanh: tối đa mấy vòng thì dừng"
+  - "Phiên đứt giữa chừng: ghi sổ bàn giao để làm tiếp"
+tone: "Xưng \"mình\", thân thiện, kể như chia sẻ với đồng nghiệp trên Facebook; thuật ngữ kỹ thuật giải thích bằng ví dụ đời thường; không hứa hẹn quá đà, nói rõ giới hạn."

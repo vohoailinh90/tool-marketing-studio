@@ -1,0 +1,17 @@
+AI viết code xong rồi tự duyệt — vậy ai bắt lỗi? 👇
+
+Câu hỏi đó làm mình đổi cách làm. Giờ Claude thiết kế, viết code và sửa lỗi; Codex chỉ ngồi ghế phản biện: đọc thiết kế, review PR, không đụng vào code. Cả vòng chạy một mạch tới khi xong, nhưng có phanh. Mình theo quy trình trong một repo mẫu tự dựng (hiện đang private).
+
+Việc đầu tiên là chấm điểm yêu cầu: 6 tiêu chí, mỗi tiêu chí 0–2, ra mức T0–T3. Sửa lỗi chính tả thì chỉ Claude làm. Việc chạm tới tiền hay quyền truy cập bị đẩy lên mức cao hơn dù điểm thấp. Một script tính mức, không để AI tự thấy sao làm vậy.
+
+Đội hình thì mình nói cho đủ. Phía Claude có 1 phiên chính và 8 vai phụ: làm rõ yêu cầu, thiết kế, phản biện thiết kế, 3 loại reviewer, kiểm chứng, viết code. Trần agent là 0, 1, 2, 3 cho T0 đến T3, và còn 0, 0, 0, 1 khi Codex làm phản biện. Phía Codex không có agent thường trực: mỗi lần gọi là một task mới.
+
+Phanh: tối đa 2 vòng sửa, 3 vòng review mỗi PR. "Xong" nghĩa là Codex đã chạy đúng commit, Claude tự đọc cả diff, mỗi tiêu chí có bằng chứng, test, check và review bắt buộc đều xanh, không còn lỗi P0/P1 và phạm vi không bị làm lố. Mình để nó tự merge, nhưng chỉ khi nhánh chính bắt buộc cập nhật (hoặc có merge queue), danh tính merge không bypass được, và lệnh merge gắn đúng commit đã kiểm.
+
+Để chạy một mạch, mình dùng sổ bàn giao: khoảng 70% context thì ghi sổ, khoảng 85% thì thu dọn. Phiên mới đọc sổ thay vì làm lại.
+
+Nói thật về giới hạn: cần Codex Cloud nối với GitHub và còn quota.
+
+Bạn có để AI tự merge không?
+
+#Claude #Codex #AI #tudonghoa #laptrinh

@@ -1,0 +1,78 @@
+id: 15-project-personal-page
+status: draft
+format: portrait
+series: Học cùng AI · 2.3.1
+link: project-personal-page-vi
+slides:
+- layout: cover
+  emoji: 🧭
+  eyebrow: Học cùng AI
+  title: 'Trang cá nhân đẹp: **đã dùng được** chưa?'
+  subtitle: Dự án đầu tiên
+- layout: cover
+  emoji: ✍️
+  eyebrow: Hiểu để làm đúng
+  title: '**Nội dung là của bạn**'
+  subtitle: Agent trình bày, không bịa thêm
+- layout: cover
+  emoji: 🔐
+  eyebrow: Hiểu để làm đúng
+  title: '**Chỉ những gì muốn công khai**'
+  subtitle: Không điện thoại, địa chỉ, email riêng
+- layout: cover
+  emoji: 🗺️
+  eyebrow: Hiểu để làm đúng
+  title: '**Spec và kế hoạch trước**'
+  subtitle: Rồi mới làm
+- layout: cover
+  emoji: 🧪
+  eyebrow: Hiểu để làm đúng
+  title: '**Kiểm tra được**'
+  subtitle: Có phép kiểm tra đã từng thất bại
+- layout: cover
+  emoji: 🏁
+  eyebrow: Hiểu để làm đúng
+  title: '**Sản phẩm đầu tiên**'
+  subtitle: Kèm 3 dòng bằng chứng
+- layout: quote
+  text: 'Dự án luyện một vòng agentic coding: yêu cầu, kế hoạch, thực hiện và kiểm chứng.'
+  author: Ghi nhớ từ bài học
+- layout: cta
+  emoji: 💬
+  eyebrow: Hỏi bạn
+  title: Bạn muốn kiểm tra điều gì trên điện thoại trước khi nhận trang?
+  text: Chia sẻ cách bạn làm.
+  hint: Link bài ở bình luận đầu.
+  show_link: false
+platforms:
+  facebook:
+    caption: 'Trang cá nhân đẹp: đã dùng được chưa?
+
+
+      Dự án: trang web cá nhân của bạn
+
+
+      • Nội dung là của bạn: Agent trình bày, không bịa thêm
+
+      • Chỉ những gì muốn công khai: Không điện thoại, địa chỉ, email riêng
+
+      • Spec và kế hoạch trước: Rồi mới làm
+
+      • Kiểm tra được: Có phép kiểm tra đã từng thất bại
+
+      • Sản phẩm đầu tiên: Kèm 3 dòng bằng chứng
+
+
+      Dự án luyện một vòng agentic coding: yêu cầu, kế hoạch, thực hiện và kiểm chứng.
+
+
+      Bạn muốn kiểm tra điều gì trên điện thoại trước khi nhận trang?
+
+      Link bài ở bình luận đầu.'
+    first_comment: 'Đọc bài học và thử bằng dữ liệu giả: {link}'
+    hashtags:
+    - AgenticCoding
+    - AI
+    - HocAI
+notes: 'Source claim: project-personal-page. Chapter 2; curriculum lesson 2.3.1. Educational
+  recap, not a testimonial. Draft for owner review.'

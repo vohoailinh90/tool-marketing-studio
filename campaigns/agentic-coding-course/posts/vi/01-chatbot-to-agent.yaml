@@ -1,0 +1,71 @@
+id: 01-chatbot-to-agent
+status: draft
+format: portrait
+series: Học cùng AI · 1.1.1
+link: chatbot-to-agent-vi
+slides:
+- layout: cover
+  emoji: 🚀
+  eyebrow: Học cùng AI
+  title: AI chỉ bạn làm, hay **làm giúp bạn**?
+  subtitle: AI agent làm được gì
+- layout: cover
+  emoji: 💬
+  eyebrow: Hiểu để làm đúng
+  title: '**Chatbot trả lời**'
+  subtitle: AI nghĩ, còn bạn tự làm từng bước
+- layout: cover
+  emoji: 🤖
+  eyebrow: Hiểu để làm đúng
+  title: '**AI agent hành động**'
+  subtitle: Nhận một mục tiêu rồi tự làm các bước
+- layout: cover
+  emoji: ❓
+  eyebrow: Hiểu để làm đúng
+  title: '**Hỏi: ai làm các bước?**'
+  subtitle: Một câu hỏi phân biệt mọi loại AI
+- layout: cover
+  emoji: ✅
+  eyebrow: Hiểu để làm đúng
+  title: '**Bạn chỉ đạo và nghiệm thu**'
+  subtitle: Giao việc rõ ràng, kiểm tra kết quả
+- layout: quote
+  text: 'Agentic coding: agent làm các bước, bạn quyết định làm gì và thế nào là đạt.'
+  author: Ghi nhớ từ bài học
+- layout: cta
+  emoji: 💬
+  eyebrow: Hỏi bạn
+  title: Bạn muốn giao bước nào trong công việc cho agent trước tiên?
+  text: Chia sẻ cách bạn làm.
+  hint: Link bài ở bình luận đầu.
+  show_link: false
+platforms:
+  facebook:
+    caption: 'AI chỉ bạn làm, hay làm giúp bạn?
+
+
+      Từ chatbot đến AI agent: AI không chỉ trả lời mà còn làm việc
+
+
+      • Chatbot trả lời: AI nghĩ, còn bạn tự làm từng bước
+
+      • AI agent hành động: Nhận một mục tiêu rồi tự làm các bước
+
+      • Hỏi: ai làm các bước?: Một câu hỏi phân biệt mọi loại AI
+
+      • Bạn chỉ đạo và nghiệm thu: Giao việc rõ ràng, kiểm tra kết quả
+
+
+      Agentic coding: agent làm các bước, bạn quyết định làm gì và thế nào là đạt.
+
+
+      Bạn muốn giao bước nào trong công việc cho agent trước tiên?
+
+      Link bài ở bình luận đầu.'
+    first_comment: 'Đọc bài học và thử bằng dữ liệu giả: {link}'
+    hashtags:
+    - AgenticCoding
+    - AI
+    - HocAI
+notes: 'Source claim: chatbot-to-agent. Chapter 1; curriculum lesson 1.1.1. Educational recap,
+  not a testimonial. Draft for owner review.'

@@ -1,6 +1,6 @@
 {
-  "sha": "aff300325bbf8644fd7d39a40aeca4d5f3b8d47465e9811df860c4109904553f",
-  "rendered_at": "2026-10-11T06:01:44+00:00",
+  "sha": "d87430feeb67092a4f3921874e9231ef539d1b7bf24afcba61c37e4b9a59d034",
+  "rendered_at": "2026-10-11T06:15:22+00:00",
   "engine": "0.1.0",
   "format": "portrait",
   "slides": [
@@ -12,8 +12,7 @@
     "06.png",
     "07.png",
     "08.png",
-    "09.png",
-    "10.png"
+    "09.png"
   ],
   "texts": [
     "facebook.txt"
@@ -23,25 +22,23 @@
     1,
     1,
     1,
+    0.92,
     1,
-    0.84,
-    0.96,
     1,
     1,
     1,
     1
   ],
   "files": {
-    "01.png": "1452b1b68b9eb50e191d25d421aa45a71d8fe9fe3ee6630882fe697241747d90",
-    "02.png": "a882f4c4921492ed49035c8086b09db5f5811c49ee2f2f0cf643cd1b79f11fab",
-    "03.png": "2ac7de6f791dbc962afebb7bcd0bedd214c0a71a5c94b45e8d244852cea2c043",
-    "04.png": "642c1df49fbd71dd38b320ae2412eb84559c20bf79fc4cde30a9b32545300af3",
-    "05.png": "5006b42e096cf5582abf43fb4428e7debe00fc46a6d4f29c3ef26cef43f58546",
-    "06.png": "8f218a3601c776717cf8137da7fb5bda841dc3a0767e30158b0178bcbebc49bb",
-    "07.png": "04bf58d0e50c3f0357a6dbf3c6b5f63ffd4b8888b7e211c6fe308b2aacdba3eb",
-    "08.png": "5cf185dee438283a3222692496be2729422c83e5fee55c7d331f002e916be5ff",
-    "09.png": "b4e96d25851159431afd051818e5202facf2f3e0528204df7e2f08493ab9ee4e",
-    "10.png": "1ca606d126f271e68aa78be150118689e940f239bcc84ca2d34e2283b7a9e5ce",
-    "facebook.txt": "661a83fac4ac7390b7884bc6326b566ed073fda45a5a869c6d3a02e643d5297f"
+    "01.png": "870e0f284005c7939a177ef8183aa97b5a0d3321917b856afff79f5a8f41091e",
+    "02.png": "d831a95244e3ae18142d7322439a062191b362c1d1df4ba3f5a2b71cb77d0b12",
+    "03.png": "869b580b388928310abcf2043da6f04af398f3ac1988840a6247b3c9eae6ed17",
+    "04.png": "98235c072f4f4e72118d082c1fda6929b035e33ecf9615c3e910545e140b3eb6",
+    "05.png": "e1dcac960d441a1a5c36aeaa7e090bb4e934dcb0a56b49676f571e4f178f0cfe",
+    "06.png": "fd63baba76e7eff1c2b101e386a98ceafa6a521d8706fd9656274c6b565ad101",
+    "07.png": "1f51be3140dd54a89b8fdd82d534fe4127247dd2f028ee1ba87d0785df96ff92",
+    "08.png": "37e825a41eafc7423024d518a0b7068048728550bf6df7ae9d32f1a0ba123f27",
+    "09.png": "37e7e1d679079c239bf187fd65501f43bcb66357a32c47c40ddc149344d66960",
+    "facebook.txt": "28f68a8faab38918a423b79c0041166174f14d9785ef7cafabd7594eaee6d044"
   }
 }

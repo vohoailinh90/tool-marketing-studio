@@ -29,6 +29,10 @@ requirements:
 features:            # each is in the template's docs
   - id: score-and-tier
     fact: Six dimensions (ambiguity, scope, architecture, dependencies, risk, verification) are each scored 0, 1 or 2; the raw score 0–12 maps to T0 (0–2), T1 (3–5), T2 (6–8), T3 (9–12), and a risk override can raise the tier but never lower it
+  - id: tier-overrides
+    fact: Domain overrides raise the minimum tier whatever the raw score says — security-sensitive work, payments, data migrations, authorization changes, irreversible operations and cross-service changes are examples — and an override can raise a tier but never lower it
+  - id: trivial-work-stays-small
+    fact: T0 work (copy changes, typo fixes, obvious local validation, tiny isolated refactors) is done by the main session alone in every lane, and Codex is not called for it
   - id: route-by-script
     fact: scripts/route.py applies agent-routing/policy.yaml to the scores and signals and returns the tier, the required agents and the agent budget; the model does not apply those rules by hand
   - id: claude-roster
@@ -98,6 +102,10 @@ claims:              # anything a post states as a benefit must be one of these
   - id: restart-costs-more
     text: Restarting a session that died mid-requirement costs more than finishing it (cold prompt cache, quadratic turn cost, lost reasoning, lost subagent contexts); only what reached disk survives
     evidence: CLAUDE.md "Session budget" and docs/session-budget.md
+    verified: true
+  - id: loop-needs-bounds
+    text: An unbounded back-and-forth with a bot, a duplicated request and a silent scope expansion are risks the template's rules are written to prevent
+    evidence: docs/claude-to-codex.md section 16 (titled "Preventing duplicate calls and infinite loops"; never let a bot comment create an unrestricted bot-to-bot loop) and section 19 (never expand the approved scope silently)
     verified: true
   - id: bounded-loop
     text: The loop is bounded by round caps and a written definition of done; it stops at done, at a cap, or at a genuine blocker

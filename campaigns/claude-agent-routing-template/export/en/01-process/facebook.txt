@@ -1,19 +1,16 @@
-Claude designs, Codex pushes back, and the loop runs until it's actually done 👇
+Claude designs. Codex pushes back. The loop runs until it's actually done. 👇
 
-If an AI writes the code and then reviews it, who catches what it missed? Here's the process I follow, from a template repo of mine (private for now):
+Here is the working agreement I use, taken from a template repo of mine (private for now):
 
-1️⃣ Score the requirement on 6 dimensions, 0–2 each. A script turns the score into a tier, T0–T3, and decides how many reviewers it gets — not the AI's mood.
-2️⃣ Claude designs. Codex critiques: serious findings only, each with evidence and a failure scenario.
-3️⃣ Claude builds it, opens the PR, and asks Codex to review. Claude re-reads the diff and re-runs the tests itself; only confirmed findings get fixed.
-4️⃣ There are brakes: at most 2 fix rounds and 3 review rounds per PR.
-5️⃣ "Done" means evidence for every acceptance criterion, green checks and no P0/P1 left. Only then does it merge.
+→ Claude designs, builds and fixes. Codex only critiques: the design, then the PR. It writes no code.
+→ Score first: 6 dimensions, 0–2 each, which gives a tier from T0 to T3. A script decides, not the AI. A typo fix stays with Claude alone; payments or auth get pushed up a tier.
+→ The cast: Claude has 1 main session plus 8 roles (requirements, design, design critic, 3 kinds of reviewer, verification, implementation). The agent cap is 0, 1, 2, 3 for T0–T3, and 0, 0, 0, 1 when Codex takes the critic's seat. Codex has no standing agents; every call is a fresh task.
+→ Brakes: 2 fix rounds, 3 review rounds per PR, one request in flight.
+→ Done = evidence for every acceptance criterion, green checks, no P0/P1 left. Then it merges on its own, but only if the base branch requires up-to-date branches (or there's a merge queue), the merging identity can't bypass that, and the merge is pinned to the validated commit.
+→ To keep it running: a handoff file, notes at about 70% of context, wrap-up at about 85%.
 
-The full cast, since people ask: Claude's side is 1 main session plus 8 roles (requirement analyst, architect, design critic, 3 kinds of reviewer, implementer, test engineer). The agent cap is 0, 1, 2, 3 for T0–T3, and only 0, 0, 0, 1 when Codex takes the critic's seat. Codex has no standing agents: every call is a fresh task, and it only critiques — it writes no code and fixes nothing.
+Honest limit: you need Codex Cloud connected to GitHub, with quota left.
 
-To keep it running I use a handoff file: around 70% of context I write the notes, around 85% I wrap up, and a new session picks up from the file.
-
-The honest limits: you need Codex Cloud connected to GitHub with quota left, and auto-merge is only safe when the main branch requires up-to-date branches.
-
-Who checks your AI's work today?
+What worries you most about unattended AI runs?
 
 #Claude #Codex #AI #automation #softwaredevelopment

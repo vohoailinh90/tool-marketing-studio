@@ -7,7 +7,7 @@ audience: >-
 pains:
   - "The model that wrote the code reviews its own work and misses its own blind spots"
   - "\"Done\" arrives with no evidence against the acceptance criteria"
-  - "Running agents unattended risks endless back-and-forth, burnt quota and scope creep"
+  - "Agents run unattended with no round caps and no condition for stopping"
   - "A session dies mid-task and you re-explain everything from scratch"
 promise: "A written process: who designs, who critiques, how many rounds each gets, and exactly what counts as done."
 objections:

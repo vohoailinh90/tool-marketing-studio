@@ -6,7 +6,7 @@ audience: >-
 pains:
   - "Một AI vừa viết vừa tự duyệt thì khó thấy lỗi của chính nó"
   - "Nhờ AI làm cả buổi, quay lại thì chỉ có \"đã xong\" mà không có bằng chứng"
-  - "Cho AI chạy tự động thì lo nó lặp vô hạn, tốn quota, đi lệch phạm vi"
+  - "Cho AI chạy tự động mà không có giới hạn số vòng và điều kiện dừng"
   - "Phiên làm việc đứt giữa chừng thì phải kể lại từ đầu"
 promise: "Một quy trình ghi rõ ai thiết kế, ai bắt lỗi, mỗi bên được hỏi mấy vòng, và khi nào được gọi là xong."
 objections:

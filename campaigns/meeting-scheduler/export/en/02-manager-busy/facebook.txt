@@ -1,0 +1,16 @@
+Managers fully booked: how do you land a time for the whole group? I simulated 4 ways 🗓️
+
+Setup: 10 people in one department, 8 busy about 30% of their working time and 2 managers twice as busy (about 60%). The chance that a week has a 60-minute slot where everyone is free is only about 7%. Then each way:
+
+1) Make only the essential people must-attend, managers join if they can: about 61% (if at least 1 of the 2 managers must also be free: about 35%).
+2) Make it 30 minutes instead of 60: about 65%.
+3) Search 4 weeks instead of 1 week: about 30% (2 weeks: about 14%).
+4) Ask just one person to move one meeting: about 57% of weeks have a slot where at most one person is busy, and in about 48% of such slots that person is a manager, so you know who to ask.
+
+One tip that needs no simulation: offer 2–3 options to pick from instead of asking each person every time.
+
+(That is a simulation with random calendars; "managers twice as busy" is my assumption, not a measurement of a real team.)
+
+I am prototyping a small tool for this, but it only reads calendars of people in the same organisation and it is not released. When managers are fully booked, what do you do? Answer A / B / C / D in the comments 👇
+
+#remotework #meetings #management #productivity #scheduling

@@ -74,6 +74,14 @@ claims:              # anything a post states as a benefit must be one of these
     text: "Simple simulation (one week; random 30-90 minute meetings; staff busy 30% of working time, 'managers' ASSUMED busy 60%; 2000 runs each): chance that at least one 60-minute slot exists where EVERYONE is free. 10 people across Vietnam, India and South Korea: 14% with no managers, 3% with 2 managers. 10 people all in one country and department (same hours): 28% with no managers, 15% with 1 manager, 7% with 2 managers. A 5-person department in one country: 100% with no managers, 89% with 1 manager. Earlier coarser run (300 runs per cell, people split across the 3 countries) at 20% / 30% / 40% busy: 3 people 100% / 100% / 98%, 10 people 73% / 12% / 2%, 15 people 23% / 1% / 0%"
     evidence: simulations run 2026-10-11 on the repo's find_best_slot; assume independent random meetings, no lunch breaks, no holidays; 'managers busier' is an assumption from the page owner's experience, not measured; real calendars are clumpier, so treat as an illustration, not a forecast
     verified: true
+  - id: manager-tips-simulation
+    text: "Same simulation setup as headcount-simulation (10 people in ONE country and department, same hours; 8 staff busy 30% and 2 'managers' ASSUMED busy 60%; random 30-90 minute meetings; 1000-2000 runs per case). Chance that a slot exists where all 10 are free: 60-minute slot, 1 week 7% (7.2-7.5% in two runs); 30-minute slot, 1 week 65%; 60-minute slot searched over 2 weeks 14%, over 4 weeks 30%. Requiring only the 8 staff to be free: 61%; the 8 staff plus at least one of the 2 managers: 35%. Chance that some 60-minute slot has at most one busy person: 57% of weeks; in slots with exactly one busy person, that person is one of the 2 managers 48% of the time (managers are 20% of the group)"
+    evidence: simulation run 2026-10-11 reproducing the repo's availability rule (work window, 30-minute slices); assumptions as in headcount-simulation; the managers-busier assumption comes from the page owner's experience and was not measured; illustration, not a forecast
+    verified: true
+  - id: scheduling-habit-tip
+    text: "Offering 2-3 candidate times to pick from, instead of asking each person in turn, is quicker"
+    evidence: general scheduling practice, not measured and not part of the tool
+    verified: false
   - id: same-org-only
     text: The tool can only show free/busy for people whose calendar Microsoft Graph exposes to the signed-in user, i.e. colleagues in the same Microsoft 365 organisation; anyone else appears as unknown and is ignored by the best slot
     evidence: docs/MEETING_SCHEDULER_DESIGN.md decision 6 and risk R1; real check covered only two colleagues of the same organisation (2026-09-graph-getschedule.md section 11). Whether another organisation can be read when it shares free/busy was NOT verified
@@ -86,6 +94,7 @@ claims:              # anything a post states as a benefit must be one of these
 limitations:         # say these openly: they decide who should NOT try it
   - Needs IT approval of a Graph app registration; it will not work on a personal account or a company that blocks it
   - Reads only colleagues in the same Microsoft 365 organisation as the signed-in user. Customers, partners and, in a group with several Microsoft 365 tenants, colleagues of another tenant show as unknown and are ignored by the best slot; sharing free/busy between organisations is not verified
+  - Counting who blocks the most slots (to know whom to ask to move a meeting) is only a proposal, not built; today it shows, for each near-miss slot, who is free, busy or unknown
   - Working hours are a hard yes/no; no lunch break, no public holidays, no per-country weekend, no "required vs optional" invitee
   - Results are shown in JST only, not in each invitee's local time
   - With people on three continents the strict window usually leaves no slot for everyone; the alternatives are ranked by headcount, not by who gets a night-time meeting

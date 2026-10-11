@@ -1,0 +1,81 @@
+id: 02-manager-busy
+status: draft
+format: portrait
+series: "Họp xuyên quốc gia · #2"
+link: ~
+slides:
+  - layout: cover
+    emoji: "🗓️"
+    eyebrow: "Họp xuyên bộ phận"
+    title: "Quản lý **kín lịch**?\n4 cách chốt giờ họp"
+    subtitle: "Không cần hỏi từng người từng lần. Mình mô phỏng xem mỗi cách cải thiện được bao nhiêu."
+    badge: "Xem hết các ảnh nhé 👉"
+
+  - layout: stat
+    eyebrow: "Điểm xuất phát"
+    value: "~7%"
+    label: "khả năng một tuần có khung 60 phút\nai cũng rảnh: 10 người cùng bộ phận,\n2 quản lý bận gấp đôi"
+    caption: "Mô phỏng (như bài trước): người thường bận khoảng 30% giờ làm, quản lý khoảng 60%."
+
+  - layout: stat
+    eyebrow: "Cách 1: bớt người bắt buộc"
+    before: "7%"
+    after: "61%"
+    label: "Chỉ bắt buộc 8 người thường rảnh, quản lý đến được thì tốt"
+    caption: "Nếu cần thêm ít nhất 1 trong 2 quản lý: khoảng 35%."
+
+  - layout: stat
+    eyebrow: "Cách 2: họp ngắn hơn"
+    before: "7%"
+    after: "65%"
+    label: "Họp 30 phút thay vì 60 phút"
+    caption: "Cùng điều kiện, khả năng cả 10 người cùng rảnh cho khung đó."
+
+  - layout: stat
+    eyebrow: "Cách 3: tìm xa hơn"
+    before: "7%"
+    after: "30%"
+    label: "Tìm trong 4 tuần thay vì 1 tuần"
+    caption: "Tìm trong 2 tuần: khoảng 14%."
+
+  - layout: stat
+    eyebrow: "Cách 4: chỉ xin một người dời họp"
+    value: "~57%"
+    label: "số tuần có khung mà\nnhiều nhất một người bận"
+    caption: "Ở khoảng 48% số khung như vậy, người bận đó là quản lý: biết xin ai nhường."
+
+  - layout: poll
+    eyebrow: "Hỏi nhanh"
+    question: "Khi quản lý kín lịch, bạn thường làm gì?"
+    options:
+      - "Hỏi quản lý trước, rồi xếp người khác"
+      - "Gửi 2–3 khung để mọi người chọn"
+      - "Họp không có quản lý, báo lại sau"
+      - "Chờ sang tuần sau"
+
+  - layout: cta
+    emoji: "💬"
+    title: "Công cụ mình đang thử giúp được đến đâu?"
+    text: "Mỗi khung gần đúng (tối đa 5 khung), nó chỉ ra ai không rảnh. Đếm xem ai chặn nhiều nhất vẫn chỉ là ý tưởng. Chưa phát hành; chỉ đọc lịch người cùng tổ chức."
+    show_link: false
+
+platforms:
+  facebook:
+    caption: |
+      Quản lý kín lịch thì làm sao chốt được giờ họp cho cả nhóm? Mình thử mô phỏng 4 cách 🗓️
+
+      Tình huống: 10 người cùng bộ phận, 8 người bận khoảng 30% giờ làm, 2 quản lý bận gấp đôi (khoảng 60%). Khả năng một tuần có khung 60 phút ai cũng rảnh chỉ khoảng 7%. Thử từng cách:
+
+      1) Chỉ bắt buộc người cần thiết, quản lý đến được thì tốt: khoảng 61% (nếu cần thêm ít nhất 1 trong 2 quản lý: khoảng 35%).
+      2) Họp 30 phút thay vì 60 phút: khoảng 65%.
+      3) Tìm trong 4 tuần thay vì 1 tuần: khoảng 30% (2 tuần: khoảng 14%).
+      4) Chỉ xin một người dời một cuộc họp: khoảng 57% số tuần có khung mà nhiều nhất một người bận, và ở khoảng 48% số khung như vậy người bận là quản lý, nên biết xin ai nhường.
+
+      Thêm một mẹo không cần mô phỏng: gửi 2–3 khung để mọi người chọn, thay vì hỏi từng người từng lần.
+
+      (Đây là mô phỏng với lịch ngẫu nhiên; "quản lý bận gấp đôi" là giả định của mình, không phải số đo trên một nhóm thật.)
+
+      Mình đang thử viết một công cụ nhỏ cho bài toán này, nhưng nó chỉ đọc được lịch người cùng tổ chức và chưa phát hành. Khi quản lý kín lịch, bạn thường làm gì? Trả lời A / B / C / D ở comment nhé 👇
+    first_comment: |
+      A. Hỏi quản lý trước, rồi xếp người khác · B. Gửi 2–3 khung để mọi người chọn · C. Họp không có quản lý, báo lại sau · D. Chờ sang tuần sau
+    hashtags: [hopxuyenquocgia, quanly, lichhop, vanphong, nangsuat]

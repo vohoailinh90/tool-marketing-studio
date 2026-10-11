@@ -1,0 +1,125 @@
+id: 4-1-1-prompting-basics
+status: draft
+format: portrait
+series: Agentic Coding · Bài 4.1.1
+link: prompting-basics
+slides:
+- layout: cover
+  emoji: 🧠
+  eyebrow: Học AI qua việc nhỏ
+  title: Prompt rõ hơn, **bớt phải đoán**
+  subtitle: AI trả lời lan man? Có thể bạn chưa nói rõ việc cần làm.
+  badge: Bài nền tảng
+- layout: features
+  title: Bốn mảnh giúp AI bớt đoán
+  items:
+  - emoji: 👥
+    title: Bối cảnh
+    text: Viết cho ai, tình huống gì?
+  - emoji: 🎯
+    title: Nhiệm vụ
+    text: Tóm tắt, phân loại hay viết lại?
+  - emoji: 📋
+    title: Định dạng
+    text: Bảng, email hay gạch đầu dòng?
+  - emoji: 💡
+    title: Ví dụ
+    text: Mẫu nhỏ khi khó diễn tả
+- layout: compare
+  title: Cùng ghi chú, khác lời nhờ
+  before:
+    label: Mơ hồ
+    items:
+    - Viết cho hay
+    - AI phải đoán mục tiêu
+  after:
+    label: Rõ ràng
+    items:
+    - Tóm tắt ghi chú giả
+    - Ba dòng; chỉ dùng dữ kiện
+    - Thiếu thì ghi chưa rõ
+  note: Minh họa · vẫn đối chiếu với ghi chú gốc
+- layout: checklist
+  eyebrow: Lưu lại để nhớ
+  title: Điều cần mang theo
+  items:
+  - Rõ việc trước, dài sau
+  - 'Thiếu dữ kiện: cho phép nói chưa rõ'
+  - Đối chiếu với ghi chú gốc
+- layout: poll
+  eyebrow: Tự kiểm tra
+  question: AI thiếu ngày hoàn thành. Nên dặn gì?
+  options:
+  - Tự chọn ngày cho hợp lý
+  - Ghi chưa rõ, hỏi lại
+  - Bỏ qua mà không báo
+  hint: Chọn đáp án và giải thích · đáp án ở bình luận đầu
+- layout: cta
+  emoji: ✍️
+  title: Thử một việc nhỏ
+  text: Dùng ghi chú bịa trong ai-practice. Viết prompt rõ, rồi so câu trả lời với dữ kiện gốc.
+  button: Đọc bài đầy đủ ở bình luận đầu
+  hint: Bạn thường quên mảnh nào trong prompt?
+platforms:
+  facebook:
+    caption: 'AI trả lời lan man? Có thể bạn chưa nói rõ việc cần làm.
+
+
+      Mai đưa ghi chú một cuộc họp giả rồi nhờ: “Viết giúp tôi cho hay.” AI viết một email dài, tự thêm
+      ngày họp và gọi người nhận là “quý khách”. Câu văn trôi chảy, nhưng lệch ý Mai.
+
+
+      Prompt là nội dung bạn đưa cho AI. Một prompt rõ thường cho biết:
+
+      • Bối cảnh: ai sẽ đọc, tình huống gì?
+
+      • Nhiệm vụ: cần tóm tắt, phân loại hay viết lại?
+
+      • Định dạng: bảng, email hay gạch đầu dòng?
+
+      • Ví dụ: một mẫu nhỏ nếu khó diễn tả.
+
+
+      Thử đổi lời nhờ thành: “Đây là ghi chú bịa cho nhóm tình nguyện. Tóm tắt quyết định và việc còn
+      bỏ ngỏ thành ba gạch đầu dòng tiếng Việt. Chỉ dùng ghi chú này; thiếu thông tin thì ghi ‘chưa rõ’,
+      đừng tự đoán.” Thêm một dòng mẫu nếu cần: “Quyết định: [điều đã thống nhất]”.
+
+
+      Lời dặn rõ không bảo đảm AI luôn đúng. Sau khi nhận kết quả, bạn vẫn cần kiểm tra số dòng, quyết
+      định và chỗ thiếu thông tin với ghi chú gốc.
+
+
+      Thử bằng dữ liệu bịa trong ai-practice: hỏi mơ hồ ở một phiên, hỏi rõ ở phiên mới, rồi so hai kết
+      quả.
+
+
+      Bạn thường quên mảnh nào: bối cảnh, nhiệm vụ, định dạng hay ví dụ? Nếu thử rồi, chia sẻ một thay
+      đổi giúp kết quả dễ kiểm tra hơn nhé.
+
+      '
+    first_comment: '📖 Bài “Prompt căn bản: nói sao cho AI hiểu”: {link}
+
+
+      Đáp án câu hỏi trên ảnh: B — ghi “chưa rõ” và hỏi lại. Thiếu ngày hoàn thành thì không tự biến phỏng
+      đoán thành dữ kiện.
+
+
+      Mẹo tự kiểm tra: kết quả có đúng dạng bạn yêu cầu, giữ đúng thông tin gốc và nêu rõ phần còn thiếu
+      không?
+
+      '
+    hashtags:
+    - AgenticCoding
+    - HocAI
+    - AIagent
+    - KiemChung
+notes:
+  source: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/prompting-basics.md
+  source_commit: 412bbb2f1a549b8eafd7b138f9ee627b8a9d1fc3
+  source_status: review
+  lesson_title: 'Prompt căn bản: nói sao cho AI hiểu'
+  track: core
+  editorial: Chỉ tiếng Việt. Nội dung giáo dục, không công bố kết quả đo, giá hay lời chứng thực. Không
+    có thao tác đăng hoặc duyệt.
+  quiz_answer: B
+  quiz_reason: Thiếu thông tin thì nêu rõ; không tự biến phỏng đoán thành dữ kiện.

@@ -1,0 +1,49 @@
+slug: agentic-coding-course
+name: Agentic Coding · Tiếng Việt
+repo: vohoailinh90/Agentic-coding-course
+status: prototype
+brand:
+  emoji: 🧠
+  accent: '#1763a6'
+what_it_is: Kho bài học Agentic Coding cho người mới. Mẫu chiến dịch này chuyển bài Prompt căn bản của
+  chương 4 thành content giáo dục tiếng Việt cho Facebook.
+requirements:
+- Đọc trên trình duyệt; thực hành bằng dữ liệu giả.
+- Quyền cài đặt, sử dụng công cụ và dữ liệu theo môi trường của người học.
+features:
+- id: prompting-basics
+  fact: Một prompt hữu ích cho AI biết bối cảnh, việc cần làm, dạng kết quả và một ví dụ; nó cũng cho
+    phép AI nói khi chưa biết. Bài thực hành so sánh một câu hỏi mơ hồ với một câu hỏi rõ ràng bằng dữ
+    liệu bịa trong ai-practice.
+  evidence: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/prompting-basics.md
+  source_status: review
+  source_sha256: f351c21bee0f60f5572c669e023352940e5282654b932fd3e0ac8758cd30b8bf
+claims:
+- id: prompting-basics-teaching-points
+  text:
+  - 'Bối cảnh: ai cần kết quả?'
+  - 'Nhiệm vụ: cần làm việc gì?'
+  - Định dạng và ví dụ khi cần
+  - 'Mơ hồ: tóm tắt giúp tôi'
+  - 'Rõ: tóm tắt ghi chú cuộc họp giả'
+  - Xuất việc cần làm; thiếu thì ghi chưa rõ
+  - Rõ việc trước, dài sau
+  - 'Thiếu dữ kiện: cho phép nói chưa rõ'
+  - Đối chiếu với ghi chú gốc
+  - Prompt là nội dung đưa cho AI.
+  - Bối cảnh, nhiệm vụ, định dạng và ví dụ khi cần.
+  - Prompt rõ không bảo đảm AI luôn đúng; đối chiếu dữ kiện và định dạng.
+  - Tình huống Mai hỏi viết cho hay rồi nhận email lệch ý là ví dụ minh họa trong bài nguồn.
+  - So câu hỏi mơ hồ và câu hỏi rõ ở hai phiên mới, bằng dữ liệu bịa trong ai-practice.
+  evidence: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/prompting-basics.md
+  verified: true
+  verification_scope: Đối chiếu với bài nguồn; không phải xác nhận hiệu quả thực tế hoặc duyệt xuất bản.
+limitations:
+- Các bài nguồn đang ở trạng thái review, chưa được coi là đã duyệt.
+- Không cam kết tiết kiệm thời gian, doanh thu hoặc độ chính xác.
+- Ví dụ trong bài đăng là tình huống minh họa, không phải lời chứng thực.
+- Lựa chọn và quyền thực thi phụ thuộc công cụ; chỉ dẫn không thay thế cơ chế phân quyền.
+story_to_confirm: []
+commercial_readiness:
+- Chiến dịch giáo dục, không chào bán hay công bố giá.
+source_commit: 412bbb2f1a549b8eafd7b138f9ee627b8a9d1fc3

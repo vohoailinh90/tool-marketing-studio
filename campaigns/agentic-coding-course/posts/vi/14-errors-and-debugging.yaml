@@ -1,0 +1,78 @@
+id: 14-errors-and-debugging
+status: draft
+format: portrait
+series: Học cùng AI · 2.2.4
+link: errors-and-debugging-vi
+slides:
+- layout: cover
+  emoji: 🧭
+  eyebrow: Học cùng AI
+  title: 'Gặp lỗi: đọc **dòng nào trước**?'
+  subtitle: Kiểm tra kết quả
+- layout: cover
+  emoji: 🔁
+  eyebrow: Hiểu để làm đúng
+  title: '**Tái hiện trước**'
+  subtitle: Biết cách làm lỗi xảy ra lại
+- layout: cover
+  emoji: 📜
+  eyebrow: Hiểu để làm đúng
+  title: '**Đọc dòng cuối trước**'
+  subtitle: Lỗi gì, ở file nào, dòng nào
+- layout: cover
+  emoji: 📋
+  eyebrow: Hiểu để làm đúng
+  title: '**Dán nguyên văn**'
+  subtitle: Kèm việc đã làm và điều mong đợi
+- layout: cover
+  emoji: 🔧
+  eyebrow: Hiểu để làm đúng
+  title: '**Mỗi lần 1 thay đổi**'
+  subtitle: Để biết cái gì đã sửa được lỗi
+- layout: cover
+  emoji: 🧹
+  eyebrow: Hiểu để làm đúng
+  title: '**2 lần hỏng thì làm lại**'
+  subtitle: Bắt đầu lại với yêu cầu tốt hơn
+- layout: quote
+  text: Sửa xong, thêm một phép kiểm tra để lỗi không quay lại.
+  author: Ghi nhớ từ bài học
+- layout: cta
+  emoji: 💬
+  eyebrow: Hỏi bạn
+  title: Bạn thường đọc thông báo lỗi hay gửi ngay cả ảnh cho AI?
+  text: Chia sẻ cách bạn làm.
+  hint: Link bài ở bình luận đầu.
+  show_link: false
+platforms:
+  facebook:
+    caption: 'Gặp lỗi: đọc dòng nào trước?
+
+
+      Đọc thông báo lỗi và gỡ lỗi như một thám tử
+
+
+      • Tái hiện trước: Biết cách làm lỗi xảy ra lại
+
+      • Đọc dòng cuối trước: Lỗi gì, ở file nào, dòng nào
+
+      • Dán nguyên văn: Kèm việc đã làm và điều mong đợi
+
+      • Mỗi lần 1 thay đổi: Để biết cái gì đã sửa được lỗi
+
+      • 2 lần hỏng thì làm lại: Bắt đầu lại với yêu cầu tốt hơn
+
+
+      Sửa xong, thêm một phép kiểm tra để lỗi không quay lại.
+
+
+      Bạn thường đọc thông báo lỗi hay gửi ngay cả ảnh cho AI?
+
+      Link bài ở bình luận đầu.'
+    first_comment: 'Đọc bài học và thử bằng dữ liệu giả: {link}'
+    hashtags:
+    - AgenticCoding
+    - AI
+    - HocAI
+notes: 'Source claim: errors-and-debugging. Chapter 2; curriculum lesson 2.2.4. Educational
+  recap, not a testimonial. Draft for owner review.'

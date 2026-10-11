@@ -1,6 +1,7 @@
 """Regression tests for the Codex review of vohoailinh90/tool-marketing-studio#1 (REQ-MKT-002)."""
 
 import os
+import time
 import unittest
 import zipfile
 from unittest import mock
@@ -32,9 +33,19 @@ class BareDomainTests(unittest.TestCase):
         for text in ("Vào example.ca nhé", "product.tech", "see tool.consulting.", "ｓｈｏｐ．ｊｐ"):
             self.assertTrue(has_url(text), text)
 
+    def test_a_domain_glued_to_japanese_text_is_a_link(self):
+        for text in ("詳細はexample.comへ", "公式サイトexample.com/a", "ツールexample.com"):
+            self.assertTrue(has_url(text), text)
+
     def test_abbreviations_and_file_names_that_are_not_domains_pass(self):
         for text in ("TP.HCM", "TP.Huế", "Node.js", "v23.0", "e.g. Outlook", "Ph.D", "St.Louis"):
             self.assertFalse(has_url(text), text)
+
+    def test_a_long_run_of_labels_is_checked_quickly(self):
+        for text in ("a-" * 15000, "a." * 15000):
+            started = time.monotonic()
+            has_url(text)
+            self.assertLess(time.monotonic() - started, 2.0, text[:4])
 
 
 class InsightShapeTests(unittest.TestCase):

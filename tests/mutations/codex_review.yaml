@@ -21,13 +21,21 @@ mutations:
         runs-on: ${{ vars.CI_RUNNER || 'self-hosted' }}
   test: tests.test_codex_review.CiRunnerTests.test_pull_requests_from_forks_never_reach_the_self_hosted_runner
 - label: only a short list of domain endings counts as a link
-  find: '               if not line.startswith("#") for word in line.split()}, key=len, reverse=True)'
-  replace: '               if not line.startswith("#") for word in line.split() if word in ("com", "vn", "jp")}, key=len, reverse=True)'
+  find: '        if not line.startswith("#") for word in line.split()}'
+  replace: '        if not line.startswith("#") for word in line.split() if word in ("com", "vn", "jp")}'
   test: tests.test_codex_review.BareDomainTests.test_a_bare_domain_with_any_real_ending_is_a_link
-- label: a domain ending may run on into a letter
-  find: '    r"\b[a-z0-9][a-z0-9-]*(?:\.[a-z0-9-]+)*\.(?:" + "|".join(TLDS) + r")(?![\w-])|"'
-  replace: '    r"\b[a-z0-9][a-z0-9-]*(?:\.[a-z0-9-]+)*\.(?:" + "|".join(TLDS) + r")(?![a-z0-9-])|"'
+- label: a domain ending may run on into a Vietnamese letter
+  find: 'END = r"(?![a-z0-9\u00c0-\u024f\u0300-\u036f\u1e00-\u1eff-])"   # ASCII, Latin with accents (Vietnamese)'
+  replace: 'END = r"(?![a-z0-9-])"'
   test: tests.test_codex_review.BareDomainTests.test_abbreviations_and_file_names_that_are_not_domains_pass
+- label: a domain glued to Japanese text is missed
+  find: 'START, LABEL, MORE = r"(?<![a-z0-9-])", r"[a-z0-9-]{1,63}", r"(?:\.[a-z0-9-]{1,63}){0,10}"'
+  replace: 'START, LABEL, MORE = r"\b", r"[a-z0-9-]{1,63}", r"(?:\.[a-z0-9-]{1,63}){0,10}"'
+  test: tests.test_codex_review.BareDomainTests.test_a_domain_glued_to_japanese_text_is_a_link
+- label: an unbounded run of labels backtracks quadratically
+  find: 'START, LABEL, MORE = r"(?<![a-z0-9-])", r"[a-z0-9-]{1,63}", r"(?:\.[a-z0-9-]{1,63}){0,10}"'
+  replace: 'START, LABEL, MORE = r"(?<![a-z0-9-])", r"[a-z0-9-]{1,63}", r"(?:\.[a-z0-9-]{1,63})*"'
+  test: tests.test_codex_review.BareDomainTests.test_a_long_run_of_labels_is_checked_quickly
 - label: an unhashable layout crashes the checker
   find: '        if not isinstance(name, str) or name not in LAYOUTS:'
   replace: '        if name not in LAYOUTS:'

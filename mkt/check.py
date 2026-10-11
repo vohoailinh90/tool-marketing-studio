@@ -18,16 +18,41 @@ from .text import plain
 
 HEX = re.compile(r"^#[0-9a-fA-F]{6}$")
 TODO = re.compile(r"\bTODO\b")
+
+
+def trie_pattern(words) -> str:
+    """One alternation for many words with shared prefixes factored out, so a miss fails fast."""
+    tree: dict = {}
+    for word in words:
+        node = tree
+        for char in word:
+            node = node.setdefault(char, {})
+        node[""] = {}
+
+    def walk(node: dict) -> str:
+        alts = [re.escape(char) + walk(child) for char, child in sorted(node.items()) if char]
+        if not alts:
+            return ""
+        group = alts[0] if len(alts) == 1 else "(?:" + "|".join(alts) + ")"
+        return f"(?:{group})?" if "" in node else group
+    return walk(tree)
+
+
 # Every top-level domain in the root zone, so a bare domain is caught whatever its ending.
-TLDS = sorted({word for line in (Path(__file__).with_name("tlds.txt")).read_text(encoding="utf-8").splitlines()
-               if not line.startswith("#") for word in line.split()}, key=len, reverse=True)
+TLDS = {word for line in (Path(__file__).with_name("tlds.txt")).read_text(encoding="utf-8").splitlines()
+        if not line.startswith("#") for word in line.split()}
 # A link in any spelling a platform would still turn into a link: scheme (also hxxp and
 # with spaces), www., or a bare domain. Text is NFKC-normalised first, so full-width
-# letters and dots are caught too. A domain must not run on into a letter (`TP.Huế` is not `.hu`).
+# letters and dots are caught too. A domain must not run on into a Latin letter (`TP.Huế` is not
+# `.hu`), but may touch Japanese text on either side: it has no spaces (`詳細はexample.comへ`).
+# Labels are capped at 63 characters and a domain at 10 dots, and the endings are one prefix trie,
+# so a long run of labels is checked in linear time.
+START, LABEL, MORE = r"(?<![a-z0-9-])", r"[a-z0-9-]{1,63}", r"(?:\.[a-z0-9-]{1,63}){0,10}"
+END = r"(?![a-z0-9\u00c0-\u024f\u0300-\u036f\u1e00-\u1eff-])"   # ASCII, Latin with accents (Vietnamese)
 URL = re.compile(
-    r"(?i)(?:\bh[tx]{2}ps?\s*:\s*//|\bwww\.|"
-    r"\b[a-z0-9][a-z0-9-]*(?:\.[a-z0-9-]+)*\.(?:" + "|".join(TLDS) + r")(?![\w-])|"
-    r"\b[a-z0-9-]+(?:\.[a-z0-9-]+)*\.[a-z]{2,}/[\w/%-])")   # any domain followed by a path
+    r"(?i)(?:" + START + r"h[tx]{2}ps?\s*:\s*//|" + START + r"www\.|"
+    + START + r"[a-z0-9][a-z0-9-]{0,62}" + MORE + r"\.(?:" + trie_pattern(TLDS) + r")" + END + r"|"
+    + START + LABEL + MORE + r"\.[a-z]{2,}/[\w/%-])")   # any domain followed by a path
 
 
 def has_url(text: str) -> bool:

@@ -18,6 +18,7 @@ slides:
       - {from: "Linh (Vietnam)", text: "Shall we do 15:00?"}
       - {from: "Min-jun (South Korea)", text: "15:00 in Vietnam is 17:00 for us"}
       - {from: "Arjun (India)", text: "That's 13:30 here. India has a 30-minute offset, let me recalculate"}
+      - {from: "Ha (manager)", text: "I'm in meetings all Tuesday and Thursday morning"}
       - {me: true, text: "Hold on, there are more people to fit in…"}
     note: "Illustrative chat, not a real conversation."
 
@@ -30,23 +31,24 @@ slides:
       - ["South Korea", "07:00 – 16:00"]
       - [{text: "All three working", tone: ok}, {text: "10:30 – 16:00", tone: ok}]
     style: app
-    note: "Worked out from standard working hours, with completely empty calendars."
-
-  - layout: stat
-    eyebrow: "Sounds roomy"
-    value: "5.5 hours"
-    label: "a day when all three countries are at work"
-    caption: "That is 12:30–18:00 in South Korea and 09:00–14:30 in India. None of the three changes its clocks with the seasons."
+    note: "All three overlap 5.5 hours a day (12:30–18:00 South Korea, 09:00–14:30 India), calendars assumed empty."
 
   - layout: stat
     eyebrow: "Then the group grows"
-    value: "~12%"
+    value: "~14%"
     label: "chance that a week holds a 60-minute slot where all 10 people are free"
     caption: "A simple simulation, with everyone busy about 30% of their working time. With 3 people the same busyness almost always leaves a slot."
+
+  - layout: stat
+    eyebrow: "Even inside one department"
+    value: "~7%"
+    label: "chance of a 60-minute slot where all 10 are free, even in the same department and time zone"
+    caption: "Simulation: 2 managers are twice as busy (about 60% of working time), the other 8 about 30%. With no one busier it is about 28%."
 
   - layout: pains
     title: "And then there is…"
     items:
+      - {emoji: "🗓️", text: "**Managers** are booked in different slots, each on their own pattern"}
       - {emoji: "🎌", text: "**Public holidays** differ: Tet, Seollal, Diwali"}
       - {emoji: "🔢", text: "India's **30-minute offset** makes hand conversion error-prone"}
       - {emoji: "👀", text: "Calendars **outside your organisation** are usually not visible"}
@@ -72,7 +74,9 @@ platforms:
     caption: |
       Vietnam, India and South Korea are only a few hours apart, yet finding a time that suits everyone is still hard 🌏
 
-      Working 09:00–18:00, the three countries overlap for 5.5 hours a day. Roomy, right? But with 10 people, each busy about 30% of their working time, my simple simulation found a 60-minute slot where everyone is free in only about 12% of weeks (with 3 people, almost always).
+      Working 09:00–18:00, the three countries overlap for 5.5 hours a day. Roomy, right? But with 10 people, each busy about 30% of their working time, my simple simulation found a 60-minute slot where everyone is free in only about 14% of weeks (with 3 people, almost always).
+
+      Add a few managers, booked in different slots, and even 10 people in the same department and time zone have a 60-minute slot where all are free in only about 7% of weeks (about 28% if no one is busier).
 
       Then add public holidays that differ by country, India's 30-minute offset that makes hand conversion error-prone, and calendars outside your organisation that are usually not visible.
 

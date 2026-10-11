@@ -8,6 +8,7 @@ pains:
   - "Quy đổi giờ bằng tay cho từng người, sai một múi giờ là cả nhóm lệch"
   - "Không có giờ chung thì không rõ ai phải chịu giờ xấu"
   - "Đồng nghiệp ngoài công ty không xem được lịch, chỉ đoán"
+  - "Quản lý kín họp ở những khung giờ khác nhau, cả bộ phận cũng khó tìm giờ chung"
   - "Ngày lễ mỗi nước một khác"
 promise: "Bạn nói ai tham gia và họp bao lâu; công cụ chỉ ra khung giờ chung rồi mở sẵn bản nháp để bạn tự kiểm tra và gửi."
 objections:
@@ -16,7 +17,7 @@ objections:
   - {q: "Đọc lịch đồng nghiệp bằng cách nào?", a: "Qua Microsoft Graph, bằng chính tài khoản của người dùng; công ty (IT) phải cho phép."}
 vocabulary: [họp xuyên quốc gia, lệch múi giờ, giờ hành chính, khung giờ chung, lịch bận, giờ Ấn Độ, giờ Hàn Quốc, chốt giờ họp]
 angles:
-  - "Việt Nam, Ấn Độ, Hàn Quốc: có 5,5 giờ chung mỗi ngày, nhưng 10 người thì còn ~12% khả năng có khung ai cũng rảnh"
+  - "Việt Nam, Ấn Độ, Hàn Quốc: có 5,5 giờ chung mỗi ngày, nhưng 10 người thì còn ~14% khả năng có khung ai cũng rảnh"
   - "Khi không có giờ chung, ai chịu giờ xấu"
   - "Vì sao mình thử viết công cụ này (cần chủ tool xác nhận)"
 tone: "Thân thiện, xưng mình – bạn, hài hước nhẹ về chuyện dịch múi giờ; trung thực: đây là ý tưởng, chưa phải sản phẩm."

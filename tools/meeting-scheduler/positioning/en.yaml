@@ -8,6 +8,7 @@ pains:
   - "Converting time zones by hand: one wrong offset and the whole group is off"
   - "No shared slot means someone quietly takes the 7am or the 9pm meeting"
   - "Guests outside your company: you cannot see their calendars"
+  - "Managers are booked in different slots, so even one department struggles to find a shared slot"
   - "Public holidays differ by country"
 promise: "Say who is coming and for how long; it shows the shared windows, then opens a draft for you to review and send."
 objections:
@@ -16,7 +17,7 @@ objections:
   - {q: "How does it read calendars?", a: "Through Microsoft Graph with the user's own account; the organisation's IT must allow it."}
 vocabulary: [overlap, working hours, time zones, shared window, free/busy, recurring sync, 4pm whose time, find a slot]
 angles:
-  - "Vietnam, India, South Korea share 5.5 hours a day, yet with 10 people a slot where everyone is free shows up only ~12% of weeks"
+  - "Vietnam, India, South Korea share 5.5 hours a day, yet with 10 people a slot where everyone is free shows up only ~14% of weeks"
   - "Who takes the bad hour when nothing fits"
   - "Why I started building it (owner to confirm)"
 tone: "Crisp and friendly, light humour about time zones; honest that this is an idea, not a product."

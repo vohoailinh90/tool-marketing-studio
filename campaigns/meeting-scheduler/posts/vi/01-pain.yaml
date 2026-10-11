@@ -18,6 +18,7 @@ slides:
       - {from: "Linh · Việt Nam", text: "Họp 15:00 nhé?"}
       - {from: "Min-jun · Hàn Quốc", text: "15:00 bên Việt Nam là 17:00 bên mình"}
       - {from: "Arjun · Ấn Độ", text: "Bên mình là 13:30. Ấn Độ lệch 30 phút lẻ, để mình tính lại"}
+      - {from: "Chị Hà · Quản lý", text: "Mình kín họp sáng thứ Ba và thứ Năm rồi"}
       - {me: true, text: "Khoan, còn nhiều người nữa…"}
     note: "Hội thoại minh hoạ, không phải của ai thật."
 
@@ -30,23 +31,24 @@ slides:
       - ["Hàn Quốc", "07:00 – 16:00"]
       - [{text: "Cả ba cùng làm việc", tone: ok}, {text: "10:30 – 16:00", tone: ok}]
     style: app
-    note: "Ví dụ tính từ giờ hành chính, lịch hoàn toàn trống."
-
-  - layout: stat
-    eyebrow: "Nghe thì thoải mái"
-    value: "5,5 giờ"
-    label: "mỗi ngày cả ba nước cùng đang làm việc"
-    caption: "Tức 12:30–18:00 bên Hàn Quốc, 09:00–14:30 bên Ấn Độ. Cả ba nước đều không đổi giờ theo mùa."
+    note: "Cùng làm việc 5,5 giờ mỗi ngày (12:30–18:00 Hàn Quốc, 09:00–14:30 Ấn Độ), lịch coi như trống."
 
   - layout: stat
     eyebrow: "Rồi nhóm đông lên"
-    value: "~12%"
+    value: "~14%"
     label: "khả năng một tuần có khung 60 phút mà cả 10 người cùng rảnh"
     caption: "Mô phỏng đơn giản: mỗi người bận khoảng 30% giờ làm việc. Với 3 người, cùng mức bận đó gần như chắc chắn có khung."
+
+  - layout: stat
+    eyebrow: "Ngay cả trong một bộ phận"
+    value: "~7%"
+    label: "khả năng có khung 60 phút ai cũng rảnh, dù cả 10 người cùng một bộ phận"
+    caption: "Mô phỏng, cùng múi giờ: 2 quản lý bận gấp đôi (khoảng 60% giờ làm), 8 người còn lại bận khoảng 30%. Nếu không ai bận hơn: khoảng 28%."
 
   - layout: pains
     title: "Chưa kể…"
     items:
+      - {emoji: "🗓️", text: "**Quản lý** kín họp ở những khung giờ khác nhau, mỗi người một kiểu"}
       - {emoji: "🎌", text: "**Ngày lễ** mỗi nước một khác: Tết, Seollal, Diwali"}
       - {emoji: "🔢", text: "Ấn Độ lệch **30 phút lẻ**, quy đổi tay dễ sai"}
       - {emoji: "👀", text: "Lịch của người **ngoài tổ chức** thường không xem được"}
@@ -72,7 +74,9 @@ platforms:
     caption: |
       Họp với đồng nghiệp ở Việt Nam, Ấn Độ, Hàn Quốc: lệch múi giờ ít mà vẫn khó chốt giờ 🌏
 
-      Ba nước này chỉ lệch nhau vài tiếng; cùng làm 09:00–18:00 thì mỗi ngày có 5,5 giờ chung. Nghe thì thoải mái. Nhưng khi nhóm lên 10 người, mỗi người bận khoảng 30% giờ làm việc, mô phỏng đơn giản của mình cho thấy chỉ khoảng 12% số tuần có một khung 60 phút mà cả 10 người cùng rảnh (với 3 người thì gần như chắc chắn có).
+      Ba nước này chỉ lệch nhau vài tiếng; cùng làm 09:00–18:00 thì mỗi ngày có 5,5 giờ chung. Nghe thì thoải mái. Nhưng khi nhóm lên 10 người, mỗi người bận khoảng 30% giờ làm việc, mô phỏng đơn giản của mình cho thấy chỉ khoảng 14% số tuần có một khung 60 phút mà cả 10 người cùng rảnh (với 3 người thì gần như chắc chắn có).
+
+      Và nếu trong nhóm có vài quản lý — thường kín họp ở những khung giờ khác nhau — thì ngay cả 10 người cùng một bộ phận, cùng múi giờ, mô phỏng cho thấy chỉ khoảng 7% số tuần có khung 60 phút ai cũng rảnh (khoảng 28% nếu không ai bận hơn).
 
       Chưa kể ngày lễ mỗi nước một khác, Ấn Độ lệch 30 phút lẻ làm quy đổi tay dễ sai, và lịch của người ngoài tổ chức thường không xem được.
 

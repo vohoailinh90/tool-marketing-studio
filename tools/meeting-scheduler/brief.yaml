@@ -71,8 +71,8 @@ claims:              # anything a post states as a benefit must be one of these
     evidence: measured 2026-10-11 with the repo's find_best_slot on empty synthetic calendars
     verified: true
   - id: headcount-simulation
-    text: "In a simple simulation (people split evenly across Vietnam, India and South Korea; one week; each person busy 20% / 30% / 40% of their working time with random 30-90 minute meetings; 300 runs each) the chance that at least one 60-minute slot exists where EVERYONE is free was: 3 people 100% / 100% / 98%; 10 people 73% / 12% / 2%; 15 people 23% / 1% / 0%"
-    evidence: simulation run 2026-10-11 on the repo's find_best_slot; assumes independent random meetings, no lunch breaks, no holidays; real calendars are clumpier, so treat as an illustration, not a forecast
+    text: "Simple simulation (one week; random 30-90 minute meetings; staff busy 30% of working time, 'managers' ASSUMED busy 60%; 2000 runs each): chance that at least one 60-minute slot exists where EVERYONE is free. 10 people across Vietnam, India and South Korea: 14% with no managers, 3% with 2 managers. 10 people all in one country and department (same hours): 28% with no managers, 15% with 1 manager, 7% with 2 managers. A 5-person department in one country: 100% with no managers, 89% with 1 manager. Earlier coarser run (300 runs per cell, people split across the 3 countries) at 20% / 30% / 40% busy: 3 people 100% / 100% / 98%, 10 people 73% / 12% / 2%, 15 people 23% / 1% / 0%"
+    evidence: simulations run 2026-10-11 on the repo's find_best_slot; assume independent random meetings, no lunch breaks, no holidays; 'managers busier' is an assumption from the page owner's experience, not measured; real calendars are clumpier, so treat as an illustration, not a forecast
     verified: true
   - id: same-org-only
     text: The tool can only show free/busy for people whose calendar Microsoft Graph exposes to the signed-in user, i.e. colleagues in the same Microsoft 365 organisation; anyone else appears as unknown and is ignored by the best slot

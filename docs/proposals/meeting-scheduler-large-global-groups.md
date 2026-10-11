@@ -19,16 +19,21 @@ Hai chuyện khác nhau, cần tách bạch:
 
 Khung chung của ba nước châu Á là 10:30-16:00 giờ Việt Nam, tức 09:00-14:30 ở Ấn Độ và 12:30-18:00 ở Hàn Quốc.
 
-**(b) Nhóm đông thì khung chung còn lại bao nhiêu?** Mô phỏng (người chia đều ba nước, một tuần, mỗi người bận 20/30/40% giờ làm
-bằng các cuộc họp ngẫu nhiên 30-90 phút, 300 lần chạy): xác suất có ít nhất một khung 60 phút mà **tất cả** cùng rảnh:
+**(b) Nhóm đông, và quản lý kín họp, thì khung chung còn lại bao nhiêu?** Mô phỏng một tuần, họp ngẫu nhiên 30-90 phút, người thường
+bận 30% giờ làm, "quản lý" **giả định** bận 60%, 2000 lần chạy. Xác suất có ít nhất một khung 60 phút mà **tất cả** cùng rảnh:
 
-| Số người | bận 20% | bận 30% | bận 40% |
+| Nhóm 10 người | Không có quản lý | 1 quản lý | 2 quản lý |
 |---|---|---|---|
-| 3 | 100% | 100% | 98% |
-| 10 | 73% | 12% | 2% |
-| 15 | 23% | 1% | 0% |
+| Cùng một nước, cùng một bộ phận (cùng giờ làm) | 28% | 15% | 7% |
+| Ba nước Việt Nam, Ấn Độ, Hàn Quốc | 14% | - | 3% |
 
-Lưu ý: giả định họp độc lập, không nghỉ trưa, không ngày lễ; lịch thật dồn cục hơn nên chỉ dùng để minh hoạ xu hướng.
+Nhóm 5 người cùng một nước: 100% khi không có quản lý, 89% khi có 1 quản lý. Chạy thô hơn (300 lần mỗi ô, người chia đều ba nước) cho thấy
+số người tăng thì khung chung sụp rất nhanh: ở mức bận 20/30/40%, nhóm 3 người 100/100/98%, nhóm 10 người 73/12/2%, nhóm 15 người 23/1/0%.
+
+Lưu ý: giả định họp độc lập, không nghỉ trưa, không ngày lễ, và "quản lý bận hơn" là giả định chứ chưa đo trên lịch thật; lịch thật dồn cục
+hơn nên chỉ dùng để minh hoạ xu hướng. Quan trọng nhất: **ngay cả khi không có múi giờ nào để đổ lỗi, chỉ riêng việc người này họp khung này,
+người kia họp khung khác đã đủ làm khung chung gần như biến mất.**
+
 Thuật toán không chậm (30 người x 60 ngày ≈ 0,3 giây), nên **tối ưu tốc độ không phải việc cần làm**; thiếu là cách xử lý khi
 không có khung hoàn hảo, và sự trung thực về những người tool không đọc được lịch.
 
@@ -42,6 +47,7 @@ không có khung hoàn hảo, và sự trung thực về những người tool k
   "không cùng tổ chức, không publish" là `unresolved` (quyết định 6, rủi ro R1) và lần kiểm chứng thật chỉ gồm đồng nghiệp cùng tổ chức.
   Tập đoàn có nhiều tenant thì đồng nghiệp ở tenant khác cũng có thể thành "không rõ". Việc hai tổ chức chia sẻ free/busy có đọc được
   hay không **chưa kiểm chứng** (tài liệu Microsoft tra được không nêu rõ).
+- Không phân biệt người bận nhiều (thường là quản lý) với người bận ít; không cho biết ai là người chặn nhiều khung nhất.
 - Người `unresolved` bị loại khỏi mẫu số, chỉ liệt kê riêng: khung "tốt nhất" có thể bỏ qua cả một nhóm người mà không ai để ý.
 - Giao diện chỉ hiện giờ **JST**; ô múi giờ chỉ có vài lựa chọn sẵn và offset tuỳ ý.
 - Lỗ hổng đo được (Việt Nam + Ấn Độ + Hàn Quốc + New York): ba gợi ý đầu đều là giờ làm việc của ba nước châu Á, còn người ở New York
@@ -54,6 +60,8 @@ không có khung hoàn hảo, và sự trung thực về những người tool k
 2. Nhãn người không rảnh ghi **lý do**: `busy` hay `out_of_hours` (dữ liệu đã có trong `_member_available`).
 3. Cảnh báo cố định khi có `unresolved`: "Khung này **bỏ qua N người** chưa đọc được lịch: ... (chỉ đọc được người cùng tổ chức)".
 4. Khi `best` rỗng, hiện **chẩn đoán**: số giờ chồng nhau mỗi ngày theo giờ làm đã khai, và ai là người kéo cửa sổ co lại.
+5. **Thống kê người chặn**: đếm, trên các khung ứng viên, mỗi người là người bận duy nhất bao nhiêu lần (thường là quản lý kín họp) và liệt kê
+   các khung "chỉ cần 1 người dời họp" kèm tên người đó, để chủ cuộc họp biết nên xin ai nhường. Thuần Python từ chuỗi free/busy đã có, không cần chủ đề cuộc họp.
 
 ### P1 - Điểm thay cho nhị phân (lõi của đề xuất)
 1. Mỗi member thêm tuỳ chọn (mặc định = hành vi hiện tại): `role: required|optional`, `core: 09:00-18:00`,
@@ -84,9 +92,10 @@ Ngày lễ: **không gọi API ngoài** - người dùng nhập ngày nghỉ, ho
 
 1. Test cố định các kịch bản ở mục 1(a); kết quả `best/fallback` đúng bảng.
 2. Việt Nam + Ấn Độ + Hàn Quốc (`required`) + New York (`optional`): khung đầu **không** đặt người New York trong giờ bị cấm (đêm).
-3. `pain_by_member` khác 0 chỉ với người ở giờ stretch; người ở giờ core luôn bằng 0.
-4. Hồi quy: mọi test hiện có của `test_meeting_scheduler.py` pass **không sửa**; `grep -rn "\.Send("` rỗng; `import meetingscheduler` chạy không cần pywin32.
-5. Benchmark: 30 người x 60 ngày vẫn dưới 2 giây (hiện 0,3 giây).
+3. Khung gần đúng có đúng một người bận được xếp hạng riêng và nêu tên người đó; thống kê người chặn đúng trên dữ liệu giả lập có một người bận dày.
+4. `pain_by_member` khác 0 chỉ với người ở giờ stretch; người ở giờ core luôn bằng 0.
+5. Hồi quy: mọi test hiện có của `test_meeting_scheduler.py` pass **không sửa**; `grep -rn "\.Send("` rỗng; `import meetingscheduler` chạy không cần pywin32.
+6. Benchmark: 30 người x 60 ngày vẫn dưới 2 giây (hiện 0,3 giây).
 
 ## 6. Câu hỏi cần chủ repo quyết
 

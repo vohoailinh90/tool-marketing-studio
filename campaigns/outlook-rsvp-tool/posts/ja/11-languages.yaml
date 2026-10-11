@@ -1,0 +1,57 @@
+id: 11-languages
+status: draft
+format: portrait
+series: "幹事の業務効率化 · #11"
+link: survey
+slides:
+  - layout: cover
+    emoji: "🌏"
+    eyebrow: "多言語メール"
+    title: "**日英併記**のメールを、APIキーなしで"
+    subtitle: "日本語・英語・ベトナム語、または日英併記。翻訳は Copilot へのコピー＆ペーストで。"
+
+  - layout: email
+    title: "日英併記メールのイメージ"
+    subject: "【EVT-12】忘年会のご案内 / Year-end party"
+    from: "幹事（あなた）"
+    infobar: "このメッセージには投票ボタンがあります。 / This message has voting buttons."
+    buttons: ["はい", "いいえ", "未定"]
+    body: "お疲れさまです。忘年会のご案内です。\n日時・場所は下記をご確認ください。\n――――――\nHello everyone,\nHere are the details for our year-end party.\nPlease vote with the buttons above."
+    note: "それぞれの半分に挨拶文がつきます（日本語が先、英語が後）。"
+
+  - layout: flow
+    variant: after
+    title: "Copilot で翻訳する手順"
+    steps:
+      - {emoji: "✍️", text: "メモ欄に、一言を**好きな言語**で書く"}
+      - {emoji: "📋", text: "**Copy note + fixed part + prompt** を押す"}
+      - {emoji: "🤖", text: "Microsoft Copilot に貼り付け。[JA NOTE] [JA DETAILS] [EN NOTE] [EN DETAILS] の見出しで返ってきます"}
+      - {emoji: "📥", text: "返ってきた答えをアプリに貼り戻して Save"}
+
+  - layout: checklist
+    title: "コピー＆ペースト方式の理由"
+    items:
+      - "**APIキーもアプリ登録も不要**"
+      - "プレビューで確認でき、**手で修正**もできます"
+      - "固定部分は最初から日英併記。翻訳せずにそのまま送ることもできます"
+      - "固定部分に付け足した文言も翻訳されます"
+    note: "コピー＆ペーストは手作業です。自動翻訳ではありません。"
+
+  - layout: cta
+    emoji: "🌏"
+    title: "イベントのメール、**何語**で送っていますか？"
+    text: "日本語だけ？日英併記？コメントで教えてください。"
+
+platforms:
+  facebook:
+    caption: |
+      外国籍のメンバーがいるチーム。案内メールを、日本語と英語で2回書いていませんか？🌏
+
+      このツールは、英語・日本語・ベトナム語、または日英併記のメールを送れます。日英併記なら、メモ欄に一言を好きな言語で書き、ボタン一つでメモと日英の詳細を、依頼文つきでコピー。Microsoft Copilot に貼り付けると日本語版と英語版が返ってくるので、アプリに貼り戻します。メールの半分ごとに挨拶文がつき、日本語が先、英語が後です。
+
+      APIキーやアプリ登録は不要で、プレビューで確認して手で直すこともできます。正直にお伝えすると、コピー＆ペーストは手作業で、自動翻訳ではありません。
+
+      皆さんのチームでは、イベントのメールを何語で送っていますか？コメントで教えてください👇
+    first_comment: |
+      📋 3分のアンケート — 使っている言語を教えてください：{link}
+    hashtags: [幹事, Outlook, Copilot, 日英併記, 業務効率化]

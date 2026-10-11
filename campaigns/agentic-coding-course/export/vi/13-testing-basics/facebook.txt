@@ -1,0 +1,15 @@
+Test xanh rồi. Đã thử làm hỏng chưa?
+
+Từ "trông có vẻ đúng" đến phép kiểm tra
+
+• Trông đúng chưa đủ: Nhìn một lần, dễ sót
+• Ví dụ + kết quả + so sánh: Đó là một phép kiểm tra
+• Thử trường hợp biên: Trống, số 0, rất lớn, sai kiểu
+• Làm hỏng thử: Phép kiểm tra phải báo lỗi
+
+Cho agent một phép kiểm tra để tự chạy — bạn khỏi phải tự phát hiện mọi lỗi.
+
+Bạn sẽ thử dữ liệu trống, số 0 hay sai kiểu trước?
+Link bài ở bình luận đầu.
+
+#AgenticCoding #AI #HocAI

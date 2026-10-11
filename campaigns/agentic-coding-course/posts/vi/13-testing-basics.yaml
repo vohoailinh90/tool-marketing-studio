@@ -1,0 +1,71 @@
+id: 13-testing-basics
+status: draft
+format: portrait
+series: Học cùng AI · 2.2.3
+link: testing-basics-vi
+slides:
+- layout: cover
+  emoji: 🧭
+  eyebrow: Học cùng AI
+  title: Test xanh rồi. **Đã thử làm hỏng** chưa?
+  subtitle: Kiểm tra kết quả
+- layout: cover
+  emoji: 👀
+  eyebrow: Hiểu để làm đúng
+  title: '**Trông đúng chưa đủ**'
+  subtitle: Nhìn một lần, dễ sót
+- layout: cover
+  emoji: 🧪
+  eyebrow: Hiểu để làm đúng
+  title: '**Ví dụ + kết quả + so sánh**'
+  subtitle: Đó là một phép kiểm tra
+- layout: cover
+  emoji: 🧱
+  eyebrow: Hiểu để làm đúng
+  title: '**Thử trường hợp biên**'
+  subtitle: Trống, số 0, rất lớn, sai kiểu
+- layout: cover
+  emoji: 💥
+  eyebrow: Hiểu để làm đúng
+  title: '**Làm hỏng thử**'
+  subtitle: Phép kiểm tra phải báo lỗi
+- layout: quote
+  text: Cho agent một phép kiểm tra để tự chạy — bạn khỏi phải tự phát hiện mọi lỗi.
+  author: Ghi nhớ từ bài học
+- layout: cta
+  emoji: 💬
+  eyebrow: Hỏi bạn
+  title: Bạn sẽ thử dữ liệu trống, số 0 hay sai kiểu trước?
+  text: Chia sẻ cách bạn làm.
+  hint: Link bài ở bình luận đầu.
+  show_link: false
+platforms:
+  facebook:
+    caption: 'Test xanh rồi. Đã thử làm hỏng chưa?
+
+
+      Từ "trông có vẻ đúng" đến phép kiểm tra
+
+
+      • Trông đúng chưa đủ: Nhìn một lần, dễ sót
+
+      • Ví dụ + kết quả + so sánh: Đó là một phép kiểm tra
+
+      • Thử trường hợp biên: Trống, số 0, rất lớn, sai kiểu
+
+      • Làm hỏng thử: Phép kiểm tra phải báo lỗi
+
+
+      Cho agent một phép kiểm tra để tự chạy — bạn khỏi phải tự phát hiện mọi lỗi.
+
+
+      Bạn sẽ thử dữ liệu trống, số 0 hay sai kiểu trước?
+
+      Link bài ở bình luận đầu.'
+    first_comment: 'Đọc bài học và thử bằng dữ liệu giả: {link}'
+    hashtags:
+    - AgenticCoding
+    - AI
+    - HocAI
+notes: 'Source claim: testing-basics. Chapter 2; curriculum lesson 2.2.3. Educational recap,
+  not a testimonial. Draft for owner review.'

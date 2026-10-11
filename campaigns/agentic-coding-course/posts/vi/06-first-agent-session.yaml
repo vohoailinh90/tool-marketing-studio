@@ -1,0 +1,71 @@
+id: 06-first-agent-session
+status: draft
+format: portrait
+series: Học cùng AI · 1.3.1
+link: first-agent-session-vi
+slides:
+- layout: cover
+  emoji: 🚀
+  eyebrow: Học cùng AI
+  title: 'Buổi đầu với agent: **làm một thứ nhỏ**'
+  subtitle: Sản phẩm đầu tiên
+- layout: cover
+  emoji: 📋
+  eyebrow: Hiểu để làm đúng
+  title: '**Yêu cầu có tiêu chí**'
+  subtitle: Việc cần làm và thế nào là xong
+- layout: cover
+  emoji: 🔐
+  eyebrow: Hiểu để làm đúng
+  title: '**Chế độ hỏi trước**'
+  subtitle: Đọc từng thay đổi rồi mới chấp nhận
+- layout: cover
+  emoji: 🗣️
+  eyebrow: Hiểu để làm đúng
+  title: '**Nói rõ chỗ sai**'
+  subtitle: Mình làm gì, thấy gì, mong đợi gì
+- layout: cover
+  emoji: ✅
+  eyebrow: Hiểu để làm đúng
+  title: '**Tự nghiệm thu, ghi bằng chứng**'
+  subtitle: 3 dòng cho sản phẩm đầu tiên
+- layout: quote
+  text: Thẻ "Việc của tôi trong tuần" sẽ còn đi cùng bạn ở các bài sau.
+  author: Ghi nhớ từ bài học
+- layout: cta
+  emoji: 💬
+  eyebrow: Hỏi bạn
+  title: Bạn sẽ đặt việc gì trong thẻ việc tuần bằng dữ liệu giả?
+  text: Chia sẻ cách bạn làm.
+  hint: Link bài ở bình luận đầu.
+  show_link: false
+platforms:
+  facebook:
+    caption: 'Buổi đầu với agent: làm một thứ nhỏ
+
+
+      Buổi đầu với agent: làm 1 trang "Việc của tôi trong tuần"
+
+
+      • Yêu cầu có tiêu chí: Việc cần làm và thế nào là xong
+
+      • Chế độ hỏi trước: Đọc từng thay đổi rồi mới chấp nhận
+
+      • Nói rõ chỗ sai: Mình làm gì, thấy gì, mong đợi gì
+
+      • Tự nghiệm thu, ghi bằng chứng: 3 dòng cho sản phẩm đầu tiên
+
+
+      Thẻ "Việc của tôi trong tuần" sẽ còn đi cùng bạn ở các bài sau.
+
+
+      Bạn sẽ đặt việc gì trong thẻ việc tuần bằng dữ liệu giả?
+
+      Link bài ở bình luận đầu.'
+    first_comment: 'Đọc bài học và thử bằng dữ liệu giả: {link}'
+    hashtags:
+    - AgenticCoding
+    - AI
+    - HocAI
+notes: 'Source claim: first-agent-session. Chapter 1; curriculum lesson 1.3.1. Educational recap,
+  not a testimonial. Draft for owner review.'

@@ -1,0 +1,69 @@
+# Language-neutral FACTS about the course. Every post, in every language, may only claim
+# what is written here or in the lesson the post is made from. Per-language positioning lives
+# in positioning/<lang>.yaml.
+# Source of every fact below: vohoailinh90/Agentic-coding-course at commit 412bbb2
+# (README.md, course/data/course.yaml, course/data/curriculum.yaml, docs/facebook-plan.md,
+# docs/decisions/008-a-recap-infographic-in-every-lesson.md), read on 2026-10-11.
+# Lesson posts take their content from course/<lang>/lessons/<id>.md at the commit their PR names.
+slug: agentic-coding-course
+name: "Agentic Coding cho người mới"
+repo: vohoailinh90/Agentic-coding-course
+status: beta           # every lesson exists in vi, en and ja with status `review`; none is `done` yet
+brand:
+  emoji: "🧭"
+  accent: "#4f46e5"
+
+what_it_is: >-
+  A free, public course on GitHub that takes people who know nothing about AI or programming from
+  "what is software?" to handing software work to an AI agent and checking the result. Every lesson
+  is written once per language (Vietnamese, English, Japanese), with generated infographics and one
+  recap picture per lesson. This campaign turns each lesson into one Facebook carousel per language,
+  to grow the Page's engagement — a sharing campaign, not a demand test.
+
+requirements:
+  - A web browser to read the lessons on GitHub (or the offline HTML export)
+  - For the hands-on lessons, access to an AI agent tool; the course's own lesson on choosing a setup covers browser, personal and company machines
+
+features:
+  - id: three-languages
+    fact: The whole course exists in three language folders, course/vi, course/en and course/ja; every page has a language bar
+  - id: size
+    fact: Roadmap v1 is 6 modules, 17 units, 52 lessons and 960 minutes in total
+  - id: minimum-path
+    fact: A minimum path of 19 lessons (347 minutes, including 2 projects) is enough to hand work to an AI agent and check the result; the course's own Facebook plan posts it first
+  - id: lesson-shape
+    fact: Every lesson has the same sections — objective, hook, main concept, an everyday analogy, a real example, common misconceptions, a recap picture, takeaways, a 3-question quiz with answers, and sources
+  - id: recap-picture
+    fact: Every lesson ends with exactly one recap infographic of its own that sums up the whole lesson in 3–6 numbered points and one sentence to remember
+  - id: social-fields
+    fact: Every lesson carries a social hook and a community question in its front matter, in each language
+  - id: no-programming-needed
+    fact: No programming is needed to start; learners learn enough to hand coding work to AI, check it and own the result
+  - id: glossary
+    fact: A Vietnamese–English–Japanese glossary of AI terms ships with the course
+  - id: offline-export
+    fact: The course can be exported as self-contained HTML files that open offline in a browser
+
+claims:
+  - id: free-public
+    text: The course is free to read on GitHub
+    evidence: the repository is public; anonymous clone works at commit 412bbb2
+    verified: true
+  - id: audience
+    text: Made for working adults, students and engineers outside software, especially Vietnamese learners who study or work in or with Japan
+    evidence: course/data/course.yaml audience
+    verified: true
+
+limitations:
+  - Every lesson is still in review, not marked done; wording can still change
+  - The hands-on lessons need an AI agent tool, which may cost money or need a company's permission
+  - Examples inside lessons (file counts, dates, page names) are illustrations, not measurements
+
+story_to_confirm:
+  - Whether posts may go out while a lesson is still in `review` (the course's own plan posts only `done` lessons)
+  - Whether the Page posts one language per day or all three on the same day
+
+commercial_readiness:
+  - Not for sale; the course is free. Engagement and follows are the goal.
+
+pricing_hypotheses: []

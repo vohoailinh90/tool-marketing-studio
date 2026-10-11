@@ -1,0 +1,21 @@
+lang: vi
+one_liner: "Học AI agent từ con số 0, mỗi bài một bộ ảnh: hiểu được, nhớ được, làm thử được."
+audience: >-
+  Người Việt đi làm văn phòng, sinh viên, kỹ sư ngoài ngành phần mềm (ở Việt Nam hoặc làm với công ty
+  Nhật) nghe nhiều về AI agent nhưng chưa biết bắt đầu từ đâu; đọc Facebook trên điện thoại, lưu bài
+  để xem lại.
+pains:
+  - "Nghe \"AI agent\", \"agentic coding\" khắp nơi nhưng không ai giải thích từ gốc"
+  - "Tài liệu toàn tiếng Anh, thuật ngữ dày đặc"
+  - "Sợ giao việc cho AI rồi không biết kiểm tra nó làm đúng hay sai"
+  - "Đọc xong một bài dài là quên, không có gì để lưu lại"
+promise: "Mỗi bài học thành một bộ ảnh lướt trên điện thoại, đủ ý của bài, kèm câu đố để tự kiểm tra."
+objections:
+  - {q: "Không biết lập trình có học được không?", a: "Được. Khóa học bắt đầu từ \"phần mềm là gì?\" và chỉ dạy vừa đủ để giao việc cho AI và tự kiểm tra kết quả."}
+  - {q: "Có mất phí không?", a: "Không. Khóa học đọc miễn phí trên GitHub, có cả tiếng Việt, tiếng Anh và tiếng Nhật."}
+vocabulary: [AI agent, LLM, công cụ, vòng lặp, giao việc, kiểm tra, bằng chứng, người mới, lưu lại]
+angles:
+  - "Một khái niệm, một hình: hiểu AI agent bằng ví dụ đời thường"
+  - "Hiểu lầm thường gặp → sự thật"
+  - "Đố vui 3 giây: bạn chọn A, B hay C?"
+tone: "Xưng \"mình\", gọi \"bạn\"; như anh chị đi trước giải thích cho đồng nghiệp; thuật ngữ tiếng Anh giữ nguyên nhưng luôn giải thích bằng tiếng Việt; không hứa hẹn quá đà."

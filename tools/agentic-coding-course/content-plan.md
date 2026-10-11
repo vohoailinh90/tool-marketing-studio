@@ -1,0 +1,117 @@
+# Kế hoạch nội dung: mỗi bài học của khóa Agentic Coding → một bộ ảnh Facebook
+
+Bản đề xuất để brainstorm với Codex trước khi viết bài. Chưa có bài đăng nào trong PR này; mỗi bài
+học sẽ có PR riêng sau khi kế hoạch được chốt.
+
+- Nguồn: `vohoailinh90/Agentic-coding-course` @ `412bbb2` — 52 bài, mỗi bài có đủ `vi`, `ja`, `en`.
+- Facts về khóa học: `brief.yaml`. Giọng văn từng thị trường: `positioning/{vi,ja,en}.yaml`.
+- Mục tiêu: tăng tương tác của Page (lưu, bình luận, theo dõi) — **bài chia sẻ kiến thức, không phải
+  bài kiểm chứng nhu cầu**, nên không có khảo sát, không có waitlist.
+
+## 1. Nguyên tắc
+
+1. **Bài học là nguồn sự thật duy nhất.** Mọi ý trên ảnh lấy từ file bài học của đúng ngôn ngữ đó, ở
+   commit ghi trong PR. Không thêm số liệu, ví dụ hay khẳng định mà bài học không có.
+2. **Đủ kiến thức, không chỉ trích đoạn.** Mỗi phần của bài (mục tiêu, nội dung chính, ví dụ đời
+   thường, ví dụ thực tế, hiểu lầm, tóm tắt, ghi nhớ, đố vui) phải xuất hiện ở ít nhất một ảnh hoặc
+   trong caption. PR của mỗi bài kèm bảng "phần bài học → ảnh số mấy" để kiểm.
+3. **Mỗi ngôn ngữ một bài hoàn chỉnh.** Viết từ bài học của chính ngôn ngữ đó (khóa học vốn đã viết
+   riêng `vi`/`ja`/`en`), không dịch câu-theo-câu từ bản `vi`. Cùng một `id` cho cả 3 ngôn ngữ để so số liệu.
+4. **Một ý một ảnh, ≤ ~30 chữ**, từ khóa tô `**đậm**`; chữ đọc được trên điện thoại.
+5. **Không URL trong bài.** Link chỉ qua `{link}` ở bình luận đầu. Trạng thái luôn `draft`; duyệt và
+   đăng là việc của chủ Page.
+
+## 2. Khung một bộ ảnh (8–10 ảnh, Facebook cho tối đa 10)
+
+| # | Phần bài học | Layout | Ghi chú |
+|---|---|---|---|
+| 1 | `social.hook` + tiêu đề | `cover` | eyebrow: "Bài 1.1.2 · 8 phút"; badge: loại bài (Khái niệm / Thực hành / Dự án) |
+| 2 | Mở đầu (vì sao cần biết) | `chat` hoặc `pains` | câu hỏi người mới hay hỏi, đúng như phần "Mở đầu" |
+| 3–5 | Nội dung chính | `image` (sơ đồ của bài) + `features` / `flow` / `checklist` | mỗi khái niệm con một ảnh; sơ đồ có sẵn thì dùng sơ đồ |
+| 6 | Ví dụ đời thường | `features` hoặc `compare` | ánh xạ từng phần; "chỗ chưa khớp" vào `note` |
+| 7 | Ví dụ thực tế | `flow` / `chat` / `table` | giữ nguyên các bước của bài |
+| 8 | Hiểu lầm thường gặp | `compare` | trái "Hiểu lầm", phải "Thực tế" |
+| 9 | Tóm tắt bằng hình | `image` (sơ đồ recap của bài) | ảnh "nhớ cả bài trong 1 hình" — dễ được lưu nhất |
+| 10 | Đố vui | `poll` | 1 câu trong 3 câu đố của bài, "Comment A, B hay C" |
+
+Caption (Facebook): hook → 2–3 câu tóm nội dung → 3 ý "Ghi nhớ" → `social.question` → nhắc lưu bài
+→ tên nguồn tham khảo (không URL). Bình luận đầu: đáp án đố vui + giải thích của bài + `{link}`.
+
+Bài loại **Dự án** (60–120 phút) không nhồi vào 10 ảnh: đề xuất một bộ ảnh "lộ trình dự án" (các
+bước + sản phẩm cuối + tiêu chí hoàn thành) và để chi tiết trong bài học.
+
+### Ví dụ: bài 1.1.2 "Bộ não, đôi tay và vòng lặp"
+
+| # | Layout | Nội dung |
+|---|---|---|
+| 1 | `cover` | "AI agent = **bộ não + đôi tay + một vòng lặp**" — "Thiếu một thứ là nó không làm được việc." |
+| 2 | `chat` | "LLM chỉ tạo ra chữ… vậy làm sao agent **mở được file**?" |
+| 3 | `image` | `agent-formula` — công thức 3 phần |
+| 4 | `checklist` | LLM chỉ *yêu cầu* dùng công cụ; phần mềm của agent quyết định cho phép và mới thật sự "bấm nút" |
+| 5 | `image` | `agent-loop` — suy nghĩ → hành động → quan sát, và 3 lúc dừng |
+| 6 | `features` | Đầu bếp: kinh nghiệm = bộ não, dao/bếp = đôi tay, nêm–nếm–chỉnh = vòng lặp; note: đầu bếp luôn nếm được, agent chỉ "nếm" được thứ công cụ cho thấy |
+| 7 | `flow` | Đổi tên 50 ảnh: liệt kê → 3 ảnh thiếu ngày chụp → **hỏi bạn** → đổi tên → kiểm lại → dừng |
+| 8 | `compare` | "LLM tự mở file được" / "Agent nào cũng tự sửa lỗi" → thực tế |
+| 9 | `image` | `agent-parts-and-loop-recap` |
+| 10 | `poll` | Câu 2: agent không được chạy thử trang web — điều gì dễ xảy ra nhất? |
+
+Đã thử render cục bộ (không commit): sơ đồ của khóa học chuyển sang PNG đặt trong layout `image`
+1080×1350 vẫn rõ và đúng nhận diện của khóa học.
+
+## 3. Sơ đồ của khóa học
+
+Khóa học có sẵn sơ đồ SVG riêng cho từng ngôn ngữ (`course/<lang>/diagrams/*.svg`), sinh tự động,
+có 1 hình recap cho mỗi bài. Layout `image` của studio chỉ nhận `.png/.jpg/.webp` (SVG có thể chứa
+script), nên cần chuyển sang PNG.
+
+- **Đề xuất:** thêm `scripts/course_diagrams.py` (một yêu cầu phần mềm riêng, đi qua routing): đọc
+  repo khóa học ở một commit, chuyển các sơ đồ của một bài sang PNG 2x vào
+  `campaigns/agentic-coding-course/diagrams/<lang>/<tên>.png`, ghi commit nguồn vào manifest. Làm tay
+  52 × 3 lần dễ lệch; một script thì lặp lại được và kiểm được.
+- **Phương án khác:** dựng lại mọi sơ đồ bằng layout có sẵn (`features`, `flow`…). Chữ được `check`
+  kiểm, nhưng mất nhận diện chung với khóa học và tốn gấp đôi công.
+
+## 4. Thứ tự và nhịp PR
+
+1. **Lộ trình tối thiểu trước** (19 bài, đúng như kế hoạch Facebook của chính khóa học):
+   chatbot-to-agent, agent-parts-and-loop, watch-an-agent-build, choose-your-learning-setup,
+   data-safety-and-permissions, first-agent-session, lead-not-typist, writing-good-specs,
+   explore-plan-build-verify, files-folders-paths, reviewing-agent-changes, testing-basics,
+   errors-and-debugging, project-personal-page, data-formats, git-version-control, hallucination,
+   context-window, project-office-automation.
+2. Sau đó 33 bài còn lại theo thứ tự trong `curriculum.yaml`.
+3. **Một PR = một bài × 3 ngôn ngữ**: 3 file `posts/<lang>/<lesson-id>.yaml`, sơ đồ PNG, ảnh đã
+   render, bảng phủ kiến thức. `id` bài đăng = `id` bài học (ổn định, không đổi khi bài đổi chỗ).
+4. Nhịp đăng gợi ý (chủ Page quyết): 1 bài học/tuần như kế hoạch của khóa học, tối 20:00–21:30.
+
+## 5. Chiến dịch
+
+`campaigns/agentic-coding-course/campaign.yaml` (tạo cùng PR bài đầu tiên): `langs: [vi, ja, en]`,
+`platforms: [facebook]`, `links.course` → trang chọn ngôn ngữ của khóa học (link theo dõi UTM từng
+bài, từng ngôn ngữ), không có `validation` vì đây không phải bài kiểm chứng nhu cầu.
+
+## 6. Cơ chế kéo tương tác
+
+- Ảnh recap ở cuối — lý do để **lưu bài**.
+- Đố vui A/B/C — bình luận một chữ cái, đáp án ở bình luận đầu.
+- `social.question` của bài — câu hỏi mở cho cộng đồng.
+- Nhãn series "Bài x.y.z" và "Bài sau: …" trong caption — lý do để **theo dõi** Page.
+
+## 7. Kiểm tra mỗi PR
+
+- `python3 studio.py check agentic-coding-course` — 0 lỗi; cảnh báo số liệu lệch giữa 3 ngôn ngữ
+  phải được giải thích.
+- `python3 studio.py render agentic-coding-course` — không báo tràn chữ.
+- Mở từng ảnh ở cỡ điện thoại; bảng "phần bài học → ảnh" đủ mọi phần.
+
+## 8. Câu hỏi mở
+
+1. Khung 10 ảnh có đủ phủ kiến thức mà vẫn dễ lướt không, hay nên tách mỗi bài thành 2 bài đăng
+   (bài học + đố vui riêng, như dạng A và C trong kế hoạch Facebook của khóa học)?
+2. Sơ đồ: chuyển SVG → PNG bằng script (đề xuất) hay dựng lại bằng layout?
+3. Chữ nhỏ trong sơ đồ 800px khi đặt vào ảnh 1080px có đủ đọc trên điện thoại không — cần ngưỡng cỡ chữ tối thiểu?
+4. `links:` của studio là theo chiến dịch, không theo ngôn ngữ: trỏ về trang chọn ngôn ngữ có đủ, hay
+   cần mở rộng engine để link thẳng tới bài học đúng ngôn ngữ?
+5. Kiểm "đủ kiến thức" bằng bảng trong PR (người đọc) hay bằng một trường `notes`/script đối chiếu
+   các phần của bài học với các ảnh?
+6. Đăng khi bài học còn `review` (khóa học chỉ đăng bài `done`) — để chủ Page quyết.

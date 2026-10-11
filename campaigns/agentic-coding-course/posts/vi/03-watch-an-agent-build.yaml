@@ -1,0 +1,71 @@
+id: 03-watch-an-agent-build
+status: draft
+format: portrait
+series: Học cùng AI · 1.1.3
+link: watch-an-agent-build-vi
+slides:
+- layout: cover
+  emoji: 🚀
+  eyebrow: Học cùng AI
+  title: Agent báo xong. Bạn đã **bấm thử** chưa?
+  subtitle: AI agent làm được gì
+- layout: cover
+  emoji: 🔮
+  eyebrow: Hiểu để làm đúng
+  title: '**Đoán trước từng bước**'
+  subtitle: Đoán sai là dấu hiệu cần hỏi lại
+- layout: cover
+  emoji: 🔁
+  eyebrow: Hiểu để làm đúng
+  title: '**Làm – chạy – xem – sửa**'
+  subtitle: Vòng lặp agent trong thực tế
+- layout: cover
+  emoji: 📋
+  eyebrow: Hiểu để làm đúng
+  title: '**Tiêu chí rõ ràng**'
+  subtitle: Agent kiểm tra được vì bạn đã nói "thế nào là xong"
+- layout: cover
+  emoji: ✅
+  eyebrow: Hiểu để làm đúng
+  title: '**Bạn nghiệm thu**'
+  subtitle: Tự mở, tự bấm, tự so với tiêu chí
+- layout: quote
+  text: Quan sát agent làm việc giúp bạn học cách giám sát bằng tình huống cụ thể.
+  author: Ghi nhớ từ bài học
+- layout: cta
+  emoji: 💬
+  eyebrow: Hỏi bạn
+  title: Bạn sẽ bấm thử điều gì đầu tiên trên trang agent vừa tạo?
+  text: Chia sẻ cách bạn làm.
+  hint: Link bài ở bình luận đầu.
+  show_link: false
+platforms:
+  facebook:
+    caption: 'Agent báo xong. Bạn đã bấm thử chưa?
+
+
+      Xem AI agent làm và tự kiểm tra một trang web nhỏ
+
+
+      • Đoán trước từng bước: Đoán sai là dấu hiệu cần hỏi lại
+
+      • Làm – chạy – xem – sửa: Vòng lặp agent trong thực tế
+
+      • Tiêu chí rõ ràng: Agent kiểm tra được vì bạn đã nói "thế nào là xong"
+
+      • Bạn nghiệm thu: Tự mở, tự bấm, tự so với tiêu chí
+
+
+      Quan sát agent làm việc giúp bạn học cách giám sát bằng tình huống cụ thể.
+
+
+      Bạn sẽ bấm thử điều gì đầu tiên trên trang agent vừa tạo?
+
+      Link bài ở bình luận đầu.'
+    first_comment: 'Đọc bài học và thử bằng dữ liệu giả: {link}'
+    hashtags:
+    - AgenticCoding
+    - AI
+    - HocAI
+notes: 'Source claim: watch-an-agent-build. Chapter 1; curriculum lesson 1.1.3. Educational
+  recap, not a testimonial. Draft for owner review.'

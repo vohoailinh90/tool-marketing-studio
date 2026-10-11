@@ -4,10 +4,12 @@ anything is rendered, approved or published."""
 from __future__ import annotations
 
 import re
+import unicodedata
 from dataclasses import dataclass
+from pathlib import Path
 
 from .i18n import LANGS
-from .layouts import LAYOUTS, AssetError, resolve_asset
+from .layouts import ENUMS, FIELDS, LAYOUTS, AssetError, resolve_asset
 from .links import PLACEHOLDER, is_configured
 from .model import POST_STATUSES, SLUG, TOOL_STATUSES, Campaign, Post
 from .page import FORMATS
@@ -16,7 +18,49 @@ from .text import plain
 
 HEX = re.compile(r"^#[0-9a-fA-F]{6}$")
 TODO = re.compile(r"\bTODO\b")
-URL = re.compile(r"(?i)\b(?:https?://|www\.)")
+
+
+def trie_pattern(words) -> str:
+    """One alternation for many words with shared prefixes factored out, so a miss fails fast."""
+    tree: dict = {}
+    for word in words:
+        node = tree
+        for char in word:
+            node = node.setdefault(char, {})
+        node[""] = {}
+
+    def walk(node: dict) -> str:
+        alts = [re.escape(char) + walk(child) for char, child in sorted(node.items()) if char]
+        if not alts:
+            return ""
+        group = alts[0] if len(alts) == 1 else "(?:" + "|".join(alts) + ")"
+        return f"(?:{group})?" if "" in node else group
+    return walk(tree)
+
+
+# Every top-level domain in the root zone, so a bare domain is caught whatever its ending.
+TLDS = {word for line in (Path(__file__).with_name("tlds.txt")).read_text(encoding="utf-8").splitlines()
+        if not line.startswith("#") for word in line.split()}
+# A link in any spelling a platform would still turn into a link: scheme (also hxxp and
+# with spaces), www., or a bare domain. Text is NFKC-normalised first, so full-width
+# letters and dots are caught too. A domain must not run on into a Latin letter (`TP.Huế` is not
+# `.hu`), but may touch Japanese text on either side: it has no spaces (`詳細はexample.comへ`).
+# Labels are capped at 63 characters and a domain at 10 dots, and the endings are one prefix trie,
+# so a long run of labels is checked in linear time.
+START, LABEL, MORE = r"(?<![a-z0-9-])", r"[a-z0-9-]{1,63}", r"(?:\.[a-z0-9-]{1,63}){0,10}"
+END = r"(?![a-z0-9\u00c0-\u024f\u0300-\u036f\u1e00-\u1eff-])"   # ASCII, Latin with accents (Vietnamese)
+URL = re.compile(
+    r"(?i)(?:" + START + r"h[tx]{2}ps?\s*:\s*//|" + START + r"www\.|"
+    + START + r"[a-z0-9][a-z0-9-]{0,62}" + MORE + r"\.(?:" + trie_pattern(TLDS) + r")" + END + r"|"
+    + START + LABEL + MORE + r"\.[a-z]{2,}/[\w/%-])")   # any domain followed by a path
+
+
+def has_url(text: str) -> bool:
+    return bool(URL.search(unicodedata.normalize("NFKC", text)))
+
+
+# Where a post may say {link}: the comment under a Facebook post, a LinkedIn caption, an X thread.
+LINK_ALLOWED = {("facebook", "first_comment"), ("linkedin", "caption"), ("x", "thread")}
 NUMBER = re.compile(r"\d+(?:[.,]\d+)*")
 FULLWIDTH = str.maketrans("０１２３４５６７８９", "0123456789")
 HOOK_LIMIT = 125        # Facebook folds a post behind "See more" after about this many characters
@@ -131,7 +175,7 @@ def check_post(campaign: Campaign, post: Post) -> list[Issue]:
             add("warn", f"unknown key '{key}' is ignored")
     if post.status not in POST_STATUSES:
         add("error", f"status must be one of {', '.join(POST_STATUSES)}")
-    if post.format not in FORMATS:
+    if not isinstance(post.format, str) or post.format not in FORMATS:
         add("error", f"format must be one of {', '.join(FORMATS)}")
     if not post.slides:
         add("error", "no slides")
@@ -139,9 +183,15 @@ def check_post(campaign: Campaign, post: Post) -> list[Issue]:
         add("warn", f"{len(post.slides)} slides; keep a post to {MAX_SLIDES} or fewer")
 
     for text in strings({k: data.get(k) for k in ("series", "slides", "platforms")}):
-        if URL.search(text):
+        if has_url(text):
             add("error", "a URL is written into the post; links come only from campaign `links:` via {link}")
             break
+    if any("{link}" in text for text in strings({k: data.get(k) for k in ("series", "slides")})):
+        add("error", "{link} cannot go on an image; put it in the first comment")
+    for platform, spec in post.platforms.items():
+        for field, value in (spec.items() if isinstance(spec, dict) else []):
+            if (platform, field) not in LINK_ALLOWED and any("{link}" in text for text in strings(value)):
+                add("error", f"{{link}} is not allowed in {platform}.{field}")
     if any(TODO.search(text) for text in strings(data)):
         add("error" if final else "warn", "still contains TODO")
 
@@ -152,12 +202,22 @@ def check_post(campaign: Campaign, post: Post) -> list[Issue]:
             add("error", "a slide needs a 'layout'", spot)
             continue
         name = slide["layout"]
-        if name not in LAYOUTS:
+        if not isinstance(name, str) or name not in LAYOUTS:
             add("error", f"unknown layout '{name}' (known: {', '.join(sorted(LAYOUTS))})", spot)
             continue
         for key in LAYOUTS[name][1]:
             if slide.get(key) in (None, "", [], {}):
                 add("error", f"layout '{name}' needs '{key}'", spot)
+        for key in slide:
+            if key != "layout" and key not in FIELDS[name]:
+                add("error", f"layout '{name}' has no field '{key}' (fields: {', '.join(FIELDS[name])})", spot)
+        for key, kind in (("tone", "tone"), ("variant", "variant"), ("style", "style")):
+            if key in slide and slide[key] not in ENUMS[kind]:
+                add("error", f"'{key}' must be one of {', '.join(ENUMS[kind])}", spot)
+        for row in slide.get("rows") or [] if name == "table" else []:
+            for cell in row if isinstance(row, list) else []:
+                if isinstance(cell, dict) and "tone" in cell and cell["tone"] not in ENUMS["cell_tone"]:
+                    add("error", f"table cell tone must be one of {', '.join(ENUMS['cell_tone'])}", spot)
         if name == "image" and slide.get("src"):
             try:
                 resolve_asset(slide["src"], roots)
@@ -199,7 +259,9 @@ def check_post(campaign: Campaign, post: Post) -> list[Issue]:
             add("error" if final else "warn", f"no text for campaign platform '{platform}'")
 
     target = data.get("link", "survey")
-    if target:
+    if target and not isinstance(target, str):
+        add("error", "link must name one of the campaign links")
+    elif target:
         url = (campaign.data.get("links") or {}).get(target)
         if url is None:
             add("error", f"link '{target}' is not defined in campaign links")

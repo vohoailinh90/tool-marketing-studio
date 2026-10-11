@@ -1,6 +1,6 @@
 {
   "sha": "46b1629e458e0c7a8a20b5957bc2ab3db5305f0e4502c5823e4077eec52e9d6c",
-  "rendered_at": "2026-10-10T22:59:49+00:00",
+  "rendered_at": "2026-10-10T23:17:22+00:00",
   "engine": "0.1.0",
   "format": "portrait",
   "slides": [
@@ -21,5 +21,14 @@
     1,
     1,
     1
-  ]
+  ],
+  "files": {
+    "01.png": "07740144b45dd5f4285bdb43f54783ad2f3a57f1752bb687f30a532991fc4581",
+    "02.png": "8cb31dd0c6ad8d4f79bf15e590c3030d8453acb7036bc6e06f6203baa997523a",
+    "03.png": "2eeb784026780ea488b9d852ac13713d4f044a7303fd7f0f914dc75e5ef3e6b4",
+    "04.png": "bff29924dbc14d26b2324a5f56ae171b9f6b25fd324402597dbbd655315a8013",
+    "05.png": "7f2283b41a16c76453901ffeea1e700b7484063ea44d96d7c3eb4e17386afa64",
+    "facebook.txt": "3a385b1b1dda6eb1a2be69d2c533830405a5548b730a7eec08e82cda834390ea",
+    "facebook-comment.txt": "94b49bd26091c9ff122a0975822a9c6bcd4d000d23d857ce50b47b1e00d8a852"
+  }
 }

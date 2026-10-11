@@ -1,0 +1,22 @@
+# Mutation manifest — see scripts/mutation_check.py
+target: mkt/publish.py
+note: An answer that does not prove a refusal leaves the post pending; only a ready, untampered post goes out.
+mutations:
+- label: a 5xx feed answer counts as a refusal
+  find: '        if status >= 500 or not isinstance(body, dict):'
+  replace: '        if not isinstance(body, dict):'
+  test: tests.test_review_fixes.PublishOutcomeTests.test_a_feed_5xx_stays_pending_and_blocks
+- label: transient Graph errors count as refusals
+  find: '            if error.get("code") in TRANSIENT_CODES or error.get("is_transient"):'
+  replace: '            if False:'
+  test: tests.test_review_fixes.PublishOutcomeTests.test_a_transient_graph_error_stays_pending
+- label: a draft can be published
+  find: |2-
+            reasons.append(f"status is '{post.status}': only a ready post can be published")
+  replace: |2-
+            pass
+  test: tests.test_review_fixes.PublishOutcomeTests.test_a_post_sent_back_to_draft_cannot_be_published
+- label: an empty Page name passes the smoke check
+  find: '    if not str(me.get("name") or "").strip():'
+  replace: '    if False:'
+  test: tests.test_review_fixes.PublishOutcomeTests.test_a_page_without_a_name_fails_the_smoke_check

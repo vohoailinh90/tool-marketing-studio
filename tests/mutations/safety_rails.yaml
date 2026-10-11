@@ -7,7 +7,7 @@ target: mkt/check.py
 note: What may enter a post — no links, no files outside the campaign.
 mutations:
 - label: a URL in post text is accepted
-  find: '        if URL.search(text):'
+  find: '        if has_url(text):'
   replace: '        if False:'
   test: tests.test_check.CheckTests.test_url_in_slide_text_is_an_error
 - label: invented numbers in an AI draft are accepted

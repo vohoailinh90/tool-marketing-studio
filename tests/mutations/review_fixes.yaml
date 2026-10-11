@@ -1,0 +1,17 @@
+# Mutation manifest — see scripts/mutation_check.py
+# The fixes for the independent review of REQ-MKT-001, each removed in turn.
+target: mkt/layouts.py
+note: Values that end up in a class name are whitelisted (and escaped as well).
+mutations:
+- label: an unknown pains tone reaches the page
+  find: '    tone = enum(s.get("tone"), "tone", "bad")'
+  replace: '    tone = s.get("tone", "bad")'
+  test: tests.test_review_fixes.EscapingTests.test_unknown_enum_values_fall_back_to_defaults
+- label: an unknown table cell tone reaches the page
+  find: '                tone = enum(cell.get("tone"), "cell_tone", "")'
+  replace: '                tone = cell.get("tone", "")'
+  test: tests.test_review_fixes.EscapingTests.test_unknown_enum_values_fall_back_to_defaults
+- label: the pains class is not escaped
+  find: "        f'<li class=\"card card--{esc(tone)}\"><span class=\"card__icon\">{esc(item.get(\"emoji\", default_icon))}</span>'"
+  replace: "        f'<li class=\"card card--{s.get(\"tone\", tone)}\"><span class=\"card__icon\">{esc(item.get(\"emoji\", default_icon))}</span>'"
+  test: tests.test_review_fixes.EscapingTests.test_no_field_of_any_layout_can_open_a_tag

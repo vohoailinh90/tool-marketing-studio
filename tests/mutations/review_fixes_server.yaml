@@ -1,0 +1,8 @@
+# Mutation manifest — see scripts/mutation_check.py
+target: mkt/server.py
+note: Only an explicit false publishes for real.
+mutations:
+- label: a falsy dry_run sends for real
+  find: '            return publish_facebook(c, p, config(), dry_run=body.get("dry_run") is not False,'
+  replace: '            return publish_facebook(c, p, config(), dry_run=bool(body.get("dry_run", True)),'
+  test: tests.test_review_fixes.ServerInputTests.test_only_an_explicit_false_sends_for_real

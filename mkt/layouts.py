@@ -52,6 +52,39 @@ class Ctx:
 
 LAYOUTS: dict[str, tuple] = {}
 
+# Values a slide may give for fields that end up in a class name. Anything else falls
+# back to the default here and is an error in `studio.py check` — never markup.
+ENUMS = {
+    "tone": ("bad", "ok", "accent"),
+    "variant": ("before", "after"),
+    "style": ("app", "sheet"),
+    "cell_tone": ("ok", "warn", "bad", "muted"),
+}
+
+# The keys each layout reads. A key outside this list is an error in `check`, so a
+# typo is caught and nothing unexpected rides along into the page.
+FIELDS = {
+    "cover": ("emoji", "eyebrow", "title", "subtitle", "badge"),
+    "pains": ("eyebrow", "title", "items", "tone", "note"),
+    "checklist": ("eyebrow", "title", "items", "tone", "note"),
+    "chat": ("eyebrow", "title", "group", "messages", "note"),
+    "flow": ("eyebrow", "title", "variant", "steps", "total_label", "note"),
+    "stat": ("eyebrow", "before", "after", "value", "label", "caption"),
+    "compare": ("eyebrow", "title", "before", "after", "note"),
+    "table": ("eyebrow", "title", "columns", "rows", "style", "total_row", "note"),
+    "features": ("eyebrow", "title", "items", "note"),
+    "quote": ("text", "author", "role"),
+    "poll": ("eyebrow", "question", "options", "hint"),
+    "cta": ("emoji", "eyebrow", "title", "text", "keyword", "button", "show_link", "scan", "hint"),
+    "email": ("eyebrow", "title", "subject", "from", "infobar", "buttons", "body", "note"),
+    "timeline": ("eyebrow", "title", "items", "note"),
+    "image": ("eyebrow", "title", "src", "caption", "note"),
+}
+
+
+def enum(value, kind: str, default: str) -> str:
+    return value if value in ENUMS[kind] else default
+
 # What each layout is for and which fields it reads (* = required). This is the schema the
 # AI drafting prompt hands to Claude, so it is written for a reader, not for the code.
 LAYOUT_DOCS = {
@@ -111,10 +144,10 @@ def cover(s: dict, ctx: Ctx) -> str:
 
 @layout("pains", ("title", "items"))
 def pains(s: dict, ctx: Ctx) -> str:
-    tone = s.get("tone", "bad")
+    tone = enum(s.get("tone"), "tone", "bad")
     default_icon = {"bad": "✗", "ok": "✓", "accent": "•"}.get(tone, "•")
     rows = "".join(
-        f'<li class="card card--{tone}"><span class="card__icon">{esc(item.get("emoji", default_icon))}</span>'
+        f'<li class="card card--{esc(tone)}"><span class="card__icon">{esc(item.get("emoji", default_icon))}</span>'
         f'<span class="card__text">{fmt(item["text"])}</span></li>'
         for item in (_as_items(s["items"]))
     )
@@ -147,7 +180,7 @@ def chat(s: dict, ctx: Ctx) -> str:
 
 @layout("flow", ("title", "steps"))
 def flow(s: dict, ctx: Ctx) -> str:
-    variant = s.get("variant", "after")
+    variant = enum(s.get("variant"), "variant", "after")
     steps, total = [], 0
     for index, step in enumerate(s["steps"], 1):
         minutes = step.get("minutes")
@@ -193,7 +226,7 @@ def compare(s: dict, ctx: Ctx) -> str:
 
 @layout("table", ("columns", "rows"))
 def table(s: dict, ctx: Ctx) -> str:
-    style = s.get("style", "app")
+    style = enum(s.get("style"), "style", "app")
     head = "".join(f"<th>{fmt(c)}</th>" for c in s["columns"])
     if style == "sheet":
         letters = "".join(f"<th>{chr(65 + i)}</th>" for i in range(len(s["columns"])))
@@ -205,7 +238,8 @@ def table(s: dict, ctx: Ctx) -> str:
         cells = []
         for cell in row:
             if isinstance(cell, dict):
-                cells.append(f'<td class="tone-{esc(cell.get("tone", ""))}">{fmt(cell.get("text", ""))}</td>')
+                tone = enum(cell.get("tone"), "cell_tone", "")
+                cells.append(f'<td class="tone-{esc(tone)}">{fmt(cell.get("text", ""))}</td>')
             else:
                 cells.append(f"<td>{fmt(cell)}</td>")
         lead = f"<th>{r}</th>" if style == "sheet" else ""

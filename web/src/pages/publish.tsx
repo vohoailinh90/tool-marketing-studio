@@ -10,6 +10,7 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, D
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { api, fileUrl, postPath, type LedgerRow, type PostView } from "@/lib/api"
+import { safeHref } from "@/lib/utils"
 import { languageNames, useI18n } from "@/lib/i18n"
 import { useStudio } from "@/lib/studio"
 
@@ -21,7 +22,7 @@ function LedgerState({ row }: { row: LedgerRow }) {
     <span className="flex flex-wrap items-center gap-2 text-sm">
       <StatusBadge tone={tone}>{t(`ledger_${row.state}` as "ledger_done")}</StatusBadge>
       {row.published_at && <span className="text-muted-foreground">{row.published_at.replace("T", " ").slice(0, 16)}</span>}
-      {row.url && <a href={row.url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 underline"><ExternalLink className="size-3" />{t("open")}</a>}
+      {safeHref(row.url) && <a href={safeHref(row.url)} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 underline"><ExternalLink className="size-3" />{t("open")}</a>}
       {row.error && <span className="text-destructive">{row.error}</span>}
     </span>
   )
@@ -153,7 +154,7 @@ export function PublishPage() {
                           <p key={index} className="flex flex-wrap items-center gap-2 text-sm">
                             <StatusBadge tone="success">{record.where || t("by_hand")}</StatusBadge>
                             <span className="text-muted-foreground">{(record.published_at ?? "").replace("T", " ").slice(0, 16)}</span>
-                            {record.url && <a href={record.url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 underline"><ExternalLink className="size-3" />{t("open")}</a>}
+                            {safeHref(record.url) && <a href={safeHref(record.url)} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 underline"><ExternalLink className="size-3" />{t("open")}</a>}
                           </p>
                         ))}
                       </div>

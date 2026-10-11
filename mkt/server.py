@@ -30,7 +30,7 @@ from .feedback import add_manual, all_feedback, scan_facebook
 from .history import is_published, manual_rows, mark_posted, rows as history_rows, today
 from .insights import gather
 from .metrics import MetricsError, RATES, append_row, read_rows, totals, verdict
-from .model import ROOT, SLUG, SpecError, campaign_slugs, load_campaign, load_config, load_yaml
+from .model import ROOT, SLUG, Post, SpecError, campaign_slugs, load_campaign, load_config, load_yaml
 from .platforms import PLATFORMS
 from .publish import (PublishError, build_pack, load_ledger, load_state, publish_facebook, resolve,
                       smoke_facebook)
@@ -173,9 +173,18 @@ def create_app(root: Path = ROOT, *, port: int = 8765, dist: Path | None = None,
             fail(f"invalid YAML: {exc}")
         if not isinstance(data, dict):
             fail("the post must be a YAML mapping")
+        if not isinstance(data.get("slides", []), list) or not isinstance(data.get("platforms", {}), dict):
+            fail("slides must be a list and platforms a mapping")
+        if data.get("id") not in (None, post_id):
+            fail(f"id must stay '{post_id}'")
+        # Check the new version before it replaces the file: a shape the checker cannot read
+        # must not overwrite a post that worked.
+        try:
+            issues = check_post(c, Post(post_id, lang, p.path, data))
+        except (TypeError, AttributeError, ValueError, KeyError) as exc:
+            fail(f"the post's structure is invalid: {exc}")
         p.path.write_text(text, encoding="utf-8")
-        c = campaign(slug)
-        return {"issues": issue_dicts(check_post(c, c.post(post_id, lang)))}
+        return {"issues": issue_dicts(issues)}
 
     @app.post("/api/campaigns/{slug}/posts/{lang}/{post_id}/status")
     def post_status(slug: str, lang: str, post_id: str, body: dict = Body(...)):
@@ -214,8 +223,11 @@ def create_app(root: Path = ROOT, *, port: int = 8765, dist: Path | None = None,
         c = campaign(slug)
         p = post_of(c, lang, post_id)
         try:
-            return publish_facebook(c, p, config(), dry_run=bool(body.get("dry_run", True)),
-                                    confirm_page_name=body.get("confirm_page_name"), log=lambda *_: None)
+            # Only an explicit `false` sends for real; anything else (missing, null, 0, "no") is a dry run.
+            confirm = body.get("confirm_page_name")
+            return publish_facebook(c, p, config(), dry_run=body.get("dry_run") is not False,
+                                    confirm_page_name=confirm if isinstance(confirm, str) else None,
+                                    log=lambda *_: None)
         except PublishError as exc:
             fail(exc, 409)
 
@@ -237,8 +249,10 @@ def create_app(root: Path = ROOT, *, port: int = 8765, dist: Path | None = None,
     # ------------------------------------------------------------- AI
 
     def ai_args(body: dict, c) -> tuple[list[str], list[str], str, str]:
-        langs = [lang for lang in body.get("langs") or c.langs if lang in LANGS]
-        platforms = [p for p in body.get("platforms") or c.platforms if p in PLATFORMS]
+        def listed(value, default):
+            return value if isinstance(value, list) and value else default
+        langs = [lang for lang in listed(body.get("langs"), c.langs) if lang in LANGS]
+        platforms = [p for p in listed(body.get("platforms"), c.platforms) if p in PLATFORMS]
         return langs, platforms, str(body.get("guidance") or ""), str(body.get("readme") or "")
 
     @app.post("/api/campaigns/{slug}/ai/analyze")
@@ -383,7 +397,8 @@ def create_app(root: Path = ROOT, *, port: int = 8765, dist: Path | None = None,
         platform = str(body.get("platform"))
         if platform not in PLATFORMS:
             fail("unknown platform")
-        data = add_manual(c, post_id, lang, platform, str(body.get("text") or ""), body.get("totals") or {})
+        totals = body.get("totals") if isinstance(body.get("totals"), dict) else {}
+        data = add_manual(c, post_id, lang, platform, str(body.get("text") or ""), totals)
         return {"comments": len(data.get("comments") or []), "totals": data.get("totals") or {}}
 
     @app.get("/api/campaigns/{slug}/insights")

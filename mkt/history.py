@@ -14,7 +14,7 @@ from pathlib import Path
 from .links import is_configured
 from .model import Campaign, Post, campaign_slugs, load_campaign
 from .platforms import PLATFORMS
-from .publish import PublishError, ledger_key, load_ledger, now, update_ledger
+from .publish import PublishError, ledger_key, load_ledger, now, publish_lock, update_ledger
 
 
 def _parse_when(value: str) -> str:
@@ -44,13 +44,16 @@ def mark_posted(campaign: Campaign, post: Post, platform: str, *, url: str = "",
         raise PublishError(f"unknown platform '{platform}'")
     if url and not is_configured(url):
         raise PublishError("the URL must start with http:// or https://")
-    ledger = load_ledger(campaign)
-    if url and any(isinstance(r, dict) and r.get("url") == url for r in ledger.values()):
-        raise PublishError("this URL is already in the history")
-    base = ledger_key(post, platform)
-    number = 1 + sum(1 for key in ledger if key.startswith(base + "/m"))
-    return update_ledger(campaign, f"{base}/m{number}", state="done", method="manual",
-                         published_at=_parse_when(when), url=url, where=where, note=note, recorded_at=now())
+    published_at = _parse_when(when)
+    with publish_lock(campaign.root):
+        ledger = load_ledger(campaign)
+        if url and any(isinstance(r, dict) and r.get("url") == url for r in ledger.values()):
+            raise PublishError("this URL is already in the history")
+        base = ledger_key(post, platform)
+        numbers = [int(key.rsplit("/m", 1)[1]) for key in ledger
+                   if key.startswith(base + "/m") and key.rsplit("/m", 1)[1].isdigit()]
+        return update_ledger(campaign, f"{base}/m{max(numbers, default=0) + 1}", state="done", method="manual",
+                             published_at=published_at, url=url, where=where, note=note, recorded_at=now())
 
 
 def manual_rows(ledger: dict, post_id: str, lang: str, platform: str) -> list[dict]:

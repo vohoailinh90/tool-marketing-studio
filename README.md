@@ -93,7 +93,11 @@ mkt/                                 engine (Python)        web/   giao diện (
 
 ## Phát triển tiếp với Claude Code
 
-Repo mang theo đủ team agent của `claude-agent-routing-template` (`.claude/agents/`, chính sách
-định tuyến `agent-routing/`, hook giới hạn ngân sách agent). Mọi thay đổi code đi qua quy trình
-phân loại T0–T3 trong `CLAUDE.md`; viết nội dung marketing dùng skill `tool-campaign`.
+Repo mang theo đủ team agent của `claude-agent-routing-template`: 8 subagent Claude
+(`.claude/agents/`), chính sách định tuyến `agent-routing/` + hook giới hạn ngân sách agent, làn Codex,
+và cách dùng team model miễn phí trên VPS cho repo này — xem `docs/agent-team.md`. Mọi thay đổi code
+đi qua quy trình phân loại T0–T3 trong `CLAUDE.md`; viết nội dung marketing dùng skill `tool-campaign`.
+
+**CI:** repo private nên phút GitHub-hosted bị tính phí; nếu job CI fail ngay không có log, đăng ký runner
+VPS cho repo này và đặt biến `CI_RUNNER` (hướng dẫn trong `docs/agent-team.md`).
 Kiến trúc: `docs/architecture.md`. Kết nối Facebook: `docs/facebook-page.md`.

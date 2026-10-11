@@ -16,6 +16,11 @@
 | `ai.py` | Claude prompts per language (never translation), YAML answer → sanitize (draft status, known keys only) → same checks → one repair turn; paste mode; insights with verbatim-quote check |
 | `server.py` | FastAPI: Host allow-list, per-session token on every `/api` call and `?t=` on `/files`, JSON-only bodies, `no-store`; maps HTTP to the engine and holds no rules of its own |
 
+Trust boundary: the server refuses other websites (no token) and other machines (127.0.0.1,
+Host allow-list), but any program running as you on this computer can open the page and read
+its token — the same trust a desktop app gives your user account. Publishing still needs the
+typed Page name.
+
 ## App (`web/`)
 
 React 19 + Tailwind v4 + Radix, components copied from the Automation UI Kit. `lib/api.ts`

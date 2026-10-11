@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
 import shutil
 import tempfile
@@ -69,8 +70,9 @@ def fake_render(campaign, post, config: dict | None = None) -> None:
     for name in ("01.png", "02.png"):
         (out / name).write_bytes(PNG)
     texts = write_texts(campaign, post, out)
+    files = {name: hashlib.sha256((out / name).read_bytes()).hexdigest() for name in ["01.png", "02.png"] + texts}
     (out / "manifest.json").write_text(json.dumps({
-        "sha": content_sha(campaign, post, config or {}), "slides": ["01.png", "02.png"],
+        "sha": content_sha(campaign, post, config or {}), "slides": ["01.png", "02.png"], "files": files,
         "texts": texts, "overflow": [], "rendered_at": "2026-10-10T00:00:00+00:00"}), encoding="utf-8")
 
 

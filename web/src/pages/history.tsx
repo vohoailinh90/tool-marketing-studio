@@ -12,6 +12,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Textarea } from "@/components/ui/textarea"
 import { api, postPath, type HistoryRow } from "@/lib/api"
 import { languageNames, useI18n } from "@/lib/i18n"
+import { safeHref } from "@/lib/utils"
 
 const TOTAL_FIELDS = ["reactions", "comments", "shares"] as const
 
@@ -87,7 +88,7 @@ export function HistoryPage() {
                         <span className="flex flex-wrap items-center gap-2">
                           <StatusBadge tone={row.state === "done" ? "success" : "warning"}>{row.method === "api" ? t("by_api") : t("by_hand")}</StatusBadge>
                           {row.where}
-                          {row.url && <a href={row.url} target="_blank" rel="noreferrer" aria-label={t("open")}><ExternalLink className="size-3.5" /></a>}
+                          {safeHref(row.url) && <a href={safeHref(row.url)} target="_blank" rel="noreferrer" aria-label={t("open")}><ExternalLink className="size-3.5" /></a>}
                         </span>
                       </TableCell>
                       <TableCell className="text-right tabular-nums">{row.totals.reactions ?? "—"}</TableCell>

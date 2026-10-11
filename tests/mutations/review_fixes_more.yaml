@@ -1,0 +1,8 @@
+# Mutation manifest — see scripts/mutation_check.py
+target: mkt/approvals.py
+note: Exported files must be exactly what was rendered.
+mutations:
+- label: a hand-edited export is accepted
+  find: '        elif hashes.get(name) != hashlib.sha256(path.read_bytes()).hexdigest():'
+  replace: '        elif False:'
+  test: tests.test_review_fixes.PublishOutcomeTests.test_a_tampered_export_is_refused

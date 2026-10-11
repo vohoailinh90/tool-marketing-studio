@@ -1,9 +1,11 @@
-The hard part of a meeting across 3 countries is not busy calendars. It is that working hours barely overlap 🌏
+Vietnam, India and South Korea are only a few hours apart, yet finding a time that suits everyone is still hard 🌏
 
-Try it: Tokyo, Ho Chi Minh City and Prague, everyone working 09:00–18:00. In winter all three are at work together for just 1 hour a day (17:00 Tokyo = 09:00 Prague). A 90-minute meeting? No slot. Add someone in the US and nothing is shared.
+Working 09:00–18:00, the three countries overlap for 5.5 hours a day. Roomy, right? But with 10 people, each busy about 30% of their working time, my simple simulation found a 60-minute slot where everyone is free in only about 12% of weeks (with 3 people, almost always).
 
-(That is a worked example from standard hours with empty calendars. Real teams also have busy diaries and holidays.)
+Then add public holidays that differ by country, India's 30-minute offset that makes hand conversion error-prone, and calendars outside your organisation that are usually not visible.
 
-I am prototyping a small tool for this, but it is not released. I would rather hear how you handle it first. How does your team pick a time across time zones? Answer A / B / C / D in the comments 👇
+(That is a simulation with random calendars, not a real team.)
+
+I am prototyping a small tool for this, but for now it only reads calendars of people in the same organisation and it is not released. I would rather hear how you handle it first. How does your team pick a time across time zones? Answer A / B / C / D in the comments 👇
 
 #remotework #timezones #teamwork #productivity #scheduling

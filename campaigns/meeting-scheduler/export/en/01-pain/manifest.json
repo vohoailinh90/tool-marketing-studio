@@ -1,6 +1,6 @@
 {
-  "sha": "791716aec776a4d321ff784504cf50098d86dfcac6e6dfb83683fe22f20c5682",
-  "rendered_at": "2026-10-11T03:47:04+00:00",
+  "sha": "b1ad70241c139a55184774d03645ca56089bf39bc2b8412e08ebed5850517620",
+  "rendered_at": "2026-10-11T03:56:47+00:00",
   "engine": "0.1.0",
   "format": "portrait",
   "slides": [
@@ -10,7 +10,8 @@
     "04.png",
     "05.png",
     "06.png",
-    "07.png"
+    "07.png",
+    "08.png"
   ],
   "texts": [
     "facebook.txt",
@@ -24,17 +25,19 @@
     1,
     1,
     1,
+    1,
     1
   ],
   "files": {
-    "01.png": "b11ff637378408ac441c875f40aee244d23006e0be2842f2ccf16136f3081f50",
-    "02.png": "4fbe99467a198ac9310339a5bc5ba70cce15d2b9bb53912a3e161eb4f30c3436",
-    "03.png": "b27bef6834ee372f48b4dfcbd59496e0de83248994283f545c16445ec94b0ab2",
-    "04.png": "ee135338bd6c2bb20881b428d6ab0cebfd5c37101472d4fccd3d35d3d42acb3d",
-    "05.png": "daf6745ca1d92d633ed47a9da204c1421351548a8c95f2c78e74b858786cb5ff",
-    "06.png": "344d22c2fb446643cc74b8387fb263794e911e76735ff7f26817a2c3f32e6f72",
-    "07.png": "448db007d6c6e8f394466845f474c626cc0325011bc1adffed1af2fcb8c6122f",
-    "facebook.txt": "c59b47788b621bffd20aee104306f23fe4db8fb80626ef883de294ed6dc214c9",
+    "01.png": "cffdf37bbae1b8f102d83371df38f2ec64b68eb89eaf72f2fa65ec5a451dbf1c",
+    "02.png": "1fb18b212afabb400cf27475cdd10b2284ffdf21eb927fb767877ae40b250074",
+    "03.png": "72230f81a270ca9311fea65f574c981eb5658cdfcc51db0708a6cbd7ff27aa97",
+    "04.png": "3ec9fa4f306ade76ab9d0a5f4d17a7d017a7353b566f3a1f456ff0d4b9cc7044",
+    "05.png": "ef9e96d43325da93a730d55a104db6597df86974687a72f17492af0afe4bff16",
+    "06.png": "26aac8273adb24bf44501419e14222f26f1d25a34cf51e72410d7e6882af8102",
+    "07.png": "1e6e325524d5c68d3b845af638fbf660eb294cfaad9227787eefe6d2044d719e",
+    "08.png": "ecdcf12ea8f74e6402cc603eb70455bf123e04d2aac97fa0ee19ce14ecb25c8e",
+    "facebook.txt": "e19b0b2a3815e7fb4012d4e801e94515186bf8ae08709d3b06fa8383730d1d7d",
     "facebook-comment.txt": "ac403ca1c97778bc989d735e6ba5143e2e15b355958c2681adc49503d007e2e1"
   }
 }

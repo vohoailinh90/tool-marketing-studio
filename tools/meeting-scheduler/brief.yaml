@@ -17,6 +17,7 @@ what_it_is: >-
 
 requirements:
   - Windows with Outlook desktop (classic) for the "open draft" button
+  - Everyone whose calendar is read must be in the same Microsoft 365 organisation as the signed-in user (see limitations)
   - A Microsoft 365 / Exchange Online account; an Entra ID app registration with Delegated Calendars.Read approved by the organisation's IT, plus its tenant id, client id and client secret
   - Python 3.11+ with httpx and pywin32, or the packaged MeetingScheduler.exe (PyInstaller, built on Windows)
 
@@ -24,7 +25,7 @@ features:            # each is in the repo docs/README
   - id: multi-invitee
     fact: Invitees are added as rows; one row accepts several addresses separated by comma, semicolon or space; duplicates are removed
   - id: per-member-tz
-    fact: Each row has its own time zone (Asia/Tokyo, Europe/Prague, UTC or a custom UTC offset) and its own working hours (default 09:00-18:00, Monday-Friday)
+    fact: Each row has its own time zone (a short preset list or a custom UTC offset) and its own working hours (default 09:00-18:00, Monday-Friday)
   - id: graph-freebusy
     fact: Free/busy comes from Microsoft Graph getSchedule; requests are split into batches of at most 20 schedules
   - id: best-slot
@@ -61,13 +62,21 @@ claims:              # anything a post states as a benefit must be one of these
     text: "Slot search is fast: 30 invitees over 60 days took about 0.3 s (12 invitees: 0.12 s) on synthetic calendars"
     evidence: measured 2026-10-11 by calling find_best_slot() from src/meetingscheduler.py; excludes the Graph network call
     verified: true
-  - id: overlap-arithmetic
-    text: "With everyone at 09:00-18:00 Mon-Fri and empty calendars, Tokyo + Prague share only one 60-minute start per day in winter (17:00 JST = 09:00 CET), none for 90 minutes; in summer (CEST) three 60-minute starts per day. Adding Los Angeles or New York leaves no common slot"
-    evidence: measured 2026-10-11 with the repo's find_best_slot / _member_available on synthetic calendars
+  - id: vn-in-kr-overlap
+    text: "Vietnam (UTC+7), India (UTC+5:30) and South Korea (UTC+9), everyone working 09:00-18:00 Mon-Fri, share 5.5 hours a day: 10:30-16:00 in Vietnam, 09:00-14:30 in India, 12:30-18:00 in South Korea (that is 07:00-16:00 Korea and 10:30-19:30 India when read as Vietnam time). That gives 50 sixty-minute start times a week and 45 ninety-minute ones, and it does not change by season because none of the three observes daylight saving"
+    evidence: measured 2026-10-11 with find_best_slot / _member_available on empty synthetic calendars, plus plain UTC-offset arithmetic
     verified: true
-  - id: overlap-table
-    text: "In winter the 09:00-18:00 working day in Prague is 17:00-02:00 (+1 day) Tokyo time and in Ho Chi Minh City 11:00-20:00 Tokyo time; Tokyo, Prague and Ho Chi Minh City therefore overlap only 17:00-18:00 Tokyo time"
-    evidence: plain time-zone arithmetic (CET = UTC+1, Vietnam = UTC+7, Japan = UTC+9), consistent with the measured overlap above
+  - id: vn-in-kr-plus-region
+    text: "Adding one colleague in Berlin to Vietnam + India + South Korea leaves 5 sixty-minute starts a week in winter and none for 90 minutes (15 and 10 in summer); adding one in New York or Los Angeles leaves none"
+    evidence: measured 2026-10-11 with the repo's find_best_slot on empty synthetic calendars
+    verified: true
+  - id: headcount-simulation
+    text: "In a simple simulation (people split evenly across Vietnam, India and South Korea; one week; each person busy 20% / 30% / 40% of their working time with random 30-90 minute meetings; 300 runs each) the chance that at least one 60-minute slot exists where EVERYONE is free was: 3 people 100% / 100% / 98%; 10 people 73% / 12% / 2%; 15 people 23% / 1% / 0%"
+    evidence: simulation run 2026-10-11 on the repo's find_best_slot; assumes independent random meetings, no lunch breaks, no holidays; real calendars are clumpier, so treat as an illustration, not a forecast
+    verified: true
+  - id: same-org-only
+    text: The tool can only show free/busy for people whose calendar Microsoft Graph exposes to the signed-in user, i.e. colleagues in the same Microsoft 365 organisation; anyone else appears as unknown and is ignored by the best slot
+    evidence: docs/MEETING_SCHEDULER_DESIGN.md decision 6 and risk R1; real check covered only two colleagues of the same organisation (2026-09-graph-getschedule.md section 11). Whether another organisation can be read when it shares free/busy was NOT verified
     verified: true
   - id: team-size
     text: Works for 10+ invitees
@@ -76,15 +85,14 @@ claims:              # anything a post states as a benefit must be one of these
 
 limitations:         # say these openly: they decide who should NOT try it
   - Needs IT approval of a Graph app registration; it will not work on a personal account or a company that blocks it
-  - Invitees outside your organisation usually cannot be read and show as unknown; the best slot then ignores them
+  - Reads only colleagues in the same Microsoft 365 organisation as the signed-in user. Customers, partners and, in a group with several Microsoft 365 tenants, colleagues of another tenant show as unknown and are ignored by the best slot; sharing free/busy between organisations is not verified
   - Working hours are a hard yes/no; no lunch break, no public holidays, no per-country weekend, no "required vs optional" invitee
   - Results are shown in JST only, not in each invitee's local time
   - With people on three continents the strict window usually leaves no slot for everyone; the alternatives are ranked by headcount, not by who gets a night-time meeting
   - Windows + Outlook desktop only for the draft button; searching is limited to 60 days and 30-minute steps
 
 story_to_confirm:    # posts 02-story use these; the author must confirm or rewrite them
-  - The author has to invite colleagues in Japan and the Czech Republic, sometimes customers (design doc, section 1)
-  - Opening each person's calendar and converting time zones by hand was slow and error-prone with a 7-8 hour offset (design doc)
+  - The author wanted one place to see who is free across countries instead of opening each calendar and converting time zones by hand (owner to confirm the wording and any numbers)
   - The first two ways of reading calendars were tried and rejected on real data before Graph worked
 
 commercial_readiness: # what must exist before charging money

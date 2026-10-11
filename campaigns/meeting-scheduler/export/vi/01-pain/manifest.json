@@ -1,6 +1,6 @@
 {
-  "sha": "809309714a3eb994421ba01d9d777154678d27ee8783bc93a504172b5a72a864",
-  "rendered_at": "2026-10-11T03:46:56+00:00",
+  "sha": "1e0c59b42962bb0b05604f069ab68fc4edb075801df90f0687f458a35ee5bb6b",
+  "rendered_at": "2026-10-11T03:56:38+00:00",
   "engine": "0.1.0",
   "format": "portrait",
   "slides": [
@@ -10,7 +10,8 @@
     "04.png",
     "05.png",
     "06.png",
-    "07.png"
+    "07.png",
+    "08.png"
   ],
   "texts": [
     "facebook.txt",
@@ -24,17 +25,19 @@
     1,
     1,
     1,
+    1,
     1
   ],
   "files": {
-    "01.png": "a1d2293b8eac4fcb0f0fa0fe77ecaeecb18552957d10bcb93d7761e72a9a7235",
-    "02.png": "88efc696abfb8ae1ccff4587d09e3cd3ff0608ed3bebfa65825e4ba1898e51c3",
-    "03.png": "38c1bd3cf89476ff25bc1b59e534c7d04a4abb103632f055ea5181b694f2430a",
-    "04.png": "bf0d6586273238e140c298d43da5b2154d25549afd97610868c97fbd522cd61b",
-    "05.png": "b93fae4aefe2c471bbacf06414555f76598766ce797f858d19e2716850a295a5",
-    "06.png": "a5c83af6ecc041ff5e5568786b24cef9873490732eef64bb62da1da6d0841db9",
-    "07.png": "866cfbb7e984610eb149514e0cd2cafb752d173fff9a4f33f69a0e785c2e6eb8",
-    "facebook.txt": "8fb185e068bb405e249cc77f5379f2dcde1d4d56b717f4784871e9d89fea3ebf",
+    "01.png": "a1bac3c96466dd35440478a582ee4a5c39bb84bbe5877d417678aeaab38925e0",
+    "02.png": "432434f48badb6b9a394e9447ee1f3198adb58930f8587ec381557c6f0ddb994",
+    "03.png": "a76647e04bb95677f49912afb8ecf0dc9bd2e6b097bbf1a3d4917aa552af72d0",
+    "04.png": "a2d0ae75eae1f1f72cb8f889c387f11328bd6119e557832971daf2c8f38cd6dd",
+    "05.png": "9ec5009ef636f757d3b1a4e9ce674e170a67cf26004f53c812edf0304d990d9c",
+    "06.png": "ab993cdbf1fe8e60bd78fced5ccdf7409d3c8219197ba44f1ec6617cbaa34ff4",
+    "07.png": "19d377979cccf15496795b7a9e4a571620ca7664cb32a7b3fd39bb44a148490d",
+    "08.png": "8a3c36ca4bbbb315002a8b6c14a667157101a47993239db828aab08d62d11b89",
+    "facebook.txt": "70191944f26f8ba56729ca6e6699b1c745d723c4bfba31cc899d71805d9b0f5a",
     "facebook-comment.txt": "e5da467a84f24a509a06cb6daecc5ff2bdb3927005441c4f7c6a15103d1e0149"
   }
 }

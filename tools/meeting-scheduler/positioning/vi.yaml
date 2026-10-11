@@ -14,9 +14,9 @@ objections:
   - {q: "Công cụ có tự gửi lời mời không?", a: "Không. Nó chỉ mở bản nháp trong Outlook, bạn tự bấm Gửi."}
   - {q: "Đã phát hành chưa?", a: "Chưa. Hiện là bản thử của mình, chưa có kế hoạch phát hành."}
   - {q: "Đọc lịch đồng nghiệp bằng cách nào?", a: "Qua Microsoft Graph, bằng chính tài khoản của người dùng; công ty (IT) phải cho phép."}
-vocabulary: [họp xuyên quốc gia, lệch múi giờ, giờ hành chính, khung giờ chung, lịch bận, giờ Tokyo, giờ Prague, chốt giờ họp]
+vocabulary: [họp xuyên quốc gia, lệch múi giờ, giờ hành chính, khung giờ chung, lịch bận, giờ Ấn Độ, giờ Hàn Quốc, chốt giờ họp]
 angles:
-  - "Toán học của khung giờ chung: Tokyo + Prague + Sài Gòn chỉ còn 1 giờ mỗi ngày"
+  - "Việt Nam, Ấn Độ, Hàn Quốc: có 5,5 giờ chung mỗi ngày, nhưng 10 người thì còn ~12% khả năng có khung ai cũng rảnh"
   - "Khi không có giờ chung, ai chịu giờ xấu"
   - "Vì sao mình thử viết công cụ này (cần chủ tool xác nhận)"
 tone: "Thân thiện, xưng mình – bạn, hài hước nhẹ về chuyện dịch múi giờ; trung thực: đây là ý tưởng, chưa phải sản phẩm."

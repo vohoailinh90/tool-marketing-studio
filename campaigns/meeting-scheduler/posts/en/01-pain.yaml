@@ -6,46 +6,51 @@ link: ~
 slides:
   - layout: cover
     emoji: "🌏"
-    eyebrow: "Scheduling across time zones"
-    title: "Finding **one meeting time** for 10 people in 3 countries is harder than it looks"
-    subtitle: "It is not the full calendars. It is that **working hours barely overlap**."
+    eyebrow: "Meetings across Asia"
+    title: "Finding **one time** for 10 people in Vietnam, India and South Korea"
+    subtitle: "Only a few hours apart, so it should be easy. But the bigger the group, the harder it is to find a slot **everyone** can make."
     badge: "Swipe through 👉"
 
   - layout: chat
     title: "Sound familiar?"
-    group: "Weekly sync 🌏"
+    group: "Regional sync 🌏"
     messages:
-      - {from: "Hana (Tokyo)", text: "Anything before 6pm Tokyo time works"}
-      - {from: "Petr (Prague)", text: "We only start at 9am here"}
-      - {from: "Mai (Ho Chi Minh City)", text: "Tuesdays and Thursdays are packed"}
-      - {me: true, text: "Hold on, converting everyone's time…"}
-      - {from: "Hana (Tokyo)", text: "How about 4pm? Wait. Whose 4pm?"}
+      - {from: "Linh (Vietnam)", text: "Shall we do 15:00?"}
+      - {from: "Min-jun (South Korea)", text: "15:00 in Vietnam is 17:00 for us"}
+      - {from: "Arjun (India)", text: "That's 13:30 here. India has a 30-minute offset, let me recalculate"}
+      - {me: true, text: "Hold on, there are more people to fit in…"}
     note: "Illustrative chat, not a real conversation."
 
   - layout: table
-    title: "A 09:00–18:00 day in each place, in Tokyo time (winter)"
-    columns: ["Where", "Working hours (Tokyo time)"]
+    title: "A 09:00–18:00 day in each country, in Vietnam time"
+    columns: ["Country", "Working hours (Vietnam time)"]
     rows:
-      - ["Tokyo", "09:00 – 18:00"]
-      - ["Ho Chi Minh City", "11:00 – 20:00"]
-      - ["Prague", "17:00 – 02:00 (+1 day)"]
-      - [{text: "All three working", tone: ok}, {text: "17:00 – 18:00", tone: ok}]
+      - ["Vietnam", "09:00 – 18:00"]
+      - ["India", "10:30 – 19:30"]
+      - ["South Korea", "07:00 – 16:00"]
+      - [{text: "All three working", tone: ok}, {text: "10:30 – 16:00", tone: ok}]
     style: app
     note: "Worked out from standard working hours, with completely empty calendars."
 
   - layout: stat
-    eyebrow: "What is left?"
-    value: "1 hour"
-    label: "a day when Tokyo, Ho Chi Minh City and Prague are all at work"
-    caption: "A 90-minute meeting? No slot at all. Add a colleague in the US and nothing is shared."
+    eyebrow: "Sounds roomy"
+    value: "5.5 hours"
+    label: "a day when all three countries are at work"
+    caption: "That is 12:30–18:00 in South Korea and 09:00–14:30 in India. None of the three changes its clocks with the seasons."
+
+  - layout: stat
+    eyebrow: "Then the group grows"
+    value: "~12%"
+    label: "chance that a week holds a 60-minute slot where all 10 people are free"
+    caption: "A simple simulation, with everyone busy about 30% of their working time. With 3 people the same busyness almost always leaves a slot."
 
   - layout: pains
-    title: "And that is the easy part"
+    title: "And then there is…"
     items:
-      - {emoji: "🌙", text: "No shared slot: **who takes the bad hour?**"}
-      - {emoji: "🔢", text: "Converting by hand: **one wrong offset** and the group is off"}
-      - {emoji: "👀", text: "Guests outside your company: **no calendar to look at**"}
-      - {emoji: "🎌", text: "**Public holidays** differ by country"}
+      - {emoji: "🎌", text: "**Public holidays** differ: Tet, Seollal, Diwali"}
+      - {emoji: "🔢", text: "India's **30-minute offset** makes hand conversion error-prone"}
+      - {emoji: "👀", text: "Calendars **outside your organisation** are usually not visible"}
+      - {emoji: "🌙", text: "No perfect slot: **who takes the bad hour?**"}
 
   - layout: poll
     eyebrow: "Quick question"
@@ -59,19 +64,21 @@ slides:
   - layout: cta
     emoji: "💬"
     title: "I am prototyping a small tool for this"
-    text: "It is not released, and I would like to hear how you handle it first. What works for your team?"
+    text: "For now it only reads calendars of people in the same organisation, and it is not released. I would like to hear how you handle it first."
     show_link: false
 
 platforms:
   facebook:
     caption: |
-      The hard part of a meeting across 3 countries is not busy calendars. It is that working hours barely overlap 🌏
+      Vietnam, India and South Korea are only a few hours apart, yet finding a time that suits everyone is still hard 🌏
 
-      Try it: Tokyo, Ho Chi Minh City and Prague, everyone working 09:00–18:00. In winter all three are at work together for just 1 hour a day (17:00 Tokyo = 09:00 Prague). A 90-minute meeting? No slot. Add someone in the US and nothing is shared.
+      Working 09:00–18:00, the three countries overlap for 5.5 hours a day. Roomy, right? But with 10 people, each busy about 30% of their working time, my simple simulation found a 60-minute slot where everyone is free in only about 12% of weeks (with 3 people, almost always).
 
-      (That is a worked example from standard hours with empty calendars. Real teams also have busy diaries and holidays.)
+      Then add public holidays that differ by country, India's 30-minute offset that makes hand conversion error-prone, and calendars outside your organisation that are usually not visible.
 
-      I am prototyping a small tool for this, but it is not released. I would rather hear how you handle it first. How does your team pick a time across time zones? Answer A / B / C / D in the comments 👇
+      (That is a simulation with random calendars, not a real team.)
+
+      I am prototyping a small tool for this, but for now it only reads calendars of people in the same organisation and it is not released. I would rather hear how you handle it first. How does your team pick a time across time zones? Answer A / B / C / D in the comments 👇
     first_comment: |
       A. Whoever is most flexible adapts · B. We rotate the inconvenient hour · C. A scheduling tool · D. Async: record it and share
     hashtags: [remotework, timezones, teamwork, productivity, scheduling]

@@ -16,7 +16,7 @@ objections:
   - {q: "How does it read calendars?", a: "Through Microsoft Graph with the user's own account; the organisation's IT must allow it."}
 vocabulary: [overlap, working hours, time zones, shared window, free/busy, recurring sync, 4pm whose time, find a slot]
 angles:
-  - "The maths of overlap: Tokyo + Prague + Ho Chi Minh City get one hour a day"
+  - "Vietnam, India, South Korea share 5.5 hours a day, yet with 10 people a slot where everyone is free shows up only ~12% of weeks"
   - "Who takes the bad hour when nothing fits"
   - "Why I started building it (owner to confirm)"
 tone: "Crisp and friendly, light humour about time zones; honest that this is an idea, not a product."

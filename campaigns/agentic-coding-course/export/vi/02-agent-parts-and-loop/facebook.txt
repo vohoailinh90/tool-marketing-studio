@@ -1,0 +1,15 @@
+AI tự sửa lỗi bằng cách nào?
+
+Bộ não, đôi tay và vòng lặp: AI agent được ghép từ gì?
+
+• Bộ não: LLM: Hiểu yêu cầu, chọn bước tiếp theo
+• Đôi tay: công cụ: Đọc, ghi file, chạy lệnh — trong phạm vi được phép
+• Vòng lặp: Suy nghĩ → hành động → quan sát, rồi lặp lại
+• Biết lúc dừng: Khi xong việc, hoặc cần bạn quyết định
+
+Agent tự sửa lỗi được đến đâu tùy vào công cụ, quyền hạn và phản hồi mà nó nhận được.
+
+Agent thiếu công cụ quan sát thì bạn sẽ kiểm tra kết quả thế nào?
+Link bài ở bình luận đầu.
+
+#AgenticCoding #AI #HocAI

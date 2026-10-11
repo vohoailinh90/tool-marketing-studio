@@ -1,0 +1,71 @@
+id: 02-agent-parts-and-loop
+status: draft
+format: portrait
+series: Học cùng AI · 1.1.2
+link: agent-parts-and-loop-vi
+slides:
+- layout: cover
+  emoji: 🚀
+  eyebrow: Học cùng AI
+  title: AI tự sửa lỗi bằng **cách nào**?
+  subtitle: AI agent làm được gì
+- layout: cover
+  emoji: 🧠
+  eyebrow: Hiểu để làm đúng
+  title: '**Bộ não: LLM**'
+  subtitle: Hiểu yêu cầu, chọn bước tiếp theo
+- layout: cover
+  emoji: 🔧
+  eyebrow: Hiểu để làm đúng
+  title: '**Đôi tay: công cụ**'
+  subtitle: Đọc, ghi file, chạy lệnh — trong phạm vi được phép
+- layout: cover
+  emoji: 🔁
+  eyebrow: Hiểu để làm đúng
+  title: '**Vòng lặp**'
+  subtitle: Suy nghĩ → hành động → quan sát, rồi lặp lại
+- layout: cover
+  emoji: 🛑
+  eyebrow: Hiểu để làm đúng
+  title: '**Biết lúc dừng**'
+  subtitle: Khi xong việc, hoặc cần bạn quyết định
+- layout: quote
+  text: Agent tự sửa lỗi được đến đâu tùy vào công cụ, quyền hạn và phản hồi mà nó nhận được.
+  author: Ghi nhớ từ bài học
+- layout: cta
+  emoji: 💬
+  eyebrow: Hỏi bạn
+  title: Agent thiếu công cụ quan sát thì bạn sẽ kiểm tra kết quả thế nào?
+  text: Chia sẻ cách bạn làm.
+  hint: Link bài ở bình luận đầu.
+  show_link: false
+platforms:
+  facebook:
+    caption: 'AI tự sửa lỗi bằng cách nào?
+
+
+      Bộ não, đôi tay và vòng lặp: AI agent được ghép từ gì?
+
+
+      • Bộ não: LLM: Hiểu yêu cầu, chọn bước tiếp theo
+
+      • Đôi tay: công cụ: Đọc, ghi file, chạy lệnh — trong phạm vi được phép
+
+      • Vòng lặp: Suy nghĩ → hành động → quan sát, rồi lặp lại
+
+      • Biết lúc dừng: Khi xong việc, hoặc cần bạn quyết định
+
+
+      Agent tự sửa lỗi được đến đâu tùy vào công cụ, quyền hạn và phản hồi mà nó nhận được.
+
+
+      Agent thiếu công cụ quan sát thì bạn sẽ kiểm tra kết quả thế nào?
+
+      Link bài ở bình luận đầu.'
+    first_comment: 'Đọc bài học và thử bằng dữ liệu giả: {link}'
+    hashtags:
+    - AgenticCoding
+    - AI
+    - HocAI
+notes: 'Source claim: agent-parts-and-loop. Chapter 1; curriculum lesson 1.1.2. Educational
+  recap, not a testimonial. Draft for owner review.'

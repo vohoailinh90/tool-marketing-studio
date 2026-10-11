@@ -1,0 +1,78 @@
+id: 17-project-anatomy
+status: draft
+format: portrait
+series: Học cùng AI · 3.1.2
+link: project-anatomy-vi
+slides:
+- layout: cover
+  emoji: 🧱
+  eyebrow: Học cùng AI
+  title: Nút bấm chạy qua **những phần nào**?
+  subtitle: File và dự án
+- layout: cover
+  emoji: 🖥️
+  eyebrow: Hiểu để làm đúng
+  title: '**Frontend**'
+  subtitle: Người dùng nhìn và tương tác
+- layout: cover
+  emoji: 🔧
+  eyebrow: Hiểu để làm đúng
+  title: '**Backend**'
+  subtitle: Xử lý yêu cầu và quy tắc
+- layout: cover
+  emoji: 🗄️
+  eyebrow: Hiểu để làm đúng
+  title: '**Database**'
+  subtitle: Giữ dữ liệu để dùng lại
+- layout: cover
+  emoji: 📖
+  eyebrow: Hiểu để làm đúng
+  title: '**API như thực đơn**'
+  subtitle: Cách các phần yêu cầu nhau
+- layout: cover
+  emoji: 🔎
+  eyebrow: Hiểu để làm đúng
+  title: '**Giao đúng phạm vi**'
+  subtitle: Chỉ đúng phần, kiểm tra diff
+- layout: quote
+  text: Biết vai trò và đường đi giúp bạn giao đúng phần cho agent.
+  author: Ghi nhớ từ bài học
+- layout: cta
+  emoji: 💬
+  eyebrow: Hỏi bạn
+  title: Khi trang không lưu dữ liệu, bạn muốn kiểm tra phần nào?
+  text: Chia sẻ cách bạn làm.
+  hint: Link bài ở bình luận đầu.
+  show_link: false
+platforms:
+  facebook:
+    caption: 'Nút bấm chạy qua những phần nào?
+
+
+      Giải phẫu một dự án: frontend, backend, database, API
+
+
+      • Frontend: Người dùng nhìn và tương tác
+
+      • Backend: Xử lý yêu cầu và quy tắc
+
+      • Database: Giữ dữ liệu để dùng lại
+
+      • API như thực đơn: Cách các phần yêu cầu nhau
+
+      • Giao đúng phạm vi: Chỉ đúng phần, kiểm tra diff
+
+
+      Biết vai trò và đường đi giúp bạn giao đúng phần cho agent.
+
+
+      Khi trang không lưu dữ liệu, bạn muốn kiểm tra phần nào?
+
+      Link bài ở bình luận đầu.'
+    first_comment: 'Đọc bài học và thử bằng dữ liệu giả: {link}'
+    hashtags:
+    - AgenticCoding
+    - AI
+    - HocAI
+notes: 'Source claim: project-anatomy. Chapter 3; curriculum lesson 3.1.2. Educational recap,
+  not a testimonial. Draft for owner review.'

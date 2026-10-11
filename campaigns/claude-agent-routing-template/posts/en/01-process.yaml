@@ -1,0 +1,112 @@
+id: 01-process
+status: draft
+format: portrait
+series: "Working with AI · #1"
+link: ""
+slides:
+  - layout: cover
+    emoji: "🧭"
+    eyebrow: "How I work with AI"
+    title: "**Claude designs.** **Codex pushes back.** The loop runs to done."
+    subtitle: "Not forever — it has brakes, and a written definition of done."
+
+  - layout: pains
+    title: "Why the AI that wrote it shouldn't be its only reviewer"
+    tone: bad
+    items:
+      - {emoji: "🪞", text: "The author ends up as the only reviewer"}
+      - {emoji: "🤝", text: "Two runs of one model family tend to share blind spots"}
+      - {emoji: "📝", text: "\"Done!\" arrives with no evidence per acceptance criterion"}
+      - {emoji: "♾️", text: "Unattended runs can loop, burn quota and drift out of scope"}
+
+  - layout: table
+    title: "Small jobs don't need a crowd"
+    columns: ["Tier", "Score", "Who joins"]
+    rows:
+      - ["T0", "0–2", "Main Claude session only"]
+      - ["T1", "3–5", "Main session + 1 reviewer"]
+      - ["T2", "6–8", "Reviewer; an architect only if the architecture changes"]
+      - ["T3", "9–12", "Design critic + reviewer"]
+    note: "Six dimensions, each scored 0–2. A script turns the score into a tier — no vibes."
+
+  - layout: flow
+    variant: after
+    title: "One pass of the loop"
+    steps:
+      - {emoji: "📊", text: "Score the requirement; a script picks the tier and agent budget"}
+      - {emoji: "🧠", text: "**Claude designs** and writes the acceptance criteria"}
+      - {emoji: "🔍", text: "**Codex critiques** the design (read-only, no file changes)"}
+      - {emoji: "🛠️", text: "Claude revises the design, then builds it"}
+      - {emoji: "🔀", text: "Open the PR and request a Codex review straight away"}
+      - {emoji: "✅", text: "Claude re-reads the diff, re-runs the tests, fixes only confirmed findings"}
+      - {emoji: "🚀", text: "Meets the definition of done? Merge."}
+    note: "The lower the tier, the fewer the steps."
+
+  - layout: checklist
+    title: "What a critique must contain"
+    items:
+      - "Critical and high findings only — no nitpicks for show"
+      - "Every finding comes with evidence and a concrete failure scenario"
+      - "One of three verdicts: accept, accept with changes, reject"
+      - "One round; a second only if serious findings are still open"
+    note: "Stop when serious findings are fixed or rejected with evidence. No arguing until everyone agrees."
+
+  - layout: table
+    title: "A loop with brakes"
+    columns: ["What", "Max"]
+    rows:
+      - ["Design ↔ critique rounds", "2"]
+      - ["Fix rounds", "2"]
+      - ["Review rounds per PR", "3"]
+      - ["Codex requests in flight", "1"]
+      - ["Same request type on the same commit", "never repeated"]
+    note: "A script counts review rounds from GitHub — not the AI's memory."
+
+  - layout: checklist
+    title: "When it counts as done"
+    tone: ok
+    items:
+      - "Codex ran the intended task on the intended commit"
+      - "Every acceptance criterion has evidence"
+      - "The repo's required tests and checks are green"
+      - "No P0/P1 finding left, and the scope didn't grow"
+    note: "All four? Merge. A human steps in only for a decision a machine can't make, or when the original requirement changes."
+
+  - layout: features
+    title: "Keeping the run alive"
+    items:
+      - {emoji: "📒", title: "Handoff file", text: "Goal, done, remaining, next command — written to disk"}
+      - {emoji: "⏱️", title: "Nudges", text: "Around 70% of context: update the notes. Around 85%: wrap up"}
+      - {emoji: "🛟", title: "If it dies mid-task", text: "Saved before context compaction; a new session reads it back"}
+      - {emoji: "🧮", title: "Computable means script", text: "Round counts, commit checks, tests — never a guess"}
+    note: "Restarting from scratch costs more than carrying on."
+
+  - layout: poll
+    eyebrow: "Your turn"
+    question: "Who checks the work your AI does today?"
+    options:
+      - "The same AI"
+      - "A different AI"
+      - "I read it myself"
+      - "Nobody yet"
+    hint: "Reply A, B, C or D"
+
+platforms:
+  facebook:
+    caption: |
+      Claude designs, Codex pushes back, and the loop runs until it's actually done 👇
+
+      If an AI writes the code and then reviews it, who catches what it missed? Here's the process I follow, from a template repo of mine (private for now):
+
+      1️⃣ Score the requirement on 6 dimensions, 0–2 each. A script turns the score into a tier, T0–T3, and decides how many reviewers it gets — not the AI's mood.
+      2️⃣ Claude designs. Codex critiques: serious findings only, each with evidence and a failure scenario.
+      3️⃣ Claude builds it, opens the PR, and asks Codex to review. Claude re-reads the diff and re-runs the tests itself; only confirmed findings get fixed.
+      4️⃣ There are brakes: at most 2 fix rounds and 3 review rounds per PR.
+      5️⃣ "Done" means evidence for every acceptance criterion, green checks and no P0/P1 left. Only then does it merge.
+
+      To keep it running I use a handoff file: around 70% of context I write the notes, around 85% I wrap up, and a new session picks up from the file.
+
+      The honest limits: you need Codex Cloud connected to GitHub with quota left, and auto-merge is only safe when the main branch requires up-to-date branches.
+
+      Who checks your AI's work today?
+    hashtags: [Claude, Codex, AI, automation, softwaredevelopment]

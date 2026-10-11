@@ -1,0 +1,23 @@
+lang: en
+one_liner: "How I let Claude design, Codex push back, and the loop run to done — with hard stops and a written definition of done."
+audience: >-
+  Builders and team leads in international teams who use AI (Claude, Codex) to build internal tools,
+  scripts and automations, and want the AI's work to be checked by something other than the AI that
+  wrote it.
+pains:
+  - "The model that wrote the code reviews its own work and misses its own blind spots"
+  - "\"Done\" arrives with no evidence against the acceptance criteria"
+  - "Running agents unattended risks endless back-and-forth, burnt quota and scope creep"
+  - "A session dies mid-task and you re-explain everything from scratch"
+promise: "A written process: who designs, who critiques, how many rounds each gets, and exactly what counts as done."
+objections:
+  - {q: "So the AI runs completely on its own?", a: "No. The loop has round caps and a definition of done; a person is needed only for a decision a machine cannot make, or when the original requirement changes."}
+  - {q: "Does Codex's feedback get applied automatically?", a: "No. A finding is confirmed against the code first, and only then is a fix requested. Speculative findings are not fixed."}
+  - {q: "Can I get the repository?", a: "It is private for now. This post shares the way of working, not the code."}
+vocabulary: [design, critique, push back, review round, acceptance criteria, definition of done, evidence, scope, handoff]
+angles:
+  - "Why the author shouldn't be the only reviewer"
+  - "One pass of the loop: score, design, critique, build, review, done"
+  - "The brakes: how many rounds before the loop stops"
+  - "Surviving a dead session with a handoff file"
+tone: "Crisp, friendly and concrete; first person; no hype, limits stated plainly."

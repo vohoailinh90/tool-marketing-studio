@@ -1,0 +1,78 @@
+id: 16-what-is-software
+status: draft
+format: portrait
+series: Học cùng AI · 3.1.1
+link: what-is-software-vi
+slides:
+- layout: cover
+  emoji: 🧱
+  eyebrow: Học cùng AI
+  title: '“Nêm vừa ăn”: máy tính **hiểu được không**?'
+  subtitle: File và dự án
+- layout: cover
+  emoji: 💻
+  eyebrow: Hiểu để làm đúng
+  title: '**Phần mềm**'
+  subtitle: Chương trình + dữ liệu, chạy trên phần cứng
+- layout: cover
+  emoji: 📋
+  eyebrow: Hiểu để làm đúng
+  title: '**Chương trình**'
+  subtitle: Các bước chính xác cho máy làm theo
+- layout: cover
+  emoji: 📝
+  eyebrow: Hiểu để làm đúng
+  title: '**Code**'
+  subtitle: Văn bản ghi chỉ dẫn, lưu trong file
+- layout: cover
+  emoji: 🍲
+  eyebrow: Hiểu để làm đúng
+  title: '**Không đoán ý**'
+  subtitle: “Nêm vừa ăn” chưa đủ chính xác
+- layout: cover
+  emoji: ✅
+  eyebrow: Hiểu để làm đúng
+  title: '**Bạn đã làm rồi**'
+  subtitle: Thẻ việc tuần cũng là phần mềm
+- layout: quote
+  text: Nói rõ dữ liệu vào, các bước xử lý và kết quả cần kiểm tra.
+  author: Ghi nhớ từ bài học
+- layout: cta
+  emoji: 💬
+  eyebrow: Hỏi bạn
+  title: Bạn sẽ mô tả đầu vào và đầu ra của một việc quen thuộc thế nào?
+  text: Chia sẻ cách bạn làm.
+  hint: Link bài ở bình luận đầu.
+  show_link: false
+platforms:
+  facebook:
+    caption: '“Nêm vừa ăn”: máy tính hiểu được không?
+
+
+      Phần mềm là gì? Chương trình giống một công thức nấu ăn
+
+
+      • Phần mềm: Chương trình + dữ liệu, chạy trên phần cứng
+
+      • Chương trình: Các bước chính xác cho máy làm theo
+
+      • Code: Văn bản ghi chỉ dẫn, lưu trong file
+
+      • Không đoán ý: “Nêm vừa ăn” chưa đủ chính xác
+
+      • Bạn đã làm rồi: Thẻ việc tuần cũng là phần mềm
+
+
+      Nói rõ dữ liệu vào, các bước xử lý và kết quả cần kiểm tra.
+
+
+      Bạn sẽ mô tả đầu vào và đầu ra của một việc quen thuộc thế nào?
+
+      Link bài ở bình luận đầu.'
+    first_comment: 'Đọc bài học và thử bằng dữ liệu giả: {link}'
+    hashtags:
+    - AgenticCoding
+    - AI
+    - HocAI
+notes: 'Source claim: what-is-software. Chapter 3; curriculum lesson 3.1.1. Educational recap,
+  not a testimonial. Draft for owner review.'

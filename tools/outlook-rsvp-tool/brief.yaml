@@ -54,9 +54,9 @@ features:            # each is in the tool's README
   - id: scan-detail
     fact: Scan Inbox reads replies from every folder of the mailbox; a vote can be corrected by hand and the correction is kept by later scans unless a newer reply from that person is found; replies are matched to an event by its Event ID, which Scan Inbox looks for in the subject of each vote reply (tool code, outlook_com.py) - the vote button produces that reply, so recipients type nothing, but the README says to check that the Event ID on the setup tab matches the one used when the invite was sent
   - id: send-guard
-    fact: The reminder and the Calendar Invite can only be sent once the event open on the setup tab has been scanned, so they cannot go to another event's list; reminders can be sent from the Collect Responses and Gift Contribution tabs
+    fact: The RSVP reminder and the Calendar Invite can only be sent once the event open on the setup tab has been scanned, so they cannot go to another event's list (the gift reminder has no such check); reminders can be sent from the Collect Responses and Gift Contribution tabs
   - id: reminder-detail
-    fact: Reminders go to the people who have not answered; Calendar Invites go to the people who answered Yes or Maybe; the how-to-vote image is attached to invites and reminders
+    fact: Reminders go to the people who have not answered, and the app only opens each reminder as a draft in Outlook for the user to check and send (auto_send is always false in the tool code); Calendar Invites go to the people who answered Yes or Maybe; the how-to-vote image is attached to invites and reminders; the vote buttons are labelled Yes, No and Maybe in every language (VotingOptions in the tool code)
   - id: payment-rounds
     fact: Round 1 is the main event; Add round adds a follow-up (second venue, another evening) with its own Attend and amount columns, and a round can be renamed or removed; ticking Attend fills the amount from the expected event budget, a double-click corrects it; clicking an Attend or Free cell ticks it and clicking a column header ticks everyone; Free exempts a person from every round
   - id: round-figures

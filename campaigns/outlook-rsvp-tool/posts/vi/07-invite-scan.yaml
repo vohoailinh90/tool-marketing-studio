@@ -7,7 +7,7 @@ slides:
   - layout: cover
     emoji: "📥"
     eyebrow: "Mời & đếm"
-    title: "Hết cảnh **đọc từng email** để đếm Yes / No"
+    title: "Bớt cảnh **đọc từng email** để đếm Yes / No"
     subtitle: "Mời bằng nút bấm, đếm bằng một cú click. Đây là những bước đầu tiên của tool."
 
   - layout: compare
@@ -39,7 +39,7 @@ slides:
       - {emoji: "📂", title: "Đọc mọi thư mục", text: "Tìm câu trả lời ở tất cả thư mục trong hộp thư, không chỉ Inbox"}
       - {emoji: "🔢", title: "Đếm sẵn cho bạn", text: "Số Yes / No / Maybe được đếm và lưu vào lịch sử"}
       - {emoji: "✏️", title: "Sửa tay được", text: "Phiếu nào cần chỉnh thì sửa; lần quét sau vẫn giữ, trừ khi người đó gửi trả lời mới hơn"}
-      - {emoji: "🏷️", title: "Khớp bằng Event ID", text: "Mỗi sự kiện có một mã để câu trả lời không lẫn sang sự kiện khác"}
+      - {emoji: "🏷️", title: "Khớp bằng Event ID", text: "Mỗi sự kiện có một mã để khớp câu trả lời đúng sự kiện — mã trên tab thiết lập phải khớp mã lúc gửi lời mời"}
 
   - layout: pains
     tone: accent

@@ -7,7 +7,7 @@ slides:
   - layout: cover
     emoji: "📥"
     eyebrow: "Invite & count"
-    title: "Stop **reading every reply** to count the RSVPs"
+    title: "Less **reading every reply** to count the RSVPs"
     subtitle: "Invite with buttons, count with one click. These are the first steps of the tool."
 
   - layout: compare
@@ -39,7 +39,7 @@ slides:
       - {emoji: "📂", title: "Every folder", text: "Looks for replies in every folder of your mailbox, not just the Inbox"}
       - {emoji: "🔢", title: "Counts for you", text: "Yes / No / Maybe totals are counted and saved to History"}
       - {emoji: "✏️", title: "Fix by hand", text: "Correct any vote; your edit survives later scans unless that person sends a newer reply"}
-      - {emoji: "🏷️", title: "Matched by Event ID", text: "Each event has an ID, so replies are matched to the right event"}
+      - {emoji: "🏷️", title: "Matched by Event ID", text: "Each event has an ID and replies are matched to it — the ID on the setup tab must match the one used when the invite was sent"}
 
   - layout: pains
     tone: accent

@@ -36,7 +36,7 @@ slides:
   - layout: features
     title: "What the tool keeps safe for you"
     items:
-      - {emoji: "🔒", title: "No wrong-list sends", text: "Reminders and calendar invites only go out once the open event has been scanned, so they can't reach another event's list"}
+      - {emoji: "🔒", title: "No sends to another event's list", text: "The reminder to non-responders and the calendar invite only go out once the open event has been scanned, so they can't reach another event's list"}
       - {emoji: "🖼️", title: "How-to-vote picture", text: "Invites and reminders both carry a picture showing how to click the buttons"}
       - {emoji: "🎁", title: "Gift reminders too", text: "Send them from the Collect Responses and Gift Contribution tabs"}
 
@@ -44,14 +44,14 @@ slides:
     tone: accent
     title: "Honest limits"
     items:
-      - {emoji: "⚠️", text: "Reminders are **sent by hand** from the app — no automatic, scheduled sending yet"}
+      - {emoji: "⚠️", text: "Reminders are **sent by hand**: the app opens the e-mail in Outlook, you check it and click Send — no scheduled sending yet"}
       - {emoji: "⚠️", text: "Outlook Desktop must be open and signed in"}
       - {emoji: "⚠️", text: "2 people sharing one e-mail address can't be told apart"}
 
   - layout: cta
     emoji: "🙋"
     title: "Would you want **scheduled reminders**?"
-    text: "It's not built yet. If you'd use it, tell me — your answers help me weigh what to build next."
+    text: "It's not built yet. If you'd use it, tell me."
     keyword: "REMIND"
 
 platforms:
@@ -64,7 +64,7 @@ platforms:
       → the calendar invite goes only to people who said Yes or Maybe
       → both only go out once the open event has been scanned, so they can't land on another event's list
 
-      Honest limit: reminders are sent by hand from the app. Scheduled, automatic reminders aren't built yet.
+      Honest limit: the app opens each reminder in Outlook and you check it and click Send. Scheduled, automatic reminders aren't built yet.
 
       Would you use them? Comment “REMIND” if so 👇
     first_comment: |

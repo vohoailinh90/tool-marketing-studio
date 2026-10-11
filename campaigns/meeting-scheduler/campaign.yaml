@@ -2,8 +2,9 @@ tool: meeting-scheduler
 langs: [vi, ja, en]
 platforms: [facebook]
 goal: >-
-  Validate demand for Meeting Scheduler before investing more: who feels this pain, how they work
-  today, and whether they (or their company) would pay.
+  Page content only, for now: share the IDEA and the pain of finding one meeting time for a large group spread over
+  several countries, and hear how readers handle it today. The tool is a personal prototype; no download, trial or
+  waitlist is offered and no release date is promised. (Demand validation can be switched on later.)
 
 links:
   survey: "https://REPLACE_ME/survey?src={source}"

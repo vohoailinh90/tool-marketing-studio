@@ -1,11 +1,22 @@
 lang: vi
-one_liner: "TODO"
-audience: "TODO"
+one_liner: "Ý tưởng một công cụ nhỏ tìm giờ họp chung cho nhóm nhiều người ở nhiều nước, tôn trọng giờ làm việc của từng người."
+audience: >-
+  Nhân viên văn phòng người Việt (ở Việt Nam hoặc làm cho công ty Nhật, công ty nước ngoài) hay phải hẹn họp với đồng nghiệp
+  ở Nhật, châu Âu, Mỹ; đọc Facebook trên điện thoại.
 pains:
-  - "TODO"
-promise: "TODO"
+  - "Giờ hành chính các nước gần như không chồng nhau, chỉ còn một khung rất hẹp"
+  - "Quy đổi giờ bằng tay cho từng người, sai một múi giờ là cả nhóm lệch"
+  - "Không có giờ chung thì không rõ ai phải chịu giờ xấu"
+  - "Đồng nghiệp ngoài công ty không xem được lịch, chỉ đoán"
+  - "Ngày lễ mỗi nước một khác"
+promise: "Bạn nói ai tham gia và họp bao lâu; công cụ chỉ ra khung giờ chung rồi mở sẵn bản nháp để bạn tự kiểm tra và gửi."
 objections:
-  - {q: "TODO", a: "TODO"}
-vocabulary: []
-angles: []
-tone: "TODO"
+  - {q: "Công cụ có tự gửi lời mời không?", a: "Không. Nó chỉ mở bản nháp trong Outlook, bạn tự bấm Gửi."}
+  - {q: "Đã phát hành chưa?", a: "Chưa. Hiện là bản thử của mình, chưa có kế hoạch phát hành."}
+  - {q: "Đọc lịch đồng nghiệp bằng cách nào?", a: "Qua Microsoft Graph, bằng chính tài khoản của người dùng; công ty (IT) phải cho phép."}
+vocabulary: [họp xuyên quốc gia, lệch múi giờ, giờ hành chính, khung giờ chung, lịch bận, giờ Tokyo, giờ Prague, chốt giờ họp]
+angles:
+  - "Toán học của khung giờ chung: Tokyo + Prague + Sài Gòn chỉ còn 1 giờ mỗi ngày"
+  - "Khi không có giờ chung, ai chịu giờ xấu"
+  - "Vì sao mình thử viết công cụ này (cần chủ tool xác nhận)"
+tone: "Thân thiện, xưng mình – bạn, hài hước nhẹ về chuyện dịch múi giờ; trung thực: đây là ý tưởng, chưa phải sản phẩm."

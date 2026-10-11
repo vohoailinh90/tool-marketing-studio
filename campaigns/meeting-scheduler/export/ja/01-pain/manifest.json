@@ -1,0 +1,40 @@
+{
+  "sha": "aab0fa958a92ab4775adef3620c792a3000d936e6f887a43e15acf4ff51da7ad",
+  "rendered_at": "2026-10-11T03:47:01+00:00",
+  "engine": "0.1.0",
+  "format": "portrait",
+  "slides": [
+    "01.png",
+    "02.png",
+    "03.png",
+    "04.png",
+    "05.png",
+    "06.png",
+    "07.png"
+  ],
+  "texts": [
+    "facebook.txt",
+    "facebook-comment.txt"
+  ],
+  "overflow": [],
+  "scales": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "files": {
+    "01.png": "db9e3f3c1bddcd98a02073f7d37a8feaac9114ee3b8ffea93be9bfa41db06660",
+    "02.png": "46162b8511c2bf543b04ba0da1ae70856de2db073b3d688b95e8fed1768fbdf9",
+    "03.png": "e2be866c65121c160e8adbc4e1fc19a0154ce365bc6d160c45ebea54483c3c15",
+    "04.png": "7ca445c092bca79fde852209b0277b0f0ccf952eec03fde867713fc99288672c",
+    "05.png": "94d9ed0e13b415e1c32f66c6d07012f1dc991cb1abbf786019b5259ac5c0cd92",
+    "06.png": "d645d166d95127013475f15eff93acd42bdae9352d2261c1a24069f37c85f23d",
+    "07.png": "ec5b1930e50449526441e990d3104f9dc061b4066ff1bbb4f9548c15458292c9",
+    "facebook.txt": "dfa538c98b09565c65b61e763aafdd9537bb0178fa62a118d53a7765a5eb0529",
+    "facebook-comment.txt": "2e67af5ed45d74f3a09d3d0dcd9cf2bea41161d88ce50cbeb32e3cab741b24f9"
+  }
+}

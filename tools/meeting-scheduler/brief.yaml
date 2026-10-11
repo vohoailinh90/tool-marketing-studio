@@ -5,7 +5,7 @@
 slug: meeting-scheduler
 name: Meeting Scheduler
 repo: vohoailinh90/Email_Bridge
-status: beta          # works for its author on real calendars; not packaged for other companies
+status: prototype     # works for its author on real calendars; personal-time project, can be shared later, no release planned yet
 brand:
   emoji: "🗓️"
   accent: "#0f6cbd"
@@ -65,6 +65,10 @@ claims:              # anything a post states as a benefit must be one of these
     text: "With everyone at 09:00-18:00 Mon-Fri and empty calendars, Tokyo + Prague share only one 60-minute start per day in winter (17:00 JST = 09:00 CET), none for 90 minutes; in summer (CEST) three 60-minute starts per day. Adding Los Angeles or New York leaves no common slot"
     evidence: measured 2026-10-11 with the repo's find_best_slot / _member_available on synthetic calendars
     verified: true
+  - id: overlap-table
+    text: "In winter the 09:00-18:00 working day in Prague is 17:00-02:00 (+1 day) Tokyo time and in Ho Chi Minh City 11:00-20:00 Tokyo time; Tokyo, Prague and Ho Chi Minh City therefore overlap only 17:00-18:00 Tokyo time"
+    evidence: plain time-zone arithmetic (CET = UTC+1, Vietnam = UTC+7, Japan = UTC+9), consistent with the measured overlap above
+    verified: true
   - id: team-size
     text: Works for 10+ invitees
     evidence: batching code and tests exist, but not tested by the author on a real 10+ person multi-country meeting
@@ -87,7 +91,10 @@ commercial_readiness: # what must exist before charging money
   - No app-registration step for the customer (or a hosted sign-in) - today every company's IT must approve the app
   - Signed installer instead of a PyInstaller exe that needs Python/pywin32 knowledge
   - Support for non-Outlook calendars (Google) if the market is not Microsoft-only
-  - Confirmation that the author may market a tool built at their employer (not a technical item)
+
+sharing_status: >-
+  Written in the author's personal time for personal use, so it may be shared. For now the page only shares the IDEA and the
+  problem; no download, trial or waitlist is offered and no release date exists. Posts must not promise availability.
 
 pricing_hypotheses:  # to test in the survey, not to announce
   - Free for individuals, paid team licence for departments that coordinate across countries

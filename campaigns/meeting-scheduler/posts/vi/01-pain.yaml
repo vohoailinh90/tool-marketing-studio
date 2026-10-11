@@ -1,29 +1,77 @@
 id: 01-pain
 status: draft
 format: portrait
-series: "TODO · #1"
-link: survey
+series: "Họp xuyên quốc gia · #1"
+link: ~
 slides:
   - layout: cover
-    emoji: "🧰"
-    eyebrow: "TODO"
-    title: "TODO: the hook — the pain, in the reader's words"
-    subtitle: "TODO"
+    emoji: "🌏"
+    eyebrow: "Họp xuyên quốc gia"
+    title: "Hẹn **một giờ họp** cho 10 người ở 3 nước… khó hơn bạn nghĩ"
+    subtitle: "Không phải vì lịch bận. Mà vì **giờ làm việc của các nước gần như không chồng nhau**."
+    badge: "Xem hết các ảnh nhé 👉"
+
+  - layout: chat
+    title: "Nghe quen không?"
+    group: "Họp dự án 🌏"
+    messages:
+      - {from: "Hana · Tokyo", text: "Mình họp được đến 18:00 giờ Tokyo nhé"}
+      - {from: "Petr · Prague", text: "Bên mình 9:00 sáng mới bắt đầu làm"}
+      - {from: "Mai · Sài Gòn", text: "Thứ Ba, thứ Năm mình kín lịch rồi"}
+      - {me: true, text: "Khoan, để mình quy ra giờ từng nước đã…"}
+      - {from: "Hana · Tokyo", text: "Vậy 4 giờ chiều nhé? À, giờ nào của ai vậy?"}
+    note: "Hội thoại minh hoạ, không phải của ai thật."
+
+  - layout: table
+    title: "Giờ làm việc 09:00–18:00 của mỗi nơi, quy ra giờ Tokyo (mùa đông)"
+    columns: ["Nơi", "Giờ làm việc (giờ Tokyo)"]
+    rows:
+      - ["Tokyo", "09:00 – 18:00"]
+      - ["Sài Gòn", "11:00 – 20:00"]
+      - ["Prague", "17:00 – 02:00 (+1 ngày)"]
+      - [{text: "Cả ba cùng làm việc", tone: ok}, {text: "17:00 – 18:00", tone: ok}]
+    style: app
+    note: "Ví dụ tính từ giờ hành chính, lịch hoàn toàn trống."
+
+  - layout: stat
+    eyebrow: "Còn lại bao nhiêu?"
+    value: "1 giờ"
+    label: "mỗi ngày là lúc Tokyo, Sài Gòn và Prague cùng đang làm việc"
+    caption: "Muốn họp 90 phút? Không có khung nào. Thêm một đồng nghiệp ở Mỹ: hết khung chung."
+
   - layout: pains
-    title: "TODO"
+    title: "Và đó mới là phần dễ"
     items:
-      - {emoji: "😵", text: "TODO"}
-      - {emoji: "🔁", text: "TODO"}
-      - {emoji: "📂", text: "TODO"}
+      - {emoji: "🌙", text: "Không có giờ chung thì **ai chịu giờ xấu**?"}
+      - {emoji: "🔢", text: "Quy đổi giờ bằng tay, **sai một múi** là cả nhóm lệch"}
+      - {emoji: "👀", text: "Người ngoài công ty: **không xem được lịch**, chỉ đoán"}
+      - {emoji: "🎌", text: "**Ngày lễ** mỗi nước một khác"}
+
+  - layout: poll
+    eyebrow: "Hỏi nhanh"
+    question: "Nhóm bạn chọn giờ họp xuyên quốc gia thế nào?"
+    options:
+      - "Ai rảnh nhất thì chịu thiệt"
+      - "Luân phiên giờ giữa các nước"
+      - "Dùng công cụ xếp lịch"
+      - "Họp lệch giờ, xem lại bản ghi"
+
   - layout: cta
-    title: "TODO"
-    text: "TODO"
+    emoji: "💬"
+    title: "Mình đang thử viết một công cụ nhỏ cho bài toán này"
+    text: "Chưa phát hành, mình muốn nghe cách các bạn đang làm trước. Kể mình nghe nhé?"
+    show_link: false
+
 platforms:
   facebook:
     caption: |
-      TODO: hook line under 125 characters
+      Họp với đồng nghiệp ở 3 nước, khó nhất không phải lịch bận — mà là giờ làm việc không chồng nhau 🌏
 
-      TODO
+      Thử tính một ví dụ: Tokyo, Sài Gòn và Prague, ai cũng làm 09:00–18:00. Mùa đông, cả ba nơi cùng đang làm việc chỉ trong 1 giờ mỗi ngày (17:00 giờ Tokyo = 09:00 giờ Prague). Muốn họp 90 phút thì không có khung nào. Thêm một đồng nghiệp ở Mỹ: hết khung chung.
+
+      (Đây là ví dụ tính từ giờ hành chính với lịch hoàn toàn trống — nhóm thật còn có lịch bận và ngày lễ nữa.)
+
+      Mình đang thử viết một công cụ nhỏ cho bài toán này, nhưng chưa phát hành — mình muốn nghe trước cách các bạn đang làm. Nhóm bạn chọn giờ họp xuyên quốc gia thế nào? Trả lời A / B / C / D ở comment nhé 👇
     first_comment: |
-      TODO {link}
-    hashtags: []
+      A. Ai rảnh nhất thì chịu thiệt · B. Luân phiên giờ giữa các nước · C. Dùng công cụ xếp lịch · D. Họp lệch giờ, xem lại bản ghi
+    hashtags: [hopxuyenquocgia, muigio, vanphong, nangsuat, congcu]

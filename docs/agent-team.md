@@ -57,15 +57,14 @@ Never give the VPS workers the app's `.env` (Page token, Anthropic key): the gat
 
 ## CI runner
 
-`.github/workflows/ci.yml` runs on `${{ vars.CI_RUNNER || 'ubuntu-latest' }}`. This repository
-is private, so GitHub-hosted minutes are billed; when they are unavailable jobs fail at once
-with no log. Then either:
+`.github/workflows/ci.yml` runs on `${{ vars.CI_RUNNER || 'self-hosted' }}`: the VPS runner
+registered for this repository (`tool-marketing-studio-runner`, labels `self-hosted`, `Linux`,
+`X64`). This repository is private, so GitHub-hosted minutes are billed; without minutes a job
+on `ubuntu-latest` fails at once with no log.
 
-- register the VPS as a runner **for this repository** too (a personal account's self-hosted
-  runner belongs to one repository): Settings → Actions → Runners → New self-hosted runner,
-  give it a label (e.g. `vps`), and set the repository variable `CI_RUNNER=vps`
-  (Settings → Secrets and variables → Actions → Variables); or
-- keep `CI_RUNNER` unset and run on GitHub-hosted runners when minutes are available.
-
-On the VPS runner, install Chromium's system libraries once:
-`sudo python3 -m playwright install-deps chromium`.
+- Move every job to GitHub-hosted runners: set the repository variable `CI_RUNNER=ubuntu-latest`
+  (Settings → Secrets and variables → Actions → Variables). Delete it to come back.
+- A personal account's self-hosted runner belongs to one repository: the runner that serves
+  `claude-agent-routing-template` does not serve this one, which is why it has its own.
+- On the VPS, install Chromium's system libraries once so the render test runs instead of
+  skipping: `sudo python3 -m playwright install-deps chromium`.

@@ -13,9 +13,10 @@ permissions:
 
 jobs:
   engine:
-    # GitHub-hosted by default; set the repository variable CI_RUNNER (e.g. to the VPS
-    # runner's label) to move every job at once — docs/agent-team.md, "CI runner".
-    runs-on: ${{ vars.CI_RUNNER || 'ubuntu-latest' }}
+    # The VPS runner registered for this repository by default (GitHub-hosted minutes are
+    # billed for a private repository); set the repository variable CI_RUNNER, e.g. to
+    # ubuntu-latest, to move every job at once — docs/agent-team.md, "CI runner".
+    runs-on: ${{ vars.CI_RUNNER || 'self-hosted' }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -40,7 +41,7 @@ jobs:
         run: python scripts/mutation_check.py --all
 
   web:
-    runs-on: ${{ vars.CI_RUNNER || 'ubuntu-latest' }}
+    runs-on: ${{ vars.CI_RUNNER || 'self-hosted' }}
     defaults:
       run:
         working-directory: web

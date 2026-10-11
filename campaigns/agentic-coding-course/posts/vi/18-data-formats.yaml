@@ -1,0 +1,71 @@
+id: 18-data-formats
+status: draft
+format: portrait
+series: Học cùng AI · 3.1.3
+link: data-formats-vi
+slides:
+- layout: cover
+  emoji: 🧱
+  eyebrow: Học cùng AI
+  title: 'Đổi CSV sang JSON: **mất gì không**?'
+  subtitle: File và dự án
+- layout: cover
+  emoji: 📊
+  eyebrow: Hiểu để làm đúng
+  title: '**CSV là bảng**'
+  subtitle: Mỗi dòng 1 bản ghi, cột ngăn bằng dấu phẩy
+- layout: cover
+  emoji: 🧩
+  eyebrow: Hiểu để làm đúng
+  title: '**JSON cho chương trình**'
+  subtitle: Tên và giá trị, lồng nhau được
+- layout: cover
+  emoji: 📝
+  eyebrow: Hiểu để làm đúng
+  title: '**YAML cho người viết**'
+  subtitle: Thụt lề chính là cấu trúc
+- layout: cover
+  emoji: 🔍
+  eyebrow: Hiểu để làm đúng
+  title: '**Nói rõ định dạng trong spec**'
+  subtitle: Tên cột, mã hóa UTF-8, cách kiểm tra
+- layout: quote
+  text: Đổi định dạng xong, so số bản ghi và vài giá trị.
+  author: Ghi nhớ từ bài học
+- layout: cta
+  emoji: 💬
+  eyebrow: Hỏi bạn
+  title: Bạn từng gặp mất số 0 đầu, lỗi dấu hay đổi ngày tháng chưa?
+  text: Chia sẻ cách bạn làm.
+  hint: Link bài ở bình luận đầu.
+  show_link: false
+platforms:
+  facebook:
+    caption: 'Đổi CSV sang JSON: mất gì không?
+
+
+      Dữ liệu trông như thế nào: JSON, CSV, YAML
+
+
+      • CSV là bảng: Mỗi dòng 1 bản ghi, cột ngăn bằng dấu phẩy
+
+      • JSON cho chương trình: Tên và giá trị, lồng nhau được
+
+      • YAML cho người viết: Thụt lề chính là cấu trúc
+
+      • Nói rõ định dạng trong spec: Tên cột, mã hóa UTF-8, cách kiểm tra
+
+
+      Đổi định dạng xong, so số bản ghi và vài giá trị.
+
+
+      Bạn từng gặp mất số 0 đầu, lỗi dấu hay đổi ngày tháng chưa?
+
+      Link bài ở bình luận đầu.'
+    first_comment: 'Đọc bài học và thử bằng dữ liệu giả: {link}'
+    hashtags:
+    - AgenticCoding
+    - AI
+    - HocAI
+notes: 'Source claim: data-formats. Chapter 3; curriculum lesson 3.1.3. Educational recap, not
+  a testimonial. Draft for owner review.'

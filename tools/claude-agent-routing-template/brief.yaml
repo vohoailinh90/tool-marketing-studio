@@ -4,7 +4,7 @@
 # (README.md, CLAUDE.md, agent-routing/, docs/claude-to-codex.md, docs/codex-lane.md,
 # docs/session-budget.md, docs/agent-budget.md), read on 2026-10-11.
 slug: claude-agent-routing-template
-name: Claude Agent Routing Template
+name: "Claude × Codex"   # shown on every image: the private repository's own name is deliberately not used in public
 repo: vohoailinh90/claude-agent-routing-template
 status: prototype      # idea | prototype | beta | launched — a private template the author runs their own repositories on
 brand:
@@ -103,6 +103,10 @@ claims:              # anything a post states as a benefit must be one of these
     text: The loop is bounded by round caps and a written definition of done; it stops at done, at a cap, or at a genuine blocker
     evidence: docs/claude-to-codex.md sections 16 and 20
     verified: true
+  - id: author-merges-automatically
+    text: The author lets the loop merge on its own once the definition of done is met
+    evidence: confirmed by the author on 2026-10-11
+    verified: true
   - id: claude-designs-codex-critiques
     text: The author runs Claude as the designer and Codex as the critic of the design and of the pull request, and lets the loop run to the definition of done
     evidence: the author's own way of combining the documented parts, confirmed by the author on 2026-10-11 (Codex only critiques; Claude designs, builds and fixes) — the template's two documented lanes are Claude subagents as critics, or Codex as designer, implementer and reviewer
@@ -117,10 +121,9 @@ limitations:         # say these openly: they decide who should NOT try it
   - Built for software requirements; writing marketing content is not routed through it
 
 story_to_confirm:    # the author's own story: the author must confirm before posting
+  - Decided 2026-10-11: public text does not name the private repository or its script files; images show "Claude × Codex" instead
   - Which of the 8 Claude roles the author keeps running when Codex is the critic: the post uses the template's own codex-lane ceilings (T1 0, T2 0, T3 1)
   - Why the author added Codex as the critic (for example, a second model family catching what the first one missed)
-  - Whether the author runs the loop unattended end to end, including the autonomous merge, or approves the merge by hand
-  - Whether the author is willing to name the private repository and its script names (route.py, codex_round_count.py, codex_task.py) in public
 
 commercial_readiness:
   - Not for sale: a template repository the author uses on their own projects

@@ -1,0 +1,78 @@
+id: 19-programming-building-blocks
+status: draft
+format: portrait
+series: Học cùng AI · 3.2.1
+link: programming-building-blocks-vi
+slides:
+- layout: cover
+  emoji: 🧱
+  eyebrow: Học cùng AI
+  title: 'Đọc code: bắt đầu bằng **4 viên gạch**'
+  subtitle: Mã và lịch sử thay đổi
+- layout: cover
+  emoji: 📦
+  eyebrow: Hiểu để làm đúng
+  title: '**Biến giữ 1 giá trị có tên**'
+  subtitle: Đổi 1 chỗ, mọi nơi đổi theo
+- layout: cover
+  emoji: 🧩
+  eyebrow: Hiểu để làm đúng
+  title: '**Hàm là việc có tên**'
+  subtitle: Nhận đầu vào, trả kết quả, dùng lại
+- layout: cover
+  emoji: 🔀
+  eyebrow: Hiểu để làm đúng
+  title: '**Điều kiện rẽ nhánh**'
+  subtitle: 'Chỗ lỗi hay nấp: > hay >= ?'
+- layout: cover
+  emoji: 🔁
+  eyebrow: Hiểu để làm đúng
+  title: '**Vòng lặp: 1 dòng mỗi lượt**'
+  subtitle: Hết danh sách thì dừng
+- layout: cover
+  emoji: 🎯
+  eyebrow: Hiểu để làm đúng
+  title: '**Giao việc đúng tên**'
+  subtitle: Đổi 1 biến, thêm 1 điều kiện
+- layout: quote
+  text: Không cần tự viết code — cần đọc ra được 4 viên gạch và nói đúng tên.
+  author: Ghi nhớ từ bài học
+- layout: cta
+  emoji: 💬
+  eyebrow: Hỏi bạn
+  title: Bạn nhận ra biến, hàm, điều kiện hay vòng lặp dễ nhất?
+  text: Chia sẻ cách bạn làm.
+  hint: Link bài ở bình luận đầu.
+  show_link: false
+platforms:
+  facebook:
+    caption: 'Đọc code: bắt đầu bằng 4 viên gạch
+
+
+      Biến, hàm, điều kiện, vòng lặp: 4 viên gạch thường gặp
+
+
+      • Biến giữ 1 giá trị có tên: Đổi 1 chỗ, mọi nơi đổi theo
+
+      • Hàm là việc có tên: Nhận đầu vào, trả kết quả, dùng lại
+
+      • Điều kiện rẽ nhánh: Chỗ lỗi hay nấp: > hay >= ?
+
+      • Vòng lặp: 1 dòng mỗi lượt: Hết danh sách thì dừng
+
+      • Giao việc đúng tên: Đổi 1 biến, thêm 1 điều kiện
+
+
+      Không cần tự viết code — cần đọc ra được 4 viên gạch và nói đúng tên.
+
+
+      Bạn nhận ra biến, hàm, điều kiện hay vòng lặp dễ nhất?
+
+      Link bài ở bình luận đầu.'
+    first_comment: 'Đọc bài học và thử bằng dữ liệu giả: {link}'
+    hashtags:
+    - AgenticCoding
+    - AI
+    - HocAI
+notes: 'Source claim: programming-building-blocks. Chapter 3; curriculum lesson 3.2.1. Educational
+  recap, not a testimonial. Draft for owner review.'

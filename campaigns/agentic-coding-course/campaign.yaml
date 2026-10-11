@@ -1,0 +1,34 @@
+tool: agentic-coding-course
+langs:
+- vi
+platforms:
+- facebook
+goal: Chia sẻ trọn vẹn chương 1, 2, 3 bằng tiếng Việt theo thứ tự khóa học; mời người đọc trao
+  đổi cách giao việc và kiểm tra kết quả. Mỗi bài là một bản nháp riêng để duyệt. Không cam
+  kết tăng tương tác.
+links:
+  chatbot-to-agent-vi: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/chatbot-to-agent.md
+  agent-parts-and-loop-vi: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/agent-parts-and-loop.md
+  watch-an-agent-build-vi: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/watch-an-agent-build.md
+  choose-your-learning-setup-vi: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/choose-your-learning-setup.md
+  data-safety-and-permissions-vi: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/data-safety-and-permissions.md
+  first-agent-session-vi: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/first-agent-session.md
+  how-to-learn-this-course-vi: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/how-to-learn-this-course.md
+  lead-not-typist-vi: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/lead-not-typist.md
+  writing-good-specs-vi: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/writing-good-specs.md
+  explore-plan-build-verify-vi: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/explore-plan-build-verify.md
+  files-folders-paths-vi: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/files-folders-paths.md
+  reviewing-agent-changes-vi: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/reviewing-agent-changes.md
+  testing-basics-vi: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/testing-basics.md
+  errors-and-debugging-vi: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/errors-and-debugging.md
+  project-personal-page-vi: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/project-personal-page.md
+  what-is-software-vi: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/what-is-software.md
+  project-anatomy-vi: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/project-anatomy.md
+  data-formats-vi: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/data-formats.md
+  programming-building-blocks-vi: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/programming-building-blocks.md
+  git-version-control-vi: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/git-version-control.md
+  command-line-basics-vi: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/command-line-basics.md
+  security-basics-vi: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/security-basics.md
+utm:
+  medium: social
+  campaign: agentic-coding-chapters-1-2-3

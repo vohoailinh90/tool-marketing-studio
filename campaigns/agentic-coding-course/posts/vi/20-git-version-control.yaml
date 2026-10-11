@@ -1,0 +1,71 @@
+id: 20-git-version-control
+status: draft
+format: portrait
+series: Học cùng AI · 3.2.2
+link: git-version-control-vi
+slides:
+- layout: cover
+  emoji: 🧱
+  eyebrow: Học cùng AI
+  title: Agent sửa hỏng. **Quay lại đâu**?
+  subtitle: Mã và lịch sử thay đổi
+- layout: cover
+  emoji: 📸
+  eyebrow: Hiểu để làm đúng
+  title: '**Commit là ảnh chụp**'
+  subtitle: Cả dự án, kèm một câu mô tả
+- layout: cover
+  emoji: 🛟
+  eyebrow: Hiểu để làm đúng
+  title: '**Commit trước khi giao việc**'
+  subtitle: Điểm an toàn để quay về
+- layout: cover
+  emoji: 🔍
+  eyebrow: Hiểu để làm đúng
+  title: '**git diff**'
+  subtitle: Xem đã đổi gì từ lần commit trước
+- layout: cover
+  emoji: ⏪
+  eyebrow: Hiểu để làm đúng
+  title: '**Quay lại được**'
+  subtitle: Nhưng bỏ thay đổi chưa commit là mất hẳn
+- layout: quote
+  text: Có Git, thử nghiệm cùng agent không còn đáng sợ.
+  author: Ghi nhớ từ bài học
+- layout: cta
+  emoji: 💬
+  eyebrow: Hỏi bạn
+  title: Bạn muốn lưu mốc trước hay sau khi nhờ agent sửa?
+  text: Chia sẻ cách bạn làm.
+  hint: Link bài ở bình luận đầu.
+  show_link: false
+platforms:
+  facebook:
+    caption: 'Agent sửa hỏng. Quay lại đâu?
+
+
+      Git: nút Undo thần kỳ cho cả dự án
+
+
+      • Commit là ảnh chụp: Cả dự án, kèm một câu mô tả
+
+      • Commit trước khi giao việc: Điểm an toàn để quay về
+
+      • git diff: Xem đã đổi gì từ lần commit trước
+
+      • Quay lại được: Nhưng bỏ thay đổi chưa commit là mất hẳn
+
+
+      Có Git, thử nghiệm cùng agent không còn đáng sợ.
+
+
+      Bạn muốn lưu mốc trước hay sau khi nhờ agent sửa?
+
+      Link bài ở bình luận đầu.'
+    first_comment: 'Đọc bài học và thử bằng dữ liệu giả: {link}'
+    hashtags:
+    - AgenticCoding
+    - AI
+    - HocAI
+notes: 'Source claim: git-version-control. Chapter 3; curriculum lesson 3.2.2. Educational recap,
+  not a testimonial. Draft for owner review.'

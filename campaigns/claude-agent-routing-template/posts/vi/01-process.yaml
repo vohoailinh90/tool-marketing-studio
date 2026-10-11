@@ -1,0 +1,121 @@
+id: 01-process
+status: draft
+format: portrait
+series: "Làm việc với AI · #1"
+link: ""
+slides:
+  - layout: cover
+    emoji: "🧭"
+    eyebrow: "Mình làm việc với AI thế này"
+    title: "AI viết code xong, **ai bắt lỗi**?"
+    subtitle: "Claude lo thiết kế và code, Codex chỉ phản biện. Cả vòng chạy một mạch tới khi xong — nhưng có phanh."
+
+  - layout: compare
+    title: "Một AI làm hết, hay hai AI hai vai?"
+    before:
+      label: "Một AI làm hết"
+      items:
+        - "Người viết cũng là người duyệt duy nhất"
+        - "Hai lần chạy của cùng một họ model hay có chung điểm mù"
+    after:
+      label: "Hai vai tách bạch"
+      items:
+        - "Claude thiết kế, viết code, sửa lỗi"
+        - "Codex chỉ phản biện thiết kế và review PR"
+
+  - layout: flow
+    variant: after
+    title: "Một yêu cầu đi qua những gì"
+    steps:
+      - {emoji: "📊", text: "Chấm điểm. Việc nhỏ đi đường tắt; việc nhạy cảm bị đẩy lên mức cao"}
+      - {emoji: "🧠", text: "Claude thiết kế, ghi tiêu chí nghiệm thu"}
+      - {emoji: "🔍", text: "Codex đọc thiết kế và phản biện"}
+      - {emoji: "🛠️", text: "Claude sửa thiết kế, rồi viết code"}
+      - {emoji: "🔀", text: "Mở PR, nhờ Codex review ngay"}
+      - {emoji: "✅", text: "Claude đọc lại diff, chạy lại test, chỉ sửa lỗi đã xác nhận"}
+    note: "Sửa lỗi chính tả thì chỉ Claude làm, không gọi Codex."
+
+  - layout: features
+    title: "Phía Claude: 1 phiên chính + 8 vai phụ"
+    items:
+      - {emoji: "🧠", title: "Phiên chính", text: "Phân tích, thiết kế, viết code, sửa lỗi ở mọi mức. Không tính vào trần agent"}
+      - {emoji: "📋", title: "Làm rõ và thiết kế", text: "requirement-analyst (T3, điểm mơ hồ = 2) · architect (T2, điểm kiến trúc = 2 hoặc hợp đồng ngoài đổi)"}
+      - {emoji: "🔍", title: "Phản biện và duyệt", text: "architecture-critic (T3) · code-reviewer (T1, T2) · code-reviewer-t3 (T3)"}
+      - {emoji: "🧪", title: "Khi cần thêm", text: "code-reviewer-verify (thay reviewer) · test-engineer (reviewer báo cần kiểm chứng riêng) · implementer"}
+    note: "Mọi vai phụ trừ implementer chỉ đọc, không sửa file."
+
+  - layout: checklist
+    title: "Codex: chỉ phản biện, không viết dòng code nào"
+    items:
+      - "Không có agent thường trực: mỗi lần gọi là một task mới, ngữ cảnh riêng"
+      - "Ba loại lượt: phản biện thiết kế, review PR, security review khi việc nhạy cảm"
+      - "Phản biện thiết kế: chỉ nêu lỗi critical/high, kèm bằng chứng và kịch bản hỏng"
+      - "Kết luận của phản biện thiết kế: chấp nhận · chấp nhận có sửa · bác"
+    note: "Sửa lỗi là việc của Claude, sau khi đã tự kiểm lại lỗi đó trên code."
+
+  - layout: table
+    title: "Mỗi mức được dùng mấy agent"
+    columns: ["Mức", "Điểm", "Chỉ Claude", "Có Codex phản biện"]
+    rows:
+      - ["T0", "0–2", "0", "0 (không gọi Codex)"]
+      - ["T1", "3–5", "1", "0"]
+      - ["T2", "6–8", "2", "0"]
+      - ["T3", "9–12", "3", "1"]
+    note: "Chấm 6 tiêu chí, mỗi tiêu chí 0–2. Việc chạm tiền, quyền truy cập, chuyển dữ liệu bị đẩy lên mức cao dù điểm thấp. Thêm khi cần: +1 phân tích viên ở T3 khi điểm mơ hồ bằng 2, +1 test-engineer ở T2/T3 khi reviewer báo việc kiểm chứng cần được thiết kế riêng. Ở T3 vẫn giữ 1 reviewer chạy kiểm chứng, vì Codex chỉ đọc diff."
+
+  - layout: stat
+    eyebrow: "Phanh"
+    value: "3"
+    label: "vòng review tối đa cho mỗi PR"
+    caption: "Sửa lỗi tối đa 2 vòng, phản biện thiết kế mặc định 1 vòng, vòng hai chỉ khi còn lỗi nặng chưa giải quyết. Mỗi luồng (Issue hoặc PR) chỉ có một yêu cầu gửi Codex tại một thời điểm, và số vòng do script đếm từ GitHub."
+
+  - layout: checklist
+    title: "Khi nào mới gọi là xong"
+    tone: ok
+    items:
+      - "Codex có dấu vết đã chạy, đúng loại việc, đúng commit"
+      - "Claude tự đọc toàn bộ diff, không chỉ tin bản tóm tắt"
+      - "Mỗi tiêu chí nghiệm thu đều có bằng chứng"
+      - "Test, check và review bắt buộc của repo đều xanh"
+      - "Không còn lỗi P0/P1"
+      - "Phạm vi không bị làm lố"
+    note: "Mình để nó tự merge, nhưng chỉ khi nhánh chính bắt buộc cập nhật (hoặc có merge queue), danh tính merge không bypass được, và lệnh merge gắn đúng commit đã kiểm. Người chỉ vào cuộc khi có quyết định máy không tự quyết được, hoặc yêu cầu gốc đổi."
+
+  - layout: features
+    title: "Chạy một mạch mà không mất đà"
+    items:
+      - {emoji: "📒", title: "Sổ bàn giao", text: "Mục tiêu, việc đã xong, việc còn lại, lệnh kế tiếp — ghi ra file"}
+      - {emoji: "⏱️", title: "Nhắc đúng lúc", text: "Khoảng 70% context thì ghi sổ; khoảng 85% thì thu dọn"}
+      - {emoji: "🛟", title: "Đứt giữa chừng", text: "Tự lưu trước khi nén context hoặc khi chạm giới hạn; phiên mới đọc lại sổ"}
+      - {emoji: "🧮", title: "Đếm được thì để script", text: "Đếm vòng, so commit, chạy test — không nhờ AI đoán"}
+    note: "Đứt phiên rồi làm lại từ đầu tốn hơn làm tiếp."
+
+  - layout: poll
+    eyebrow: "Hỏi bạn"
+    question: "Bạn có để AI tự merge không?"
+    options:
+      - "Không bao giờ"
+      - "Chỉ việc nhỏ"
+      - "Khi đủ điều kiện như bài này"
+      - "Mình chưa dùng AI viết code"
+    hint: "Comment A, B, C hoặc D nhé"
+
+platforms:
+  facebook:
+    caption: |
+      AI viết code xong rồi tự duyệt — vậy ai bắt lỗi? 👇
+
+      Câu hỏi đó làm mình đổi cách làm. Giờ Claude thiết kế, viết code và sửa lỗi; Codex chỉ ngồi ghế phản biện: đọc thiết kế, review PR, không đụng vào code. Cả vòng chạy một mạch tới khi xong, nhưng có phanh. Mình theo quy trình trong một repo mẫu tự dựng (hiện đang private).
+
+      Việc đầu tiên là chấm điểm yêu cầu: 6 tiêu chí, mỗi tiêu chí 0–2, ra mức T0–T3. Sửa lỗi chính tả thì chỉ Claude làm. Việc chạm tới tiền hay quyền truy cập bị đẩy lên mức cao hơn dù điểm thấp. Một script tính mức, không để AI tự thấy sao làm vậy.
+
+      Đội hình thì mình nói cho đủ. Phía Claude có 1 phiên chính và 8 vai phụ: làm rõ yêu cầu, thiết kế, phản biện thiết kế, 3 loại reviewer, kiểm chứng, viết code. Trần agent là 0, 1, 2, 3 cho T0 đến T3, và còn 0, 0, 0, 1 khi Codex làm phản biện. Phía Codex không có agent thường trực: mỗi lần gọi là một task mới.
+
+      Phanh: tối đa 2 vòng sửa, 3 vòng review mỗi PR. "Xong" nghĩa là Codex đã chạy đúng commit, Claude tự đọc cả diff, mỗi tiêu chí có bằng chứng, test, check và review bắt buộc đều xanh, không còn lỗi P0/P1 và phạm vi không bị làm lố. Mình để nó tự merge, nhưng chỉ khi nhánh chính bắt buộc cập nhật (hoặc có merge queue), danh tính merge không bypass được, và lệnh merge gắn đúng commit đã kiểm.
+
+      Để chạy một mạch, mình dùng sổ bàn giao: khoảng 70% context thì ghi sổ, khoảng 85% thì thu dọn. Phiên mới đọc sổ thay vì làm lại.
+
+      Nói thật về giới hạn: cần Codex Cloud nối với GitHub và còn quota.
+
+      Bạn có để AI tự merge không?
+    hashtags: [Claude, Codex, AI, tudonghoa, laptrinh]

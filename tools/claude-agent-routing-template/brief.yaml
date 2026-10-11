@@ -1,0 +1,141 @@
+# Language-neutral FACTS about the tool. Every post, in every language, may only claim
+# what is written here. Per-language positioning lives in positioning/<lang>.yaml.
+# Source of every fact below: vohoailinh90/claude-agent-routing-template at commit 1d57150
+# (README.md, CLAUDE.md, agent-routing/, docs/claude-to-codex.md, docs/codex-lane.md,
+# docs/session-budget.md, docs/agent-budget.md), read on 2026-10-11.
+slug: claude-agent-routing-template
+name: "Claude × Codex"   # shown on every image: the private repository's own name is deliberately not used in public
+repo: vohoailinh90/claude-agent-routing-template
+status: prototype      # idea | prototype | beta | launched — a private template the author runs their own repositories on
+brand:
+  emoji: "🧭"
+  accent: "#7c3aed"
+
+what_it_is: >-
+  A private GitHub template repository that decides, for each software requirement, how much
+  AI help it gets and who checks it. Claude scores the requirement on six dimensions; a script
+  turns the scores into a tier and an agent budget; the main Claude session designs and
+  implements; an independent reviewer (a Claude subagent, or Codex Cloud through GitHub
+  comments) critiques the design and the diff; the main session validates every result and
+  finishes only when a written definition of done is met. This campaign is a SHARE about that
+  process, not an offer of the repository.
+
+requirements:
+  - Claude Code, to run the main session, the subagents and the hooks
+  - A GitHub repository, to carry the Issue / pull request thread
+  - Codex Cloud connected to that GitHub repository, for the Codex critic (the Claude-subagent critic needs no Codex)
+  - Python 3.10+ for the routing and counting scripts
+
+features:            # each is in the template's docs
+  - id: score-and-tier
+    fact: Six dimensions (ambiguity, scope, architecture, dependencies, risk, verification) are each scored 0, 1 or 2; the raw score 0–12 maps to T0 (0–2), T1 (3–5), T2 (6–8), T3 (9–12), and a risk override can raise the tier but never lower it
+  - id: tier-overrides
+    fact: Domain overrides raise the minimum tier whatever the raw score says — security-sensitive work, payments, data migrations, authorization changes, irreversible operations and cross-service changes are examples — and an override can raise a tier but never lower it
+  - id: trivial-work-stays-small
+    fact: T0 work (copy changes, typo fixes, obvious local validation, tiny isolated refactors) is done by the main session alone in every lane, and Codex is not called for it
+  - id: route-by-script
+    fact: scripts/route.py applies agent-routing/policy.yaml to the scores and signals and returns the tier, the required agents and the agent budget; the model does not apply those rules by hand
+  - id: claude-roster
+    fact: The Claude side is the main session plus 8 subagent roles, each a file in .claude/agents/ — requirement-analyst, architect, architecture-critic, code-reviewer, code-reviewer-t3, code-reviewer-verify, test-engineer, implementer; every role except the implementer is read-only (no Write or Edit)
+  - id: roster-by-tier
+    fact: By default T0 spawns none, T1 spawns code-reviewer, T2 spawns code-reviewer plus architect only when architecture scores 2 or an outside contract changes, T3 spawns architecture-critic and code-reviewer-t3 plus requirement-analyst only when ambiguity scores 2; implementer, test-engineer and code-reviewer-verify are escalation-only (code-reviewer-verify substitutes for the tier's reviewer)
+  - id: reserves
+    fact: Beyond the ceiling there are two reserves of one invocation each — requirement-analyst at T3 when ambiguity is 2, and test-engineer at T2 and T3 once the reviewer reports that verification needs its own design; at most 2 subagents run at once and a subagent does not spawn further subagents
+  - id: codex-has-no-standing-agents
+    fact: Codex has no standing agents; each GitHub comment that mentions Codex starts a new Codex Cloud task with its own context, and only one Codex request is active per thread
+  - id: codex-run-kinds
+    fact: Codex is used for three kinds of run — a design critique (a read-only BRAINSTORM task on an Issue), a pull-request review, and a security review when the requirement is flagged security-sensitive; the template also defines IMPLEMENT and FIX tasks for Codex, which the author does not use
+  - id: ceilings-with-codex
+    fact: When Codex takes the critic and reviewer seats the Claude subagent ceiling is T1 0, T2 0, T3 1 (code-reviewer-t3 stays, because a Codex review reads a diff while T3 verification must be designed and run), with the same reserves; T0 is main-session only in every lane
+  - id: agent-budget
+    fact: The agent budget is 0 at T0, 1 at T1, 2 at T2 and 3 at T3 (4 when a requirement-analyst is needed); a PreToolUse hook refuses a spawn past the ceiling
+  - id: main-session-owns
+    fact: The main session owns analysis, architecture and implementation at every tier; subagents exist only to supply independent judgement on work it already did
+  - id: design-critique
+    fact: At T3 the design is challenged before implementation; one round by default, a second only for unresolved critical or high findings; findings are critical and high only, each with evidence and a failure scenario, ending in ACCEPT, ACCEPT_WITH_CHANGES or REJECT
+  - id: stop-conditions
+    fact: The critique loop stops when every critical/high objection is accepted and addressed or rejected with evidence, what remains is low severity, and the plan has a verifiable acceptance criterion; agents are not kept debating until they agree
+  - id: codex-by-comment
+    fact: Codex is called only through a GitHub Issue or pull request comment containing the ASCII mention of Codex; the API, the Codex Action, the CLI, the SDK and browser automation are not approved
+  - id: task-contract
+    fact: Every Codex task carries a contract (task id, mode, repository, branches, an exact commit SHA, goal, scope, out of scope, write policy, constraints, acceptance criteria, required output); a placeholder such as latest or HEAD is not a SHA
+  - id: rendered-comments
+    fact: scripts/codex_task.py renders each task comment and refuses a duplicate, a skipped round, a round past its cap, a second request of one mode at one SHA, or a thread with a request still unanswered
+  - id: review-on-request
+    fact: Codex's automatic review on opening a pull request is turned off, so the first review is requested as soon as the PR is open
+  - id: validate-codex
+    fact: Codex's summary is never taken as the result; the session checks that the response belongs to the right thread, the reviewed commit SHA against the current head, the complete diff, every acceptance criterion separately, and re-runs the reported tests
+  - id: confirmed-findings-only
+    fact: Codex is never asked to fix a speculative finding; the finding is confirmed against the code first
+  - id: round-caps
+    fact: At most 2 brainstorm rounds, 2 correction rounds and 3 review rounds per pull request; one active Codex request per thread; the same mode is not requested twice for the same SHA (two documented exceptions)
+  - id: round-count-script
+    fact: scripts/codex_round_count.py counts review rounds from the posts on GitHub and must exit 0 before a review is requested
+  - id: review-limit
+    fact: After the third review round no fourth is requested; if it left a P0 or P1 finding, the session fixes and verifies it and reports to the repository owner, and the PR is not merged until the owner decides
+  - id: trigger-failure
+    fact: Trigger evidence is a reaction, a bot reply, a linked task or a review; with none after at least 10 minutes the single authorised retry is allowed for a built-in command; a second failure makes the task BLOCKED and is reported to the owner
+  - id: definition-of-done
+    fact: Done means the trigger produced evidence, Codex used the intended mode on the intended SHA, the session inspected the actual diff, each acceptance criterion has evidence, the repository's required checks and reviews are green, no P0 or P1 finding remains and the scope did not grow
+  - id: autonomous-merge
+    fact: Once done, the session may merge without waiting for a human, provided the base branch requires branches to be up to date (or a merge queue) and the merging identity cannot bypass it; the merge call is scoped to the validated head SHA
+  - id: human-only-for
+    fact: A human is needed only for a genuine blocker (a decision only a human can make) or a change to the original requirement
+  - id: handoff
+    fact: A session-handoff file holds a generated state block and a block of notes the session writes; hooks ask for the notes at about 70% of the context window and for a wrap-up at about 85%, capture the handoff before auto-compaction and on a rate limit, and replay it when a session starts
+  - id: deterministic-checks
+    fact: A check whose answer is computable (counting, SHA comparison, lint, tests, mutation checks) is a script committed to the repository, not a model's judgement
+
+claims:              # anything a post states as a benefit must be one of these
+  - id: author-not-sole-verifier
+    text: The session that wrote the code is not its own only verification; an independent reviewer reads the diff
+    evidence: CLAUDE.md, T1 profile and Verification rule
+    verified: true
+  - id: same-family-blind-spots
+    text: Two runs of one model family share blind spots, which is why the template keeps one cross-checking reader at T3 even in the Codex lane
+    evidence: docs/codex-lane.md, "T3 keeps one Claude verifier"
+    verified: true
+  - id: policy-not-mood
+    text: The tier, the roster and the budget come from a script and a hook, not from the model's mood
+    evidence: README.md and docs/agent-budget.md
+    verified: true
+  - id: restart-costs-more
+    text: Restarting a session that died mid-requirement costs more than finishing it (cold prompt cache, quadratic turn cost, lost reasoning, lost subagent contexts); only what reached disk survives
+    evidence: CLAUDE.md "Session budget" and docs/session-budget.md
+    verified: true
+  - id: loop-needs-bounds
+    text: An unbounded back-and-forth with a bot, a duplicated request and a silent scope expansion are risks the template's rules are written to prevent
+    evidence: docs/claude-to-codex.md section 16 (titled "Preventing duplicate calls and infinite loops"; never let a bot comment create an unrestricted bot-to-bot loop) and section 19 (never expand the approved scope silently)
+    verified: true
+  - id: bounded-loop
+    text: The loop is bounded by round caps and a written definition of done; it stops at done, at a cap, or at a genuine blocker
+    evidence: docs/claude-to-codex.md sections 16 and 20
+    verified: true
+  - id: author-merges-automatically
+    text: The author lets the loop merge on its own once the definition of done is met
+    evidence: confirmed by the author on 2026-10-11
+    verified: true
+  - id: claude-designs-codex-critiques
+    text: The author runs Claude as the designer and Codex as the critic of the design and of the pull request, and lets the loop run to the definition of done
+    evidence: the author's own way of combining the documented parts, confirmed by the author on 2026-10-11 (Codex only critiques; Claude designs, builds and fixes) — the template's two documented lanes are Claude subagents as critics, or Codex as designer, implementer and reviewer
+    verified: true
+
+limitations:         # say these openly: they decide who should NOT try it
+  - The repository is private; this campaign shares the process, not the code
+  - The Codex critic needs Codex Cloud connected to the GitHub repository and quota left; a usage-limit notice ends that step as BLOCKED, it is not retried
+  - Which Codex account and quota apply is decided by GitHub and the Codex integration; a comment cannot choose it
+  - Autonomous merge is safe only with branch protection that requires up-to-date branches (or a merge queue) and no bypass for the merging identity
+  - A review by Codex of Claude's work is a different model family from the author; it is still a model, and the session's own validation of the diff stays mandatory
+  - Built for software requirements; writing marketing content is not routed through it
+
+story_to_confirm:    # the author's own story: the author must confirm before posting
+  - Decided 2026-10-11: public text does not name the private repository or its script files; images show "Claude × Codex" instead
+  - Which of the 8 Claude roles the author keeps running when Codex is the critic: the post uses the template's own codex-lane ceilings (T1 0, T2 0, T3 1)
+  - Why the author added Codex as the critic (for example, a second model family catching what the first one missed)
+
+commercial_readiness:
+  - Not for sale: a template repository the author uses on their own projects
+  - If it were shared, it would first need a public repository, a licence and a short getting-started guide
+
+pricing_hypotheses:  # to test in the survey, not to announce
+  - None: this campaign is not a demand test

@@ -1,0 +1,20 @@
+# Campaign: share how the author works — Claude designs, Codex critiques, the loop runs to done.
+# A sharing post, not a demand test: no survey, no waitlist, no link (the repository is private).
+tool: claude-agent-routing-template
+langs: [vi, ja, en]           # every post exists once per language, written for that audience
+platforms: [facebook]
+goal: >-
+  Share the author's Claude-designs / Codex-critiques process, taken from the routing template, and
+  learn from the comments how other builders check AI-written work today.
+
+links: {}
+
+utm:
+  medium: social
+  campaign: routing-process-share
+
+# Suggested rhythm: evenings (20:00–21:30) when office workers scroll.
+schedule:
+  - {post: 01-process, lang: vi, platform: facebook, date: TBD}
+  - {post: 01-process, lang: ja, platform: facebook, date: TBD}
+  - {post: 01-process, lang: en, platform: facebook, date: TBD}

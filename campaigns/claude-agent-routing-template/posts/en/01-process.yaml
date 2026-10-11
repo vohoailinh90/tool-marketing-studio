@@ -1,0 +1,110 @@
+id: 01-process
+status: draft
+format: portrait
+series: "Working with AI · #1"
+link: ""
+slides:
+  - layout: cover
+    emoji: "🧭"
+    eyebrow: "A way of working"
+    title: "**Claude designs.** **Codex pushes back.** The loop runs to done."
+    subtitle: "With brakes, and a definition of done written down first."
+
+  - layout: pains
+    title: "Three ways AI-built work goes wrong"
+    tone: bad
+    items:
+      - {emoji: "🪞", text: "The author is the only reviewer"}
+      - {emoji: "🤝", text: "Two runs of one model family tend to share blind spots"}
+      - {emoji: "🚧", text: "Nothing bounds the loop: no round caps, no written definition of done"}
+
+  - layout: table
+    title: "Right-sizing: agents per tier"
+    columns: ["Tier", "Score", "Claude only", "With Codex critiquing"]
+    rows:
+      - ["T0", "0–2", "0", "0 (Codex not called)"]
+      - ["T1", "3–5", "1", "0"]
+      - ["T2", "6–8", "2", "0"]
+      - ["T3", "9–12", "3", "1"]
+    note: "Six dimensions, each scored 0–2. A typo fix stays with the main session; payments, auth or data migrations are pushed up a tier whatever the score. Extra slots: +1 requirement analyst at T3 when the ambiguity score is 2, +1 test engineer at T2/T3 once the reviewer reports that verification needs its own design."
+
+  - layout: features
+    title: "The cast: 1 main session, 8 roles, and Codex"
+    items:
+      - {emoji: "🧠", title: "Main session", text: "Analyses, designs, builds and fixes at every tier. Not counted in the cap."}
+      - {emoji: "📋", title: "Before the design", text: "requirement-analyst (T3, ambiguity 2) · architect (T2, architecture score 2 or an outside contract changes)"}
+      - {emoji: "🔍", title: "Judging the work", text: "architecture-critic (T3) · code-reviewer (T1, T2) · code-reviewer-t3 (T3)"}
+      - {emoji: "🧪", title: "Only on escalation", text: "code-reviewer-verify (takes the reviewer's slot) · test-engineer · implementer"}
+      - {emoji: "🛰️", title: "Codex", text: "No standing agent. A fresh task per call: design critique, PR review, security review. Writes no code."}
+      - {emoji: "👀", title: "Read-only by design", text: "Every role except the implementer can read but not edit files."}
+
+  - layout: flow
+    variant: after
+    title: "One pass of the loop"
+    steps:
+      - {emoji: "📊", text: "Score the requirement; a script sets the tier and the cap"}
+      - {emoji: "🧠", text: "Claude designs, with acceptance criteria"}
+      - {emoji: "🔍", text: "Codex critiques the design, read-only: critical and high findings, each with evidence"}
+      - {emoji: "🛠️", text: "Claude revises, builds, opens the PR"}
+      - {emoji: "🔀", text: "Codex reviews the PR — requested, never automatic"}
+      - {emoji: "✅", text: "Claude re-checks the diff and the tests, fixes only confirmed findings"}
+
+  - layout: table
+    title: "The brakes"
+    columns: ["What", "Max"]
+    rows:
+      - ["Design critique rounds", "1 (a 2nd only if serious findings stay open)"]
+      - ["Fix rounds", "2"]
+      - ["Review rounds per PR", "3"]
+      - ["Codex requests in flight, per thread", "1"]
+      - ["Same request type on the same commit", "once (two narrow exceptions)"]
+    note: "A script counts review rounds from GitHub, not the AI's memory. Stop when serious findings are fixed, or rejected with evidence."
+
+  - layout: checklist
+    title: "Done means done"
+    tone: ok
+    items:
+      - "Codex left evidence it ran, on the intended task and commit"
+      - "Claude inspected the full diff, not just the summary"
+      - "Every acceptance criterion has evidence"
+      - "The repo's required tests, checks and reviews are green"
+      - "No P0/P1 finding left"
+      - "The scope didn't grow"
+    note: "Then it merges itself — but only if the base branch requires up-to-date branches (or there's a merge queue), the merging identity can't bypass that rule, and the merge call is pinned to the validated head commit. A human steps in only for a decision a machine can't make, or when the requirement changes."
+
+  - layout: features
+    title: "Keeping the run alive"
+    items:
+      - {emoji: "📒", title: "Handoff file", text: "Goal, done, remaining, next command"}
+      - {emoji: "⏱️", title: "Nudges", text: "About 70% of context: update the notes. About 85%: wrap up"}
+      - {emoji: "🛟", title: "Resume", text: "Saved before compaction or a rate limit; the next session reads it first"}
+    note: "Restarting from scratch costs more than carrying on."
+
+  - layout: poll
+    eyebrow: "Your turn"
+    question: "What worries you most about unattended AI runs?"
+    options:
+      - "Quality of the output"
+      - "Cost and quota"
+      - "Scope creep"
+      - "Security"
+    hint: "Reply A, B, C or D"
+
+platforms:
+  facebook:
+    caption: |
+      Claude designs. Codex pushes back. The loop runs until it's actually done. 👇
+
+      Here is the working agreement I use, taken from a template repo of mine (private for now):
+
+      → Claude designs, builds and fixes. Codex only critiques: the design, then the PR. It writes no code.
+      → Score first: 6 dimensions, 0–2 each, which gives a tier from T0 to T3. A script decides, not the AI. A typo fix stays with Claude alone; payments or auth get pushed up a tier.
+      → The cast: Claude has 1 main session plus 8 roles (requirements, design, design critic, 3 kinds of reviewer, verification, implementation). The agent cap is 0, 1, 2, 3 for T0–T3, and 0, 0, 0, 1 when Codex takes the critic's seat. Codex has no standing agents; every call is a fresh task.
+      → Brakes: 2 fix rounds, 3 review rounds per PR, one request in flight per thread.
+      → Done = Codex ran on the intended commit, Claude inspected the full diff, every acceptance criterion has evidence, required tests, checks and reviews are green, no P0/P1 is left, and the scope did not grow. Then it merges on its own, but only if the base branch requires up-to-date branches (or there's a merge queue), the merging identity can't bypass that, and the merge is pinned to the validated commit.
+      → To keep it running: a handoff file, notes at about 70% of context, wrap-up at about 85%.
+
+      Honest limit: you need Codex Cloud connected to GitHub, with quota left.
+
+      What worries you most about unattended AI runs?
+    hashtags: [Claude, Codex, AI, automation, softwaredevelopment]

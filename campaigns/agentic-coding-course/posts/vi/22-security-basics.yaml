@@ -1,0 +1,71 @@
+id: 22-security-basics
+status: draft
+format: portrait
+series: Học cùng AI · 3.3.1
+link: security-basics-vi
+slides:
+- layout: cover
+  emoji: 🧱
+  eyebrow: Học cùng AI
+  title: 'Xóa API key khỏi file: **đã xong chưa**?'
+  subtitle: An toàn là trên hết
+- layout: cover
+  emoji: 🔑
+  eyebrow: Hiểu để làm đúng
+  title: '**Key là mật khẩu**'
+  subtitle: Có thể mở quyền dưới tên bạn
+- layout: cover
+  emoji: 📦
+  eyebrow: Hiểu để làm đúng
+  title: '**Cất ngoài code**'
+  subtitle: Biến môi trường hoặc file bỏ qua
+- layout: cover
+  emoji: ⛔
+  eyebrow: Hiểu để làm đúng
+  title: '**Không chia sẻ**'
+  subtitle: Không chat, ảnh chụp, kho công khai
+- layout: cover
+  emoji: ♻️
+  eyebrow: Hiểu để làm đúng
+  title: '**Lộ thì thu hồi**'
+  subtitle: Tạo lại và kiểm tra lượt dùng
+- layout: quote
+  text: Xóa 1 dòng không vô hiệu hóa bí mật đã bị sao chép.
+  author: Ghi nhớ từ bài học
+- layout: cta
+  emoji: 💬
+  eyebrow: Hỏi bạn
+  title: Bạn đã biết cách thu hồi một key bị lộ chưa?
+  text: Chia sẻ cách bạn làm.
+  hint: Link bài ở bình luận đầu.
+  show_link: false
+platforms:
+  facebook:
+    caption: 'Xóa API key khỏi file: đã xong chưa?
+
+
+      An toàn cơ bản: API key, mật khẩu và dữ liệu cá nhân
+
+
+      • Key là mật khẩu: Có thể mở quyền dưới tên bạn
+
+      • Cất ngoài code: Biến môi trường hoặc file bỏ qua
+
+      • Không chia sẻ: Không chat, ảnh chụp, kho công khai
+
+      • Lộ thì thu hồi: Tạo lại và kiểm tra lượt dùng
+
+
+      Xóa 1 dòng không vô hiệu hóa bí mật đã bị sao chép.
+
+
+      Bạn đã biết cách thu hồi một key bị lộ chưa?
+
+      Link bài ở bình luận đầu.'
+    first_comment: 'Đọc bài học và thử bằng dữ liệu giả: {link}'
+    hashtags:
+    - AgenticCoding
+    - AI
+    - HocAI
+notes: 'Source claim: security-basics. Chapter 3; curriculum lesson 3.3.1. Educational recap,
+  not a testimonial. Draft for owner review.'

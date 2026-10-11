@@ -1,0 +1,20 @@
+tool: meeting-scheduler
+langs: [vi, ja, en]
+platforms: [facebook]
+goal: >-
+  Validate demand for Meeting Scheduler before investing more: who feels this pain, how they work
+  today, and whether they (or their company) would pay.
+
+links:
+  survey: "https://REPLACE_ME/survey?src={source}"
+
+utm:
+  medium: social
+  campaign: meeting-scheduler-validation
+
+schedule: []
+
+validation:
+  window_days: 30
+  min_counts: {reach: 1000, link_clicks: 30, survey_responses: 15}
+  go_if: {survey_responses: 30, signups: 10, click_rate: 0.01}

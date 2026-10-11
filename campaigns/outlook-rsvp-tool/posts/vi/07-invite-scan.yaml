@@ -22,7 +22,7 @@ slides:
       label: "Nút bấm trong email"
       items:
         - "Chỉ có Yes / No / Maybe"
-        - "Không gõ chữ, không cần giữ nguyên tiêu đề"
+        - "Không gõ chữ, chỉ một cú bấm"
         - "Bấm **Scan Inbox** là có số đếm"
 
   - layout: checklist
@@ -59,13 +59,13 @@ platforms:
     caption: |
       “Ok em”, “chắc đi”, “để anh xem lịch”… đếm xong mấy câu trả lời kiểu này là hết một buổi tối 😵
 
-      Mình từng ngồi mở từng email, ghi vào Excel ai đi, ai không, ai “để xem”. Xong lại có thư mới và phải đếm lại.
+      Trả lời bằng chữ thì mỗi người một kiểu, và có thư mới là phải đếm lại từ đầu. Nên bước đầu của tool là bỏ hẳn chuyện đó: email mời có nút Yes / No / Maybe của Outlook, người nhận chỉ bấm một nút.
 
-      Nên bước đầu của tool là bỏ hẳn chuyện trả lời bằng chữ: email mời có nút Yes / No / Maybe của Outlook, người nhận chỉ bấm một nút. Mình bấm Scan Inbox, tool đọc câu trả lời ở mọi thư mục trong hộp thư và đếm thành bảng. Phiếu nào cần chỉnh thì sửa tay được, lần quét sau vẫn giữ.
+      Rồi bạn bấm Scan Inbox: tool đọc câu trả lời ở mọi thư mục trong hộp thư và đếm thành bảng. Phiếu nào cần chỉnh thì sửa tay được, lần quét sau vẫn giữ.
 
       Nói thật: tool chưa phân biệt được 2 người dùng chung một email.
 
       Hộp thư của bạn bây giờ đang có bao nhiêu email trả lời chưa đếm? 😅
     first_comment: |
-      📋 Khảo sát 3 phút — người trả lời được ưu tiên dùng thử bản beta: {link}
+      📋 Khảo sát 3 phút — bạn đang đếm người tham gia bằng cách nào? {link}
     hashtags: [tudonghoa, Outlook, vanphong, tochucsukien, nangsuat]

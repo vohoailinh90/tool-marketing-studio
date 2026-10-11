@@ -45,13 +45,15 @@ slides:
 platforms:
   facebook:
     caption: |
-      A team that speaks more than one language — and every invite has to be written twice? 🌏
+      Bilingual invites without an API key: Copilot does the translating, you do the pasting 🌏
 
-      The tool can send e-mails in English, Japanese, Vietnamese, or bilingual Japanese + English. For the bilingual one you write your note in any language, click one button to copy the note and the event details with a ready-made prompt, and paste it into Microsoft Copilot. Copilot answers with a Japanese and an English version; you paste that back into the app. Each half of the e-mail gets its own greeting, Japanese first, English second.
+      Pick English, Japanese, Vietnamese, or bilingual Japanese + English. For the bilingual one, write your note in any language, copy it with the event details and a ready-made prompt, paste it into Microsoft Copilot, and paste the answer back. Each half of the e-mail gets its own greeting — Japanese first, English second.
 
-      No API key and no app registration, and you can preview and edit before sending. Honest limit: the copy-paste is a manual step, not automatic translation.
+      You can preview and edit before sending, and wording you add to the fixed part is translated too.
 
-      Which languages does your team use for event e-mails? Tell me below 👇
+      Honest limit: the copy-paste is a manual step, not automatic translation.
+
+      Which languages does your team use for event e-mails? 👇
     first_comment: |
       📋 3-minute survey — which languages does your team use? {link}
     hashtags: [Outlook, Copilot, automation, productivity, bilingual]

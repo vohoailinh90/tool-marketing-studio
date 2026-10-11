@@ -1,0 +1,78 @@
+id: 09-writing-good-specs
+status: draft
+format: portrait
+series: Học cùng AI · 2.1.2
+link: writing-good-specs-vi
+slides:
+- layout: cover
+  emoji: 🧭
+  eyebrow: Học cùng AI
+  title: “Làm cho đẹp” đã **đủ rõ** chưa?
+  subtitle: Giao việc rõ ràng
+- layout: cover
+  emoji: 🎯
+  eyebrow: Hiểu để làm đúng
+  title: '**Mục tiêu và lý do**'
+  subtitle: Làm gì, cho ai, để làm gì
+- layout: cover
+  emoji: 🗂️
+  eyebrow: Hiểu để làm đúng
+  title: '**Chỉ đúng chỗ**'
+  subtitle: Tên file, dữ liệu, ví dụ mẫu
+- layout: cover
+  emoji: 🚧
+  eyebrow: Hiểu để làm đúng
+  title: '**Nói điều không được làm**'
+  subtitle: Không sửa file gốc, không cài thêm
+- layout: cover
+  emoji: ✅
+  eyebrow: Hiểu để làm đúng
+  title: '**Tiêu chí đo được**'
+  subtitle: Con số, hành vi — không "đẹp" chung chung
+- layout: cover
+  emoji: 🔁
+  eyebrow: Hiểu để làm đúng
+  title: '**Nhờ agent nhắc lại**'
+  subtitle: Và hỏi trước nếu chưa rõ
+- layout: quote
+  text: Yêu cầu càng rõ, bạn càng ít phải sửa.
+  author: Ghi nhớ từ bài học
+- layout: cta
+  emoji: 💬
+  eyebrow: Hỏi bạn
+  title: Bạn sẽ đổi “làm cho đẹp” thành tiêu chí kiểm tra nào?
+  text: Chia sẻ cách bạn làm.
+  hint: Link bài ở bình luận đầu.
+  show_link: false
+platforms:
+  facebook:
+    caption: '“Làm cho đẹp” đã đủ rõ chưa?
+
+
+      Viết yêu cầu tốt: mô tả việc và tiêu chí hoàn thành
+
+
+      • Mục tiêu và lý do: Làm gì, cho ai, để làm gì
+
+      • Chỉ đúng chỗ: Tên file, dữ liệu, ví dụ mẫu
+
+      • Nói điều không được làm: Không sửa file gốc, không cài thêm
+
+      • Tiêu chí đo được: Con số, hành vi — không "đẹp" chung chung
+
+      • Nhờ agent nhắc lại: Và hỏi trước nếu chưa rõ
+
+
+      Yêu cầu càng rõ, bạn càng ít phải sửa.
+
+
+      Bạn sẽ đổi “làm cho đẹp” thành tiêu chí kiểm tra nào?
+
+      Link bài ở bình luận đầu.'
+    first_comment: 'Đọc bài học và thử bằng dữ liệu giả: {link}'
+    hashtags:
+    - AgenticCoding
+    - AI
+    - HocAI
+notes: 'Source claim: writing-good-specs. Chapter 2; curriculum lesson 2.1.2. Educational recap,
+  not a testimonial. Draft for owner review.'

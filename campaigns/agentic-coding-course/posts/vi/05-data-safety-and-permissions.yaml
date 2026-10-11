@@ -1,0 +1,71 @@
+id: 05-data-safety-and-permissions
+status: draft
+format: portrait
+series: Học cùng AI · 1.2.2
+link: data-safety-and-permissions-vi
+slides:
+- layout: cover
+  emoji: 🚀
+  eyebrow: Học cùng AI
+  title: 'Cho agent vào thư mục: **đã đủ an toàn**?'
+  subtitle: Chọn cách học an toàn
+- layout: cover
+  emoji: ✅
+  eyebrow: Hiểu để làm đúng
+  title: '**Việc an toàn**'
+  subtitle: Trong ai-practice, với dữ liệu giả
+- layout: cover
+  emoji: ✋
+  eyebrow: Hiểu để làm đúng
+  title: '**Việc phải hỏi**'
+  subtitle: Cài, xóa, gửi, ra ngoài thư mục
+- layout: cover
+  emoji: ⛔
+  eyebrow: Hiểu để làm đúng
+  title: '**Không bao giờ**'
+  subtitle: Dữ liệu thật, mật khẩu, lách quy định
+- layout: cover
+  emoji: 🔐
+  eyebrow: Hiểu để làm đúng
+  title: '**Đọc rồi mới cho phép**'
+  subtitle: Bắt đầu ở chế độ agent hỏi trước
+- layout: quote
+  text: Thư mục là ranh giới bạn vẽ; quyền hạn và sự chú ý của bạn mới giữ được nó.
+  author: Ghi nhớ từ bài học
+- layout: cta
+  emoji: 💬
+  eyebrow: Hỏi bạn
+  title: Việc nào bạn muốn agent phải hỏi trước?
+  text: Chia sẻ cách bạn làm.
+  hint: Link bài ở bình luận đầu.
+  show_link: false
+platforms:
+  facebook:
+    caption: 'Cho agent vào thư mục: đã đủ an toàn?
+
+
+      Trước khi để agent làm việc: việc an toàn, việc phải hỏi, việc bị cấm
+
+
+      • Việc an toàn: Trong ai-practice, với dữ liệu giả
+
+      • Việc phải hỏi: Cài, xóa, gửi, ra ngoài thư mục
+
+      • Không bao giờ: Dữ liệu thật, mật khẩu, lách quy định
+
+      • Đọc rồi mới cho phép: Bắt đầu ở chế độ agent hỏi trước
+
+
+      Thư mục là ranh giới bạn vẽ; quyền hạn và sự chú ý của bạn mới giữ được nó.
+
+
+      Việc nào bạn muốn agent phải hỏi trước?
+
+      Link bài ở bình luận đầu.'
+    first_comment: 'Đọc bài học và thử bằng dữ liệu giả: {link}'
+    hashtags:
+    - AgenticCoding
+    - AI
+    - HocAI
+notes: 'Source claim: data-safety-and-permissions. Chapter 1; curriculum lesson 1.2.2. Educational
+  recap, not a testimonial. Draft for owner review.'

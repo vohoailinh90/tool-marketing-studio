@@ -27,7 +27,8 @@ is not agent work* in CLAUDE.md):
     the picture is too small to read on a phone, at a slide or the caption that
     rebuilds it in the studio's own layouts: its evidence then quotes the
     diagram's own labels (read from the SVG at the pinned commit) and must
-    show at least 60% of the diagram's words;
+    show at least 60% of the diagram's words; an image slide always has to
+    show that diagram's own picture;
   - the post has at most 10 slides, and every post of a course campaign has a
     manifest.
 
@@ -475,13 +476,10 @@ def check(manifest_path: Path, course_dir: Path | None = None) -> list[str]:
         label_words: list[list[str]] | None = None  # a rebuilt diagram's labels, as words
         covered: set[tuple[int, int]] = set()  # label words some quote has shown
         if block["kind"] == "diagram":
-            src = target.get("src", "") if isinstance(target, dict) else ""
-            if (isinstance(target, dict) and target.get("layout") == "image"
-                    and Path(str(src)).stem == block["source"]):
-                continue
-            if not quotes:
-                problems.append(f"{key}: diagram {block['source']!r} is not the image on {dest}, "
-                                "and no evidence rebuilds it there")
+            if isinstance(target, dict) and target.get("layout") == "image":
+                # An image slide must show this diagram's own picture; a rebuild uses a text layout or the caption.
+                if Path(str(target.get("src", ""))).stem != block["source"]:
+                    problems.append(f"{key}: diagram {block['source']!r} is not the image on {dest}")
                 continue
             space = "diagram"
             if course_dir is not None and source.get("commit"):
@@ -535,8 +533,10 @@ def check(manifest_path: Path, course_dir: Path | None = None) -> list[str]:
             for i in span:
                 owners[i] = key
                 mine.add((number_of_field, i))
-        # Overlapping quotes count each shown word once; a rebuilt diagram counts the diagram's words they cover.
-        shown = len(covered) if label_words is not None else len(mine)
+        # Overlapping quotes count each shown word once. A rebuilt diagram counts the diagram's words the quotes
+        # cover, but never more than the words the slide shows: a label the diagram repeats is not credited
+        # again for one drawn copy.
+        shown = min(len(covered), len(mine)) if label_words is not None else len(mine)
         if need is None:
             need = required_words(block["kind"], block["source"])
         if shown < need:

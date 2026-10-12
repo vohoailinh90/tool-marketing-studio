@@ -369,10 +369,18 @@ class CheckTests(unittest.TestCase):
         post = full_post()
         post["slides"][1] = {"layout": "features", "title": "Công thức",
                              "items": [{"title": "Bộ não: LLM", "text": "hiểu yêu cầu, quyết định bước tiếp theo"}]}
+        problems = self.problems(post=post, manifest=full_manifest())
+        self.assertTrue(any("concept#02" in p and "show 0 of the 3 words needed" in p for p in problems), problems)
+
+    def test_an_image_slide_of_another_diagram_is_not_a_rebuild(self):
+        # Its title and caption carry the diagram's words, but the picture is another diagram's: still wrong.
+        post = full_post()
+        post["slides"][1] = {"layout": "image", "src": "diagrams/vi/other.png",
+                             "title": "Bộ não: LLM", "caption": "Đôi tay: công cụ"}
         manifest = full_manifest()
+        manifest["blocks"][5]["evidence"] = ["Bộ não: LLM", "Đôi tay: công cụ"]
         problems = self.problems(post=post, manifest=manifest)
-        self.assertTrue(any("diagram 'agent-formula'" in p and "no evidence rebuilds it" in p for p in problems),
-                        problems)
+        self.assertTrue(any("diagram 'agent-formula' is not the image on slide:2" in p for p in problems), problems)
 
     def test_a_diagram_rebuilt_in_a_layout_passes_with_its_words_quoted(self):
         post = full_post()
@@ -487,6 +495,25 @@ class SourceTests(unittest.TestCase):
         manifest = full_manifest()
         manifest["blocks"][5]["evidence"] = ["Bộ não: LLM", "yêu cầu, quyết định bước tiếp theo", "Đôi tay: công cụ"]
         self.assertEqual(self.problems(manifest, rebuilt_post()), [])  # 3 + 6 + 4 = 13 of 15
+
+    def test_a_label_the_diagram_repeats_is_credited_once_per_drawn_copy(self):
+        # Ten copies of one label in the SVG, one copy on the slide: quoting it six times covers six copies
+        # of the diagram but shows the reader one.
+        repeated = ('<svg xmlns="http://www.w3.org/2000/svg">' + "<text>Bộ não LLM</text>" * 10 + "</svg>")
+        diagram = self.course / "course" / "vi" / "diagrams" / "agent-formula.svg"
+        diagram.write_text(repeated, encoding="utf-8")
+        git = ["git", "-C", str(self.course)]
+        subprocess.run(git + ["add", "-A"], check=True)
+        subprocess.run(git + ["-c", "user.name=t", "-c", "user.email=t@t", "commit", "-qm", "repeat"], check=True)
+        self.sha = subprocess.run(git + ["rev-parse", "HEAD"], capture_output=True, text=True,
+                                  check=True).stdout.strip()
+        post = full_post()
+        post["slides"][1] = {"layout": "features", "title": "Công thức", "items": [{"title": "Bộ não LLM", "text": ""}]}
+        manifest = full_manifest()
+        manifest["blocks"][5]["evidence"] = ["Bộ não LLM"] * 6
+        problems = self.problems(manifest, post)
+        self.assertTrue(any("concept#02" in p and "show 3 of the 18 words needed (30 in the diagram)" in p
+                            for p in problems), problems)
 
     def test_a_diagram_missing_from_the_course_fails(self):
         manifest = full_manifest()

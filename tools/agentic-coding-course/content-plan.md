@@ -112,7 +112,7 @@ tiếng Việt, mỗi bài học có một khóa link riêng trỏ thẳng tới
 
 `studio.py check` **không** kiểm được việc phủ kiến thức, và vượt 10 ảnh chỉ là cảnh báo
 (`mkt/check.py`, `MAX_SLIDES`). Vì vậy ngoài các lệnh dưới, mỗi bài đăng có một **ma trận phủ** trong
-trường `notes`: mỗi phần của bài học (theo marker `<!-- section: … -->` của file bài học) → ảnh số
+trường `notes`: mỗi phần của bài học (theo các marker `section: …` trong file bài học) → ảnh số
 mấy hoặc `caption` / `first_comment`. Phần nào chưa có chỗ thì PR chưa được merge.
 
 - `python3 studio.py check agentic-coding-course` — 0 lỗi **và 0 cảnh báo về số ảnh** (tối đa 10 là

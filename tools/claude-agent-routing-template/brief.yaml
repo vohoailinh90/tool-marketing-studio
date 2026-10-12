@@ -3,6 +3,9 @@
 # Source of every fact below: vohoailinh90/claude-agent-routing-template at commit 1d57150
 # (README.md, CLAUDE.md, agent-routing/, docs/claude-to-codex.md, docs/codex-lane.md,
 # docs/session-budget.md, docs/agent-budget.md), read on 2026-10-11.
+# The "Agent office" dashboard facts (office-* below) come from the same repository at commit 0b22642
+# (docs/office-dashboard.md, README "Agent office dashboard", office/, scripts/office/, the observer hook,
+# and 133 passing unit tests), read and run on 2026-10-12.
 slug: claude-agent-routing-template
 name: "Claude × Codex"   # shown on every image: the private repository's own name is deliberately not used in public
 repo: vohoailinh90/claude-agent-routing-template
@@ -85,6 +88,40 @@ features:            # each is in the template's docs
     fact: A session-handoff file holds a generated state block and a block of notes the session writes; hooks ask for the notes at about 70% of the context window and for a wrap-up at about 85%, capture the handoff before auto-compaction and on a rate limit, and replay it when a session starts
   - id: deterministic-checks
     fact: A check whose answer is computable (counting, SHA comparison, lint, tests, mutation checks) is a script committed to the repository, not a model's judgement
+  - id: office-what
+    fact: The Agent office is a read-only web page that shows who is doing what in the agent team — the main session on top, department lanes below, each agent a robot at a desk, and a line drawn between two cards while work is handed over
+  - id: office-views
+    fact: It has two views — Claude subagents (by the requirement's T0–T3 tier) and the VPS pipeline — light and dark themes, and Vietnamese, Japanese and English
+  - id: office-sample-run
+    fact: With no data the page opens on a recorded sample run (a T3 requirement, 1 minute 52 seconds) replayed by the same code that reads real data; a switch changes between live data and the sample
+  - id: office-replay
+    fact: A slider moves to any moment of a run, playback runs at 1×, 2×, 4× or 8×, and "back to live" returns to the present; the same snapshot builder serves live and replay
+  - id: office-agent-card
+    fact: Each agent card shows a state (Idle, Waiting, Working, Reviewing, Done, Blocked), a short task note, the model and effort from the agent's file, and the turns used out of the maximum
+  - id: office-progress-estimate
+    fact: Per-agent progress is an estimate (the agent's tool calls divided by its maxTurns), shown with a "~" and capped at 95% until the agent reports done; overall progress is the expected roles finished divided by the expected roles
+  - id: office-budget
+    fact: The budget panel shows the base and each reserve separately, rebuilt up to the moment being viewed; a reserve that has not been granted is drawn dashed
+  - id: office-stalled
+    fact: A run with no event for 15 minutes, or a spawn request still not started after 2 minutes (refused by the budget hook, or declined), shows as Blocked instead of "working" forever
+  - id: office-honest-gaps
+    fact: The page says what it does not know — the main session's phase is inferred from which role ran last and not observed, and when no budget is recorded for a requirement it says so instead of drawing numbers
+  - id: office-handoff-log
+    fact: A handoff log lists, with times, which agent received which task and which one handed over
+  - id: office-observer-hook
+    fact: An observer hook writes one event line per subagent spawn, start, tool use and stop; it only records, never blocks a tool and always exits with code 0 (it fails open); OFFICE_EVENTS_DISABLE=1 turns it off
+  - id: office-what-is-stored
+    fact: The hook stores the session id, tool name, agent id and type, times, status, token count, duration, tool-call count and a short task description, plus at most 240 characters each of a failed spawn's error text and, when the Claude Code build sends it, the subagent's last reply; it never stores prompts, full replies, tool inputs or transcript paths, and OFFICE_EVENTS_NOTES=0 drops the two free-text fields
+  - id: office-event-file
+    fact: The event file is created readable only by its owner and is git-ignored
+  - id: office-readonly-server
+    fact: The server answers GET and HEAD only, writes nothing, runs nothing from the data it reads, binds to 127.0.0.1 by default, refuses an unknown Host header and has no login, so on a VPS the page is reached through an SSH tunnel
+  - id: office-vps-pipeline
+    fact: The VPS view reads the pipeline's state.json and a few neighbouring files; it runs no git in the workers' clones and reads no API key
+  - id: office-built-with
+    fact: The page's components are copied from the Automation UI Kit and the robots are drawn in SVG
+  - id: office-tests
+    fact: At commit 0b22642 the 133 unit tests covering the hook, the snapshot builder, the server and the page catalogues pass (1 skipped), and mutation manifests exist for the three Python modules
 
 claims:              # anything a post states as a benefit must be one of these
   - id: author-not-sole-verifier
@@ -119,6 +156,30 @@ claims:              # anything a post states as a benefit must be one of these
     text: The author runs Claude as the designer and Codex as the critic of the design and of the pull request, and lets the loop run to the definition of done
     evidence: the author's own way of combining the documented parts, confirmed by the author on 2026-10-11 (Codex only critiques; Claude designs, builds and fixes) — the template's two documented lanes are Claude subagents as critics, or Codex as designer, implementer and reviewer
     verified: true
+  - id: office-one-page
+    text: One page shows which agent is working, waiting, done or blocked, how much of the agent budget is used, and who handed work to whom
+    evidence: docs/office-dashboard.md "Mỗi con số lấy từ đâu"; sample run captured 2026-10-12 at 58 s and 75 s
+    verified: true
+  - id: office-estimates-labelled
+    text: What the page cannot observe is labelled — per-agent progress is an estimate (~, capped at 95%) and the main session's phase is inferred
+    evidence: docs/office-dashboard.md; the "~43%" on the reviewing card and the page footer in the sample run
+    verified: true
+  - id: office-observer-fails-open
+    text: The hook that feeds the page only records; it cannot block a tool call and a failure in it does not stop the session
+    evidence: scripts/hooks/office_events.py main() (returns 0 on every path, "fail open"); tests/test_office_events.py
+    verified: true
+  - id: office-local-readonly
+    text: The page is read-only and local by default
+    evidence: scripts/office/serve.py (GET and HEAD only, 127.0.0.1, Host check); tests/test_office_serve.py
+    verified: true
+  - id: office-payload-checked-once
+    text: The hook's payload fields were checked on one Claude Code build and one agent type (2026-10-11); after an upgrade they have to be checked again
+    evidence: docs/office-dashboard.md "Kiểm tra payload của hook"
+    verified: true
+  - id: office-sample-is-recorded
+    text: The sample run is recorded data shown to see the shape of the page, not a real requirement
+    evidence: the page's own footer note and scripts/office/demo/claude-t3/meta.json
+    verified: true
 
 limitations:         # say these openly: they decide who should NOT try it
   - The repository is private; this campaign shares the process, not the code
@@ -127,11 +188,19 @@ limitations:         # say these openly: they decide who should NOT try it
   - Autonomous merge is safe only with branch protection that requires up-to-date branches (or a merge queue) and no bypass for the merging identity
   - A review by Codex of Claude's work is a different model family from the author; it is still a model, and the session's own validation of the diff stays mandatory
   - Built for software requirements; writing marketing content is not routed through it
+  - The Agent office page is read-only; assigning or cancelling work from it would be a different requirement
+  - The hook payload was checked on one Claude Code build and one agent type; on the checked build the subagent's last reply is not sent, so cards show the task description and not a reply note
+  - Per-agent progress is an estimate and the main session's phase is inferred
+  - The page has no login; on a VPS it is reached through an SSH tunnel
+  - The Japanese text of the page was written by Claude and has not been reviewed by a Japanese speaker
+  - The notes inside the sample run are Vietnamese data and are not translated with the interface
 
 story_to_confirm:    # the author's own story: the author must confirm before posting
   - Decided 2026-10-11: public text does not name the private repository or its script files; images show "Claude × Codex" instead
   - Which of the 8 Claude roles the author keeps running when Codex is the critic: the post uses the template's own codex-lane ceilings (T1 0, T2 0, T3 1)
   - Why the author added Codex as the critic (for example, a second model family catching what the first one missed)
+  - Why the author built the Agent office page, and whether they use it on real runs: the repository does not say, and the screenshot supplied shows a live run of one small Explore agent only
+  - The post's screenshots are of the recorded sample run captured on 2026-10-12 from commit 0b22642, with the budget note's hook file name hidden by the capture, not the author's own live run
 
 commercial_readiness:
   - Not for sale: a template repository the author uses on their own projects

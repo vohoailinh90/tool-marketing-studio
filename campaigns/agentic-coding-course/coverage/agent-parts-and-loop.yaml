@@ -1,0 +1,312 @@
+lesson: agent-parts-and-loop
+lang: vi
+source:
+  repo: vohoailinh90/Agentic-coding-course
+  commit: 412bbb2f1a549b8eafd7b138f9ee627b8a9d1fc3
+  path: course/vi/lessons/agent-parts-and-loop.md
+post: ../posts/vi/agent-parts-and-loop.yaml
+blocks:
+- key: social#01
+  kind: hook
+  source: AI agent = bộ não + đôi tay + một vòng lặp. Thiếu một thứ là nó không làm được việc. 🧠🔧🔁
+  dest: caption
+  evidence: AI agent = bộ não + đôi tay + một vòng lặp. Thiếu một thứ là nó không làm được việc. 🧠🔧🔁
+- key: social#02
+  kind: question
+  source: Nếu chỉ được cho agent dùng một công cụ, bạn sẽ chọn công cụ nào?
+  dest: caption
+  evidence: Nếu chỉ được cho agent dùng một công cụ, bạn sẽ chọn công cụ nào?
+- key: objective#01
+  kind: para
+  source: 'Sau bài này, bạn sẽ:'
+  dest: caption
+  evidence: Sau bài này
+- key: objective#02
+  kind: item
+  source: 'Nói được một AI agent gồm ba phần: bộ não (LLM), đôi tay (công cụ) và vòng lặp.'
+  dest: caption
+  evidence: 'Nói được một AI agent gồm ba phần: bộ não (LLM), đôi tay (công cụ) và vòng lặp.'
+- key: objective#03
+  kind: item
+  source: Mô tả được vòng lặp suy nghĩ → hành động → quan sát và biết khi nào nó nên dừng.
+  dest: caption
+  evidence: Mô tả được vòng lặp suy nghĩ → hành động → quan sát và biết khi nào nó nên dừng.
+- key: objective#04
+  kind: item
+  source: Hiểu vì sao agent tự sửa lỗi được đến đâu còn tùy vào công cụ, quyền hạn và phản hồi nó nhận được.
+  dest: caption
+  evidence: Hiểu vì sao agent tự sửa lỗi được đến đâu còn tùy vào công cụ, quyền hạn và phản hồi nó nhận được.
+- key: hook#01
+  kind: para
+  source: Bạn đã biết agent tự làm các bước thay bạn. Nhưng tự một mô hình ngôn ngữ chỉ tạo ra đầu ra — một đoạn chữ, hay một yêu cầu dùng công cụ — vậy làm sao agent mở được file hay chạy được chương trình?
+  dest: caption
+  evidence: Bạn đã biết agent tự làm các bước thay bạn. Nhưng tự một mô hình ngôn ngữ chỉ tạo ra đầu ra — một đoạn chữ, hay một yêu cầu dùng công cụ — vậy làm sao agent mở được file hay chạy được chương trình?
+- key: hook#02
+  kind: para
+  source: Câu trả lời nằm ở cách agent được ghép lại. Hiểu ba bộ phận của nó, bạn sẽ đoán được agent làm được gì, không làm được gì, và khi nào nó cần bạn.
+  dest: caption
+  evidence: Câu trả lời nằm ở cách agent được ghép lại. Hiểu ba bộ phận của nó, bạn sẽ đoán được agent làm được gì, không làm được gì, và khi nào nó cần bạn.
+- key: concept#01
+  kind: heading
+  source: Công thức của một AI agent
+  dest: caption
+  evidence: Công thức của một AI agent
+- key: concept#02
+  kind: diagram
+  source: agent-formula
+  dest: slide:3
+  evidence:
+  - Một AI agent gồm những gì?
+  - 'Bộ não: LLM'
+  - hiểu yêu cầu, quyết định bước tiếp theo
+  - 'Đôi tay: công cụ'
+  - đọc/ghi file, chạy lệnh, tìm trên web
+  - Vòng lặp
+  - làm → kiểm → sửa, đến khi xong
+  - AI agent
+  - nhận mục tiêu và tự làm việc — bạn nghiệm thu
+- key: concept#03
+  kind: item
+  source: 'Bộ não — LLM (mô hình ngôn ngữ lớn): hiểu yêu cầu, suy luận và quyết định bước tiếp theo. Thứ nó tạo ra là đầu ra — chữ, hoặc một yêu cầu dùng công cụ — chứ chưa phải hành động thật.'
+  dest: caption
+  evidence: 'Bộ não — LLM (mô hình ngôn ngữ lớn): hiểu yêu cầu, suy luận và quyết định bước tiếp theo. Thứ nó tạo ra là đầu ra — chữ, hoặc một yêu cầu dùng công cụ — chứ chưa phải hành động thật.'
+- key: concept#04
+  kind: item
+  source: 'Đôi tay — công cụ (tool): những việc agent được phép làm thật: đọc/ghi file, chạy lệnh, tìm kiếm web, gọi dịch vụ khác. Mô hình có thể yêu cầu một trong những công cụ mà phần mềm của agent cho phép; phần mềm đó quyết định có chấp nhận yêu cầu không, và chính nó mới thực sự bấm nút.'
+  dest: caption
+  evidence: 'Đôi tay — công cụ (tool): những việc agent được phép làm thật: đọc/ghi file, chạy lệnh, tìm kiếm web, gọi dịch vụ khác. Mô hình có thể yêu cầu một trong những công cụ mà phần mềm của agent cho phép; phần mềm đó quyết định có chấp nhận yêu cầu không, và chính nó mới thực sự bấm nút.'
+- key: concept#05
+  kind: item
+  source: 'Vòng lặp: agent không làm một lần là xong. Nó lặp lại cho đến khi đạt mục tiêu.'
+  dest: caption
+  evidence: 'Vòng lặp: agent không làm một lần là xong. Nó lặp lại cho đến khi đạt mục tiêu.'
+- key: concept#06
+  kind: heading
+  source: Vòng lặp suy nghĩ → hành động → quan sát
+  dest: caption
+  evidence: Vòng lặp suy nghĩ → hành động → quan sát
+- key: concept#07
+  kind: diagram
+  source: agent-loop
+  dest: slide:5
+  evidence:
+  - Vòng lặp của một AI agent
+  - Suy nghĩ
+  - bước tiếp theo là gì?
+  - Hành động
+  - dùng một công cụ thật
+  - Quan sát
+  - kết quả đã đúng chưa?
+  - chưa xong → làm tiếp
+  - Lặp lại cho đến khi đạt mục tiêu — hoặc cần hỏi ý bạn
+  - Bạn đặt mục tiêu và kiểm tra kết quả cuối cùng.
+- key: concept#08
+  kind: item
+  source: 'Suy nghĩ: bước tiếp theo là gì?'
+  dest: caption
+  evidence: 'Suy nghĩ: bước tiếp theo là gì?'
+- key: concept#09
+  kind: item
+  source: 'Hành động: dùng một công cụ, ví dụ chạy thử trang web.'
+  dest: caption
+  evidence: 'Hành động: dùng một công cụ, ví dụ chạy thử trang web.'
+- key: concept#10
+  kind: item
+  source: 'Quan sát: đọc kết quả — trang chạy được chưa, có thông báo lỗi không?'
+  dest: caption
+  evidence: 'Quan sát: đọc kết quả — trang chạy được chưa, có thông báo lỗi không?'
+- key: concept#11
+  kind: para
+  source: Rồi quay lại bước 1. Vòng lặp dừng khi mục tiêu đã đạt, hoặc khi agent gặp một quyết định chỉ bạn mới có quyền đưa ra (ví dụ xóa dữ liệu), hoặc khi nó hết quyền hay hết cách.
+  dest: caption
+  evidence: Rồi quay lại bước 1. Vòng lặp dừng khi mục tiêu đã đạt, hoặc khi agent gặp một quyết định chỉ bạn mới có quyền đưa ra (ví dụ xóa dữ liệu), hoặc khi nó hết quyền hay hết cách.
+- key: concept#12
+  kind: heading
+  source: Tự sửa lỗi không phải phép màu
+  dest: caption
+  evidence: Tự sửa lỗi không phải phép màu
+- key: concept#13
+  kind: para
+  source: Agent chỉ sửa được lỗi mà nó quan sát được. Nếu không được phép chạy thử chương trình, nó không thấy lỗi; nếu không có thông báo lỗi hay phép kiểm tra rõ ràng, nó không biết mình sai. Vì vậy khả năng tự sửa phụ thuộc vào công cụ, quyền hạn và phản hồi — và bạn vẫn là người kiểm tra cuối cùng.
+  dest: caption
+  evidence: Agent chỉ sửa được lỗi mà nó quan sát được. Nếu không được phép chạy thử chương trình, nó không thấy lỗi; nếu không có thông báo lỗi hay phép kiểm tra rõ ràng, nó không biết mình sai. Vì vậy khả năng tự sửa phụ thuộc vào công cụ, quyền hạn và phản hồi — và bạn vẫn là người kiểm tra cuối cùng.
+- key: analogy#01
+  kind: para
+  source: 'Hãy nghĩ về một đầu bếp đang nấu món bạn gọi:'
+  dest: caption
+  evidence: 'Hãy nghĩ về một đầu bếp đang nấu món bạn gọi:'
+- key: analogy#02
+  kind: item
+  source: 'Bộ não là kinh nghiệm của đầu bếp: biết bước tiếp theo nên làm gì.'
+  dest: caption
+  evidence: 'Bộ não là kinh nghiệm của đầu bếp: biết bước tiếp theo nên làm gì.'
+- key: analogy#03
+  kind: item
+  source: 'Đôi tay là dao, bếp, nồi: không có chúng, kinh nghiệm chỉ nằm trên giấy.'
+  dest: caption
+  evidence: 'Đôi tay là dao, bếp, nồi: không có chúng, kinh nghiệm chỉ nằm trên giấy.'
+- key: analogy#04
+  kind: item
+  source: Vòng lặp là nêm — nếm — chỉnh — nếm lại, cho đến khi vừa miệng; gặp câu hỏi như "ăn cay được không?" thì phải hỏi khách.
+  dest: caption
+  evidence: Vòng lặp là nêm — nếm — chỉnh — nếm lại, cho đến khi vừa miệng; gặp câu hỏi như "ăn cay được không?" thì phải hỏi khách.
+- key: analogy#05
+  kind: para
+  source: 'Chỗ chưa khớp: đầu bếp luôn nếm được món của mình, còn agent chỉ "nếm" được những gì công cụ cho nó thấy.'
+  dest: caption
+  evidence: 'Chỗ chưa khớp: đầu bếp luôn nếm được món của mình, còn agent chỉ "nếm" được những gì công cụ cho nó thấy.'
+- key: example#01
+  kind: para
+  source: 'Mục tiêu bạn giao: "Đổi tên 50 ảnh trong thư mục Du lịch theo ngày chụp, dạng 2026-09-0101.jpg."'
+  dest: caption
+  evidence: 'Mục tiêu bạn giao: "Đổi tên 50 ảnh trong thư mục Du lịch theo ngày chụp, dạng 2026-09-01_01.jpg."'
+- key: example#02
+  kind: item
+  source: 'Suy nghĩ: cần biết ngày chụp của từng ảnh. Hành động: liệt kê các file. Quan sát: 50 ảnh, 3 ảnh không có ngày chụp.'
+  dest: caption
+  evidence: 'Suy nghĩ: cần biết ngày chụp của từng ảnh. Hành động: liệt kê các file. Quan sát: 50 ảnh, 3 ảnh không có ngày chụp.'
+- key: example#03
+  kind: item
+  source: 'Suy nghĩ: 3 ảnh đó nên đặt tên thế nào? Đây là quyết định của bạn → agent hỏi: "Dùng ngày tạo file cho 3 ảnh này được không?" Bạn đồng ý.'
+  dest: caption
+  evidence: 'Suy nghĩ: 3 ảnh đó nên đặt tên thế nào? Đây là quyết định của bạn → agent hỏi: "Dùng ngày tạo file cho 3 ảnh này được không?" Bạn đồng ý.'
+- key: example#04
+  kind: item
+  source: 'Hành động: đổi tên. Quan sát: liệt kê lại thư mục, thấy đủ 50 file đúng dạng tên.'
+  dest: caption
+  evidence: 'Hành động: đổi tên. Quan sát: liệt kê lại thư mục, thấy đủ 50 file đúng dạng tên.'
+- key: example#05
+  kind: item
+  source: Mục tiêu đạt → vòng lặp dừng, agent báo cáo những gì đã làm.
+  dest: caption
+  evidence: Mục tiêu đạt → vòng lặp dừng, agent báo cáo những gì đã làm.
+- key: example#06
+  kind: para
+  source: 'Bạn kiểm tra nhanh: mở vài ảnh, xem tên có khớp ngày chụp không.'
+  dest: caption
+  evidence: 'Bạn kiểm tra nhanh: mở vài ảnh, xem tên có khớp ngày chụp không.'
+- key: misconceptions#01
+  kind: item
+  source: '"LLM tự mở file được." — Không. LLM chỉ đưa ra yêu cầu dùng công cụ; phần mềm của agent quyết định có cho phép không rồi mới thực hiện, và chỉ trong phạm vi được cho phép.'
+  dest: caption
+  evidence: '"LLM tự mở file được." — Không. LLM chỉ đưa ra yêu cầu dùng công cụ; phần mềm của agent quyết định có cho phép không rồi mới thực hiện, và chỉ trong phạm vi được cho phép.'
+- key: misconceptions#02
+  kind: item
+  source: '"Agent nào cũng tự thấy lỗi và tự sửa." — Chỉ khi nó có công cụ để quan sát kết quả và được phép sửa. Kể cả khi đó, nó vẫn có thể sửa sai.'
+  dest: caption
+  evidence: '"Agent nào cũng tự thấy lỗi và tự sửa." — Chỉ khi nó có công cụ để quan sát kết quả và được phép sửa. Kể cả khi đó, nó vẫn có thể sửa sai.'
+- key: recap#01
+  kind: diagram
+  source: agent-parts-and-loop-recap
+  dest: slide:9
+  evidence:
+  - 'Tóm tắt: AI agent được ghép từ gì?'
+  - 'Bộ não: LLM'
+  - Hiểu yêu cầu, chọn bước tiếp theo
+  - 'Đôi tay: công cụ'
+  - Đọc, ghi file, chạy lệnh — trong phạm vi được phép
+  - Vòng lặp
+  - Suy nghĩ → hành động → quan sát, rồi lặp lại
+  - Biết lúc dừng
+  - Khi xong việc, hoặc cần bạn quyết định
+  - Agent tự sửa lỗi được đến đâu tùy vào công cụ, quyền hạn và phản hồi mà nó nhận được.
+- key: takeaways#01
+  kind: item
+  source: Agent = LLM (bộ não) + công cụ (đôi tay) + vòng lặp suy nghĩ → hành động → quan sát.
+  dest: caption
+  evidence: Agent = LLM (bộ não) + công cụ (đôi tay) + vòng lặp suy nghĩ → hành động → quan sát.
+- key: takeaways#02
+  kind: item
+  source: Vòng lặp dừng khi xong việc, hoặc khi cần bạn quyết định.
+  dest: caption
+  evidence: Vòng lặp dừng khi xong việc, hoặc khi cần bạn quyết định.
+- key: takeaways#03
+  kind: item
+  source: Agent tự sửa lỗi được đến đâu tùy vào công cụ, quyền hạn và phản hồi — bước kiểm tra cuối cùng vẫn là của bạn.
+  dest: caption
+  evidence: Agent tự sửa lỗi được đến đâu tùy vào công cụ, quyền hạn và phản hồi — bước kiểm tra cuối cùng vẫn là của bạn.
+- key: quiz#01
+  kind: para
+  source: Câu 1. Bộ phận nào giúp agent làm việc thật, như tạo file?
+  dest: caption
+  evidence: Câu 1. Bộ phận nào giúp agent làm việc thật, như tạo file?
+- key: quiz#02
+  kind: item
+  source: A) LLM
+  dest: caption
+  evidence: A) LLM
+- key: quiz#03
+  kind: item
+  source: B) Công cụ (tool)
+  dest: caption
+  evidence: B) Công cụ (tool)
+- key: quiz#04
+  kind: item
+  source: C) Khung chat
+  dest: caption
+  evidence: C) Khung chat
+- key: quiz#05
+  kind: para
+  source: Câu 2. Agent đang sửa một trang web nhưng không được phép chạy thử trang. Điều gì dễ xảy ra nhất?
+  dest: slide:10
+  evidence: Agent sửa trang web nhưng không được chạy thử. Điều gì dễ xảy ra?
+- key: quiz#06
+  kind: item
+  source: A) Agent có thể bỏ sót lỗi vì không quan sát được kết quả
+  dest: slide:10
+  evidence: Agent có thể bỏ sót lỗi vì không quan sát được kết quả
+- key: quiz#07
+  kind: item
+  source: B) Agent vẫn chắc chắn tìm ra mọi lỗi
+  dest: slide:10
+  evidence: Agent vẫn chắc chắn tìm ra mọi lỗi
+- key: quiz#08
+  kind: item
+  source: C) Agent tự cấp thêm quyền cho mình
+  dest: slide:10
+  evidence: Agent tự cấp thêm quyền cho mình
+- key: quiz#09
+  kind: para
+  source: Câu 3. Khi nào agent nên dừng vòng lặp để hỏi bạn?
+  dest: caption
+  evidence: Câu 3. Khi nào agent nên dừng vòng lặp để hỏi bạn?
+- key: quiz#10
+  kind: item
+  source: A) Sau mỗi dòng code nó viết
+  dest: caption
+  evidence: A) Sau mỗi dòng code nó viết
+- key: quiz#11
+  kind: item
+  source: B) Không bao giờ
+  dest: caption
+  evidence: B) Không bao giờ
+- key: quiz#12
+  kind: item
+  source: C) Khi cần một quyết định chỉ bạn mới có quyền đưa ra, như xóa dữ liệu
+  dest: caption
+  evidence: C) Khi cần một quyết định chỉ bạn mới có quyền đưa ra, như xóa dữ liệu
+- key: quiz#13
+  kind: item
+  source: B — LLM chỉ đưa ra yêu cầu; công cụ mới là thứ thực sự tạo file.
+  dest: caption
+  evidence: B — LLM chỉ đưa ra yêu cầu; công cụ mới là thứ thực sự tạo file.
+- key: quiz#14
+  kind: item
+  source: A — không quan sát được thì không biết mình sai; tự sửa phụ thuộc vào công cụ và phản hồi.
+  dest: caption
+  evidence: A — không quan sát được thì không biết mình sai; tự sửa phụ thuộc vào công cụ và phản hồi.
+- key: quiz#15
+  kind: item
+  source: C — những quyết định quan trọng hoặc khó đảo ngược là của bạn.
+  dest: caption
+  evidence: C — những quyết định quan trọng hoặc khó đảo ngược là của bạn.
+- key: sources#01
+  kind: item
+  source: 'Anthropic — Building Effective AI Agents (tiếng Anh, 12/2024): agent thường là một LLM dùng công cụ dựa trên phản hồi từ môi trường, trong một vòng lặp, và có thể dừng lại hỏi con người khi gặp trở ngại.'
+  dest: caption
+  evidence: 'Anthropic — Building Effective AI Agents (tiếng Anh, 12/2024): agent thường là một LLM dùng công cụ dựa trên phản hồi từ môi trường, trong một vòng lặp, và có thể dừng lại hỏi con người khi gặp trở ngại.'
+- key: sources#02
+  kind: item
+  source: IBM — What is Agentic AI? (tiếng Anh)
+  dest: caption
+  evidence: IBM — What is Agentic AI? (tiếng Anh)

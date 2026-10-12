@@ -158,6 +158,15 @@ class PullRequestLoopTests(unittest.TestCase):
             with self.subTest(path=path.name):
                 self.assertIn(phrase, read(path).replace("\n", " "))
 
+    def test_a_thumbs_up_only_clean_run_can_end_the_loop(self) -> None:
+        """Section 16 says a clean review may leave only a thumbs-up, so the exit must accept it for the requested head."""
+        protocol = read(PROTOCOL).replace("\n", " ")
+        exit_rule = protocol[protocol.index("**Exit when clean.**"):]
+        exit_rule = exit_rule[:exit_rule.index("A fix pushed after the last review")]
+        for phrase in ("only a thumbs-up", "👍 reaction on that command's request comment",
+                       "provided the PR head has not moved since that request was posted"):
+            self.assertIn(phrase, exit_rule)
+
     def test_every_protocol_section_it_cites_exists(self) -> None:
         protocol = read(PROTOCOL)
         cited = {int(n) for n in re.findall(r"§(\d+)", self.section)}

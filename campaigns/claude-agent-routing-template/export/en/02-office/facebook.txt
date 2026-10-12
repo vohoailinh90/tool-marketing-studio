@@ -1,17 +1,23 @@
-Delegating work to AI agents is easy. Knowing what they're doing right now is harder. 👇
+Handed work to a team of AI agents: who's working right now, who's waiting, and how much of the budget is gone? 👇
 
-I put together an "agent office": one read-only page with the main session at the top, a desk for every agent, and a line between two cards while work changes hands.
+I put together a read-only "agent office" page that answers that at a glance. The main session sits at the top and every agent has its own desk. A quick Q&A:
 
-What you see at a glance:
-→ A state per agent: Idle, Waiting, Working, Reviewing, Done or Blocked
-→ Progress and budget, with the base and each reserve counted separately (a reserve not granted yet is dashed)
-→ A timestamped handoff log, plus a slider that replays the whole run at 1×, 2×, 4× or 8×
+Who's doing what?
+Each agent shows its state (Idle, Waiting, Working, Reviewing, Done or Blocked), and a line joins two cards while work is handed over.
 
-It also tells you what it can't see. Per-agent progress is an estimate, marked ~ and capped at 95% until the agent reports done. The main session's phase is inferred. An agent that has been silent for 15 minutes, or was asked to start and hasn't within 2 minutes, shows as Blocked. If no budget was recorded, the page says so instead of drawing numbers.
+How much budget is left?
+The base and each reserve are counted separately. A reserve that hasn't been granted yet is drawn dashed.
 
-Under the hood, a small observer hook logs each subagent's spawn, start and stop. It never blocks a tool, and it doesn't store prompts, full replies, tool inputs or transcript paths. The page itself listens on 127.0.0.1 by default and has no login, so on a VPS reach it through an SSH tunnel.
+Can I look back?
+Yes: a timestamped handoff log, plus a slider that replays the whole run at 1×, 2×, 4× or 8×.
 
-The screenshots show a recorded sample run, not a real requirement. Fair warnings: the repo is private, the hook has only been checked on one Claude Code build and one agent type, and assigning or cancelling work from the page would be a different job.
+How far can I trust the numbers?
+Per-agent progress is an estimate (marked ~, capped at 95% until the agent reports done), and the main session's phase is inferred. An agent that has been silent for 15 minutes, or was asked to start and hasn't within 2 minutes, shows as Blocked. With no budget recorded, the page says so instead of drawing numbers.
+
+What does it touch on my machine?
+A small observer hook logs each subagent's spawn, start and stop. It never blocks a tool and doesn't store prompts, full replies, tool inputs or transcript paths. The page listens on 127.0.0.1 by default and has no login, so on a VPS use an SSH tunnel.
+
+Caveats: the screenshots are a recorded sample run, not a real requirement; the repo is private; the hook has only been checked on one Claude Code build and one agent type; and assigning or cancelling work from the page would be a different job.
 
 What would you want a page like this to show first?
 

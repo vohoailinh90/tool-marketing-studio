@@ -24,13 +24,12 @@ slides:
     caption: "Lượt chạy mẫu đã ghi sẵn (yêu cầu mức T3), không phải yêu cầu thật. Ghi chú trong mẫu là tiếng Việt."
 
   - layout: features
-    title: "Mỗi thẻ nói gì"
+    title: "Bạn thấy gì trên trang"
     items:
       - {emoji: "🚦", title: "Trạng thái", text: "Rảnh, đang chờ, đang làm, đang review, xong, bị chặn"}
       - {emoji: "📈", title: "Tiến độ", text: "Ước lượng, có dấu ~, tối đa 95% cho đến khi agent báo xong"}
       - {emoji: "🎫", title: "Ngân sách", text: "Cơ sở và từng dự phòng báo riêng; dự phòng chưa cấp vẽ nét đứt"}
       - {emoji: "🤝", title: "Bàn giao", text: "Nét nối hai thẻ khi việc được chuyển tay, kèm nhật ký có giờ"}
-    note: "Cả trang chỉ có bấy nhiêu thứ, để nhìn một lượt là nắm được."
 
   - layout: checklist
     title: "Chỗ nào trang không biết, trang nói luôn"
@@ -40,7 +39,7 @@ slides:
       - "Giai đoạn của main session được suy ra, không quan sát trực tiếp"
       - "Im lặng 15 phút, hoặc xin chạy 2 phút vẫn chưa bắt đầu: hiện \"bị chặn\""
       - "Chưa ghi sổ ngân sách thì báo chưa ghi, không vẽ số cho đẹp"
-    note: "Một trang theo dõi mà bịa số còn tệ hơn không có trang."
+    note: "Mỗi chỗ chưa biết đều được ghi rõ ngay trên trang."
 
   - layout: flow
     variant: after
@@ -60,11 +59,11 @@ slides:
       - {emoji: "▶️", title: "Chưa có dữ liệu", text: "Trang mở thẳng vào lượt chạy mẫu để bạn xem thử"}
 
   - layout: checklist
-    title: "Chỉ đọc, chỉ trên máy bạn"
+    title: "Chỉ đọc, mặc định chỉ trên máy bạn"
     tone: ok
     items:
       - "Không giao việc, không hủy việc từ trang"
-      - "Mặc định chỉ mở ở 127.0.0.1 và từ chối địa chỉ lạ"
+      - "Mặc định chỉ lắng nghe ở 127.0.0.1 và từ chối yêu cầu mang tên máy (Host) lạ"
       - "Trang không có đăng nhập: trên VPS hãy vào bằng SSH tunnel"
       - "File sự kiện chỉ chủ file đọc được và nằm ngoài git"
     note: "Hook hỏng thì phiên làm việc vẫn chạy tiếp; tắt hẳn bằng một biến môi trường."

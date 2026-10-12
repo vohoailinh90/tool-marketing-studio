@@ -43,7 +43,7 @@ export default function App() {
   const snapshot = current && answersFeature(current, feature) ? current : null
   const span = snapshot?.span ?? null
 
-  // A feature that is gone from the answer's own list (removed while picked) cannot be asked for again: drop the pick.
+  // A pick the answer's own list no longer has (removed while picked) matches no answer: drop it, or every answer is refused.
   const kept = keepFeature(current, feature)
   if (kept !== feature) setFeature(kept)
 
@@ -98,7 +98,7 @@ export default function App() {
   const changeSource = (next: Source) => {
     setSource(next)
     moveCursor(null)
-    setFeature(null) // a sample ignores the feature filter, so a stale one would reject every answer
+    setFeature(null) // redundant with keepFeature, which drops a pick the sample's answer does not list; kept as in changeMode
     setSelected(null)
   }
 
@@ -158,6 +158,8 @@ export default function App() {
           speed={speed}
           onPlaying={(next) => {
             if (!next) cancelHold()
+            // Paused during the end-of-sample pause, the hook has no position left to play from: start the sample over.
+            else if (source === "demo" && span && cursor !== null && cursor >= span.end) moveCursor(span.start)
             setPlaying(next)
           }}
           onSpeed={setSpeed}

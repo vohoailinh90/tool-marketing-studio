@@ -164,7 +164,8 @@ class PullRequestLoopTests(unittest.TestCase):
         exit_rule = protocol[protocol.index("**Exit when clean.**"):]
         exit_rule = exit_rule[:exit_rule.index("A fix pushed after the last review")]
         for phrase in ("only a thumbs-up", "👍 reaction on that command's request comment",
-                       "provided the PR head has not moved since that request was posted"):
+                       "provided the PR head has not moved since that request was posted",
+                       "one command's 👍 never stands in for another command's result"):
             self.assertIn(phrase, exit_rule)
         sec14 = protocol[protocol.index("## 14. "):protocol.index("## 15. ")]
         sec17 = protocol[protocol.index("## 17. "):protocol.index("## 18. ")]

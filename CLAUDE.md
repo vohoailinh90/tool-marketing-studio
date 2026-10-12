@@ -44,7 +44,7 @@ For non-trivial feature/change requests:
 5. When the session will execute the requirement, run it again with `--record` so the agent budget is enforced (below).
 6. Execute only the roles required by that profile, staying inside `budget.max_agent_invocations`.
 7. Verify independently before declaring success.
-8. If the work ships as a pull request, run it through *Pull request lifecycle* (below): Codex review until clean, merge, then the next task.
+8. If the work ships as a pull request, run it through *Pull request lifecycle* (below): Codex review until every review command the work requires is clean on the current head, merge, then the next task.
 
 The semantic analysis may be probabilistic; policy enforcement must not be — which is why steps 4–5 are a script and a hook, not instructions to the model. See `docs/agent-budget.md`.
 

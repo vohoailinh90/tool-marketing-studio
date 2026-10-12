@@ -23,8 +23,8 @@ mutations:
   replace: '            others = set()  # words may prove several blocks'
   test: tests.test_lesson_coverage.CheckTests.test_one_quote_cannot_prove_two_blocks
 - label: overlapping quotes add up their words
-  find: '        shown = len(mine)'
-  replace: '        shown = sum(len(tokens(q)) for q in quotes)'
+  find: '        shown = len(covered) if label_words is not None else len(mine)'
+  replace: '        shown = len(covered) if label_words is not None else sum(len(tokens(q)) for q in quotes)'
   test: tests.test_lesson_coverage.CheckTests.test_overlapping_quotes_count_each_word_once
 - label: a manifest may point at another post
   find: '    post_path = (manifest_path.parent.parent / "posts" / lang / f"{lesson_id}.yaml").resolve()'
@@ -51,8 +51,8 @@ mutations:
   replace: '    if False and len(slides) > MAX_SLIDES:'
   test: tests.test_lesson_coverage.CheckTests.test_more_than_ten_slides_fails
 - label: a diagram may point at any slide
-  find: '            if not (isinstance(target, dict) and target.get("layout") == "image"'
-  replace: '            if False and not (isinstance(target, dict) and target.get("layout") == "image"'
+  find: '            if (isinstance(target, dict) and target.get("layout") == "image"'
+  replace: '            if True or (isinstance(target, dict) and target.get("layout") == "image"'
   test: tests.test_lesson_coverage.CheckTests.test_a_diagram_must_be_the_image_on_its_slide
 - label: a duplicated block is accepted
   find: '        if key in seen:'
@@ -106,3 +106,39 @@ mutations:
   find: '        return head + get("text", "button", "keyword")'
   replace: '        return head + get("text", "button", "keyword", "hint")'
   test: tests.test_lesson_coverage.CheckTests.test_a_cta_hint_is_not_evidence
+- label: a rebuilt diagram needs only one word
+  find: '                need = math.ceil(block_words * MIN_DIAGRAM_SHARE)'
+  replace: '                need = 1  # any one word will do'
+  test: tests.test_lesson_coverage.SourceTests.test_a_rebuilt_diagram_must_show_most_of_its_words
+- label: a rebuilt diagram is measured by what the post quotes, not by the SVG
+  find: '                block_words = sum(len(label) for label in label_words)'
+  replace: '                block_words = max(len(tokens(q)) for q in quotes)  # whatever the post quotes'
+  test: tests.test_lesson_coverage.SourceTests.test_a_rebuilt_diagram_must_show_most_of_its_words
+- label: a rebuilt diagram and the prose blocks share one set of claimed words
+  find: '                owners = claimed.setdefault((dest, number_of_field, space), {})'
+  replace: '                owners = claimed.setdefault((dest, number_of_field, "shared"), {})  # one claim space'
+  test: tests.test_lesson_coverage.SourceTests.test_a_rebuilt_diagram_may_reuse_words_that_prove_prose_blocks
+- label: a diagram label with no letter counts as wording
+  find: '        if re.search(r"[^\W\d_]", label):'
+  replace: '        if label:  # badges, signs and emoji count too'
+  test: tests.test_lesson_coverage.DiagramLabelTests.test_a_label_is_one_string_with_its_lines_joined_and_badges_and_signs_left_out
+- label: the lines of one diagram label are glued together
+  find: '        label = " ".join(" ".join(element.itertext()).split())'
+  replace: '        label = "".join(element.itertext()).strip()  # lines run together'
+  test: tests.test_lesson_coverage.DiagramLabelTests.test_a_label_is_one_string_with_its_lines_joined_and_badges_and_signs_left_out
+- label: a diagram that is not the picture needs no evidence
+  find: '            if not quotes:'
+  replace: '            if not quotes and False:  # a bare reference will do'
+  test: tests.test_lesson_coverage.CheckTests.test_a_diagram_rebuilt_without_evidence_fails
+- label: a diagram missing from the course is skipped silently
+  find: '                    problems.append(f"{key}: {exc}")'
+  replace: '                    pass  # carry on without the diagram'
+  test: tests.test_lesson_coverage.SourceTests.test_a_diagram_missing_from_the_course_fails
+- label: a rebuilt diagram's quote need not be wording of the diagram
+  find: '                label_span = find_label_span(words_in_quote, label_words, covered)'
+  replace: '                label_span = find_label_span(words_in_quote, label_words, covered) or {(-1, i) for i in range(len(words_in_quote))}  # any words'
+  test: tests.test_lesson_coverage.SourceTests.test_a_rebuilt_diagram_must_quote_the_diagram_not_other_words
+- label: quoting one diagram phrase again counts its words again
+  find: '        shown = len(covered) if label_words is not None else len(mine)'
+  replace: '        shown = sum(len(tokens(q)) for q in quotes) if label_words is not None else len(mine)'
+  test: tests.test_lesson_coverage.SourceTests.test_quoting_one_diagram_phrase_again_adds_nothing

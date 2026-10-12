@@ -23,7 +23,11 @@ is not agent work* in CLAUDE.md):
   - the manifest is bound to its lesson and its post: coverage/<id>.yaml
     checks posts/<lang>/<id>.yaml against course/<lang>/lessons/<id>.md;
   - the lesson's `social.hook` and `social.question` count as blocks too;
-  - a diagram block points at the image slide showing that diagram;
+  - a diagram block points at the image slide showing that diagram -- or, when
+    the picture is too small to read on a phone, at a slide or the caption that
+    rebuilds it in the studio's own layouts: its evidence then quotes the
+    diagram's own labels (read from the SVG at the pinned commit) and must
+    show at least 60% of the diagram's words;
   - the post has at most 10 slides, and every post of a course campaign has a
     manifest.
 
@@ -51,6 +55,7 @@ import math
 import re
 import subprocess
 import sys
+import xml.etree.ElementTree as ET
 from pathlib import Path
 from typing import Any
 
@@ -69,6 +74,11 @@ MAX_SLIDES = 10
 # cannot stand in for a paragraph. A code block is compared exactly instead.
 MIN_EVIDENCE_SHARE = 0.3
 MIN_EVIDENCE_WORDS = 3
+# A diagram rebuilt in the post's own layouts (its picture is too small to read on a
+# phone) must show at least this share of the diagram's words: the labels are the
+# knowledge, and a rebuild keeps most of them. Not all: a diagram has 75 words on average, and
+# the lesson's prose, which each carry their own blocks, repeats much of what it says.
+MIN_DIAGRAM_SHARE = 0.6
 # Front-matter fields of a lesson that a post must carry too.
 SOCIAL_FIELDS = ("hook", "question")
 
@@ -312,6 +322,25 @@ def find_span(quote: list[str], field: list[str], taken: set[int]) -> range | No
     return None
 
 
+def find_label_span(quote: list[str], labels: list[list[str]],
+                    covered: set[tuple[int, int]]) -> set[tuple[int, int]] | None:
+    """Where `quote` (as words) appears inside one diagram label, as (label, word) positions.
+
+    An occurrence none of whose words an earlier quote covered comes first, so
+    two quotes of one phrase that the diagram says twice cover both places.
+    """
+    n = len(quote)
+    first = None
+    for number, label in enumerate(labels):
+        for start in range(len(label) - n + 1):
+            if label[start:start + n] == quote:
+                span = {(number, i) for i in range(start, start + n)}
+                if not span & covered:
+                    return span
+                first = first or span
+    return first
+
+
 def load_yaml(path: Path) -> Any:
     try:
         return yaml.safe_load(path.read_text(encoding="utf-8"))
@@ -319,12 +348,32 @@ def load_yaml(path: Path) -> Any:
         raise InputError(f"cannot read {path}: {exc}") from exc
 
 
-def lesson_from_git(course_dir: Path, commit: str, path: str) -> str:
+def file_from_git(course_dir: Path, commit: str, path: str) -> str:
     result = subprocess.run(["git", "-C", str(course_dir), "show", f"{commit}:{path}"],
                             capture_output=True, text=True, encoding="utf-8")
     if result.returncode != 0:
         raise InputError(f"cannot read {path} at {commit} in {course_dir}: {result.stderr.strip()}")
     return result.stdout
+
+
+def diagram_labels(svg: str) -> list[str]:
+    """The labels a diagram shows: each <text> element as one string, in document order.
+
+    A text with no letter (a step badge, a plus or equals sign, an emoji) is
+    layout, not wording. The SVG comes from the pinned commit of the course.
+    """
+    try:
+        root = ET.fromstring(svg)
+    except ET.ParseError as exc:
+        raise InputError(f"a diagram is not valid SVG: {exc}") from exc
+    labels = []
+    for element in root.iter():
+        if element.tag.rsplit("}", 1)[-1] != "text":
+            continue
+        label = " ".join(" ".join(element.itertext()).split())
+        if re.search(r"[^\W\d_]", label):
+            labels.append(label)
+    return labels
 
 
 def required_words(kind: str, source: str) -> int:
@@ -376,13 +425,14 @@ def check(manifest_path: Path, course_dir: Path | None = None) -> list[str]:
     truth: dict[str, dict[str, str]] | None = None
     if course_dir is not None and source.get("commit"):
         try:
-            truth = {b["key"]: b for b in extract(lesson_from_git(course_dir, str(source["commit"]),
-                                                                  expected_path))}
+            truth = {b["key"]: b for b in extract(file_from_git(course_dir, str(source["commit"]),
+                                                                expected_path))}
         except InputError as exc:
             problems.append(str(exc))
 
     seen: set[str] = set()
-    # Words already claimed, per destination field: (dest, field index) -> word index -> block key.
+    # Words already claimed, per destination field and claim space ("block" for the lesson's prose,
+    # "diagram" for rebuilt diagrams): (dest, field index, space) -> word index -> block key.
     claimed: dict[tuple[str, int], dict[int, str]] = {}
     for entry in blocks:
         if not isinstance(entry, dict) or not entry.get("key"):
@@ -417,12 +467,38 @@ def check(manifest_path: Path, course_dir: Path | None = None) -> list[str]:
             target = slides[number - 1]
         else:
             target = caption
+        evidence = entry.get("evidence")
+        quotes = [str(q) for q in (evidence if isinstance(evidence, list) else [evidence]) if q]
+        # What a block must show: its own words, except a rebuilt diagram, which must show
+        # the diagram's labels (and keeps its claims apart from the lesson's prose blocks).
+        space, block_words, need = "block", words(block["source"]), None
+        label_words: list[list[str]] | None = None  # a rebuilt diagram's labels, as words
+        covered: set[tuple[int, int]] = set()  # label words some quote has shown
         if block["kind"] == "diagram":
             src = target.get("src", "") if isinstance(target, dict) else ""
-            if not (isinstance(target, dict) and target.get("layout") == "image"
+            if (isinstance(target, dict) and target.get("layout") == "image"
                     and Path(str(src)).stem == block["source"]):
-                problems.append(f"{key}: diagram {block['source']!r} is not the image on {dest}")
-            continue
+                continue
+            if not quotes:
+                problems.append(f"{key}: diagram {block['source']!r} is not the image on {dest}, "
+                                "and no evidence rebuilds it there")
+                continue
+            space = "diagram"
+            if course_dir is not None and source.get("commit"):
+                try:
+                    labels = diagram_labels(file_from_git(course_dir, str(source["commit"]),
+                                                          f"course/{lang}/diagrams/{block['source']}.svg"))
+                except InputError as exc:
+                    problems.append(f"{key}: {exc}")
+                    continue
+                label_words = [tokens(label) for label in labels]
+                block_words = sum(len(label) for label in label_words)
+                if not block_words:
+                    problems.append(f"{key}: diagram {block['source']!r} has no words to rebuild; show the picture")
+                    continue
+                need = math.ceil(block_words * MIN_DIAGRAM_SHARE)
+            else:
+                need = MIN_EVIDENCE_WORDS  # without the course the diagram's words are unknown
         texts = rendered(target) if match.group(1) else [caption]
         if block["kind"] == "code":
             # Code is shown whole and exactly: only runs of whitespace may differ.
@@ -430,17 +506,15 @@ def check(manifest_path: Path, course_dir: Path | None = None) -> list[str]:
             if not code or not any(code in " ".join(text.split()) for text in texts):
                 problems.append(f"{key}: the code block is not shown whole and exactly on {dest}")
             continue
-        evidence = entry.get("evidence")
-        quotes = [str(q) for q in (evidence if isinstance(evidence, list) else [evidence]) if q]
         fields = [tokens(text) for text in texts]
         mine: set[tuple[int, int]] = set()
         for quote in quotes:
             words_in_quote = tokens(quote)
-            if len(words_in_quote) < min(MIN_EVIDENCE_WORDS, max(words(block["source"]), 1)):
+            if len(words_in_quote) < min(MIN_EVIDENCE_WORDS, max(block_words, 1)):
                 problems.append(f"{key}: quote {quote!r} is too short to prove anything")
                 continue
             for number_of_field, field in enumerate(fields):
-                owners = claimed.setdefault((dest, number_of_field), {})
+                owners = claimed.setdefault((dest, number_of_field, space), {})
                 span = find_span(words_in_quote, field, {i for i, k in owners.items() if k != key})
                 if span is not None:
                     break
@@ -451,15 +525,23 @@ def check(manifest_path: Path, course_dir: Path | None = None) -> list[str]:
             if others:
                 problems.append(f"{key}: quote {quote!r} uses words that already prove {', '.join(sorted(others))}")
                 continue
+            if label_words is not None:
+                # A rebuilt diagram is proven by its own wording: the quote must be a phrase of one label.
+                label_span = find_label_span(words_in_quote, label_words, covered)
+                if label_span is None:
+                    problems.append(f"{key}: quote {quote!r} is not wording of the diagram {block['source']!r}")
+                    continue
+                covered |= label_span
             for i in span:
                 owners[i] = key
                 mine.add((number_of_field, i))
-        # Overlapping quotes count each shown word once.
-        shown = len(mine)
-        need = required_words(block["kind"], block["source"])
+        # Overlapping quotes count each shown word once; a rebuilt diagram counts the diagram's words they cover.
+        shown = len(covered) if label_words is not None else len(mine)
+        if need is None:
+            need = required_words(block["kind"], block["source"])
         if shown < need:
             problems.append(f"{key}: the quotes show {shown} of the {need} words needed "
-                            f"({words(block['source'])} in the block) on {dest}")
+                            f"({block_words} in the {'diagram' if space == 'diagram' else 'block'}) on {dest}")
 
     if truth is not None:
         for key in sorted(set(truth) - seen):

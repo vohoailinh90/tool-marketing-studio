@@ -90,6 +90,31 @@ TRICKY = """<!-- section: try-it -->
 
 SHA = "412bbb2f1a549b8eafd7b138f9ee627b8a9d1fc3"
 
+# A course diagram: labels are <text> elements (a label's lines are <tspan>s); a step
+# badge, a plus sign and an emoji are drawn as text too but carry no wording.
+SVG = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 531">
+<title id="title">Công thức</title>
+<desc id="desc">Bộ não: LLM + Đôi tay: công cụ</desc>
+<style>.pulse { animation: pulse 2s infinite; }</style>
+<text font-size="20"><tspan x="1" y="1">Bộ não: LLM</tspan></text>
+<text font-size="15"><tspan x="1" y="2">hiểu yêu cầu, quyết định</tspan><tspan x="1" y="3">bước tiếp theo</tspan></text>
+<text font-size="13">1</text>
+<text font-size="24">+</text>
+<text font-size="29">🧠</text>
+<text font-size="20">Đôi tay: công cụ</text>
+</svg>
+"""
+DIAGRAM_QUOTES = ["Bộ não: LLM", "hiểu yêu cầu, quyết định bước tiếp theo", "Đôi tay: công cụ"]
+
+
+def rebuilt_post() -> dict:
+    """The full post with the diagram redrawn in the features layout instead of shown as a picture."""
+    post = full_post()
+    post["slides"][1] = {"layout": "features", "title": "Công thức", "items": [
+        {"title": "Bộ não: LLM", "text": "hiểu yêu cầu, quyết định bước tiếp theo"},
+        {"title": "Đôi tay: công cụ", "text": ""}]}
+    return post
+
 
 def full_post() -> dict:
     return {
@@ -340,6 +365,23 @@ class CheckTests(unittest.TestCase):
         post["slides"][1]["src"] = "diagrams/vi/other.png"
         self.assertTrue(any("diagram 'agent-formula'" in p for p in self.problems(post=post)))
 
+    def test_a_diagram_rebuilt_without_evidence_fails(self):
+        post = full_post()
+        post["slides"][1] = {"layout": "features", "title": "Công thức",
+                             "items": [{"title": "Bộ não: LLM", "text": "hiểu yêu cầu, quyết định bước tiếp theo"}]}
+        manifest = full_manifest()
+        problems = self.problems(post=post, manifest=manifest)
+        self.assertTrue(any("diagram 'agent-formula'" in p and "no evidence rebuilds it" in p for p in problems),
+                        problems)
+
+    def test_a_diagram_rebuilt_in_a_layout_passes_with_its_words_quoted(self):
+        post = full_post()
+        post["slides"][1] = {"layout": "features", "title": "Công thức",
+                             "items": [{"title": "Bộ não: LLM", "text": "hiểu yêu cầu, quyết định bước tiếp theo"}]}
+        manifest = full_manifest()
+        manifest["blocks"][5]["evidence"] = ["Bộ não: LLM", "hiểu yêu cầu, quyết định bước tiếp theo"]
+        self.assertEqual(self.problems(post=post, manifest=manifest), [])
+
     def test_more_than_ten_slides_fails(self):
         post = full_post()
         post["slides"] += [{"layout": "cover", "title": "thêm"}] * 7
@@ -366,6 +408,9 @@ class SourceTests(unittest.TestCase):
         lesson = self.course / "course" / "vi" / "lessons" / "demo.md"
         lesson.parent.mkdir(parents=True)
         lesson.write_text(LESSON, encoding="utf-8")
+        diagram = self.course / "course" / "vi" / "diagrams" / "agent-formula.svg"
+        diagram.parent.mkdir(parents=True)
+        diagram.write_text(SVG, encoding="utf-8")
         git = ["git", "-C", str(self.course)]
         subprocess.run(["git", "init", "-q", str(self.course)], check=True)
         subprocess.run(git + ["add", "."], check=True)
@@ -376,9 +421,9 @@ class SourceTests(unittest.TestCase):
         (self.studio / "posts" / "vi").mkdir(parents=True)
         (self.studio / "coverage").mkdir()
 
-    def problems(self, manifest: dict) -> list[str]:
+    def problems(self, manifest: dict, post: dict | None = None) -> list[str]:
         manifest["source"]["commit"] = self.sha
-        (self.studio / "posts" / "vi" / "demo.yaml").write_text(yaml.safe_dump(full_post(), allow_unicode=True),
+        (self.studio / "posts" / "vi" / "demo.yaml").write_text(yaml.safe_dump(post or full_post(), allow_unicode=True),
                                                                encoding="utf-8")
         path = self.studio / "coverage" / "demo.yaml"
         path.write_text(yaml.safe_dump(manifest, allow_unicode=True, sort_keys=False), encoding="utf-8")
@@ -402,6 +447,74 @@ class SourceTests(unittest.TestCase):
         manifest["blocks"].append({"key": "concept#99", "kind": "para", "source": "x", "dest": "slide:1",
                                    "evidence": "Agent có ba phần"})
         self.assertTrue(any("concept#99: not a block of the lesson" in p for p in self.problems(manifest)))
+
+    def test_a_rebuilt_diagram_passes_when_it_shows_the_diagram_words(self):
+        manifest = full_manifest()
+        manifest["blocks"][5]["evidence"] = DIAGRAM_QUOTES
+        self.assertEqual(self.problems(manifest, rebuilt_post()), [])
+
+    def test_a_rebuilt_diagram_must_show_most_of_its_words(self):
+        manifest = full_manifest()
+        manifest["blocks"][5]["evidence"] = [DIAGRAM_QUOTES[0], DIAGRAM_QUOTES[2]]  # 7 of the 15 words; 9 are needed
+        problems = self.problems(manifest, rebuilt_post())
+        self.assertTrue(any("concept#02" in p and "show 7 of the 9 words needed (15 in the diagram)" in p
+                            for p in problems), problems)
+
+    def test_a_rebuilt_diagram_may_reuse_words_that_prove_prose_blocks(self):
+        # The diagram restates the prose, so one drawn label can prove both the diagram and a paragraph.
+        manifest = full_manifest()
+        manifest["blocks"][5]["evidence"] = DIAGRAM_QUOTES
+        manifest["blocks"][6].update(dest="slide:2", evidence="Bộ não: LLM")
+        self.assertEqual(self.problems(manifest, rebuilt_post()), [])
+
+    def test_a_rebuilt_diagram_must_quote_the_diagram_not_other_words(self):
+        filler = "xin chào các bạn hôm nay trời đẹp quá nhỉ"  # 9 words drawn on the slide, none of them the diagram's
+        post = full_post()
+        post["slides"][1] = {"layout": "features", "title": "Công thức", "items": [{"title": filler, "text": ""}]}
+        manifest = full_manifest()
+        manifest["blocks"][5]["evidence"] = [filler]
+        problems = self.problems(manifest, post)
+        self.assertTrue(any("concept#02" in p and "is not wording of the diagram 'agent-formula'" in p
+                            for p in problems), problems)
+
+    def test_quoting_one_diagram_phrase_again_adds_nothing(self):
+        manifest = full_manifest()
+        manifest["blocks"][5]["evidence"] = [DIAGRAM_QUOTES[0]] * 5  # 3 words of the diagram, five times
+        problems = self.problems(manifest, rebuilt_post())
+        self.assertTrue(any("concept#02" in p and "show 3 of the 9 words needed" in p for p in problems), problems)
+
+    def test_a_phrase_inside_a_label_counts_for_its_own_words(self):
+        manifest = full_manifest()
+        manifest["blocks"][5]["evidence"] = ["Bộ não: LLM", "yêu cầu, quyết định bước tiếp theo", "Đôi tay: công cụ"]
+        self.assertEqual(self.problems(manifest, rebuilt_post()), [])  # 3 + 6 + 4 = 13 of 15
+
+    def test_a_diagram_missing_from_the_course_fails(self):
+        manifest = full_manifest()
+        manifest["blocks"][5]["evidence"] = DIAGRAM_QUOTES
+        shutil.rmtree(self.course / "course" / "vi" / "diagrams")
+        git = ["git", "-C", str(self.course)]
+        subprocess.run(git + ["add", "-A"], check=True)
+        subprocess.run(git + ["-c", "user.name=t", "-c", "user.email=t@t", "commit", "-qm", "drop"], check=True)
+        self.sha = subprocess.run(git + ["rev-parse", "HEAD"], capture_output=True, text=True,
+                                  check=True).stdout.strip()
+        problems = self.problems(manifest, rebuilt_post())
+        self.assertTrue(any("concept#02" in p and "cannot read course/vi/diagrams/agent-formula.svg" in p
+                            for p in problems), problems)
+
+
+class DiagramLabelTests(unittest.TestCase):
+    def test_a_label_is_one_string_with_its_lines_joined_and_badges_and_signs_left_out(self):
+        self.assertEqual(lc.diagram_labels(SVG), [
+            "Bộ não: LLM", "hiểu yêu cầu, quyết định bước tiếp theo", "Đôi tay: công cụ"])
+
+    def test_the_description_and_the_style_are_not_labels(self):
+        labels = " ".join(lc.diagram_labels(SVG))
+        self.assertNotIn("animation", labels)
+        self.assertNotIn("+ Đôi", labels)
+
+    def test_a_diagram_that_is_not_svg_is_an_input_error(self):
+        with self.assertRaises(lc.InputError):
+            lc.diagram_labels("<svg><text>chưa đóng")
 
 
 class AllTests(unittest.TestCase):

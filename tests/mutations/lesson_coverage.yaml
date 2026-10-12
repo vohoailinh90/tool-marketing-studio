@@ -11,8 +11,8 @@ mutations:
   replace: '                span = range(0)  # accepted anyway'
   test: tests.test_lesson_coverage.CheckTests.test_evidence_missing_from_its_slide_fails
 - label: a quote may span two fields
-  find: '        fields = [tokens(text) for text in (rendered(target) if match.group(1) else [caption])]'
-  replace: '        fields = [tokens(" ".join(rendered(target) if match.group(1) else [caption]))]'
+  find: '        fields = [tokens(text) for text in texts]'
+  replace: '        fields = [tokens(" ".join(texts))]'
   test: tests.test_lesson_coverage.CheckTests.test_a_quote_cannot_span_two_fields
 - label: a field the layout does not draw counts as evidence
   find: '        figure = get("before", "after") if s.get("before") and s.get("after") else get("value")'
@@ -46,10 +46,6 @@ mutations:
   find: MIN_EVIDENCE_SHARE = 0.3
   replace: 'MIN_EVIDENCE_SHARE = 0.0  # any three words will do'
   test: tests.test_lesson_coverage.CheckTests.test_three_words_cannot_stand_in_for_a_long_paragraph
-- label: a code block may be shown in part
-  find: '    if kind == "code":'
-  replace: '    if False and kind == "code":'
-  test: tests.test_lesson_coverage.CheckTests.test_a_code_block_must_be_shown_whole
 - label: more than ten slides is accepted
   find: '    if len(slides) > MAX_SLIDES:'
   replace: '    if False and len(slides) > MAX_SLIDES:'
@@ -90,3 +86,23 @@ mutations:
   find: '                raise InputError(f"a code fence opened in section {section!r} is never closed")'
   replace: '                pass  # an unclosed fence runs to the end'
   test: tests.test_lesson_coverage.TrickyMarkdownTests.test_an_unclosed_fence_is_an_error
+- label: a code block may be shown in part
+  find: '            if not code or not any(code in " ".join(text.split()) for text in texts):'
+  replace: '            if False and not any(code in " ".join(text.split()) for text in texts):'
+  test: tests.test_lesson_coverage.CheckTests.test_a_code_block_must_be_shown_whole
+- label: code is compared without its punctuation
+  find: '            code = " ".join(block["source"].split())'
+  replace: '            code = " ".join(tokens(block["source"]))  # words only'
+  test: tests.test_lesson_coverage.CheckTests.test_code_without_its_punctuation_is_not_shown
+- label: zero-padded slide numbers get their own claims
+  find: '            dest = f"slide:{number}"  # slide:01 and slide:1 are one slide'
+  replace: '            pass  # the raw dest string keys the claims'
+  test: tests.test_lesson_coverage.CheckTests.test_zero_padded_slide_numbers_share_their_words
+- label: a flow total counts without minutes
+  find: '        return head + _texts(steps) + (get("total_label") if total else []) + note'
+  replace: '        return head + _texts(steps) + get("total_label") + note'
+  test: tests.test_lesson_coverage.CheckTests.test_a_flow_total_without_minutes_is_not_evidence
+- label: a cta hint counts
+  find: '        return head + get("text", "button", "keyword")'
+  replace: '        return head + get("text", "button", "keyword", "hint")'
+  test: tests.test_lesson_coverage.CheckTests.test_a_cta_hint_is_not_evidence

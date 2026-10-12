@@ -307,11 +307,30 @@ class CheckTests(unittest.TestCase):
 
     def test_a_code_block_must_be_shown_whole(self):
         manifest = full_manifest()
-        # Three of its eight words are shown: enough for a paragraph, not for code.
         manifest["blocks"][7]["source"] = 'print("xin chào")\nprint("tạm biệt các bạn")'
-        self.assertTrue(any("concept#04" in p and "of the 8 words needed" in p
-                            for p in self.problems(manifest=manifest)))
+        self.assertTrue(any("concept#04" in p and "not shown whole" in p for p in self.problems(manifest=manifest)))
 
+    def test_code_without_its_punctuation_is_not_shown(self):
+        post = full_post()
+        post["platforms"]["facebook"]["caption"] = post["platforms"]["facebook"]["caption"].replace(
+            'print("xin chào")', "print xin chào")
+        self.assertTrue(any("concept#04" in p and "not shown whole" in p for p in self.problems(post=post)))
+
+    def test_zero_padded_slide_numbers_share_their_words(self):
+        manifest = full_manifest()
+        manifest["blocks"][3].update(dest="slide:03", evidence="Agent gồm bộ não, đôi tay và một vòng lặp")
+        self.assertTrue(any("already prove" in p for p in self.problems(manifest=manifest)))
+
+    def test_a_flow_total_without_minutes_is_not_evidence(self):
+        post = full_post()
+        post["slides"][2] = {"layout": "flow", "title": "Các bước", "steps": [{"text": "một"}, {"text": "hai"}],
+                             "total_label": "Agent gồm bộ não, đôi tay và một vòng lặp"}
+        self.assertTrue(any("concept#03" in p for p in self.problems(post=post)))
+
+    def test_a_cta_hint_is_not_evidence(self):
+        post = full_post()
+        post["slides"][2] = {"layout": "cta", "title": "Đọc tiếp", "hint": "Agent gồm bộ não, đôi tay và một vòng lặp"}
+        self.assertTrue(any("concept#03" in p for p in self.problems(post=post)))
 
     def test_a_short_block_may_quote_itself_whole(self):
         self.assertFalse(any("quiz#02" in p for p in self.problems()))

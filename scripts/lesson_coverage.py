@@ -18,8 +18,8 @@ is not agent work* in CLAUDE.md):
     for word in one text field the slide's layout actually draws (or in the
     caption); the distinct words the quotes cover, with no word counted twice
     and none shared with another block, show at least 30% of the block's
-    words (all of a code block), so three words cannot stand in for a
-    paragraph;
+    words, so three words cannot stand in for a paragraph; a code block must
+    appear whole and exactly (only whitespace may differ);
   - the manifest is bound to its lesson and its post: coverage/<id>.yaml
     checks posts/<lang>/<id>.yaml against course/<lang>/lessons/<id>.md;
   - the lesson's `social.hook` and `social.question` count as blocks too;
@@ -66,7 +66,7 @@ COURSE_CAMPAIGNS = ("agentic-coding-course",)
 MAX_SLIDES = 10
 # The quotes for a block must show at least this share of its words, and at
 # least MIN_EVIDENCE_WORDS (or the whole block when it is shorter): three words
-# cannot stand in for a paragraph. A code block must be shown whole.
+# cannot stand in for a paragraph. A code block is compared exactly instead.
 MIN_EVIDENCE_SHARE = 0.3
 MIN_EVIDENCE_WORDS = 3
 # Front-matter fields of a lesson that a post must carry too.
@@ -268,7 +268,9 @@ def rendered(slide: Any) -> list[str]:
         return (head + get("group") + [str(m["from"]) for m in messages if m.get("from") and not m.get("me")]
                 + [str(m["text"]) for m in messages if m.get("text")] + note)
     if layout == "flow":
-        return head + _texts(s.get("steps")) + get("total_label") + note
+        steps = [t for t in s.get("steps") or [] if isinstance(t, dict)]
+        total = sum(int(t["minutes"]) for t in steps if isinstance(t.get("minutes"), int))
+        return head + _texts(steps) + (get("total_label") if total else []) + note
     if layout == "stat":
         figure = get("before", "after") if s.get("before") and s.get("after") else get("value")
         return get("eyebrow") + figure + get("label", "caption")
@@ -286,7 +288,8 @@ def rendered(slide: Any) -> list[str]:
     if layout == "poll":
         return get("eyebrow", "question") + _texts(s.get("options")) + get("hint")
     if layout == "cta":
-        return head + get("text", "button", "keyword") + (get("hint") if s.get("show_link", True) else [])
+        # `hint` or `scan` shows depending on whether the post has a link (QR code); neither is counted.
+        return head + get("text", "button", "keyword")
     if layout == "email":
         return head + get("subject", "from", "infobar") + _texts(s.get("buttons")) + get("body") + note
     if layout == "timeline":
@@ -326,8 +329,6 @@ def lesson_from_git(course_dir: Path, commit: str, path: str) -> str:
 
 def required_words(kind: str, source: str) -> int:
     total = words(source)
-    if kind == "code":
-        return total
     return min(total, max(MIN_EVIDENCE_WORDS, math.ceil(total * MIN_EVIDENCE_SHARE)))
 
 
@@ -409,6 +410,7 @@ def check(manifest_path: Path, course_dir: Path | None = None) -> list[str]:
             continue
         if match.group(1):
             number = int(match.group(1))
+            dest = f"slide:{number}"  # slide:01 and slide:1 are one slide
             if not 1 <= number <= len(slides):
                 problems.append(f"{key}: {dest} does not exist (the post has {len(slides)} slides)")
                 continue
@@ -421,9 +423,16 @@ def check(manifest_path: Path, course_dir: Path | None = None) -> list[str]:
                     and Path(str(src)).stem == block["source"]):
                 problems.append(f"{key}: diagram {block['source']!r} is not the image on {dest}")
             continue
+        texts = rendered(target) if match.group(1) else [caption]
+        if block["kind"] == "code":
+            # Code is shown whole and exactly: only runs of whitespace may differ.
+            code = " ".join(block["source"].split())
+            if not code or not any(code in " ".join(text.split()) for text in texts):
+                problems.append(f"{key}: the code block is not shown whole and exactly on {dest}")
+            continue
         evidence = entry.get("evidence")
         quotes = [str(q) for q in (evidence if isinstance(evidence, list) else [evidence]) if q]
-        fields = [tokens(text) for text in (rendered(target) if match.group(1) else [caption])]
+        fields = [tokens(text) for text in texts]
         mine: set[tuple[int, int]] = set()
         for quote in quotes:
             words_in_quote = tokens(quote)

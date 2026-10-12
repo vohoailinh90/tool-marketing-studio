@@ -116,3 +116,7 @@ Chưa có dữ liệu thì trang mở thẳng vào một lượt **chạy mẫu*
 **CI:** repo private nên phút GitHub-hosted bị tính phí; nếu job CI fail ngay không có log, đăng ký runner
 VPS cho repo này và đặt biến `CI_RUNNER` (hướng dẫn trong `docs/agent-team.md`).
 Kiến trúc: `docs/architecture.md`. Kết nối Facebook: `docs/facebook-page.md`.
+
+## System Design tiếng Việt
+
+Chương trình học bằng hình, chỉ tiếng Việt: [mục lục](system-design-101/vi/README.md), [tiến độ](system-design-101/vi/PROGRESS.md). Giữ đúng15 nhóm/404 vị trí ByteByteGo (400 tài liệu nguồn). Kho giáo dục riêng; chưa đưa vào giao diện chiến dịch hoặc phê duyệt phát hành.

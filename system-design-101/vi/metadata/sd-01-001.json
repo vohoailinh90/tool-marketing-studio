@@ -1,0 +1,115 @@
+{
+  "id": "sd-01-001",
+  "title_vi": "Polling ngắn, polling dài, SSE và WebSocket",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "review",
+  "source_ref": "sd-01-001",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/shortlong-polling-sse-websocket.md",
+    "blob_sha": "a0aaac9a25a364a6a1128be0f99caecfcabd68b0"
+  },
+  "diagram": "../diagrams/sd-01-001-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-12"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-12"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "integration_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "overflow": false,
+      "text_outside_viewbox": false,
+      "checked_on": "2026-10-12",
+      "evidence": "Chromium rendered SVG at each width; 320px screenshot visually inspected. Not user testing.",
+      "whole_lesson_no_horizontal_overflow": true,
+      "optional_sections_checked_open": true
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "id": "polling-short",
+      "claim_vi": "Polling ngắn gửi request định kỳ; đổi chu kỳ hỏi tạo đánh đổi độ trễ và tải.",
+      "source": "https://www.rfc-editor.org/rfc/rfc6202.html",
+      "section": "2.1",
+      "checked_on": "2026-10-12"
+    },
+    {
+      "id": "polling-long",
+      "claim_vi": "Polling dài chờ sự kiện hoặc timeout; client gửi lượt hỏi mới sau phản hồi. Request có thể dùng lại HTTP connection.",
+      "source": "https://www.rfc-editor.org/rfc/rfc6202.html",
+      "section": "2.1–2.2",
+      "checked_on": "2026-10-12"
+    },
+    {
+      "id": "sse",
+      "claim_vi": "SSE truyền sự kiện về client sau khi client mở luồng; không cấm gửi HTTP request khác.",
+      "source": "https://html.spec.whatwg.org/multipage/server-sent-events.html",
+      "section": "9.2.1–9.2.3",
+      "checked_on": "2026-10-12"
+    },
+    {
+      "id": "sse-reconnect",
+      "claim_vi": "EventSource reconnect theo điều kiện tiêu chuẩn; Last-Event-ID hỗ trợ máy chủ biết ID cuối. Phát lại cần hỗ trợ ứng dụng.",
+      "source": "https://html.spec.whatwg.org/multipage/server-sent-events.html",
+      "section": "9.2.3–9.2.4",
+      "checked_on": "2026-10-12"
+    },
+    {
+      "id": "websocket",
+      "claim_vi": "Sau handshake thành công, mỗi phía gửi dữ liệu độc lập trên kênh hai chiều.",
+      "source": "https://www.rfc-editor.org/rfc/rfc6455.html",
+      "section": "1.2",
+      "checked_on": "2026-10-12"
+    }
+  ],
+  "design_notes_vi": "Bốn thẻ sequence dọc cùng hai actor, thiết kế mới bằng SVG. Phân biệt trạng thái đơn hàng với ACK giao thức; nêu timeout trong polling dài; không ngụ ý mỗi request tạo TCP connection mới.",
+  "editorial_note_vi": "Đã nhập từ repo cũ; review kỹ thuật của tổ hợp trong repo mới đang chờ. Chưa user testing hoặc phê duyệt phát hành.",
+  "prior_reviews": [
+    {
+      "sha": "8e3e4637e0da9be8fc09d0a7945eab0433bfc4cc",
+      "url": "https://github.com/vohoailinh90/Agentic-coding-course/pull/24#issuecomment-6126543116",
+      "result": "No major issues reported; applies only to that commit."
+    },
+    {
+      "sha": "cc77dd212a0432075590348c16e3761d9ace1bce",
+      "url": "https://github.com/vohoailinh90/Agentic-coding-course/pull/25#issuecomment-6127917483",
+      "result": "No major issues reported; CI 38273986497 successful for that snapshot. Does not cover newer main."
+    },
+    {
+      "repository": "vohoailinh90/Agentic-coding-course",
+      "status": "checked",
+      "reviewed_sha": "034a992d1b90d023083b2fe03790c06fdf991bca",
+      "base_sha": "89186c1a1aeb90a47e2a563fdc7786b2dacec787",
+      "evidence_url": "https://github.com/vohoailinh90/Agentic-coding-course/pull/25#issuecomment-6128611337",
+      "ci_run": 38279292220,
+      "note": "Technical completion on stated snapshot, not approval to publish; user testing remains not performed."
+    }
+  ],
+  "migration": {
+    "source_repository": "vohoailinh90/Agentic-coding-course",
+    "source_commit_sha": "b8dff434ff75499137bbb10b61122958fdaaafa5",
+    "destination_repository": "vohoailinh90/tool-marketing-studio",
+    "imported_on": "2026-10-13"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "language": "vi",
+  "total_occurrences": 404,
+  "total_source_documents": 400,
+  "written_ids": [
+    "sd-01-001",
+    "sd-01-002",
+    "sd-01-003",
+    "sd-01-004",
+    "sd-01-005",
+    "sd-01-006",
+    "sd-01-007"
+  ],
+  "reviewed_ids": [],
+  "next_id": "sd-01-008",
+  "active_batch_ids": [
+    "sd-01-001",
+    "sd-01-002",
+    "sd-01-003",
+    "sd-01-004",
+    "sd-01-005",
+    "sd-01-006",
+    "sd-01-007"
+  ],
+  "active_pr": null,
+  "updated_on": "2026-10-13",
+  "active_branch": "codex/system-design-vi-import",
+  "previous_pr": 34,
+  "superseded_pr": 24,
+  "integration_review_pending": true,
+  "adopted_main_sha": "89186c1a1aeb90a47e2a563fdc7786b2dacec787",
+  "prior_repository_reviewed_ids": [
+    "sd-01-001",
+    "sd-01-002",
+    "sd-01-003",
+    "sd-01-004",
+    "sd-01-005",
+    "sd-01-006",
+    "sd-01-007"
+  ],
+  "repository": "vohoailinh90/tool-marketing-studio",
+  "previous_repository": "vohoailinh90/Agentic-coding-course",
+  "destination_base_sha": "9e113a38ffacd8b9e9734dfad600a234fa62d675",
+  "migration_source_sha": "b8dff434ff75499137bbb10b61122958fdaaafa5"
+}

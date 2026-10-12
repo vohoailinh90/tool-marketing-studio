@@ -1,0 +1,99 @@
+{
+  "id": "sd-01-005",
+  "title_vi": "NAT giúp Internet mở rộng ra sao?",
+  "language": "vi",
+  "kind": "flow",
+  "content_status": "review",
+  "source_ref": "sd-01-005",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/how-nat-made-the-growth-of-the-internet-possible.md",
+    "blob_sha": "ee73767aa48a016ff32a1a8c93909ad792300042",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-nat-made-the-growth-of-the-internet-possible.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "38ceec4d8ba8ce0f04e0711b1e2e5579e47c9295a94e23994a09ff4296febcf6",
+    "retrieved_body_bytes": 1493
+  },
+  "diagram": "../diagrams/sd-01-005-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-12"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-12"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "integration_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 14.4,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "checked_on": "2026-10-12",
+      "evidence": "Chromium whole-lesson preview; all optional sections open; 320px screenshot visually inspected. Not learner testing."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "NAPT đổi địa chỉ và cổng; Basic NAT chỉ đổi địa chỉ. Phản hồi cần trạng thái ánh xạ phù hợp.",
+      "source": "https://www.rfc-editor.org/rfc/rfc3022.html",
+      "section": "§1, §2, §2.2"
+    },
+    {
+      "claim_vi": "10.0.0.0/8 là dải địa chỉ riêng.",
+      "source": "https://www.rfc-editor.org/rfc/rfc1918.html",
+      "section": "§3"
+    },
+    {
+      "claim_vi": "198.51.100.0/24 và 203.0.113.0/24 dành cho ví dụ tài liệu.",
+      "source": "https://www.rfc-editor.org/rfc/rfc5737.html",
+      "section": "§3"
+    },
+    {
+      "claim_vi": "NAT không thay thế chính sách tường lửa; đổi địa chỉ không mã hóa dữ liệu.",
+      "source": "https://www.rfc-editor.org/rfc/rfc4864.html",
+      "section": "§2.2"
+    }
+  ],
+  "source_deviations": [
+    "Phân biệt NAT với NAPT; bỏ mô tả NAT là tường lửa.",
+    "Ảnh nguồn có URL http-header không phù hợp chủ đề; không tải, dùng hoặc trace."
+  ],
+  "design_notes_vi": "Sơ đồ mới năm khung dọc, hai ánh xạ TCP và đường phản hồi cho B; địa chỉ ngoài chỉ dành cho tài liệu.",
+  "editorial_note_vi": "Đã nhập từ repo cũ; review kỹ thuật của tổ hợp trong repo mới đang chờ. Chưa user testing hoặc phê duyệt phát hành.",
+  "prior_reviews": [
+    {
+      "repository": "vohoailinh90/Agentic-coding-course",
+      "status": "checked",
+      "pr": 31,
+      "head_sha": "b8730a33c02e381e898452520b394aca3189bd73",
+      "base_sha": "11996effc9a83ac8908b52bcd3477f7f08d1d261",
+      "comment_id": 6131806994,
+      "checked_on": "2026-10-12",
+      "github_ci": "not_run_base_filter",
+      "evidence": "No major issues on this head/base; local JSON/pointers/links/layout/whitespace and mobile checks passed. Not release approval."
+    }
+  ],
+  "migration": {
+    "source_repository": "vohoailinh90/Agentic-coding-course",
+    "source_commit_sha": "b8dff434ff75499137bbb10b61122958fdaaafa5",
+    "destination_repository": "vohoailinh90/tool-marketing-studio",
+    "imported_on": "2026-10-13"
+  }
+}

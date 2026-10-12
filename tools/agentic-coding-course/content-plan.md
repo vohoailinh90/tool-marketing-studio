@@ -64,7 +64,7 @@ mỗi số ảnh:
 
 Bình luận đầu: lặp lại đáp án + `{link}` tới bài học tiếng Việt.
 
-### Ví dụ: bài 1.1.2 "Bộ não, đôi tay và vòng lặp" (48 ý)
+### Ví dụ: bài 1.1.2 "Bộ não, đôi tay và vòng lặp" (55 ý)
 
 | Ảnh | Layout | Nội dung |
 |---|---|---|

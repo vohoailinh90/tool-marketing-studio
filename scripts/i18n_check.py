@@ -66,11 +66,8 @@ def problems(directory: Path = LOCALES) -> list[str]:
             if text is None:
                 found.append(f"{lang}.json: missing key '{key}'")
                 continue
-            if not isinstance(text, str):
-                found.append(f"{lang}.json: '{key}' is not a message (expected a string)")
-                continue
-            if not text.strip():
-                found.append(f"{lang}.json: '{key}' is empty")
+            if not isinstance(text, str) or not text.strip():
+                found.append(f"{lang}.json: '{key}' is empty")  # the established message, kept for any non-string value too
                 continue
             marks = set(PLACEHOLDER.findall(text))
             if reference is None:

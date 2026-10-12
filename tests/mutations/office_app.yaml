@@ -1,0 +1,14 @@
+# Mutation manifest — see scripts/mutation_check.py
+#
+# The page filters answers by the feature the person picked in the pipeline view. A sample ignores that
+# filter, so the filter must be dropped when the source changes; this entry removes that line and requires the test to notice.
+
+target: office/src/App.tsx
+note: One state reset is the whole fix, so the test that reads it is the only thing that can notice it going.
+mutations:
+- label: switching the source keeps the picked feature, so a sample is rejected and the page never leaves the loading state
+  find: |-
+    setFeature(null) // a sample ignores the feature filter, so a stale one would reject every answer
+  replace: |-
+    // the feature filter is kept across a source change
+  test: tests.test_office_ui.SourceHygieneTests.test_switching_the_source_resets_the_feature_filter

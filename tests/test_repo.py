@@ -78,8 +78,9 @@ class RepoTests(unittest.TestCase):
         (directory / "ja.json").write_text('{"n": 3, "e": {}, "l": ["a"], "b": "x"}', encoding="utf-8")
         (directory / "en.json").write_text('{"n": 3, "e": {}, "l": ["a"], "b": "x"}', encoding="utf-8")
         found = module.problems(directory)
-        for key in ("n", "e", "l"):
-            self.assertTrue(any(f"'{key}' is not a message" in p for p in found), (key, found))
+        for key in ("n", "e", "l"):  # a non-string value keeps the established message, flat or nested
+            self.assertTrue(any(f"vi.json: '{key}' is empty" in p for p in found), (key, found))
+        self.assertFalse(any("is not a message" in p for p in found), found)
         self.assertTrue(any("'b' is empty" in p for p in found), found)
 
 

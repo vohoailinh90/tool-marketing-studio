@@ -91,6 +91,7 @@ export default function App() {
   const changeSource = (next: Source) => {
     setSource(next)
     setCursor(null)
+    setFeature(null) // a sample ignores the feature filter, so a stale one would reject every answer
     setSelected(null)
   }
 

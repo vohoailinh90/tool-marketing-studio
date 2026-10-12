@@ -117,6 +117,13 @@ class SourceHygieneTests(unittest.TestCase):
             self.assertNotRegex(text, r"""aria-label=["'][A-Za-z]""", f"{path.name} has a literal aria-label")
             self.assertNotRegex(text, r"""sr-only">[A-Za-z]""", f"{path.name} has a literal screen-reader label")
 
+    def test_switching_the_source_resets_the_feature_filter(self) -> None:
+        """A sample ignores `feature`; a stale one makes the page reject every answer and sit on the loading state."""
+        app = (SRC / "App.tsx").read_text(encoding="utf-8")
+        body = re.search(r"const changeSource = \(next: Source\) => \{(.*?)\n  \}", app, re.DOTALL)
+        self.assertIsNotNone(body, "changeSource moved: update this test")
+        self.assertIn("setFeature(null)", body.group(1))
+
     def test_a_button_holds_no_heading_or_block_content(self) -> None:
         """A heading inside a button is read out flat and is invalid HTML: the card is an article with one button."""
         pattern = re.compile(r"<button\b[^>]*>(?:(?!</button>).)*?<(?:h[1-6]|p|div|ul|ol|dl|section|article)\b", re.DOTALL)

@@ -1,0 +1,20 @@
+lang: en
+one_liner: "AI agents from zero, one swipeable carousel per lesson: understand it, remember it, try it."
+audience: >-
+  People in international teams — office workers, students, engineers outside software — who keep
+  hearing about AI agents and want a plain-language start; they scroll on a phone and save posts for later.
+pains:
+  - "Everyone says \"AI agent\" and nobody explains it from the ground up"
+  - "Jargon everywhere"
+  - "No idea how to check whether an AI did the job right"
+  - "Long articles are forgotten by the next day"
+promise: "Each lesson as a carousel you can swipe through: the whole idea, a real example, and a quiz to check yourself."
+objections:
+  - {q: "Do I need to code?", a: "No. The course starts at \"what is software?\" and teaches just enough to hand work to an AI agent and check it."}
+  - {q: "Is it free?", a: "Yes. It is free to read on GitHub, in English, Vietnamese and Japanese."}
+vocabulary: [AI agent, LLM, tools, the loop, hand off, check, evidence, beginner, save]
+angles:
+  - "One idea, one picture"
+  - "Myth → what actually happens"
+  - "3-second quiz: A, B or C?"
+tone: "Crisp and friendly; short sentences; every term explained the first time; no hype."

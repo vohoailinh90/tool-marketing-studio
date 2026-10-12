@@ -46,6 +46,13 @@ jobs:
         run: python scripts/office/snapshot.py --check
       - name: Campaign checks
         run: python studio.py check
+      - name: Lesson posts carry their whole lesson
+        # Each manifest pins a commit of the public course; the check re-reads every lesson there.
+        run: |
+          course="$RUNNER_TEMP/agentic-coding-course"
+          rm -rf "$course"
+          git clone --quiet https://github.com/vohoailinh90/Agentic-coding-course "$course"
+          python scripts/lesson_coverage.py check --all --course-dir "$course"
       - name: Tests
         run: python -m pytest -q
       - name: Mutation check (safety-rail tests catch their own removal)

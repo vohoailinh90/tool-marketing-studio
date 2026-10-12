@@ -453,7 +453,7 @@ mutations:
 - label: a fence of another marker closes a fence
   find: set(closing) == {token.markup[0]}
   replace: 'True'
-  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_a_lone_opening_fence_at_the_end_of_the_file_is_reported
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_a_closing_fence_of_the_other_marker_does_not_close_it
 - label: a shorter fence closes a longer one
   find: len(closing) >= len(token.markup)
   replace: 'True'

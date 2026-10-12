@@ -715,7 +715,7 @@ On a PR, the `chatgpt-codex-connector` bot keeps one review-status summary comme
 
 ### No review limit
 
-Reviews are not capped, so a P0 or P1 fix is reviewed like any other: push it, then request the next review on the new head. What ends the loop is a clean review of the current head (section 20), or one of two exits:
+Reviews are not capped, so a P0 or P1 fix is reviewed like any other: push it, then request the next review on the new head. What ends the loop is a clean review of the current head from every review command the work requires (section 20), or one of two exits:
 
 - **A disagreement.** A finding Claude rejected with evidence on its thread. At P2 or P3 the recorded rejection stands at once and the finding blocks nothing, even if Codex raises it again. At P0 or P1 it survives only if a review keeps it: when other confirmed fixes make a new head, push it and let the next review decide — not raised again, it is closed; raised again, unchanged or reworded or moved when it is substantially the same issue, it is an unresolved disagreement. When no code change is pending there is no new head to review, so it is an unresolved disagreement at once. An unresolved disagreement goes to the repository owner with the finding, the evidence and the fixes so far, and the PR is not merged until the owner decides.
 - **A genuine blocker** (section 20), including Codex being unreachable (section 17, section 18).
@@ -864,7 +864,7 @@ CLAUDE.md (*Pull request lifecycle*) makes this loop mandatory for every PR Clau
 5. **Merge.** Check the definition of done above and merge under this section without asking anyone.
 6. **Continue.** After the merge the session takes its next outstanding task (CLAUDE.md); it does not stop to ask.
 
-Reviews have no cap (section 16), so the loop runs until a review is clean; the two exits in "No review limit" (an unresolved P0/P1 disagreement, a genuine blocker) are the only other ways out. If Codex cannot be reached (section 17, section 18), the PR is `BLOCKED`, never merged unreviewed; re-recording the requirement in the claude lane (`docs/codex-lane.md`) moves who does the work and never waives the PR's Codex review.
+Reviews have no cap (section 16), so the loop runs until every review command the work requires is clean on the current head; the two exits in "No review limit" (an unresolved P0/P1 disagreement, a genuine blocker) are the only other ways out. If Codex cannot be reached (section 17, section 18), the PR is `BLOCKED`, never merged unreviewed; re-recording the requirement in the claude lane (`docs/codex-lane.md`) moves who does the work and never waives the PR's Codex review.
 
 A human is needed only for:
 

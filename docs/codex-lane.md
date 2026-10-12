@@ -116,8 +116,8 @@ comment mentions Codex). The skill `/codex-lane` walks the same steps.
    verification needs designing, grant `escalation_reserve` for
    `test-engineer` exactly as in the claude lane.
 9. **Done.** §20's definition of done and merge rules, unchanged — including
-   "The loop every PR goes through": steps 6 and 7 repeat until a review of the
-   current head is clean, then you merge without asking, then take the next task
+   "The loop every PR goes through": steps 6 and 7 repeat until every review
+   command the work requires is clean on the current head, then you merge without asking, then take the next task
    (CLAUDE.md, *Pull request lifecycle*).
 
 Every task comment in steps 3, 4, 5 and 7 is rendered by

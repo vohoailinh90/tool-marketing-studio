@@ -70,7 +70,7 @@ fix only findings you confirmed against the code.
   grant escalation_reserve --agent test-engineer`, then spawn it.
 - Done and merge: §20, unchanged. Every PR runs CLAUDE.md's *Pull request
   lifecycle*: the review row above is its step 1, the fix row its step 3. Repeat
-  until a review of the current head is clean (reviews have no cap, §16),
+  until every review command the work requires is clean on the current head (reviews have no cap, §16),
   merge under §20 without asking, then take the next outstanding task.
 
 ## 4. When Codex is blocked

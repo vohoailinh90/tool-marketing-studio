@@ -79,6 +79,7 @@ class PullRequestLoopTests(unittest.TestCase):
         """Step 1 posts the trigger comment; the ban on the literal string elsewhere must not contradict it (section 3)."""
         self.assertIn("except the intentional trigger comments the protocol authorizes", self.section)
         self.assertIn("each review request of steps 1 and 3, a security review", self.section)
+        self.assertIn("each task-contract request (BRAINSTORM, IMPLEMENT, FIX)", self.section)
 
     def test_the_next_task_is_never_invented(self) -> None:
         self.assertIn("never invent work", self.section)
@@ -119,6 +120,16 @@ class PullRequestLoopTests(unittest.TestCase):
         self.assertIn("a required security review follows the standard review", gate)
         self.assertIn("must not request the same review command again for a PR head SHA it already reviewed", gate)
         self.assertNotIn("repeated reviews for the same PR head SHA", gate)
+
+    def test_no_summary_ends_the_loop_on_one_clean_review(self) -> None:
+        """A security-sensitive route needs every required review command clean on the head; every summary must say so."""
+        stale = ("until a review of the current head is clean", "until a review is clean",
+                 "until a review of the\n   current head is clean")
+        for path in (CLAUDE_MD, PROTOCOL, *POINTERS):
+            text = read(path)
+            for phrase in stale:
+                with self.subTest(path=path.name, phrase=phrase[:30]):
+                    self.assertNotIn(phrase, text)
 
     def test_nothing_still_speaks_of_a_last_allowed_review(self) -> None:
         """The cap-shaped wording must be gone everywhere the rule lives, or an agent follows the stale half."""

@@ -1,0 +1,39 @@
+# Mutation manifest — see scripts/mutation_check.py
+#
+# Each entry removes one rail of the lesson coverage check and names the test that must fail.
+
+target: scripts/lesson_coverage.py
+note: A lesson post must carry every block of its lesson, visibly, on a slide or in the caption.
+mutations:
+- label: evidence that is not on the slide is accepted
+  find: '        if evidence not in haystack:'
+  replace: '        if False:'
+  test: tests.test_lesson_coverage.CheckTests.test_evidence_missing_from_its_slide_fails
+- label: the first comment may carry knowledge
+  find: 'DEST = re.compile(r"^(?:slide:(\d+)|caption)$")'
+  replace: 'DEST = re.compile(r"^(?:slide:(\d+)|caption|first_comment)$")'
+  test: tests.test_lesson_coverage.CheckTests.test_the_first_comment_cannot_carry_knowledge
+- label: one-word evidence is accepted for a long block
+  find: 'MIN_EVIDENCE_WORDS = 3'
+  replace: 'MIN_EVIDENCE_WORDS = 1  # one word is enough'
+  test: tests.test_lesson_coverage.CheckTests.test_one_word_evidence_for_a_long_block_fails
+- label: more than ten slides is accepted
+  find: '    if len(slides) > MAX_SLIDES:'
+  replace: '    if False:'
+  test: tests.test_lesson_coverage.CheckTests.test_more_than_ten_slides_fails
+- label: a diagram may point at any slide
+  find: '            if not (isinstance(target, dict) and target.get("layout") == "image"'
+  replace: '            if False and (isinstance(target, dict) and target.get("layout") == "image"'
+  test: tests.test_lesson_coverage.CheckTests.test_a_diagram_must_be_the_image_on_its_slide
+- label: a block dropped from the manifest is not noticed
+  find: '                if entry is None:'
+  replace: '                if False:'
+  test: tests.test_lesson_coverage.SourceTests.test_a_dropped_block_fails
+- label: reworded source text is not noticed
+  find: '                elif entry.get("kind") != block["kind"] or entry.get("source") != block["source"]:'
+  replace: '                elif False:'
+  test: tests.test_lesson_coverage.SourceTests.test_reworded_source_text_fails
+- label: a duplicated block is accepted
+  find: '        if key in seen:'
+  replace: '        if False:'
+  test: tests.test_lesson_coverage.CheckTests.test_a_block_listed_twice_fails

@@ -38,6 +38,8 @@ jobs:
         run: python scripts/i18n_check.py
       - name: Campaign checks
         run: python studio.py check
+      - name: Lesson posts carry their whole lesson
+        run: python scripts/lesson_coverage.py check --all
       - name: Tests
         run: python -m pytest -q
       - name: Mutation check (safety-rail tests catch their own removal)

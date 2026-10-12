@@ -32,7 +32,7 @@ features:
   - id: minimum-path
     fact: A minimum path of 19 lessons (347 minutes, including 2 projects) is enough to hand work to an AI agent and check the result; the course's own Facebook plan posts it first
   - id: lesson-shape
-    fact: Every lesson has the same sections — objective, hook, main concept, an everyday analogy, a real example, common misconceptions, a recap picture, takeaways, a 3-question quiz with answers, and sources
+    fact: Every lesson has an objective, a hook, a main concept, a recap picture and takeaways; most add an everyday analogy, a real example, a hands-on try-it, common misconceptions, a 3-question quiz with answers and sources (12 section combinations across the 52 Vietnamese lessons)
   - id: recap-picture
     fact: Every lesson ends with exactly one recap infographic of its own that sums up the whole lesson in 3–6 numbered points and one sentence to remember
   - id: social-fields

@@ -1,0 +1,17 @@
+# Mutation manifest — see scripts/mutation_check.py
+#
+# office_build.yaml removes the Tailwind `@source` exclusion; the test it names checks that line first, so it cannot show
+# that the linter exclusion is guarded on its own. This entry removes only the linter's `ignorePatterns` and requires
+# the same test to notice, so each of the two independent defences has to be detected by itself. Both are real here:
+# office/dist is committed, so the linter reads it unless told not to (a rule violation under dist/ is reported
+# without `ignorePatterns`, and not with it).
+
+target: office/.oxlintrc.json
+note: The test reads both defences; each has its own manifest so deleting either one alone is caught.
+mutations:
+- label: the linter reads the committed build again
+  find: |-
+    "ignorePatterns": ["dist"],
+  replace: |-
+    "ignorePatterns": [],
+  test: tests.test_office_ui.SourceHygieneTests.test_the_committed_build_cannot_feed_the_next_build_or_the_linter

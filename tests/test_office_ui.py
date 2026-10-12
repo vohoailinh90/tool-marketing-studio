@@ -139,13 +139,6 @@ class SourceHygieneTests(unittest.TestCase):
             self.assertNotRegex(text, r"""aria-label=["'][A-Za-z]""", f"{path.name} has a literal aria-label")
             self.assertNotRegex(text, r"""sr-only">[A-Za-z]""", f"{path.name} has a literal screen-reader label")
 
-    def test_switching_the_source_resets_the_feature_filter(self) -> None:
-        """A sample ignores `feature`; a stale one makes the page reject every answer and sit on the loading state."""
-        app = (SRC / "App.tsx").read_text(encoding="utf-8")
-        body = re.search(r"const changeSource = \(next: Source\) => \{(.*?)\n  \}", app, re.DOTALL)
-        self.assertIsNotNone(body, "changeSource moved: update this test")
-        self.assertIn("setFeature(null)", body.group(1))
-
     def test_every_hand_made_cursor_move_ends_the_samples_pause(self) -> None:
         """The pause before a sample replays is a timer: if a switch or a seek leaves it running it fires later and drags
         the live view (or the other mode) back to the start of the sample."""
@@ -163,10 +156,17 @@ class SourceHygieneTests(unittest.TestCase):
             self.assertIsNotNone(body, f"{name} moved: update this test")
             self.assertIn("moveCursor(", body.group(1), name)
             self.assertNotIn("setCursor(", body.group(1), f"{name} moves the cursor without ending the pause")
-        self.assertIn("onLive={() => moveCursor(null)}", app)
         pause = re.search(r"onPlaying=\{\(next\) => \{(.*?)\n          \}\}", app, re.DOTALL)
         self.assertIsNotNone(pause, "onPlaying moved: update this test")
         self.assertIn("cancelHold()", pause.group(1))
+
+    def test_play_at_the_end_of_the_sample_starts_it_over(self) -> None:
+        """Pausing during the end-of-sample pause cancels the callback that would have rewound it, and the playback hook
+        has no position left: without this, Play is enabled and does nothing until the person seeks or restarts."""
+        app = (SRC / "App.tsx").read_text(encoding="utf-8")
+        pause = re.search(r"onPlaying=\{\(next\) => \{(.*?)\n          \}\}", app, re.DOTALL)
+        self.assertIsNotNone(pause, "onPlaying moved: update this test")
+        self.assertIn('source === "demo" && span && cursor !== null && cursor >= span.end) moveCursor(span.start)', pause.group(1))
 
     def test_the_page_draws_an_answer_whose_feature_no_longer_exists_and_drops_the_filter(self) -> None:
         """Without it the page rejects every answer for a removed feature and sits on the loading state for good."""

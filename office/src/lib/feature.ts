@@ -7,12 +7,12 @@ export interface FeatureAnswer {
 }
 
 /**
- * Is `answer` the one to draw for the pick `wanted`? No pick takes any answer; a pick takes the answer computed for it.
- * An answer that does not list `wanted` at all can only be the server falling back (the feature was removed, or a sample
- * ignores the pick): it stands, so the page never sits on the loading state waiting for a feature that is gone.
+ * Is `answer` the one to draw for the pick `wanted`? No pick takes any answer; a pick takes only the answer computed for
+ * it, so an answer for the previous pick is not drawn as the new one's. A pick the answer does not list at all (removed
+ * while picked) never matches: `keepFeature` drops it, and the next request asks for the default feature.
  */
 export function answersFeature(answer: FeatureAnswer, wanted: string | null): boolean {
-  return wanted === null || answer.feature === wanted || !answer.features.includes(wanted)
+  return wanted === null || answer.feature === wanted
 }
 
 /** The pick to keep after seeing `answer`: dropped once the answer's own list no longer has it. */

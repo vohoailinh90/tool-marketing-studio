@@ -515,6 +515,22 @@ class SourceTests(unittest.TestCase):
         self.assertTrue(any("concept#02" in p and "show 3 of the 18 words needed (30 in the diagram)" in p
                             for p in problems), problems)
 
+    def test_a_label_the_diagram_repeats_may_be_drawn_once_per_copy(self):
+        # Ten copies of one label in the SVG, six drawn as six cards: six equal quotes match six drawn copies.
+        repeated = ('<svg xmlns="http://www.w3.org/2000/svg">' + "<text>Bộ não LLM</text>" * 10 + "</svg>")
+        (self.course / "course" / "vi" / "diagrams" / "agent-formula.svg").write_text(repeated, encoding="utf-8")
+        git = ["git", "-C", str(self.course)]
+        subprocess.run(git + ["add", "-A"], check=True)
+        subprocess.run(git + ["-c", "user.name=t", "-c", "user.email=t@t", "commit", "-qm", "repeat"], check=True)
+        self.sha = subprocess.run(git + ["rev-parse", "HEAD"], capture_output=True, text=True,
+                                  check=True).stdout.strip()
+        post = full_post()
+        post["slides"][1] = {"layout": "features", "title": "Công thức",
+                             "items": [{"title": "Bộ não LLM", "text": ""} for _ in range(6)]}
+        manifest = full_manifest()
+        manifest["blocks"][5]["evidence"] = ["Bộ não LLM"] * 6  # 18 of the diagram's 30 words, as 18 are needed
+        self.assertEqual(self.problems(manifest, post), [])
+
     def test_a_diagram_missing_from_the_course_fails(self):
         manifest = full_manifest()
         manifest["blocks"][5]["evidence"] = DIAGRAM_QUOTES

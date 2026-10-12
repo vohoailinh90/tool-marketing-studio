@@ -7,8 +7,8 @@ target: scripts/lesson_coverage.py
 note: A lesson post must carry every block of its lesson, visibly, on a slide or in the caption.
 mutations:
 - label: a quote that is not on the slide is accepted
-  find: "                problems.append(f\"{key}: quote {quote!r} is not in one text field {dest} shows\")\n                continue"
-  replace: '                span = range(0)  # accepted anyway'
+  find: "                    problems.append(f\"{key}: quote {quote!r} is not in one text field {dest} shows\")\n                    continue"
+  replace: '                    span = range(0)  # accepted anyway'
   test: tests.test_lesson_coverage.CheckTests.test_evidence_missing_from_its_slide_fails
 - label: a quote may span two fields
   find: '        fields = [tokens(text) for text in texts]'
@@ -115,8 +115,8 @@ mutations:
   replace: '                block_words = max(len(tokens(q)) for q in quotes)  # whatever the post quotes'
   test: tests.test_lesson_coverage.SourceTests.test_a_rebuilt_diagram_must_show_most_of_its_words
 - label: a rebuilt diagram and the prose blocks share one set of claimed words
-  find: '                owners = claimed.setdefault((dest, number_of_field, space), {})'
-  replace: '                owners = claimed.setdefault((dest, number_of_field, "shared"), {})  # one claim space'
+  find: '            space = "diagram"'
+  replace: '            space = "block"  # one claim space'
   test: tests.test_lesson_coverage.SourceTests.test_a_rebuilt_diagram_may_reuse_words_that_prove_prose_blocks
 - label: a diagram label with no letter counts as wording
   find: '        if re.search(r"[^\W\d_]", label):'
@@ -146,3 +146,7 @@ mutations:
   find: '        if shown < need:'
   replace: '        if shown < need and quotes:  # no quotes, no complaint'
   test: tests.test_lesson_coverage.CheckTests.test_a_diagram_rebuilt_without_evidence_fails
+- label: equal quotes of a repeated diagram label all match the first drawn copy
+  find: '            if space == "diagram":'
+  replace: '            if False and space == "diagram":  # equal quotes all take the first copy'
+  test: tests.test_lesson_coverage.SourceTests.test_a_label_the_diagram_repeats_may_be_drawn_once_per_copy

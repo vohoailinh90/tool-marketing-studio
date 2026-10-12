@@ -311,12 +311,21 @@ def rendered(slide: Any) -> list[str]:
     return []
 
 
-def find_span(quote: list[str], field: list[str], taken: set[int]) -> range | None:
+def find_free_span(quote: list[str], field: list[str], taken: set[int]) -> range | None:
     """Where `quote` (as words) first appears in `field` without touching words already taken."""
     n = len(quote)
     for start in range(len(field) - n + 1):
         if field[start:start + n] == quote and not taken.intersection(range(start, start + n)):
             return range(start, start + n)
+    return None
+
+
+def find_span(quote: list[str], field: list[str], taken: set[int]) -> range | None:
+    """Like find_free_span, but a quote that only appears over taken words is found there anyway."""
+    free = find_free_span(quote, field, taken)
+    if free is not None:
+        return free
+    n = len(quote)
     for start in range(len(field) - n + 1):
         if field[start:start + n] == quote:
             return range(start, start + n)
@@ -511,14 +520,25 @@ def check(manifest_path: Path, course_dir: Path | None = None) -> list[str]:
             if len(words_in_quote) < min(MIN_EVIDENCE_WORDS, max(block_words, 1)):
                 problems.append(f"{key}: quote {quote!r} is too short to prove anything")
                 continue
-            for number_of_field, field in enumerate(fields):
-                owners = claimed.setdefault((dest, number_of_field, space), {})
-                span = find_span(words_in_quote, field, {i for i, k in owners.items() if k != key})
-                if span is not None:
-                    break
-            else:
-                problems.append(f"{key}: quote {quote!r} is not in one text field {dest} shows")
-                continue
+            span, number_of_field, owners = None, 0, {}
+            if space == "diagram":
+                # A label the diagram repeats is drawn once per copy: take a drawn copy no earlier quote used.
+                for index, field in enumerate(fields):
+                    owned = claimed.setdefault((dest, index, space), {})
+                    span = find_free_span(words_in_quote, field, set(owned))
+                    if span is not None:
+                        number_of_field, owners = index, owned
+                        break
+            if span is None:
+                for index, field in enumerate(fields):
+                    owned = claimed.setdefault((dest, index, space), {})
+                    span = find_span(words_in_quote, field, {i for i, k in owned.items() if k != key})
+                    if span is not None:
+                        number_of_field, owners = index, owned
+                        break
+                else:
+                    problems.append(f"{key}: quote {quote!r} is not in one text field {dest} shows")
+                    continue
             others = {owners[i] for i in span if owners.get(i, key) != key}
             if others:
                 problems.append(f"{key}: quote {quote!r} uses words that already prove {', '.join(sorted(others))}")

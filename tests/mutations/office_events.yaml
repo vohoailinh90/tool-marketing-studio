@@ -1,0 +1,110 @@
+# Mutation manifest — see scripts/mutation_check.py
+#
+# The observer must only ever record. Each entry breaks one thing it promises
+# (never block, never store a prompt, never lose a line) and names the test that
+# must notice.
+
+target: scripts/hooks/office_events.py
+note: The hook runs on every tool call of every session once enabled, so the promises that keep it
+  harmless are the ones worth proving.
+mutations:
+- label: the Task spelling of the spawn tool is no longer a spawn
+  find: |-
+    SPAWN_TOOLS = {"Agent", "Task"}
+  replace: |-
+    SPAWN_TOOLS = {"Agent"}
+  test: tests.test_office_events.SpawnEventTests.test_the_legacy_task_tool_name_is_a_spawn_too
+- label: a spawn request stores the prompt instead of the short description
+  find: |-
+    task=clip(tool_input.get("description")) if isinstance(tool_input, dict) else None,
+  replace: |-
+    task=clip(tool_input.get("prompt")) if isinstance(tool_input, dict) else None,
+  test: tests.test_office_events.SpawnEventTests.test_a_spawn_request_records_the_type_and_the_short_description_only
+- label: a spawn without a type is no longer the general-purpose agent
+  find: |-
+    return "general-purpose"
+  replace: |-
+    return ""
+  test: tests.test_office_events.SpawnEventTests.test_a_spawn_without_a_type_is_the_general_purpose_agent
+- label: an exception in the hook reaches the harness
+  find: |-
+    log(f"{argv[1]} failed, continuing: {exc!r}")
+  replace: |-
+    raise
+  test: tests.test_office_events.FailOpenTests.test_a_write_failure_is_swallowed
+- label: the disable switch is ignored
+  find: |-
+    if os.environ.get(DISABLE_VAR, "").strip() == "1":
+  replace: |-
+    if False:
+  test: tests.test_office_events.FailOpenTests.test_the_disable_switch_writes_nothing
+- label: a line overwrites the log instead of appending to it
+  find: |-
+    os.O_WRONLY | os.O_APPEND | os.O_CREAT
+  replace: |-
+    os.O_WRONLY | os.O_TRUNC | os.O_CREAT
+  test: tests.test_office_events.LifecycleEventTests.test_start_and_stop_carry_the_subagent_identity
+- label: a line is written however long it is
+  find: |-
+    if len(data) <= MAX_LINE_BYTES:
+  replace: |-
+    if True:
+  test: tests.test_office_events.StorageTests.test_an_oversized_description_is_clipped_so_one_write_stays_whole
+- label: the log is never rotated
+  find: |-
+    if path.stat().st_size > limit:
+  replace: |-
+    if False:
+  test: tests.test_office_events.StorageTests.test_a_large_log_is_rotated_once_instead_of_growing_forever
+- label: the shape recorder stores values
+  find: |-
+    return type(value).__name__
+  replace: |-
+    return value
+  test: tests.test_office_events.StorageTests.test_the_shape_recorder_keeps_key_names_and_types_but_never_values
+- label: a subagent's tool call is no longer attributed to it
+  find: |-
+    agent_id=text_of(payload.get("agent_id")),
+            agent=text_of(payload.get("agent_type")),
+            tool=clip(tool, 60),
+  replace: |-
+    agent_id=None,
+            agent=None,
+            tool=clip(tool, 60),
+  test: tests.test_office_events.LifecycleEventTests.test_a_tool_call_inside_a_subagent_is_attributed_to_it
+- label: the stop event keeps the transcript path
+  find: |-
+    note=clip(payload.get("last_assistant_message")) if notes_enabled() else None,
+  replace: |-
+    note=clip(payload.get("last_assistant_message")) if notes_enabled() else None, transcript=payload.get("agent_transcript_path"),
+  test: tests.test_office_events.LifecycleEventTests.test_start_and_stop_carry_the_subagent_identity
+- label: the reply excerpt cannot be switched off
+  find: |-
+    note=clip(payload.get("last_assistant_message")) if notes_enabled() else None,
+  replace: |-
+    note=clip(payload.get("last_assistant_message")),
+  test: tests.test_office_events.LifecycleEventTests.test_the_reply_excerpt_can_be_switched_off_and_nothing_else_changes
+- label: the error text of a failed spawn cannot be switched off
+  find: |-
+    error=clip(payload.get("error")) if notes_enabled() else None,
+  replace: |-
+    error=clip(payload.get("error")),
+  test: tests.test_office_events.SpawnEventTests.test_the_notes_switch_also_drops_the_error_text_of_a_failed_spawn
+- label: the notes switch is read backwards
+  find: |-
+    return os.environ.get(NOTES_VAR, "").strip() != "0"
+  replace: |-
+    return os.environ.get(NOTES_VAR, "").strip() == "0"
+  test: tests.test_office_events.SpawnEventTests.test_a_failed_spawn_records_the_error
+- label: the logs are created readable by everyone
+  find: |-
+    os.O_WRONLY | os.O_APPEND | os.O_CREAT, 0o600)
+  replace: |-
+    os.O_WRONLY | os.O_APPEND | os.O_CREAT, 0o644)
+  test: tests.test_office_events.StorageTests.test_the_logs_are_readable_by_their_owner_only
+- label: a second hook rotates while the first still holds the lock
+  find: |-
+    fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)  # held elsewhere: that process is rotating
+  replace: |-
+    pass
+  test: tests.test_office_events.StorageTests.test_a_rotation_already_under_way_is_not_repeated_by_a_second_hook

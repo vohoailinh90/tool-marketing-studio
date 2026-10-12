@@ -79,6 +79,7 @@ campaigns/<c>/insights/              báo cáo phân tích nhu cầu của AI
 playbooks/                           chiến lược, hình ảnh, Facebook, kiểm chứng nhu cầu, thương mại hoá
 research/                            mẫu khảo sát và kịch bản phỏng vấn (3 ngôn ngữ)
 mkt/                                 engine (Python)        web/   giao diện (React + UI kit)
+office/ + scripts/office/            văn phòng agent: ai đang làm gì (trang React + server chỉ-đọc)
 .claude/                             team agent + skill cho Claude Code
 ```
 
@@ -97,6 +98,20 @@ Repo mang theo đủ team agent của `claude-agent-routing-template`: 8 subagen
 (`.claude/agents/`), chính sách định tuyến `agent-routing/` + hook giới hạn ngân sách agent, làn Codex,
 và cách dùng team model miễn phí trên VPS cho repo này — xem `docs/agent-team.md`. Mọi thay đổi code
 đi qua quy trình phân loại T0–T3 trong `CLAUDE.md`; viết nội dung marketing dùng skill `tool-campaign`.
+
+### Xem agent làm việc (văn phòng agent)
+
+Một trang chỉ-đọc cho thấy agent nào đang làm gì, tiến độ, ngân sách agent và đường bàn giao; có chế độ
+sáng/tối và tiếng Việt, Nhật, Anh. Trang build sẵn trong `office/dist`, không cần Node:
+
+```
+python3 scripts/office/serve.py        # mở http://127.0.0.1:8765
+```
+
+Chưa có dữ liệu thì trang mở thẳng vào một lượt **chạy mẫu**. Dữ liệu thật do hook ghi
+(`.claude/settings.json` đã bật sẵn) vào `artifacts/handoff/office-events.jsonl`, cộng với sổ ngân sách
+`scripts/route.py --record`. Server chỉ nghe `127.0.0.1`. Cách dùng, nguồn từng con số và giới hạn:
+`docs/office-dashboard.md`.
 
 **CI:** repo private nên phút GitHub-hosted bị tính phí; nếu job CI fail ngay không có log, đăng ký runner
 VPS cho repo này và đặt biến `CI_RUNNER` (hướng dẫn trong `docs/agent-team.md`).

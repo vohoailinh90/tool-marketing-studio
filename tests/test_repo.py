@@ -43,6 +43,22 @@ class RepoTests(unittest.TestCase):
         self.assertTrue(any("placeholders" in p for p in found))
         self.assertTrue(any("missing key 'b'" in p for p in found))
 
+    def test_ui_catalog_check_reads_nested_catalogs_and_the_agent_office_ones(self):
+        import importlib.util
+        spec = importlib.util.spec_from_file_location("i18n_check", ROOT / "scripts" / "i18n_check.py")
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        self.assertEqual(module.problems(module.OFFICE_LOCALES), [])
+        self.assertEqual(module.flatten({"a": {"b": "x", "c": {"d": "y"}}, "e": "z"}), {"a.b": "x", "a.c.d": "y", "e": "z"})
+        broken = Path(tempfile.mkdtemp())
+        (broken / "vi.json").write_text('{"g": {"a": "{n} bài", "b": "x"}}', encoding="utf-8")
+        (broken / "ja.json").write_text('{"g": {"a": "{n} 件"}}', encoding="utf-8")
+        (broken / "en.json").write_text('{"g": {"a": "posts", "b": ""}}', encoding="utf-8")
+        found = module.problems(broken)
+        self.assertTrue(any("missing key 'g.b'" in p for p in found), found)
+        self.assertTrue(any("'g.b' is empty" in p for p in found), found)
+        self.assertTrue(any("'g.a' has placeholders" in p for p in found), found)
+
 
 if __name__ == "__main__":
     unittest.main()

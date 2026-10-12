@@ -1,0 +1,68 @@
+{"v":1,"ev":"tool","ts":1760000001.0,"session":"demo-session-1","tool":"Bash"}
+{"v":1,"ev":"tool","ts":1760000003.0,"session":"demo-session-1","tool":"Bash"}
+{"v":1,"ev":"tool","ts":1760000005.0,"session":"demo-session-1","tool":"Bash"}
+{"v":1,"ev":"tool","ts":1760000018.0,"session":"demo-session-1","tool":"Bash"}
+{"v":1,"ev":"tool","ts":1760000020.0,"session":"demo-session-1","tool":"Bash"}
+{"v":1,"ev":"tool","ts":1760000022.0,"session":"demo-session-1","tool":"Bash"}
+{"v":1,"ev":"tool","ts":1760000024.0,"session":"demo-session-1","tool":"Bash"}
+{"v":1,"ev":"tool","ts":1760000026.0,"session":"demo-session-1","tool":"Bash"}
+{"v":1,"ev":"tool","ts":1760000028.0,"session":"demo-session-1","tool":"Bash"}
+{"v":1,"ev":"tool","ts":1760000041.0,"session":"demo-session-1","tool":"Bash"}
+{"v":1,"ev":"tool","ts":1760000043.0,"session":"demo-session-1","tool":"Bash"}
+{"v":1,"ev":"tool","ts":1760000045.0,"session":"demo-session-1","tool":"Bash"}
+{"v":1,"ev":"tool","ts":1760000047.0,"session":"demo-session-1","tool":"Bash"}
+{"v":1,"ev":"tool","ts":1760000049.0,"session":"demo-session-1","tool":"Bash"}
+{"v":1,"ev":"tool","ts":1760000051.0,"session":"demo-session-1","tool":"Bash"}
+{"v":1,"ev":"tool","ts":1760000073.0,"session":"demo-session-1","tool":"Bash"}
+{"v":1,"ev":"tool","ts":1760000075.0,"session":"demo-session-1","tool":"Bash"}
+{"v":1,"ev":"tool","ts":1760000077.0,"session":"demo-session-1","tool":"Bash"}
+{"v":1,"ev":"spawn_request","ts":1760000006.0,"session":"demo-session-1","tool_use_id":"toolu_demo_a1","agent":"requirement-analyst","task":"Làm rõ: giữ mật khẩu cũ không? Thời hạn phiên bao lâu?"}
+{"v":1,"ev":"start","ts":1760000006.4,"session":"demo-session-1","agent_id":"agent-demo-analyst","agent":"requirement-analyst"}
+{"v":1,"ev":"tool","ts":1760000007.2,"session":"demo-session-1","agent_id":"agent-demo-analyst","agent":"requirement-analyst","tool":"Read"}
+{"v":1,"ev":"tool","ts":1760000008.8,"session":"demo-session-1","agent_id":"agent-demo-analyst","agent":"requirement-analyst","tool":"Read"}
+{"v":1,"ev":"tool","ts":1760000010.4,"session":"demo-session-1","agent_id":"agent-demo-analyst","agent":"requirement-analyst","tool":"Read"}
+{"v":1,"ev":"tool","ts":1760000012.0,"session":"demo-session-1","agent_id":"agent-demo-analyst","agent":"requirement-analyst","tool":"Read"}
+{"v":1,"ev":"tool","ts":1760000013.6,"session":"demo-session-1","agent_id":"agent-demo-analyst","agent":"requirement-analyst","tool":"Read"}
+{"v":1,"ev":"tool","ts":1760000015.2,"session":"demo-session-1","agent_id":"agent-demo-analyst","agent":"requirement-analyst","tool":"Read"}
+{"v":1,"ev":"stop","ts":1760000017.0,"session":"demo-session-1","agent_id":"agent-demo-analyst","agent":"requirement-analyst","note":"3 giả định đã chốt, 1 câu hỏi cho người"}
+{"v":1,"ev":"spawn_result","ts":1760000017.1,"session":"demo-session-1","tool_use_id":"toolu_demo_a1","agent":"requirement-analyst","agent_id":"agent-demo-analyst","status":"completed","tokens":18200,"duration_ms":10600,"tool_uses":6}
+{"v":1,"ev":"spawn_request","ts":1760000029.0,"session":"demo-session-1","tool_use_id":"toolu_demo_c1","agent":"architecture-critic","task":"Phản biện thiết kế: tìm ràng buộc ẩn và lỗ hổng"}
+{"v":1,"ev":"start","ts":1760000029.4,"session":"demo-session-1","agent_id":"agent-demo-critic","agent":"architecture-critic"}
+{"v":1,"ev":"tool","ts":1760000030.2,"session":"demo-session-1","agent_id":"agent-demo-critic","agent":"architecture-critic","tool":"Read"}
+{"v":1,"ev":"tool","ts":1760000031.267,"session":"demo-session-1","agent_id":"agent-demo-critic","agent":"architecture-critic","tool":"Read"}
+{"v":1,"ev":"tool","ts":1760000032.333,"session":"demo-session-1","agent_id":"agent-demo-critic","agent":"architecture-critic","tool":"Read"}
+{"v":1,"ev":"tool","ts":1760000033.4,"session":"demo-session-1","agent_id":"agent-demo-critic","agent":"architecture-critic","tool":"Read"}
+{"v":1,"ev":"tool","ts":1760000034.467,"session":"demo-session-1","agent_id":"agent-demo-critic","agent":"architecture-critic","tool":"Read"}
+{"v":1,"ev":"tool","ts":1760000035.533,"session":"demo-session-1","agent_id":"agent-demo-critic","agent":"architecture-critic","tool":"Read"}
+{"v":1,"ev":"tool","ts":1760000036.6,"session":"demo-session-1","agent_id":"agent-demo-critic","agent":"architecture-critic","tool":"Read"}
+{"v":1,"ev":"tool","ts":1760000037.667,"session":"demo-session-1","agent_id":"agent-demo-critic","agent":"architecture-critic","tool":"Read"}
+{"v":1,"ev":"tool","ts":1760000038.733,"session":"demo-session-1","agent_id":"agent-demo-critic","agent":"architecture-critic","tool":"Read"}
+{"v":1,"ev":"stop","ts":1760000040.0,"session":"demo-session-1","agent_id":"agent-demo-critic","agent":"architecture-critic","note":"2 mục high đã xử lý, 0 critical"}
+{"v":1,"ev":"spawn_result","ts":1760000040.1,"session":"demo-session-1","tool_use_id":"toolu_demo_c1","agent":"architecture-critic","agent_id":"agent-demo-critic","status":"completed","tokens":31200,"duration_ms":10600,"tool_uses":9}
+{"v":1,"ev":"spawn_request","ts":1760000052.0,"session":"demo-session-1","tool_use_id":"toolu_demo_r1","agent":"code-reviewer-t3","task":"Đọc diff và chạy kiểm chứng độc lập"}
+{"v":1,"ev":"start","ts":1760000052.4,"session":"demo-session-1","agent_id":"agent-demo-reviewer","agent":"code-reviewer-t3"}
+{"v":1,"ev":"tool","ts":1760000053.2,"session":"demo-session-1","agent_id":"agent-demo-reviewer","agent":"code-reviewer-t3","tool":"Read"}
+{"v":1,"ev":"tool","ts":1760000053.982,"session":"demo-session-1","agent_id":"agent-demo-reviewer","agent":"code-reviewer-t3","tool":"Read"}
+{"v":1,"ev":"tool","ts":1760000054.764,"session":"demo-session-1","agent_id":"agent-demo-reviewer","agent":"code-reviewer-t3","tool":"Read"}
+{"v":1,"ev":"tool","ts":1760000055.545,"session":"demo-session-1","agent_id":"agent-demo-reviewer","agent":"code-reviewer-t3","tool":"Read"}
+{"v":1,"ev":"tool","ts":1760000056.327,"session":"demo-session-1","agent_id":"agent-demo-reviewer","agent":"code-reviewer-t3","tool":"Read"}
+{"v":1,"ev":"tool","ts":1760000057.109,"session":"demo-session-1","agent_id":"agent-demo-reviewer","agent":"code-reviewer-t3","tool":"Read"}
+{"v":1,"ev":"tool","ts":1760000057.891,"session":"demo-session-1","agent_id":"agent-demo-reviewer","agent":"code-reviewer-t3","tool":"Read"}
+{"v":1,"ev":"tool","ts":1760000058.673,"session":"demo-session-1","agent_id":"agent-demo-reviewer","agent":"code-reviewer-t3","tool":"Read"}
+{"v":1,"ev":"tool","ts":1760000059.455,"session":"demo-session-1","agent_id":"agent-demo-reviewer","agent":"code-reviewer-t3","tool":"Read"}
+{"v":1,"ev":"tool","ts":1760000060.236,"session":"demo-session-1","agent_id":"agent-demo-reviewer","agent":"code-reviewer-t3","tool":"Read"}
+{"v":1,"ev":"tool","ts":1760000061.018,"session":"demo-session-1","agent_id":"agent-demo-reviewer","agent":"code-reviewer-t3","tool":"Read"}
+{"v":1,"ev":"stop","ts":1760000062.0,"session":"demo-session-1","agent_id":"agent-demo-reviewer","agent":"code-reviewer-t3","note":"Báo leo thang: cần diễn tập migration"}
+{"v":1,"ev":"spawn_result","ts":1760000062.1,"session":"demo-session-1","tool_use_id":"toolu_demo_r1","agent":"code-reviewer-t3","agent_id":"agent-demo-reviewer","status":"completed","tokens":44800,"duration_ms":9600,"tool_uses":11}
+{"v":1,"ev":"spawn_request","ts":1760000062.5,"session":"demo-session-1","tool_use_id":"toolu_demo_t1","agent":"test-engineer","task":"Diễn tập migration và đăng nhập lại trên 2 client"}
+{"v":1,"ev":"start","ts":1760000062.9,"session":"demo-session-1","agent_id":"agent-demo-tester","agent":"test-engineer"}
+{"v":1,"ev":"tool","ts":1760000063.7,"session":"demo-session-1","agent_id":"agent-demo-tester","agent":"test-engineer","tool":"Read"}
+{"v":1,"ev":"tool","ts":1760000064.713,"session":"demo-session-1","agent_id":"agent-demo-tester","agent":"test-engineer","tool":"Read"}
+{"v":1,"ev":"tool","ts":1760000065.725,"session":"demo-session-1","agent_id":"agent-demo-tester","agent":"test-engineer","tool":"Read"}
+{"v":1,"ev":"tool","ts":1760000066.737,"session":"demo-session-1","agent_id":"agent-demo-tester","agent":"test-engineer","tool":"Read"}
+{"v":1,"ev":"tool","ts":1760000067.75,"session":"demo-session-1","agent_id":"agent-demo-tester","agent":"test-engineer","tool":"Read"}
+{"v":1,"ev":"tool","ts":1760000068.763,"session":"demo-session-1","agent_id":"agent-demo-tester","agent":"test-engineer","tool":"Read"}
+{"v":1,"ev":"tool","ts":1760000069.775,"session":"demo-session-1","agent_id":"agent-demo-tester","agent":"test-engineer","tool":"Read"}
+{"v":1,"ev":"tool","ts":1760000070.787,"session":"demo-session-1","agent_id":"agent-demo-tester","agent":"test-engineer","tool":"Read"}
+{"v":1,"ev":"stop","ts":1760000072.0,"session":"demo-session-1","agent_id":"agent-demo-tester","agent":"test-engineer","note":"Rollback chạy được, 0 phiên bị mất"}
+{"v":1,"ev":"spawn_result","ts":1760000072.1,"session":"demo-session-1","tool_use_id":"toolu_demo_t1","agent":"test-engineer","agent_id":"agent-demo-tester","status":"completed","tokens":27100,"duration_ms":9100,"tool_uses":8}

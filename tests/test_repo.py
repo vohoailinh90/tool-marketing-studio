@@ -59,6 +59,29 @@ class RepoTests(unittest.TestCase):
         self.assertTrue(any("'g.b' is empty" in p for p in found), found)
         self.assertTrue(any("'g.a' has placeholders" in p for p in found), found)
 
+    def test_ui_catalog_check_reports_what_it_cannot_read_as_messages(self):
+        import importlib.util
+        spec = importlib.util.spec_from_file_location("i18n_check", ROOT / "scripts" / "i18n_check.py")
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        with self.assertRaises(KeyError):
+            module.flatten({"c.d": "x", "c": {"d": "y"}})  # two paths, one name: never silently overwritten
+        self.assertEqual(module.flatten({"g": {}}), {"g": {}})  # an empty object stays visible
+        directory = Path(tempfile.mkdtemp())
+        (directory / "vi.json").write_text('{"c.d": "x", "c": {"d": "y"}, "n": 3, "e": {}, "l": ["a"]}', encoding="utf-8")
+        (directory / "ja.json").write_text('[]', encoding="utf-8")
+        (directory / "en.json").write_text('{"n": 3}', encoding="utf-8")
+        found = module.problems(directory)
+        self.assertTrue(any("vi.json" in p and "defined twice" in p and "'c.d'" in p for p in found), found)
+        self.assertTrue(any("ja.json: must be a JSON object" in p for p in found), found)
+        (directory / "vi.json").write_text('{"n": 3, "e": {}, "l": ["a"], "b": "  "}', encoding="utf-8")
+        (directory / "ja.json").write_text('{"n": 3, "e": {}, "l": ["a"], "b": "x"}', encoding="utf-8")
+        (directory / "en.json").write_text('{"n": 3, "e": {}, "l": ["a"], "b": "x"}', encoding="utf-8")
+        found = module.problems(directory)
+        for key in ("n", "e", "l"):
+            self.assertTrue(any(f"'{key}' is not a message" in p for p in found), (key, found))
+        self.assertTrue(any("'b' is empty" in p for p in found), found)
+
 
 if __name__ == "__main__":
     unittest.main()

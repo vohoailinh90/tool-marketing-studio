@@ -136,6 +136,12 @@ class SourceHygieneTests(unittest.TestCase):
         self.assertNotIn("office/dist", ignored)
         self.assertTrue((OFFICE / "dist" / "index.html").is_file(), "run `cd office && npm run build` and commit office/dist")
 
+    def test_the_committed_build_cannot_feed_the_next_build_or_the_linter(self) -> None:
+        """Tailwind scans every file it is not told to skip: without this the second build is larger than the first."""
+        css = (SRC / "index.css").read_text(encoding="utf-8")
+        self.assertIn('@source not "../dist";', css)
+        self.assertIn('"ignorePatterns": ["dist"]', (OFFICE / ".oxlintrc.json").read_text(encoding="utf-8"))
+
 
 @unittest.skipUnless(shutil.which("node"), "needs Node 22.6+ (TypeScript type stripping); CI installs it")
 class EdgeGeometryTests(unittest.TestCase):

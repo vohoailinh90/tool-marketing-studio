@@ -1,4 +1,6 @@
 @import "tailwindcss";
+/* The committed build must not feed the next build: never scan dist/. */
+@source not "../dist";
 
 @custom-variant dark (&:is(.dark *));
 

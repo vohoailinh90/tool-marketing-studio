@@ -23,12 +23,19 @@ PLACEHOLDER = re.compile(r"\{(\w+)\}")
 
 
 def flatten(value: Any, prefix: str = "") -> dict[str, Any]:
-    """`{"a": {"b": "x"}}` -> `{"a.b": "x"}`; a flat catalog comes back unchanged."""
-    if not isinstance(value, dict):
+    """`{"a": {"b": "x"}}` -> `{"a.b": "x"}`; a flat catalog comes back unchanged.
+
+    An empty object stays a leaf (so it is reported, not silently dropped). Raises `KeyError(name)` when two
+    paths flatten to the same name, such as a key `"a.b"` next to an object `"a"` holding `"b"`.
+    """
+    if not isinstance(value, dict) or (not value and prefix):
         return {prefix[:-1]: value}
     flat: dict[str, Any] = {}
     for key, item in value.items():
-        flat.update(flatten(item, f"{prefix}{key}.") if isinstance(item, dict) else {f"{prefix}{key}": item})
+        for name, leaf in flatten(item, f"{prefix}{key}.").items():
+            if name in flat:
+                raise KeyError(name)
+            flat[name] = leaf
     return flat
 
 
@@ -38,9 +45,17 @@ def problems(directory: Path = LOCALES) -> list[str]:
     for lang in LANGS:
         path = directory / f"{lang}.json"
         try:
-            catalogs[lang] = flatten(json.loads(path.read_text(encoding="utf-8")))
+            data = json.loads(path.read_text(encoding="utf-8"))
         except (OSError, json.JSONDecodeError) as exc:
             found.append(f"{path.name}: cannot read ({exc})")
+            continue
+        if not isinstance(data, dict):
+            found.append(f"{path.name}: must be a JSON object")
+            continue
+        try:
+            catalogs[lang] = flatten(data)
+        except KeyError as exc:
+            found.append(f"{path.name}: key {exc.args[0]!r} is defined twice (a dotted key and a nested object)")
     if len(catalogs) != len(LANGS):
         return found
     keys = set().union(*(set(c) for c in catalogs.values()))
@@ -51,7 +66,10 @@ def problems(directory: Path = LOCALES) -> list[str]:
             if text is None:
                 found.append(f"{lang}.json: missing key '{key}'")
                 continue
-            if not isinstance(text, str) or not text.strip():
+            if not isinstance(text, str):
+                found.append(f"{lang}.json: '{key}' is not a message (expected a string)")
+                continue
+            if not text.strip():
                 found.append(f"{lang}.json: '{key}' is empty")
                 continue
             marks = set(PLACEHOLDER.findall(text))

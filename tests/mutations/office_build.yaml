@@ -1,0 +1,15 @@
+# Mutation manifest — see scripts/mutation_check.py
+#
+# The committed office/dist must rebuild to itself. Tailwind scans every file it is not told to skip;
+# a scan of the committed build made the second build 13 kB larger than the first, so CI's
+# `git diff --exit-code -- dist` failed. This entry removes the line that stops that and requires the test to notice.
+
+target: office/src/index.css
+note: A stylesheet line is the whole defence, so the test that reads it is the only thing that can notice it going.
+mutations:
+- label: the next build scans the committed build again
+  find: |-
+    @source not "../dist";
+  replace: |-
+    /* the committed build is scanned */
+  test: tests.test_office_ui.SourceHygieneTests.test_the_committed_build_cannot_feed_the_next_build_or_the_linter

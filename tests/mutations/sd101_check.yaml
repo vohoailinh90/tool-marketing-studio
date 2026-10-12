@@ -1597,7 +1597,7 @@ mutations:
 - label: a lesson.yaml that is not a file is parsed
   find: "        if pointer.is_file():"
   replace: "        if True:"
-  test: tests.test_sd101_check.RobustnessTests.test_a_store_file_that_is_a_directory_is_reported_not_raised
+  test: tests.test_sd101_check.RobustnessTests.test_a_lesson_yaml_that_is_a_directory_is_only_missing
 - label: a missing metadata file is accepted
   find: "        if not metadata_file.is_file():"
   replace: "        if False:"

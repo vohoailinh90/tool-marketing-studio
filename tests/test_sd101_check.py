@@ -1833,6 +1833,14 @@ class RobustnessTests(StoreCase):
                     self.auto_progress = True
                 path.rmdir()
 
+    def test_a_lesson_yaml_that_is_a_directory_is_only_missing(self) -> None:
+        lesson_dir = self.write_lesson("sd-01-001")
+        (lesson_dir / "lesson.yaml").unlink()
+        (lesson_dir / "lesson.yaml").mkdir()
+        found = self.problems()
+        self.assertTrue(any("lesson.yaml is missing" in line for line in found), found)
+        self.assertFalse(any("does not parse" in line for line in found), found)
+
     def test_pathological_markdown_is_reported_not_raised(self) -> None:
         deep = {"nested quotes": "> " * 3000 + "x", "nested lists": "".join("  " * i + "- a\n" for i in range(400)),
                 "unmatched brackets": "[" * 20000, "unmatched emphasis": "*_" * 20000, "a long line": "a" * 200_000,

@@ -128,12 +128,13 @@ python3 scripts/lesson_coverage.py extract <course>/course/vi/lessons/<id>.md \
 ```
 
 Lệnh này liệt kê **mọi ý** của bài (`key`, `kind`, `source`): từng đoạn văn, từng gạch đầu dòng (cả
-mục con), từng dòng bảng, từng trích dẫn `>`, từng tiêu đề nhỏ, khối code và sơ đồ — trung bình ~59 ý
-mỗi bài. Người viết điền cho từng ý:
+mục con), từng dòng bảng, từng trích dẫn `>`, từng tiêu đề nhỏ, khối code và sơ đồ, cộng `social.hook` và
+`social.question` — trung bình ~61 ý mỗi bài. File `coverage/<id>.yaml` chỉ được đối chiếu với
+`posts/vi/<id>.yaml` và `course/vi/lessons/<id>.md`. Người viết điền cho từng ý:
 - `dest`: `slide:N` hoặc `caption` (không được là bình luận đầu);
 - `evidence`: một câu trích hoặc danh sách câu trích, **đúng chữ đang hiển thị** trong một ô chữ của
-  `dest`. Các câu trích cộng lại phải dài ít nhất **30% số chữ của ý** (tối thiểu 3 chữ, ý ngắn hơn thì
-  trích cả ý); khối code phải hiện **đủ**; một câu trích chỉ được dùng cho một ý. Với sơ đồ, `dest` là
+  `dest` mà layout thật sự vẽ ra. Các câu trích (chữ trùng nhau chỉ tính một lần) phải phủ ít nhất **30% số chữ của ý** (tối thiểu 3 chữ, ý ngắn hơn thì
+  trích cả ý); khối code phải hiện **đủ**; một chữ trên ảnh chỉ chứng minh cho một ý. Với sơ đồ, `dest` là
   ảnh `image` hiển thị đúng sơ đồ đó.
 
 Kiểm tra (CI tự clone khóa học và chạy dòng đầu):

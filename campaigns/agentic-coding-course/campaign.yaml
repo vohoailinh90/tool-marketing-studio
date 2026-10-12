@@ -5,5 +5,56 @@ platforms:
 - facebook
 goal: Chia sẻ đủ kiến thức mỗi bài học; mời người đọc lưu bài, bình luận và theo dõi Page.
 links:
+  chatbot-to-agent: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/chatbot-to-agent.md
   agent-parts-and-loop: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/agent-parts-and-loop.md
+  watch-an-agent-build: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/watch-an-agent-build.md
+  choose-your-learning-setup: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/choose-your-learning-setup.md
+  data-safety-and-permissions: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/data-safety-and-permissions.md
+  first-agent-session: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/first-agent-session.md
+  how-to-learn-this-course: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/how-to-learn-this-course.md
+  lead-not-typist: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/lead-not-typist.md
+  writing-good-specs: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/writing-good-specs.md
+  explore-plan-build-verify: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/explore-plan-build-verify.md
+  files-folders-paths: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/files-folders-paths.md
+  reviewing-agent-changes: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/reviewing-agent-changes.md
+  testing-basics: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/testing-basics.md
+  errors-and-debugging: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/errors-and-debugging.md
+  project-personal-page: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/project-personal-page.md
+  what-is-software: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/what-is-software.md
+  project-anatomy: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/project-anatomy.md
+  data-formats: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/data-formats.md
+  programming-building-blocks: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/programming-building-blocks.md
+  git-version-control: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/git-version-control.md
+  command-line-basics: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/command-line-basics.md
+  security-basics: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/security-basics.md
+  prompting-basics: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/prompting-basics.md
+  hallucination: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/hallucination.md
+  context-window: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/context-window.md
+  next-token-prediction: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/next-token-prediction.md
+  tool-calling: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/tool-calling.md
+  ai-ml-dl: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/ai-ml-dl.md
+  how-machines-learn: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/how-machines-learn.md
+  rag-intro: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/rag-intro.md
+  prompt-rag-finetune-compare: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/prompt-rag-finetune-compare.md
+  tokens: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/tokens.md
+  reasoning-models: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/reasoning-models.md
+  choosing-models: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/choosing-models.md
+  traditional-vs-agentic: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/traditional-vs-agentic.md
+  vibe-vs-agentic: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/vibe-vs-agentic.md
+  the-agent-loop: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/the-agent-loop.md
+  tool-landscape: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/tool-landscape.md
+  workflow-frameworks: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/workflow-frameworks.md
+  model-plus-harness: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/model-plus-harness.md
+  context-engineering: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/context-engineering.md
+  prompt-engineering-for-agents: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/prompt-engineering-for-agents.md
+  hooks-and-permissions: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/hooks-and-permissions.md
+  tests-and-ci-for-agents: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/tests-and-ci-for-agents.md
+  memory-and-skills: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/memory-and-skills.md
+  agents-and-workflows: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/agents-and-workflows.md
+  mcp: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/mcp.md
+  evals: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/evals.md
+  project-office-automation: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/project-office-automation.md
+  project-retrospective: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/project-retrospective.md
+  project-mcp-tool: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/project-mcp-tool.md
+  capstone-your-idea: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/lessons/capstone-your-idea.md
   course-home: https://github.com/vohoailinh90/Agentic-coding-course/blob/main/course/vi/README.md

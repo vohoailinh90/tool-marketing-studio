@@ -1,0 +1,107 @@
+id: 02-office
+status: draft
+format: portrait
+series: "Working with AI · #2"
+link: ""
+slides:
+  - layout: cover
+    emoji: "🏢"
+    eyebrow: "A floor plan for your agents"
+    title: "Who's **working**, who's **waiting**: one glance"
+    subtitle: "One desk per agent, the main session on top. A page that only reads, never touches."
+
+  - layout: pains
+    title: "Handed work to AI agents? You've probably wondered"
+    tone: accent
+    items:
+      - {emoji: "🤔", text: "Which agent is working, and which one is waiting?"}
+      - {emoji: "🎟️", text: "How much of the agent budget is spent?"}
+      - {emoji: "🔇", text: "Has one gone quiet for a while?"}
+
+  - layout: image
+    title: "The whole team on one screen"
+    src: "assets/office-floor-en.png"
+    caption: "A recorded sample run (a T3 requirement), not a real one. The notes inside the sample are Vietnamese data."
+
+  - layout: features
+    title: "What each card tells you"
+    items:
+      - {emoji: "🚦", title: "State", text: "Idle, Waiting, Working, Reviewing, Done or Blocked"}
+      - {emoji: "📈", title: "Progress", text: "An estimate, marked with ~, capped at 95% until the agent reports done"}
+      - {emoji: "🎫", title: "Budget", text: "Base and each reserve shown separately; a reserve not yet granted is dashed"}
+      - {emoji: "🤝", title: "Handoffs", text: "A line joins two cards while work changes hands, plus a timestamped log"}
+    note: "That's the whole page, so one look is enough."
+
+  - layout: checklist
+    title: "Where it doesn't know, it says so"
+    tone: accent
+    items:
+      - "Per-agent progress is an estimate, not a measurement"
+      - "The main session's phase is inferred, not observed"
+      - "Silent for 15 minutes, or asked to start and still not running after 2: Blocked"
+      - "No budget recorded? It says none is recorded, no made-up numbers"
+    note: "A dashboard that invents numbers is worse than no dashboard."
+
+  - layout: flow
+    variant: after
+    title: "Where the numbers come from"
+    steps:
+      - {emoji: "👀", text: "An observer hook logs each subagent spawn, start and stop. It only records and never blocks a tool"}
+      - {emoji: "📒", text: "The requirement's budget ledger holds the ceiling and the reserves"}
+      - {emoji: "🖥️", text: "The page rebuilds the picture from those two"}
+    note: "It does not store prompts, full replies, tool inputs or transcript paths."
+
+  - layout: features
+    title: "Replay it like a video"
+    items:
+      - {emoji: "⏪", title: "Time slider", text: "Jump to any moment of a run; play at 1×, 2×, 4× or 8×"}
+      - {emoji: "🔀", title: "Two views", text: "Claude subagents by T0–T3 tier, or the VPS pipeline"}
+      - {emoji: "🌗", title: "Light, dark, 3 languages", text: "English, Japanese and Vietnamese"}
+      - {emoji: "▶️", title: "No data yet", text: "It opens straight on a sample run so you can try it"}
+
+  - layout: checklist
+    title: "Read-only, and local"
+    tone: ok
+    items:
+      - "No assigning or cancelling work from the page"
+      - "Binds to 127.0.0.1 by default and refuses unknown hosts"
+      - "No login, so on a VPS reach it through an SSH tunnel"
+      - "The event file is readable only by its owner and kept out of git"
+    note: "If the hook fails, your session carries on. One environment variable turns it off completely."
+
+  - layout: checklist
+    title: "The honest limits"
+    tone: bad
+    items:
+      - "The repo is private: this shares the idea, not the code"
+      - "The hook was checked on one Claude Code build and one agent type; re-check after an upgrade"
+      - "On that build the subagent's last reply isn't sent, so cards show the task description"
+      - "Assigning or cancelling work from the page would be a different requirement"
+
+  - layout: poll
+    eyebrow: "Your turn"
+    question: "What would you most want to see?"
+    options:
+      - "Who is working, who is waiting"
+      - "How much of the agent budget is used"
+      - "A replay of the whole run"
+      - "I don't use subagents yet"
+    hint: "Comment A, B, C or D"
+
+platforms:
+  facebook:
+    caption: |
+      Handed work to AI agents and then wondered who's actually working, who's waiting, and how much of the budget is gone? 👇
+
+      I built a small "agent office" page so one look answers it. The main session sits on top, departments below, one desk per agent, and a line joins two cards while work is handed over. The page only reads.
+
+      Each card shows a state (Idle, Waiting, Working, Reviewing, Done, Blocked), progress, and budget: the base and each reserve are shown separately, and a reserve not yet granted is dashed. There's a timestamped handoff log and a time slider to replay a whole run at 1×, 2×, 4× or 8×.
+
+      My favourite part is that the page says where it doesn't know. Per-agent progress is an estimate (marked ~, capped at 95% until the agent reports done). The main session's phase is inferred. Silent for 15 minutes, or asked to start and still not running after 2, shows as Blocked. No budget recorded? It says so.
+
+      The numbers come from an observer hook that only records and never blocks a tool. It doesn't store prompts, full replies, tool inputs or transcript paths. The page binds to 127.0.0.1 by default and has no login, so on a VPS use an SSH tunnel.
+
+      The images are a recorded sample run, not a real requirement. Limits: the repo is private; the hook was checked on one Claude Code build and one agent type; assigning or cancelling work from the page would be a different requirement.
+
+      What would you most want to see on a page like this?
+    hashtags: [Claude, AI, agents, devtools, observability]

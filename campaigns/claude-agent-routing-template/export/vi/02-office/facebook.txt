@@ -1,0 +1,15 @@
+Giao việc cho AI xong, bạn có hay tự hỏi: agent nào đang làm, agent nào đang chờ, ngân sách dùng hết mấy phần rồi? 👇
+
+Mình dựng một trang "văn phòng agent" để nhìn một lượt là biết. Main session ngồi trên cùng, các phòng ban bên dưới, mỗi agent một bàn, có nét nối giữa hai thẻ khi việc được bàn giao. Trang chỉ đọc.
+
+Mỗi thẻ cho biết trạng thái (rảnh, đang chờ, đang làm, đang review, xong, bị chặn), tiến độ, và ngân sách: phần cơ sở và từng dự phòng báo riêng, dự phòng chưa cấp vẽ nét đứt. Có nhật ký bàn giao kèm giờ, và thanh thời gian để xem lại cả lượt chạy ở tốc độ 1×, 2×, 4× hoặc 8×.
+
+Phần mình thích nhất là trang nói thật chỗ nào nó không biết. Tiến độ từng agent chỉ là ước lượng (có dấu ~, tối đa 95% cho đến khi agent báo xong). Giai đoạn của main session là suy ra, không quan sát trực tiếp. Im lặng 15 phút, hoặc xin chạy 2 phút vẫn chưa bắt đầu thì hiện "bị chặn". Chưa ghi sổ ngân sách thì báo chưa ghi.
+
+Số liệu đến từ một hook quan sát, chỉ ghi và không bao giờ chặn công cụ. Nó không lưu prompt, câu trả lời đầy đủ, tham số công cụ hay đường dẫn transcript. Trang mặc định chỉ mở ở 127.0.0.1, không có đăng nhập, nên trên VPS hãy vào bằng SSH tunnel.
+
+Hình trong bài là một lượt chạy mẫu đã ghi sẵn, không phải yêu cầu thật. Giới hạn: repo đang private; hook mới kiểm trên một bản Claude Code và một loại agent; muốn giao hay hủy việc từ trang là một yêu cầu khác.
+
+Bạn muốn nhìn thấy gì nhất trên một trang như vậy?
+
+#Claude #AI #tudonghoa #laptrinh #subagent

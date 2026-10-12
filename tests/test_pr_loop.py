@@ -158,20 +158,18 @@ class PullRequestLoopTests(unittest.TestCase):
             with self.subTest(path=path.name):
                 self.assertIn(phrase, read(path).replace("\n", " "))
 
-    def test_a_thumbs_up_only_clean_run_can_end_the_loop(self) -> None:
-        """Section 16 says a clean review may leave only a thumbs-up, so the exit must accept it for the requested head."""
+    def test_a_bare_thumbs_up_is_not_a_clean_review(self) -> None:
+        """A reaction names no commit and no command, so it can neither be validated nor stand in for a review:
+        sections 14, 17 and the exit rule must all say so, and the root lifecycle must not accept it."""
         protocol = read(PROTOCOL).replace("\n", " ")
-        exit_rule = protocol[protocol.index("**Exit when clean.**"):]
-        exit_rule = exit_rule[:exit_rule.index("A fix pushed after the last review")]
-        for phrase in ("only a thumbs-up", "👍 reaction on that command's request comment",
-                       "provided the PR head has not moved since that request was posted",
-                       "one command's 👍 never stands in for another command's result"):
-            self.assertIn(phrase, exit_rule)
         sec14 = protocol[protocol.index("## 14. "):protocol.index("## 15. ")]
         sec17 = protocol[protocol.index("## 17. "):protocol.index("## 18. ")]
-        self.assertIn("only the bot's 👍 reaction on the request comment", sec14)
-        self.assertIn("👍 reaction on the request comment is such a response too", sec17)
-        self.assertIn("the bot's 👍 on that command's request counts as such a review", self.section)
+        exit_rule = protocol[protocol.index("**Exit when clean.**"):]
+        exit_rule = exit_rule[:exit_rule.index("A fix pushed after the last review")]
+        self.assertIn("A bare 👍 reaction on the request comment is not a response to validate", sec14)
+        self.assertIn("is an unsuccessful completion, not a clean review", sec17)
+        self.assertIn("never a bare 👍 reaction, which names no commit and is an unsuccessful completion under section 17", exit_rule)
+        self.assertNotIn("👍", self.section)
 
     def test_every_protocol_section_it_cites_exists(self) -> None:
         protocol = read(PROTOCOL)

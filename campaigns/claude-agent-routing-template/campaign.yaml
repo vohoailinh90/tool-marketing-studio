@@ -5,7 +5,8 @@ langs: [vi, ja, en]           # every post exists once per language, written for
 platforms: [facebook]
 goal: >-
   Share the author's Claude-designs / Codex-critiques process, taken from the routing template, and
-  learn from the comments how other builders check AI-written work today.
+  learn from the comments how other builders check AI-written work today. Post 02 introduces the
+  Agent office page that shows who in the agent team is doing what.
 
 links: {}
 
@@ -18,3 +19,6 @@ schedule:
   - {post: 01-process, lang: vi, platform: facebook, date: TBD}
   - {post: 01-process, lang: ja, platform: facebook, date: TBD}
   - {post: 01-process, lang: en, platform: facebook, date: TBD}
+  - {post: 02-office, lang: vi, platform: facebook, date: TBD}
+  - {post: 02-office, lang: ja, platform: facebook, date: TBD}
+  - {post: 02-office, lang: en, platform: facebook, date: TBD}

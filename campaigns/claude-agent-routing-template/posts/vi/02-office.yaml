@@ -1,0 +1,106 @@
+id: 02-office
+status: draft
+format: portrait
+series: "Làm việc với AI · #2"
+link: ""
+slides:
+  - layout: cover
+    emoji: "🏢"
+    eyebrow: "Mình làm việc với AI thế này · #2"
+    title: "Agent đang làm gì? **Nhìn là thấy**"
+    subtitle: "Mình dựng một \"văn phòng agent\": mỗi agent một bàn, main session ngồi trên cùng. Trang chỉ đọc."
+
+  - layout: pains
+    title: "Giao việc cho AI xong, bạn có hay tự hỏi"
+    tone: accent
+    items:
+      - {emoji: "🤔", text: "Agent nào đang làm, agent nào đang chờ?"}
+      - {emoji: "🎟️", text: "Ngân sách agent đã dùng hết mấy phần?"}
+      - {emoji: "🔇", text: "Có agent nào im lặng từ lâu rồi không?"}
+
+  - layout: image
+    title: "Cả team trên một màn hình"
+    src: "assets/office-floor-vi.png"
+    caption: "Lượt chạy mẫu đã ghi sẵn (yêu cầu mức T3), không phải yêu cầu thật. Ghi chú trong mẫu là tiếng Việt."
+
+  - layout: features
+    title: "Bạn thấy gì trên trang"
+    items:
+      - {emoji: "🚦", title: "Trạng thái", text: "Rảnh, đang chờ, đang làm, đang review, xong, bị chặn"}
+      - {emoji: "📈", title: "Tiến độ", text: "Ước lượng, có dấu ~, tối đa 95% cho đến khi agent báo xong"}
+      - {emoji: "🎫", title: "Ngân sách", text: "Cơ sở và từng dự phòng báo riêng; dự phòng chưa cấp vẽ nét đứt"}
+      - {emoji: "🤝", title: "Bàn giao", text: "Nét nối hai thẻ khi việc được chuyển tay, kèm nhật ký có giờ"}
+
+  - layout: checklist
+    title: "Chỗ nào trang không biết, trang nói luôn"
+    tone: accent
+    items:
+      - "Tiến độ từng agent là ước lượng, không phải số đo"
+      - "Giai đoạn của main session được suy ra, không quan sát trực tiếp"
+      - "Im lặng 15 phút, hoặc xin chạy 2 phút vẫn chưa bắt đầu: hiện \"bị chặn\""
+      - "Chưa ghi sổ ngân sách thì báo chưa ghi, không vẽ số cho đẹp"
+    note: "Mỗi chỗ chưa biết đều được ghi rõ ngay trên trang."
+
+  - layout: flow
+    variant: after
+    title: "Số liệu từ đâu ra"
+    steps:
+      - {emoji: "👀", text: "Một hook quan sát ghi mỗi lần subagent được gọi, bắt đầu, dừng. Nó chỉ ghi, không bao giờ chặn"}
+      - {emoji: "📒", text: "Sổ ngân sách của yêu cầu cho biết trần và các dự phòng"}
+      - {emoji: "🖥️", text: "Trang dựng lại trạng thái từ hai nguồn đó"}
+    note: "Không lưu prompt, câu trả lời đầy đủ, tham số công cụ hay đường dẫn transcript."
+
+  - layout: features
+    title: "Xem lại như phát video"
+    items:
+      - {emoji: "⏪", title: "Kéo thanh thời gian", text: "Về bất kỳ lúc nào trong lượt chạy; phát 1×, 2×, 4× hoặc 8×"}
+      - {emoji: "🔀", title: "Hai cách nhìn", text: "Subagent Claude theo tầng T0–T3, hoặc pipeline VPS"}
+      - {emoji: "🌗", title: "Sáng, tối, 3 ngôn ngữ", text: "Tiếng Việt, tiếng Nhật, tiếng Anh"}
+      - {emoji: "▶️", title: "Chưa có dữ liệu", text: "Trang mở thẳng vào lượt chạy mẫu để bạn xem thử"}
+
+  - layout: checklist
+    title: "Chỉ đọc, mặc định chỉ trên máy bạn"
+    tone: ok
+    items:
+      - "Không giao việc, không hủy việc từ trang"
+      - "Mặc định chỉ lắng nghe ở 127.0.0.1 và từ chối yêu cầu mang tên máy (Host) lạ"
+      - "Trang không có đăng nhập: trên VPS hãy vào bằng SSH tunnel"
+      - "File sự kiện chỉ chủ file đọc được và nằm ngoài git"
+    note: "Hook hỏng thì phiên làm việc vẫn chạy tiếp; tắt hẳn bằng một biến môi trường."
+
+  - layout: checklist
+    title: "Nói thật về giới hạn"
+    tone: bad
+    items:
+      - "Repo đang private: bài này chia sẻ cách làm, không phát hành"
+      - "Hook mới kiểm trên một bản Claude Code và một loại agent; nâng cấp thì kiểm lại"
+      - "Ở bản đã kiểm, thẻ chưa có ghi chú câu trả lời cuối của subagent, chỉ có mô tả tác vụ"
+      - "Muốn giao hay hủy việc từ trang là một yêu cầu khác"
+
+  - layout: poll
+    eyebrow: "Hỏi bạn"
+    question: "Bạn muốn nhìn thấy gì nhất?"
+    options:
+      - "Ai đang làm, ai đang chờ"
+      - "Đã tốn bao nhiêu lượt agent"
+      - "Xem lại cả lượt chạy"
+      - "Mình chưa dùng subagent"
+    hint: "Comment A, B, C hoặc D nhé"
+
+platforms:
+  facebook:
+    caption: |
+      Giao việc cho AI xong, bạn có hay tự hỏi: agent nào đang làm, agent nào đang chờ, ngân sách dùng hết mấy phần rồi? 👇
+
+      Mình dựng một trang "văn phòng agent" để nhìn một lượt là biết. Main session ngồi trên cùng, các phòng ban bên dưới, mỗi agent một bàn, có nét nối giữa hai thẻ khi việc được bàn giao. Trang chỉ đọc.
+
+      Mỗi thẻ cho biết trạng thái (rảnh, đang chờ, đang làm, đang review, xong, bị chặn), tiến độ, và ngân sách: phần cơ sở và từng dự phòng báo riêng, dự phòng chưa cấp vẽ nét đứt. Có nhật ký bàn giao kèm giờ, và thanh thời gian để xem lại cả lượt chạy ở tốc độ 1×, 2×, 4× hoặc 8×.
+
+      Trang cũng nói thật chỗ nào nó không biết. Tiến độ từng agent chỉ là ước lượng (có dấu ~, tối đa 95% cho đến khi agent báo xong). Giai đoạn của main session là suy ra, không quan sát trực tiếp. Im lặng 15 phút, hoặc xin chạy 2 phút vẫn chưa bắt đầu thì hiện "bị chặn". Chưa ghi sổ ngân sách thì báo chưa ghi.
+
+      Số liệu đến từ một hook quan sát, chỉ ghi và không bao giờ chặn công cụ. Nó không lưu prompt, câu trả lời đầy đủ, tham số công cụ hay đường dẫn transcript. Trang mặc định chỉ mở ở 127.0.0.1, không có đăng nhập, nên trên VPS hãy vào bằng SSH tunnel.
+
+      Hình trong bài là một lượt chạy mẫu đã ghi sẵn, không phải yêu cầu thật. Giới hạn: repo đang private; hook mới kiểm trên một bản Claude Code và một loại agent; muốn giao hay hủy việc từ trang là một yêu cầu khác.
+
+      Bạn muốn nhìn thấy gì nhất trên một trang như vậy?
+    hashtags: [Claude, AI, tudonghoa, laptrinh, subagent]

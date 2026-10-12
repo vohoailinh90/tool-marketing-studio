@@ -295,9 +295,9 @@ python3 studio.py check                   # every campaign: 0 errors
 python3 scripts/layout_check.py           # repository layout
 python3 scripts/i18n_check.py             # app catalogs in vi/ja/en
 python3 scripts/mutation_check.py --all   # the safety-rail tests catch their own removal
-cd web && npm run build                   # typecheck + build the UI
+(cd web && npm run build)                 # typecheck + build the UI (a subshell: the block runs top to bottom from the root)
 python3 scripts/office/snapshot.py --check            # the agent office's data contract
-cd office && npm run typecheck && npm run lint && npm run build   # the agent office page
+(cd office && npm run typecheck && npm run lint && npm run build)   # the agent office page
 ```
 
 ## Repository layout

@@ -1,3 +1,4 @@
+import re
 import shutil
 import tempfile
 import unittest
@@ -28,6 +29,17 @@ class RepoTests(unittest.TestCase):
                 new_tool(root, "../evil", "Evil")
         finally:
             shutil.rmtree(root, ignore_errors=True)
+
+    def test_the_verification_commands_in_claude_md_run_top_to_bottom_from_the_root(self):
+        """A bare `cd` leaves every later line in the wrong directory (`python3 scripts/...` then fails)."""
+        text = (ROOT / "CLAUDE.md").read_text(encoding="utf-8")
+        block = re.search(r"## Verification commands\s+```bash\n(.*?)```", text, re.DOTALL)
+        self.assertIsNotNone(block, "the Verification commands block moved: update this test")
+        commands = [command for command in (re.sub(r"\s+#.*$", "", line).strip() for line in block.group(1).splitlines()) if command]
+        self.assertGreaterEqual(len(commands), 6)
+        for command in commands:
+            if re.search(r"(^|[;&|(]\s*)cd\s", command):
+                self.assertTrue(command.startswith("(") and command.endswith(")"), f"{command!r}: wrap the cd in a subshell")
 
     def test_ui_catalogs_agree(self):
         import importlib.util

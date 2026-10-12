@@ -1,0 +1,14 @@
+# Mutation manifest — see scripts/mutation_check.py
+#
+# The Verification commands block of CLAUDE.md is run top to bottom by whoever follows it. A bare `cd` leaves
+# every later line in the wrong directory, so the Node builds are subshells; this entry makes one bare again.
+
+target: CLAUDE.md
+note: A documentation line is the whole defence, so the test that reads it is the only thing that can notice it going.
+mutations:
+- label: the office build is a bare cd, so the next line would run from office/
+  find: |-
+    (cd office && npm run typecheck && npm run lint && npm run build)
+  replace: |-
+    cd office && npm run typecheck && npm run lint && npm run build
+  test: tests.test_repo.RepoTests.test_the_verification_commands_in_claude_md_run_top_to_bottom_from_the_root

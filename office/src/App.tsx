@@ -16,6 +16,7 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
 import { usePlayback } from "@/hooks/use-playback"
 import { useSnapshot } from "@/hooks/use-snapshot"
 import type { Source } from "@/lib/api"
+import { answersFeature, keepFeature } from "@/lib/feature"
 import type { Mode } from "@/lib/snapshot"
 
 /** Where in a sample the page starts, so the first frame already has agents at work. */
@@ -38,14 +39,13 @@ export default function App() {
   const params = React.useMemo(() => ({ mode, source, at: cursor, feature }), [mode, source, cursor, feature])
   const { snapshot: received, error } = useSnapshot(params)
   // An answer for the previous mode or source may still be on screen for a moment: do not draw it as the new one.
-  const snapshot =
-    received &&
-    received.mode === mode &&
-    (received.demo !== undefined) === (source === "demo") &&
-    (feature === null || received.feature === feature)
-      ? received
-      : null
+  const current = received && received.mode === mode && (received.demo !== undefined) === (source === "demo") ? received : null
+  const snapshot = current && answersFeature(current, feature) ? current : null
   const span = snapshot?.span ?? null
+
+  // A feature that is gone from the answer's own list (removed while picked) cannot be asked for again: drop the pick.
+  const kept = keepFeature(current, feature)
+  if (kept !== feature) setFeature(kept)
 
   React.useEffect(() => {
     document.title = t("app.title")
@@ -64,8 +64,15 @@ export default function App() {
     if (source === "demo" && cursor === null && span) setCursor(span.start + (span.end - span.start) * SAMPLE_START)
   }, [source, cursor, span])
 
+  // The sample's pause before it plays again. Anything that moves the cursor by hand ends it, or it would fire later
+  // and drag a view the person has already left (the live one, another mode) back to the start of the sample.
   const loopTimer = React.useRef<number | undefined>(undefined)
-  React.useEffect(() => () => window.clearTimeout(loopTimer.current), [])
+  const cancelHold = () => window.clearTimeout(loopTimer.current)
+  React.useEffect(() => cancelHold, [])
+  const moveCursor = (next: number | null) => {
+    cancelHold()
+    setCursor(next)
+  }
 
   usePlayback({
     running: playing && cursor !== null,
@@ -76,7 +83,7 @@ export default function App() {
     onEnd: () => {
       if (source === "live") setCursor(null)
       else if (span) {
-        window.clearTimeout(loopTimer.current)
+        cancelHold()
         loopTimer.current = window.setTimeout(() => setCursor(span.start), SAMPLE_HOLD_MS)
       }
     },
@@ -84,13 +91,13 @@ export default function App() {
 
   const changeMode = (next: Mode) => {
     setMode(next)
-    setCursor(null)
+    moveCursor(null)
     setFeature(null)
     setSelected(null)
   }
   const changeSource = (next: Source) => {
     setSource(next)
-    setCursor(null)
+    moveCursor(null)
     setFeature(null) // a sample ignores the feature filter, so a stale one would reject every answer
     setSelected(null)
   }
@@ -149,17 +156,20 @@ export default function App() {
           cursor={cursor}
           playing={playing}
           speed={speed}
-          onPlaying={setPlaying}
+          onPlaying={(next) => {
+            if (!next) cancelHold()
+            setPlaying(next)
+          }}
           onSpeed={setSpeed}
           onSeek={(next) => {
-            setCursor(next)
+            moveCursor(next)
             if (source === "live") setPlaying(false)
           }}
           onRestart={() => {
-            if (span) setCursor(span.start)
+            moveCursor(span ? span.start : cursor)
             setPlaying(true)
           }}
-          onLive={() => setCursor(null)}
+          onLive={() => moveCursor(null)}
         />
 
         <Notices snapshot={snapshot} mode={mode} error={error} source={source} onSample={() => changeSource("demo")} />

@@ -88,5 +88,8 @@ jobs:
       - name: Edge geometry of the handoff lines (Node type stripping)
         working-directory: ${{ github.workspace }}
         run: node --experimental-strip-types tests/web/office_edges_check.mts
+      - name: Feature filter (Node type stripping)
+        working-directory: ${{ github.workspace }}
+        run: node --experimental-strip-types tests/web/office_feature_check.mts
       - name: Committed office/dist matches the source
         run: git diff --exit-code -- dist

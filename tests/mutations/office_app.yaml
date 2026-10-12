@@ -12,3 +12,28 @@ mutations:
   replace: |-
     // the feature filter is kept across a source change
   test: tests.test_office_ui.SourceHygieneTests.test_switching_the_source_resets_the_feature_filter
+- label: a hand-made cursor move no longer ends the sample's pause, so it fires later and drags the live view back to the sample
+  find: |-
+    cancelHold()
+        setCursor(next)
+  replace: |-
+    setCursor(next)
+  test: tests.test_office_ui.SourceHygieneTests.test_every_hand_made_cursor_move_ends_the_samples_pause
+- label: going back to live leaves the cursor move to a bare setCursor, so the pause survives it
+  find: |-
+    onLive={() => moveCursor(null)}
+  replace: |-
+    onLive={() => setCursor(null)}
+  test: tests.test_office_ui.SourceHygieneTests.test_every_hand_made_cursor_move_ends_the_samples_pause
+- label: pausing the player leaves the sample's pause running, so it rewinds a view the person paused
+  find: |-
+    if (!next) cancelHold()
+  replace: |-
+    // pausing does not end the pause
+  test: tests.test_office_ui.SourceHygieneTests.test_every_hand_made_cursor_move_ends_the_samples_pause
+- label: the filter is no longer dropped when its feature is gone from the answer, so the page keeps asking for it
+  find: |-
+    if (kept !== feature) setFeature(kept)
+  replace: |-
+    // the filter is kept whatever the answer says
+  test: tests.test_office_ui.SourceHygieneTests.test_the_page_draws_an_answer_whose_feature_no_longer_exists_and_drops_the_filter

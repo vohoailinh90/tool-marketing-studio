@@ -131,6 +131,9 @@ def run_test(target: str) -> bool:
     """True when the test failed, which is what a mutation must cause."""
     environment = dict(os.environ)
     environment[DEPTH_VAR] = str(depth() + 1)
+    # A mutation of the same size written in the same second as the clean run would otherwise be
+    # served the clean run's cached bytecode (same source mtime, same size), and survive.
+    environment["PYTHONDONTWRITEBYTECODE"] = "1"
     result = subprocess.run(
         [sys.executable, "-m", "unittest", target],
         cwd=ROOT, capture_output=True, text=True, check=False, env=environment,

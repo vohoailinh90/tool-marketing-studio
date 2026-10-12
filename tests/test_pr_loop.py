@@ -79,7 +79,15 @@ class PullRequestLoopTests(unittest.TestCase):
         """Step 1 posts the trigger comment; the ban on the literal string elsewhere must not contradict it (section 3)."""
         self.assertIn("except the intentional trigger comments the protocol authorizes", self.section)
         self.assertIn("each review request of steps 1 and 3, a security review", self.section)
-        self.assertIn("each task-contract request (BRAINSTORM, IMPLEMENT, FIX)", self.section)
+        self.assertIn("each task-contract request (BRAINSTORM, INVESTIGATE, AUDIT, IMPLEMENT, FIX)", self.section)
+
+    def test_the_trigger_exception_names_every_task_contract_mode(self) -> None:
+        """The exception must list exactly the modes section 5 defines, or a supported mode becomes forbidden."""
+        modes = re.search(r'^mode: "([A-Z |]+)"', read(PROTOCOL), re.MULTILINE)
+        self.assertIsNotNone(modes, "section 5 no longer lists the task-contract modes")
+        listed = [m.strip() for m in modes.group(1).split("|")]
+        self.assertGreaterEqual(len(listed), 5)
+        self.assertIn(f"each task-contract request ({', '.join(listed)})", self.section)
 
     def test_the_next_task_is_never_invented(self) -> None:
         self.assertIn("never invent work", self.section)

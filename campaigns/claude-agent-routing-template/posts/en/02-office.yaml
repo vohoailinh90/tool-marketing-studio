@@ -8,7 +8,7 @@ slides:
     emoji: "🏢"
     eyebrow: "A floor plan for your agents"
     title: "Who's **working**, who's **waiting**: one glance"
-    subtitle: "One desk per agent, the main session on top. A page that only reads, never touches."
+    subtitle: "One desk per agent, the main session on top. A read-only view."
 
   - layout: pains
     title: "Handed work to AI agents? You've probably wondered"
@@ -33,12 +33,12 @@ slides:
     note: "That's the whole page, so one look is enough."
 
   - layout: checklist
-    title: "Where it doesn't know, it says so"
+    title: "It tells you what it can't see"
     tone: accent
     items:
       - "Per-agent progress is an estimate, not a measurement"
       - "The main session's phase is inferred, not observed"
-      - "Silent for 15 minutes, or asked to start and still not running after 2: Blocked"
+      - "Silent for 15 minutes, or asked to start and still not running after 2 minutes: Blocked"
       - "No budget recorded? It says none is recorded, no made-up numbers"
     note: "A dashboard that invents numbers is worse than no dashboard."
 
@@ -91,17 +91,20 @@ slides:
 platforms:
   facebook:
     caption: |
-      Handed work to AI agents and then wondered who's actually working, who's waiting, and how much of the budget is gone? 👇
+      Delegating work to AI agents is easy. Knowing what they're doing right now is harder. 👇
 
-      I built a small "agent office" page so one look answers it. The main session sits on top, departments below, one desk per agent, and a line joins two cards while work is handed over. The page only reads.
+      I put together an "agent office": one read-only page with the main session at the top, a desk for every agent, and a line between two cards while work changes hands.
 
-      Each card shows a state (Idle, Waiting, Working, Reviewing, Done, Blocked), progress, and budget: the base and each reserve are shown separately, and a reserve not yet granted is dashed. There's a timestamped handoff log and a time slider to replay a whole run at 1×, 2×, 4× or 8×.
+      What you see at a glance:
+      → A state per agent: Idle, Waiting, Working, Reviewing, Done or Blocked
+      → Progress and budget, with the base and each reserve counted separately (a reserve not granted yet is dashed)
+      → A timestamped handoff log, plus a slider that replays the whole run at 1×, 2×, 4× or 8×
 
-      My favourite part is that the page says where it doesn't know. Per-agent progress is an estimate (marked ~, capped at 95% until the agent reports done). The main session's phase is inferred. Silent for 15 minutes, or asked to start and still not running after 2, shows as Blocked. No budget recorded? It says so.
+      It also tells you what it can't see. Per-agent progress is an estimate, marked ~ and capped at 95% until the agent reports done. The main session's phase is inferred. An agent that has been silent for 15 minutes, or was asked to start and hasn't within 2 minutes, shows as Blocked. If no budget was recorded, the page says so instead of drawing numbers.
 
-      The numbers come from an observer hook that only records and never blocks a tool. It doesn't store prompts, full replies, tool inputs or transcript paths. The page binds to 127.0.0.1 by default and has no login, so on a VPS use an SSH tunnel.
+      Under the hood, a small observer hook logs each subagent's spawn, start and stop. It never blocks a tool, and it doesn't store prompts, full replies, tool inputs or transcript paths. The page itself listens on 127.0.0.1 by default and has no login, so on a VPS reach it through an SSH tunnel.
 
-      The images are a recorded sample run, not a real requirement. Limits: the repo is private; the hook was checked on one Claude Code build and one agent type; assigning or cancelling work from the page would be a different requirement.
+      The screenshots show a recorded sample run, not a real requirement. Fair warnings: the repo is private, the hook has only been checked on one Claude Code build and one agent type, and assigning or cancelling work from the page would be a different job.
 
-      What would you most want to see on a page like this?
+      What would you want a page like this to show first?
     hashtags: [Claude, AI, agents, devtools, observability]

@@ -4,11 +4,11 @@
 # not fail with `bad option`; this entry lowers the gate and requires the version test to notice.
 
 target: tests/test_office_ui.py
-note: The gate is a constant the version test pins both sides of.
+note: The gate is a constant the version test pins both sides of. The replacement is deliberately not the same length as the original, so Python's bytecode cache (keyed on mtime and size) cannot mistake the mutated file for the restored one.
 mutations:
 - label: the gate admits Node 20, which dies on --experimental-strip-types instead of skipping
   find: |-
     STRIP_TYPES_FROM = (22, 6)
   replace: |-
-    STRIP_TYPES_FROM = (20, 0)
+    STRIP_TYPES_FROM = (20,)
   test: tests.test_office_ui.NodeGateTests.test_only_a_node_that_knows_type_stripping_runs_the_edge_check

@@ -1,0 +1,21 @@
+# Mutation manifest — see scripts/mutation_check.py
+#
+# The page draws an answer only when it belongs to the feature filter the person picked. A feature removed while it was
+# picked is no longer listed, so the answer for the fallback must stand and the filter must be dropped; these entries break
+# each half and require the Node-run check to notice.
+
+target: office/src/lib/feature.ts
+note: Pure functions, run under Node type stripping by tests/web/office_feature_check.mts (skipped where Node is older than 22.6).
+mutations:
+- label: an answer that no longer lists the picked feature is refused, so the page sits on the loading state for good
+  find: |-
+    answer.feature === wanted || !answer.features.includes(wanted)
+  replace: |-
+    answer.feature === wanted
+  test: tests.test_office_ui.EdgeGeometryTests.test_a_feature_that_vanished_from_the_answer_is_dropped_instead_of_waited_for
+- label: the filter is never dropped, so the removed feature is asked for again on every poll
+  find: |-
+    wanted !== null && answer !== null && !answer.features.includes(wanted) ? null : wanted
+  replace: |-
+    wanted
+  test: tests.test_office_ui.EdgeGeometryTests.test_a_feature_that_vanished_from_the_answer_is_dropped_instead_of_waited_for

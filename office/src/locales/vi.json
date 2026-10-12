@@ -1,0 +1,261 @@
+{
+  "app": {
+    "title": "Văn phòng agent"
+  },
+  "mode": {
+    "label": "Chế độ xem",
+    "claude": "Subagent Claude",
+    "team": "Pipeline VPS"
+  },
+  "source": {
+    "label": "Nguồn dữ liệu",
+    "live": "Dữ liệu thật",
+    "demo": "Chạy mẫu"
+  },
+  "player": {
+    "label": "Điều khiển phát lại",
+    "live": "Trực tiếp",
+    "replay": "Xem lại",
+    "sample": "Chạy mẫu",
+    "play": "Chạy",
+    "pause": "Tạm dừng",
+    "restart": "Từ đầu",
+    "speed": "Tốc độ phát",
+    "position": "Thời điểm trong lượt chạy",
+    "go_live": "Về trực tiếp"
+  },
+  "theme": {
+    "to_light": "Chuyển sang giao diện sáng",
+    "to_dark": "Chuyển sang giao diện tối"
+  },
+  "language": {
+    "label": "Ngôn ngữ"
+  },
+  "status": {
+    "loading": "Đang tải…"
+  },
+  "lanes": {
+    "label": "Phòng ban"
+  },
+  "lane": {
+    "requirements": "Yêu cầu",
+    "architecture": "Kiến trúc",
+    "delivery": "Triển khai",
+    "verification": "Kiểm chứng",
+    "other": "Khác",
+    "claude": "Claude · bạn tự chạy",
+    "build": "Viết test và code",
+    "review": "Review",
+    "scripts": "Cổng tự động · script",
+    "count_one": "{count} agent",
+    "count_other": "{count} agent"
+  },
+  "state": {
+    "idle": "Rảnh",
+    "waiting": "Đang chờ",
+    "working": "Đang làm",
+    "reviewing": "Đang review",
+    "done": "Xong",
+    "blocked": "Bị chặn"
+  },
+  "tag": {
+    "received": "nhận việc",
+    "handoff": "bàn giao",
+    "error": "lỗi"
+  },
+  "agent": {
+    "idle": "Chưa có việc",
+    "waiting": "Chưa đến lượt",
+    "working": "Đang làm việc",
+    "done": "Đã xong",
+    "blocked": "Đang bị chặn",
+    "stalled": "Im lặng quá lâu hoặc chưa bao giờ bắt đầu",
+    "progress": "Tiến độ ước lượng",
+    "open": "Xem chi tiết {agent}",
+    "turns": "{used} lượt",
+    "turns_of": "{used}/{max} lượt"
+  },
+  "boss": {
+    "claude": {
+      "name": "Main session",
+      "role": "Điều phối, thiết kế, viết code"
+    },
+    "team": {
+      "name": "team.py",
+      "role": "Script điều phối, không phải model"
+    },
+    "state": {
+      "idle": "Đang rảnh",
+      "waiting": "Đang chờ",
+      "working": "Đang làm việc",
+      "reviewing": "Đang review",
+      "done": "Hoàn tất: mọi việc đã xong.",
+      "blocked": "Đang bị chặn, cần người xem."
+    },
+    "waiting_for": "Chờ {agent}",
+    "waiting_for_task": "Chờ {agent}: {task}"
+  },
+  "requirement": {
+    "unnamed": "Yêu cầu chưa đặt tên"
+  },
+  "progress": {
+    "label": "Tiến độ chung",
+    "none": "Chỉ main session: không có subagent nào để đo."
+  },
+  "phase": {
+    "label": "Giai đoạn của main session",
+    "analysis": "Phân tích",
+    "design": "Thiết kế",
+    "implement": "Triển khai",
+    "verify": "Kiểm chứng",
+    "spec": "Spec",
+    "tester": "Test",
+    "coder": "Code",
+    "review": "Review",
+    "pack": "Đóng gói",
+    "audit": "Kiểm toán"
+  },
+  "stats": {
+    "agents": "agent tham gia",
+    "total": "tổng việc",
+    "running": "đang chạy",
+    "done": "hoàn thành",
+    "blocked": "bị chặn"
+  },
+  "budget": {
+    "title": {
+      "claude": "Ngân sách subagent",
+      "team": "Giới hạn pipeline"
+    },
+    "slot": {
+      "base": "Cơ sở",
+      "analyst_reserve": "Dự phòng phân tích",
+      "escalation_reserve": "Dự phòng kiểm chứng"
+    },
+    "pending": "Nét đứt: dự phòng chưa được cấp.",
+    "note": {
+      "claude": "Hook agent_budget.py từ chối lần spawn vượt trần. Cơ sở và dự phòng được báo riêng."
+    },
+    "none": {
+      "claude": "Chưa ghi sổ ngân sách cho yêu cầu này.",
+      "team": "team.py chưa ghi số lượt thử của coder vào state.json nên chưa hiển thị được."
+    }
+  },
+  "team": {
+    "feature": "Feature",
+    "awaiting_spec": "Chờ bạn viết spec bằng Claude Code.",
+    "awaiting_audit": "Chờ bạn chạy kiểm toán bằng Claude Code."
+  },
+  "log": {
+    "title": "Nhật ký bàn giao",
+    "empty": "Chưa có sự kiện nào.",
+    "kind": {
+      "start": "nhận việc",
+      "done": "xong",
+      "fail": "lỗi",
+      "warn": "cảnh báo"
+    }
+  },
+  "notice": {
+    "try_sample": "Xem chạy mẫu",
+    "empty": {
+      "title": "Chưa có dữ liệu thật",
+      "body": "Bật hook rồi ghi sổ ngân sách cho yêu cầu đang làm, trang sẽ tự cập nhật."
+    },
+    "no_events": {
+      "title": "Chưa thấy sự kiện nào",
+      "body": "Đã có sổ ngân sách nhưng hook chưa ghi sự kiện. Hook có đang bật không?"
+    },
+    "no_ledger": {
+      "title": "Chưa ghi sổ ngân sách",
+      "body": "Đã thấy sự kiện nhưng chưa biết yêu cầu thuộc tầng nào. Ghi sổ để thấy ngân sách và vai dự kiến."
+    },
+    "no_features": {
+      "title": "Không thấy feature nào của team.py",
+      "body": "Chạy server trên máy có thư mục làm việc của team.py, hoặc chỉ đường dẫn bằng --team-home."
+    },
+    "error": {
+      "title": "Không đọc được dữ liệu",
+      "body": "Máy chủ trả lỗi ({message}). Trang sẽ thử lại."
+    }
+  },
+  "detail": {
+    "close": "Đóng",
+    "now": "Hiện tại",
+    "task": "Việc được giao",
+    "progress": "Tiến độ",
+    "progress_hint": "Ước lượng: số lần gọi công cụ trên số lượt tối đa của agent. Chỉ thành 100% khi agent báo xong.",
+    "turns": "Lượt công cụ",
+    "turns_hint": "Một lượt có thể gọi nhiều công cụ, nên số này có thể vượt mức tối đa của lượt.",
+    "model": "Model",
+    "effort": "Mức nỗ lực",
+    "tokens": "Token",
+    "duration": "Thời gian chạy",
+    "runs": "Số lần chạy",
+    "since": "Từ lúc"
+  },
+  "footer": {
+    "sample": "Số liệu của lượt chạy mẫu được ghi lại để xem hình dáng, không phải của yêu cầu thật.",
+    "estimate": "Giai đoạn của main session được suy ra từ vai nào đang chạy, không quan sát trực tiếp. Tiến độ từng agent là ước lượng."
+  },
+  "roster": {
+    "requirement-analyst": {
+      "role": "Làm rõ yêu cầu",
+      "idle": "Chưa có việc"
+    },
+    "architecture-critic": {
+      "role": "Phản biện thiết kế",
+      "idle": "Chưa có việc"
+    },
+    "architect": {
+      "role": "Thiết kế kiến trúc",
+      "idle": "Không kích hoạt ở tầng này"
+    },
+    "implementer": {
+      "role": "Viết code",
+      "idle": "Chỉ dùng khi leo thang"
+    },
+    "code-reviewer": {
+      "role": "Review diff và kiểm chứng",
+      "idle": "Chưa có việc"
+    },
+    "code-reviewer-t3": {
+      "role": "Review diff và kiểm chứng",
+      "idle": "Chưa có việc"
+    },
+    "code-reviewer-verify": {
+      "role": "Reviewer thay thế khi nặng probe",
+      "idle": "Chỉ khi review nặng probe"
+    },
+    "test-engineer": {
+      "role": "Thiết kế kiểm chứng",
+      "idle": "Dự phòng, chờ reviewer leo thang"
+    },
+    "claude-spec": {
+      "role": "Viết spec.md, tasks.md",
+      "name": "Claude · spec"
+    },
+    "claude-audit": {
+      "role": "Kiểm toán, ra verdict.md",
+      "name": "Claude · audit"
+    },
+    "tester": {
+      "role": "Viết test chấp nhận"
+    },
+    "coder": {
+      "role": "Viết code đến khi gates xanh"
+    },
+    "reviewer": {
+      "role": "Pre-review, repo chỉ đọc"
+    },
+    "gates": {
+      "role": "Chạy test trong checkout sạch"
+    },
+    "pack": {
+      "role": "Gói audit-pack.md"
+    },
+    "other": {
+      "role": "Agent khác"
+    }
+  }
+}

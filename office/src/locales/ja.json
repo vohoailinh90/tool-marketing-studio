@@ -1,0 +1,261 @@
+{
+  "app": {
+    "title": "エージェントオフィス"
+  },
+  "mode": {
+    "label": "表示",
+    "claude": "Claude サブエージェント",
+    "team": "VPS パイプライン"
+  },
+  "source": {
+    "label": "データの取得元",
+    "live": "実データ",
+    "demo": "サンプル実行"
+  },
+  "player": {
+    "label": "再生コントロール",
+    "live": "ライブ",
+    "replay": "リプレイ",
+    "sample": "サンプル実行",
+    "play": "再生",
+    "pause": "一時停止",
+    "restart": "最初から",
+    "speed": "再生速度",
+    "position": "実行内の位置",
+    "go_live": "ライブに戻る"
+  },
+  "theme": {
+    "to_light": "ライトテーマに切り替える",
+    "to_dark": "ダークテーマに切り替える"
+  },
+  "language": {
+    "label": "言語"
+  },
+  "status": {
+    "loading": "読み込み中…"
+  },
+  "lanes": {
+    "label": "部門"
+  },
+  "lane": {
+    "requirements": "要件",
+    "architecture": "アーキテクチャ",
+    "delivery": "実装",
+    "verification": "検証",
+    "other": "その他",
+    "claude": "Claude・手動で実行",
+    "build": "テストとコード",
+    "review": "レビュー",
+    "scripts": "自動ゲート・スクリプト",
+    "count_one": "{count} 体",
+    "count_other": "{count} 体"
+  },
+  "state": {
+    "idle": "待機",
+    "waiting": "待ち",
+    "working": "作業中",
+    "reviewing": "レビュー中",
+    "done": "完了",
+    "blocked": "停止中"
+  },
+  "tag": {
+    "received": "受領",
+    "handoff": "引き渡し",
+    "error": "エラー"
+  },
+  "agent": {
+    "idle": "担当なし",
+    "waiting": "出番待ち",
+    "working": "作業中",
+    "done": "完了しました",
+    "blocked": "停止しています",
+    "stalled": "長時間応答がないか、開始されていません",
+    "progress": "進捗の推定",
+    "open": "{agent} の詳細を表示",
+    "turns": "{used} ターン",
+    "turns_of": "{used}/{max} ターン"
+  },
+  "boss": {
+    "claude": {
+      "name": "メインセッション",
+      "role": "調整・設計・実装"
+    },
+    "team": {
+      "name": "team.py",
+      "role": "パイプラインを動かすのはモデルではなくスクリプトです"
+    },
+    "state": {
+      "idle": "待機中",
+      "waiting": "待機しています",
+      "working": "作業中です",
+      "reviewing": "レビュー中です",
+      "done": "完了しました。すべての作業が終わっています。",
+      "blocked": "停止しています。確認が必要です。"
+    },
+    "waiting_for": "{agent} を待っています",
+    "waiting_for_task": "{agent} を待っています: {task}"
+  },
+  "requirement": {
+    "unnamed": "名前のない要件"
+  },
+  "progress": {
+    "label": "全体の進捗",
+    "none": "メインセッションのみのため、測るサブエージェントはありません。"
+  },
+  "phase": {
+    "label": "メインセッションの段階",
+    "analysis": "分析",
+    "design": "設計",
+    "implement": "実装",
+    "verify": "検証",
+    "spec": "仕様",
+    "tester": "テスト",
+    "coder": "コード",
+    "review": "レビュー",
+    "pack": "パック",
+    "audit": "監査"
+  },
+  "stats": {
+    "agents": "関与するエージェント",
+    "total": "タスク合計",
+    "running": "実行中",
+    "done": "完了",
+    "blocked": "停止中"
+  },
+  "budget": {
+    "title": {
+      "claude": "サブエージェント予算",
+      "team": "パイプラインの上限"
+    },
+    "slot": {
+      "base": "基本枠",
+      "analyst_reserve": "分析の予備枠",
+      "escalation_reserve": "検証の予備枠"
+    },
+    "pending": "破線は、まだ付与されていない予備枠です。",
+    "note": {
+      "claude": "agent_budget.py フックは上限を超える起動を拒否します。基本枠と予備枠は別々に表示します。"
+    },
+    "none": {
+      "claude": "この要件の予算はまだ記録されていません。",
+      "team": "team.py は coder の試行回数を state.json に記録しないため、まだ表示できません。"
+    }
+  },
+  "team": {
+    "feature": "フィーチャー",
+    "awaiting_spec": "Claude Code での仕様の作成を待っています。",
+    "awaiting_audit": "Claude Code での監査の実行を待っています。"
+  },
+  "log": {
+    "title": "引き継ぎログ",
+    "empty": "まだイベントはありません。",
+    "kind": {
+      "start": "開始",
+      "done": "完了",
+      "fail": "失敗",
+      "warn": "警告"
+    }
+  },
+  "notice": {
+    "try_sample": "サンプル実行を見る",
+    "empty": {
+      "title": "実データはまだありません",
+      "body": "フックを有効にして、作業中の要件の予算を記録すると、ページは自動で更新されます。"
+    },
+    "no_events": {
+      "title": "イベントがまだ見つかりません",
+      "body": "予算は記録されていますが、フックがイベントを書き込んでいません。フックは有効ですか?"
+    },
+    "no_ledger": {
+      "title": "予算が記録されていません",
+      "body": "イベントは届いていますが、要件のティアが不明です。予算を記録すると、上限と想定される役割が表示されます。"
+    },
+    "no_features": {
+      "title": "team.py のフィーチャーが見つかりません",
+      "body": "team.py の作業ディレクトリがあるマシンでサーバーを起動するか、--team-home で指定してください。"
+    },
+    "error": {
+      "title": "データを読み込めません",
+      "body": "サーバーがエラーを返しました({message})。ページは再試行します。"
+    }
+  },
+  "detail": {
+    "close": "閉じる",
+    "now": "現在",
+    "task": "割り当てられた作業",
+    "progress": "進捗",
+    "progress_hint": "推定値です。ツール呼び出し回数をエージェントの最大ターン数で割っています。100% になるのは完了報告を受けたときだけです。",
+    "turns": "ツール呼び出し",
+    "turns_hint": "1 ターンで複数回呼び出すことがあるため、最大ターン数を超えることがあります。",
+    "model": "モデル",
+    "effort": "エフォート",
+    "tokens": "トークン",
+    "duration": "実行時間",
+    "runs": "実行回数",
+    "since": "開始時刻"
+  },
+  "footer": {
+    "sample": "サンプル実行の数値は画面の見た目を確認するための記録で、実際の要件のものではありません。",
+    "estimate": "メインセッションの段階は、どの役割が動いているかから推定したもので、直接観測したものではありません。各エージェントの進捗は推定値です。"
+  },
+  "roster": {
+    "requirement-analyst": {
+      "role": "要件を明確にする",
+      "idle": "担当なし"
+    },
+    "architecture-critic": {
+      "role": "設計に異議を唱える",
+      "idle": "担当なし"
+    },
+    "architect": {
+      "role": "アーキテクチャを設計する",
+      "idle": "このティアでは使いません"
+    },
+    "implementer": {
+      "role": "コードを書く",
+      "idle": "エスカレーション時のみ"
+    },
+    "code-reviewer": {
+      "role": "差分をレビューし検証する",
+      "idle": "担当なし"
+    },
+    "code-reviewer-t3": {
+      "role": "差分をレビューし検証する",
+      "idle": "担当なし"
+    },
+    "code-reviewer-verify": {
+      "role": "検証が重い場合の代替レビュアー",
+      "idle": "検証が重いレビューのみ"
+    },
+    "test-engineer": {
+      "role": "検証を設計する",
+      "idle": "予備。レビュアーのエスカレーション待ち"
+    },
+    "claude-spec": {
+      "role": "spec.md と tasks.md を書く",
+      "name": "Claude · spec"
+    },
+    "claude-audit": {
+      "role": "監査し verdict.md を出す",
+      "name": "Claude · audit"
+    },
+    "tester": {
+      "role": "受け入れテストを書く"
+    },
+    "coder": {
+      "role": "ゲートが通るまでコードを書く"
+    },
+    "reviewer": {
+      "role": "事前レビュー(リポジトリは読み取り専用)"
+    },
+    "gates": {
+      "role": "クリーンなチェックアウトでテストを実行"
+    },
+    "pack": {
+      "role": "audit-pack.md を作る"
+    },
+    "other": {
+      "role": "その他のエージェント"
+    }
+  }
+}

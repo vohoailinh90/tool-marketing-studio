@@ -1,0 +1,261 @@
+{
+  "app": {
+    "title": "Agent office"
+  },
+  "mode": {
+    "label": "View",
+    "claude": "Claude subagents",
+    "team": "VPS pipeline"
+  },
+  "source": {
+    "label": "Data source",
+    "live": "Live data",
+    "demo": "Sample run"
+  },
+  "player": {
+    "label": "Playback controls",
+    "live": "Live",
+    "replay": "Replay",
+    "sample": "Sample run",
+    "play": "Play",
+    "pause": "Pause",
+    "restart": "Restart",
+    "speed": "Playback speed",
+    "position": "Position in the run",
+    "go_live": "Back to live"
+  },
+  "theme": {
+    "to_light": "Switch to light theme",
+    "to_dark": "Switch to dark theme"
+  },
+  "language": {
+    "label": "Language"
+  },
+  "status": {
+    "loading": "Loading…"
+  },
+  "lanes": {
+    "label": "Departments"
+  },
+  "lane": {
+    "requirements": "Requirements",
+    "architecture": "Architecture",
+    "delivery": "Delivery",
+    "verification": "Verification",
+    "other": "Other",
+    "claude": "Claude · run by you",
+    "build": "Tests and code",
+    "review": "Review",
+    "scripts": "Automatic gates · scripts",
+    "count_one": "{count} agent",
+    "count_other": "{count} agents"
+  },
+  "state": {
+    "idle": "Idle",
+    "waiting": "Waiting",
+    "working": "Working",
+    "reviewing": "Reviewing",
+    "done": "Done",
+    "blocked": "Blocked"
+  },
+  "tag": {
+    "received": "received",
+    "handoff": "handed over",
+    "error": "error"
+  },
+  "agent": {
+    "idle": "Nothing to do",
+    "waiting": "Not its turn yet",
+    "working": "At work",
+    "done": "Finished",
+    "blocked": "Blocked",
+    "stalled": "Silent for too long, or never started",
+    "progress": "Estimated progress",
+    "open": "Show details for {agent}",
+    "turns": "{used} turns",
+    "turns_of": "{used}/{max} turns"
+  },
+  "boss": {
+    "claude": {
+      "name": "Main session",
+      "role": "Coordinates, designs, writes code"
+    },
+    "team": {
+      "name": "team.py",
+      "role": "A script, not a model, runs the pipeline"
+    },
+    "state": {
+      "idle": "Idle",
+      "waiting": "Waiting",
+      "working": "Working",
+      "reviewing": "Reviewing",
+      "done": "Complete: everything is done.",
+      "blocked": "Blocked, needs a person to look."
+    },
+    "waiting_for": "Waiting for {agent}",
+    "waiting_for_task": "Waiting for {agent}: {task}"
+  },
+  "requirement": {
+    "unnamed": "Unnamed requirement"
+  },
+  "progress": {
+    "label": "Overall progress",
+    "none": "Main session only: no subagent to measure."
+  },
+  "phase": {
+    "label": "Main session phase",
+    "analysis": "Analysis",
+    "design": "Design",
+    "implement": "Implementation",
+    "verify": "Verification",
+    "spec": "Spec",
+    "tester": "Tests",
+    "coder": "Code",
+    "review": "Review",
+    "pack": "Pack",
+    "audit": "Audit"
+  },
+  "stats": {
+    "agents": "agents involved",
+    "total": "total tasks",
+    "running": "running",
+    "done": "done",
+    "blocked": "blocked"
+  },
+  "budget": {
+    "title": {
+      "claude": "Subagent budget",
+      "team": "Pipeline limits"
+    },
+    "slot": {
+      "base": "Base",
+      "analyst_reserve": "Analyst reserve",
+      "escalation_reserve": "Verification reserve"
+    },
+    "pending": "Dashed: a reserve not granted yet.",
+    "note": {
+      "claude": "The agent_budget.py hook refuses a spawn past the ceiling. Base and reserves are reported separately."
+    },
+    "none": {
+      "claude": "No budget is recorded for this requirement.",
+      "team": "team.py does not record the coder's attempts in state.json, so they cannot be shown yet."
+    }
+  },
+  "team": {
+    "feature": "Feature",
+    "awaiting_spec": "Waiting for you to write the spec in Claude Code.",
+    "awaiting_audit": "Waiting for you to run the audit in Claude Code."
+  },
+  "log": {
+    "title": "Handoff log",
+    "empty": "No events yet.",
+    "kind": {
+      "start": "started",
+      "done": "finished",
+      "fail": "failed",
+      "warn": "warning"
+    }
+  },
+  "notice": {
+    "try_sample": "View the sample run",
+    "empty": {
+      "title": "No live data yet",
+      "body": "Turn the hooks on and record a budget for the requirement in progress; the page then updates by itself."
+    },
+    "no_events": {
+      "title": "No events seen yet",
+      "body": "A budget is recorded but the hook has written no events. Is the hook enabled?"
+    },
+    "no_ledger": {
+      "title": "No budget recorded",
+      "body": "Events are arriving but the requirement's tier is unknown. Record a budget to see the ceiling and the expected roles."
+    },
+    "no_features": {
+      "title": "No team.py feature found",
+      "body": "Run the server on the machine that holds team.py's work directory, or point to it with --team-home."
+    },
+    "error": {
+      "title": "Cannot read the data",
+      "body": "The server answered with an error ({message}). The page will try again."
+    }
+  },
+  "detail": {
+    "close": "Close",
+    "now": "Right now",
+    "task": "Assigned task",
+    "progress": "Progress",
+    "progress_hint": "An estimate: tool calls over the agent's turn limit. It reaches 100% only when the agent reports it is done.",
+    "turns": "Tool calls",
+    "turns_hint": "One turn can make several calls, so this can exceed the turn limit.",
+    "model": "Model",
+    "effort": "Effort",
+    "tokens": "Tokens",
+    "duration": "Run time",
+    "runs": "Runs",
+    "since": "Since"
+  },
+  "footer": {
+    "sample": "The sample run's figures are recorded to show the shape of the page; they are not from a real requirement.",
+    "estimate": "The main session's phase is inferred from which role is running, not observed. Each agent's progress is an estimate."
+  },
+  "roster": {
+    "requirement-analyst": {
+      "role": "Clarifies the requirement",
+      "idle": "Nothing to do"
+    },
+    "architecture-critic": {
+      "role": "Challenges the design",
+      "idle": "Nothing to do"
+    },
+    "architect": {
+      "role": "Designs the architecture",
+      "idle": "Not used at this tier"
+    },
+    "implementer": {
+      "role": "Writes the code",
+      "idle": "Only on escalation"
+    },
+    "code-reviewer": {
+      "role": "Reviews the diff and verifies",
+      "idle": "Nothing to do"
+    },
+    "code-reviewer-t3": {
+      "role": "Reviews the diff and verifies",
+      "idle": "Nothing to do"
+    },
+    "code-reviewer-verify": {
+      "role": "Substitute reviewer for probe-heavy work",
+      "idle": "Only for probe-heavy reviews"
+    },
+    "test-engineer": {
+      "role": "Designs the verification",
+      "idle": "Reserve, waits for the reviewer to escalate"
+    },
+    "claude-spec": {
+      "role": "Writes spec.md and tasks.md",
+      "name": "Claude · spec"
+    },
+    "claude-audit": {
+      "role": "Audits and writes verdict.md",
+      "name": "Claude · audit"
+    },
+    "tester": {
+      "role": "Writes the acceptance tests"
+    },
+    "coder": {
+      "role": "Writes code until the gates pass"
+    },
+    "reviewer": {
+      "role": "Pre-review, read-only repository"
+    },
+    "gates": {
+      "role": "Runs the tests on a clean checkout"
+    },
+    "pack": {
+      "role": "Builds audit-pack.md"
+    },
+    "other": {
+      "role": "Another agent"
+    }
+  }
+}

@@ -12,6 +12,9 @@ they are commercialised. It holds:
   posting history, feedback, metrics and AI drafting/insights.
 - **The app** (`app.py` + `web/`): a local web UI built from the Automation UI Kit on a
   FastAPI server bound to 127.0.0.1.
+- **The agent office** (`office/` + `scripts/office/`): a read-only page that shows which
+  agent is doing what, from the hook log, the agent budget ledger and the VPS team's
+  `state.json`; see `docs/office-dashboard.md`.
 
 Development of the engine and the app follows the routing and agent-team rules below,
 inherited from `vohoailinh90/claude-agent-routing-template`. The three lanes that can do
@@ -263,6 +266,8 @@ Whatever the tier, a check whose answer is computable belongs in a script — se
 - Content: three complete versions, as above.
 - App UI: every string in `web/src/locales/{vi,ja,en}.json`; `python3 scripts/i18n_check.py`
   is the verdict on key parity, empty strings and placeholder parity, and CI runs it.
+  The agent office keeps its catalogs, nested, in `office/src/locales/{vi,ja,en}.json`; the
+  same script checks them.
 - Rendered images: the engine's fixed words live in `mkt/text.py` (`UI`), one entry per language.
 - This repository's harness (`scripts/`, hooks, agent and skill files, CLI output) stays English.
 
@@ -277,6 +282,11 @@ Its copied components live in `web/src/components/ui/`, `components/layout/`,
 `web/dist` is committed so users need no Node: rebuild it (`cd web && npm run build`) in
 the same commit as any `web/src` change.
 
+The agent office (`office/`, React 19 + Tailwind CSS v4 from the same kit) follows the same
+rule: its built `office/dist` is committed, so rebuild it (`cd office && npm run build`) in the
+same commit as any `office/src` change, and keep `@source not "../dist";` in
+`office/src/index.css` so a build never scans the committed one.
+
 ## Verification commands
 
 ```bash
@@ -285,14 +295,17 @@ python3 studio.py check                   # every campaign: 0 errors
 python3 scripts/layout_check.py           # repository layout
 python3 scripts/i18n_check.py             # app catalogs in vi/ja/en
 python3 scripts/mutation_check.py --all   # the safety-rail tests catch their own removal
-cd web && npm run build                   # typecheck + build the UI
+(cd web && npm run build)                 # typecheck + build the UI (a subshell: the block runs top to bottom from the root)
+python3 scripts/office/snapshot.py --check            # the agent office's data contract
+(cd office && npm run typecheck && npm run lint && npm run build)   # the agent office page
 ```
 
 ## Repository layout
 
 The root holds only what a user needs: README, the agent instruction files, dependency
 files, `studio.py` (CLI), `app.py` (the app), `start-app.bat`, `studio.yaml`. The engine is
-`mkt/`, the UI `web/`, tests `tests/`, developer tooling `scripts/`. When a requirement adds
+`mkt/`, the UI `web/`, the agent office `office/` (with its server in `scripts/office/`),
+tests `tests/`, developer tooling `scripts/`. When a requirement adds
 a Python file, use `.claude/skills/repo-layout/SKILL.md`; `python3 scripts/layout_check.py`
 is the verdict and CI runs it.
 

@@ -170,6 +170,8 @@ class PullRequestLoopTests(unittest.TestCase):
         self.assertIn("is an unsuccessful completion, not a clean review", sec17)
         self.assertIn("never a bare 👍 reaction, which names no commit and is an unsuccessful completion under section 17", exit_rule)
         self.assertNotIn("👍", self.section)
+        self.assertNotIn("a clean review may leave only a thumbs-up", protocol)
+        self.assertIn("never as a clean review", protocol)
 
     def test_every_protocol_section_it_cites_exists(self) -> None:
         protocol = read(PROTOCOL)

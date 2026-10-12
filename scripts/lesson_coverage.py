@@ -2,34 +2,40 @@
 """Prove that a lesson post carries every idea of the lesson it was made from.
 
 A course lesson (vohoailinh90/Agentic-coding-course, course/<lang>/lessons/<id>.md)
-is split into atomic blocks: every paragraph, list item, sub-heading, code block
-and diagram inside its `section:` markers. A coverage manifest maps each block
-to the place in the post that carries it -- a slide or the caption -- and quotes
-the words it uses there. "Did the post keep the lesson?" then becomes computable
-(see *Deterministic work is not agent work* in CLAUDE.md):
+is split into atomic blocks: every paragraph, list item (nested items too),
+table row, quote, sub-heading, code block and diagram inside its `section:`
+markers. A coverage manifest maps each block to the place in the post that
+carries it -- a slide or the caption -- and quotes the words it shows there.
+"Did the post keep the lesson?" then becomes computable (see *Deterministic work
+is not agent work* in CLAUDE.md):
 
   - every block of the lesson appears in the manifest exactly once, with the
-    lesson's own text (so a block cannot be dropped or quietly reworded);
+    lesson's own text (so a block cannot be dropped or quietly reworded) --
+    checked against the lesson itself at the commit the manifest pins;
   - every block names a slide that exists, or the caption -- never the first
     comment, which readers can miss, and never the link;
-  - every block's `evidence` is found word for word in that slide or caption
-    (so a mapping cannot claim coverage the post does not show);
-  - a diagram block points at an image slide showing that diagram;
-  - the post has at most 10 slides.
+  - every block's `evidence` -- one quote or a list of quotes -- is found word
+    for word in one visible text field of that slide or caption, no quote is
+    used for two blocks, and the quotes together show at least 30% of the
+    block's words (all of a code block), so three words cannot stand in for a
+    paragraph;
+  - a diagram block points at the image slide showing that diagram;
+  - the post has at most 10 slides, and every post of a course campaign has a
+    manifest.
 
 Whether a paraphrase is faithful stays a human judgement; this script only
 makes sure nothing is missing and every claim of coverage is visible.
 
     python3 scripts/lesson_coverage.py extract LESSON.md --lesson ID --commit SHA > coverage.yaml
-    python3 scripts/lesson_coverage.py check campaigns/<c>/coverage/*.yaml
-    python3 scripts/lesson_coverage.py check --all       # every campaigns/*/coverage/*.yaml (CI)
-    python3 scripts/lesson_coverage.py check FILE --course-dir PATH/TO/Agentic-coding-course
+    python3 scripts/lesson_coverage.py check FILE... --course-dir PATH/TO/Agentic-coding-course
+    python3 scripts/lesson_coverage.py check --all --course-dir PATH   # every course campaign (CI)
 
 `extract` prints a manifest skeleton (every block, `dest` and `evidence` empty)
-for the author to fill. `check` validates manifests against their posts; with
-`--course-dir` it also re-extracts the lesson from that clone at the commit the
-manifest names (`git show COMMIT:PATH`) and requires the manifest's blocks to
-match it exactly. Without it, the blocks the manifest lists are taken as given.
+for the author to fill. `check` validates manifests against their posts and,
+with `--course-dir`, re-extracts each lesson from that clone at the pinned
+commit (`git show COMMIT:PATH`). Without `--course-dir` the blocks a manifest
+lists are taken on trust, which is only good for a quick local look: CI always
+passes it.
 
 Exit status: 0 every manifest passes, 1 a manifest fails, 2 bad input.
 """
@@ -37,6 +43,7 @@ Exit status: 0 every manifest passes, 1 a manifest fails, 2 bad input.
 from __future__ import annotations
 
 import argparse
+import math
 import re
 import subprocess
 import sys
@@ -50,19 +57,33 @@ except ImportError:  # pragma: no cover - exercised only where PyYAML is absent
     raise SystemExit(2)
 
 ROOT = Path(__file__).resolve().parents[1]
+# Campaigns made from course lessons: every post in them must have a manifest.
+COURSE_CAMPAIGNS = ("agentic-coding-course",)
 MAX_SLIDES = 10
-# Shorter evidence than this many words proves little ("AI", "B"), unless the
-# block itself is that short (a quiz option such as "A) LLM").
+# The quotes for a block must show at least this share of its words, and at
+# least MIN_EVIDENCE_WORDS (or the whole block when it is shorter): three words
+# cannot stand in for a paragraph. A code block must be shown whole.
+MIN_EVIDENCE_SHARE = 0.3
 MIN_EVIDENCE_WORDS = 3
+# Slide fields a reader does not see as text.
+HIDDEN_FIELDS = {"layout", "src", "tone", "variant", "style", "show_link", "me", "total_row", "format"}
 
 SECTION = re.compile(r"^<!--\s*section:\s*([a-z0-9-]+)\s*-->\s*$")
 FENCE = re.compile(r"^\s*(```|~~~)")
 HEADING = re.compile(r"^(#{2,6})\s+(.*)$")
 IMAGE = re.compile(r"^!\[[^\]]*\]\(([^)]+)\)\s*$")
-LIST_ITEM = re.compile(r"^(?:[-*+]|\d+[.)])\s+(.*)$")
-HTML_ONLY = re.compile(r"^\s*</?[a-zA-Z][^>]*>.*$")
+LIST_ITEM = re.compile(r"^(\s*)(?:[-*+]|\d+[.)])\s+(.*)$")
+TABLE_ROW = re.compile(r"^\s*\|.*\|\s*$")
+TABLE_RULE = re.compile(r"^\s*\|?\s*:?-{3,}:?\s*(\|\s*:?-{3,}:?\s*)*\|?\s*$")
+QUOTE = re.compile(r"^\s*>\s?(.*)$")
+RULE = re.compile(r"^\s*(?:-{3,}|\*{3,}|_{3,})\s*$")
+# A line made only of tags (<details>, </details>, <summary>…</summary>) is
+# layout; a line that merely starts with a tag (<kbd>Ctrl</kbd> + C …) is text.
+TAG = r"</?[a-zA-Z][^>]*>"
+HTML_ONLY = re.compile(rf"^\s*(?:{TAG}\s*)+$|^\s*<summary>.*</summary>\s*$")
 LINK = re.compile(r"!?\[([^\]]*)\]\([^)]*\)")
 EMPHASIS = re.compile(r"(\*\*|__|\*|_|`)")
+WORD = re.compile(r"\w+")
 DEST = re.compile(r"^(?:slide:(\d+)|caption)$")
 
 
@@ -70,16 +91,19 @@ class InputError(Exception):
     """A file cannot be read or does not have the expected shape."""
 
 
-def normalize(text: str) -> str:
-    """Text as a reader sees it: no Markdown links or emphasis, one space, case-folded."""
-    text = LINK.sub(r"\1", text)
-    text = EMPHASIS.sub("", text)
-    return " ".join(text.split()).casefold()
-
-
 def plain(text: str) -> str:
-    """Text without Markdown links or emphasis, keeping its case and single spacing."""
-    return " ".join(EMPHASIS.sub("", LINK.sub(r"\1", text)).split())
+    """Text without Markdown links, emphasis or inline tags, keeping its case and single spacing."""
+    text = re.sub(TAG, "", LINK.sub(r"\1", text))
+    return " ".join(EMPHASIS.sub("", text).split())
+
+
+def normalize(text: str) -> str:
+    """Text as a reader sees it, case-folded, for matching quotes."""
+    return plain(text).casefold()
+
+
+def words(text: str) -> int:
+    return len(WORD.findall(plain(text)))
 
 
 def body_of(markdown: str) -> list[str]:
@@ -96,33 +120,31 @@ def body_of(markdown: str) -> list[str]:
 def extract(markdown: str) -> list[dict[str, str]]:
     """Every atomic block inside the lesson's sections, in order.
 
-    A block is a paragraph, a list item (with its continuation lines), a
-    sub-heading, a code block or a diagram. A section's own `##` heading is its
-    label, not content. Lines before the first section (title, language bar)
-    and HTML-only lines (`<details>`, `<summary>…</summary>`) are not blocks.
+    A block is a paragraph, a list item (a nested item is a block of its own;
+    an indented plain line continues the item above it), a table row (the rule
+    row is not), a quote (its lines joined, the `>` dropped), a sub-heading, a
+    code block (its lines without the fences) or a diagram. A section's own `##`
+    heading is its label, horizontal rules and tag-only lines are layout, and
+    lines before the first section (title, language bar) are not blocks.
     """
     blocks: list[dict[str, str]] = []
-    section = None
+    section: str | None = None
     counters: dict[str, int] = {}
     pending: list[str] = []
     pending_kind = ""
 
+    def add(kind: str, text: str) -> None:
+        assert section is not None
+        counters[section] = counters.get(section, 0) + 1
+        blocks.append({"key": f"{section}#{counters[section]:02d}", "kind": kind, "source": text})
+
     def flush() -> None:
         nonlocal pending, pending_kind
         if pending and section is not None:
-            # A code block's text is its lines without the fences.
-            if pending_kind == "code":
-                inner = pending[1:-1] if len(pending) > 1 and FENCE.match(pending[-1]) else pending[1:]
-                text = "\n".join(inner)
-            else:
-                text = plain(" ".join(pending))
+            text = "\n".join(pending) if pending_kind == "code" else plain(" ".join(pending))
             if text.strip():
                 add(pending_kind, text)
         pending, pending_kind = [], ""
-
-    def add(kind: str, text: str) -> None:
-        counters[section] = counters.get(section, 0) + 1
-        blocks.append({"key": f"{section}#{counters[section]:02d}", "kind": kind, "source": text})
 
     lines = body_of(markdown)
     index = 0
@@ -138,17 +160,18 @@ def extract(markdown: str) -> list[dict[str, str]]:
             continue
         if FENCE.match(line):
             flush()
-            code = [line]
-            while index < len(lines):
+            code: list[str] = []
+            while index < len(lines) and not FENCE.match(lines[index]):
                 code.append(lines[index])
                 index += 1
-                if FENCE.match(code[-1]):
-                    break
+            if index >= len(lines):
+                raise InputError(f"a code fence opened in section {section!r} is never closed")
+            index += 1  # the closing fence
             pending, pending_kind = code, "code"
             flush()
             continue
         stripped = line.strip()
-        if not stripped:
+        if not stripped or RULE.match(stripped) or HTML_ONLY.match(stripped):
             flush()
             continue
         heading = HEADING.match(stripped)
@@ -162,15 +185,25 @@ def extract(markdown: str) -> list[dict[str, str]]:
             flush()
             add("diagram", Path(image.group(1)).stem)
             continue
-        if HTML_ONLY.match(stripped):
+        if TABLE_ROW.match(line):
             flush()
+            if not TABLE_RULE.match(stripped):
+                cells = [plain(c) for c in stripped.strip("|").split("|")]
+                add("row", " · ".join(c for c in cells if c))
             continue
-        item = LIST_ITEM.match(stripped)
-        if item and not line.startswith((" ", "\t")):
+        quote = QUOTE.match(line)
+        if quote:
+            if pending_kind != "quote":
+                flush()
+                pending_kind = "quote"
+            pending.append(quote.group(1))
+            continue
+        item = LIST_ITEM.match(line)
+        if item:
             flush()
-            pending, pending_kind = [item.group(1)], "item"
+            pending, pending_kind = [item.group(2)], "item"
             continue
-        if pending and pending_kind == "item" and line.startswith((" ", "\t")):
+        if pending_kind == "item" and line.startswith((" ", "\t")):
             pending.append(stripped)
             continue
         if pending_kind != "para":
@@ -181,14 +214,16 @@ def extract(markdown: str) -> list[dict[str, str]]:
     return blocks
 
 
-def strings(value: Any) -> list[str]:
-    """Every string inside a slide or a text field, in order."""
+def visible(value: Any, key: str = "") -> list[str]:
+    """Every string a reader sees inside a slide or a text field, one per field."""
+    if key in HIDDEN_FIELDS:
+        return []
     if isinstance(value, str):
         return [value]
     if isinstance(value, dict):
-        return [s for v in value.values() for s in strings(v)]
+        return [s for k, v in value.items() for s in visible(v, str(k))]
     if isinstance(value, list):
-        return [s for v in value for s in strings(v)]
+        return [s for v in value for s in visible(v)]
     return []
 
 
@@ -205,6 +240,13 @@ def lesson_from_git(course_dir: Path, commit: str, path: str) -> str:
     if result.returncode != 0:
         raise InputError(f"cannot read {path} at {commit} in {course_dir}: {result.stderr.strip()}")
     return result.stdout
+
+
+def required_words(kind: str, source: str) -> int:
+    total = words(source)
+    if kind == "code":
+        return total
+    return min(total, max(MIN_EVIDENCE_WORDS, math.ceil(total * MIN_EVIDENCE_SHARE)))
 
 
 def check(manifest_path: Path, course_dir: Path | None = None) -> list[str]:
@@ -237,7 +279,17 @@ def check(manifest_path: Path, course_dir: Path | None = None) -> list[str]:
         problems.append("`blocks` is empty")
         blocks = []
 
+    # The lesson itself decides which blocks exist and what they say.
+    truth: dict[str, dict[str, str]] | None = None
+    if course_dir is not None and source.get("commit") and source.get("path"):
+        try:
+            truth = {b["key"]: b for b in extract(lesson_from_git(course_dir, str(source["commit"]),
+                                                                  str(source["path"])))}
+        except InputError as exc:
+            problems.append(str(exc))
+
     seen: set[str] = set()
+    quoted: dict[str, str] = {}
     for entry in blocks:
         if not isinstance(entry, dict) or not entry.get("key"):
             problems.append(f"a block has no key: {entry!r}")
@@ -246,6 +298,15 @@ def check(manifest_path: Path, course_dir: Path | None = None) -> list[str]:
         if key in seen:
             problems.append(f"{key}: listed twice")
         seen.add(key)
+        block = {"kind": str(entry.get("kind") or ""), "source": str(entry.get("source") or "")}
+        if truth is not None:
+            real = truth.get(key)
+            if real is None:
+                problems.append(f"{key}: not a block of the lesson")
+                continue
+            if real["kind"] != block["kind"] or real["source"] != block["source"]:
+                problems.append(f"{key}: kind or source text differs from the lesson")
+            block = real
         dest = str(entry.get("dest") or "")
         match = DEST.match(dest)
         if not match:
@@ -261,37 +322,51 @@ def check(manifest_path: Path, course_dir: Path | None = None) -> list[str]:
             target = slides[number - 1]
         else:
             target = caption
-        if entry.get("kind") == "diagram":
+        if block["kind"] == "diagram":
             src = target.get("src", "") if isinstance(target, dict) else ""
             if not (isinstance(target, dict) and target.get("layout") == "image"
-                    and Path(str(src)).stem == str(entry.get("source"))):
-                problems.append(f"{key}: diagram {entry.get('source')!r} is not the image on {dest}")
+                    and Path(str(src)).stem == block["source"]):
+                problems.append(f"{key}: diagram {block['source']!r} is not the image on {dest}")
             continue
-        evidence = normalize(str(entry.get("evidence") or ""))
-        source_words = len(normalize(str(entry.get("source") or "")).split())
-        if len(evidence.split()) < min(MIN_EVIDENCE_WORDS, max(source_words, 1)):
-            problems.append(f"{key}: evidence must quote at least {MIN_EVIDENCE_WORDS} words as they appear on {dest}")
-            continue
-        haystack = normalize(" ".join(strings(target)))
-        if evidence not in haystack:
-            problems.append(f"{key}: evidence {entry.get('evidence')!r} is not on {dest}")
+        evidence = entry.get("evidence")
+        quotes = [str(q) for q in (evidence if isinstance(evidence, list) else [evidence]) if q]
+        fields = [normalize(s) for s in visible(target)]
+        shown = 0
+        for quote in quotes:
+            norm = normalize(quote)
+            if words(quote) < min(MIN_EVIDENCE_WORDS, max(words(block["source"]), 1)):
+                problems.append(f"{key}: quote {quote!r} is too short to prove anything")
+            elif not any(norm in field for field in fields):
+                problems.append(f"{key}: quote {quote!r} is not in one text field of {dest}")
+            elif norm in quoted:
+                problems.append(f"{key}: quote {quote!r} already proves {quoted[norm]}")
+            else:
+                quoted[norm] = key
+                shown += words(quote)
+        need = required_words(block["kind"], block["source"])
+        if shown < need:
+            problems.append(f"{key}: the quotes show {shown} of the {need} words needed "
+                            f"({words(block['source'])} in the block) on {dest}")
 
-    if course_dir is not None and source.get("commit") and source.get("path"):
-        try:
-            lesson = extract(lesson_from_git(course_dir, str(source.get("commit")), str(source.get("path"))))
-        except InputError as exc:
-            problems.append(str(exc))
-        else:
-            listed = {str(e.get("key")): e for e in blocks if isinstance(e, dict)}
-            for block in lesson:
-                entry = listed.get(block["key"])
-                if entry is None:
-                    problems.append(f"{block['key']}: in the lesson but not in the manifest ({block['source'][:60]!r})")
-                elif entry.get("kind") != block["kind"] or entry.get("source") != block["source"]:
-                    problems.append(f"{block['key']}: kind or source text differs from the lesson")
-            for key in sorted(set(listed) - {b["key"] for b in lesson}):
-                problems.append(f"{key}: not a block of the lesson")
+    if truth is not None:
+        for key in sorted(set(truth) - seen):
+            problems.append(f"{key}: in the lesson but not in the manifest ({truth[key]['source'][:60]!r})")
     return problems
+
+
+def course_manifests(root: Path) -> tuple[list[Path], list[str]]:
+    """Every manifest of the course campaigns, and every post that has none."""
+    manifests: list[Path] = []
+    missing: list[str] = []
+    for name in COURSE_CAMPAIGNS:
+        campaign = root / "campaigns" / name
+        for post in sorted(campaign.glob("posts/*/*.yaml")):
+            manifest = campaign / "coverage" / post.name
+            if manifest.is_file():
+                manifests.append(manifest)
+            else:
+                missing.append(f"{post.relative_to(root)}: no coverage manifest at {manifest.relative_to(root)}")
+    return manifests, missing
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -305,8 +380,10 @@ def main(argv: list[str] | None = None) -> int:
     ext.add_argument("--repo", default="vohoailinh90/Agentic-coding-course")
     chk = sub.add_parser("check", help="validate manifests against their posts")
     chk.add_argument("manifests", type=Path, nargs="*")
-    chk.add_argument("--all", action="store_true", help="every campaigns/*/coverage/*.yaml in this repository")
+    chk.add_argument("--all", action="store_true",
+                     help=f"every post of the course campaigns ({', '.join(COURSE_CAMPAIGNS)}) and its manifest")
     chk.add_argument("--course-dir", type=Path, help="a clone of the course, to re-extract each lesson")
+    chk.add_argument("--root", type=Path, default=ROOT, help=argparse.SUPPRESS)
     args = parser.parse_args(argv)
 
     try:
@@ -322,11 +399,17 @@ def main(argv: list[str] | None = None) -> int:
             yaml.safe_dump(skeleton, sys.stdout, allow_unicode=True, sort_keys=False, width=1000)
             return 0
         manifests = list(args.manifests)
+        failed = False
         if args.all:
-            manifests += sorted((ROOT / "campaigns").glob("*/coverage/*.yaml"))
+            found, missing = course_manifests(args.root)
+            manifests += found
+            for problem in missing:
+                failed = True
+                print(f"FAIL {problem}")
         if not manifests and not args.all:
             parser.error("name a manifest or pass --all")
-        failed = False
+        if args.course_dir is None:
+            print("note: no --course-dir, so the blocks each manifest lists are taken on trust", file=sys.stderr)
         for manifest in manifests:
             problems = check(manifest, args.course_dir)
             if problems:

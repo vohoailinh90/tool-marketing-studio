@@ -127,18 +127,20 @@ python3 scripts/lesson_coverage.py extract <course>/course/vi/lessons/<id>.md \
     --lesson <id> --commit <40-ký-tự SHA của khóa học> > campaigns/agentic-coding-course/coverage/<id>.yaml
 ```
 
-Lệnh này liệt kê **mọi ý** của bài (`key`, `kind`, `source`). Người viết điền cho từng ý:
+Lệnh này liệt kê **mọi ý** của bài (`key`, `kind`, `source`): từng đoạn văn, từng gạch đầu dòng (cả
+mục con), từng dòng bảng, từng trích dẫn `>`, từng tiêu đề nhỏ, khối code và sơ đồ — trung bình ~59 ý
+mỗi bài. Người viết điền cho từng ý:
 - `dest`: `slide:N` hoặc `caption` (không được là bình luận đầu);
-- `evidence`: ≥ 3 chữ **đúng như đang hiển thị** ở `dest` (ý ngắn hơn thì trích cả ý); với sơ đồ, `dest`
-  là ảnh `image` hiển thị đúng sơ đồ đó.
+- `evidence`: một câu trích hoặc danh sách câu trích, **đúng chữ đang hiển thị** trong một ô chữ của
+  `dest`. Các câu trích cộng lại phải dài ít nhất **30% số chữ của ý** (tối thiểu 3 chữ, ý ngắn hơn thì
+  trích cả ý); khối code phải hiện **đủ**; một câu trích chỉ được dùng cho một ý. Với sơ đồ, `dest` là
+  ảnh `image` hiển thị đúng sơ đồ đó.
 
-Kiểm tra (CI chạy dòng đầu; người review chạy dòng thứ hai với bản clone của khóa học):
+Kiểm tra (CI tự clone khóa học và chạy dòng đầu):
 
-- `python3 scripts/lesson_coverage.py check --all` — mọi ý có chỗ, mọi `evidence` có thật ở chỗ đó,
-  ≤ 10 ảnh.
-- `python3 scripts/lesson_coverage.py check campaigns/agentic-coding-course/coverage/<id>.yaml
-  --course-dir <clone>` — danh sách ý trùng **chính xác** với bài học ở commit đã ghi (không bỏ ý, không
-  sửa chữ nguồn, không thêm ý).
+- `python3 scripts/lesson_coverage.py check --all --course-dir <clone khóa học>` — mỗi bài đăng của
+  chiến dịch có file phủ; danh sách ý trùng **chính xác** với bài học ở commit đã ghi (không bỏ ý, không
+  sửa chữ nguồn, không thêm ý); mọi câu trích có thật ở đúng chỗ; ≤ 10 ảnh.
 - `python3 studio.py check agentic-coding-course` — 0 lỗi, 0 cảnh báo về số ảnh.
 - `python3 studio.py render agentic-coding-course` — không tràn chữ; mở từng ảnh ở bề rộng 360px.
 

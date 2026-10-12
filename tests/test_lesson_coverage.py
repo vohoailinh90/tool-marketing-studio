@@ -61,6 +61,30 @@ print("xin chào")
 </details>
 """
 
+# Markdown the extractor must split, not merge or drop.
+TRICKY = """<!-- section: try-it -->
+## Thử ngay
+
+- Đường chính
+  - Máy cá nhân có thư mục riêng
+  - Trình duyệt không cần cài
+    dòng tiếp của mục con
+
+| Cột A | Cột B |
+|---|---|
+| Tháng 9 | 120 |
+| Tháng 10 | 150 |
+
+> Hãy đọc file data.csv
+> rồi báo tổng doanh thu.
+
+<kbd>Ctrl</kbd> + C dừng chương trình ngay.
+
+---
+
+Đoạn sau đường kẻ.
+"""
+
 SHA = "412bbb2f1a549b8eafd7b138f9ee627b8a9d1fc3"
 
 
@@ -70,7 +94,7 @@ def full_post() -> dict:
         "slides": [
             {"layout": "cover", "title": "Agent có **ba phần**", "subtitle": "Nói được ba phần của agent."},
             {"layout": "image", "title": "Công thức", "src": "diagrams/vi/agent-formula.png"},
-            {"layout": "checklist", "title": "Agent gồm", "items": ["bộ não, đôi tay và một vòng lặp"]},
+            {"layout": "checklist", "title": "Agent gồm", "items": ["Agent gồm bộ não, đôi tay và một vòng lặp"]},
             {"layout": "poll", "question": "Bộ phận nào làm việc thật?", "options": ["A) LLM", "B) Công cụ"]},
         ],
         "platforms": {"facebook": {
@@ -87,7 +111,7 @@ def full_manifest() -> dict:
         "objective#02": ("caption", "Biết khi nào vòng lặp dừng"),
         "concept#01": ("slide:2", "Công thức"),
         "concept#02": ("slide:2", ""),
-        "concept#03": ("slide:3", "bộ não, đôi tay và một vòng lặp"),
+        "concept#03": ("slide:3", "Agent gồm bộ não, đôi tay và một vòng lặp"),
         "concept#04": ("caption", 'print("xin chào")'),
         "quiz#01": ("slide:4", "Bộ phận nào làm việc thật?"),
         "quiz#02": ("slide:4", "A) LLM"),
@@ -130,6 +154,36 @@ class ExtractTests(unittest.TestCase):
         self.assertNotIn("Xem đáp án", sources)
 
 
+class TrickyMarkdownTests(unittest.TestCase):
+    def setUp(self):
+        self.blocks = lc.extract(TRICKY)
+        self.sources = [b["source"] for b in self.blocks]
+
+    def test_nested_list_items_are_blocks_of_their_own(self):
+        self.assertIn("Đường chính", self.sources)
+        self.assertIn("Máy cá nhân có thư mục riêng", self.sources)
+        self.assertIn("Trình duyệt không cần cài dòng tiếp của mục con", self.sources)
+
+    def test_every_table_row_is_a_block_and_the_rule_row_is_not(self):
+        rows = [b["source"] for b in self.blocks if b["kind"] == "row"]
+        self.assertEqual(rows, ["Cột A · Cột B", "Tháng 9 · 120", "Tháng 10 · 150"])
+
+    def test_a_quote_is_one_block_without_its_markers(self):
+        quotes = [b["source"] for b in self.blocks if b["kind"] == "quote"]
+        self.assertEqual(quotes, ["Hãy đọc file data.csv rồi báo tổng doanh thu."])
+
+    def test_a_line_that_starts_with_a_tag_is_text(self):
+        self.assertIn("Ctrl + C dừng chương trình ngay.", self.sources)
+
+    def test_a_rule_is_layout(self):
+        self.assertIn("Đoạn sau đường kẻ.", self.sources)
+        self.assertFalse(any("---" in source for source in self.sources))
+
+    def test_an_unclosed_fence_is_an_error(self):
+        with self.assertRaises(lc.InputError):
+            lc.extract("<!-- section: concept -->\n```python\nprint(1)\n<!-- section: quiz -->\n")
+
+
 class CheckTests(unittest.TestCase):
     def setUp(self):
         self.root = Path(tempfile.mkdtemp())
@@ -155,7 +209,8 @@ class CheckTests(unittest.TestCase):
     def test_evidence_missing_from_its_slide_fails(self):
         manifest = full_manifest()
         manifest["blocks"][4]["evidence"] = "agent tự mở file được"
-        self.assertTrue(any("concept#03" in p and "is not on slide:3" in p for p in self.problems(manifest=manifest)))
+        self.assertTrue(any("concept#03" in p and "is not in one text field of slide:3" in p
+                            for p in self.problems(manifest=manifest)))
 
     def test_evidence_on_another_slide_does_not_count(self):
         manifest = full_manifest()
@@ -175,7 +230,50 @@ class CheckTests(unittest.TestCase):
     def test_one_word_evidence_for_a_long_block_fails(self):
         manifest = full_manifest()
         manifest["blocks"][4]["evidence"] = "vòng lặp"
-        self.assertTrue(any("at least 3 words" in p for p in self.problems(manifest=manifest)))
+        self.assertTrue(any("concept#03" in p and "too short" in p for p in self.problems(manifest=manifest)))
+
+    def test_three_words_cannot_stand_in_for_a_long_paragraph(self):
+        post = full_post()
+        long = ("Agent chỉ sửa được lỗi mà nó quan sát được, nên nếu không được phép chạy thử chương trình "
+                "thì nó không thấy lỗi và không biết mình sai ở đâu cả")
+        post["slides"][2]["items"] = [long]
+        manifest = full_manifest()
+        manifest["blocks"][4].update(source=long, evidence="Agent chỉ sửa")
+        problems = self.problems(post=post, manifest=manifest)
+        self.assertTrue(any("concept#03" in p and "the quotes show 3 of the 10 words needed" in p for p in problems),
+                        problems)
+
+    def test_several_quotes_add_up(self):
+        post = full_post()
+        post["slides"][2]["items"] = ["Agent gồm bộ não", "đôi tay và một vòng lặp"]
+        manifest = full_manifest()
+        manifest["blocks"][4]["evidence"] = ["Agent gồm bộ não", "đôi tay và một vòng lặp"]
+        self.assertEqual(self.problems(post=post, manifest=manifest), [])
+
+    def test_a_quote_cannot_span_two_fields(self):
+        post = full_post()
+        post["slides"][2]["items"] = ["Agent gồm bộ não, đôi tay", "và một vòng lặp"]
+        problems = self.problems(post=post)
+        self.assertTrue(any("concept#03" in p and "not in one text field" in p for p in problems), problems)
+
+    def test_hidden_fields_are_not_evidence(self):
+        post = full_post()
+        post["slides"][2]["tone"] = "Agent gồm bộ não, đôi tay và một vòng lặp"
+        post["slides"][2]["items"] = ["khác hẳn"]
+        self.assertTrue(any("concept#03" in p for p in self.problems(post=post)))
+
+    def test_one_quote_cannot_prove_two_blocks(self):
+        manifest = full_manifest()
+        manifest["blocks"][1].update(dest="slide:3", evidence="Agent gồm bộ não, đôi tay và một vòng lặp")
+        self.assertTrue(any("already proves" in p for p in self.problems(manifest=manifest)))
+
+    def test_a_code_block_must_be_shown_whole(self):
+        manifest = full_manifest()
+        # Three of its eight words are shown: enough for a paragraph, not for code.
+        manifest["blocks"][5]["source"] = 'print("xin chào")\nprint("tạm biệt các bạn")'
+        self.assertTrue(any("concept#04" in p and "of the 8 words needed" in p
+                            for p in self.problems(manifest=manifest)))
+
 
     def test_a_short_block_may_quote_itself_whole(self):
         self.assertFalse(any("quiz#02" in p for p in self.problems()))
@@ -247,6 +345,21 @@ class SourceTests(unittest.TestCase):
         manifest["blocks"].append({"key": "concept#99", "kind": "para", "source": "x", "dest": "slide:1",
                                    "evidence": "Agent có ba phần"})
         self.assertTrue(any("concept#99: not a block of the lesson" in p for p in self.problems(manifest)))
+
+
+class AllTests(unittest.TestCase):
+    def test_a_course_post_without_a_manifest_fails(self):
+        root = Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, root)
+        campaign = root / "campaigns" / "agentic-coding-course"
+        (campaign / "posts" / "vi").mkdir(parents=True)
+        (campaign / "posts" / "vi" / "demo.yaml").write_text(yaml.safe_dump(full_post(), allow_unicode=True),
+                                                            encoding="utf-8")
+        self.assertEqual(lc.main(["check", "--all", "--root", str(root)]), 1)
+        (campaign / "coverage").mkdir()
+        (campaign / "coverage" / "demo.yaml").write_text(yaml.safe_dump(full_manifest(), allow_unicode=True),
+                                                        encoding="utf-8")
+        self.assertEqual(lc.main(["check", "--all", "--root", str(root)]), 0)
 
 
 class CliTests(unittest.TestCase):

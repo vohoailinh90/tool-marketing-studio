@@ -109,13 +109,16 @@ comment mentions Codex). The skill `/codex-lane` walks the same steps.
    in any other GitHub comment (§3).
 7. **Fix.** Confirm every finding against the code first (§13 forbids a
    speculative one), then a FIX contract on the PR branch — at most 2 rounds —
-   and a re-review while the review count allows.
+   and a re-review of the new head (reviews have no cap, §16).
 8. **Verify.** The main session runs the tests, lint and the repository's
    checks itself on the PR head. At T3 spawn `code-reviewer-t3` on the PR diff
    for the integration/migration/security/rollback verification. If
    verification needs designing, grant `escalation_reserve` for
    `test-engineer` exactly as in the claude lane.
-9. **Done.** §20's definition of done and merge rules, unchanged.
+9. **Done.** §20's definition of done and merge rules, unchanged — including
+   "The loop every PR goes through": steps 6 and 7 repeat until a review of the
+   current head is clean, then you merge without asking, then take the next task
+   (CLAUDE.md, *Pull request lifecycle*).
 
 Every task comment in steps 3, 4, 5 and 7 is rendered by
 `scripts/codex_task.py`, never typed:
@@ -152,7 +155,7 @@ or failed task, a wrong account (§18) — the requirement does not wait. Re-rec
 it in the claude lane with the same label:
 `route.py ... --lane claude --record --requirement <id>`. Charges already made
 carry over, and the claude lane's roster applies from there; anything Codex
-already produced and the main session validated is input, not lost work.
+already produced and the main session validated is input, not lost work. Falling back moves who does the work and never waives the PR's Codex review: an open PR stays BLOCKED until Codex has reviewed its head.
 Carry-over works in both directions, so moving a claude-lane requirement into
 the codex lane can leave it overdrawn (say, a T2 reviewer already spawned
 against a lane ceiling of 0). The hook then refuses every further spawn, which

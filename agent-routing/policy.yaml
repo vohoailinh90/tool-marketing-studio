@@ -176,11 +176,13 @@ lanes:
     # suite ties these numbers to that section. IMPLEMENT is one round:
     # corrections to an implementation are FIX rounds on its PR (section 13),
     # and a stalled or failed IMPLEMENT is BLOCKED (section 17), never reposted.
+    # `review: null` is no limit -- the repository owner removed the cap of three
+    # on 2026-10-12; a review command is bounded by running once per head SHA instead.
     round_caps:
       BRAINSTORM: 2
       IMPLEMENT: 1
       FIX: 2
-      review: 3
+      review: null
     # Claude subagent ceilings in this lane. Reserves in `budget` apply unchanged.
     max_agent_invocations:
       T1: 0

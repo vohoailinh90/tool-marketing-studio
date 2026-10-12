@@ -1,0 +1,21 @@
+# Mutation manifest — see scripts/mutation_check.py
+#
+# The review cap was removed on 2026-10-12 (policy `review: null`). Each entry breaks one rule of how the
+# resolver treats it and names the test that must notice.
+
+target: scripts/route.py
+note: Review null is no limit in a lane's round plan; every other cap stays a positive integer and a numeric
+  review cap is still enforced.
+mutations:
+- label: a numeric review cap is not enforced
+  find: "        if not unlimited and planned > cap:\n"
+  replace: "        if False:\n"
+  test: tests.test_review_cap.ReviewCapTests.test_a_numeric_review_cap_is_still_enforced
+- label: review null is rejected as a bad cap
+  find: "        unlimited = mode == \"review\" and cap is None\n"
+  replace: "        unlimited = False\n"
+  test: tests.test_review_cap.ReviewCapTests.test_a_null_review_cap_is_no_limit
+- label: any cap may be null, not only review
+  find: "        unlimited = mode == \"review\" and cap is None\n"
+  replace: "        unlimited = cap is None\n"
+  test: tests.test_review_cap.ReviewCapTests.test_nothing_else_may_be_null_or_nonsense

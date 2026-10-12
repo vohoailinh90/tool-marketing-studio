@@ -446,14 +446,16 @@ def round_plan(steps: list[dict[str, Any]], caps: dict[str, Any], lane: str, tie
     """Codex rounds the plan spends, per mode, against docs/claude-to-codex.md section 16."""
     plan: dict[str, dict[str, int]] = {}
     for mode, cap in caps.items():
-        if isinstance(cap, bool) or not isinstance(cap, int) or cap < 1:
+        # `review: null` is no limit (section 16); every other cap is a positive integer.
+        unlimited = mode == "review" and cap is None
+        if not unlimited and (isinstance(cap, bool) or not isinstance(cap, int) or cap < 1):
             raise RoutingError(f"lanes.{lane}.round_caps.{mode} must be a positive integer, got {cap!r}")
         if mode == "review":
             planned = sum(1 for step in steps if "command" in step)
         else:
             mine = [step for step in steps if step.get("mode") == mode]
             planned = max([int(step.get("round", 1)) for step in mine] + [len(mine)])
-        if planned > cap:
+        if not unlimited and planned > cap:
             raise RoutingError(f"lane {lane} at {tier} plans {planned} {mode} round(s); section 16 allows {cap}")
         plan[mode] = {"planned": planned, "cap": cap}
     return plan

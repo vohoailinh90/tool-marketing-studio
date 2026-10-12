@@ -1,0 +1,342 @@
+# Mutation manifest — see scripts/mutation_check.py
+#
+# A passing test proves nothing on its own. These break each behavior in turn
+# and require the named test to fail. A mutation that SURVIVES means the test
+# guards nothing.
+
+target: scripts/codex_round_count.py
+note: The review count of docs/claude-to-codex.md section 16, which has no cap since 2026-10-12. Each entry breaks one rule of
+  what counts as a round and names the test that must notice.
+mutations:
+- label: the review-status summary comment uses a round
+  find: "        return \"summary\" if is_plain_summary(body) else \"unknown\"\n"
+  replace: "        return \"unknown\"\n"
+  test: tests.test_codex_round_count.RealShapeTests.test_two_reviews_and_the_summary_count_two_rounds_not_three
+- label: the review Codex runs on its own when the PR opens uses a round
+  find: "            if request is None and not opening_run_seen:\n"
+  replace: "            if False:\n"
+  test: tests.test_codex_round_count.SelfStartedReviewTests.test_the_review_codex_runs_when_the_pr_opens_does_not_count
+- label: every unrequested review is left out, not only the opening one
+  find: "            if request is None and not opening_run_seen:\n"
+  replace: "            if request is None:\n"
+  test: tests.test_codex_round_count.SelfStartedReviewTests.test_only_one_opening_run_is_left_out
+- label: a review Codex runs without a mention, after a requested one, is left out as an opening run
+  find: "            opening_run_seen = True\n            used += 1\n            answers ="
+  replace: "            used += 1\n            answers ="
+  test: tests.test_codex_round_count.SelfStartedReviewTests.test_a_counted_review_ends_the_opening_exemption
+- label: a review result does not close the request it answers
+  find: "            request = pending.popleft() if pending else None\n"
+  replace: "            request = pending[0] if pending else None\n"
+  test: tests.test_codex_round_count.RealShapeTests.test_two_reviews_and_the_summary_count_two_rounds_not_three
+- label: a task reply with content of its own is left out as a bare task link
+  find: "    return not re.search(r\"\\w\", ACKNOWLEDGEMENT.sub(\"\", TASK_LINK.sub(\"\", body)))\n"
+  replace: "    return True\n"
+  test: tests.test_codex_round_count.StrictnessTests.test_a_task_reply_with_content_counts
+- label: a request and its review in the same second are ordered by input, not request first
+  find: "    posts.sort(key=lambda p: (p.when, TIE_RANK.get(p.kind, 1), p.order))\n"
+  replace: "    posts.sort(key=lambda p: (p.when, p.order))\n"
+  test: tests.test_codex_round_count.SelfStartedReviewTests.test_a_request_and_its_review_in_the_same_second_count
+- label: the bot's own mention of the trigger opens a request
+  find: "    if login.casefold() in BOT_LOGINS:\n"
+  replace: "    if login.casefold() in BOT_LOGINS and not REVIEW_REQUEST.search(body):\n"
+  test: tests.test_codex_round_count.RequestTests.test_the_bots_own_mention_of_the_trigger_is_not_a_request
+- label: any login containing the bot's name is taken for the bot
+  find: "    if login.casefold() in BOT_LOGINS:\n"
+  replace: "    if BOT in login:\n"
+  test: tests.test_codex_round_count.StrictnessTests.test_a_login_that_only_looks_like_the_bot_is_refused
+- label: an unrecognized bot post is reported but not counted
+  find: "            used += 1\n            unknown += 1\n"
+  replace: "            unknown += 1\n"
+  test: tests.test_codex_round_count.StrictnessTests.test_an_unrecognized_bot_post_counts_even_with_no_request
+- label: a bot comment carrying a result marker is classified by how it opens
+  find: "    if role == \"review\" or RESULT.search(body):\n"
+  replace: "    if role == \"review\":\n"
+  test: tests.test_codex_round_count.StrictnessTests.test_a_short_error_opening_with_a_result_marker_is_a_result
+- label: the summary marker is accepted anywhere in the body
+  find: "    if body.startswith(SUMMARY_MARKER):\n"
+  replace: "    if SUMMARY_MARKER in body:\n"
+  test: tests.test_codex_round_count.StrictnessTests.test_a_summary_marker_not_at_the_start_is_unrecognized_and_counts
+- label: the bot's inline review comments are classified like posts of their own
+  find: "    if role == \"inline\":\n        return \"inline\""
+  replace: "    if False:\n        return \"inline\""
+  test: tests.test_codex_round_count.NotARoundTests.test_the_bots_inline_comments_belong_to_its_review
+- label: a usage-limit message uses a round
+  find: "        for kind, pattern in ((\"quota\", QUOTA), (\"error\", ERROR)):\n"
+  replace: "        for kind, pattern in ((\"error\", ERROR),):\n"
+  test: tests.test_codex_round_count.NotARoundTests.test_a_usage_limit_message_is_not_a_round
+- label: the same post passed twice counts twice
+  find: "            if key in seen:\n"
+  replace: "            if False:\n"
+  test: tests.test_codex_round_count.InputShapeTests.test_the_same_posts_passed_twice_count_once
+- label: a PowerShell UTF-16 file is read as UTF-8
+  find: "        if raw.startswith((codecs.BOM_UTF16_LE, codecs.BOM_UTF16_BE)):\n"
+  replace: "        if False:\n"
+  test: tests.test_codex_round_count.InputShapeTests.test_utf16_and_utf8_bom_files_are_read
+- label: an empty input is not reported as one
+  find: "    if not raw.strip():\n"
+  replace: "    if False:\n"
+  test: tests.test_codex_round_count.InputErrorTests.test_an_empty_file_is_an_error_not_zero_rounds
+- label: stdin is accepted for a fetch, though a pipe cannot show which fetch it holds
+  find: "    if any(source == \"-\" for _, source in sources):\n"
+  replace: "    if False:\n"
+  test: tests.test_codex_round_count.CommandLineTests.test_stdin_is_refused
+- label: a review limit of three comes back
+  find: "    print(\"\\n\".join(report).encode(\"ascii\", \"replace\").decode(\"ascii\"))\n    return 0\n"
+  replace: "    print(\"\\n\".join(report).encode(\"ascii\", \"replace\").decode(\"ascii\"))\n    return 1 if used >= 3 else 0\n"
+  test: tests.test_codex_round_count.RealShapeTests.test_many_more_than_three_reviews_still_exit_zero
+- label: review 777 and issue comment 777 are taken for one post
+  find: "                return \"gh:\" + match.group(2), (match.group(1), match.group(2))\n"
+  replace: "                return \"gh:\" + match.group(2), (\"id\", match.group(2))\n"
+  test: tests.test_codex_round_count.InputShapeTests.test_ids_from_different_lists_do_not_collide
+- label: a usage-limit phrase inside a post makes it a non-result
+  find: "    r\"\\A\\W*(?:you(?:'ve"
+  replace: "    r\"(?:you(?:'ve"
+  test: tests.test_codex_round_count.StrictnessTests.test_limit_or_error_words_inside_a_post_do_not_make_it_a_non_result
+- label: an error phrase inside a post makes it a non-result
+  find: "    r\"\\A\\W*(?:to\\s+use"
+  replace: "    r\"(?:to\\s+use"
+  test: tests.test_codex_round_count.StrictnessTests.test_limit_or_error_words_inside_a_post_do_not_make_it_a_non_result
+- label: an impossible timestamp crashes instead of being reported as bad input
+  find: "    except ValueError as exc:\n"
+  replace: "    except KeyError as exc:\n"
+  test: tests.test_codex_round_count.InputErrorTests.test_an_impossible_timestamp_is_an_error_not_a_crash
+- label: a reviews file is accepted as issue comments
+  find: "        if inline or (\"state\" in item) != (role != \"comment\"):\n"
+  replace: "        if False:\n"
+  test: tests.test_codex_round_count.InputErrorTests.test_reviews_passed_as_comments_are_an_error
+- label: a count is made from the reviews alone
+  find: "    if not (args.reviews and args.comments):\n"
+  replace: "    if not (args.reviews or args.comments):\n"
+  test: tests.test_codex_round_count.InputErrorTests.test_reviews_without_comments_are_refused
+- label: an opening run that ended in an error keeps the exemption for a later real review
+  find: "            if post.kind != \"summary\":\n                opening_run_seen = True"
+  replace: "            if False:\n                opening_run_seen = True"
+  test: tests.test_codex_round_count.SelfStartedReviewTests.test_an_opening_run_that_ended_in_an_error_uses_the_exemption_up
+- label: the summary comment uses the opening exemption up
+  find: "            if post.kind != \"summary\":\n                opening_run_seen = True"
+  replace: "            if True:\n                opening_run_seen = True"
+  test: tests.test_codex_round_count.SelfStartedReviewTests.test_the_summary_comment_does_not_use_the_opening_exemption_up
+- label: a count is made without the review-thread comments
+  find: "    if not args.review_comments:\n"
+  replace: "    if False:\n"
+  test: tests.test_codex_round_count.InputErrorTests.test_a_count_without_review_comments_is_refused
+- label: a list that does not show it is the last page is counted anyway
+  find: "        if not complete:\n"
+  replace: "        if False:\n"
+  test: tests.test_codex_round_count.InputShapeTests.test_a_flat_list_without_its_empty_next_page_is_refused
+- label: a non-empty flat list is taken as the last page
+  find: "    return data == []\n"
+  replace: "    return True\n"
+  test: tests.test_codex_round_count.InputShapeTests.test_a_flat_list_without_its_empty_next_page_is_refused
+- label: an MCP result is taken as complete whatever its pageInfo says
+  find: "        return isinstance(info, dict) and info.get(\"hasNextPage\") is False\n"
+  replace: "        return True\n"
+  test: tests.test_codex_round_count.InputShapeTests.test_mcp_review_threads_without_a_last_page_proof_are_refused
+- label: a human post without a mention leaves the opening exemption open
+  find: "            # has posted, an unrequested review is no longer the opening run.\n            opening_run_seen = True\n"
+  replace: "            # has posted, an unrequested review is no longer the opening run.\n            pass\n"
+  test: tests.test_codex_round_count.SelfStartedReviewTests.test_a_first_review_after_a_human_post_is_not_the_opening_run
+- label: a long post that opens with an error sentence is taken for a notice
+  find: "    if len(ABOUT_BLOCK.sub(\"\", body).strip()) <= SHORT_NOTICE:\n"
+  replace: "    if True:\n"
+  test: tests.test_codex_round_count.StrictnessTests.test_a_long_post_that_opens_with_an_error_is_not_a_notice
+- label: the bot login is matched case-sensitively
+  find: "    if login.casefold() in BOT_LOGINS:\n"
+  replace: "    if login in BOT_LOGINS:\n"
+  test: tests.test_codex_round_count.StrictnessTests.test_the_bot_login_is_matched_without_regard_to_case
+- label: a login that looks like Codex is taken for a person
+  find: "        if \"codex\" in login.casefold():\n"
+  replace: "        if False:\n"
+  test: tests.test_codex_round_count.StrictnessTests.test_a_login_that_only_looks_like_the_bot_is_refused
+- label: a human post in the same second sorts after the review it may have triggered
+  find: "    posts.sort(key=lambda p: (p.when, TIE_RANK.get(p.kind, 1), p.order))\n"
+  replace: "    posts.sort(key=lambda p: (p.when, p.kind != \"request\", p.order))\n"
+  test: tests.test_codex_round_count.SelfStartedReviewTests.test_a_human_post_in_the_same_second_as_the_first_review_goes_first
+- label: two bot posts of one second follow input order
+  find: "TIE_RANK = {\"request\": 0, \"human\": 0, \"result\": 2}"
+  replace: "TIE_RANK = {\"request\": 0, \"human\": 0, \"result\": 1}"
+  test: tests.test_codex_round_count.SelfStartedReviewTests.test_two_bot_posts_in_the_same_second_put_the_notice_first
+- label: a fraction of a second splits one second in two
+  find: "        return datetime(int(year), int(month), int(day), int(hour), int(minute), int(second), 0, tz)\n"
+  replace: "        return datetime(int(year), int(month), int(day), int(hour), int(minute), int(second), int((_fraction or \"0\")[:6].ljust(6, \"0\")), tz)\n"
+  test: tests.test_codex_round_count.SelfStartedReviewTests.test_a_fraction_of_a_second_does_not_put_a_review_before_its_request
+- label: a human post seen only in a review thread is dropped
+  find: "            if post.kind != \"inline\":\n                posts.append(post)\n"
+  replace: "            if post.kind != \"inline\" and not (item_role == \"inline\" and post.kind == \"human\"):\n                posts.append(post)\n"
+  test: tests.test_codex_round_count.SelfStartedReviewTests.test_a_human_post_seen_only_in_a_thread_ends_the_opening_exemption
+- label: a notice of exactly the short limit is counted
+  find: "    if len(ABOUT_BLOCK.sub(\"\", body).strip()) <= SHORT_NOTICE:\n"
+  replace: "    if len(ABOUT_BLOCK.sub(\"\", body).strip()) < SHORT_NOTICE:\n"
+  test: tests.test_codex_round_count.NotARoundTests.test_a_notice_of_exactly_the_short_limit_is_still_a_notice
+- label: every details block is set aside when a notice is measured
+  find: "    if len(ABOUT_BLOCK.sub(\"\", body).strip()) <= SHORT_NOTICE:\n"
+  replace: "    if len(re.sub(r\"(?s)<details>.*?</details>\", \"\", body).strip()) <= SHORT_NOTICE:\n"
+  test: tests.test_codex_round_count.StrictnessTests.test_only_the_about_footer_is_set_aside_when_a_notice_is_measured
+- label: a summary holding more than its table is left out
+  find: "        return \"summary\" if is_plain_summary(body) else \"unknown\"\n"
+  replace: "        return \"summary\"\n"
+  test: tests.test_codex_round_count.StrictnessTests.test_a_summary_holding_more_than_its_table_counts
+- label: another bot posting what Codex posts is taken for a person
+  find: "        if is_bot(item, login) and (CODEX_SIGNATURE.search(body) or RESULT.search(body)):\n"
+  replace: "        if False:\n"
+  test: tests.test_codex_round_count.StrictnessTests.test_another_bot_posting_what_codex_posts_is_refused
+- label: issue comments and reviews are accepted as review-thread comments
+  find: "            if not (any(key in item for key in INLINE_KEYS) or \"#discussion_r\" in url) or \"state\" in item:\n"
+  replace: "            if False:\n"
+  test: tests.test_codex_round_count.InputErrorTests.test_issue_comments_or_reviews_passed_as_review_comments_are_an_error
+- label: an inline comment newer than every review is counted from a stale list
+  find: "    if \"inline\" in newest and (\"result\" not in newest\n"
+  replace: "    if False and (\"result\" not in newest\n"
+  test: tests.test_codex_round_count.InputErrorTests.test_a_codex_inline_comment_newer_than_every_review_is_refused
+- label: an inline comment stamped a second after its review reads as a missing review
+  find: "                               or newest[\"inline\"].when > newest[\"result\"].when + INLINE_LAG):\n"
+  replace: "                               or newest[\"inline\"].when > newest[\"result\"].when):\n"
+  test: tests.test_codex_round_count.InputErrorTests.test_inline_comments_stamped_just_after_their_review_belong_to_it
+- label: inline comments of any age are taken for the newest review's
+  find: "                               or newest[\"inline\"].when > newest[\"result\"].when + INLINE_LAG):\n"
+  replace: "                               or newest[\"inline\"].when > newest[\"result\"].when + INLINE_LAG * 99):\n"
+  test: tests.test_codex_round_count.InputErrorTests.test_inline_comments_stamped_just_after_their_review_belong_to_it
+- label: a failure inside the script escapes as a traceback
+  find: "    except Exception as exc:  # a bug must read neither as the limit (1) nor as rounds left (0)\n"
+  replace: "    except ZeroDivisionError as exc:\n"
+  test: tests.test_codex_round_count.InputErrorTests.test_a_failure_inside_the_script_exits_2
+- label: another bot posting a result without Codex's footer is taken for a person
+  find: "        if is_bot(item, login) and (CODEX_SIGNATURE.search(body) or RESULT.search(body)):\n"
+  replace: "        if is_bot(item, login) and CODEX_SIGNATURE.search(body):\n"
+  test: tests.test_codex_round_count.StrictnessTests.test_another_bot_posting_a_result_is_refused
+- label: a request nothing has answered yet is not counted
+  find: "    for request in pending:\n        used += 1\n"
+  replace: "    for request in []:\n        used += 1\n"
+  test: tests.test_codex_round_count.RequestTests.test_a_request_with_no_answer_yet_counts_as_a_run_in_progress
+- label: a notice leaves the request it answers open
+  find: "            if post.kind in (\"quota\", \"error\") and pending:\n"
+  replace: "            if False:\n"
+  test: tests.test_codex_round_count.RequestTests.test_a_request_answered_only_by_a_notice_is_not_a_round
+- label: an acknowledgement or a task link answers a request
+  find: "            if post.kind in (\"quota\", \"error\") and pending:\n"
+  replace: "            if post.kind in (\"quota\", \"error\", \"task\") and pending:\n"
+  test: tests.test_codex_round_count.RequestTests.test_a_request_with_no_answer_yet_counts_as_a_run_in_progress
+- label: an unrecognized post closes the oldest open request
+  find: "            # It closes no request: if it is not the answer, the run still in\n"
+  replace: "            pending and pending.popleft()\n"
+  test: tests.test_codex_round_count.RequestTests.test_an_unrecognized_post_answers_no_request
+- label: the newest open request is answered first
+  find: "            request = pending.popleft() if pending else None\n"
+  replace: "            request = pending.pop() if pending else None\n"
+  test: tests.test_codex_round_count.RequestTests.test_the_oldest_open_request_is_answered_first_and_the_rest_count
+- label: a mention inside a longer handle opens a request
+  find: "REVIEW_REQUEST = re.compile(r\"(?<![\\w@])@codex\\s+(?:security\\s+)?review\\b\", re.IGNORECASE)\n"
+  replace: "REVIEW_REQUEST = re.compile(r\"@codex\", re.IGNORECASE)\n"
+  test: tests.test_codex_round_count.RequestTests.test_a_mention_inside_a_longer_handle_opens_no_request
+- label: the you-have and typographic-apostrophe forms of the usage-limit opening are dropped
+  find: "you(?:'ve|\\u2019ve|\\s+have)"
+  replace: "you(?:'ve)"
+  test: tests.test_codex_round_count.NotARoundTests.test_every_listed_opening_is_a_notice
+- label: the Codex-usage-limit opening is dropped
+  find: "    r\"|codex\\s+usage\\s+limits?\\s+(?:reached|exceeded)\"\n"
+  replace: "    r\"|(?!x)x\"\n"
+  test: tests.test_codex_round_count.NotARoundTests.test_every_listed_opening_is_a_notice
+- label: the usage-limits-exceeded opening is dropped
+  find: "    r\"|usage\\s+limits?\\s+(?:reached|exceeded))\",\n"
+  replace: "    r\"|(?!x)x)\",\n"
+  test: tests.test_codex_round_count.NotARoundTests.test_every_listed_opening_is_a_notice
+- label: a notice opening after an emoji is not recognized
+  find: "    r\"\\A\\W*(?:you("
+  replace: "    r\"\\A(?:you("
+  test: tests.test_codex_round_count.NotARoundTests.test_every_listed_opening_is_a_notice
+- label: the create-a-Codex-account opening is dropped
+  find: "    r\"\\A\\W*(?:to\\s+use\\s+codex\\s+here,?\\s+create\\s+a\\s+codex\\s+account\"\n"
+  replace: "    r\"\\A\\W*(?:(?!x)x\"\n"
+  test: tests.test_codex_round_count.NotARoundTests.test_every_listed_opening_is_a_notice
+- label: the something-went-wrong opening is dropped
+  find: "    r\"|something\\s+went\\s+wrong\"\n"
+  replace: "    r\"|(?!x)x\"\n"
+  test: tests.test_codex_round_count.NotARoundTests.test_every_listed_opening_is_a_notice
+- label: the ran-into-an-error form is dropped
+  find: "(?:encountered|ran\\s+into)"
+  replace: "(?:encountered)"
+  test: tests.test_codex_round_count.NotARoundTests.test_every_listed_opening_is_a_notice
+- label: the an-error-occurred opening is dropped
+  find: "    r\"|an\\s+error\\s+occurred)\",\n"
+  replace: "    r\"|(?!x)x)\",\n"
+  test: tests.test_codex_round_count.NotARoundTests.test_every_listed_opening_is_a_notice
+- label: reviews that changed between the two fetches are counted
+  find: "        changed = sorted(\":\".join(key) for key in first.keys() ^ second.keys())\n"
+  replace: "        changed = []\n"
+  test: tests.test_codex_round_count.InputErrorTests.test_reviews_that_changed_between_the_fetches_are_refused
+- label: any heading passes for the summary's
+  find: "r\"|## Codex Review Summary\""
+  replace: "r\"|##.*\""
+  test: tests.test_codex_round_count.StrictnessTests.test_a_summary_with_another_heading_or_sentence_counts
+- label: any sentence passes for the summary's
+  find: "r\"|This comment shows the latest Codex review activity on this pull request\\.|\\|.*)?\\s*\")"
+  replace: "r\"|This comment shows.*|\\|.*)?\\s*\")"
+  test: tests.test_codex_round_count.StrictnessTests.test_a_summary_with_another_heading_or_sentence_counts
+- label: a summary without its About footer is counted
+  find: "    return all(SUMMARY_LINE.fullmatch(line) for line in ABOUT_BLOCK.sub(\"\", body).splitlines())\n"
+  replace: "    return ABOUT_BLOCK.search(body) is not None and all(SUMMARY_LINE.fullmatch(line) for line in ABOUT_BLOCK.sub(\"\", body).splitlines())\n"
+  test: tests.test_codex_round_count.StrictnessTests.test_a_summary_without_its_about_footer_is_still_a_summary
+- label: a --paginate --slurp list is not taken as complete
+  find: "    if is_slurped(data):\n        return True"
+  replace: "    if False:\n        return True"
+  test: tests.test_codex_round_count.InputShapeTests.test_the_next_page_or_a_slurped_list_proves_the_end
+- label: a count is made without one of the second fetches
+  find: "    if not (args.reviews_after and args.comments_after and args.review_comments_after):\n"
+  replace: "    if not (args.reviews_after or args.comments_after or args.review_comments_after):\n"
+  test: tests.test_codex_round_count.InputErrorTests.test_a_count_without_every_second_fetch_is_refused
+- label: only the reviews are compared across the two fetches
+  find: "    for base, (first, second) in passes.items():\n"
+  replace: "    for base, (first, second) in [(\"review\", passes[\"review\"])]:\n"
+  test: tests.test_codex_round_count.InputErrorTests.test_a_request_and_its_result_posted_while_the_lists_were_fetched_stop_the_count
+- label: a review thread missing some of its comments is counted
+  find: "            if len(comments) < total:\n"
+  replace: "            if False:\n"
+  test: tests.test_codex_round_count.InputErrorTests.test_a_thread_missing_some_of_its_comments_is_an_error
+- label: a review with neither an id nor a URL is let through
+  find: "            if key is None:\n                raise InputError(f\"{source}: a post with neither"
+  replace: "            if False:\n                raise InputError(f\"{source}: a post with neither"
+  test: tests.test_codex_round_count.InputErrorTests.test_a_review_with_neither_an_id_nor_a_url_is_an_error
+- label: the first file of an option decides whether the list is complete
+  find: "        last_page[role] = (source, proves_last_page(role, data))\n"
+  replace: "        last_page.setdefault(role, (source, proves_last_page(role, data)))\n"
+  test: tests.test_codex_round_count.InputShapeTests.test_the_last_file_of_an_option_decides_whether_the_list_is_complete
+- label: a person's review that mentions Codex is not a request
+  find: "        kind = \"request\" if REVIEW_REQUEST.search(body) else \"human\"\n"
+  replace: "        kind = \"request\" if REVIEW_REQUEST.search(body) and role != \"review\" else \"human\"\n"
+  test: tests.test_codex_round_count.RequestTests.test_a_persons_review_that_mentions_codex_is_a_request
+- label: a chatgpt.com/s/ View task link is taken for an unrecognized post
+  find: "TASK_LINK = re.compile(r\"\\[[^\\]]*\\]\\(https://chatgpt\\.com/(?:codex/tasks|s)/[^)\\s]*\\)\"\n                       r\"|https://chatgpt\\.com/(?:codex/tasks|s)/\\S*\", re.IGNORECASE)"
+  replace: "TASK_LINK = re.compile(r\"\\[[^\\]]*\\]\\(https://chatgpt\\.com/codex/tasks/[^)\\s]*\\)\"\n                       r\"|https://chatgpt\\.com/codex/tasks/\\S*\", re.IGNORECASE)"
+  test: tests.test_codex_round_count.NotARoundTests.test_a_view_task_share_link_is_not_a_round
+- label: one file named for a list's first and second fetch is accepted
+  find: "        if identity in seen:\n"
+  replace: "        if False:\n"
+  test: tests.test_codex_round_count.InputErrorTests.test_one_file_named_for_both_fetches_is_refused
+- label: a file is told apart by how its path is spelled
+  find: "    if st is not None and st.st_ino:\n        return (st.st_dev, st.st_ino)\n    return os.path.normcase(os.path.realpath(path))\n"
+  replace: "    return path\n"
+  test: tests.test_codex_round_count.InputErrorTests.test_another_spelling_of_one_file_is_the_same_file
+- label: a hard link to a file is taken for another file
+  find: "        return (st.st_dev, st.st_ino)\n"
+  replace: "        return os.path.normcase(os.path.realpath(path))\n"
+  test: tests.test_codex_round_count.InputErrorTests.test_another_spelling_of_one_file_is_the_same_file
+- label: a pipe, FIFO or device is accepted as a fetch
+  find: "        if mode is not None and not stat.S_ISREG(mode):\n"
+  replace: "        if False:\n"
+  test: tests.test_codex_round_count.CommandLineTests.test_a_source_that_is_not_a_regular_file_is_refused
+- label: a hyphenated handle such as @codex-review opens a request
+  find: "@codex\\s+(?:security"
+  replace: "@codex\\W+(?:security"
+  test: tests.test_codex_round_count.RequestTests.test_a_hyphenated_handle_is_another_account_not_a_request
+- label: a post edited between the two fetches passes the snapshot check
+  find: "        changed += sorted(\":\".join(key) + \" (edited)\" for key in first.keys() & second.keys() if first[key] != second[key])\n"
+  replace: ""
+  test: tests.test_codex_round_count.InputErrorTests.test_a_post_edited_between_the_fetches_is_refused
+- label: a review thread without a comment count is taken as complete
+  find: "            if isinstance(total, bool) or not isinstance(total, int) or total < 0:\n"
+  replace: "            if False:\n"
+  test: tests.test_codex_round_count.InputErrorTests.test_a_thread_without_a_valid_comment_count_is_an_error
+- label: a mention that starts a task opens a pending review
+  find: "REVIEW_REQUEST = re.compile(r\"(?<![\\w@])@codex\\s+(?:security\\s+)?review\\b\", re.IGNORECASE)\n"
+  replace: "REVIEW_REQUEST = re.compile(r\"(?<![\\w@])@codex\\b\", re.IGNORECASE)\n"
+  test: tests.test_codex_round_count.RequestTests.test_a_task_request_on_the_pr_is_not_a_pending_review

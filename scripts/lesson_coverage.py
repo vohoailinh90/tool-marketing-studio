@@ -15,10 +15,14 @@ is not agent work* in CLAUDE.md):
   - every block names a slide that exists, or the caption -- never the first
     comment, which readers can miss, and never the link;
   - every block's `evidence` -- one quote or a list of quotes -- is found word
-    for word in one visible text field of that slide or caption, no quote is
-    used for two blocks, and the quotes together show at least 30% of the
-    block's words (all of a code block), so three words cannot stand in for a
+    for word in one text field the slide's layout actually draws (or in the
+    caption); the distinct words the quotes cover, with no word counted twice
+    and none shared with another block, show at least 30% of the block's
+    words (all of a code block), so three words cannot stand in for a
     paragraph;
+  - the manifest is bound to its lesson and its post: coverage/<id>.yaml
+    checks posts/<lang>/<id>.yaml against course/<lang>/lessons/<id>.md;
+  - the lesson's `social.hook` and `social.question` count as blocks too;
   - a diagram block points at the image slide showing that diagram;
   - the post has at most 10 slides, and every post of a course campaign has a
     manifest.
@@ -65,8 +69,8 @@ MAX_SLIDES = 10
 # cannot stand in for a paragraph. A code block must be shown whole.
 MIN_EVIDENCE_SHARE = 0.3
 MIN_EVIDENCE_WORDS = 3
-# Slide fields a reader does not see as text.
-HIDDEN_FIELDS = {"layout", "src", "tone", "variant", "style", "show_link", "me", "total_row", "format"}
+# Front-matter fields of a lesson that a post must carry too.
+SOCIAL_FIELDS = ("hook", "question")
 
 SECTION = re.compile(r"^<!--\s*section:\s*([a-z0-9-]+)\s*-->\s*$")
 FENCE = re.compile(r"^\s*(```|~~~)")
@@ -102,19 +106,27 @@ def normalize(text: str) -> str:
     return plain(text).casefold()
 
 
+def tokens(text: str) -> list[str]:
+    return WORD.findall(normalize(text))
+
+
 def words(text: str) -> int:
-    return len(WORD.findall(plain(text)))
+    return len(tokens(text))
 
 
-def body_of(markdown: str) -> list[str]:
-    """The lesson's lines after its front matter."""
+def split_front_matter(markdown: str) -> tuple[dict, list[str]]:
+    """The lesson's front matter (parsed) and its lines after it."""
     lines = markdown.splitlines()
     if lines and lines[0].strip() == "---":
         for index in range(1, len(lines)):
             if lines[index].strip() == "---":
-                return lines[index + 1:]
+                try:
+                    front = yaml.safe_load("\n".join(lines[1:index])) or {}
+                except yaml.YAMLError as exc:
+                    raise InputError(f"front matter is not valid YAML: {exc}") from exc
+                return (front if isinstance(front, dict) else {}), lines[index + 1:]
         raise InputError("front matter is not closed")
-    return lines
+    return {}, lines
 
 
 def extract(markdown: str) -> list[dict[str, str]]:
@@ -125,7 +137,9 @@ def extract(markdown: str) -> list[dict[str, str]]:
     row is not), a quote (its lines joined, the `>` dropped), a sub-heading, a
     code block (its lines without the fences) or a diagram. A section's own `##`
     heading is its label, horizontal rules and tag-only lines are layout, and
-    lines before the first section (title, language bar) are not blocks.
+    lines before the first section (title, language bar) are not blocks. The
+    front matter's `social.hook` and `social.question` come first, as blocks
+    of the pseudo-section `social`.
     """
     blocks: list[dict[str, str]] = []
     section: str | None = None
@@ -146,7 +160,13 @@ def extract(markdown: str) -> list[dict[str, str]]:
                 add(pending_kind, text)
         pending, pending_kind = [], ""
 
-    lines = body_of(markdown)
+    front, lines = split_front_matter(markdown)
+    social = front.get("social") if isinstance(front.get("social"), dict) else {}
+    for field in SOCIAL_FIELDS:
+        if social.get(field):
+            section = "social"
+            add(field, plain(str(social[field])))
+    section = None
     index = 0
     while index < len(lines):
         line = lines[index]
@@ -214,17 +234,79 @@ def extract(markdown: str) -> list[dict[str, str]]:
     return blocks
 
 
-def visible(value: Any, key: str = "") -> list[str]:
-    """Every string a reader sees inside a slide or a text field, one per field."""
-    if key in HIDDEN_FIELDS:
-        return []
+def _texts(value: Any) -> list[str]:
+    """Strings a list field shows: plain strings, or the `text` of {text: ...} entries."""
     if isinstance(value, str):
         return [value]
     if isinstance(value, dict):
-        return [s for k, v in value.items() for s in visible(v, str(k))]
+        return [str(value["text"])] if value.get("text") else []
     if isinstance(value, list):
-        return [s for v in value for s in visible(v)]
+        return [t for v in value for t in _texts(v)]
     return []
+
+
+def rendered(slide: Any) -> list[str]:
+    """The text fields a slide's layout draws, one string per field -- mirrors mkt/layouts.py.
+
+    Fields a layout ignores (a stat's `value` beside before/after, a quote's
+    `role` without an author, unknown keys) are not text a reader sees, so they
+    cannot carry evidence.
+    """
+    if not isinstance(slide, dict):
+        return []
+    s = slide
+    get = lambda *keys: [str(s[k]) for k in keys if s.get(k)]  # noqa: E731
+    layout = s.get("layout")
+    head = get("eyebrow", "title")
+    note = get("note")
+    if layout == "cover":
+        return get("eyebrow", "title", "subtitle", "badge")
+    if layout in ("pains", "checklist"):
+        return head + _texts(s.get("items")) + note
+    if layout == "chat":
+        messages = [m for m in s.get("messages") or [] if isinstance(m, dict)]
+        return (head + get("group") + [str(m["from"]) for m in messages if m.get("from") and not m.get("me")]
+                + [str(m["text"]) for m in messages if m.get("text")] + note)
+    if layout == "flow":
+        return head + _texts(s.get("steps")) + get("total_label") + note
+    if layout == "stat":
+        figure = get("before", "after") if s.get("before") and s.get("after") else get("value")
+        return get("eyebrow") + figure + get("label", "caption")
+    if layout == "compare":
+        sides = [s.get(side) for side in ("before", "after")]
+        return head + [t for side in sides if isinstance(side, dict)
+                       for t in (([str(side["label"])] if side.get("label") else []) + _texts(side.get("items")))] + note
+    if layout == "table":
+        return head + _texts(s.get("columns")) + [t for row in s.get("rows") or [] for t in _texts(row)] + note
+    if layout == "features":
+        items = [i for i in s.get("items") or [] if isinstance(i, dict)]
+        return head + [str(i[k]) for i in items for k in ("title", "text") if i.get(k)] + note
+    if layout == "quote":
+        return get("text") + (get("author", "role") if s.get("author") else [])
+    if layout == "poll":
+        return get("eyebrow", "question") + _texts(s.get("options")) + get("hint")
+    if layout == "cta":
+        return head + get("text", "button", "keyword") + (get("hint") if s.get("show_link", True) else [])
+    if layout == "email":
+        return head + get("subject", "from", "infobar") + _texts(s.get("buttons")) + get("body") + note
+    if layout == "timeline":
+        items = [i for i in s.get("items") or [] if isinstance(i, dict)]
+        return head + [str(i[k]) for i in items for k in ("when", "text") if i.get(k)] + note
+    if layout == "image":
+        return head + get("caption") + note
+    return []
+
+
+def find_span(quote: list[str], field: list[str], taken: set[int]) -> range | None:
+    """Where `quote` (as words) first appears in `field` without touching words already taken."""
+    n = len(quote)
+    for start in range(len(field) - n + 1):
+        if field[start:start + n] == quote and not taken.intersection(range(start, start + n)):
+            return range(start, start + n)
+    for start in range(len(field) - n + 1):
+        if field[start:start + n] == quote:
+            return range(start, start + n)
+    return None
 
 
 def load_yaml(path: Path) -> Any:
@@ -262,10 +344,20 @@ def check(manifest_path: Path, course_dir: Path | None = None) -> list[str]:
     if source.get("commit") and not re.fullmatch(r"[0-9a-f]{40}", str(source["commit"])):
         problems.append("source.commit must be a full 40-character commit SHA")
 
-    post_rel = manifest.get("post")
-    if not post_rel:
-        raise InputError(f"{manifest_path}: `post` is missing")
-    post_path = (manifest_path.parent / post_rel).resolve()
+    # A manifest is bound to its lesson and its post by its own file name: it
+    # cannot point at a shorter lesson or at another, complete post.
+    lesson_id = manifest_path.stem
+    lang = str(manifest.get("lang") or "")
+    if manifest.get("lesson") != lesson_id:
+        problems.append(f"lesson must be {lesson_id!r}, the manifest's file name")
+    if not re.fullmatch(r"[a-z]{2}", lang):
+        raise InputError(f"{manifest_path}: `lang` must be a two-letter language code")
+    expected_path = f"course/{lang}/lessons/{lesson_id}.md"
+    if source.get("path") and source["path"] != expected_path:
+        problems.append(f"source.path must be {expected_path}")
+    post_path = (manifest_path.parent.parent / "posts" / lang / f"{lesson_id}.yaml").resolve()
+    if manifest.get("post") and (manifest_path.parent / str(manifest["post"])).resolve() != post_path:
+        problems.append(f"post must be ../posts/{lang}/{lesson_id}.yaml")
     post = load_yaml(post_path)
     if not isinstance(post, dict):
         raise InputError(f"{post_path}: not a mapping")
@@ -281,15 +373,16 @@ def check(manifest_path: Path, course_dir: Path | None = None) -> list[str]:
 
     # The lesson itself decides which blocks exist and what they say.
     truth: dict[str, dict[str, str]] | None = None
-    if course_dir is not None and source.get("commit") and source.get("path"):
+    if course_dir is not None and source.get("commit"):
         try:
             truth = {b["key"]: b for b in extract(lesson_from_git(course_dir, str(source["commit"]),
-                                                                  str(source["path"])))}
+                                                                  expected_path))}
         except InputError as exc:
             problems.append(str(exc))
 
     seen: set[str] = set()
-    quoted: dict[str, str] = {}
+    # Words already claimed, per destination field: (dest, field index) -> word index -> block key.
+    claimed: dict[tuple[str, int], dict[int, str]] = {}
     for entry in blocks:
         if not isinstance(entry, dict) or not entry.get("key"):
             problems.append(f"a block has no key: {entry!r}")
@@ -330,19 +423,30 @@ def check(manifest_path: Path, course_dir: Path | None = None) -> list[str]:
             continue
         evidence = entry.get("evidence")
         quotes = [str(q) for q in (evidence if isinstance(evidence, list) else [evidence]) if q]
-        fields = [normalize(s) for s in visible(target)]
-        shown = 0
+        fields = [tokens(text) for text in (rendered(target) if match.group(1) else [caption])]
+        mine: set[tuple[int, int]] = set()
         for quote in quotes:
-            norm = normalize(quote)
-            if words(quote) < min(MIN_EVIDENCE_WORDS, max(words(block["source"]), 1)):
+            words_in_quote = tokens(quote)
+            if len(words_in_quote) < min(MIN_EVIDENCE_WORDS, max(words(block["source"]), 1)):
                 problems.append(f"{key}: quote {quote!r} is too short to prove anything")
-            elif not any(norm in field for field in fields):
-                problems.append(f"{key}: quote {quote!r} is not in one text field of {dest}")
-            elif norm in quoted:
-                problems.append(f"{key}: quote {quote!r} already proves {quoted[norm]}")
+                continue
+            for number_of_field, field in enumerate(fields):
+                owners = claimed.setdefault((dest, number_of_field), {})
+                span = find_span(words_in_quote, field, {i for i, k in owners.items() if k != key})
+                if span is not None:
+                    break
             else:
-                quoted[norm] = key
-                shown += words(quote)
+                problems.append(f"{key}: quote {quote!r} is not in one text field {dest} shows")
+                continue
+            others = {owners[i] for i in span if owners.get(i, key) != key}
+            if others:
+                problems.append(f"{key}: quote {quote!r} uses words that already prove {', '.join(sorted(others))}")
+                continue
+            for i in span:
+                owners[i] = key
+                mine.add((number_of_field, i))
+        # Overlapping quotes count each shown word once.
+        shown = len(mine)
         need = required_words(block["kind"], block["source"])
         if shown < need:
             problems.append(f"{key}: the quotes show {shown} of the {need} words needed "

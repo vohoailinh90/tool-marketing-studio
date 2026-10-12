@@ -7,33 +7,49 @@ target: scripts/lesson_coverage.py
 note: A lesson post must carry every block of its lesson, visibly, on a slide or in the caption.
 mutations:
 - label: a quote that is not on the slide is accepted
-  find: '            elif not any(norm in field for field in fields):'
-  replace: '            elif False and not any(norm in field for field in fields):'
+  find: "                problems.append(f\"{key}: quote {quote!r} is not in one text field {dest} shows\")\n                continue"
+  replace: '                span = range(0)  # accepted anyway'
   test: tests.test_lesson_coverage.CheckTests.test_evidence_missing_from_its_slide_fails
 - label: a quote may span two fields
-  find: '        fields = [normalize(s) for s in visible(target)]'
-  replace: '        fields = [" ".join(normalize(s) for s in visible(target))]'
+  find: '        fields = [tokens(text) for text in (rendered(target) if match.group(1) else [caption])]'
+  replace: '        fields = [tokens(" ".join(rendered(target) if match.group(1) else [caption]))]'
   test: tests.test_lesson_coverage.CheckTests.test_a_quote_cannot_span_two_fields
-- label: hidden fields count as evidence
-  find: '    if key in HIDDEN_FIELDS:'
-  replace: '    if False and key in HIDDEN_FIELDS:'
-  test: tests.test_lesson_coverage.CheckTests.test_hidden_fields_are_not_evidence
+- label: a field the layout does not draw counts as evidence
+  find: '        figure = get("before", "after") if s.get("before") and s.get("after") else get("value")'
+  replace: '        figure = get("before", "after", "value")'
+  test: tests.test_lesson_coverage.CheckTests.test_a_field_the_layout_does_not_draw_is_not_evidence
+- label: one quote proves two blocks
+  find: '            others = {owners[i] for i in span if owners.get(i, key) != key}'
+  replace: '            others = set()  # words may prove several blocks'
+  test: tests.test_lesson_coverage.CheckTests.test_one_quote_cannot_prove_two_blocks
+- label: overlapping quotes add up their words
+  find: '        shown = len(mine)'
+  replace: '        shown = sum(len(tokens(q)) for q in quotes)'
+  test: tests.test_lesson_coverage.CheckTests.test_overlapping_quotes_count_each_word_once
+- label: a manifest may point at another post
+  find: '    post_path = (manifest_path.parent.parent / "posts" / lang / f"{lesson_id}.yaml").resolve()'
+  replace: '    post_path = (manifest_path.parent / str(manifest.get("post") or "")).resolve()'
+  test: tests.test_lesson_coverage.CheckTests.test_the_manifest_cannot_point_at_another_post
+- label: a manifest may point at another lesson
+  find: '    if source.get("path") and source["path"] != expected_path:'
+  replace: '    if False and source.get("path") and source["path"] != expected_path:'
+  test: tests.test_lesson_coverage.CheckTests.test_the_manifest_cannot_point_at_another_lesson
+- label: the social hook and question are not blocks
+  find: '    for field in SOCIAL_FIELDS:'
+  replace: '    for field in ():  # front matter ignored'
+  test: tests.test_lesson_coverage.TrickyMarkdownTests.test_social_hook_and_question_are_blocks
 - label: the first comment may carry knowledge
-  find: 'DEST = re.compile(r"^(?:slide:(\d+)|caption)$")'
-  replace: 'DEST = re.compile(r"^(?:slide:(\d+)|caption|first_comment)$")'
+  find: DEST = re.compile(r"^(?:slide:(\d+)|caption)$")
+  replace: DEST = re.compile(r"^(?:slide:(\d+)|caption|first_comment)$")
   test: tests.test_lesson_coverage.CheckTests.test_the_first_comment_cannot_carry_knowledge
 - label: three words stand in for a paragraph
-  find: 'MIN_EVIDENCE_SHARE = 0.3'
+  find: MIN_EVIDENCE_SHARE = 0.3
   replace: 'MIN_EVIDENCE_SHARE = 0.0  # any three words will do'
   test: tests.test_lesson_coverage.CheckTests.test_three_words_cannot_stand_in_for_a_long_paragraph
 - label: a code block may be shown in part
   find: '    if kind == "code":'
   replace: '    if False and kind == "code":'
   test: tests.test_lesson_coverage.CheckTests.test_a_code_block_must_be_shown_whole
-- label: one quote proves two blocks
-  find: '            elif norm in quoted:'
-  replace: '            elif False and norm in quoted:'
-  test: tests.test_lesson_coverage.CheckTests.test_one_quote_cannot_prove_two_blocks
 - label: more than ten slides is accepted
   find: '    if len(slides) > MAX_SLIDES:'
   replace: '    if False and len(slides) > MAX_SLIDES:'
@@ -67,8 +83,8 @@ mutations:
   replace: '        if False and TABLE_ROW.match(line):'
   test: tests.test_lesson_coverage.TrickyMarkdownTests.test_every_table_row_is_a_block_and_the_rule_row_is_not
 - label: a line that starts with a tag is dropped
-  find: 'HTML_ONLY = re.compile(rf"^\s*(?:{TAG}\s*)+$|^\s*<summary>.*</summary>\s*$")'
-  replace: 'HTML_ONLY = re.compile(r"^\s*</?[a-zA-Z][^>]*>.*$")'
+  find: HTML_ONLY = re.compile(rf"^\s*(?:{TAG}\s*)+$|^\s*<summary>.*</summary>\s*$")
+  replace: HTML_ONLY = re.compile(r"^\s*</?[a-zA-Z][^>]*>.*$")
   test: tests.test_lesson_coverage.TrickyMarkdownTests.test_a_line_that_starts_with_a_tag_is_text
 - label: an unclosed fence swallows the rest of the lesson
   find: '                raise InputError(f"a code fence opened in section {section!r} is never closed")'

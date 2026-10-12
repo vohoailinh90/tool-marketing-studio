@@ -19,6 +19,9 @@ LESSON = """---
 lesson: demo
 lang: vi
 status: review
+social:
+  hook: "Agent có ba phần"
+  question: Bạn sẽ chọn công cụ nào trước?
 ---
 
 🌐 **Tiếng Việt** · [English](../../en/lessons/demo.md)
@@ -98,7 +101,7 @@ def full_post() -> dict:
             {"layout": "poll", "question": "Bộ phận nào làm việc thật?", "options": ["A) LLM", "B) Công cụ"]},
         ],
         "platforms": {"facebook": {
-            "caption": "Biết khi nào vòng lặp dừng.\nCode: print(\"xin chào\")\n"
+            "caption": "Biết khi nào vòng lặp dừng.\nCode: print(\"xin chào\")\nBạn sẽ chọn công cụ nào trước?\n"
                        "Đáp án: B — công cụ mới thực sự tạo file.",
             "first_comment": "Đọc thêm: {link}",
         }},
@@ -107,6 +110,8 @@ def full_post() -> dict:
 
 def full_manifest() -> dict:
     dests = {
+        "social#01": ("slide:1", "Agent có ba phần"),
+        "social#02": ("caption", "Bạn sẽ chọn công cụ nào trước?"),
         "objective#01": ("slide:1", "Nói được ba phần của agent"),
         "objective#02": ("caption", "Biết khi nào vòng lặp dừng"),
         "concept#01": ("slide:2", "Công thức"),
@@ -135,10 +140,10 @@ class ExtractTests(unittest.TestCase):
     def test_blocks_are_every_paragraph_item_heading_code_and_diagram_in_sections(self):
         blocks = lc.extract(LESSON)
         self.assertEqual([b["key"] for b in blocks], [
-            "objective#01", "objective#02", "concept#01", "concept#02", "concept#03", "concept#04",
+            "social#01", "social#02", "objective#01", "objective#02", "concept#01", "concept#02", "concept#03", "concept#04",
             "quiz#01", "quiz#02", "quiz#03", "quiz#04"])
         self.assertEqual([b["kind"] for b in blocks], [
-            "item", "item", "heading", "diagram", "para", "code", "para", "item", "item", "item"])
+            "hook", "question", "item", "item", "heading", "diagram", "para", "code", "para", "item", "item", "item"])
 
     def test_text_drops_markdown_links_and_emphasis_and_joins_lines(self):
         blocks = {b["key"]: b for b in lc.extract(LESSON)}
@@ -171,6 +176,11 @@ class TrickyMarkdownTests(unittest.TestCase):
     def test_a_quote_is_one_block_without_its_markers(self):
         quotes = [b["source"] for b in self.blocks if b["kind"] == "quote"]
         self.assertEqual(quotes, ["Hãy đọc file data.csv rồi báo tổng doanh thu."])
+
+    def test_social_hook_and_question_are_blocks(self):
+        blocks = {b["key"]: b for b in lc.extract(LESSON)}
+        self.assertEqual(blocks["social#01"]["source"], "Agent có ba phần")
+        self.assertEqual(blocks["social#02"]["kind"], "question")
 
     def test_a_line_that_starts_with_a_tag_is_text(self):
         self.assertIn("Ctrl + C dừng chương trình ngay.", self.sources)
@@ -208,28 +218,28 @@ class CheckTests(unittest.TestCase):
 
     def test_evidence_missing_from_its_slide_fails(self):
         manifest = full_manifest()
-        manifest["blocks"][4]["evidence"] = "agent tự mở file được"
-        self.assertTrue(any("concept#03" in p and "is not in one text field of slide:3" in p
+        manifest["blocks"][6]["evidence"] = "agent tự mở file được"
+        self.assertTrue(any("concept#03" in p and "is not in one text field slide:3 shows" in p
                             for p in self.problems(manifest=manifest)))
 
     def test_evidence_on_another_slide_does_not_count(self):
         manifest = full_manifest()
-        manifest["blocks"][4]["dest"] = "slide:1"
+        manifest["blocks"][6]["dest"] = "slide:1"
         self.assertTrue(any("concept#03" in p for p in self.problems(manifest=manifest)))
 
     def test_the_first_comment_cannot_carry_knowledge(self):
         manifest = full_manifest()
-        manifest["blocks"][9]["dest"] = "first_comment"
+        manifest["blocks"][11]["dest"] = "first_comment"
         self.assertTrue(any("quiz#04" in p and "first comment" in p for p in self.problems(manifest=manifest)))
 
     def test_a_slide_that_does_not_exist_fails(self):
         manifest = full_manifest()
-        manifest["blocks"][0]["dest"] = "slide:9"
+        manifest["blocks"][2]["dest"] = "slide:9"
         self.assertTrue(any("slide:9 does not exist" in p for p in self.problems(manifest=manifest)))
 
     def test_one_word_evidence_for_a_long_block_fails(self):
         manifest = full_manifest()
-        manifest["blocks"][4]["evidence"] = "vòng lặp"
+        manifest["blocks"][6]["evidence"] = "vòng lặp"
         self.assertTrue(any("concept#03" in p and "too short" in p for p in self.problems(manifest=manifest)))
 
     def test_three_words_cannot_stand_in_for_a_long_paragraph(self):
@@ -238,7 +248,7 @@ class CheckTests(unittest.TestCase):
                 "thì nó không thấy lỗi và không biết mình sai ở đâu cả")
         post["slides"][2]["items"] = [long]
         manifest = full_manifest()
-        manifest["blocks"][4].update(source=long, evidence="Agent chỉ sửa")
+        manifest["blocks"][6].update(source=long, evidence="Agent chỉ sửa")
         problems = self.problems(post=post, manifest=manifest)
         self.assertTrue(any("concept#03" in p and "the quotes show 3 of the 10 words needed" in p for p in problems),
                         problems)
@@ -247,7 +257,7 @@ class CheckTests(unittest.TestCase):
         post = full_post()
         post["slides"][2]["items"] = ["Agent gồm bộ não", "đôi tay và một vòng lặp"]
         manifest = full_manifest()
-        manifest["blocks"][4]["evidence"] = ["Agent gồm bộ não", "đôi tay và một vòng lặp"]
+        manifest["blocks"][6]["evidence"] = ["Agent gồm bộ não", "đôi tay và một vòng lặp"]
         self.assertEqual(self.problems(post=post, manifest=manifest), [])
 
     def test_a_quote_cannot_span_two_fields(self):
@@ -264,13 +274,41 @@ class CheckTests(unittest.TestCase):
 
     def test_one_quote_cannot_prove_two_blocks(self):
         manifest = full_manifest()
-        manifest["blocks"][1].update(dest="slide:3", evidence="Agent gồm bộ não, đôi tay và một vòng lặp")
-        self.assertTrue(any("already proves" in p for p in self.problems(manifest=manifest)))
+        manifest["blocks"][3].update(dest="slide:3", evidence="Agent gồm bộ não, đôi tay và một vòng lặp")
+        self.assertTrue(any("already prove" in p for p in self.problems(manifest=manifest)))
+
+    def test_overlapping_quotes_count_each_word_once(self):
+        post = full_post()
+        long = ("Agent chỉ sửa được lỗi mà nó quan sát được, nên nếu không được phép chạy thử chương trình "
+                "thì nó không thấy lỗi và không biết mình sai ở đâu cả")
+        post["slides"][2]["items"] = ["Agent chỉ sửa được lỗi"]
+        manifest = full_manifest()
+        manifest["blocks"][6].update(source=long, evidence=[
+            "Agent chỉ sửa được lỗi", "Agent chỉ sửa được", "chỉ sửa được lỗi", "Agent chỉ sửa"])
+        problems = self.problems(post=post, manifest=manifest)
+        self.assertTrue(any("concept#03" in p and "show 5 of the 10 words" in p for p in problems), problems)
+
+    def test_a_field_the_layout_does_not_draw_is_not_evidence(self):
+        post = full_post()
+        post["slides"][2] = {"layout": "stat", "before": "1", "after": "2", "label": "nhãn",
+                             "value": "Agent gồm bộ não, đôi tay và một vòng lặp"}
+        self.assertTrue(any("concept#03" in p for p in self.problems(post=post)))
+
+    def test_the_manifest_cannot_point_at_another_post(self):
+        manifest = full_manifest()
+        manifest["post"] = "../posts/vi/other.yaml"
+        self.assertTrue(any("post must be ../posts/vi/demo.yaml" in p for p in self.problems(manifest=manifest)))
+
+    def test_the_manifest_cannot_point_at_another_lesson(self):
+        manifest = full_manifest()
+        manifest["source"]["path"] = "course/vi/lessons/short.md"
+        self.assertTrue(any("source.path must be course/vi/lessons/demo.md" in p
+                            for p in self.problems(manifest=manifest)))
 
     def test_a_code_block_must_be_shown_whole(self):
         manifest = full_manifest()
         # Three of its eight words are shown: enough for a paragraph, not for code.
-        manifest["blocks"][5]["source"] = 'print("xin chào")\nprint("tạm biệt các bạn")'
+        manifest["blocks"][7]["source"] = 'print("xin chào")\nprint("tạm biệt các bạn")'
         self.assertTrue(any("concept#04" in p and "of the 8 words needed" in p
                             for p in self.problems(manifest=manifest)))
 
@@ -290,7 +328,7 @@ class CheckTests(unittest.TestCase):
 
     def test_a_block_listed_twice_fails(self):
         manifest = full_manifest()
-        manifest["blocks"].append(dict(manifest["blocks"][0]))
+        manifest["blocks"].append(dict(manifest["blocks"][2]))
         self.assertTrue(any("listed twice" in p for p in self.problems(manifest=manifest)))
 
     def test_a_short_commit_fails(self):
@@ -332,12 +370,12 @@ class SourceTests(unittest.TestCase):
 
     def test_a_dropped_block_fails(self):
         manifest = full_manifest()
-        del manifest["blocks"][5]
+        del manifest["blocks"][7]
         self.assertTrue(any("concept#04" in p and "not in the manifest" in p for p in self.problems(manifest)))
 
     def test_reworded_source_text_fails(self):
         manifest = full_manifest()
-        manifest["blocks"][4]["source"] = "Agent gồm bộ não."
+        manifest["blocks"][6]["source"] = "Agent gồm bộ não."
         self.assertTrue(any("concept#03" in p and "differs" in p for p in self.problems(manifest)))
 
     def test_an_invented_block_fails(self):
@@ -374,7 +412,7 @@ class CliTests(unittest.TestCase):
         good.write_text(yaml.safe_dump(full_manifest(), allow_unicode=True), encoding="utf-8")
         self.assertEqual(lc.main(["check", str(good)]), 0)
         bad_manifest = full_manifest()
-        bad_manifest["blocks"][0]["evidence"] = "không có ở đây đâu"
+        bad_manifest["blocks"][2]["evidence"] = "không có ở đây đâu"
         good.write_text(yaml.safe_dump(bad_manifest, allow_unicode=True), encoding="utf-8")
         self.assertEqual(lc.main(["check", str(good)]), 1)
 

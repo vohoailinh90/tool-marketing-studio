@@ -338,10 +338,15 @@ def find_label_span(quote: list[str], labels: list[list[str]],
 
     An occurrence none of whose words an earlier quote covered comes first, so
     two quotes of one phrase that the diagram says twice cover both places.
+    A quote shorter than MIN_EVIDENCE_WORDS must be a whole label (a one-word
+    table header, or a Japanese label, which has no spaces to split words at):
+    a fragment that short of a longer label proves nothing.
     """
     n = len(quote)
     first = None
     for number, label in enumerate(labels):
+        if n < min(MIN_EVIDENCE_WORDS, len(label)):
+            continue
         for start in range(len(label) - n + 1):
             if label[start:start + n] == quote:
                 span = {(number, i) for i in range(start, start + n)}
@@ -517,7 +522,7 @@ def check(manifest_path: Path, course_dir: Path | None = None) -> list[str]:
         mine: set[tuple[int, int]] = set()
         for quote in quotes:
             words_in_quote = tokens(quote)
-            if len(words_in_quote) < min(MIN_EVIDENCE_WORDS, max(block_words, 1)):
+            if label_words is None and len(words_in_quote) < min(MIN_EVIDENCE_WORDS, max(block_words, 1)):
                 problems.append(f"{key}: quote {quote!r} is too short to prove anything")
                 continue
             span, number_of_field, owners = None, 0, {}
@@ -547,7 +552,8 @@ def check(manifest_path: Path, course_dir: Path | None = None) -> list[str]:
                 # A rebuilt diagram is proven by its own wording: the quote must be a phrase of one label.
                 label_span = find_label_span(words_in_quote, label_words, covered)
                 if label_span is None:
-                    problems.append(f"{key}: quote {quote!r} is not wording of the diagram {block['source']!r}")
+                    problems.append(f"{key}: quote {quote!r} is not wording of the diagram {block['source']!r} "
+                                    f"(a phrase of one label, or a whole label)")
                     continue
                 covered |= label_span
             for i in span:

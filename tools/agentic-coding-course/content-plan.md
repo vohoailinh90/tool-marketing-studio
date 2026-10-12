@@ -93,6 +93,8 @@ Sơ đồ SVG của khóa học (107 sơ đồ tiếng Việt) được chuyển
   Script đọc chữ từ file SVG ở commit đã ghim và đòi slide/caption đó hiện **ít nhất 60% chữ của sơ đồ**. Chữ này
   không tính chung với các ý văn xuôi: một nhãn vẽ ra có thể chứng minh cả sơ đồ lẫn đoạn văn nhắc cùng điều đó.
   Slide `image` luôn phải hiện đúng ảnh của sơ đồ đó; dựng lại thì dùng layout chữ hoặc caption.
+  Mỗi đoạn trích là một cụm chữ trong một nhãn; trích nguyên một nhãn ngắn (cả nhãn tiếng Nhật, vốn không có dấu cách)
+  vẫn được tính, còn mảnh dưới 3 chữ của một nhãn dài hơn thì không.
 - Một script chuyển đổi có manifest (nguồn, commit, hash) là bước sau; trước mắt, PR nào chuyển sơ đồ
   ghi rõ commit nguồn trong mô tả PR.
 

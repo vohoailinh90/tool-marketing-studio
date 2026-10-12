@@ -531,6 +531,33 @@ class SourceTests(unittest.TestCase):
         manifest["blocks"][5]["evidence"] = ["Bộ não LLM"] * 6  # 18 of the diagram's 30 words, as 18 are needed
         self.assertEqual(self.problems(manifest, post), [])
 
+    def use_diagram(self, svg: str) -> None:
+        """Commit a different agent-formula.svg to the course and point the manifest's commit at it."""
+        (self.course / "course" / "vi" / "diagrams" / "agent-formula.svg").write_text(svg, encoding="utf-8")
+        git = ["git", "-C", str(self.course)]
+        subprocess.run(git + ["add", "-A"], check=True)
+        subprocess.run(git + ["-c", "user.name=t", "-c", "user.email=t@t", "commit", "-qm", "diagram"], check=True)
+        self.sha = subprocess.run(git + ["rev-parse", "HEAD"], capture_output=True, text=True,
+                                  check=True).stdout.strip()
+
+    def test_a_whole_short_label_is_evidence_for_a_rebuilt_diagram(self):
+        # A table header or a Japanese label is one or two "words"; quoted whole it still counts.
+        labels = ["Thời gian", "Số token", "Dùng khi", "Cách hoạt động", "Ví dụ"]  # 2+2+2+3+2 = 11 words; 7 needed
+        self.use_diagram('<svg xmlns="http://www.w3.org/2000/svg">' + "".join(f"<text>{t}</text>" for t in labels) + "</svg>")
+        post = full_post()
+        post["slides"][1] = {"layout": "features", "title": "Công thức",
+                             "items": [{"title": t, "text": ""} for t in labels]}
+        manifest = full_manifest()
+        manifest["blocks"][5]["evidence"] = labels
+        self.assertEqual(self.problems(manifest, post), [])
+
+    def test_a_short_fragment_of_a_longer_label_proves_nothing(self):
+        manifest = full_manifest()
+        manifest["blocks"][5]["evidence"] = ["Bộ não", DIAGRAM_QUOTES[1], DIAGRAM_QUOTES[2]]  # "Bộ não" is 2 of 3 words
+        problems = self.problems(manifest, rebuilt_post())
+        self.assertTrue(any("concept#02" in p and "quote 'Bộ não' is not wording of the diagram" in p
+                            for p in problems), problems)
+
     def test_a_diagram_missing_from_the_course_fails(self):
         manifest = full_manifest()
         manifest["blocks"][5]["evidence"] = DIAGRAM_QUOTES

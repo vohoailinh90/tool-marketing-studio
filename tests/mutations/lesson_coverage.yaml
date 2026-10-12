@@ -150,3 +150,11 @@ mutations:
   find: '            if space == "diagram":'
   replace: '            if False and space == "diagram":  # equal quotes all take the first copy'
   test: tests.test_lesson_coverage.SourceTests.test_a_label_the_diagram_repeats_may_be_drawn_once_per_copy
+- label: a two-word fragment of a longer diagram label counts as wording
+  find: '        if n < min(MIN_EVIDENCE_WORDS, len(label)):'
+  replace: '        if False:  # any fragment will do'
+  test: tests.test_lesson_coverage.SourceTests.test_a_short_fragment_of_a_longer_label_proves_nothing
+- label: a whole short diagram label is rejected as too short
+  find: '            if label_words is None and len(words_in_quote) < min(MIN_EVIDENCE_WORDS, max(block_words, 1)):'
+  replace: '            if len(words_in_quote) < min(MIN_EVIDENCE_WORDS, max(block_words, 1)):  # also for whole labels'
+  test: tests.test_lesson_coverage.SourceTests.test_a_whole_short_label_is_evidence_for_a_rebuilt_diagram

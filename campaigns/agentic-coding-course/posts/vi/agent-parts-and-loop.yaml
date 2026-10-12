@@ -20,18 +20,34 @@ slides:
     text: Vậy làm sao agent **mở được file** hay **chạy được chương trình**?
   - me: true
     text: Câu trả lời nằm ở cách agent được ghép lại.
-- layout: image
-  title: Công thức của một AI agent
-  src: diagrams/vi/agent-formula.png
+- layout: features
+  title: Một AI agent gồm những gì?
+  items:
+  - emoji: 🧠
+    title: 'Bộ não: LLM'
+    text: hiểu yêu cầu, quyết định bước tiếp theo
+  - emoji: 🔧
+    title: 'Đôi tay: công cụ'
+    text: đọc/ghi file, chạy lệnh, tìm trên web
+  - emoji: 🔁
+    title: Vòng lặp
+    text: làm → kiểm → sửa, đến khi xong
+  - emoji: 🤖
+    title: AI agent
+    text: nhận mục tiêu và tự làm việc — bạn nghiệm thu
 - layout: checklist
   title: Ai thật sự **bấm nút**?
   items:
   - LLM **yêu cầu** dùng công cụ.
   - Phần mềm của agent quyết định có **cho phép** không.
   - Phần mềm mới thực sự **thực hiện**.
-- layout: image
-  title: Suy nghĩ → hành động → quan sát
-  src: diagrams/vi/agent-loop.png
+- layout: flow
+  title: Vòng lặp của một AI agent
+  steps:
+  - text: '**Suy nghĩ**: bước tiếp theo là gì?'
+  - text: '**Hành động**: dùng một công cụ thật'
+  - text: '**Quan sát**: kết quả đã đúng chưa?'
+  note: 'Chưa xong → làm tiếp. Lặp lại cho đến khi đạt mục tiêu — hoặc cần hỏi ý bạn. 💡 Bạn đặt mục tiêu và kiểm tra kết quả cuối cùng.'
 - layout: features
   title: Như một **đầu bếp**
   items:
@@ -67,9 +83,22 @@ slides:
     items:
     - Phần mềm thực hiện trong **quyền hạn**.
     - Cần **quan sát** và quyền sửa; vẫn có thể sai.
-- layout: image
-  title: Lưu lại để **ghi nhớ**
-  src: diagrams/vi/agent-parts-and-loop-recap.png
+- layout: features
+  title: 'Tóm tắt: AI agent được ghép từ gì?'
+  items:
+  - emoji: 🧠
+    title: 'Bộ não: LLM'
+    text: Hiểu yêu cầu, chọn bước tiếp theo
+  - emoji: 🔧
+    title: 'Đôi tay: công cụ'
+    text: Đọc, ghi file, chạy lệnh — trong phạm vi được phép
+  - emoji: 🔁
+    title: Vòng lặp
+    text: Suy nghĩ → hành động → quan sát, rồi lặp lại
+  - emoji: 🛑
+    title: Biết lúc dừng
+    text: Khi xong việc, hoặc cần bạn quyết định
+  note: '💡 Agent tự sửa lỗi được đến đâu tùy vào công cụ, quyền hạn và phản hồi mà nó nhận được.'
 - layout: poll
   eyebrow: Câu 2 · Comment A, B hay C
   question: Agent sửa trang web nhưng không được chạy thử. Điều gì dễ xảy ra?
@@ -181,11 +210,11 @@ platforms:
 
       Đáp án — xem sau khi bạn đã chọn
 
-      B — LLM chỉ đưa ra yêu cầu; công cụ mới là thứ thực sự tạo file.
+      Câu 1 — B — LLM chỉ đưa ra yêu cầu; công cụ mới là thứ thực sự tạo file.
 
-      A — không quan sát được thì không biết mình sai; tự sửa phụ thuộc vào công cụ và phản hồi.
+      Câu 2 — A — không quan sát được thì không biết mình sai; tự sửa phụ thuộc vào công cụ và phản hồi.
 
-      C — những quyết định quan trọng hoặc khó đảo ngược là của bạn.
+      Câu 3 — C — những quyết định quan trọng hoặc khó đảo ngược là của bạn.
 
       Nếu chỉ được cho agent dùng một công cụ, bạn sẽ chọn công cụ nào?
 

@@ -55,7 +55,16 @@ blocks:
   kind: diagram
   source: agent-formula
   dest: slide:3
-  evidence: agent-formula
+  evidence:
+  - Một AI agent gồm những gì?
+  - 'Bộ não: LLM'
+  - hiểu yêu cầu, quyết định bước tiếp theo
+  - 'Đôi tay: công cụ'
+  - đọc/ghi file, chạy lệnh, tìm trên web
+  - Vòng lặp
+  - làm → kiểm → sửa, đến khi xong
+  - AI agent
+  - nhận mục tiêu và tự làm việc — bạn nghiệm thu
 - key: concept#03
   kind: item
   source: 'Bộ não — LLM (mô hình ngôn ngữ lớn): hiểu yêu cầu, suy luận và quyết định bước tiếp theo. Thứ nó tạo ra là đầu ra — chữ, hoặc một yêu cầu dùng công cụ — chứ chưa phải hành động thật.'
@@ -80,7 +89,17 @@ blocks:
   kind: diagram
   source: agent-loop
   dest: slide:5
-  evidence: agent-loop
+  evidence:
+  - Vòng lặp của một AI agent
+  - Suy nghĩ
+  - bước tiếp theo là gì?
+  - Hành động
+  - dùng một công cụ thật
+  - Quan sát
+  - kết quả đã đúng chưa?
+  - chưa xong → làm tiếp
+  - Lặp lại cho đến khi đạt mục tiêu — hoặc cần hỏi ý bạn
+  - Bạn đặt mục tiêu và kiểm tra kết quả cuối cùng.
 - key: concept#08
   kind: item
   source: 'Suy nghĩ: bước tiếp theo là gì?'
@@ -180,7 +199,17 @@ blocks:
   kind: diagram
   source: agent-parts-and-loop-recap
   dest: slide:9
-  evidence: agent-parts-and-loop-recap
+  evidence:
+  - 'Tóm tắt: AI agent được ghép từ gì?'
+  - 'Bộ não: LLM'
+  - Hiểu yêu cầu, chọn bước tiếp theo
+  - 'Đôi tay: công cụ'
+  - Đọc, ghi file, chạy lệnh — trong phạm vi được phép
+  - Vòng lặp
+  - Suy nghĩ → hành động → quan sát, rồi lặp lại
+  - Biết lúc dừng
+  - Khi xong việc, hoặc cần bạn quyết định
+  - Agent tự sửa lỗi được đến đâu tùy vào công cụ, quyền hạn và phản hồi mà nó nhận được.
 - key: takeaways#01
   kind: item
   source: Agent = LLM (bộ não) + công cụ (đôi tay) + vòng lặp suy nghĩ → hành động → quan sát.

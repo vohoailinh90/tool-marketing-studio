@@ -166,6 +166,11 @@ class PullRequestLoopTests(unittest.TestCase):
         for phrase in ("only a thumbs-up", "👍 reaction on that command's request comment",
                        "provided the PR head has not moved since that request was posted"):
             self.assertIn(phrase, exit_rule)
+        sec14 = protocol[protocol.index("## 14. "):protocol.index("## 15. ")]
+        sec17 = protocol[protocol.index("## 17. "):protocol.index("## 18. ")]
+        self.assertIn("only the bot's 👍 reaction on the request comment", sec14)
+        self.assertIn("👍 reaction on the request comment is such a response too", sec17)
+        self.assertIn("the bot's 👍 on that command's request counts as such a review", self.section)
 
     def test_every_protocol_section_it_cites_exists(self) -> None:
         protocol = read(PROTOCOL)

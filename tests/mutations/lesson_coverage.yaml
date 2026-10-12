@@ -1,0 +1,108 @@
+# Mutation manifest — see scripts/mutation_check.py
+#
+# Each entry removes one rail of the lesson coverage check and names the test that must fail.
+# Replacements change the line's length on purpose: a same-length edit can leave a stale .pyc in use.
+
+target: scripts/lesson_coverage.py
+note: A lesson post must carry every block of its lesson, visibly, on a slide or in the caption.
+mutations:
+- label: a quote that is not on the slide is accepted
+  find: "                problems.append(f\"{key}: quote {quote!r} is not in one text field {dest} shows\")\n                continue"
+  replace: '                span = range(0)  # accepted anyway'
+  test: tests.test_lesson_coverage.CheckTests.test_evidence_missing_from_its_slide_fails
+- label: a quote may span two fields
+  find: '        fields = [tokens(text) for text in texts]'
+  replace: '        fields = [tokens(" ".join(texts))]'
+  test: tests.test_lesson_coverage.CheckTests.test_a_quote_cannot_span_two_fields
+- label: a field the layout does not draw counts as evidence
+  find: '        figure = get("before", "after") if s.get("before") and s.get("after") else get("value")'
+  replace: '        figure = get("before", "after", "value")'
+  test: tests.test_lesson_coverage.CheckTests.test_a_field_the_layout_does_not_draw_is_not_evidence
+- label: one quote proves two blocks
+  find: '            others = {owners[i] for i in span if owners.get(i, key) != key}'
+  replace: '            others = set()  # words may prove several blocks'
+  test: tests.test_lesson_coverage.CheckTests.test_one_quote_cannot_prove_two_blocks
+- label: overlapping quotes add up their words
+  find: '        shown = len(mine)'
+  replace: '        shown = sum(len(tokens(q)) for q in quotes)'
+  test: tests.test_lesson_coverage.CheckTests.test_overlapping_quotes_count_each_word_once
+- label: a manifest may point at another post
+  find: '    post_path = (manifest_path.parent.parent / "posts" / lang / f"{lesson_id}.yaml").resolve()'
+  replace: '    post_path = (manifest_path.parent / str(manifest.get("post") or "")).resolve()'
+  test: tests.test_lesson_coverage.CheckTests.test_the_manifest_cannot_point_at_another_post
+- label: a manifest may point at another lesson
+  find: '    if source.get("path") and source["path"] != expected_path:'
+  replace: '    if False and source.get("path") and source["path"] != expected_path:'
+  test: tests.test_lesson_coverage.CheckTests.test_the_manifest_cannot_point_at_another_lesson
+- label: the social hook and question are not blocks
+  find: '    for field in SOCIAL_FIELDS:'
+  replace: '    for field in ():  # front matter ignored'
+  test: tests.test_lesson_coverage.TrickyMarkdownTests.test_social_hook_and_question_are_blocks
+- label: the first comment may carry knowledge
+  find: DEST = re.compile(r"^(?:slide:(\d+)|caption)$")
+  replace: DEST = re.compile(r"^(?:slide:(\d+)|caption|first_comment)$")
+  test: tests.test_lesson_coverage.CheckTests.test_the_first_comment_cannot_carry_knowledge
+- label: three words stand in for a paragraph
+  find: MIN_EVIDENCE_SHARE = 0.3
+  replace: 'MIN_EVIDENCE_SHARE = 0.0  # any three words will do'
+  test: tests.test_lesson_coverage.CheckTests.test_three_words_cannot_stand_in_for_a_long_paragraph
+- label: more than ten slides is accepted
+  find: '    if len(slides) > MAX_SLIDES:'
+  replace: '    if False and len(slides) > MAX_SLIDES:'
+  test: tests.test_lesson_coverage.CheckTests.test_more_than_ten_slides_fails
+- label: a diagram may point at any slide
+  find: '            if not (isinstance(target, dict) and target.get("layout") == "image"'
+  replace: '            if False and not (isinstance(target, dict) and target.get("layout") == "image"'
+  test: tests.test_lesson_coverage.CheckTests.test_a_diagram_must_be_the_image_on_its_slide
+- label: a duplicated block is accepted
+  find: '        if key in seen:'
+  replace: '        if False and key in seen:'
+  test: tests.test_lesson_coverage.CheckTests.test_a_block_listed_twice_fails
+- label: a block dropped from the manifest is not noticed
+  find: '        for key in sorted(set(truth) - seen):'
+  replace: '        for key in sorted(set(truth) - seen - set(truth)):'
+  test: tests.test_lesson_coverage.SourceTests.test_a_dropped_block_fails
+- label: reworded source text is not noticed
+  find: '            if real["kind"] != block["kind"] or real["source"] != block["source"]:'
+  replace: '            if False and (real["kind"] != block["kind"] or real["source"] != block["source"]):'
+  test: tests.test_lesson_coverage.SourceTests.test_reworded_source_text_fails
+- label: a course post without a manifest passes --all
+  find: '                missing.append(f"{post.relative_to(root)}: no coverage manifest at {manifest.relative_to(root)}")'
+  replace: '                pass  # a post without a manifest is fine'
+  test: tests.test_lesson_coverage.AllTests.test_a_course_post_without_a_manifest_fails
+- label: nested list items merge into their parent
+  find: '        if item:'
+  replace: '        if item and not line.startswith((" ", "\t")):'
+  test: tests.test_lesson_coverage.TrickyMarkdownTests.test_nested_list_items_are_blocks_of_their_own
+- label: table rows merge into a paragraph
+  find: '        if TABLE_ROW.match(line):'
+  replace: '        if False and TABLE_ROW.match(line):'
+  test: tests.test_lesson_coverage.TrickyMarkdownTests.test_every_table_row_is_a_block_and_the_rule_row_is_not
+- label: a line that starts with a tag is dropped
+  find: HTML_ONLY = re.compile(rf"^\s*(?:{TAG}\s*)+$|^\s*<summary>.*</summary>\s*$")
+  replace: HTML_ONLY = re.compile(r"^\s*</?[a-zA-Z][^>]*>.*$")
+  test: tests.test_lesson_coverage.TrickyMarkdownTests.test_a_line_that_starts_with_a_tag_is_text
+- label: an unclosed fence swallows the rest of the lesson
+  find: '                raise InputError(f"a code fence opened in section {section!r} is never closed")'
+  replace: '                pass  # an unclosed fence runs to the end'
+  test: tests.test_lesson_coverage.TrickyMarkdownTests.test_an_unclosed_fence_is_an_error
+- label: a code block may be shown in part
+  find: '            if not code or not any(code in " ".join(text.split()) for text in texts):'
+  replace: '            if False and not any(code in " ".join(text.split()) for text in texts):'
+  test: tests.test_lesson_coverage.CheckTests.test_a_code_block_must_be_shown_whole
+- label: code is compared without its punctuation
+  find: '            code = " ".join(block["source"].split())'
+  replace: '            code = " ".join(tokens(block["source"]))  # words only'
+  test: tests.test_lesson_coverage.CheckTests.test_code_without_its_punctuation_is_not_shown
+- label: zero-padded slide numbers get their own claims
+  find: '            dest = f"slide:{number}"  # slide:01 and slide:1 are one slide'
+  replace: '            pass  # the raw dest string keys the claims'
+  test: tests.test_lesson_coverage.CheckTests.test_zero_padded_slide_numbers_share_their_words
+- label: a flow total counts without minutes
+  find: '        return head + _texts(steps) + (get("total_label") if total else []) + note'
+  replace: '        return head + _texts(steps) + get("total_label") + note'
+  test: tests.test_lesson_coverage.CheckTests.test_a_flow_total_without_minutes_is_not_evidence
+- label: a cta hint counts
+  find: '        return head + get("text", "button", "keyword")'
+  replace: '        return head + get("text", "button", "keyword", "hint")'
+  test: tests.test_lesson_coverage.CheckTests.test_a_cta_hint_is_not_evidence

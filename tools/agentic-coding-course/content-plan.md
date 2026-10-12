@@ -110,10 +110,16 @@ tiếng Việt, mỗi bài học có một khóa link riêng trỏ thẳng tới
 
 ## 7. Kiểm tra mỗi PR
 
-- `python3 studio.py check agentic-coding-course` — 0 lỗi; cảnh báo số liệu lệch giữa 3 ngôn ngữ
-  phải được giải thích.
+`studio.py check` **không** kiểm được việc phủ kiến thức, và vượt 10 ảnh chỉ là cảnh báo
+(`mkt/check.py`, `MAX_SLIDES`). Vì vậy ngoài các lệnh dưới, mỗi bài đăng có một **ma trận phủ** trong
+trường `notes`: mỗi phần của bài học (theo marker `<!-- section: … -->` của file bài học) → ảnh số
+mấy hoặc `caption` / `first_comment`. Phần nào chưa có chỗ thì PR chưa được merge.
+
+- `python3 studio.py check agentic-coding-course` — 0 lỗi **và 0 cảnh báo về số ảnh** (tối đa 10 là
+  luật cứng của chiến dịch này, không phải gợi ý).
 - `python3 studio.py render agentic-coding-course` — không báo tràn chữ.
-- Mở từng ảnh ở cỡ điện thoại; bảng "phần bài học → ảnh" đủ mọi phần.
+- Mở từng ảnh ở cỡ điện thoại; ma trận phủ trong `notes` đủ mọi phần.
+- Khi đã có vài bài, việc đối chiếu marker ↔ ma trận nên thành một script (đếm được thì để script làm).
 
 ## 8. Câu hỏi mở
 
@@ -123,7 +129,7 @@ tiếng Việt, mỗi bài học có một khóa link riêng trỏ thẳng tới
 3. Chữ nhỏ trong sơ đồ 800px khi đặt vào ảnh 1080px có đủ đọc trên điện thoại không — cần ngưỡng cỡ chữ tối thiểu?
 4. Link: một khóa `links.<lesson-id>` cho mỗi bài (mục 5) — 52 khóa trong `campaign.yaml` có chấp
    nhận được không, hay nên trỏ chung về trang chủ khóa học tiếng Việt?
-5. Kiểm "đủ kiến thức" bằng bảng trong PR (người đọc) hay bằng một trường `notes`/script đối chiếu
-   các phần của bài học với các ảnh?
+5. Ma trận phủ trong `notes` (mục 7) có đủ chặt không, và nên thành script ngay từ bài đầu hay sau
+   vài bài?
 6. ~~Đăng khi bài học còn `review`~~ — chủ Page đã quyết: được. Câu hỏi còn lại: caption có nên
    ghi rõ bài học đang được hoàn thiện (có thể đổi câu chữ) không?

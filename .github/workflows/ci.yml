@@ -25,6 +25,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          # The agent office's Node-run checks (tests/web/office_*_check.mts) need type stripping, Node 22.6+. On an older
+          # Node the tests skip, and a skipped test is a mutation that survives (tests/mutations/office_feature.yaml).
+          node-version: "22"
       - name: Install
         run: |
           python -m pip install --upgrade pip
@@ -34,8 +39,11 @@ jobs:
           python -m playwright install ${{ runner.environment == 'github-hosted' && '--with-deps' || '' }} chromium
       - name: Repository layout
         run: python scripts/layout_check.py
-      - name: UI catalogs (vi / ja / en)
+      - name: UI catalogs (vi / ja / en; the app's and the agent office's)
         run: python scripts/i18n_check.py
+      - name: Agent office snapshot contract
+        # The dashboard's data contract, checked on the bundled samples and the empty views.
+        run: python scripts/office/snapshot.py --check
       - name: Campaign checks
         run: python studio.py check
       - name: Tests
@@ -60,4 +68,33 @@ jobs:
       - name: Typecheck and build
         run: npm run build
       - name: Committed web/dist matches the source
+        run: git diff --exit-code -- dist
+
+  office:
+    # The agent office (docs/office-dashboard.md): a read-only page that shows which agent is doing what.
+    runs-on: ${{ vars.CI_RUNNER || 'self-hosted' }}
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+    defaults:
+      run:
+        working-directory: office
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: office/package-lock.json
+      - run: npm ci
+      - name: Typecheck, lint and build
+        run: |
+          npm run typecheck
+          npm run lint
+          npm run build
+      - name: Edge geometry of the handoff lines (Node type stripping)
+        working-directory: ${{ github.workspace }}
+        run: node --experimental-strip-types tests/web/office_edges_check.mts
+      - name: Feature filter (Node type stripping)
+        working-directory: ${{ github.workspace }}
+        run: node --experimental-strip-types tests/web/office_feature_check.mts
+      - name: Committed office/dist matches the source
         run: git diff --exit-code -- dist

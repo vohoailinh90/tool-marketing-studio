@@ -1,0 +1,74 @@
+{
+  "version": 1,
+  "requirement": "REQ-031",
+  "recorded_at": "2025-10-09 08:52:20Z",
+  "tier": "T3",
+  "lane": "claude",
+  "strategy": "main_with_critic_and_reviewer",
+  "required_agents": [
+    "architecture-critic",
+    "code-reviewer-t3"
+  ],
+  "base": 3,
+  "reserves": [
+    {
+      "reserve": "analyst_reserve",
+      "grantable_agents": [
+        "requirement-analyst"
+      ],
+      "granted_by": "classification",
+      "reason": "ambiguity_dimension_at_least_2",
+      "spent_by": "requirement-analyst"
+    },
+    {
+      "reserve": "escalation_reserve",
+      "grantable_agents": [
+        "test-engineer"
+      ],
+      "granted_by": "runtime",
+      "reason": "reviewer_formally_escalated_for_verification_design",
+      "granted_at": "2025-10-09 08:54:21Z",
+      "spent_by": "test-engineer"
+    }
+  ],
+  "runtime_reserves": [
+    {
+      "reserve": "escalation_reserve",
+      "amount": 1,
+      "grantable_agents": [
+        "test-engineer"
+      ],
+      "grant_condition": "reviewer_formally_escalated_for_verification_design"
+    }
+  ],
+  "invocations": [
+    {
+      "agent": "requirement-analyst",
+      "charged_to": "analyst_reserve",
+      "source": "hook",
+      "reason": "",
+      "at": "2025-10-09 08:53:26Z"
+    },
+    {
+      "agent": "architecture-critic",
+      "charged_to": "base",
+      "source": "hook",
+      "reason": "",
+      "at": "2025-10-09 08:53:49Z"
+    },
+    {
+      "agent": "code-reviewer-t3",
+      "charged_to": "base",
+      "source": "hook",
+      "reason": "",
+      "at": "2025-10-09 08:54:12Z"
+    },
+    {
+      "agent": "test-engineer",
+      "charged_to": "escalation_reserve",
+      "source": "hook",
+      "reason": "",
+      "at": "2025-10-09 08:54:22Z"
+    }
+  ]
+}

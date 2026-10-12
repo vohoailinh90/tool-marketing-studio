@@ -1,0 +1,167 @@
+# Mutation manifest — see scripts/mutation_check.py
+#
+# The dashboard server shows data that can quote task descriptions, so what matters is what it
+# refuses: another Host, another method, a path outside the built page, a public bind, a
+# parameter that is not what it says. Each entry removes one refusal and names the test that
+# must notice.
+
+target: scripts/office/serve.py
+note: A read-only server is only safe while every refusal holds, and a refusal nothing exercises is
+  not one.
+mutations:
+- label: the Host header is no longer checked
+  find: |-
+    if not host_allowed(self.headers.get("Host"), self.extra_hosts):
+  replace: |-
+    if False:
+  test: tests.test_office_serve.RefusalTests.test_a_host_header_that_is_not_this_machine_is_forbidden_everywhere
+- label: a host that merely starts like loopback is accepted
+  find: |-
+    found = HOST_RE.fullmatch(header.strip().lower())
+  replace: |-
+    found = HOST_RE.match(header.strip().lower())
+  test: tests.test_office_serve.RefusalTests.test_a_host_header_that_only_starts_like_loopback_is_forbidden
+- label: a refused method is answered with 200
+  find: |-
+    self.send_response(HTTPStatus.METHOD_NOT_ALLOWED)
+  replace: |-
+    self.send_response(HTTPStatus.OK)
+  test: tests.test_office_serve.RefusalTests.test_only_get_and_head_are_answered
+- label: a path may leave the built page
+  find: |-
+    target.relative_to(root)
+  replace: |-
+    target.relative_to(target.anchor)
+  test: tests.test_office_serve.RefusalTests.test_paths_outside_the_built_page_are_never_served
+- label: any epoch is accepted
+  find: |-
+    if not EPOCH_RANGE[0] <= at <= EPOCH_RANGE[1]:
+  replace: |-
+    if False:
+  test: tests.test_office_serve.ApiTests.test_bad_parameters_are_a_400_with_a_reason
+- label: any feature id is accepted
+  find: |-
+    if not FEATURE_RE.fullmatch(params["feature"]):
+  replace: |-
+    if False:
+  test: tests.test_office_serve.ApiTests.test_bad_parameters_are_a_400_with_a_reason
+- label: a public bind is allowed without the flag
+  find: |-
+    if bind is None and not args.allow_remote:
+  replace: |-
+    if False:
+  test: tests.test_office_serve.CommandLineTests.test_a_public_bind_is_refused_without_the_flag
+- label: the nosniff header is dropped
+  find: |-
+    "X-Content-Type-Options": "nosniff",
+  replace: |-
+    "X-Content-Type-Options": "sniff",
+  test: tests.test_office_serve.StaticTests.test_every_response_carries_the_security_headers
+- label: the page may talk to other origins
+  find: |-
+    connect-src 'self'; frame-ancestors
+  replace: |-
+    frame-ancestors
+  test: tests.test_office_serve.StaticTests.test_every_response_carries_the_security_headers
+- label: the event log is never parsed again after the first request
+  find: |-
+    if tuple(key) != self._events_key:
+  replace: |-
+    if self._events_key is None:
+  test: tests.test_office_serve.ApiTests.test_the_live_view_follows_the_event_log_as_it_grows
+- label: a missing asset falls back to the index page
+  find: |-
+    if Path(unquote(path)).suffix:
+  replace: |-
+    if False:
+  test: tests.test_office_serve.StaticTests.test_a_missing_file_is_a_404_not_the_index
+- label: an address is trusted as loopback whatever it is
+  find: |-
+    if not addresses or not all(is_loopback_address(address) for address in addresses):
+  replace: |-
+    if not addresses:
+  test: tests.test_office_serve.CommandLineTests.test_loopback_means_every_address_is_loopback_not_a_loopback_looking_spelling
+- label: a name is trusted as loopback by its spelling instead of by what it resolves to
+  find: |-
+    found = {ipaddress.ip_address(item[4][0].split("%", 1)[0]) for item in socket.getaddrinfo(host, None)}
+  replace: |-
+    found = {ipaddress.ip_address("127.0.0.1")}
+  test: tests.test_office_serve.CommandLineTests.test_loopback_means_every_address_is_loopback_not_a_loopback_looking_spelling
+- label: one loopback address among public ones is enough to trust a name
+  find: |-
+    if not addresses or not all(is_loopback_address(address) for address in addresses):
+  replace: |-
+    if not addresses or not any(is_loopback_address(address) for address in addresses):
+  test: tests.test_office_serve.CommandLineTests.test_loopback_means_every_address_is_loopback_not_a_loopback_looking_spelling
+- label: a name that has both families is bound by its IPv6 address
+  find: |-
+    return sorted(found, key=lambda address: (address.version != 4, address))
+  replace: |-
+    return sorted(found, key=lambda address: (address.version == 4, address))
+  test: tests.test_office_serve.CommandLineTests.test_a_name_with_both_families_is_bound_by_its_ipv4_address
+- label: the name is bound again instead of the address that passed the check
+  find: |-
+    server = make_server(bind or remote_bind(args.host),
+  replace: |-
+    server = make_server(args.host,
+  test: tests.test_office_serve.CommandLineTests.test_a_name_is_resolved_once_and_the_vetted_address_is_what_gets_bound
+- label: a mapped IPv6 loopback address is judged by its own flag, which older Pythons answer False
+  find: |-
+    return address.is_loopback or (mapped is not None and mapped.is_loopback)
+  replace: |-
+    return address.is_loopback
+  test: tests.test_office_serve.CommandLineTests.test_a_mapped_ipv6_address_is_judged_by_the_ipv4_address_inside
+- label: a remote name is bound by its spelling, so an IPv6-only name gets an IPv4 socket
+  find: |-
+    bind or remote_bind(args.host)
+  replace: |-
+    bind or args.host
+  test: tests.test_office_serve.CommandLineTests.test_a_remote_name_is_bound_by_the_address_it_resolves_to_so_the_family_follows_it
+- label: a remote name is never turned into its address
+  find: |-
+    return str(addresses[0]) if addresses else host
+  replace: |-
+    return host
+  test: tests.test_office_serve.CommandLineTests.test_a_remote_name_is_bound_by_the_address_it_resolves_to_so_the_family_follows_it
+- label: the loopback host that was bound is not accepted in the Host header
+  find: |-
+    extra_hosts.add(host_header_name(args.host))
+  replace: |-
+    pass
+  test: tests.test_office_serve.CommandLineTests.test_the_host_that_was_bound_is_the_host_the_browser_is_allowed_to_send
+- label: a bind that is not loopback is added to the accepted hosts
+  find: |-
+    if bind is not None:
+  replace: |-
+    if True:
+  test: tests.test_office_serve.CommandLineTests.test_a_host_that_is_not_loopback_is_never_added_to_the_accepted_hosts
+- label: an IPv6 literal is written without brackets in the Host header
+  find: |-
+    return f"[{ipv6_text(address)}]" if address.version == 6 else str(address)
+  replace: |-
+    return str(address)
+  test: tests.test_office_serve.CommandLineTests.test_the_host_header_spelling_of_an_address
+- label: the longest run of zero groups is no longer the one compressed
+  find: |-
+    if run - index > best_length:
+  replace: |-
+    if run - index >= best_length:
+  test: tests.test_office_serve.CommandLineTests.test_an_ipv6_host_is_accepted_in_the_form_a_browser_normalizes_it_to
+- label: a single zero group is compressed like a run
+  find: |-
+    if best_length < 2:
+  replace: |-
+    if best_length < 1:
+  test: tests.test_office_serve.CommandLineTests.test_an_ipv6_host_is_accepted_in_the_form_a_browser_normalizes_it_to
+- label: the zone of a scoped address is dropped from the printed URL
+  find: |-
+    return f"{name[:-1]}%25{quote(zone, safe='')}]" if zone and name.startswith("[") else name
+  replace: |-
+    return name
+  test: tests.test_office_serve.CommandLineTests.test_the_printed_url_keeps_the_zone_of_a_scoped_address
+- label: an IPv6 literal gets the IPv4 server class
+  find: |-
+    server_class = IPv6Server if ":" in host else ThreadingHTTPServer
+  replace: |-
+    server_class = ThreadingHTTPServer
+  test: tests.test_office_serve.CommandLineTests.test_an_ipv6_literal_gets_an_ipv6_socket_and_anything_else_the_ipv4_one

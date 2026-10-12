@@ -1,0 +1,211 @@
+[
+ {
+  "t": 1760000000.0,
+  "feature": {
+   "id": "F12",
+   "state": {
+    "base": "main",
+    "repo": "https://example.invalid/sample.git",
+    "stage": "spec",
+    "next": "tester",
+    "updated": "2025-10-09 08:53:20Z"
+   },
+   "updated": 1760000000.0,
+   "files": {}
+  }
+ },
+ {
+  "t": 1760000009.0,
+  "feature": {
+   "id": "F12",
+   "state": {
+    "base": "main",
+    "repo": "https://example.invalid/sample.git",
+    "stage": "running: tester",
+    "next": "tester",
+    "updated": "2025-10-09 08:53:29Z"
+   },
+   "updated": 1760000009.0,
+   "files": {
+    "spec.md": {
+     "mtime": 1760000008.0
+    }
+   }
+  }
+ },
+ {
+  "t": 1760000021.0,
+  "feature": {
+   "id": "F12",
+   "state": {
+    "base": "main",
+    "repo": "https://example.invalid/sample.git",
+    "stage": "running: coder",
+    "next": "coder",
+    "updated": "2025-10-09 08:53:41Z",
+    "tester_model": "sample/free-a"
+   },
+   "updated": 1760000021.0,
+   "files": {
+    "spec.md": {
+     "mtime": 1760000008.0
+    }
+   }
+  }
+ },
+ {
+  "t": 1760000035.0,
+  "feature": {
+   "id": "F12",
+   "state": {
+    "base": "main",
+    "repo": "https://example.invalid/sample.git",
+    "stage": "running: coder",
+    "next": "coder",
+    "updated": "2025-10-09 08:53:55Z",
+    "tester_model": "sample/free-a"
+   },
+   "updated": 1760000035.0,
+   "files": {
+    "spec.md": {
+     "mtime": 1760000008.0
+    },
+    "gates.log": {
+     "mtime": 1760000034.0,
+     "text": "# gates F12 @ abc123 2025-10-09 08:53:54Z\nRESULT: FAIL (9/12 passed)\n"
+    }
+   }
+  }
+ },
+ {
+  "t": 1760000050.0,
+  "feature": {
+   "id": "F12",
+   "state": {
+    "base": "main",
+    "repo": "https://example.invalid/sample.git",
+    "stage": "running: review",
+    "next": "review",
+    "updated": "2025-10-09 08:54:10Z",
+    "tester_model": "sample/free-a",
+    "coder_model": "sample/free-d"
+   },
+   "updated": 1760000050.0,
+   "files": {
+    "spec.md": {
+     "mtime": 1760000008.0
+    },
+    "gates.log": {
+     "mtime": 1760000049.0,
+     "text": "# gates F12 @ abc123 2025-10-09 08:54:09Z\nRESULT: PASS (12/12 passed)\n"
+    }
+   }
+  }
+ },
+ {
+  "t": 1760000063.0,
+  "feature": {
+   "id": "F12",
+   "state": {
+    "base": "main",
+    "repo": "https://example.invalid/sample.git",
+    "stage": "running: pack",
+    "next": "pack",
+    "updated": "2025-10-09 08:54:23Z",
+    "tester_model": "sample/free-a",
+    "coder_model": "sample/free-d",
+    "reviewer_model": "sample/free-c",
+    "warnings": [
+     "pre-review blockers were addressed by a fix commit that was not re-reviewed"
+    ]
+   },
+   "updated": 1760000063.0,
+   "files": {
+    "spec.md": {
+     "mtime": 1760000008.0
+    },
+    "gates.log": {
+     "mtime": 1760000049.0,
+     "text": "# gates F12 @ abc123 2025-10-09 08:54:09Z\nRESULT: PASS (12/12 passed)\n"
+    },
+    "prereview.md": {
+     "mtime": 1760000062.0
+    }
+   }
+  }
+ },
+ {
+  "t": 1760000073.0,
+  "feature": {
+   "id": "F12",
+   "state": {
+    "base": "main",
+    "repo": "https://example.invalid/sample.git",
+    "stage": "ready for audit",
+    "next": "done",
+    "updated": "2025-10-09 08:54:33Z",
+    "tester_model": "sample/free-a",
+    "coder_model": "sample/free-d",
+    "reviewer_model": "sample/free-c",
+    "warnings": [
+     "pre-review blockers were addressed by a fix commit that was not re-reviewed"
+    ]
+   },
+   "updated": 1760000073.0,
+   "files": {
+    "spec.md": {
+     "mtime": 1760000008.0
+    },
+    "gates.log": {
+     "mtime": 1760000049.0,
+     "text": "# gates F12 @ abc123 2025-10-09 08:54:09Z\nRESULT: PASS (12/12 passed)\n"
+    },
+    "prereview.md": {
+     "mtime": 1760000062.0
+    },
+    "audit-pack.md": {
+     "mtime": 1760000072.0
+    }
+   }
+  }
+ },
+ {
+  "t": 1760000084.0,
+  "feature": {
+   "id": "F12",
+   "state": {
+    "base": "main",
+    "repo": "https://example.invalid/sample.git",
+    "stage": "ready for audit",
+    "next": "done",
+    "updated": "2025-10-09 08:54:44Z",
+    "tester_model": "sample/free-a",
+    "coder_model": "sample/free-d",
+    "reviewer_model": "sample/free-c",
+    "warnings": [
+     "pre-review blockers were addressed by a fix commit that was not re-reviewed"
+    ]
+   },
+   "updated": 1760000084.0,
+   "files": {
+    "spec.md": {
+     "mtime": 1760000008.0
+    },
+    "gates.log": {
+     "mtime": 1760000049.0,
+     "text": "# gates F12 @ abc123 2025-10-09 08:54:09Z\nRESULT: PASS (12/12 passed)\n"
+    },
+    "prereview.md": {
+     "mtime": 1760000062.0
+    },
+    "audit-pack.md": {
+     "mtime": 1760000072.0
+    },
+    "verdict.md": {
+     "mtime": 1760000083.0,
+     "text": "VERDICT: APPROVE\nreason: gates green, one blocker fixed\n"
+    }
+   }
+  }
+ }
+]

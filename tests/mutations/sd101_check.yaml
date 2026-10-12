@@ -458,10 +458,6 @@ mutations:
   find: len(closing) >= len(token.markup)
   replace: 'True'
   test: tests.test_sd101_check.LessonMarkdownRuleTests.test_a_closing_fence_shorter_than_the_opening_one_does_not_close_it
-- label: an empty closing line closes a fence
-  find: if not (closing and set(closing)
-  replace: if not (True and set(closing)
-  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_a_lone_opening_fence_at_the_end_of_the_file_is_reported
 - label: only one level of blockquote prefix is removed
   find: "BLOCKQUOTE_PREFIX = re.compile(r\"^(?:\\s*>)+\")"
   replace: "BLOCKQUOTE_PREFIX = re.compile(r\"^\\s*>\")"
@@ -498,13 +494,13 @@ mutations:
   find: "    return markdown + html_scan(text).images_without_alt"
   replace: "    return html_scan(text).images_without_alt"
   test: tests.test_sd101_check.LessonMarkdownRuleTests.test_an_image_without_alt_text_is_reported
+- label: inline text is not read in table cells
+  find: if child.type in ("text", "code_inline"))
+  replace: if child.type in ("code_inline",))
+  test: tests.test_sd101_check.ReadmeRuleTests.test_a_status_word_inside_a_longer_cell_is_a_status
 - label: table cells without code are read
-  find: if child.type in ("text", "text_special", "code_inline"))
-  replace: if child.type in ("text", "text_special"))
-  test: tests.test_sd101_check.ReadmeRuleTests.test_a_formatted_or_capitalised_status_in_a_readme_row_is_reported
-- label: table cells without escapes are read
-  find: if child.type in ("text", "text_special", "code_inline"))
-  replace: if child.type in ("text", "code_inline"))
+  find: if child.type in ("text", "code_inline"))
+  replace: if child.type in ("text",))
   test: tests.test_sd101_check.ReadmeRuleTests.test_a_formatted_or_capitalised_status_in_a_readme_row_is_reported
 - label: header cells are not read
   find: if token.type in ("th_open", "td_open")
@@ -515,12 +511,8 @@ mutations:
   replace: if token.type in ("th_open",)
   test: tests.test_sd101_check.ReadmeRuleTests.test_a_status_word_in_a_readme_row_is_reported
 - label: a protocol-relative link is looked up
-  find: destination.startswith(("#", "//"))
-  replace: destination.startswith(("#",))
-  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_anchors_urls_and_mail_links_are_not_relative_links
-- label: an anchor is looked up
-  find: destination.startswith(("#", "//"))
-  replace: destination.startswith(("//",))
+  find: destination.startswith("//")
+  replace: destination.startswith("/x/")
   test: tests.test_sd101_check.LessonMarkdownRuleTests.test_anchors_urls_and_mail_links_are_not_relative_links
 - label: a URL is looked up
   find: " or SCHEME.match(destination):"
@@ -541,7 +533,7 @@ mutations:
 - label: a store outside the checkout may reach everywhere
   find: return ROOT if resolved == ROOT or ROOT in resolved.parents else resolved
   replace: return ROOT
-  test: tests.test_sd101_check.ReadmeRuleTests.test_a_link_that_climbs_out_of_the_store_is_reported
+  test: tests.test_sd101_check.ReadmeRuleTests.test_a_link_that_climbs_and_comes_back_into_the_store_is_fine
 - label: a root-relative link is read as a path on this machine
   find: "    if target.startswith(\"/\"):\n        return None"
   replace: "    if False:\n        return None"
@@ -709,7 +701,7 @@ mutations:
 - label: an element without a namespace is in another namespace
   find: if tag.startswith("{") else ""
   replace: if True else ""
-  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_the_elements_of_an_ordinary_drawing_are_accepted
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_words_that_only_look_like_animation_are_fine
 - label: a description is any text in the drawing
   find: described = described or (name in ("title", "desc") and bool((element.text or "").strip()))
   replace: described = described or bool((element.text or "").strip())
@@ -1461,7 +1453,7 @@ mutations:
 - label: the source documents are the occurrences
   find: len({e["source_path"] for e in entries.values() if isinstance(e.get("source_path"), str)})
   replace: len(entries)
-  test: tests.test_sd101_check.ProgressRuleTests.test_the_source_documents_are_counted_by_distinct_path
+  test: tests.test_sd101_check.ProgressRuleTests.test_the_totals_are_the_source_maps
 - label: a source path that is not text raises
   find: for e in entries.values() if isinstance(e.get("source_path"), str)
   replace: for e in entries.values()
@@ -1479,16 +1471,8 @@ mutations:
   replace: "        if False:\n            reasons.extend"
   test: tests.test_sd101_check.ProgressRuleTests.test_the_id_lists_name_written_lessons
 - label: an id list that is not a list is accepted
-  find: "    if not isinstance(value, list) or not all(isinstance(item, str) for item in value):"
-  replace: "    if False:"
-  test: tests.test_sd101_check.ProgressRuleTests.test_the_id_lists_name_written_lessons
-- label: an id list of non-text raises
-  find: "    if not isinstance(value, list) or not all(isinstance(item, str) for item in value):"
-  replace: "    if not isinstance(value, list):"
-  test: tests.test_sd101_check.ProgressRuleTests.test_the_id_lists_name_written_lessons
-- label: an id list that is not a list raises
-  find: "    if not isinstance(value, list) or not all("
-  replace: "    if not all("
+  find: "    if not isinstance(value, list):\n        return [f\"{name} must be"
+  replace: "    if False:\n        return [f\"{name} must be"
   test: tests.test_sd101_check.ProgressRuleTests.test_the_id_lists_name_written_lessons
 - label: an id that is not written is accepted
   find: return [f"{name} names {item}, which is not a written lesson" for item in value if item not in written]
@@ -1710,7 +1694,3 @@ mutations:
   find: "    problems = check_store(arguments.store, arguments.source_map, pin_roster)"
   replace: "    problems = []"
   test: tests.test_sd101_check.CommandLineTests.test_a_broken_store_exits_one_and_prints_the_problem
-- label: the real store may break a rule
-  find: "    problems = check_store(arguments.store, arguments.source_map, pin_roster)"
-  replace: "    problems = check_store(arguments.store, arguments.source_map, pin_roster)[:0]"
-  test: tests.test_sd101_check.RealStoreTests.test_the_real_store_passes_every_rule

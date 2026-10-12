@@ -1,3 +1,5 @@
 -r requirements.txt
 pytest>=8
+# scripts/sd101_check.py reads the System Design lessons as Markdown
+markdown-it-py>=3
 httpx>=0.27

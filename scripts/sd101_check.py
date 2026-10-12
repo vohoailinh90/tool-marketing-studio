@@ -447,7 +447,7 @@ def has_unclosed_fence(text: str) -> bool:
         if token.type == "fence" and token.map:
             last = token.map[1] - 1
             closing = BLOCKQUOTE_PREFIX.sub("", lines[last]).strip() if token.map[0] < last < len(lines) else ""
-            if not (closing and set(closing) == {token.markup[0]} and len(closing) >= len(token.markup)):
+            if not (set(closing) == {token.markup[0]} and len(closing) >= len(token.markup)):
                 return True
     return False
 
@@ -493,14 +493,14 @@ def table_cells(text: str) -> list[str]:
     """
     tokens = markdown_tokens(text)
     return ["".join(child.content for child in following.children or []
-                    if child.type in ("text", "text_special", "code_inline"))
+                    if child.type in ("text", "code_inline"))
             for token, following in zip(tokens, tokens[1:])
             if token.type in ("th_open", "td_open") and following.type == "inline"]
 
 
 def relative_target(destination: str) -> str | None:
     """The path part of a relative link destination; None for an anchor, a URL or a mail link."""
-    if destination.startswith(("#", "//")) or SCHEME.match(destination):
+    if destination.startswith("//") or SCHEME.match(destination):
         return None
     return unquote(destination.split("#")[0].split("?")[0]) or None
 
@@ -922,7 +922,7 @@ def check_readme(text: str, lesson_ids: set[str], entries: dict[str, dict]) -> l
 
 
 def id_list_problems(name: str, value: object, written: list[str]) -> list[str]:
-    if not isinstance(value, list) or not all(isinstance(item, str) for item in value):
+    if not isinstance(value, list):
         return [f"{name} must be a list of lesson ids"]
     return [f"{name} names {item}, which is not a written lesson" for item in value if item not in written]
 

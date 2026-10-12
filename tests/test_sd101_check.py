@@ -235,6 +235,7 @@ class SourceMapPinTests(unittest.TestCase):
                 lesson["id"] = f"sd-02-{number:03d}"
             data["categories"][0]["id"] = "sd-02"
 
+        self.assertTrue(any("first difference: ('sd-15', 11) instead of ('sd-15', 12)" in line for line in self.check(drop_last)))
         for name, change in {"the last entry removed": drop_last, "a group removed": drop_group,
                              "an entry added": add_entry, "two entries swapped": swap, "an id renumbered": renumber,
                              "no groups": empty, "a group and its ids renamed": rename_a_group_and_its_ids,
@@ -287,6 +288,8 @@ class SourceMapPinTests(unittest.TestCase):
             "a null URL": set_url(None),
             "a null source path with a matching tail": lambda data: entry_of(data).update(
                 source_path=None, source_snapshot_url=f"https://github.com/ByteByteGoHq/system-design-101/blob/{commit}/None"),
+            "a numeric source path with a matching tail": lambda data: entry_of(data).update(
+                source_path=5, source_snapshot_url=f"https://github.com/ByteByteGoHq/system-design-101/blob/{commit}/5"),
             "an empty source path": lambda data: entry_of(data).update(
                 source_path="", source_snapshot_url=f"https://github.com/ByteByteGoHq/system-design-101/blob/{commit}/"),
         }.items():
@@ -628,6 +631,7 @@ class MetadataRuleTests(StoreCase):
             with self.subTest(file=name):
                 path.write_bytes(content)
                 self.assertProblem("metadata/sd-01-001.json: cannot be read")
+                self.assertEqual(1, len(self.problems_of_metadata()), self.problems_of_metadata())
         for name, content in {"a list": b"[]", "a string": b'"x"', "null": b"null", "a number": b"3"}.items():
             with self.subTest(file=name):
                 path.write_bytes(content)
@@ -938,6 +942,14 @@ class MetadataRuleTests(StoreCase):
                                                "migration must have exactly"),
             "a migration with an extra key": ({"migration": {**migration, "x": 1}}, "migration must have exactly"),
             "a migration that is a string": ({"migration": "x"}, "migration must have exactly"),
+            "a migration that is null": ({"migration": None}, "migration must have exactly"),
+            "a migration that is a number": ({"migration": 5}, "migration must have exactly"),
+            "a numeric migration commit": ({"migration": {**migration, "source_commit_sha": 5}},
+                                           "migration source_commit_sha must be a 40-hex commit"),
+            "a null migration commit": ({"migration": {**migration, "source_commit_sha": None}},
+                                        "migration source_commit_sha must be a 40-hex commit"),
+            "a numeric migration repository": ({"migration": {**migration, "source_repository": 5}},
+                                                 "migration source_repository must be owner/name"),
             "a migration repository without an owner": ({"migration": {**migration, "source_repository": "old"}},
                                                          "migration source_repository must be owner/name"),
             "a migration destination that is null": ({"migration": {**migration, "destination_repository": None}},
@@ -965,7 +977,9 @@ class MetadataRuleTests(StoreCase):
                "non-hex digest": {**good, "sha256": "z" * 64}, "null date": {**good, "retrieved_on": None},
                "not a date": {**good, "retrieved_on": "yesterday"}, "url without a host": {**good, "url": "https://"},
                "month 99": {**good, "retrieved_on": "2026-99-99"}, "february 30": {**good, "retrieved_on": "2026-02-30"},
-               "no digest": {"url": "https://x/y.png"}, "an extra key": {**good, "note": "x"}, "a string": "x"}
+               "no digest": {"url": "https://x/y.png"}, "an extra key": {**good, "note": "x"}, "a string": "x",
+               "a numeric digest": {**good, "sha256": 5}, "a null digest": {**good, "sha256": None},
+               "a numeric url": {**good, "url": 5}, "a numeric date": {**good, "retrieved_on": 5}}
         for name, entry in bad.items():
             with self.subTest(entry=name):
                 self.put(image_evidence=[entry])
@@ -1090,6 +1104,12 @@ class LessonMarkdownRuleTests(StoreCase):
                 self.write_lesson("sd-01-001", body=BODY + "\n" + fence + "\n")
                 self.assertEqual([], self.problems())
 
+    def test_a_closing_fence_of_the_other_marker_does_not_close_it(self) -> None:
+        for name, body in {"backticks closed by tildes": "```\ncode\n~~~\n", "tildes closed by backticks": "~~~\ncode\n```\n"}.items():
+            with self.subTest(fence=name):
+                self.write_lesson("sd-01-001", body=BODY + "\n" + body)
+                self.assertProblem("unclosed code fence")
+
     def test_a_closing_fence_shorter_than_the_opening_one_does_not_close_it(self) -> None:
         self.write_lesson("sd-01-001", body=BODY + "\n````\ncode\n```\n")
         self.assertProblem("unclosed code fence")
@@ -1170,6 +1190,8 @@ class LessonMarkdownRuleTests(StoreCase):
             with self.subTest(body=name):
                 self.write_lesson("sd-01-001", body=body)
                 self.assertProblem("lesson.md does not show its figure diagrams/sd-01-001-main.svg")
+        self.write_lesson("sd-01-001", body=f"# Bài một\n\n![x]({FIGURE_PATH})\n[nguồn]({SNAPSHOT})\n")
+        self.assertEqual([], self.problems())
 
     def test_an_image_without_alt_text_is_reported(self) -> None:
         forms = {"empty inline": f"![]({FIGURE_PATH})", "blank inline": f"![ ]({FIGURE_PATH})",
@@ -1242,6 +1264,10 @@ class LessonMarkdownRuleTests(StoreCase):
                 (diagrams / name).unlink()
         (diagrams / "folder-main.svg").mkdir()
         self.assertProblem("diagrams: folder-main.svg is not the <id>-main.svg figure")
+        (diagrams / "folder-main.svg").rmdir()
+        (diagrams / "sd-01-001-main.svg").unlink()
+        (diagrams / "sd-01-001-main.svg").mkdir()
+        self.assertProblem("diagrams: sd-01-001-main.svg is not the <id>-main.svg figure")
 
     def test_metadata_holds_only_the_json_of_lesson_directories(self) -> None:
         metadata_dir = self.store / "metadata"
@@ -1252,6 +1278,10 @@ class LessonMarkdownRuleTests(StoreCase):
                 (metadata_dir / name).unlink()
         (metadata_dir / "sd-01-001.json.d").mkdir()
         self.assertProblem("metadata: sd-01-001.json.d is not the metadata")
+        (metadata_dir / "sd-01-001.json.d").rmdir()
+        (metadata_dir / "sd-01-001.json").unlink()
+        (metadata_dir / "sd-01-001.json").mkdir()
+        self.assertProblem("metadata: sd-01-001.json is not the metadata of a lesson directory")
 
     def test_lessons_holds_lesson_directories_and_pointers_to_them(self) -> None:
         pointer = self.store / "lessons" / "sd-01-001.md"
@@ -1645,6 +1675,9 @@ class LessonMarkdownRuleTests(StoreCase):
             "div": "<div>chữ</div>",
             "a closing tag without its opener": "</div>",
             "an inline closing tag without its opener": "chữ</span> nữa",
+            "a void element without a closing tag": "<hr>",
+            "an embed with a source": '<embed src="a.svg">',
+            "an input": '<input type="text">',
         }
         for name, form in forms.items():
             with self.subTest(form=name):
@@ -1835,13 +1868,15 @@ class SourceMapRuleTests(StoreCase):
     """A hand-edited source-map.json that is wrong is a problem to report, not a traceback."""
 
     def test_a_source_map_that_cannot_be_read_is_reported_not_raised(self) -> None:
-        cases = {"invalid json": b"{", "invalid utf-8": b"\xff\xfe{}", "empty": b"", "a list": b"[]",
-                 "a string": b'"x"', "null": b"null", "no categories": b"{}",
-                 "categories is an object": b'{"categories": {}}', "categories is null": b'{"categories": null}'}
-        for name, content in cases.items():
+        unreadable, no_categories = "source map: cannot be read", "source map: has no 'categories' list"
+        cases = {"invalid json": (b"{", unreadable), "invalid utf-8": (b"\xff\xfe{}", unreadable), "empty": (b"", unreadable),
+                 "a list": (b"[]", no_categories), "a string": (b'"x"', no_categories), "null": (b"null", no_categories),
+                 "no categories": (b"{}", no_categories), "categories is an object": (b'{"categories": {}}', no_categories),
+                 "categories is null": (b'{"categories": null}', no_categories)}
+        for name, (content, fragment) in cases.items():
             with self.subTest(source_map=name):
                 self.source_map.write_bytes(content)
-                self.assertProblem("source map: ")
+                self.assertProblem(fragment)
 
     def test_a_missing_source_map_is_reported_not_raised(self) -> None:
         self.source_map.unlink()
@@ -2189,6 +2224,10 @@ class ProgressRuleTests(StoreCase):
             with self.subTest(content=content):
                 path.write_text(content, encoding="utf-8")
                 self.assertProblem("progress.json: is not a JSON object")
+        path.write_text("{", encoding="utf-8")
+        self.assertEqual(["progress.json"], sorted({line.split(":")[0] for line in self.problems()
+                                                    if line.startswith("progress.json")}))
+        self.assertFalse(any("is not a JSON object" in line for line in self.problems()), self.problems())
 
     def test_the_required_keys_and_the_language_are_checked(self) -> None:
         for key in sorted(check.PROGRESS_REQUIRED):
@@ -2274,10 +2313,14 @@ class ProgressRuleTests(StoreCase):
             with self.subTest(key=key, value="a lesson that is written"):
                 self.sync_progress(**{key: ["sd-01-001"]})
                 self.assertEqual([], self.problems())
-            for value in (["sd-01-002"], ["sd-99-999"], "sd-01-001", None, [5], [["sd-01-001"]], [None]):
+            for value in (["sd-01-002"], ["sd-99-999"], [5], [["sd-01-001"]], [None]):
                 with self.subTest(key=key, value=value):
                     self.sync_progress(**{key: value})
-                    self.assertTrue([line for line in self.problems() if line.startswith(f"progress.json: {key} ")])
+                    self.assertTrue([line for line in self.problems() if line.startswith(f"progress.json: {key} names ")])
+            for value in ("sd-01-001", None, 5, {}, "sd-01-002"):
+                with self.subTest(key=key, value=value):
+                    self.sync_progress(**{key: value})
+                    self.assertTrue([line for line in self.problems() if line == f"progress.json: {key} must be a list of lesson ids"])
 
     def test_the_orchestration_fields_are_free(self) -> None:
         self.sync_progress(active_pr=40, active_branch="x", integration_review_pending=True, adopted_main_sha="y",
@@ -2291,6 +2334,9 @@ class ProgressRuleTests(StoreCase):
                 self.assertProblem("updated_on must be a YYYY-MM-DD date")
 
     def test_without_a_readable_source_map_only_the_file_itself_is_checked(self) -> None:
+        self.write_source_map({"sd-01-001": ("Bài một", SNAPSHOT), "sd-01-002": ("Bài hai", SNAPSHOT)})
+        self.sync_progress()
+        self.assertEqual("sd-01-002", json.loads((self.store / "progress.json").read_text(encoding="utf-8"))["next_id"])
         self.source_map.write_text("{", encoding="utf-8")
         found = self.problems()
         self.assertFalse(any("total_" in line or "next_id" in line for line in found), found)

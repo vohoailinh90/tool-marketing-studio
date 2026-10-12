@@ -119,4 +119,4 @@ Kiến trúc: `docs/architecture.md`. Kết nối Facebook: `docs/facebook-page.
 
 ## System Design tiếng Việt
 
-Chương trình học bằng hình, chỉ tiếng Việt: [mục lục](system-design-101/vi/README.md), [tiến độ](system-design-101/vi/PROGRESS.md). Giữ đúng15 nhóm/404 vị trí ByteByteGo (400 tài liệu nguồn). Kho giáo dục riêng; chưa đưa vào giao diện chiến dịch hoặc phê duyệt phát hành.
+Chương trình học bằng hình, chỉ tiếng Việt: [mục lục](system-design-101/vi/README.md), [tiến độ](system-design-101/vi/PROGRESS.md). Giữ đúng15 nhóm/404 vị trí ByteByteGo (400 tài liệu nguồn). Kho giáo dục riêng; chưa đưa vào giao diện chiến dịch hoặc phê duyệt phát hành. `python3 scripts/sd101_check.py` kiểm kho (schema metadata, nguồn ghim, hình, tiến độ); CI chạy nó qua pytest.

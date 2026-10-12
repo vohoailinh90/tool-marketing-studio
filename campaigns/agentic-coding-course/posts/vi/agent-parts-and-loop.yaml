@@ -27,14 +27,12 @@ slides:
     title: 'Bộ não: LLM'
     text: hiểu yêu cầu, quyết định bước tiếp theo
   - emoji: 🔧
-    title: 'Đôi tay: công cụ'
+    title: '+ Đôi tay: công cụ'
     text: đọc/ghi file, chạy lệnh, tìm trên web
   - emoji: 🔁
-    title: Vòng lặp
+    title: '+ Vòng lặp'
     text: làm → kiểm → sửa, đến khi xong
-  - emoji: 🤖
-    title: AI agent
-    text: nhận mục tiêu và tự làm việc — bạn nghiệm thu
+  note: '**=** 🤖 **AI agent**: nhận mục tiêu và tự làm việc — bạn nghiệm thu'
 - layout: checklist
   title: Ai thật sự **bấm nút**?
   items:

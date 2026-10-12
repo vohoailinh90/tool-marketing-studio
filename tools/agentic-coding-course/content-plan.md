@@ -8,6 +8,10 @@ học sẽ có PR riêng sau khi kế hoạch được chốt.
 - Mục tiêu: tăng tương tác của Page (lưu, bình luận, theo dõi) — **bài chia sẻ kiến thức, không phải
   bài kiểm chứng nhu cầu**, nên không có khảo sát, không có waitlist.
 
+**Chủ Page đã quyết (2026-10-12):** (1) được đăng khi bài học còn ở trạng thái `review`;
+(2) **tạm thời chỉ đăng tiếng Việt** — mỗi PR bài học chỉ có bản `vi`; `ja`/`en` thêm sau, khi chủ
+Page mở lại, bằng PR riêng viết từ bài học của chính ngôn ngữ đó.
+
 ## 1. Nguyên tắc
 
 1. **Bài học là nguồn sự thật duy nhất.** Mọi ý trên ảnh lấy từ file bài học của đúng ngôn ngữ đó, ở
@@ -15,8 +19,8 @@ học sẽ có PR riêng sau khi kế hoạch được chốt.
 2. **Đủ kiến thức, không chỉ trích đoạn.** Mỗi phần của bài (mục tiêu, nội dung chính, ví dụ đời
    thường, ví dụ thực tế, hiểu lầm, tóm tắt, ghi nhớ, đố vui) phải xuất hiện ở ít nhất một ảnh hoặc
    trong caption. PR của mỗi bài kèm bảng "phần bài học → ảnh số mấy" để kiểm.
-3. **Mỗi ngôn ngữ một bài hoàn chỉnh.** Viết từ bài học của chính ngôn ngữ đó (khóa học vốn đã viết
-   riêng `vi`/`ja`/`en`), không dịch câu-theo-câu từ bản `vi`. Cùng một `id` cho cả 3 ngôn ngữ để so số liệu.
+3. **Mỗi ngôn ngữ một bài hoàn chỉnh.** Hiện chỉ `vi`. Khi thêm `ja`/`en`: viết từ bài học của chính
+   ngôn ngữ đó (khóa học vốn đã viết riêng từng thứ tiếng), không dịch câu-theo-câu; giữ cùng `id`.
 4. **Một ý một ảnh, ≤ ~30 chữ**, từ khóa tô `**đậm**`; chữ đọc được trên điện thoại.
 5. **Không URL trong bài.** Link chỉ qua `{link}` ở bình luận đầu. Trạng thái luôn `draft`; duyệt và
    đăng là việc của chủ Page.
@@ -85,15 +89,17 @@ script), nên cần chuyển sang PNG.
    errors-and-debugging, project-personal-page, data-formats, git-version-control, hallucination,
    context-window, project-office-automation.
 2. Sau đó 33 bài còn lại theo thứ tự trong `curriculum.yaml`.
-3. **Một PR = một bài × 3 ngôn ngữ**: 3 file `posts/<lang>/<lesson-id>.yaml`, sơ đồ PNG, ảnh đã
-   render, bảng phủ kiến thức. `id` bài đăng = `id` bài học (ổn định, không đổi khi bài đổi chỗ).
+3. **Một PR = một bài (tiếng Việt)**: `posts/vi/<lesson-id>.yaml`, sơ đồ PNG, ảnh đã render, bảng
+   phủ kiến thức. `id` bài đăng = `id` bài học (ổn định, không đổi khi bài đổi chỗ).
 4. Nhịp đăng gợi ý (chủ Page quyết): 1 bài học/tuần như kế hoạch của khóa học, tối 20:00–21:30.
 
 ## 5. Chiến dịch
 
-`campaigns/agentic-coding-course/campaign.yaml` (tạo cùng PR bài đầu tiên): `langs: [vi, ja, en]`,
-`platforms: [facebook]`, `links.course` → trang chọn ngôn ngữ của khóa học (link theo dõi UTM từng
-bài, từng ngôn ngữ), không có `validation` vì đây không phải bài kiểm chứng nhu cầu.
+`campaigns/agentic-coding-course/campaign.yaml` (tạo cùng PR bài đầu tiên): `langs: [vi]`,
+`platforms: [facebook]`, không có `validation` vì đây không phải bài kiểm chứng nhu cầu. Vì chỉ có
+tiếng Việt, mỗi bài học có một khóa link riêng trỏ thẳng tới trang bài học tiếng Việt, ví dụ
+`links.agent-parts-and-loop` → `course/vi/lessons/agent-parts-and-loop.md`, và bài đăng chọn nó bằng
+`link: agent-parts-and-loop` (engine tự gắn UTM theo bài) — không cần sửa engine.
 
 ## 6. Cơ chế kéo tương tác
 
@@ -115,8 +121,9 @@ bài, từng ngôn ngữ), không có `validation` vì đây không phải bài 
    (bài học + đố vui riêng, như dạng A và C trong kế hoạch Facebook của khóa học)?
 2. Sơ đồ: chuyển SVG → PNG bằng script (đề xuất) hay dựng lại bằng layout?
 3. Chữ nhỏ trong sơ đồ 800px khi đặt vào ảnh 1080px có đủ đọc trên điện thoại không — cần ngưỡng cỡ chữ tối thiểu?
-4. `links:` của studio là theo chiến dịch, không theo ngôn ngữ: trỏ về trang chọn ngôn ngữ có đủ, hay
-   cần mở rộng engine để link thẳng tới bài học đúng ngôn ngữ?
+4. Link: một khóa `links.<lesson-id>` cho mỗi bài (mục 5) — 52 khóa trong `campaign.yaml` có chấp
+   nhận được không, hay nên trỏ chung về trang chủ khóa học tiếng Việt?
 5. Kiểm "đủ kiến thức" bằng bảng trong PR (người đọc) hay bằng một trường `notes`/script đối chiếu
    các phần của bài học với các ảnh?
-6. Đăng khi bài học còn `review` (khóa học chỉ đăng bài `done`) — để chủ Page quyết.
+6. ~~Đăng khi bài học còn `review`~~ — chủ Page đã quyết: được. Câu hỏi còn lại: caption có nên
+   ghi rõ bài học đang được hoàn thiện (có thể đổi câu chữ) không?

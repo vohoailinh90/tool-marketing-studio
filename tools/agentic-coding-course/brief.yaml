@@ -59,9 +59,9 @@ limitations:
   - The hands-on lessons need an AI agent tool, which may cost money or need a company's permission
   - Examples inside lessons (file counts, dates, page names) are illustrations, not measurements
 
-story_to_confirm:
-  - Whether posts may go out while a lesson is still in `review` (the course's own plan posts only `done` lessons)
-  - Whether the Page posts one language per day or all three on the same day
+story_to_confirm: []
+# Owner decisions (2026-10-12): posts may go out while a lesson is still in `review`;
+# for now only Vietnamese posts are made — ja/en come later in their own PRs.
 
 commercial_readiness:
   - Not for sale; the course is free. Engagement and follows are the goal.

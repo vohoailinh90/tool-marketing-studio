@@ -87,7 +87,14 @@ Sơ đồ SVG của khóa học (107 sơ đồ tiếng Việt) được chuyển
   (file phủ đối chiếu theo tên).
 - **Ngưỡng đọc được** (đo trên ảnh 1080px đã render): chữ thường ≥ 24px, nhãn phụ ≥ 22px, tiêu đề và số
   bước ≥ 28px; không ý nào chỉ nằm ở chữ < 22px. Xem ảnh ở bề rộng điện thoại 360px, không phóng to.
-- Sơ đồ không đạt ngưỡng: cắt/chia nhỏ, hoặc dựng lại bằng layout có sẵn.
+- Sơ đồ không đạt ngưỡng: **dựng lại bằng layout có sẵn** (`features`, `flow`, `compare`, `table`…) với đúng chữ
+  của sơ đồ và chữ đủ lớn. Cắt hay chia nhỏ ảnh không giải quyết được vì file phủ nhận ra sơ đồ theo tên ảnh. Trong
+  file phủ, ý `diagram` ghi `dest` là slide (hoặc caption) đã dựng lại và `evidence` trích đúng chữ nhãn của sơ đồ.
+  Script đọc chữ từ file SVG ở commit đã ghim và đòi slide/caption đó hiện **ít nhất 60% chữ của sơ đồ**. Chữ này
+  không tính chung với các ý văn xuôi: một nhãn vẽ ra có thể chứng minh cả sơ đồ lẫn đoạn văn nhắc cùng điều đó.
+  Slide `image` luôn phải hiện đúng ảnh của sơ đồ đó; dựng lại thì dùng layout chữ hoặc caption.
+  Mỗi đoạn trích là một cụm chữ trong một nhãn; trích nguyên một nhãn ngắn (cả nhãn tiếng Nhật, vốn không có dấu cách)
+  vẫn được tính, còn mảnh dưới 3 chữ của một nhãn dài hơn thì không.
 - Một script chuyển đổi có manifest (nguồn, commit, hash) là bước sau; trước mắt, PR nào chuyển sơ đồ
   ghi rõ commit nguồn trong mô tả PR.
 
@@ -135,7 +142,7 @@ mục con), từng dòng bảng, từng trích dẫn `>`, từng tiêu đề nh�
 - `evidence`: một câu trích hoặc danh sách câu trích, **đúng chữ đang hiển thị** trong một ô chữ của
   `dest` mà layout thật sự vẽ ra. Các câu trích (chữ trùng nhau chỉ tính một lần) phải phủ ít nhất **30% số chữ của ý** (tối thiểu 3 chữ, ý ngắn hơn thì
   trích cả ý); khối code phải hiện **đủ**; một chữ trên ảnh chỉ chứng minh cho một ý. Với sơ đồ, `dest` là
-  ảnh `image` hiển thị đúng sơ đồ đó.
+  ảnh `image` hiển thị đúng sơ đồ đó, hoặc slide/caption dựng lại sơ đồ (mục 3).
 
 Kiểm tra (CI tự clone khóa học và chạy dòng đầu):
 

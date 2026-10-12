@@ -25,6 +25,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          # The agent office's Node-run checks (tests/web/office_*_check.mts) need type stripping, Node 22.6+. On an older
+          # Node the tests skip, and a skipped test is a mutation that survives (tests/mutations/office_feature.yaml).
+          node-version: "22"
       - name: Install
         run: |
           python -m pip install --upgrade pip

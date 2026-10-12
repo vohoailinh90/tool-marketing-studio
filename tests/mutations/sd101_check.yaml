@@ -1,0 +1,1716 @@
+# Mutation manifest — see scripts/mutation_check.py
+#
+# A passing test proves nothing on its own. These break each rule of the System Design store checker
+# in turn and require the named test to fail. A mutation that SURVIVES means the test guards nothing.
+
+target: scripts/sd101_check.py
+note: The checker is what stops ~400 hand-written lessons drifting from the schema in DECISIONS.md and what keeps source images out of a public repository. Each entry switches one rule off and names the test that must notice.
+mutations:
+- label: a key named twice in a JSON file is accepted
+  find: "        if key in seen:\n            raise ValueError"
+  replace: "        if False:\n            raise ValueError"
+  test: tests.test_sd101_check.SourceMapPinTests.test_a_key_named_twice_in_the_source_map_is_reported
+- label: the source map JSON is read without the duplicate-key hook
+  find: ', object_pairs_hook=object_without_duplicate_keys)'
+  replace: )
+  test: tests.test_sd101_check.SourceMapPinTests.test_a_key_named_twice_in_the_source_map_is_reported
+- label: the metadata JSON is read without the duplicate-key hook
+  find: ', object_pairs_hook=object_without_duplicate_keys)'
+  replace: )
+  test: tests.test_sd101_check.MetadataRuleTests.test_a_key_named_twice_in_the_metadata_is_reported
+- label: progress.json is read without the duplicate-key hook
+  find: ', object_pairs_hook=object_without_duplicate_keys)'
+  replace: )
+  test: tests.test_sd101_check.ProgressRuleTests.test_a_missing_or_unreadable_progress_file_is_reported
+- label: JSON nested too deeply to parse raises
+  find: (OSError, ValueError, RecursionError)
+  replace: (OSError, ValueError)
+  test: tests.test_sd101_check.RobustnessTests.test_odd_json_text_is_reported_not_raised
+- label: a JSON file that cannot be read raises
+  find: (OSError, ValueError, RecursionError)
+  replace: RecursionError
+  test: tests.test_sd101_check.SourceMapRuleTests.test_a_source_map_that_cannot_be_read_is_reported_not_raised
+- label: a source_path that is not text raises
+  find: isinstance(value, str) and not any(part in
+  replace: not any(part in
+  test: tests.test_sd101_check.SourceMapPinTests.test_an_entry_field_of_the_wrong_kind_is_reported
+- label: a source_path with an empty part (// or a leading or trailing /) is accepted
+  find: part in ("", ".", "..")
+  replace: part in (".", "..")
+  test: tests.test_sd101_check.SourceMapPinTests.test_a_source_path_that_a_url_would_read_differently_is_reported
+- label: a source_path with a . part is accepted
+  find: part in ("", ".", "..")
+  replace: part in ("", "..")
+  test: tests.test_sd101_check.SourceMapPinTests.test_a_source_path_that_a_url_would_read_differently_is_reported
+- label: a source_path with a .. part is accepted
+  find: part in ("", ".", "..")
+  replace: part in ("", ".")
+  test: tests.test_sd101_check.SourceMapPinTests.test_a_source_path_that_a_url_would_read_differently_is_reported
+- label: a source_path with whitespace is accepted
+  find: "char.isspace() or not char.isprintable() or char in \"#?\\\\\""
+  replace: "not char.isprintable() or char in \"#?\\\\\""
+  test: tests.test_sd101_check.SourceMapPinTests.test_a_source_path_that_a_url_would_read_differently_is_reported
+- label: a source_path with a control character is accepted
+  find: "char.isspace() or not char.isprintable() or char in \"#?\\\\\""
+  replace: "char.isspace() or char in \"#?\\\\\""
+  test: tests.test_sd101_check.SourceMapPinTests.test_a_source_path_that_a_url_would_read_differently_is_reported
+- label: 'a source_path with a # mark is accepted'
+  find: "char in \"#?\\\\\""
+  replace: "char in \"?\\\\\""
+  test: tests.test_sd101_check.SourceMapPinTests.test_a_source_path_that_a_url_would_read_differently_is_reported
+- label: a source_path with a ? is accepted
+  find: "char in \"#?\\\\\""
+  replace: "char in \"#\\\\\""
+  test: tests.test_sd101_check.SourceMapPinTests.test_a_source_path_that_a_url_would_read_differently_is_reported
+- label: a source_path with a backslash is accepted
+  find: "char in \"#?\\\\\""
+  replace: char in "#?"
+  test: tests.test_sd101_check.SourceMapPinTests.test_a_source_path_that_a_url_would_read_differently_is_reported
+- label: text_value accepts a blank string
+  find: isinstance(value, str) and bool(value.strip())
+  replace: isinstance(value, str)
+  test: tests.test_sd101_check.SourceMapPinTests.test_an_entry_field_of_the_wrong_kind_is_reported
+- label: text_value accepts anything
+  find: isinstance(value, str) and bool(value.strip())
+  replace: 'True'
+  test: tests.test_sd101_check.SourceMapPinTests.test_an_entry_field_of_the_wrong_kind_is_reported
+- label: a missing entry key is not reported
+  find: "    if missing:\n        found.append(f\"is missing {"
+  replace: "    if False:\n        found.append(f\"is missing {"
+  test: tests.test_sd101_check.SourceMapPinTests.test_a_missing_entry_field_is_reported
+- label: an unknown entry key is not reported
+  find: "    if unknown:\n        found.append(f\"has unknown keys {"
+  replace: "    if False:\n        found.append(f\"has unknown keys {"
+  test: tests.test_sd101_check.SourceMapPinTests.test_progress_fields_do_not_belong_in_the_source_map
+- label: same_source_as is an unknown entry key
+  find: set(entry) - SOURCE_ENTRY_KEYS - {"same_source_as"}
+  replace: set(entry) - SOURCE_ENTRY_KEYS
+  test: tests.test_sd101_check.SourceMapPinTests.test_the_unaltered_source_map_has_no_problem
+- label: a title_vi that is not text is accepted
+  find: entry.get("title_vi") is not None and not text_value(entry.get("title_vi"))
+  replace: 'False'
+  test: tests.test_sd101_check.SourceMapPinTests.test_an_entry_field_of_the_wrong_kind_is_reported
+- label: a null title_vi is refused
+  find: entry.get("title_vi") is not None and not text_value(entry.get("title_vi"))
+  replace: not text_value(entry.get("title_vi"))
+  test: tests.test_sd101_check.SourceMapPinTests.test_a_null_title_vi_is_allowed_and_a_string_is_too
+- label: a title_source that is not text is accepted
+  find: "\"title_source\" in entry and not text_value(entry[\"title_source\"])"
+  replace: 'False'
+  test: tests.test_sd101_check.SourceMapPinTests.test_an_entry_field_of_the_wrong_kind_is_reported
+- label: a source_path is not checked
+  find: "\"source_path\" in entry and not repository_path(entry[\"source_path\"])"
+  replace: 'False'
+  test: tests.test_sd101_check.SourceMapPinTests.test_a_source_path_that_a_url_would_read_differently_is_reported
+- label: a source_url that is not a URL is accepted
+  find: "\"source_url\" in entry and not valid_url(entry[\"source_url\"])"
+  replace: 'False'
+  test: tests.test_sd101_check.SourceMapPinTests.test_an_entry_field_of_the_wrong_kind_is_reported
+- label: a source_body_reviewed that is not a boolean is accepted
+  find: "\"source_body_reviewed\" in entry and not isinstance(entry[\"source_body_reviewed\"], bool)"
+  replace: 'False'
+  test: tests.test_sd101_check.SourceMapPinTests.test_an_entry_field_of_the_wrong_kind_is_reported
+- label: a source_blob_sha that is not a Git id is accepted
+  find: if "source_blob_sha" in entry and not (isinstance(entry["source_blob_sha"], str)
+  replace: if False and (isinstance(entry["source_blob_sha"], str)
+  test: tests.test_sd101_check.SourceMapPinTests.test_an_entry_field_of_the_wrong_kind_is_reported
+- label: a non-text source_blob_sha raises
+  find: "not (isinstance(entry[\"source_blob_sha\"], str)\n                                           and COMMIT.fullmatch(entry[\"source_blob_sha\"]))"
+  replace: not COMMIT.fullmatch(entry["source_blob_sha"])
+  test: tests.test_sd101_check.SourceMapPinTests.test_an_entry_field_of_the_wrong_kind_is_reported
+- label: same_source_as that is not a list is accepted
+  find: if not isinstance(others, list) or not others or
+  replace: if not others or
+  test: tests.test_sd101_check.SourceMapPinTests.test_same_source_entries_must_name_each_other
+- label: an empty same_source_as is accepted
+  find: or not others or not all(
+  replace: or not all(
+  test: tests.test_sd101_check.SourceMapPinTests.test_same_source_entries_must_name_each_other
+- label: a same_source_as of non-text is accepted
+  find: 'or not all(isinstance(other, str) for other in others):'
+  replace: ':'
+  test: tests.test_sd101_check.SourceMapPinTests.test_same_source_entries_must_name_each_other
+- label: an entry may name itself as its partner
+  find: 'if other == lesson_id or partner is None:'
+  replace: 'if partner is None:'
+  test: tests.test_sd101_check.SourceMapPinTests.test_same_source_entries_must_name_each_other
+- label: an entry may name a partner that is not in the map
+  find: 'if other == lesson_id or partner is None:'
+  replace: 'if other == lesson_id:'
+  test: tests.test_sd101_check.SourceMapPinTests.test_same_source_entries_must_name_each_other
+- label: a partner that does not name back is accepted
+  find: 'elif lesson_id not in (partner.get("same_source_as") if isinstance(partner.get("same_source_as"), list) else []):'
+  replace: 'elif False:'
+  test: tests.test_sd101_check.SourceMapPinTests.test_same_source_entries_must_name_each_other
+- label: a partner without same_source_as raises
+  find: 'lesson_id not in (partner.get("same_source_as") if isinstance(partner.get("same_source_as"), list) else []):'
+  replace: 'lesson_id not in partner.get("same_source_as"):'
+  test: tests.test_sd101_check.SourceMapPinTests.test_same_source_entries_must_name_each_other
+- label: partners with another source_path are accepted
+  find: 'elif partner.get("source_path") != entry.get("source_path"):'
+  replace: 'elif False:'
+  test: tests.test_sd101_check.SourceMapPinTests.test_same_source_entries_must_name_each_other
+- label: a source_path that is not text is grouped
+  find: "if isinstance(entry.get(\"source_path\"), str):\n            by_path"
+  replace: "if True:\n            by_path"
+  test: tests.test_sd101_check.SourceMapPinTests.test_an_odd_value_in_any_source_map_field_is_reported_not_raised
+- label: a file shared without same_source_as is accepted
+  find: 'if not set(group) - {lesson_id} <= declared:'
+  replace: 'if False:'
+  test: tests.test_sd101_check.SourceMapPinTests.test_two_entries_sharing_a_source_file_must_say_so
+- label: an entry without same_source_as raises
+  find: declared = set(declared) if isinstance(declared, list) else set()
+  replace: declared = set(declared)
+  test: tests.test_sd101_check.SourceMapPinTests.test_two_entries_sharing_a_source_file_must_say_so
+- label: the top-level key set is not compared
+  find: "    if set(data) != SOURCE_MAP_KEYS:"
+  replace: "    if False:"
+  test: tests.test_sd101_check.SourceMapPinTests.test_the_top_level_records_of_the_real_map_are_pinned
+- label: schema_version 2 is accepted
+  find: data.get("schema_version") != 1 or isinstance(data.get("schema_version"), bool)
+  replace: 'False'
+  test: tests.test_sd101_check.SourceMapPinTests.test_the_top_level_records_of_the_real_map_are_pinned
+- label: schema_version true is accepted
+  find: data.get("schema_version") != 1 or isinstance(data.get("schema_version"), bool)
+  replace: data.get("schema_version") != 1
+  test: tests.test_sd101_check.SourceMapPinTests.test_the_top_level_records_of_the_real_map_are_pinned
+- label: another language is accepted
+  find: "    if data.get(\"language\") != \"vi\":\n        found.append"
+  replace: "    if False:\n        found.append"
+  test: tests.test_sd101_check.SourceMapPinTests.test_the_top_level_records_of_the_real_map_are_pinned
+- label: another source repository is accepted
+  find: data.get("source_repository") != SOURCE_REPOSITORY
+  replace: 'False'
+  test: tests.test_sd101_check.SourceMapPinTests.test_the_top_level_records_of_the_real_map_are_pinned
+- label: a pinned object id that is not 40 hex is accepted
+  find: 'if not (isinstance(value, str) and COMMIT.fullmatch(value)):'
+  replace: 'if False:'
+  test: tests.test_sd101_check.SourceMapPinTests.test_the_top_level_records_of_the_real_map_are_pinned
+- label: a pinned object id that is not text raises
+  find: isinstance(value, str) and COMMIT.fullmatch(value)
+  replace: COMMIT.fullmatch(value)
+  test: tests.test_sd101_check.SourceMapPinTests.test_the_top_level_records_of_the_real_map_are_pinned
+- label: a missing observation date is accepted
+  find: 'if not valid_date(data.get("observed_on")):'
+  replace: 'if False:'
+  test: tests.test_sd101_check.SourceMapPinTests.test_the_top_level_records_of_the_real_map_are_pinned
+- label: a missing note is accepted
+  find: 'if not text_value(data.get("note")):'
+  replace: 'if False:'
+  test: tests.test_sd101_check.SourceMapPinTests.test_the_top_level_records_of_the_real_map_are_pinned
+- label: an unreadable source map raises
+  find: "    if error:\n        return {}, None, [Problem(\"source map\", error)]"
+  replace: "    if False:\n        return {}, None, [Problem(\"source map\", error)]"
+  test: tests.test_sd101_check.SourceMapRuleTests.test_a_source_map_that_cannot_be_read_is_reported_not_raised
+- label: a source map that is not an object raises
+  find: categories = data.get("categories") if isinstance(data, dict) else None
+  replace: categories = data.get("categories")
+  test: tests.test_sd101_check.SourceMapRuleTests.test_a_source_map_that_cannot_be_read_is_reported_not_raised
+- label: a source map without categories is accepted
+  find: "    if not isinstance(categories, list):\n        return {}, None,"
+  replace: "    if False:\n        return {}, None,"
+  test: tests.test_sd101_check.SourceMapRuleTests.test_a_source_map_that_cannot_be_read_is_reported_not_raised
+- label: the top-level records of the real map are not checked
+  find: top_level = top_level_problems(data) if pin_roster else []
+  replace: top_level = []
+  test: tests.test_sd101_check.SourceMapPinTests.test_the_top_level_records_of_the_real_map_are_pinned
+- label: the top-level records of every source map are checked
+  find: top_level = top_level_problems(data) if pin_roster else []
+  replace: top_level = top_level_problems(data)
+  test: tests.test_sd101_check.SourceMapRuleTests.test_a_good_source_map_with_two_categories_is_fine
+- label: a repository that is not text raises
+  find: pinned = (isinstance(repository, str) and REPOSITORY.fullmatch(repository) is not None
+  replace: pinned = (REPOSITORY.fullmatch(repository) is not None
+  test: tests.test_sd101_check.SourceMapPinTests.test_the_map_needs_its_own_pinned_commit_and_repository
+- label: a repository without an owner is accepted
+  find: REPOSITORY.fullmatch(repository) is not None
+  replace: 'True'
+  test: tests.test_sd101_check.SourceMapPinTests.test_the_map_needs_its_own_pinned_commit_and_repository
+- label: a commit that is not text raises
+  find: and isinstance(commit, str) and COMMIT.fullmatch(commit) is not None)
+  replace: and COMMIT.fullmatch(commit) is not None)
+  test: tests.test_sd101_check.SourceMapPinTests.test_the_map_needs_its_own_pinned_commit_and_repository
+- label: a commit that is not 40 hex is accepted
+  find: and COMMIT.fullmatch(commit) is not None)
+  replace: and True)
+  test: tests.test_sd101_check.SourceMapPinTests.test_the_map_needs_its_own_pinned_commit_and_repository
+- label: a map without its own commit is accepted
+  find: "    if not pinned:\n        problems.append"
+  replace: "    if False:\n        problems.append"
+  test: tests.test_sd101_check.SourceMapPinTests.test_the_map_needs_its_own_pinned_commit_and_repository
+- label: a category without lessons is accepted
+  find: "        if not isinstance(lessons, list):\n            problems.append"
+  replace: "        if False:\n            problems.append"
+  test: tests.test_sd101_check.SourceMapRuleTests.test_a_malformed_category_or_lesson_entry_is_reported_not_raised
+- label: the size of a group is not recorded
+  find: groups.append((category.get("id"), len(lessons)))
+  replace: pass
+  test: tests.test_sd101_check.SourceMapPinTests.test_the_other_ways_to_change_the_roster_are_reported
+- label: a group with another key set is accepted
+  find: "if pin_roster and (set(category) != GROUP_KEYS or "
+  replace: if pin_roster and (
+  test: tests.test_sd101_check.SourceMapPinTests.test_the_groups_of_the_real_map_are_pinned
+- label: a group without a title_vi is accepted
+  find: or not text_value(category.get("title_vi"))
+  replace: ''
+  test: tests.test_sd101_check.SourceMapPinTests.test_the_groups_of_the_real_map_are_pinned
+- label: a group without a title_source is accepted
+  find: "\n                           or not text_value(category.get(\"title_source\"))"
+  replace: ''
+  test: tests.test_sd101_check.SourceMapPinTests.test_the_groups_of_the_real_map_are_pinned
+- label: the group keys are checked on every source map
+  find: if pin_roster and (set(category) != GROUP_KEYS
+  replace: if (set(category) != GROUP_KEYS
+  test: tests.test_sd101_check.SourceMapRuleTests.test_a_good_source_map_with_two_categories_is_fine
+- label: an entry that is not an object raises
+  find: lesson_id = lesson.get("id") if isinstance(lesson, dict) else None
+  replace: lesson_id = lesson.get("id")
+  test: tests.test_sd101_check.SourceMapRuleTests.test_a_malformed_category_or_lesson_entry_is_reported_not_raised
+- label: an entry without a text id is accepted
+  find: "            if not isinstance(lesson_id, str):\n                problems.append"
+  replace: "            if False:\n                problems.append"
+  test: tests.test_sd101_check.SourceMapRuleTests.test_a_malformed_category_or_lesson_entry_is_reported_not_raised
+- label: an id listed twice is accepted
+  find: "            if lesson_id in entries:\n                problems.append"
+  replace: "            if False:\n                problems.append"
+  test: tests.test_sd101_check.SourceMapRuleTests.test_a_malformed_category_or_lesson_entry_is_reported_not_raised
+- label: the entries are not checked
+  find: problems.extend(Problem("source map", f"{lesson_id} {reason}") for reason in entry_problems(lesson))
+  replace: pass
+  test: tests.test_sd101_check.SourceMapPinTests.test_an_entry_field_of_the_wrong_kind_is_reported
+- label: an id out of its group's numbering is accepted
+  find: "            if pin_roster and lesson_id != f\"{category.get('id')}-{number:03d}\":"
+  replace: "            if False:"
+  test: tests.test_sd101_check.SourceMapPinTests.test_removing_an_unwritten_entry_is_reported
+- label: the numbering of ids is checked on every source map
+  find: 'if pin_roster and lesson_id != f"{category.get(''id'')}-{number:03d}":'
+  replace: 'if lesson_id != f"{category.get(''id'')}-{number:03d}":'
+  test: tests.test_sd101_check.SourceMapRuleTests.test_a_good_source_map_with_two_categories_is_fine
+- label: a source path that is not text is accepted by the snapshot rule
+  find: if pinned and (not isinstance(source_path, str) or not source_path
+  replace: if pinned and (not source_path
+  test: tests.test_sd101_check.SourceMapPinTests.test_every_other_wrong_snapshot_url_is_reported
+- label: an empty source path is accepted by the snapshot rule
+  find: "or not source_path\n"
+  replace: "\n"
+  test: tests.test_sd101_check.SourceMapPinTests.test_every_other_wrong_snapshot_url_is_reported
+- label: any snapshot URL is accepted
+  find: "\n                           or lesson.get(\"source_snapshot_url\") != f\"https://github.com/{repository}/blob/{commit}/{source_path}\"):"
+  replace: '):'
+  test: tests.test_sd101_check.SourceMapPinTests.test_every_other_wrong_snapshot_url_is_reported
+- label: a moving snapshot URL is accepted
+  find: lesson.get("source_snapshot_url") != f"https://github.com/{repository}/blob/{commit}/{source_path}"
+  replace: 'False'
+  test: tests.test_sd101_check.SourceMapPinTests.test_a_moving_snapshot_url_is_reported_even_if_the_lesson_links_it
+- label: shared sources are not compared
+  find: problems.extend(Problem("source map", reason) for reason in same_source_problems(entries))
+  replace: pass
+  test: tests.test_sd101_check.SourceMapPinTests.test_same_source_entries_must_name_each_other
+- label: the roster is never compared
+  find: "    if pin_roster and tuple(groups) != EXPECTED_GROUPS:"
+  replace: "    if False:"
+  test: tests.test_sd101_check.SourceMapPinTests.test_removing_an_unwritten_entry_is_reported
+- label: the roster is compared on every source map
+  find: "    if pin_roster and tuple(groups) != EXPECTED_GROUPS:"
+  replace: "    if tuple(groups) != EXPECTED_GROUPS:"
+  test: tests.test_sd101_check.SourceMapPinTests.test_the_roster_is_pinned_only_for_the_real_source_map
+- label: a shorter roster stops the comparison
+  find: itertools.zip_longest(groups, EXPECTED_GROUPS)
+  replace: zip(groups, EXPECTED_GROUPS)
+  test: tests.test_sd101_check.SourceMapPinTests.test_the_other_ways_to_change_the_roster_are_reported
+- label: the command line pins every source map
+  find: pin_roster = arguments.source_map.resolve() == DEFAULT_SOURCE_MAP.resolve()
+  replace: pin_roster = True
+  test: tests.test_sd101_check.SourceMapPinTests.test_the_command_line_pins_the_default_source_map_only
+- label: the command line pins no source map
+  find: pin_roster = arguments.source_map.resolve() == DEFAULT_SOURCE_MAP.resolve()
+  replace: pin_roster = False
+  test: tests.test_sd101_check.SourceMapPinTests.test_the_command_line_pins_the_default_source_map_only
+- label: srcset candidates may not be preceded by a comma or spaces
+  find: "re.compile(r\"[\\s,]*(\\S+)\")"
+  replace: "re.compile(r\"(\\S+)\")"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_srcset_urls_are_split_like_the_html_spec_splits_them
+- label: a trailing comma stays in the URL
+  find: "        if url.endswith(\",\"):"
+  replace: "        if False:"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_srcset_urls_are_split_like_the_html_spec_splits_them
+- label: a URL keeps the comma that ended it
+  find: url = url.rstrip(",")
+  replace: url = url
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_srcset_urls_are_split_like_the_html_spec_splits_them
+- label: descriptors are read as URLs
+  find: comma = value.find(",", position)
+  replace: comma = -1
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_srcset_urls_are_split_like_the_html_spec_splits_them
+- label: the rest of the srcset is skipped after a descriptor
+  find: position = len(value) if comma == -1 else comma + 1
+  replace: position = len(value)
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_srcset_urls_are_split_like_the_html_spec_splits_them
+- label: a merge key counts as a duplicate
+  find: 'if key_node.tag == "tag:yaml.org,2002:merge":'
+  replace: 'if False:'
+  test: tests.test_sd101_check.LessonFilesTests.test_a_yaml_merge_key_and_repeated_values_are_not_duplicate_keys
+- label: a key named twice in lesson.yaml is accepted
+  find: "                if duplicate:\n                    raise"
+  replace: "                if False:\n                    raise"
+  test: tests.test_sd101_check.LessonFilesTests.test_a_key_named_twice_in_lesson_yaml_is_reported
+- label: keys of a mapping are not remembered
+  find: "                seen.add(key)"
+  replace: "                pass"
+  test: tests.test_sd101_check.LessonFilesTests.test_a_key_named_twice_in_lesson_yaml_is_reported
+- label: an unhashable YAML key raises
+  find: "                except TypeError:  # an unhashable key; the base class reports it"
+  replace: "                except KeyError:"
+  test: tests.test_sd101_check.LessonFilesTests.test_an_unhashable_yaml_key_is_reported_not_raised
+- label: start tags are not recorded
+  find: "    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:\n        self.tags.add(tag)"
+  replace: "    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:\n        pass"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_raw_html_outside_the_allow_list_is_reported
+- label: end tags are not recorded
+  find: "    def handle_endtag(self, tag: str) -> None:\n        self.tags.add(tag)"
+  replace: "    def handle_endtag(self, tag: str) -> None:\n        pass"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_raw_html_outside_the_allow_list_is_reported
+- label: anchors are not read
+  find: "        if tag == \"a\":"
+  replace: "        if False:"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_a_snapshot_given_as_an_html_anchor_is_a_link
+- label: images are not read
+  find: "        elif tag == \"img\":"
+  replace: "        elif False:"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_an_html_image_without_a_source_is_reported
+- label: a srcset is not read
+  find: "                if name == \"srcset\" and value:"
+  replace: "                if False:"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_the_lessons_figure_is_accepted_in_every_form
+- label: an image without a source is not recorded
+  find: self.srcs.extend(sources or [""])
+  replace: self.srcs.extend(sources)
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_an_html_image_without_a_source_is_reported
+- label: an image without alt is accepted
+  find: "            if not any(name == \"alt\" and value and value.strip() for name, value in attrs):"
+  replace: "            if False:"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_an_image_without_alt_text_is_reported
+- label: an empty alt is accepted
+  find: name == "alt" and value and value.strip()
+  replace: name == "alt"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_an_image_without_alt_text_is_reported
+- label: a blank alt is accepted
+  find: name == "alt" and value and value.strip()
+  replace: name == "alt" and value
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_an_image_without_alt_text_is_reported
+- label: details blocks are not counted
+  find: "        elif tag == \"details\":\n            self.details_depth += 1"
+  replace: "        elif tag == \"details\":\n            pass"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_unbalanced_details_tags_are_reported
+- label: a self-closing details tag is not a start tag
+  find: "        self.handle_starttag(tag, attrs)\n\n    def handle_endtag"
+  replace: "        pass\n\n    def handle_endtag"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_a_self_closing_details_tag_opens_a_block_as_it_does_in_html
+- label: a closing details tag is ignored
+  find: "        if tag == \"details\":\n            if self.details_depth:"
+  replace: "        if False:\n            if self.details_depth:"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_a_stray_closing_details_tag_is_reported_even_when_a_later_block_balances_the_count
+- label: a closing details tag always closes one
+  find: "            if self.details_depth:\n                self.details_depth -= 1"
+  replace: "            if True:\n                self.details_depth -= 1"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_a_stray_closing_details_tag_is_reported_even_when_a_later_block_balances_the_count
+- label: a closing details tag does not close
+  find: "                self.details_depth -= 1"
+  replace: "                pass"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_nested_details_blocks_are_balanced
+- label: a stray closing details tag is not remembered
+  find: "                self.stray_details_close = True"
+  replace: "                pass"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_a_stray_closing_details_tag_is_reported_even_when_a_later_block_balances_the_count
+- label: tables are not parsed
+  find: .enable("table")
+  replace: ''
+  test: tests.test_sd101_check.ReadmeRuleTests.test_a_status_word_in_a_readme_row_is_reported
+- label: inline tokens are not visited
+  find: "        tokens.extend(token.children or [])"
+  replace: "        pass"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_a_snapshot_given_as_a_reference_style_link_is_a_link
+- label: inline HTML is not scanned
+  find: "        if token.type in (\"html_inline\", \"html_block\"):\n            scan.feed(token.content)\n    return scan"
+  replace: "        if token.type == \"html_block\":\n            scan.feed(token.content)\n    return scan"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_raw_html_outside_the_allow_list_is_reported
+- label: HTML blocks are not scanned
+  find: "        if token.type in (\"html_inline\", \"html_block\"):\n            scan.feed(token.content)\n    return scan"
+  replace: "        if token.type == \"html_inline\":\n            scan.feed(token.content)\n    return scan"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_raw_html_outside_the_allow_list_is_reported
+- label: an unclosed fence is not looked for
+  find: "        if token.type == \"fence\" and token.map:"
+  replace: "        if False:"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_a_lone_opening_fence_at_the_end_of_the_file_is_reported
+- label: a fence in a blockquote is read with its prefix
+  find: closing = BLOCKQUOTE_PREFIX.sub("", lines[last]).strip() if token.map[0] < last < len(lines) else ""
+  replace: closing = lines[last].strip() if token.map[0] < last < len(lines) else ""
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_a_closed_fence_inside_a_blockquote_or_a_list_is_closed
+- label: a lone opening fence closes itself
+  find: if token.map[0] < last < len(lines) else ""
+  replace: if last < len(lines) else ""
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_a_lone_opening_fence_at_the_end_of_the_file_is_reported
+- label: a fence of another marker closes a fence
+  find: set(closing) == {token.markup[0]}
+  replace: 'True'
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_a_lone_opening_fence_at_the_end_of_the_file_is_reported
+- label: a shorter fence closes a longer one
+  find: len(closing) >= len(token.markup)
+  replace: 'True'
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_a_closing_fence_shorter_than_the_opening_one_does_not_close_it
+- label: an empty closing line closes a fence
+  find: if not (closing and set(closing)
+  replace: if not (True and set(closing)
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_a_lone_opening_fence_at_the_end_of_the_file_is_reported
+- label: only one level of blockquote prefix is removed
+  find: "BLOCKQUOTE_PREFIX = re.compile(r\"^(?:\\s*>)+\")"
+  replace: "BLOCKQUOTE_PREFIX = re.compile(r\"^\\s*>\")"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_a_closed_fence_inside_a_blockquote_or_a_list_is_closed
+- label: Markdown links are not collected
+  find: "        if token.type == \"link_open\":"
+  replace: "        if False:"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_a_snapshot_given_as_a_reference_style_link_is_a_link
+- label: HTML anchors are not collected
+  find: "            found.extend(scan.hrefs)"
+  replace: "            pass"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_a_snapshot_given_as_an_html_anchor_is_a_link
+- label: HTML anchors are listed before Markdown links
+  find: "        elif token.type in (\"html_inline\", \"html_block\"):\n            scan = HtmlScan()"
+  replace: "        elif False:\n            scan = HtmlScan()"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_a_snapshot_given_as_an_html_anchor_is_a_link
+- label: Markdown images are not collected
+  find: "    found = {token.attrGet(\"src\") or \"\" for token in markdown_tokens(text) if token.type == \"image\"}"
+  replace: "    found = set()"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_a_missing_local_image_is_reported_in_every_form
+- label: HTML images are not collected
+  find: "    return found | set(html_scan(text).srcs)"
+  replace: "    return found"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_a_missing_local_image_is_reported_in_every_form
+- label: a Markdown image without alt is accepted
+  find: if token.type == "image" and not token.content.strip())
+  replace: if token.type == "image" and False)
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_an_image_without_alt_text_is_reported
+- label: an HTML image without alt is accepted
+  find: "    return markdown + html_scan(text).images_without_alt"
+  replace: "    return markdown"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_an_image_without_alt_text_is_reported
+- label: a Markdown image without alt is not counted with the HTML ones
+  find: "    return markdown + html_scan(text).images_without_alt"
+  replace: "    return html_scan(text).images_without_alt"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_an_image_without_alt_text_is_reported
+- label: table cells without code are read
+  find: if child.type in ("text", "text_special", "code_inline"))
+  replace: if child.type in ("text", "text_special"))
+  test: tests.test_sd101_check.ReadmeRuleTests.test_a_formatted_or_capitalised_status_in_a_readme_row_is_reported
+- label: table cells without escapes are read
+  find: if child.type in ("text", "text_special", "code_inline"))
+  replace: if child.type in ("text", "code_inline"))
+  test: tests.test_sd101_check.ReadmeRuleTests.test_a_formatted_or_capitalised_status_in_a_readme_row_is_reported
+- label: header cells are not read
+  find: if token.type in ("th_open", "td_open")
+  replace: if token.type in ("td_open",)
+  test: tests.test_sd101_check.ReadmeRuleTests.test_a_status_word_in_the_header_row_is_reported
+- label: body cells are not read
+  find: if token.type in ("th_open", "td_open")
+  replace: if token.type in ("th_open",)
+  test: tests.test_sd101_check.ReadmeRuleTests.test_a_status_word_in_a_readme_row_is_reported
+- label: a protocol-relative link is looked up
+  find: destination.startswith(("#", "//"))
+  replace: destination.startswith(("#",))
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_anchors_urls_and_mail_links_are_not_relative_links
+- label: an anchor is looked up
+  find: destination.startswith(("#", "//"))
+  replace: destination.startswith(("//",))
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_anchors_urls_and_mail_links_are_not_relative_links
+- label: a URL is looked up
+  find: " or SCHEME.match(destination):"
+  replace: ':'
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_anchors_urls_and_mail_links_are_not_relative_links
+- label: a query string is part of the path
+  find: .split("#")[0].split("?")[0]
+  replace: .split("#")[0]
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_a_relative_link_with_a_fragment_or_query_is_checked_by_its_path
+- label: a fragment is part of the path
+  find: destination.split("#")[0].split("?")[0]
+  replace: destination.split("?")[0]
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_a_relative_link_with_a_fragment_or_query_is_checked_by_its_path
+- label: a percent-encoded link is not decoded
+  find: return unquote(destination.split
+  replace: return (destination.split
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_a_percent_encoded_relative_link_resolves
+- label: a store outside the checkout may reach everywhere
+  find: return ROOT if resolved == ROOT or ROOT in resolved.parents else resolved
+  replace: return ROOT
+  test: tests.test_sd101_check.ReadmeRuleTests.test_a_link_that_climbs_out_of_the_store_is_reported
+- label: a root-relative link is read as a path on this machine
+  find: "    if target.startswith(\"/\"):\n        return None"
+  replace: "    if False:\n        return None"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_a_root_relative_link_is_not_looked_up_on_the_machine_running_the_check
+- label: a link may climb out of the repository
+  find: (resolved == boundary or boundary in resolved.parents)
+  replace: 'True'
+  test: tests.test_sd101_check.ReadmeRuleTests.test_a_link_that_climbs_out_of_the_store_is_reported
+- label: a link may name a file that does not exist
+  find: " and resolved.exists() else None"
+  replace: " else None"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_a_relative_link_that_does_not_resolve_is_reported
+- label: a link that the filesystem rejects raises
+  find: "    except (OSError, ValueError, RuntimeError):\n        return None"
+  replace: "    except OSError:\n        return None"
+  test: tests.test_sd101_check.RobustnessTests.test_odd_links_and_paths_in_lesson_md_and_the_pages_are_reported_not_raised
+- label: an empty host is accepted
+  find: "    if not host:\n        return False"
+  replace: "    if False:\n        return False"
+  test: tests.test_sd101_check.MetadataRuleTests.test_an_evidence_url_needs_a_real_host_and_a_readable_port
+- label: a host name is not checked
+  find: "        return HOSTNAME.fullmatch(host) is not None"
+  replace: "        return True"
+  test: tests.test_sd101_check.MetadataRuleTests.test_an_evidence_url_needs_a_real_host_and_a_readable_port
+- label: an IP address is not recognised
+  find: "        ipaddress.ip_address(host)"
+  replace: "        raise ValueError"
+  test: tests.test_sd101_check.MetadataRuleTests.test_ordinary_evidence_urls_are_accepted
+- label: white space in a URL is accepted
+  find: any(char.isspace() or not char.isprintable() for char in url)
+  replace: any(not char.isprintable() for char in url)
+  test: tests.test_sd101_check.MetadataRuleTests.test_an_evidence_url_needs_a_real_host_and_a_readable_port
+- label: a control character in a URL is accepted
+  find: any(char.isspace() or not char.isprintable() for char in url)
+  replace: any(char.isspace() for char in url)
+  test: tests.test_sd101_check.MetadataRuleTests.test_an_evidence_url_needs_a_real_host_and_a_readable_port
+- label: a URL that is not text raises
+  find: if not isinstance(url, str) or any(
+  replace: if any(
+  test: tests.test_sd101_check.MetadataRuleTests.test_image_evidence_values_must_be_real
+- label: a port is not read
+  find: "        parsed.port\n"
+  replace: "        pass\n"
+  test: tests.test_sd101_check.MetadataRuleTests.test_an_evidence_url_needs_a_real_host_and_a_readable_port
+- label: a URL that is not http or https is accepted
+  find: return parsed.scheme in ("http", "https") and valid_host(parsed.hostname)
+  replace: return valid_host(parsed.hostname)
+  test: tests.test_sd101_check.MetadataRuleTests.test_an_evidence_url_needs_a_real_host_and_a_readable_port
+- label: a URL without a host is accepted
+  find: return parsed.scheme in ("http", "https") and valid_host(parsed.hostname)
+  replace: return parsed.scheme in ("http", "https")
+  test: tests.test_sd101_check.MetadataRuleTests.test_an_evidence_url_needs_a_real_host_and_a_readable_port
+- label: a vocabulary check accepts a value that is not text
+  find: return isinstance(value, str) and value in vocabulary
+  replace: return value in vocabulary
+  test: tests.test_sd101_check.MetadataRuleTests.test_a_status_outside_the_vocabulary_is_reported
+- label: a date that is not text raises
+  find: 'if not isinstance(when, str) or ISO_DATE.fullmatch(when) is None:'
+  replace: 'if ISO_DATE.fullmatch(when) is None:'
+  test: tests.test_sd101_check.MetadataRuleTests.test_image_evidence_values_must_be_real
+- label: a date is any string Python reads
+  find: 'if not isinstance(when, str) or ISO_DATE.fullmatch(when) is None:'
+  replace: 'if not isinstance(when, str):'
+  test: tests.test_sd101_check.MetadataRuleTests.test_a_timestamp_is_not_a_retrieval_date
+- label: an impossible date is accepted
+  find: "        datetime.date.fromisoformat(when)"
+  replace: "        pass"
+  test: tests.test_sd101_check.MetadataRuleTests.test_image_evidence_values_must_be_real
+- label: an evidence entry may have any keys
+  find: 'if not isinstance(item, dict) or set(item) != IMAGE_EVIDENCE_KEYS:'
+  replace: 'if not isinstance(item, dict):'
+  test: tests.test_sd101_check.MetadataRuleTests.test_image_evidence_values_must_be_real
+- label: an evidence entry may be anything
+  find: 'if not isinstance(item, dict) or set(item) != IMAGE_EVIDENCE_KEYS:'
+  replace: 'if set(item) != IMAGE_EVIDENCE_KEYS:'
+  test: tests.test_sd101_check.RobustnessTests.test_an_odd_value_inside_a_nested_record_is_reported_not_raised
+- label: an evidence URL is not checked
+  find: return (valid_url(item["url"]) and isinstance(digest, str)
+  replace: return (isinstance(digest, str)
+  test: tests.test_sd101_check.MetadataRuleTests.test_image_evidence_values_must_be_real
+- label: an evidence digest may be anything
+  find: isinstance(digest, str) and SHA256.fullmatch(digest) is not None
+  replace: 'True'
+  test: tests.test_sd101_check.MetadataRuleTests.test_image_evidence_values_must_be_real
+- label: an evidence digest that is not text raises
+  find: isinstance(digest, str) and SHA256.fullmatch(digest) is not None
+  replace: SHA256.fullmatch(digest) is not None
+  test: tests.test_sd101_check.MetadataRuleTests.test_image_evidence_values_must_be_real
+- label: an evidence date is not checked
+  find: "\n            and valid_date(item[\"retrieved_on\"]))"
+  replace: )
+  test: tests.test_sd101_check.MetadataRuleTests.test_image_evidence_values_must_be_real
+- label: a file that is not XML raises
+  find: 'except (ElementTree.ParseError, OSError, LookupError):'
+  replace: 'except (OSError, LookupError):'
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_an_svg_file_must_be_a_drawing_not_a_renamed_picture
+- label: a file with an unknown encoding raises
+  find: 'except (ElementTree.ParseError, OSError, LookupError):'
+  replace: 'except (ElementTree.ParseError, OSError):'
+  test: tests.test_sd101_check.RobustnessTests.test_odd_svg_files_are_reported_not_raised
+- label: an XML file with another root is a drawing
+  find: 'if root.tag.rsplit("}", 1)[-1] != "svg":'
+  replace: 'if False:'
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_an_svg_file_must_be_a_drawing_not_a_renamed_picture
+- label: a namespaced root is not an svg
+  find: root.tag.rsplit("}", 1)[-1] != "svg"
+  replace: root.tag != "svg"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_the_elements_of_an_ordinary_drawing_are_accepted
+- label: the source image host is allowed in a drawing
+  find: 'if SOURCE_IMAGE_HOST in path.read_text(encoding="utf-8", errors="replace").lower():'
+  replace: 'if False:'
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_an_svg_file_must_be_a_drawing_not_a_renamed_picture
+- label: the source image host is looked for in lower case only
+  find: path.read_text(encoding="utf-8", errors="replace").lower()
+  replace: path.read_text(encoding="utf-8", errors="replace")
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_an_svg_file_must_be_a_drawing_not_a_renamed_picture
+- label: a drawing in another encoding raises
+  find: 'if SOURCE_IMAGE_HOST in path.read_text(encoding="utf-8", errors="replace").lower():'
+  replace: 'if SOURCE_IMAGE_HOST in path.read_text(encoding="utf-8").lower():'
+  test: tests.test_sd101_check.RobustnessTests.test_odd_svg_files_are_reported_not_raised
+- label: a processing instruction or DOCTYPE is allowed
+  find: "    if found := prolog_features(path.read_bytes()):"
+  replace: "    if False:"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_an_svg_with_a_processing_instruction_is_reported
+- label: only the first prolog feature is reported as a processing instruction
+  find: return f"has {found[0]}, which can load a stylesheet, a DTD or another file; remove it"
+  replace: return "has a processing instruction, which can load a stylesheet, a DTD or another file; remove it"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_an_svg_with_a_doctype_is_reported
+- label: processing instructions are not noticed
+  find: "    parser.ProcessingInstructionHandler = lambda"
+  replace: "    parser.XmlDeclHandler = lambda"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_an_svg_with_a_processing_instruction_is_reported
+- label: a DOCTYPE is not noticed
+  find: "    parser.StartDoctypeDeclHandler = lambda"
+  replace: "    parser.EndDoctypeDeclHandler = lambda"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_an_svg_with_a_doctype_is_reported
+- label: the XML declaration is taken for a processing instruction
+  find: "    parser = expat.ParserCreate()\n"
+  replace: "    parser = expat.ParserCreate()\n    parser.XmlDeclHandler = lambda version, encoding, standalone: found.append(\"the XML declaration\")\n"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_the_xml_declaration_is_not_a_processing_instruction
+- label: a picture element is told apart from other elements
+  find: "        if name in RASTER_ELEMENTS:"
+  replace: "        if False:"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_an_svg_file_must_be_a_drawing_not_a_renamed_picture
+- label: any element is a drawing element
+  find: "        if name not in SVG_ELEMENTS or namespace_of(element.tag) not in (\"\", SVG_NAMESPACE):"
+  replace: "        if False:"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_an_svg_file_must_be_a_drawing_not_a_renamed_picture
+- label: an element of another namespace is a drawing element
+  find: " or namespace_of(element.tag) not in (\"\", SVG_NAMESPACE):"
+  replace: ':'
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_an_svg_file_must_be_a_drawing_not_a_renamed_picture
+- label: an element name that is not in the list is a drawing element
+  find: if name not in SVG_ELEMENTS or namespace_of
+  replace: if namespace_of
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_an_svg_file_must_be_a_drawing_not_a_renamed_picture
+- label: a namespaced name is compared with its namespace
+  find: return name.rsplit("}", 1)[-1].lower()
+  replace: return name.lower()
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_an_svg_file_must_be_a_drawing_not_a_renamed_picture
+- label: element names are compared in their own case
+  find: return name.rsplit("}", 1)[-1].lower()
+  replace: return name.rsplit("}", 1)[-1]
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_an_svg_file_must_be_a_drawing_not_a_renamed_picture
+- label: an element without a namespace is in another namespace
+  find: if tag.startswith("{") else ""
+  replace: if True else ""
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_the_elements_of_an_ordinary_drawing_are_accepted
+- label: a description is any text in the drawing
+  find: described = described or (name in ("title", "desc") and bool((element.text or "").strip()))
+  replace: described = described or bool((element.text or "").strip())
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_an_svg_needs_a_text_description
+- label: a description may be empty
+  find: described = described or (name in ("title", "desc") and bool((element.text or "").strip()))
+  replace: described = described or name in ("title", "desc")
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_an_svg_needs_a_text_description
+- label: every drawing is described
+  find: described = described or (name in ("title", "desc") and bool((element.text or "").strip()))
+  replace: described = True
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_an_svg_needs_a_text_description
+- label: a drawing needs no description
+  find: "    if not described:\n        return"
+  replace: "    if False:\n        return"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_an_svg_needs_a_text_description
+- label: the text of a style element is not read for urls
+  find: "        if name == \"style\":\n            values.append((\"style\", element.text or \"\"))"
+  replace: "        if False:\n            values.append((\"style\", element.text or \"\"))"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_an_svg_file_must_be_a_drawing_not_a_renamed_picture
+- label: an href to another file is allowed
+  find: 'if local_name(attribute) == "href" and not value.strip().startswith("#"):'
+  replace: 'if False:'
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_an_svg_file_must_be_a_drawing_not_a_renamed_picture
+- label: every attribute is an href
+  find: 'if local_name(attribute) == "href" and not value.strip().startswith("#"):'
+  replace: 'if not value.strip().startswith("#"):'
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_a_real_looking_svg_drawing_is_accepted
+- label: every href is outside the drawing
+  find: local_name(attribute) == "href" and not value.strip().startswith("#")
+  replace: local_name(attribute) == "href"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_a_real_looking_svg_drawing_is_accepted
+- label: a url() or @import is allowed
+  find: "            if reaches_outside(value):"
+  replace: "            if False:"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_an_svg_file_must_be_a_drawing_not_a_renamed_picture
+- label: a CSS animation is allowed
+  find: "            if ANIMATION.search(value):"
+  replace: "            if False:"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_css_animation_and_transition_in_an_svg_are_reported
+- label: an @import is allowed
+  find: "\"@import\" in value.lower() or"
+  replace: False or
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_an_svg_file_must_be_a_drawing_not_a_renamed_picture
+- label: an upper-case @import is allowed
+  find: "\"@import\" in value.lower()"
+  replace: "\"@import\" in value"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_an_svg_file_must_be_a_drawing_not_a_renamed_picture
+- label: a url() to a file is allowed
+  find: any(not target.startswith("#") for target in URL_CALL.findall(value))
+  replace: 'False'
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_an_svg_file_must_be_a_drawing_not_a_renamed_picture
+- label: a url() to a fragment is outside the drawing
+  find: any(not target.startswith("#") for target in URL_CALL.findall(value))
+  replace: any(True for target in URL_CALL.findall(value))
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_a_real_looking_svg_drawing_is_accepted
+- label: a quoted url() target is read with its quote
+  find: "URL_CALL = re.compile(r\"url\\(\\s*['\\\"]?\\s*([^)'\\\"\\s]*)\", re.IGNORECASE)"
+  replace: "URL_CALL = re.compile(r\"url\\(([^)]*)\", re.IGNORECASE)"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_a_real_looking_svg_drawing_is_accepted
+- label: '@keyframes is not recognised as an animation'
+  find: "ANIMATION = re.compile(r\"@keyframes|\\banimation(?:-[a-z-]+)?\\s*:|\\btransition(?:-[a-z-]+)?\\s*:\", re.IGNORECASE)"
+  replace: "ANIMATION = re.compile(r\"\\banimation(?:-[a-z-]+)?\\s*:|\\btransition(?:-[a-z-]+)?\\s*:\", re.IGNORECASE)"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_css_animation_and_transition_in_an_svg_are_reported
+- label: an animation declaration is not recognised as an animation
+  find: "ANIMATION = re.compile(r\"@keyframes|\\banimation(?:-[a-z-]+)?\\s*:|\\btransition(?:-[a-z-]+)?\\s*:\", re.IGNORECASE)"
+  replace: "ANIMATION = re.compile(r\"@keyframes|\\btransition(?:-[a-z-]+)?\\s*:\", re.IGNORECASE)"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_css_animation_and_transition_in_an_svg_are_reported
+- label: a transition declaration is not recognised
+  find: "ANIMATION = re.compile(r\"@keyframes|\\banimation(?:-[a-z-]+)?\\s*:|\\btransition(?:-[a-z-]+)?\\s*:\", re.IGNORECASE)"
+  replace: "ANIMATION = re.compile(r\"@keyframes|\\banimation(?:-[a-z-]+)?\\s*:\", re.IGNORECASE)"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_css_animation_and_transition_in_an_svg_are_reported
+- label: a vendor-prefixed animation is not recognised
+  find: "ANIMATION = re.compile(r\"@keyframes|\\banimation(?:-[a-z-]+)?\\s*:|\\btransition(?:-[a-z-]+)?\\s*:\", re.IGNORECASE)"
+  replace: "ANIMATION = re.compile(r\"@keyframes|^animation(?:-[a-z-]+)?\\s*:|\\btransition(?:-[a-z-]+)?\\s*:\", re.IGNORECASE)"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_css_animation_and_transition_in_an_svg_are_reported
+- label: an upper-case animation is not recognised
+  find: "ANIMATION = re.compile(r\"@keyframes|\\banimation(?:-[a-z-]+)?\\s*:|\\btransition(?:-[a-z-]+)?\\s*:\", re.IGNORECASE)"
+  replace: "ANIMATION = re.compile(r\"@keyframes|\\banimation(?:-[a-z-]+)?\\s*:|\\btransition(?:-[a-z-]+)?\\s*:\")"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_css_animation_and_transition_in_an_svg_are_reported
+- label: any text containing the word animation is taken for an animation
+  find: "ANIMATION = re.compile(r\"@keyframes|\\banimation(?:-[a-z-]+)?\\s*:|\\btransition(?:-[a-z-]+)?\\s*:\", re.IGNORECASE)"
+  replace: ANIMATION = re.compile(r"animation|transition|@keyframes", re.IGNORECASE)
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_words_that_only_look_like_animation_are_fine
+- label: a lesson.yaml that is not a mapping raises
+  find: "    if not isinstance(meta, dict):\n        return [Problem(lesson_id, \"lesson.yaml is not a mapping\")]"
+  replace: "    if False:\n        return [Problem(lesson_id, \"lesson.yaml is not a mapping\")]"
+  test: tests.test_sd101_check.LessonFilesTests.test_lesson_yaml_only_points_at_the_metadata
+- label: a lesson.yaml may hold other keys
+  find: "    if set(meta) != LESSON_YAML_KEYS:"
+  replace: "    if False:"
+  test: tests.test_sd101_check.LessonFilesTests.test_lesson_yaml_only_points_at_the_metadata
+- label: a lesson.yaml may name another id
+  find: "    if meta.get(\"id\") != lesson_id:\n        problems.append(Problem(lesson_id, f\"lesson.yaml id"
+  replace: "    if False:\n        problems.append(Problem(lesson_id, f\"lesson.yaml id"
+  test: tests.test_sd101_check.LessonFilesTests.test_lesson_yaml_only_points_at_the_metadata
+- label: a lesson.yaml may point at another file
+  find: "    if meta.get(\"metadata_ref\") != f\"../../metadata/{lesson_id}.json\":"
+  replace: "    if False:"
+  test: tests.test_sd101_check.LessonFilesTests.test_lesson_yaml_only_points_at_the_metadata
+- label: a lesson.yaml that does not parse raises
+  find: "            except (yaml.YAMLError, ValueError) as error:"
+  replace: "            except yaml.YAMLError as error:"
+  test: tests.test_sd101_check.LessonFilesTests.test_a_lesson_yaml_that_does_not_parse_is_reported_not_raised
+- label: a metadata file that is not an object is accepted
+  find: "    if not isinstance(meta, dict):\n        return [Problem(where, \"is not a JSON object\")]"
+  replace: "    if False:\n        return [Problem(where, \"is not a JSON object\")]"
+  test: tests.test_sd101_check.MetadataRuleTests.test_a_metadata_file_that_cannot_be_read_is_reported_not_raised
+- label: a missing metadata key is accepted
+  find: "    if missing:\n        reasons.append(f\"is missing"
+  replace: "    if False:\n        reasons.append(f\"is missing"
+  test: tests.test_sd101_check.MetadataRuleTests.test_unknown_or_missing_keys_are_reported
+- label: an unknown metadata key is accepted
+  find: "    if unknown:\n        reasons.append(f\"has unknown keys"
+  replace: "    if False:\n        reasons.append(f\"has unknown keys"
+  test: tests.test_sd101_check.MetadataRuleTests.test_unknown_or_missing_keys_are_reported
+- label: an optional metadata key is unknown
+  find: set(meta) - METADATA_REQUIRED - METADATA_OPTIONAL
+  replace: set(meta) - METADATA_REQUIRED
+  test: tests.test_sd101_check.MetadataRuleTests.test_the_optional_notes_and_records_are_checked_when_present
+- label: metadata may name another id
+  find: "    if meta.get(\"id\") != lesson_id:\n        reasons.append"
+  replace: "    if False:\n        reasons.append"
+  test: tests.test_sd101_check.MetadataRuleTests.test_an_id_that_is_not_the_file_name_is_reported
+- label: a lesson that is not in the source map is accepted
+  find: "    if entry is None:\n        reasons.append(\"id is not in the source map\")"
+  replace: "    if False:\n        reasons.append(\"id is not in the source map\")"
+  test: tests.test_sd101_check.MetadataRuleTests.test_an_id_missing_from_the_source_map_is_reported
+- label: a title that is not text is accepted
+  find: "    if not text_value(title):\n        reasons.append"
+  replace: "    if False:\n        reasons.append"
+  test: tests.test_sd101_check.MetadataRuleTests.test_a_null_or_empty_title_is_reported
+- label: a title that differs from the source map is accepted
+  find: "    elif entry is not None and title != entry.get(\"title_vi\"):"
+  replace: "    elif False:"
+  test: tests.test_sd101_check.MetadataRuleTests.test_a_title_that_differs_from_the_source_map_is_reported
+- label: a title is compared with a lesson that is not in the map
+  find: "    elif entry is not None and title != entry.get(\"title_vi\"):"
+  replace: "    elif title != entry.get(\"title_vi\"):"
+  test: tests.test_sd101_check.MetadataRuleTests.test_an_id_missing_from_the_source_map_is_reported
+- label: another language is accepted in metadata
+  find: "    if meta.get(\"language\") != \"vi\":\n        reasons.append"
+  replace: "    if False:\n        reasons.append"
+  test: tests.test_sd101_check.MetadataRuleTests.test_the_language_kind_and_diagram_are_checked
+- label: a kind that is not text is accepted
+  find: "    if not text_value(meta.get(\"kind\")):"
+  replace: "    if False:"
+  test: tests.test_sd101_check.MetadataRuleTests.test_the_language_kind_and_diagram_are_checked
+- label: another diagram path is accepted
+  find: "    if meta.get(\"diagram\") != f\"../diagrams/{lesson_id}-main.svg\":"
+  replace: "    if False:"
+  test: tests.test_sd101_check.MetadataRuleTests.test_the_language_kind_and_diagram_are_checked
+- label: the source snapshot is not checked
+  find: "    reasons.extend(snapshot_problems(lesson_id, meta.get(\"source_snapshot\"), meta.get(\"source_ref\"), entries, pin))"
+  replace: "    pass"
+  test: tests.test_sd101_check.MetadataRuleTests.test_the_snapshot_says_what_the_source_map_says
+- label: prerequisites and related are not checked
+  find: "    reasons.extend(lesson_reference_problems(meta, lesson_id, entries))"
+  replace: "    pass"
+  test: tests.test_sd101_check.MetadataRuleTests.test_prerequisites_and_related_name_other_source_map_ids
+- label: the verification record is not checked
+  find: "    reasons.extend(steps)"
+  replace: "    pass"
+  test: tests.test_sd101_check.MetadataRuleTests.test_the_verification_record_has_exactly_the_five_steps
+- label: a status outside the vocabulary is accepted
+  find: "    if not one_of(status, CONTENT_STATUS):\n        reasons.append"
+  replace: "    if False:\n        reasons.append"
+  test: tests.test_sd101_check.MetadataRuleTests.test_a_status_outside_the_vocabulary_is_reported
+- label: done needs nothing
+  find: "    elif status == \"done\" and not all(happened[name] for name in DONE_NEEDS):"
+  replace: "    elif False:"
+  test: tests.test_sd101_check.MetadataRuleTests.test_done_needs_the_technical_review_and_the_mobile_check
+- label: every status needs the review and the mobile check
+  find: elif status == "done" and not all(
+  replace: elif not all(
+  test: tests.test_sd101_check.MetadataRuleTests.test_done_does_not_wait_for_the_learner_test_and_review_does_not_need_either_step
+- label: done needs only one of the two checks
+  find: not all(happened[name] for name in DONE_NEEDS)
+  replace: not any(happened[name] for name in DONE_NEEDS)
+  test: tests.test_sd101_check.MetadataRuleTests.test_done_needs_the_technical_review_and_the_mobile_check
+- label: done needs the learner test too
+  find: DONE_NEEDS = ("technical_review", "mobile")
+  replace: DONE_NEEDS = ("technical_review", "mobile", "user_testing")
+  test: tests.test_sd101_check.MetadataRuleTests.test_done_does_not_wait_for_the_learner_test_and_review_does_not_need_either_step
+- label: the claims step is never taken as having happened
+  find: claim_problems(meta.get("claims"), happened["claims"])
+  replace: claim_problems(meta.get("claims"), False)
+  test: tests.test_sd101_check.MetadataRuleTests.test_a_checked_claims_step_needs_a_claim
+- label: a blank note is accepted
+  find: "        if key in meta and not text_value(meta[key]):"
+  replace: "        if False:"
+  test: tests.test_sd101_check.MetadataRuleTests.test_the_optional_notes_and_records_are_checked_when_present
+- label: trivia and prior reviews may be anything
+  find: "        if key in meta and not (isinstance(meta[key], list) and all(isinstance(item, dict) for item in meta[key])):"
+  replace: "        if False:"
+  test: tests.test_sd101_check.MetadataRuleTests.test_the_optional_notes_and_records_are_checked_when_present
+- label: trivia and prior reviews may be a mapping
+  find: not (isinstance(meta[key], list) and all(isinstance(item, dict) for item in meta[key]))
+  replace: not all(isinstance(item, dict) for item in meta[key])
+  test: tests.test_sd101_check.MetadataRuleTests.test_the_optional_notes_and_records_are_checked_when_present
+- label: trivia and prior reviews may hold anything
+  find: all(isinstance(item, dict) for item in meta[key])
+  replace: 'True'
+  test: tests.test_sd101_check.MetadataRuleTests.test_the_optional_notes_and_records_are_checked_when_present
+- label: deviations may be anything
+  find: if "source_deviations" in meta and not (isinstance(meta["source_deviations"], list)
+  replace: if False and (isinstance(meta["source_deviations"], list)
+  test: tests.test_sd101_check.MetadataRuleTests.test_the_optional_notes_and_records_are_checked_when_present
+- label: a blank deviation is accepted
+  find: all(text_value(item) for item in meta["source_deviations"])
+  replace: 'True'
+  test: tests.test_sd101_check.MetadataRuleTests.test_the_optional_notes_and_records_are_checked_when_present
+- label: a migration record is not checked
+  find: "    if \"migration\" in meta:\n        reasons.extend"
+  replace: "    if False:\n        reasons.extend"
+  test: tests.test_sd101_check.MetadataRuleTests.test_the_optional_notes_and_records_are_checked_when_present
+- label: image evidence is not checked
+  find: "    if \"image_evidence\" in meta and not (isinstance(meta[\"image_evidence\"], list)"
+  replace: "    if False and (isinstance(meta[\"image_evidence\"], list)"
+  test: tests.test_sd101_check.MetadataRuleTests.test_image_evidence_values_must_be_real
+- label: image evidence may be a mapping
+  find: "not (isinstance(meta[\"image_evidence\"], list)\n                                         and all(valid_image_evidence(item) for item in meta[\"image_evidence\"]))"
+  replace: not all(valid_image_evidence(item) for item in meta["image_evidence"])
+  test: tests.test_sd101_check.MetadataRuleTests.test_image_evidence_values_must_be_real
+- label: a source_ref outside the source map is accepted
+  find: "    if entry is None:\n        found.append(f\"source_ref"
+  replace: "    if False:\n        found.append(f\"source_ref"
+  test: tests.test_sd101_check.MetadataRuleTests.test_source_ref_names_the_lessons_own_source_entry
+- label: a source_ref of another lesson is accepted
+  find: "    elif source_ref != lesson_id and source_ref not in partners_of(entries.get(lesson_id)):"
+  replace: "    elif False:"
+  test: tests.test_sd101_check.MetadataRuleTests.test_source_ref_may_name_an_entry_that_shares_the_source_file
+- label: a lesson's own source_ref is refused
+  find: elif source_ref != lesson_id and source_ref not in
+  replace: elif source_ref not in
+  test: tests.test_sd101_check.LessonFilesTests.test_a_valid_store_has_no_problems
+- label: a source_ref may name any shared partner or anything
+  find: 'elif source_ref != lesson_id and source_ref not in partners_of(entries.get(lesson_id)):'
+  replace: 'elif source_ref != lesson_id and False:'
+  test: tests.test_sd101_check.MetadataRuleTests.test_source_ref_may_name_an_entry_that_shares_the_source_file
+- label: an entry without partners raises
+  find: "    return partners if isinstance(partners, list) else []"
+  replace: "    return partners"
+  test: tests.test_sd101_check.MetadataRuleTests.test_source_ref_may_name_an_entry_that_shares_the_source_file
+- label: a snapshot that is not an object is accepted
+  find: "    if not isinstance(snapshot, dict):\n        return found +"
+  replace: "    if False:\n        return found +"
+  test: tests.test_sd101_check.MetadataRuleTests.test_the_snapshot_has_its_keys_and_well_formed_extras
+- label: a missing snapshot key is accepted
+  find: "    if missing:\n        found.append(f\"source_snapshot is missing"
+  replace: "    if False:\n        found.append(f\"source_snapshot is missing"
+  test: tests.test_sd101_check.MetadataRuleTests.test_the_snapshot_has_its_keys_and_well_formed_extras
+- label: an unknown snapshot key is accepted
+  find: "    if unknown:\n        found.append(f\"source_snapshot has unknown keys"
+  replace: "    if False:\n        found.append(f\"source_snapshot has unknown keys"
+  test: tests.test_sd101_check.MetadataRuleTests.test_the_snapshot_has_its_keys_and_well_formed_extras
+- label: a snapshot's extra keys are unknown
+  find: set(snapshot) - SNAPSHOT_REQUIRED - SNAPSHOT_OPTIONAL
+  replace: set(snapshot) - SNAPSHOT_REQUIRED
+  test: tests.test_sd101_check.MetadataRuleTests.test_the_snapshot_has_its_keys_and_well_formed_extras
+- label: the snapshot is not compared with the source map
+  find: "    if entry is not None:\n        expected = {"
+  replace: "    if False:\n        expected = {"
+  test: tests.test_sd101_check.MetadataRuleTests.test_the_snapshot_says_what_the_source_map_says
+- label: the snapshot path is not compared
+  find: "    expected = {\"path\": entry.get(\"source_path\"), \"blob_sha\": entry.get(\"source_blob_sha\"),\n                    \"snapshot_url\": entry.get(\"source_snapshot_url\")}"
+  replace: "    expected = {\"blob_sha\": entry.get(\"source_blob_sha\"),\n                    \"snapshot_url\": entry.get(\"source_snapshot_url\")}"
+  test: tests.test_sd101_check.MetadataRuleTests.test_the_snapshot_says_what_the_source_map_says
+- label: the snapshot blob is not compared
+  find: "\"blob_sha\": entry.get(\"source_blob_sha\"),\n"
+  replace: "\n"
+  test: tests.test_sd101_check.MetadataRuleTests.test_the_snapshot_says_what_the_source_map_says
+- label: the snapshot URL is not compared
+  find: ",\n                    \"snapshot_url\": entry.get(\"source_snapshot_url\")}"
+  replace: '}'
+  test: tests.test_sd101_check.MetadataRuleTests.test_the_snapshot_says_what_the_source_map_says
+- label: the pinned repository and commit are not compared
+  find: "        if pin is not None:\n            expected.update"
+  replace: "        if False:\n            expected.update"
+  test: tests.test_sd101_check.MetadataRuleTests.test_the_snapshot_says_what_the_source_map_says
+- label: the pinned commit is not compared
+  find: '{"repository": pin[0], "commit_sha": pin[1]}'
+  replace: '{"repository": pin[0]}'
+  test: tests.test_sd101_check.MetadataRuleTests.test_the_snapshot_says_what_the_source_map_says
+- label: the pinned repository is not compared
+  find: '{"repository": pin[0], "commit_sha": pin[1]}'
+  replace: '{"commit_sha": pin[1]}'
+  test: tests.test_sd101_check.MetadataRuleTests.test_the_snapshot_says_what_the_source_map_says
+- label: an optional snapshot key is compared even when absent
+  find: for key, value in expected.items() if key in snapshot and snapshot[key] != value)
+  replace: for key, value in expected.items() if snapshot[key] != value)
+  test: tests.test_sd101_check.MetadataRuleTests.test_the_snapshot_says_what_the_source_map_says
+- label: every present snapshot key is reported
+  find: for key, value in expected.items() if key in snapshot and snapshot[key] != value)
+  replace: for key, value in expected.items() if key in snapshot)
+  test: tests.test_sd101_check.MetadataRuleTests.test_the_snapshot_says_what_the_source_map_says
+- label: a bad body digest is accepted
+  find: "    if digest is not None and not (isinstance(digest, str) and SHA256.fullmatch(digest)):"
+  replace: "    if False:"
+  test: tests.test_sd101_check.MetadataRuleTests.test_the_snapshot_has_its_keys_and_well_formed_extras
+- label: a body digest that is not text raises
+  find: not (isinstance(digest, str) and SHA256.fullmatch(digest))
+  replace: not SHA256.fullmatch(digest)
+  test: tests.test_sd101_check.MetadataRuleTests.test_the_snapshot_has_its_keys_and_well_formed_extras
+- label: a bad body size is accepted
+  find: "    if size is not None and (not isinstance(size, int) or isinstance(size, bool) or size <= 0):"
+  replace: "    if False:"
+  test: tests.test_sd101_check.MetadataRuleTests.test_the_snapshot_has_its_keys_and_well_formed_extras
+- label: a body size that is not a number raises
+  find: (not isinstance(size, int) or isinstance(size, bool) or size <= 0)
+  replace: (isinstance(size, bool) or size <= 0)
+  test: tests.test_sd101_check.MetadataRuleTests.test_the_snapshot_has_its_keys_and_well_formed_extras
+- label: a body size of true is accepted
+  find: (not isinstance(size, int) or isinstance(size, bool) or size <= 0)
+  replace: (not isinstance(size, int) or size <= 0)
+  test: tests.test_sd101_check.MetadataRuleTests.test_the_snapshot_has_its_keys_and_well_formed_extras
+- label: a body size of zero is accepted
+  find: (not isinstance(size, int) or isinstance(size, bool) or size <= 0)
+  replace: (not isinstance(size, int) or isinstance(size, bool))
+  test: tests.test_sd101_check.MetadataRuleTests.test_the_snapshot_has_its_keys_and_well_formed_extras
+- label: a blank snapshot note is accepted
+  find: if key in snapshot and not text_value(snapshot[key]))
+  replace: if False)
+  test: tests.test_sd101_check.MetadataRuleTests.test_the_snapshot_has_its_keys_and_well_formed_extras
+- label: a note is read even when absent
+  find: if key in snapshot and not text_value(snapshot[key]))
+  replace: if not text_value(snapshot[key]))
+  test: tests.test_sd101_check.MetadataRuleTests.test_the_snapshot_has_its_keys_and_well_formed_extras
+- label: a good note is refused
+  find: if key in snapshot and not text_value(snapshot[key]))
+  replace: if key in snapshot)
+  test: tests.test_sd101_check.MetadataRuleTests.test_the_snapshot_has_its_keys_and_well_formed_extras
+- label: the verification steps are not compared
+  find: "    if not isinstance(verification, dict) or set(verification) != set(VERIFICATION_STEPS):"
+  replace: "    if False:"
+  test: tests.test_sd101_check.MetadataRuleTests.test_the_verification_record_has_exactly_the_five_steps
+- label: a verification record that is not an object raises
+  find: "    if not isinstance(verification, dict) or set(verification)"
+  replace: "    if set(verification)"
+  test: tests.test_sd101_check.MetadataRuleTests.test_the_verification_record_has_exactly_the_five_steps
+- label: a step that is not an object raises
+  find: status = step.get("status") if isinstance(step, dict) else None
+  replace: status = step.get("status")
+  test: tests.test_sd101_check.MetadataRuleTests.test_a_step_state_outside_its_vocabulary_is_reported
+- label: a step state outside its vocabulary is accepted
+  find: "        if not one_of(status, (initial, completed)):"
+  replace: "        if False:"
+  test: tests.test_sd101_check.MetadataRuleTests.test_a_step_state_outside_its_vocabulary_is_reported
+- label: a step that happened is taken for pending
+  find: "        happened[name] = status == completed"
+  replace: "        happened[name] = False"
+  test: tests.test_sd101_check.MetadataRuleTests.test_done_needs_the_technical_review_and_the_mobile_check
+- label: every step is taken for having happened
+  find: "        happened[name] = status == completed"
+  replace: "        happened[name] = True"
+  test: tests.test_sd101_check.MetadataRuleTests.test_a_step_that_has_not_happened_needs_no_date
+- label: a step that happened needs no date
+  find: "        if happened[name] and not valid_date(step.get(\"checked_on\")):"
+  replace: "        if False:"
+  test: tests.test_sd101_check.MetadataRuleTests.test_a_step_that_happened_needs_a_real_date
+- label: a pending step needs a date
+  find: "        if happened[name] and not valid_date("
+  replace: "        if not valid_date("
+  test: tests.test_sd101_check.MetadataRuleTests.test_a_step_that_has_not_happened_needs_no_date
+- label: the mobile check is not judged
+  find: "        if name == \"mobile\" and happened[name]:"
+  replace: "        if False:"
+  test: tests.test_sd101_check.MetadataRuleTests.test_a_mobile_check_records_widths_and_no_overflow
+- label: every step is judged as a mobile check
+  find: 'if name == "mobile" and happened[name]:'
+  replace: 'if happened[name]:'
+  test: tests.test_sd101_check.MetadataRuleTests.test_a_user_test_that_happened_is_dated_too
+- label: a mobile check that did not happen is judged
+  find: 'if name == "mobile" and happened[name]:'
+  replace: 'if name == "mobile":'
+  test: tests.test_sd101_check.MetadataRuleTests.test_a_mobile_check_that_has_not_happened_is_not_held_to_those_rules
+- label: a mobile check needs no widths
+  find: "    if not (isinstance(widths, list) and MOBILE_WIDTH in widths"
+  replace: "    if False and (isinstance(widths, list) and MOBILE_WIDTH in widths"
+  test: tests.test_sd101_check.MetadataRuleTests.test_a_mobile_check_records_widths_and_no_overflow
+- label: widths that are not a list raise
+  find: "    if not (isinstance(widths, list) and MOBILE_WIDTH in widths"
+  replace: "    if not (MOBILE_WIDTH in widths"
+  test: tests.test_sd101_check.MetadataRuleTests.test_a_mobile_check_records_widths_and_no_overflow
+- label: a mobile check may skip the narrowest width
+  find: "isinstance(widths, list) and MOBILE_WIDTH in widths\n"
+  replace: "isinstance(widths, list)\n"
+  test: tests.test_sd101_check.MetadataRuleTests.test_a_mobile_check_records_widths_and_no_overflow
+- label: a width that is not a number is accepted
+  find: all(isinstance(width, int) and not isinstance(width, bool) and width > 0 for width in widths)
+  replace: all(not isinstance(width, bool) and width > 0 for width in widths)
+  test: tests.test_sd101_check.MetadataRuleTests.test_a_mobile_check_records_widths_and_no_overflow
+- label: a width of true is accepted
+  find: all(isinstance(width, int) and not isinstance(width, bool) and width > 0 for width in widths)
+  replace: all(isinstance(width, int) and width > 0 for width in widths)
+  test: tests.test_sd101_check.MetadataRuleTests.test_a_mobile_check_records_widths_and_no_overflow
+- label: a width of zero or less is accepted
+  find: all(isinstance(width, int) and not isinstance(width, bool) and width > 0 for width in widths)
+  replace: all(isinstance(width, int) and not isinstance(width, bool) for width in widths)
+  test: tests.test_sd101_check.MetadataRuleTests.test_a_mobile_check_records_widths_and_no_overflow
+- label: overflow is accepted
+  find: "    if step.get(\"whole_lesson_no_horizontal_overflow\") is not True:"
+  replace: "    if False:"
+  test: tests.test_sd101_check.MetadataRuleTests.test_a_mobile_check_records_widths_and_no_overflow
+- label: text outside the viewBox is accepted
+  find: "    if step.get(\"text_outside_viewbox\") is not False:"
+  replace: "    if False:"
+  test: tests.test_sd101_check.MetadataRuleTests.test_a_mobile_check_records_widths_and_no_overflow
+- label: the older overflow flag is ignored
+  find: "    if step.get(\"overflow\", False) is not False:"
+  replace: "    if False:"
+  test: tests.test_sd101_check.MetadataRuleTests.test_a_mobile_check_records_widths_and_no_overflow
+- label: an absent overflow flag is an overflow
+  find: step.get("overflow", False) is not False
+  replace: step.get("overflow") is not False
+  test: tests.test_sd101_check.MetadataRuleTests.test_a_mobile_check_records_widths_and_no_overflow
+- label: a mobile check without evidence is accepted
+  find: "    if not text_value(step.get(\"evidence\")):"
+  replace: "    if False:"
+  test: tests.test_sd101_check.MetadataRuleTests.test_a_mobile_check_records_widths_and_no_overflow
+- label: claims that are not a list are accepted
+  find: "    if not isinstance(claims, list):\n        return"
+  replace: "    if False:\n        return"
+  test: tests.test_sd101_check.MetadataRuleTests.test_claims_are_statements_with_an_http_source
+- label: an empty claims list is fine after a claims check
+  find: found = ["claims is empty, but the claims step is marked checked"] if checked and not claims else []
+  replace: found = []
+  test: tests.test_sd101_check.MetadataRuleTests.test_a_checked_claims_step_needs_a_claim
+- label: an empty claims list is refused before a claims check
+  find: if checked and not claims else []
+  replace: if not claims else []
+  test: tests.test_sd101_check.MetadataRuleTests.test_a_checked_claims_step_needs_a_claim
+- label: a claim that is not an object raises
+  find: "        if not isinstance(claim, dict):\n            found.append"
+  replace: "        if False:\n            found.append"
+  test: tests.test_sd101_check.MetadataRuleTests.test_claims_are_statements_with_an_http_source
+- label: a claim without a statement is accepted
+  find: "        if not text_value(claim.get(\"claim_vi\")):"
+  replace: "        if False:"
+  test: tests.test_sd101_check.MetadataRuleTests.test_claims_are_statements_with_an_http_source
+- label: a claim without a source raises
+  find: urls = ([claim["source"]] if "source" in claim else [])
+  replace: urls = ([claim["source"]])
+  test: tests.test_sd101_check.MetadataRuleTests.test_claims_are_statements_with_an_http_source
+- label: a claim with sources raises
+  find: urls = ([claim["source"]] if "source" in claim else []) + (claim["sources"] if isinstance(claim.get("sources"), list) else [])
+  replace: urls = ([claim["source"]] if "source" in claim else []) + (claim["sources"])
+  test: tests.test_sd101_check.MetadataRuleTests.test_claims_are_statements_with_an_http_source
+- label: a claim without a source is accepted
+  find: "        if not urls or ("
+  replace: "        if ("
+  test: tests.test_sd101_check.MetadataRuleTests.test_claims_are_statements_with_an_http_source
+- label: a sources value that is not a list is accepted
+  find: "(\"sources\" in claim and not isinstance(claim[\"sources\"], list)) or "
+  replace: ''
+  test: tests.test_sd101_check.MetadataRuleTests.test_claims_are_statements_with_an_http_source
+- label: a claim with a bad URL is accepted
+  find: " or not all(valid_url(url) for url in urls):"
+  replace: ':'
+  test: tests.test_sd101_check.MetadataRuleTests.test_claims_are_statements_with_an_http_source
+- label: a blank claim id is accepted
+  find: "        if \"id\" in claim and not text_value(claim[\"id\"]):"
+  replace: "        if False:"
+  test: tests.test_sd101_check.MetadataRuleTests.test_claims_are_statements_with_an_http_source
+- label: prerequisites that are not a list are accepted
+  find: "    if not isinstance(prerequisites, list):\n        found.append"
+  replace: "    if False:\n        found.append"
+  test: tests.test_sd101_check.MetadataRuleTests.test_prerequisites_and_related_name_other_source_map_ids
+- label: related that is not a list is accepted
+  find: "    if not isinstance(related, list):\n        found.append"
+  replace: "    if False:\n        found.append"
+  test: tests.test_sd101_check.MetadataRuleTests.test_prerequisites_and_related_name_other_source_map_ids
+- label: a related entry that is not an object raises
+  find: "            if not isinstance(item, dict) or set(item) != RELATED_KEYS"
+  replace: "            if set(item) != RELATED_KEYS"
+  test: tests.test_sd101_check.RobustnessTests.test_an_odd_value_inside_a_nested_record_is_reported_not_raised
+- label: a related entry may have other keys
+  find: or set(item) != RELATED_KEYS or not text_value
+  replace: or not text_value
+  test: tests.test_sd101_check.MetadataRuleTests.test_prerequisites_and_related_name_other_source_map_ids
+- label: a related entry may have no relation
+  find: "or not text_value(item.get(\"relation\")) \\\n"
+  replace: "\\\n"
+  test: tests.test_sd101_check.MetadataRuleTests.test_prerequisites_and_related_name_other_source_map_ids
+- label: a related entry may have no reason
+  find: "                    or not text_value(item.get(\"reason_vi\")):"
+  replace: "                    or False:"
+  test: tests.test_sd101_check.MetadataRuleTests.test_prerequisites_and_related_name_other_source_map_ids
+- label: a related entry is never reported
+  find: "            if not isinstance(item, dict) or set(item) != RELATED_KEYS"
+  replace: "            if False and set(item) != RELATED_KEYS"
+  test: tests.test_sd101_check.MetadataRuleTests.test_prerequisites_and_related_name_other_source_map_ids
+- label: an id that is not text raises
+  find: "for value in named\n                 if not isinstance(value, str) or value == lesson_id or value not in entries)"
+  replace: "for value in named\n                 if value == lesson_id or value not in entries)"
+  test: tests.test_sd101_check.RobustnessTests.test_an_odd_value_inside_a_nested_record_is_reported_not_raised
+- label: a lesson may be its own prerequisite
+  find: if not isinstance(value, str) or value == lesson_id or value not in entries)
+  replace: if not isinstance(value, str) or value not in entries)
+  test: tests.test_sd101_check.MetadataRuleTests.test_prerequisites_and_related_name_other_source_map_ids
+- label: a prerequisite may be outside the source map
+  find: if not isinstance(value, str) or value == lesson_id or value not in entries)
+  replace: if not isinstance(value, str) or value == lesson_id)
+  test: tests.test_sd101_check.MetadataRuleTests.test_prerequisites_and_related_name_other_source_map_ids
+- label: a migration with other keys is accepted
+  find: "    if not isinstance(migration, dict) or set(migration) != MIGRATION_KEYS:"
+  replace: "    if False:"
+  test: tests.test_sd101_check.MetadataRuleTests.test_the_optional_notes_and_records_are_checked_when_present
+- label: a migration that is not an object raises
+  find: "    if not isinstance(migration, dict) or set(migration)"
+  replace: "    if set(migration)"
+  test: tests.test_sd101_check.MetadataRuleTests.test_the_optional_notes_and_records_are_checked_when_present
+- label: a migration repository may be anything
+  find: "        if not (isinstance(migration[key], str) and REPOSITORY.fullmatch(migration[key])):"
+  replace: "        if False:"
+  test: tests.test_sd101_check.MetadataRuleTests.test_the_optional_notes_and_records_are_checked_when_present
+- label: a migration repository that is not text raises
+  find: isinstance(migration[key], str) and REPOSITORY.fullmatch(migration[key])
+  replace: REPOSITORY.fullmatch(migration[key])
+  test: tests.test_sd101_check.MetadataRuleTests.test_the_optional_notes_and_records_are_checked_when_present
+- label: a migration commit may be anything
+  find: "    if not (isinstance(migration[\"source_commit_sha\"], str) and COMMIT.fullmatch(migration[\"source_commit_sha\"])):"
+  replace: "    if False:"
+  test: tests.test_sd101_check.MetadataRuleTests.test_the_optional_notes_and_records_are_checked_when_present
+- label: a migration commit that is not text raises
+  find: isinstance(migration["source_commit_sha"], str) and COMMIT.fullmatch
+  replace: COMMIT.fullmatch
+  test: tests.test_sd101_check.MetadataRuleTests.test_the_optional_notes_and_records_are_checked_when_present
+- label: a migration date may be anything
+  find: "    if not valid_date(migration[\"imported_on\"]):"
+  replace: "    if False:"
+  test: tests.test_sd101_check.MetadataRuleTests.test_the_optional_notes_and_records_are_checked_when_present
+- label: raw HTML in a page is accepted
+  find: for tag in sorted(html_scan(text).tags - ALLOWED_HTML)]
+  replace: for tag in sorted(set())]
+  test: tests.test_sd101_check.OtherPageRuleTests.test_each_page_is_held_to_the_shared_page_rules
+- label: an image in a page is accepted
+  find: for source in sorted(image_sources(text)))
+  replace: for source in sorted(()))
+  test: tests.test_sd101_check.OtherPageRuleTests.test_each_page_is_held_to_the_shared_page_rules
+- label: a broken link in a page is accepted
+  find: if (target := relative_target(destination)) and not resolves(base, target, boundary))
+  replace: if False)
+  test: tests.test_sd101_check.OtherPageRuleTests.test_each_page_is_held_to_the_shared_page_rules
+- label: a link in a page is not looked up
+  find: and not resolves(base, target, boundary))
+  replace: and False)
+  test: tests.test_sd101_check.OtherPageRuleTests.test_each_page_is_held_to_the_shared_page_rules
+- label: the source image host in a page is accepted
+  find: "    if SOURCE_IMAGE_HOST in text.lower():\n        problems.append(Problem(name,"
+  replace: "    if False:\n        problems.append(Problem(name,"
+  test: tests.test_sd101_check.OtherPageRuleTests.test_each_page_is_held_to_the_shared_page_rules
+- label: the source image host in capitals in a page is accepted
+  find: "    if SOURCE_IMAGE_HOST in text.lower():\n        problems.append(Problem(name,"
+  replace: "    if SOURCE_IMAGE_HOST in text:\n        problems.append(Problem(name,"
+  test: tests.test_sd101_check.OtherPageRuleTests.test_each_page_is_held_to_the_shared_page_rules
+- label: an unclosed fence is accepted
+  find: "    if has_unclosed_fence(text):\n        problems.append(Problem(lesson_id"
+  replace: "    if False:\n        problems.append(Problem(lesson_id"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_an_unclosed_code_fence_is_reported
+- label: a stray closing details tag is accepted
+  find: "    if scan.stray_details_close or scan.details_depth:"
+  replace: "    if scan.details_depth:"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_a_stray_closing_details_tag_is_reported_even_when_a_later_block_balances_the_count
+- label: a details block left open is accepted
+  find: "    if scan.stray_details_close or scan.details_depth:"
+  replace: "    if scan.stray_details_close:"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_unbalanced_details_tags_are_reported
+- label: raw HTML in a lesson is accepted
+  find: "    for tag in sorted(scan.tags - ALLOWED_HTML):"
+  replace: "    for tag in sorted(set()):"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_raw_html_outside_the_allow_list_is_reported
+- label: an image is not looked up
+  find: 'link_destinations(text) | sources):'
+  replace: 'link_destinations(text)):'
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_a_missing_local_image_is_reported_in_every_form
+- label: a link is not looked up
+  find: 'sorted(link_destinations(text) | sources):'
+  replace: 'sorted(sources):'
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_a_relative_link_that_does_not_resolve_is_reported
+- label: a relative link is accepted without being looked up
+  find: "        if target is not None and not resolves(lesson_dir, target, boundary):"
+  replace: "        if False:"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_a_relative_link_that_does_not_resolve_is_reported
+- label: an external link is looked up
+  find: "        if target is not None and not resolves(lesson_dir, target, boundary):"
+  replace: "        if not resolves(lesson_dir, target, boundary):"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_anchors_urls_and_mail_links_are_not_relative_links
+- label: an image that is not local raises
+  find: figure = resolved_inside(lesson_dir, target, boundary) if target is not None else None
+  replace: figure = resolved_inside(lesson_dir, target, boundary)
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_an_image_that_is_not_an_svg_in_diagrams_is_reported
+- label: a figure shown is not remembered
+  find: "        shown.add(figure)"
+  replace: "        pass"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_a_lesson_must_show_its_own_figure
+- label: an image that does not resolve is accepted
+  find: if figure is None or figure.suffix
+  replace: if figure.suffix
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_an_image_that_is_not_an_svg_in_diagrams_is_reported
+- label: an image that is not an svg is accepted
+  find: " or figure.suffix != \".svg\""
+  replace: ''
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_an_image_that_is_not_an_svg_in_diagrams_is_reported
+- label: an image outside diagrams is accepted
+  find: " or figure.parent != diagrams_dir.resolve():"
+  replace: ':'
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_an_svg_outside_diagrams_is_not_a_figure_of_the_lesson
+- label: a lesson need not show its figure
+  find: "    if (diagrams_dir / f\"{lesson_id}-main.svg\").resolve() not in shown:"
+  replace: "    if False:"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_a_lesson_must_show_its_own_figure
+- label: an image without alt text is accepted
+  find: "    if images_without_alt(text):"
+  replace: "    if False:"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_an_image_without_alt_text_is_reported
+- label: a lesson that is not in the source map is looked up
+  find: "    if lesson_id in entries:\n        snapshot"
+  replace: "    if True:\n        snapshot"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_a_lesson_that_is_not_in_the_source_map_is_not_also_missing_a_snapshot
+- label: a source map entry without a snapshot URL is accepted
+  find: "        if not isinstance(snapshot, str) or not snapshot.strip():"
+  replace: "        if False:"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_a_source_map_entry_without_a_snapshot_url_is_reported
+- label: a snapshot URL that is not text raises
+  find: "        if not isinstance(snapshot, str) or not snapshot.strip():"
+  replace: "        if not snapshot.strip():"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_a_source_map_entry_without_a_snapshot_url_is_reported
+- label: a blank snapshot URL is a snapshot
+  find: "        if not isinstance(snapshot, str) or not snapshot.strip():"
+  replace: "        if not isinstance(snapshot, str):"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_a_source_map_entry_without_a_snapshot_url_is_reported
+- label: a lesson need not link the snapshot
+  find: "        elif snapshot not in {destination.split(\"#\")[0] for destination in link_destinations(text)}:"
+  replace: "        elif False:"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_a_lesson_that_does_not_link_the_pinned_snapshot_is_reported
+- label: a link to a section of the snapshot is not the snapshot
+  find: '{destination.split("#")[0] for destination in link_destinations(text)}'
+  replace: link_destinations(text)
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_a_link_to_a_section_of_the_pinned_snapshot_is_a_link_to_it
+- label: a mention of a missing lesson is accepted
+  find: "        if mentioned not in lesson_ids:"
+  replace: "        if False:"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_a_mention_of_a_lesson_without_a_directory_is_reported
+- label: the source image host in a lesson is accepted
+  find: "    if SOURCE_IMAGE_HOST in text.lower():\n        problems.append(Problem(lesson_id,"
+  replace: "    if False:\n        problems.append(Problem(lesson_id,"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_every_form_of_source_image_embed_is_reported
+- label: the source image host in capitals in a lesson is accepted
+  find: "    if SOURCE_IMAGE_HOST in text.lower():\n        problems.append(Problem(lesson_id,"
+  replace: "    if SOURCE_IMAGE_HOST in text:\n        problems.append(Problem(lesson_id,"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_every_form_of_source_image_embed_is_reported
+- label: a lesson linked with ./ is not normalised
+  find: linked = {posixpath.normpath(target) for target in destinations.values() if target}
+  replace: linked = {target for target in destinations.values() if target}
+  test: tests.test_sd101_check.ReadmeRuleTests.test_a_readme_link_as_an_html_anchor_or_a_reference_or_with_dot_slash_counts
+- label: a link with ./ is not read in the order
+  find: match = LESSON_LINK.fullmatch(posixpath.normpath(target)) if target else None
+  replace: match = LESSON_LINK.fullmatch(target) if target else None
+  test: tests.test_sd101_check.ReadmeRuleTests.test_source_order_holds_across_markdown_html_and_reference_links
+- label: a link to a lesson that does not exist is listed
+  find: 'if match and match.group(1) in lesson_ids and match.group(1) not in listed:'
+  replace: 'if match and match.group(1) not in listed:'
+  test: tests.test_sd101_check.ReadmeRuleTests.test_a_readme_row_left_behind_for_a_deleted_lesson_is_reported
+- label: a lesson linked twice is listed twice
+  find: 'if match and match.group(1) in lesson_ids and match.group(1) not in listed:'
+  replace: 'if match and match.group(1) in lesson_ids:'
+  test: tests.test_sd101_check.ReadmeRuleTests.test_a_lesson_linked_twice_counts_where_it_is_first_linked
+- label: the source order is the order of the links
+  find: in_source_order = [lesson_id for lesson_id in entries if lesson_id in listed]
+  replace: in_source_order = listed
+  test: tests.test_sd101_check.ReadmeRuleTests.test_lessons_listed_out_of_source_order_are_reported
+- label: a lesson missing from the README is accepted
+  find: "problems = [Problem(\"README.md\", f\"does not link lessons/{lesson_id}/lesson.md\")\n                for lesson_id in sorted(lesson_ids) if f\"lessons/{lesson_id}/lesson.md\" not in linked]"
+  replace: problems = []
+  test: tests.test_sd101_check.ReadmeRuleTests.test_a_lesson_missing_from_the_readme_is_reported
+- label: the order of the README is not compared
+  find: "    if listed != in_source_order:"
+  replace: "    if False:"
+  test: tests.test_sd101_check.ReadmeRuleTests.test_lessons_listed_out_of_source_order_are_reported
+- label: a status in a README cell is accepted
+  find: "    if any(STATUS_WORD.search(cell) for cell in table_cells(text)):"
+  replace: "    if False:"
+  test: tests.test_sd101_check.ReadmeRuleTests.test_a_status_word_in_a_readme_row_is_reported
+- label: a status in a README cell is compared as the whole cell
+  find: "STATUS_WORD = re.compile(r\"(?<![^\\W_])(?:draft|review|done)(?![^\\W_])\", re.IGNORECASE)"
+  replace: "STATUS_WORD = re.compile(r\"^\\s*(?:draft|review|done)\\s*$\", re.IGNORECASE)"
+  test: tests.test_sd101_check.ReadmeRuleTests.test_a_status_word_inside_a_longer_cell_is_a_status
+- label: a status word inside a longer word counts as a status
+  find: "STATUS_WORD = re.compile(r\"(?<![^\\W_])(?:draft|review|done)(?![^\\W_])\", re.IGNORECASE)"
+  replace: STATUS_WORD = re.compile(r"(?:draft|review|done)", re.IGNORECASE)
+  test: tests.test_sd101_check.ReadmeRuleTests.test_a_word_that_merely_contains_a_status_word_is_not_a_status
+- label: a status word next to an underscore is not found
+  find: "STATUS_WORD = re.compile(r\"(?<![^\\W_])(?:draft|review|done)(?![^\\W_])\", re.IGNORECASE)"
+  replace: "STATUS_WORD = re.compile(r\"\\b(?:draft|review|done)\\b\", re.IGNORECASE)"
+  test: tests.test_sd101_check.ReadmeRuleTests.test_a_status_word_inside_a_longer_cell_is_a_status
+- label: a capitalised status word is not found
+  find: "STATUS_WORD = re.compile(r\"(?<![^\\W_])(?:draft|review|done)(?![^\\W_])\", re.IGNORECASE)"
+  replace: "STATUS_WORD = re.compile(r\"(?<![^\\W_])(?:draft|review|done)(?![^\\W_])\")"
+  test: tests.test_sd101_check.ReadmeRuleTests.test_a_formatted_or_capitalised_status_in_a_readme_row_is_reported
+- label: draft is not a status word
+  find: "STATUS_WORD = re.compile(r\"(?<![^\\W_])(?:draft|review|done)(?![^\\W_])\", re.IGNORECASE)"
+  replace: "STATUS_WORD = re.compile(r\"(?<![^\\W_])(?:review|done)(?![^\\W_])\", re.IGNORECASE)"
+  test: tests.test_sd101_check.ReadmeRuleTests.test_a_status_word_inside_a_longer_cell_is_a_status
+- label: review is not a status word
+  find: "STATUS_WORD = re.compile(r\"(?<![^\\W_])(?:draft|review|done)(?![^\\W_])\", re.IGNORECASE)"
+  replace: "STATUS_WORD = re.compile(r\"(?<![^\\W_])(?:draft|done)(?![^\\W_])\", re.IGNORECASE)"
+  test: tests.test_sd101_check.ReadmeRuleTests.test_a_status_word_inside_a_longer_cell_is_a_status
+- label: done is not a status word
+  find: "STATUS_WORD = re.compile(r\"(?<![^\\W_])(?:draft|review|done)(?![^\\W_])\", re.IGNORECASE)"
+  replace: "STATUS_WORD = re.compile(r\"(?<![^\\W_])(?:draft|review)(?![^\\W_])\", re.IGNORECASE)"
+  test: tests.test_sd101_check.ReadmeRuleTests.test_a_status_word_inside_a_longer_cell_is_a_status
+- label: a missing progress.json is accepted
+  find: "    if not path.is_file():\n        return [Problem(\"progress.json\", \"is missing\")]"
+  replace: "    if False:\n        return [Problem(\"progress.json\", \"is missing\")]"
+  test: tests.test_sd101_check.ProgressRuleTests.test_a_missing_or_unreadable_progress_file_is_reported
+- label: an unreadable progress.json raises
+  find: "    if error:\n        return [Problem(\"progress.json\", error)]"
+  replace: "    if False:\n        return [Problem(\"progress.json\", error)]"
+  test: tests.test_sd101_check.ProgressRuleTests.test_a_missing_or_unreadable_progress_file_is_reported
+- label: a progress.json that is not an object raises
+  find: "    if not isinstance(data, dict):\n        return [Problem(\"progress.json\""
+  replace: "    if False:\n        return [Problem(\"progress.json\""
+  test: tests.test_sd101_check.ProgressRuleTests.test_a_missing_or_unreadable_progress_file_is_reported
+- label: a progress.json may lack keys
+  find: "    if missing := sorted(PROGRESS_REQUIRED - set(data)):"
+  replace: "    if False:"
+  test: tests.test_sd101_check.ProgressRuleTests.test_the_required_keys_and_the_language_are_checked
+- label: progress.json may be in another language
+  find: "    if data.get(\"language\") != \"vi\":\n        reasons.append"
+  replace: "    if False:\n        reasons.append"
+  test: tests.test_sd101_check.ProgressRuleTests.test_the_required_keys_and_the_language_are_checked
+- label: the totals are not compared
+  find: "    if entries:\n        for key, count in"
+  replace: "    if False:\n        for key, count in"
+  test: tests.test_sd101_check.ProgressRuleTests.test_the_totals_are_the_source_maps
+- label: the totals are compared with an empty map
+  find: "    if entries:\n        for key, count in"
+  replace: "    if True:\n        for key, count in"
+  test: tests.test_sd101_check.ProgressRuleTests.test_without_a_readable_source_map_only_the_file_itself_is_checked
+- label: a wrong total is accepted
+  find: 'if data.get(key) != count or isinstance(data.get(key), bool):'
+  replace: 'if False:'
+  test: tests.test_sd101_check.ProgressRuleTests.test_the_totals_are_the_source_maps
+- label: a total of true is accepted
+  find: 'if data.get(key) != count or isinstance(data.get(key), bool):'
+  replace: 'if data.get(key) != count:'
+  test: tests.test_sd101_check.ProgressRuleTests.test_the_totals_are_the_source_maps
+- label: the source documents are the occurrences
+  find: len({e["source_path"] for e in entries.values() if isinstance(e.get("source_path"), str)})
+  replace: len(entries)
+  test: tests.test_sd101_check.ProgressRuleTests.test_the_source_documents_are_counted_by_distinct_path
+- label: a source path that is not text raises
+  find: for e in entries.values() if isinstance(e.get("source_path"), str)
+  replace: for e in entries.values()
+  test: tests.test_sd101_check.RobustnessTests.test_odd_source_map_entries_do_not_break_the_checks_that_follow_them
+- label: written_ids are not compared
+  find: "    if \"written_ids\" in data and data[\"written_ids\"] != written:"
+  replace: "    if False:"
+  test: tests.test_sd101_check.ProgressRuleTests.test_written_ids_are_the_lessons_on_disk_in_source_order
+- label: written_ids may be missing from the comparison
+  find: 'if "written_ids" in data and data["written_ids"] != written:'
+  replace: 'if data["written_ids"] != written:'
+  test: tests.test_sd101_check.ProgressRuleTests.test_the_required_keys_and_the_language_are_checked
+- label: the id lists are not checked
+  find: "        if name in data:\n            reasons.extend"
+  replace: "        if False:\n            reasons.extend"
+  test: tests.test_sd101_check.ProgressRuleTests.test_the_id_lists_name_written_lessons
+- label: an id list that is not a list is accepted
+  find: "    if not isinstance(value, list) or not all(isinstance(item, str) for item in value):"
+  replace: "    if False:"
+  test: tests.test_sd101_check.ProgressRuleTests.test_the_id_lists_name_written_lessons
+- label: an id list of non-text raises
+  find: "    if not isinstance(value, list) or not all(isinstance(item, str) for item in value):"
+  replace: "    if not isinstance(value, list):"
+  test: tests.test_sd101_check.ProgressRuleTests.test_the_id_lists_name_written_lessons
+- label: an id list that is not a list raises
+  find: "    if not isinstance(value, list) or not all("
+  replace: "    if not all("
+  test: tests.test_sd101_check.ProgressRuleTests.test_the_id_lists_name_written_lessons
+- label: an id that is not written is accepted
+  find: return [f"{name} names {item}, which is not a written lesson" for item in value if item not in written]
+  replace: return []
+  test: tests.test_sd101_check.ProgressRuleTests.test_the_id_lists_name_written_lessons
+- label: next_id is not compared
+  find: "    if entries and \"next_id\" in data:"
+  replace: "    if False:"
+  test: tests.test_sd101_check.ProgressRuleTests.test_next_id_is_the_first_source_map_id_not_yet_written
+- label: next_id is compared with an empty map
+  find: "    if entries and \"next_id\" in data:"
+  replace: "    if \"next_id\" in data:"
+  test: tests.test_sd101_check.ProgressRuleTests.test_without_a_readable_source_map_only_the_file_itself_is_checked
+- label: a missing next_id raises
+  find: "    if entries and \"next_id\" in data:"
+  replace: "    if entries:"
+  test: tests.test_sd101_check.ProgressRuleTests.test_the_required_keys_and_the_language_are_checked
+- label: the last lesson written has a next id
+  find: for lesson_id in entries if lesson_id not in written), None)
+  replace: for lesson_id in entries if lesson_id not in written))
+  test: tests.test_sd101_check.ProgressRuleTests.test_next_id_is_the_first_source_map_id_not_yet_written
+- label: a wrong next_id is accepted
+  find: "        if data[\"next_id\"] != following:"
+  replace: "        if False:"
+  test: tests.test_sd101_check.ProgressRuleTests.test_next_id_is_the_first_source_map_id_not_yet_written
+- label: updated_on is not checked
+  find: "    if \"updated_on\" in data and not valid_date(data[\"updated_on\"]):"
+  replace: "    if False:"
+  test: tests.test_sd101_check.ProgressRuleTests.test_the_orchestration_fields_are_free
+- label: updated_on is required
+  find: "    if \"updated_on\" in data and not valid_date(data[\"updated_on\"]):"
+  replace: "    if not valid_date(data.get(\"updated_on\")):"
+  test: tests.test_sd101_check.ProgressRuleTests.test_a_progress_record_that_matches_the_store_is_fine
+- label: a symbolic link to a lesson directory counts as a lesson
+  find: if path.is_dir() and not path.is_symlink()}
+  replace: if path.is_dir()}
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_a_symbolic_link_for_a_lesson_directory_the_readme_or_a_store_directory_is_reported
+- label: a file in lessons counts as a lesson
+  find: if path.is_dir() and not path.is_symlink()}
+  replace: if not path.is_symlink()}
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_lessons_holds_lesson_directories_and_pointers_to_them
+- label: anything is allowed in the store
+  find: "        if path.name not in STORE_ENTRIES:"
+  replace: "        if False:"
+  test: tests.test_sd101_check.ReadmeRuleTests.test_the_store_holds_only_its_documented_entries
+- label: a symbolic link in the store is allowed
+  find: "        elif path.is_symlink():\n            problems.append(Problem(path.name,"
+  replace: "        elif False:\n            problems.append(Problem(path.name,"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_a_symbolic_link_for_a_lesson_directory_the_readme_or_a_store_directory_is_reported
+- label: a symbolic link in lessons is allowed
+  find: "        if path.is_symlink() or not (path.is_dir() or"
+  replace: "        if not (path.is_dir() or"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_a_symbolic_link_for_a_lesson_directory_the_readme_or_a_store_directory_is_reported
+- label: a file in lessons is a lesson directory
+  find: or not (path.is_dir() or (path.suffix
+  replace: or not (True or (path.suffix
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_lessons_holds_lesson_directories_and_pointers_to_them
+- label: any file in lessons may be a pointer
+  find: (path.suffix == ".md" and stem in lesson_ids)
+  replace: (stem in lesson_ids)
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_lessons_holds_lesson_directories_and_pointers_to_them
+- label: a pointer to no lesson is allowed
+  find: (path.suffix == ".md" and stem in lesson_ids)
+  replace: (path.suffix == ".md")
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_lessons_holds_lesson_directories_and_pointers_to_them
+- label: a pointer need not link its lesson
+  find: "        elif path.is_file() and f\"{stem}/lesson.md\" not in {"
+  replace: "        elif False and f\"{stem}/lesson.md\" not in {"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_lessons_holds_lesson_directories_and_pointers_to_them
+- label: a directory is read as a pointer
+  find: "        elif path.is_file() and f\"{stem}/lesson.md\""
+  replace: "        elif f\"{stem}/lesson.md\""
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_lessons_holds_lesson_directories_and_pointers_to_them
+- label: a pointer's link is not normalised
+  find: posixpath.normpath(relative_target(d) or "")
+  replace: relative_target(d) or ""
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_lessons_holds_lesson_directories_and_pointers_to_them
+- label: a pointer's links that are not relative raise
+  find: posixpath.normpath(relative_target(d) or "")
+  replace: posixpath.normpath(relative_target(d))
+  test: tests.test_sd101_check.RobustnessTests.test_odd_links_and_paths_in_lesson_md_and_the_pages_are_reported_not_raised
+- label: a pointer that is not UTF-8 raises
+  find: link_destinations(path.read_text(encoding="utf-8", errors="replace"))
+  replace: link_destinations(path.read_text(encoding="utf-8"))
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_lessons_holds_lesson_directories_and_pointers_to_them
+- label: a symbolic link in metadata is allowed
+  find: "        if path.is_symlink() or not path.is_file() or path.suffix != \".json\""
+  replace: "        if not path.is_file() or path.suffix != \".json\""
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_a_symbolic_link_for_a_figure_or_a_metadata_file_is_reported
+- label: a directory in metadata is allowed
+  find: or not path.is_file() or path.suffix != ".json" or path.stem
+  replace: or path.suffix != ".json" or path.stem
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_metadata_holds_only_the_json_of_lesson_directories
+- label: a file of another kind in metadata is allowed
+  find: 'or path.suffix != ".json" or path.stem not in lesson_ids:'
+  replace: 'or path.stem not in lesson_ids:'
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_metadata_holds_only_the_json_of_lesson_directories
+- label: metadata of no lesson is allowed
+  find: 'or path.suffix != ".json" or path.stem not in lesson_ids:'
+  replace: 'or path.suffix != ".json":'
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_metadata_holds_only_the_json_of_lesson_directories
+- label: a symbolic link in diagrams is allowed
+  find: "        if path.is_symlink() or not path.is_file() or not path.name.endswith(\"-main.svg\")"
+  replace: "        if not path.is_file() or not path.name.endswith(\"-main.svg\")"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_a_symbolic_link_for_a_figure_or_a_metadata_file_is_reported
+- label: a directory in diagrams is allowed
+  find: or not path.is_file() or not path.name.endswith("-main.svg")
+  replace: or not path.name.endswith("-main.svg")
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_diagrams_holds_only_the_figures_of_lesson_directories
+- label: a file of another name in diagrams is allowed
+  find: or not path.name.endswith("-main.svg")
+  replace: ''
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_diagrams_holds_only_the_figures_of_lesson_directories
+- label: a figure of no lesson is allowed
+  find: "\n                or path.name[:-len(\"-main.svg\")] not in lesson_ids:"
+  replace: ':'
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_diagrams_holds_only_the_figures_of_lesson_directories
+- label: a figure of no lesson raises its name
+  find: path.name[:-len("-main.svg")] not in lesson_ids
+  replace: path.name[:-len("-main.svg")] not in ()
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_diagrams_holds_only_the_figures_of_lesson_directories
+- label: a figure is not checked as a drawing
+  find: "        elif reason := svg_problem(path):"
+  replace: "        elif False:"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_an_svg_file_must_be_a_drawing_not_a_renamed_picture
+- label: a symbolic link in a lesson directory is allowed
+  find: "            if path.is_symlink():\n                problems.append(Problem(lesson_id, f\"{path.name} is a symbolic link"
+  replace: "            if False:\n                problems.append(Problem(lesson_id, f\"{path.name} is a symbolic link"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_a_symbolic_link_is_not_a_lesson_file
+- label: another file in a lesson directory is allowed
+  find: "            elif path.name not in LESSON_FILES:"
+  replace: "            elif False:"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_a_lesson_directory_may_hold_only_lesson_md_and_lesson_yaml
+- label: a missing lesson file is accepted
+  find: "            if not required.is_file():"
+  replace: "            if False:"
+  test: tests.test_sd101_check.LessonFilesTests.test_a_missing_file_is_reported
+- label: a lesson.yaml that is not a file is parsed
+  find: "        if pointer.is_file():"
+  replace: "        if True:"
+  test: tests.test_sd101_check.RobustnessTests.test_a_store_file_that_is_a_directory_is_reported_not_raised
+- label: a missing metadata file is accepted
+  find: "        if not metadata_file.is_file():"
+  replace: "        if False:"
+  test: tests.test_sd101_check.LessonFilesTests.test_a_missing_file_is_reported
+- label: unreadable metadata is not reported
+  find: "            problems.extend([Problem(f\"metadata/{lesson_id}.json\", error)] if error\n                            else check_metadata(lesson_id, parsed, entries, pin))"
+  replace: "            problems.extend(check_metadata(lesson_id, parsed, entries, pin))"
+  test: tests.test_sd101_check.MetadataRuleTests.test_a_metadata_file_that_cannot_be_read_is_reported_not_raised
+- label: metadata is checked even when unreadable
+  find: "problems.extend([Problem(f\"metadata/{lesson_id}.json\", error)] if error\n                            else check_metadata("
+  replace: "problems.extend([Problem(f\"metadata/{lesson_id}.json\", error)] if error\n                            else []) or problems.extend(check_metadata("
+  test: tests.test_sd101_check.MetadataRuleTests.test_a_metadata_file_that_cannot_be_read_is_reported_not_raised
+- label: a missing figure is accepted
+  find: "        if not (diagrams_dir / f\"{lesson_id}-main.svg\").is_file():"
+  replace: "        if False:"
+  test: tests.test_sd101_check.LessonFilesTests.test_a_missing_file_is_reported
+- label: a lesson.md that is not UTF-8 raises
+  find: "            except UnicodeDecodeError:\n                problems.append(Problem(lesson_id, \"lesson.md is not valid UTF-8 text\"))"
+  replace: "            except OSError:\n                problems.append(Problem(lesson_id, \"lesson.md is not valid UTF-8 text\"))"
+  test: tests.test_sd101_check.LessonFilesTests.test_text_that_is_not_utf8_is_reported_not_raised
+- label: a README that is missing is accepted
+  find: "            if name == \"README.md\":\n                problems.append(Problem(name, \"is missing\"))"
+  replace: "            if False:\n                problems.append(Problem(name, \"is missing\"))"
+  test: tests.test_sd101_check.ReadmeRuleTests.test_a_missing_readme_is_reported
+- label: another page that is missing is reported
+  find: "            if name == \"README.md\":\n                problems.append"
+  replace: "            if True:\n                problems.append"
+  test: tests.test_sd101_check.OtherPageRuleTests.test_the_pages_may_be_absent_or_plain
+- label: a page that is not a file is accepted
+  find: "            elif page.exists():\n                problems.append(Problem(name, \"is not a file\"))"
+  replace: "            elif False:\n                problems.append(Problem(name, \"is not a file\"))"
+  test: tests.test_sd101_check.OtherPageRuleTests.test_a_page_that_is_a_directory_or_a_link_is_reported
+- label: a page that is not UTF-8 raises
+  find: "        except UnicodeDecodeError:\n            problems.append(Problem(name, \"is not valid UTF-8 text\"))"
+  replace: "        except OSError:\n            problems.append(Problem(name, \"is not valid UTF-8 text\"))"
+  test: tests.test_sd101_check.LessonFilesTests.test_text_that_is_not_utf8_is_reported_not_raised
+- label: the shared page rules are not applied
+  find: "        problems.extend(check_page(name, text, store, boundary))"
+  replace: "        pass"
+  test: tests.test_sd101_check.OtherPageRuleTests.test_each_page_is_held_to_the_shared_page_rules
+- label: the README rules are applied to every page
+  find: "        if name == \"README.md\":\n            problems.extend(check_readme"
+  replace: "        if True:\n            problems.extend(check_readme"
+  test: tests.test_sd101_check.OtherPageRuleTests.test_the_pages_may_be_absent_or_plain
+- label: the README rules are not applied
+  find: "        if name == \"README.md\":\n            problems.extend(check_readme"
+  replace: "        if False:\n            problems.extend(check_readme"
+  test: tests.test_sd101_check.ReadmeRuleTests.test_a_lesson_missing_from_the_readme_is_reported
+- label: written ids are in the order of the directory listing
+  find: written = [lesson_id for lesson_id in entries if lesson_id in lesson_ids]
+  replace: written = sorted(lesson_ids)
+  test: tests.test_sd101_check.ProgressRuleTests.test_written_ids_follow_the_source_map_order_not_the_alphabet
+- label: progress.json is not checked
+  find: "    problems.extend(check_progress(store / \"progress.json\", entries, written))"
+  replace: "    pass"
+  test: tests.test_sd101_check.ProgressRuleTests.test_a_missing_or_unreadable_progress_file_is_reported
+- label: a broken store exits zero
+  find: "    return 1 if problems else 0"
+  replace: "    return 0"
+  test: tests.test_sd101_check.CommandLineTests.test_a_broken_store_exits_one_and_prints_the_problem
+- label: a clean store exits one
+  find: "    return 1 if problems else 0"
+  replace: "    return 1"
+  test: tests.test_sd101_check.CommandLineTests.test_a_clean_store_exits_zero_and_says_how_many_lessons
+- label: a pointer file is counted as a lesson
+  find: count = sum(1 for path in lessons_dir.iterdir() if path.is_dir()) if lessons_dir.is_dir() else 0
+  replace: count = sum(1 for path in lessons_dir.iterdir()) if lessons_dir.is_dir() else 0
+  test: tests.test_sd101_check.CommandLineTests.test_a_pointer_file_is_not_counted_as_a_lesson
+- label: a store without lessons raises
+  find: if lessons_dir.is_dir() else 0
+  replace: ''
+  test: tests.test_sd101_check.CommandLineTests.test_a_store_that_does_not_exist_is_reported_not_raised
+- label: the problems are not printed
+  find: "    for problem in problems:\n        print(problem)"
+  replace: "    for problem in problems:\n        pass"
+  test: tests.test_sd101_check.CommandLineTests.test_a_broken_store_exits_one_and_prints_the_problem
+- label: the real store is not held to its checks
+  find: "    problems = check_store(arguments.store, arguments.source_map, pin_roster)"
+  replace: "    problems = []"
+  test: tests.test_sd101_check.CommandLineTests.test_a_broken_store_exits_one_and_prints_the_problem
+- label: the real store may break a rule
+  find: "    problems = check_store(arguments.store, arguments.source_map, pin_roster)"
+  replace: "    problems = check_store(arguments.store, arguments.source_map, pin_roster)[:0]"
+  test: tests.test_sd101_check.RealStoreTests.test_the_real_store_passes_every_rule

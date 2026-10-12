@@ -183,6 +183,16 @@ def read_json(path: pathlib.Path) -> tuple[object, str | None]:
         return None, f"cannot be read: {error}"
 
 
+def read_text(path: pathlib.Path) -> tuple[str | None, str | None]:
+    """A text file's content, or (None, why it cannot be read): not UTF-8, or the filesystem refuses."""
+    try:
+        return path.read_text(encoding="utf-8"), None
+    except UnicodeDecodeError:
+        return None, "is not valid UTF-8 text"
+    except OSError as error:
+        return None, f"cannot be read: {error}"
+
+
 def repository_path(value: object) -> bool:
     """A path inside the repository that a URL reads as written: relative, with no empty, . or .. part (so no
     leading or trailing / either), and nothing a URL would split on or drop (# ? \\ whitespace)."""
@@ -980,9 +990,14 @@ def check_store(store: pathlib.Path, source_map: pathlib.Path, pin_roster: bool 
         stem = path.stem
         if path.is_symlink() or not (path.is_dir() or (path.suffix == ".md" and stem in lesson_ids)):
             problems.append(Problem("lessons", f"{path.name} is not a lesson directory, or a .md pointer to one"))
-        elif path.is_file() and f"{stem}/lesson.md" not in {posixpath.normpath(relative_target(d) or "")
-                                                             for d in link_destinations(path.read_text(encoding="utf-8", errors="replace"))}:
-            problems.append(Problem("lessons", f"{path.name} is a pointer that does not link {stem}/lesson.md"))
+        elif path.is_file():
+            try:
+                pointer_text = path.read_text(encoding="utf-8", errors="replace")
+            except OSError as error:
+                problems.append(Problem("lessons", f"{path.name} cannot be read: {error}"))
+                continue
+            if f"{stem}/lesson.md" not in {posixpath.normpath(relative_target(d) or "") for d in link_destinations(pointer_text)}:
+                problems.append(Problem("lessons", f"{path.name} is a pointer that does not link {stem}/lesson.md"))
     for path in listing(metadata_dir):
         if path.is_symlink() or not path.is_file() or path.suffix != ".json" or path.stem not in lesson_ids:
             problems.append(Problem("metadata", f"{path.name} is not the metadata of a lesson directory"))
@@ -1007,7 +1022,7 @@ def check_store(store: pathlib.Path, source_map: pathlib.Path, pin_roster: bool 
         if pointer.is_file():
             try:
                 parsed = yaml.load(pointer.read_text(encoding="utf-8"), Loader=StrictLoader)  # noqa: S506
-            except (yaml.YAMLError, ValueError) as error:
+            except (yaml.YAMLError, ValueError, OSError, RecursionError) as error:
                 problems.append(Problem(lesson_id, f"lesson.yaml does not parse: {error}"))
             else:
                 problems.extend(check_lesson_yaml(lesson_id, parsed))
@@ -1021,10 +1036,9 @@ def check_store(store: pathlib.Path, source_map: pathlib.Path, pin_roster: bool 
         if not (diagrams_dir / f"{lesson_id}-main.svg").is_file():
             problems.append(Problem(lesson_id, f"diagrams/{lesson_id}-main.svg is missing"))
         if markdown.is_file():
-            try:
-                text = markdown.read_text(encoding="utf-8")
-            except UnicodeDecodeError:
-                problems.append(Problem(lesson_id, "lesson.md is not valid UTF-8 text"))
+            text, why = read_text(markdown)
+            if why:
+                problems.append(Problem(lesson_id, f"lesson.md {why}"))
             else:
                 problems.extend(check_markdown(lesson_id, text, lesson_dir, entries, lesson_ids, boundary, diagrams_dir))
     for name in STORE_PAGES:
@@ -1035,10 +1049,9 @@ def check_store(store: pathlib.Path, source_map: pathlib.Path, pin_roster: bool 
             elif page.exists():
                 problems.append(Problem(name, "is not a file"))
             continue
-        try:
-            text = page.read_text(encoding="utf-8")
-        except UnicodeDecodeError:
-            problems.append(Problem(name, "is not valid UTF-8 text"))
+        text, why = read_text(page)
+        if why:
+            problems.append(Problem(name, why))
             continue
         problems.extend(check_page(name, text, store, boundary))
         if name == "README.md":

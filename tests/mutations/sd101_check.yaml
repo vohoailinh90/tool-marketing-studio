@@ -802,10 +802,6 @@ mutations:
   find: "    if meta.get(\"metadata_ref\") != f\"../../metadata/{lesson_id}.json\":"
   replace: "    if False:"
   test: tests.test_sd101_check.LessonFilesTests.test_lesson_yaml_only_points_at_the_metadata
-- label: a lesson.yaml that does not parse raises
-  find: "            except (yaml.YAMLError, ValueError) as error:"
-  replace: "            except yaml.YAMLError as error:"
-  test: tests.test_sd101_check.LessonFilesTests.test_a_lesson_yaml_that_does_not_parse_is_reported_not_raised
 - label: a metadata file that is not an object is accepted
   find: "    if not isinstance(meta, dict):\n        return [Problem(where, \"is not a JSON object\")]"
   replace: "    if False:\n        return [Problem(where, \"is not a JSON object\")]"
@@ -1538,14 +1534,6 @@ mutations:
   find: (path.suffix == ".md" and stem in lesson_ids)
   replace: (path.suffix == ".md")
   test: tests.test_sd101_check.LessonMarkdownRuleTests.test_lessons_holds_lesson_directories_and_pointers_to_them
-- label: a pointer need not link its lesson
-  find: "        elif path.is_file() and f\"{stem}/lesson.md\" not in {"
-  replace: "        elif False and f\"{stem}/lesson.md\" not in {"
-  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_lessons_holds_lesson_directories_and_pointers_to_them
-- label: a directory is read as a pointer
-  find: "        elif path.is_file() and f\"{stem}/lesson.md\""
-  replace: "        elif f\"{stem}/lesson.md\""
-  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_lessons_holds_lesson_directories_and_pointers_to_them
 - label: a pointer's link is not normalised
   find: posixpath.normpath(relative_target(d) or "")
   replace: relative_target(d) or ""
@@ -1554,10 +1542,6 @@ mutations:
   find: posixpath.normpath(relative_target(d) or "")
   replace: posixpath.normpath(relative_target(d))
   test: tests.test_sd101_check.RobustnessTests.test_odd_links_and_paths_in_lesson_md_and_the_pages_are_reported_not_raised
-- label: a pointer that is not UTF-8 raises
-  find: link_destinations(path.read_text(encoding="utf-8", errors="replace"))
-  replace: link_destinations(path.read_text(encoding="utf-8"))
-  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_lessons_holds_lesson_directories_and_pointers_to_them
 - label: a symbolic link in metadata is allowed
   find: "        if path.is_symlink() or not path.is_file() or path.suffix != \".json\""
   replace: "        if not path.is_file() or path.suffix != \".json\""
@@ -1630,10 +1614,6 @@ mutations:
   find: "        if not (diagrams_dir / f\"{lesson_id}-main.svg\").is_file():"
   replace: "        if False:"
   test: tests.test_sd101_check.LessonFilesTests.test_a_missing_file_is_reported
-- label: a lesson.md that is not UTF-8 raises
-  find: "            except UnicodeDecodeError:\n                problems.append(Problem(lesson_id, \"lesson.md is not valid UTF-8 text\"))"
-  replace: "            except OSError:\n                problems.append(Problem(lesson_id, \"lesson.md is not valid UTF-8 text\"))"
-  test: tests.test_sd101_check.LessonFilesTests.test_text_that_is_not_utf8_is_reported_not_raised
 - label: a README that is missing is accepted
   find: "            if name == \"README.md\":\n                problems.append(Problem(name, \"is missing\"))"
   replace: "            if False:\n                problems.append(Problem(name, \"is missing\"))"
@@ -1646,10 +1626,6 @@ mutations:
   find: "            elif page.exists():\n                problems.append(Problem(name, \"is not a file\"))"
   replace: "            elif False:\n                problems.append(Problem(name, \"is not a file\"))"
   test: tests.test_sd101_check.OtherPageRuleTests.test_a_page_that_is_a_directory_or_a_link_is_reported
-- label: a page that is not UTF-8 raises
-  find: "        except UnicodeDecodeError:\n            problems.append(Problem(name, \"is not valid UTF-8 text\"))"
-  replace: "        except OSError:\n            problems.append(Problem(name, \"is not valid UTF-8 text\"))"
-  test: tests.test_sd101_check.LessonFilesTests.test_text_that_is_not_utf8_is_reported_not_raised
 - label: the shared page rules are not applied
   find: "        problems.extend(check_page(name, text, store, boundary))"
   replace: "        pass"
@@ -1670,6 +1646,50 @@ mutations:
   find: "    problems.extend(check_progress(store / \"progress.json\", entries, written))"
   replace: "    pass"
   test: tests.test_sd101_check.ProgressRuleTests.test_a_missing_or_unreadable_progress_file_is_reported
+- label: a lesson.yaml nested too deeply raises
+  find: 'except (yaml.YAMLError, ValueError, OSError, RecursionError) as error:'
+  replace: 'except (yaml.YAMLError, ValueError, OSError) as error:'
+  test: tests.test_sd101_check.LessonFilesTests.test_a_lesson_yaml_that_does_not_parse_is_reported_not_raised
+- label: a lesson.yaml that is not UTF-8 raises
+  find: 'except (yaml.YAMLError, ValueError, OSError, RecursionError) as error:'
+  replace: 'except (yaml.YAMLError, OSError, RecursionError) as error:'
+  test: tests.test_sd101_check.LessonFilesTests.test_a_lesson_yaml_that_does_not_parse_is_reported_not_raised
+- label: a lesson.yaml that does not parse raises
+  find: 'except (yaml.YAMLError, ValueError, OSError, RecursionError) as error:'
+  replace: 'except (ValueError, OSError, RecursionError) as error:'
+  test: tests.test_sd101_check.LessonFilesTests.test_a_lesson_yaml_that_does_not_parse_is_reported_not_raised
+- label: a lesson.yaml the filesystem refuses raises
+  find: 'except (yaml.YAMLError, ValueError, OSError, RecursionError) as error:'
+  replace: 'except (yaml.YAMLError, ValueError, RecursionError) as error:'
+  test: tests.test_sd101_check.LessonFilesTests.test_a_file_the_filesystem_refuses_is_reported_not_raised
+- label: a text file the filesystem refuses raises
+  find: "    except OSError as error:\n        return None, f\"cannot be read: {error}\""
+  replace: "    except ZeroDivisionError as error:\n        return None, f\"cannot be read: {error}\""
+  test: tests.test_sd101_check.LessonFilesTests.test_a_file_the_filesystem_refuses_is_reported_not_raised
+- label: a text file that is not UTF-8 raises
+  find: "    except UnicodeDecodeError:\n        return None, \"is not valid UTF-8 text\""
+  replace: "    except ZeroDivisionError:\n        return None, \"is not valid UTF-8 text\""
+  test: tests.test_sd101_check.LessonFilesTests.test_text_that_is_not_utf8_is_reported_not_raised
+- label: a text file that is not UTF-8 is reported as unreadable
+  find: return None, "is not valid UTF-8 text"
+  replace: 'return None, "cannot be read: not UTF-8"'
+  test: tests.test_sd101_check.LessonFilesTests.test_text_that_is_not_utf8_is_reported_not_raised
+- label: a pointer the filesystem refuses raises
+  find: "            except OSError as error:\n                problems.append(Problem(\"lessons\", f\"{path.name} cannot be read"
+  replace: "            except ZeroDivisionError as error:\n                problems.append(Problem(\"lessons\", f\"{path.name} cannot be read"
+  test: tests.test_sd101_check.LessonFilesTests.test_a_file_the_filesystem_refuses_is_reported_not_raised
+- label: a pointer that is not UTF-8 raises
+  find: pointer_text = path.read_text(encoding="utf-8", errors="replace")
+  replace: pointer_text = path.read_text(encoding="utf-8")
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_lessons_holds_lesson_directories_and_pointers_to_them
+- label: a pointer need not link its lesson
+  find: "            if f\"{stem}/lesson.md\" not in {posixpath.normpath"
+  replace: "            if False and f\"{stem}/lesson.md\" not in {posixpath.normpath"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_lessons_holds_lesson_directories_and_pointers_to_them
+- label: a directory is read as a pointer
+  find: "        elif path.is_file():\n            try:\n                pointer_text"
+  replace: "        elif True:\n            try:\n                pointer_text"
+  test: tests.test_sd101_check.LessonMarkdownRuleTests.test_lessons_holds_lesson_directories_and_pointers_to_them
 - label: a broken store exits zero
   find: "    return 1 if problems else 0"
   replace: "    return 0"

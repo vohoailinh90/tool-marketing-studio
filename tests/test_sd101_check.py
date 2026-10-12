@@ -552,7 +552,8 @@ class LessonFilesTests(StoreCase):
 
     def test_a_lesson_yaml_that_does_not_parse_is_reported_not_raised(self) -> None:
         lesson_dir = self.store / "lessons" / "sd-01-001"
-        for name, text in {"invalid syntax": "id: [unclosed\n", "a tab": "id:\n\t- x\n"}.items():
+        for name, text in {"invalid syntax": "id: [unclosed\n", "a tab": "id:\n\t- x\n",
+                           "deep nesting": "[" * 100_000 + "]" * 100_000}.items():
             with self.subTest(file=name):
                 (lesson_dir / "lesson.yaml").write_text(text, encoding="utf-8")
                 self.assertProblem("lesson.yaml does not parse")
@@ -600,6 +601,28 @@ class LessonFilesTests(StoreCase):
         for name, (text, fragment) in cases.items():
             with self.subTest(file=name):
                 (lesson_dir / "lesson.yaml").write_text(text, encoding="utf-8")
+                self.assertProblem(fragment)
+
+    @staticmethod
+    def refusing(name: str):
+        """Reading a file called `name` fails as it does for a file the process may not open."""
+        real = Path.read_text
+
+        def read_text(path, *args, **kwargs):
+            if path.name == name:
+                raise PermissionError(13, "Permission denied", str(path))
+            return real(path, *args, **kwargs)
+        return mock.patch.object(Path, "read_text", read_text)
+
+    def test_a_file_the_filesystem_refuses_is_reported_not_raised(self) -> None:
+        (self.store / "PROGRESS.md").write_text("# x\n", encoding="utf-8")
+        (self.store / "lessons" / "sd-01-001.md").write_text("[x](sd-01-001/lesson.md)\n", encoding="utf-8")
+        cases = {"lesson.md": "sd-01-001: lesson.md cannot be read", "lesson.yaml": "sd-01-001: lesson.yaml does not parse",
+                 "README.md": "README.md: cannot be read", "PROGRESS.md": "PROGRESS.md: cannot be read",
+                 "sd-01-001.md": "lessons: sd-01-001.md cannot be read",
+                 "sd-01-001.json": "metadata/sd-01-001.json: cannot be read", "progress.json": "progress.json: cannot be read"}
+        for name, fragment in cases.items():
+            with self.subTest(file=name), self.refusing(name):
                 self.assertProblem(fragment)
 
     def test_text_that_is_not_utf8_is_reported_not_raised(self) -> None:

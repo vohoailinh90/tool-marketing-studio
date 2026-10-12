@@ -77,7 +77,8 @@ class PullRequestLoopTests(unittest.TestCase):
 
     def test_the_trigger_string_ban_keeps_the_intentional_comment_exception(self) -> None:
         """Step 1 posts the trigger comment; the ban on the literal string elsewhere must not contradict it (section 3)."""
-        self.assertIn("except the one intentional trigger comment", self.section)
+        self.assertIn("except the intentional trigger comments the protocol authorizes", self.section)
+        self.assertIn("each review request of steps 1 and 3, a security review", self.section)
 
     def test_the_next_task_is_never_invented(self) -> None:
         self.assertIn("never invent work", self.section)
@@ -108,6 +109,7 @@ class PullRequestLoopTests(unittest.TestCase):
         loop = protocol[protocol.index(PROTOCOL_SUBSECTION):protocol.index("A human is needed only for")]
         self.assertIn("a P2/P3 whose rejection stands", loop)
         self.assertIn("a rejected P0/P1 is open until", loop)
+        self.assertIn("every review command the work requires", loop)
 
     def test_section_11_applies_the_same_head_rule_per_review_command(self) -> None:
         """Section 11 gates every review request, so it must agree with section 16's per-command rule."""

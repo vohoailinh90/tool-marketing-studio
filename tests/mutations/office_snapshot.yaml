@@ -1,0 +1,152 @@
+# Mutation manifest — see scripts/mutation_check.py
+#
+# The reducer is what makes the dashboard's numbers honest: replay must not see
+# the future, a running agent must never read 100%, and a silent one must not be
+# shown as working. Each entry breaks one of those and names the test that must notice.
+
+target: scripts/office/snapshot.py
+note: A pure function turns events into what the page draws, so each rule that keeps the picture
+  true is one edit and one test.
+mutations:
+- label: replay sees events after the moment being replayed
+  find: |-
+    seen = [event for event in in_window if event["ts"] <= now]
+  replace: |-
+    seen = in_window
+  test: tests.test_office_snapshot.DemoReplayTests.test_replay_never_sees_events_after_now
+- label: a running agent's progress is no longer capped below 100%
+  find: |-
+    return min(PROGRESS_CAP, run["tool_calls"] / max_turns)
+  replace: |-
+    return run["tool_calls"] / max_turns
+  test: tests.test_office_snapshot.ReducerRuleTests.test_progress_never_reaches_100_before_the_agent_stops
+- label: a silent running agent is never shown stalled
+  find: |-
+    return now - run["last_seen"] > STALE_SECONDS
+  replace: |-
+    return False
+  test: tests.test_office_snapshot.ReducerRuleTests.test_a_running_agent_that_has_gone_quiet_is_shown_stalled_not_working
+- label: a request the harness never started is never given up on
+  find: |-
+    elif now is not None and now - run["requested"] > START_TIMEOUT_SECONDS:
+  replace: |-
+    elif False:
+  test: tests.test_office_snapshot.ReducerRuleTests.test_an_abandoned_request_never_outranks_a_later_run_of_the_same_agent
+- label: an abandoned request counts as a success
+  find: |-
+    ok = run["status"] not in ("failed", "abandoned")
+  replace: |-
+    ok = run["status"] != "failed"
+  test: tests.test_office_snapshot.ReducerRuleTests.test_a_spawn_that_never_started_is_stalled_after_the_start_timeout_and_the_main_session_stops_waiting
+- label: a start pairs with the oldest pending request instead of the newest
+  find: |-
+    run = max((item for item in pending if item["agent"] == agent)
+  replace: |-
+    run = min((item for item in pending if item["agent"] == agent)
+  test: tests.test_office_snapshot.ReducerRuleTests.test_a_refused_request_does_not_steal_the_start_of_the_retry_that_follows_it
+- label: the result no longer repairs agents that started crosswise
+  find: |-
+    if bound is not None and bound is not run:
+  replace: |-
+    if False:
+  test: tests.test_office_snapshot.ReducerRuleTests.test_the_result_repairs_two_parallel_agents_of_one_type_that_started_crosswise
+- label: a feature that has only been created is shown as working
+  find: |-
+    return 0, "waiting"
+  replace: |-
+    return 0, "working"
+  test: tests.test_office_snapshot.TeamViewTests.test_a_feature_that_has_only_been_created_is_waiting_for_its_spec_not_busy
+- label: events from before the requirement began are shown
+  find: |-
+    return min(known) - WINDOW_MARGIN
+  replace: |-
+    return None
+  test: tests.test_office_snapshot.ReducerRuleTests.test_events_from_before_the_requirement_began_are_left_out
+- label: the budget counts charges that happen after the replayed moment
+  find: |-
+    spent = [item for item in ledger["invocations"] if (parse_utc(item.get("at")) or 0) <= now]
+  replace: |-
+    spent = list(ledger["invocations"])
+  test: tests.test_office_snapshot.DemoReplayTests.test_the_budget_is_rebuilt_as_of_the_moment_and_reports_base_and_reserves_apart
+- label: a reserve granted later already counts as granted
+  find: |-
+    if when is not None and when > now:
+  replace: |-
+    if False:
+  test: tests.test_office_snapshot.DemoReplayTests.test_the_budget_is_rebuilt_as_of_the_moment_and_reports_base_and_reserves_apart
+- label: reviewers are shown as plain workers
+  find: |-
+    reviewing = info.get("mode") == "reviewing"
+  replace: |-
+    reviewing = False
+  test: tests.test_office_snapshot.DemoReplayTests.test_reviewers_and_critics_are_shown_as_reviewing
+- label: every roster agent is shown whatever the route
+  find: |-
+    shown = set(ran) | possible_agents(ledger) | {name for name, spec in agents.items() if spec.get("always")}
+  replace: |-
+    shown = set(ran) | set(agents)
+  test: tests.test_office_snapshot.DemoReplayTests.test_only_the_agents_worth_showing_appear
+- label: a background launch counts as finished
+  find: |-
+    if event.get("status") != "async_launched":
+  replace: |-
+    if True:
+  test: tests.test_office_snapshot.ReducerRuleTests.test_a_background_launch_keeps_running_until_its_stop_event
+- label: a failed spawn counts as a success
+  find: |-
+    finish(run, ts, "failed", clip(event.get("error")))
+  replace: |-
+    finish(run, ts, "ok", clip(event.get("error")))
+  test: tests.test_office_snapshot.ReducerRuleTests.test_a_failed_spawn_blocks_the_agent_until_a_later_run_succeeds
+- label: a finished role earns no progress credit
+  find: |-
+    credit += 1.0 if view["state"] == "done" else
+  replace: |-
+    credit += 0.0 if view["state"] == "done" else
+  test: tests.test_office_snapshot.DemoReplayTests.test_progress_counts_expected_roles_not_events
+- label: a block verdict reads as approval
+  find: |-
+    return TEAM_STAGES.index("audit"), "blocked"
+  replace: |-
+    return TEAM_STAGES.index("audit"), "done"
+  test: tests.test_office_snapshot.TeamViewTests.test_a_block_verdict_blocks_the_audit_card
+- label: the validator stops requiring every agent to sit in a lane
+  find: |-
+    need(sorted(placed) == sorted(agents), "every agent must sit in exactly one lane")
+  replace: |-
+    need(True, "")
+  test: tests.test_office_snapshot.ValidateTests.test_each_contract_break_is_reported
+- label: the validator stops checking the budget
+  find: |-
+    need(slot["used"] <= slot["granted"] <= slot["cap"], f"budget slot {slot.get('id')}: used > granted or granted > cap")
+  replace: |-
+    need(True, "")
+  test: tests.test_office_snapshot.ValidateTests.test_each_contract_break_is_reported
+- label: a corrupt state.json stops the whole team view
+  find: |-
+    except (OSError, json.JSONDecodeError):
+                continue
+            if not isinstance(state, dict):
+  replace: |-
+    except OSError:
+                continue
+            if not isinstance(state, dict):
+  test: tests.test_office_snapshot.TeamViewTests.test_a_corrupt_state_json_is_skipped_not_fatal
+- label: the latest run is ranked by when it ended, so an abandoned request outranks the retry that overtook it
+  find: |-
+    run = max(mine, key=run_start)
+  replace: |-
+    run = max(mine, key=lambda item: item["ended"] or 0)
+  test: tests.test_office_snapshot.ReducerRuleTests.test_the_latest_run_is_ranked_by_chronology_whatever_end_an_abandoned_request_was_given
+- label: a request overtaken by a later run of the same agent stays pending
+  find: |-
+    if later < len(moments):
+  replace: |-
+    if False:
+  test: tests.test_office_snapshot.ReducerRuleTests.test_a_retry_that_finishes_inside_the_start_timeout_outranks_the_refused_request_at_every_moment
+- label: a repaired result is applied to the object found by tool_use_id instead of the agent it names
+  find: |-
+    run = bound  # the result is the telemetry
+  replace: |-
+    pass  # the result is the telemetry
+  test: tests.test_office_snapshot.ReducerRuleTests.test_the_result_lands_on_the_run_of_the_agent_it_names_after_a_crosswise_repair

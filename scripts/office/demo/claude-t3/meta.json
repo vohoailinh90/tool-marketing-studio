@@ -1,0 +1,48 @@
+{
+  "mode": "claude",
+  "start": 1760000000.0,
+  "end": 1760000112.0,
+  "note": "Sample run: a T3 requirement (identity-model-migration). Events were produced by scripts/hooks/office_events.py.",
+  "agent_files": {
+    "requirement-analyst": {
+      "max_turns": 8,
+      "model": "sonnet",
+      "effort": "medium"
+    },
+    "architecture-critic": {
+      "max_turns": 12,
+      "model": "sonnet",
+      "effort": "high"
+    },
+    "architect": {
+      "max_turns": 10,
+      "model": "sonnet",
+      "effort": "high"
+    },
+    "implementer": {
+      "max_turns": 15,
+      "model": "sonnet",
+      "effort": "high"
+    },
+    "code-reviewer-t3": {
+      "max_turns": 16,
+      "model": "sonnet",
+      "effort": "high"
+    },
+    "code-reviewer-verify": {
+      "max_turns": 24,
+      "model": "sonnet",
+      "effort": "high"
+    },
+    "test-engineer": {
+      "max_turns": 12,
+      "model": "sonnet",
+      "effort": "high"
+    },
+    "code-reviewer": {
+      "max_turns": 12,
+      "model": "sonnet",
+      "effort": "medium"
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "claude": {
+    "boss": {"id": "main", "kind": "robot"},
+    "lanes": [
+      {"id": "requirements", "color": "aqua", "agents": ["requirement-analyst"]},
+      {"id": "architecture", "color": "orange", "agents": ["architecture-critic", "architect"]},
+      {"id": "delivery", "color": "violet", "agents": ["implementer"]},
+      {"id": "verification", "color": "magenta", "agents": ["code-reviewer", "code-reviewer-t3", "test-engineer", "code-reviewer-verify"]}
+    ],
+    "other_lane": {"id": "other", "color": "slate"},
+    "agents": {
+      "requirement-analyst": {"phase": "analysis"},
+      "architect": {"phase": "design", "always": true},
+      "architecture-critic": {"phase": "design", "mode": "reviewing"},
+      "implementer": {"phase": "implement", "always": true},
+      "code-reviewer": {"phase": "verify", "mode": "reviewing"},
+      "code-reviewer-t3": {"phase": "verify", "mode": "reviewing"},
+      "code-reviewer-verify": {"phase": "verify", "mode": "reviewing", "always": true},
+      "test-engineer": {"phase": "verify"}
+    }
+  },
+  "team": {
+    "boss": {"id": "main", "kind": "script"},
+    "lanes": [
+      {"id": "claude", "color": "aqua", "agents": ["claude-spec", "claude-audit"]},
+      {"id": "build", "color": "orange", "agents": ["tester", "coder"]},
+      {"id": "review", "color": "violet", "agents": ["reviewer"]},
+      {"id": "scripts", "color": "slate", "agents": ["gates", "pack"]}
+    ],
+    "agents": {
+      "claude-spec": {},
+      "claude-audit": {"mode": "reviewing"},
+      "tester": {},
+      "coder": {},
+      "reviewer": {"mode": "reviewing"},
+      "gates": {"kind": "script"},
+      "pack": {"kind": "script"}
+    }
+  }
+}

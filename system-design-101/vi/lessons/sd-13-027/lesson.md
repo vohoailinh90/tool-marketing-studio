@@ -1,37 +1,63 @@
-# Pipeline CI/CD: cổng nhanh trước, cổng đắt sau
+# Thiết kế pipeline CI/CD cho một repo: năm quyết định
 
-Một pipeline tốt xếp kiểm tra theo chi phí: cổng rẻ và nhanh đứng trước, cổng chậm và đắt đứng sau, để lỗi bị chặn càng sớm càng tốt.
+Thay vì kể pipeline có những giai đoạn nào, hãy nhìn các quyết định bạn phải đưa ra khi dựng pipeline cho một repo: khi nào chạy, chạy nhanh bằng cách nào, cấp quyền gì, ai được đưa lên môi trường nào và khi nào được merge.
 
-![Bốn nhóm cổng theo thời gian phản hồi tăng dần: kiểm tra tĩnh và kiểm thử đơn vị trong vài giây đến vài phút, kiểm thử tích hợp, kiểm thử toàn diện trên môi trường thử, rồi duyệt và theo dõi trên production.](../../diagrams/sd-13-027-main.svg)
+![Năm quyết định khi dựng pipeline cho một repo: khi nào chạy, làm sao chạy nhanh, cấp quyền gì, ai được đưa lên môi trường nào, và điều kiện để merge.](../../diagrams/sd-13-027-main.svg)
 
-**Đọc hình:** thứ tự là về chi phí phản hồi; tên giai đoạn cụ thể khác nhau tùy dự án.
+**Đọc hình:** năm quyết định độc lập; tên cơ chế là của GitHub Actions nhưng nền tảng khác có khái niệm tương tự.
 
 ## Nhìn hình thử trả lời
 
-Kiểm thử đơn vị thất bại. Có nên vẫn chạy kiểm thử toàn diện để "xem thêm"?
+Một pull request từ fork của người lạ có được dùng bí mật của repo gốc trong workflow không?
 
 <details>
 <summary>Xem đáp án</summary>
 
-Thường không. Cổng đắt chạy khi cổng rẻ đã qua giúp tiết kiệm thời gian và không đưa bản đã biết lỗi đi tiếp. Dừng sớm (fail fast) là mục đích của việc xếp cổng.
+Mặc định không: với sự kiện `pull_request` từ fork, bí mật (trừ GITHUB_TOKEN quyền thấp) không được chuyển cho runner, để người lạ không đọc được. Sự kiện `pull_request_target` chạy với ngữ cảnh repo gốc nên phải rất thận trọng khi chạy mã từ PR.
 
 </details>
 
 ## Giới hạn cần nhớ
 
-Pipeline xanh chỉ chứng minh các kiểm tra đã viết đều qua, không bảo đảm không có lỗi. Kiểm thử chập chờn (khi qua khi trượt) làm mọi người mất tin và bỏ qua kết quả đỏ.
+Pipeline xanh chỉ chứng minh các kiểm tra đã viết đều qua, không bảo đảm không có lỗi. Mỗi quyết định có giá: cổng chặn nhiều làm chậm phản hồi, người duyệt thủ công làm chậm phát hành, và quyền quá chặt có thể làm pipeline hỏng khi cần việc mới. Kiểm thử chập chờn làm mọi người mất tin vào kết quả đỏ.
 
 <details>
 <summary>Xem sâu hơn</summary>
 
-- **Phản hồi nhanh:** kết quả phải về trong thời gian đủ ngắn để người viết mã còn nhớ thay đổi.
-- **Build một lần:** dùng cùng sản phẩm build cho mọi môi trường, để thứ được kiểm thử là thứ được phát hành.
-- **Cổng duyệt cuối:** có thể là người (Continuous Delivery) hoặc quy tắc tự động (Continuous Deployment).
-- **Chạy song song:** các kiểm tra độc lập chạy song song để rút ngắn thời gian của một cổng.
+```yaml
+name: ci
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm test
+```
+
+- **Hủy lượt cũ:** chỉ hủy với PR; không nên hủy lượt đang chạy trên nhánh chính hay phát hành.
+- **Quyền tối thiểu:** khai `permissions` ở mức workflow hoặc job, chỉ mở thêm khi cần.
+- **OIDC:** workflow nhận một token OIDC từ GitHub rồi đổi lấy thông tin xác thực ngắn hạn từ nhà cung cấp cloud, thay vì lưu khóa dài hạn trong bí mật.
+- **Environment:** đặt người duyệt bắt buộc và bí mật riêng cho từng môi trường.
+- **Branch protection:** đặt các kiểm tra bắt buộc phải qua trước khi merge vào nhánh chính.
 
 </details>
 
 ## Nguồn đối chiếu
 
 - [ByteByteGo tại snapshot cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/cicd-pipeline-explained-in-simple-terms.md).
-- Martin Fowler: [DeploymentPipeline](https://martinfowler.com/bliki/DeploymentPipeline.html), [Continuous Integration](https://martinfowler.com/articles/continuousIntegration.html).
+- GitHub Docs: [workflow syntax](https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions), [bảo mật workflow](https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions), [environments](https://docs.github.com/en/actions/managing-workflow-runs-and-deployments/managing-deployments/managing-environments-for-deployment), [protected branches](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches).
+- Martin Fowler: [DeploymentPipeline](https://martinfowler.com/bliki/DeploymentPipeline.html).

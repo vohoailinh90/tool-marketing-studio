@@ -39,13 +39,13 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 18. [Terraform biến mã thành hạ tầng](lessons/sd-13-018/lesson.md) — bài nháp, chờ review kỹ thuật.
 19. [DevOps, SRE và Platform Engineering khác nhau thế nào](lessons/sd-13-019/lesson.md) — bài nháp, chờ review kỹ thuật.
 20. [Rủi ro khi triển khai và cách giảm](lessons/sd-13-020/lesson.md) — bài nháp, chờ review kỹ thuật.
-21. [Gỡ lỗi bằng số đo, vết và nhật ký](lessons/sd-13-021/lesson.md) — bài nháp, chờ review kỹ thuật.
+21. [Làm cho một request chậm truy vết được](lessons/sd-13-021/lesson.md) — bài nháp, chờ review kỹ thuật.
 22. [Tìm nguyên nhân từ nhật ký bằng dòng lệnh](lessons/sd-13-022/lesson.md) — bài nháp, chờ review kỹ thuật.
 23. [DevOps và NoOps: ai lo phần vận hành](lessons/sd-13-023/lesson.md) — bài nháp, chờ review kỹ thuật.
 24. [Nginx làm reverse proxy cho một API: năm chỗ hay sai](lessons/sd-13-024/lesson.md) — bài nháp, chờ review kỹ thuật.
-25. [Kubernetes: từ lệnh apply đến container chạy](lessons/sd-13-025/lesson.md) — bài nháp, chờ review kỹ thuật.
+25. [Pod không chạy: chẩn đoán theo từng chặng](lessons/sd-13-025/lesson.md) — bài nháp, chờ review kỹ thuật.
 26. [Gỡ lỗi Docker: bốn sự cố hay gặp](lessons/sd-13-026/lesson.md) — bài nháp, chờ review kỹ thuật.
-27. [Pipeline CI/CD: cổng nhanh trước, cổng đắt sau](lessons/sd-13-027/lesson.md) — bài nháp, chờ review kỹ thuật.
+27. [Thiết kế pipeline CI/CD cho một repo: năm quyết định](lessons/sd-13-027/lesson.md) — bài nháp, chờ review kỹ thuật.
 
 Danh mục đầy đủ và snapshot nguồn: [bảng đối chiếu](../../brainstorm/system-design-101-vi/source-map.json).
 Quy tắc đã chốt: [kết luận brainstorm](../../brainstorm/system-design-101-vi/DECISIONS.md).

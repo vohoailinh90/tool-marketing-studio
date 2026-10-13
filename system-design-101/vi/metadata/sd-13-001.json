@@ -20,8 +20,8 @@
   "related": [
     {
       "lesson_id": "sd-13-025",
-      "relation": "prerequisite-context",
-      "reason_vi": "Kiến trúc cụm giúp hiểu Pod, scheduler và kubelet nhắc tới ở đây."
+      "relation": "context",
+      "reason_vi": "Chẩn đoán Pod không chạy dùng lại các khái niệm Pod, scheduler và kubelet."
     }
   ],
   "verification": {

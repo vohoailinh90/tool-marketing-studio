@@ -1,6 +1,6 @@
 {
   "id": "sd-13-025",
-  "title_vi": "Kubernetes: từ lệnh apply đến container chạy",
+  "title_vi": "Pod không chạy: chẩn đoán theo từng chặng",
   "language": "vi",
   "kind": "flow",
   "content_status": "draft",
@@ -19,14 +19,14 @@
   "prerequisites": [],
   "related": [
     {
-      "lesson_id": "sd-13-006",
+      "lesson_id": "sd-13-016",
       "relation": "context",
-      "reason_vi": "Service và kube-proxy."
+      "reason_vi": "Thang gỡ lỗi kubectl."
     },
     {
       "lesson_id": "sd-13-001",
       "relation": "context",
-      "reason_vi": "Mẫu thiết kế cho Pod."
+      "reason_vi": "Probe, tài nguyên và init container."
     }
   ],
   "verification": {
@@ -50,21 +50,25 @@
   },
   "claims": [
     {
-      "claim_vi": "Mặt phẳng điều khiển gồm kube-apiserver, etcd, kube-scheduler và kube-controller-manager.",
-      "source": "https://kubernetes.io/docs/concepts/overview/components/"
+      "claim_vi": "Scheduler đặt Pod dựa trên requests; sự kiện FailedScheduling nêu lý do.",
+      "source": "https://kubernetes.io/docs/concepts/scheduling-eviction/kube-scheduler/"
     },
     {
-      "claim_vi": "Mỗi node chạy kubelet và thường có kube-proxy cùng container runtime.",
-      "source": "https://kubernetes.io/docs/concepts/overview/components/"
+      "claim_vi": "requests dùng để đặt Pod còn limits giới hạn mức dùng tối đa.",
+      "source": "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/"
     },
     {
-      "claim_vi": "Các container trong một Pod chia sẻ mạng và có thể gọi nhau qua localhost.",
-      "source": "https://kubernetes.io/docs/concepts/workloads/pods/"
+      "claim_vi": "Container khởi động lại có thời gian chờ tăng dần (CrashLoopBackOff).",
+      "source": "https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/"
+    },
+    {
+      "claim_vi": "Các bước gỡ lỗi Pod: describe, logs, events.",
+      "source": "https://kubernetes.io/docs/tasks/debug/debug-application/debug-pods/"
     }
   ],
   "source_deviations": [
-    "Nguồn chia thành control plane và nodes rồi liệt kê thành phần; bài đi theo luồng một lệnh apply. Luồng được đơn giản hóa."
+    "Nguồn mô tả kiến trúc cụm (control plane, node, Pod); bài bỏ cấu trúc đó, đổi phạm vi sang chẩn đoán Pod không chạy theo từng chặng."
   ],
-  "design_notes_vi": "Năm thẻ dọc theo luồng yêu cầu, màu phân biệt mặt phẳng điều khiển và node.",
+  "design_notes_vi": "Bốn chặng khởi động nối mũi tên, kèm ghi chú bắt đầu bằng describe.",
   "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
 }

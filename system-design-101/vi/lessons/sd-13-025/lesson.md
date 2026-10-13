@@ -1,38 +1,44 @@
-# Kubernetes: từ lệnh apply đến container chạy
+# Pod không chạy: chẩn đoán theo từng chặng
 
-Cách dễ hiểu kiến trúc cụm là đi theo một lệnh `kubectl apply` tạo Deployment và xem lần lượt thành phần nào làm gì.
+Khi một Pod không chạy, trạng thái hiển thị cho biết nó dừng ở chặng nào: chưa có node, node chưa khởi động xong container, container chết, hay chạy mà chưa sẵn sàng. Mỗi chặng có vài nguyên nhân quen thuộc và một chỗ để xem.
 
-![Luồng năm bước: API server nhận yêu cầu và lưu vào etcd, controller tạo Pod theo khai báo, scheduler chọn node, kubelet trên node chạy container, kube-proxy (thành phần mặc định, có thể thay) giúp Service tới đúng Pod.](../../diagrams/sd-13-025-main.svg)
+![Bốn chặng khi Pod không chạy: Pending khi chưa có node thường do thiếu tài nguyên theo requests, taint, nodeSelector hay PVC chưa gắn; ContainerCreating khi kéo image hoặc gắn volume lỗi; chạy rồi thoát như CrashLoopBackOff hay OOMKilled; chạy nhưng chưa Ready do readiness probe thất bại.](../../diagrams/sd-13-025-main.svg)
 
-**Đọc hình:** màu tím là mặt phẳng điều khiển, xanh là thành phần trên node; mọi thành phần nói chuyện qua API server.
+**Đọc hình:** bốn chặng theo thứ tự Pod đi qua khi khởi động; lỗi ở chặng nào thì dừng ở đó.
 
 ## Nhìn hình thử trả lời
 
-Hai container trong cùng một Pod gọi nhau bằng địa chỉ nào?
+Pod ở Pending, `kubectl describe pod` báo `0/3 nodes are available: 3 Insufficient memory`. Điều gì đang xảy ra và nên làm gì?
 
 <details>
 <summary>Xem đáp án</summary>
 
-`localhost`. Các container trong một Pod dùng chung không gian mạng nên cùng một IP và gọi nhau qua `localhost` bằng cổng khác nhau.
+Scheduler không tìm được node nào còn đủ bộ nhớ cho `requests` của Pod. Giảm `requests` nếu khai quá tay, hoặc thêm tài nguyên cho node hay thêm node. `limits` không quyết định việc đặt Pod, `requests` mới quyết định.
 
 </details>
 
 ## Giới hạn cần nhớ
 
-Chạy một mặt phẳng điều khiển trên một máy thì không chịu được lỗi. Môi trường production thường chạy nhiều bản của mặt phẳng điều khiển và nhiều node. Bài này đơn giản hóa luồng: thực tế còn nhiều bước kiểm tra và vòng lặp phản hồi.
+Tên trong cột STATUS của kubectl là cách hiển thị tóm tắt, không phải giai đoạn (phase) chính thức. Một Pod có thể kẹt vì nhiều lý do cùng lúc, nên đọc sự kiện thay vì đoán từ tên. Bài không đi vào lỗi mạng hay bảo mật.
 
 <details>
 <summary>Xem sâu hơn</summary>
 
-- **API server** là thành phần duy nhất đọc ghi etcd; kubectl, controller, scheduler và kubelet đều đi qua nó.
-- **etcd** lưu trạng thái cụm nên cần sao lưu.
-- **Controller manager** chạy nhiều controller; mỗi cái là vòng lặp so trạng thái mong muốn với hiện tại. Với Deployment, controller của Deployment tạo hoặc cập nhật ReplicaSet, rồi controller của ReplicaSet tạo Pod; nếu Deployment có mà thiếu Pod, hãy xem ReplicaSet ở giữa.
-- **kubelet** nhận mô tả Pod gán cho node của nó và bảo đảm container chạy đúng.
-- **kube-proxy** là thành phần mặc định lập luật mạng trên node để Service tới đúng Pod; một số plugin mạng (như Cilium) có thể thay nó nên nó là thành phần tùy chọn.
+```bash
+kubectl describe pod ten-pod             # phần Events cho biết lý do ở chặng nào
+kubectl logs ten-pod --previous          # nhật ký của lần chạy trước khi chết
+kubectl get events --sort-by=.lastTimestamp
+```
+
+- **Pending:** scheduler chọn node dựa trên `requests` của Pod, cùng taint, toleration, nodeSelector và affinity. Sự kiện `FailedScheduling` liệt kê lý do loại từng node. PVC chưa gắn được cũng giữ Pod ở Pending.
+- **ContainerCreating:** kubelet nhờ container runtime kéo image và chuẩn bị volume. Tên image sai, thiếu quyền kéo (cần `imagePullSecrets`) hay registry không với tới cho `ErrImagePull` rồi `ImagePullBackOff`.
+- **CrashLoopBackOff:** kubelet khởi động lại container và tăng dần thời gian chờ giữa các lần (tối đa vài phút); tìm nguyên nhân trong `logs --previous`.
+- **OOMKilled:** `describe pod` ghi lý do ở trạng thái lần trước của container; mã thoát 137 thường là bị dừng cưỡng bức, trong đó có vượt `limits` bộ nhớ.
+- **Chưa Ready:** container chạy nhưng readiness probe thất bại, nên Pod không được tính là sẵn sàng.
 
 </details>
 
 ## Nguồn đối chiếu
 
 - [ByteByteGo tại snapshot cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-is-k8s-kubernetes.md).
-- Kubernetes: [thành phần của cụm](https://kubernetes.io/docs/concepts/overview/components/), [Pod](https://kubernetes.io/docs/concepts/workloads/pods/).
+- Kubernetes: [gỡ lỗi Pod](https://kubernetes.io/docs/tasks/debug/debug-application/debug-pods/), [vòng đời Pod](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/), [tài nguyên container](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/), [kube-scheduler](https://kubernetes.io/docs/concepts/scheduling-eviction/kube-scheduler/).

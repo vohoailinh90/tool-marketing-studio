@@ -1,8 +1,8 @@
 {
   "id": "sd-13-021",
-  "title_vi": "Gỡ lỗi bằng số đo, vết và nhật ký",
+  "title_vi": "Làm cho một request chậm truy vết được",
   "language": "vi",
-  "kind": "flow",
+  "kind": "comparison",
   "content_status": "draft",
   "source_ref": "sd-13-021",
   "source_snapshot": {
@@ -50,13 +50,29 @@
   },
   "claims": [
     {
-      "claim_vi": "OpenTelemetry định nghĩa các tín hiệu traces, metrics và logs.",
-      "source": "https://opentelemetry.io/docs/concepts/signals/"
+      "claim_vi": "Header traceparent của W3C Trace Context mang trace-id và parent-id giữa các dịch vụ.",
+      "source": "https://www.w3.org/TR/trace-context/"
+    },
+    {
+      "claim_vi": "OpenTelemetry truyền ngữ cảnh vết giữa các dịch vụ qua context propagation.",
+      "source": "https://opentelemetry.io/docs/concepts/context-propagation/"
+    },
+    {
+      "claim_vi": "Lấy mẫu theo đầu vết và theo đuôi vết có đánh đổi khác nhau.",
+      "source": "https://opentelemetry.io/docs/concepts/sampling/"
+    },
+    {
+      "claim_vi": "Histogram cho phép tính phân vị xấp xỉ từ các khoảng.",
+      "source": "https://prometheus.io/docs/practices/histograms/"
+    },
+    {
+      "claim_vi": "Mỗi tổ hợp nhãn khác nhau tạo một chuỗi mới.",
+      "source": "https://prometheus.io/docs/practices/naming/"
     }
   ],
   "source_deviations": [
-    "Nguồn trình bày ba trụ cột theo ba mục kèm công cụ (ELK, OpenTelemetry, Prometheus, InfluxDB, Grafana); bài tổ chức theo quy trình gỡ lỗi và bỏ danh sách công cụ."
+    "Nguồn trình bày ba trụ cột (nhật ký, vết, số đo) theo ba mục; bài bỏ cách chia đó, đổi phạm vi sang năm việc cụ thể khi gắn thiết bị đo để truy vết một request chậm."
   ],
-  "design_notes_vi": "Ba bước dọc nối nhau, ghi chú về trace ID.",
+  "design_notes_vi": "Năm thẻ việc cần làm, không theo ba loại tín hiệu.",
   "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
 }

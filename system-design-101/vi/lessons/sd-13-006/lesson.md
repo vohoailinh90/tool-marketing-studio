@@ -2,7 +2,7 @@
 
 Service là lớp địa chỉ ổn định trước một nhóm Pod. Khi nó không nhận traffic, hãy kiểm tra theo thứ tự từ trong ra ngoài: nhãn, cổng, trạng thái sẵn sàng, tên và đường vào từ ngoài cụm.
 
-![Năm chỗ cần kiểm tra khi Service không nhận traffic: selector không khớp nhãn Pod, port và targetPort lệch, Pod chưa sẵn sàng nên bị loại khỏi endpoint, tên DNS sai namespace, và đường vào từ ngoài cụm như NodePort bị chặn hoặc LoadBalancer ở trạng thái pending.](../../diagrams/sd-13-006-main.svg)
+![Năm chỗ cần kiểm tra khi Service không nhận traffic: selector không khớp nhãn Pod nên EndpointSlice trống, port và targetPort lệch, Pod chưa sẵn sàng nên endpoint có ready là false và không nhận traffic, tên DNS sai namespace, và đường vào từ ngoài cụm như NodePort bị chặn hoặc LoadBalancer ở trạng thái pending.](../../diagrams/sd-13-006-main.svg)
 
 **Đọc hình:** năm bước xếp theo thứ tự kiểm tra thường hiệu quả, không phải thứ tự dữ liệu chạy.
 

@@ -1,38 +1,40 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 976" width="320" height="976" role="img" aria-labelledby="title desc">
-<title id="title">Kubernetes: từ lệnh apply đến container chạy</title>
-<desc id="desc">Luồng năm bước: API server nhận yêu cầu và lưu vào etcd, controller tạo Pod theo khai báo, scheduler chọn node, kubelet trên node chạy container, kube-proxy (thành phần mặc định, có thể thay) giúp Service tới đúng Pod.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1026" width="320" height="1026" role="img" aria-labelledby="title desc">
+<title id="title">Pod không chạy: chẩn đoán theo từng chặng</title>
+<desc id="desc">Bốn chặng khi Pod không chạy: Pending khi chưa có node thường do thiếu tài nguyên theo requests, taint, nodeSelector hay PVC chưa gắn; ContainerCreating khi kéo image hoặc gắn volume lỗi; chạy rồi thoát như CrashLoopBackOff hay OOMKilled; chạy nhưng chưa Ready do readiness probe thất bại.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="976" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
-<text x="16" y="30" font-size="20" font-weight="bold">MỘT LỆNH APPLY</text>
-<text x="16" y="58" font-size="16" font-weight="normal">Đi qua các thành phần</text>
-<rect x="16" y="89" width="288" height="101" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
-<text x="30" y="117" font-size="16" font-weight="bold">1 · API server + etcd</text>
-<text x="30" y="144" font-size="16" font-weight="normal">Nhận yêu cầu, kiểm tra, lưu</text>
-<text x="30" y="171" font-size="16" font-weight="normal">trạng thái mong muốn</text>
-<line x1="160" y1="202" x2="160" y2="230" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
-<rect x="16" y="240" width="288" height="155" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
-<text x="30" y="268" font-size="16" font-weight="bold">2 · Controller</text>
-<text x="30" y="295" font-size="16" font-weight="normal">Deployment controller tạo</text>
-<text x="30" y="322" font-size="16" font-weight="normal">ReplicaSet</text>
-<text x="30" y="349" font-size="16" font-weight="normal">ReplicaSet controller tạo</text>
-<text x="30" y="376" font-size="16" font-weight="normal">các Pod</text>
-<line x1="160" y1="407" x2="160" y2="435" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
-<rect x="16" y="445" width="288" height="101" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
-<text x="30" y="473" font-size="16" font-weight="bold">3 · Scheduler</text>
-<text x="30" y="500" font-size="16" font-weight="normal">Chọn node cho Pod chưa có</text>
-<text x="30" y="527" font-size="16" font-weight="normal">chỗ</text>
-<line x1="160" y1="558" x2="160" y2="586" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
-<rect x="16" y="596" width="288" height="155" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
-<text x="30" y="624" font-size="16" font-weight="bold">4 · kubelet (trên</text>
-<text x="30" y="651" font-size="16" font-weight="bold">node)</text>
-<text x="30" y="678" font-size="16" font-weight="normal">Chạy container qua runtime</text>
-<text x="30" y="705" font-size="16" font-weight="normal">Báo trạng thái về API</text>
-<text x="30" y="732" font-size="16" font-weight="normal">server</text>
-<line x1="160" y1="763" x2="160" y2="791" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
-<rect x="16" y="801" width="288" height="155" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
-<text x="30" y="829" font-size="16" font-weight="bold">5 · kube-proxy (mặc</text>
-<text x="30" y="856" font-size="16" font-weight="bold">định)</text>
-<text x="30" y="883" font-size="16" font-weight="normal">Hiện thực Service trên node</text>
-<text x="30" y="910" font-size="16" font-weight="normal">Có thể được plugin mạng</text>
-<text x="30" y="937" font-size="16" font-weight="normal">thay</text>
+<rect width="320" height="1026" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">POD KHÔNG CHẠY</text>
+<text x="16" y="58" font-size="16" font-weight="normal">Dừng ở chặng nào?</text>
+<rect x="16" y="89" width="288" height="182" rx="10" fill="#fee2e2" stroke="#94a3b8"/>
+<text x="30" y="117" font-size="16" font-weight="bold">1 · Pending: chưa có</text>
+<text x="30" y="144" font-size="16" font-weight="bold">node</text>
+<text x="30" y="171" font-size="16" font-weight="normal">Sự kiện FailedScheduling</text>
+<text x="30" y="198" font-size="16" font-weight="normal">Thiếu tài nguyên theo</text>
+<text x="30" y="225" font-size="16" font-weight="normal">requests, taint,</text>
+<text x="30" y="252" font-size="16" font-weight="normal">nodeSelector, PVC chưa gắn</text>
+<line x1="160" y1="283" x2="160" y2="311" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="321" width="288" height="182" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="349" font-size="16" font-weight="bold">2 · ContainerCreating</text>
+<text x="30" y="376" font-size="16" font-weight="normal">Kéo image lỗi:</text>
+<text x="30" y="403" font-size="16" font-weight="normal">ErrImagePull,</text>
+<text x="30" y="430" font-size="16" font-weight="normal">ImagePullBackOff</text>
+<text x="30" y="457" font-size="16" font-weight="normal">Gắn volume hoặc mạng chưa</text>
+<text x="30" y="484" font-size="16" font-weight="normal">xong</text>
+<line x1="160" y1="515" x2="160" y2="543" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="553" width="288" height="155" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="581" font-size="16" font-weight="bold">3 · Chạy rồi thoát</text>
+<text x="30" y="608" font-size="16" font-weight="normal">CrashLoopBackOff: ứng dụng</text>
+<text x="30" y="635" font-size="16" font-weight="normal">thoát liên tục</text>
+<text x="30" y="662" font-size="16" font-weight="normal">OOMKilled: vượt limits bộ</text>
+<text x="30" y="689" font-size="16" font-weight="normal">nhớ</text>
+<line x1="160" y1="720" x2="160" y2="748" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="758" width="288" height="155" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="786" font-size="16" font-weight="bold">4 · Chạy nhưng chưa</text>
+<text x="30" y="813" font-size="16" font-weight="bold">Ready</text>
+<text x="30" y="840" font-size="16" font-weight="normal">Readiness probe thất bại</text>
+<text x="30" y="867" font-size="16" font-weight="normal">Không nhận traffic từ</text>
+<text x="30" y="894" font-size="16" font-weight="normal">Service</text>
+<text x="16" y="945" font-size="16" font-weight="normal">Bắt đầu bằng kubectl describe</text>
+<text x="16" y="972" font-size="16" font-weight="normal">pod: phần Events cho biết</text>
+<text x="16" y="999" font-size="16" font-weight="normal">chặng nào.</text>
 </g></svg>

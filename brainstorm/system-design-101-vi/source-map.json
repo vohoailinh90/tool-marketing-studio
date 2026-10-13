@@ -3621,7 +3621,7 @@
         },
         {
           "id": "sd-13-021",
-          "title_vi": "Gỡ lỗi bằng số đo, vết và nhật ký",
+          "title_vi": "Làm cho một request chậm truy vết được",
           "title_source": "Logging, Tracing, and Metrics",
           "source_url": "https://bytebytego.com/guides/logging-tracing-metrics",
           "source_path": "data/guides/logging-tracing-metrics.md",
@@ -3661,7 +3661,7 @@
         },
         {
           "id": "sd-13-025",
-          "title_vi": "Kubernetes: từ lệnh apply đến container chạy",
+          "title_vi": "Pod không chạy: chẩn đoán theo từng chặng",
           "title_source": "What is Kubernetes (k8s)?",
           "source_url": "https://bytebytego.com/guides/what-is-k8s-kubernetes",
           "source_path": "data/guides/what-is-k8s-kubernetes.md",
@@ -3681,7 +3681,7 @@
         },
         {
           "id": "sd-13-027",
-          "title_vi": "Pipeline CI/CD: cổng nhanh trước, cổng đắt sau",
+          "title_vi": "Thiết kế pipeline CI/CD cho một repo: năm quyết định",
           "title_source": "CI/CD Pipeline Explained in Simple Terms",
           "source_url": "https://bytebytego.com/guides/cicd-pipeline-explained-in-simple-terms",
           "source_path": "data/guides/cicd-pipeline-explained-in-simple-terms.md",

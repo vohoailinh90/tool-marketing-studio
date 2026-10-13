@@ -1,8 +1,8 @@
 {
   "id": "sd-13-027",
-  "title_vi": "Pipeline CI/CD: cổng nhanh trước, cổng đắt sau",
+  "title_vi": "Thiết kế pipeline CI/CD cho một repo: năm quyết định",
   "language": "vi",
-  "kind": "flow",
+  "kind": "comparison",
   "content_status": "draft",
   "source_ref": "sd-13-027",
   "source_snapshot": {
@@ -45,17 +45,29 @@
   },
   "claims": [
     {
-      "claim_vi": "Deployment pipeline là chuỗi giai đoạn đưa thay đổi từ commit tới production, có phản hồi sớm.",
-      "source": "https://martinfowler.com/bliki/DeploymentPipeline.html"
+      "claim_vi": "Workflow có thể khai concurrency để hủy lượt cũ và permissions để giới hạn quyền của token.",
+      "source": "https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions"
     },
     {
-      "claim_vi": "Build một lần và dùng cùng sản phẩm cho các môi trường.",
-      "source": "https://martinfowler.com/articles/continuousIntegration.html"
+      "claim_vi": "Với workflow chạy từ fork, bí mật (trừ GITHUB_TOKEN) không được chuyển cho runner.",
+      "source": "https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions"
+    },
+    {
+      "claim_vi": "Environment có thể yêu cầu người duyệt và có bí mật riêng.",
+      "source": "https://docs.github.com/en/actions/managing-workflow-runs-and-deployments/managing-deployments/managing-environments-for-deployment"
+    },
+    {
+      "claim_vi": "Protected branches cho phép đặt các kiểm tra trạng thái bắt buộc trước khi merge.",
+      "source": "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches"
+    },
+    {
+      "claim_vi": "Deployment pipeline là chuỗi các giai đoạn đưa thay đổi tới production có phản hồi sớm.",
+      "source": "https://martinfowler.com/bliki/DeploymentPipeline.html"
     }
   ],
   "source_deviations": [
-    "Nguồn là danh sách bước từ commit đến production; bài tổ chức theo chi phí và tốc độ phản hồi của từng cổng."
+    "Nguồn là danh sách bước từ commit đến production; bài bỏ trình tự đó, tổ chức theo năm quyết định khi dựng pipeline cho một repo (minh họa bằng GitHub Actions)."
   ],
-  "design_notes_vi": "Bốn thẻ cổng theo chi phí tăng dần, ghi chú về dừng sớm.",
+  "design_notes_vi": "Năm thẻ quyết định, không theo thứ tự giai đoạn.",
   "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
 }

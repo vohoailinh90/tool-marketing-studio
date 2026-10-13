@@ -21,7 +21,7 @@
     {
       "lesson_id": "sd-13-025",
       "relation": "context",
-      "reason_vi": "kube-proxy là nơi hiện thực hóa Service trên node."
+      "reason_vi": "Pod không chạy cũng là lý do Service không có endpoint sẵn sàng."
     }
   ],
   "verification": {

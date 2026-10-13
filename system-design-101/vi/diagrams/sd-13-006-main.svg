@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1031" width="320" height="1031" role="img" aria-labelledby="title desc">
 <title id="title">Service Kubernetes không nhận traffic: năm chỗ cần kiểm tra</title>
-<desc id="desc">Năm chỗ cần kiểm tra khi Service không nhận traffic: selector không khớp nhãn Pod, port và targetPort lệch, Pod chưa sẵn sàng nên bị loại khỏi endpoint, tên DNS sai namespace, và đường vào từ ngoài cụm như NodePort bị chặn hoặc LoadBalancer ở trạng thái pending.</desc>
+<desc id="desc">Năm chỗ cần kiểm tra khi Service không nhận traffic: selector không khớp nhãn Pod nên EndpointSlice trống, port và targetPort lệch, Pod chưa sẵn sàng nên endpoint có ready là false và không nhận traffic, tên DNS sai namespace, và đường vào từ ngoài cụm như NodePort bị chặn hoặc LoadBalancer ở trạng thái pending.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="1031" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="30" font-size="20" font-weight="bold">SERVICE KHÔNG NHẬN</text>

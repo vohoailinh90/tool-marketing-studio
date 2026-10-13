@@ -1,37 +1,39 @@
-# Gỡ lỗi bằng số đo, vết và nhật ký
+# Làm cho một request chậm truy vết được
 
-Ba loại tín hiệu trả lời ba câu hỏi nối tiếp khi hệ thống có vấn đề: có vấn đề không, ở đâu, và vì sao.
+Muốn tìm vì sao một request chậm, bạn cần dữ liệu nối được với nhau. Bài này đi qua năm việc nhỏ khi gắn thiết bị đo cho dịch vụ, mỗi việc làm cho dữ liệu hữu ích hơn khi sự cố xảy ra.
 
-![Quy trình gỡ lỗi ba bước: số đo cho biết có vấn đề không, vết cho biết chậm hoặc lỗi ở đoạn nào của chuỗi gọi, nhật ký cho biết chi tiết vì sao.](../../diagrams/sd-13-021-main.svg)
+![Năm việc khi làm cho một request chậm truy vết được: truyền header traceparent giữa các dịch vụ, ghi nhật ký có cấu trúc kèm trace_id, đo độ trễ bằng histogram thay cho trung bình, giữ nhãn số đo có giới hạn, và lấy mẫu vết có chủ đích.](../../diagrams/sd-13-021-main.svg)
 
-**Đọc hình:** thứ tự là thói quen gỡ lỗi, không phải bắt buộc; nhiều khi bạn bắt đầu từ nhật ký của một lỗi cụ thể.
+**Đọc hình:** năm việc độc lập; cùng nhau chúng cho phép đi từ một con số bất thường tới đúng request và đúng dòng nhật ký.
 
 ## Nhìn hình thử trả lời
 
-Bạn cần biết "độ trễ p99 của tuần trước tăng hay giảm". Dùng tín hiệu nào?
+Độ trễ trung bình là 120 ms nhưng người dùng than chậm. Vì sao con số trung bình không phản ánh điều đó, và nên xem gì?
 
 <details>
 <summary>Xem đáp án</summary>
 
-Số đo, vì đó là dữ liệu đã tổng hợp theo thời gian. Muốn biết một request cụ thể chậm ở đâu thì xem vết; muốn biết lỗi gì xảy ra thì đọc nhật ký.
+Trung bình bị kéo xuống bởi số đông request nhanh, che mất một phần nhỏ rất chậm. Hãy xem phân vị cao như p95 hoặc p99, tính từ histogram thay vì từ giá trị trung bình.
 
 </details>
 
 ## Giới hạn cần nhớ
 
-Ba tín hiệu là cách phân loại, không phải ba hệ thống phải xây riêng. Giá trị lớn nhất đến khi chúng liên kết với nhau (cùng trace ID, cùng nhãn dịch vụ), và mỗi loại có chi phí lưu trữ khác nhau: nhật ký thường tốn nhất.
+Không có bộ thiết bị đo đúng cho mọi hệ thống: truyền ngữ cảnh vết cần mọi dịch vụ trên đường đi cùng hợp tác, lấy mẫu làm mất một số vết, và nhật ký chi tiết tốn chi phí lưu trữ. Bắt đầu từ đường đi quan trọng nhất rồi mở rộng.
 
 <details>
 <summary>Xem sâu hơn</summary>
 
-- **Số đo** gọn, rẻ để giữ lâu, hợp để phát hiện và cảnh báo.
-- **Vết** cho thấy đường đi một request qua nhiều dịch vụ; cần mỗi dịch vụ truyền ngữ cảnh vết.
-- **Nhật ký** chi tiết nhất; nên có định dạng chung để tìm kiếm.
-- **OpenTelemetry** cung cấp API, SDK và giao thức chung cho cả ba loại tín hiệu.
+- **Trace Context:** chuẩn W3C định nghĩa header `traceparent` có dạng `00-<trace-id>-<parent-id>-<cờ>`; thư viện đo lường như OpenTelemetry tự đọc và truyền nó nếu được bật.
+- **Nhật ký có cấu trúc:** mỗi dòng là một đối tượng (ví dụ JSON) có trường như `trace_id`, `service`, `level`, để tìm kiếm chính xác thay vì đoán chuỗi.
+- **Histogram:** chia độ trễ vào các khoảng; phân vị tính xấp xỉ từ các khoảng, nên chọn ranh giới khoảng quanh mục tiêu mức dịch vụ.
+- **Nhãn:** mỗi tổ hợp giá trị nhãn là một chuỗi riêng, nên nhãn có vô hạn giá trị làm số chuỗi bùng nổ.
+- **Lấy mẫu:** lấy mẫu theo đầu vết (quyết định ngay từ đầu) đơn giản nhưng có thể bỏ lỡ vết lỗi; lấy mẫu theo đuôi (quyết định sau khi vết hoàn tất) giữ được vết lỗi và chậm nhưng tốn tài nguyên hơn.
 
 </details>
 
 ## Nguồn đối chiếu
 
 - [ByteByteGo tại snapshot cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/logging-tracing-metrics.md).
-- OpenTelemetry: [signals](https://opentelemetry.io/docs/concepts/signals/), [observability primer](https://opentelemetry.io/docs/concepts/observability-primer/).
+- W3C: [Trace Context](https://www.w3.org/TR/trace-context/). OpenTelemetry: [context propagation](https://opentelemetry.io/docs/concepts/context-propagation/), [sampling](https://opentelemetry.io/docs/concepts/sampling/).
+- Prometheus: [histograms và summaries](https://prometheus.io/docs/practices/histograms/), [đặt tên và nhãn](https://prometheus.io/docs/practices/naming/).

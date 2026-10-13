@@ -1,26 +1,39 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 633" width="320" height="633" role="img" aria-labelledby="title desc">
-<title id="title">Gỡ lỗi bằng số đo, vết và nhật ký</title>
-<desc id="desc">Quy trình gỡ lỗi ba bước: số đo cho biết có vấn đề không, vết cho biết chậm hoặc lỗi ở đoạn nào của chuỗi gọi, nhật ký cho biết chi tiết vì sao.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 960" width="320" height="960" role="img" aria-labelledby="title desc">
+<title id="title">Làm cho một request chậm truy vết được</title>
+<desc id="desc">Năm việc khi làm cho một request chậm truy vết được: truyền header traceparent giữa các dịch vụ, ghi nhật ký có cấu trúc kèm trace_id, đo độ trễ bằng histogram thay cho trung bình, giữ nhãn số đo có giới hạn, và lấy mẫu vết có chủ đích.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="633" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
-<text x="16" y="30" font-size="20" font-weight="bold">TỪ BÁO ĐỘNG ĐẾN</text>
-<text x="16" y="58" font-size="20" font-weight="bold">NGUYÊN NHÂN</text>
-<text x="16" y="86" font-size="16" font-weight="normal">Ba câu hỏi nối tiếp</text>
-<rect x="16" y="117" width="288" height="101" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
-<text x="30" y="145" font-size="16" font-weight="bold">1 · Có vấn đề không?</text>
-<text x="30" y="172" font-size="16" font-weight="normal">Số đo: tỉ lệ lỗi, độ trễ</text>
-<text x="30" y="199" font-size="16" font-weight="normal">Cảnh báo kích hoạt ở đây</text>
-<line x1="160" y1="230" x2="160" y2="258" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
-<rect x="16" y="268" width="288" height="128" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
-<text x="30" y="296" font-size="16" font-weight="bold">2 · Ở đâu?</text>
-<text x="30" y="323" font-size="16" font-weight="normal">Vết: request đi qua dịch vụ</text>
-<text x="30" y="350" font-size="16" font-weight="normal">nào</text>
-<text x="30" y="377" font-size="16" font-weight="normal">Đoạn nào chiếm thời gian</text>
-<line x1="160" y1="408" x2="160" y2="436" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
-<rect x="16" y="446" width="288" height="101" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
-<text x="30" y="474" font-size="16" font-weight="bold">3 · Vì sao?</text>
-<text x="30" y="501" font-size="16" font-weight="normal">Nhật ký: sự kiện chi tiết ở</text>
-<text x="30" y="528" font-size="16" font-weight="normal">đúng chỗ đó</text>
-<text x="16" y="579" font-size="16" font-weight="normal">Gắn trace ID vào nhật ký để</text>
-<text x="16" y="606" font-size="16" font-weight="normal">nhảy từ bước 2 sang bước 3.</text>
+<rect width="320" height="960" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">TRUY VẾT REQUEST</text>
+<text x="16" y="58" font-size="20" font-weight="bold">CHẬM</text>
+<text x="16" y="86" font-size="16" font-weight="normal">Năm việc khi gắn thiết bị đo</text>
+<rect x="16" y="117" width="288" height="128" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="145" font-size="16" font-weight="bold">Truyền ngữ cảnh vết</text>
+<text x="30" y="172" font-size="16" font-weight="normal">Mỗi dịch vụ chuyển tiếp</text>
+<text x="30" y="199" font-size="16" font-weight="normal">header traceparent</text>
+<text x="30" y="226" font-size="16" font-weight="normal">Không truyền thì vết bị đứt</text>
+<rect x="16" y="257" width="288" height="155" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="285" font-size="16" font-weight="bold">Nhật ký có trace_id</text>
+<text x="30" y="312" font-size="16" font-weight="normal">Ghi có cấu trúc, kèm</text>
+<text x="30" y="339" font-size="16" font-weight="normal">trace_id</text>
+<text x="30" y="366" font-size="16" font-weight="normal">Từ một vết nhảy sang đúng</text>
+<text x="30" y="393" font-size="16" font-weight="normal">dòng nhật ký</text>
+<rect x="16" y="424" width="288" height="182" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="452" font-size="16" font-weight="bold">Đo độ trễ bằng</text>
+<text x="30" y="479" font-size="16" font-weight="bold">histogram</text>
+<text x="30" y="506" font-size="16" font-weight="normal">Lưu theo khoảng để tính</text>
+<text x="30" y="533" font-size="16" font-weight="normal">phân vị</text>
+<text x="30" y="560" font-size="16" font-weight="normal">Trung bình che mất đuôi</text>
+<text x="30" y="587" font-size="16" font-weight="normal">chậm</text>
+<rect x="16" y="618" width="288" height="182" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="646" font-size="16" font-weight="bold">Giữ nhãn số đo có giới</text>
+<text x="30" y="673" font-size="16" font-weight="bold">hạn</text>
+<text x="30" y="700" font-size="16" font-weight="normal">Đừng dùng ID người dùng làm</text>
+<text x="30" y="727" font-size="16" font-weight="normal">nhãn</text>
+<text x="30" y="754" font-size="16" font-weight="normal">Chi tiết riêng để ở vết</text>
+<text x="30" y="781" font-size="16" font-weight="normal">hoặc nhật ký</text>
+<rect x="16" y="812" width="288" height="128" rx="10" fill="#fee2e2" stroke="#94a3b8"/>
+<text x="30" y="840" font-size="16" font-weight="bold">Lấy mẫu vết có chủ</text>
+<text x="30" y="867" font-size="16" font-weight="bold">đích</text>
+<text x="30" y="894" font-size="16" font-weight="normal">Không giữ mọi vết</text>
+<text x="30" y="921" font-size="16" font-weight="normal">Ưu tiên vết lỗi và vết chậm</text>
 </g></svg>

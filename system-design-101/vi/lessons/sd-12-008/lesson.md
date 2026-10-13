@@ -2,7 +2,7 @@
 
 **Quốc tế hóa không chỉ là dịch chữ.** Số, ngày giờ, tiền tệ, độ dài câu và cả quy định kế toán đều khác theo nơi người dùng sống. Thiết kế tốt tách phần “đổi theo vùng” ra khỏi logic chung.
 
-![Sáu thẻ dọc cho sáu khía cạnh: ngôn ngữ, với chữ nằm ngoài mã nguồn và dùng câu hoàn chỉnh; bố cục, chừa chỗ cho chữ dài và xuống dòng; múi giờ, lưu UTC và hiển thị giờ địa phương; tiền tệ, tiền hiển thị khác tiền thanh toán; định dạng số, ngày, địa chỉ theo vùng; pháp lý và kế toán theo từng nước.](../../diagrams/sd-12-008-main.svg)
+![Sáu thẻ dọc cho sáu khía cạnh: ngôn ngữ, với chữ nằm ngoài mã nguồn và dùng câu hoàn chỉnh; bố cục, chừa chỗ cho chữ dài và xuống dòng; múi giờ, lưu thời điểm đã xảy ra theo UTC còn lịch hẹn tương lai thì lưu kèm tên múi giờ; tiền tệ, tiền hiển thị khác tiền thanh toán; định dạng số, ngày, địa chỉ theo vùng; pháp lý và kế toán theo từng nước.](../../diagrams/sd-12-008-main.svg)
 
 ## Đọc hình
 
@@ -29,7 +29,7 @@ Máy chủ cần lưu giờ đặt hàng của khách ở nhiều nước. Nên 
 <details>
 <summary>Xem đáp án</summary>
 
-Lưu UTC và chuyển sang giờ địa phương khi hiển thị. Giờ địa phương chỉ là một cách nhìn; lưu UTC tránh nhầm giữa nhiều múi giờ và khi nơi nào đó đổi giờ mùa hè.
+Giờ đặt hàng là thời điểm đã xảy ra, nên lưu UTC và chuyển sang giờ địa phương khi hiển thị. Giờ địa phương chỉ là một cách nhìn; lưu UTC tránh nhầm giữa nhiều múi giờ và khi nơi nào đó đổi giờ mùa hè. Lịch hẹn trong tương lai tính theo giờ địa phương thì khác: lưu kèm tên múi giờ.
 
 </details>
 

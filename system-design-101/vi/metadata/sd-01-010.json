@@ -33,7 +33,7 @@
     "claims": {
       "status": "checked",
       "checked_on": "2026-10-13",
-      "evidence": "Trực tiếp đọc MDN CSS/Cascade/Specificity ngày2026-10-13; giữ phép đo Chromium của phiên trước. Không user testing."
+      "evidence": "Trực tiếp đọc MDN CSS/Cascade/Specificity ngày2026-10-13; giữ phép đo Chromium của phiên trước. Không user testing. Đã đối chiếu thêm nguồn animation/transition tại CSS Cascade§6.1."
     },
     "technical_review": {
       "status": "pending",
@@ -96,6 +96,12 @@
         "https://developer.mozilla.org/en-US/docs/Web/CSS",
         "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/What_is_CSS"
       ]
+    },
+    {
+      "claim_vi": "Giá trị animation đang hoạt động thắng khai báo normal nhưng thua important; transition đang hoạt động có ưu tiên cao hơn important. Hình/ví dụ lược hai nguồn này.",
+      "source": "https://www.w3.org/TR/css-cascade-5/#cascade-sort",
+      "section": "§6.1 Origin and Importance",
+      "verified_by": "Trực tiếp đọc đặc tả CSS Cascade ngày2026-10-13."
     }
   ],
   "design_notes_vi": "Một quy tắc rồi ba bước cascade, kèm ví dụ .note thắng p; cascade layer và scoping proximity được lược khỏi hình và nói trong phần sâu. Không dùng ảnh nguồn.",
@@ -104,5 +110,5 @@
     "Source says the winner is decided by selector type and source order and implies later rules win; the lesson states the actual order (origin and importance, specificity, then order) and shows that an earlier more specific rule still wins.",
     "Source's 'CSS3 introduces animation' is omitted because it is not needed for the main idea and was not verified."
   ],
-  "editorial_note_vi": "Tiếp nhận bài CSS đã có ở PR53; bổ sung đối chiếu trực tiếp MDN. Chờ review head mới; chưa user testing/phê duyệt phát hành."
+  "editorial_note_vi": "Đã sửa finding4256192466; chờ review head mới. Chưa user testing/phê duyệt phát hành."
 }

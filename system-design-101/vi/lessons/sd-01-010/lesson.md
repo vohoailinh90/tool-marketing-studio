@@ -10,7 +10,7 @@ Khi hai quy tắc xung đột, cascade quyết định quy tắc nào thắng.
 **Một quy tắc.** Gồm **selector** (chọn phần tử) và các **khai báo** (thuộc tính: giá trị).
 `p { color: blue; }` chọn các đoạn văn và khai báo màu xanh; màu cuối cùng còn phụ thuộc cascade. Muốn đổi giao diện, bạn sửa CSS mà không đụng tới HTML.
 
-**Cascade.** Khi nhiều quy tắc cùng đặt một thuộc tính cho một phần tử, trình duyệt xét lần lượt:
+**Cascade.** Khi nhiều quy tắc cùng đặt một thuộc tính cho một phần tử, hình dưới lược ba bước cho khai báo thông thường, không có animation/transition đang hoạt động:
 
 1. **Nguồn gốc và `!important`:** mức cao hơn thắng trước.
 2. **Độ cụ thể:** selector cụ thể hơn thắng, dù được viết trước.
@@ -41,10 +41,12 @@ trước khi thứ tự xuất hiện được xét. Khi thử trên Chromium 14
 <details>
 <summary>Xem sâu hơn: điều hình đã lược</summary>
 
-Thuật toán cascade đầy đủ còn có cascade layer và độ gần theo phạm vi (`@scope`) giữa các bước; hình giữ ba bước
+Ngoài ba bước trong hình, cascade còn xét cascade layer và độ gần theo phạm vi (`@scope`) giữa các bước; hình giữ ba bước
 để nhớ được. Cascade layer được xét ngay sau nguồn gốc và mức quan trọng, trước độ cụ thể; độ gần theo phạm vi
 được xét sau độ cụ thể, trước thứ tự xuất hiện. Với hai quy tắc không layer, không `@scope`, cùng độ cụ thể và cùng nguồn,
-Chromium 141 áp quy tắc viết sau.
+Chromium 141 áp quy tắc viết sau trong ví dụ không có animation/transition đang hoạt động.
+
+Animation và transition cũng có nguồn riêng trong bước nguồn gốc/mức quan trọng. Giá trị đang được CSS animation tạo ra thắng các khai báo thông thường nhưng thua khai báo `!important`. Giá trị đang được transition tạo ra có ưu tiên cao hơn cả `!important`. Ví dụ đỏ/xanh trong bài không bật hai cơ chế này.
 
 Bài nguồn gọi CSS là “markup language”. CSS thường được mô tả là ngôn ngữ style sheet: nó không đánh dấu cấu trúc,
 việc đó thuộc về HTML.
@@ -58,6 +60,7 @@ việc đó thuộc về HTML.
 - [MDN — Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascade/Specificity): so sánh độ cụ thể, `!important`, kiểu nội tuyến.
 - [MDN — Xử lý xung đột trong CSS](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Handling_conflicts): cascade, độ cụ thể, thứ tự nguồn, mức quan trọng.
 - [MDN — CSS](https://developer.mozilla.org/en-US/docs/Web/CSS): ngôn ngữ style sheet, bố cục và chuyển động.
+- [CSS Cascade §6.1](https://www.w3.org/TR/css-cascade-5/#cascade-sort): nguồn animation/transition và thứ tự ưu tiên.
 - Phép thử trên Chromium 141 (Playwright): `.note` thắng `p`; hai quy tắc ngang nhau thì quy tắc sau thắng.
 
 Đã đọc nguồn ghim và trực tiếp đối chiếu MDN ngày 2026-10-13. Evidence đọc từ clone/phép đo Chromium của phiên trước được giữ riêng trong metadata; lượt này đối chiếu bổ sung các trang chính thức về cascade, specificity và CSS. Chưa thử với người học.

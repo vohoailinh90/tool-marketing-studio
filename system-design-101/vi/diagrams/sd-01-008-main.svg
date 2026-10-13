@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 692" width="320" height="692" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 716" width="320" height="716" role="img" aria-labelledby="title desc">
 <title id="title">Từ HTML và CSS tới màn hình</title>
-<desc id="desc">Nhận HTML và dựng DOM; tải CSS và dựng CSSOM; ghép thành cây dựng hình gồm phần tử có hộp; bố cục; vẽ; ghép lớp và hiển thị.</desc>
+<desc id="desc">Nhận HTML và dựng DOM; tải CSS và dựng CSSOM; ghép thành cây dựng hình gồm phần tử có hộp; bố cục; vẽ ghi lại lệnh vẽ; raster hóa thành điểm ảnh, ghép lớp và hiển thị.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="692" fill="#f8fafc"/>
+<rect width="320" height="716" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="30" font-size="21" font-weight="bold">TRÌNH DUYỆT</text>
 <text x="16" y="54" font-size="21" font-weight="bold">DỰNG TRANG</text>
@@ -24,11 +24,12 @@
 <line x1="160" y1="433" x2="160" y2="459" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
 <rect x="16" y="462" width="288" height="68" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
 <text x="29" y="491" font-size="16" font-weight="bold">5 · Vẽ (paint)</text>
-<text x="29" y="515" font-size="16" font-weight="normal">Điểm ảnh, màu, chữ</text>
+<text x="29" y="515" font-size="16" font-weight="normal">Ghi lại lệnh vẽ: nền, viền, chữ</text>
 <line x1="160" y1="531" x2="160" y2="557" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="16" y="560" width="288" height="68" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
-<text x="29" y="589" font-size="16" font-weight="bold">6 · Ghép lớp, hiển thị</text>
-<text x="29" y="613" font-size="16" font-weight="normal">Thường nhờ GPU, lên màn hình</text>
-<text x="16" y="656" font-size="16" font-weight="normal">DOM và CSSOM dựng riêng; phải có</text>
-<text x="16" y="680" font-size="16" font-weight="normal">cả hai mới ghép được.</text>
+<rect x="16" y="560" width="288" height="92" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="29" y="589" font-size="16" font-weight="bold">6 · Raster, ghép lớp, hiển thị</text>
+<text x="29" y="613" font-size="16" font-weight="normal">Lệnh vẽ thành điểm ảnh;</text>
+<text x="29" y="637" font-size="16" font-weight="normal">thường nhờ GPU</text>
+<text x="16" y="680" font-size="16" font-weight="normal">DOM và CSSOM dựng riêng; phải có</text>
+<text x="16" y="704" font-size="16" font-weight="normal">cả hai mới ghép được.</text>
 </g></svg>

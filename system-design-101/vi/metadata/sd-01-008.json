@@ -73,10 +73,16 @@
       "sources": [
         "https://web.dev/articles/critical-rendering-path/render-blocking-css"
       ]
+    },
+    {
+      "claim_vi": "Trong kiến trúc dựng hình hiện đại như RenderingNG, bước vẽ tạo danh sách lệnh vẽ; một giai đoạn raster sau đó biến chúng thành điểm ảnh hoặc ô ảnh trên GPU trước khi ghép lớp và hiển thị.",
+      "sources": [
+        "https://developer.chrome.com/docs/chromium/renderingng-architecture"
+      ]
     }
   ],
   "source_deviations": [
-    "Nguồn chia bước cuối thành “vẽ” và “hiển thị: gửi điểm ảnh tới GPU”; bài giữ hai bước nhưng nói rõ phần ghép lớp và cách chia khác nhau giữa các trình duyệt.",
+    "Nguồn chia bước cuối thành “vẽ” (trình duyệt lấy ra điểm ảnh) và “hiển thị: gửi điểm ảnh tới GPU”; bài tách rõ hơn: vẽ chỉ ghi lại lệnh vẽ, raster hóa biến lệnh vẽ thành điểm ảnh, rồi ghép lớp và hiển thị; cách chia bước khác nhau giữa các trình duyệt.",
     "Bài thêm phần chặn dựng hình và sự khác nhau giữa display: none và visibility: hidden; nguồn chỉ nêu display: none làm phần tử vắng mặt trong cây dựng hình."
   ],
   "design_notes_vi": "Sáu thẻ dọc theo sáu bước của nguồn; chú thích cuối nhấn mạnh DOM và CSSOM dựng riêng.",

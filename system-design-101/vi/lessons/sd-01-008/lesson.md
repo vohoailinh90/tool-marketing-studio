@@ -2,7 +2,7 @@
 
 **Trình duyệt nhận về chữ (HTML và CSS) và phải biến nó thành hình trên màn hình.** Các bước đi theo một thứ tự khá cố định; hiểu thứ tự đó giúp bạn biết vì sao một đoạn CSS hay script có thể làm trang hiện chậm.
 
-![Sáu thẻ dọc: nhận HTML và dựng cây DOM; tải CSS và dựng cây CSSOM; ghép hai cây thành cây dựng hình chỉ gồm phần tử có tạo hộp cùng kiểu dáng; bố cục tính vị trí và kích thước; vẽ biến thành điểm ảnh, màu và chữ; ghép lớp và hiển thị trên màn hình qua GPU. Chú thích: DOM và CSSOM được dựng riêng; phải có cả hai mới ghép được.](../../diagrams/sd-01-008-main.svg)
+![Sáu thẻ dọc: nhận HTML và dựng cây DOM; tải CSS và dựng cây CSSOM; ghép hai cây thành cây dựng hình chỉ gồm phần tử có tạo hộp cùng kiểu dáng; bố cục tính vị trí và kích thước; vẽ ghi lại các lệnh vẽ như màu nền, viền và chữ; raster hóa biến lệnh vẽ thành điểm ảnh, rồi ghép lớp và hiển thị trên màn hình, thường nhờ GPU. Chú thích: DOM và CSSOM được dựng riêng; phải có cả hai mới ghép được.](../../diagrams/sd-01-008-main.svg)
 
 ## Đọc hình
 
@@ -14,9 +14,9 @@
 
 **4. Bố cục (layout).** Tính vị trí và kích thước hình học của từng phần tử.
 
-**5. Vẽ (paint).** Biến mỗi phần tử thành điểm ảnh: màu nền, viền, chữ.
+**5. Vẽ (paint).** Ghi lại các **lệnh vẽ** cho từng phần tử: tô màu nền, kẻ viền, vẽ chữ, theo thứ tự. Ở trình duyệt hiện đại, bước này thường chỉ ghi lại lệnh vẽ chứ chưa tạo ra điểm ảnh.
 
-**6. Ghép lớp và hiển thị.** Các lớp đã vẽ được ghép lại, thường nhờ GPU, rồi lên màn hình.
+**6. Raster hóa, ghép lớp và hiển thị.** Các lệnh vẽ được **raster hóa** thành điểm ảnh (bitmap hoặc các ô ảnh trên GPU), các lớp được ghép lại (composite), rồi lên màn hình. Các bước này thường chạy nhờ GPU và có thể do tiến trình hoặc luồng khác lo.
 
 ## Giới hạn cần nhớ
 

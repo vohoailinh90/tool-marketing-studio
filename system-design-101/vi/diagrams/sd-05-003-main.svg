@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 788" width="320" height="788" role="img" aria-labelledby="title desc">
 <title id="title">Một URL tách ra và đi đâu</title>
-<desc id="desc">URL ví dụ https example.com phone color black specs. Scheme https chọn giao thức kết nối. Host example.com được tra DNS và đưa vào header Host. Path cộng query phone color black nằm trong dòng yêu cầu. Fragment specs không bao giờ được gửi tới server. Yêu cầu gửi đi gồm dòng GET phone color black HTTP 1.1 và header Host example.com. Phản hồi gồm dòng trạng thái HTTP 1.1 200 OK, các header, một dòng trống rồi nội dung.</desc>
+<desc id="desc">URL ví dụ https example.com phone color black specs. Scheme https chọn giao thức kết nối. Host example.com được tra DNS và đưa vào header Host. Path cộng query phone color black nằm trong dòng yêu cầu khi gửi thẳng tới máy chủ gốc. Fragment specs không bao giờ được gửi tới server. Yêu cầu gửi thẳng gồm dòng GET phone color black HTTP 1.1 và header Host example.com. Phản hồi gồm dòng trạng thái HTTP 1.1 200 OK, các header, một dòng trống rồi nội dung.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="788" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
@@ -19,12 +19,12 @@
 <rect x="16" y="358" width="288" height="100" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
 <text x="29" y="387" font-size="16" font-weight="bold">path + query</text>
 <text x="29" y="415" font-size="16" font-weight="normal">/phone?color=black</text>
-<text x="29" y="439" font-size="16" font-weight="normal">Nằm trong dòng yêu cầu</text>
+<text x="29" y="439" font-size="16" font-weight="normal">Dòng yêu cầu, gửi thẳng</text>
 <rect x="16" y="466" width="288" height="76" rx="12" fill="#fee2e2" stroke="#94a3b8"/>
 <text x="29" y="495" font-size="16" font-weight="bold">fragment: #specs</text>
 <text x="29" y="523" font-size="16" font-weight="normal">Không bao giờ gửi tới server</text>
 <rect x="16" y="554" width="288" height="100" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
-<text x="22" y="583" font-size="16" font-weight="bold">Yêu cầu gửi đi</text>
+<text x="22" y="583" font-size="16" font-weight="bold">Yêu cầu gửi thẳng</text>
 <text x="22" y="611" font-size="16" font-weight="normal">GET /phone?color=black HTTP/1.1</text>
 <text x="22" y="635" font-size="16" font-weight="normal">Host: example.com</text>
 <line x1="160" y1="655" x2="160" y2="672" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>

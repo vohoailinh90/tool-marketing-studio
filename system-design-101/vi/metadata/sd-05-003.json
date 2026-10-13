@@ -33,7 +33,7 @@
     "claims": {
       "status": "checked",
       "checked_on": "2026-10-13",
-      "evidence": "MDN pages read from a local clone of mdn/content; the request line and Host header captured from a real curl request to a local socket server."
+      "evidence": "MDN pages read from a local clone of mdn/content; the request line and Host header captured from a real curl request to a local socket server (a direct request, no proxy)."
     },
     "technical_review": {
       "status": "pending",
@@ -71,7 +71,13 @@
       "verified_by": "Read from a local clone of mdn/content (developer.mozilla.org was unreachable)."
     },
     {
-      "claim_vi": "For curl --http1.1 'http://localhost:PORT/products/phone?color=black#specs' the server received 'GET /products/phone?color=black HTTP/1.1' and 'Host: localhost:PORT' with no trace of the fragment.",
+      "claim_vi": "MDN describes four request-target forms: origin form (the most common; an absolute path combined with the Host header, used with GET, POST, HEAD and OPTIONS), absolute form (a complete URL, used with GET when connecting to a proxy), authority form (host:port, used only with CONNECT) and asterisk form (used with OPTIONS for the server as a whole). Only the origin form was captured; the others are stated as MDN describes them.",
+      "source": "https://github.com/mdn/content/blob/19370346042efad9e179fbf1f55deeeadee98c40/files/en-us/web/http/guides/messages/index.md",
+      "section": "Request targets",
+      "verified_by": "Read from a local clone of mdn/content at commit 19370346042efad9e179fbf1f55deeeadee98c40; not reproduced through a real proxy."
+    },
+    {
+      "claim_vi": "For a direct request, curl --http1.1 'http://localhost:PORT/products/phone?color=black#specs' the server received 'GET /products/phone?color=black HTTP/1.1' and 'Host: localhost:PORT' with no trace of the fragment.",
       "source": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Messages",
       "section": "HTTP requests",
       "verified_by": "Captured the raw request received by a local socket server from curl 8.5.0."
@@ -80,7 +86,8 @@
   "design_notes_vi": "Một URL ví dụ nhất quán, mỗi phần một thẻ nói nó đi đâu; thẻ fragment màu đỏ vì không rời trình duyệt. Không dùng ảnh nguồn.",
   "source_deviations": [
     "Source splits a URL into scheme, domain, path and a separate 'resource', and uses the path product/electric with a request for /phone; the lesson uses one consistent URL and folds the resource into the path.",
-    "Source does not mention that the fragment is never sent to the server."
+    "Source does not mention that the fragment is never sent to the server.",
+    "Source shows only the origin-form request line; the lesson scopes that line to a direct request to the origin server and names the proxy (absolute form) and CONNECT (authority form) cases as MDN describes them."
   ],
   "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
 }

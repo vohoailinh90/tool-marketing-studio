@@ -125,7 +125,7 @@
       ]
     },
     {
-      "claim_vi": "Mọi luồng HTTP/2 dùng chung một kết nối TCP nên một gói bị mất làm dừng tất cả; HTTP/3 chạy trên QUIC nên các luồng độc lập khi mất gói.",
+      "claim_vi": "Mọi luồng HTTP/2 dùng chung một kết nối TCP nên một gói bị mất làm dừng tất cả; HTTP/3 chạy trên QUIC nên mất gói không còn dừng mọi luồng, nhưng một gói có thể chứa dữ liệu của nhiều luồng và kiểm soát tắc nghẽn áp dụng cho cả kết nối.",
       "sources": [
         "https://www.rfc-editor.org/rfc/rfc9113.html",
         "https://www.rfc-editor.org/rfc/rfc9114.html",

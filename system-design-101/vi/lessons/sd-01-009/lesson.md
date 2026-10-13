@@ -2,7 +2,7 @@
 
 **HTTP/2 giữ nguyên ý nghĩa của HTTP (phương thức, mã trạng thái, header) và chỉ đổi cách đóng gói, gửi dữ liệu qua mạng.** Nhờ đó nhiều yêu cầu dùng chung một kết nối thay vì xếp hàng chờ nhau. Nhanh hơn ở đâu, và khi nào thì không, là nội dung bài này.
 
-![Năm thẻ dọc. Thẻ một, HTTP/1.1: một kết nối xử lý một yêu cầu một lúc nên trình duyệt phải mở thêm kết nối. Thẻ hai, khung nhị phân: mỗi thông điệp cắt thành khung gắn số hiệu luồng. Thẻ ba, ghép kênh: một kết nối chở nhiều luồng, vẽ sáu khung A1, B1, A2, C1, B2, A3 của ba luồng A, B, C xen kẽ nhau. Thẻ bốn, nén header bằng HPACK: header lặp lại chỉ gửi dạng rút gọn. Thẻ năm, ưu tiên luồng và server push: đều có lưu ý khi dùng thực tế. Chú thích: mất một gói TCP vẫn làm mọi luồng chờ, HTTP/3 sửa điều này.](../../diagrams/sd-01-009-main.svg)
+![Năm thẻ dọc. Thẻ một, HTTP/1.1: một kết nối xử lý một yêu cầu một lúc nên trình duyệt phải mở thêm kết nối. Thẻ hai, khung nhị phân: mỗi thông điệp cắt thành khung gắn số hiệu luồng. Thẻ ba, ghép kênh: một kết nối chở nhiều luồng, vẽ sáu khung A1, B1, A2, C1, B2, A3 của ba luồng A, B, C xen kẽ nhau. Thẻ bốn, nén header bằng HPACK: header lặp lại chỉ gửi dạng rút gọn. Thẻ năm, ưu tiên luồng và server push: đều có lưu ý khi dùng thực tế. Chú thích: mất một gói TCP vẫn làm mọi luồng chờ, HTTP/3 giảm bớt điều này.](../../diagrams/sd-01-009-main.svg)
 
 ## Đọc hình
 
@@ -18,7 +18,7 @@
 
 ## Giới hạn cần nhớ
 
-HTTP/2 không nhanh hơn trong mọi tình huống; nguồn cũng nhắc phải đo và tối ưu. **Mất gói:** mọi luồng dùng chung một kết nối TCP, nên một gói bị mất làm TCP chờ gửi lại và cả các luồng cùng dừng; trên mạng hay mất gói, một kết nối HTTP/2 có thể không hơn nhiều kết nối HTTP/1.1. HTTP/3 chạy trên QUIC để các luồng không chặn nhau ở tầng vận chuyển. **Ưu tiên luồng:** cơ chế ban đầu (trọng số và phụ thuộc giữa các luồng) đã bị RFC 9113 đánh dấu lỗi thời; một cơ chế ưu tiên khác được mô tả trong RFC 9218, và mức hỗ trợ khác nhau giữa trình duyệt và máy chủ. **Server push:** máy chủ gửi trước tài nguyên mà nó đoán là sắp cần, nhưng khó đoán đúng (dễ gửi thứ trình duyệt đã có trong bộ nhớ đệm), và một số trình duyệt lớn như Chrome đã ngừng hỗ trợ, nên đừng dựa vào nó.
+HTTP/2 không nhanh hơn trong mọi tình huống; nguồn cũng nhắc phải đo và tối ưu. **Mất gói:** mọi luồng dùng chung một kết nối TCP, nên một gói bị mất làm TCP chờ gửi lại và cả các luồng cùng dừng; trên mạng hay mất gói, một kết nối HTTP/2 có thể không hơn nhiều kết nối HTTP/1.1. HTTP/3 chạy trên QUIC, nơi mất gói không còn buộc mọi luồng chờ như trên TCP: luồng không có dữ liệu trong gói bị mất vẫn tiến triển được. Nó không cô lập hoàn toàn, vì một gói có thể chứa dữ liệu của nhiều luồng và kiểm soát tắc nghẽn áp dụng cho cả kết nối. **Ưu tiên luồng:** cơ chế ban đầu (trọng số và phụ thuộc giữa các luồng) đã bị RFC 9113 đánh dấu lỗi thời; một cơ chế ưu tiên khác được mô tả trong RFC 9218, và mức hỗ trợ khác nhau giữa trình duyệt và máy chủ. **Server push:** máy chủ gửi trước tài nguyên mà nó đoán là sắp cần, nhưng khó đoán đúng (dễ gửi thứ trình duyệt đã có trong bộ nhớ đệm), và một số trình duyệt lớn như Chrome đã ngừng hỗ trợ, nên đừng dựa vào nó.
 
 ## Nhìn hình trả lời
 
@@ -38,7 +38,7 @@ Ghép kênh cho phép gửi nhiều yêu cầu nhỏ cùng lúc trên một kế
 - **Kiểm soát lưu lượng:** HTTP/2 có kiểm soát lưu lượng (flow control) riêng cho từng luồng và cho cả kết nối, để một luồng không chiếm hết bộ đệm của bên nhận.
 - **HPACK:** dùng một bảng tĩnh các header phổ biến, một bảng động theo từng kết nối và mã hóa Huffman cho chuỗi. Nó được thiết kế riêng thay vì dùng nén tổng quát như DEFLATE, vì cách nén đó từng bị khai thác trong các tấn công kiểu CRIME.
 - **TLS:** chuẩn cho phép HTTP/2 không mã hóa, nhưng trên web các trình duyệt thường chỉ dùng HTTP/2 qua TLS (HTTPS), và hai bên thương lượng giao thức khi bắt tay TLS.
-- **HTTP/3:** giữ nguyên ngữ nghĩa HTTP nhưng chạy trên QUIC (qua UDP); mất gói chỉ làm chậm luồng bị ảnh hưởng chứ không dừng cả kết nối.
+- **HTTP/3:** giữ nguyên ngữ nghĩa HTTP nhưng chạy trên QUIC (qua UDP); mất gói không còn dừng mọi luồng như trên TCP: luồng không có dữ liệu trong gói bị mất vẫn tiến triển được, dù một gói có thể chứa dữ liệu của nhiều luồng và kiểm soát tắc nghẽn vẫn áp dụng cho cả kết nối.
 
 </details>
 
@@ -52,7 +52,7 @@ Ghép kênh cho phép gửi nhiều yêu cầu nhỏ cùng lúc trên một kế
 - [MDN — Quản lý kết nối trong HTTP/1.x](https://developer.mozilla.org/en-US/docs/Web/HTTP/Connection_management_in_HTTP_1.x): nhiều kết nối song song và pipelining ít được dùng.
 - [Chrome — Gỡ HTTP/2 server push](https://developer.chrome.com/blog/removing-push): lý do và thời điểm Chrome ngừng hỗ trợ push.
 - [RFC 9114 — HTTP/3](https://www.rfc-editor.org/rfc/rfc9114.html): HTTP trên QUIC.
-- [RFC 9000 — QUIC](https://www.rfc-editor.org/rfc/rfc9000.html): luồng độc lập khi mất gói.
+- [RFC 9000 — QUIC](https://www.rfc-editor.org/rfc/rfc9000.html): luồng, phục hồi mất gói và kiểm soát tắc nghẽn.
 - [Can I use — HTTP/2](https://caniuse.com/http2): mức hỗ trợ HTTP/2 của trình duyệt.
 
 Đã đọc bài nguồn ngày 2026-10-13. Các tài liệu chính thức ở trên là nơi review kỹ thuật cần đối chiếu: trong đợt viết này chúng chưa được mở, nên các tuyên bố kỹ thuật chưa được xem là đã kiểm chứng. Bài viết và hình được thiết kế độc lập, không dùng ảnh nguồn. Trạng thái và giới hạn kiểm chứng lưu trong [metadata JSON](../../metadata/sd-01-009.json).

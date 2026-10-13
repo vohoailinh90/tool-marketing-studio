@@ -29,7 +29,7 @@ Vị trí 3 vượt quá độ dài của `AT`, nên kết quả sai hoặc gây
 <summary>Xem sâu hơn: OT, CRDT, đồng bộ vi sai và nhật ký thao tác</summary>
 
 - **OT (operational transformation):** biến đổi thao tác đến sau theo các thao tác đã áp trước để mọi bản sao hội tụ. Được dùng trong nhiều trình soạn thảo cộng tác.
-- **CRDT:** thiết kế kiểu dữ liệu sao cho các thao tác gộp theo mọi thứ tự đều cho cùng kết quả; hợp với trường hợp làm việc ngoại tuyến.
+- **CRDT:** kiểu dữ liệu được thiết kế để các bản sao hội tụ mà không cần biến đổi thao tác; hợp với làm việc ngoại tuyến. Còn tùy loại: CRDT dựa trên **trạng thái** có thể gộp các trạng thái theo thứ tự bất kỳ; CRDT dựa trên **thao tác** chỉ đòi hỏi các thao tác đồng thời giao hoán, còn các thao tác phụ thuộc nhau vẫn phải được giao theo đúng quan hệ nhân quả (thao tác đến trước phải được áp trước).
 - **Đồng bộ vi sai (differential synchronization):** so sánh bản sao với bản chung rồi gửi phần khác biệt.
 - **Nhật ký thao tác:** lưu cả chuỗi thao tác cho phép khôi phục lịch sử; thường cần thêm ảnh chụp (snapshot) định kỳ để mở tài liệu nhanh mà không phát lại từ đầu.
 

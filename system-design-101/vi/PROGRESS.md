@@ -32,6 +32,6 @@ các nhóm khác tiếp tục theo bảng đối chiếu, mỗi đợt 1–3 bà
 Metadata JSON duy nhất giữ trạng thái; YAML chỉ id/metadata_ref. User testing chưa thực hiện; không tự merge/deploy
 hoặc đăng bài.
 
-Đồng bộ main đích tại 3edff99314afa7435a4519b700e380eac8d6bc1c (trước đó f9f79246cf7b05979fc1343734e02ea8afc201be);
-sửa adopted_main_sha theo finding4252903469 và finding4253959699. Mốc main repo cũ giữ previous_repository_main_sha.
-Review tổ hợp mới vẫn pending.
+Đợt hiện tại (sd-12, nhánh claude/funny-archimedes-253vvb, PR #51) dựa trên main 42f9d80897f41cda6867c064893c37368cc639b2 (merge của PR #44);
+trước đó là 5831cdcef96a2c83664e02d83a4e803cf47f259c (merge của PR #40), mốc adopted_main_sha. destination_base_sha ghi main của đợt
+hiện tại. Mốc main repo cũ giữ previous_repository_main_sha. Review tổ hợp mới vẫn pending.

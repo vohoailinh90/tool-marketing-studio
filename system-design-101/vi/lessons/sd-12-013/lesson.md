@@ -2,19 +2,19 @@
 
 **Tin nhắn 1–1 nghe đơn giản, nhưng phải đúng thứ tự, không mất và tới đúng nơi dù người nhận đang trực tuyến hay không.** Cách làm: lưu tin trước, rồi mới phân phối theo trạng thái của người nhận.
 
-![Bảy thẻ dọc: Alice đăng nhập và nối WebSocket, dịch vụ hiện diện đánh dấu cô trực tuyến và báo bạn bè; Alice gửi tin cho Bob tới chat service A; dịch vụ đánh số cấp cho tin một ID duy nhất và tăng dần trong cuộc trò chuyện; tin được lưu bền; tin đi vào hàng đợi đồng bộ; hệ thống hỏi dịch vụ hiện diện xem Bob có trực tuyến không; nếu có thì chuyển tới chat service B và đẩy qua WebSocket, nếu không thì chuyển cho máy chủ thông báo đẩy tới thiết bị của Bob. Chú thích: lưu trước, rồi mới phân phối.](../../diagrams/sd-12-013-main.svg)
+![Bảy thẻ dọc: Alice đăng nhập và nối WebSocket, dịch vụ hiện diện đánh dấu cô trực tuyến và báo bạn bè; Alice gửi tin cho Bob tới chat service A; dịch vụ đánh số cấp cho tin một ID duy nhất và tăng dần trong cuộc trò chuyện; tin được lưu bền; tin đi vào hàng đợi đồng bộ, hai bước này phải đi cùng nhau (ví dụ qua bản ghi outbox) để tin không mất khi dịch vụ dừng giữa chừng; hệ thống hỏi dịch vụ hiện diện xem Bob có trực tuyến không; nếu có thì chuyển tới chat service B và đẩy qua WebSocket, nếu không thì chuyển cho máy chủ thông báo đẩy tới thiết bị của Bob. Chú thích: lưu trước, rồi mới phân phối.](../../diagrams/sd-12-013-main.svg)
 
 ## Đọc hình
 
 **Đăng nhập.** Alice nối **WebSocket** tới máy chủ. Dịch vụ hiện diện ghi nhận cô đang trực tuyến và báo cho bạn bè.
 
-**Gửi tin.** Tin của Alice tới **chat service A**. Dịch vụ đánh số cấp cho nó một **ID duy nhất và tăng dần trong cuộc trò chuyện** để sắp thứ tự, rồi tin được **lưu bền** vào kho tin nhắn. Sau đó nó vào **hàng đợi đồng bộ** để chuyển tới Bob.
+**Gửi tin.** Tin của Alice tới **chat service A**. Dịch vụ đánh số cấp cho nó một **ID duy nhất và tăng dần trong cuộc trò chuyện** để sắp thứ tự, rồi tin được **lưu bền** vào kho tin nhắn. Sau đó nó vào **hàng đợi đồng bộ** để chuyển tới Bob. Hai việc này phải đi cùng nhau: nếu dịch vụ dừng sau khi lưu mà chưa kịp đưa vào hàng đợi thì tin không bao giờ được chuyển đi (xem phần giới hạn).
 
 **Chọn đường tới Bob.** Trước khi chuyển, hệ thống hỏi dịch vụ hiện diện. Nếu Bob **trực tuyến**, tin đi tới **chat service B** nơi Bob đang kết nối và được đẩy qua WebSocket. Nếu **không**, tin được giao cho máy chủ thông báo đẩy ([xem bài thông báo đẩy](../sd-12-015/lesson.md)) để báo tới thiết bị của Bob.
 
 ## Giới hạn cần nhớ
 
-Hiện diện thay đổi từng giây nên có thể cũ: tin có thể bị đẩy sai đường. Vì thế máy khách cần xác nhận đã nhận (ack) và máy chủ gửi lại khi chưa có ack. Gửi lại có thể gây trùng, nên mỗi tin cần ID để loại trùng. Một người còn có thể dùng nhiều thiết bị cùng lúc.
+Hiện diện thay đổi từng giây nên có thể cũ: tin có thể bị đẩy sai đường. Vì thế máy khách cần xác nhận đã nhận (ack) và máy chủ gửi lại khi chưa có ack. Gửi lại có thể gây trùng, nên mỗi tin cần ID để loại trùng. Một người còn có thể dùng nhiều thiết bị cùng lúc. **Lưu rồi mới xếp hàng:** nếu chat service A dừng giữa hai bước, hàng đợi không bao giờ thấy tin, và ack của người nhận cũng không sửa được vì việc giao chưa từng bắt đầu. Cách xử lý: ghi tin cùng một bản ghi *outbox* trong một giao dịch rồi để một bộ phận riêng chuyển bản ghi đó vào hàng đợi; hoặc dùng chính nhật ký bền làm hàng đợi; hoặc có bộ quét định kỳ gửi lại các tin đã lưu mà chưa được xác nhận.
 
 ## Nhìn hình trả lời
 

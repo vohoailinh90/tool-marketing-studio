@@ -3,7 +3,7 @@
 **Từ HTML tới điểm ảnh trên màn hình là một chuỗi bước.** Hiểu chuỗi này giúp bạn biết vì sao một dòng CSS
 hay một thẻ script có thể làm trang hiện chậm.
 
-![Sáu thẻ xếp dọc. Bước 1, HTML được phân tích thành cây DOM. Bước 2, CSS được phân tích thành cây CSSOM. Bước 3, hai cây được gộp thành render tree: bỏ head và phần tử display none, giữ phần tử visibility hidden. Bước 4, layout tính kích thước và vị trí. Bước 5, paint vẽ ra điểm ảnh. Bước 6, đôi khi ghép lớp bằng GPU. Ghi chú: đổi kích thước hay vị trí thì layout tính lại, gọi là reflow.](../../diagrams/sd-01-008-main.svg)
+![Sáu thẻ xếp dọc. Bước 1, HTML được phân tích thành cây DOM. Bước 2, CSS được phân tích thành cây CSSOM. Bước 3, hai cây được gộp thành render tree: bỏ head và phần tử display none, giữ phần tử visibility hidden. Bước 4, layout tính kích thước và vị trí. Bước 5, paint vẽ ra điểm ảnh. Bước 6, đôi khi ghép lớp bằng GPU. Ghi chú: đổi thuộc tính hình học như width hay left thì layout tính lại, gọi là reflow; transform thường không cần.](../../diagrams/sd-01-008-main.svg)
 
 ## Đọc hình
 
@@ -24,7 +24,8 @@ nhờ vậy luồng chính được nhẹ bớt.
 
 Các bước này không phải một dây chuyền cứng. Chờ tải CSS không chặn việc phân tích HTML, nhưng chặn việc chạy JavaScript,
 vì script có thể hỏi về kiểu dáng. Một script đồng bộ cũng dừng phân tích HTML cho tới khi nó được xử lý xong.
-Sau lần dựng đầu, đổi kích thước hay vị trí một phần tử buộc tính lại layout, gọi là reflow.
+Sau lần dựng đầu, đổi thuộc tính hình học của layout, như `width` hay `left`, buộc tính lại layout, gọi là reflow.
+Biến đổi bằng `transform` (như `scale()` hay `translate()`) thường không cần tính lại layout.
 
 ## Nhìn hình trả lời
 
@@ -42,7 +43,8 @@ Phần tử `display: none` không được đưa vào render tree.
 <summary>Xem sâu hơn: thử trong trình duyệt</summary>
 
 Khi đo trên Chromium 141, một `div` cao 40 px có `visibility: hidden` vẫn cho chiều cao 40 px,
-còn `div` tương tự với `display: none` cho chiều cao 0.
+còn `div` tương tự với `display: none` cho chiều cao 0. Đổi `width` hoặc `left` làm Chromium chạy thêm một lần layout;
+đổi giá trị `transform` của phần tử đã có `transform` thì không chạy thêm lần nào.
 
 Bài nguồn gộp phần cuối thành một bước “hiển thị”, nơi trình duyệt gửi điểm ảnh cho GPU. Hình này tách paint
 khỏi ghép lớp, vì tài liệu của MDN mô tả ghép lớp chỉ xảy ra trong một số trường hợp.

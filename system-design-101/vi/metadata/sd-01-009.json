@@ -65,7 +65,7 @@
       "verified_by": "Read in draft-ietf-httpbis-http2bis.xml from a local clone of httpwg/http2-spec (the source of RFC 9113, which obsoletes RFC 7540 and 8740)."
     },
     {
-      "claim_vi": "This revision of HTTP/2 deprecates the priority signaling scheme of RFC 7540.",
+      "claim_vi": "This revision of HTTP/2 deprecates the priority signaling scheme of RFC 7540 but retains the frame field descriptions and some mandatory handling so implementations stay interoperable with those that use it; it does not remove it.",
       "source": "https://github.com/httpwg/http2-spec/blob/main/draft-ietf-httpbis-http2bis.xml",
       "section": "Overview",
       "verified_by": "Read in draft-ietf-httpbis-http2bis.xml from a local clone of httpwg/http2-spec (the source of RFC 9113, which obsoletes RFC 7540 and 8740)."

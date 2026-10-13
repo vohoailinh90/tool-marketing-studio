@@ -77,6 +77,12 @@
       "verified_by": "Read from a local clone of mdn/content (developer.mozilla.org was unreachable)."
     },
     {
+      "claim_vi": "Changing width or left adds one layout pass in Chromium 141 (LayoutCount via CDP); changing the transform value of an element that already has a transform adds none. Applying a transform to an element that had none can still trigger one layout.",
+      "source": "https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/How_browsers_work",
+      "section": "Render",
+      "verified_by": "Measured in Chromium 141 with Playwright."
+    },
+    {
       "claim_vi": "A 40px-high div with visibility:hidden keeps its 40px height while the same div with display:none measures 0.",
       "source": "https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/How_browsers_work",
       "section": "Render",

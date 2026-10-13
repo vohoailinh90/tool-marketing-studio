@@ -3,7 +3,7 @@
 **CSS tách việc “tài liệu nói gì” khỏi việc “nó trông thế nào”.** HTML mô tả cấu trúc, CSS mô tả cách trình bày.
 Khi hai quy tắc xung đột, cascade quyết định quy tắc nào thắng.
 
-![Bốn thẻ xếp dọc kèm một thẻ ví dụ. Thẻ đầu: một quy tắc gồm selector và khai báo, ví dụ p mở ngoặc nhọn color blue đóng ngoặc nhọn. Dải tiêu đề: khi hai quy tắc xung đột. Bước 1, nguồn gốc và important, mức cao hơn thắng trước. Bước 2, độ cụ thể, selector cụ thể hơn thắng dù viết trước. Bước 3, thứ tự xuất hiện, cùng mức thì quy tắc viết sau thắng. Ví dụ: lớp note màu đỏ thắng p màu xanh dù p viết sau.](../../diagrams/sd-01-010-main.svg)
+![Bốn thẻ xếp dọc kèm một thẻ ví dụ. Thẻ đầu: một quy tắc gồm selector và khai báo, ví dụ p mở ngoặc nhọn color blue đóng ngoặc nhọn. Dải tiêu đề: khi hai quy tắc xung đột. Bước 1, nguồn gốc và important, mức cao hơn thắng trước. Bước 2, độ cụ thể, selector cụ thể hơn thắng dù viết trước. Bước 3, thứ tự xuất hiện, khi các bước trước hòa thì quy tắc viết sau thắng. Ví dụ: lớp note màu đỏ thắng p màu xanh dù p viết sau.](../../diagrams/sd-01-010-main.svg)
 
 ## Đọc hình
 
@@ -14,14 +14,15 @@ Khi hai quy tắc xung đột, cascade quyết định quy tắc nào thắng.
 
 1. **Nguồn gốc và `!important`:** mức cao hơn thắng trước.
 2. **Độ cụ thể:** selector cụ thể hơn thắng, dù được viết trước.
-3. **Thứ tự xuất hiện:** cùng mức thì quy tắc viết sau thắng.
+3. **Thứ tự xuất hiện:** khi các bước trước hòa, quy tắc viết sau thắng.
 
 **Ngoài màu sắc.** Cùng cơ chế quy tắc đó còn dùng để bố trí các khối trên trang, tạo chuyển động
 và điều chỉnh giao diện theo kích thước màn hình.
 
 ## Giới hạn cần nhớ
 
-“Viết sau thì thắng” chỉ đúng khi hai quy tắc cùng nguồn và cùng độ cụ thể. Với `.note { color: red; }` viết trước
+“Viết sau thì thắng” chỉ đúng khi các bước trước đều hòa: cùng nguồn và mức quan trọng, cùng cascade layer,
+cùng độ cụ thể và cùng phạm vi `@scope`. Với `.note { color: red; }` viết trước
 và `p { color: blue; }` viết sau, đoạn `<p class="note">` vẫn đỏ. Thấy một quy tắc không có tác dụng thì đừng vội
 thêm `!important`: hãy kiểm tra độ cụ thể và thứ tự trước.
 
@@ -41,7 +42,9 @@ trước khi thứ tự xuất hiện được xét. Khi thử trên Chromium 14
 <summary>Xem sâu hơn: điều hình đã lược</summary>
 
 Thuật toán cascade đầy đủ còn có cascade layer và độ gần theo phạm vi (`@scope`) giữa các bước; hình giữ ba bước
-để nhớ được. Với hai quy tắc cùng độ cụ thể và cùng nguồn, Chromium 141 áp quy tắc viết sau.
+để nhớ được. Cascade layer được xét ngay sau nguồn gốc và mức quan trọng, trước độ cụ thể; độ gần theo phạm vi
+được xét sau độ cụ thể, trước thứ tự xuất hiện. Với hai quy tắc không layer, không `@scope`, cùng độ cụ thể và cùng nguồn,
+Chromium 141 áp quy tắc viết sau.
 
 Bài nguồn gọi CSS là “markup language”. CSS thường được mô tả là ngôn ngữ style sheet: nó không đánh dấu cấu trúc,
 việc đó thuộc về HTML.

@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 732" width="320" height="732" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 756" width="320" height="756" role="img" aria-labelledby="title desc">
 <title id="title">Trình duyệt dựng trang web từ HTML tới điểm ảnh</title>
-<desc id="desc">Sáu bước. HTML được phân tích thành cây DOM và CSS thành cây CSSOM. Hai cây được gộp thành render tree, bỏ head và phần tử display none nhưng giữ phần tử visibility hidden. Tiếp theo là layout tính kích thước và vị trí, paint vẽ ra điểm ảnh, và đôi khi ghép lớp bằng GPU. Đổi kích thước hay vị trí sau đó buộc tính lại layout, gọi là reflow.</desc>
+<desc id="desc">Sáu bước. HTML được phân tích thành cây DOM và CSS thành cây CSSOM. Hai cây được gộp thành render tree, bỏ head và phần tử display none nhưng giữ phần tử visibility hidden. Tiếp theo là layout tính kích thước và vị trí, paint vẽ ra điểm ảnh, và đôi khi ghép lớp bằng GPU. Đổi thuộc tính hình học như width hay left buộc tính lại layout, gọi là reflow; transform thường không cần.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="732" fill="#f8fafc"/>
+<rect width="320" height="756" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="30" font-size="21" font-weight="bold">TRÌNH DUYỆT DỰNG</text>
 <text x="16" y="54" font-size="21" font-weight="bold">TRANG WEB</text>
@@ -29,6 +29,7 @@
 <rect x="16" y="580" width="288" height="76" rx="12" fill="#e2e8f0" stroke="#94a3b8"/>
 <text x="29" y="609" font-size="16" font-weight="bold">6 · Ghép lớp</text>
 <text x="29" y="637" font-size="16" font-weight="normal">Đôi khi, dùng GPU để ghép</text>
-<text x="16" y="684" font-size="16" font-weight="normal" fill="#334155">Đổi kích thước hay vị trí thì layout</text>
-<text x="16" y="708" font-size="16" font-weight="normal" fill="#334155">tính lại (reflow).</text>
+<text x="16" y="684" font-size="16" font-weight="normal" fill="#334155">Đổi width, left... thì layout tính lại</text>
+<text x="16" y="708" font-size="16" font-weight="normal" fill="#334155">(reflow); transform thường không</text>
+<text x="16" y="732" font-size="16" font-weight="normal" fill="#334155">cần.</text>
 </g></svg>

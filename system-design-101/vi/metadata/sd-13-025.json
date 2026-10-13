@@ -64,6 +64,10 @@
     {
       "claim_vi": "Các bước gỡ lỗi Pod: describe, logs, events.",
       "source": "https://kubernetes.io/docs/tasks/debug/debug-application/debug-pods/"
+    },
+    {
+      "claim_vi": "Khi node hết bộ nhớ, kernel có thể dừng một container kể cả khi container chưa vượt limit của chính nó.",
+      "source": "https://kubernetes.io/docs/concepts/scheduling-eviction/node-pressure-eviction/"
     }
   ],
   "source_deviations": [

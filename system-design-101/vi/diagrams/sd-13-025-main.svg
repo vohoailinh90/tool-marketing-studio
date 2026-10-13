@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1026" width="320" height="1026" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1053" width="320" height="1053" role="img" aria-labelledby="title desc">
 <title id="title">Pod không chạy: chẩn đoán theo từng chặng</title>
-<desc id="desc">Bốn chặng khi Pod không chạy: Pending khi chưa có node thường do thiếu tài nguyên theo requests, taint, nodeSelector hay PVC chưa gắn; ContainerCreating khi kéo image hoặc gắn volume lỗi; chạy rồi thoát như CrashLoopBackOff hay OOMKilled; chạy nhưng chưa Ready do readiness probe thất bại.</desc>
+<desc id="desc">Bốn chặng khi Pod không chạy: Pending khi chưa có node thường do thiếu tài nguyên theo requests, taint, nodeSelector hay PVC chưa gắn; ContainerCreating khi kéo image hoặc gắn volume lỗi; chạy rồi thoát như CrashLoopBackOff hay OOMKilled do vượt limits bộ nhớ hoặc do node hết bộ nhớ; chạy nhưng chưa Ready do readiness probe thất bại.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="1026" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<rect width="320" height="1053" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="30" font-size="20" font-weight="bold">POD KHÔNG CHẠY</text>
 <text x="16" y="58" font-size="16" font-weight="normal">Dừng ở chặng nào?</text>
 <rect x="16" y="89" width="288" height="182" rx="10" fill="#fee2e2" stroke="#94a3b8"/>
@@ -21,20 +21,21 @@
 <text x="30" y="457" font-size="16" font-weight="normal">Gắn volume hoặc mạng chưa</text>
 <text x="30" y="484" font-size="16" font-weight="normal">xong</text>
 <line x1="160" y1="515" x2="160" y2="543" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
-<rect x="16" y="553" width="288" height="155" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
+<rect x="16" y="553" width="288" height="182" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
 <text x="30" y="581" font-size="16" font-weight="bold">3 · Chạy rồi thoát</text>
 <text x="30" y="608" font-size="16" font-weight="normal">CrashLoopBackOff: ứng dụng</text>
 <text x="30" y="635" font-size="16" font-weight="normal">thoát liên tục</text>
-<text x="30" y="662" font-size="16" font-weight="normal">OOMKilled: vượt limits bộ</text>
-<text x="30" y="689" font-size="16" font-weight="normal">nhớ</text>
-<line x1="160" y1="720" x2="160" y2="748" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
-<rect x="16" y="758" width="288" height="155" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
-<text x="30" y="786" font-size="16" font-weight="bold">4 · Chạy nhưng chưa</text>
-<text x="30" y="813" font-size="16" font-weight="bold">Ready</text>
-<text x="30" y="840" font-size="16" font-weight="normal">Readiness probe thất bại</text>
-<text x="30" y="867" font-size="16" font-weight="normal">Không nhận traffic từ</text>
-<text x="30" y="894" font-size="16" font-weight="normal">Service</text>
-<text x="16" y="945" font-size="16" font-weight="normal">Bắt đầu bằng kubectl describe</text>
-<text x="16" y="972" font-size="16" font-weight="normal">pod: phần Events cho biết</text>
-<text x="16" y="999" font-size="16" font-weight="normal">chặng nào.</text>
+<text x="30" y="662" font-size="16" font-weight="normal">OOMKilled: vượt limits của</text>
+<text x="30" y="689" font-size="16" font-weight="normal">container, hoặc node hết bộ</text>
+<text x="30" y="716" font-size="16" font-weight="normal">nhớ</text>
+<line x1="160" y1="747" x2="160" y2="775" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="785" width="288" height="155" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="813" font-size="16" font-weight="bold">4 · Chạy nhưng chưa</text>
+<text x="30" y="840" font-size="16" font-weight="bold">Ready</text>
+<text x="30" y="867" font-size="16" font-weight="normal">Readiness probe thất bại</text>
+<text x="30" y="894" font-size="16" font-weight="normal">Không nhận traffic từ</text>
+<text x="30" y="921" font-size="16" font-weight="normal">Service</text>
+<text x="16" y="972" font-size="16" font-weight="normal">Bắt đầu bằng kubectl describe</text>
+<text x="16" y="999" font-size="16" font-weight="normal">pod: phần Events cho biết</text>
+<text x="16" y="1026" font-size="16" font-weight="normal">chặng nào.</text>
 </g></svg>

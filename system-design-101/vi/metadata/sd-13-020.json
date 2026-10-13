@@ -64,6 +64,10 @@
     {
       "claim_vi": "Làm việc theo lô nhỏ là một năng lực DORA liên quan tới hiệu quả giao phần mềm.",
       "source": "https://dora.dev/capabilities/working-in-small-batches/"
+    },
+    {
+      "claim_vi": "Với INSERT, cột bị bỏ qua nhận giá trị mặc định đã khai báo của nó.",
+      "source": "https://www.postgresql.org/docs/current/sql-insert.html"
     }
   ],
   "source_deviations": [

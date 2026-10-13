@@ -13,7 +13,7 @@ Bản mới thêm một cột bắt buộc vào bảng, trong khi bản cũ vẫ
 <details>
 <summary>Xem đáp án</summary>
 
-Bản cũ ghi những dòng thiếu cột bắt buộc nên lỗi. Cách làm đúng là thêm cột ở dạng tùy chọn trước, chuyển ứng dụng sang dùng cột đó, rồi mới bắt buộc ở bước sau (mở rộng rồi thu gọn).
+Nếu cột bắt buộc không có giá trị mặc định, bản cũ ghi những dòng thiếu cột đó nên lỗi. Nếu cột có giá trị mặc định hợp lệ thì lệnh ghi cũ vẫn chạy được và cơ sở dữ liệu điền mặc định. Cách an toàn là thêm cột ở dạng tùy chọn (hoặc có mặc định tương thích) trước, chuyển ứng dụng sang dùng cột đó, rồi mới siết thành bắt buộc ở bước sau (mở rộng rồi thu gọn).
 
 </details>
 
@@ -36,4 +36,4 @@ Không cơ chế giảm rủi ro nào thay được kiểm thử trước khi tr
 
 - [ByteByteGo tại snapshot cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-to-deploy-services.md).
 - Martin Fowler: [ParallelChange](https://martinfowler.com/bliki/ParallelChange.html), [CanaryRelease](https://martinfowler.com/bliki/CanaryRelease.html).
-- Google SRE Workbook: [canarying releases](https://sre.google/workbook/canarying-releases/). DORA: [working in small batches](https://dora.dev/capabilities/working-in-small-batches/).
+- Google SRE Workbook: [canarying releases](https://sre.google/workbook/canarying-releases/). DORA: [working in small batches](https://dora.dev/capabilities/working-in-small-batches/). PostgreSQL: [INSERT](https://www.postgresql.org/docs/current/sql-insert.html).

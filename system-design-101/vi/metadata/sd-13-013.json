@@ -58,8 +58,16 @@
       "source": "https://docs.docker.com/engine/network/drivers/bridge/"
     },
     {
-      "claim_vi": "Chỉ cổng được publish mới truy cập được từ bên ngoài; EXPOSE không publish cổng.",
+      "claim_vi": "Với network bridge mặc định, chỉ cổng được publish mới truy cập được từ bên ngoài, và EXPOSE không publish cổng; network host và các chế độ định tuyến trực tiếp như nat-unprotected là ngoại lệ.",
       "source": "https://docs.docker.com/engine/network/port-publishing/"
+    },
+    {
+      "claim_vi": "Với network host, container dùng thẳng mạng của máy chủ và các tùy chọn publish cổng bị bỏ qua.",
+      "source": "https://docs.docker.com/engine/network/drivers/host/"
+    },
+    {
+      "claim_vi": "Image PostgreSQL chính thức khởi tạo dữ liệu lần đầu bằng một máy chủ tạm chỉ nghe trên socket Unix, nên kiểm tra sẵn sàng cho dịch vụ khác nên đi qua TCP.",
+      "source": "https://github.com/docker-library/postgres/blob/master/docker-entrypoint.sh"
     },
     {
       "claim_vi": "Restart policy giúp container tự chạy lại.",

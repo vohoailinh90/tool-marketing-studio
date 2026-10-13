@@ -47,7 +47,7 @@ services:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
     volumes: ["dbdata:/var/lib/postgresql/data"]
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U app"]
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -U app -d app"]
       interval: 5s
       timeout: 3s
       retries: 10
@@ -56,11 +56,11 @@ volumes:
   dbdata:
 ```
 
-Đặt `DB_PASSWORD` trong biến môi trường hoặc trong tệp `.env` không đưa vào Git. Image PostgreSQL chính thức bắt buộc có `POSTGRES_PASSWORD` khi khởi tạo dữ liệu lần đầu. Ví dụ truyền các tham số kết nối riêng thay vì nhúng mật khẩu vào một URI, vì mật khẩu có ký tự đặc biệt (`@`, `:`, `/`, `%`, `#`) trong URI phải được mã hóa phần trăm.
+Đặt `DB_PASSWORD` trong biến môi trường hoặc trong tệp `.env` không đưa vào Git. Image PostgreSQL chính thức bắt buộc có `POSTGRES_PASSWORD` khi khởi tạo dữ liệu lần đầu. Ví dụ truyền các tham số kết nối riêng thay vì nhúng mật khẩu vào một URI, vì mật khẩu có ký tự đặc biệt (`@`, `:`, `/`, `%`, `#`) trong URI phải được mã hóa phần trăm. Healthcheck gọi `pg_isready` với `-h 127.0.0.1` để kiểm tra qua TCP, cùng đường mà `web` dùng: nếu bỏ `-h`, lệnh kiểm tra socket Unix và có thể báo sẵn sàng khi máy chủ tạm của image PostgreSQL (chỉ nghe trên socket lúc khởi tạo dữ liệu lần đầu) chưa mở cổng mạng.
 
 - **Image và container:** image chỉ đọc; container thêm một lớp ghi, mất khi container bị xóa, nên dữ liệu cần ở volume.
 - **Network:** trong Compose, các dịch vụ dùng chung một network mặc định và gọi nhau bằng tên dịch vụ; network bridge do người dùng tạo có DNS theo tên, bridge mặc định thì không.
-- **Publish cổng:** chỉ cổng được publish mới truy cập được từ ngoài máy chủ.
+- **Publish cổng:** với network bridge như ví dụ này, chỉ cổng được publish mới truy cập được từ ngoài máy chủ. Network host dùng thẳng mạng của máy chủ và bỏ qua publish, còn chế độ định tuyến trực tiếp của bridge (ví dụ `nat-unprotected`) có thể để lộ cả cổng chưa publish.
 - **Restart policy:** `no`, `on-failure`, `always`, `unless-stopped`.
 - **Thứ tự khởi động:** `depends_on` đơn giản chỉ xếp thứ tự khởi động, không đợi cơ sở dữ liệu sẵn sàng; điều kiện `service_healthy` cùng `healthcheck` mới đợi đến khi nó trả lời được.
 
@@ -69,4 +69,4 @@ volumes:
 ## Nguồn đối chiếu
 
 - [ByteByteGo tại snapshot cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-8-must-know-docker-concepts.md).
-- Docker: [volume](https://docs.docker.com/engine/storage/volumes/), [network bridge](https://docs.docker.com/engine/network/drivers/bridge/), [publish cổng](https://docs.docker.com/engine/network/port-publishing/), [restart policy](https://docs.docker.com/engine/containers/start-containers-automatically/), [Compose networking](https://docs.docker.com/compose/how-tos/networking/).
+- Docker: [volume](https://docs.docker.com/engine/storage/volumes/), [network bridge](https://docs.docker.com/engine/network/drivers/bridge/), [publish cổng](https://docs.docker.com/engine/network/port-publishing/), [network host](https://docs.docker.com/engine/network/drivers/host/), [restart policy](https://docs.docker.com/engine/containers/start-containers-automatically/), [Compose networking](https://docs.docker.com/compose/how-tos/networking/). PostgreSQL: [pg_isready](https://www.postgresql.org/docs/current/app-pg-isready.html), [entrypoint của image chính thức](https://github.com/docker-library/postgres/blob/master/docker-entrypoint.sh).

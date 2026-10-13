@@ -67,11 +67,18 @@
       "sources": [
         "https://www.w3.org/TR/webrtc/"
       ]
+    },
+    {
+      "claim_vi": "H.264 là chuẩn mã hóa hình ảnh động (video); âm thanh được mã hóa riêng bằng bộ mã hóa âm thanh như AAC rồi ghép với video khi truyền.",
+      "sources": [
+        "https://www.itu.int/dms_pubrec/itu-t/rec/h/T-REC-H.264-202408-I%21%21SUM-HTM-E.htm"
+      ]
     }
   ],
   "source_deviations": [
     "Bài không giữ khẳng định của nguồn rằng “thiết bị Apple chỉ nhận HLS” và “DASH không hỗ trợ Apple” vì phụ thuộc trình phát và phiên bản.",
-    "Bài không giữ câu “thuật toán nén tách nền khỏi các thành phần khác của video” vì chưa rõ nghĩa kỹ thuật."
+    "Bài không giữ câu “thuật toán nén tách nền khỏi các thành phần khác của video” vì chưa rõ nghĩa kỹ thuật.",
+    "Bài nói rõ H.264 chỉ mã hóa phần hình; tiếng được mã hóa riêng (ví dụ AAC) rồi ghép với hình khi truyền."
   ],
   "design_notes_vi": "Bảy thẻ dọc theo đường đi của hình; chú thích cuối nói về lưu để xem lại (bước phụ trong nguồn).",
   "editorial_note_vi": "Bản nháp độc lập viết từ kiến thức kỹ thuật chung; đọc bài nguồn nhưng chưa mở tài liệu chính thức nên các claim chưa được kiểm chứng. Chưa review kỹ thuật, chưa user testing, chưa phê duyệt phát hành."

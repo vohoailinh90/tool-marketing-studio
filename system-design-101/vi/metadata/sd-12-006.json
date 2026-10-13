@@ -67,10 +67,17 @@
       "sources": [
         "https://redis.io/docs/latest/develop/data-types/streams/"
       ]
+    },
+    {
+      "claim_vi": "Các phần tử cùng điểm trong sorted set được sắp theo thứ tự từ điển, nên điểm thời gian không phân biệt được hai tin cùng điểm.",
+      "sources": [
+        "https://redis.io/docs/latest/develop/data-types/sorted-sets/"
+      ]
     }
   ],
   "source_deviations": [
-    "Nguồn không nêu giới hạn chỉ-chuyển-cho-người-đang-nghe của pub/sub; bài thêm giới hạn này và gợi ý Redis Streams."
+    "Nguồn không nêu giới hạn chỉ-chuyển-cho-người-đang-nghe của pub/sub; bài thêm giới hạn này và gợi ý Redis Streams.",
+    "Bài thêm lưu ý mốc đọc lại phải an toàn khi nhiều tin cùng điểm (đọc từ điểm đó trở đi rồi loại trùng theo mã tin, hoặc dùng mã tăng dần)."
   ],
   "design_notes_vi": "Bảy thẻ dọc theo hai giai đoạn của nguồn (vào phòng, gửi tin); chú thích cuối tách vai trò pub/sub và sorted set.",
   "editorial_note_vi": "Bản nháp độc lập viết từ kiến thức kỹ thuật chung; đọc bài nguồn nhưng chưa mở tài liệu chính thức nên các claim chưa được kiểm chứng. Chưa review kỹ thuật, chưa user testing, chưa phê duyệt phát hành."

@@ -21,7 +21,7 @@ Alice mất mạng 10 giây trong lúc Bob gửi tin. Khi nối lại, tin của
 <details>
 <summary>Xem đáp án</summary>
 
-Không tự tới, vì pub/sub không phát lại. Alice tải lịch sử từ sorted set, ví dụ lấy các tin có điểm thời gian lớn hơn tin cuối cùng cô đã có.
+Không tự tới, vì pub/sub không phát lại. Alice tải lịch sử từ sorted set. Mốc phải an toàn khi nhiều tin cùng điểm: lấy từ điểm của tin cuối cô đã có trở đi (gồm cả điểm đó) rồi bỏ những tin đã nhận theo mã tin nhắn. Nếu chỉ lấy điểm lớn hơn tin cuối thì tin thứ hai cùng điểm sẽ bị bỏ sót vĩnh viễn. Gọn hơn là gán mỗi tin một mã tăng dần và lấy các tin có mã lớn hơn.
 
 </details>
 
@@ -29,7 +29,7 @@ Không tự tới, vì pub/sub không phát lại. Alice tải lịch sử từ 
 <summary>Xem sâu hơn: nhiều máy chủ, thứ tự tin và Redis Streams</summary>
 
 - **Nhiều máy chủ chat:** mỗi máy chủ cùng subscribe một kênh, nên tin Bob gửi vào máy chủ A vẫn tới Alice đang nối vào máy chủ B. Đó là lý do cần pub/sub chứ không chỉ gọi hàm trong một tiến trình.
-- **Điểm là thời gian:** hai tin cùng mili giây cần cách phân định, và đồng hồ nhiều máy lệch nhau thì thứ tự không còn đáng tin.
+- **Điểm là thời gian:** hai tin cùng mili giây có cùng điểm, và Redis xếp các phần tử cùng điểm theo thứ tự từ điển của phần tử chứ không theo giờ đến. Vì vậy cần một mã tin nhắn tăng dần (hoặc dùng Redis Streams) làm mốc đọc lại, và đồng hồ nhiều máy lệch nhau thì thứ tự theo giờ không còn đáng tin.
 - **Redis Streams** là lựa chọn khác: lưu tin theo thứ tự có ID và cho đọc lại từ một điểm, hợp khi không được lỡ tin.
 - Ví dụ này cố ý đơn giản; hệ chat thật còn cần xác thực, phân quyền kênh, xác nhận đã nhận và chống gửi trùng.
 

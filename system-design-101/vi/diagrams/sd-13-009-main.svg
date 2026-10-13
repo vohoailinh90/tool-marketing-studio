@@ -1,36 +1,38 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 922" width="320" height="922" role="img" aria-labelledby="title desc">
-<title id="title">Hệ sinh thái Kubernetes theo đường đi của một ứng dụng</title>
-<desc id="desc">Năm chặng: đóng gói và quét image, dựng cụm và hạ tầng, chạy container và nối mạng, triển khai ứng dụng, và quan sát cùng bảo vệ khi đang chạy.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 932" width="320" height="932" role="img" aria-labelledby="title desc">
+<title id="title">Hệ sinh thái Kubernetes theo nhu cầu vận hành</title>
+<desc id="desc">Năm nhu cầu vận hành và công cụ ví dụ: triển khai lặp lại được bằng Git và Argo CD hoặc Flux, chia cụm cho nhiều nhóm bằng namespace, quota, RBAC và NetworkPolicy, co giãn theo tải bằng HPA và Cluster Autoscaler hay Karpenter, biết sự cố trước người dùng bằng cảnh báo từ số đo, và giữ bí mật ngoài Git bằng kho bí mật bên ngoài.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="922" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
-<text x="16" y="30" font-size="20" font-weight="bold">MÃ ĐẾN CHẠY THẬT</text>
-<text x="16" y="58" font-size="16" font-weight="normal">Công cụ theo từng chặng</text>
-<rect x="16" y="89" width="288" height="101" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
-<text x="30" y="117" font-size="16" font-weight="bold">1 · Đóng gói</text>
-<text x="30" y="144" font-size="16" font-weight="normal">Dựng image, quét lỗ hổng</text>
-<text x="30" y="171" font-size="16" font-weight="normal">(Trivy)</text>
-<line x1="160" y1="202" x2="160" y2="230" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
-<rect x="16" y="240" width="288" height="128" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
-<text x="30" y="268" font-size="16" font-weight="bold">2 · Dựng nền</text>
-<text x="30" y="295" font-size="16" font-weight="normal">Cụm: kubeadm, Cluster API</text>
-<text x="30" y="322" font-size="16" font-weight="normal">Hạ tầng cloud: Terraform,</text>
-<text x="30" y="349" font-size="16" font-weight="normal">Crossplane</text>
-<line x1="160" y1="380" x2="160" y2="408" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
-<rect x="16" y="418" width="288" height="101" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
-<text x="30" y="446" font-size="16" font-weight="bold">3 · Chạy và nối</text>
-<text x="30" y="473" font-size="16" font-weight="normal">Runtime: containerd, CRI-O</text>
-<text x="30" y="500" font-size="16" font-weight="normal">Mạng: Cilium, Calico</text>
-<line x1="160" y1="531" x2="160" y2="559" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
-<rect x="16" y="569" width="288" height="101" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
-<text x="30" y="597" font-size="16" font-weight="bold">4 · Triển khai</text>
-<text x="30" y="624" font-size="16" font-weight="normal">Đóng gói chart: Helm</text>
-<text x="30" y="651" font-size="16" font-weight="normal">Đồng bộ từ Git: Argo CD</text>
-<line x1="160" y1="682" x2="160" y2="710" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
-<rect x="16" y="720" width="288" height="182" rx="10" fill="#fee2e2" stroke="#94a3b8"/>
-<text x="30" y="748" font-size="16" font-weight="bold">5 · Giữ an toàn, nhìn</text>
-<text x="30" y="775" font-size="16" font-weight="bold">thấy</text>
-<text x="30" y="802" font-size="16" font-weight="normal">Prometheus, Grafana,</text>
-<text x="30" y="829" font-size="16" font-weight="normal">OpenTelemetry</text>
-<text x="30" y="856" font-size="16" font-weight="normal">Chính sách: Kyverno; phát</text>
-<text x="30" y="883" font-size="16" font-weight="normal">hiện: Falco</text>
+<rect width="320" height="932" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">NHU CẦU → CƠ CHẾ</text>
+<text x="16" y="58" font-size="16" font-weight="normal">Tên công cụ chỉ là ví dụ</text>
+<rect x="16" y="89" width="288" height="182" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="117" font-size="16" font-weight="bold">Triển khai lặp lại</text>
+<text x="30" y="144" font-size="16" font-weight="bold">được</text>
+<text x="30" y="171" font-size="16" font-weight="normal">Khai báo trong Git, đồng bộ</text>
+<text x="30" y="198" font-size="16" font-weight="normal">bằng Argo CD hoặc Flux</text>
+<text x="30" y="225" font-size="16" font-weight="normal">Tham số hóa bằng Helm hoặc</text>
+<text x="30" y="252" font-size="16" font-weight="normal">Kustomize</text>
+<rect x="16" y="283" width="288" height="182" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="311" font-size="16" font-weight="bold">Chia cụm cho nhiều</text>
+<text x="30" y="338" font-size="16" font-weight="bold">nhóm</text>
+<text x="30" y="365" font-size="16" font-weight="normal">Namespace, ResourceQuota,</text>
+<text x="30" y="392" font-size="16" font-weight="normal">RBAC</text>
+<text x="30" y="419" font-size="16" font-weight="normal">NetworkPolicy giới hạn ai</text>
+<text x="30" y="446" font-size="16" font-weight="normal">nói chuyện với ai</text>
+<rect x="16" y="477" width="288" height="128" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="505" font-size="16" font-weight="bold">Co giãn theo tải</text>
+<text x="30" y="532" font-size="16" font-weight="normal">HPA tăng giảm số Pod</text>
+<text x="30" y="559" font-size="16" font-weight="normal">Cluster Autoscaler hoặc</text>
+<text x="30" y="586" font-size="16" font-weight="normal">Karpenter thêm bớt node</text>
+<rect x="16" y="617" width="288" height="128" rx="10" fill="#fee2e2" stroke="#94a3b8"/>
+<text x="30" y="645" font-size="16" font-weight="bold">Biết sự cố trước người</text>
+<text x="30" y="672" font-size="16" font-weight="bold">dùng</text>
+<text x="30" y="699" font-size="16" font-weight="normal">Cảnh báo từ số đo, ví dụ</text>
+<text x="30" y="726" font-size="16" font-weight="normal">Prometheus với Alertmanager</text>
+<rect x="16" y="757" width="288" height="155" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="785" font-size="16" font-weight="bold">Giữ bí mật ngoài Git</text>
+<text x="30" y="812" font-size="16" font-weight="normal">Kho bí mật bên ngoài, đồng</text>
+<text x="30" y="839" font-size="16" font-weight="normal">bộ vào cụm (External</text>
+<text x="30" y="866" font-size="16" font-weight="normal">Secrets, Secrets Store CSI</text>
+<text x="30" y="893" font-size="16" font-weight="normal">Driver)</text>
 </g></svg>

@@ -1,10 +1,10 @@
-# Sách DevOps đáng đọc theo mục tiêu
+# Sách đáng đọc cho người làm DevOps và vận hành
 
-Chọn sách theo điều bạn đang cần giải quyết, không theo danh sách cố định. Mỗi mục dưới đây là một mục tiêu đọc, kèm cuốn hợp nhất.
+Chọn sách theo điều bạn đang cần giải quyết, không theo một danh sách cố định. Mỗi mục dưới đây là một nhu cầu cụ thể kèm vài cuốn hợp nhất.
 
-![Năm mục tiêu đọc và cuốn sách tương ứng: hiểu vì sao công việc nghẽn, đo hiệu quả giao phần mềm, xây quy trình phát hành, vận hành ổn định ở quy mô lớn, và tổ chức nhóm.](../../diagrams/sd-13-002-main.svg)
+![Năm nhu cầu và sách gợi ý: đo hiệu quả giao phần mềm với Accelerate, vận hành ổn định ở quy mô lớn với Site Reliability Engineering và Building Secure and Reliable Systems, thiết kế chịu lỗi với Release It!, nhìn thấy hệ thống đang chạy với Observability Engineering, và quản lý hạ tầng bằng mã với Infrastructure as Code.](../../diagrams/sd-13-002-main.svg)
 
-**Đọc hình:** mỗi cuốn trả lời một câu hỏi khác nhau; đọc một cuốn theo nhu cầu trước khi đọc thêm.
+**Đọc hình:** danh sách là lựa chọn của bài, không phải thứ hạng; mỗi cuốn trả lời một câu hỏi khác nhau.
 
 ## Nhìn hình thử trả lời
 
@@ -24,12 +24,12 @@ Sách không chứng minh cách làm hợp với tổ chức của bạn. Nhiề
 <details>
 <summary>Xem sâu hơn</summary>
 
-- **The Phoenix Project:** Gene Kim, Kevin Behr, George Spafford. Tiểu thuyết ví công việc IT như dây chuyền sản xuất.
-- **Accelerate:** Nicole Forsgren, Jez Humble, Gene Kim.
-- **Continuous Delivery:** Jez Humble, David Farley.
-- **Site Reliability Engineering:** do nhóm SRE của Google biên tập, đọc trực tuyến miễn phí. **Release It!** của Michael Nygard nói về thiết kế phần mềm chịu lỗi khi chạy thật.
-- **Team Topologies:** Matthew Skelton, Manuel Pais. **Effective DevOps:** Jennifer Davis, Ryn Daniels.
-- Danh sách này là lựa chọn của bài, rộng hơn nguồn, không phải thứ hạng.
+- **Accelerate:** Nicole Forsgren, Jez Humble, Gene Kim; nền của các thước đo DORA.
+- **Site Reliability Engineering** do nhóm SRE của Google biên tập, cùng **Building Secure and Reliable Systems** của Google; cả hai đọc trực tuyến miễn phí.
+- **Release It!** của Michael Nygard: các mẫu để phần mềm chịu được lỗi và quá tải khi chạy thật.
+- **Observability Engineering:** Charity Majors, Liz Fong-Jones, George Miranda.
+- **Infrastructure as Code:** Kief Morris.
+- Còn nhiều hướng khác (tổ chức nhóm, văn hóa, kỹ nghệ phần mềm) chưa nằm trong danh sách ngắn này.
 
 </details>
 
@@ -37,5 +37,4 @@ Sách không chứng minh cách làm hợp với tổ chức của bạn. Nhiề
 
 - [ByteByteGo tại snapshot cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/some-devops-books-i-find-enlightening.md).
 - Nhóm DORA: [các thước đo hiện hành](https://dora.dev/guides/dora-metrics/), [bốn thước đo ban đầu](https://dora.dev/guides/dora-metrics-four-keys/).
-- Google: [sách SRE](https://sre.google/sre-book/table-of-contents/).
-- Trang sách: [Continuous Delivery](https://continuousdelivery.com/), [Team Topologies](https://teamtopologies.com/), [Release It!](https://pragprog.com/titles/mnee2/release-it-second-edition/).
+- Google: [sách SRE và các sách liên quan](https://sre.google/books/). Trang sách: [Release It!](https://pragprog.com/titles/mnee2/release-it-second-edition/), [Infrastructure as Code](https://infrastructure-as-code.com/), [Observability Engineering](https://www.oreilly.com/library/view/observability-engineering/9781492076438/).

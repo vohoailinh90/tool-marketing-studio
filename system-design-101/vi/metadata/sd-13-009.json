@@ -1,8 +1,8 @@
 {
   "id": "sd-13-009",
-  "title_vi": "Hệ sinh thái Kubernetes theo đường đi của một ứng dụng",
+  "title_vi": "Hệ sinh thái Kubernetes theo nhu cầu vận hành",
   "language": "vi",
-  "kind": "flow",
+  "kind": "comparison",
   "content_status": "draft",
   "source_ref": "sd-13-009",
   "source_snapshot": {
@@ -50,17 +50,29 @@
   },
   "claims": [
     {
-      "claim_vi": "Kubernetes dùng CRI để làm việc với container runtime như containerd và CRI-O.",
-      "source": "https://kubernetes.io/docs/setup/production-environment/container-runtimes/"
+      "claim_vi": "HPA điều chỉnh số Pod theo số đo như CPU.",
+      "source": "https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/"
     },
     {
-      "claim_vi": "Dockershim bị gỡ khỏi Kubernetes ở bản 1.24; image Docker vẫn chạy được.",
-      "source": "https://kubernetes.io/blog/2022/02/17/dockershim-faq/"
+      "claim_vi": "ResourceQuota giới hạn tài nguyên theo namespace.",
+      "source": "https://kubernetes.io/docs/concepts/policy/resource-quotas/"
+    },
+    {
+      "claim_vi": "NetworkPolicy chỉ có hiệu lực khi plugin mạng hỗ trợ.",
+      "source": "https://kubernetes.io/docs/concepts/services-networking/network-policies/"
+    },
+    {
+      "claim_vi": "Argo CD là công cụ GitOps cho Kubernetes.",
+      "source": "https://argo-cd.readthedocs.io/"
+    },
+    {
+      "claim_vi": "Cluster Autoscaler thêm node khi có Pod không đặt được.",
+      "source": "https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler"
     }
   ],
   "source_deviations": [
-    "Nguồn chia sáu mảng; bài sắp theo đường đi của ứng dụng và thêm ví dụ công cụ."
+    "Nguồn chia hệ sinh thái thành sáu mảng; bài bỏ cách chia đó, chọn năm nhu cầu vận hành độc lập kèm cơ chế và công cụ ví dụ."
   ],
-  "design_notes_vi": "Năm chặng dọc nối mũi tên.",
+  "design_notes_vi": "Năm thẻ nhu cầu vận hành kèm cơ chế.",
   "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
 }

@@ -1,8 +1,8 @@
 {
   "id": "sd-13-002",
-  "title_vi": "Sách DevOps đáng đọc theo mục tiêu",
+  "title_vi": "Sách đáng đọc cho người làm DevOps và vận hành",
   "language": "vi",
-  "kind": "comparison",
+  "kind": "reference",
   "content_status": "draft",
   "source_ref": "sd-13-002",
   "source_snapshot": {
@@ -47,25 +47,21 @@
       "source": "https://dora.dev/guides/dora-metrics/"
     },
     {
-      "claim_vi": "Sách SRE của Google có bản đọc trực tuyến.",
-      "source": "https://sre.google/sre-book/table-of-contents/"
-    },
-    {
-      "claim_vi": "Continuous Delivery nói về pipeline triển khai.",
-      "source": "https://continuousdelivery.com/"
-    },
-    {
-      "claim_vi": "Team Topologies do Matthew Skelton và Manuel Pais viết.",
-      "source": "https://teamtopologies.com/"
+      "claim_vi": "Google công bố các sách SRE, trong đó có Building Secure and Reliable Systems.",
+      "source": "https://sre.google/books/"
     },
     {
       "claim_vi": "Release It! của Michael Nygard nói về phần mềm chịu lỗi khi chạy thật.",
       "source": "https://pragprog.com/titles/mnee2/release-it-second-edition/"
+    },
+    {
+      "claim_vi": "Infrastructure as Code do Kief Morris viết.",
+      "source": "https://infrastructure-as-code.com/"
     }
   ],
   "source_deviations": [
-    "Nguồn liệt kê sáu cuốn kèm một dòng mô tả; bài tổ chức theo mục tiêu đọc và thêm sách ngoài nguồn."
+    "Nguồn liệt kê sáu cuốn kèm một dòng mô tả; bài chọn lại danh sách theo nhu cầu, chỉ giữ Accelerate và sách SRE của Google, thêm các sách khác không có trong nguồn."
   ],
-  "design_notes_vi": "Năm thẻ mục tiêu đọc, mỗi thẻ gợi ý sách.",
+  "design_notes_vi": "Năm thẻ nhu cầu đọc, mỗi thẻ gợi ý sách.",
   "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
 }

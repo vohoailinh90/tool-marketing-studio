@@ -2,7 +2,7 @@
 
 Hãy hình dung bạn đưa một API HTTP lên Kubernetes. Mỗi mẫu thiết kế dưới đây trả lời một việc cụ thể bạn sẽ gặp, và bạn không cần học thuộc cả bộ.
 
-![Sáu việc cần làm khi đưa một API lên cụm và mẫu giúp bạn: báo sẵn sàng bằng probe, khai báo tài nguyên, chạy migration bằng init container hoặc Job, thêm proxy hoặc gửi nhật ký bằng sidecar, tìm nhau qua Service và DNS, và tắt êm khi bị thay Pod cùng PodDisruptionBudget khi bảo trì node.](../../diagrams/sd-13-001-main.svg)
+![Sáu việc cần làm khi đưa một API lên cụm và mẫu giúp bạn: báo sẵn sàng bằng probe, khai báo tài nguyên (requests để đặt Pod, limits giới hạn lúc chạy), chạy migration bằng init container hoặc Job kèm migration idempotent, thêm proxy hoặc gửi nhật ký bằng sidecar, tìm nhau qua Service và DNS, và tắt êm khi bị thay Pod cùng PodDisruptionBudget khi bảo trì node.](../../diagrams/sd-13-001-main.svg)
 
 **Đọc hình:** sáu việc độc lập, không có thứ tự bắt buộc; bài chọn các việc thường gặp, không phải danh mục đầy đủ.
 
@@ -13,7 +13,7 @@ Migration cơ sở dữ liệu chỉ nên chạy một lần cho mỗi bản ph�
 <details>
 <summary>Xem đáp án</summary>
 
-Không chắc. Init container chạy ở mỗi Pod, nên nhiều Pod sẽ cùng chạy migration. Việc chạy một lần thường dùng Job, hoặc công cụ migration có cơ chế khóa.
+Không chắc. Init container chạy ở mỗi Pod, nên nhiều Pod sẽ cùng chạy migration. Job phù hợp hơn cho việc theo bản phát hành, nhưng Job cũng không bảo đảm chạy đúng một lần: Pod lỗi hay bị thay có thể làm migration chạy lại. Vì vậy migration vẫn nên idempotent hoặc dùng công cụ có cơ chế khóa.
 
 </details>
 
@@ -24,9 +24,9 @@ Bài chọn sáu việc thường gặp khi đưa một API lên cụm, tên m�
 <details>
 <summary>Xem sâu hơn</summary>
 
-- **Probe:** liveness khởi động lại container khi kẹt; readiness quyết định Pod có nằm trong endpoint của Service không; startup bảo vệ ứng dụng khởi động chậm.
-- **Tài nguyên:** `requests` giúp scheduler đặt Pod; `limits` giới hạn mức dùng tối đa.
-- **Init container và Job:** init container chạy lần lượt, xong hết mới tới container ứng dụng, ở mỗi Pod. Job chạy tới khi hoàn tất, có thử lại.
+- **Probe:** liveness khởi động lại container khi kẹt; readiness quyết định endpoint của Pod có nhận traffic từ Service không (Pod vẫn được liệt kê với `ready: false`); startup bảo vệ ứng dụng khởi động chậm.
+- **Tài nguyên:** `requests` là thứ scheduler dùng để đặt Pod; `limits` do runtime áp dụng sau khi Pod đã được đặt để giới hạn mức dùng tối đa.
+- **Init container và Job:** init container chạy lần lượt, xong hết mới tới container ứng dụng, ở mỗi Pod. Job chạy tới khi hoàn tất, có thử lại; tài liệu nêu rõ chương trình trong Job vẫn có thể chạy nhiều hơn một lần, nên cần thiết kế idempotent hoặc có khóa.
 - **Sidecar:** các bản Kubernetes gần đây hỗ trợ sidecar dạng gốc, khai báo như init container có `restartPolicy: Always`.
 - **Service:** Service ClusterIP thông thường (có selector) cho một địa chỉ ảo ổn định và tên DNS cho một nhóm Pod; Service headless và ExternalName không làm vậy.
 - **Tắt êm:** khi Pod bị xóa, hook `preStop` (nếu có) chạy trước rồi kubelet gửi SIGTERM. `terminationGracePeriodSeconds` là tổng thời gian cho cả quá trình đó và bắt đầu đếm từ trước `preStop`, nên hook chậm làm ứng dụng còn ít thời gian dọn dẹp sau SIGTERM; hết hạn thì container bị dừng cưỡng bức.

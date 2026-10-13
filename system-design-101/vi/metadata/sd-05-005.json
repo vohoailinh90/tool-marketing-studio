@@ -71,10 +71,10 @@
       "verified_by": "README read from a local clone."
     },
     {
-      "claim_vi": "The resources LeetCode, Cracking the Coding Interview, NeetCode, System Design Interview books, Grokking, Designing Data-Intensive Applications, A Life Engineered, Interviewready, Educative OOD, Head First Design Patterns, interviewing.io, Pramp, Meetapro, LinkedIn, Monster and Indeed exist and fit the six areas.",
+      "claim_vi": "The pinned source lists LeetCode, Cracking the Coding Interview, NeetCode, System Design Interview books, Grokking, Designing Data-Intensive Applications, A Life Engineered, Interviewready, Educative OOD, Head First Design Patterns, interviewing.io, Pramp, Meetapro, LinkedIn, Monster and Indeed under its six areas; whether each resource currently exists or fits its area was not checked.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/my-recommended-materials-for-cracking-your-next-technical-interview.md",
       "section": "All sections",
-      "verified_by": "Carried from the source as general description; not independently checked. Not checked for availability, price or quality."
+      "verified_by": "Carried from the source as general description; not independently checked. Only what the pinned source lists and how it groups the resources is recorded; availability, price and quality were not checked."
     }
   ],
   "design_notes_vi": "Hình theo sáu mảng chứ không theo tên sản phẩm; thẻ đỏ nói danh sách tài nguyên chưa kiểm. Các gợi ý cách luyện là ý kiến chung của người biên soạn. Không dùng ảnh nguồn.",

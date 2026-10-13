@@ -15,7 +15,7 @@ Hiểu từng thuộc tính là hiểu vì sao cùng một cookie lúc có mặt
 
 **SameSite.** Quyết định có gửi cookie trong yêu cầu xuất phát từ trang khác site hay không. `Strict`: không gửi. `Lax`: gửi khi người dùng bấm liên kết sang trang này, nhưng không gửi kèm các yêu cầu như form POST từ trang khác. `None`: gửi cả khi xuyên site (phải kèm `Secure`).
 
-**Thời hạn.** `Expires` hoặc `Max-Age` đặt ngày hết hạn; không có thì là cookie phiên, bị xóa khi phiên của trình duyệt kết thúc.
+**Thời hạn.** `Expires` hoặc `Max-Age` đặt ngày hết hạn; không có thì là cookie phiên, thường bị xóa khi phiên hiện tại kết thúc. Lúc nào phiên kết thúc do trình duyệt quyết định, và một số trình duyệt khôi phục phiên cũ khi mở lại, khiến cookie phiên có thể tồn tại rất lâu; vì vậy đóng trình duyệt không phải cách đăng xuất đáng tin (kết luận cuối là suy luận của người biên soạn).
 
 ## Giới hạn cần nhớ
 

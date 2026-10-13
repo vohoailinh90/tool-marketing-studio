@@ -17,6 +17,12 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 
 7. [Chính sách định tuyến lưu lượng Internet](lessons/sd-01-007/lesson.md) — có review tại repo cũ; chờ review tích hợp tại repo mới.
 
+8. [Các tình huống dùng bộ cân bằng tải](lessons/sd-01-011/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+
+9. [18 cổng mạng thường gặp](lessons/sd-01-012/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+
+10. [Phân biệt WAN, LAN, PAN và MAN](lessons/sd-01-013/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+
 Danh mục đầy đủ và snapshot nguồn: [bảng đối chiếu](../../brainstorm/system-design-101-vi/source-map.json).
 Quy tắc đã chốt: [kết luận brainstorm](../../brainstorm/system-design-101-vi/DECISIONS.md).
 Tiến độ từng đợt: [PROGRESS.md](PROGRESS.md).

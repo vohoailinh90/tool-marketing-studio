@@ -1,0 +1,105 @@
+{
+  "id": "sd-01-010",
+  "title_vi": "CSS là gì?",
+  "language": "vi",
+  "kind": "reference",
+  "content_status": "review",
+  "source_ref": "sd-01-010",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/what-is-css-cascading-style-sheets.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-is-css-cascading-style-sheets.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches provider tree OID. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "b9d6e76f4a7a6b3468f80aecd6b38d241e29e1e3",
+    "retrieved_body_sha256": "40fd1ad7d4e52a8cdc91ecbd0dbb4ee0e5d7ab097b1167f2560a64a2a09fe5e9",
+    "retrieved_body_bytes": 2998
+  },
+  "diagram": "../diagrams/sd-01-010-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-01-008",
+      "relation": "uses",
+      "reason_vi": "Các luật CSS được dựng thành CSSOM trong quá trình dựng trang."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "evidence": "MDN pages read from a local clone of mdn/content; cascade outcomes measured in Chromium 141; 'style sheet language' from search excerpts."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 14.4,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright) rendered the full lesson at each width with optional sections open; diagram scale measured from the rendered image and every SVG text box checked against the viewBox. Not learner testing and not GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "The cascade is an algorithm deciding which declaration wins across origins, cascade layers and blocks; specificity is compared within the origin/layer that has precedence; order of appearance decides when specificity and scoping proximity tie.",
+      "source": "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascade/Introduction",
+      "section": "Introduction; Cascade order",
+      "verified_by": "Read from a local clone of mdn/content (developer.mozilla.org was unreachable)."
+    },
+    {
+      "claim_vi": "Inline styles override normal author-stylesheet declarations; !important is an exception to normal specificity.",
+      "source": "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascade/Specificity",
+      "section": "Inline styles; !important exception",
+      "verified_by": "Read from a local clone of mdn/content (developer.mozilla.org was unreachable)."
+    },
+    {
+      "claim_vi": "The three concepts that govern conflicts are specificity, source order and importance.",
+      "source": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Handling_conflicts",
+      "section": "Conflicting rules",
+      "verified_by": "Read from a local clone of mdn/content (developer.mozilla.org was unreachable)."
+    },
+    {
+      "claim_vi": "With '.note { color: red }' before 'p { color: blue }', a <p class=\"note\"> is red (rgb(255, 0, 0)); two rules of equal specificity resolve to the later one.",
+      "source": "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascade/Specificity",
+      "section": "Specificity",
+      "verified_by": "Measured in Chromium 141 with Playwright."
+    },
+    {
+      "claim_vi": "CSS is commonly described as a style sheet language rather than a markup language.",
+      "source": "https://technav.ieee.org/topic/cascading-style-sheets/",
+      "section": "Overview",
+      "verified_by": "Search-result excerpt only; the page itself was not opened (host blocked in the authoring environment)."
+    },
+    {
+      "claim_vi": "CSS separates structure (HTML) from presentation; Flexbox, Grid, transitions/keyframes and media queries cover layout, animation and responsiveness.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-is-css-cascading-style-sheets.md",
+      "section": "Source body",
+      "verified_by": "Carried from the source as general description; not independently checked."
+    }
+  ],
+  "design_notes_vi": "Một quy tắc rồi ba bước cascade, kèm ví dụ .note thắng p; cascade layer và scoping proximity được lược khỏi hình và nói trong phần sâu. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Source calls CSS a 'markup language'; CSS is a style sheet language, so the lesson says so in the optional section.",
+    "Source says the winner is decided by selector type and source order and implies later rules win; the lesson states the actual order (origin and importance, specificity, then order) and shows that an earlier more specific rule still wins.",
+    "Source's 'CSS3 introduces animation' is omitted because it is not needed for the main idea and was not verified."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

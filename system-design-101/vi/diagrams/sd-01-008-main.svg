@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 732" width="320" height="732" role="img" aria-labelledby="title desc">
+<title id="title">Trình duyệt dựng trang web từ HTML tới điểm ảnh</title>
+<desc id="desc">Sáu bước. HTML được phân tích thành cây DOM và CSS thành cây CSSOM. Hai cây được gộp thành render tree, bỏ head và phần tử display none nhưng giữ phần tử visibility hidden. Tiếp theo là layout tính kích thước và vị trí, paint vẽ ra điểm ảnh, và đôi khi ghép lớp bằng GPU. Đổi kích thước hay vị trí sau đó buộc tính lại layout, gọi là reflow.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="732" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="21" font-weight="bold">TRÌNH DUYỆT DỰNG</text>
+<text x="16" y="54" font-size="21" font-weight="bold">TRANG WEB</text>
+<rect x="16" y="80" width="288" height="76" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="29" y="109" font-size="16" font-weight="bold">1 · HTML → cây DOM</text>
+<text x="29" y="137" font-size="16" font-weight="normal">Phân tích HTML nhận được</text>
+<rect x="16" y="164" width="288" height="76" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="29" y="193" font-size="16" font-weight="bold">2 · CSS → cây CSSOM</text>
+<text x="29" y="221" font-size="16" font-weight="normal">Phân tích các luật CSS</text>
+<line x1="160" y1="241" x2="160" y2="260" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="262" width="288" height="100" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="29" y="291" font-size="16" font-weight="bold">3 · Gộp thành render tree</text>
+<text x="29" y="319" font-size="16" font-weight="normal">Bỏ &lt;head&gt; và display: none</text>
+<text x="29" y="343" font-size="16" font-weight="normal">Giữ visibility: hidden</text>
+<line x1="160" y1="363" x2="160" y2="382" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="384" width="288" height="76" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="29" y="413" font-size="16" font-weight="bold">4 · Layout</text>
+<text x="29" y="441" font-size="16" font-weight="normal">Tính kích thước và vị trí</text>
+<line x1="160" y1="461" x2="160" y2="480" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="482" width="288" height="76" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="29" y="511" font-size="16" font-weight="bold">5 · Paint</text>
+<text x="29" y="539" font-size="16" font-weight="normal">Vẽ ra các điểm ảnh</text>
+<line x1="160" y1="559" x2="160" y2="578" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="580" width="288" height="76" rx="12" fill="#e2e8f0" stroke="#94a3b8"/>
+<text x="29" y="609" font-size="16" font-weight="bold">6 · Ghép lớp</text>
+<text x="29" y="637" font-size="16" font-weight="normal">Đôi khi, dùng GPU để ghép</text>
+<text x="16" y="684" font-size="16" font-weight="normal" fill="#334155">Đổi kích thước hay vị trí thì layout</text>
+<text x="16" y="708" font-size="16" font-weight="normal" fill="#334155">tính lại (reflow).</text>
+</g></svg>

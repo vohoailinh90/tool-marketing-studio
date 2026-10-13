@@ -62,10 +62,17 @@
       "sources": [
         "https://martinfowler.com/eaaDev/EventSourcing.html"
       ]
+    },
+    {
+      "claim_vi": "Trên thực tế, môi giới có quyền truy cập thị trường phải có kiểm soát rủi ro, gồm ngưỡng tín dụng hoặc vốn, trước khi lệnh của khách tới sàn; kiểm tra vốn của khách do môi giới giữ chứ không phải sàn.",
+      "sources": [
+        "https://www.law.cornell.edu/cfr/text/17/240.15c3-5"
+      ]
     }
   ],
   "source_deviations": [
-    "Bài không dùng số liệu độ trễ; thêm giải thích sổ lệnh, ưu tiên giá–thời gian và tính tất định."
+    "Bài không dùng số liệu độ trễ; thêm giải thích sổ lệnh, ưu tiên giá–thời gian và tính tất định.",
+    "Nguồn đặt kiểm tra ví trong quản lý lệnh của sàn; bài nói rõ đó là đơn giản hóa vì trên thực tế phần kiểm tra vốn của khách thuộc môi giới."
   ],
   "design_notes_vi": "Bảy thẻ dọc theo đường chính của nguồn; chú thích cuối nêu việc đánh số thứ tự.",
   "editorial_note_vi": "Bản nháp độc lập viết từ kiến thức kỹ thuật chung; đọc bài nguồn nhưng chưa mở tài liệu chính thức nên các claim chưa được kiểm chứng. Chưa review kỹ thuật, chưa user testing, chưa phê duyệt phát hành."

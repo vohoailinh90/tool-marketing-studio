@@ -68,11 +68,18 @@
       "sources": [
         "https://nlp.stanford.edu/IR-book/"
       ]
+    },
+    {
+      "claim_vi": "noindex chỉ có tác dụng khi công cụ bò được trang để đọc chỉ thị; trang bị robots.txt chặn có thể vẫn xuất hiện trong kết quả.",
+      "sources": [
+        "https://developers.google.com/search/docs/crawling-indexing/block-indexing"
+      ]
     }
   ],
   "source_deviations": [
     "Bài thêm ví dụ chỉ mục đảo, phân biệt bò–lập chỉ mục–xếp hạng và lưu ý về robots.txt; nguồn chỉ mô tả ba giai đoạn ở mức tổng quan.",
-    "Bài không khẳng định công thức xếp hạng của công cụ cụ thể nào."
+    "Bài không khẳng định công thức xếp hạng của công cụ cụ thể nào.",
+    "Bài nói rõ noindex cần cho phép bò; nguồn không nhắc tới robots.txt hay noindex."
   ],
   "design_notes_vi": "Bảy thẻ dọc gom thành ba giai đoạn bằng tiền tố bước; chú thích cuối tách ba trạng thái bò, lập chỉ mục, xếp hạng.",
   "editorial_note_vi": "Bản nháp độc lập viết từ kiến thức kỹ thuật chung; đọc bài nguồn nhưng chưa mở tài liệu chính thức nên các claim chưa được kiểm chứng. Chưa review kỹ thuật, chưa user testing, chưa phê duyệt phát hành."

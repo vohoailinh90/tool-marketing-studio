@@ -61,11 +61,19 @@
       "sources": [
         "https://en.wikipedia.org/wiki/Quadtree"
       ]
+    },
+    {
+      "claim_vi": "Tìm các điểm gần nhất chính xác trên quadtree cần duyệt ô theo khoảng cách tối thiểu và chỉ dừng khi không ô nào chưa xét có thể tốt hơn; chỉ mở rộng sang ô kề cho kết quả gần đúng.",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Quadtree",
+        "https://en.wikipedia.org/wiki/Nearest_neighbor_search"
+      ]
     }
   ],
   "source_deviations": [
     "Bài không lặp các số liệu của nguồn về số địa điểm và thời gian dựng cây vì chưa có phép đo và điều kiện đi kèm; ngưỡng 100 chỉ là ví dụ.",
-    "Bài nói rõ việc giữ quadtree trong bộ nhớ là lựa chọn triển khai của thiết kế này, không phải tính chất bắt buộc của cấu trúc."
+    "Bài nói rõ việc giữ quadtree trong bộ nhớ là lựa chọn triển khai của thiết kế này, không phải tính chất bắt buộc của cấu trúc.",
+    "Nguồn chỉ nói thêm địa điểm từ ô kề khi ô lá chưa đủ; bài nói rõ đó là cách gần đúng, muốn chính xác cần duyệt theo khoảng cách tối thiểu."
   ],
   "design_notes_vi": "Hình vuông bản đồ vẽ riêng (ô mật độ cao chia sâu, ô lá tô vàng, có chú giải chữ) kèm ba thẻ ngắn.",
   "editorial_note_vi": "Bản nháp độc lập viết từ kiến thức kỹ thuật chung; đọc bài nguồn nhưng chưa mở tài liệu chính thức nên các claim chưa được kiểm chứng. Chưa review kỹ thuật, chưa user testing, chưa phê duyệt phát hành."

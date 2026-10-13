@@ -2,11 +2,11 @@
 
 **Sàn giao dịch xử lý lệnh trên một đường chính cực kỳ nhạy về độ trễ.** Những việc không nằm trên đường đó, như báo giá cho người xem hay báo cáo, được tách ra để không làm chậm việc khớp lệnh.
 
-![Bảy thẻ dọc: khách đặt lệnh qua ứng dụng của môi giới; môi giới gửi lệnh tới sàn; cổng khách hàng kiểm tra hợp lệ, giới hạn tần suất và xác thực; quản lý lệnh kiểm tra rủi ro theo quy tắc; kiểm tra đủ tiền trong ví; động cơ khớp lệnh khớp mua với bán và sinh hai bản ghi khớp; kết quả trả về khách qua các thành phần ngược lại. Chú thích: lệnh và kết quả khớp được đánh số thứ tự để phát lại ra cùng kết quả.](../../diagrams/sd-12-014-main.svg)
+![Bảy thẻ dọc: khách đặt lệnh qua ứng dụng của môi giới; môi giới gửi lệnh tới sàn; cổng khách hàng kiểm tra hợp lệ, giới hạn tần suất và xác thực; quản lý lệnh kiểm tra rủi ro theo quy tắc; kiểm tra vốn của khách (đơn giản hóa: số dư trong ví); động cơ khớp lệnh khớp mua với bán và sinh hai bản ghi khớp; kết quả trả về khách qua các thành phần ngược lại. Chú thích: lệnh và kết quả khớp được đánh số thứ tự để phát lại ra cùng kết quả.](../../diagrams/sd-12-014-main.svg)
 
 ## Đọc hình
 
-**Đường chính (từ lệnh tới kết quả).** Khách đặt lệnh trong ứng dụng của **môi giới**, môi giới chuyển tới sàn. Tại sàn, **cổng khách hàng** kiểm tra đầu vào, giới hạn tần suất và xác thực; **quản lý lệnh** kiểm tra rủi ro theo quy tắc của bộ phận rủi ro và kiểm tra khách còn đủ tiền; lệnh đạt thì vào **động cơ khớp lệnh**.
+**Đường chính (từ lệnh tới kết quả).** Khách đặt lệnh trong ứng dụng của **môi giới**, môi giới chuyển tới sàn. Tại sàn, **cổng khách hàng** kiểm tra đầu vào, giới hạn tần suất và xác thực; **quản lý lệnh** kiểm tra rủi ro theo quy tắc của bộ phận rủi ro và, trong thiết kế đơn giản hóa này, kiểm tra vốn của khách qua một ví; lệnh đạt thì vào **động cơ khớp lệnh**.
 
 Động cơ ghép lệnh mua với lệnh bán. Khi khớp, nó sinh **hai bản ghi khớp**, một cho bên mua và một cho bên bán, rồi kết quả đi ngược về khách. Cả lệnh lẫn kết quả được **đánh số thứ tự** để phát lại cùng một chuỗi sẽ cho đúng cùng kết quả.
 
@@ -14,7 +14,7 @@
 
 ## Giới hạn cần nhớ
 
-Bài mô tả luồng đã đơn giản hóa; sàn thật còn nhiều loại lệnh, phiên giao dịch, quy tắc tạm dừng và giám sát. Đường chính phải nhanh nhưng cũng phải đúng: kiểm tra rủi ro và kiểm tra tiền là bắt buộc trước khi khớp, không thể bỏ để nhanh hơn.
+Bài mô tả luồng đã đơn giản hóa; sàn thật còn nhiều loại lệnh, phiên giao dịch, quy tắc tạm dừng và giám sát. Ranh giới trách nhiệm cũng đơn giản hóa: trên thực tế hạn mức mua của khách thường do **môi giới** kiểm tra trước khi gửi lệnh, còn sàn áp dụng kiểm soát rủi ro theo thành viên hoặc công ty thanh toán bù trừ. Bài đặt kiểm tra vốn trong quản lý lệnh của sàn chỉ để theo sát luồng nguồn. Đường chính phải nhanh nhưng cũng phải đúng: các kiểm tra rủi ro và vốn, dù do sàn hay do môi giới thực hiện, là bắt buộc trước khi khớp và không thể bỏ để nhanh hơn.
 
 ## Nhìn hình trả lời
 

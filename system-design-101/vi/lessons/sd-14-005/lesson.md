@@ -27,8 +27,11 @@ Kẻ tấn công lấy được toàn bộ dữ liệu trên máy chủ của nh
 <details>
 <summary>Xem đáp án</summary>
 
-Họ có salt, khóa kho đã bọc, các mục đã mã hóa và giá trị đăng nhập, nhưng không có khóa mở khóa, nên muốn đọc phải đoán mật khẩu chủ; hàm băm chậm làm mỗi lần đoán tốn kém, nhưng mật khẩu chủ yếu vẫn là chỗ hở.
-Khi chạy thử mô hình này, mật khẩu sai không mở được khóa kho. Trong mô hình chạy thử này, đổi mật khẩu chủ chỉ cần bọc lại khóa kho bằng khóa mở khóa mới: các mục đã mã hóa giữ nguyên, mật khẩu cũ không còn mở được khóa kho đã bọc lại.
+Họ có salt, khóa kho đã bọc, các mục đã mã hóa và giá trị đăng nhập, nhưng không có khóa mở khóa. Với mô hình chỉ có mật khẩu chủ, muốn đọc họ phải đoán mật khẩu chủ: hàm băm chậm làm mỗi lần đoán tốn kém, nhưng mật khẩu chủ yếu vẫn là chỗ hở.
+Với biến thể có mã bí mật do người dùng giữ (như Secret Key), khóa mở khóa cần cả hai, nên họ còn phải có hoặc đoán cả mã đó; khi chạy thử, mật khẩu một mình không mở được khóa kho trong biến thể này.
+
+Đổi mật khẩu chủ: trong mô hình chạy thử, chỉ cần bọc lại khóa kho bằng khóa mở khóa mới. Các mục đã mã hóa giữ nguyên, và mật khẩu cũ không còn mở được bản đã bọc lại. Điều đó chỉ đúng với bản đang dùng.
+Kẻ đã chép dữ liệu trước khi bạn đổi mật khẩu vẫn giữ bản bọc cũ và các mục cũ, nên vẫn thử được mật khẩu cũ trên bản chép đó; khi chạy thử, bản chép cũ vẫn mở được bằng mật khẩu cũ. Đổi mật khẩu không thu hồi dữ liệu đã bị chép. Nếu nghi ngờ có người đã chép dữ liệu và mật khẩu cũ yếu, nên coi các mật khẩu bên trong kho là có thể đã lộ và đổi chúng (suy luận của người biên soạn, không có nguồn riêng).
 
 </details>
 

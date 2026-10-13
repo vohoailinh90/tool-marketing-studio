@@ -6,7 +6,7 @@ mutations:
 - label: the preview runs with the pull request's own token rights (pull_request_target)
   find: "  pull_request:\n    types: [opened"
   replace: "  pull_request_target:\n    types: [opened"
-  test: tests.test_radar_preview.WorkflowTests.test_it_runs_only_on_pull_requests_that_touch_a_radar_campaign_and_never_on_pull_request_target
+  test: tests.test_radar_preview.WorkflowTests.test_it_runs_on_every_push_to_a_pull_request_never_on_pull_request_target_and_without_a_path_filter
 - label: the token may write the repository
   find: "  contents: read\n  pull-requests: write"
   replace: "  contents: write\n  pull-requests: write"
@@ -55,3 +55,7 @@ mutations:
   find: '          UPLOAD: ${{ steps.upload.outcome }}'
   replace: '          UPLOAD: skipped'
   test: tests.test_radar_preview.WorkflowTests.test_the_comment_is_told_the_outcome_of_every_step_it_reports_on
+- label: a path filter hides the push that removes the campaign, and the old comment stays
+  find: "    types: [opened, synchronize, reopened, ready_for_review]\n"
+  replace: "    types: [opened, synchronize, reopened, ready_for_review]\n    paths:\n      - \"campaigns/radar-*/**\"\n"
+  test: tests.test_radar_preview.WorkflowTests.test_it_runs_on_every_push_to_a_pull_request_never_on_pull_request_target_and_without_a_path_filter

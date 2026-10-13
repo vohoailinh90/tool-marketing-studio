@@ -332,6 +332,14 @@ class CommentTests(unittest.TestCase):
         self.assertNotIn("](", reason)
         self.assertNotIn("@", reason)
 
+    def test_a_pull_request_whose_campaign_was_removed_gets_a_comment_that_replaces_the_old_one(self):
+        ok, campaigns, outside, reason = radar_preview.decide(["tools/github-radar/brief.yaml"])
+        self.assertEqual((False, [], []), (ok, campaigns, outside))
+        body = comment(self.root, plan_ok=ok, reason=reason, campaigns=campaigns, outside=outside)
+        self.assertTrue(body.startswith(radar_preview.MARKER + "\n"))                     # the workflow edits its own comment by this marker
+        self.assertIn("Not drawn here: no radar campaign among the changed files.", body)
+        self.assertNotIn("Checked and drawn", body)
+
     def test_a_campaign_without_a_drawing_says_so(self):
         self.assertIn("No post was drawn.", comment(self.root))
 
@@ -351,11 +359,15 @@ class CommentTests(unittest.TestCase):
 
 
 class WorkflowTests(unittest.TestCase):
-    def test_it_runs_only_on_pull_requests_that_touch_a_radar_campaign_and_never_on_pull_request_target(self):
+    def test_it_runs_on_every_push_to_a_pull_request_never_on_pull_request_target_and_without_a_path_filter(self):
         config = workflow()
         triggers = config[True] if True in config else config["on"]
         self.assertEqual(["pull_request"], list(triggers))
-        self.assertEqual(["campaigns/radar-*/**"], triggers["pull_request"]["paths"])
+        # a path filter looks at the whole diff: a push that removes the campaign would never run, and the comment that says
+        # "drawn" would stay on a pull request that no longer holds the campaign
+        self.assertNotIn("paths", triggers["pull_request"])
+        self.assertNotIn("paths-ignore", triggers["pull_request"])
+        self.assertIn("synchronize", triggers["pull_request"]["types"])
 
     def test_the_token_can_read_the_code_and_write_the_one_comment_and_nothing_else(self):
         self.assertEqual({"contents": "read", "pull-requests": "write"}, workflow()["permissions"])

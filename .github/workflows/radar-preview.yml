@@ -9,10 +9,11 @@ name: Radar preview
 # someone who can already push here (they can change this workflow, which runs on the same runner, as with ci.yml).
 
 on:
+  # No `paths:` filter: it looks at the whole diff of the pull request, so a push that removes the campaign would never run
+  # this workflow and its comment would go on saying the campaign was drawn. The job below picks the radar branches, and
+  # `plan` answers "no radar campaign" (a comment that replaces the old one) when there is nothing left to draw.
   pull_request:
     types: [opened, synchronize, reopened, ready_for_review]
-    paths:
-      - "campaigns/radar-*/**"
 
 concurrency:
   group: radar-preview-${{ github.event.pull_request.number }}

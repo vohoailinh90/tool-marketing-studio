@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 696" width="320" height="696" role="img" aria-labelledby="title desc">
+<title id="title">Cookie và session: dữ liệu nằm ở đâu</title>
+<desc id="desc">HTTP không nhớ ai, nên cần một cách nhận ra người dùng qua nhiều yêu cầu. Hai nhánh. Cookie: máy chủ gửi Set-Cookie, trình duyệt lưu giá trị và gửi lại trong tiêu đề Cookie; dữ liệu nằm ở trình duyệt. Session: máy chủ tạo một mã ngẫu nhiên, cất dữ liệu ở bên mình, chỉ đưa mã cho trình duyệt, thường qua một cookie. Thẻ cuối: mã session sai thì máy chủ không tìm thấy dữ liệu, nhưng ai lấy được mã đúng thì dùng được session đó.</desc>
+<rect width="320" height="696" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="21" font-weight="bold">COOKIE VÀ</text>
+<text x="16" y="54" font-size="21" font-weight="bold">SESSION</text>
+<rect x="16" y="80" width="288" height="100" rx="12" fill="#e2e8f0" stroke="#94a3b8"/>
+<text x="29" y="109" font-size="16" font-weight="bold">Vì sao cần</text>
+<text x="29" y="137" font-size="16" font-weight="normal">HTTP không nhớ ai: cần nối các</text>
+<text x="29" y="161" font-size="16" font-weight="normal">yêu cầu của cùng một người.</text>
+<rect x="16" y="190" width="288" height="38" rx="10" fill="#1e293b"/>
+<text x="29" y="213" font-size="16" font-weight="bold" fill="#ffffff">Cookie: dữ liệu ở trình duyệt</text>
+<rect x="16" y="238" width="288" height="124" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="29" y="267" font-size="16" font-weight="bold">Set-Cookie → Cookie</text>
+<text x="29" y="295" font-size="16" font-weight="normal">Máy chủ gửi Set-Cookie; trình</text>
+<text x="29" y="319" font-size="16" font-weight="normal">duyệt lưu và gửi lại trong tiêu</text>
+<text x="29" y="343" font-size="16" font-weight="normal">đề Cookie.</text>
+<rect x="16" y="374" width="288" height="38" rx="10" fill="#1e293b"/>
+<text x="29" y="397" font-size="16" font-weight="bold" fill="#ffffff">Session: dữ liệu ở máy chủ</text>
+<rect x="16" y="422" width="288" height="124" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="29" y="451" font-size="16" font-weight="bold">Mã ngẫu nhiên</text>
+<text x="29" y="479" font-size="16" font-weight="normal">Máy chủ cất dữ liệu bên mình,</text>
+<text x="29" y="503" font-size="16" font-weight="normal">chỉ đưa mã cho trình duyệt</text>
+<text x="29" y="527" font-size="16" font-weight="normal">(thường qua cookie).</text>
+<rect x="16" y="558" width="288" height="124" rx="12" fill="#fee2e2" stroke="#94a3b8"/>
+<text x="29" y="587" font-size="16" font-weight="bold">Hệ quả</text>
+<text x="29" y="615" font-size="16" font-weight="normal">Mã sai: không tìm thấy dữ liệu.</text>
+<text x="29" y="639" font-size="16" font-weight="normal">Ai lấy được mã đúng thì dùng</text>
+<text x="29" y="663" font-size="16" font-weight="normal">được phiên.</text>
+</g></svg>

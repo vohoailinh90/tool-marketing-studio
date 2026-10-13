@@ -1,0 +1,92 @@
+{
+  "id": "sd-14-008",
+  "title_vi": "Cookie và session khác nhau thế nào?",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "review",
+  "source_ref": "sd-14-008",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/what-are-the-differences-between-cookies-and-sessions.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-are-the-differences-between-cookies-and-sessions.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches provider tree OID. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "178de35d42a4cdcc5ddf1a11dd61660d17d3156d",
+    "retrieved_body_sha256": "2b544b527a7f7b8f06aa353f5383f615333fb9ab7c820c9ab1084bfa289c0e07",
+    "retrieved_body_bytes": 1135
+  },
+  "diagram": "../diagrams/sd-14-008-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "evidence": "MDN's HTTP cookies guide read from a local clone; session behaviour observed with a small Python server and curl."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 14.4,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright) rendered the full lesson at each width with optional sections open; diagram scale measured from the rendered image and every SVG text box checked against the viewBox. Not learner testing and not GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "The source says cookies and sessions both carry user information such as login status across HTTP requests; cookies are small (about 4KB), stored on the user's device and sent with each subsequent request; a session is created and stored on the server, a unique session ID is returned in a cookie, sessions can hold more data and are described as offering more security.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-are-the-differences-between-cookies-and-sessions.md",
+      "section": "Whole guide",
+      "verified_by": "Source body read."
+    },
+    {
+      "claim_vi": "A server sends a cookie in a Set-Cookie header and the browser sends it back in a Cookie header on later requests; browsers limit each cookie to usually 4KB; by default cookie values are visible to, and can be changed by, the end user; the guide advises regenerating and resending session cookies whenever a user authenticates to help prevent session fixation.",
+      "source": "https://github.com/mdn/content/blob/main/files/en-us/web/http/guides/cookies/index.md",
+      "section": "Introduction; Limitations; Security; Define the lifetime of a cookie",
+      "verified_by": "Read from a local clone of the repository."
+    },
+    {
+      "claim_vi": "With a Python server holding a session dictionary and handing out a random id in an HttpOnly cookie: a request with the right id returned the stored session data; a tampered id returned no data; a request with no cookie returned no data.",
+      "source": "https://github.com/mdn/content/blob/main/files/en-us/web/http/guides/cookies/index.md",
+      "section": "Set-Cookie / Cookie flow",
+      "verified_by": "No external page reports this output; observed by executing the code on the authoring machine. MDN describes the Set-Cookie/Cookie flow but not this output."
+    },
+    {
+      "claim_vi": "A session id is still a secret: whoever obtains the right id can use the session, so session security concentrates in keeping the id secret, and the id cookie should carry HttpOnly, Secure and SameSite.",
+      "source": "https://github.com/mdn/content/blob/main/files/en-us/web/http/guides/cookies/index.md",
+      "section": "Security (Secure, HttpOnly, SameSite)",
+      "verified_by": "MDN advises these attributes for cookies that carry session identifiers; that session security concentrates in the id is the author's inference."
+    },
+    {
+      "claim_vi": "With data stored on the server, the server has to store and clean up sessions, and several servers need a shared place to keep them.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-are-the-differences-between-cookies-and-sessions.md",
+      "section": "Sessions",
+      "verified_by": "Author's general knowledge; the source only says sessions are stored on the server and can hold more data."
+    }
+  ],
+  "design_notes_vi": "Một thẻ nêu lý do, hai nhánh cookie và session theo nơi lưu dữ liệu, thẻ cuối nói hệ quả (mã sai và mã bị lộ). Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Source says sessions are more secure because data is not accessed directly by the client; the lesson narrows that to the data itself and adds that the session id remains a secret, citing MDN's session-fixation advice.",
+    "Source says users 'can choose to ban cookies'; the lesson does not repeat it (unchecked and not needed for the distinction)."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

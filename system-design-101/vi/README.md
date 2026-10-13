@@ -48,6 +48,6 @@ và hình đạt; không coi đọc nguồn là mọi claim đã đúng, không 
 Tình huống thực tế → AI và học máy → Cơ sở dữ liệu và lưu trữ → Phỏng vấn kỹ thuật →
 Bộ nhớ đệm và hiệu năng → Thanh toán và công nghệ tài chính → Kiến trúc phần mềm →
 Công cụ và năng suất → Phát triển phần mềm → Đám mây và hệ thống phân tán →
-Hệ thống hoạt động thế nào? → DevOps và CI/CD → Nền tảng máy tính.
+Hệ thống hoạt động thế nào? → DevOps và CI/CD → Bảo mật (đã viết một phần) → Nền tảng máy tính.
 
 `lessons/<id>/lesson.yaml` chỉ trỏ tới metadata JSON; không giữ bản sao trạng thái.

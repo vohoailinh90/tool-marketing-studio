@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 658" width="320" height="658" role="img" aria-labelledby="title desc">
+<title id="title">Vì sao HTTP/2 nhanh hơn</title>
+<desc id="desc">HTTP/1.1 xử lý một yêu cầu một lúc trên mỗi kết nối. HTTP/2 chở nhiều luồng trên một kết nối bằng cách gửi xen kẽ các khung của chúng: sáu khung A1, B1, A2, C1, B2, A3 của ba luồng A, B, C. Thông điệp được cắt thành khung nhị phân, header lặp được nén bằng HPACK, ưu tiên luồng và server push đều có lưu ý. Mất một gói TCP vẫn làm mọi luồng chờ.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="658" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="21" font-weight="bold">HTTP/2</text>
+<text x="16" y="54" font-size="21" font-weight="bold">NHANH HƠN Ở ĐÂU?</text>
+<rect x="16" y="70" width="288" height="92" rx="12" fill="#ffe4e6" stroke="#94a3b8"/>
+<text x="29" y="99" font-size="16" font-weight="bold">1 · HTTP/1.1: xếp hàng</text>
+<text x="29" y="123" font-size="16" font-weight="normal">Một kết nối, một yêu cầu một</text>
+<text x="29" y="147" font-size="16" font-weight="normal">lúc; mở thêm kết nối để bù</text>
+<rect x="16" y="174" width="288" height="92" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="29" y="203" font-size="16" font-weight="bold">2 · Khung nhị phân</text>
+<text x="29" y="227" font-size="16" font-weight="normal">Thông điệp cắt thành khung,</text>
+<text x="29" y="251" font-size="16" font-weight="normal">gắn số hiệu luồng</text>
+<g transform="translate(16,278)"><text x="0" y="18" font-size="16" font-weight="bold">3 · Ghép kênh</text><rect x="0.0" y="30" width="44" height="40" rx="6" fill="#dbeafe" stroke="#94a3b8"/><text x="22.0" y="56" font-size="16" text-anchor="middle">A1</text><rect x="48.8" y="30" width="44" height="40" rx="6" fill="#dcfce7" stroke="#94a3b8"/><text x="70.8" y="56" font-size="16" text-anchor="middle">B1</text><rect x="97.6" y="30" width="44" height="40" rx="6" fill="#dbeafe" stroke="#94a3b8"/><text x="119.6" y="56" font-size="16" text-anchor="middle">A2</text><rect x="146.4" y="30" width="44" height="40" rx="6" fill="#fef3c7" stroke="#94a3b8"/><text x="168.4" y="56" font-size="16" text-anchor="middle">C1</text><rect x="195.2" y="30" width="44" height="40" rx="6" fill="#dcfce7" stroke="#94a3b8"/><text x="217.2" y="56" font-size="16" text-anchor="middle">B2</text><rect x="244.0" y="30" width="44" height="40" rx="6" fill="#dbeafe" stroke="#94a3b8"/><text x="266.0" y="56" font-size="16" text-anchor="middle">A3</text><text x="0" y="96" font-size="16">Ba luồng A, B, C chung kết nối;</text><text x="0" y="120" font-size="16">khung của chúng xen kẽ nhau</text></g>
+<rect x="16" y="422" width="288" height="92" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="29" y="451" font-size="16" font-weight="bold">4 · Nén header (HPACK)</text>
+<text x="29" y="475" font-size="16" font-weight="normal">Header lặp lại chỉ gửi dạng rút</text>
+<text x="29" y="499" font-size="16" font-weight="normal">gọn</text>
+<rect x="16" y="526" width="288" height="68" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="29" y="555" font-size="16" font-weight="bold">5 · Ưu tiên luồng, push</text>
+<text x="29" y="579" font-size="16" font-weight="normal">Đều có lưu ý khi dùng thực tế</text>
+<text x="16" y="622" font-size="16" font-weight="normal">Mất một gói TCP vẫn làm mọi luồng</text>
+<text x="16" y="646" font-size="16" font-weight="normal">chờ; HTTP/3 sửa điều này.</text>
+</g></svg>

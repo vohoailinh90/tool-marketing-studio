@@ -75,9 +75,17 @@
       ]
     },
     {
-      "claim_vi": "Một script chỉ chạy sau khi các stylesheet đang tải trước nó đã xong; stylesheet chặn dựng hình.",
+      "claim_vi": "Stylesheet chặn dựng hình; script cổ điển (không async, không defer) phải chờ các stylesheet đang tải trước nó, còn script async hoặc chèn động có thể chạy ngay khi sẵn sàng.",
       "sources": [
         "https://html.spec.whatwg.org/multipage/semantics.html#interactions-of-styling-and-scripting",
+        "https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/Critical_rendering_path"
+      ]
+    },
+    {
+      "claim_vi": "CSSOM chứa các quy tắc kiểu; cascade được giải cho từng phần tử khi tính kiểu, rồi cây hiển thị được dựng từ DOM và kiểu tính toán.",
+      "sources": [
+        "https://www.w3.org/TR/cssom-1/",
+        "https://www.w3.org/TR/css-cascade-5/",
         "https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/Critical_rendering_path"
       ]
     }

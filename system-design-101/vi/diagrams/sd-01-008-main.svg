@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 872" width="320" height="872" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 899" width="320" height="899" role="img" aria-labelledby="title desc">
 <title id="title">Từ HTML tới pixel trên màn hình</title>
-<desc id="desc">Sáu khung dọc: HTML được phân tích thành cây DOM, script thường làm parser dừng; CSS thành cây CSSOM và chặn việc dựng hình; DOM và CSSOM hợp lại thành cây hiển thị, bỏ phần tử display none còn visibility hidden vẫn chiếm chỗ; layout tính vị trí và kích thước; paint vẽ nội dung ra từng lớp; composite ghép các lớp để GPU hiển thị. Đổi DOM hoặc CSS có thể chạy lại từ layout, paint hoặc composite.</desc>
+<desc id="desc">Sáu khung dọc: HTML được phân tích thành cây DOM, script thường làm parser dừng; CSS thành cây CSSOM chứa các quy tắc kiểu và chặn việc dựng hình; DOM và CSSOM được khớp và giải cascade cho từng phần tử để thành cây hiển thị, bỏ phần tử display none còn visibility hidden vẫn chiếm chỗ; layout tính vị trí và kích thước; paint vẽ nội dung ra từng lớp; composite ghép các lớp để GPU hiển thị. Đổi DOM hoặc CSS có thể chạy lại từ layout, paint hoặc composite.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="872" fill="#f8fafc"/>
+<rect width="320" height="899" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="30" font-size="20" font-weight="bold">TRÌNH DUYỆT</text>
 <text x="16" y="56" font-size="20" font-weight="bold">DỰNG TRANG</text>
@@ -14,26 +14,27 @@
 <line x1="160" y1="213" x2="160" y2="233" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
 <rect x="16" y="236" width="288" height="104" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
 <text x="30" y="266" font-size="16" font-weight="bold">2 · CSS → cây CSSOM</text>
-<text x="30" y="293" font-size="16" font-weight="normal">Quy tắc kiểu, đã giải cascade</text>
+<text x="30" y="293" font-size="16" font-weight="normal">Các quy tắc kiểu của trang</text>
 <text x="30" y="320" font-size="16" font-weight="normal">CSS chặn việc dựng hình</text>
 <line x1="160" y1="341" x2="160" y2="361" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="16" y="364" width="288" height="131" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<rect x="16" y="364" width="288" height="158" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
 <text x="30" y="394" font-size="16" font-weight="bold">3 · DOM + CSSOM</text>
 <text x="30" y="421" font-size="16" font-weight="bold">→ cây hiển thị</text>
-<text x="30" y="448" font-size="16" font-weight="normal">Bỏ phần tử display:none</text>
-<text x="30" y="475" font-size="16" font-weight="normal">visibility:hidden vẫn chiếm chỗ</text>
-<line x1="160" y1="496" x2="160" y2="516" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="16" y="519" width="288" height="77" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
-<text x="30" y="549" font-size="16" font-weight="bold">4 · Layout</text>
-<text x="30" y="576" font-size="16" font-weight="normal">Tính vị trí và kích thước</text>
-<line x1="160" y1="597" x2="160" y2="617" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="16" y="620" width="288" height="77" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
-<text x="30" y="650" font-size="16" font-weight="bold">5 · Paint</text>
-<text x="30" y="677" font-size="16" font-weight="normal">Vẽ nội dung ra từng lớp</text>
-<line x1="160" y1="698" x2="160" y2="718" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="16" y="721" width="288" height="77" rx="12" fill="#e2e8f0" stroke="#94a3b8"/>
-<text x="30" y="751" font-size="16" font-weight="bold">6 · Composite</text>
-<text x="30" y="778" font-size="16" font-weight="normal">Ghép các lớp để hiển thị</text>
-<text x="16" y="826" font-size="16" font-weight="normal">Đổi DOM/CSS: có thể chạy lại</text>
-<text x="16" y="852" font-size="16" font-weight="normal">từ layout, paint hoặc composite.</text>
+<text x="30" y="448" font-size="16" font-weight="normal">Khớp quy tắc, giải cascade</text>
+<text x="30" y="475" font-size="16" font-weight="normal">Bỏ phần tử display:none</text>
+<text x="30" y="502" font-size="16" font-weight="normal">visibility:hidden vẫn chiếm chỗ</text>
+<line x1="160" y1="523" x2="160" y2="543" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="546" width="288" height="77" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="576" font-size="16" font-weight="bold">4 · Layout</text>
+<text x="30" y="603" font-size="16" font-weight="normal">Tính vị trí và kích thước</text>
+<line x1="160" y1="624" x2="160" y2="644" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="647" width="288" height="77" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="677" font-size="16" font-weight="bold">5 · Paint</text>
+<text x="30" y="704" font-size="16" font-weight="normal">Vẽ nội dung ra từng lớp</text>
+<line x1="160" y1="725" x2="160" y2="745" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="748" width="288" height="77" rx="12" fill="#e2e8f0" stroke="#94a3b8"/>
+<text x="30" y="778" font-size="16" font-weight="bold">6 · Composite</text>
+<text x="30" y="805" font-size="16" font-weight="normal">Ghép các lớp để hiển thị</text>
+<text x="16" y="853" font-size="16" font-weight="normal">Đổi DOM/CSS: có thể chạy lại</text>
+<text x="16" y="879" font-size="16" font-weight="normal">từ layout, paint hoặc composite.</text>
 </g></svg>

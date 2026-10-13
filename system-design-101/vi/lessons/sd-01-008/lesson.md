@@ -2,15 +2,15 @@
 
 **Máy chủ gửi về chữ, trình duyệt phải biến chúng thành hình.** Việc đó đi qua một chuỗi bước: hiểu HTML, hiểu CSS, tính chỗ đặt từng phần tử, rồi vẽ.
 
-![Sáu khung dọc: HTML được phân tích thành cây DOM, script thường làm parser dừng; CSS thành cây CSSOM và chặn việc dựng hình; DOM và CSSOM hợp lại thành cây hiển thị, bỏ phần tử display none còn visibility hidden vẫn chiếm chỗ; layout tính vị trí và kích thước; paint vẽ nội dung ra từng lớp; composite ghép các lớp để GPU hiển thị. Đổi DOM hoặc CSS có thể chạy lại từ layout, paint hoặc composite.](../../diagrams/sd-01-008-main.svg)
+![Sáu khung dọc: HTML được phân tích thành cây DOM, script thường làm parser dừng; CSS thành cây CSSOM chứa các quy tắc kiểu và chặn việc dựng hình; DOM và CSSOM được khớp và giải cascade cho từng phần tử để thành cây hiển thị, bỏ phần tử display none còn visibility hidden vẫn chiếm chỗ; layout tính vị trí và kích thước; paint vẽ nội dung ra từng lớp; composite ghép các lớp để GPU hiển thị. Đổi DOM hoặc CSS có thể chạy lại từ layout, paint hoặc composite.](../../diagrams/sd-01-008-main.svg)
 
 ## Đọc hình
 
 **1. DOM.** Trình duyệt đọc HTML dần dần và dựng *cây DOM*: mỗi thẻ là một nút. Khi gặp `<script>` thường (không `async`/`defer`), nó thường phải dừng đọc để chạy script trước.
 
-**2. CSSOM.** CSS được phân tích thành *cây CSSOM*: các quy tắc kiểu đã được giải quyết theo cascade. Việc hiện trang thường phải chờ CSS, nên CSS "chặn dựng hình".
+**2. CSSOM.** CSS được phân tích thành *cây CSSOM*: cấu trúc chứa các quy tắc kiểu của trang, kể cả những quy tắc rốt cuộc không được áp dụng. Việc hiện trang thường phải chờ CSS, nên CSS "chặn dựng hình".
 
-**3. Cây hiển thị.** DOM kết hợp CSSOM, chỉ giữ những gì có hộp để vẽ. Phần tử `display: none` bị bỏ; `visibility: hidden` thì vẫn chiếm chỗ nhưng không thấy.
+**3. Cây hiển thị.** Trình duyệt khớp các quy tắc của CSSOM với từng phần tử DOM và giải cascade cho từng phần tử để ra kiểu tính toán, rồi chỉ giữ những gì có hộp để vẽ. Phần tử `display: none` bị bỏ; `visibility: hidden` thì vẫn chiếm chỗ nhưng không thấy.
 
 **4. Layout.** Tính vị trí và kích thước từng hộp.
 
@@ -36,7 +36,7 @@ Thường nên dùng `transform`. Đổi `left` làm đổi vị trí hộp nên
 <details>
 <summary>Xem sâu hơn</summary>
 
-- **Script và CSS:** script thường làm dừng parser; `async` hoặc `defer` giúp parser không phải chờ. CSS chặn dựng hình, và một script chỉ chạy sau khi các stylesheet đang tải trước nó đã xong.
+- **Script và CSS:** script thường làm dừng parser; `async` hoặc `defer` giúp parser không phải chờ. CSS chặn dựng hình. Script cổ điển (không `async`, không `defer`) còn phải chờ các stylesheet đang tải trước nó rồi mới chạy; script `async` hoặc được chèn bằng mã có thể chạy ngay khi tải xong, không chờ như vậy.
 - **Cây hiển thị khác DOM:** `::before` và `::after` có hộp để vẽ nhưng không có nút DOM; `<head>` mặc định bị ẩn.
 - **Dựng lại:** đọc kích thước (ví dụ `offsetHeight`) ngay sau khi ghi có thể buộc trình duyệt tính layout sớm; làm lặp lại nhiều lần gây chậm.
 - **Chỉ là mô hình:** engine thật còn có nhiều bước tối ưu và tách luồng.

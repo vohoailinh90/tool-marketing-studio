@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 872" width="320" height="872" role="img" aria-labelledby="title desc">
+<title id="title">Năm cách phân quyền cho cùng một yêu cầu</title>
+<desc id="desc">Cùng một yêu cầu: Lan muốn đọc tệp bảng lương. Năm mô hình phân quyền hỏi năm câu khác nhau. ACL: trên tệp có dòng cho phép Lan không. DAC: chủ sở hữu tệp đã cho Lan chưa. MAC: nhãn của Lan có đủ mức so với nhãn của tệp không, và chủ sở hữu không tự đổi được. RBAC: Lan có vai trò nào được đọc tệp. ABAC: thuộc tính của Lan, của tệp, của hành động và hoàn cảnh có khớp luật không. Thẻ cuối nêu cái phải bảo trì ở mỗi cách: ACL một dòng cho mỗi người và mỗi tài liệu, RBAC một lần gán vai trò, ABAC thuộc tính và luật.</desc>
+<rect width="320" height="872" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="21" font-weight="bold">NĂM CÁCH</text>
+<text x="16" y="54" font-size="21" font-weight="bold">PHÂN QUYỀN</text>
+<rect x="16" y="80" width="288" height="76" rx="12" fill="#e2e8f0" stroke="#94a3b8"/>
+<text x="29" y="109" font-size="16" font-weight="bold">Yêu cầu chung</text>
+<text x="29" y="137" font-size="16" font-weight="normal">Lan muốn đọc tệp bảng lương.</text>
+<rect x="16" y="166" width="288" height="100" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="29" y="195" font-size="16" font-weight="bold">ACL</text>
+<text x="29" y="223" font-size="16" font-weight="normal">Trên tệp có dòng cho phép Lan</text>
+<text x="29" y="247" font-size="16" font-weight="normal">không?</text>
+<rect x="16" y="274" width="288" height="100" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="29" y="303" font-size="16" font-weight="bold">DAC</text>
+<text x="29" y="331" font-size="16" font-weight="normal">Chủ sở hữu tệp đã cho Lan</text>
+<text x="29" y="355" font-size="16" font-weight="normal">chưa?</text>
+<rect x="16" y="382" width="288" height="124" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="29" y="411" font-size="16" font-weight="bold">MAC</text>
+<text x="29" y="439" font-size="16" font-weight="normal">Nhãn của Lan có đủ mức so với</text>
+<text x="29" y="463" font-size="16" font-weight="normal">nhãn của tệp không? Chủ sở</text>
+<text x="29" y="487" font-size="16" font-weight="normal">hữu không tự đổi được.</text>
+<rect x="16" y="514" width="288" height="76" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="29" y="543" font-size="16" font-weight="bold">RBAC</text>
+<text x="29" y="571" font-size="16" font-weight="normal">Lan có vai trò nào được đọc tệp?</text>
+<rect x="16" y="598" width="288" height="124" rx="12" fill="#ffffff" stroke="#94a3b8"/>
+<text x="29" y="627" font-size="16" font-weight="bold">ABAC</text>
+<text x="29" y="655" font-size="16" font-weight="normal">Thuộc tính của Lan, tệp, hành</text>
+<text x="29" y="679" font-size="16" font-weight="normal">động và hoàn cảnh có khớp luật</text>
+<text x="29" y="703" font-size="16" font-weight="normal">không?</text>
+<rect x="16" y="734" width="288" height="124" rx="12" fill="#fee2e2" stroke="#94a3b8"/>
+<text x="29" y="763" font-size="16" font-weight="bold">Phải bảo trì gì?</text>
+<text x="29" y="791" font-size="16" font-weight="normal">ACL: mỗi người × mỗi tài liệu.</text>
+<text x="29" y="815" font-size="16" font-weight="normal">RBAC: gán vai trò. ABAC: thuộc</text>
+<text x="29" y="839" font-size="16" font-weight="normal">tính và luật.</text>
+</g></svg>

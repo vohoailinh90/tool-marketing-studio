@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1028" width="320" height="1028" role="img" aria-labelledby="title desc">
+<title id="title">Trình quản lý mật khẩu: máy chủ chỉ giữ dữ liệu đã mã hóa</title>
+<desc id="desc">Lập tài khoản trên máy bạn: tạo một khóa kho ngẫu nhiên; dẫn xuất khóa mở khóa từ mật khẩu chủ bằng hàm băm chậm có salt; bọc khóa kho bằng khóa mở khóa và mã hóa từng mục bằng khóa kho. Máy chủ chỉ giữ salt, khóa kho đã bọc và các mục đã mã hóa; không giữ mật khẩu chủ, khóa mở khóa hay khóa kho. Mỗi lần mở khóa: nhập mật khẩu chủ để dẫn xuất lại khóa mở khóa, mở khóa kho rồi giải mã mục ngay trên máy. Thẻ cuối: thiết kế này bảo vệ dữ liệu nằm trên máy chủ, không bảo vệ máy đang mở khóa, và mất mật khẩu chủ thì nhà cung cấp không tự mở được kho.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1028" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="21" font-weight="bold">TRÌNH QUẢN LÝ</text>
+<text x="16" y="54" font-size="21" font-weight="bold">MẬT KHẨU</text>
+<rect x="16" y="80" width="288" height="38" rx="10" fill="#1e293b"/>
+<text x="29" y="103" font-size="16" font-weight="bold" fill="#ffffff">Lập tài khoản, trên máy bạn</text>
+<rect x="16" y="128" width="288" height="100" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="29" y="157" font-size="16" font-weight="bold">1 · Tạo khóa kho</text>
+<text x="29" y="185" font-size="16" font-weight="normal">Một khóa ngẫu nhiên để mã hóa</text>
+<text x="29" y="209" font-size="16" font-weight="normal">các mục</text>
+<line x1="160" y1="229" x2="160" y2="244" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="246" width="288" height="100" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="29" y="275" font-size="16" font-weight="bold">2 · Khóa mở khóa</text>
+<text x="29" y="303" font-size="16" font-weight="normal">Từ mật khẩu chủ qua hàm băm</text>
+<text x="29" y="327" font-size="16" font-weight="normal">chậm có salt</text>
+<line x1="160" y1="347" x2="160" y2="362" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="364" width="288" height="100" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="29" y="393" font-size="16" font-weight="bold">3 · Bọc và mã hóa</text>
+<text x="29" y="421" font-size="16" font-weight="normal">Khóa mở khóa bọc khóa kho;</text>
+<text x="29" y="445" font-size="16" font-weight="normal">khóa kho mã hóa từng mục</text>
+<rect x="16" y="476" width="288" height="124" rx="12" fill="#e2e8f0" stroke="#94a3b8"/>
+<text x="29" y="505" font-size="16" font-weight="bold">Máy chủ chỉ giữ</text>
+<text x="29" y="533" font-size="16" font-weight="normal">Salt, khóa kho đã bọc, các mục</text>
+<text x="29" y="557" font-size="16" font-weight="normal">đã mã hóa. Không có mật khẩu</text>
+<text x="29" y="581" font-size="16" font-weight="normal">chủ.</text>
+<rect x="16" y="612" width="288" height="38" rx="10" fill="#1e293b"/>
+<text x="29" y="635" font-size="16" font-weight="bold" fill="#ffffff">Mỗi lần mở khóa</text>
+<rect x="16" y="660" width="288" height="100" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="29" y="689" font-size="16" font-weight="bold">4 · Dẫn xuất lại</text>
+<text x="29" y="717" font-size="16" font-weight="normal">Nhập mật khẩu chủ, tính lại</text>
+<text x="29" y="741" font-size="16" font-weight="normal">khóa mở khóa</text>
+<line x1="160" y1="761" x2="160" y2="776" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="778" width="288" height="100" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="29" y="807" font-size="16" font-weight="bold">5 · Mở kho</text>
+<text x="29" y="835" font-size="16" font-weight="normal">Mở khóa kho, giải mã mục ngay</text>
+<text x="29" y="859" font-size="16" font-weight="normal">trên máy</text>
+<rect x="16" y="890" width="288" height="124" rx="12" fill="#fee2e2" stroke="#94a3b8"/>
+<text x="29" y="919" font-size="16" font-weight="bold">Giới hạn</text>
+<text x="29" y="947" font-size="16" font-weight="normal">Không bảo vệ máy đang mở</text>
+<text x="29" y="971" font-size="16" font-weight="normal">khóa. Mất mật khẩu chủ thì nhà</text>
+<text x="29" y="995" font-size="16" font-weight="normal">cung cấp không tự mở được.</text>
+</g></svg>

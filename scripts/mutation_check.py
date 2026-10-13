@@ -127,12 +127,21 @@ def mutate(source: str, entry: dict, where: pathlib.Path) -> str:
     return source.replace(entry["find"], entry["replace"], 1)
 
 
+def drop_bytecode(source: pathlib.Path) -> None:
+    """Delete the cached bytecode of `source`, so the next run compiles the file as it is now.
+
+    Python trusts a cached .pyc whose recorded source mtime (whole seconds) and size equal the file's, so a
+    mutation of the same size written in the same second as an earlier compile would run the earlier code.
+    """
+    for cached in (source.parent / "__pycache__").glob(f"{source.stem}.*.pyc"):
+        cached.unlink(missing_ok=True)
+
+
 def run_test(target: str) -> bool:
     """True when the test failed, which is what a mutation must cause."""
     environment = dict(os.environ)
     environment[DEPTH_VAR] = str(depth() + 1)
-    # A mutation of the same size written in the same second as the clean run would otherwise be
-    # served the clean run's cached bytecode (same source mtime, same size), and survive.
+    # Do not leave bytecode of a mutated file behind; drop_bytecode() removes what a run could still trust.
     environment["PYTHONDONTWRITEBYTECODE"] = "1"
     result = subprocess.run(
         [sys.executable, "-m", "unittest", target],
@@ -177,6 +186,7 @@ def check(manifest_path: pathlib.Path, allow_outside: bool = False) -> list[tupl
         if not where.is_file():
             results.append((BROKEN, entry["label"], f"no such file: {shown(where)}"))
             continue
+        drop_bytecode(where)
         if run_test(entry["test"]):
             # A missing or already-failing test exits non-zero for reasons that
             # have nothing to do with the mutation, and "non-zero" is exactly
@@ -197,6 +207,7 @@ def check(manifest_path: pathlib.Path, allow_outside: bool = False) -> list[tupl
             continue
         try:
             where.write_text(mutated, encoding="utf-8")
+            drop_bytecode(where)
             caught = run_test(entry["test"])
         finally:
             # Restore before anything else can fail: a crash mid-run must never

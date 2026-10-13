@@ -8,7 +8,7 @@ Một dự án có thể bắt đầu trong công ty, sau đó chuyển quản t
 
 Ví dụ Kafka bắt đầu tại LinkedIn và hiện thuộc hệ sinh thái Apache; Kubernetes bắt đầu tại Google và được quản trị trong CNCF. Mối liên hệ ban đầu giúp hiểu bối cảnh nhưng không thay thế đọc tài liệu dự án hiện hành.
 
-Danh mục lịch sử trong snapshot có 21 tên, dù tiêu đề nguồn ghi 20: Angular, Ansible, Cassandra, Ceph Storage, Chaos Monkey, Go, GraphQL, Hystrix, Kafka, Kubernetes, OpenShift, Pinot, Playwright, PyTorch, React, Samza, TensorFlow, TypeScript, VSCode, Zuul. Các tên bao gồm những dạng khác nhau: ngôn ngữ, thư viện, đặc tả và nền tảng. Không coi chúng là 21 sản phẩm đang được hỗ trợ như nhau.
+Danh mục lịch sử trong snapshot có 20 tên: Angular, Ansible, Cassandra, Ceph Storage, Chaos Monkey, Go, GraphQL, Hystrix, Kafka, Kubernetes, OpenShift, Pinot, Playwright, PyTorch, React, Samza, TensorFlow, TypeScript, VSCode, Zuul. Các tên bao gồm những dạng khác nhau: ngôn ngữ, thư viện, đặc tả và nền tảng. Không coi chúng là 20 sản phẩm đang được hỗ trợ như nhau.
 
 ## Nhìn hình thử trả lời
 

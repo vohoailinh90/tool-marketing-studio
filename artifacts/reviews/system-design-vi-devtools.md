@@ -39,7 +39,8 @@ The broken Ceph link was replaced with the project's repository.
 Successful retrieval is not recorded as verification of every claim.
 Claims remain pending; historical AI features and corporate affiliations are not
 presented as fully verified current product facts. Technical review remains pending.
-The source's “20 projects” body contains 21 names; the lesson records that discrepancy.
+The source's “20 projects” body contains exactly 20 distinct names, verified by parsing
+its bullet list. Corrected after independent review finding 4255446820.
 
 All twenty lessons remain draft, not done or approved. Learner testing not performed.
 Independent PR review is required; no automatic merge, deployment or publishing.

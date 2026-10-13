@@ -22,6 +22,9 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 1. [Năm hàm gộp dữ liệu trong pandas](lessons/sd-03-001/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 2. [Các thuật ngữ dữ liệu cốt lõi](lessons/sd-03-002/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 3. [Dòng thời gian dẫn tới ChatGPT](lessons/sd-03-003/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+4. [DeepSeek trong một trang](lessons/sd-03-004/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+5. [Ngăn xếp AI mã nguồn mở](lessons/sd-03-005/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+6. [AI agent là gì?](lessons/sd-03-006/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 
 Danh mục đầy đủ và snapshot nguồn: [bảng đối chiếu](../../brainstorm/system-design-101-vi/source-map.json).
 Quy tắc đã chốt: [kết luận brainstorm](../../brainstorm/system-design-101-vi/DECISIONS.md).

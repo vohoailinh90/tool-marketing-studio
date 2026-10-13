@@ -27,7 +27,7 @@ Tên trong cột STATUS của kubectl là cách hiển thị tóm tắt, không 
 ```bash
 kubectl describe pod ten-pod             # phần Events cho biết lý do ở chặng nào
 kubectl logs ten-pod --previous          # nhật ký của lần chạy trước khi chết
-kubectl get events --sort-by=.lastTimestamp
+kubectl get events --sort-by=.metadata.creationTimestamp   # sắp theo thời điểm tạo Event
 ```
 
 - **Pending:** scheduler chọn node dựa trên `requests` của Pod (container chỉ khai `limits` mà không khai `requests` thì Kubernetes sao chép `limits` thành `requests`, nếu không có cơ chế admission áp mặc định), cùng taint, toleration, nodeSelector và affinity. Sự kiện `FailedScheduling` liệt kê lý do loại từng node. PVC chưa gắn được cũng giữ Pod ở Pending.

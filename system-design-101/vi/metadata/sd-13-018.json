@@ -39,7 +39,7 @@
   },
   "claims": [
     {
-      "claim_vi": "Plan và apply mặc định làm mới state theo hạ tầng thật trước khi so với cấu hình; -refresh=false bỏ bước này.",
+      "claim_vi": "Plan và apply mặc định làm mới state trong bộ nhớ theo hạ tầng thật trước khi so với cấu hình; -refresh=false bỏ bước này; plan không ghi phần làm mới vào state đã lưu, chỉ apply mới ghi.",
       "source": "https://developer.hashicorp.com/terraform/cli/commands/plan"
     },
     {

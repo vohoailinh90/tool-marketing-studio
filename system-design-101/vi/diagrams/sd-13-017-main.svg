@@ -1,29 +1,40 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 684" width="320" height="684" role="img" aria-labelledby="title desc">
-<title id="title">Chiến lược triển khai trên Kubernetes</title>
-<desc id="desc">Bốn thẻ: RollingUpdate mặc định, Recreate khi hai phiên bản không chạy chung được, chia traffic theo phần trăm cần Ingress hay service mesh, thử với traffic thật cần mirror.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1019" width="320" height="1019" role="img" aria-labelledby="title desc">
+<title id="title">Deployment của Kubernetes thay Pod như thế nào</title>
+<desc id="desc">Năm chặng: đổi image thì Deployment tạo ReplicaSet mới, maxSurge và maxUnavailable điều chỉnh nhịp, readiness probe và minReadySeconds quyết định khi nào đi tiếp, kubectl rollout undo hoặc pause khi cần, và Recreate cùng chia traffic theo phần trăm nằm ngoài nhịp mặc định.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="684" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
-<text x="16" y="30" font-size="20" font-weight="bold">KHI ĐỔI IMAGE</text>
-<text x="16" y="58" font-size="16" font-weight="normal">Sẵn có và cần thêm</text>
-<rect x="16" y="89" width="288" height="155" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
-<text x="30" y="117" font-size="16" font-weight="bold">Mặc định:</text>
-<text x="30" y="144" font-size="16" font-weight="bold">RollingUpdate</text>
-<text x="30" y="171" font-size="16" font-weight="normal">Thay dần Pod</text>
-<text x="30" y="198" font-size="16" font-weight="normal">Điều chỉnh bằng maxSurge,</text>
-<text x="30" y="225" font-size="16" font-weight="normal">maxUnavailable</text>
-<rect x="16" y="256" width="288" height="155" rx="10" fill="#fee2e2" stroke="#94a3b8"/>
-<text x="30" y="284" font-size="16" font-weight="bold">Hai bản không chạy</text>
-<text x="30" y="311" font-size="16" font-weight="bold">chung được</text>
-<text x="30" y="338" font-size="16" font-weight="normal">Recreate: dừng hết rồi chạy</text>
-<text x="30" y="365" font-size="16" font-weight="normal">bản mới</text>
-<text x="30" y="392" font-size="16" font-weight="normal">Có khoảng ngừng dịch vụ</text>
-<rect x="16" y="423" width="288" height="128" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
-<text x="30" y="451" font-size="16" font-weight="bold">Muốn chia traffic theo</text>
-<text x="30" y="478" font-size="16" font-weight="bold">%</text>
-<text x="30" y="505" font-size="16" font-weight="normal">Cần Ingress, service mesh</text>
-<text x="30" y="532" font-size="16" font-weight="normal">hoặc Argo Rollouts, Flagger</text>
-<rect x="16" y="563" width="288" height="101" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
-<text x="30" y="591" font-size="16" font-weight="bold">Thử với traffic thật</text>
-<text x="30" y="618" font-size="16" font-weight="normal">Mirror traffic tới bản mới</text>
-<text x="30" y="645" font-size="16" font-weight="normal">Bỏ qua phản hồi của nó</text>
+<rect width="320" height="1019" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">MỘT LẦN CẬP NHẬT</text>
+<text x="16" y="58" font-size="16" font-weight="normal">Nhịp thay Pod của Deployment</text>
+<rect x="16" y="89" width="288" height="155" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="117" font-size="16" font-weight="bold">Bạn đổi image</text>
+<text x="30" y="144" font-size="16" font-weight="normal">Deployment tạo ReplicaSet</text>
+<text x="30" y="171" font-size="16" font-weight="normal">mới</text>
+<text x="30" y="198" font-size="16" font-weight="normal">Mở dần Pod mới, thu dần Pod</text>
+<text x="30" y="225" font-size="16" font-weight="normal">cũ</text>
+<line x1="160" y1="256" x2="160" y2="284" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="294" width="288" height="155" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="322" font-size="16" font-weight="bold">Hai tham số chỉnh nhịp</text>
+<text x="30" y="349" font-size="16" font-weight="normal">maxSurge: được dư tạm thời</text>
+<text x="30" y="376" font-size="16" font-weight="normal">bao nhiêu Pod</text>
+<text x="30" y="403" font-size="16" font-weight="normal">maxUnavailable: được thiếu</text>
+<text x="30" y="430" font-size="16" font-weight="normal">bao nhiêu Pod</text>
+<line x1="160" y1="461" x2="160" y2="489" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="499" width="288" height="155" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="527" font-size="16" font-weight="bold">Điều kiện đi tiếp</text>
+<text x="30" y="554" font-size="16" font-weight="normal">Pod mới phải sẵn sàng</text>
+<text x="30" y="581" font-size="16" font-weight="normal">(readiness probe)</text>
+<text x="30" y="608" font-size="16" font-weight="normal">minReadySeconds,</text>
+<text x="30" y="635" font-size="16" font-weight="normal">progressDeadlineSeconds</text>
+<line x1="160" y1="666" x2="160" y2="694" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="704" width="288" height="101" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="732" font-size="16" font-weight="bold">Cần dừng hay quay lui</text>
+<text x="30" y="759" font-size="16" font-weight="normal">kubectl rollout pause hoặc</text>
+<text x="30" y="786" font-size="16" font-weight="normal">undo</text>
+<rect x="16" y="817" width="288" height="182" rx="10" fill="#fee2e2" stroke="#94a3b8"/>
+<text x="30" y="845" font-size="16" font-weight="bold">Ngoài nhịp mặc định</text>
+<text x="30" y="872" font-size="16" font-weight="normal">Recreate: dừng hết rồi chạy</text>
+<text x="30" y="899" font-size="16" font-weight="normal">bản mới</text>
+<text x="30" y="926" font-size="16" font-weight="normal">Chia traffic theo %: cần</text>
+<text x="30" y="953" font-size="16" font-weight="normal">Ingress, mesh hoặc Argo</text>
+<text x="30" y="980" font-size="16" font-weight="normal">Rollouts, Flagger</text>
 </g></svg>

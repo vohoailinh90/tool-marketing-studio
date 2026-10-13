@@ -1,8 +1,8 @@
 {
   "id": "sd-13-001",
-  "title_vi": "Mười mẫu thiết kế Kubernetes",
+  "title_vi": "Mẫu thiết kế Kubernetes khi đưa một API lên cụm",
   "language": "vi",
-  "kind": "reference",
+  "kind": "flow",
   "content_status": "draft",
   "source_ref": "sd-13-001",
   "source_snapshot": {
@@ -57,21 +57,25 @@
       "source": "https://kubernetes.io/docs/concepts/workloads/pods/init-containers/"
     },
     {
+      "claim_vi": "Job chạy tới khi hoàn tất và có thể thử lại.",
+      "source": "https://kubernetes.io/docs/concepts/workloads/controllers/job/"
+    },
+    {
       "claim_vi": "Sidecar dạng gốc là init container có restartPolicy Always.",
       "source": "https://kubernetes.io/docs/concepts/workloads/pods/sidecar-containers/"
     },
     {
-      "claim_vi": "Controller chạy vòng lặp đưa trạng thái thật về trạng thái mong muốn.",
-      "source": "https://kubernetes.io/docs/concepts/architecture/controller/"
+      "claim_vi": "Khi Pod bị xóa, container nhận SIGTERM rồi bị dừng cưỡng bức sau thời gian ân hạn.",
+      "source": "https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/"
     },
     {
-      "claim_vi": "Operator mở rộng Kubernetes bằng custom resource để tự động hóa vận hành ứng dụng.",
-      "source": "https://kubernetes.io/docs/concepts/extend-kubernetes/operator/"
+      "claim_vi": "PodDisruptionBudget giới hạn số Pod bị chủ động gỡ cùng lúc.",
+      "source": "https://kubernetes.io/docs/concepts/workloads/pods/disruptions/"
     }
   ],
   "source_deviations": [
-    "Tên mười mẫu theo nguồn (sách Kubernetes Patterns); cách nhóm theo bốn tầng của nguồn không dùng, thay bằng sắp xếp theo vòng đời Pod do bài này đặt."
+    "Nguồn là danh mục mười mẫu; bài không liệt kê đủ mười mà chọn sáu việc khi đưa một API lên cụm, thêm tắt êm và PodDisruptionBudget không thuộc danh mục nguồn."
   ],
-  "design_notes_vi": "Năm thẻ dọc theo vòng đời Pod, gom mẫu theo câu hỏi người học đặt ra.",
+  "design_notes_vi": "Sáu thẻ việc cần làm, mỗi thẻ gợi ý mẫu tương ứng.",
   "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
 }

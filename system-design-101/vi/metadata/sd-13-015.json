@@ -1,6 +1,6 @@
 {
   "id": "sd-13-015",
-  "title_vi": "Năm chiến lược triển khai phổ biến",
+  "title_vi": "Chọn cách đưa bản mới lên: triển khai khác phát hành",
   "language": "vi",
   "kind": "comparison",
   "content_status": "draft",
@@ -21,7 +21,7 @@
     {
       "lesson_id": "sd-13-017",
       "relation": "compare-with",
-      "reason_vi": "Chiến lược trên Kubernetes."
+      "reason_vi": "Triển khai trên Kubernetes."
     },
     {
       "lesson_id": "sd-13-020",
@@ -58,13 +58,13 @@
       "source": "https://martinfowler.com/bliki/CanaryRelease.html"
     },
     {
-      "claim_vi": "Feature toggle cho phép bật tắt tính năng mà không đổi mã.",
+      "claim_vi": "Feature toggle cho phép bật tắt tính năng mà không đổi mã, tách phát hành khỏi triển khai.",
       "source": "https://martinfowler.com/articles/feature-toggles.html"
     }
   ],
   "source_deviations": [
-    "Nguồn chỉ liệt kê tên năm chiến lược; bài nhóm theo mức lộ và khả năng quay lui."
+    "Nguồn liệt kê năm tên chiến lược; bài đổi phạm vi sang phân biệt triển khai với phát hành, bỏ big bang, thêm shadow, và tách hai nghĩa của quay lui."
   ],
-  "design_notes_vi": "Ba thẻ nhóm theo cách quay lui.",
+  "design_notes_vi": "Bốn thẻ: triển khai, phát hành, thử ngầm, quay lui.",
   "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
 }

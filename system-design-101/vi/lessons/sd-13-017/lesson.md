@@ -1,10 +1,10 @@
-# Chiến lược triển khai trên Kubernetes
+# Deployment của Kubernetes thay Pod như thế nào
 
-Khi bạn đổi image trong một Deployment, Kubernetes làm gì sẵn, và khi nào bạn phải thêm công cụ?
+Khi bạn đổi image trong một Deployment, controller làm theo một nhịp có thể chỉnh được. Hiểu nhịp này giúp bạn đọc đúng vì sao một lần cập nhật trôi chảy, chậm hoặc kẹt.
 
-![Bốn thẻ: RollingUpdate mặc định, Recreate khi hai phiên bản không chạy chung được, chia traffic theo phần trăm cần Ingress hay service mesh, thử với traffic thật cần mirror.](../../diagrams/sd-13-017-main.svg)
+![Năm chặng: đổi image thì Deployment tạo ReplicaSet mới, maxSurge và maxUnavailable điều chỉnh nhịp, readiness probe và minReadySeconds quyết định khi nào đi tiếp, kubectl rollout undo hoặc pause khi cần, và Recreate cùng chia traffic theo phần trăm nằm ngoài nhịp mặc định.](../../diagrams/sd-13-017-main.svg)
 
-**Đọc hình:** hai thẻ đầu là việc Kubernetes tự làm; hai thẻ sau cần cấu hình định tuyến traffic.
+**Đọc hình:** bốn thẻ đầu là nhịp của RollingUpdate, mặc định của Deployment; thẻ cuối là những gì Deployment không tự làm.
 
 ## Nhìn hình thử trả lời
 
@@ -19,20 +19,22 @@ Controller nhắm tới tối đa 4 Pod không đang tắt (3 + 1 tạm thời) 
 
 ## Giới hạn cần nhớ
 
-"Không ngừng dịch vụ" của RollingUpdate chỉ đúng khi readiness probe chính xác và hai phiên bản tương thích khi chạy song song.
+"Không ngừng dịch vụ" của RollingUpdate chỉ đúng khi readiness probe chính xác và hai phiên bản tương thích khi chạy song song. Probe sai thì Pod mới nhận traffic quá sớm.
 
 <details>
 <summary>Xem sâu hơn</summary>
 
-- **Canary đơn giản:** hai Deployment cùng sau một Service, chỉnh tỉ lệ số Pod; chia traffic theo phần trăm chính xác cần Ingress hoặc mesh.
-- **Blue-Green:** hai Deployment hoặc hai môi trường, đổi selector hoặc đường vào.
-- **Shadow:** bản sao traffic gửi tới phiên bản mới nhưng phản hồi bị bỏ; cẩn thận với tác dụng phụ như ghi dữ liệu.
-- **A/B testing** là thí nghiệm sản phẩm, không phải cách triển khai an toàn.
+- **Mặc định:** `strategy.type` là `RollingUpdate`, với `maxSurge` và `maxUnavailable` mặc định 25%.
+- **minReadySeconds:** Pod mới phải sẵn sàng liên tục chừng đó giây mới được tính là có sẵn.
+- **progressDeadlineSeconds:** quá hạn mà chưa tiến triển thì Deployment bị đánh dấu không tiến triển; controller không tự quay lui.
+- **Quay lui:** `kubectl rollout undo` về bản trước; `kubectl rollout history` xem các bản đã lưu.
+- **Recreate:** hợp khi hai phiên bản không thể chạy cùng lúc (ví dụ khóa dữ liệu độc quyền).
+- **Chia traffic theo phần trăm:** Deployment chỉ đổi số Pod; muốn chia theo phần trăm chính xác cần lớp định tuyến như Ingress hoặc service mesh, hay công cụ như Argo Rollouts, Flagger.
 
 </details>
 
 ## Nguồn đối chiếu
 
 - [ByteByteGo tại snapshot cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/kubernetes-deployment-strategies.md).
-- Kubernetes: [Deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/), [canary](https://kubernetes.io/docs/concepts/workloads/management/#canary-deployments).
+- Kubernetes: [Deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/).
 - [Argo Rollouts](https://argo-rollouts.readthedocs.io/), [Flagger](https://docs.flagger.app/).

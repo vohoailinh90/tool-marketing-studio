@@ -1,8 +1,8 @@
 {
   "id": "sd-13-013",
-  "title_vi": "Tám khái niệm Docker cần biết",
+  "title_vi": "Docker khi chạy web kèm cơ sở dữ liệu: bốn chỗ hay hỏng",
   "language": "vi",
-  "kind": "flow",
+  "kind": "comparison",
   "content_status": "draft",
   "source_ref": "sd-13-013",
   "source_snapshot": {
@@ -50,21 +50,29 @@
   },
   "claims": [
     {
-      "claim_vi": "Container là tiến trình cô lập chạy từ image.",
-      "source": "https://docs.docker.com/get-started/docker-concepts/the-basics/what-is-a-container/"
-    },
-    {
       "claim_vi": "Volume lưu dữ liệu bền ngoài vòng đời container.",
       "source": "https://docs.docker.com/engine/storage/volumes/"
     },
     {
-      "claim_vi": "Compose định nghĩa và chạy ứng dụng nhiều container.",
-      "source": "https://docs.docker.com/compose/"
+      "claim_vi": "Network bridge do người dùng tạo có phân giải DNS theo tên container; bridge mặc định thì không.",
+      "source": "https://docs.docker.com/engine/network/drivers/bridge/"
+    },
+    {
+      "claim_vi": "Chỉ cổng được publish mới truy cập được từ bên ngoài; EXPOSE không publish cổng.",
+      "source": "https://docs.docker.com/engine/network/port-publishing/"
+    },
+    {
+      "claim_vi": "Restart policy giúp container tự chạy lại.",
+      "source": "https://docs.docker.com/engine/containers/start-containers-automatically/"
+    },
+    {
+      "claim_vi": "Dịch vụ trong Compose gọi nhau bằng tên dịch vụ trên network mặc định.",
+      "source": "https://docs.docker.com/compose/how-tos/networking/"
     }
   ],
   "source_deviations": [
-    "Nguồn liệt kê tám khái niệm; bài đặt chúng vào câu chuyện đưa ứng dụng lên máy chủ."
+    "Nguồn liệt kê tám khái niệm; bài không liệt kê đủ tám mà chọn bốn sự cố thực tế khi chạy web kèm cơ sở dữ liệu, thêm publish cổng và restart policy không có trong nguồn."
   ],
-  "design_notes_vi": "Bốn chặng dọc kèm ghi chú về CLI.",
+  "design_notes_vi": "Bốn thẻ sự cố kèm cách xử lý.",
   "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
 }

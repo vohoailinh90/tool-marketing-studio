@@ -1,53 +1,63 @@
-# Chín thực hành tốt khi viết Dockerfile
+# Viết Dockerfile build nhanh, image nhỏ và không lộ bí mật
 
-Nhìn từ vấn đề bạn gặp: build chậm, image to, không tái lập được, và rủi ro bảo mật. Mỗi vấn đề có cách xử lý trong Dockerfile.
+Ba nỗi đau hay gặp khi đóng gói ứng dụng: build lại quá chậm, image quá to và bí mật lọt vào image, thêm một chuyện phụ là dừng container cho êm. Bài chỉ chọn những kỹ thuật phục vụ các việc này.
 
-![Năm vấn đề và cách xử lý: build chậm thì sắp lớp và dùng dockerignore, image to thì build nhiều giai đoạn, không tái lập thì ghim phiên bản, rủi ro bảo mật thì chạy không phải root và quét image, khó truy nguồn thì gắn nhãn.](../../diagrams/sd-13-011-main.svg)
+![Ba nỗi đau chính cùng một chuyện phụ và kỹ thuật tương ứng: build chậm thì sắp lớp, dùng cache mount và dockerignore, image to thì build nhiều giai đoạn, bí mật lọt vào image thì dùng secret mount và chạy không phải root, dừng container không êm thì dùng dạng exec cho CMD.](../../diagrams/sd-13-011-main.svg)
 
-**Đọc hình:** chín thực hành nằm trong năm vấn đề này; tìm vấn đề của bạn trước.
+**Đọc hình:** bài không nhằm liệt kê mọi thực hành; mỗi thẻ là một vấn đề kèm vài kỹ thuật chọn lọc.
 
 ## Nhìn hình thử trả lời
 
-Bạn sửa một dòng mã nguồn nhưng không đổi danh sách phụ thuộc. Vì sao bước cài phụ thuộc không phải chạy lại nếu sắp lớp đúng?
+Bạn truyền token để cài gói riêng qua ARG. Vì sao đó không phải cách an toàn?
 
 <details>
 <summary>Xem đáp án</summary>
 
-Lớp sao chép danh sách phụ thuộc không đổi nên Docker dùng lại cache; chỉ các lớp từ bước sao chép mã nguồn trở đi chạy lại.
+Giá trị ARG có thể xem lại từ lịch sử build của image. Secret mount của BuildKit chỉ cho bí mật tồn tại trong lúc chạy lệnh đó và không lưu vào lớp image.
 
 </details>
 
 ## Giới hạn cần nhớ
 
-Thẻ phiên bản (tag) không bất biến: người duy trì có thể đẩy lại cùng tag, nên cần tái lập chính xác thì ghim digest. Image "chính thức" cũng không có nghĩa không có lỗ hổng, nên vẫn phải quét.
+Tag có thể bị đẩy lại, nên cần tái lập chính xác thì ghim digest. Cache mount chỉ nhanh hơn khi máy build giữ lại cache. Quét lỗ hổng và theo dõi nguồn gốc image là việc riêng, bài này không đi sâu.
 
 <details>
 <summary>Xem sâu hơn</summary>
 
 ```dockerfile
+# syntax=docker/dockerfile:1
 FROM node:22-alpine AS build
 WORKDIR /app
 COPY package*.json ./
-RUN npm ci
+RUN --mount=type=cache,target=/root/.npm npm ci
 COPY . .
 RUN npm run build
 
 FROM node:22-alpine
 WORKDIR /app
 COPY package*.json ./
-RUN npm ci --omit=dev
+RUN --mount=type=cache,target=/root/.npm npm ci --omit=dev
 COPY --from=build /app/dist ./dist
 USER node
 CMD ["node", "dist/server.js"]
 ```
 
-- **Nhiều giai đoạn:** công cụ build chỉ nằm ở giai đoạn đầu nên image cuối nhỏ hơn.
-- **`.dockerignore`:** loại `.git`, `node_modules`, tệp tạm khỏi ngữ cảnh build.
-- **Nhãn:** dùng khóa chuẩn như `org.opencontainers.image.source`.
+Cần gói riêng thì truyền bí mật bằng secret mount, không bằng ARG:
+
+```dockerfile
+RUN --mount=type=secret,id=npmrc,target=/root/.npmrc npm ci
+```
+
+```bash
+docker build --secret id=npmrc,src=$HOME/.npmrc .
+```
+
+- **Dạng exec** `CMD ["node", ...]` chạy tiến trình trực tiếp; dạng shell bọc trong `/bin/sh -c` nên tín hiệu dừng có thể không tới ứng dụng.
+- **Thứ tự lớp:** lớp nào đổi thì mọi lớp sau nó chạy lại, nên đặt phần ít đổi lên trước.
 
 </details>
 
 ## Nguồn đối chiếu
 
 - [ByteByteGo tại snapshot cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/9-docker-best-practices-you-must-know.md).
-- Docker: [best practices](https://docs.docker.com/build/building/best-practices/), [multi-stage](https://docs.docker.com/build/building/multi-stage/), [cache](https://docs.docker.com/build/cache/).
+- Docker: [best practices](https://docs.docker.com/build/building/best-practices/), [multi-stage](https://docs.docker.com/build/building/multi-stage/), [tối ưu cache](https://docs.docker.com/build/cache/optimize/), [secrets](https://docs.docker.com/build/building/secrets/), [CMD](https://docs.docker.com/reference/dockerfile/#cmd).

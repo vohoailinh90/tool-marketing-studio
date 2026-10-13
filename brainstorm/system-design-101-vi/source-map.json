@@ -3418,7 +3418,7 @@
       "lessons": [
         {
           "id": "sd-13-001",
-          "title_vi": "Mười mẫu thiết kế Kubernetes",
+          "title_vi": "Mẫu thiết kế Kubernetes khi đưa một API lên cụm",
           "title_source": "Top 10 Kubernetes Design Patterns",
           "source_url": "https://bytebytego.com/guides/top-10-k8s-design-patterns",
           "source_path": "data/guides/top-10-k8s-design-patterns.md",
@@ -3518,7 +3518,7 @@
         },
         {
           "id": "sd-13-011",
-          "title_vi": "Chín thực hành tốt khi viết Dockerfile",
+          "title_vi": "Viết Dockerfile build nhanh, image nhỏ và không lộ bí mật",
           "title_source": "9 Docker Best Practices You Must Know",
           "source_url": "https://bytebytego.com/guides/9-docker-best-practices-you-must-know",
           "source_path": "data/guides/9-docker-best-practices-you-must-know.md",
@@ -3541,7 +3541,7 @@
         },
         {
           "id": "sd-13-013",
-          "title_vi": "Tám khái niệm Docker cần biết",
+          "title_vi": "Docker khi chạy web kèm cơ sở dữ liệu: bốn chỗ hay hỏng",
           "title_source": "Top 8 Must-Know Docker Concepts",
           "source_url": "https://bytebytego.com/guides/top-8-must-know-docker-concepts",
           "source_path": "data/guides/top-8-must-know-docker-concepts.md",
@@ -3561,7 +3561,7 @@
         },
         {
           "id": "sd-13-015",
-          "title_vi": "Năm chiến lược triển khai phổ biến",
+          "title_vi": "Chọn cách đưa bản mới lên: triển khai khác phát hành",
           "title_source": "Top 5 Most-Used Deployment Strategies",
           "source_url": "https://bytebytego.com/guides/top-5-most-used-deployment-strategies",
           "source_path": "data/guides/top-5-most-used-deployment-strategies.md",
@@ -3581,7 +3581,7 @@
         },
         {
           "id": "sd-13-017",
-          "title_vi": "Chiến lược triển khai trên Kubernetes",
+          "title_vi": "Deployment của Kubernetes thay Pod như thế nào",
           "title_source": "Kubernetes Deployment Strategies",
           "source_url": "https://bytebytego.com/guides/kubernetes-deployment-strategies",
           "source_path": "data/guides/kubernetes-deployment-strategies.md",

@@ -19,7 +19,7 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 
 ## DevOps và CI/CD
 
-1. [Mười mẫu thiết kế Kubernetes](lessons/sd-13-001/lesson.md) — bài nháp, chờ review kỹ thuật.
+1. [Mẫu thiết kế Kubernetes khi đưa một API lên cụm](lessons/sd-13-001/lesson.md) — bài nháp, chờ review kỹ thuật.
 2. [Sách DevOps đáng đọc theo mục tiêu](lessons/sd-13-002/lesson.md) — bài nháp, chờ review kỹ thuật.
 3. [Tỉ lệ lập trình viên và kiểm thử viên thay đổi thế nào](lessons/sd-13-003/lesson.md) — bài nháp, chờ review kỹ thuật.
 4. [Thu thập số đo: kéo hay đẩy](lessons/sd-13-004/lesson.md) — bài nháp, chờ review kỹ thuật.
@@ -29,13 +29,13 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 8. [Chọn công cụ Kubernetes theo lớp](lessons/sd-13-008/lesson.md) — bài nháp, chờ review kỹ thuật.
 9. [Hệ sinh thái Kubernetes theo đường đi của một ứng dụng](lessons/sd-13-009/lesson.md) — bài nháp, chờ review kỹ thuật.
 10. [Bảng tuần hoàn Kubernetes: đọc để tra cứu](lessons/sd-13-010/lesson.md) — bài nháp, chờ review kỹ thuật.
-11. [Chín thực hành tốt khi viết Dockerfile](lessons/sd-13-011/lesson.md) — bài nháp, chờ review kỹ thuật.
+11. [Viết Dockerfile build nhanh, image nhỏ và không lộ bí mật](lessons/sd-13-011/lesson.md) — bài nháp, chờ review kỹ thuật.
 12. [Chuỗi CI/CD của Netflix đọc theo rủi ro](lessons/sd-13-012/lesson.md) — bài nháp, chờ review kỹ thuật.
-13. [Tám khái niệm Docker cần biết](lessons/sd-13-013/lesson.md) — bài nháp, chờ review kỹ thuật.
+13. [Docker khi chạy web kèm cơ sở dữ liệu: bốn chỗ hay hỏng](lessons/sd-13-013/lesson.md) — bài nháp, chờ review kỹ thuật.
 14. [CI/CD qua một hình đơn giản](lessons/sd-13-014/lesson.md) — bài nháp, chờ review kỹ thuật.
-15. [Năm chiến lược triển khai phổ biến](lessons/sd-13-015/lesson.md) — bài nháp, chờ review kỹ thuật.
+15. [Chọn cách đưa bản mới lên: triển khai khác phát hành](lessons/sd-13-015/lesson.md) — bài nháp, chờ review kỹ thuật.
 16. [Bảng tra lệnh kubectl theo tình huống](lessons/sd-13-016/lesson.md) — bài nháp, chờ review kỹ thuật.
-17. [Chiến lược triển khai trên Kubernetes](lessons/sd-13-017/lesson.md) — bài nháp, chờ review kỹ thuật.
+17. [Deployment của Kubernetes thay Pod như thế nào](lessons/sd-13-017/lesson.md) — bài nháp, chờ review kỹ thuật.
 18. [Terraform biến mã thành hạ tầng](lessons/sd-13-018/lesson.md) — bài nháp, chờ review kỹ thuật.
 19. [DevOps, SRE và Platform Engineering khác nhau thế nào](lessons/sd-13-019/lesson.md) — bài nháp, chờ review kỹ thuật.
 20. [Giảm rủi ro khi triển khai: chọn theo nhu cầu](lessons/sd-13-020/lesson.md) — bài nháp, chờ review kỹ thuật.

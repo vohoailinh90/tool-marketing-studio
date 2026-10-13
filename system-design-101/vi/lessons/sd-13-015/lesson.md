@@ -1,34 +1,34 @@
-# Năm chiến lược triển khai phổ biến
+# Chọn cách đưa bản mới lên: triển khai khác phát hành
 
-Gom năm chiến lược theo điều bạn quan tâm nhất: quay lui nhanh cỡ nào, và bao nhiêu người dùng thấy bản mới khi nó còn chưa được chứng minh.
+Hai việc hay bị gộp: triển khai là đưa mã lên môi trường, phát hành là cho người dùng thấy hành vi mới. Tách chúng ra giúp chọn cách đưa lên an toàn.
 
-![Ba nhóm theo cách quay lui: blue-green và feature toggle quay lui gần như tức thì, rolling và canary lộ dần và dừng giữa chừng, big bang lộ hết cùng lúc.](../../diagrams/sd-13-015-main.svg)
+![Bốn nhóm: cách triển khai gồm rolling, blue-green và canary; kiểm soát phát hành bằng cờ tính năng; thử với traffic thật mà người dùng không thấy bằng shadow; và hai kiểu quay lui khác nhau là rút lại phát hành và rút lại triển khai.](../../diagrams/sd-13-015-main.svg)
 
-**Đọc hình:** không có nhóm nào tốt hơn cho mọi trường hợp; nhóm đầu thường tốn thêm tài nguyên hoặc công dọn dẹp.
+**Đọc hình:** không có cách nào đúng cho mọi trường hợp; hai nhóm đầu có thể dùng cùng nhau.
 
 ## Nhìn hình thử trả lời
 
-Chiến lược nào cho phép quay lui mà không phải triển khai lại mã?
+Một bản triển khai có cả sửa lỗi không gắn cờ và một tính năng gắn cờ. Tắt cờ có đưa hệ thống về như trước bản triển khai không?
 
 <details>
 <summary>Xem đáp án</summary>
 
-Feature Toggle (tắt cờ) và Blue-Green (chuyển lại traffic về môi trường cũ), vì mã hoặc môi trường cũ vẫn còn sẵn.
+Không. Tắt cờ chỉ rút phần được gắn cờ; sửa lỗi, thay đổi cấu hình hay migration không gắn cờ vẫn còn. Muốn về như trước cần rút lại cả triển khai.
 
 </details>
 
 ## Giới hạn cần nhớ
 
-Rolling, Canary và Blue-Green cho phép hai phiên bản cùng tồn tại, nên dữ liệu và giao tiếp phải tương thích hai chiều. Đổi lược đồ cơ sở dữ liệu thường phải chia nhiều bước.
+Rolling, canary và blue-green cho phép hai phiên bản cùng tồn tại, nên dữ liệu và giao tiếp phải tương thích hai chiều. Đổi lược đồ cơ sở dữ liệu thường phải chia nhiều bước.
 
 <details>
 <summary>Xem sâu hơn</summary>
 
-- **Blue-Green:** tốn gấp đôi môi trường trong lúc chuyển.
+- **Blue-green:** tốn thêm một môi trường song song trong lúc chuyển; ưu điểm là quay lại bằng cách chuyển lại traffic.
 - **Canary:** cần số đo để quyết định mở rộng hay dừng.
-- **Rolling:** ít tốn tài nguyên thêm nhưng lỗi chỉ lộ dần, cần giám sát từng đợt.
-- **Feature Toggle:** tách "triển khai" khỏi "phát hành"; cờ cũ tích lại thành nợ nếu không dọn.
-- **Big Bang:** hợp với hệ thống nhỏ hoặc thay đổi không thể chạy song song.
+- **Rolling:** ít tốn tài nguyên thêm nhưng lỗi chỉ lộ dần, nên cần giám sát từng đợt.
+- **Cờ tính năng:** tách triển khai khỏi phát hành; cờ cũ tích lại thành nợ nếu không dọn.
+- **Shadow:** cẩn thận với tác dụng phụ như ghi dữ liệu hay gọi dịch vụ ngoài từ bản được thử.
 
 </details>
 

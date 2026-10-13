@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 706" width="320" height="706" role="img" aria-labelledby="title desc">
 <title id="title">CSS: quy tắc, cascade và bố cục</title>
-<desc id="desc">Ba khung dọc: một quy tắc gồm bộ chọn p, thuộc tính color và giá trị blue; cascade giải quyết xung đột giữa quy tắc p xanh dương, .note đỏ và #intro xanh lá cho phần tử p có id intro và class note, kết quả là xanh lá vì id đặc hiệu hơn, ngang nhau thì quy tắc sau thắng; bố cục có Flexbox một chiều, Grid hai chiều, và @media đổi kiểu theo kích thước màn hình. Hiệu ứng dùng transition và @keyframes.</desc>
+<desc id="desc">Ba khung dọc: một quy tắc gồm bộ chọn p, thuộc tính color và giá trị blue; cascade giải quyết xung đột giữa quy tắc p xanh dương, .note đỏ và #intro xanh lá cho phần tử p có id intro và class note, kết quả là xanh lá vì id đặc hiệu hơn, ngang nhau thì quy tắc sau thắng; bố cục có Flexbox một chiều, Grid hai chiều, và @media đổi kiểu theo kích thước viewport. Hiệu ứng dùng transition và @keyframes.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="706" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
@@ -33,6 +33,6 @@
 <text x="128" y="584" font-size="16" font-weight="normal">lưới hai chiều</text>
 <text x="30" y="611" font-size="16" font-weight="bold">@media</text>
 <text x="128" y="611" font-size="16" font-weight="normal">đổi kiểu theo</text>
-<text x="128" y="638" font-size="16" font-weight="normal">kích thước màn hình</text>
+<text x="128" y="638" font-size="16" font-weight="normal">kích thước viewport</text>
 <text x="16" y="686" font-size="16" font-weight="normal">Hiệu ứng: transition, @keyframes.</text>
 </g></svg>

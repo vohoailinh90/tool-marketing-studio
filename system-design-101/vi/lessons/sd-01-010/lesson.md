@@ -2,7 +2,7 @@
 
 **HTML nói trang có gì, CSS nói trang trông thế nào.** Tách hai việc giúp đổi giao diện mà không đụng vào nội dung: đổi bảng màu cả site chỉ cần sửa tệp CSS.
 
-![Ba khung dọc: một quy tắc gồm bộ chọn p, thuộc tính color và giá trị blue; cascade giải quyết xung đột giữa quy tắc p xanh dương, .note đỏ và #intro xanh lá cho phần tử p có id intro và class note, kết quả là xanh lá vì id đặc hiệu hơn, ngang nhau thì quy tắc sau thắng; bố cục có Flexbox một chiều, Grid hai chiều, và @media đổi kiểu theo kích thước màn hình. Hiệu ứng dùng transition và @keyframes.](../../diagrams/sd-01-010-main.svg)
+![Ba khung dọc: một quy tắc gồm bộ chọn p, thuộc tính color và giá trị blue; cascade giải quyết xung đột giữa quy tắc p xanh dương, .note đỏ và #intro xanh lá cho phần tử p có id intro và class note, kết quả là xanh lá vì id đặc hiệu hơn, ngang nhau thì quy tắc sau thắng; bố cục có Flexbox một chiều, Grid hai chiều, và @media đổi kiểu theo kích thước viewport. Hiệu ứng dùng transition và @keyframes.](../../diagrams/sd-01-010-main.svg)
 
 ## Đọc hình
 
@@ -10,7 +10,7 @@
 
 **Cascade — khi quy tắc xung đột.** Chữ "C" trong CSS là *cascading*. Nhiều quy tắc có thể cùng áp lên một phần tử, trình duyệt chọn theo thứ tự ưu tiên (áp dụng cho quy tắc thông thường; thuộc tính đang chạy `@keyframes` hoặc `transition` có tầng riêng, xem phần "Xem sâu hơn"): nguồn và độ quan trọng (`!important`), rồi thứ tự các lớp `@layer` nếu có dùng (với quy tắc thường, lớp khai báo sau thắng lớp khai báo trước, và quy tắc không thuộc lớp nào thắng quy tắc trong lớp), rồi *độ đặc hiệu* của bộ chọn (id mạnh hơn class, class mạnh hơn tên thẻ), rồi thứ tự xuất hiện (cùng độ đặc hiệu thì quy tắc đứng sau thắng). Với `<p id="intro" class="note">` và ba quy tắc trong hình (không dùng `@layer`), kết quả là xanh lá.
 
-**Bố cục và responsive.** Flexbox sắp xếp theo một chiều (hàng hoặc cột); Grid là lưới hai chiều. `@media` áp kiểu khác nhau theo kích thước màn hình.
+**Bố cục và responsive.** Flexbox sắp xếp theo một chiều (hàng hoặc cột); Grid là lưới hai chiều. `@media` áp kiểu khác nhau theo kích thước *viewport* (vùng hiển thị của trang trong cửa sổ trình duyệt), nên thu nhỏ cửa sổ cũng đổi kiểu dù màn hình không đổi; media query còn xét được các đặc tính khác như hướng màn hình hay chế độ màu.
 
 ## Giới hạn cần nhớ
 

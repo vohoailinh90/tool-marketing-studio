@@ -76,7 +76,7 @@
       ]
     },
     {
-      "claim_vi": "Flexbox bố cục một chiều, Grid hai chiều, media query đổi kiểu theo màn hình.",
+      "claim_vi": "Flexbox bố cục một chiều, Grid hai chiều, media query đổi kiểu theo kích thước viewport và các đặc tính khác của môi trường hiển thị.",
       "sources": [
         "https://www.w3.org/TR/css-flexbox-1/",
         "https://www.w3.org/TR/css-grid-1/",

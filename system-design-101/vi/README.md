@@ -17,6 +17,8 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 
 7. [Chính sách định tuyến lưu lượng Internet](lessons/sd-01-007/lesson.md) — có review tại repo cũ; chờ review tích hợp tại repo mới.
 
+8. [Trình duyệt dựng trang web thế nào?](lessons/sd-01-008/lesson.md)
+
 ## AI và học máy
 
 1. [Năm hàm gộp dữ liệu trong pandas](lessons/sd-03-001/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.

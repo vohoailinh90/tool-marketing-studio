@@ -29,20 +29,36 @@ services:
   web:
     image: example/web:1.0
     ports: ["8080:80"]
-    depends_on: [db]
+    environment:
+      DATABASE_URL: postgres://app:${DB_PASSWORD}@db:5432/app
+    depends_on:
+      db:
+        condition: service_healthy
     restart: unless-stopped
   db:
     image: postgres:16
+    environment:
+      POSTGRES_USER: app
+      POSTGRES_DB: app
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
     volumes: ["dbdata:/var/lib/postgresql/data"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U app"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
     restart: unless-stopped
 volumes:
   dbdata:
 ```
 
+Đặt `DB_PASSWORD` trong biến môi trường hoặc trong tệp `.env` không đưa vào Git. Image PostgreSQL chính thức bắt buộc có `POSTGRES_PASSWORD` khi khởi tạo dữ liệu lần đầu.
+
 - **Image và container:** image chỉ đọc; container thêm một lớp ghi, mất khi container bị xóa, nên dữ liệu cần ở volume.
 - **Network:** trong Compose, các dịch vụ dùng chung một network mặc định và gọi nhau bằng tên dịch vụ; network bridge do người dùng tạo có DNS theo tên, bridge mặc định thì không.
 - **Publish cổng:** chỉ cổng được publish mới truy cập được từ ngoài máy chủ.
 - **Restart policy:** `no`, `on-failure`, `always`, `unless-stopped`.
+- **Thứ tự khởi động:** `depends_on` đơn giản chỉ xếp thứ tự khởi động, không đợi cơ sở dữ liệu sẵn sàng; điều kiện `service_healthy` cùng `healthcheck` mới đợi đến khi nó trả lời được.
 
 </details>
 

@@ -8,7 +8,7 @@ Thay vì hỏi "dùng loại nào", hãy trả lời bốn câu hỏi về dữ 
 
 ## Nhìn hình thử trả lời
 
-`http_requests{dịch_vụ="a", mã="200"}` và `http_requests{dịch_vụ="a", mã="500"}` là một hay hai chuỗi?
+`http_requests{service="a", code="200"}` và `http_requests{service="a", code="500"}` là một hay hai chuỗi?
 
 <details>
 <summary>Xem đáp án</summary>

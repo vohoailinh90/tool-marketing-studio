@@ -1,0 +1,78 @@
+{
+  "id": "sd-01-009",
+  "title_vi": "Vì sao HTTP/2 nhanh hơn HTTP/1?",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "review",
+  "source_ref": "sd-01-009",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/what-makes-http2-faster-than-http1.md",
+    "blob_sha": "2271f5ae0b26a8df24bc792417c03074928cfde4",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-makes-http2-faster-than-http1.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_bytes": 1643,
+    "retrieved_body_sha256": "ae86c6681845ee28a615fbf30ff1b60f8c6b8e637d5121bd787ddd6bac59934f"
+  },
+  "diagram": "../diagrams/sd-01-009-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-13"
+    },
+    "technical_review": {
+      "status": "pending"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 14.4,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium whole lesson, optional sections open;320px screenshot visually inspected. Not learner testing."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "HTTP2 multiplex nhiều trao đổi trên một kết nối bằng frames/streams.",
+      "source": "https://developer.mozilla.org/en-US/docs/Glossary/HTTP_2"
+    },
+    {
+      "claim_vi": "TCP HOL vẫn tồn tại; header block không xen kẽ tùy ý; mô hình priority cũ deprecated, push có thể tắt.",
+      "source": "https://www.rfc-editor.org/rfc/rfc9113.html",
+      "section": "§1,§4.3,§5.3,§6.5.2,§8.4"
+    },
+    {
+      "claim_vi": "HPACK nén header bằng bảng/mã hóa, khác nén body.",
+      "source": "https://www.rfc-editor.org/rfc/rfc7541.html",
+      "section": "§1–2"
+    },
+    {
+      "claim_vi": "RFC9218 định nghĩa tín hiệu ưu tiên mới.",
+      "source": "https://www.rfc-editor.org/rfc/rfc9218.html",
+      "section": "§1"
+    }
+  ],
+  "design_notes_vi": "Hình mới DATA frames stream1/3; so sánh một kết nối, không phủ nhận parallel HTTP1.1.",
+  "source_deviations": [
+    "Không coi HTTP2 luôn nhanh hơn hoặc binary frames luôn làm body nhỏ hơn.",
+    "Ưu tiên weight/dependency nguồn là model cũ deprecated; push không là mặc định client nào cũng bật."
+  ],
+  "editorial_note_vi": "Chờ review kỹ thuật; chưa user testing."
+}

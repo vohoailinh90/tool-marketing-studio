@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1090" width="320" height="1090" role="img" aria-labelledby="title desc">
+<title id="title">HTTP2: xen kẽ stream và giảm header</title>
+<desc id="desc">Ví dụ một kết nối, hai response A và B. HTTP1.1: A1 A2 B1 B2 theo thứ tự response. HTTP2: DATA frame stream1 A1, stream3 B1, stream1 A2, stream3 B2 xen kẽ. Receiver ghép theo stream ID. HPACK nén header, không nén body. Mất gói TCP vẫn có thể làm dữ liệu về sau cùng chờ.</desc>
+<rect width="320" height="1090" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="19" font-weight="bold">ÍT CHỜ · ÍT HEADER LẶP</text>
+<text x="16" y="60" font-size="16" font-weight="normal">Hai response · một kết nối</text>
+<rect x="16" y="80" width="288" height="170" rx="12" fill="#e2e8f0" stroke="#94a3b8"/>
+<text x="30" y="111" font-size="16" font-weight="bold">1 · HTTP/1.1</text>
+<rect x="30" y="129" width="59" height="68" rx="6" fill="#dbeafe" stroke="#64748b"/>
+<text x="42" y="156" font-size="16" font-weight="bold">A1</text>
+<text x="38" y="183" font-size="16" font-weight="normal"></text>
+<rect x="96" y="129" width="59" height="68" rx="6" fill="#dbeafe" stroke="#64748b"/>
+<text x="108" y="156" font-size="16" font-weight="bold">A2</text>
+<text x="104" y="183" font-size="16" font-weight="normal"></text>
+<rect x="162" y="129" width="59" height="68" rx="6" fill="#ede9fe" stroke="#64748b"/>
+<text x="174" y="156" font-size="16" font-weight="bold">B1</text>
+<text x="170" y="183" font-size="16" font-weight="normal"></text>
+<rect x="228" y="129" width="59" height="68" rx="6" fill="#ede9fe" stroke="#64748b"/>
+<text x="240" y="156" font-size="16" font-weight="bold">B2</text>
+<text x="236" y="183" font-size="16" font-weight="normal"></text>
+<text x="30" y="228" font-size="16" font-weight="normal">A hoàn tất → B mới trả dữ liệu</text>
+<rect x="16" y="273" width="288" height="228" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="306" font-size="16" font-weight="bold">2 · HTTP/2 multiplexing</text>
+<rect x="30" y="325" width="59" height="68" rx="6" fill="#dbeafe" stroke="#64748b"/>
+<text x="42" y="352" font-size="16" font-weight="bold">A1</text>
+<text x="38" y="379" font-size="16" font-weight="normal">ID 1</text>
+<rect x="96" y="325" width="59" height="68" rx="6" fill="#ede9fe" stroke="#64748b"/>
+<text x="108" y="352" font-size="16" font-weight="bold">B1</text>
+<text x="104" y="379" font-size="16" font-weight="normal">ID 3</text>
+<rect x="162" y="325" width="59" height="68" rx="6" fill="#dbeafe" stroke="#64748b"/>
+<text x="174" y="352" font-size="16" font-weight="bold">A2</text>
+<text x="170" y="379" font-size="16" font-weight="normal">ID 1</text>
+<rect x="228" y="325" width="59" height="68" rx="6" fill="#ede9fe" stroke="#64748b"/>
+<text x="240" y="352" font-size="16" font-weight="bold">B2</text>
+<text x="236" y="379" font-size="16" font-weight="normal">ID 3</text>
+<text x="30" y="427" font-size="16" font-weight="normal">A và B: DATA frame xen kẽ</text>
+<text x="30" y="457" font-size="16" font-weight="bold">Ghép theo stream ID</text>
+<text x="30" y="487" font-size="16" font-weight="normal">Headers lược bỏ trong ví dụ</text>
+<rect x="16" y="525" width="288" height="164" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="557" font-size="16" font-weight="bold">3 · HPACK: nén header</text>
+<text x="30" y="595" font-size="16" font-weight="normal">Header lặp → mã/bảng header</text>
+<text x="30" y="634" font-size="16" font-weight="normal">Ít byte header qua mạng</text>
+<text x="30" y="670" font-size="16" font-weight="normal">Body dùng cơ chế nén riêng</text>
+<rect x="16" y="713" width="288" height="180" rx="12" fill="#fee2e2" stroke="#94a3b8"/>
+<text x="30" y="746" font-size="16" font-weight="bold">4 · Giới hạn TCP</text>
+<text x="30" y="785" font-size="16" font-weight="normal">Mất gói trên kết nối chung</text>
+<text x="30" y="823" font-size="16" font-weight="normal">→ dữ liệu về sau có thể chờ</text>
+<text x="30" y="864" font-size="16" font-weight="normal">Không loại bỏ TCP blocking</text>
+<rect x="16" y="917" width="288" height="136" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="949" font-size="16" font-weight="bold">Không bảo đảm luôn nhanh</text>
+<text x="30" y="987" font-size="16" font-weight="normal">Đo mạng + server + workload</text>
+<text x="30" y="1027" font-size="16" font-weight="normal">HTTP/1.1 vẫn dùng nhiều TCP</text>
+<text x="16" y="1080" font-size="16" font-weight="normal">Ô DATA frame ≠ packet TCP.</text>
+</g></svg>

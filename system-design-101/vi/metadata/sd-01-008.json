@@ -3,7 +3,7 @@
   "title_vi": "Trình duyệt dựng trang web thế nào?",
   "language": "vi",
   "kind": "flow",
-  "content_status": "review",
+  "content_status": "done",
   "source_ref": "sd-01-008",
   "source_snapshot": {
     "repository": "ByteByteGoHq/system-design-101",
@@ -28,7 +28,15 @@
       "checked_on": "2026-10-13"
     },
     "technical_review": {
-      "status": "pending"
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "repository": "vohoailinh90/tool-marketing-studio",
+      "pr": 43,
+      "head_sha": "d593da90192ae8acc94eb43933a31dbf3b96fd50",
+      "base_sha": "5831cdcef96a2c83664e02d83a4e803cf47f259c",
+      "comment_id": 6139014238,
+      "ci_run_id": 38347778167,
+      "evidence": "Codex no major issues and CI success on exact snapshot. Not release/user testing approval."
     },
     "mobile": {
       "status": "checked",
@@ -65,5 +73,5 @@
     "Không đồng nhất mọi phần tử vô hình với bị loại khỏi render tree.",
     "Tách paint/raster/composite; tránh claim toàn bộ trang luôn gửi nguyên khối sang GPU."
   ],
-  "editorial_note_vi": "Chờ review kỹ thuật; chưa user testing."
+  "editorial_note_vi": "Đã review kỹ thuật trên snapshot ghi trong verification; chưa user testing/phê duyệt phát hành."
 }

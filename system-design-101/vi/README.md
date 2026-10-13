@@ -17,6 +17,16 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 
 7. [Chính sách định tuyến lưu lượng Internet](lessons/sd-01-007/lesson.md) — có review tại repo cũ; chờ review tích hợp tại repo mới.
 
+8. [Trình duyệt dựng trang web thế nào?](lessons/sd-01-008/lesson.md)
+
+## Phỏng vấn kỹ thuật
+
+1. [Các kiểu SQL JOIN hoạt động thế nào?](lessons/sd-05-001/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+2. [Gõ google.com vào trình duyệt thì chuyện gì xảy ra?](lessons/sd-05-002/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+3. [Một URL biến thành yêu cầu HTTP thế nào?](lessons/sd-05-003/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+4. [Làm tốt phỏng vấn thiết kế hệ thống: bảy bước](lessons/sd-05-004/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+5. [Tài liệu gợi ý để ôn phỏng vấn kỹ thuật](lessons/sd-05-005/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+
 ## DevOps và CI/CD
 
 1. [Tắt êm một API trên Kubernetes: năm chỗ làm rớt request](lessons/sd-13-001/lesson.md) — bài nháp, chờ review kỹ thuật.
@@ -69,7 +79,7 @@ và hình đạt; không coi đọc nguồn là mọi claim đã đúng, không 
 
 ## Các nhóm còn lại theo thứ tự nguồn
 
-Tình huống thực tế → AI và học máy → Cơ sở dữ liệu và lưu trữ → Phỏng vấn kỹ thuật →
+Tình huống thực tế → AI và học máy → Cơ sở dữ liệu và lưu trữ →
 Bộ nhớ đệm và hiệu năng → Thanh toán và công nghệ tài chính → Kiến trúc phần mềm →
 Công cụ và năng suất → Phát triển phần mềm → Đám mây và hệ thống phân tán →
 Hệ thống hoạt động thế nào? → Bảo mật → Nền tảng máy tính.

@@ -7,6 +7,8 @@ Chọn mô hình nào thì quyết định bạn phải bảo trì thứ gì v�
 
 ## Đọc hình
 
+Năm tên này không loại trừ nhau. ACL nói về cách lưu quyền (một danh sách gắn với tài nguyên); DAC, MAC, RBAC và ABAC nói về ai quyết định và dựa vào đâu. Hệ thống thật hay xếp chồng nhiều lớp: trên Linux có SELinux, kiểm tra DAC chạy trước rồi mới hỏi chính sách MAC; Kubernetes cho chạy nối tiếp nhiều bộ phân quyền, ví dụ RBAC rồi ABAC, và yêu cầu nào một trong hai cho phép thì được phép. Vì vậy chọn DAC hay RBAC không có nghĩa là bỏ ACL; bài chỉ xếp chúng cạnh nhau để so cách nghĩ.
+
 **ACL (danh sách kiểm soát truy cập).** Mỗi tài nguyên mang một danh sách ghi ai được làm gì. Hệ thống chỉ việc tra danh sách của tệp bảng lương xem có dòng cho Lan không.
 
 **DAC (kiểm soát truy cập tùy quyền chủ sở hữu).** Chủ sở hữu tài nguyên tự quyết định chia quyền cho ai. Hệ thống tệp Linux là ví dụ. Khi chạy thử, một người dùng tạo tệp với quyền `rw-------` thì người dùng khác bị từ chối đọc; chính chủ tệp đổi sang `rw-r--r--` bằng `chmod` thì người kia đọc được.
@@ -42,6 +44,7 @@ Cái giá của ABAC nằm ở chỗ khác: nếu thuộc tính ghi sai thì quy
 
 Bài nguồn viết DAC “dựa trên ACL”. Ví dụ Linux ở đây chạy bằng bit quyền chủ, nhóm, khác (`rw-------`, `rw-r--r--`), không cần ACL, nên bài này không gắn DAC với ACL. Khi chạy thử, một tệp `rw-r-----` thuộc nhóm `daemon` đọc được với người trong nhóm đó, còn người chưa vào nhóm bị từ chối cho tới khi được thêm vào nhóm một lần; đó cũng là lý do ACL ghi nhóm rẻ hơn ACL ghi từng người.
 Bài nguồn gọi ABAC là “ít được dùng” và ghi nhãn của MAC trên “chủ sở hữu và tài nguyên”; bài này không lặp lại hai nhận định đó vì chưa kiểm được: tài liệu SELinux mô tả nhãn trên cả chủ thể (người dùng, tiến trình) lẫn đối tượng.
+Bài nguồn xếp năm mô hình ngang hàng; bài này giữ cách xếp đó để so sánh nhưng nêu thêm chỗ chồng lấn giữa cơ chế lưu quyền và chính sách. Định nghĩa ACL và RBAC của NIST, vốn nói rõ hơn về chỗ chồng lấn này, chưa đối chiếu được vì trang NIST không truy cập được.
 Kubernetes là một ví dụ thực của RBAC, và quyền ở đó chỉ cộng thêm, không có luật “từ chối”. Đó là đặc điểm của Kubernetes, không phải của mọi hệ RBAC.
 
 Kết quả minh họa chạy bằng Python (thư viện Casbin cho ACL, RBAC, ABAC; luật mức bảo mật viết tay) và bằng hai người dùng Linux thật. Danh sách thuộc tính của ABAC theo định nghĩa của NIST chưa đối chiếu được vì trang NIST không truy cập được từ môi trường soạn bài.

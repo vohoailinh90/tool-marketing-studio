@@ -5,7 +5,7 @@ Repo cũ tạm dừng; không merge/đóng/xóa các PR cũ.
 
 10/404 vị trí đã viết; 15 nhóm và 400 nguồn duy nhất giữ nguyên. Bảy bài có evidence review ở repo cũ, kể cả bài 7 tại comment6133492501/headb8dff434ff75499137bbb10b61122958fdaaafa5. Các evidence này là prior_reviews, không duyệt tổ hợp trong repo mới.
 
-Đợt hiện tại: đợt đầu của nhóm Bảo mật (sd-14-004..sd-14-006), viết trước theo yêu cầu người dùng vì lúc viết chưa có PR nào khác đụng tới nhóm này. Bài mới ở trạng thái review, chờ review kỹ thuật; user testing chưa thực hiện; chưa tự merge hay phát hành.
+Đợt hiện tại: đợt hai của nhóm Bảo mật (sd-14-004..sd-14-006). Đợt đầu của nhóm (sd-14-001..sd-14-003) được viết song song ở PR #57 và chưa nằm trong nhánh này, nên hai PR cùng sửa các tệp chỉ mục (README, PROGRESS, progress.json, source-map) và PR merge sau cần gộp main rồi tạo lại các tệp đó. Bài mới ở trạng thái review, chờ review kỹ thuật; user testing chưa thực hiện; chưa tự merge hay phát hành.
 
 Metadata JSON duy nhất giữ trạng thái; YAML chỉ id/metadata_ref. Hình/bài giữ nguyên byte khi nhập. User testing chưa thực hiện; không tự merge/deploy hoặc đăng bài.
 

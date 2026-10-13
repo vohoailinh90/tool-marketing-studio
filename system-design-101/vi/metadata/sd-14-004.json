@@ -101,6 +101,12 @@
       "verified_by": "The rule is the one the notebook states; the four outputs come from the author's Python function."
     },
     {
+      "claim_vi": "The models layer in real systems: on Linux with SELinux the DAC checks are carried out first and, if they pass, the security server is consulted for the MAC decision; Kubernetes can run several authorizers in sequence, such as RBAC then ABAC, and a request allowed by either is allowed.",
+      "source": "https://github.com/SELinuxProject/selinux-notebook/blob/main/src/mac.md",
+      "section": "Mandatory Access Control (Figure 3: processing a system call)",
+      "verified_by": "Read from a local clone of the repository. The Kubernetes sequence is stated in the Kubernetes RBAC page (Parallel authorizers), also read from raw GitHub; ACL as a storage mechanism versus DAC, MAC, RBAC and ABAC as decision policies is the author's framing, not checked against NIST."
+    },
+    {
       "claim_vi": "ABAC only gives correct decisions when user and document attributes are kept correct, and complex rules are harder to read and audit.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-we-design-a-permission-system.md",
       "section": "ABAC",
@@ -111,6 +117,7 @@
   "source_deviations": [
     "Source says DAC is based on ACL; the Linux example here runs on owner/group/other mode bits without ACLs, so the lesson does not tie DAC to ACL.",
     "Source calls ABAC 'not commonly used' and puts MAC labels on 'resource owners and resources'; the lesson does not repeat either (unchecked; SELinux labels subjects and objects).",
+    "Source presents the five as peer models; the lesson keeps that layout for comparison but states that ACL (storage of permissions) overlaps with DAC, MAC, RBAC and ABAC (decision policies) and that real systems layer them.",
     "Source gives no cons for RBAC; the lesson compares the maintenance each model moves around, measured in the demo, and notes that Kubernetes RBAC has no deny rules as a Kubernetes property."
   ],
   "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."

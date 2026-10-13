@@ -48,30 +48,48 @@
   "claims": [
     {
       "claim_vi": "LAN thường thuộc một tổ chức và phủ phạm vi nhỏ như nhà hoặc văn phòng.",
-      "sources": [
-        "https://www.cloudflare.com/learning/network-layer/what-is-a-lan/",
-        "https://www.rfc-editor.org/rfc/rfc1983"
-      ]
+      "source": "https://www.cloudflare.com/learning/network-layer/what-is-a-lan/"
     },
     {
       "claim_vi": "WAN nối các nơi ở xa và thường dựa trên đường truyền thuê hoặc mạng của bên khác.",
+      "source": "https://www.cloudflare.com/learning/network-layer/what-is-a-wan/"
+    },
+    {
+      "claim_vi": "Họ chuẩn IEEE 802 mô tả chủ yếu mạng LAN và MAN; Ethernet là 802.3 và Wi-Fi là 802.11.",
       "sources": [
-        "https://www.cloudflare.com/learning/network-layer/what-is-a-wan/",
-        "https://www.rfc-editor.org/rfc/rfc1983"
+        "https://www.ieee802.org/",
+        "https://www.ieee802.org/3/",
+        "https://www.ieee802.org/11/"
       ]
     },
     {
-      "claim_vi": "Họ chuẩn IEEE 802 mô tả chủ yếu mạng LAN và MAN.",
-      "source": "https://www.ieee802.org/"
+      "claim_vi": "PAN thường dùng Bluetooth hoặc USB trong phạm vi vài mét; Bluetooth ban đầu dựa trên IEEE 802.15.1 và nay do Bluetooth SIG duy trì.",
+      "sources": [
+        "https://www.ieee802.org/15/",
+        "https://www.bluetooth.com/specifications/",
+        "https://www.usb.org/documents"
+      ]
     },
     {
-      "claim_vi": "PAN thường dùng công nghệ như Bluetooth (IEEE 802.15.1) hoặc USB trong phạm vi vài mét.",
-      "source": "https://www.ieee802.org/15/"
+      "claim_vi": "Internet là sự nối nhau của nhiều mạng do nhiều bên vận hành.",
+      "sources": [
+        "https://www.rfc-editor.org/rfc/rfc1122",
+        "https://www.cloudflare.com/learning/network-layer/how-does-the-internet-work/"
+      ]
+    },
+    {
+      "claim_vi": "SD-WAN là cách quản lý nhiều đường WAN bằng phần mềm.",
+      "source": "https://www.cloudflare.com/learning/network-layer/what-is-sd-wan/"
+    },
+    {
+      "claim_vi": "MAN phủ cỡ một thành phố hoặc khuôn viên lớn; ranh giới giữa LAN, MAN và WAN là quy ước.",
+      "source": "https://www.ieee802.org/"
     }
   ],
   "design_notes_vi": "Bốn khung dọc theo phạm vi tăng dần từ PAN tới WAN. Sơ đồ tự thiết kế, không dùng ảnh nguồn.",
   "editorial_note_vi": "Viết độc lập từ kiến thức và tiêu chuẩn kỹ thuật theo DECISIONS.md; claim chưa được đối chiếu trực tiếp với tài liệu chuẩn nên chờ review kỹ thuật. Chưa thử người học hoặc phê duyệt phát hành.",
   "source_deviations": [
-    "Nguồn gọi Internet là ví dụ nổi bật của WAN; bài ghi Internet là mạng của các mạng, không phải một WAN của một tổ chức."
+    "Nguồn gọi Internet là ví dụ nổi bật của WAN; bài ghi Internet là mạng của các mạng, không phải một WAN của một tổ chức.",
+    "Ví dụ ở bài là các ví dụ riêng (đồng hồ thông minh, router gia đình, mạng cáp quang thành phố, chuỗi cửa hàng), không lặp bộ ví dụ của nguồn."
   ]
 }

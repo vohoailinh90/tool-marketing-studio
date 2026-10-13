@@ -79,6 +79,28 @@
     {
       "claim_vi": "LB hoạt động ở tầng kết nối hoặc tầng HTTP với khả năng khác nhau.",
       "source": "https://docs.haproxy.org/"
+    },
+    {
+      "claim_vi": "Nếu chỉ có một LB thì nó là điểm đơn lỗi; dịch vụ cloud và cấu hình dự phòng giải quyết điều này.",
+      "sources": [
+        "https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/what-is-load-balancing.html",
+        "https://docs.haproxy.org/"
+      ]
+    },
+    {
+      "claim_vi": "Với giữ phiên, người dùng mất phiên nếu máy được gắn bị loại khỏi nhóm.",
+      "source": "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/sticky-sessions.html"
+    },
+    {
+      "claim_vi": "Khi gỡ một máy khỏi nhóm, LB có thể để request đang chạy xong trước (draining).",
+      "source": "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-target-groups.html"
+    },
+    {
+      "claim_vi": "LB tầng kết nối chuyển lưu lượng không đọc nội dung; LB tầng HTTP định tuyến theo đường dẫn, host hoặc header.",
+      "sources": [
+        "https://docs.haproxy.org/",
+        "https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/what-is-load-balancing.html"
+      ]
     }
   ],
   "design_notes_vi": "Sáu khung dọc cùng cấu trúc: việc LB làm và điều cần cẩn thận. Sơ đồ tự thiết kế, không dùng ảnh nguồn.",

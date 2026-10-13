@@ -47,15 +47,21 @@
   },
   "claims": [
     {
-      "claim_vi": "Cổng là số 16 bit; IANA chia dải 0-1023, 1024-49151, 49152-65535.",
+      "claim_vi": "Cổng là số 16 bit trong tiêu đề TCP và UDP; IANA chia dải 0-1023, 1024-49151, 49152-65535.",
       "sources": [
+        "https://www.rfc-editor.org/rfc/rfc768",
+        "https://www.rfc-editor.org/rfc/rfc9293",
         "https://www.rfc-editor.org/rfc/rfc6335",
         "https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml"
       ]
     },
     {
-      "claim_vi": "Số cổng mặc định của các dịch vụ trong hình theo bảng đăng ký của IANA.",
+      "claim_vi": "Số cổng mặc định của các dịch vụ trong hình (trừ Oracle 1521) theo bảng đăng ký của IANA.",
       "source": "https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml"
+    },
+    {
+      "claim_vi": "Oracle Net listener dùng cổng 1521 làm mặc định theo tài liệu của Oracle; đây không phải một đăng ký riêng của IANA cho Oracle.",
+      "source": "https://docs.oracle.com/en/database/oracle/oracle-database/19/netag/configuring-and-administering-oracle-net-listener.html"
     },
     {
       "claim_vi": "DNS dùng UDP và TCP cổng 53; DHCP dùng UDP 67 và 68; NTP dùng UDP 123.",
@@ -75,6 +81,36 @@
         "https://www.rfc-editor.org/rfc/rfc854",
         "https://www.rfc-editor.org/rfc/rfc9110"
       ]
+    },
+    {
+      "claim_vi": "SSH dùng cổng 22.",
+      "sources": [
+        "https://www.rfc-editor.org/rfc/rfc4253",
+        "https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml"
+      ]
+    },
+    {
+      "claim_vi": "RDP dùng cổng 3389, chủ yếu TCP và có thể kèm UDP.",
+      "source": "https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rdpbcgr/"
+    },
+    {
+      "claim_vi": "NetBIOS dùng UDP 137 và 138 và TCP 139; SMB hiện đại chạy trực tiếp qua TCP 445.",
+      "sources": [
+        "https://www.rfc-editor.org/rfc/rfc1001",
+        "https://www.rfc-editor.org/rfc/rfc1002",
+        "https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-smb2/"
+      ]
+    },
+    {
+      "claim_vi": "Cổng 587 dùng để gửi thư (submission); 465, 993 và 995 là các cổng thư qua TLS.",
+      "sources": [
+        "https://www.rfc-editor.org/rfc/rfc6409",
+        "https://www.rfc-editor.org/rfc/rfc8314"
+      ]
+    },
+    {
+      "claim_vi": "FTP dùng cổng 21 cho kênh điều khiển; kênh dữ liệu dùng cổng 20 ở chế độ chủ động hoặc cổng được chỉ định ở chế độ bị động.",
+      "source": "https://www.rfc-editor.org/rfc/rfc959"
     },
     {
       "claim_vi": "PostgreSQL mặc định cổng 5432 và MySQL cổng 3306.",

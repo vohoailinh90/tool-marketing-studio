@@ -19,6 +19,8 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 
 ## Bảo mật
 
+Đợt ba của nhóm. Các bài sd-14-001..006 nằm ở PR #57 và #58, chưa có trong nhánh này; số thứ tự dưới đây chỉ tính trong nhánh này.
+
 1. [Tường lửa hoạt động thế nào?](lessons/sd-14-007/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 2. [Cookie và session khác nhau thế nào?](lessons/sd-14-008/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 3. [Cookie HTTP hoạt động thế nào?](lessons/sd-14-009/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.

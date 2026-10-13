@@ -86,7 +86,7 @@
   "design_notes_vi": "Hai thẻ đầu tả luồng Set-Cookie rồi Cookie; sáu thẻ sau gom các thuộc tính theo việc chúng quyết định (đi tới đâu, khi nào, ai đọc, bao lâu); thẻ cuối nêu nên khai SameSite rõ ràng. Không dùng ảnh nguồn.",
   "source_deviations": [
     "Source lists Name and Value as attributes beside SameSite, Secure, Domain and HttpOnly; the lesson separates the cookie's name and value from its attributes and adds Path, Expires and Max-Age from MDN.",
-    "MDN says a cookie with no SameSite is treated as Lax; the lesson keeps that but records the observed temporary difference in Chromium 141 right after a cookie is created, and advises declaring SameSite explicitly.",
+    "MDN says a cookie with no SameSite is treated as Lax; the lesson keeps that but records the difference observed in Chromium 141 right after a cookie is created (single run, cause unknown), and advises declaring SameSite explicitly.",
     "Source's playful wording is not used."
   ],
   "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."

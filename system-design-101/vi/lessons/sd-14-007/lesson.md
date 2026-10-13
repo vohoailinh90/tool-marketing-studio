@@ -7,13 +7,13 @@ Các loại tường lửa khác nhau ở chỗ chúng nhìn vào cái gì: mộ
 
 ## Đọc hình
 
-**Lọc gói tin.** Mỗi gói được xét riêng theo địa chỉ nguồn, địa chỉ đích, giao thức và cổng. Thường nhanh và đơn giản, nhưng không nhớ gói trước đó.
+**Lọc gói tin.** Mỗi gói được xét riêng theo địa chỉ nguồn, địa chỉ đích, giao thức và cổng. Không nhớ gói trước đó.
 
 **Cổng mức mạch (circuit-level).** Theo dõi bắt tay TCP để xem một phiên có hợp lệ không, mà không đọc nội dung ứng dụng.
 
 **Cổng ứng dụng (proxy).** Máy bên ngoài nói chuyện với proxy, proxy mới nói chuyện với máy bên trong. Vì proxy đứng ở tầng ứng dụng nên đọc được nội dung, ví dụ một yêu cầu HTTP, chứ không chỉ phần đầu gói.
 
-**Theo dõi trạng thái.** Tường lửa giữ một bảng các kết nối đang mở, nên nhận ra một gói là trả lời của kết nối do máy bên trong đã mở. Chạy thử trên Linux với nftables: khi chỉ có luật theo cổng, bắt tay TCP không hoàn tất vì gói trả lời bị chặn (kết nối quá hạn);
+**Theo dõi trạng thái.** Tường lửa giữ một bảng các kết nối đang mở, nên nhận ra một gói là trả lời của kết nối do máy bên trong đã mở. Chạy thử trên Linux với nftables: với luật theo cổng cho gói đi tới cổng 18081 nhưng chặn mọi gói xuất phát từ cổng đó (một cách dựng thử nghiệm), bắt tay TCP không hoàn tất vì gói trả lời bị chặn (kết nối quá hạn);
 thêm luật `ct state established,related accept` thì cùng kết nối chạy bình thường, còn kết nối mới tới cổng bị cấm vẫn bị chặn.
 
 **Tường lửa thế hệ mới (NGFW).** Gộp các cách trên với các tính năng như ngăn chặn xâm nhập, kiểm tra sâu gói tin và nhận diện ứng dụng. Đây là tên gọi cho một nhóm tính năng, mỗi sản phẩm làm khác nhau.
@@ -21,7 +21,7 @@ thêm luật `ct state established,related accept` thì cùng kết nối chạy
 ## Giới hạn cần nhớ
 
 Nhìn nhiều hơn thì thường tốn nhiều tài nguyên hơn và cần cấu hình đúng hơn (suy luận của người biên soạn). Tường lửa chỉ áp luật ở điểm nó đứng: lưu lượng đi đường khác, hoặc luật viết sai, thì không được bảo vệ.
-Lọc theo gói muốn cho gói trả lời đi qua thì phải mở thêm luật theo cổng nguồn, và luật đó cũng cho qua các gói khác tự mang cổng nguồn ấy, kể cả gói không thuộc kết nối nào (suy luận của người biên soạn, chưa chạy thử).
+Cuộc chạy thử không thử trường hợp bộ lọc theo gói mở thêm luật cho gói trả lời theo cổng nguồn. Lọc theo gói muốn cho gói trả lời đi qua thì phải mở thêm luật theo cổng nguồn, và luật đó cũng cho qua các gói khác tự mang cổng nguồn ấy, kể cả gói không thuộc kết nối nào (suy luận của người biên soạn, chưa chạy thử).
 
 ## Nhìn hình trả lời
 
@@ -38,7 +38,7 @@ Khi chạy thử trên Linux, chỉ có luật theo cổng thì kết nối quá
 <details>
 <summary>Xem sâu hơn: điều đã chỉnh so với bài nguồn</summary>
 
-Bài nguồn liệt kê năm loại theo một dòng mỗi loại, kèm hai nhóm phần mềm và phần cứng. Bài này sắp xếp theo độ sâu của cái tường lửa nhìn, và chạy thử riêng sự khác biệt giữa lọc theo cổng và theo trạng thái.
+Bài nguồn liệt kê năm loại theo một dòng mỗi loại, kèm hai nhóm phần mềm và phần cứng. Bài này giữ thứ tự của bài nguồn, ghi rõ mỗi loại nhìn vào gì (không xếp hạng các loại theo độ sâu), và chạy thử riêng sự khác biệt giữa lọc theo cổng và theo trạng thái.
 Bài nguồn tả cổng ứng dụng là “lọc lưu lượng giữa mạng và nguồn”; bài này nêu cụ thể hơn là proxy nhận kết nối thay cho máy bên trong. Chưa đối chiếu với một tài liệu chuẩn, nên các mô tả của cổng mức mạch, cổng ứng dụng và NGFW lấy từ bài nguồn và hiểu biết chung của người biên soạn.
 
 Ví dụ chạy thử là một bảng nftables dựng riêng cho một cổng trên giao diện loopback rồi xóa; luật “chặn mọi gói từ cổng nguồn đó” là cách dựng thử nghiệm, không phải cấu hình nên dùng thật.

@@ -36,7 +36,7 @@ Nhưng nếu ai đó lấy được mã đúng, họ dùng được phiên đó:
 
 Bài nguồn nói session “bảo mật hơn” vì dữ liệu không do trình duyệt truy cập trực tiếp. Điều đó đúng với nội dung dữ liệu, nhưng bài này bổ sung rằng mã session vẫn là một bí mật phải giữ, và MDN lưu ý nên cấp lại cookie phiên mỗi khi người dùng đăng nhập để chống tấn công cố định phiên (session fixation).
 Bài nguồn nói người dùng “có thể cấm cookie”; bài này không dựa vào điều đó vì chưa kiểm và vì nó không ảnh hưởng tới cách phân biệt chính.
-Con số 4 KB lấy từ MDN (“thường là 4 KB”), và giới hạn thực tế khác nhau giữa trình duyệt.
+Con số 4 KB lấy từ MDN (“thường là 4 KB”); MDN cũng ghi số cookie tối đa cho mỗi tên miền khác nhau giữa các trình duyệt.
 
 Ví dụ chạy thử là một máy chủ Python nhỏ với kho session trong bộ nhớ, thử bằng `curl`; nó không phải cách làm cho môi trường thật (không có hết hạn, không xoay mã).
 

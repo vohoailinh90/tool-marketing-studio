@@ -28,7 +28,7 @@ Người dùng đang đăng nhập ngân hàng, rồi mở một trang khác sit
 <details>
 <summary>Xem đáp án</summary>
 
-Khi chạy thử trên Chromium: cookie khai `Strict` không được gửi kèm cả lúc bấm liên kết từ trang khác site; cookie khai `Lax` được gửi khi bấm liên kết nhưng không được gửi kèm form POST từ trang khác site; cookie không khai gì thì tùy thời điểm, như phần giới hạn trên.
+Khi chạy thử trên Chromium: cookie khai `Strict` không được gửi kèm cả lúc bấm liên kết từ trang khác site; cookie khai `Lax` được gửi khi bấm liên kết nhưng không được gửi kèm form POST từ trang khác site; cookie không khai gì thì, trên Chromium 141 đã thử, tùy thời điểm như phần giới hạn trên.
 Vì vậy để cookie phiên không đi kèm form POST từ trang khác, nên khai `Lax` hoặc `Strict`. `SameSite` không thay thế các biện pháp khác chống giả mạo yêu cầu, và bài này không thử các trình duyệt khác.
 
 </details>
@@ -37,7 +37,7 @@ Vì vậy để cookie phiên không đi kèm form POST từ trang khác, nên k
 <summary>Xem sâu hơn: điều đã chỉnh so với bài nguồn</summary>
 
 Bài nguồn liệt kê “SameSite, Name, Value, Secure, Domain, HttpOnly” như một nhóm thuộc tính. Tên và giá trị không phải thuộc tính mà là dữ liệu của cookie, nên bài này tách ra, và thêm `Path`, `Expires`, `Max-Age` vì chúng cũng có trong tài liệu MDN.
-MDN viết rằng cookie không khai `SameSite` được coi như `Lax`. Bài này giữ ý đó và ghi thêm điều quan sát được khi chạy thử, vì thực tế trình duyệt có thể có ngoại lệ tạm thời cho cookie mới tạo; nguyên nhân cụ thể chưa kiểm nguồn.
+MDN viết rằng cookie không khai `SameSite` được coi như `Lax`. Bài này giữ ý đó và ghi thêm điều quan sát được khi chạy thử, vì quan sát này chỉ có ở Chromium 141 trong lần chạy thử; chưa rõ nguyên nhân và chưa thử trình duyệt khác.
 Bài nguồn dùng cách nói vui (“cookie là những mẩu giấy nhắn”, “người gác cổng”); bài này giữ lại ý chính là trình duyệt quyết định cookie nào được gửi tới trang nào.
 
 Ví dụ chạy thử là một máy chủ Python và Chromium 141 (Playwright); “khác site” được dựng bằng `127.0.0.1` và `localhost`, hai tên máy khác nhau.

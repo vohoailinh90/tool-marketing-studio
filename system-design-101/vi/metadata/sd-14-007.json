@@ -62,13 +62,13 @@
       "claim_vi": "Linux's netfilter connection tracking keeps entries for the flows it tracks, which is the basis of stateful filtering.",
       "source": "https://github.com/torvalds/linux/blob/master/Documentation/networking/nf_conntrack-sysctl.rst",
       "section": "nf_conntrack sysctl variables (nf_conntrack_count: number of currently allocated flow entries)",
-      "verified_by": "Read from the Linux kernel documentation on raw GitHub."
+      "verified_by": "Read from a copy of the Linux kernel documentation fetched from raw GitHub."
     },
     {
       "claim_vi": "Observed with nftables on loopback port 18081 (a table created for the test and deleted afterwards): with no rules a client connects and receives data; with rules that accept packets to port 18081 and drop packets from port 18081 and no state, the TCP handshake does not complete (timeout); with ct state established,related accept plus a rule allowing only new connections to port 18081 the connection succeeds; with new connections to 18081 dropped the connection times out.",
-      "source": "https://github.com/torvalds/linux/blob/master/Documentation/networking/nf_conntrack-sysctl.rst",
-      "section": "Connection tracking",
-      "verified_by": "No external page reports this output; observed by executing the code on the authoring machine. The rule that drops every packet from the source port is a deliberately naive stateless setup."
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/firewall-explained-to-kids-and-adults.md",
+      "section": "Stateful Inspection Firewalls",
+      "verified_by": "No external page reports this output; observed by executing the code on the authoring machine. The source only describes tracking active connections; the rule that drops every packet from the source port is a deliberately naive stateless setup, and the run did not try a port-based rule that lets replies through."
     },
     {
       "claim_vi": "A packet filter that must let replies through needs an extra rule on the source port, which also admits any packet claiming that source port.",
@@ -83,9 +83,9 @@
       "verified_by": "Source body read; the proxy wording and the claim that more inspection usually costs more resources are the author's general knowledge, not checked against a standard."
     }
   ],
-  "design_notes_vi": "Một câu hỏi chung đi qua năm loại tường lửa theo đúng thứ tự trong bài, mỗi loại một thẻ nói nó nhìn vào gì; thẻ cuối nêu giới hạn. Không xếp độ sâu vì không có nguồn. Không dùng ảnh nguồn.",
+  "design_notes_vi": "Một câu hỏi chung đi qua năm loại tường lửa theo thứ tự của bài nguồn, mỗi loại một thẻ nói nó nhìn vào gì; thẻ cuối nêu giới hạn. Không xếp độ sâu vì không có nguồn. Không dùng ảnh nguồn.",
   "source_deviations": [
-    "Source gives one line per type and says firewalls come as software or hardware; the lesson organizes the types by what each looks at and runs the difference between port-only and stateful filtering.",
+    "Source gives one line per type and says firewalls come as software or hardware; the lesson keeps the source order, states what each type looks at without ranking the types by depth, and runs the difference between port-only and stateful filtering.",
     "Source calls the application-level gateway a filter 'between your network and traffic source'; the lesson says a proxy accepts the connection for the internal host, from general knowledge.",
     "Source's 'kids and adults' framing is not used."
   ],

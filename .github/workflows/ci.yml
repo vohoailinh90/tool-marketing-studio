@@ -2,10 +2,15 @@ name: CI
 
 on:
   push:
+    # A branch with a pull request is checked by the pull request run; its push run only repeated
+    # that work on the single VPS runner, and no later push ever replaced a push run still waiting.
+    branches: [main]
   pull_request:
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event_name == 'pull_request' && format('pr-{0}', github.event.pull_request.number) || github.run_id }}
+  # A newer pull request run replaces an older one, even one that has started. On main a newer run
+  # replaces the one still waiting for the runner; a run that has started finishes.
+  group: ${{ github.workflow }}-${{ github.event_name == 'pull_request' && format('pr-{0}', github.event.pull_request.number) || github.ref }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 permissions:

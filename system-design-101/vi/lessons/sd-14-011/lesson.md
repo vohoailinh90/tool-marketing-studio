@@ -1,7 +1,7 @@
 # SSO và OAuth 2.0: đăng nhập khác ủy quyền
 
-**OAuth 2.0 trả lời “ứng dụng này được phép làm gì thay tôi”, còn đăng nhập một lần (SSO) trả lời “tôi là ai” cho nhiều ứng dụng.**
-Hai việc hay bị gộp làm một, và gộp nhầm là nguồn của nhiều lỗi thiết kế.
+**OAuth 2.0 trả lời “ứng dụng này được phép làm gì thay tôi”, còn đăng nhập một lần (SSO) là đăng nhập một lần để dùng nhiều ứng dụng.**
+Hai việc này khác nhau, nên đừng coi access token của OAuth là bằng chứng rằng người dùng vừa đăng nhập.
 
 ![Tám thẻ xếp dọc. Thẻ đầu: hai câu hỏi khác nhau, tôi là ai và ứng dụng này được làm gì thay tôi. Nhóm luồng mã ủy quyền của OAuth, năm thẻ bước nối nhau. 1 ứng dụng chuyển người dùng sang máy chủ ủy quyền, kèm mã định danh ứng dụng và địa chỉ chuyển hướng. 2 người dùng đăng nhập và đồng ý. 3 máy chủ ủy quyền trả về một mã, mà máy chủ chỉ đổi thành token một lần. 4 ứng dụng đổi mã lấy access token. 5 ứng dụng dùng access token gọi tài nguyên. Thẻ PKCE: ứng dụng tạo một chuỗi bí mật, gửi bản băm của nó ở bước 1 và chuỗi gốc ở bước 4, nên kẻ chặn mã không đổi được. Thẻ cuối: đăng nhập cần thêm một lớp nhận diện, như OpenID Connect xây trên OAuth.](../../diagrams/sd-14-011-main.svg)
 
@@ -27,7 +27,7 @@ Một ứng dụng nhận access token từ Google rồi coi ai giữ token là 
 <summary>Xem đáp án</summary>
 
 Access token biểu diễn quyền đã được cấp cho ứng dụng, không phải bằng chứng rằng người cầm nó vừa đăng nhập. Một token có thể được cấp cho ứng dụng khác, bị lộ hoặc dùng lại. Để biết người dùng là ai cần một giao thức xác thực xây trên OAuth, như OpenID Connect.
-Đây là lập luận theo đặc tả OAuth; bài này không dựng thử kịch bản tấn công.
+Phần đầu (OAuth không phải giao thức xác thực) theo đặc tả OAuth; các kịch bản token cấp cho ứng dụng khác, bị lộ hoặc dùng lại là suy luận của người biên soạn, không dựng thử.
 
 </details>
 

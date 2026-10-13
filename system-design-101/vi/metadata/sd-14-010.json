@@ -68,7 +68,7 @@
       "claim_vi": "Observed with PyJWT 2.15.1 (HS256, short test key): the payload of a JWT is readable without a key; a token whose payload was edited to a different role fails with InvalidSignatureError; an expired token raises ExpiredSignatureError; a token declaring algorithm none raises InvalidAlgorithmError when decoding is limited to HS256; verification used no server-side store, so the same token still verified after a simulated logout.",
       "source": "https://github.com/jpadilla/pyjwt/blob/master/docs/usage.rst",
       "section": "Encoding and decoding; reading claims without validation; expiration",
-      "verified_by": "No external page reports this output; observed by executing the code on the authoring machine. The usage notes describe reading claims without validation and ExpiredSignatureError; the other results were observed."
+      "verified_by": "No external page reports this output; observed by executing the code on the authoring machine. The usage notes describe reading claims without validation and ExpiredSignatureError; the other results were observed. This covers signed JWTs; encrypted JWT forms exist and are not covered (author's general knowledge)."
     },
     {
       "claim_vi": "PyJWT's usage notes say that reading a JWT's claimset without verifying the signature gives data whose integrity and authenticity cannot be trusted.",

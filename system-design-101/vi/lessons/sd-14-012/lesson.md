@@ -13,7 +13,7 @@ Bài này gom mười hai mảng của bài nguồn thành bốn nhóm câu hỏ
 
 **Dữ liệu và đường truyền.** Mã hóa bảo vệ dữ liệu lưu trữ; bảo mật mạng, ở đây xét qua TLS, bảo vệ dữ liệu trên đường đi.
 
-**Hạ tầng.** Container và cụm chạy chúng có danh sách sai sót cấu hình riêng. Bảo mật thiết bị đầu cuối không có tài liệu cùng tên trong bộ OWASP Cheat Sheet Series (xét theo tên tệp; có một tài liệu riêng cho ứng dụng di động).
+**Hạ tầng.** Container và cụm chạy chúng có tài liệu bảo mật riêng (Docker, Kubernetes). Bảo mật thiết bị đầu cuối không có tài liệu cùng tên trong bộ OWASP Cheat Sheet Series (xét theo tên tệp; có một tài liệu riêng cho ứng dụng di động).
 
 **Khi có chuyện.** Quản lý lỗ hổng trong thư viện đang dùng, ghi nhật ký để kiểm toán, ứng phó khi sự cố xảy ra và khôi phục sau thảm họa. Với ứng phó khẩn cấp và khôi phục sau thảm họa, không có tên tài liệu nào tương ứng trong bộ OWASP đó (xét theo tên tệp).
 
@@ -36,8 +36,8 @@ Hình không chấm điểm: nó chỉ giúp thấy câu hỏi nào chưa ai tr�
 <details>
 <summary>Xem sâu hơn: điều đã chỉnh so với bài nguồn</summary>
 
-Phần chữ của bài nguồn chỉ là danh sách mười hai mảng (xác thực, phân quyền, mã hóa, lỗ hổng, kiểm toán và tuân thủ, bảo mật mạng, bảo mật thiết bị đầu cuối, ứng phó khẩn cấp, bảo mật container, bảo mật API, quản lý nhà cung cấp bên thứ ba, khôi phục sau thảm họa); nội dung chi tiết nằm trong ảnh, và bài này không dùng ảnh. Vì vậy mỗi mảng ở đây được nối với một tài liệu OWASP đã đọc thay vì diễn giải bài nguồn.
-Đối chiếu đã đọc: xác thực, phân quyền, mã hóa lưu trữ, quản lý thư viện có lỗ hổng, ghi nhật ký, TLS, bảo mật REST, Docker và Kubernetes, chuỗi cung ứng phần mềm, mã JavaScript bên thứ ba. Trong 137 tài liệu của bộ OWASP Cheat Sheet Series tại commit đã dùng, không có tên tệp nói về thiết bị đầu cuối, ứng phó sự cố, khôi phục sau thảm họa, tuân thủ, kiểm toán hay sao lưu; đây chỉ là xét theo tên tệp, tôi không tìm trong nội dung, nên OWASP có thể bàn các chủ đề đó ở chỗ khác. Phần tuân thủ chỉ được chạm tới qua ghi nhật ký.
+Phần chữ của bài nguồn chỉ là danh sách mười hai mảng (xác thực, phân quyền, mã hóa, lỗ hổng, kiểm toán và tuân thủ, bảo mật mạng, bảo mật thiết bị đầu cuối, ứng phó khẩn cấp, bảo mật container, bảo mật API, quản lý nhà cung cấp bên thứ ba, khôi phục sau thảm họa); nội dung chi tiết nằm trong ảnh, và bài này không dùng ảnh. Vì vậy mỗi mảng có tên khớp ở đây được nối với một tài liệu OWASP đã đọc thay vì diễn giải bài nguồn.
+Đối chiếu đã đọc: xác thực, phân quyền, mã hóa lưu trữ, quản lý thư viện có lỗ hổng, ghi nhật ký, TLS, bảo mật REST, Docker và Kubernetes, chuỗi cung ứng phần mềm, mã JavaScript bên thứ ba. Trong 137 tài liệu của bộ OWASP Cheat Sheet Series tại commit đã dùng, không có tên tệp nói về thiết bị đầu cuối, ứng phó sự cố, khôi phục sau thảm họa, tuân thủ, kiểm toán hay sao lưu; đây chỉ là xét theo tên tệp, tôi không tìm trong nội dung, nên OWASP có thể bàn các chủ đề đó ở chỗ khác. Phần mở đầu của mỗi tài liệu OWASP được đọc, nhưng nội dung từng tài liệu chưa được đối chiếu từng mục.
 Đây là bản đồ; các tài liệu OWASP đã được đọc ở phần mở đầu và không đọc hết từng bài.
 
 </details>

@@ -3,13 +3,13 @@
 **HTTP không nhớ ai, nên mỗi cách “nhớ người dùng” là một lựa chọn về thứ gì đi kèm mỗi yêu cầu và thứ gì máy chủ phải giữ.**
 Bốn cách phổ biến: gửi lại tên và mật khẩu, mã session, token ngẫu nhiên, hoặc token tự mang thông tin (JWT).
 
-![Sáu thẻ xếp dọc. Thẻ đầu là câu hỏi chung: mỗi yêu cầu đi kèm gì để máy chủ biết đó là ai. Bốn cách. Basic: mỗi yêu cầu gửi lại tên và mật khẩu, mã hóa base64 nên ai cũng giải ngược được. Session cookie: máy chủ giữ dữ liệu, trình duyệt gửi lại một mã. Token ngẫu nhiên: giống session nhưng gửi trong tiêu đề, hợp với ứng dụng không phải trình duyệt. JWT: token tự mang thông tin và chữ ký, kiểm tra được mà không cần tra máy chủ, nhưng nội dung đọc được và khó thu hồi trước hạn. Thẻ cuối là cái giá: càng ít trạng thái ở máy chủ thì càng khó thu hồi.](../../diagrams/sd-14-010-main.svg)
+![Sáu thẻ xếp dọc. Thẻ đầu là câu hỏi chung: mỗi yêu cầu đi kèm gì để máy chủ biết đó là ai. Bốn cách. Basic: mỗi yêu cầu gửi lại tên và mật khẩu, mã hóa base64 nên ai cũng giải ngược được. Session cookie: máy chủ giữ dữ liệu, trình duyệt gửi lại một mã. Token ngẫu nhiên: giống session nhưng client tự gắn vào tiêu đề, không phụ thuộc cookie. JWT: token tự mang thông tin và chữ ký, kiểm tra được mà không cần tra máy chủ, nhưng nội dung đọc được và khó thu hồi trước hạn. Thẻ cuối là cái giá: càng ít trạng thái ở máy chủ thì càng khó thu hồi.](../../diagrams/sd-14-010-main.svg)
 
 ## Đọc hình
 
 **Basic.** Trình duyệt hỏi tên và mật khẩu rồi gửi lại trong tiêu đề `Authorization` ở mọi yêu cầu. Khi chạy thử, máy chủ trả 401 kèm `WWW-Authenticate: Basic`, và hai yêu cầu liên tiếp mang cùng một tiêu đề. Phần sau “Basic” chỉ là base64, giải ngược được mà không cần khóa; MDN nhấn mạnh Basic gửi thông tin đăng nhập ở dạng mã hóa ký tự chứ không phải mã hóa bảo mật, nên chỉ nên dùng qua HTTPS.
 
-**Session cookie.** Máy chủ giữ dữ liệu phiên, trình duyệt giữ một mã (xem bài về cookie và session). Vì dữ liệu nằm ở máy chủ, xóa phiên là mã đó không còn tra ra gì (suy luận từ cách session hoạt động).
+**Session cookie.** Máy chủ giữ dữ liệu phiên, trình duyệt giữ một mã. Vì dữ liệu nằm ở máy chủ, xóa phiên là mã đó không còn tra ra gì (suy luận từ cách session hoạt động).
 
 **Token ngẫu nhiên.** Cùng ý như session: một chuỗi ngẫu nhiên mà máy chủ tra cứu. Khác ở chỗ client tự gắn nó vào tiêu đề, nên không phụ thuộc cookie của trình duyệt.
 
@@ -17,7 +17,7 @@ Bốn cách phổ biến: gửi lại tên và mật khẩu, mã session, token 
 
 ## Giới hạn cần nhớ
 
-JWT chỉ được ký, không bị che: ai cầm token cũng đọc được thông tin trong đó, nên đừng để bí mật vào. Vì máy chủ không tra kho, một JWT còn hạn vẫn hợp lệ sau khi người dùng “đăng xuất”;
+JWT thông thường, loại được ký và là loại chạy thử ở đây, không bị che: ai cầm token cũng đọc được thông tin trong đó, nên đừng để bí mật vào (có dạng JWT được mã hóa riêng, bài không bàn). Vì máy chủ không tra kho, một JWT còn hạn vẫn hợp lệ sau khi người dùng “đăng xuất”;
 muốn thu hồi sớm thì phải giữ lại một danh sách trạng thái, tức là mất đúng cái lợi ban đầu (đã chạy thử: sau khi “đăng xuất” với kho trống, cùng token vẫn qua được bước kiểm tra).
 
 ## Nhìn hình trả lời
@@ -36,7 +36,7 @@ Mỗi cách thêm một phần trạng thái hoặc một chi phí khác, nên s
 <summary>Xem sâu hơn: điều đã chỉnh so với bài nguồn</summary>
 
 Bài nguồn xếp các cách theo thứ tự “từ đơn giản tới phức tạp” và lẫn cả SSO lẫn OAuth 2.0 vào cùng danh sách; bài này chỉ giữ các cách nhận ra người dùng ở mỗi yêu cầu, còn SSO và OAuth nằm ở bài riêng vì chúng trả lời câu hỏi khác.
-Bài nguồn nói Basic “ít dùng” vì không kiểm soát được vòng đời đăng nhập, cookie “không thân thiện với ứng dụng di động”, và token “tốn thời gian mã hóa, giải mã”; bài này không lặp lại ba nhận định đó vì chưa kiểm. Token ngẫu nhiên không cần mã hóa, chỉ cần tra cứu; JWT thường được ký chứ không mã hóa.
+Bài nguồn nói Basic “ít dùng” vì không kiểm soát được vòng đời đăng nhập, cookie “không thân thiện với ứng dụng di động”, và token “tốn thời gian mã hóa, giải mã”; bài này không lặp lại ba nhận định đó vì chưa kiểm. Token ngẫu nhiên không cần mã hóa, chỉ cần tra cứu; JWT thông thường được ký chứ không mã hóa.
 Bài nguồn nói JWT khiến máy chủ không cần lưu thông tin phiên; bài này giữ ý đó cho việc kiểm tra, nhưng nêu thêm cái giá là thu hồi.
 
 OWASP lưu ý mã session (hay token) sau khi đăng nhập tương đương với thông tin đăng nhập mạnh nhất của ứng dụng, nên lộ nó là bị mạo danh người dùng. Ví dụ chạy thử dùng máy chủ Python, `curl` và PyJWT 2.15.1 với khóa thử nghiệm ngắn; không phải cấu hình nên dùng thật.

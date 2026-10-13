@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 812" width="320" height="812" role="img" aria-labelledby="title desc">
 <title id="title">Bốn cách nhận ra người dùng ở mỗi yêu cầu</title>
-<desc id="desc">Câu hỏi chung: mỗi yêu cầu đi kèm gì để máy chủ biết đó là ai. Basic: mỗi yêu cầu gửi lại tên và mật khẩu, mã hóa base64 nên ai cũng giải ngược được. Session cookie: máy chủ giữ dữ liệu, trình duyệt gửi lại một mã. Token ngẫu nhiên: giống session nhưng gửi trong tiêu đề, hợp với ứng dụng không phải trình duyệt. JWT: token tự mang thông tin và chữ ký, kiểm tra được mà không cần tra máy chủ, nhưng nội dung đọc được và khó thu hồi trước hạn. Cái giá: càng ít trạng thái ở máy chủ thì càng khó thu hồi.</desc>
+<desc id="desc">Câu hỏi chung: mỗi yêu cầu đi kèm gì để máy chủ biết đó là ai. Basic: mỗi yêu cầu gửi lại tên và mật khẩu, mã hóa base64 nên ai cũng giải ngược được. Session cookie: máy chủ giữ dữ liệu, trình duyệt gửi lại một mã. Token ngẫu nhiên: giống session nhưng client tự gắn vào tiêu đề, không phụ thuộc cookie. JWT: token tự mang thông tin và chữ ký, kiểm tra được mà không cần tra máy chủ, nhưng nội dung đọc được và khó thu hồi trước hạn. Cái giá: càng ít trạng thái ở máy chủ thì càng khó thu hồi.</desc>
 <rect width="320" height="812" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="30" font-size="21" font-weight="bold">NHẬN RA</text>
@@ -20,9 +20,9 @@
 <text x="29" y="403" font-size="16" font-weight="normal">gửi lại một mã.</text>
 <rect x="16" y="430" width="288" height="124" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
 <text x="29" y="459" font-size="16" font-weight="bold">Token ngẫu nhiên</text>
-<text x="29" y="487" font-size="16" font-weight="normal">Như session, nhưng gửi trong</text>
-<text x="29" y="511" font-size="16" font-weight="normal">tiêu đề; hợp ứng dụng không</text>
-<text x="29" y="535" font-size="16" font-weight="normal">phải trình duyệt.</text>
+<text x="29" y="487" font-size="16" font-weight="normal">Như session, nhưng client tự</text>
+<text x="29" y="511" font-size="16" font-weight="normal">gắn vào tiêu đề; không phụ</text>
+<text x="29" y="535" font-size="16" font-weight="normal">thuộc cookie.</text>
 <rect x="16" y="562" width="288" height="124" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
 <text x="29" y="591" font-size="16" font-weight="bold">JWT</text>
 <text x="29" y="619" font-size="16" font-weight="normal">Tự mang thông tin và chữ ký;</text>

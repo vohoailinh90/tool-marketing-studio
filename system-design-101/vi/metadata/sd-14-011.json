@@ -95,7 +95,7 @@
       "verified_by": "Read from a copy fetched from raw GitHub."
     },
     {
-      "claim_vi": "An access token is not evidence that its holder just logged in, and SSO concentrates risk in a shared login session.",
+      "claim_vi": "An access token is not evidence that its holder just logged in (from the specification); scenarios where a token was issued to another application, leaked or reused, and the claim that SSO concentrates risk in a shared login session, are the author's inference.",
       "source": "https://github.com/oauth-wg/oauth-v2-1/blob/main/draft-ietf-oauth-v2-1.md",
       "section": "Introduction",
       "verified_by": "Author's argument from the specification's statement that OAuth is not an authentication protocol, and the SSO risk is the author's inference; no attack was run."

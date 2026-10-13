@@ -53,7 +53,7 @@
       "source": "https://kubernetes.io/docs/concepts/services-networking/service/"
     },
     {
-      "claim_vi": "Service được phân giải qua DNS theo tên service.namespace.svc.cluster.local.",
+      "claim_vi": "Service được phân giải qua DNS theo tên đầy đủ service.namespace.svc.<cluster-domain>, trong đó cluster.local chỉ là miền mặc định thường gặp; cụm có thể cấu hình miền khác.",
       "source": "https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/"
     },
     {

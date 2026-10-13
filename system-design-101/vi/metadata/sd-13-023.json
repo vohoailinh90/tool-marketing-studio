@@ -1,6 +1,6 @@
 {
   "id": "sd-13-023",
-  "title_vi": "DevOps và NoOps: ai lo phần vận hành",
+  "title_vi": "NoOps và DevOps: mô hình hosting khác cách tổ chức nhóm",
   "language": "vi",
   "kind": "comparison",
   "content_status": "draft",
@@ -45,17 +45,25 @@
   },
   "claims": [
     {
-      "claim_vi": "Với dịch vụ hàm không máy chủ, nhà cung cấp quản lý hệ điều hành và hạ tầng bên dưới.",
-      "source": "https://docs.aws.amazon.com/lambda/latest/dg/welcome.html"
+      "claim_vi": "Theo mô hình trách nhiệm chia sẻ của AWS, phần việc của nhà cung cấp và của khách hàng thay đổi theo dịch vụ được chọn.",
+      "source": "https://aws.amazon.com/compliance/shared-responsibility-model/"
     },
     {
-      "claim_vi": "Mô hình trách nhiệm chia sẻ chia việc giữa nhà cung cấp và khách hàng.",
-      "source": "https://aws.amazon.com/compliance/shared-responsibility-model/"
+      "claim_vi": "Lambda cập nhật các runtime do Lambda quản lý; với hàm dùng container image hoặc runtime tự dựng, việc cập nhật runtime và ảnh cơ sở thuộc về khách hàng.",
+      "source": "https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html"
+    },
+    {
+      "claim_vi": "Runtime đã ngừng hỗ trợ của Lambda không còn nhận bản vá bảo mật.",
+      "source": "https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html"
+    },
+    {
+      "claim_vi": "AWS mô tả DevOps là sự kết hợp giữa văn hóa, thực hành và công cụ trong tổ chức.",
+      "source": "https://aws.amazon.com/devops/what-is-devops/"
     }
   ],
   "source_deviations": [
-    "Nguồn mô tả ba mô hình theo trình tự; bài tổ chức theo lớp trách nhiệm."
+    "Nguồn đặt các mô hình cạnh nhau như những lựa chọn thay thế; bài tách hai câu hỏi (mô hình hosting và cách tổ chức nhóm) và nêu phần việc luôn còn lại."
   ],
-  "design_notes_vi": "Bốn thẻ lớp trách nhiệm, mỗi thẻ ghi người chịu theo mô hình.",
+  "design_notes_vi": "Hai thẻ cho hai câu hỏi độc lập, hai thẻ cho phần việc còn lại và ngoại lệ.",
   "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
 }

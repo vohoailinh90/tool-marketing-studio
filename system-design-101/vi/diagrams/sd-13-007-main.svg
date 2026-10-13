@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 873" width="320" height="873" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 927" width="320" height="927" role="img" aria-labelledby="title desc">
 <title id="title">Tăng từ một lên ba bản sao thì ứng dụng hỏng: bốn giả định ẩn</title>
-<desc id="desc">Bốn giả định ẩn vỡ khi tăng số bản sao: trạng thái nằm trong một bản sao như phiên đăng nhập, tệp tải lên và bộ nhớ đệm nên cần kho dùng chung; việc định kỳ nằm trong ứng dụng chạy ở mọi bản sao nên cần tách ra một nơi chạy hoặc dùng khóa; bộ đếm cục bộ sinh ID trùng giữa các bản sao nên cần cấp ID từ cơ sở dữ liệu hoặc dùng UUID; và nhiều bản sao cùng đọc hàng đợi nên một tin có thể được xử lý hai lần, cần bước xử lý idempotent.</desc>
+<desc id="desc">Bốn giả định ẩn vỡ khi tăng số bản sao: trạng thái nằm trong một bản sao như phiên đăng nhập, tệp tải lên và bộ nhớ đệm nên cần kho dùng chung; việc định kỳ nằm trong ứng dụng chạy ở mọi bản sao nên cần tách ra một nơi chạy hoặc dùng khóa; bộ đếm cục bộ sinh ID (identifier — mã định danh) trùng giữa các bản sao nên cần cấp ID từ cơ sở dữ liệu hoặc dùng UUID (Universally Unique Identifier — mã định danh duy nhất toàn cầu); và nhiều bản sao cùng đọc hàng đợi nên một tin có thể được xử lý hai lần, cần bước xử lý idempotent.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="873" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<rect width="320" height="927" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="30" font-size="20" font-weight="bold">TỪ 1 LÊN 3 BẢN SAO</text>
 <text x="16" y="58" font-size="16" font-weight="normal">Bốn giả định ẩn</text>
 <rect x="16" y="89" width="288" height="209" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
@@ -20,17 +20,19 @@
 <text x="30" y="419" font-size="16" font-weight="normal">dụng chạy ở mọi bản sao</text>
 <text x="30" y="446" font-size="16" font-weight="normal">Tách ra một nơi chạy, hoặc</text>
 <text x="30" y="473" font-size="16" font-weight="normal">dùng khóa</text>
-<rect x="16" y="504" width="288" height="155" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
-<text x="30" y="532" font-size="16" font-weight="bold">3 · ID sinh cục bộ</text>
-<text x="30" y="559" font-size="16" font-weight="normal">Bộ đếm trong bộ nhớ cho ID</text>
-<text x="30" y="586" font-size="16" font-weight="normal">trùng giữa các bản sao</text>
-<text x="30" y="613" font-size="16" font-weight="normal">Cấp ID từ cơ sở dữ liệu</text>
-<text x="30" y="640" font-size="16" font-weight="normal">hoặc dùng UUID</text>
-<rect x="16" y="671" width="288" height="182" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
-<text x="30" y="699" font-size="16" font-weight="bold">4 · Xử lý một tin hai</text>
-<text x="30" y="726" font-size="16" font-weight="bold">lần</text>
-<text x="30" y="753" font-size="16" font-weight="normal">Nhiều bản sao cùng đọc hàng</text>
-<text x="30" y="780" font-size="16" font-weight="normal">đợi, và tin có thể được</text>
-<text x="30" y="807" font-size="16" font-weight="normal">giao lại</text>
-<text x="30" y="834" font-size="16" font-weight="normal">Làm bước xử lý idempotent</text>
+<rect x="16" y="504" width="288" height="209" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="532" font-size="16" font-weight="bold">3 · ID (mã định danh)</text>
+<text x="30" y="559" font-size="16" font-weight="bold">sinh cục bộ</text>
+<text x="30" y="586" font-size="16" font-weight="normal">Bộ đếm trong bộ nhớ cho ID</text>
+<text x="30" y="613" font-size="16" font-weight="normal">trùng giữa các bản sao</text>
+<text x="30" y="640" font-size="16" font-weight="normal">Cấp ID từ cơ sở dữ liệu</text>
+<text x="30" y="667" font-size="16" font-weight="normal">hoặc dùng UUID (mã định</text>
+<text x="30" y="694" font-size="16" font-weight="normal">danh duy nhất)</text>
+<rect x="16" y="725" width="288" height="182" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="753" font-size="16" font-weight="bold">4 · Xử lý một tin hai</text>
+<text x="30" y="780" font-size="16" font-weight="bold">lần</text>
+<text x="30" y="807" font-size="16" font-weight="normal">Nhiều bản sao cùng đọc hàng</text>
+<text x="30" y="834" font-size="16" font-weight="normal">đợi, và tin có thể được</text>
+<text x="30" y="861" font-size="16" font-weight="normal">giao lại</text>
+<text x="30" y="888" font-size="16" font-weight="normal">Làm bước xử lý idempotent</text>
 </g></svg>

@@ -29,7 +29,7 @@ Trang 2, offset 0x010. Ghép khung 9 với offset đó: 0x9010.
 <summary>Xem sâu hơn</summary>
 
 - **Vì sao dùng lũy thừa của 2:** kích thước trang 4 KiB = 2¹², nên 12 bit thấp là offset, các bit còn lại là số trang; phần cứng tách địa chỉ không cần phép chia.
-- **Bảng trang rất lớn:** với địa chỉ rộng, bảng trang thường nhiều cấp và được phần cứng lưu tạm trong TLB để khỏi tra bảng ở mỗi lần truy cập.
+- **Bảng trang rất lớn:** với địa chỉ rộng, bảng trang thường nhiều cấp và nằm trong bộ nhớ; mỗi lần dịch phải đi qua các cấp đó. Để khỏi làm vậy ở mọi lần truy cập, phần cứng giữ các phép dịch gần đây (trang → khung) trong một bộ nhớ đệm nhỏ gọi là TLB; khi không có trong TLB mới đi tra bảng trang.
 - **Kết hợp:** một số kiến trúc cũ dùng phân đoạn rồi phân trang. Ở chế độ 64 bit của x86-64, hầu hết thanh ghi đoạn coi base bằng 0, nên bộ nhớ gần như phẳng.
 
 Con số trong hình chỉ để minh họa; kích thước trang thật phụ thuộc phần cứng và hệ điều hành.

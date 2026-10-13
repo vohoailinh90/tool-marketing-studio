@@ -11,6 +11,15 @@ Hình minh họa **NAPT** — dạng NAT đổi cả địa chỉ lẫn cổng.
 
 Các IP phía ngoài trong hình dành cho tài liệu, không dùng để kết nối thật.
 
+## Từ viết tắt
+
+- **NAT** (Network Address Translation) — dịch địa chỉ mạng: thiết bị (thường là router) đổi địa chỉ nội bộ của máy sang địa chỉ phía ngoài khi gói tin đi qua.
+- **NAPT** (Network Address and Port Translation) — dịch cả địa chỉ lẫn cổng: dạng NAT cho nhiều máy dùng chung một địa chỉ IP phía ngoài bằng cách đổi thêm cổng.
+- **IP** (Internet Protocol) — giao thức Internet: quy ước đánh địa chỉ và chuyển gói tin giữa các máy; địa chỉ IP là địa chỉ của một máy trên mạng.
+- **TCP** (Transmission Control Protocol) — giao thức điều khiển truyền: tạo kết nối đáng tin cậy, dữ liệu đến đủ và đúng thứ tự.
+- **UDP** (User Datagram Protocol) — giao thức gói dữ liệu người dùng: gửi gói tin đơn giản, nhanh, không bảo đảm đến đủ hay đúng thứ tự.
+- **URL** (Uniform Resource Locator) — địa chỉ đầy đủ của một tài nguyên trên web, ví dụ địa chỉ một trang.
+
 ## Nhìn hình thử trả lời
 
 Phản hồi TCP tới `203.0.113.10:62002` được đưa về A hay B?

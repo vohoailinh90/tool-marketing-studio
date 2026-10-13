@@ -1722,6 +1722,151 @@ class LessonMarkdownRuleTests(StoreCase):
         self.assertEqual([], self.problems())
 
 
+LLM_ENTRY = "- **LLM** (Large Language Model) — mô hình ngôn ngữ lớn: chương trình sinh văn bản từ câu hỏi.\n"
+
+
+def svg_with(*strings: str, tag: str = "text") -> str:
+    """A valid figure whose drawn text (or <desc>) is the given strings."""
+    drawn = "".join(f"<{tag}>{string}</{tag}>" for string in strings)
+    return f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><title>Sơ đồ</title>{drawn}</svg>'
+
+
+class AbbreviationRuleTests(StoreCase):
+    """Every abbreviation a lesson or its figure uses is explained in full, in the lesson's own glossary."""
+
+    def lesson(self, intro: str = "Nội dung.", glossary: str | None = LLM_ENTRY, *, after: str = "",
+               figure: str = FIGURE) -> None:
+        """The fixture lesson with a glossary section (when given) as its first "##", then `after`."""
+        section = "" if glossary is None else f"## Từ viết tắt\n\n{glossary}\n"
+        body = (f"# Bài\n\n![Sơ đồ của bài](../../diagrams/sd-01-001-main.svg)\n\n{intro}\n\n{section}{after}"
+                f"## Liên hệ nguồn\n\n[bài nguồn]({SNAPSHOT}).\n")
+        self.write_lesson("sd-01-001", body=body, figure=figure)
+
+    def test_a_lesson_that_uses_no_abbreviation_needs_no_glossary(self) -> None:
+        self.lesson("Trình duyệt hỏi máy chủ.", glossary=None)
+        self.assertEqual([], self.problems())
+
+    def test_an_abbreviation_with_no_glossary_section_is_reported(self) -> None:
+        self.lesson("Bài này nói về LLM và DNS.", glossary=None)
+        self.assertProblem("uses the abbreviation(s) DNS, LLM but has no \"## Từ viết tắt\" section")
+
+    def test_an_explained_abbreviation_passes(self) -> None:
+        self.lesson("Bài này nói về LLM.")
+        self.assertEqual([], self.problems())
+
+    def test_an_abbreviation_the_glossary_leaves_out_is_reported(self) -> None:
+        self.lesson("Bài này nói về LLM và DNS.")
+        self.assertProblem("uses the abbreviation DNS but the glossary does not explain it")
+        self.assertFalse(any("LLM but" in line for line in self.problems()))
+
+    def test_the_figure_text_counts_as_use(self) -> None:
+        for where, figure in {"a drawn label": svg_with("Gọi LLM qua mạng"),
+                              "the description": svg_with("Gọi LLM qua mạng", tag="desc")}.items():
+            with self.subTest(where=where):
+                self.lesson(glossary=None, figure=figure)
+                self.assertProblem("uses the abbreviation(s) LLM")
+                self.lesson(figure=figure)
+                self.assertEqual([], self.problems())
+
+    def test_a_heading_in_capitals_is_not_read_for_abbreviations(self) -> None:
+        self.lesson(glossary=None, figure=svg_with("ĐƠN HÀNG CÓ TIN MỚI", "HAI MÁY · MỘT IPv4", "TRANG HIỆN RA"))
+        self.assertEqual([], self.problems())
+
+    def test_the_alt_text_of_the_figure_counts_as_use(self) -> None:
+        body = (f"# Bài\n\n![Hình về LLM](../../diagrams/sd-01-001-main.svg)\n\n## Liên hệ nguồn\n\n[bài nguồn]({SNAPSHOT}).\n")
+        self.write_lesson("sd-01-001", body=body)
+        self.assertProblem("uses the abbreviation(s) LLM")
+
+    def test_text_inside_a_details_block_counts_as_use(self) -> None:
+        self.lesson(glossary=None, after="<details>\n<summary>Về LLM</summary>\n\nChi tiết.\n\n</details>\n\n")
+        self.assertProblem("uses the abbreviation(s) LLM")
+
+    def test_a_glossary_must_be_the_first_section_of_the_lesson(self) -> None:
+        body = (f"# Bài\n\n![Sơ đồ của bài](../../diagrams/sd-01-001-main.svg)\n\n## Đọc hình\n\nVề LLM.\n\n"
+                f"## Từ viết tắt\n\n{LLM_ENTRY}\n## Liên hệ nguồn\n\n[bài nguồn]({SNAPSHOT}).\n")
+        self.write_lesson("sd-01-001", body=body)
+        self.assertProblem('must be the first "##" section')
+
+    def test_a_bullet_that_is_not_in_the_form_is_reported(self) -> None:
+        for name, bullet in {"no bold": "- LLM (Large Language Model) — mô hình ngôn ngữ lớn của máy.",
+                             "no full form": "- **LLM** — mô hình ngôn ngữ lớn của máy.",
+                             "no dash": "- **LLM** (Large Language Model): mô hình ngôn ngữ lớn của máy.",
+                             "lower case": "- **llm** (Large Language Model) — mô hình ngôn ngữ lớn của máy."}.items():
+            with self.subTest(bullet=name):
+                self.lesson("Về LLM.", glossary=bullet + "\n")
+                self.assertProblem("is not in the form")
+
+    def test_the_full_form_must_spell_the_abbreviation_out(self) -> None:
+        for name, full in {"only Vietnamese": "mô hình ngôn ngữ lớn", "the abbreviation again": "LLM",
+                           "another phrase": "Big Neural Network", "wrong first letter": "Very Large Model"}.items():
+            with self.subTest(full=name):
+                self.lesson("Về LLM.", glossary=f"- **LLM** ({full}) — mô hình ngôn ngữ lớn của máy.\n")
+                self.assertProblem("do not give LLM")
+
+    def test_the_full_form_may_skip_little_words_and_use_the_camel_case_of_a_name(self) -> None:
+        entries = {"NAPT": "Network Address and Port Translation", "RFC": "Request for Comments",
+                   "JSON": "JavaScript Object Notation", "ID": "IDentifier", "SYN": "SYNchronize",
+                   "CSSOM": "CSS Object Model", "REST": "REpresentational State Transfer",
+                   "HSTS": "HTTP Strict Transport Security", "CSDL": "cơ sở dữ liệu"}
+        glossary = "".join(f"- **{abbreviation}** ({full}) — giải thích cho người mới học.\n"
+                           for abbreviation, full in entries.items())
+        self.lesson(" ".join(entries), glossary=glossary)
+        self.assertEqual([], self.problems())
+
+    def test_the_first_letter_of_the_full_form_must_be_the_first_of_the_abbreviation(self) -> None:
+        self.assertFalse(check.spells("ML", "Large Machine Learning"))
+        self.assertTrue(check.spells("ML", "Machine Learning"))
+
+    def test_initials_ignore_accents_and_read_dj(self) -> None:
+        self.assertEqual("DV", check.initials_of("đơn vị"))
+        self.assertEqual("CSDL", check.initials_of("cơ sở dữ liệu"))
+
+    def test_an_entry_with_no_real_explanation_is_reported(self) -> None:
+        self.lesson("Về LLM.", glossary="- **LLM** (Large Language Model) — mô hình\n")
+        self.assertProblem("glossary entry LLM has no explanation after the dash")
+
+    def test_an_abbreviation_explained_twice_is_reported(self) -> None:
+        self.lesson("Về LLM.", glossary=LLM_ENTRY + LLM_ENTRY)
+        self.assertProblem("glossary explains LLM twice")
+
+    def test_a_glossary_with_no_bullet_is_reported(self) -> None:
+        self.lesson("Nội dung.", glossary="Chưa có gì.\n")
+        self.assertProblem("has no bullets")
+
+    def test_a_bullet_may_run_onto_the_next_line(self) -> None:
+        self.lesson("Về LLM.", glossary="- **LLM** (Large Language Model) — mô hình ngôn ngữ lớn:\n  chương trình sinh văn bản.\n")
+        self.assertEqual([], self.problems())
+
+    def test_what_a_glossary_entry_says_is_read_for_abbreviations_too(self) -> None:
+        self.lesson("Về LLM.", glossary="- **LLM** (Large Language Model) — mô hình chạy trên GPU.\n")
+        self.assertProblem("uses the abbreviation GPU but the glossary does not explain it")
+
+    def test_the_full_form_in_the_parenthesis_is_not_a_use(self) -> None:
+        self.lesson("Về CSSOM.", glossary="- **CSSOM** (CSS Object Model) — các luật kiểu đã đọc xong.\n")
+        self.assertEqual([], self.problems())
+
+    def test_words_that_only_look_like_abbreviations_need_no_entry(self) -> None:
+        self.lesson("Gửi GET /phone, dùng LEFT JOIN, kiểm tra NULL và trả OK; mở README.", glossary=None)
+        self.assertEqual([], self.problems())
+
+    def test_a_code_span_a_code_block_a_link_and_a_comment_are_not_read(self) -> None:
+        intro = ("Gõ `LLM`, xem [trang này](https://example.com/DNS/TLS) hoặc <!-- GPU -->.\n\n"
+                 "```\nSELECT * FROM LLM;\nDNS\n```")
+        self.lesson(intro, glossary=None)
+        self.assertEqual([], self.problems())
+
+    def test_the_sources_section_names_organisations_and_is_not_read(self) -> None:
+        self.lesson("Nội dung.", glossary=None, after="## Nguồn đối chiếu\n\nRFC 6202, MDN và WHATWG.\n\n")
+        self.assertEqual([], self.problems())
+
+    def test_the_forms_an_abbreviation_takes(self) -> None:
+        found = check.abbreviations_in("APIs, HTTP/2, REST/JSON, TCP/UDP, (SSE), \"DNS\", HTTPS.")
+        self.assertEqual({"API", "HTTP", "REST", "JSON", "TCP", "UDP", "SSE", "DNS", "HTTPS"}, found)
+        for text in ("IPv4", "gRPC", "OAuth", "MAX_SIZE", "A80", "WebSocket", "I", "ĐƠN HÀNG", "TÓM"):
+            with self.subTest(text=text):
+                self.assertEqual(set(), check.abbreviations_in(text))
+
+
 class RobustnessTests(StoreCase):
     """Whatever an author types, the checker reports problems and keeps going; it never raises."""
 

@@ -5,6 +5,13 @@ nhưng dữ liệu thực sự phải đi qua mạng. Đó là ý tưởng của
 
 ![Luồng dọc: khách gửi REST/JSON tới dịch vụ đơn hàng; dịch vụ gọi client stub; message được mã hóa thành bytes và gửi qua HTTP/2; phía gRPC server giải mã rồi gọi hàm thanh toán; response được mã hóa, truyền về, giải mã và trả cho khách. Stub là mã hỗ trợ, không phải dữ liệu được gửi qua mạng.](../../diagrams/sd-01-004-main.svg)
 
+## Từ viết tắt
+
+- **RPC** (Remote Procedure Call) — gọi thủ tục từ xa: chương trình này gọi một hàm chạy trên máy khác như gọi hàm trong cùng chương trình.
+- **REST** (REpresentational State Transfer) — kiểu thiết kế dịch vụ qua HTTP: mỗi tài nguyên có một địa chỉ riêng, thường trao đổi dữ liệu dạng JSON.
+- **JSON** (JavaScript Object Notation) — ký hiệu đối tượng JavaScript: định dạng văn bản biểu diễn dữ liệu bằng các cặp tên và giá trị, dễ đọc với cả người và máy.
+- **HTTP** (HyperText Transfer Protocol) — giao thức truyền siêu văn bản; HTTP/2 là phiên bản gửi nhiều yêu cầu song song trên một kết nối, và gRPC dùng nó để chuyên chở message.
+
 ## Đọc hình
 
 **Chuẩn bị trước:** file `.proto` mô tả phương thức và kiểu message. Công cụ sinh mã tạo

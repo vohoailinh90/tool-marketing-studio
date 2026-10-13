@@ -1714,3 +1714,95 @@ mutations:
   find: "    problems = check_store(arguments.store, arguments.source_map, pin_roster)"
   replace: "    problems = []"
   test: tests.test_sd101_check.CommandLineTests.test_a_broken_store_exits_one_and_prints_the_problem
+- label: a word in NOT_ACRONYMS is still read as an abbreviation
+  find: "    return {match.group(1) for match in ABBREVIATION.finditer(text)} - NOT_ACRONYMS"
+  replace: "    return {match.group(1) for match in ABBREVIATION.finditer(text)}"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_words_that_only_look_like_abbreviations_need_no_entry
+- label: a plural abbreviation (APIs) is not recognised
+  find: "\\d*s?(?!\\w)"
+  replace: "\\d*(?!\\w)"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_the_forms_an_abbreviation_takes
+- label: the text of the figure is not read for abbreviations
+  find: "body + glossary + figure))"
+  replace: "body + glossary))"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_the_figure_text_counts_as_use
+- label: a heading in capitals in a figure is read for abbreviations
+  find: "    return [string for string in strings if any(word.islower() and len(word) > 1 for word in re.findall(r\"[^\\W\\d_]+\", string))]"
+  replace: "    return list(strings)"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_heading_in_capitals_is_not_read_for_abbreviations
+- label: the text of a details block is not read for abbreviations
+  find: "        elif token.type == \"html_block\":"
+  replace: "        elif False:"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_text_inside_a_details_block_counts_as_use
+- label: the alt text of an image is not read for abbreviations
+  find: "                elif child.type == \"image\":"
+  replace: "                elif False:"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_the_alt_text_of_the_figure_counts_as_use
+- label: a code span is read for abbreviations
+  find: "                if child.type == \"text\":"
+  replace: "                if child.type in (\"text\", \"code_inline\"):"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_code_span_a_code_block_a_link_and_a_comment_are_not_read
+- label: the sources section is read for abbreviations
+  find: "        elif token.type == \"inline\" and section != SOURCES_HEADING:"
+  replace: "        elif token.type == \"inline\":"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_the_sources_section_names_organisations_and_is_not_read
+- label: the lead-in of a glossary bullet counts as a use of what it explains
+  find: "                piece = piece.split(\"—\", 1)[-1]  # the bullet"
+  replace: "                piece = piece  # the bullet"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_the_full_form_in_the_parenthesis_is_not_a_use
+- label: an abbreviation with no glossary section is accepted
+  find: "        if used:\n            problems.append(Problem(lesson_id, f\"uses the abbreviation(s)"
+  replace: "        if False:\n            problems.append(Problem(lesson_id, f\"uses the abbreviation(s)"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_an_abbreviation_with_no_glossary_section_is_reported
+- label: a glossary that is not the first section is accepted
+  find: "    if titles[0] != GLOSSARY_HEADING:"
+  replace: "    if False:"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_glossary_must_be_the_first_section_of_the_lesson
+- label: a glossary bullet that is not in the form is accepted
+  find: "                    for bullet in malformed)"
+  replace: "                    for bullet in [])"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_bullet_that_is_not_in_the_form_is_reported
+- label: an abbreviation explained twice is accepted
+  find: "        if abbreviation in seen:"
+  replace: "        if False:"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_an_abbreviation_explained_twice_is_reported
+- label: a full form that does not spell the abbreviation is accepted
+  find: "        if not spells(abbreviation, full_form):"
+  replace: "        if False:"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_the_full_form_must_spell_the_abbreviation_out
+- label: an entry with no explanation is accepted
+  find: "        if len(meaning.split()) < MIN_MEANING_WORDS:"
+  replace: "        if False:"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_an_entry_with_no_real_explanation_is_reported
+- label: a glossary with no bullet is accepted
+  find: "    if not entries and not malformed:"
+  replace: "    if False:"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_glossary_with_no_bullet_is_reported
+- label: an abbreviation the glossary leaves out is accepted
+  find: "for abbreviation in sorted(used - seen))"
+  replace: "for abbreviation in [])"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_an_abbreviation_the_glossary_leaves_out_is_reported
+- label: a bullet that runs onto the next line is cut at the line break
+  find: "            bullets[-1] += \" \" + line.strip()"
+  replace: "            bullets.append(\"\")"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_bullet_may_run_onto_the_next_line
+- label: the abbreviation itself counts as its own full form
+  find: "    if full_form.upper() == abbreviation or not any(char.islower() for char in full_form):\n        return False\n"
+  replace: ""
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_the_full_form_must_spell_the_abbreviation_out
+- label: the full form need not start with the abbreviation's first letter
+  find: "return abbreviation[0] == next(initials, \"\") and all(letter in initials for letter in abbreviation[1:])"
+  replace: "return all(letter in initials for letter in abbreviation)"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_the_first_letter_of_the_full_form_must_be_the_first_of_the_abbreviation
+- label: a Vietnamese đ is dropped from the initials
+  find: "unicodedata.normalize(\"NFD\", full_form.replace(\"đ\", \"d\").replace(\"Đ\", \"D\"))"
+  replace: "unicodedata.normalize(\"NFD\", full_form)"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_initials_ignore_accents_and_read_dj
+- label: a camelCase name is one initial (JavaScript is J, not JS)
+  find: "for hump in re.findall(r\"[A-Z]+(?![a-z])|[A-Z][a-z]*|[a-z]+\", word):"
+  replace: "for hump in [word]:"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_the_full_form_may_skip_little_words_and_use_the_camel_case_of_a_name
+- label: what a glossary entry says is not read for abbreviations
+  find: "            (glossary if section == GLOSSARY_HEADING else body).append(piece)\n    return body, glossary,"
+  replace: "            (body if section == GLOSSARY_HEADING else body).append(piece)\n    return body, glossary,"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_what_a_glossary_entry_says_is_read_for_abbreviations_too

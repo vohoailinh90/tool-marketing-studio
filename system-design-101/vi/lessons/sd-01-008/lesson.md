@@ -12,6 +12,14 @@ Từ chuỗi byte HTML, CSS và JavaScript đến điểm ảnh trên màn hình
 
 **Đọc hình:** mũi tên là thứ tự thường gặp khi tải trang lần đầu. Thực tế các bước có thể chồng lên nhau, ví dụ trang được vẽ dần trong khi còn đang tải. JavaScript có thể sửa DOM hoặc kiểu bất cứ lúc nào; khi đó trình duyệt chỉ cần tính lại từ bước bị ảnh hưởng, không nhất thiết từ đầu.
 
+## Từ viết tắt
+
+- **HTML** (HyperText Markup Language) — ngôn ngữ đánh dấu siêu văn bản: văn bản dùng thẻ để mô tả cấu trúc của một trang web.
+- **CSS** (Cascading Style Sheets) — bảng kiểu xếp tầng: các luật mô tả màu sắc, cỡ chữ và cách bố trí của trang.
+- **DOM** (Document Object Model) — mô hình đối tượng tài liệu: cây các phần tử của trang mà trình duyệt dựng từ HTML; JavaScript có thể sửa cây này.
+- **CSSOM** (CSS Object Model) — mô hình đối tượng CSS: các luật CSS sau khi trình duyệt đọc xong, xếp thành cấu trúc để tra cứu.
+- **GPU** (Graphics Processing Unit) — bộ xử lý đồ họa: chip chuyên vẽ hình, giúp trình duyệt ghép lớp và hiển thị hình ảnh nhanh.
+
 ## Nhìn hình thử trả lời
 
 Một nút đổi màu chữ từ đen sang đỏ. Một khối khác đổi `width` từ 200 px sang 300 px. Thay đổi nào dễ buộc tính lại bố cục (bước 3) hơn? Vì sao?

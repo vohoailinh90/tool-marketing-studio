@@ -19,6 +19,14 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 
 8. [Trình duyệt dựng trang web thế nào?](lessons/sd-01-008/lesson.md)
 
+## Bảo mật
+
+Đợt bốn của nhóm. Các bài sd-14-001..009 nằm ở PR #57, #58 và #60, chưa có trong nhánh này; số thứ tự dưới đây chỉ tính trong nhánh này.
+
+1. [Token, cookie và session: nhận ra người dùng thế nào?](lessons/sd-14-010/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+2. [SSO và OAuth 2.0: đăng nhập khác ủy quyền](lessons/sd-14-011/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+3. [Thiết kế hệ thống an toàn: mười hai câu cần hỏi](lessons/sd-14-012/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+
 Danh mục đầy đủ và snapshot nguồn: [bảng đối chiếu](../../brainstorm/system-design-101-vi/source-map.json).
 Quy tắc đã chốt: [kết luận brainstorm](../../brainstorm/system-design-101-vi/DECISIONS.md).
 Tiến độ từng đợt: [PROGRESS.md](PROGRESS.md).
@@ -44,6 +52,6 @@ và hình đạt; không coi đọc nguồn là mọi claim đã đúng, không 
 Tình huống thực tế → AI và học máy → Cơ sở dữ liệu và lưu trữ → Phỏng vấn kỹ thuật →
 Bộ nhớ đệm và hiệu năng → Thanh toán và công nghệ tài chính → Kiến trúc phần mềm →
 Công cụ và năng suất → Phát triển phần mềm → Đám mây và hệ thống phân tán →
-Hệ thống hoạt động thế nào? → DevOps và CI/CD → Bảo mật → Nền tảng máy tính.
+Hệ thống hoạt động thế nào? → DevOps và CI/CD → Bảo mật (đã viết một phần) → Nền tảng máy tính.
 
 `lessons/<id>/lesson.yaml` chỉ trỏ tới metadata JSON; không giữ bản sao trạng thái.

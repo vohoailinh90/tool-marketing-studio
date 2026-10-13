@@ -1,0 +1,99 @@
+{
+  "id": "sd-14-010",
+  "title_vi": "Token, cookie và session: nhận ra người dùng thế nào?",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "review",
+  "source_ref": "sd-14-010",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/token-cookie-session.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/token-cookie-session.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches provider tree OID. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "7f97f0c7d59150c5285fce7b69c994184f52cc93",
+    "retrieved_body_sha256": "05fef47345c2771f2208e3cee925f88fdda2d1e69c3db1cd4e65887794763bea",
+    "retrieved_body_bytes": 2099
+  },
+  "diagram": "../diagrams/sd-14-010-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "evidence": "PyJWT usage notes (raw GitHub) and OWASP Session Management cheat sheet (clone) read; HTTP Basic and JWT behaviour observed with a small Python server, curl and PyJWT 2.15.1; RFC pages were unreachable and not read."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 14.4,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright) rendered the full lesson at each width with optional sections open; diagram scale measured from the rendered image and every SVG text box checked against the viewBox. Not learner testing and not GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "The source lists user identity management approaches from simple to complex: WWW-Authenticate (browser asks for username and password; said to be seldom used because the login life cycle cannot be controlled), session-cookie (server keeps session storage, browser keeps the id; said not to be mobile-app friendly), token, JWT (digitally signed so no session information needs to be saved on the server), SSO (said to use CAS) and OAuth 2.0.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/token-cookie-session.md",
+      "section": "Whole guide",
+      "verified_by": "Source body read."
+    },
+    {
+      "claim_vi": "Observed: a server without credentials answered 401 with 'WWW-Authenticate: Basic realm'; with curl -u the same 'Authorization: Basic ...' header was present on two consecutive requests; the base64 part decodes to the username and password without a key.",
+      "source": "https://github.com/mdn/content/blob/main/files/en-us/web/http/guides/authentication/index.md",
+      "section": "The general HTTP authentication framework; Basic authentication scheme",
+      "verified_by": "Read from a local clone of the repository. MDN describes the 401 and WWW-Authenticate exchange and says Basic sends credentials encoded but not encrypted, insecure without HTTPS; the repeated header and the decoding were observed with a Python http.server and curl 8.5.0."
+    },
+    {
+      "claim_vi": "Observed with PyJWT 2.15.1 (HS256, short test key): the payload of a JWT is readable without a key; a token whose payload was edited to a different role fails with InvalidSignatureError; an expired token raises ExpiredSignatureError; a token declaring algorithm none raises InvalidAlgorithmError when decoding is limited to HS256; verification used no server-side store, so the same token still verified after a simulated logout.",
+      "source": "https://github.com/jpadilla/pyjwt/blob/master/docs/usage.rst",
+      "section": "Encoding and decoding; reading claims without validation; expiration",
+      "verified_by": "No external page reports this output; observed by executing the code on the authoring machine. The usage notes describe reading claims without validation and ExpiredSignatureError; the other results were observed."
+    },
+    {
+      "claim_vi": "PyJWT's usage notes say that reading a JWT's claimset without verifying the signature gives data whose integrity and authenticity cannot be trusted.",
+      "source": "https://github.com/jpadilla/pyjwt/blob/master/docs/usage.rst",
+      "section": "Reading the Claimset without Validation",
+      "verified_by": "Read from a copy fetched from raw GitHub."
+    },
+    {
+      "claim_vi": "Once an authenticated session is established the session id (or token) is temporarily equivalent to the strongest authentication method the application used; disclosure, capture, prediction, brute force or fixation of the id leads to session hijacking.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Session_Management_Cheat_Sheet.md",
+      "section": "Introduction",
+      "verified_by": "Read from a local clone of the repository."
+    },
+    {
+      "claim_vi": "Revoking a still-valid JWT early requires extra state (a deny list, rotating the signing key or very short lifetimes with re-issue); a server-side store makes revocation easier.",
+      "source": "https://github.com/jpadilla/pyjwt/blob/master/docs/usage.rst",
+      "section": "Expiration",
+      "verified_by": "Author's inference from the observed behaviour and from how server-side sessions work; not checked against a standard."
+    }
+  ],
+  "design_notes_vi": "Một thẻ câu hỏi chung, bốn cách xếp theo nơi trạng thái nằm (không xếp từ đơn giản tới phức tạp), thẻ cuối nêu cái giá thu hồi. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Source orders approaches 'from simple to complex' and includes SSO and OAuth 2.0 in the same list; the lesson keeps only the ways to recognize a user on each request and moves SSO and OAuth to the next lesson because they answer a different question.",
+    "Source says Basic is seldom used, cookies are not mobile friendly and tokens are slow to encrypt and decrypt; the lesson does not repeat these (unchecked; a random token is looked up rather than encrypted and a JWT is usually signed rather than encrypted).",
+    "Source says a JWT removes the need to save session information on the server; the lesson keeps that for verification and adds that early revocation needs state."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

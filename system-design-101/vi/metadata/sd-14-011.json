@@ -1,0 +1,111 @@
+{
+  "id": "sd-14-011",
+  "title_vi": "SSO và OAuth 2.0: đăng nhập khác ủy quyền",
+  "language": "vi",
+  "kind": "flow",
+  "content_status": "review",
+  "source_ref": "sd-14-011",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/explaining-sessions-tokens-jwt-sso-and-oauth-in-one-diagram.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/explaining-sessions-tokens-jwt-sso-and-oauth-in-one-diagram.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches provider tree OID. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "4f23b467eb7b943ab4acda2f2f14ff267f7fe92b",
+    "retrieved_body_sha256": "fa271ef83a75c4e9f8ddd5c5d2bab9f3c52f48d9e1cb285abfe492136c2fdb52",
+    "retrieved_body_bytes": 593
+  },
+  "diagram": "../diagrams/sd-14-011-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "evidence": "OAuth 2.1 draft (raw GitHub) and OWASP OAuth2 cheat sheet (clone) read; PKCE challenge computation executed in Python; OpenID Connect and SSO beyond the draft's mention of OpenID Connect were not opened; the attack scenario in the answer is argued from the specification, not run."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 14.4,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright) rendered the full lesson at each width with optional sections open; diagram scale measured from the rendered image and every SVG text box checked against the viewBox. Not learner testing and not GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "The source for this lesson contains only a caption: it names sessions, tokens, JWT, SSO and OAuth and asks about the future of web session management; the diagram it points to is not used.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/explaining-sessions-tokens-jwt-sso-and-oauth-in-one-diagram.md",
+      "section": "Whole guide",
+      "verified_by": "Source body read."
+    },
+    {
+      "claim_vi": "The sibling source says SSO lets you sign on once and log in to multiple websites using CAS, and OAuth 2.0 lets you authorize one website to access your information on another.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/token-cookie-session.md",
+      "section": "SSO; OAuth 2.0",
+      "verified_by": "Source body read. CAS is one implementation and is not repeated in the lesson."
+    },
+    {
+      "claim_vi": "OAuth 2.1 lets an application obtain limited access to a protected resource on behalf of a resource owner through an approval interaction with an authorization service; OAuth is an authorization protocol, not an authentication protocol; OpenID Connect is given as an example that builds on OAuth to provide authentication.",
+      "source": "https://github.com/oauth-wg/oauth-v2-1/blob/main/draft-ietf-oauth-v2-1.md",
+      "section": "Abstract; Introduction",
+      "verified_by": "Read from a copy fetched from raw GitHub."
+    },
+    {
+      "claim_vi": "In the authorization code flow the client sends the user to the authorization server with its client identifier and redirect URI, the user authenticates there, the authorization server returns an authorization code, the client exchanges the code for an access token, and the access token represents the authorization granted; the authorization server must return an access token only once for a given authorization code.",
+      "source": "https://github.com/oauth-wg/oauth-v2-1/blob/main/draft-ietf-oauth-v2-1.md",
+      "section": "Authorization Code Grant",
+      "verified_by": "Read from a copy fetched from raw GitHub."
+    },
+    {
+      "claim_vi": "With PKCE the client creates a code_verifier and sends code_challenge = BASE64URL-ENCODE(SHA256(ASCII(code_verifier))) with method S256; observed: a 32-byte random verifier gives 43-character verifier and challenge strings, the right verifier matches the challenge and a guessed one does not.",
+      "source": "https://github.com/oauth-wg/oauth-v2-1/blob/main/draft-ietf-oauth-v2-1.md",
+      "section": "Code verifier and code challenge (S256)",
+      "verified_by": "Read from a copy fetched from raw GitHub. The matching check was run in Python on the authoring machine."
+    },
+    {
+      "claim_vi": "OWASP: PKCE mitigates the authorization code interception attack for public clients; the authorization server must enforce the correct use of code_verifier at the token endpoint when a code_challenge was sent; challenge methods that do not expose the verifier in the authorization request should be used.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/OAuth2_Cheat_Sheet.md",
+      "section": "PKCE",
+      "verified_by": "Read from a local clone of the repository."
+    },
+    {
+      "claim_vi": "OAuth 2.1 omits the Implicit grant and the Resource Owner Password Credentials grant.",
+      "source": "https://github.com/oauth-wg/oauth-v2-1/blob/main/draft-ietf-oauth-v2-1.md",
+      "section": "Differences from OAuth 2.0",
+      "verified_by": "Read from a copy fetched from raw GitHub."
+    },
+    {
+      "claim_vi": "An access token is not evidence that its holder just logged in, and SSO concentrates risk in a shared login session.",
+      "source": "https://github.com/oauth-wg/oauth-v2-1/blob/main/draft-ietf-oauth-v2-1.md",
+      "section": "Introduction",
+      "verified_by": "Author's argument from the specification's statement that OAuth is not an authentication protocol, and the SSO risk is the author's inference; no attack was run."
+    }
+  ],
+  "design_notes_vi": "Một thẻ hai câu hỏi, năm thẻ bước của luồng mã ủy quyền nối bằng mũi tên (không mũi tên sau bước cuối), thẻ PKCE, thẻ đỏ nói đăng nhập cần lớp nhận diện. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "The source has almost no text; the lesson is built from the OAuth 2.1 draft and the OWASP OAuth2 cheat sheet instead of paraphrasing a caption.",
+    "The sibling source says SSO uses CAS; the lesson does not repeat the name (one implementation, unchecked).",
+    "The lesson separates authentication (SSO, OpenID Connect) from authorization (OAuth), which the sources do not."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

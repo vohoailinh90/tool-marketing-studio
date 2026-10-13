@@ -1,10 +1,10 @@
-# Chọn cách đưa bản mới lên: triển khai khác phát hành
+# Vòng đời một tính năng có cờ: từ mã đã lên đến dọn cờ
 
-Hai việc hay bị gộp: triển khai là đưa mã lên môi trường, phát hành là cho người dùng thấy hành vi mới. Tách chúng ra giúp chọn cách đưa lên an toàn.
+Một tính năng mới đi qua vài điểm dừng, từ lúc mã được đưa lên đến lúc không còn cờ nào. Mỗi điểm dừng là một quyết định, và nhìn theo thứ tự đó giúp tách việc đưa mã lên khỏi việc cho người dùng thấy hành vi mới.
 
-![Bốn nhóm: cách triển khai gồm rolling, blue-green và canary; kiểm soát phát hành bằng cờ tính năng; thử với traffic thật mà người dùng không thấy bằng shadow; và hai kiểu quay lui khác nhau là rút lại phát hành và rút lại triển khai.](../../diagrams/sd-13-015-main.svg)
+![Năm điểm dừng của một tính năng có cờ: mã lên với cờ tắt, thử nội bộ ở cả hai nhánh, mở dần cho một phần người dùng cố định với số đo và điều kiện dừng, mở hết và giữ cờ làm công tắc khẩn cấp một thời gian, rồi dọn cờ và nhánh cũ.](../../diagrams/sd-13-015-main.svg)
 
-**Đọc hình:** không có cách nào đúng cho mọi trường hợp; hai nhóm đầu có thể dùng cùng nhau.
+**Đọc hình:** đọc từ trên xuống; mỗi thẻ là một điểm dừng, và nếu tính năng bị hủy thì dừng ở đó rồi dọn cờ.
 
 ## Nhìn hình thử trả lời
 
@@ -19,20 +19,20 @@ Không. Tắt cờ chỉ rút phần được gắn cờ; sửa lỗi, thay đ�
 
 ## Giới hạn cần nhớ
 
-Rolling, canary và blue-green cho phép hai phiên bản cùng tồn tại, nên dữ liệu và giao tiếp phải tương thích hai chiều. Đổi lược đồ cơ sở dữ liệu thường phải chia nhiều bước.
+Cờ làm tăng số đường chạy cần kiểm thử: mỗi cờ thêm một nhánh, và tổ hợp nhiều cờ khó kiểm hết. Không phải thay đổi nào cũng gắn cờ được, ví dụ đổi lược đồ cơ sở dữ liệu hay nâng phiên bản thư viện, nên vẫn cần tương thích hai chiều và kế hoạch rút lại triển khai. Bài này không bàn cách thay Pod hay chuyển traffic giữa môi trường; xem bài về Deployment của Kubernetes và bài về rủi ro khi triển khai.
 
 <details>
 <summary>Xem sâu hơn</summary>
 
-- **Blue-green:** tốn thêm một môi trường song song trong lúc chuyển; ưu điểm là quay lại bằng cách chuyển lại traffic.
-- **Canary:** cần số đo để quyết định mở rộng hay dừng.
-- **Rolling:** ít tốn tài nguyên thêm nhưng lỗi chỉ lộ dần, nên cần giám sát từng đợt.
-- **Cờ tính năng:** tách triển khai khỏi phát hành; cờ cũ tích lại thành nợ nếu không dọn.
-- **Shadow:** cẩn thận với tác dụng phụ như ghi dữ liệu hay gọi dịch vụ ngoài từ bản được thử.
+- **Cờ tắt mặc định:** hành vi mới nằm sau cờ và tắt khi mã lên; nên chọn giá trị dự phòng là hành vi cũ để lỗi đọc cờ không làm lộ tính năng chưa sẵn sàng.
+- **Nhóm người dùng cố định:** chọn người dùng theo giá trị băm của mã định danh để một người luôn thấy cùng một phiên bản, không nhảy qua lại giữa các lần tải.
+- **Hai nhánh đều phải kiểm thử:** cả cờ bật và cờ tắt, vì khi rút lại bạn sẽ chạy nhánh cũ.
+- **Loại cờ khác nhau, tuổi thọ khác nhau:** cờ phát hành thường ngắn hạn và nên xóa sau khi mở hết; cờ vận hành, dùng làm công tắc khẩn cấp, có thể sống lâu hơn.
+- **Dọn cờ:** đặt người chịu trách nhiệm và hạn xóa ngay khi tạo cờ; cờ cũ tích lại thành nợ kỹ thuật.
 
 </details>
 
 ## Nguồn đối chiếu
 
 - [ByteByteGo tại snapshot cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-5-most-used-deployment-strategies.md).
-- Martin Fowler: [BlueGreenDeployment](https://martinfowler.com/bliki/BlueGreenDeployment.html), [CanaryRelease](https://martinfowler.com/bliki/CanaryRelease.html), [Feature Toggles](https://martinfowler.com/articles/feature-toggles.html).
+- Martin Fowler: [Feature Toggles](https://martinfowler.com/articles/feature-toggles.html).

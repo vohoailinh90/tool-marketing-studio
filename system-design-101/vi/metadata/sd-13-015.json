@@ -1,8 +1,8 @@
 {
   "id": "sd-13-015",
-  "title_vi": "Chọn cách đưa bản mới lên: triển khai khác phát hành",
+  "title_vi": "Vòng đời một tính năng có cờ: từ mã đã lên đến dọn cờ",
   "language": "vi",
-  "kind": "comparison",
+  "kind": "flow",
   "content_status": "draft",
   "source_ref": "sd-13-015",
   "source_snapshot": {
@@ -26,7 +26,7 @@
     {
       "lesson_id": "sd-13-020",
       "relation": "compare-with",
-      "reason_vi": "Chọn theo nhu cầu."
+      "reason_vi": "Rủi ro khi triển khai và cách giảm."
     }
   ],
   "verification": {
@@ -50,21 +50,21 @@
   },
   "claims": [
     {
-      "claim_vi": "Blue-green chạy hai môi trường giống nhau và chuyển traffic giữa chúng.",
-      "source": "https://martinfowler.com/bliki/BlueGreenDeployment.html"
+      "claim_vi": "Feature toggle cho phép đưa mã lên với tính năng đang tắt rồi bật sau, nhờ đó tách phát hành khỏi triển khai.",
+      "source": "https://martinfowler.com/articles/feature-toggles.html"
     },
     {
-      "claim_vi": "Canary release đưa thay đổi cho một nhóm nhỏ người dùng trước.",
-      "source": "https://martinfowler.com/bliki/CanaryRelease.html"
+      "claim_vi": "Có nhiều loại toggle (phát hành, thử nghiệm, vận hành, phân quyền) với tuổi thọ và mức độ thay đổi khác nhau.",
+      "source": "https://martinfowler.com/articles/feature-toggles.html"
     },
     {
-      "claim_vi": "Feature toggle cho phép bật tắt tính năng mà không đổi mã, tách phát hành khỏi triển khai.",
+      "claim_vi": "Toggle thêm chi phí và độ phức tạp, nên toggle phát hành cần được dọn khi không còn cần.",
       "source": "https://martinfowler.com/articles/feature-toggles.html"
     }
   ],
   "source_deviations": [
-    "Nguồn liệt kê năm tên chiến lược; bài đổi phạm vi sang phân biệt triển khai với phát hành, bỏ big bang, thêm shadow, và tách hai nghĩa của quay lui."
+    "Nguồn liệt kê năm tên chiến lược triển khai; bài bỏ danh mục đó và theo dõi một tính năng có cờ từ lúc mã lên đến lúc dọn cờ, nên không còn mô tả rolling, blue-green, canary hay shadow."
   ],
-  "design_notes_vi": "Bốn thẻ: triển khai, phát hành, thử ngầm, quay lui.",
+  "design_notes_vi": "Năm thẻ điểm dừng theo thứ tự thời gian, nối bằng mũi tên.",
   "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
 }

@@ -39,7 +39,11 @@
   },
   "claims": [
     {
-      "claim_vi": "grep -C in dòng ngữ cảnh quanh dòng khớp và --line-buffered xả đầu ra theo từng dòng.",
+      "claim_vi": "grep -C in dòng ngữ cảnh quanh dòng khớp.",
+      "source": "https://www.gnu.org/software/grep/manual/grep.html"
+    },
+    {
+      "claim_vi": "Đầu ra chuẩn của grep được đệm theo dòng khi ra thiết bị tương tác và theo khối ở nơi khác; --line-buffered ép xả từng dòng.",
       "source": "https://www.gnu.org/software/grep/manual/grep.html"
     },
     {

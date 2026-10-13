@@ -2,18 +2,18 @@
 
 Khi tìm nguyên nhân sự cố trong nhật ký, đặc điểm của tệp quyết định công cụ: có cần ngữ cảnh quanh dòng lỗi không, nhật ký đã nén hay đang ghi, dạng văn bản hay JSON, hay cần một con số.
 
-![Năm tình huống và lệnh: xem ngữ cảnh quanh dòng lỗi bằng grep -C, tìm trong nhật ký đã nén bằng zgrep, theo dõi nhật ký đang ghi bằng tail -f nối grep --line-buffered, lọc nhật ký JSON bằng jq, và tính trung bình một cột số bằng awk.](../../diagrams/sd-13-022-main.svg)
+![Năm tình huống và lệnh: xem ngữ cảnh quanh dòng lỗi bằng grep -C, tìm trong nhật ký đã nén bằng zgrep, theo dõi nhật ký đang ghi bằng tail -f nối grep, thêm --line-buffered khi đầu ra của grep còn chuyển tiếp sang lệnh khác, lọc nhật ký JSON bằng jq, và tính trung bình một cột số bằng awk.](../../diagrams/sd-13-022-main.svg)
 
 **Đọc hình:** mỗi thẻ là một tình huống riêng và lệnh gợi ý; các lệnh có thể ghép bằng dấu `|` khi cần.
 
 ## Nhìn hình thử trả lời
 
-Vì sao khi nối `tail -f` với `grep` lại nên thêm `--line-buffered`?
+Khi nào cần thêm `--line-buffered` cho `grep` trong một đường ống với `tail -f`?
 
 <details>
 <summary>Xem đáp án</summary>
 
-Khi đầu ra của grep không phải terminal (ví dụ đang chuyển tiếp qua ống), grep đệm theo khối nên dòng khớp có thể hiện rất chậm. `--line-buffered` ép nó xả từng dòng.
+Khi đầu ra của grep không đi thẳng ra terminal, ví dụ còn nối tiếp sang lệnh khác như `tee` hoặc ghi ra tệp. Lúc đó grep đệm theo khối nên dòng khớp tới chậm, và `--line-buffered` ép nó xả từng dòng. Nếu grep in thẳng ra terminal thì nó đã xả từng dòng, và cờ này không cần.
 
 </details>
 
@@ -31,8 +31,8 @@ grep -n -C 3 "timeout" app.log
 # nhật ký đã nén
 zgrep "ERROR" app.log.*.gz
 
-# theo dõi trực tiếp
-tail -f app.log | grep --line-buffered "ERROR"
+# theo dõi trực tiếp; --line-buffered cần vì đầu ra của grep còn đi tiếp qua ống
+tail -f app.log | grep --line-buffered "ERROR" | tee errors.log
 
 # JSON, mỗi dòng một đối tượng: {"level":"error","message":"..."}
 jq -r 'select(.level=="error") | .message' app.json

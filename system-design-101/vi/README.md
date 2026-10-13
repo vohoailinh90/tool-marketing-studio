@@ -33,7 +33,7 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 12. [Học từ chuỗi CI/CD của công ty lớn mà không chép công cụ](lessons/sd-13-012/lesson.md) — bài nháp, chờ review kỹ thuật.
 13. [Docker khi chạy web kèm cơ sở dữ liệu: bốn chỗ hay hỏng](lessons/sd-13-013/lesson.md) — bài nháp, chờ review kỹ thuật.
 14. [CI/CD qua một hình đơn giản](lessons/sd-13-014/lesson.md) — bài nháp, chờ review kỹ thuật.
-15. [Chọn cách đưa bản mới lên: triển khai khác phát hành](lessons/sd-13-015/lesson.md) — bài nháp, chờ review kỹ thuật.
+15. [Vòng đời một tính năng có cờ: từ mã đã lên đến dọn cờ](lessons/sd-13-015/lesson.md) — bài nháp, chờ review kỹ thuật.
 16. [Bảng tra lệnh kubectl theo tình huống](lessons/sd-13-016/lesson.md) — bài nháp, chờ review kỹ thuật.
 17. [Deployment của Kubernetes thay Pod như thế nào](lessons/sd-13-017/lesson.md) — bài nháp, chờ review kỹ thuật.
 18. [Terraform biến mã thành hạ tầng](lessons/sd-13-018/lesson.md) — bài nháp, chờ review kỹ thuật.

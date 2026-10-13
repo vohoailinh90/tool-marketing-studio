@@ -21,7 +21,7 @@
     {
       "lesson_id": "sd-13-019",
       "relation": "compare-with",
-      "reason_vi": "DevOps, SRE, Platform Engineering."
+      "reason_vi": "Bốn nút thắt giữa các nhóm."
     }
   ],
   "verification": {
@@ -49,7 +49,11 @@
       "source": "https://aws.amazon.com/compliance/shared-responsibility-model/"
     },
     {
-      "claim_vi": "Lambda cập nhật các runtime do Lambda quản lý; với hàm dùng container image hoặc runtime tự dựng, việc cập nhật runtime và ảnh cơ sở thuộc về khách hàng.",
+      "claim_vi": "Với runtime do Lambda quản lý, chế độ cập nhật mặc định (Auto) để Lambda tự áp dụng bản cập nhật; ở chế độ Function update hoặc Manual, khách hàng cập nhật hàm hoặc chọn phiên bản để áp dụng.",
+      "source": "https://docs.aws.amazon.com/lambda/latest/dg/runtime-management-shared.html"
+    },
+    {
+      "claim_vi": "Với hàm dùng container image hoặc runtime tự dựng, việc cập nhật runtime và ảnh cơ sở thuộc về khách hàng.",
       "source": "https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html"
     },
     {

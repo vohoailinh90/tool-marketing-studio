@@ -1,27 +1,36 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 626" width="320" height="626" role="img" aria-labelledby="title desc">
-<title id="title">DevOps, SRE và Platform Engineering khác nhau thế nào</title>
-<desc id="desc">Ba tình huống và cách nghĩ phù hợp: hai nhóm đổ lỗi cho nhau cần văn hóa DevOps, dịch vụ hay sập cần SLO và error budget của SRE, mỗi nhóm tự dựng pipeline riêng cần nền tảng nội bộ.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 873" width="320" height="873" role="img" aria-labelledby="title desc">
+<title id="title">Bốn nút thắt giữa các nhóm khi đưa phần mềm lên chạy</title>
+<desc id="desc">Bốn nút thắt giữa các nhóm và việc nên thử trước: chờ môi trường và quyền thì làm mẫu môi trường tự phục vụ, phát hành thủ công thì viết các bước thành pipeline, sự cố lặp lại thì đặt SLO và quy tắc khi hết ngân sách lỗi, và hiểu biết dồn vào vài người thì viết runbook và luân phiên trực ca.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="626" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
-<text x="16" y="30" font-size="20" font-weight="bold">TÌNH HUỐNG → CÁCH</text>
-<text x="16" y="58" font-size="20" font-weight="bold">NGHĨ</text>
-<text x="16" y="86" font-size="16" font-weight="normal">Ba tình huống quen thuộc</text>
-<rect x="16" y="117" width="288" height="155" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
-<text x="30" y="145" font-size="16" font-weight="bold">Dev và Ops đổ lỗi cho</text>
-<text x="30" y="172" font-size="16" font-weight="bold">nhau</text>
-<text x="30" y="199" font-size="16" font-weight="normal">DevOps: trách nhiệm chung,</text>
-<text x="30" y="226" font-size="16" font-weight="normal">tự động hóa, vòng phản hồi</text>
-<text x="30" y="253" font-size="16" font-weight="normal">ngắn</text>
-<rect x="16" y="284" width="288" height="155" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
-<text x="30" y="312" font-size="16" font-weight="bold">Dịch vụ cứ sập, vẫn</text>
-<text x="30" y="339" font-size="16" font-weight="bold">phát hành liên tục</text>
-<text x="30" y="366" font-size="16" font-weight="normal">SRE: đặt SLO, dùng error</text>
-<text x="30" y="393" font-size="16" font-weight="normal">budget để cân bằng độ tin</text>
-<text x="30" y="420" font-size="16" font-weight="normal">cậy và tốc độ</text>
-<rect x="16" y="451" width="288" height="155" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
-<text x="30" y="479" font-size="16" font-weight="bold">Mỗi nhóm tự dựng</text>
-<text x="30" y="506" font-size="16" font-weight="bold">pipeline riêng</text>
-<text x="30" y="533" font-size="16" font-weight="normal">Platform Engineering: nền</text>
-<text x="30" y="560" font-size="16" font-weight="normal">tảng nội bộ, đường đi mẫu</text>
-<text x="30" y="587" font-size="16" font-weight="normal">cho nhóm sản phẩm</text>
+<rect width="320" height="873" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">BỐN NÚT THẮT</text>
+<text x="16" y="58" font-size="16" font-weight="normal">Dấu hiệu và việc nên thử</text>
+<text x="16" y="85" font-size="16" font-weight="normal">trước</text>
+<rect x="16" y="116" width="288" height="182" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="144" font-size="16" font-weight="bold">1 · Chờ môi trường và</text>
+<text x="30" y="171" font-size="16" font-weight="bold">quyền</text>
+<text x="30" y="198" font-size="16" font-weight="normal">Dấu hiệu: mở yêu cầu rồi</text>
+<text x="30" y="225" font-size="16" font-weight="normal">đợi nhiều ngày</text>
+<text x="30" y="252" font-size="16" font-weight="normal">Thử trước: mẫu môi trường</text>
+<text x="30" y="279" font-size="16" font-weight="normal">tự phục vụ</text>
+<rect x="16" y="310" width="288" height="155" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="338" font-size="16" font-weight="bold">2 · Phát hành thủ công</text>
+<text x="30" y="365" font-size="16" font-weight="normal">Dấu hiệu: cần một người nhớ</text>
+<text x="30" y="392" font-size="16" font-weight="normal">đủ các bước</text>
+<text x="30" y="419" font-size="16" font-weight="normal">Thử trước: viết các bước</text>
+<text x="30" y="446" font-size="16" font-weight="normal">thành pipeline</text>
+<rect x="16" y="477" width="288" height="182" rx="10" fill="#fee2e2" stroke="#94a3b8"/>
+<text x="30" y="505" font-size="16" font-weight="bold">3 · Sự cố lặp lại</text>
+<text x="30" y="532" font-size="16" font-weight="normal">Dấu hiệu: cùng lỗi quay</text>
+<text x="30" y="559" font-size="16" font-weight="normal">lại, việc sửa nhường chỗ</text>
+<text x="30" y="586" font-size="16" font-weight="normal">cho tính năng</text>
+<text x="30" y="613" font-size="16" font-weight="normal">Thử trước: SLO và quy tắc</text>
+<text x="30" y="640" font-size="16" font-weight="normal">khi hết ngân sách lỗi</text>
+<rect x="16" y="671" width="288" height="182" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="699" font-size="16" font-weight="bold">4 · Hiểu biết dồn vào</text>
+<text x="30" y="726" font-size="16" font-weight="bold">vài người</text>
+<text x="30" y="753" font-size="16" font-weight="normal">Dấu hiệu: chỉ một hai người</text>
+<text x="30" y="780" font-size="16" font-weight="normal">xử lý được sự cố</text>
+<text x="30" y="807" font-size="16" font-weight="normal">Thử trước: runbook và luân</text>
+<text x="30" y="834" font-size="16" font-weight="normal">phiên trực ca</text>
 </g></svg>

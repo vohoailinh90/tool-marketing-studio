@@ -25,8 +25,8 @@ Trước khi chạy lệnh thay đổi, kiểm tra đang trỏ vào cụm và na
 <summary>Xem sâu hơn</summary>
 
 ```bash
-kubectl config get-contexts          # các cụm đang cấu hình
-kubectl config use-context <ten>     # chuyển cụm
+kubectl config get-contexts          # các context (mỗi context ghép cụm, user, namespace)
+kubectl config use-context <ten>     # chuyển context
 kubectl cluster-info                 # kiểm tra kết nối
 kubectl get nodes                    # tình trạng node
 kubectl apply -f deployment.yaml     # áp dụng cấu hình

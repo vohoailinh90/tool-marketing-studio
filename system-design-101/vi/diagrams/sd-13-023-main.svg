@@ -1,12 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 982" width="320" height="982" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1090" width="320" height="1090" role="img" aria-labelledby="title desc">
 <title id="title">NoOps và DevOps: mô hình hosting khác cách tổ chức nhóm</title>
-<desc id="desc">Hai câu hỏi tách biệt: mô hình hosting (máy chủ tự quản, nền tảng quản lý, hàm serverless) quyết định nhà cung cấp lo những lớp nào; cách tổ chức nhóm (tách dev và ops, hoặc DevOps) quyết định ai trong nhóm xử lý phần còn lại. Dù chọn gì, mã, cấu hình, quyền, giám sát, sự cố và chi phí vẫn còn việc cho bạn, và serverless có ngoại lệ với container image, runtime tự dựng hay runtime đã ngừng hỗ trợ.</desc>
+<desc id="desc">Hai câu hỏi tách biệt: mô hình hosting (máy chủ tự quản, nền tảng quản lý, hàm serverless) quyết định nhà cung cấp lo những lớp nào; cách tổ chức nhóm (tách dev và ops, hoặc DevOps) quyết định ai trong nhóm xử lý phần còn lại. Dù chọn gì, mã, cấu hình, quyền, giám sát, sự cố và chi phí vẫn còn việc cho bạn, và serverless có ngoại lệ với container image, runtime tự dựng, chế độ cập nhật runtime không tự động hay runtime đã ngừng hỗ trợ.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="982" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<rect width="320" height="1090" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="30" font-size="20" font-weight="bold">HAI CÂU HỎI TÁCH</text>
 <text x="16" y="58" font-size="20" font-weight="bold">BIỆT</text>
 <text x="16" y="86" font-size="16" font-weight="normal">Hosting và cách tổ chức nhóm</text>
-<rect x="16" y="117" width="288" height="263" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
+<rect x="16" y="117" width="288" height="290" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
 <text x="30" y="145" font-size="16" font-weight="bold">1. Hosting: nhà cung</text>
 <text x="30" y="172" font-size="16" font-weight="bold">cấp lo gì</text>
 <text x="30" y="199" font-size="16" font-weight="normal">Máy chủ tự quản: bạn lo hệ</text>
@@ -14,27 +14,31 @@
 <text x="30" y="253" font-size="16" font-weight="normal">Nền tảng quản lý: nhà cung</text>
 <text x="30" y="280" font-size="16" font-weight="normal">cấp lo máy bên dưới</text>
 <text x="30" y="307" font-size="16" font-weight="normal">Hàm serverless: nhà cung</text>
-<text x="30" y="334" font-size="16" font-weight="normal">cấp lo hệ điều hành và</text>
-<text x="30" y="361" font-size="16" font-weight="normal">runtime do họ quản lý</text>
-<rect x="16" y="392" width="288" height="209" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
-<text x="30" y="420" font-size="16" font-weight="bold">2. Tổ chức: ai trong</text>
-<text x="30" y="447" font-size="16" font-weight="bold">nhóm xử lý</text>
-<text x="30" y="474" font-size="16" font-weight="normal">Tách dev và ops: bàn giao</text>
-<text x="30" y="501" font-size="16" font-weight="normal">qua lại</text>
-<text x="30" y="528" font-size="16" font-weight="normal">DevOps: chia sẻ trách</text>
-<text x="30" y="555" font-size="16" font-weight="normal">nhiệm, người viết mã cũng</text>
-<text x="30" y="582" font-size="16" font-weight="normal">tham gia vận hành</text>
-<rect x="16" y="613" width="288" height="128" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
-<text x="30" y="641" font-size="16" font-weight="bold">Luôn còn việc cho bạn</text>
-<text x="30" y="668" font-size="16" font-weight="normal">Mã, cấu hình, quyền truy</text>
-<text x="30" y="695" font-size="16" font-weight="normal">cập</text>
-<text x="30" y="722" font-size="16" font-weight="normal">Giám sát, sự cố, chi phí</text>
-<rect x="16" y="753" width="288" height="209" rx="10" fill="#fee2e2" stroke="#94a3b8"/>
-<text x="30" y="781" font-size="16" font-weight="bold">Ngoại lệ với</text>
-<text x="30" y="808" font-size="16" font-weight="bold">serverless</text>
-<text x="30" y="835" font-size="16" font-weight="normal">Container image hoặc</text>
-<text x="30" y="862" font-size="16" font-weight="normal">runtime tự dựng: bạn cập</text>
-<text x="30" y="889" font-size="16" font-weight="normal">nhật</text>
-<text x="30" y="916" font-size="16" font-weight="normal">Runtime đã ngừng hỗ trợ:</text>
-<text x="30" y="943" font-size="16" font-weight="normal">không còn được vá</text>
+<text x="30" y="334" font-size="16" font-weight="normal">cấp lo hệ điều hành và, tùy</text>
+<text x="30" y="361" font-size="16" font-weight="normal">chế độ cập nhật, runtime do</text>
+<text x="30" y="388" font-size="16" font-weight="normal">họ quản lý</text>
+<rect x="16" y="419" width="288" height="209" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="447" font-size="16" font-weight="bold">2. Tổ chức: ai trong</text>
+<text x="30" y="474" font-size="16" font-weight="bold">nhóm xử lý</text>
+<text x="30" y="501" font-size="16" font-weight="normal">Tách dev và ops: bàn giao</text>
+<text x="30" y="528" font-size="16" font-weight="normal">qua lại</text>
+<text x="30" y="555" font-size="16" font-weight="normal">DevOps: chia sẻ trách</text>
+<text x="30" y="582" font-size="16" font-weight="normal">nhiệm, người viết mã cũng</text>
+<text x="30" y="609" font-size="16" font-weight="normal">tham gia vận hành</text>
+<rect x="16" y="640" width="288" height="128" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="668" font-size="16" font-weight="bold">Luôn còn việc cho bạn</text>
+<text x="30" y="695" font-size="16" font-weight="normal">Mã, cấu hình, quyền truy</text>
+<text x="30" y="722" font-size="16" font-weight="normal">cập</text>
+<text x="30" y="749" font-size="16" font-weight="normal">Giám sát, sự cố, chi phí</text>
+<rect x="16" y="780" width="288" height="290" rx="10" fill="#fee2e2" stroke="#94a3b8"/>
+<text x="30" y="808" font-size="16" font-weight="bold">Ngoại lệ với</text>
+<text x="30" y="835" font-size="16" font-weight="bold">serverless</text>
+<text x="30" y="862" font-size="16" font-weight="normal">Container image hoặc</text>
+<text x="30" y="889" font-size="16" font-weight="normal">runtime tự dựng: bạn cập</text>
+<text x="30" y="916" font-size="16" font-weight="normal">nhật</text>
+<text x="30" y="943" font-size="16" font-weight="normal">Chế độ Function update hoặc</text>
+<text x="30" y="970" font-size="16" font-weight="normal">Manual: bạn kích hoạt cập</text>
+<text x="30" y="997" font-size="16" font-weight="normal">nhật</text>
+<text x="30" y="1024" font-size="16" font-weight="normal">Runtime đã ngừng hỗ trợ:</text>
+<text x="30" y="1051" font-size="16" font-weight="normal">không còn được vá</text>
 </g></svg>

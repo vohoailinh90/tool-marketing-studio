@@ -37,7 +37,7 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 16. [Bảng tra lệnh kubectl theo tình huống](lessons/sd-13-016/lesson.md) — bài nháp, chờ review kỹ thuật.
 17. [Deployment của Kubernetes thay Pod như thế nào](lessons/sd-13-017/lesson.md) — bài nháp, chờ review kỹ thuật.
 18. [Terraform biến mã thành hạ tầng](lessons/sd-13-018/lesson.md) — bài nháp, chờ review kỹ thuật.
-19. [DevOps, SRE và Platform Engineering khác nhau thế nào](lessons/sd-13-019/lesson.md) — bài nháp, chờ review kỹ thuật.
+19. [Bốn nút thắt giữa các nhóm khi đưa phần mềm lên chạy](lessons/sd-13-019/lesson.md) — bài nháp, chờ review kỹ thuật.
 20. [Rủi ro khi triển khai và cách giảm](lessons/sd-13-020/lesson.md) — bài nháp, chờ review kỹ thuật.
 21. [Làm cho một request chậm truy vết được](lessons/sd-13-021/lesson.md) — bài nháp, chờ review kỹ thuật.
 22. [Tìm nguyên nhân từ nhật ký bằng dòng lệnh](lessons/sd-13-022/lesson.md) — bài nháp, chờ review kỹ thuật.

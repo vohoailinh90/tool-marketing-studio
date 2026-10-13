@@ -1,6 +1,6 @@
 {
   "id": "sd-13-019",
-  "title_vi": "DevOps, SRE và Platform Engineering khác nhau thế nào",
+  "title_vi": "Bốn nút thắt giữa các nhóm khi đưa phần mềm lên chạy",
   "language": "vi",
   "kind": "comparison",
   "content_status": "draft",
@@ -17,7 +17,18 @@
   },
   "diagram": "../diagrams/sd-13-019-main.svg",
   "prerequisites": [],
-  "related": [],
+  "related": [
+    {
+      "lesson_id": "sd-13-023",
+      "relation": "compare-with",
+      "reason_vi": "Mô hình hosting và cách tổ chức nhóm."
+    },
+    {
+      "lesson_id": "sd-13-020",
+      "relation": "compare-with",
+      "reason_vi": "Rủi ro khi triển khai và cách giảm."
+    }
+  ],
   "verification": {
     "source_body": {
       "status": "read",
@@ -39,21 +50,25 @@
   },
   "claims": [
     {
-      "claim_vi": "SRE dùng SLO và error budget để cân bằng độ tin cậy với tốc độ phát hành.",
+      "claim_vi": "Chính sách ngân sách lỗi dùng SLO để cân bằng độ tin cậy với tốc độ phát hành, và quy định việc cần làm khi hết ngân sách.",
       "source": "https://sre.google/workbook/error-budget-policy/"
     },
     {
-      "claim_vi": "SLO là mục tiêu mức dịch vụ trong sách SRE.",
+      "claim_vi": "SLO là mục tiêu mức dịch vụ đo được, trình bày trong sách SRE của Google.",
       "source": "https://sre.google/sre-book/service-level-objectives/"
     },
     {
-      "claim_vi": "Platform engineering xây nền tảng nội bộ cho nhóm phát triển.",
+      "claim_vi": "Đánh giá sau sự cố nên tập trung vào hệ thống và quy trình, không quy lỗi cho cá nhân.",
+      "source": "https://sre.google/sre-book/postmortem-culture/"
+    },
+    {
+      "claim_vi": "Platform engineering xây nền tảng nội bộ để nhóm phát triển tự phục vụ.",
       "source": "https://platformengineering.org/blog/what-is-platform-engineering"
     }
   ],
   "source_deviations": [
-    "Nguồn kể mốc \"2009 tại hội nghị Agile\" và quan hệ kế thừa; bài không lặp lại hai điều này vì chưa kiểm chứng; tổ chức theo tình huống."
+    "Nguồn định nghĩa lần lượt DevOps, SRE và Platform Engineering rồi so sánh; bài bỏ cách trình bày theo ba khái niệm và tổ chức quanh bốn nút thắt giữa các nhóm, mỗi nút kèm dấu hiệu và việc nên thử trước. Mốc thời gian và quan hệ kế thừa của nguồn không được nhắc lại vì chưa kiểm chứng."
   ],
-  "design_notes_vi": "Ba thẻ tình huống kèm cách nghĩ phù hợp.",
+  "design_notes_vi": "Bốn thẻ nút thắt, mỗi thẻ gồm dấu hiệu và việc nên thử trước.",
   "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
 }

@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 917" width="320" height="917" role="img" aria-labelledby="title desc">
+<title id="title">Câu SQL được hiểu theo thứ tự nào</title>
+<desc id="desc">Câu SQL được viết bắt đầu bằng SELECT nhưng được hiểu theo thứ tự logic: FROM và JOIN, WHERE, GROUP BY, HAVING, SELECT cùng alias, DISTINCT, ORDER BY, rồi LIMIT. Vì vậy WHERE không dùng được alias tạo ở SELECT. Bộ tối ưu có thể chạy theo thứ tự khác miễn kết quả giống nhau.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="917" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">THỨ TỰ CỦA CÂU SQL</text>
+<text x="16" y="60" font-size="16" font-weight="normal">Viết một kiểu,</text>
+<text x="16" y="90" font-size="16" font-weight="normal">hiểu theo kiểu khác</text>
+<rect x="16" y="112" width="288" height="131" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="142" font-size="16" font-weight="bold">Thứ tự viết</text>
+<text x="30" y="169" font-size="16" font-weight="normal">SELECT … FROM … WHERE …</text>
+<text x="30" y="196" font-size="16" font-weight="normal">GROUP BY … HAVING …</text>
+<text x="30" y="223" font-size="16" font-weight="normal">ORDER BY … LIMIT …</text>
+<line x1="160" y1="244" x2="160" y2="264" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="267" width="288" height="394" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="297" font-size="16" font-weight="bold">Thứ tự logic</text>
+<rect x="30" y="305" width="260" height="34" rx="7" fill="#ffffff" stroke="#64748b"/>
+<text x="40" y="328" font-size="16" font-weight="normal">1 · FROM / JOIN</text>
+<rect x="30" y="347" width="260" height="34" rx="7" fill="#ffffff" stroke="#64748b"/>
+<text x="40" y="370" font-size="16" font-weight="normal">2 · WHERE</text>
+<rect x="30" y="389" width="260" height="34" rx="7" fill="#ffffff" stroke="#64748b"/>
+<text x="40" y="412" font-size="16" font-weight="normal">3 · GROUP BY</text>
+<rect x="30" y="431" width="260" height="34" rx="7" fill="#ffffff" stroke="#64748b"/>
+<text x="40" y="454" font-size="16" font-weight="normal">4 · HAVING</text>
+<rect x="30" y="473" width="260" height="34" rx="7" fill="#ffffff" stroke="#64748b"/>
+<text x="40" y="496" font-size="16" font-weight="normal">5 · SELECT (alias)</text>
+<rect x="30" y="515" width="260" height="34" rx="7" fill="#ffffff" stroke="#64748b"/>
+<text x="40" y="538" font-size="16" font-weight="normal">6 · DISTINCT</text>
+<rect x="30" y="557" width="260" height="34" rx="7" fill="#ffffff" stroke="#64748b"/>
+<text x="40" y="580" font-size="16" font-weight="normal">7 · ORDER BY</text>
+<rect x="30" y="599" width="260" height="34" rx="7" fill="#ffffff" stroke="#64748b"/>
+<text x="40" y="622" font-size="16" font-weight="normal">8 · LIMIT</text>
+<line x1="160" y1="662" x2="160" y2="682" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="685" width="288" height="158" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="715" font-size="16" font-weight="bold">Rồi mới thực thi</text>
+<rect x="30" y="725" width="93.0104" height="34" rx="7" fill="#ffffff" stroke="#64748b"/>
+<text x="76.5052" y="748" text-anchor="middle" font-size="16" font-weight="normal">Phân tích</text>
+<line x1="125.01" y1="742" x2="138.01" y2="742" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="143.01" y="725" width="67.901" height="34" rx="7" fill="#ffffff" stroke="#64748b"/>
+<text x="176.961" y="748" text-anchor="middle" font-size="16" font-weight="normal">Tối ưu</text>
+<line x1="212.911" y1="742" x2="225.911" y2="742" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="230.911" y="725" width="59.0885" height="34" rx="7" fill="#ffffff" stroke="#64748b"/>
+<text x="260.456" y="748" text-anchor="middle" font-size="16" font-weight="normal">Chạy</text>
+<text x="30" y="796" font-size="16" font-weight="normal">Tối ưu có thể đổi cách chạy</text>
+<text x="30" y="823" font-size="16" font-weight="normal">miễn kết quả không đổi</text>
+<text x="16" y="871" font-size="16" font-weight="normal">Alias ở SELECT chưa có</text>
+<text x="16" y="897" font-size="16" font-weight="normal">khi WHERE chạy.</text>
+</g></svg>

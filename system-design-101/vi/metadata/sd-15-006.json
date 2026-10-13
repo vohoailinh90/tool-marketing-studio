@@ -1,0 +1,77 @@
+{
+  "id": "sd-15-006",
+  "title_vi": "TCP hay UDP cho game online?",
+  "language": "vi",
+  "kind": "flow",
+  "content_status": "draft",
+  "source_ref": "sd-15-006",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/what-protocol-does-online-gaming-use-to-transmit-data.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-protocol-does-online-gaming-use-to-transmit-data.md",
+    "blob_sha": "0fa77dbff080263160f686d4613facb218ac4490",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "cc82e22eaeb2a487e315e8d45fab9123cd935b5b77efadb1cc6fd0e7349af0eb",
+    "retrieved_body_bytes": 1726
+  },
+  "diagram": "../diagrams/sd-15-006-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-15-003",
+      "relation": "see_also",
+      "reason_vi": "Các nơi dùng UDP khác ngoài game."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "standards_and_docs_hosts_unreachable_from_authoring_environment"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "not_yet_reviewed"
+    },
+    "mobile": {
+      "status": "pending",
+      "reason": "figure_text_fit_checked_by_script; whole_lesson_browser_check_not_done",
+      "minimum_diagram_text_px_at_320": 14.4
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "TCP giao dòng byte theo thứ tự nên gói mất làm dữ liệu sau chờ (head-of-line blocking).",
+      "source": "https://www.rfc-editor.org/rfc/rfc9293"
+    },
+    {
+      "claim_vi": "Ứng dụng dùng UDP tự quyết cách gửi lại và thứ tự.",
+      "source": "https://www.rfc-editor.org/rfc/rfc8085"
+    },
+    {
+      "claim_vi": "Game thường tách dữ liệu thành loại cần tin cậy và loại không cần.",
+      "source": "https://gafferongames.com/post/udp_vs_tcp/"
+    },
+    {
+      "claim_vi": "Mô hình mạng của Source engine dùng UDP với trạng thái cập nhật liên tục.",
+      "source": "https://developer.valvesoftware.com/wiki/Source_Multiplayer_Networking"
+    },
+    {
+      "claim_vi": "QUIC chạy trên UDP và cung cấp nhiều luồng độc lập có gửi lại.",
+      "source": "https://www.rfc-editor.org/rfc/rfc9000"
+    }
+  ],
+  "design_notes_vi": "Ba khung dọc theo cùng một tình huống mất gói để so sánh TCP, UDP thuần và UDP cộng lớp tin cậy. Sơ đồ tự thiết kế, không dùng ảnh nguồn.",
+  "editorial_note_vi": "Viết độc lập từ kiến thức và tiêu chuẩn kỹ thuật theo DECISIONS.md; claim chưa được đối chiếu trực tiếp với tài liệu chuẩn nên chờ review kỹ thuật. Chưa thử người học hoặc phê duyệt phát hành.",
+  "source_deviations": [
+    "Không giữ câu 'RUDP cho độ trễ thấp hơn nhiều so với TCP và bảo đảm chính xác': RUDP không phải chuẩn duy nhất và lợi ích tùy thiết kế.",
+    "Kịch bản hình tự thiết kế (vị trí không gửi lại, sự kiện có ack), khác kịch bản ba nhân vật của nguồn."
+  ]
+}

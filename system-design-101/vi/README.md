@@ -17,6 +17,21 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 
 7. [Chính sách định tuyến lưu lượng Internet](lessons/sd-01-007/lesson.md) — có review tại repo cũ; chờ review tích hợp tại repo mới.
 
+## Nền tảng máy tính
+
+1. [Phân trang và phân đoạn](lessons/sd-15-001/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+2. [IPv4 và IPv6](lessons/sd-15-002/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+3. [Bốn nơi UDP thường được dùng](lessons/sd-15-003/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+4. [DNS tra cứu hoạt động thế nào?](lessons/sd-15-004/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+5. [Các loại bản ghi DNS cần biết](lessons/sd-15-005/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+6. [TCP hay UDP cho game online?](lessons/sd-15-006/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+7. [Deadlock là gì?](lessons/sd-15-007/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+8. [Tiến trình và luồng](lessons/sd-15-008/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+9. [Mô hình OSI](lessons/sd-15-009/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+10. [Hình dung một câu lệnh SQL](lessons/sd-15-010/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+11. [Tám giao thức mạng phổ biến](lessons/sd-15-011/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+12. [Cách học SQL](lessons/sd-15-012/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+
 Danh mục đầy đủ và snapshot nguồn: [bảng đối chiếu](../../brainstorm/system-design-101-vi/source-map.json).
 Quy tắc đã chốt: [kết luận brainstorm](../../brainstorm/system-design-101-vi/DECISIONS.md).
 Tiến độ từng đợt: [PROGRESS.md](PROGRESS.md).
@@ -42,6 +57,8 @@ và hình đạt; không coi đọc nguồn là mọi claim đã đúng, không 
 Tình huống thực tế → AI và học máy → Cơ sở dữ liệu và lưu trữ → Phỏng vấn kỹ thuật →
 Bộ nhớ đệm và hiệu năng → Thanh toán và công nghệ tài chính → Kiến trúc phần mềm →
 Công cụ và năng suất → Phát triển phần mềm → Đám mây và hệ thống phân tán →
-Hệ thống hoạt động thế nào? → DevOps và CI/CD → Bảo mật → Nền tảng máy tính.
+Hệ thống hoạt động thế nào? → DevOps và CI/CD → Bảo mật.
+
+Nhóm “Nền tảng máy tính” (cuối mục lục nguồn) được viết trước theo yêu cầu người dùng ngày 2026-10-13; các bài còn lại của nhóm “API và phát triển web” vẫn tiếp tục từ `sd-01-008`.
 
 `lessons/<id>/lesson.yaml` chỉ trỏ tới metadata JSON; không giữ bản sao trạng thái.

@@ -1,0 +1,67 @@
+{
+  "id": "sd-15-007",
+  "title_vi": "Deadlock là gì?",
+  "language": "vi",
+  "kind": "flow",
+  "content_status": "draft",
+  "source_ref": "sd-15-007",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/what-is-a-deadlock.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-is-a-deadlock.md",
+    "blob_sha": "97baedfcd3062c4aec8ba1d3cd4f7fd2af224998",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "17618dbd3a7f805f2c4863f53d9e5ec7b044354f74d74b52d4877cfe36718ab4",
+    "retrieved_body_bytes": 2016
+  },
+  "diagram": "../diagrams/sd-15-007-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "standards_and_docs_hosts_unreachable_from_authoring_environment"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "not_yet_reviewed"
+    },
+    "mobile": {
+      "status": "pending",
+      "reason": "figure_text_fit_checked_by_script; whole_lesson_browser_check_not_done",
+      "minimum_diagram_text_px_at_320": 14.4
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Bốn điều kiện cần của deadlock: loại trừ lẫn nhau, giữ và chờ, không cưỡng đoạt, chờ vòng tròn.",
+      "source": "https://doi.org/10.1145/356586.356588"
+    },
+    {
+      "claim_vi": "Khóa theo thứ tự cố định phá điều kiện chờ vòng tròn.",
+      "source": "https://pages.cs.wisc.edu/~remzi/OSTEP/threads-bugs.pdf"
+    },
+    {
+      "claim_vi": "PostgreSQL phát hiện deadlock và hủy một giao dịch liên quan.",
+      "source": "https://www.postgresql.org/docs/current/explicit-locking.html"
+    },
+    {
+      "claim_vi": "InnoDB phát hiện deadlock và rollback một giao dịch.",
+      "source": "https://dev.mysql.com/doc/refman/8.0/en/innodb-deadlocks.html"
+    }
+  ],
+  "design_notes_vi": "Ba khung dọc: vòng chờ, bốn điều kiện, cách xử lý. Sơ đồ tự thiết kế, không dùng ảnh nguồn.",
+  "editorial_note_vi": "Viết độc lập từ kiến thức và tiêu chuẩn kỹ thuật theo DECISIONS.md; claim chưa được đối chiếu trực tiếp với tài liệu chuẩn nên chờ review kỹ thuật. Chưa thử người học hoặc phê duyệt phát hành.",
+  "source_deviations": [
+    "Timeout được xếp vào xử lý thay vì phòng tránh như nguồn.",
+    "Ví dụ hai giao dịch chuyển tiền tự thiết kế."
+  ]
+}

@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 763" width="320" height="763" role="img" aria-labelledby="title desc">
+<title id="title">Deadlock: hai bên chờ nhau mãi</title>
+<desc id="desc">Giao dịch T1 giữ khóa A và xin khóa B. Giao dịch T2 giữ khóa B và xin khóa A. Mỗi bên chờ bên kia nên không ai tiến lên được. Deadlock cần bốn điều kiện cùng lúc: loại trừ lẫn nhau, giữ và chờ, không bị cưỡng đoạt, chờ vòng tròn. Khóa theo thứ tự cố định phá chờ vòng tròn; cơ sở dữ liệu còn có thể hủy một giao dịch để phá vòng.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="763" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">DEADLOCK</text>
+<text x="16" y="60" font-size="16" font-weight="normal">Mỗi bên giữ một thứ,</text>
+<text x="16" y="90" font-size="16" font-weight="normal">chờ thứ của bên kia</text>
+<rect x="16" y="112" width="288" height="212" rx="12" fill="#fee2e2" stroke="#94a3b8"/>
+<text x="30" y="142" font-size="16" font-weight="bold">Vòng chờ</text>
+<rect x="30" y="152" width="130.859" height="34" rx="7" fill="#ffffff" stroke="#64748b"/>
+<text x="95.4297" y="175" text-anchor="middle" font-size="16" font-weight="normal">T1 giữ A</text>
+<line x1="162.859" y1="169" x2="179.859" y2="169" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="184.859" y="152" width="105.141" height="34" rx="7" fill="#ffffff" stroke="#64748b"/>
+<text x="237.43" y="175" text-anchor="middle" font-size="16" font-weight="normal">xin B</text>
+<rect x="30" y="206" width="130.891" height="34" rx="7" fill="#ffffff" stroke="#64748b"/>
+<text x="95.4453" y="229" text-anchor="middle" font-size="16" font-weight="normal">T2 giữ B</text>
+<line x1="162.891" y1="223" x2="179.891" y2="223" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="184.891" y="206" width="105.109" height="34" rx="7" fill="#ffffff" stroke="#64748b"/>
+<text x="237.445" y="229" text-anchor="middle" font-size="16" font-weight="normal">xin A</text>
+<text x="30" y="277" font-size="16" font-weight="bold">T1 chờ T2, T2 chờ T1</text>
+<text x="30" y="304" font-size="16" font-weight="normal">Không ai tiến lên được</text>
+<line x1="160" y1="325" x2="160" y2="345" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="348" width="288" height="158" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="378" font-size="16" font-weight="bold">Cần cả bốn điều kiện</text>
+<text x="30" y="405" font-size="16" font-weight="normal">1 · Loại trừ lẫn nhau</text>
+<text x="30" y="432" font-size="16" font-weight="normal">2 · Giữ và chờ</text>
+<text x="30" y="459" font-size="16" font-weight="normal">3 · Không bị cưỡng đoạt</text>
+<text x="30" y="486" font-size="16" font-weight="normal">4 · Chờ vòng tròn</text>
+<line x1="160" y1="507" x2="160" y2="527" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="530" width="288" height="185" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="560" font-size="16" font-weight="bold">Cách xử lý</text>
+<text x="30" y="587" font-size="16" font-weight="bold">Phòng tránh</text>
+<text x="30" y="614" font-size="16" font-weight="normal">Mọi nơi khóa theo thứ tự A→B</text>
+<text x="30" y="641" font-size="16" font-weight="bold">Phát hiện + phục hồi</text>
+<text x="30" y="668" font-size="16" font-weight="normal">DB hủy một giao dịch;</text>
+<text x="30" y="695" font-size="16" font-weight="normal">ứng dụng thử lại</text>
+<text x="16" y="743" font-size="16" font-weight="normal">Phá một điều kiện là hết vòng.</text>
+</g></svg>

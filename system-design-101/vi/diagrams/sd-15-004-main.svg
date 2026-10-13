@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 665" width="320" height="665" role="img" aria-labelledby="title desc">
+<title id="title">Truy vấn DNS đi qua những đâu</title>
+<desc id="desc">Trình duyệt hỏi resolver về www.example.com. Nếu cache chưa có, resolver hỏi root server và nhận địa chỉ máy chủ của .com, hỏi máy chủ .com và nhận máy chủ tên của example.com, rồi hỏi máy chủ có thẩm quyền và nhận địa chỉ minh họa 192.0.2.10. Resolver trả địa chỉ cho trình duyệt và lưu cache theo TTL.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="665" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">DNS: TÊN → ĐỊA CHỈ</text>
+<text x="16" y="60" font-size="16" font-weight="normal">Ví dụ: www.example.com</text>
+<rect x="16" y="82" width="288" height="77" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="112" font-size="16" font-weight="bold">1 · Trình duyệt hỏi resolver</text>
+<text x="30" y="139" font-size="16" font-weight="normal">Cache còn hạn thì trả luôn</text>
+<line x1="160" y1="160" x2="160" y2="180" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="183" width="288" height="77" rx="12" fill="#e2e8f0" stroke="#94a3b8"/>
+<text x="30" y="213" font-size="16" font-weight="bold">2 · Resolver hỏi root</text>
+<text x="30" y="240" font-size="16" font-weight="normal">Root: hỏi máy chủ .com nhé</text>
+<line x1="160" y1="261" x2="160" y2="281" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="284" width="288" height="104" rx="12" fill="#e2e8f0" stroke="#94a3b8"/>
+<text x="30" y="314" font-size="16" font-weight="bold">3 · Resolver hỏi .com</text>
+<text x="30" y="341" font-size="16" font-weight="normal">TLD chỉ tới máy chủ tên</text>
+<text x="30" y="368" font-size="16" font-weight="normal">của example.com</text>
+<line x1="160" y1="389" x2="160" y2="409" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="412" width="288" height="77" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="442" font-size="16" font-weight="bold">4 · Hỏi máy chủ thẩm quyền</text>
+<text x="30" y="469" font-size="16" font-weight="normal">Trả bản ghi A: 192.0.2.10</text>
+<line x1="160" y1="490" x2="160" y2="510" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="513" width="288" height="104" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="543" font-size="16" font-weight="bold">5 · Resolver trả lời</text>
+<text x="30" y="570" font-size="16" font-weight="normal">Lưu cache theo TTL</text>
+<text x="30" y="597" font-size="16" font-weight="normal">Trình duyệt nhận địa chỉ</text>
+<text x="16" y="645" font-size="16" font-weight="normal">Địa chỉ trong hình là ví dụ.</text>
+</g></svg>

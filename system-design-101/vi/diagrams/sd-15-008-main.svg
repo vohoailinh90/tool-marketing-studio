@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 705" width="320" height="705" role="img" aria-labelledby="title desc">
+<title id="title">Chương trình, tiến trình và luồng</title>
+<desc id="desc">Chương trình là file nằm trên đĩa. Khi chạy, hệ điều hành tạo tiến trình có không gian bộ nhớ riêng. Một tiến trình có một hoặc nhiều luồng; các luồng dùng chung bộ nhớ của tiến trình nhưng mỗi luồng có stack và thanh ghi riêng. Hai tiến trình tách biệt hơn, còn các luồng chia sẻ dữ liệu dễ hơn nhưng phải cẩn thận với race condition.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="705" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">TIẾN TRÌNH</text>
+<text x="16" y="56" font-size="20" font-weight="bold">VÀ LUỒNG</text>
+<text x="16" y="86" font-size="16" font-weight="normal">Chương trình → tiến trình → luồng</text>
+<rect x="16" y="108" width="288" height="77" rx="12" fill="#e2e8f0" stroke="#94a3b8"/>
+<text x="30" y="138" font-size="16" font-weight="bold">Chương trình</text>
+<text x="30" y="165" font-size="16" font-weight="normal">File chạy được nằm trên đĩa</text>
+<line x1="160" y1="186" x2="160" y2="206" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="209" width="288" height="212" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="239" font-size="16" font-weight="bold">Tiến trình · đang chạy</text>
+<text x="30" y="266" font-size="16" font-weight="normal">Không gian bộ nhớ riêng</text>
+<rect x="30" y="276" width="118" height="34" rx="7" fill="#ffffff" stroke="#64748b"/>
+<text x="89" y="299" text-anchor="middle" font-size="16" font-weight="normal">Luồng 1</text>
+<line x1="150" y1="293" x2="167" y2="293" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="172" y="276" width="118" height="34" rx="7" fill="#ffffff" stroke="#64748b"/>
+<text x="231" y="299" text-anchor="middle" font-size="16" font-weight="normal">Luồng 2</text>
+<text x="30" y="347" font-size="16" font-weight="normal">Mỗi luồng có stack và</text>
+<text x="30" y="374" font-size="16" font-weight="normal">thanh ghi riêng</text>
+<text x="30" y="401" font-size="16" font-weight="normal">Chung: mã, heap, file đang mở</text>
+<line x1="160" y1="422" x2="160" y2="442" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="445" width="288" height="212" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="475" font-size="16" font-weight="bold">So sánh nhanh</text>
+<text x="30" y="502" font-size="16" font-weight="bold">Bộ nhớ</text>
+<text x="116" y="502" font-size="16" font-weight="normal">tiến trình: riêng</text>
+<text x="116" y="529" font-size="16" font-weight="normal">luồng: chung heap</text>
+<text x="30" y="556" font-size="16" font-weight="bold">Lỗi</text>
+<text x="116" y="556" font-size="16" font-weight="normal">tiến trình: cô lập</text>
+<text x="116" y="583" font-size="16" font-weight="normal">luồng: có thể kéo</text>
+<text x="116" y="610" font-size="16" font-weight="normal">cả tiến trình</text>
+<text x="30" y="637" font-size="16" font-weight="bold">Chuyển</text>
+<text x="116" y="637" font-size="16" font-weight="normal">luồng thường nhẹ hơn</text>
+<text x="16" y="685" font-size="16" font-weight="normal">Chia sẻ bộ nhớ → cần khóa.</text>
+</g></svg>

@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 802" width="320" height="802" role="img" aria-labelledby="title desc">
+<title id="title">IPv4 và IPv6 khác nhau ở đâu</title>
+<desc id="desc">IPv4 dùng địa chỉ 32 bit, khoảng 4,3 tỷ giá trị, ví dụ 192.0.2.12. IPv6 dùng 128 bit, ví dụ 2001:db8::1. Tiêu đề IPv4 tối thiểu 20 byte và có checksum; tiêu đề IPv6 cố định 40 byte, không có checksum và mở rộng bằng extension header. Dual stack chạy cả hai giao thức cùng lúc để chuyển đổi dần.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="802" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">IPv4 VS IPv6</text>
+<text x="16" y="60" font-size="16" font-weight="normal">Cùng việc: định danh và chuyển</text>
+<text x="16" y="90" font-size="16" font-weight="normal">gói tin giữa các mạng</text>
+<rect x="16" y="112" width="288" height="185" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="142" font-size="16" font-weight="bold">Địa chỉ</text>
+<text x="30" y="169" font-size="16" font-weight="bold">IPv4</text>
+<text x="94" y="169" font-size="16" font-weight="normal">32 bit · ≈ 4,3 tỷ</text>
+<text x="94" y="196" font-size="16" font-weight="normal">192.0.2.12</text>
+<text x="30" y="223" font-size="16" font-weight="bold">IPv6</text>
+<text x="94" y="223" font-size="16" font-weight="normal">128 bit · ≈ 3,4×10³⁸</text>
+<text x="94" y="250" font-size="16" font-weight="normal">2001:db8::1</text>
+<text x="30" y="277" font-size="16" font-weight="normal">IPv6 rút gọn: bỏ số 0 đầu, một ::</text>
+<line x1="160" y1="298" x2="160" y2="324" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="327" width="288" height="212" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="357" font-size="16" font-weight="bold">Tiêu đề gói tin</text>
+<text x="30" y="384" font-size="16" font-weight="bold">IPv4</text>
+<text x="94" y="384" font-size="16" font-weight="normal">≥ 20 byte, dài thay đổi</text>
+<text x="94" y="411" font-size="16" font-weight="normal">có header checksum</text>
+<text x="30" y="438" font-size="16" font-weight="bold">IPv6</text>
+<text x="94" y="438" font-size="16" font-weight="normal">đúng 40 byte</text>
+<text x="94" y="465" font-size="16" font-weight="normal">không có checksum</text>
+<text x="94" y="492" font-size="16" font-weight="normal">có extension header</text>
+<text x="30" y="519" font-size="16" font-weight="normal">Router IPv6 không phân mảnh</text>
+<line x1="160" y1="540" x2="160" y2="566" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="569" width="288" height="185" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="599" font-size="16" font-weight="bold">Chuyển đổi: dual stack</text>
+<rect x="30" y="609" width="94.6875" height="34" rx="7" fill="#ffffff" stroke="#64748b"/>
+<text x="77.3438" y="632" text-anchor="middle" font-size="16" font-weight="normal">Máy</text>
+<line x1="126.688" y1="626" x2="143.688" y2="626" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="148.688" y="609" width="141.312" height="34" rx="7" fill="#ffffff" stroke="#64748b"/>
+<text x="219.344" y="632" text-anchor="middle" font-size="16" font-weight="normal">A + AAAA</text>
+<text x="30" y="680" font-size="16" font-weight="normal">Máy chạy cả hai giao thức</text>
+<text x="30" y="707" font-size="16" font-weight="normal">DNS trả A (v4), AAAA (v6)</text>
+<text x="30" y="734" font-size="16" font-weight="normal">Máy thử địa chỉ nào dùng được</text>
+<text x="16" y="782" font-size="16" font-weight="normal">IPv6 không tự nhanh hơn.</text>
+</g></svg>

@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 702" width="320" height="702" role="img" aria-labelledby="title desc">
+<title id="title">Tám loại bản ghi DNS thường gặp</title>
+<desc id="desc">A trỏ tên tới địa chỉ IPv4; AAAA trỏ tới IPv6; CNAME đặt tên này là bí danh của tên khác; MX chỉ máy chủ nhận thư; NS chỉ máy chủ tên của vùng; TXT chứa văn bản như xác minh miền hay chính sách thư; PTR tra ngược từ địa chỉ IP ra tên; SRV chỉ máy chủ và cổng của một dịch vụ.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="702" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">BẢN GHI DNS</text>
+<text x="16" y="60" font-size="16" font-weight="normal">Tên nào → trả lời gì</text>
+<rect x="16" y="82" width="288" height="158" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="112" font-size="16" font-weight="bold">Trỏ tới địa chỉ</text>
+<text x="30" y="139" font-size="16" font-weight="bold">A</text>
+<text x="92" y="139" font-size="16" font-weight="normal">tên → IPv4</text>
+<text x="30" y="166" font-size="16" font-weight="bold">AAAA</text>
+<text x="92" y="166" font-size="16" font-weight="normal">tên → IPv6</text>
+<text x="30" y="193" font-size="16" font-weight="bold">CNAME</text>
+<text x="110" y="193" font-size="16" font-weight="normal">tên → tên khác</text>
+<text x="110" y="220" font-size="16" font-weight="normal">(bí danh)</text>
+<line x1="160" y1="241" x2="160" y2="259" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="262" width="288" height="158" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="292" font-size="16" font-weight="bold">Thư và vùng</text>
+<text x="30" y="319" font-size="16" font-weight="bold">MX</text>
+<text x="92" y="319" font-size="16" font-weight="normal">máy chủ nhận</text>
+<text x="92" y="346" font-size="16" font-weight="normal">thư của miền</text>
+<text x="30" y="373" font-size="16" font-weight="bold">NS</text>
+<text x="92" y="373" font-size="16" font-weight="normal">máy chủ tên</text>
+<text x="92" y="400" font-size="16" font-weight="normal">của vùng</text>
+<line x1="160" y1="421" x2="160" y2="439" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="442" width="288" height="212" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="472" font-size="16" font-weight="bold">Thông tin thêm</text>
+<text x="30" y="499" font-size="16" font-weight="bold">TXT</text>
+<text x="92" y="499" font-size="16" font-weight="normal">văn bản: xác minh,</text>
+<text x="92" y="526" font-size="16" font-weight="normal">chính sách thư</text>
+<text x="30" y="553" font-size="16" font-weight="bold">PTR</text>
+<text x="92" y="553" font-size="16" font-weight="normal">địa chỉ IP → tên</text>
+<text x="92" y="580" font-size="16" font-weight="normal">(tra ngược)</text>
+<text x="30" y="607" font-size="16" font-weight="bold">SRV</text>
+<text x="92" y="607" font-size="16" font-weight="normal">máy chủ + cổng</text>
+<text x="92" y="634" font-size="16" font-weight="normal">của một dịch vụ</text>
+<text x="16" y="682" font-size="16" font-weight="normal">Mỗi bản ghi có TTL riêng.</text>
+</g></svg>

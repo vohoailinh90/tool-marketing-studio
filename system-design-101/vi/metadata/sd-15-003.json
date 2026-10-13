@@ -1,0 +1,76 @@
+{
+  "id": "sd-15-003",
+  "title_vi": "Bốn nơi UDP thường được dùng",
+  "language": "vi",
+  "kind": "reference",
+  "content_status": "draft",
+  "source_ref": "sd-15-003",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/top-4-most-popular-use-cases-for-udp.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-4-most-popular-use-cases-for-udp.md",
+    "blob_sha": "7aecbf6d78cdf1837fda6f94e6a7b30072a36bb0",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "44767c0bb740bf6ebab4880a88e01a90bfd5d8fa0424ff24bd8e86f600593b6d",
+    "retrieved_body_bytes": 1237
+  },
+  "diagram": "../diagrams/sd-15-003-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-15-006",
+      "relation": "see_also",
+      "reason_vi": "Game online là một cách dùng UDP có thêm lớp tin cậy."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "standards_and_docs_hosts_unreachable_from_authoring_environment"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "not_yet_reviewed"
+    },
+    "mobile": {
+      "status": "pending",
+      "reason": "figure_text_fit_checked_by_script; whole_lesson_browser_check_not_done",
+      "minimum_diagram_text_px_at_320": 14.4
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "UDP gửi datagram độc lập, tiêu đề 8 byte, không bảo đảm giao hay thứ tự.",
+      "source": "https://www.rfc-editor.org/rfc/rfc768"
+    },
+    {
+      "claim_vi": "Ứng dụng dùng UDP phải tự xử lý mất gói, thứ tự và kiểm soát tắc nghẽn khi cần.",
+      "source": "https://www.rfc-editor.org/rfc/rfc8085"
+    },
+    {
+      "claim_vi": "DNS dùng UDP cho truy vấn thường và TCP khi câu đáp bị cắt hoặc cho các thao tác lớn.",
+      "source": "https://www.rfc-editor.org/rfc/rfc7766"
+    },
+    {
+      "claim_vi": "IP multicast gửi một gói cho nhiều bên nhận trong mạng hỗ trợ.",
+      "source": "https://www.rfc-editor.org/rfc/rfc1112"
+    },
+    {
+      "claim_vi": "CoAP là giao thức ứng dụng cho thiết bị nhỏ chạy trên UDP.",
+      "source": "https://www.rfc-editor.org/rfc/rfc7252"
+    }
+  ],
+  "design_notes_vi": "Bốn khung dọc cùng cấu trúc, một ý chính mỗi khung. Sơ đồ tự thiết kế, không dùng ảnh nguồn.",
+  "editorial_note_vi": "Viết độc lập từ kiến thức và tiêu chuẩn kỹ thuật theo DECISIONS.md; claim chưa được đối chiếu trực tiếp với tài liệu chuẩn nên chờ review kỹ thuật. Chưa thử người học hoặc phê duyệt phát hành.",
+  "source_deviations": [
+    "Chỉ giữ bốn nhóm ứng dụng của nguồn; thêm giới hạn: UDP không tự nhanh hơn, không phải IoT nào cũng dùng UDP."
+  ]
+}

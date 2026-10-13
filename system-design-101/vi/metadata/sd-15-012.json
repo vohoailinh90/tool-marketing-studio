@@ -1,0 +1,62 @@
+{
+  "id": "sd-15-012",
+  "title_vi": "Cách học SQL",
+  "language": "vi",
+  "kind": "howto",
+  "content_status": "draft",
+  "source_ref": "sd-15-012",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/what-is-the-best-way-to-learn-sql.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-is-the-best-way-to-learn-sql.md",
+    "blob_sha": "79a576c5e8111bb1a01ad39d80a9eecf6b4bb5d3",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "2307ec2fc0b6837afb2bcc7bb2b06af06286d3f0409589d80e4bc418f11a7aab",
+    "retrieved_body_bytes": 1216
+  },
+  "diagram": "../diagrams/sd-15-012-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "standards_and_docs_hosts_unreachable_from_authoring_environment"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "not_yet_reviewed"
+    },
+    "mobile": {
+      "status": "pending",
+      "reason": "figure_text_fit_checked_by_script; whole_lesson_browser_check_not_done",
+      "minimum_diagram_text_px_at_320": 14.4
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "SQL thường được chia thành DDL, DQL, DML, DCL, TCL để học; cách phân nhóm khác nhau theo tài liệu.",
+      "source": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Types-of-SQL-Statements.html"
+    },
+    {
+      "claim_vi": "Chuẩn SQL do ISO/IEC 9075 duy trì và có nhiều bản; hệ quản trị hỗ trợ một phần.",
+      "source": "https://www.postgresql.org/docs/current/features.html"
+    },
+    {
+      "claim_vi": "Giao dịch dùng BEGIN, COMMIT, ROLLBACK.",
+      "source": "https://www.postgresql.org/docs/current/tutorial-transactions.html"
+    }
+  ],
+  "design_notes_vi": "Ba khung dọc: năm nhóm lệnh, lộ trình, chọn trọng tâm theo vai trò. Sơ đồ tự thiết kế, không dùng ảnh nguồn.",
+  "editorial_note_vi": "Viết độc lập từ kiến thức và tiêu chuẩn kỹ thuật theo DECISIONS.md; claim chưa được đối chiếu trực tiếp với tài liệu chuẩn nên chờ review kỹ thuật. Chưa thử người học hoặc phê duyệt phát hành.",
+  "source_deviations": [
+    "Không giữ nhận định 'chuẩn mới nhất là ANSI SQL 2016' của nguồn vì đã có bản mới hơn."
+  ]
+}

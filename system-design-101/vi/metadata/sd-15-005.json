@@ -1,0 +1,66 @@
+{
+  "id": "sd-15-005",
+  "title_vi": "Các loại bản ghi DNS cần biết",
+  "language": "vi",
+  "kind": "reference",
+  "content_status": "draft",
+  "source_ref": "sd-15-005",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/dns-record-types-you-should-know.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/dns-record-types-you-should-know.md",
+    "blob_sha": "5ace65bb57cbbf0c17de9639eeaf17d51b8eea1c",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "4327b4e090f81e3e58d63ca7fbef61388deaeff1ba22239da0f546bfd2086546",
+    "retrieved_body_bytes": 1664
+  },
+  "diagram": "../diagrams/sd-15-005-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "standards_and_docs_hosts_unreachable_from_authoring_environment"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "not_yet_reviewed"
+    },
+    "mobile": {
+      "status": "pending",
+      "reason": "figure_text_fit_checked_by_script; whole_lesson_browser_check_not_done",
+      "minimum_diagram_text_px_at_320": 14.4
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "A, NS, CNAME, PTR, MX, TXT được định nghĩa trong RFC 1035; AAAA trong RFC 3596; SRV trong RFC 2782.",
+      "source": "https://www.rfc-editor.org/rfc/rfc1035"
+    },
+    {
+      "claim_vi": "Tên có CNAME không được có bản ghi loại khác cùng tên.",
+      "source": "https://www.rfc-editor.org/rfc/rfc2181"
+    },
+    {
+      "claim_vi": "SPF dùng bản ghi TXT.",
+      "source": "https://www.rfc-editor.org/rfc/rfc7208"
+    },
+    {
+      "claim_vi": "SRV chỉ tên máy chủ và cổng của dịch vụ; tên đó cần có A hoặc AAAA.",
+      "source": "https://www.rfc-editor.org/rfc/rfc2782"
+    }
+  ],
+  "design_notes_vi": "Ba nhóm khung dọc; mỗi bản ghi một dòng 'loại → trả lời gì'. Sơ đồ tự thiết kế, không dùng ảnh nguồn.",
+  "editorial_note_vi": "Viết độc lập từ kiến thức và tiêu chuẩn kỹ thuật theo DECISIONS.md; claim chưa được đối chiếu trực tiếp với tài liệu chuẩn nên chờ review kỹ thuật. Chưa thử người học hoặc phê duyệt phát hành.",
+  "source_deviations": [
+    "Không giữ ý 'CNAME giấu tên miền thật' và 'PTR xác thực máy chủ' của nguồn vì không chính xác."
+  ]
+}

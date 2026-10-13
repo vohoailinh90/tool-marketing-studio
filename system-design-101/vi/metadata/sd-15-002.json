@@ -1,0 +1,70 @@
+{
+  "id": "sd-15-002",
+  "title_vi": "IPv4 và IPv6",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "draft",
+  "source_ref": "sd-15-002",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/ipv4-vs-ipv6.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/ipv4-vs-ipv6.md",
+    "blob_sha": "ec5164b8666be78bd8c3484820029dbe4ebe8ba2",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "1ab00110473594156d8ad6568b84a2d595333e8d041dfe5ec04971f54a4906e1",
+    "retrieved_body_bytes": 2325
+  },
+  "diagram": "../diagrams/sd-15-002-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "standards_and_docs_hosts_unreachable_from_authoring_environment"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "not_yet_reviewed"
+    },
+    "mobile": {
+      "status": "pending",
+      "reason": "figure_text_fit_checked_by_script; whole_lesson_browser_check_not_done",
+      "minimum_diagram_text_px_at_320": 14.4
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "IPv4 có địa chỉ 32 bit; IPv6 có địa chỉ 128 bit và quy tắc rút gọn (bỏ số 0 đầu, một ::).",
+      "source": "https://www.rfc-editor.org/rfc/rfc4291"
+    },
+    {
+      "claim_vi": "Tiêu đề IPv4 tối thiểu 20 byte, có header checksum; tiêu đề IPv6 cố định 40 byte, không có checksum, dùng extension header.",
+      "source": "https://www.rfc-editor.org/rfc/rfc8200"
+    },
+    {
+      "claim_vi": "Router không phân mảnh gói IPv6; chỉ máy gửi phân mảnh.",
+      "source": "https://www.rfc-editor.org/rfc/rfc8200"
+    },
+    {
+      "claim_vi": "192.0.2.0/24 và 2001:db8::/32 là dải dành cho tài liệu.",
+      "source": "https://www.rfc-editor.org/rfc/rfc5737"
+    },
+    {
+      "claim_vi": "Happy Eyeballs thử song song IPv6 và IPv4.",
+      "source": "https://www.rfc-editor.org/rfc/rfc8305"
+    }
+  ],
+  "design_notes_vi": "Ba khung dọc: địa chỉ, tiêu đề, chuyển đổi. Địa chỉ ví dụ lấy từ dải tài liệu. Sơ đồ tự thiết kế, không dùng ảnh nguồn.",
+  "editorial_note_vi": "Viết độc lập từ kiến thức và tiêu chuẩn kỹ thuật theo DECISIONS.md; claim chưa được đối chiếu trực tiếp với tài liệu chuẩn nên chờ review kỹ thuật. Chưa thử người học hoặc phê duyệt phát hành.",
+  "source_deviations": [
+    "Không giữ câu 'dual stack là một trong những cách tốt nhất' của nguồn; hiệu quả tùy hạ tầng."
+  ]
+}

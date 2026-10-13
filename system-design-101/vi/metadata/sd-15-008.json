@@ -1,0 +1,66 @@
+{
+  "id": "sd-15-008",
+  "title_vi": "Tiến trình và luồng",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "draft",
+  "source_ref": "sd-15-008",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/what-is-the-difference-between-process-and-thread.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-is-the-difference-between-process-and-thread.md",
+    "blob_sha": "99619e02b5e439bfdd797a1d7eaba5e1dba91cc2",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "882ab942a4c9ffc0f5a660ed0aec7236e84d81658c2c06be7d334b1134e11bfe",
+    "retrieved_body_bytes": 1916
+  },
+  "diagram": "../diagrams/sd-15-008-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "standards_and_docs_hosts_unreachable_from_authoring_environment"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "not_yet_reviewed"
+    },
+    "mobile": {
+      "status": "pending",
+      "reason": "figure_text_fit_checked_by_script; whole_lesson_browser_check_not_done",
+      "minimum_diagram_text_px_at_320": 14.4
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Tiến trình có không gian địa chỉ riêng; các luồng trong tiến trình dùng chung bộ nhớ nhưng có stack và thanh ghi riêng.",
+      "source": "https://pages.cs.wisc.edu/~remzi/OSTEP/threads-intro.pdf"
+    },
+    {
+      "claim_vi": "Chương trình là file trên đĩa; tiến trình là chương trình đang chạy.",
+      "source": "https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-intro.pdf"
+    },
+    {
+      "claim_vi": "Hai luồng cùng ghi biến chung không đồng bộ gây race condition.",
+      "source": "https://pages.cs.wisc.edu/~remzi/OSTEP/threads-intro.pdf"
+    },
+    {
+      "claim_vi": "Trên Linux, luồng tạo bằng clone với cờ chia sẻ bộ nhớ.",
+      "source": "https://man7.org/linux/man-pages/man2/clone.2.html"
+    }
+  ],
+  "design_notes_vi": "Ba khung dọc: chương trình, tiến trình chứa luồng, so sánh nhanh. Sơ đồ tự thiết kế, không dùng ảnh nguồn.",
+  "editorial_note_vi": "Viết độc lập từ kiến thức và tiêu chuẩn kỹ thuật theo DECISIONS.md; claim chưa được đối chiếu trực tiếp với tài liệu chuẩn nên chờ review kỹ thuật. Chưa thử người học hoặc phê duyệt phát hành.",
+  "source_deviations": [
+    "Không giữ ví dụ 'mỗi tab Chrome một tiến trình' vì cách chia đổi theo phiên bản."
+  ]
+}

@@ -86,7 +86,7 @@
       "claim_vi": "Bộ cân bằng tải tầng kết nối có thể chuyển tiếp lưu lượng mã hóa mà không giải mã, còn bộ cân bằng tải tầng HTTP phải giải mã mới đọc được header.",
       "sources": [
         "https://docs.nginx.com/nginx/admin-guide/load-balancer/tcp-udp-load-balancer/",
-        "https://docs.haproxy.org/"
+        "https://nginx.org/en/docs/stream/ngx_stream_ssl_preread_module.html"
       ]
     }
   ],

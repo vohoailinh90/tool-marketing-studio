@@ -12,7 +12,7 @@
 4. **Cách A, bộ cân bằng tải tầng HTTP tới thẳng dịch vụ:** mỗi dịch vụ tự lo xác thực và giới hạn tốc độ. Linh hoạt vì mỗi dịch vụ chọn luật riêng, nhưng việc bị lặp lại ở mọi dịch vụ và dễ lệch giữa các nhóm.
 5. **Cách B, qua API gateway:** việc chung làm một lần ở cửa nên dịch vụ nhẹ hơn và chính sách thống nhất. Đổi lại có thêm một chặng, gateway thành điểm tập trung cần được nhân bản, và kém linh hoạt khi một dịch vụ cần luật riêng.
 
-Hai cách không loại trừ nhau. Thường gặp là một bộ cân bằng tải đứng trước các bản sao của gateway, gateway chọn dịch vụ, và mỗi dịch vụ lại có bộ cân bằng tải riêng cho các bản sao của nó.
+Hai cách không loại trừ nhau. Có thể xếp nối tiếp: một bộ cân bằng tải đứng trước các bản sao của gateway, gateway chọn dịch vụ, và mỗi dịch vụ lại có bộ cân bằng tải riêng cho các bản sao của nó.
 
 ## Giới hạn cần nhớ
 
@@ -44,6 +44,6 @@ Chưa chắc. Bộ cân bằng tải tầng HTTP đã định tuyến được t
 - [ByteByteGo tại snapshot cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-are-the-differences-between-a-load-balancer-and-an-api-gateway.md).
 - [AWS — Elastic Load Balancing](https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/what-is-load-balancing.html) và [AWS — API Gateway](https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html).
 - [Azure — API gateway pattern](https://learn.microsoft.com/en-us/azure/architecture/microservices/design/gateway) và [Backends for Frontends](https://learn.microsoft.com/en-us/azure/architecture/patterns/backends-for-frontends).
-- [NGINX — Cân bằng tải TCP và UDP](https://docs.nginx.com/nginx/admin-guide/load-balancer/tcp-udp-load-balancer/) và [HAProxy — tài liệu](https://docs.haproxy.org/).
+- [NGINX — Cân bằng tải TCP và UDP](https://docs.nginx.com/nginx/admin-guide/load-balancer/tcp-udp-load-balancer/) và [NGINX — ssl_preread](https://nginx.org/en/docs/stream/ngx_stream_ssl_preread_module.html).
 
 Đã đọc bản nguồn ByteByteGo ngày 2026-10-13; các tài liệu nêu trên chưa được mở để đối chiếu trực tiếp trong lượt biên soạn này. Bài viết và hình được thiết kế độc lập.

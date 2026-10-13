@@ -2,13 +2,13 @@
 
 **Giao thức là thỏa thuận về cách hai bên nói chuyện.** Tám cái dưới đây hay bị trộn lẫn vì chúng xếp chồng lên nhau: cái trên mượn cái dưới để chuyển dữ liệu.
 
-![Ba khung dọc: trên TCP gồm HTTP lấy tài nguyên web (bản 1.1 và 2), HTTPS là HTTP trong TLS và cũng áp dụng cho HTTP/3, WebSocket bắt tay bằng HTTP rồi hai chiều và cũng chạy trên HTTP/3, SMTP chuyển thư, FTP chuyển file bằng kênh điều khiển và kênh dữ liệu; trên UDP gồm UDP gửi gói không kết nối và HTTP/3 chạy trên QUIC trên UDP; nền gồm TCP kết nối, giao đủ, đúng thứ tự.](../../diagrams/sd-15-011-main.svg)
+![Ba khung dọc: trên TCP gồm HTTP lấy tài nguyên web (bản 1.1 và 2), HTTPS là HTTP trong TLS cho bản 1.1 và 2, WebSocket bắt tay bằng HTTP rồi hai chiều và cũng chạy trên HTTP/3, SMTP chuyển thư, FTP chuyển file bằng kênh điều khiển và kênh dữ liệu; trên UDP gồm UDP gửi gói không kết nối và HTTP/3 chạy trên QUIC trên UDP và QUIC đã gồm TLS 1.3; nền gồm TCP kết nối, giao đủ, đúng thứ tự.](../../diagrams/sd-15-011-main.svg)
 
 ## Đọc hình
 
 - **TCP:** tạo kết nối, giao dữ liệu đủ và đúng thứ tự. Nhiều giao thức ứng dụng chạy trên đó.
 - **HTTP:** cách lấy tài nguyên web; mô hình client hỏi, server đáp.
-- **HTTPS:** HTTP chạy trong kênh được mã hóa bởi TLS: trên TCP với HTTP/1.1 và HTTP/2, hoặc trong QUIC với HTTP/3 (nơi TLS 1.3 là một phần của QUIC).
+- **HTTPS:** HTTP được bảo vệ bằng mã hóa. Với HTTP/1.1 và HTTP/2, HTTP chạy trong kênh TLS trên TCP. Với HTTP/3, HTTP chạy thẳng trên các luồng QUIC; QUIC tích hợp bắt tay TLS 1.3 và dùng khóa của nó để bảo vệ gói, nên HTTP/3 không nằm trong lớp bản ghi TLS riêng.
 - **WebSocket:** bắt đầu bằng yêu cầu HTTP rồi nâng lên kênh hai chiều, cho phép server chủ động đẩy dữ liệu. Chạy trên TCP với HTTP/1.1 và HTTP/2, hoặc trên một luồng của kết nối HTTP/3 (QUIC).
 - **SMTP:** chuyển thư điện tử giữa các máy chủ thư (và từ ứng dụng gửi lên máy chủ thư).
 - **FTP:** chuyển file; dùng một kết nối điều khiển và một kết nối dữ liệu riêng.
@@ -33,7 +33,7 @@ Với HTTP/1.1, bắt đầu bằng một yêu cầu HTTP xin nâng cấp lên W
 <details>
 <summary>Xem sâu hơn</summary>
 
-- **HTTPS không phải giao thức riêng hoàn toàn:** là HTTP đặt trong TLS; cổng mặc định khác.
+- **HTTPS không phải giao thức riêng hoàn toàn:** là HTTP được bảo vệ bằng TLS (đặt trong TLS trên TCP, hoặc chạy trên QUIC với HTTP/3); cổng mặc định khác.
 - **SMTP:** máy chủ với máy chủ thường dùng cổng 25; ứng dụng gửi thư thường qua cổng submission 587.
 - **FTP:** kênh điều khiển gửi lệnh, kênh dữ liệu mang file; chế độ chủ động và bị động khác nhau ở bên nào mở kênh dữ liệu.
 - **QUIC:** tích hợp TLS 1.3 và nhiều luồng độc lập trong một kết nối.

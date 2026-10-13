@@ -10,7 +10,7 @@
 
 **Bố cục.** Cùng một nút, bản dịch có thể dài gấp đôi bản gốc; chừa chỗ, cho phép xuống dòng, giữ nhãn nút ngắn.
 
-**Múi giờ.** Lưu thời điểm theo UTC; chuyển sang giờ địa phương chỉ khi hiển thị.
+**Múi giờ.** Với thời điểm đã xảy ra, như giờ đặt hàng, lưu theo UTC và chỉ chuyển sang giờ địa phương khi hiển thị. Với lịch hẹn trong tương lai tính theo giờ địa phương, lưu kèm tên múi giờ (ví dụ Asia/Ho_Chi_Minh), vì quy tắc múi giờ có thể đổi trước ngày hẹn.
 
 **Tiền tệ.** Tách tiền hiển thị với tiền thanh toán; cần dịch vụ quy đổi tỷ giá để báo giá.
 

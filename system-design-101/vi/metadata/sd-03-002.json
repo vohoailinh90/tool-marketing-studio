@@ -1,0 +1,98 @@
+{
+  "id": "sd-03-002",
+  "title_vi": "Các thuật ngữ dữ liệu cốt lõi",
+  "language": "vi",
+  "kind": "reference",
+  "content_status": "review",
+  "source_ref": "sd-03-002",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/key-data-terms.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/key-data-terms.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches provider tree OID. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "5ddcfd6f7c57afdbfb9eb0d66c0d770633f0af68",
+    "retrieved_body_sha256": "ef2567d3273a594987d7947c679d521524f88dfc3748349e81204df84915d5b2",
+    "retrieved_body_bytes": 1283
+  },
+  "diagram": "../diagrams/sd-03-002-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-03-007",
+      "relation": "uses",
+      "reason_vi": "Pipeline là đường dẫn dữ liệu vào lake và warehouse."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "evidence": "Google Cloud pages and the Delta Lake README were opened; the data mesh principles come from search excerpts (Fowler's page was unreachable)."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 14.4,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright) rendered the full lesson at each width with optional sections open; diagram scale measured from the rendered image and every SVG text box checked against the viewBox. Not learner testing and not GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "A data lake stores structured, semi-structured and unstructured data in its native format.",
+      "source": "https://cloud.google.com/learn/what-is-a-data-lake",
+      "section": "What is a Data Lake?",
+      "verified_by": "Page opened and read."
+    },
+    {
+      "claim_vi": "A data warehouse is an enterprise system for analysis and reporting of data from multiple sources, holding current and historical data.",
+      "source": "https://cloud.google.com/learn/what-is-a-data-warehouse",
+      "section": "Data warehouse defined",
+      "verified_by": "Page opened and read."
+    },
+    {
+      "claim_vi": "Delta Lake is an open-source storage framework for building a lakehouse; its ACID guarantees rest on guarantees of the underlying storage system.",
+      "source": "https://github.com/delta-io/delta",
+      "section": "README",
+      "verified_by": "README read from a clone of the repository."
+    },
+    {
+      "claim_vi": "Data mesh is an organizational approach with four principles: domain ownership, data as a product, self-serve platform, federated computational governance.",
+      "source": "https://martinfowler.com/articles/data-mesh-principles.html",
+      "section": "Principles",
+      "verified_by": "Search-result excerpt only; the page itself was not opened (host blocked in the authoring environment)."
+    },
+    {
+      "claim_vi": "A data mart is commonly a subset of a warehouse for one group; the source describes it that way and the lesson hedges with 'thường là'.",
+      "source": "https://cloud.google.com/learn/what-is-a-data-warehouse",
+      "section": "Data warehouse defined",
+      "verified_by": "Not stated on the opened page; carried from the source with a hedge."
+    }
+  ],
+  "design_notes_vi": "Sáu thuật ngữ xếp theo bốn câu hỏi để thấy chúng không cùng loại; thẻ mesh dùng màu và chữ nhấn là cách tổ chức. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Source calls a data lake a pool of unstructured data; Google Cloud describes structured, semi-structured and unstructured data, so the lesson uses the broader statement.",
+    "Source says Delta Lake unifies batch and streaming; that claim was not checked against Delta documentation and is omitted."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

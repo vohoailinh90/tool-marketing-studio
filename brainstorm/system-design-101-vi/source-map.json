@@ -853,31 +853,31 @@
       "lessons": [
         {
           "id": "sd-03-001",
-          "title_vi": null,
+          "title_vi": "Năm hàm gộp dữ liệu trong pandas",
           "title_source": "5 Functions to Merge Data with Pandas",
           "source_url": "https://bytebytego.com/guides/5-functions-to-merge-data-with-pandas",
           "source_path": "data/guides/5-functions-to-merge-data-with-pandas.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "359698c15ed2e3342b308160db5721867b2094d1",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/5-functions-to-merge-data-with-pandas.md"
         },
         {
           "id": "sd-03-002",
-          "title_vi": null,
+          "title_vi": "Các thuật ngữ dữ liệu cốt lõi",
           "title_source": "Key Data Terms",
           "source_url": "https://bytebytego.com/guides/key-data-terms",
           "source_path": "data/guides/key-data-terms.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "5ddcfd6f7c57afdbfb9eb0d66c0d770633f0af68",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/key-data-terms.md"
         },
         {
           "id": "sd-03-003",
-          "title_vi": null,
+          "title_vi": "Dòng thời gian dẫn tới ChatGPT",
           "title_source": "ChatGPT Timeline",
           "source_url": "https://bytebytego.com/guides/chatgpt-timeline",
           "source_path": "data/guides/chatgpt-timeline.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "5306126da22400194d9824eb1fc55c2474e37ee1",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/chatgpt-timeline.md"
         },

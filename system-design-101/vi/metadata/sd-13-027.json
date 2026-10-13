@@ -49,8 +49,12 @@
       "source": "https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions"
     },
     {
-      "claim_vi": "Với workflow chạy từ fork, bí mật (trừ GITHUB_TOKEN) không được chuyển cho runner.",
+      "claim_vi": "Mặc định, với sự kiện `pull_request` từ fork, bí mật (trừ GITHUB_TOKEN) không được chuyển cho runner; `pull_request_target` chạy với ngữ cảnh repo gốc.",
       "source": "https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions"
+    },
+    {
+      "claim_vi": "Kho riêng tư có thể bật cài đặt gửi bí mật cho workflow từ pull request của fork, nên mặc định trên chỉ đúng khi cài đặt đó chưa được đổi.",
+      "source": "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-github-actions-settings-for-a-repository"
     },
     {
       "claim_vi": "Environment có thể yêu cầu người duyệt và có bí mật riêng.",

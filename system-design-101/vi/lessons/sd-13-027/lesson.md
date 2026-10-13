@@ -13,7 +13,7 @@ Một pull request từ fork của người lạ có được dùng bí mật c�
 <details>
 <summary>Xem đáp án</summary>
 
-Mặc định không: với sự kiện `pull_request` từ fork, bí mật (trừ GITHUB_TOKEN quyền thấp) không được chuyển cho runner, để người lạ không đọc được. Sự kiện `pull_request_target` chạy với ngữ cảnh repo gốc nên phải rất thận trọng khi chạy mã từ PR.
+Mặc định không: với sự kiện `pull_request` từ fork, bí mật (trừ GITHUB_TOKEN quyền thấp) không được chuyển cho runner, để người lạ không đọc được. Sự kiện `pull_request_target` chạy với ngữ cảnh repo gốc nên phải rất thận trọng khi chạy mã từ PR. Kho riêng tư có thể đổi mặc định này trong cài đặt Actions.
 
 </details>
 
@@ -59,5 +59,5 @@ jobs:
 ## Nguồn đối chiếu
 
 - [ByteByteGo tại snapshot cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/cicd-pipeline-explained-in-simple-terms.md).
-- GitHub Docs: [workflow syntax](https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions), [bảo mật workflow](https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions), [environments](https://docs.github.com/en/actions/managing-workflow-runs-and-deployments/managing-deployments/managing-environments-for-deployment), [protected branches](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches).
+- GitHub Docs: [workflow syntax](https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions), [bảo mật workflow](https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions), [cài đặt Actions của kho](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-github-actions-settings-for-a-repository), [environments](https://docs.github.com/en/actions/managing-workflow-runs-and-deployments/managing-deployments/managing-environments-for-deployment), [protected branches](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches).
 - Martin Fowler: [DeploymentPipeline](https://martinfowler.com/bliki/DeploymentPipeline.html).

@@ -8,7 +8,7 @@ Hệ sinh thái Kubernetes có quá nhiều công cụ. Cách đỡ rối là ch
 
 ## Nhìn hình thử trả lời
 
-Một dự án đã ở mức "graduated" của CNCF. Có nghĩa là nó luôn phù hợp với hệ thống của bạn?
+Một dự án đã ở mức "graduated" của CNCF (Cloud Native Computing Foundation — quỹ bảo trợ các dự án điện toán đám mây nguyên bản như Kubernetes). Có nghĩa là nó luôn phù hợp với hệ thống của bạn?
 
 <details>
 <summary>Xem đáp án</summary>

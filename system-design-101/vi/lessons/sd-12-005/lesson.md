@@ -2,7 +2,7 @@
 
 **Muốn tìm quán cà phê gần bạn, đừng đo khoảng cách tới mọi quán.** Chia bản đồ thành các ô, rồi chỉ nhìn vào ô của bạn và vài ô kề bên.
 
-![Một hình vuông là bản đồ, chia làm bốn phần. Phần phía trên bên phải đông địa điểm nên được chia tiếp, và ô nhỏ chứa vị trí của bạn được tô vàng. Các phần thưa chỉ có ô lớn. Bên dưới là ba thẻ: ô nào còn quá nhiều địa điểm thì chia thành bốn, tìm bằng cách đi từ gốc xuống ô lá chứa bạn, thiếu kết quả thì lấy thêm từ ô kề. Chú thích: quadtree nằm trong bộ nhớ máy chủ, không phải cơ sở dữ liệu.](../../diagrams/sd-12-005-main.svg)
+![Một hình vuông là bản đồ, chia làm bốn phần. Phần phía trên bên phải đông địa điểm nên được chia tiếp, và ô nhỏ chứa vị trí của bạn được tô vàng. Các phần thưa chỉ có ô lớn. Bên dưới là ba thẻ: ô nào còn quá nhiều địa điểm thì chia thành bốn, tìm bằng cách đi từ gốc xuống ô lá chứa bạn, thiếu kết quả thì lấy thêm từ ô kề. Chú thích: trong thiết kế này, quadtree nằm trong bộ nhớ máy chủ.](../../diagrams/sd-12-005-main.svg)
 
 ## Đọc hình
 
@@ -29,7 +29,7 @@ Phố ẩm thực: nhiều địa điểm khiến ô bị chia nhỏ nhiều l�
 <summary>Xem sâu hơn: ô kề, geohash và cập nhật</summary>
 
 - **Ô kề:** điểm gần nhất có thể nằm ở ô bên cạnh dù chỉ cách một đoạn ngắn. Muốn danh sách gần nhất chính xác, phải xét cả các ô kề rồi xếp theo khoảng cách thật.
-- **Quadtree và geohash:** cả hai chia vùng thành 4 theo từng mức. Geohash dùng lưới cố định nên dễ lưu và tìm trong cơ sở dữ liệu; quadtree chia thích nghi theo mật độ nhưng cần dựng trong bộ nhớ. Xem bài [Dịch vụ tìm địa điểm lân cận](../sd-12-017/lesson.md).
+- **Quadtree và geohash:** cả hai chia vùng thành 4 theo từng mức. Geohash dùng lưới cố định nên dễ lưu và tìm trong cơ sở dữ liệu; quadtree chia thích nghi theo mật độ. Trong thiết kế ở bài này nó được dựng trong bộ nhớ, nhưng quadtree cũng có thể được lưu bền. Xem bài [Dịch vụ tìm địa điểm lân cận](../sd-12-017/lesson.md).
 - **Cập nhật:** thêm hoặc xóa địa điểm có thể sửa cây tại chỗ hoặc dựng lại định kỳ; đó là đánh đổi giữa độ mới và độ phức tạp.
 
 </details>

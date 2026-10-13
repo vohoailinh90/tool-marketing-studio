@@ -68,10 +68,18 @@
       "sources": [
         "https://en.wikipedia.org/wiki/Double-entry_bookkeeping"
       ]
+    },
+    {
+      "claim_vi": "Cập nhật ví và ghi sổ cái cần nguyên tử hoặc chống trùng để số dư không lệch lịch sử và không bị cộng hai lần khi thử lại.",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Atomicity_(database_systems)",
+        "https://docs.stripe.com/api/idempotent_requests"
+      ]
     }
   ],
   "source_deviations": [
     "Bài thêm khóa chống trùng, trạng thái lệnh và chi tiết sổ cái; nguồn chỉ liệt kê luồng.",
+    "Nguồn liệt kê cập nhật ví rồi ghi sổ cái tuần tự; bài nói rõ hai bước cần nguyên tử hoặc chống trùng để tránh lệch và cộng trùng.",
     "Nguồn này cũng được dùng cho vị trí sd-07-012 trong bảng đối chiếu; mỗi vị trí được viết riêng."
   ],
   "design_notes_vi": "Sáu thẻ dọc theo luồng tiền; thẻ cuối là đối soát hằng đêm; không có số tiền hay tên PSP cụ thể.",

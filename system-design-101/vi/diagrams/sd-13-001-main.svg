@@ -1,44 +1,42 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1099" width="320" height="1099" role="img" aria-labelledby="title desc">
-<title id="title">Mẫu thiết kế Kubernetes khi đưa một API lên cụm</title>
-<desc id="desc">Sáu việc cần làm khi đưa một API lên cụm và mẫu giúp bạn: báo sẵn sàng bằng probe, khai báo tài nguyên (requests để đặt Pod, limits giới hạn lúc chạy), chạy migration bằng init container hoặc Job kèm migration idempotent, thêm proxy hoặc gửi nhật ký bằng sidecar, tìm nhau qua Service và DNS, và tắt êm khi bị thay Pod cùng PodDisruptionBudget khi bảo trì node.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1073" width="320" height="1073" role="img" aria-labelledby="title desc">
+<title id="title">Tắt êm một API trên Kubernetes: năm chỗ làm rớt request</title>
+<desc id="desc">Năm chặng khi một Pod của API bị xóa: Pod chuyển sang Terminating và bị gỡ khỏi danh sách endpoint song song với việc tắt, traffic vẫn có thể đến thêm một lúc nên cần chờ ngắn trong preStop, tiến trình chính nhận SIGTERM phải ngừng nhận kết nối mới và làm xong việc đang chạy, hết thời gian ân hạn thì bị dừng cưỡng bức, và khi dồn node thì PodDisruptionBudget giữ số Pod tối thiểu.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="1099" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
-<text x="16" y="30" font-size="20" font-weight="bold">ĐƯA MỘT API LÊN CỤM</text>
-<text x="16" y="58" font-size="16" font-weight="normal">Việc cần làm → mẫu giúp bạn</text>
-<rect x="16" y="89" width="288" height="155" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
-<text x="30" y="117" font-size="16" font-weight="bold">Báo cụm biết API sẵn</text>
-<text x="30" y="144" font-size="16" font-weight="bold">sàng</text>
-<text x="30" y="171" font-size="16" font-weight="normal">Health probe: readiness</text>
-<text x="30" y="198" font-size="16" font-weight="normal">trước khi nhận traffic,</text>
-<text x="30" y="225" font-size="16" font-weight="normal">liveness khi kẹt</text>
-<rect x="16" y="256" width="288" height="182" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
-<text x="30" y="284" font-size="16" font-weight="bold">Cho cụm biết cần bao</text>
-<text x="30" y="311" font-size="16" font-weight="bold">nhiêu</text>
-<text x="30" y="338" font-size="16" font-weight="normal">requests: scheduler dùng để</text>
-<text x="30" y="365" font-size="16" font-weight="normal">đặt Pod</text>
-<text x="30" y="392" font-size="16" font-weight="normal">limits: giới hạn mức dùng</text>
-<text x="30" y="419" font-size="16" font-weight="normal">khi chạy</text>
-<rect x="16" y="450" width="288" height="209" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
-<text x="30" y="478" font-size="16" font-weight="bold">Chạy migration trước</text>
-<text x="30" y="505" font-size="16" font-weight="bold">khi API chạy</text>
-<text x="30" y="532" font-size="16" font-weight="normal">Init container chạy ở mỗi</text>
-<text x="30" y="559" font-size="16" font-weight="normal">Pod</text>
-<text x="30" y="586" font-size="16" font-weight="normal">Job chạy tới khi xong nhưng</text>
-<text x="30" y="613" font-size="16" font-weight="normal">có thể chạy lại: migration</text>
-<text x="30" y="640" font-size="16" font-weight="normal">cần idempotent hoặc có khóa</text>
-<rect x="16" y="671" width="288" height="101" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
-<text x="30" y="699" font-size="16" font-weight="bold">Thêm nhật ký hay proxy</text>
-<text x="30" y="726" font-size="16" font-weight="bold">mà không sửa API</text>
-<text x="30" y="753" font-size="16" font-weight="normal">Sidecar chạy cùng Pod</text>
-<rect x="16" y="784" width="288" height="101" rx="10" fill="#e2e8f0" stroke="#94a3b8"/>
-<text x="30" y="812" font-size="16" font-weight="bold">API khác tìm tới API</text>
-<text x="30" y="839" font-size="16" font-weight="bold">này</text>
-<text x="30" y="866" font-size="16" font-weight="normal">Service và tên DNS của cụm</text>
-<rect x="16" y="897" width="288" height="182" rx="10" fill="#fee2e2" stroke="#94a3b8"/>
-<text x="30" y="925" font-size="16" font-weight="bold">Bị thay Pod mà không</text>
-<text x="30" y="952" font-size="16" font-weight="bold">rớt yêu cầu</text>
-<text x="30" y="979" font-size="16" font-weight="normal">Tắt êm: xử lý SIGTERM, thời</text>
-<text x="30" y="1006" font-size="16" font-weight="normal">gian ân hạn</text>
-<text x="30" y="1033" font-size="16" font-weight="normal">PodDisruptionBudget khi bảo</text>
-<text x="30" y="1060" font-size="16" font-weight="normal">trì node</text>
+<rect width="320" height="1073" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">TẮT ÊM MỘT POD</text>
+<text x="16" y="58" font-size="16" font-weight="normal">Từ lúc bị xóa đến lúc dừng</text>
+<rect x="16" y="89" width="288" height="128" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="117" font-size="16" font-weight="bold">1 · Pod bị xóa</text>
+<text x="30" y="144" font-size="16" font-weight="normal">Pod chuyển sang Terminating</text>
+<text x="30" y="171" font-size="16" font-weight="normal">Việc gỡ khỏi endpoint chạy</text>
+<text x="30" y="198" font-size="16" font-weight="normal">song song với việc tắt</text>
+<line x1="160" y1="229" x2="160" y2="257" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="267" width="288" height="155" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="295" font-size="16" font-weight="bold">2 · Traffic còn đến</text>
+<text x="30" y="322" font-size="16" font-weight="bold">một lúc</text>
+<text x="30" y="349" font-size="16" font-weight="normal">Proxy, ingress, bộ cân bằng</text>
+<text x="30" y="376" font-size="16" font-weight="normal">tải ngoài cập nhật chậm hơn</text>
+<text x="30" y="403" font-size="16" font-weight="normal">Chờ vài giây trong preStop</text>
+<line x1="160" y1="434" x2="160" y2="462" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="472" width="288" height="182" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="500" font-size="16" font-weight="bold">3 · SIGTERM tới tiến</text>
+<text x="30" y="527" font-size="16" font-weight="bold">trình chính</text>
+<text x="30" y="554" font-size="16" font-weight="normal">Ngừng nhận kết nối mới, làm</text>
+<text x="30" y="581" font-size="16" font-weight="normal">xong request đang chạy</text>
+<text x="30" y="608" font-size="16" font-weight="normal">Dạng exec để tín hiệu tới</text>
+<text x="30" y="635" font-size="16" font-weight="normal">đúng tiến trình</text>
+<line x1="160" y1="666" x2="160" y2="694" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="704" width="288" height="155" rx="10" fill="#fee2e2" stroke="#94a3b8"/>
+<text x="30" y="732" font-size="16" font-weight="bold">4 · Hết ân hạn thì bị</text>
+<text x="30" y="759" font-size="16" font-weight="bold">dừng</text>
+<text x="30" y="786" font-size="16" font-weight="normal">Thời gian ân hạn tính từ</text>
+<text x="30" y="813" font-size="16" font-weight="normal">lúc xóa, gồm cả preStop</text>
+<text x="30" y="840" font-size="16" font-weight="normal">Hết hạn: bị dừng cưỡng bức</text>
+<rect x="16" y="871" width="288" height="182" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="899" font-size="16" font-weight="bold">5 · Dồn node có chủ</text>
+<text x="30" y="926" font-size="16" font-weight="bold">đích</text>
+<text x="30" y="953" font-size="16" font-weight="normal">PodDisruptionBudget giữ số</text>
+<text x="30" y="980" font-size="16" font-weight="normal">Pod tối thiểu</text>
+<text x="30" y="1007" font-size="16" font-weight="normal">Chỉ áp dụng cho eviction tự</text>
+<text x="30" y="1034" font-size="16" font-weight="normal">nguyện</text>
 </g></svg>

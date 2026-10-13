@@ -19,7 +19,7 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 
 ## DevOps và CI/CD
 
-1. [Mẫu thiết kế Kubernetes khi đưa một API lên cụm](lessons/sd-13-001/lesson.md) — bài nháp, chờ review kỹ thuật.
+1. [Tắt êm một API trên Kubernetes: năm chỗ làm rớt request](lessons/sd-13-001/lesson.md) — bài nháp, chờ review kỹ thuật.
 2. [Sách đáng đọc cho người làm DevOps và vận hành](lessons/sd-13-002/lesson.md) — bài nháp, chờ review kỹ thuật.
 3. [Tỉ lệ lập trình viên và kiểm thử viên thay đổi thế nào](lessons/sd-13-003/lesson.md) — bài nháp, chờ review kỹ thuật.
 4. [Thu thập số đo: kéo hay đẩy](lessons/sd-13-004/lesson.md) — bài nháp, chờ review kỹ thuật.
@@ -29,7 +29,7 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 8. [Chọn công cụ Kubernetes theo lớp](lessons/sd-13-008/lesson.md) — bài nháp, chờ review kỹ thuật.
 9. [Hệ sinh thái Kubernetes theo nhu cầu vận hành](lessons/sd-13-009/lesson.md) — bài nháp, chờ review kỹ thuật.
 10. [Bảng tuần hoàn Kubernetes: đọc để tra cứu](lessons/sd-13-010/lesson.md) — bài nháp, chờ review kỹ thuật.
-11. [Viết Dockerfile build nhanh, image nhỏ và không lộ bí mật](lessons/sd-13-011/lesson.md) — bài nháp, chờ review kỹ thuật.
+11. [Vì sao Docker build chạy lại bước nặng: năm nguyên nhân mất cache](lessons/sd-13-011/lesson.md) — bài nháp, chờ review kỹ thuật.
 12. [Học từ chuỗi CI/CD của công ty lớn mà không chép công cụ](lessons/sd-13-012/lesson.md) — bài nháp, chờ review kỹ thuật.
 13. [Docker khi chạy web kèm cơ sở dữ liệu: bốn chỗ hay hỏng](lessons/sd-13-013/lesson.md) — bài nháp, chờ review kỹ thuật.
 14. [CI đỏ mà máy bạn chạy được: năm nguồn khác biệt](lessons/sd-13-014/lesson.md) — bài nháp, chờ review kỹ thuật.

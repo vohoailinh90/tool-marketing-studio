@@ -1,63 +1,48 @@
-# Viết Dockerfile build nhanh, image nhỏ và không lộ bí mật
+# Vì sao Docker build chạy lại bước nặng: năm nguyên nhân mất cache
 
-Ba nỗi đau hay gặp khi đóng gói ứng dụng: build lại quá chậm, image quá to và bí mật lọt vào image, thêm một việc phụ là làm cho lúc chạy êm và chặt. Bài chỉ chọn những kỹ thuật phục vụ các việc này.
+Sửa một dòng mã mà docker build lại cài lại toàn bộ phụ thuộc là chuyện quen thuộc. Cache của Docker hoạt động theo quy tắc cụ thể, nên mỗi lần mất cache đều truy ra được nguyên nhân. Bài nêu năm nguyên nhân hay gặp và cách chữa từng cái.
 
-![Ba nỗi đau chính cùng một việc phụ và kỹ thuật tương ứng: build chậm thì sắp lớp, dùng cache mount và dockerignore, image to thì build nhiều giai đoạn, bí mật lọt vào image thì dùng secret mount thay cho ARG và ENV, và việc phụ là chạy êm và chặt bằng CMD dạng exec cùng người dùng không phải root.](../../diagrams/sd-13-011-main.svg)
+![Năm nguyên nhân Docker build mất cache và cách chữa: đổi một lớp thì các lớp sau phải build lại nên đặt phần ít đổi lên trên, COPY quá rộng và quá sớm nên copy tệp khóa trước rồi cài phụ thuộc, ngữ cảnh build lẫn tệp hay đổi nên loại chúng khỏi ngữ cảnh, cache dùng được nhưng đã cũ nên build sạch định kỳ, và máy mới không có cache nên xuất nhập cache hoặc dùng cache mount.](../../diagrams/sd-13-011-main.svg)
 
-**Đọc hình:** bài không nhằm liệt kê mọi thực hành; mỗi thẻ là một vấn đề kèm vài kỹ thuật chọn lọc.
+**Đọc hình:** năm thẻ là năm nguyên nhân độc lập; thẻ nào cũng kèm cách chữa.
 
 ## Nhìn hình thử trả lời
 
-Bạn truyền token để cài gói riêng qua ARG. Vì sao đó không phải cách an toàn?
+Dockerfile có `COPY . .` rồi `RUN npm ci`. Bạn sửa một dòng trong tệp README. Lần build sau có phải cài lại phụ thuộc không, và chữa thế nào?
 
 <details>
 <summary>Xem đáp án</summary>
 
-Giá trị ARG có thể xem lại từ lịch sử build của image. Secret mount của BuildKit chỉ cho bí mật tồn tại trong lúc chạy lệnh đó và không lưu vào lớp image.
+Có. `COPY . .` so checksum nội dung các tệp, nên chỉ cần một tệp đổi là lớp đó mất cache và `RUN npm ci` sau nó phải chạy lại. Hãy `COPY package.json package-lock.json ./`, chạy `npm ci`, rồi mới `COPY . .`; khi chỉ mã đổi, hai lớp đầu vẫn dùng lại được.
 
 </details>
 
 ## Giới hạn cần nhớ
 
-Chạy bằng người dùng không phải root chỉ giảm quyền của tiến trình lúc chạy, không xóa được bí mật đã nằm trong lớp image; chỉ secret mount mới tránh được việc đó. Tag có thể bị đẩy lại, nên cần tái lập chính xác thì ghim digest. Cache mount chỉ nhanh hơn khi máy build giữ lại cache. Quét lỗ hổng và theo dõi nguồn gốc image là việc riêng, bài này không đi sâu.
+Cache giúp nhanh nhưng không bảo đảm đúng: lớp cũ có thể giữ phụ thuộc hay danh sách gói đã lỗi thời, nên cần build sạch định kỳ. Cache từ xa tốn dung lượng và băng thông, và cache mount cần BuildKit. Bài không bàn kích thước image, người dùng không đặc quyền hay quét lỗ hổng.
 
 <details>
 <summary>Xem sâu hơn</summary>
 
 ```dockerfile
-# syntax=docker/dockerfile:1
-FROM node:22-alpine AS build
+FROM node:22-slim
 WORKDIR /app
-COPY package*.json ./
+# lớp ít đổi trước: chỉ tệp khóa
+COPY package.json package-lock.json ./
 RUN --mount=type=cache,target=/root/.npm npm ci
+# lớp hay đổi sau cùng
 COPY . .
-RUN npm run build
-
-FROM node:22-alpine
-WORKDIR /app
-COPY package*.json ./
-RUN --mount=type=cache,target=/root/.npm npm ci --omit=dev
-COPY --from=build /app/dist ./dist
-USER node
-CMD ["node", "dist/server.js"]
+CMD ["node", "server.js"]
 ```
 
-Cần gói riêng thì truyền bí mật bằng secret mount, không bằng ARG:
-
-```dockerfile
-RUN --mount=type=secret,id=npmrc,target=/root/.npmrc npm ci
-```
-
-```bash
-docker build --secret id=npmrc,src=$HOME/.npmrc .
-```
-
-- **Dạng exec** `CMD ["node", ...]` chạy tiến trình trực tiếp; dạng shell bọc trong `/bin/sh -c` nên tín hiệu dừng có thể không tới ứng dụng.
-- **Thứ tự lớp:** lớp nào đổi thì mọi lớp sau nó chạy lại, nên đặt phần ít đổi lên trước.
+- **Quy tắc vô hiệu hóa:** khi một lớp bị vô hiệu hóa, mọi lớp sau nó phải build lại. Với `COPY` và `ADD`, Docker so checksum nội dung tệp; với `RUN`, chỉ so chuỗi lệnh.
+- **Cache cũ:** vì `RUN` chỉ so chuỗi lệnh, `apt-get update` có thể được dùng lại với danh sách gói cũ; gộp `apt-get update` và `apt-get install` trong cùng một `RUN` để chúng cùng mất cache. `--no-cache` bỏ qua cache và `--pull` luôn kéo image cơ sở mới.
+- **Cache từ xa:** `--cache-to` và `--cache-from` xuất và nhập cache qua các backend như registry hay thư mục cục bộ, để máy CI mới không bắt đầu từ rỗng.
+- **Cache mount:** `RUN --mount=type=cache` giữ thư mục cache của trình quản lý gói giữa các lần build mà không đưa vào image, nên cài lại nhanh dù lớp bị mất cache.
 
 </details>
 
 ## Nguồn đối chiếu
 
 - [ByteByteGo tại snapshot cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/9-docker-best-practices-you-must-know.md).
-- Docker: [best practices](https://docs.docker.com/build/building/best-practices/), [multi-stage](https://docs.docker.com/build/building/multi-stage/), [tối ưu cache](https://docs.docker.com/build/cache/optimize/), [secrets](https://docs.docker.com/build/building/secrets/), [CMD](https://docs.docker.com/reference/dockerfile/#cmd).
+- Docker: [vô hiệu hóa cache build](https://docs.docker.com/build/cache/invalidation/), [tối ưu cache](https://docs.docker.com/build/cache/optimize/), [backend cache từ xa](https://docs.docker.com/build/cache/backends/), [docker buildx build](https://docs.docker.com/reference/cli/docker/buildx/build/).

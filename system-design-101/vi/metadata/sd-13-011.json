@@ -1,6 +1,6 @@
 {
   "id": "sd-13-011",
-  "title_vi": "Viết Dockerfile build nhanh, image nhỏ và không lộ bí mật",
+  "title_vi": "Vì sao Docker build chạy lại bước nặng: năm nguyên nhân mất cache",
   "language": "vi",
   "kind": "comparison",
   "content_status": "draft",
@@ -20,13 +20,13 @@
   "related": [
     {
       "lesson_id": "sd-13-013",
-      "relation": "context",
-      "reason_vi": "Docker khi chạy ứng dụng."
+      "relation": "compare-with",
+      "reason_vi": "Docker khi chạy web kèm cơ sở dữ liệu."
     },
     {
       "lesson_id": "sd-13-026",
-      "relation": "context",
-      "reason_vi": "Docker chạy thế nào."
+      "relation": "compare-with",
+      "reason_vi": "Gỡ lỗi Docker."
     }
   ],
   "verification": {
@@ -50,29 +50,25 @@
   },
   "claims": [
     {
-      "claim_vi": "Build nhiều giai đoạn giúp image cuối nhỏ hơn.",
-      "source": "https://docs.docker.com/build/building/multi-stage/"
+      "claim_vi": "Khi một lớp bị vô hiệu hóa, mọi lớp sau nó phải build lại; với COPY và ADD Docker so checksum nội dung tệp, với RUN chỉ so chuỗi lệnh.",
+      "source": "https://docs.docker.com/build/cache/invalidation/"
     },
     {
-      "claim_vi": "Docker dùng lại lớp cache cho đến khi một lớp đổi; có cache mount cho thư mục gói.",
+      "claim_vi": "RUN --mount=type=cache giữ thư mục cache của trình quản lý gói giữa các lần build mà không đưa vào image.",
       "source": "https://docs.docker.com/build/cache/optimize/"
     },
     {
-      "claim_vi": "Secret mount của BuildKit truyền bí mật mà không lưu vào lớp image; không nên dùng ARG hay ENV cho bí mật.",
-      "source": "https://docs.docker.com/build/building/secrets/"
+      "claim_vi": "Cache build có thể xuất và nhập qua các backend như registry hoặc thư mục cục bộ bằng --cache-to và --cache-from.",
+      "source": "https://docs.docker.com/build/cache/backends/"
     },
     {
-      "claim_vi": "CMD dạng exec chạy tiến trình trực tiếp, dạng shell chạy qua shell.",
-      "source": "https://docs.docker.com/reference/dockerfile/"
-    },
-    {
-      "claim_vi": "Khuyến nghị chạy bằng người dùng không phải root và dùng .dockerignore.",
-      "source": "https://docs.docker.com/build/building/best-practices/"
+      "claim_vi": "docker buildx build có tùy chọn --no-cache để bỏ qua cache và --pull để luôn kéo image cơ sở mới.",
+      "source": "https://docs.docker.com/reference/cli/docker/buildx/build/"
     }
   ],
   "source_deviations": [
-    "Nguồn là danh sách chín điểm; bài chỉ chọn kỹ thuật cho ba nỗi đau (tốc độ build, kích thước, bí mật), thêm cache mount, secret mount và CMD dạng exec không có trong nguồn, và bỏ các điểm còn lại."
+    "Nguồn liệt kê chín thực hành tốt khi viết Dockerfile; bài bỏ danh mục đó và theo dõi một vấn đề cụ thể là build mất cache, chỉ còn nhắc tới thứ tự lệnh và việc loại tệp khỏi ngữ cảnh như nguyên nhân của vấn đề này."
   ],
-  "design_notes_vi": "Bốn thẻ vấn đề kèm kỹ thuật chọn lọc.",
+  "design_notes_vi": "Năm thẻ nguyên nhân mất cache, mỗi thẻ kèm cách chữa.",
   "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
 }

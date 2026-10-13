@@ -1,41 +1,40 @@
-# Mẫu thiết kế Kubernetes khi đưa một API lên cụm
+# Tắt êm một API trên Kubernetes: năm chỗ làm rớt request
 
-Hãy hình dung bạn đưa một API HTTP lên Kubernetes. Mỗi mẫu thiết kế dưới đây trả lời một việc cụ thể bạn sẽ gặp, và bạn không cần học thuộc cả bộ.
+Mỗi lần triển khai bản mới hoặc dồn node, Kubernetes xóa Pod cũ. Nếu API rớt vài request đúng lúc đó, nguyên nhân thường nằm ở trình tự tắt Pod chứ không ở mã xử lý. Bài đi theo trình tự ấy để chỉ ra năm chỗ cần để mắt tới.
 
-![Sáu việc cần làm khi đưa một API lên cụm và mẫu giúp bạn: báo sẵn sàng bằng probe, khai báo tài nguyên (requests để đặt Pod, limits giới hạn lúc chạy), chạy migration bằng init container hoặc Job kèm migration idempotent, thêm proxy hoặc gửi nhật ký bằng sidecar, tìm nhau qua Service và DNS, và tắt êm khi bị thay Pod cùng PodDisruptionBudget khi bảo trì node.](../../diagrams/sd-13-001-main.svg)
+![Năm chặng khi một Pod của API bị xóa: Pod chuyển sang Terminating và bị gỡ khỏi danh sách endpoint song song với việc tắt, traffic vẫn có thể đến thêm một lúc nên cần chờ ngắn trong preStop, tiến trình chính nhận SIGTERM phải ngừng nhận kết nối mới và làm xong việc đang chạy, hết thời gian ân hạn thì bị dừng cưỡng bức, và khi dồn node thì PodDisruptionBudget giữ số Pod tối thiểu.](../../diagrams/sd-13-001-main.svg)
 
-**Đọc hình:** sáu việc độc lập, không có thứ tự bắt buộc; bài chọn các việc thường gặp, không phải danh mục đầy đủ.
+**Đọc hình:** bốn thẻ đầu là trình tự thời gian của một Pod bị xóa; thẻ cuối nói về lúc nhiều Pod bị gỡ có chủ đích cùng một thời điểm.
 
 ## Nhìn hình thử trả lời
 
-Migration cơ sở dữ liệu chỉ nên chạy một lần cho mỗi bản phát hành, còn nhiều Pod API chạy song song. Đặt migration trong init container của Pod API có ổn không?
+Pod đã chuyển sang Terminating thì còn nhận được request nào nữa không?
 
 <details>
 <summary>Xem đáp án</summary>
 
-Không chắc. Init container chạy ở mỗi Pod, nên nhiều Pod sẽ cùng chạy migration. Job phù hợp hơn cho việc theo bản phát hành, nhưng Job cũng không bảo đảm chạy đúng một lần: Pod lỗi hay bị thay có thể làm migration chạy lại. Vì vậy migration vẫn nên idempotent hoặc dùng công cụ có cơ chế khóa.
+Có thể còn trong một khoảng ngắn. Control plane gỡ Pod khỏi endpoint cùng lúc kubelet bắt đầu tắt Pod, nhưng kube-proxy, ingress controller hay bộ cân bằng tải ngoài cập nhật không tức thì, nên vài request có thể tới sau khi Pod đã bắt đầu tắt. Hãy cho ứng dụng thời gian chờ (hook preStop) và để nó làm nốt các request đang chạy.
 
 </details>
 
-## Ngộ nhận dễ gặp
+## Giới hạn cần nhớ
 
-Bài chọn sáu việc thường gặp khi đưa một API lên cụm, tên mẫu lấy từ sách Kubernetes Patterns và tài liệu Kubernetes; không phải mẫu nào cũng cần dùng. Nhiều ứng dụng nhỏ chỉ cần probe, khai báo tài nguyên và Service.
+Bài chỉ nói về tắt êm và giữ số Pod tối thiểu, không bàn cách tạo Pod, probe, tài nguyên hay migration. Độ trễ cập nhật endpoint phụ thuộc cách traffic đi vào cụm (Service, ingress, bộ cân bằng tải của nhà cung cấp), nên con số chờ phải đo trên hệ thống của bạn chứ không lấy từ bài.
 
 <details>
 <summary>Xem sâu hơn</summary>
 
-- **Probe:** liveness khởi động lại container khi kẹt; readiness quyết định endpoint của Pod có nhận traffic từ Service không (Pod vẫn được liệt kê với `ready: false`); startup bảo vệ ứng dụng khởi động chậm.
-- **Tài nguyên:** `requests` là thứ scheduler dùng để đặt Pod; `limits` do runtime áp dụng sau khi Pod đã được đặt để giới hạn mức dùng tối đa.
-- **Init container và Job:** init container chạy lần lượt, xong hết mới tới container ứng dụng, ở mỗi Pod. Job chạy tới khi hoàn tất, có thử lại; tài liệu nêu rõ chương trình trong Job vẫn có thể chạy nhiều hơn một lần, nên cần thiết kế idempotent hoặc có khóa.
-- **Sidecar:** các bản Kubernetes gần đây hỗ trợ sidecar dạng gốc, khai báo như init container có `restartPolicy: Always`.
-- **Service:** Service ClusterIP thông thường (có selector) cho một địa chỉ ảo ổn định, do thành phần mạng của cụm chuyển tới các Pod, kèm một tên DNS trỏ tới địa chỉ đó. Service headless không có địa chỉ ảo: tên DNS của nó phân giải thẳng ra địa chỉ IP của các Pod. Service ExternalName không chọn Pod mà trả về một bản ghi CNAME tới tên bên ngoài.
-- **Tắt êm:** khi Pod bị xóa, hook `preStop` (nếu có) chạy trước rồi kubelet gửi SIGTERM. `terminationGracePeriodSeconds` là tổng thời gian cho cả quá trình đó và bắt đầu đếm từ trước `preStop`, nên hook chậm làm ứng dụng còn ít thời gian dọn dẹp sau SIGTERM; hết hạn thì container bị dừng cưỡng bức.
-- **PodDisruptionBudget:** chỉ giới hạn việc gỡ Pod qua Eviction API, ví dụ `kubectl drain` khi bảo trì node. Nó không ràng buộc rolling update của Deployment hay việc xóa Pod trực tiếp, nên đừng dựa vào nó để kiểm soát tính sẵn sàng khi triển khai.
+- **Trình tự của kubelet:** hook `preStop` (nếu có) chạy trước, rồi container nhận SIGTERM; `terminationGracePeriodSeconds` (mặc định 30 giây) là tổng thời gian cho cả quá trình và bắt đầu đếm từ trước `preStop`, nên hook chậm làm ứng dụng còn ít thời gian sau SIGTERM. Hết hạn thì container bị dừng cưỡng bức.
+- **Gỡ khỏi endpoint không tức thì:** khi Pod bắt đầu tắt, control plane đánh giá việc gỡ nó khỏi EndpointSlice song song với kubelet; các thành phần dẫn traffic cập nhật sau đó vài giây tùy cấu hình. Một khoảng chờ ngắn trong `preStop` cho chúng thời gian bắt kịp.
+- **SIGTERM và tiến trình chính:** dạng exec của `CMD` hoặc `ENTRYPOINT` chạy tiến trình trực tiếp; dạng shell chạy qua một shell nên tín hiệu có thể không tới ứng dụng. Ứng dụng cần xử lý SIGTERM: ngừng nhận kết nối mới và chờ request đang chạy xong.
+- **Kết nối dài:** HTTP keep-alive, gRPC, WebSocket giữ kết nối qua thời điểm tắt; máy chủ nên báo cho client mở kết nối mới (ví dụ đóng kết nối sau request cuối, hay gửi GOAWAY với HTTP/2) thay vì để chúng bị cắt.
+- **Đặt thời gian ân hạn:** nên không nhỏ hơn thời gian chờ ở `preStop` cộng với thời gian xử lý của request lâu nhất; đặt quá lớn làm việc thay Pod chậm.
+- **PodDisruptionBudget:** `minAvailable` hoặc `maxUnavailable` giới hạn số Pod bị gỡ qua Eviction API (ví dụ `kubectl drain`); không chặn sự cố bất ngờ, và rolling update của Deployment dùng tham số riêng của nó.
 
 </details>
 
 ## Nguồn đối chiếu
 
 - [ByteByteGo tại snapshot cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-10-k8s-design-patterns.md).
-- Sách [Kubernetes Patterns](https://k8spatterns.io/).
-- Kubernetes: [probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/), [tài nguyên](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/), [init container](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/), [Job](https://kubernetes.io/docs/concepts/workloads/controllers/job/), [sidecar](https://kubernetes.io/docs/concepts/workloads/pods/sidecar-containers/), [Service](https://kubernetes.io/docs/concepts/services-networking/service/), [vòng đời Pod](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/), [disruption](https://kubernetes.io/docs/concepts/workloads/pods/disruptions/).
+- Kubernetes: [vòng đời Pod và cách Pod bị chấm dứt](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-termination), [lifecycle hook](https://kubernetes.io/docs/concepts/containers/container-lifecycle-hooks/), [PodDisruptionBudget và disruption](https://kubernetes.io/docs/concepts/workloads/pods/disruptions/), [EndpointSlice](https://kubernetes.io/docs/concepts/services-networking/endpoint-slices/).
+- Docker: [CMD và ENTRYPOINT, dạng exec và dạng shell](https://docs.docker.com/reference/dockerfile/#entrypoint).

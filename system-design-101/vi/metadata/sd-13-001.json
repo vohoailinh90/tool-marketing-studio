@@ -1,6 +1,6 @@
 {
   "id": "sd-13-001",
-  "title_vi": "Mẫu thiết kế Kubernetes khi đưa một API lên cụm",
+  "title_vi": "Tắt êm một API trên Kubernetes: năm chỗ làm rớt request",
   "language": "vi",
   "kind": "flow",
   "content_status": "draft",
@@ -19,9 +19,14 @@
   "prerequisites": [],
   "related": [
     {
-      "lesson_id": "sd-13-025",
-      "relation": "context",
-      "reason_vi": "Chẩn đoán Pod không chạy dùng lại các khái niệm Pod, scheduler và kubelet."
+      "lesson_id": "sd-13-006",
+      "relation": "compare-with",
+      "reason_vi": "Service không nhận traffic."
+    },
+    {
+      "lesson_id": "sd-13-017",
+      "relation": "compare-with",
+      "reason_vi": "Deployment thay Pod như thế nào."
     }
   ],
   "verification": {
@@ -45,41 +50,29 @@
   },
   "claims": [
     {
-      "claim_vi": "Kubernetes có probe liveness, readiness và startup.",
-      "source": "https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/"
-    },
-    {
-      "claim_vi": "requests và limits khai báo nhu cầu và mức tối đa tài nguyên của container.",
-      "source": "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/"
-    },
-    {
-      "claim_vi": "Init container chạy lần lượt, hoàn tất trước container ứng dụng.",
-      "source": "https://kubernetes.io/docs/concepts/workloads/pods/init-containers/"
-    },
-    {
-      "claim_vi": "Job chạy tới khi hoàn tất và có thể thử lại.",
-      "source": "https://kubernetes.io/docs/concepts/workloads/controllers/job/"
-    },
-    {
-      "claim_vi": "Sidecar dạng gốc là init container có restartPolicy Always.",
-      "source": "https://kubernetes.io/docs/concepts/workloads/pods/sidecar-containers/"
-    },
-    {
       "claim_vi": "Khi Pod bị xóa, hook preStop chạy rồi container nhận SIGTERM; thời gian ân hạn đếm từ trước preStop và hết hạn thì container bị dừng cưỡng bức.",
       "source": "https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/"
     },
     {
-      "claim_vi": "PodDisruptionBudget giới hạn việc gỡ Pod qua Eviction API; rolling update của controller và xóa trực tiếp không bị ràng buộc.",
-      "source": "https://kubernetes.io/docs/concepts/workloads/pods/disruptions/"
+      "claim_vi": "Khi Pod bắt đầu tắt, control plane đánh giá việc gỡ Pod khỏi EndpointSlice song song với việc kubelet tắt Pod.",
+      "source": "https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/"
     },
     {
-      "claim_vi": "Service ClusterIP thông thường có địa chỉ ảo và tên DNS; Service headless phân giải DNS ra địa chỉ IP của các Pod; Service ExternalName trả về bản ghi CNAME.",
-      "source": "https://kubernetes.io/docs/concepts/services-networking/service/"
+      "claim_vi": "terminationGracePeriodSeconds mặc định là 30 giây.",
+      "source": "https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/"
+    },
+    {
+      "claim_vi": "Dạng exec của CMD và ENTRYPOINT chạy tiến trình trực tiếp, còn dạng shell chạy qua shell nên tiến trình không nhận tín hiệu Unix trực tiếp.",
+      "source": "https://docs.docker.com/reference/dockerfile/"
+    },
+    {
+      "claim_vi": "PodDisruptionBudget giới hạn việc gỡ Pod qua Eviction API; rolling update của controller và xóa trực tiếp không bị ràng buộc.",
+      "source": "https://kubernetes.io/docs/concepts/workloads/pods/disruptions/"
     }
   ],
   "source_deviations": [
-    "Nguồn là danh mục mười mẫu; bài không liệt kê đủ mười mà chọn sáu việc khi đưa một API lên cụm, thêm tắt êm và PodDisruptionBudget không thuộc danh mục nguồn."
+    "Nguồn liệt kê mười mẫu thiết kế Kubernetes; bài bỏ danh mục đó và theo dõi một Pod của API từ lúc bị xóa đến lúc dừng, nên chỉ còn dùng lại hook và thời gian ân hạn, không mô tả các mẫu còn lại."
   ],
-  "design_notes_vi": "Sáu thẻ việc cần làm, mỗi thẻ gợi ý mẫu tương ứng.",
+  "design_notes_vi": "Năm thẻ theo trình tự thời gian của một Pod bị xóa.",
   "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
 }

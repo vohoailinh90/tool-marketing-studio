@@ -3418,7 +3418,7 @@
       "lessons": [
         {
           "id": "sd-13-001",
-          "title_vi": "Mẫu thiết kế Kubernetes khi đưa một API lên cụm",
+          "title_vi": "Tắt êm một API trên Kubernetes: năm chỗ làm rớt request",
           "title_source": "Top 10 Kubernetes Design Patterns",
           "source_url": "https://bytebytego.com/guides/top-10-k8s-design-patterns",
           "source_path": "data/guides/top-10-k8s-design-patterns.md",
@@ -3518,7 +3518,7 @@
         },
         {
           "id": "sd-13-011",
-          "title_vi": "Viết Dockerfile build nhanh, image nhỏ và không lộ bí mật",
+          "title_vi": "Vì sao Docker build chạy lại bước nặng: năm nguyên nhân mất cache",
           "title_source": "9 Docker Best Practices You Must Know",
           "source_url": "https://bytebytego.com/guides/9-docker-best-practices-you-must-know",
           "source_path": "data/guides/9-docker-best-practices-you-must-know.md",

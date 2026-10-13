@@ -19,7 +19,7 @@ Không phải lựa chọn mặc định. Tài liệu Prometheus khuyên Pushgat
 
 ## Giới hạn cần nhớ
 
-Với kéo, đích phải bật sẵn một địa chỉ phơi số đo và collector phải tới được nó. Với đẩy, bạn mất tín hiệu "đích có còn sống không" và phải tự chặn việc đẩy quá nhiều làm quá tải kho. Pushgateway giữ số đo cho tới khi bị xóa, nên số đo cũ có thể ở lại nếu không dọn.
+Với kéo, đích phải bật sẵn một địa chỉ phơi số đo và collector phải tới được nó. Với đẩy trực tiếp qua Pushgateway, Prometheus không tự sinh số đo `up` cho từng nguồn đẩy, nên bạn mất tín hiệu tự động "đích có còn sống không" (một hệ thống đẩy khác có thể gửi tín hiệu còn sống riêng, và agent kéo cục bộ rồi chuyển tiếp bằng remote write vẫn giữ `up`). Với mọi cách đẩy, bạn phải tự chặn việc đẩy quá nhiều làm quá tải kho. Pushgateway giữ số đo cho tới khi bị xóa, nên số đo cũ có thể ở lại nếu không dọn.
 
 <details>
 <summary>Xem sâu hơn</summary>

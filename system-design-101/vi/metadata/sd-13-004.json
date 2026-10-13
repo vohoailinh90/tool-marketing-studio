@@ -58,6 +58,10 @@
       "source": "https://prometheus.io/docs/practices/pushing/"
     },
     {
+      "claim_vi": "Khi đẩy số đo qua Pushgateway, Prometheus mất giám sát sức khỏe tự động của nguồn đẩy qua số đo up, và Pushgateway không tự quên các chuỗi đã đẩy cho tới khi chúng bị xóa.",
+      "source": "https://prometheus.io/docs/practices/pushing/"
+    },
+    {
       "claim_vi": "Prometheus hỗ trợ service discovery cho Kubernetes qua kubernetes_sd_config.",
       "source": "https://prometheus.io/docs/prometheus/latest/configuration/configuration/"
     },

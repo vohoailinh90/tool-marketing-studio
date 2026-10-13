@@ -12,7 +12,7 @@
 
 ## Giới hạn cần nhớ
 
-Hình chỉ cho một cặp thao tác. Với OT, mọi cặp loại thao tác đều cần quy tắc biến đổi đúng, nên rất khó viết và khó kiểm chứng; thường còn cần một thứ tự thống nhất do máy chủ quyết định. CRDT tránh được bước biến đổi nhưng mỗi ký tự mang thêm thông tin định danh, tốn bộ nhớ hơn.
+Hình chỉ cho một cặp thao tác. Với OT, mọi cặp loại thao tác đều cần quy tắc biến đổi đúng, nên rất khó viết và khó kiểm chứng; thường còn cần một thứ tự thống nhất do máy chủ quyết định. CRDT tránh được bước biến đổi nhưng thường phải mang thêm thông tin định danh cho từng ký tự hoặc từng đoạn, nên tốn bộ nhớ hơn, mức độ tùy cách cài đặt.
 
 ## Nhìn hình trả lời
 

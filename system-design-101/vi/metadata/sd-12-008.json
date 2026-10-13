@@ -67,6 +67,12 @@
       "sources": [
         "https://www.iana.org/time-zones"
       ]
+    },
+    {
+      "claim_vi": "Với lịch hẹn tương lai theo giờ địa phương, nên lưu kèm tên múi giờ vì quy tắc múi giờ có thể thay đổi trước ngày hẹn.",
+      "sources": [
+        "https://www.iana.org/time-zones"
+      ]
     }
   ],
   "source_deviations": [

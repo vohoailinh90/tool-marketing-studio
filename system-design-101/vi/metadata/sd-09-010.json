@@ -1,0 +1,71 @@
+{
+  "id": "sd-09-010",
+  "title_vi": "Chọn công cụ đưa code tới production",
+  "language": "vi",
+  "kind": "explanation",
+  "content_status": "draft",
+  "source_ref": "sd-09-010",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/what-tools-does-your-team-use-to-ship-code-to-production-and-ensure-code-quality.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-tools-does-your-team-use-to-ship-code-to-production-and-ensure-code-quality.md",
+    "blob_sha": "1509390b89fb5efa88c63d24f6f6433232210b17",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "aa98ec6c759ef3ba9adacc8c282e392905392b028bb1f6178cd3d3d2a2a1d4af",
+    "retrieved_body_bytes": 1837
+  },
+  "diagram": "../diagrams/sd-09-010-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "Đã đọc thân bài nguồn, đối chiếu danh mục và liệt kê tài liệu sơ cấp. Một số trang trả HTTP 403; chưa xác minh toàn bộ claim nên giữ pending."
+    },
+    "technical_review": {
+      "status": "pending"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 14.73,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium: complete lesson with details open at 320/375/430px; SVG text bounding boxes within viewBox; min effective text 14.73px at 320 and 17.54px at 375. Screenshots captured locally; no learner testing or live GitHub preview. Đã xem contact sheet 20 bài ở 320px; chưa kiểm tra trên GitHub hoặc điện thoại thật."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Một nhóm có thể bắt đầu bằng GitHub và CI, kho artifact có phiên bản, một cách triển khai lặp lại và hệ thống log/metrics. GitHub Actions hay Jenkins thực thi pipeline; registry giữ bản build; công cụ triển khai đưa bản đó tới môi trường đích. Đây là các vai trò khác nhau dù một nền tảng có thể cung cấp nhiều vai trò.\n\nKhi nhiều nhóm dùng chung dịch vụ, bổ sung quyền theo môi trường, kiểm tra hợp đồng, lịch phối hợp và theo dõi bản phát hành. Tăng công cụ chỉ có ích nếu giải quyết điểm nghẽn cụ thể. Hãy hỏi ai sở hữu pipeline, ai xử lý khi triển khai lỗi và bằng chứng nào cho phép tiếp tục.",
+      "sources": [
+        "https://docs.github.com/en/actions",
+        "https://www.jenkins.io/doc/book/pipeline/",
+        "https://dora.dev/capabilities/continuous-delivery/"
+      ]
+    },
+    {
+      "claim_vi": "Số nhân viên không quyết định nhu cầu chất lượng. Nhóm nhỏ vận hành thanh toán vẫn có thể cần kiểm soát nghiêm ngặt.",
+      "sources": [
+        "https://docs.github.com/en/actions",
+        "https://www.jenkins.io/doc/book/pipeline/",
+        "https://dora.dev/capabilities/continuous-delivery/"
+      ]
+    }
+  ],
+  "design_notes_vi": "Thẻ dọc tự thiết kế từ ví dụ mới; mũi tên biểu diễn thứ tự đọc. Không sử dụng ảnh nguồn.",
+  "editorial_note_vi": "Đợt Công cụ và năng suất theo yêu cầu người dùng 2026-10-13. Chưa review kỹ thuật độc lập hoặc thử người học; không tự merge/phát hành."
+}

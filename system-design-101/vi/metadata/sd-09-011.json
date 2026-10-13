@@ -1,0 +1,71 @@
+{
+  "id": "sd-09-011",
+  "title_vi": "SEO: giúp công cụ tìm kiếm hiểu trang",
+  "language": "vi",
+  "kind": "explanation",
+  "content_status": "draft",
+  "source_ref": "sd-09-011",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/making-sense-of-search-engine-optimization.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/making-sense-of-search-engine-optimization.md",
+    "blob_sha": "5b5dfbae14cae3277347f97f05d831e4c53847eb",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "fdbd32baf3830632770fa6f84e303d580fd41d85ef5bcb50abf9a709bb9d679a",
+    "retrieved_body_bytes": 2939
+  },
+  "diagram": "../diagrams/sd-09-011-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "Đã đọc thân bài nguồn, đối chiếu danh mục và liệt kê tài liệu sơ cấp. Một số trang trả HTTP 403; chưa xác minh toàn bộ claim nên giữ pending."
+    },
+    "technical_review": {
+      "status": "pending"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 14.73,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium: complete lesson with details open at 320/375/430px; SVG text bounding boxes within viewBox; min effective text 14.73px at 320 and 17.54px at 375. Screenshots captured locally; no learner testing or live GitHub preview. Đã xem contact sheet 20 bài ở 320px; chưa kiểm tra trên GitHub hoặc điện thoại thật."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Dùng tiêu đề mô tả đúng chủ đề, heading rõ ràng, liên kết điều hướng có thể theo và nội dung trả lời nhu cầu thật. Kiểm tra mã HTTP, canonical và chỉ thị index khi trang không xuất hiện. Sitemap giúp thông báo URL, nhưng không buộc máy tìm kiếm lập chỉ mục.\n\nTrang dùng JavaScript không tự bị loại khỏi tìm kiếm; cần kiểm tra nội dung mà crawler/rendering có thể tiếp cận. Meta description có thể được dùng để tạo snippet, nhưng máy tìm kiếm có thể chọn đoạn khác. Theo dõi trải nghiệm đọc, tốc độ và mức phù hợp của nội dung; tránh nhồi từ khóa hoặc mua liên kết nhằm thao túng thứ hạng.",
+      "sources": [
+        "https://developers.google.com/search/docs/fundamentals/how-search-works",
+        "https://developers.google.com/search/docs/fundamentals/seo-starter-guide",
+        "https://developers.google.com/search/docs/appearance/core-web-vitals"
+      ]
+    },
+    {
+      "claim_vi": "Crawl được không đồng nghĩa index, và index không đồng nghĩa xếp hạng cao. `robots.txt` chặn crawl cũng không phải cách đáng tin để xóa URL khỏi chỉ mục.",
+      "sources": [
+        "https://developers.google.com/search/docs/fundamentals/how-search-works",
+        "https://developers.google.com/search/docs/fundamentals/seo-starter-guide",
+        "https://developers.google.com/search/docs/appearance/core-web-vitals"
+      ]
+    }
+  ],
+  "design_notes_vi": "Thẻ dọc tự thiết kế từ ví dụ mới; mũi tên biểu diễn thứ tự đọc. Không sử dụng ảnh nguồn.",
+  "editorial_note_vi": "Đợt Công cụ và năng suất theo yêu cầu người dùng 2026-10-13. Chưa review kỹ thuật độc lập hoặc thử người học; không tự merge/phát hành."
+}

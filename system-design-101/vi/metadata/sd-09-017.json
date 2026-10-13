@@ -1,0 +1,71 @@
+{
+  "id": "sd-09-017",
+  "title_vi": "Cây thư mục Linux và vai trò từng nơi",
+  "language": "vi",
+  "kind": "explanation",
+  "content_status": "draft",
+  "source_ref": "sd-09-017",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/linux-file-system-explained.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/linux-file-system-explained.md",
+    "blob_sha": "37a0e753631b669f24db0cff3991f96ef95c9f4b",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "6ed3f8a597d0de92443752fcedfd660d6c8b9d72e0ad23d5b290cd34d0266119",
+    "retrieved_body_bytes": 1238
+  },
+  "diagram": "../diagrams/sd-09-017-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "Đã đọc thân bài nguồn, đối chiếu danh mục và liệt kê tài liệu sơ cấp. Một số trang trả HTTP 403; chưa xác minh toàn bộ claim nên giữ pending."
+    },
+    "technical_review": {
+      "status": "pending"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 14.73,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium: complete lesson with details open at 320/375/430px; SVG text bounding boxes within viewBox; min effective text 14.73px at 320 and 17.54px at 375. Screenshots captured locally; no learner testing or live GitHub preview. Đã xem contact sheet 20 bài ở 320px; chưa kiểm tra trên GitHub hoặc điện thoại thật."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "`/etc` thường giữ cấu hình riêng của máy. `/var` chứa dữ liệu thay đổi trong quá trình vận hành, chẳng hạn log trong `/var/log`. `/home` thường chứa thư mục người dùng; `/usr` giữ phần lớn chương trình và dữ liệu dùng chung của hệ thống, không phải home của từng user.\n\n`/tmp` dành cho dữ liệu tạm, không nên dùng làm nơi duy nhất giữ dữ liệu cần lâu dài. `/dev` chứa node thiết bị. `/proc` và `/sys` thường là các filesystem ảo để quan sát trạng thái và giao tiếp với kernel. Chúng không đơn giản là các thư mục file thường lưu trên cùng một ổ đĩa.",
+      "sources": [
+        "https://refspecs.linuxfoundation.org/FHS_3.0/fhs/index.html",
+        "https://man7.org/linux/man-pages/man7/hier.7.html",
+        "https://man7.org/linux/man-pages/man5/proc.5.html"
+      ]
+    },
+    {
+      "claim_vi": "FHS là quy ước phổ biến, không bảo đảm mọi distro/container có bố cục giống nhau. Nhiều hệ thống dùng merged-/usr, với /bin là liên kết tới /usr/bin.",
+      "sources": [
+        "https://refspecs.linuxfoundation.org/FHS_3.0/fhs/index.html",
+        "https://man7.org/linux/man-pages/man7/hier.7.html",
+        "https://man7.org/linux/man-pages/man5/proc.5.html"
+      ]
+    }
+  ],
+  "design_notes_vi": "Thẻ dọc tự thiết kế từ ví dụ mới; mũi tên biểu diễn thứ tự đọc. Không sử dụng ảnh nguồn.",
+  "editorial_note_vi": "Đợt Công cụ và năng suất theo yêu cầu người dùng 2026-10-13. Chưa review kỹ thuật độc lập hoặc thử người học; không tự merge/phát hành."
+}

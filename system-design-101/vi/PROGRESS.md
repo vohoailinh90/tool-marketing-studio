@@ -1,12 +1,11 @@
 # Tiến độ System Design tiếng Việt
 
-Chuyển sang vohoailinh90/tool-marketing-studio ngày 2026-10-13 theo yêu cầu người dùng.
-Repo cũ tạm dừng; không merge/đóng/xóa các PR cũ.
+27/404 vị trí đã viết: bảy bài API đã nhập và 20 bài Công cụ và năng suất trong đợt hiện tại. Giữ đủ 15 nhóm và 400 nguồn duy nhất.
 
-7/404 vị trí đã viết; 15 nhóm và 400 nguồn duy nhất giữ nguyên. Bảy bài có evidence review ở repo cũ, kể cả bài 7 tại comment6133492501/headb8dff434ff75499137bbb10b61122958fdaaafa5. Các evidence này là prior_reviews, không duyệt tổ hợp trong repo mới.
+Theo yêu cầu người dùng ngày 2026-10-13, làm nhóm sd-09-001 tới sd-09-020 trước các bài API còn lại. Các bài API khác chưa được coi là đã viết; next_id vẫn là vị trí chưa viết đầu tiên theo bảng nguồn. Xem [progress.json](progress.json) để điều phối đợt hiện tại.
 
-Đợt hiện tại: nhập bảy bài trên nhánh codex/system-design-vi-import; PR #40 (base main). Review tích hợp đang chờ. Sau khi đạt review/checks, tiếp tục sd-01-008 rồi đúng thứ tự source-map.
+PR nhập #40 đã merge tại 5831cdcef96a2c83664e02d83a4e803cf47f259c. Evidence bảy bài cũ giữ nguyên; không tự nâng trạng thái do việc merge.
 
-Metadata JSON duy nhất giữ trạng thái; YAML chỉ id/metadata_ref. Hình/bài giữ nguyên byte khi nhập. User testing chưa thực hiện; không tự merge/deploy hoặc đăng bài.
+Đợt mới có 20 bài độc lập bằng tiếng Việt, 20 sơ đồ SVG mới, câu hỏi/đáp án và metadata nguồn ghim phiên bản. Nguồn đã đọc và kiểm hash thân bài. Kiểm chứng claim, review kỹ thuật, mobile và thử người học ghi riêng tại metadata; không coi danh sách tên lịch sử là tính năng đã kiểm chứng hiện hành.
 
-Đồng bộ main đích tại 3edff99314afa7435a4519b700e380eac8d6bc1c (trước đó f9f79246cf7b05979fc1343734e02ea8afc201be); sửa adopted_main_sha theo finding4252903469 và finding4253959699. Mốc main repo cũ giữ previous_repository_main_sha. Review tổ hợp mới vẫn pending.
+Không tự merge/deploy, đăng bài hoặc phê duyệt phát hành. Trạng thái từng bài chỉ nằm trong metadata JSON; YAML chỉ trỏ tới metadata.

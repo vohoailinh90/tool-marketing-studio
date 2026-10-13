@@ -17,6 +17,29 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 
 7. [Chính sách định tuyến lưu lượng Internet](lessons/sd-01-007/lesson.md) — có review tại repo cũ; chờ review tích hợp tại repo mới.
 
+## Công cụ và năng suất
+
+1. [Các lệnh Git theo việc cần làm](lessons/sd-09-001/lesson.md)
+2. [Quy trình làm việc với Git](lessons/sd-09-002/lesson.md)
+3. [Đọc JSON lồng nhau bằng sơ đồ](lessons/sd-09-003/lesson.md)
+4. [Git và GitHub giải quyết việc gì?](lessons/sd-09-004/lesson.md)
+5. [Merge và rebase: ghép lịch sử khác nhau](lessons/sd-09-005/lesson.md)
+6. [Chọn ứng dụng AI theo đầu ra cần kiểm tra](lessons/sd-09-006/lesson.md)
+7. [Viết sơ đồ bằng mã](lessons/sd-09-007/lesson.md)
+8. [CPU 100%: bắt đầu từ bằng chứng](lessons/sd-09-008/lesson.md)
+9. [Sáu lựa chọn để dựng sơ đồ từ văn bản](lessons/sd-09-009/lesson.md)
+10. [Chọn công cụ đưa code tới production](lessons/sd-09-010/lesson.md)
+11. [SEO: giúp công cụ tìm kiếm hiểu trang](lessons/sd-09-011/lesson.md)
+12. [Tra lệnh Linux theo câu hỏi](lessons/sd-09-012/lesson.md)
+13. [Quyền Linux: ai được làm gì?](lessons/sd-09-013/lesson.md)
+14. [Năm góc nhìn để hiểu Linux](lessons/sd-09-014/lesson.md)
+15. [Các dự án nguồn mở qua một đường đi ứng dụng](lessons/sd-09-015/lesson.md)
+16. [Dự án được doanh nghiệp khởi xướng hoặc hỗ trợ](lessons/sd-09-016/lesson.md)
+17. [Cây thư mục Linux và vai trò từng nơi](lessons/sd-09-017/lesson.md)
+18. [Dùng dev tools để bỏ việc lặp lại](lessons/sd-09-018/lesson.md)
+19. [Git lưu snapshot và nhánh như thế nào?](lessons/sd-09-019/lesson.md)
+20. [Từ thay đổi code tới bản chạy production](lessons/sd-09-020/lesson.md)
+
 Danh mục đầy đủ và snapshot nguồn: [bảng đối chiếu](../../brainstorm/system-design-101-vi/source-map.json).
 Quy tắc đã chốt: [kết luận brainstorm](../../brainstorm/system-design-101-vi/DECISIONS.md).
 Tiến độ từng đợt: [PROGRESS.md](PROGRESS.md).

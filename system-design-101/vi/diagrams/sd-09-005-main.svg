@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 472" role="img">
+<title>Merge và rebase: ghép lịch sử khác nhau</title>
+<desc>Trước khi ghép: main: A → B | feature: A → F; Merge khi đã phân nhánh: M có hai cha: B và F; Rebase feature lên main: A → B → F′; Điểm khác nhau: F′ thường có ID khác F</desc>
+<rect width="352" height="472" rx="16" fill="#f3f6fb"/>
+<text x="18" y="29" font-family="sans-serif" font-size="18" fill="#19334d">ĐỌC TỪ TRÊN XUỐNG</text>
+<rect x="12" y="44" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="70" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Trước khi ghép</text>
+<text x="24" y="98" font-family="sans-serif" font-size="18" fill="#19334d">main: A → B | feature: A → F</text>
+<path d="M176 135 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="150" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="176" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Merge khi đã phân nhánh</text>
+<text x="24" y="204" font-family="sans-serif" font-size="18" fill="#19334d">M có hai cha: B và F</text>
+<path d="M176 241 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="256" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="282" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Rebase feature lên main</text>
+<text x="24" y="310" font-family="sans-serif" font-size="18" fill="#19334d">A → B → F′</text>
+<path d="M176 347 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="362" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="388" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Điểm khác nhau</text>
+<text x="24" y="416" font-family="sans-serif" font-size="18" fill="#19334d">F′ thường có ID khác F</text>
+</svg>

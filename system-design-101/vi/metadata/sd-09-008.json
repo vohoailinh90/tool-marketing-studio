@@ -1,0 +1,71 @@
+{
+  "id": "sd-09-008",
+  "title_vi": "CPU 100%: bắt đầu từ bằng chứng",
+  "language": "vi",
+  "kind": "explanation",
+  "content_status": "draft",
+  "source_ref": "sd-09-008",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/top-9-cases-behind-100-cpu-usage.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-9-cases-behind-100-cpu-usage.md",
+    "blob_sha": "772cd784f4e5892fb12aa1583153d7ea1f3eb595",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "784d9d1c27a1add9d720dabef579cc18e70aa5a8c7af9dfdd496dedebed8ade7",
+    "retrieved_body_bytes": 850
+  },
+  "diagram": "../diagrams/sd-09-008-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "Đã đọc thân bài nguồn, đối chiếu danh mục và liệt kê tài liệu sơ cấp. Một số trang trả HTTP 403; chưa xác minh toàn bộ claim nên giữ pending."
+    },
+    "technical_review": {
+      "status": "pending"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 14.73,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium: complete lesson with details open at 320/375/430px; SVG text bounding boxes within viewBox; min effective text 14.73px at 320 and 17.54px at 375. Screenshots captured locally; no learner testing or live GitHub preview. Đã xem contact sheet 20 bài ở 320px; chưa kiểm tra trên GitHub hoặc điện thoại thật."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Dùng `top` để tìm process bận, rồi lấy profile phù hợp runtime. Nếu cùng một đoạn code xuất hiện liên tục, kiểm tra vòng lặp, busy waiting hoặc thuật toán tốn chi phí. Nếu nhiều request đều dùng CPU hợp lý, có thể lượng công việc đã vượt năng lực xử lý.\n\nChín hướng điều tra là: vòng lặp không kết thúc; tác vụ nền; lưu lượng tăng; tính toán nặng; áp lực bộ nhớ dẫn tới công việc quản lý bộ nhớ; nhiều process tranh CPU; busy waiting; biểu thức chính quy có chi phí cao; process không mong đợi hoặc mã độc. Đây là giả thuyết để kiểm tra, không phải chín kết luận rút ra từ một con số.",
+      "sources": [
+        "https://man7.org/linux/man-pages/man1/top.1.html",
+        "https://man7.org/linux/man-pages/man5/proc_loadavg.5.html",
+        "https://www.kernel.org/doc/html/latest/admin-guide/perf-security.html"
+      ]
+    },
+    {
+      "claim_vi": "Thiếu RAM không luôn làm CPU đạt 100%. Swap và chờ I/O có thể làm máy chậm theo cơ chế khác; đọc cả memory, I/O và load.",
+      "sources": [
+        "https://man7.org/linux/man-pages/man1/top.1.html",
+        "https://man7.org/linux/man-pages/man5/proc_loadavg.5.html",
+        "https://www.kernel.org/doc/html/latest/admin-guide/perf-security.html"
+      ]
+    }
+  ],
+  "design_notes_vi": "Thẻ dọc tự thiết kế từ ví dụ mới; mũi tên biểu diễn thứ tự đọc. Không sử dụng ảnh nguồn.",
+  "editorial_note_vi": "Đợt Công cụ và năng suất theo yêu cầu người dùng 2026-10-13. Chưa review kỹ thuật độc lập hoặc thử người học; không tự merge/phát hành."
+}

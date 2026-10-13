@@ -1,0 +1,71 @@
+{
+  "id": "sd-09-013",
+  "title_vi": "Quyền Linux: ai được làm gì?",
+  "language": "vi",
+  "kind": "explanation",
+  "content_status": "draft",
+  "source_ref": "sd-09-013",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/linux-file-permission-illustrated.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/linux-file-permission-illustrated.md",
+    "blob_sha": "85bd847b74894bea455b91a337c6c5d209bf2f31",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "3a1a3c73975be92d54a7cec97d2999dfb1f0b7a2ee82992761d750a15d2a0b3b",
+    "retrieved_body_bytes": 1078
+  },
+  "diagram": "../diagrams/sd-09-013-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "Đã đọc thân bài nguồn, đối chiếu danh mục và liệt kê tài liệu sơ cấp. Một số trang trả HTTP 403; chưa xác minh toàn bộ claim nên giữ pending."
+    },
+    "technical_review": {
+      "status": "pending"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 14.73,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium: complete lesson with details open at 320/375/430px; SVG text bounding boxes within viewBox; min effective text 14.73px at 320 and 17.54px at 375. Screenshots captured locally; no learner testing or live GitHub preview. Đã xem contact sheet 20 bài ở 320px; chưa kiểm tra trên GitHub hoặc điện thoại thật."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Trong dạng số, r là 4, w là 2 và x là 1. `chmod 640 report.txt` đặt owner đọc/sửa, group đọc, others không có quyền qua các bit này. Chủ sở hữu có thể được đổi bằng chown khi có quyền; không luôn là người đang tạo hoặc sửa file.\n\nVới thư mục, r cho phép liệt kê tên, x cho phép đi qua/tìm entry và w cho phép sửa danh sách entry khi các điều kiện cần thiết được đáp ứng. Vì vậy quyền x trên thư mục không có nghĩa “chạy thư mục”. Việc xóa một file thường phụ thuộc quyền ở thư mục chứa nó, không chỉ bit w của chính file.",
+      "sources": [
+        "https://man7.org/linux/man-pages/man7/inode.7.html",
+        "https://man7.org/linux/man-pages/man7/path_resolution.7.html",
+        "https://man7.org/linux/man-pages/man1/chmod.1.html"
+      ]
+    },
+    {
+      "claim_vi": "ACL, sticky bit, mount options và cơ chế như SELinux có thể ảnh hưởng kết quả. Thông thường Linux chọn lớp owner, rồi group, rồi others phù hợp; không cộng cả ba lớp quyền.",
+      "sources": [
+        "https://man7.org/linux/man-pages/man7/inode.7.html",
+        "https://man7.org/linux/man-pages/man7/path_resolution.7.html",
+        "https://man7.org/linux/man-pages/man1/chmod.1.html"
+      ]
+    }
+  ],
+  "design_notes_vi": "Thẻ dọc tự thiết kế từ ví dụ mới; mũi tên biểu diễn thứ tự đọc. Không sử dụng ảnh nguồn.",
+  "editorial_note_vi": "Đợt Công cụ và năng suất theo yêu cầu người dùng 2026-10-13. Chưa review kỹ thuật độc lập hoặc thử người học; không tự merge/phát hành."
+}

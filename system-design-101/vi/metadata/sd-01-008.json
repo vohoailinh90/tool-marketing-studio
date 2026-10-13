@@ -33,7 +33,7 @@
     "claims": {
       "status": "checked",
       "checked_on": "2026-10-13",
-      "evidence": "MDN pages read from a local clone of mdn/content; the display:none / visibility:hidden behaviour measured in Chromium 141."
+      "evidence": "MDN pages read from a local clone of mdn/content; the display:none / visibility:hidden behaviour measured in Chromium 141. Paint/raster và điều kiện script chờ CSS đối chiếu trực tiếp Chrome RenderingNG và HTML Standard ngày 2026-10-13."
     },
     "technical_review": {
       "status": "pending",
@@ -71,10 +71,10 @@
       "verified_by": "Read from a local clone of mdn/content (developer.mozilla.org was unreachable)."
     },
     {
-      "claim_vi": "Waiting for CSS does not block HTML parsing but does block JavaScript; some resource requests block the parsing of the rest of the HTML.",
-      "source": "https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/Critical_rendering_path",
-      "section": "Overview",
-      "verified_by": "Read from a local clone of mdn/content (developer.mozilla.org was unreachable)."
+      "claim_vi": "CSS đang tải không tự chặn phân tích HTML; script classic ngoài parser-inserted không async/defer có thể chờ stylesheet đang chặn script, đồng thời dừng parser. Không suy rộng cho mọi JavaScript.",
+      "source": "https://html.spec.whatwg.org/multipage/scripting.html#prepare-the-script-element",
+      "section": "Preparing the script element",
+      "verified_by": "Đọc HTML Standard ngày 2026-10-13: nhánh parser-inserted classic và stylesheet blocking scripts."
     },
     {
       "claim_vi": "Changing width or left adds one layout pass in Chromium 141 (LayoutCount via CDP); changing the transform value of an element that already has a transform adds none. Applying a transform to an element that had none can still trigger one layout.",
@@ -87,12 +87,19 @@
       "source": "https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/How_browsers_work",
       "section": "Render",
       "verified_by": "Measured in Chromium 141 with Playwright."
+    },
+    {
+      "claim_vi": "Paint ghi danh sách lệnh vẽ; raster chuyển lệnh vẽ thành điểm ảnh. Hình gộp hai công đoạn trong một thẻ để đọc trên mobile.",
+      "source": "https://developer.chrome.com/docs/chromium/renderingng-architecture",
+      "section": "Rendering pipeline",
+      "verified_by": "Đọc trực tiếp tài liệu Chrome ngày 2026-10-13."
     }
   ],
   "design_notes_vi": "Sáu thẻ; DOM và CSSOM đặt cạnh nhau rồi mới có mũi tên vào render tree vì chúng độc lập. Không dùng ảnh nguồn.",
   "source_deviations": [
     "Source ends with a 'Display' step that sends pixels to the GPU; MDN describes compositing as happening only in some cases, so the figure separates paint from an optional compositing step.",
-    "Source says the render tree leaves out invisible elements such as head or display:none; the lesson adds that visibility:hidden elements stay because they take up space."
+    "Source says the render tree leaves out invisible elements such as head or display:none; the lesson adds that visibility:hidden elements stay because they take up space.",
+    "Main 42f9d808 đã nhận bản nháp cùng ID từ PR44. Tích hợp giữ bản hiện hành của PR53 với body source đã đọc và claim evidence; lịch sử PR44 bảo toàn bằng parent main, không tạo bài trùng."
   ],
   "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
 }

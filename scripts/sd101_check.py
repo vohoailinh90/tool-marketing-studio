@@ -48,8 +48,8 @@ What is checked, per lesson id:
   - abbreviations: every abbreviation a beginner could trip on (LLM, DNS, SSE: two or more capital letters,
     and the mixed-case terms in MIXED_CASE_TERMS such as gRPC and IPv4) that lesson.md or its figure's text uses is explained in a "## Từ viết tắt" section, the first "##" of the
     lesson, one bullet each: - **LLM** (Large Language Model) — meaning: a plain-words explanation. The
-    parenthesis spells the abbreviation out in Latin letters, so its initials give the abbreviation back
-    (camelCase and all-caps runs count: HyperText, SYNchronize); keywords, HTTP methods and file names that only
+    parenthesis spells the abbreviation out in Latin letters, so its initials give exactly the abbreviation
+    (little words may be left out; camelCase and all-caps runs count: HyperText, SYNchronize); keywords, HTTP methods and file names that only
     look like abbreviations are in NOT_ACRONYMS or in `code`. The section may be left out when none is used.
 And once for the store: it holds only the entries above (an image dropped beside the README is refused like
 one in a lesson); README.md, PROGRESS.md and MIGRATION.md embed no image, use only the allowed raw HTML tags
@@ -940,24 +940,56 @@ def check_markdown(lesson_id: str, text: str, lesson_dir: pathlib.Path, entries:
     return problems
 
 
-def abbreviations_in(text: str) -> set[str]:
-    """The abbreviations a piece of text uses: capital-letter runs, minus the words in NOT_ACRONYMS."""
-    return {match.group(1) or match.group(2) for match in ABBREVIATION.finditer(text)} - NOT_ACRONYMS
+class HtmlText(HTMLParser):
+    """What a reader (or a screen reader) takes from a piece of HTML: its text and the alt text of its images, not
+    its tags, attributes or comments."""
+
+    def __init__(self) -> None:
+        super().__init__(convert_charrefs=True)
+        self.pieces: list[str] = []
+
+    def handle_data(self, data: str) -> None:
+        self.pieces.append(data)
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        if tag == "img":
+            self.pieces.extend(value for name, value in attrs if name == "alt" and value)
 
 
-def figure_strings(path: pathlib.Path) -> list[str]:
-    """What a reader (or a screen reader) takes from a figure as prose: its <title>, <desc> and <text> strings.
+def html_text(html: str) -> str:
+    parser = HtmlText()
+    parser.feed(html)
+    parser.close()
+    return " ".join(parser.pieces)
+
+
+def abbreviations_in(text: str, capitals: bool = True) -> set[str]:
+    """The abbreviations a piece of text uses: capital-letter runs and MIXED_CASE_TERMS, minus the words in
+    NOT_ACRONYMS. With capitals=False only the mixed-case terms count: in a heading set in capitals a Vietnamese word
+    cannot be told from an abbreviation, but gRPC and IPv4 can."""
+    found = {match.group(1) or (match.group(2) if capitals else "") for match in ABBREVIATION.finditer(text)}
+    return found - {""} - NOT_ACRONYMS
+
+
+def figure_strings(path: pathlib.Path) -> tuple[list[str], list[str]]:
+    """What a reader (or a screen reader) takes from a figure: its <title>, <desc> and <text> strings, as (prose,
+    headings).
 
     A string with no lower-case word is a heading set in capitals (ĐƠN HÀNG CÓ TIN MỚI, HAI MÁY · MỘT IPv4), in which
-    a Vietnamese word such as TIN cannot be told from an abbreviation, so it is skipped; the same abbreviation also
-    appears in the lower-case lines and in the lesson's text. A figure that cannot be parsed is reported elsewhere.
+    a Vietnamese word such as TIN cannot be told from an abbreviation: only the mixed-case terms of a heading are read.
+    A figure that cannot be parsed is reported elsewhere.
     """
     try:
         root = ElementTree.parse(path).getroot()
     except (OSError, LookupError, ElementTree.ParseError):
-        return []
-    strings = ("".join(element.itertext()) for element in root.iter() if local_name(element.tag) in ("title", "desc", "text"))
-    return [string for string in strings if any(word.islower() and len(word) > 1 for word in re.findall(r"[^\W\d_]+", string))]
+        return [], []
+    prose: list[str] = []
+    headings: list[str] = []
+    for element in root.iter():
+        if local_name(element.tag) in ("title", "desc", "text"):
+            string = "".join(element.itertext())
+            (prose if any(word.islower() and len(word) > 1 for word in re.findall(r"[^\W\d_]+", string)) else headings).append(string)
+    return prose, headings
 
 
 def lesson_prose(text: str) -> tuple[list[str], list[str], str | None, list[str]]:
@@ -986,7 +1018,7 @@ def lesson_prose(text: str) -> tuple[list[str], list[str], str | None, list[str]
         if token.type == "heading_open" and token.tag == "h2":
             section = tokens[index + 1].content.strip()
         elif token.type == "html_block":
-            piece = re.sub(r"<[^>]*>", " ", token.content)
+            piece = html_text(token.content)
             (glossary if section == GLOSSARY_HEADING else body).append(piece)
         elif token.type == "inline" and section != SOURCES_HEADING:
             pieces = []
@@ -995,6 +1027,8 @@ def lesson_prose(text: str) -> tuple[list[str], list[str], str | None, list[str]
                     pieces.append(child.content)
                 elif child.type == "image":
                     pieces.append(child.content)
+                elif child.type == "html_inline":
+                    pieces.append(" " + html_text(child.content) + " ")
             piece = "".join(pieces)
             if section == GLOSSARY_HEADING:
                 piece = piece.split("—", 1)[-1]  # the bullet's lead-in names the abbreviation it explains
@@ -1026,33 +1060,45 @@ def glossary_entries(lines: list[str]) -> tuple[list[tuple[str, str, str]], list
     return entries, malformed
 
 
-def initials_of(full_form: str) -> str:
-    """The initials a full form offers an abbreviation: one per word, per camelCase hump (HyperText, JavaScript),
-    and one per letter of an all-caps run, so "CSS Object Model" offers CSSOM and "SYNchronize" offers SYN.
-    Accents are dropped (cơ sở dữ liệu -> CSDL)."""
-    plain = unicodedata.normalize("NFD", full_form.replace("đ", "d").replace("Đ", "D"))
-    plain = "".join(char for char in plain if not unicodedata.combining(char))
-    initials = ""
-    for word in re.findall(r"[A-Za-z]+", plain):
-        for hump in re.findall(r"[A-Z]+(?![a-z])|[A-Z][a-z]*|[a-z]+", word):
-            initials += hump.upper() if hump.isupper() else hump[0].upper()
-    return initials
+# Little words a full form may leave out of its abbreviation: "Request for Comments" gives RFC and "Network Address and
+# Port Translation" NAPT.
+FILLER_WORDS = frozenset({"a", "an", "and", "for", "in", "of", "on", "or", "the", "to", "with"})
 
 
 def spells(abbreviation: str, full_form: str) -> bool:
-    """True when the full form is written out (not the abbreviation again) and the abbreviation's letters read off its
-    initials, in order, starting with the first. Little words (and, for, of) may be skipped; digits are not letters."""
+    """True when the full form is written out (not the abbreviation again) and the initials of its words are exactly
+    the abbreviation's letters, in order: no word is left out, but the little words in FILLER_WORDS may be.
+
+    One initial per word and per camelCase hump (HyperText, JavaScript, REpresentational); an all-caps word gives its
+    whole run or its first letter ("CSS Object Model" is CSSOM, "HTTP Strict Transport Security" is HSTS; a hidden
+    run works the same: "SYNchronize"); a word that is the abbreviation itself gives its first letter (a recursive
+    name: "gRPC Remote Procedure Calls"); digits are not letters; accents are dropped (cơ sở dữ liệu is CSDL).
+    """
     letters = re.sub(r"[^A-Za-z]", "", abbreviation).upper()
     if full_form.upper() == abbreviation.upper() or not any(char.islower() for char in full_form):
         return False
-    initials = iter(initials_of(full_form))
-    return letters[0] == next(initials, "") and all(letter in initials for letter in letters[1:])
+    plain = unicodedata.normalize("NFD", full_form.replace("đ", "d").replace("Đ", "D"))
+    plain = "".join(char for char in plain if not unicodedata.combining(char))
+    pattern = ""
+    for word in re.findall(r"[A-Za-z]+", plain):
+        if word == abbreviation:
+            pattern += word[0].upper()
+            continue
+        for hump in re.findall(r"[A-Z]+(?![a-z])|[A-Z][a-z]*|[a-z]+", word):
+            if hump.isupper() and len(hump) > 1:
+                pattern += f"(?:{hump}|{hump[0]})"
+            elif hump == word and hump.lower() in FILLER_WORDS:
+                pattern += f"(?:{hump[0].upper()})?"
+            else:
+                pattern += hump[0].upper()
+    return re.fullmatch(pattern, letters) is not None
 
 
-def check_abbreviations(lesson_id: str, text: str, figure: list[str]) -> list[Problem]:
+def check_abbreviations(lesson_id: str, text: str, figure: list[str], headings: list[str] | tuple[str, ...] = ()) -> list[Problem]:
     """Every abbreviation the lesson or its figure uses is explained, in full, in the lesson's own glossary."""
     body, glossary, glossary_lines, titles = lesson_prose(text)
     used = abbreviations_in("\n".join(body + glossary + figure))
+    used |= abbreviations_in("\n".join(headings), capitals=False)
     problems: list[Problem] = []
     template = f'"- **LLM** (Large Language Model) — meaning in plain words" under "## {GLOSSARY_HEADING}"'
     if glossary_lines is None:
@@ -1073,7 +1119,7 @@ def check_abbreviations(lesson_id: str, text: str, figure: list[str]) -> list[Pr
         seen.add(abbreviation)
         if not spells(abbreviation, full_form):
             problems.append(Problem(lesson_id, f"glossary spells {abbreviation} out as {full_form!r}, whose initials "
-                                               f"do not give {abbreviation}; write the full form in Latin letters, with a capital "
+                                               f"do not give exactly {abbreviation}; write the full form in Latin letters, with a capital "
                                                "where a word hides an initial (REpresentational, SYNchronize)"))
         if len(meaning.split()) < MIN_MEANING_WORDS:
             problems.append(Problem(lesson_id, f"glossary entry {abbreviation} has no explanation after the dash"))
@@ -1213,7 +1259,7 @@ def check_store(store: pathlib.Path, source_map: pathlib.Path, pin_roster: bool 
                 problems.append(Problem(lesson_id, f"lesson.md {why}"))
             else:
                 problems.extend(check_markdown(lesson_id, text, lesson_dir, entries, lesson_ids, boundary, diagrams_dir))
-                problems.extend(check_abbreviations(lesson_id, text, figure_strings(diagrams_dir / f"{lesson_id}-main.svg")))
+                problems.extend(check_abbreviations(lesson_id, text, *figure_strings(diagrams_dir / f"{lesson_id}-main.svg")))
     for name in STORE_PAGES:
         page = store / name
         if not page.is_file():

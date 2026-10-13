@@ -1769,8 +1769,24 @@ class AbbreviationRuleTests(StoreCase):
                 self.assertEqual([], self.problems())
 
     def test_a_heading_in_capitals_is_not_read_for_abbreviations(self) -> None:
-        self.lesson(glossary=None, figure=svg_with("ĐƠN HÀNG CÓ TIN MỚI", "HAI MÁY · MỘT IPv4", "TRANG HIỆN RA"))
+        self.lesson(glossary=None, figure=svg_with("ĐƠN HÀNG CÓ TIN MỚI", "HAI MÁY · MỘT SỐ", "TRANG HIỆN RA"))
         self.assertEqual([], self.problems())
+
+    def test_a_mixed_case_term_in_a_heading_in_capitals_still_counts(self) -> None:
+        figure = svg_with("HAI MÁY · MỘT IPv4")
+        self.lesson(glossary=None, figure=figure)
+        self.assertProblem("uses the abbreviation(s) IPv4")
+        self.lesson(glossary="- **IPv4** (Internet Protocol version 4) — phiên bản 4 của giao thức Internet.\n", figure=figure)
+        self.assertEqual([], self.problems())
+
+    def test_the_alt_text_of_a_raw_html_image_counts_as_use(self) -> None:
+        for where, tag in {"a block": '<img src="../../diagrams/sd-01-001-main.svg" alt="Sơ đồ LLM">',
+                           "inside a line": 'Xem <img src="../../diagrams/sd-01-001-main.svg" alt="Sơ đồ LLM"> này.'}.items():
+            with self.subTest(where=where):
+                self.lesson(tag, glossary=None)
+                self.assertProblem("uses the abbreviation(s) LLM")
+                self.lesson(tag)
+                self.assertEqual([], self.problems())
 
     def test_the_alt_text_of_the_figure_counts_as_use(self) -> None:
         body = (f"# Bài\n\n![Hình về LLM](../../diagrams/sd-01-001-main.svg)\n\n## Liên hệ nguồn\n\n[bài nguồn]({SNAPSHOT}).\n")
@@ -1801,7 +1817,7 @@ class AbbreviationRuleTests(StoreCase):
                            "another phrase": "Big Neural Network", "wrong first letter": "Very Large Model"}.items():
             with self.subTest(full=name):
                 self.lesson("Về LLM.", glossary=f"- **LLM** ({full}) — mô hình ngôn ngữ lớn của máy.\n")
-                self.assertProblem("do not give LLM")
+                self.assertProblem("do not give exactly LLM")
 
     def test_the_full_form_may_skip_little_words_and_use_the_camel_case_of_a_name(self) -> None:
         entries = {"NAPT": "Network Address and Port Translation", "RFC": "Request for Comments",
@@ -1823,9 +1839,31 @@ class AbbreviationRuleTests(StoreCase):
         self.assertFalse(check.spells("ML", "Large Machine Learning"))
         self.assertTrue(check.spells("ML", "Machine Learning"))
 
-    def test_initials_ignore_accents_and_read_dj(self) -> None:
-        self.assertEqual("DV", check.initials_of("đơn vị"))
-        self.assertEqual("CSDL", check.initials_of("cơ sở dữ liệu"))
+    def test_the_initials_must_be_exactly_the_abbreviation(self) -> None:
+        for abbreviation, full in {"API": "Application Broken Programming Interface",
+                                   "DNS": "Domain Wrong Name System", "LLM": "Large Language Model Meta",
+                                   "TCP": "Transmission Control", "SQL": "Structured Query Language Server"}.items():
+            with self.subTest(full=full):
+                self.assertFalse(check.spells(abbreviation, full))
+        self.assertTrue(check.spells("API", "Application Programming Interface"))
+
+    def test_only_the_little_words_may_be_left_out(self) -> None:
+        self.assertTrue(check.spells("NAPT", "Network Address and Port Translation"))
+        self.assertTrue(check.spells("RFC", "Request for Comments"))
+        self.assertTrue(check.spells("TTL", "Time To Live"))
+        self.assertFalse(check.spells("NAPT", "Network Address Elsewhere Port Translation"))
+
+    def test_an_all_caps_word_gives_its_run_or_its_first_letter(self) -> None:
+        self.assertTrue(check.spells("CSSOM", "CSS Object Model"))
+        self.assertTrue(check.spells("HSTS", "HTTP Strict Transport Security"))
+        self.assertTrue(check.spells("QUIC", "Quick UDP Internet Connections"))
+
+    def test_a_recursive_name_gives_its_first_letter(self) -> None:
+        self.assertTrue(check.spells("gRPC", "gRPC Remote Procedure Calls"))
+
+    def test_accents_are_dropped_and_dj_is_read_as_d(self) -> None:
+        self.assertTrue(check.spells("DV", "đơn vị"))
+        self.assertTrue(check.spells("CSDL", "cơ sở dữ liệu"))
 
     def test_an_entry_with_no_real_explanation_is_reported(self) -> None:
         self.lesson("Về LLM.", glossary="- **LLM** (Large Language Model) — mô hình\n")

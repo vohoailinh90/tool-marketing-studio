@@ -13,7 +13,7 @@ Nhóm muốn biết việc giao phần mềm của mình đang tốt lên hay t�
 <details>
 <summary>Xem đáp án</summary>
 
-Accelerate. Nó trình bày bốn thước đo: tần suất triển khai, thời gian từ commit đến chạy thật, tỉ lệ thay đổi gây lỗi và thời gian khôi phục.
+Accelerate. Sách trình bày bốn thước đo (mô hình ban đầu): tần suất triển khai, thời gian từ commit đến chạy thật, tỉ lệ thay đổi gây lỗi và thời gian khôi phục. DORA sau đó cập nhật mô hình thành năm thước đo, thêm tỉ lệ làm lại triển khai (deployment rework rate); hãy xem trang DORA để lấy định nghĩa hiện hành trước khi chọn bảng điểm.
 
 </details>
 
@@ -36,6 +36,6 @@ Sách không chứng minh cách làm hợp với tổ chức của bạn. Nhiề
 ## Nguồn đối chiếu
 
 - [ByteByteGo tại snapshot cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/some-devops-books-i-find-enlightening.md).
-- Nhóm DORA: [bốn thước đo chính](https://dora.dev/guides/dora-metrics-four-keys/).
+- Nhóm DORA: [các thước đo hiện hành](https://dora.dev/guides/dora-metrics/), [bốn thước đo ban đầu](https://dora.dev/guides/dora-metrics-four-keys/).
 - Google: [sách SRE](https://sre.google/sre-book/table-of-contents/).
 - Trang sách: [Continuous Delivery](https://continuousdelivery.com/), [Team Topologies](https://teamtopologies.com/), [Release It!](https://pragprog.com/titles/mnee2/release-it-second-edition/).

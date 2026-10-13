@@ -39,8 +39,12 @@
   },
   "claims": [
     {
-      "claim_vi": "Bốn thước đo DORA: tần suất triển khai, thời gian dẫn thay đổi, tỉ lệ thay đổi lỗi, thời gian khôi phục.",
+      "claim_vi": "Bốn thước đo DORA ban đầu: tần suất triển khai, thời gian dẫn thay đổi, tỉ lệ thay đổi lỗi, thời gian khôi phục.",
       "source": "https://dora.dev/guides/dora-metrics-four-keys/"
+    },
+    {
+      "claim_vi": "DORA cập nhật mô hình thành năm thước đo, thêm tỉ lệ làm lại triển khai.",
+      "source": "https://dora.dev/guides/dora-metrics/"
     },
     {
       "claim_vi": "Sách SRE của Google có bản đọc trực tuyến.",

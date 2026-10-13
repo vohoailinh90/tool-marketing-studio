@@ -1,36 +1,36 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 874" width="320" height="874" role="img" aria-labelledby="title desc">
-<title id="title">Chín anti-pattern khi làm ứng dụng cloud-native</title>
-<desc id="desc">Bốn tình huống và thiết kế sai tương ứng: tải tăng gấp mười, cần phát hành bản sửa lỗi gấp, máy chủ biến mất, và hóa đơn cloud tăng bất ngờ.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 873" width="320" height="873" role="img" aria-labelledby="title desc">
+<title id="title">Lỗi thường gặp khi đưa ứng dụng lên cloud-native</title>
+<desc id="desc">Bốn câu hỏi tự kiểm tra: một bản sao biến mất thì sao, cấu hình đổi thì sao, phụ thuộc chậm hoặc lỗi thì sao, và phát hành cùng chi phí có kiểm soát không; mỗi câu kèm lỗi thường gặp.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="874" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
-<text x="16" y="30" font-size="20" font-weight="bold">TỪ TÌNH HUỐNG ĐẾN</text>
-<text x="16" y="58" font-size="20" font-weight="bold">LỖI</text>
-<text x="16" y="86" font-size="16" font-weight="normal">Chuyện gì xảy ra khi...</text>
-<rect x="16" y="117" width="288" height="209" rx="10" fill="#fee2e2" stroke="#94a3b8"/>
-<text x="30" y="145" font-size="16" font-weight="bold">Tải tăng gấp mười</text>
-<text x="30" y="172" font-size="16" font-weight="normal">Không nhân bản được vì giữ</text>
-<text x="30" y="199" font-size="16" font-weight="normal">trạng thái trong tiến trình</text>
-<text x="30" y="226" font-size="16" font-weight="normal">Monolith gắn chặt, phải</text>
-<text x="30" y="253" font-size="16" font-weight="normal">nhân cả khối</text>
-<text x="30" y="280" font-size="16" font-weight="normal">Mọi dịch vụ tranh một cơ sở</text>
-<text x="30" y="307" font-size="16" font-weight="normal">dữ liệu</text>
-<rect x="16" y="338" width="288" height="155" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
-<text x="30" y="366" font-size="16" font-weight="bold">Cần phát hành sửa lỗi</text>
-<text x="30" y="393" font-size="16" font-weight="bold">gấp</text>
-<text x="30" y="420" font-size="16" font-weight="normal">Triển khai bằng tay, dễ sai</text>
-<text x="30" y="447" font-size="16" font-weight="normal">Không có CI/CD kiểm tra</text>
-<text x="30" y="474" font-size="16" font-weight="normal">trước</text>
-<rect x="16" y="505" width="288" height="155" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
-<text x="30" y="533" font-size="16" font-weight="bold">Một máy biến mất</text>
-<text x="30" y="560" font-size="16" font-weight="normal">Máy bị sửa tay, không dựng</text>
-<text x="30" y="587" font-size="16" font-weight="normal">lại giống hệt</text>
-<text x="30" y="614" font-size="16" font-weight="normal">Image phình to, dựng lại</text>
-<text x="30" y="641" font-size="16" font-weight="normal">chậm</text>
-<rect x="16" y="672" width="288" height="182" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
-<text x="30" y="700" font-size="16" font-weight="bold">Hóa đơn cloud tăng bất</text>
-<text x="30" y="727" font-size="16" font-weight="bold">ngờ</text>
-<text x="30" y="754" font-size="16" font-weight="normal">Không theo dõi chi phí</text>
-<text x="30" y="781" font-size="16" font-weight="normal">Dùng nhiều dịch vụ không</text>
-<text x="30" y="808" font-size="16" font-weight="normal">chiến lược</text>
-<text x="30" y="835" font-size="16" font-weight="normal">Truy vấn kém, thiếu chỉ mục</text>
+<rect width="320" height="873" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">BỐN CÂU HỎI KIỂM TRA</text>
+<text x="16" y="58" font-size="16" font-weight="normal">Nếu trả lời "không ổn" thì</text>
+<text x="16" y="85" font-size="16" font-weight="normal">xem lại</text>
+<rect x="16" y="116" width="288" height="182" rx="10" fill="#fee2e2" stroke="#94a3b8"/>
+<text x="30" y="144" font-size="16" font-weight="bold">Một bản sao biến mất</text>
+<text x="30" y="171" font-size="16" font-weight="bold">thì sao?</text>
+<text x="30" y="198" font-size="16" font-weight="normal">Dữ liệu chỉ nằm trong bộ</text>
+<text x="30" y="225" font-size="16" font-weight="normal">nhớ hoặc đĩa cục bộ</text>
+<text x="30" y="252" font-size="16" font-weight="normal">Không xử lý tín hiệu tắt,</text>
+<text x="30" y="279" font-size="16" font-weight="normal">mất yêu cầu đang dở</text>
+<rect x="16" y="310" width="288" height="155" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="338" font-size="16" font-weight="bold">Cấu hình đổi thì sao?</text>
+<text x="30" y="365" font-size="16" font-weight="normal">Cấu hình và bí mật viết</text>
+<text x="30" y="392" font-size="16" font-weight="normal">cứng trong image</text>
+<text x="30" y="419" font-size="16" font-weight="normal">Mỗi môi trường một bản</text>
+<text x="30" y="446" font-size="16" font-weight="normal">build riêng</text>
+<rect x="16" y="477" width="288" height="182" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="505" font-size="16" font-weight="bold">Phụ thuộc chậm hoặc</text>
+<text x="30" y="532" font-size="16" font-weight="bold">lỗi thì sao?</text>
+<text x="30" y="559" font-size="16" font-weight="normal">Không timeout, thử lại dồn</text>
+<text x="30" y="586" font-size="16" font-weight="normal">dập không giãn cách</text>
+<text x="30" y="613" font-size="16" font-weight="normal">Nhiều dịch vụ đè lên một cơ</text>
+<text x="30" y="640" font-size="16" font-weight="normal">sở dữ liệu</text>
+<rect x="16" y="671" width="288" height="182" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="699" font-size="16" font-weight="bold">Phát hành và chi phí</text>
+<text x="30" y="726" font-size="16" font-weight="bold">có kiểm soát không?</text>
+<text x="30" y="753" font-size="16" font-weight="normal">Triển khai bằng tay, sửa</text>
+<text x="30" y="780" font-size="16" font-weight="normal">máy tại chỗ</text>
+<text x="30" y="807" font-size="16" font-weight="normal">Không ai theo dõi hóa đơn</text>
+<text x="30" y="834" font-size="16" font-weight="normal">theo dịch vụ</text>
 </g></svg>

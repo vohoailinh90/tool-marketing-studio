@@ -1,6 +1,6 @@
 {
   "id": "sd-13-007",
-  "title_vi": "Chín anti-pattern khi làm ứng dụng cloud-native",
+  "title_vi": "Lỗi thường gặp khi đưa ứng dụng lên cloud-native",
   "language": "vi",
   "kind": "comparison",
   "content_status": "draft",
@@ -39,21 +39,29 @@
   },
   "claims": [
     {
+      "claim_vi": "Twelve-Factor khuyên tách cấu hình khỏi mã và đọc từ môi trường.",
+      "source": "https://12factor.net/config"
+    },
+    {
+      "claim_vi": "Twelve-Factor khuyên tiến trình khởi động nhanh và tắt êm.",
+      "source": "https://12factor.net/disposability"
+    },
+    {
       "claim_vi": "Twelve-Factor khuyên tiến trình không trạng thái, lưu dữ liệu bền ở dịch vụ hỗ trợ.",
       "source": "https://12factor.net/processes"
     },
     {
-      "claim_vi": "Máy chủ bất biến được thay thế thay vì sửa tại chỗ.",
-      "source": "https://martinfowler.com/bliki/ImmutableServer.html"
+      "claim_vi": "Timeout, giới hạn thử lại và backoff có jitter giảm nguy cơ quá tải lan truyền.",
+      "source": "https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/"
     },
     {
-      "claim_vi": "Tối ưu chi phí là một trụ cột của kiến trúc tốt trên cloud.",
-      "source": "https://docs.aws.amazon.com/wellarchitected/latest/cost-optimization-pillar/welcome.html"
+      "claim_vi": "Máy chủ bất biến được thay thế thay vì sửa tại chỗ.",
+      "source": "https://martinfowler.com/bliki/ImmutableServer.html"
     }
   ],
   "source_deviations": [
-    "Nguồn liệt kê chín mục theo thứ tự; bài tổ chức theo bốn tình huống và không giữ tên mục như tiêu đề."
+    "Nguồn liệt kê chín mục theo thứ tự; bài không giữ đủ chín mục mà chọn các lỗi chung (trạng thái, phát hành, chi phí) và thêm các lỗi độc lập dựa trên Twelve-Factor và hướng dẫn về thử lại."
   ],
-  "design_notes_vi": "Bốn thẻ tình huống kèm các lỗi thiết kế liên quan.",
+  "design_notes_vi": "Bốn thẻ câu hỏi tự kiểm tra, mỗi thẻ hai lỗi thường gặp.",
   "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
 }

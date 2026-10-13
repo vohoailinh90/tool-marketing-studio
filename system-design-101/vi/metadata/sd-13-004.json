@@ -60,6 +60,10 @@
     {
       "claim_vi": "Prometheus hỗ trợ service discovery cho Kubernetes qua kubernetes_sd_config.",
       "source": "https://prometheus.io/docs/prometheus/latest/configuration/configuration/"
+    },
+    {
+      "claim_vi": "Agent mode vẫn thu bằng cách kéo rồi chuyển tiếp mẫu qua remote write.",
+      "source": "https://prometheus.io/docs/prometheus/latest/prometheus_agent/"
     }
   ],
   "source_deviations": [

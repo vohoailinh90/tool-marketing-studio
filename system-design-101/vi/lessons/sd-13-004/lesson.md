@@ -2,7 +2,7 @@
 
 Số đo có thể được bộ thu thập kéo về hoặc được dịch vụ đẩy tới. Cách nào hợp tùy dịch vụ của bạn sống thế nào và nằm ở đâu.
 
-![Ba tình huống và lựa chọn tương ứng: dịch vụ chạy lâu trong cụm thì kéo, tác vụ batch cấp dịch vụ thì đẩy qua Pushgateway, đích nằm sau tường lửa thì đặt agent trong mạng đó và đẩy về bằng remote write.](../../diagrams/sd-13-004-main.svg)
+![Ba tình huống và lựa chọn tương ứng: dịch vụ chạy lâu trong cụm thì kéo, tác vụ batch cấp dịch vụ thì đẩy qua Pushgateway, đích nằm sau tường lửa thì đặt agent trong mạng đó, kéo cục bộ rồi chuyển tiếp mẫu về bằng remote write.](../../diagrams/sd-13-004-main.svg)
 
 **Đọc hình:** không có cách đúng cho mọi trường hợp; một hệ thống thật thường dùng cả hai.
 
@@ -27,10 +27,11 @@ Với kéo, đích phải bật sẵn một địa chỉ phơi số đo và coll
 - **Kéo trong Prometheus:** cấu hình `scrape_configs`; đích thường tìm bằng service discovery (ví dụ `kubernetes_sd_config`) thay vì tệp ghi cứng, để danh sách theo kịp khi máy chủ thêm bớt.
 - **Tín hiệu sẵn có:** mỗi lần kéo Prometheus ghi số đo `up` cho biết kéo có thành công không.
 - **Pushgateway:** nhận số đo đẩy lên từ tác vụ ngắn rồi để Prometheus kéo từ chính nó; không phải cách đẩy chung cho mọi dịch vụ.
+- **Agent và remote write:** agent vẫn kéo (scrape) đích trong mạng của nó rồi chuyển tiếp các mẫu đã thu; vì còn kéo cục bộ nên vẫn thấy tín hiệu `up`. Remote write không dành cho ứng dụng đẩy thẳng số đo của chính nó.
 
 </details>
 
 ## Nguồn đối chiếu
 
 - [ByteByteGo tại snapshot cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/push-vs-pull-in-metrics-collecting-systems.md).
-- Prometheus: [tổng quan](https://prometheus.io/docs/introduction/overview/), [khi nào dùng Pushgateway](https://prometheus.io/docs/practices/pushing/), [cấu hình scrape](https://prometheus.io/docs/prometheus/latest/configuration/configuration/).
+- Prometheus: [tổng quan](https://prometheus.io/docs/introduction/overview/), [khi nào dùng Pushgateway](https://prometheus.io/docs/practices/pushing/), [cấu hình scrape](https://prometheus.io/docs/prometheus/latest/configuration/configuration/), [Agent mode](https://prometheus.io/docs/prometheus/latest/prometheus_agent/), [đặc tả Remote Write](https://prometheus.io/docs/specs/prw/remote_write_spec/).

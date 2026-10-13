@@ -92,6 +92,7 @@
   "design_notes_vi": "Vòng lặp dọc có mũi tên quay lại; thẻ dừng nêu ba điều kiện. Chọn ví dụ đặt lịch họp tự nghĩ ra. Không dùng ảnh nguồn.",
   "source_deviations": [
     "Source lists five agent types (simple reflex, model-based reflex, goal-based, utility-based, learning); not needed for the main idea and not verified, so omitted.",
+    "The lesson scopes the word agent to LLM agents (language-model agents with a tool loop); agents in the broad AI sense, such as simple-reflex agents, need neither a language model nor a tool loop and are only mentioned as out of scope.",
     "Source defines an agent by its capabilities only; the lesson adds the cost and error trade-off and the workflow-versus-agent distinction from Anthropic."
   ],
   "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."

@@ -1,6 +1,6 @@
 # AI agent là gì?
 
-**Khác biệt giữa một câu trả lời và một agent là vòng lặp hành động.** Agent dùng mô hình ngôn ngữ để chọn
+**Khác biệt giữa một câu trả lời và một agent là vòng lặp hành động.** Trong bài này, “agent” là agent dùng mô hình ngôn ngữ (LLM agent): nó dùng mô hình để chọn
 bước kế tiếp, gọi công cụ, nhìn kết quả thật rồi chọn tiếp, cho tới khi xong mục tiêu.
 
 ![Vòng lặp dọc. Mục tiêu: đặt lịch họp cho ba người. Bước 1, LLM chọn bước kế tiếp dựa trên mục tiêu, bộ nhớ và kết quả trước. Bước 2, gọi công cụ như API lịch, tìm kiếm, chạy mã. Bước 3, quan sát kết quả thật từ môi trường; một mũi tên đi từ bước 3 trở lại bước 1. Cuối cùng là dừng: xong mục tiêu, hết số lượt cho phép hoặc chờ người duyệt. Ghi chú: thao tác khó hoàn tác nên có người duyệt trước.](../../diagrams/sd-03-006-main.svg)
@@ -47,7 +47,7 @@ hệ thống trong đó mô hình tự điều khiển quá trình và việc d�
 được việc, và chỉ dùng agent khi cần sự linh hoạt mà đường đi cố định không cho được.
 
 Bài nguồn còn liệt kê các loại agent (phản xạ đơn giản, phản xạ dựa trên mô hình, dựa trên mục tiêu,
-dựa trên tiện ích, học). Phân loại đó không cần cho ý chính nên bài này không đối chiếu và không đưa vào.
+dựa trên tiện ích, học). Đó là những agent theo nghĩa rộng của ngành AI, và chúng không cần mô hình ngôn ngữ hay vòng lặp gọi công cụ. Bài này chỉ nói về LLM agent; phân loại kia không cần cho ý chính nên bài không đối chiếu và không đưa vào.
 
 </details>
 

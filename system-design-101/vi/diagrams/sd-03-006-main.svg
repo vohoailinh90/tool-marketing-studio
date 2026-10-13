@@ -1,11 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 722" width="320" height="722" role="img" aria-labelledby="title desc">
-<title id="title">Vòng lặp của một AI agent</title>
-<desc id="desc">Người dùng nêu mục tiêu. LLM chọn bước tiếp theo, agent gọi công cụ, quan sát kết quả thật từ môi trường rồi quay lại để LLM chọn bước kế tiếp. Vòng lặp dừng khi xong mục tiêu, hết số lượt cho phép hoặc chờ người duyệt.</desc>
+<title id="title">Vòng lặp của một agent dùng mô hình ngôn ngữ</title>
+<desc id="desc">Đây là agent dùng mô hình ngôn ngữ (LLM agent). Người dùng nêu mục tiêu. LLM chọn bước tiếp theo, agent gọi công cụ, quan sát kết quả thật từ môi trường rồi quay lại để LLM chọn bước kế tiếp. Vòng lặp dừng khi xong mục tiêu, hết số lượt cho phép hoặc chờ người duyệt.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="722" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="30" font-size="21" font-weight="bold">VÒNG LẶP CỦA</text>
-<text x="16" y="54" font-size="21" font-weight="bold">MỘT AI AGENT</text>
+<text x="16" y="54" font-size="21" font-weight="bold">MỘT LLM AGENT</text>
 <rect x="16" y="80" width="268" height="100" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
 <text x="29" y="109" font-size="16" font-weight="bold">Mục tiêu</text>
 <text x="29" y="137" font-size="16" font-weight="normal">Ví dụ: đặt lịch họp cho ba</text>

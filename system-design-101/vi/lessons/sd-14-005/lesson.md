@@ -9,7 +9,7 @@ Nhờ vậy bạn chỉ nhớ một mật khẩu, và với thiết kế này m�
 
 **1 · Tạo khóa kho.** Máy bạn sinh một khóa ngẫu nhiên dùng để mã hóa các mục (mật khẩu, ghi chú). Khóa này do máy sinh ngẫu nhiên chứ không do người đặt, nên không dễ đoán như một mật khẩu.
 
-**2 · Khóa mở khóa.** Mật khẩu chủ được đưa qua hàm băm chậm có salt (cùng loại hàm dùng để lưu mật khẩu trên máy chủ: chậm có chủ đích và có salt) để ra một khóa mở khóa. Một số sản phẩm trộn thêm một mã bí mật chỉ nằm trên thiết bị, ví dụ Secret Key của 1Password, để mật khẩu chủ một mình không đủ.
+**2 · Khóa mở khóa.** Mật khẩu chủ được đưa qua hàm băm chậm có salt (cùng loại hàm dùng để lưu mật khẩu trên máy chủ: chậm có chủ đích và có salt) để ra một khóa mở khóa. Một số sản phẩm trộn thêm một mã bí mật do người dùng giữ, nhà cung cấp không có bản sao, ví dụ Secret Key của 1Password, để mật khẩu chủ một mình không đủ. Theo tóm tắt tìm kiếm tài liệu của họ, mã này nằm trên các thiết bị đã đăng nhập và trong Emergency Kit do người dùng tự cất, nên nó không bị khóa chặt vào một thiết bị.
 
 **3 · Bọc và mã hóa.** Khóa mở khóa mã hóa (“bọc”) khóa kho, còn khóa kho mã hóa từng mục. Máy chủ nhận salt, khóa kho đã bọc và các mục đã mã hóa. Để đăng nhập, máy bạn còn gửi một giá trị tính từ mật khẩu chủ (ở Bitwarden là một giá trị băm của khóa chủ); giá trị này dùng để xác thực với máy chủ, và mô hình chạy thử không mô phỏng phần đăng nhập.
 
@@ -17,7 +17,7 @@ Nhờ vậy bạn chỉ nhớ một mật khẩu, và với thiết kế này m�
 
 ## Giới hạn cần nhớ
 
-Cái giá của thiết kế này là nhà cung cấp cũng không tự mở được kho của bạn: mất mật khẩu chủ (và mã bí mật trên thiết bị, nếu sản phẩm dùng) nghĩa là mất chìa, trừ khi sản phẩm có cơ chế khôi phục riêng.
+Cái giá của thiết kế này là nhà cung cấp cũng không tự mở được kho của bạn: mất mật khẩu chủ (và mã bí mật do người dùng giữ, nếu sản phẩm dùng) nghĩa là mất chìa, trừ khi sản phẩm có cơ chế khôi phục riêng.
 Thiết kế này bảo vệ dữ liệu nằm trên máy chủ. Nó không bảo vệ một máy đang mở khóa: khi kho đã mở, các khóa nằm trong bộ nhớ của máy đó, và mật khẩu chủ yếu vẫn có thể bị đoán.
 
 ## Nhìn hình trả lời
@@ -50,5 +50,6 @@ Mô hình thử nghiệm dùng `scrypt` với tham số nhẹ và AES-GCM của 
 - [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-a-password-manager-such-as-1password-or-lastpass-work.md): ý tưởng một mật khẩu chủ, khóa kho và mã hóa từng mục.
 - [Bitwarden — Cryptography guide](https://github.com/bitwarden/contributing-docs/blob/main/docs/architecture/cryptography/crypto-guide.md): khóa chủ từ mật khẩu, khóa đối xứng của người dùng, khóa riêng cho từng mục, bọc khóa và giá trị băm gửi lên máy chủ để đăng nhập. Đọc từ bản clone của kho.
 - [1Password Developer — Service Account security](https://developer.1password.com/docs/service-accounts/security/): khóa mở khóa từ mật khẩu cộng Secret Key, bộ khóa cá nhân mã hóa các kho. Chỉ đọc được qua tóm tắt tìm kiếm, chưa mở trang.
+- [1Password Support — About your Secret Key](https://support.1password.com/secret-key-security/): nơi Secret Key được cất và việc nhà cung cấp không có bản sao. Chỉ đọc được qua tóm tắt tìm kiếm, chưa mở trang.
 
 Đã đọc nguồn ngày 2026-10-13. Mô hình thử nghiệm chạy bằng Python, `hashlib.scrypt` và AES-GCM trong `cryptography` 50.0.1. Bài viết và hình được thiết kế độc lập.

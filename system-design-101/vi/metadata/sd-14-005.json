@@ -83,13 +83,19 @@
       "verified_by": "Web search result summary only; the page itself was not opened and is unverified beyond that summary."
     },
     {
-      "claim_vi": "Toy hierarchy (scrypt, light parameters, plus AES-GCM): a random vault key encrypts items; a key derived from the master password wraps the vault key; a wrong password raises InvalidTag; changing the password re-wraps only the vault key and leaves the item ciphertexts unchanged, the old password no longer opens the new wrapped key; mixing in a device-held random secret makes the password alone fail with InvalidTag.",
+      "claim_vi": "1Password's Secret Key is held by the user rather than by 1Password: it is kept on devices signed in to the account (apps and browsers), in encrypted device backups and keychains, and in the Emergency Kit PDF; 1Password has no copy and cannot recover or reset it.",
+      "source": "https://support.1password.com/secret-key-security/",
+      "section": "About your Secret Key",
+      "verified_by": "Web search result summary only; the page itself was not opened and is unverified beyond that summary."
+    },
+    {
+      "claim_vi": "Toy hierarchy (scrypt, light parameters, plus AES-GCM): a random vault key encrypts items; a key derived from the master password wraps the vault key; a wrong password raises InvalidTag; changing the password re-wraps only the vault key and leaves the item ciphertexts unchanged, the old password no longer opens the new wrapped key; mixing in a random secret held outside the server (a local value in the script) makes the password alone fail with InvalidTag.",
       "source": "https://pypi.org/project/cryptography/",
       "section": "AES-GCM (AEAD)",
       "verified_by": "No external page reports this output; observed by executing the code on the authoring machine. Used cryptography 50.0.1 and hashlib.scrypt."
     },
     {
-      "claim_vi": "In the toy model, password change was only demonstrated as re-wrapping the vault key; the design protects data stored on the server but not a device that is unlocked; a weak master password can still be guessed; losing the master password (and the device secret, if used) means the provider cannot open the vault unless the product offers its own recovery.",
+      "claim_vi": "In the toy model, password change was only demonstrated as re-wrapping the vault key; the design protects data stored on the server but not a device that is unlocked; a weak master password can still be guessed; losing the master password (and the user-held secret, if used) means the provider cannot open the vault unless the product offers its own recovery.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-a-password-manager-such-as-1password-or-lastpass-work.md",
       "section": "Closing paragraph",
       "verified_by": "Author's inference from the described design; not checked against a vendor document."

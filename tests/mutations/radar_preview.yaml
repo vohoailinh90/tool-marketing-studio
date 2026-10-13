@@ -1,0 +1,57 @@
+# Mutation manifest — see scripts/mutation_check.py
+
+target: scripts/radar_preview.py
+note: What a github-radar pull request may have the shared runner draw, and the comment that carries the preview.
+mutations:
+- label: a path that climbs out of a campaign counts as radar data
+  find: 'if posixpath.normpath(path) != path:'
+  replace: 'if False:'
+  test: tests.test_radar_preview.ClassifyTests.test_a_path_that_climbs_out_of_the_campaign_is_outside
+- label: a changed code file no longer counts as outside radar data
+  find: 'elif not path.startswith(DATA_PREFIXES):'
+  replace: 'elif False:'
+  test: tests.test_radar_preview.ClassifyTests.test_code_is_never_drawn_because_the_engine_would_run_on_the_shared_runner
+- label: a folder named like radar's tool data but longer counts as it
+  find: 'DATA_PREFIXES = ("tools/github-radar/",)'
+  replace: 'DATA_PREFIXES = ("tools/github-radar",)'
+  test: tests.test_radar_preview.ClassifyTests.test_other_campaigns_and_look_alike_folders_are_outside
+- label: a pull request with files outside radar data is still drawn
+  find: "    if outside:\n        return False, campaigns, outside,"
+  replace: "    if False:\n        return False, campaigns, outside,"
+  test: tests.test_radar_preview.ClassifyTests.test_code_is_never_drawn_because_the_engine_would_run_on_the_shared_runner
+- label: a pull request with no campaign is drawn
+  find: '    if not campaigns:'
+  replace: '    if False:'
+  test: tests.test_radar_preview.ClassifyTests.test_nothing_to_draw_when_the_changes_cannot_be_read_or_hold_no_campaign
+- label: a pull request that is not drawn still hands the workflow paths to upload
+  find: '"export_paths": "\n".join(f"campaigns/{c}/export/**" for c in campaigns) if ok else "",'
+  replace: '"export_paths": "\n".join(f"campaigns/{c}/export/**" for c in campaigns),'
+  test: tests.test_radar_preview.PlanTests.test_a_pull_request_that_also_changes_code_is_not_planned_and_names_the_file
+- label: a caption can close its own code fence
+  find: 'max(3, longest + 1)'
+  replace: '3'
+  test: tests.test_radar_preview.CommentTests.test_a_caption_cannot_close_its_fence_or_ping_anyone
+- label: a caption is not cut
+  find: 'r["caption"].strip()[:CAPTION_LIMIT]'
+  replace: 'r["caption"].strip()'
+  test: tests.test_radar_preview.CommentTests.test_a_very_long_caption_is_cut
+- label: every file outside radar data is listed
+  find: 'for p in outside[:5]]'
+  replace: 'for p in outside]'
+  test: tests.test_radar_preview.CommentTests.test_a_pull_request_that_is_not_drawn_says_why_and_lists_at_most_five_files
+- label: the comment loses the marker the workflow finds it by
+  find: 'lines = [MARKER, "### Radar preview", ""]'
+  replace: 'lines = ["### Radar preview", ""]'
+  test: tests.test_radar_preview.CommentTests.test_it_starts_with_the_marker_the_workflow_looks_for_and_links_the_images
+- label: a failed check or drawing is not mentioned in the comment
+  find: '        lines += [f"**A check or the drawing failed: read [the run]({run_url}).**", ""]'
+  replace: '        pass'
+  test: tests.test_radar_preview.CommentTests.test_a_failure_points_at_the_run
+- label: an output block ends with a fixed delimiter a file name can write
+  find: 'delimiter = f"RADAR_EOF_{uuid.uuid4().hex}"'
+  replace: 'delimiter = "RADAR_EOF"'
+  test: tests.test_radar_preview.PlanTests.test_a_file_name_cannot_end_its_output_block_and_set_an_output_of_its_own
+- label: a file name breaks out of its code span in the comment
+  find: 'return re.sub(r"[`\x00-\x1f\x7f]", "?", text)'
+  replace: 'return text'
+  test: tests.test_radar_preview.CommentTests.test_a_file_name_cannot_break_out_of_its_code_span

@@ -1,0 +1,127 @@
+name: Radar preview
+
+# github-radar opens a draft pull request (branch radar/<campaign>) that adds one campaign. This workflow checks that
+# campaign, draws its images and texts with this repository's own engine, attaches them to the run and keeps one
+# comment on the pull request that links them, so the post can be looked at before it is approved.
+# Nothing is approved, committed or published here: those stay the owner's (CLAUDE.md, "Publishing is the owner's act").
+# scripts/radar_preview.py decides what may be drawn and writes the comment; docs/agent-team.md, "Radar preview".
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+    paths:
+      - "campaigns/radar-*/**"
+
+concurrency:
+  group: radar-preview-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pull-requests: write   # the one comment, and nothing else
+
+jobs:
+  preview:
+    # Same runner switch as ci.yml (docs/agent-team.md, "CI runner").
+    runs-on: ${{ vars.CI_RUNNER || 'self-hosted' }}
+    timeout-minutes: 20
+    # A persistent runner executes only code from people who can push here: never a fork. And only the bot's branches.
+    if: >-
+      github.event.pull_request.head.repo.full_name == github.repository
+      && startsWith(github.event.pull_request.head.ref, 'radar/')
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # The pull request's diff against its base decides what may be drawn (scripts/ci_changes.py).
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Which files does this pull request change?
+        id: plan
+        env:
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: python scripts/radar_preview.py plan
+
+      - name: Install
+        if: steps.plan.outputs.ok == 'true'
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          python -m playwright install ${{ runner.environment == 'github-hosted' && '--with-deps' || '' }} chromium
+
+      - name: Check the campaign
+        id: check
+        if: steps.plan.outputs.ok == 'true'
+        continue-on-error: true
+        env:
+          CAMPAIGNS: ${{ steps.plan.outputs.campaigns }}
+        run: |
+          status=0
+          for campaign in $CAMPAIGNS; do python studio.py check "$campaign" || status=1; done
+          exit $status
+
+      - name: Draw the images and texts
+        id: render
+        if: steps.plan.outputs.ok == 'true'
+        continue-on-error: true
+        env:
+          CAMPAIGNS: ${{ steps.plan.outputs.campaigns }}
+        run: |
+          status=0
+          for campaign in $CAMPAIGNS; do python studio.py render "$campaign" || status=1; done
+          exit $status
+
+      - name: Attach the images and texts to the run
+        id: upload
+        if: always() && steps.plan.outputs.ok == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: radar-preview-pr-${{ github.event.pull_request.number }}
+          path: ${{ steps.plan.outputs.export_paths }}
+          if-no-files-found: warn
+          retention-days: 14
+
+      - name: Write the comment
+        if: always() && steps.plan.conclusion == 'success'
+        env:
+          PLAN_OK: ${{ steps.plan.outputs.ok }}
+          CAMPAIGNS: ${{ steps.plan.outputs.campaigns }}
+          REASON: ${{ steps.plan.outputs.reason }}
+          OUTSIDE: ${{ steps.plan.outputs.outside }}
+          CHECK: ${{ steps.check.outcome }}
+          RENDER: ${{ steps.render.outcome }}
+          ARTIFACT_URL: ${{ steps.upload.outputs.artifact-url }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          # `--name=value`: a value that starts with a dash (a file named -x) must not be read as an option.
+          python scripts/radar_preview.py comment --plan-ok="$PLAN_OK" --campaigns="$CAMPAIGNS" --reason="$REASON" \
+            --outside="$OUTSIDE" --check="$CHECK" --render="$RENDER" --artifact-url="$ARTIFACT_URL" --run-url="$RUN_URL" \
+            --out="$RUNNER_TEMP/radar-preview-comment.md"
+          cat "$RUNNER_TEMP/radar-preview-comment.md" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Keep one comment on the pull request
+        if: always() && steps.plan.conclusion == 'success'
+        uses: actions/github-script@v7
+        env:
+          COMMENT_FILE: ${{ runner.temp }}/radar-preview-comment.md
+        with:
+          script: |
+            const body = require('fs').readFileSync(process.env.COMMENT_FILE, 'utf8');
+            const { owner, repo } = context.repo;
+            const issue_number = context.payload.pull_request.number;
+            const comments = await github.paginate(github.rest.issues.listComments, { owner, repo, issue_number, per_page: 100 });
+            // Only this workflow's own comment is ever edited.
+            const mine = comments.find(c => c.user.login === 'github-actions[bot]' && c.body.startsWith('<!-- radar-preview -->'));
+            if (mine) {
+              await github.rest.issues.updateComment({ owner, repo, comment_id: mine.id, body });
+            } else {
+              await github.rest.issues.createComment({ owner, repo, issue_number, body });
+            }
+
+      - name: Fail when the check or the drawing failed
+        if: always() && (steps.check.outcome == 'failure' || steps.render.outcome == 'failure')
+        run: |
+          echo "A check or the drawing failed: see the steps above and the comment on the pull request."
+          exit 1

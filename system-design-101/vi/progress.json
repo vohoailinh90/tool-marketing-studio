@@ -10,16 +10,21 @@
     "sd-01-005",
     "sd-01-006",
     "sd-01-007",
-    "sd-01-008"
+    "sd-01-008",
+    "sd-01-017",
+    "sd-01-018",
+    "sd-01-019"
   ],
   "reviewed_ids": [],
   "next_id": "sd-01-009",
   "active_batch_ids": [
-    "sd-01-008"
+    "sd-01-017",
+    "sd-01-018",
+    "sd-01-019"
   ],
   "active_pr": null,
   "updated_on": "2026-10-13",
-  "active_branch": "claude/system-design-vi-sd-01-008",
+  "active_branch": "claude/sd01-batch-5",
   "previous_pr": 40,
   "superseded_pr": 24,
   "integration_review_pending": true,

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 800" width="320" height="800" role="img" aria-labelledby="title desc">
+<title id="title">GraphQL tại LinkedIn theo bản tóm tắt của nguồn</title>
+<desc id="desc">Năm khung dọc: viết và thử, nhà phát triển phía client viết truy vấn và thử với dịch vụ phía sau; đăng ký, truy vấn được commit rồi xuất bản lên kho đăng ký truy vấn; chạy thật, truy vấn được phát hành cùng mã client, siêu dữ liệu định tuyến đi kèm để tầng định tuyến đưa yêu cầu tới đúng cụm dịch vụ, và dịch vụ giữ cache các truy vấn đã đăng ký; ví dụ một truy vấn đi qua dịch vụ danh tính lấy hội viên rồi dịch vụ tổ chức lấy công ty; không có GraphQL gateway để bớt một chặng mạng và tránh điểm đơn lỗi.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="800" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">GRAPHQL</text>
+<text x="16" y="56" font-size="20" font-weight="bold">TẠI LINKEDIN</text>
+<text x="16" y="86" font-size="16" font-weight="normal">Đăng ký truy vấn trước khi chạy</text>
+<rect x="16" y="108" width="288" height="104" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="138" font-size="16" font-weight="bold">1 · Viết và thử</text>
+<text x="30" y="165" font-size="16" font-weight="normal">Dev client viết truy vấn</text>
+<text x="30" y="192" font-size="16" font-weight="normal">Thử với dịch vụ phía sau</text>
+<rect x="16" y="226" width="288" height="104" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="256" font-size="16" font-weight="bold">2 · Đăng ký</text>
+<text x="30" y="283" font-size="16" font-weight="normal">Commit rồi xuất bản</text>
+<text x="30" y="310" font-size="16" font-weight="normal">lên kho đăng ký truy vấn</text>
+<rect x="16" y="344" width="288" height="131" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="374" font-size="16" font-weight="bold">3 · Chạy thật</text>
+<text x="30" y="401" font-size="16" font-weight="normal">Phát hành cùng mã client</text>
+<text x="30" y="428" font-size="16" font-weight="normal">Siêu dữ liệu → tầng định tuyến</text>
+<text x="30" y="455" font-size="16" font-weight="normal">Dịch vụ cache truy vấn</text>
+<rect x="16" y="489" width="288" height="131" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="519" font-size="16" font-weight="bold">Ví dụ trong nguồn</text>
+<rect x="30" y="529" width="125.992" height="34" rx="7" fill="#ffffff" stroke="#64748b"/>
+<text x="92.9961" y="552" text-anchor="middle" font-size="16" font-weight="normal">Danh tính</text>
+<line x1="157.992" y1="546" x2="174.992" y2="546" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="179.992" y="529" width="110.008" height="34" rx="7" fill="#ffffff" stroke="#64748b"/>
+<text x="234.996" y="552" text-anchor="middle" font-size="16" font-weight="normal">Tổ chức</text>
+<text x="30" y="600" font-size="16" font-weight="normal">Hội viên rồi công ty</text>
+<rect x="16" y="634" width="288" height="104" rx="12" fill="#e2e8f0" stroke="#94a3b8"/>
+<text x="30" y="664" font-size="16" font-weight="bold">Không có GraphQL gateway</text>
+<text x="30" y="691" font-size="16" font-weight="normal">Bớt một chặng mạng</text>
+<text x="30" y="718" font-size="16" font-weight="normal">Tránh điểm đơn lỗi</text>
+<text x="16" y="780" font-size="16" font-weight="normal">Mô tả của nguồn về một công ty.</text>
+</g></svg>

@@ -1,0 +1,99 @@
+{
+  "id": "sd-01-008",
+  "title_vi": "Trình duyệt dựng trang web thế nào?",
+  "language": "vi",
+  "kind": "flow",
+  "content_status": "draft",
+  "source_ref": "sd-01-008",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/how-does-the-browser-render-a-web-page.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-the-browser-render-a-web-page.md",
+    "blob_sha": "4ff1f63edf1e8f413830db135db893affac4baed",
+    "note": "Ghim lấy từ source-map; thân bài nguồn chưa được tải nên chưa đối chiếu blob với nội dung."
+  },
+  "diagram": "../diagrams/sd-01-008-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "pending",
+      "reason": "independent_writing_source_body_not_read"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "standards_and_docs_hosts_blocked_in_authoring_session"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "not_started"
+    },
+    "mobile": {
+      "status": "checked",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 14.4,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "checked_on": "2026-10-13",
+      "evidence": "Chromium headless: bài render từ lesson.md bằng markdown-it-py, mọi mục tùy chọn mở, trong khung 320/375/430 px; scrollWidth bằng bề rộng khung (không cuộn ngang); ảnh 320 px xem trực quan; mọi dòng chữ SVG đo bằng getBBox nằm trong thẻ của nó. Không phải thử với người học."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "HTML Standard mô tả thuật toán phân tích cú pháp tạo DOM, kể cả cách xử lý HTML sai cú pháp.",
+      "source": "https://html.spec.whatwg.org/multipage/parsing.html"
+    },
+    {
+      "claim_vi": "Script ngoài kiểu cổ điển không async/defer chặn parser; defer chạy sau khi parse xong và giữ thứ tự; async chạy khi sẵn sàng, không bảo đảm thứ tự; script nội tuyến kiểu cổ điển bỏ qua defer; script module mặc định được hoãn.",
+      "source": "https://html.spec.whatwg.org/multipage/scripting.html#the-script-element"
+    },
+    {
+      "claim_vi": "display: none không tạo hộp; visibility: hidden vẫn giữ chỗ.",
+      "sources": [
+        "https://www.w3.org/TR/css-display-3/#valdef-display-none",
+        "https://www.w3.org/TR/CSS22/visufx.html#visibility"
+      ]
+    },
+    {
+      "claim_vi": "Bố cục tính kích thước và vị trí hộp theo mô hình định dạng trực quan của CSS.",
+      "source": "https://www.w3.org/TR/CSS22/visuren.html"
+    },
+    {
+      "claim_vi": "Kiểu cuối của phần tử là kết quả của cascade và kế thừa các luật CSS.",
+      "source": "https://www.w3.org/TR/css-cascade-4/"
+    },
+    {
+      "claim_vi": "Trình duyệt cập nhật hiển thị khi có cơ hội dựng hình trong vòng lặp sự kiện.",
+      "source": "https://html.spec.whatwg.org/multipage/webappapis.html#update-the-rendering"
+    },
+    {
+      "claim_vi": "Stylesheet chặn dựng hình lần đầu; chuỗi parse, style, layout, paint (gồm raster hóa), composite là mô hình rút gọn, chi tiết khác nhau giữa engine.",
+      "sources": [
+        "https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/Critical_rendering_path",
+        "https://developer.chrome.com/docs/chromium/renderingng-architecture"
+      ]
+    },
+    {
+      "claim_vi": "Đọc kích thước sau khi ghi kiểu có thể ép layout đồng bộ; đổi transform/opacity thường chỉ cần ghép lớp, còn width/margin cần layout.",
+      "sources": [
+        "https://web.dev/articles/avoid-large-complex-layouts-and-layout-thrashing",
+        "https://web.dev/articles/stick-to-compositor-only-properties-and-manage-layer-count"
+      ]
+    }
+  ],
+  "source_deviations": [
+    "Bài tự viết từ tiêu chuẩn và tài liệu công khai; thân bài nguồn chưa được đọc nên phạm vi và thuật ngữ có thể khác nguồn.",
+    "Mô hình năm bước là cách chia rút gọn; engine thật chia khác và cho các bước chạy chồng lên nhau."
+  ],
+  "design_notes_vi": "Năm thẻ dọc nối bằng mũi tên (bước vẽ gồm ghi lệnh và raster hóa), một thẻ ghi chú về JavaScript và hai dòng chú thích; thiết kế mới, không dùng ảnh nguồn.",
+  "editorial_note_vi": "Bản nháp: claim chưa kiểm với nguồn vì phiên biên soạn không truy cập được các máy chủ tiêu chuẩn và tài liệu (chính sách mạng chặn). Chưa review kỹ thuật, chưa thử với người học."
+}

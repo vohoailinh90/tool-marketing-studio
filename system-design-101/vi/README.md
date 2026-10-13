@@ -27,7 +27,7 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 6. [Bốn loại Service trong Kubernetes](lessons/sd-13-006/lesson.md) — bài nháp, chờ review kỹ thuật.
 7. [Chín anti-pattern khi làm ứng dụng cloud-native](lessons/sd-13-007/lesson.md) — bài nháp, chờ review kỹ thuật.
 8. [Chọn công cụ Kubernetes theo lớp](lessons/sd-13-008/lesson.md) — bài nháp, chờ review kỹ thuật.
-9. [Sáu mảng của hệ sinh thái Kubernetes](lessons/sd-13-009/lesson.md) — bài nháp, chờ review kỹ thuật.
+9. [Hệ sinh thái Kubernetes theo đường đi của một ứng dụng](lessons/sd-13-009/lesson.md) — bài nháp, chờ review kỹ thuật.
 10. [Bảng tuần hoàn Kubernetes: đọc để tra cứu](lessons/sd-13-010/lesson.md) — bài nháp, chờ review kỹ thuật.
 11. [Chín thực hành tốt khi viết Dockerfile](lessons/sd-13-011/lesson.md) — bài nháp, chờ review kỹ thuật.
 12. [Chuỗi CI/CD của Netflix đọc theo rủi ro](lessons/sd-13-012/lesson.md) — bài nháp, chờ review kỹ thuật.

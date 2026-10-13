@@ -1,35 +1,33 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 856" width="320" height="856" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 797" width="320" height="797" role="img" aria-labelledby="title desc">
 <title id="title">Sáu cuốn sách DevOps đáng đọc</title>
-<desc id="desc">Sáu thẻ xếp dọc theo gợi ý thứ tự đọc: The Phoenix Project, The DevOps Handbook, Continuous Delivery, Accelerate, Site Reliability Engineering, Effective DevOps.</desc>
+<desc id="desc">Năm mục tiêu đọc và cuốn sách tương ứng: hiểu vì sao công việc nghẽn, đo hiệu quả giao phần mềm, xây quy trình phát hành, vận hành ổn định ở quy mô lớn, và tổ chức nhóm.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="856" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
-<text x="16" y="30" font-size="20" font-weight="bold">SÁU CUỐN · SÁU VIỆC</text>
-<text x="16" y="58" font-size="16" font-weight="normal">Thứ tự đọc là gợi ý của bài</text>
-<text x="16" y="85" font-size="16" font-weight="normal">này</text>
-<rect x="16" y="116" width="288" height="101" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
-<text x="30" y="144" font-size="16" font-weight="bold">The Phoenix Project</text>
-<text x="30" y="171" font-size="16" font-weight="normal">Tiểu thuyết: vì sao công</text>
-<text x="30" y="198" font-size="16" font-weight="normal">việc IT bị nghẽn</text>
-<rect x="16" y="229" width="288" height="128" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
-<text x="30" y="257" font-size="16" font-weight="bold">The DevOps Handbook</text>
-<text x="30" y="284" font-size="16" font-weight="normal">Bức tranh chung: sản phẩm,</text>
-<text x="30" y="311" font-size="16" font-weight="normal">chất lượng, vận hành, bảo</text>
-<text x="30" y="338" font-size="16" font-weight="normal">mật</text>
+<rect width="320" height="797" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">ĐỌC THEO MỤC TIÊU</text>
+<text x="16" y="58" font-size="16" font-weight="normal">Bạn đang cần gì?</text>
+<rect x="16" y="89" width="288" height="128" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="117" font-size="16" font-weight="bold">Hiểu vì sao công việc</text>
+<text x="30" y="144" font-size="16" font-weight="bold">IT nghẽn</text>
+<text x="30" y="171" font-size="16" font-weight="normal">The Phoenix Project (tiểu</text>
+<text x="30" y="198" font-size="16" font-weight="normal">thuyết)</text>
+<rect x="16" y="229" width="288" height="128" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="257" font-size="16" font-weight="bold">Đo hiệu quả giao phần</text>
+<text x="30" y="284" font-size="16" font-weight="bold">mềm</text>
+<text x="30" y="311" font-size="16" font-weight="normal">Accelerate (nghiên cứu</text>
+<text x="30" y="338" font-size="16" font-weight="normal">DORA)</text>
 <rect x="16" y="369" width="288" height="101" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
-<text x="30" y="397" font-size="16" font-weight="bold">Continuous Delivery</text>
-<text x="30" y="424" font-size="16" font-weight="normal">Pipeline triển khai, kiểm</text>
-<text x="30" y="451" font-size="16" font-weight="normal">thử và phát hành tự động</text>
-<rect x="16" y="482" width="288" height="101" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
-<text x="30" y="510" font-size="16" font-weight="bold">Accelerate</text>
-<text x="30" y="537" font-size="16" font-weight="normal">Đo hiệu quả giao phần mềm</text>
-<text x="30" y="564" font-size="16" font-weight="normal">bằng nghiên cứu</text>
-<rect x="16" y="595" width="288" height="128" rx="10" fill="#fee2e2" stroke="#94a3b8"/>
-<text x="30" y="623" font-size="16" font-weight="bold">Site Reliability</text>
-<text x="30" y="650" font-size="16" font-weight="bold">Engineering</text>
-<text x="30" y="677" font-size="16" font-weight="normal">Cách Google vận hành hệ</text>
-<text x="30" y="704" font-size="16" font-weight="normal">thống lớn</text>
-<rect x="16" y="735" width="288" height="101" rx="10" fill="#e2e8f0" stroke="#94a3b8"/>
-<text x="30" y="763" font-size="16" font-weight="bold">Effective DevOps</text>
-<text x="30" y="790" font-size="16" font-weight="normal">Phối hợp và văn hóa giữa</text>
-<text x="30" y="817" font-size="16" font-weight="normal">các nhóm</text>
+<text x="30" y="397" font-size="16" font-weight="bold">Xây quy trình phát</text>
+<text x="30" y="424" font-size="16" font-weight="bold">hành tự động</text>
+<text x="30" y="451" font-size="16" font-weight="normal">Continuous Delivery</text>
+<rect x="16" y="482" width="288" height="155" rx="10" fill="#fee2e2" stroke="#94a3b8"/>
+<text x="30" y="510" font-size="16" font-weight="bold">Giữ hệ thống ổn định ở</text>
+<text x="30" y="537" font-size="16" font-weight="bold">quy mô lớn</text>
+<text x="30" y="564" font-size="16" font-weight="normal">Site Reliability</text>
+<text x="30" y="591" font-size="16" font-weight="normal">Engineering</text>
+<text x="30" y="618" font-size="16" font-weight="normal">Release It!</text>
+<rect x="16" y="649" width="288" height="128" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="677" font-size="16" font-weight="bold">Tổ chức nhóm cho dòng</text>
+<text x="30" y="704" font-size="16" font-weight="bold">giá trị</text>
+<text x="30" y="731" font-size="16" font-weight="normal">Team Topologies</text>
+<text x="30" y="758" font-size="16" font-weight="normal">Effective DevOps</text>
 </g></svg>

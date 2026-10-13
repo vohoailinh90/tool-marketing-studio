@@ -2,7 +2,7 @@
   "id": "sd-13-011",
   "title_vi": "Chín thực hành tốt khi viết Dockerfile",
   "language": "vi",
-  "kind": "flow",
+  "kind": "comparison",
   "content_status": "draft",
   "source_ref": "sd-13-011",
   "source_snapshot": {
@@ -67,8 +67,8 @@
     }
   ],
   "source_deviations": [
-    "Nguồn nêu 9 điểm ngắn; bài thêm ví dụ Dockerfile mới và lưu ý về tag, digest, bí mật."
+    "Nguồn là danh sách chín điểm; bài tổ chức theo năm vấn đề và thêm ví dụ Dockerfile mới."
   ],
-  "design_notes_vi": "Bốn thẻ theo thứ tự trong Dockerfile; chín thực hành gom trong ghi chú.",
+  "design_notes_vi": "Năm thẻ vấn đề–cách xử lý.",
   "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
 }

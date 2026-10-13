@@ -1,19 +1,19 @@
 # CI/CD qua một hình đơn giản
 
-CI gom mã vào một chỗ và kiểm tra ngay. CD đưa mã đã kiểm tra tới nơi dùng. Chữ D có hai nghĩa, và hình tách chúng ra.
+Ba câu hỏi đơn giản cho biết nhóm bạn đang ở đâu trên thang tự động hóa, và chữ "CD" đang được hiểu theo nghĩa nào.
 
-![Commit vào kho dùng chung, CI build và kiểm thử, tạo sản phẩm build; sau đó rẽ hai nhánh: Continuous Delivery chờ người duyệt rồi lên production, Continuous Deployment tự lên production.](../../diagrams/sd-13-014-main.svg)
+![Ba câu hỏi nối tiếp: mã đã được gộp và kiểm tra tự động chưa, có thể phát hành bất cứ lúc nào chưa, và có tự động lên production không.](../../diagrams/sd-13-014-main.svg)
 
-**Đọc hình:** hai thẻ cuối là hai lựa chọn khác nhau cho cùng một bước, không phải hai bước nối tiếp.
+**Đọc hình:** ba bậc xếp theo mức tự động tăng dần; nhiều tài liệu dùng "CD" cho cả hai bậc sau.
 
 ## Nhìn hình thử trả lời
 
-Sau khi mọi kiểm thử qua, ai bấm nút đưa bản lên production trong Continuous Delivery, và trong Continuous Deployment?
+Sau khi mọi kiểm thử qua, ai bấm nút đưa bản lên production trong Delivery và trong Deployment?
 
 <details>
 <summary>Xem đáp án</summary>
 
-Delivery: một người hoặc quy trình duyệt quyết định thời điểm. Deployment: hệ thống tự làm, không cần bấm.
+Delivery: người hoặc quy trình duyệt quyết định thời điểm. Deployment: hệ thống tự làm, không cần bấm.
 
 </details>
 
@@ -24,10 +24,9 @@ CI/CD không phải là cài một công cụ. CI chỉ có ý nghĩa khi mọi 
 <details>
 <summary>Xem sâu hơn</summary>
 
-- **CI:** mỗi lần gộp mã đều build và chạy kiểm thử tự động; lỗi tích hợp lộ sớm khi còn nhỏ.
-- **Continuous Delivery:** luôn giữ được một bản có thể phát hành; việc phát hành là quyết định kinh doanh.
-- **Continuous Deployment:** mở rộng thêm một bước tự động lên production; cần giám sát và khả năng quay lui tốt.
-- **Trong nhiều tài liệu**, "CD" được dùng cho cả hai nghĩa, nên nên hỏi lại hiểu theo nghĩa nào.
+- **CI:** lỗi tích hợp lộ sớm khi còn nhỏ vì mỗi lần gộp đều được kiểm tra.
+- **Delivery:** việc phát hành là quyết định kinh doanh, không phải vấn đề kỹ thuật.
+- **Deployment:** cần giám sát và khả năng quay lui tốt vì không còn người chặn ở cửa cuối.
 
 </details>
 

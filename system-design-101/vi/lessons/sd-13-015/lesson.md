@@ -1,34 +1,34 @@
 # Năm chiến lược triển khai phổ biến
 
-Mỗi chiến lược trả lời hai câu hỏi: ai thấy bản mới trước, và quay lại bản cũ nhanh cỡ nào.
+Gom năm chiến lược theo điều bạn quan tâm nhất: quay lui nhanh cỡ nào, và bao nhiêu người dùng thấy bản mới khi nó còn chưa được chứng minh.
 
-![Năm thẻ: Big Bang thay tất cả một lần, Rolling thay từng nhóm, Blue-Green chuyển traffic giữa hai môi trường, Canary cho một phần nhỏ người dùng, Feature Toggle bật tắt bằng cờ trong mã.](../../diagrams/sd-13-015-main.svg)
+![Ba nhóm theo cách quay lui: blue-green và feature toggle quay lui gần như tức thì, rolling và canary lộ dần và dừng giữa chừng, big bang lộ hết cùng lúc.](../../diagrams/sd-13-015-main.svg)
 
-**Đọc hình:** thứ tự từ trên xuống đi từ ít kiểm soát tới nhiều kiểm soát; đổi lại là cần thêm công cụ và việc theo dõi.
+**Đọc hình:** không có nhóm nào tốt hơn cho mọi trường hợp; nhóm đầu thường tốn thêm tài nguyên hoặc công dọn dẹp.
 
 ## Nhìn hình thử trả lời
 
-Chiến lược nào cho phép "quay lại" mà không phải triển khai lại mã?
+Chiến lược nào cho phép quay lui mà không phải triển khai lại mã?
 
 <details>
 <summary>Xem đáp án</summary>
 
-Feature Toggle (tắt cờ) và Blue-Green (chuyển lại traffic về môi trường cũ). Cả hai đổi hướng nhanh vì mã hoặc môi trường cũ vẫn còn sẵn.
+Feature Toggle (tắt cờ) và Blue-Green (chuyển lại traffic về môi trường cũ), vì mã hoặc môi trường cũ vẫn còn sẵn.
 
 </details>
 
 ## Giới hạn cần nhớ
 
-Rolling, Canary và Blue-Green cho phép hai phiên bản cùng tồn tại, nên dữ liệu và giao tiếp phải tương thích hai chiều. Đổi lược đồ cơ sở dữ liệu thường cần chia nhiều bước thay vì một lần.
+Rolling, Canary và Blue-Green cho phép hai phiên bản cùng tồn tại, nên dữ liệu và giao tiếp phải tương thích hai chiều. Đổi lược đồ cơ sở dữ liệu thường phải chia nhiều bước.
 
 <details>
 <summary>Xem sâu hơn</summary>
 
-- **Big Bang:** hợp với hệ thống nhỏ hoặc thay đổi không thể chạy song song; quay lui nghĩa là triển khai lại bản cũ.
-- **Rolling:** ít tốn tài nguyên thêm; lỗi chỉ lộ dần, cần giám sát từng đợt.
-- **Blue-Green:** tốn gấp đôi môi trường trong lúc chuyển; lợi thế là quay lại tức thì.
-- **Canary:** cần phân tích số đo để quyết định mở rộng hay dừng.
-- **Feature Toggle:** tách "triển khai" khỏi "phát hành"; cờ cũ tích lại thành nợ kỹ thuật nếu không dọn.
+- **Blue-Green:** tốn gấp đôi môi trường trong lúc chuyển.
+- **Canary:** cần số đo để quyết định mở rộng hay dừng.
+- **Rolling:** ít tốn tài nguyên thêm nhưng lỗi chỉ lộ dần, cần giám sát từng đợt.
+- **Feature Toggle:** tách "triển khai" khỏi "phát hành"; cờ cũ tích lại thành nợ nếu không dọn.
+- **Big Bang:** hợp với hệ thống nhỏ hoặc thay đổi không thể chạy song song.
 
 </details>
 

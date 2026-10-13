@@ -13,7 +13,7 @@ Một tác vụ batch chạy trên một máy cụ thể và chỉ có ý nghĩa
 <details>
 <summary>Xem đáp án</summary>
 
-Không phải lựa chọn mặc định. Tài liệu Prometheus khuyên Pushgateway cho tác vụ cấp dịch vụ, không gắn với một máy hay instance; với tác vụ gắn với máy thì dùng textfile collector của Node Exporter để số đo không bị tồn tại mãi.
+Không phải lựa chọn mặc định. Tài liệu Prometheus khuyên Pushgateway cho tác vụ cấp dịch vụ, không gắn với một máy hay instance; với tác vụ gắn với máy thì dùng textfile collector của Node Exporter. Textfile collector đọc mọi tệp `.prom` còn trong thư mục ở mỗi lần kéo, nên tác vụ hoặc một bước dọn dẹp phải xóa hoặc ghi đè tệp, nếu không số đo cũ vẫn được xuất mãi.
 
 </details>
 

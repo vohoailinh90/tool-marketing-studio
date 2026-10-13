@@ -1,10 +1,10 @@
-# Sáu mảng của hệ sinh thái Kubernetes
+# Hệ sinh thái Kubernetes theo đường đi của một ứng dụng
 
-Kubernetes tự nó nhỏ; phần lớn việc vận hành thật dựa trên công cụ bên ngoài. Sáu mảng sau là một cách chia để tìm.
+Đi theo đường đi một ứng dụng từ mã đến chạy thật, bạn sẽ thấy mỗi chặng cần loại công cụ nào. Tên công cụ chỉ là ví dụ.
 
-![Sáu thẻ: bảo mật, mạng, container runtime, quản lý cụm, giám sát và quan sát, điều phối hạ tầng; mỗi thẻ kèm vài ví dụ.](../../diagrams/sd-13-009-main.svg)
+![Năm chặng: đóng gói và quét image, dựng cụm và hạ tầng, chạy container và nối mạng, triển khai ứng dụng, và quan sát cùng bảo vệ khi đang chạy.](../../diagrams/sd-13-009-main.svg)
 
-**Đọc hình:** mỗi mảng có nhiều lựa chọn; các tên ở đây là ví dụ để bạn có từ khóa tìm hiểu.
+**Đọc hình:** thứ tự là đường đi của ứng dụng; chặng 5 chạy suốt đời ứng dụng, không chỉ sau cùng.
 
 ## Nhìn hình thử trả lời
 
@@ -13,20 +13,20 @@ Từ Kubernetes 1.24, cụm còn chạy được image tạo bằng Docker khôn
 <details>
 <summary>Xem đáp án</summary>
 
-Có. Image Docker tuân theo chuẩn OCI nên containerd hoặc CRI-O chạy được. Thứ bị gỡ là dockershim, lớp cho phép kubelet dùng Docker Engine trực tiếp.
+Có. Image Docker theo chuẩn OCI nên containerd hoặc CRI-O chạy được. Thứ bị gỡ là dockershim, lớp cho phép kubelet dùng Docker Engine trực tiếp.
 
 </details>
 
 ## Giới hạn cần nhớ
 
-Các mảng chồng lấn: service mesh vừa là mạng vừa liên quan bảo mật, Prometheus vừa giám sát vừa dùng để cảnh báo. Danh sách ví dụ không đầy đủ và không phải khuyến nghị.
+Công cụ chồng lấn giữa các chặng (service mesh vừa là mạng vừa liên quan bảo mật) và danh sách ví dụ không đầy đủ, không phải khuyến nghị.
 
 <details>
 <summary>Xem sâu hơn</summary>
 
-- **CRI** (Container Runtime Interface) là giao diện kubelet dùng để nói chuyện với runtime.
-- **CNI** là chuẩn cắm plugin mạng cho container.
-- **Quản lý cụm vs điều phối hạ tầng:** nhóm đầu dựng và nâng cấp cụm; nhóm sau khai báo tài nguyên cloud (máy, mạng, cơ sở dữ liệu) và thường chạy ngoài cụm.
+- **CRI** là giao diện kubelet dùng để nói chuyện với runtime; **CNI** là chuẩn cắm plugin mạng.
+- **Hạ tầng vs cụm:** Terraform hay Crossplane khai báo tài nguyên cloud (máy, mạng, cơ sở dữ liệu); kubeadm hay Cluster API dựng và nâng cấp cụm.
+- **GitOps:** Argo CD đồng bộ trạng thái cụm từ kho Git.
 
 </details>
 

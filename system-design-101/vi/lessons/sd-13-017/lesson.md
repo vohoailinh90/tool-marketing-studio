@@ -1,14 +1,14 @@
 # Chiến lược triển khai trên Kubernetes
 
-Deployment của Kubernetes có sẵn hai chiến lược. Các chiến lược khác cần thêm công cụ hoặc lớp mạng.
+Khi bạn đổi image trong một Deployment, Kubernetes làm gì sẵn, và khi nào bạn phải thêm công cụ?
 
-![Hai nhóm thẻ: có sẵn trong Deployment gồm Recreate và RollingUpdate; cần thêm công cụ gồm Blue-Green, Canary, Shadow và A/B testing.](../../diagrams/sd-13-017-main.svg)
+![Bốn thẻ: RollingUpdate mặc định, Recreate khi hai phiên bản không chạy chung được, chia traffic theo phần trăm cần Ingress hay service mesh, thử với traffic thật cần mirror.](../../diagrams/sd-13-017-main.svg)
 
-**Đọc hình:** "Có sẵn" nghĩa là Kubernetes tự làm khi bạn sửa Deployment; nhóm dưới cần cấu hình định tuyến traffic.
+**Đọc hình:** hai thẻ đầu là việc Kubernetes tự làm; hai thẻ sau cần cấu hình định tuyến traffic.
 
 ## Nhìn hình thử trả lời
 
-Deployment 3 Pod, `maxSurge: 1`, `maxUnavailable: 0`. Trong lúc cập nhật controller nhắm tới tối đa bao nhiêu Pod đang chạy, và có lúc nào ít hơn 3 Pod sẵn sàng không?
+Deployment 3 Pod, `maxSurge: 1`, `maxUnavailable: 0`. Controller nhắm tới tối đa bao nhiêu Pod đang chạy, và có lúc nào ít hơn 3 Pod sẵn sàng không?
 
 <details>
 <summary>Xem đáp án</summary>
@@ -19,16 +19,15 @@ Controller nhắm tới tối đa 4 Pod không đang tắt (3 + 1 tạm thời) 
 
 ## Giới hạn cần nhớ
 
-"Không ngừng dịch vụ" của RollingUpdate chỉ đúng khi readiness probe chính xác và hai phiên bản tương thích khi chạy song song. Probe sai thì Pod mới nhận traffic quá sớm.
+"Không ngừng dịch vụ" của RollingUpdate chỉ đúng khi readiness probe chính xác và hai phiên bản tương thích khi chạy song song.
 
 <details>
 <summary>Xem sâu hơn</summary>
 
-- **Recreate:** hợp khi hai phiên bản không thể chạy cùng lúc (ví dụ khóa dữ liệu độc quyền).
 - **Canary đơn giản:** hai Deployment cùng sau một Service, chỉnh tỉ lệ số Pod; chia traffic theo phần trăm chính xác cần Ingress hoặc mesh.
 - **Blue-Green:** hai Deployment hoặc hai môi trường, đổi selector hoặc đường vào.
-- **Shadow:** bản sao traffic gửi tới phiên bản mới nhưng phản hồi bị bỏ; cần cẩn thận với tác dụng phụ như ghi dữ liệu.
-- **A/B testing** là thí nghiệm sản phẩm theo nhóm người dùng, không phải cách triển khai an toàn.
+- **Shadow:** bản sao traffic gửi tới phiên bản mới nhưng phản hồi bị bỏ; cẩn thận với tác dụng phụ như ghi dữ liệu.
+- **A/B testing** là thí nghiệm sản phẩm, không phải cách triển khai an toàn.
 
 </details>
 

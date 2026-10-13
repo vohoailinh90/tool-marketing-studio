@@ -1,10 +1,10 @@
 # Tám khái niệm Docker cần biết
 
-Tám khái niệm nối thành một dòng: viết Dockerfile, dựng image, đẩy lên registry, chạy thành container.
+Hãy theo một câu chuyện: đưa ứng dụng từ laptop lên máy chủ. Mỗi chặng của câu chuyện cần một khái niệm Docker khác nhau.
 
-![Dockerfile được build thành image, image đẩy lên registry và kéo về; image chạy thành container có volume và network; Compose điều phối nhiều container; CLI là cách ra lệnh.](../../diagrams/sd-13-013-main.svg)
+![Câu chuyện đưa ứng dụng lên máy chủ: đóng gói bằng Dockerfile ra image, chuyển qua registry, chạy thành container có volume và network, ghép nhiều dịch vụ bằng Compose, điều khiển bằng CLI.](../../diagrams/sd-13-013-main.svg)
 
-**Đọc hình:** bốn thẻ đầu là đường đi của một image; hai thẻ cuối là thứ đi kèm khi chạy.
+**Đọc hình:** tám khái niệm gồm Dockerfile, image, registry, container, volume, network, Compose và CLI.
 
 ## Nhìn hình thử trả lời
 
@@ -19,15 +19,15 @@ Không. Volume tồn tại độc lập với container, nên dữ liệu vẫn 
 
 ## Giới hạn cần nhớ
 
-Container không phải máy ảo: nhiều container dùng chung nhân của máy chủ. Cô lập của container mạnh vừa phải và phụ thuộc cấu hình, nên không coi là hàng rào bảo mật tuyệt đối.
+Container không phải máy ảo: nhiều container dùng chung nhân của máy chủ. Cô lập của container phụ thuộc cấu hình nên không coi là hàng rào bảo mật tuyệt đối.
 
 <details>
 <summary>Xem sâu hơn</summary>
 
 - **Image gồm nhiều lớp** chỉ đọc; container thêm một lớp ghi ở trên cùng.
-- **Compose** mô tả nhiều dịch vụ, mạng và volume trong một tệp, phù hợp cho môi trường phát triển hoặc triển khai nhỏ.
-- **Network:** container trên cùng một network do người dùng tạo có thể gọi nhau bằng tên dịch vụ.
-- **Registry công khai và riêng:** Docker Hub là mặc định; có thể dùng registry riêng.
+- **Compose** mô tả dịch vụ, mạng và volume trong một tệp, hợp cho môi trường phát triển hoặc triển khai nhỏ.
+- **Network:** container trên cùng một network do người dùng tạo gọi nhau bằng tên dịch vụ.
+- **Registry:** Docker Hub là mặc định; có thể dùng registry riêng.
 
 </details>
 

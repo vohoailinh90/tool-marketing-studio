@@ -1,25 +1,30 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 571" width="320" height="571" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 711" width="320" height="711" role="img" aria-labelledby="title desc">
 <title id="title">DevOps và NoOps: ai lo phần vận hành</title>
-<desc id="desc">Ba thẻ: mô hình truyền thống chia các chức năng riêng và bàn giao, DevOps phối hợp liên tục giữa phát triển và vận hành, NoOps dùng serverless để nhà cung cấp lo phần lớn hạ tầng.</desc>
+<desc id="desc">Bốn lớp trách nhiệm: mã ứng dụng, cấu hình và quyền truy cập, hệ điều hành và runtime, phần cứng; ở mô hình truyền thống, DevOps và serverless người chịu trách nhiệm khác nhau.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="571" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
-<text x="16" y="30" font-size="20" font-weight="bold">AI LO VẬN HÀNH</text>
-<text x="16" y="58" font-size="16" font-weight="normal">Ba mô hình</text>
-<rect x="16" y="89" width="288" height="155" rx="10" fill="#fee2e2" stroke="#94a3b8"/>
-<text x="30" y="117" font-size="16" font-weight="bold">Truyền thống</text>
-<text x="30" y="144" font-size="16" font-weight="normal">Mã, build, kiểm thử, phát</text>
-<text x="30" y="171" font-size="16" font-weight="normal">hành, giám sát: mỗi khâu</text>
-<text x="30" y="198" font-size="16" font-weight="normal">một nhóm</text>
-<text x="30" y="225" font-size="16" font-weight="normal">Bàn giao qua từng khâu</text>
-<rect x="16" y="256" width="288" height="155" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
-<text x="30" y="284" font-size="16" font-weight="bold">DevOps</text>
-<text x="30" y="311" font-size="16" font-weight="normal">Phát triển và vận hành cộng</text>
-<text x="30" y="338" font-size="16" font-weight="normal">tác</text>
-<text x="30" y="365" font-size="16" font-weight="normal">Chu kỳ ngắn, phát hành liên</text>
-<text x="30" y="392" font-size="16" font-weight="normal">tục</text>
-<rect x="16" y="423" width="288" height="128" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
-<text x="30" y="451" font-size="16" font-weight="bold">NoOps (serverless)</text>
-<text x="30" y="478" font-size="16" font-weight="normal">Nhà cung cấp lo hạ tầng</text>
-<text x="30" y="505" font-size="16" font-weight="normal">Bạn tập trung vào mã và cấu</text>
-<text x="30" y="532" font-size="16" font-weight="normal">hình</text>
+<rect width="320" height="711" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">AI LO LỚP NÀO</text>
+<text x="16" y="58" font-size="16" font-weight="normal">Truyền thống · DevOps ·</text>
+<text x="16" y="85" font-size="16" font-weight="normal">Serverless</text>
+<rect x="16" y="116" width="288" height="155" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="144" font-size="16" font-weight="bold">Mã ứng dụng</text>
+<text x="30" y="171" font-size="16" font-weight="normal">Truyền thống: dev bàn giao</text>
+<text x="30" y="198" font-size="16" font-weight="normal">DevOps: dev chịu cả vận</text>
+<text x="30" y="225" font-size="16" font-weight="normal">hành</text>
+<text x="30" y="252" font-size="16" font-weight="normal">Serverless: bạn</text>
+<rect x="16" y="283" width="288" height="155" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="311" font-size="16" font-weight="bold">Cấu hình, quyền, giám</text>
+<text x="30" y="338" font-size="16" font-weight="bold">sát</text>
+<text x="30" y="365" font-size="16" font-weight="normal">Truyền thống: nhóm ops</text>
+<text x="30" y="392" font-size="16" font-weight="normal">DevOps: chung</text>
+<text x="30" y="419" font-size="16" font-weight="normal">Serverless: vẫn là bạn</text>
+<rect x="16" y="450" width="288" height="128" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="478" font-size="16" font-weight="bold">Hệ điều hành, runtime</text>
+<text x="30" y="505" font-size="16" font-weight="normal">Truyền thống/DevOps: nhóm</text>
+<text x="30" y="532" font-size="16" font-weight="normal">bạn</text>
+<text x="30" y="559" font-size="16" font-weight="normal">Serverless: nhà cung cấp</text>
+<rect x="16" y="590" width="288" height="101" rx="10" fill="#e2e8f0" stroke="#94a3b8"/>
+<text x="30" y="618" font-size="16" font-weight="bold">Phần cứng</text>
+<text x="30" y="645" font-size="16" font-weight="normal">Nhóm bạn hoặc nhà cung cấp</text>
+<text x="30" y="672" font-size="16" font-weight="normal">cloud</text>
 </g></svg>

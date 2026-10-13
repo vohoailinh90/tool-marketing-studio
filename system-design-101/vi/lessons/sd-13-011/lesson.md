@@ -1,28 +1,25 @@
 # Chín thực hành tốt khi viết Dockerfile
 
-Chín thói quen giúp image nhỏ hơn, build nhanh hơn và an toàn hơn. Hình dưới đặt chúng vào một Dockerfile.
+Nhìn từ vấn đề bạn gặp: build chậm, image to, không tái lập được, và rủi ro bảo mật. Mỗi vấn đề có cách xử lý trong Dockerfile.
 
-![Bốn thẻ theo thứ tự Dockerfile: chọn image gốc có phiên bản cố định, sao chép tệp ít đổi trước, sao chép mã hay đổi sau, rồi chạy bằng người dùng không phải root.](../../diagrams/sd-13-011-main.svg)
+![Năm vấn đề và cách xử lý: build chậm thì sắp lớp và dùng dockerignore, image to thì build nhiều giai đoạn, không tái lập thì ghim phiên bản, rủi ro bảo mật thì chạy không phải root và quét image, khó truy nguồn thì gắn nhãn.](../../diagrams/sd-13-011-main.svg)
 
-- **Nền tảng:** dùng image chính thức; ghi rõ phiên bản thay vì `latest`.
-- **Build:** build nhiều giai đoạn, `.dockerignore`, sắp xếp lớp theo mức độ ít đổi.
-- **Chạy:** người dùng quyền thấp; cấu hình qua biến môi trường.
-- **Quản lý:** gắn nhãn image và quét lỗ hổng trước khi phát hành.
+**Đọc hình:** chín thực hành nằm trong năm vấn đề này; tìm vấn đề của bạn trước.
 
 ## Nhìn hình thử trả lời
 
-Bạn sửa một dòng mã nguồn nhưng không đổi danh sách phụ thuộc. Với thứ tự như hình, bước cài phụ thuộc có chạy lại không?
+Bạn sửa một dòng mã nguồn nhưng không đổi danh sách phụ thuộc. Vì sao bước cài phụ thuộc không phải chạy lại nếu sắp lớp đúng?
 
 <details>
 <summary>Xem đáp án</summary>
 
-Không. Lớp sao chép danh sách phụ thuộc không đổi nên Docker dùng lại cache; chỉ các lớp từ bước sao chép mã nguồn trở đi chạy lại.
+Lớp sao chép danh sách phụ thuộc không đổi nên Docker dùng lại cache; chỉ các lớp từ bước sao chép mã nguồn trở đi chạy lại.
 
 </details>
 
-## Ngộ nhận dễ gặp
+## Giới hạn cần nhớ
 
-Thẻ phiên bản (tag) không bất biến: người duy trì có thể đẩy lại cùng tag. Cần tái lập chính xác thì ghim theo digest. Image "chính thức" cũng không có nghĩa không có lỗ hổng, nên vẫn phải quét. Đừng nhét bí mật vào biến môi trường dựng sẵn trong image.
+Thẻ phiên bản (tag) không bất biến: người duy trì có thể đẩy lại cùng tag, nên cần tái lập chính xác thì ghim digest. Image "chính thức" cũng không có nghĩa không có lỗ hổng, nên vẫn phải quét.
 
 <details>
 <summary>Xem sâu hơn</summary>
@@ -44,9 +41,9 @@ USER node
 CMD ["node", "dist/server.js"]
 ```
 
-- **Nhiều giai đoạn:** công cụ build chỉ nằm ở giai đoạn đầu; image cuối nhỏ hơn.
+- **Nhiều giai đoạn:** công cụ build chỉ nằm ở giai đoạn đầu nên image cuối nhỏ hơn.
 - **`.dockerignore`:** loại `.git`, `node_modules`, tệp tạm khỏi ngữ cảnh build.
-- **Nhãn:** dùng khóa chuẩn như `org.opencontainers.image.source` để biết image đến từ đâu.
+- **Nhãn:** dùng khóa chuẩn như `org.opencontainers.image.source`.
 
 </details>
 

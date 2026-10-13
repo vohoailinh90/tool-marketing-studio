@@ -1,32 +1,32 @@
 # DevOps và NoOps: ai lo phần vận hành
 
-Câu hỏi chung là ai chịu trách nhiệm chạy phần mềm sau khi viết xong. Ba mô hình trả lời ba cách.
+Hỏi theo từng lớp của hệ thống, ai chịu trách nhiệm ở mỗi mô hình? Câu trả lời cho thấy NoOps không xóa vận hành, chỉ dời nó.
 
-![Ba thẻ: mô hình truyền thống chia các chức năng riêng và bàn giao, DevOps phối hợp liên tục giữa phát triển và vận hành, NoOps dùng serverless để nhà cung cấp lo phần lớn hạ tầng.](../../diagrams/sd-13-023-main.svg)
+![Bốn lớp trách nhiệm: mã ứng dụng, cấu hình và quyền truy cập, hệ điều hành và runtime, phần cứng; ở mô hình truyền thống, DevOps và serverless người chịu trách nhiệm khác nhau.](../../diagrams/sd-13-023-main.svg)
 
-**Đọc hình:** càng xuống dưới thì phần vận hành bạn tự làm càng ít, nhưng không về không.
+**Đọc hình:** đọc từng thẻ: cùng một lớp, người chịu trách nhiệm đổi theo mô hình.
 
 ## Nhìn hình thử trả lời
 
-Chạy mã trên một dịch vụ hàm không máy chủ. Ai vá hệ điều hành bên dưới?
+Chạy mã trên một dịch vụ hàm không máy chủ. Ai vá hệ điều hành bên dưới, và ai theo dõi lỗi của hàm?
 
 <details>
 <summary>Xem đáp án</summary>
 
-Nhà cung cấp cloud. Bạn vẫn chịu trách nhiệm về mã, quyền truy cập, cấu hình, giám sát và chi phí.
+Nhà cung cấp cloud vá hệ điều hành. Bạn vẫn theo dõi lỗi, cấu hình, quyền truy cập và chi phí của hàm.
 
 </details>
 
 ## Giới hạn cần nhớ
 
-NoOps không có nghĩa là hết vận hành. Sự cố, cảnh báo, giới hạn dịch vụ, bảo mật và chi phí vẫn cần người xử lý. Nó phù hợp khi tải và yêu cầu vừa phải, và có thể không đủ khi cần tùy biến sâu hay kiểm soát thời gian phản hồi.
+NoOps không có nghĩa là hết vận hành: sự cố, cảnh báo, giới hạn dịch vụ, bảo mật và chi phí vẫn cần người xử lý. Nó hợp khi tải và yêu cầu vừa phải, có thể không đủ khi cần tùy biến sâu hay kiểm soát độ trễ.
 
 <details>
 <summary>Xem sâu hơn</summary>
 
-- **FaaS** (Function-as-a-Service) chạy hàm khi có sự kiện; **BaaS** (Backend-as-a-Service) cung cấp cơ sở dữ liệu, xác thực... dưới dạng dịch vụ.
+- **FaaS** chạy hàm theo sự kiện; **BaaS** cung cấp cơ sở dữ liệu, xác thực... dưới dạng dịch vụ.
 - **Mô hình trách nhiệm chia sẻ:** nhà cung cấp lo "bản thân đám mây", khách hàng lo "những gì chạy trên đám mây".
-- **Thực tế:** nhiều tổ chức dùng cả ba mô hình cho các hệ thống khác nhau.
+- Nhiều tổ chức dùng cả ba mô hình cho các hệ thống khác nhau.
 
 </details>
 

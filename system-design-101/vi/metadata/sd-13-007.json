@@ -52,8 +52,8 @@
     }
   ],
   "source_deviations": [
-    "Nguồn gọi trạng thái và monolith là anti-pattern không điều kiện; bài thêm bối cảnh."
+    "Nguồn liệt kê chín mục theo thứ tự; bài tổ chức theo bốn tình huống và không giữ tên mục như tiêu đề."
   ],
-  "design_notes_vi": "Ba thẻ nhóm, mỗi thẻ ba dòng; không dùng mũi tên vì không có thứ tự.",
+  "design_notes_vi": "Bốn thẻ tình huống kèm các lỗi thiết kế liên quan.",
   "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
 }

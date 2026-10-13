@@ -21,7 +21,7 @@
     {
       "lesson_id": "sd-13-027",
       "relation": "compare-with",
-      "reason_vi": "Pipeline qua từng giai đoạn."
+      "reason_vi": "Pipeline qua từng cổng."
     }
   ],
   "verification": {
@@ -54,8 +54,8 @@
     }
   ],
   "source_deviations": [
-    "Nguồn gọi CD là \"Continuous Deployment\"; bài tách rõ Delivery và Deployment."
+    "Nguồn định nghĩa CI và \"Continuous Deployment\"; bài tách Delivery và Deployment và tổ chức theo ba câu hỏi."
   ],
-  "design_notes_vi": "Chuỗi ba thẻ rồi rẽ hai thẻ cuối phân biệt Delivery và Deployment.",
+  "design_notes_vi": "Ba thẻ câu hỏi theo mức tự động tăng dần.",
   "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
 }

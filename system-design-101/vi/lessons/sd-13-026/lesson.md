@@ -1,14 +1,14 @@
 # Docker chạy thế nào: client, host và registry
 
-Lệnh `docker` chỉ là client. Việc build, kéo và chạy do daemon trên Docker host làm, còn image nằm trong registry.
+Lệnh `docker` chỉ là client. Mỗi lệnh chạm tới nơi khác nhau; biết lệnh nào đi tới đâu giúp bạn gỡ lỗi mạng, quyền và dung lượng.
 
-![Docker client gửi lệnh tới daemon trên Docker host; daemon kéo image từ registry nếu chưa có và tạo container.](../../diagrams/sd-13-026-main.svg)
+![Bốn lệnh và nơi chúng tác động: build gửi ngữ cảnh cho daemon, pull và push trao đổi image giữa daemon và registry, run tạo và khởi động container trên Docker host.](../../diagrams/sd-13-026-main.svg)
 
-**Đọc hình:** client và daemon có thể ở cùng máy hoặc khác máy.
+**Đọc hình:** client và daemon có thể ở cùng máy hoặc khác máy; lệnh nào cũng là một yêu cầu API tới daemon.
 
 ## Nhìn hình thử trả lời
 
-`docker run` một image chưa có trên máy. Bước nào xảy ra trước khi container khởi động?
+`docker run` một image chưa có trên máy. Việc nào xảy ra trước khi container khởi động?
 
 <details>
 <summary>Xem đáp án</summary>
@@ -24,10 +24,10 @@ Daemon kéo image từ registry về kho cục bộ trước, rồi mới tạo 
 <details>
 <summary>Xem sâu hơn</summary>
 
-- **build:** client gửi ngữ cảnh build (Dockerfile và các tệp liên quan) cho daemon; kết quả là một image trong kho cục bộ.
-- **pull:** chép image từ registry vào kho cục bộ, không tạo container nào.
-- **run:** gộp `docker create` (dựng container từ image cùng cấu hình như mạng, volume, biến môi trường) và `docker start`. Image chưa có cục bộ thì daemon kéo trước.
-- Cả ba đều là yêu cầu API gửi tới daemon, nên client và daemon có thể ở hai máy khác nhau.
+- **build:** gửi ngữ cảnh build (Dockerfile và các tệp liên quan) cho daemon; kết quả là một image trong kho cục bộ.
+- **pull và push:** chép image giữa kho cục bộ và registry; không tạo container nào.
+- **run:** gộp `docker create` (dựng container từ image cùng cấu hình như mạng, volume, biến môi trường) và `docker start`.
+- Vì mọi lệnh đều là yêu cầu API tới daemon, client và daemon có thể ở hai máy khác nhau.
 
 </details>
 

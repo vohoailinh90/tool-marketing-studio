@@ -1,37 +1,39 @@
-# Giảm rủi ro khi triển khai: chọn theo nhu cầu
+# Rủi ro khi triển khai và cách giảm
 
-Chọn cách triển khai bằng cách hỏi bạn đang sợ điều gì nhất. Mỗi nỗi sợ có một cơ chế quen thuộc.
+Triển khai thất bại theo vài cách quen thuộc. Gọi tên đúng rủi ro trước rồi mới chọn cơ chế sẽ hiệu quả hơn là chọn một "chiến lược" rồi hy vọng.
 
-![Bốn thẻ nhu cầu và cách xử lý: hai dịch vụ đổi cùng lúc cần tương thích hai chiều, muốn rút lại trong vài giây thì dùng blue-green để quay về môi trường cũ hoặc cờ tính năng để rút phần gắn cờ, muốn lộ lỗi sớm với chi phí thấp dùng canary, muốn đo tác động sản phẩm dùng A/B test.](../../diagrams/sd-13-020-main.svg)
+![Năm rủi ro và cách giảm: lỗi chỉ lộ ở tải thật thì mở traffic từng nấc, hai phiên bản gặp nhau thì giữ tương thích hai chiều và đổi dữ liệu theo nhiều bước, không biết bản mới tốt hay xấu thì đặt ngưỡng chấp nhận từ trước, rút lại quá chậm thì tập và đo thời gian rút lại, và thay đổi gói quá lớn thì chia nhỏ.](../../diagrams/sd-13-020-main.svg)
 
-**Đọc hình:** thẻ đầu áp dụng bất kể cách nào bạn chọn ở các thẻ sau.
+**Đọc hình:** bài không nhằm xếp hạng cơ chế; mỗi rủi ro có thể giảm bằng nhiều cơ chế, và cơ chế nào cũng có giá.
 
 ## Nhìn hình thử trả lời
 
-Hai dịch vụ cùng đổi định dạng thông điệp giữa chúng. Canary hay blue-green có cứu được không nếu bản mới không đọc được thông điệp bản cũ?
+Bản mới thêm một cột bắt buộc vào bảng, trong khi bản cũ vẫn đang chạy. Chuyện gì xảy ra nếu triển khai dần từng nhóm máy?
 
 <details>
 <summary>Xem đáp án</summary>
 
-Không. Khi hai phiên bản gặp nhau trong lúc chuyển, chúng phải hiểu nhau. Cần làm bản mới chấp nhận cả định dạng cũ và mới trước, rồi mới bỏ định dạng cũ ở bước sau.
+Bản cũ ghi những dòng thiếu cột bắt buộc nên lỗi. Cách làm đúng là thêm cột ở dạng tùy chọn trước, chuyển ứng dụng sang dùng cột đó, rồi mới bắt buộc ở bước sau (mở rộng rồi thu gọn).
 
 </details>
 
 ## Giới hạn cần nhớ
 
-Cách nào cũng có giá: blue-green cần môi trường song song đủ tải, canary cần giám sát tốt, cờ tính năng để lại nợ nếu không dọn. A/B test trả lời câu hỏi sản phẩm, không thay cho kiểm tra an toàn khi triển khai.
+Không cơ chế giảm rủi ro nào thay được kiểm thử trước khi triển khai. Mỗi cơ chế có giá: mở traffic từng nấc cần giám sát tốt, giữ bản trước sẵn sàng cần thêm tài nguyên hoặc công dọn dẹp, và đổi dữ liệu theo nhiều bước kéo dài thời gian hoàn tất.
 
 <details>
 <summary>Xem sâu hơn</summary>
 
-- **Tương thích hai chiều:** thêm trường mới là tùy chọn trước, chuyển người dùng sang, rồi mới xóa trường cũ.
-- **Blue-green:** kiểm thử trên môi trường mới trước khi chuyển traffic; quay lui là chuyển lại.
-- **Canary:** dừng và quay lui khi số đo của nhóm canary xấu hơn bản đối chứng.
-- **A/B test:** dùng cờ tính năng để chỉ nhóm được chọn thấy tính năng, tránh đẩy nhầm cho mọi người.
+- **Mở traffic từng nấc:** canary hay các kiểu tương tự; điều kiện dừng nên định trước bằng số đo, không bằng cảm giác.
+- **Tương thích hai chiều:** mẫu "mở rộng rồi thu gọn" (parallel change): thêm cái mới song song, chuyển người dùng, rồi mới bỏ cái cũ.
+- **Ngưỡng chấp nhận:** lấy từ mục tiêu mức dịch vụ (SLO) để so số đo của bản mới với bản đối chứng.
+- **Rút lại:** có nhiều cách, từ chuyển lại traffic về môi trường cũ đến triển khai lại bản trước; cách nào cũng nên được tập trước khi cần.
+- **Bản nhỏ:** thay đổi nhỏ dễ tìm nguyên nhân khi lỗi, và là một thói quen được nghiên cứu DORA liên hệ với hiệu quả giao phần mềm tốt hơn.
 
 </details>
 
 ## Nguồn đối chiếu
 
 - [ByteByteGo tại snapshot cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-to-deploy-services.md).
-- Martin Fowler: [BlueGreenDeployment](https://martinfowler.com/bliki/BlueGreenDeployment.html), [CanaryRelease](https://martinfowler.com/bliki/CanaryRelease.html), [Feature Toggles](https://martinfowler.com/articles/feature-toggles.html).
+- Martin Fowler: [ParallelChange](https://martinfowler.com/bliki/ParallelChange.html), [CanaryRelease](https://martinfowler.com/bliki/CanaryRelease.html).
+- Google SRE Workbook: [canarying releases](https://sre.google/workbook/canarying-releases/). DORA: [working in small batches](https://dora.dev/capabilities/working-in-small-batches/).

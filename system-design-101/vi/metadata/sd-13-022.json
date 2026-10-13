@@ -1,6 +1,6 @@
 {
   "id": "sd-13-022",
-  "title_vi": "Phân tích nhật ký trên dòng lệnh theo từng việc",
+  "title_vi": "Tìm nguyên nhân từ nhật ký bằng dòng lệnh",
   "language": "vi",
   "kind": "reference",
   "content_status": "draft",
@@ -39,17 +39,25 @@
   },
   "claims": [
     {
-      "claim_vi": "uniq chỉ gộp các dòng liền kề giống nhau.",
-      "source": "https://www.gnu.org/software/coreutils/manual/html_node/uniq-invocation.html"
+      "claim_vi": "grep -C in dòng ngữ cảnh quanh dòng khớp và --line-buffered xả đầu ra theo từng dòng.",
+      "source": "https://www.gnu.org/software/grep/manual/grep.html"
     },
     {
-      "claim_vi": "grep chọn các dòng khớp mẫu.",
-      "source": "https://www.gnu.org/software/grep/manual/grep.html"
+      "claim_vi": "zgrep tìm trong tệp nén gzip.",
+      "source": "https://www.gnu.org/software/gzip/manual/gzip.html"
+    },
+    {
+      "claim_vi": "jq lọc và chọn trường từ JSON.",
+      "source": "https://jqlang.github.io/jq/manual/"
+    },
+    {
+      "claim_vi": "awk xử lý văn bản theo cột và có khối END.",
+      "source": "https://www.gnu.org/software/gawk/manual/gawk.html"
     }
   ],
   "source_deviations": [
-    "Nguồn liệt kê sáu lệnh theo thứ tự grep, cut, sed, awk, sort, uniq; bài tổ chức theo công việc phân tích và chỉ dùng cut ở ghi chú."
+    "Nguồn liệt kê sáu lệnh grep, cut, sed, awk, sort, uniq; bài chọn lại lệnh và ví dụ theo bài toán tìm nguyên nhân từ nhật ký (thêm zgrep, tail -f, jq, grep -C) và bỏ phần còn lại."
   ],
-  "design_notes_vi": "Năm thẻ việc-lệnh theo thứ tự một phân tích thường gặp.",
+  "design_notes_vi": "Năm thẻ tình huống kèm lệnh gợi ý.",
   "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
 }

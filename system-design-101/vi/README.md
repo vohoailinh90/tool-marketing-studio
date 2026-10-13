@@ -38,9 +38,9 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 17. [Deployment của Kubernetes thay Pod như thế nào](lessons/sd-13-017/lesson.md) — bài nháp, chờ review kỹ thuật.
 18. [Terraform biến mã thành hạ tầng](lessons/sd-13-018/lesson.md) — bài nháp, chờ review kỹ thuật.
 19. [DevOps, SRE và Platform Engineering khác nhau thế nào](lessons/sd-13-019/lesson.md) — bài nháp, chờ review kỹ thuật.
-20. [Giảm rủi ro khi triển khai: chọn theo nhu cầu](lessons/sd-13-020/lesson.md) — bài nháp, chờ review kỹ thuật.
+20. [Rủi ro khi triển khai và cách giảm](lessons/sd-13-020/lesson.md) — bài nháp, chờ review kỹ thuật.
 21. [Gỡ lỗi bằng số đo, vết và nhật ký](lessons/sd-13-021/lesson.md) — bài nháp, chờ review kỹ thuật.
-22. [Phân tích nhật ký trên dòng lệnh theo từng việc](lessons/sd-13-022/lesson.md) — bài nháp, chờ review kỹ thuật.
+22. [Tìm nguyên nhân từ nhật ký bằng dòng lệnh](lessons/sd-13-022/lesson.md) — bài nháp, chờ review kỹ thuật.
 23. [DevOps và NoOps: ai lo phần vận hành](lessons/sd-13-023/lesson.md) — bài nháp, chờ review kỹ thuật.
 24. [Vì sao Nginx nhanh và phổ biến](lessons/sd-13-024/lesson.md) — bài nháp, chờ review kỹ thuật.
 25. [Kubernetes: từ lệnh apply đến container chạy](lessons/sd-13-025/lesson.md) — bài nháp, chờ review kỹ thuật.

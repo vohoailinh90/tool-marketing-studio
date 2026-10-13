@@ -1,6 +1,6 @@
 {
   "id": "sd-13-020",
-  "title_vi": "Giảm rủi ro khi triển khai: chọn theo nhu cầu",
+  "title_vi": "Rủi ro khi triển khai và cách giảm",
   "language": "vi",
   "kind": "comparison",
   "content_status": "draft",
@@ -21,12 +21,12 @@
     {
       "lesson_id": "sd-13-015",
       "relation": "compare-with",
-      "reason_vi": "Năm chiến lược khái quát."
+      "reason_vi": "Triển khai khác phát hành."
     },
     {
       "lesson_id": "sd-13-017",
       "relation": "compare-with",
-      "reason_vi": "Chiến lược trên Kubernetes."
+      "reason_vi": "Triển khai trên Kubernetes."
     }
   ],
   "verification": {
@@ -50,17 +50,25 @@
   },
   "claims": [
     {
-      "claim_vi": "Blue-green dễ quay lui bằng cách chuyển traffic trở lại.",
-      "source": "https://martinfowler.com/bliki/BlueGreenDeployment.html"
+      "claim_vi": "Mẫu parallel change (mở rộng rồi thu gọn) cho phép đổi giao diện hay dữ liệu mà hai phiên bản vẫn dùng được.",
+      "source": "https://martinfowler.com/bliki/ParallelChange.html"
     },
     {
       "claim_vi": "Canary release giảm rủi ro bằng cách thử với một nhóm nhỏ trước.",
       "source": "https://martinfowler.com/bliki/CanaryRelease.html"
+    },
+    {
+      "claim_vi": "Canary được đánh giá bằng cách so số đo của canary với bản đối chứng.",
+      "source": "https://sre.google/workbook/canarying-releases/"
+    },
+    {
+      "claim_vi": "Làm việc theo lô nhỏ là một năng lực DORA liên quan tới hiệu quả giao phần mềm.",
+      "source": "https://dora.dev/capabilities/working-in-small-batches/"
     }
   ],
   "source_deviations": [
-    "Nguồn có bốn mục theo thứ tự multi-service, blue-green, canary, A/B; bài tổ chức theo nhu cầu/nỗi sợ và đưa vào vấn đề tương thích hai chiều."
+    "Nguồn có bốn mục theo thứ tự: nhiều dịch vụ cùng lúc, blue-green, canary, A/B; bài bỏ cấu trúc đó, tổ chức theo năm rủi ro triển khai chọn độc lập và không dựng thành so sánh chiến lược."
   ],
-  "design_notes_vi": "Bốn thẻ nhu cầu, thẻ đầu nhấn mạnh tương thích.",
+  "design_notes_vi": "Năm thẻ rủi ro kèm cách giảm.",
   "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
 }

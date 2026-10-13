@@ -8,12 +8,12 @@ Khi bạn đổi image trong một Deployment, controller làm theo một nhịp
 
 ## Nhìn hình thử trả lời
 
-Deployment 3 Pod, `maxSurge: 1`, `maxUnavailable: 0`. Controller nhắm tới tối đa bao nhiêu Pod đang chạy, và có lúc nào ít hơn 3 Pod sẵn sàng không?
+Deployment 3 Pod, `maxSurge: 1`, `maxUnavailable: 0`. Controller nhắm tới tối đa bao nhiêu Pod đang chạy, và `maxUnavailable: 0` có bảo đảm luôn đủ 3 Pod sẵn sàng không?
 
 <details>
 <summary>Xem đáp án</summary>
 
-Controller nhắm tới tối đa 4 Pod không đang tắt (3 + 1 tạm thời) và luôn giữ đủ 3 Pod sẵn sàng vì `maxUnavailable` là 0. Pod cũ đang tắt (Terminating) trong thời gian ân hạn không được tính, nên tổng Pod thực tế có thể tạm cao hơn 4.
+Controller nhắm tới tối đa 4 Pod không đang tắt (3 + 1 tạm thời), và với `maxUnavailable: 0` chính controller không chủ động làm số Pod sẵn sàng xuống dưới 3. Đó không phải bảo đảm trước sự cố: Pod mất readiness, bị crash hay node hỏng vẫn có thể làm số Pod sẵn sàng thấp hơn 3. Pod cũ đang tắt (Terminating) trong thời gian ân hạn không được tính, nên tổng Pod thực tế có thể tạm cao hơn 4.
 
 </details>
 

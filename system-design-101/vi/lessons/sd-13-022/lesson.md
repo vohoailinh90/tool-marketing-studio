@@ -1,41 +1,54 @@
-# Phân tích nhật ký trên dòng lệnh theo từng việc
+# Tìm nguyên nhân từ nhật ký bằng dòng lệnh
 
-Nhớ tên lệnh ít có ích bằng nhớ việc cần làm: lọc, lấy trường, đếm, xếp hạng, che dữ liệu. Mỗi việc ứng với một cụm lệnh.
+Khi tìm nguyên nhân sự cố trong nhật ký, đặc điểm của tệp quyết định công cụ: có cần ngữ cảnh quanh dòng lỗi không, nhật ký đã nén hay đang ghi, dạng văn bản hay JSON, hay cần một con số.
 
-![Năm việc và lệnh tương ứng: giữ dòng lỗi bằng grep, lấy tên dịch vụ bằng awk, đếm mỗi dịch vụ bằng sort và uniq -c, xếp hạng bằng sort -rn, che dữ liệu nhạy cảm bằng sed.](../../diagrams/sd-13-022-main.svg)
+![Năm tình huống và lệnh: xem ngữ cảnh quanh dòng lỗi bằng grep -C, tìm trong nhật ký đã nén bằng zgrep, theo dõi nhật ký đang ghi bằng tail -f nối grep --line-buffered, lọc nhật ký JSON bằng jq, và tính trung bình một cột số bằng awk.](../../diagrams/sd-13-022-main.svg)
 
-**Đọc hình:** ghép các thẻ đầu bằng dấu `|` theo thứ tự lọc, lấy trường, đếm, xếp hạng là ra bảng thống kê lỗi.
+**Đọc hình:** mỗi thẻ là một tình huống riêng và lệnh gợi ý; các lệnh có thể ghép bằng dấu `|` khi cần.
 
 ## Nhìn hình thử trả lời
 
-Vì sao phải `sort` trước `uniq -c` khi đếm?
+Vì sao khi nối `tail -f` với `grep` lại nên thêm `--line-buffered`?
 
 <details>
 <summary>Xem đáp án</summary>
 
-`uniq` chỉ gộp các dòng giống nhau nằm liền kề. Không sắp xếp trước thì cùng một giá trị xuất hiện rải rác sẽ bị đếm thành nhiều nhóm.
+Khi đầu ra của grep không phải terminal (ví dụ đang chuyển tiếp qua ống), grep đệm theo khối nên dòng khớp có thể hiện rất chậm. `--line-buffered` ép nó xả từng dòng.
 
 </details>
 
 ## Giới hạn cần nhớ
 
-Các lệnh này đọc văn bản theo dòng và cột. Nhật ký dạng JSON hoặc nhiều dòng nên dùng công cụ hiểu cấu trúc (ví dụ `jq`). Thử trước trên tệp nhỏ, nhất là với `sed`, vì mẫu sai có thể che hoặc sửa nhầm.
+Các lệnh này đọc văn bản theo dòng. Với nhật ký dạng JSON hãy dùng công cụ hiểu cấu trúc như `jq` thay vì cắt chuỗi. Nhật ký nhiều dòng (stack trace) cần `-A` hoặc `-C` để lấy đủ ngữ cảnh. Thử trước trên tệp nhỏ rồi mới chạy trên tệp lớn.
 
 <details>
 <summary>Xem sâu hơn</summary>
 
 ```bash
-grep ERROR app.log | awk '{print $4}' | sort | uniq -c | sort -rn
+# ngữ cảnh: 3 dòng trước và sau mỗi dòng khớp, kèm số dòng
+grep -n -C 3 "timeout" app.log
+
+# nhật ký đã nén
+zgrep "ERROR" app.log.*.gz
+
+# theo dõi trực tiếp
+tail -f app.log | grep --line-buffered "ERROR"
+
+# JSON, mỗi dòng một đối tượng: {"level":"error","message":"..."}
+jq -r 'select(.level=="error") | .message' app.json
+
+# trung bình cột thứ năm (ví dụ độ trễ)
+awk '{s += $5; n++} END {if (n) print s/n}' latency.log
 ```
 
-Với dòng `2026-10-13 10:15:02 ERROR PaymentService timeout`, lệnh trên cho số dòng lỗi của mỗi dịch vụ, nhiều nhất trước.
-
-- `cut -d' ' -f4` cũng lấy cột nhưng coi mỗi dấu cách là một ngăn, nên khi có nhiều dấu cách liên tiếp thì `awk` ổn định hơn.
-- `sed` sửa từng dòng theo mẫu; dùng khi cần chuẩn hóa hoặc che dữ liệu trước khi chia sẻ nhật ký.
+- **grep -C:** in thêm dòng ngữ cảnh quanh dòng khớp; `-A` chỉ dòng sau, `-B` chỉ dòng trước.
+- **zgrep:** tìm trong tệp nén gzip mà không giải nén ra đĩa.
+- **jq:** đọc từng đối tượng JSON, lọc và chọn trường.
+- **awk:** xử lý theo cột; `END` chạy sau khi đọc hết tệp.
 
 </details>
 
 ## Nguồn đối chiếu
 
 - [ByteByteGo tại snapshot cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/log-parsing-cheat-sheet.md).
-- GNU: [grep](https://www.gnu.org/software/grep/manual/grep.html), [uniq](https://www.gnu.org/software/coreutils/manual/html_node/uniq-invocation.html), [sort](https://www.gnu.org/software/coreutils/manual/html_node/sort-invocation.html), [gawk](https://www.gnu.org/software/gawk/manual/gawk.html), [sed](https://www.gnu.org/software/sed/manual/sed.html).
+- GNU: [grep](https://www.gnu.org/software/grep/manual/grep.html), [gzip và zgrep](https://www.gnu.org/software/gzip/manual/gzip.html), [gawk](https://www.gnu.org/software/gawk/manual/gawk.html). [jq manual](https://jqlang.github.io/jq/manual/).

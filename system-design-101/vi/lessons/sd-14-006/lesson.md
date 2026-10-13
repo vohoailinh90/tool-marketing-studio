@@ -1,9 +1,9 @@
 # Passkey có thay được mật khẩu?
 
-**Passkey thay mật khẩu bằng một cặp khóa: khóa riêng ở lại trên thiết bị của bạn, trang web chỉ giữ khóa công khai.**
+**Passkey thay mật khẩu bằng một cặp khóa: khóa riêng do thiết bị của bạn giữ và không gửi cho trang, trang web chỉ giữ khóa công khai.**
 Đăng nhập khi đó là chứng minh bạn giữ khóa riêng, chứ không phải gửi một bí mật cho trang.
 
-![Bảy thẻ xếp dọc. Nhóm đăng ký: 1 thử thách, trang gửi một chuỗi ngẫu nhiên; 2 tạo cặp khóa, bạn xác nhận và thiết bị tạo khóa gắn với trang này; 3 lưu khóa công khai, trang chỉ giữ khóa công khai cạnh tài khoản. Nhóm đăng nhập: 4 thử thách mới, mỗi lần đăng nhập một chuỗi ngẫu nhiên khác; 5 ký, bạn xác nhận và khóa riêng ký thử thách cùng tên miền; 6 kiểm tra, trang dùng khóa công khai để kiểm tra chữ ký. Thẻ cuối: điểm yếu còn lại là mất thiết bị và khôi phục tài khoản.](../../diagrams/sd-14-006-main.svg)
+![Bảy thẻ xếp dọc. Nhóm đăng ký: 1 thử thách, trang gửi một chuỗi ngẫu nhiên; 2 tạo cặp khóa, bạn xác nhận và thiết bị tạo khóa gắn với trang này; 3 lưu khóa công khai, trang giữ khóa công khai, không có khóa riêng, cạnh tài khoản. Nhóm đăng nhập: 4 thử thách mới, mỗi lần đăng nhập một chuỗi ngẫu nhiên khác; 5 ký, bạn xác nhận và khóa riêng ký thử thách cùng tên miền; 6 kiểm tra, trang dùng khóa công khai để kiểm tra chữ ký. Thẻ cuối: điểm yếu còn lại là mất thiết bị hoặc tài khoản đồng bộ, và khôi phục tài khoản.](../../diagrams/sd-14-006-main.svg)
 
 ## Đọc hình
 
@@ -18,8 +18,8 @@ Khi chạy thử, chữ ký cũ đem so với một thử thách mới thì khô
 
 ## Giới hạn cần nhớ
 
-Passkey đổi chỗ yếu chứ không xóa nó: khóa riêng ở trên thiết bị, nên điểm yếu chuyển sang chuyện mất thiết bị và khôi phục tài khoản.
-Đặc tả WebAuthn lưu ý một khóa chỉ nằm trên một thiết bị không chịu được việc mất thiết bị, và khuyên trang nên cho đăng ký thêm thiết bị xác thực hoặc có quy trình khôi phục tài khoản.
+Passkey đổi chỗ yếu chứ không xóa nó. Với khóa chỉ nằm trên một thiết bị (single-device credential), điểm yếu là mất thiết bị: đặc tả WebAuthn lưu ý loại khóa này không chịu được việc mất thiết bị, và khuyên trang nên cho đăng ký thêm thiết bị xác thực hoặc có quy trình khôi phục tài khoản.
+Với passkey đồng bộ (multi-device credential), khóa được sao lưu để dùng trên nhiều thiết bị; theo suy luận của người biên soạn, rủi ro khi đó chuyển một phần sang dịch vụ đồng bộ và quy trình khôi phục của nó, điều bài này chưa kiểm.
 
 ## Nhìn hình trả lời
 
@@ -38,7 +38,7 @@ Với mật khẩu, bạn tự gõ bí mật vào trang giả, và kẻ lừa đ
 
 Bài nguồn viết khóa riêng “được tạo dựa trên khóa công khai do trang web cung cấp”. Đặc tả WebAuthn mô tả ngược lại: bộ xác thực tạo cặp khóa, khóa công khai được gửi về trang trong lúc đăng ký, còn khóa riêng gắn với bộ xác thực. Bài này theo đặc tả.
 Bài nguồn cũng nói “không có rủi ro lộ mật khẩu” vì trang không lưu mật khẩu. Đúng là không có mật khẩu để lộ, nhưng đó là cách nói quá: điểm yếu chuyển sang thiết bị và khôi phục, như phần trên. Bài này bỏ ý “trải nghiệm đồng nhất trên mọi nền tảng” của bài nguồn vì chưa kiểm được.
-Đặc tả gọi khóa dùng được trên nhiều thiết bị là “multi-device credential”, thường gọi là passkey đồng bộ; khóa chỉ nằm trên một thiết bị là “single-device credential”.
+Đặc tả gọi khóa dùng được trên nhiều thiết bị là “multi-device credential”, thường gọi là passkey đồng bộ.
 
 Ví dụ chạy thử là mô hình tối giản bằng ECDSA P-256 của thư viện `cryptography`, trong đó phần “thiết bị” tự ghép tên miền vào dữ liệu ký; trong WebAuthn thật, trình duyệt cung cấp tên miền và bộ xác thực mới là nơi giữ khóa.
 

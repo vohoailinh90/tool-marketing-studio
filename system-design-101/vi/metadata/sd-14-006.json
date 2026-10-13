@@ -89,13 +89,19 @@
       "verified_by": "Read from a local clone of the repository."
     },
     {
+      "claim_vi": "For synced passkeys the risk shifts partly to the sync service and its recovery process.",
+      "source": "https://github.com/w3c/webauthn/blob/main/index.bs",
+      "section": "Credential backup state; multi-device credential",
+      "verified_by": "Author's inference; the specification defines multi-device credentials but this risk shift is not stated there and was not checked against any provider."
+    },
+    {
       "claim_vi": "Toy ECDSA P-256 model: the site keeps only the public key object, which has no sign operation; a signature over a challenge and origin verifies for that pair; the same signature fails against a new challenge and against a look-alike origin; a signature produced for the look-alike origin is rejected by the real origin. In the model the device appends the origin itself; in real WebAuthn the browser supplies it.",
       "source": "https://pypi.org/project/cryptography/",
       "section": "Elliptic curve signatures",
       "verified_by": "No external page reports this output; observed by executing the code on the authoring machine. Used cryptography 50.0.1."
     }
   ],
-  "design_notes_vi": "Hai nhóm đăng ký và đăng nhập, thẻ cuối nêu điểm yếu còn lại. Sửa chiều tạo khóa của bài nguồn theo đặc tả. Không dùng ảnh nguồn.",
+  "design_notes_vi": "Hai nhóm đăng ký và đăng nhập, thẻ cuối nêu điểm yếu còn lại (thiết bị hoặc tài khoản đồng bộ, và khôi phục). Sửa chiều tạo khóa của bài nguồn theo đặc tả. Không dùng ảnh nguồn.",
   "source_deviations": [
     "Source says the private key is generated from the public key supplied by the site; the specification says the authenticator generates the pair and only the public key goes to the site. The lesson follows the specification.",
     "Source says there is no risk of password leakage; the lesson says there is no password to leak but the weak point moves to device loss and account recovery.",

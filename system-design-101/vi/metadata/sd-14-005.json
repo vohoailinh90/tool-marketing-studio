@@ -65,6 +65,12 @@
       "verified_by": "Read from a local clone of the repository."
     },
     {
+      "claim_vi": "For login, Bitwarden also sends the server an authorization hash derived from the master key (PBKDF2, the password as salt, one iteration), in addition to the KDF settings and salt; the master key used for unlock is also reused for authentication.",
+      "source": "https://github.com/bitwarden/contributing-docs/blob/main/docs/architecture/cryptography/crypto-guide.md",
+      "section": "Authenticating with a password",
+      "verified_by": "Read from a local clone of the repository."
+    },
+    {
       "claim_vi": "Per-item content-encryption keys decouple data from upstream keys, so rotating an upstream key only requires re-uploading the re-encrypted item key; key wrapping also lets one key be shared instead of a set of keys.",
       "source": "https://github.com/bitwarden/contributing-docs/blob/main/docs/architecture/cryptography/crypto-guide.md",
       "section": "Content-encryption-key; Key wrapping",
@@ -83,13 +89,13 @@
       "verified_by": "No external page reports this output; observed by executing the code on the authoring machine. Used cryptography 50.0.1 and hashlib.scrypt."
     },
     {
-      "claim_vi": "The design protects data stored on the server but not a device that is unlocked; a weak master password can still be guessed; losing the master password (and the device secret, if used) means the provider cannot open the vault unless the product offers its own recovery.",
+      "claim_vi": "In the toy model, password change was only demonstrated as re-wrapping the vault key; the design protects data stored on the server but not a device that is unlocked; a weak master password can still be guessed; losing the master password (and the device secret, if used) means the provider cannot open the vault unless the product offers its own recovery.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-a-password-manager-such-as-1password-or-lastpass-work.md",
       "section": "Closing paragraph",
       "verified_by": "Author's inference from the described design; not checked against a vendor document."
     }
   ],
-  "design_notes_vi": "Hai nhóm tạo tài khoản và mở khóa, một thẻ riêng nói máy chủ chỉ giữ gì, thẻ đỏ nêu giới hạn. Không dùng tên gọi riêng của sản phẩm trong hình. Không dùng ảnh nguồn.",
+  "design_notes_vi": "Hai nhóm tạo tài khoản và mở khóa, một thẻ riêng nói máy chủ giữ gì, thẻ đỏ nêu giới hạn. Không dùng tên gọi riêng của sản phẩm trong hình. Không dùng ảnh nguồn.",
   "source_deviations": [
     "Source walks through a specific product's six steps with names (MUK, MP key, SRP-X); the lesson teaches the general key hierarchy and does not reuse names it could not check.",
     "Source concludes the manager has no way to know the passwords; the lesson narrows it to data on the server and names what stays outside that protection."

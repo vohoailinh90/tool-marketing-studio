@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1235" width="320" height="1235" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1316" width="320" height="1316" role="img" aria-labelledby="title desc">
 <title id="title">Tắt êm một API trên Kubernetes: năm chỗ làm rớt request</title>
-<desc id="desc">Năm chặng khi một Pod của API bị xóa: Pod chuyển sang Terminating và endpoint của nó được đánh dấu terminating, thường không sẵn sàng và chưa bị xóa ngay, song song với việc tắt, traffic vẫn có thể đến thêm một lúc (do cập nhật chậm, hoặc do proxy cố ý chuyển tới endpoint còn phục vụ khi mọi endpoint đều đang tắt) nên cần chờ ngắn trong preStop, tiến trình chính nhận SIGTERM phải ngừng nhận kết nối mới và làm xong việc đang chạy, hết thời gian ân hạn thì bị dừng cưỡng bức (hook preStop chạy quá hạn được gia hạn một lần thêm 2 giây), và khi dồn node thì PodDisruptionBudget giữ số Pod tối thiểu.</desc>
+<desc id="desc">Năm chặng khi một Pod của API bị xóa: Pod chuyển sang Terminating và endpoint của nó được đánh dấu terminating, thường không sẵn sàng và chưa bị xóa ngay, song song với việc tắt, traffic vẫn có thể đến thêm một lúc (do cập nhật chậm, hoặc do proxy cố ý chuyển tới endpoint còn phục vụ khi mọi endpoint đều đang tắt) nên cần chờ ngắn trong preStop, tiến trình chính nhận SIGTERM phải ngừng nhận kết nối mới và làm xong việc đang chạy, hết thời gian ân hạn thì bị dừng cưỡng bức (hook preStop chạy quá hạn được gia hạn một lần thêm 2 giây; với ân hạn bằng 0 thì hook preStop không chạy, còn xóa cưỡng bức chỉ có một khoảng ân hạn rất nhỏ), và khi dồn node thì PodDisruptionBudget giữ số Pod tối thiểu.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="1235" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<rect width="320" height="1316" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="30" font-size="20" font-weight="bold">TẮT ÊM MỘT POD</text>
 <text x="16" y="58" font-size="16" font-weight="normal">Từ lúc bị xóa đến lúc dừng</text>
 <rect x="16" y="89" width="288" height="155" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
@@ -30,7 +30,7 @@
 <text x="30" y="716" font-size="16" font-weight="normal">Dạng exec để tín hiệu tới</text>
 <text x="30" y="743" font-size="16" font-weight="normal">đúng tiến trình</text>
 <line x1="160" y1="774" x2="160" y2="802" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
-<rect x="16" y="812" width="288" height="209" rx="10" fill="#fee2e2" stroke="#94a3b8"/>
+<rect x="16" y="812" width="288" height="290" rx="10" fill="#fee2e2" stroke="#94a3b8"/>
 <text x="30" y="840" font-size="16" font-weight="bold">4 · Hết ân hạn thì bị</text>
 <text x="30" y="867" font-size="16" font-weight="bold">dừng</text>
 <text x="30" y="894" font-size="16" font-weight="normal">Thời gian ân hạn tính từ</text>
@@ -38,11 +38,14 @@
 <text x="30" y="948" font-size="16" font-weight="normal">Hết hạn: bị dừng cưỡng bức;</text>
 <text x="30" y="975" font-size="16" font-weight="normal">preStop quá hạn được thêm 2</text>
 <text x="30" y="1002" font-size="16" font-weight="normal">giây một lần</text>
-<rect x="16" y="1033" width="288" height="182" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
-<text x="30" y="1061" font-size="16" font-weight="bold">5 · Dồn node có chủ</text>
-<text x="30" y="1088" font-size="16" font-weight="bold">đích</text>
-<text x="30" y="1115" font-size="16" font-weight="normal">PodDisruptionBudget giữ số</text>
-<text x="30" y="1142" font-size="16" font-weight="normal">Pod tối thiểu</text>
-<text x="30" y="1169" font-size="16" font-weight="normal">Chỉ áp dụng cho eviction tự</text>
-<text x="30" y="1196" font-size="16" font-weight="normal">nguyện</text>
+<text x="30" y="1029" font-size="16" font-weight="normal">Ân hạn bằng 0: preStop</text>
+<text x="30" y="1056" font-size="16" font-weight="normal">không chạy; xóa cưỡng bức</text>
+<text x="30" y="1083" font-size="16" font-weight="normal">chỉ có ân hạn rất nhỏ</text>
+<rect x="16" y="1114" width="288" height="182" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="1142" font-size="16" font-weight="bold">5 · Dồn node có chủ</text>
+<text x="30" y="1169" font-size="16" font-weight="bold">đích</text>
+<text x="30" y="1196" font-size="16" font-weight="normal">PodDisruptionBudget giữ số</text>
+<text x="30" y="1223" font-size="16" font-weight="normal">Pod tối thiểu</text>
+<text x="30" y="1250" font-size="16" font-weight="normal">Chỉ áp dụng cho eviction tự</text>
+<text x="30" y="1277" font-size="16" font-weight="normal">nguyện</text>
 </g></svg>

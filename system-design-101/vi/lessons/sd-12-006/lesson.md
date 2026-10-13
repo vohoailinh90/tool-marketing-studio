@@ -2,17 +2,17 @@
 
 **Chat cần hai việc khác nhau:** đẩy tin mới tới những người đang trực tuyến ngay lập tức, và nhớ lịch sử để người mới vào hay người vừa mất mạng vẫn đọc được. Redis đảm nhiệm cả hai bằng hai tính năng khác nhau.
 
-![Bảy thẻ dọc: Bob mở ứng dụng và nối WebSocket tới máy chủ chat; máy chủ tải danh sách thành viên và lịch sử từ Redis; máy chủ publish thông báo có người vào lên kênh member_add; Bob gửi tin cho Alice; máy chủ lưu tin vào sorted set bằng ZADD với điểm là thời gian; máy chủ publish tin lên kênh messages; máy chủ của Alice đã subscribe nên đẩy tin tới Alice qua WebSocket. Chú thích: pub/sub lo tin đang bay, sorted set lo tin đã qua.](../../diagrams/sd-12-006-main.svg)
+![Bảy thẻ dọc: Bob mở ứng dụng và nối WebSocket tới máy chủ chat; máy chủ tải danh sách thành viên và lịch sử từ Redis; máy chủ publish thông báo có người vào lên kênh member_add; Bob gửi tin cho Alice; máy chủ lưu tin vào sorted set bằng ZADD với điểm là thời gian; máy chủ publish tin lên kênh messages trong cùng một giao dịch với ZADD; máy chủ của Alice đã subscribe nên đẩy tin tới Alice qua WebSocket. Chú thích: pub/sub lo tin đang bay, sorted set lo tin đã qua.](../../diagrams/sd-12-006-main.svg)
 
 ## Đọc hình
 
 **Vào phòng (1–3).** Ứng dụng nối WebSocket tới máy chủ chat. Máy chủ lấy từ Redis danh sách thành viên và lịch sử rồi gửi cho Bob, đồng thời **publish** lên kênh `member_add` để người khác thấy Bob vào.
 
-**Gửi tin (4–7).** Tin của Bob được ghi vào một **sorted set** bằng `ZADD`, điểm là thời gian nhận, để sau này đọc lại theo thứ tự. Cùng lúc nó được publish lên kênh `messages`; các máy chủ đã **subscribe** nhận được và đẩy tin tới Alice qua WebSocket.
+**Gửi tin (4–7).** Tin của Bob được ghi vào một **sorted set** bằng `ZADD`, điểm là thời gian nhận, để sau này đọc lại theo thứ tự. Ngay sau đó nó được publish lên kênh `messages`. Để hai lệnh không bị tách đôi nếu tiến trình dừng giữa chừng, nên chạy `ZADD` và `PUBLISH` trong cùng một giao dịch (`MULTI`/`EXEC`) hoặc một script Lua; các máy chủ đã **subscribe** nhận được và đẩy tin tới Alice qua WebSocket.
 
 ## Giới hạn cần nhớ
 
-Pub/sub của Redis chỉ chuyển tin cho những ai đang nghe lúc tin được phát; ai chưa kết nối hoặc đang mất mạng sẽ không nhận lại. Vì thế lịch sử phải nằm ở chỗ bền hơn (ở đây là sorted set) và máy khách cần tải lại phần bị lỡ khi nối lại. Redis chỉ bền theo cấu hình lưu trữ và bộ nhớ có hạn, nên lịch sử cũ cần được cắt bớt.
+Pub/sub của Redis chỉ chuyển tin cho những ai đang nghe lúc tin được phát; ai chưa kết nối hoặc đang mất mạng sẽ không nhận lại. Tin còn có thể bị lỡ ngay cả với người đang kết nối nếu tiến trình dừng giữa `ZADD` và `PUBLISH`; nếu không dùng giao dịch, máy khách có thể phát hiện thiếu tin nhờ mã tăng dần rồi tải bù. Vì thế lịch sử phải nằm ở chỗ bền hơn (ở đây là sorted set) và máy khách cần tải lại phần bị lỡ khi nối lại. Redis chỉ bền theo cấu hình lưu trữ và bộ nhớ có hạn, nên lịch sử cũ cần được cắt bớt.
 
 ## Nhìn hình trả lời
 

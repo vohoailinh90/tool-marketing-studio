@@ -51,4 +51,4 @@ awk '{s += $5; n++} END {if (n) print s/n}' latency.log
 ## Nguồn đối chiếu
 
 - [ByteByteGo tại snapshot cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/log-parsing-cheat-sheet.md).
-- GNU: [grep](https://www.gnu.org/software/grep/manual/grep.html), [gzip và zgrep](https://www.gnu.org/software/gzip/manual/gzip.html), [gawk](https://www.gnu.org/software/gawk/manual/gawk.html). [jq manual](https://jqlang.github.io/jq/manual/).
+- GNU (GNU is Not Unix — viết tắt đệ quy, tên một dự án phần mềm tự do): [grep](https://www.gnu.org/software/grep/manual/grep.html), [gzip và zgrep](https://www.gnu.org/software/gzip/manual/gzip.html), [gawk](https://www.gnu.org/software/gawk/manual/gawk.html). [jq manual](https://jqlang.github.io/jq/manual/).

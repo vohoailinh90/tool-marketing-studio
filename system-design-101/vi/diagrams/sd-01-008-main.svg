@@ -1,40 +1,39 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 899" width="320" height="899" role="img" aria-labelledby="title desc">
-<title id="title">Từ HTML tới pixel trên màn hình</title>
-<desc id="desc">Sáu khung dọc: HTML được phân tích thành cây DOM, script thường làm parser dừng; CSS thành cây CSSOM chứa các quy tắc kiểu và chặn việc dựng hình; DOM và CSSOM được khớp và giải cascade cho từng phần tử để thành cây hiển thị, bỏ phần tử display none còn visibility hidden vẫn chiếm chỗ; layout tính vị trí và kích thước; paint vẽ nội dung ra từng lớp; composite ghép các lớp để GPU hiển thị. Đổi DOM hoặc CSS có thể chạy lại từ layout, paint hoặc composite.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1040" width="320" height="1040" role="img" aria-labelledby="title desc">
+<title id="title">Trình duyệt dựng trang qua năm bước</title>
+<desc id="desc">Năm bước nối dọc: parse đổi HTML thành DOM và CSS thành luật kiểu; style tính kiểu cuối cho từng phần tử; layout tính kích thước và vị trí từng hộp; paint ghi lệnh vẽ nền, viền, chữ và ảnh rồi raster hóa thành điểm ảnh; composite ghép các lớp thành khung hình. JavaScript có thể đổi DOM hoặc kiểu, khi đó trình duyệt tính lại từ bước liên quan, không nhất thiết từ đầu. Tên và cách chia bước khác nhau giữa các engine.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="899" fill="#f8fafc"/>
-<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
-<text x="16" y="30" font-size="20" font-weight="bold">TRÌNH DUYỆT</text>
-<text x="16" y="56" font-size="20" font-weight="bold">DỰNG TRANG</text>
-<text x="16" y="86" font-size="16" font-weight="normal">Byte nhận về → pixel</text>
-<rect x="16" y="108" width="288" height="104" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
-<text x="30" y="138" font-size="16" font-weight="bold">1 · HTML → cây DOM</text>
-<text x="30" y="165" font-size="16" font-weight="normal">Đọc dần, dựng cây phần tử</text>
-<text x="30" y="192" font-size="16" font-weight="normal">Script thường làm parser dừng</text>
-<line x1="160" y1="213" x2="160" y2="233" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="16" y="236" width="288" height="104" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
-<text x="30" y="266" font-size="16" font-weight="bold">2 · CSS → cây CSSOM</text>
-<text x="30" y="293" font-size="16" font-weight="normal">Các quy tắc kiểu của trang</text>
-<text x="30" y="320" font-size="16" font-weight="normal">CSS chặn việc dựng hình</text>
-<line x1="160" y1="341" x2="160" y2="361" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="16" y="364" width="288" height="158" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
-<text x="30" y="394" font-size="16" font-weight="bold">3 · DOM + CSSOM</text>
-<text x="30" y="421" font-size="16" font-weight="bold">→ cây hiển thị</text>
-<text x="30" y="448" font-size="16" font-weight="normal">Khớp quy tắc, giải cascade</text>
-<text x="30" y="475" font-size="16" font-weight="normal">Bỏ phần tử display:none</text>
-<text x="30" y="502" font-size="16" font-weight="normal">visibility:hidden vẫn chiếm chỗ</text>
-<line x1="160" y1="523" x2="160" y2="543" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="16" y="546" width="288" height="77" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
-<text x="30" y="576" font-size="16" font-weight="bold">4 · Layout</text>
-<text x="30" y="603" font-size="16" font-weight="normal">Tính vị trí và kích thước</text>
-<line x1="160" y1="624" x2="160" y2="644" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="16" y="647" width="288" height="77" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
-<text x="30" y="677" font-size="16" font-weight="bold">5 · Paint</text>
-<text x="30" y="704" font-size="16" font-weight="normal">Vẽ nội dung ra từng lớp</text>
-<line x1="160" y1="725" x2="160" y2="745" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="16" y="748" width="288" height="77" rx="12" fill="#e2e8f0" stroke="#94a3b8"/>
-<text x="30" y="778" font-size="16" font-weight="bold">6 · Composite</text>
-<text x="30" y="805" font-size="16" font-weight="normal">Ghép các lớp để hiển thị</text>
-<text x="16" y="853" font-size="16" font-weight="normal">Đổi DOM/CSS: có thể chạy lại</text>
-<text x="16" y="879" font-size="16" font-weight="normal">từ layout, paint hoặc composite.</text>
+<rect width="320" height="1040" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">DỰNG TRANG WEB</text>
+<text x="16" y="60" font-size="16" font-weight="normal">Trình duyệt: byte → điểm ảnh</text>
+<text x="16" y="90" font-size="16" font-weight="normal">Năm bước · mô hình rút gọn</text>
+<rect x="16" y="130" width="288" height="108" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="162" font-size="16" font-weight="bold">1 · Parse · đọc</text>
+<text x="30" y="194" font-size="16" font-weight="normal">HTML → DOM (cây phần tử)</text>
+<text x="30" y="222" font-size="16" font-weight="normal">CSS → luật kiểu (CSSOM)</text>
+<line x1="160" y1="242" x2="160" y2="268" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="274" width="288" height="108" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="306" font-size="16" font-weight="bold">2 · Style · tính kiểu</text>
+<text x="30" y="338" font-size="16" font-weight="normal">Mỗi phần tử có kiểu cuối:</text>
+<text x="30" y="366" font-size="16" font-weight="normal">màu, cỡ chữ, display…</text>
+<line x1="160" y1="386" x2="160" y2="412" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="418" width="288" height="108" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="450" font-size="16" font-weight="bold">3 · Layout · bố cục</text>
+<text x="30" y="482" font-size="16" font-weight="normal">Tính kích thước và vị trí</text>
+<text x="30" y="510" font-size="16" font-weight="normal">của từng hộp trên trang</text>
+<line x1="160" y1="530" x2="160" y2="556" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="562" width="288" height="108" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="594" font-size="16" font-weight="bold">4 · Paint · vẽ</text>
+<text x="30" y="626" font-size="16" font-weight="normal">Ghi lệnh vẽ nền, viền, chữ,</text>
+<text x="30" y="654" font-size="16" font-weight="normal">ảnh, rồi raster ra điểm ảnh</text>
+<line x1="160" y1="674" x2="160" y2="700" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="706" width="288" height="108" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="738" font-size="16" font-weight="bold">5 · Composite · ghép lớp</text>
+<text x="30" y="770" font-size="16" font-weight="normal">Ghép các lớp thành khung</text>
+<text x="30" y="798" font-size="16" font-weight="normal">hình hiển thị trên màn hình</text>
+<rect x="16" y="850" width="288" height="108" rx="12" fill="#fee2e2" stroke="#94a3b8"/>
+<text x="30" y="882" font-size="16" font-weight="bold">JavaScript đổi DOM / kiểu</text>
+<text x="30" y="914" font-size="16" font-weight="normal">→ tính lại từ bước liên quan</text>
+<text x="30" y="942" font-size="16" font-weight="normal">Không nhất thiết từ đầu</text>
+<text x="16" y="992" font-size="16" font-weight="normal">Tên bước tùy engine · rút gọn.</text>
+<text x="16" y="1022" font-size="16" font-weight="normal">Mũi tên: thứ tự thường gặp.</text>
 </g></svg>

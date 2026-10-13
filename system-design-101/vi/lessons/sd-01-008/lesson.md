@@ -1,53 +1,51 @@
 # Trình duyệt dựng trang web thế nào?
 
-**Máy chủ gửi về chữ, trình duyệt phải biến chúng thành hình.** Việc đó đi qua một chuỗi bước: hiểu HTML, hiểu CSS, tính chỗ đặt từng phần tử, rồi vẽ.
+Từ chuỗi byte HTML, CSS và JavaScript đến điểm ảnh trên màn hình, trình duyệt đi qua một dây chuyền nhiều bước. Hình dưới là bản rút gọn: tên và cách chia bước khác nhau giữa các engine.
 
-![Sáu khung dọc: HTML được phân tích thành cây DOM, script thường làm parser dừng; CSS thành cây CSSOM chứa các quy tắc kiểu và chặn việc dựng hình; DOM và CSSOM được khớp và giải cascade cho từng phần tử để thành cây hiển thị, bỏ phần tử display none còn visibility hidden vẫn chiếm chỗ; layout tính vị trí và kích thước; paint vẽ nội dung ra từng lớp; composite ghép các lớp để GPU hiển thị. Đổi DOM hoặc CSS có thể chạy lại từ layout, paint hoặc composite.](../../diagrams/sd-01-008-main.svg)
+![Năm bước nối dọc: parse HTML và CSS, tính kiểu, bố cục, vẽ (ghi lệnh và raster hóa thành điểm ảnh), ghép lớp; khi JavaScript đổi DOM hoặc kiểu, trình duyệt tính lại từ bước liên quan.](../../diagrams/sd-01-008-main.svg)
 
-## Đọc hình
+- **Parse:** HTML thành DOM, cây các phần tử; CSS thành các luật kiểu.
+- **Style:** ghép luật CSS với từng phần tử để có kiểu cuối cùng: màu, cỡ chữ, `display`…
+- **Layout:** tính kích thước và vị trí của từng hộp trên trang.
+- **Paint:** ghi lại cách vẽ nền, viền, chữ, ảnh theo thứ tự chồng, rồi raster hóa: biến lệnh vẽ thành điểm ảnh. Nhiều engine tách hai việc này; hình gộp lại cho gọn.
+- **Composite:** ghép các lớp đã có điểm ảnh thành khung hình để hiển thị.
 
-**1. DOM.** Trình duyệt đọc HTML dần dần và dựng *cây DOM*: mỗi thẻ là một nút. Khi gặp `<script>` thường (không `async`/`defer`), nó thường phải dừng đọc để chạy script trước.
-
-**2. CSSOM.** CSS được phân tích thành *cây CSSOM*: cấu trúc chứa các quy tắc kiểu của trang, kể cả những quy tắc rốt cuộc không được áp dụng. Việc hiện trang thường phải chờ CSS, nên CSS "chặn dựng hình".
-
-**3. Cây hiển thị.** Trình duyệt khớp các quy tắc của CSSOM với từng phần tử DOM và giải cascade cho từng phần tử để ra kiểu tính toán, rồi chỉ giữ những gì có hộp để vẽ. Phần tử `display: none` bị bỏ; `visibility: hidden` thì vẫn chiếm chỗ nhưng không thấy.
-
-**4. Layout.** Tính vị trí và kích thước từng hộp.
-
-**5. Paint.** Vẽ nội dung (chữ, màu, ảnh) ra từng lớp.
-
-**6. Composite.** Ghép các lớp theo thứ tự; việc này thường do GPU làm.
-
-## Giới hạn cần nhớ
-
-Sáu bước không chạy đúng một lần theo hàng thẳng. Trình duyệt dựng dần khi dữ liệu còn đang về, và chạy lại một phần khi trang thay đổi: đổi kích thước hay vị trí thường kéo theo cả layout, paint, composite; đổi màu có thể bỏ qua layout. Tên gọi và chi tiết (như "render tree") khác nhau giữa các engine.
+**Đọc hình:** mũi tên là thứ tự thường gặp khi tải trang lần đầu. Thực tế các bước có thể chồng lên nhau, ví dụ trang được vẽ dần trong khi còn đang tải. JavaScript có thể sửa DOM hoặc kiểu bất cứ lúc nào; khi đó trình duyệt chỉ cần tính lại từ bước bị ảnh hưởng, không nhất thiết từ đầu.
 
 ## Nhìn hình thử trả lời
 
-Muốn một ô trượt mượt, bạn đổi `left` mỗi khung hình hay dùng `transform`? Vì sao?
+Một nút đổi màu chữ từ đen sang đỏ. Một khối khác đổi `width` từ 200 px sang 300 px. Thay đổi nào dễ buộc tính lại bố cục (bước 3) hơn? Vì sao?
 
 <details>
 <summary>Xem đáp án</summary>
 
-Thường nên dùng `transform`. Đổi `left` làm đổi vị trí hộp nên có thể buộc chạy lại layout (có khi cho cả trang) rồi paint; `transform` thường chỉ cần ghép lại lớp ở bước composite, nhất là khi phần tử đã được trình duyệt đưa lên lớp riêng. Mức chênh lệch tùy trình duyệt và trang.
+Đổi `width`: kích thước hộp thay đổi có thể làm phần tử xung quanh đổi vị trí hoặc xuống dòng, nên thường phải chạy lại layout. Đổi màu chữ không làm đổi hình học, nên thường chỉ cần tính lại kiểu rồi vẽ lại.
 
 </details>
+
+## Giới hạn cần nhớ
+
+Đây là mô hình rút gọn, không phải mô tả mã nguồn của một trình duyệt cụ thể. Chi phí thật của một thay đổi phụ thuộc engine, thiết bị và nội dung trang; muốn biết chỗ chậm, hãy đo bằng công cụ hiệu năng của trình duyệt thay vì suy từ hình.
 
 <details>
 <summary>Xem sâu hơn</summary>
 
-- **Script và CSS:** script thường làm dừng parser; `async` hoặc `defer` giúp parser không phải chờ. CSS chặn dựng hình. Script cổ điển do parser đọc còn phải chờ các stylesheet đang tải trước nó rồi mới chạy: script thường vừa chặn parser vừa chờ; script `defer` không chặn parser nhưng chỉ chạy sau khi đọc xong và các stylesheet chặn script đã tải xong; còn script `async` hoặc được chèn bằng mã có thể chạy ngay khi sẵn sàng, không chờ như vậy.
-- **Cây hiển thị khác DOM:** `::before` và `::after` có hộp để vẽ nhưng không có nút DOM; `<head>` mặc định bị ẩn.
-- **Dựng lại:** đọc kích thước (ví dụ `offsetHeight`) ngay sau khi ghi có thể buộc trình duyệt tính layout sớm; làm lặp lại nhiều lần gây chậm.
-- **Chỉ là mô hình:** engine thật còn có nhiều bước tối ưu và tách luồng.
+- **Parse HTML không chỉ là đọc từng thẻ:** HTML Standard mô tả cả cách xử lý HTML sai cú pháp, để các trình duyệt dựng cùng một cây DOM từ cùng một đầu vào.
+- **Script có thể chặn parser:** script ngoài kiểu cổ điển (`<script src>`, không `async`, không `defer`) làm parser dừng cho tới khi tải và chạy xong. `defer` chạy sau khi parse xong và giữ thứ tự; `async` chạy ngay khi sẵn sàng, thứ tự không được bảo đảm. Script nội tuyến (không `src`) kiểu cổ điển chạy ngay khi parser gặp nó và bỏ qua `defer`; script `type="module"` mặc định được hoãn tới khi parse xong, giống `defer`.
+- **CSS cũng có thể chặn:** trình duyệt thường chờ các stylesheet chặn dựng hình tải xong rồi mới vẽ lần đầu, để tránh hiện một trang chưa có kiểu.
+- **Hai cách ẩn khác nhau:** `display: none` khiến phần tử không tạo hộp nên không chiếm chỗ; `visibility: hidden` vẫn giữ chỗ nhưng không vẽ.
+- **Quy tắc ngón tay cái về chi phí:** đổi `width`, `margin` hoặc nội dung chữ thường cần layout rồi paint; đổi `color` thường bỏ qua layout; đổi `transform` hoặc `opacity` trên phần tử có lớp riêng trong nhiều trường hợp chỉ cần ghép lớp. Engine quyết định, nên đây không phải bảo đảm.
+- **Đọc layout sau khi ghi có thể ép tính sớm:** trong JavaScript, sửa kiểu rồi đọc ngay kích thước (ví dụ `offsetWidth`) có thể buộc trình duyệt tính layout ngay, thay vì đợi lần cập nhật hiển thị kế tiếp. Lặp lại trong vòng lặp dễ gây giật. Trình duyệt cập nhật hiển thị khi có cơ hội dựng hình, thường theo tốc độ làm tươi màn hình.
+
+Chi tiết về luồng, lớp và GPU của từng engine khác nhau và nằm ngoài bài nhập môn này.
 
 </details>
 
 ## Nguồn đối chiếu
 
-- [ByteByteGo tại snapshot cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-the-browser-render-a-web-page.md).
-- [MDN — Critical rendering path](https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/Critical_rendering_path).
-- [HTML Standard — Parsing](https://html.spec.whatwg.org/multipage/parsing.html) và [Rendering](https://html.spec.whatwg.org/multipage/rendering.html), [CSS Display Module](https://www.w3.org/TR/css-display-3/) và [CSS 2 — visibility](https://www.w3.org/TR/CSS22/visufx.html#visibility).
-- [web.dev — Rendering performance](https://web.dev/articles/rendering-performance).
+Bài tự viết từ tiêu chuẩn và tài liệu công khai; thân bài nguồn chưa được đọc.
 
-Đã đọc nguồn ngày 2026-10-13; các tài liệu chuẩn nêu trên chưa được mở để đối chiếu trực tiếp trong lượt biên soạn này. Bài viết và hình được thiết kế độc lập.
+- [ByteByteGo tại snapshot cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-the-browser-render-a-web-page.md) (chủ đề của mục này).
+- HTML Standard: [phân tích cú pháp](https://html.spec.whatwg.org/multipage/parsing.html), [phần tử script](https://html.spec.whatwg.org/multipage/scripting.html#the-script-element), [update the rendering](https://html.spec.whatwg.org/multipage/webappapis.html#update-the-rendering).
+- CSS: [display: none](https://www.w3.org/TR/css-display-3/#valdef-display-none), [visibility](https://www.w3.org/TR/CSS22/visufx.html#visibility), [mô hình định dạng trực quan](https://www.w3.org/TR/CSS22/visuren.html), [Cascading and Inheritance](https://www.w3.org/TR/css-cascade-4/).
+- Tài liệu engine và hiệu năng: [MDN: Critical rendering path](https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/Critical_rendering_path), [Chrome: RenderingNG architecture](https://developer.chrome.com/docs/chromium/renderingng-architecture), [web.dev: layout thrashing](https://web.dev/articles/avoid-large-complex-layouts-and-layout-thrashing), [web.dev: compositor-only properties](https://web.dev/articles/stick-to-compositor-only-properties-and-manage-layer-count).

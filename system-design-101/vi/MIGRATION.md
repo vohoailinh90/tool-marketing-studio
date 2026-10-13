@@ -9,4 +9,4 @@ Bài giáo dục nằm trong kho riêng, đọc qua README và lesson.md. Chưa 
 
 Sau review tích hợp sạch, biên soạn sd-01-008 theo nguồn rồi từng ID tiếp theo, mỗi đợt1–3 bài. Khi main thay đổi kiểm tra lại tổ hợp. Không chờ người dùng nhắc.
 
-Main đích ban đầu ở trên là snapshot nhập. Sau đồng bộ, mốc hiện hành trong progress.json là f9f79246cf7b05979fc1343734e02ea8afc201be; review lại tổ hợp mới, không dùng CI/review của head trước.
+Main đích ban đầu ở trên là snapshot nhập. Sau đồng bộ, mốc hiện hành trong progress.json là 3edff99314afa7435a4519b700e380eac8d6bc1c; review lại tổ hợp mới, không dùng CI/review của head trước.

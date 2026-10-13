@@ -12,7 +12,7 @@
 
 ## Giới hạn cần nhớ
 
-Hai điểm rất gần nhau có thể nằm ở hai ô khác tiền tố khi sát đường biên, nên chỉ tra một ô thì bỏ sót; cần tra cả các ô kề. Mật độ cũng không đều: một ô ở trung tâm thành phố chứa rất nhiều quán còn một ô giữa biển thì trống, nên lưới cố định không phải lúc nào cũng cân bằng. Bài chỉ nêu hai bit đầu; mã thật dài hơn và thường dùng bảng chữ cái 32 ký tự.
+Hai điểm rất gần nhau có thể nằm ở hai ô khác tiền tố khi sát đường biên, nên chỉ tra một ô thì bỏ sót; cần tra cả các ô kề. Mật độ cũng không đều: một ô phủ khu ẩm thực đông đúc có thể chứa hàng trăm quán, còn ô phủ vùng núi chỉ có vài quán, nên lưới cố định không phải lúc nào cũng cân bằng. Bài chỉ nêu hai bit đầu; mã thật dài hơn và thường dùng bảng chữ cái 32 ký tự.
 
 ## Nhìn hình trả lời
 

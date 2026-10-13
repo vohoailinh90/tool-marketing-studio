@@ -19,6 +19,8 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 
 ## Hệ thống hoạt động thế nào?
 
+Nhóm này được viết trước vị trí của nó trong thứ tự nguồn (nhóm thứ 12) theo yêu cầu của người dùng; các nhóm còn lại vẫn theo thứ tự nguồn.
+
 1. [AirTag tìm đồ thất lạc bằng cách nào?](lessons/sd-12-001/lesson.md) — bản nháp độc lập; chờ kiểm chứng nguồn và review kỹ thuật.
 2. [Email được gửi đi như thế nào?](lessons/sd-12-002/lesson.md) — bản nháp độc lập; chờ kiểm chứng nguồn và review kỹ thuật.
 3. [Thiết kế dịch vụ thư điện tử kiểu Gmail](lessons/sd-12-003/lesson.md) — bản nháp độc lập; chờ kiểm chứng nguồn và review kỹ thuật.

@@ -54,7 +54,7 @@
       "whole_lesson_no_horizontal_overflow": true,
       "text_outside_viewbox": false,
       "optional_sections_checked_open": true,
-      "evidence": "Chromium headless: markdown-it render of lesson.md with every <details> open, in iframes of 320, 375 and 430 px; documentElement.scrollWidth did not exceed clientWidth; every SVG <text> bounding box lies inside the viewBox; effective diagram text is 16px x scale (13.65px at 320 with a 15px classic scrollbar, 16px at 375 and 430); a contact-sheet screenshot of the figure was inspected visually. Not learner testing; not checked on GitHub or a real phone."
+      "evidence": "Chromium headless: markdown-it render of lesson.md with every <details> open, in iframes of 320, 375 and 430 px; documentElement.scrollWidth did not exceed clientWidth; every SVG <text> bounding box lies inside the viewBox; effective diagram text is 16px x scale (13.65px at 320 with a 15px classic scrollbar, 16px at 375 and 430); a contact-sheet screenshot of the figure was inspected visually. The measuring script is a throwaway one and is not committed to the repository, so the measurement cannot yet be re-run from the repo. Not learner testing; not checked on GitHub or a real phone."
     },
     "user_testing": {
       "status": "not_performed"

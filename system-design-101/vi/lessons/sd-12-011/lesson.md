@@ -35,7 +35,7 @@ X có thể thấy biến thể khác nhau ở các lần, làm số liệu lẫ
 - **Đơn vị ngẫu nhiên hóa:** người dùng, thiết bị hay phiên. Chọn đơn vị quyết định việc một người có thấy cùng biến thể xuyên thiết bị hay không.
 - **Chỉ số bảo vệ (guardrail):** theo dõi cả những điều không muốn xấu đi như tốc độ trang, lỗi hoặc tỷ lệ hủy dịch vụ, không chỉ chỉ số mục tiêu.
 - **Máy chủ và máy khách:** máy khách cần nhận cấu hình nhóm và phải có cách xử lý khi chưa tải được.
-- Bố cục bốn thành phần này được vẽ lại từ cuốn *Trustworthy Online Controlled Experiments* của Kohavi, Tang và Xu.
+- Bốn thành phần này theo cuốn *Trustworthy Online Controlled Experiments* (Kohavi, Tang, Xu) như bài nguồn dẫn; hình trong bài là thiết kế mới, không vẽ lại hình của sách hay của bài nguồn.
 
 </details>
 

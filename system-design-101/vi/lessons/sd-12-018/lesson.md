@@ -6,11 +6,11 @@
 
 ## Đọc hình
 
-**1. Bò web (crawl).** Các chương trình “bò” bắt đầu từ danh sách trang đã biết (hạt giống), tải trang, đọc các liên kết trong đó rồi xếp những địa chỉ mới vào hàng đợi để tải tiếp. Chúng tôn trọng quy tắc của trang như tệp `robots.txt` và không tải dồn dập vào một máy chủ.
+**Bước 1–2 · Bò web (crawl).** Các chương trình “bò” bắt đầu từ danh sách trang đã biết (hạt giống), tải trang, đọc các liên kết trong đó rồi xếp những địa chỉ mới vào hàng đợi để tải tiếp. Chúng tôn trọng quy tắc của trang như tệp `robots.txt` và không tải dồn dập vào một máy chủ.
 
-**2. Lập chỉ mục (index).** Nội dung được phân tích: tách từ, nhận biết ngôn ngữ, loại nội dung, độ mới, rồi đưa vào **chỉ mục đảo** (inverted index): với mỗi từ, danh sách các trang có từ đó. Ví dụ: “cá” → trang 1, trang 2; “mèo” → trang 1.
+**Bước 3 · Lập chỉ mục (index).** Nội dung được phân tích: tách từ, nhận biết ngôn ngữ, loại nội dung, độ mới, rồi đưa vào **chỉ mục đảo** (inverted index): với mỗi từ, danh sách các trang có từ đó. Ví dụ: “cá” → trang 1, trang 2; “mèo” → trang 1.
 
-**3. Phục vụ truy vấn.** Truy vấn được phân tích (từ khóa, từ đồng nghĩa, ý định), các trang khớp được lấy ra từ chỉ mục, rồi **xếp hạng** theo mức liên quan và nhiều tín hiệu khác.
+**Bước 4–7 · Phục vụ truy vấn.** Truy vấn được phân tích (từ khóa, từ đồng nghĩa, ý định), các trang khớp được lấy ra từ chỉ mục, rồi **xếp hạng** theo mức liên quan và nhiều tín hiệu khác.
 
 ## Giới hạn cần nhớ
 

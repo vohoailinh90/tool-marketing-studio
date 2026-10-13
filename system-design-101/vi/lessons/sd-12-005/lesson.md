@@ -6,22 +6,22 @@
 
 ## Đọc hình
 
-Bản đồ được chia đệ quy thành **4 ô**. Ô nào còn quá nhiều địa điểm (ví dụ hơn một ngưỡng như 100) thì chia tiếp thành 4 ô nhỏ hơn; ô nào đủ ít thì dừng và thành **ô lá**. Nơi đông, như trung tâm thành phố, sinh ra ô nhỏ và sâu; nơi thưa, như biển, chỉ có ô lớn.
+Bản đồ được chia đệ quy thành **4 ô**. Ô nào còn quá nhiều địa điểm (ví dụ hơn một ngưỡng như 100) thì chia tiếp thành 4 ô nhỏ hơn; ô nào đủ ít thì dừng và thành **ô lá**. Nơi đông, như một phố ẩm thực, sinh ra ô nhỏ và sâu; nơi thưa, như vùng đồi núi, chỉ có ô lớn.
 
 **Tìm gần bạn:** đi từ gốc xuống, mỗi bước chọn ô chứa vị trí của bạn, cho tới ô lá. Nếu ô lá chưa đủ số kết quả cần, lấy thêm địa điểm từ các ô kề.
 
 ## Giới hạn cần nhớ
 
-Quadtree là cấu trúc **trong bộ nhớ**: mỗi máy chủ dịch vụ vị trí tự dựng và giữ một bản, nó không phải nơi lưu trữ dữ liệu. Dựng cây từ dữ liệu lớn tốn thời gian và trong lúc đó máy chủ chưa nên nhận lưu lượng, nên khi phát hành phiên bản mới hãy triển khai cuốn chiếu từng nhóm máy chủ thay vì đồng loạt.
+Quadtree là cấu trúc **trong bộ nhớ**: mỗi máy chủ dịch vụ vị trí tự dựng và giữ một bản, nó không phải nơi lưu trữ dữ liệu. Dựng cây từ dữ liệu lớn tốn thời gian và trong lúc đó máy chủ chưa nên nhận lưu lượng, nên khi phát hành phiên bản mới hãy cập nhật lần lượt từng nhóm máy chủ để phần còn lại vẫn phục vụ được.
 
 ## Nhìn hình trả lời
 
-Tìm quán gần bạn ở trung tâm thành phố và ở giữa đại dương: nơi nào thường đi sâu hơn trong cây?
+Một phố ẩm thực đông quán và một vùng đồi vắng nhà: nơi nào thường có ô lá nhỏ và nằm sâu hơn trong cây?
 
 <details>
 <summary>Xem đáp án</summary>
 
-Trung tâm thành phố, vì nhiều địa điểm khiến ô bị chia nhỏ nhiều lần. Giữa đại dương gần như chỉ có ô lớn.
+Phố ẩm thực: nhiều địa điểm khiến ô bị chia nhỏ nhiều lần. Vùng đồi vắng nhà gần như chỉ có ô lớn.
 
 </details>
 

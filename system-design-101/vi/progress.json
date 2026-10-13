@@ -10,6 +10,7 @@
     "sd-01-005",
     "sd-01-006",
     "sd-01-007",
+    "sd-01-008",
     "sd-12-001",
     "sd-12-002",
     "sd-12-003",
@@ -30,30 +31,13 @@
     "sd-12-018"
   ],
   "reviewed_ids": [],
-  "next_id": "sd-01-008",
+  "next_id": "sd-01-009",
   "active_batch_ids": [
-    "sd-12-001",
-    "sd-12-002",
-    "sd-12-003",
-    "sd-12-004",
-    "sd-12-005",
-    "sd-12-006",
-    "sd-12-007",
-    "sd-12-008",
-    "sd-12-009",
-    "sd-12-010",
-    "sd-12-011",
-    "sd-12-012",
-    "sd-12-013",
-    "sd-12-014",
-    "sd-12-015",
-    "sd-12-016",
-    "sd-12-017",
-    "sd-12-018"
+    "sd-01-008"
   ],
   "active_pr": null,
   "updated_on": "2026-10-13",
-  "active_branch": "claude/funny-archimedes-253vvb",
+  "active_branch": "claude/sd-01-008",
   "previous_pr": 34,
   "superseded_pr": 24,
   "integration_review_pending": true,
@@ -74,5 +58,6 @@
   "previous_repository_main_sha": "89186c1a1aeb90a47e2a563fdc7786b2dacec787",
   "merged_prs": [
     40
-  ]
+  ],
+  "stacked_on_pr": 51
 }

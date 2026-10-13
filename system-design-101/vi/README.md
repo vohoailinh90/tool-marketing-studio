@@ -17,6 +17,8 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 
 7. [Chính sách định tuyến lưu lượng Internet](lessons/sd-01-007/lesson.md) — có review tại repo cũ; chờ review tích hợp tại repo mới.
 
+8. [Trình duyệt dựng trang web thế nào?](lessons/sd-01-008/lesson.md) — bản nháp độc lập; chờ kiểm chứng nguồn và review kỹ thuật.
+
 ## Hệ thống hoạt động thế nào?
 
 Nhóm này được viết trước vị trí của nó trong thứ tự nguồn (nhóm thứ 12) theo yêu cầu của người dùng; các nhóm còn lại vẫn theo thứ tự nguồn.

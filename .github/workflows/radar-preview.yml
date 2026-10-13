@@ -63,6 +63,16 @@ jobs:
           test -f trusted/scripts/radar_preview.py || { echo "the base branch has no scripts/radar_preview.py"; exit 1; }
           python trusted/scripts/radar_preview.py plan
 
+      - name: Clear the exports the pull request carried
+        # Before anything can fail: the upload below runs even when the install, the check or the drawing failed, and `render`
+        # refreshes only the posts that exist. An export committed for a removed (or forged) post would otherwise be attached
+        # and listed in the comment as if it had just been drawn. Only what `render` writes is ever reported.
+        if: steps.plan.outputs.ok == 'true'
+        env:
+          CAMPAIGNS: ${{ steps.plan.outputs.campaigns }}
+        run: |
+          for campaign in $CAMPAIGNS; do rm -rf -- "campaigns/$campaign/export"; done
+
       - name: Install
         id: install
         if: steps.plan.outputs.ok == 'true'
@@ -81,15 +91,6 @@ jobs:
           status=0
           for campaign in $CAMPAIGNS; do python studio.py check "$campaign" || status=1; done
           exit $status
-
-      - name: Clear the exports the pull request carried
-        # `render` refreshes only the posts that exist: an export committed for a post that was removed, or forged, would
-        # otherwise be listed and attached as if it had just been drawn. Only what `render` writes below is reported.
-        if: steps.plan.outputs.ok == 'true'
-        env:
-          CAMPAIGNS: ${{ steps.plan.outputs.campaigns }}
-        run: |
-          for campaign in $CAMPAIGNS; do rm -rf -- "campaigns/$campaign/export"; done
 
       - name: Draw the images and texts
         id: render

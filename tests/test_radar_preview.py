@@ -437,12 +437,15 @@ class WorkflowTests(unittest.TestCase):
         names = [s.get("name") or s.get("id") for s in steps()]
         self.assertLess(names.index("The planner, from the base branch"), names.index("Which files does this pull request change?"))
 
-    def test_an_export_the_pull_request_carried_is_cleared_after_the_check_and_before_the_drawing(self):
+    def test_an_export_the_pull_request_carried_is_cleared_before_anything_can_fail_or_be_uploaded(self):
+        # the upload and the comment run even after a failed install, check or drawing: the clearing must come first
         names = [s.get("name") for s in steps()]
         clear = next(s for s in steps() if s.get("name") == "Clear the exports the pull request carried")
-        self.assertLess(names.index("Check the campaign"), names.index(clear["name"]))
-        self.assertLess(names.index(clear["name"]), names.index("Draw the images and texts"))
+        self.assertLess(names.index("Which files does this pull request change?"), names.index(clear["name"]))
+        for later in ("Install", "Check the campaign", "Draw the images and texts", "Attach the images and texts to the run"):
+            self.assertLess(names.index(clear["name"]), names.index(later), later)
         self.assertIn("steps.plan.outputs.ok == 'true'", clear["if"])
+        self.assertNotIn("always()", clear["if"])
         self.assertIn('rm -rf -- "campaigns/$campaign/export"', clear["run"])
         self.assertIn("for campaign in $CAMPAIGNS", clear["run"])           # only the campaigns the plan found, from the environment
 

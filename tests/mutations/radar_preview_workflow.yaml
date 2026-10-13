@@ -78,4 +78,8 @@ mutations:
 - label: an export the pull request carried is listed and attached as if it had just been drawn
   find: '          for campaign in $CAMPAIGNS; do rm -rf -- "campaigns/$campaign/export"; done'
   replace: '          true'
-  test: tests.test_radar_preview.WorkflowTests.test_an_export_the_pull_request_carried_is_cleared_after_the_check_and_before_the_drawing
+  test: tests.test_radar_preview.WorkflowTests.test_an_export_the_pull_request_carried_is_cleared_before_anything_can_fail_or_be_uploaded
+- label: the clearing of carried exports is skipped when the install fails
+  find: "        if: steps.plan.outputs.ok == 'true'\n        env:\n          CAMPAIGNS: ${{ steps.plan.outputs.campaigns }}\n        run: |\n          for campaign in $CAMPAIGNS; do rm -rf"
+  replace: "        if: always() && steps.plan.outputs.ok == 'true'\n        env:\n          CAMPAIGNS: ${{ steps.plan.outputs.campaigns }}\n        run: |\n          for campaign in $CAMPAIGNS; do rm -rf"
+  test: tests.test_radar_preview.WorkflowTests.test_an_export_the_pull_request_carried_is_cleared_before_anything_can_fail_or_be_uploaded

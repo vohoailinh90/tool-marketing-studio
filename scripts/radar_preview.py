@@ -106,7 +106,7 @@ def write_outputs(path: str | None, values: Mapping[str, str]) -> None:
     cannot end its block early and set an output of its own."""
     if not path:
         return
-    with open(path, "a", encoding="utf-8", errors="replace") as handle:
+    with open(path, "a", encoding="utf-8") as handle:
         for key, value in values.items():
             delimiter = f"RADAR_EOF_{uuid.uuid4().hex}"
             handle.write(f"{key}<<{delimiter}\n{value}\n{delimiter}\n")

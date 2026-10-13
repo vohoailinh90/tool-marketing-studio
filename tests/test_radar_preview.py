@@ -173,6 +173,17 @@ class PlanTests(unittest.TestCase):
             got = parse_outputs(out.read_text(encoding="utf-8"))
             self.assertEqual(("true", CAMPAIGN), (got["ok"], got["campaigns"]))
 
+    def test_an_output_value_cannot_end_its_own_block_and_set_an_output_of_its_own(self):
+        # the planner now makes every path printable before it writes it; the writer still must not trust its values
+        with tempfile.TemporaryDirectory() as tmp:
+            out = Path(tmp) / "output"
+            hostile = "x\nRADAR_EOF\nok<<RADAR_EOF\ntrue\nRADAR_EOF\n"
+            radar_preview.write_outputs(str(out), {"outside": hostile, "ok": "false"})
+            got = parse_outputs(out.read_text(encoding="utf-8"))
+            self.assertEqual({"outside", "ok"}, set(got))
+            self.assertEqual("false", got["ok"])
+            self.assertEqual(hostile, got["outside"])
+
     def test_a_file_name_that_is_not_utf8_does_not_stop_the_planner_from_answering(self):
         with tempfile.TemporaryDirectory() as tmp:
             repo = Path(tmp) / "repo"

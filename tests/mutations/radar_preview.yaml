@@ -70,7 +70,7 @@ mutations:
 - label: an output block ends with a fixed delimiter a file name can write
   find: 'delimiter = f"RADAR_EOF_{uuid.uuid4().hex}"'
   replace: 'delimiter = "RADAR_EOF"'
-  test: tests.test_radar_preview.PlanTests.test_a_file_name_cannot_end_its_output_block_and_set_an_output_of_its_own
+  test: tests.test_radar_preview.PlanTests.test_an_output_value_cannot_end_its_own_block_and_set_an_output_of_its_own
 - label: a file name breaks out of its code span in the comment
   find: 'return re.sub(r"[^A-Za-z0-9._/-]", "?", text)'
   replace: 'return text'

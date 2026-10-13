@@ -54,7 +54,7 @@
       "source": "https://kubernetes.io/docs/concepts/scheduling-eviction/kube-scheduler/"
     },
     {
-      "claim_vi": "requests dùng để đặt Pod còn limits giới hạn mức dùng tối đa.",
+      "claim_vi": "requests dùng để đặt Pod còn limits giới hạn mức dùng tối đa; nếu container chỉ khai limits mà không khai requests và không có cơ chế admission nào áp requests mặc định, Kubernetes sao chép limits thành requests.",
       "source": "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/"
     },
     {

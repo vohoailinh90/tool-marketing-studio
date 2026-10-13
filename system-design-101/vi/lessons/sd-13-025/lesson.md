@@ -13,7 +13,7 @@ Pod ở Pending, `kubectl describe pod` báo `0/3 nodes are available: 3 Insuffi
 <details>
 <summary>Xem đáp án</summary>
 
-Scheduler không tìm được node nào còn đủ bộ nhớ cho `requests` của Pod. Giảm `requests` nếu khai quá tay, hoặc thêm tài nguyên cho node hay thêm node. `limits` không quyết định việc đặt Pod, `requests` mới quyết định.
+Scheduler không tìm được node nào còn đủ bộ nhớ cho `requests` của Pod. Giảm `requests` nếu khai quá tay, hoặc thêm tài nguyên cho node hay thêm node. Khi container khai đủ `requests`, `limits` không quyết định việc đặt Pod, `requests` mới quyết định. Nếu container chỉ khai `limits` mà không khai `requests`, và không có cơ chế admission nào áp `requests` mặc định, Kubernetes sao chép `limits` thành `requests`, nên lúc đó `limits` cũng ảnh hưởng việc đặt Pod; `kubectl get pod -o yaml` cho thấy `requests` thực sự của Pod.
 
 </details>
 
@@ -30,7 +30,7 @@ kubectl logs ten-pod --previous          # nhật ký của lần chạy trướ
 kubectl get events --sort-by=.lastTimestamp
 ```
 
-- **Pending:** scheduler chọn node dựa trên `requests` của Pod, cùng taint, toleration, nodeSelector và affinity. Sự kiện `FailedScheduling` liệt kê lý do loại từng node. PVC chưa gắn được cũng giữ Pod ở Pending.
+- **Pending:** scheduler chọn node dựa trên `requests` của Pod (container chỉ khai `limits` mà không khai `requests` thì Kubernetes sao chép `limits` thành `requests`, nếu không có cơ chế admission áp mặc định), cùng taint, toleration, nodeSelector và affinity. Sự kiện `FailedScheduling` liệt kê lý do loại từng node. PVC chưa gắn được cũng giữ Pod ở Pending.
 - **ContainerCreating:** kubelet nhờ container runtime kéo image và chuẩn bị volume. Tên image sai, thiếu quyền kéo (cần `imagePullSecrets`) hay registry không với tới cho `ErrImagePull` rồi `ImagePullBackOff`.
 - **CrashLoopBackOff:** kubelet khởi động lại container và tăng dần thời gian chờ giữa các lần (tối đa vài phút); tìm nguyên nhân trong `logs --previous`.
 - **OOMKilled:** `describe pod` ghi lý do ở trạng thái lần trước của container (`Reason: OOMKilled`, thường kèm mã thoát 137, tức bị dừng cưỡng bức). Hết bộ nhớ có thể do container vượt `limits` bộ nhớ của chính nó, hoặc do node hết bộ nhớ (khi đó kernel có thể dừng cả container chưa vượt limit hay không đặt limit). Hãy kiểm tra `limits` của container và sự kiện của node (`kubectl describe node`).

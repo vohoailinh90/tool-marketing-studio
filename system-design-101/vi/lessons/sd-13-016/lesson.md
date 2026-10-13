@@ -19,7 +19,7 @@ Pod ở trạng thái CrashLoopBackOff. Lệnh nào cho xem nhật ký của l�
 
 ## Giới hạn cần nhớ
 
-Trước khi chạy lệnh thay đổi, kiểm tra đang trỏ vào cụm và namespace nào (`kubectl config current-context`). Lệnh `delete` và `apply` đúng lệnh nhưng sai cụm vẫn là sự cố.
+Trước khi chạy lệnh thay đổi, kiểm tra đang trỏ vào cụm và namespace nào (`kubectl config current-context` chỉ in tên context). Namespace đang dùng xem bằng `kubectl config view --minify --output "jsonpath={..namespace}"`; kết quả trống nghĩa là namespace `default`. Lệnh `delete` và `apply` đúng lệnh nhưng sai cụm hoặc sai namespace vẫn là sự cố.
 
 <details>
 <summary>Xem sâu hơn</summary>

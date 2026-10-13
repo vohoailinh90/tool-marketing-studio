@@ -1,40 +1,44 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1014" width="320" height="1014" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1138" width="320" height="1138" role="img" aria-labelledby="title desc">
 <title id="title">Mười mẫu thiết kế Kubernetes</title>
-<desc id="desc">Bốn thẻ xếp dọc: nền tảng (health probe, predictable demands, automated placement), cấu trúc Pod (init container, sidecar), hành vi (batch job, stateful service, service discovery) và mức cao (controller, operator).</desc>
+<desc id="desc">Năm tình huống xếp theo vòng đời một Pod, mỗi tình huống chỉ ra các mẫu thiết kế liên quan: đặt Pod, chuẩn bị, giữ khỏe, tìm nhau và tự động hóa vận hành.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="1014" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
-<text x="16" y="30" font-size="20" font-weight="bold">10 MẪU · 4 TẦNG</text>
-<text x="16" y="58" font-size="16" font-weight="normal">Cách nhóm theo sách</text>
-<text x="16" y="85" font-size="16" font-weight="normal">Kubernetes Patterns</text>
-<rect x="16" y="116" width="288" height="209" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
-<text x="30" y="144" font-size="16" font-weight="bold">1 · Nền tảng</text>
-<text x="30" y="171" font-size="16" font-weight="normal">Health Probe: báo sống/sẵn</text>
-<text x="30" y="198" font-size="16" font-weight="normal">sàng</text>
-<text x="30" y="225" font-size="16" font-weight="normal">Predictable Demands: khai</text>
-<text x="30" y="252" font-size="16" font-weight="normal">báo tài nguyên</text>
-<text x="30" y="279" font-size="16" font-weight="normal">Automated Placement:</text>
-<text x="30" y="306" font-size="16" font-weight="normal">scheduler chọn node</text>
-<line x1="160" y1="337" x2="160" y2="365" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
-<rect x="16" y="375" width="288" height="155" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
-<text x="30" y="403" font-size="16" font-weight="bold">2 · Cấu trúc Pod</text>
-<text x="30" y="430" font-size="16" font-weight="normal">Init Container: bước chuẩn</text>
-<text x="30" y="457" font-size="16" font-weight="normal">bị chạy trước</text>
-<text x="30" y="484" font-size="16" font-weight="normal">Sidecar: container phụ chạy</text>
-<text x="30" y="511" font-size="16" font-weight="normal">cùng</text>
-<line x1="160" y1="542" x2="160" y2="570" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
-<rect x="16" y="580" width="288" height="209" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
-<text x="30" y="608" font-size="16" font-weight="bold">3 · Hành vi</text>
-<text x="30" y="635" font-size="16" font-weight="normal">Batch Job: việc chạy rồi</text>
-<text x="30" y="662" font-size="16" font-weight="normal">kết thúc</text>
-<text x="30" y="689" font-size="16" font-weight="normal">Stateful Service: có danh</text>
-<text x="30" y="716" font-size="16" font-weight="normal">tính, có dữ liệu</text>
-<text x="30" y="743" font-size="16" font-weight="normal">Service Discovery: tìm nhau</text>
-<text x="30" y="770" font-size="16" font-weight="normal">qua tên</text>
-<line x1="160" y1="801" x2="160" y2="829" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
-<rect x="16" y="839" width="288" height="155" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
-<text x="30" y="867" font-size="16" font-weight="bold">4 · Mức cao</text>
-<text x="30" y="894" font-size="16" font-weight="normal">Controller: kéo trạng thái</text>
-<text x="30" y="921" font-size="16" font-weight="normal">thật về trạng thái khai báo</text>
-<text x="30" y="948" font-size="16" font-weight="normal">Operator: controller mang</text>
-<text x="30" y="975" font-size="16" font-weight="normal">kiến thức vận hành</text>
+<rect width="320" height="1138" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">MẪU THEO TÌNH HUỐNG</text>
+<text x="16" y="58" font-size="16" font-weight="normal">Đi theo vòng đời một Pod</text>
+<rect x="16" y="89" width="288" height="155" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="117" font-size="16" font-weight="bold">Pod chưa có chỗ chạy</text>
+<text x="30" y="144" font-size="16" font-weight="normal">Predictable Demands: khai</text>
+<text x="30" y="171" font-size="16" font-weight="normal">báo cần bao nhiêu</text>
+<text x="30" y="198" font-size="16" font-weight="normal">Automated Placement:</text>
+<text x="30" y="225" font-size="16" font-weight="normal">scheduler chọn node</text>
+<line x1="160" y1="256" x2="160" y2="284" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="294" width="288" height="128" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="322" font-size="16" font-weight="bold">Cần chuẩn bị trước khi</text>
+<text x="30" y="349" font-size="16" font-weight="bold">chạy</text>
+<text x="30" y="376" font-size="16" font-weight="normal">Init Container: bước chạy</text>
+<text x="30" y="403" font-size="16" font-weight="normal">xong rồi mới tới ứng dụng</text>
+<line x1="160" y1="434" x2="160" y2="462" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="472" width="288" height="209" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="500" font-size="16" font-weight="bold">Đang chạy</text>
+<text x="30" y="527" font-size="16" font-weight="normal">Health Probe: báo sống, báo</text>
+<text x="30" y="554" font-size="16" font-weight="normal">sẵn sàng</text>
+<text x="30" y="581" font-size="16" font-weight="normal">Sidecar: container phụ đi</text>
+<text x="30" y="608" font-size="16" font-weight="normal">kèm</text>
+<text x="30" y="635" font-size="16" font-weight="normal">Service Discovery: gọi nhau</text>
+<text x="30" y="662" font-size="16" font-weight="normal">qua tên</text>
+<line x1="160" y1="693" x2="160" y2="721" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="731" width="288" height="182" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="759" font-size="16" font-weight="bold">Loại công việc đặc</text>
+<text x="30" y="786" font-size="16" font-weight="bold">biệt</text>
+<text x="30" y="813" font-size="16" font-weight="normal">Batch Job: chạy một lần rồi</text>
+<text x="30" y="840" font-size="16" font-weight="normal">xong</text>
+<text x="30" y="867" font-size="16" font-weight="normal">Stateful Service: cần danh</text>
+<text x="30" y="894" font-size="16" font-weight="normal">tính và dữ liệu</text>
+<line x1="160" y1="925" x2="160" y2="953" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="963" width="288" height="155" rx="10" fill="#fee2e2" stroke="#94a3b8"/>
+<text x="30" y="991" font-size="16" font-weight="bold">Muốn hệ thống tự lo</text>
+<text x="30" y="1018" font-size="16" font-weight="normal">Controller: tự sửa lệch</text>
+<text x="30" y="1045" font-size="16" font-weight="normal">trạng thái</text>
+<text x="30" y="1072" font-size="16" font-weight="normal">Operator: controller cho</text>
+<text x="30" y="1099" font-size="16" font-weight="normal">một ứng dụng cụ thể</text>
 </g></svg>

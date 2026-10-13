@@ -2,7 +2,7 @@
   "id": "sd-13-003",
   "title_vi": "Tỉ lệ lập trình viên và kiểm thử viên thay đổi thế nào",
   "language": "vi",
-  "kind": "flow",
+  "kind": "comparison",
   "content_status": "draft",
   "source_ref": "sd-13-003",
   "source_snapshot": {
@@ -39,13 +39,13 @@
   },
   "claims": [
     {
-      "claim_vi": "Nguồn kể ba mốc 1:1, 10:1 và 100:1 và gắn với bài của Carlos Arguelles; đây là mô tả xu hướng, không phải thống kê.",
+      "claim_vi": "Nguồn kể xu hướng dịch chuyển trách nhiệm kiểm thử sang người viết mã qua nhiều thập niên, gắn với bài của Carlos Arguelles; đây là mô tả xu hướng, không phải thống kê.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/paradigm-shift-how-developer-to-tester-ratio-changed-from-11-to-1001.md"
     }
   ],
   "source_deviations": [
-    "Số liệu và mốc năm chưa đối chiếu với bài gốc của tác giả nên bài ghi rõ là minh họa."
+    "Nguồn chia theo ba mốc thời gian và tỉ lệ; bài bỏ cấu trúc đó, thay bằng khung điều kiện (chi phí lỗi, tốc độ vá) và không dùng tỉ lệ cụ thể."
   ],
-  "design_notes_vi": "Ba mốc nối bằng mũi tên theo thời gian; màu đổi từ rủi ro cao sang tự động hóa.",
+  "design_notes_vi": "Hai thẻ đối lập với ghi chú kết luận, thay cho trục thời gian của nguồn.",
   "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
 }

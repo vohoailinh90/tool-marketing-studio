@@ -8,12 +8,12 @@ Deployment của Kubernetes có sẵn hai chiến lược. Các chiến lược 
 
 ## Nhìn hình thử trả lời
 
-Deployment 3 Pod, `maxSurge: 1`, `maxUnavailable: 0`. Trong lúc cập nhật có tối đa bao nhiêu Pod, và có lúc nào ít hơn 3 Pod sẵn sàng không?
+Deployment 3 Pod, `maxSurge: 1`, `maxUnavailable: 0`. Trong lúc cập nhật controller nhắm tới tối đa bao nhiêu Pod đang chạy, và có lúc nào ít hơn 3 Pod sẵn sàng không?
 
 <details>
 <summary>Xem đáp án</summary>
 
-Tối đa 4 Pod (3 + 1 tạm thời). Không có lúc nào dưới 3 Pod sẵn sàng vì `maxUnavailable` là 0.
+Controller nhắm tới tối đa 4 Pod không đang tắt (3 + 1 tạm thời) và luôn giữ đủ 3 Pod sẵn sàng vì `maxUnavailable` là 0. Pod cũ đang tắt (Terminating) trong thời gian ân hạn không được tính, nên tổng Pod thực tế có thể tạm cao hơn 4.
 
 </details>
 

@@ -70,8 +70,8 @@
     }
   ],
   "source_deviations": [
-    "Nhóm và tên 10 mẫu theo nguồn; mô tả viết lại, kèm giới hạn: không phải danh mục chính thức của Kubernetes."
+    "Tên mười mẫu theo nguồn (sách Kubernetes Patterns); cách nhóm theo bốn tầng của nguồn không dùng, thay bằng sắp xếp theo vòng đời Pod do bài này đặt."
   ],
-  "design_notes_vi": "Bốn thẻ dọc, mũi tên đọc từ nền tảng đến mức cao; mỗi dòng một mẫu kèm nghĩa ngắn.",
+  "design_notes_vi": "Năm thẻ dọc theo vòng đời Pod, gom mẫu theo câu hỏi người học đặt ra.",
   "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
 }

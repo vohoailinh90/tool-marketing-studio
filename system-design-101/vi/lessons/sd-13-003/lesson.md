@@ -1,36 +1,37 @@
 # Tỉ lệ lập trình viên và kiểm thử viên thay đổi thế nào
 
-Khi phát hành nhanh hơn và sửa lỗi rẻ hơn, kiểm thử dịch dần từ một vai trò riêng sang trách nhiệm của người viết mã.
+Vai trò kiểm thử riêng nhỏ đi ở nhiều nơi, nhưng không phải ở mọi nơi. Điều quyết định là chi phí của một lỗi lọt ra ngoài và việc sửa nó nhanh đến đâu.
 
-![Ba mốc xếp dọc: khoảng 1997 tỉ lệ 1:1 với phần mềm phát hành trên đĩa; khoảng 2009 tỉ lệ 10:1 với bản vá trong vài tuần; khoảng 2020 tỉ lệ 100:1 với công cụ kiểm thử chuẩn hóa.](../../diagrams/sd-13-003-main.svg)
+![Hai thẻ so sánh: khi lỗi sửa rẻ và quay lui nhanh thì kiểm thử chuyển dần sang người viết mã dựa trên công cụ tự động; khi lỗi gây hại lớn hoặc khó thu hồi thì vẫn cần kiểm thử độc lập.](../../diagrams/sd-13-003-main.svg)
 
-**Đọc hình:** tỉ lệ lấy từ bài của Carlos Arguelles mà nguồn nhắc tới; đó là cách kể xu hướng, không phải thống kê đo được.
+**Đọc hình:** không có con số cố định; bài này không dùng tỉ lệ cụ thể vì chúng chỉ là cách kể xu hướng của từng tác giả.
 
 ## Nhìn hình thử trả lời
 
-Tỉ lệ 100 : 1 có nghĩa là hầu như không còn ai kiểm thử phần mềm?
+Phần mềm điều khiển thiết bị y tế cập nhật được qua mạng. Có nên bỏ kiểm thử độc lập vì "vá nhanh được"?
 
 <details>
 <summary>Xem đáp án</summary>
 
-Không. Ý chính là trách nhiệm kiểm thử chuyển sang người viết mã, dựa trên công cụ tự động dùng chung. Việc kiểm thử vẫn diễn ra, chỉ không còn do một nhóm riêng làm hết.
+Không. Việc vá nhanh không bù được tác hại nếu lỗi gây nguy hiểm trước khi kịp vá. Với hậu quả lớn, kiểm thử độc lập vẫn đáng chi.
 
 </details>
 
 ## Giới hạn cần nhớ
 
-Đây là xu hướng ở một số công ty công nghệ lớn, không phải quy luật chung. Phần mềm liên quan đến an toàn hoặc tiền bạc thường vẫn cần kiểm thử độc lập. Các mốc năm và tỉ lệ là ước chừng của tác giả bài gốc.
+Nguồn kể xu hướng này qua các mốc thập niên và tỉ lệ dev:test của một số công ty công nghệ lớn, dựa trên bài của Carlos Arguelles. Bài này không lặp lại các mốc và tỉ lệ đó vì chúng là kinh nghiệm cá nhân, không phải thống kê ngành, và chưa được đối chiếu với bản gốc.
 
 <details>
 <summary>Xem sâu hơn</summary>
 
-- **Vì sao dịch chuyển được:** bản vá tự động và triển khai nhanh làm chi phí sửa lỗi sau phát hành giảm, nên chấp nhận kiểm thử nhanh hơn với rủi ro có kiểm soát.
-- **Điều kiện đi kèm:** pipeline tự động, giám sát sau phát hành, khả năng quay lui. Thiếu những thứ này thì bỏ vai trò kiểm thử riêng chỉ chuyển rủi ro sang người dùng.
-- **Điều bài không khẳng định:** không nói công ty cụ thể nào nên giảm kiểm thử viên.
+- **Điều kiện để chuyển được:** pipeline kiểm thử tự động, giám sát sau phát hành, khả năng quay lui. Thiếu những điều này thì bỏ vai trò kiểm thử riêng chỉ đẩy rủi ro sang người dùng.
+- **Công cụ dùng chung:** khung kiểm thử, môi trường thử và dữ liệu mẫu do một nhóm nền tảng cung cấp giúp người viết mã tự viết test mà không phải dựng lại từ đầu.
+- **Kiến thức kiểm thử** vẫn cần được truyền: đào tạo, rà soát test, tư vấn từ người có chuyên môn.
+- **Điều bài không khẳng định:** không nói tổ chức cụ thể nào nên giảm hay tăng kiểm thử viên.
 
 </details>
 
 ## Nguồn đối chiếu
 
 - [ByteByteGo tại snapshot cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/paradigm-shift-how-developer-to-tester-ratio-changed-from-11-to-1001.md).
-- Bài gốc của tác giả được nguồn nhắc tới: "The Paradigm Shifts with Different Dev:Test Ratios" (Carlos Arguelles). Bài này chưa đọc lại bản đó; số liệu chỉ được dùng như mô tả xu hướng.
+- Bài gốc của tác giả được nguồn nhắc tới: "The Paradigm Shifts with Different Dev:Test Ratios" (Carlos Arguelles). Bài này chưa đọc lại bản đó.

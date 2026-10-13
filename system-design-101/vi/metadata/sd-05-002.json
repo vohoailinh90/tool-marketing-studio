@@ -70,10 +70,16 @@
       "verified_by": "Read from a local clone of mdn/content (developer.mozilla.org was unreachable)."
     },
     {
-      "claim_vi": "TCP sets up a connection with a three-way handshake of SYN, SYN-ACK and ACK; TLS is a protocol for secure communication across a network.",
+      "claim_vi": "TCP sets up a connection with a three-way handshake of SYN, SYN-ACK and ACK.",
       "source": "https://developer.mozilla.org/en-US/docs/Glossary/TCP_handshake",
       "section": "Definition",
-      "verified_by": "Read from a local clone of mdn/content (developer.mozilla.org was unreachable). (TLS: https://developer.mozilla.org/en-US/docs/Glossary/TLS)"
+      "verified_by": "Read from a local clone of mdn/content (developer.mozilla.org was unreachable)."
+    },
+    {
+      "claim_vi": "TLS is a protocol used by applications to communicate securely across a network, preventing tampering and eavesdropping.",
+      "source": "https://developer.mozilla.org/en-US/docs/Glossary/TLS",
+      "section": "Definition",
+      "verified_by": "Read from a local clone of mdn/content (developer.mozilla.org was unreachable)."
     },
     {
       "claim_vi": "The HTTP cache stores a response and reuses it for later requests without going to the origin server.",

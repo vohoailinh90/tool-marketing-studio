@@ -2,7 +2,7 @@
 
 Đội muốn chuyển một ứng dụng giữa cloud cần map trách nhiệm trước khi map tên sản phẩm. VM có EC2, Azure Virtual Machines và Compute Engine. Object storage có S3, Blob Storage và Cloud Storage. Các tên này giúp tìm điểm bắt đầu tra tài liệu.
 
-![Compute: EC2 | Azure VM | GCE: Lambda | Functions | CR funcs; Storage / DB: S3 | Blob | Cloud Storage: RDS | Azure DB | Cloud SQL; Kubernetes: EKS | AKS | GKE: Map vai trò, rồi kiểm giới hạn.](../../diagrams/sd-11-047-main.svg)
+![Compute (VM): EC2 • Azure Virtual Machines: Google Compute Engine; Object storage: S3 • Blob • Cloud Storage: Kiểm API, quyền và giới hạn; DB quan hệ AWS / GCP: Amazon RDS • Cloud SQL: Chọn theo engine và nhu cầu; DB quan hệ trên Azure: Azure SQL Database: Azure Database for PostgreSQL; Kubernetes: EKS • AKS • GKE: Map vai trò, rồi kiểm giới hạn.](../../diagrams/sd-11-047-main.svg)
 
 **Đọc hình:** Các khung tóm tắt vai trò hoặc lựa chọn để đối chiếu. Các con số và tình huống trong bài là ví dụ minh họa, trừ khi ghi rõ cách tính.
 

@@ -18,3 +18,5 @@ Base main của đợt Cloud/PR #47 là 5831cdcef96a2c83664e02d83a4e803cf47f259c
 Kiểm tra đợt Cloud ngày 2026-10-13: sd101_check đạt 56 bài/0 lỗi; layout_check đạt 0 lỗi; git diff --check sạch; tests/test_sd101_check.py đạt 209 test và 2.960 subtest. Các kiểm tra này xác nhận cấu trúc kho và schema, không thay review nội dung.
 
 Review vòng đầu của PR #47 tại 2ba16889c479b8b0f53e3398f10ce50f1b4c5696 nêu ba finding P2: kết quả Lambda (4255709360), số sách trong lịch sử event sourcing (4255709374) và base SHA (4255709389). Đã đối chiếu, xác nhận và sửa; cần review lại head mới. Các bài vẫn là bản thảo, chưa tuyên bố claim đã kiểm chứng đầy đủ.
+
+Review vòng hai tại 488d1776342e205829d661fa752c5c3d5a802f2c nêu finding P2 4255795496 về nhãn Azure DB trong hình so sánh. Đã xác nhận và thay bằng hai sản phẩm cụ thể Azure SQL Database / Azure Database for PostgreSQL trong SVG và alt text; cần review lại head mới.

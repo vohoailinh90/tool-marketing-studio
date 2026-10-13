@@ -43,7 +43,7 @@
       "whole_lesson_no_horizontal_overflow": true,
       "text_outside_viewbox": false,
       "optional_sections_checked_open": true,
-      "evidence": "Chromium 147 whole-lesson viewport checks across 49 lessons, all details open; SVG text getBBox inside viewBox and minimum effective text measured. Shared template screenshots at 320px sampled for visual inspection (sd-11-006, sd-11-015, sd-11-024, sd-11-043, sd-11-048). Local static Markdown preview; not a live GitHub/device check or learner testing."
+      "evidence": "Re-rendered revised five-card service comparison with concrete Azure product names in Chromium at 320/375/430px after finding 4255795496; all details open, SVG getBBox inside viewBox and effective text measured. Static Markdown preview, not GitHub/device or learner testing."
     },
     "user_testing": {
       "status": "not_performed"
@@ -62,6 +62,7 @@
   "editorial_note_vi": "Bản thảo viết độc lập theo nhóm người dùng giao ngày 2026-10-13. Chờ review kỹ thuật; chưa user testing hoặc phê duyệt phát hành.",
   "source_deviations": [
     "Giữ chủ đề và ID để đối chiếu; giải thích bằng ví dụ tự biên soạn và tài liệu kỹ thuật, không dịch thân bài nguồn.",
-    "Giới hạn cần đối chiếu khi review: Cùng vai trò không có nghĩa tương đương tính năng hay thay trực tiếp không sửa mã. Tên, gói và hỗ trợ của dịch vụ thay đổi theo thời gian."
+    "Giới hạn cần đối chiếu khi review: Cùng vai trò không có nghĩa tương đương tính năng hay thay trực tiếp không sửa mã. Tên, gói và hỗ trợ của dịch vụ thay đổi theo thời gian.",
+    "Finding 4255795496: bỏ nhãn mơ hồ Azure DB; hình và alt text ghi cụ thể Azure SQL Database / Azure Database for PostgreSQL, nhóm lựa chọn theo vai trò và engine, không coi là sản phẩm tương đương hoàn toàn."
   ]
 }

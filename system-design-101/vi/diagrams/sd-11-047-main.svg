@@ -1,20 +1,28 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="360" height="420" viewBox="0 0 360 420" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="648" viewBox="0 0 360 648" role="img" aria-labelledby="title desc">
 <title id="title">So sánh AWS, Azure và Google Cloud theo vai trò</title>
-<desc id="desc">Compute: EC2 | Azure VM | GCE: Lambda | Functions | CR funcs; Storage / DB: S3 | Blob | Cloud Storage: RDS | Azure DB | Cloud SQL; Kubernetes: EKS | AKS | GKE: Map vai trò, rồi kiểm giới hạn. Các khung là ý chính để đối chiếu, không nhất thiết là các bước tuần tự.</desc>
-<rect width="360" height="420" fill="#f8fafc"/>
+<desc id="desc">Compute (VM): EC2 • Azure Virtual Machines: Google Compute Engine; Object storage: S3 • Blob • Cloud Storage: Kiểm API, quyền và giới hạn; DB quan hệ AWS / GCP: Amazon RDS • Cloud SQL: Chọn theo engine và nhu cầu; DB quan hệ trên Azure: Azure SQL Database: Azure Database for PostgreSQL; Kubernetes: EKS • AKS • GKE: Map vai trò, rồi kiểm giới hạn. Các sản phẩm được nhóm theo vai trò, không hàm ý tương đương mọi tính năng. Với Azure, lựa chọn DB quan hệ tùy engine.</desc>
+<rect width="360" height="648" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, sans-serif" fill="#0f172a">
 <text x="20" y="28" font-size="18" font-weight="bold">sd-11-047 · Nhìn hình trước</text>
 <rect x="12" y="48" width="336" height="102" rx="12" fill="#e0f2fe" stroke="#64748b"/>
-<text x="24" y="75" font-size="18" font-weight="bold">Compute</text>
-<text x="24" y="104" font-size="18">EC2 | Azure VM | GCE</text>
-<text x="24" y="130" font-size="18">Lambda | Functions | CR funcs</text>
+<text x="24" y="75" font-size="18" font-weight="bold">Compute (VM)</text>
+<text x="24" y="104" font-size="18">EC2 • Azure Virtual Machines</text>
+<text x="24" y="130" font-size="18">Google Compute Engine</text>
 <rect x="12" y="162" width="336" height="102" rx="12" fill="#dcfce7" stroke="#64748b"/>
-<text x="24" y="189" font-size="18" font-weight="bold">Storage / DB</text>
-<text x="24" y="218" font-size="18">S3 | Blob | Cloud Storage</text>
-<text x="24" y="244" font-size="18">RDS | Azure DB | Cloud SQL</text>
+<text x="24" y="189" font-size="18" font-weight="bold">Object storage</text>
+<text x="24" y="218" font-size="18">S3 • Blob • Cloud Storage</text>
+<text x="24" y="244" font-size="18">Kiểm API, quyền và giới hạn</text>
 <rect x="12" y="276" width="336" height="102" rx="12" fill="#fef3c7" stroke="#64748b"/>
-<text x="24" y="303" font-size="18" font-weight="bold">Kubernetes</text>
-<text x="24" y="332" font-size="18">EKS | AKS | GKE</text>
-<text x="24" y="358" font-size="18">Map vai trò, rồi kiểm giới hạn</text>
+<text x="24" y="303" font-size="18" font-weight="bold">DB quan hệ AWS / GCP</text>
+<text x="24" y="332" font-size="18">Amazon RDS • Cloud SQL</text>
+<text x="24" y="358" font-size="18">Chọn theo engine và nhu cầu</text>
+<rect x="12" y="390" width="336" height="102" rx="12" fill="#e0f2fe" stroke="#64748b"/>
+<text x="24" y="417" font-size="18" font-weight="bold">DB quan hệ trên Azure</text>
+<text x="24" y="446" font-size="18">Azure SQL Database</text>
+<text x="24" y="472" font-size="18">Azure Database for PostgreSQL</text>
+<rect x="12" y="504" width="336" height="102" rx="12" fill="#dcfce7" stroke="#64748b"/>
+<text x="24" y="531" font-size="18" font-weight="bold">Kubernetes</text>
+<text x="24" y="560" font-size="18">EKS • AKS • GKE</text>
+<text x="24" y="586" font-size="18">Map vai trò, rồi kiểm giới hạn</text>
 </g>
 </svg>

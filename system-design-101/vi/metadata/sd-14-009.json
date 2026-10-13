@@ -27,7 +27,7 @@
     "claims": {
       "status": "checked",
       "checked_on": "2026-10-13",
-      "evidence": "MDN's HTTP cookies guide read from a local clone; cookie attributes observed with a Python server, curl and Chromium 141; the SameSite behaviour of cookies with no attribute is an observation in this Chromium only and its cause was not checked against a source."
+      "evidence": "MDN's HTTP cookies guide read from a local clone; cookie attributes observed with a Python server, curl and Chromium 141; the SameSite behaviour of cookies with no attribute is an observation in this Chromium only; MDN's Set-Cookie page notes that when Lax is applied as a default a more permissive version is used, which also includes POST requests if the cookie was set no more than two minutes before, and the observation matches that note."
     },
     "technical_review": {
       "status": "pending",
@@ -74,7 +74,7 @@
       "claim_vi": "Observed with Chromium 141, treating 127.0.0.1 and localhost as different sites: on a cross-site link navigation (GET) the SameSite=Lax cookie and a cookie with no SameSite were sent and the SameSite=Strict cookie was not; on a cross-site form POST right after login the SameSite=Lax and Strict cookies were not sent but the cookie with no SameSite was; the same POST 130 seconds after login sent no cookies.",
       "source": "https://github.com/mdn/content/blob/19370346042efad9e179fbf1f55deeeadee98c40/files/en-us/web/http/guides/cookies/index.md",
       "section": "Controlling third-party cookies with SameSite",
-      "verified_by": "No external page reports this output; observed by executing the code on the authoring machine. MDN says a cookie without SameSite is treated as Lax; the temporary difference right after creation was observed here and its cause was not checked against a source."
+      "verified_by": "No external page reports this output; observed by executing the code on the authoring machine. MDN says a cookie without SameSite is treated as Lax and, in its Set-Cookie page (same pinned commit), that the default Lax is a more permissive version which also includes POST requests for cookies set no more than two minutes before the request; the observed difference right after creation matches that note, which was read from the clone and not reproduced in other browsers."
     },
     {
       "claim_vi": "SameSite=Lax sends a cookie on a cross-site request only when it is a top-level navigation (the address bar URL changes, e.g. a link click in the top-level context, or a form submission) that uses a safe method, so it excludes cross-site POST, iframe navigation, fetch() and subresource requests such as img or script; stricter SameSite protects better against forged cross-site requests but breaks flows that need cross-site cookies such as embedded content.",
@@ -87,12 +87,18 @@
       "source": "https://github.com/mdn/content/blob/19370346042efad9e179fbf1f55deeeadee98c40/files/en-us/web/http/guides/cookies/index.md",
       "section": "Privacy and tracking",
       "verified_by": "Read from a local clone of mdn/content at 19370346042efad9e179fbf1f55deeeadee98c40 (cookies guide, Privacy and tracking); the conclusion about SameSite=None is the compiler's reading of that text."
+    },
+    {
+      "claim_vi": "MDN notes that some browsers use Lax as the default value when SameSite is not specified, and that when Lax is applied as a default a more permissive version is used: cookies are also included in POST requests, as long as they were set no more than two minutes before the request was made.",
+      "source": "https://github.com/mdn/content/blob/19370346042efad9e179fbf1f55deeeadee98c40/files/en-us/web/http/reference/headers/set-cookie/index.md",
+      "section": "SameSite attribute (Lax default)",
+      "verified_by": "Read from a local clone of mdn/content at 19370346042efad9e179fbf1f55deeeadee98c40 (Set-Cookie reference page, Lax entry and its note); which browsers do this was not checked."
     }
   ],
   "design_notes_vi": "Hai thẻ đầu tả luồng Set-Cookie rồi Cookie; sáu thẻ sau gom các thuộc tính theo việc chúng quyết định (đi tới đâu, khi nào, ai đọc, bao lâu); thẻ cuối nêu nên khai SameSite rõ ràng. Không dùng ảnh nguồn.",
   "source_deviations": [
     "Source lists Name and Value as attributes beside SameSite, Secure, Domain and HttpOnly; the lesson separates the cookie's name and value from its attributes and adds Path, Expires and Max-Age from MDN.",
-    "MDN says a cookie with no SameSite is treated as Lax; the lesson keeps that but records the difference observed in Chromium 141 right after a cookie is created (single run, cause unknown), and advises declaring SameSite explicitly.",
+    "MDN says a cookie with no SameSite is treated as Lax; the lesson keeps that but records the difference observed in Chromium 141 right after a cookie is created (single run), explains it with MDN's note that default Lax is more permissive for POST within two minutes of the cookie being set, and advises declaring SameSite explicitly.",
     "Source's playful wording is not used."
   ],
   "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."

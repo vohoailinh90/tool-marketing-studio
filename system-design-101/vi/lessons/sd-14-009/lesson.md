@@ -19,7 +19,7 @@ Hiểu từng thuộc tính là hiểu vì sao cùng một cookie lúc có mặt
 
 ## Giới hạn cần nhớ
 
-`SameSite` chặt hơn thì bảo vệ tốt hơn khỏi yêu cầu giả từ trang khác, nhưng cũng làm hỏng những luồng cần cookie xuyên site, như nội dung nhúng (và trình duyệt vẫn có thể chặn cookie bên thứ ba dù đã khai `None`). Khi chạy thử trên Chromium, cookie không khai `SameSite` vẫn được gửi kèm một form POST xuyên site ngay sau khi tạo, nhưng 130 giây sau thì không (nguyên nhân chưa kiểm nguồn); vì vậy nên khai `SameSite` rõ ràng thay vì dựa vào mặc định.
+`SameSite` chặt hơn thì bảo vệ tốt hơn khỏi yêu cầu giả từ trang khác, nhưng cũng làm hỏng những luồng cần cookie xuyên site, như nội dung nhúng (và trình duyệt vẫn có thể chặn cookie bên thứ ba dù đã khai `None`). Khi chạy thử trên Chromium, cookie không khai `SameSite` vẫn được gửi kèm một form POST xuyên site ngay sau khi tạo, nhưng 130 giây sau thì không. Điều này khớp với ghi chú của MDN: khi `Lax` được áp dụng làm mặc định thì dùng bản nới lỏng, cho cả yêu cầu POST nếu cookie được đặt không quá hai phút trước yêu cầu, nên với cookie không khai `SameSite` có một cửa sổ ngắn mà form POST xuyên site vẫn mang cookie đi (kết luận về cửa sổ ngắn này là suy luận của người biên soạn); vì vậy nên khai `SameSite` rõ ràng thay vì dựa vào mặc định.
 
 ## Nhìn hình trả lời
 
@@ -28,7 +28,7 @@ Người dùng đang đăng nhập ngân hàng, rồi mở một trang khác sit
 <details>
 <summary>Xem đáp án</summary>
 
-Khi chạy thử trên Chromium: cookie khai `Strict` không được gửi kèm cả lúc bấm liên kết từ trang khác site; cookie khai `Lax` được gửi khi bấm liên kết (điều hướng cấp cao nhất bằng GET) nhưng không được gửi kèm form POST từ trang khác site; cookie không khai gì thì, trên Chromium 141 đã thử, tùy thời điểm như phần giới hạn trên.
+Khi chạy thử trên Chromium: cookie khai `Strict` không được gửi kèm cả lúc bấm liên kết từ trang khác site; cookie khai `Lax` được gửi khi bấm liên kết (điều hướng cấp cao nhất bằng GET) nhưng không được gửi kèm form POST từ trang khác site; cookie không khai gì thì, trên Chromium 141 đã thử, tùy thời điểm như phần giới hạn trên và khớp ghi chú hai phút của MDN.
 Vì vậy để cookie phiên không đi kèm form POST từ trang khác, nên khai `Lax` hoặc `Strict`. `SameSite` không thay thế các biện pháp khác chống giả mạo yêu cầu, và bài này không thử các trình duyệt khác.
 
 </details>
@@ -37,7 +37,7 @@ Vì vậy để cookie phiên không đi kèm form POST từ trang khác, nên k
 <summary>Xem sâu hơn: điều đã chỉnh so với bài nguồn</summary>
 
 Bài nguồn liệt kê “SameSite, Name, Value, Secure, Domain, HttpOnly” như một nhóm thuộc tính. Tên và giá trị không phải thuộc tính mà là dữ liệu của cookie, nên bài này tách ra, và thêm `Path`, `Expires`, `Max-Age` vì chúng cũng có trong tài liệu MDN.
-MDN viết rằng cookie không khai `SameSite` được coi như `Lax`. Bài này giữ ý đó và ghi thêm điều quan sát được khi chạy thử, vì quan sát này chỉ có ở Chromium 141 trong lần chạy thử; chưa rõ nguyên nhân và chưa thử trình duyệt khác.
+MDN viết rằng cookie không khai `SameSite` được coi như `Lax`. Bài này giữ ý đó và ghi thêm điều quan sát được khi chạy thử, vì quan sát này chỉ có ở Chromium 141 trong lần chạy thử. MDN ghi chú rằng khi `Lax` là mặc định thì bản nới lỏng cho cả POST trong hai phút sau khi cookie được đặt, khớp với quan sát; chưa thử trình duyệt khác nên chưa biết trình duyệt nào khác cũng làm vậy.
 Bài nguồn dùng cách nói vui (“cookie là những mẩu giấy nhắn”, “người gác cổng”); bài này giữ lại ý chính là trình duyệt quyết định cookie nào được gửi tới trang nào.
 
 Ví dụ chạy thử là một máy chủ Python và Chromium 141 (Playwright); “khác site” được dựng bằng `127.0.0.1` và `localhost`, hai tên máy khác nhau.
@@ -47,7 +47,7 @@ Ví dụ chạy thử là một máy chủ Python và Chromium 141 (Playwright);
 ## Nguồn đối chiếu
 
 - [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/http-cookies-explained-with-a-simple-diagram.md): HTTP không nhớ trạng thái, cookie và các thuộc tính chính.
-- [MDN — Set-Cookie, phần SameSite (bản ghim)](https://github.com/mdn/content/blob/19370346042efad9e179fbf1f55deeeadee98c40/files/en-us/web/http/reference/headers/set-cookie/index.md): Lax chỉ gửi xuyên site cho điều hướng cấp cao nhất bằng phương thức an toàn; không gồm iframe, ảnh, script, `fetch()`. Đọc từ bản clone của kho.
+- [MDN — Set-Cookie, phần SameSite (bản ghim)](https://github.com/mdn/content/blob/19370346042efad9e179fbf1f55deeeadee98c40/files/en-us/web/http/reference/headers/set-cookie/index.md): Lax chỉ gửi xuyên site cho điều hướng cấp cao nhất bằng phương thức an toàn; không gồm iframe, ảnh, script, `fetch()`; khi Lax là mặc định thì bản nới lỏng cho cả POST nếu cookie được đặt không quá hai phút trước. Đọc từ bản clone của kho.
 - [MDN — Using HTTP cookies](https://github.com/mdn/content/blob/19370346042efad9e179fbf1f55deeeadee98c40/files/en-us/web/http/guides/cookies/index.md): `Set-Cookie`, thời hạn, `Secure`, `HttpOnly`, `Domain`, `Path`, `SameSite` và mặc định `Lax`. Đọc từ bản clone của kho.
 
 Đã đọc nguồn ngày 2026-10-13. Ví dụ chạy thử bằng Python và Chromium 141; đã không mở trang MDN trên web. Bài viết và hình được thiết kế độc lập.

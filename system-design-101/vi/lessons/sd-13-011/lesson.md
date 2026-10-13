@@ -13,7 +13,7 @@ Dockerfile có `COPY . .` rồi `RUN npm ci`. Bạn sửa một dòng trong tệ
 <details>
 <summary>Xem đáp án</summary>
 
-Có. `COPY . .` so checksum nội dung các tệp, nên chỉ cần một tệp đổi là lớp đó mất cache và `RUN npm ci` sau nó phải chạy lại. Hãy `COPY package.json package-lock.json ./`, chạy `npm ci`, rồi mới `COPY . .`; khi chỉ mã đổi, hai lớp đầu vẫn dùng lại được.
+Có. `COPY . .` tính checksum từ các tệp được sao chép (nội dung cùng siêu dữ liệu như quyền truy cập, trừ thời gian sửa đổi), nên chỉ cần một tệp đổi là lớp đó mất cache và `RUN npm ci` sau nó phải chạy lại. Hãy `COPY package.json package-lock.json ./`, chạy `npm ci`, rồi mới `COPY . .`; khi chỉ mã đổi, hai lớp đầu vẫn dùng lại được.
 
 </details>
 
@@ -35,7 +35,7 @@ COPY . .
 CMD ["node", "server.js"]
 ```
 
-- **Quy tắc vô hiệu hóa:** khi một lớp bị vô hiệu hóa, mọi lớp sau nó phải build lại. Với `COPY` và `ADD`, Docker so checksum nội dung tệp; với `RUN`, thường chỉ so chuỗi lệnh. Riêng `RUN --mount=type=bind` còn tính checksum từ các tệp được gắn vào, nên tệp đó đổi thì lớp mất cache dù chuỗi lệnh không đổi.
+- **Quy tắc vô hiệu hóa:** khi một lớp bị vô hiệu hóa, mọi lớp sau nó phải build lại. Với `COPY` và `ADD`, Docker tính checksum từ các tệp được sao chép, gồm nội dung và siêu dữ liệu như quyền truy cập nhưng không gồm thời gian sửa đổi (mtime), nên đổi nội dung hay đổi quyền đều làm lớp mất cache còn chỉ đổi mtime thì không; với `RUN`, thường chỉ so chuỗi lệnh. Riêng `RUN --mount=type=bind` còn tính checksum từ các tệp được gắn vào, nên tệp đó đổi thì lớp mất cache dù chuỗi lệnh không đổi.
 - **Cache cũ:** vì `RUN` thường chỉ so chuỗi lệnh, `apt-get update` có thể được dùng lại với danh sách gói cũ; gộp `apt-get update` và `apt-get install` trong cùng một `RUN` để chúng cùng mất cache. `--no-cache` bỏ qua cache và `--pull` luôn kéo image cơ sở mới.
 - **Cache từ xa:** `--cache-to` và `--cache-from` xuất và nhập cache qua các backend như registry hay thư mục cục bộ, để máy CI mới không bắt đầu từ rỗng.
 - **Cache mount:** `RUN --mount=type=cache` giữ thư mục cache của trình quản lý gói giữa các lần build trên cùng builder mà không đưa vào image, nên cài lại nhanh dù lớp bị mất cache. Mount nằm trong cache của builder: builder mới tạo hay tạm thời (như runner CI dùng một lần) bắt đầu với mount rỗng, nên ở CI hãy dùng cache từ xa cho các lớp và chỉ trông vào cache mount khi cache của builder được giữ lại hoặc khôi phục giữa các lần chạy.

@@ -50,7 +50,7 @@
   },
   "claims": [
     {
-      "claim_vi": "Khi Pod bị xóa, hook preStop chạy rồi container nhận SIGTERM; thời gian ân hạn đếm từ trước preStop và hết hạn thì container bị dừng cưỡng bức.",
+      "claim_vi": "Khi Pod bị xóa, hook preStop chạy rồi container nhận SIGTERM; thời gian ân hạn đếm từ trước preStop và hết hạn thì container bị dừng cưỡng bức; nếu hook preStop vẫn chạy khi hết hạn, kubelet xin gia hạn một lần thêm 2 giây.",
       "source": "https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/"
     },
     {

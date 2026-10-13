@@ -54,7 +54,7 @@
       ]
     },
     {
-      "claim_vi": "Cascade chọn quy tắc thắng theo nguồn và độ quan trọng, độ đặc hiệu, rồi thứ tự xuất hiện.",
+      "claim_vi": "Cascade chọn quy tắc thắng theo nguồn và độ quan trọng, rồi thứ tự lớp @layer, rồi độ đặc hiệu, rồi thứ tự xuất hiện.",
       "sources": [
         "https://www.w3.org/TR/css-cascade-5/",
         "https://www.w3.org/TR/selectors-4/"
@@ -87,6 +87,6 @@
   "editorial_note_vi": "Viết độc lập từ kiến thức và tiêu chuẩn kỹ thuật theo DECISIONS.md; claim chưa được đối chiếu trực tiếp với tài liệu chuẩn nên chờ review kỹ thuật. Chưa thử người học hoặc phê duyệt phát hành.",
   "source_deviations": [
     "Nguồn gọi CSS là markup language; bài gọi là ngôn ngữ bảng kiểu (style sheet language).",
-    "Nguồn nói trọng số theo loại bộ chọn và thứ tự; bài mô tả đúng thứ tự cascade: nguồn và độ quan trọng, độ đặc hiệu, thứ tự."
+    "Nguồn nói trọng số theo loại bộ chọn và thứ tự; bài mô tả thứ tự cascade: nguồn và độ quan trọng, lớp @layer, độ đặc hiệu, thứ tự."
   ]
 }

@@ -6,7 +6,7 @@
 
 ## Đọc hình
 
-Cổng là một số 16 bit (0 đến 65535). Kết hợp với giao thức vận chuyển (TCP hoặc UDP), nó xác định điểm cuối của một kết nối trên máy. IANA chia dải số thành cổng hệ thống (0–1023), cổng đã đăng ký (1024–49151) và cổng động (49152–65535), dải sau thường được máy khách dùng tạm khi kết nối đi.
+Cổng là một số 16 bit (0 đến 65535). Kết hợp với giao thức vận chuyển (TCP hoặc UDP), nó xác định điểm cuối liên lạc trên máy: với TCP là một đầu của kết nối, với UDP là nơi nhận và gửi từng gói tin (UDP không có kết nối). IANA chia dải số thành cổng hệ thống (0–1023), cổng đã đăng ký (1024–49151) và cổng động (49152–65535), dải sau thường được máy khách dùng tạm khi mở kết nối hoặc gửi gói đi.
 
 Mười tám cổng trong hình gom theo việc chúng làm:
 

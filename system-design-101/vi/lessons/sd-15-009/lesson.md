@@ -41,5 +41,6 @@ IP đích giữ nguyên suốt đường (ngoại trừ khi có NAT hay cơ ch�
 - [ISO/IEC 7498-1](https://www.iso.org/standard/20269.html): mô hình tham chiếu OSI.
 - [RFC 1122](https://www.rfc-editor.org/rfc/rfc1122): các tầng của bộ giao thức Internet.
 - [RFC 9293 — TCP](https://www.rfc-editor.org/rfc/rfc9293) và [RFC 791 — IPv4](https://www.rfc-editor.org/rfc/rfc791).
+- [IEEE 802.3 — Ethernet](https://www.ieee802.org/3/): địa chỉ MAC và FCS của khung.
 
 Đã đọc nguồn ngày 2026-10-13; các tài liệu chuẩn nêu trên chưa được mở để đối chiếu trực tiếp trong lượt biên soạn này. Bài viết và hình được thiết kế độc lập.

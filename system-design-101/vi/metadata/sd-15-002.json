@@ -42,11 +42,17 @@
   "claims": [
     {
       "claim_vi": "IPv4 có địa chỉ 32 bit; IPv6 có địa chỉ 128 bit và quy tắc rút gọn (bỏ số 0 đầu, một ::).",
-      "source": "https://www.rfc-editor.org/rfc/rfc4291"
+      "sources": [
+        "https://www.rfc-editor.org/rfc/rfc791",
+        "https://www.rfc-editor.org/rfc/rfc4291"
+      ]
     },
     {
       "claim_vi": "Tiêu đề IPv4 tối thiểu 20 byte, có header checksum; tiêu đề IPv6 cố định 40 byte, không có checksum, dùng extension header.",
-      "source": "https://www.rfc-editor.org/rfc/rfc8200"
+      "sources": [
+        "https://www.rfc-editor.org/rfc/rfc791",
+        "https://www.rfc-editor.org/rfc/rfc8200"
+      ]
     },
     {
       "claim_vi": "Router không phân mảnh gói IPv6; chỉ máy gửi phân mảnh.",

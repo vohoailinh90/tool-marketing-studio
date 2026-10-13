@@ -64,7 +64,11 @@
     },
     {
       "claim_vi": "Địa chỉ IP đích giữ nguyên qua các router (khi không có NAT); địa chỉ MAC đổi qua từng chặng.",
-      "source": "https://www.rfc-editor.org/rfc/rfc791"
+      "sources": [
+        "https://www.rfc-editor.org/rfc/rfc791",
+        "https://www.rfc-editor.org/rfc/rfc1122",
+        "https://www.ieee802.org/3/"
+      ]
     }
   ],
   "design_notes_vi": "Hai khung dọc: bảy tầng, và các hàng tiêu đề được thêm dần khi gửi. Sơ đồ tự thiết kế, không dùng ảnh nguồn.",

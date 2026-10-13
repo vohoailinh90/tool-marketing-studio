@@ -50,7 +50,10 @@
     },
     {
       "claim_vi": "Phân trang không có phân mảnh ngoài nhưng có phân mảnh trong; phân đoạn dễ phân mảnh ngoài.",
-      "source": "https://pages.cs.wisc.edu/~remzi/OSTEP/vm-paging.pdf"
+      "sources": [
+        "https://pages.cs.wisc.edu/~remzi/OSTEP/vm-paging.pdf",
+        "https://pages.cs.wisc.edu/~remzi/OSTEP/vm-segmentation.pdf"
+      ]
     },
     {
       "claim_vi": "Ở chế độ 64 bit của x86-64 phân đoạn gần như bị vô hiệu (base 0 cho hầu hết thanh ghi đoạn).",

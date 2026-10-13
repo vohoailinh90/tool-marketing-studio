@@ -42,7 +42,10 @@
   "claims": [
     {
       "claim_vi": "Tiến trình có không gian địa chỉ riêng; các luồng trong tiến trình dùng chung bộ nhớ nhưng có stack và thanh ghi riêng.",
-      "source": "https://pages.cs.wisc.edu/~remzi/OSTEP/threads-intro.pdf"
+      "sources": [
+        "https://pages.cs.wisc.edu/~remzi/OSTEP/threads-intro.pdf",
+        "https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-intro.pdf"
+      ]
     },
     {
       "claim_vi": "Chương trình là file trên đĩa; tiến trình là chương trình đang chạy.",

@@ -19,7 +19,7 @@ Nhà cung cấp cloud vá hệ điều hành. Bạn vẫn theo dõi lỗi, cấu
 
 ## Giới hạn cần nhớ
 
-NoOps không có nghĩa là hết vận hành: sự cố, cảnh báo, giới hạn dịch vụ, bảo mật và chi phí vẫn cần người xử lý. Nó hợp khi tải và yêu cầu vừa phải, có thể không đủ khi cần tùy biến sâu hay kiểm soát độ trễ.
+NoOps không có nghĩa là hết vận hành: sự cố, cảnh báo, giới hạn dịch vụ, bảo mật và chi phí vẫn cần người xử lý. Mức tải không tự nó loại bỏ serverless, vì nhiều dịch vụ tự mở rộng theo nhu cầu; điều cần cân nhắc là hình dạng công việc (theo sự kiện, biến động hay chạy liên tục), hạn mức của nhà cung cấp, yêu cầu độ trễ và mức kiểm soát hạ tầng bạn cần.
 
 <details>
 <summary>Xem sâu hơn</summary>

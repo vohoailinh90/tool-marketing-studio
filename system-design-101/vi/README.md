@@ -20,7 +20,7 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 ## DevOps và CI/CD
 
 1. [Mười mẫu thiết kế Kubernetes](lessons/sd-13-001/lesson.md) — bài nháp, chờ review kỹ thuật.
-2. [Sáu cuốn sách DevOps đáng đọc](lessons/sd-13-002/lesson.md) — bài nháp, chờ review kỹ thuật.
+2. [Sách DevOps đáng đọc theo mục tiêu](lessons/sd-13-002/lesson.md) — bài nháp, chờ review kỹ thuật.
 3. [Tỉ lệ lập trình viên và kiểm thử viên thay đổi thế nào](lessons/sd-13-003/lesson.md) — bài nháp, chờ review kỹ thuật.
 4. [Thu thập số đo: kéo hay đẩy](lessons/sd-13-004/lesson.md) — bài nháp, chờ review kỹ thuật.
 5. [Chọn cơ sở dữ liệu cho hệ thống số đo](lessons/sd-13-005/lesson.md) — bài nháp, chờ review kỹ thuật.

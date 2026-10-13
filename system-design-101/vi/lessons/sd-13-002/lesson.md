@@ -1,4 +1,4 @@
-# Sáu cuốn sách DevOps đáng đọc
+# Sách DevOps đáng đọc theo mục tiêu
 
 Chọn sách theo điều bạn đang cần giải quyết, không theo danh sách cố định. Mỗi mục dưới đây là một mục tiêu đọc, kèm cuốn hợp nhất.
 

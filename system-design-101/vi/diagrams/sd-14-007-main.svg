@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 920" width="320" height="920" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 968" width="320" height="968" role="img" aria-labelledby="title desc">
 <title id="title">Năm loại tường lửa nhìn vào những gì</title>
-<desc id="desc">Gói tin đi tới tường lửa thì cho qua hay chặn. Năm loại tường lửa, mỗi loại nhìn vào một thứ khác. Lọc gói tin: địa chỉ nguồn, đích, giao thức và cổng của từng gói, không nhớ gói trước. Cổng mức mạch: theo dõi bắt tay TCP để xem phiên có hợp lệ không. Cổng ứng dụng, hay proxy: nhận kết nối thay cho máy bên trong và đọc nội dung ở tầng ứng dụng. Theo dõi trạng thái: nhớ các kết nối đang mở nên nhận ra gói trả lời. Tường lửa thế hệ mới: tường lửa truyền thống cộng thêm ngăn chặn xâm nhập và nhận diện ứng dụng. Thẻ cuối: tường lửa chỉ áp luật tại điểm nó đứng, luật sai hoặc lưu lượng đi đường khác thì không được bảo vệ.</desc>
-<rect width="320" height="920" fill="#f8fafc"/>
+<desc id="desc">Gói tin đi tới tường lửa thì cho qua hay chặn. Năm loại tường lửa, mỗi loại nhìn vào một thứ khác. Lọc gói tin: địa chỉ nguồn, đích, giao thức và cổng của từng gói, không nhớ gói trước. Cổng mức mạch: theo dõi bắt tay TCP để xem phiên có hợp lệ không. Cổng ứng dụng, hay proxy: nhận kết nối thay cho máy bên trong và đọc nội dung ở tầng ứng dụng nếu giải mã được lưu lượng; HTTPS qua CONNECT là đường hầm mù, trừ khi proxy kết thúc TLS. Theo dõi trạng thái: nhớ các kết nối đang mở nên nhận ra gói trả lời. Tường lửa thế hệ mới: tường lửa truyền thống cộng thêm ngăn chặn xâm nhập và nhận diện ứng dụng. Thẻ cuối: tường lửa chỉ áp luật tại điểm nó đứng, luật sai hoặc lưu lượng đi đường khác thì không được bảo vệ.</desc>
+<rect width="320" height="968" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="30" font-size="21" font-weight="bold">NĂM LOẠI</text>
 <text x="16" y="54" font-size="21" font-weight="bold">TƯỜNG LỬA</text>
@@ -18,22 +18,24 @@
 <text x="29" y="351" font-size="16" font-weight="bold">Cổng mức mạch</text>
 <text x="29" y="379" font-size="16" font-weight="normal">Theo dõi bắt tay TCP: phiên có</text>
 <text x="29" y="403" font-size="16" font-weight="normal">hợp lệ không.</text>
-<rect x="16" y="430" width="288" height="100" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<rect x="16" y="430" width="288" height="148" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
 <text x="29" y="459" font-size="16" font-weight="bold">Cổng ứng dụng (proxy)</text>
 <text x="29" y="487" font-size="16" font-weight="normal">Nhận kết nối thay máy bên</text>
-<text x="29" y="511" font-size="16" font-weight="normal">trong, đọc nội dung ứng dụng.</text>
-<rect x="16" y="538" width="288" height="100" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
-<text x="29" y="567" font-size="16" font-weight="bold">Theo dõi trạng thái</text>
-<text x="29" y="595" font-size="16" font-weight="normal">Nhớ các kết nối đang mở, nhận</text>
-<text x="29" y="619" font-size="16" font-weight="normal">ra gói trả lời.</text>
-<rect x="16" y="646" width="288" height="124" rx="12" fill="#ffffff" stroke="#94a3b8"/>
-<text x="29" y="675" font-size="16" font-weight="bold">Thế hệ mới (NGFW)</text>
-<text x="29" y="703" font-size="16" font-weight="normal">Tường lửa truyền thống cộng</text>
-<text x="29" y="727" font-size="16" font-weight="normal">ngăn chặn xâm nhập, nhận diện</text>
-<text x="29" y="751" font-size="16" font-weight="normal">ứng dụng.</text>
-<rect x="16" y="782" width="288" height="124" rx="12" fill="#fee2e2" stroke="#94a3b8"/>
-<text x="29" y="811" font-size="16" font-weight="bold">Giới hạn</text>
-<text x="29" y="839" font-size="16" font-weight="normal">Chỉ áp luật tại điểm nó đứng.</text>
-<text x="29" y="863" font-size="16" font-weight="normal">Luật sai hoặc đi đường khác thì</text>
-<text x="29" y="887" font-size="16" font-weight="normal">không được bảo vệ.</text>
+<text x="29" y="511" font-size="16" font-weight="normal">trong; đọc nội dung ứng dụng</text>
+<text x="29" y="535" font-size="16" font-weight="normal">nếu giải mã được. HTTPS qua</text>
+<text x="29" y="559" font-size="16" font-weight="normal">CONNECT là đường hầm mù.</text>
+<rect x="16" y="586" width="288" height="100" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="29" y="615" font-size="16" font-weight="bold">Theo dõi trạng thái</text>
+<text x="29" y="643" font-size="16" font-weight="normal">Nhớ các kết nối đang mở, nhận</text>
+<text x="29" y="667" font-size="16" font-weight="normal">ra gói trả lời.</text>
+<rect x="16" y="694" width="288" height="124" rx="12" fill="#ffffff" stroke="#94a3b8"/>
+<text x="29" y="723" font-size="16" font-weight="bold">Thế hệ mới (NGFW)</text>
+<text x="29" y="751" font-size="16" font-weight="normal">Tường lửa truyền thống cộng</text>
+<text x="29" y="775" font-size="16" font-weight="normal">ngăn chặn xâm nhập, nhận diện</text>
+<text x="29" y="799" font-size="16" font-weight="normal">ứng dụng.</text>
+<rect x="16" y="830" width="288" height="124" rx="12" fill="#fee2e2" stroke="#94a3b8"/>
+<text x="29" y="859" font-size="16" font-weight="bold">Giới hạn</text>
+<text x="29" y="887" font-size="16" font-weight="normal">Chỉ áp luật tại điểm nó đứng.</text>
+<text x="29" y="911" font-size="16" font-weight="normal">Luật sai hoặc đi đường khác thì</text>
+<text x="29" y="935" font-size="16" font-weight="normal">không được bảo vệ.</text>
 </g></svg>

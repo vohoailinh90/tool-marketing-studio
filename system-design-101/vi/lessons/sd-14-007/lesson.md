@@ -3,7 +3,7 @@
 **Tường lửa là điểm kiểm soát giữa hai mạng: nó nhìn từng gói tin hoặc cả kết nối và quyết định cho qua hay chặn theo luật.**
 Các loại tường lửa khác nhau ở chỗ chúng nhìn vào cái gì: một gói riêng lẻ, một phiên, trạng thái của cả kết nối, hay nội dung của ứng dụng.
 
-![Bảy thẻ xếp dọc. Thẻ đầu là câu hỏi chung: gói tin đi tới tường lửa thì cho qua hay chặn. Năm thẻ tiếp theo là năm loại, mỗi loại nhìn vào một thứ khác. Lọc gói tin: nhìn địa chỉ nguồn, đích, giao thức và cổng của từng gói, không nhớ gói trước. Cổng mức mạch: theo dõi bắt tay TCP để xem phiên có hợp lệ không. Cổng ứng dụng, hay proxy: nhận kết nối thay cho máy bên trong và đọc nội dung ở tầng ứng dụng. Theo dõi trạng thái: nhớ các kết nối đang mở, nên nhận ra gói trả lời. Tường lửa thế hệ mới: tường lửa truyền thống cộng thêm các tính năng như ngăn chặn xâm nhập và nhận diện ứng dụng. Thẻ cuối là lời nhắc: tường lửa chỉ áp luật tại điểm nó đứng, luật sai hoặc lưu lượng đi đường khác thì không được bảo vệ.](../../diagrams/sd-14-007-main.svg)
+![Bảy thẻ xếp dọc. Thẻ đầu là câu hỏi chung: gói tin đi tới tường lửa thì cho qua hay chặn. Năm thẻ tiếp theo là năm loại, mỗi loại nhìn vào một thứ khác. Lọc gói tin: nhìn địa chỉ nguồn, đích, giao thức và cổng của từng gói, không nhớ gói trước. Cổng mức mạch: theo dõi bắt tay TCP để xem phiên có hợp lệ không. Cổng ứng dụng, hay proxy: nhận kết nối thay cho máy bên trong và đọc nội dung ở tầng ứng dụng nếu giải mã được lưu lượng; HTTPS qua CONNECT là đường hầm mù, trừ khi proxy kết thúc TLS. Theo dõi trạng thái: nhớ các kết nối đang mở, nên nhận ra gói trả lời. Tường lửa thế hệ mới: tường lửa truyền thống cộng thêm các tính năng như ngăn chặn xâm nhập và nhận diện ứng dụng. Thẻ cuối là lời nhắc: tường lửa chỉ áp luật tại điểm nó đứng, luật sai hoặc lưu lượng đi đường khác thì không được bảo vệ.](../../diagrams/sd-14-007-main.svg)
 
 ## Đọc hình
 
@@ -11,7 +11,7 @@ Các loại tường lửa khác nhau ở chỗ chúng nhìn vào cái gì: mộ
 
 **Cổng mức mạch (circuit-level).** Theo dõi bắt tay TCP để xem một phiên có hợp lệ không, mà không đọc nội dung ứng dụng.
 
-**Cổng ứng dụng (proxy).** Máy bên ngoài nói chuyện với proxy, proxy mới nói chuyện với máy bên trong. Vì proxy đứng ở tầng ứng dụng nên đọc được nội dung, ví dụ một yêu cầu HTTP, chứ không chỉ phần đầu gói.
+**Cổng ứng dụng (proxy).** Máy bên ngoài nói chuyện với proxy, proxy mới nói chuyện với máy bên trong. Vì proxy đứng ở tầng ứng dụng nên với lưu lượng nó giải mã được, ví dụ một yêu cầu HTTP không mã hóa, nó đọc được nội dung chứ không chỉ phần đầu gói. Với HTTPS đi qua proxy bằng phương thức `CONNECT`, MDN mô tả proxy chỉ chuyển tiếp dữ liệu “mù” như một đường hầm, nên không đọc được yêu cầu; muốn đọc thì proxy phải kết thúc hoặc chặn bắt TLS (ý cuối là hiểu biết chung của người biên soạn, chưa chạy thử).
 
 **Theo dõi trạng thái.** Tường lửa giữ một bảng các kết nối đang mở, nên nhận ra một gói là trả lời của kết nối do máy bên trong đã mở. Chạy thử trên Linux với nftables: với luật theo cổng cho gói đi tới cổng 18081 nhưng chặn mọi gói xuất phát từ cổng đó (một cách dựng thử nghiệm), bắt tay TCP không hoàn tất vì gói trả lời bị chặn (kết nối quá hạn);
 thêm luật `ct state established,related accept` thì cùng kết nối chạy bình thường, còn kết nối mới tới cổng bị cấm vẫn bị chặn.
@@ -48,6 +48,7 @@ Ví dụ chạy thử là một bảng nftables dựng riêng cho một cổng t
 ## Nguồn đối chiếu
 
 - [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/firewall-explained-to-kids-and-adults.md): các loại tường lửa và hai nhóm phần mềm, phần cứng.
+- [MDN — CONNECT request method](https://github.com/mdn/content/blob/19370346042efad9e179fbf1f55deeeadee98c40/files/en-us/web/http/reference/methods/connect/index.md): proxy thiết lập đường hầm và chuyển tiếp dữ liệu “mù” theo cả hai hướng. Đọc từ commit ghim của bản clone bằng `git show` (tệp nằm ngoài phần checkout thưa); chưa mở trang trên web.
 - [Linux kernel — Netfilter Conntrack sysctl](https://github.com/torvalds/linux/blob/24a19b953e2a3d0ea5a8c4951a0ab8f32720c907/Documentation/networking/nf_conntrack-sysctl.rst): Linux theo dõi kết nối và giữ số mục luồng đang theo dõi. Đọc qua nguồn trên GitHub.
 
 Đã đọc nguồn ngày 2026-10-13. Ví dụ chạy thử bằng nftables trên Linux; không có tài liệu chuẩn nào được mở để đối chiếu các mô tả loại tường lửa, và bài nói rõ điều đó. Bài viết và hình được thiết kế độc lập.

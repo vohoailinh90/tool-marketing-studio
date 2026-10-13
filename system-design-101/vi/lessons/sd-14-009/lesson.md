@@ -3,7 +3,7 @@
 **Cookie là một mẩu dữ liệu nhỏ mà máy chủ nhờ trình duyệt giữ hộ và gửi lại; các thuộc tính của nó quyết định khi nào, tới đâu và cho ai nó được gửi hay đọc.**
 Hiểu từng thuộc tính là hiểu vì sao cùng một cookie lúc có mặt, lúc vắng mặt trong một yêu cầu.
 
-![Tám thẻ xếp dọc. Thẻ đầu: máy chủ trả Set-Cookie gồm tên, giá trị và các thuộc tính; trình duyệt lưu lại. Thẻ thứ hai: mỗi yêu cầu sau, trình duyệt tự quyết cookie nào được gắn vào tiêu đề Cookie. Bốn thẻ thuộc tính: Domain và Path giới hạn địa chỉ nhận cookie; Secure chỉ gửi qua HTTPS; HttpOnly để JavaScript không đọc được cookie; SameSite quyết định có gửi cookie trong yêu cầu từ trang khác site hay không, với Strict, Lax và None. Thẻ thời hạn: Expires hoặc Max-Age, không có thì là cookie phiên. Thẻ cuối: nên khai SameSite rõ ràng vì trình duyệt có thể xử lý cookie không khai theo cách khác nhau.](../../diagrams/sd-14-009-main.svg)
+![Tám thẻ xếp dọc. Thẻ đầu: máy chủ trả Set-Cookie gồm tên, giá trị và các thuộc tính; trình duyệt lưu lại. Thẻ thứ hai: mỗi yêu cầu sau, trình duyệt tự quyết cookie nào được gắn vào tiêu đề Cookie. Bốn thẻ thuộc tính: Domain và Path giới hạn địa chỉ nhận cookie; Secure chỉ gửi qua HTTPS; HttpOnly để JavaScript không đọc được cookie; SameSite quyết định có gửi cookie trong yêu cầu từ trang khác site hay không, với Strict, Lax và None; None phải kèm Secure. Thẻ thời hạn: Expires hoặc Max-Age, không có thì là cookie phiên. Thẻ cuối: nên khai SameSite rõ ràng vì trình duyệt có thể xử lý cookie không khai theo cách khác nhau.](../../diagrams/sd-14-009-main.svg)
 
 ## Đọc hình
 

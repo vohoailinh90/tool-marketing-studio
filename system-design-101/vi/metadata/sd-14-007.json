@@ -77,10 +77,16 @@
       "verified_by": "Author's inference from how a stateless rule works; real stateless filters can also narrow rules by address, direction, destination port and TCP flags such as ACK or RST but keep no table of open connections. The source only says packet filtering accepts or rejects by source, destination or protocol. Not run."
     },
     {
-      "claim_vi": "Circuit-level gateways, application-level gateways and next-generation firewalls are described as in the source (TCP handshake monitoring; sitting between network and traffic source; integration with intrusion prevention, deep packet analysis and application awareness); the lesson adds that a proxy accepts the connection on behalf of the internal host.",
+      "claim_vi": "Circuit-level gateways, application-level gateways and next-generation firewalls are described as in the source (TCP handshake monitoring; sitting between network and traffic source; integration with intrusion prevention, deep packet analysis and application awareness); the lesson adds that a proxy accepts the connection on behalf of the internal host and that it reads application content only for traffic it can decode: MDN describes a CONNECT tunnel as blind forwarding, so HTTPS through CONNECT is not readable unless the proxy terminates or intercepts TLS (the interception part is the author's general knowledge).",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/firewall-explained-to-kids-and-adults.md",
       "section": "Circuit-level Gateways; Application-level Gateways; Next-Generation Firewalls",
       "verified_by": "Source body read; the proxy wording and the claim that more inspection usually costs more resources are the author's general knowledge, not checked against a standard."
+    },
+    {
+      "claim_vi": "MDN: the CONNECT method asks a proxy to establish an HTTP tunnel to a destination server and, if successful, to blindly forward data in both directions until the tunnel is closed; this is how a client behind an HTTP proxy reaches HTTPS sites.",
+      "source": "https://github.com/mdn/content/blob/19370346042efad9e179fbf1f55deeeadee98c40/files/en-us/web/http/reference/methods/connect/index.md",
+      "section": "Introduction",
+      "verified_by": "Read with git show from the pinned commit of the local clone (the file is outside the sparse checkout); the web page was not opened."
     }
   ],
   "design_notes_vi": "Một câu hỏi chung đi qua năm loại tường lửa theo thứ tự của bài nguồn, mỗi loại một thẻ nói nó nhìn vào gì; thẻ cuối nêu giới hạn. Không xếp độ sâu vì không có nguồn. Không dùng ảnh nguồn.",

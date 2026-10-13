@@ -80,7 +80,7 @@
       "claim_vi": "HPACK is the header compression format for HTTP/2; MDN lists binary, multiplexing and header compression as differences from HTTP/1.1, and says packet loss at the TCP layer can block all streams, which QUIC avoids.",
       "source": "https://github.com/httpwg/http2-spec/blob/main/draft-ietf-httpbis-header-compression.xml",
       "section": "Abstract",
-      "verified_by": "HPACK draft and Read from a local clone of mdn/content (developer.mozilla.org was unreachable)."
+      "verified_by": "HPACK draft read from a local clone of httpwg/http2-spec; MDN read from a local clone of mdn/content."
     },
     {
       "claim_vi": "Chrome turned HTTP/2 Server Push off by default in version 106, citing low use, unclear benefit and missing HTTP/3 support, and suggests 103 Early Hints or preload.",

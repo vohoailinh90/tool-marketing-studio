@@ -16,8 +16,8 @@ Khi hai quy tắc xung đột, cascade quyết định quy tắc nào thắng.
 2. **Độ cụ thể:** selector cụ thể hơn thắng, dù được viết trước.
 3. **Thứ tự xuất hiện:** cùng mức thì quy tắc viết sau thắng.
 
-**Ngoài màu sắc.** CSS còn lo bố cục (Flexbox, Grid), chuyển động (`transition`, `@keyframes`)
-và thích ứng kích thước màn hình (media query).
+**Ngoài màu sắc.** Cùng cơ chế quy tắc đó còn dùng để bố trí các khối trên trang, tạo chuyển động
+và điều chỉnh giao diện theo kích thước màn hình.
 
 ## Giới hạn cần nhớ
 
@@ -57,4 +57,6 @@ việc đó thuộc về HTML.
 - Phép thử trên Chromium 141 (Playwright): `.note` thắng `p`; hai quy tắc ngang nhau thì quy tắc sau thắng.
 
 Đã đọc nguồn ngày 2026-10-13. Các bài MDN được đọc từ bản clone của kho mdn/content; trang developer.mozilla.org
-không mở được trong môi trường biên soạn. Bài viết và hình được thiết kế độc lập.
+không mở được trong môi trường biên soạn. Câu “CSS là ngôn ngữ style sheet” được đối chiếu qua trích đoạn tìm kiếm,
+và đoạn về bố cục, chuyển động, thích ứng màn hình lấy từ bài nguồn, chưa đối chiếu riêng.
+Bài viết và hình được thiết kế độc lập.

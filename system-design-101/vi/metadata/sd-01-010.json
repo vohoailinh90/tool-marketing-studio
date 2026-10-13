@@ -89,7 +89,7 @@
       "verified_by": "Search-result excerpt only; the page itself was not opened (host blocked in the authoring environment)."
     },
     {
-      "claim_vi": "CSS separates structure (HTML) from presentation; Flexbox, Grid, transitions/keyframes and media queries cover layout, animation and responsiveness.",
+      "claim_vi": "CSS separates structure (HTML) from presentation, and the same rule mechanism covers layout, animation and responsive adjustment.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-is-css-cascading-style-sheets.md",
       "section": "Source body",
       "verified_by": "Carried from the source as general description; not independently checked."

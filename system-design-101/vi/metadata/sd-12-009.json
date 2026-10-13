@@ -57,9 +57,10 @@
       ]
     },
     {
-      "claim_vi": "CRDT cho phép gộp thao tác theo thứ tự bất kỳ mà vẫn hội tụ.",
+      "claim_vi": "CRDT dựa trên trạng thái hội tụ khi gộp trạng thái theo thứ tự bất kỳ; CRDT dựa trên thao tác cần giao các thao tác phụ thuộc nhau theo quan hệ nhân quả, chỉ các thao tác đồng thời mới phải giao hoán.",
       "sources": [
-        "https://inria.hal.science/inria-00555588"
+        "https://inria.hal.science/inria-00555588",
+        "https://perso.lip6.fr/Marc.Shapiro/papers/CRDTs_SSS-2011.pdf"
       ]
     },
     {
@@ -70,6 +71,7 @@
     }
   ],
   "source_deviations": [
+    "Nguồn nói chung về CRDT; bài nói rõ CRDT dựa trên trạng thái gộp theo thứ tự bất kỳ, còn CRDT dựa trên thao tác cần giao các thao tác phụ thuộc nhau theo quan hệ nhân quả.",
     "Nguồn nói Google Docs dùng OT theo Wikipedia; bài chỉ nói OT là thuật toán phổ biến, không khẳng định chi tiết nội bộ của Google.",
     "Ví dụ CAT/ATS do bài tự thêm để làm rõ việc biến đổi vị trí."
   ],

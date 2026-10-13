@@ -66,9 +66,16 @@
       "sources": [
         "https://www.rfc-editor.org/rfc/rfc6455.html"
       ]
+    },
+    {
+      "claim_vi": "Để việc lưu tin và việc đưa tin vào hàng đợi không bị tách đôi, có thể ghi tin cùng một bản ghi outbox trong một giao dịch rồi để một bộ phận khác chuyển bản ghi đó vào hàng đợi.",
+      "sources": [
+        "https://microservices.io/patterns/data/transactional-outbox.html"
+      ]
     }
   ],
   "source_deviations": [
+    "Nguồn không nói gì về trường hợp dịch vụ dừng giữa bước lưu và bước đưa vào hàng đợi; bài thêm cách xử lý (outbox, nhật ký bền làm hàng đợi, bộ quét gửi lại).",
     "Bài thêm xác nhận đã nhận, loại trùng và đa thiết bị; nguồn mô tả bản đơn giản hóa cho chat 1–1.",
     "Đây là thiết kế minh họa, không phải kiến trúc thật của WhatsApp, Messenger hay Discord dù tiêu đề nguồn nhắc tới.",
     "Nguồn chỉ nói ID duy nhất để sắp thứ tự; bài nói rõ ID còn phải tăng dần trong từng cuộc trò chuyện, vì việc sắp thứ tự và tải bù theo “ID lớn hơn tin cuối” không dùng được với ID chỉ duy nhất (như UUID)."

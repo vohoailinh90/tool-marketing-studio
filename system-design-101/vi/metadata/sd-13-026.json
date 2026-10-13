@@ -1,6 +1,6 @@
 {
   "id": "sd-13-026",
-  "title_vi": "Container Docker thoát ngay hoặc khởi động lại mãi: bốn manh mối",
+  "title_vi": "Docker hoạt động thế nào?",
   "language": "vi",
   "kind": "comparison",
   "content_status": "draft",
@@ -74,5 +74,5 @@
     "Nguồn mô tả ba thành phần của Docker (client, host, registry) và các bước docker run; bài bỏ cấu trúc đó và theo dõi một sự cố cụ thể là container thoát ngay hoặc khởi động lại liên tục, nên không còn mô tả các thành phần ấy."
   ],
   "design_notes_vi": "Bốn thẻ manh mối khi container đã thoát: mã thoát, nhật ký, trạng thái chi tiết, chính sách khởi động lại.",
-  "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
+  "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Tiêu đề hiển thị của bài là dòng đầu của lesson.md; title_vi giữ bản dịch tiêu đề nguồn theo source-map. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
 }

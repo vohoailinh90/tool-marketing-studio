@@ -1,6 +1,6 @@
 {
   "id": "sd-13-019",
-  "title_vi": "Bốn nút thắt giữa các nhóm khi đưa phần mềm lên chạy",
+  "title_vi": "DevOps, SRE và Platform Engineering: khác nhau thế nào",
   "language": "vi",
   "kind": "comparison",
   "content_status": "draft",
@@ -70,5 +70,5 @@
     "Nguồn định nghĩa lần lượt DevOps, SRE và Platform Engineering rồi so sánh; bài bỏ cách trình bày theo ba khái niệm và tổ chức quanh bốn nút thắt giữa các nhóm, mỗi nút kèm dấu hiệu và việc nên thử trước. Mốc thời gian và quan hệ kế thừa của nguồn không được nhắc lại vì chưa kiểm chứng."
   ],
   "design_notes_vi": "Bốn thẻ nút thắt, mỗi thẻ gồm dấu hiệu và việc nên thử trước.",
-  "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
+  "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Tiêu đề hiển thị của bài là dòng đầu của lesson.md; title_vi giữ bản dịch tiêu đề nguồn theo source-map. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
 }

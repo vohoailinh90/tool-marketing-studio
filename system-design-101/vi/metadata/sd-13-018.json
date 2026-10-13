@@ -1,6 +1,6 @@
 {
   "id": "sd-13-018",
-  "title_vi": "Terraform plan báo thay đổi bạn không định làm: năm nguyên nhân",
+  "title_vi": "Terraform biến mã thành đám mây như thế nào?",
   "language": "vi",
   "kind": "comparison",
   "content_status": "draft",
@@ -67,5 +67,5 @@
     "Nguồn mô tả quy trình viết mã, plan, apply rồi cập nhật hạ tầng; bài bỏ quy trình đó và theo dõi một vấn đề cụ thể là plan báo thay đổi ngoài ý muốn, nên chỉ dùng lại plan và state như công cụ chẩn đoán."
   ],
   "design_notes_vi": "Năm thẻ nguồn lệch khiến plan báo thay đổi bất ngờ, mỗi thẻ kèm cách xác nhận.",
-  "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
+  "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Tiêu đề hiển thị của bài là dòng đầu của lesson.md; title_vi giữ bản dịch tiêu đề nguồn theo source-map. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
 }

@@ -1,6 +1,6 @@
 {
   "id": "sd-13-001",
-  "title_vi": "Tắt êm một API trên Kubernetes: năm chỗ làm rớt request",
+  "title_vi": "10 mẫu thiết kế Kubernetes hàng đầu",
   "language": "vi",
   "kind": "flow",
   "content_status": "draft",
@@ -74,5 +74,5 @@
     "Nguồn liệt kê mười mẫu thiết kế Kubernetes; bài bỏ danh mục đó và theo dõi một Pod của API từ lúc bị xóa đến lúc dừng, nên chỉ còn dùng lại hook và thời gian ân hạn, không mô tả các mẫu còn lại."
   ],
   "design_notes_vi": "Năm thẻ theo trình tự thời gian của một Pod bị xóa.",
-  "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
+  "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Tiêu đề hiển thị của bài là dòng đầu của lesson.md; title_vi giữ bản dịch tiêu đề nguồn theo source-map. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
 }

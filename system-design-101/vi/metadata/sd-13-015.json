@@ -1,6 +1,6 @@
 {
   "id": "sd-13-015",
-  "title_vi": "Vòng đời một tính năng có cờ: từ mã đã lên đến dọn cờ",
+  "title_vi": "5 chiến lược triển khai được dùng nhiều nhất",
   "language": "vi",
   "kind": "flow",
   "content_status": "draft",
@@ -66,5 +66,5 @@
     "Nguồn liệt kê năm tên chiến lược triển khai; bài bỏ danh mục đó và theo dõi một tính năng có cờ từ lúc mã lên đến lúc dọn cờ, nên không còn mô tả rolling, blue-green, canary hay shadow."
   ],
   "design_notes_vi": "Năm thẻ điểm dừng theo thứ tự thời gian, nối bằng mũi tên.",
-  "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
+  "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Tiêu đề hiển thị của bài là dòng đầu của lesson.md; title_vi giữ bản dịch tiêu đề nguồn theo source-map. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
 }

@@ -1,6 +1,6 @@
 {
   "id": "sd-13-008",
-  "title_vi": "Chọn công cụ Kubernetes theo lớp",
+  "title_vi": "Vòng tròn bộ công cụ Kubernetes",
   "language": "vi",
   "kind": "flow",
   "content_status": "draft",
@@ -53,5 +53,5 @@
     "Nguồn chỉ là một hình bánh xe công cụ với lời giới thiệu; quy trình năm bước là đề xuất của bài này."
   ],
   "design_notes_vi": "Năm bước dọc nối bằng mũi tên; không liệt kê tên công cụ để tránh nhanh cũ.",
-  "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
+  "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Tiêu đề hiển thị của bài là dòng đầu của lesson.md; title_vi giữ bản dịch tiêu đề nguồn theo source-map. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
 }

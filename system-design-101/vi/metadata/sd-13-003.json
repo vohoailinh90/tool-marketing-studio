@@ -1,6 +1,6 @@
 {
   "id": "sd-13-003",
-  "title_vi": "Cần bao nhiêu người chuyên kiểm thử: đọc từ số đo của chính đội",
+  "title_vi": "Chuyển dịch mô hình: tỉ lệ lập trình viên trên kiểm thử viên",
   "language": "vi",
   "kind": "comparison",
   "content_status": "draft",
@@ -61,5 +61,5 @@
     "Nguồn kể sự thay đổi tỉ lệ lập trình viên trên kiểm thử viên qua các mốc thời gian và giải thích bằng hai lý do; bài bỏ câu chuyện lịch sử và hai lý do đó, thay bằng bốn số đo mà một đội tự đo được để quyết định kiểm thử cần gì."
   ],
   "design_notes_vi": "Bốn thẻ số đo, mỗi thẻ nêu điều số đo cho thấy.",
-  "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
+  "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Tiêu đề hiển thị của bài là dòng đầu của lesson.md; title_vi giữ bản dịch tiêu đề nguồn theo source-map. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
 }

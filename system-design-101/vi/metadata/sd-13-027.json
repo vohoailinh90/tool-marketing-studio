@@ -1,6 +1,6 @@
 {
   "id": "sd-13-027",
-  "title_vi": "Thiết kế pipeline CI/CD cho một repo: năm quyết định",
+  "title_vi": "Giải thích đơn giản về pipeline CI/CD",
   "language": "vi",
   "kind": "comparison",
   "content_status": "draft",
@@ -73,5 +73,5 @@
     "Nguồn là danh sách bước từ commit đến production; bài bỏ trình tự đó, tổ chức theo năm quyết định khi dựng pipeline cho một repo (minh họa bằng GitHub Actions)."
   ],
   "design_notes_vi": "Năm thẻ quyết định, không theo thứ tự giai đoạn.",
-  "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
+  "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Tiêu đề hiển thị của bài là dòng đầu của lesson.md; title_vi giữ bản dịch tiêu đề nguồn theo source-map. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
 }

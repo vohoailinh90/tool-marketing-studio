@@ -3418,7 +3418,7 @@
       "lessons": [
         {
           "id": "sd-13-001",
-          "title_vi": "Tắt êm một API trên Kubernetes: năm chỗ làm rớt request",
+          "title_vi": "10 mẫu thiết kế Kubernetes hàng đầu",
           "title_source": "Top 10 Kubernetes Design Patterns",
           "source_url": "https://bytebytego.com/guides/top-10-k8s-design-patterns",
           "source_path": "data/guides/top-10-k8s-design-patterns.md",
@@ -3428,7 +3428,7 @@
         },
         {
           "id": "sd-13-002",
-          "title_vi": "Sách đáng đọc cho người làm DevOps và vận hành",
+          "title_vi": "Một số cuốn sách DevOps mở mang đầu óc",
           "title_source": "Some DevOps Books I Find Enlightening",
           "source_url": "https://bytebytego.com/guides/some-devops-books-i-find-enlightening",
           "source_path": "data/guides/some-devops-books-i-find-enlightening.md",
@@ -3438,7 +3438,7 @@
         },
         {
           "id": "sd-13-003",
-          "title_vi": "Cần bao nhiêu người chuyên kiểm thử: đọc từ số đo của chính đội",
+          "title_vi": "Chuyển dịch mô hình: tỉ lệ lập trình viên trên kiểm thử viên",
           "title_source": "Paradigm Shift: Developer to Tester Ratio",
           "source_url": "https://bytebytego.com/guides/paradigm-shift-how-developer-to-tester-ratio-changed-from-11-to-1001",
           "source_path": "data/guides/paradigm-shift-how-developer-to-tester-ratio-changed-from-11-to-1001.md",
@@ -3448,7 +3448,7 @@
         },
         {
           "id": "sd-13-004",
-          "title_vi": "Thu thập số đo: kéo hay đẩy",
+          "title_vi": "Đẩy và kéo trong các hệ thống thu thập số đo",
           "title_source": "Push vs Pull in Metrics Collection Systems",
           "source_url": "https://bytebytego.com/guides/push-vs-pull-in-metrics-collecting-systems",
           "source_path": "data/guides/push-vs-pull-in-metrics-collecting-systems.md",
@@ -3458,7 +3458,7 @@
         },
         {
           "id": "sd-13-005",
-          "title_vi": "Chọn cơ sở dữ liệu cho hệ thống số đo",
+          "title_vi": "Chọn đúng cơ sở dữ liệu để thu thập số đo",
           "title_source": "Choose the Right Database for Metric Collection",
           "source_url": "https://bytebytego.com/guides/choose-the-right-database-for-metric-collecting-system",
           "source_path": "data/guides/choose-the-right-database-for-metric-collecting-system.md",
@@ -3468,7 +3468,7 @@
         },
         {
           "id": "sd-13-006",
-          "title_vi": "Service Kubernetes không nhận traffic: năm chỗ cần kiểm tra",
+          "title_vi": "4 loại Service hàng đầu của Kubernetes",
           "title_source": "Top 4 Kubernetes Service Types",
           "source_url": "https://bytebytego.com/guides/top-4-kubernetes-service-types-in-one-diagram",
           "source_path": "data/guides/top-4-kubernetes-service-types-in-one-diagram.md",
@@ -3478,7 +3478,7 @@
         },
         {
           "id": "sd-13-007",
-          "title_vi": "Tăng từ một lên ba bản sao thì ứng dụng hỏng: bốn giả định ẩn",
+          "title_vi": "Các anti-pattern của cloud-native",
           "title_source": "Cloud Native Anti-Patterns",
           "source_url": "https://bytebytego.com/guides/cloud-native-anti-patterns",
           "source_path": "data/guides/cloud-native-anti-patterns.md",
@@ -3488,7 +3488,7 @@
         },
         {
           "id": "sd-13-008",
-          "title_vi": "Chọn công cụ Kubernetes theo lớp",
+          "title_vi": "Vòng tròn bộ công cụ Kubernetes",
           "title_source": "Kubernetes Tools Stack Wheel",
           "source_url": "https://bytebytego.com/guides/kubernetes-tools-stack-wheel",
           "source_path": "data/guides/kubernetes-tools-stack-wheel.md",
@@ -3498,7 +3498,7 @@
         },
         {
           "id": "sd-13-009",
-          "title_vi": "Hệ sinh thái Kubernetes theo nhu cầu vận hành",
+          "title_vi": "Hệ sinh thái công cụ Kubernetes",
           "title_source": "Kubernetes Tools Ecosystem",
           "source_url": "https://bytebytego.com/guides/kubernetes-tools-ecosystem",
           "source_path": "data/guides/kubernetes-tools-ecosystem.md",
@@ -3508,7 +3508,7 @@
         },
         {
           "id": "sd-13-010",
-          "title_vi": "Bảng tuần hoàn Kubernetes: đọc để tra cứu",
+          "title_vi": "Bảng tuần hoàn Kubernetes",
           "title_source": "Kubernetes Periodic Table",
           "source_url": "https://bytebytego.com/guides/kubernetes-periodic-table",
           "source_path": "data/guides/kubernetes-periodic-table.md",
@@ -3518,7 +3518,7 @@
         },
         {
           "id": "sd-13-011",
-          "title_vi": "Vì sao Docker build chạy lại bước nặng: năm nguyên nhân mất cache",
+          "title_vi": "9 thực hành tốt nhất với Docker bạn phải biết",
           "title_source": "9 Docker Best Practices You Must Know",
           "source_url": "https://bytebytego.com/guides/9-docker-best-practices-you-must-know",
           "source_path": "data/guides/9-docker-best-practices-you-must-know.md",
@@ -3528,7 +3528,7 @@
         },
         {
           "id": "sd-13-012",
-          "title_vi": "Học từ chuỗi CI/CD của công ty lớn mà không chép công cụ",
+          "title_vi": "Bộ công nghệ của Netflix: pipeline CI/CD",
           "title_source": "Netflix Tech Stack - CI/CD Pipeline",
           "source_url": "https://bytebytego.com/guides/netflix-tech-stack-cicd-pipeline",
           "source_path": "data/guides/netflix-tech-stack-cicd-pipeline.md",
@@ -3541,7 +3541,7 @@
         },
         {
           "id": "sd-13-013",
-          "title_vi": "Docker khi chạy web kèm cơ sở dữ liệu: bốn chỗ hay hỏng",
+          "title_vi": "8 khái niệm Docker phải biết",
           "title_source": "Top 8 Must-Know Docker Concepts",
           "source_url": "https://bytebytego.com/guides/top-8-must-know-docker-concepts",
           "source_path": "data/guides/top-8-must-know-docker-concepts.md",
@@ -3551,7 +3551,7 @@
         },
         {
           "id": "sd-13-014",
-          "title_vi": "CI đỏ mà máy bạn chạy được: năm nguồn khác biệt",
+          "title_vi": "Hướng dẫn trực quan đơn giản về CI/CD",
           "title_source": "CI/CD Simplified Visual Guide",
           "source_url": "https://bytebytego.com/guides/cicd-simplified-visual-guide",
           "source_path": "data/guides/cicd-simplified-visual-guide.md",
@@ -3561,7 +3561,7 @@
         },
         {
           "id": "sd-13-015",
-          "title_vi": "Vòng đời một tính năng có cờ: từ mã đã lên đến dọn cờ",
+          "title_vi": "5 chiến lược triển khai được dùng nhiều nhất",
           "title_source": "Top 5 Most-Used Deployment Strategies",
           "source_url": "https://bytebytego.com/guides/top-5-most-used-deployment-strategies",
           "source_path": "data/guides/top-5-most-used-deployment-strategies.md",
@@ -3571,7 +3571,7 @@
         },
         {
           "id": "sd-13-016",
-          "title_vi": "Tìm đúng Pod trong cụm lớn: selector và cách in kết quả của kubectl",
+          "title_vi": "Bảng tra lệnh Kubernetes",
           "title_source": "Kubernetes Command Cheatsheet",
           "source_url": "https://bytebytego.com/guides/the-ultimate-kubernetes-command-cheatsheet",
           "source_path": "data/guides/the-ultimate-kubernetes-command-cheatsheet.md",
@@ -3581,7 +3581,7 @@
         },
         {
           "id": "sd-13-017",
-          "title_vi": "Deployment của Kubernetes thay Pod như thế nào",
+          "title_vi": "Các chiến lược triển khai trên Kubernetes",
           "title_source": "Kubernetes Deployment Strategies",
           "source_url": "https://bytebytego.com/guides/kubernetes-deployment-strategies",
           "source_path": "data/guides/kubernetes-deployment-strategies.md",
@@ -3591,7 +3591,7 @@
         },
         {
           "id": "sd-13-018",
-          "title_vi": "Terraform plan báo thay đổi bạn không định làm: năm nguyên nhân",
+          "title_vi": "Terraform biến mã thành đám mây như thế nào?",
           "title_source": "How does Terraform turn Code into Cloud?",
           "source_url": "https://bytebytego.com/guides/how-does-terraform-turn-code-into-cloud",
           "source_path": "data/guides/how-does-terraform-turn-code-into-cloud.md",
@@ -3601,7 +3601,7 @@
         },
         {
           "id": "sd-13-019",
-          "title_vi": "Bốn nút thắt giữa các nhóm khi đưa phần mềm lên chạy",
+          "title_vi": "DevOps, SRE và Platform Engineering: khác nhau thế nào",
           "title_source": "DevOps vs. SRE vs. Platform Engineering",
           "source_url": "https://bytebytego.com/guides/devops-vs-sre-vs-paltform-engg",
           "source_path": "data/guides/devops-vs-sre-vs-paltform-engg.md",
@@ -3611,7 +3611,7 @@
         },
         {
           "id": "sd-13-020",
-          "title_vi": "Rủi ro khi triển khai và cách giảm",
+          "title_vi": "Các chiến lược triển khai",
           "title_source": "Deployment Strategies",
           "source_url": "https://bytebytego.com/guides/how-to-deploy-services",
           "source_path": "data/guides/how-to-deploy-services.md",
@@ -3621,7 +3621,7 @@
         },
         {
           "id": "sd-13-021",
-          "title_vi": "Làm cho một request chậm truy vết được",
+          "title_vi": "Nhật ký, truy vết và số đo",
           "title_source": "Logging, Tracing, and Metrics",
           "source_url": "https://bytebytego.com/guides/logging-tracing-metrics",
           "source_path": "data/guides/logging-tracing-metrics.md",
@@ -3631,7 +3631,7 @@
         },
         {
           "id": "sd-13-022",
-          "title_vi": "Tìm nguyên nhân từ nhật ký bằng dòng lệnh",
+          "title_vi": "Bảng tra phân tích nhật ký",
           "title_source": "Log Parsing Cheat Sheet",
           "source_url": "https://bytebytego.com/guides/log-parsing-cheat-sheet",
           "source_path": "data/guides/log-parsing-cheat-sheet.md",
@@ -3641,7 +3641,7 @@
         },
         {
           "id": "sd-13-023",
-          "title_vi": "NoOps và DevOps: mô hình hosting khác cách tổ chức nhóm",
+          "title_vi": "DevOps và NoOps: khác nhau ở đâu?",
           "title_source": "DevOps vs NoOps: What's the Difference?",
           "source_url": "https://bytebytego.com/guides/devops-vs-noops",
           "source_path": "data/guides/devops-vs-noops.md",
@@ -3651,7 +3651,7 @@
         },
         {
           "id": "sd-13-024",
-          "title_vi": "Nginx làm reverse proxy cho một API: năm chỗ hay sai",
+          "title_vi": "Vì sao Nginx phổ biến đến vậy?",
           "title_source": "Why is Nginx so Popular?",
           "source_url": "https://bytebytego.com/guides/why-is-nginx-so-popular",
           "source_path": "data/guides/why-is-nginx-so-popular.md",
@@ -3661,7 +3661,7 @@
         },
         {
           "id": "sd-13-025",
-          "title_vi": "Pod không chạy: chẩn đoán theo từng chặng",
+          "title_vi": "Kubernetes (k8s) là gì?",
           "title_source": "What is Kubernetes (k8s)?",
           "source_url": "https://bytebytego.com/guides/what-is-k8s-kubernetes",
           "source_path": "data/guides/what-is-k8s-kubernetes.md",
@@ -3671,7 +3671,7 @@
         },
         {
           "id": "sd-13-026",
-          "title_vi": "Container Docker thoát ngay hoặc khởi động lại mãi: bốn manh mối",
+          "title_vi": "Docker hoạt động thế nào?",
           "title_source": "How does Docker work?",
           "source_url": "https://bytebytego.com/guides/how-does-docker-work",
           "source_path": "data/guides/how-does-docker-work.md",
@@ -3681,7 +3681,7 @@
         },
         {
           "id": "sd-13-027",
-          "title_vi": "Thiết kế pipeline CI/CD cho một repo: năm quyết định",
+          "title_vi": "Giải thích đơn giản về pipeline CI/CD",
           "title_source": "CI/CD Pipeline Explained in Simple Terms",
           "source_url": "https://bytebytego.com/guides/cicd-pipeline-explained-in-simple-terms",
           "source_path": "data/guides/cicd-pipeline-explained-in-simple-terms.md",

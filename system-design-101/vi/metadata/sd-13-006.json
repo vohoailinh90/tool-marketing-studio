@@ -1,6 +1,6 @@
 {
   "id": "sd-13-006",
-  "title_vi": "Service Kubernetes không nhận traffic: năm chỗ cần kiểm tra",
+  "title_vi": "4 loại Service hàng đầu của Kubernetes",
   "language": "vi",
   "kind": "flow",
   "content_status": "draft",
@@ -73,5 +73,5 @@
     "Nguồn liệt kê bốn loại Service theo định nghĩa; bài bỏ danh mục đó, đổi phạm vi sang chẩn đoán vì sao Service không nhận traffic."
   ],
   "design_notes_vi": "Năm bước kiểm tra nối nhau từ trong ra ngoài.",
-  "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
+  "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Tiêu đề hiển thị của bài là dòng đầu của lesson.md; title_vi giữ bản dịch tiêu đề nguồn theo source-map. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
 }

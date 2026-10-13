@@ -1,6 +1,6 @@
 {
   "id": "sd-13-017",
-  "title_vi": "Deployment của Kubernetes thay Pod như thế nào",
+  "title_vi": "Các chiến lược triển khai trên Kubernetes",
   "language": "vi",
   "kind": "flow",
   "content_status": "draft",
@@ -70,5 +70,5 @@
     "Nguồn là bảng sáu chiến lược kèm cột ngừng dịch vụ; bài đổi phạm vi sang cơ chế cập nhật của Deployment (tham số, điều kiện đi tiếp, quay lui) và chỉ nhắc ngắn các cách nằm ngoài Deployment."
   ],
   "design_notes_vi": "Bốn chặng của một lần cập nhật rồi thẻ ngoài nhịp mặc định.",
-  "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
+  "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Tiêu đề hiển thị của bài là dòng đầu của lesson.md; title_vi giữ bản dịch tiêu đề nguồn theo source-map. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
 }

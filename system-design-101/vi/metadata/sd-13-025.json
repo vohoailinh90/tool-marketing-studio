@@ -1,6 +1,6 @@
 {
   "id": "sd-13-025",
-  "title_vi": "Pod không chạy: chẩn đoán theo từng chặng",
+  "title_vi": "Kubernetes (k8s) là gì?",
   "language": "vi",
   "kind": "flow",
   "content_status": "draft",
@@ -74,5 +74,5 @@
     "Nguồn mô tả kiến trúc cụm (control plane, node, Pod); bài bỏ cấu trúc đó, đổi phạm vi sang chẩn đoán Pod không chạy theo từng chặng."
   ],
   "design_notes_vi": "Bốn chặng khởi động nối mũi tên, kèm ghi chú bắt đầu bằng describe.",
-  "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
+  "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Tiêu đề hiển thị của bài là dòng đầu của lesson.md; title_vi giữ bản dịch tiêu đề nguồn theo source-map. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
 }

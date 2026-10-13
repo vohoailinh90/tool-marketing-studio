@@ -1,6 +1,6 @@
 {
   "id": "sd-13-024",
-  "title_vi": "Nginx làm reverse proxy cho một API: năm chỗ hay sai",
+  "title_vi": "Vì sao Nginx phổ biến đến vậy?",
   "language": "vi",
   "kind": "comparison",
   "content_status": "draft",
@@ -65,5 +65,5 @@
     "Nguồn mô tả kiến trúc master–worker và bốn tính năng; bài bỏ danh mục đó, tổ chức quanh cấu hình reverse proxy cho một API và các chỗ hay sai."
   ],
   "design_notes_vi": "Năm thẻ chỗ hay sai khi dùng Nginx làm reverse proxy.",
-  "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
+  "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Tiêu đề hiển thị của bài là dòng đầu của lesson.md; title_vi giữ bản dịch tiêu đề nguồn theo source-map. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
 }

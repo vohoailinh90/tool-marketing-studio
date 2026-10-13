@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 872" width="320" height="872" role="img" aria-labelledby="title desc">
 <title id="title">Năm cách phân quyền cho cùng một yêu cầu</title>
-<desc id="desc">Cùng một yêu cầu: Lan muốn đọc tệp bảng lương. Năm mô hình phân quyền hỏi năm câu khác nhau. ACL: trên tệp có dòng cho phép Lan không. DAC: chủ sở hữu tệp đã cho Lan chưa. MAC: nhãn của Lan có đủ mức so với nhãn của tệp không, và chủ sở hữu không tự đổi được. RBAC: Lan có vai trò nào được đọc tệp. ABAC: thuộc tính của Lan, của tệp, của hành động và hoàn cảnh có khớp luật không. Thẻ cuối nêu cái phải bảo trì ở mỗi cách: ACL một dòng cho mỗi người và mỗi tài liệu, RBAC một lần gán vai trò, ABAC thuộc tính và luật.</desc>
+<desc id="desc">Cùng một yêu cầu: Lan muốn đọc tệp bảng lương. Năm mô hình phân quyền hỏi năm câu khác nhau. ACL: trên tệp có dòng cho phép Lan không. DAC: chủ sở hữu tệp đã cho Lan chưa. MAC: nhãn của Lan có đủ mức so với nhãn của tệp không, và chủ sở hữu không tự đổi được. RBAC: Lan có vai trò nào được đọc tệp. ABAC: thuộc tính của Lan, của tệp, của hành động và hoàn cảnh có khớp luật không. Thẻ cuối nêu cái phải bảo trì ở mỗi cách: ACL ghi từng người cần một dòng cho mỗi người và mỗi tài liệu, RBAC một lần gán vai trò, ABAC thuộc tính và luật.</desc>
 <rect width="320" height="872" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="30" font-size="21" font-weight="bold">NĂM CÁCH</text>
@@ -31,7 +31,7 @@
 <text x="29" y="703" font-size="16" font-weight="normal">không?</text>
 <rect x="16" y="734" width="288" height="124" rx="12" fill="#fee2e2" stroke="#94a3b8"/>
 <text x="29" y="763" font-size="16" font-weight="bold">Phải bảo trì gì?</text>
-<text x="29" y="791" font-size="16" font-weight="normal">ACL: mỗi người × mỗi tài liệu.</text>
-<text x="29" y="815" font-size="16" font-weight="normal">RBAC: gán vai trò. ABAC: thuộc</text>
-<text x="29" y="839" font-size="16" font-weight="normal">tính và luật.</text>
+<text x="29" y="791" font-size="16" font-weight="normal">ACL ghi từng người: mỗi người ×</text>
+<text x="29" y="815" font-size="16" font-weight="normal">mỗi tài liệu. RBAC: gán vai trò.</text>
+<text x="29" y="839" font-size="16" font-weight="normal">ABAC: thuộc tính và luật.</text>
 </g></svg>

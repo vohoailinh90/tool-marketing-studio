@@ -83,10 +83,16 @@
       "verified_by": "Read from the Kubernetes website source on raw GitHub."
     },
     {
-      "claim_vi": "With Casbin 1.43.0: an ACL policy line for Lan lets Lan read payroll, refuses Minh, and a new accountant Mai needs one added line per document (two lines for two documents); under RBAC the same Mai needs one role-assignment line for both documents; under ABAC a matcher comparing user and document department allows Lan and Mai to read finance documents with no added policy line, refuses Minh (engineering) and refuses a write.",
+      "claim_vi": "With Casbin 1.43.0: an ACL that lists individual users (a policy line for Lan) lets Lan read payroll, refuses Minh, and a new accountant Mai needs one added line per document (two lines for two documents); under RBAC the same Mai needs one role-assignment line for both documents; under ABAC a matcher comparing user and document department allows Lan and Mai to read finance documents with no added policy line, refuses Minh (engineering) and refuses a write.",
       "source": "https://github.com/casbin/casbin/tree/master/examples",
       "section": "basic_model.conf, rbac_model.conf, abac_model.conf (models the demo is patterned on)",
       "verified_by": "No external page reports this output; observed by executing the code on the authoring machine. Models were written for the demo, patterned on the repository's examples."
+    },
+    {
+      "claim_vi": "ACL entries can name groups instead of individual users, and then adding a new person to the group is a single change that grants every access the group has. Observed with Linux file groups: a file with mode rw-r----- and group daemon was readable by a member of daemon and refused to a user outside it until that user was added to the group once.",
+      "source": "https://github.com/SELinuxProject/selinux-notebook/blob/main/src/mac.md",
+      "section": "Mandatory Access Control (describes Linux DAC)",
+      "verified_by": "No external page reports this output; observed by executing the code on the authoring machine. The notebook describes Linux DAC but not group behaviour. A NIST page on group-based ACLs implementing role-based access, cited by a reviewer, was not reachable and was not checked."
     },
     {
       "claim_vi": "A hand-written level rule allows a read only when the subject level is at least the object level and a write only when it is at most the object level: level 2 reading level 2 is allowed, level 1 reading level 2 is refused, level 2 writing level 1 is refused, level 1 writing level 2 is allowed.",

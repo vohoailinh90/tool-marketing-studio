@@ -83,9 +83,9 @@
       "verified_by": "Read from a local clone of the repository."
     },
     {
-      "claim_vi": "User verification is the local authorization of an authenticator operation, for example through a touch plus PIN, password entry or biometric recognition such as a fingerprint.",
+      "claim_vi": "User verification is the local authorization of an authenticator operation, for example through a touch plus PIN, password entry or biometric recognition such as a fingerprint; a test of user presence is a simpler gesture, typically just touching the authenticator, that is not user verification; an authentication ceremony includes a test of user presence or user verification.",
       "source": "https://github.com/w3c/webauthn/blob/main/index.bs",
-      "section": "User Verification",
+      "section": "User Verification; Test of User Presence; Authentication Ceremony",
       "verified_by": "Read from a local clone of the repository."
     },
     {

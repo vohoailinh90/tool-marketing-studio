@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 986" width="320" height="986" role="img" aria-labelledby="title desc">
 <title id="title">Passkey: khóa riêng không gửi cho trang</title>
-<desc id="desc">Đăng ký: trang web gửi một thử thách ngẫu nhiên; bạn xác nhận trên thiết bị bằng sinh trắc học hoặc mã PIN; thiết bị tạo cặp khóa gắn với trang đó và gửi khóa công khai; trang lưu khóa công khai, không có khóa riêng, cạnh tài khoản. Đăng nhập: trang gửi thử thách mới; bạn xác nhận; thiết bị ký thử thách cùng tên miền của trang bằng khóa riêng; trang kiểm tra chữ ký bằng khóa công khai đã lưu. Thẻ cuối: điểm yếu còn lại là mất thiết bị hoặc tài khoản đồng bộ, và khôi phục tài khoản.</desc>
+<desc id="desc">Đăng ký: trang web gửi một thử thách ngẫu nhiên; bạn xác nhận trên thiết bị (thường bằng sinh trắc học hoặc mã PIN, tùy cấu hình có thể chỉ cần chạm vào khóa bảo mật); thiết bị tạo cặp khóa gắn với trang đó và gửi khóa công khai; trang lưu khóa công khai, không có khóa riêng, cạnh tài khoản. Đăng nhập: trang gửi thử thách mới; bạn xác nhận; thiết bị ký thử thách cùng tên miền của trang bằng khóa riêng; trang kiểm tra chữ ký bằng khóa công khai đã lưu. Thẻ cuối: điểm yếu còn lại là mất thiết bị hoặc tài khoản đồng bộ, và khôi phục tài khoản.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="986" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">

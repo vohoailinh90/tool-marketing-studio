@@ -9,7 +9,7 @@
 
 **1 · Thử thách.** Trang tạo một chuỗi ngẫu nhiên trên máy chủ của mình. Chuỗi này chỉ dùng cho lần đăng ký đó, nên một lời đáp cũ không dùng lại được.
 
-**2 · Tạo cặp khóa.** Bạn xác nhận ngay trên thiết bị, bằng sinh trắc học (như vân tay) hoặc mã PIN. Chính thiết bị (bộ xác thực) tạo ra cặp khóa, gắn nó với trang này, giữ khóa riêng và chỉ gửi khóa công khai đi.
+**2 · Tạo cặp khóa.** Bạn xác nhận ngay trên thiết bị. Thường đó là sinh trắc học (như vân tay) hoặc mã PIN; tùy cấu hình, có trường hợp chỉ cần chạm vào khóa bảo mật để chứng tỏ có người ở đó, không cần sinh trắc học hay PIN. Chính thiết bị (bộ xác thực) tạo ra cặp khóa, gắn nó với trang này, giữ khóa riêng và chỉ gửi khóa công khai đi.
 
 **3 · Lưu khóa công khai.** Trang lưu khóa công khai cạnh tài khoản của bạn. Khóa công khai không dùng được để ký, nên lộ nó không giúp ai đăng nhập thay bạn.
 

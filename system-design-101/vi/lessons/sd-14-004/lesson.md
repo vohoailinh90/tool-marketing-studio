@@ -3,7 +3,7 @@
 **Mọi hệ thống phân quyền trả lời cùng một câu hỏi, “ai được làm gì với cái gì”, nhưng mỗi mô hình dựa vào một thứ khác để quyết định.**
 Chọn mô hình nào thì quyết định bạn phải bảo trì thứ gì về sau.
 
-![Bảy thẻ xếp dọc. Thẻ đầu là yêu cầu chung: Lan muốn đọc tệp bảng lương. Năm thẻ tiếp theo là năm mô hình, mỗi mô hình hỏi một câu khác. ACL: trên tệp có dòng cho phép Lan không. DAC: chủ sở hữu tệp đã cho Lan chưa. MAC: nhãn của Lan có đủ mức so với nhãn của tệp không, chủ sở hữu không tự đổi được. RBAC: Lan có vai trò nào được đọc tệp. ABAC: thuộc tính của Lan, tệp, hành động và hoàn cảnh có khớp luật không. Thẻ cuối nêu cái phải bảo trì: ACL là mỗi người nhân mỗi tài liệu, RBAC là gán vai trò, ABAC là thuộc tính và luật.](../../diagrams/sd-14-004-main.svg)
+![Bảy thẻ xếp dọc. Thẻ đầu là yêu cầu chung: Lan muốn đọc tệp bảng lương. Năm thẻ tiếp theo là năm mô hình, mỗi mô hình hỏi một câu khác. ACL: trên tệp có dòng cho phép Lan không. DAC: chủ sở hữu tệp đã cho Lan chưa. MAC: nhãn của Lan có đủ mức so với nhãn của tệp không, chủ sở hữu không tự đổi được. RBAC: Lan có vai trò nào được đọc tệp. ABAC: thuộc tính của Lan, tệp, hành động và hoàn cảnh có khớp luật không. Thẻ cuối nêu cái phải bảo trì: ACL ghi từng người là mỗi người nhân mỗi tài liệu, RBAC là gán vai trò, ABAC là thuộc tính và luật.](../../diagrams/sd-14-004-main.svg)
 
 ## Đọc hình
 
@@ -21,8 +21,9 @@ Với nhãn theo mức, quy tắc quen thuộc là không đọc lên và không
 ## Giới hạn cần nhớ
 
 Không có cách nào miễn phí: mỗi cách chuyển công việc bảo trì sang một chỗ khác. Trong ví dụ chạy thử có hai tài liệu và một kế toán mới vào làm:
-ACL cần thêm hai dòng (một dòng cho mỗi tài liệu), RBAC cần một dòng gán vai trò, ABAC không cần thêm dòng chính sách nào.
-Nhưng ABAC chỉ đúng khi thuộc tính của người và của tài liệu được giữ đúng, và luật càng phức tạp càng khó đọc, khó kiểm tra.
+ACL ghi từng người cần thêm hai dòng (một dòng cho mỗi tài liệu), RBAC cần một dòng gán vai trò, ABAC không cần thêm dòng chính sách nào.
+ACL có thể ghi nhóm thay vì từng người; khi đó chỉ cần thêm người mới vào nhóm một lần, và cách làm đó đã tiến gần RBAC. Con số trên là của ACL ghi từng người, không phải của mọi ACL.
+ABAC thì chỉ đúng khi thuộc tính của người và của tài liệu được giữ đúng, và luật càng phức tạp càng khó đọc, khó kiểm tra.
 
 ## Nhìn hình trả lời
 
@@ -31,7 +32,7 @@ Công ty có rất nhiều tài liệu và một kế toán mới vào làm. V�
 <details>
 <summary>Xem đáp án</summary>
 
-ACL: thêm một dòng cho từng tài liệu người này cần đọc, nên số dòng tăng theo số tài liệu. RBAC: gán vai trò kế toán, vai trò đã có sẵn các quyền đọc. ABAC: không sửa luật, chỉ cần hồ sơ người dùng ghi đúng phòng ban Tài chính, vì luật so phòng ban của người với phòng ban của tài liệu.
+ACL ghi từng người: thêm một dòng cho từng tài liệu người này cần đọc, nên số dòng tăng theo số tài liệu (ACL ghi nhóm thì chỉ cần thêm người vào nhóm). RBAC: gán vai trò kế toán, vai trò đã có sẵn các quyền đọc. ABAC: không sửa luật, chỉ cần hồ sơ người dùng ghi đúng phòng ban Tài chính, vì luật so phòng ban của người với phòng ban của tài liệu.
 Cái giá của ABAC nằm ở chỗ khác: nếu thuộc tính ghi sai thì quyền sai theo.
 
 </details>
@@ -39,7 +40,7 @@ Cái giá của ABAC nằm ở chỗ khác: nếu thuộc tính ghi sai thì quy
 <details>
 <summary>Xem sâu hơn: điều đã chỉnh so với bài nguồn</summary>
 
-Bài nguồn viết DAC “dựa trên ACL”. Ví dụ Linux ở đây chạy bằng bit quyền chủ, nhóm, khác (`rw-------`, `rw-r--r--`), không cần ACL, nên bài này không gắn DAC với ACL.
+Bài nguồn viết DAC “dựa trên ACL”. Ví dụ Linux ở đây chạy bằng bit quyền chủ, nhóm, khác (`rw-------`, `rw-r--r--`), không cần ACL, nên bài này không gắn DAC với ACL. Khi chạy thử, một tệp `rw-r-----` thuộc nhóm `daemon` đọc được với người trong nhóm đó, còn người chưa vào nhóm bị từ chối cho tới khi được thêm vào nhóm một lần; đó cũng là lý do ACL ghi nhóm rẻ hơn ACL ghi từng người.
 Bài nguồn gọi ABAC là “ít được dùng” và ghi nhãn của MAC trên “chủ sở hữu và tài nguyên”; bài này không lặp lại hai nhận định đó vì chưa kiểm được: tài liệu SELinux mô tả nhãn trên cả chủ thể (người dùng, tiến trình) lẫn đối tượng.
 Kubernetes là một ví dụ thực của RBAC, và quyền ở đó chỉ cộng thêm, không có luật “từ chối”. Đó là đặc điểm của Kubernetes, không phải của mọi hệ RBAC.
 

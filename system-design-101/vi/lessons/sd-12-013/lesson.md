@@ -2,13 +2,13 @@
 
 **Tin nhắn 1–1 nghe đơn giản, nhưng phải đúng thứ tự, không mất và tới đúng nơi dù người nhận đang trực tuyến hay không.** Cách làm: lưu tin trước, rồi mới phân phối theo trạng thái của người nhận.
 
-![Bảy thẻ dọc: Alice đăng nhập và nối WebSocket, dịch vụ hiện diện đánh dấu cô trực tuyến và báo bạn bè; Alice gửi tin cho Bob tới chat service A; dịch vụ đánh số cấp ID duy nhất cho tin; tin được lưu bền; tin đi vào hàng đợi đồng bộ; hệ thống hỏi dịch vụ hiện diện xem Bob có trực tuyến không; nếu có thì chuyển tới chat service B và đẩy qua WebSocket, nếu không thì chuyển cho máy chủ thông báo đẩy tới thiết bị của Bob. Chú thích: lưu trước, rồi mới phân phối.](../../diagrams/sd-12-013-main.svg)
+![Bảy thẻ dọc: Alice đăng nhập và nối WebSocket, dịch vụ hiện diện đánh dấu cô trực tuyến và báo bạn bè; Alice gửi tin cho Bob tới chat service A; dịch vụ đánh số cấp cho tin một ID duy nhất và tăng dần trong cuộc trò chuyện; tin được lưu bền; tin đi vào hàng đợi đồng bộ; hệ thống hỏi dịch vụ hiện diện xem Bob có trực tuyến không; nếu có thì chuyển tới chat service B và đẩy qua WebSocket, nếu không thì chuyển cho máy chủ thông báo đẩy tới thiết bị của Bob. Chú thích: lưu trước, rồi mới phân phối.](../../diagrams/sd-12-013-main.svg)
 
 ## Đọc hình
 
 **Đăng nhập.** Alice nối **WebSocket** tới máy chủ. Dịch vụ hiện diện ghi nhận cô đang trực tuyến và báo cho bạn bè.
 
-**Gửi tin.** Tin của Alice tới **chat service A**. Dịch vụ đánh số cấp cho nó một **ID duy nhất** để sắp thứ tự, rồi tin được **lưu bền** vào kho tin nhắn. Sau đó nó vào **hàng đợi đồng bộ** để chuyển tới Bob.
+**Gửi tin.** Tin của Alice tới **chat service A**. Dịch vụ đánh số cấp cho nó một **ID duy nhất và tăng dần trong cuộc trò chuyện** để sắp thứ tự, rồi tin được **lưu bền** vào kho tin nhắn. Sau đó nó vào **hàng đợi đồng bộ** để chuyển tới Bob.
 
 **Chọn đường tới Bob.** Trước khi chuyển, hệ thống hỏi dịch vụ hiện diện. Nếu Bob **trực tuyến**, tin đi tới **chat service B** nơi Bob đang kết nối và được đẩy qua WebSocket. Nếu **không**, tin được giao cho máy chủ thông báo đẩy ([xem bài thông báo đẩy](../sd-12-015/lesson.md)) để báo tới thiết bị của Bob.
 

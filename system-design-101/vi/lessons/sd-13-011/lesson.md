@@ -2,7 +2,7 @@
 
 Sửa một dòng mã mà docker build lại cài lại toàn bộ phụ thuộc là chuyện quen thuộc. Cache của Docker hoạt động theo quy tắc cụ thể, nên mỗi lần mất cache đều truy ra được nguyên nhân. Bài nêu năm nguyên nhân hay gặp và cách chữa từng cái.
 
-![Năm nguyên nhân Docker build mất cache và cách chữa: đổi một lớp thì các lớp sau phải build lại nên đặt phần ít đổi lên trên, COPY quá rộng và quá sớm nên copy tệp khóa trước rồi cài phụ thuộc, ngữ cảnh build lẫn tệp hay đổi nên loại chúng khỏi ngữ cảnh, cache dùng được nhưng đã cũ nên build sạch định kỳ, và máy mới không có cache nên xuất nhập cache hoặc dùng cache mount.](../../diagrams/sd-13-011-main.svg)
+![Năm nguyên nhân Docker build mất cache và cách chữa: đổi một lớp thì các lớp sau phải build lại nên đặt phần ít đổi lên trên, COPY quá rộng và quá sớm nên copy tệp khóa trước rồi cài phụ thuộc, ngữ cảnh build lẫn tệp hay đổi nên loại chúng khỏi ngữ cảnh, cache dùng được nhưng đã cũ nên build sạch định kỳ, và máy mới không có cache nên cần xuất nhập cache từ nơi khác, còn cache mount chỉ giúp khi builder giữ được cache.](../../diagrams/sd-13-011-main.svg)
 
 **Đọc hình:** năm thẻ là năm nguyên nhân độc lập; thẻ nào cũng kèm cách chữa.
 
@@ -19,7 +19,7 @@ Có. `COPY . .` so checksum nội dung các tệp, nên chỉ cần một tệp 
 
 ## Giới hạn cần nhớ
 
-Cache giúp nhanh nhưng không bảo đảm đúng: lớp cũ có thể giữ phụ thuộc hay danh sách gói đã lỗi thời, nên cần build sạch định kỳ. Cache từ xa tốn dung lượng và băng thông, và cache mount cần BuildKit. Bài không bàn kích thước image, người dùng không đặc quyền hay quét lỗ hổng.
+Cache giúp nhanh nhưng không bảo đảm đúng: lớp cũ có thể giữ phụ thuộc hay danh sách gói đã lỗi thời, nên cần build sạch định kỳ. Cache từ xa tốn dung lượng và băng thông, và cache mount cần BuildKit và sống trong cache của builder nên không thay được cache từ xa trên runner dùng một lần. Bài không bàn kích thước image, người dùng không đặc quyền hay quét lỗ hổng.
 
 <details>
 <summary>Xem sâu hơn</summary>
@@ -38,7 +38,7 @@ CMD ["node", "server.js"]
 - **Quy tắc vô hiệu hóa:** khi một lớp bị vô hiệu hóa, mọi lớp sau nó phải build lại. Với `COPY` và `ADD`, Docker so checksum nội dung tệp; với `RUN`, thường chỉ so chuỗi lệnh. Riêng `RUN --mount=type=bind` còn tính checksum từ các tệp được gắn vào, nên tệp đó đổi thì lớp mất cache dù chuỗi lệnh không đổi.
 - **Cache cũ:** vì `RUN` thường chỉ so chuỗi lệnh, `apt-get update` có thể được dùng lại với danh sách gói cũ; gộp `apt-get update` và `apt-get install` trong cùng một `RUN` để chúng cùng mất cache. `--no-cache` bỏ qua cache và `--pull` luôn kéo image cơ sở mới.
 - **Cache từ xa:** `--cache-to` và `--cache-from` xuất và nhập cache qua các backend như registry hay thư mục cục bộ, để máy CI mới không bắt đầu từ rỗng.
-- **Cache mount:** `RUN --mount=type=cache` giữ thư mục cache của trình quản lý gói giữa các lần build mà không đưa vào image, nên cài lại nhanh dù lớp bị mất cache.
+- **Cache mount:** `RUN --mount=type=cache` giữ thư mục cache của trình quản lý gói giữa các lần build trên cùng builder mà không đưa vào image, nên cài lại nhanh dù lớp bị mất cache. Mount nằm trong cache của builder: builder mới tạo hay tạm thời (như runner CI dùng một lần) bắt đầu với mount rỗng, nên ở CI hãy dùng cache từ xa cho các lớp và chỉ trông vào cache mount khi cache của builder được giữ lại hoặc khôi phục giữa các lần chạy.
 
 </details>
 

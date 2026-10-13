@@ -54,7 +54,7 @@
       "source": "https://docs.docker.com/build/cache/invalidation/"
     },
     {
-      "claim_vi": "RUN --mount=type=cache giữ thư mục cache của trình quản lý gói giữa các lần build mà không đưa vào image.",
+      "claim_vi": "RUN --mount=type=cache giữ thư mục cache của trình quản lý gói giữa các lần build trên cùng builder mà không đưa vào image; builder mới hoặc tạm thời bắt đầu với mount rỗng, và Docker khuyến nghị cache từ xa cho builder tạm thời trong CI.",
       "source": "https://docs.docker.com/build/cache/optimize/"
     },
     {

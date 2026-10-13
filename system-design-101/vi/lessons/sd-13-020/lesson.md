@@ -26,9 +26,9 @@ Không cơ chế giảm rủi ro nào thay được kiểm thử trước khi tr
 
 - **Mở traffic từng nấc:** canary hay các kiểu tương tự; điều kiện dừng nên định trước bằng số đo, không bằng cảm giác.
 - **Tương thích hai chiều:** mẫu "mở rộng rồi thu gọn" (parallel change): thêm cái mới song song, chuyển người dùng, rồi mới bỏ cái cũ.
-- **Ngưỡng chấp nhận:** lấy từ mục tiêu mức dịch vụ (SLO) để so số đo của bản mới với bản đối chứng.
+- **Ngưỡng chấp nhận:** lấy từ mục tiêu mức dịch vụ (Service Level Objective, SLO) để so số đo của bản mới với bản đối chứng.
 - **Rút lại:** có nhiều cách, từ chuyển lại traffic về môi trường cũ đến triển khai lại bản trước; cách nào cũng nên được tập trước khi cần.
-- **Bản nhỏ:** thay đổi nhỏ dễ tìm nguyên nhân khi lỗi, và là một thói quen được nghiên cứu DORA liên hệ với hiệu quả giao phần mềm tốt hơn.
+- **Bản nhỏ:** thay đổi nhỏ dễ tìm nguyên nhân khi lỗi, và là một thói quen được nghiên cứu DORA (DevOps Research and Assessment — chương trình nghiên cứu và đánh giá DevOps) liên hệ với hiệu quả giao phần mềm tốt hơn.
 
 </details>
 
@@ -36,4 +36,4 @@ Không cơ chế giảm rủi ro nào thay được kiểm thử trước khi tr
 
 - [ByteByteGo tại snapshot cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-to-deploy-services.md).
 - Martin Fowler: [ParallelChange](https://martinfowler.com/bliki/ParallelChange.html), [CanaryRelease](https://martinfowler.com/bliki/CanaryRelease.html).
-- Google SRE Workbook: [canarying releases](https://sre.google/workbook/canarying-releases/). DORA: [working in small batches](https://dora.dev/capabilities/working-in-small-batches/). PostgreSQL: [INSERT](https://www.postgresql.org/docs/current/sql-insert.html), [ALTER TABLE](https://www.postgresql.org/docs/current/ddl-alter.html).
+- Google SRE Workbook (SRE là Site Reliability Engineering — kỹ thuật độ tin cậy của hệ thống): [canarying releases](https://sre.google/workbook/canarying-releases/). DORA: [working in small batches](https://dora.dev/capabilities/working-in-small-batches/). PostgreSQL: [INSERT](https://www.postgresql.org/docs/current/sql-insert.html), [ALTER TABLE](https://www.postgresql.org/docs/current/ddl-alter.html).

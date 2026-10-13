@@ -63,6 +63,12 @@
       ]
     },
     {
+      "claim_vi": "Nếu một tên miền không có bản ghi MX nhưng có bản ghi A hoặc AAAA, nó được coi như có một MX ngầm với mức ưu tiên 0.",
+      "sources": [
+        "https://www.rfc-editor.org/rfc/rfc5321.html"
+      ]
+    },
+    {
       "claim_vi": "IMAP và POP3 dùng để truy cập hộp thư, không dùng để chuyển thư giữa các máy chủ.",
       "sources": [
         "https://www.rfc-editor.org/rfc/rfc9051.html",
@@ -80,7 +86,8 @@
   ],
   "source_deviations": [
     "Nguồn viết “mail transmission agent”; thuật ngữ chuẩn là mail transfer agent.",
-    "Bài thêm bước tra MX, thông báo lỗi và SPF/DKIM/DMARC; nguồn không nói tới."
+    "Bài thêm bước tra MX, thông báo lỗi và SPF/DKIM/DMARC; nguồn không nói tới.",
+    "Bài nói rõ phương án MX ngầm khi tên miền không có bản ghi MX (RFC 5321); nguồn không nhắc tới."
   ],
   "design_notes_vi": "Năm thẻ dọc; dòng chú thích cuối tách vai trò đẩy thư (SMTP) với đọc thư (IMAP/POP3).",
   "editorial_note_vi": "Bản nháp độc lập viết từ kiến thức kỹ thuật chung; đọc bài nguồn nhưng chưa mở tài liệu chính thức nên các claim chưa được kiểm chứng. Chưa review kỹ thuật, chưa user testing, chưa phê duyệt phát hành."

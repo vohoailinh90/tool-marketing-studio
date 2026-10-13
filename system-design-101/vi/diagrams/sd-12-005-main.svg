@@ -1,21 +1,22 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 726" width="320" height="726" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 750" width="320" height="750" role="img" aria-labelledby="title desc">
 <title id="title">Quadtree chia bản đồ</title>
-<desc id="desc">Một bản đồ vuông chia thành bốn phần. Phần đông địa điểm ở góc trên bên phải được chia tiếp nhiều lần, ô nhỏ chứa vị trí của bạn được tô vàng. Ba bước: chia ô còn quá nhiều địa điểm, đi từ gốc xuống ô lá chứa bạn, mở rộng sang ô xung quanh (gần đúng) khi thiếu kết quả.</desc>
+<desc id="desc">Một bản đồ vuông chia thành bốn phần. Phần đông địa điểm ở góc trên bên phải được chia tiếp nhiều lần, ô nhỏ chứa vị trí của bạn được tô vàng. Ba bước: chia ô còn quá nhiều địa điểm (có giới hạn độ sâu), đi từ gốc xuống ô lá chứa bạn, mở rộng sang ô xung quanh (gần đúng) khi thiếu kết quả.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="726" fill="#f8fafc"/>
+<rect width="320" height="750" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="30" font-size="21" font-weight="bold">QUADTREE</text>
 <g transform="translate(16,46)"><rect x="0" y="0" width="288" height="288" fill="#ffffff" stroke="#475569" stroke-width="2"/><rect x="144" y="36" width="36" height="36" fill="#fef3c7"/><line x1="144" y1="0" x2="144" y2="288" stroke="#475569" stroke-width="1.5"/><line x1="0" y1="144" x2="288" y2="144" stroke="#475569" stroke-width="1.5"/><line x1="216" y1="0" x2="216" y2="144" stroke="#475569" stroke-width="1.5"/><line x1="144" y1="72" x2="288" y2="72" stroke="#475569" stroke-width="1.5"/><line x1="180" y1="0" x2="180" y2="72" stroke="#475569" stroke-width="1.5"/><line x1="144" y1="36" x2="216" y2="36" stroke="#475569" stroke-width="1.5"/><circle cx="40" cy="200" r="3.5" fill="#0f172a"/><circle cx="100" cy="250" r="3.5" fill="#0f172a"/><circle cx="190" cy="190" r="3.5" fill="#0f172a"/><circle cx="240" cy="230" r="3.5" fill="#0f172a"/><circle cx="260" cy="270" r="3.5" fill="#0f172a"/><circle cx="70" cy="60" r="3.5" fill="#0f172a"/><circle cx="240" cy="30" r="3.5" fill="#0f172a"/><circle cx="270" cy="50" r="3.5" fill="#0f172a"/><circle cx="170" cy="110" r="3.5" fill="#0f172a"/><circle cx="200" cy="95" r="3.5" fill="#0f172a"/><circle cx="250" cy="110" r="3.5" fill="#0f172a"/><circle cx="152" cy="10" r="3.5" fill="#0f172a"/><circle cx="168" cy="22" r="3.5" fill="#0f172a"/><circle cx="190" cy="12" r="3.5" fill="#0f172a"/><circle cx="205" cy="28" r="3.5" fill="#0f172a"/><circle cx="150" cy="44" r="3.5" fill="#0f172a"/><circle cx="172" cy="66" r="3.5" fill="#0f172a"/><circle cx="190" cy="45" r="3.5" fill="#0f172a"/><circle cx="200" cy="60" r="3.5" fill="#0f172a"/><circle cx="210" cy="66" r="3.5" fill="#0f172a"/><path d="M162,44 L170,60 L154,60 Z" fill="#b91c1c"/><circle cx="8" cy="310" r="4" fill="#0f172a"/><text x="22" y="316" font-size="16">địa điểm</text><path d="M150,303 L158,319 L142,319 Z" fill="#b91c1c"/><text x="166" y="316" font-size="16">vị trí của bạn</text><rect x="2" y="332" width="14" height="14" fill="#fef3c7" stroke="#475569"/><text x="22" y="345" font-size="16">ô lá đang chứa bạn</text></g>
-<rect x="16" y="410" width="288" height="68" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<rect x="16" y="410" width="288" height="92" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
 <text x="29" y="439" font-size="16" font-weight="bold">Chia khi còn đông</text>
-<text x="29" y="463" font-size="16" font-weight="normal">Ô quá nhiều địa điểm → chia 4</text>
-<rect x="16" y="490" width="288" height="68" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
-<text x="29" y="519" font-size="16" font-weight="bold">Tìm: từ gốc xuống ô lá</text>
-<text x="29" y="543" font-size="16" font-weight="normal">Mỗi bước chọn ô chứa bạn</text>
-<rect x="16" y="570" width="288" height="92" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
-<text x="29" y="599" font-size="16" font-weight="bold">Thiếu kết quả?</text>
-<text x="29" y="623" font-size="16" font-weight="normal">Mở rộng ô xung quanh (gần</text>
-<text x="29" y="647" font-size="16" font-weight="normal">đúng)</text>
-<text x="16" y="690" font-size="16" font-weight="normal">Trong thiết kế này, quadtree nằm</text>
-<text x="16" y="714" font-size="16" font-weight="normal">trong bộ nhớ máy chủ.</text>
+<text x="29" y="463" font-size="16" font-weight="normal">Quá đông → chia 4, có giới hạn</text>
+<text x="29" y="487" font-size="16" font-weight="normal">độ sâu</text>
+<rect x="16" y="514" width="288" height="68" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="29" y="543" font-size="16" font-weight="bold">Tìm: từ gốc xuống ô lá</text>
+<text x="29" y="567" font-size="16" font-weight="normal">Mỗi bước chọn ô chứa bạn</text>
+<rect x="16" y="594" width="288" height="92" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="29" y="623" font-size="16" font-weight="bold">Thiếu kết quả?</text>
+<text x="29" y="647" font-size="16" font-weight="normal">Mở rộng ô xung quanh (gần</text>
+<text x="29" y="671" font-size="16" font-weight="normal">đúng)</text>
+<text x="16" y="714" font-size="16" font-weight="normal">Trong thiết kế này, quadtree nằm</text>
+<text x="16" y="738" font-size="16" font-weight="normal">trong bộ nhớ máy chủ.</text>
 </g></svg>

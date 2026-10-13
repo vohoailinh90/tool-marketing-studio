@@ -57,15 +57,29 @@
     },
     {
       "claim_vi": "Phần tử display none không có hộp và bị bỏ khỏi cây hiển thị; visibility hidden vẫn chiếm chỗ.",
-      "source": "https://www.w3.org/TR/css-display-3/"
+      "sources": [
+        "https://www.w3.org/TR/css-display-3/",
+        "https://www.w3.org/TR/CSS22/visufx.html#visibility",
+        "https://html.spec.whatwg.org/multipage/rendering.html"
+      ]
     },
     {
       "claim_vi": "Script thường (không async hoặc defer) làm parser HTML dừng để chạy script.",
       "source": "https://html.spec.whatwg.org/multipage/parsing.html"
     },
     {
-      "claim_vi": "Sau layout là paint rồi composite; thay đổi transform thường chỉ cần composite còn đổi vị trí có thể kéo theo layout.",
-      "source": "https://web.dev/articles/rendering-performance"
+      "claim_vi": "Sau layout là paint rồi composite; thay đổi transform thường chỉ cần composite còn đổi vị trí có thể kéo theo layout. Việc ghép lớp thường do GPU thực hiện.",
+      "sources": [
+        "https://web.dev/articles/rendering-performance",
+        "https://developer.chrome.com/docs/chromium/renderingng"
+      ]
+    },
+    {
+      "claim_vi": "Một script chỉ chạy sau khi các stylesheet đang tải trước nó đã xong; stylesheet chặn dựng hình.",
+      "sources": [
+        "https://html.spec.whatwg.org/multipage/semantics.html#interactions-of-styling-and-scripting",
+        "https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/Critical_rendering_path"
+      ]
     }
   ],
   "design_notes_vi": "Sáu khung dọc theo thứ tự các bước dựng; mỗi khung một ý, thêm nhắc script chặn parser và CSS chặn dựng hình. Sơ đồ tự thiết kế, không dùng ảnh nguồn.",

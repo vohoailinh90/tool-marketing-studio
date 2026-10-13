@@ -55,8 +55,11 @@
       "source": "https://www.rfc-editor.org/rfc/rfc7541"
     },
     {
-      "claim_vi": "HTTP/1.1 xử lý một yêu cầu tại một thời điểm trên mỗi kết nối nên trình duyệt mở nhiều kết nối.",
-      "source": "https://www.rfc-editor.org/rfc/rfc9112"
+      "claim_vi": "HTTP/1.1 xử lý một yêu cầu tại một thời điểm trên mỗi kết nối nên trình duyệt mở nhiều kết nối. Cơ chế gửi nối tiếp (pipelining) tồn tại nhưng ít được dùng; giới hạn khoảng sáu kết nối mỗi máy chủ là quy ước của trình duyệt.",
+      "sources": [
+        "https://www.rfc-editor.org/rfc/rfc9112",
+        "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Connection_management_in_HTTP_1.x"
+      ]
     },
     {
       "claim_vi": "Trong HTTP/2 mất gói TCP làm mọi luồng trên kết nối chờ; HTTP/3 dùng QUIC để giảm điều này.",
@@ -69,6 +72,26 @@
       "claim_vi": "Cách ưu tiên luồng theo trọng số của bản HTTP/2 đầu về sau được thay bằng ưu tiên mở rộng.",
       "sources": [
         "https://www.rfc-editor.org/rfc/rfc9218",
+        "https://www.rfc-editor.org/rfc/rfc9113"
+      ]
+    },
+    {
+      "claim_vi": "Trình duyệt chỉ dùng HTTP/2 qua TLS (ALPN); chuẩn cho phép cả h2c không mã hóa.",
+      "sources": [
+        "https://www.rfc-editor.org/rfc/rfc7301",
+        "https://www.rfc-editor.org/rfc/rfc9113"
+      ]
+    },
+    {
+      "claim_vi": "Server push được định nghĩa trong HTTP/2 nhưng khó dùng hiệu quả và một số trình duyệt lớn đã gỡ hỗ trợ.",
+      "sources": [
+        "https://www.rfc-editor.org/rfc/rfc9113",
+        "https://developer.chrome.com/blog/removing-push"
+      ]
+    },
+    {
+      "claim_vi": "Số luồng đồng thời được giới hạn bởi tham số hai bên thỏa thuận (SETTINGS_MAX_CONCURRENT_STREAMS) và có kiểm soát luồng.",
+      "sources": [
         "https://www.rfc-editor.org/rfc/rfc9113"
       ]
     }

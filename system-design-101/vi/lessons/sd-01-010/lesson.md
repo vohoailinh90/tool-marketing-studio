@@ -14,7 +14,7 @@
 
 ## Giới hạn cần nhớ
 
-Độ đặc hiệu không phải là "đếm quy tắc nào dài hơn": id luôn thắng class bất kể thứ tự, nên khi "sửa mãi không ăn" nên kiểm tra quy tắc nào đang thắng thay vì thêm `!important`. CSS cũng không phải ngôn ngữ lập trình; nó mô tả kiểu, còn logic nằm ở nơi khác.
+Độ đặc hiệu không phải là "đếm quy tắc nào dài hơn": khi cùng nguồn, cùng lớp và cùng mức quan trọng, id thắng class bất kể thứ tự, nên khi "sửa mãi không ăn" nên kiểm tra quy tắc nào đang thắng thay vì thêm `!important`. CSS cũng không phải ngôn ngữ lập trình; nó mô tả kiểu, còn logic nằm ở nơi khác.
 
 ## Nhìn hình thử trả lời
 
@@ -41,7 +41,7 @@ Xanh lá. Hai quy tắc có cùng độ đặc hiệu nên quy tắc đứng sau
 ## Nguồn đối chiếu
 
 - [ByteByteGo tại snapshot cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-is-css-cascading-style-sheets.md).
-- [MDN — Cascade, specificity và inheritance](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Handling_conflicts).
+- [MDN — CSS là gì](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/What_is_CSS) và [Cascade, specificity và inheritance](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Handling_conflicts).
 - [CSS Cascading and Inheritance](https://www.w3.org/TR/css-cascade-5/), [Selectors](https://www.w3.org/TR/selectors-4/), [Flexbox](https://www.w3.org/TR/css-flexbox-1/), [Grid](https://www.w3.org/TR/css-grid-1/) và [Media Queries](https://www.w3.org/TR/mediaqueries-4/).
 - [CSS Transitions](https://www.w3.org/TR/css-transitions-1/) và [CSS Animations](https://www.w3.org/TR/css-animations-1/).
 

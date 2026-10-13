@@ -33,7 +33,7 @@
 <line x1="160" y1="698" x2="160" y2="718" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
 <rect x="16" y="721" width="288" height="77" rx="12" fill="#e2e8f0" stroke="#94a3b8"/>
 <text x="30" y="751" font-size="16" font-weight="bold">6 · Composite</text>
-<text x="30" y="778" font-size="16" font-weight="normal">Ghép các lớp, GPU hiển thị</text>
+<text x="30" y="778" font-size="16" font-weight="normal">Ghép các lớp để hiển thị</text>
 <text x="16" y="826" font-size="16" font-weight="normal">Đổi DOM/CSS: có thể chạy lại</text>
 <text x="16" y="852" font-size="16" font-weight="normal">từ layout, paint hoặc composite.</text>
 </g></svg>

@@ -47,8 +47,11 @@
   },
   "claims": [
     {
-      "claim_vi": "CSS là ngôn ngữ bảng kiểu mô tả cách hiển thị tài liệu.",
-      "source": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Handling_conflicts"
+      "claim_vi": "CSS là ngôn ngữ bảng kiểu mô tả cách hiển thị tài liệu. CSS không phải ngôn ngữ đánh dấu hay ngôn ngữ lập trình.",
+      "sources": [
+        "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/What_is_CSS",
+        "https://www.w3.org/TR/css-cascade-5/"
+      ]
     },
     {
       "claim_vi": "Cascade chọn quy tắc thắng theo nguồn và độ quan trọng, độ đặc hiệu, rồi thứ tự xuất hiện.",
@@ -58,8 +61,11 @@
       ]
     },
     {
-      "claim_vi": "Độ đặc hiệu: id mạnh hơn class, class mạnh hơn tên thẻ.",
-      "source": "https://www.w3.org/TR/selectors-4/"
+      "claim_vi": "Độ đặc hiệu: khi cùng nguồn, lớp và mức quan trọng, id mạnh hơn class, class mạnh hơn tên thẻ; kiểu viết trực tiếp trên phần tử mạnh hơn id.",
+      "sources": [
+        "https://www.w3.org/TR/selectors-4/",
+        "https://www.w3.org/TR/css-cascade-5/"
+      ]
     },
     {
       "claim_vi": "Flexbox bố cục một chiều, Grid hai chiều, media query đổi kiểu theo màn hình.",

@@ -18,7 +18,7 @@ Bốn cách phổ biến: gửi lại tên và mật khẩu, mã session, token 
 ## Giới hạn cần nhớ
 
 JWT thông thường, loại được ký và là loại chạy thử ở đây, không bị che: ai cầm token cũng đọc được thông tin trong đó, nên đừng để bí mật vào (có dạng JWT được mã hóa riêng, bài không bàn). Vì máy chủ không tra kho, một JWT còn hạn vẫn hợp lệ sau khi người dùng “đăng xuất”;
-muốn thu hồi sớm thì phải giữ lại một danh sách trạng thái, tức là mất đúng cái lợi ban đầu (đã chạy thử: sau khi “đăng xuất” với kho trống, cùng token vẫn qua được bước kiểm tra).
+muốn thu hồi sớm một token cụ thể thì phải giữ lại một danh sách trạng thái, tức là mất đúng cái lợi ban đầu (đã chạy thử: sau khi “đăng xuất” với kho trống, cùng token vẫn qua được bước kiểm tra).
 
 ## Nhìn hình trả lời
 
@@ -27,7 +27,7 @@ Một ứng dụng dùng JWT hạn một giờ. Người dùng báo mất điệ
 <details>
 <summary>Xem đáp án</summary>
 
-Chữ ký vẫn hợp lệ cho tới khi hết hạn, nên máy chủ không thể “hủy” token chỉ bằng cách kiểm tra chữ ký. Cách làm được là giữ thêm trạng thái: một danh sách token bị thu hồi để kiểm tra mỗi lần, đổi khóa ký (làm vô hiệu cả những token khác), hoặc dùng hạn rất ngắn kèm một cơ chế cấp lại.
+Chữ ký vẫn hợp lệ cho tới khi hết hạn, nên máy chủ không thể “hủy” token chỉ bằng cách kiểm tra chữ ký. Hai cách chặn được ngay một token đã phát: giữ một danh sách token bị thu hồi để kiểm tra mỗi lần, hoặc đổi khóa dùng để kiểm tra chữ ký (làm vô hiệu cả những token khác ký bằng khóa đó). Hạn ngắn kèm cấp lại chỉ thu hẹp thời gian một token bị lộ còn dùng được ở các lần cấp sau; nó không chặn token một giờ đang có.
 Mỗi cách thêm một phần trạng thái hoặc một chi phí khác, nên session hay token ngẫu nhiên có kho ở máy chủ thường dễ thu hồi hơn (suy luận của người biên soạn từ thiết kế).
 
 </details>
@@ -46,8 +46,8 @@ OWASP lưu ý mã session (hay token) sau khi đăng nhập tương đương v�
 ## Nguồn đối chiếu
 
 - [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/token-cookie-session.md): danh sách các cách quản lý danh tính từ Basic tới OAuth 2.0.
-- [MDN — HTTP authentication](https://github.com/mdn/content/blob/main/files/en-us/web/http/guides/authentication/index.md): luồng 401 kèm `WWW-Authenticate`, lược đồ Basic gửi thông tin đăng nhập mã hóa ký tự chứ không phải mã hóa bảo mật. Đọc từ bản clone của kho.
-- [PyJWT — tài liệu sử dụng](https://github.com/jpadilla/pyjwt/blob/master/docs/usage.rst): đọc thông tin của JWT không cần xác thực là không đáng tin; token quá hạn bị từ chối. Đọc qua nguồn trên GitHub.
-- [OWASP — Session Management Cheat Sheet](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Session_Management_Cheat_Sheet.md): mã session sau khi xác thực tương đương thông tin đăng nhập mạnh nhất; lộ mã dẫn tới chiếm phiên. Đọc từ bản clone của kho.
+- [MDN — HTTP authentication](https://github.com/mdn/content/blob/19370346042efad9e179fbf1f55deeeadee98c40/files/en-us/web/http/guides/authentication/index.md): luồng 401 kèm `WWW-Authenticate`, lược đồ Basic gửi thông tin đăng nhập mã hóa ký tự chứ không phải mã hóa bảo mật. Đọc từ bản clone của kho.
+- [PyJWT — tài liệu sử dụng](https://github.com/jpadilla/pyjwt/blob/f97b3273d3db3ed7266ae009784d65f1877dba66/docs/usage.rst): đọc thông tin của JWT không cần xác thực là không đáng tin; token quá hạn bị từ chối. Đọc qua nguồn trên GitHub.
+- [OWASP — Session Management Cheat Sheet](https://github.com/OWASP/CheatSheetSeries/blob/ae965343cb82e6b8f42aff1ccee57c4fa0f171c2/cheatsheets/Session_Management_Cheat_Sheet.md): mã session sau khi xác thực tương đương thông tin đăng nhập mạnh nhất; lộ mã dẫn tới chiếm phiên. Đọc từ bản clone của kho.
 
 Đã đọc nguồn ngày 2026-10-13. Ví dụ chạy thử bằng máy chủ Python, `curl` và PyJWT 2.15.1; không có tài liệu RFC nào được mở (trang RFC không truy cập được). Bài viết và hình được thiết kế độc lập.

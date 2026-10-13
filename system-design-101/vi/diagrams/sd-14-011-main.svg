@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1074" width="320" height="1074" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1098" width="320" height="1098" role="img" aria-labelledby="title desc">
 <title id="title">OAuth 2.0: luồng mã ủy quyền và PKCE</title>
-<desc id="desc">Hai câu hỏi khác nhau: tôi là ai, và ứng dụng này được làm gì thay tôi. Luồng mã ủy quyền của OAuth gồm năm bước. Một: ứng dụng chuyển người dùng sang máy chủ ủy quyền, kèm mã định danh ứng dụng và địa chỉ chuyển hướng. Hai: người dùng đăng nhập và đồng ý. Ba: máy chủ ủy quyền trả về một mã, mà máy chủ chỉ đổi thành token một lần. Bốn: ứng dụng đổi mã lấy access token. Năm: ứng dụng dùng access token gọi tài nguyên. PKCE: ứng dụng tạo một chuỗi bí mật, gửi bản băm của nó ở bước một và chuỗi gốc ở bước bốn. Thẻ cuối: đăng nhập cần thêm một lớp nhận diện, như OpenID Connect xây trên OAuth.</desc>
+<desc id="desc">Hai câu hỏi khác nhau: tôi là ai, và ứng dụng này được làm gì thay tôi. Luồng mã ủy quyền của OAuth gồm năm bước. Một: ứng dụng chuyển người dùng sang máy chủ ủy quyền, kèm mã định danh ứng dụng và địa chỉ chuyển hướng. Hai: người dùng đăng nhập và đồng ý. Ba: máy chủ ủy quyền trả về một mã, mà máy chủ chỉ đổi thành token một lần. Bốn: ứng dụng đổi mã lấy access token. Năm: ứng dụng dùng access token gọi tài nguyên. PKCE: ứng dụng tạo một chuỗi bí mật, gửi bản băm của nó ở bước một và chuỗi gốc ở bước bốn. Thẻ cuối: đừng coi một access token bất kỳ là bằng chứng đăng nhập; đăng nhập cần giao thức xác thực như OpenID Connect xây trên OAuth.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="1074" fill="#f8fafc"/>
+<rect width="320" height="1098" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="30" font-size="21" font-weight="bold">OAUTH 2.0:</text>
 <text x="16" y="54" font-size="21" font-weight="bold">ỦY QUYỀN</text>
@@ -40,9 +40,10 @@
 <text x="29" y="853" font-size="16" font-weight="bold">PKCE</text>
 <text x="29" y="881" font-size="16" font-weight="normal">Gửi bản băm của chuỗi bí mật ở</text>
 <text x="29" y="905" font-size="16" font-weight="normal">bước 1, chuỗi gốc ở bước 4.</text>
-<rect x="16" y="936" width="288" height="124" rx="12" fill="#fee2e2" stroke="#94a3b8"/>
+<rect x="16" y="936" width="288" height="148" rx="12" fill="#fee2e2" stroke="#94a3b8"/>
 <text x="29" y="965" font-size="16" font-weight="bold">Đăng nhập cần thêm</text>
-<text x="29" y="993" font-size="16" font-weight="normal">Access token không chứng minh</text>
-<text x="29" y="1017" font-size="16" font-weight="normal">bạn là ai; cần lớp nhận diện như</text>
-<text x="29" y="1041" font-size="16" font-weight="normal">OpenID Connect.</text>
+<text x="29" y="993" font-size="16" font-weight="normal">Đừng coi một access token bất</text>
+<text x="29" y="1017" font-size="16" font-weight="normal">kỳ là bằng chứng đăng nhập;</text>
+<text x="29" y="1041" font-size="16" font-weight="normal">đăng nhập cần giao thức xác</text>
+<text x="29" y="1065" font-size="16" font-weight="normal">thực như OpenID Connect.</text>
 </g></svg>

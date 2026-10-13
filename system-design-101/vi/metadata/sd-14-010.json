@@ -60,31 +60,31 @@
     },
     {
       "claim_vi": "Observed: a server without credentials answered 401 with 'WWW-Authenticate: Basic realm'; with curl -u the same 'Authorization: Basic ...' header was present on two consecutive requests; the base64 part decodes to the username and password without a key.",
-      "source": "https://github.com/mdn/content/blob/main/files/en-us/web/http/guides/authentication/index.md",
+      "source": "https://github.com/mdn/content/blob/19370346042efad9e179fbf1f55deeeadee98c40/files/en-us/web/http/guides/authentication/index.md",
       "section": "The general HTTP authentication framework; Basic authentication scheme",
       "verified_by": "Read from a local clone of the repository. MDN describes the 401 and WWW-Authenticate exchange and says Basic sends credentials encoded but not encrypted, insecure without HTTPS; the repeated header and the decoding were observed with a Python http.server and curl 8.5.0."
     },
     {
       "claim_vi": "Observed with PyJWT 2.15.1 (HS256, short test key): the payload of a JWT is readable without a key; a token whose payload was edited to a different role fails with InvalidSignatureError; an expired token raises ExpiredSignatureError; a token declaring algorithm none raises InvalidAlgorithmError when decoding is limited to HS256; verification used no server-side store, so the same token still verified after a simulated logout.",
-      "source": "https://github.com/jpadilla/pyjwt/blob/master/docs/usage.rst",
+      "source": "https://github.com/jpadilla/pyjwt/blob/f97b3273d3db3ed7266ae009784d65f1877dba66/docs/usage.rst",
       "section": "Encoding and decoding; reading claims without validation; expiration",
       "verified_by": "No external page reports this output; observed by executing the code on the authoring machine. The usage notes describe reading claims without validation and ExpiredSignatureError; the other results were observed. This covers signed JWTs; encrypted JWT forms exist and are not covered (author's general knowledge)."
     },
     {
       "claim_vi": "PyJWT's usage notes say that reading a JWT's claimset without verifying the signature gives data whose integrity and authenticity cannot be trusted.",
-      "source": "https://github.com/jpadilla/pyjwt/blob/master/docs/usage.rst",
+      "source": "https://github.com/jpadilla/pyjwt/blob/f97b3273d3db3ed7266ae009784d65f1877dba66/docs/usage.rst",
       "section": "Reading the Claimset without Validation",
       "verified_by": "Read from a copy fetched from raw GitHub."
     },
     {
       "claim_vi": "Once an authenticated session is established the session id (or token) is temporarily equivalent to the strongest authentication method the application used; disclosure, capture, prediction, brute force or fixation of the id leads to session hijacking.",
-      "source": "https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Session_Management_Cheat_Sheet.md",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/ae965343cb82e6b8f42aff1ccee57c4fa0f171c2/cheatsheets/Session_Management_Cheat_Sheet.md",
       "section": "Introduction",
       "verified_by": "Read from a local clone of the repository."
     },
     {
-      "claim_vi": "Revoking a still-valid JWT early requires extra state (a deny list, rotating the signing key or very short lifetimes with re-issue); a server-side store makes revocation easier.",
-      "source": "https://github.com/jpadilla/pyjwt/blob/master/docs/usage.rst",
+      "claim_vi": "Blocking a still-valid JWT before it expires needs state or a key change: a server-side deny list checked on each request, or replacing the verification key (which also invalidates every other token signed with it); a short lifetime with re-issue only narrows how long a leaked token stays usable and does not block a token already issued; a server-side store makes revocation of a single token easier.",
+      "source": "https://github.com/jpadilla/pyjwt/blob/f97b3273d3db3ed7266ae009784d65f1877dba66/docs/usage.rst",
       "section": "Expiration",
       "verified_by": "Author's inference from the observed behaviour and from how server-side sessions work; not checked against a standard."
     }

@@ -60,25 +60,25 @@
     },
     {
       "claim_vi": "OWASP's Secure Product Design cheat sheet starts from establishing secure defaults, minimizing the attack surface area and failing securely.",
-      "source": "https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Secure_Product_Design_Cheat_Sheet.md",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/ae965343cb82e6b8f42aff1ccee57c4fa0f171c2/cheatsheets/Secure_Product_Design_Cheat_Sheet.md",
       "section": "Methodology",
       "verified_by": "Read from a local clone of the repository."
     },
     {
       "claim_vi": "Authentication is the process of verifying that an individual, entity or website is who or what it claims to be; authorization is verifying that a requested action is approved for a specific entity and is distinct from authentication.",
-      "source": "https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Authorization_Cheat_Sheet.md",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/ae965343cb82e6b8f42aff1ccee57c4fa0f171c2/cheatsheets/Authorization_Cheat_Sheet.md",
       "section": "Introduction",
       "verified_by": "Read from a local clone of the repository. Authentication wording is from the Authentication cheat sheet introduction, also read."
     },
     {
       "claim_vi": "OWASP has cheat sheets matching: cryptographic storage, transport layer security, REST security, Docker security, Kubernetes security, vulnerable dependency management, logging, software supply chain security and third-party JavaScript management.",
-      "source": "https://github.com/OWASP/CheatSheetSeries/tree/master/cheatsheets",
+      "source": "https://github.com/OWASP/CheatSheetSeries/tree/ae965343cb82e6b8f42aff1ccee57c4fa0f171c2/cheatsheets",
       "section": "Cheat sheet file list",
       "verified_by": "Read from a local clone of the repository. Only the introductions of these sheets were read."
     },
     {
       "claim_vi": "Among the 137 cheat sheet files at the clone's commit, no file name refers to endpoint or terminal security, incident response, disaster recovery, compliance, audit or backup (a Mobile Application Security sheet exists). Determined by file name only; contents were not searched.",
-      "source": "https://github.com/OWASP/CheatSheetSeries/tree/master/cheatsheets",
+      "source": "https://github.com/OWASP/CheatSheetSeries/tree/ae965343cb82e6b8f42aff1ccee57c4fa0f171c2/cheatsheets",
       "section": "Cheat sheet file list",
       "verified_by": "Read from a local clone of the repository. Listed with git ls-tree and filtered by name."
     },

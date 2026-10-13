@@ -66,39 +66,39 @@
     },
     {
       "claim_vi": "OAuth 2.1 lets an application obtain limited access to a protected resource on behalf of a resource owner through an approval interaction with an authorization service; OAuth is an authorization protocol, not an authentication protocol; OpenID Connect is given as an example that builds on OAuth to provide authentication.",
-      "source": "https://github.com/oauth-wg/oauth-v2-1/blob/main/draft-ietf-oauth-v2-1.md",
+      "source": "https://github.com/oauth-wg/oauth-v2-1/blob/d04b368313c8835a930a2e55a68ef547312b7b32/draft-ietf-oauth-v2-1.md",
       "section": "Abstract; Introduction",
       "verified_by": "Read from a copy fetched from raw GitHub."
     },
     {
       "claim_vi": "In the authorization code flow the client sends the user to the authorization server with its client identifier and redirect URI, the user authenticates there, the authorization server returns an authorization code, the client exchanges the code for an access token, and the access token represents the authorization granted; the authorization server must return an access token only once for a given authorization code.",
-      "source": "https://github.com/oauth-wg/oauth-v2-1/blob/main/draft-ietf-oauth-v2-1.md",
+      "source": "https://github.com/oauth-wg/oauth-v2-1/blob/d04b368313c8835a930a2e55a68ef547312b7b32/draft-ietf-oauth-v2-1.md",
       "section": "Authorization Code Grant",
       "verified_by": "Read from a copy fetched from raw GitHub."
     },
     {
       "claim_vi": "With PKCE the client creates a code_verifier and sends code_challenge = BASE64URL-ENCODE(SHA256(ASCII(code_verifier))) with method S256; observed: a 32-byte random verifier gives 43-character verifier and challenge strings, the right verifier matches the challenge and a guessed one does not.",
-      "source": "https://github.com/oauth-wg/oauth-v2-1/blob/main/draft-ietf-oauth-v2-1.md",
+      "source": "https://github.com/oauth-wg/oauth-v2-1/blob/d04b368313c8835a930a2e55a68ef547312b7b32/draft-ietf-oauth-v2-1.md",
       "section": "Code verifier and code challenge (S256)",
       "verified_by": "Read from a copy fetched from raw GitHub. The matching check was run in Python on the authoring machine."
     },
     {
       "claim_vi": "OWASP: PKCE mitigates the authorization code interception attack for public clients; the authorization server must enforce the correct use of code_verifier at the token endpoint when a code_challenge was sent; challenge methods that do not expose the verifier in the authorization request should be used.",
-      "source": "https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/OAuth2_Cheat_Sheet.md",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/ae965343cb82e6b8f42aff1ccee57c4fa0f171c2/cheatsheets/OAuth2_Cheat_Sheet.md",
       "section": "PKCE",
       "verified_by": "Read from a local clone of the repository."
     },
     {
       "claim_vi": "OAuth 2.1 omits the Implicit grant and the Resource Owner Password Credentials grant.",
-      "source": "https://github.com/oauth-wg/oauth-v2-1/blob/main/draft-ietf-oauth-v2-1.md",
+      "source": "https://github.com/oauth-wg/oauth-v2-1/blob/d04b368313c8835a930a2e55a68ef547312b7b32/draft-ietf-oauth-v2-1.md",
       "section": "Differences from OAuth 2.0",
       "verified_by": "Read from a copy fetched from raw GitHub."
     },
     {
-      "claim_vi": "An access token is not evidence that its holder just logged in (from the specification); scenarios where a token was issued to another application, leaked or reused, and the claim that SSO concentrates risk in a shared login session, are the author's inference.",
-      "source": "https://github.com/oauth-wg/oauth-v2-1/blob/main/draft-ietf-oauth-v2-1.md",
+      "claim_vi": "The OAuth 2.1 draft calls OAuth an authorization protocol, not an authentication one, so an arbitrary access token is not by itself evidence that its holder just logged in and login needs an authentication layer such as OpenID Connect (given as the example). The lesson does not claim that no access token can carry a subject: access token formats that carry one and OpenID Connect's UserInfo endpoint were not read (RFC and OpenID pages unreachable). Scenarios where a token was issued to another application, leaked or reused, and the claim that SSO concentrates risk in a shared login session, are the author's inference.",
+      "source": "https://github.com/oauth-wg/oauth-v2-1/blob/d04b368313c8835a930a2e55a68ef547312b7b32/draft-ietf-oauth-v2-1.md",
       "section": "Introduction",
-      "verified_by": "Author's argument from the specification's statement that OAuth is not an authentication protocol, and the SSO risk is the author's inference; no attack was run."
+      "verified_by": "Author's argument from the draft's statement that OAuth is not an authentication protocol, kept narrow (arbitrary access token, not every token format); the SSO risk is the author's inference; no attack was run; RFC 9068 and OpenID Connect were not opened."
     }
   ],
   "design_notes_vi": "Một thẻ hai câu hỏi, năm thẻ bước của luồng mã ủy quyền nối bằng mũi tên (không mũi tên sau bước cuối), thẻ PKCE, thẻ đỏ nói đăng nhập cần lớp nhận diện. Không dùng ảnh nguồn.",

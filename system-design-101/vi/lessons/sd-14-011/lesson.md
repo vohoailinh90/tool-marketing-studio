@@ -1,9 +1,9 @@
 # SSO và OAuth 2.0: đăng nhập khác ủy quyền
 
 **OAuth 2.0 trả lời “ứng dụng này được phép làm gì thay tôi”, còn đăng nhập một lần (SSO) là đăng nhập một lần để dùng nhiều ứng dụng.**
-Hai việc này khác nhau, nên đừng coi access token của OAuth là bằng chứng rằng người dùng vừa đăng nhập.
+Hai việc này khác nhau, nên đừng coi một access token bất kỳ của OAuth là bằng chứng rằng người dùng vừa đăng nhập.
 
-![Tám thẻ xếp dọc. Thẻ đầu: hai câu hỏi khác nhau, tôi là ai và ứng dụng này được làm gì thay tôi. Nhóm luồng mã ủy quyền của OAuth, năm thẻ bước nối nhau. 1 ứng dụng chuyển người dùng sang máy chủ ủy quyền, kèm mã định danh ứng dụng và địa chỉ chuyển hướng. 2 người dùng đăng nhập và đồng ý. 3 máy chủ ủy quyền trả về một mã, mà máy chủ chỉ đổi thành token một lần. 4 ứng dụng đổi mã lấy access token. 5 ứng dụng dùng access token gọi tài nguyên. Thẻ PKCE: ứng dụng tạo một chuỗi bí mật, gửi bản băm của nó ở bước 1 và chuỗi gốc ở bước 4, nên kẻ chặn mã không đổi được. Thẻ cuối: đăng nhập cần thêm một lớp nhận diện, như OpenID Connect xây trên OAuth.](../../diagrams/sd-14-011-main.svg)
+![Tám thẻ xếp dọc. Thẻ đầu: hai câu hỏi khác nhau, tôi là ai và ứng dụng này được làm gì thay tôi. Nhóm luồng mã ủy quyền của OAuth, năm thẻ bước nối nhau. 1 ứng dụng chuyển người dùng sang máy chủ ủy quyền, kèm mã định danh ứng dụng và địa chỉ chuyển hướng. 2 người dùng đăng nhập và đồng ý. 3 máy chủ ủy quyền trả về một mã, mà máy chủ chỉ đổi thành token một lần. 4 ứng dụng đổi mã lấy access token. 5 ứng dụng dùng access token gọi tài nguyên. Thẻ PKCE: ứng dụng tạo một chuỗi bí mật, gửi bản băm của nó ở bước 1 và chuỗi gốc ở bước 4, nên kẻ chặn mã không đổi được. Thẻ cuối: đừng coi một access token bất kỳ là bằng chứng đăng nhập; đăng nhập cần giao thức xác thực như OpenID Connect xây trên OAuth.](../../diagrams/sd-14-011-main.svg)
 
 ## Đọc hình
 
@@ -17,7 +17,7 @@ Hai việc này khác nhau, nên đừng coi access token của OAuth là bằng
 
 ## Giới hạn cần nhớ
 
-Access token chỉ cho biết ứng dụng được phép gì, không cho biết người dùng là ai; dùng nó như bằng chứng đăng nhập là lẫn hai việc. Và SSO gom rủi ro vào một chỗ: ai chiếm được phiên đăng nhập chung thì vào được mọi ứng dụng dùng chung nó (suy luận của người biên soạn).
+Theo bản nháp OAuth 2.1, OAuth là giao thức ủy quyền chứ không phải xác thực, nên một access token bất kỳ riêng nó không chứng minh người cầm vừa đăng nhập; coi nó là bằng chứng đăng nhập là lẫn hai việc. Bài không nói rằng mọi access token đều không mang thông tin về chủ thể: các định dạng token có chủ thể và điểm cuối thông tin người dùng của OpenID Connect không được đọc ở đây. Và SSO gom rủi ro vào một chỗ: ai chiếm được phiên đăng nhập chung thì vào được mọi ứng dụng dùng chung nó (suy luận của người biên soạn).
 
 ## Nhìn hình trả lời
 
@@ -26,7 +26,7 @@ Một ứng dụng nhận access token từ Google rồi coi ai giữ token là 
 <details>
 <summary>Xem đáp án</summary>
 
-Access token biểu diễn quyền đã được cấp cho ứng dụng, không phải bằng chứng rằng người cầm nó vừa đăng nhập. Một token có thể được cấp cho ứng dụng khác, bị lộ hoặc dùng lại. Để biết người dùng là ai cần một giao thức xác thực xây trên OAuth, như OpenID Connect.
+Access token biểu diễn quyền đã được cấp cho ứng dụng; một access token bất kỳ riêng nó không phải bằng chứng rằng người cầm nó vừa đăng nhập. Một token có thể được cấp cho ứng dụng khác, bị lộ hoặc dùng lại. Để biết người dùng là ai, ứng dụng cần một giao thức xác thực xây trên OAuth, như OpenID Connect, và dùng kết quả xác thực của nó thay vì chỉ nhận một access token.
 Phần đầu (OAuth không phải giao thức xác thực) theo đặc tả OAuth; các kịch bản token cấp cho ứng dụng khác, bị lộ hoặc dùng lại là suy luận của người biên soạn, không dựng thử.
 
 </details>
@@ -45,7 +45,7 @@ Ví dụ chạy thử là phép tính challenge và so khớp bằng Python, kh�
 ## Nguồn đối chiếu
 
 - [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/explaining-sessions-tokens-jwt-sso-and-oauth-in-one-diagram.md): chủ đề session, token, JWT, SSO, OAuth (nội dung chữ rất ngắn).
-- [OAuth 2.1 Authorization Framework — bản nháp](https://github.com/oauth-wg/oauth-v2-1/blob/main/draft-ietf-oauth-v2-1.md): OAuth là giao thức ủy quyền, luồng mã ủy quyền, PKCE với `S256`, bỏ Implicit và mật khẩu chủ tài nguyên. Đọc qua nguồn trên GitHub.
-- [OWASP — OAuth2 Cheat Sheet](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/OAuth2_Cheat_Sheet.md): PKCE, yêu cầu dùng đúng `code_verifier`. Đọc từ bản clone của kho.
+- [OAuth 2.1 Authorization Framework — bản nháp](https://github.com/oauth-wg/oauth-v2-1/blob/d04b368313c8835a930a2e55a68ef547312b7b32/draft-ietf-oauth-v2-1.md): OAuth là giao thức ủy quyền, luồng mã ủy quyền, PKCE với `S256`, bỏ Implicit và mật khẩu chủ tài nguyên. Đọc qua nguồn trên GitHub.
+- [OWASP — OAuth2 Cheat Sheet](https://github.com/OWASP/CheatSheetSeries/blob/ae965343cb82e6b8f42aff1ccee57c4fa0f171c2/cheatsheets/OAuth2_Cheat_Sheet.md): PKCE, yêu cầu dùng đúng `code_verifier`. Đọc từ bản clone của kho.
 
 Đã đọc nguồn ngày 2026-10-13. Đặc tả OpenID Connect không được mở; chỉ dựa vào chỗ bản nháp OAuth 2.1 nhắc tới nó. Bài viết và hình được thiết kế độc lập.

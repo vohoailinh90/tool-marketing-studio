@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 992" width="320" height="992" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1040" width="320" height="1040" role="img" aria-labelledby="title desc">
 <title id="title">Cookie HTTP và các thuộc tính</title>
-<desc id="desc">Máy chủ trả Set-Cookie gồm tên, giá trị và các thuộc tính; trình duyệt lưu lại. Mỗi yêu cầu sau, trình duyệt tự quyết cookie nào được gắn vào tiêu đề Cookie. Domain và Path giới hạn địa chỉ nhận cookie. Secure chỉ gửi qua HTTPS. HttpOnly để JavaScript không đọc được cookie. SameSite quyết định có gửi cookie trong yêu cầu từ trang khác site hay không, với Strict, Lax và None; Lax chỉ gửi khi đó là điều hướng cấp cao nhất bằng phương thức an toàn như GET; None phải kèm Secure. Expires hoặc Max-Age đặt thời hạn; không có thì là cookie phiên. Nên khai SameSite rõ ràng vì trình duyệt có thể xử lý cookie không khai theo cách khác nhau.</desc>
+<desc id="desc">Máy chủ trả Set-Cookie gồm tên, giá trị và các thuộc tính; trình duyệt lưu lại. Mỗi yêu cầu sau, trình duyệt tự quyết cookie nào được gắn vào tiêu đề Cookie. Domain và Path giới hạn địa chỉ nhận cookie. Secure chỉ gửi qua HTTPS. HttpOnly để JavaScript không đọc được cookie. SameSite quyết định có gửi cookie trong yêu cầu từ trang khác site hay không, với Strict, Lax và None; Lax chỉ gửi khi đó là điều hướng cấp cao nhất bằng phương thức an toàn như GET; None phải kèm Secure và trình duyệt vẫn có thể chặn cookie bên thứ ba. Expires hoặc Max-Age đặt thời hạn; không có thì là cookie phiên. Nên khai SameSite rõ ràng vì trình duyệt có thể xử lý cookie không khai theo cách khác nhau.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="992" fill="#f8fafc"/>
+<rect width="320" height="1040" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="30" font-size="21" font-weight="bold">COOKIE HTTP</text>
 <text x="16" y="54" font-size="21" font-weight="bold">VÀ THUỘC TÍNH</text>
@@ -25,19 +25,21 @@
 <text x="29" y="507" font-size="16" font-weight="bold">HttpOnly</text>
 <text x="29" y="535" font-size="16" font-weight="normal">JavaScript không đọc được</text>
 <text x="29" y="559" font-size="16" font-weight="normal">cookie; máy chủ vẫn nhận.</text>
-<rect x="16" y="586" width="288" height="172" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<rect x="16" y="586" width="288" height="220" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
 <text x="29" y="615" font-size="16" font-weight="bold">SameSite</text>
 <text x="29" y="643" font-size="16" font-weight="normal">Strict: không gửi xuyên site.</text>
 <text x="29" y="667" font-size="16" font-weight="normal">Lax: chỉ điều hướng cấp cao</text>
-<text x="29" y="691" font-size="16" font-weight="normal">nhất bằng GET (bấm liên kết).</text>
-<text x="29" y="715" font-size="16" font-weight="normal">None: gửi cả xuyên site, phải</text>
-<text x="29" y="739" font-size="16" font-weight="normal">kèm Secure.</text>
-<rect x="16" y="766" width="288" height="100" rx="12" fill="#ffffff" stroke="#94a3b8"/>
-<text x="29" y="795" font-size="16" font-weight="bold">Thời hạn</text>
-<text x="29" y="823" font-size="16" font-weight="normal">Expires hoặc Max-Age; không có</text>
-<text x="29" y="847" font-size="16" font-weight="normal">thì là cookie phiên.</text>
-<rect x="16" y="878" width="288" height="100" rx="12" fill="#fee2e2" stroke="#94a3b8"/>
-<text x="29" y="907" font-size="16" font-weight="bold">Nên khai SameSite rõ ràng</text>
-<text x="29" y="935" font-size="16" font-weight="normal">Cookie không khai có thể được</text>
-<text x="29" y="959" font-size="16" font-weight="normal">xử lý khác nhau tùy trình duyệt.</text>
+<text x="29" y="691" font-size="16" font-weight="normal">nhất bằng phương thức an toàn</text>
+<text x="29" y="715" font-size="16" font-weight="normal">như GET (bấm liên kết). None:</text>
+<text x="29" y="739" font-size="16" font-weight="normal">gửi cả xuyên site, phải kèm</text>
+<text x="29" y="763" font-size="16" font-weight="normal">Secure; trình duyệt vẫn có thể</text>
+<text x="29" y="787" font-size="16" font-weight="normal">chặn cookie bên thứ ba.</text>
+<rect x="16" y="814" width="288" height="100" rx="12" fill="#ffffff" stroke="#94a3b8"/>
+<text x="29" y="843" font-size="16" font-weight="bold">Thời hạn</text>
+<text x="29" y="871" font-size="16" font-weight="normal">Expires hoặc Max-Age; không có</text>
+<text x="29" y="895" font-size="16" font-weight="normal">thì là cookie phiên.</text>
+<rect x="16" y="926" width="288" height="100" rx="12" fill="#fee2e2" stroke="#94a3b8"/>
+<text x="29" y="955" font-size="16" font-weight="bold">Nên khai SameSite rõ ràng</text>
+<text x="29" y="983" font-size="16" font-weight="normal">Cookie không khai có thể được</text>
+<text x="29" y="1007" font-size="16" font-weight="normal">xử lý khác nhau tùy trình duyệt.</text>
 </g></svg>

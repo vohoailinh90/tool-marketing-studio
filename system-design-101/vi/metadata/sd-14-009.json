@@ -81,6 +81,12 @@
       "source": "https://github.com/mdn/content/blob/19370346042efad9e179fbf1f55deeeadee98c40/files/en-us/web/http/reference/headers/set-cookie/index.md",
       "section": "SameSite attribute (Lax)",
       "verified_by": "Read from a local clone of mdn/content at 19370346042efad9e179fbf1f55deeeadee98c40 (Set-Cookie reference page, Lax entry: top-level navigation and safe method; iframe navigation, fetch() and img/script subresources excluded). MDN describes the three values and notes SameSite helps protect against cross-site request forgery; the trade-off wording is the author's summary."
+    },
+    {
+      "claim_vi": "Browser vendors have started to block third-party cookies by default, or made plans to; third-party cookies may also be blocked by other browser settings or extensions, so SameSite=None with Secure allows cross-site sending under the SameSite rule but does not guarantee the cookie is delivered.",
+      "source": "https://github.com/mdn/content/blob/19370346042efad9e179fbf1f55deeeadee98c40/files/en-us/web/http/guides/cookies/index.md",
+      "section": "Privacy and tracking",
+      "verified_by": "Read from a local clone of mdn/content at 19370346042efad9e179fbf1f55deeeadee98c40 (cookies guide, Privacy and tracking); the conclusion about SameSite=None is the compiler's reading of that text."
     }
   ],
   "design_notes_vi": "Hai thẻ đầu tả luồng Set-Cookie rồi Cookie; sáu thẻ sau gom các thuộc tính theo việc chúng quyết định (đi tới đâu, khi nào, ai đọc, bao lâu); thẻ cuối nêu nên khai SameSite rõ ràng. Không dùng ảnh nguồn.",

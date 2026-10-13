@@ -3,7 +3,7 @@
 **Cookie là một mẩu dữ liệu nhỏ mà máy chủ nhờ trình duyệt giữ hộ và gửi lại; các thuộc tính của nó quyết định khi nào, tới đâu và cho ai nó được gửi hay đọc.**
 Hiểu từng thuộc tính là hiểu vì sao cùng một cookie lúc có mặt, lúc vắng mặt trong một yêu cầu.
 
-![Tám thẻ xếp dọc. Thẻ đầu: máy chủ trả Set-Cookie gồm tên, giá trị và các thuộc tính; trình duyệt lưu lại. Thẻ thứ hai: mỗi yêu cầu sau, trình duyệt tự quyết cookie nào được gắn vào tiêu đề Cookie. Bốn thẻ thuộc tính: Domain và Path giới hạn địa chỉ nhận cookie; Secure chỉ gửi qua HTTPS; HttpOnly để JavaScript không đọc được cookie; SameSite quyết định có gửi cookie trong yêu cầu từ trang khác site hay không, với Strict, Lax và None; Lax chỉ gửi khi đó là điều hướng cấp cao nhất bằng phương thức an toàn như GET; None phải kèm Secure. Thẻ thời hạn: Expires hoặc Max-Age, không có thì là cookie phiên. Thẻ cuối: nên khai SameSite rõ ràng vì trình duyệt có thể xử lý cookie không khai theo cách khác nhau.](../../diagrams/sd-14-009-main.svg)
+![Tám thẻ xếp dọc. Thẻ đầu: máy chủ trả Set-Cookie gồm tên, giá trị và các thuộc tính; trình duyệt lưu lại. Thẻ thứ hai: mỗi yêu cầu sau, trình duyệt tự quyết cookie nào được gắn vào tiêu đề Cookie. Bốn thẻ thuộc tính: Domain và Path giới hạn địa chỉ nhận cookie; Secure chỉ gửi qua HTTPS; HttpOnly để JavaScript không đọc được cookie; SameSite quyết định có gửi cookie trong yêu cầu từ trang khác site hay không, với Strict, Lax và None; Lax chỉ gửi khi đó là điều hướng cấp cao nhất bằng phương thức an toàn như GET; None phải kèm Secure và trình duyệt vẫn có thể chặn cookie bên thứ ba. Thẻ thời hạn: Expires hoặc Max-Age, không có thì là cookie phiên. Thẻ cuối: nên khai SameSite rõ ràng vì trình duyệt có thể xử lý cookie không khai theo cách khác nhau.](../../diagrams/sd-14-009-main.svg)
 
 ## Đọc hình
 
@@ -13,13 +13,13 @@ Hiểu từng thuộc tính là hiểu vì sao cùng một cookie lúc có mặt
 
 **Secure và HttpOnly.** `Secure`: chỉ gửi qua kết nối mã hóa HTTPS (có ngoại lệ cho localhost). `HttpOnly`: mã JavaScript không đọc được cookie qua `document.cookie`, dù trình duyệt vẫn gửi nó lên máy chủ. Khi chạy thử, cookie `HttpOnly` vắng mặt trong `document.cookie` nhưng máy chủ vẫn nhận được.
 
-**SameSite.** Quyết định có gửi cookie trong yêu cầu xuất phát từ trang khác site hay không. `Strict`: không gửi. `Lax`: với yêu cầu xuyên site, chỉ gửi khi đó là điều hướng cấp cao nhất (địa chỉ trên thanh địa chỉ đổi, ví dụ người dùng bấm liên kết sang trang này) bằng phương thức an toàn như GET; không gửi kèm form POST từ trang khác, cũng không gửi cho yêu cầu từ iframe, ảnh, script hay `fetch()` xuyên site. `None`: gửi cả khi xuyên site (phải kèm `Secure`).
+**SameSite.** Quyết định có gửi cookie trong yêu cầu xuất phát từ trang khác site hay không. `Strict`: không gửi. `Lax`: với yêu cầu xuyên site, chỉ gửi khi đó là điều hướng cấp cao nhất (địa chỉ trên thanh địa chỉ đổi, ví dụ người dùng bấm liên kết sang trang này) bằng phương thức an toàn (GET là ví dụ thường gặp); không gửi kèm form POST từ trang khác, cũng không gửi cho yêu cầu từ iframe, ảnh, script hay `fetch()` xuyên site. `None`: gửi cả khi xuyên site (phải kèm `Secure`). Đây chỉ là phần luật của `SameSite`: MDN ghi các nhà làm trình duyệt đã bắt đầu chặn cookie bên thứ ba theo mặc định (hoặc có kế hoạch như vậy), và cài đặt hay tiện ích khác cũng có thể chặn, nên `None` kèm `Secure` không bảo đảm cookie tới được máy chủ.
 
 **Thời hạn.** `Expires` hoặc `Max-Age` đặt ngày hết hạn; không có thì là cookie phiên, thường bị xóa khi phiên hiện tại kết thúc. Lúc nào phiên kết thúc do trình duyệt quyết định, và một số trình duyệt khôi phục phiên cũ khi mở lại, khiến cookie phiên có thể tồn tại rất lâu; vì vậy đóng trình duyệt không phải cách đăng xuất đáng tin (kết luận cuối là suy luận của người biên soạn).
 
 ## Giới hạn cần nhớ
 
-`SameSite` chặt hơn thì bảo vệ tốt hơn khỏi yêu cầu giả từ trang khác, nhưng cũng làm hỏng những luồng cần cookie xuyên site, như nội dung nhúng. Khi chạy thử trên Chromium, cookie không khai `SameSite` vẫn được gửi kèm một form POST xuyên site ngay sau khi tạo, nhưng 130 giây sau thì không (nguyên nhân chưa kiểm nguồn); vì vậy nên khai `SameSite` rõ ràng thay vì dựa vào mặc định.
+`SameSite` chặt hơn thì bảo vệ tốt hơn khỏi yêu cầu giả từ trang khác, nhưng cũng làm hỏng những luồng cần cookie xuyên site, như nội dung nhúng (và trình duyệt vẫn có thể chặn cookie bên thứ ba dù đã khai `None`). Khi chạy thử trên Chromium, cookie không khai `SameSite` vẫn được gửi kèm một form POST xuyên site ngay sau khi tạo, nhưng 130 giây sau thì không (nguyên nhân chưa kiểm nguồn); vì vậy nên khai `SameSite` rõ ràng thay vì dựa vào mặc định.
 
 ## Nhìn hình trả lời
 

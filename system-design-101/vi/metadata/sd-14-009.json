@@ -77,10 +77,10 @@
       "verified_by": "No external page reports this output; observed by executing the code on the authoring machine. MDN says a cookie without SameSite is treated as Lax; the temporary difference right after creation was observed here and its cause was not checked against a source."
     },
     {
-      "claim_vi": "SameSite=Lax leaves cookies out of cross-site form POSTs but sends them on link navigation; stricter SameSite protects better against forged cross-site requests but breaks flows that need cross-site cookies such as embedded content.",
-      "source": "https://github.com/mdn/content/blob/19370346042efad9e179fbf1f55deeeadee98c40/files/en-us/web/http/guides/cookies/index.md",
-      "section": "Controlling third-party cookies with SameSite; Privacy and tracking",
-      "verified_by": "MDN describes the three values and notes SameSite helps protect against cross-site request forgery; the trade-off wording is the author's summary."
+      "claim_vi": "SameSite=Lax sends a cookie on a cross-site request only when it is a top-level navigation (the address bar URL changes, e.g. a link click in the top-level context, or a form submission) that uses a safe method, so it excludes cross-site POST, iframe navigation, fetch() and subresource requests such as img or script; stricter SameSite protects better against forged cross-site requests but breaks flows that need cross-site cookies such as embedded content.",
+      "source": "https://github.com/mdn/content/blob/19370346042efad9e179fbf1f55deeeadee98c40/files/en-us/web/http/reference/headers/set-cookie/index.md",
+      "section": "SameSite attribute (Lax)",
+      "verified_by": "Read from a local clone of mdn/content at 19370346042efad9e179fbf1f55deeeadee98c40 (Set-Cookie reference page, Lax entry: top-level navigation and safe method; iframe navigation, fetch() and img/script subresources excluded). MDN describes the three values and notes SameSite helps protect against cross-site request forgery; the trade-off wording is the author's summary."
     }
   ],
   "design_notes_vi": "Hai thẻ đầu tả luồng Set-Cookie rồi Cookie; sáu thẻ sau gom các thuộc tính theo việc chúng quyết định (đi tới đâu, khi nào, ai đọc, bao lâu); thẻ cuối nêu nên khai SameSite rõ ràng. Không dùng ảnh nguồn.",

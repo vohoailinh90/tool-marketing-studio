@@ -3,7 +3,7 @@
 **Cookie là một mẩu dữ liệu nhỏ mà máy chủ nhờ trình duyệt giữ hộ và gửi lại; các thuộc tính của nó quyết định khi nào, tới đâu và cho ai nó được gửi hay đọc.**
 Hiểu từng thuộc tính là hiểu vì sao cùng một cookie lúc có mặt, lúc vắng mặt trong một yêu cầu.
 
-![Tám thẻ xếp dọc. Thẻ đầu: máy chủ trả Set-Cookie gồm tên, giá trị và các thuộc tính; trình duyệt lưu lại. Thẻ thứ hai: mỗi yêu cầu sau, trình duyệt tự quyết cookie nào được gắn vào tiêu đề Cookie. Bốn thẻ thuộc tính: Domain và Path giới hạn địa chỉ nhận cookie; Secure chỉ gửi qua HTTPS; HttpOnly để JavaScript không đọc được cookie; SameSite quyết định có gửi cookie trong yêu cầu từ trang khác site hay không, với Strict, Lax và None; None phải kèm Secure. Thẻ thời hạn: Expires hoặc Max-Age, không có thì là cookie phiên. Thẻ cuối: nên khai SameSite rõ ràng vì trình duyệt có thể xử lý cookie không khai theo cách khác nhau.](../../diagrams/sd-14-009-main.svg)
+![Tám thẻ xếp dọc. Thẻ đầu: máy chủ trả Set-Cookie gồm tên, giá trị và các thuộc tính; trình duyệt lưu lại. Thẻ thứ hai: mỗi yêu cầu sau, trình duyệt tự quyết cookie nào được gắn vào tiêu đề Cookie. Bốn thẻ thuộc tính: Domain và Path giới hạn địa chỉ nhận cookie; Secure chỉ gửi qua HTTPS; HttpOnly để JavaScript không đọc được cookie; SameSite quyết định có gửi cookie trong yêu cầu từ trang khác site hay không, với Strict, Lax và None; Lax chỉ gửi khi đó là điều hướng cấp cao nhất bằng phương thức an toàn như GET; None phải kèm Secure. Thẻ thời hạn: Expires hoặc Max-Age, không có thì là cookie phiên. Thẻ cuối: nên khai SameSite rõ ràng vì trình duyệt có thể xử lý cookie không khai theo cách khác nhau.](../../diagrams/sd-14-009-main.svg)
 
 ## Đọc hình
 
@@ -13,7 +13,7 @@ Hiểu từng thuộc tính là hiểu vì sao cùng một cookie lúc có mặt
 
 **Secure và HttpOnly.** `Secure`: chỉ gửi qua kết nối mã hóa HTTPS (có ngoại lệ cho localhost). `HttpOnly`: mã JavaScript không đọc được cookie qua `document.cookie`, dù trình duyệt vẫn gửi nó lên máy chủ. Khi chạy thử, cookie `HttpOnly` vắng mặt trong `document.cookie` nhưng máy chủ vẫn nhận được.
 
-**SameSite.** Quyết định có gửi cookie trong yêu cầu xuất phát từ trang khác site hay không. `Strict`: không gửi. `Lax`: gửi khi người dùng bấm liên kết sang trang này, nhưng không gửi kèm các yêu cầu như form POST từ trang khác. `None`: gửi cả khi xuyên site (phải kèm `Secure`).
+**SameSite.** Quyết định có gửi cookie trong yêu cầu xuất phát từ trang khác site hay không. `Strict`: không gửi. `Lax`: với yêu cầu xuyên site, chỉ gửi khi đó là điều hướng cấp cao nhất (địa chỉ trên thanh địa chỉ đổi, ví dụ người dùng bấm liên kết sang trang này) bằng phương thức an toàn như GET; không gửi kèm form POST từ trang khác, cũng không gửi cho yêu cầu từ iframe, ảnh, script hay `fetch()` xuyên site. `None`: gửi cả khi xuyên site (phải kèm `Secure`).
 
 **Thời hạn.** `Expires` hoặc `Max-Age` đặt ngày hết hạn; không có thì là cookie phiên, thường bị xóa khi phiên hiện tại kết thúc. Lúc nào phiên kết thúc do trình duyệt quyết định, và một số trình duyệt khôi phục phiên cũ khi mở lại, khiến cookie phiên có thể tồn tại rất lâu; vì vậy đóng trình duyệt không phải cách đăng xuất đáng tin (kết luận cuối là suy luận của người biên soạn).
 
@@ -28,7 +28,7 @@ Người dùng đang đăng nhập ngân hàng, rồi mở một trang khác sit
 <details>
 <summary>Xem đáp án</summary>
 
-Khi chạy thử trên Chromium: cookie khai `Strict` không được gửi kèm cả lúc bấm liên kết từ trang khác site; cookie khai `Lax` được gửi khi bấm liên kết nhưng không được gửi kèm form POST từ trang khác site; cookie không khai gì thì, trên Chromium 141 đã thử, tùy thời điểm như phần giới hạn trên.
+Khi chạy thử trên Chromium: cookie khai `Strict` không được gửi kèm cả lúc bấm liên kết từ trang khác site; cookie khai `Lax` được gửi khi bấm liên kết (điều hướng cấp cao nhất bằng GET) nhưng không được gửi kèm form POST từ trang khác site; cookie không khai gì thì, trên Chromium 141 đã thử, tùy thời điểm như phần giới hạn trên.
 Vì vậy để cookie phiên không đi kèm form POST từ trang khác, nên khai `Lax` hoặc `Strict`. `SameSite` không thay thế các biện pháp khác chống giả mạo yêu cầu, và bài này không thử các trình duyệt khác.
 
 </details>
@@ -47,6 +47,7 @@ Ví dụ chạy thử là một máy chủ Python và Chromium 141 (Playwright);
 ## Nguồn đối chiếu
 
 - [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/http-cookies-explained-with-a-simple-diagram.md): HTTP không nhớ trạng thái, cookie và các thuộc tính chính.
+- [MDN — Set-Cookie, phần SameSite (bản ghim)](https://github.com/mdn/content/blob/19370346042efad9e179fbf1f55deeeadee98c40/files/en-us/web/http/reference/headers/set-cookie/index.md): Lax chỉ gửi xuyên site cho điều hướng cấp cao nhất bằng phương thức an toàn; không gồm iframe, ảnh, script, `fetch()`. Đọc từ bản clone của kho.
 - [MDN — Using HTTP cookies](https://github.com/mdn/content/blob/19370346042efad9e179fbf1f55deeeadee98c40/files/en-us/web/http/guides/cookies/index.md): `Set-Cookie`, thời hạn, `Secure`, `HttpOnly`, `Domain`, `Path`, `SameSite` và mặc định `Lax`. Đọc từ bản clone của kho.
 
 Đã đọc nguồn ngày 2026-10-13. Ví dụ chạy thử bằng Python và Chromium 141; đã không mở trang MDN trên web. Bài viết và hình được thiết kế độc lập.

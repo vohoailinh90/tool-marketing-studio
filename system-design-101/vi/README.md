@@ -42,6 +42,10 @@ Không cần đọc phần nâng cao để nắm ý chính. Các sơ đồ đư�
 - `diagrams/<id>-main.svg`: hình chính, có mô tả văn bản trong SVG và alt text trong bài.
 - `metadata/<id>.json`: trạng thái bài, nguồn ghim phiên bản, claim và kiểm chứng.
 - `progress.json`: bài đã viết và ID sẽ viết tiếp; cập nhật sau mỗi đợt.
+- Từ viết tắt: bài viết cho người mới, nên mọi từ viết tắt (như LLM, DNS, SSE) mà bài hoặc hình có dùng đều được giải
+  thích đầy đủ ở mục `## Từ viết tắt` ngay sau hình, mỗi từ một dòng: `- **LLM** (Large Language Model) — mô hình
+  ngôn ngữ lớn: lời giải thích đơn giản`. Dạng đầy đủ trong ngoặc phải ghép đúng chữ cái đầu; quy tắc chi tiết ở
+  [kết luận brainstorm](../../brainstorm/system-design-101-vi/DECISIONS.md), `scripts/sd101_check.py` kiểm bằng máy.
 
 Trạng thái nội dung: `draft → review → done`. Kiểm chứng nguồn, review kỹ thuật,
 kiểm tra hình mobile và thử với người học được ghi riêng. `done` cần review kỹ thuật

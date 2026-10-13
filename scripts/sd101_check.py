@@ -45,8 +45,8 @@ What is checked, per lesson id:
     in a code block or a comment; a #fragment on it is fine), it mentions no lesson id that has no lesson
     directory, and it never contains assets.bytebytego.com, the host of every source image, in any form:
     ![]() , ![x][ref], <img>, <picture>, a bare URL
-  - abbreviations: every abbreviation a beginner could trip on (LLM, DNS, SSE: two or more capital letters)
-    that lesson.md or its figure's text uses is explained in a "## Từ viết tắt" section, the first "##" of the
+  - abbreviations: every abbreviation a beginner could trip on (LLM, DNS, SSE: two or more capital letters,
+    and the mixed-case terms in MIXED_CASE_TERMS such as gRPC and IPv4) that lesson.md or its figure's text uses is explained in a "## Từ viết tắt" section, the first "##" of the
     lesson, one bullet each: - **LLM** (Large Language Model) — meaning: a plain-words explanation. The
     parenthesis spells the abbreviation out in Latin letters, so its initials give the abbreviation back
     (camelCase and all-caps runs count: HyperText, SYNchronize); keywords, HTTP methods and file names that only
@@ -166,8 +166,12 @@ GLOSSARY_HEADING = "Từ viết tắt"
 SOURCES_HEADING = "Nguồn đối chiếu"
 # Two or more capital letters standing alone: LLM, DNS, HTTP/2 (-> HTTP), APIs (-> API). Not IPv4, gRPC, OAuth,
 # MAX_SIZE or a Vietnamese capital word with a mark on it, which are not read as abbreviations.
-ABBREVIATION = re.compile(r"(?<!\w)([A-Z]{2,})\d*s?(?!\w)")
-GLOSSARY_BULLET = re.compile(r"^- \*\*(?P<abbreviation>[A-Z]{2,})\*\* \((?P<full>[^()]+)\) — (?P<meaning>\S.*)$")
+# A few terms carry their abbreviation in mixed case (gRPC, IPv4), which the capital-letter rule cannot see; they are
+# listed here, so add a new one when a lesson introduces it.
+MIXED_CASE_TERMS = ("gRPC", "IPv4", "IPv6", "OAuth", "mTLS", "NoSQL", "vCPU")
+ABBREVIATION = re.compile(r"(?<!\w)(?:(" + "|".join(MIXED_CASE_TERMS) + r")|([A-Z]{2,})\d*s?)(?!\w)")
+GLOSSARY_BULLET = re.compile(r"^- \*\*(?P<abbreviation>(?=[A-Za-z0-9]*[A-Z])[A-Za-z][A-Za-z0-9]+)\*\* "
+                             r"\((?P<full>[^()]+)\) — (?P<meaning>\S.*)$")
 MIN_MEANING_WORDS = 3
 # Capital words that are not abbreviations: HTTP methods, SQL keywords and a few file or status names. They need no
 # entry in the glossary. In lesson.md a `code span` is skipped too, so a new one can usually stay out of this list.
@@ -938,7 +942,7 @@ def check_markdown(lesson_id: str, text: str, lesson_dir: pathlib.Path, entries:
 
 def abbreviations_in(text: str) -> set[str]:
     """The abbreviations a piece of text uses: capital-letter runs, minus the words in NOT_ACRONYMS."""
-    return {match.group(1) for match in ABBREVIATION.finditer(text)} - NOT_ACRONYMS
+    return {match.group(1) or match.group(2) for match in ABBREVIATION.finditer(text)} - NOT_ACRONYMS
 
 
 def figure_strings(path: pathlib.Path) -> list[str]:
@@ -1036,12 +1040,13 @@ def initials_of(full_form: str) -> str:
 
 
 def spells(abbreviation: str, full_form: str) -> bool:
-    """True when the full form is written out (not the abbreviation again) and the abbreviation reads off its
-    initials, in order, starting with the first. Little words (and, for, of) may be skipped."""
-    if full_form.upper() == abbreviation or not any(char.islower() for char in full_form):
+    """True when the full form is written out (not the abbreviation again) and the abbreviation's letters read off its
+    initials, in order, starting with the first. Little words (and, for, of) may be skipped; digits are not letters."""
+    letters = re.sub(r"[^A-Za-z]", "", abbreviation).upper()
+    if full_form.upper() == abbreviation.upper() or not any(char.islower() for char in full_form):
         return False
     initials = iter(initials_of(full_form))
-    return abbreviation[0] == next(initials, "") and all(letter in initials for letter in abbreviation[1:])
+    return letters[0] == next(initials, "") and all(letter in initials for letter in letters[1:])
 
 
 def check_abbreviations(lesson_id: str, text: str, figure: list[str]) -> list[Problem]:
@@ -1068,7 +1073,8 @@ def check_abbreviations(lesson_id: str, text: str, figure: list[str]) -> list[Pr
         seen.add(abbreviation)
         if not spells(abbreviation, full_form):
             problems.append(Problem(lesson_id, f"glossary spells {abbreviation} out as {full_form!r}, whose initials "
-                                               f"do not give {abbreviation}; write the full form in Latin letters"))
+                                               f"do not give {abbreviation}; write the full form in Latin letters, with a capital "
+                                               "where a word hides an initial (REpresentational, SYNchronize)"))
         if len(meaning.split()) < MIN_MEANING_WORDS:
             problems.append(Problem(lesson_id, f"glossary entry {abbreviation} has no explanation after the dash"))
     if not entries and not malformed:

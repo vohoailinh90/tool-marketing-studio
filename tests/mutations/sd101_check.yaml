@@ -1715,12 +1715,12 @@ mutations:
   replace: "    problems = []"
   test: tests.test_sd101_check.CommandLineTests.test_a_broken_store_exits_one_and_prints_the_problem
 - label: a word in NOT_ACRONYMS is still read as an abbreviation
-  find: "    return {match.group(1) for match in ABBREVIATION.finditer(text)} - NOT_ACRONYMS"
-  replace: "    return {match.group(1) for match in ABBREVIATION.finditer(text)}"
+  find: "    return {match.group(1) or match.group(2) for match in ABBREVIATION.finditer(text)} - NOT_ACRONYMS"
+  replace: "    return {match.group(1) or match.group(2) for match in ABBREVIATION.finditer(text)}"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_words_that_only_look_like_abbreviations_need_no_entry
 - label: a plural abbreviation (APIs) is not recognised
-  find: "\\d*s?(?!\\w)"
-  replace: "\\d*(?!\\w)"
+  find: "\\d*s?)(?!\\w)"
+  replace: "\\d*)(?!\\w)"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_the_forms_an_abbreviation_takes
 - label: the text of the figure is not read for abbreviations
   find: "body + glossary + figure))"
@@ -1787,12 +1787,12 @@ mutations:
   replace: "            bullets.append(\"\")"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_a_bullet_may_run_onto_the_next_line
 - label: the abbreviation itself counts as its own full form
-  find: "    if full_form.upper() == abbreviation or not any(char.islower() for char in full_form):\n        return False\n"
+  find: "    if full_form.upper() == abbreviation.upper() or not any(char.islower() for char in full_form):\n        return False\n"
   replace: ""
   test: tests.test_sd101_check.AbbreviationRuleTests.test_the_full_form_must_spell_the_abbreviation_out
 - label: the full form need not start with the abbreviation's first letter
-  find: "return abbreviation[0] == next(initials, \"\") and all(letter in initials for letter in abbreviation[1:])"
-  replace: "return all(letter in initials for letter in abbreviation)"
+  find: "return letters[0] == next(initials, \"\") and all(letter in initials for letter in letters[1:])"
+  replace: "return all(letter in initials for letter in letters)"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_the_first_letter_of_the_full_form_must_be_the_first_of_the_abbreviation
 - label: a Vietnamese đ is dropped from the initials
   find: "unicodedata.normalize(\"NFD\", full_form.replace(\"đ\", \"d\").replace(\"Đ\", \"D\"))"
@@ -1810,3 +1810,15 @@ mutations:
   find: "except (OSError, LookupError, ElementTree.ParseError):"
   replace: "except (OSError, LookupError):"
   test: tests.test_sd101_check.RobustnessTests.test_odd_svg_files_are_reported_not_raised
+- label: the mixed-case terms (gRPC, IPv4) are not recognised as abbreviations
+  find: 'MIXED_CASE_TERMS = ("gRPC", "IPv4", "IPv6", "OAuth", "mTLS", "NoSQL", "vCPU")'
+  replace: 'MIXED_CASE_TERMS = ("ZZZ",)'
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_the_forms_an_abbreviation_takes
+- label: a glossary bullet for a mixed-case term is not in the form
+  find: '(?=[A-Za-z0-9]*[A-Z])[A-Za-z][A-Za-z0-9]+'
+  replace: '[A-Z]{2,}'
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_the_full_form_may_skip_little_words_and_use_the_camel_case_of_a_name
+- label: a mixed-case term used with no glossary is accepted
+  find: '    return {match.group(1) or match.group(2) for match in ABBREVIATION.finditer(text)} - NOT_ACRONYMS'
+  replace: '    return {match.group(2) for match in ABBREVIATION.finditer(text) if match.group(2)} - NOT_ACRONYMS'
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_mixed_case_term_needs_a_glossary_bullet_too

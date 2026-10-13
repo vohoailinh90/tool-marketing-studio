@@ -1807,11 +1807,17 @@ class AbbreviationRuleTests(StoreCase):
         entries = {"NAPT": "Network Address and Port Translation", "RFC": "Request for Comments",
                    "JSON": "JavaScript Object Notation", "ID": "IDentifier", "SYN": "SYNchronize",
                    "CSSOM": "CSS Object Model", "REST": "REpresentational State Transfer",
-                   "HSTS": "HTTP Strict Transport Security", "CSDL": "cơ sở dữ liệu"}
+                   "HSTS": "HTTP Strict Transport Security", "CSDL": "cơ sở dữ liệu",
+                   "gRPC": "gRPC Remote Procedure Calls", "IPv4": "Internet Protocol version 4",
+                   "mTLS": "mutual Transport Layer Security"}
         glossary = "".join(f"- **{abbreviation}** ({full}) — giải thích cho người mới học.\n"
                            for abbreviation, full in entries.items())
         self.lesson(" ".join(entries), glossary=glossary)
         self.assertEqual([], self.problems())
+
+    def test_a_mixed_case_term_needs_a_glossary_bullet_too(self) -> None:
+        self.lesson("Dịch vụ dùng gRPC.", glossary=None)
+        self.assertProblem("uses the abbreviation(s) gRPC")
 
     def test_the_first_letter_of_the_full_form_must_be_the_first_of_the_abbreviation(self) -> None:
         self.assertFalse(check.spells("ML", "Large Machine Learning"))
@@ -1862,7 +1868,8 @@ class AbbreviationRuleTests(StoreCase):
     def test_the_forms_an_abbreviation_takes(self) -> None:
         found = check.abbreviations_in("APIs, HTTP/2, REST/JSON, TCP/UDP, (SSE), \"DNS\", HTTPS.")
         self.assertEqual({"API", "HTTP", "REST", "JSON", "TCP", "UDP", "SSE", "DNS", "HTTPS"}, found)
-        for text in ("IPv4", "gRPC", "OAuth", "MAX_SIZE", "A80", "WebSocket", "I", "ĐƠN HÀNG", "TÓM"):
+        self.assertEqual({"gRPC", "IPv4", "mTLS"}, check.abbreviations_in("gRPC qua IPv4 và mTLS."))
+        for text in ("MAX_SIZE", "A80", "WebSocket", "I", "ĐƠN HÀNG", "TÓM", "gRPCs", "myIPv4"):
             with self.subTest(text=text):
                 self.assertEqual(set(), check.abbreviations_in(text))
 

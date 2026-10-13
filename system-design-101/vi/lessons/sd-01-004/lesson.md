@@ -7,6 +7,7 @@ nhưng dữ liệu thực sự phải đi qua mạng. Đó là ý tưởng của
 
 ## Từ viết tắt
 
+- **gRPC** (gRPC Remote Procedure Calls) — khung gọi thủ tục từ xa mã nguồn mở của Google: mã hóa message bằng Protocol Buffers và chuyên chở qua HTTP/2.
 - **RPC** (Remote Procedure Call) — gọi thủ tục từ xa: chương trình này gọi một hàm chạy trên máy khác như gọi hàm trong cùng chương trình.
 - **REST** (REpresentational State Transfer) — kiểu thiết kế dịch vụ qua HTTP: mỗi tài nguyên có một địa chỉ riêng, thường trao đổi dữ liệu dạng JSON.
 - **JSON** (JavaScript Object Notation) — ký hiệu đối tượng JavaScript: định dạng văn bản biểu diễn dữ liệu bằng các cặp tên và giá trị, dễ đọc với cả người và máy.

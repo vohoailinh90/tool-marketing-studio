@@ -45,8 +45,8 @@
   },
   "claims": [
     {
-      "claim_vi": "Service chọn Pod theo selector; endpoint chỉ gồm Pod khớp và đang sẵn sàng.",
-      "source": "https://kubernetes.io/docs/concepts/services-networking/service/"
+      "claim_vi": "Service chọn Pod theo selector; EndpointSlice tham chiếu các Pod khớp và ghi điều kiện ready của từng endpoint.",
+      "source": "https://kubernetes.io/docs/concepts/services-networking/endpoint-slices/"
     },
     {
       "claim_vi": "port là cổng của Service, targetPort là cổng của Pod.",

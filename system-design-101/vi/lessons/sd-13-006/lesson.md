@@ -13,7 +13,7 @@ Service là lớp địa chỉ ổn định trước một nhóm Pod. Khi nó kh
 <details>
 <summary>Xem đáp án</summary>
 
-Selector của Service không khớp nhãn của Pod nào, hoặc các Pod chưa sẵn sàng. So selector trong `kubectl get svc web -o yaml` với nhãn của Pod trong `kubectl get pods --show-labels`, rồi xem trạng thái sẵn sàng của Pod.
+Chủ yếu là selector của Service không khớp nhãn của Pod nào (hoặc chưa có Pod). So selector trong `kubectl get svc web -o yaml` với nhãn của Pod trong `kubectl get pods --show-labels`. Nếu EndpointSlice có endpoint nhưng điều kiện `ready` là false thì vấn đề là readiness của Pod, không phải selector.
 
 </details>
 
@@ -24,7 +24,7 @@ Chuỗi kiểm tra trên giả định Service có selector. Service không sele
 <details>
 <summary>Xem sâu hơn</summary>
 
-- **Endpoint:** controller cập nhật EndpointSlice theo các Pod khớp selector và đang sẵn sàng. Để so khớp, xem `kubectl get svc web -o yaml` và `kubectl get pods --show-labels`.
+- **Endpoint:** EndpointSlice được tạo từ các Pod khớp selector, mỗi endpoint kèm điều kiện như `ready`; chỉ endpoint ready nhận traffic bình thường, Pod chưa sẵn sàng vẫn được liệt kê với `ready: false`. Để so khớp selector, xem `kubectl get svc web -o yaml` và `kubectl get pods --show-labels`.
 - **port và targetPort:** `port` là cổng của Service, `targetPort` là cổng container nhận traffic; nếu không ghi, `targetPort` bằng `port`.
 - **DNS:** trong cùng namespace gọi `web`; khác namespace dùng `web.ten-namespace` hoặc tên đầy đủ `web.ten-namespace.svc.cluster.local`.
 - **NodePort:** mặc định dải 30000–32767 trên mọi node; cần cho phép trong tường lửa hoặc security group.

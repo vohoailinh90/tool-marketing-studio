@@ -65,7 +65,7 @@
       "source": "https://kubernetes.io/docs/concepts/workloads/pods/sidecar-containers/"
     },
     {
-      "claim_vi": "Khi Pod bị xóa, container nhận SIGTERM rồi bị dừng cưỡng bức sau thời gian ân hạn.",
+      "claim_vi": "Khi Pod bị xóa, hook preStop chạy rồi container nhận SIGTERM; thời gian ân hạn đếm từ trước preStop và hết hạn thì container bị dừng cưỡng bức.",
       "source": "https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/"
     },
     {

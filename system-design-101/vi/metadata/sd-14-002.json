@@ -33,7 +33,7 @@
     "claims": {
       "status": "checked",
       "checked_on": "2026-10-13",
-      "evidence": "Behaviour demonstrated by running Python; OWASP cheat sheets read from local clones; the tokenization description and PCI DSS link come from the source."
+      "evidence": "Concepts come from the source and OWASP cheat sheets read from local clones; the example outputs were produced by running Python; the vault inference is the author's reasoning."
     },
     "technical_review": {
       "status": "pending",
@@ -59,22 +59,16 @@
   },
   "claims": [
     {
-      "claim_vi": "Base64 of '4111 1111 1111 1111' decodes back without any key.",
+      "claim_vi": "Encoding (e.g. Base64) changes the format by a reversible scheme without a key and is not meant to secure data; encryption uses an algorithm and a key so only holders of the key can read the data; tokenization substitutes tokens for sensitive data with the mapping kept in a token vault.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/encoding-vs-encryption-vs-tokenization.md",
-      "section": "Encoding",
-      "verified_by": "Executed in Python (argon2-cffi 25.1.0, bcrypt 5.0.0, cryptography 50.0.1, hashlib) on the authoring machine."
+      "section": "Encoding; Encryption; Tokenization",
+      "verified_by": "Source body read."
     },
     {
-      "claim_vi": "A Fernet token of the same data starts with 'gAAAAAB', decrypts with the right key and raises InvalidToken with a wrong key.",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/encoding-vs-encryption-vs-tokenization.md",
-      "section": "Encryption",
-      "verified_by": "Executed in Python (argon2-cffi 25.1.0, bcrypt 5.0.0, cryptography 50.0.1, hashlib) on the authoring machine."
-    },
-    {
-      "claim_vi": "A random token ('tok_' plus random hex) mapped through a dictionary 'vault' returns the data; the token is not derived from it.",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/encoding-vs-encryption-vs-tokenization.md",
-      "section": "Tokenization",
-      "verified_by": "Executed in Python (argon2-cffi 25.1.0, bcrypt 5.0.0, cryptography 50.0.1, hashlib) on the authoring machine."
+      "claim_vi": "The figure's example outputs: Base64 of '4111 1111 1111 1111' starts with NDExMSAxMTEx and decodes without a key; a Fernet token starts with gAAAAAB and a wrong key raises InvalidToken; a random 'tok_' token returns the data through a dictionary acting as the vault.",
+      "source": "https://pypi.org/project/cryptography/",
+      "section": "Fernet (symmetric encryption)",
+      "verified_by": "No external page describes this exact output; observed by executing the code on the authoring machine. Used the Python standard library (base64, secrets) and cryptography 50.0.1 (Fernet); the PyPI page identifies the package only."
     },
     {
       "claim_vi": "Symmetric encryption should use AES with a key of at least 128 bits (ideally 256); dedicated secret or key management systems add protection at the cost of complexity and administrative overhead.",
@@ -83,10 +77,16 @@
       "verified_by": "Read from a local clone of the OWASP repository."
     },
     {
-      "claim_vi": "Passwords should be hashed with modern adaptive algorithms rather than encrypted; hashing is a one-way function.",
+      "claim_vi": "In almost all circumstances passwords should be hashed with modern adaptive algorithms rather than encrypted; hashing is a one-way function.",
       "source": "https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Password_Storage_Cheat_Sheet.md",
       "section": "Hashing vs Encryption",
       "verified_by": "Read from a local clone of the OWASP repository."
+    },
+    {
+      "claim_vi": "Anyone who obtains the token vault can recover the original data, so the security of vault-based tokenization concentrates in the vault.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/encoding-vs-encryption-vs-tokenization.md",
+      "section": "Tokenization",
+      "verified_by": "Author's inference from the described design (mapping stored in a vault); not checked against a standard."
     },
     {
       "claim_vi": "Tokenization is often used for payment card data and helps with PCI DSS compliance.",

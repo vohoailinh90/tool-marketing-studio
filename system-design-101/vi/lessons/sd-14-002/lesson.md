@@ -28,7 +28,7 @@ Một hệ thống lưu “mật khẩu” bằng Base64 và cho rằng đã mã
 <details>
 <summary>Xem đáp án</summary>
 
-Base64 là encoding, không cần khóa để giải ngược, nên không bảo vệ gì. Mật khẩu còn không nên được mã hóa: chúng nên được băm bằng hàm băm chậm.
+Base64 là encoding, không cần khóa để giải ngược, nên không bảo vệ gì. Trong gần như mọi trường hợp, mật khẩu cũng không nên được mã hóa: chúng nên được băm bằng hàm băm chậm.
 Xem bài [lưu mật khẩu an toàn](../sd-14-003/lesson.md).
 
 </details>

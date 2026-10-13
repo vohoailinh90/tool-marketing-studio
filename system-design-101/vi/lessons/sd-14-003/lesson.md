@@ -48,7 +48,7 @@ Salt không phải bí mật và có thể lưu cùng hash. Khác với salt, �
 OWASP xem pepper là lớp phòng thủ bổ sung, không thay được băm chậm. Với bcrypt, các thư viện hiện đại báo lỗi khi mật khẩu dài hơn 72 byte
 (bản `bcrypt` 5.0.0 dùng để thử báo lỗi ở 73 byte).
 
-Mã hóa mật khẩu không phải cách làm: OWASP khuyên băm bằng thuật toán thích nghi hiện đại thay vì mã hóa hay lưu văn bản thô.
+Trong gần như mọi trường hợp, không nên mã hóa mật khẩu: OWASP khuyên băm bằng thuật toán thích nghi hiện đại thay vì mã hóa hay lưu văn bản thô.
 
 </details>
 

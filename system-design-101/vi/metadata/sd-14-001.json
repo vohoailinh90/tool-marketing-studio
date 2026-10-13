@@ -33,7 +33,7 @@
     "claims": {
       "status": "checked",
       "checked_on": "2026-10-13",
-      "evidence": "OWASP DevSecOps Guideline and Secrets Management Cheat Sheet read from local clones; threat modeling and the mapping of techniques to stages are the author's arrangement."
+      "evidence": "Only the table of contents and introduction of the OWASP DevSecOps Guideline README, and the OWASP Secrets Management Cheat Sheet, were read from local clones; the individual guideline chapters were not read and the gloss of each technique is the author's general knowledge."
     },
     "technical_review": {
       "status": "pending",
@@ -59,21 +59,21 @@
   },
   "claims": [
     {
-      "claim_vi": "The OWASP DevSecOps Guideline aims to detect security issues (by design or application vulnerability) as early as possible and to promote a shift-left security culture.",
+      "claim_vi": "The OWASP DevSecOps Guideline aims to detect security issues (by design or application vulnerability) as early as possible and promotes a shift-left security culture.",
       "source": "https://github.com/OWASP/DevSecOpsGuideline",
-      "section": "README",
+      "section": "README introduction",
       "verified_by": "Read from a local clone of the OWASP repository."
     },
     {
-      "claim_vi": "The guideline lists pre-commit secrets management, SCA, SAST, IaC scanning (Terraform, Helm), software supply-chain security (SBOM, artifact signing), IAST, DAST, compliance and policy as code, and security gates that block risky builds and releases.",
+      "claim_vi": "The guideline's process chapters are Design (threat modeling, secure design and requirements), Develop (pre-commit, secrets management, linting, repository hardening, secure code review), Build (SAST, SCA, container scanning and hardening, IaC scanning, security gates, SBOM, artifact signing, CI/CD pipeline security), Test (IAST, DAST, mobile, API security, misconfiguration, AI/LLM application testing), Release, Deploy (including secrets in Kubernetes and GitOps) and Operate (logging and monitoring, vulnerability management, pentest and more); Governance covers compliance auditing and policy as code.",
       "source": "https://github.com/OWASP/DevSecOpsGuideline",
-      "section": "README",
-      "verified_by": "Read from a local clone of the OWASP repository."
+      "section": "README table of contents",
+      "verified_by": "Read from a local clone of the OWASP repository. Only the table of contents was read, not the chapters."
     },
     {
-      "claim_vi": "CI/CD tools often expand the attack surface, so security controls are needed around them.",
+      "claim_vi": "CI/CD tools often expand the attack surface, so security controls are needed around them; CI/CD pipeline security is a topic under Build.",
       "source": "https://github.com/OWASP/DevSecOpsGuideline",
-      "section": "README",
+      "section": "README introduction; table of contents",
       "verified_by": "Read from a local clone of the OWASP repository."
     },
     {
@@ -83,15 +83,21 @@
       "verified_by": "Read from a local clone of the OWASP repository."
     },
     {
-      "claim_vi": "Threat modeling, continuous monitoring, container security, QA integration and collaboration are key DevSecOps concepts; placing each at a pipeline stage is the author's arrangement.",
+      "claim_vi": "Short glosses of SAST, SCA, DAST, IAST, IaC scanning and SBOM are general knowledge.",
+      "source": "https://github.com/OWASP/DevSecOpsGuideline",
+      "section": "README table of contents",
+      "verified_by": "Author's general knowledge; not checked against the OWASP chapters."
+    },
+    {
+      "claim_vi": "Ten key concepts: automated security checks, continuous monitoring, CI/CD automation, infrastructure as code, container security, secret management, threat modeling, QA integration, collaboration and communication, vulnerability management.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-is-devsecops.md",
       "section": "Key Concepts",
-      "verified_by": "Carried from the source as general description; not independently checked."
+      "verified_by": "Source body read."
     }
   ],
-  "design_notes_vi": "Sáu chặng của đường ống, mỗi chặng một việc; thẻ cuối nói chính đường ống là mục tiêu. Không có mũi tên sau chặng cuối. Không dùng ảnh nguồn.",
+  "design_notes_vi": "Sáu chặng theo mục lục OWASP, một thẻ quản trị xuyên suốt, và thẻ cuối nói chính đường ống là mục tiêu. Không có mũi tên sau chặng cuối. Không dùng ảnh nguồn.",
   "source_deviations": [
-    "Source is an unordered list of ten concepts with no explanation; the lesson places the technical ones at pipeline stages and names the two cultural ones (QA integration, collaboration) separately.",
+    "Source is an unordered list of ten concepts with no explanation; the lesson places the technical ones at the stages of OWASP's guideline and names the two cultural ones (QA integration, collaboration) separately.",
     "Source does not mention that the CI/CD pipeline itself is an attack surface; the lesson adds it from the OWASP guideline."
   ],
   "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."

@@ -11,7 +11,7 @@ Repo cũ tạm dừng; không merge/đóng/xóa các PR cũ.
   (prior_reviews, kể cả bài 7 tại comment6133492501/headb8dff434ff75499137bbb10b61122958fdaaafa5); evidence này không
   duyệt tổ hợp trong repo mới. PR #40 đã được merge vào main.
 - **Hệ thống hoạt động thế nào?:** 18 bài sd-12-001 đến sd-12-018, viết mới ngày 2026-10-13 theo yêu cầu người dùng
-  (danh sách ByteByteGo “How it Works?”), trên nhánh claude/funny-archimedes-253vvb. Chưa mở PR.
+  (danh sách ByteByteGo “How it Works?”), trên nhánh claude/funny-archimedes-253vvb, PR #51 (đang chờ review, chưa merge).
 
 - **sd-01-008** (Trình duyệt dựng trang web thế nào?): viết ngày 2026-10-13 theo thứ tự nguồn, trên nhánh claude/sd-01-008 xếp chồng
   lên PR #51 (chưa merge, đang chờ review); chưa mở PR riêng. Cùng trạng thái draft như nhóm sd-12 bên dưới.

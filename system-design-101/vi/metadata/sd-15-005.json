@@ -62,6 +62,10 @@
     {
       "claim_vi": "SRV chỉ tên máy chủ và cổng của dịch vụ; tên đó cần có A hoặc AAAA.",
       "source": "https://www.rfc-editor.org/rfc/rfc2782"
+    },
+    {
+      "claim_vi": "TTL thuộc về cả tập bản ghi (RRset: cùng tên, lớp và loại), nên mọi bản ghi trong tập dùng cùng một TTL.",
+      "source": "https://www.rfc-editor.org/rfc/rfc2181"
     }
   ],
   "design_notes_vi": "Ba nhóm khung dọc; mỗi bản ghi một dòng 'loại → trả lời gì'. Sơ đồ tự thiết kế, không dùng ảnh nguồn.",

@@ -20,7 +20,7 @@ Năm nhóm thường dùng để học:
 
 ## Giới hạn cần nhớ
 
-Năm nhóm là cách chia để dạy, không phải điều luật; sách và nhà cung cấp khác nhau xếp `SELECT` vào DML hoặc tách riêng. Phương ngữ cũng khác: PostgreSQL, MySQL, SQLite và SQL Server có cú pháp và hành vi riêng. Hãy luyện trên một hệ cụ thể và đối chiếu tài liệu của chính hệ đó.
+Năm nhóm là cách chia để dạy, không phải điều luật; sách và nhà cung cấp khác nhau xếp `SELECT` vào DML hoặc tách riêng. Oracle, ví dụ, xếp `SELECT` vào DML, đặt `GRANT` và `REVOKE` trong DDL và có nhóm riêng cho điều khiển giao dịch (Transaction Control); trong bài, TCL là cách gọi gọn của nhóm giao dịch đó. Phương ngữ cũng khác: PostgreSQL, MySQL, SQLite và SQL Server có cú pháp và hành vi riêng. Hãy luyện trên một hệ cụ thể và đối chiếu tài liệu của chính hệ đó.
 
 ## Nhìn hình thử trả lời
 

@@ -16,7 +16,7 @@
 
 ## Giới hạn cần nhớ
 
-Bản ghi không tự bảo đảm đáng tin: TXT chứa gì cũng được, PTR do chủ dải địa chỉ đặt chứ không do chủ tên miền xác nhận. Mỗi bản ghi có TTL riêng nên thay đổi lan chậm. CNAME ở *gốc* của miền (apex) thường không được phép, vì gốc đã phải có SOA và NS.
+Bản ghi không tự bảo đảm đáng tin: TXT chứa gì cũng được, PTR do chủ dải địa chỉ đặt chứ không do chủ tên miền xác nhận. TTL thuộc về cả tập bản ghi cùng tên, loại và lớp (RRset), không phải từng bản ghi lẻ, nên thay đổi lan chậm. CNAME ở *gốc* của miền (apex) thường không được phép, vì gốc đã phải có SOA và NS.
 
 ## Nhìn hình thử trả lời
 

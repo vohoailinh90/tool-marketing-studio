@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 836" width="320" height="836" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 860" width="320" height="860" role="img" aria-labelledby="title desc">
 <title id="title">Bốn kiểu SQL JOIN trên cùng một ví dụ</title>
-<desc id="desc">Hai bảng ví dụ: khách gồm An, Binh, Chi; đơn gồm đơn 10 (100) và 11 (50) của An và đơn 12 (70) không có khách. INNER JOIN chỉ giữ các cặp khớp: An với 10 và An với 11. LEFT JOIN giữ mọi khách, nên thêm Binh và Chi với phần đơn trống. RIGHT JOIN giữ mọi đơn, nên thêm đơn 12 với phần khách trống. FULL OUTER JOIN giữ cả hai phía, tổng cộng năm dòng. Bẫy: LEFT JOIN rồi lọc bằng WHERE trên cột của bảng phải làm mất các dòng không khớp; đưa điều kiện vào ON để giữ chúng.</desc>
-<rect width="320" height="836" fill="#f8fafc"/>
+<desc id="desc">Hai bảng ví dụ: khách gồm An, Binh, Chi; đơn gồm đơn 10 (100) và 11 (50) của An và đơn 12 (70) không có khách. INNER JOIN chỉ giữ các cặp khớp: An với 10 và An với 11. LEFT JOIN giữ mọi khách, nên thêm Binh và Chi với phần đơn trống. RIGHT JOIN giữ mọi đơn, nên thêm đơn 12 với phần khách trống. FULL OUTER JOIN giữ cả hai phía, tổng cộng năm dòng. Bẫy: LEFT JOIN rồi lọc bằng điều kiện WHERE loại NULL trên cột của bảng phải, như tien &gt; 60, làm mất các dòng không khớp; đưa điều kiện vào ON để giữ chúng.</desc>
+<rect width="320" height="860" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="30" font-size="21" font-weight="bold">BỐN KIỂU</text>
 <text x="16" y="54" font-size="21" font-weight="bold">SQL JOIN</text>
@@ -28,9 +28,10 @@
 <text x="29" y="619" font-size="16" font-weight="normal">Mọi dòng cả hai bên</text>
 <text x="29" y="643" font-size="16" font-weight="normal">5 dòng: 2 cặp khớp, 3 dòng</text>
 <text x="29" y="667" font-size="16" font-weight="normal">không khớp</text>
-<rect x="16" y="698" width="288" height="124" rx="12" fill="#fee2e2" stroke="#94a3b8"/>
+<rect x="16" y="698" width="288" height="148" rx="12" fill="#fee2e2" stroke="#94a3b8"/>
 <text x="29" y="727" font-size="16" font-weight="bold">Bẫy với LEFT JOIN</text>
-<text x="29" y="755" font-size="16" font-weight="normal">WHERE trên cột bảng phải làm</text>
-<text x="29" y="779" font-size="16" font-weight="normal">mất dòng không khớp. Đưa điều</text>
-<text x="29" y="803" font-size="16" font-weight="normal">kiện vào ON để giữ.</text>
+<text x="29" y="755" font-size="16" font-weight="normal">WHERE loại NULL (như tien &gt;</text>
+<text x="29" y="779" font-size="16" font-weight="normal">60) trên cột bảng phải làm mất</text>
+<text x="29" y="803" font-size="16" font-weight="normal">dòng không khớp. Đưa vào ON</text>
+<text x="29" y="827" font-size="16" font-weight="normal">để giữ.</text>
 </g></svg>

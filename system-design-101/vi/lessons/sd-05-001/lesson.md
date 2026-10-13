@@ -3,7 +3,7 @@
 **JOIN ghép các dòng của hai bảng theo một điều kiện.** Bốn kiểu thường gặp khác nhau ở chỗ:
 dòng nào không có cặp thì vẫn được giữ lại, dòng nào bị bỏ.
 
-![Hình dọc dùng hai bảng ví dụ: khach gồm An, Binh, Chi; don gồm đơn 10 (100) và đơn 11 (50) của An và đơn 12 (70) không có khách. INNER JOIN chỉ giữ cặp khớp: An–10, An–11. LEFT JOIN giữ mọi khách, thêm Binh và Chi với phần đơn trống. RIGHT JOIN giữ mọi đơn, thêm đơn 12 với phần khách trống. FULL OUTER JOIN giữ cả hai phía, tổng cộng năm dòng. Thẻ cuối cảnh báo: LEFT JOIN rồi lọc bằng WHERE trên cột bảng phải làm mất dòng không khớp, hãy đưa điều kiện vào ON.](../../diagrams/sd-05-001-main.svg)
+![Hình dọc dùng hai bảng ví dụ: khach gồm An, Binh, Chi; don gồm đơn 10 (100) và đơn 11 (50) của An và đơn 12 (70) không có khách. INNER JOIN chỉ giữ cặp khớp: An–10, An–11. LEFT JOIN giữ mọi khách, thêm Binh và Chi với phần đơn trống. RIGHT JOIN giữ mọi đơn, thêm đơn 12 với phần khách trống. FULL OUTER JOIN giữ cả hai phía, tổng cộng năm dòng. Thẻ cuối cảnh báo: LEFT JOIN rồi lọc bằng điều kiện WHERE loại NULL trên cột bảng phải, như tien > 60, làm mất dòng không khớp, hãy đưa điều kiện vào ON.](../../diagrams/sd-05-001-main.svg)
 
 ## Đọc hình
 
@@ -19,8 +19,9 @@ dòng nào không có cặp thì vẫn được giữ lại, dòng nào bị b�
 
 ## Giới hạn cần nhớ
 
-Cạm bẫy hay gặp: viết `LEFT JOIN`, rồi lọc bằng `WHERE` trên một cột của bảng bên phải. Dòng không khớp có cột đó là `NULL`,
-nên bị `WHERE` loại ngay, và kết quả giống `INNER JOIN`. Nếu điều kiện thuộc về việc ghép, hãy đặt nó trong `ON`.
+Cạm bẫy hay gặp: viết `LEFT JOIN`, rồi lọc bằng một điều kiện `WHERE` loại `NULL` trên cột của bảng bên phải, như `don.tien > 60`.
+Dòng không khớp có cột đó là `NULL`, nên bị loại ngay, và kết quả giống `INNER JOIN`. Nếu điều kiện thuộc về việc ghép, hãy đặt nó trong `ON`.
+Ngược lại, `WHERE don.id IS NULL` là cách cố ý để chỉ giữ các dòng không khớp.
 
 ## Nhìn hình trả lời
 
@@ -39,6 +40,8 @@ Trong `ON`: `... LEFT JOIN don ON don.ma_khach = khach.ma AND don.tien > 60`. K�
 
 Nếu một khóa ở bảng này khớp nhiều dòng ở bảng kia, kết quả có nhiều dòng cho khóa đó. Ví dụ An có hai đơn nên xuất hiện hai lần.
 Vì vậy sau khi JOIN, hãy so số dòng với điều bạn mong đợi.
+
+`LEFT JOIN ... WHERE don.id IS NULL` cho Binh và Chi, khác với INNER JOIN.
 
 Các kết quả trên được chạy lại trên SQLite 3.45.1, bản hỗ trợ cả RIGHT JOIN và FULL OUTER JOIN.
 

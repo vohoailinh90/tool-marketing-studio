@@ -38,7 +38,7 @@
     "claims": {
       "status": "checked",
       "checked_on": "2026-10-13",
-      "evidence": "MDN pages read from a local clone of mdn/content; DNS server types and layered DNS caching come from the source."
+      "evidence": "MDN pages and the BIND 9 administrator reference read from local clones; layered DNS caching comes from the source."
     },
     "technical_review": {
       "status": "pending",
@@ -100,7 +100,13 @@
       "verified_by": "Read from a local clone of mdn/content (developer.mozilla.org was unreachable)."
     },
     {
-      "claim_vi": "The DNS lookup passes through root, TLD and authoritative servers and results are cached in browser, OS, local network and ISP layers.",
+      "claim_vi": "A stub resolver sends a recursive query to a resolver; the resolver starts at the root servers with iterative queries, root and TLD servers answer with referrals to the next servers, and the authoritative server returns the answer; resolvers cache results.",
+      "source": "https://github.com/isc-projects/bind9/blob/main/doc/arm/intro-dns-bind.inc.rst",
+      "section": "DNS Protocol and Queries",
+      "verified_by": "Read in doc/arm/intro-dns-bind.inc.rst of a local clone of isc-projects/bind9."
+    },
+    {
+      "claim_vi": "DNS results are cached in browser, OS, local network and ISP layers.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-happens-when-you-type-google.md",
       "section": "Steps 2-3",
       "verified_by": "Carried from the source as general description; not independently checked."

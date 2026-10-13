@@ -65,7 +65,13 @@
       "verified_by": "Executed in SQLite 3.45.1 (python sqlite3)."
     },
     {
-      "claim_vi": "A WHERE condition on a right-table column after a LEFT JOIN removes the unmatched rows (An-10 only for tien > 60), while the same condition in ON keeps Binh and Chi.",
+      "claim_vi": "A NULL-rejecting WHERE condition on a right-table column after a LEFT JOIN removes the unmatched rows (An-10 only for tien > 60), while the same condition in ON keeps Binh and Chi.",
+      "source": "https://www.sqlite.org/lang_select.html",
+      "section": "Joins",
+      "verified_by": "Executed in SQLite 3.45.1 (python sqlite3)."
+    },
+    {
+      "claim_vi": "LEFT JOIN ... WHERE don.id IS NULL deliberately keeps only the unmatched customers (Binh, Chi), unlike INNER JOIN.",
       "source": "https://www.sqlite.org/lang_select.html",
       "section": "Joins",
       "verified_by": "Executed in SQLite 3.45.1 (python sqlite3)."

@@ -21,6 +21,8 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 
 9. [Vì sao HTTP/2 nhanh hơn HTTP/1?](lessons/sd-01-009/lesson.md) — bản nháp độc lập; chờ kiểm chứng nguồn và review kỹ thuật.
 
+10. [CSS là gì?](lessons/sd-01-010/lesson.md) — bản nháp độc lập; chờ kiểm chứng nguồn và review kỹ thuật.
+
 ## Hệ thống hoạt động thế nào?
 
 Nhóm này được viết trước vị trí của nó trong thứ tự nguồn (nhóm thứ 12) theo yêu cầu của người dùng; các nhóm còn lại vẫn theo thứ tự nguồn.

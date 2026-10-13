@@ -3,7 +3,7 @@
 Chuyển sang vohoailinh90/tool-marketing-studio ngày 2026-10-13 theo yêu cầu người dùng.
 Repo cũ tạm dừng; không merge/đóng/xóa các PR cũ.
 
-27/404 vị trí đã viết; 15 nhóm và 400 nguồn duy nhất giữ nguyên.
+28/404 vị trí đã viết; 15 nhóm và 400 nguồn duy nhất giữ nguyên.
 
 ## Đã có
 
@@ -15,8 +15,9 @@ Repo cũ tạm dừng; không merge/đóng/xóa các PR cũ.
   (danh sách ByteByteGo “How it Works?”), trên nhánh claude/funny-archimedes-253vvb, PR #51 (đang chờ review, chưa merge).
 - **sd-01-009** (Vì sao HTTP/2 nhanh hơn HTTP/1?): viết ngày 2026-10-13 theo thứ tự nguồn, trên nhánh claude/sd-01-008 xếp chồng lên PR #51,
   PR #59 (đang chờ review, chưa merge). Cùng trạng thái draft như nhóm sd-12 bên dưới.
+- **sd-01-010** (CSS là gì?): viết ngày 2026-10-13 theo thứ tự nguồn, trên nhánh claude/sd-01-010 xếp chồng lên nhánh của PR #59; chưa có PR. Cùng trạng thái draft.
 
-## Trạng thái các bản nháp (sd-12 và sd-01-009)
+## Trạng thái các bản nháp (sd-12, sd-01-009 và sd-01-010)
 
 Tất cả là bản nháp (`content_status: draft` trong metadata). Đã làm: đọc bài nguồn ở commit ghim (blob SHA khớp, có
 hash nội dung đã tải), viết độc lập và vẽ sơ đồ mới, kiểm tra bằng máy (`scripts/sd101_check.py`), kiểm tra hiển thị
@@ -26,7 +27,7 @@ user testing.
 
 ## Thứ tự
 
-ID kế tiếp theo thứ tự nguồn là sd-01-010. Nhóm sd-12 được viết trước vì người dùng yêu cầu rõ danh sách này;
+ID kế tiếp theo thứ tự nguồn là sd-01-011. Nhóm sd-12 được viết trước vì người dùng yêu cầu rõ danh sách này;
 các nhóm khác tiếp tục theo bảng đối chiếu, mỗi đợt 1–3 bài.
 
 Metadata JSON duy nhất giữ trạng thái; YAML chỉ id/metadata_ref. User testing chưa thực hiện; không tự merge/deploy

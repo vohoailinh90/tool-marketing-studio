@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 728" width="320" height="728" role="img" aria-labelledby="title desc">
 <title id="title">Encoding, encryption và tokenization</title>
-<desc id="desc">Ba cách xử lý dữ liệu khác nhau. Encoding đổi định dạng, ví dụ Base64, ai cũng đổi ngược lại được mà không cần khóa nên không bảo mật. Encryption biến dữ liệu thành bản mã bằng thuật toán và khóa; chỉ người có khóa đúng mới đọc được, và khóa là thứ phải bảo vệ. Tokenization thay dữ liệu nhạy cảm bằng một token; dữ liệu thật nằm trong kho token, và kho đó là thứ phải bảo vệ.</desc>
+<desc id="desc">Ba cách xử lý dữ liệu khác nhau. Encoding đổi định dạng, ví dụ Base64, ai cũng đổi ngược lại được mà không cần khóa nên không bảo mật. Encryption biến dữ liệu thành bản mã bằng thuật toán và khóa; chỉ người có khóa giải mã đúng mới đọc được, và khóa bí mật (khóa chung hoặc khóa riêng) là thứ phải bảo vệ. Tokenization thay dữ liệu nhạy cảm bằng một token; dữ liệu thật nằm trong kho token, và kho đó là thứ phải bảo vệ.</desc>
 <rect width="320" height="728" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="30" font-size="21" font-weight="bold">BA CÁCH XỬ LÝ</text>
@@ -27,6 +27,6 @@
 <rect x="16" y="590" width="288" height="124" rx="12" fill="#fee2e2" stroke="#94a3b8"/>
 <text x="29" y="619" font-size="16" font-weight="bold">Chỗ phải bảo vệ</text>
 <text x="29" y="647" font-size="16" font-weight="normal">Encoding: không có gì để giữ.</text>
-<text x="29" y="671" font-size="16" font-weight="normal">Encryption: cái khóa.</text>
+<text x="29" y="671" font-size="16" font-weight="normal">Encryption: khóa bí mật.</text>
 <text x="29" y="695" font-size="16" font-weight="normal">Tokenization: kho token.</text>
 </g></svg>

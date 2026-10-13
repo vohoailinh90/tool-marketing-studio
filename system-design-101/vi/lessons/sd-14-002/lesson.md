@@ -3,7 +3,7 @@
 **Ba thuật ngữ nghe giống nhau, nhưng chỉ hai trong số đó nhằm bảo vệ dữ liệu.** Chọn nhầm là lỗi thiết kế hay gặp:
 tưởng đã “mã hóa” trong khi dữ liệu vẫn đọc được bởi bất kỳ ai.
 
-![Năm thẻ xếp dọc. Dữ liệu mẫu là số thẻ mẫu 4111 1111 1111 1111. Encoding, Base64, cho ra NDExMSAxMTEx…; ai cũng giải ngược được, không cần khóa. Encryption cho ra gAAAAAB…; đúng khóa mới giải được, sai khóa thì lỗi. Tokenization cho ra tok_3159c9a6…; dữ liệu thật nằm trong kho token. Thẻ cuối nêu chỗ phải bảo vệ: encoding không có gì để giữ, encryption là cái khóa, tokenization là kho token.](../../diagrams/sd-14-002-main.svg)
+![Năm thẻ xếp dọc. Dữ liệu mẫu là số thẻ mẫu 4111 1111 1111 1111. Encoding, Base64, cho ra NDExMSAxMTEx…; ai cũng giải ngược được, không cần khóa. Encryption cho ra gAAAAAB…; đúng khóa mới giải được, sai khóa thì lỗi. Tokenization cho ra tok_3159c9a6…; dữ liệu thật nằm trong kho token. Thẻ cuối nêu chỗ phải bảo vệ: encoding không có gì để giữ, encryption là khóa bí mật, tokenization là kho token.](../../diagrams/sd-14-002-main.svg)
 
 ## Đọc hình
 
@@ -11,15 +11,15 @@ tưởng đã “mã hóa” trong khi dữ liệu vẫn đọc được bởi b
 Không cần khóa để đổi ngược lại, nên encoding **không** bảo vệ gì.
 
 **Encryption.** Dùng thuật toán và khóa để biến dữ liệu đọc được thành bản mã. Có thể dùng một khóa chung (đối xứng) hoặc cặp khóa công khai và riêng (bất đối xứng).
-Chỉ người có khóa đúng mới đọc lại được dữ liệu gốc.
+Chỉ người có khóa giải mã đúng mới đọc lại được dữ liệu gốc.
 
 **Tokenization.** Thay dữ liệu nhạy cảm bằng một token thay thế. Ánh xạ giữa token và dữ liệu thật được giữ trong một kho token tách riêng.
 Hệ thống khác chỉ cầm token, nên không phải giữ dữ liệu thật.
 
 ## Giới hạn cần nhớ
 
-Mỗi cách đều có một chỗ bạn buộc phải bảo vệ. Encoding không có gì để giữ, nên không an toàn. Với encryption, đó là cái khóa: lộ khóa là lộ dữ liệu,
-và OWASP lưu ý hệ thống quản lý khóa chuyên dụng thêm một lớp bảo vệ nhưng cũng thêm độ phức tạp và chi phí vận hành. Với tokenization, đó là kho token: ai lấy được kho thì lấy lại được dữ liệu thật.
+Mỗi cách đều có một chỗ bạn buộc phải bảo vệ. Encoding không có gì để giữ, nên không an toàn. Với encryption, đó là khóa bí mật (khóa chung của mã hóa đối xứng, hoặc khóa riêng của cặp bất đối xứng): lộ khóa đó là lộ dữ liệu. Khóa công khai thì được phép phân phát, vì chỉ mã hóa được chứ không giải mã được.
+Về quản lý khóa bí mật, OWASP lưu ý hệ thống quản lý khóa chuyên dụng thêm một lớp bảo vệ nhưng cũng thêm độ phức tạp và chi phí vận hành. Với tokenization, đó là kho token: ai lấy được kho thì lấy lại được dữ liệu thật.
 
 ## Nhìn hình trả lời
 
@@ -43,6 +43,7 @@ nhưng độ an toàn thực tế dồn vào kho token, nên bài này nêu kho 
 và tuân thủ PCI DSS; bài này chưa đối chiếu tiêu chuẩn đó.
 
 Kết quả minh họa trong hình chạy bằng Python: `base64`, `cryptography.fernet` và một từ điển đóng vai kho token.
+Với khóa công khai, thử bằng RSA-OAEP của thư viện `cryptography`: dữ liệu mã hóa chỉ bằng khóa công khai và chỉ khóa riêng giải mã được.
 
 </details>
 

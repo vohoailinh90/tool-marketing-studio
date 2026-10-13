@@ -2,11 +2,15 @@
 
 from __future__ import annotations
 
+import ast
 import contextlib
 import copy
+import importlib.metadata
 import io
 import json
 import os
+import re
+import sys
 import tempfile
 import unittest
 from unittest import mock
@@ -2405,6 +2409,26 @@ class CommandLineTests(StoreCase):
         self.assertEqual(1, code)
         self.assertIn("README.md: is missing", out.getvalue())
         self.assertIn("0 lesson(s)", out.getvalue())
+
+
+class DeclaredDependencyTests(unittest.TestCase):
+    """A fresh checkout installs requirements.txt (README), so the checker may import nothing that is not there."""
+
+    def test_every_third_party_module_the_checker_imports_is_in_requirements_txt(self) -> None:
+        tree = ast.parse(Path(check.__file__).read_text(encoding="utf-8"))
+        modules = {alias.name.split(".")[0] for node in ast.walk(tree) if isinstance(node, ast.Import) for alias in node.names}
+        modules |= {node.module.split(".")[0] for node in ast.walk(tree)
+                    if isinstance(node, ast.ImportFrom) and node.level == 0 and node.module}
+        third_party = {name for name in modules if name not in sys.stdlib_module_names}
+        self.assertTrue({"yaml", "markdown_it"} <= third_party, third_party)
+        lines = (check.ROOT / "requirements.txt").read_text(encoding="utf-8").splitlines()
+        declared = {re.split(r"[<>=!~\[ ;]", line.strip(), maxsplit=1)[0].lower().replace("_", "-")
+                    for line in lines if line.strip() and not line.startswith(("#", "-"))}
+        distributions = importlib.metadata.packages_distributions()
+        for module in sorted(third_party):
+            names = {name.lower().replace("_", "-") for name in distributions.get(module, [])}
+            with self.subTest(module=module):
+                self.assertTrue(names & declared, f"{module} ({sorted(names)}) is not in requirements.txt")
 
 
 if __name__ == "__main__":

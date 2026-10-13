@@ -1,0 +1,16 @@
+# Mutation manifest — see scripts/mutation_check.py
+#
+# The checker is run from a fresh checkout after `pip install -r requirements.txt` (README), so what it imports
+# must be declared there.
+
+target: requirements.txt
+note: Dropping the Markdown parser from requirements.txt must fail the test that reads the checker's imports.
+mutations:
+- label: the Markdown parser is not declared in requirements.txt
+  find: "markdown-it-py>=3\n"
+  replace: ""
+  test: tests.test_sd101_check.DeclaredDependencyTests.test_every_third_party_module_the_checker_imports_is_in_requirements_txt
+- label: the YAML parser is not declared in requirements.txt
+  find: "PyYAML>=6.0\n"
+  replace: ""
+  test: tests.test_sd101_check.DeclaredDependencyTests.test_every_third_party_module_the_checker_imports_is_in_requirements_txt

@@ -19,13 +19,13 @@ Hai chuỗi. Chuỗi được xác định bởi tên cộng toàn bộ bộ nh�
 
 ## Giới hạn cần nhớ
 
-Chuẩn bị cho số chuỗi quan trọng hơn chọn thương hiệu: nhãn mang giá trị gần như duy nhất (như ID người dùng) làm số chuỗi phình ra, kho nào cũng chậm. Quy mô nhỏ thì một cơ sở dữ liệu đa dụng thiết kế cẩn thận vẫn có thể đủ.
+Chuẩn bị cho số chuỗi quan trọng hơn chọn thương hiệu: nhãn mang giá trị gần như duy nhất (như ID người dùng, trong đó ID là identifier — mã định danh) làm số chuỗi phình ra, kho nào cũng chậm. Quy mô nhỏ thì một cơ sở dữ liệu đa dụng thiết kế cẩn thận vẫn có thể đủ.
 
 <details>
 <summary>Xem sâu hơn</summary>
 
 - **Dữ liệu chuỗi thời gian** là các điểm (thời gian, giá trị) gắn với một chuỗi xác định bởi tên và nhãn. Truy vấn thường là "trong khoảng này, tổng hợp theo nhãn".
-- **Kho chuyên dụng** như Prometheus TSDB hay InfluxDB tối ưu việc ghi liên tục, nén và hết hạn dữ liệu. Có sản phẩm thêm khả năng chuỗi thời gian lên cơ sở dữ liệu quan hệ (ví dụ TimescaleDB trên PostgreSQL).
+- **Kho chuyên dụng** như Prometheus TSDB (Time Series Database — cơ sở dữ liệu chuỗi thời gian) hay InfluxDB tối ưu việc ghi liên tục, nén và hết hạn dữ liệu. Có sản phẩm thêm khả năng chuỗi thời gian lên cơ sở dữ liệu quan hệ (ví dụ TimescaleDB trên PostgreSQL).
 - **Cơ sở dữ liệu đa dụng:** làm được khi tải vừa phải, nhưng truy vấn cửa sổ thời gian dài dòng hơn và phải tự tinh chỉnh chỉ mục, phân vùng.
 - **Cách kiểm tra:** thử với tải ghi và truy vấn gần thật trước khi chốt.
 

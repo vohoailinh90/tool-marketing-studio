@@ -49,7 +49,7 @@
       "source": "https://nginx.org/en/docs/http/ngx_http_proxy_module.html"
     },
     {
-      "claim_vi": "proxy_read_timeout mặc định là 60 giây.",
+      "claim_vi": "proxy_connect_timeout, proxy_send_timeout và proxy_read_timeout đều mặc định 60 giây; send và read chỉ tính giữa hai lần ghi hoặc hai lần đọc liên tiếp, không phải cho cả request hay cả phản hồi.",
       "source": "https://nginx.org/en/docs/http/ngx_http_proxy_module.html"
     },
     {

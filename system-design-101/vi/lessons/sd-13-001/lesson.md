@@ -2,7 +2,7 @@
 
 Mỗi lần triển khai bản mới hoặc dồn node, Kubernetes xóa Pod cũ. Nếu API rớt vài request đúng lúc đó, nguyên nhân thường nằm ở trình tự tắt Pod chứ không ở mã xử lý. Bài đi theo trình tự ấy để chỉ ra năm chỗ cần để mắt tới.
 
-![Năm chặng khi một Pod của API bị xóa: Pod chuyển sang Terminating và endpoint của nó được đánh dấu terminating, không sẵn sàng nhưng chưa bị xóa ngay, song song với việc tắt, traffic vẫn có thể đến thêm một lúc nên cần chờ ngắn trong preStop, tiến trình chính nhận SIGTERM phải ngừng nhận kết nối mới và làm xong việc đang chạy, hết thời gian ân hạn thì bị dừng cưỡng bức, và khi dồn node thì PodDisruptionBudget giữ số Pod tối thiểu.](../../diagrams/sd-13-001-main.svg)
+![Năm chặng khi một Pod của API bị xóa: Pod chuyển sang Terminating và endpoint của nó được đánh dấu terminating, thường không sẵn sàng và chưa bị xóa ngay, song song với việc tắt, traffic vẫn có thể đến thêm một lúc nên cần chờ ngắn trong preStop, tiến trình chính nhận SIGTERM phải ngừng nhận kết nối mới và làm xong việc đang chạy, hết thời gian ân hạn thì bị dừng cưỡng bức, và khi dồn node thì PodDisruptionBudget giữ số Pod tối thiểu.](../../diagrams/sd-13-001-main.svg)
 
 **Đọc hình:** bốn thẻ đầu là trình tự thời gian của một Pod bị xóa; thẻ cuối nói về lúc nhiều Pod bị gỡ có chủ đích cùng một thời điểm.
 
@@ -13,19 +13,19 @@ Pod đã chuyển sang Terminating thì còn nhận được request nào nữa 
 <details>
 <summary>Xem đáp án</summary>
 
-Có thể còn trong một khoảng ngắn. Khi Pod bắt đầu tắt, endpoint của nó trong EndpointSlice được đánh dấu terminating và `ready` thành false, nên bộ cân bằng tải sẽ không dùng nó cho traffic thường; nhưng endpoint chưa bị xóa ngay, và thay đổi lan tới kube-proxy, ingress controller hay bộ cân bằng tải ngoài không tức thì. Vì vậy vài request có thể vẫn tới Pod sau khi nó đã bắt đầu tắt. Hãy cho ứng dụng thời gian chờ (hook preStop) và để nó làm nốt các request đang chạy.
+Có thể còn trong một khoảng ngắn. Khi Pod bắt đầu tắt, endpoint của nó trong EndpointSlice được đánh dấu terminating và (với Service ở cấu hình mặc định) `ready` thành false, nên bộ cân bằng tải sẽ không dùng nó cho traffic thường; nhưng endpoint chưa bị xóa ngay, và thay đổi lan tới kube-proxy, ingress controller hay bộ cân bằng tải ngoài không tức thì. Vì vậy vài request có thể vẫn tới Pod sau khi nó đã bắt đầu tắt. Hãy cho ứng dụng thời gian chờ (hook preStop) và để nó làm nốt các request đang chạy.
 
 </details>
 
 ## Giới hạn cần nhớ
 
-Bài chỉ nói về tắt êm và giữ số Pod tối thiểu, không bàn cách tạo Pod, probe, tài nguyên hay migration. Độ trễ cập nhật endpoint phụ thuộc cách traffic đi vào cụm (Service, ingress, bộ cân bằng tải của nhà cung cấp), nên con số chờ phải đo trên hệ thống của bạn chứ không lấy từ bài.
+Bài chỉ nói về tắt êm và giữ số Pod tối thiểu, không bàn cách tạo Pod, probe, tài nguyên hay migration. Phần về endpoint áp dụng cho Service ở cấu hình mặc định; Service đặt `publishNotReadyAddresses: true` hoạt động khác (xem phần sâu). Độ trễ cập nhật endpoint phụ thuộc cách traffic đi vào cụm (Service, ingress, bộ cân bằng tải của nhà cung cấp), nên con số chờ phải đo trên hệ thống của bạn chứ không lấy từ bài.
 
 <details>
 <summary>Xem sâu hơn</summary>
 
 - **Trình tự của kubelet:** hook `preStop` (nếu có) chạy trước, rồi container nhận SIGTERM; `terminationGracePeriodSeconds` (mặc định 30 giây) là tổng thời gian cho cả quá trình và bắt đầu đếm từ trước `preStop`, nên hook chậm làm ứng dụng còn ít thời gian sau SIGTERM. Hết hạn thì container bị dừng cưỡng bức.
-- **Endpoint không biến mất ngay:** cùng lúc kubelet bắt đầu tắt Pod, control plane đánh giá việc loại Pod đang tắt khỏi EndpointSlice của Service có selector. Endpoint của Pod đang tắt chưa bị xóa ngay: nó được đánh dấu `terminating`, và `ready` luôn là false nên bộ cân bằng tải không dùng nó cho traffic thường; điều kiện `serving` cho biết Pod có thật sự còn phục vụ được, dùng để xả dần kết nối. Các thành phần dẫn traffic nhận thay đổi sau đó vài giây tùy cấu hình, nên một khoảng chờ ngắn trong `preStop` cho chúng thời gian bắt kịp.
+- **Endpoint không biến mất ngay:** cùng lúc kubelet bắt đầu tắt Pod, control plane đánh giá việc loại Pod đang tắt khỏi EndpointSlice của Service có selector. Endpoint của Pod đang tắt chưa bị xóa ngay: nó được đánh dấu `terminating`, và với Service ở cấu hình mặc định `ready` luôn là false nên bộ cân bằng tải không dùng nó cho traffic thường; điều kiện `serving` cho biết Pod có thật sự còn phục vụ được, dùng để xả dần kết nối. Service đặt `spec.publishNotReadyAddresses: true` là ngoại lệ: endpoint được báo là ready kể cả khi Pod đang tắt, nên việc ngừng nhận traffic ở loại Service đó phải do cơ chế khác đảm nhiệm (ví dụ chính ứng dụng). Các thành phần dẫn traffic nhận thay đổi sau đó vài giây tùy cấu hình, nên một khoảng chờ ngắn trong `preStop` cho chúng thời gian bắt kịp.
 - **SIGTERM và tiến trình chính:** dạng exec của `CMD` hoặc `ENTRYPOINT` chạy tiến trình trực tiếp; dạng shell chạy qua một shell nên tín hiệu có thể không tới ứng dụng. Ứng dụng cần xử lý SIGTERM: ngừng nhận kết nối mới và chờ request đang chạy xong.
 - **Kết nối dài:** HTTP keep-alive, gRPC, WebSocket giữ kết nối qua thời điểm tắt; máy chủ nên báo cho client mở kết nối mới (ví dụ đóng kết nối sau request cuối, hay gửi GOAWAY với HTTP/2) thay vì để chúng bị cắt.
 - **Đặt thời gian ân hạn:** nên không nhỏ hơn thời gian chờ ở `preStop` cộng với thời gian xử lý của request lâu nhất; đặt quá lớn làm việc thay Pod chậm.

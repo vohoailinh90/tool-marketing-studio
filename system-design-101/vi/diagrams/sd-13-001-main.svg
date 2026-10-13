@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1100" width="320" height="1100" role="img" aria-labelledby="title desc">
 <title id="title">Tắt êm một API trên Kubernetes: năm chỗ làm rớt request</title>
-<desc id="desc">Năm chặng khi một Pod của API bị xóa: Pod chuyển sang Terminating và endpoint của nó được đánh dấu terminating, không sẵn sàng nhưng chưa bị xóa ngay, song song với việc tắt, traffic vẫn có thể đến thêm một lúc nên cần chờ ngắn trong preStop, tiến trình chính nhận SIGTERM phải ngừng nhận kết nối mới và làm xong việc đang chạy, hết thời gian ân hạn thì bị dừng cưỡng bức, và khi dồn node thì PodDisruptionBudget giữ số Pod tối thiểu.</desc>
+<desc id="desc">Năm chặng khi một Pod của API bị xóa: Pod chuyển sang Terminating và endpoint của nó được đánh dấu terminating, thường không sẵn sàng và chưa bị xóa ngay, song song với việc tắt, traffic vẫn có thể đến thêm một lúc nên cần chờ ngắn trong preStop, tiến trình chính nhận SIGTERM phải ngừng nhận kết nối mới và làm xong việc đang chạy, hết thời gian ân hạn thì bị dừng cưỡng bức, và khi dồn node thì PodDisruptionBudget giữ số Pod tối thiểu.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="1100" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="30" font-size="20" font-weight="bold">TẮT ÊM MỘT POD</text>
@@ -9,8 +9,8 @@
 <text x="30" y="117" font-size="16" font-weight="bold">1 · Pod bị xóa</text>
 <text x="30" y="144" font-size="16" font-weight="normal">Pod chuyển sang Terminating</text>
 <text x="30" y="171" font-size="16" font-weight="normal">Endpoint thành terminating,</text>
-<text x="30" y="198" font-size="16" font-weight="normal">ready=false, chưa bị xóa</text>
-<text x="30" y="225" font-size="16" font-weight="normal">ngay</text>
+<text x="30" y="198" font-size="16" font-weight="normal">thường ready=false, chưa bị</text>
+<text x="30" y="225" font-size="16" font-weight="normal">xóa ngay</text>
 <line x1="160" y1="256" x2="160" y2="284" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
 <rect x="16" y="294" width="288" height="155" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
 <text x="30" y="322" font-size="16" font-weight="bold">2 · Traffic còn đến</text>

@@ -1,6 +1,6 @@
 # Tường lửa hoạt động thế nào?
 
-**Tường lửa là điểm kiểm soát giữa hai mạng: nó nhìn từng gói tin hoặc cả kết nối và quyết định cho qua hay chặn theo luật.**
+**Tường lửa là điểm kiểm soát lưu lượng đi vào và đi ra, đặt giữa hai mạng hoặc ngay trên một máy: nó nhìn từng gói tin hoặc cả kết nối và quyết định cho qua hay chặn theo luật.**
 Các loại tường lửa khác nhau ở chỗ chúng nhìn vào cái gì: một gói riêng lẻ, một phiên, trạng thái của cả kết nối, hay nội dung của ứng dụng.
 
 ![Bảy thẻ xếp dọc. Thẻ đầu là câu hỏi chung: gói tin đi tới tường lửa thì cho qua hay chặn. Năm thẻ tiếp theo là năm loại, mỗi loại nhìn vào một thứ khác. Lọc gói tin: nhìn địa chỉ nguồn, đích, giao thức và cổng của từng gói, không nhớ gói trước. Cổng mức mạch: theo dõi bắt tay TCP để xem phiên có hợp lệ không. Cổng ứng dụng, hay proxy: nhận kết nối thay cho máy bên trong và đọc nội dung ở tầng ứng dụng nếu giải mã được lưu lượng; HTTPS qua CONNECT là đường hầm mù, trừ khi proxy kết thúc TLS. Theo dõi trạng thái: nhớ các kết nối đang mở, nên nhận ra gói trả lời. Tường lửa thế hệ mới: tường lửa truyền thống cộng thêm các tính năng như ngăn chặn xâm nhập và nhận diện ứng dụng. Thẻ cuối là lời nhắc: tường lửa chỉ áp luật tại điểm nó đứng, luật sai hoặc lưu lượng đi đường khác thì không được bảo vệ.](../../diagrams/sd-14-007-main.svg)
@@ -39,6 +39,7 @@ Khi chạy thử trên Linux với bộ luật đơn giản, chỉ có luật th
 <summary>Xem sâu hơn: điều đã chỉnh so với bài nguồn</summary>
 
 Bài nguồn liệt kê năm loại theo một dòng mỗi loại, kèm hai nhóm phần mềm và phần cứng. Bài này giữ thứ tự của bài nguồn, ghi rõ mỗi loại nhìn vào gì (không xếp hạng các loại theo độ sâu), và chạy thử riêng sự khác biệt giữa lọc theo cổng và theo trạng thái.
+Bài nguồn tả tường lửa ở giữa mạng riêng và Internet; ví dụ chạy thử trong bài là nftables ngay trên một máy (qua giao diện loopback), nên bài mô tả cả tường lửa đặt trên chính máy cần bảo vệ. Chưa đối chiếu định nghĩa của NIST vì trang đó không mở được trong môi trường biên soạn.
 Bài nguồn tả cổng ứng dụng là “lọc lưu lượng giữa mạng và nguồn”; bài này nêu cụ thể hơn là proxy nhận kết nối thay cho máy bên trong. Chưa đối chiếu với một tài liệu chuẩn, nên các mô tả của cổng mức mạch, cổng ứng dụng và NGFW lấy từ bài nguồn và hiểu biết chung của người biên soạn.
 
 Ví dụ chạy thử là một bảng nftables dựng riêng cho một cổng trên giao diện loopback rồi xóa; luật “chặn mọi gói từ cổng nguồn đó” là cách dựng thử nghiệm, không phải cấu hình nên dùng thật.

@@ -87,6 +87,12 @@
       "source": "https://github.com/mdn/content/blob/19370346042efad9e179fbf1f55deeeadee98c40/files/en-us/web/http/reference/methods/connect/index.md",
       "section": "Introduction",
       "verified_by": "Read with git show from the pinned commit of the local clone (the file is outside the sparse checkout); the web page was not opened."
+    },
+    {
+      "claim_vi": "A firewall can be placed on a single host as well as between two networks: the nftables run filtered traffic to and from one port on the loopback interface of the machine that ran it. The source describes a firewall between a private network and the public Internet; NIST's definition was not read (the page was unreachable).",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/firewall-explained-to-kids-and-adults.md",
+      "section": "Firewall",
+      "verified_by": "No external page reports this output; the placement is shown by the nftables run on one machine, and the general statement is the compiler's knowledge, not checked against a standard."
     }
   ],
   "design_notes_vi": "Một câu hỏi chung đi qua năm loại tường lửa theo thứ tự của bài nguồn, mỗi loại một thẻ nói nó nhìn vào gì; thẻ cuối nêu giới hạn. Không xếp độ sâu vì không có nguồn. Không dùng ảnh nguồn.",

@@ -24,7 +24,7 @@ Số đo chỉ gợi ý, không thay cho phán đoán: đội vài người có 
 <details>
 <summary>Xem sâu hơn</summary>
 
-- **Thay đổi gây lỗi:** đếm số lần phát hành phải vá gấp, hoàn tác hay sửa lại, chia cho tổng số lần phát hành trong cùng kỳ. DORA gọi chỉ số này là tỉ lệ thay đổi gây lỗi (change fail rate: phần trăm lần triển khai gây lỗi ở môi trường thật) và đo cùng thời gian khôi phục sau một lần triển khai lỗi. Đọc kèm loại lỗi lọt qua (giao diện, tích hợp, hiệu năng, dữ liệu), vì mỗi loại cần cách kiểm thử khác nhau.
+- **Thay đổi gây lỗi:** đếm số lần phát hành phải vá gấp, hoàn tác hay sửa lại, chia cho tổng số lần phát hành trong cùng kỳ. DORA (DevOps Research and Assessment — chương trình nghiên cứu và đánh giá DevOps) gọi chỉ số này là tỉ lệ thay đổi gây lỗi (change fail rate: phần trăm lần triển khai gây lỗi ở môi trường thật) và đo cùng thời gian khôi phục sau một lần triển khai lỗi. Đọc kèm loại lỗi lọt qua (giao diện, tích hợp, hiệu năng, dữ liệu), vì mỗi loại cần cách kiểm thử khác nhau.
 - **Thời gian chờ:** tháp kiểm thử (test pyramid) của Martin Fowler gợi ý có nhiều test nhỏ, nhanh ở đáy và ít test chạy qua toàn hệ thống ở đỉnh; bộ test chậm thường do dồn quá nhiều vào các test đầu-cuối. Nên rút ngắn thời gian chờ trước khi thêm người, vì người mới cũng phải chờ cùng bộ test đó.
 - **Test chập chờn:** test lúc xanh lúc đỏ khi mã không đổi khiến mọi người quen bỏ qua test đỏ. Fowler khuyên cách ly chúng khỏi bộ test chính để bộ chính luôn đáng tin, rồi sửa từng cái.
 - **Việc máy khó làm:** kiểm thử khám phá là người vừa tìm hiểu sản phẩm vừa tự thiết kế và chạy phép thử; trải nghiệm người dùng và khả năng truy cập cũng cần con người đánh giá. Nếu ba số đo đầu ổn mà lỗi thuộc các loại này vẫn lọt ra, đó là lúc cân nhắc người chuyên trách.

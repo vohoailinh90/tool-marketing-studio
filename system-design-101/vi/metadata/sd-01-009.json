@@ -93,6 +93,12 @@
       "source": "https://www.rfc-editor.org/rfc/rfc9218",
       "section": "Abstract",
       "verified_by": "Search-result excerpt only; the page itself was not opened (host blocked in the authoring environment)."
+    },
+    {
+      "claim_vi": "HTTP/1.1 cho phép pipelining trên kết nối bền; server có thể xử lý song song các request dùng safe method nhưng phải trả response theo thứ tự. Nhiều kết nối thường dùng để tránh chặn đầu hàng.",
+      "source": "https://www.rfc-editor.org/rfc/rfc9112.html#section-9.3.2",
+      "section": "9.3.2 và 9.4",
+      "verified_by": "Đọc trực tiếp RFC 9112 ngày 2026-10-13."
     }
   ],
   "design_notes_vi": "Ba nhóm: cải tiến, cần cập nhật, giới hạn; thẻ giới hạn nằm cuối với dải đỏ có chữ. Không dùng ảnh nguồn.",

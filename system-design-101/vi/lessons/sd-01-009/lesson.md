@@ -11,7 +11,7 @@ Nhưng vài tính năng hay được nêu đã thay đổi, và “nhanh hơn”
 Máy xử lý hiệu quả hơn, nhưng người không đọc trực tiếp được.
 
 **Ghép luồng.** Nhiều cặp yêu cầu–phản hồi chạy song song trên một kết nối, các khung xen kẽ nhau.
-Một luồng chậm không chặn luồng khác. HTTP/1.x phải mở nhiều kết nối để làm việc song song.
+Một luồng chậm không chặn luồng khác. HTTP/1.1 có pipelining trên một kết nối nhưng response phải theo thứ tự.\nClient thường mở nhiều kết nối để giảm chặn đầu hàng ở tầng ứng dụng.
 
 **Nén header.** HPACK giảm phần header lặp lại giữa các yêu cầu.
 
@@ -51,6 +51,8 @@ và vẫn bị chặn đầu hàng ở tầng ứng dụng.
 </details>
 
 ## Nguồn đối chiếu
+
+- [RFC 9112 §9.3.2–9.4](https://www.rfc-editor.org/rfc/rfc9112.html#section-9.3.2): pipelining và lý do dùng nhiều kết nối.
 
 - [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-makes-http2-faster-than-http1.md): năm tính năng.
 - [Đặc tả HTTP/2 (RFC 9113) — bản nguồn của nhóm HTTP](https://github.com/httpwg/http2-spec/blob/main/draft-ietf-httpbis-http2bis.xml): khung nhị phân, ghép luồng, cơ chế ưu tiên cũ bị deprecated, Server Push, chặn đầu hàng TCP.

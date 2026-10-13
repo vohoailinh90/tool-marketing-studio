@@ -17,7 +17,11 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 
 7. [Chính sách định tuyến lưu lượng Internet](lessons/sd-01-007/lesson.md) — có review tại repo cũ; chờ review tích hợp tại repo mới.
 
+8. [Trình duyệt dựng trang web thế nào?](lessons/sd-01-008/lesson.md)
+
 ## Bảo mật
+
+Đợt hai của nhóm. Các bài sd-14-001..003, sd-14-007..009 và sd-14-010..012 nằm ở PR #57, #60 và #61, chưa có trong nhánh này; số thứ tự dưới đây chỉ tính trong nhánh này.
 
 1. [Thiết kế hệ thống phân quyền](lessons/sd-14-004/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 2. [Trình quản lý mật khẩu hoạt động thế nào?](lessons/sd-14-005/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.

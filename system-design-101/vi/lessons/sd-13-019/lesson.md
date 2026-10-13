@@ -2,7 +2,7 @@
 
 Khi nhiều nhóm cùng đưa một sản phẩm lên chạy, thời gian thường mất ở các chỗ chuyển giao chứ không ở lúc viết mã. Bài này nêu bốn nút thắt hay gặp, dấu hiệu nhận ra chúng, và việc nhỏ đáng thử trước.
 
-![Bốn nút thắt giữa các nhóm và việc nên thử trước: chờ môi trường và quyền thì làm mẫu môi trường tự phục vụ, phát hành thủ công thì viết các bước thành pipeline, sự cố lặp lại thì đặt SLO và quy tắc khi hết ngân sách lỗi, và hiểu biết dồn vào vài người thì viết runbook và luân phiên trực ca.](../../diagrams/sd-13-019-main.svg)
+![Bốn nút thắt giữa các nhóm và việc nên thử trước: chờ môi trường và quyền thì làm mẫu môi trường tự phục vụ, phát hành thủ công thì viết các bước thành pipeline, sự cố lặp lại thì đặt SLO (Service Level Objective — mục tiêu mức dịch vụ) và quy tắc khi hết ngân sách lỗi, và hiểu biết dồn vào vài người thì viết runbook và luân phiên trực ca.](../../diagrams/sd-13-019-main.svg)
 
 **Đọc hình:** mỗi thẻ là một nút thắt độc lập; nút nào đang chậm nhất ở tổ chức của bạn nên được xử lý trước.
 
@@ -13,13 +13,13 @@ Nhóm đã dùng hết "ngân sách lỗi" của tháng nhưng còn ba tính nă
 <details>
 <summary>Xem đáp án</summary>
 
-Giảm tốc độ phát hành tính năng mới và ưu tiên việc tăng độ tin cậy, cho tới khi lại nằm trong mục tiêu mức dịch vụ (SLO). Quy tắc này phải được các bên thống nhất trước khi ngân sách cạn, không đặt ra giữa lúc căng thẳng.
+Giảm tốc độ phát hành tính năng mới và ưu tiên việc tăng độ tin cậy, cho tới khi lại nằm trong mục tiêu mức dịch vụ (Service Level Objective, SLO). Quy tắc này phải được các bên thống nhất trước khi ngân sách cạn, không đặt ra giữa lúc căng thẳng.
 
 </details>
 
 ## Giới hạn cần nhớ
 
-Bốn nút thắt này là cách nhìn của bài, không phải danh mục đầy đủ; tổ chức nhỏ có thể chưa cần tách nhóm nền tảng hay đặt SLO chính thức. Các tên gọi như DevOps, SRE hay Platform Engineering thường gắn với những cách xử lý trên nhưng không có ranh giới cứng, và chức danh ở mỗi công ty khác nhau, nên hãy hỏi công việc cụ thể thay vì dựa vào tên.
+Bốn nút thắt này là cách nhìn của bài, không phải danh mục đầy đủ; tổ chức nhỏ có thể chưa cần tách nhóm nền tảng hay đặt SLO chính thức. Các tên gọi như DevOps (Development và Operations — phát triển và vận hành), SRE (Site Reliability Engineering — kỹ thuật độ tin cậy của hệ thống) hay Platform Engineering thường gắn với những cách xử lý trên nhưng không có ranh giới cứng, và chức danh ở mỗi công ty khác nhau, nên hãy hỏi công việc cụ thể thay vì dựa vào tên.
 
 <details>
 <summary>Xem sâu hơn</summary>

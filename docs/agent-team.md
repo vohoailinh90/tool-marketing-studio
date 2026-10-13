@@ -57,10 +57,11 @@ Never give the VPS workers the app's `.env` (Page token, Anthropic key): the gat
 
 ## CI runner
 
-`.github/workflows/ci.yml` runs on `${{ vars.CI_RUNNER || 'self-hosted' }}`: the VPS runner
-registered for this repository (`tool-marketing-studio-runner`, labels `self-hosted`, `Linux`,
-`X64`). This repository is private, so GitHub-hosted minutes are billed; without minutes a job
-on `ubuntu-latest` fails at once with no log.
+`.github/workflows/ci.yml` runs on `${{ vars.CI_RUNNER || 'self-hosted' }}`: the two VPS runners
+registered for this repository (`tool-marketing-studio-runner` and
+`tool-marketing-studio-runner-2`, both with labels `self-hosted`, `Linux`, `X64`). This
+repository is private, so GitHub-hosted minutes are billed; without minutes a job on
+`ubuntu-latest` fails at once with no log.
 
 - Move every job to GitHub-hosted runners: set the repository variable `CI_RUNNER=ubuntu-latest`
   (Settings → Secrets and variables → Actions → Variables). Delete it to come back.
@@ -68,9 +69,24 @@ on `ubuntu-latest` fails at once with no log.
   `claude-agent-routing-template` does not serve this one, which is why it has its own.
 - On the VPS, install Chromium's system libraries once so the render test runs instead of
   skipping: `sudo python3 -m playwright install-deps chromium`.
-- The VPS runs one job at a time and `engine` takes about 30 minutes, 27 of them in
-  `mutation_check.py --all`. A pull request that changes only the System Design store skips that
-  check: `scripts/ci_changes.py` decides, and every push to `main` still runs it.
+- Each runner takes one job at a time, so two jobs run at once. `engine` takes about 30 minutes,
+  27 of them in `mutation_check.py --all`. A pull request that changes only the System Design
+  store skips that check: `scripts/ci_changes.py` decides, and every push to `main` still runs it.
+- The second runner was added on 2026-10-13 because one runner left the queue hours long. Both
+  live on the same VPS, under the `ci-runner` user, one folder each:
+  `/home/ci-runner/actions-runner-tool-marketing-studio` and `...-2`, each its own systemd
+  service (`actions.runner.vohoailinh90-tool-marketing-studio.<runner name>.service`). That VPS
+  has 4 CPU cores and about 7.6 GiB of RAM and also serves the runners of the owner's other
+  repositories, so do not add a third without watching memory and swap (`free -h`) while two
+  `engine` jobs run.
+- To add a runner: as `ci-runner`, copy a working runner folder, delete `_work`, `_diag`,
+  `.runner`, `.runner_migrated`, `.credentials*`, `.service` and the downloaded `.tar.gz` from the
+  copy, register it with a fresh token (this repository → Settings → Actions → Runners → New
+  self-hosted runner; the token expires in about an hour, never write it in a file) using
+  `./config.sh --url https://github.com/vohoailinh90/tool-marketing-studio --token <token>
+  --name <new name> --unattended`, then, as root in that folder,
+  `./svc.sh install ci-runner && ./svc.sh start`. To remove one: `./svc.sh stop`,
+  `./svc.sh uninstall`, then `./config.sh remove --token <removal token>` as `ci-runner`.
 - The VPS keeps its files between jobs, so it runs only code from people who can push to this
   repository: every job skips a pull request whose branch lives in a fork. Keep the repository
   private, or keep that guard, while CI runs on the VPS (`tests/test_codex_review.py` checks it).

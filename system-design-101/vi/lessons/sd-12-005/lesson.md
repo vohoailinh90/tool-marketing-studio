@@ -29,7 +29,7 @@ Trung tâm thành phố, vì nhiều địa điểm khiến ô bị chia nhỏ n
 <summary>Xem sâu hơn: ô kề, geohash và cập nhật</summary>
 
 - **Ô kề:** điểm gần nhất có thể nằm ở ô bên cạnh dù chỉ cách một đoạn ngắn. Muốn danh sách gần nhất chính xác, phải xét cả các ô kề rồi xếp theo khoảng cách thật.
-- **Quadtree và geohash:** cả hai chia vùng thành 4 theo từng mức. Geohash dùng lưới cố định nên dễ lưu và tìm trong cơ sở dữ liệu; quadtree chia thích nghi theo mật độ nhưng cần dựng trong bộ nhớ.
+- **Quadtree và geohash:** cả hai chia vùng thành 4 theo từng mức. Geohash dùng lưới cố định nên dễ lưu và tìm trong cơ sở dữ liệu; quadtree chia thích nghi theo mật độ nhưng cần dựng trong bộ nhớ. Xem bài [Dịch vụ tìm địa điểm lân cận](../sd-12-017/lesson.md).
 - **Cập nhật:** thêm hoặc xóa địa điểm có thể sửa cây tại chỗ hoặc dựng lại định kỳ; đó là đánh đổi giữa độ mới và độ phức tạp.
 
 </details>

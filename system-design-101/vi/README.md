@@ -34,6 +34,9 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 13. [Thiết kế ứng dụng chat 1–1](lessons/sd-12-013/lesson.md) — bản nháp độc lập; chờ kiểm chứng nguồn và review kỹ thuật.
 14. [Thiết kế sàn giao dịch chứng khoán](lessons/sd-12-014/lesson.md) — bản nháp độc lập; chờ kiểm chứng nguồn và review kỹ thuật.
 15. [Thông báo đẩy tới điện thoại hoạt động ra sao?](lessons/sd-12-015/lesson.md) — bản nháp độc lập; chờ kiểm chứng nguồn và review kỹ thuật.
+16. [Điều gì xảy ra khi tải tệp lên kho đối tượng kiểu S3?](lessons/sd-12-016/lesson.md) — bản nháp độc lập; chờ kiểm chứng nguồn và review kỹ thuật.
+17. [Dịch vụ tìm địa điểm lân cận](lessons/sd-12-017/lesson.md) — bản nháp độc lập; chờ kiểm chứng nguồn và review kỹ thuật.
+18. [Công cụ tìm kiếm hoạt động thế nào?](lessons/sd-12-018/lesson.md) — bản nháp độc lập; chờ kiểm chứng nguồn và review kỹ thuật.
 
 Danh mục đầy đủ và snapshot nguồn: [bảng đối chiếu](../../brainstorm/system-design-101-vi/source-map.json).
 Quy tắc đã chốt: [kết luận brainstorm](../../brainstorm/system-design-101-vi/DECISIONS.md).

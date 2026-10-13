@@ -173,6 +173,30 @@ class PlanTests(unittest.TestCase):
             got = parse_outputs(out.read_text(encoding="utf-8"))
             self.assertEqual(("true", CAMPAIGN), (got["ok"], got["campaigns"]))
 
+    def test_a_file_name_that_is_not_utf8_does_not_stop_the_planner_from_answering(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            repo = Path(tmp) / "repo"
+            repo.mkdir()
+            git(repo, "init", "-q")
+            (repo / "README.md").write_text("x", encoding="utf-8")
+            git(repo, "add", "-A")
+            git(repo, "commit", "-q", "-m", "base")
+            base = git(repo, "rev-parse", "HEAD")
+            (repo / POST).parent.mkdir(parents=True)
+            (repo / POST).write_text("a", encoding="utf-8")
+            (repo / "mkt").mkdir()
+            try:
+                Path(os.fsdecode(os.fsencode(repo) + b"/mkt/bad\xff.py")).write_bytes(b"x")      # a name that is not valid UTF-8
+            except OSError:
+                self.skipTest("this file system cannot hold a name that is not UTF-8")
+            git(repo, "add", "-A")
+            git(repo, "commit", "-q", "-m", "radar")
+            out = Path(tmp) / "output"
+            self.assertEqual(0, radar_preview.main(["plan"], {"PR_BASE_SHA": base, "GITHUB_OUTPUT": str(out)}, cwd=repo))
+            got = parse_outputs(out.read_text(encoding="utf-8"))
+            self.assertEqual("false", got["ok"])
+            self.assertEqual("mkt/bad?.py", got["outside"])
+
     def test_an_unreadable_base_is_not_planned(self):
         with tempfile.TemporaryDirectory() as tmp:
             out = Path(tmp) / "output"
@@ -401,6 +425,15 @@ class WorkflowTests(unittest.TestCase):
         self.assertIn('--root="$GITHUB_WORKSPACE"', write)               # the trusted script reads the pull request's drawn files
         names = [s.get("name") or s.get("id") for s in steps()]
         self.assertLess(names.index("The planner, from the base branch"), names.index("Which files does this pull request change?"))
+
+    def test_an_export_the_pull_request_carried_is_cleared_after_the_check_and_before_the_drawing(self):
+        names = [s.get("name") for s in steps()]
+        clear = next(s for s in steps() if s.get("name") == "Clear the exports the pull request carried")
+        self.assertLess(names.index("Check the campaign"), names.index(clear["name"]))
+        self.assertLess(names.index(clear["name"]), names.index("Draw the images and texts"))
+        self.assertIn("steps.plan.outputs.ok == 'true'", clear["if"])
+        self.assertIn('rm -rf -- "campaigns/$campaign/export"', clear["run"])
+        self.assertIn("for campaign in $CAMPAIGNS", clear["run"])           # only the campaigns the plan found, from the environment
 
     def test_the_checkout_does_not_leave_the_token_in_the_workspace_of_a_persistent_runner(self):
         checkout = next(s for s in steps() if s.get("uses", "").startswith("actions/checkout"))

@@ -106,7 +106,7 @@ def write_outputs(path: str | None, values: Mapping[str, str]) -> None:
     cannot end its block early and set an output of its own."""
     if not path:
         return
-    with open(path, "a", encoding="utf-8") as handle:
+    with open(path, "a", encoding="utf-8", errors="replace") as handle:
         for key, value in values.items():
             delimiter = f"RADAR_EOF_{uuid.uuid4().hex}"
             handle.write(f"{key}<<{delimiter}\n{value}\n{delimiter}\n")
@@ -121,7 +121,7 @@ def cmd_plan(environ: Mapping[str, str], cwd: Path | None = None) -> int:
         "campaigns": " ".join(campaigns) if ok else "",
         "export_paths": "\n".join(f"campaigns/{c}/export/**" for c in campaigns) if ok else "",
         "reason": reason,
-        "outside": "\n".join(outside[:5]),
+        "outside": "\n".join(safe(p) for p in outside[:5]),     # a file name may hold bytes that are not UTF-8: the writer would raise
     })
     return 0
 

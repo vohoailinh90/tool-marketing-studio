@@ -75,3 +75,7 @@ mutations:
   find: "          fetch-depth: 1\n          persist-credentials: false"
   replace: "          fetch-depth: 1\n          persist-credentials: true"
   test: tests.test_radar_preview.WorkflowTests.test_the_planner_and_the_comment_writer_run_from_the_base_branch_not_from_the_pull_request
+- label: an export the pull request carried is listed and attached as if it had just been drawn
+  find: '          for campaign in $CAMPAIGNS; do rm -rf -- "campaigns/$campaign/export"; done'
+  replace: '          true'
+  test: tests.test_radar_preview.WorkflowTests.test_an_export_the_pull_request_carried_is_cleared_after_the_check_and_before_the_drawing

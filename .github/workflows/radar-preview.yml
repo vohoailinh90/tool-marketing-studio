@@ -82,6 +82,15 @@ jobs:
           for campaign in $CAMPAIGNS; do python studio.py check "$campaign" || status=1; done
           exit $status
 
+      - name: Clear the exports the pull request carried
+        # `render` refreshes only the posts that exist: an export committed for a post that was removed, or forged, would
+        # otherwise be listed and attached as if it had just been drawn. Only what `render` writes below is reported.
+        if: steps.plan.outputs.ok == 'true'
+        env:
+          CAMPAIGNS: ${{ steps.plan.outputs.campaigns }}
+        run: |
+          for campaign in $CAMPAIGNS; do rm -rf -- "campaigns/$campaign/export"; done
+
       - name: Draw the images and texts
         id: render
         if: steps.plan.outputs.ok == 'true'

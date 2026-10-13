@@ -103,3 +103,7 @@ mutations:
   find: 'build_comment(Path(args.root) if args.root else ROOT,'
   replace: 'build_comment(ROOT,'
   test: tests.test_radar_preview.CommentTests.test_the_comment_reads_the_drawn_files_of_the_checkout_it_is_given
+- label: a file name that is not UTF-8 reaches the output writer as it is
+  find: '"outside": "\n".join(safe(p) for p in outside[:5]),'
+  replace: '"outside": "\n".join(outside[:5]),'
+  test: tests.test_radar_preview.PlanTests.test_a_file_name_that_is_not_utf8_does_not_stop_the_planner_from_answering

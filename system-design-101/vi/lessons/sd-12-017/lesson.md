@@ -30,7 +30,7 @@ Có thể không: quán ở ô bên kia có tiền tố khác. Vì vậy truy v�
 
 - **Lọc lần hai:** ô chỉ là bộ lọc thô; sau khi lấy các ứng viên, tính khoảng cách thật và giữ những điểm trong bán kính.
 - **Độ dài mã:** chọn độ dài tiền tố theo bán kính tìm kiếm để ô vừa cỡ; ô quá to trả về quá nhiều ứng viên, quá nhỏ phải tra quá nhiều ô.
-- **Cách khác:** [quadtree](../sd-12-005/lesson.md) chia thích nghi theo mật độ nhưng nằm trong bộ nhớ; thư viện S2 chia mặt cầu thành ô theo một đường cong lấp đầy không gian; cơ sở dữ liệu có chỉ mục không gian cũng giải bài toán này.
+- **Cách khác:** [quadtree](../sd-12-005/lesson.md) chia thích nghi theo mật độ (trong thiết kế ở bài đó nó được giữ trong bộ nhớ, nhưng cũng có thể lưu bền); thư viện S2 chia mặt cầu thành ô theo một đường cong lấp đầy không gian; cơ sở dữ liệu có chỉ mục không gian cũng giải bài toán này.
 - **Dịch vụ doanh nghiệp** thiên về đọc nhiều hơn ghi, nên dễ cache và nhân bản.
 
 </details>

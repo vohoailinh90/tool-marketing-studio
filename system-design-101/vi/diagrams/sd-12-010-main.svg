@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 716" width="320" height="716" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 740" width="320" height="740" role="img" aria-labelledby="title desc">
 <title id="title">Luồng một khoản thanh toán</title>
-<desc id="desc">Bấm Mua tạo sự kiện thanh toán. Dịch vụ thanh toán ghi và tách thành lệnh. Bộ thực thi gọi PSP. Ví người bán và sổ cái được cập nhật. Hằng đêm đối soát với tệp quyết toán.</desc>
+<desc id="desc">Bấm Mua tạo sự kiện thanh toán. Dịch vụ thanh toán ghi và tách thành lệnh. Bộ thực thi gọi PSP. Ví người bán và sổ cái được cập nhật trong cùng một giao dịch. Hằng đêm đối soát với tệp quyết toán.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="716" fill="#f8fafc"/>
+<rect width="320" height="740" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="30" font-size="21" font-weight="bold">MỘT KHOẢN</text>
 <text x="16" y="54" font-size="21" font-weight="bold">THANH TOÁN</text>
@@ -21,15 +21,16 @@
 <line x1="160" y1="359" x2="160" y2="385" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
 <rect x="16" y="388" width="288" height="68" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
 <text x="29" y="417" font-size="16" font-weight="bold">4 · Cập nhật ví người bán</text>
-<text x="29" y="441" font-size="16" font-weight="normal">Số dư hiện tại</text>
+<text x="29" y="441" font-size="16" font-weight="normal">Cùng giao dịch với bước 5</text>
 <line x1="160" y1="457" x2="160" y2="483" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="16" y="486" width="288" height="68" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<rect x="16" y="486" width="288" height="92" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
 <text x="29" y="515" font-size="16" font-weight="bold">5 · Ghi sổ cái</text>
-<text x="29" y="539" font-size="16" font-weight="normal">Chỉ thêm bản ghi mới</text>
-<line x1="160" y1="555" x2="160" y2="581" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="16" y="584" width="288" height="68" rx="12" fill="#e2e8f0" stroke="#94a3b8"/>
-<text x="29" y="613" font-size="16" font-weight="bold">6 · Đối soát hằng đêm</text>
-<text x="29" y="637" font-size="16" font-weight="normal">So với tệp quyết toán</text>
-<text x="16" y="680" font-size="16" font-weight="normal">Mỗi bước lưu dấu vết; đối soát bắt</text>
-<text x="16" y="704" font-size="16" font-weight="normal">chỗ lệch.</text>
+<text x="29" y="539" font-size="16" font-weight="normal">Chỉ thêm; cùng giao dịch với</text>
+<text x="29" y="563" font-size="16" font-weight="normal">bước 4</text>
+<line x1="160" y1="579" x2="160" y2="605" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="608" width="288" height="68" rx="12" fill="#e2e8f0" stroke="#94a3b8"/>
+<text x="29" y="637" font-size="16" font-weight="bold">6 · Đối soát hằng đêm</text>
+<text x="29" y="661" font-size="16" font-weight="normal">So với tệp quyết toán</text>
+<text x="16" y="704" font-size="16" font-weight="normal">Mỗi bước lưu dấu vết; đối soát bắt</text>
+<text x="16" y="728" font-size="16" font-weight="normal">chỗ lệch.</text>
 </g></svg>

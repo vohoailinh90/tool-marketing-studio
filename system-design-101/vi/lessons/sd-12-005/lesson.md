@@ -1,14 +1,14 @@
 # Quadtree: chia bản đồ để tìm nơi gần bạn
 
-**Muốn tìm quán cà phê gần bạn, đừng đo khoảng cách tới mọi quán.** Chia bản đồ thành các ô, rồi chỉ nhìn vào ô của bạn và vài ô kề bên.
+**Muốn tìm quán cà phê gần bạn, đừng đo khoảng cách tới mọi quán.** Chia bản đồ thành các ô, rồi bắt đầu từ ô của bạn và mở rộng dần ra các ô xung quanh.
 
-![Một hình vuông là bản đồ, chia làm bốn phần. Phần phía trên bên phải đông địa điểm nên được chia tiếp, và ô nhỏ chứa vị trí của bạn được tô vàng. Các phần thưa chỉ có ô lớn. Bên dưới là ba thẻ: ô nào còn quá nhiều địa điểm thì chia thành bốn, tìm bằng cách đi từ gốc xuống ô lá chứa bạn, thiếu kết quả thì lấy thêm từ ô kề. Chú thích: trong thiết kế này, quadtree nằm trong bộ nhớ máy chủ.](../../diagrams/sd-12-005-main.svg)
+![Một hình vuông là bản đồ, chia làm bốn phần. Phần phía trên bên phải đông địa điểm nên được chia tiếp, và ô nhỏ chứa vị trí của bạn được tô vàng. Các phần thưa chỉ có ô lớn. Bên dưới là ba thẻ: ô nào còn quá nhiều địa điểm thì chia thành bốn, tìm bằng cách đi từ gốc xuống ô lá chứa bạn, thiếu kết quả thì mở rộng sang ô xung quanh (cách gần đúng). Chú thích: trong thiết kế này, quadtree nằm trong bộ nhớ máy chủ.](../../diagrams/sd-12-005-main.svg)
 
 ## Đọc hình
 
 Bản đồ được chia đệ quy thành **4 ô**. Ô nào còn quá nhiều địa điểm (ví dụ hơn một ngưỡng như 100) thì chia tiếp thành 4 ô nhỏ hơn; ô nào đủ ít thì dừng và thành **ô lá**. Nơi đông, như một phố ẩm thực, sinh ra ô nhỏ và sâu; nơi thưa, như vùng đồi núi, chỉ có ô lớn.
 
-**Tìm gần bạn:** đi từ gốc xuống, mỗi bước chọn ô chứa vị trí của bạn, cho tới ô lá. Nếu ô lá chưa đủ số kết quả cần, lấy thêm địa điểm từ các ô kề.
+**Tìm gần bạn:** đi từ gốc xuống, mỗi bước chọn ô chứa vị trí của bạn, cho tới ô lá. Nếu ô lá chưa đủ số kết quả cần, mở rộng sang các ô xung quanh. Đây là cách gần đúng, thường đủ cho danh sách “quanh đây”; muốn chính xác thì xem phần cuối bài.
 
 ## Giới hạn cần nhớ
 
@@ -26,9 +26,9 @@ Phố ẩm thực: nhiều địa điểm khiến ô bị chia nhỏ nhiều l�
 </details>
 
 <details>
-<summary>Xem sâu hơn: ô kề, geohash và cập nhật</summary>
+<summary>Xem sâu hơn: tìm chính xác, geohash và cập nhật</summary>
 
-- **Ô kề:** điểm gần nhất có thể nằm ở ô bên cạnh dù chỉ cách một đoạn ngắn. Muốn danh sách gần nhất chính xác, phải xét cả các ô kề rồi xếp theo khoảng cách thật.
+- **Gần đúng và chính xác:** mở rộng sang ô kề chỉ cho kết quả gần đúng. Ô lá có kích thước khác nhau, nên một điểm gần hơn vẫn có thể nằm ở ô chưa xét, và xếp theo khoảng cách chỉ sắp thứ tự các ứng viên đã lấy. Muốn danh sách gần nhất chính xác, duyệt các ô theo khoảng cách tối thiểu từ điểm truy vấn tới ô (dùng hàng đợi ưu tiên) và chỉ dừng khi không ô nào chưa xét có thể chứa điểm gần hơn kết quả hiện có.
 - **Quadtree và geohash:** cả hai chia vùng thành 4 theo từng mức. Geohash dùng lưới cố định nên dễ lưu và tìm trong cơ sở dữ liệu; quadtree chia thích nghi theo mật độ. Trong thiết kế ở bài này nó được dựng trong bộ nhớ, nhưng quadtree cũng có thể được lưu bền. Xem bài [Dịch vụ tìm địa điểm lân cận](../sd-12-017/lesson.md).
 - **Cập nhật:** thêm hoặc xóa địa điểm có thể sửa cây tại chỗ hoặc dựng lại định kỳ; đó là đánh đổi giữa độ mới và độ phức tạp.
 

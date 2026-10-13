@@ -14,7 +14,7 @@
 
 ## Giới hạn cần nhớ
 
-Ba trạng thái khác nhau: một trang được **bò** chưa chắc được **lập chỉ mục**, và trang được lập chỉ mục chưa chắc được xếp cao. Chặn bò bằng `robots.txt` cũng không đồng nghĩa trang sẽ không xuất hiện trong kết quả; muốn loại khỏi kết quả cần cách khác như chỉ thị noindex. Cách xếp hạng cụ thể của từng công cụ không công khai đầy đủ.
+Ba trạng thái khác nhau: một trang được **bò** chưa chắc được **lập chỉ mục**, và trang được lập chỉ mục chưa chắc được xếp cao. Chặn bò bằng `robots.txt` cũng không đồng nghĩa trang sẽ không xuất hiện trong kết quả; muốn loại khỏi kết quả cần cách khác, như chỉ thị `noindex`. Chỉ thị này chỉ có tác dụng khi trang vẫn cho phép bò, vì nếu `robots.txt` chặn thì công cụ không đọc được `noindex`. Với trang riêng tư, hãy dùng xác thực hoặc gỡ trang. Cách xếp hạng cụ thể của từng công cụ không công khai đầy đủ.
 
 ## Nhìn hình trả lời
 

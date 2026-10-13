@@ -101,7 +101,7 @@
       "verified_by": "Names carried from the source; no licence text was read."
     }
   ],
-  "design_notes_vi": "Năm tầng xếp theo đường đi của một yêu cầu, mỗi tầng một câu hỏi; thẻ cuối nhắc mở có nhiều mức. Ví dụ chỉ nêu công cụ đã đọc README. Không dùng ảnh nguồn.",
+  "design_notes_vi": "Năm tầng xếp theo đường đi của một yêu cầu, mỗi tầng một câu hỏi; thẻ cuối nhắc mở có nhiều mức. Ví dụ ở tầng 1–4 là công cụ đã đọc README; Next.js và các họ mô hình ở tầng 5 lấy từ bài nguồn, chưa đối chiếu giấy phép. Không dùng ảnh nguồn.",
   "source_deviations": [
     "Source claims the best AI developer tools are open source and names Vercel, Nomic, JinaAI, Cognito, LLMWare and Hugging Face; those were not verified here and are omitted.",
     "Source calls the listed open models great alternatives to proprietary ones 'based on benchmarks'; no benchmark is cited, so the lesson makes no quality claim."

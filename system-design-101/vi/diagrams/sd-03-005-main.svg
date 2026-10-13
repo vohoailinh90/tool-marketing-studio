@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 832" width="320" height="832" role="img" aria-labelledby="title desc">
 <title id="title">Ngăn xếp AI: năm tầng, mỗi tầng một câu hỏi</title>
-<desc id="desc">Năm tầng từ trên xuống: giao diện, backend và cách gọi mô hình, embedding và RAG, lưu trữ và truy xuất vector, và mô hình. Mỗi tầng có ví dụ công cụ mã nguồn mở. Lưu ý: mở có nhiều mức, cần kiểm tra giấy phép của từng mô hình và công cụ.</desc>
+<desc id="desc">Năm tầng từ trên xuống: giao diện, backend và cách gọi mô hình, embedding và RAG, lưu trữ và truy xuất vector, và mô hình. Mỗi tầng có ví dụ công cụ công khai ở các mức mở khác nhau. Lưu ý: mở có nhiều mức, cần kiểm tra giấy phép của từng mô hình và công cụ.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="832" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">

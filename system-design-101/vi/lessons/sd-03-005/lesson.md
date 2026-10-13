@@ -1,6 +1,6 @@
 # Ngăn xếp AI mã nguồn mở
 
-**Dựng một ứng dụng AI là ghép nhiều tầng, và mỗi tầng đều có lựa chọn mã nguồn mở.**
+**Dựng một ứng dụng AI là ghép nhiều tầng, và mỗi tầng có nhiều lựa chọn công khai ở các mức “mở” khác nhau.**
 Ở mỗi tầng hãy hỏi hai điều: nó giải quyết việc gì, và giấy phép cho phép bạn làm gì.
 
 ![Năm thẻ nối nhau từ trên xuống. 1 Giao diện: Streamlit, Next.js. 2 Backend và gọi mô hình: FastAPI, Metaflow, Ollama. 3 Embedding và RAG: biến văn bản thành vector, tìm đoạn liên quan cho prompt. 4 Lưu trữ và truy xuất: Postgres với pgvector, Milvus, Weaviate; Faiss là thư viện tìm kiếm vector. 5 Mô hình: Llama, Mistral, Qwen, Phi, Gemma, mỗi họ có giấy phép riêng. Thẻ cuối nhắc rằng mở có nhiều mức.](../../diagrams/sd-03-005-main.svg)

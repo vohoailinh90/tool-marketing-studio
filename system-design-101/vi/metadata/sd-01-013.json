@@ -63,9 +63,9 @@
       ]
     },
     {
-      "claim_vi": "PAN thường dùng Bluetooth hoặc USB trong phạm vi vài mét; Bluetooth ban đầu dựa trên IEEE 802.15.1 và nay do Bluetooth SIG duy trì.",
+      "claim_vi": "PAN thường dùng Bluetooth hoặc USB trong phạm vi vài mét; Bluetooth do Bluetooth SIG duy trì, còn IEEE 802.15.1 là chuẩn được xây dựng từ đặc tả Bluetooth đời đầu (v1.1).",
       "sources": [
-        "https://www.ieee802.org/15/",
+        "https://www.ieee802.org/15/pub/TG1.html",
         "https://www.bluetooth.com/specifications/",
         "https://www.usb.org/documents"
       ]

@@ -30,7 +30,7 @@ Bên trong từng văn phòng là LAN. Phần nối ba văn phòng qua các thà
 <summary>Xem sâu hơn</summary>
 
 - **WLAN:** LAN không dây, thường dùng Wi-Fi; PAN không dây thường dùng Bluetooth.
-- **Công nghệ điển hình:** họ chuẩn IEEE 802 mô tả chủ yếu mạng LAN và MAN; Ethernet là 802.3 và Wi-Fi là 802.11. Bluetooth ban đầu dựa trên IEEE 802.15.1, nay do Bluetooth SIG duy trì.
+- **Công nghệ điển hình:** họ chuẩn IEEE 802 mô tả chủ yếu mạng LAN và MAN; Ethernet là 802.3 và Wi-Fi là 802.11. Bluetooth do Bluetooth SIG duy trì; IEEE 802.15.1 là chuẩn được xây dựng từ đặc tả Bluetooth đời đầu (v1.1).
 - **SD-WAN:** cách quản lý nhiều đường WAN bằng phần mềm; không đổi ý nghĩa của "WAN" là mạng nối các nơi ở xa.
 - **Khác:** còn có các tên như mạng khuôn viên (CAN) hay mạng lưu trữ (SAN); bài này chỉ bàn bốn tên phổ biến.
 
@@ -42,6 +42,6 @@ Bên trong từng văn phòng là LAN. Phần nối ba văn phòng qua các thà
 - [IEEE 802 LAN/MAN Standards Committee](https://www.ieee802.org/): họ chuẩn LAN và MAN.
 - [Cloudflare — What is a LAN?](https://www.cloudflare.com/learning/network-layer/what-is-a-lan/) và [What is a WAN?](https://www.cloudflare.com/learning/network-layer/what-is-a-wan/).
 - [Cloudflare — What is SD-WAN?](https://www.cloudflare.com/learning/network-layer/what-is-sd-wan/).
-- [RFC 1122 §1.1](https://www.rfc-editor.org/rfc/rfc1122): Internet gồm nhiều mạng nối nhau; [IEEE 802.3](https://www.ieee802.org/3/), [802.11](https://www.ieee802.org/11/), [802.15](https://www.ieee802.org/15/) và [Bluetooth SIG](https://www.bluetooth.com/specifications/).
+- [RFC 1122 §1.1](https://www.rfc-editor.org/rfc/rfc1122): Internet gồm nhiều mạng nối nhau; [IEEE 802.3](https://www.ieee802.org/3/), [802.11](https://www.ieee802.org/11/), [802.15](https://www.ieee802.org/15/pub/TG1.html) và [Bluetooth SIG](https://www.bluetooth.com/specifications/).
 
 Đã đọc nguồn ngày 2026-10-13; các tài liệu nêu trên chưa được mở để đối chiếu trực tiếp trong lượt biên soạn này. Bài viết và hình được thiết kế độc lập.

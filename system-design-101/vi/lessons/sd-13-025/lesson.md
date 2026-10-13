@@ -2,7 +2,7 @@
 
 Khi một Pod không chạy, trạng thái hiển thị cho biết nó dừng ở chặng nào: chưa có node, node chưa khởi động xong container, container chết, hay chạy mà chưa sẵn sàng. Mỗi chặng có vài nguyên nhân quen thuộc và một chỗ để xem.
 
-![Bốn chặng khi Pod không chạy: Pending khi chưa có node thường do thiếu tài nguyên theo requests, taint, nodeSelector hay PVC chưa gắn; ContainerCreating khi kéo image hoặc gắn volume lỗi; chạy rồi thoát như CrashLoopBackOff hay OOMKilled do vượt limits bộ nhớ hoặc do node hết bộ nhớ; chạy nhưng chưa Ready do readiness probe thất bại.](../../diagrams/sd-13-025-main.svg)
+![Bốn chặng khi Pod không chạy: Pending khi chưa có node thường do thiếu tài nguyên theo requests, taint, nodeSelector hay PVC chưa gắn; ContainerCreating khi kéo image hoặc gắn volume lỗi; chạy rồi thoát như CrashLoopBackOff hay OOMKilled do vượt limits bộ nhớ hoặc do node hết bộ nhớ; chạy nhưng chưa Ready do readiness probe thất bại, và với Service ở cấu hình mặc định thì Pod đó không nhận traffic.](../../diagrams/sd-13-025-main.svg)
 
 **Đọc hình:** bốn chặng theo thứ tự Pod đi qua khi khởi động; lỗi ở chặng nào thì dừng ở đó.
 
@@ -34,7 +34,7 @@ kubectl get events --sort-by=.metadata.creationTimestamp   # sắp theo thời �
 - **ContainerCreating:** kubelet nhờ container runtime kéo image và chuẩn bị volume. Tên image sai, thiếu quyền kéo (cần `imagePullSecrets`) hay registry không với tới cho `ErrImagePull` rồi `ImagePullBackOff`.
 - **CrashLoopBackOff:** kubelet khởi động lại container và tăng dần thời gian chờ giữa các lần (tối đa vài phút); tìm nguyên nhân trong `logs --previous`.
 - **OOMKilled:** `describe pod` ghi lý do ở trạng thái lần trước của container (`Reason: OOMKilled`, thường kèm mã thoát 137, tức bị dừng cưỡng bức). Hết bộ nhớ có thể do container vượt `limits` bộ nhớ của chính nó, hoặc do node hết bộ nhớ (khi đó kernel có thể dừng cả container chưa vượt limit hay không đặt limit). Hãy kiểm tra `limits` của container và sự kiện của node (`kubectl describe node`).
-- **Chưa Ready:** container chạy nhưng readiness probe thất bại, nên Pod không được tính là sẵn sàng.
+- **Chưa Ready:** container chạy nhưng readiness probe thất bại, nên Pod không được tính là sẵn sàng. Với Service ở cấu hình mặc định, Pod chưa Ready không nhận traffic từ Service; Service đặt `publishNotReadyAddresses: true` là ngoại lệ vì báo mọi endpoint là ready dù Pod chưa sẵn sàng.
 
 </details>
 

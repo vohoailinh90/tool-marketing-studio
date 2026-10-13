@@ -3,7 +3,7 @@
 **DevSecOps đưa kiểm tra bảo mật vào từng chặng của đường ống phát triển, thay vì dồn lại một lần ở cuối.**
 Hướng dẫn DevSecOps của OWASP nêu mục tiêu là phát hiện vấn đề bảo mật, từ thiết kế lẫn từ lỗ hổng ứng dụng, càng sớm càng tốt.
 
-![Bảy thẻ xếp dọc. Sáu chặng nối nhau theo cấu trúc hướng dẫn của OWASP. 1 Thiết kế: mô hình hóa mối đe dọa, yêu cầu và thiết kế an toàn. 2 Phát triển: quản lý bí mật, kiểm tra trước khi commit, rà soát mã. 3 Xây dựng: SAST, SCA, quét container, quét IaC, cổng bảo mật, SBOM. 4 Kiểm thử: IAST, DAST, bảo mật API. 5 Phát hành, triển khai: quản lý bí mật khi triển khai trên Kubernetes và GitOps. 6 Vận hành: ghi nhật ký và giám sát, quản lý lỗ hổng, kiểm thử xâm nhập. Thẻ thứ bảy: xuyên suốt, quản trị, gồm kiểm tra tuân thủ và chính sách dưới dạng mã. Thẻ cuối: chính đường ống cũng là mục tiêu, công cụ CI/CD mở rộng bề mặt tấn công và cần được bảo vệ.](../../diagrams/sd-14-001-main.svg)
+![Chín thẻ xếp dọc. Bảy chặng nối nhau theo cấu trúc hướng dẫn của OWASP. 1 Thiết kế: mô hình hóa mối đe dọa, yêu cầu và thiết kế an toàn. 2 Phát triển: quản lý bí mật, kiểm tra trước khi commit, rà soát mã. 3 Xây dựng: SAST, SCA, quét container, quét IaC, cổng bảo mật, SBOM. 4 Kiểm thử: IAST, DAST, bảo mật API. 5 Phát hành: cổng bảo mật cuối, ký bản build, đính kèm SBOM, phê duyệt phát hành. 6 Triển khai: chỉ chạy bản build đã xác minh chữ ký, quản lý bí mật trên Kubernetes và GitOps. 7 Vận hành: ghi nhật ký và giám sát, quản lý lỗ hổng, kiểm thử xâm nhập. Thẻ thứ tám: xuyên suốt, quản trị, gồm kiểm tra tuân thủ và chính sách dưới dạng mã. Thẻ cuối: chính đường ống cũng là mục tiêu, công cụ CI/CD mở rộng bề mặt tấn công và cần được bảo vệ.](../../diagrams/sd-14-001-main.svg)
 
 ## Đọc hình
 
@@ -19,9 +19,11 @@ SBOM là danh mục thành phần của bản build.
 
 **4 · Kiểm thử.** Kiểm thử bảo mật động (DAST) tấn công thử ứng dụng đang chạy; kiểm thử tương tác (IAST) quan sát ứng dụng từ bên trong khi chạy kiểm thử; thêm kiểm thử bảo mật API.
 
-**5 · Phát hành, triển khai.** Chặng đưa bản build ra môi trường chạy; mục lục OWASP nêu riêng việc quản lý bí mật trên Kubernetes và GitOps.
+**5 · Phát hành.** Chặng cuối trước khi bản build rời đường ống. Hướng dẫn OWASP nêu cổng bảo mật cuối, ký bản build, đính kèm SBOM và nguồn gốc bản build, phê duyệt phát hành và ghi chú phát hành về bảo mật.
 
-**6 · Vận hành.** Ghi nhật ký và giám sát, quản lý lỗ hổng, kiểm thử xâm nhập.
+**6 · Triển khai.** Đưa bản đã phát hành vào môi trường chạy. Chỉ cho chạy bản build đã xác minh được chữ ký và nguồn gốc; mục lục còn có phần riêng về quản lý bí mật trên Kubernetes và GitOps.
+
+**7 · Vận hành.** Ghi nhật ký và giám sát, quản lý lỗ hổng, kiểm thử xâm nhập.
 
 **Xuyên suốt: quản trị.** Kiểm tra tuân thủ và chính sách viết dưới dạng mã nằm ở phần quản trị của hướng dẫn, không thuộc riêng chặng nào.
 
@@ -47,15 +49,15 @@ Nếu khóa đã lộ, hãy coi nó không còn bí mật và thay bằng khóa 
 
 Bài nguồn liệt kê mười khái niệm, không xếp theo thứ tự nào. Hình này gắn các việc kỹ thuật vào chặng theo mục lục của OWASP để thấy mỗi việc xảy ra ở đâu.
 Hai khái niệm còn lại của bài nguồn là văn hóa chứ không phải chặng: tích hợp bảo đảm chất lượng và phối hợp, giao tiếp giữa các nhóm.
-Bài này chỉ đọc mục lục và phần mở đầu của hướng dẫn OWASP, chưa đọc từng chương, và không đánh giá công cụ cụ thể nào.
+Bài này đọc mục lục, phần mở đầu và phần đầu hai chương Phát hành và Triển khai của hướng dẫn OWASP; các chương còn lại chưa đọc, và bài không đánh giá công cụ cụ thể nào.
 
 </details>
 
 ## Nguồn đối chiếu
 
 - [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-is-devsecops.md): mười khái niệm chính.
-- [OWASP — DevSecOps Guideline](https://github.com/OWASP/DevSecOpsGuideline): mục tiêu phát hiện sớm; mục lục các chặng thiết kế, phát triển, xây dựng, kiểm thử, phát hành, triển khai, vận hành và phần quản trị; lưu ý CI/CD mở rộng bề mặt tấn công. Đọc từ bản clone của kho.
+- [OWASP — DevSecOps Guideline](https://github.com/OWASP/DevSecOpsGuideline): mục tiêu phát hiện sớm; mục lục bảy chặng thiết kế, phát triển, xây dựng, kiểm thử, phát hành, triển khai, vận hành và phần quản trị; phần đầu hai chương Phát hành và Triển khai; lưu ý CI/CD mở rộng bề mặt tấn công. Đọc từ bản clone của kho.
 - [OWASP — Secrets Management Cheat Sheet](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Secrets_Management_Cheat_Sheet.md): quản lý và xoay vòng bí mật. Đọc từ bản clone của kho.
 
-Đã đọc nguồn ngày 2026-10-13. Tên chặng được dịch sang tiếng Việt; phần giải nghĩa từng kỹ thuật (SAST, SCA, DAST, IAST, SBOM…) là kiến thức chung của người biên soạn, chưa đối chiếu với từng chương của OWASP.
+Đã đọc nguồn ngày 2026-10-13. Tên chặng được dịch sang tiếng Việt; phần giải nghĩa từng kỹ thuật (SAST, SCA, DAST, IAST, SBOM…) là kiến thức chung của người biên soạn, chưa đối chiếu với các chương Xây dựng và Kiểm thử của OWASP.
 Bài viết và hình được thiết kế độc lập.

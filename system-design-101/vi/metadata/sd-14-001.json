@@ -33,7 +33,7 @@
     "claims": {
       "status": "checked",
       "checked_on": "2026-10-13",
-      "evidence": "Only the table of contents and introduction of the OWASP DevSecOps Guideline README, and the OWASP Secrets Management Cheat Sheet, were read from local clones; the individual guideline chapters were not read and the gloss of each technique is the author's general knowledge."
+      "evidence": "The table of contents and introduction of the OWASP DevSecOps Guideline README, the opening sections of its Release and Deploy chapters, and the OWASP Secrets Management Cheat Sheet were read from local clones; the other guideline chapters were not read and the gloss of each technique is the author's general knowledge."
     },
     "technical_review": {
       "status": "pending",
@@ -65,10 +65,22 @@
       "verified_by": "Read from a local clone of the OWASP repository."
     },
     {
-      "claim_vi": "The guideline's process chapters are Design (threat modeling, secure design and requirements), Develop (pre-commit, secrets management, linting, repository hardening, secure code review), Build (SAST, SCA, container scanning and hardening, IaC scanning, security gates, SBOM, artifact signing, CI/CD pipeline security), Test (IAST, DAST, mobile, API security, misconfiguration, AI/LLM application testing), Release, Deploy (including secrets in Kubernetes and GitOps) and Operate (logging and monitoring, vulnerability management, pentest and more); Governance covers compliance auditing and policy as code.",
+      "claim_vi": "The guideline's process section has seven stages, Design (threat modeling, secure design and requirements), Develop (pre-commit, secrets management, linting, repository hardening, secure code review), Build (SAST, SCA, container scanning and hardening, IaC scanning, security gates, SBOM, artifact signing, CI/CD pipeline security), Test (IAST, DAST, mobile, API security, misconfiguration, AI/LLM application testing), Release, Deploy (including secrets in Kubernetes and GitOps) and Operate (logging and monitoring, vulnerability management, pentest and more); Governance covers compliance auditing and policy as code.",
       "source": "https://github.com/OWASP/DevSecOpsGuideline",
       "section": "README table of contents",
       "verified_by": "Read from a local clone of the OWASP repository. Only the table of contents was read, not the chapters."
+    },
+    {
+      "claim_vi": "The Release chapter lists these security activities at release: a final security gate, attaching the SBOM and build provenance to the artifact, signing the artifact, release approval, and security-relevant release notes.",
+      "source": "https://github.com/OWASP/DevSecOpsGuideline/blob/master/current-version/2-Process/2-5-Release/2-5-1-Release.md",
+      "section": "Security activities at release",
+      "verified_by": "Read from a local clone of the OWASP repository. Only the opening sections were read."
+    },
+    {
+      "claim_vi": "The Deploy chapter opens with admission control: only artifacts with valid signatures and acceptable provenance are admitted to run; a separate Deploy page covers secrets in Kubernetes and GitOps.",
+      "source": "https://github.com/OWASP/DevSecOpsGuideline/blob/master/current-version/2-Process/2-6-Deploy/2-6-1-Deploy.md",
+      "section": "Verify before you run: admission control",
+      "verified_by": "Read from a local clone of the OWASP repository. Only the opening sections were read; the secrets page was read by title only."
     },
     {
       "claim_vi": "CI/CD tools often expand the attack surface, so security controls are needed around them; CI/CD pipeline security is a topic under Build.",
@@ -95,7 +107,7 @@
       "verified_by": "Source body read."
     }
   ],
-  "design_notes_vi": "Sáu chặng theo mục lục OWASP, một thẻ quản trị xuyên suốt, và thẻ cuối nói chính đường ống là mục tiêu. Không có mũi tên sau chặng cuối. Không dùng ảnh nguồn.",
+  "design_notes_vi": "Bảy chặng theo mục lục OWASP (phát hành và triển khai tách riêng), một thẻ quản trị xuyên suốt, và thẻ cuối nói chính đường ống là mục tiêu. Không có mũi tên sau chặng cuối. Không dùng ảnh nguồn.",
   "source_deviations": [
     "Source is an unordered list of ten concepts with no explanation; the lesson places the technical ones at the stages of OWASP's guideline and names the two cultural ones (QA integration, collaboration) separately.",
     "Source does not mention that the CI/CD pipeline itself is an attack surface; the lesson adds it from the OWASP guideline."

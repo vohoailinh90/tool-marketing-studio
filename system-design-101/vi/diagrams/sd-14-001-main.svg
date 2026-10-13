@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1008" width="320" height="1008" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1174" width="320" height="1174" role="img" aria-labelledby="title desc">
 <title id="title">DevSecOps: kiểm tra bảo mật ở từng chặng</title>
-<desc id="desc">Sáu chặng theo cấu trúc hướng dẫn DevSecOps của OWASP, mỗi chặng một nhóm việc bảo mật. Thiết kế: mô hình hóa mối đe dọa, thiết kế và yêu cầu an toàn. Phát triển: quản lý bí mật và kiểm tra trước khi commit, rà soát mã an toàn. Xây dựng: SAST, SCA, quét container, quét hạ tầng dưới dạng mã, cổng bảo mật, SBOM. Kiểm thử: IAST, DAST, bảo mật API. Phát hành và triển khai: quản lý bí mật khi triển khai trên Kubernetes và GitOps. Vận hành: ghi nhật ký và giám sát, quản lý lỗ hổng, kiểm thử xâm nhập. Xuyên suốt: quản trị, gồm kiểm tra tuân thủ và chính sách dưới dạng mã. Thẻ cuối nhắc rằng chính đường ống CI/CD cũng là bề mặt tấn công.</desc>
+<desc id="desc">Bảy chặng theo cấu trúc hướng dẫn DevSecOps của OWASP, mỗi chặng một nhóm việc bảo mật. Thiết kế: mô hình hóa mối đe dọa, thiết kế và yêu cầu an toàn. Phát triển: quản lý bí mật và kiểm tra trước khi commit, rà soát mã an toàn. Xây dựng: SAST, SCA, quét container, quét hạ tầng dưới dạng mã, cổng bảo mật, SBOM. Kiểm thử: IAST, DAST, bảo mật API. Phát hành: cổng bảo mật cuối, ký bản build, đính kèm SBOM và nguồn gốc, phê duyệt phát hành. Triển khai: chỉ cho chạy bản build đã xác minh chữ ký và nguồn gốc, quản lý bí mật trên Kubernetes và GitOps. Vận hành: ghi nhật ký và giám sát, quản lý lỗ hổng, kiểm thử xâm nhập. Xuyên suốt: quản trị, gồm kiểm tra tuân thủ và chính sách dưới dạng mã. Thẻ cuối nhắc rằng chính đường ống CI/CD cũng là bề mặt tấn công.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="1008" fill="#f8fafc"/>
+<rect width="320" height="1174" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="30" font-size="21" font-weight="bold">DEVSECOPS: BẢO MẬT</text>
 <text x="16" y="54" font-size="21" font-weight="bold">Ở TỪNG CHẶNG</text>
@@ -25,22 +25,29 @@
 <text x="29" y="463" font-size="16" font-weight="bold">4 · Kiểm thử</text>
 <text x="29" y="491" font-size="16" font-weight="normal">IAST, DAST, bảo mật API</text>
 <line x1="160" y1="511" x2="160" y2="526" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="16" y="528" width="288" height="100" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
-<text x="29" y="557" font-size="16" font-weight="bold">5 · Phát hành, triển khai</text>
-<text x="29" y="585" font-size="16" font-weight="normal">Quản lý bí mật khi triển khai</text>
-<text x="29" y="609" font-size="16" font-weight="normal">(Kubernetes, GitOps)</text>
-<line x1="160" y1="629" x2="160" y2="644" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="16" y="646" width="288" height="100" rx="12" fill="#e2e8f0" stroke="#94a3b8"/>
-<text x="29" y="675" font-size="16" font-weight="bold">6 · Vận hành</text>
-<text x="29" y="703" font-size="16" font-weight="normal">Ghi nhật ký, giám sát; quản lý lỗ</text>
-<text x="29" y="727" font-size="16" font-weight="normal">hổng; kiểm thử xâm nhập</text>
-<rect x="16" y="758" width="288" height="100" rx="12" fill="#ffffff" stroke="#94a3b8"/>
-<text x="29" y="787" font-size="16" font-weight="bold">Xuyên suốt: quản trị</text>
-<text x="29" y="815" font-size="16" font-weight="normal">Kiểm tra tuân thủ, chính sách</text>
-<text x="29" y="839" font-size="16" font-weight="normal">dưới dạng mã</text>
-<rect x="16" y="870" width="288" height="124" rx="12" fill="#fee2e2" stroke="#94a3b8"/>
-<text x="29" y="899" font-size="16" font-weight="bold">Chính đường ống cũng là</text>
-<text x="29" y="923" font-size="16" font-weight="bold">mục tiêu</text>
-<text x="29" y="951" font-size="16" font-weight="normal">Công cụ CI/CD mở rộng bề mặt</text>
-<text x="29" y="975" font-size="16" font-weight="normal">tấn công; cần được bảo vệ.</text>
+<rect x="16" y="528" width="288" height="124" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="29" y="557" font-size="16" font-weight="bold">5 · Phát hành</text>
+<text x="29" y="585" font-size="16" font-weight="normal">Cổng bảo mật cuối, ký bản</text>
+<text x="29" y="609" font-size="16" font-weight="normal">build, đính kèm SBOM, phê</text>
+<text x="29" y="633" font-size="16" font-weight="normal">duyệt</text>
+<line x1="160" y1="653" x2="160" y2="668" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="670" width="288" height="124" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="29" y="699" font-size="16" font-weight="bold">6 · Triển khai</text>
+<text x="29" y="727" font-size="16" font-weight="normal">Chỉ chạy bản đã xác minh chữ</text>
+<text x="29" y="751" font-size="16" font-weight="normal">ký; bí mật trên Kubernetes,</text>
+<text x="29" y="775" font-size="16" font-weight="normal">GitOps</text>
+<line x1="160" y1="795" x2="160" y2="810" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="812" width="288" height="100" rx="12" fill="#e2e8f0" stroke="#94a3b8"/>
+<text x="29" y="841" font-size="16" font-weight="bold">7 · Vận hành</text>
+<text x="29" y="869" font-size="16" font-weight="normal">Ghi nhật ký, giám sát; quản lý lỗ</text>
+<text x="29" y="893" font-size="16" font-weight="normal">hổng; kiểm thử xâm nhập</text>
+<rect x="16" y="924" width="288" height="100" rx="12" fill="#ffffff" stroke="#94a3b8"/>
+<text x="29" y="953" font-size="16" font-weight="bold">Xuyên suốt: quản trị</text>
+<text x="29" y="981" font-size="16" font-weight="normal">Kiểm tra tuân thủ, chính sách</text>
+<text x="29" y="1005" font-size="16" font-weight="normal">dưới dạng mã</text>
+<rect x="16" y="1036" width="288" height="124" rx="12" fill="#fee2e2" stroke="#94a3b8"/>
+<text x="29" y="1065" font-size="16" font-weight="bold">Chính đường ống cũng là</text>
+<text x="29" y="1089" font-size="16" font-weight="bold">mục tiêu</text>
+<text x="29" y="1117" font-size="16" font-weight="normal">Công cụ CI/CD mở rộng bề mặt</text>
+<text x="29" y="1141" font-size="16" font-weight="normal">tấn công; cần được bảo vệ.</text>
 </g></svg>

@@ -1,8 +1,8 @@
 # Tìm nguyên nhân từ nhật ký bằng dòng lệnh
 
-Khi tìm nguyên nhân sự cố trong nhật ký, đặc điểm của tệp quyết định công cụ: có cần ngữ cảnh quanh dòng lỗi không, nhật ký đã nén hay đang ghi, dạng văn bản hay JSON, hay cần một con số.
+Khi tìm nguyên nhân sự cố trong nhật ký, đặc điểm của tệp quyết định công cụ: có cần ngữ cảnh quanh dòng lỗi không, nhật ký đã nén hay đang ghi, dạng văn bản hay JSON (JavaScript Object Notation — định dạng dữ liệu văn bản dạng khóa và giá trị), hay cần một con số.
 
-![Năm tình huống và lệnh: xem ngữ cảnh quanh dòng lỗi bằng grep -C, tìm trong nhật ký đã nén bằng zgrep, theo dõi nhật ký đang ghi bằng tail -f nối grep, thêm --line-buffered khi đầu ra của grep còn chuyển tiếp sang lệnh khác, lọc nhật ký JSON bằng jq, và tính trung bình một cột số bằng awk.](../../diagrams/sd-13-022-main.svg)
+![Năm tình huống và lệnh: xem ngữ cảnh quanh dòng lỗi bằng grep -C, tìm trong nhật ký đã nén bằng zgrep, theo dõi nhật ký đang ghi bằng tail -f nối grep, thêm --line-buffered khi đầu ra của grep còn chuyển tiếp sang lệnh khác, lọc nhật ký JSON (JavaScript Object Notation — định dạng dữ liệu văn bản dạng khóa và giá trị) bằng jq, và tính trung bình một cột số bằng awk.](../../diagrams/sd-13-022-main.svg)
 
 **Đọc hình:** mỗi thẻ là một tình huống riêng và lệnh gợi ý; các lệnh có thể ghép bằng dấu `|` khi cần.
 

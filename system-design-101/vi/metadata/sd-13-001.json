@@ -69,7 +69,7 @@
       "source": "https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/"
     },
     {
-      "claim_vi": "PodDisruptionBudget giới hạn số Pod bị chủ động gỡ cùng lúc.",
+      "claim_vi": "PodDisruptionBudget giới hạn việc gỡ Pod qua Eviction API; rolling update của controller và xóa trực tiếp không bị ràng buộc.",
       "source": "https://kubernetes.io/docs/concepts/workloads/pods/disruptions/"
     }
   ],

@@ -30,7 +30,7 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 9. [Hệ sinh thái Kubernetes theo đường đi của một ứng dụng](lessons/sd-13-009/lesson.md) — bài nháp, chờ review kỹ thuật.
 10. [Bảng tuần hoàn Kubernetes: đọc để tra cứu](lessons/sd-13-010/lesson.md) — bài nháp, chờ review kỹ thuật.
 11. [Viết Dockerfile build nhanh, image nhỏ và không lộ bí mật](lessons/sd-13-011/lesson.md) — bài nháp, chờ review kỹ thuật.
-12. [Chuỗi CI/CD của Netflix đọc theo rủi ro](lessons/sd-13-012/lesson.md) — bài nháp, chờ review kỹ thuật.
+12. [Học từ chuỗi CI/CD của công ty lớn mà không chép công cụ](lessons/sd-13-012/lesson.md) — bài nháp, chờ review kỹ thuật.
 13. [Docker khi chạy web kèm cơ sở dữ liệu: bốn chỗ hay hỏng](lessons/sd-13-013/lesson.md) — bài nháp, chờ review kỹ thuật.
 14. [CI/CD qua một hình đơn giản](lessons/sd-13-014/lesson.md) — bài nháp, chờ review kỹ thuật.
 15. [Chọn cách đưa bản mới lên: triển khai khác phát hành](lessons/sd-13-015/lesson.md) — bài nháp, chờ review kỹ thuật.

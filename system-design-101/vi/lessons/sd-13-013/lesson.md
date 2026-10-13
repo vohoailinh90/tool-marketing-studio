@@ -30,7 +30,11 @@ services:
     image: example/web:1.0
     ports: ["8080:80"]
     environment:
-      DATABASE_URL: postgres://app:${DB_PASSWORD}@db:5432/app
+      DB_HOST: db
+      DB_PORT: "5432"
+      DB_NAME: app
+      DB_USER: app
+      DB_PASSWORD: ${DB_PASSWORD}
     depends_on:
       db:
         condition: service_healthy
@@ -52,7 +56,7 @@ volumes:
   dbdata:
 ```
 
-Đặt `DB_PASSWORD` trong biến môi trường hoặc trong tệp `.env` không đưa vào Git. Image PostgreSQL chính thức bắt buộc có `POSTGRES_PASSWORD` khi khởi tạo dữ liệu lần đầu.
+Đặt `DB_PASSWORD` trong biến môi trường hoặc trong tệp `.env` không đưa vào Git. Image PostgreSQL chính thức bắt buộc có `POSTGRES_PASSWORD` khi khởi tạo dữ liệu lần đầu. Ví dụ truyền các tham số kết nối riêng thay vì nhúng mật khẩu vào một URI, vì mật khẩu có ký tự đặc biệt (`@`, `:`, `/`, `%`, `#`) trong URI phải được mã hóa phần trăm.
 
 - **Image và container:** image chỉ đọc; container thêm một lớp ghi, mất khi container bị xóa, nên dữ liệu cần ở volume.
 - **Network:** trong Compose, các dịch vụ dùng chung một network mặc định và gọi nhau bằng tên dịch vụ; network bridge do người dùng tạo có DNS theo tên, bridge mặc định thì không.

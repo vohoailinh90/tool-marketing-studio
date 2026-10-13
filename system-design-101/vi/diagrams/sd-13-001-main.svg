@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 964" width="320" height="964" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 991" width="320" height="991" role="img" aria-labelledby="title desc">
 <title id="title">Mẫu thiết kế Kubernetes khi đưa một API lên cụm</title>
-<desc id="desc">Sáu việc cần làm khi đưa một API lên cụm và mẫu giúp bạn: báo sẵn sàng bằng probe, khai báo tài nguyên, chạy migration bằng init container hoặc Job, thêm proxy hoặc gửi nhật ký bằng sidecar, tìm nhau qua Service và DNS, và tắt êm khi bị thay Pod.</desc>
+<desc id="desc">Sáu việc cần làm khi đưa một API lên cụm và mẫu giúp bạn: báo sẵn sàng bằng probe, khai báo tài nguyên, chạy migration bằng init container hoặc Job, thêm proxy hoặc gửi nhật ký bằng sidecar, tìm nhau qua Service và DNS, và tắt êm khi bị thay Pod cùng PodDisruptionBudget khi bảo trì node.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="964" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<rect width="320" height="991" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="30" font-size="20" font-weight="bold">ĐƯA MỘT API LÊN CỤM</text>
 <text x="16" y="58" font-size="16" font-weight="normal">Việc cần làm → mẫu giúp bạn</text>
 <rect x="16" y="89" width="288" height="155" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
@@ -30,10 +30,11 @@
 <text x="30" y="704" font-size="16" font-weight="bold">API khác tìm tới API</text>
 <text x="30" y="731" font-size="16" font-weight="bold">này</text>
 <text x="30" y="758" font-size="16" font-weight="normal">Service và tên DNS của cụm</text>
-<rect x="16" y="789" width="288" height="155" rx="10" fill="#fee2e2" stroke="#94a3b8"/>
+<rect x="16" y="789" width="288" height="182" rx="10" fill="#fee2e2" stroke="#94a3b8"/>
 <text x="30" y="817" font-size="16" font-weight="bold">Bị thay Pod mà không</text>
 <text x="30" y="844" font-size="16" font-weight="bold">rớt yêu cầu</text>
 <text x="30" y="871" font-size="16" font-weight="normal">Tắt êm: xử lý SIGTERM, thời</text>
-<text x="30" y="898" font-size="16" font-weight="normal">gian ân hạn,</text>
-<text x="30" y="925" font-size="16" font-weight="normal">PodDisruptionBudget</text>
+<text x="30" y="898" font-size="16" font-weight="normal">gian ân hạn</text>
+<text x="30" y="925" font-size="16" font-weight="normal">PodDisruptionBudget khi bảo</text>
+<text x="30" y="952" font-size="16" font-weight="normal">trì node</text>
 </g></svg>

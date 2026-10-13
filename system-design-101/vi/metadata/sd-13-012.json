@@ -1,6 +1,6 @@
 {
   "id": "sd-13-012",
-  "title_vi": "Chuỗi CI/CD của Netflix đọc theo rủi ro",
+  "title_vi": "Học từ chuỗi CI/CD của công ty lớn mà không chép công cụ",
   "language": "vi",
   "kind": "comparison",
   "content_status": "draft",
@@ -53,17 +53,21 @@
       "source": "https://github.com/spinnaker/kayenta"
     },
     {
-      "claim_vi": "Atlas là hệ thống số đo chuỗi thời gian của Netflix.",
-      "source": "https://github.com/Netflix/atlas"
+      "claim_vi": "Canary được đánh giá bằng cách so số đo của canary với bản đối chứng.",
+      "source": "https://sre.google/workbook/canarying-releases/"
     },
     {
-      "claim_vi": "Chaos Monkey chủ động làm lỗi máy chủ để kiểm tra khả năng chịu lỗi.",
-      "source": "https://netflix.github.io/chaosmonkey/"
+      "claim_vi": "Test chập chờn làm giảm niềm tin vào kết quả kiểm thử và cần được theo dõi, giảm thiểu.",
+      "source": "https://testing.googleblog.com/2016/05/flaky-tests-at-google-and-how-we.html"
+    },
+    {
+      "claim_vi": "SLSA là khung bảo vệ chuỗi cung ứng phần mềm; OWASP có danh sách 10 rủi ro bảo mật CI/CD.",
+      "source": "https://owasp.org/www-project-top-10-ci-cd-security-risks/"
     }
   ],
   "source_deviations": [
-    "Nguồn kể tám giai đoạn theo thứ tự; bài đổi sang câu hỏi \"chặn rủi ro nào\" và không lặp lại trình tự. Tên công cụ chỉ theo nguồn, chưa đối chiếu hiện trạng."
+    "Nguồn kể tám giai đoạn của Netflix kèm tên công cụ; bài chỉ giữ hai ví dụ công khai (image bất biến, phân tích canary) và thêm các rủi ro CI/CD chung từ nguồn độc lập, bỏ phần còn lại của danh mục công cụ."
   ],
-  "design_notes_vi": "Năm thẻ rủi ro–cơ chế thay cho chuỗi giai đoạn.",
+  "design_notes_vi": "Năm thẻ rủi ro–cách giảm: hai ví dụ Netflix và ba rủi ro chung.",
   "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
 }

@@ -1,38 +1,40 @@
-# Chuỗi CI/CD của Netflix đọc theo rủi ro
+# Học từ chuỗi CI/CD của công ty lớn mà không chép công cụ
 
-Thay vì liệt kê công cụ từng bước, hãy hỏi mỗi mảnh trong chuỗi của Netflix chặn loại rủi ro nào. Cách đọc này dùng lại được ở công ty nhỏ.
+Chuỗi công cụ của một công ty lớn trả lời câu hỏi "họ sợ điều gì", không phải "bạn nên cài gì". Bài lấy hai ví dụ công khai của Netflix rồi mở rộng bằng các rủi ro CI/CD chung.
 
-![Năm thẻ ghép rủi ro với cơ chế: lỗi mã với build và kiểm thử, lỗi môi trường với đóng gói image máy chủ, lỗi khi lên production với canary tự động, lỗi hạ tầng bất ngờ với công cụ chaos, lỗi lọt qua với giám sát và xử lý sự cố.](../../diagrams/sd-13-012-main.svg)
+![Hai ví dụ công khai của Netflix là image bất biến và phân tích canary tự động, cùng ba rủi ro CI/CD chung và cách giảm: test chập chờn, bí mật trong pipeline, phụ thuộc bên thứ ba đổi dưới chân.](../../diagrams/sd-13-012-main.svg)
 
-**Đọc hình:** tên công cụ lấy từ mô tả công khai trong nguồn, có thể đã đổi; cột ý nghĩa là phần nên mang theo.
+**Đọc hình:** hai thẻ đầu là ví dụ công khai của Netflix, ba thẻ sau là rủi ro chung bài thêm vào; tên công cụ chỉ là minh họa.
 
 ## Nhìn hình thử trả lời
 
-Kayenta khác gì với việc tự nhìn biểu đồ sau khi triển khai canary?
+Vì sao đóng ứng dụng vào image rồi thay máy lại giảm rủi ro hơn cập nhật phần mềm trên máy đang chạy?
 
 <details>
 <summary>Xem đáp án</summary>
 
-Kayenta so sánh số đo của canary với bản đối chứng theo quy tắc định trước và cho nhận định khách quan, thay vì dựa vào việc ai đó nhìn biểu đồ và cảm thấy ổn.
+Máy chạy thật giống hệt thứ đã kiểm thử, không bị lệch cấu hình do sửa tại chỗ, và quay lui bằng cách thay lại image trước đó.
 
 </details>
 
 ## Giới hạn cần nhớ
 
-Công cụ của một công ty lớn gắn với quy mô và nhu cầu riêng. Nhóm nhỏ không cần chép công cụ, chỉ cần có một cơ chế cho mỗi loại rủi ro ở bảng trên.
+Mô tả về Netflix dựa trên thông tin công khai tại một thời điểm và có thể đã đổi; quy mô và nhu cầu của họ khác nhóm nhỏ. Bài không khẳng định họ hiện dùng công cụ nào, chỉ mượn ý tưởng về rủi ro.
 
 <details>
 <summary>Xem sâu hơn</summary>
 
-- **Image máy chủ (AMI):** ứng dụng được đóng cùng môi trường vào một image rồi thay máy, nên máy chạy thật giống máy đã kiểm thử.
-- **Spinnaker:** nền tảng triển khai mã nguồn mở do Netflix tạo ra, hỗ trợ chiến lược như canary.
-- **Chaos:** công cụ như Chaos Monkey chủ động làm lỗi máy chủ để kiểm chứng khả năng chịu lỗi.
-- **Không rõ hiện trạng:** nguồn là ảnh chụp tại một thời điểm; không suy ra công cụ nào Netflix còn dùng.
+- **Image bất biến:** tạo bản mới từ định nghĩa rồi thay thế thay vì sửa tại chỗ.
+- **Phân tích canary tự động:** so sánh số đo của canary với bản đối chứng theo quy tắc định trước để quyết định tiếp tục hay dừng; không dựa vào ai đó nhìn biểu đồ.
+- **Test chập chờn:** làm mọi người mất tin vào kết quả; theo dõi tỉ lệ, cách ly test chập chờn khỏi cổng chặn và sửa nguyên nhân.
+- **Bí mật trong pipeline:** dùng kho bí mật, cấp quyền tối thiểu và thời hạn ngắn cho runner, không để bí mật trong mã hay nhật ký.
+- **Chuỗi cung ứng:** khóa phiên bản phụ thuộc, kiểm tra nguồn gốc sản phẩm build; khung SLSA và danh sách rủi ro CI/CD của OWASP là điểm bắt đầu.
 
 </details>
 
 ## Nguồn đối chiếu
 
 - [ByteByteGo tại snapshot cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/netflix-tech-stack-cicd-pipeline.md).
-- [Spinnaker](https://spinnaker.io/) và [Kayenta](https://github.com/spinnaker/kayenta).
-- Netflix: [Atlas](https://github.com/Netflix/atlas), [Chaos Monkey](https://netflix.github.io/chaosmonkey/).
+- [Spinnaker](https://spinnaker.io/) và [Kayenta](https://github.com/spinnaker/kayenta). Google SRE Workbook: [canarying releases](https://sre.google/workbook/canarying-releases/).
+- Google Testing Blog: [flaky tests](https://testing.googleblog.com/2016/05/flaky-tests-at-google-and-how-we.html). [SLSA](https://slsa.dev/), OWASP: [Top 10 CI/CD Security Risks](https://owasp.org/www-project-top-10-ci-cd-security-risks/).
+- Martin Fowler: [ImmutableServer](https://martinfowler.com/bliki/ImmutableServer.html).

@@ -2,7 +2,7 @@
 
 Hãy hình dung bạn đưa một API HTTP lên Kubernetes. Mỗi mẫu thiết kế dưới đây trả lời một việc cụ thể bạn sẽ gặp, và bạn không cần học thuộc cả bộ.
 
-![Sáu việc cần làm khi đưa một API lên cụm và mẫu giúp bạn: báo sẵn sàng bằng probe, khai báo tài nguyên, chạy migration bằng init container hoặc Job, thêm proxy hoặc gửi nhật ký bằng sidecar, tìm nhau qua Service và DNS, và tắt êm khi bị thay Pod.](../../diagrams/sd-13-001-main.svg)
+![Sáu việc cần làm khi đưa một API lên cụm và mẫu giúp bạn: báo sẵn sàng bằng probe, khai báo tài nguyên, chạy migration bằng init container hoặc Job, thêm proxy hoặc gửi nhật ký bằng sidecar, tìm nhau qua Service và DNS, và tắt êm khi bị thay Pod cùng PodDisruptionBudget khi bảo trì node.](../../diagrams/sd-13-001-main.svg)
 
 **Đọc hình:** sáu việc độc lập, không có thứ tự bắt buộc; bài chọn các việc thường gặp, không phải danh mục đầy đủ.
 
@@ -29,7 +29,8 @@ Bài chọn sáu việc thường gặp khi đưa một API lên cụm, tên m�
 - **Init container và Job:** init container chạy lần lượt, xong hết mới tới container ứng dụng, ở mỗi Pod. Job chạy tới khi hoàn tất, có thử lại.
 - **Sidecar:** các bản Kubernetes gần đây hỗ trợ sidecar dạng gốc, khai báo như init container có `restartPolicy: Always`.
 - **Service:** Service ClusterIP thông thường (có selector) cho một địa chỉ ảo ổn định và tên DNS cho một nhóm Pod; Service headless và ExternalName không làm vậy.
-- **Tắt êm:** khi Pod bị xóa, kubelet gửi SIGTERM (sau hook `preStop` nếu có), chờ `terminationGracePeriodSeconds` rồi mới dừng cưỡng bức; PodDisruptionBudget giới hạn số Pod bị chủ động gỡ cùng lúc.
+- **Tắt êm:** khi Pod bị xóa, kubelet gửi SIGTERM (sau hook `preStop` nếu có), chờ `terminationGracePeriodSeconds` rồi mới dừng cưỡng bức.
+- **PodDisruptionBudget:** chỉ giới hạn việc gỡ Pod qua Eviction API, ví dụ `kubectl drain` khi bảo trì node. Nó không ràng buộc rolling update của Deployment hay việc xóa Pod trực tiếp, nên đừng dựa vào nó để kiểm soát tính sẵn sàng khi triển khai.
 
 </details>
 

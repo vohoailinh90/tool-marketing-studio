@@ -1,45 +1,47 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 706" width="320" height="706" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 760" width="320" height="760" role="img" aria-labelledby="title desc">
 <title id="title">Tám giao thức mạng và chúng chạy trên gì</title>
-<desc id="desc">Ba khung dọc: trên TCP gồm HTTP lấy tài nguyên web, HTTPS là HTTP trong TLS, WebSocket bắt tay bằng HTTP rồi hai chiều, SMTP chuyển thư, FTP chuyển file bằng kênh điều khiển và kênh dữ liệu; trên UDP gồm UDP gửi gói không kết nối và HTTP/3 chạy trên QUIC trên UDP; nền gồm TCP kết nối, giao đủ, đúng thứ tự.</desc>
+<desc id="desc">Ba khung dọc: trên TCP gồm HTTP lấy tài nguyên web (bản 1.1 và 2), HTTPS là HTTP trong TLS và cũng áp dụng cho HTTP/3, WebSocket bắt tay bằng HTTP rồi hai chiều, SMTP chuyển thư, FTP chuyển file bằng kênh điều khiển và kênh dữ liệu; trên UDP gồm UDP gửi gói không kết nối và HTTP/3 chạy trên QUIC trên UDP; nền gồm TCP kết nối, giao đủ, đúng thứ tự.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="706" fill="#f8fafc"/>
+<rect width="320" height="760" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="30" font-size="20" font-weight="bold">8 GIAO THỨC MẠNG</text>
 <text x="16" y="60" font-size="16" font-weight="normal">Ai chạy trên ai</text>
-<rect x="16" y="82" width="288" height="239" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<rect x="16" y="82" width="288" height="293" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
 <text x="30" y="112" font-size="16" font-weight="bold">Trên TCP: tin cậy</text>
 <text x="30" y="139" font-size="16" font-weight="bold">HTTP</text>
 <text x="102" y="139" font-size="16" font-weight="normal">lấy tài nguyên web</text>
-<text x="30" y="166" font-size="16" font-weight="bold">HTTPS</text>
-<text x="114" y="166" font-size="16" font-weight="normal">HTTP trong TLS</text>
-<text x="30" y="193" font-size="16" font-weight="bold">WS</text>
-<text x="80" y="193" font-size="16" font-weight="normal">WebSocket: hai chiều,</text>
-<text x="80" y="220" font-size="16" font-weight="normal">bắt tay bằng HTTP</text>
-<text x="30" y="247" font-size="16" font-weight="bold">SMTP</text>
-<text x="102" y="247" font-size="16" font-weight="normal">chuyển thư điện tử</text>
-<text x="30" y="274" font-size="16" font-weight="bold">FTP</text>
-<text x="86" y="274" font-size="16" font-weight="normal">chuyển file: kênh</text>
-<text x="86" y="301" font-size="16" font-weight="normal">điều khiển + dữ liệu</text>
-<line x1="160" y1="322" x2="160" y2="342" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="16" y="345" width="288" height="185" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
-<text x="30" y="375" font-size="16" font-weight="bold">Trên UDP</text>
-<text x="30" y="402" font-size="16" font-weight="bold">UDP</text>
-<text x="86" y="402" font-size="16" font-weight="normal">gửi gói, không</text>
-<text x="86" y="429" font-size="16" font-weight="normal">kết nối</text>
-<rect x="30" y="439" width="86.3958" height="34" rx="7" fill="#ffffff" stroke="#64748b"/>
-<text x="73.1979" y="462" text-anchor="middle" font-size="16" font-weight="normal">HTTP/3</text>
-<line x1="118.396" y1="456" x2="131.396" y2="456" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
-<rect x="136.396" y="439" width="70.0521" height="34" rx="7" fill="#ffffff" stroke="#64748b"/>
-<text x="171.422" y="462" text-anchor="middle" font-size="16" font-weight="normal">QUIC</text>
-<line x1="208.448" y1="456" x2="221.448" y2="456" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
-<rect x="226.448" y="439" width="63.5521" height="34" rx="7" fill="#ffffff" stroke="#64748b"/>
-<text x="258.224" y="462" text-anchor="middle" font-size="16" font-weight="normal">UDP</text>
-<text x="30" y="510" font-size="16" font-weight="normal">QUIC chạy trên UDP</text>
-<line x1="160" y1="531" x2="160" y2="551" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="16" y="554" width="288" height="104" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
-<text x="30" y="584" font-size="16" font-weight="bold">Nền</text>
-<text x="30" y="611" font-size="16" font-weight="bold">TCP</text>
-<text x="86" y="611" font-size="16" font-weight="normal">kết nối, giao đủ,</text>
-<text x="86" y="638" font-size="16" font-weight="normal">đúng thứ tự</text>
-<text x="16" y="686" font-size="16" font-weight="normal">Cổng và chi tiết tùy dịch vụ.</text>
+<text x="102" y="166" font-size="16" font-weight="normal">(1.1 và 2 trên TCP)</text>
+<text x="30" y="193" font-size="16" font-weight="bold">HTTPS</text>
+<text x="114" y="193" font-size="16" font-weight="normal">HTTP trong TLS</text>
+<text x="114" y="220" font-size="16" font-weight="normal">(cả HTTP/3)</text>
+<text x="30" y="247" font-size="16" font-weight="bold">WS</text>
+<text x="80" y="247" font-size="16" font-weight="normal">WebSocket: hai chiều,</text>
+<text x="80" y="274" font-size="16" font-weight="normal">bắt tay bằng HTTP</text>
+<text x="30" y="301" font-size="16" font-weight="bold">SMTP</text>
+<text x="102" y="301" font-size="16" font-weight="normal">chuyển thư điện tử</text>
+<text x="30" y="328" font-size="16" font-weight="bold">FTP</text>
+<text x="86" y="328" font-size="16" font-weight="normal">chuyển file: kênh</text>
+<text x="86" y="355" font-size="16" font-weight="normal">điều khiển + dữ liệu</text>
+<line x1="160" y1="376" x2="160" y2="396" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="399" width="288" height="185" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="429" font-size="16" font-weight="bold">Trên UDP</text>
+<text x="30" y="456" font-size="16" font-weight="bold">UDP</text>
+<text x="86" y="456" font-size="16" font-weight="normal">gửi gói, không</text>
+<text x="86" y="483" font-size="16" font-weight="normal">kết nối</text>
+<rect x="30" y="493" width="86.3958" height="34" rx="7" fill="#ffffff" stroke="#64748b"/>
+<text x="73.1979" y="516" text-anchor="middle" font-size="16" font-weight="normal">HTTP/3</text>
+<line x1="118.396" y1="510" x2="131.396" y2="510" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="136.396" y="493" width="70.0521" height="34" rx="7" fill="#ffffff" stroke="#64748b"/>
+<text x="171.422" y="516" text-anchor="middle" font-size="16" font-weight="normal">QUIC</text>
+<line x1="208.448" y1="510" x2="221.448" y2="510" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="226.448" y="493" width="63.5521" height="34" rx="7" fill="#ffffff" stroke="#64748b"/>
+<text x="258.224" y="516" text-anchor="middle" font-size="16" font-weight="normal">UDP</text>
+<text x="30" y="564" font-size="16" font-weight="normal">QUIC gồm cả TLS 1.3</text>
+<line x1="160" y1="585" x2="160" y2="605" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="608" width="288" height="104" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="638" font-size="16" font-weight="bold">Nền</text>
+<text x="30" y="665" font-size="16" font-weight="bold">TCP</text>
+<text x="86" y="665" font-size="16" font-weight="normal">kết nối, giao đủ,</text>
+<text x="86" y="692" font-size="16" font-weight="normal">đúng thứ tự</text>
+<text x="16" y="740" font-size="16" font-weight="normal">Cổng và chi tiết tùy dịch vụ.</text>
 </g></svg>

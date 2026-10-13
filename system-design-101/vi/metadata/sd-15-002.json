@@ -54,7 +54,10 @@
     },
     {
       "claim_vi": "192.0.2.0/24 và 2001:db8::/32 là dải dành cho tài liệu.",
-      "source": "https://www.rfc-editor.org/rfc/rfc5737"
+      "sources": [
+        "https://www.rfc-editor.org/rfc/rfc5737",
+        "https://www.rfc-editor.org/rfc/rfc3849"
+      ]
     },
     {
       "claim_vi": "Happy Eyeballs thử song song IPv6 và IPv4.",

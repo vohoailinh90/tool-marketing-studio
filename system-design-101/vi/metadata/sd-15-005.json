@@ -42,7 +42,11 @@
   "claims": [
     {
       "claim_vi": "A, NS, CNAME, PTR, MX, TXT được định nghĩa trong RFC 1035; AAAA trong RFC 3596; SRV trong RFC 2782.",
-      "source": "https://www.rfc-editor.org/rfc/rfc1035"
+      "sources": [
+        "https://www.rfc-editor.org/rfc/rfc1035",
+        "https://www.rfc-editor.org/rfc/rfc3596",
+        "https://www.rfc-editor.org/rfc/rfc2782"
+      ]
     },
     {
       "claim_vi": "Tên có CNAME không được có bản ghi loại khác cùng tên.",

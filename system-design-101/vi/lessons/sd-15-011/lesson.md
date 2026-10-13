@@ -2,13 +2,13 @@
 
 **Giao thức là thỏa thuận về cách hai bên nói chuyện.** Tám cái dưới đây hay bị trộn lẫn vì chúng xếp chồng lên nhau: cái trên mượn cái dưới để chuyển dữ liệu.
 
-![Ba khung dọc: trên TCP gồm HTTP lấy tài nguyên web, HTTPS là HTTP trong TLS, WebSocket bắt tay bằng HTTP rồi hai chiều, SMTP chuyển thư, FTP chuyển file bằng kênh điều khiển và kênh dữ liệu; trên UDP gồm UDP gửi gói không kết nối và HTTP/3 chạy trên QUIC trên UDP; nền gồm TCP kết nối, giao đủ, đúng thứ tự.](../../diagrams/sd-15-011-main.svg)
+![Ba khung dọc: trên TCP gồm HTTP lấy tài nguyên web (bản 1.1 và 2), HTTPS là HTTP trong TLS và cũng áp dụng cho HTTP/3, WebSocket bắt tay bằng HTTP rồi hai chiều, SMTP chuyển thư, FTP chuyển file bằng kênh điều khiển và kênh dữ liệu; trên UDP gồm UDP gửi gói không kết nối và HTTP/3 chạy trên QUIC trên UDP; nền gồm TCP kết nối, giao đủ, đúng thứ tự.](../../diagrams/sd-15-011-main.svg)
 
 ## Đọc hình
 
 - **TCP:** tạo kết nối, giao dữ liệu đủ và đúng thứ tự. Nhiều giao thức ứng dụng chạy trên đó.
 - **HTTP:** cách lấy tài nguyên web; mô hình client hỏi, server đáp.
-- **HTTPS:** HTTP chạy trong kênh được mã hóa bởi TLS.
+- **HTTPS:** HTTP chạy trong kênh được mã hóa bởi TLS: trên TCP với HTTP/1.1 và HTTP/2, hoặc trong QUIC với HTTP/3 (nơi TLS 1.3 là một phần của QUIC).
 - **WebSocket:** bắt đầu bằng yêu cầu HTTP rồi nâng lên kênh hai chiều, cho phép server chủ động đẩy dữ liệu.
 - **SMTP:** chuyển thư điện tử giữa các máy chủ thư (và từ ứng dụng gửi lên máy chủ thư).
 - **FTP:** chuyển file; dùng một kết nối điều khiển và một kết nối dữ liệu riêng.

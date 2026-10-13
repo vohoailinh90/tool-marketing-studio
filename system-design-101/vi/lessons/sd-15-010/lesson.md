@@ -2,7 +2,7 @@
 
 **Bạn viết `SELECT` đầu tiên, nhưng cơ sở dữ liệu không đọc theo thứ tự đó.** Hiểu thứ tự *logic* giải thích vì sao một số câu lệnh báo lỗi và cách đọc kết quả.
 
-![Ba khung dọc: thứ tự viết SELECT, FROM, WHERE, GROUP BY, HAVING, ORDER BY, LIMIT; thứ tự logic là FROM và JOIN, WHERE, GROUP BY, HAVING, SELECT cùng alias, DISTINCT, ORDER BY, LIMIT; sau đó hệ thống phân tích, tối ưu và chạy, và có thể chọn cách chạy khác miễn kết quả không đổi.](../../diagrams/sd-15-010-main.svg)
+![Ba khung dọc: thứ tự viết SELECT, FROM, WHERE, GROUP BY, HAVING, ORDER BY, LIMIT; hệ thống chạy câu lệnh qua ba bước phân tích, tối ưu, chạy, và bộ tối ưu có thể chọn cách chạy khác miễn kết quả không đổi; ý nghĩa của câu lệnh được mô tả bằng thứ tự logic FROM và JOIN, WHERE, GROUP BY, HAVING, SELECT cùng alias, DISTINCT, ORDER BY, LIMIT, là một mô hình chứ không phải giai đoạn chạy thêm. Alias ở SELECT chưa có khi WHERE chạy.](../../diagrams/sd-15-010-main.svg)
 
 ## Đọc hình
 
@@ -16,9 +16,9 @@ ORDER BY total DESC
 LIMIT 3;
 ```
 
-Về mặt logic: lấy bảng `orders` (FROM) → giữ các dòng có `amount > 0` (WHERE) → gom theo `customer` (GROUP BY) → giữ nhóm có tổng trên 100 (HAVING) → tính cột kết quả và đặt tên `total` (SELECT) → loại dòng trùng nếu có DISTINCT → sắp xếp (ORDER BY) → lấy 3 dòng đầu (LIMIT).
+Khi chạy, hệ thống *phân tích* câu lệnh (cú pháp, tên bảng và cột), *tối ưu* để chọn kế hoạch (dùng chỉ mục nào, nối bảng ra sao), rồi *chạy* kế hoạch và trả kết quả.
 
-Sau đó mới tới các bước kỹ thuật: *phân tích* câu lệnh, *tối ưu* để chọn kế hoạch (dùng chỉ mục nào, nối bảng ra sao), rồi *chạy*.
+**Thứ tự logic** dưới đây không phải một giai đoạn chạy thêm: nó là mô hình ý nghĩa của câu lệnh, kết quả phải giống như thể các mệnh đề được tính theo thứ tự này. Lấy bảng `orders` (FROM) → giữ các dòng có `amount > 0` (WHERE) → gom theo `customer` (GROUP BY) → giữ nhóm có tổng trên 100 (HAVING) → tính cột kết quả và đặt tên `total` (SELECT) → loại dòng trùng nếu có DISTINCT → sắp xếp (ORDER BY) → lấy 3 dòng đầu (LIMIT).
 
 ## Giới hạn cần nhớ
 
@@ -26,12 +26,12 @@ Thứ tự logic chỉ bảo đảm *ý nghĩa*, không phải cách chạy th�
 
 ## Nhìn hình thử trả lời
 
-`SELECT SUM(amount) AS total FROM orders WHERE total > 100;` báo lỗi. Vì sao, và nên sửa thế nào?
+`SELECT customer, SUM(amount) AS total FROM orders WHERE total > 100 GROUP BY customer;` báo lỗi. Vì sao, và nên sửa thế nào?
 
 <details>
 <summary>Xem đáp án</summary>
 
-WHERE chạy trước SELECT nên alias `total` chưa tồn tại, và WHERE cũng không dùng được hàm gộp. Điều kiện trên tổng phải đặt ở HAVING (sau GROUP BY), ví dụ: `SELECT customer, SUM(amount) AS total FROM orders GROUP BY customer HAVING SUM(amount) > 100;`.
+WHERE chạy trước SELECT nên alias `total` chưa tồn tại, và WHERE cũng không dùng được hàm gộp. Điều kiện trên tổng của từng khách phải đặt ở HAVING (sau GROUP BY): `SELECT customer, SUM(amount) AS total FROM orders GROUP BY customer HAVING SUM(amount) > 100;`.
 
 </details>
 

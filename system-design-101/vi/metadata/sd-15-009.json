@@ -56,7 +56,11 @@
     },
     {
       "claim_vi": "TCP thêm cổng và số thứ tự; IP thêm địa chỉ nguồn và đích; Ethernet thêm địa chỉ MAC và FCS.",
-      "source": "https://www.rfc-editor.org/rfc/rfc9293"
+      "sources": [
+        "https://www.rfc-editor.org/rfc/rfc9293",
+        "https://www.rfc-editor.org/rfc/rfc791",
+        "https://www.ieee802.org/3/"
+      ]
     },
     {
       "claim_vi": "Địa chỉ IP đích giữ nguyên qua các router (khi không có NAT); địa chỉ MAC đổi qua từng chặng.",

@@ -56,7 +56,10 @@
     },
     {
       "claim_vi": "DNS dùng UDP cho truy vấn thường và TCP khi câu đáp bị cắt hoặc cho các thao tác lớn.",
-      "source": "https://www.rfc-editor.org/rfc/rfc7766"
+      "sources": [
+        "https://www.rfc-editor.org/rfc/rfc1035",
+        "https://www.rfc-editor.org/rfc/rfc7766"
+      ]
     },
     {
       "claim_vi": "IP multicast gửi một gói cho nhiều bên nhận trong mạng hỗ trợ.",

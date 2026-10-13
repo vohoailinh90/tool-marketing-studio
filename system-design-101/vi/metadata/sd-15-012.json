@@ -41,7 +41,11 @@
   },
   "claims": [
     {
-      "claim_vi": "SQL thường được chia thành DDL, DQL, DML, DCL, TCL để học; cách phân nhóm khác nhau theo tài liệu.",
+      "claim_vi": "Khi dạy học, SQL thường được gọi theo các nhóm không chính thức DQL, DDL, DML, DCL và TCL.",
+      "source": "https://en.wikipedia.org/wiki/SQL"
+    },
+    {
+      "claim_vi": "Cách phân nhóm lệnh SQL khác nhau giữa tài liệu: Oracle xếp SELECT vào DML và dùng các nhóm giao dịch, phiên, hệ thống, nhúng thay vì DQL, DCL, TCL riêng.",
       "source": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Types-of-SQL-Statements.html"
     },
     {

@@ -46,6 +46,7 @@ DCL (phân quyền), ví dụ `GRANT SELECT ON orders TO nguoi_dung;`. Tên ngư
 
 - [ByteByteGo tại snapshot cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-is-the-best-way-to-learn-sql.md).
 - [PostgreSQL — Tutorial SQL](https://www.postgresql.org/docs/current/tutorial.html), [Transactions](https://www.postgresql.org/docs/current/tutorial-transactions.html) và [SQL Conformance](https://www.postgresql.org/docs/current/features.html).
+- [Wikipedia — SQL](https://en.wikipedia.org/wiki/SQL): cách gọi không chính thức DQL, DDL, DML, DCL.
 - [Oracle — Types of SQL Statements](https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Types-of-SQL-Statements.html): một cách phân nhóm lệnh khác.
 
 Đã đọc nguồn ngày 2026-10-13; các tài liệu chuẩn nêu trên chưa được mở để đối chiếu trực tiếp trong lượt biên soạn này. Bài viết và hình được thiết kế độc lập.

@@ -49,8 +49,11 @@
       ]
     },
     {
-      "claim_vi": "Tên có CNAME không được có bản ghi loại khác cùng tên.",
-      "source": "https://www.rfc-editor.org/rfc/rfc2181"
+      "claim_vi": "Tên có CNAME không được có bản ghi loại khác cùng tên, trừ các bản ghi của DNSSEC (như RRSIG và NSEC).",
+      "sources": [
+        "https://www.rfc-editor.org/rfc/rfc2181",
+        "https://www.rfc-editor.org/rfc/rfc4034"
+      ]
     },
     {
       "claim_vi": "SPF dùng bản ghi TXT.",

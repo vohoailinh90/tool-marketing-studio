@@ -2,14 +2,14 @@
 
 **Giao thức là thỏa thuận về cách hai bên nói chuyện.** Tám cái dưới đây hay bị trộn lẫn vì chúng xếp chồng lên nhau: cái trên mượn cái dưới để chuyển dữ liệu.
 
-![Ba khung dọc: trên TCP gồm HTTP lấy tài nguyên web (bản 1.1 và 2), HTTPS là HTTP trong TLS và cũng áp dụng cho HTTP/3, WebSocket bắt tay bằng HTTP rồi hai chiều, SMTP chuyển thư, FTP chuyển file bằng kênh điều khiển và kênh dữ liệu; trên UDP gồm UDP gửi gói không kết nối và HTTP/3 chạy trên QUIC trên UDP; nền gồm TCP kết nối, giao đủ, đúng thứ tự.](../../diagrams/sd-15-011-main.svg)
+![Ba khung dọc: trên TCP gồm HTTP lấy tài nguyên web (bản 1.1 và 2), HTTPS là HTTP trong TLS và cũng áp dụng cho HTTP/3, WebSocket bắt tay bằng HTTP rồi hai chiều và cũng chạy trên HTTP/3, SMTP chuyển thư, FTP chuyển file bằng kênh điều khiển và kênh dữ liệu; trên UDP gồm UDP gửi gói không kết nối và HTTP/3 chạy trên QUIC trên UDP; nền gồm TCP kết nối, giao đủ, đúng thứ tự.](../../diagrams/sd-15-011-main.svg)
 
 ## Đọc hình
 
 - **TCP:** tạo kết nối, giao dữ liệu đủ và đúng thứ tự. Nhiều giao thức ứng dụng chạy trên đó.
 - **HTTP:** cách lấy tài nguyên web; mô hình client hỏi, server đáp.
 - **HTTPS:** HTTP chạy trong kênh được mã hóa bởi TLS: trên TCP với HTTP/1.1 và HTTP/2, hoặc trong QUIC với HTTP/3 (nơi TLS 1.3 là một phần của QUIC).
-- **WebSocket:** bắt đầu bằng yêu cầu HTTP rồi nâng lên kênh hai chiều, cho phép server chủ động đẩy dữ liệu.
+- **WebSocket:** bắt đầu bằng yêu cầu HTTP rồi nâng lên kênh hai chiều, cho phép server chủ động đẩy dữ liệu. Chạy trên TCP với HTTP/1.1 và HTTP/2, hoặc trên một luồng của kết nối HTTP/3 (QUIC).
 - **SMTP:** chuyển thư điện tử giữa các máy chủ thư (và từ ứng dụng gửi lên máy chủ thư).
 - **FTP:** chuyển file; dùng một kết nối điều khiển và một kết nối dữ liệu riêng.
 - **UDP:** gửi từng gói độc lập, không kết nối, không bảo đảm giao.
@@ -26,7 +26,7 @@ Một ứng dụng chat mở WebSocket tới server. Kết nối bắt đầu b�
 <details>
 <summary>Xem đáp án</summary>
 
-Với HTTP/1.1, bắt đầu bằng một yêu cầu HTTP xin nâng cấp lên WebSocket (trên HTTP/2 dùng cách khác: CONNECT mở rộng); sau khi được chấp nhận, hai bên trao đổi khung WebSocket trên cùng kết nối TCP (thường trong TLS nếu dùng wss).
+Với HTTP/1.1, bắt đầu bằng một yêu cầu HTTP xin nâng cấp lên WebSocket; sau khi được chấp nhận, hai bên trao đổi khung WebSocket trên cùng kết nối TCP (thường trong TLS nếu dùng wss). Với HTTP/2 và HTTP/3 dùng CONNECT mở rộng và chạy trên một luồng của kết nối đó: TCP với HTTP/2, QUIC với HTTP/3.
 
 </details>
 
@@ -44,7 +44,7 @@ Với HTTP/1.1, bắt đầu bằng một yêu cầu HTTP xin nâng cấp lên W
 
 - [ByteByteGo tại snapshot cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/explaining-8-popular-network-protocols-in-1-diagram.md).
 - [RFC 9110 — HTTP](https://www.rfc-editor.org/rfc/rfc9110), [RFC 9114 — HTTP/3](https://www.rfc-editor.org/rfc/rfc9114), [RFC 9000 — QUIC](https://www.rfc-editor.org/rfc/rfc9000).
-- [RFC 6455 — WebSocket](https://www.rfc-editor.org/rfc/rfc6455), [RFC 8441](https://www.rfc-editor.org/rfc/rfc8441), [RFC 9293 — TCP](https://www.rfc-editor.org/rfc/rfc9293), [RFC 768 — UDP](https://www.rfc-editor.org/rfc/rfc768).
+- [RFC 6455 — WebSocket](https://www.rfc-editor.org/rfc/rfc6455), [RFC 8441](https://www.rfc-editor.org/rfc/rfc8441), [RFC 9220](https://www.rfc-editor.org/rfc/rfc9220), [RFC 9293 — TCP](https://www.rfc-editor.org/rfc/rfc9293), [RFC 768 — UDP](https://www.rfc-editor.org/rfc/rfc768).
 - [RFC 5321 — SMTP](https://www.rfc-editor.org/rfc/rfc5321), [RFC 959 — FTP](https://www.rfc-editor.org/rfc/rfc959), [RFC 8446 — TLS 1.3](https://www.rfc-editor.org/rfc/rfc8446).
 
 Đã đọc nguồn ngày 2026-10-13; các tài liệu chuẩn nêu trên chưa được mở để đối chiếu trực tiếp trong lượt biên soạn này. Bài viết và hình được thiết kế độc lập.

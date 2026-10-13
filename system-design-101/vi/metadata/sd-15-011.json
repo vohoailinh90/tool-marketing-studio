@@ -52,8 +52,12 @@
       ]
     },
     {
-      "claim_vi": "WebSocket bắt đầu bằng yêu cầu HTTP rồi nâng cấp kết nối.",
-      "source": "https://www.rfc-editor.org/rfc/rfc6455"
+      "claim_vi": "WebSocket bắt đầu bằng yêu cầu HTTP rồi nâng cấp kết nối; với HTTP/2 và HTTP/3 dùng CONNECT mở rộng trên một luồng của kết nối.",
+      "sources": [
+        "https://www.rfc-editor.org/rfc/rfc6455",
+        "https://www.rfc-editor.org/rfc/rfc8441",
+        "https://www.rfc-editor.org/rfc/rfc9220"
+      ]
     },
     {
       "claim_vi": "SMTP chuyển thư; FTP dùng kết nối điều khiển và kết nối dữ liệu riêng.",

@@ -17,9 +17,11 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 
 7. [Chính sách định tuyến lưu lượng Internet](lessons/sd-01-007/lesson.md) — có review tại repo cũ; chờ review tích hợp tại repo mới.
 
+8. [Trình duyệt dựng trang web thế nào?](lessons/sd-01-008/lesson.md)
+
 ## Bảo mật
 
-Đợt ba của nhóm. Các bài sd-14-001..006 nằm ở PR #57 và #58, chưa có trong nhánh này; số thứ tự dưới đây chỉ tính trong nhánh này.
+Đợt ba của nhóm. Các bài sd-14-001..006 và sd-14-010..012 nằm ở PR #57, #58 và #61, chưa có trong nhánh này; số thứ tự dưới đây chỉ tính trong nhánh này.
 
 1. [Tường lửa hoạt động thế nào?](lessons/sd-14-007/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 2. [Cookie và session khác nhau thế nào?](lessons/sd-14-008/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.

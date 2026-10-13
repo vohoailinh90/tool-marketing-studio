@@ -71,10 +71,10 @@
       "verified_by": "No external page reports this output; observed by executing the code on the authoring machine. The source only describes tracking active connections; the rule that drops every packet from the source port is a deliberately naive stateless setup, and the run did not try a port-based rule that lets replies through."
     },
     {
-      "claim_vi": "A packet filter that must let replies through needs an extra rule on the source port, which also admits any packet claiming that source port.",
+      "claim_vi": "In the deliberately simplified ruleset of the run, replies would need an extra rule on the source port, which would also admit other packets claiming that port; this is a limit of that ruleset, not of every packet filter.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/firewall-explained-to-kids-and-adults.md",
       "section": "Packet Filtering Firewalls",
-      "verified_by": "Author's inference from how a stateless rule works; the source only says packet filtering accepts or rejects by source, destination or protocol. Not run."
+      "verified_by": "Author's inference from how a stateless rule works; real stateless filters can also narrow rules by address, direction, destination port and TCP flags such as ACK or RST but keep no table of open connections. The source only says packet filtering accepts or rejects by source, destination or protocol. Not run."
     },
     {
       "claim_vi": "Circuit-level gateways, application-level gateways and next-generation firewalls are described as in the source (TCP handshake monitoring; sitting between network and traffic source; integration with intrusion prevention, deep packet analysis and application awareness); the lesson adds that a proxy accepts the connection on behalf of the internal host.",

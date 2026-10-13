@@ -21,7 +21,7 @@ thêm luật `ct state established,related accept` thì cùng kết nối chạy
 ## Giới hạn cần nhớ
 
 Nhìn nhiều hơn thì thường tốn nhiều tài nguyên hơn và cần cấu hình đúng hơn (suy luận của người biên soạn). Tường lửa chỉ áp luật ở điểm nó đứng: lưu lượng đi đường khác, hoặc luật viết sai, thì không được bảo vệ.
-Cuộc chạy thử không thử trường hợp bộ lọc theo gói mở thêm luật cho gói trả lời theo cổng nguồn. Lọc theo gói muốn cho gói trả lời đi qua thì phải mở thêm luật theo cổng nguồn, và luật đó cũng cho qua các gói khác tự mang cổng nguồn ấy, kể cả gói không thuộc kết nối nào (suy luận của người biên soạn, chưa chạy thử).
+Cuộc chạy thử dùng bộ luật đơn giản có chủ ý, và không thử trường hợp bộ lọc theo gói mở thêm luật cho gói trả lời. Với bộ luật đơn giản đó, gói trả lời chỉ qua được nếu mở luật theo cổng nguồn, và luật ấy cũng cho qua các gói khác tự mang cổng nguồn đó; đây là hạn chế của bộ luật thử nghiệm, không phải tính chất của mọi bộ lọc theo gói. Bộ lọc không theo dõi trạng thái trong thực tế có thể thu hẹp luật theo địa chỉ, hướng đi, cổng đích và cờ TCP như ACK hay RST, nhưng vẫn không giữ bảng các kết nối đã mở (suy luận của người biên soạn, chưa chạy thử).
 
 ## Nhìn hình trả lời
 

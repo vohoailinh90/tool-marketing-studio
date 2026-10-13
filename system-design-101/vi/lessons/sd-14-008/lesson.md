@@ -17,7 +17,7 @@ Khi chạy thử, yêu cầu có mã đúng nhận lại dữ liệu phiên; mã
 ## Giới hạn cần nhớ
 
 Session không tự động an toàn hơn cookie: mã session vẫn đi trong một cookie, ai lấy được mã đúng thì dùng được phiên đó nếu máy chủ không có thêm kiểm tra khác, nên cookie mang mã nên có `HttpOnly`, `Secure` và `SameSite` (xem bài về cookie HTTP).
-Đổi lại, dữ liệu nằm trên máy chủ nên máy chủ phải lưu và dọn các phiên, và khi có nhiều máy chủ thì cần một chỗ lưu dùng chung (suy luận của người biên soạn).
+Đổi lại, dữ liệu nằm trên máy chủ nên máy chủ phải lưu và dọn các phiên, và khi có nhiều máy chủ thì phải chọn: nếu bộ cân bằng tải luôn đưa một người về cùng một máy chủ thì mỗi máy chủ giữ phiên riêng được; nếu yêu cầu của một phiên có thể rơi vào máy chủ bất kỳ, hoặc phiên phải sống sót khi một máy chủ hỏng, thì cần một chỗ lưu dùng chung (suy luận của người biên soạn).
 
 ## Nhìn hình trả lời
 

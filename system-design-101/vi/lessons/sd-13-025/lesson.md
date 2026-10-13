@@ -26,7 +26,7 @@ Chạy một mặt phẳng điều khiển trên một máy thì không chịu �
 
 - **API server** là thành phần duy nhất đọc ghi etcd; kubectl, controller, scheduler và kubelet đều đi qua nó.
 - **etcd** lưu trạng thái cụm nên cần sao lưu.
-- **Controller manager** chạy nhiều controller; mỗi cái là vòng lặp so trạng thái mong muốn với hiện tại.
+- **Controller manager** chạy nhiều controller; mỗi cái là vòng lặp so trạng thái mong muốn với hiện tại. Với Deployment, controller của Deployment tạo hoặc cập nhật ReplicaSet, rồi controller của ReplicaSet tạo Pod; nếu Deployment có mà thiếu Pod, hãy xem ReplicaSet ở giữa.
 - **kubelet** nhận mô tả Pod gán cho node của nó và bảo đảm container chạy đúng.
 - **kube-proxy** lập luật mạng trên node để Service tới đúng Pod.
 

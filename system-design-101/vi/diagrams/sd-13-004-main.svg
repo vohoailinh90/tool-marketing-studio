@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 598" width="320" height="598" role="img" aria-labelledby="title desc">
 <title id="title">Thu thập số đo: kéo hay đẩy</title>
-<desc id="desc">Ba tình huống và lựa chọn tương ứng: dịch vụ chạy lâu trong cụm thì kéo, tác vụ batch cấp dịch vụ thì đẩy qua Pushgateway, đích nằm sau tường lửa thì đẩy hoặc đặt agent trong mạng đó.</desc>
+<desc id="desc">Ba tình huống và lựa chọn tương ứng: dịch vụ chạy lâu trong cụm thì kéo, tác vụ batch cấp dịch vụ thì đẩy qua Pushgateway, đích nằm sau tường lửa thì đặt agent trong mạng đó và đẩy về bằng remote write.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="598" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="30" font-size="20" font-weight="bold">KÉO HAY ĐẨY</text>
@@ -21,6 +21,6 @@
 <text x="30" y="451" font-size="16" font-weight="bold">Đích nằm sau tường</text>
 <text x="30" y="478" font-size="16" font-weight="bold">lửa/NAT</text>
 <text x="30" y="505" font-size="16" font-weight="normal">Collector không với tới</text>
-<text x="30" y="532" font-size="16" font-weight="normal">Hợp: đẩy, hoặc agent đặt</text>
-<text x="30" y="559" font-size="16" font-weight="normal">trong mạng đó</text>
+<text x="30" y="532" font-size="16" font-weight="normal">Hợp: agent trong mạng đó,</text>
+<text x="30" y="559" font-size="16" font-weight="normal">đẩy về bằng remote write</text>
 </g></svg>

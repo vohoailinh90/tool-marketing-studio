@@ -26,6 +26,7 @@ NoOps không có nghĩa là hết vận hành: sự cố, cảnh báo, giới h�
 
 - **FaaS** chạy hàm theo sự kiện; **BaaS** cung cấp cơ sở dữ liệu, xác thực... dưới dạng dịch vụ.
 - **Mô hình trách nhiệm chia sẻ:** nhà cung cấp lo "bản thân đám mây", khách hàng lo "những gì chạy trên đám mây".
+- **DevOps** không xóa vai trò vận hành: có nơi gộp thành một nhóm, có nơi giữ hai nhóm cộng tác; điểm chung là trách nhiệm được chia sẻ.
 - Nhiều tổ chức dùng cả ba mô hình cho các hệ thống khác nhau.
 
 </details>
@@ -33,4 +34,4 @@ NoOps không có nghĩa là hết vận hành: sự cố, cảnh báo, giới h�
 ## Nguồn đối chiếu
 
 - [ByteByteGo tại snapshot cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/devops-vs-noops.md).
-- AWS: [mô hình trách nhiệm chia sẻ](https://aws.amazon.com/compliance/shared-responsibility-model/), [Lambda](https://docs.aws.amazon.com/lambda/latest/dg/welcome.html).
+- AWS: [mô hình DevOps](https://aws.amazon.com/devops/what-is-devops/), [mô hình trách nhiệm chia sẻ](https://aws.amazon.com/compliance/shared-responsibility-model/), [Lambda](https://docs.aws.amazon.com/lambda/latest/dg/welcome.html).

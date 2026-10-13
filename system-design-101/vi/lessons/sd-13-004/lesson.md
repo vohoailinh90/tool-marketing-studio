@@ -2,7 +2,7 @@
 
 Số đo có thể được bộ thu thập kéo về hoặc được dịch vụ đẩy tới. Cách nào hợp tùy dịch vụ của bạn sống thế nào và nằm ở đâu.
 
-![Ba tình huống và lựa chọn tương ứng: dịch vụ chạy lâu trong cụm thì kéo, tác vụ batch cấp dịch vụ thì đẩy qua Pushgateway, đích nằm sau tường lửa thì đẩy hoặc đặt agent trong mạng đó.](../../diagrams/sd-13-004-main.svg)
+![Ba tình huống và lựa chọn tương ứng: dịch vụ chạy lâu trong cụm thì kéo, tác vụ batch cấp dịch vụ thì đẩy qua Pushgateway, đích nằm sau tường lửa thì đặt agent trong mạng đó và đẩy về bằng remote write.](../../diagrams/sd-13-004-main.svg)
 
 **Đọc hình:** không có cách đúng cho mọi trường hợp; một hệ thống thật thường dùng cả hai.
 

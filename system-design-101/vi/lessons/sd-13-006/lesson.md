@@ -1,6 +1,6 @@
 # Bốn loại Service trong Kubernetes
 
-Chọn loại Service bằng cách hỏi ai cần gọi tới nó. Bốn câu trả lời ứng với bốn giá trị của trường `type`.
+Chọn loại Service bằng cách hỏi ai cần gọi tới nó. Bốn câu trả lời ứng với bốn giá trị của trường `type`; mỗi loại cho một cách gọi ổn định, nhưng không phải loại nào cũng cân bằng tải.
 
 ![Bốn tình huống và loại Service tương ứng: Pod khác trong cụm dùng ClusterIP, thử từ máy ngoài dùng NodePort, công khai trên cloud dùng LoadBalancer, trỏ tên nội bộ ra dịch vụ ngoài dùng ExternalName.](../../diagrams/sd-13-006-main.svg)
 
@@ -19,7 +19,7 @@ ExternalName. Nó làm DNS trả về bản ghi CNAME tới tên ngoài, không 
 
 ## Giới hạn cần nhớ
 
-Service chỉ cho địa chỉ ổn định và cân bằng ở tầng 4. Định tuyến HTTP theo đường dẫn hay tên miền thuộc về Ingress hoặc Gateway, không phải một loại Service.
+Chỉ Service ClusterIP thông thường (và NodePort, LoadBalancer dựng trên nó) cho một địa chỉ ổn định kèm cân bằng tải ở tầng 4. ExternalName chỉ trả bản ghi CNAME, không proxy hay cân bằng tải; Service headless (`clusterIP: None`) không có IP ảo và nền tảng không cân bằng tải cho nó. Định tuyến HTTP theo đường dẫn hay tên miền thuộc về Ingress hoặc Gateway, không phải một loại Service.
 
 <details>
 <summary>Xem sâu hơn</summary>

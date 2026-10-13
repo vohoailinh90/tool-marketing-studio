@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 892" width="320" height="892" role="img" aria-labelledby="title desc">
+<title id="title">Bảy bước cho buổi phỏng vấn thiết kế hệ thống</title>
+<desc id="desc">Bảy bước, mỗi bước trả lời một câu hỏi: yêu cầu là gì; quy mô cỡ nào; các thành phần chính nối với nhau thế nào; dữ liệu lưu ra sao; giao diện giữa các thành phần là gì; làm sao mở rộng và nhanh; làm sao chịu lỗi. Ghi chú: đây là bản đồ, không phải kịch bản; người phỏng vấn có thể dẫn đi thứ tự khác.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="892" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="21" font-weight="bold">BẢY BƯỚC THIẾT KẾ</text>
+<text x="16" y="54" font-size="21" font-weight="bold">HỆ THỐNG</text>
+<rect x="16" y="80" width="288" height="100" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="29" y="109" font-size="16" font-weight="bold">1 · Yêu cầu</text>
+<text x="29" y="137" font-size="16" font-weight="normal">Hệ thống phải làm gì, tốt đến</text>
+<text x="29" y="161" font-size="16" font-weight="normal">mức nào?</text>
+<line x1="160" y1="181" x2="160" y2="196" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="198" width="288" height="100" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="29" y="227" font-size="16" font-weight="bold">2 · Quy mô</text>
+<text x="29" y="255" font-size="16" font-weight="normal">Bao nhiêu người dùng, dữ liệu,</text>
+<text x="29" y="279" font-size="16" font-weight="normal">lưu lượng?</text>
+<line x1="160" y1="299" x2="160" y2="314" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="316" width="288" height="100" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="29" y="345" font-size="16" font-weight="bold">3 · Thiết kế cấp cao</text>
+<text x="29" y="373" font-size="16" font-weight="normal">Các thành phần nối nhau thế</text>
+<text x="29" y="397" font-size="16" font-weight="normal">nào?</text>
+<line x1="160" y1="417" x2="160" y2="432" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="434" width="288" height="76" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="29" y="463" font-size="16" font-weight="bold">4 · Dữ liệu</text>
+<text x="29" y="491" font-size="16" font-weight="normal">Lưu gì, bằng loại CSDL nào?</text>
+<line x1="160" y1="511" x2="160" y2="526" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="528" width="288" height="76" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="29" y="557" font-size="16" font-weight="bold">5 · Giao diện</text>
+<text x="29" y="585" font-size="16" font-weight="normal">API hay sự kiện giữa các phần?</text>
+<line x1="160" y1="605" x2="160" y2="620" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="622" width="288" height="100" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="29" y="651" font-size="16" font-weight="bold">6 · Mở rộng, hiệu năng</text>
+<text x="29" y="679" font-size="16" font-weight="normal">Cache, chỉ mục, chia nhỏ, sao</text>
+<text x="29" y="703" font-size="16" font-weight="normal">chép</text>
+<line x1="160" y1="723" x2="160" y2="738" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="740" width="288" height="76" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="29" y="769" font-size="16" font-weight="bold">7 · Độ tin cậy</text>
+<text x="29" y="797" font-size="16" font-weight="normal">Điểm lỗi đơn nằm ở đâu?</text>
+<text x="16" y="844" font-size="16" font-weight="normal" fill="#334155">Bản đồ, không phải kịch bản: thứ tự</text>
+<text x="16" y="868" font-size="16" font-weight="normal" fill="#334155">có thể đổi.</text>
+</g></svg>

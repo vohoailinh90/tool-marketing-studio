@@ -17,6 +17,14 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 
 7. [Chính sách định tuyến lưu lượng Internet](lessons/sd-01-007/lesson.md) — có review tại repo cũ; chờ review tích hợp tại repo mới.
 
+## Phỏng vấn kỹ thuật
+
+1. [Các kiểu SQL JOIN hoạt động thế nào?](lessons/sd-05-001/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+2. [Gõ google.com vào trình duyệt thì chuyện gì xảy ra?](lessons/sd-05-002/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+3. [Một URL biến thành yêu cầu HTTP thế nào?](lessons/sd-05-003/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+4. [Làm tốt phỏng vấn thiết kế hệ thống: bảy bước](lessons/sd-05-004/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+5. [Tài liệu gợi ý để ôn phỏng vấn kỹ thuật](lessons/sd-05-005/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+
 Danh mục đầy đủ và snapshot nguồn: [bảng đối chiếu](../../brainstorm/system-design-101-vi/source-map.json).
 Quy tắc đã chốt: [kết luận brainstorm](../../brainstorm/system-design-101-vi/DECISIONS.md).
 Tiến độ từng đợt: [PROGRESS.md](PROGRESS.md).

@@ -913,21 +913,21 @@
         },
         {
           "id": "sd-03-007",
-          "title_vi": null,
+          "title_vi": "Tổng quan về đường ống dữ liệu",
           "title_source": "Data Pipelines Overview",
           "source_url": "https://bytebytego.com/guides/data-pipelines-overview",
           "source_path": "data/guides/data-pipelines-overview.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "d110acb6477e1e8335092b819363e63342d6b40f",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/data-pipelines-overview.md"
         },
         {
           "id": "sd-03-008",
-          "title_vi": null,
+          "title_vi": "ChatGPT hoạt động thế nào?",
           "title_source": "How does ChatGPT work?",
           "source_url": "https://bytebytego.com/guides/how-does-chatgpt-work",
           "source_path": "data/guides/how-does-chatgpt-work.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "05f603b2357133ec25d2d1358ae2dfc9e5b97648",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-chatgpt-work.md"
         }

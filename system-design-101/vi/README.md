@@ -25,6 +25,8 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 4. [DeepSeek trong một trang](lessons/sd-03-004/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 5. [Ngăn xếp AI mã nguồn mở](lessons/sd-03-005/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 6. [AI agent là gì?](lessons/sd-03-006/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+7. [Tổng quan về đường ống dữ liệu](lessons/sd-03-007/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+8. [ChatGPT hoạt động thế nào?](lessons/sd-03-008/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 
 Danh mục đầy đủ và snapshot nguồn: [bảng đối chiếu](../../brainstorm/system-design-101-vi/source-map.json).
 Quy tắc đã chốt: [kết luận brainstorm](../../brainstorm/system-design-101-vi/DECISIONS.md).
@@ -48,7 +50,7 @@ và hình đạt; không coi đọc nguồn là mọi claim đã đúng, không 
 
 ## Các nhóm còn lại theo thứ tự nguồn
 
-Tình huống thực tế → AI và học máy → Cơ sở dữ liệu và lưu trữ → Phỏng vấn kỹ thuật →
+Tình huống thực tế → Cơ sở dữ liệu và lưu trữ → Phỏng vấn kỹ thuật →
 Bộ nhớ đệm và hiệu năng → Thanh toán và công nghệ tài chính → Kiến trúc phần mềm →
 Công cụ và năng suất → Phát triển phần mềm → Đám mây và hệ thống phân tán →
 Hệ thống hoạt động thế nào? → DevOps và CI/CD → Bảo mật → Nền tảng máy tính.

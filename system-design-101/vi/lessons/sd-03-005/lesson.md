@@ -3,7 +3,7 @@
 **Dựng một ứng dụng AI là ghép nhiều tầng, và mỗi tầng đều có lựa chọn mã nguồn mở.**
 Ở mỗi tầng hãy hỏi hai điều: nó giải quyết việc gì, và giấy phép cho phép bạn làm gì.
 
-![Năm thẻ nối nhau từ trên xuống. 1 Giao diện: Streamlit, Next.js. 2 Backend và gọi mô hình: FastAPI, Metaflow, Ollama. 3 Embedding và RAG: biến văn bản thành vector, tìm đoạn liên quan cho prompt. 4 Lưu trữ và truy xuất: Postgres với pgvector, Milvus, Weaviate; Faiss là thư viện chứ không phải cơ sở dữ liệu. 5 Mô hình: Llama, Mistral, Qwen, Phi, Gemma với giấy phép khác nhau. Thẻ cuối nhắc rằng mở có nhiều mức.](../../diagrams/sd-03-005-main.svg)
+![Năm thẻ nối nhau từ trên xuống. 1 Giao diện: Streamlit, Next.js. 2 Backend và gọi mô hình: FastAPI, Metaflow, Ollama. 3 Embedding và RAG: biến văn bản thành vector, tìm đoạn liên quan cho prompt. 4 Lưu trữ và truy xuất: Postgres với pgvector, Milvus, Weaviate; Faiss là thư viện tìm kiếm vector. 5 Mô hình: Llama, Mistral, Qwen, Phi, Gemma với giấy phép khác nhau. Thẻ cuối nhắc rằng mở có nhiều mức.](../../diagrams/sd-03-005-main.svg)
 
 ## Đọc hình
 

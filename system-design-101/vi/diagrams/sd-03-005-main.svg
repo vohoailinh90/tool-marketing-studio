@@ -25,7 +25,7 @@
 <text x="29" y="469" font-size="16" font-weight="bold">4 · Lưu trữ, truy xuất</text>
 <text x="29" y="497" font-size="16" font-weight="normal">Postgres + pgvector, Milvus,</text>
 <text x="29" y="521" font-size="16" font-weight="normal">Weaviate</text>
-<text x="29" y="545" font-size="16" font-weight="normal">Faiss: thư viện, không phải CSDL</text>
+<text x="29" y="545" font-size="16" font-weight="normal">Faiss: thư viện tìm kiếm vector</text>
 <line x1="160" y1="565" x2="160" y2="582" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
 <rect x="16" y="584" width="288" height="148" rx="12" fill="#e2e8f0" stroke="#94a3b8"/>
 <text x="29" y="613" font-size="16" font-weight="bold">5 · Mô hình</text>

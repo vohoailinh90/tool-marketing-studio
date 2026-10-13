@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1031" width="320" height="1031" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1139" width="320" height="1139" role="img" aria-labelledby="title desc">
 <title id="title">Service Kubernetes không nhận traffic: năm chỗ cần kiểm tra</title>
-<desc id="desc">Năm chỗ cần kiểm tra khi Service không nhận traffic: selector không khớp nhãn Pod nên EndpointSlice trống, port và targetPort lệch, Pod chưa sẵn sàng nên endpoint có ready là false và không nhận traffic, tên DNS sai namespace, và đường vào từ ngoài cụm như NodePort bị chặn hoặc LoadBalancer ở trạng thái pending.</desc>
+<desc id="desc">Năm chỗ cần kiểm tra khi Service không nhận traffic: selector không khớp nhãn Pod nên EndpointSlice trống, port và targetPort lệch, Pod chưa sẵn sàng nên với Service ở cấu hình mặc định endpoint có ready là false và không nhận traffic (Service đặt publishNotReadyAddresses: true là ngoại lệ), tên DNS sai namespace, và đường vào từ ngoài cụm như NodePort bị chặn hoặc LoadBalancer ở trạng thái pending.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="1031" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<rect width="320" height="1139" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="30" font-size="20" font-weight="bold">SERVICE KHÔNG NHẬN</text>
 <text x="16" y="58" font-size="20" font-weight="bold">TRAFFIC</text>
 <text x="16" y="86" font-size="16" font-weight="normal">Kiểm tra từ trong ra ngoài</text>
@@ -18,23 +18,27 @@
 <text x="30" y="377" font-size="16" font-weight="normal">port của Service và</text>
 <text x="30" y="404" font-size="16" font-weight="normal">targetPort của Pod</text>
 <line x1="160" y1="435" x2="160" y2="463" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
-<rect x="16" y="473" width="288" height="182" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
+<rect x="16" y="473" width="288" height="290" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
 <text x="30" y="501" font-size="16" font-weight="bold">3 · Pod đã sẵn sàng</text>
 <text x="30" y="528" font-size="16" font-weight="bold">chưa?</text>
 <text x="30" y="555" font-size="16" font-weight="normal">Pod chưa qua readiness vẫn</text>
 <text x="30" y="582" font-size="16" font-weight="normal">nằm trong EndpointSlice</text>
 <text x="30" y="609" font-size="16" font-weight="normal">nhưng ready: false, nên</text>
 <text x="30" y="636" font-size="16" font-weight="normal">không nhận traffic</text>
-<line x1="160" y1="667" x2="160" y2="695" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
-<rect x="16" y="705" width="288" height="101" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
-<text x="30" y="733" font-size="16" font-weight="bold">4 · Gọi đúng tên chưa?</text>
-<text x="30" y="760" font-size="16" font-weight="normal">Khác namespace cần tên đầy</text>
-<text x="30" y="787" font-size="16" font-weight="normal">đủ hơn</text>
-<line x1="160" y1="818" x2="160" y2="846" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
-<rect x="16" y="856" width="288" height="155" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
-<text x="30" y="884" font-size="16" font-weight="bold">5 · Từ ngoài cụm vào</text>
-<text x="30" y="911" font-size="16" font-weight="bold">được chưa?</text>
-<text x="30" y="938" font-size="16" font-weight="normal">NodePort bị tường lửa chặn</text>
-<text x="30" y="965" font-size="16" font-weight="normal">LoadBalancer pending: thiếu</text>
-<text x="30" y="992" font-size="16" font-weight="normal">bộ tạo LB</text>
+<text x="30" y="663" font-size="16" font-weight="normal">Ngoại lệ: Service đặt</text>
+<text x="30" y="690" font-size="16" font-weight="normal">publishNotReadyAddresses:</text>
+<text x="30" y="717" font-size="16" font-weight="normal">true báo mọi endpoint là</text>
+<text x="30" y="744" font-size="16" font-weight="normal">ready</text>
+<line x1="160" y1="775" x2="160" y2="803" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="813" width="288" height="101" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="841" font-size="16" font-weight="bold">4 · Gọi đúng tên chưa?</text>
+<text x="30" y="868" font-size="16" font-weight="normal">Khác namespace cần tên đầy</text>
+<text x="30" y="895" font-size="16" font-weight="normal">đủ hơn</text>
+<line x1="160" y1="926" x2="160" y2="954" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="964" width="288" height="155" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="992" font-size="16" font-weight="bold">5 · Từ ngoài cụm vào</text>
+<text x="30" y="1019" font-size="16" font-weight="bold">được chưa?</text>
+<text x="30" y="1046" font-size="16" font-weight="normal">NodePort bị tường lửa chặn</text>
+<text x="30" y="1073" font-size="16" font-weight="normal">LoadBalancer pending: thiếu</text>
+<text x="30" y="1100" font-size="16" font-weight="normal">bộ tạo LB</text>
 </g></svg>

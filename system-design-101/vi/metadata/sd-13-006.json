@@ -45,7 +45,7 @@
   },
   "claims": [
     {
-      "claim_vi": "Service chọn Pod theo selector; EndpointSlice tham chiếu các Pod khớp và ghi điều kiện ready của từng endpoint.",
+      "claim_vi": "Service chọn Pod theo selector; EndpointSlice tham chiếu các Pod khớp và ghi điều kiện ready của từng endpoint; với Service đặt publishNotReadyAddresses: true mọi endpoint được báo ready bất kể Pod có sẵn sàng hay không, còn serving theo readiness của Pod.",
       "source": "https://kubernetes.io/docs/concepts/services-networking/endpoint-slices/"
     },
     {

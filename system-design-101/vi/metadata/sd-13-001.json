@@ -54,8 +54,8 @@
       "source": "https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/"
     },
     {
-      "claim_vi": "Khi Pod bắt đầu tắt, endpoint của Pod trong EndpointSlice không bị xóa ngay mà được đánh dấu terminating; với Service không đặt publishNotReadyAddresses: true thì ready luôn là false, còn Service đặt true báo endpoint là ready kể cả khi Pod đang tắt; điều kiện serving cho biết Pod còn phục vụ được hay không.",
-      "source": "https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/"
+      "claim_vi": "Khi Pod bắt đầu tắt, endpoint của Pod trong EndpointSlice không bị xóa ngay mà được đánh dấu terminating; với Service không đặt publishNotReadyAddresses: true thì ready luôn là false, còn Service đặt true báo endpoint là ready kể cả khi Pod đang tắt; điều kiện serving cho biết Pod còn phục vụ được hay không; nếu mọi endpoint đều đang tắt, proxy của Service có thể vẫn chuyển traffic tới endpoint vừa serving vừa terminating để khỏi mất traffic khi cập nhật cuốn chiếu.",
+      "source": "https://kubernetes.io/docs/concepts/services-networking/endpoint-slices/"
     },
     {
       "claim_vi": "terminationGracePeriodSeconds mặc định là 30 giây.",

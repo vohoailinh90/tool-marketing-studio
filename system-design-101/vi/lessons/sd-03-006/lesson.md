@@ -56,4 +56,6 @@ dựa trên tiện ích, học). Phân loại đó không cần cho ý chính n�
 - [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-is-an-ai-agent.md): đặc điểm và kiến trúc của agent.
 - [Anthropic — Building effective agents](https://www.anthropic.com/engineering/building-effective-agents): định nghĩa workflow và agent; vòng lặp dùng công cụ với phản hồi từ môi trường; đánh đổi độ trễ và chi phí; điểm dừng cho người duyệt và điều kiện dừng.
 
-Đã đọc nguồn ngày 2026-10-13. Trang Anthropic đã được mở và đối chiếu từng câu. Bài viết và hình được thiết kế độc lập.
+Đã đọc nguồn ngày 2026-10-13. Trang Anthropic đã được mở và đối chiếu các câu về workflow và agent, vòng lặp dùng công cụ, chi phí và điểm dừng;
+phần bộ nhớ và các kiểu hệ thống (một agent, nhiều agent, người cùng làm) lấy từ bài nguồn, chưa đối chiếu.
+Bài viết và hình được thiết kế độc lập.

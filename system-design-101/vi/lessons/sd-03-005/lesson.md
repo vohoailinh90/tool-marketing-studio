@@ -3,7 +3,7 @@
 **Dựng một ứng dụng AI là ghép nhiều tầng, và mỗi tầng đều có lựa chọn mã nguồn mở.**
 Ở mỗi tầng hãy hỏi hai điều: nó giải quyết việc gì, và giấy phép cho phép bạn làm gì.
 
-![Năm thẻ nối nhau từ trên xuống. 1 Giao diện: Streamlit, Next.js. 2 Backend và gọi mô hình: FastAPI, Metaflow, Ollama. 3 Embedding và RAG: biến văn bản thành vector, tìm đoạn liên quan cho prompt. 4 Lưu trữ và truy xuất: Postgres với pgvector, Milvus, Weaviate; Faiss là thư viện tìm kiếm vector. 5 Mô hình: Llama, Mistral, Qwen, Phi, Gemma với giấy phép khác nhau. Thẻ cuối nhắc rằng mở có nhiều mức.](../../diagrams/sd-03-005-main.svg)
+![Năm thẻ nối nhau từ trên xuống. 1 Giao diện: Streamlit, Next.js. 2 Backend và gọi mô hình: FastAPI, Metaflow, Ollama. 3 Embedding và RAG: biến văn bản thành vector, tìm đoạn liên quan cho prompt. 4 Lưu trữ và truy xuất: Postgres với pgvector, Milvus, Weaviate; Faiss là thư viện tìm kiếm vector. 5 Mô hình: Llama, Mistral, Qwen, Phi, Gemma, mỗi họ có giấy phép riêng. Thẻ cuối nhắc rằng mở có nhiều mức.](../../diagrams/sd-03-005-main.svg)
 
 ## Đọc hình
 
@@ -18,7 +18,8 @@ quản lý quy trình AI/ML; Ollama giúp chạy và gọi mô hình.
 **4 · Lưu trữ và truy xuất.** Cần nơi giữ vector và tìm gần đúng. pgvector thêm tìm kiếm vector vào Postgres;
 Milvus và Weaviate là cơ sở dữ liệu vector. Faiss là thư viện tìm kiếm tương tự, không tự là máy chủ cơ sở dữ liệu.
 
-**5 · Mô hình.** Llama, Mistral, Qwen, Phi, Gemma là các họ mô hình công bố trọng số để tải về.
+**5 · Mô hình.** Llama, Mistral, Qwen, Phi, Gemma là các họ mô hình mà bài nguồn nêu làm lựa chọn thay cho mô hình đóng.
+Mỗi họ có giấy phép riêng; bài này chưa đọc điều khoản của từng họ.
 
 ## Giới hạn cần nhớ
 
@@ -43,7 +44,7 @@ bạn nhúng vào chương trình; nó không tự là máy chủ cơ sở dữ 
 
 Bài nguồn còn nêu Vercel, Nomic, JinaAI, “Cognito”, LLMWare, Hugging Face và nhận định rằng các công cụ
 tốt nhất đều là mã nguồn mở. Những công cụ này chưa được đối chiếu trong đợt này, còn câu “tốt nhất” là
-nhận định cần điều kiện so sánh; bài này giữ lại các thành phần đã đọc README hoặc nguồn chính.
+nhận định cần điều kiện so sánh; bài này giữ lại các thành phần đã đọc README. Tên Next.js và các họ mô hình ở tầng 5 lấy từ bài nguồn, chưa được đối chiếu.
 
 Danh sách chỉ là ví dụ để hình dung từng tầng, không phải khuyến nghị chọn công cụ.
 

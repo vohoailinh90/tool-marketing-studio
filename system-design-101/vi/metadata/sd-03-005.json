@@ -95,7 +95,7 @@
       "verified_by": "Search-result excerpt only; the page itself was not opened (host blocked in the authoring environment). The 1.0 definition details came from press coverage in the same results."
     },
     {
-      "claim_vi": "Llama, Mistral, Qwen, Phi and Gemma are open-weight model families; the lesson says licences differ and does not state any family's terms.",
+      "claim_vi": "Llama, Mistral, Qwen, Phi and Gemma are open-weight model families; the lesson says each family has its own licence and that its terms were not read; the names come from the source.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/the-open-source-ai-stack.md",
       "section": "Large-Language Models",
       "verified_by": "Names carried from the source; no licence text was read."

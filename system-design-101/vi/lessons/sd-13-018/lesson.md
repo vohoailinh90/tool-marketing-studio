@@ -26,13 +26,14 @@ Plan chỉ biết những gì provider báo về, nên thay đổi ở thuộc t
 
 ```bash
 terraform workspace show                  # đang ở workspace nào
-terraform plan -refresh-only              # xem phần lệch giữa state và hạ tầng thật
+terraform plan -refresh-only              # chỉ xem phần lệch giữa state và hạ tầng thật, chưa ghi gì
+terraform apply -refresh-only             # ghi phần lệch đó vào state, không đổi hạ tầng
 terraform plan -out=plan.tfplan           # lưu plan để apply đúng bản đã xem
 terraform apply plan.tfplan
 ```
 
 - **Đọc ký hiệu:** `+` tạo mới, `-` xóa, `~` sửa tại chỗ, `-/+` xóa rồi tạo lại; dòng `# forces replacement` chỉ thuộc tính buộc phải thay thế tài nguyên. Dòng `-/+` ngoài ý muốn cần dừng lại kiểm tra trước, vì tài nguyên bị xóa rồi tạo lại.
-- **Drift:** plan và apply mặc định làm mới state theo hạ tầng thật trước khi so với mã (`-refresh=false` tắt bước này). Chế độ `-refresh-only` chỉ cập nhật state cho khớp hạ tầng thật, không đề xuất thay đổi hạ tầng. Tài nguyên có sẵn mà chưa nằm trong state thì đưa vào bằng khối `import` (Terraform 1.5 trở lên) hoặc lệnh `terraform import`.
+- **Drift:** plan và apply mặc định làm mới state theo hạ tầng thật trước khi so với mã (`-refresh=false` tắt bước này). Chế độ `-refresh-only` lập plan chỉ để cập nhật state cho khớp hạ tầng thật, không đề xuất thay đổi hạ tầng: `terraform plan -refresh-only` chỉ cho xem những thay đổi sẽ được ghi vào state, còn state chỉ được cập nhật khi chạy `terraform apply -refresh-only` (hoặc apply một plan refresh-only đã lưu). Tài nguyên có sẵn mà chưa nằm trong state thì đưa vào bằng khối `import` (Terraform 1.5 trở lên) hoặc lệnh `terraform import`.
 - **Phiên bản:** `terraform init` giữ đúng phiên bản provider đã ghi trong `.terraform.lock.hcl`; `terraform init -upgrade` mới chọn bản mới trong khoảng ràng buộc và cập nhật tệp khóa. Đưa tệp khóa vào kho mã để mọi người và CI dùng cùng bản. Module từ registry cần ràng buộc `version` riêng.
 - **Workspace và đầu vào:** mỗi workspace có state riêng; biến lấy từ `-var-file`, `terraform.tfvars` và biến môi trường `TF_VAR_tên`, nên cùng một mã với đầu vào khác cho plan khác.
 - **Giá trị tự điền và thứ tự:** thuộc tính do hệ thống ngoài tự gắn (ví dụ tag do chính sách tổ chức thêm) tạo thay đổi ở mỗi lần plan; `lifecycle { ignore_changes = [tags] }` bỏ qua thuộc tính được liệt kê, nên dùng hẹp nhất có thể. Với danh sách mà provider trả về theo thứ tự khác mã, đưa các phần tử trong mã về đúng thứ tự đó.

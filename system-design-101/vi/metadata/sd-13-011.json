@@ -50,7 +50,7 @@
   },
   "claims": [
     {
-      "claim_vi": "Khi một lớp bị vô hiệu hóa, mọi lớp sau nó phải build lại; với COPY và ADD Docker so checksum nội dung tệp, với RUN chỉ so chuỗi lệnh.",
+      "claim_vi": "Khi một lớp bị vô hiệu hóa, mọi lớp sau nó phải build lại; với COPY và ADD Docker so checksum nội dung tệp, với RUN thường chỉ so chuỗi lệnh, riêng RUN --mount=type=bind còn tính checksum từ các tệp được gắn.",
       "source": "https://docs.docker.com/build/cache/invalidation/"
     },
     {

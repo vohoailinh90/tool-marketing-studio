@@ -27,9 +27,9 @@
 <rect x="16" y="617" width="288" height="209" rx="10" fill="#fee2e2" stroke="#94a3b8"/>
 <text x="30" y="645" font-size="16" font-weight="bold">4 · Cache dùng được</text>
 <text x="30" y="672" font-size="16" font-weight="bold">nhưng đã cũ</text>
-<text x="30" y="699" font-size="16" font-weight="normal">RUN chỉ so chuỗi lệnh,</text>
-<text x="30" y="726" font-size="16" font-weight="normal">không xét trạng thái bên</text>
-<text x="30" y="753" font-size="16" font-weight="normal">ngoài</text>
+<text x="30" y="699" font-size="16" font-weight="normal">RUN thường chỉ so chuỗi</text>
+<text x="30" y="726" font-size="16" font-weight="normal">lệnh, không xét trạng thái</text>
+<text x="30" y="753" font-size="16" font-weight="normal">bên ngoài</text>
 <text x="30" y="780" font-size="16" font-weight="normal">Build sạch định kỳ bằng</text>
 <text x="30" y="807" font-size="16" font-weight="normal">--no-cache và --pull</text>
 <rect x="16" y="838" width="288" height="155" rx="10" fill="#ede9fe" stroke="#94a3b8"/>

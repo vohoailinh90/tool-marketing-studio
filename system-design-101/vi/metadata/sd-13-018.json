@@ -43,8 +43,8 @@
       "source": "https://developer.hashicorp.com/terraform/cli/commands/plan"
     },
     {
-      "claim_vi": "Chế độ refresh-only chỉ cập nhật state và giá trị output cho khớp với thay đổi ở hạ tầng ngoài Terraform, không đề xuất thay đổi hạ tầng.",
-      "source": "https://developer.hashicorp.com/terraform/tutorials/cli/refresh"
+      "claim_vi": "Chế độ refresh-only lập plan nhằm cập nhật state và giá trị output cho khớp với thay đổi ở hạ tầng ngoài Terraform, không đề xuất thay đổi hạ tầng; plan -refresh-only chỉ đề xuất, state chỉ được ghi khi chạy apply -refresh-only hoặc apply một plan refresh-only đã lưu.",
+      "source": "https://developer.hashicorp.com/terraform/cli/commands/plan"
     },
     {
       "claim_vi": "Tệp .terraform.lock.hcl ghi phiên bản provider đã chọn; terraform init -upgrade chọn bản mới trong khoảng ràng buộc và cập nhật tệp.",

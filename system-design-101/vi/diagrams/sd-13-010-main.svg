@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 684" width="320" height="684" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 738" width="320" height="738" role="img" aria-labelledby="title desc">
 <title id="title">Bảng tuần hoàn Kubernetes: đọc để tra cứu</title>
-<desc id="desc">Bốn thẻ chồng nhau: thành phần lõi của cụm, thành phần tùy chọn như kube-proxy, đối tượng API bạn khai báo và dự án hệ sinh thái bên ngoài.</desc>
+<desc id="desc">Bốn thẻ chồng nhau: thành phần lõi của cụm, thành phần tùy chọn như kube-proxy, đối tượng API (Application Programming Interface — giao diện lập trình ứng dụng) bạn khai báo và dự án hệ sinh thái bên ngoài.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="684" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<rect width="320" height="738" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="30" font-size="20" font-weight="bold">ĐỌC BẢNG TUẦN HOÀN</text>
 <text x="16" y="58" font-size="16" font-weight="normal">Bốn loại "nguyên tố" khác</text>
 <text x="16" y="85" font-size="16" font-weight="normal">nhau</text>
@@ -18,12 +18,14 @@
 <text x="30" y="365" font-size="16" font-weight="normal">hiện thực Service</text>
 <text x="30" y="392" font-size="16" font-weight="normal">Có thể được plugin mạng</text>
 <text x="30" y="419" font-size="16" font-weight="normal">thay thế</text>
-<rect x="16" y="450" width="288" height="101" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
-<text x="30" y="478" font-size="16" font-weight="bold">Đối tượng API</text>
-<text x="30" y="505" font-size="16" font-weight="normal">Pod, Deployment, Service</text>
-<text x="30" y="532" font-size="16" font-weight="normal">ConfigMap, Secret, Ingress</text>
-<rect x="16" y="563" width="288" height="101" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
-<text x="30" y="591" font-size="16" font-weight="bold">Dự án hệ sinh thái</text>
-<text x="30" y="618" font-size="16" font-weight="normal">Helm, Prometheus, Istio...</text>
-<text x="30" y="645" font-size="16" font-weight="normal">Không nằm trong Kubernetes</text>
+<rect x="16" y="450" width="288" height="155" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="478" font-size="16" font-weight="bold">Đối tượng API (giao</text>
+<text x="30" y="505" font-size="16" font-weight="bold">diện lập trình ứng</text>
+<text x="30" y="532" font-size="16" font-weight="bold">dụng)</text>
+<text x="30" y="559" font-size="16" font-weight="normal">Pod, Deployment, Service</text>
+<text x="30" y="586" font-size="16" font-weight="normal">ConfigMap, Secret, Ingress</text>
+<rect x="16" y="617" width="288" height="101" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="645" font-size="16" font-weight="bold">Dự án hệ sinh thái</text>
+<text x="30" y="672" font-size="16" font-weight="normal">Helm, Prometheus, Istio...</text>
+<text x="30" y="699" font-size="16" font-weight="normal">Không nằm trong Kubernetes</text>
 </g></svg>

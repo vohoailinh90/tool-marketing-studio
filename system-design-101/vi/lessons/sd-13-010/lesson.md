@@ -2,7 +2,7 @@
 
 Một bảng tuần hoàn gom rất nhiều thành phần vào một trang. Đọc nó như bản đồ tra cứu, không phải danh sách để học thuộc.
 
-![Bốn thẻ chồng nhau: thành phần lõi của cụm, thành phần tùy chọn như kube-proxy, đối tượng API bạn khai báo và dự án hệ sinh thái bên ngoài.](../../diagrams/sd-13-010-main.svg)
+![Bốn thẻ chồng nhau: thành phần lõi của cụm, thành phần tùy chọn như kube-proxy, đối tượng API (Application Programming Interface — giao diện lập trình ứng dụng) bạn khai báo và dự án hệ sinh thái bên ngoài.](../../diagrams/sd-13-010-main.svg)
 
 **Đọc hình:** các loại này hay bị lẫn trên một bảng; tách ra giúp biết cái nào đi kèm cụm, cái nào tùy chọn, cái nào phải tự cài.
 
@@ -25,7 +25,7 @@ Một bảng một trang không cho biết thành phần nào đang được duy
 <summary>Xem sâu hơn</summary>
 
 - **Cách tra:** tìm theo bài toán trước (ví dụ "lưu nhật ký"), rồi mở tài liệu của dự án.
-- **Phân biệt:** thành phần lõi là thứ cụm cần để chạy; thành phần tùy chọn như kube-proxy có mặc định nhưng có thể thay bằng giải pháp khác (một số plugin mạng tự lo việc chuyển traffic cho Service); đối tượng API là thứ bạn khai báo; dự án hệ sinh thái là thứ bạn chọn thêm.
+- **Phân biệt:** thành phần lõi là thứ cụm cần để chạy; thành phần tùy chọn như kube-proxy có mặc định nhưng có thể thay bằng giải pháp khác (một số plugin mạng tự lo việc chuyển traffic cho Service); đối tượng API (Application Programming Interface — giao diện lập trình ứng dụng) là thứ bạn khai báo; dự án hệ sinh thái là thứ bạn chọn thêm.
 - **Làm quen từng bước:** nắm lõi và đối tượng API trước, hệ sinh thái sau.
 
 </details>

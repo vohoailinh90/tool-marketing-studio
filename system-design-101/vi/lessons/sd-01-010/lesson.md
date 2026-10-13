@@ -8,9 +8,9 @@
 
 **Một quy tắc.** CSS gồm các quy tắc dạng *bộ chọn* + *khai báo*. `p { color: blue; }`: `p` chọn mọi đoạn văn, `color` là thuộc tính, `blue` là giá trị.
 
-**Cascade — khi quy tắc xung đột.** Chữ "C" trong CSS là *cascading*. Nhiều quy tắc có thể cùng áp lên một phần tử, trình duyệt chọn theo thứ tự ưu tiên (áp dụng cho quy tắc thông thường; thuộc tính đang chạy `@keyframes` hoặc `transition` có tầng riêng, xem phần "Xem sâu hơn"): nguồn và độ quan trọng (`!important`), rồi thứ tự các lớp `@layer` nếu có dùng (với quy tắc thường, lớp khai báo sau thắng lớp khai báo trước, và quy tắc không thuộc lớp nào thắng quy tắc trong lớp), rồi *độ đặc hiệu* của bộ chọn (id mạnh hơn class, class mạnh hơn tên thẻ), rồi thứ tự xuất hiện (cùng độ đặc hiệu thì quy tắc đứng sau thắng). Với `<p id="intro" class="note">` và ba quy tắc trong hình (không dùng `@layer`), kết quả là xanh lá.
+**Cascade — khi quy tắc xung đột.** Chữ "C" trong CSS là *cascading*. Nhiều quy tắc có thể cùng áp lên một phần tử, trình duyệt chọn theo thứ tự ưu tiên (đây là bản rút gọn; kiểu viết trực tiếp trên phần tử, `@keyframes` và `transition` đang chạy, và `@scope` có thêm tầng riêng, xem phần "Xem sâu hơn"): nguồn và độ quan trọng (`!important`), rồi thứ tự các lớp `@layer` nếu có dùng (với quy tắc thường, lớp khai báo sau thắng lớp khai báo trước, và quy tắc không thuộc lớp nào thắng quy tắc trong lớp), rồi *độ đặc hiệu* của bộ chọn (id mạnh hơn class, class mạnh hơn tên thẻ), rồi thứ tự xuất hiện (cùng độ đặc hiệu thì quy tắc đứng sau thắng). Với `<p id="intro" class="note">` và ba quy tắc trong hình (không dùng `@layer`), kết quả là xanh lá.
 
-**Bố cục và responsive.** Flexbox sắp xếp theo một chiều (hàng hoặc cột); Grid là lưới hai chiều. `@media` áp kiểu khác nhau theo kích thước *viewport* (vùng hiển thị của trang trong cửa sổ trình duyệt), nên thu nhỏ cửa sổ cũng đổi kiểu dù màn hình không đổi; media query còn xét được các đặc tính khác như hướng màn hình hay chế độ màu.
+**Bố cục và responsive.** Flexbox sắp xếp theo một chiều (hàng hoặc cột); Grid là lưới hai chiều. `@media` áp kiểu khác nhau theo kích thước *viewport* (vùng hiển thị của trang trong cửa sổ trình duyệt), nên thu nhỏ cửa sổ cũng đổi kiểu dù màn hình không đổi; media query còn xét được các đặc tính khác như hướng của viewport (rộng hơn cao hay ngược lại) hay chế độ màu.
 
 ## Giới hạn cần nhớ
 
@@ -31,8 +31,8 @@ Xanh lá. Hai quy tắc có cùng độ đặc hiệu nên quy tắc đứng sau
 <summary>Xem sâu hơn</summary>
 
 - **CSS là ngôn ngữ bảng kiểu (style sheet language),** không phải ngôn ngữ đánh dấu như HTML.
-- **Thứ tự chi tiết hơn của cascade** còn có nguồn (kiểu của trình duyệt, của tác giả, của người dùng), `!important` và các lớp `@layer`; lớp được xét trước độ đặc hiệu, nên `#intro` ở lớp trước có thể thua `.note` ở lớp sau. Với thuộc tính đang chạy hiệu ứng, thứ tự có thêm hai tầng: giá trị từ `@keyframes` thắng các khai báo thường của tác giả (nhưng không thắng `!important`), còn giá trị của `transition` thắng tất cả, kể cả `!important`.
-- **Độ đặc hiệu:** kiểu viết trực tiếp trên phần tử mạnh hơn id; id mạnh hơn class, thuộc tính và pseudo-class; những cái này mạnh hơn tên thẻ.
+- **Những tầng cascade bài chưa mô tả đầy đủ:** thứ tự ở trên là bản rút gọn. Nguồn gồm kiểu của trình duyệt, của người dùng và của tác giả. Kiểu viết trực tiếp trên phần tử (thuộc tính `style`) được xét trước các lớp `@layer`. Lớp được xét trước độ đặc hiệu, nên `#intro` ở lớp trước có thể thua `.note` ở lớp sau. Trong `@scope`, khai báo có gốc phạm vi gần hơn thắng trước khi xét thứ tự xuất hiện. Với thuộc tính đang chạy hiệu ứng, giá trị từ `@keyframes` thắng các khai báo thường của tác giả (nhưng không thắng `!important`), còn giá trị của `transition` thắng tất cả, kể cả `!important`.
+- **Độ đặc hiệu:** id mạnh hơn class, thuộc tính và pseudo-class; những cái này mạnh hơn tên thẻ. Kiểu viết trực tiếp trên phần tử mạnh hơn mọi bộ chọn.
 - **Hiệu ứng:** `transition` chuyển mượt giữa hai trạng thái; `@keyframes` mô tả chuỗi hoạt họa; không cần JavaScript cho các hiệu ứng đơn giản.
 - **Responsive:** thường kết hợp `@media`, đơn vị tương đối và Flexbox hoặc Grid.
 

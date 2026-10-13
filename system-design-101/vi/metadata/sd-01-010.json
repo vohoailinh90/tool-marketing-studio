@@ -54,10 +54,17 @@
       ]
     },
     {
-      "claim_vi": "Với quy tắc kiểu thông thường, cascade chọn quy tắc thắng theo nguồn và độ quan trọng, rồi thứ tự lớp @layer, rồi độ đặc hiệu, rồi thứ tự xuất hiện.",
+      "claim_vi": "Với quy tắc kiểu thông thường (chưa tính kiểu viết trực tiếp trên phần tử, animation, transition và @scope), cascade chọn quy tắc thắng theo nguồn và độ quan trọng, rồi thứ tự lớp @layer, rồi độ đặc hiệu, rồi thứ tự xuất hiện.",
       "sources": [
         "https://www.w3.org/TR/css-cascade-5/",
         "https://www.w3.org/TR/selectors-4/"
+      ]
+    },
+    {
+      "claim_vi": "Kiểu viết trực tiếp trên phần tử mạnh hơn mọi bộ chọn và được xét trước lớp @layer; trong @scope, khai báo có gốc phạm vi gần hơn thắng trước thứ tự xuất hiện.",
+      "sources": [
+        "https://www.w3.org/TR/css-cascade-5/#cascade-sort",
+        "https://www.w3.org/TR/css-cascade-6/"
       ]
     },
     {
@@ -69,7 +76,7 @@
       ]
     },
     {
-      "claim_vi": "Độ đặc hiệu: khi cùng nguồn, lớp và mức quan trọng, id mạnh hơn class, class mạnh hơn tên thẻ; kiểu viết trực tiếp trên phần tử mạnh hơn id.",
+      "claim_vi": "Độ đặc hiệu: khi cùng nguồn, lớp và mức quan trọng, id mạnh hơn class, class mạnh hơn tên thẻ.",
       "sources": [
         "https://www.w3.org/TR/selectors-4/",
         "https://www.w3.org/TR/css-cascade-5/"

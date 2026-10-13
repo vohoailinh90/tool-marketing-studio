@@ -137,15 +137,26 @@ def drop_bytecode(source: pathlib.Path) -> None:
         cached.unlink(missing_ok=True)
 
 
-def run_test(target: str) -> bool:
-    """True when the test failed, which is what a mutation must cause."""
+def child_environment() -> dict[str, str]:
+    """The environment a test subprocess runs in.
+
+    It writes no bytecode, so a mutated file leaves none behind, and it reads none from a configured cache prefix:
+    with PYTHONPYCACHEPREFIX set Python loads compiled code from that tree and ignores the sibling __pycache__ that
+    drop_bytecode() clears, so a stale entry there would run the unmutated file. Without the prefix it reads the
+    sibling cache, which drop_bytecode() has just emptied for the mutated file.
+    """
     environment = dict(os.environ)
     environment[DEPTH_VAR] = str(depth() + 1)
-    # Do not leave bytecode of a mutated file behind; drop_bytecode() removes what a run could still trust.
+    environment.pop("PYTHONPYCACHEPREFIX", None)
     environment["PYTHONDONTWRITEBYTECODE"] = "1"
+    return environment
+
+
+def run_test(target: str) -> bool:
+    """True when the test failed, which is what a mutation must cause."""
     result = subprocess.run(
         [sys.executable, "-m", "unittest", target],
-        cwd=ROOT, capture_output=True, text=True, check=False, env=environment,
+        cwd=ROOT, capture_output=True, text=True, check=False, env=child_environment(),
         timeout=300,
     )
     return result.returncode != 0

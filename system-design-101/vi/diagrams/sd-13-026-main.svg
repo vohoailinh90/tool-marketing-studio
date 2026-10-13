@@ -1,34 +1,37 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 819" width="320" height="819" role="img" aria-labelledby="title desc">
-<title id="title">Gỡ lỗi Docker: bốn sự cố hay gặp</title>
-<desc id="desc">Bốn sự cố và chỗ cần kiểm tra: không kết nối được daemon thì xem socket, quyền và context, kéo image bị từ chối thì xem tên registry và đăng nhập, ổ đĩa đầy thì xem dung lượng bằng docker system df, và image chạy sai kiến trúc thì xem nền tảng.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 900" width="320" height="900" role="img" aria-labelledby="title desc">
+<title id="title">Container Docker thoát ngay hoặc khởi động lại mãi: bốn manh mối</title>
+<desc id="desc">Bốn manh mối khi container Docker thoát ngay hoặc khởi động lại liên tục: mã thoát trong docker ps -a, nhật ký bằng docker logs, trạng thái chi tiết trong docker inspect như ExitCode và OOMKilled, và chính sách khởi động lại quyết định container có chạy lại sau khi thoát hay không.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="819" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
-<text x="16" y="30" font-size="20" font-weight="bold">BỐN SỰ CỐ HAY GẶP</text>
-<text x="16" y="58" font-size="16" font-weight="normal">Lỗi nằm ở đâu?</text>
-<rect x="16" y="89" width="288" height="182" rx="10" fill="#fee2e2" stroke="#94a3b8"/>
-<text x="30" y="117" font-size="16" font-weight="bold">Không kết nối được</text>
-<text x="30" y="144" font-size="16" font-weight="bold">daemon</text>
-<text x="30" y="171" font-size="16" font-weight="normal">Lệnh docker gọi daemon qua</text>
-<text x="30" y="198" font-size="16" font-weight="normal">socket</text>
-<text x="30" y="225" font-size="16" font-weight="normal">Kiểm tra daemon đang chạy,</text>
-<text x="30" y="252" font-size="16" font-weight="normal">quyền với socket, context</text>
-<rect x="16" y="283" width="288" height="155" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
-<text x="30" y="311" font-size="16" font-weight="bold">Kéo image bị từ chối</text>
-<text x="30" y="338" font-size="16" font-weight="normal">Tên image có thuộc registry</text>
-<text x="30" y="365" font-size="16" font-weight="normal">nào không</text>
-<text x="30" y="392" font-size="16" font-weight="normal">Đã docker login chưa, tag</text>
-<text x="30" y="419" font-size="16" font-weight="normal">có tồn tại không</text>
-<rect x="16" y="450" width="288" height="155" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
-<text x="30" y="478" font-size="16" font-weight="bold">Ổ đĩa đầy</text>
-<text x="30" y="505" font-size="16" font-weight="normal">Image, container, volume và</text>
-<text x="30" y="532" font-size="16" font-weight="normal">cache tích lại</text>
-<text x="30" y="559" font-size="16" font-weight="normal">Xem docker system df trước</text>
-<text x="30" y="586" font-size="16" font-weight="normal">khi dọn</text>
-<rect x="16" y="617" width="288" height="182" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
-<text x="30" y="645" font-size="16" font-weight="bold">Image chạy sai kiến</text>
-<text x="30" y="672" font-size="16" font-weight="bold">trúc</text>
-<text x="30" y="699" font-size="16" font-weight="normal">Image dựng cho kiến trúc</text>
-<text x="30" y="726" font-size="16" font-weight="normal">CPU khác (amd64, arm64)</text>
-<text x="30" y="753" font-size="16" font-weight="normal">Báo lỗi hoặc chạy chậm qua</text>
-<text x="30" y="780" font-size="16" font-weight="normal">giả lập; chọn --platform</text>
+<rect width="320" height="900" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">CONTAINER ĐÃ THOÁT</text>
+<text x="16" y="58" font-size="16" font-weight="normal">Bốn chỗ để hỏi</text>
+<rect x="16" y="89" width="288" height="155" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="117" font-size="16" font-weight="bold">1 · Mã thoát</text>
+<text x="30" y="144" font-size="16" font-weight="normal">docker ps -a hiện Exited</text>
+<text x="30" y="171" font-size="16" font-weight="normal">kèm mã</text>
+<text x="30" y="198" font-size="16" font-weight="normal">0: tự kết thúc; 137 = 128 +</text>
+<text x="30" y="225" font-size="16" font-weight="normal">9: bị SIGKILL</text>
+<rect x="16" y="256" width="288" height="155" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="284" font-size="16" font-weight="bold">2 · Nhật ký</text>
+<text x="30" y="311" font-size="16" font-weight="normal">docker logs in stdout và</text>
+<text x="30" y="338" font-size="16" font-weight="normal">stderr của tiến trình chính</text>
+<text x="30" y="365" font-size="16" font-weight="normal">Ứng dụng chỉ ghi vào tệp</text>
+<text x="30" y="392" font-size="16" font-weight="normal">thì không thấy gì</text>
+<rect x="16" y="423" width="288" height="236" rx="10" fill="#fee2e2" stroke="#94a3b8"/>
+<text x="30" y="451" font-size="16" font-weight="bold">3 · Trạng thái chi</text>
+<text x="30" y="478" font-size="16" font-weight="bold">tiết</text>
+<text x="30" y="505" font-size="16" font-weight="normal">docker inspect cho</text>
+<text x="30" y="532" font-size="16" font-weight="normal">State.ExitCode,</text>
+<text x="30" y="559" font-size="16" font-weight="normal">State.OOMKilled,</text>
+<text x="30" y="586" font-size="16" font-weight="normal">State.Error</text>
+<text x="30" y="613" font-size="16" font-weight="normal">OOMKilled là true: bị dừng</text>
+<text x="30" y="640" font-size="16" font-weight="normal">vì hết bộ nhớ</text>
+<rect x="16" y="671" width="288" height="209" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="699" font-size="16" font-weight="bold">4 · Chính sách khởi</text>
+<text x="30" y="726" font-size="16" font-weight="bold">động lại</text>
+<text x="30" y="753" font-size="16" font-weight="normal">--restart chọn no,</text>
+<text x="30" y="780" font-size="16" font-weight="normal">on-failure, always hoặc</text>
+<text x="30" y="807" font-size="16" font-weight="normal">unless-stopped</text>
+<text x="30" y="834" font-size="16" font-weight="normal">Vòng thoát rồi chạy lại</text>
+<text x="30" y="861" font-size="16" font-weight="normal">hiện là Restarting</text>
 </g></svg>

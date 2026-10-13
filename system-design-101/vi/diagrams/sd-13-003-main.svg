@@ -1,26 +1,33 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 617" width="320" height="617" role="img" aria-labelledby="title desc">
-<title id="title">Tỉ lệ lập trình viên và kiểm thử viên thay đổi thế nào</title>
-<desc id="desc">Hai thẻ so sánh: khi lỗi sửa rẻ và quay lui nhanh thì kiểm thử chuyển dần sang người viết mã dựa trên công cụ tự động; khi lỗi gây hại lớn hoặc khó thu hồi thì vẫn cần kiểm thử độc lập.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 793" width="320" height="793" role="img" aria-labelledby="title desc">
+<title id="title">Cần bao nhiêu người chuyên kiểm thử: đọc từ số đo của chính đội</title>
+<desc id="desc">Bốn số đo để quyết định kiểm thử cần gì: tỉ lệ thay đổi gây lỗi ở môi trường thật cho biết lỗi nào lọt qua, thời gian chờ kết quả test cho biết lập trình viên có chạy test hay không, tỉ lệ test chập chờn cho biết kết quả có đáng tin không, và phần việc máy khó làm như khám phá và trải nghiệm cho biết nơi người chuyên kiểm thử bổ sung nhiều nhất.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="617" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
-<text x="16" y="30" font-size="20" font-weight="bold">KIỂM THỬ ĐỨNG Ở ĐÂU</text>
-<text x="16" y="58" font-size="16" font-weight="normal">Hai đầu của cùng một câu hỏi</text>
-<rect x="16" y="89" width="288" height="155" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
-<text x="30" y="117" font-size="16" font-weight="bold">Lỗi rẻ, sửa nhanh</text>
-<text x="30" y="144" font-size="16" font-weight="normal">Phát hành và vá được trong</text>
-<text x="30" y="171" font-size="16" font-weight="normal">thời gian ngắn</text>
-<text x="30" y="198" font-size="16" font-weight="normal">Có giám sát và quay lui dễ</text>
-<text x="30" y="225" font-size="16" font-weight="normal">Công cụ test dùng chung</text>
-<text x="16" y="276" font-size="16" font-weight="normal">Người viết mã tự kiểm thử là</text>
-<text x="16" y="303" font-size="16" font-weight="normal">chủ yếu, vai trò kiểm thử</text>
-<text x="16" y="330" font-size="16" font-weight="normal">riêng nhỏ lại.</text>
-<rect x="16" y="349" width="288" height="182" rx="10" fill="#fee2e2" stroke="#94a3b8"/>
-<text x="30" y="377" font-size="16" font-weight="bold">Lỗi đắt, khó thu hồi</text>
-<text x="30" y="404" font-size="16" font-weight="normal">Ảnh hưởng an toàn, tiền</text>
-<text x="30" y="431" font-size="16" font-weight="normal">bạc, dữ liệu</text>
-<text x="30" y="458" font-size="16" font-weight="normal">Bản phát hành không vá được</text>
-<text x="30" y="485" font-size="16" font-weight="normal">ngay</text>
-<text x="30" y="512" font-size="16" font-weight="normal">Có yêu cầu quy định</text>
-<text x="16" y="563" font-size="16" font-weight="normal">Vẫn cần kiểm thử độc lập, có</text>
-<text x="16" y="590" font-size="16" font-weight="normal">người chuyên trách.</text>
+<rect width="320" height="793" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">ĐO TRƯỚC KHI THÊM</text>
+<text x="16" y="58" font-size="20" font-weight="bold">NGƯỜI</text>
+<text x="16" y="86" font-size="16" font-weight="normal">Bốn số đo của đội</text>
+<rect x="16" y="117" width="288" height="155" rx="10" fill="#fee2e2" stroke="#94a3b8"/>
+<text x="30" y="145" font-size="16" font-weight="bold">1 · Thay đổi gây lỗi</text>
+<text x="30" y="172" font-size="16" font-weight="normal">Tỉ lệ lần phát hành gây lỗi</text>
+<text x="30" y="199" font-size="16" font-weight="normal">ở môi trường thật</text>
+<text x="30" y="226" font-size="16" font-weight="normal">Cao: xem loại lỗi nào lọt</text>
+<text x="30" y="253" font-size="16" font-weight="normal">qua</text>
+<rect x="16" y="284" width="288" height="182" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="312" font-size="16" font-weight="bold">2 · Thời gian chờ kết</text>
+<text x="30" y="339" font-size="16" font-weight="bold">quả</text>
+<text x="30" y="366" font-size="16" font-weight="normal">Từ lúc đẩy mã đến lúc có</text>
+<text x="30" y="393" font-size="16" font-weight="normal">kết quả test</text>
+<text x="30" y="420" font-size="16" font-weight="normal">Hàng giờ: lập trình viên</text>
+<text x="30" y="447" font-size="16" font-weight="normal">ngừng chạy test</text>
+<rect x="16" y="478" width="288" height="128" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="506" font-size="16" font-weight="bold">3 · Test chập chờn</text>
+<text x="30" y="533" font-size="16" font-weight="normal">Lần chạy đỏ mà mã không đổi</text>
+<text x="30" y="560" font-size="16" font-weight="normal">Nhiều: không ai tin kết quả</text>
+<text x="30" y="587" font-size="16" font-weight="normal">đỏ</text>
+<rect x="16" y="618" width="288" height="155" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="646" font-size="16" font-weight="bold">4 · Việc máy khó làm</text>
+<text x="30" y="673" font-size="16" font-weight="normal">Khám phá sản phẩm, trải</text>
+<text x="30" y="700" font-size="16" font-weight="normal">nghiệm, khả năng truy cập</text>
+<text x="30" y="727" font-size="16" font-weight="normal">Thường là chỗ người chuyên</text>
+<text x="30" y="754" font-size="16" font-weight="normal">kiểm thử bổ sung nhất</text>
 </g></svg>

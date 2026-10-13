@@ -53,7 +53,7 @@
       "source": "https://nginx.org/en/docs/http/ngx_http_proxy_module.html"
     },
     {
-      "claim_vi": "Giữ kết nối tới backend cần keepalive trong upstream, proxy_http_version 1.1 và xóa header Connection.",
+      "claim_vi": "Trước Nginx 1.29.7, giữ kết nối tới backend cần keepalive trong upstream, proxy_http_version 1.1 và xóa header Connection; từ 1.29.7 giữ kết nối tới upstream và HTTP/1.1 là mặc định.",
       "source": "https://nginx.org/en/docs/http/ngx_http_upstream_module.html"
     },
     {

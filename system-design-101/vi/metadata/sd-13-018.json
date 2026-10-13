@@ -1,8 +1,8 @@
 {
   "id": "sd-13-018",
-  "title_vi": "Terraform biến mã thành hạ tầng",
+  "title_vi": "Terraform plan báo thay đổi bạn không định làm: năm nguyên nhân",
   "language": "vi",
-  "kind": "flow",
+  "kind": "comparison",
   "content_status": "draft",
   "source_ref": "sd-13-018",
   "source_snapshot": {
@@ -39,21 +39,33 @@
   },
   "claims": [
     {
-      "claim_vi": "terraform plan xem trước thay đổi mà không áp dụng.",
+      "claim_vi": "Plan và apply mặc định làm mới state theo hạ tầng thật trước khi so với cấu hình; -refresh=false bỏ bước này.",
       "source": "https://developer.hashicorp.com/terraform/cli/commands/plan"
     },
     {
-      "claim_vi": "Terraform dùng state để ánh xạ cấu hình với tài nguyên thật; state có thể chứa dữ liệu nhạy cảm.",
-      "source": "https://developer.hashicorp.com/terraform/language/state"
+      "claim_vi": "Chế độ refresh-only chỉ cập nhật state và giá trị output cho khớp với thay đổi ở hạ tầng ngoài Terraform, không đề xuất thay đổi hạ tầng.",
+      "source": "https://developer.hashicorp.com/terraform/tutorials/cli/refresh"
     },
     {
-      "claim_vi": "Có thể lưu plan bằng -out rồi apply đúng plan đó.",
-      "source": "https://developer.hashicorp.com/terraform/cli/commands/plan"
+      "claim_vi": "Tệp .terraform.lock.hcl ghi phiên bản provider đã chọn; terraform init -upgrade chọn bản mới trong khoảng ràng buộc và cập nhật tệp.",
+      "source": "https://developer.hashicorp.com/terraform/language/files/dependency-lock"
+    },
+    {
+      "claim_vi": "Đối số lifecycle ignore_changes bỏ qua thay đổi của các thuộc tính được liệt kê.",
+      "source": "https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle"
+    },
+    {
+      "claim_vi": "Nhiều backend hỗ trợ khóa state để ngăn hai thao tác cùng ghi state.",
+      "source": "https://developer.hashicorp.com/terraform/language/state/locking"
+    },
+    {
+      "claim_vi": "Khối import đưa tài nguyên có sẵn vào state, dùng được từ Terraform 1.5.",
+      "source": "https://developer.hashicorp.com/terraform/language/import"
     }
   ],
   "source_deviations": [
-    "Nguồn chia theo bốn giai đoạn (viết, plan, apply, sẵn sàng); bài tổ chức quanh ba đối tượng được so sánh."
+    "Nguồn mô tả quy trình viết mã, plan, apply rồi cập nhật hạ tầng; bài bỏ quy trình đó và theo dõi một vấn đề cụ thể là plan báo thay đổi ngoài ý muốn, nên chỉ dùng lại plan và state như công cụ chẩn đoán."
   ],
-  "design_notes_vi": "Ba thẻ đối tượng so sánh rồi hai thẻ lệnh.",
+  "design_notes_vi": "Năm thẻ nguồn lệch khiến plan báo thay đổi bất ngờ, mỗi thẻ kèm cách xác nhận.",
   "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
 }

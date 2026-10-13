@@ -3438,7 +3438,7 @@
         },
         {
           "id": "sd-13-003",
-          "title_vi": "Tỉ lệ lập trình viên và kiểm thử viên thay đổi thế nào",
+          "title_vi": "Cần bao nhiêu người chuyên kiểm thử: đọc từ số đo của chính đội",
           "title_source": "Paradigm Shift: Developer to Tester Ratio",
           "source_url": "https://bytebytego.com/guides/paradigm-shift-how-developer-to-tester-ratio-changed-from-11-to-1001",
           "source_path": "data/guides/paradigm-shift-how-developer-to-tester-ratio-changed-from-11-to-1001.md",
@@ -3478,7 +3478,7 @@
         },
         {
           "id": "sd-13-007",
-          "title_vi": "Lỗi thường gặp khi đưa ứng dụng lên cloud-native",
+          "title_vi": "Tăng từ một lên ba bản sao thì ứng dụng hỏng: bốn giả định ẩn",
           "title_source": "Cloud Native Anti-Patterns",
           "source_url": "https://bytebytego.com/guides/cloud-native-anti-patterns",
           "source_path": "data/guides/cloud-native-anti-patterns.md",
@@ -3591,7 +3591,7 @@
         },
         {
           "id": "sd-13-018",
-          "title_vi": "Terraform biến mã thành hạ tầng",
+          "title_vi": "Terraform plan báo thay đổi bạn không định làm: năm nguyên nhân",
           "title_source": "How does Terraform turn Code into Cloud?",
           "source_url": "https://bytebytego.com/guides/how-does-terraform-turn-code-into-cloud",
           "source_path": "data/guides/how-does-terraform-turn-code-into-cloud.md",
@@ -3671,7 +3671,7 @@
         },
         {
           "id": "sd-13-026",
-          "title_vi": "Gỡ lỗi Docker: bốn sự cố hay gặp",
+          "title_vi": "Container Docker thoát ngay hoặc khởi động lại mãi: bốn manh mối",
           "title_source": "How does Docker work?",
           "source_url": "https://bytebytego.com/guides/how-does-docker-work",
           "source_path": "data/guides/how-does-docker-work.md",

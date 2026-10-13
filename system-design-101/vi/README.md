@@ -21,11 +21,11 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 
 1. [Tắt êm một API trên Kubernetes: năm chỗ làm rớt request](lessons/sd-13-001/lesson.md) — bài nháp, chờ review kỹ thuật.
 2. [Sách đáng đọc cho người làm DevOps và vận hành](lessons/sd-13-002/lesson.md) — bài nháp, chờ review kỹ thuật.
-3. [Tỉ lệ lập trình viên và kiểm thử viên thay đổi thế nào](lessons/sd-13-003/lesson.md) — bài nháp, chờ review kỹ thuật.
+3. [Cần bao nhiêu người chuyên kiểm thử: đọc từ số đo của chính đội](lessons/sd-13-003/lesson.md) — bài nháp, chờ review kỹ thuật.
 4. [Thu thập số đo: kéo hay đẩy](lessons/sd-13-004/lesson.md) — bài nháp, chờ review kỹ thuật.
 5. [Chọn cơ sở dữ liệu cho hệ thống số đo](lessons/sd-13-005/lesson.md) — bài nháp, chờ review kỹ thuật.
 6. [Service Kubernetes không nhận traffic: năm chỗ cần kiểm tra](lessons/sd-13-006/lesson.md) — bài nháp, chờ review kỹ thuật.
-7. [Lỗi thường gặp khi đưa ứng dụng lên cloud-native](lessons/sd-13-007/lesson.md) — bài nháp, chờ review kỹ thuật.
+7. [Tăng từ một lên ba bản sao thì ứng dụng hỏng: bốn giả định ẩn](lessons/sd-13-007/lesson.md) — bài nháp, chờ review kỹ thuật.
 8. [Chọn công cụ Kubernetes theo lớp](lessons/sd-13-008/lesson.md) — bài nháp, chờ review kỹ thuật.
 9. [Hệ sinh thái Kubernetes theo nhu cầu vận hành](lessons/sd-13-009/lesson.md) — bài nháp, chờ review kỹ thuật.
 10. [Bảng tuần hoàn Kubernetes: đọc để tra cứu](lessons/sd-13-010/lesson.md) — bài nháp, chờ review kỹ thuật.
@@ -36,7 +36,7 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 15. [Vòng đời một tính năng có cờ: từ mã đã lên đến dọn cờ](lessons/sd-13-015/lesson.md) — bài nháp, chờ review kỹ thuật.
 16. [Tìm đúng Pod trong cụm lớn: selector và cách in kết quả của kubectl](lessons/sd-13-016/lesson.md) — bài nháp, chờ review kỹ thuật.
 17. [Deployment của Kubernetes thay Pod như thế nào](lessons/sd-13-017/lesson.md) — bài nháp, chờ review kỹ thuật.
-18. [Terraform biến mã thành hạ tầng](lessons/sd-13-018/lesson.md) — bài nháp, chờ review kỹ thuật.
+18. [Terraform plan báo thay đổi bạn không định làm: năm nguyên nhân](lessons/sd-13-018/lesson.md) — bài nháp, chờ review kỹ thuật.
 19. [Bốn nút thắt giữa các nhóm khi đưa phần mềm lên chạy](lessons/sd-13-019/lesson.md) — bài nháp, chờ review kỹ thuật.
 20. [Rủi ro khi triển khai và cách giảm](lessons/sd-13-020/lesson.md) — bài nháp, chờ review kỹ thuật.
 21. [Làm cho một request chậm truy vết được](lessons/sd-13-021/lesson.md) — bài nháp, chờ review kỹ thuật.
@@ -44,7 +44,7 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 23. [NoOps và DevOps: mô hình hosting khác cách tổ chức nhóm](lessons/sd-13-023/lesson.md) — bài nháp, chờ review kỹ thuật.
 24. [Nginx làm reverse proxy cho một API: năm chỗ hay sai](lessons/sd-13-024/lesson.md) — bài nháp, chờ review kỹ thuật.
 25. [Pod không chạy: chẩn đoán theo từng chặng](lessons/sd-13-025/lesson.md) — bài nháp, chờ review kỹ thuật.
-26. [Gỡ lỗi Docker: bốn sự cố hay gặp](lessons/sd-13-026/lesson.md) — bài nháp, chờ review kỹ thuật.
+26. [Container Docker thoát ngay hoặc khởi động lại mãi: bốn manh mối](lessons/sd-13-026/lesson.md) — bài nháp, chờ review kỹ thuật.
 27. [Thiết kế pipeline CI/CD cho một repo: năm quyết định](lessons/sd-13-027/lesson.md) — bài nháp, chờ review kỹ thuật.
 
 Danh mục đầy đủ và snapshot nguồn: [bảng đối chiếu](../../brainstorm/system-design-101-vi/source-map.json).

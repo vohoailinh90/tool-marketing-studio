@@ -1,6 +1,6 @@
 {
   "id": "sd-13-003",
-  "title_vi": "Tỉ lệ lập trình viên và kiểm thử viên thay đổi thế nào",
+  "title_vi": "Cần bao nhiêu người chuyên kiểm thử: đọc từ số đo của chính đội",
   "language": "vi",
   "kind": "comparison",
   "content_status": "draft",
@@ -17,7 +17,13 @@
   },
   "diagram": "../diagrams/sd-13-003-main.svg",
   "prerequisites": [],
-  "related": [],
+  "related": [
+    {
+      "lesson_id": "sd-13-014",
+      "relation": "context",
+      "reason_vi": "Test đỏ trên CI mà xanh ở máy bạn."
+    }
+  ],
   "verification": {
     "source_body": {
       "status": "read",
@@ -39,13 +45,21 @@
   },
   "claims": [
     {
-      "claim_vi": "Nguồn kể xu hướng dịch chuyển trách nhiệm kiểm thử sang người viết mã qua nhiều thập niên, gắn với bài của Carlos Arguelles; đây là mô tả xu hướng, không phải thống kê.",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/paradigm-shift-how-developer-to-tester-ratio-changed-from-11-to-1001.md"
+      "claim_vi": "DORA đo tỉ lệ thay đổi gây lỗi (change fail rate: phần trăm lần triển khai gây lỗi ở môi trường thật) và thời gian khôi phục sau lần triển khai lỗi.",
+      "source": "https://dora.dev/guides/dora-metrics/history/"
+    },
+    {
+      "claim_vi": "Tháp kiểm thử gợi ý có nhiều test mức thấp, chạy nhanh, hơn hẳn số test mức cao chạy qua toàn bộ hệ thống.",
+      "source": "https://martinfowler.com/bliki/TestPyramid.html"
+    },
+    {
+      "claim_vi": "Test không xác định (chập chờn) làm giảm niềm tin vào bộ test; Fowler khuyên cách ly chúng khỏi bộ test chính rồi sửa.",
+      "source": "https://martinfowler.com/articles/nonDeterminism.html"
     }
   ],
   "source_deviations": [
-    "Nguồn chia theo ba mốc thời gian và tỉ lệ; bài bỏ cấu trúc đó, thay bằng khung điều kiện (chi phí lỗi, tốc độ vá) và không dùng tỉ lệ cụ thể."
+    "Nguồn kể sự thay đổi tỉ lệ lập trình viên trên kiểm thử viên qua các mốc thời gian và giải thích bằng hai lý do; bài bỏ câu chuyện lịch sử và hai lý do đó, thay bằng bốn số đo mà một đội tự đo được để quyết định kiểm thử cần gì."
   ],
-  "design_notes_vi": "Hai thẻ đối lập với ghi chú kết luận, thay cho trục thời gian của nguồn.",
+  "design_notes_vi": "Bốn thẻ số đo, mỗi thẻ nêu điều số đo cho thấy.",
   "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
 }

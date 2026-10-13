@@ -1,6 +1,6 @@
 {
   "id": "sd-13-026",
-  "title_vi": "Gỡ lỗi Docker: bốn sự cố hay gặp",
+  "title_vi": "Container Docker thoát ngay hoặc khởi động lại mãi: bốn manh mối",
   "language": "vi",
   "kind": "comparison",
   "content_status": "draft",
@@ -24,9 +24,9 @@
       "reason_vi": "Docker khi chạy ứng dụng."
     },
     {
-      "lesson_id": "sd-13-011",
-      "relation": "context",
-      "reason_vi": "Cache khi build image."
+      "lesson_id": "sd-13-025",
+      "relation": "compare-with",
+      "reason_vi": "Pod Kubernetes không chạy."
     }
   ],
   "verification": {
@@ -50,25 +50,29 @@
   },
   "claims": [
     {
-      "claim_vi": "Client giao tiếp với daemon qua REST API trên socket Unix hoặc mạng.",
-      "source": "https://docs.docker.com/get-started/docker-overview/"
+      "claim_vi": "docker run dùng mã thoát 125 cho lỗi của chính Docker, 126 khi lệnh trong container không thực thi được và 127 khi không tìm thấy lệnh; mã khác là mã của lệnh trong container.",
+      "source": "https://docs.docker.com/reference/cli/docker/container/run/"
     },
     {
-      "claim_vi": "docker system prune xóa container đã dừng, mạng không dùng, image dangling và cache; thêm --volumes chỉ xóa thêm volume ẩn danh không dùng, volume đặt tên cần docker volume prune --all.",
-      "source": "https://docs.docker.com/reference/cli/docker/system/prune/"
+      "claim_vi": "Chính sách khởi động lại gồm no (mặc định), on-failure, always và unless-stopped.",
+      "source": "https://docs.docker.com/engine/containers/start-containers-automatically/"
     },
     {
-      "claim_vi": "docker system df cho biết dung lượng Docker dùng.",
-      "source": "https://docs.docker.com/reference/cli/docker/system/df/"
+      "claim_vi": "docker inspect trả về trạng thái container gồm ExitCode và OOMKilled.",
+      "source": "https://docs.docker.com/reference/cli/docker/container/inspect/"
     },
     {
-      "claim_vi": "Image đa nền tảng có biến thể theo kiến trúc, chọn bằng --platform.",
-      "source": "https://docs.docker.com/build/building/multi-platform/"
+      "claim_vi": "docker events phát các sự kiện của container như die, oom, kill và restart, và lọc được theo container.",
+      "source": "https://docs.docker.com/reference/cli/docker/system/events/"
+    },
+    {
+      "claim_vi": "docker logs hiển thị thông tin mà tiến trình chính của container ghi ra STDOUT và STDERR.",
+      "source": "https://docs.docker.com/reference/cli/docker/container/logs/"
     }
   ],
   "source_deviations": [
-    "Nguồn mô tả ba thành phần rồi các bước docker run; bài bỏ cấu trúc đó, thay bằng bốn sự cố vận hành và chỗ cần kiểm tra."
+    "Nguồn mô tả ba thành phần của Docker (client, host, registry) và các bước docker run; bài bỏ cấu trúc đó và theo dõi một sự cố cụ thể là container thoát ngay hoặc khởi động lại liên tục, nên không còn mô tả các thành phần ấy."
   ],
-  "design_notes_vi": "Bốn thẻ sự cố kèm chỗ cần kiểm tra.",
+  "design_notes_vi": "Bốn thẻ manh mối khi container đã thoát: mã thoát, nhật ký, trạng thái chi tiết, chính sách khởi động lại.",
   "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
 }

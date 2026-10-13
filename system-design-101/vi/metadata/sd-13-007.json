@@ -1,6 +1,6 @@
 {
   "id": "sd-13-007",
-  "title_vi": "Lỗi thường gặp khi đưa ứng dụng lên cloud-native",
+  "title_vi": "Tăng từ một lên ba bản sao thì ứng dụng hỏng: bốn giả định ẩn",
   "language": "vi",
   "kind": "comparison",
   "content_status": "draft",
@@ -17,7 +17,13 @@
   },
   "diagram": "../diagrams/sd-13-007-main.svg",
   "prerequisites": [],
-  "related": [],
+  "related": [
+    {
+      "lesson_id": "sd-13-001",
+      "relation": "context",
+      "reason_vi": "Tắt êm một Pod khi bản sao bị thay thế."
+    }
+  ],
   "verification": {
     "source_body": {
       "status": "read",
@@ -39,29 +45,29 @@
   },
   "claims": [
     {
-      "claim_vi": "Twelve-Factor khuyên tách cấu hình khỏi mã và đọc từ môi trường.",
-      "source": "https://12factor.net/config"
-    },
-    {
-      "claim_vi": "Twelve-Factor khuyên tiến trình khởi động nhanh và tắt êm.",
-      "source": "https://12factor.net/disposability"
-    },
-    {
-      "claim_vi": "Twelve-Factor khuyên tiến trình không trạng thái, lưu dữ liệu bền ở dịch vụ hỗ trợ.",
+      "claim_vi": "Tiến trình theo Twelve-Factor không chia sẻ gì và không giữ trạng thái; dữ liệu cần lưu lâu dài phải nằm ở dịch vụ lưu trữ ngoài tiến trình.",
       "source": "https://12factor.net/processes"
     },
     {
-      "claim_vi": "Timeout, giới hạn thử lại và backoff có jitter giảm nguy cơ quá tải lan truyền.",
-      "source": "https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/"
+      "claim_vi": "Twelve-Factor mở rộng bằng cách chạy thêm tiến trình thay vì làm một tiến trình lớn hơn.",
+      "source": "https://12factor.net/concurrency"
     },
     {
-      "claim_vi": "Máy chủ bất biến được thay thế thay vì sửa tại chỗ.",
-      "source": "https://martinfowler.com/bliki/ImmutableServer.html"
+      "claim_vi": "CronJob tạo Job khoảng một lần mỗi lượt theo lịch, hiếm khi có thể hai lần hoặc không lần nào, nên công việc nên idempotent; concurrencyPolicy Forbid bỏ lượt mới khi lượt trước chưa xong.",
+      "source": "https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/"
+    },
+    {
+      "claim_vi": "Hàng đợi Standard của Amazon SQS giao tin ít nhất một lần và chỉ cố gắng giữ thứ tự, nên một tin có thể tới nhiều lần.",
+      "source": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/standard-queues.html"
+    },
+    {
+      "claim_vi": "Dữ liệu ghi trong lớp ghi của container không còn khi container bị xóa; muốn giữ phải dùng volume hoặc bind mount.",
+      "source": "https://docs.docker.com/engine/storage/"
     }
   ],
   "source_deviations": [
-    "Nguồn liệt kê chín mục theo thứ tự; bài không giữ đủ chín mục mà chọn các lỗi chung (trạng thái, phát hành, chi phí) và thêm các lỗi độc lập dựa trên Twelve-Factor và hướng dẫn về thử lại."
+    "Nguồn liệt kê chín anti-pattern cloud-native; bài bỏ danh mục đó và theo dõi một tình huống cụ thể là tăng số bản sao của một dịch vụ, chỉ còn dùng lại ý trạng thái nằm trong tiến trình; việc định kỳ, ID cục bộ và xử lý tin hai lần do bài tự chọn."
   ],
-  "design_notes_vi": "Bốn thẻ câu hỏi tự kiểm tra, mỗi thẻ hai lỗi thường gặp.",
+  "design_notes_vi": "Bốn thẻ giả định ẩn khi tăng số bản sao, mỗi thẻ kèm cách gỡ.",
   "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
 }

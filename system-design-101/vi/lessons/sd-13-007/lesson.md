@@ -1,40 +1,40 @@
-# Lỗi thường gặp khi đưa ứng dụng lên cloud-native
+# Tăng từ một lên ba bản sao thì ứng dụng hỏng: bốn giả định ẩn
 
-Một ứng dụng cloud-native phải chịu được việc bị thay thế, phát hành lặp lại và phụ thuộc bị lỗi. Bốn câu hỏi tự kiểm tra dưới đây lộ ra những lỗi hay gặp.
+Một dịch vụ chạy ổn với một bản sao thường ngầm giả định rằng nó là bản duy nhất. Tăng lên ba bản sao là cách nhanh nhất để lộ các giả định đó, và chính chúng cũng làm hỏng khi ứng dụng bị thay thế hay khởi động lại. Bài nêu bốn giả định hay gặp và cách gỡ từng cái.
 
-![Bốn câu hỏi tự kiểm tra: một bản sao biến mất thì sao, cấu hình đổi thì sao, phụ thuộc chậm hoặc lỗi thì sao, và phát hành cùng chi phí có kiểm soát không; mỗi câu kèm lỗi thường gặp.](../../diagrams/sd-13-007-main.svg)
+![Bốn giả định ẩn vỡ khi tăng số bản sao: trạng thái nằm trong một bản sao như phiên đăng nhập, tệp tải lên và bộ nhớ đệm nên cần kho dùng chung; việc định kỳ nằm trong ứng dụng chạy ở mọi bản sao nên cần tách ra một nơi chạy hoặc dùng khóa; bộ đếm cục bộ sinh ID trùng giữa các bản sao nên cần cấp ID từ cơ sở dữ liệu hoặc dùng UUID; và nhiều bản sao cùng đọc hàng đợi nên một tin có thể được xử lý hai lần, cần bước xử lý idempotent.](../../diagrams/sd-13-007-main.svg)
 
-**Đọc hình:** bốn câu hỏi để tự kiểm tra, không phải danh mục đầy đủ; mỗi câu có thể lộ nhiều lỗi.
+**Đọc hình:** bốn thẻ là bốn giả định độc lập; thẻ nào cũng kèm cách gỡ.
 
 ## Nhìn hình thử trả lời
 
-Một dịch vụ tự động gọi lại ngay 5 lần mỗi khi một phụ thuộc chậm. Điều gì có thể xảy ra khi phụ thuộc đó đang quá tải?
+Bạn tăng một API từ 1 lên 3 bản sao thì người dùng thỉnh thoảng bị đăng xuất dù mã không đổi. Nguyên nhân hay gặp nhất là gì, và chữa thế nào?
 
 <details>
 <summary>Xem đáp án</summary>
 
-Lượng yêu cầu bội lên và làm phụ thuộc quá tải nặng hơn, lỗi lan ra (retry storm). Nên đặt timeout, giới hạn số lần thử và giãn cách tăng dần có yếu tố ngẫu nhiên (backoff with jitter).
+Phiên đăng nhập nằm trong bộ nhớ của tiến trình: request đầu tạo phiên ở bản sao A, request sau rơi vào bản sao B không biết phiên đó. Hãy đưa phiên ra kho dùng chung (như Redis hay cơ sở dữ liệu) hoặc dùng token có chữ ký tự mang thông tin. Dính phiên (sticky session) ở bộ cân bằng tải chỉ giảm triệu chứng, và phiên vẫn mất khi bản sao bị thay thế.
 
 </details>
 
 ## Giới hạn cần nhớ
 
-Không có danh mục lỗi nào đúng cho mọi bối cảnh. Monolith chia module rõ ràng vẫn hợp lý cho nhiều nhóm, và dùng nhiều dịch vụ cloud không phải lỗi nếu có chiến lược. Bốn câu hỏi giúp phát hiện chỗ cần xem lại, không phải bảng chấm điểm.
+Bài chỉ nói về những giả định vỡ khi tăng số bản sao của một dịch vụ, không phải mọi lỗi của ứng dụng cloud-native. Kho dùng chung, hàng đợi và cơ sở dữ liệu có cách nhân bản và bảo đảm nhất quán riêng, nằm ngoài bài này. Mỗi cách gỡ đổi một giả định lấy một phụ thuộc mới (kho phiên, hàng đợi, khóa) cần vận hành và cũng có thể lỗi.
 
 <details>
 <summary>Xem sâu hơn</summary>
 
-- **Tiến trình có thể bị thay:** không giữ trạng thái bền trong tiến trình; khởi động nhanh và tắt êm khi nhận tín hiệu tắt, theo nguyên tắc Twelve-Factor về tính dùng-và-bỏ.
-- **Cấu hình ngoài mã:** đọc cấu hình và bí mật từ môi trường chạy, để cùng một bản build chạy được ở mọi môi trường.
-- **Chịu lỗi của phụ thuộc:** timeout, giới hạn thử lại và backoff có jitter; tránh để một cơ sở dữ liệu chung thành điểm nghẽn.
-- **Hạ tầng bất biến:** tạo bản mới từ định nghĩa rồi thay thế, thay vì sửa tại chỗ.
-- **Chi phí:** gắn nhãn tài nguyên và theo dõi theo dịch vụ giúp thấy ngay khoản tăng bất thường.
+- **Trạng thái:** dữ liệu ghi trong lớp ghi của container không còn khi container bị xóa, và bản sao khác không đọc được. Phiên đưa ra Redis hay cơ sở dữ liệu; tệp tải lên đưa ra object storage hoặc volume dùng chung; bộ nhớ đệm dùng chung, hoặc chấp nhận dữ liệu cũ trong thời hạn ngắn (TTL).
+- **Việc định kỳ:** `CronJob` của Kubernetes tạo Job theo lịch, độc lập với số bản sao của Deployment; `concurrencyPolicy: Forbid` bỏ lượt mới nếu lượt trước chưa xong. Tài liệu nói CronJob tạo Job khoảng một lần mỗi lượt và hiếm khi có thể hai lần hoặc không lần nào, nên công việc vẫn cần idempotent. Nếu việc phải nằm trong ứng dụng, dùng khóa phân tán hoặc chọn một bản sao làm leader.
+- **ID:** bộ đếm trong bộ nhớ chỉ duy nhất trong một tiến trình. UUID duy nhất trên mọi bản sao mà không cần phối hợp (UUID ngẫu nhiên trùng nhau với xác suất không đáng kể); chuỗi tuần tự của cơ sở dữ liệu cho ID có thứ tự nhưng cần gọi tới cơ sở dữ liệu.
+- **Hàng đợi:** nhiều hàng đợi, ví dụ Amazon SQS loại Standard, giao tin ít nhất một lần và chỉ cố gắng giữ thứ tự, nên một tin có thể tới hai lần. Lưu mã tin đã xử lý trong cơ sở dữ liệu với ràng buộc duy nhất để lần thứ hai không tác dụng thêm.
+- **Cách kiểm:** chạy thử hai hoặc ba bản sao ở môi trường thử rồi cho tải đi qua cả hai, hoặc xóa một bản sao giữa chừng, là cách rẻ để lộ các giả định này trước khi lên môi trường thật.
 
 </details>
 
 ## Nguồn đối chiếu
 
 - [ByteByteGo tại snapshot cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/cloud-native-anti-patterns.md).
-- [The Twelve-Factor App](https://12factor.net/): [config](https://12factor.net/config), [disposability](https://12factor.net/disposability), [processes](https://12factor.net/processes).
-- AWS Builders Library: [timeouts, retries và backoff with jitter](https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/).
-- Martin Fowler: [ImmutableServer](https://martinfowler.com/bliki/ImmutableServer.html). AWS: [trụ cột tối ưu chi phí](https://docs.aws.amazon.com/wellarchitected/latest/cost-optimization-pillar/welcome.html).
+- The Twelve-Factor App: [processes](https://12factor.net/processes), [concurrency](https://12factor.net/concurrency).
+- Kubernetes: [CronJob](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/). Docker: [lưu trữ dữ liệu](https://docs.docker.com/engine/storage/).
+- AWS: [hàng đợi Standard của Amazon SQS](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/standard-queues.html).

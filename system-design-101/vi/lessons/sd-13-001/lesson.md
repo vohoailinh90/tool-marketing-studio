@@ -28,7 +28,7 @@ Bài chọn sáu việc thường gặp khi đưa một API lên cụm, tên m�
 - **Tài nguyên:** `requests` là thứ scheduler dùng để đặt Pod; `limits` do runtime áp dụng sau khi Pod đã được đặt để giới hạn mức dùng tối đa.
 - **Init container và Job:** init container chạy lần lượt, xong hết mới tới container ứng dụng, ở mỗi Pod. Job chạy tới khi hoàn tất, có thử lại; tài liệu nêu rõ chương trình trong Job vẫn có thể chạy nhiều hơn một lần, nên cần thiết kế idempotent hoặc có khóa.
 - **Sidecar:** các bản Kubernetes gần đây hỗ trợ sidecar dạng gốc, khai báo như init container có `restartPolicy: Always`.
-- **Service:** Service ClusterIP thông thường (có selector) cho một địa chỉ ảo ổn định và tên DNS cho một nhóm Pod; Service headless và ExternalName không làm vậy.
+- **Service:** Service ClusterIP thông thường (có selector) cho một địa chỉ ảo ổn định, do thành phần mạng của cụm chuyển tới các Pod, kèm một tên DNS trỏ tới địa chỉ đó. Service headless không có địa chỉ ảo: tên DNS của nó phân giải thẳng ra địa chỉ IP của các Pod. Service ExternalName không chọn Pod mà trả về một bản ghi CNAME tới tên bên ngoài.
 - **Tắt êm:** khi Pod bị xóa, hook `preStop` (nếu có) chạy trước rồi kubelet gửi SIGTERM. `terminationGracePeriodSeconds` là tổng thời gian cho cả quá trình đó và bắt đầu đếm từ trước `preStop`, nên hook chậm làm ứng dụng còn ít thời gian dọn dẹp sau SIGTERM; hết hạn thì container bị dừng cưỡng bức.
 - **PodDisruptionBudget:** chỉ giới hạn việc gỡ Pod qua Eviction API, ví dụ `kubectl drain` khi bảo trì node. Nó không ràng buộc rolling update của Deployment hay việc xóa Pod trực tiếp, nên đừng dựa vào nó để kiểm soát tính sẵn sàng khi triển khai.
 

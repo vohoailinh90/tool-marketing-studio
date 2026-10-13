@@ -1,36 +1,39 @@
-# CI/CD qua một hình đơn giản
+# CI đỏ mà máy bạn chạy được: năm nguồn khác biệt
 
-Ba câu hỏi đơn giản cho biết nhóm bạn đang ở đâu trên thang tự động hóa, và chữ "CD" đang được hiểu theo nghĩa nào.
+Lỗi khó chịu nhất của CI là "máy tôi chạy được". Thường pipeline không sai: hai môi trường khác nhau ở một chỗ mà không ai ghi lại. Bài này nêu năm nguồn khác biệt hay gặp và cách khóa từng nguồn lại.
 
-![Ba câu hỏi nối tiếp: mã đã được gộp và kiểm tra tự động chưa, có thể phát hành bất cứ lúc nào chưa, và có tự động lên production không.](../../diagrams/sd-13-014-main.svg)
+![Năm nguồn khác biệt khiến CI đỏ trong khi máy bạn chạy được: phiên bản công cụ và phụ thuộc, môi trường chạy như nhãn runner, trạng thái còn sót ở máy bạn, cấu hình và bí mật chỉ có ở một bên, và thứ tự chạy, múi giờ hay tài nguyên dùng chung giữa các test.](../../diagrams/sd-13-014-main.svg)
 
-**Đọc hình:** ba bậc xếp theo mức tự động tăng dần; nhiều tài liệu dùng "CD" cho cả hai bậc sau.
+**Đọc hình:** năm thẻ là năm nguồn khác biệt độc lập; thẻ nào cũng kèm cách khóa lại.
 
 ## Nhìn hình thử trả lời
 
-Sau khi mọi kiểm thử qua, ai bấm nút đưa bản lên production trong Delivery và trong Deployment?
+Test qua trên máy macOS của bạn nhưng lỗi trên runner Linux vì không tìm thấy tệp `Config.json`, trong khi tệp trong repo tên `config.json`. Nguyên nhân hay gặp nhất là gì?
 
 <details>
 <summary>Xem đáp án</summary>
 
-Delivery: người hoặc quy trình duyệt quyết định thời điểm. Deployment: hệ thống tự làm, không cần bấm.
+Hệ tệp phân biệt hoa thường. macOS và Windows thường mặc định không phân biệt nên mã vẫn chạy ở máy bạn, còn Linux coi hai tên là khác nhau. Hãy sửa tên trong mã cho khớp đúng chữ hoa chữ thường của tệp.
 
 </details>
 
 ## Giới hạn cần nhớ
 
-CI/CD không phải là cài một công cụ. CI chỉ có ý nghĩa khi mọi người gộp mã thường xuyên và kiểm thử đủ tin cậy; không có kiểm thử tốt thì tự động hóa chỉ đưa lỗi lên nhanh hơn.
+Bài chỉ nêu năm nguồn khác biệt hay gặp, không phải mọi nguyên nhân: lỗi mạng, hết tài nguyên của runner hay lỗi của chính dịch vụ CI cũng làm job đỏ. Chạy lại job không phải cách chẩn đoán; nếu chạy lại đổi kết quả mà không đổi gì, hãy coi đó là test chập chờn cần sửa chứ không phải may rủi cần chấp nhận.
 
 <details>
 <summary>Xem sâu hơn</summary>
 
-- **CI:** lỗi tích hợp lộ sớm khi còn nhỏ vì mỗi lần gộp đều được kiểm tra.
-- **Delivery:** việc phát hành là quyết định kinh doanh, không phải vấn đề kỹ thuật.
-- **Deployment:** cần giám sát và khả năng quay lui tốt vì không còn người chặn ở cửa cuối.
+- **Phiên bản:** cài phụ thuộc theo tệp khóa bằng lệnh nghiêm ngặt (như `npm ci`, báo lỗi khi tệp khóa không khớp khai báo) và chỉ định phiên bản ngôn ngữ trong workflow thay vì dùng bản có sẵn trên runner.
+- **Môi trường:** nhãn dạng `-latest` có thể trỏ sang hệ điều hành mới hơn theo thời gian; hãy ghim nhãn phiên bản, hoặc chạy job trong một container có image cố định (tốt nhất ghim theo digest) và dùng đúng image đó ở máy bạn.
+- **Trạng thái sót:** thử lại bằng một bản clone mới ở thư mục khác trước khi nghi ngờ CI; nếu lỗi xuất hiện thì máy bạn đang che nó.
+- **Cấu hình:** liệt kê mọi biến môi trường và bí mật mà test cần; nhớ rằng mặc định workflow chạy từ pull request của fork không nhận bí mật.
+- **Thứ tự và tranh chấp:** test chập chờn khi chạy song song thường do dùng chung cổng, tệp hay cơ sở dữ liệu; ghi lại múi giờ và hạt giống ngẫu nhiên của lần chạy để dựng lại lỗi.
 
 </details>
 
 ## Nguồn đối chiếu
 
 - [ByteByteGo tại snapshot cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/cicd-simplified-visual-guide.md).
-- Martin Fowler: [Continuous Integration](https://martinfowler.com/articles/continuousIntegration.html), [Continuous Delivery](https://martinfowler.com/bliki/ContinuousDelivery.html).
+- npm: [npm ci](https://docs.npmjs.com/cli/commands/npm-ci). Docker: [ghim phiên bản image cơ sở](https://docs.docker.com/build/building/best-practices/).
+- GitHub Docs: [runner do GitHub cung cấp](https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners), [workflow syntax](https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions), [bảo mật workflow](https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions).

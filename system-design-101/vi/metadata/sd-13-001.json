@@ -71,6 +71,10 @@
     {
       "claim_vi": "PodDisruptionBudget giới hạn việc gỡ Pod qua Eviction API; rolling update của controller và xóa trực tiếp không bị ràng buộc.",
       "source": "https://kubernetes.io/docs/concepts/workloads/pods/disruptions/"
+    },
+    {
+      "claim_vi": "Service ClusterIP thông thường có địa chỉ ảo và tên DNS; Service headless phân giải DNS ra địa chỉ IP của các Pod; Service ExternalName trả về bản ghi CNAME.",
+      "source": "https://kubernetes.io/docs/concepts/services-networking/service/"
     }
   ],
   "source_deviations": [

@@ -1,8 +1,8 @@
 {
   "id": "sd-13-014",
-  "title_vi": "CI/CD qua một hình đơn giản",
+  "title_vi": "CI đỏ mà máy bạn chạy được: năm nguồn khác biệt",
   "language": "vi",
-  "kind": "flow",
+  "kind": "comparison",
   "content_status": "draft",
   "source_ref": "sd-13-014",
   "source_snapshot": {
@@ -21,7 +21,12 @@
     {
       "lesson_id": "sd-13-027",
       "relation": "compare-with",
-      "reason_vi": "Pipeline qua từng cổng."
+      "reason_vi": "Quyết định khi thiết kế pipeline."
+    },
+    {
+      "lesson_id": "sd-13-012",
+      "relation": "compare-with",
+      "reason_vi": "Học từ chuỗi CI/CD của công ty lớn."
     }
   ],
   "verification": {
@@ -45,17 +50,29 @@
   },
   "claims": [
     {
-      "claim_vi": "Continuous Integration: thành viên gộp mã thường xuyên, mỗi lần gộp được kiểm tra tự động.",
-      "source": "https://martinfowler.com/articles/continuousIntegration.html"
+      "claim_vi": "npm ci cài đúng theo tệp khóa và báo lỗi nếu tệp khóa không khớp package.json.",
+      "source": "https://docs.npmjs.com/cli/commands/npm-ci"
     },
     {
-      "claim_vi": "Continuous Delivery: phần mềm luôn sẵn sàng phát hành, nhưng việc phát hành có thể do người quyết định.",
-      "source": "https://martinfowler.com/bliki/ContinuousDelivery.html"
+      "claim_vi": "Nhãn runner như ubuntu-latest trỏ tới một phiên bản hệ điều hành có thể đổi theo thời gian, và có thể chọn nhãn phiên bản cụ thể.",
+      "source": "https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners"
+    },
+    {
+      "claim_vi": "Một job có thể chạy trong container với image được chỉ định.",
+      "source": "https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions"
+    },
+    {
+      "claim_vi": "Mặc định, với sự kiện pull_request từ fork, bí mật (trừ GITHUB_TOKEN) không được chuyển cho runner.",
+      "source": "https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions"
+    },
+    {
+      "claim_vi": "Docker khuyến nghị ghim phiên bản image cơ sở, và ghim theo digest để build lặp lại được.",
+      "source": "https://docs.docker.com/build/building/best-practices/"
     }
   ],
   "source_deviations": [
-    "Nguồn định nghĩa CI và \"Continuous Deployment\"; bài tách Delivery và Deployment và tổ chức theo ba câu hỏi."
+    "Nguồn kể CI rồi triển khai liên tục theo một thang; bài bỏ thang đó và chọn một vấn đề riêng: vì sao CI đỏ trong khi máy bạn chạy được, với năm nguồn khác biệt và cách khóa từng nguồn."
   ],
-  "design_notes_vi": "Ba thẻ câu hỏi theo mức tự động tăng dần.",
+  "design_notes_vi": "Năm thẻ nguồn khác biệt, mỗi thẻ kèm cách khóa lại.",
   "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
 }

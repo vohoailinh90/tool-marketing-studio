@@ -1,0 +1,70 @@
+{
+  "id": "sd-13-015",
+  "title_vi": "Năm chiến lược triển khai phổ biến",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "draft",
+  "source_ref": "sd-13-015",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/top-5-most-used-deployment-strategies.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-5-most-used-deployment-strategies.md",
+    "blob_sha": "6231515c6a210336fb2a91d1c7e40fa0926034c0",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "172b0132e4a1ea237dfd379dce98e22ca16b859e96a7e760feab7154cdd367ba",
+    "retrieved_body_bytes": 649
+  },
+  "diagram": "../diagrams/sd-13-015-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-13-017",
+      "relation": "compare-with",
+      "reason_vi": "Chiến lược trên Kubernetes."
+    },
+    {
+      "lesson_id": "sd-13-020",
+      "relation": "compare-with",
+      "reason_vi": "Chi phí và rủi ro triển khai."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Blue-green chạy hai môi trường giống nhau và chuyển traffic giữa chúng.",
+      "source": "https://martinfowler.com/bliki/BlueGreenDeployment.html"
+    },
+    {
+      "claim_vi": "Canary release đưa thay đổi cho một nhóm nhỏ người dùng trước.",
+      "source": "https://martinfowler.com/bliki/CanaryRelease.html"
+    },
+    {
+      "claim_vi": "Feature toggle cho phép bật tắt tính năng mà không đổi mã.",
+      "source": "https://martinfowler.com/articles/feature-toggles.html"
+    }
+  ],
+  "source_deviations": [
+    "Nguồn chỉ liệt kê tên năm chiến lược; mô tả và so sánh do bài viết."
+  ],
+  "design_notes_vi": "Năm thẻ dọc, mỗi thẻ hai dòng: cách làm và đánh đổi.",
+  "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
+}

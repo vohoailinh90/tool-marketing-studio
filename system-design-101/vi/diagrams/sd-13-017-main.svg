@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 594" width="320" height="594" role="img" aria-labelledby="title desc">
+<title id="title">Chiến lược triển khai trên Kubernetes</title>
+<desc id="desc">Hai nhóm thẻ: có sẵn trong Deployment gồm Recreate và RollingUpdate; cần thêm công cụ gồm Blue-Green, Canary, Shadow và A/B testing.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="594" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">TRIỂN KHAI TRÊN K8S</text>
+<text x="16" y="58" font-size="16" font-weight="normal">Có sẵn và cần thêm</text>
+<rect x="16" y="89" width="288" height="101" rx="10" fill="#fee2e2" stroke="#94a3b8"/>
+<text x="30" y="117" font-size="16" font-weight="bold">Có sẵn · Recreate</text>
+<text x="30" y="144" font-size="16" font-weight="normal">Dừng bản cũ, chạy bản mới</text>
+<text x="30" y="171" font-size="16" font-weight="normal">Có khoảng ngừng dịch vụ</text>
+<rect x="16" y="202" width="288" height="101" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="230" font-size="16" font-weight="bold">Có sẵn · RollingUpdate</text>
+<text x="30" y="257" font-size="16" font-weight="normal">Thay dần từng Pod</text>
+<text x="30" y="284" font-size="16" font-weight="normal">maxSurge, maxUnavailable</text>
+<line x1="160" y1="315" x2="160" y2="343" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="353" width="288" height="128" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="381" font-size="16" font-weight="bold">Cần thêm công cụ</text>
+<text x="30" y="408" font-size="16" font-weight="normal">Blue-Green, Canary</text>
+<text x="30" y="435" font-size="16" font-weight="normal">Shadow (nhân đôi traffic)</text>
+<text x="30" y="462" font-size="16" font-weight="normal">A/B testing</text>
+<text x="16" y="513" font-size="16" font-weight="normal">Công cụ thường dùng: Ingress</text>
+<text x="16" y="540" font-size="16" font-weight="normal">hoặc service mesh, Argo</text>
+<text x="16" y="567" font-size="16" font-weight="normal">Rollouts, Flagger.</text>
+</g></svg>

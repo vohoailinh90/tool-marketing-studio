@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 663" width="320" height="663" role="img" aria-labelledby="title desc">
+<title id="title">Chín thực hành tốt khi viết Dockerfile</title>
+<desc id="desc">Bốn thẻ theo thứ tự Dockerfile: chọn image gốc có phiên bản cố định, sao chép tệp ít đổi trước, sao chép mã hay đổi sau, rồi chạy bằng người dùng không phải root.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="663" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">DOCKERFILE TỐT</text>
+<text x="16" y="58" font-size="16" font-weight="normal">Thứ tự các bước quan trọng</text>
+<rect x="16" y="89" width="288" height="101" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="117" font-size="16" font-weight="bold">FROM image:phiên-bản</text>
+<text x="30" y="144" font-size="16" font-weight="normal">Image chính thức, ghi rõ</text>
+<text x="30" y="171" font-size="16" font-weight="normal">phiên bản</text>
+<line x1="160" y1="202" x2="160" y2="230" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="240" width="288" height="128" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="268" font-size="16" font-weight="bold">Tệp ít đổi trước</text>
+<text x="30" y="295" font-size="16" font-weight="normal">Sao chép danh sách phụ</text>
+<text x="30" y="322" font-size="16" font-weight="normal">thuộc</text>
+<text x="30" y="349" font-size="16" font-weight="normal">Cài phụ thuộc: được cache</text>
+<line x1="160" y1="380" x2="160" y2="408" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="418" width="288" height="101" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="446" font-size="16" font-weight="bold">Mã hay đổi sau</text>
+<text x="30" y="473" font-size="16" font-weight="normal">Sao chép mã nguồn</text>
+<text x="30" y="500" font-size="16" font-weight="normal">Build (nhiều giai đoạn)</text>
+<line x1="160" y1="531" x2="160" y2="559" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="569" width="288" height="74" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="597" font-size="16" font-weight="bold">USER không phải root</text>
+<text x="30" y="624" font-size="16" font-weight="normal">Chạy với quyền tối thiểu</text>
+</g></svg>

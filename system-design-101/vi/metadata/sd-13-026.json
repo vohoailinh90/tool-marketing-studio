@@ -1,0 +1,66 @@
+{
+  "id": "sd-13-026",
+  "title_vi": "Docker chạy thế nào: client, host và registry",
+  "language": "vi",
+  "kind": "flow",
+  "content_status": "draft",
+  "source_ref": "sd-13-026",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/how-does-docker-work.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-docker-work.md",
+    "blob_sha": "5fe7b2678517c405c6d96e9b47f6ef9dfefdfa50",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "6b76becb8a454a46d0424d33573a72356131bc27c9cd0bcc5e3fdbd7a39c83eb",
+    "retrieved_body_bytes": 1244
+  },
+  "diagram": "../diagrams/sd-13-026-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-13-013",
+      "relation": "previous",
+      "reason_vi": "Tám khái niệm Docker."
+    },
+    {
+      "lesson_id": "sd-13-011",
+      "relation": "context",
+      "reason_vi": "Viết Dockerfile tốt."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Client giao tiếp với daemon qua API; daemon quản lý image, container, mạng và volume.",
+      "source": "https://docs.docker.com/get-started/docker-overview/"
+    },
+    {
+      "claim_vi": "docker run kéo image nếu chưa có cục bộ.",
+      "source": "https://docs.docker.com/reference/cli/docker/container/run/"
+    }
+  ],
+  "source_deviations": [
+    "Nguồn liệt kê cả năm bước của docker run; bài thêm điều kiện chỉ kéo khi chưa có image."
+  ],
+  "design_notes_vi": "Ba thẻ dọc nối bằng mũi tên; chi tiết các bước ở phần sâu.",
+  "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
+}

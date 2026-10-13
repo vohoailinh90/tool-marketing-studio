@@ -1,0 +1,55 @@
+{
+  "id": "sd-13-022",
+  "title_vi": "Sáu lệnh phân tích nhật ký trên dòng lệnh",
+  "language": "vi",
+  "kind": "reference",
+  "content_status": "draft",
+  "source_ref": "sd-13-022",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/log-parsing-cheat-sheet.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/log-parsing-cheat-sheet.md",
+    "blob_sha": "1822c28bf9be07d86f76925970ceb8943ea9b045",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "2bc6a48140a7cf9eb17ea21fccb5c23effd1f5b2f34c57dd66c8601d96267bec",
+    "retrieved_body_bytes": 1378
+  },
+  "diagram": "../diagrams/sd-13-022-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "uniq chỉ gộp các dòng liền kề giống nhau.",
+      "source": "https://www.gnu.org/software/coreutils/manual/html_node/uniq-invocation.html"
+    },
+    {
+      "claim_vi": "grep chọn các dòng khớp mẫu.",
+      "source": "https://www.gnu.org/software/grep/manual/grep.html"
+    }
+  ],
+  "source_deviations": [
+    "Ví dụ lệnh trong nguồn dùng dấu nháy kiểu chữ; bài viết lại ví dụ khác với định dạng nhật ký giả định."
+  ],
+  "design_notes_vi": "Năm thẻ dọc theo thứ tự đường ống thường gặp.",
+  "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
+}

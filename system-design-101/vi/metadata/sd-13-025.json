@@ -1,0 +1,70 @@
+{
+  "id": "sd-13-025",
+  "title_vi": "Kubernetes: mặt phẳng điều khiển và các node",
+  "language": "vi",
+  "kind": "topology",
+  "content_status": "draft",
+  "source_ref": "sd-13-025",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/what-is-k8s-kubernetes.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-is-k8s-kubernetes.md",
+    "blob_sha": "59e6c6a6b039e9eea7afffd96e3011e86a15a034",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "a75fb55c6a2d6b30f6c207d98634c9426c36f254bb8954ed5aba15d2da01b3de",
+    "retrieved_body_bytes": 2149
+  },
+  "diagram": "../diagrams/sd-13-025-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-13-006",
+      "relation": "context",
+      "reason_vi": "Service và kube-proxy."
+    },
+    {
+      "lesson_id": "sd-13-001",
+      "relation": "context",
+      "reason_vi": "Mẫu thiết kế cho Pod."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Mặt phẳng điều khiển gồm kube-apiserver, etcd, kube-scheduler và kube-controller-manager.",
+      "source": "https://kubernetes.io/docs/concepts/overview/components/"
+    },
+    {
+      "claim_vi": "Mỗi node chạy kubelet và thường có kube-proxy cùng container runtime.",
+      "source": "https://kubernetes.io/docs/concepts/overview/components/"
+    },
+    {
+      "claim_vi": "Các container trong một Pod chia sẻ mạng và có thể gọi nhau qua localhost.",
+      "source": "https://kubernetes.io/docs/concepts/workloads/pods/"
+    }
+  ],
+  "source_deviations": [
+    "Nguồn nói kube-proxy \"định tuyến mọi traffic\"; bài dùng mô tả hẹp hơn là hiện thực hóa Service."
+  ],
+  "design_notes_vi": "Ba thẻ dọc: mặt phẳng điều khiển, node, Pod.",
+  "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
+}

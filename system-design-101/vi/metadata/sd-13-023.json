@@ -1,0 +1,61 @@
+{
+  "id": "sd-13-023",
+  "title_vi": "DevOps và NoOps: ai lo phần vận hành",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "draft",
+  "source_ref": "sd-13-023",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/devops-vs-noops.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/devops-vs-noops.md",
+    "blob_sha": "9e856ee75faf14004786d9ba7ed35e91d93b8521",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "17fbc94b8793ab7ae86c3e50de7591f7db05f61b2fe7481bec1d776fbb3e8783",
+    "retrieved_body_bytes": 1281
+  },
+  "diagram": "../diagrams/sd-13-023-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-13-019",
+      "relation": "compare-with",
+      "reason_vi": "DevOps, SRE, Platform Engineering."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Với dịch vụ hàm không máy chủ, nhà cung cấp quản lý hệ điều hành và hạ tầng bên dưới.",
+      "source": "https://docs.aws.amazon.com/lambda/latest/dg/welcome.html"
+    },
+    {
+      "claim_vi": "Mô hình trách nhiệm chia sẻ chia việc giữa nhà cung cấp và khách hàng.",
+      "source": "https://aws.amazon.com/compliance/shared-responsibility-model/"
+    }
+  ],
+  "source_deviations": [
+    "Nguồn gọi NoOps là phương pháp hợp với startup; bài giữ ý đó như một điều kiện cần kiểm tra chứ không khẳng định."
+  ],
+  "design_notes_vi": "Ba thẻ dọc, màu chuyển từ rủi ro sang tự động.",
+  "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
+}

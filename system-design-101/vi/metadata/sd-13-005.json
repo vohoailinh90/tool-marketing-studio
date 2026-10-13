@@ -1,0 +1,61 @@
+{
+  "id": "sd-13-005",
+  "title_vi": "Chọn cơ sở dữ liệu cho hệ thống số đo",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "draft",
+  "source_ref": "sd-13-005",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/choose-the-right-database-for-metric-collecting-system.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/choose-the-right-database-for-metric-collecting-system.md",
+    "blob_sha": "d80be54a3f60746a94a54c5e04c3ed7842b5d7fb",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "d32331f55eadec06ba45456e6cc00d9950d5d004f36439ccd5fa0157fffe339a",
+    "retrieved_body_bytes": 2627
+  },
+  "diagram": "../diagrams/sd-13-005-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-13-004",
+      "relation": "previous",
+      "reason_vi": "Cách thu thập số đo trước khi lưu."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Chuỗi thời gian được xác định bởi tên metric và bộ nhãn.",
+      "source": "https://prometheus.io/docs/concepts/data_model/"
+    },
+    {
+      "claim_vi": "Mỗi tổ hợp nhãn khác nhau tạo một chuỗi mới nên cần tránh nhãn có nhiều giá trị.",
+      "source": "https://prometheus.io/docs/practices/naming/"
+    }
+  ],
+  "source_deviations": [
+    "Nguồn khuyên không dùng cơ sở dữ liệu đa dụng; bài giữ khuyến nghị nhưng nêu điều kiện quy mô."
+  ],
+  "design_notes_vi": "Ba thẻ mô tả dữ liệu, ghi, đọc rồi mũi tên dẫn tới ứng viên.",
+  "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
+}

@@ -1,0 +1,74 @@
+{
+  "id": "sd-13-011",
+  "title_vi": "Chín thực hành tốt khi viết Dockerfile",
+  "language": "vi",
+  "kind": "flow",
+  "content_status": "draft",
+  "source_ref": "sd-13-011",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/9-docker-best-practices-you-must-know.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/9-docker-best-practices-you-must-know.md",
+    "blob_sha": "664fa5a8725c78a94f810faa0a5b72041d4c4de6",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "306137d9b19bf0bba309cfd27edd8c4d28c52f604cd4baf8ca8e003997bcac83",
+    "retrieved_body_bytes": 1365
+  },
+  "diagram": "../diagrams/sd-13-011-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-13-013",
+      "relation": "context",
+      "reason_vi": "Khái niệm Docker."
+    },
+    {
+      "lesson_id": "sd-13-026",
+      "relation": "context",
+      "reason_vi": "Docker chạy thế nào."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Docker khuyên dùng image chính thức và ghim phiên bản.",
+      "source": "https://docs.docker.com/build/building/best-practices/"
+    },
+    {
+      "claim_vi": "Build nhiều giai đoạn giúp image cuối nhỏ hơn.",
+      "source": "https://docs.docker.com/build/building/multi-stage/"
+    },
+    {
+      "claim_vi": "Docker dùng lại lớp cache cho đến khi một lớp đổi.",
+      "source": "https://docs.docker.com/build/cache/"
+    },
+    {
+      "claim_vi": "Khuyến nghị chạy bằng người dùng không phải root và dùng .dockerignore.",
+      "source": "https://docs.docker.com/build/building/best-practices/"
+    }
+  ],
+  "source_deviations": [
+    "Nguồn nêu 9 điểm ngắn; bài thêm ví dụ Dockerfile mới và lưu ý về tag, digest, bí mật."
+  ],
+  "design_notes_vi": "Bốn thẻ theo thứ tự trong Dockerfile; chín thực hành gom trong ghi chú.",
+  "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
+}

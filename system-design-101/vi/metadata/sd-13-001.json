@@ -1,0 +1,77 @@
+{
+  "id": "sd-13-001",
+  "title_vi": "Mười mẫu thiết kế Kubernetes",
+  "language": "vi",
+  "kind": "reference",
+  "content_status": "draft",
+  "source_ref": "sd-13-001",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/top-10-k8s-design-patterns.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-10-k8s-design-patterns.md",
+    "blob_sha": "208f7bea61c64c318c7460b61e21e16bbf4f757e",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "dcf9613e4f56169f150fad0b8cfe5debe501f0a067f1fab308bb1463a70b0703",
+    "retrieved_body_bytes": 2115
+  },
+  "diagram": "../diagrams/sd-13-001-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-13-025",
+      "relation": "prerequisite-context",
+      "reason_vi": "Kiến trúc cụm giúp hiểu Pod, scheduler và kubelet nhắc tới ở đây."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Kubernetes có probe liveness, readiness và startup.",
+      "source": "https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/"
+    },
+    {
+      "claim_vi": "requests và limits khai báo nhu cầu và mức tối đa tài nguyên của container.",
+      "source": "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/"
+    },
+    {
+      "claim_vi": "Init container chạy lần lượt, hoàn tất trước container ứng dụng.",
+      "source": "https://kubernetes.io/docs/concepts/workloads/pods/init-containers/"
+    },
+    {
+      "claim_vi": "Sidecar dạng gốc là init container có restartPolicy Always.",
+      "source": "https://kubernetes.io/docs/concepts/workloads/pods/sidecar-containers/"
+    },
+    {
+      "claim_vi": "Controller chạy vòng lặp đưa trạng thái thật về trạng thái mong muốn.",
+      "source": "https://kubernetes.io/docs/concepts/architecture/controller/"
+    },
+    {
+      "claim_vi": "Operator mở rộng Kubernetes bằng custom resource để tự động hóa vận hành ứng dụng.",
+      "source": "https://kubernetes.io/docs/concepts/extend-kubernetes/operator/"
+    }
+  ],
+  "source_deviations": [
+    "Nhóm và tên 10 mẫu theo nguồn; mô tả viết lại, kèm giới hạn: không phải danh mục chính thức của Kubernetes."
+  ],
+  "design_notes_vi": "Bốn thẻ dọc, mũi tên đọc từ nền tảng đến mức cao; mỗi dòng một mẫu kèm nghĩa ngắn.",
+  "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
+}

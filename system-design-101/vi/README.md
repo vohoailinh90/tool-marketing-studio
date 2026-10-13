@@ -17,6 +17,36 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 
 7. [Chính sách định tuyến lưu lượng Internet](lessons/sd-01-007/lesson.md) — có review tại repo cũ; chờ review tích hợp tại repo mới.
 
+## DevOps và CI/CD
+
+1. [Mười mẫu thiết kế Kubernetes](lessons/sd-13-001/lesson.md) — bài nháp, chờ review kỹ thuật.
+2. [Sáu cuốn sách DevOps đáng đọc](lessons/sd-13-002/lesson.md) — bài nháp, chờ review kỹ thuật.
+3. [Tỉ lệ lập trình viên và kiểm thử viên thay đổi thế nào](lessons/sd-13-003/lesson.md) — bài nháp, chờ review kỹ thuật.
+4. [Thu thập số đo: mô hình kéo (pull)](lessons/sd-13-004/lesson.md) — bài nháp, chờ review kỹ thuật.
+5. [Chọn cơ sở dữ liệu cho hệ thống số đo](lessons/sd-13-005/lesson.md) — bài nháp, chờ review kỹ thuật.
+6. [Bốn loại Service trong Kubernetes](lessons/sd-13-006/lesson.md) — bài nháp, chờ review kỹ thuật.
+7. [Chín anti-pattern khi làm ứng dụng cloud-native](lessons/sd-13-007/lesson.md) — bài nháp, chờ review kỹ thuật.
+8. [Chọn công cụ Kubernetes theo lớp](lessons/sd-13-008/lesson.md) — bài nháp, chờ review kỹ thuật.
+9. [Sáu mảng của hệ sinh thái Kubernetes](lessons/sd-13-009/lesson.md) — bài nháp, chờ review kỹ thuật.
+10. [Bảng tuần hoàn Kubernetes: đọc để tra cứu](lessons/sd-13-010/lesson.md) — bài nháp, chờ review kỹ thuật.
+11. [Chín thực hành tốt khi viết Dockerfile](lessons/sd-13-011/lesson.md) — bài nháp, chờ review kỹ thuật.
+12. [Chuỗi CI/CD của Netflix qua từng giai đoạn](lessons/sd-13-012/lesson.md) — bài nháp, chờ review kỹ thuật.
+13. [Tám khái niệm Docker cần biết](lessons/sd-13-013/lesson.md) — bài nháp, chờ review kỹ thuật.
+14. [CI/CD qua một hình đơn giản](lessons/sd-13-014/lesson.md) — bài nháp, chờ review kỹ thuật.
+15. [Năm chiến lược triển khai phổ biến](lessons/sd-13-015/lesson.md) — bài nháp, chờ review kỹ thuật.
+16. [Bảng tra lệnh kubectl theo tình huống](lessons/sd-13-016/lesson.md) — bài nháp, chờ review kỹ thuật.
+17. [Chiến lược triển khai trên Kubernetes](lessons/sd-13-017/lesson.md) — bài nháp, chờ review kỹ thuật.
+18. [Terraform biến mã thành hạ tầng](lessons/sd-13-018/lesson.md) — bài nháp, chờ review kỹ thuật.
+19. [DevOps, SRE và Platform Engineering khác nhau thế nào](lessons/sd-13-019/lesson.md) — bài nháp, chờ review kỹ thuật.
+20. [Giảm rủi ro khi triển khai: bốn cách, bốn mức chi phí](lessons/sd-13-020/lesson.md) — bài nháp, chờ review kỹ thuật.
+21. [Ba trụ cột quan sát: nhật ký, vết và số đo](lessons/sd-13-021/lesson.md) — bài nháp, chờ review kỹ thuật.
+22. [Sáu lệnh phân tích nhật ký trên dòng lệnh](lessons/sd-13-022/lesson.md) — bài nháp, chờ review kỹ thuật.
+23. [DevOps và NoOps: ai lo phần vận hành](lessons/sd-13-023/lesson.md) — bài nháp, chờ review kỹ thuật.
+24. [Vì sao Nginx nhanh và phổ biến](lessons/sd-13-024/lesson.md) — bài nháp, chờ review kỹ thuật.
+25. [Kubernetes: mặt phẳng điều khiển và các node](lessons/sd-13-025/lesson.md) — bài nháp, chờ review kỹ thuật.
+26. [Docker chạy thế nào: client, host và registry](lessons/sd-13-026/lesson.md) — bài nháp, chờ review kỹ thuật.
+27. [Pipeline CI/CD qua từng giai đoạn](lessons/sd-13-027/lesson.md) — bài nháp, chờ review kỹ thuật.
+
 Danh mục đầy đủ và snapshot nguồn: [bảng đối chiếu](../../brainstorm/system-design-101-vi/source-map.json).
 Quy tắc đã chốt: [kết luận brainstorm](../../brainstorm/system-design-101-vi/DECISIONS.md).
 Tiến độ từng đợt: [PROGRESS.md](PROGRESS.md).
@@ -42,6 +72,6 @@ và hình đạt; không coi đọc nguồn là mọi claim đã đúng, không 
 Tình huống thực tế → AI và học máy → Cơ sở dữ liệu và lưu trữ → Phỏng vấn kỹ thuật →
 Bộ nhớ đệm và hiệu năng → Thanh toán và công nghệ tài chính → Kiến trúc phần mềm →
 Công cụ và năng suất → Phát triển phần mềm → Đám mây và hệ thống phân tán →
-Hệ thống hoạt động thế nào? → DevOps và CI/CD → Bảo mật → Nền tảng máy tính.
+Hệ thống hoạt động thế nào? → Bảo mật → Nền tảng máy tính.
 
 `lessons/<id>/lesson.yaml` chỉ trỏ tới metadata JSON; không giữ bản sao trạng thái.

@@ -1,0 +1,66 @@
+{
+  "id": "sd-13-009",
+  "title_vi": "Sáu mảng của hệ sinh thái Kubernetes",
+  "language": "vi",
+  "kind": "reference",
+  "content_status": "draft",
+  "source_ref": "sd-13-009",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/kubernetes-tools-ecosystem.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/kubernetes-tools-ecosystem.md",
+    "blob_sha": "f71207e6e4d4820dbfcea61185b556555ec7c0d0",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "580a47e71ba64dbe917dc83f4b8eb810efbd13f54aafc96040dd88d13c70b49d",
+    "retrieved_body_bytes": 1087
+  },
+  "diagram": "../diagrams/sd-13-009-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-13-008",
+      "relation": "previous",
+      "reason_vi": "Cách chọn công cụ theo lớp."
+    },
+    {
+      "lesson_id": "sd-13-010",
+      "relation": "next",
+      "reason_vi": "Bảng tuần hoàn Kubernetes."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Kubernetes dùng CRI để làm việc với container runtime như containerd và CRI-O.",
+      "source": "https://kubernetes.io/docs/setup/production-environment/container-runtimes/"
+    },
+    {
+      "claim_vi": "Dockershim bị gỡ khỏi Kubernetes ở bản 1.24; image Docker vẫn chạy được.",
+      "source": "https://kubernetes.io/blog/2022/02/17/dockershim-faq/"
+    }
+  ],
+  "source_deviations": [
+    "Nguồn chỉ nêu tên sáu mảng trong một hình; ví dụ công cụ do bài này thêm."
+  ],
+  "design_notes_vi": "Sáu thẻ dọc, mỗi thẻ vài ví dụ; không dùng mũi tên vì các mảng song song.",
+  "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
+}

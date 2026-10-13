@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 657" width="320" height="657" role="img" aria-labelledby="title desc">
+<title id="title">Giảm rủi ro khi triển khai: bốn cách, bốn mức chi phí</title>
+<desc id="desc">Bốn thẻ so sánh: nhiều dịch vụ cùng lúc dễ làm nhưng khó quay lui, blue-green dễ quay lui nhưng tốn hai môi trường, canary rẻ hơn nhưng cần theo dõi, A/B test dùng thử nghiệm trên một nhóm người dùng.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="657" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">ĐỔI GÌ LẤY GÌ</text>
+<text x="16" y="58" font-size="16" font-weight="normal">Chi phí và khả năng quay lui</text>
+<rect x="16" y="89" width="288" height="128" rx="10" fill="#fee2e2" stroke="#94a3b8"/>
+<text x="30" y="117" font-size="16" font-weight="bold">Nhiều dịch vụ cùng lúc</text>
+<text x="30" y="144" font-size="16" font-weight="normal">Dễ làm</text>
+<text x="30" y="171" font-size="16" font-weight="normal">Khó quay lui, khó kiểm thử</text>
+<text x="30" y="198" font-size="16" font-weight="normal">phụ thuộc</text>
+<rect x="16" y="229" width="288" height="101" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="257" font-size="16" font-weight="bold">Blue-Green</text>
+<text x="30" y="284" font-size="16" font-weight="normal">Quay lui dễ</text>
+<text x="30" y="311" font-size="16" font-weight="normal">Tốn hai môi trường đầy đủ</text>
+<rect x="16" y="342" width="288" height="128" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="370" font-size="16" font-weight="bold">Canary</text>
+<text x="30" y="397" font-size="16" font-weight="normal">Rẻ hơn, quay lui dễ</text>
+<text x="30" y="424" font-size="16" font-weight="normal">Cần theo dõi chặt, thử trên</text>
+<text x="30" y="451" font-size="16" font-weight="normal">production</text>
+<rect x="16" y="482" width="288" height="155" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="510" font-size="16" font-weight="bold">A/B test</text>
+<text x="30" y="537" font-size="16" font-weight="normal">Nhiều phiên bản cho các</text>
+<text x="30" y="564" font-size="16" font-weight="normal">nhóm</text>
+<text x="30" y="591" font-size="16" font-weight="normal">Rẻ để thử tính năng; cần</text>
+<text x="30" y="618" font-size="16" font-weight="normal">kiểm soát</text>
+</g></svg>

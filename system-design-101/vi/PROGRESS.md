@@ -10,3 +10,9 @@ Repo cũ tạm dừng; không merge/đóng/xóa các PR cũ.
 Metadata JSON duy nhất giữ trạng thái; YAML chỉ id/metadata_ref. Hình/bài giữ nguyên byte khi nhập. User testing chưa thực hiện; không tự merge/deploy hoặc đăng bài.
 
 Đồng bộ main đích tại 3edff99314afa7435a4519b700e380eac8d6bc1c (trước đó f9f79246cf7b05979fc1343734e02ea8afc201be); sửa adopted_main_sha theo finding4252903469 và finding4253959699. Mốc main repo cũ giữ previous_repository_main_sha. Review tổ hợp mới vẫn pending.
+
+## Đợt sd-13 (2026-10-13): DevOps và CI/CD
+
+Theo yêu cầu người dùng, viết nháp 27 bài của nhóm DevOps và CI/CD (sd-13-001 đến sd-13-027) trên nhánh claude/optimistic-galileo-ins11l. Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Thân 27 bài nguồn đã đọc tại snapshot ghim và blob SHA khớp.
+
+Chưa làm: kiểm chứng claim với tài liệu ngoài (môi trường soạn không truy cập được các trang đó; URL nguồn trong metadata chưa mở được), review kỹ thuật, kiểm tra hình trên thiết bị thật, user testing. Một kiểm tra đo chiều rộng chữ bằng phông DejaVu cho thấy chữ nằm trong khung; đó chưa phải kiểm tra mobile nên bước `mobile` vẫn pending. next_id vẫn là sd-01-008. Không tự merge, deploy hay đăng bài.

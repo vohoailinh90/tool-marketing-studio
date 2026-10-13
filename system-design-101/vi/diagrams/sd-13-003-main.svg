@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 647" width="320" height="647" role="img" aria-labelledby="title desc">
+<title id="title">Tỉ lệ lập trình viên và kiểm thử viên thay đổi thế nào</title>
+<desc id="desc">Ba mốc xếp dọc: khoảng 1997 tỉ lệ 1:1 với phần mềm phát hành trên đĩa; khoảng 2009 tỉ lệ 10:1 với bản vá trong vài tuần; khoảng 2020 tỉ lệ 100:1 với công cụ kiểm thử chuẩn hóa.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="647" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">DEV : TEST QUA ĐỘ</text>
+<text x="16" y="58" font-size="16" font-weight="normal">Mốc năm và tỉ lệ chỉ để minh</text>
+<text x="16" y="85" font-size="16" font-weight="normal">họa</text>
+<rect x="16" y="116" width="288" height="128" rx="10" fill="#fee2e2" stroke="#94a3b8"/>
+<text x="30" y="144" font-size="16" font-weight="bold">~1997 · 1 : 1</text>
+<text x="30" y="171" font-size="16" font-weight="normal">Phần mềm ghi lên đĩa</text>
+<text x="30" y="198" font-size="16" font-weight="normal">Phát hành vài năm một lần</text>
+<text x="30" y="225" font-size="16" font-weight="normal">Lỗi tồn tại rất lâu</text>
+<line x1="160" y1="256" x2="160" y2="284" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="294" width="288" height="128" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="322" font-size="16" font-weight="bold">~2009 · 10 : 1</text>
+<text x="30" y="349" font-size="16" font-weight="normal">Bản vá trong vài tuần</text>
+<text x="30" y="376" font-size="16" font-weight="normal">Agile, lặp ngắn</text>
+<text x="30" y="403" font-size="16" font-weight="normal">Dev tự kiểm thử nhiều hơn</text>
+<line x1="160" y1="434" x2="160" y2="462" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="472" width="288" height="155" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="500" font-size="16" font-weight="bold">~2020 · 100 : 1</text>
+<text x="30" y="527" font-size="16" font-weight="normal">Công cụ kiểm thử dùng chung</text>
+<text x="30" y="554" font-size="16" font-weight="normal">Dev tự viết test tự động</text>
+<text x="30" y="581" font-size="16" font-weight="normal">Kiến thức kiểm thử được</text>
+<text x="30" y="608" font-size="16" font-weight="normal">chia sẻ</text>
+</g></svg>

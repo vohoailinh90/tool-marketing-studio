@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 835" width="320" height="835" role="img" aria-labelledby="title desc">
+<title id="title">Tám khái niệm Docker cần biết</title>
+<desc id="desc">Dockerfile được build thành image, image đẩy lên registry và kéo về; image chạy thành container có volume và network; Compose điều phối nhiều container; CLI là cách ra lệnh.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="835" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">TÁM KHÁI NIỆM</text>
+<text x="16" y="58" font-size="16" font-weight="normal">Từ công thức đến tiến trình</text>
+<text x="16" y="85" font-size="16" font-weight="normal">chạy</text>
+<rect x="16" y="116" width="288" height="74" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="144" font-size="16" font-weight="bold">Dockerfile</text>
+<text x="30" y="171" font-size="16" font-weight="normal">Công thức dựng image</text>
+<line x1="160" y1="202" x2="160" y2="230" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="240" width="288" height="101" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="268" font-size="16" font-weight="bold">Image</text>
+<text x="30" y="295" font-size="16" font-weight="normal">Gói bất biến: mã, thư viện,</text>
+<text x="30" y="322" font-size="16" font-weight="normal">phụ thuộc</text>
+<line x1="160" y1="353" x2="160" y2="381" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="391" width="288" height="74" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="419" font-size="16" font-weight="bold">Registry</text>
+<text x="30" y="446" font-size="16" font-weight="normal">Kho lưu và phân phối image</text>
+<line x1="160" y1="477" x2="160" y2="505" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="515" width="288" height="74" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="543" font-size="16" font-weight="bold">Container</text>
+<text x="30" y="570" font-size="16" font-weight="normal">Image đang chạy, cô lập</text>
+<rect x="16" y="601" width="288" height="101" rx="10" fill="#e2e8f0" stroke="#94a3b8"/>
+<text x="30" y="629" font-size="16" font-weight="bold">Volume · Network</text>
+<text x="30" y="656" font-size="16" font-weight="normal">Volume giữ dữ liệu</text>
+<text x="30" y="683" font-size="16" font-weight="normal">Network nối container</text>
+<rect x="16" y="714" width="288" height="101" rx="10" fill="#fee2e2" stroke="#94a3b8"/>
+<text x="30" y="742" font-size="16" font-weight="bold">Compose · CLI</text>
+<text x="30" y="769" font-size="16" font-weight="normal">Compose: nhiều container</text>
+<text x="30" y="796" font-size="16" font-weight="normal">CLI: lệnh docker</text>
+</g></svg>

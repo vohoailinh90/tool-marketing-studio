@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 620" width="320" height="620" role="img" aria-labelledby="title desc">
+<title id="title">Sáu lệnh phân tích nhật ký trên dòng lệnh</title>
+<desc id="desc">Sáu lệnh nối bằng đường ống: grep lọc dòng, cut hoặc awk lấy cột, sed sửa chuỗi, sort sắp xếp, uniq -c đếm các dòng liền kề giống nhau.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="620" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">ĐƯỜNG ỐNG LỆNH</text>
+<text x="16" y="58" font-size="16" font-weight="normal">Mỗi lệnh một việc</text>
+<rect x="16" y="89" width="288" height="74" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="117" font-size="16" font-weight="bold">grep</text>
+<text x="30" y="144" font-size="16" font-weight="normal">Lọc dòng khớp mẫu</text>
+<rect x="16" y="175" width="288" height="74" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="203" font-size="16" font-weight="bold">cut · awk</text>
+<text x="30" y="230" font-size="16" font-weight="normal">Lấy cột cần xem</text>
+<rect x="16" y="261" width="288" height="74" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="289" font-size="16" font-weight="bold">sed</text>
+<text x="30" y="316" font-size="16" font-weight="normal">Sửa hoặc thay chuỗi</text>
+<rect x="16" y="347" width="288" height="74" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="375" font-size="16" font-weight="bold">sort</text>
+<text x="30" y="402" font-size="16" font-weight="normal">Sắp xếp các dòng</text>
+<rect x="16" y="433" width="288" height="101" rx="10" fill="#fee2e2" stroke="#94a3b8"/>
+<text x="30" y="461" font-size="16" font-weight="bold">uniq -c</text>
+<text x="30" y="488" font-size="16" font-weight="normal">Gộp dòng liền kề giống</text>
+<text x="30" y="515" font-size="16" font-weight="normal">nhau, đếm</text>
+<text x="16" y="566" font-size="16" font-weight="normal">Thứ tự thường gặp: lọc → lấy</text>
+<text x="16" y="593" font-size="16" font-weight="normal">cột → sort → uniq.</text>
+</g></svg>

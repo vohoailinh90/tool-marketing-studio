@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 571" width="320" height="571" role="img" aria-labelledby="title desc">
+<title id="title">DevOps, SRE và Platform Engineering khác nhau thế nào</title>
+<desc id="desc">Ba thẻ: DevOps hỏi cách hai nhóm hợp tác, SRE hỏi độ tin cậy bao nhiêu là đủ, Platform Engineering hỏi làm sao để các nhóm sản phẩm tự phục vụ.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="571" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">BA CÂU HỎI</text>
+<text x="16" y="58" font-size="16" font-weight="normal">Cùng mục tiêu, trọng tâm</text>
+<text x="16" y="85" font-size="16" font-weight="normal">khác</text>
+<rect x="16" y="116" width="288" height="128" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="144" font-size="16" font-weight="bold">DevOps</text>
+<text x="30" y="171" font-size="16" font-weight="normal">Dev và Ops hợp tác thế nào?</text>
+<text x="30" y="198" font-size="16" font-weight="normal">Văn hóa, trách nhiệm chung,</text>
+<text x="30" y="225" font-size="16" font-weight="normal">tự động hóa</text>
+<rect x="16" y="256" width="288" height="128" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="284" font-size="16" font-weight="bold">SRE</text>
+<text x="30" y="311" font-size="16" font-weight="normal">Độ tin cậy bao nhiêu là đủ?</text>
+<text x="30" y="338" font-size="16" font-weight="normal">SLO, error budget, kỹ thuật</text>
+<text x="30" y="365" font-size="16" font-weight="normal">phần mềm cho vận hành</text>
+<rect x="16" y="396" width="288" height="155" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="424" font-size="16" font-weight="bold">Platform Engineering</text>
+<text x="30" y="451" font-size="16" font-weight="normal">Nhóm sản phẩm tự phục vụ</text>
+<text x="30" y="478" font-size="16" font-weight="normal">thế nào?</text>
+<text x="30" y="505" font-size="16" font-weight="normal">Nền tảng nội bộ, đường đi</text>
+<text x="30" y="532" font-size="16" font-weight="normal">mẫu</text>
+</g></svg>

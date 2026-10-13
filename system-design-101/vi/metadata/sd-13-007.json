@@ -1,0 +1,59 @@
+{
+  "id": "sd-13-007",
+  "title_vi": "Chín anti-pattern khi làm ứng dụng cloud-native",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "draft",
+  "source_ref": "sd-13-007",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/cloud-native-anti-patterns.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/cloud-native-anti-patterns.md",
+    "blob_sha": "0089c010c7fbb64cad0920884711149d3129e35c",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "dcafa16b90b490ed749f15538fb73e4c8a71d107efce94814c4dba853fa18d6f",
+    "retrieved_body_bytes": 2076
+  },
+  "diagram": "../diagrams/sd-13-007-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Twelve-Factor khuyên tiến trình không trạng thái, lưu dữ liệu bền ở dịch vụ hỗ trợ.",
+      "source": "https://12factor.net/processes"
+    },
+    {
+      "claim_vi": "Máy chủ bất biến được thay thế thay vì sửa tại chỗ.",
+      "source": "https://martinfowler.com/bliki/ImmutableServer.html"
+    },
+    {
+      "claim_vi": "Tối ưu chi phí là một trụ cột của kiến trúc tốt trên cloud.",
+      "source": "https://docs.aws.amazon.com/wellarchitected/latest/cost-optimization-pillar/welcome.html"
+    }
+  ],
+  "source_deviations": [
+    "Nguồn gọi trạng thái và monolith là anti-pattern không điều kiện; bài thêm bối cảnh."
+  ],
+  "design_notes_vi": "Ba thẻ nhóm, mỗi thẻ ba dòng; không dùng mũi tên vì không có thứ tự.",
+  "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
+}

@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 809" width="320" height="809" role="img" aria-labelledby="title desc">
+<title id="title">Kubernetes: mặt phẳng điều khiển và các node</title>
+<desc id="desc">Mặt phẳng điều khiển gồm API server, scheduler, controller manager và etcd; mỗi node chạy kubelet, kube-proxy, container runtime và các Pod.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="809" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">KIẾN TRÚC CỤM</text>
+<text x="16" y="58" font-size="16" font-weight="normal">Quyết định ở trên, chạy ở</text>
+<text x="16" y="85" font-size="16" font-weight="normal">dưới</text>
+<rect x="16" y="116" width="288" height="236" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="144" font-size="16" font-weight="bold">Mặt phẳng điều khiển</text>
+<text x="30" y="171" font-size="16" font-weight="normal">API server: cửa vào duy</text>
+<text x="30" y="198" font-size="16" font-weight="normal">nhất</text>
+<text x="30" y="225" font-size="16" font-weight="normal">etcd: kho dữ liệu của cụm</text>
+<text x="30" y="252" font-size="16" font-weight="normal">Scheduler: chọn node cho</text>
+<text x="30" y="279" font-size="16" font-weight="normal">Pod</text>
+<text x="30" y="306" font-size="16" font-weight="normal">Controller manager: chạy</text>
+<text x="30" y="333" font-size="16" font-weight="normal">các controller</text>
+<line x1="160" y1="364" x2="160" y2="392" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="402" width="288" height="182" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="430" font-size="16" font-weight="bold">Mỗi node</text>
+<text x="30" y="457" font-size="16" font-weight="normal">kubelet: giữ Pod chạy đúng</text>
+<text x="30" y="484" font-size="16" font-weight="normal">kube-proxy: định tuyến</text>
+<text x="30" y="511" font-size="16" font-weight="normal">Service</text>
+<text x="30" y="538" font-size="16" font-weight="normal">Container runtime: chạy</text>
+<text x="30" y="565" font-size="16" font-weight="normal">container</text>
+<line x1="160" y1="596" x2="160" y2="624" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="634" width="288" height="155" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="662" font-size="16" font-weight="bold">Pod</text>
+<text x="30" y="689" font-size="16" font-weight="normal">Nhóm container, chung một</text>
+<text x="30" y="716" font-size="16" font-weight="normal">IP</text>
+<text x="30" y="743" font-size="16" font-weight="normal">Đơn vị nhỏ nhất Kubernetes</text>
+<text x="30" y="770" font-size="16" font-weight="normal">quản lý</text>
+</g></svg>

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 729" width="320" height="729" role="img" aria-labelledby="title desc">
+<title id="title">Pipeline CI/CD qua từng giai đoạn</title>
+<desc id="desc">Commit kích hoạt build, kiểm thử đơn vị và tích hợp, triển khai lên staging, kiểm thử toàn diện, duyệt, rồi lên production; trượt giai đoạn nào thì dừng và báo về cho lập trình viên.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="729" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">PIPELINE CI/CD</text>
+<text x="16" y="58" font-size="16" font-weight="normal">Mỗi giai đoạn là một cổng</text>
+<rect x="16" y="89" width="288" height="74" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="117" font-size="16" font-weight="bold">1 · Commit</text>
+<text x="30" y="144" font-size="16" font-weight="normal">Đẩy mã lên kho</text>
+<line x1="160" y1="175" x2="160" y2="203" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="213" width="288" height="101" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="241" font-size="16" font-weight="bold">2 · Build + kiểm thử</text>
+<text x="30" y="268" font-size="16" font-weight="normal">Biên dịch</text>
+<text x="30" y="295" font-size="16" font-weight="normal">Kiểm thử đơn vị, tích hợp</text>
+<line x1="160" y1="326" x2="160" y2="354" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="364" width="288" height="101" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="392" font-size="16" font-weight="bold">3 · Staging</text>
+<text x="30" y="419" font-size="16" font-weight="normal">Triển khai thử</text>
+<text x="30" y="446" font-size="16" font-weight="normal">Kiểm thử toàn diện</text>
+<line x1="160" y1="477" x2="160" y2="505" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="515" width="288" height="101" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="543" font-size="16" font-weight="bold">4 · Production</text>
+<text x="30" y="570" font-size="16" font-weight="normal">Triển khai sau khi duyệt</text>
+<text x="30" y="597" font-size="16" font-weight="normal">hoặc tự động</text>
+<text x="16" y="648" font-size="16" font-weight="normal">Trượt ở giai đoạn nào: dừng,</text>
+<text x="16" y="675" font-size="16" font-weight="normal">báo kết quả về cho người viết</text>
+<text x="16" y="702" font-size="16" font-weight="normal">mã.</text>
+</g></svg>

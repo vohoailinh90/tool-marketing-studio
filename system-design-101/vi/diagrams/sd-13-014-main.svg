@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 803" width="320" height="803" role="img" aria-labelledby="title desc">
+<title id="title">CI/CD qua một hình đơn giản</title>
+<desc id="desc">Commit vào kho dùng chung, CI build và kiểm thử, tạo sản phẩm build; sau đó rẽ hai nhánh: Continuous Delivery chờ người duyệt rồi lên production, Continuous Deployment tự lên production.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="803" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">CI · CD</text>
+<text x="16" y="58" font-size="16" font-weight="normal">Một thay đổi đi từ commit</text>
+<text x="16" y="85" font-size="16" font-weight="normal">tới production</text>
+<rect x="16" y="116" width="288" height="101" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="144" font-size="16" font-weight="bold">1 · Commit</text>
+<text x="30" y="171" font-size="16" font-weight="normal">Gộp thay đổi vào kho chung,</text>
+<text x="30" y="198" font-size="16" font-weight="normal">thường xuyên</text>
+<line x1="160" y1="229" x2="160" y2="257" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="267" width="288" height="101" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="295" font-size="16" font-weight="bold">2 · CI</text>
+<text x="30" y="322" font-size="16" font-weight="normal">Tự build và chạy kiểm thử</text>
+<text x="30" y="349" font-size="16" font-weight="normal">Báo lỗi sớm</text>
+<line x1="160" y1="380" x2="160" y2="408" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="418" width="288" height="101" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="446" font-size="16" font-weight="bold">3 · Sản phẩm build</text>
+<text x="30" y="473" font-size="16" font-weight="normal">Bản đã qua kiểm thử, sẵn</text>
+<text x="30" y="500" font-size="16" font-weight="normal">sàng phát hành</text>
+<line x1="160" y1="531" x2="160" y2="559" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="569" width="288" height="101" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="597" font-size="16" font-weight="bold">Delivery</text>
+<text x="30" y="624" font-size="16" font-weight="normal">Người duyệt rồi mới lên</text>
+<text x="30" y="651" font-size="16" font-weight="normal">production</text>
+<rect x="16" y="682" width="288" height="101" rx="10" fill="#fee2e2" stroke="#94a3b8"/>
+<text x="30" y="710" font-size="16" font-weight="bold">Deployment</text>
+<text x="30" y="737" font-size="16" font-weight="normal">Tự lên production khi qua</text>
+<text x="30" y="764" font-size="16" font-weight="normal">kiểm thử</text>
+</g></svg>

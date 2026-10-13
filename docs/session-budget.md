@@ -51,6 +51,12 @@ placeholder, so on a plan without `rate_limits` the line is simply shorter. If
 you never see the 5h/7d segment, that is the expected behaviour, not a bug —
 check your CLI version against the table before treating it as one.
 
+The status line also does one thing besides drawing: it records the context window's
+size (`context_window.context_window_size`) for the session in
+`artifacts/handoff/.context-window.json`, because the hooks cannot see it. See
+*Configuration* below. A payload that omits the field, or gives a value that is not a plausible
+size (1,000 to 100,000,000 tokens), records nothing and costs the line nothing.
+
 The five-hour window also shows its reset clock (`→14:30`), but only once that
 window is at least 60% used: before then the time is noise, and after it the
 question is whether to wait or wrap up.
@@ -125,9 +131,27 @@ Windows change it to `python` if that is what is on PATH.
 
 ## Configuration
 
+The occupancy estimate divides the tokens in use by the context window's size, and the hook
+payload does not say how large the window is. The size is therefore taken from the first of these
+that gives a usable value:
+
+1. **What the status line recorded for this session** — `artifacts/handoff/.context-window.json`,
+   a map from session id to size, written by `statusline.py` and kept to the newest 32 sessions.
+   This is right for a 200K and a 1M model alike, with nothing to configure, and it is why the
+   status line must be enabled (it is in `.claude/settings.json`). The first hook call of a session
+   can run before the status line has rendered once.
+2. **The `CLAUDE_SESSION_BUDGET_CONTEXT_WINDOW` variable**, in tokens: for a session the status line
+   has not described, or where it is not enabled.
+3. **200,000.**
+
 | Variable | Default | Meaning |
 |---|---|---|
-| `CLAUDE_SESSION_BUDGET_CONTEXT_WINDOW` | `200000` | Context window used for the occupancy estimate. Set to `1000000` for a 1M-context model — hook payloads, unlike the status line payload, do not carry the window size. |
+| `CLAUDE_SESSION_BUDGET_CONTEXT_WINDOW` | `200000` | Window size when the status line has recorded none for the session; ignored when it has. |
+
+To see what was recorded: `cat artifacts/handoff/.context-window.json`. If a 1M session is told it
+is "~86% full" at about 170,000 tokens, this file has no entry for it (the payload of that release
+may not carry the size), and the variable above is the fallback. The handoff's *Context at capture*
+line shows the size it used.
 
 Thresholds live in `scripts/hooks/session_budget.py` as `WRITE_HANDOFF_AT`
 (0.70) and `WRAP_UP_AT` (0.85).

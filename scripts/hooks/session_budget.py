@@ -36,10 +36,15 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-# Default assumes a 200K context. Override for a 1M-context model with
-# CLAUDE_SESSION_BUDGET_CONTEXT_WINDOW; hook payloads do not carry the size the
-# way the status line payload does.
+# Hook payloads do not carry the context window's size the way the status line payload does, so
+# scripts/hooks/statusline.py records it per session in WINDOW_STATE and context_window() reads it
+# from there. Without that record (no status line yet, or a payload that omits the size) the size comes
+# from CLAUDE_SESSION_BUDGET_CONTEXT_WINDOW, and failing that this default, which assumes 200K.
 DEFAULT_CONTEXT_WINDOW = 200_000
+# Keep these three in step with statusline.py (a test asserts it).
+WINDOW_STATE = ("artifacts", "handoff", ".context-window.json")
+MIN_WINDOW_TOKENS = 1_000
+MAX_WINDOW_TOKENS = 100_000_000
 WRITE_HANDOFF_AT = 0.70
 WRAP_UP_AT = 0.85
 
@@ -241,7 +246,27 @@ def last_user_prompt(lines: list[str]) -> str:
     return ""
 
 
-def context_window() -> int:
+def recorded_window(session_id: object, root: Path) -> int | None:
+    """The window size the status line recorded for this session, or None when it recorded none or it is unusable."""
+    if not isinstance(session_id, str) or not session_id:
+        return None
+    try:
+        known = json.loads(root.joinpath(*WINDOW_STATE).read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return None
+    size = known.get(session_id) if isinstance(known, dict) else None
+    if isinstance(size, bool) or not isinstance(size, int) or not MIN_WINDOW_TOKENS <= size <= MAX_WINDOW_TOKENS:
+        return None
+    return size
+
+
+def context_window(payload: dict[str, Any] | None = None, root: Path | None = None) -> int:
+    """The context window size in tokens: what the status line recorded for this session, else the environment
+    variable CLAUDE_SESSION_BUDGET_CONTEXT_WINDOW, else DEFAULT_CONTEXT_WINDOW."""
+    if payload:
+        recorded = recorded_window(payload.get("session_id"), root or repo_root())
+        if recorded is not None:
+            return recorded
     raw = os.environ.get("CLAUDE_SESSION_BUDGET_CONTEXT_WINDOW", "")
     try:
         value = int(raw)
@@ -275,7 +300,7 @@ def collect_state(payload: dict[str, Any], trigger: str, root: Path) -> dict[str
             git(root, "diff", "--stat", "HEAD", deadline=deadline).splitlines()[:MAX_DIFFSTAT_LINES]
         ),
         "context_tokens": used,
-        "context_window": context_window(),
+        "context_window": context_window(payload, root),
         "last_user_prompt": last_user_prompt(lines),
     }
 
@@ -409,7 +434,7 @@ def cmd_pre_tool_use(payload: dict[str, Any]) -> int:
     if used is None:
         return 0
 
-    window = context_window()
+    window = context_window(payload)
     fraction = used / window
     level = "wrap-up" if fraction >= WRAP_UP_AT else "handoff" if fraction >= WRITE_HANDOFF_AT else None
     if level is None:

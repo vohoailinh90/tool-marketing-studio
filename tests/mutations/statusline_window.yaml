@@ -1,0 +1,60 @@
+# Mutation manifest — see scripts/mutation_check.py
+#
+# A passing test proves nothing on its own. These break one rule of the window-size
+# hand-off between the status line and the session budget hook and require the named test to fail.
+
+target: scripts/hooks/statusline.py
+note: The status line is the only place that knows the real context window size; if it records the wrong thing, the session budget hook tells a 1M session it is full again.
+mutations:
+- label: the size is not checked for plausibility
+  find: "    if size != int(size) or not MIN_WINDOW_TOKENS <= size <= MAX_WINDOW_TOKENS:"
+  replace: "    if False:"
+  test: tests.test_session_budget_window.StatuslineRecordsTheWindowTests.test_a_size_or_a_session_that_cannot_be_used_records_nothing
+- label: a payload with no usable session id is recorded
+  find: "    if size is None or not isinstance(session, str) or not session.strip():"
+  replace: "    if size is None:"
+  test: tests.test_session_budget_window.StatuslineRecordsTheWindowTests.test_a_size_or_a_session_that_cannot_be_used_records_nothing
+- label: a payload whose context_window is not an object raises
+  find: "    window = payload.get(\"context_window\")\n    if not isinstance(window, dict):\n        return None\n    size = number("
+  replace: "    window = payload.get(\"context_window\")\n    size = number("
+  test: tests.test_session_budget_window.StatuslineRecordsTheWindowTests.test_a_size_or_a_session_that_cannot_be_used_records_nothing
+- label: an unchanged size rewrites the file on every render
+  find: "    if known.get(session) == size:\n        return\n"
+  replace: ""
+  test: tests.test_session_budget_window.StatuslineRecordsTheWindowTests.test_an_unchanged_size_does_not_rewrite_the_file
+- label: a session seen again keeps its old place
+  find: "    known.pop(session, None)\n"
+  replace: ""
+  test: tests.test_session_budget_window.StatuslineRecordsTheWindowTests.test_a_session_seen_again_becomes_the_newest
+- label: the file grows without a cap
+  find: "    known = dict(list(known.items())[-MAX_RECORDED_SESSIONS:])"
+  replace: "    known = dict(known.items())"
+  test: tests.test_session_budget_window.StatuslineRecordsTheWindowTests.test_the_oldest_sessions_are_dropped_past_the_cap
+- label: a state file holding something other than a mapping raises
+  find: "    if not isinstance(known, dict):\n        known = {}\n"
+  replace: ""
+  test: tests.test_session_budget_window.StatuslineRecordsTheWindowTests.test_a_state_file_that_is_not_a_mapping_is_replaced
+- label: a state file that is not JSON raises
+  find: "    except (OSError, ValueError):\n        known = {}"
+  replace: "    except OSError:\n        known = {}"
+  test: tests.test_session_budget_window.StatuslineRecordsTheWindowTests.test_a_state_file_that_is_not_a_mapping_is_replaced
+- label: the file is written in place, not renamed whole
+  find: "        tmp.write_text(json.dumps(known), encoding=\"utf-8\")\n        os.replace(tmp, path)"
+  replace: "        path.write_text(json.dumps(known), encoding=\"utf-8\")"
+  test: tests.test_session_budget_window.StatuslineRecordsTheWindowTests.test_the_file_is_put_in_place_whole_through_a_temporary_file
+- label: a failed write leaves its temporary file behind
+  find: "        tmp.unlink(missing_ok=True)\n        raise"
+  replace: "        raise"
+  test: tests.test_session_budget_window.StatuslineRecordsTheWindowTests.test_a_failed_write_leaves_no_temporary_file_behind
+- label: a failure to record costs the status line
+  find: "    except Exception as exc:  # a side channel for the hooks must never cost the line"
+  replace: "    except KeyError as exc:  # a side channel for the hooks must never cost the line"
+  test: tests.test_session_budget_window.StatuslineRecordsTheWindowTests.test_the_status_line_is_printed_even_when_the_file_cannot_be_written
+- label: the window size is never recorded
+  find: "        record_window_size(payload)\n    except Exception as exc:"
+  replace: "        pass\n    except Exception as exc:"
+  test: tests.test_session_budget_window.StatuslineRecordsTheWindowTests.test_the_real_entry_point_records_what_it_is_given
+- label: CLAUDE_PROJECT_DIR is ignored
+  find: "    return Path(env_root) if env_root else Path(__file__).resolve().parents[2]"
+  replace: "    return Path(__file__).resolve().parents[2]"
+  test: tests.test_session_budget_window.StatuslineRecordsTheWindowTests.test_the_project_directory_variable_picks_the_checkout

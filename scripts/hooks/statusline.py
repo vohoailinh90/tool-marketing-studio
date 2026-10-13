@@ -23,6 +23,7 @@ import math
 import os
 import sys
 from datetime import datetime
+from pathlib import Path
 from typing import Any
 
 RESET = "\033[0m"
@@ -36,6 +37,15 @@ SEP = f" {DIM}·{RESET} "
 RESET_TIME_AT = 60
 # A name from the payload should not push the numbers off the right edge.
 MAX_LABEL = 40
+
+# Only this payload carries the context window's real size; the hook payloads do not. The status line leaves the
+# size where scripts/hooks/session_budget.py looks for it, so a 1M-context session is measured against 1M and not
+# against that script's 200K default. Keep these three in step with session_budget.py (a test asserts it).
+WINDOW_STATE = ("artifacts", "handoff", ".context-window.json")
+MIN_WINDOW_TOKENS = 1_000
+MAX_WINDOW_TOKENS = 100_000_000
+# One checkout can host several sessions of different sizes; the file keeps the newest few.
+MAX_RECORDED_SESSIONS = 32
 
 
 def paint(text: str, color: str) -> str:
@@ -208,6 +218,57 @@ def build_line(payload: dict[str, Any]) -> str:
     return SEP.join(segments) if segments else paint("no session data", DIM)
 
 
+def project_root() -> Path:
+    """The checkout this script belongs to, found the way session_budget.repo_root() finds it."""
+    env_root = os.environ.get("CLAUDE_PROJECT_DIR")
+    return Path(env_root) if env_root else Path(__file__).resolve().parents[2]
+
+
+def window_size(payload: dict[str, Any]) -> int | None:
+    """The context window size in tokens the payload reports, or None when it is absent or implausible."""
+    window = payload.get("context_window")
+    if not isinstance(window, dict):
+        return None
+    size = number(window.get("context_window_size"), "context_window.context_window_size")
+    if size is None:
+        return None
+    if size != int(size) or not MIN_WINDOW_TOKENS <= size <= MAX_WINDOW_TOKENS:
+        return rejected("context_window.context_window_size", f"{size:g} is not a plausible window size")
+    return int(size)
+
+
+def record_window_size(payload: dict[str, Any], root: Path | None = None) -> None:
+    """Remember this session's window size for the hooks, which cannot see it.
+
+    The file maps session id to size. It is rewritten only when the size changes, through a temporary file renamed
+    into place, so a hook reading it never sees half a write.
+    """
+    session = payload.get("session_id")
+    size = window_size(payload)
+    if size is None or not isinstance(session, str) or not session.strip():
+        return
+    path = (root or project_root()).joinpath(*WINDOW_STATE)
+    try:
+        known = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        known = {}
+    if not isinstance(known, dict):
+        known = {}
+    if known.get(session) == size:
+        return
+    known.pop(session, None)
+    known[session] = size  # newest last
+    known = dict(list(known.items())[-MAX_RECORDED_SESSIONS:])
+    path.parent.mkdir(parents=True, exist_ok=True)
+    tmp = path.with_name(f"{path.name}.{os.getpid()}.tmp")
+    try:
+        tmp.write_text(json.dumps(known), encoding="utf-8")
+        os.replace(tmp, path)
+    except OSError:
+        tmp.unlink(missing_ok=True)
+        raise
+
+
 def note(reason: str) -> None:
     """Fail open, but never fail silently: a dropped field must leave a trace.
 
@@ -235,6 +296,10 @@ def main() -> int:
     if not isinstance(payload, dict):
         note(f"payload is {type(payload).__name__}, expected an object")
         payload = {}
+    try:
+        record_window_size(payload)
+    except Exception as exc:  # a side channel for the hooks must never cost the line
+        note(f"could not record the window size ({type(exc).__name__}: {exc})")
     try:
         print(build_line(payload))
     except Exception as exc:  # a broken status line must never look like a broken session

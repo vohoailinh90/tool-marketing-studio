@@ -1,0 +1,52 @@
+# Mutation manifest — see scripts/mutation_check.py
+#
+# A passing test proves nothing on its own. These break one rule of the window-size
+# hand-off between the status line and the session budget hook and require the named test to fail.
+
+target: scripts/hooks/session_budget.py
+note: The hook measures context against the window size; a wrong size is how a 1M session was told it was 86% full at 171K tokens.
+mutations:
+- label: the recorded size is never used
+  find: "        if recorded is not None:\n            return recorded\n"
+  replace: ""
+  test: tests.test_session_budget_window.HookReadsTheWindowTests.test_what_the_status_line_recorded_wins
+- label: the payload is not consulted
+  find: "    if payload:\n        recorded = recorded_window("
+  replace: "    if False:\n        recorded = recorded_window("
+  test: tests.test_session_budget_window.HookReadsTheWindowTests.test_what_the_status_line_recorded_wins
+- label: any session's recorded size is used
+  find: "    size = known.get(session_id) if isinstance(known, dict) else None"
+  replace: "    size = next(iter(known.values()), None) if isinstance(known, dict) and known else None"
+  test: tests.test_session_budget_window.HookReadsTheWindowTests.test_another_sessions_size_is_not_used
+- label: a record that is not a mapping raises
+  find: " if isinstance(known, dict) else None"
+  replace: ""
+  test: tests.test_session_budget_window.HookReadsTheWindowTests.test_a_recording_that_cannot_be_used_is_ignored
+- label: a recorded size of the wrong kind is used
+  find: "    if isinstance(size, bool) or not isinstance(size, int) or not MIN_WINDOW_TOKENS <= size <= MAX_WINDOW_TOKENS:"
+  replace: "    if size is None:"
+  test: tests.test_session_budget_window.HookReadsTheWindowTests.test_a_recording_that_cannot_be_used_is_ignored
+- label: a recorded size out of range is used
+  find: "not isinstance(size, int) or not MIN_WINDOW_TOKENS <= size <= MAX_WINDOW_TOKENS:"
+  replace: "not isinstance(size, int):"
+  test: tests.test_session_budget_window.HookReadsTheWindowTests.test_a_recording_that_cannot_be_used_is_ignored
+- label: a record that is not JSON raises
+  find: "    except (OSError, ValueError):\n        return None"
+  replace: "    except OSError:\n        return None"
+  test: tests.test_session_budget_window.HookReadsTheWindowTests.test_a_recording_that_cannot_be_used_is_ignored
+- label: a payload with no usable session id reads a record
+  find: "    if not isinstance(session_id, str) or not session_id:\n        return None\n"
+  replace: ""
+  test: tests.test_session_budget_window.HookReadsTheWindowTests.test_a_payload_without_a_usable_session_id_reads_nothing
+- label: the given checkout is ignored when reading the record
+  find: "recorded_window(payload.get(\"session_id\"), root or repo_root())"
+  replace: "recorded_window(payload.get(\"session_id\"), repo_root())"
+  test: tests.test_session_budget_window.HookReadsTheWindowTests.test_what_the_status_line_recorded_wins
+- label: the handoff is measured against the default window
+  find: "        \"context_window\": context_window(payload, root),"
+  replace: "        \"context_window\": context_window(),"
+  test: tests.test_session_budget_window.SessionOfAMillionTokensIsNotToldItIsFullTests.test_the_handoff_records_the_window_it_was_measured_against
+- label: the nudge is measured against the default window
+  find: "    window = context_window(payload)\n    fraction = used / window"
+  replace: "    window = context_window()\n    fraction = used / window"
+  test: tests.test_session_budget_window.SessionOfAMillionTokensIsNotToldItIsFullTests.test_a_recorded_million_token_window_gives_no_nudge

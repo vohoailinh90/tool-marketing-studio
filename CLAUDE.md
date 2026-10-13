@@ -315,6 +315,7 @@ python3 -m pytest -q                      # engine, server guards, publisher fak
 python3 studio.py check                   # every campaign: 0 errors
 python3 scripts/layout_check.py           # repository layout
 python3 scripts/i18n_check.py             # app catalogs in vi/ja/en
+python3 scripts/sd101_check.py            # the System Design store (system-design-101/vi): schema, sources, figures, progress
 python3 scripts/mutation_check.py --all   # the safety-rail tests catch their own removal
 (cd web && npm run build)                 # typecheck + build the UI (a subshell: the block runs top to bottom from the root)
 python3 scripts/office/snapshot.py --check            # the agent office's data contract

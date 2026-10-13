@@ -1,0 +1,117 @@
+{
+  "id": "sd-01-003",
+  "title_vi": "Năm mã trạng thái HTTP kỳ lạ",
+  "language": "vi",
+  "kind": "reference",
+  "content_status": "review",
+  "source_ref": "sd-01-003",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/5-http-status-codes-that-should-never-have-been-created.md",
+    "blob_sha": "d63c0502ba9eef0ac71cd3f4bc926c995ebdc986"
+  },
+  "diagram": "../diagrams/sd-01-003-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-12"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-12",
+      "scope": "Registration status, 451/418/429 semantics and Pantheon usage. Source-only trivia explicitly qualified; not independently verified."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "integration_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 14.4,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "checked_on": "2026-10-12",
+      "evidence": "Chromium whole lesson with SVG and optional sections open; screenshot at 320px visually inspected. Not learner testing."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "id": "registry",
+      "claim_vi": "451 đã đăng ký; 218, 420, 530 chưa được gán; 418 là Unused, được giữ chỗ.",
+      "source": "https://www.iana.org/assignments/http-status-codes",
+      "section": "HTTP Status Codes",
+      "result": "verified"
+    },
+    {
+      "id": "451",
+      "claim_vi": "451 diễn đạt từ chối truy cập là hệ quả yêu cầu pháp lý.",
+      "source": "https://www.rfc-editor.org/rfc/rfc7725.html",
+      "section": "3",
+      "result": "verified"
+    },
+    {
+      "id": "418",
+      "claim_vi": "418 có lịch sử từ RFC đùa, được giữ chỗ theo RFC 9110.",
+      "source": "https://www.rfc-editor.org/rfc/rfc9110.html",
+      "section": "15.5.19",
+      "result": "verified"
+    },
+    {
+      "id": "429",
+      "claim_vi": "429 dùng cho quá nhiều yêu cầu trong khoảng thời gian.",
+      "source": "https://www.rfc-editor.org/rfc/rfc6585.html",
+      "section": "4",
+      "result": "verified"
+    },
+    {
+      "id": "530",
+      "claim_vi": "Pantheon dùng 530 Site Frozen cho site sandbox bị đóng băng do không hoạt động theo điều kiện nhà cung cấp.",
+      "source": "https://docs.pantheon.io/guides/platform-considerations/platform-site-info",
+      "section": "Inactive Site Freezing",
+      "result": "verified"
+    }
+  ],
+  "source_only_trivia": [
+    {
+      "topic": "218 meme/error-page override",
+      "status": "not_independently_verified",
+      "treatment": "Omitted implementation claim from main explanation; only attributed in optional section."
+    },
+    {
+      "topic": "Historical Twitter 420 usage",
+      "status": "not_independently_verified",
+      "treatment": "Attributed to source in optional section, not guidance for current APIs. Current X docs opened but contain no 420 entry."
+    }
+  ],
+  "design_notes_vi": "Five new vertical cards distinguish registered, unassigned and reserved status using text, not only colour. No source image used. Based on technical registry and standards, not a trace of source art.",
+  "editorial_note_vi": "Đã nhập từ repo cũ; review kỹ thuật của tổ hợp trong repo mới đang chờ. Chưa user testing hoặc phê duyệt phát hành.",
+  "prior_reviews": [
+    {
+      "repository": "vohoailinh90/Agentic-coding-course",
+      "status": "checked",
+      "reviewed_sha": "034a992d1b90d023083b2fe03790c06fdf991bca",
+      "base_sha": "89186c1a1aeb90a47e2a563fdc7786b2dacec787",
+      "evidence_url": "https://github.com/vohoailinh90/Agentic-coding-course/pull/25#issuecomment-6128611337",
+      "ci_run": 38279292220,
+      "note": "Technical completion on stated snapshot, not approval to publish; user testing remains not performed."
+    }
+  ],
+  "migration": {
+    "source_repository": "vohoailinh90/Agentic-coding-course",
+    "source_commit_sha": "b8dff434ff75499137bbb10b61122958fdaaafa5",
+    "destination_repository": "vohoailinh90/tool-marketing-studio",
+    "imported_on": "2026-10-13"
+  }
+}

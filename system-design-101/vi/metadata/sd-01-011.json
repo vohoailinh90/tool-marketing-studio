@@ -66,7 +66,7 @@
       ]
     },
     {
-      "claim_vi": "LB có thể kết thúc TLS và mã hóa lại trước khi chuyển tới máy phía sau.",
+      "claim_vi": "LB có thể kết thúc TLS: chứng chỉ hướng tới người dùng được quản lý tập trung ở LB; nếu mã hóa lại tới máy phía sau thì chặng đó cần thêm chứng chỉ và cấu hình tin cậy riêng.",
       "source": "https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/what-is-load-balancing.html"
     },
     {
@@ -88,7 +88,7 @@
       ]
     },
     {
-      "claim_vi": "Với giữ phiên, người dùng mất phiên nếu máy được gắn bị loại khỏi nhóm.",
+      "claim_vi": "Với giữ phiên, người dùng mất phiên nếu máy được gắn bị loại khỏi nhóm khi trạng thái phiên chỉ lưu trên máy đó; trạng thái ở kho dùng chung hoặc token phía client thì không mất.",
       "source": "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/sticky-sessions.html"
     },
     {

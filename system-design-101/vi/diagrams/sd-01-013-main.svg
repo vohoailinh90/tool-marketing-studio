@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 682" width="320" height="682" role="img" aria-labelledby="title desc">
 <title id="title">WAN, MAN, LAN và PAN theo phạm vi</title>
-<desc id="desc">Bốn khung dọc theo phạm vi tăng dần: PAN quanh một người trong vài mét như Bluetooth hoặc USB, ví dụ đồng hồ thông minh nối điện thoại; LAN trong một nơi như nhà, văn phòng hoặc tòa nhà bằng Ethernet hoặc Wi-Fi, ví dụ TV, loa và máy tính cùng một router; MAN phủ cả một thành phố hoặc khuôn viên lớn, ví dụ mạng cáp quang trong thành phố; WAN trải nhiều thành phố và quốc gia qua nhà mạng, cáp biển hoặc VPN, trong đó Internet là mạng của các mạng. Ranh giới là quy ước, không cứng.</desc>
+<desc id="desc">Bốn khung dọc theo phạm vi tăng dần: PAN quanh một người trong vài mét như Bluetooth hoặc USB, ví dụ đồng hồ thông minh nối điện thoại; LAN trong một nơi như nhà, văn phòng hoặc tòa nhà bằng Ethernet hoặc Wi-Fi, ví dụ TV, loa và máy tính cùng một mạng Wi-Fi trong nhà; MAN phủ cả một thành phố hoặc khuôn viên lớn, ví dụ mạng cáp quang trong thành phố; WAN trải nhiều thành phố và quốc gia qua nhà mạng, cáp biển hoặc VPN, trong đó Internet là mạng của các mạng. Ranh giới là quy ước, không cứng.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="682" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
@@ -15,7 +15,7 @@
 <text x="30" y="256" font-size="16" font-weight="bold">LAN · trong một nơi</text>
 <text x="30" y="283" font-size="16" font-weight="normal">Nhà, văn phòng, tòa nhà</text>
 <text x="30" y="310" font-size="16" font-weight="normal">Ethernet, Wi-Fi</text>
-<text x="30" y="337" font-size="16" font-weight="normal">TV, loa, máy tính chung router</text>
+<text x="30" y="337" font-size="16" font-weight="normal">TV, loa, máy tính cùng Wi-Fi</text>
 <rect x="16" y="371" width="288" height="104" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
 <text x="30" y="401" font-size="16" font-weight="bold">MAN · cả một thành phố</text>
 <text x="30" y="428" font-size="16" font-weight="normal">Thành phố hoặc khuôn viên lớn</text>

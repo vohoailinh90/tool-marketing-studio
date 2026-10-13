@@ -10,9 +10,9 @@
 
 **2. Sẵn sàng cao.** Máy lỗi bị loại khỏi nhóm, request mới đi tới máy còn khỏe. Nhưng nếu chỉ có một LB thì chính nó là điểm đơn lỗi, nên cần dự phòng.
 
-**3. Kết thúc TLS.** LB giải mã HTTPS, các máy sau nhận lưu lượng đã giải mã và chứng chỉ chỉ quản lý một nơi. Khi cần bảo vệ cả chặng nội bộ, LB mã hóa lại trước khi chuyển đi.
+**3. Kết thúc TLS.** LB giải mã HTTPS, các máy sau nhận lưu lượng đã giải mã, và chứng chỉ hướng tới người dùng được quản lý tập trung ở LB. Khi cần bảo vệ cả chặng nội bộ, LB mã hóa lại trước khi chuyển đi; khi đó chặng sau LB cần thêm chứng chỉ và cấu hình tin cậy riêng.
 
-**4. Giữ phiên.** Cùng một người dùng được đưa về cùng một máy, thường qua cookie hoặc băm địa chỉ. Đổi lại, tải dễ lệch và phiên mất nếu máy đó chết.
+**4. Giữ phiên.** Cùng một người dùng được đưa về cùng một máy, thường qua cookie hoặc băm địa chỉ. Đổi lại, tải dễ lệch, và nếu trạng thái phiên chỉ nằm trên máy đó thì phiên mất khi máy chết.
 
 **5. Mở rộng ngang.** Tải tăng thì thêm máy vào nhóm. Cách này chạy tốt khi ứng dụng ít giữ trạng thái trên từng máy.
 

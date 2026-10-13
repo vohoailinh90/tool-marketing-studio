@@ -2,12 +2,12 @@
 
 **Mạng được gọi tên theo phạm vi nó phủ.** Bốn tên này, từ nhỏ tới lớn, giúp nói nhanh "mạng này nằm ở quy mô nào" và thường gợi ý cả công nghệ, người quản lý và chi phí.
 
-![Bốn khung dọc theo phạm vi tăng dần: PAN quanh một người trong vài mét như Bluetooth hoặc USB, ví dụ đồng hồ thông minh nối điện thoại; LAN trong một nơi như nhà, văn phòng hoặc tòa nhà bằng Ethernet hoặc Wi-Fi, ví dụ TV, loa và máy tính cùng một router; MAN phủ cả một thành phố hoặc khuôn viên lớn, ví dụ mạng cáp quang trong thành phố; WAN trải nhiều thành phố và quốc gia qua nhà mạng, cáp biển hoặc VPN, trong đó Internet là mạng của các mạng. Ranh giới là quy ước, không cứng.](../../diagrams/sd-01-013-main.svg)
+![Bốn khung dọc theo phạm vi tăng dần: PAN quanh một người trong vài mét như Bluetooth hoặc USB, ví dụ đồng hồ thông minh nối điện thoại; LAN trong một nơi như nhà, văn phòng hoặc tòa nhà bằng Ethernet hoặc Wi-Fi, ví dụ TV, loa và máy tính cùng một mạng Wi-Fi trong nhà; MAN phủ cả một thành phố hoặc khuôn viên lớn, ví dụ mạng cáp quang trong thành phố; WAN trải nhiều thành phố và quốc gia qua nhà mạng, cáp biển hoặc VPN, trong đó Internet là mạng của các mạng. Ranh giới là quy ước, không cứng.](../../diagrams/sd-01-013-main.svg)
 
 ## Đọc hình
 
 - **PAN (Personal Area Network):** quanh một người, cỡ vài mét. Ví dụ: đồng hồ thông minh hoặc vòng đeo tay nối với điện thoại, tay cầm chơi game nối với máy.
-- **LAN (Local Area Network):** trong một nơi như nhà, văn phòng, tòa nhà. Thường dùng Ethernet hoặc Wi-Fi; các thiết bị dùng chung một router và qua đó ra Internet. Ví dụ: TV, loa và máy tính trong một căn nhà.
+- **LAN (Local Area Network):** trong một nơi như nhà, văn phòng, tòa nhà. Thường dùng Ethernet hoặc Wi-Fi; các thiết bị cùng thuộc một mạng cục bộ, nối qua switch hoặc điểm truy cập; chúng thường có chung đường ra Internet nhưng không bắt buộc. Ví dụ: TV, loa và máy tính cùng dùng một router Wi-Fi trong một căn nhà.
 - **MAN (Metropolitan Area Network):** phủ một thành phố hoặc khuôn viên lớn. Ví dụ: mạng cáp quang của một nhà mạng trong thành phố, hoặc mạng nối các chi nhánh của một ngân hàng trong cùng thành phố.
 - **WAN (Wide Area Network):** trải nhiều thành phố, quốc gia, thường dựa trên đường truyền thuê từ nhà mạng, cáp biển, VPN hoặc đường thuê riêng. Ví dụ: một chuỗi cửa hàng nối mọi cửa hàng về một trung tâm dữ liệu.
 

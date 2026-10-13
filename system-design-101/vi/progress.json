@@ -10,12 +10,13 @@
     "sd-01-005",
     "sd-01-006",
     "sd-01-007",
+    "sd-01-008",
     "sd-14-001",
     "sd-14-002",
     "sd-14-003"
   ],
   "reviewed_ids": [],
-  "next_id": "sd-01-008",
+  "next_id": "sd-01-009",
   "active_batch_ids": [
     "sd-14-001",
     "sd-14-002",
@@ -24,10 +25,10 @@
   "active_pr": 57,
   "updated_on": "2026-10-13",
   "active_branch": "claude/sd101-sd14-batch1",
-  "previous_pr": 34,
+  "previous_pr": 40,
   "superseded_pr": 24,
-  "integration_review_pending": false,
-  "adopted_main_sha": "3edff99314afa7435a4519b700e380eac8d6bc1c",
+  "integration_review_pending": true,
+  "adopted_main_sha": "5831cdcef96a2c83664e02d83a4e803cf47f259c",
   "prior_repository_reviewed_ids": [
     "sd-01-001",
     "sd-01-002",
@@ -39,8 +40,7 @@
   ],
   "repository": "vohoailinh90/tool-marketing-studio",
   "previous_repository": "vohoailinh90/Agentic-coding-course",
-  "destination_base_sha": "3edff99314afa7435a4519b700e380eac8d6bc1c",
+  "destination_base_sha": "5831cdcef96a2c83664e02d83a4e803cf47f259c",
   "migration_source_sha": "b8dff434ff75499137bbb10b61122958fdaaafa5",
-  "previous_repository_main_sha": "89186c1a1aeb90a47e2a563fdc7786b2dacec787",
-  "last_merged_pr": 40
+  "previous_repository_main_sha": "89186c1a1aeb90a47e2a563fdc7786b2dacec787"
 }

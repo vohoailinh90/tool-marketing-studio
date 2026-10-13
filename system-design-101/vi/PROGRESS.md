@@ -14,3 +14,5 @@ Metadata JSON duy nhất giữ trạng thái; YAML chỉ id/metadata_ref. Hình/
 Theo yêu cầu2026-10-13: CI xếp hàng không chặn PR tiếp theo khi review/checks cục bộ đạt. Đợt008–010 đang có sẵn PR53, tiếp nhận thay vì viết trùng CSS; active_pr=53. Danh sách PR chờCI trong progress.json; snapshot cũ không duyệt head mới. Không merge/deploy hoặc nhân đôi trạng thái lên YAML.
 
 Đồng bộ main 42f9d80897f41cda6867c064893c37368cc639b2 sau PR #44. Giữ một canonical bài 008 của PR #53 đã đối chiếu nguồn; sửa paint/raster và điều kiện script chờ stylesheet theo review. Review tổ hợp mới pending; CI không được coi là đạt khi chưa có kết quả.
+
+Đồng bộ main b6cde8cf8065c430756f20c1329ca84f56e25e7b (PR #63 giảm CI trùng), bảo toàn nguyên workflow/tests/mutations. Bài/hình không đổi; review và CI của head trước không duyệt tổ hợp mới.

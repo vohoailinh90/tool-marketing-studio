@@ -12,3 +12,5 @@ Sau review tích hợp sạch, biên soạn sd-01-008 theo nguồn rồi từng 
 Main đích ban đầu ở trên là snapshot nhập. Sau đồng bộ, mốc hiện hành trong progress.json là 3edff99314afa7435a4519b700e380eac8d6bc1c; review lại tổ hợp mới, không dùng CI/review của head trước.
 
 Đồng bộ main 42f9d80897f41cda6867c064893c37368cc639b2 (PR #44): giữ bản bài 008 hiện hành của PR #53 đã đọc body và đối chiếu claim. Bản nháp khác cùng ID vẫn lưu trong lịch sử main; không nhân đôi lesson. Review tổ hợp mới cần chạy lại.
+
+Đồng bộ main b6cde8cf8065c430756f20c1329ca84f56e25e7b (PR #63 giảm CI trùng), bảo toàn nguyên workflow/tests/mutations. Bài/hình không đổi; review và CI của head trước không duyệt tổ hợp mới.

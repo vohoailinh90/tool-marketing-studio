@@ -53,8 +53,8 @@ A, D, C, B. Hai lệnh `console.log` đồng bộ chạy trước (A, D). Khi st
 
 - [ByteByteGo tại snapshot cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-javascript-work.md).
 - [HTML Standard — Event loops](https://html.spec.whatwg.org/multipage/webappapis.html#event-loops) và [ECMAScript](https://tc39.es/ecma262/): hàng đợi và microtask.
-- [MDN — Event loop](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Event_loop) và [Web Workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API).
+- [MDN — Event loop](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Event_loop), [Node.js — Event loop](https://nodejs.org/en/learn/asynchronous-work/event-loop-timers-and-nexttick) và [Web Workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API).
 - [V8 — Ignition và TurboFan](https://v8.dev/blog/launching-ignition-and-turbofan).
 - [MDN — Kế thừa và chuỗi prototype](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Inheritance_and_the_prototype_chain), [Quản lý bộ nhớ](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Memory_management) và [TypeScript](https://www.typescriptlang.org/docs/handbook/intro.html).
 
-Đã đọc nguồn ngày 2026-10-13; các tài liệu nêu trên chưa được mở để đối chiếu trực tiếp trong lượt biên soạn này. Bài viết và hình được thiết kế độc lập.
+Đã đọc bản nguồn ByteByteGo ngày 2026-10-13; các tài liệu nêu trên chưa được mở để đối chiếu trực tiếp trong lượt biên soạn này. Bài viết và hình được thiết kế độc lập.

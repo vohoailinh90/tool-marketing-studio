@@ -78,17 +78,25 @@
       "source": "https://www.rfc-editor.org/rfc/rfc9457"
     },
     {
-      "claim_vi": "Khóa idempotency cho POST giúp client thử lại mà không tạo trùng.",
+      "claim_vi": "Khóa idempotency (header Idempotency-Key) cho POST giúp client thử lại mà không tạo trùng; header này đang là bản thảo IETF và được dùng ở một số dịch vụ như Stripe.",
       "sources": [
         "https://docs.stripe.com/api/idempotent_requests",
         "https://datatracker.ietf.org/doc/draft-ietf-httpapi-idempotency-key-header/"
       ]
     },
     {
-      "claim_vi": "Phân trang theo con trỏ, lọc, sắp xếp và đặt phiên bản trong đường dẫn hoặc header là các thực hành phổ biến.",
+      "claim_vi": "Phân trang theo con trỏ thường ổn định hơn offset khi dữ liệu thay đổi; lọc, sắp xếp và đặt phiên bản trong đường dẫn hoặc header là các thực hành phổ biến.",
       "sources": [
         "https://github.com/microsoft/api-guidelines",
         "https://cloud.google.com/apis/design"
+      ]
+    },
+    {
+      "claim_vi": "REST là một phong cách thiết kế; RPC và GraphQL là các lựa chọn khác được dùng vì lý do riêng.",
+      "sources": [
+        "https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm",
+        "https://graphql.org/learn/",
+        "https://grpc.io/docs/what-is-grpc/introduction/"
       ]
     }
   ],

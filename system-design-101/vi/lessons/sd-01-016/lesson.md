@@ -43,4 +43,4 @@ API gateway: nó lo định tuyến theo đường dẫn, xác thực và giới
 - [AWS — API Gateway](https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html) và [Azure — API gateway pattern](https://learn.microsoft.com/en-us/azure/architecture/microservices/design/gateway).
 - [RFC 9110 — Trung gian (§3.7)](https://www.rfc-editor.org/rfc/rfc9110).
 
-Đã đọc nguồn ngày 2026-10-13; các tài liệu nêu trên chưa được mở để đối chiếu trực tiếp trong lượt biên soạn này. Bài viết và hình được thiết kế độc lập.
+Đã đọc bản nguồn ByteByteGo ngày 2026-10-13; các tài liệu nêu trên chưa được mở để đối chiếu trực tiếp trong lượt biên soạn này. Bài viết và hình được thiết kế độc lập.

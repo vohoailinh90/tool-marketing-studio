@@ -8,12 +8,12 @@
 
 1. **Đường dẫn theo miền.** Cấu trúc đường dẫn phản ánh mô hình nghiệp vụ: `/orders/42/items` là các mục của đơn 42. Hành động nằm ở phương thức HTTP, không nằm trong đường dẫn.
 2. **Phương thức đúng.** `GET` đọc (không đổi dữ liệu), `POST` tạo hoặc thực hiện thao tác, `PUT` thay toàn bộ, `DELETE` xóa. `PATCH` sửa một phần, nhưng cần quy ước rõ vì cách dùng khác nhau giữa các nhóm.
-3. **Idempotent.** Gửi lại cùng yêu cầu cho cùng kết quả. `GET`, `PUT`, `DELETE` theo định nghĩa là idempotent; `POST` thì không. Để client thử lại an toàn, cho `POST` nhận một khóa (ví dụ header `Idempotency-Key`) và nhớ kết quả.
+3. **Idempotent.** Gửi lại cùng yêu cầu cho cùng kết quả. `GET`, `PUT`, `DELETE` theo định nghĩa là idempotent; `POST` thì không. Để client thử lại an toàn, cho `POST` nhận một khóa (ví dụ header `Idempotency-Key`, đang là bản thảo của IETF và đã được một số dịch vụ như Stripe dùng) và nhớ kết quả.
 4. **Mã trạng thái.** Dùng một tập nhỏ, nhất quán: 200, 201 (kèm `Location`), 204, 400, 401, 403, 404, 409, 429, 500; kèm thân lỗi cùng một định dạng.
 5. **Phiên bản.** Quyết sớm: trong đường dẫn (`/v1/...`) hoặc trong header. Thay đổi làm vỡ client thì ra phiên bản mới và giữ bản cũ một thời gian.
 6. **Tên dễ hiểu.** Danh từ số nhiều, nhất quán, để tìm trong tài liệu và đoán được tên của API chưa gặp.
 7. **Hàng loạt.** Nhiều thao tác trong một yêu cầu, ví dụ `POST /orders/batch`; cần định nghĩa rõ trường hợp thành công một phần và kích thước tối đa.
-8. **Truy vấn.** Quy tắc lọc, sắp xếp, phân trang thống nhất: `?status=paid&sort=-created_at&limit=20`. Phân trang bằng con trỏ ổn định hơn offset khi dữ liệu đang thay đổi.
+8. **Truy vấn.** Quy tắc lọc, sắp xếp, phân trang thống nhất: `?status=paid&sort=-created_at&limit=20`. Phân trang bằng con trỏ thường ổn định hơn offset khi dữ liệu đang thay đổi.
 
 ## Giới hạn cần nhớ
 
@@ -47,4 +47,4 @@ Máy chủ có thể đã xử lý lần đầu nên lần gửi lại tạo tha
 - [Stripe — Idempotent requests](https://docs.stripe.com/api/idempotent_requests) và [IETF — Idempotency-Key header](https://datatracker.ietf.org/doc/draft-ietf-httpapi-idempotency-key-header/).
 - [Microsoft REST API Guidelines](https://github.com/microsoft/api-guidelines) và [Google API Design Guide](https://cloud.google.com/apis/design).
 
-Đã đọc nguồn ngày 2026-10-13; các tài liệu nêu trên chưa được mở để đối chiếu trực tiếp trong lượt biên soạn này. Bài viết và hình được thiết kế độc lập.
+Đã đọc bản nguồn ByteByteGo ngày 2026-10-13; các tài liệu nêu trên chưa được mở để đối chiếu trực tiếp trong lượt biên soạn này. Bài viết và hình được thiết kế độc lập.

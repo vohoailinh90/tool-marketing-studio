@@ -8,13 +8,13 @@
 
 **HTTP/1.1.** Trên một kết nối, một yêu cầu phải xong thì yêu cầu kế mới đi (cơ chế gửi nối tiếp pipelining có, nhưng thực tế gần như không dùng). Muốn tải song song, trình duyệt mở nhiều kết nối tới cùng máy chủ, thường giới hạn khoảng sáu, và mỗi kết nối tốn thời gian thiết lập.
 
-**HTTP/2.** Dùng *một* kết nối. Mỗi yêu cầu và phản hồi là một *luồng*, chia thành các *khung* nhị phân. Khung của nhiều luồng xen kẽ trên cùng kết nối, nên một tệp chậm không chặn các tệp khác ở tầng HTTP. Header lặp lại được nén bằng *HPACK*, tiết kiệm băng thông khi có nhiều yêu cầu nhỏ.
+**HTTP/2.** Dùng *một* kết nối. Mỗi yêu cầu và phản hồi là một *luồng*, chia thành các *khung* nhị phân. Khung của nhiều luồng xen kẽ trên cùng kết nối, nên một tệp chậm không chặn các tệp khác ở tầng HTTP. Trong hình, mỗi ô là một khung; cùng màu và cùng chữ cái là cùng một luồng (A1 và A2 thuộc luồng A). Header lặp lại được nén bằng *HPACK*, tiết kiệm băng thông khi có nhiều yêu cầu nhỏ.
 
 **Ưu tiên luồng** cho phép ưu tiên tệp quan trọng (như CSS) trước ảnh.
 
 ## Giới hạn cần nhớ
 
-HTTP/2 không luôn nhanh hơn rõ rệt. Nó giúp nhiều khi trang gồm nhiều tệp nhỏ; một tệp lớn duy nhất ít khác biệt. Vì mọi luồng dùng chung một kết nối TCP, mất một gói TCP làm *mọi* luồng phải chờ gửi lại; trên mạng hay mất gói, đôi khi HTTP/2 chậm hơn HTTP/1.1. Đó là lý do HTTP/3 chuyển sang QUIC. Số luồng chạy đồng thời cũng có giới hạn do hai bên thỏa thuận, nên không phải mọi yêu cầu chạy cùng một lúc. Cần đo trên trang thật thay vì mặc định.
+HTTP/2 không luôn nhanh hơn rõ rệt. Nó giúp nhiều khi trang gồm nhiều tệp nhỏ; một tệp lớn duy nhất ít khác biệt. Vì mọi luồng dùng chung một kết nối TCP, mất một gói TCP làm *mọi* luồng phải chờ gửi lại; trên mạng hay mất gói, đôi khi HTTP/2 chậm hơn HTTP/1.1. Đó là lý do HTTP/3 chuyển sang QUIC. Số luồng chạy đồng thời cũng có giới hạn: mỗi bên công bố một mức qua `SETTINGS_MAX_CONCURRENT_STREAMS`, và mức đó giới hạn số luồng do bên kia mở, nên không phải mọi yêu cầu chạy cùng một lúc. Cần đo trên trang thật thay vì mặc định.
 
 ## Nhìn hình thử trả lời
 

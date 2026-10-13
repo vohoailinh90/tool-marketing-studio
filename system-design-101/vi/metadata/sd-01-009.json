@@ -90,13 +90,13 @@
       ]
     },
     {
-      "claim_vi": "Số luồng đồng thời được giới hạn bởi tham số hai bên thỏa thuận (SETTINGS_MAX_CONCURRENT_STREAMS) và có kiểm soát luồng.",
+      "claim_vi": "Mỗi bên công bố tham số SETTINGS_MAX_CONCURRENT_STREAMS, giới hạn số luồng đồng thời do bên kia mở; HTTP/2 còn có kiểm soát luồng.",
       "sources": [
         "https://www.rfc-editor.org/rfc/rfc9113"
       ]
     }
   ],
-  "design_notes_vi": "Ba khung dọc: HTTP/1.1, HTTP/2, giới hạn còn lại; khung HTTP/2 minh họa khung xen kẽ bằng các ô A1 B1 A2 C1 B2. Sơ đồ tự thiết kế, không dùng ảnh nguồn.",
+  "design_notes_vi": "Ba khung dọc: HTTP/1.1, HTTP/2, giới hạn còn lại; khung HTTP/2 minh họa khung xen kẽ bằng các ô A1 B1 A2 C1 B2, cùng màu là cùng một luồng. Sơ đồ tự thiết kế, không dùng ảnh nguồn.",
   "editorial_note_vi": "Viết độc lập từ kiến thức và tiêu chuẩn kỹ thuật theo DECISIONS.md; claim chưa được đối chiếu trực tiếp với tài liệu chuẩn nên chờ review kỹ thuật. Chưa thử người học hoặc phê duyệt phát hành.",
   "source_deviations": [
     "Nguồn liệt kê server push như một tính năng; bài ghi là khó dùng đúng và một số trình duyệt đã gỡ hỗ trợ.",

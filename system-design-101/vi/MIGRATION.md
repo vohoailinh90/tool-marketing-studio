@@ -9,4 +9,4 @@ Bài giáo dục nằm trong kho riêng, đọc qua README và lesson.md. Chưa 
 
 Sau review tích hợp sạch, biên soạn sd-01-008 theo nguồn rồi từng ID tiếp theo, mỗi đợt1–3 bài. Khi main thay đổi kiểm tra lại tổ hợp. Không chờ người dùng nhắc.
 
-Main đích ban đầu ở trên là snapshot nhập. Sau đồng bộ, mốc hiện hành trong progress.json là 42f9d80897f41cda6867c064893c37368cc639b2 (merge của PR #44, thêm sd-01-008; trước đó 5831cdcef96a2c83664e02d83a4e803cf47f259c, merge của PR #40, và 3edff99314afa7435a4519b700e380eac8d6bc1c); review lại tổ hợp mới, không dùng CI/review của head trước.
+Main đích ban đầu ở trên là snapshot nhập. Sau đồng bộ, mốc hiện hành trong progress.json là 8936afc3bc311c90175ac515b0f1eed3ac0a1dc8 (merge của PR #64, chỉ đổi CI và công cụ, không đổi nội dung kho; trước đó 42f9d80897f41cda6867c064893c37368cc639b2, merge của PR #44, thêm sd-01-008; trước nữa 5831cdcef96a2c83664e02d83a4e803cf47f259c, merge của PR #40, và 3edff99314afa7435a4519b700e380eac8d6bc1c); review lại tổ hợp mới, không dùng CI/review của head trước.

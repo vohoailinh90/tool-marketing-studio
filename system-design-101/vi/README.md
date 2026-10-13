@@ -31,6 +31,9 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 10. [Hệ thống thanh toán: tiền đi qua những bước nào?](lessons/sd-12-010/lesson.md) — bản nháp độc lập; chờ kiểm chứng nguồn và review kỹ thuật.
 11. [Kiến trúc nền tảng thử nghiệm A/B](lessons/sd-12-011/lesson.md) — bản nháp độc lập; chờ kiểm chứng nguồn và review kỹ thuật.
 12. [Thiết kế dịch vụ bản đồ kiểu Google Maps](lessons/sd-12-012/lesson.md) — bản nháp độc lập; chờ kiểm chứng nguồn và review kỹ thuật.
+13. [Thiết kế ứng dụng chat 1–1](lessons/sd-12-013/lesson.md) — bản nháp độc lập; chờ kiểm chứng nguồn và review kỹ thuật.
+14. [Thiết kế sàn giao dịch chứng khoán](lessons/sd-12-014/lesson.md) — bản nháp độc lập; chờ kiểm chứng nguồn và review kỹ thuật.
+15. [Thông báo đẩy tới điện thoại hoạt động ra sao?](lessons/sd-12-015/lesson.md) — bản nháp độc lập; chờ kiểm chứng nguồn và review kỹ thuật.
 
 Danh mục đầy đủ và snapshot nguồn: [bảng đối chiếu](../../brainstorm/system-design-101-vi/source-map.json).
 Quy tắc đã chốt: [kết luận brainstorm](../../brainstorm/system-design-101-vi/DECISIONS.md).

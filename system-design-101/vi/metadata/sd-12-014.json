@@ -1,0 +1,61 @@
+{
+  "id": "sd-12-014",
+  "title_vi": "Thiết kế sàn giao dịch chứng khoán",
+  "language": "vi",
+  "kind": "architecture",
+  "content_status": "draft",
+  "source_ref": "sd-12-014",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/design-stock-exchange.md",
+    "blob_sha": "bf983f9ac7868980fbf9523a0ab4b397dddbd67e",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/design-stock-exchange.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "b1e1702e1a068e582ce8167d682614601e3c9219fb0a4305695e09d150d9f2db",
+    "retrieved_body_bytes": 1768
+  },
+  "diagram": "../diagrams/sd-12-014-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "official_sources_not_reachable_from_authoring_environment"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "not_yet_reviewed"
+    },
+    "mobile": {
+      "status": "pending"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Sổ lệnh khớp theo giá rồi theo thời gian đến (ưu tiên giá–thời gian) là quy tắc phổ biến.",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Order_book",
+        "https://en.wikipedia.org/wiki/Matching_engine"
+      ]
+    },
+    {
+      "claim_vi": "Chuỗi sự kiện được đánh số và phát lại để dựng lại cùng trạng thái là cách làm phổ biến.",
+      "sources": [
+        "https://martinfowler.com/eaaDev/EventSourcing.html"
+      ]
+    }
+  ],
+  "source_deviations": [
+    "Bài không dùng số liệu độ trễ; thêm giải thích sổ lệnh, ưu tiên giá–thời gian và tính tất định."
+  ],
+  "design_notes_vi": "Bảy thẻ dọc theo đường chính của nguồn; chú thích cuối nêu việc đánh số thứ tự.",
+  "editorial_note_vi": "Bản nháp độc lập viết từ kiến thức kỹ thuật chung; đọc bài nguồn nhưng chưa mở tài liệu chính thức nên các claim chưa được kiểm chứng. Chưa review kỹ thuật, chưa user testing, chưa phê duyệt phát hành."
+}

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 716" width="320" height="716" role="img" aria-labelledby="title desc">
+<title id="title">Thông báo đẩy qua FCM</title>
+<desc id="desc">Ứng dụng đăng ký và nhận token, gửi token cho máy chủ riêng. Máy chủ gửi tin kèm token tới FCM. FCM xếp hàng nếu thiết bị ngoại tuyến, chuyển qua kênh nền tảng, và thiết bị hiển thị thông báo.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="716" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="21" font-weight="bold">THÔNG BÁO ĐẨY</text>
+<rect x="16" y="46" width="288" height="68" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="29" y="75" font-size="16" font-weight="bold">1 · Ứng dụng đăng ký FCM</text>
+<text x="29" y="99" font-size="16" font-weight="normal">Nhận registration token</text>
+<line x1="160" y1="115" x2="160" y2="141" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="144" width="288" height="68" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="29" y="173" font-size="16" font-weight="bold">2 · Gửi token cho máy chủ</text>
+<text x="29" y="197" font-size="16" font-weight="normal">Lưu kèm thời gian</text>
+<line x1="160" y1="213" x2="160" y2="239" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="242" width="288" height="92" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="29" y="271" font-size="16" font-weight="bold">3 · Máy chủ gửi tin</text>
+<text x="29" y="295" font-size="16" font-weight="normal">Admin SDK hoặc HTTP, kèm</text>
+<text x="29" y="319" font-size="16" font-weight="normal">token</text>
+<line x1="160" y1="335" x2="160" y2="361" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="364" width="288" height="68" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="29" y="393" font-size="16" font-weight="bold">4 · FCM nhận và xếp hàng</text>
+<text x="29" y="417" font-size="16" font-weight="normal">Giữ tin nếu thiết bị ngoại tuyến</text>
+<line x1="160" y1="433" x2="160" y2="459" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="462" width="288" height="68" rx="12" fill="#e2e8f0" stroke="#94a3b8"/>
+<text x="29" y="491" font-size="16" font-weight="bold">5 · Kênh của nền tảng</text>
+<text x="29" y="515" font-size="16" font-weight="normal">Android, APNs (iOS), web</text>
+<line x1="160" y1="531" x2="160" y2="557" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="560" width="288" height="68" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="29" y="589" font-size="16" font-weight="bold">6 · Thiết bị hiển thị</text>
+<text x="29" y="613" font-size="16" font-weight="normal">Theo cấu hình đi kèm</text>
+<text x="16" y="656" font-size="16" font-weight="normal">Token là địa chỉ của một bản cài</text>
+<text x="16" y="680" font-size="16" font-weight="normal">ứng dụng, không phải của người</text>
+<text x="16" y="704" font-size="16" font-weight="normal">dùng.</text>
+</g></svg>

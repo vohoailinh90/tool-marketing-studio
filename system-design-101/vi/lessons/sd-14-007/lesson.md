@@ -30,8 +30,8 @@ Máy trong mạng nội bộ mở một kết nối ra ngoài, và tường lử
 <details>
 <summary>Xem đáp án</summary>
 
-Tường lửa theo dõi trạng thái ghi lại kết nối đi ra, nên gói đi vào khớp với kết nối đó được coi là gói trả lời và cho qua. Lọc gói thuần túy không có ghi nhớ này: gói trả lời trông như một gói đi vào bất kỳ nên bị chặn, trừ khi người quản trị mở thêm luật theo cổng.
-Khi chạy thử trên Linux, chỉ có luật theo cổng thì kết nối quá hạn, còn khi thêm luật theo trạng thái thì kết nối thành công.
+Tường lửa theo dõi trạng thái ghi lại kết nối đi ra, nên gói đi vào khớp với kết nối đó được coi là gói trả lời và cho qua. Lọc gói thuần túy không có ghi nhớ này: nó chỉ xét từng gói theo các trường của gói đó, nên với luật chỉ cho gói đi ra, gói trả lời trông như một gói đi vào bất kỳ và bị chặn. Người quản trị có thể mở thêm luật cho gói đi vào, theo địa chỉ, cổng hoặc cờ TCP chẳng hạn, nhưng luật ấy vẫn không kiểm tra được gói có thuộc một kết nối đã mở trước đó hay không (suy luận của người biên soạn, chưa chạy thử).
+Khi chạy thử trên Linux với bộ luật đơn giản, chỉ có luật theo cổng thì kết nối quá hạn, còn khi thêm luật theo trạng thái thì kết nối thành công.
 
 </details>
 

@@ -1,14 +1,14 @@
 # CI đỏ mà máy bạn chạy được: năm nguồn khác biệt
 
-Lỗi khó chịu nhất của CI là "máy tôi chạy được". Thường pipeline không sai: hai môi trường khác nhau ở một chỗ mà không ai ghi lại. Bài này nêu năm nguồn khác biệt hay gặp và cách khóa từng nguồn lại.
+Lỗi khó chịu nhất của CI (Continuous Integration — tích hợp liên tục) là "máy tôi chạy được". Thường pipeline không sai: hai môi trường khác nhau ở một chỗ mà không ai ghi lại. Bài này nêu năm nguồn khác biệt hay gặp và cách khóa từng nguồn lại.
 
-![Năm nguồn khác biệt khiến CI đỏ trong khi máy bạn chạy được: phiên bản công cụ và phụ thuộc, môi trường chạy như nhãn runner, trạng thái còn sót ở máy bạn, cấu hình và bí mật chỉ có ở một bên, và thứ tự chạy, múi giờ hay tài nguyên dùng chung giữa các test.](../../diagrams/sd-13-014-main.svg)
+![Năm nguồn khác biệt khiến CI (Continuous Integration — tích hợp liên tục) đỏ trong khi máy bạn chạy được: phiên bản công cụ và phụ thuộc, môi trường chạy như nhãn runner, trạng thái còn sót ở máy bạn, cấu hình và bí mật chỉ có ở một bên, và thứ tự chạy, múi giờ hay tài nguyên dùng chung giữa các test.](../../diagrams/sd-13-014-main.svg)
 
 **Đọc hình:** năm thẻ là năm nguồn khác biệt độc lập; thẻ nào cũng kèm cách khóa lại.
 
 ## Nhìn hình thử trả lời
 
-Test qua trên máy macOS của bạn nhưng lỗi trên runner Linux vì không tìm thấy tệp `Config.json`, trong khi tệp trong repo tên `config.json`. Nguyên nhân hay gặp nhất là gì?
+Test qua trên máy macOS của bạn nhưng lỗi trên runner Linux vì không tìm thấy tệp `Config.json`, trong khi tệp trong repo (viết tắt của repository — kho mã nguồn) tên `config.json`. Nguyên nhân hay gặp nhất là gì?
 
 <details>
 <summary>Xem đáp án</summary>

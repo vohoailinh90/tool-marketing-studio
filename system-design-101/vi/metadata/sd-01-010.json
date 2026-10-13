@@ -54,10 +54,18 @@
       ]
     },
     {
-      "claim_vi": "Cascade chọn quy tắc thắng theo nguồn và độ quan trọng, rồi thứ tự lớp @layer, rồi độ đặc hiệu, rồi thứ tự xuất hiện.",
+      "claim_vi": "Với quy tắc kiểu thông thường, cascade chọn quy tắc thắng theo nguồn và độ quan trọng, rồi thứ tự lớp @layer, rồi độ đặc hiệu, rồi thứ tự xuất hiện.",
       "sources": [
         "https://www.w3.org/TR/css-cascade-5/",
         "https://www.w3.org/TR/selectors-4/"
+      ]
+    },
+    {
+      "claim_vi": "Giá trị đang chạy từ @keyframes thắng khai báo thường của tác giả nhưng không thắng !important; giá trị của transition thắng cả !important.",
+      "sources": [
+        "https://www.w3.org/TR/css-cascade-5/#cascade-sort",
+        "https://www.w3.org/TR/css-animations-1/",
+        "https://www.w3.org/TR/css-transitions-1/"
       ]
     },
     {

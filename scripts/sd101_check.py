@@ -950,7 +950,7 @@ def figure_strings(path: pathlib.Path) -> list[str]:
     """
     try:
         root = ElementTree.parse(path).getroot()
-    except (ElementTree.ParseError, OSError, LookupError):
+    except (OSError, LookupError, ElementTree.ParseError):
         return []
     strings = ("".join(element.itertext()) for element in root.iter() if local_name(element.tag) in ("title", "desc", "text"))
     return [string for string in strings if any(word.islower() and len(word) > 1 for word in re.findall(r"[^\W\d_]+", string))]
@@ -962,7 +962,7 @@ def lesson_prose(text: str) -> tuple[list[str], list[str], str | None, list[str]
 
     Code blocks, `code spans`, link destinations and the sources section are not prose a beginner has to decode.
     """
-    tokens = MarkdownIt("commonmark").enable("table").parse(text)
+    tokens = markdown_tokens(text)  # a block token is followed by its inline children, which no branch below reads
     lines = text.split("\n")
     titles: list[str] = []
     starts: list[int] = []

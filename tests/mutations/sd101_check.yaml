@@ -1806,3 +1806,7 @@ mutations:
   find: "            (glossary if section == GLOSSARY_HEADING else body).append(piece)\n    return body, glossary,"
   replace: "            (glossary if section == GLOSSARY_HEADING else body).append(\"\" if section == GLOSSARY_HEADING else piece)\n    return body, glossary,"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_what_a_glossary_entry_says_is_read_for_abbreviations_too
+- label: a figure that is not XML raises while its text is read for abbreviations
+  find: "except (OSError, LookupError, ElementTree.ParseError):"
+  replace: "except (OSError, LookupError):"
+  test: tests.test_sd101_check.RobustnessTests.test_odd_svg_files_are_reported_not_raised

@@ -36,7 +36,7 @@ Ghép kênh cho phép gửi nhiều yêu cầu nhỏ cùng lúc trên một kế
 
 - **Khung và luồng:** khung có nhiều loại; ví dụ khung HEADERS mang header và khung DATA mang thân thông điệp. Mỗi luồng có số hiệu riêng, các luồng chạy đồng thời trên một kết nối.
 - **Kiểm soát lưu lượng:** HTTP/2 có kiểm soát lưu lượng (flow control) riêng cho từng luồng và cho cả kết nối, để một luồng không chiếm hết bộ đệm của bên nhận.
-- **HPACK:** dùng một bảng tĩnh các header phổ biến, một bảng động theo từng kết nối và mã hóa Huffman cho chuỗi. Nó được thiết kế riêng thay vì dùng nén tổng quát như DEFLATE, vì cách nén đó từng bị khai thác trong các tấn công kiểu CRIME.
+- **HPACK:** dùng một bảng tĩnh các header phổ biến, một bảng động theo từng kết nối và mã hóa Huffman cho chuỗi. Nó được thiết kế riêng thay vì dùng nén tổng quát như DEFLATE, vì cách nén đó từng bị khai thác trong các tấn công kiểu CRIME. HPACK chỉ giảm bớt rủi ro loại này chứ không loại bỏ hoàn toàn.
 - **TLS:** chuẩn cho phép HTTP/2 không mã hóa, nhưng trên web các trình duyệt thường chỉ dùng HTTP/2 qua TLS (HTTPS), và hai bên thương lượng giao thức khi bắt tay TLS.
 - **HTTP/3:** giữ nguyên ngữ nghĩa HTTP nhưng chạy trên QUIC (qua UDP); mất gói không còn dừng mọi luồng như trên TCP: luồng không có dữ liệu trong gói bị mất vẫn tiến triển được, dù một gói có thể chứa dữ liệu của nhiều luồng và kiểm soát tắc nghẽn vẫn áp dụng cho cả kết nối.
 

@@ -74,7 +74,7 @@
       ]
     },
     {
-      "claim_vi": "HPACK nén header bằng bảng tĩnh, bảng động theo kết nối và mã hóa Huffman, và được thiết kế để tránh các tấn công nén kiểu CRIME.",
+      "claim_vi": "HPACK nén header bằng bảng tĩnh, bảng động theo kết nối và mã hóa Huffman, và được thiết kế để giảm bớt (không loại bỏ hoàn toàn) rủi ro của các tấn công nén kiểu CRIME.",
       "sources": [
         "https://www.rfc-editor.org/rfc/rfc7541.html"
       ]
@@ -146,7 +146,8 @@
     "Nguồn liệt kê server push là một tính năng giúp nhanh; bài nói rằng nó khó dùng đúng và một số trình duyệt lớn như Chrome đã ngừng hỗ trợ.",
     "Nguồn nói dạng nhị phân giúp xử lý hiệu quả hơn; bài nói riêng dạng nhị phân chỉ giúp gọn và ít nhập nhằng, lợi ích lớn đến từ ghép kênh và nén header.",
     "Bài thêm phần nền của HTTP/1.1 (mỗi kết nối một yêu cầu một lúc), mất gói trên TCP và HTTP/3, kiểm soát lưu lượng, TLS; nguồn không có các phần này.",
-    "Nguồn chỉ nói chung rằng HTTP/2 có thể chậm tùy tình huống; bài chỉ ra tình huống cụ thể là mạng hay mất gói."
+    "Nguồn chỉ nói chung rằng HTTP/2 có thể chậm tùy tình huống; bài chỉ ra tình huống cụ thể là mạng hay mất gói.",
+    "Nguồn không nói về bảo mật của nén header; bài nêu HPACK được thiết kế riêng vì nén tổng quát từng bị khai thác kiểu CRIME, và nói rõ HPACK chỉ giảm bớt rủi ro này chứ không loại bỏ hoàn toàn (RFC 7541)."
   ],
   "design_notes_vi": "Hình dọc năm thẻ: nền HTTP/1.1, khung nhị phân, một thẻ vẽ riêng sáu khung của ba luồng xen kẽ trên một kết nối (ghép kênh), HPACK và hai tính năng cần lưu ý; chú thích cuối nhắc mất gói TCP.",
   "editorial_note_vi": "Bản nháp độc lập viết từ kiến thức kỹ thuật chung; đọc bài nguồn nhưng chưa mở tài liệu chính thức nên các claim chưa được kiểm chứng. Chưa review kỹ thuật, chưa user testing, chưa phê duyệt phát hành."

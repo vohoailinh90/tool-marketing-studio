@@ -8,9 +8,9 @@
 
 **1. HTTP/1.1.** Thông điệp là văn bản. Trên một kết nối, mỗi lúc thực tế chỉ có một yêu cầu đang chờ phản hồi (HTTP/1.1 có “pipelining” nhưng trình duyệt gần như không dùng). Một phản hồi chậm ở đầu hàng làm các yêu cầu sau phải chờ, gọi là **head-of-line blocking** ở tầng HTTP. Trình duyệt bù bằng cách mở nhiều kết nối song song tới cùng một máy chủ (thường khoảng sáu), còn nhà phát triển gộp file, ghép ảnh hay chia tên miền để lách giới hạn đó.
 
-**2. Khung nhị phân.** HTTP/2 mã hóa thông điệp dạng nhị phân và cắt thành các **khung (frame)**. Mỗi khung mang số hiệu của **luồng (stream)** mà nó thuộc về; một luồng ứng với một cặp yêu cầu–phản hồi. Riêng việc dùng dạng nhị phân chỉ giúp máy đọc gọn và ít nhập nhằng hơn; lợi ích lớn đến từ việc khung cho phép bước tiếp theo.
+**2. Khung nhị phân.** HTTP/2 mã hóa thông điệp dạng nhị phân và cắt thành các **khung (frame)**. Mỗi khung mang số hiệu của **luồng (stream)** mà nó thuộc về (một số khung điều khiển dùng luồng số 0, tức cả kết nối); một luồng ứng với một cặp yêu cầu–phản hồi. Riêng việc dùng dạng nhị phân chỉ giúp máy đọc gọn và ít nhập nhằng hơn; lợi ích lớn đến từ việc khung cho phép bước tiếp theo.
 
-**3. Ghép kênh (multiplexing).** Khung của nhiều luồng được gửi xen kẽ trên cùng một kết nối TCP rồi ráp lại ở đầu bên kia. Một phản hồi lớn hay chậm không còn chặn các phản hồi khác ở tầng HTTP, và trình duyệt thường chỉ cần một kết nối cho mỗi nguồn gốc.
+**3. Ghép kênh (multiplexing).** Khung của nhiều luồng được gửi xen kẽ trên cùng một kết nối TCP rồi ráp lại ở đầu bên kia. Một phản hồi lớn hay chậm không còn chặn các phản hồi khác ở tầng HTTP (dù băng thông vẫn là chung), và trình duyệt thường chỉ cần một kết nối cho mỗi nguồn gốc.
 
 **4. Nén header (HPACK).** Header của các yêu cầu liên tiếp thường lặp lại (cookie, user-agent…). HPACK giữ ở hai đầu một bảng các header đã gặp và gửi phần lặp bằng chỉ số ngắn, nên tiết kiệm băng thông, nhất là khi có nhiều yêu cầu nhỏ.
 

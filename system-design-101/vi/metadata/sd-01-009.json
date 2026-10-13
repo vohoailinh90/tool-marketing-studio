@@ -99,10 +99,22 @@
       ]
     },
     {
-      "claim_vi": "HTTP/1.1 có pipelining nhưng trình duyệt gần như không dùng; trình duyệt mở nhiều kết nối song song tới cùng một máy chủ để bù.",
+      "claim_vi": "HTTP/1.1 có pipelining nhưng trình duyệt gần như không dùng; trình duyệt mở nhiều kết nối song song tới cùng một máy chủ (thường khoảng sáu) để bù.",
       "sources": [
         "https://www.rfc-editor.org/rfc/rfc9112.html",
         "https://developer.mozilla.org/en-US/docs/Web/HTTP/Connection_management_in_HTTP_1.x"
+      ]
+    },
+    {
+      "claim_vi": "Một luồng HTTP/2 ứng với một cặp yêu cầu–phản hồi; một số khung điều khiển dùng luồng số 0 cho cả kết nối.",
+      "sources": [
+        "https://www.rfc-editor.org/rfc/rfc9113.html"
+      ]
+    },
+    {
+      "claim_vi": "Máy khách HTTP/2 không nên mở quá một kết nối tới cùng một máy chủ và cổng, nên thường chỉ cần một kết nối cho mỗi nguồn gốc.",
+      "sources": [
+        "https://www.rfc-editor.org/rfc/rfc9113.html"
       ]
     },
     {

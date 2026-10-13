@@ -2,7 +2,7 @@
 
 Service là lớp địa chỉ ổn định trước một nhóm Pod. Khi nó không nhận traffic, hãy kiểm tra theo thứ tự từ trong ra ngoài: nhãn, cổng, trạng thái sẵn sàng, tên và đường vào từ ngoài cụm.
 
-![Năm chỗ cần kiểm tra khi Service không nhận traffic: selector không khớp nhãn Pod nên EndpointSlice trống, port và targetPort lệch, Pod chưa sẵn sàng nên với Service ở cấu hình mặc định endpoint có ready là false và không nhận traffic (Service đặt publishNotReadyAddresses: true là ngoại lệ), tên DNS sai namespace, và đường vào từ ngoài cụm như NodePort bị chặn hoặc LoadBalancer ở trạng thái pending.](../../diagrams/sd-13-006-main.svg)
+![Năm chỗ cần kiểm tra khi Service không nhận traffic: selector không khớp nhãn Pod nên EndpointSlice trống, port và targetPort lệch, Pod chưa sẵn sàng nên với Service ở cấu hình mặc định endpoint có ready là false và không nhận traffic (Service đặt publishNotReadyAddresses: true là ngoại lệ), tên DNS (Domain Name System — hệ thống phân giải tên miền) sai namespace, và đường vào từ ngoài cụm như NodePort bị chặn hoặc LoadBalancer ở trạng thái pending.](../../diagrams/sd-13-006-main.svg)
 
 **Đọc hình:** năm bước xếp theo thứ tự kiểm tra thường hiệu quả, không phải thứ tự dữ liệu chạy.
 
@@ -19,14 +19,14 @@ Chủ yếu là selector của Service không khớp nhãn của Pod nào (hoặ
 
 ## Giới hạn cần nhớ
 
-Chuỗi kiểm tra trên giả định Service có selector. Service không selector (tự quản endpoint), Service headless, ExternalName và Service đặt `publishNotReadyAddresses: true` (báo mọi endpoint là ready) hoạt động khác, nên không áp dụng nguyên văn. Định tuyến HTTP theo đường dẫn hay tên miền thuộc về Ingress hoặc Gateway, không phải Service.
+Chuỗi kiểm tra trên giả định Service có selector. Service không selector (tự quản endpoint), Service headless, ExternalName và Service đặt `publishNotReadyAddresses: true` (báo mọi endpoint là ready) hoạt động khác, nên không áp dụng nguyên văn. Định tuyến HTTP (HyperText Transfer Protocol — giao thức truyền siêu văn bản) theo đường dẫn hay tên miền thuộc về Ingress hoặc Gateway, không phải Service.
 
 <details>
 <summary>Xem sâu hơn</summary>
 
 - **Endpoint:** EndpointSlice được tạo từ các Pod khớp selector, mỗi endpoint kèm điều kiện như `ready`; với Service ở cấu hình mặc định, chỉ endpoint ready nhận traffic bình thường và Pod chưa sẵn sàng vẫn được liệt kê với `ready: false`. Ngoại lệ: Service đặt `spec.publishNotReadyAddresses: true` (thường để các Pod của StatefulSet tìm thấy nhau) báo mọi endpoint là `ready: true` bất kể Pod có sẵn sàng hay không, còn `serving` vẫn theo readiness của Pod. Để so khớp selector, xem `kubectl get svc web -o yaml` và `kubectl get pods --show-labels`.
 - **port và targetPort:** `port` là cổng của Service, `targetPort` là cổng container nhận traffic; nếu không ghi, `targetPort` bằng `port`.
-- **DNS:** trong cùng namespace gọi `web`; khác namespace dùng `web.ten-namespace` hoặc tên đầy đủ `web.ten-namespace.svc.<miền-cụm>`, trong đó `<miền-cụm>` là miền DNS đã cấu hình của cụm (thường là `cluster.local`).
+- **DNS (Domain Name System — hệ thống phân giải tên miền):** trong cùng namespace gọi `web`; khác namespace dùng `web.ten-namespace` hoặc tên đầy đủ `web.ten-namespace.svc.<miền-cụm>`, trong đó `<miền-cụm>` là miền DNS đã cấu hình của cụm (thường là `cluster.local`).
 - **NodePort:** mặc định dải 30000–32767 trên mọi node; cần cho phép trong tường lửa hoặc security group.
 - **LoadBalancer:** Kubernetes không tự có bộ cân bằng tải; cần nhà cung cấp cloud hoặc thành phần bổ sung (như MetalLB trên máy chủ riêng), không thì trạng thái chờ (`<pending>`) kéo dài.
 

@@ -1,0 +1,93 @@
+{
+  "id": "sd-05-003",
+  "title_vi": "Một URL biến thành yêu cầu HTTP thế nào?",
+  "language": "vi",
+  "kind": "reference",
+  "content_status": "review",
+  "source_ref": "sd-05-003",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/what-happens-when-you-type-a-url-into-your-browser.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-happens-when-you-type-a-url-into-your-browser.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches provider tree OID. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "f365d4163df3542c367f1fa4dca557475d204385",
+    "retrieved_body_sha256": "34609a44362fde65513cd88428d0e6fb38aced7985c84f589bd040d48d4292d9",
+    "retrieved_body_bytes": 2346
+  },
+  "diagram": "../diagrams/sd-05-003-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-05-002",
+      "relation": "uses",
+      "reason_vi": "Bài trước kể toàn bộ chuỗi từ lúc gõ địa chỉ tới khi trang hiện ra."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "evidence": "MDN pages read from a local clone of mdn/content; the request line and Host header captured from a real curl request to a local socket server (a direct request, no proxy)."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 14.4,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright) rendered the full lesson at each width with optional sections open; diagram scale measured from the rendered image and every SVG text box checked against the viewBox. Not learner testing and not GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "A URL is made of parts such as scheme, domain name, port, path, parameters and fragment; the fragment (after #) is never sent to the server with the request.",
+      "source": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_URL",
+      "section": "Basics: anatomy of a URL",
+      "verified_by": "Read from a local clone of mdn/content (developer.mozilla.org was unreachable)."
+    },
+    {
+      "claim_vi": "An HTTP/1.x request has a request line (method, request target, version), headers such as Host, an empty line and an optional body; a response starts with a status line.",
+      "source": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Messages",
+      "section": "HTTP requests; HTTP responses",
+      "verified_by": "Read from a local clone of mdn/content (developer.mozilla.org was unreachable)."
+    },
+    {
+      "claim_vi": "MDN describes four request-target forms: origin form (the most common; an absolute path combined with the Host header, used with GET, POST, HEAD and OPTIONS), absolute form (a complete URL, used with GET when connecting to a proxy), authority form (host:port, used only with CONNECT) and asterisk form (used with OPTIONS for the server as a whole). Only the origin form was captured; the others are stated as MDN describes them.",
+      "source": "https://github.com/mdn/content/blob/19370346042efad9e179fbf1f55deeeadee98c40/files/en-us/web/http/guides/messages/index.md",
+      "section": "Request targets",
+      "verified_by": "Read from a local clone of mdn/content at commit 19370346042efad9e179fbf1f55deeeadee98c40; not reproduced through a real proxy."
+    },
+    {
+      "claim_vi": "For a direct request, curl --http1.1 'http://localhost:PORT/products/phone?color=black#specs' the server received 'GET /products/phone?color=black HTTP/1.1' and 'Host: localhost:PORT' with no trace of the fragment.",
+      "source": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Messages",
+      "section": "HTTP requests",
+      "verified_by": "Captured the raw request received by a local socket server from curl 8.5.0."
+    }
+  ],
+  "design_notes_vi": "Một URL ví dụ nhất quán, mỗi phần một thẻ nói nó đi đâu; thẻ fragment màu đỏ vì không rời trình duyệt. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Source splits a URL into scheme, domain, path and a separate 'resource', and uses the path product/electric with a request for /phone; the lesson uses one consistent URL and folds the resource into the path.",
+    "Source does not mention that the fragment is never sent to the server.",
+    "Source shows only the origin-form request line; the lesson scopes that line to a direct request to the origin server and names the proxy (absolute form) and CONNECT (authority form) cases as MDN describes them."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

@@ -1,10 +1,10 @@
-# Kubernetes: mặt phẳng điều khiển và các node
+# Kubernetes: từ lệnh apply đến container chạy
 
-Một cụm Kubernetes có hai phần: mặt phẳng điều khiển quyết định, các node chạy ứng dụng.
+Cách dễ hiểu kiến trúc cụm là đi theo một lệnh `kubectl apply` tạo Deployment và xem lần lượt thành phần nào làm gì.
 
-![Mặt phẳng điều khiển gồm API server, scheduler, controller manager và etcd; mỗi node chạy kubelet, kube-proxy, container runtime và các Pod.](../../diagrams/sd-13-025-main.svg)
+![Luồng năm bước: API server nhận yêu cầu và lưu vào etcd, controller tạo Pod theo khai báo, scheduler chọn node, kubelet trên node chạy container, kube-proxy giúp Service tới đúng Pod.](../../diagrams/sd-13-025-main.svg)
 
-**Đọc hình:** mọi thành phần nói chuyện với nhau qua API server.
+**Đọc hình:** màu tím là mặt phẳng điều khiển, xanh là thành phần trên node; mọi thành phần nói chuyện qua API server.
 
 ## Nhìn hình thử trả lời
 
@@ -19,16 +19,16 @@ Hai container trong cùng một Pod gọi nhau bằng địa chỉ nào?
 
 ## Giới hạn cần nhớ
 
-Chạy một cụm một mặt phẳng điều khiển trên một máy thì không chịu được lỗi. Môi trường production thường chạy nhiều bản của mặt phẳng điều khiển và nhiều node.
+Chạy một mặt phẳng điều khiển trên một máy thì không chịu được lỗi. Môi trường production thường chạy nhiều bản của mặt phẳng điều khiển và nhiều node. Bài này đơn giản hóa luồng: thực tế còn nhiều bước kiểm tra và vòng lặp phản hồi.
 
 <details>
 <summary>Xem sâu hơn</summary>
 
-- **API server** là thành phần duy nhất đọc ghi etcd; kubectl, scheduler và kubelet đều đi qua nó.
-- **etcd** lưu toàn bộ trạng thái cụm, nên cần sao lưu.
-- **Scheduler** xem các Pod chưa có node và chọn node phù hợp.
-- **Controller manager** gồm nhiều controller (node, job, endpoint...) mỗi cái là một vòng lặp so trạng thái mong muốn với hiện tại.
-- **kubelet** nhận mô tả Pod và bảo đảm container đang chạy; **kube-proxy** lập luật để Service đến đúng Pod.
+- **API server** là thành phần duy nhất đọc ghi etcd; kubectl, controller, scheduler và kubelet đều đi qua nó.
+- **etcd** lưu trạng thái cụm nên cần sao lưu.
+- **Controller manager** chạy nhiều controller; mỗi cái là vòng lặp so trạng thái mong muốn với hiện tại.
+- **kubelet** nhận mô tả Pod gán cho node của nó và bảo đảm container chạy đúng.
+- **kube-proxy** lập luật mạng trên node để Service tới đúng Pod.
 
 </details>
 

@@ -1,6 +1,6 @@
 {
   "id": "sd-13-022",
-  "title_vi": "Sáu lệnh phân tích nhật ký trên dòng lệnh",
+  "title_vi": "Phân tích nhật ký trên dòng lệnh theo từng việc",
   "language": "vi",
   "kind": "reference",
   "content_status": "draft",
@@ -48,8 +48,8 @@
     }
   ],
   "source_deviations": [
-    "Ví dụ lệnh trong nguồn dùng dấu nháy kiểu chữ; bài viết lại ví dụ khác với định dạng nhật ký giả định."
+    "Nguồn liệt kê sáu lệnh theo thứ tự grep, cut, sed, awk, sort, uniq; bài tổ chức theo công việc phân tích và chỉ dùng cut ở ghi chú."
   ],
-  "design_notes_vi": "Năm thẻ dọc theo thứ tự đường ống thường gặp.",
+  "design_notes_vi": "Năm thẻ việc-lệnh theo thứ tự một phân tích thường gặp.",
   "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
 }

@@ -1,34 +1,30 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 868" width="320" height="868" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 738" width="320" height="738" role="img" aria-labelledby="title desc">
 <title id="title">Terraform biến mã thành hạ tầng</title>
-<desc id="desc">Quy trình dọc: viết tệp cấu hình, init tải provider, plan xem trước thay đổi, apply gọi API nhà cung cấp, rồi state ghi lại hiện trạng.</desc>
+<desc id="desc">Ba thẻ: cấu hình là thứ muốn có, state là thứ Terraform nhớ, hạ tầng thật là thứ đang có; plan tính chênh lệch giữa chúng và apply thực hiện chênh lệch đó.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="868" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
-<text x="16" y="30" font-size="20" font-weight="bold">TERRAFORM</text>
-<text x="16" y="58" font-size="16" font-weight="normal">Từ khai báo đến hạ tầng</text>
-<rect x="16" y="89" width="288" height="101" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
-<text x="30" y="117" font-size="16" font-weight="bold">1 · Viết cấu hình</text>
-<text x="30" y="144" font-size="16" font-weight="normal">Tệp .tf: tài nguyên, biến,</text>
-<text x="30" y="171" font-size="16" font-weight="normal">module</text>
-<line x1="160" y1="202" x2="160" y2="230" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
-<rect x="16" y="240" width="288" height="74" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
-<text x="30" y="268" font-size="16" font-weight="bold">2 · init</text>
-<text x="30" y="295" font-size="16" font-weight="normal">Tải provider và module</text>
-<line x1="160" y1="326" x2="160" y2="354" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
-<rect x="16" y="364" width="288" height="128" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
-<text x="30" y="392" font-size="16" font-weight="bold">3 · plan</text>
-<text x="30" y="419" font-size="16" font-weight="normal">So khai báo với state và</text>
-<text x="30" y="446" font-size="16" font-weight="normal">thực tế</text>
-<text x="30" y="473" font-size="16" font-weight="normal">Hiện thay đổi sẽ làm</text>
-<line x1="160" y1="504" x2="160" y2="532" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
-<rect x="16" y="542" width="288" height="155" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
-<text x="30" y="570" font-size="16" font-weight="bold">4 · apply</text>
-<text x="30" y="597" font-size="16" font-weight="normal">Gọi API của AWS, Azure,</text>
-<text x="30" y="624" font-size="16" font-weight="normal">GCP...</text>
-<text x="30" y="651" font-size="16" font-weight="normal">Tạo, sửa hoặc xóa tài</text>
-<text x="30" y="678" font-size="16" font-weight="normal">nguyên</text>
-<line x1="160" y1="709" x2="160" y2="737" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
-<rect x="16" y="747" width="288" height="101" rx="10" fill="#e2e8f0" stroke="#94a3b8"/>
-<text x="30" y="775" font-size="16" font-weight="bold">5 · state</text>
-<text x="30" y="802" font-size="16" font-weight="normal">Ghi lại hiện trạng để lần</text>
-<text x="30" y="829" font-size="16" font-weight="normal">sau so</text>
+<rect width="320" height="738" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">BA THỨ ĐỂ SO SÁNH</text>
+<text x="16" y="58" font-size="16" font-weight="normal">Cấu hình · state · thực tế</text>
+<rect x="16" y="89" width="288" height="74" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="117" font-size="16" font-weight="bold">Cấu hình (.tf)</text>
+<text x="30" y="144" font-size="16" font-weight="normal">Thứ bạn muốn có</text>
+<rect x="16" y="175" width="288" height="128" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="203" font-size="16" font-weight="bold">State</text>
+<text x="30" y="230" font-size="16" font-weight="normal">Thứ Terraform nhớ đã tạo</text>
+<text x="30" y="257" font-size="16" font-weight="normal">Ánh xạ cấu hình ↔ tài</text>
+<text x="30" y="284" font-size="16" font-weight="normal">nguyên thật</text>
+<rect x="16" y="315" width="288" height="101" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="343" font-size="16" font-weight="bold">Hạ tầng thật</text>
+<text x="30" y="370" font-size="16" font-weight="normal">Thứ đang tồn tại trên cloud</text>
+<text x="30" y="397" font-size="16" font-weight="normal">Có thể bị sửa tay</text>
+<line x1="160" y1="428" x2="160" y2="456" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="466" width="288" height="101" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="494" font-size="16" font-weight="bold">plan</text>
+<text x="30" y="521" font-size="16" font-weight="normal">Tính chênh lệch, không đổi</text>
+<text x="30" y="548" font-size="16" font-weight="normal">gì</text>
+<line x1="160" y1="579" x2="160" y2="607" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="617" width="288" height="101" rx="10" fill="#fee2e2" stroke="#94a3b8"/>
+<text x="30" y="645" font-size="16" font-weight="bold">apply</text>
+<text x="30" y="672" font-size="16" font-weight="normal">Thực hiện chênh lệch, cập</text>
+<text x="30" y="699" font-size="16" font-weight="normal">nhật state</text>
 </g></svg>

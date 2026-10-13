@@ -1,8 +1,8 @@
 {
   "id": "sd-13-021",
-  "title_vi": "Ba trụ cột quan sát: nhật ký, vết và số đo",
+  "title_vi": "Gỡ lỗi bằng số đo, vết và nhật ký",
   "language": "vi",
-  "kind": "comparison",
+  "kind": "flow",
   "content_status": "draft",
   "source_ref": "sd-13-021",
   "source_snapshot": {
@@ -52,15 +52,11 @@
     {
       "claim_vi": "OpenTelemetry định nghĩa các tín hiệu traces, metrics và logs.",
       "source": "https://opentelemetry.io/docs/concepts/signals/"
-    },
-    {
-      "claim_vi": "Prometheus có Alertmanager để xử lý cảnh báo.",
-      "source": "https://prometheus.io/docs/introduction/overview/"
     }
   ],
   "source_deviations": [
-    "Nguồn mô tả InfluxDB là nơi lưu dữ liệu thô rồi Prometheus kéo; bài ghi Prometheus có kho riêng, InfluxDB là lựa chọn khác."
+    "Nguồn trình bày ba trụ cột theo ba mục kèm công cụ (ELK, OpenTelemetry, Prometheus, InfluxDB, Grafana); bài tổ chức theo quy trình gỡ lỗi và bỏ danh sách công cụ."
   ],
-  "design_notes_vi": "Ba thẻ song song và ghi chú về liên kết bằng trace ID.",
+  "design_notes_vi": "Ba bước dọc nối nhau, ghi chú về trace ID.",
   "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
 }

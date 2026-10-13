@@ -1,31 +1,29 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 749" width="320" height="749" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 684" width="320" height="684" role="img" aria-labelledby="title desc">
 <title id="title">Chọn cơ sở dữ liệu cho hệ thống số đo</title>
-<desc id="desc">Ba thẻ xếp dọc: dữ liệu là nhiều chuỗi theo thời gian, ghi nhiều và đọc dồn theo đợt, từ đó nên cân nhắc cơ sở dữ liệu chuỗi thời gian.</desc>
+<desc id="desc">Bốn câu hỏi xếp dọc: tốc độ ghi, kiểu truy vấn, thời gian giữ dữ liệu và số chuỗi cùng người vận hành.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="749" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
-<text x="16" y="30" font-size="20" font-weight="bold">SỐ ĐO LÀ CHUỖI</text>
-<text x="16" y="58" font-size="16" font-weight="normal">Mỗi chuỗi = tên + bộ nhãn</text>
-<rect x="16" y="89" width="288" height="128" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
-<text x="30" y="117" font-size="16" font-weight="bold">Hình dạng dữ liệu</text>
-<text x="30" y="144" font-size="16" font-weight="normal">Mỗi hàng là một chuỗi</text>
-<text x="30" y="171" font-size="16" font-weight="normal">Trục ngang là thời gian</text>
-<text x="30" y="198" font-size="16" font-weight="normal">Mỗi lần ghi thêm một điểm</text>
-<rect x="16" y="229" width="288" height="128" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
-<text x="30" y="257" font-size="16" font-weight="bold">Ghi</text>
-<text x="30" y="284" font-size="16" font-weight="normal">Liên tục, rất nhiều điểm</text>
-<text x="30" y="311" font-size="16" font-weight="normal">Nhiều số đo thu mỗi vài</text>
-<text x="30" y="338" font-size="16" font-weight="normal">giây</text>
-<rect x="16" y="369" width="288" height="155" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
-<text x="30" y="397" font-size="16" font-weight="bold">Đọc</text>
-<text x="30" y="424" font-size="16" font-weight="normal">Dashboard và cảnh báo hỏi</text>
-<text x="30" y="451" font-size="16" font-weight="normal">theo đợt</text>
-<text x="30" y="478" font-size="16" font-weight="normal">Thường theo khoảng thời</text>
-<text x="30" y="505" font-size="16" font-weight="normal">gian</text>
-<line x1="160" y1="536" x2="160" y2="564" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
-<rect x="16" y="574" width="288" height="155" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
-<text x="30" y="602" font-size="16" font-weight="bold">Ứng viên</text>
-<text x="30" y="629" font-size="16" font-weight="normal">Cơ sở dữ liệu chuỗi thời</text>
-<text x="30" y="656" font-size="16" font-weight="normal">gian</text>
-<text x="30" y="683" font-size="16" font-weight="normal">Nén tốt, xóa dữ liệu cũ</text>
-<text x="30" y="710" font-size="16" font-weight="normal">theo hạn</text>
+<rect width="320" height="684" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">4 CÂU HỎI CHỌN KHO</text>
+<text x="16" y="58" font-size="16" font-weight="normal">Trả lời trước khi chọn công</text>
+<text x="16" y="85" font-size="16" font-weight="normal">nghệ</text>
+<rect x="16" y="116" width="288" height="101" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="144" font-size="16" font-weight="bold">1 · Ghi bao nhiêu?</text>
+<text x="30" y="171" font-size="16" font-weight="normal">Bao nhiêu điểm mỗi giây</text>
+<text x="30" y="198" font-size="16" font-weight="normal">Có tăng đột biến không</text>
+<rect x="16" y="229" width="288" height="128" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="257" font-size="16" font-weight="bold">2 · Hỏi kiểu gì?</text>
+<text x="30" y="284" font-size="16" font-weight="normal">Theo khoảng thời gian</text>
+<text x="30" y="311" font-size="16" font-weight="normal">Tổng hợp, tốc độ tăng, phân</text>
+<text x="30" y="338" font-size="16" font-weight="normal">vị</text>
+<rect x="16" y="369" width="288" height="155" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="397" font-size="16" font-weight="bold">3 · Giữ bao lâu?</text>
+<text x="30" y="424" font-size="16" font-weight="normal">Dữ liệu cũ có cần độ chi</text>
+<text x="30" y="451" font-size="16" font-weight="normal">tiết?</text>
+<text x="30" y="478" font-size="16" font-weight="normal">Có thể xóa hoặc gộp lại</text>
+<text x="30" y="505" font-size="16" font-weight="normal">không</text>
+<rect x="16" y="536" width="288" height="128" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="564" font-size="16" font-weight="bold">4 · Bao nhiêu chuỗi?</text>
+<text x="30" y="591" font-size="16" font-weight="normal">Tổ hợp nhãn sinh ra bao</text>
+<text x="30" y="618" font-size="16" font-weight="normal">nhiêu chuỗi</text>
+<text x="30" y="645" font-size="16" font-weight="normal">Ai sẽ vận hành kho này</text>
 </g></svg>

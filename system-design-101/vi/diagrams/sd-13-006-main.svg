@@ -1,26 +1,27 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 603" width="320" height="603" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 630" width="320" height="630" role="img" aria-labelledby="title desc">
 <title id="title">Bốn loại Service trong Kubernetes</title>
-<desc id="desc">Bốn thẻ: ClusterIP chỉ trong cụm, NodePort mở một cổng trên mọi node, LoadBalancer dùng bộ cân bằng tải của nhà cung cấp cloud, ExternalName trả tên miền thay vì IP.</desc>
+<desc id="desc">Bốn tình huống và loại Service tương ứng: Pod khác trong cụm dùng ClusterIP, thử từ máy ngoài dùng NodePort, công khai trên cloud dùng LoadBalancer, trỏ tên nội bộ ra dịch vụ ngoài dùng ExternalName.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="603" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
-<text x="16" y="30" font-size="20" font-weight="bold">4 LOẠI SERVICE</text>
-<text x="16" y="58" font-size="16" font-weight="normal">Từ trong cụm ra ngoài</text>
-<rect x="16" y="89" width="288" height="128" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
-<text x="30" y="117" font-size="16" font-weight="bold">ClusterIP</text>
-<text x="30" y="144" font-size="16" font-weight="normal">Mặc định</text>
-<text x="30" y="171" font-size="16" font-weight="normal">Địa chỉ nội bộ, chỉ trong</text>
-<text x="30" y="198" font-size="16" font-weight="normal">cụm</text>
-<rect x="16" y="229" width="288" height="101" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
-<text x="30" y="257" font-size="16" font-weight="bold">NodePort</text>
-<text x="30" y="284" font-size="16" font-weight="normal">Mở một cổng trên mọi node</text>
-<text x="30" y="311" font-size="16" font-weight="normal">Gọi bằng NodeIP:cổng</text>
-<rect x="16" y="342" width="288" height="128" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
-<text x="30" y="370" font-size="16" font-weight="bold">LoadBalancer</text>
+<rect width="320" height="630" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">AI CẦN GỌI TỚI?</text>
+<text x="16" y="58" font-size="16" font-weight="normal">Hỏi trước, chọn type sau</text>
+<rect x="16" y="89" width="288" height="101" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="117" font-size="16" font-weight="bold">Pod khác trong cụm</text>
+<text x="30" y="144" font-size="16" font-weight="normal">type: ClusterIP (mặc định)</text>
+<text x="30" y="171" font-size="16" font-weight="normal">Địa chỉ nội bộ của cụm</text>
+<rect x="16" y="202" width="288" height="101" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="230" font-size="16" font-weight="bold">Máy ngoài, thử nhanh</text>
+<text x="30" y="257" font-size="16" font-weight="normal">type: NodePort</text>
+<text x="30" y="284" font-size="16" font-weight="normal">Cổng mở trên mọi node</text>
+<rect x="16" y="315" width="288" height="128" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="343" font-size="16" font-weight="bold">Người dùng, trên cloud</text>
+<text x="30" y="370" font-size="16" font-weight="normal">type: LoadBalancer</text>
 <text x="30" y="397" font-size="16" font-weight="normal">Nhờ bộ cân bằng tải của</text>
 <text x="30" y="424" font-size="16" font-weight="normal">cloud</text>
-<text x="30" y="451" font-size="16" font-weight="normal">Có một địa chỉ ngoài cụm</text>
-<rect x="16" y="482" width="288" height="101" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
-<text x="30" y="510" font-size="16" font-weight="bold">ExternalName</text>
-<text x="30" y="537" font-size="16" font-weight="normal">Trả tên miền (CNAME)</text>
-<text x="30" y="564" font-size="16" font-weight="normal">Không có IP, không proxy</text>
+<rect x="16" y="455" width="288" height="155" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="483" font-size="16" font-weight="bold">Pod gọi ra dịch vụ</text>
+<text x="30" y="510" font-size="16" font-weight="bold">ngoài</text>
+<text x="30" y="537" font-size="16" font-weight="normal">type: ExternalName</text>
+<text x="30" y="564" font-size="16" font-weight="normal">Tên nội bộ trỏ tên miền</text>
+<text x="30" y="591" font-size="16" font-weight="normal">ngoài</text>
 </g></svg>

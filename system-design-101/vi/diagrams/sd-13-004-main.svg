@@ -1,27 +1,26 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 659" width="320" height="659" role="img" aria-labelledby="title desc">
-<title id="title">Thu thập số đo: mô hình kéo (pull)</title>
-<desc id="desc">Service discovery cấp danh sách địa chỉ và lịch kéo cho bộ thu thập; bộ thu thập gọi HTTP /metrics trên các dịch vụ; khi danh sách đổi, service discovery báo lại.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 598" width="320" height="598" role="img" aria-labelledby="title desc">
+<title id="title">Thu thập số đo: kéo hay đẩy</title>
+<desc id="desc">Ba tình huống và lựa chọn tương ứng: dịch vụ chạy lâu trong cụm thì kéo, tác vụ batch cấp dịch vụ thì đẩy qua Pushgateway, đích nằm sau tường lửa thì đẩy hoặc đặt agent trong mạng đó.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="659" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
-<text x="16" y="30" font-size="20" font-weight="bold">MÔ HÌNH KÉO</text>
-<text x="16" y="58" font-size="16" font-weight="normal">Collector hỏi, dịch vụ trả</text>
-<text x="16" y="85" font-size="16" font-weight="normal">lời</text>
-<rect x="16" y="116" width="288" height="101" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
-<text x="30" y="144" font-size="16" font-weight="bold">1 · Service discovery</text>
-<text x="30" y="171" font-size="16" font-weight="normal">Biết dịch vụ nào đang chạy</text>
-<text x="30" y="198" font-size="16" font-weight="normal">Kèm chu kỳ kéo, timeout</text>
-<line x1="160" y1="229" x2="160" y2="257" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
-<rect x="16" y="267" width="288" height="128" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
-<text x="30" y="295" font-size="16" font-weight="bold">2 · Bộ thu thập</text>
-<text x="30" y="322" font-size="16" font-weight="normal">Nhận danh sách, kéo theo</text>
-<text x="30" y="349" font-size="16" font-weight="normal">chu kỳ</text>
-<text x="30" y="376" font-size="16" font-weight="normal">Lưu số đo vào kho</text>
-<line x1="160" y1="407" x2="160" y2="435" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
-<rect x="16" y="445" width="288" height="101" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
-<text x="30" y="473" font-size="16" font-weight="bold">3 · Dịch vụ</text>
-<text x="30" y="500" font-size="16" font-weight="normal">Mở sẵn đường dẫn /metrics</text>
-<text x="30" y="527" font-size="16" font-weight="normal">Trả số đo hiện tại</text>
-<text x="16" y="578" font-size="16" font-weight="normal">Có máy chủ mới hoặc mất đi:</text>
-<text x="16" y="605" font-size="16" font-weight="normal">service discovery báo lại cho</text>
-<text x="16" y="632" font-size="16" font-weight="normal">bộ thu thập.</text>
+<rect width="320" height="598" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">KÉO HAY ĐẨY</text>
+<text x="16" y="58" font-size="16" font-weight="normal">Chọn theo tình huống</text>
+<rect x="16" y="89" width="288" height="155" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="117" font-size="16" font-weight="bold">Dịch vụ chạy lâu,</text>
+<text x="30" y="144" font-size="16" font-weight="bold">trong cụm</text>
+<text x="30" y="171" font-size="16" font-weight="normal">Hợp: kéo</text>
+<text x="30" y="198" font-size="16" font-weight="normal">Collector tự tìm đích, thấy</text>
+<text x="30" y="225" font-size="16" font-weight="normal">ngay đích nào không trả lời</text>
+<rect x="16" y="256" width="288" height="155" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="284" font-size="16" font-weight="bold">Tác vụ batch cấp dịch</text>
+<text x="30" y="311" font-size="16" font-weight="bold">vụ</text>
+<text x="30" y="338" font-size="16" font-weight="normal">Hợp: đẩy qua Pushgateway</text>
+<text x="30" y="365" font-size="16" font-weight="normal">Kết quả còn lại sau khi tác</text>
+<text x="30" y="392" font-size="16" font-weight="normal">vụ kết thúc</text>
+<rect x="16" y="423" width="288" height="155" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="451" font-size="16" font-weight="bold">Đích nằm sau tường</text>
+<text x="30" y="478" font-size="16" font-weight="bold">lửa/NAT</text>
+<text x="30" y="505" font-size="16" font-weight="normal">Collector không với tới</text>
+<text x="30" y="532" font-size="16" font-weight="normal">Hợp: đẩy, hoặc agent đặt</text>
+<text x="30" y="559" font-size="16" font-weight="normal">trong mạng đó</text>
 </g></svg>

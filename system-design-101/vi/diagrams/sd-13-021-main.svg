@@ -1,24 +1,26 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 556" width="320" height="556" role="img" aria-labelledby="title desc">
-<title id="title">Ba trụ cột quan sát: nhật ký, vết và số đo</title>
-<desc id="desc">Một request đi qua gateway, dịch vụ A và cơ sở dữ liệu; nhật ký ghi sự kiện rời rạc, vết cho thấy đường đi và thời gian từng đoạn, số đo tổng hợp thành con số theo thời gian.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 633" width="320" height="633" role="img" aria-labelledby="title desc">
+<title id="title">Gỡ lỗi bằng số đo, vết và nhật ký</title>
+<desc id="desc">Quy trình gỡ lỗi ba bước: số đo cho biết có vấn đề không, vết cho biết chậm hoặc lỗi ở đoạn nào của chuỗi gọi, nhật ký cho biết chi tiết vì sao.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="556" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
-<text x="16" y="30" font-size="20" font-weight="bold">3 TRỤ CỘT</text>
-<text x="16" y="58" font-size="16" font-weight="normal">Một request, ba cách nhìn</text>
-<rect x="16" y="89" width="288" height="128" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
-<text x="30" y="117" font-size="16" font-weight="bold">Nhật ký (logs)</text>
-<text x="30" y="144" font-size="16" font-weight="normal">Sự kiện rời rạc: có gì xảy</text>
-<text x="30" y="171" font-size="16" font-weight="normal">ra</text>
-<text x="30" y="198" font-size="16" font-weight="normal">Khối lượng lớn nhất</text>
-<rect x="16" y="229" width="288" height="101" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
-<text x="30" y="257" font-size="16" font-weight="bold">Vết (traces)</text>
-<text x="30" y="284" font-size="16" font-weight="normal">Đường đi của một request</text>
-<text x="30" y="311" font-size="16" font-weight="normal">Mỗi đoạn mất bao lâu</text>
-<rect x="16" y="342" width="288" height="128" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
-<text x="30" y="370" font-size="16" font-weight="bold">Số đo (metrics)</text>
-<text x="30" y="397" font-size="16" font-weight="normal">Con số tổng hợp theo thời</text>
-<text x="30" y="424" font-size="16" font-weight="normal">gian</text>
-<text x="30" y="451" font-size="16" font-weight="normal">QPS, độ trễ, tỉ lệ lỗi</text>
-<text x="16" y="502" font-size="16" font-weight="normal">Gắn trace ID vào nhật ký để</text>
-<text x="16" y="529" font-size="16" font-weight="normal">nhảy từ cái này sang cái kia.</text>
+<rect width="320" height="633" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">TỪ BÁO ĐỘNG ĐẾN</text>
+<text x="16" y="58" font-size="20" font-weight="bold">NGUYÊN NHÂN</text>
+<text x="16" y="86" font-size="16" font-weight="normal">Ba câu hỏi nối tiếp</text>
+<rect x="16" y="117" width="288" height="101" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="145" font-size="16" font-weight="bold">1 · Có vấn đề không?</text>
+<text x="30" y="172" font-size="16" font-weight="normal">Số đo: tỉ lệ lỗi, độ trễ</text>
+<text x="30" y="199" font-size="16" font-weight="normal">Cảnh báo kích hoạt ở đây</text>
+<line x1="160" y1="230" x2="160" y2="258" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="268" width="288" height="128" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="296" font-size="16" font-weight="bold">2 · Ở đâu?</text>
+<text x="30" y="323" font-size="16" font-weight="normal">Vết: request đi qua dịch vụ</text>
+<text x="30" y="350" font-size="16" font-weight="normal">nào</text>
+<text x="30" y="377" font-size="16" font-weight="normal">Đoạn nào chiếm thời gian</text>
+<line x1="160" y1="408" x2="160" y2="436" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="446" width="288" height="101" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="474" font-size="16" font-weight="bold">3 · Vì sao?</text>
+<text x="30" y="501" font-size="16" font-weight="normal">Nhật ký: sự kiện chi tiết ở</text>
+<text x="30" y="528" font-size="16" font-weight="normal">đúng chỗ đó</text>
+<text x="16" y="579" font-size="16" font-weight="normal">Gắn trace ID vào nhật ký để</text>
+<text x="16" y="606" font-size="16" font-weight="normal">nhảy từ bước 2 sang bước 3.</text>
 </g></svg>

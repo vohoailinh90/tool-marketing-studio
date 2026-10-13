@@ -1,6 +1,6 @@
 {
   "id": "sd-13-020",
-  "title_vi": "Giảm rủi ro khi triển khai: bốn cách, bốn mức chi phí",
+  "title_vi": "Giảm rủi ro khi triển khai: chọn theo nhu cầu",
   "language": "vi",
   "kind": "comparison",
   "content_status": "draft",
@@ -59,8 +59,8 @@
     }
   ],
   "source_deviations": [
-    "Nguồn gọi blue là staging và green là production; bài tránh gán màu, chỉ nói \"môi trường cũ\" và \"môi trường mới\"."
+    "Nguồn có bốn mục theo thứ tự multi-service, blue-green, canary, A/B; bài tổ chức theo nhu cầu/nỗi sợ và đưa vào vấn đề tương thích hai chiều."
   ],
-  "design_notes_vi": "Bốn thẻ dọc, mỗi thẻ hai dòng: cái được và cái phải trả.",
+  "design_notes_vi": "Bốn thẻ nhu cầu, thẻ đầu nhấn mạnh tương thích.",
   "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
 }

@@ -61,7 +61,9 @@
       "source": "https://kubernetes.io/docs/concepts/services-networking/service/"
     }
   ],
-  "source_deviations": [],
-  "design_notes_vi": "Bốn thẻ dọc, màu khác nhau theo phạm vi truy cập.",
+  "source_deviations": [
+    "Nguồn liệt kê bốn loại theo định nghĩa; bài tổ chức theo câu hỏi \"ai cần gọi tới\" và đưa ExternalName vào cuối vì đi ngược chiều."
+  ],
+  "design_notes_vi": "Bốn thẻ tình huống kèm loại Service tương ứng.",
   "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
 }

@@ -1,33 +1,33 @@
 # Vì sao Nginx nhanh và phổ biến
 
-Nginx dùng một tiến trình quản lý và vài tiến trình làm việc, mỗi tiến trình xử lý rất nhiều kết nối bằng vòng lặp sự kiện.
+Cách dễ nhớ Nginx là qua bốn tình huống vận hành, mỗi tình huống cho thấy một lựa chọn thiết kế của nó.
 
-![Tiến trình master đọc cấu hình và quản lý các worker; mỗi worker xử lý nhiều kết nối bằng I/O không chặn; bốn việc phổ biến là web server, reverse proxy kèm cân bằng tải, bộ nhớ đệm và kết thúc TLS.](../../diagrams/sd-13-024-main.svg)
+![Bốn tình huống và lý do thiết kế: nhiều kết nối chờ chậm nhờ vòng lặp sự kiện, đổi cấu hình không rớt kết nối nhờ master và worker, máy chủ phía sau quá tải nhờ reverse proxy chia tải và cache, HTTPS nhờ kết thúc TLS ở rìa.](../../diagrams/sd-13-024-main.svg)
 
-**Đọc hình:** master không xử lý request; worker làm hầu hết công việc.
+**Đọc hình:** tình huống thứ hai và thứ nhất đến từ kiến trúc master–worker; hai tình huống sau là vai trò Nginx đảm nhận.
 
 ## Nhìn hình thử trả lời
 
-Đổi cấu hình Nginx và chạy `nginx -s reload`: kết nối đang xử lý có bị cắt không?
+Chạy `nginx -s reload` khi đang có kết nối: kết nối đang xử lý có bị cắt không?
 
 <details>
 <summary>Xem đáp án</summary>
 
-Không cắt đột ngột. Master kiểm tra cấu hình mới, mở worker mới theo cấu hình mới và yêu cầu worker cũ dừng sau khi xử lý xong kết nối hiện có.
+Không cắt đột ngột. Master kiểm tra cấu hình mới, mở worker mới và yêu cầu worker cũ ngừng nhận kết nối mới rồi thoát sau khi xử lý xong kết nối hiện có.
 
 </details>
 
 ## Giới hạn cần nhớ
 
-I/O không chặn rất hợp cho nhiều kết nối ít việc; tác vụ nặng CPU hoặc thao tác chặn lâu trong một worker vẫn làm các kết nối khác trên worker đó chậm. Số worker thường đặt theo số lõi CPU.
+Vòng lặp sự kiện rất hợp với nhiều kết nối ít việc; thao tác nặng CPU hoặc chặn lâu trong một worker làm chậm các kết nối khác trên worker đó. Số worker thường đặt theo số lõi CPU.
 
 <details>
 <summary>Xem sâu hơn</summary>
 
-- **Mô hình tiến trình:** nhiều worker để tận dụng nhiều lõi; mỗi worker vẫn đơn luồng trong vòng lặp sự kiện.
+- **Master** đọc cấu hình và quản lý worker; **worker** xử lý kết nối.
 - **Reverse proxy:** nhận request từ client, chuyển tới máy chủ phía sau, trả kết quả về; có thể chia tải giữa nhiều máy chủ.
 - **Cache nội dung:** lưu phản hồi để giảm tải cho máy chủ phía sau.
-- **Kết thúc TLS:** Nginx giải mã HTTPS rồi chuyển tiếp nội bộ.
+- **Kết thúc TLS:** Nginx giải mã HTTPS rồi chuyển tiếp nội bộ, nên ứng dụng không phải lo chứng chỉ.
 
 </details>
 

@@ -2,7 +2,7 @@
   "id": "sd-13-024",
   "title_vi": "Vì sao Nginx nhanh và phổ biến",
   "language": "vi",
-  "kind": "topology",
+  "kind": "comparison",
   "content_status": "draft",
   "source_ref": "sd-13-024",
   "source_snapshot": {
@@ -53,7 +53,9 @@
       "source": "https://nginx.org/en/docs/beginners_guide.html"
     }
   ],
-  "source_deviations": [],
-  "design_notes_vi": "Ba thẻ dọc nối bằng mũi tên: quản lý, xử lý, việc ứng dụng.",
+  "source_deviations": [
+    "Nguồn mô tả kiến trúc rồi bốn tính năng; bài tổ chức theo tình huống vận hành."
+  ],
+  "design_notes_vi": "Bốn thẻ tình huống kèm lựa chọn thiết kế.",
   "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
 }

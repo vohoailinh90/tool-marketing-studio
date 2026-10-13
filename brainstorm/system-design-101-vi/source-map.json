@@ -3448,7 +3448,7 @@
         },
         {
           "id": "sd-13-004",
-          "title_vi": "Thu thập số đo: mô hình kéo (pull)",
+          "title_vi": "Thu thập số đo: kéo hay đẩy",
           "title_source": "Push vs Pull in Metrics Collection Systems",
           "source_url": "https://bytebytego.com/guides/push-vs-pull-in-metrics-collecting-systems",
           "source_path": "data/guides/push-vs-pull-in-metrics-collecting-systems.md",
@@ -3528,7 +3528,7 @@
         },
         {
           "id": "sd-13-012",
-          "title_vi": "Chuỗi CI/CD của Netflix qua từng giai đoạn",
+          "title_vi": "Chuỗi CI/CD của Netflix đọc theo rủi ro",
           "title_source": "Netflix Tech Stack - CI/CD Pipeline",
           "source_url": "https://bytebytego.com/guides/netflix-tech-stack-cicd-pipeline",
           "source_path": "data/guides/netflix-tech-stack-cicd-pipeline.md",
@@ -3611,7 +3611,7 @@
         },
         {
           "id": "sd-13-020",
-          "title_vi": "Giảm rủi ro khi triển khai: bốn cách, bốn mức chi phí",
+          "title_vi": "Giảm rủi ro khi triển khai: chọn theo nhu cầu",
           "title_source": "Deployment Strategies",
           "source_url": "https://bytebytego.com/guides/how-to-deploy-services",
           "source_path": "data/guides/how-to-deploy-services.md",
@@ -3621,7 +3621,7 @@
         },
         {
           "id": "sd-13-021",
-          "title_vi": "Ba trụ cột quan sát: nhật ký, vết và số đo",
+          "title_vi": "Gỡ lỗi bằng số đo, vết và nhật ký",
           "title_source": "Logging, Tracing, and Metrics",
           "source_url": "https://bytebytego.com/guides/logging-tracing-metrics",
           "source_path": "data/guides/logging-tracing-metrics.md",
@@ -3631,7 +3631,7 @@
         },
         {
           "id": "sd-13-022",
-          "title_vi": "Sáu lệnh phân tích nhật ký trên dòng lệnh",
+          "title_vi": "Phân tích nhật ký trên dòng lệnh theo từng việc",
           "title_source": "Log Parsing Cheat Sheet",
           "source_url": "https://bytebytego.com/guides/log-parsing-cheat-sheet",
           "source_path": "data/guides/log-parsing-cheat-sheet.md",
@@ -3661,7 +3661,7 @@
         },
         {
           "id": "sd-13-025",
-          "title_vi": "Kubernetes: mặt phẳng điều khiển và các node",
+          "title_vi": "Kubernetes: từ lệnh apply đến container chạy",
           "title_source": "What is Kubernetes (k8s)?",
           "source_url": "https://bytebytego.com/guides/what-is-k8s-kubernetes",
           "source_path": "data/guides/what-is-k8s-kubernetes.md",
@@ -3681,7 +3681,7 @@
         },
         {
           "id": "sd-13-027",
-          "title_vi": "Pipeline CI/CD qua từng giai đoạn",
+          "title_vi": "Pipeline CI/CD: cổng nhanh trước, cổng đắt sau",
           "title_source": "CI/CD Pipeline Explained in Simple Terms",
           "source_url": "https://bytebytego.com/guides/cicd-pipeline-explained-in-simple-terms",
           "source_path": "data/guides/cicd-pipeline-explained-in-simple-terms.md",

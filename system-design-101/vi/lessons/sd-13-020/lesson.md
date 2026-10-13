@@ -1,34 +1,33 @@
-# Giảm rủi ro khi triển khai: bốn cách, bốn mức chi phí
+# Giảm rủi ro khi triển khai: chọn theo nhu cầu
 
-Triển khai luôn có rủi ro. Mỗi cách đổi một thứ lấy một thứ: chi phí hạ tầng, độ phức tạp, hay mức dễ quay lui.
+Chọn cách triển khai bằng cách hỏi bạn đang sợ điều gì nhất. Mỗi nỗi sợ có một cơ chế quen thuộc.
 
-![Bốn thẻ so sánh: nhiều dịch vụ cùng lúc dễ làm nhưng khó quay lui, blue-green dễ quay lui nhưng tốn hai môi trường, canary rẻ hơn nhưng cần theo dõi, A/B test dùng thử nghiệm trên một nhóm người dùng.](../../diagrams/sd-13-020-main.svg)
+![Bốn thẻ nhu cầu và cách xử lý: hai dịch vụ đổi cùng lúc cần tương thích hai chiều, muốn quay lui trong vài giây dùng blue-green hoặc cờ tính năng, muốn lộ lỗi sớm với chi phí thấp dùng canary, muốn đo tác động sản phẩm dùng A/B test.](../../diagrams/sd-13-020-main.svg)
 
-**Đọc hình:** mỗi thẻ là một đánh đổi; không có cách tốt nhất cho mọi trường hợp.
+**Đọc hình:** thẻ đầu áp dụng bất kể cách nào bạn chọn ở các thẻ sau.
 
 ## Nhìn hình thử trả lời
 
-Cách nào cần chạy song song hai môi trường đầy đủ, và vì sao điều đó là chi phí?
+Hai dịch vụ cùng đổi định dạng thông điệp giữa chúng. Canary hay blue-green có cứu được không nếu bản mới không đọc được thông điệp bản cũ?
 
 <details>
 <summary>Xem đáp án</summary>
 
-Blue-Green. Môi trường mới phải có quy mô như môi trường đang chạy trong lúc chuyển, nên tốn gần gấp đôi tài nguyên trong khoảng đó.
+Không. Khi hai phiên bản gặp nhau trong lúc chuyển, chúng phải hiểu nhau. Cần làm bản mới chấp nhận cả định dạng cũ và mới trước, rồi mới bỏ định dạng cũ ở bước sau.
 
 </details>
 
 ## Giới hạn cần nhớ
 
-Với nhiều dịch vụ, rủi ro lớn nhất là hợp đồng giữa các dịch vụ. Dịch vụ mới phải chịu được đầu vào của dịch vụ cũ và ngược lại, nếu không thì dù dùng canary hay blue-green vẫn hỏng khi hai phiên bản gặp nhau.
+Cách nào cũng có giá: blue-green cần môi trường song song đủ tải, canary cần giám sát tốt, cờ tính năng để lại nợ nếu không dọn. A/B test trả lời câu hỏi sản phẩm, không thay cho kiểm tra an toàn khi triển khai.
 
 <details>
 <summary>Xem sâu hơn</summary>
 
-- **Nhiều dịch vụ cùng lúc:** đơn giản về điều phối nhưng thay đổi lớn, khó xác định nguyên nhân khi lỗi.
-- **Blue-Green:** kiểm thử đầy đủ trên môi trường mới trước khi chuyển traffic; quay lui là chuyển lại.
-- **Canary:** tăng dần tỉ lệ; dừng và quay lui khi số đo xấu.
-- **A/B test** để đo hiệu quả tính năng (chuyển đổi, hành vi), khác với mục tiêu an toàn của canary. Dùng cờ tính năng để không đẩy nhầm tính năng cho người dùng.
-- **Thứ tự nên làm:** làm cho thay đổi tương thích ngược trước, rồi mới chọn cách đưa lên.
+- **Tương thích hai chiều:** thêm trường mới là tùy chọn trước, chuyển người dùng sang, rồi mới xóa trường cũ.
+- **Blue-green:** kiểm thử trên môi trường mới trước khi chuyển traffic; quay lui là chuyển lại.
+- **Canary:** dừng và quay lui khi số đo của nhóm canary xấu hơn bản đối chứng.
+- **A/B test:** dùng cờ tính năng để chỉ nhóm được chọn thấy tính năng, tránh đẩy nhầm cho mọi người.
 
 </details>
 

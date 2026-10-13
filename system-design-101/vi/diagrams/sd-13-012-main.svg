@@ -1,28 +1,33 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 690" width="320" height="690" role="img" aria-labelledby="title desc">
-<title id="title">Chuỗi CI/CD của Netflix qua từng giai đoạn</title>
-<desc id="desc">Chuỗi giai đoạn từ lập kế hoạch, viết mã, build, đóng gói AMI, kiểm thử, triển khai canary bằng Spinnaker, giám sát bằng Atlas và Kayenta, đến xử lý sự cố.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 797" width="320" height="797" role="img" aria-labelledby="title desc">
+<title id="title">Chuỗi CI/CD của Netflix đọc theo rủi ro</title>
+<desc id="desc">Năm thẻ ghép rủi ro với cơ chế: lỗi mã với build và kiểm thử, lỗi môi trường với đóng gói image máy chủ, lỗi khi lên production với canary tự động, lỗi hạ tầng bất ngờ với công cụ chaos, lỗi lọt qua với giám sát và xử lý sự cố.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="690" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
-<text x="16" y="30" font-size="20" font-weight="bold">CHUỖI CỦA NETFLIX</text>
-<text x="16" y="58" font-size="16" font-weight="normal">Theo mô tả công khai trong</text>
-<text x="16" y="85" font-size="16" font-weight="normal">nguồn</text>
+<rect width="320" height="797" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">RỦI RO → CƠ CHẾ</text>
+<text x="16" y="58" font-size="16" font-weight="normal">Ví dụ công cụ theo mô tả</text>
+<text x="16" y="85" font-size="16" font-weight="normal">công khai</text>
 <rect x="16" y="116" width="288" height="101" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
-<text x="30" y="144" font-size="16" font-weight="bold">Kế hoạch → mã</text>
-<text x="30" y="171" font-size="16" font-weight="normal">JIRA, Confluence</text>
-<text x="30" y="198" font-size="16" font-weight="normal">Java cho backend</text>
-<line x1="160" y1="229" x2="160" y2="257" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
-<rect x="16" y="267" width="288" height="101" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
-<text x="30" y="295" font-size="16" font-weight="bold">Build → đóng gói</text>
-<text x="30" y="322" font-size="16" font-weight="normal">Gradle</text>
-<text x="30" y="349" font-size="16" font-weight="normal">Gói vào AMI (image máy chủ)</text>
-<line x1="160" y1="380" x2="160" y2="408" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
-<rect x="16" y="418" width="288" height="101" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
-<text x="30" y="446" font-size="16" font-weight="bold">Kiểm thử → triển khai</text>
-<text x="30" y="473" font-size="16" font-weight="normal">Công cụ chaos</text>
-<text x="30" y="500" font-size="16" font-weight="normal">Spinnaker, canary</text>
-<line x1="160" y1="531" x2="160" y2="559" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
-<rect x="16" y="569" width="288" height="101" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
-<text x="30" y="597" font-size="16" font-weight="bold">Giám sát → sự cố</text>
-<text x="30" y="624" font-size="16" font-weight="normal">Atlas, Kayenta</text>
-<text x="30" y="651" font-size="16" font-weight="normal">PagerDuty</text>
+<text x="30" y="144" font-size="16" font-weight="bold">Lỗi trong mã</text>
+<text x="30" y="171" font-size="16" font-weight="normal">Build và kiểm thử tự động</text>
+<text x="30" y="198" font-size="16" font-weight="normal">(Gradle)</text>
+<rect x="16" y="229" width="288" height="155" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="257" font-size="16" font-weight="bold">Lỗi do khác môi trường</text>
+<text x="30" y="284" font-size="16" font-weight="normal">Đóng gói vào image máy chủ</text>
+<text x="30" y="311" font-size="16" font-weight="normal">(AMI)</text>
+<text x="30" y="338" font-size="16" font-weight="normal">Thay máy thay vì sửa tại</text>
+<text x="30" y="365" font-size="16" font-weight="normal">chỗ</text>
+<rect x="16" y="396" width="288" height="128" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="424" font-size="16" font-weight="bold">Lỗi khi lên production</text>
+<text x="30" y="451" font-size="16" font-weight="normal">Canary bằng Spinnaker</text>
+<text x="30" y="478" font-size="16" font-weight="normal">Kayenta so canary với bản</text>
+<text x="30" y="505" font-size="16" font-weight="normal">đối chứng</text>
+<rect x="16" y="536" width="288" height="101" rx="10" fill="#fee2e2" stroke="#94a3b8"/>
+<text x="30" y="564" font-size="16" font-weight="bold">Lỗi hạ tầng bất ngờ</text>
+<text x="30" y="591" font-size="16" font-weight="normal">Công cụ chaos chủ động tạo</text>
+<text x="30" y="618" font-size="16" font-weight="normal">lỗi</text>
+<rect x="16" y="649" width="288" height="128" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="677" font-size="16" font-weight="bold">Lỗi vẫn lọt qua</text>
+<text x="30" y="704" font-size="16" font-weight="normal">Số đo trong Atlas</text>
+<text x="30" y="731" font-size="16" font-weight="normal">Cảnh báo và xử lý sự cố</text>
+<text x="30" y="758" font-size="16" font-weight="normal">(PagerDuty)</text>
 </g></svg>

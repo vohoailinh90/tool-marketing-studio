@@ -1,34 +1,32 @@
-# Thu thập số đo: mô hình kéo (pull)
+# Thu thập số đo: kéo hay đẩy
 
-Trong mô hình kéo, bộ thu thập chủ động hỏi từng dịch vụ số đo hiện tại thay vì chờ dịch vụ gửi tới.
+Số đo có thể được bộ thu thập kéo về hoặc được dịch vụ đẩy tới. Cách nào hợp tùy dịch vụ của bạn sống thế nào và nằm ở đâu.
 
-![Service discovery cấp danh sách địa chỉ và lịch kéo cho bộ thu thập; bộ thu thập gọi HTTP /metrics trên các dịch vụ; khi danh sách đổi, service discovery báo lại.](../../diagrams/sd-13-004-main.svg)
+![Ba tình huống và lựa chọn tương ứng: dịch vụ chạy lâu trong cụm thì kéo, tác vụ batch cấp dịch vụ thì đẩy qua Pushgateway, đích nằm sau tường lửa thì đẩy hoặc đặt agent trong mạng đó.](../../diagrams/sd-13-004-main.svg)
 
-- **Danh sách đích:** nếu ghi cứng vào tệp thì khó theo kịp khi máy chủ thêm bớt liên tục.
-- **Service discovery:** Kubernetes, Consul, ZooKeeper... biết ai đang chạy và báo khi thay đổi.
-- **Điểm phơi số đo:** thư viện client của dịch vụ mở một địa chỉ HTTP cố định, ví dụ `/metrics`.
+**Đọc hình:** không có cách đúng cho mọi trường hợp; một hệ thống thật thường dùng cả hai.
 
 ## Nhìn hình thử trả lời
 
-Lúc 2 giờ sáng hệ thống tự thêm hai máy chủ. Bộ thu thập kiểu kéo biết kéo thêm hai nơi đó bằng cách nào mà không ai sửa tệp cấu hình?
+Một tác vụ batch chạy trên một máy cụ thể và chỉ có ý nghĩa với máy đó. Pushgateway có hợp không?
 
 <details>
 <summary>Xem đáp án</summary>
 
-Qua service discovery: bộ thu thập nhận thông báo khi danh sách thay đổi, hoặc hỏi lại định kỳ.
+Không phải lựa chọn mặc định. Tài liệu Prometheus khuyên Pushgateway cho tác vụ cấp dịch vụ, không gắn với một máy hay instance; với tác vụ gắn với máy thì dùng textfile collector của Node Exporter để số đo không bị tồn tại mãi.
 
 </details>
 
-## Đánh đổi cần nhớ
+## Giới hạn cần nhớ
 
-Kéo hay đẩy không có bên thắng tuyệt đối. Kéo dễ biết đích nào đang không trả lời, nhưng khó với tác vụ chạy rất ngắn (kết thúc trước lần kéo kế tiếp) hoặc đích nằm sau tường lửa mà bộ thu thập không chạm tới được.
+Với kéo, đích phải bật sẵn một địa chỉ phơi số đo và collector phải tới được nó. Với đẩy, bạn mất tín hiệu "đích có còn sống không" và phải tự chặn việc đẩy quá nhiều làm quá tải kho. Pushgateway giữ số đo cho tới khi bị xóa, nên số đo cũ có thể ở lại nếu không dọn.
 
 <details>
 <summary>Xem sâu hơn</summary>
 
-- **Prometheus** là ví dụ điển hình của mô hình kéo: cấu hình `scrape_configs`, hỗ trợ nhiều cơ chế service discovery (kể cả Kubernetes).
-- **Việc ngắn:** Prometheus có Pushgateway cho tác vụ batch ngắn hạn; tài liệu khuyên chỉ dùng cho trường hợp đó, không thay cho mô hình kéo nói chung.
-- **Mô hình đẩy:** agent hoặc ứng dụng gửi số đo tới bộ thu thập; cần kiểm soát tốc độ để tránh làm quá tải bộ thu thập.
+- **Kéo trong Prometheus:** cấu hình `scrape_configs`; đích thường tìm bằng service discovery (ví dụ `kubernetes_sd_config`) thay vì tệp ghi cứng, để danh sách theo kịp khi máy chủ thêm bớt.
+- **Tín hiệu sẵn có:** mỗi lần kéo Prometheus ghi số đo `up` cho biết kéo có thành công không.
+- **Pushgateway:** nhận số đo đẩy lên từ tác vụ ngắn rồi để Prometheus kéo từ chính nó; không phải cách đẩy chung cho mọi dịch vụ.
 
 </details>
 

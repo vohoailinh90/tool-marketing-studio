@@ -1,8 +1,8 @@
 {
   "id": "sd-13-025",
-  "title_vi": "Kubernetes: mặt phẳng điều khiển và các node",
+  "title_vi": "Kubernetes: từ lệnh apply đến container chạy",
   "language": "vi",
-  "kind": "topology",
+  "kind": "flow",
   "content_status": "draft",
   "source_ref": "sd-13-025",
   "source_snapshot": {
@@ -63,8 +63,8 @@
     }
   ],
   "source_deviations": [
-    "Nguồn nói kube-proxy \"định tuyến mọi traffic\"; bài dùng mô tả hẹp hơn là hiện thực hóa Service."
+    "Nguồn chia thành control plane và nodes rồi liệt kê thành phần; bài đi theo luồng một lệnh apply. Luồng được đơn giản hóa."
   ],
-  "design_notes_vi": "Ba thẻ dọc: mặt phẳng điều khiển, node, Pod.",
+  "design_notes_vi": "Năm thẻ dọc theo luồng yêu cầu, màu phân biệt mặt phẳng điều khiển và node.",
   "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
 }

@@ -1,8 +1,8 @@
 {
   "id": "sd-13-004",
-  "title_vi": "Thu thập số đo: mô hình kéo (pull)",
+  "title_vi": "Thu thập số đo: kéo hay đẩy",
   "language": "vi",
-  "kind": "flow",
+  "kind": "comparison",
   "content_status": "draft",
   "source_ref": "sd-13-004",
   "source_snapshot": {
@@ -26,7 +26,7 @@
     {
       "lesson_id": "sd-13-021",
       "relation": "context",
-      "reason_vi": "Số đo là một trong ba trụ cột quan sát hệ thống."
+      "reason_vi": "Số đo là một trong các tín hiệu quan sát hệ thống."
     }
   ],
   "verification": {
@@ -54,7 +54,7 @@
       "source": "https://prometheus.io/docs/introduction/overview/"
     },
     {
-      "claim_vi": "Pushgateway dành cho tác vụ batch ngắn hạn.",
+      "claim_vi": "Pushgateway chủ yếu hợp lệ cho tác vụ batch cấp dịch vụ; tác vụ gắn với máy dùng textfile collector của Node Exporter.",
       "source": "https://prometheus.io/docs/practices/pushing/"
     },
     {
@@ -63,8 +63,8 @@
     }
   ],
   "source_deviations": [
-    "Nguồn mô tả mô hình kéo; bài bổ sung đánh đổi với mô hình đẩy."
+    "Nguồn mô tả riêng mô hình kéo theo trình tự (danh sách cứng, service discovery, endpoint); bài thay bằng so sánh kéo/đẩy theo tình huống."
   ],
-  "design_notes_vi": "Ba thẻ dọc theo thứ tự thông tin chạy; ghi chú cuối nêu vòng cập nhật danh sách.",
+  "design_notes_vi": "Ba thẻ tình huống, mỗi thẻ nêu lựa chọn và lý do.",
   "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
 }

@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1120" width="320" height="1120" role="img" aria-labelledby="title desc">
+<title id="title">Từ HTML và CSS tới khung hình</title>
+<desc id="desc">Hai đầu vào: HTML thành DOM, CSS thành CSSOM. Style kết hợp để tạo render tree, Layout xác định hộp, Paint ghi việc vẽ, Raster tạo pixel, Composite ghép các phần rồi hiển thị Xin chào. Luồng khái niệm; cập nhật có thể bỏ qua bước.</desc>
+<defs><marker id="a" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1120" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="22" font-weight="bold">TỪ MÃ TỚI HÌNH</text>
+<rect x="16" y="55" width="134" height="116" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="28" y="85" font-size="16" font-weight="bold">HTML</text>
+<text x="28" y="118" font-size="16" font-weight="normal">↓ phân tích</text>
+<text x="28" y="151" font-size="16" font-weight="bold">DOM</text>
+<rect x="170" y="55" width="134" height="116" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="182" y="85" font-size="16" font-weight="bold">CSS</text>
+<text x="182" y="118" font-size="16" font-weight="normal">↓ phân tích</text>
+<text x="182" y="151" font-size="16" font-weight="bold">CSSOM</text>
+<path d="M83,172 V192 H237 V172 M160,192 V214" fill="none" stroke="#475569" stroke-width="2" marker-end="url(#a)"/>
+<rect x="16" y="222" width="288" height="105" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="256" font-size="16" font-weight="bold">1 · Style / Render tree</text>
+<text x="30" y="293" font-size="16" font-weight="normal">Áp quy tắc vào nội dung</text>
+<line x1="160" y1="330" x2="160" y2="356" stroke="#475569" stroke-width="2" marker-end="url(#a)"/>
+<rect x="16" y="362" width="288" height="105" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="396" font-size="16" font-weight="bold">2 · Layout · bố cục</text>
+<text x="30" y="433" font-size="16" font-weight="normal">Tính vị trí và kích thước</text>
+<line x1="160" y1="470" x2="160" y2="496" stroke="#475569" stroke-width="2" marker-end="url(#a)"/>
+<rect x="16" y="502" width="288" height="105" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="536" font-size="16" font-weight="bold">3 · Paint · việc cần vẽ</text>
+<text x="30" y="573" font-size="16" font-weight="normal">Chữ, màu, nền, đường viền</text>
+<line x1="160" y1="610" x2="160" y2="636" stroke="#475569" stroke-width="2" marker-end="url(#a)"/>
+<rect x="16" y="642" width="288" height="105" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="676" font-size="16" font-weight="bold">4 · Raster · tạo pixel</text>
+<text x="30" y="713" font-size="16" font-weight="normal">Biến lệnh vẽ thành điểm ảnh</text>
+<line x1="160" y1="750" x2="160" y2="776" stroke="#475569" stroke-width="2" marker-end="url(#a)"/>
+<rect x="16" y="782" width="288" height="105" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="816" font-size="16" font-weight="bold">5 · Composite · ghép</text>
+<text x="30" y="853" font-size="16" font-weight="normal">Ghép các phần đúng thứ tự</text>
+<line x1="160" y1="892" x2="160" y2="918" stroke="#475569" stroke-width="2" marker-end="url(#a)"/>
+<rect x="16" y="927" width="288" height="116" rx="12" fill="#fff" stroke="#94a3b8"/>
+<text x="30" y="958" font-size="16" font-weight="bold">6 · Hiển thị</text>
+<rect x="32" y="980" width="190" height="44" rx="6" fill="#dbeafe"/>
+<text x="48" y="1009" font-size="19" font-weight="bold">Xin chào</text>
+<text x="16" y="1080" font-size="16" font-weight="normal">Luồng khái niệm: có thể lặp lại</text>
+<text x="16" y="1107" font-size="16" font-weight="normal">hoặc bỏ qua bước khi cập nhật.</text>
+</g></svg>

@@ -3,7 +3,7 @@
   "title_vi": "Polling ngắn, polling dài, SSE và WebSocket",
   "language": "vi",
   "kind": "comparison",
-  "content_status": "review",
+  "content_status": "done",
   "source_ref": "sd-01-001",
   "source_snapshot": {
     "repository": "ByteByteGoHq/system-design-101",
@@ -24,8 +24,16 @@
       "checked_on": "2026-10-12"
     },
     "technical_review": {
-      "status": "pending",
-      "reason": "integration_in_destination_repository"
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "repository": "vohoailinh90/tool-marketing-studio",
+      "pr": 40,
+      "head_sha": "5ce5e2b70be0104d555324b7db7ac0c631589667",
+      "base_sha": "3edff99314afa7435a4519b700e380eac8d6bc1c",
+      "comment_id": 6136722979,
+      "ci_run_id": 38335265036,
+      "merge_commit_sha": "5831cdcef96a2c83664e02d83a4e803cf47f259c",
+      "evidence": "Codex no major issues and CI success on exact snapshot. Merged by another session; not release/user testing approval."
     },
     "mobile": {
       "status": "checked",
@@ -84,7 +92,7 @@
     }
   ],
   "design_notes_vi": "Bốn thẻ sequence dọc cùng hai actor, thiết kế mới bằng SVG. Phân biệt trạng thái đơn hàng với ACK giao thức; nêu timeout trong polling dài; không ngụ ý mỗi request tạo TCP connection mới.",
-  "editorial_note_vi": "Đã nhập từ repo cũ; review kỹ thuật của tổ hợp trong repo mới đang chờ. Chưa user testing hoặc phê duyệt phát hành.",
+  "editorial_note_vi": "Đã review kỹ thuật trên snapshot tích hợp; chưa user testing hoặc phê duyệt phát hành.",
   "prior_reviews": [
     {
       "sha": "8e3e4637e0da9be8fc09d0a7945eab0433bfc4cc",

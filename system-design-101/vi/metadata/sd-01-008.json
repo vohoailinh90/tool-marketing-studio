@@ -1,0 +1,69 @@
+{
+  "id": "sd-01-008",
+  "title_vi": "Trình duyệt dựng trang web thế nào?",
+  "language": "vi",
+  "kind": "flow",
+  "content_status": "review",
+  "source_ref": "sd-01-008",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/how-does-the-browser-render-a-web-page.md",
+    "blob_sha": "4ff1f63edf1e8f413830db135db893affac4baed",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-the-browser-render-a-web-page.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_bytes": 1446,
+    "retrieved_body_sha256": "8fd2b6c5df74fdf26bc6782a0c74527e9e97121ec060444e322726bd78f95a38"
+  },
+  "diagram": "../diagrams/sd-01-008-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-13"
+    },
+    "technical_review": {
+      "status": "pending"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 14.4,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium whole lesson, optional sections open,320px screenshot visually inspected. Not learner testing."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "DOM/CSSOM đi tới style/render tree; display none khác visibility hidden; HTML có thể được phân tích dần.",
+      "source": "https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/How_browsers_work",
+      "section": "Parsing; Render"
+    },
+    {
+      "claim_vi": "Layout tính hình học; paint/raster khác composite. Cập nhật có thể bỏ qua bước.",
+      "source": "https://web.dev/articles/rendering-performance",
+      "section": "The pixel pipeline"
+    }
+  ],
+  "design_notes_vi": "Sơ đồ mới hai đầu vào hội tụ, sáu khung dọc tới kết quả; không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Không đồng nhất mọi phần tử vô hình với bị loại khỏi render tree.",
+    "Tách paint/raster/composite; tránh claim toàn bộ trang luôn gửi nguyên khối sang GPU."
+  ],
+  "editorial_note_vi": "Chờ review kỹ thuật; chưa user testing."
+}

@@ -28,6 +28,9 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 7. [Phát trực tiếp video hoạt động thế nào?](lessons/sd-12-007/lesson.md) — bản nháp độc lập; chờ kiểm chứng nguồn và review kỹ thuật.
 8. [Thiết kế hệ thống đa ngôn ngữ](lessons/sd-12-008/lesson.md) — bản nháp độc lập; chờ kiểm chứng nguồn và review kỹ thuật.
 9. [Thiết kế soạn thảo cộng tác kiểu Google Docs](lessons/sd-12-009/lesson.md) — bản nháp độc lập; chờ kiểm chứng nguồn và review kỹ thuật.
+10. [Hệ thống thanh toán: tiền đi qua những bước nào?](lessons/sd-12-010/lesson.md) — bản nháp độc lập; chờ kiểm chứng nguồn và review kỹ thuật.
+11. [Kiến trúc nền tảng thử nghiệm A/B](lessons/sd-12-011/lesson.md) — bản nháp độc lập; chờ kiểm chứng nguồn và review kỹ thuật.
+12. [Thiết kế dịch vụ bản đồ kiểu Google Maps](lessons/sd-12-012/lesson.md) — bản nháp độc lập; chờ kiểm chứng nguồn và review kỹ thuật.
 
 Danh mục đầy đủ và snapshot nguồn: [bảng đối chiếu](../../brainstorm/system-design-101-vi/source-map.json).
 Quy tắc đã chốt: [kết luận brainstorm](../../brainstorm/system-design-101-vi/DECISIONS.md).

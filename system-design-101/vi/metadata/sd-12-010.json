@@ -1,0 +1,68 @@
+{
+  "id": "sd-12-010",
+  "title_vi": "Hệ thống thanh toán: tiền đi qua những bước nào?",
+  "language": "vi",
+  "kind": "process",
+  "content_status": "draft",
+  "source_ref": "sd-12-010",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/payment-system.md",
+    "blob_sha": "d6c825db2def7f67751c8ca10cdc78acdc301da7",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/payment-system.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "bcf475eacb32f3650de20f1275c807296cf9faf11443b830859232d00168987e",
+    "retrieved_body_bytes": 1767
+  },
+  "diagram": "../diagrams/sd-12-010-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-07-012",
+      "relation": "same-source",
+      "reason_vi": "Cùng bài nguồn ở nhóm Thanh toán và công nghệ tài chính."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "official_sources_not_reachable_from_authoring_environment"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "not_yet_reviewed"
+    },
+    "mobile": {
+      "status": "pending"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Khóa chống trùng cho phép thử lại một yêu cầu mà không thực hiện thao tác hai lần.",
+      "sources": [
+        "https://docs.stripe.com/api/idempotent_requests",
+        "https://datatracker.ietf.org/doc/draft-ietf-httpapi-idempotency-key-header/"
+      ]
+    },
+    {
+      "claim_vi": "Sổ cái chỉ thêm và ghi kép là thực hành phổ biến trong hệ thống kế toán.",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Double-entry_bookkeeping"
+      ]
+    }
+  ],
+  "source_deviations": [
+    "Bài thêm khóa chống trùng, trạng thái lệnh và chi tiết sổ cái; nguồn chỉ liệt kê luồng.",
+    "Nguồn này cũng được dùng cho vị trí sd-07-012 trong bảng đối chiếu; mỗi vị trí được viết riêng."
+  ],
+  "design_notes_vi": "Sáu thẻ dọc theo luồng tiền; thẻ cuối là đối soát hằng đêm; không có số tiền hay tên PSP cụ thể.",
+  "editorial_note_vi": "Bản nháp độc lập viết từ kiến thức kỹ thuật chung; đọc bài nguồn nhưng chưa mở tài liệu chính thức nên các claim chưa được kiểm chứng. Chưa review kỹ thuật, chưa user testing, chưa phê duyệt phát hành."
+}

@@ -1,0 +1,62 @@
+{
+  "id": "sd-12-012",
+  "title_vi": "Thiết kế dịch vụ bản đồ kiểu Google Maps",
+  "language": "vi",
+  "kind": "architecture",
+  "content_status": "draft",
+  "source_ref": "sd-12-012",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/design-google-maps.md",
+    "blob_sha": "945282d045c9aebef36d6797260b05ecda90bbd5",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/design-google-maps.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "d3b9ee6c9737efa4660ce405bcd7922fc8f5ff3e4d1755e54fbaf81d5d8fbc8a",
+    "retrieved_body_bytes": 2186
+  },
+  "diagram": "../diagrams/sd-12-012-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "official_sources_not_reachable_from_authoring_environment"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "not_yet_reviewed"
+    },
+    "mobile": {
+      "status": "pending"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Theo quy ước ô web phổ biến, mức phóng z gồm 2^z × 2^z ô, tức 4^z ô.",
+      "sources": [
+        "https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames"
+      ]
+    },
+    {
+      "claim_vi": "Dijkstra tìm đường đi ngắn nhất trên đồ thị có trọng số không âm; contraction hierarchies tăng tốc truy vấn trên đồ thị đường lớn.",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm",
+        "https://en.wikipedia.org/wiki/Contraction_hierarchies"
+      ]
+    }
+  ],
+  "source_deviations": [
+    "Bài không giữ số liệu “một tỷ người dùng hằng ngày, phủ 99% thế giới” của nguồn vì không kèm nguồn kiểm chứng; không ảnh hưởng thiết kế.",
+    "Bài thêm phần ô raster/vector và đồ thị đường."
+  ],
+  "design_notes_vi": "Sáu thẻ dọc không mũi tên: hai thẻ cho hai dịch vụ đầu, bốn thẻ đánh số cho các bước tuần tự của dẫn đường.",
+  "editorial_note_vi": "Bản nháp độc lập viết từ kiến thức kỹ thuật chung; đọc bài nguồn nhưng chưa mở tài liệu chính thức nên các claim chưa được kiểm chứng. Chưa review kỹ thuật, chưa user testing, chưa phê duyệt phát hành."
+}

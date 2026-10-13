@@ -44,7 +44,7 @@ và *Designing Data-Intensive Applications* cho thiết kế hệ thống; Tech 
 Interviewready, khóa OOD của Educative và sách *Head First Design Patterns* cho thiết kế hướng đối tượng; interviewing.io, Pramp, Meetapro cho phỏng vấn thử;
 LinkedIn, Monster, Indeed để tìm việc.
 
-Chỉ Tech Interview Handbook được bài này kiểm tra qua README của kho trên GitHub (có mục câu hỏi hành vi). Các mục còn lại lấy nguyên từ bài nguồn.
+Hai kho trên GitHub, Tech Interview Handbook (có mục câu hỏi hành vi) và System Design Primer, được bài này kiểm tra qua README; Primer không nằm trong danh sách của bài nguồn mà do bài này thêm vào. Các mục còn lại lấy nguyên từ bài nguồn, chưa kiểm.
 
 </details>
 

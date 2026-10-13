@@ -36,7 +36,7 @@ Thường nên dùng `transform`. Đổi `left` làm đổi vị trí hộp nên
 <details>
 <summary>Xem sâu hơn</summary>
 
-- **Script và CSS:** script thường làm dừng parser; `async` hoặc `defer` giúp parser không phải chờ. CSS chặn dựng hình. Script cổ điển (không `async`, không `defer`) còn phải chờ các stylesheet đang tải trước nó rồi mới chạy; script `async` hoặc được chèn bằng mã có thể chạy ngay khi tải xong, không chờ như vậy.
+- **Script và CSS:** script thường làm dừng parser; `async` hoặc `defer` giúp parser không phải chờ. CSS chặn dựng hình. Script cổ điển do parser đọc còn phải chờ các stylesheet đang tải trước nó rồi mới chạy: script thường vừa chặn parser vừa chờ; script `defer` không chặn parser nhưng chỉ chạy sau khi đọc xong và các stylesheet chặn script đã tải xong; còn script `async` hoặc được chèn bằng mã có thể chạy ngay khi sẵn sàng, không chờ như vậy.
 - **Cây hiển thị khác DOM:** `::before` và `::after` có hộp để vẽ nhưng không có nút DOM; `<head>` mặc định bị ẩn.
 - **Dựng lại:** đọc kích thước (ví dụ `offsetHeight`) ngay sau khi ghi có thể buộc trình duyệt tính layout sớm; làm lặp lại nhiều lần gây chậm.
 - **Chỉ là mô hình:** engine thật còn có nhiều bước tối ưu và tách luồng.

@@ -75,7 +75,7 @@
       ]
     },
     {
-      "claim_vi": "Stylesheet chặn dựng hình; script cổ điển (không async, không defer) phải chờ các stylesheet đang tải trước nó, còn script async hoặc chèn động có thể chạy ngay khi sẵn sàng.",
+      "claim_vi": "Stylesheet chặn dựng hình; script cổ điển do parser đọc phải chờ các stylesheet đang tải trước nó (script thường chặn parser và chờ, script defer chạy sau khi đọc xong và khi stylesheet chặn script đã tải xong), còn script async hoặc chèn động có thể chạy ngay khi sẵn sàng.",
       "sources": [
         "https://html.spec.whatwg.org/multipage/semantics.html#interactions-of-styling-and-scripting",
         "https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/Critical_rendering_path"

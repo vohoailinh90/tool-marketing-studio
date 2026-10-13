@@ -21,8 +21,8 @@ và điều chỉnh giao diện theo kích thước màn hình.
 
 ## Giới hạn cần nhớ
 
-“Viết sau thì thắng” chỉ đúng khi các bước trước đều hòa: cùng nguồn và mức quan trọng, cùng cascade layer,
-cùng độ cụ thể và cùng độ gần theo phạm vi (`@scope`). Với `.note { color: red; }` viết trước
+Trong ví dụ hai quy tắc trong stylesheet của tác giả, cùng cây DOM (không Shadow DOM), không animation/transition,
+không cascade layer và không `@scope`, thứ tự xuất hiện chỉ phân xử khi độ cụ thể hòa. Với `.note { color: red; }` viết trước
 và `p { color: blue; }` viết sau, đoạn `<p class="note">` vẫn đỏ. Thấy một quy tắc không có tác dụng thì đừng vội
 thêm `!important`: hãy kiểm tra độ cụ thể và thứ tự trước.
 

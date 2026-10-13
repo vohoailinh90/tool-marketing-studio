@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="420" viewBox="0 0 360 420" role="img" aria-labelledby="title desc">
+<title id="title">Brazil: bài học về build tái lập và dependency</title>
+<desc id="desc">Đầu vào xác định: Mã + package version: Toolchain + cấu hình; Đồ thị build: Dependency trước target: Kiểm tương thích khi nâng; Artifact bất biến: Build một lần, promote: Ghi nguồn gốc để truy lỗi. Các khung là ý chính để đối chiếu, không nhất thiết là các bước tuần tự.</desc>
+<rect width="360" height="420" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, sans-serif" fill="#0f172a">
+<text x="20" y="28" font-size="18" font-weight="bold">sd-11-023 · Nhìn hình trước</text>
+<rect x="12" y="48" width="336" height="102" rx="12" fill="#e0f2fe" stroke="#64748b"/>
+<text x="24" y="75" font-size="18" font-weight="bold">Đầu vào xác định</text>
+<text x="24" y="104" font-size="18">Mã + package version</text>
+<text x="24" y="130" font-size="18">Toolchain + cấu hình</text>
+<rect x="12" y="162" width="336" height="102" rx="12" fill="#dcfce7" stroke="#64748b"/>
+<text x="24" y="189" font-size="18" font-weight="bold">Đồ thị build</text>
+<text x="24" y="218" font-size="18">Dependency trước target</text>
+<text x="24" y="244" font-size="18">Kiểm tương thích khi nâng</text>
+<rect x="12" y="276" width="336" height="102" rx="12" fill="#fef3c7" stroke="#64748b"/>
+<text x="24" y="303" font-size="18" font-weight="bold">Artifact bất biến</text>
+<text x="24" y="332" font-size="18">Build một lần, promote</text>
+<text x="24" y="358" font-size="18">Ghi nguồn gốc để truy lỗi</text>
+</g>
+</svg>

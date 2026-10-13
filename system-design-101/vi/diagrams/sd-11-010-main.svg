@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="420" viewBox="0 0 360 420" role="img" aria-labelledby="title desc">
+<title id="title">Leap second và cách dùng đồng hồ an toàn</title>
+<desc id="desc">UTC: Có thể thêm 23:59:60: Chính sách giây nhuận; Leap smear: Dàn điều chỉnh theo thời gian: Không trộn chính sách tùy tiện; Trong ứng dụng: Wall clock: lịch và log: Monotonic: timeout, thời lượng. Các khung là ý chính để đối chiếu, không nhất thiết là các bước tuần tự.</desc>
+<rect width="360" height="420" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, sans-serif" fill="#0f172a">
+<text x="20" y="28" font-size="18" font-weight="bold">sd-11-010 · Nhìn hình trước</text>
+<rect x="12" y="48" width="336" height="102" rx="12" fill="#e0f2fe" stroke="#64748b"/>
+<text x="24" y="75" font-size="18" font-weight="bold">UTC</text>
+<text x="24" y="104" font-size="18">Có thể thêm 23:59:60</text>
+<text x="24" y="130" font-size="18">Chính sách giây nhuận</text>
+<rect x="12" y="162" width="336" height="102" rx="12" fill="#dcfce7" stroke="#64748b"/>
+<text x="24" y="189" font-size="18" font-weight="bold">Leap smear</text>
+<text x="24" y="218" font-size="18">Dàn điều chỉnh theo thời gian</text>
+<text x="24" y="244" font-size="18">Không trộn chính sách tùy tiện</text>
+<rect x="12" y="276" width="336" height="102" rx="12" fill="#fef3c7" stroke="#64748b"/>
+<text x="24" y="303" font-size="18" font-weight="bold">Trong ứng dụng</text>
+<text x="24" y="332" font-size="18">Wall clock: lịch và log</text>
+<text x="24" y="358" font-size="18">Monotonic: timeout, thời lượng</text>
+</g>
+</svg>

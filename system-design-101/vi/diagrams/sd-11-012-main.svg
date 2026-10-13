@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="420" viewBox="0 0 360 420" role="img" aria-labelledby="title desc">
+<title id="title">Điều gì làm Lambda phản hồi nhanh hơn?</title>
+<desc id="desc">Latency đầu cuối: Định tuyến + init + handler: Cộng thời gian gọi phụ thuộc; Giảm khởi tạo: Tái dùng môi trường: PC / SnapStart khi phù hợp; Đo trước khi chỉnh: Cold start và warm start: p95/p99 + chi phí. Các khung là ý chính để đối chiếu, không nhất thiết là các bước tuần tự.</desc>
+<rect width="360" height="420" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, sans-serif" fill="#0f172a">
+<text x="20" y="28" font-size="18" font-weight="bold">sd-11-012 · Nhìn hình trước</text>
+<rect x="12" y="48" width="336" height="102" rx="12" fill="#e0f2fe" stroke="#64748b"/>
+<text x="24" y="75" font-size="18" font-weight="bold">Latency đầu cuối</text>
+<text x="24" y="104" font-size="18">Định tuyến + init + handler</text>
+<text x="24" y="130" font-size="18">Cộng thời gian gọi phụ thuộc</text>
+<rect x="12" y="162" width="336" height="102" rx="12" fill="#dcfce7" stroke="#64748b"/>
+<text x="24" y="189" font-size="18" font-weight="bold">Giảm khởi tạo</text>
+<text x="24" y="218" font-size="18">Tái dùng môi trường</text>
+<text x="24" y="244" font-size="18">PC / SnapStart khi phù hợp</text>
+<rect x="12" y="276" width="336" height="102" rx="12" fill="#fef3c7" stroke="#64748b"/>
+<text x="24" y="303" font-size="18" font-weight="bold">Đo trước khi chỉnh</text>
+<text x="24" y="332" font-size="18">Cold start và warm start</text>
+<text x="24" y="358" font-size="18">p95/p99 + chi phí</text>
+</g>
+</svg>

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="420" viewBox="0 0 360 420" role="img" aria-labelledby="title desc">
+<title id="title">So sánh năm cách sinh ID</title>
+<desc id="desc">Không gọi bộ đếm chung: UUID: 128 bit, nhiều version: Snowflake: thời gian/node/seq; Dựa bộ đếm: DB auto-increment: Segment: cấp cả dải; Redis INCR: Nguyên tử trên instance: Xét persistence và failover. Các khung là ý chính để đối chiếu, không nhất thiết là các bước tuần tự.</desc>
+<rect width="360" height="420" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, sans-serif" fill="#0f172a">
+<text x="20" y="28" font-size="18" font-weight="bold">sd-11-028 · Nhìn hình trước</text>
+<rect x="12" y="48" width="336" height="102" rx="12" fill="#e0f2fe" stroke="#64748b"/>
+<text x="24" y="75" font-size="18" font-weight="bold">Không gọi bộ đếm chung</text>
+<text x="24" y="104" font-size="18">UUID: 128 bit, nhiều version</text>
+<text x="24" y="130" font-size="18">Snowflake: thời gian/node/seq</text>
+<rect x="12" y="162" width="336" height="102" rx="12" fill="#dcfce7" stroke="#64748b"/>
+<text x="24" y="189" font-size="18" font-weight="bold">Dựa bộ đếm</text>
+<text x="24" y="218" font-size="18">DB auto-increment</text>
+<text x="24" y="244" font-size="18">Segment: cấp cả dải</text>
+<rect x="12" y="276" width="336" height="102" rx="12" fill="#fef3c7" stroke="#64748b"/>
+<text x="24" y="303" font-size="18" font-weight="bold">Redis INCR</text>
+<text x="24" y="332" font-size="18">Nguyên tử trên instance</text>
+<text x="24" y="358" font-size="18">Xét persistence và failover</text>
+</g>
+</svg>

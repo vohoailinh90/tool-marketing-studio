@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="420" viewBox="0 0 360 420" role="img" aria-labelledby="title desc">
+<title id="title">AWS mở rộng dịch vụ theo lớp năng lực</title>
+<desc id="desc">Nền tảng: Object storage + VM: S3 / EC2; Năng lực được quản: DB • container • function: Giảm một phần vận hành; Workload chuyên biệt: Analytics • ML • edge: Chọn theo nhu cầu, không tuổi. Các khung là ý chính để đối chiếu, không nhất thiết là các bước tuần tự.</desc>
+<rect width="360" height="420" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, sans-serif" fill="#0f172a">
+<text x="20" y="28" font-size="18" font-weight="bold">sd-11-040 · Nhìn hình trước</text>
+<rect x="12" y="48" width="336" height="102" rx="12" fill="#e0f2fe" stroke="#64748b"/>
+<text x="24" y="75" font-size="18" font-weight="bold">Nền tảng</text>
+<text x="24" y="104" font-size="18">Object storage + VM</text>
+<text x="24" y="130" font-size="18">S3 / EC2</text>
+<rect x="12" y="162" width="336" height="102" rx="12" fill="#dcfce7" stroke="#64748b"/>
+<text x="24" y="189" font-size="18" font-weight="bold">Năng lực được quản</text>
+<text x="24" y="218" font-size="18">DB • container • function</text>
+<text x="24" y="244" font-size="18">Giảm một phần vận hành</text>
+<rect x="12" y="276" width="336" height="102" rx="12" fill="#fef3c7" stroke="#64748b"/>
+<text x="24" y="303" font-size="18" font-weight="bold">Workload chuyên biệt</text>
+<text x="24" y="332" font-size="18">Analytics • ML • edge</text>
+<text x="24" y="358" font-size="18">Chọn theo nhu cầu, không tuổi</text>
+</g>
+</svg>

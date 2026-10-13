@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="420" viewBox="0 0 360 420" role="img" aria-labelledby="title desc">
+<title id="title">Bản đồ công cụ Infrastructure as Code</title>
+<desc id="desc">Provisioning: Terraform • CloudFormation: Pulumi: khai báo tài nguyên; Cấu hình và runtime: Ansible/Chef/Puppet: Docker + Kubernetes; Luồng thay đổi: Git → plan → review → apply: Kiểm drift và bảo vệ state. Các khung là ý chính để đối chiếu, không nhất thiết là các bước tuần tự.</desc>
+<rect width="360" height="420" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, sans-serif" fill="#0f172a">
+<text x="20" y="28" font-size="18" font-weight="bold">sd-11-024 · Nhìn hình trước</text>
+<rect x="12" y="48" width="336" height="102" rx="12" fill="#e0f2fe" stroke="#64748b"/>
+<text x="24" y="75" font-size="18" font-weight="bold">Provisioning</text>
+<text x="24" y="104" font-size="18">Terraform • CloudFormation</text>
+<text x="24" y="130" font-size="18">Pulumi: khai báo tài nguyên</text>
+<rect x="12" y="162" width="336" height="102" rx="12" fill="#dcfce7" stroke="#64748b"/>
+<text x="24" y="189" font-size="18" font-weight="bold">Cấu hình và runtime</text>
+<text x="24" y="218" font-size="18">Ansible/Chef/Puppet</text>
+<text x="24" y="244" font-size="18">Docker + Kubernetes</text>
+<rect x="12" y="276" width="336" height="102" rx="12" fill="#fef3c7" stroke="#64748b"/>
+<text x="24" y="303" font-size="18" font-weight="bold">Luồng thay đổi</text>
+<text x="24" y="332" font-size="18">Git → plan → review → apply</text>
+<text x="24" y="358" font-size="18">Kiểm drift và bảo vệ state</text>
+</g>
+</svg>

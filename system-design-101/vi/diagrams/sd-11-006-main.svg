@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="420" viewBox="0 0 360 420" role="img" aria-labelledby="title desc">
+<title id="title">Chín mẫu tổ chức luồng dữ liệu và giao tiếp</title>
+<desc id="desc">Giao tiếp: Request/response • gateway: Peer-to-peer • pub/sub; Dữ liệu: ETL • batch • streaming: Event sourcing: lịch sử nguồn; Workflow: Orchestrator dẫn các bước: Ghi tiến độ và lỗi. Các khung là ý chính để đối chiếu, không nhất thiết là các bước tuần tự.</desc>
+<rect width="360" height="420" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, sans-serif" fill="#0f172a">
+<text x="20" y="28" font-size="18" font-weight="bold">sd-11-006 · Nhìn hình trước</text>
+<rect x="12" y="48" width="336" height="102" rx="12" fill="#e0f2fe" stroke="#64748b"/>
+<text x="24" y="75" font-size="18" font-weight="bold">Giao tiếp</text>
+<text x="24" y="104" font-size="18">Request/response • gateway</text>
+<text x="24" y="130" font-size="18">Peer-to-peer • pub/sub</text>
+<rect x="12" y="162" width="336" height="102" rx="12" fill="#dcfce7" stroke="#64748b"/>
+<text x="24" y="189" font-size="18" font-weight="bold">Dữ liệu</text>
+<text x="24" y="218" font-size="18">ETL • batch • streaming</text>
+<text x="24" y="244" font-size="18">Event sourcing: lịch sử nguồn</text>
+<rect x="12" y="276" width="336" height="102" rx="12" fill="#fef3c7" stroke="#64748b"/>
+<text x="24" y="303" font-size="18" font-weight="bold">Workflow</text>
+<text x="24" y="332" font-size="18">Orchestrator dẫn các bước</text>
+<text x="24" y="358" font-size="18">Ghi tiến độ và lỗi</text>
+</g>
+</svg>

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="420" viewBox="0 0 360 420" role="img" aria-labelledby="title desc">
+<title id="title">Cloud tiến hóa: phần trách nhiệm được chuyển đi</title>
+<desc id="desc">IaaS: Thuê compute/network/storage: Đội thường quản OS + app; PaaS và container: Runtime được quản / gói app: Orchestration quản workload; Serverless / cloud native: Đơn vị xử lý + tự động hóa: Mô hình cùng tồn tại. Các khung là ý chính để đối chiếu, không nhất thiết là các bước tuần tự.</desc>
+<rect width="360" height="420" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, sans-serif" fill="#0f172a">
+<text x="20" y="28" font-size="18" font-weight="bold">sd-11-036 · Nhìn hình trước</text>
+<rect x="12" y="48" width="336" height="102" rx="12" fill="#e0f2fe" stroke="#64748b"/>
+<text x="24" y="75" font-size="18" font-weight="bold">IaaS</text>
+<text x="24" y="104" font-size="18">Thuê compute/network/storage</text>
+<text x="24" y="130" font-size="18">Đội thường quản OS + app</text>
+<rect x="12" y="162" width="336" height="102" rx="12" fill="#dcfce7" stroke="#64748b"/>
+<text x="24" y="189" font-size="18" font-weight="bold">PaaS và container</text>
+<text x="24" y="218" font-size="18">Runtime được quản / gói app</text>
+<text x="24" y="244" font-size="18">Orchestration quản workload</text>
+<rect x="12" y="276" width="336" height="102" rx="12" fill="#fef3c7" stroke="#64748b"/>
+<text x="24" y="303" font-size="18" font-weight="bold">Serverless / cloud native</text>
+<text x="24" y="332" font-size="18">Đơn vị xử lý + tự động hóa</text>
+<text x="24" y="358" font-size="18">Mô hình cùng tồn tại</text>
+</g>
+</svg>

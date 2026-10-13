@@ -17,6 +17,12 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 
 7. [Chính sách định tuyến lưu lượng Internet](lessons/sd-01-007/lesson.md) — có review tại repo cũ; chờ review tích hợp tại repo mới.
 
+8. [JavaScript hoạt động thế nào?](lessons/sd-01-014/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+
+9. [8 gợi ý thiết kế API hiệu quả](lessons/sd-01-015/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+
+10. [Reverse Proxy, API Gateway và Load Balancer](lessons/sd-01-016/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+
 Danh mục đầy đủ và snapshot nguồn: [bảng đối chiếu](../../brainstorm/system-design-101-vi/source-map.json).
 Quy tắc đã chốt: [kết luận brainstorm](../../brainstorm/system-design-101-vi/DECISIONS.md).
 Tiến độ từng đợt: [PROGRESS.md](PROGRESS.md).

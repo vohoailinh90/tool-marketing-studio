@@ -1,0 +1,98 @@
+{
+  "id": "sd-14-001",
+  "title_vi": "DevSecOps là gì?",
+  "language": "vi",
+  "kind": "flow",
+  "content_status": "review",
+  "source_ref": "sd-14-001",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/what-is-devsecops.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-is-devsecops.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches provider tree OID. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "562f21338a3e371bc4b002d46b81521f8b8d3909",
+    "retrieved_body_sha256": "c638c30890fa06c3b8830eba50391945f119e9969030f1227b75f23838a08f80",
+    "retrieved_body_bytes": 1099
+  },
+  "diagram": "../diagrams/sd-14-001-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-14-003",
+      "relation": "uses",
+      "reason_vi": "Quản lý bí mật và băm mật khẩu là hai việc bảo mật cụ thể mà DevSecOps kiểm tra."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "evidence": "OWASP DevSecOps Guideline and Secrets Management Cheat Sheet read from local clones; threat modeling and the mapping of techniques to stages are the author's arrangement."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 14.4,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright) rendered the full lesson at each width with optional sections open; diagram scale measured from the rendered image and every SVG text box checked against the viewBox. Not learner testing and not GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "The OWASP DevSecOps Guideline aims to detect security issues (by design or application vulnerability) as early as possible and to promote a shift-left security culture.",
+      "source": "https://github.com/OWASP/DevSecOpsGuideline",
+      "section": "README",
+      "verified_by": "Read from a local clone of the OWASP repository."
+    },
+    {
+      "claim_vi": "The guideline lists pre-commit secrets management, SCA, SAST, IaC scanning (Terraform, Helm), software supply-chain security (SBOM, artifact signing), IAST, DAST, compliance and policy as code, and security gates that block risky builds and releases.",
+      "source": "https://github.com/OWASP/DevSecOpsGuideline",
+      "section": "README",
+      "verified_by": "Read from a local clone of the OWASP repository."
+    },
+    {
+      "claim_vi": "CI/CD tools often expand the attack surface, so security controls are needed around them.",
+      "source": "https://github.com/OWASP/DevSecOpsGuideline",
+      "section": "README",
+      "verified_by": "Read from a local clone of the OWASP repository."
+    },
+    {
+      "claim_vi": "Secrets management includes centralised storage, auditing and rotation of secrets to prevent leaks and compromise.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Secrets_Management_Cheat_Sheet.md",
+      "section": "Introduction",
+      "verified_by": "Read from a local clone of the OWASP repository."
+    },
+    {
+      "claim_vi": "Threat modeling, continuous monitoring, container security, QA integration and collaboration are key DevSecOps concepts; placing each at a pipeline stage is the author's arrangement.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-is-devsecops.md",
+      "section": "Key Concepts",
+      "verified_by": "Carried from the source as general description; not independently checked."
+    }
+  ],
+  "design_notes_vi": "Sáu chặng của đường ống, mỗi chặng một việc; thẻ cuối nói chính đường ống là mục tiêu. Không có mũi tên sau chặng cuối. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Source is an unordered list of ten concepts with no explanation; the lesson places the technical ones at pipeline stages and names the two cultural ones (QA integration, collaboration) separately.",
+    "Source does not mention that the CI/CD pipeline itself is an attack surface; the lesson adds it from the OWASP guideline."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

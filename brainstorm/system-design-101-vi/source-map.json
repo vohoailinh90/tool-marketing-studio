@@ -3698,7 +3698,7 @@
       "lessons": [
         {
           "id": "sd-14-001",
-          "title_vi": null,
+          "title_vi": "DevSecOps là gì?",
           "title_source": "What is DevSecOps?",
           "source_url": "https://bytebytego.com/guides/what-is-devsecops",
           "source_path": "data/guides/what-is-devsecops.md",
@@ -3708,21 +3708,21 @@
         },
         {
           "id": "sd-14-002",
-          "title_vi": null,
+          "title_vi": "Encoding, encryption và tokenization",
           "title_source": "Encoding vs Encryption vs Tokenization",
           "source_url": "https://bytebytego.com/guides/encoding-vs-encryption-vs-tokenization",
           "source_path": "data/guides/encoding-vs-encryption-vs-tokenization.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "6e3b9573101bd629726a1c0cbeef3048f5d91bef",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/encoding-vs-encryption-vs-tokenization.md"
         },
         {
           "id": "sd-14-003",
-          "title_vi": null,
+          "title_vi": "Lưu mật khẩu an toàn",
           "title_source": "Storing Passwords Safely: A Comprehensive Guide",
           "source_url": "https://bytebytego.com/guides/how-to-store-passwords-in-the-database",
           "source_path": "data/guides/how-to-store-passwords-in-the-database.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "c1afc3b01249c74b5fa05172a6c22b4594635df5",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-to-store-passwords-in-the-database.md"
         },

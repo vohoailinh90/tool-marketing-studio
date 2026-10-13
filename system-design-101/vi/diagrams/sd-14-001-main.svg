@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 896" width="320" height="896" role="img" aria-labelledby="title desc">
+<title id="title">DevSecOps: kiểm tra bảo mật ở từng chặng</title>
+<desc id="desc">Sáu chặng của đường ống phát triển, mỗi chặng một việc bảo mật. Lập kế hoạch: mô hình hóa mối đe dọa. Viết mã: quét bí mật trước khi commit và phân tích mã tĩnh SAST. Xây dựng: quét thư viện phụ thuộc SCA, quét ảnh container, tạo SBOM. Kiểm thử: quét động DAST và kiểm thử tương tác IAST. Triển khai: quét hạ tầng dưới dạng mã và cổng bảo mật chặn bản phát hành rủi ro. Vận hành: giám sát liên tục và quản lý lỗ hổng. Thẻ cuối nhắc rằng chính đường ống CI/CD cũng là bề mặt tấn công.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="896" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="21" font-weight="bold">DEVSECOPS: BẢO MẬT</text>
+<text x="16" y="54" font-size="21" font-weight="bold">Ở TỪNG CHẶNG</text>
+<rect x="16" y="80" width="288" height="76" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="29" y="109" font-size="16" font-weight="bold">1 · Lập kế hoạch</text>
+<text x="29" y="137" font-size="16" font-weight="normal">Mô hình hóa mối đe dọa</text>
+<line x1="160" y1="157" x2="160" y2="172" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="174" width="288" height="100" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="29" y="203" font-size="16" font-weight="bold">2 · Viết mã</text>
+<text x="29" y="231" font-size="16" font-weight="normal">Quét bí mật trước khi commit;</text>
+<text x="29" y="255" font-size="16" font-weight="normal">phân tích mã tĩnh (SAST)</text>
+<line x1="160" y1="275" x2="160" y2="290" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="292" width="288" height="100" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="29" y="321" font-size="16" font-weight="bold">3 · Xây dựng</text>
+<text x="29" y="349" font-size="16" font-weight="normal">Quét thư viện phụ thuộc (SCA)</text>
+<text x="29" y="373" font-size="16" font-weight="normal">và ảnh container; tạo SBOM</text>
+<line x1="160" y1="393" x2="160" y2="408" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="410" width="288" height="100" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="29" y="439" font-size="16" font-weight="bold">4 · Kiểm thử</text>
+<text x="29" y="467" font-size="16" font-weight="normal">Quét động (DAST), kiểm thử</text>
+<text x="29" y="491" font-size="16" font-weight="normal">tương tác (IAST)</text>
+<line x1="160" y1="511" x2="160" y2="526" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="528" width="288" height="100" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="29" y="557" font-size="16" font-weight="bold">5 · Triển khai</text>
+<text x="29" y="585" font-size="16" font-weight="normal">Quét hạ tầng dưới dạng mã;</text>
+<text x="29" y="609" font-size="16" font-weight="normal">cổng chặn bản phát hành rủi ro</text>
+<line x1="160" y1="629" x2="160" y2="644" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="646" width="288" height="100" rx="12" fill="#e2e8f0" stroke="#94a3b8"/>
+<text x="29" y="675" font-size="16" font-weight="bold">6 · Vận hành</text>
+<text x="29" y="703" font-size="16" font-weight="normal">Giám sát liên tục; quản lý lỗ</text>
+<text x="29" y="727" font-size="16" font-weight="normal">hổng</text>
+<rect x="16" y="758" width="288" height="124" rx="12" fill="#fee2e2" stroke="#94a3b8"/>
+<text x="29" y="787" font-size="16" font-weight="bold">Chính đường ống cũng là</text>
+<text x="29" y="811" font-size="16" font-weight="bold">mục tiêu</text>
+<text x="29" y="839" font-size="16" font-weight="normal">Công cụ CI/CD mở rộng bề mặt</text>
+<text x="29" y="863" font-size="16" font-weight="normal">tấn công; cần được bảo vệ.</text>
+</g></svg>

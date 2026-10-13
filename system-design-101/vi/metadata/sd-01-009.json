@@ -118,6 +118,13 @@
       ]
     },
     {
+      "claim_vi": "Trong HTTP/1.1, dòng đầu và header là văn bản còn phần thân là chuỗi octet bất kỳ; HTTP/2 đóng gói header và thân vào các khung nhị phân.",
+      "sources": [
+        "https://www.rfc-editor.org/rfc/rfc9112.html",
+        "https://www.rfc-editor.org/rfc/rfc9113.html"
+      ]
+    },
+    {
       "claim_vi": "Mọi luồng HTTP/2 dùng chung một kết nối TCP nên một gói bị mất làm dừng tất cả; HTTP/3 chạy trên QUIC nên các luồng độc lập khi mất gói.",
       "sources": [
         "https://www.rfc-editor.org/rfc/rfc9113.html",
@@ -134,6 +141,7 @@
     }
   ],
   "source_deviations": [
+    "Nguồn ngầm coi HTTP/1.1 là văn bản; bài nói rõ chỉ dòng đầu và header là văn bản, còn phần thân là dữ liệu bất kỳ.",
     "Nguồn nói ưu tiên luồng cho phép nhà phát triển đặt trọng số; bài nói rõ cơ chế ban đầu đã bị RFC 9113 đánh dấu lỗi thời và mức hỗ trợ khác nhau.",
     "Nguồn liệt kê server push là một tính năng giúp nhanh; bài nói rằng nó khó dùng đúng và một số trình duyệt lớn như Chrome đã ngừng hỗ trợ.",
     "Nguồn nói dạng nhị phân giúp xử lý hiệu quả hơn; bài nói riêng dạng nhị phân chỉ giúp gọn và ít nhập nhằng, lợi ích lớn đến từ ghép kênh và nén header.",

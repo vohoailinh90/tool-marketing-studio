@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 706" width="320" height="706" role="img" aria-labelledby="title desc">
+<title id="title">CSS: quy tắc, cascade và bố cục</title>
+<desc id="desc">Ba khung dọc: một quy tắc gồm bộ chọn p, thuộc tính color và giá trị blue; cascade giải quyết xung đột giữa quy tắc p xanh dương, .note đỏ và #intro xanh lá cho phần tử p có id intro và class note, kết quả là xanh lá vì id đặc hiệu hơn, ngang nhau thì quy tắc sau thắng; bố cục có Flexbox một chiều, Grid hai chiều, và @media đổi kiểu theo kích thước màn hình. Hiệu ứng dùng transition và @keyframes.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="706" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">CSS LÀ GÌ?</text>
+<text x="16" y="60" font-size="16" font-weight="normal">Mô tả cách trang hiển thị</text>
+<rect x="16" y="82" width="288" height="158" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="112" font-size="16" font-weight="bold">1 · Một quy tắc</text>
+<text x="30" y="139" font-size="16" font-weight="bold">p { color: blue; }</text>
+<text x="30" y="166" font-size="16" font-weight="bold">p</text>
+<text x="70" y="166" font-size="16" font-weight="normal">bộ chọn: phần tử nào</text>
+<text x="30" y="193" font-size="16" font-weight="bold">color</text>
+<text x="100" y="193" font-size="16" font-weight="normal">thuộc tính</text>
+<text x="30" y="220" font-size="16" font-weight="bold">blue</text>
+<text x="100" y="220" font-size="16" font-weight="normal">giá trị</text>
+<line x1="160" y1="241" x2="160" y2="261" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="264" width="288" height="212" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="294" font-size="16" font-weight="bold">2 · Cascade: xung đột</text>
+<text x="30" y="321" font-size="16" font-weight="normal">Cho &lt;p id=intro class=note&gt;:</text>
+<text x="30" y="348" font-size="16" font-weight="normal">p → xanh dương</text>
+<text x="30" y="375" font-size="16" font-weight="normal">.note → đỏ</text>
+<text x="30" y="402" font-size="16" font-weight="normal">#intro → xanh lá</text>
+<text x="30" y="429" font-size="16" font-weight="bold">Thắng: xanh lá (id)</text>
+<text x="30" y="456" font-size="16" font-weight="normal">Ngang nhau: quy tắc sau thắng</text>
+<line x1="160" y1="477" x2="160" y2="497" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="500" width="288" height="158" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="530" font-size="16" font-weight="bold">3 · Bố cục và responsive</text>
+<text x="30" y="557" font-size="16" font-weight="bold">Flexbox</text>
+<text x="128" y="557" font-size="16" font-weight="normal">sắp theo một chiều</text>
+<text x="30" y="584" font-size="16" font-weight="bold">Grid</text>
+<text x="128" y="584" font-size="16" font-weight="normal">lưới hai chiều</text>
+<text x="30" y="611" font-size="16" font-weight="bold">@media</text>
+<text x="128" y="611" font-size="16" font-weight="normal">đổi kiểu theo</text>
+<text x="128" y="638" font-size="16" font-weight="normal">kích thước màn hình</text>
+<text x="16" y="686" font-size="16" font-weight="normal">Hiệu ứng: transition, @keyframes.</text>
+</g></svg>

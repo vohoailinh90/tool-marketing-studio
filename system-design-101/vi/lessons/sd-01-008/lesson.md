@@ -1,0 +1,53 @@
+# Trình duyệt dựng trang web thế nào?
+
+**Máy chủ gửi về chữ, trình duyệt phải biến chúng thành hình.** Việc đó đi qua một chuỗi bước: hiểu HTML, hiểu CSS, tính chỗ đặt từng phần tử, rồi vẽ.
+
+![Sáu khung dọc: HTML được phân tích thành cây DOM, script thường làm parser dừng; CSS thành cây CSSOM và chặn việc dựng hình; DOM và CSSOM hợp lại thành cây hiển thị, bỏ phần tử display none còn visibility hidden vẫn chiếm chỗ; layout tính vị trí và kích thước; paint vẽ nội dung ra từng lớp; composite ghép các lớp để GPU hiển thị. Đổi DOM hoặc CSS có thể chạy lại từ layout, paint hoặc composite.](../../diagrams/sd-01-008-main.svg)
+
+## Đọc hình
+
+**1. DOM.** Trình duyệt đọc HTML dần dần và dựng *cây DOM*: mỗi thẻ là một nút. Khi gặp `<script>` thường (không `async`/`defer`), nó thường phải dừng đọc để chạy script trước.
+
+**2. CSSOM.** CSS được phân tích thành *cây CSSOM*: các quy tắc kiểu đã được giải quyết theo cascade. Việc hiện trang thường phải chờ CSS, nên CSS "chặn dựng hình".
+
+**3. Cây hiển thị.** DOM kết hợp CSSOM, chỉ giữ những gì có hộp để vẽ. Phần tử `display: none` bị bỏ; `visibility: hidden` thì vẫn chiếm chỗ nhưng không thấy.
+
+**4. Layout.** Tính vị trí và kích thước từng hộp.
+
+**5. Paint.** Vẽ nội dung (chữ, màu, ảnh) ra từng lớp.
+
+**6. Composite.** Ghép các lớp theo thứ tự; việc này thường do GPU làm.
+
+## Giới hạn cần nhớ
+
+Sáu bước không chạy đúng một lần theo hàng thẳng. Trình duyệt dựng dần khi dữ liệu còn đang về, và chạy lại một phần khi trang thay đổi: đổi kích thước hay vị trí thường kéo theo cả layout, paint, composite; đổi màu có thể bỏ qua layout. Tên gọi và chi tiết (như "render tree") khác nhau giữa các engine.
+
+## Nhìn hình thử trả lời
+
+Muốn một ô trượt mượt, bạn đổi `left` mỗi khung hình hay dùng `transform`? Vì sao?
+
+<details>
+<summary>Xem đáp án</summary>
+
+Thường nên dùng `transform`. Đổi `left` làm đổi vị trí hộp nên có thể buộc chạy lại layout cho cả trang rồi paint; `transform` thường chỉ cần ghép lại lớp ở bước composite. Mức chênh lệch tùy trình duyệt và trang.
+
+</details>
+
+<details>
+<summary>Xem sâu hơn</summary>
+
+- **Script và CSS:** script thường làm dừng parser; `async` hoặc `defer` giúp parser không phải chờ. CSS chặn dựng hình, và script đọc kiểu có thể phải chờ CSS tải xong.
+- **Cây hiển thị khác DOM:** `::before` và `::after` có hộp để vẽ nhưng không có nút DOM; `<head>` mặc định bị ẩn.
+- **Dựng lại:** đọc kích thước (ví dụ `offsetHeight`) ngay sau khi ghi có thể buộc trình duyệt tính layout sớm; làm lặp lại nhiều lần gây chậm.
+- **Chỉ là mô hình:** engine thật còn có nhiều bước tối ưu và tách luồng.
+
+</details>
+
+## Nguồn đối chiếu
+
+- [ByteByteGo tại snapshot cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-the-browser-render-a-web-page.md).
+- [MDN — Critical rendering path](https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/Critical_rendering_path).
+- [HTML Standard — Parsing HTML documents](https://html.spec.whatwg.org/multipage/parsing.html) và [CSS Display Module](https://www.w3.org/TR/css-display-3/).
+- [web.dev — Rendering performance](https://web.dev/articles/rendering-performance).
+
+Đã đọc nguồn ngày 2026-10-13; các tài liệu chuẩn nêu trên chưa được mở để đối chiếu trực tiếp trong lượt biên soạn này. Bài viết và hình được thiết kế độc lập.

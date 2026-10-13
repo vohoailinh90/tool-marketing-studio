@@ -9,22 +9,21 @@
     "sd-01-004",
     "sd-01-005",
     "sd-01-006",
-    "sd-01-007"
+    "sd-01-007",
+    "sd-01-008",
+    "sd-01-009",
+    "sd-01-010"
   ],
   "reviewed_ids": [],
-  "next_id": "sd-01-008",
+  "next_id": "sd-01-011",
   "active_batch_ids": [
-    "sd-01-001",
-    "sd-01-002",
-    "sd-01-003",
-    "sd-01-004",
-    "sd-01-005",
-    "sd-01-006",
-    "sd-01-007"
+    "sd-01-008",
+    "sd-01-009",
+    "sd-01-010"
   ],
-  "active_pr": 40,
+  "active_pr": null,
   "updated_on": "2026-10-13",
-  "active_branch": "codex/system-design-vi-import",
+  "active_branch": "claude/sd01-batch-2",
   "previous_pr": 34,
   "superseded_pr": 24,
   "integration_review_pending": true,

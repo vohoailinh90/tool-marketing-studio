@@ -3571,7 +3571,7 @@
         },
         {
           "id": "sd-13-016",
-          "title_vi": "Bảng tra lệnh kubectl theo tình huống",
+          "title_vi": "Tìm đúng Pod trong cụm lớn: selector và cách in kết quả của kubectl",
           "title_source": "Kubernetes Command Cheatsheet",
           "source_url": "https://bytebytego.com/guides/the-ultimate-kubernetes-command-cheatsheet",
           "source_path": "data/guides/the-ultimate-kubernetes-command-cheatsheet.md",

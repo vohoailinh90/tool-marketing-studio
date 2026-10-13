@@ -34,7 +34,7 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 13. [Docker khi chạy web kèm cơ sở dữ liệu: bốn chỗ hay hỏng](lessons/sd-13-013/lesson.md) — bài nháp, chờ review kỹ thuật.
 14. [CI đỏ mà máy bạn chạy được: năm nguồn khác biệt](lessons/sd-13-014/lesson.md) — bài nháp, chờ review kỹ thuật.
 15. [Vòng đời một tính năng có cờ: từ mã đã lên đến dọn cờ](lessons/sd-13-015/lesson.md) — bài nháp, chờ review kỹ thuật.
-16. [Bảng tra lệnh kubectl theo tình huống](lessons/sd-13-016/lesson.md) — bài nháp, chờ review kỹ thuật.
+16. [Tìm đúng Pod trong cụm lớn: selector và cách in kết quả của kubectl](lessons/sd-13-016/lesson.md) — bài nháp, chờ review kỹ thuật.
 17. [Deployment của Kubernetes thay Pod như thế nào](lessons/sd-13-017/lesson.md) — bài nháp, chờ review kỹ thuật.
 18. [Terraform biến mã thành hạ tầng](lessons/sd-13-018/lesson.md) — bài nháp, chờ review kỹ thuật.
 19. [Bốn nút thắt giữa các nhóm khi đưa phần mềm lên chạy](lessons/sd-13-019/lesson.md) — bài nháp, chờ review kỹ thuật.

@@ -1,8 +1,8 @@
 {
   "id": "sd-13-016",
-  "title_vi": "Bảng tra lệnh kubectl theo tình huống",
+  "title_vi": "Tìm đúng Pod trong cụm lớn: selector và cách in kết quả của kubectl",
   "language": "vi",
-  "kind": "reference",
+  "kind": "flow",
   "content_status": "draft",
   "source_ref": "sd-13-016",
   "source_snapshot": {
@@ -21,7 +21,12 @@
     {
       "lesson_id": "sd-13-025",
       "relation": "context",
-      "reason_vi": "Chẩn đoán Pod không chạy theo từng chặng."
+      "reason_vi": "Sau khi chọn được Pod, chẩn đoán vì sao nó không chạy."
+    },
+    {
+      "lesson_id": "sd-13-006",
+      "relation": "context",
+      "reason_vi": "Service chọn Pod bằng selector nhãn."
     }
   ],
   "verification": {
@@ -45,21 +50,33 @@
   },
   "claims": [
     {
-      "claim_vi": "kubectl logs hỗ trợ cờ --previous để xem nhật ký container lần chạy trước.",
+      "claim_vi": "Bộ chọn nhãn dạng bằng nhau có =, == và !=; dấu phẩy nối các điều kiện nghĩa là tất cả phải thỏa; != cũng chọn đối tượng không có nhãn đó.",
+      "source": "https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/"
+    },
+    {
+      "claim_vi": "--field-selector hỗ trợ =, == và !=; mọi loại tài nguyên hỗ trợ metadata.name và metadata.namespace, các trường khác tùy loại; dùng trường không hỗ trợ thì báo lỗi; nhiều điều kiện nối bằng dấu phẩy.",
+      "source": "https://kubernetes.io/docs/concepts/overview/working-with-objects/field-selectors/"
+    },
+    {
+      "claim_vi": "Phase của Pod chỉ gồm Pending, Running, Succeeded, Failed và Unknown; Running gồm cả trường hợp container đang khởi động lại; Terminating không phải một phase.",
+      "source": "https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/"
+    },
+    {
+      "claim_vi": "restartPolicy của Pod mặc định là Always.",
+      "source": "https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/"
+    },
+    {
+      "claim_vi": "kubectl có các định dạng đầu ra wide, custom-columns và jsonpath, và --sort-by sắp theo một đường dẫn trường như số lần khởi động lại của container đầu tiên.",
       "source": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
     },
     {
-      "claim_vi": "kubectl rollout undo quay lui một deployment.",
-      "source": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
-    },
-    {
-      "claim_vi": "kubectl port-forward chuyển tiếp cổng từ máy cục bộ tới Pod hoặc Service.",
-      "source": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+      "claim_vi": "Mẫu jsonpath của kubectl hỗ trợ range ... end để lặp qua .items[*] và chuỗi trong dấu nháy kép như \"\\t\" và \"\\n\".",
+      "source": "https://kubernetes.io/docs/reference/kubectl/jsonpath/"
     }
   ],
   "source_deviations": [
-    "Nguồn chỉ liệt kê các nhóm lệnh; bài chọn thang gỡ lỗi và ví dụ lệnh."
+    "Nguồn là bảng lệnh kubectl theo nhóm tài nguyên; bài bỏ bảng đó và theo một vấn đề riêng là tìm đúng Pod trong cụm lớn, chỉ còn dùng lại lệnh get cho Pod, còn phần chọn lọc, định dạng đầu ra và sắp thứ tự do bài tự chọn."
   ],
-  "design_notes_vi": "Thang bốn bậc dọc, mỗi bậc một lệnh chính.",
+  "design_notes_vi": "Năm thẻ nối mũi tên: ba thẻ thu hẹp tập Pod, hai thẻ chọn cách hiện kết quả.",
   "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
 }

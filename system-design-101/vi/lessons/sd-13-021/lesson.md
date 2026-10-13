@@ -8,7 +8,7 @@ Muốn tìm vì sao một request chậm, bạn cần dữ liệu nối được
 
 ## Nhìn hình thử trả lời
 
-Độ trễ trung bình là 120 ms nhưng người dùng than chậm. Vì sao con số trung bình không phản ánh điều đó, và nên xem gì?
+Độ trễ trung bình là 120 ms (mili giây, 1 ms bằng một phần nghìn giây) nhưng người dùng than chậm. Vì sao con số trung bình không phản ánh điều đó, và nên xem gì?
 
 <details>
 <summary>Xem đáp án</summary>
@@ -24,8 +24,8 @@ Không có bộ thiết bị đo đúng cho mọi hệ thống: truyền ngữ c
 <details>
 <summary>Xem sâu hơn</summary>
 
-- **Trace Context:** chuẩn W3C định nghĩa header `traceparent` có dạng `00-<trace-id>-<parent-id>-<cờ>`; thư viện đo lường như OpenTelemetry tự đọc và truyền nó nếu được bật.
-- **Nhật ký có cấu trúc:** mỗi dòng là một đối tượng (ví dụ JSON) có trường như `trace_id`, `service`, `level`, để tìm kiếm chính xác thay vì đoán chuỗi.
+- **Trace Context:** chuẩn W3C (World Wide Web Consortium — tổ chức xây dựng chuẩn web) định nghĩa header `traceparent` có dạng `00-<trace-id>-<parent-id>-<cờ>`; thư viện đo lường như OpenTelemetry tự đọc và truyền nó nếu được bật.
+- **Nhật ký có cấu trúc:** mỗi dòng là một đối tượng (ví dụ JSON, tức JavaScript Object Notation — định dạng dữ liệu văn bản dạng khóa và giá trị) có trường như `trace_id`, `service`, `level`, để tìm kiếm chính xác thay vì đoán chuỗi.
 - **Histogram:** chia độ trễ vào các khoảng; phân vị tính xấp xỉ từ các khoảng, nên chọn ranh giới khoảng quanh mục tiêu mức dịch vụ.
 - **Nhãn:** mỗi tổ hợp giá trị nhãn là một chuỗi riêng, nên nhãn có vô hạn giá trị làm số chuỗi bùng nổ.
 - **Lấy mẫu:** lấy mẫu theo đầu vết (quyết định ngay từ đầu) đơn giản nhưng có thể bỏ lỡ vết lỗi; lấy mẫu theo đuôi (quyết định sau khi vết hoàn tất) giữ được vết lỗi và chậm nhưng tốn tài nguyên hơn.

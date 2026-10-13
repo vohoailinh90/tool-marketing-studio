@@ -59,3 +59,15 @@ mutations:
   find: "    types: [opened, synchronize, reopened, ready_for_review]\n"
   replace: "    types: [opened, synchronize, reopened, ready_for_review]\n    paths:\n      - \"campaigns/radar-*/**\"\n"
   test: tests.test_radar_preview.WorkflowTests.test_it_runs_on_every_push_to_a_pull_request_never_on_pull_request_target_and_without_a_path_filter
+- label: the planner runs from the pull request's own copy
+  find: '          python trusted/scripts/radar_preview.py plan'
+  replace: '          python scripts/radar_preview.py plan'
+  test: tests.test_radar_preview.WorkflowTests.test_the_planner_and_the_comment_writer_run_from_the_base_branch_not_from_the_pull_request
+- label: the comment writer runs from the pull request's own copy
+  find: '          python trusted/scripts/radar_preview.py comment --root="$GITHUB_WORKSPACE" \\'
+  replace: '          python scripts/radar_preview.py comment --root="$GITHUB_WORKSPACE" \\'
+  test: tests.test_radar_preview.WorkflowTests.test_the_planner_and_the_comment_writer_run_from_the_base_branch_not_from_the_pull_request
+- label: the "trusted" checkout is the pull request's merge, not the base branch
+  find: '          ref: ${{ github.event.pull_request.base.ref }}'
+  replace: '          ref: ${{ github.sha }}'
+  test: tests.test_radar_preview.WorkflowTests.test_the_planner_and_the_comment_writer_run_from_the_base_branch_not_from_the_pull_request

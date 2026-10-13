@@ -99,3 +99,7 @@ mutations:
   find: 'f"{len(outside)} changed file(s) are not radar data, e.g. {safe(outside[0])}"'
   replace: 'f"{len(outside)} changed file(s) are not radar data, e.g. {outside[0]}"'
   test: tests.test_radar_preview.CommentTests.test_the_file_named_in_the_reason_cannot_carry_a_link
+- label: the comment ignores the checkout it is given and reads the one holding the script
+  find: 'build_comment(Path(args.root) if args.root else ROOT,'
+  replace: 'build_comment(ROOT,'
+  test: tests.test_radar_preview.CommentTests.test_the_comment_reads_the_drawn_files_of_the_checkout_it_is_given

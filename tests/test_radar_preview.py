@@ -343,6 +343,15 @@ class CommentTests(unittest.TestCase):
     def test_a_campaign_without_a_drawing_says_so(self):
         self.assertIn("No post was drawn.", comment(self.root))
 
+    def test_the_comment_reads_the_drawn_files_of_the_checkout_it_is_given(self):
+        render_fixture(self.root, "A caption only the given checkout has", [])
+        out = self.root / "comment.md"
+        code = radar_preview.main(["comment", "--plan-ok=true", f"--campaigns={CAMPAIGN}", f"--root={self.root}", "--install=success",
+                                   "--check=success", "--render=success", "--upload=success", "--artifact-url=https://a",
+                                   "--run-url=https://r", f"--out={out}"])
+        self.assertEqual(0, code)
+        self.assertIn("A caption only the given checkout has", out.read_text(encoding="utf-8"))
+
     def test_the_command_writes_the_file_the_workflow_posts(self):
         render_fixture(self.root, "Caption", [])
         out = self.root / "comment.md"
@@ -377,6 +386,21 @@ class WorkflowTests(unittest.TestCase):
         self.assertIn("github.event.pull_request.head.repo.full_name == github.repository", job["if"])
         self.assertIn("startsWith(github.event.pull_request.head.ref, 'radar/')", job["if"])
         self.assertIn("vars.CI_RUNNER || 'self-hosted'", job["runs-on"])
+
+    def test_the_planner_and_the_comment_writer_run_from_the_base_branch_not_from_the_pull_request(self):
+        base = next(s for s in steps() if s.get("name") == "The planner, from the base branch")
+        self.assertEqual("${{ github.event.pull_request.base.ref }}", base["with"]["ref"])
+        self.assertEqual("trusted", base["with"]["path"])
+        self.assertIs(False, base["with"]["persist-credentials"])
+        for step in steps():
+            run = step.get("run", "")
+            self.assertNotIn("python scripts/radar_preview.py", run, step.get("name"))     # that path is the pull request's own copy
+        self.assertIn("python trusted/scripts/radar_preview.py plan", next(s for s in steps() if s.get("id") == "plan")["run"])
+        write = next(s for s in steps() if s.get("name") == "Write the comment")["run"]
+        self.assertIn("python trusted/scripts/radar_preview.py comment", write)
+        self.assertIn('--root="$GITHUB_WORKSPACE"', write)               # the trusted script reads the pull request's drawn files
+        names = [s.get("name") or s.get("id") for s in steps()]
+        self.assertLess(names.index("The planner, from the base branch"), names.index("Which files does this pull request change?"))
 
     def test_the_checkout_does_not_leave_the_token_in_the_workspace_of_a_persistent_runner(self):
         checkout = next(s for s in steps() if s.get("uses", "").startswith("actions/checkout"))

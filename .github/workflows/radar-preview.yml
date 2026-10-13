@@ -5,8 +5,9 @@ name: Radar preview
 # comment on the pull request that links them, so the post can be looked at before it is approved.
 # Nothing is approved, committed or published here: those stay the owner's (CLAUDE.md, "Publishing is the owner's act").
 # scripts/radar_preview.py decides what may be drawn and writes the comment; docs/agent-team.md, "Radar preview".
-# A pull request that carries code or a symbolic link is not drawn: a safety net for the bot's branch, not a boundary against
-# someone who can already push here (they can change this workflow, which runs on the same runner, as with ci.yml).
+# A pull request that carries code or a symbolic link is not drawn. The planner and the comment writer run from the base branch,
+# so the pull request cannot change them before they judge it. That is not a boundary against someone who can already push a
+# branch here: GitHub runs the workflow file of the pull request's merge, so they can change this file (or ci.yml), as ever.
 
 on:
   # No `paths:` filter: it looks at the whole diff of the pull request, so a push that removes the campaign would never run
@@ -43,11 +44,24 @@ jobs:
         with:
           python-version: "3.12"
 
+      # The planner and the comment writer are what judge this pull request, so they run from the base branch as it is now, never
+      # from the pull request: a radar branch that edits or deletes scripts/radar_preview.py or scripts/ci_changes.py is judged
+      # (and refused) by the version that is already on the base branch, and cannot keep its own code from being judged.
+      - name: The planner, from the base branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.ref }}
+          path: trusted
+          fetch-depth: 1
+          persist-credentials: false
+
       - name: Which files does this pull request change?
         id: plan
         env:
           PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
-        run: python scripts/radar_preview.py plan
+        run: |
+          test -f trusted/scripts/radar_preview.py || { echo "the base branch has no scripts/radar_preview.py"; exit 1; }
+          python trusted/scripts/radar_preview.py plan
 
       - name: Install
         id: install
@@ -104,7 +118,8 @@ jobs:
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: |
           # `--name=value`: a value that starts with a dash (a file named -x) must not be read as an option.
-          python scripts/radar_preview.py comment --plan-ok="$PLAN_OK" --campaigns="$CAMPAIGNS" --reason="$REASON" \
+          python trusted/scripts/radar_preview.py comment --root="$GITHUB_WORKSPACE" \
+            --plan-ok="$PLAN_OK" --campaigns="$CAMPAIGNS" --reason="$REASON" \
             --outside="$OUTSIDE" --install="$INSTALL" --check="$CHECK" --render="$RENDER" --upload="$UPLOAD" \
             --artifact-url="$ARTIFACT_URL" --run-url="$RUN_URL" \
             --out="$RUNNER_TEMP/radar-preview-comment.md"

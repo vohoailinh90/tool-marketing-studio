@@ -13,7 +13,7 @@ Lệnh `docker` chỉ là client. Việc build, kéo và chạy do daemon trên 
 <details>
 <summary>Xem đáp án</summary>
 
-Daemon kéo image từ registry về máy. Sau đó nó tạo container, cấp lớp ghi, nối mạng rồi khởi động.
+Daemon kéo image từ registry về kho cục bộ trước, rồi mới tạo và khởi động container.
 
 </details>
 
@@ -24,15 +24,10 @@ Daemon kéo image từ registry về máy. Sau đó nó tạo container, cấp l
 <details>
 <summary>Xem sâu hơn</summary>
 
-Các bước chính của `docker run`:
-
-1. Kéo image từ registry nếu chưa có cục bộ.
-2. Tạo container mới từ image.
-3. Cấp một lớp hệ thống tệp ghi được trên cùng các lớp chỉ đọc của image.
-4. Tạo giao diện mạng nối container với mạng mặc định (trừ khi chọn mạng khác).
-5. Khởi động container và chạy lệnh đã chỉ định.
-
-`docker build` gửi ngữ cảnh build tới daemon để dựng image; `docker pull` chỉ tải image về.
+- **build:** client gửi ngữ cảnh build (Dockerfile và các tệp liên quan) cho daemon; kết quả là một image trong kho cục bộ.
+- **pull:** chép image từ registry vào kho cục bộ, không tạo container nào.
+- **run:** gộp `docker create` (dựng container từ image cùng cấu hình như mạng, volume, biến môi trường) và `docker start`. Image chưa có cục bộ thì daemon kéo trước.
+- Cả ba đều là yêu cầu API gửi tới daemon, nên client và daemon có thể ở hai máy khác nhau.
 
 </details>
 

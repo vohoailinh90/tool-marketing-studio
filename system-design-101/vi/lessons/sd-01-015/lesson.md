@@ -2,13 +2,13 @@
 
 **API là hợp đồng giữa người viết và người dùng.** Hợp đồng càng nhất quán thì người dùng càng đoán được hành vi mà không phải hỏi. Tám gợi ý dưới đây theo kiểu REST/HTTP; mỗi cái là một quyết định nên chốt sớm.
 
-![Tám khung dọc, mỗi khung một gợi ý: đường dẫn theo miền dùng danh từ như /orders/42/items; phương thức đúng như GET đọc, POST tạo, PUT thay; idempotent với GET, PUT, DELETE lặp lại an toàn và POST dùng Idempotency-Key; mã trạng thái ít và nhất quán, 201 kèm Location khi tạo mới; phiên bản như /v1/orders hoặc header; tên dễ hiểu dạng danh từ số nhiều; thao tác hàng loạt như POST /orders/batch trả kết quả từng phần tử; truy vấn với lọc, sắp xếp và phân trang.](../../diagrams/sd-01-015-main.svg)
+![Tám khung dọc, mỗi khung một gợi ý: đường dẫn theo miền dùng danh từ như /orders/42/items; phương thức đúng như GET đọc, POST tạo, PUT thay; idempotent nghĩa là gửi lại có cùng tác động lên máy chủ như gửi một lần, đúng với GET, PUT, DELETE còn POST dùng Idempotency-Key; mã trạng thái ít và nhất quán, 201 kèm Location khi tạo mới; phiên bản như /v1/orders hoặc header; tên dễ hiểu dạng danh từ số nhiều; thao tác hàng loạt như POST /orders/batch trả kết quả từng phần tử; truy vấn với lọc, sắp xếp và phân trang.](../../diagrams/sd-01-015-main.svg)
 
 ## Đọc hình
 
 1. **Đường dẫn theo miền.** Cấu trúc đường dẫn phản ánh mô hình nghiệp vụ: `/orders/42/items` là các mục của đơn 42. Hành động nằm ở phương thức HTTP, không nằm trong đường dẫn.
 2. **Phương thức đúng.** `GET` đọc (không đổi dữ liệu), `POST` tạo hoặc thực hiện thao tác, `PUT` thay toàn bộ, `DELETE` xóa. `PATCH` sửa một phần, nhưng cần quy ước rõ vì cách dùng khác nhau giữa các nhóm.
-3. **Idempotent.** Gửi lại cùng yêu cầu cho cùng kết quả. `GET`, `PUT`, `DELETE` theo định nghĩa là idempotent; `POST` thì không. Để client thử lại an toàn, cho `POST` nhận một khóa (ví dụ header `Idempotency-Key`, đang là bản thảo của IETF và đã được một số dịch vụ như Stripe dùng) và nhớ kết quả.
+3. **Idempotent.** Gửi lại cùng yêu cầu thì tác động dự kiến lên máy chủ vẫn như gửi một lần (RFC 9110); phản hồi có thể khác, ví dụ `DELETE` lần đầu trả 204 còn lần sau trả 404. `GET`, `PUT`, `DELETE` theo định nghĩa là idempotent; `POST` thì không. Để client thử lại an toàn, cho `POST` nhận một khóa và nhớ kết quả. Ví dụ là header `Idempotency-Key`: nó chưa phải chuẩn, từng được mô tả trong một Internet-Draft của IETF (bản thảo có thể đã hết hạn hoặc đổi), nên cách dùng cụ thể lấy theo tài liệu của dịch vụ như Stripe.
 4. **Mã trạng thái.** Dùng một tập nhỏ, nhất quán: 200, 201 (kèm `Location`), 204, 400, 401, 403, 404, 409, 429, 500; kèm thân lỗi cùng một định dạng.
 5. **Phiên bản.** Quyết sớm: trong đường dẫn (`/v1/...`) hoặc trong header. Thay đổi làm vỡ client thì ra phiên bản mới và giữ bản cũ một thời gian.
 6. **Tên dễ hiểu.** Danh từ số nhiều, nhất quán, để tìm trong tài liệu và đoán được tên của API chưa gặp.

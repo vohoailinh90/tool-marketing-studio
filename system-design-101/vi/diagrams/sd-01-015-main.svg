@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1044" width="320" height="1044" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1071" width="320" height="1071" role="img" aria-labelledby="title desc">
 <title id="title">Tám gợi ý thiết kế API</title>
-<desc id="desc">Tám khung dọc, mỗi khung một gợi ý: đường dẫn theo miền dùng danh từ như /orders/42/items; phương thức đúng như GET đọc, POST tạo, PUT thay; idempotent với GET, PUT, DELETE lặp lại an toàn và POST dùng Idempotency-Key; mã trạng thái ít và nhất quán, 201 kèm Location khi tạo mới; phiên bản như /v1/orders hoặc header; tên dễ hiểu dạng danh từ số nhiều; thao tác hàng loạt như POST /orders/batch trả kết quả từng phần tử; truy vấn với lọc, sắp xếp và phân trang.</desc>
+<desc id="desc">Tám khung dọc, mỗi khung một gợi ý: đường dẫn theo miền dùng danh từ như /orders/42/items; phương thức đúng như GET đọc, POST tạo, PUT thay; idempotent nghĩa là gửi lại có cùng tác động lên máy chủ như gửi một lần, đúng với GET, PUT, DELETE còn POST dùng Idempotency-Key; mã trạng thái ít và nhất quán, 201 kèm Location khi tạo mới; phiên bản như /v1/orders hoặc header; tên dễ hiểu dạng danh từ số nhiều; thao tác hàng loạt như POST /orders/batch trả kết quả từng phần tử; truy vấn với lọc, sắp xếp và phân trang.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="1044" fill="#f8fafc"/>
+<rect width="320" height="1071" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="30" font-size="20" font-weight="bold">8 GỢI Ý</text>
 <text x="16" y="56" font-size="20" font-weight="bold">THIẾT KẾ API</text>
@@ -15,28 +15,29 @@
 <text x="30" y="254" font-size="16" font-weight="bold">2 · Phương thức đúng</text>
 <text x="30" y="281" font-size="16" font-weight="normal">GET đọc, POST tạo, PUT thay</text>
 <text x="30" y="308" font-size="16" font-weight="normal">PATCH: nói rõ ý nghĩa</text>
-<rect x="16" y="340" width="288" height="104" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<rect x="16" y="340" width="288" height="131" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
 <text x="30" y="370" font-size="16" font-weight="bold">3 · Idempotent</text>
-<text x="30" y="397" font-size="16" font-weight="normal">GET, PUT, DELETE lặp lại an toàn</text>
-<text x="30" y="424" font-size="16" font-weight="normal">POST: dùng Idempotency-Key</text>
-<rect x="16" y="456" width="288" height="104" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
-<text x="30" y="486" font-size="16" font-weight="bold">4 · Mã trạng thái</text>
-<text x="30" y="513" font-size="16" font-weight="normal">Dùng ít mã, nhất quán</text>
-<text x="30" y="540" font-size="16" font-weight="normal">201 + Location khi tạo mới</text>
-<rect x="16" y="572" width="288" height="104" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
-<text x="30" y="602" font-size="16" font-weight="bold">5 · Phiên bản</text>
-<text x="30" y="629" font-size="16" font-weight="normal">/v1/orders hoặc header</text>
-<text x="30" y="656" font-size="16" font-weight="normal">Quyết sớm, đổi có kế hoạch</text>
-<rect x="16" y="688" width="288" height="104" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
-<text x="30" y="718" font-size="16" font-weight="bold">6 · Tên dễ hiểu</text>
-<text x="30" y="745" font-size="16" font-weight="normal">Danh từ số nhiều, rõ nghĩa</text>
-<text x="30" y="772" font-size="16" font-weight="normal">Dễ tìm trong tài liệu</text>
-<rect x="16" y="804" width="288" height="104" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
-<text x="30" y="834" font-size="16" font-weight="bold">7 · Hàng loạt</text>
-<text x="30" y="861" font-size="16" font-weight="normal">POST /orders/batch</text>
-<text x="30" y="888" font-size="16" font-weight="normal">Trả kết quả từng phần tử</text>
-<rect x="16" y="920" width="288" height="104" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
-<text x="30" y="950" font-size="16" font-weight="bold">8 · Truy vấn</text>
-<text x="30" y="977" font-size="16" font-weight="normal">?sort=-created_at&amp;limit=20</text>
-<text x="30" y="1004" font-size="16" font-weight="normal">Phân trang, lọc, sắp xếp</text>
+<text x="30" y="397" font-size="16" font-weight="normal">GET, PUT, DELETE: idempotent</text>
+<text x="30" y="424" font-size="16" font-weight="normal">Gửi lại: tác động như một lần</text>
+<text x="30" y="451" font-size="16" font-weight="normal">POST: dùng Idempotency-Key</text>
+<rect x="16" y="483" width="288" height="104" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="513" font-size="16" font-weight="bold">4 · Mã trạng thái</text>
+<text x="30" y="540" font-size="16" font-weight="normal">Dùng ít mã, nhất quán</text>
+<text x="30" y="567" font-size="16" font-weight="normal">201 + Location khi tạo mới</text>
+<rect x="16" y="599" width="288" height="104" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="629" font-size="16" font-weight="bold">5 · Phiên bản</text>
+<text x="30" y="656" font-size="16" font-weight="normal">/v1/orders hoặc header</text>
+<text x="30" y="683" font-size="16" font-weight="normal">Quyết sớm, đổi có kế hoạch</text>
+<rect x="16" y="715" width="288" height="104" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="745" font-size="16" font-weight="bold">6 · Tên dễ hiểu</text>
+<text x="30" y="772" font-size="16" font-weight="normal">Danh từ số nhiều, rõ nghĩa</text>
+<text x="30" y="799" font-size="16" font-weight="normal">Dễ tìm trong tài liệu</text>
+<rect x="16" y="831" width="288" height="104" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="861" font-size="16" font-weight="bold">7 · Hàng loạt</text>
+<text x="30" y="888" font-size="16" font-weight="normal">POST /orders/batch</text>
+<text x="30" y="915" font-size="16" font-weight="normal">Trả kết quả từng phần tử</text>
+<rect x="16" y="947" width="288" height="104" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="977" font-size="16" font-weight="bold">8 · Truy vấn</text>
+<text x="30" y="1004" font-size="16" font-weight="normal">?sort=-created_at&amp;limit=20</text>
+<text x="30" y="1031" font-size="16" font-weight="normal">Phân trang, lọc, sắp xếp</text>
 </g></svg>

@@ -52,7 +52,7 @@
   },
   "claims": [
     {
-      "claim_vi": "GET, PUT, DELETE là idempotent theo định nghĩa còn POST thì không; GET là phương thức an toàn.",
+      "claim_vi": "Phương thức idempotent là phương thức mà nhiều yêu cầu giống hệt có cùng tác động dự kiến lên máy chủ như một yêu cầu (phản hồi có thể khác); GET, PUT, DELETE là idempotent theo định nghĩa còn POST thì không; GET là phương thức an toàn.",
       "source": "https://www.rfc-editor.org/rfc/rfc9110"
     },
     {
@@ -78,7 +78,7 @@
       "source": "https://www.rfc-editor.org/rfc/rfc9457"
     },
     {
-      "claim_vi": "Khóa idempotency (header Idempotency-Key) cho POST giúp client thử lại mà không tạo trùng; header này đang là bản thảo IETF và được dùng ở một số dịch vụ như Stripe.",
+      "claim_vi": "Khóa idempotency (header Idempotency-Key) cho POST giúp client thử lại mà không tạo trùng; header này chưa phải chuẩn: một Internet-Draft của IETF từng mô tả nó (bản thảo có thể đã hết hạn hoặc đổi, chưa kiểm tra lại) và một số dịch vụ như Stripe dùng cách riêng.",
       "sources": [
         "https://docs.stripe.com/api/idempotent_requests",
         "https://datatracker.ietf.org/doc/draft-ietf-httpapi-idempotency-key-header/"

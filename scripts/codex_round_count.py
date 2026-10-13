@@ -1,11 +1,16 @@
 #!/usr/bin/env python3
-"""Count the Codex review rounds a pull request has used against its cap.
+"""Count the Codex review rounds a pull request has used.
 
-docs/claude-to-codex.md section 16 caps Codex at three real review rounds per
-PR. Per `deterministic_work` in agent-routing/policy.yaml that count is a
-script, not a judgment: the post a model leaves out of the count by eye is the
-round that reopens the loop the cap exists to close. That is what happened on
-vohoailinh90/Shipping_Inspection#194 (see #196 and #197 there).
+docs/claude-to-codex.md section 16 sets no cap on review rounds per PR (the
+repository owner removed the limit of three on 2026-10-12). The count is still
+a script, per `deterministic_work` in agent-routing/policy.yaml, because it
+still proves the three lists are complete and tells a review from a notice, a
+summary comment or the opening run. It no longer gates on a number: what bounds
+the loop is that each review command is requested once per head SHA, one request at a
+time, after the previous result was validated (section 16). Before the limit was
+removed the post a model left out of the count by eye was the round that
+reopened the loop it closed, as on vohoailinh90/Shipping_Inspection#194 (see
+#196 and #197 there).
 
 What counts: every review result Codex posted -- a review the bot submitted,
 or a bot comment carrying a `Reviewed commit:` line, a no-findings verdict or
@@ -120,9 +125,11 @@ A login that looks like Codex but is not the bot, or another bot whose post
 carries Codex's summary marker, its About footer or a review result marker,
 stops the count: Codex's reviews may be posted under it. Timestamps are taken to the whole second.
 
-Exit status: 0 a review round is left, 1 the cap is reached -- do not request
-another review, 2 the input cannot be counted (or the script failed). Output is ASCII only, so it
-prints on any console encoding.
+Exit status: 0 the lists are complete and were counted -- there is no cap, so a
+review may be requested if section 16's other rules allow it (a command not yet run on the head,
+no request still unanswered); 1 is unused, kept free so it can never be read as
+success; 2 the input cannot be counted (or the script failed). Output is ASCII
+only, so it prints on any console encoding.
 """
 
 from __future__ import annotations
@@ -139,7 +146,7 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import NamedTuple
 
-MAX_REVIEW_ROUNDS = 3
+MAX_REVIEW_ROUNDS = None  # no limit (owner's decision, 2026-10-12); policy.yaml's `review: null` is tied to it by a test
 BOT = "chatgpt-codex-connector"
 BOT_LOGINS = frozenset({BOT, BOT + "[bot]", "app/" + BOT})
 SUMMARY_MARKER = "<!-- codex-pull-request-review-summary -->"
@@ -613,17 +620,12 @@ def main(argv: list[str] | None = None) -> int:
         print(f"codex_round_count: INTERNAL ERROR -- {type(exc).__name__}: {exc}".encode("ascii", "replace")
               .decode("ascii"))
         return 2
-    report = [f"codex_round_count: {used}/{MAX_REVIEW_ROUNDS} review rounds used ({DOC})", *lines, *warnings]
+    report = [f"codex_round_count: {used} review round(s) used, no limit ({DOC})", *lines, *warnings]
     if unknown:
         report.append(f"WARNING: {unknown} unrecognized bot post(s) counted -- a rule question for the repository owner")
-    if used >= MAX_REVIEW_ROUNDS:
-        report.append(f"LIMIT: {used}/{MAX_REVIEW_ROUNDS} -- do not request another review")
-        code = 1
-    else:
-        report.append(f"OK: {MAX_REVIEW_ROUNDS - used} review round(s) left")
-        code = 0
+    report.append("OK: no review-round limit -- request each review command once per head SHA, with no request still unanswered")
     print("\n".join(report).encode("ascii", "replace").decode("ascii"))
-    return code
+    return 0
 
 
 if __name__ == "__main__":

@@ -68,6 +68,10 @@
     {
       "claim_vi": "Với INSERT, cột bị bỏ qua nhận giá trị mặc định đã khai báo của nó.",
       "source": "https://www.postgresql.org/docs/current/sql-insert.html"
+    },
+    {
+      "claim_vi": "Trong PostgreSQL, thêm cột NOT NULL không có giá trị mặc định vào bảng đã có dòng bị từ chối vì các dòng hiện có sẽ nhận null; cần điền dữ liệu cho cột trước rồi mới thêm ràng buộc, hoặc cho một giá trị mặc định thỏa ràng buộc.",
+      "source": "https://www.postgresql.org/docs/current/ddl-alter.html"
     }
   ],
   "source_deviations": [

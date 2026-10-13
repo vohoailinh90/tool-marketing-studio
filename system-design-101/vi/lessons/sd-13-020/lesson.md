@@ -13,13 +13,13 @@ Bản mới thêm một cột bắt buộc vào bảng, trong khi bản cũ vẫ
 <details>
 <summary>Xem đáp án</summary>
 
-Nếu cột bắt buộc không có giá trị mặc định, bản cũ ghi những dòng thiếu cột đó nên lỗi. Nếu cột có giá trị mặc định hợp lệ thì lệnh ghi cũ vẫn chạy được và cơ sở dữ liệu điền mặc định. Cách an toàn là thêm cột ở dạng tùy chọn (hoặc có mặc định tương thích) trước, chuyển ứng dụng sang dùng cột đó, rồi mới siết thành bắt buộc ở bước sau (mở rộng rồi thu gọn).
+Tùy cách thêm cột. Nếu cột bắt buộc không có giá trị mặc định, bản cũ ghi những dòng thiếu cột đó nên lỗi. Nếu cột có giá trị mặc định hợp lệ thì lệnh ghi cũ vẫn chạy được và cơ sở dữ liệu điền mặc định. Thứ tự lỗi còn phụ thuộc cơ sở dữ liệu: với PostgreSQL, thêm cột `NOT NULL` không có mặc định vào bảng đã có dòng bị từ chối ngay ở lệnh migration, vì các dòng hiện có sẽ nhận null, nên lỗi đến trước cả lúc triển khai; lỗi ở lệnh ghi của bản cũ chỉ xuất hiện khi bảng còn rỗng, hoặc khi ràng buộc được siết sau khi đã điền dữ liệu mà bản cũ vẫn đang ghi. Cách an toàn là thêm cột ở dạng tùy chọn (hoặc có mặc định tương thích) trước, điền dữ liệu cho các dòng cũ, chuyển ứng dụng sang dùng cột đó, rồi mới siết thành bắt buộc ở bước sau (mở rộng rồi thu gọn).
 
 </details>
 
 ## Giới hạn cần nhớ
 
-Không cơ chế giảm rủi ro nào thay được kiểm thử trước khi triển khai. Mỗi cơ chế có giá: mở traffic từng nấc cần giám sát tốt, giữ bản trước sẵn sàng cần thêm tài nguyên hoặc công dọn dẹp, và đổi dữ liệu theo nhiều bước kéo dài thời gian hoàn tất.
+Không cơ chế giảm rủi ro nào thay được kiểm thử trước khi triển khai. Mỗi cơ chế có giá: mở traffic từng nấc cần giám sát tốt, giữ bản trước sẵn sàng cần thêm tài nguyên hoặc công dọn dẹp, và đổi dữ liệu theo nhiều bước kéo dài thời gian hoàn tất. Ví dụ về cột bắt buộc nói theo PostgreSQL; cơ sở dữ liệu khác có thể xử lý lúc thêm cột khác đi.
 
 <details>
 <summary>Xem sâu hơn</summary>
@@ -36,4 +36,4 @@ Không cơ chế giảm rủi ro nào thay được kiểm thử trước khi tr
 
 - [ByteByteGo tại snapshot cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-to-deploy-services.md).
 - Martin Fowler: [ParallelChange](https://martinfowler.com/bliki/ParallelChange.html), [CanaryRelease](https://martinfowler.com/bliki/CanaryRelease.html).
-- Google SRE Workbook: [canarying releases](https://sre.google/workbook/canarying-releases/). DORA: [working in small batches](https://dora.dev/capabilities/working-in-small-batches/). PostgreSQL: [INSERT](https://www.postgresql.org/docs/current/sql-insert.html).
+- Google SRE Workbook: [canarying releases](https://sre.google/workbook/canarying-releases/). DORA: [working in small batches](https://dora.dev/capabilities/working-in-small-batches/). PostgreSQL: [INSERT](https://www.postgresql.org/docs/current/sql-insert.html), [ALTER TABLE](https://www.postgresql.org/docs/current/ddl-alter.html).

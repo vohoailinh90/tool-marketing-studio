@@ -60,7 +60,7 @@
     },
     {
       "claim_vi": "Linux's netfilter connection tracking keeps entries for the flows it tracks, which is the basis of stateful filtering.",
-      "source": "https://github.com/torvalds/linux/blob/master/Documentation/networking/nf_conntrack-sysctl.rst",
+      "source": "https://github.com/torvalds/linux/blob/24a19b953e2a3d0ea5a8c4951a0ab8f32720c907/Documentation/networking/nf_conntrack-sysctl.rst",
       "section": "nf_conntrack sysctl variables (nf_conntrack_count: number of currently allocated flow entries)",
       "verified_by": "Read from a copy of the Linux kernel documentation fetched from raw GitHub."
     },

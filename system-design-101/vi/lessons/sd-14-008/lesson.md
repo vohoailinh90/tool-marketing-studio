@@ -45,6 +45,6 @@ Ví dụ chạy thử là một máy chủ Python nhỏ với kho session trong 
 ## Nguồn đối chiếu
 
 - [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-are-the-differences-between-cookies-and-sessions.md): cookie lưu ở trình duyệt, session lưu ở máy chủ, mã session trả về qua cookie.
-- [MDN — Using HTTP cookies](https://github.com/mdn/content/blob/main/files/en-us/web/http/guides/cookies/index.md): luồng `Set-Cookie` và `Cookie`, giới hạn khoảng 4 KB, `HttpOnly`, `Secure`, `SameSite`, cấp lại cookie phiên khi đăng nhập. Đọc từ bản clone của kho.
+- [MDN — Using HTTP cookies](https://github.com/mdn/content/blob/19370346042efad9e179fbf1f55deeeadee98c40/files/en-us/web/http/guides/cookies/index.md): luồng `Set-Cookie` và `Cookie`, giới hạn khoảng 4 KB, `HttpOnly`, `Secure`, `SameSite`, cấp lại cookie phiên khi đăng nhập. Đọc từ bản clone của kho.
 
 Đã đọc nguồn ngày 2026-10-13. Ví dụ chạy thử bằng máy chủ Python và `curl`. Bài viết và hình được thiết kế độc lập.

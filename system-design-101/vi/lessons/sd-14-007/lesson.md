@@ -3,7 +3,7 @@
 **Tường lửa là điểm kiểm soát giữa hai mạng: nó nhìn từng gói tin hoặc cả kết nối và quyết định cho qua hay chặn theo luật.**
 Các loại tường lửa khác nhau ở chỗ chúng nhìn vào cái gì: một gói riêng lẻ, một phiên, trạng thái của cả kết nối, hay nội dung của ứng dụng.
 
-![Bảy thẻ xếp dọc. Thẻ đầu là câu hỏi chung: gói tin đi tới tường lửa thì cho qua hay chặn. Năm thẻ tiếp theo là năm loại, mỗi loại nhìn vào một thứ khác. Lọc gói tin: nhìn địa chỉ nguồn, đích, giao thức và cổng của từng gói, không nhớ gói trước. Cổng mức mạch: theo dõi bắt tay TCP để xem phiên có hợp lệ không. Cổng ứng dụng, hay proxy: nhận kết nối thay cho máy bên trong và đọc nội dung ở tầng ứng dụng. Theo dõi trạng thái: nhớ các kết nối đang mở, nên nhận ra gói trả lời. Tường lửa thế hệ mới: gộp các cách trên với các tính năng như ngăn chặn xâm nhập và nhận diện ứng dụng. Thẻ cuối là lời nhắc: tường lửa chỉ áp luật tại điểm nó đứng, luật sai hoặc lưu lượng đi đường khác thì không được bảo vệ.](../../diagrams/sd-14-007-main.svg)
+![Bảy thẻ xếp dọc. Thẻ đầu là câu hỏi chung: gói tin đi tới tường lửa thì cho qua hay chặn. Năm thẻ tiếp theo là năm loại, mỗi loại nhìn vào một thứ khác. Lọc gói tin: nhìn địa chỉ nguồn, đích, giao thức và cổng của từng gói, không nhớ gói trước. Cổng mức mạch: theo dõi bắt tay TCP để xem phiên có hợp lệ không. Cổng ứng dụng, hay proxy: nhận kết nối thay cho máy bên trong và đọc nội dung ở tầng ứng dụng. Theo dõi trạng thái: nhớ các kết nối đang mở, nên nhận ra gói trả lời. Tường lửa thế hệ mới: tường lửa truyền thống cộng thêm các tính năng như ngăn chặn xâm nhập và nhận diện ứng dụng. Thẻ cuối là lời nhắc: tường lửa chỉ áp luật tại điểm nó đứng, luật sai hoặc lưu lượng đi đường khác thì không được bảo vệ.](../../diagrams/sd-14-007-main.svg)
 
 ## Đọc hình
 
@@ -16,7 +16,7 @@ Các loại tường lửa khác nhau ở chỗ chúng nhìn vào cái gì: mộ
 **Theo dõi trạng thái.** Tường lửa giữ một bảng các kết nối đang mở, nên nhận ra một gói là trả lời của kết nối do máy bên trong đã mở. Chạy thử trên Linux với nftables: với luật theo cổng cho gói đi tới cổng 18081 nhưng chặn mọi gói xuất phát từ cổng đó (một cách dựng thử nghiệm), bắt tay TCP không hoàn tất vì gói trả lời bị chặn (kết nối quá hạn);
 thêm luật `ct state established,related accept` thì cùng kết nối chạy bình thường, còn kết nối mới tới cổng bị cấm vẫn bị chặn.
 
-**Tường lửa thế hệ mới (NGFW).** Gộp các cách trên với các tính năng như ngăn chặn xâm nhập, kiểm tra sâu gói tin và nhận diện ứng dụng. Đây là tên gọi cho một nhóm tính năng, mỗi sản phẩm làm khác nhau.
+**Tường lửa thế hệ mới (NGFW).** Thường là tường lửa truyền thống cộng thêm các tính năng như ngăn chặn xâm nhập, kiểm tra sâu gói tin và nhận diện ứng dụng. Đây là tên gọi cho một nhóm tính năng, mỗi sản phẩm làm khác nhau, và nó không nhất thiết đóng vai mọi loại ở trên.
 
 ## Giới hạn cần nhớ
 
@@ -48,6 +48,6 @@ Ví dụ chạy thử là một bảng nftables dựng riêng cho một cổng t
 ## Nguồn đối chiếu
 
 - [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/firewall-explained-to-kids-and-adults.md): các loại tường lửa và hai nhóm phần mềm, phần cứng.
-- [Linux kernel — Netfilter Conntrack sysctl](https://github.com/torvalds/linux/blob/master/Documentation/networking/nf_conntrack-sysctl.rst): Linux theo dõi kết nối và giữ số mục luồng đang theo dõi. Đọc qua nguồn trên GitHub.
+- [Linux kernel — Netfilter Conntrack sysctl](https://github.com/torvalds/linux/blob/24a19b953e2a3d0ea5a8c4951a0ab8f32720c907/Documentation/networking/nf_conntrack-sysctl.rst): Linux theo dõi kết nối và giữ số mục luồng đang theo dõi. Đọc qua nguồn trên GitHub.
 
 Đã đọc nguồn ngày 2026-10-13. Ví dụ chạy thử bằng nftables trên Linux; không có tài liệu chuẩn nào được mở để đối chiếu các mô tả loại tường lửa, và bài nói rõ điều đó. Bài viết và hình được thiết kế độc lập.

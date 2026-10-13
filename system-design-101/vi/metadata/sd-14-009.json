@@ -60,25 +60,25 @@
     },
     {
       "claim_vi": "Set-Cookie carries a name, a value and attributes; Expires or Max-Age set the lifetime and a cookie with neither is a session cookie deleted when the browser's session ends; Secure cookies are sent only over HTTPS (with a localhost exception); HttpOnly stops JavaScript reading the cookie through document.cookie; Domain and Path limit where it is sent; SameSite takes Strict, Lax or None, None must come with Secure, and a cookie with no SameSite is treated as Lax.",
-      "source": "https://github.com/mdn/content/blob/main/files/en-us/web/http/guides/cookies/index.md",
+      "source": "https://github.com/mdn/content/blob/19370346042efad9e179fbf1f55deeeadee98c40/files/en-us/web/http/guides/cookies/index.md",
       "section": "Define the lifetime; Restrict access to cookies; Cookie prefixes; Controlling third-party cookies with SameSite",
       "verified_by": "Read from a local clone of the repository."
     },
     {
       "claim_vi": "Observed with a Python server and Chromium 141: a cookie set with HttpOnly was absent from document.cookie but was still sent to the server; cookies without HttpOnly appeared in document.cookie.",
-      "source": "https://github.com/mdn/content/blob/main/files/en-us/web/http/guides/cookies/index.md",
+      "source": "https://github.com/mdn/content/blob/19370346042efad9e179fbf1f55deeeadee98c40/files/en-us/web/http/guides/cookies/index.md",
       "section": "Restrict access to cookies (HttpOnly)",
       "verified_by": "No external page reports this output; observed by executing the code on the authoring machine. MDN states the HttpOnly rule but not this run."
     },
     {
       "claim_vi": "Observed with Chromium 141, treating 127.0.0.1 and localhost as different sites: on a cross-site link navigation (GET) the SameSite=Lax cookie and a cookie with no SameSite were sent and the SameSite=Strict cookie was not; on a cross-site form POST right after login the SameSite=Lax and Strict cookies were not sent but the cookie with no SameSite was; the same POST 130 seconds after login sent no cookies.",
-      "source": "https://github.com/mdn/content/blob/main/files/en-us/web/http/guides/cookies/index.md",
+      "source": "https://github.com/mdn/content/blob/19370346042efad9e179fbf1f55deeeadee98c40/files/en-us/web/http/guides/cookies/index.md",
       "section": "Controlling third-party cookies with SameSite",
       "verified_by": "No external page reports this output; observed by executing the code on the authoring machine. MDN says a cookie without SameSite is treated as Lax; the temporary difference right after creation was observed here and its cause was not checked against a source."
     },
     {
       "claim_vi": "SameSite=Lax leaves cookies out of cross-site form POSTs but sends them on link navigation; stricter SameSite protects better against forged cross-site requests but breaks flows that need cross-site cookies such as embedded content.",
-      "source": "https://github.com/mdn/content/blob/main/files/en-us/web/http/guides/cookies/index.md",
+      "source": "https://github.com/mdn/content/blob/19370346042efad9e179fbf1f55deeeadee98c40/files/en-us/web/http/guides/cookies/index.md",
       "section": "Controlling third-party cookies with SameSite; Privacy and tracking",
       "verified_by": "MDN describes the three values and notes SameSite helps protect against cross-site request forgery; the trade-off wording is the author's summary."
     }

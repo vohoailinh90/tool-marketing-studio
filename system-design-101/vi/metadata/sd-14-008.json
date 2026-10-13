@@ -60,19 +60,19 @@
     },
     {
       "claim_vi": "A server sends a cookie in a Set-Cookie header and the browser sends it back in a Cookie header on later requests; browsers limit each cookie to usually 4KB; by default cookie values are visible to, and can be changed by, the end user; the guide advises regenerating and resending session cookies whenever a user authenticates to help prevent session fixation.",
-      "source": "https://github.com/mdn/content/blob/main/files/en-us/web/http/guides/cookies/index.md",
+      "source": "https://github.com/mdn/content/blob/19370346042efad9e179fbf1f55deeeadee98c40/files/en-us/web/http/guides/cookies/index.md",
       "section": "Introduction; Limitations; Security; Define the lifetime of a cookie",
       "verified_by": "Read from a local clone of the repository."
     },
     {
       "claim_vi": "With a Python server holding a session dictionary and handing out a random id in an HttpOnly cookie: a request with the right id returned the stored session data; a tampered id returned no data; a request with no cookie returned no data.",
-      "source": "https://github.com/mdn/content/blob/main/files/en-us/web/http/guides/cookies/index.md",
+      "source": "https://github.com/mdn/content/blob/19370346042efad9e179fbf1f55deeeadee98c40/files/en-us/web/http/guides/cookies/index.md",
       "section": "Set-Cookie / Cookie flow",
       "verified_by": "No external page reports this output; observed by executing the code on the authoring machine. MDN describes the Set-Cookie/Cookie flow but not this output."
     },
     {
       "claim_vi": "A session id is still a secret: whoever obtains the right id can use the session, so session security concentrates in keeping the id secret, and the id cookie should carry HttpOnly, Secure and SameSite.",
-      "source": "https://github.com/mdn/content/blob/main/files/en-us/web/http/guides/cookies/index.md",
+      "source": "https://github.com/mdn/content/blob/19370346042efad9e179fbf1f55deeeadee98c40/files/en-us/web/http/guides/cookies/index.md",
       "section": "Security (Secure, HttpOnly, SameSite)",
       "verified_by": "MDN advises these attributes for cookies that carry session identifiers; that session security concentrates in the id is the author's inference."
     },

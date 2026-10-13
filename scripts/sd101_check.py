@@ -22,7 +22,8 @@ What is checked, per lesson id:
   - metadata/<id>.json parses (a key named twice is an error) and has the keys DECISIONS.md lists, no
     others; id equals the file name and is in the source map; title_vi equals the source map's;
     language is vi; content_status is draft | review | done, and done needs the technical review and
-    the mobile check to have happened
+    the mobile check to have happened;
+    a source_body marked read needs the source map's source_body_reviewed to be true
   - source_ref is a source-map id and source_snapshot (repository, commit_sha, path, blob_sha, and the
     URL when it gives one) says exactly what that source-map entry does
   - each verification step is pending or happened (read, checked), with a real checked_on date once it
@@ -833,6 +834,8 @@ def check_metadata(lesson_id: str, meta: object, entries: dict[str, dict], pin: 
     reasons.extend(lesson_reference_problems(meta, lesson_id, entries))
     steps, happened = verification_problems(meta.get("verification"))
     reasons.extend(steps)
+    if happened["source_body"] and entry is not None and entry.get("source_body_reviewed") is not True:
+        reasons.append("source_body is read, but the source map entry does not say source_body_reviewed is true")
     status = meta.get("content_status")
     if not one_of(status, CONTENT_STATUS):
         reasons.append(f"content_status {status!r} is not one of {sorted(CONTENT_STATUS)}")

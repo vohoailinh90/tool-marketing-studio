@@ -1714,3 +1714,7 @@ mutations:
   find: "    problems = check_store(arguments.store, arguments.source_map, pin_roster)"
   replace: "    problems = []"
   test: tests.test_sd101_check.CommandLineTests.test_a_broken_store_exits_one_and_prints_the_problem
+- label: a source body marked read is accepted although the source map does not flag it
+  find: '    if happened["source_body"] and entry is not None and entry.get("source_body_reviewed") is not True:'
+  replace: '    if False:'
+  test: tests.test_sd101_check.MetadataRuleTests.test_a_source_body_read_but_not_flagged_in_the_source_map_is_reported

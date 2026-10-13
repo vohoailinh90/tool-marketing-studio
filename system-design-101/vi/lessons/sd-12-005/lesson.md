@@ -12,7 +12,7 @@ Bản đồ được chia đệ quy thành **4 ô**. Ô nào còn quá nhiều �
 
 ## Giới hạn cần nhớ
 
-Quadtree là cấu trúc **trong bộ nhớ**: mỗi máy chủ dịch vụ vị trí tự dựng và giữ một bản, nó không phải nơi lưu trữ dữ liệu. Dựng cây từ dữ liệu lớn tốn thời gian và trong lúc đó máy chủ chưa nên nhận lưu lượng, nên khi phát hành phiên bản mới hãy cập nhật lần lượt từng nhóm máy chủ để phần còn lại vẫn phục vụ được.
+Trong thiết kế này, quadtree là cấu trúc **trong bộ nhớ**: mỗi máy chủ dịch vụ vị trí tự dựng và giữ một bản, không phải nơi lưu trữ dữ liệu. Đó là một cách triển khai chứ không phải tính chất của quadtree, vì quadtree cũng có thể được lưu bền hoặc làm cấu trúc nền cho dữ liệu địa lý trên đĩa. Dựng cây từ dữ liệu lớn tốn thời gian và trong lúc đó máy chủ chưa nên nhận lưu lượng, nên khi phát hành phiên bản mới hãy cập nhật lần lượt từng nhóm máy chủ để phần còn lại vẫn phục vụ được.
 
 ## Nhìn hình trả lời
 

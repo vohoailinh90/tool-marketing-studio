@@ -61,11 +61,18 @@
       "sources": [
         "https://docs.aws.amazon.com/AmazonS3/latest/userguide/mpuoverview.html"
       ]
+    },
+    {
+      "claim_vi": "Ở S3 thật, đổi siêu dữ liệu của đối tượng cần sao chép hoặc ghi đè đối tượng; thẻ gắn (tag) có thao tác riêng.",
+      "sources": [
+        "https://docs.aws.amazon.com/AmazonS3/latest/userguide/copy-object.html"
+      ]
     }
   ],
   "source_deviations": [
     "Nguồn dùng một thiết kế hệ lưu trữ kiểu S3; bài nói rõ đây không phải kiến trúc nội bộ thật của S3.",
-    "Bài thêm tình huống lỗi giữa hai kho, tải lên nhiều phần và dữ liệu mồ côi."
+    "Bài thêm tình huống lỗi giữa hai kho, tải lên nhiều phần và dữ liệu mồ côi.",
+    "Trong mô hình thiết kế của nguồn siêu dữ liệu sửa được; bài nói rõ S3 thật cần sao chép đối tượng để đổi siêu dữ liệu."
   ],
   "design_notes_vi": "Sáu thẻ dọc tách hai pha (tạo thùng, tải đối tượng); chú thích cuối nhắc dữ liệu và siêu dữ liệu ở hai nơi.",
   "editorial_note_vi": "Bản nháp độc lập viết từ kiến thức kỹ thuật chung; đọc bài nguồn nhưng chưa mở tài liệu chính thức nên các claim chưa được kiểm chứng. Chưa review kỹ thuật, chưa user testing, chưa phê duyệt phát hành."

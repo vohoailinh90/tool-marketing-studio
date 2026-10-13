@@ -36,7 +36,7 @@ def source_entry(lesson_id: str = "sd-01-001", title: str | None = "Bài một",
                  **changes: object) -> dict:
     """A complete source-map entry, as the real map records one."""
     entry = {"id": lesson_id, "title_vi": title, "title_source": "One", "source_url": "https://bytebytego.com/guides/one",
-             "source_path": SOURCE_PATH, "source_body_reviewed": False, "source_blob_sha": BLOB,
+             "source_path": SOURCE_PATH, "source_body_reviewed": True, "source_blob_sha": BLOB,
              "source_snapshot_url": snapshot}
     entry.update(changes)
     return entry
@@ -696,6 +696,15 @@ class MetadataRuleTests(StoreCase):
     def test_an_id_missing_from_the_source_map_is_reported(self) -> None:
         self.write_source_map({"sd-09-009": ("Khác", SNAPSHOT)})
         self.assertProblem("id is not in the source map")
+
+    def test_a_source_body_read_but_not_flagged_in_the_source_map_is_reported(self) -> None:
+        data = json.loads(self.source_map.read_text(encoding="utf-8"))
+        data["categories"][0]["lessons"][0]["source_body_reviewed"] = False
+        self.source_map.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
+        self.assertProblem("source_body_reviewed is true")
+        # a source not yet read may stay unflagged
+        self.put(verification={**self.meta()["verification"], "source_body": {"status": "pending"}})
+        self.assertEqual([], self.problems_of_metadata())
 
     def test_a_title_that_differs_from_the_source_map_is_reported(self) -> None:
         self.put(title_vi="Tiêu đề khác")

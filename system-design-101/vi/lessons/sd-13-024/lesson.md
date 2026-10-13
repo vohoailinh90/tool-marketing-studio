@@ -13,7 +13,7 @@ Với `location /api/ { proxy_pass http://backend/; }`, request tới `/api/user
 <details>
 <summary>Xem đáp án</summary>
 
-`/users`. Vì `proxy_pass` có phần URI (dấu `/` cuối), phần khớp `/api/` được thay bằng `/`. Nếu viết `proxy_pass http://backend;` không có URI thì backend nhận nguyên `/api/users`.
+`/users`. Vì `proxy_pass` có phần URI (dấu `/` cuối), phần khớp `/api/` được thay bằng `/`. Nếu viết `proxy_pass http://backend;` không có URI thì backend nhận nguyên `/api/users`. Quy tắc này dành cho location tiền tố thông thường: với location regex hoặc location đặt tên, `proxy_pass` phải viết không có URI, và `rewrite ... break` hay biến trong `proxy_pass` làm đổi kết quả.
 
 </details>
 

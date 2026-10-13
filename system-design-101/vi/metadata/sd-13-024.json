@@ -45,7 +45,7 @@
   },
   "claims": [
     {
-      "claim_vi": "Khi proxy_pass có URI, phần khớp của location được thay bằng URI đó; không có URI thì chuyển nguyên đường dẫn.",
+      "claim_vi": "Với location tiền tố thông thường, không dùng rewrite hay biến trong proxy_pass: khi proxy_pass có URI thì phần khớp của location được thay bằng URI đó, không có URI thì chuyển nguyên đường dẫn của request; với location regex hoặc đặt tên, proxy_pass phải viết không có URI.",
       "source": "https://nginx.org/en/docs/http/ngx_http_proxy_module.html"
     },
     {

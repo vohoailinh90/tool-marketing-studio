@@ -1,0 +1,177 @@
+"""scripts/ci_changes.py: which pull requests skip the CI mutation check, and how the workflow uses it."""
+
+from __future__ import annotations
+
+import subprocess
+import tempfile
+import unittest
+from pathlib import Path
+
+import yaml
+
+from mkt.model import ROOT
+from scripts import ci_changes
+
+STORE = "system-design-101/vi/lessons/sd-01-009/lesson.md"
+SOURCE_MAP = "brainstorm/system-design-101-vi/source-map.json"
+
+
+class MutationNeededTests(unittest.TestCase):
+    def test_a_push_always_runs_the_check(self):
+        for event in ("push", "workflow_dispatch", ""):
+            needed, _ = ci_changes.mutation_needed(event, [STORE])
+            self.assertTrue(needed, event)
+
+    def test_a_pull_request_that_changes_only_the_store_skips_it(self):
+        needed, reason = ci_changes.mutation_needed("pull_request", [STORE, SOURCE_MAP, "system-design-101/vi/progress.json"])
+        self.assertFalse(needed)
+        self.assertIn("3 file(s)", reason)
+
+    def test_a_pull_request_that_touches_code_tests_or_ci_runs_it(self):
+        for path in ("scripts/sd101_check.py", "tests/test_sd101_check.py", ".github/workflows/ci.yml", "mkt/check.py",
+                     "requirements.txt", "tests/mutations/sd101_check.yaml", "docs/agent-team.md", "README.md"):
+            needed, reason = ci_changes.mutation_needed("pull_request", [STORE, path])
+            self.assertTrue(needed, path)
+            self.assertIn(path, reason)
+
+    def test_other_content_directories_are_not_the_store(self):
+        for path in ("campaigns/a/posts/vi/1.yaml", "brainstorm/other.md", "brainstorm/system-design-101-vi-extra/x.md",
+                     "system-design-101-extra/x.md", "system-design-101", "tools/a/brief.yaml"):
+            needed, _ = ci_changes.mutation_needed("pull_request", [path])
+            self.assertTrue(needed, path)
+
+    def test_a_path_that_climbs_out_of_the_store_is_not_in_it(self):
+        for path in ("system-design-101/../scripts/x.py", "system-design-101//vi/x.md", "system-design-101/./x.md"):
+            needed, _ = ci_changes.mutation_needed("pull_request", [path])
+            self.assertTrue(needed, path)
+
+    def test_a_change_that_cannot_be_read_runs_the_check(self):
+        for changed in (None, []):
+            needed, reason = ci_changes.mutation_needed("pull_request", changed)
+            self.assertTrue(needed, changed)
+            self.assertIn("could not be read", reason)
+
+
+def git(folder: Path, *args: str) -> str:
+    return subprocess.run(["git", "-c", "user.name=t", "-c", "user.email=t@example.com", "-c", "commit.gpgsign=false", *args],
+                          cwd=folder, capture_output=True, text=True, check=True).stdout.strip()
+
+
+def write(folder: Path, name: str, text: str) -> None:
+    path = folder / name
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(text, encoding="utf-8")
+
+
+class ChangedFilesTests(unittest.TestCase):
+    def repository(self, tmp: str) -> tuple[Path, str]:
+        folder = Path(tmp)
+        git(folder, "init", "-q")
+        write(folder, "scripts/tool.py", "x = 1\n")
+        write(folder, "system-design-101/vi/lessons/sd-01-001/lesson.md", "a\n")
+        git(folder, "add", "-A")
+        git(folder, "commit", "-q", "-m", "base")
+        return folder, git(folder, "rev-parse", "HEAD")
+
+    def test_lists_every_changed_path_including_odd_names(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            folder, base = self.repository(tmp)
+            write(folder, "system-design-101/vi/lessons/sd-01-002/bài học.md", "b\n")
+            write(folder, "system-design-101/vi/with space.md", "c\n")
+            git(folder, "add", "-A")
+            git(folder, "commit", "-q", "-m", "more")
+            self.assertEqual(["system-design-101/vi/lessons/sd-01-002/bài học.md", "system-design-101/vi/with space.md"],
+                             sorted(ci_changes.changed_files(base, folder)))
+
+    def test_a_file_moved_out_of_the_store_lists_both_places(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            folder, base = self.repository(tmp)
+            git(folder, "mv", "system-design-101/vi/lessons/sd-01-001/lesson.md", "scripts/lesson.py")
+            git(folder, "commit", "-q", "-m", "move")
+            self.assertEqual(["scripts/lesson.py", "system-design-101/vi/lessons/sd-01-001/lesson.md"],
+                             sorted(ci_changes.changed_files(base, folder)))
+
+    def test_an_unknown_base_or_an_empty_one_is_none(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            folder, _ = self.repository(tmp)
+            self.assertIsNone(ci_changes.changed_files("0" * 40, folder))
+            self.assertIsNone(ci_changes.changed_files("", folder))
+
+    def test_a_folder_that_is_not_a_repository_is_none(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            self.assertIsNone(ci_changes.changed_files("HEAD", Path(tmp)))
+
+
+class MainTests(unittest.TestCase):
+    def run_main(self, folder: Path, **environ: str) -> tuple[int, str]:
+        output = folder / "github_output"
+        code = ci_changes.main({**environ, "GITHUB_OUTPUT": str(output)}, folder)
+        return code, output.read_text(encoding="utf-8") if output.exists() else ""
+
+    def repository(self, tmp: str, changed: str) -> tuple[Path, str]:
+        folder = Path(tmp)
+        git(folder, "init", "-q")
+        write(folder, "scripts/tool.py", "x = 1\n")
+        git(folder, "add", "-A")
+        git(folder, "commit", "-q", "-m", "base")
+        base = git(folder, "rev-parse", "HEAD")
+        write(folder, changed, "new\n")
+        git(folder, "add", "-A")
+        git(folder, "commit", "-q", "-m", "change")
+        return folder, base
+
+    def test_a_store_only_pull_request_writes_false(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            folder, base = self.repository(tmp, STORE)
+            code, written = self.run_main(folder, GITHUB_EVENT_NAME="pull_request", PR_BASE_SHA=base)
+            self.assertEqual((0, "mutation=false\n"), (code, written))
+
+    def test_a_pull_request_that_changes_code_writes_true(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            folder, base = self.repository(tmp, "scripts/other.py")
+            code, written = self.run_main(folder, GITHUB_EVENT_NAME="pull_request", PR_BASE_SHA=base)
+            self.assertEqual((0, "mutation=true\n"), (code, written))
+
+    def test_a_push_writes_true_even_for_store_files(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            folder, base = self.repository(tmp, STORE)
+            code, written = self.run_main(folder, GITHUB_EVENT_NAME="push", PR_BASE_SHA=base)
+            self.assertEqual((0, "mutation=true\n"), (code, written))
+
+    def test_an_unreadable_base_writes_true_and_does_not_fail(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            folder, _ = self.repository(tmp, STORE)
+            code, written = self.run_main(folder, GITHUB_EVENT_NAME="pull_request", PR_BASE_SHA="0" * 40)
+            self.assertEqual((0, "mutation=true\n"), (code, written))
+
+    def test_an_unwritable_output_file_still_exits_zero(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            folder, base = self.repository(tmp, STORE)
+            code = ci_changes.main({"GITHUB_EVENT_NAME": "pull_request", "PR_BASE_SHA": base,
+                                    "GITHUB_OUTPUT": str(folder / "missing" / "output")}, folder)
+            self.assertEqual(0, code)
+
+
+class WorkflowUsesItTests(unittest.TestCase):
+    def engine(self) -> list[dict]:
+        return yaml.safe_load((ROOT / ".github/workflows/ci.yml").read_text(encoding="utf-8"))["jobs"]["engine"]["steps"]
+
+    def test_the_checkout_fetches_the_history_the_diff_needs(self):
+        checkout = next(step for step in self.engine() if step.get("uses", "").startswith("actions/checkout"))
+        self.assertEqual(0, checkout["with"]["fetch-depth"])
+
+    def test_the_decision_runs_before_the_mutation_check_with_the_base_of_the_pull_request(self):
+        steps = self.engine()
+        decide = next(index for index, step in enumerate(steps) if step.get("id") == "changes")
+        mutation = next(index for index, step in enumerate(steps) if "mutation_check.py --all" in step.get("run", ""))
+        self.assertLess(decide, mutation)
+        self.assertEqual("python scripts/ci_changes.py", steps[decide]["run"])
+        self.assertEqual("${{ github.event.pull_request.base.sha }}", steps[decide]["env"]["PR_BASE_SHA"])
+
+    def test_the_mutation_check_skips_only_when_the_decision_says_false(self):
+        mutation = next(step for step in self.engine() if "mutation_check.py --all" in step.get("run", ""))
+        self.assertEqual("steps.changes.outputs.mutation != 'false'", mutation["if"])
+
+
+if __name__ == "__main__":
+    unittest.main()

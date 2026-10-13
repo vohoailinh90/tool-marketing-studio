@@ -47,7 +47,7 @@ và hình đạt; không coi đọc nguồn là mọi claim đã đúng, không 
 
 ## Các nhóm còn lại theo thứ tự nguồn
 
-Tình huống thực tế → AI và học máy → Cơ sở dữ liệu và lưu trữ → Phỏng vấn kỹ thuật →
+Tình huống thực tế → AI và học máy → Cơ sở dữ liệu và lưu trữ →
 Bộ nhớ đệm và hiệu năng → Thanh toán và công nghệ tài chính → Kiến trúc phần mềm →
 Công cụ và năng suất → Phát triển phần mềm → Đám mây và hệ thống phân tán →
 Hệ thống hoạt động thế nào? → DevOps và CI/CD → Bảo mật → Nền tảng máy tính.

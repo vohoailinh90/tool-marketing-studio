@@ -1786,10 +1786,6 @@ mutations:
   find: "            bullets[-1] += \" \" + line.strip()"
   replace: "            bullets.append(\"\")"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_a_bullet_may_run_onto_the_next_line
-- label: the abbreviation itself counts as its own full form
-  find: "    if full_form.upper() == abbreviation.upper() or not any(char.islower() for char in full_form):\n        return False\n"
-  replace: ""
-  test: tests.test_sd101_check.AbbreviationRuleTests.test_the_full_form_must_spell_the_abbreviation_out
 - label: any word of the full form may be left out of the abbreviation
   find: "                pattern += hump[0].upper()"
   replace: "                pattern += f\"(?:{hump[0].upper()})?\""

@@ -1066,8 +1066,8 @@ FILLER_WORDS = frozenset({"a", "an", "and", "for", "in", "of", "on", "or", "the"
 
 
 def spells(abbreviation: str, full_form: str) -> bool:
-    """True when the full form is written out (not the abbreviation again) and the initials of its words are exactly
-    the abbreviation's letters, in order: no word is left out, but the little words in FILLER_WORDS may be.
+    """True when the initials of the full form's words are exactly the abbreviation's letters, in order: no word is
+    left out, but the little words in FILLER_WORDS may be. The abbreviation written again does not spell itself.
 
     One initial per word and per camelCase hump (HyperText, JavaScript, REpresentational); an all-caps word gives its
     whole run or its first letter ("CSS Object Model" is CSSOM, "HTTP Strict Transport Security" is HSTS; a hidden
@@ -1075,8 +1075,6 @@ def spells(abbreviation: str, full_form: str) -> bool:
     name: "gRPC Remote Procedure Calls"); digits are not letters; accents are dropped (cơ sở dữ liệu is CSDL).
     """
     letters = re.sub(r"[^A-Za-z]", "", abbreviation).upper()
-    if full_form.upper() == abbreviation.upper() or not any(char.islower() for char in full_form):
-        return False
     plain = unicodedata.normalize("NFD", full_form.replace("đ", "d").replace("Đ", "D"))
     plain = "".join(char for char in plain if not unicodedata.combining(char))
     pattern = ""

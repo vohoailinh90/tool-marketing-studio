@@ -1,34 +1,35 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 824" width="320" height="824" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 851" width="320" height="851" role="img" aria-labelledby="title desc">
 <title id="title">Nginx làm reverse proxy cho một API: năm chỗ hay sai</title>
-<desc id="desc">Năm chỗ hay sai khi dùng Nginx làm reverse proxy cho một API: dấu gạch chéo cuối của proxy_pass đổi đường dẫn, backend không thấy địa chỉ client thật, lỗi 502 và 504, mở lại kết nối tới backend liên tục, và đổi cấu hình mà không kiểm tra.</desc>
+<desc id="desc">Năm chỗ hay sai khi dùng Nginx làm reverse proxy cho một API: dấu gạch chéo cuối của proxy_pass đổi đường dẫn, backend không thấy địa chỉ client thật và header của client có thể bị giả mạo, lỗi 502 và 504, mở lại kết nối tới backend liên tục, và đổi cấu hình mà không kiểm tra.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="824" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<rect width="320" height="851" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="30" font-size="20" font-weight="bold">NGINX TRƯỚC MỘT API</text>
 <text x="16" y="58" font-size="16" font-weight="normal">Năm chỗ hay sai</text>
 <rect x="16" y="89" width="288" height="101" rx="10" fill="#fee2e2" stroke="#94a3b8"/>
 <text x="30" y="117" font-size="16" font-weight="bold">Đường dẫn bị đổi</text>
 <text x="30" y="144" font-size="16" font-weight="normal">Dấu / cuối trong proxy_pass</text>
 <text x="30" y="171" font-size="16" font-weight="normal">thay phần khớp của location</text>
-<rect x="16" y="202" width="288" height="128" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
+<rect x="16" y="202" width="288" height="155" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
 <text x="30" y="230" font-size="16" font-weight="bold">Backend không thấy</text>
 <text x="30" y="257" font-size="16" font-weight="bold">client thật</text>
 <text x="30" y="284" font-size="16" font-weight="normal">Đặt Host và X-Forwarded-For</text>
-<text x="30" y="311" font-size="16" font-weight="normal">khi chuyển tiếp</text>
-<rect x="16" y="342" width="288" height="182" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
-<text x="30" y="370" font-size="16" font-weight="bold">Lỗi 502 và 504</text>
-<text x="30" y="397" font-size="16" font-weight="normal">502: kết nối hoặc phản hồi</text>
-<text x="30" y="424" font-size="16" font-weight="normal">từ backend lỗi</text>
-<text x="30" y="451" font-size="16" font-weight="normal">504: chờ quá</text>
-<text x="30" y="478" font-size="16" font-weight="normal">proxy_read_timeout (mặc</text>
-<text x="30" y="505" font-size="16" font-weight="normal">định 60 giây)</text>
-<rect x="16" y="536" width="288" height="155" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
-<text x="30" y="564" font-size="16" font-weight="bold">Mở kết nối mới cho mỗi</text>
-<text x="30" y="591" font-size="16" font-weight="bold">request</text>
-<text x="30" y="618" font-size="16" font-weight="normal">keepalive trong upstream,</text>
-<text x="30" y="645" font-size="16" font-weight="normal">cần HTTP/1.1 và bỏ header</text>
-<text x="30" y="672" font-size="16" font-weight="normal">Connection</text>
-<rect x="16" y="703" width="288" height="101" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
-<text x="30" y="731" font-size="16" font-weight="bold">Đổi cấu hình liều</text>
-<text x="30" y="758" font-size="16" font-weight="normal">nginx -t trước, rồi mới</text>
-<text x="30" y="785" font-size="16" font-weight="normal">nginx -s reload</text>
+<text x="30" y="311" font-size="16" font-weight="normal">Ở cổng công khai, ghi đè</text>
+<text x="30" y="338" font-size="16" font-weight="normal">header của client</text>
+<rect x="16" y="369" width="288" height="182" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="397" font-size="16" font-weight="bold">Lỗi 502 và 504</text>
+<text x="30" y="424" font-size="16" font-weight="normal">502: kết nối hoặc phản hồi</text>
+<text x="30" y="451" font-size="16" font-weight="normal">từ backend lỗi</text>
+<text x="30" y="478" font-size="16" font-weight="normal">504: chờ quá</text>
+<text x="30" y="505" font-size="16" font-weight="normal">proxy_read_timeout (mặc</text>
+<text x="30" y="532" font-size="16" font-weight="normal">định 60 giây)</text>
+<rect x="16" y="563" width="288" height="155" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="591" font-size="16" font-weight="bold">Mở kết nối mới cho mỗi</text>
+<text x="30" y="618" font-size="16" font-weight="bold">request</text>
+<text x="30" y="645" font-size="16" font-weight="normal">keepalive trong upstream,</text>
+<text x="30" y="672" font-size="16" font-weight="normal">cần HTTP/1.1 và bỏ header</text>
+<text x="30" y="699" font-size="16" font-weight="normal">Connection</text>
+<rect x="16" y="730" width="288" height="101" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="758" font-size="16" font-weight="bold">Đổi cấu hình liều</text>
+<text x="30" y="785" font-size="16" font-weight="normal">nginx -t trước, rồi mới</text>
+<text x="30" y="812" font-size="16" font-weight="normal">nginx -s reload</text>
 </g></svg>

@@ -1,37 +1,38 @@
-# Bốn loại Service trong Kubernetes
+# Service Kubernetes không nhận traffic: năm chỗ cần kiểm tra
 
-Chọn loại Service bằng cách hỏi ai cần gọi tới nó. Bốn câu trả lời ứng với bốn giá trị của trường `type`; mỗi loại cho một cách gọi ổn định, nhưng không phải loại nào cũng cân bằng tải.
+Service là lớp địa chỉ ổn định trước một nhóm Pod. Khi nó không nhận traffic, hãy kiểm tra theo thứ tự từ trong ra ngoài: nhãn, cổng, trạng thái sẵn sàng, tên và đường vào từ ngoài cụm.
 
-![Bốn tình huống và loại Service tương ứng: Pod khác trong cụm dùng ClusterIP, thử từ máy ngoài dùng NodePort, công khai trên cloud dùng LoadBalancer, trỏ tên nội bộ ra dịch vụ ngoài dùng ExternalName.](../../diagrams/sd-13-006-main.svg)
+![Năm chỗ cần kiểm tra khi Service không nhận traffic: selector không khớp nhãn Pod, port và targetPort lệch, Pod chưa sẵn sàng nên bị loại khỏi endpoint, tên DNS sai namespace, và đường vào từ ngoài cụm như NodePort bị chặn hoặc LoadBalancer ở trạng thái pending.](../../diagrams/sd-13-006-main.svg)
 
-**Đọc hình:** ba loại đầu mở rộng phạm vi truy cập; loại cuối đi ngược chiều, từ trong cụm ra ngoài.
+**Đọc hình:** năm bước xếp theo thứ tự kiểm tra thường hiệu quả, không phải thứ tự dữ liệu chạy.
 
 ## Nhìn hình thử trả lời
 
-Ứng dụng trong cụm gọi `db`, còn cơ sở dữ liệu thật ở `db.example.com` bên ngoài. Loại nào hợp, và Service có tạo IP trong cụm không?
+`kubectl get endpointslices -l kubernetes.io/service-name=web` không trả về endpoint nào. Nghi vấn đầu tiên là gì và so sánh cái gì với cái gì?
 
 <details>
 <summary>Xem đáp án</summary>
 
-ExternalName. Nó làm DNS trả về bản ghi CNAME tới tên ngoài, không cấp ClusterIP và không chuyển tiếp traffic.
+Selector của Service không khớp nhãn của Pod nào, hoặc các Pod chưa sẵn sàng. So selector trong `kubectl get svc web -o yaml` với nhãn của Pod trong `kubectl get pods --show-labels`, rồi xem trạng thái sẵn sàng của Pod.
 
 </details>
 
 ## Giới hạn cần nhớ
 
-Chỉ Service ClusterIP thông thường (và NodePort, LoadBalancer dựng trên nó) cho một địa chỉ ổn định kèm cân bằng tải ở tầng 4. ExternalName chỉ trả bản ghi CNAME, không proxy hay cân bằng tải; Service headless (`clusterIP: None`) không có IP ảo và nền tảng không cân bằng tải cho nó. Định tuyến HTTP theo đường dẫn hay tên miền thuộc về Ingress hoặc Gateway, không phải một loại Service.
+Chuỗi kiểm tra trên giả định Service có selector. Service không selector (tự quản endpoint), Service headless và ExternalName hoạt động khác, nên không áp dụng nguyên văn. Định tuyến HTTP theo đường dẫn hay tên miền thuộc về Ingress hoặc Gateway, không phải Service.
 
 <details>
 <summary>Xem sâu hơn</summary>
 
-- **ClusterIP** là mặc định nếu không ghi `type`; chỉ truy cập được từ trong cụm.
-- **NodePort:** theo mặc định cổng nằm trong dải 30000–32767 và mở trên mọi node.
-- **LoadBalancer:** bộ cân bằng tải do nhà cung cấp cloud hoặc một thành phần bổ sung tạo; thường dựng trên ClusterIP và NodePort.
-- **ExternalName:** không dùng selector; với giao thức dựa trên tên máy như HTTP/HTTPS cần chú ý vì tên đích khác tên được gọi.
+- **Endpoint:** controller cập nhật EndpointSlice theo các Pod khớp selector và đang sẵn sàng. Để so khớp, xem `kubectl get svc web -o yaml` và `kubectl get pods --show-labels`.
+- **port và targetPort:** `port` là cổng của Service, `targetPort` là cổng container nhận traffic; nếu không ghi, `targetPort` bằng `port`.
+- **DNS:** trong cùng namespace gọi `web`; khác namespace dùng `web.ten-namespace` hoặc tên đầy đủ `web.ten-namespace.svc.cluster.local`.
+- **NodePort:** mặc định dải 30000–32767 trên mọi node; cần cho phép trong tường lửa hoặc security group.
+- **LoadBalancer:** Kubernetes không tự có bộ cân bằng tải; cần nhà cung cấp cloud hoặc thành phần bổ sung (như MetalLB trên máy chủ riêng), không thì trạng thái chờ (`<pending>`) kéo dài.
 
 </details>
 
 ## Nguồn đối chiếu
 
 - [ByteByteGo tại snapshot cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-4-kubernetes-service-types-in-one-diagram.md).
-- Kubernetes: [Service](https://kubernetes.io/docs/concepts/services-networking/service/).
+- Kubernetes: [Service](https://kubernetes.io/docs/concepts/services-networking/service/), [gỡ lỗi Service](https://kubernetes.io/docs/tasks/debug/debug-application/debug-service/), [DNS cho Service và Pod](https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/), [EndpointSlice](https://kubernetes.io/docs/concepts/services-networking/endpoint-slices/).

@@ -2,7 +2,7 @@
 
 Cách học Nginx nhanh nhất là đặt nó trước một API và xem chỗ nào hay sai: đường dẫn, địa chỉ client, timeout, kết nối tới backend và cách đổi cấu hình.
 
-![Năm chỗ hay sai khi dùng Nginx làm reverse proxy cho một API: dấu gạch chéo cuối của proxy_pass đổi đường dẫn, backend không thấy địa chỉ client thật, lỗi 502 và 504, mở lại kết nối tới backend liên tục, và đổi cấu hình mà không kiểm tra.](../../diagrams/sd-13-024-main.svg)
+![Năm chỗ hay sai khi dùng Nginx làm reverse proxy cho một API: dấu gạch chéo cuối của proxy_pass đổi đường dẫn, backend không thấy địa chỉ client thật và header của client có thể bị giả mạo, lỗi 502 và 504, mở lại kết nối tới backend liên tục, và đổi cấu hình mà không kiểm tra.](../../diagrams/sd-13-024-main.svg)
 
 **Đọc hình:** mỗi thẻ là một chỗ hay sai, không theo thứ tự; cấu hình mẫu nằm ở phần sâu.
 
@@ -38,7 +38,8 @@ server {
         proxy_http_version 1.1;
         proxy_set_header Connection "";
         proxy_set_header Host $host;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        # Nginx là cổng công khai: ghi đè, không nối vào header client gửi
+        proxy_set_header X-Forwarded-For $remote_addr;
         proxy_read_timeout 30s;
     }
 }
@@ -49,7 +50,7 @@ nginx -t && nginx -s reload
 ```
 
 - **Host:** mặc định Nginx gửi `$proxy_host` cho backend; muốn giữ tên miền client dùng thì đặt `Host $host`.
-- **X-Forwarded-For:** `$proxy_add_x_forwarded_for` nối địa chỉ client vào header sẵn có; backend chỉ nên tin header này khi nó đến từ proxy của bạn.
+- **X-Forwarded-For:** nếu Nginx là cổng công khai, ghi đè bằng `$remote_addr` để client không chèn địa chỉ giả vào đầu chuỗi. `$proxy_add_x_forwarded_for` giữ nguyên header client gửi rồi nối thêm địa chỉ vào cuối; chỉ dùng khi phía trước còn proxy tin cậy, và khi đó backend phải chỉ phân tích phần chuỗi sau các proxy tin cậy, hoặc dùng `ngx_http_realip_module` với `set_real_ip_from`.
 - **keepalive:** giữ sẵn một số kết nối rảnh tới backend; cần `proxy_http_version 1.1` và xóa header `Connection` thì mới có tác dụng.
 - **Reload:** `nginx -s reload` nạp cấu hình mới; worker cũ xử lý nốt kết nối hiện có rồi thoát.
 

@@ -19,12 +19,12 @@ Sự lệch (drift): Terraform đọc hiện trạng thật, thấy khác cấu 
 
 ## Giới hạn cần nhớ
 
-State có thể chứa dữ liệu nhạy cảm, nên không để trong kho mã công khai. Làm nhóm thì dùng backend từ xa có khóa để hai người không apply cùng lúc.
+State và tệp plan đã lưu đều có thể chứa dữ liệu nhạy cảm dạng rõ, nên không để trong kho mã công khai và không đăng như một artifact build thông thường. Làm nhóm thì dùng backend từ xa có khóa để hai người không apply cùng lúc.
 
 <details>
 <summary>Xem sâu hơn</summary>
 
-- **plan lưu được:** `terraform plan -out=tfplan` rồi `terraform apply tfplan` bảo đảm áp dụng đúng bản đã duyệt.
+- **plan lưu được:** `terraform plan -out=tfplan` rồi `terraform apply tfplan` bảo đảm áp dụng đúng bản đã duyệt. Tệp plan chứa cấu hình đầy đủ và có thể cả giá trị nhạy cảm, nên coi như bí mật: giới hạn quyền đọc, giữ thời gian ngắn, xóa sau khi apply và không công khai trong log hay artifact.
 - **Mất state:** Terraform không còn biết nó đang quản lý tài nguyên nào, nên cần sao lưu hoặc dùng backend có phiên bản.
 - **Trong CI:** `plan` thường chạy tự động để người duyệt đọc; `apply` sau khi có quyết định.
 

@@ -24,7 +24,7 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 3. [Tỉ lệ lập trình viên và kiểm thử viên thay đổi thế nào](lessons/sd-13-003/lesson.md) — bài nháp, chờ review kỹ thuật.
 4. [Thu thập số đo: kéo hay đẩy](lessons/sd-13-004/lesson.md) — bài nháp, chờ review kỹ thuật.
 5. [Chọn cơ sở dữ liệu cho hệ thống số đo](lessons/sd-13-005/lesson.md) — bài nháp, chờ review kỹ thuật.
-6. [Bốn loại Service trong Kubernetes](lessons/sd-13-006/lesson.md) — bài nháp, chờ review kỹ thuật.
+6. [Service Kubernetes không nhận traffic: năm chỗ cần kiểm tra](lessons/sd-13-006/lesson.md) — bài nháp, chờ review kỹ thuật.
 7. [Lỗi thường gặp khi đưa ứng dụng lên cloud-native](lessons/sd-13-007/lesson.md) — bài nháp, chờ review kỹ thuật.
 8. [Chọn công cụ Kubernetes theo lớp](lessons/sd-13-008/lesson.md) — bài nháp, chờ review kỹ thuật.
 9. [Hệ sinh thái Kubernetes theo đường đi của một ứng dụng](lessons/sd-13-009/lesson.md) — bài nháp, chờ review kỹ thuật.

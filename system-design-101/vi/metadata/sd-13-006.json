@@ -1,8 +1,8 @@
 {
   "id": "sd-13-006",
-  "title_vi": "Bốn loại Service trong Kubernetes",
+  "title_vi": "Service Kubernetes không nhận traffic: năm chỗ cần kiểm tra",
   "language": "vi",
-  "kind": "comparison",
+  "kind": "flow",
   "content_status": "draft",
   "source_ref": "sd-13-006",
   "source_snapshot": {
@@ -45,25 +45,33 @@
   },
   "claims": [
     {
-      "claim_vi": "ClusterIP là kiểu mặc định, chỉ truy cập được từ trong cụm.",
+      "claim_vi": "Service chọn Pod theo selector; endpoint chỉ gồm Pod khớp và đang sẵn sàng.",
       "source": "https://kubernetes.io/docs/concepts/services-networking/service/"
     },
     {
-      "claim_vi": "NodePort mở cổng trên mỗi node, mặc định dải 30000–32767.",
+      "claim_vi": "port là cổng của Service, targetPort là cổng của Pod.",
       "source": "https://kubernetes.io/docs/concepts/services-networking/service/"
     },
     {
-      "claim_vi": "LoadBalancer dùng bộ cân bằng tải bên ngoài.",
+      "claim_vi": "Service được phân giải qua DNS theo tên service.namespace.svc.cluster.local.",
+      "source": "https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/"
+    },
+    {
+      "claim_vi": "NodePort mặc định dải 30000–32767.",
       "source": "https://kubernetes.io/docs/concepts/services-networking/service/"
     },
     {
-      "claim_vi": "ExternalName ánh xạ Service tới tên DNS bằng bản ghi CNAME.",
+      "claim_vi": "LoadBalancer cần nhà cung cấp cloud hoặc một thành phần bổ sung tạo bộ cân bằng tải.",
       "source": "https://kubernetes.io/docs/concepts/services-networking/service/"
+    },
+    {
+      "claim_vi": "Có các bước gỡ lỗi Service với endpoint, selector và cổng.",
+      "source": "https://kubernetes.io/docs/tasks/debug/debug-application/debug-service/"
     }
   ],
   "source_deviations": [
-    "Nguồn liệt kê bốn loại theo định nghĩa; bài tổ chức theo câu hỏi \"ai cần gọi tới\" và đưa ExternalName vào cuối vì đi ngược chiều."
+    "Nguồn liệt kê bốn loại Service theo định nghĩa; bài bỏ danh mục đó, đổi phạm vi sang chẩn đoán vì sao Service không nhận traffic."
   ],
-  "design_notes_vi": "Bốn thẻ tình huống kèm loại Service tương ứng.",
+  "design_notes_vi": "Năm bước kiểm tra nối nhau từ trong ra ngoài.",
   "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
 }

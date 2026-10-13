@@ -5,17 +5,17 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 
 ## API và phát triển web
 
-1. [Polling ngắn, polling dài, SSE và WebSocket](lessons/sd-01-001/lesson.md) — có review tại repo cũ; chờ review tích hợp tại repo mới.
-2. [Ứng dụng thực tế của bộ cân bằng tải](lessons/sd-01-002/lesson.md) — có review tại repo cũ; chờ review tích hợp tại repo mới.
-3. [Năm mã trạng thái HTTP kỳ lạ](lessons/sd-01-003/lesson.md) — có review tại repo cũ; chờ review tích hợp tại repo mới.
+1. [Polling ngắn, polling dài, SSE và WebSocket](lessons/sd-01-001/lesson.md)
+2. [Ứng dụng thực tế của bộ cân bằng tải](lessons/sd-01-002/lesson.md)
+3. [Năm mã trạng thái HTTP kỳ lạ](lessons/sd-01-003/lesson.md)
 
-4. [gRPC hoạt động thế nào?](lessons/sd-01-004/lesson.md) — có review tại repo cũ; chờ review tích hợp tại repo mới.
+4. [gRPC hoạt động thế nào?](lessons/sd-01-004/lesson.md)
 
-5. [NAT giúp Internet mở rộng ra sao?](lessons/sd-01-005/lesson.md) — có review tại repo cũ; chờ review tích hợp tại repo mới.
+5. [NAT giúp Internet mở rộng ra sao?](lessons/sd-01-005/lesson.md)
 
-6. [Những điều cần biết về HTTP headers](lessons/sd-01-006/lesson.md) — có review tại repo cũ; chờ review tích hợp tại repo mới.
+6. [Những điều cần biết về HTTP headers](lessons/sd-01-006/lesson.md)
 
-7. [Chính sách định tuyến lưu lượng Internet](lessons/sd-01-007/lesson.md) — có review tại repo cũ; chờ review tích hợp tại repo mới.
+7. [Chính sách định tuyến lưu lượng Internet](lessons/sd-01-007/lesson.md)
 
 8. [Trình duyệt dựng trang web thế nào?](lessons/sd-01-008/lesson.md)
 

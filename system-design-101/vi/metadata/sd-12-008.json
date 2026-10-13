@@ -1,0 +1,67 @@
+{
+  "id": "sd-12-008",
+  "title_vi": "Thiết kế hệ thống đa ngôn ngữ",
+  "language": "vi",
+  "kind": "checklist",
+  "content_status": "draft",
+  "source_ref": "sd-12-008",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/how-do-we-design-a-system-for-internationalization.md",
+    "blob_sha": "043fdc78a1229ac9249bd0f817decf23b9a5ff30",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-we-design-a-system-for-internationalization.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "65bb9f684172d3d9d7a3a3ec90dd44b13bebd628bcdffff1f2d2553bdffb7106",
+    "retrieved_body_bytes": 2105
+  },
+  "diagram": "../diagrams/sd-12-008-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "official_sources_not_reachable_from_authoring_environment"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "not_yet_reviewed"
+    },
+    "mobile": {
+      "status": "pending"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "CLDR cung cấp dữ liệu theo vùng cho định dạng số, ngày và quy tắc số nhiều.",
+      "sources": [
+        "https://cldr.unicode.org/"
+      ]
+    },
+    {
+      "claim_vi": "Mã tiền ISO 4217 đi kèm số chữ số thập phân của từng loại tiền; ví dụ yên Nhật không có phần lẻ.",
+      "sources": [
+        "https://www.iso.org/iso-4217-currency-codes.html"
+      ]
+    },
+    {
+      "claim_vi": "Lưu thời điểm theo UTC và đổi sang múi giờ khi hiển thị là thực hành phổ biến.",
+      "sources": [
+        "https://www.iana.org/time-zones"
+      ]
+    }
+  ],
+  "source_deviations": [
+    "Bài đổi mô hình “trang thương mại điện tử” thành danh sách kiểm; không lặp lại ví dụ cửa hàng của nguồn.",
+    "Bài thêm lưu ý văn bản hai chiều, số nhiều, mã tiền ISO 4217 và kiểm thử chuỗi dài."
+  ],
+  "design_notes_vi": "Sáu thẻ dọc không mũi tên vì là danh sách khía cạnh độc lập, mỗi thẻ có một ví dụ ngắn.",
+  "editorial_note_vi": "Bản nháp độc lập viết từ kiến thức kỹ thuật chung; đọc bài nguồn nhưng chưa mở tài liệu chính thức nên các claim chưa được kiểm chứng. Chưa review kỹ thuật, chưa user testing, chưa phê duyệt phát hành."
+}

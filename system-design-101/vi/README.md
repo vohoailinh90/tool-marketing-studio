@@ -25,6 +25,9 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 4. [Làm mờ biển số và khuôn mặt trong ảnh đường phố](lessons/sd-12-004/lesson.md) — bản nháp độc lập; chờ kiểm chứng nguồn và review kỹ thuật.
 5. [Quadtree: chia bản đồ để tìm nơi gần bạn](lessons/sd-12-005/lesson.md) — bản nháp độc lập; chờ kiểm chứng nguồn và review kỹ thuật.
 6. [Xây ứng dụng chat đơn giản với Redis](lessons/sd-12-006/lesson.md) — bản nháp độc lập; chờ kiểm chứng nguồn và review kỹ thuật.
+7. [Phát trực tiếp video hoạt động thế nào?](lessons/sd-12-007/lesson.md) — bản nháp độc lập; chờ kiểm chứng nguồn và review kỹ thuật.
+8. [Thiết kế hệ thống đa ngôn ngữ](lessons/sd-12-008/lesson.md) — bản nháp độc lập; chờ kiểm chứng nguồn và review kỹ thuật.
+9. [Thiết kế soạn thảo cộng tác kiểu Google Docs](lessons/sd-12-009/lesson.md) — bản nháp độc lập; chờ kiểm chứng nguồn và review kỹ thuật.
 
 Danh mục đầy đủ và snapshot nguồn: [bảng đối chiếu](../../brainstorm/system-design-101-vi/source-map.json).
 Quy tắc đã chốt: [kết luận brainstorm](../../brainstorm/system-design-101-vi/DECISIONS.md).

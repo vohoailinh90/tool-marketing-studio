@@ -1,0 +1,67 @@
+{
+  "id": "sd-12-009",
+  "title_vi": "Thiết kế soạn thảo cộng tác kiểu Google Docs",
+  "language": "vi",
+  "kind": "architecture",
+  "content_status": "draft",
+  "source_ref": "sd-12-009",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/how-to-design-google-docs.md",
+    "blob_sha": "2337abfbf2e4a04f4b0832121c44353bdfff02f0",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-to-design-google-docs.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "e10aad7146015b79e1a9a6151989fa818691ec6304e1d2609b75ef854464199f",
+    "retrieved_body_bytes": 1128
+  },
+  "diagram": "../diagrams/sd-12-009-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "official_sources_not_reachable_from_authoring_environment"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "not_yet_reviewed"
+    },
+    "mobile": {
+      "status": "pending"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "OT biến đổi thao tác đồng thời để các bản sao hội tụ về cùng một trạng thái.",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Operational_transformation"
+      ]
+    },
+    {
+      "claim_vi": "CRDT cho phép gộp thao tác theo thứ tự bất kỳ mà vẫn hội tụ.",
+      "sources": [
+        "https://inria.hal.science/inria-00555588"
+      ]
+    },
+    {
+      "claim_vi": "Đồng bộ vi sai gửi phần khác biệt giữa bản sao và bản chung.",
+      "sources": [
+        "https://neil.fraser.name/writing/sync/"
+      ]
+    }
+  ],
+  "source_deviations": [
+    "Nguồn nói Google Docs dùng OT theo Wikipedia; bài chỉ nói OT là thuật toán phổ biến, không khẳng định chi tiết nội bộ của Google.",
+    "Ví dụ CAT/ATS do bài tự thêm để làm rõ việc biến đổi vị trí."
+  ],
+  "design_notes_vi": "Hình là ví dụ năm thẻ về một cặp thao tác đồng thời, không phải sơ đồ thành phần; luồng thành phần được viết trong phần đọc hình.",
+  "editorial_note_vi": "Bản nháp độc lập viết từ kiến thức kỹ thuật chung; đọc bài nguồn nhưng chưa mở tài liệu chính thức nên các claim chưa được kiểm chứng. Chưa review kỹ thuật, chưa user testing, chưa phê duyệt phát hành."
+}

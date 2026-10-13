@@ -1,0 +1,67 @@
+{
+  "id": "sd-12-007",
+  "title_vi": "Phát trực tiếp video hoạt động thế nào?",
+  "language": "vi",
+  "kind": "process",
+  "content_status": "draft",
+  "source_ref": "sd-12-007",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/live-streaming-explained.md",
+    "blob_sha": "711925f665b4818f6cd74a06bacfadfa1510090a",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/live-streaming-explained.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "b3abc960a8326a326a5cca0e78de9af922936dac38103725a4cf8d0ca19acd39",
+    "retrieved_body_bytes": 2739
+  },
+  "diagram": "../diagrams/sd-12-007-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "official_sources_not_reachable_from_authoring_environment"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "not_yet_reviewed"
+    },
+    "mobile": {
+      "status": "pending"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "HLS chia nội dung thành các đoạn phát qua HTTP và dùng danh sách phát để trình phát chọn giữa các mức chất lượng.",
+      "sources": [
+        "https://www.rfc-editor.org/rfc/rfc8216.html"
+      ]
+    },
+    {
+      "claim_vi": "MPEG-DASH là chuẩn phát thích ứng theo đoạn qua HTTP, cùng họ ý tưởng với HLS.",
+      "sources": [
+        "https://dashif.org/"
+      ]
+    },
+    {
+      "claim_vi": "WebRTC được thiết kế cho truyền thời gian thực với độ trễ thấp.",
+      "sources": [
+        "https://www.w3.org/TR/webrtc/"
+      ]
+    }
+  ],
+  "source_deviations": [
+    "Bài không giữ khẳng định của nguồn rằng “thiết bị Apple chỉ nhận HLS” và “DASH không hỗ trợ Apple” vì phụ thuộc trình phát và phiên bản.",
+    "Bài không giữ câu “thuật toán nén tách nền khỏi các thành phần khác của video” vì chưa rõ nghĩa kỹ thuật."
+  ],
+  "design_notes_vi": "Bảy thẻ dọc theo đường đi của hình; chú thích cuối nói về lưu để xem lại (bước phụ trong nguồn).",
+  "editorial_note_vi": "Bản nháp độc lập viết từ kiến thức kỹ thuật chung; đọc bài nguồn nhưng chưa mở tài liệu chính thức nên các claim chưa được kiểm chứng. Chưa review kỹ thuật, chưa user testing, chưa phê duyệt phát hành."
+}

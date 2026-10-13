@@ -68,6 +68,9 @@ on `ubuntu-latest` fails at once with no log.
   `claude-agent-routing-template` does not serve this one, which is why it has its own.
 - On the VPS, install Chromium's system libraries once so the render test runs instead of
   skipping: `sudo python3 -m playwright install-deps chromium`.
+- The VPS runs one job at a time and `engine` takes about 30 minutes, 27 of them in
+  `mutation_check.py --all`. A pull request that changes only the System Design store skips that
+  check: `scripts/ci_changes.py` decides, and every push to `main` still runs it.
 - The VPS keeps its files between jobs, so it runs only code from people who can push to this
   repository: every job skips a pull request whose branch lives in a fork. Keep the repository
   private, or keep that guard, while CI runs on the VPS (`tests/test_codex_review.py` checks it).

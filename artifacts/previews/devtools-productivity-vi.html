@@ -1,0 +1,919 @@
+<!doctype html><html lang="vi"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DevTools &amp; Productivity — 20 bài tiếng Việt</title><style>body{margin:0 auto;padding:16px;max-width:760px;font:17px/1.65 system-ui;color:#19334d;background:#f8fafc}a{color:#086f98;overflow-wrap:anywhere}svg{display:block;width:352px;max-width:100%;height:auto;margin:24px auto}h1{font-size:27px}code{overflow-wrap:anywhere}article{padding:28px 0;border-top:1px solid #bccbd8}summary{cursor:pointer;font-weight:600}details{padding:12px;background:#eaf1f7;border-radius:10px}</style><header id="index"><h1>Công cụ và năng suất</h1><p>20 bài tiếng Việt • Bản nháp ngày 13/10/2026. Hình tự thiết kế, có câu hỏi và đáp án. Chưa review kỹ thuật đầy đủ hoặc thử người học.</p><ol><li><a href="#sd-09-001">Các lệnh Git theo việc cần làm</a></li><li><a href="#sd-09-002">Quy trình làm việc với Git</a></li><li><a href="#sd-09-003">Đọc JSON lồng nhau bằng sơ đồ</a></li><li><a href="#sd-09-004">Git và GitHub giải quyết việc gì?</a></li><li><a href="#sd-09-005">Merge và rebase: ghép lịch sử khác nhau</a></li><li><a href="#sd-09-006">Chọn ứng dụng AI theo đầu ra cần kiểm tra</a></li><li><a href="#sd-09-007">Viết sơ đồ bằng mã</a></li><li><a href="#sd-09-008">CPU 100%: bắt đầu từ bằng chứng</a></li><li><a href="#sd-09-009">Sáu lựa chọn để dựng sơ đồ từ văn bản</a></li><li><a href="#sd-09-010">Chọn công cụ đưa code tới production</a></li><li><a href="#sd-09-011">SEO: giúp công cụ tìm kiếm hiểu trang</a></li><li><a href="#sd-09-012">Tra lệnh Linux theo câu hỏi</a></li><li><a href="#sd-09-013">Quyền Linux: ai được làm gì?</a></li><li><a href="#sd-09-014">Năm góc nhìn để hiểu Linux</a></li><li><a href="#sd-09-015">Các dự án nguồn mở qua một đường đi ứng dụng</a></li><li><a href="#sd-09-016">Dự án được doanh nghiệp khởi xướng hoặc hỗ trợ</a></li><li><a href="#sd-09-017">Cây thư mục Linux và vai trò từng nơi</a></li><li><a href="#sd-09-018">Dùng dev tools để bỏ việc lặp lại</a></li><li><a href="#sd-09-019">Git lưu snapshot và nhánh như thế nào?</a></li><li><a href="#sd-09-020">Từ thay đổi code tới bản chạy production</a></li></ol></header><article id="sd-09-001"><h1>Các lệnh Git theo việc cần làm</h1>
+<p>Bạn vừa sửa hai file nhưng chỉ muốn lưu một thay đổi. Hãy nhìn Git theo ba trạng thái: file đang sửa, nội dung đã chọn cho lần lưu tới và lịch sử đã commit. Lệnh đúng phụ thuộc vào trạng thái bạn muốn thay đổi.</p>
+<p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 472" role="img">
+<title>Các lệnh Git theo việc cần làm</title>
+<desc>Quan sát: git status · git diff; Chọn nội dung: git add app.py; Lưu cục bộ: git commit; Chia sẻ: git push</desc>
+<rect width="352" height="472" rx="16" fill="#f3f6fb"/>
+<text x="18" y="29" font-family="sans-serif" font-size="18" fill="#19334d">ĐỌC TỪ TRÊN XUỐNG</text>
+<rect x="12" y="44" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="70" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Quan sát</text>
+<text x="24" y="98" font-family="sans-serif" font-size="18" fill="#19334d">git status · git diff</text>
+<path d="M176 135 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="150" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="176" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Chọn nội dung</text>
+<text x="24" y="204" font-family="sans-serif" font-size="18" fill="#19334d">git add app.py</text>
+<path d="M176 241 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="256" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="282" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Lưu cục bộ</text>
+<text x="24" y="310" font-family="sans-serif" font-size="18" fill="#19334d">git commit</text>
+<path d="M176 347 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="362" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="388" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Chia sẻ</text>
+<text x="24" y="416" font-family="sans-serif" font-size="18" fill="#19334d">git push</text>
+</svg>
+</p>
+<p><strong>Đọc hình:</strong> Các thẻ là các bước hoặc góc nhìn của ví dụ; đọc từ trên xuống. Mũi tên chỉ thứ tự đọc, không biểu diễn luồng mạng hoặc sự phụ thuộc bắt buộc.</p>
+<p><code>git init</code> tạo kho mới; <code>git clone</code> lấy một kho có sẵn. Trước khi lưu, dùng <code>git status</code> xem file nào thay đổi, <code>git diff</code> xem phần chưa stage và <code>git diff --staged</code> xem phần sẽ vào commit. <code>git add app.py</code> chọn nội dung hiện tại của file; nếu sửa tiếp, cần add lại để chọn phiên bản mới.</p>
+<p><code>git switch -c fix-title</code> tạo và chuyển sang nhánh làm việc. <code>git fetch</code> cập nhật thông tin từ remote; đọc diff trước khi tích hợp. <code>git push</code> gửi commit, không gửi mọi file chưa commit trong thư mục.</p>
+<h2>Nhìn hình thử trả lời</h2>
+<p>Bạn add một file rồi sửa thêm một dòng. Commit ngay có chứa dòng mới không?</p>
+<details>
+<summary>Xem đáp án</summary>
+<p>Không. Commit lấy nội dung trong index. Cần git add lại nếu muốn đưa dòng mới vào commit.</p>
+</details>
+<h2>Giới hạn cần nhớ</h2>
+<p><code>git restore --staged app.py</code> bỏ chọn nội dung nhưng giữ sửa đổi trong file. <code>git restore app.py</code> có thể bỏ sửa đổi chưa stage. <code>git revert</code> tạo commit đảo thay đổi; đừng nhầm với reset hoặc xóa file.</p>
+<details>
+<summary>Xem sâu hơn</summary>
+<p>Một commit là một mốc để so sánh, không phải bản sao tự động của tất cả file trên máy. File chưa được theo dõi cần add trước. <code>.gitignore</code> không làm file đã được theo dõi biến mất khỏi lịch sử.</p>
+</details>
+<h2>Nguồn đối chiếu</h2>
+<ul>
+<li><a href="https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/git-commands-cheat-sheet.md">Chủ đề ByteByteGo tại snapshot cố định</a>. Bài viết và hình này được thiết kế độc lập; không dịch thân bài hoặc sử dụng ảnh nguồn.</li>
+<li><a href="https://git-scm.com/docs">Git: các lệnh</a>.</li>
+<li><a href="https://git-scm.com/docs/git-add">Git add</a>.</li>
+<li><a href="https://git-scm.com/docs/git-restore">Git restore</a>.</li>
+</ul>
+<p><a href="#index">Về mục lục</a></p></article><article id="sd-09-002"><h1>Quy trình làm việc với Git</h1>
+<p>Hai người cùng sửa dự án không cần dùng chung một thư mục. Mỗi người có kho Git cục bộ, tạo commit riêng rồi trao đổi lịch sử qua một remote. Quy trình tốt giúp thay đổi được xem xét trước khi ghép vào nhánh chung.</p>
+<p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 472" role="img">
+<title>Quy trình làm việc với Git</title>
+<desc>Bắt đầu: clone · tạo nhánh; Làm việc: sửa · kiểm tra · commit; Đồng bộ: fetch · xem khác biệt; Cộng tác: push · mở pull request</desc>
+<rect width="352" height="472" rx="16" fill="#f3f6fb"/>
+<text x="18" y="29" font-family="sans-serif" font-size="18" fill="#19334d">ĐỌC TỪ TRÊN XUỐNG</text>
+<rect x="12" y="44" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="70" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Bắt đầu</text>
+<text x="24" y="98" font-family="sans-serif" font-size="18" fill="#19334d">clone · tạo nhánh</text>
+<path d="M176 135 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="150" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="176" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Làm việc</text>
+<text x="24" y="204" font-family="sans-serif" font-size="18" fill="#19334d">sửa · kiểm tra · commit</text>
+<path d="M176 241 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="256" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="282" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Đồng bộ</text>
+<text x="24" y="310" font-family="sans-serif" font-size="18" fill="#19334d">fetch · xem khác biệt</text>
+<path d="M176 347 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="362" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="388" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Cộng tác</text>
+<text x="24" y="416" font-family="sans-serif" font-size="18" fill="#19334d">push · mở pull request</text>
+</svg>
+</p>
+<p><strong>Đọc hình:</strong> Các thẻ là các bước hoặc góc nhìn của ví dụ; đọc từ trên xuống. Mũi tên chỉ thứ tự đọc, không biểu diễn luồng mạng hoặc sự phụ thuộc bắt buộc.</p>
+<p>Ví dụ Lan sửa thông báo lỗi trên nhánh riêng. Lan kiểm tra ứng dụng, chọn thay đổi và commit với lời giải thích. Minh vẫn có thể làm việc trên máy khác mà không chờ Lan hoàn thành.</p>
+<p>Sau <code>git fetch</code>, Lan thấy nhánh chung có commit mới của Minh. Lan chọn merge hoặc rebase theo quy ước nhóm, xử lý xung đột nếu có và chạy kiểm tra lại. Khi push nhánh, Lan mở pull request để người khác xem diff. Pull request là tính năng của nền tảng cộng tác; Git tự nó quản lý commit, nhánh và việc tích hợp lịch sử.</p>
+<h2>Nhìn hình thử trả lời</h2>
+<p>Mất mạng có ngăn bạn tạo commit trong kho Git đã có trên máy không?</p>
+<details>
+<summary>Xem đáp án</summary>
+<p>Không. Commit là thao tác cục bộ. Trao đổi với remote mới cần kết nối tới remote đó.</p>
+</details>
+<h2>Giới hạn cần nhớ</h2>
+<p>Fetch không tự ghép thay đổi vào nhánh đang làm. Pull gồm fetch rồi tích hợp theo tùy chọn và cấu hình; không nên hiểu pull luôn là merge.</p>
+<details>
+<summary>Xem sâu hơn</summary>
+<p>Xung đột là yêu cầu quyết định nội dung cuối cùng, không phải chỉ xóa dấu phân cách. Sau giải quyết, kiểm tra cả ý nghĩa chương trình: hai sửa đổi riêng đều đúng vẫn có thể sai khi kết hợp.</p>
+</details>
+<h2>Nguồn đối chiếu</h2>
+<ul>
+<li><a href="https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/git-workflow.md">Chủ đề ByteByteGo tại snapshot cố định</a>. Bài viết và hình này được thiết kế độc lập; không dịch thân bài hoặc sử dụng ảnh nguồn.</li>
+<li><a href="https://git-scm.com/book/en/v2/Getting-Started-What-is-Git%3F">Git cơ bản</a>.</li>
+<li><a href="https://git-scm.com/docs/git-pull">Git pull</a>.</li>
+</ul>
+<p><a href="#index">Về mục lục</a></p></article><article id="sd-09-003"><h1>Đọc JSON lồng nhau bằng sơ đồ</h1>
+<p>Một phản hồi API có nhiều cấp khiến bạn khó biết giá trị nằm ở đâu. JSON Crack là một lựa chọn để xem cấu trúc bằng đồ thị. Trước hết cần hiểu quan hệ giữa object, array và giá trị; hình đẹp không thay thế kiểm tra dữ liệu.</p>
+<p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 472" role="img">
+<title>Đọc JSON lồng nhau bằng sơ đồ</title>
+<desc>Object: đơn hàng: order; Thuộc tính là array: items; Phần tử đầu tiên: items[0]; Giá trị số: qty = 2</desc>
+<rect width="352" height="472" rx="16" fill="#f3f6fb"/>
+<text x="18" y="29" font-family="sans-serif" font-size="18" fill="#19334d">ĐỌC TỪ TRÊN XUỐNG</text>
+<rect x="12" y="44" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="70" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Object: đơn hàng</text>
+<text x="24" y="98" font-family="sans-serif" font-size="18" fill="#19334d">order</text>
+<path d="M176 135 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="150" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="176" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Thuộc tính là array</text>
+<text x="24" y="204" font-family="sans-serif" font-size="18" fill="#19334d">items</text>
+<path d="M176 241 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="256" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="282" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Phần tử đầu tiên</text>
+<text x="24" y="310" font-family="sans-serif" font-size="18" fill="#19334d">items[0]</text>
+<path d="M176 347 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="362" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="388" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Giá trị số</text>
+<text x="24" y="416" font-family="sans-serif" font-size="18" fill="#19334d">qty = 2</text>
+</svg>
+</p>
+<p><strong>Đọc hình:</strong> Các thẻ là các bước hoặc góc nhìn của ví dụ; đọc từ trên xuống. Mũi tên chỉ thứ tự đọc, không biểu diễn luồng mạng hoặc sự phụ thuộc bắt buộc.</p>
+<p>Với dữ liệu <code>{&quot;order&quot;:{&quot;items&quot;:[{&quot;qty&quot;:2}]}}</code>, đường tới số lượng là <code>order.items[0].qty</code>. Object dùng tên khóa; array dùng vị trí, bắt đầu từ 0. Một nhánh mở rộng trên đồ thị giúp lần theo đúng cấp khi dữ liệu dài.</p>
+<p>Bạn có thể thử công cụ bằng dữ liệu giả, tìm một trường rồi đối chiếu đường dẫn với JSON gốc. Khi thiếu trường, cần phân biệt khóa không tồn tại, giá trị <code>null</code> và array rỗng. Ba trường hợp này thường dẫn đến cách xử lý khác nhau trong chương trình.</p>
+<h2>Nhìn hình thử trả lời</h2>
+<p>Trong ví dụ, items là object hay array? qty nằm ở cấp nào?</p>
+<details>
+<summary>Xem đáp án</summary>
+<p>items là array. qty nằm trong object ở phần tử số 0 của array này.</p>
+</details>
+<h2>Giới hạn cần nhớ</h2>
+<p>Sơ đồ cấu trúc không chứng minh dữ liệu đáp ứng schema hoặc quy tắc nghiệp vụ. Chưa kiểm chứng chế độ lưu trữ/xử lý dữ liệu của dịch vụ hiện hành; chỉ dùng dữ liệu giả khi thực hành.</p>
+<details>
+<summary>Xem sâu hơn</summary>
+<p>JSON không có comment theo chuẩn và tên khóa object phải là chuỗi. Cú pháp hợp lệ vẫn có thể chứa kiểu không mong đợi, chẳng hạn qty là chuỗi &quot;2&quot; thay vì số 2.</p>
+</details>
+<h2>Nguồn đối chiếu</h2>
+<ul>
+<li><a href="https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/json-files.md">Chủ đề ByteByteGo tại snapshot cố định</a>. Bài viết và hình này được thiết kế độc lập; không dịch thân bài hoặc sử dụng ảnh nguồn.</li>
+<li><a href="https://www.rfc-editor.org/rfc/rfc8259">Chuẩn JSON, RFC 8259</a>.</li>
+<li><a href="https://github.com/AykutSarac/jsoncrack.com">JSON Crack: mã nguồn</a>.</li>
+</ul>
+<p><a href="#index">Về mục lục</a></p></article><article id="sd-09-004"><h1>Git và GitHub giải quyết việc gì?</h1>
+<p>Bạn có thể lưu lịch sử dự án bằng Git ngay trên máy. GitHub bổ sung nơi lưu kho từ xa và các công cụ để nhóm trao đổi về thay đổi. Hiểu hai vai trò này giúp bạn biết dữ liệu đã nằm ở đâu sau mỗi thao tác.</p>
+<p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 472" role="img">
+<title>Git và GitHub giải quyết việc gì?</title>
+<desc>Git trên máy: commit · nhánh · lịch sử; Kết nối remote: push / fetch; GitHub: kho từ xa · pull request; Nhóm cùng làm: review · issues · checks</desc>
+<rect width="352" height="472" rx="16" fill="#f3f6fb"/>
+<text x="18" y="29" font-family="sans-serif" font-size="18" fill="#19334d">ĐỌC TỪ TRÊN XUỐNG</text>
+<rect x="12" y="44" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="70" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Git trên máy</text>
+<text x="24" y="98" font-family="sans-serif" font-size="18" fill="#19334d">commit · nhánh · lịch sử</text>
+<path d="M176 135 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="150" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="176" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Kết nối remote</text>
+<text x="24" y="204" font-family="sans-serif" font-size="18" fill="#19334d">push / fetch</text>
+<path d="M176 241 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="256" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="282" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">GitHub</text>
+<text x="24" y="310" font-family="sans-serif" font-size="18" fill="#19334d">kho từ xa · pull request</text>
+<path d="M176 347 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="362" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="388" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Nhóm cùng làm</text>
+<text x="24" y="416" font-family="sans-serif" font-size="18" fill="#19334d">review · issues · checks</text>
+</svg>
+</p>
+<p><strong>Đọc hình:</strong> Các thẻ là các bước hoặc góc nhìn của ví dụ; đọc từ trên xuống. Mũi tên chỉ thứ tự đọc, không biểu diễn luồng mạng hoặc sự phụ thuộc bắt buộc.</p>
+<p>Git là hệ thống quản lý phiên bản phân tán. Kho cục bộ chứa lịch sử để so sánh, tạo nhánh và commit. Remote có thể là GitHub, một dịch vụ khác hoặc kho do nhóm tự vận hành.</p>
+<p>GitHub lưu kho và cung cấp pull request, issue, quyền truy cập và tự động hóa như GitHub Actions. Khi bạn commit, mốc mới trước tiên có ở máy bạn. Sau push thành công, remote mới nhận các đối tượng cần thiết và cập nhật nhánh được gửi. Người khác thường fetch hoặc pull để nhận thay đổi vào kho của họ.</p>
+<h2>Nhìn hình thử trả lời</h2>
+<p>Bạn đã commit nhưng chưa push. Đồng đội có tự thấy commit đó trên GitHub không?</p>
+<details>
+<summary>Xem đáp án</summary>
+<p>Không. Commit cục bộ chưa được gửi lên remote.</p>
+</details>
+<h2>Giới hạn cần nhớ</h2>
+<p>Không cần tài khoản GitHub để dùng Git cục bộ. GitHub có gói miễn phí và trả phí; không nên mô tả mọi sử dụng đều phải trả tiền.</p>
+<details>
+<summary>Xem sâu hơn</summary>
+<p>Giao diện web có thể tạo commit thay bạn, nhưng việc đó không có nghĩa file trên máy tự cập nhật. Repo công khai cũng không có nghĩa mọi người được push vào nhánh của bạn; quyền đọc và quyền ghi khác nhau.</p>
+</details>
+<h2>Nguồn đối chiếu</h2>
+<ul>
+<li><a href="https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/git-vs-github.md">Chủ đề ByteByteGo tại snapshot cố định</a>. Bài viết và hình này được thiết kế độc lập; không dịch thân bài hoặc sử dụng ảnh nguồn.</li>
+<li><a href="https://git-scm.com/about">Git</a>.</li>
+<li><a href="https://docs.github.com/en/get-started/using-git/about-git">GitHub: Git là gì?</a>.</li>
+</ul>
+<p><a href="#index">Về mục lục</a></p></article><article id="sd-09-005"><h1>Merge và rebase: ghép lịch sử khác nhau</h1>
+<p>Nhánh tính năng của bạn bắt đầu từ A. Trong lúc bạn tạo F, nhánh main có thêm B. Muốn đưa thay đổi mới vào nhánh tính năng, bạn có thể giữ hai đường lịch sử bằng merge hoặc phát lại thay đổi bằng rebase.</p>
+<p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 472" role="img">
+<title>Merge và rebase: ghép lịch sử khác nhau</title>
+<desc>Trước khi ghép: main: A → B | feature: A → F; Merge khi đã phân nhánh: M có hai cha: B và F; Rebase feature lên main: A → B → F′; Điểm khác nhau: F′ thường có ID khác F</desc>
+<rect width="352" height="472" rx="16" fill="#f3f6fb"/>
+<text x="18" y="29" font-family="sans-serif" font-size="18" fill="#19334d">ĐỌC TỪ TRÊN XUỐNG</text>
+<rect x="12" y="44" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="70" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Trước khi ghép</text>
+<text x="24" y="98" font-family="sans-serif" font-size="18" fill="#19334d">main: A → B | feature: A → F</text>
+<path d="M176 135 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="150" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="176" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Merge khi đã phân nhánh</text>
+<text x="24" y="204" font-family="sans-serif" font-size="18" fill="#19334d">M có hai cha: B và F</text>
+<path d="M176 241 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="256" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="282" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Rebase feature lên main</text>
+<text x="24" y="310" font-family="sans-serif" font-size="18" fill="#19334d">A → B → F′</text>
+<path d="M176 347 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="362" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="388" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Điểm khác nhau</text>
+<text x="24" y="416" font-family="sans-serif" font-size="18" fill="#19334d">F′ thường có ID khác F</text>
+</svg>
+</p>
+<p><strong>Đọc hình:</strong> Các thẻ là các bước hoặc góc nhìn của ví dụ; đọc từ trên xuống. Mũi tên chỉ thứ tự đọc, không biểu diễn luồng mạng hoặc sự phụ thuộc bắt buộc.</p>
+<p>Merge trong tình huống đã phân nhánh tạo commit M nối hai lịch sử. Các commit cũ vẫn giữ ID; con trỏ của nhánh nhận merge di chuyển tới kết quả. Khi nhánh nhận chỉ cần đi tiến tới commit đã có, Git có thể fast-forward và không tạo merge commit.</p>
+<p>Rebase phát lại thay đổi của F trên nền B, thường tạo F′ với parent mới và ID mới. Lịch sử nhìn thẳng hơn, nhưng người đã dựa trên F cần biết lịch sử đã thay đổi. Cả merge và rebase đều có thể gặp xung đột; hình đang giả định giải quyết thành công.</p>
+<h2>Nhìn hình thử trả lời</h2>
+<p>Có thể kết luận mọi lần git merge đều sinh commit có hai parent không?</p>
+<details>
+<summary>Xem đáp án</summary>
+<p>Không. Một merge có thể fast-forward nếu lịch sử cho phép; tùy chọn cũng ảnh hưởng cách tích hợp.</p>
+</details>
+<h2>Giới hạn cần nhớ</h2>
+<p>Tránh rebase lịch sử người khác đã sử dụng nếu chưa thống nhất cách phối hợp. Rebase không phải cách an toàn mặc định để sửa nhánh chung.</p>
+<details>
+<summary>Xem sâu hơn</summary>
+<p>Sơ đồ nói về ancestry, không đo chất lượng code. Sau tích hợp, chạy lại kiểm tra trên nội dung cuối cùng. Lịch sử tuyến tính không bảo đảm các thay đổi kết hợp đúng.</p>
+</details>
+<h2>Nguồn đối chiếu</h2>
+<ul>
+<li><a href="https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/git-merge-vs-git-rebate.md">Chủ đề ByteByteGo tại snapshot cố định</a>. Bài viết và hình này được thiết kế độc lập; không dịch thân bài hoặc sử dụng ảnh nguồn.</li>
+<li><a href="https://git-scm.com/docs/git-merge">Git merge</a>.</li>
+<li><a href="https://git-scm.com/docs/git-rebase">Git rebase</a>.</li>
+</ul>
+<p><a href="#index">Về mục lục</a></p></article><article id="sd-09-006"><h1>Chọn ứng dụng AI theo đầu ra cần kiểm tra</h1>
+<p>Danh sách “30 ứng dụng AI năm 2025” là một ảnh chụp thị trường trong nguồn. Thay vì cài cả danh sách, hãy chọn một công việc cụ thể, thử bằng dữ liệu phù hợp rồi đánh giá đầu ra có giúp bạn hoàn thành việc đó hay không.</p>
+<p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 472" role="img">
+<title>Chọn ứng dụng AI theo đầu ra cần kiểm tra</title>
+<desc>Nhu cầu: Ví dụ: tóm tắt tài liệu; Đầu vào thử: Tài liệu giả · tiêu chí rõ; Đầu ra cần đánh giá: Đủ ý · có nguồn · không bịa; Quyết định: Giữ công cụ nếu có ích</desc>
+<rect width="352" height="472" rx="16" fill="#f3f6fb"/>
+<text x="18" y="29" font-family="sans-serif" font-size="18" fill="#19334d">ĐỌC TỪ TRÊN XUỐNG</text>
+<rect x="12" y="44" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="70" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Nhu cầu</text>
+<text x="24" y="98" font-family="sans-serif" font-size="18" fill="#19334d">Ví dụ: tóm tắt tài liệu</text>
+<path d="M176 135 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="150" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="176" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Đầu vào thử</text>
+<text x="24" y="204" font-family="sans-serif" font-size="18" fill="#19334d">Tài liệu giả · tiêu chí rõ</text>
+<path d="M176 241 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="256" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="282" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Đầu ra cần đánh giá</text>
+<text x="24" y="310" font-family="sans-serif" font-size="18" fill="#19334d">Đủ ý · có nguồn · không bịa</text>
+<path d="M176 347 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="362" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="388" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Quyết định</text>
+<text x="24" y="416" font-family="sans-serif" font-size="18" fill="#19334d">Giữ công cụ nếu có ích</text>
+</svg>
+</p>
+<p><strong>Đọc hình:</strong> Các thẻ là các bước hoặc góc nhìn của ví dụ; đọc từ trên xuống. Mũi tên chỉ thứ tự đọc, không biểu diễn luồng mạng hoặc sự phụ thuộc bắt buộc.</p>
+<p>Với trợ lý viết code, hãy đo xem bản sửa có vượt qua kiểm tra và dễ review không. Với công cụ ghi chú, hãy so tóm tắt với nội dung gốc. Với công cụ tạo hình hoặc giọng nói, hãy kiểm tra quyền sử dụng đầu ra và yêu cầu của nơi bạn định dùng.</p>
+<p>Tên ứng dụng không tự chứng minh độ chính xác. Hãy bắt đầu bằng một nhiệm vụ nhỏ có đáp án hoặc tiêu chí kiểm tra. Ghi cả thời gian sửa lỗi và kiểm chứng, không chỉ thời gian tạo bản nháp. Quy trình này dùng được ngay cả khi danh sách sản phẩm thay đổi.</p>
+<h2>Nhìn hình thử trả lời</h2>
+<p>Một ứng dụng trả lời nhanh gấp đôi nhưng cần sửa nhiều lỗi hơn. Có chắc bạn đã tiết kiệm thời gian không?</p>
+<details>
+<summary>Xem đáp án</summary>
+<p>Không. Cần đo toàn bộ thời gian tới đầu ra đạt yêu cầu, gồm sửa và kiểm chứng.</p>
+</details>
+<h2>Giới hạn cần nhớ</h2>
+<p>Các tên dưới đây ghi nhận danh mục lịch sử của nguồn, không phải xác nhận tính năng, giá, quyền riêng tư hoặc khả năng cung cấp vào tháng 10/2026.</p>
+<details>
+<summary>Xem sâu hơn</summary>
+<p>30 tên trong snapshot, sắp theo tên để tra cứu: Adobe (PDF Chat), Anthropic Claude, Ash, Captions, ChatGPT, Cursor, Delphi, ElevenLabs, Gamma, Gemini, Gemini for Gmail, GitHub Copilot, GoodInside, Granola, Grok, HeyGen, Krea, Midjourney, NotebookLM, OpusClips, Particle News App, Perplexity, Persona, Photoroom, Replit, Rosebud, Suno AI, Tabnine, Windsurf AI, WisprFlow. Đây là dữ liệu danh mục nguồn; tính năng từng sản phẩm chưa được xác minh lại.</p>
+</details>
+<h2>Nguồn đối chiếu</h2>
+<ul>
+<li><a href="https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/30-useful-ai-apps-that-can-help-you-in-2025.md">Chủ đề ByteByteGo tại snapshot cố định</a>. Bài viết và hình này được thiết kế độc lập; không dịch thân bài hoặc sử dụng ảnh nguồn.</li>
+<li><a href="https://www.nist.gov/itl/ai-risk-management-framework">NIST: quản lý rủi ro AI</a>.</li>
+</ul>
+<p><a href="#index">Về mục lục</a></p></article><article id="sd-09-007"><h1>Viết sơ đồ bằng mã</h1>
+<p>Khi kiến trúc đổi, hình trong tài liệu dễ bị quên cập nhật. Diagram as Code dùng một mô tả văn bản hoặc chương trình làm đầu vào để sinh sơ đồ. Bạn có thể lưu đầu vào cùng mã nguồn và review thay đổi như các file khác.</p>
+<p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 472" role="img">
+<title>Viết sơ đồ bằng mã</title>
+<desc>Mô tả do người viết: Client → API → Database; Công cụ dựng hình: Diagrams · Graphviz; Đầu ra: Sơ đồ kiến trúc; Lần thay đổi sau: Sửa mô tả · dựng lại</desc>
+<rect width="352" height="472" rx="16" fill="#f3f6fb"/>
+<text x="18" y="29" font-family="sans-serif" font-size="18" fill="#19334d">ĐỌC TỪ TRÊN XUỐNG</text>
+<rect x="12" y="44" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="70" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Mô tả do người viết</text>
+<text x="24" y="98" font-family="sans-serif" font-size="18" fill="#19334d">Client → API → Database</text>
+<path d="M176 135 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="150" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="176" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Công cụ dựng hình</text>
+<text x="24" y="204" font-family="sans-serif" font-size="18" fill="#19334d">Diagrams · Graphviz</text>
+<path d="M176 241 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="256" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="282" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Đầu ra</text>
+<text x="24" y="310" font-family="sans-serif" font-size="18" fill="#19334d">Sơ đồ kiến trúc</text>
+<path d="M176 347 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="362" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="388" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Lần thay đổi sau</text>
+<text x="24" y="416" font-family="sans-serif" font-size="18" fill="#19334d">Sửa mô tả · dựng lại</text>
+</svg>
+</p>
+<p><strong>Đọc hình:</strong> Các thẻ là các bước hoặc góc nhìn của ví dụ; đọc từ trên xuống. Mũi tên chỉ thứ tự đọc, không biểu diễn luồng mạng hoặc sự phụ thuộc bắt buộc.</p>
+<p>Thư viện Diagrams cho phép khai báo các node và liên kết trong Python, rồi dùng Graphviz để dựng hình. Ví dụ bạn mô tả client gọi API, API truy cập database. Đây là mô hình do người viết lựa chọn, không mặc nhiên là kết quả đọc toàn bộ code ứng dụng.</p>
+<p>Trong pull request thay đổi kiến trúc, sửa cả phần mô tả sơ đồ. Người review xem diff văn bản để biết thành phần nào được thêm hoặc bỏ, rồi xem hình để hiểu quan hệ. Ghim phiên bản renderer giúp giảm khác biệt bố cục giữa các máy khi cùng dựng một mô tả.</p>
+<h2>Nhìn hình thử trả lời</h2>
+<p>Ứng dụng thêm cache nhưng file mô tả sơ đồ không đổi. Renderer có tự biết cache tồn tại không?</p>
+<details>
+<summary>Xem đáp án</summary>
+<p>Không, nếu công cụ chỉ dựng từ mô tả khai báo. Cần cập nhật đầu vào hoặc có cơ chế trích xuất riêng.</p>
+</details>
+<h2>Giới hạn cần nhớ</h2>
+<p>Tự động dựng hình không bảo đảm sơ đồ phản ánh hệ thống thật. Cần có người chịu trách nhiệm cập nhật mô tả.</p>
+<details>
+<summary>Xem sâu hơn</summary>
+<p>Chọn mức chi tiết phục vụ câu hỏi của người đọc. Sơ đồ tổng quan có thể giấu các replica, còn sơ đồ vận hành cần chỉ rõ môi trường và hướng dữ liệu. Không đưa mọi chi tiết vào một hình.</p>
+</details>
+<h2>Nguồn đối chiếu</h2>
+<ul>
+<li><a href="https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/diagram-as-code.md">Chủ đề ByteByteGo tại snapshot cố định</a>. Bài viết và hình này được thiết kế độc lập; không dịch thân bài hoặc sử dụng ảnh nguồn.</li>
+<li><a href="https://diagrams.mingrammer.com/docs/getting-started/installation">Diagrams: hướng dẫn</a>.</li>
+<li><a href="https://graphviz.org/documentation/">Graphviz</a>.</li>
+</ul>
+<p><a href="#index">Về mục lục</a></p></article><article id="sd-09-008"><h1>CPU 100%: bắt đầu từ bằng chứng</h1>
+<p>Ứng dụng chậm và biểu đồ CPU đạt 100%. Đây là dấu hiệu cần quan sát, chưa phải tên lỗi. Trước khi sửa code hoặc tăng máy, hãy xác định CPU được đo cho toàn máy, một core, một process hay giới hạn của container.</p>
+<p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 472" role="img">
+<title>CPU 100%: bắt đầu từ bằng chứng</title>
+<desc>Xác định phạm vi: Một core hay cả máy?; Tìm nơi tiêu tốn: process → thread; Lấy mẫu thực thi: profiler · stack; Đối chiếu tải: request · job · bản phát hành</desc>
+<rect width="352" height="472" rx="16" fill="#f3f6fb"/>
+<text x="18" y="29" font-family="sans-serif" font-size="18" fill="#19334d">ĐỌC TỪ TRÊN XUỐNG</text>
+<rect x="12" y="44" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="70" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Xác định phạm vi</text>
+<text x="24" y="98" font-family="sans-serif" font-size="18" fill="#19334d">Một core hay cả máy?</text>
+<path d="M176 135 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="150" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="176" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Tìm nơi tiêu tốn</text>
+<text x="24" y="204" font-family="sans-serif" font-size="18" fill="#19334d">process → thread</text>
+<path d="M176 241 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="256" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="282" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Lấy mẫu thực thi</text>
+<text x="24" y="310" font-family="sans-serif" font-size="18" fill="#19334d">profiler · stack</text>
+<path d="M176 347 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="362" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="388" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Đối chiếu tải</text>
+<text x="24" y="416" font-family="sans-serif" font-size="18" fill="#19334d">request · job · bản phát hành</text>
+</svg>
+</p>
+<p><strong>Đọc hình:</strong> Các thẻ là các bước hoặc góc nhìn của ví dụ; đọc từ trên xuống. Mũi tên chỉ thứ tự đọc, không biểu diễn luồng mạng hoặc sự phụ thuộc bắt buộc.</p>
+<p>Dùng <code>top</code> để tìm process bận, rồi lấy profile phù hợp runtime. Nếu cùng một đoạn code xuất hiện liên tục, kiểm tra vòng lặp, busy waiting hoặc thuật toán tốn chi phí. Nếu nhiều request đều dùng CPU hợp lý, có thể lượng công việc đã vượt năng lực xử lý.</p>
+<p>Chín hướng điều tra là: vòng lặp không kết thúc; tác vụ nền; lưu lượng tăng; tính toán nặng; áp lực bộ nhớ dẫn tới công việc quản lý bộ nhớ; nhiều process tranh CPU; busy waiting; biểu thức chính quy có chi phí cao; process không mong đợi hoặc mã độc. Đây là giả thuyết để kiểm tra, không phải chín kết luận rút ra từ một con số.</p>
+<h2>Nhìn hình thử trả lời</h2>
+<p>Thêm sleep vào mọi request để CPU giảm có chứng minh nguyên nhân đã được xử lý không?</p>
+<details>
+<summary>Xem đáp án</summary>
+<p>Không. CPU có thể giảm trong khi độ trễ tăng và thông lượng giảm. Cần so với mục tiêu dịch vụ và profile.</p>
+</details>
+<h2>Giới hạn cần nhớ</h2>
+<p>Thiếu RAM không luôn làm CPU đạt 100%. Swap và chờ I/O có thể làm máy chậm theo cơ chế khác; đọc cả memory, I/O và load.</p>
+<details>
+<summary>Xem sâu hơn</summary>
+<p>Trên máy nhiều core, phần trăm process có thể vượt 100% tùy công cụ. Load average cũng không đồng nghĩa CPU utilization: trên Linux nó còn tính công việc trong trạng thái chờ không ngắt được.</p>
+</details>
+<h2>Nguồn đối chiếu</h2>
+<ul>
+<li><a href="https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-9-cases-behind-100-cpu-usage.md">Chủ đề ByteByteGo tại snapshot cố định</a>. Bài viết và hình này được thiết kế độc lập; không dịch thân bài hoặc sử dụng ảnh nguồn.</li>
+<li><a href="https://man7.org/linux/man-pages/man1/top.1.html">top</a>.</li>
+<li><a href="https://man7.org/linux/man-pages/man5/proc_loadavg.5.html">proc: loadavg</a>.</li>
+<li><a href="https://www.kernel.org/doc/html/latest/admin-guide/perf-security.html">Linux perf</a>.</li>
+</ul>
+<p><a href="#index">Về mục lục</a></p></article><article id="sd-09-009"><h1>Sáu lựa chọn để dựng sơ đồ từ văn bản</h1>
+<p>“Code thành sơ đồ” có nhiều nghĩa: mô tả node bằng chương trình, viết cú pháp sơ đồ hoặc chuyển cấu trúc ghi chú thành bản đồ tư duy. Chọn công cụ theo điều bạn muốn diễn đạt và nơi người đọc sẽ xem hình.</p>
+<p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 472" role="img">
+<title>Sáu lựa chọn để dựng sơ đồ từ văn bản</title>
+<desc>Kiến trúc bằng chương trình: Diagrams · Go Diagrams; Luồng và UML: Mermaid · PlantUML; Ghi chú phân cấp: Markmap; Văn bản thuần: ASCII diagrams</desc>
+<rect width="352" height="472" rx="16" fill="#f3f6fb"/>
+<text x="18" y="29" font-family="sans-serif" font-size="18" fill="#19334d">ĐỌC TỪ TRÊN XUỐNG</text>
+<rect x="12" y="44" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="70" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Kiến trúc bằng chương trình</text>
+<text x="24" y="98" font-family="sans-serif" font-size="18" fill="#19334d">Diagrams · Go Diagrams</text>
+<path d="M176 135 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="150" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="176" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Luồng và UML</text>
+<text x="24" y="204" font-family="sans-serif" font-size="18" fill="#19334d">Mermaid · PlantUML</text>
+<path d="M176 241 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="256" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="282" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Ghi chú phân cấp</text>
+<text x="24" y="310" font-family="sans-serif" font-size="18" fill="#19334d">Markmap</text>
+<path d="M176 347 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="362" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="388" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Văn bản thuần</text>
+<text x="24" y="416" font-family="sans-serif" font-size="18" fill="#19334d">ASCII diagrams</text>
+</svg>
+</p>
+<p><strong>Đọc hình:</strong> Các thẻ là các bước hoặc góc nhìn của ví dụ; đọc từ trên xuống. Mũi tên chỉ thứ tự đọc, không biểu diễn luồng mạng hoặc sự phụ thuộc bắt buộc.</p>
+<p>Diagrams dùng Python, còn Go Diagrams dùng Go để khai báo kiến trúc. Mermaid hỗ trợ nhiều loại sơ đồ với cú pháp văn bản và được GitHub hỗ trợ trong các ngữ cảnh Markdown. PlantUML phù hợp khi bạn cần các sơ đồ UML hoặc sequence. Markmap biến cấu trúc Markdown thành mind map. ASCII diagrams biểu diễn bằng ký tự và không phải một sản phẩm duy nhất.</p>
+<p>Thử một hình nhỏ trước: ba thành phần, hai liên kết và một chú thích. Kiểm tra renderer nơi tài liệu sẽ được đọc, font tiếng Việt và khả năng xem trên điện thoại. Một công cụ có nhiều loại node vẫn có thể làm hình đơn giản trở nên quá rộng.</p>
+<h2>Nhìn hình thử trả lời</h2>
+<p>Bạn muốn dựng cây ý từ tiêu đề Markdown. Công cụ nào trong hình phù hợp để thử trước?</p>
+<details>
+<summary>Xem đáp án</summary>
+<p>Markmap là lựa chọn trực tiếp cho cấu trúc Markdown thành mind map.</p>
+</details>
+<h2>Giới hạn cần nhớ</h2>
+<p>Các công cụ khai báo sơ đồ không mặc nhiên phân tích source code để tìm kiến trúc. Khả năng xuất file và hỗ trợ cú pháp phụ thuộc công cụ, phiên bản và nơi hiển thị.</p>
+<details>
+<summary>Xem sâu hơn</summary>
+<p>Lưu cả mô tả và hình xuất nếu nơi đọc không có renderer. Ghim phiên bản khi cần kết quả lặp lại; review hướng mũi tên và nội dung thay vì chỉ nhìn hình có dựng thành công hay không.</p>
+</details>
+<h2>Nguồn đối chiếu</h2>
+<ul>
+<li><a href="https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-6-tools-to-turn-code-into-beautiful-diagrams.md">Chủ đề ByteByteGo tại snapshot cố định</a>. Bài viết và hình này được thiết kế độc lập; không dịch thân bài hoặc sử dụng ảnh nguồn.</li>
+<li><a href="https://mermaid.js.org/intro/">Mermaid</a>.</li>
+<li><a href="https://plantuml.com/">PlantUML</a>.</li>
+<li><a href="https://markmap.js.org/">Markmap</a>.</li>
+<li><a href="https://diagrams.mingrammer.com/">Diagrams</a>.</li>
+<li><a href="https://github.com/blushft/go-diagrams">Go Diagrams</a>.</li>
+</ul>
+<p><a href="#index">Về mục lục</a></p></article><article id="sd-09-010"><h1>Chọn công cụ đưa code tới production</h1>
+<p>Nhóm nhỏ cũng cần biết bản nào đang chạy và cách quay lại khi lỗi. Nhóm lớn cần phối hợp nhiều thay đổi hơn. Chọn công cụ theo trách nhiệm và rủi ro thực tế, thay vì mặc định một bộ sản phẩm cho từng số lượng nhân viên.</p>
+<p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 472" role="img">
+<title>Chọn công cụ đưa code tới production</title>
+<desc>Kho code: Git · review thay đổi; Kiểm tra tự động: CI · tests · phân tích; Bản có thể triển khai: artifact · version; Vận hành: deploy · quan sát · rollback</desc>
+<rect width="352" height="472" rx="16" fill="#f3f6fb"/>
+<text x="18" y="29" font-family="sans-serif" font-size="18" fill="#19334d">ĐỌC TỪ TRÊN XUỐNG</text>
+<rect x="12" y="44" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="70" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Kho code</text>
+<text x="24" y="98" font-family="sans-serif" font-size="18" fill="#19334d">Git · review thay đổi</text>
+<path d="M176 135 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="150" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="176" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Kiểm tra tự động</text>
+<text x="24" y="204" font-family="sans-serif" font-size="18" fill="#19334d">CI · tests · phân tích</text>
+<path d="M176 241 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="256" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="282" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Bản có thể triển khai</text>
+<text x="24" y="310" font-family="sans-serif" font-size="18" fill="#19334d">artifact · version</text>
+<path d="M176 347 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="362" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="388" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Vận hành</text>
+<text x="24" y="416" font-family="sans-serif" font-size="18" fill="#19334d">deploy · quan sát · rollback</text>
+</svg>
+</p>
+<p><strong>Đọc hình:</strong> Các thẻ là các bước hoặc góc nhìn của ví dụ; đọc từ trên xuống. Mũi tên chỉ thứ tự đọc, không biểu diễn luồng mạng hoặc sự phụ thuộc bắt buộc.</p>
+<p>Một nhóm có thể bắt đầu bằng GitHub và CI, kho artifact có phiên bản, một cách triển khai lặp lại và hệ thống log/metrics. GitHub Actions hay Jenkins thực thi pipeline; registry giữ bản build; công cụ triển khai đưa bản đó tới môi trường đích. Đây là các vai trò khác nhau dù một nền tảng có thể cung cấp nhiều vai trò.</p>
+<p>Khi nhiều nhóm dùng chung dịch vụ, bổ sung quyền theo môi trường, kiểm tra hợp đồng, lịch phối hợp và theo dõi bản phát hành. Tăng công cụ chỉ có ích nếu giải quyết điểm nghẽn cụ thể. Hãy hỏi ai sở hữu pipeline, ai xử lý khi triển khai lỗi và bằng chứng nào cho phép tiếp tục.</p>
+<h2>Nhìn hình thử trả lời</h2>
+<p>CI xanh nhưng không biết artifact nào được đưa lên production. Còn thiếu điều gì?</p>
+<details>
+<summary>Xem đáp án</summary>
+<p>Khả năng truy vết từ commit tới artifact và bản đang chạy; CI xanh một mình chưa đủ.</p>
+</details>
+<h2>Giới hạn cần nhớ</h2>
+<p>Số nhân viên không quyết định nhu cầu chất lượng. Nhóm nhỏ vận hành thanh toán vẫn có thể cần kiểm soát nghiêm ngặt.</p>
+<details>
+<summary>Xem sâu hơn</summary>
+<p>Tách việc build khỏi deploy để thử đúng artifact sẽ chạy. Gắn phiên bản hoặc digest; biết cách quay lại cũng như thay đổi dữ liệu nào không thể đảo chỉ bằng rollback code.</p>
+</details>
+<h2>Nguồn đối chiếu</h2>
+<ul>
+<li><a href="https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-tools-does-your-team-use-to-ship-code-to-production-and-ensure-code-quality.md">Chủ đề ByteByteGo tại snapshot cố định</a>. Bài viết và hình này được thiết kế độc lập; không dịch thân bài hoặc sử dụng ảnh nguồn.</li>
+<li><a href="https://docs.github.com/en/actions">GitHub Actions</a>.</li>
+<li><a href="https://www.jenkins.io/doc/book/pipeline/">Jenkins Pipeline</a>.</li>
+<li><a href="https://dora.dev/capabilities/continuous-delivery/">DORA: continuous delivery</a>.</li>
+</ul>
+<p><a href="#index">Về mục lục</a></p></article><article id="sd-09-011"><h1>SEO: giúp công cụ tìm kiếm hiểu trang</h1>
+<p>Bạn đã xuất bản một trang hữu ích nhưng người tìm kiếm chưa thấy nó. SEO bắt đầu từ việc công cụ tìm kiếm có thể truy cập và hiểu nội dung, rồi nội dung có phù hợp câu hỏi người dùng hay không. Không có thao tác kỹ thuật nào bảo đảm vị trí đứng đầu.</p>
+<p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 472" role="img">
+<title>SEO: giúp công cụ tìm kiếm hiểu trang</title>
+<desc>Crawl: Tìm và tải trang; Index: Hiểu nội dung · lập chỉ mục; Serve: Chọn kết quả cho truy vấn; Việc của bạn: Nội dung rõ · trang truy cập được</desc>
+<rect width="352" height="472" rx="16" fill="#f3f6fb"/>
+<text x="18" y="29" font-family="sans-serif" font-size="18" fill="#19334d">ĐỌC TỪ TRÊN XUỐNG</text>
+<rect x="12" y="44" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="70" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Crawl</text>
+<text x="24" y="98" font-family="sans-serif" font-size="18" fill="#19334d">Tìm và tải trang</text>
+<path d="M176 135 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="150" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="176" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Index</text>
+<text x="24" y="204" font-family="sans-serif" font-size="18" fill="#19334d">Hiểu nội dung · lập chỉ mục</text>
+<path d="M176 241 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="256" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="282" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Serve</text>
+<text x="24" y="310" font-family="sans-serif" font-size="18" fill="#19334d">Chọn kết quả cho truy vấn</text>
+<path d="M176 347 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="362" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="388" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Việc của bạn</text>
+<text x="24" y="416" font-family="sans-serif" font-size="18" fill="#19334d">Nội dung rõ · trang truy cập</text>
+<text x="24" y="436" font-family="sans-serif" font-size="18" fill="#19334d">được</text>
+</svg>
+</p>
+<p><strong>Đọc hình:</strong> Các thẻ là các bước hoặc góc nhìn của ví dụ; đọc từ trên xuống. Mũi tên chỉ thứ tự đọc, không biểu diễn luồng mạng hoặc sự phụ thuộc bắt buộc.</p>
+<p>Dùng tiêu đề mô tả đúng chủ đề, heading rõ ràng, liên kết điều hướng có thể theo và nội dung trả lời nhu cầu thật. Kiểm tra mã HTTP, canonical và chỉ thị index khi trang không xuất hiện. Sitemap giúp thông báo URL, nhưng không buộc máy tìm kiếm lập chỉ mục.</p>
+<p>Trang dùng JavaScript không tự bị loại khỏi tìm kiếm; cần kiểm tra nội dung mà crawler/rendering có thể tiếp cận. Meta description có thể được dùng để tạo snippet, nhưng máy tìm kiếm có thể chọn đoạn khác. Theo dõi trải nghiệm đọc, tốc độ và mức phù hợp của nội dung; tránh nhồi từ khóa hoặc mua liên kết nhằm thao túng thứ hạng.</p>
+<h2>Nhìn hình thử trả lời</h2>
+<p>Sitemap đã chứa URL. Có thể khẳng định Google đã index URL đó không?</p>
+<details>
+<summary>Xem đáp án</summary>
+<p>Không. Crawl, index và phục vụ kết quả là các bước khác nhau; sitemap chỉ là một tín hiệu hỗ trợ khám phá.</p>
+</details>
+<h2>Giới hạn cần nhớ</h2>
+<p>Crawl được không đồng nghĩa index, và index không đồng nghĩa xếp hạng cao. <code>robots.txt</code> chặn crawl cũng không phải cách đáng tin để xóa URL khỏi chỉ mục.</p>
+<details>
+<summary>Xem sâu hơn</summary>
+<p>Core Web Vitals hiện gồm LCP, INP và CLS. Chỉ số tốt hỗ trợ trải nghiệm, không bảo đảm thứ hạng. Đo dữ liệu thực tế khi có thể và kiểm tra phiên bản hướng dẫn trước khi áp dụng ngưỡng.</p>
+</details>
+<h2>Nguồn đối chiếu</h2>
+<ul>
+<li><a href="https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/making-sense-of-search-engine-optimization.md">Chủ đề ByteByteGo tại snapshot cố định</a>. Bài viết và hình này được thiết kế độc lập; không dịch thân bài hoặc sử dụng ảnh nguồn.</li>
+<li><a href="https://developers.google.com/search/docs/fundamentals/how-search-works">Google: cách tìm kiếm hoạt động</a>.</li>
+<li><a href="https://developers.google.com/search/docs/fundamentals/seo-starter-guide">SEO starter guide</a>.</li>
+<li><a href="https://developers.google.com/search/docs/appearance/core-web-vitals">Core Web Vitals</a>.</li>
+</ul>
+<p><a href="#index">Về mục lục</a></p></article><article id="sd-09-012"><h1>Tra lệnh Linux theo câu hỏi</h1>
+<p>Khi mở terminal trên một máy lạ, đừng bắt đầu bằng một lệnh sửa cấu hình. Hãy xác định bạn muốn biết gì: đang ở đâu, file chứa gì, process nào chạy hoặc máy có tài nguyên nào. Lệnh quan sát giúp thu hẹp câu hỏi trước khi thay đổi.</p>
+<p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 472" role="img">
+<title>Tra lệnh Linux theo câu hỏi</title>
+<desc>Đang ở đâu?: pwd · ls; File nói gì?: less · tail · rg; Máy đang làm gì?: ps · top · free; Kết nối nào tồn tại?: ip address · ss</desc>
+<rect width="352" height="472" rx="16" fill="#f3f6fb"/>
+<text x="18" y="29" font-family="sans-serif" font-size="18" fill="#19334d">ĐỌC TỪ TRÊN XUỐNG</text>
+<rect x="12" y="44" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="70" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Đang ở đâu?</text>
+<text x="24" y="98" font-family="sans-serif" font-size="18" fill="#19334d">pwd · ls</text>
+<path d="M176 135 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="150" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="176" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">File nói gì?</text>
+<text x="24" y="204" font-family="sans-serif" font-size="18" fill="#19334d">less · tail · rg</text>
+<path d="M176 241 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="256" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="282" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Máy đang làm gì?</text>
+<text x="24" y="310" font-family="sans-serif" font-size="18" fill="#19334d">ps · top · free</text>
+<path d="M176 347 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="362" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="388" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Kết nối nào tồn tại?</text>
+<text x="24" y="416" font-family="sans-serif" font-size="18" fill="#19334d">ip address · ss</text>
+</svg>
+</p>
+<p><strong>Đọc hình:</strong> Các thẻ là các bước hoặc góc nhìn của ví dụ; đọc từ trên xuống. Mũi tên chỉ thứ tự đọc, không biểu diễn luồng mạng hoặc sự phụ thuộc bắt buộc.</p>
+<p><code>pwd</code> in thư mục hiện tại; <code>ls -la</code> liệt kê cả file ẩn. Dùng <code>less</code> đọc file dài, <code>tail</code> xem cuối log và <code>rg</code> tìm chuỗi nếu ripgrep đã được cài. <code>ps</code> xem process, <code>top</code> quan sát mức sử dụng, <code>free</code> xem bộ nhớ và <code>df</code> xem dung lượng filesystem.</p>
+<p><code>id</code> cho biết user và nhóm hiện tại. <code>ip address</code> xem địa chỉ mạng, <code>ss</code> xem socket. Quản lý package phụ thuộc bản phân phối: Debian/Ubuntu thường dùng apt, Fedora dùng dnf. Không sao chép một lệnh cài package mà chưa biết hệ điều hành và quyền đang dùng.</p>
+<h2>Nhìn hình thử trả lời</h2>
+<p>Cần đọc cuối log mà không sửa file. Bạn chọn tail hay chmod?</p>
+<details>
+<summary>Xem đáp án</summary>
+<p>tail. chmod thay đổi quyền, không phục vụ việc đọc cuối file.</p>
+</details>
+<h2>Giới hạn cần nhớ</h2>
+<p>Không phải mọi lệnh có sẵn trên mọi bản Linux. <code>sudo</code>, <code>rm</code>, <code>chmod</code>, trình quản lý package và lệnh dừng process có thể thay đổi máy; đọc tùy chọn trước khi dùng.</p>
+<details>
+<summary>Xem sâu hơn</summary>
+<p>Một pipe nối đầu ra lệnh trước vào đầu vào lệnh sau. Dùng lệnh quan sát từng bước để hiểu dữ liệu trước khi nối vào lệnh sửa hoặc xóa. Tên file có khoảng trắng cần được xử lý đúng bằng quoting.</p>
+</details>
+<h2>Nguồn đối chiếu</h2>
+<ul>
+<li><a href="https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/most-used-linux-commands-map.md">Chủ đề ByteByteGo tại snapshot cố định</a>. Bài viết và hình này được thiết kế độc lập; không dịch thân bài hoặc sử dụng ảnh nguồn.</li>
+<li><a href="https://www.gnu.org/software/coreutils/manual/coreutils.html">GNU Coreutils</a>.</li>
+<li><a href="https://man7.org/linux/man-pages/man8/ss.8.html">ss</a>.</li>
+<li><a href="https://man7.org/linux/man-pages/man8/ip.8.html">ip</a>.</li>
+</ul>
+<p><a href="#index">Về mục lục</a></p></article><article id="sd-09-013"><h1>Quyền Linux: ai được làm gì?</h1>
+<p>Một file có chủ sở hữu, nhóm sở hữu và các bit quyền cho owner, group, others. Với file thường, r/w/x lần lượt cho phép đọc nội dung, sửa nội dung và thực thi khi các điều kiện khác cũng cho phép. Ví dụ 640 giúp tách quyền người viết và người đọc.</p>
+<p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 472" role="img">
+<title>Quyền Linux: ai được làm gì?</title>
+<desc>Owner: 6 = 4 + 2: rw- · đọc và sửa; Group: 4: r-- · chỉ đọc; Others: 0: --- · không quyền; File 640: Không có bit execute</desc>
+<rect width="352" height="472" rx="16" fill="#f3f6fb"/>
+<text x="18" y="29" font-family="sans-serif" font-size="18" fill="#19334d">ĐỌC TỪ TRÊN XUỐNG</text>
+<rect x="12" y="44" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="70" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Owner: 6 = 4 + 2</text>
+<text x="24" y="98" font-family="sans-serif" font-size="18" fill="#19334d">rw- · đọc và sửa</text>
+<path d="M176 135 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="150" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="176" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Group: 4</text>
+<text x="24" y="204" font-family="sans-serif" font-size="18" fill="#19334d">r-- · chỉ đọc</text>
+<path d="M176 241 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="256" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="282" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Others: 0</text>
+<text x="24" y="310" font-family="sans-serif" font-size="18" fill="#19334d">--- · không quyền</text>
+<path d="M176 347 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="362" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="388" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">File 640</text>
+<text x="24" y="416" font-family="sans-serif" font-size="18" fill="#19334d">Không có bit execute</text>
+</svg>
+</p>
+<p><strong>Đọc hình:</strong> Các thẻ là các bước hoặc góc nhìn của ví dụ; đọc từ trên xuống. Mũi tên chỉ thứ tự đọc, không biểu diễn luồng mạng hoặc sự phụ thuộc bắt buộc.</p>
+<p>Trong dạng số, r là 4, w là 2 và x là 1. <code>chmod 640 report.txt</code> đặt owner đọc/sửa, group đọc, others không có quyền qua các bit này. Chủ sở hữu có thể được đổi bằng chown khi có quyền; không luôn là người đang tạo hoặc sửa file.</p>
+<p>Với thư mục, r cho phép liệt kê tên, x cho phép đi qua/tìm entry và w cho phép sửa danh sách entry khi các điều kiện cần thiết được đáp ứng. Vì vậy quyền x trên thư mục không có nghĩa “chạy thư mục”. Việc xóa một file thường phụ thuộc quyền ở thư mục chứa nó, không chỉ bit w của chính file.</p>
+<h2>Nhìn hình thử trả lời</h2>
+<p>File 640 có cho nhóm chạy file qua bit execute không?</p>
+<details>
+<summary>Xem đáp án</summary>
+<p>Không. Nhóm có r--, không có x.</p>
+</details>
+<h2>Giới hạn cần nhớ</h2>
+<p>ACL, sticky bit, mount options và cơ chế như SELinux có thể ảnh hưởng kết quả. Thông thường Linux chọn lớp owner, rồi group, rồi others phù hợp; không cộng cả ba lớp quyền.</p>
+<details>
+<summary>Xem sâu hơn</summary>
+<p>Dùng <code>ls -l</code> xem bit quyền và ownership; cần xét cả thư mục cha khi bị từ chối truy cập. Tránh dùng 777 để chữa mọi lỗi: hãy xác định đúng user, nhóm và quyền cần cho tác vụ.</p>
+</details>
+<h2>Nguồn đối chiếu</h2>
+<ul>
+<li><a href="https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/linux-file-permission-illustrated.md">Chủ đề ByteByteGo tại snapshot cố định</a>. Bài viết và hình này được thiết kế độc lập; không dịch thân bài hoặc sử dụng ảnh nguồn.</li>
+<li><a href="https://man7.org/linux/man-pages/man7/inode.7.html">inode: quyền và ownership</a>.</li>
+<li><a href="https://man7.org/linux/man-pages/man7/path_resolution.7.html">path_resolution</a>.</li>
+<li><a href="https://man7.org/linux/man-pages/man1/chmod.1.html">chmod</a>.</li>
+</ul>
+<p><a href="#index">Về mục lục</a></p></article><article id="sd-09-014"><h1>Năm góc nhìn để hiểu Linux</h1>
+<p>Một ứng dụng ghi file và gửi dữ liệu mạng phải làm việc với nhiều phần của hệ điều hành. Năm góc nhìn dưới đây giúp đặt câu hỏi về Linux: giao tiếp hệ thống, bộ nhớ, process, mạng và lưu trữ. Đây là bản đồ học tập, không phải năm bộ phận độc lập tuyệt đối.</p>
+<p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 472" role="img">
+<title>Năm góc nhìn để hiểu Linux</title>
+<desc>Giao tiếp hệ thống: syscall · driver; Thực thi và bộ nhớ: process · scheduler · mapping; Mạng: socket · giao thức · NIC; Lưu trữ: filesystem · cache · thiết bị</desc>
+<rect width="352" height="472" rx="16" fill="#f3f6fb"/>
+<text x="18" y="29" font-family="sans-serif" font-size="18" fill="#19334d">ĐỌC TỪ TRÊN XUỐNG</text>
+<rect x="12" y="44" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="70" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Giao tiếp hệ thống</text>
+<text x="24" y="98" font-family="sans-serif" font-size="18" fill="#19334d">syscall · driver</text>
+<path d="M176 135 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="150" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="176" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Thực thi và bộ nhớ</text>
+<text x="24" y="204" font-family="sans-serif" font-size="18" fill="#19334d">process · scheduler · mapping</text>
+<path d="M176 241 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="256" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="282" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Mạng</text>
+<text x="24" y="310" font-family="sans-serif" font-size="18" fill="#19334d">socket · giao thức · NIC</text>
+<path d="M176 347 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="362" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="388" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Lưu trữ</text>
+<text x="24" y="416" font-family="sans-serif" font-size="18" fill="#19334d">filesystem · cache · thiết bị</text>
+</svg>
+</p>
+<p><strong>Đọc hình:</strong> Các thẻ là các bước hoặc góc nhìn của ví dụ; đọc từ trên xuống. Mũi tên chỉ thứ tự đọc, không biểu diễn luồng mạng hoặc sự phụ thuộc bắt buộc.</p>
+<p>Giao tiếp hệ thống gồm các lời gọi để ứng dụng yêu cầu kernel làm việc và driver nối kernel với thiết bị. Bộ nhớ gồm địa chỉ ảo, ánh xạ và cấp phát. Process gồm lập lịch, thread và đồng bộ. Mạng gồm socket, xử lý giao thức và đường tới card mạng. Lưu trữ gồm filesystem, cache và thiết bị.</p>
+<p>Khi chương trình ghi log, một thread gọi API thư viện, dẫn tới syscall; kernel kiểm tra quyền và làm việc qua filesystem. Dữ liệu có thể được đệm trước khi thiết bị hoàn tất ghi. Ví dụ này cho thấy các góc nhìn giao nhau, nên không thể quy mọi chậm trễ ghi file cho riêng ổ đĩa.</p>
+<h2>Nhìn hình thử trả lời</h2>
+<p>Địa chỉ ảo của process và nơi dữ liệu nằm trên thiết bị lưu trữ có phải một khái niệm không?</p>
+<details>
+<summary>Xem đáp án</summary>
+<p>Không. Địa chỉ ảo thuộc mô hình bộ nhớ; lưu trữ và filesystem là các lớp khác, dù có cơ chế liên kết như mmap.</p>
+</details>
+<h2>Giới hạn cần nhớ</h2>
+<p>Linux theo nghĩa chặt là kernel. Một bản phân phối còn có thư viện, shell, công cụ và dịch vụ; học kernel không thay thế hiểu môi trường ứng dụng.</p>
+<details>
+<summary>Xem sâu hơn</summary>
+<p>Bắt đầu từ một hành động cụ thể như đọc file, rồi lần qua syscall, quyền, filesystem và cache. Tách thời gian ứng dụng chạy CPU khỏi thời gian đợi khi đo hiệu năng.</p>
+</details>
+<h2>Nguồn đối chiếu</h2>
+<ul>
+<li><a href="https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/5-important-components-of-linux.md">Chủ đề ByteByteGo tại snapshot cố định</a>. Bài viết và hình này được thiết kế độc lập; không dịch thân bài hoặc sử dụng ảnh nguồn.</li>
+<li><a href="https://www.kernel.org/doc/html/latest/">Linux kernel documentation</a>.</li>
+<li><a href="https://man7.org/linux/man-pages/man2/syscalls.2.html">System calls</a>.</li>
+<li><a href="https://www.kernel.org/doc/html/latest/admin-guide/mm/index.html">Memory management</a>.</li>
+</ul>
+<p><a href="#index">Về mục lục</a></p></article><article id="sd-09-015"><h1>Các dự án nguồn mở qua một đường đi ứng dụng</h1>
+<p>Nguồn liệt kê 15 dự án có ảnh hưởng; đó là lựa chọn biên tập, không phải bảng xếp hạng đo được. Để hiểu ích lợi, hãy theo một thay đổi ứng dụng từ nơi viết code tới nơi chạy và nơi phân tích dữ liệu.</p>
+<p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 472" role="img">
+<title>Các dự án nguồn mở qua một đường đi ứng dụng</title>
+<desc>Viết và lưu lịch sử: VS Code · Git; Phục vụ ứng dụng: React · Node.js · Apache; Dữ liệu và xử lý: PostgreSQL · Kafka · Spark; Đóng gói và vận hành: Docker · Kubernetes · Linux</desc>
+<rect width="352" height="472" rx="16" fill="#f3f6fb"/>
+<text x="18" y="29" font-family="sans-serif" font-size="18" fill="#19334d">ĐỌC TỪ TRÊN XUỐNG</text>
+<rect x="12" y="44" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="70" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Viết và lưu lịch sử</text>
+<text x="24" y="98" font-family="sans-serif" font-size="18" fill="#19334d">VS Code · Git</text>
+<path d="M176 135 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="150" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="176" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Phục vụ ứng dụng</text>
+<text x="24" y="204" font-family="sans-serif" font-size="18" fill="#19334d">React · Node.js · Apache</text>
+<path d="M176 241 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="256" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="282" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Dữ liệu và xử lý</text>
+<text x="24" y="310" font-family="sans-serif" font-size="18" fill="#19334d">PostgreSQL · Kafka · Spark</text>
+<path d="M176 347 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="362" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="388" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Đóng gói và vận hành</text>
+<text x="24" y="416" font-family="sans-serif" font-size="18" fill="#19334d">Docker · Kubernetes · Linux</text>
+</svg>
+</p>
+<p><strong>Đọc hình:</strong> Các thẻ là các bước hoặc góc nhìn của ví dụ; đọc từ trên xuống. Mũi tên chỉ thứ tự đọc, không biểu diễn luồng mạng hoặc sự phụ thuộc bắt buộc.</p>
+<p>Trong một hệ thống giả định, React dựng giao diện, Node.js chạy phần server và Apache HTTP Server phục vụ hoặc chuyển tiếp HTTP. PostgreSQL lưu dữ liệu quan hệ; Redis có thể phục vụ cache; Elasticsearch hỗ trợ tìm kiếm. Git theo dõi thay đổi, VS Code hỗ trợ soạn thảo và Jupyter Notebook kết hợp code với ghi chú, kết quả.</p>
+<p>Kafka trao đổi luồng sự kiện, Apache Spark xử lý dữ liệu và TensorFlow hỗ trợ xây mô hình học máy. Docker đóng gói/chạy container; Kubernetes điều phối workload; Linux cung cấp nền tảng hệ điều hành. Đó là đủ 15 tên trong danh mục, nhưng không có nghĩa một ứng dụng cần dùng tất cả.</p>
+<h2>Nhìn hình thử trả lời</h2>
+<p>Một ứng dụng nhỏ không xử lý dữ liệu lớn có cần Spark chỉ vì nó nằm trong danh sách không?</p>
+<details>
+<summary>Xem đáp án</summary>
+<p>Không. Chọn theo bài toán và chi phí vận hành, không theo độ nổi tiếng.</p>
+</details>
+<h2>Giới hạn cần nhớ</h2>
+<p>Giấy phép phụ thuộc dự án, thành phần và phiên bản. Redis, Elasticsearch, bản phân phối VS Code và Docker Desktop cần xem điều khoản cụ thể; không suy mọi thứ mang tên dự án đều cùng một giấy phép.</p>
+<details>
+<summary>Xem sâu hơn</summary>
+<p>Nguồn mở không đồng nghĩa không có chi phí vận hành hoặc hỗ trợ. Trước khi nhận dependency, xem tình trạng bảo trì, cách cập nhật, license và khả năng thay thế. Ví dụ hình là một cách ghép vai trò, không mô tả mọi hệ thống.</p>
+</details>
+<h2>Nguồn đối chiếu</h2>
+<ul>
+<li><a href="https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/15-open-source-projects-that-changed-the-world.md">Chủ đề ByteByteGo tại snapshot cố định</a>. Bài viết và hình này được thiết kế độc lập; không dịch thân bài hoặc sử dụng ảnh nguồn.</li>
+<li><a href="https://opensource.org/osd">Định nghĩa nguồn mở</a>.</li>
+<li><a href="https://www.postgresql.org/docs/current/intro-whatis.html">PostgreSQL</a>.</li>
+<li><a href="https://kubernetes.io/docs/concepts/">Kubernetes concepts</a>.</li>
+<li><a href="https://redis.io/legal/licenses/">Redis licensing</a>.</li>
+</ul>
+<p><a href="#index">Về mục lục</a></p></article><article id="sd-09-016"><h1>Dự án được doanh nghiệp khởi xướng hoặc hỗ trợ</h1>
+<p>Một dự án có thể bắt đầu trong công ty, sau đó chuyển quản trị sang cộng đồng hoặc foundation. Vì vậy logo doanh nghiệp cho biết một phần lịch sử, không đủ để kết luận ai đang sở hữu, ai duy trì và phiên bản nào nên dùng.</p>
+<p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 472" role="img">
+<title>Dự án được doanh nghiệp khởi xướng hoặc hỗ trợ</title>
+<desc>Lịch sử: Ai khởi xướng hoặc hỗ trợ?; Quản trị hiện tại: Maintainers · foundation; Tình trạng dự án: Release · archive · cảnh báo; Quyết định sử dụng: License · đáp ứng nhu cầu</desc>
+<rect width="352" height="472" rx="16" fill="#f3f6fb"/>
+<text x="18" y="29" font-family="sans-serif" font-size="18" fill="#19334d">ĐỌC TỪ TRÊN XUỐNG</text>
+<rect x="12" y="44" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="70" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Lịch sử</text>
+<text x="24" y="98" font-family="sans-serif" font-size="18" fill="#19334d">Ai khởi xướng hoặc hỗ trợ?</text>
+<path d="M176 135 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="150" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="176" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Quản trị hiện tại</text>
+<text x="24" y="204" font-family="sans-serif" font-size="18" fill="#19334d">Maintainers · foundation</text>
+<path d="M176 241 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="256" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="282" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Tình trạng dự án</text>
+<text x="24" y="310" font-family="sans-serif" font-size="18" fill="#19334d">Release · archive · cảnh báo</text>
+<path d="M176 347 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="362" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="388" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Quyết định sử dụng</text>
+<text x="24" y="416" font-family="sans-serif" font-size="18" fill="#19334d">License · đáp ứng nhu cầu</text>
+</svg>
+</p>
+<p><strong>Đọc hình:</strong> Các thẻ là các bước hoặc góc nhìn của ví dụ; đọc từ trên xuống. Mũi tên chỉ thứ tự đọc, không biểu diễn luồng mạng hoặc sự phụ thuộc bắt buộc.</p>
+<p>Ví dụ Kafka bắt đầu tại LinkedIn và hiện thuộc hệ sinh thái Apache; Kubernetes bắt đầu tại Google và được quản trị trong CNCF. Mối liên hệ ban đầu giúp hiểu bối cảnh nhưng không thay thế đọc tài liệu dự án hiện hành.</p>
+<p>Danh mục lịch sử trong snapshot có 21 tên, dù tiêu đề nguồn ghi 20: Angular, Ansible, Cassandra, Ceph Storage, Chaos Monkey, Go, GraphQL, Hystrix, Kafka, Kubernetes, OpenShift, Pinot, Playwright, PyTorch, React, Samza, TensorFlow, TypeScript, VSCode, Zuul. Các tên bao gồm những dạng khác nhau: ngôn ngữ, thư viện, đặc tả và nền tảng. Không coi chúng là 21 sản phẩm đang được hỗ trợ như nhau.</p>
+<h2>Nhìn hình thử trả lời</h2>
+<p>Dự án được một công ty lớn khởi xướng có bảo đảm vẫn được bảo trì tích cực không?</p>
+<details>
+<summary>Xem đáp án</summary>
+<p>Không. Cần kiểm tra thông báo, release và repository hiện tại; lịch sử xuất phát không bảo đảm hỗ trợ.</p>
+</details>
+<h2>Giới hạn cần nhớ</h2>
+<p>Không suy “khởi xướng” từ “hỗ trợ”: Ansible và Ceph không phải đều do Red Hat ban đầu tạo ra. Hystrix thông báo chế độ bảo trì; không giới thiệu nó như lựa chọn mặc định cho hệ thống mới.</p>
+<details>
+<summary>Xem sâu hơn</summary>
+<p>Trong snapshot, Google gắn với Angular/Go/Kubernetes/TensorFlow; Meta với Cassandra/GraphQL/PyTorch/React; Microsoft với Playwright/TypeScript/VSCode; Netflix với Chaos Monkey/Hystrix/Zuul; LinkedIn với Kafka/Pinot/Samza; Red Hat với Ansible/Ceph/OpenShift. Các liên hệ này là dữ liệu nguồn chưa được xác minh toàn bộ từng dự án. Kiểm tra chủ thể và phạm vi hỗ trợ trước khi dùng chúng để ra quyết định.</p>
+</details>
+<h2>Nguồn đối chiếu</h2>
+<ul>
+<li><a href="https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/20-popular-open-source-projects-started-or-supported-by-big-companies.md">Chủ đề ByteByteGo tại snapshot cố định</a>. Bài viết và hình này được thiết kế độc lập; không dịch thân bài hoặc sử dụng ảnh nguồn.</li>
+<li><a href="https://kafka.apache.org/intro">Kafka introduction</a>.</li>
+<li><a href="https://kubernetes.io/blog/2018/07/20/the-history-of-kubernetes-the-community-behind-it/">Kubernetes history</a>.</li>
+<li><a href="https://github.com/Netflix/Hystrix">Hystrix: maintenance mode</a>.</li>
+<li><a href="https://github.com/ceph/ceph">Ceph: mã nguồn và cộng đồng</a>.</li>
+</ul>
+<p><a href="#index">Về mục lục</a></p></article><article id="sd-09-017"><h1>Cây thư mục Linux và vai trò từng nơi</h1>
+<p>Trên Linux, đường dẫn tuyệt đối bắt đầu từ <code>/</code>. Các filesystem có thể được mount vào vị trí trong cùng cây đường dẫn. Bạn đọc cây theo vai trò thư mục để biết cấu hình, dữ liệu thay đổi và dữ liệu người dùng thường ở đâu.</p>
+<p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 472" role="img">
+<title>Cây thư mục Linux và vai trò từng nơi</title>
+<desc>Gốc cây: /; Cấu hình hệ thống: /etc; Dữ liệu biến đổi: /var · ví dụ log; Người dùng và phần mềm: /home · /usr</desc>
+<rect width="352" height="472" rx="16" fill="#f3f6fb"/>
+<text x="18" y="29" font-family="sans-serif" font-size="18" fill="#19334d">ĐỌC TỪ TRÊN XUỐNG</text>
+<rect x="12" y="44" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="70" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Gốc cây</text>
+<text x="24" y="98" font-family="sans-serif" font-size="18" fill="#19334d">/</text>
+<path d="M176 135 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="150" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="176" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Cấu hình hệ thống</text>
+<text x="24" y="204" font-family="sans-serif" font-size="18" fill="#19334d">/etc</text>
+<path d="M176 241 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="256" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="282" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Dữ liệu biến đổi</text>
+<text x="24" y="310" font-family="sans-serif" font-size="18" fill="#19334d">/var · ví dụ log</text>
+<path d="M176 347 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="362" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="388" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Người dùng và phần mềm</text>
+<text x="24" y="416" font-family="sans-serif" font-size="18" fill="#19334d">/home · /usr</text>
+</svg>
+</p>
+<p><strong>Đọc hình:</strong> Các thẻ là các bước hoặc góc nhìn của ví dụ; đọc từ trên xuống. Mũi tên chỉ thứ tự đọc, không biểu diễn luồng mạng hoặc sự phụ thuộc bắt buộc.</p>
+<p><code>/etc</code> thường giữ cấu hình riêng của máy. <code>/var</code> chứa dữ liệu thay đổi trong quá trình vận hành, chẳng hạn log trong <code>/var/log</code>. <code>/home</code> thường chứa thư mục người dùng; <code>/usr</code> giữ phần lớn chương trình và dữ liệu dùng chung của hệ thống, không phải home của từng user.</p>
+<p><code>/tmp</code> dành cho dữ liệu tạm, không nên dùng làm nơi duy nhất giữ dữ liệu cần lâu dài. <code>/dev</code> chứa node thiết bị. <code>/proc</code> và <code>/sys</code> thường là các filesystem ảo để quan sát trạng thái và giao tiếp với kernel. Chúng không đơn giản là các thư mục file thường lưu trên cùng một ổ đĩa.</p>
+<h2>Nhìn hình thử trả lời</h2>
+<p>Một file cấu hình của dịch vụ thường tìm ở /etc hay /home chỉ vì tên usr giống user?</p>
+<details>
+<summary>Xem đáp án</summary>
+<p>Thường tìm ở /etc theo quy ước hệ thống. /usr không phải thư mục home của user.</p>
+</details>
+<h2>Giới hạn cần nhớ</h2>
+<p>FHS là quy ước phổ biến, không bảo đảm mọi distro/container có bố cục giống nhau. Nhiều hệ thống dùng merged-/usr, với /bin là liên kết tới /usr/bin.</p>
+<details>
+<summary>Xem sâu hơn</summary>
+<p>Dùng <code>pwd</code>, <code>ls</code> và <code>findmnt</code> để quan sát trước khi sửa. Tên đường dẫn không cho biết thiết bị vật lý: một mount mới có thể đưa filesystem khác vào một nhánh của cây.</p>
+</details>
+<h2>Nguồn đối chiếu</h2>
+<ul>
+<li><a href="https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/linux-file-system-explained.md">Chủ đề ByteByteGo tại snapshot cố định</a>. Bài viết và hình này được thiết kế độc lập; không dịch thân bài hoặc sử dụng ảnh nguồn.</li>
+<li><a href="https://refspecs.linuxfoundation.org/FHS_3.0/fhs/index.html">Filesystem Hierarchy Standard 3.0</a>.</li>
+<li><a href="https://man7.org/linux/man-pages/man7/hier.7.html">hier</a>.</li>
+<li><a href="https://man7.org/linux/man-pages/man5/proc.5.html">proc</a>.</li>
+</ul>
+<p><a href="#index">Về mục lục</a></p></article><article id="sd-09-018"><h1>Dùng dev tools để bỏ việc lặp lại</h1>
+<p>Mỗi ngày bạn mất thời gian định dạng code, tìm lỗi và nhớ lệnh deploy. Công cụ tốt giúp biến những việc lặp lại thành quy trình có thể kiểm tra. Hãy chọn từ điểm nghẽn bạn gặp, thay vì tăng số ứng dụng đang mở.</p>
+<p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 472" role="img">
+<title>Dùng dev tools để bỏ việc lặp lại</title>
+<desc>Nhận ra việc lặp: Ví dụ: định dạng code; Chọn công cụ: Formatter · cấu hình repo; Chạy cùng kiểm tra: CI dùng cùng quy tắc; Đánh giá kết quả: Ít lỗi · dễ review</desc>
+<rect width="352" height="472" rx="16" fill="#f3f6fb"/>
+<text x="18" y="29" font-family="sans-serif" font-size="18" fill="#19334d">ĐỌC TỪ TRÊN XUỐNG</text>
+<rect x="12" y="44" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="70" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Nhận ra việc lặp</text>
+<text x="24" y="98" font-family="sans-serif" font-size="18" fill="#19334d">Ví dụ: định dạng code</text>
+<path d="M176 135 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="150" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="176" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Chọn công cụ</text>
+<text x="24" y="204" font-family="sans-serif" font-size="18" fill="#19334d">Formatter · cấu hình repo</text>
+<path d="M176 241 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="256" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="282" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Chạy cùng kiểm tra</text>
+<text x="24" y="310" font-family="sans-serif" font-size="18" fill="#19334d">CI dùng cùng quy tắc</text>
+<path d="M176 347 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="362" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="388" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Đánh giá kết quả</text>
+<text x="24" y="416" font-family="sans-serif" font-size="18" fill="#19334d">Ít lỗi · dễ review</text>
+</svg>
+</p>
+<p><strong>Đọc hình:</strong> Các thẻ là các bước hoặc góc nhìn của ví dụ; đọc từ trên xuống. Mũi tên chỉ thứ tự đọc, không biểu diễn luồng mạng hoặc sự phụ thuộc bắt buộc.</p>
+<p>Editor như VS Code hoặc IntelliJ giúp điều hướng; debugger giúp dừng và xem trạng thái. Mermaid hoặc Excalidraw giúp giải thích ý tưởng. ESLint/Jest giải quyết các loại kiểm tra khác nhau; một bên phân tích code, một bên chạy test. Markdown hoặc công cụ ghi chú giúp giữ quyết định để không phải tìm lại.</p>
+<p>Với hosting, chọn nền tảng theo runtime, dữ liệu và cách vận hành. Với bảo mật, phân biệt trình quản lý mật khẩu, quét dependency và quan sát mạng; chúng không thay nhau. Với AI, đưa đầu ra qua cùng bước review và kiểm tra như thay đổi do người viết. Công cụ thiết kế hỗ trợ hình ảnh, không tự xác nhận hành vi sản phẩm.</p>
+<h2>Nhìn hình thử trả lời</h2>
+<p>Nhóm có formatter nhưng mỗi người dùng cấu hình riêng. Đã giải quyết được việc diff khó đọc chưa?</p>
+<details>
+<summary>Xem đáp án</summary>
+<p>Chưa chắc. Cần thống nhất cấu hình và phiên bản để kết quả không thay đổi giữa các máy.</p>
+</details>
+<h2>Giới hạn cần nhớ</h2>
+<p>Không phải mọi tên trong danh sách dev tools là một ứng dụng: OWASP là cộng đồng/tổ chức với nhiều tài liệu và dự án. Cài nhiều công cụ không tự làm code tốt hơn.</p>
+<details>
+<summary>Xem sâu hơn</summary>
+<p>Tự động hóa một việc nhỏ, đo thời gian tới kết quả đạt yêu cầu và ghi cách phục hồi khi công cụ lỗi. Cấu hình chung nên nằm trong repo nếu không chứa bí mật.</p>
+</details>
+<h2>Nguồn đối chiếu</h2>
+<ul>
+<li><a href="https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/life-is-short-use-dev-tools.md">Chủ đề ByteByteGo tại snapshot cố định</a>. Bài viết và hình này được thiết kế độc lập; không dịch thân bài hoặc sử dụng ảnh nguồn.</li>
+<li><a href="https://code.visualstudio.com/docs/debugtest/debugging">VS Code debugging</a>.</li>
+<li><a href="https://eslint.org/docs/latest/use/core-concepts/">ESLint</a>.</li>
+<li><a href="https://owasp.org/about/">OWASP</a>.</li>
+</ul>
+<p><a href="#index">Về mục lục</a></p></article><article id="sd-09-019"><h1>Git lưu snapshot và nhánh như thế nào?</h1>
+<p>Nếu quy trình Git cho biết khi nào add hay push, mô hình lưu trữ giải thích vì sao chúng khác nhau. Git lưu các đối tượng và tham chiếu; một nhánh là tên trỏ tới commit. Trong mô hình phổ biến, commit mới ghi một snapshot và liên hệ tới lịch sử trước đó.</p>
+<p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 472" role="img">
+<title>Git lưu snapshot và nhánh như thế nào?</title>
+<desc>HEAD: Thường trỏ tới tên nhánh; Nhánh feature: Trỏ tới commit C; Commit C: Trỏ tree · parent B; Tree và blob: Tên file · nội dung</desc>
+<rect width="352" height="472" rx="16" fill="#f3f6fb"/>
+<text x="18" y="29" font-family="sans-serif" font-size="18" fill="#19334d">ĐỌC TỪ TRÊN XUỐNG</text>
+<rect x="12" y="44" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="70" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">HEAD</text>
+<text x="24" y="98" font-family="sans-serif" font-size="18" fill="#19334d">Thường trỏ tới tên nhánh</text>
+<path d="M176 135 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="150" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="176" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Nhánh feature</text>
+<text x="24" y="204" font-family="sans-serif" font-size="18" fill="#19334d">Trỏ tới commit C</text>
+<path d="M176 241 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="256" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="282" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Commit C</text>
+<text x="24" y="310" font-family="sans-serif" font-size="18" fill="#19334d">Trỏ tree · parent B</text>
+<path d="M176 347 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="362" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="388" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Tree và blob</text>
+<text x="24" y="416" font-family="sans-serif" font-size="18" fill="#19334d">Tên file · nội dung</text>
+</svg>
+</p>
+<p><strong>Đọc hình:</strong> Các thẻ là các bước hoặc góc nhìn của ví dụ; đọc từ trên xuống. Mũi tên chỉ thứ tự đọc, không biểu diễn luồng mạng hoặc sự phụ thuộc bắt buộc.</p>
+<p>Blob chứa nội dung file; tree liên hệ tên và mode với các đối tượng con. Commit tham chiếu tree và metadata như tác giả, thông điệp, parent. Khi hai commit dùng cùng nội dung, Git có thể dùng lại đối tượng thay vì sao chép mọi byte một lần nữa.</p>
+<p>Working tree là các file để bạn chỉnh sửa. Index chọn nội dung cho commit tiếp theo. <code>git add</code> cập nhật index; <code>git commit</code> tạo commit từ index rồi thường cập nhật nhánh hiện tại. <code>git push</code> trao đổi đối tượng và cập nhật ref phía remote theo quyền/quy tắc của remote. Các thao tác không chỉ là “chuyển file giữa bốn hộp”.</p>
+<h2>Nhìn hình thử trả lời</h2>
+<p>Bạn chuyển nhánh nhưng hai nhánh dùng cùng nội dung một file. Có nhất thiết tồn tại hai blob khác nhau cho file đó không?</p>
+<details>
+<summary>Xem đáp án</summary>
+<p>Không. Các đối tượng nội dung giống nhau có thể được dùng chung.</p>
+</details>
+<h2>Giới hạn cần nhớ</h2>
+<p>HEAD không luôn trỏ tên nhánh: detached HEAD trỏ trực tiếp commit. ID đối tượng dựa trên hash; đừng suy mọi kho mãi mãi dùng SHA-1.</p>
+<details>
+<summary>Xem sâu hơn</summary>
+<p><code>git log --oneline --graph</code> giúp nhìn ancestry; <code>git show</code> xem một commit. Không chỉnh thủ công file trong .git để học. Mô hình đối tượng giải thích lưu trữ, không thay hướng dẫn xử lý mất dữ liệu.</p>
+</details>
+<h2>Nguồn đối chiếu</h2>
+<ul>
+<li><a href="https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-git-work.md">Chủ đề ByteByteGo tại snapshot cố định</a>. Bài viết và hình này được thiết kế độc lập; không dịch thân bài hoặc sử dụng ảnh nguồn.</li>
+<li><a href="https://git-scm.com/book/en/v2/Git-Internals-Git-Objects">Git objects</a>.</li>
+<li><a href="https://git-scm.com/book/en/v2/Git-Internals-Git-References">Git references</a>.</li>
+<li><a href="https://git-scm.com/docs/hash-function-transition">Git hash-function transition</a>.</li>
+</ul>
+<p><a href="#index">Về mục lục</a></p></article><article id="sd-09-020"><h1>Từ thay đổi code tới bản chạy production</h1>
+<p>Một commit qua test chưa có nghĩa người dùng đã nhận bản mới. Quy trình phát hành nối yêu cầu, code, artifact, môi trường kiểm tra và quan sát sau deploy. Mục tiêu là biết đang đưa bản nào lên, bằng chứng nào cho phép tiếp tục và làm gì nếu kết quả xấu.</p>
+<p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 472" role="img">
+<title>Từ thay đổi code tới bản chạy production</title>
+<desc>Yêu cầu → commit: Tiêu chí · review · tests; Build → artifact: Một bản có ID/digest; Kiểm tra → deploy: Môi trường phù hợp · cùng bản; Quan sát → quyết định: Tiếp tục hoặc rollback</desc>
+<rect width="352" height="472" rx="16" fill="#f3f6fb"/>
+<text x="18" y="29" font-family="sans-serif" font-size="18" fill="#19334d">ĐỌC TỪ TRÊN XUỐNG</text>
+<rect x="12" y="44" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="70" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Yêu cầu → commit</text>
+<text x="24" y="98" font-family="sans-serif" font-size="18" fill="#19334d">Tiêu chí · review · tests</text>
+<path d="M176 135 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="150" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="176" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Build → artifact</text>
+<text x="24" y="204" font-family="sans-serif" font-size="18" fill="#19334d">Một bản có ID/digest</text>
+<path d="M176 241 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="256" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="282" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Kiểm tra → deploy</text>
+<text x="24" y="310" font-family="sans-serif" font-size="18" fill="#19334d">Môi trường phù hợp · cùng bản</text>
+<path d="M176 347 v10 m-4 -4 l4 4 l4 -4" fill="none" stroke="#267d86" stroke-width="2"/>
+<rect x="12" y="362" width="328" height="88" rx="12" fill="#ffffff" stroke="#9ab5ca"/>
+<text x="24" y="388" font-family="sans-serif" font-size="18" font-weight="bold" fill="#19334d">Quan sát → quyết định</text>
+<text x="24" y="416" font-family="sans-serif" font-size="18" fill="#19334d">Tiếp tục hoặc rollback</text>
+</svg>
+</p>
+<p><strong>Đọc hình:</strong> Các thẻ là các bước hoặc góc nhìn của ví dụ; đọc từ trên xuống. Mũi tên chỉ thứ tự đọc, không biểu diễn luồng mạng hoặc sự phụ thuộc bắt buộc.</p>
+<p>Bắt đầu bằng tiêu chí chấp nhận, rồi viết code trên nhánh và review diff. CI chạy kiểm tra phù hợp, build artifact và lưu kèm phiên bản. Đưa cùng artifact qua các môi trường cần thiết giúp tránh tình huống thử một bản nhưng chạy bản khác.</p>
+<p>Sau kiểm thử và chấp nhận, triển khai có thể theo đợt, canary hoặc lịch đã chọn. Theo dõi lỗi, độ trễ và hành vi nghiệp vụ; chuẩn bị cách dừng hoặc quay lại khi chỉ số xấu. Tín hiệu từ vận hành quay về yêu cầu/test để cải thiện vòng sau. Nhóm nhỏ có thể gộp vai trò; nhóm lớn cần phân trách nhiệm rõ.</p>
+<h2>Nhìn hình thử trả lời</h2>
+<p>Bạn build lại source trước khi deploy dù artifact đã qua QA. Có còn chắc đang chạy đúng bản đã thử không?</p>
+<details>
+<summary>Xem đáp án</summary>
+<p>Không. Build lại có thể khác dependency, cấu hình hoặc môi trường. Nên truy vết và triển khai đúng artifact đã kiểm tra.</p>
+</details>
+<h2>Giới hạn cần nhớ</h2>
+<p>Sprint hai tuần, Jenkins, SonarQube, UAT riêng và một đội SRE không phải điều kiện bắt buộc cho mọi công ty. Rollback code không tự đảo migration hoặc tác dụng đã xảy ra.</p>
+<details>
+<summary>Xem sâu hơn</summary>
+<p>Dùng immutable artifact và lưu liên hệ commit → artifact → môi trường. Quyền deploy, kiểm tra dữ liệu và tiêu chí dừng cần phù hợp rủi ro; coverage cao không tự chứng minh test bắt được lỗi quan trọng.</p>
+</details>
+<h2>Nguồn đối chiếu</h2>
+<ul>
+<li><a href="https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-companies-ship-code-to-production.md">Chủ đề ByteByteGo tại snapshot cố định</a>. Bài viết và hình này được thiết kế độc lập; không dịch thân bài hoặc sử dụng ảnh nguồn.</li>
+<li><a href="https://dora.dev/capabilities/continuous-delivery/">DORA continuous delivery</a>.</li>
+<li><a href="https://www.jenkins.io/doc/book/pipeline/">Jenkins Pipeline</a>.</li>
+<li><a href="https://kubernetes.io/docs/concepts/workloads/controllers/deployment/">Kubernetes deployments</a>.</li>
+</ul>
+<p><a href="#index">Về mục lục</a></p></article></html>

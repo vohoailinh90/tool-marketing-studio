@@ -2,11 +2,11 @@
 
 **Muốn tìm quán cà phê gần bạn, đừng đo khoảng cách tới mọi quán.** Chia bản đồ thành các ô, rồi bắt đầu từ ô của bạn và mở rộng dần ra các ô xung quanh.
 
-![Một hình vuông là bản đồ, chia làm bốn phần. Phần phía trên bên phải đông địa điểm nên được chia tiếp, và ô nhỏ chứa vị trí của bạn được tô vàng. Các phần thưa chỉ có ô lớn. Bên dưới là ba thẻ: ô nào còn quá nhiều địa điểm thì chia thành bốn, tìm bằng cách đi từ gốc xuống ô lá chứa bạn, thiếu kết quả thì mở rộng sang ô xung quanh (cách gần đúng). Chú thích: trong thiết kế này, quadtree nằm trong bộ nhớ máy chủ.](../../diagrams/sd-12-005-main.svg)
+![Một hình vuông là bản đồ, chia làm bốn phần. Phần phía trên bên phải đông địa điểm nên được chia tiếp, và ô nhỏ chứa vị trí của bạn được tô vàng. Các phần thưa chỉ có ô lớn. Bên dưới là ba thẻ: ô nào còn quá nhiều địa điểm thì chia thành bốn (có giới hạn độ sâu), tìm bằng cách đi từ gốc xuống ô lá chứa bạn, thiếu kết quả thì mở rộng sang ô xung quanh (cách gần đúng). Chú thích: trong thiết kế này, quadtree nằm trong bộ nhớ máy chủ.](../../diagrams/sd-12-005-main.svg)
 
 ## Đọc hình
 
-Bản đồ được chia đệ quy thành **4 ô**. Ô nào còn quá nhiều địa điểm (ví dụ hơn một ngưỡng như 100) thì chia tiếp thành 4 ô nhỏ hơn; ô nào đủ ít thì dừng và thành **ô lá**. Nơi đông, như một phố ẩm thực, sinh ra ô nhỏ và sâu; nơi thưa, như vùng đồi núi, chỉ có ô lớn.
+Bản đồ được chia đệ quy thành **4 ô**. Ô nào còn quá nhiều địa điểm (ví dụ hơn một ngưỡng như 100) thì chia tiếp thành 4 ô nhỏ hơn; ô nào đủ ít thì dừng và thành **ô lá**. Cần thêm giới hạn độ sâu (hoặc kích thước ô tối thiểu): nhiều địa điểm trùng cùng một tọa độ thì chia mãi vẫn không tách được, nên ô lá ở giới hạn đó giữ một danh sách địa điểm vượt ngưỡng. Nơi đông, như một phố ẩm thực, sinh ra ô nhỏ và sâu; nơi thưa, như vùng đồi núi, chỉ có ô lớn.
 
 **Tìm gần bạn:** đi từ gốc xuống, mỗi bước chọn ô chứa vị trí của bạn, cho tới ô lá. Nếu ô lá chưa đủ số kết quả cần, mở rộng sang các ô xung quanh. Đây là cách gần đúng, thường đủ cho danh sách “quanh đây”; muốn chính xác thì xem phần cuối bài.
 

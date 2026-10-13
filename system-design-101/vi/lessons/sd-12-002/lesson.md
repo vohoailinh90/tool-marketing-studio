@@ -2,13 +2,13 @@
 
 **Email giống bưu thiếp hơn là tin nhắn tức thời.** Thư được nộp cho một máy chủ, chuyển tiếp qua máy chủ khác, rồi nằm chờ trong hộp thư cho tới khi người nhận mở.
 
-![Năm thẻ dọc: người gửi soạn thư và nộp cho máy chủ của mình; máy chủ gửi hỏi DNS bản ghi MX của tên miền người nhận; thư được chuyển bằng SMTP giữa các máy chủ; máy chủ nhận lưu thư vào hộp thư; người nhận đọc thư bằng IMAP hoặc POP3. Chú thích: SMTP đẩy thư đi, IMAP và POP3 chỉ để đọc thư đã nằm sẵn.](../../diagrams/sd-12-002-main.svg)
+![Năm thẻ dọc: người gửi soạn thư và nộp cho máy chủ của mình; máy chủ gửi hỏi DNS bản ghi MX của tên miền người nhận, và nếu không có MX thì dùng địa chỉ A hoặc AAAA của chính tên miền; thư được chuyển bằng SMTP giữa các máy chủ; máy chủ nhận lưu thư vào hộp thư; người nhận đọc thư bằng IMAP hoặc POP3. Chú thích: SMTP đẩy thư đi, IMAP và POP3 chỉ để đọc thư đã nằm sẵn.](../../diagrams/sd-12-002-main.svg)
 
 ## Đọc hình
 
 **MUA** (mail user agent) là ứng dụng bạn dùng, như Outlook hay Thunderbird. **MTA** (mail transfer agent) là máy chủ chuyển thư bằng **SMTP**. **MDA** (mail delivery agent) đặt thư vào hộp thư của người nhận.
 
-**1.** MUA nộp thư cho máy chủ của người gửi. **2.** Máy chủ này tra DNS, tìm bản ghi **MX** của tên miền người nhận để biết gửi tới đâu. **3.** Nó mở phiên SMTP tới máy chủ đó; thư có thể qua thêm vài chặng trung gian. **4.** Máy chủ cuối lưu thư vào hộp thư. **5.** Người nhận đọc thư bằng IMAP, POP3 hoặc webmail.
+**1.** MUA nộp thư cho máy chủ của người gửi. **2.** Máy chủ này tra DNS, tìm bản ghi **MX** của tên miền người nhận để biết gửi tới đâu. Nếu tên miền không có bản ghi MX nhưng có địa chỉ (A hoặc AAAA), SMTP coi chính tên miền đó như một máy chủ nhận có mức ưu tiên 0. **3.** Nó mở phiên SMTP tới máy chủ đó; thư có thể qua thêm vài chặng trung gian. **4.** Máy chủ cuối lưu thư vào hộp thư. **5.** Người nhận đọc thư bằng IMAP, POP3 hoặc webmail.
 
 ## Giới hạn cần nhớ
 

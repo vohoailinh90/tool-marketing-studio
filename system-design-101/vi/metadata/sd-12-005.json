@@ -68,12 +68,19 @@
         "https://en.wikipedia.org/wiki/Quadtree",
         "https://en.wikipedia.org/wiki/Nearest_neighbor_search"
       ]
+    },
+    {
+      "claim_vi": "Khi chia quadtree cần giới hạn độ sâu hoặc kích thước ô tối thiểu, vì các điểm trùng tọa độ không thể tách bằng cách chia thêm.",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Quadtree"
+      ]
     }
   ],
   "source_deviations": [
     "Bài không lặp các số liệu của nguồn về số địa điểm và thời gian dựng cây vì chưa có phép đo và điều kiện đi kèm; ngưỡng 100 chỉ là ví dụ.",
     "Bài nói rõ việc giữ quadtree trong bộ nhớ là lựa chọn triển khai của thiết kế này, không phải tính chất bắt buộc của cấu trúc.",
-    "Nguồn chỉ nói thêm địa điểm từ ô kề khi ô lá chưa đủ; bài nói rõ đó là cách gần đúng, muốn chính xác cần duyệt theo khoảng cách tối thiểu."
+    "Nguồn chỉ nói thêm địa điểm từ ô kề khi ô lá chưa đủ; bài nói rõ đó là cách gần đúng, muốn chính xác cần duyệt theo khoảng cách tối thiểu.",
+    "Nguồn chỉ nêu điều kiện dừng theo ngưỡng số địa điểm; bài thêm giới hạn độ sâu và danh sách tràn ở ô lá cho các điểm trùng tọa độ."
   ],
   "design_notes_vi": "Hình vuông bản đồ vẽ riêng (ô mật độ cao chia sâu, ô lá tô vàng, có chú giải chữ) kèm ba thẻ ngắn.",
   "editorial_note_vi": "Bản nháp độc lập viết từ kiến thức kỹ thuật chung; đọc bài nguồn nhưng chưa mở tài liệu chính thức nên các claim chưa được kiểm chứng. Chưa review kỹ thuật, chưa user testing, chưa phê duyệt phát hành."

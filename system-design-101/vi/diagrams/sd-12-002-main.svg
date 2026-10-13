@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 618" width="320" height="618" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 642" width="320" height="642" role="img" aria-labelledby="title desc">
 <title id="title">Đường đi của một email</title>
-<desc id="desc">Người gửi nộp thư cho máy chủ của mình. Máy chủ tra DNS bản ghi MX, chuyển thư bằng SMTP tới máy chủ nhận, nơi lưu thư vào hộp thư. Người nhận đọc thư bằng IMAP hoặc POP3.</desc>
+<desc id="desc">Người gửi nộp thư cho máy chủ của mình. Máy chủ tra DNS bản ghi MX (không có MX thì dùng địa chỉ của chính tên miền), chuyển thư bằng SMTP tới máy chủ nhận, nơi lưu thư vào hộp thư. Người nhận đọc thư bằng IMAP hoặc POP3.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="618" fill="#f8fafc"/>
+<rect width="320" height="642" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="30" font-size="21" font-weight="bold">ĐƯỜNG ĐI CỦA EMAIL</text>
 <rect x="16" y="46" width="288" height="92" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
@@ -10,22 +10,23 @@
 <text x="29" y="99" font-size="16" font-weight="normal">Ứng dụng thư (MUA) → máy chủ</text>
 <text x="29" y="123" font-size="16" font-weight="normal">của mình</text>
 <line x1="160" y1="139" x2="160" y2="165" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="16" y="168" width="288" height="92" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<rect x="16" y="168" width="288" height="116" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
 <text x="29" y="197" font-size="16" font-weight="bold">2 · Tra DNS bản ghi MX</text>
-<text x="29" y="221" font-size="16" font-weight="normal">Biết máy chủ nhận thư của</text>
-<text x="29" y="245" font-size="16" font-weight="normal">người nhận</text>
-<line x1="160" y1="261" x2="160" y2="287" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="16" y="290" width="288" height="68" rx="12" fill="#e2e8f0" stroke="#94a3b8"/>
-<text x="29" y="319" font-size="16" font-weight="bold">3 · Chuyển thư bằng SMTP</text>
-<text x="29" y="343" font-size="16" font-weight="normal">Có thể qua nhiều chặng</text>
-<line x1="160" y1="359" x2="160" y2="385" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="16" y="388" width="288" height="68" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
-<text x="29" y="417" font-size="16" font-weight="bold">4 · Máy chủ nhận lưu thư</text>
-<text x="29" y="441" font-size="16" font-weight="normal">MDA đặt vào hộp thư</text>
-<line x1="160" y1="457" x2="160" y2="483" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="16" y="486" width="288" height="68" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
-<text x="29" y="515" font-size="16" font-weight="bold">5 · Người nhận đọc thư</text>
-<text x="29" y="539" font-size="16" font-weight="normal">IMAP, POP3 hoặc webmail</text>
-<text x="16" y="582" font-size="16" font-weight="normal">SMTP đẩy thư đi; IMAP và POP3 chỉ</text>
-<text x="16" y="606" font-size="16" font-weight="normal">để đọc thư đã nằm sẵn.</text>
+<text x="29" y="221" font-size="16" font-weight="normal">Tìm máy chủ nhận; không có</text>
+<text x="29" y="245" font-size="16" font-weight="normal">MX thì dùng A/AAAA của tên</text>
+<text x="29" y="269" font-size="16" font-weight="normal">miền</text>
+<line x1="160" y1="285" x2="160" y2="311" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="314" width="288" height="68" rx="12" fill="#e2e8f0" stroke="#94a3b8"/>
+<text x="29" y="343" font-size="16" font-weight="bold">3 · Chuyển thư bằng SMTP</text>
+<text x="29" y="367" font-size="16" font-weight="normal">Có thể qua nhiều chặng</text>
+<line x1="160" y1="383" x2="160" y2="409" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="412" width="288" height="68" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="29" y="441" font-size="16" font-weight="bold">4 · Máy chủ nhận lưu thư</text>
+<text x="29" y="465" font-size="16" font-weight="normal">MDA đặt vào hộp thư</text>
+<line x1="160" y1="481" x2="160" y2="507" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="510" width="288" height="68" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="29" y="539" font-size="16" font-weight="bold">5 · Người nhận đọc thư</text>
+<text x="29" y="563" font-size="16" font-weight="normal">IMAP, POP3 hoặc webmail</text>
+<text x="16" y="606" font-size="16" font-weight="normal">SMTP đẩy thư đi; IMAP và POP3 chỉ</text>
+<text x="16" y="630" font-size="16" font-weight="normal">để đọc thư đã nằm sẵn.</text>
 </g></svg>

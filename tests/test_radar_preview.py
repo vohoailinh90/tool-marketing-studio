@@ -422,20 +422,82 @@ class WorkflowTests(unittest.TestCase):
         self.assertIn("startsWith(github.event.pull_request.head.ref, 'radar/')", job["if"])
         self.assertIn("vars.CI_RUNNER || 'self-hosted'", job["runs-on"])
 
-    def test_the_planner_and_the_comment_writer_run_from_the_base_branch_not_from_the_pull_request(self):
-        base = next(s for s in steps() if s.get("name") == "The planner, from the base branch")
-        self.assertEqual("${{ github.event.pull_request.base.ref }}", base["with"]["ref"])
-        self.assertEqual("trusted", base["with"]["path"])
-        self.assertIs(False, base["with"]["persist-credentials"])
+    def test_the_planner_and_the_comment_writer_run_from_the_base_commit_not_from_the_pull_request(self):
+        by_name = {s.get("name"): s for s in steps()}
+        copy = by_name["The planner, from the base branch"]["run"]
+        # the base commit is the first parent of the merge this run checked out; its files are read out of git
+        self.assertIn('set -- $(git rev-list --parents -n 1 HEAD)', copy)
+        self.assertIn('[ "$#" -eq 3 ]', copy)                                       # HEAD must be that merge
+        self.assertIn('git show "$2:scripts/$script"', copy)                         # $2 = first parent = base; $3 would be the pull request
+        self.assertIn("radar_preview.py ci_changes.py", copy)                        # the planner and the one module it imports
+        self.assertIn('"$RUNNER_TEMP/trusted/scripts/$script"', copy)                # outside the workspace the pull request controls
         for step in steps():
             run = step.get("run", "")
             self.assertNotIn("python scripts/radar_preview.py", run, step.get("name"))     # that path is the pull request's own copy
-        self.assertIn("python trusted/scripts/radar_preview.py plan", next(s for s in steps() if s.get("id") == "plan")["run"])
-        write = next(s for s in steps() if s.get("name") == "Write the comment")["run"]
-        self.assertIn("python trusted/scripts/radar_preview.py comment", write)
+            self.assertNotIn("python trusted/", run, step.get("name"))                      # a workspace folder is the pull request's too
+        self.assertEqual('python "$RUNNER_TEMP/trusted/scripts/radar_preview.py" plan', by_name["Which files does this pull request change?"]["run"])
+        write = by_name["Write the comment"]["run"]
+        self.assertIn('python "$RUNNER_TEMP/trusted/scripts/radar_preview.py" comment', write)
         self.assertIn('--root="$GITHUB_WORKSPACE"', write)               # the trusted script reads the pull request's drawn files
         names = [s.get("name") or s.get("id") for s in steps()]
         self.assertLess(names.index("The planner, from the base branch"), names.index("Which files does this pull request change?"))
+
+    def run_planner_copy_step(self, repo: Path, runner_temp: Path) -> subprocess.CompletedProcess:
+        step = next(s for s in steps() if s.get("name") == "The planner, from the base branch")
+        return subprocess.run(["bash", "-e", "-c", step["run"]], cwd=repo, env={**os.environ, "RUNNER_TEMP": str(runner_temp)},
+                              capture_output=True, text=True)
+
+    def test_the_planner_copy_step_reads_the_base_version_even_when_the_pull_request_replaces_it(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            repo, temp = Path(tmp) / "repo", Path(tmp) / "temp"
+            repo.mkdir()
+            temp.mkdir()
+            git(repo, "init", "-q", "-b", "main")
+            (repo / "scripts").mkdir()
+            (repo / "scripts" / "radar_preview.py").write_text("BASE planner", encoding="utf-8")
+            (repo / "scripts" / "ci_changes.py").write_text("BASE ci_changes", encoding="utf-8")
+            git(repo, "add", "-A")
+            git(repo, "commit", "-q", "-m", "base")
+            git(repo, "checkout", "-q", "-b", "radar/x")
+            (repo / "scripts" / "radar_preview.py").write_text("PULL REQUEST planner: rm -rf everything", encoding="utf-8")
+            (repo / "scripts" / "ci_changes.py").unlink()
+            (repo / "trusted").symlink_to(tmp)                                  # a folder of the workspace the pull request points elsewhere
+            (repo / POST).parent.mkdir(parents=True)
+            (repo / POST).write_text("a", encoding="utf-8")
+            git(repo, "add", "-A")
+            git(repo, "commit", "-q", "-m", "radar")
+            git(repo, "checkout", "-q", "main")
+            (repo / "notes.txt").write_text("the base moved after the pull request was opened", encoding="utf-8")
+            git(repo, "add", "-A")
+            git(repo, "commit", "-q", "-m", "main moved")
+            git(repo, "merge", "-q", "--no-ff", "-m", "merge ref", "radar/x")       # what GitHub checks out for a pull_request event
+            done = self.run_planner_copy_step(repo, temp)
+            self.assertEqual(0, done.returncode, done.stderr)
+            self.assertEqual("BASE planner", (temp / "trusted" / "scripts" / "radar_preview.py").read_text(encoding="utf-8"))
+            self.assertEqual("BASE ci_changes", (temp / "trusted" / "scripts" / "ci_changes.py").read_text(encoding="utf-8"))
+            self.assertEqual({"radar_preview.py", "ci_changes.py"}, {p.name for p in (temp / "trusted" / "scripts").iterdir()})
+
+    def test_the_planner_copy_step_refuses_a_head_that_is_not_the_merge_of_the_pull_request(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            repo, temp = Path(tmp) / "repo", Path(tmp) / "temp"
+            repo.mkdir()
+            temp.mkdir()
+            git(repo, "init", "-q", "-b", "main")
+            (repo / "scripts").mkdir()
+            (repo / "scripts" / "radar_preview.py").write_text("x", encoding="utf-8")
+            (repo / "scripts" / "ci_changes.py").write_text("x", encoding="utf-8")
+            git(repo, "add", "-A")
+            git(repo, "commit", "-q", "-m", "one commit, no merge")
+            done = self.run_planner_copy_step(repo, temp)
+            self.assertNotEqual(0, done.returncode)
+            self.assertIn("not the merge", done.stdout + done.stderr)
+            self.assertFalse((temp / "trusted").exists())
+
+    def test_there_is_one_checkout_and_none_into_a_folder_of_the_workspace(self):
+        # actions/checkout empties the folder it is given, and resolves a symbolic link the pull request carries
+        checkouts = [s for s in steps() if s.get("uses", "").startswith("actions/checkout")]
+        self.assertEqual(1, len(checkouts))
+        self.assertNotIn("path", checkouts[0].get("with", {}))
 
     def test_an_export_the_pull_request_carried_is_cleared_before_anything_can_fail_or_be_uploaded(self):
         # the upload and the comment run even after a failed install, check or drawing: the clearing must come first

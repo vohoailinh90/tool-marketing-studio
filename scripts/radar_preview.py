@@ -11,8 +11,8 @@ Two commands, both reading and writing only what the workflow hands them:
   plan     lists the files the pull request changed and decides. The engine of a pull request is code that would run
            on the persistent runner, so a pull request that changes anything outside `campaigns/radar-<date>[-n]/`
            and `tools/github-radar/`, or any path that is or sits under a symbolic link, is not drawn; its comment
-           says why. The workflow runs both commands from a checkout of the base branch (`--root` names the pull
-           request's tree), so a pull request cannot change them before they judge it. That is not a boundary against
+           says why. The workflow runs both commands from the base commit, read out of git into the runner's temp
+           folder (`--root` names the pull request's tree), so a pull request cannot change them before they judge it. That is not a boundary against
            someone who can already push a branch here: GitHub runs the workflow file of the pull request's merge, so
            that person can change the workflow itself, exactly as with ci.yml. Writes `ok`, `campaigns` and
            `export_paths` to GITHUB_OUTPUT.

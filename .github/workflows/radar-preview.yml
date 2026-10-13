@@ -5,7 +5,7 @@ name: Radar preview
 # comment on the pull request that links them, so the post can be looked at before it is approved.
 # Nothing is approved, committed or published here: those stay the owner's (CLAUDE.md, "Publishing is the owner's act").
 # scripts/radar_preview.py decides what may be drawn and writes the comment; docs/agent-team.md, "Radar preview".
-# A pull request that carries code or a symbolic link is not drawn. The planner and the comment writer run from the base branch,
+# A pull request that carries code or a symbolic link is not drawn. The planner and the comment writer run from the base commit,
 # so the pull request cannot change them before they judge it. That is not a boundary against someone who can already push a
 # branch here: GitHub runs the workflow file of the pull request's merge, so they can change this file (or ci.yml), as ever.
 
@@ -46,22 +46,23 @@ jobs:
 
       # The planner and the comment writer are what judge this pull request, so they run from the base branch as it is now, never
       # from the pull request: a radar branch that edits or deletes scripts/radar_preview.py or scripts/ci_changes.py is judged
-      # (and refused) by the version that is already on the base branch, and cannot keep its own code from being judged.
+      # (and refused) by the version that is already on the base branch. They are read out of the git objects of the base commit
+      # (the first parent of the merge this run checked out) into the runner's own temp folder: a second `actions/checkout`
+      # into a folder of the workspace would resolve a `trusted` symbolic link the pull request carries, and delete what it points to.
       - name: The planner, from the base branch
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.base.ref }}
-          path: trusted
-          fetch-depth: 1
-          persist-credentials: false
+        run: |
+          set -- $(git rev-list --parents -n 1 HEAD)
+          [ "$#" -eq 3 ] || { echo "HEAD is not the merge of the pull request into its base"; exit 1; }
+          mkdir -p "$RUNNER_TEMP/trusted/scripts"
+          for script in radar_preview.py ci_changes.py; do
+            git show "$2:scripts/$script" > "$RUNNER_TEMP/trusted/scripts/$script" || { echo "the base branch has no scripts/$script"; exit 1; }
+          done
 
       - name: Which files does this pull request change?
         id: plan
         env:
           PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
-        run: |
-          test -f trusted/scripts/radar_preview.py || { echo "the base branch has no scripts/radar_preview.py"; exit 1; }
-          python trusted/scripts/radar_preview.py plan
+        run: python "$RUNNER_TEMP/trusted/scripts/radar_preview.py" plan
 
       - name: Clear the exports the pull request carried
         # Before anything can fail: the upload below runs even when the install, the check or the drawing failed, and `render`
@@ -128,7 +129,7 @@ jobs:
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: |
           # `--name=value`: a value that starts with a dash (a file named -x) must not be read as an option.
-          python trusted/scripts/radar_preview.py comment --root="$GITHUB_WORKSPACE" \
+          python "$RUNNER_TEMP/trusted/scripts/radar_preview.py" comment --root="$GITHUB_WORKSPACE" \
             --plan-ok="$PLAN_OK" --campaigns="$CAMPAIGNS" --reason="$REASON" \
             --outside="$OUTSIDE" --install="$INSTALL" --check="$CHECK" --render="$RENDER" --upload="$UPLOAD" \
             --artifact-url="$ARTIFACT_URL" --run-url="$RUN_URL" \

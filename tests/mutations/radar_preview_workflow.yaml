@@ -48,8 +48,8 @@ mutations:
   replace: "        id: check\n        if: steps.plan.outputs.ok == 'true'"
   test: tests.test_radar_preview.WorkflowTests.test_the_checks_and_the_drawing_do_not_stop_the_comment
 - label: the token stays in .git/config of the persistent runner
-  find: '          persist-credentials: false'
-  replace: '          persist-credentials: true'
+  find: "persist-credentials: false\n      - uses: actions/setup-python@v5"
+  replace: "persist-credentials: true\n      - uses: actions/setup-python@v5"
   test: tests.test_radar_preview.WorkflowTests.test_the_checkout_does_not_leave_the_token_in_the_workspace_of_a_persistent_runner
 - label: the comment is not told whether the install or the upload succeeded
   find: '          UPLOAD: ${{ steps.upload.outcome }}'
@@ -64,10 +64,14 @@ mutations:
   replace: '          python scripts/radar_preview.py plan'
   test: tests.test_radar_preview.WorkflowTests.test_the_planner_and_the_comment_writer_run_from_the_base_branch_not_from_the_pull_request
 - label: the comment writer runs from the pull request's own copy
-  find: '          python trusted/scripts/radar_preview.py comment --root="$GITHUB_WORKSPACE" \\'
-  replace: '          python scripts/radar_preview.py comment --root="$GITHUB_WORKSPACE" \\'
+  find: '          python trusted/scripts/radar_preview.py comment --root="$GITHUB_WORKSPACE" \'
+  replace: '          python scripts/radar_preview.py comment --root="$GITHUB_WORKSPACE" \'
   test: tests.test_radar_preview.WorkflowTests.test_the_planner_and_the_comment_writer_run_from_the_base_branch_not_from_the_pull_request
 - label: the "trusted" checkout is the pull request's merge, not the base branch
   find: '          ref: ${{ github.event.pull_request.base.ref }}'
   replace: '          ref: ${{ github.sha }}'
+  test: tests.test_radar_preview.WorkflowTests.test_the_planner_and_the_comment_writer_run_from_the_base_branch_not_from_the_pull_request
+- label: the checkout of the base branch leaves the token in .git/config of the persistent runner
+  find: "          fetch-depth: 1\n          persist-credentials: false"
+  replace: "          fetch-depth: 1\n          persist-credentials: true"
   test: tests.test_radar_preview.WorkflowTests.test_the_planner_and_the_comment_writer_run_from_the_base_branch_not_from_the_pull_request

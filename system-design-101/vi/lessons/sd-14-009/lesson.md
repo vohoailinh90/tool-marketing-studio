@@ -11,7 +11,7 @@ Hiểu từng thuộc tính là hiểu vì sao cùng một cookie lúc có mặt
 
 **Phạm vi: Domain và Path.** Giới hạn những địa chỉ sẽ nhận cookie.
 
-**Secure và HttpOnly.** `Secure`: chỉ gửi qua kết nối mã hóa HTTPS (có ngoại lệ cho localhost). `HttpOnly`: mã JavaScript không đọc được cookie qua `document.cookie`, dù trình duyệt vẫn gửi nó lên máy chủ. Khi chạy thử, cookie `HttpOnly` vắng mặt trong `document.cookie` nhưng máy chủ vẫn nhận được.
+**Secure và HttpOnly.** `Secure`: chỉ gửi qua kết nối mã hóa HTTPS (có ngoại lệ cho localhost, nhưng MDN ghi Safari không hỗ trợ ngoại lệ này, nên thử trên `http://localhost` bằng Safari sẽ khác). `HttpOnly`: mã JavaScript không đọc được cookie qua `document.cookie`, dù trình duyệt vẫn gửi nó lên máy chủ. Khi chạy thử, cookie `HttpOnly` vắng mặt trong `document.cookie` nhưng máy chủ vẫn nhận được.
 
 **SameSite.** Quyết định có gửi cookie trong yêu cầu xuất phát từ trang khác site hay không. `Strict`: không gửi. `Lax`: với yêu cầu xuyên site, chỉ gửi khi đó là điều hướng cấp cao nhất (địa chỉ trên thanh địa chỉ đổi, ví dụ người dùng bấm liên kết sang trang này) bằng phương thức an toàn (GET là ví dụ thường gặp); không gửi kèm form POST từ trang khác, cũng không gửi cho yêu cầu từ iframe, ảnh, script hay `fetch()` xuyên site. `None`: gửi cả khi xuyên site (phải kèm `Secure`). Đây chỉ là phần luật của `SameSite`: MDN ghi các nhà làm trình duyệt đã bắt đầu chặn cookie bên thứ ba theo mặc định (hoặc có kế hoạch như vậy), và cài đặt hay tiện ích khác cũng có thể chặn, nên `None` kèm `Secure` không bảo đảm cookie tới được máy chủ.
 

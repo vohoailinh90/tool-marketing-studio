@@ -59,7 +59,7 @@
       "verified_by": "Source body read."
     },
     {
-      "claim_vi": "Set-Cookie carries a name, a value and attributes; Expires or Max-Age set the lifetime and a cookie with neither is a session cookie deleted when the current session ends, the browser defines when that is, and some browsers use session restoring when restarting, which can make session cookies last indefinitely; Secure cookies are sent only over HTTPS (with a localhost exception); HttpOnly stops JavaScript reading the cookie through document.cookie; Domain and Path limit where it is sent; SameSite takes Strict, Lax or None, None must come with Secure, and a cookie with no SameSite is treated as Lax.",
+      "claim_vi": "Set-Cookie carries a name, a value and attributes; Expires or Max-Age set the lifetime and a cookie with neither is a session cookie deleted when the current session ends, the browser defines when that is, and some browsers use session restoring when restarting, which can make session cookies last indefinitely; Secure cookies are sent only over HTTPS (with a localhost exception, which MDN says Safari does not support); HttpOnly stops JavaScript reading the cookie through document.cookie; Domain and Path limit where it is sent; SameSite takes Strict, Lax or None, None must come with Secure, and a cookie with no SameSite is treated as Lax.",
       "source": "https://github.com/mdn/content/blob/19370346042efad9e179fbf1f55deeeadee98c40/files/en-us/web/http/guides/cookies/index.md",
       "section": "Define the lifetime; Restrict access to cookies; Cookie prefixes; Controlling third-party cookies with SameSite",
       "verified_by": "Read from a local clone of the repository."

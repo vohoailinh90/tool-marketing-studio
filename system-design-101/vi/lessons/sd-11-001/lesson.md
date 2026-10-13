@@ -2,11 +2,13 @@
 
 Bạn tải một hàm xử lý ảnh lên Lambda. Khi có sự kiện, dịch vụ bố trí môi trường thực thi, khởi tạo runtime và chạy handler. Bạn quản lý mã, quyền IAM và cấu hình; AWS quản lý hạ tầng thực thi.
 
-![Sự kiện: Đồng bộ: chờ kết quả: Bất đồng bộ: nhận trước; Khởi tạo nếu cần: Runtime + mã + cấu hình: Môi trường có thể tái dùng; Chạy handler: Ghi kết quả vào kho bền: Trả kết quả hoặc báo lỗi.](../../diagrams/sd-11-001-main.svg)
+![Sự kiện: Đồng bộ: chờ kết quả: Bất đồng bộ: nhận trước; Khởi tạo nếu cần: Runtime + mã + cấu hình: Môi trường có thể tái dùng; Handler của ứng dụng: Ứng dụng ghi kho nếu cần: Lambda không tự lưu kết quả; Kết quả đồng bộ: Trả handler response/lỗi: Bên gọi chờ xử lý; Kết quả bất đồng bộ: Không trả handler response: Tra job hoặc cấu hình đích.](../../diagrams/sd-11-001-main.svg)
 
-**Đọc hình:** Các khung tóm tắt vai trò hoặc lựa chọn để đối chiếu. Các con số và tình huống trong bài là ví dụ minh họa, trừ khi ghi rõ cách tính.
+**Đọc hình:** Hai khung kết quả cuối đối chiếu hai chế độ gọi, không phải các bước liên tiếp. Ghi kết quả nghiệp vụ vào kho bền là trách nhiệm của mã ứng dụng khi cần, không là bước Lambda tự bảo đảm.
 
 Với lời gọi đồng bộ, bên gọi chờ kết quả hoặc lỗi. Với lời gọi bất đồng bộ, Lambda nhận sự kiện vào hàng đợi nội bộ rồi xử lý sau; phản hồi nhận sự kiện chưa chứng minh ảnh đã được tạo. Cơ chế lấy dữ liệu từ SQS qua event source mapping là một đường vào khác.
+
+Lambda không mặc định lưu kết quả nghiệp vụ vào kho bền. Đồng bộ trả handler response cho bên gọi; bất đồng bộ không trả response đó cho bên gọi. Muốn nhận bản ghi sau xử lý bất đồng bộ, phải cấu hình destination phù hợp; ứng dụng cũng có thể cung cấp trạng thái job riêng.
 
 Một môi trường mới cần khởi tạo trước khi chạy. Môi trường đã dùng có thể được tái sử dụng, giúp tránh một phần chi phí khởi tạo. Tuy nhiên, dữ liệu trong RAM hoặc thư mục tạm chỉ là tối ưu phụ; trạng thái nghiệp vụ phải nằm ở nơi lưu bền.
 
@@ -37,6 +39,8 @@ Firecracker cung cấp cơ chế microVM nhẹ để cô lập workload. Quyền
 - [Mục chủ đề ByteByteGo tại snapshot cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-aws-lambda-work-behind-the-scenes.md).
 - [Understanding the Lambda execution environment lifecycle - AWS Lambda](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtime-environment.html).
 - [Invoking a Lambda Event Function asynchronously - AWS Lambda](https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html).
+- [Synchronous invocation](https://docs.aws.amazon.com/lambda/latest/dg/invocation-sync.html).
+- [Asynchronous invocation destinations](https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-retain-records.html).
 - [Firecracker](https://firecracker-microvm.github.io/).
 
 Bài giải thích và hình được biên soạn độc lập; không dùng ảnh nguồn. Các tài liệu kỹ thuật trên là điểm đối chiếu cho review, không phải chứng nhận mọi claim đã được kiểm chứng.

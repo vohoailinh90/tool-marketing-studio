@@ -61,6 +61,7 @@
   "editorial_note_vi": "Bản thảo viết độc lập theo nhóm người dùng giao ngày 2026-10-13. Chờ review kỹ thuật; chưa user testing hoặc phê duyệt phát hành.",
   "source_deviations": [
     "Giữ chủ đề và ID để đối chiếu; giải thích bằng ví dụ tự biên soạn và tài liệu kỹ thuật, không dịch thân bài nguồn.",
-    "Giới hạn cần đối chiếu khi review: CDC hoặc phát message từ DB không tự là event sourcing. Kafka không tự bảo đảm lịch sử nghiệp vụ đầy đủ, bất biến và giữ mãi."
+    "Giới hạn cần đối chiếu khi review: CDC hoặc phát message từ DB không tự là event sourcing. Kafka không tự bảo đảm lịch sử nghiệp vụ đầy đủ, bất biến và giữ mãi.",
+    "Finding 4255709374: ví dụ giỏ rỗng có lịch sử +1, +1, −1 nên trạng thái hiện tại là một cuốn sách."
   ]
 }

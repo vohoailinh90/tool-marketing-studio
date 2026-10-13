@@ -43,7 +43,7 @@
       "whole_lesson_no_horizontal_overflow": true,
       "text_outside_viewbox": false,
       "optional_sections_checked_open": true,
-      "evidence": "Chromium 147 whole-lesson viewport checks across 49 lessons, all details open; SVG text getBBox inside viewBox and minimum effective text measured. Shared template screenshots at 320px sampled for visual inspection (sd-11-006, sd-11-015, sd-11-024, sd-11-043, sd-11-048). Local static Markdown preview; not a live GitHub/device check or learner testing."
+      "evidence": "Re-rendered revised five-card Lambda diagram and whole lesson in Chromium at 320/375/430px after finding 4255709360; all optional sections open; SVG getBBox inside viewBox and text measured. Static Markdown preview, not GitHub/device or learner testing."
     },
     "user_testing": {
       "status": "not_performed"
@@ -57,12 +57,21 @@
         "https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html",
         "https://firecracker-microvm.github.io/"
       ]
+    },
+    {
+      "claim_vi": "Lambda không mặc định lưu kết quả nghiệp vụ; đồng bộ trả handler response, bất đồng bộ không trả response đó cho bên gọi.",
+      "sources": [
+        "https://docs.aws.amazon.com/lambda/latest/dg/invocation-sync.html",
+        "https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html",
+        "https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-retain-records.html"
+      ]
     }
   ],
   "design_notes_vi": "Sơ đồ thẻ so sánh dọc tự thiết kế, chữ 18 px ở viewBox 360 px; có title/desc và alt text. Không dùng ảnh nguồn.",
   "editorial_note_vi": "Bản thảo viết độc lập theo nhóm người dùng giao ngày 2026-10-13. Chờ review kỹ thuật; chưa user testing hoặc phê duyệt phát hành.",
   "source_deviations": [
     "Giữ chủ đề và ID để đối chiếu; giải thích bằng ví dụ tự biên soạn và tài liệu kỹ thuật, không dịch thân bài nguồn.",
-    "Giới hạn cần đối chiếu khi review: Không dựa vào việc Lambda luôn tái sử dụng môi trường. Chi tiết dịch vụ nội bộ có thể thay đổi; hình mô tả vòng đời công khai, không khẳng định mọi runtime có cùng đường thực thi."
+    "Giới hạn cần đối chiếu khi review: Không dựa vào việc Lambda luôn tái sử dụng môi trường. Chi tiết dịch vụ nội bộ có thể thay đổi; hình mô tả vòng đời công khai, không khẳng định mọi runtime có cùng đường thực thi.",
+    "Finding 4255709360: hình và alt text phân biệt kết quả đồng bộ/bất đồng bộ; ghi kho bền là việc ứng dụng khi cần."
   ]
 }

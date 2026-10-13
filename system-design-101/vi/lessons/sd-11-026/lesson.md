@@ -1,6 +1,6 @@
 # Đưa Event Sourcing vào một hệ thống
 
-Giỏ hàng có thể lưu trạng thái “hai cuốn sách”, hoặc lưu lịch sử “thêm một cuốn”, “thêm một cuốn”, “xóa một cuốn”. Event sourcing chọn lịch sử sự kiện nghiệp vụ làm nguồn để dựng trạng thái hiện tại.
+Giỏ hàng có thể lưu trạng thái “một cuốn sách”, hoặc lưu lịch sử “thêm một cuốn”, “thêm một cuốn”, “xóa một cuốn”. Event sourcing chọn lịch sử sự kiện nghiệp vụ làm nguồn để dựng trạng thái hiện tại.
 
 ![Command: Kiểm quy tắc + expected version: Append event nghiệp vụ; Event store: Nguồn lịch sử đã cam kết: Version và chính sách giữ; Projection: Dựng view • replay an toàn: Không lặp tác động ngoài.](../../diagrams/sd-11-026-main.svg)
 

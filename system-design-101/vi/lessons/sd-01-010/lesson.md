@@ -8,7 +8,7 @@ Khi hai quy tắc xung đột, cascade quyết định quy tắc nào thắng.
 ## Đọc hình
 
 **Một quy tắc.** Gồm **selector** (chọn phần tử) và các **khai báo** (thuộc tính: giá trị).
-`p { color: blue; }` làm chữ của mọi đoạn văn thành xanh. Muốn đổi giao diện, bạn sửa CSS mà không đụng tới HTML.
+`p { color: blue; }` chọn các đoạn văn và khai báo màu xanh; màu cuối cùng còn phụ thuộc cascade. Muốn đổi giao diện, bạn sửa CSS mà không đụng tới HTML.
 
 **Cascade.** Khi nhiều quy tắc cùng đặt một thuộc tính cho một phần tử, trình duyệt xét lần lượt:
 
@@ -57,9 +57,7 @@ việc đó thuộc về HTML.
 - [MDN — Cascade: giới thiệu](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascade/Introduction): thuật toán cascade, nguồn gốc, thứ tự xuất hiện.
 - [MDN — Specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascade/Specificity): so sánh độ cụ thể, `!important`, kiểu nội tuyến.
 - [MDN — Xử lý xung đột trong CSS](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Handling_conflicts): cascade, độ cụ thể, thứ tự nguồn, mức quan trọng.
+- [MDN — CSS](https://developer.mozilla.org/en-US/docs/Web/CSS): ngôn ngữ style sheet, bố cục và chuyển động.
 - Phép thử trên Chromium 141 (Playwright): `.note` thắng `p`; hai quy tắc ngang nhau thì quy tắc sau thắng.
 
-Đã đọc nguồn ngày 2026-10-13. Các bài MDN được đọc từ bản clone của kho mdn/content; trang developer.mozilla.org
-không mở được trong môi trường biên soạn. Câu “CSS là ngôn ngữ style sheet” được đối chiếu qua trích đoạn tìm kiếm,
-và đoạn về bố cục, chuyển động, thích ứng màn hình lấy từ bài nguồn, chưa đối chiếu riêng.
-Bài viết và hình được thiết kế độc lập.
+Đã đọc nguồn ghim và trực tiếp đối chiếu MDN ngày 2026-10-13. Evidence đọc từ clone/phép đo Chromium của phiên trước được giữ riêng trong metadata; lượt này đối chiếu bổ sung các trang chính thức về cascade, specificity và CSS. Chưa thử với người học.

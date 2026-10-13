@@ -33,7 +33,7 @@
     "claims": {
       "status": "checked",
       "checked_on": "2026-10-13",
-      "evidence": "MDN pages read from a local clone of mdn/content; cascade outcomes measured in Chromium 141; 'style sheet language' from search excerpts."
+      "evidence": "Trực tiếp đọc MDN CSS/Cascade/Specificity ngày2026-10-13; giữ phép đo Chromium của phiên trước. Không user testing."
     },
     "technical_review": {
       "status": "pending",
@@ -51,7 +51,7 @@
       "whole_lesson_no_horizontal_overflow": true,
       "text_outside_viewbox": false,
       "optional_sections_checked_open": true,
-      "evidence": "Chromium (Playwright) rendered the full lesson at each width with optional sections open; diagram scale measured from the rendered image and every SVG text box checked against the viewBox. Not learner testing and not GitHub or a real phone."
+      "evidence": "Chromium full lesson320/375/430,optional sections open; min14.4px,no horizontal overflow/text outside viewBox,320px screenshot visually inspected after evidence edit. Not learner testing."
     },
     "user_testing": {
       "status": "not_performed"
@@ -84,15 +84,18 @@
     },
     {
       "claim_vi": "CSS is commonly described as a style sheet language rather than a markup language.",
-      "source": "https://technav.ieee.org/topic/cascading-style-sheets/",
+      "source": "https://developer.mozilla.org/en-US/docs/Web/CSS",
       "section": "Overview",
-      "verified_by": "Search-result excerpt only; the page itself was not opened (host blocked in the authoring environment)."
+      "verified_by": "Trực tiếp đọc trang chính thức MDN."
     },
     {
       "claim_vi": "CSS separates structure (HTML) from presentation, and the same rule mechanism covers layout, animation and responsive adjustment.",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-is-css-cascading-style-sheets.md",
       "section": "Source body",
-      "verified_by": "Carried from the source as general description; not independently checked."
+      "verified_by": "Đối chiếu trực tiếp MDN, không chỉ mang claim từ bài nguồn.",
+      "sources": [
+        "https://developer.mozilla.org/en-US/docs/Web/CSS",
+        "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/What_is_CSS"
+      ]
     }
   ],
   "design_notes_vi": "Một quy tắc rồi ba bước cascade, kèm ví dụ .note thắng p; cascade layer và scoping proximity được lược khỏi hình và nói trong phần sâu. Không dùng ảnh nguồn.",
@@ -101,5 +104,5 @@
     "Source says the winner is decided by selector type and source order and implies later rules win; the lesson states the actual order (origin and importance, specificity, then order) and shows that an earlier more specific rule still wins.",
     "Source's 'CSS3 introduces animation' is omitted because it is not needed for the main idea and was not verified."
   ],
-  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+  "editorial_note_vi": "Tiếp nhận bài CSS đã có ở PR53; bổ sung đối chiếu trực tiếp MDN. Chờ review head mới; chưa user testing/phê duyệt phát hành."
 }

@@ -55,10 +55,11 @@
       "source": "https://www.rfc-editor.org/rfc/rfc8085"
     },
     {
-      "claim_vi": "DNS dùng UDP cho truy vấn thường và TCP khi câu đáp bị cắt hoặc cho các thao tác lớn.",
+      "claim_vi": "DNS thường dùng UDP cho truy vấn; client thử lại bằng TCP khi câu đáp UDP bị đánh dấu cắt, hoặc có thể chọn TCP ngay từ đầu; EDNS cho phép đáp UDP lớn hơn mặc định; việc sao chép vùng dùng TCP.",
       "sources": [
         "https://www.rfc-editor.org/rfc/rfc1035",
-        "https://www.rfc-editor.org/rfc/rfc7766"
+        "https://www.rfc-editor.org/rfc/rfc7766",
+        "https://www.rfc-editor.org/rfc/rfc6891"
       ]
     },
     {

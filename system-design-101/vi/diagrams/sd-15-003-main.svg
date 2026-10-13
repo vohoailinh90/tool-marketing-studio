@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 755" width="320" height="755" role="img" aria-labelledby="title desc">
 <title id="title">Bốn nơi UDP thường được dùng</title>
-<desc id="desc">Bốn khung dọc: gọi thoại và video trực tiếp chấp nhận mất vài gói; DNS một câu hỏi một câu đáp, quá lớn thì dùng TCP; dữ liệu thị trường gửi một lần cho nhiều bên nhận bằng multicast; thiết bị IoT gửi gói nhỏ, ví dụ CoAP trên UDP.</desc>
+<desc id="desc">Bốn khung dọc: gọi thoại và video trực tiếp chấp nhận mất vài gói; DNS một câu hỏi một câu đáp, đáp bị cắt thì thử lại bằng TCP; dữ liệu thị trường gửi một lần cho nhiều bên nhận bằng multicast; thiết bị IoT gửi gói nhỏ, ví dụ CoAP trên UDP.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="755" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
@@ -15,7 +15,7 @@
 <rect x="16" y="240" width="288" height="104" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
 <text x="30" y="270" font-size="16" font-weight="bold">2 · DNS</text>
 <text x="30" y="297" font-size="16" font-weight="normal">Một câu hỏi nhỏ → một câu đáp</text>
-<text x="30" y="324" font-size="16" font-weight="normal">Đáp quá lớn thì dùng TCP</text>
+<text x="30" y="324" font-size="16" font-weight="normal">Đáp bị cắt: thử lại bằng TCP</text>
 <line x1="160" y1="345" x2="160" y2="365" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
 <rect x="16" y="368" width="288" height="158" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
 <text x="30" y="398" font-size="16" font-weight="bold">3 · Dữ liệu thị trường</text>

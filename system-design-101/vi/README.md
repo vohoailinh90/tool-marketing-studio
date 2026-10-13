@@ -22,6 +22,9 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 1. [AirTag tìm đồ thất lạc bằng cách nào?](lessons/sd-12-001/lesson.md) — bản nháp độc lập; chờ kiểm chứng nguồn và review kỹ thuật.
 2. [Email được gửi đi như thế nào?](lessons/sd-12-002/lesson.md) — bản nháp độc lập; chờ kiểm chứng nguồn và review kỹ thuật.
 3. [Thiết kế dịch vụ thư điện tử kiểu Gmail](lessons/sd-12-003/lesson.md) — bản nháp độc lập; chờ kiểm chứng nguồn và review kỹ thuật.
+4. [Làm mờ biển số và khuôn mặt trong ảnh đường phố](lessons/sd-12-004/lesson.md) — bản nháp độc lập; chờ kiểm chứng nguồn và review kỹ thuật.
+5. [Quadtree: chia bản đồ để tìm nơi gần bạn](lessons/sd-12-005/lesson.md) — bản nháp độc lập; chờ kiểm chứng nguồn và review kỹ thuật.
+6. [Xây ứng dụng chat đơn giản với Redis](lessons/sd-12-006/lesson.md) — bản nháp độc lập; chờ kiểm chứng nguồn và review kỹ thuật.
 
 Danh mục đầy đủ và snapshot nguồn: [bảng đối chiếu](../../brainstorm/system-design-101-vi/source-map.json).
 Quy tắc đã chốt: [kết luận brainstorm](../../brainstorm/system-design-101-vi/DECISIONS.md).

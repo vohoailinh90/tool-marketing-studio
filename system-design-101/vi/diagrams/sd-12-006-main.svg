@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 790" width="320" height="790" role="img" aria-labelledby="title desc">
+<title id="title">Chat với Redis</title>
+<desc id="desc">Bob nối WebSocket, máy chủ tải thành viên và lịch sử từ Redis và publish member_add. Khi Bob gửi tin, máy chủ lưu vào sorted set bằng ZADD rồi publish lên kênh messages; máy chủ của Alice đã subscribe nên đẩy tin tới Alice qua WebSocket.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="790" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="21" font-weight="bold">CHAT VỚI REDIS</text>
+<rect x="16" y="46" width="288" height="68" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="29" y="75" font-size="16" font-weight="bold">1 · Bob mở ứng dụng</text>
+<text x="29" y="99" font-size="16" font-weight="normal">WebSocket tới máy chủ chat</text>
+<line x1="160" y1="115" x2="160" y2="141" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="144" width="288" height="68" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="29" y="173" font-size="16" font-weight="bold">2 · Tải trạng thái đầu</text>
+<text x="29" y="197" font-size="16" font-weight="normal">Thành viên và lịch sử từ Redis</text>
+<line x1="160" y1="213" x2="160" y2="239" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="242" width="288" height="68" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="29" y="271" font-size="16" font-weight="bold">3 · Thông báo có người vào</text>
+<text x="29" y="295" font-size="16" font-weight="normal">PUBLISH lên kênh member_add</text>
+<line x1="160" y1="311" x2="160" y2="337" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="340" width="288" height="68" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="29" y="369" font-size="16" font-weight="bold">4 · Bob gửi tin cho Alice</text>
+<text x="29" y="393" font-size="16" font-weight="normal">Qua WebSocket</text>
+<line x1="160" y1="409" x2="160" y2="435" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="438" width="288" height="68" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="29" y="467" font-size="16" font-weight="bold">5 · Lưu lịch sử</text>
+<text x="29" y="491" font-size="16" font-weight="normal">ZADD, điểm là thời gian</text>
+<line x1="160" y1="507" x2="160" y2="533" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="536" width="288" height="68" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="29" y="565" font-size="16" font-weight="bold">6 · Phát tin</text>
+<text x="29" y="589" font-size="16" font-weight="normal">PUBLISH lên kênh messages</text>
+<line x1="160" y1="605" x2="160" y2="631" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="634" width="288" height="92" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="29" y="663" font-size="16" font-weight="bold">7 · Alice nhận tin</text>
+<text x="29" y="687" font-size="16" font-weight="normal">Máy chủ đã SUBSCRIBE đẩy qua</text>
+<text x="29" y="711" font-size="16" font-weight="normal">WebSocket</text>
+<text x="16" y="754" font-size="16" font-weight="normal">Pub/sub lo tin đang bay; sorted set</text>
+<text x="16" y="778" font-size="16" font-weight="normal">lo tin đã qua.</text>
+</g></svg>

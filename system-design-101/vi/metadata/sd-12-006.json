@@ -1,0 +1,66 @@
+{
+  "id": "sd-12-006",
+  "title_vi": "Xây ứng dụng chat đơn giản với Redis",
+  "language": "vi",
+  "kind": "architecture",
+  "content_status": "draft",
+  "source_ref": "sd-12-006",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/build-a-simple-chat-application.md",
+    "blob_sha": "f459ac51e02c1629ff433880c02413dc4b65c7e9",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/build-a-simple-chat-application.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "ddeb47147a0b91d48b42cef36bb3d8e910f08aa64aa094f2878891c569966e87",
+    "retrieved_body_bytes": 1749
+  },
+  "diagram": "../diagrams/sd-12-006-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "official_sources_not_reachable_from_authoring_environment"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "not_yet_reviewed"
+    },
+    "mobile": {
+      "status": "pending"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Pub/sub của Redis chuyển tin tới người đang subscribe và không lưu để phát lại cho người đến sau.",
+      "sources": [
+        "https://redis.io/docs/latest/develop/interact/pubsub/"
+      ]
+    },
+    {
+      "claim_vi": "Sorted set sắp các phần tử theo điểm; ZADD thêm phần tử kèm điểm.",
+      "sources": [
+        "https://redis.io/docs/latest/develop/data-types/sorted-sets/"
+      ]
+    },
+    {
+      "claim_vi": "Redis Streams lưu các bản ghi có ID theo thứ tự và cho đọc lại từ một vị trí.",
+      "sources": [
+        "https://redis.io/docs/latest/develop/data-types/streams/"
+      ]
+    }
+  ],
+  "source_deviations": [
+    "Nguồn không nêu giới hạn chỉ-chuyển-cho-người-đang-nghe của pub/sub; bài thêm giới hạn này và gợi ý Redis Streams."
+  ],
+  "design_notes_vi": "Bảy thẻ dọc theo hai giai đoạn của nguồn (vào phòng, gửi tin); chú thích cuối tách vai trò pub/sub và sorted set.",
+  "editorial_note_vi": "Bản nháp độc lập viết từ kiến thức kỹ thuật chung; đọc bài nguồn nhưng chưa mở tài liệu chính thức nên các claim chưa được kiểm chứng. Chưa review kỹ thuật, chưa user testing, chưa phê duyệt phát hành."
+}

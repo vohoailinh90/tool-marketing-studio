@@ -1,0 +1,60 @@
+{
+  "id": "sd-12-005",
+  "title_vi": "Quadtree: chia bản đồ để tìm nơi gần bạn",
+  "language": "vi",
+  "kind": "data-structure",
+  "content_status": "draft",
+  "source_ref": "sd-12-005",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/quadtree.md",
+    "blob_sha": "765b5d5e904ed0df504815158d2ce842fee4f025",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/quadtree.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "aa772d50ed235fa65574383690a13a018b52e0374da73f02bdfa645ac7a60147",
+    "retrieved_body_bytes": 1904
+  },
+  "diagram": "../diagrams/sd-12-005-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-12-017",
+      "relation": "compares",
+      "reason_vi": "Geohash là cách chia lưới cố định cho cùng bài toán tìm địa điểm lân cận."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "official_sources_not_reachable_from_authoring_environment"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "not_yet_reviewed"
+    },
+    "mobile": {
+      "status": "pending"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Quadtree chia đệ quy không gian hai chiều thành bốn ô cho tới khi thỏa điều kiện dừng.",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Quadtree"
+      ]
+    }
+  ],
+  "source_deviations": [
+    "Bài không lặp các số liệu của nguồn về số địa điểm và thời gian dựng cây vì chưa có phép đo và điều kiện đi kèm; ngưỡng 100 chỉ là ví dụ."
+  ],
+  "design_notes_vi": "Hình vuông bản đồ vẽ riêng (ô mật độ cao chia sâu, ô lá tô vàng, có chú giải chữ) kèm ba thẻ ngắn.",
+  "editorial_note_vi": "Bản nháp độc lập viết từ kiến thức kỹ thuật chung; đọc bài nguồn nhưng chưa mở tài liệu chính thức nên các claim chưa được kiểm chứng. Chưa review kỹ thuật, chưa user testing, chưa phê duyệt phát hành."
+}

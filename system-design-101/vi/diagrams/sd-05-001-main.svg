@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 836" width="320" height="836" role="img" aria-labelledby="title desc">
 <title id="title">Bốn kiểu SQL JOIN trên cùng một ví dụ</title>
-<desc id="desc">Hai bảng ví dụ: khách gồm An, Binh, Chi; đơn gồm đơn 10 và 11 của An và đơn 12 không có khách. INNER JOIN chỉ giữ các cặp khớp: An với 10 và An với 11. LEFT JOIN giữ mọi khách, nên thêm Binh và Chi với phần đơn trống. RIGHT JOIN giữ mọi đơn, nên thêm đơn 12 với phần khách trống. FULL OUTER JOIN giữ cả hai phía, tổng cộng năm dòng. Bẫy: LEFT JOIN rồi lọc bằng WHERE trên cột của bảng phải làm mất các dòng không khớp; đưa điều kiện vào ON để giữ chúng.</desc>
+<desc id="desc">Hai bảng ví dụ: khách gồm An, Binh, Chi; đơn gồm đơn 10 (100) và 11 (50) của An và đơn 12 (70) không có khách. INNER JOIN chỉ giữ các cặp khớp: An với 10 và An với 11. LEFT JOIN giữ mọi khách, nên thêm Binh và Chi với phần đơn trống. RIGHT JOIN giữ mọi đơn, nên thêm đơn 12 với phần khách trống. FULL OUTER JOIN giữ cả hai phía, tổng cộng năm dòng. Bẫy: LEFT JOIN rồi lọc bằng WHERE trên cột của bảng phải làm mất các dòng không khớp; đưa điều kiện vào ON để giữ chúng.</desc>
 <rect width="320" height="836" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="30" font-size="21" font-weight="bold">BỐN KIỂU</text>
@@ -8,8 +8,8 @@
 <rect x="16" y="80" width="288" height="124" rx="12" fill="#e2e8f0" stroke="#94a3b8"/>
 <text x="29" y="109" font-size="16" font-weight="bold">Ví dụ</text>
 <text x="29" y="137" font-size="16" font-weight="normal">khach: An, Binh, Chi</text>
-<text x="29" y="161" font-size="16" font-weight="normal">don: 10 và 11 của An; 12 không</text>
-<text x="29" y="185" font-size="16" font-weight="normal">có khách</text>
+<text x="29" y="161" font-size="16" font-weight="normal">don: 10 (100) và 11 (50) của</text>
+<text x="29" y="185" font-size="16" font-weight="normal">An; 12 (70) không có khách</text>
 <rect x="16" y="214" width="288" height="100" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
 <text x="29" y="243" font-size="16" font-weight="bold">INNER JOIN</text>
 <text x="29" y="271" font-size="16" font-weight="normal">Chỉ cặp khớp</text>

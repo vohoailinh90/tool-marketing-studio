@@ -3,11 +3,11 @@
 **JOIN ghép các dòng của hai bảng theo một điều kiện.** Bốn kiểu thường gặp khác nhau ở chỗ:
 dòng nào không có cặp thì vẫn được giữ lại, dòng nào bị bỏ.
 
-![Hình dọc dùng hai bảng ví dụ: khach gồm An, Binh, Chi; don gồm đơn 10 và 11 của An và đơn 12 không có khách. INNER JOIN chỉ giữ cặp khớp: An–10, An–11. LEFT JOIN giữ mọi khách, thêm Binh và Chi với phần đơn trống. RIGHT JOIN giữ mọi đơn, thêm đơn 12 với phần khách trống. FULL OUTER JOIN giữ cả hai phía, tổng cộng năm dòng. Thẻ cuối cảnh báo: LEFT JOIN rồi lọc bằng WHERE trên cột bảng phải làm mất dòng không khớp, hãy đưa điều kiện vào ON.](../../diagrams/sd-05-001-main.svg)
+![Hình dọc dùng hai bảng ví dụ: khach gồm An, Binh, Chi; don gồm đơn 10 (100) và đơn 11 (50) của An và đơn 12 (70) không có khách. INNER JOIN chỉ giữ cặp khớp: An–10, An–11. LEFT JOIN giữ mọi khách, thêm Binh và Chi với phần đơn trống. RIGHT JOIN giữ mọi đơn, thêm đơn 12 với phần khách trống. FULL OUTER JOIN giữ cả hai phía, tổng cộng năm dòng. Thẻ cuối cảnh báo: LEFT JOIN rồi lọc bằng WHERE trên cột bảng phải làm mất dòng không khớp, hãy đưa điều kiện vào ON.](../../diagrams/sd-05-001-main.svg)
 
 ## Đọc hình
 
-Điều kiện ghép ở đây là `don.ma_khach = khach.ma`.
+Điều kiện ghép ở đây là `don.ma_khach = khach.ma`. Số tiền của các đơn: đơn 10 là 100, đơn 11 là 50, đơn 12 là 70.
 
 **INNER JOIN.** Chỉ giữ các cặp khớp: An–10 và An–11. Binh, Chi và đơn 12 đều biến mất.
 
@@ -24,7 +24,7 @@ nên bị `WHERE` loại ngay, và kết quả giống `INNER JOIN`. Nếu đi�
 
 ## Nhìn hình trả lời
 
-Bạn muốn liệt kê mọi khách, kể cả khách chưa có đơn, nhưng chỉ ghép những đơn trên 60. Điều kiện `don.tien > 60` đặt ở đâu?
+Bạn muốn liệt kê mọi khách, kể cả khách chưa có đơn, nhưng chỉ ghép những đơn trên 60 (trong ví dụ: đơn 10 và đơn 12, còn đơn 11 thì không). Điều kiện `don.tien > 60` đặt ở đâu?
 
 <details>
 <summary>Xem đáp án</summary>

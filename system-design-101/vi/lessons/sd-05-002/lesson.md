@@ -51,6 +51,7 @@ Chi tiết dựng trang nằm ở bước 6 và được giải thích riêng tr
 
 - [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-happens-when-you-type-google.md): tám bước.
 - [MDN — DNS](https://developer.mozilla.org/en-US/docs/Glossary/DNS), [TCP handshake](https://developer.mozilla.org/en-US/docs/Glossary/TCP_handshake), [TLS](https://developer.mozilla.org/en-US/docs/Glossary/TLS): các thuật ngữ.
+- [MDN — Connection management in HTTP/1.x](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Connection_management_in_HTTP_1.x): kết nối ngắn hạn và kết nối bền (dùng lại).
 - [MDN — HTTP caching](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Caching) và [Strict-Transport-Security](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Strict-Transport-Security): cache dùng lại phản hồi; HSTS.
 
 Đã đọc nguồn ngày 2026-10-13. Các trang MDN được đọc từ bản clone của kho mdn/content (developer.mozilla.org không mở được trong môi trường biên soạn).

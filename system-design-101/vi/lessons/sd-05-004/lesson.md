@@ -3,23 +3,27 @@
 **Phỏng vấn thiết kế hệ thống là một cuộc trò chuyện về đánh đổi, không phải bài thi có đáp án.** Một khung các bước giúp bạn
 không bỏ sót điều quan trọng và luôn biết mình đang ở đâu.
 
-![Bảy thẻ nối nhau từ trên xuống, mỗi thẻ là một câu hỏi. 1 Yêu cầu: hệ thống phải làm gì, tốt đến mức nào. 2 Quy mô: bao nhiêu người dùng, dữ liệu, lưu lượng. 3 Thiết kế cấp cao: các thành phần nối nhau thế nào. 4 Dữ liệu: lưu gì, bằng loại cơ sở dữ liệu nào. 5 Giao diện: API hay sự kiện giữa các phần. 6 Mở rộng và hiệu năng: cache, chỉ mục, chia nhỏ, sao chép. 7 Độ tin cậy: điểm lỗi đơn nằm ở đâu. Ghi chú: bản đồ, không phải kịch bản, thứ tự có thể đổi.](../../diagrams/sd-05-004-main.svg)
+![Bảy thẻ nối nhau từ trên xuống, mỗi thẻ là một câu hỏi. 1 Yêu cầu: hệ thống phải làm gì, tốt đến mức nào. 2 Quy mô: bao nhiêu người dùng, dữ liệu, lưu lượng. 3 Thiết kế cấp cao: các thành phần nối nhau thế nào. 4 Dữ liệu: lưu gì, bằng loại cơ sở dữ liệu nào. 5 Giao diện: API hay sự kiện giữa các phần. 6 Mở rộng và hiệu năng: chỗ nghẽn đầu tiên khi tải tăng. 7 Độ tin cậy: nếu một khối hỏng thì sao. Ghi chú: bản đồ, không phải kịch bản, thứ tự có thể đổi.](../../diagrams/sd-05-004-main.svg)
 
 ## Đọc hình
 
-**1 · Yêu cầu.** Hỏi hệ thống phải làm những gì (chức năng) và phải tốt đến đâu (phi chức năng: độ sẵn sàng, độ trễ, khối lượng dữ liệu).
+Ví dụ xuyên suốt: một dịch vụ rút gọn đường dẫn. Mỗi bước dưới đây nói bạn nên nói ra điều gì.
 
-**2 · Quy mô.** Ước lượng số người dùng, lưu lượng, dung lượng lưu trữ, nhu cầu tính toán và mạng. Con số chỉ cần đủ để chọn hướng.
+**1 · Yêu cầu.** “Người dùng dán một đường dẫn dài và nhận đường dẫn ngắn; đường dẫn ngắn phải mở nhanh và không được hỏng.”
+Tách điều hệ thống làm được khỏi mức chất lượng nó phải đạt.
 
-**3 · Thiết kế cấp cao.** Vẽ khối đơn giản: máy khách, máy chủ, bộ cân bằng tải, cơ sở dữ liệu… và dòng dữ liệu giữa chúng.
+**2 · Quy mô.** Đặt giả định rõ ràng, như số đường dẫn tạo mỗi ngày và tỷ lệ lượt mở so với lượt tạo, rồi suy ra dữ liệu cần giữ và lưu lượng.
+Con số chỉ cần đủ để chọn hướng.
 
-**4 · Dữ liệu.** Mô hình hóa dữ liệu, chọn loại cơ sở dữ liệu, rồi tới lược đồ.
+**3 · Thiết kế cấp cao.** Vẽ vài khối đủ để kể một yêu cầu đi từ người dùng tới dữ liệu rồi quay về. Chưa cần chi tiết.
 
-**5 · Giao diện.** Các API hoặc sự kiện giữa các thành phần; chọn cách giao tiếp như REST, GraphQL, gRPC hay hướng sự kiện.
+**4 · Dữ liệu.** Nêu thực thể (đường dẫn ngắn trỏ tới đường dẫn dài) và truy vấn chính (tra theo đường dẫn ngắn). Từ đó mới chọn nơi lưu.
 
-**6 · Mở rộng và hiệu năng.** Nêu kỹ thuật cho tải lớn và độ trễ thấp: mở rộng dọc/ngang, cache, chỉ mục, chia dữ liệu, sao chép, CDN.
+**5 · Giao diện.** Mô tả hai thao tác “tạo” và “mở” trao đổi gì giữa các thành phần, và dạng giao tiếp hợp với từng cặp.
 
-**7 · Độ tin cậy.** Tìm điểm lỗi đơn và giảm tác động của chúng.
+**6 · Mở rộng và hiệu năng.** Hỏi “khi tải tăng, chỗ nào nghẽn trước?” và nêu cách gỡ cho từng chỗ, kèm cái giá phải trả.
+
+**7 · Độ tin cậy.** Chỉ vào từng khối và hỏi “nếu nó hỏng thì sao?”. Chỗ nào làm cả hệ thống ngừng thì cần phương án thay thế.
 
 ## Giới hạn cần nhớ
 

@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 892" width="320" height="892" role="img" aria-labelledby="title desc">
 <title id="title">Bảy bước cho buổi phỏng vấn thiết kế hệ thống</title>
-<desc id="desc">Bảy bước, mỗi bước trả lời một câu hỏi: yêu cầu là gì; quy mô cỡ nào; các thành phần chính nối với nhau thế nào; dữ liệu lưu ra sao; giao diện giữa các thành phần là gì; làm sao mở rộng và nhanh; làm sao chịu lỗi. Ghi chú: đây là bản đồ, không phải kịch bản; người phỏng vấn có thể dẫn đi thứ tự khác.</desc>
+<desc id="desc">Bảy bước, mỗi bước trả lời một câu hỏi: yêu cầu là gì; quy mô cỡ nào; các thành phần chính nối với nhau thế nào; dữ liệu lưu ra sao; giao diện giữa các thành phần là gì; chỗ nghẽn nào xuất hiện đầu tiên khi tải tăng; chuyện gì xảy ra nếu một khối hỏng. Ghi chú: đây là bản đồ, không phải kịch bản; người phỏng vấn có thể dẫn đi thứ tự khác.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="892" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
@@ -31,12 +31,12 @@
 <line x1="160" y1="605" x2="160" y2="620" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
 <rect x="16" y="622" width="288" height="100" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
 <text x="29" y="651" font-size="16" font-weight="bold">6 · Mở rộng, hiệu năng</text>
-<text x="29" y="679" font-size="16" font-weight="normal">Cache, chỉ mục, chia nhỏ, sao</text>
-<text x="29" y="703" font-size="16" font-weight="normal">chép</text>
+<text x="29" y="679" font-size="16" font-weight="normal">Chỗ nghẽn đầu tiên khi tải</text>
+<text x="29" y="703" font-size="16" font-weight="normal">tăng?</text>
 <line x1="160" y1="723" x2="160" y2="738" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
 <rect x="16" y="740" width="288" height="76" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
 <text x="29" y="769" font-size="16" font-weight="bold">7 · Độ tin cậy</text>
-<text x="29" y="797" font-size="16" font-weight="normal">Điểm lỗi đơn nằm ở đâu?</text>
+<text x="29" y="797" font-size="16" font-weight="normal">Nếu một khối hỏng thì sao?</text>
 <text x="16" y="844" font-size="16" font-weight="normal" fill="#334155">Bản đồ, không phải kịch bản: thứ tự</text>
 <text x="16" y="868" font-size="16" font-weight="normal" fill="#334155">có thể đổi.</text>
 </g></svg>

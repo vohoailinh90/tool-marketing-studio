@@ -82,6 +82,12 @@
       "verified_by": "Read from a local clone of mdn/content (developer.mozilla.org was unreachable)."
     },
     {
+      "claim_vi": "HTTP/1.x has short-lived connections and persistent connections, so a connection can serve more than one request.",
+      "source": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Connection_management_in_HTTP_1.x",
+      "section": "Overview",
+      "verified_by": "Read from a local clone of mdn/content (developer.mozilla.org was unreachable)."
+    },
+    {
       "claim_vi": "HSTS tells browsers a site must only be accessed over HTTPS and that later HTTP attempts are upgraded automatically.",
       "source": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Strict-Transport-Security",
       "section": "Description",

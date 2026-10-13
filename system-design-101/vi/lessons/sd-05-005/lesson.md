@@ -9,7 +9,7 @@ Hình chia thành sáu mảng; danh sách tài nguyên cụ thể chỉ là ph�
 
 **Coding.** Luyện giải bài thuật toán và cấu trúc dữ liệu, và tập nói to cách bạn nghĩ để người phỏng vấn theo được.
 
-**Thiết kế hệ thống.** Luyện một khung các bước (xem bài về bảy bước) và đọc các ví dụ thiết kế. Bài nguồn gợi ý sách *Designing Data-Intensive Applications*
+**Thiết kế hệ thống.** Luyện một khung các bước (xem bài về bảy bước) và đọc các ví dụ thiết kế, chẳng hạn trong kho System Design Primer trên GitHub. Bài nguồn gợi ý sách *Designing Data-Intensive Applications*
 và các sách, khóa học về phỏng vấn thiết kế hệ thống.
 
 **Hành vi.** Chuẩn bị vài câu chuyện thật từ công việc và kể theo mô hình STAR: tình huống, nhiệm vụ, hành động, kết quả.

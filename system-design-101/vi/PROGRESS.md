@@ -9,4 +9,4 @@ Repo cũ tạm dừng; không merge/đóng/xóa các PR cũ.
 
 Metadata JSON duy nhất giữ trạng thái; YAML chỉ id/metadata_ref. Hình/bài giữ nguyên byte khi nhập. User testing chưa thực hiện; không tự merge/deploy hoặc đăng bài.
 
-Đồng bộ main đích tại 3edff99314afa7435a4519b700e380eac8d6bc1c (trước đó f9f79246cf7b05979fc1343734e02ea8afc201be); sửa adopted_main_sha theo finding4252903469 và finding4253959699. Mốc main repo cũ giữ previous_repository_main_sha. PR #40 đã được merge; review tổ hợp trên head 5ce5e2b70b của PR đó không có finding trước khi merge.
+Đồng bộ main đích tại 3edff99314afa7435a4519b700e380eac8d6bc1c (trước đó f9f79246cf7b05979fc1343734e02ea8afc201be); sửa adopted_main_sha theo finding4252903469 và finding4253959699. Mốc main repo cũ giữ previous_repository_main_sha. PR #40 đã được merge (merge commit 5831cdc); Codex không có finding trên head 5ce5e2b70b của PR đó trước khi merge.

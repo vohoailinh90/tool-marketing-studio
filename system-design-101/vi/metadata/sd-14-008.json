@@ -65,7 +65,7 @@
       "verified_by": "Read from a local clone of the repository."
     },
     {
-      "claim_vi": "With a Python server holding a session dictionary and handing out a random id in an HttpOnly cookie: a request with the right id returned the stored session data; a tampered id returned no data; a request with no cookie returned no data.",
+      "claim_vi": "With a Python server holding a session dictionary and handing out a random id in an HttpOnly cookie: a request with the right id returned the stored session data; a tampered id (an arbitrary string that matches no stored session) returned no data, while substituting the id of another active session was not run; a request with no cookie returned no data.",
       "source": "https://github.com/mdn/content/blob/19370346042efad9e179fbf1f55deeeadee98c40/files/en-us/web/http/guides/cookies/index.md",
       "section": "Set-Cookie / Cookie flow",
       "verified_by": "No external page reports this output; observed by executing the code on the authoring machine. MDN describes the Set-Cookie/Cookie flow but not this output."
@@ -89,7 +89,7 @@
       "verified_by": "Wheel flask-3.1.3-py3-none-any.whl downloaded with pip and extracted into a fresh directory; flask/sessions.py read as text (docstring of SecureCookieSessionInterface: 'The default session interface that stores sessions in signed cookies'); no Flask code was run and the documentation page was not opened."
     }
   ],
-  "design_notes_vi": "Một thẻ nêu lý do, hai nhánh cookie và session theo nơi lưu dữ liệu, thẻ cuối nói hệ quả (mã sai và mã bị lộ). Không dùng ảnh nguồn.",
+  "design_notes_vi": "Một thẻ nêu lý do, hai nhánh cookie và session theo nơi lưu dữ liệu, thẻ cuối nói hệ quả (mã bừa và mã bị lộ). Không dùng ảnh nguồn.",
   "source_deviations": [
     "Source treats a session as data stored on the server; the lesson scopes that to server-side sessions because client-side sessions (Flask's default signed cookie) exist. Source says sessions are more secure because data is not accessed directly by the client; the lesson narrows that to the data itself and adds that the session id remains a secret, citing MDN's session-fixation advice.",
     "Source says users 'can choose to ban cookies'; the lesson does not repeat it (unchecked and not needed for the distinction)."

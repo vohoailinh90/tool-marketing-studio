@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 720" width="320" height="720" role="img" aria-labelledby="title desc">
 <title id="title">Cookie và session: dữ liệu nằm ở đâu</title>
-<desc id="desc">HTTP không nhớ ai, nên cần một cách nhận ra người dùng qua nhiều yêu cầu. Hai nhánh. Cookie: máy chủ gửi Set-Cookie, trình duyệt lưu giá trị và gửi lại trong tiêu đề Cookie; dữ liệu nằm ở trình duyệt. Session phía máy chủ: máy chủ tạo một mã ngẫu nhiên, cất dữ liệu ở bên mình, chỉ đưa mã cho trình duyệt, thường qua một cookie. Thẻ cuối: mã session sai thì máy chủ không tìm thấy dữ liệu, nhưng ai lấy được mã đúng thì dùng được session đó.</desc>
+<desc id="desc">HTTP không nhớ ai, nên cần một cách nhận ra người dùng qua nhiều yêu cầu. Hai nhánh. Cookie: máy chủ gửi Set-Cookie, trình duyệt lưu giá trị và gửi lại trong tiêu đề Cookie; dữ liệu nằm ở trình duyệt. Session phía máy chủ: máy chủ tạo một mã ngẫu nhiên, cất dữ liệu ở bên mình, chỉ đưa mã cho trình duyệt, thường qua một cookie. Thẻ cuối: mã session bừa, không trùng phiên nào, thì máy chủ không tìm thấy dữ liệu, nhưng ai lấy được mã đúng thì dùng được session đó.</desc>
 <rect width="320" height="720" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="30" font-size="21" font-weight="bold">COOKIE VÀ</text>
@@ -26,7 +26,7 @@
 <text x="29" y="551" font-size="16" font-weight="normal">(thường qua cookie).</text>
 <rect x="16" y="582" width="288" height="124" rx="12" fill="#fee2e2" stroke="#94a3b8"/>
 <text x="29" y="611" font-size="16" font-weight="bold">Hệ quả</text>
-<text x="29" y="639" font-size="16" font-weight="normal">Mã sai: không tìm thấy dữ liệu.</text>
+<text x="29" y="639" font-size="16" font-weight="normal">Mã bừa: không tìm thấy dữ liệu.</text>
 <text x="29" y="663" font-size="16" font-weight="normal">Ai lấy được mã đúng thì dùng</text>
 <text x="29" y="687" font-size="16" font-weight="normal">được phiên.</text>
 </g></svg>

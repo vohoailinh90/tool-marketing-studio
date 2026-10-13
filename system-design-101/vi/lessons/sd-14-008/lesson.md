@@ -3,7 +3,7 @@
 **Cookie và session đều giúp máy chủ nhận ra bạn qua nhiều yêu cầu HTTP, nhưng chúng khác nhau ở chỗ dữ liệu nằm ở đâu.**
 Với cookie, dữ liệu nằm trong trình duyệt. Với session phía máy chủ (loại bài này nói tới), dữ liệu nằm trên máy chủ và trình duyệt chỉ cầm một mã để tìm ra nó. Cũng có session phía client: giao diện session mặc định của Flask lưu dữ liệu phiên trong một cookie có chữ ký, tức dữ liệu nằm ở trình duyệt; bài không bàn loại này.
 
-![Bốn thẻ xếp dọc, chia thành hai nhánh bằng hai nhãn. Thẻ đầu: HTTP không nhớ ai, nên cần một cách nhận ra người dùng qua nhiều yêu cầu. Hai nhánh. Cookie: máy chủ gửi Set-Cookie, trình duyệt lưu giá trị và gửi lại trong tiêu đề Cookie, dữ liệu nằm ở trình duyệt. Session phía máy chủ: máy chủ tạo một mã ngẫu nhiên, cất dữ liệu ở bên mình, chỉ đưa mã cho trình duyệt, thường qua một cookie. Thẻ cuối là hệ quả: mã session sai thì máy chủ không tìm thấy dữ liệu, nhưng ai lấy được mã đúng thì dùng được session đó.](../../diagrams/sd-14-008-main.svg)
+![Bốn thẻ xếp dọc, chia thành hai nhánh bằng hai nhãn. Thẻ đầu: HTTP không nhớ ai, nên cần một cách nhận ra người dùng qua nhiều yêu cầu. Hai nhánh. Cookie: máy chủ gửi Set-Cookie, trình duyệt lưu giá trị và gửi lại trong tiêu đề Cookie, dữ liệu nằm ở trình duyệt. Session phía máy chủ: máy chủ tạo một mã ngẫu nhiên, cất dữ liệu ở bên mình, chỉ đưa mã cho trình duyệt, thường qua một cookie. Thẻ cuối là hệ quả: mã session bừa, không trùng phiên nào, thì máy chủ không tìm thấy dữ liệu, nhưng ai lấy được mã đúng thì dùng được session đó.](../../diagrams/sd-14-008-main.svg)
 
 ## Đọc hình
 
@@ -12,7 +12,7 @@ Với cookie, dữ liệu nằm trong trình duyệt. Với session phía máy c
 **Cookie.** Máy chủ trả tiêu đề `Set-Cookie`; trình duyệt lưu lại và gửi giá trị đó trong tiêu đề `Cookie` ở các yêu cầu sau tới cùng trang. Dữ liệu nằm ở trình duyệt, nên dung lượng bị giới hạn (thường khoảng 4 KB mỗi cookie theo MDN), và theo mặc định người dùng nhìn thấy được và đổi được giá trị cookie.
 
 **Session phía máy chủ.** Máy chủ tạo một mã ngẫu nhiên, lưu dữ liệu của phiên (ví dụ người dùng đã đăng nhập, giỏ hàng) ở phía mình, và đưa mã cho trình duyệt, thường bằng một cookie. Các yêu cầu sau mang mã đó để máy chủ tìm lại dữ liệu.
-Khi chạy thử, yêu cầu có mã đúng nhận lại dữ liệu phiên; mã bị đổi hoặc không có cookie thì máy chủ không tìm thấy gì.
+Khi chạy thử, yêu cầu có mã đúng nhận lại dữ liệu phiên; mã bị đổi thành một giá trị bừa hoặc không có cookie thì máy chủ không tìm thấy gì.
 
 ## Giới hạn cần nhớ
 
@@ -26,7 +26,7 @@ Một trang đặt giỏ hàng trong cookie và một trang khác đặt giỏ h
 <details>
 <summary>Xem đáp án</summary>
 
-Giỏ hàng trong cookie nằm ở trình duyệt, nên người dùng có thể đọc và sửa nó; máy chủ không nên tin giá trị đó mà không kiểm tra. Giỏ hàng trong session phía máy chủ nằm trên máy chủ, người dùng chỉ cầm mã, nên không sửa trực tiếp được nội dung, và đổi mã thành giá trị khác chỉ làm máy chủ không tìm thấy phiên (đã chạy thử).
+Giỏ hàng trong cookie nằm ở trình duyệt, nên người dùng có thể đọc và sửa nó; máy chủ không nên tin giá trị đó mà không kiểm tra. Giỏ hàng trong session phía máy chủ nằm trên máy chủ, người dùng chỉ cầm mã, nên không sửa trực tiếp được nội dung, và đổi mã thành một giá trị bừa không trùng phiên nào đang có thì máy chủ không tìm thấy phiên (đã chạy thử); còn đổi thành mã của một phiên khác đang hoạt động thì sẽ chọn đúng phiên đó (suy luận của người biên soạn, chưa chạy thử).
 Nhưng nếu ai đó lấy được mã đúng, họ dùng được phiên đó: bảo mật của session dồn vào việc giữ kín mã.
 
 </details>

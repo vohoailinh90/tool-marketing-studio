@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 692" width="320" height="692" role="img" aria-labelledby="title desc">
+<title id="title">Alice (Outlook) gửi cho Bob (Gmail)</title>
+<desc id="desc">Alice nộp thư cho máy chủ Outlook. Máy chủ tra MX và chuyển thư bằng SMTP tới Gmail. Máy chủ nhận kiểm tra nguồn gửi và lọc spam, lưu thư cùng chỉ mục và nhãn, rồi Bob mở ứng dụng và đồng bộ thư.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="692" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="21" font-weight="bold">OUTLOOK → GMAIL</text>
+<rect x="16" y="46" width="288" height="68" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="29" y="75" font-size="16" font-weight="bold">1 · Alice nộp thư</text>
+<text x="29" y="99" font-size="16" font-weight="normal">Ứng dụng → máy chủ Outlook</text>
+<line x1="160" y1="115" x2="160" y2="141" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="144" width="288" height="68" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="29" y="173" font-size="16" font-weight="bold">2 · Tra MX của Gmail</text>
+<text x="29" y="197" font-size="16" font-weight="normal">Biết máy chủ nhận thư</text>
+<line x1="160" y1="213" x2="160" y2="239" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="242" width="288" height="68" rx="12" fill="#e2e8f0" stroke="#94a3b8"/>
+<text x="29" y="271" font-size="16" font-weight="bold">3 · Chuyển bằng SMTP</text>
+<text x="29" y="295" font-size="16" font-weight="normal">Giữa hai nhà cung cấp</text>
+<line x1="160" y1="311" x2="160" y2="337" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="340" width="288" height="68" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="29" y="369" font-size="16" font-weight="bold">4 · Máy chủ nhận kiểm tra</text>
+<text x="29" y="393" font-size="16" font-weight="normal">Nguồn gửi, lọc spam và mã độc</text>
+<line x1="160" y1="409" x2="160" y2="435" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="438" width="288" height="68" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="29" y="467" font-size="16" font-weight="bold">5 · Lưu thư cho Bob</text>
+<text x="29" y="491" font-size="16" font-weight="normal">Nội dung, chỉ mục, nhãn</text>
+<line x1="160" y1="507" x2="160" y2="533" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="536" width="288" height="92" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="29" y="565" font-size="16" font-weight="bold">6 · Bob mở ứng dụng</text>
+<text x="29" y="589" font-size="16" font-weight="normal">Đồng bộ qua IMAP/POP hoặc</text>
+<text x="29" y="613" font-size="16" font-weight="normal">giao diện riêng</text>
+<text x="16" y="656" font-size="16" font-weight="normal">Ví dụ thiết kế, không phải kiến trúc</text>
+<text x="16" y="680" font-size="16" font-weight="normal">nội bộ thật.</text>
+</g></svg>

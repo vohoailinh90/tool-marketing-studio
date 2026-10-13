@@ -1,0 +1,67 @@
+{
+  "id": "sd-12-001",
+  "title_vi": "AirTag tìm đồ thất lạc bằng cách nào?",
+  "language": "vi",
+  "kind": "process",
+  "content_status": "draft",
+  "source_ref": "sd-12-001",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/how-do-airtags-work.md",
+    "blob_sha": "ecf50a67a55346fc38d4b5d2b4d275f9d05a6377",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-airtags-work.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "1ff34e7a0526d35f9b73f06456b51cf5cfd2e0bce706c9559fc68ec5e876c1c5",
+    "retrieved_body_bytes": 1293
+  },
+  "diagram": "../diagrams/sd-12-001-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "official_sources_not_reachable_from_authoring_environment"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "not_yet_reviewed"
+    },
+    "mobile": {
+      "status": "pending"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "AirTag phát Bluetooth Low Energy và không tự xác định vị trí bằng GPS.",
+      "sources": [
+        "https://developer.apple.com/find-my/"
+      ]
+    },
+    {
+      "claim_vi": "Thiết bị Apple gần đó mã hóa vị trí của chính nó bằng khóa công khai lấy từ tín hiệu rồi gửi lên máy chủ; chỉ chủ có khóa riêng để giải mã.",
+      "sources": [
+        "https://support.apple.com/guide/security/welcome/web"
+      ]
+    },
+    {
+      "claim_vi": "Khóa công khai trong tín hiệu thay đổi theo thời gian.",
+      "sources": [
+        "https://support.apple.com/guide/security/welcome/web"
+      ]
+    }
+  ],
+  "source_deviations": [
+    "Không giữ cụm “anonymously and securely” của nguồn như một kết luận; bài mô tả mã hóa bằng khóa công khai ở mức khái niệm.",
+    "Bài thêm một câu về cảnh báo AirTag lạ; nguồn chỉ nêu giới hạn về mật độ thiết bị Apple."
+  ],
+  "design_notes_vi": "Năm thẻ dọc theo đường đi của tín hiệu; thẻ 3 và 4 nhấn mạnh mã hóa trước khi lên máy chủ.",
+  "editorial_note_vi": "Bản nháp độc lập viết từ kiến thức kỹ thuật chung; đọc bài nguồn nhưng chưa mở tài liệu chính thức nên các claim chưa được kiểm chứng. Chưa review kỹ thuật, chưa user testing, chưa phê duyệt phát hành."
+}

@@ -30,7 +30,7 @@ Không: tên đối tượng chỉ được tra ra nhờ mục siêu dữ liệu
 <details>
 <summary>Xem sâu hơn: đối tượng không sửa tại chỗ, tải lên nhiều phần</summary>
 
-- **Dữ liệu đối tượng không được sửa tại chỗ:** đổi nội dung nghĩa là ghi một đối tượng mới thay cho đối tượng cũ. Siêu dữ liệu thì cập nhật được.
+- **Dữ liệu đối tượng không được sửa tại chỗ:** đổi nội dung nghĩa là ghi một đối tượng mới thay cho đối tượng cũ. Trong mô hình thiết kế ở trên, bản ghi siêu dữ liệu nằm ở kho riêng nên cập nhật được; ở S3 thật, đổi siêu dữ liệu của một đối tượng cũng cần sao chép hoặc ghi đè đối tượng (và có thể tạo phiên bản mới). Thẻ gắn (tag) của S3 là thứ khác, có thao tác riêng.
 - **Tải lên nhiều phần:** tệp lớn thường được cắt thành các phần gửi song song và ghép lại, để khi lỗi chỉ gửi lại phần hỏng.
 - **Tính nhất quán:** sau khi ghi thành công, đọc lại phải thấy đúng dữ liệu mới là yêu cầu mà người dùng thường kỳ vọng; mỗi hệ thống tự nêu cam kết của mình.
 - **Tên thùng duy nhất** trong toàn dịch vụ để địa chỉ truy cập không trùng.

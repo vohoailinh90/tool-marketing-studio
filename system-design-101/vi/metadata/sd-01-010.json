@@ -113,6 +113,19 @@
       ]
     },
     {
+      "claim_vi": "Flexbox chỉ xuống hàng khi đặt flex-wrap: wrap; Grid có thể tự điền cột bằng auto-fit hoặc auto-fill.",
+      "sources": [
+        "https://www.w3.org/TR/css-flexbox-1/",
+        "https://www.w3.org/TR/css-grid-1/"
+      ]
+    },
+    {
+      "claim_vi": "HTML Standard nói bảng dùng cho dữ liệu dạng bảng và không được dùng để dàn trang.",
+      "sources": [
+        "https://html.spec.whatwg.org/multipage/tables.html"
+      ]
+    },
+    {
       "claim_vi": "transition làm giá trị đổi dần; @keyframes cùng animation mô tả chuỗi trạng thái chạy theo thời gian; không cần JavaScript để chạy.",
       "sources": [
         "https://www.w3.org/TR/css-transitions-1/",
@@ -138,9 +151,10 @@
       ]
     },
     {
-      "claim_vi": "display: none khiến phần tử không tạo hộp hiển thị nhưng không xóa nó khỏi HTML hay DOM.",
+      "claim_vi": "display: none khiến phần tử không tạo hộp hiển thị nhưng không xóa nó khỏi HTML hay DOM; phần tử đó thường cũng bị trình đọc màn hình bỏ qua.",
       "sources": [
-        "https://www.w3.org/TR/css-display-3/"
+        "https://www.w3.org/TR/css-display-3/",
+        "https://developer.mozilla.org/en-US/docs/Web/CSS/display"
       ]
     },
     {
@@ -158,12 +172,12 @@
   ],
   "source_deviations": [
     "Nguồn gọi CSS là “markup language”; bài gọi là ngôn ngữ biểu định kiểu (style sheet language), vì đánh dấu là việc của HTML.",
-    "Nguồn nói trọng số quyết định bởi loại bộ chọn và thứ tự nguồn; bài nêu đây là một chuỗi tiêu chí so lần lượt (nguồn gốc và importance, kiểu gắn trực tiếp, lớp xếp tầng, độ đặc hiệu, thứ tự xuất hiện), tiêu chí sau chỉ xét khi trước bằng nhau.",
+    "Nguồn nói trọng số quyết định bởi loại bộ chọn và thứ tự nguồn; bài nêu đây là một chuỗi tiêu chí so lần lượt (nguồn gốc và importance, ngữ cảnh, kiểu gắn trực tiếp, lớp xếp tầng, độ đặc hiệu, thứ tự xuất hiện), tiêu chí sau chỉ xét khi trước bằng nhau.",
     "Nguồn nói “CSS3 giới thiệu hoạt ảnh”; bài nói transition và animation là các mô-đun riêng và không có một phiên bản CSS3 duy nhất.",
     "Nguồn nói lập trình viên không còn phải dựa vào bảng hay float để dàn trang; bài nói hai thứ này không còn là cách dàn trang chính, còn bảng vẫn đúng cho dữ liệu dạng bảng.",
     "Nguồn nói đổi bảng màu chỉ cần sửa file CSS; bài nói điều đó đúng khi các trang dùng chung một file CSS riêng, và nêu biến CSS.",
     "Bài thêm ba cách gắn CSS vào trang, ví dụ bộ chọn lớp và mã, kế thừa, biến CSS, thẻ meta viewport, prefers-reduced-motion, giới hạn (tương thích, !important, chi phí, display: none không phải bảo mật); nguồn không có các phần này.",
-    "Nguồn nói chung về thiết kế đáp ứng; bài nêu các cơ chế cụ thể: đơn vị tương đối, media query, Flexbox và Grid tự xuống hàng, meta viewport."
+    "Nguồn nói chung về thiết kế đáp ứng; bài nêu các cơ chế cụ thể: đơn vị tương đối, media query, Flexbox và Grid cho xuống hàng khi hết chỗ, meta viewport."
   ],
   "design_notes_vi": "Hình dọc sáu thẻ không mũi tên (sáu mảng của CSS, không phải một dây chuyền): tách nội dung và kiểu, một thẻ vẽ riêng cấu tạo luật p { color: blue; }, xếp tầng, bố cục, chuyển động, đáp ứng; chú thích cuối nhắc độ đặc hiệu được xét trước thứ tự viết.",
   "editorial_note_vi": "Bản nháp độc lập viết từ kiến thức kỹ thuật chung; đọc bài nguồn nhưng chưa mở tài liệu chính thức nên các claim chưa được kiểm chứng. Chưa review kỹ thuật, chưa user testing, chưa phê duyệt phát hành."

@@ -54,7 +54,7 @@
       "source": "https://docs.docker.com/get-started/docker-overview/"
     },
     {
-      "claim_vi": "docker system prune xóa container đã dừng, mạng không dùng, image dangling và cache; volume chỉ bị xóa khi thêm --volumes.",
+      "claim_vi": "docker system prune xóa container đã dừng, mạng không dùng, image dangling và cache; thêm --volumes chỉ xóa thêm volume ẩn danh không dùng, volume đặt tên cần docker volume prune --all.",
       "source": "https://docs.docker.com/reference/cli/docker/system/prune/"
     },
     {

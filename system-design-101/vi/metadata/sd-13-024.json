@@ -1,6 +1,6 @@
 {
   "id": "sd-13-024",
-  "title_vi": "Vì sao Nginx nhanh và phổ biến",
+  "title_vi": "Nginx làm reverse proxy cho một API: năm chỗ hay sai",
   "language": "vi",
   "kind": "comparison",
   "content_status": "draft",
@@ -45,17 +45,25 @@
   },
   "claims": [
     {
-      "claim_vi": "Nginx có master process đọc cấu hình và các worker process xử lý request.",
-      "source": "https://nginx.org/en/docs/beginners_guide.html"
+      "claim_vi": "Khi proxy_pass có URI, phần khớp của location được thay bằng URI đó; không có URI thì chuyển nguyên đường dẫn.",
+      "source": "https://nginx.org/en/docs/http/ngx_http_proxy_module.html"
     },
     {
-      "claim_vi": "Reload cấu hình khiến worker cũ ngừng nhận kết nối mới và kết thúc sau khi xử lý xong.",
+      "claim_vi": "proxy_read_timeout mặc định là 60 giây.",
+      "source": "https://nginx.org/en/docs/http/ngx_http_proxy_module.html"
+    },
+    {
+      "claim_vi": "Giữ kết nối tới backend cần keepalive trong upstream, proxy_http_version 1.1 và xóa header Connection.",
+      "source": "https://nginx.org/en/docs/http/ngx_http_upstream_module.html"
+    },
+    {
+      "claim_vi": "nginx -t kiểm tra cấu hình; reload làm worker cũ xử lý nốt kết nối rồi thoát.",
       "source": "https://nginx.org/en/docs/beginners_guide.html"
     }
   ],
   "source_deviations": [
-    "Nguồn mô tả kiến trúc rồi bốn tính năng; bài tổ chức theo tình huống vận hành."
+    "Nguồn mô tả kiến trúc master–worker và bốn tính năng; bài bỏ danh mục đó, tổ chức quanh cấu hình reverse proxy cho một API và các chỗ hay sai."
   ],
-  "design_notes_vi": "Bốn thẻ tình huống kèm lựa chọn thiết kế.",
+  "design_notes_vi": "Năm thẻ chỗ hay sai khi dùng Nginx làm reverse proxy.",
   "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
 }

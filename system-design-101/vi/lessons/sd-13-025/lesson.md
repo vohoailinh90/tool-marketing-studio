@@ -2,7 +2,7 @@
 
 Cách dễ hiểu kiến trúc cụm là đi theo một lệnh `kubectl apply` tạo Deployment và xem lần lượt thành phần nào làm gì.
 
-![Luồng năm bước: API server nhận yêu cầu và lưu vào etcd, controller tạo Pod theo khai báo, scheduler chọn node, kubelet trên node chạy container, kube-proxy giúp Service tới đúng Pod.](../../diagrams/sd-13-025-main.svg)
+![Luồng năm bước: API server nhận yêu cầu và lưu vào etcd, controller tạo Pod theo khai báo, scheduler chọn node, kubelet trên node chạy container, kube-proxy (thành phần mặc định, có thể thay) giúp Service tới đúng Pod.](../../diagrams/sd-13-025-main.svg)
 
 **Đọc hình:** màu tím là mặt phẳng điều khiển, xanh là thành phần trên node; mọi thành phần nói chuyện qua API server.
 
@@ -28,7 +28,7 @@ Chạy một mặt phẳng điều khiển trên một máy thì không chịu �
 - **etcd** lưu trạng thái cụm nên cần sao lưu.
 - **Controller manager** chạy nhiều controller; mỗi cái là vòng lặp so trạng thái mong muốn với hiện tại. Với Deployment, controller của Deployment tạo hoặc cập nhật ReplicaSet, rồi controller của ReplicaSet tạo Pod; nếu Deployment có mà thiếu Pod, hãy xem ReplicaSet ở giữa.
 - **kubelet** nhận mô tả Pod gán cho node của nó và bảo đảm container chạy đúng.
-- **kube-proxy** lập luật mạng trên node để Service tới đúng Pod.
+- **kube-proxy** là thành phần mặc định lập luật mạng trên node để Service tới đúng Pod; một số plugin mạng (như Cilium) có thể thay nó nên nó là thành phần tùy chọn.
 
 </details>
 

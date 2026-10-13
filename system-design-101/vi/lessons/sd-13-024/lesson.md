@@ -1,37 +1,61 @@
-# Vì sao Nginx nhanh và phổ biến
+# Nginx làm reverse proxy cho một API: năm chỗ hay sai
 
-Cách dễ nhớ Nginx là qua bốn tình huống vận hành, mỗi tình huống cho thấy một lựa chọn thiết kế của nó.
+Cách học Nginx nhanh nhất là đặt nó trước một API và xem chỗ nào hay sai: đường dẫn, địa chỉ client, timeout, kết nối tới backend và cách đổi cấu hình.
 
-![Bốn tình huống và lý do thiết kế: nhiều kết nối chờ chậm nhờ vòng lặp sự kiện, đổi cấu hình không rớt kết nối nhờ master và worker, máy chủ phía sau quá tải nhờ reverse proxy chia tải và cache, HTTPS nhờ kết thúc TLS ở rìa.](../../diagrams/sd-13-024-main.svg)
+![Năm chỗ hay sai khi dùng Nginx làm reverse proxy cho một API: dấu gạch chéo cuối của proxy_pass đổi đường dẫn, backend không thấy địa chỉ client thật, lỗi 502 và 504, mở lại kết nối tới backend liên tục, và đổi cấu hình mà không kiểm tra.](../../diagrams/sd-13-024-main.svg)
 
-**Đọc hình:** tình huống thứ hai và thứ nhất đến từ kiến trúc master–worker; hai tình huống sau là vai trò Nginx đảm nhận.
+**Đọc hình:** mỗi thẻ là một chỗ hay sai, không theo thứ tự; cấu hình mẫu nằm ở phần sâu.
 
 ## Nhìn hình thử trả lời
 
-Chạy `nginx -s reload` khi đang có kết nối: kết nối đang xử lý có bị cắt không?
+Với `location /api/ { proxy_pass http://backend/; }`, request tới `/api/users` đến backend với đường dẫn nào?
 
 <details>
 <summary>Xem đáp án</summary>
 
-Không cắt đột ngột. Master kiểm tra cấu hình mới, mở worker mới và yêu cầu worker cũ ngừng nhận kết nối mới rồi thoát sau khi xử lý xong kết nối hiện có.
+`/users`. Vì `proxy_pass` có phần URI (dấu `/` cuối), phần khớp `/api/` được thay bằng `/`. Nếu viết `proxy_pass http://backend;` không có URI thì backend nhận nguyên `/api/users`.
 
 </details>
 
 ## Giới hạn cần nhớ
 
-Vòng lặp sự kiện rất hợp với nhiều kết nối ít việc; thao tác nặng CPU hoặc chặn lâu trong một worker làm chậm các kết nối khác trên worker đó. Số worker thường đặt theo số lõi CPU.
+Cấu hình mẫu cần chỉnh theo ứng dụng của bạn, nhất là timeout và số kết nối giữ sẵn. Đây không phải hướng dẫn đầy đủ về bảo mật hay hiệu năng; luôn chạy `nginx -t` trước khi reload và thử trên môi trường phụ trước.
 
 <details>
 <summary>Xem sâu hơn</summary>
 
-- **Master** đọc cấu hình và quản lý worker; **worker** xử lý kết nối.
-- **Reverse proxy:** nhận request từ client, chuyển tới máy chủ phía sau, trả kết quả về; có thể chia tải giữa nhiều máy chủ.
-- **Cache nội dung:** lưu phản hồi để giảm tải cho máy chủ phía sau.
-- **Kết thúc TLS:** Nginx giải mã HTTPS rồi chuyển tiếp nội bộ, nên ứng dụng không phải lo chứng chỉ.
+```nginx
+upstream backend {
+    server 127.0.0.1:8080;
+    keepalive 32;
+}
+
+server {
+    listen 80;
+
+    location /api/ {
+        proxy_pass http://backend/;
+        proxy_http_version 1.1;
+        proxy_set_header Connection "";
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_read_timeout 30s;
+    }
+}
+```
+
+```bash
+nginx -t && nginx -s reload
+```
+
+- **Host:** mặc định Nginx gửi `$proxy_host` cho backend; muốn giữ tên miền client dùng thì đặt `Host $host`.
+- **X-Forwarded-For:** `$proxy_add_x_forwarded_for` nối địa chỉ client vào header sẵn có; backend chỉ nên tin header này khi nó đến từ proxy của bạn.
+- **keepalive:** giữ sẵn một số kết nối rảnh tới backend; cần `proxy_http_version 1.1` và xóa header `Connection` thì mới có tác dụng.
+- **Reload:** `nginx -s reload` nạp cấu hình mới; worker cũ xử lý nốt kết nối hiện có rồi thoát.
 
 </details>
 
 ## Nguồn đối chiếu
 
 - [ByteByteGo tại snapshot cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/why-is-nginx-so-popular.md).
-- Nginx: [hướng dẫn cơ bản](https://nginx.org/en/docs/beginners_guide.html), [kiến trúc, bài "Inside NGINX"](https://blog.nginx.org/blog/inside-nginx-how-we-designed-for-performance-scale).
+- Nginx: [ngx_http_proxy_module](https://nginx.org/en/docs/http/ngx_http_proxy_module.html), [ngx_http_upstream_module](https://nginx.org/en/docs/http/ngx_http_upstream_module.html), [tham số dòng lệnh](https://nginx.org/en/docs/switches.html), [hướng dẫn cơ bản](https://nginx.org/en/docs/beginners_guide.html).

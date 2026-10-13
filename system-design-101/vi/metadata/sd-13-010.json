@@ -50,7 +50,7 @@
   },
   "claims": [
     {
-      "claim_vi": "Kubernetes có các thành phần lõi như kube-apiserver, etcd, kube-scheduler, kube-controller-manager, kubelet và kube-proxy.",
+      "claim_vi": "Kubernetes có các thành phần lõi như kube-apiserver, etcd, kube-scheduler, kube-controller-manager, kubelet và container runtime; kube-proxy là thành phần tùy chọn.",
       "source": "https://kubernetes.io/docs/concepts/overview/components/"
     },
     {

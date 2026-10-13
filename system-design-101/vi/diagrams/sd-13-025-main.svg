@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 922" width="320" height="922" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 976" width="320" height="976" role="img" aria-labelledby="title desc">
 <title id="title">Kubernetes: từ lệnh apply đến container chạy</title>
-<desc id="desc">Luồng năm bước: API server nhận yêu cầu và lưu vào etcd, controller tạo Pod theo khai báo, scheduler chọn node, kubelet trên node chạy container, kube-proxy giúp Service tới đúng Pod.</desc>
+<desc id="desc">Luồng năm bước: API server nhận yêu cầu và lưu vào etcd, controller tạo Pod theo khai báo, scheduler chọn node, kubelet trên node chạy container, kube-proxy (thành phần mặc định, có thể thay) giúp Service tới đúng Pod.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="922" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<rect width="320" height="976" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="30" font-size="20" font-weight="bold">MỘT LỆNH APPLY</text>
 <text x="16" y="58" font-size="16" font-weight="normal">Đi qua các thành phần</text>
 <rect x="16" y="89" width="288" height="101" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
@@ -29,8 +29,10 @@
 <text x="30" y="705" font-size="16" font-weight="normal">Báo trạng thái về API</text>
 <text x="30" y="732" font-size="16" font-weight="normal">server</text>
 <line x1="160" y1="763" x2="160" y2="791" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
-<rect x="16" y="801" width="288" height="101" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
-<text x="30" y="829" font-size="16" font-weight="bold">5 · kube-proxy</text>
-<text x="30" y="856" font-size="16" font-weight="normal">Giúp Service chuyển traffic</text>
-<text x="30" y="883" font-size="16" font-weight="normal">tới Pod</text>
+<rect x="16" y="801" width="288" height="155" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="829" font-size="16" font-weight="bold">5 · kube-proxy (mặc</text>
+<text x="30" y="856" font-size="16" font-weight="bold">định)</text>
+<text x="30" y="883" font-size="16" font-weight="normal">Hiện thực Service trên node</text>
+<text x="30" y="910" font-size="16" font-weight="normal">Có thể được plugin mạng</text>
+<text x="30" y="937" font-size="16" font-weight="normal">thay</text>
 </g></svg>

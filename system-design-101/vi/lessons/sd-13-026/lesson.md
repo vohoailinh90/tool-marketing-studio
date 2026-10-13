@@ -13,7 +13,7 @@ Khi Docker báo lỗi, câu hỏi hữu ích là lỗi nằm ở đâu: giữa l
 <details>
 <summary>Xem đáp án</summary>
 
-Mặc định thì không: với các bản Docker Engine hiện nay volume chỉ bị xóa khi thêm `--volumes`. Dù vậy, nên xem `docker system df` và biết lệnh sẽ xóa gì trước khi chạy.
+Không, kể cả khi thêm `--volumes`: với các bản Docker Engine hiện nay cờ này chỉ xóa volume ẩn danh không dùng. Volume đặt tên như `dbdata` chỉ bị xóa bởi lệnh riêng (`docker volume prune --all` hoặc `docker volume rm`). Dù vậy, nên xem `docker system df` và biết lệnh sẽ xóa gì trước khi chạy.
 
 </details>
 

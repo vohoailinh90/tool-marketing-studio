@@ -20,7 +20,7 @@ Ví dụ tra `www.example.com`.
 
 ## Giới hạn cần nhớ
 
-Cache là lý do DNS nhanh, cũng là lý do thay đổi bản ghi không có hiệu lực tức thì: resolver có thể còn dùng câu trả lời cũ cho tới khi hết TTL. Vì vậy nên hạ TTL *trước* khi định đổi địa chỉ. Địa chỉ trong hình chỉ để minh họa.
+Cache là lý do DNS nhanh, cũng là lý do thay đổi bản ghi không có hiệu lực tức thì: resolver có thể còn dùng câu trả lời cũ cho tới khi hết TTL. Vì vậy nếu định đổi địa chỉ, hãy hạ TTL từ trước, sớm hơn ít nhất một khoảng TTL cũ. Địa chỉ trong hình chỉ để minh họa.
 
 ## Nhìn hình thử trả lời
 
@@ -51,4 +51,4 @@ Resolver của họ đã cache câu trả lời cũ và có thể dùng tới h�
 - [RFC 9499 — Thuật ngữ DNS](https://www.rfc-editor.org/rfc/rfc9499): resolver, máy chủ có thẩm quyền, TTL.
 - [Root Servers](https://root-servers.org/): danh sách và anycast.
 
-Đã đọc nguồn ngày 2026-10-13. Bài viết và hình được thiết kế độc lập; không giữ con số "20–120 ms" của bài nguồn vì thời gian phụ thuộc mạng và cache.
+Đã đọc nguồn ngày 2026-10-13; các tài liệu chuẩn nêu trên chưa được mở để đối chiếu trực tiếp trong lượt biên soạn này. Bài viết và hình được thiết kế độc lập.

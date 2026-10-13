@@ -35,7 +35,7 @@ Vị trí: thường không, vì gói vị trí mới hơn sẽ thay nó. Nhặt
 - **Chặn đầu hàng (head-of-line blocking):** TCP là một dòng byte có thứ tự, nên một gói mất làm các gói sau phải chờ dù đã tới.
 - **Trạng thái cuối cùng:** nhiều game gửi liên tục ảnh chụp trạng thái, nên mất một gói thì gói kế tiếp bù lại.
 - **QUIC:** giao thức trên UDP cung cấp nhiều luồng độc lập có gửi lại, giảm chặn đầu hàng giữa các luồng; game có thể dùng thư viện riêng hoặc QUIC tùy nhu cầu.
-- **Không giữ nguyên tên:** bài nguồn gọi cách làm là RUDP; đây không phải một chuẩn duy nhất.
+- **Không có chuẩn chung:** cách làm UDP tin cậy khác nhau giữa các thư viện (đôi khi gọi là RUDP); không có một chuẩn duy nhất cho mọi game.
 
 </details>
 
@@ -46,4 +46,4 @@ Vị trí: thường không, vì gói vị trí mới hơn sẽ thay nó. Nhặt
 - [Valve — Source Multiplayer Networking](https://developer.valvesoftware.com/wiki/Source_Multiplayer_Networking).
 - [RFC 8085 — Hướng dẫn dùng UDP](https://www.rfc-editor.org/rfc/rfc8085) và [RFC 9000 — QUIC](https://www.rfc-editor.org/rfc/rfc9000).
 
-Đã đọc nguồn ngày 2026-10-13. Bài viết và hình được thiết kế độc lập; không giữ câu "much lower latency than TCP" của bài nguồn vì còn tùy cách thiết kế.
+Đã đọc nguồn ngày 2026-10-13; các tài liệu chuẩn nêu trên chưa được mở để đối chiếu trực tiếp trong lượt biên soạn này. Bài viết và hình được thiết kế độc lập.

@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 702" width="320" height="702" role="img" aria-labelledby="title desc">
 <title id="title">Tám loại bản ghi DNS thường gặp</title>
-<desc id="desc">A trỏ tên tới địa chỉ IPv4; AAAA trỏ tới IPv6; CNAME đặt tên này là bí danh của tên khác; MX chỉ máy chủ nhận thư; NS chỉ máy chủ tên của vùng; TXT chứa văn bản như xác minh miền hay chính sách thư; PTR tra ngược từ địa chỉ IP ra tên; SRV chỉ máy chủ và cổng của một dịch vụ.</desc>
+<desc id="desc">Ba khung dọc: A, AAAA và CNAME trỏ tên tới địa chỉ hoặc tên khác; MX và NS chỉ máy chủ nhận thư và máy chủ tên của vùng; TXT, PTR và SRV chứa văn bản, tra ngược địa chỉ ra tên, và chỉ máy chủ cùng cổng của một dịch vụ.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="702" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">

@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 705" width="320" height="705" role="img" aria-labelledby="title desc">
 <title id="title">Chương trình, tiến trình và luồng</title>
-<desc id="desc">Chương trình là file nằm trên đĩa. Khi chạy, hệ điều hành tạo tiến trình có không gian bộ nhớ riêng. Một tiến trình có một hoặc nhiều luồng; các luồng dùng chung bộ nhớ của tiến trình nhưng mỗi luồng có stack và thanh ghi riêng. Hai tiến trình tách biệt hơn, còn các luồng chia sẻ dữ liệu dễ hơn nhưng phải cẩn thận với race condition.</desc>
+<desc id="desc">Ba khung dọc: chương trình là file chạy được trên đĩa; tiến trình đang chạy có không gian bộ nhớ riêng chứa hai luồng, mỗi luồng có stack và thanh ghi riêng, cùng dùng chung mã, heap và file đang mở; so sánh nhanh về bộ nhớ, lỗi và chi phí chuyển ngữ cảnh.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="705" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">

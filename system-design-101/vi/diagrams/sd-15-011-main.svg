@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 706" width="320" height="706" role="img" aria-labelledby="title desc">
 <title id="title">Tám giao thức mạng và chúng chạy trên gì</title>
-<desc id="desc">HTTP, HTTPS, WebSocket, SMTP và FTP là giao thức tầng ứng dụng thường chạy trên TCP. HTTPS là HTTP trong kênh TLS. WebSocket bắt đầu bằng một yêu cầu HTTP rồi chuyển sang kênh hai chiều. FTP dùng kênh điều khiển và kênh dữ liệu riêng. UDP gửi datagram không kết nối. HTTP/3 chạy trên QUIC, và QUIC chạy trên UDP.</desc>
+<desc id="desc">Ba khung dọc: trên TCP gồm HTTP lấy tài nguyên web, HTTPS là HTTP trong TLS, WebSocket bắt tay bằng HTTP rồi hai chiều, SMTP chuyển thư, FTP chuyển file bằng kênh điều khiển và kênh dữ liệu; trên UDP gồm UDP gửi gói không kết nối và HTTP/3 chạy trên QUIC trên UDP; nền gồm TCP kết nối, giao đủ, đúng thứ tự.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="706" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
@@ -13,8 +13,8 @@
 <text x="30" y="166" font-size="16" font-weight="bold">HTTPS</text>
 <text x="114" y="166" font-size="16" font-weight="normal">HTTP trong TLS</text>
 <text x="30" y="193" font-size="16" font-weight="bold">WS</text>
-<text x="80" y="193" font-size="16" font-weight="normal">hai chiều, bắt tay</text>
-<text x="80" y="220" font-size="16" font-weight="normal">bằng HTTP</text>
+<text x="80" y="193" font-size="16" font-weight="normal">WebSocket: hai chiều,</text>
+<text x="80" y="220" font-size="16" font-weight="normal">bắt tay bằng HTTP</text>
 <text x="30" y="247" font-size="16" font-weight="bold">SMTP</text>
 <text x="102" y="247" font-size="16" font-weight="normal">chuyển thư điện tử</text>
 <text x="30" y="274" font-size="16" font-weight="bold">FTP</text>

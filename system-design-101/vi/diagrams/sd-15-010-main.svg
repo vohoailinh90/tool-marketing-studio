@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 917" width="320" height="917" role="img" aria-labelledby="title desc">
 <title id="title">Câu SQL được hiểu theo thứ tự nào</title>
-<desc id="desc">Câu SQL được viết bắt đầu bằng SELECT nhưng được hiểu theo thứ tự logic: FROM và JOIN, WHERE, GROUP BY, HAVING, SELECT cùng alias, DISTINCT, ORDER BY, rồi LIMIT. Vì vậy WHERE không dùng được alias tạo ở SELECT. Bộ tối ưu có thể chạy theo thứ tự khác miễn kết quả giống nhau.</desc>
+<desc id="desc">Ba khung dọc: thứ tự viết SELECT, FROM, WHERE, GROUP BY, HAVING, ORDER BY, LIMIT; thứ tự logic là FROM và JOIN, WHERE, GROUP BY, HAVING, SELECT cùng alias, DISTINCT, ORDER BY, LIMIT; sau đó hệ thống phân tích, tối ưu và chạy, và có thể chọn cách chạy khác miễn kết quả không đổi.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="917" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">

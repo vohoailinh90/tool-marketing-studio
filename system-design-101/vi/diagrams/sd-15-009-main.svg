@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 825" width="320" height="825" role="img" aria-labelledby="title desc">
 <title id="title">Mô hình OSI và việc đóng gói dữ liệu</title>
-<desc id="desc">OSI có bảy tầng: ứng dụng, trình bày, phiên, giao vận, mạng, liên kết dữ liệu và vật lý. Khi gửi, dữ liệu HTTP được thêm tiêu đề TCP, rồi tiêu đề IP, rồi tiêu đề và phần cuối Ethernet trước khi thành bit. Bên nhận gỡ từng lớp theo chiều ngược lại.</desc>
+<desc id="desc">Hai khung dọc: bảy tầng OSI từ ứng dụng, trình bày, phiên, giao vận, mạng, liên kết đến vật lý; khi gửi đi, dữ liệu HTTP lần lượt được thêm tiêu đề TCP, tiêu đề IP, rồi tiêu đề và phần cuối Ethernet; bên nhận gỡ ngược lại từng lớp. Địa chỉ MAC đổi qua từng chặng, địa chỉ IP đi suốt đường.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="825" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">

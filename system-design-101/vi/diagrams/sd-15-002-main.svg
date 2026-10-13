@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 802" width="320" height="802" role="img" aria-labelledby="title desc">
 <title id="title">IPv4 và IPv6 khác nhau ở đâu</title>
-<desc id="desc">IPv4 dùng địa chỉ 32 bit, khoảng 4,3 tỷ giá trị, ví dụ 192.0.2.12. IPv6 dùng 128 bit, ví dụ 2001:db8::1. Tiêu đề IPv4 tối thiểu 20 byte và có checksum; tiêu đề IPv6 cố định 40 byte, không có checksum và mở rộng bằng extension header. Dual stack chạy cả hai giao thức cùng lúc để chuyển đổi dần.</desc>
+<desc id="desc">Ba khung dọc: địa chỉ IPv4 32 bit ví dụ 192.0.2.12 và IPv6 128 bit ví dụ 2001:db8::1; tiêu đề IPv4 từ 20 byte có checksum, tiêu đề IPv6 đúng 40 byte không có checksum; dual stack chạy cả hai giao thức và dùng bản ghi A hoặc AAAA; IPv6 không tự làm mạng nhanh hơn.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="802" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">

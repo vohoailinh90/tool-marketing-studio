@@ -33,8 +33,7 @@
     },
     "mobile": {
       "status": "pending",
-      "reason": "figure_text_fit_checked_by_script; whole_lesson_browser_check_not_done",
-      "minimum_diagram_text_px_at_320": 14.4
+      "reason": "figure drawn with 16px text in a 320px-wide viewBox (about 14.4px at a 320px screen); no whole-lesson browser check and no automated check in the repository yet"
     },
     "user_testing": {
       "status": "not_performed"
@@ -61,7 +60,7 @@
   "design_notes_vi": "Ba khung dọc: vòng chờ, bốn điều kiện, cách xử lý. Sơ đồ tự thiết kế, không dùng ảnh nguồn.",
   "editorial_note_vi": "Viết độc lập từ kiến thức và tiêu chuẩn kỹ thuật theo DECISIONS.md; claim chưa được đối chiếu trực tiếp với tài liệu chuẩn nên chờ review kỹ thuật. Chưa thử người học hoặc phê duyệt phát hành.",
   "source_deviations": [
-    "Timeout được xếp vào xử lý thay vì phòng tránh như nguồn.",
+    "Timeout được xếp vào xử lý thay vì phòng ngừa như nguồn.",
     "Ví dụ hai giao dịch chuyển tiền tự thiết kế."
   ]
 }

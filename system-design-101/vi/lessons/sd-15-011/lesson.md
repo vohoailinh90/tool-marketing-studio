@@ -26,7 +26,7 @@ Một ứng dụng chat mở WebSocket tới server. Kết nối bắt đầu b�
 <details>
 <summary>Xem đáp án</summary>
 
-Bắt đầu bằng một yêu cầu HTTP xin nâng cấp lên WebSocket; sau khi được chấp nhận, hai bên trao đổi khung WebSocket trên cùng kết nối TCP (thường trong TLS nếu dùng wss).
+Với HTTP/1.1, bắt đầu bằng một yêu cầu HTTP xin nâng cấp lên WebSocket (trên HTTP/2 dùng cách khác: CONNECT mở rộng); sau khi được chấp nhận, hai bên trao đổi khung WebSocket trên cùng kết nối TCP (thường trong TLS nếu dùng wss).
 
 </details>
 
@@ -44,7 +44,7 @@ Bắt đầu bằng một yêu cầu HTTP xin nâng cấp lên WebSocket; sau kh
 
 - [ByteByteGo tại snapshot cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/explaining-8-popular-network-protocols-in-1-diagram.md).
 - [RFC 9110 — HTTP](https://www.rfc-editor.org/rfc/rfc9110), [RFC 9114 — HTTP/3](https://www.rfc-editor.org/rfc/rfc9114), [RFC 9000 — QUIC](https://www.rfc-editor.org/rfc/rfc9000).
-- [RFC 6455 — WebSocket](https://www.rfc-editor.org/rfc/rfc6455), [RFC 9293 — TCP](https://www.rfc-editor.org/rfc/rfc9293), [RFC 768 — UDP](https://www.rfc-editor.org/rfc/rfc768).
+- [RFC 6455 — WebSocket](https://www.rfc-editor.org/rfc/rfc6455), [RFC 8441](https://www.rfc-editor.org/rfc/rfc8441), [RFC 9293 — TCP](https://www.rfc-editor.org/rfc/rfc9293), [RFC 768 — UDP](https://www.rfc-editor.org/rfc/rfc768).
 - [RFC 5321 — SMTP](https://www.rfc-editor.org/rfc/rfc5321), [RFC 959 — FTP](https://www.rfc-editor.org/rfc/rfc959), [RFC 8446 — TLS 1.3](https://www.rfc-editor.org/rfc/rfc8446).
 
-Đã đọc nguồn ngày 2026-10-13. Bài viết và hình được thiết kế độc lập; không giữ nhận định về VR của bài nguồn vì không có bằng chứng kèm theo.
+Đã đọc nguồn ngày 2026-10-13; các tài liệu chuẩn nêu trên chưa được mở để đối chiếu trực tiếp trong lượt biên soạn này. Bài viết và hình được thiết kế độc lập.

@@ -2,7 +2,7 @@
 
 **Chương trình dùng địa chỉ "logic"; RAM có địa chỉ vật lý.** Hệ điều hành cùng phần cứng phải dịch từ cái này sang cái kia. Phân trang và phân đoạn là hai cách chia bộ nhớ để làm việc đó.
 
-![Hai khung dọc: phân trang với địa chỉ 0x3A5C tách thành trang 3 và offset A5C, bảng trang cho khung 7 nên địa chỉ vật lý là 0x7A5C; phân đoạn với đoạn 2 có base 5000 và limit 800, offset 120 hợp lệ cho 0x5120, offset 900 vượt limit nên bị chặn.](../../diagrams/sd-15-001-main.svg)
+![Hai khung dọc: phân trang với địa chỉ 0x3A5C tách thành trang 3 và offset 0xA5C, bảng trang cho khung 7 nên địa chỉ vật lý là 0x7A5C; phân đoạn với đoạn 2 có base 0x5000 và limit 0x800, offset 0x120 hợp lệ cho 0x5120, offset 0x900 vượt limit nên bị chặn.](../../diagrams/sd-15-001-main.svg)
 
 ## Đọc hình
 
@@ -12,7 +12,7 @@
 
 ## Giới hạn cần nhớ
 
-Đây không phải cuộc thi có người thắng. Phân trang không có phân mảnh ngoài (khe hở lớn giữa các khối không dùng được) nhưng có phân mảnh trong: trang cuối của một vùng có thể thừa chỗ. Phân đoạn khớp với cấu trúc chương trình và dễ bảo vệ từng đoạn, nhưng các đoạn dài ngắn khác nhau để lại khe hở khi cấp phát và giải phóng. Hệ điều hành trên x86-64 hiện nay chủ yếu dựa vào phân trang.
+Đây không phải cuộc thi có người thắng. Phân trang không có phân mảnh ngoài (nhiều khe hở rải rác, quá nhỏ để dùng) nhưng có phân mảnh trong: trang cuối của một vùng có thể thừa chỗ. Phân đoạn khớp với cấu trúc chương trình và dễ bảo vệ từng đoạn, nhưng các đoạn dài ngắn khác nhau để lại khe hở khi cấp phát và giải phóng. Hệ điều hành trên x86-64 hiện nay chủ yếu dựa vào phân trang.
 
 ## Nhìn hình thử trả lời
 
@@ -42,4 +42,4 @@ Con số trong hình chỉ để minh họa; kích thước trang thật phụ t
 - [OSTEP — Segmentation](https://pages.cs.wisc.edu/~remzi/OSTEP/vm-segmentation.pdf) và [Paging: Introduction](https://pages.cs.wisc.edu/~remzi/OSTEP/vm-paging.pdf): base/limit, trang/khung, phân mảnh.
 - [Intel SDM](https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html): phân đoạn và phân trang ở chế độ 64 bit.
 
-Đã đọc nguồn ngày 2026-10-13. Bài viết và hình được thiết kế độc lập; ví dụ địa chỉ tự đặt.
+Đã đọc nguồn ngày 2026-10-13; các tài liệu chuẩn nêu trên chưa được mở để đối chiếu trực tiếp trong lượt biên soạn này. Bài viết và hình được thiết kế độc lập.

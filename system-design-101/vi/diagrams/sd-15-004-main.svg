@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 665" width="320" height="665" role="img" aria-labelledby="title desc">
 <title id="title">Truy vấn DNS đi qua những đâu</title>
-<desc id="desc">Trình duyệt hỏi resolver về www.example.com. Nếu cache chưa có, resolver hỏi root server và nhận địa chỉ máy chủ của .com, hỏi máy chủ .com và nhận máy chủ tên của example.com, rồi hỏi máy chủ có thẩm quyền và nhận địa chỉ minh họa 192.0.2.10. Resolver trả địa chỉ cho trình duyệt và lưu cache theo TTL.</desc>
+<desc id="desc">Năm khung dọc: trình duyệt hỏi resolver; resolver hỏi root và nhận hướng tới máy chủ .com; resolver hỏi .com và nhận máy chủ tên của example.com; resolver hỏi máy chủ thẩm quyền và nhận địa chỉ minh họa 192.0.2.10; resolver trả lời và lưu cache theo TTL.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="665" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">

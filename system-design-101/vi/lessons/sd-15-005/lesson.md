@@ -6,8 +6,8 @@
 
 ## Đọc hình
 
-- **A / AAAA:** tên → địa chỉ IPv4 / IPv6. Cặp bản ghi này thường được tra nhiều nhất.
-- **CNAME:** đặt tên này là *bí danh* của tên khác; resolver tra tiếp tên đích. Tên có CNAME không được có bản ghi loại khác cùng tên.
+- **A / AAAA:** tên → địa chỉ IPv4 / IPv6.
+- **CNAME:** đặt tên này là *bí danh* của tên khác; resolver tra tiếp tên đích. Tên có CNAME không được có bản ghi loại khác cùng tên (trừ bản ghi của DNSSEC).
 - **MX:** miền nhận thư ở máy chủ nào; có thứ tự ưu tiên.
 - **NS:** máy chủ tên chịu trách nhiệm cho vùng, dùng để ủy quyền xuống cấp dưới.
 - **TXT:** văn bản tự do; thường chứa xác minh quyền sở hữu miền và chính sách thư như SPF.
@@ -51,4 +51,4 @@ mail.example.com. 3600  IN  A    192.0.2.25
 - [RFC 2181 §10.1](https://www.rfc-editor.org/rfc/rfc2181): CNAME đứng một mình.
 - [RFC 7208](https://www.rfc-editor.org/rfc/rfc7208): SPF dùng TXT.
 
-Đã đọc nguồn ngày 2026-10-13. Bài viết và hình được thiết kế độc lập; không giữ ý "CNAME giấu tên miền thật" và "PTR xác thực máy chủ" của bài nguồn vì không chính xác.
+Đã đọc nguồn ngày 2026-10-13; các tài liệu chuẩn nêu trên chưa được mở để đối chiếu trực tiếp trong lượt biên soạn này. Bài viết và hình được thiết kế độc lập.

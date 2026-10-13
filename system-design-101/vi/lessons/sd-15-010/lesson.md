@@ -31,7 +31,7 @@ Thứ tự logic chỉ bảo đảm *ý nghĩa*, không phải cách chạy th�
 <details>
 <summary>Xem đáp án</summary>
 
-WHERE chạy trước SELECT nên alias `total` chưa tồn tại, và WHERE cũng không dùng được hàm gộp. Điều kiện trên tổng phải đặt ở HAVING (sau GROUP BY): `SELECT SUM(amount) AS total FROM orders HAVING SUM(amount) > 100;` hoặc gom theo nhóm rồi lọc.
+WHERE chạy trước SELECT nên alias `total` chưa tồn tại, và WHERE cũng không dùng được hàm gộp. Điều kiện trên tổng phải đặt ở HAVING (sau GROUP BY), ví dụ: `SELECT customer, SUM(amount) AS total FROM orders GROUP BY customer HAVING SUM(amount) > 100;`.
 
 </details>
 
@@ -50,4 +50,4 @@ WHERE chạy trước SELECT nên alias `total` chưa tồn tại, và WHERE cũ
 - [PostgreSQL — SELECT](https://www.postgresql.org/docs/current/sql-select.html): thứ tự xử lý các mệnh đề và alias trong WHERE, ORDER BY.
 - [PostgreSQL — Window Functions](https://www.postgresql.org/docs/current/tutorial-window.html) và [EXPLAIN](https://www.postgresql.org/docs/current/sql-explain.html).
 
-Đã đọc nguồn ngày 2026-10-13. Bài viết và hình được thiết kế độc lập; ví dụ SQL tự viết.
+Đã đọc nguồn ngày 2026-10-13; các tài liệu chuẩn nêu trên chưa được mở để đối chiếu trực tiếp trong lượt biên soạn này. Bài viết và hình được thiết kế độc lập.

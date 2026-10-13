@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 733" width="320" height="733" role="img" aria-labelledby="title desc">
 <title id="title">Học SQL theo năm nhóm lệnh</title>
-<desc id="desc">SQL thường được chia thành năm nhóm để học: DDL định nghĩa cấu trúc như CREATE và ALTER; DQL truy vấn bằng SELECT; DML thay đổi dữ liệu như INSERT, UPDATE, DELETE; DCL phân quyền như GRANT và REVOKE; TCL điều khiển giao dịch như COMMIT và ROLLBACK. Người làm backend và người phân tích dữ liệu nên ưu tiên các nhóm khác nhau.</desc>
+<desc id="desc">Ba khung dọc: năm nhóm lệnh DDL, DQL, DML, DCL và TCL kèm ví dụ lệnh; lộ trình gợi ý từ SELECT và WHERE, JOIN và GROUP BY, thêm sửa xóa dữ liệu, giao dịch, đến tạo bảng, ràng buộc và chỉ mục; chọn trọng tâm cho người phân tích dữ liệu và người làm backend.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="733" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">

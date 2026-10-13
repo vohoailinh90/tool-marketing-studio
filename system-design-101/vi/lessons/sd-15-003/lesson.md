@@ -8,7 +8,7 @@
 
 **1 · Gọi thoại, video trực tiếp.** Một khung âm thanh đến trễ thường vô ích: cuộc gọi đã đi tiếp. Gửi lại gói cũ chỉ làm trễ thêm, nên mất vài gói được chấp nhận hơn là chờ.
 
-**2 · DNS.** Truy vấn nhỏ, một gói hỏi và một gói đáp, nên chi phí bắt tay của TCP là thừa. Khi câu đáp quá lớn hoặc khi sao chép vùng, DNS dùng TCP.
+**2 · DNS.** Truy vấn nhỏ, một gói hỏi và một gói đáp, nên chi phí bắt tay của TCP là thừa. Khi câu đáp không vừa một gói, DNS chuyển sang TCP.
 
 **3 · Dữ liệu thị trường.** Cùng một bản tin cần tới nhiều bên nhận. Multicast gửi một lần và mạng nhân bản; TCP nối đúng một đầu với một đầu nên không làm được việc này. Bên nhận tự phát hiện gói mất, ví dụ bằng số thứ tự.
 
@@ -46,4 +46,4 @@ Không hợp lý. UDP thuần không bảo đảm giao hay thứ tự. Có thể
 - [RFC 3550 — RTP](https://www.rfc-editor.org/rfc/rfc3550); [RFC 1112 — IP multicast](https://www.rfc-editor.org/rfc/rfc1112).
 - [RFC 1035 — DNS](https://www.rfc-editor.org/rfc/rfc1035) và [RFC 7766 — DNS qua TCP](https://www.rfc-editor.org/rfc/rfc7766); [RFC 7252 — CoAP](https://www.rfc-editor.org/rfc/rfc7252).
 
-Đã đọc nguồn ngày 2026-10-13. Bài viết và hình được thiết kế độc lập; chỉ giữ bốn nhóm ứng dụng của nguồn.
+Đã đọc nguồn ngày 2026-10-13; các tài liệu chuẩn nêu trên chưa được mở để đối chiếu trực tiếp trong lượt biên soạn này. Bài viết và hình được thiết kế độc lập.

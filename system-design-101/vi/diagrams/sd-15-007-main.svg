@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 763" width="320" height="763" role="img" aria-labelledby="title desc">
 <title id="title">Deadlock: hai bên chờ nhau mãi</title>
-<desc id="desc">Giao dịch T1 giữ khóa A và xin khóa B. Giao dịch T2 giữ khóa B và xin khóa A. Mỗi bên chờ bên kia nên không ai tiến lên được. Deadlock cần bốn điều kiện cùng lúc: loại trừ lẫn nhau, giữ và chờ, không bị cưỡng đoạt, chờ vòng tròn. Khóa theo thứ tự cố định phá chờ vòng tròn; cơ sở dữ liệu còn có thể hủy một giao dịch để phá vòng.</desc>
+<desc id="desc">Ba khung dọc: giao dịch T1 giữ khóa A và xin B, T2 giữ khóa B và xin A nên chờ vòng tròn; bốn điều kiện cần cùng lúc là loại trừ lẫn nhau, giữ và chờ, không bị cưỡng đoạt, chờ vòng tròn; cách xử lý là khóa theo thứ tự cố định, hoặc phát hiện và hủy một giao dịch rồi thử lại.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="763" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
@@ -31,7 +31,7 @@
 <line x1="160" y1="507" x2="160" y2="527" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
 <rect x="16" y="530" width="288" height="185" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
 <text x="30" y="560" font-size="16" font-weight="bold">Cách xử lý</text>
-<text x="30" y="587" font-size="16" font-weight="bold">Phòng tránh</text>
+<text x="30" y="587" font-size="16" font-weight="bold">Phòng ngừa</text>
 <text x="30" y="614" font-size="16" font-weight="normal">Mọi nơi khóa theo thứ tự A→B</text>
 <text x="30" y="641" font-size="16" font-weight="bold">Phát hiện + phục hồi</text>
 <text x="30" y="668" font-size="16" font-weight="normal">DB hủy một giao dịch;</text>

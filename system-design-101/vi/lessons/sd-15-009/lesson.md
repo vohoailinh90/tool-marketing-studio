@@ -42,4 +42,4 @@ IP đích giữ nguyên suốt đường (ngoại trừ khi có NAT hay cơ ch�
 - [RFC 1122](https://www.rfc-editor.org/rfc/rfc1122): các tầng của bộ giao thức Internet.
 - [RFC 9293 — TCP](https://www.rfc-editor.org/rfc/rfc9293) và [RFC 791 — IPv4](https://www.rfc-editor.org/rfc/rfc791).
 
-Đã đọc nguồn ngày 2026-10-13. Bài viết và hình được thiết kế độc lập; gọi đơn vị tầng mạng là gói (packet) thay vì "IP datagram".
+Đã đọc nguồn ngày 2026-10-13; các tài liệu chuẩn nêu trên chưa được mở để đối chiếu trực tiếp trong lượt biên soạn này. Bài viết và hình được thiết kế độc lập.

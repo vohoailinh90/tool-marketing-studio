@@ -43,4 +43,4 @@ Không bảo đảm. Phép cộng gồm đọc, cộng, ghi; hai luồng có th�
 - [OSTEP — The Abstraction: The Process](https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-intro.pdf) và [Concurrency: An Introduction](https://pages.cs.wisc.edu/~remzi/OSTEP/threads-intro.pdf).
 - [Linux — clone(2)](https://man7.org/linux/man-pages/man2/clone.2.html): tác vụ chia sẻ bộ nhớ.
 
-Đã đọc nguồn ngày 2026-10-13. Bài viết và hình được thiết kế độc lập; không giữ ví dụ "mỗi tab Chrome một tiến trình" vì cách chia thay đổi theo phiên bản.
+Đã đọc nguồn ngày 2026-10-13; các tài liệu chuẩn nêu trên chưa được mở để đối chiếu trực tiếp trong lượt biên soạn này. Bài viết và hình được thiết kế độc lập.

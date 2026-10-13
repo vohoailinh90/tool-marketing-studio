@@ -2,7 +2,7 @@
 
 **Mỗi thiết bị trên Internet cần một địa chỉ để gói tin tìm tới.** IPv4 dùng địa chỉ 32 bit; IPv6 ra đời chủ yếu vì số địa chỉ IPv4 đã không còn đủ rộng rãi.
 
-![Ba khung dọc: địa chỉ IPv4 32 bit ví dụ 192.0.2.12 và IPv6 128 bit ví dụ 2001:db8::1; tiêu đề IPv4 từ 20 byte có checksum, tiêu đề IPv6 đúng 40 byte không có checksum; dual stack chạy cả hai giao thức và dùng bản ghi A hoặc AAAA.](../../diagrams/sd-15-002-main.svg)
+![Ba khung dọc: địa chỉ IPv4 32 bit ví dụ 192.0.2.12 và IPv6 128 bit ví dụ 2001:db8::1; tiêu đề IPv4 từ 20 byte có checksum, tiêu đề IPv6 đúng 40 byte không có checksum; dual stack chạy cả hai giao thức và dùng bản ghi A hoặc AAAA; IPv6 không tự làm mạng nhanh hơn.](../../diagrams/sd-15-002-main.svg)
 
 ## Đọc hình
 
@@ -32,7 +32,7 @@ Phần mềm nên dùng địa chỉ IPv4 từ bản ghi A. Có AAAA không có 
 
 - **Địa chỉ ví dụ:** 192.0.2.0/24 và 2001:db8::/32 là dải dành cho tài liệu; không trỏ tới máy thật.
 - **Kích thước IPv6 128 bit:** khoảng 3,4×10³⁸ giá trị; con số lớn để gán theo cấp bậc dễ, không phải để dùng hết từng địa chỉ.
-- **Chọn địa chỉ:** thuật toán "Happy Eyeballs" thử song song IPv6 và IPv4 để người dùng không phải chờ khi một đường hỏng.
+- **Chọn địa chỉ:** thuật toán "Happy Eyeballs" thử IPv6 và IPv4 gần như song song, lệch nhau một khoảng ngắn, để người dùng không phải chờ khi một đường hỏng.
 - **Phân mảnh IPv4:** router có thể phân mảnh gói IPv4 (trừ khi gói đặt cờ cấm); trong IPv6 máy gửi tự quản kích thước, thường qua Path MTU Discovery.
 
 </details>
@@ -45,4 +45,4 @@ Phần mềm nên dùng địa chỉ IPv4 từ bản ghi A. Có AAAA không có 
 - [RFC 5737](https://www.rfc-editor.org/rfc/rfc5737) và [RFC 3849](https://www.rfc-editor.org/rfc/rfc3849): địa chỉ dành cho tài liệu.
 - [RFC 8305 — Happy Eyeballs](https://www.rfc-editor.org/rfc/rfc8305).
 
-Đã đọc nguồn ngày 2026-10-13. Bài viết và hình được thiết kế độc lập; không giữ câu "dual stack là cách tốt nhất" của bài nguồn vì còn tùy hạ tầng.
+Đã đọc nguồn ngày 2026-10-13; các tài liệu chuẩn nêu trên chưa được mở để đối chiếu trực tiếp trong lượt biên soạn này. Bài viết và hình được thiết kế độc lập.

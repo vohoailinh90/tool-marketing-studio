@@ -2,7 +2,7 @@
 
 Bạn chạy `docker run -d` và vài giây sau container đã biến mất khỏi `docker ps`, hoặc cứ ở trạng thái Restarting. Docker giữ lại trạng thái thoát của container cho đến khi bạn xóa nó, và bốn chỗ dưới đây cho biết vì sao nó dừng.
 
-![Bốn manh mối khi container Docker thoát ngay hoặc khởi động lại liên tục: mã thoát trong docker ps -a, nhật ký bằng docker logs, trạng thái chi tiết trong docker inspect như ExitCode và OOMKilled, và chính sách khởi động lại quyết định container có chạy lại sau khi thoát hay không.](../../diagrams/sd-13-026-main.svg)
+![Bốn manh mối khi container Docker thoát ngay hoặc khởi động lại liên tục: mã thoát trong docker ps -a, nhật ký bằng docker logs, trạng thái chi tiết trong docker inspect như ExitCode và OOMKilled (Out Of Memory Killed — bị dừng vì hết bộ nhớ), và chính sách khởi động lại quyết định container có chạy lại sau khi thoát hay không.](../../diagrams/sd-13-026-main.svg)
 
 **Đọc hình:** bốn thẻ là bốn chỗ để hỏi một container đã thoát; làm theo thứ tự hoặc chỉ đọc chỗ cần.
 
@@ -13,7 +13,7 @@ Container thoát với mã 137 ngay sau khi nhận nhiều request, và `docker 
 <details>
 <summary>Xem đáp án</summary>
 
-Mã thoát lớn hơn 128 thường là 128 cộng số hiệu tín hiệu, nên 137 là SIGKILL (tín hiệu 9). Với container, nguyên nhân hay gặp là hết bộ nhớ, hoặc có người dùng `docker kill` hay dừng quá hạn. Chạy `docker inspect --format '{{.State.OOMKilled}}' tên-container`: true nghĩa là container bị dừng vì hết bộ nhớ, khi đó tăng giới hạn `--memory` hay giảm mức dùng của ứng dụng. Nếu là false, xem `docker events` và nhật ký kernel của máy chủ để tìm ai đã gửi SIGKILL.
+Mã thoát lớn hơn 128 thường là 128 cộng số hiệu tín hiệu, nên 137 là SIGKILL (signal kill — tín hiệu số 9, buộc dừng tiến trình ngay). Với container, nguyên nhân hay gặp là hết bộ nhớ, hoặc có người dùng `docker kill` hay dừng quá hạn. Chạy `docker inspect --format '{{.State.OOMKilled}}' tên-container`: true nghĩa là container bị dừng vì hết bộ nhớ, khi đó tăng giới hạn `--memory` hay giảm mức dùng của ứng dụng. Nếu là false, xem `docker events` và nhật ký kernel của máy chủ để tìm ai đã gửi SIGKILL.
 
 </details>
 
@@ -31,9 +31,9 @@ docker inspect --format 'code={{.State.ExitCode}} oom={{.State.OOMKilled}} err={
 docker events --since 10m --filter container=tên-container                      # die, oom, kill, restart
 ```
 
-- **Tiến trình chính quyết định đời container:** container chạy đến khi tiến trình chính (PID 1) thoát. Lệnh tự chạy nền rồi trả về (kiểu daemonize), hay một shell không có gì để chờ (như `docker run ubuntu bash` không có `-it`), làm container thoát ngay; hãy chạy ứng dụng ở foreground.
+- **Tiến trình chính quyết định đời container:** container chạy đến khi tiến trình chính (PID — process identifier, mã số tiến trình — bằng 1) thoát. Lệnh tự chạy nền rồi trả về (kiểu daemonize), hay một shell không có gì để chờ (như `docker run ubuntu bash` không có `-it`), làm container thoát ngay; hãy chạy ứng dụng ở foreground.
 - **Mã đặc biệt của docker run:** 125 là lỗi của chính Docker (như cờ sai), 126 là lệnh trong container không thực thi được, 127 là không tìm thấy lệnh; mã khác là mã thoát của lệnh trong container.
-- **OOMKilled:** `true` cho biết kernel đã dừng container vì hết bộ nhớ. `false` chưa bảo đảm mã 137 không đến từ bộ nhớ, nên đối chiếu thêm với nhật ký kernel của máy chủ.
+- **OOMKilled (Out Of Memory Killed — bị dừng vì hết bộ nhớ):** `true` cho biết kernel đã dừng container vì hết bộ nhớ. `false` chưa bảo đảm mã 137 không đến từ bộ nhớ, nên đối chiếu thêm với nhật ký kernel của máy chủ.
 - **Chính sách khởi động lại:** `no` (mặc định), `on-failure[:số lần]` (chỉ chạy lại khi mã thoát khác 0), `always`, `unless-stopped`. Container ở vòng Restarting thì sửa nguyên nhân thoát; gỡ chính sách bằng `docker update --restart=no` chỉ che triệu chứng.
 
 </details>

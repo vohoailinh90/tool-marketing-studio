@@ -1,9 +1,9 @@
 # Token, cookie và session: nhận ra người dùng thế nào?
 
 **HTTP không nhớ ai, nên mỗi cách “nhớ người dùng” là một lựa chọn về thứ gì đi kèm mỗi yêu cầu và thứ gì máy chủ phải giữ.**
-Bốn cách phổ biến: gửi lại tên và mật khẩu, mã session, token ngẫu nhiên, hoặc token tự mang thông tin (JWT).
+Bốn cách phổ biến: gửi lại tên và mật khẩu, mã session, token ngẫu nhiên (cùng mô hình trạng thái với session, chỉ khác nơi mang mã), hoặc token tự mang thông tin (JWT).
 
-![Sáu thẻ xếp dọc. Thẻ đầu là câu hỏi chung: mỗi yêu cầu đi kèm gì để máy chủ biết đó là ai. Bốn cách. Basic: mỗi yêu cầu gửi lại tên và mật khẩu, mã hóa base64 nên ai cũng giải ngược được. Session cookie: máy chủ giữ dữ liệu, trình duyệt gửi lại một mã. Token ngẫu nhiên: giống session nhưng client tự gắn vào tiêu đề, không phụ thuộc cookie. JWT: token tự mang thông tin và chữ ký, kiểm tra được mà không cần tra máy chủ, nhưng nội dung đọc được và khó thu hồi trước hạn. Thẻ cuối là cái giá: càng ít trạng thái ở máy chủ thì càng khó thu hồi.](../../diagrams/sd-14-010-main.svg)
+![Sáu thẻ xếp dọc. Thẻ đầu là câu hỏi chung: mỗi yêu cầu đi kèm gì để máy chủ biết đó là ai. Bốn cách. Basic: mỗi yêu cầu gửi lại tên và mật khẩu, mã hóa base64 nên ai cũng giải ngược được. Session cookie: máy chủ giữ dữ liệu, trình duyệt gửi lại một mã. Token ngẫu nhiên: cùng mô hình trạng thái với session, máy chủ vẫn tra cứu; khác ở chỗ client gắn mã vào tiêu đề thay vì cookie. JWT: token tự mang thông tin và chữ ký, kiểm tra được mà không cần tra máy chủ, nhưng nội dung đọc được và khó thu hồi trước hạn. Thẻ cuối là cái giá: càng ít trạng thái ở máy chủ thì càng khó thu hồi.](../../diagrams/sd-14-010-main.svg)
 
 ## Đọc hình
 
@@ -11,7 +11,7 @@ Bốn cách phổ biến: gửi lại tên và mật khẩu, mã session, token 
 
 **Session cookie.** Máy chủ giữ dữ liệu phiên, trình duyệt giữ một mã. Vì dữ liệu nằm ở máy chủ, xóa phiên là mã đó không còn tra ra gì (suy luận từ cách session hoạt động).
 
-**Token ngẫu nhiên.** Cùng ý như session: một chuỗi ngẫu nhiên mà máy chủ tra cứu. Khác ở chỗ client tự gắn nó vào tiêu đề, nên không phụ thuộc cookie của trình duyệt.
+**Token ngẫu nhiên.** Về trạng thái, đây chính là một mã phiên: một chuỗi ngẫu nhiên mà máy chủ tra cứu, nên máy chủ phải giữ và có thể thu hồi giống session. Chỗ khác chỉ là cách mang mã: client tự gắn nó vào tiêu đề thay vì dựa vào cookie của trình duyệt. Cookie hay tiêu đề là lựa chọn về đường vận chuyển, không phải một loại token khác, và bài không bàn các cách mang token còn lại (suy luận của người biên soạn).
 
 **JWT.** Token mang sẵn thông tin (ví dụ người dùng, vai trò, hạn dùng) và một chữ ký, nên máy chủ kiểm tra được bằng khóa mà không cần tra kho. Khi chạy thử với PyJWT: đọc phần thông tin không cần khóa; sửa vai trò thành admin thì chữ ký không còn khớp; token quá hạn bị từ chối; token khai thuật toán `none` bị từ chối khi máy chủ chỉ chấp nhận `HS256`.
 

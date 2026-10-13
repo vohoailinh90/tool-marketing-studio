@@ -71,7 +71,7 @@
       "verified_by": "Read from a copy fetched from raw GitHub."
     },
     {
-      "claim_vi": "In the authorization code flow the client sends the user to the authorization server with its client identifier and redirect URI, the user authenticates there, the authorization server returns an authorization code, the client exchanges the code for an access token, and the access token represents the authorization granted; the authorization server must return an access token only once for a given authorization code.",
+      "claim_vi": "In the authorization code flow the client sends the user to the authorization server with its client identifier and redirect URI, the authorization server authenticates the user and may request or confirm consent (the draft says it may, and leaves to policy whether to prompt on every authorization or only the first), the authorization server returns an authorization code, the client exchanges the code for an access token, and the access token represents the authorization granted; the authorization server must return an access token only once for a given authorization code.",
       "source": "https://github.com/oauth-wg/oauth-v2-1/blob/d04b368313c8835a930a2e55a68ef547312b7b32/draft-ietf-oauth-v2-1.md",
       "section": "Authorization Code Grant",
       "verified_by": "Read from a copy fetched from raw GitHub."

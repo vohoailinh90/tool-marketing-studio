@@ -57,8 +57,8 @@
       "source": "https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html"
     },
     {
-      "claim_vi": "Runtime đã ngừng hỗ trợ của Lambda không còn nhận bản vá bảo mật.",
-      "source": "https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html"
+      "claim_vi": "Với runtime Lambda đã ngừng hỗ trợ, Lambda có thể không còn áp bản vá bảo mật hay bản cập nhật, và hàm dùng runtime đó không còn được hỗ trợ kỹ thuật.",
+      "source": "https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html#runtime-deprecation-policy"
     },
     {
       "claim_vi": "AWS mô tả DevOps là sự kết hợp giữa văn hóa, thực hành và công cụ trong tổ chức.",

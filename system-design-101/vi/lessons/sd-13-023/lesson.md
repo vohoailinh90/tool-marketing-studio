@@ -13,7 +13,7 @@ Một nhóm theo DevOps chạy hàm serverless đóng gói bằng container imag
 <details>
 <summary>Xem đáp án</summary>
 
-Nhóm bạn. Theo tài liệu Lambda, với hàm dùng container image hoặc runtime tự dựng, việc cập nhật runtime và ảnh cơ sở thuộc về khách hàng; nhà cung cấp vẫn lo hạ tầng bên dưới. Với runtime do Lambda quản lý, chế độ mặc định (Auto) để Lambda tự áp dụng bản cập nhật, còn ở chế độ Function update hoặc Manual thì bạn phải cập nhật hàm hoặc chọn phiên bản. Runtime đã ngừng hỗ trợ thì không còn được vá.
+Nhóm bạn. Theo tài liệu Lambda, với hàm dùng container image hoặc runtime tự dựng, việc cập nhật runtime và ảnh cơ sở thuộc về khách hàng; nhà cung cấp vẫn lo hạ tầng bên dưới. Với runtime do Lambda quản lý, chế độ mặc định (Auto) để Lambda tự áp dụng bản cập nhật, còn ở chế độ Function update hoặc Manual thì bạn phải cập nhật hàm hoặc chọn phiên bản. Với runtime đã ngừng hỗ trợ, Lambda có thể không còn áp bản vá bảo mật hay bản cập nhật và hàm dùng nó không còn được hỗ trợ kỹ thuật, nên đừng trông chờ bản vá mà hãy chuyển sang runtime còn được hỗ trợ.
 
 </details>
 

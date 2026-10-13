@@ -76,7 +76,7 @@
       ]
     },
     {
-      "claim_vi": "Truy vấn đã đăng ký (persisted query) cho phép client gửi định danh thay vì cả chuỗi truy vấn nên yêu cầu nhỏ hơn; cơ chế tự động của Apollo (APQ) chỉ giảm kích thước yêu cầu.",
+      "claim_vi": "Truy vấn đã đăng ký (persisted query) cho phép client gửi định danh thay vì cả chuỗi truy vấn nên yêu cầu nhỏ hơn; cơ chế tự động của Apollo (APQ) giảm kích thước yêu cầu và, khi gửi bằng GET, cho phép cache ở trình duyệt hoặc CDN, nhưng không tự giới hạn truy vấn được chạy vì truy vấn chưa biết có thể được đăng ký tự động.",
       "source": "https://www.apollographql.com/docs/apollo-server/performance/apq/"
     },
     {

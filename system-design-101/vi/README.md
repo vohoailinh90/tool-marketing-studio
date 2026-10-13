@@ -19,11 +19,11 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 
 8. [Trình duyệt dựng trang web thế nào?](lessons/sd-01-008/lesson.md)
 
-9. [REST API hoạt động thế nào?](lessons/sd-01-017/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+9. [REST API hoạt động thế nào?](lessons/sd-01-017/lesson.md)
 
-10. [Load Balancer và API Gateway](lessons/sd-01-018/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+10. [Load Balancer và API Gateway](lessons/sd-01-018/lesson.md)
 
-11. [GraphQL tại LinkedIn](lessons/sd-01-019/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+11. [GraphQL tại LinkedIn](lessons/sd-01-019/lesson.md)
 
 Danh mục đầy đủ và snapshot nguồn: [bảng đối chiếu](../../brainstorm/system-design-101-vi/source-map.json).
 Quy tắc đã chốt: [kết luận brainstorm](../../brainstorm/system-design-101-vi/DECISIONS.md).

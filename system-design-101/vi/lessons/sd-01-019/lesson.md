@@ -31,7 +31,7 @@ Nếu máy chủ chỉ chạy truy vấn đã đăng ký thì không còn truy v
 <summary>Xem sâu hơn</summary>
 
 - **GraphQL trong ba ý:** một schema có kiểu mô tả dữ liệu; client chọn đúng các trường cần; thường chỉ có một điểm vào thay vì nhiều URL.
-- **Truy vấn đã đăng ký (persisted query):** client gửi định danh (thường là mã băm) thay vì cả chuỗi truy vấn, nên yêu cầu nhỏ hơn. Cơ chế tự động của Apollo (APQ) chỉ giúp giảm kích thước yêu cầu; theo suy luận của bài, muốn giới hạn những truy vấn được chạy thì máy chủ cần thêm một danh sách cho phép (allowlist).
+- **Truy vấn đã đăng ký (persisted query):** client gửi định danh (thường là mã băm) thay vì cả chuỗi truy vấn, nên yêu cầu nhỏ hơn. Cơ chế tự động của Apollo (APQ) giúp giảm kích thước yêu cầu và, khi gửi bằng GET, cho phép cache ở trình duyệt hoặc CDN; nhưng APQ không tự giới hạn những truy vấn được chạy vì truy vấn chưa biết có thể được đăng ký tự động. Theo suy luận của bài, muốn giới hạn thì máy chủ cần thêm một danh sách cho phép (allowlist).
 - **Vấn đề N+1:** nếu mỗi hội viên trong danh sách lại gọi riêng dịch vụ tổ chức, số lần gọi tăng theo kích thước danh sách; cách chữa thường là gom nhiều lần tra cứu thành một lần (batching).
 - **Gateway hay không:** gateway gom nhiều schema cho client một cửa chung nhưng thêm một chặng và một điểm cần dự phòng; định tuyến theo siêu dữ liệu tránh chặng đó nhưng đòi hỏi quy trình đăng ký chặt.
 

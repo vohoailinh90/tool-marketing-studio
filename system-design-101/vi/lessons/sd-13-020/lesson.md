@@ -2,7 +2,7 @@
 
 Chọn cách triển khai bằng cách hỏi bạn đang sợ điều gì nhất. Mỗi nỗi sợ có một cơ chế quen thuộc.
 
-![Bốn thẻ nhu cầu và cách xử lý: hai dịch vụ đổi cùng lúc cần tương thích hai chiều, muốn quay lui trong vài giây dùng blue-green hoặc cờ tính năng, muốn lộ lỗi sớm với chi phí thấp dùng canary, muốn đo tác động sản phẩm dùng A/B test.](../../diagrams/sd-13-020-main.svg)
+![Bốn thẻ nhu cầu và cách xử lý: hai dịch vụ đổi cùng lúc cần tương thích hai chiều, muốn rút lại trong vài giây thì dùng blue-green để quay về môi trường cũ hoặc cờ tính năng để rút phần gắn cờ, muốn lộ lỗi sớm với chi phí thấp dùng canary, muốn đo tác động sản phẩm dùng A/B test.](../../diagrams/sd-13-020-main.svg)
 
 **Đọc hình:** thẻ đầu áp dụng bất kể cách nào bạn chọn ở các thẻ sau.
 

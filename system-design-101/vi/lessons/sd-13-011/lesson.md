@@ -1,8 +1,8 @@
 # Viết Dockerfile build nhanh, image nhỏ và không lộ bí mật
 
-Ba nỗi đau hay gặp khi đóng gói ứng dụng: build lại quá chậm, image quá to và bí mật lọt vào image, thêm một chuyện phụ là dừng container cho êm. Bài chỉ chọn những kỹ thuật phục vụ các việc này.
+Ba nỗi đau hay gặp khi đóng gói ứng dụng: build lại quá chậm, image quá to và bí mật lọt vào image, thêm một việc phụ là làm cho lúc chạy êm và chặt. Bài chỉ chọn những kỹ thuật phục vụ các việc này.
 
-![Ba nỗi đau chính cùng một chuyện phụ và kỹ thuật tương ứng: build chậm thì sắp lớp, dùng cache mount và dockerignore, image to thì build nhiều giai đoạn, bí mật lọt vào image thì dùng secret mount và chạy không phải root, dừng container không êm thì dùng dạng exec cho CMD.](../../diagrams/sd-13-011-main.svg)
+![Ba nỗi đau chính cùng một việc phụ và kỹ thuật tương ứng: build chậm thì sắp lớp, dùng cache mount và dockerignore, image to thì build nhiều giai đoạn, bí mật lọt vào image thì dùng secret mount thay cho ARG và ENV, và việc phụ là chạy êm và chặt bằng CMD dạng exec cùng người dùng không phải root.](../../diagrams/sd-13-011-main.svg)
 
 **Đọc hình:** bài không nhằm liệt kê mọi thực hành; mỗi thẻ là một vấn đề kèm vài kỹ thuật chọn lọc.
 
@@ -19,7 +19,7 @@ Giá trị ARG có thể xem lại từ lịch sử build của image. Secret mo
 
 ## Giới hạn cần nhớ
 
-Tag có thể bị đẩy lại, nên cần tái lập chính xác thì ghim digest. Cache mount chỉ nhanh hơn khi máy build giữ lại cache. Quét lỗ hổng và theo dõi nguồn gốc image là việc riêng, bài này không đi sâu.
+Chạy bằng người dùng không phải root chỉ giảm quyền của tiến trình lúc chạy, không xóa được bí mật đã nằm trong lớp image; chỉ secret mount mới tránh được việc đó. Tag có thể bị đẩy lại, nên cần tái lập chính xác thì ghim digest. Cache mount chỉ nhanh hơn khi máy build giữ lại cache. Quét lỗ hổng và theo dõi nguồn gốc image là việc riêng, bài này không đi sâu.
 
 <details>
 <summary>Xem sâu hơn</summary>

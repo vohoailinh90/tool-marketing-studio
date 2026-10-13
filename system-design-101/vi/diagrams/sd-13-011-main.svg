@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 820" width="320" height="820" role="img" aria-labelledby="title desc">
 <title id="title">Viết Dockerfile build nhanh, image nhỏ và không lộ bí mật</title>
-<desc id="desc">Ba nỗi đau chính cùng một chuyện phụ và kỹ thuật tương ứng: build chậm thì sắp lớp, dùng cache mount và dockerignore, image to thì build nhiều giai đoạn, bí mật lọt vào image thì dùng secret mount và chạy không phải root, dừng container không êm thì dùng dạng exec cho CMD.</desc>
+<desc id="desc">Ba nỗi đau chính cùng một việc phụ và kỹ thuật tương ứng: build chậm thì sắp lớp, dùng cache mount và dockerignore, image to thì build nhiều giai đoạn, bí mật lọt vào image thì dùng secret mount thay cho ARG và ENV, và việc phụ là chạy êm và chặt bằng CMD dạng exec cùng người dùng không phải root.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="820" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
-<text x="16" y="30" font-size="20" font-weight="bold">BA NỖI ĐAU, MỘT NỖI</text>
+<text x="16" y="30" font-size="20" font-weight="bold">BA NỖI ĐAU, MỘT VIỆC</text>
 <text x="16" y="58" font-size="20" font-weight="bold">PHỤ</text>
 <text x="16" y="86" font-size="16" font-weight="normal">Chọn kỹ thuật theo vấn đề</text>
 <rect x="16" y="117" width="288" height="182" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
@@ -19,16 +19,16 @@
 <text x="30" y="393" font-size="16" font-weight="normal">chép sản phẩm sang cuối</text>
 <text x="30" y="420" font-size="16" font-weight="normal">Base đủ dùng, không dư công</text>
 <text x="30" y="447" font-size="16" font-weight="normal">cụ</text>
-<rect x="16" y="478" width="288" height="182" rx="10" fill="#fee2e2" stroke="#94a3b8"/>
+<rect x="16" y="478" width="288" height="155" rx="10" fill="#fee2e2" stroke="#94a3b8"/>
 <text x="30" y="506" font-size="16" font-weight="bold">Bí mật lọt vào image</text>
 <text x="30" y="533" font-size="16" font-weight="normal">Không dùng ENV hay ARG cho</text>
 <text x="30" y="560" font-size="16" font-weight="normal">bí mật</text>
-<text x="30" y="587" font-size="16" font-weight="normal">Dùng secret mount lúc build</text>
-<text x="30" y="614" font-size="16" font-weight="normal">Chạy bằng người dùng không</text>
-<text x="30" y="641" font-size="16" font-weight="normal">phải root</text>
-<rect x="16" y="672" width="288" height="128" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
-<text x="30" y="700" font-size="16" font-weight="bold">Dừng container không</text>
-<text x="30" y="727" font-size="16" font-weight="bold">êm</text>
-<text x="30" y="754" font-size="16" font-weight="normal">CMD dạng exec để tiến trình</text>
-<text x="30" y="781" font-size="16" font-weight="normal">nhận tín hiệu</text>
+<text x="30" y="587" font-size="16" font-weight="normal">Dùng secret mount lúc</text>
+<text x="30" y="614" font-size="16" font-weight="normal">build, bí mật không vào lớp</text>
+<rect x="16" y="645" width="288" height="155" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="673" font-size="16" font-weight="bold">Chạy cho êm và chặt</text>
+<text x="30" y="700" font-size="16" font-weight="normal">CMD dạng exec: tiến trình</text>
+<text x="30" y="727" font-size="16" font-weight="normal">nhận tín hiệu dừng</text>
+<text x="30" y="754" font-size="16" font-weight="normal">USER không phải root: giảm</text>
+<text x="30" y="781" font-size="16" font-weight="normal">quyền nếu bị khai thác</text>
 </g></svg>

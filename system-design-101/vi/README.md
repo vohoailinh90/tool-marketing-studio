@@ -44,7 +44,7 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 23. [DevOps và NoOps: ai lo phần vận hành](lessons/sd-13-023/lesson.md) — bài nháp, chờ review kỹ thuật.
 24. [Vì sao Nginx nhanh và phổ biến](lessons/sd-13-024/lesson.md) — bài nháp, chờ review kỹ thuật.
 25. [Kubernetes: từ lệnh apply đến container chạy](lessons/sd-13-025/lesson.md) — bài nháp, chờ review kỹ thuật.
-26. [Docker chạy thế nào: client, host và registry](lessons/sd-13-026/lesson.md) — bài nháp, chờ review kỹ thuật.
+26. [Gỡ lỗi Docker: bốn sự cố hay gặp](lessons/sd-13-026/lesson.md) — bài nháp, chờ review kỹ thuật.
 27. [Pipeline CI/CD: cổng nhanh trước, cổng đắt sau](lessons/sd-13-027/lesson.md) — bài nháp, chờ review kỹ thuật.
 
 Danh mục đầy đủ và snapshot nguồn: [bảng đối chiếu](../../brainstorm/system-design-101-vi/source-map.json).

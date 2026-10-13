@@ -1,8 +1,8 @@
 {
   "id": "sd-13-026",
-  "title_vi": "Docker chạy thế nào: client, host và registry",
+  "title_vi": "Gỡ lỗi Docker: bốn sự cố hay gặp",
   "language": "vi",
-  "kind": "flow",
+  "kind": "comparison",
   "content_status": "draft",
   "source_ref": "sd-13-026",
   "source_snapshot": {
@@ -21,7 +21,7 @@
     {
       "lesson_id": "sd-13-013",
       "relation": "previous",
-      "reason_vi": "Tám khái niệm Docker."
+      "reason_vi": "Docker khi chạy ứng dụng."
     },
     {
       "lesson_id": "sd-13-011",
@@ -50,17 +50,25 @@
   },
   "claims": [
     {
-      "claim_vi": "Client giao tiếp với daemon qua API; daemon quản lý image, container, mạng và volume.",
+      "claim_vi": "Client giao tiếp với daemon qua REST API trên socket Unix hoặc mạng.",
       "source": "https://docs.docker.com/get-started/docker-overview/"
     },
     {
-      "claim_vi": "docker run kéo image nếu chưa có cục bộ.",
-      "source": "https://docs.docker.com/reference/cli/docker/container/run/"
+      "claim_vi": "docker system prune xóa container đã dừng, mạng không dùng, image dangling và cache; volume chỉ bị xóa khi thêm --volumes.",
+      "source": "https://docs.docker.com/reference/cli/docker/system/prune/"
+    },
+    {
+      "claim_vi": "docker system df cho biết dung lượng Docker dùng.",
+      "source": "https://docs.docker.com/reference/cli/docker/system/df/"
+    },
+    {
+      "claim_vi": "Image đa nền tảng có biến thể theo kiến trúc, chọn bằng --platform.",
+      "source": "https://docs.docker.com/build/building/multi-platform/"
     }
   ],
   "source_deviations": [
-    "Nguồn mô tả ba thành phần rồi các bước docker run; bài tổ chức theo lệnh và nơi lệnh tác động."
+    "Nguồn mô tả ba thành phần rồi các bước docker run; bài bỏ cấu trúc đó, thay bằng bốn sự cố vận hành và chỗ cần kiểm tra."
   ],
-  "design_notes_vi": "Ba thẻ lệnh kèm nơi tác động.",
+  "design_notes_vi": "Bốn thẻ sự cố kèm chỗ cần kiểm tra.",
   "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
 }

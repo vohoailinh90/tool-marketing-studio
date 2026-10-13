@@ -2,13 +2,13 @@
 
 Từ chuỗi byte HTML, CSS và JavaScript đến điểm ảnh trên màn hình, trình duyệt đi qua một dây chuyền nhiều bước. Hình dưới là bản rút gọn: tên và cách chia bước khác nhau giữa các engine.
 
-![Năm bước nối dọc: parse HTML và CSS, tính kiểu, bố cục, vẽ, ghép lớp; khi JavaScript đổi DOM hoặc kiểu, trình duyệt tính lại từ bước liên quan.](../../diagrams/sd-01-008-main.svg)
+![Năm bước nối dọc: parse HTML và CSS, tính kiểu, bố cục, vẽ (ghi lệnh và raster hóa thành điểm ảnh), ghép lớp; khi JavaScript đổi DOM hoặc kiểu, trình duyệt tính lại từ bước liên quan.](../../diagrams/sd-01-008-main.svg)
 
 - **Parse:** HTML thành DOM, cây các phần tử; CSS thành các luật kiểu.
 - **Style:** ghép luật CSS với từng phần tử để có kiểu cuối cùng: màu, cỡ chữ, `display`…
 - **Layout:** tính kích thước và vị trí của từng hộp trên trang.
-- **Paint:** ghi lại cách vẽ nền, viền, chữ, ảnh theo thứ tự chồng.
-- **Composite:** ghép các lớp đã vẽ thành khung hình để hiển thị.
+- **Paint:** ghi lại cách vẽ nền, viền, chữ, ảnh theo thứ tự chồng, rồi raster hóa: biến lệnh vẽ thành điểm ảnh. Nhiều engine tách hai việc này; hình gộp lại cho gọn.
+- **Composite:** ghép các lớp đã có điểm ảnh thành khung hình để hiển thị.
 
 **Đọc hình:** mũi tên là thứ tự thường gặp khi tải trang lần đầu. Thực tế các bước có thể chồng lên nhau, ví dụ trang được vẽ dần trong khi còn đang tải. JavaScript có thể sửa DOM hoặc kiểu bất cứ lúc nào; khi đó trình duyệt chỉ cần tính lại từ bước bị ảnh hưởng, không nhất thiết từ đầu.
 
@@ -31,7 +31,7 @@ Một nút đổi màu chữ từ đen sang đỏ. Một khối khác đổi `wi
 <summary>Xem sâu hơn</summary>
 
 - **Parse HTML không chỉ là đọc từng thẻ:** HTML Standard mô tả cả cách xử lý HTML sai cú pháp, để các trình duyệt dựng cùng một cây DOM từ cùng một đầu vào.
-- **Script có thể chặn parser:** script thường (không `async`, không `defer`) làm parser dừng cho tới khi tải và chạy xong. `defer` chạy sau khi parse xong và giữ thứ tự; `async` chạy ngay khi sẵn sàng, thứ tự không được bảo đảm.
+- **Script có thể chặn parser:** script ngoài kiểu cổ điển (`<script src>`, không `async`, không `defer`) làm parser dừng cho tới khi tải và chạy xong. `defer` chạy sau khi parse xong và giữ thứ tự; `async` chạy ngay khi sẵn sàng, thứ tự không được bảo đảm. Script nội tuyến (không `src`) kiểu cổ điển chạy ngay khi parser gặp nó và bỏ qua `defer`; script `type="module"` mặc định được hoãn tới khi parse xong, giống `defer`.
 - **CSS cũng có thể chặn:** trình duyệt thường chờ các stylesheet chặn dựng hình tải xong rồi mới vẽ lần đầu, để tránh hiện một trang chưa có kiểu.
 - **Hai cách ẩn khác nhau:** `display: none` khiến phần tử không tạo hộp nên không chiếm chỗ; `visibility: hidden` vẫn giữ chỗ nhưng không vẽ.
 - **Quy tắc ngón tay cái về chi phí:** đổi `width`, `margin` hoặc nội dung chữ thường cần layout rồi paint; đổi `color` thường bỏ qua layout; đổi `transform` hoặc `opacity` trên phần tử có lớp riêng trong nhiều trường hợp chỉ cần ghép lớp. Engine quyết định, nên đây không phải bảo đảm.

@@ -53,7 +53,7 @@
       "source": "https://html.spec.whatwg.org/multipage/parsing.html"
     },
     {
-      "claim_vi": "Script thường làm parser dừng; defer chạy sau khi parse xong và giữ thứ tự; async chạy khi sẵn sàng, không bảo đảm thứ tự.",
+      "claim_vi": "Script ngoài kiểu cổ điển không async/defer chặn parser; defer chạy sau khi parse xong và giữ thứ tự; async chạy khi sẵn sàng, không bảo đảm thứ tự; script nội tuyến kiểu cổ điển bỏ qua defer; script module mặc định được hoãn.",
       "source": "https://html.spec.whatwg.org/multipage/scripting.html#the-script-element"
     },
     {
@@ -76,7 +76,7 @@
       "source": "https://html.spec.whatwg.org/multipage/webappapis.html#update-the-rendering"
     },
     {
-      "claim_vi": "Stylesheet chặn dựng hình lần đầu; chuỗi parse, style, layout, paint, composite là mô hình rút gọn, chi tiết khác nhau giữa engine.",
+      "claim_vi": "Stylesheet chặn dựng hình lần đầu; chuỗi parse, style, layout, paint (gồm raster hóa), composite là mô hình rút gọn, chi tiết khác nhau giữa engine.",
       "sources": [
         "https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/Critical_rendering_path",
         "https://developer.chrome.com/docs/chromium/renderingng-architecture"
@@ -94,6 +94,6 @@
     "Bài tự viết từ tiêu chuẩn và tài liệu công khai; thân bài nguồn chưa được đọc nên phạm vi và thuật ngữ có thể khác nguồn.",
     "Mô hình năm bước là cách chia rút gọn; engine thật chia khác và cho các bước chạy chồng lên nhau."
   ],
-  "design_notes_vi": "Năm thẻ dọc nối bằng mũi tên, một thẻ ghi chú về JavaScript và hai dòng chú thích; thiết kế mới, không dùng ảnh nguồn.",
+  "design_notes_vi": "Năm thẻ dọc nối bằng mũi tên (bước vẽ gồm ghi lệnh và raster hóa), một thẻ ghi chú về JavaScript và hai dòng chú thích; thiết kế mới, không dùng ảnh nguồn.",
   "editorial_note_vi": "Bản nháp: claim chưa kiểm với nguồn vì phiên biên soạn không truy cập được các máy chủ tiêu chuẩn và tài liệu (chính sách mạng chặn). Chưa review kỹ thuật, chưa thử với người học."
 }

@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1040" width="320" height="1040" role="img" aria-labelledby="title desc">
 <title id="title">Trình duyệt dựng trang qua năm bước</title>
-<desc id="desc">Năm bước nối dọc: parse đổi HTML thành DOM và CSS thành luật kiểu; style tính kiểu cuối cho từng phần tử; layout tính kích thước và vị trí từng hộp; paint ghi lệnh vẽ nền, viền, chữ và ảnh; composite ghép các lớp thành khung hình. JavaScript có thể đổi DOM hoặc kiểu, khi đó trình duyệt tính lại từ bước liên quan, không nhất thiết từ đầu. Tên và cách chia bước khác nhau giữa các engine.</desc>
+<desc id="desc">Năm bước nối dọc: parse đổi HTML thành DOM và CSS thành luật kiểu; style tính kiểu cuối cho từng phần tử; layout tính kích thước và vị trí từng hộp; paint ghi lệnh vẽ nền, viền, chữ và ảnh rồi raster hóa thành điểm ảnh; composite ghép các lớp thành khung hình. JavaScript có thể đổi DOM hoặc kiểu, khi đó trình duyệt tính lại từ bước liên quan, không nhất thiết từ đầu. Tên và cách chia bước khác nhau giữa các engine.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="1040" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="30" font-size="20" font-weight="bold">DỰNG TRANG WEB</text>
@@ -23,8 +23,8 @@
 <line x1="160" y1="530" x2="160" y2="556" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
 <rect x="16" y="562" width="288" height="108" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
 <text x="30" y="594" font-size="16" font-weight="bold">4 · Paint · vẽ</text>
-<text x="30" y="626" font-size="16" font-weight="normal">Ghi lệnh vẽ: nền, viền,</text>
-<text x="30" y="654" font-size="16" font-weight="normal">chữ, ảnh theo thứ tự chồng</text>
+<text x="30" y="626" font-size="16" font-weight="normal">Ghi lệnh vẽ nền, viền, chữ,</text>
+<text x="30" y="654" font-size="16" font-weight="normal">ảnh, rồi raster ra điểm ảnh</text>
 <line x1="160" y1="674" x2="160" y2="700" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
 <rect x="16" y="706" width="288" height="108" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
 <text x="30" y="738" font-size="16" font-weight="bold">5 · Composite · ghép lớp</text>

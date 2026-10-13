@@ -1,8 +1,8 @@
 # Thiết kế pipeline CI/CD cho một repo: năm quyết định
 
-Thay vì kể pipeline có những giai đoạn nào, hãy nhìn các quyết định bạn phải đưa ra khi dựng pipeline cho một repo: khi nào chạy, chạy nhanh bằng cách nào, cấp quyền gì, ai được đưa lên môi trường nào và khi nào được merge.
+Thay vì kể pipeline CI/CD (Continuous Integration/Continuous Delivery hoặc Deployment — tích hợp liên tục/chuyển giao hoặc triển khai liên tục) có những giai đoạn nào, hãy nhìn các quyết định bạn phải đưa ra khi dựng pipeline cho một repo (viết tắt của repository — kho mã nguồn): khi nào chạy, chạy nhanh bằng cách nào, cấp quyền gì, ai được đưa lên môi trường nào và khi nào được merge.
 
-![Năm quyết định khi dựng pipeline cho một repo: khi nào chạy, làm sao chạy nhanh, cấp quyền gì, ai được đưa lên môi trường nào, và điều kiện để merge.](../../diagrams/sd-13-027-main.svg)
+![Năm quyết định khi dựng pipeline cho một repo (viết tắt của repository — kho mã nguồn): khi nào chạy, làm sao chạy nhanh, cấp quyền gì, ai được đưa lên môi trường nào, và điều kiện để merge.](../../diagrams/sd-13-027-main.svg)
 
 **Đọc hình:** năm quyết định độc lập; tên cơ chế là của GitHub Actions nhưng nền tảng khác có khái niệm tương tự.
 
@@ -13,7 +13,7 @@ Một pull request từ fork của người lạ có được dùng bí mật c�
 <details>
 <summary>Xem đáp án</summary>
 
-Mặc định không: với sự kiện `pull_request` từ fork, bí mật (trừ GITHUB_TOKEN quyền thấp) không được chuyển cho runner, để người lạ không đọc được. Sự kiện `pull_request_target` chạy với ngữ cảnh repo gốc nên phải rất thận trọng khi chạy mã từ PR. Kho riêng tư có thể đổi mặc định này trong cài đặt Actions.
+Mặc định không: với sự kiện `pull_request` từ fork, bí mật (trừ GITHUB_TOKEN quyền thấp) không được chuyển cho runner, để người lạ không đọc được. Sự kiện `pull_request_target` chạy với ngữ cảnh repo gốc nên phải rất thận trọng khi chạy mã từ PR (pull request — yêu cầu gộp mã). Kho riêng tư có thể đổi mặc định này trong cài đặt Actions.
 
 </details>
 
@@ -50,7 +50,7 @@ jobs:
 
 - **Hủy lượt cũ:** chỉ hủy với PR; không nên hủy lượt đang chạy trên nhánh chính hay phát hành.
 - **Quyền tối thiểu:** khai `permissions` ở mức workflow hoặc job, chỉ mở thêm khi cần.
-- **OIDC:** workflow nhận một token OIDC từ GitHub rồi đổi lấy thông tin xác thực ngắn hạn từ nhà cung cấp cloud, thay vì lưu khóa dài hạn trong bí mật.
+- **OIDC (OpenID Connect — chuẩn xác thực dựa trên token định danh):** workflow nhận một token OIDC từ GitHub rồi đổi lấy thông tin xác thực ngắn hạn từ nhà cung cấp cloud, thay vì lưu khóa dài hạn trong bí mật.
 - **Environment:** đặt người duyệt bắt buộc và bí mật riêng cho từng môi trường.
 - **Branch protection:** đặt các kiểm tra bắt buộc phải qua trước khi merge vào nhánh chính.
 

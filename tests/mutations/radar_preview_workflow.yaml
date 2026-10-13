@@ -24,8 +24,8 @@ mutations:
   replace: 'for campaign in ${{ steps.plan.outputs.campaigns }}; do python studio.py check'
   test: tests.test_radar_preview.WorkflowTests.test_no_script_interpolates_anything_a_pull_request_controls
 - label: the engine of a pull request that changes code is installed and run
-  find: "      - name: Install\n        if: steps.plan.outputs.ok == 'true'"
-  replace: "      - name: Install"
+  find: "        id: install\n        if: steps.plan.outputs.ok == 'true'"
+  replace: "        id: install"
   test: tests.test_radar_preview.WorkflowTests.test_it_draws_only_what_the_plan_allowed
 - label: the preview publishes
   find: 'python studio.py render "$campaign" || status=1'
@@ -51,3 +51,7 @@ mutations:
   find: '          persist-credentials: false'
   replace: '          persist-credentials: true'
   test: tests.test_radar_preview.WorkflowTests.test_the_checkout_does_not_leave_the_token_in_the_workspace_of_a_persistent_runner
+- label: the comment is not told whether the install or the upload succeeded
+  find: '          UPLOAD: ${{ steps.upload.outcome }}'
+  replace: '          UPLOAD: skipped'
+  test: tests.test_radar_preview.WorkflowTests.test_the_comment_is_told_the_outcome_of_every_step_it_reports_on

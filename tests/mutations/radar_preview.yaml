@@ -43,18 +43,42 @@ mutations:
   find: 'lines = [MARKER, "### Radar preview", ""]'
   replace: 'lines = ["### Radar preview", ""]'
   test: tests.test_radar_preview.CommentTests.test_it_starts_with_the_marker_the_workflow_looks_for_and_links_the_images
-- label: a failed check or drawing is not mentioned in the comment
-  find: '        lines += [f"**A check or the drawing failed: read [the run]({run_url}).**", ""]'
-  replace: '        pass'
+- label: a failed step is not mentioned in the comment
+  find: '    if failed or unreadable:'
+  replace: '    if unreadable:'
   test: tests.test_radar_preview.CommentTests.test_a_failure_points_at_the_run
+- label: a skipped or failed install, or a failed upload, is not a failure of the preview
+  find: 'failed=any(outcome != "success" for outcome in (args.install, args.check, args.render, args.upload)),'
+  replace: 'failed=args.check == "failure" or args.render == "failure",'
+  test: tests.test_radar_preview.CommentTests.test_every_step_that_did_not_succeed_makes_the_comment_say_so
+- label: a manifest that is not valid JSON stops the comment
+  find: '        except (OSError, ValueError):                       # JSONDecodeError and UnicodeDecodeError are ValueErrors'
+  replace: '        except OSError:'
+  test: tests.test_radar_preview.CommentTests.test_a_manifest_that_cannot_be_read_does_not_stop_the_comment_that_reports_the_failure
+- label: a manifest that is JSON but not an object stops the comment
+  find: '            if not isinstance(data, dict):'
+  replace: '            if False:'
+  test: tests.test_radar_preview.CommentTests.test_a_manifest_that_cannot_be_read_does_not_stop_the_comment_that_reports_the_failure
+- label: slides of an unexpected type stop the comment
+  find: '"slides": len(slides) if isinstance(slides, list) else 0,'
+  replace: '"slides": len(slides),'
+  test: tests.test_radar_preview.CommentTests.test_a_manifest_that_cannot_be_read_does_not_stop_the_comment_that_reports_the_failure
+- label: an empty artifact link is published
+  find: '        if artifact_url:'
+  replace: '        if True:'
+  test: tests.test_radar_preview.CommentTests.test_a_missing_artifact_link_is_not_published_as_an_empty_link
 - label: an output block ends with a fixed delimiter a file name can write
   find: 'delimiter = f"RADAR_EOF_{uuid.uuid4().hex}"'
   replace: 'delimiter = "RADAR_EOF"'
   test: tests.test_radar_preview.PlanTests.test_a_file_name_cannot_end_its_output_block_and_set_an_output_of_its_own
 - label: a file name breaks out of its code span in the comment
-  find: 'return re.sub(r"[`\x00-\x1f\x7f]", "?", text)'
+  find: 'return re.sub(r"[^A-Za-z0-9._/-]", "?", text)'
   replace: 'return text'
   test: tests.test_radar_preview.CommentTests.test_a_file_name_cannot_break_out_of_its_code_span
+- label: the reason can hold a newline or a backtick
+  find: 'return re.sub(r"[`\x00-\x1f\x7f]", "?", text)'
+  replace: 'return text'
+  test: tests.test_radar_preview.CommentTests.test_the_reason_is_one_printable_line
 - label: a symbolic link inside a campaign counts as radar data
   find: '    if linked:'
   replace: '    if False:'
@@ -68,8 +92,8 @@ mutations:
   replace: 'CAMPAIGN = re.compile(r"campaigns/(radar-\d{4}-\d{2}-\d{2}(?:-\d+)?)/")'
   test: tests.test_radar_preview.ClassifyTests.test_other_campaigns_and_look_alike_folders_are_outside
 - label: a post or language folder name goes into the comment as it is
-  find: 'rows.append({"lang": safe(folder.parent.name), "post": safe(folder.name),'
-  replace: 'rows.append({"lang": folder.parent.name, "post": folder.name,'
+  find: 'where = f"{safe(folder.parent.name)}/{safe(folder.name)}"'
+  replace: 'where = f"{folder.parent.name}/{folder.name}"'
   test: tests.test_radar_preview.CommentTests.test_a_post_or_language_folder_name_cannot_put_a_link_or_html_in_the_comment
 - label: the file named in the reason goes in as it is
   find: 'f"{len(outside)} changed file(s) are not radar data, e.g. {safe(outside[0])}"'

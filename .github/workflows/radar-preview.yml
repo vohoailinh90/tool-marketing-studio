@@ -49,6 +49,7 @@ jobs:
         run: python scripts/radar_preview.py plan
 
       - name: Install
+        id: install
         if: steps.plan.outputs.ok == 'true'
         run: |
           python -m pip install --upgrade pip
@@ -94,14 +95,17 @@ jobs:
           CAMPAIGNS: ${{ steps.plan.outputs.campaigns }}
           REASON: ${{ steps.plan.outputs.reason }}
           OUTSIDE: ${{ steps.plan.outputs.outside }}
+          INSTALL: ${{ steps.install.outcome }}
           CHECK: ${{ steps.check.outcome }}
           RENDER: ${{ steps.render.outcome }}
+          UPLOAD: ${{ steps.upload.outcome }}
           ARTIFACT_URL: ${{ steps.upload.outputs.artifact-url }}
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: |
           # `--name=value`: a value that starts with a dash (a file named -x) must not be read as an option.
           python scripts/radar_preview.py comment --plan-ok="$PLAN_OK" --campaigns="$CAMPAIGNS" --reason="$REASON" \
-            --outside="$OUTSIDE" --check="$CHECK" --render="$RENDER" --artifact-url="$ARTIFACT_URL" --run-url="$RUN_URL" \
+            --outside="$OUTSIDE" --install="$INSTALL" --check="$CHECK" --render="$RENDER" --upload="$UPLOAD" \
+            --artifact-url="$ARTIFACT_URL" --run-url="$RUN_URL" \
             --out="$RUNNER_TEMP/radar-preview-comment.md"
           cat "$RUNNER_TEMP/radar-preview-comment.md" >> "$GITHUB_STEP_SUMMARY"
 

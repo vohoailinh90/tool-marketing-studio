@@ -202,6 +202,11 @@ def render_fixture(root: Path, caption: str, overflow: list[int]) -> None:
     (folder / "facebook.txt").write_text(caption, encoding="utf-8")
 
 
+def render_fixture_once(root: Path) -> None:
+    if not (root / "campaigns" / CAMPAIGN / "export" / "vi" / "01-x").exists():
+        render_fixture(root, "Caption", [])
+
+
 def comment(root: Path, **over) -> str:
     args = dict(plan_ok=True, campaigns=[CAMPAIGN], reason="", outside=[], failed=False,
                 artifact_url="https://example.test/artifact", run_url="https://example.test/run")
@@ -242,8 +247,56 @@ class CommentTests(unittest.TestCase):
 
     def test_a_failure_points_at_the_run(self):
         render_fixture(self.root, "Caption", [])
-        self.assertIn("A check or the drawing failed: read [the run](https://example.test/run)", comment(self.root, failed=True))
+        self.assertIn("A step failed or a manifest could not be read: read [the run](https://example.test/run)",
+                      comment(self.root, failed=True))
         self.assertNotIn("failed", comment(self.root, failed=False))
+
+    def test_every_step_that_did_not_succeed_makes_the_comment_say_so(self):
+        # install failed -> the check and the drawing are `skipped`; upload failed -> check and drawing stay `success`
+        everything = {"install": "success", "check": "success", "render": "success", "upload": "success"}
+        for step in everything:
+            for outcome in ("failure", "skipped", "cancelled"):
+                with self.subTest(step=step, outcome=outcome):
+                    out = self.root / f"{step}-{outcome}.md"
+                    self.run_comment({**everything, step: outcome}, out)
+                    self.assertIn("A step failed", out.read_text(encoding="utf-8"))
+        ok = self.root / "ok.md"
+        self.run_comment(everything, ok)
+        self.assertNotIn("A step failed", ok.read_text(encoding="utf-8"))
+
+    def run_comment(self, outcomes: dict[str, str], out: Path) -> None:
+        render_fixture_once(self.root)
+        original = radar_preview.ROOT
+        radar_preview.ROOT = self.root
+        try:
+            code = radar_preview.main(["comment", "--plan-ok=true", f"--campaigns={CAMPAIGN}", "--reason=", "--outside=",
+                                       *[f"--{step}={outcome}" for step, outcome in outcomes.items()],
+                                       "--artifact-url=https://a", "--run-url=https://r", f"--out={out}"])
+        finally:
+            radar_preview.ROOT = original
+        self.assertEqual(0, code)
+
+    def test_a_manifest_that_cannot_be_read_does_not_stop_the_comment_that_reports_the_failure(self):
+        render_fixture(self.root, "Caption", [])                                         # one good post
+        export = self.root / "campaigns" / CAMPAIGN / "export" / "vi"
+        for name, content in (("bad-json", b"{not json"), ("a-list", b"[1, 2]"), ("not-utf8", b"\xff\xfe\x00{")):
+            (export / name).mkdir()
+            (export / name / "manifest.json").write_bytes(content)
+        (export / "odd-types").mkdir()
+        (export / "odd-types" / "manifest.json").write_text('{"slides": 5, "overflow": "x", "sha": ["a"]}', encoding="utf-8")
+        body = comment(self.root)
+        for name in ("bad-json", "a-list", "not-utf8"):
+            self.assertIn(f"`radar-2026-10-13-5/vi/{name}`", body)
+        self.assertIn("A step failed or a manifest could not be read", body)
+        self.assertIn("| radar-2026-10-13-5 | vi/01-x | 3 | none |", body)               # the readable post is still reported
+        self.assertIn("| vi/odd-types | 0 | none |", body.replace("radar-2026-10-13-5 | ", ""))   # odd types are read as empty, not as an error
+
+    def test_a_missing_artifact_link_is_not_published_as_an_empty_link(self):
+        render_fixture(self.root, "Caption", [])
+        body = comment(self.root, artifact_url="")
+        self.assertNotIn("download the artifact", body)
+        self.assertNotIn("]()", body)
+        self.assertIn("could not be attached to the run", body)
 
     def test_a_pull_request_that_is_not_drawn_says_why_and_lists_at_most_five_files(self):
         body = comment(self.root, plan_ok=False, reason="7 changed file(s) are not radar data", campaigns=[],
@@ -256,8 +309,12 @@ class CommentTests(unittest.TestCase):
     def test_a_file_name_cannot_break_out_of_its_code_span(self):
         body = comment(self.root, plan_ok=False, reason="1 changed file(s) are not radar data", campaigns=[],
                        outside=["a`b\n## injected"])
-        self.assertIn("- `a?b?## injected`", body)
+        self.assertIn("- `a?b????injected`", body)               # backtick, newline, '#' and space all become '?'
         self.assertNotIn("\n## injected", body)
+
+    def test_the_reason_is_one_printable_line(self):
+        body = comment(self.root, plan_ok=False, reason="x`y\nz", campaigns=[], outside=[])
+        self.assertIn("Not drawn here: x?y?z.", body)
 
     def test_a_post_or_language_folder_name_cannot_put_a_link_or_html_in_the_comment(self):
         folder = self.root / "campaigns" / CAMPAIGN / "export" / "v<b>i" / "[x](evil.test)@octocat"       # no "/": that would nest
@@ -285,12 +342,12 @@ class CommentTests(unittest.TestCase):
         radar_preview.ROOT = self.root
         try:
             code = radar_preview.main(["comment", "--plan-ok=true", f"--campaigns={CAMPAIGN}", "--reason=", "--outside=-x\nmkt/y.py",
-                                       "--check=success", "--render=failure", "--artifact-url=https://a", "--run-url=https://r",
+                                       "--install=success", "--check=success", "--render=failure", "--upload=success", "--artifact-url=https://a", "--run-url=https://r",
                                        f"--out={out}"])
         finally:
             radar_preview.ROOT = original
         self.assertEqual(0, code)
-        self.assertIn("A check or the drawing failed", out.read_text(encoding="utf-8"))
+        self.assertIn("A step failed", out.read_text(encoding="utf-8"))
 
 
 class WorkflowTests(unittest.TestCase):
@@ -345,6 +402,14 @@ class WorkflowTests(unittest.TestCase):
         self.assertLess(names.index("Keep one comment on the pull request"), len(names) - 1)
         self.assertIn("steps.check.outcome == 'failure'", last["if"])
         self.assertIn("steps.render.outcome == 'failure'", last["if"])
+
+    def test_the_comment_is_told_the_outcome_of_every_step_it_reports_on(self):
+        step = next(s for s in steps() if s.get("name") == "Write the comment")
+        for name, outcome in (("INSTALL", "steps.install.outcome"), ("CHECK", "steps.check.outcome"),
+                              ("RENDER", "steps.render.outcome"), ("UPLOAD", "steps.upload.outcome")):
+            self.assertIn(outcome, step["env"][name])
+            self.assertIn(f'--{name.lower()}="${name}"', step["run"])
+        self.assertTrue(any(s.get("id") == "install" for s in steps()))
 
     def test_the_checks_and_the_drawing_do_not_stop_the_comment(self):
         by_name = {s.get("name"): s for s in steps()}

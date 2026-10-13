@@ -131,16 +131,27 @@ def fence(text: str) -> str:
     return "`" * max(3, longest + 1)
 
 
-def rendered(root: Path, campaign: str) -> list[dict]:
-    rows = []
+def rendered(root: Path, campaign: str) -> tuple[list[dict], list[str]]:
+    """The posts the renderer drew, and the manifests that could not be read (a committed file the renderer did not
+    replace, because that post failed its check). The comment that reports a failure must not fail on one."""
+    rows, unreadable = [], []
     for manifest in sorted((root / "campaigns" / campaign / "export").glob("*/*/manifest.json")):
-        data = json.loads(manifest.read_text(encoding="utf-8"))
         folder = manifest.parent
-        caption = folder / "facebook.txt"
-        rows.append({"lang": safe(folder.parent.name), "post": safe(folder.name), "slides": len(data.get("slides", [])),
-                     "overflow": data.get("overflow", []), "sha": str(data.get("sha", ""))[:12],
-                     "caption": caption.read_text(encoding="utf-8") if caption.exists() else ""})
-    return rows
+        where = f"{safe(folder.parent.name)}/{safe(folder.name)}"
+        try:
+            data = json.loads(manifest.read_text(encoding="utf-8"))
+            if not isinstance(data, dict):
+                raise ValueError("a manifest is a JSON object")
+            slides, overflow = data.get("slides", []), data.get("overflow", [])
+            caption = folder / "facebook.txt"
+            text = caption.read_text(encoding="utf-8") if caption.exists() else ""
+        except (OSError, ValueError):                       # JSONDecodeError and UnicodeDecodeError are ValueErrors
+            unreadable.append(where)
+            continue
+        rows.append({"where": where, "slides": len(slides) if isinstance(slides, list) else 0,
+                     "overflow": [safe(str(n)) for n in overflow] if isinstance(overflow, list) else [],
+                     "sha": safe(str(data.get("sha", ""))[:12]), "caption": text})
+    return rows, unreadable
 
 
 def build_comment(root: Path, *, plan_ok: bool, campaigns: Sequence[str], reason: str, outside: Sequence[str],
@@ -149,28 +160,34 @@ def build_comment(root: Path, *, plan_ok: bool, campaigns: Sequence[str], reason
     if not plan_ok:
         lines += ["Not drawn here: " + printable(reason) + ".", ""]
         if outside:
-            lines += ["Files outside radar data:", ""] + [f"- `{printable(p)}`" for p in outside[:5]] + [""]
+            lines += ["Files outside radar data:", ""] + [f"- `{safe(p)}`" for p in outside[:5]] + [""]
         lines += ["This workflow draws only pull requests that change nothing but `campaigns/radar-*/` and "
                   "`tools/github-radar/`: the engine of a pull request is code, and it would run on the shared runner. "
                   "The ordinary CI still checks this pull request.", ""]
         return "\n".join(lines)
     lines += ["Checked and drawn with this repository's engine from the files of this pull request. "
               "Nothing is approved, committed or published.", ""]
-    if failed:
-        lines += [f"**A check or the drawing failed: read [the run]({run_url}).**", ""]
-    rows = [(c, r) for c in campaigns for r in rendered(root, c)]
+    found = [(c, *rendered(root, c)) for c in campaigns]
+    rows = [(c, r) for c, got, _ in found for r in got]
+    unreadable = [f"{c}/{where}" for c, _, bad in found for where in bad]
+    if failed or unreadable:
+        lines += [f"**A step failed or a manifest could not be read: read [the run]({run_url}).**", ""]
+    if unreadable:
+        lines += ["Manifests that could not be read:", ""] + [f"- `{w}`" for w in unreadable[:5]] + [""]
     if rows:
         lines += ["| Campaign | Post | Slides | Slides that overflow | Drawn from |", "|---|---|---|---|---|"]
-        lines += [f"| {c} | {r['lang']}/{r['post']} | {r['slides']} | "
-                  f"{', '.join(map(str, r['overflow'])) or 'none'} | `{r['sha']}` |" for c, r in rows]
-        lines += ["", f"Images and texts: [download the artifact]({artifact_url}) (one zip; the same files are on [the run]({run_url})).", ""]
+        lines += [f"| {c} | {r['where']} | {r['slides']} | {', '.join(r['overflow']) or 'none'} | `{r['sha']}` |" for c, r in rows]
+        if artifact_url:
+            lines += ["", f"Images and texts: [download the artifact]({artifact_url}) (one zip; the same files are on [the run]({run_url})).", ""]
+        else:
+            lines += ["", f"The images and texts could not be attached to the run: read [the run]({run_url}).", ""]
         for c, r in rows:
             caption = r["caption"].strip()[:CAPTION_LIMIT]
             if caption:
                 bar = fence(caption)
-                lines += [f"<details><summary>Facebook caption · {r['lang']}/{r['post']}</summary>", "",
+                lines += [f"<details><summary>Facebook caption · {r['where']}</summary>", "",
                           f"{bar}text", caption, bar, "", "</details>", ""]
-    else:
+    elif not unreadable:
         lines += ["No post was drawn.", ""]
     lines += ["Next: look at the images, then approve in the app (Publish page) or with `studio.py approve`. "
               "Publishing stays yours."]
@@ -178,9 +195,11 @@ def build_comment(root: Path, *, plan_ok: bool, campaigns: Sequence[str], reason
 
 
 def cmd_comment(args: argparse.Namespace) -> int:
+    """`failed` is any step of a drawn pull request whose outcome is not `success`: a skipped check or drawing (the install
+    failed before them) and a failed upload both leave the comment unable to say the pull request was checked and drawn."""
     body = build_comment(ROOT, plan_ok=args.plan_ok == "true", campaigns=args.campaigns.split(), reason=args.reason,
                          outside=[p for p in args.outside.splitlines() if p],
-                         failed=args.check == "failure" or args.render == "failure",
+                         failed=any(outcome != "success" for outcome in (args.install, args.check, args.render, args.upload)),
                          artifact_url=args.artifact_url, run_url=args.run_url)
     Path(args.out).write_text(body, encoding="utf-8")
     print(f"radar_preview: comment written to {args.out} ({len(body)} characters)")
@@ -193,7 +212,7 @@ def main(argv: Sequence[str] | None = None, environ: Mapping[str, str] | None = 
     sub = parser.add_subparsers(dest="command", required=True)
     sub.add_parser("plan", help="decide whether the pull request may be drawn (reads PR_BASE_SHA)")
     comment = sub.add_parser("comment", help="write the Markdown of the pull request comment")
-    for name in ("plan-ok", "campaigns", "reason", "outside", "check", "render", "artifact-url", "run-url"):
+    for name in ("plan-ok", "campaigns", "reason", "outside", "install", "check", "render", "upload", "artifact-url", "run-url"):
         comment.add_argument(f"--{name}", default="")
     comment.add_argument("--out", required=True)
     args = parser.parse_args(argv)

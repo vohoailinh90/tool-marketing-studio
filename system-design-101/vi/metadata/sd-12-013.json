@@ -70,7 +70,8 @@
   ],
   "source_deviations": [
     "Bài thêm xác nhận đã nhận, loại trùng và đa thiết bị; nguồn mô tả bản đơn giản hóa cho chat 1–1.",
-    "Đây là thiết kế minh họa, không phải kiến trúc thật của WhatsApp, Messenger hay Discord dù tiêu đề nguồn nhắc tới."
+    "Đây là thiết kế minh họa, không phải kiến trúc thật của WhatsApp, Messenger hay Discord dù tiêu đề nguồn nhắc tới.",
+    "Nguồn chỉ nói ID duy nhất để sắp thứ tự; bài nói rõ ID còn phải tăng dần trong từng cuộc trò chuyện, vì việc sắp thứ tự và tải bù theo “ID lớn hơn tin cuối” không dùng được với ID chỉ duy nhất (như UUID)."
   ],
   "design_notes_vi": "Bảy thẻ dọc; hai thẻ cuối là hai nhánh (trực tuyến / ngoại tuyến) viết tách để không dựa vào màu.",
   "editorial_note_vi": "Bản nháp độc lập viết từ kiến thức kỹ thuật chung; đọc bài nguồn nhưng chưa mở tài liệu chính thức nên các claim chưa được kiểm chứng. Chưa review kỹ thuật, chưa user testing, chưa phê duyệt phát hành."

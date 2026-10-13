@@ -1804,5 +1804,5 @@ mutations:
   test: tests.test_sd101_check.AbbreviationRuleTests.test_the_full_form_may_skip_little_words_and_use_the_camel_case_of_a_name
 - label: what a glossary entry says is not read for abbreviations
   find: "            (glossary if section == GLOSSARY_HEADING else body).append(piece)\n    return body, glossary,"
-  replace: "            (body if section == GLOSSARY_HEADING else body).append(piece)\n    return body, glossary,"
+  replace: "            (glossary if section == GLOSSARY_HEADING else body).append(\"\" if section == GLOSSARY_HEADING else piece)\n    return body, glossary,"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_what_a_glossary_entry_says_is_read_for_abbreviations_too

@@ -1834,7 +1834,7 @@ class AbbreviationRuleTests(StoreCase):
         self.assertProblem("has no bullets")
 
     def test_a_bullet_may_run_onto_the_next_line(self) -> None:
-        self.lesson("Về LLM.", glossary="- **LLM** (Large Language Model) — mô hình ngôn ngữ lớn:\n  chương trình sinh văn bản.\n")
+        self.lesson("Về LLM.", glossary="- **LLM** (Large Language Model) — mô hình\n  ngôn ngữ lớn, sinh văn bản.\n")
         self.assertEqual([], self.problems())
 
     def test_what_a_glossary_entry_says_is_read_for_abbreviations_too(self) -> None:

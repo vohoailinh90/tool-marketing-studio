@@ -1,6 +1,6 @@
 # Sách đáng đọc cho người làm DevOps và vận hành
 
-Chọn sách theo điều bạn đang cần giải quyết, không theo một danh sách cố định. Mỗi mục dưới đây là một nhu cầu cụ thể kèm vài cuốn hợp nhất.
+Chọn sách theo điều bạn đang cần giải quyết, không theo một danh sách cố định. Mỗi mục dưới đây là một nhu cầu cụ thể kèm vài cuốn hợp nhất. Chữ DevOps ở tiêu đề ghép từ Development (phát triển) và Operations (vận hành).
 
 ![Năm nhu cầu và sách gợi ý: đo hiệu quả giao phần mềm với Accelerate, vận hành ổn định ở quy mô lớn với Site Reliability Engineering và Building Secure and Reliable Systems, thiết kế chịu lỗi với Release It!, nhìn thấy hệ thống đang chạy với Observability Engineering, và quản lý hạ tầng bằng mã với Infrastructure as Code.](../../diagrams/sd-13-002-main.svg)
 
@@ -13,7 +13,7 @@ Nhóm muốn biết việc giao phần mềm của mình đang tốt lên hay t�
 <details>
 <summary>Xem đáp án</summary>
 
-Accelerate. Sách trình bày bốn thước đo (mô hình ban đầu): tần suất triển khai, thời gian từ commit đến chạy thật, tỉ lệ thay đổi gây lỗi và thời gian khôi phục. DORA sau đó cập nhật mô hình thành năm thước đo, thêm tỉ lệ làm lại triển khai (deployment rework rate); hãy xem trang DORA để lấy định nghĩa hiện hành trước khi chọn bảng điểm.
+Accelerate. Sách trình bày bốn thước đo (mô hình ban đầu): tần suất triển khai, thời gian từ commit đến chạy thật, tỉ lệ thay đổi gây lỗi và thời gian khôi phục. DORA (DevOps Research and Assessment — chương trình nghiên cứu và đánh giá DevOps) sau đó cập nhật mô hình thành năm thước đo, thêm tỉ lệ làm lại triển khai (deployment rework rate); hãy xem trang DORA để lấy định nghĩa hiện hành trước khi chọn bảng điểm.
 
 </details>
 
@@ -25,7 +25,7 @@ Sách không chứng minh cách làm hợp với tổ chức của bạn. Nhiề
 <summary>Xem sâu hơn</summary>
 
 - **Accelerate:** Nicole Forsgren, Jez Humble, Gene Kim; nền của các thước đo DORA.
-- **Site Reliability Engineering** do nhóm SRE của Google biên tập, cùng **Building Secure and Reliable Systems** của Google; cả hai đọc trực tuyến miễn phí.
+- **Site Reliability Engineering** do nhóm SRE (Site Reliability Engineering — kỹ thuật độ tin cậy của hệ thống) của Google biên tập, cùng **Building Secure and Reliable Systems** của Google; cả hai đọc trực tuyến miễn phí.
 - **Release It!** của Michael Nygard: các mẫu để phần mềm chịu được lỗi và quá tải khi chạy thật.
 - **Observability Engineering:** Charity Majors, Liz Fong-Jones, George Miranda.
 - **Infrastructure as Code:** Kief Morris.

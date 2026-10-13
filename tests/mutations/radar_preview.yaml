@@ -55,3 +55,23 @@ mutations:
   find: 'return re.sub(r"[`\x00-\x1f\x7f]", "?", text)'
   replace: 'return text'
   test: tests.test_radar_preview.CommentTests.test_a_file_name_cannot_break_out_of_its_code_span
+- label: a symbolic link inside a campaign counts as radar data
+  find: '    if linked:'
+  replace: '    if False:'
+  test: tests.test_radar_preview.PlanTests.test_a_symbolic_link_in_a_campaign_is_not_drawn_even_when_the_path_looks_like_radar_data
+- label: the pull request's files are measured from the base the event named, not from the merge's first parent
+  find: 'return parents[1] if len(parents) == 3 else environ.get("PR_BASE_SHA", "")'
+  replace: 'return environ.get("PR_BASE_SHA", "")'
+  test: tests.test_radar_preview.PlanTests.test_a_base_that_moved_after_the_event_does_not_put_its_files_into_the_pull_request
+- label: other scripts' digits make a campaign name
+  find: 'CAMPAIGN = re.compile(r"campaigns/(radar-[0-9]{4}-[0-9]{2}-[0-9]{2}(?:-[0-9]+)?)/")'
+  replace: 'CAMPAIGN = re.compile(r"campaigns/(radar-\d{4}-\d{2}-\d{2}(?:-\d+)?)/")'
+  test: tests.test_radar_preview.ClassifyTests.test_other_campaigns_and_look_alike_folders_are_outside
+- label: a post or language folder name goes into the comment as it is
+  find: 'rows.append({"lang": safe(folder.parent.name), "post": safe(folder.name),'
+  replace: 'rows.append({"lang": folder.parent.name, "post": folder.name,'
+  test: tests.test_radar_preview.CommentTests.test_a_post_or_language_folder_name_cannot_put_a_link_or_html_in_the_comment
+- label: the file named in the reason goes in as it is
+  find: 'f"{len(outside)} changed file(s) are not radar data, e.g. {safe(outside[0])}"'
+  replace: 'f"{len(outside)} changed file(s) are not radar data, e.g. {outside[0]}"'
+  test: tests.test_radar_preview.CommentTests.test_the_file_named_in_the_reason_cannot_carry_a_link

@@ -103,8 +103,11 @@ github-radar opens a **draft pull request** on branch `radar/<campaign>` for eac
 - it never approves, publishes, commits or pushes: reading the images, `studio.py approve` and publishing stay the owner's.
 
 The engine of a pull request is code that would run on the shared runner, so `scripts/radar_preview.py` first lists the
-files the pull request changed and draws it only when every one is under `campaigns/radar-*/` or `tools/github-radar/`;
-otherwise the comment says which files are outside and nothing runs. Only branches of this repository named `radar/...`
-are drawn (never a fork), the token can write pull-request comments and nothing else, and no pull-request value is
-written into a script. The job is a few minutes and waits in the same runner queue as `ci.yml`
+files the pull request changed (against the base as it is now, the first parent of GitHub's merge commit) and draws it only
+when every one is under `campaigns/radar-*/` or `tools/github-radar/` and none is, or sits under, a symbolic link; otherwise
+the comment says which files are the problem and nothing runs. That is a safety net for a bot branch that carries code by
+accident, not a boundary against someone who can already push a branch here: that person can edit the workflow itself, which
+runs on the same runner, exactly as with `ci.yml`. Only branches of this repository named `radar/...` are drawn (never a
+fork), the token can write pull-request comments and nothing else (and is not kept in `.git/config`), and no
+pull-request value is written into a script. The job is a few minutes and waits in the same runner queue as `ci.yml`
 (`CI_RUNNER` moves both). Tests: `tests/test_radar_preview.py`; mutations: `tests/mutations/radar_preview*.yaml`.

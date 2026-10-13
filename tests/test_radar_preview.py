@@ -56,6 +56,7 @@ class ClassifyTests(unittest.TestCase):
     def test_other_campaigns_and_look_alike_folders_are_outside(self):
         for path in ("campaigns/outlook-rsvp-tool/posts/vi/1.yaml", "campaigns/radar-evil/campaign.yaml",
                      "campaigns/radar-2026-10-13-x/campaign.yaml", "campaigns/radar-2026-10-13", "tools/github-radar-extra/brief.yaml",
+                     "campaigns/radar-\u0662\u0660\u0662\u0666-10-13/campaign.yaml",           # Arabic-Indic digits are not a date
                      "tools/other/brief.yaml", "tools/github-radar"):
             ok, _, outside, _ = radar_preview.decide([POST, path])
             self.assertFalse(ok, path)
@@ -124,6 +125,53 @@ class PlanTests(unittest.TestCase):
             got = parse_outputs(out.read_text(encoding="utf-8"))
             self.assertEqual("false", got["ok"])
             self.assertEqual({"ok", "campaigns", "export_paths", "reason", "outside"}, set(got))
+
+    def test_a_symbolic_link_in_a_campaign_is_not_drawn_even_when_the_path_looks_like_radar_data(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            repo = Path(tmp) / "repo"
+            repo.mkdir()
+            git(repo, "init", "-q")
+            (repo / "README.md").write_text("x", encoding="utf-8")
+            git(repo, "add", "-A")
+            git(repo, "commit", "-q", "-m", "base")
+            base = git(repo, "rev-parse", "HEAD")
+            (repo / "campaigns" / CAMPAIGN).mkdir(parents=True)
+            (repo / "campaigns" / CAMPAIGN / "campaign.yaml").write_text("a", encoding="utf-8")
+            (repo / "campaigns" / CAMPAIGN / "export").symlink_to("/etc")           # the engine would write through it
+            (repo / "tools" / "github-radar").mkdir(parents=True)
+            (repo / "tools" / "github-radar" / "brief.yaml").symlink_to("/etc/hostname")
+            git(repo, "add", "-A")
+            git(repo, "commit", "-q", "-m", "radar")
+            out = Path(tmp) / "output"
+            radar_preview.main(["plan"], {"PR_BASE_SHA": base, "GITHUB_OUTPUT": str(out)}, cwd=repo)
+            got = parse_outputs(out.read_text(encoding="utf-8"))
+            self.assertEqual("false", got["ok"])
+            self.assertEqual({f"campaigns/{CAMPAIGN}/export", "tools/github-radar/brief.yaml"}, set(got["outside"].splitlines()))
+            self.assertIn("symbolic link", got["reason"])
+
+    def test_a_base_that_moved_after_the_event_does_not_put_its_files_into_the_pull_request(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            repo = Path(tmp) / "repo"
+            repo.mkdir()
+            git(repo, "init", "-q", "-b", "main")
+            (repo / "README.md").write_text("x", encoding="utf-8")
+            git(repo, "add", "-A")
+            git(repo, "commit", "-q", "-m", "base")
+            event_base = git(repo, "rev-parse", "HEAD")
+            git(repo, "checkout", "-q", "-b", "radar/x")
+            (repo / POST).parent.mkdir(parents=True)
+            (repo / POST).write_text("a", encoding="utf-8")
+            git(repo, "add", "-A")
+            git(repo, "commit", "-q", "-m", "radar")
+            git(repo, "checkout", "-q", "main")
+            (repo / "mkt.py").write_text("code someone else merged after the pull request was opened", encoding="utf-8")
+            git(repo, "add", "-A")
+            git(repo, "commit", "-q", "-m", "main moved")
+            git(repo, "merge", "-q", "--no-ff", "-m", "merge ref", "radar/x")           # what GitHub checks out for the event
+            out = Path(tmp) / "output"
+            radar_preview.main(["plan"], {"PR_BASE_SHA": event_base, "GITHUB_OUTPUT": str(out)}, cwd=repo)
+            got = parse_outputs(out.read_text(encoding="utf-8"))
+            self.assertEqual(("true", CAMPAIGN), (got["ok"], got["campaigns"]))
 
     def test_an_unreadable_base_is_not_planned(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -211,6 +259,22 @@ class CommentTests(unittest.TestCase):
         self.assertIn("- `a?b?## injected`", body)
         self.assertNotIn("\n## injected", body)
 
+    def test_a_post_or_language_folder_name_cannot_put_a_link_or_html_in_the_comment(self):
+        folder = self.root / "campaigns" / CAMPAIGN / "export" / "v<b>i" / "[x](evil.test)@octocat"       # no "/": that would nest
+        folder.mkdir(parents=True)
+        (folder / "manifest.json").write_text(json.dumps({"sha": "0123456789abcdef", "slides": ["01.png"], "overflow": []}), encoding="utf-8")
+        body = comment(self.root)
+        self.assertIn("| v?b?i/?x??evil.test??octocat | 1 |", body)          # the row exists, with the name made safe
+        self.assertNotIn("](evil.test)", body)
+        self.assertNotIn("<b>", body)
+        self.assertNotIn("@octocat", body)
+
+    def test_the_file_named_in_the_reason_cannot_carry_a_link(self):
+        ok, _, _, reason = radar_preview.decide([POST, "[x](http://evil.test)@octocat.py"])
+        self.assertFalse(ok)
+        self.assertNotIn("](", reason)
+        self.assertNotIn("@", reason)
+
     def test_a_campaign_without_a_drawing_says_so(self):
         self.assertIn("No post was drawn.", comment(self.root))
 
@@ -244,6 +308,10 @@ class WorkflowTests(unittest.TestCase):
         self.assertIn("github.event.pull_request.head.repo.full_name == github.repository", job["if"])
         self.assertIn("startsWith(github.event.pull_request.head.ref, 'radar/')", job["if"])
         self.assertIn("vars.CI_RUNNER || 'self-hosted'", job["runs-on"])
+
+    def test_the_checkout_does_not_leave_the_token_in_the_workspace_of_a_persistent_runner(self):
+        checkout = next(s for s in steps() if s.get("uses", "").startswith("actions/checkout"))
+        self.assertIs(False, checkout["with"]["persist-credentials"])
 
     def test_a_newer_push_replaces_the_run_of_the_same_pull_request(self):
         concurrency = workflow()["concurrency"]

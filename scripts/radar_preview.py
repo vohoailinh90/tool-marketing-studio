@@ -8,10 +8,13 @@ Nothing is approved, committed or published there.
 
 Two commands, both reading and writing only what the workflow hands them:
 
-  plan     lists the files the pull request changed (`scripts/ci_changes.py`) and decides. The engine of a pull request
-           is code that would run on the persistent runner, so a pull request that changes anything outside
-           `campaigns/radar-<date>[-n]/` and `tools/github-radar/` is not drawn; its comment says why. Writes `ok`,
-           `campaigns` and `export_paths` to GITHUB_OUTPUT.
+  plan     lists the files the pull request changed and decides. The engine of a pull request is code that would run
+           on the persistent runner, so a pull request that changes anything outside `campaigns/radar-<date>[-n]/`
+           and `tools/github-radar/`, or any path that is or sits under a symbolic link, is not drawn; its comment
+           says why. This is a safety net for a bot pull request that carries code by accident, not a boundary
+           against someone who can already push a branch here: that person can change the workflow itself, which
+           runs on the same runner, exactly as with ci.yml. Writes `ok`, `campaigns` and `export_paths` to
+           GITHUB_OUTPUT.
   comment  builds the Markdown of the one comment the workflow keeps on the pull request, from the manifests the
            renderer wrote and the texts beside them.
 """
@@ -23,6 +26,7 @@ import json
 import os
 import posixpath
 import re
+import subprocess
 import sys
 import uuid
 from collections.abc import Mapping, Sequence
@@ -33,7 +37,7 @@ import ci_changes  # noqa: E402 - one reading of "what did this pull request cha
 
 ROOT = Path(__file__).resolve().parent.parent
 MARKER = "<!-- radar-preview -->"
-CAMPAIGN = re.compile(r"campaigns/(radar-\d{4}-\d{2}-\d{2}(?:-\d+)?)/")
+CAMPAIGN = re.compile(r"campaigns/(radar-[0-9]{4}-[0-9]{2}-[0-9]{2}(?:-[0-9]+)?)/")   # [0-9]: \d also matches other scripts' digits
 DATA_PREFIXES = ("tools/github-radar/",)
 CAPTION_LIMIT = 3000
 
@@ -53,16 +57,42 @@ def classify(paths: Sequence[str]) -> tuple[list[str], list[str]]:
     return sorted(campaigns), outside
 
 
-def decide(changed: Sequence[str] | None) -> tuple[bool, list[str], list[str], str]:
+def symlinked(root: Path, paths: Sequence[str]) -> list[str]:
+    """The changed paths that are a symbolic link: the engine would write through one, an upload would follow it.
+    Only the path itself is looked at: git cannot hold a file beneath a link it tracks, so a link anywhere above a changed
+    path is itself a changed path (or an unchanged one that nothing can be added under)."""
+    return [path for path in paths if (root / path).is_symlink()]
+
+
+def decide(changed: Sequence[str] | None, linked: Sequence[str] = ()) -> tuple[bool, list[str], list[str], str]:
     """(may the pull request be drawn, its campaigns, files outside, one-line reason)."""
     if not changed:
         return False, [], [], "the changed files could not be read, so nothing is drawn"
+    if linked:
+        return False, [], list(linked), f"{len(linked)} changed path(s) are or sit under a symbolic link, e.g. {safe(linked[0])}"
     campaigns, outside = classify(changed)
     if outside:
-        return False, campaigns, outside, f"{len(outside)} changed file(s) are not radar data, e.g. {printable(outside[0])}"
+        return False, campaigns, outside, f"{len(outside)} changed file(s) are not radar data, e.g. {safe(outside[0])}"
     if not campaigns:
         return False, [], [], "no radar campaign among the changed files"
     return True, campaigns, [], f"{len(campaigns)} radar campaign(s): {', '.join(campaigns)}"
+
+
+def safe(text: str) -> str:
+    """Only what a slug or a path needs: a link, a mention or HTML in a file name cannot reach the comment."""
+    return re.sub(r"[^A-Za-z0-9._/-]", "?", text)
+
+
+def pr_base(environ: Mapping[str, str], cwd: Path | None) -> str:
+    """What the pull request's changes are measured from. In CI HEAD is GitHub's merge of the pull request into its
+    base, and that merge's first parent is the base as it is now, so a base that moved after the event does not put
+    its own files into the pull request. Anywhere else (or on any doubt) it is the base sha the event named."""
+    try:
+        parents = subprocess.run(["git", "rev-list", "--parents", "-n", "1", "HEAD"], cwd=cwd, capture_output=True, text=True,
+                                 check=True, timeout=60).stdout.split()
+    except (OSError, subprocess.SubprocessError):
+        parents = []
+    return parents[1] if len(parents) == 3 else environ.get("PR_BASE_SHA", "")
 
 
 def printable(text: str) -> str:
@@ -82,8 +112,8 @@ def write_outputs(path: str | None, values: Mapping[str, str]) -> None:
 
 
 def cmd_plan(environ: Mapping[str, str], cwd: Path | None = None) -> int:
-    changed = ci_changes.changed_files(environ.get("PR_BASE_SHA", ""), cwd)
-    ok, campaigns, outside, reason = decide(changed)
+    changed = ci_changes.changed_files(pr_base(environ, cwd), cwd)
+    ok, campaigns, outside, reason = decide(changed, symlinked(cwd or Path.cwd(), changed or []))
     print(f"radar_preview: {'draw' if ok else 'do not draw'}: {reason}")
     write_outputs(environ.get("GITHUB_OUTPUT"), {
         "ok": "true" if ok else "false",
@@ -107,7 +137,7 @@ def rendered(root: Path, campaign: str) -> list[dict]:
         data = json.loads(manifest.read_text(encoding="utf-8"))
         folder = manifest.parent
         caption = folder / "facebook.txt"
-        rows.append({"lang": folder.parent.name, "post": folder.name, "slides": len(data.get("slides", [])),
+        rows.append({"lang": safe(folder.parent.name), "post": safe(folder.name), "slides": len(data.get("slides", [])),
                      "overflow": data.get("overflow", []), "sha": str(data.get("sha", ""))[:12],
                      "caption": caption.read_text(encoding="utf-8") if caption.exists() else ""})
     return rows

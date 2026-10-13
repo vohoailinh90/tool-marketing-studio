@@ -5,6 +5,8 @@ name: Radar preview
 # comment on the pull request that links them, so the post can be looked at before it is approved.
 # Nothing is approved, committed or published here: those stay the owner's (CLAUDE.md, "Publishing is the owner's act").
 # scripts/radar_preview.py decides what may be drawn and writes the comment; docs/agent-team.md, "Radar preview".
+# A pull request that carries code or a symbolic link is not drawn: a safety net for the bot's branch, not a boundary against
+# someone who can already push here (they can change this workflow, which runs on the same runner, as with ci.yml).
 
 on:
   pull_request:
@@ -32,8 +34,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          # The pull request's diff against its base decides what may be drawn (scripts/ci_changes.py).
+          # The pull request's diff against its base decides what may be drawn (scripts/radar_preview.py).
           fetch-depth: 0
+          # The token can write pull-request comments; a persistent runner must not keep it in .git/config.
+          persist-credentials: false
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"

@@ -47,3 +47,7 @@ mutations:
   find: "        id: check\n        if: steps.plan.outputs.ok == 'true'\n        continue-on-error: true"
   replace: "        id: check\n        if: steps.plan.outputs.ok == 'true'"
   test: tests.test_radar_preview.WorkflowTests.test_the_checks_and_the_drawing_do_not_stop_the_comment
+- label: the token stays in .git/config of the persistent runner
+  find: '          persist-credentials: false'
+  replace: '          persist-credentials: true'
+  test: tests.test_radar_preview.WorkflowTests.test_the_checkout_does_not_leave_the_token_in_the_workspace_of_a_persistent_runner

@@ -19,7 +19,7 @@ Mười tám cổng trong hình gom theo việc chúng làm:
 
 ## Giới hạn cần nhớ
 
-Số cổng mặc định chỉ là quy ước: dịch vụ có thể chạy ở cổng khác, và một cổng mở không bảo đảm đúng dịch vụ đó đang chạy. Telnet, FTP và POP3 truyền dữ liệu không mã hóa nên thường được thay bằng SSH, SFTP và các bản có TLS. Cơ sở dữ liệu, SMB và RDP thường không nên mở thẳng ra Internet.
+Số cổng mặc định chỉ là quy ước: dịch vụ có thể chạy ở cổng khác, và một cổng mở không bảo đảm đúng dịch vụ đó đang chạy. Telnet, FTP và POP3 ở dạng gốc truyền dữ liệu không mã hóa nên thường được thay bằng SSH, SFTP và các bản có TLS. Cơ sở dữ liệu, SMB và RDP thường không nên mở thẳng ra Internet.
 
 ## Nhìn hình thử trả lời
 
@@ -28,7 +28,7 @@ Bạn dựng máy chủ web cho trình duyệt truy cập. Cần mở cổng nà
 <details>
 <summary>Xem đáp án</summary>
 
-Mở 443 (và 80 nếu cần chuyển hướng sang HTTPS). Cổng 3306 là của MySQL; mở ra Internet cho phép bất kỳ ai thử kết nối và dò mật khẩu cơ sở dữ liệu. Thường chỉ cho phép máy ứng dụng trong mạng nội bộ truy cập cổng này.
+Mở 443 trên TCP (thêm UDP 443 nếu bật HTTP/3) và 80 nếu cần chuyển hướng sang HTTPS. Cổng 3306 là của MySQL; mở ra Internet cho phép bất kỳ ai thử kết nối và dò mật khẩu cơ sở dữ liệu. Thường chỉ cho phép máy ứng dụng trong mạng nội bộ truy cập cổng này.
 
 </details>
 
@@ -48,7 +48,7 @@ Mở 443 (và 80 nếu cần chuyển hướng sang HTTPS). Cổng 3306 là củ
 - [ByteByteGo tại snapshot cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/18-common-ports-worth-knowing.md).
 - [RFC 768 — UDP](https://www.rfc-editor.org/rfc/rfc768) và [RFC 9293 — TCP](https://www.rfc-editor.org/rfc/rfc9293): số cổng 16 bit trong tiêu đề.
 - [IANA — Service Name and Transport Protocol Port Number Registry](https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml) và [RFC 6335](https://www.rfc-editor.org/rfc/rfc6335): số cổng và các dải.
-- [RFC 959 — FTP](https://www.rfc-editor.org/rfc/rfc959), [RFC 854 — Telnet](https://www.rfc-editor.org/rfc/rfc854), [RFC 5321 — SMTP](https://www.rfc-editor.org/rfc/rfc5321), [RFC 1035 — DNS](https://www.rfc-editor.org/rfc/rfc1035), [RFC 2131 — DHCPv4](https://www.rfc-editor.org/rfc/rfc2131), [RFC 8415 — DHCPv6](https://www.rfc-editor.org/rfc/rfc8415), [RFC 1939 — POP3](https://www.rfc-editor.org/rfc/rfc1939), [RFC 5905 — NTP](https://www.rfc-editor.org/rfc/rfc5905), [RFC 9051 — IMAP](https://www.rfc-editor.org/rfc/rfc9051), [RFC 9110 — HTTP](https://www.rfc-editor.org/rfc/rfc9110).
+- [RFC 959 — FTP](https://www.rfc-editor.org/rfc/rfc959), [RFC 854 — Telnet](https://www.rfc-editor.org/rfc/rfc854), [RFC 5321 — SMTP](https://www.rfc-editor.org/rfc/rfc5321), [RFC 1035 — DNS](https://www.rfc-editor.org/rfc/rfc1035), [RFC 2131 — DHCPv4](https://www.rfc-editor.org/rfc/rfc2131), [RFC 8415 — DHCPv6](https://www.rfc-editor.org/rfc/rfc8415), [RFC 1939 — POP3](https://www.rfc-editor.org/rfc/rfc1939), [RFC 5905 — NTP](https://www.rfc-editor.org/rfc/rfc5905), [RFC 9051 — IMAP](https://www.rfc-editor.org/rfc/rfc9051), [RFC 9110 — HTTP](https://www.rfc-editor.org/rfc/rfc9110), [RFC 9114 — HTTP/3](https://www.rfc-editor.org/rfc/rfc9114).
 - [RFC 4253 — SSH](https://www.rfc-editor.org/rfc/rfc4253), [RFC 1001](https://www.rfc-editor.org/rfc/rfc1001) và [RFC 1002](https://www.rfc-editor.org/rfc/rfc1002) (NetBIOS), [RFC 6409](https://www.rfc-editor.org/rfc/rfc6409) và [RFC 8314](https://www.rfc-editor.org/rfc/rfc8314) (cổng thư), [MS-RDPBCGR](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rdpbcgr/) và [MS-SMB2](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-smb2/).
 - [Oracle — Net Listener](https://docs.oracle.com/en/database/oracle/oracle-database/19/netag/configuring-and-administering-oracle-net-listener.html), [PostgreSQL — Connection settings](https://www.postgresql.org/docs/current/runtime-config-connection.html) và [MySQL — cổng mặc định](https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_port).
 

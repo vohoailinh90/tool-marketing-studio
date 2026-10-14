@@ -84,6 +84,10 @@
       ]
     },
     {
+      "claim_vi": "HTTP/3 chạy trên QUIC qua UDP và thường dùng cổng 443.",
+      "source": "https://www.rfc-editor.org/rfc/rfc9114"
+    },
+    {
       "claim_vi": "SSH dùng cổng 22.",
       "sources": [
         "https://www.rfc-editor.org/rfc/rfc4253",

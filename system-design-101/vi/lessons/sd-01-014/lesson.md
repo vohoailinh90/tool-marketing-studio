@@ -45,7 +45,7 @@ A, D, C, B. Hai lệnh `console.log` đồng bộ chạy trước (A, D). Khi st
 - **Hàm là giá trị:** có thể gán cho biến, truyền vào hàm khác, trả về từ hàm; đó là nền của hàm gọi lại.
 - **Kế thừa bằng prototype:** đối tượng kế thừa từ đối tượng khác; `class` là cú pháp viết gọn trên cơ chế đó.
 - **Thu gom rác:** bộ nhớ của đối tượng không còn được tham chiếu sẽ được tự thu hồi, nhưng tham chiếu bị giữ nhầm vẫn gây rò rỉ.
-- **`setTimeout(..., 0)`:** không chạy ngay; nó chỉ xếp một task sau khi hết thời gian chờ và stack rỗng.
+- **`setTimeout(..., 0)`:** không chạy ngay; hàm gọi lại chỉ chạy khi đã hết thời gian chờ tối thiểu và event loop lấy được task đó, tức là sau khi stack rỗng và microtask đã chạy hết. Nếu stack bận lâu hơn thời gian chờ, task vẫn phải đợi đến lượt dù đã đến hạn.
 
 </details>
 

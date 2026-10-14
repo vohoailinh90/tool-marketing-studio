@@ -94,7 +94,7 @@
       "verified_by": "No external page reports this output; observed by executing the code on the authoring machine."
     },
     {
-      "claim_vi": "Observed with RSA-2048, PKCS#1 v1.5 and SHA-256: computing signature^e mod n with the public key gave a 256-byte value starting 00 01 ff ff and ending with the SHA-256 of the message, and the signature was identical when signing the same message twice. For this scheme the 'decrypt the signature with the public key and compare the hash' description matches what happens.",
+      "claim_vi": "Observed with RSA-2048, PKCS#1 v1.5 and SHA-256: computing signature^e mod n with the public key gave a 256-byte value starting 00 01 ff ff and ending with the SHA-256 of the message, and the signature was identical when signing the same message twice. This is an observation about the recovered value (padding followed by the digest) and does not make signing a public-key decryption; that signing is a separate operation from encryption is the author's general knowledge, and RFC 8017 was not reachable.",
       "source": "https://github.com/pyca/cryptography/blob/1fbd556897daba9479bddf82b9a1824b72ea33eb/docs/hazmat/primitives/asymmetric/rsa.rst",
       "section": "Signing (PKCS1v15)",
       "verified_by": "No external page reports this output; observed by executing the code on the authoring machine."
@@ -120,7 +120,7 @@
   ],
   "design_notes_vi": "Sáu thẻ nối bằng mũi tên theo đúng thứ tự (cặp khóa, băm, ký, gửi, kiểm, kết quả), một thẻ đỏ nói chữ ký không giấu nội dung và không tự nói người ký là ai. Không dùng ảnh nguồn.",
   "source_deviations": [
-    "The source says the signer 'encrypts' the hash with the private key and the recipient 'decrypts' it; the lesson keeps that as a description that fits RSA PKCS#1 v1.5 and shows that RSA-PSS, ECDSA and Ed25519 do not work that way.",
+    "The source says the signer 'encrypts' the hash with the private key and the recipient 'decrypts' it; the lesson presents that as an intuitive picture, not a definition of signing; it notes that for RSA PKCS#1 v1.5 the recovered value looks like padding plus the digest without that making signing encryption, and shows that RSA-PSS, ECDSA and Ed25519 do not fit the picture even in form.",
     "The source says the recipient extracts 'the original hash value' from the document; the document does not contain the hash, the recipient computes it, and the lesson says so.",
     "The source says signatures are 'unique to every person'; the lesson says a signature is tied to a key and a message, and that who owns the key must be established separately.",
     "The source does not say that a signature leaves the document readable; the lesson does."

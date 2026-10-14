@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 798" width="320" height="798" role="img" aria-labelledby="title desc">
 <title id="title">Sáu việc của bộ cân bằng tải</title>
-<desc id="desc">Sáu khung dọc: phân phối tải chia request cho nhiều máy theo một thuật toán; sẵn sàng cao loại máy lỗi khỏi nhóm và bản thân LB cũng cần dự phòng; kết thúc TLS giải mã tại LB và chặng sau có thể mã hóa lại; giữ phiên đưa cùng người dùng về cùng máy nhưng tải dễ bị lệch; mở rộng ngang thêm máy khi tải tăng và ứng dụng nên ít giữ trạng thái; theo dõi sức khỏe kiểm tra định kỳ từng máy, kiểm tra quá sâu dễ loại nhầm.</desc>
+<desc id="desc">Sáu khung dọc: phân phối tải chia lưu lượng cho nhiều máy theo một thuật toán; sẵn sàng cao loại máy lỗi khỏi nhóm và bản thân LB cũng cần dự phòng; kết thúc TLS giải mã tại LB và chặng sau có thể mã hóa lại; giữ phiên đưa cùng người dùng về cùng máy nhưng tải dễ bị lệch; mở rộng ngang thêm máy khi tải tăng và ứng dụng nên ít giữ trạng thái; theo dõi sức khỏe kiểm tra định kỳ từng máy, kiểm tra quá sâu dễ loại nhầm.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="798" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
@@ -8,7 +8,7 @@
 <text x="16" y="60" font-size="16" font-weight="normal">Sáu việc nó làm</text>
 <rect x="16" y="82" width="288" height="104" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
 <text x="30" y="112" font-size="16" font-weight="bold">1 · Phân phối tải</text>
-<text x="30" y="139" font-size="16" font-weight="normal">Chia request cho nhiều máy</text>
+<text x="30" y="139" font-size="16" font-weight="normal">Chia tải cho nhiều máy</text>
 <text x="30" y="166" font-size="16" font-weight="normal">Thuật toán quyết định cách chia</text>
 <rect x="16" y="200" width="288" height="104" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
 <text x="30" y="230" font-size="16" font-weight="bold">2 · Sẵn sàng cao</text>

@@ -52,7 +52,7 @@
   },
   "claims": [
     {
-      "claim_vi": "LB chia request cho nhiều máy theo các thuật toán như vòng tròn, ít kết nối nhất, băm.",
+      "claim_vi": "LB chia tải cho nhiều máy theo các thuật toán như vòng tròn, ít kết nối nhất, băm: ở tầng HTTP chia từng request, ở tầng kết nối chia từng kết nối hoặc luồng, và một kết nối TCP ở lại cùng một máy suốt thời gian sống.",
       "sources": [
         "https://nginx.org/en/docs/http/load_balancing.html",
         "https://docs.haproxy.org/"
@@ -92,7 +92,7 @@
       "source": "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/sticky-sessions.html"
     },
     {
-      "claim_vi": "Khi gỡ một máy khỏi nhóm, LB có thể ngừng gửi request mới tới máy đó rồi chờ request đang chạy hoàn thành (draining), thường trong một thời hạn tối đa.",
+      "claim_vi": "Khi gỡ một máy khỏi nhóm, LB có thể ngừng gửi request hoặc kết nối mới tới máy đó rồi chờ phần đang chạy hoàn thành (draining), thường trong một thời hạn tối đa.",
       "source": "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-target-groups.html"
     },
     {

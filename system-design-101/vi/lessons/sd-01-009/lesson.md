@@ -5,6 +5,14 @@ Nhưng vài tính năng hay được nêu đã thay đổi, và “nhanh hơn”
 
 ![Ba nhóm xếp dọc. Cải tiến so với HTTP/1.1: khung nhị phân chia thông điệp thành khung; ghép luồng cho nhiều yêu cầu song song trên một kết nối; nén header bằng HPACK. Cần cập nhật: cơ chế ưu tiên luồng gốc bị đánh dấu deprecated và có chuẩn thay thế; Server Push bị Chrome tắt mặc định từ bản 106. Giới hạn: vẫn một kết nối TCP, mất gói có thể làm mọi luồng cùng chờ.](../../diagrams/sd-01-009-main.svg)
 
+## Từ viết tắt
+
+- **HTTP** (HyperText Transfer Protocol) — giao thức truyền siêu văn bản: quy ước để trình duyệt gửi yêu cầu và máy chủ gửi trả lời.
+- **HPACK** (Header Compression for HTTP/2) — nén tiêu đề của HTTP/2: cách nén các header lặp lại giữa các yêu cầu để gửi ít byte hơn.
+- **TCP** (Transmission Control Protocol) — giao thức điều khiển truyền: tạo kết nối đáng tin cậy, dữ liệu đến đủ và đúng thứ tự.
+- **RFC** (Request for Comments) — "đề nghị bình luận": loạt tài liệu kỹ thuật đánh số của cộng đồng Internet; nhiều RFC là tiêu chuẩn.
+- **QUIC** (Quick UDP Internet Connections) — tên gọi ban đầu của giao thức truyền tải mà HTTP/3 dùng thay cho TCP; ngày nay QUIC thường được dùng như một tên riêng.
+
 ## Đọc hình
 
 **Khung nhị phân.** Thông điệp được chia thành các khung (frame) mã hóa nhị phân thay vì văn bản.

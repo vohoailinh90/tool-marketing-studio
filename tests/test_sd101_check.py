@@ -1865,6 +1865,8 @@ class AbbreviationRuleTests(StoreCase):
         self.assertTrue(check.spells("GiB", "Gibibyte"))
         self.assertFalse(check.spells("MiB", "Megabyte"))
         self.assertFalse(check.spells("MiB", "Mebibyte Extra"))
+        self.assertTrue(check.spells("HPACK", "Header Compression for HTTP/2"))
+        self.assertFalse(check.spells("HPACK", "Header Compression"))
         self.lesson("Bộ nhớ tối thiểu 19 MiB.", glossary=None)
         self.assertProblem("uses the abbreviation(s) MiB")
         self.lesson("Bộ nhớ tối thiểu 19 MiB.", glossary="- **MiB** (Mebibyte) — mebibyte: đơn vị dung lượng bằng 1.048.576 byte.\n")

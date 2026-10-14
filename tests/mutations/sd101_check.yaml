@@ -1855,10 +1855,14 @@ mutations:
   replace: "    return re.match(pattern, letters) is not None"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_the_initials_must_be_exactly_the_abbreviation
 - label: a unit symbol is held to the initials rule
-  find: "    if UNIT_SYMBOLS.get(abbreviation) == full_form.strip():\n        return True\n"
+  find: "    if (UNIT_SYMBOLS | IRREGULAR_FORMS).get(abbreviation) == full_form.strip():\n        return True\n"
   replace: ""
   test: tests.test_sd101_check.AbbreviationRuleTests.test_a_unit_symbol_is_explained_by_the_name_of_the_unit
 - label: the binary unit symbols are not recognised as abbreviations
   find: "UNIT_SYMBOLS = {\"KiB\": \"Kibibyte\", \"MiB\": \"Mebibyte\", \"GiB\": \"Gibibyte\", \"TiB\": \"Tebibyte\"}"
   replace: "UNIT_SYMBOLS = {}"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_the_forms_an_abbreviation_takes
+- label: a name with its own full form is held to the initials rule
+  find: "IRREGULAR_FORMS = {\"HPACK\": \"Header Compression for HTTP/2\"}"
+  replace: "IRREGULAR_FORMS = {}"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_unit_symbol_is_explained_by_the_name_of_the_unit

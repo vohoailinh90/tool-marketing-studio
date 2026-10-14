@@ -10,6 +10,7 @@ import subprocess
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 import yaml
 
@@ -209,9 +210,14 @@ class PlanTests(unittest.TestCase):
             self.assertEqual("mkt/bad?.py", got["outside"])
 
     def test_an_unreadable_base_is_not_planned(self):
+        # Not this repository's own checkout: in CI on a pull request HEAD is the merge of it, so the planner would read a base
+        # from `git rev-list` and plan the very pull request that runs the tests (a radar-only one is "drawn": this test failed there).
         with tempfile.TemporaryDirectory() as tmp:
             out = Path(tmp) / "output"
-            self.assertEqual(0, radar_preview.main(["plan"], {"PR_BASE_SHA": "", "GITHUB_OUTPUT": str(out)}))
+            nowhere = Path(tmp) / "not-a-repository"
+            nowhere.mkdir()
+            with mock.patch.dict(os.environ, {"GIT_CEILING_DIRECTORIES": tmp}):             # git must not find a repository above it either
+                self.assertEqual(0, radar_preview.main(["plan"], {"PR_BASE_SHA": "", "GITHUB_OUTPUT": str(out)}, cwd=nowhere))
             self.assertEqual("false", parse_outputs(out.read_text(encoding="utf-8"))["ok"])
 
 

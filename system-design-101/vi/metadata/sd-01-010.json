@@ -77,10 +77,10 @@
       "verified_by": "Read from a local clone of mdn/content (developer.mozilla.org was unreachable)."
     },
     {
-      "claim_vi": "With '.note { color: red }' before 'p { color: blue }', a <p class=\"note\"> is red (rgb(255, 0, 0)); two rules of equal specificity resolve to the later one.",
+      "claim_vi": "With '.note { color: red }' before 'p { color: blue }' in one author stylesheet, a <p class=\"note\"> is red (rgb(255, 0, 0)) in Chromium 141 because the more specific rule wins regardless of order; when two such rules have equal specificity, the later one wins. This holds for rules of the same origin and encapsulation context, outside cascade layers and @scope, with no animation or transition and no style attribute; other stages of the cascade sort order can pick a winner before order of appearance is reached.",
       "source": "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascade/Specificity",
       "section": "Specificity",
-      "verified_by": "Measured in Chromium 141 with Playwright."
+      "verified_by": "Measured in Chromium 141 with Playwright on two author-stylesheet rules in one document (no Shadow DOM, no layers, no @scope, no animation or transition); the scoping above follows the Cascade Sorting Order claim below."
     },
     {
       "claim_vi": "CSS is commonly described as a style sheet language rather than a markup language.",
@@ -110,11 +110,11 @@
       "verified_by": "css-cascade-6/Overview.bs read from a sparse clone of w3c/csswg-drafts checked out at commit 1c249b342ee7a0dfe0fcf7f7dc75272b1e794d52 (committed 2026-10-14); the seven criteria and their order were re-read at that revision."
     }
   ],
-  "design_notes_vi": "Một quy tắc rồi ba bước cascade, kèm ví dụ .note thắng p; cascade layer và scoping proximity được lược khỏi hình và nói trong phần sâu. Không dùng ảnh nguồn.",
+  "design_notes_vi": "Một quy tắc rồi ba bước cascade, kèm ví dụ .note thắng p; các bước ngữ cảnh, thuộc tính style, cascade layer và scoping proximity được lược khỏi hình và nói trong phần sâu. Không dùng ảnh nguồn.",
   "source_deviations": [
     "Source calls CSS a 'markup language'; CSS is a style sheet language, so the lesson says so in the optional section.",
-    "Source says the winner is decided by selector type and source order and implies later rules win; the lesson states the actual order (origin and importance, specificity, then order) and shows that an earlier more specific rule still wins.",
+    "Source says the winner is decided by selector type and source order and implies later rules win; the lesson gives a simplified three-step order (origin and importance, specificity, then order), says which stages the figure omits, lists the full seven-stage order in the optional section, and shows that an earlier more specific rule still wins.",
     "Source's 'CSS3 introduces animation' is omitted because it is not needed for the main idea and was not verified."
   ],
-  "editorial_note_vi": "Đã sửa finding4256192466; chờ review head mới. Chưa user testing/phê duyệt phát hành."
+  "editorial_note_vi": "Các finding review đã được sửa; chờ review head mới. Chưa user testing/phê duyệt phát hành."
 }

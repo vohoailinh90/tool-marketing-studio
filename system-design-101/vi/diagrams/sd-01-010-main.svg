@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 662" width="320" height="662" role="img" aria-labelledby="title desc">
 <title id="title">CSS: một quy tắc và cách cascade chọn quy tắc thắng</title>
-<desc id="desc">Một quy tắc CSS gồm selector và khai báo, ví dụ p color blue. Khi hai quy tắc xung đột, trình duyệt xét theo thứ tự: nguồn gốc và important; độ cụ thể của selector; rồi thứ tự xuất hiện, quy tắc viết sau thắng khi các bước trước hòa. Ví dụ: lớp note màu đỏ thắng p màu xanh dù p viết sau.</desc>
+<desc id="desc">Một quy tắc CSS gồm selector và khai báo, ví dụ p color blue. Khi hai quy tắc xung đột, trình duyệt xét theo thứ tự: nguồn gốc và important; độ cụ thể của selector; rồi thứ tự xuất hiện, quy tắc viết sau thắng khi các bước trước hòa. Hình lược bớt các bước ngữ cảnh, thuộc tính style, layer và phạm vi @scope. Ví dụ: lớp note màu đỏ thắng p màu xanh dù p viết sau.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="662" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">

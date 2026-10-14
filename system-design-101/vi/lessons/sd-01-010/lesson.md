@@ -3,7 +3,7 @@
 **CSS tách việc “tài liệu nói gì” khỏi việc “nó trông thế nào”.** HTML mô tả cấu trúc, CSS mô tả cách trình bày.
 Khi hai quy tắc xung đột, cascade quyết định quy tắc nào thắng.
 
-![Bốn thẻ xếp dọc kèm một thẻ ví dụ. Thẻ đầu: một quy tắc gồm selector và khai báo, ví dụ p mở ngoặc nhọn color blue đóng ngoặc nhọn. Dải tiêu đề: khi hai quy tắc xung đột. Bước 1, nguồn gốc và important, mức cao hơn thắng trước. Bước 2, độ cụ thể, selector cụ thể hơn thắng dù viết trước. Bước 3, thứ tự xuất hiện, khi các bước trước hòa thì quy tắc viết sau thắng. Ví dụ: lớp note màu đỏ thắng p màu xanh dù p viết sau.](../../diagrams/sd-01-010-main.svg)
+![Bốn thẻ xếp dọc kèm một thẻ ví dụ. Thẻ đầu: một quy tắc gồm selector và khai báo, ví dụ p mở ngoặc nhọn color blue đóng ngoặc nhọn. Dải tiêu đề: khi hai quy tắc xung đột. Bước 1, nguồn gốc và important, mức cao hơn thắng trước. Bước 2, độ cụ thể, selector cụ thể hơn thắng dù viết trước. Bước 3, thứ tự xuất hiện, khi các bước trước hòa thì quy tắc viết sau thắng. Hình lược bớt các bước ngữ cảnh, thuộc tính style, layer và phạm vi @scope. Ví dụ: lớp note màu đỏ thắng p màu xanh dù p viết sau.](../../diagrams/sd-01-010-main.svg)
 
 ## Đọc hình
 
@@ -59,6 +59,6 @@ việc đó thuộc về HTML.
 - [MDN — CSS](https://developer.mozilla.org/en-US/docs/Web/CSS): ngôn ngữ style sheet, bố cục và chuyển động.
 - [CSS Cascade §6.1](https://www.w3.org/TR/css-cascade-5/#cascade-sort): nguồn animation/transition và thứ tự ưu tiên.
 - [CSS Cascade Level 6, mục Cascade Sorting Order — bản nguồn tại commit cố định](https://github.com/w3c/csswg-drafts/blob/1c249b342ee7a0dfe0fcf7f7dc75272b1e794d52/css-cascade-6/Overview.bs): thứ tự đầy đủ gồm nguồn gốc, ngữ cảnh, thuộc tính style, layer, độ cụ thể, độ gần phạm vi, thứ tự xuất hiện.
-- Phép thử trên Chromium 141 (Playwright): `.note` thắng `p`; hai quy tắc ngang nhau thì quy tắc sau thắng.
+- Phép thử trên Chromium 141 (Playwright), với hai quy tắc stylesheet của tác giả, cùng ngữ cảnh, không layer, không `@scope`, không animation/transition: `.note` thắng `p`; hai quy tắc ngang độ cụ thể thì quy tắc sau thắng.
 
 Đã đọc nguồn ghim và trực tiếp đối chiếu MDN ngày 2026-10-13. Evidence đọc từ clone/phép đo Chromium của phiên trước được giữ riêng trong metadata; lượt này đối chiếu bổ sung các trang chính thức về cascade, specificity và CSS. Chưa thử với người học.

@@ -217,11 +217,17 @@ def _comment(root: Path, *, plan_ok: bool, campaigns: Sequence[str], reason: str
             lines += ["", f"The images and texts could not be attached to the run: read [the run]({run_url}).", ""]
         omitted, used = 0, 0
         for c, r in rows:
-            caption = r["caption"].strip()[:CAPTION_LIMIT]
+            whole = r["caption"].strip()
+            caption = whole[:CAPTION_LIMIT]
             if not caption:
                 continue
             bar = fence(caption)
-            block = [f"<details><summary>Facebook caption · {r['where']}</summary>", "", f"{bar}text", caption, bar, "", "</details>", ""]
+            # a caption that is shown in part says so where a collapsed reader sees it: approving needs the whole text
+            cut = f" · cut: the first {len(caption)} of {len(whole)} characters" if len(whole) > len(caption) else ""
+            block = [f"<details><summary>Facebook caption · {r['where']}{cut}</summary>", "", f"{bar}text", caption, bar, ""]
+            if cut:
+                block += ["The rest of the caption is in `facebook.txt` beside this post, in the artifact.", ""]
+            block += ["</details>", ""]
             size = sum(len(line) + 1 for line in block)
             if used + size > CAPTION_BUDGET:
                 omitted += 1

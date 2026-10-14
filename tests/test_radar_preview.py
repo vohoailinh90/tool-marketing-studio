@@ -290,6 +290,19 @@ class CommentTests(unittest.TestCase):
         render_fixture(self.root, "x" * 10000, [])
         self.assertLess(len(comment(self.root)), 6000)
 
+    def test_a_caption_that_is_cut_says_so_where_a_collapsed_reader_sees_it_and_points_at_the_whole_text(self):
+        render_fixture(self.root, "x" * 10000, [])
+        body = comment(self.root)
+        summary = next(line for line in body.splitlines() if line.startswith("<details><summary>"))
+        self.assertIn("cut: the first 3000 of 10000 characters", summary)
+        self.assertIn("`facebook.txt` beside this post, in the artifact", body)
+
+    def test_a_caption_that_fits_is_not_marked_as_cut(self):
+        render_fixture(self.root, "x" * radar_preview.CAPTION_LIMIT + "  \n", [])          # trailing blanks are not part of the caption
+        body = comment(self.root)
+        self.assertNotIn("cut:", body)
+        self.assertNotIn("The rest of the caption", body)
+
     def test_many_long_captions_leave_the_comment_under_the_size_github_accepts(self):
         render_many(self.root, 30, lambda n: f"Caption {n:03d} " + "x" * 2980)               # 30 x 3000 characters
         body = comment(self.root)

@@ -2000,9 +2000,31 @@ class AbbreviationRuleTests(StoreCase):
         self.assertEqual({"EdDSA", "NetBIOS"}, check.abbreviations_in("Ký bằng EdDSA, chia sẻ qua NetBIOS."))
         self.assertEqual({"DHCP", "TLS", "SHA"}, check.abbreviations_in("DHCPv4 và DHCPv6, TLSv1.3, SHA256."))
         for text in ("MAX_SIZE", "A80", "WebSocket", "I", "ĐƠN HÀNG", "TÓM", "myIPv4", "JavaScript", "GitHub",
-                     "PostgreSQL", "OOMKilled", "OAuthority", "vCPUx", "gRPCsx"):
+                     "OAuthority", "vCPUx", "gRPCsx"):
             with self.subTest(text=text):
                 self.assertEqual(set(), check.abbreviations_in(text))
+
+    def test_a_name_that_carries_an_abbreviation_is_read_as_that_abbreviation(self) -> None:
+        self.assertEqual({"AI", "LLM"}, check.abbreviations_in("OpenAI và LLMWare."))
+        self.assertEqual({"AI", "SQL", "OS", "OOM", "DB", "GPT"},
+                         check.abbreviations_in("OpenAI's, MySQL8, macOS, OOMKilled, TimescaleDBs và ChatGPT."))
+        for text in ("myOpenAI", "OpenAIX", "OpenAi", "MacOS", "Github"):  # a longer word is not the name
+            with self.subTest(text=text):
+                self.assertEqual(set(), check.abbreviations_in(text))
+        self.assertEqual({"AI"}, check.abbreviations_in("HAI MÁY · OpenAI", capitals=False))
+        self.assertEqual(set(), check.abbreviations_in("HAI MÁY · OPENAI", capitals=False))
+        for where, figure in {"a drawn label": svg_with("Gọi OpenAI qua mạng"),
+                              "the description": svg_with("Gọi OpenAI qua mạng", tag="desc")}.items():
+            with self.subTest(where=where):
+                self.lesson("Nội dung.", glossary=None, figure=figure)
+                self.assertProblem("uses the abbreviation(s) AI")
+        entry = "- **AI** (Artificial Intelligence) — trí tuệ nhân tạo: máy làm việc cần trí thông minh của người."
+        self.lesson("Bài nói về OpenAI.", glossary=None)
+        self.assertProblem("uses the abbreviation(s) AI")
+        self.lesson("Bài nói về OpenAI.")
+        self.assertProblem("uses the abbreviation AI but the glossary does not explain it")
+        self.lesson("Bài nói về OpenAI.", glossary=entry)
+        self.assertEqual([], self.problems())
 
     def test_an_abbreviation_that_begins_with_a_digit_is_read_and_explained(self) -> None:
         self.assertEqual({"2FA", "3DES", "2PC", "3PC"}, check.abbreviations_in("Bật 2FA, mã hoá 3DES, commit 2PC hoặc 3PC (2FAs)."))

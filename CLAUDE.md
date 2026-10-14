@@ -306,7 +306,9 @@ script can. One rule applies to every lesson a session writes or edits:
   as CSDL gets its Vietnamese form); an explanation may not lean on an abbreviation that has no bullet
   of its own. Words that only look like abbreviations (HTTP methods, SQL keywords, file names) go in
   `` `code` `` or in `NOT_ACRONYMS`. Mixed-case terms (gRPC, IPv4, OAuth, ...) follow the same rule once
-  they are in `MIXED_CASE_TERMS`: add a new one there when a lesson introduces it. The checker fails a
+  they are in `MIXED_CASE_TERMS`: add a new one there when a lesson introduces it. A product name that
+  carries an abbreviation (OpenAI, MySQL, macOS) is in `EMBEDDED_ABBREVIATIONS`, and the abbreviation
+  inside it (AI, SQL, OS) is explained the same way. The checker fails a
   lesson that skips the rule; whether an explanation is correct and clear to a beginner is the
   reviewer's call.
 

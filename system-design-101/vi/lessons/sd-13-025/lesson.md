@@ -9,6 +9,7 @@ Khi một Pod không chạy, trạng thái hiển thị cho biết nó dừng �
 ## Từ viết tắt
 
 - **PVC** (PersistentVolumeClaim) — yêu cầu cấp ổ lưu trữ bền vững của Pod trong Kubernetes; chưa gắn được thì Pod chưa chạy được.
+- **OOM** (Out Of Memory) — hết bộ nhớ: tình trạng một tiến trình cần nhiều bộ nhớ hơn mức được cấp nên bị hệ điều hành dừng; OOMKilled là trạng thái ghi lại việc đó.
 
 ## Nhìn hình thử trả lời
 

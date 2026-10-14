@@ -10,6 +10,8 @@ Thay vì hỏi "dùng loại nào", hãy trả lời bốn câu hỏi về dữ 
 
 - **ID** (IDentifier) — mã định danh: chuỗi hoặc số dùng để phân biệt một đối tượng với các đối tượng khác, ví dụ một người dùng, một thông điệp hay một lượt xử lý.
 - **TSDB** (Time Series DataBase) — cơ sở dữ liệu chuỗi thời gian: kho chuyên lưu các số đo theo thời gian, như kho của Prometheus.
+- **DB** (DataBase) — cơ sở dữ liệu: kho lưu dữ liệu có tổ chức để ghi và tìm lại nhanh; InfluxDB và TimescaleDB là hai cơ sở dữ liệu chuỗi thời gian.
+- **SQL** (Structured Query Language) — ngôn ngữ truy vấn có cấu trúc: ngôn ngữ chuẩn để hỏi và ghi dữ liệu trong cơ sở dữ liệu quan hệ; PostgreSQL là hệ cơ sở dữ liệu dùng nó.
 
 ## Nhìn hình thử trả lời
 

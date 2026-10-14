@@ -10,6 +10,7 @@ Khi bạn gửi prompt, mô hình sinh câu trả lời từng token một.
 - **RL** (Reinforcement Learning) — học tăng cường: mô hình thử nhiều cách, được thưởng khi làm tốt và dần chọn cách tốt hơn.
 - **PPO** (Proximal Policy Optimization) — một thuật toán học tăng cường, dùng để tinh chỉnh mô hình theo điểm thưởng.
 - **GPT** (Generative Pretrained Transformer) — tên một dòng mô hình ngôn ngữ được huấn luyện sẵn trên lượng văn bản rất lớn rồi mới dùng cho việc cụ thể.
+- **AI** (Artificial Intelligence) — trí tuệ nhân tạo: các hệ thống máy tính làm những việc thường cần trí thông minh của con người, như hiểu ngôn ngữ hay nhận ra hình ảnh.
 
 ## Đọc hình
 

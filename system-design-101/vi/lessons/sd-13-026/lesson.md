@@ -10,6 +10,7 @@ Bạn chạy `docker run -d` và vài giây sau container đã biến mất kh�
 
 - **SIGKILL** (SIGnal KILL) — tín hiệu số 9, buộc dừng tiến trình ngay và tiến trình không kịp dọn dẹp; mã thoát 137 thường là dấu hiệu của nó.
 - **PID** (Process IDentifier) — mã số tiến trình: số hệ điều hành gán cho mỗi tiến trình; trong container, tiến trình chính có PID 1 và container chạy đến khi nó thoát.
+- **OOM** (Out Of Memory) — hết bộ nhớ: tình trạng một tiến trình cần nhiều bộ nhớ hơn mức được cấp nên bị hệ điều hành dừng; OOMKilled là trạng thái ghi lại việc đó.
 
 ## Nhìn hình thử trả lời
 

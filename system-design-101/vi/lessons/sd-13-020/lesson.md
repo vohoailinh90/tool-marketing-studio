@@ -11,6 +11,7 @@ Triển khai thất bại theo vài cách quen thuộc. Gọi tên đúng rủi 
 - **SLO** (Service Level Objective) — mục tiêu mức dịch vụ: con số cam kết về độ tin cậy, như tỉ lệ yêu cầu thành công trong một khoảng thời gian; bài lấy ngưỡng chấp nhận của bản mới từ nó.
 - **DORA** (DevOps Research and Assessment) — chương trình nghiên cứu và đánh giá DevOps; các thước đo DORA đo tốc độ và độ ổn định khi giao phần mềm.
 - **DevOps** (Development and Operations) — phát triển và vận hành: cách tổ chức công việc để việc viết phần mềm và việc vận hành nó gắn với nhau, thay vì giao cho hai nhóm tách rời.
+- **SQL** (Structured Query Language) — ngôn ngữ truy vấn có cấu trúc: ngôn ngữ chuẩn để hỏi và ghi dữ liệu trong cơ sở dữ liệu quan hệ; PostgreSQL là hệ cơ sở dữ liệu dùng nó.
 
 ## Nhìn hình thử trả lời
 

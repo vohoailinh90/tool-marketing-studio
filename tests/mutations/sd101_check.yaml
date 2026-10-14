@@ -1790,6 +1790,30 @@ mutations:
   find: "(?P<abbreviation>(?=[A-Za-z0-9]*[A-Z])[A-Za-z0-9][A-Za-z0-9]+)"
   replace: "(?P<abbreviation>(?=[A-Za-z0-9]*[A-Z])[A-Za-z][A-Za-z0-9]+)"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_an_abbreviation_that_begins_with_a_digit_is_read_and_explained
+- label: a name that carries an abbreviation is not read (OpenAI, MySQL)
+  find: '    found |= {EMBEDDED_ABBREVIATIONS[match.group(1)] for match in EMBEDDED_NAME.finditer(text)}
+
+    '
+  replace: ''
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_name_that_carries_an_abbreviation_is_read_as_that_abbreviation
+- label: a name that carries an abbreviation is read as the name, not the abbreviation
+  find: '{EMBEDDED_ABBREVIATIONS[match.group(1)] for match in EMBEDDED_NAME.finditer(text)}'
+  replace: '{match.group(1) for match in EMBEDDED_NAME.finditer(text)}'
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_name_that_carries_an_abbreviation_is_read_as_that_abbreviation
+- label: a name that carries an abbreviation is read only where capitals are read
+  find: '    found |= {EMBEDDED_ABBREVIATIONS[match.group(1)] for match in EMBEDDED_NAME.finditer(text)}
+
+    '
+  replace: "    if capitals:\n        found |= {EMBEDDED_ABBREVIATIONS[match.group(1)] for match in EMBEDDED_NAME.finditer(text)}\n"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_name_that_carries_an_abbreviation_is_read_as_that_abbreviation
+- label: a possessive, plural or version hides a name that carries an abbreviation
+  find: (?:v?\d+)?(?:[\u2019']?s)?(?!\w)")
+  replace: (?!\w)")
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_name_that_carries_an_abbreviation_is_read_as_that_abbreviation
+- label: a name that carries an abbreviation is read inside a longer word
+  find: EMBEDDED_NAME = re.compile(r"(?<!\w)("
+  replace: EMBEDDED_NAME = re.compile(r"("
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_name_that_carries_an_abbreviation_is_read_as_that_abbreviation
 - label: the number word of a digit abbreviation must be written out as an initial
   find: "(numbered and hump.lower() in NUMBER_WORDS)"
   replace: "False"
@@ -1955,6 +1979,6 @@ mutations:
   replace: "*UNIT_SYMBOLS)"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_the_forms_an_abbreviation_takes
 - label: a v before the version (DHCPv4, TLSv1) hides the abbreviation
-  find: "(?:v?\\d+)?"
-  replace: "(?:\\d+)?"
+  find: "(?:v?\\d+)?s?(?!\\w)"
+  replace: "(?:\\d+)?s?(?!\\w)"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_the_forms_an_abbreviation_takes

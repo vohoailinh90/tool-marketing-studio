@@ -11,6 +11,7 @@ Hãy hình dung một ứng dụng web kèm cơ sở dữ liệu chạy bằng D
 - **URI** (Uniform Resource Identifier) — định danh tài nguyên thống nhất: chuỗi viết ra một tài nguyên theo quy tắc chung; trong bài là chuỗi kết nối cơ sở dữ liệu, nơi ký tự đặc biệt trong mật khẩu phải được mã hóa phần trăm.
 - **TCP** (Transmission Control Protocol) — giao thức điều khiển truyền: tạo kết nối đáng tin cậy, dữ liệu đến đủ và đúng thứ tự.
 - **DNS** (Domain Name System) — hệ thống tên miền: "danh bạ" của Internet, đổi tên như example.com thành địa chỉ để các máy tìm thấy nhau.
+- **SQL** (Structured Query Language) — ngôn ngữ truy vấn có cấu trúc: ngôn ngữ chuẩn để hỏi và ghi dữ liệu trong cơ sở dữ liệu quan hệ; PostgreSQL là hệ cơ sở dữ liệu dùng nó.
 
 ## Nhìn hình thử trả lời
 

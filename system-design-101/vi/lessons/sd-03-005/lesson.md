@@ -12,6 +12,7 @@
 - **API** (Application Programming Interface) — giao diện lập trình ứng dụng: cách để một chương trình gọi chức năng hoặc lấy dữ liệu của chương trình khác theo quy ước đã định.
 - **ML** (Machine Learning) — học máy: cách cho máy tự rút ra quy luật từ dữ liệu, thay vì có người viết sẵn từng luật.
 - **OSI** (Open Source Initiative) — tổ chức giữ định nghĩa chính thức của "mã nguồn mở".
+- **LLM** (Large Language Model) — mô hình ngôn ngữ lớn: mô hình học từ lượng văn bản rất lớn để hiểu và viết ra ngôn ngữ, là nền của các công cụ trong bài.
 
 ## Đọc hình
 

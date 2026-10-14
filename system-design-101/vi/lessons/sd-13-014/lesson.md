@@ -9,6 +9,7 @@ Lỗi khó chịu nhất của CI (Continuous Integration — tích hợp liên 
 ## Từ viết tắt
 
 - **CI** (Continuous Integration) — tích hợp liên tục: tự động xây dựng và kiểm tra mã mỗi khi có thay đổi.
+- **OS** (Operating System) — hệ điều hành: phần mềm nền quản lý máy và chạy các chương trình khác; macOS là hệ điều hành của máy Apple.
 
 ## Nhìn hình thử trả lời
 

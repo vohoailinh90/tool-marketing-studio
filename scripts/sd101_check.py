@@ -186,6 +186,15 @@ MIXED_CASE_TERMS = ("gRPC", "IPv4", "IPv6", "OAuth", "mTLS", "NoSQL", "vCPU", "I
                     "W3C", "SELinux", "WebAuthn", "OpenID", "DevOps", "DevSecOps", "GitOps", "NoOps", "EdDSA", "NetBIOS",
                     *UNIT_SYMBOLS)
 ABBREVIATION = re.compile(r"(?<!\w)(?:(" + "|".join(MIXED_CASE_TERMS) + r")|(\d*[A-Z]{2,}))(?:v?\d+)?s?(?!\w)")
+# Product names with an abbreviation inside them, which no run of capitals standing alone shows (OpenAI, MySQL, macOS):
+# whoever reads the name meets the abbreviation, so the lesson explains it (AI, SQL, OS) like any other. The name maps to
+# the abbreviation it carries; add a new one when a lesson introduces such a name. A possessive, a plural or a version
+# number may follow (OpenAI's, MySQL8).
+EMBEDDED_ABBREVIATIONS = {"ChatGPT": "GPT", "FastAPI": "API", "InfluxDB": "DB", "InstructGPT": "GPT", "JinaAI": "AI",
+                          "LLMWare": "LLM", "MetalLB": "LB", "MySQL": "SQL", "OOMKilled": "OOM", "OpenAI": "AI",
+                          "OpenSSH": "SSH", "PostgreSQL": "SQL", "PyJWT": "JWT", "SQLite": "SQL", "TimescaleDB": "DB",
+                          "macOS": "OS"}
+EMBEDDED_NAME = re.compile(r"(?<!\w)(" + "|".join(EMBEDDED_ABBREVIATIONS) + r")(?:v?\d+)?(?:[\u2019']?s)?(?!\w)")
 GLOSSARY_BULLET = re.compile(r"^- \*\*(?P<abbreviation>(?=[A-Za-z0-9]*[A-Z])[A-Za-z0-9][A-Za-z0-9]+)\*\* "
                              r"\((?P<full>[^()]+)\) — (?P<meaning>\S.*)$")
 MIN_MEANING_WORDS = 3
@@ -984,10 +993,12 @@ def html_text(html: str) -> str:
 
 
 def abbreviations_in(text: str, capitals: bool = True) -> set[str]:
-    """The abbreviations a piece of text uses: capital-letter runs and MIXED_CASE_TERMS, minus the words in
-    NOT_ACRONYMS. With capitals=False only the mixed-case terms count: in a heading set in capitals a Vietnamese word
-    cannot be told from an abbreviation, but gRPC and IPv4 can."""
+    """The abbreviations a piece of text uses: capital-letter runs, MIXED_CASE_TERMS and the abbreviation inside each
+    name of EMBEDDED_ABBREVIATIONS, minus the words in NOT_ACRONYMS. With capitals=False only the mixed-case terms and
+    names count: in a heading set in capitals a Vietnamese word cannot be told from an abbreviation, but gRPC, IPv4 and
+    OpenAI can."""
     found = {match.group(1) or (match.group(2) if capitals else "") for match in ABBREVIATION.finditer(text)}
+    found |= {EMBEDDED_ABBREVIATIONS[match.group(1)] for match in EMBEDDED_NAME.finditer(text)}
     return found - {""} - NOT_ACRONYMS
 
 

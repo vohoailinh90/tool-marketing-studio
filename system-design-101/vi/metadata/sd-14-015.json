@@ -94,6 +94,12 @@
       "verified_by": "No external page reports this output; observed by executing the code on the authoring machine."
     },
     {
+      "claim_vi": "Observed with cryptography 50.0.1: Ed25519PrivateKey.sign takes only the data (no hash argument), while the ECDSA and RSA sign methods take a signature algorithm or padding plus a hash algorithm; the Ed25519 signature of the SHA-256 digest of a message differed from the signature of the message and did not verify against the message (it verified only against the digest bytes). That Ed25519 hashes internally as part of its definition is the author's general knowledge; the library documentation read here does not state it and the specification was not read.",
+      "source": "https://github.com/pyca/cryptography/blob/1fbd556897daba9479bddf82b9a1824b72ea33eb/docs/hazmat/primitives/asymmetric/ed25519.rst",
+      "section": "Signing and verification",
+      "verified_by": "No external page reports this output; observed by executing the code on the authoring machine."
+    },
+    {
       "claim_vi": "Observed with RSA-2048, PKCS#1 v1.5 and SHA-256: computing signature^e mod n with the public key gave a 256-byte value starting 00 01 ff ff and ending with the SHA-256 of the message, and the signature was identical when signing the same message twice. This is an observation about the recovered value (padding followed by the digest) and does not make signing a public-key decryption; that signing is a separate operation from encryption is the author's general knowledge, and RFC 8017 was not reachable.",
       "source": "https://github.com/pyca/cryptography/blob/1fbd556897daba9479bddf82b9a1824b72ea33eb/docs/hazmat/primitives/asymmetric/rsa.rst",
       "section": "Signing (PKCS1v15)",
@@ -123,6 +129,7 @@
     "The source says the signer 'encrypts' the hash with the private key and the recipient 'decrypts' it; the lesson presents that as an intuitive picture, not a definition of signing; it notes that for RSA PKCS#1 v1.5 the recovered value looks like padding plus the digest without that making signing encryption, and shows that RSA-PSS, ECDSA and Ed25519 do not fit the picture even in form.",
     "The source says the recipient extracts 'the original hash value' from the document; the document does not contain the hash, the recipient computes it, and the lesson says so.",
     "The source says signatures are 'unique to every person'; the lesson says a signature is tied to a key and a message, and that who owns the key must be established separately.",
+    "The source separates hashing from signing as steps 2 and 3; the lesson keeps six steps but says that in the library hashing is part of each scheme's signing operation, and that the separate SHA-256 digest in step 2 is only an illustration for Ed25519.",
     "The source does not say that a signature leaves the document readable; the lesson does."
   ],
   "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."

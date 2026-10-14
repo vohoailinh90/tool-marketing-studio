@@ -1163,14 +1163,19 @@ def spells(abbreviation: str, full_form: str) -> bool:
     writes must be the abbreviation's own ("version 4" for IPv4, never "version 6"), and so are the number words that may
     be left out (NUMBER_WORDS: "Two-Factor" for 2FA, never "Triple"; where the digits come first the full form holds no
     other number word at all: "Four Authentication" is not 2FA although F and A are its letters, while a name such as
-    "Double Data Rate" is fine for DDR4); accents are dropped (cơ sở dữ liệu is CSDL).
+    "Double Data Rate" is fine for DDR4). A number the full form does write, as digits or as one of those words, stands
+    where the abbreviation puts its digits: "Factor Two Authentication" and "Factor Authentication 2" are not 2FA, and
+    "4 Internet Protocol version" is not IPv4; accents are dropped (cơ sở dữ liệu is CSDL).
     """
     if (UNIT_SYMBOLS | IRREGULAR_FORMS).get(abbreviation) == full_form.strip():
         return True
     numbers = re.findall(r"\d+", abbreviation)
     if numbers and re.findall(r"\d+", full_form) not in ([], numbers):
         return False  # "Internet Protocol version 6" is not IPv4: a number the full form writes is the abbreviation's
-    letters = re.sub(r"[^A-Za-z]", "", abbreviation).upper()
+    parts = ["#" if part.isdigit() else part.upper() for part in re.findall(r"[A-Za-z]|\d+", abbreviation)]
+    groups = [index for index, part in enumerate(parts) if part == "#"]  # where the abbreviation puts its numbers
+    if len(groups) > 8:
+        return False
     number_words = {word for number in re.findall(r"\d+", abbreviation) for word in NUMBER_WORDS.get(number, ())}
     plain = unicodedata.normalize("NFD", full_form.replace("đ", "d").replace("Đ", "D"))
     plain = "".join(char for char in plain if not unicodedata.combining(char))
@@ -1180,18 +1185,29 @@ def spells(abbreviation: str, full_form: str) -> bool:
         if foreign & {word.lower() for word in re.findall(r"[A-Za-z]+", plain)}:
             return False  # the leading digits are a number word of their own: "Four Authentication" is not 2FA
     pattern = ""
-    for word in re.findall(r"[A-Za-z]+", plain):
+    written = 0  # the numbers the full form writes: each stands as "#" where it is written
+    for word in re.findall(r"[A-Za-z]+|\d+", plain):
+        if word.isdigit():
+            if groups:
+                pattern += "#"
+                written += 1
+            continue
         if word == abbreviation:
             pattern += word[0].upper()
             continue
         for hump in re.findall(r"[A-Z]+(?![a-z])|[A-Z][a-z]*|[a-z]+", word):
             if hump.isupper() and len(hump) > 1:
                 pattern += f"(?:{hump}|{hump[0]})"
-            elif hump == word and (hump.lower() in FILLER_WORDS or hump.lower() in number_words):
+            elif hump == word and hump.lower() in number_words:
+                pattern += "#"
+                written += 1
+            elif hump == word and hump.lower() in FILLER_WORDS:
                 pattern += f"(?:{hump[0].upper()})?"
             else:
                 pattern += hump[0].upper()
-    return re.fullmatch(pattern, letters) is not None
+    # The abbreviation keeps the numbers the full form writes, in the place it writes them, and drops the rest.
+    return any(re.fullmatch(pattern, "".join(part for index, part in enumerate(parts) if part != "#" or index in kept))
+               for kept in itertools.combinations(groups, written))
 
 
 def figure_above(text: str, above: str, lesson_id: str) -> bool:
@@ -1199,12 +1215,15 @@ def figure_above(text: str, above: str, lesson_id: str) -> bool:
     document, by the line it is on, because ![x][fig] takes its source from a definition that may come later (often at
     the end); a raw <img> needs no definition and is looked for in the text above the heading."""
     suffix = f"diagrams/{lesson_id}-main.svg"
-    if any(posixpath.normpath(source).endswith(suffix) for source in image_sources(above)):
+
+    def is_figure(source: str) -> bool:  # the path the image check resolves: no #fragment, no ?query, percent-decoded
+        return posixpath.normpath(relative_target(source) or "").endswith(suffix)
+
+    if any(is_figure(source) for source in image_sources(above)):
         return True
     heading_line = above.count("\n") + 1
     return any(token.map and token.map[0] < heading_line
-               and any(child.type == "image" and posixpath.normpath(child.attrGet("src") or "").endswith(suffix)
-                       for child in token.children or [])
+               and any(child.type == "image" and is_figure(child.attrGet("src") or "") for child in token.children or [])
                for token in markdown_tokens(text) if token.type == "inline")
 
 

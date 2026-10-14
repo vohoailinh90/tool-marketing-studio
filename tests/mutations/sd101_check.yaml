@@ -1900,10 +1900,10 @@ mutations:
   find: hump.lower() in number_words
   replace: 'False'
   test: tests.test_sd101_check.AbbreviationRuleTests.test_the_digit_of_an_abbreviation_stands_for_a_number_word
-- label: a number word of another number may be left out of the full form
+- label: a number word of another number may stand for the number of the abbreviation (IPv4, version six)
   find: hump.lower() in number_words
   replace: any(hump.lower() in words for words in NUMBER_WORDS.values())
-  test: tests.test_sd101_check.AbbreviationRuleTests.test_the_digit_of_an_abbreviation_stands_for_a_number_word
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_the_number_inside_an_abbreviation_must_be_the_number_in_its_full_form
 - label: the text nodes of a figure label are joined without a gap
   find: "\" \".join(element.itertext())"
   replace: "\"\".join(element.itertext())"
@@ -1913,7 +1913,7 @@ mutations:
   replace: "    elif False and not figure_above(text, above, lesson_id):"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_the_glossary_comes_after_the_figure_not_before_it
 - label: a raw <img> figure above the glossary is not found in the text above it
-  find: "    if any(posixpath.normpath(source).endswith(suffix) for source in image_sources(above)):\n        return True\n"
+  find: "    if any(is_figure(source) for source in image_sources(above)):\n        return True\n"
   replace: ""
   test: tests.test_sd101_check.AbbreviationRuleTests.test_the_glossary_comes_after_the_figure_not_before_it
 - label: a reference-style figure whose definition comes later is not found
@@ -2021,7 +2021,7 @@ mutations:
   replace: "                pattern += hump[0]"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_an_all_caps_word_gives_its_run_or_its_first_letter
 - label: the little words must be written out
-  find: '            elif hump == word and (hump.lower() in FILLER_WORDS or hump.lower() in number_words):'
+  find: '            elif hump == word and hump.lower() in FILLER_WORDS:'
   replace: '            elif False:'
   test: tests.test_sd101_check.AbbreviationRuleTests.test_only_the_little_words_may_be_left_out
 - label: a recursive name is not read as a whole
@@ -2029,8 +2029,8 @@ mutations:
   replace: ""
   test: tests.test_sd101_check.AbbreviationRuleTests.test_a_recursive_name_gives_its_first_letter
 - label: the initials need only start the abbreviation
-  find: "    return re.fullmatch(pattern, letters) is not None"
-  replace: "    return re.match(pattern, letters) is not None"
+  find: "    return any(re.fullmatch(pattern, "
+  replace: "    return any(re.match(pattern, "
   test: tests.test_sd101_check.AbbreviationRuleTests.test_the_initials_must_be_exactly_the_abbreviation
 - label: a unit symbol is held to the initials rule
   find: "    if (UNIT_SYMBOLS | IRREGULAR_FORMS).get(abbreviation) == full_form.strip():\n        return True\n"
@@ -2064,3 +2064,39 @@ mutations:
   find: "(?:v?\\d+)?s?(?!\\w)"
   replace: "(?:\\d+)?s?(?!\\w)"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_the_forms_an_abbreviation_takes
+- label: a figure link is compared as written, with its fragment, query and encoding (a lesson whose figure is ...svg#view)
+  find: "posixpath.normpath(relative_target(source) or \"\").endswith(suffix)"
+  replace: "posixpath.normpath(source).endswith(suffix)"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_figure_link_with_a_fragment_a_query_or_an_encoded_name_is_still_the_figure
+- label: a raw <img> figure with a fragment is compared as written
+  find: "    if any(is_figure(source) for source in image_sources(above)):"
+  replace: "    if any(posixpath.normpath(source).endswith(suffix) for source in image_sources(above)):"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_figure_link_with_a_fragment_a_query_or_an_encoded_name_is_still_the_figure
+- label: a reference-style figure with a fragment is compared as written
+  find: "and is_figure(child.attrGet(\"src\") or \"\") for child in token.children or [])"
+  replace: "and posixpath.normpath(child.attrGet(\"src\") or \"\").endswith(suffix) for child in token.children or [])"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_figure_link_with_a_fragment_a_query_or_an_encoded_name_is_still_the_figure
+- label: a digit the full form writes stands nowhere (Factor Authentication 2 is 2FA)
+  find: "            if groups:\n                pattern += \"#\"\n                written += 1\n            continue\n"
+  replace: "            continue\n"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_number_the_full_form_writes_stands_where_the_abbreviation_puts_its_digits
+- label: the digits of a full form count for an abbreviation that has none (Request for Comments 2616)
+  find: "            if groups:\n                pattern += \"#\""
+  replace: "            if True:\n                pattern += \"#\""
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_number_the_full_form_writes_stands_where_the_abbreviation_puts_its_digits
+- label: a number word of the abbreviation may stand anywhere (Factor Two Authentication is 2FA)
+  find: "            elif hump == word and hump.lower() in number_words:\n                pattern += \"#\"\n                written += 1\n"
+  replace: "            elif hump == word and hump.lower() in number_words:\n                pattern += f\"(?:{hump[0].upper()})?\"\n"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_number_the_full_form_writes_stands_where_the_abbreviation_puts_its_digits
+- label: the abbreviation never keeps the number the full form writes
+  find: "if part != \"#\" or index in kept)"
+  replace: "if part != \"#\")"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_number_the_full_form_writes_stands_where_the_abbreviation_puts_its_digits
+- label: the abbreviation keeps every number even when the full form leaves it out (Factor Authentication)
+  find: "if part != \"#\" or index in kept)"
+  replace: "if part != \"#\" or True)"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_number_the_full_form_writes_stands_where_the_abbreviation_puts_its_digits
+- label: a key with many numbers is expanded instead of refused
+  find: "    if len(groups) > 8:\n        return False\n"
+  replace: ""
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_number_the_full_form_writes_stands_where_the_abbreviation_puts_its_digits

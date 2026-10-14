@@ -2034,6 +2034,38 @@ class AbbreviationRuleTests(StoreCase):
         self.lesson("Gửi qua IPv4.", glossary="- **IPv4** (Internet Protocol version 4) — địa chỉ 32 bit.\n")
         self.assertEqual([], self.problems())
 
+    def test_a_number_the_full_form_writes_stands_where_the_abbreviation_puts_its_digits(self) -> None:
+        for abbreviation, full_form, spelled in (
+                ("2FA", "Factor Authentication 2", False), ("2FA", "Factor Two Authentication", False),
+                ("IPv4", "4 Internet Protocol version", False), ("IPv4", "Internet 4 Protocol version", False),
+                ("3DES", "Data Encryption Standard Triple", False), ("DDR4", "4 Double Data Rate", False),
+                ("P2P", "Peer Peer 2", False), ("P2P", "2 Peer Peer", False), ("2FA", "Two-Factor Authentication 2", False),
+                ("2FA", "Two-Factor Authentication", True), ("2FA", "2-Factor Authentication", True),
+                ("2FA", "Factor Authentication", True), ("IPv4", "Internet Protocol version 4", True),
+                ("IPv4", "Internet Protocol version four", True), ("3DES", "Triple Data Encryption Standard", True),
+                ("DDR4", "Double Data Rate 4", True), ("P2P", "Peer 2 Peer", True), ("P2P", "Peer-to-Peer", True),
+                # an abbreviation with no digits has no place for one: a number the full form writes is just a number
+                ("RFC", "Request for Comments 2616", True), ("RFC", "Request for Comments", True)):
+            with self.subTest(abbreviation=abbreviation, full_form=full_form):
+                self.assertEqual(spelled, check.spells(abbreviation, full_form))
+        self.assertFalse(check.spells("A" + "1A" * 9, "Alpha " * 10))  # a key with many numbers is refused, not expanded
+        self.lesson("Đăng nhập bằng 2FA.", glossary="- **2FA** (Factor Two Authentication) — đăng nhập bằng hai bước.\n")
+        self.assertProblem("glossary spells 2FA out as 'Factor Two Authentication'")
+
+    def test_a_figure_link_with_a_fragment_a_query_or_an_encoded_name_is_still_the_figure(self) -> None:
+        tail = f"## Liên hệ nguồn\n\n[bài nguồn]({SNAPSHOT}).\n"
+        for source in ("../../diagrams/sd-01-001-main.svg#view", "../../diagrams/sd-01-001-main.svg?raw=1",
+                       "../../diagrams/sd%2D01%2D001-main.svg", "../../diagrams/sd-01-001-main.svg?v=2#top"):
+            with self.subTest(source=source):
+                self.write_lesson("sd-01-001", body=f"# Bài\n\n![Sơ đồ của bài]({source})\n\n## Từ viết tắt\n\n{LLM_ENTRY}\n{tail}")
+                self.assertEqual([], self.problems())
+                self.write_lesson("sd-01-001", body=f'# Bài\n\n<img src="{source}" alt="Sơ đồ của bài">\n\n## Từ viết tắt\n\n{LLM_ENTRY}\n{tail}')
+                self.assertEqual([], self.problems())
+                self.write_lesson("sd-01-001", body=f"# Bài\n\n![Sơ đồ của bài][fig]\n\n## Từ viết tắt\n\n{LLM_ENTRY}\n{tail}\n[fig]: {source}\n")
+                self.assertEqual([], self.problems())
+                self.write_lesson("sd-01-001", body=f"# Bài\n\n## Từ viết tắt\n\n{LLM_ENTRY}\n![Sơ đồ của bài]({source})\n\n{tail}")
+                self.assertProblem("must come after the figure diagrams/sd-01-001-main.svg")
+
     def test_the_glossary_comes_after_the_figure_not_before_it(self) -> None:
         figure = "![Sơ đồ của bài](../../diagrams/sd-01-001-main.svg)"
         tail = f"## Liên hệ nguồn\n\n[bài nguồn]({SNAPSHOT}).\n"

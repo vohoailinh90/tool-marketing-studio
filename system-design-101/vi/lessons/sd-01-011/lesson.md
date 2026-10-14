@@ -37,7 +37,7 @@ Phiên đăng nhập đang lưu trong bộ nhớ riêng của từng máy, nên 
 <summary>Xem sâu hơn</summary>
 
 - **Thăm dò chủ động và thụ động:** LB có thể gửi request kiểm tra riêng, hoặc coi lỗi của request thật là dấu hiệu máy có vấn đề.
-- **Gỡ máy nhẹ nhàng:** trước khi bỏ một máy khỏi nhóm, LB thường để các request đang chạy xong (draining) rồi mới ngừng gửi thêm.
+- **Gỡ máy nhẹ nhàng:** khi gỡ một máy khỏi nhóm, LB thường ngừng gửi request mới tới máy đó rồi chờ các request đang chạy hoàn thành (draining), thường trong một thời hạn tối đa.
 - **Chọn tầng:** tầng kết nối hợp khi chỉ cần chuyển lưu lượng nhanh; tầng HTTP hợp khi cần định tuyến theo đường dẫn, host hoặc header.
 
 </details>

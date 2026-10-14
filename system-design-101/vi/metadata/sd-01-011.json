@@ -92,7 +92,7 @@
       "source": "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/sticky-sessions.html"
     },
     {
-      "claim_vi": "Khi gỡ một máy khỏi nhóm, LB có thể để request đang chạy xong trước (draining).",
+      "claim_vi": "Khi gỡ một máy khỏi nhóm, LB có thể ngừng gửi request mới tới máy đó rồi chờ request đang chạy hoàn thành (draining), thường trong một thời hạn tối đa.",
       "source": "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-target-groups.html"
     },
     {

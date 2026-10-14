@@ -1979,6 +1979,18 @@ class AbbreviationRuleTests(StoreCase):
                 self.lesson(glossary=None, figure=svg_with(word))
                 self.assertEqual([], self.problems())
 
+    def test_a_plural_or_a_digit_shows_that_a_word_in_capitals_is_an_acronym(self) -> None:
+        for label, read in {"APIs": "API", "HAI MÁY · LLMs": "LLM", "2FA": "2FA", "HAI MÁY · 3DES": "3DES", "POP3": "POP",
+                            "SHA256": "SHA", "DHCPv4 · HAI MÁY": "DHCP"}.items():
+            with self.subTest(label=label):
+                self.lesson(glossary=None, figure=svg_with(label))
+                self.assertProblem(f"uses the abbreviation(s) {read} but has no")
+        self.assertEqual({"API"}, check.label_acronyms(["APIs"]))
+        self.assertEqual(set(), check.label_acronyms(["API"]))  # the same letters alone may be a Vietnamese word
+        self.assertEqual({"API"}, check.label_acronyms(["API"], frozenset({"API"})))
+        self.lesson(glossary="- **2FA** (Two-Factor Authentication) — đăng nhập bằng hai bước.\n", figure=svg_with("2FA · HAI MÁY"))
+        self.assertEqual([], self.problems())
+
     def test_an_acronym_the_store_explains_elsewhere_is_read_in_a_capitals_only_label(self) -> None:
         figure = svg_with("API", "HAI MÁY")
         api = "- **API** (Application Programming Interface) — cách để chương trình này gọi chương trình kia.\n"

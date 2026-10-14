@@ -1010,13 +1010,17 @@ def abbreviations_in(text: str, capitals: bool = True) -> set[str]:
 
 
 def label_acronyms(headings: list[str] | tuple[str, ...], known: frozenset[str] = frozenset()) -> set[str]:
-    """The abbreviations in figure labels set in capitals. There a word cannot be told from an abbreviation (the Vietnamese
-    TIN and HAI, the English COOKIE), so a word is read only when it cannot be a word: it has no vowel (JWT, DNS, LB), or
-    some glossary of the store explains it (`known`). A word with an accent is Vietnamese, never an abbreviation."""
+    """The abbreviations in figure labels set in capitals. There a word of capital letters cannot be told from an
+    abbreviation (the Vietnamese TIN and HAI, the English COOKIE), so the abbreviation in it is read only when it cannot
+    be a word: it has no vowel (JWT, DNS, LB), or some glossary of the store explains it (`known`). A word that is not
+    capital letters alone cannot be a Vietnamese or English word: a plural (APIs, LLMs) or a digit (2FA, 3DES, POP3)
+    shows that it is an abbreviation, and one with an accent is Vietnamese, never an abbreviation."""
     found: set[str] = set()
     for word in re.findall(r"\w+", unicodedata.normalize("NFC", "\n".join(headings))):  # NFD would split KHÔNG at the accent
-        if word.isascii() and word.isupper():
-            found |= {name for name in abbreviations_in(word) if name in known or word in known or not set(word) & VOWELS}
+        if word.isascii():
+            ambiguous = word.isalpha() and word.isupper()
+            found |= {name for name in abbreviations_in(word)
+                      if not ambiguous or name in known or word in known or not set(name) & VOWELS}
     return found
 
 

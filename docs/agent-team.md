@@ -96,7 +96,9 @@ repository is private, so GitHub-hosted minutes are billed; without minutes a jo
 github-radar opens a **draft pull request** on branch `radar/<campaign>` for each scan (it adds
 `campaigns/radar-<date>[-n]/` and `tools/github-radar/`). `.github/workflows/radar-preview.yml` looks at it for you:
 
-- it runs `studio.py check` and `studio.py render` on that campaign with this repository's engine;
+- it runs `studio.py check` and then `studio.py render` on that campaign with this repository's engine; the drawing runs only
+  when the check passed, because `render` revalidates the posts and not the tool brief (a `brand.accent` that is CSS would
+  reach the page, which may load local images into the uploaded screenshots);
 - it attaches the PNGs, the platform texts and the manifests to the run (artifact `radar-preview-pr-<number>`, kept
   14 days) and keeps **one comment** on the pull request with the slide count, the slides that overflow, the
   Facebook caption and a link to the artifact (edited in place on every push). The comment is budgeted to stay under the

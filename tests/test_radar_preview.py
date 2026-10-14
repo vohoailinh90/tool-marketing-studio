@@ -613,6 +613,13 @@ class WorkflowTests(unittest.TestCase):
         gated = {s["name"] for s in steps() if "steps.plan.outputs.ok == 'true'" in str(s.get("if", ""))}
         self.assertTrue({"Install", "Check the campaign", "Draw the images and texts"} <= gated, gated)
 
+    def test_nothing_is_drawn_from_data_the_check_refused(self):
+        draw = next(s for s in steps() if s.get("id") == "render")
+        condition = str(draw["if"])
+        self.assertIn("steps.plan.outputs.ok == 'true'", condition)
+        self.assertIn("steps.check.outcome == 'success'", condition)
+        self.assertNotIn("always()", condition)             # a status function would run it after a failed install as well
+
     def test_the_comment_it_edits_is_its_own_and_carries_the_marker_of_the_script(self):
         script = next(s for s in steps() if s.get("uses", "").startswith("actions/github-script"))["with"]["script"]
         self.assertIn("github-actions[bot]", script)

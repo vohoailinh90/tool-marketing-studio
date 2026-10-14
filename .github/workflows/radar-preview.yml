@@ -95,7 +95,10 @@ jobs:
 
       - name: Draw the images and texts
         id: render
-        if: steps.plan.outputs.ok == 'true'
+        # Only data that passed the check is drawn. `studio.py render` revalidates the posts and nothing else, so a brief that the
+        # check refuses (a `brand.accent` that is CSS, say) would still reach the page's inline style, and the page may load local
+        # images (img-src file:) into the screenshots that are then uploaded from the shared runner.
+        if: steps.plan.outputs.ok == 'true' && steps.check.outcome == 'success'
         continue-on-error: true
         env:
           CAMPAIGNS: ${{ steps.plan.outputs.campaigns }}

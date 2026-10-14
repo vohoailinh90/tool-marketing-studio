@@ -87,3 +87,7 @@ mutations:
   find: '      - uses: actions/setup-python@v5'
   replace: "      - uses: actions/checkout@v4\n        with:\n          path: trusted\n      - uses: actions/setup-python@v5"
   test: tests.test_radar_preview.WorkflowTests.test_there_is_one_checkout_and_none_into_a_folder_of_the_workspace
+- label: the drawing runs on data the check refused
+  find: "        if: steps.plan.outputs.ok == 'true' && steps.check.outcome == 'success'"
+  replace: "        if: steps.plan.outputs.ok == 'true'"
+  test: tests.test_radar_preview.WorkflowTests.test_nothing_is_drawn_from_data_the_check_refused

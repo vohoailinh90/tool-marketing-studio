@@ -853,81 +853,81 @@
       "lessons": [
         {
           "id": "sd-03-001",
-          "title_vi": null,
+          "title_vi": "Năm hàm gộp dữ liệu trong pandas",
           "title_source": "5 Functions to Merge Data with Pandas",
           "source_url": "https://bytebytego.com/guides/5-functions-to-merge-data-with-pandas",
           "source_path": "data/guides/5-functions-to-merge-data-with-pandas.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "359698c15ed2e3342b308160db5721867b2094d1",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/5-functions-to-merge-data-with-pandas.md"
         },
         {
           "id": "sd-03-002",
-          "title_vi": null,
+          "title_vi": "Các thuật ngữ dữ liệu cốt lõi",
           "title_source": "Key Data Terms",
           "source_url": "https://bytebytego.com/guides/key-data-terms",
           "source_path": "data/guides/key-data-terms.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "5ddcfd6f7c57afdbfb9eb0d66c0d770633f0af68",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/key-data-terms.md"
         },
         {
           "id": "sd-03-003",
-          "title_vi": null,
+          "title_vi": "Dòng thời gian dẫn tới ChatGPT",
           "title_source": "ChatGPT Timeline",
           "source_url": "https://bytebytego.com/guides/chatgpt-timeline",
           "source_path": "data/guides/chatgpt-timeline.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "5306126da22400194d9824eb1fc55c2474e37ee1",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/chatgpt-timeline.md"
         },
         {
           "id": "sd-03-004",
-          "title_vi": null,
+          "title_vi": "DeepSeek trong một trang",
           "title_source": "DeepSeek 1-Pager",
           "source_url": "https://bytebytego.com/guides/deepseek-1-pager",
           "source_path": "data/guides/deepseek-1-pager.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "45d4a5ff09706a195cc3ad359fe354b0a6a4cf18",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/deepseek-1-pager.md"
         },
         {
           "id": "sd-03-005",
-          "title_vi": null,
+          "title_vi": "Ngăn xếp AI mã nguồn mở",
           "title_source": "The Open Source AI Stack",
           "source_url": "https://bytebytego.com/guides/the-open-source-ai-stack",
           "source_path": "data/guides/the-open-source-ai-stack.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "d8727c078ad3392c8bebc3d42c1f94cc20d441ff",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/the-open-source-ai-stack.md"
         },
         {
           "id": "sd-03-006",
-          "title_vi": null,
+          "title_vi": "AI agent là gì?",
           "title_source": "What is an AI Agent?",
           "source_url": "https://bytebytego.com/guides/what-is-an-ai-agent",
           "source_path": "data/guides/what-is-an-ai-agent.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "2523a05bc20d8afe32b1fb8d8c9339a1fa764812",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-is-an-ai-agent.md"
         },
         {
           "id": "sd-03-007",
-          "title_vi": null,
+          "title_vi": "Tổng quan về đường ống dữ liệu",
           "title_source": "Data Pipelines Overview",
           "source_url": "https://bytebytego.com/guides/data-pipelines-overview",
           "source_path": "data/guides/data-pipelines-overview.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "d110acb6477e1e8335092b819363e63342d6b40f",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/data-pipelines-overview.md"
         },
         {
           "id": "sd-03-008",
-          "title_vi": null,
+          "title_vi": "ChatGPT hoạt động thế nào?",
           "title_source": "How does ChatGPT work?",
           "source_url": "https://bytebytego.com/guides/how-does-chatgpt-work",
           "source_path": "data/guides/how-does-chatgpt-work.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "05f603b2357133ec25d2d1358ae2dfc9e5b97648",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-chatgpt-work.md"
         }

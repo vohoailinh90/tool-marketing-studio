@@ -19,6 +19,17 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 
 8. [Trình duyệt dựng trang web thế nào?](lessons/sd-01-008/lesson.md)
 
+## AI và học máy
+
+1. [Năm hàm gộp dữ liệu trong pandas](lessons/sd-03-001/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+2. [Các thuật ngữ dữ liệu cốt lõi](lessons/sd-03-002/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+3. [Dòng thời gian dẫn tới ChatGPT](lessons/sd-03-003/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+4. [DeepSeek trong một trang](lessons/sd-03-004/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+5. [Ngăn xếp AI mã nguồn mở](lessons/sd-03-005/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+6. [AI agent là gì?](lessons/sd-03-006/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+7. [Tổng quan về đường ống dữ liệu](lessons/sd-03-007/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+8. [ChatGPT hoạt động thế nào?](lessons/sd-03-008/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+
 ## Phỏng vấn kỹ thuật
 
 1. [Các kiểu SQL JOIN hoạt động thế nào?](lessons/sd-05-001/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
@@ -66,7 +77,7 @@ và hình đạt; không coi đọc nguồn là mọi claim đã đúng, không 
 
 ## Các nhóm còn lại theo thứ tự nguồn
 
-Tình huống thực tế → AI và học máy → Cơ sở dữ liệu và lưu trữ →
+Tình huống thực tế → Cơ sở dữ liệu và lưu trữ →
 Bộ nhớ đệm và hiệu năng → Thanh toán và công nghệ tài chính → Kiến trúc phần mềm →
 Công cụ và năng suất → Phát triển phần mềm → Đám mây và hệ thống phân tán →
 Hệ thống hoạt động thế nào? → DevOps và CI/CD → Bảo mật (đã viết một phần) → Nền tảng máy tính.

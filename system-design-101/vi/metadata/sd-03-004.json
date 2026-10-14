@@ -1,0 +1,105 @@
+{
+  "id": "sd-03-004",
+  "title_vi": "DeepSeek trong một trang",
+  "language": "vi",
+  "kind": "reference",
+  "content_status": "review",
+  "source_ref": "sd-03-004",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/deepseek-1-pager.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/deepseek-1-pager.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches provider tree OID. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "45d4a5ff09706a195cc3ad359fe354b0a6a4cf18",
+    "retrieved_body_sha256": "993bb0ab0d916d77b9a6ae126c7165e7d4dc54064d1ecf913e6f6df338566ceb",
+    "retrieved_body_bytes": 1770
+  },
+  "diagram": "../diagrams/sd-03-004-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-03-008",
+      "relation": "compares",
+      "reason_vi": "Cùng chủ đề huấn luyện mô hình ngôn ngữ: tiền huấn luyện rồi tinh chỉnh."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "evidence": "V3 and R1 READMEs and the R1 technical report PDF were read from local clones; the V3 report's cost table and the Nature paper figure come from search excerpts (arxiv.org and nature.com were unreachable)."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 14.4,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright) rendered the full lesson at each width with optional sections open; diagram scale measured from the rendered image and every SVG text box checked against the viewBox. Not learner testing and not GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "DeepSeek-V3 is a MoE model with 671B total parameters, 37B activated per token, pre-trained on 14.8T tokens, with 2.788M H800 GPU hours for full training.",
+      "source": "https://github.com/deepseek-ai/DeepSeek-V3/blob/9b4e9788e4a3a731f7567338ed15d3ec549ce03b/README.md",
+      "section": "README: Introduction",
+      "verified_by": "README.md read from a clone checked out at commit 9b4e9788e4a3a731f7567338ed15d3ec549ce03b (committed 2025-08-28); the cited text was re-read at that revision."
+    },
+    {
+      "claim_vi": "The roughly 5.6M USD figure is 2.788M GPU hours at an assumed 2 USD per H800 GPU hour for the official V3 training run, a rental estimate rather than total research cost, and not R1's cost.",
+      "source": "https://arxiv.org/abs/2412.19437",
+      "section": "Table 1 (training costs)",
+      "verified_by": "GPU-hours split and the 2 USD assumption from a search excerpt of Table 1; the 'official training only' reading from a Thoughtworks summary in the same search. The V3 PDF was not opened."
+    },
+    {
+      "claim_vi": "DeepSeek-R1-Zero applies RL directly to the base model without SFT as a preliminary step; R1 adds thousands of cold-start examples and a multi-stage pipeline because R1-Zero had poor readability and language mixing.",
+      "source": "https://github.com/deepseek-ai/DeepSeek-R1/blob/0cf78561f1d51c84a21b2190626b21116d5c68bb/DeepSeek_R1.pdf",
+      "section": "Sections 1, 2.2, 2.3",
+      "verified_by": "DeepSeek_R1.pdf read (pdftotext) from a clone of deepseek-ai/DeepSeek-R1 checked out at commit 0cf78561f1d51c84a21b2190626b21116d5c68bb (committed 2025-04-09); the cited text was re-read at that revision."
+    },
+    {
+      "claim_vi": "GRPO drops the critic model and estimates the baseline from the scores of a sampled group of outputs per question.",
+      "source": "https://github.com/deepseek-ai/DeepSeek-R1/blob/0cf78561f1d51c84a21b2190626b21116d5c68bb/DeepSeek_R1.pdf",
+      "section": "2.2.1",
+      "verified_by": "DeepSeek_R1.pdf read (pdftotext) from a clone of deepseek-ai/DeepSeek-R1 checked out at commit 0cf78561f1d51c84a21b2190626b21116d5c68bb (committed 2025-04-09); the cited text was re-read at that revision."
+    },
+    {
+      "claim_vi": "R1 weights and code are MIT-licensed and trained from DeepSeek-V3-Base; distilled variants inherit Qwen/Llama licences; V3 code is MIT with a separate Model License for weights.",
+      "source": "https://github.com/deepseek-ai/DeepSeek-R1/blob/0cf78561f1d51c84a21b2190626b21116d5c68bb/README.md",
+      "section": "README: License",
+      "verified_by": "R1 README.md section 7 (License) and the base-model line read from a clone at commit 0cf78561f1d51c84a21b2190626b21116d5c68bb (committed 2025-04-09); the V3 licence sentence (code MIT, separate Model License for the models) from README.md section 7 of https://github.com/deepseek-ai/DeepSeek-V3/blob/9b4e9788e4a3a731f7567338ed15d3ec549ce03b/README.md; both re-read at those revisions."
+    },
+    {
+      "claim_vi": "The R1 Nature paper (Sep 2025) was reported by news outlets to give about 294,000 USD for R1 training, separate from the base model; GPU counts differ between reports.",
+      "source": "https://www.bnnbloomberg.ca/business/artificial-intelligence/2025/09/18/chinas-deepseek-says-its-hit-ai-model-cost-just-us294000-to-train/",
+      "section": "News report",
+      "verified_by": "Search excerpts of Reuters/Bloomberg-derived stories; the Nature paper was not opened. The lesson labels it as press-reported."
+    }
+  ],
+  "design_notes_vi": "Sổ cái số liệu: mỗi con số gắn với mô hình sở hữu nó; nhóm đỏ đánh dấu hai số chưa có căn cứ. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Source says ~6M USD was the cost of DeepSeek R1 training; the figure belongs to the V3 final run, so the lesson attributes it to V3.",
+    "Source says R1 overcomes supervised fine-tuning limits with GRPO; the R1 report shows R1 still uses cold-start SFT data and later SFT rounds, so the lesson describes the multi-stage pipeline.",
+    "Source's '52 languages', '2000 GPUs vs 25K GPT-4 GPUs', '85-90% more cost-effective' and 'No.1 free app on Apple Play Store' are omitted: none could be verified from primary material."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

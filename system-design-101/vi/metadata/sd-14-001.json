@@ -1,0 +1,116 @@
+{
+  "id": "sd-14-001",
+  "title_vi": "DevSecOps là gì?",
+  "language": "vi",
+  "kind": "flow",
+  "content_status": "review",
+  "source_ref": "sd-14-001",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/what-is-devsecops.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-is-devsecops.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches provider tree OID. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "562f21338a3e371bc4b002d46b81521f8b8d3909",
+    "retrieved_body_sha256": "c638c30890fa06c3b8830eba50391945f119e9969030f1227b75f23838a08f80",
+    "retrieved_body_bytes": 1099
+  },
+  "diagram": "../diagrams/sd-14-001-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-14-003",
+      "relation": "uses",
+      "reason_vi": "Quản lý bí mật và băm mật khẩu là hai việc bảo mật cụ thể mà DevSecOps kiểm tra."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "evidence": "The table of contents and introduction of the OWASP DevSecOps Guideline README, the opening sections of its Release and Deploy chapters, and the OWASP Secrets Management Cheat Sheet were read from local clones; the other guideline chapters were not read and the gloss of each technique is the author's general knowledge."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 14.4,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright) rendered the full lesson at each width with optional sections open; diagram scale measured from the rendered image and every SVG text box checked against the viewBox. Not learner testing and not GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "The OWASP DevSecOps Guideline aims to detect security issues (by design or application vulnerability) as early as possible and promotes a shift-left security culture.",
+      "source": "https://github.com/OWASP/DevSecOpsGuideline/blob/a4d07324cec24f222be5e8f2b12d3ec27bba714c/README.md",
+      "section": "README introduction",
+      "verified_by": "Read from a local clone of the OWASP DevSecOpsGuideline repository at commit a4d07324cec24f222be5e8f2b12d3ec27bba714c, the head of master when read (a later change to master does not alter this URL)."
+    },
+    {
+      "claim_vi": "The guideline's process section has seven stages, Design (threat modeling, secure design and requirements), Develop (pre-commit, secrets management, linting, repository hardening, secure code review), Build (SAST, SCA, container scanning and hardening, IaC scanning, security gates, SBOM, artifact signing, CI/CD pipeline security), Test (IAST, DAST, mobile, API security, misconfiguration, AI/LLM application testing), Release, Deploy (including secrets in Kubernetes and GitOps) and Operate (logging and monitoring, vulnerability management, pentest and more); Governance covers compliance auditing and policy as code.",
+      "source": "https://github.com/OWASP/DevSecOpsGuideline/blob/a4d07324cec24f222be5e8f2b12d3ec27bba714c/README.md",
+      "section": "README table of contents",
+      "verified_by": "Read from a local clone of the OWASP DevSecOpsGuideline repository at commit a4d07324cec24f222be5e8f2b12d3ec27bba714c, the head of master when read (a later change to master does not alter this URL). Only the table of contents was read, not the chapters."
+    },
+    {
+      "claim_vi": "The Release chapter lists these security activities at release: a final security gate, attaching the SBOM and build provenance to the artifact, signing the artifact, release approval, and security-relevant release notes. The README table of contents files the SBOM and the artifact signing and provenance pages under Build; the Release chapter links to them and says to attach the SBOM and provenance to the release artifact and to sign it.",
+      "source": "https://github.com/OWASP/DevSecOpsGuideline/blob/a4d07324cec24f222be5e8f2b12d3ec27bba714c/current-version/2-Process/2-5-Release/2-5-1-Release.md",
+      "section": "Security activities at release",
+      "verified_by": "Read from a local clone of the OWASP DevSecOpsGuideline repository at commit a4d07324cec24f222be5e8f2b12d3ec27bba714c, the head of master when read (a later change to master does not alter this URL). Only the opening sections were read. At that commit the Release page is about 9 KB with a bulleted list under 'Security activities at release' containing those five items, and the README table of contents lists the SBOM and artifact signing pages under 2-3-6 Supply-Chain-Security in Build."
+    },
+    {
+      "claim_vi": "The Deploy chapter opens with admission control: only artifacts with valid signatures and acceptable provenance are admitted to run; a separate Deploy page covers secrets in Kubernetes and GitOps.",
+      "source": "https://github.com/OWASP/DevSecOpsGuideline/blob/a4d07324cec24f222be5e8f2b12d3ec27bba714c/current-version/2-Process/2-6-Deploy/2-6-1-Deploy.md",
+      "section": "Verify before you run: admission control",
+      "verified_by": "Read from a local clone of the OWASP DevSecOpsGuideline repository at commit a4d07324cec24f222be5e8f2b12d3ec27bba714c, the head of master when read (a later change to master does not alter this URL). Only the opening sections were read; the secrets page was read by title only. At that commit the README table of contents lists '2-6-2-Secrets-in-Kubernetes-and-GitOps' under Deploy."
+    },
+    {
+      "claim_vi": "CI/CD tools often expand the attack surface, so security controls are needed around them; CI/CD pipeline security is a topic under Build.",
+      "source": "https://github.com/OWASP/DevSecOpsGuideline/blob/a4d07324cec24f222be5e8f2b12d3ec27bba714c/README.md",
+      "section": "README introduction; table of contents",
+      "verified_by": "Read from a local clone of the OWASP DevSecOpsGuideline repository at commit a4d07324cec24f222be5e8f2b12d3ec27bba714c, the head of master when read (a later change to master does not alter this URL)."
+    },
+    {
+      "claim_vi": "Secrets management includes centralised storage, auditing and rotation of secrets to prevent leaks and compromise.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/ae965343cb82e6b8f42aff1ccee57c4fa0f171c2/cheatsheets/Secrets_Management_Cheat_Sheet.md",
+      "section": "Introduction",
+      "verified_by": "Read from a local clone of the OWASP CheatSheetSeries repository at commit ae965343cb82e6b8f42aff1ccee57c4fa0f171c2, the head of master when read (a later change to master does not alter this URL)."
+    },
+    {
+      "claim_vi": "Short glosses of SAST, SCA, DAST, IAST, IaC scanning and SBOM are general knowledge.",
+      "source": "https://github.com/OWASP/DevSecOpsGuideline/blob/a4d07324cec24f222be5e8f2b12d3ec27bba714c/README.md",
+      "section": "README table of contents",
+      "verified_by": "Author's general knowledge; not checked against the OWASP chapters."
+    },
+    {
+      "claim_vi": "Ten key concepts: automated security checks, continuous monitoring, CI/CD automation, infrastructure as code, container security, secret management, threat modeling, QA integration, collaboration and communication, vulnerability management.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-is-devsecops.md",
+      "section": "Key Concepts",
+      "verified_by": "Source body read."
+    }
+  ],
+  "design_notes_vi": "Bảy chặng theo mục lục OWASP (phát hành và triển khai tách riêng), một thẻ quản trị xuyên suốt, và thẻ cuối nói chính đường ống là mục tiêu. Không có mũi tên sau chặng cuối. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Source is an unordered list of ten concepts with no explanation; the lesson places the technical ones at the stages of OWASP's guideline and names the two cultural ones (QA integration, collaboration) separately.",
+    "Source does not mention that the CI/CD pipeline itself is an attack surface; the lesson adds it from the OWASP guideline."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

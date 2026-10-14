@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 728" width="320" height="728" role="img" aria-labelledby="title desc">
+<title id="title">Encoding, encryption và tokenization</title>
+<desc id="desc">Ba cách xử lý dữ liệu khác nhau. Encoding đổi định dạng, ví dụ Base64, ai cũng đổi ngược lại được mà không cần khóa nên không bảo mật. Encryption biến dữ liệu thành bản mã bằng thuật toán và khóa; chỉ người có khóa giải mã đúng mới đọc được, và khóa bí mật (khóa chung hoặc khóa riêng) là thứ phải bảo vệ. Tokenization thay dữ liệu nhạy cảm bằng một token; dữ liệu thật nằm trong kho token, và kho đó là thứ phải bảo vệ.</desc>
+<rect width="320" height="728" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="21" font-weight="bold">BA CÁCH XỬ LÝ</text>
+<text x="16" y="54" font-size="21" font-weight="bold">DỮ LIỆU</text>
+<rect x="16" y="80" width="288" height="100" rx="12" fill="#e2e8f0" stroke="#94a3b8"/>
+<text x="29" y="109" font-size="16" font-weight="bold">Dữ liệu mẫu</text>
+<text x="29" y="137" font-size="16" font-weight="normal">Số thẻ mẫu: 4111 1111 1111</text>
+<text x="29" y="161" font-size="16" font-weight="normal">1111</text>
+<rect x="16" y="190" width="288" height="124" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="29" y="219" font-size="16" font-weight="bold">Encoding (Base64)</text>
+<text x="29" y="247" font-size="16" font-weight="normal">NDExMSAxMTEx…</text>
+<text x="29" y="271" font-size="16" font-weight="normal">Ai cũng giải ngược được, không</text>
+<text x="29" y="295" font-size="16" font-weight="normal">cần khóa.</text>
+<rect x="16" y="322" width="288" height="124" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="29" y="351" font-size="16" font-weight="bold">Encryption</text>
+<text x="29" y="379" font-size="16" font-weight="normal">gAAAAAB…</text>
+<text x="29" y="403" font-size="16" font-weight="normal">Đúng khóa mới giải được; sai</text>
+<text x="29" y="427" font-size="16" font-weight="normal">khóa thì lỗi.</text>
+<rect x="16" y="454" width="288" height="124" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="29" y="483" font-size="16" font-weight="bold">Tokenization</text>
+<text x="29" y="511" font-size="16" font-weight="normal">tok_3159c9a6…</text>
+<text x="29" y="535" font-size="16" font-weight="normal">Dữ liệu thật nằm trong kho</text>
+<text x="29" y="559" font-size="16" font-weight="normal">token.</text>
+<rect x="16" y="590" width="288" height="124" rx="12" fill="#fee2e2" stroke="#94a3b8"/>
+<text x="29" y="619" font-size="16" font-weight="bold">Chỗ phải bảo vệ</text>
+<text x="29" y="647" font-size="16" font-weight="normal">Encoding: không có gì để giữ.</text>
+<text x="29" y="671" font-size="16" font-weight="normal">Encryption: khóa bí mật.</text>
+<text x="29" y="695" font-size="16" font-weight="normal">Tokenization: kho token.</text>
+</g></svg>

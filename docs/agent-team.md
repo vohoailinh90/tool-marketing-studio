@@ -99,7 +99,8 @@ github-radar opens a **draft pull request** on branch `radar/<campaign>` for eac
 - it runs `studio.py check` and `studio.py render` on that campaign with this repository's engine;
 - it attaches the PNGs, the platform texts and the manifests to the run (artifact `radar-preview-pr-<number>`, kept
   14 days) and keeps **one comment** on the pull request with the slide count, the slides that overflow, the
-  Facebook caption and a link to the artifact (edited in place on every push);
+  Facebook caption and a link to the artifact (edited in place on every push). The comment is budgeted to stay under the
+  size GitHub accepts: captions past the budget and table rows past theirs are left out with a note, and the files stay in the artifact;
 - it never approves, publishes, commits or pushes: reading the images, `studio.py approve` and publishing stay the owner's.
 
 The engine of a pull request is code that would run on the shared runner, so `scripts/radar_preview.py` first lists the

@@ -993,7 +993,7 @@ def html_text(html: str) -> str:
     parser = HtmlText()
     parser.feed(html)
     parser.close()
-    return " ".join(parser.pieces)
+    return URL.sub(" ", " ".join(parser.pieces))  # a typed address is no more prose in HTML than in Markdown
 
 
 def abbreviations_in(text: str, capitals: bool = True) -> set[str]:
@@ -1024,7 +1024,7 @@ def figure_strings(path: pathlib.Path) -> tuple[list[str], list[str]]:
     headings: list[str] = []
     for element in root.iter():
         if local_name(element.tag) in ("title", "desc", "text"):
-            string = " ".join(element.itertext())  # <tspan>LLM</tspan><tspan>máy</tspan> is two words, not LLMmáy
+            string = URL.sub(" ", " ".join(element.itertext()))  # <tspan>LLM</tspan><tspan>máy</tspan> is two words, not LLMmáy
             (prose if any(word.islower() and len(word) > 1 for word in re.findall(r"[^\W\d_]+", string)) else headings).append(string)
     return prose, headings
 
@@ -1072,7 +1072,7 @@ def lesson_prose(text: str) -> tuple[list[str], list[str], str | None, list[str]
                 elif child.type == "text":
                     pieces.append(URL.sub(" ", child.content))
                 elif child.type == "image":
-                    pieces.append(" " + child.content + " ")
+                    pieces.append(" " + URL.sub(" ", child.content) + " ")
                 elif child.type in ("softbreak", "hardbreak"):
                     pieces.append(" ")  # a wrapped line must not glue its last word to the next line's first
                 elif child.type == "html_inline":

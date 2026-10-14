@@ -1943,6 +1943,25 @@ class AbbreviationRuleTests(StoreCase):
         self.assertProblem("uses the abbreviation(s) LLM")
         self.assertFalse(any("API" in line or "TLS" in line for line in self.problems()))
 
+    def test_an_address_is_not_prose_in_html_an_image_or_a_figure_either(self) -> None:
+        figure = "../../diagrams/sd-01-001-main.svg"
+        for name, intro in {"an html block": "<details>HTTPS://example.org/API/TLS</details>",
+                            "an html block over lines": "<details>\nXem https://example.org/DNS/SSE nhé.\n</details>",
+                            "the alt text of an html image": f'<img src="{figure}" alt="HTTPS://example.org/API/TLS">',
+                            "the alt text of an inline html image": f'Xem <img src="{figure}" alt="https://example.org/API"> nhé.',
+                            "the alt text of a markdown image": f"![HTTPS://example.org/API/TLS]({figure})"}.items():
+            with self.subTest(name=name):
+                self.lesson(intro, glossary=None)
+                self.assertEqual([], self.problems())
+        self.lesson('<details>Xem <a href="https://example.com/API/TLS">bài về LLM</a></details>', glossary=None)
+        self.assertProblem("uses the abbreviation(s) LLM")
+        self.assertFalse(any("API" in line or "TLS" in line for line in self.problems()))
+        self.lesson(glossary=None, figure=svg_with("Gọi https://example.org/API/TLS nhé."))
+        self.assertEqual([], self.problems())
+        self.lesson(glossary=None, figure=svg_with("LLM tại https://example.org/API/TLS."))
+        self.assertProblem("uses the abbreviation(s) LLM")
+        self.assertFalse(any("API" in line or "TLS" in line for line in self.problems()))
+
     def test_the_glossary_comes_after_the_figure_not_before_it(self) -> None:
         figure = "![Sơ đồ của bài](../../diagrams/sd-01-001-main.svg)"
         tail = f"## Liên hệ nguồn\n\n[bài nguồn]({SNAPSHOT}).\n"

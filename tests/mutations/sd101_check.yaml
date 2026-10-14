@@ -1767,8 +1767,8 @@ mutations:
   replace: ""
   test: tests.test_sd101_check.AbbreviationRuleTests.test_a_wrapped_line_does_not_glue_an_abbreviation_to_the_next_word
 - label: an image glues its alt text to the words beside it
-  find: "                    pieces.append(\" \" + child.content + \" \")\n                elif child.type in"
-  replace: "                    pieces.append(child.content)\n                elif child.type in"
+  find: "                    pieces.append(\" \" + URL.sub(\" \", child.content) + \" \")\n                elif child.type in"
+  replace: "                    pieces.append(URL.sub(\" \", child.content))\n                elif child.type in"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_a_wrapped_line_does_not_glue_an_abbreviation_to_the_next_word
 - label: the displayed address of an autolink is read as prose
   find: "                elif in_autolink:\n                    continue\n"
@@ -1778,6 +1778,18 @@ mutations:
   find: "                    pieces.append(URL.sub(\" \", child.content))"
   replace: "                    pieces.append(child.content)"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_an_address_is_not_prose_but_the_label_of_a_link_is
+- label: an address typed into HTML is read as prose
+  find: "return URL.sub(\" \", \" \".join(parser.pieces))"
+  replace: "return \" \".join(parser.pieces)"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_an_address_is_not_prose_in_html_an_image_or_a_figure_either
+- label: an address in the alt text of a Markdown image is read as prose
+  find: "\" \" + URL.sub(\" \", child.content) + \" \""
+  replace: "\" \" + child.content + \" \""
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_an_address_is_not_prose_in_html_an_image_or_a_figure_either
+- label: an address in the text of a figure is read as prose
+  find: "string = URL.sub(\" \", \" \".join(element.itertext()))"
+  replace: "string = \" \".join(element.itertext())"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_an_address_is_not_prose_in_html_an_image_or_a_figure_either
 - label: the scheme of an address is matched in lower case only
   find: "URL = re.compile(r\"(?:https?|ftp)://[^\\s<>]+\", re.IGNORECASE)"
   replace: "URL = re.compile(r\"(?:https?|ftp)://[^\\s<>]+\")"
@@ -1849,8 +1861,8 @@ mutations:
   replace: any(hump.lower() in words for words in NUMBER_WORDS.values())
   test: tests.test_sd101_check.AbbreviationRuleTests.test_the_digit_of_an_abbreviation_stands_for_a_number_word
 - label: the text nodes of a figure label are joined without a gap
-  find: "string = \" \".join(element.itertext())"
-  replace: "string = \"\".join(element.itertext())"
+  find: "\" \".join(element.itertext())"
+  replace: "\"\".join(element.itertext())"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_the_text_nodes_of_a_figure_label_are_separate_words
 - label: a glossary above the figure is accepted
   find: "    elif not figure_above(text, above, lesson_id):"

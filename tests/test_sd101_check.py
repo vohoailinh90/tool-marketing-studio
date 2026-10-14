@@ -1917,6 +1917,11 @@ class AbbreviationRuleTests(StoreCase):
         self.lesson("Nội dung.", glossary=None, after="## Nguồn đối chiếu\n\nRFC 6202, MDN và WHATWG.\n\n")
         self.assertEqual([], self.problems())
 
+    def test_a_html_block_in_the_sources_section_is_not_read_either(self) -> None:
+        sources = "## Nguồn đối chiếu\n\n<details>\n<summary>RFC 6202</summary>\n\nMDN và WHATWG.\n\n</details>\n\n"
+        self.lesson("Nội dung.", glossary=None, after=sources)
+        self.assertEqual([], self.problems())
+
     def test_the_forms_an_abbreviation_takes(self) -> None:
         found = check.abbreviations_in("APIs, HTTP/2, REST/JSON, TCP/UDP, (SSE), \"DNS\", HTTPS.")
         self.assertEqual({"API", "HTTP", "REST", "JSON", "TCP", "UDP", "SSE", "DNS", "HTTPS"}, found)

@@ -1731,7 +1731,7 @@ mutations:
   replace: "prose.append(string)"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_a_heading_in_capitals_is_not_read_for_abbreviations
 - label: the text of a details block is not read for abbreviations
-  find: "        elif token.type == \"html_block\":"
+  find: "        elif token.type == \"html_block\" and section != SOURCES_HEADING:"
   replace: "        elif False:"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_text_inside_a_details_block_counts_as_use
 - label: the alt text of an image is not read for abbreviations
@@ -1746,6 +1746,10 @@ mutations:
   find: "        elif token.type == \"inline\" and section != SOURCES_HEADING:"
   replace: "        elif token.type == \"inline\":"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_the_sources_section_names_organisations_and_is_not_read
+- label: a html block of the sources section is read for abbreviations
+  find: "        elif token.type == \"html_block\" and section != SOURCES_HEADING:"
+  replace: "        elif token.type == \"html_block\":"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_html_block_in_the_sources_section_is_not_read_either
 - label: the lead-in of a glossary bullet counts as a use of what it explains
   find: "                piece = piece.split(\"—\", 1)[-1]  # the bullet"
   replace: "                piece = piece  # the bullet"

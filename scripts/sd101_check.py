@@ -1021,7 +1021,7 @@ def lesson_prose(text: str) -> tuple[list[str], list[str], str | None, list[str]
     for index, token in enumerate(tokens):
         if token.type == "heading_open" and token.tag == "h2":
             section = tokens[index + 1].content.strip()
-        elif token.type == "html_block":
+        elif token.type == "html_block" and section != SOURCES_HEADING:
             piece = html_text(token.content)
             (glossary if section == GLOSSARY_HEADING else body).append(piece)
         elif token.type == "inline" and section != SOURCES_HEADING:

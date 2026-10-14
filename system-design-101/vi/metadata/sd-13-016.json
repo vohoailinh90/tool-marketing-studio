@@ -75,7 +75,7 @@
     }
   ],
   "source_deviations": [
-    "Nguồn là bảng lệnh kubectl theo nhóm tài nguyên; bài bỏ bảng đó và theo một vấn đề riêng là tìm đúng Pod trong cụm lớn, chỉ còn dùng lại lệnh get cho Pod, còn phần chọn lọc, định dạng đầu ra và sắp thứ tự do bài tự chọn."
+    "Phần chữ của nguồn chỉ giới thiệu một bảng lệnh kubectl chia theo sáu mục đích (cài đặt, quản lý cụm, triển khai, xem Pod, xử lý sự cố và cấu hình, lệnh khác); bảng nằm trong ảnh chưa được mở nên không đối chiếu. Bài không dùng lại nội dung nào của bảng mà theo một vấn đề riêng là tìm đúng Pod trong cụm lớn; lệnh get, phần chọn lọc, định dạng đầu ra và sắp thứ tự do bài tự chọn từ tài liệu kubectl."
   ],
   "design_notes_vi": "Năm thẻ nối mũi tên: ba thẻ thu hẹp tập Pod, hai thẻ chọn cách hiện kết quả.",
   "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Tiêu đề hiển thị của bài là dòng đầu của lesson.md; title_vi giữ bản dịch tiêu đề nguồn theo source-map. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."

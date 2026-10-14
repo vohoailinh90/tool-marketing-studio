@@ -375,6 +375,22 @@ class CommentTests(unittest.TestCase):
         self.assertIn("Not drawn here: no radar campaign among the changed files.", body)
         self.assertNotIn("Checked and drawn", body)
 
+    def test_the_claim_that_the_pull_request_was_checked_and_drawn_is_made_only_when_it_was(self):
+        render_fixture(self.root, "Caption", [])
+        self.assertIn("Checked and drawn", comment(self.root))                                   # every step succeeded, a post was drawn
+        for label, body in (("a step failed", comment(self.root, failed=True)),
+                            ("nothing was drawn", comment(self.root / "nothing-here"))):
+            with self.subTest(label):
+                self.assertNotIn("Checked and drawn", body)
+                self.assertIn("were attempted", body)
+                self.assertIn("did not all succeed", body)
+        export = self.root / "campaigns" / CAMPAIGN / "export" / "vi" / "bad"
+        export.mkdir()
+        (export / "manifest.json").write_text("{not json", encoding="utf-8")
+        body = comment(self.root)                                                                # a manifest could not be read
+        self.assertNotIn("Checked and drawn", body)
+        self.assertIn("Manifests that could not be read", body)
+
     def test_a_campaign_without_a_drawing_says_so(self):
         self.assertIn("No post was drawn.", comment(self.root))
 

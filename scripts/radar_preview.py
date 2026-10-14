@@ -166,11 +166,16 @@ def build_comment(root: Path, *, plan_ok: bool, campaigns: Sequence[str], reason
                   "`tools/github-radar/`: the engine of a pull request is code, and it would run on the shared runner. "
                   "The ordinary CI still checks this pull request.", ""]
         return "\n".join(lines)
-    lines += ["Checked and drawn with this repository's engine from the files of this pull request. "
-              "Nothing is approved, committed or published.", ""]
     found = [(c, *rendered(root, c)) for c in campaigns]
     rows = [(c, r) for c, got, _ in found for r in got]
     unreadable = [f"{c}/{where}" for c, _, bad in found for where in bad]
+    if failed or unreadable or not rows:
+        # the claim is made only when every step succeeded and something was drawn: a skipped check or an empty drawing is not "drawn"
+        lines += ["The check and the drawing were attempted with this repository's engine on the files of this pull request, "
+                  "but they did not all succeed. Nothing is approved, committed or published.", ""]
+    else:
+        lines += ["Checked and drawn with this repository's engine from the files of this pull request. "
+                  "Nothing is approved, committed or published.", ""]
     if failed or unreadable:
         lines += [f"**A step failed or a manifest could not be read: read [the run]({run_url}).**", ""]
     if unreadable:

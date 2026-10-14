@@ -37,7 +37,7 @@ Mở 443 (và 80 nếu cần chuyển hướng sang HTTPS). Cổng 3306 là củ
 
 - **Thư hiện đại:** nhiều dịch vụ dùng cổng 587 để người dùng gửi thư, 465 cho SMTP qua TLS, 993 cho IMAP qua TLS, 995 cho POP3 qua TLS.
 - **FTP:** cổng 21 là kênh điều khiển; kênh dữ liệu dùng cổng 20 ở chế độ chủ động hoặc một cổng do máy chủ chỉ định ở chế độ bị động.
-- **NetBIOS:** ngoài TCP 139 còn có UDP 137 và 138; SMB hiện đại chạy trực tiếp qua TCP 445.
+- **NetBIOS:** có ba dịch vụ: dịch vụ tên dùng cổng 137 (cả UDP và TCP), dịch vụ gói dữ liệu dùng UDP 138 và dịch vụ phiên dùng TCP 139; SMB hiện đại chạy trực tiếp qua TCP 445.
 - **DHCPv4:** máy khách chưa có địa chỉ gửi yêu cầu bằng quảng bá từ cổng 68 tới cổng 67 của máy chủ.
 - **Đổi cổng không phải bảo mật:** chạy dịch vụ ở cổng lạ chỉ làm giảm nhiễu dò quét, không thay cho xác thực và tường lửa.
 

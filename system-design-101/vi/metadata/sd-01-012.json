@@ -95,7 +95,7 @@
       "source": "https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rdpbcgr/"
     },
     {
-      "claim_vi": "NetBIOS dùng UDP 137 và 138 và TCP 139; SMB hiện đại chạy trực tiếp qua TCP 445.",
+      "claim_vi": "NetBIOS qua TCP/IP: dịch vụ tên dùng cổng 137 (UDP và TCP), dịch vụ gói dữ liệu dùng UDP 138, dịch vụ phiên dùng TCP 139; SMB hiện đại chạy trực tiếp qua TCP 445.",
       "sources": [
         "https://www.rfc-editor.org/rfc/rfc1001",
         "https://www.rfc-editor.org/rfc/rfc1002",

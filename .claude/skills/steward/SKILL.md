@@ -84,8 +84,15 @@ Re-fetch the PR, its reviews and its comments first, and read the `reactions` co
 on the request comment: a reaction is trigger evidence (§17), no event announces it,
 and an acknowledged request must not be classified as silent and retried. A count
 carries no time: take the evidence's time from the reaction record where the toolset
-can list it, and otherwise from this check-in, which is never earlier than the truth,
-so a stall is never declared early. Nothing remembered is current.
+can list it, and otherwise from the first check-in that saw the count, which is never
+earlier than the truth, so a stall is never declared early. Record that time in
+`model-notes` when it is first seen and reuse it at every later check-in: dating the
+same reaction afresh each time would keep the stall window from ever running out.
+A count names no actor either: where the reaction records can be listed, count only
+Codex's; where they cannot, take the count as Codex's, since retrying an acknowledged
+request would start a second run on one SHA (§16), and write "reaction-only, actor
+unverified" in the BLOCKED report so a person's reaction can be told from Codex's.
+Nothing remembered is current.
 
 Every window is measured from the newest request, retry or evidence. A check-in
 that fires before its window has run out is re-armed from that newest time and does
@@ -94,7 +101,12 @@ when its replacement is armed, so at most one is pending per PR.
 
 - A result of the requested kind for the current head: validate it (§14) and
   continue the loop.
-- Evidence of Codex but no result: not a trigger failure, so no retry. If §17's
+- A usage-limit or error post in place of a review, found now because its event was
+  missed: the same trigger failure as the event table's row (§17), so the single
+  authorized retry under the same conditions, then replace this check-in from the
+  retry's `created_at`; with no retry left, the last step below.
+- Evidence of Codex (a reaction or a linked task), no result and no error post: not
+  a trigger failure, so no retry. If §17's
   stall window has not yet run out since the last update, post nothing and arm the
   stall check-in unless one is already pending. If it has, the review is stalled:
   the last step below.
@@ -148,13 +160,16 @@ check-in to arm and no reaction to read: skip step 3 of section 2 and the check-
 rules of section 4. Wherever this file says to request a review, do this instead,
 then validate the report at once (§14) and work it through section 3's review rows:
 
-- Compare the PR head with the SHA a review already ran on. A review run before the
-  push is the PR's review only while the pushed head is exactly that SHA
-  (CLAUDE.md, lifecycle step 1), so when they are equal reuse that report: the
-  ledger refuses a second run of the same review command on one head.
-- Otherwise run `python3 scripts/codex_cli.py review --branch <branch>` on the head
-  the PR carries, with `--security` as well where the work requires a security
-  review.
+- For each review command the work requires (the standard review, and `--security`
+  where the route calls for one), compare the PR head with the SHA that command
+  already ran on. A review run before the push is the PR's review only while the
+  pushed head is exactly that SHA (CLAUDE.md, lifecycle step 1), so when they are
+  equal reuse that command's report: the ledger refuses a second run of the same
+  review command on one head. A standard report never stands in for the security
+  command, or the reverse.
+- Otherwise run that command on the head the PR carries:
+  `python3 scripts/codex_cli.py review --branch <branch>`, with `--security` for
+  the security review.
 
 ## Never
 

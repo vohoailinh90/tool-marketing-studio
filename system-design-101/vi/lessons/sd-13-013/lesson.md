@@ -2,7 +2,7 @@
 
 Hãy hình dung một ứng dụng web kèm cơ sở dữ liệu chạy bằng Docker trên một máy chủ. Có bốn chỗ người mới hay vấp, và mỗi chỗ chỉ ra một khái niệm Docker cần hiểu.
 
-![Bốn sự cố và cách xử lý: xóa container làm mất dữ liệu thì dùng volume, web không gọi được cơ sở dữ liệu thì dùng network do người dùng tạo và gọi bằng tên dịch vụ, từ ngoài không vào được web thì với network bridge phải publish cổng (network host bỏ qua publish), container chết không tự chạy lại thì đặt restart policy.](../../diagrams/sd-13-013-main.svg)
+![Bốn sự cố và cách xử lý: xóa container làm mất dữ liệu thì dùng volume, web không gọi được cơ sở dữ liệu thì dùng network do người dùng tạo và gọi bằng tên dịch vụ, từ ngoài không vào được web thì với network bridge phải publish cổng (EXPOSE không tự publish, chỉ cờ -P dùng nó; network host bỏ qua publish), container chết không tự chạy lại thì đặt restart policy.](../../diagrams/sd-13-013-main.svg)
 
 **Đọc hình:** bốn sự cố độc lập; cuối bài có một tệp Compose ghép cả bốn.
 
@@ -60,7 +60,7 @@ volumes:
 
 - **Image và container:** image chỉ đọc; container thêm một lớp ghi, mất khi container bị xóa, nên dữ liệu cần ở volume.
 - **Network:** trong Compose, các dịch vụ dùng chung một network mặc định và gọi nhau bằng tên dịch vụ; network bridge do người dùng tạo có DNS (Domain Name System — hệ thống phân giải tên miền) theo tên, bridge mặc định thì không.
-- **Publish cổng:** với network bridge như ví dụ này, chỉ cổng được publish mới truy cập được từ ngoài máy chủ. Network host dùng thẳng mạng của máy chủ và bỏ qua publish, còn chế độ định tuyến trực tiếp của bridge (ví dụ `nat-unprotected`) có thể để lộ cả cổng chưa publish.
+- **Publish cổng:** với network bridge như ví dụ này, chỉ cổng được publish mới truy cập được từ ngoài máy chủ. `EXPOSE` trong Dockerfile không publish cổng; cờ `-P` của `docker run` publish các cổng đã `EXPOSE` (hoặc `--expose`) ra cổng ngẫu nhiên của máy chủ, còn `-p` ánh xạ cổng cụ thể. Network host dùng thẳng mạng của máy chủ và bỏ qua publish, còn chế độ định tuyến trực tiếp của bridge (ví dụ `nat-unprotected`) có thể để lộ cả cổng chưa publish.
 - **Restart policy:** `no`, `on-failure`, `always`, `unless-stopped`.
 - **Thứ tự khởi động:** `depends_on` đơn giản chỉ xếp thứ tự khởi động, không đợi cơ sở dữ liệu sẵn sàng; điều kiện `service_healthy` cùng `healthcheck` mới đợi đến khi lệnh kiểm tra thành công, trong phạm vi mà lệnh đó kiểm tra.
 
@@ -69,4 +69,4 @@ volumes:
 ## Nguồn đối chiếu
 
 - [ByteByteGo tại snapshot cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-8-must-know-docker-concepts.md).
-- Docker: [volume](https://docs.docker.com/engine/storage/volumes/), [network bridge](https://docs.docker.com/engine/network/drivers/bridge/), [publish cổng](https://docs.docker.com/engine/network/port-publishing/), [network host](https://docs.docker.com/engine/network/drivers/host/), [restart policy](https://docs.docker.com/engine/containers/start-containers-automatically/), [Compose networking](https://docs.docker.com/compose/how-tos/networking/). PostgreSQL: [pg_isready](https://www.postgresql.org/docs/current/app-pg-isready.html), [entrypoint của image chính thức](https://github.com/docker-library/postgres/blob/master/docker-entrypoint.sh).
+- Docker: [volume](https://docs.docker.com/engine/storage/volumes/), [network bridge](https://docs.docker.com/engine/network/drivers/bridge/), [publish cổng](https://docs.docker.com/engine/network/port-publishing/), [EXPOSE](https://docs.docker.com/reference/dockerfile/#expose), [docker run -P](https://docs.docker.com/reference/cli/docker/container/run/#publish-all), [network host](https://docs.docker.com/engine/network/drivers/host/), [restart policy](https://docs.docker.com/engine/containers/start-containers-automatically/), [Compose networking](https://docs.docker.com/compose/how-tos/networking/). PostgreSQL: [pg_isready](https://www.postgresql.org/docs/current/app-pg-isready.html), [entrypoint của image chính thức](https://github.com/docker-library/postgres/blob/master/docker-entrypoint.sh).

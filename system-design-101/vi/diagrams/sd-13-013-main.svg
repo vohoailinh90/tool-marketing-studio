@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 846" width="320" height="846" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 927" width="320" height="927" role="img" aria-labelledby="title desc">
 <title id="title">Docker khi chạy web kèm cơ sở dữ liệu: bốn chỗ hay hỏng</title>
-<desc id="desc">Bốn sự cố và cách xử lý: xóa container làm mất dữ liệu thì dùng volume, web không gọi được cơ sở dữ liệu thì dùng network do người dùng tạo và gọi bằng tên dịch vụ, từ ngoài không vào được web thì với network bridge phải publish cổng (network host bỏ qua publish), container chết không tự chạy lại thì đặt restart policy.</desc>
+<desc id="desc">Bốn sự cố và cách xử lý: xóa container làm mất dữ liệu thì dùng volume, web không gọi được cơ sở dữ liệu thì dùng network do người dùng tạo và gọi bằng tên dịch vụ, từ ngoài không vào được web thì với network bridge phải publish cổng (EXPOSE không tự publish, chỉ cờ -P dùng nó; network host bỏ qua publish), container chết không tự chạy lại thì đặt restart policy.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="846" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<rect width="320" height="927" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="30" font-size="20" font-weight="bold">BỐN CHỖ HAY HỎNG</text>
 <text x="16" y="58" font-size="16" font-weight="normal">Web + cơ sở dữ liệu trên</text>
 <text x="16" y="85" font-size="16" font-weight="normal">Docker</text>
@@ -19,17 +19,20 @@
 <text x="30" y="392" font-size="16" font-weight="normal">là chính nó</text>
 <text x="30" y="419" font-size="16" font-weight="normal">Dùng network chung, gọi</text>
 <text x="30" y="446" font-size="16" font-weight="normal">bằng tên dịch vụ</text>
-<rect x="16" y="477" width="288" height="209" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
+<rect x="16" y="477" width="288" height="290" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
 <text x="30" y="505" font-size="16" font-weight="bold">Từ ngoài không vào</text>
 <text x="30" y="532" font-size="16" font-weight="bold">được web</text>
 <text x="30" y="559" font-size="16" font-weight="normal">Với network bridge, phải</text>
 <text x="30" y="586" font-size="16" font-weight="normal">publish cổng (-p</text>
 <text x="30" y="613" font-size="16" font-weight="normal">máy:container)</text>
-<text x="30" y="640" font-size="16" font-weight="normal">EXPOSE chỉ là ghi chú;</text>
-<text x="30" y="667" font-size="16" font-weight="normal">network host bỏ qua -p</text>
-<rect x="16" y="698" width="288" height="128" rx="10" fill="#fee2e2" stroke="#94a3b8"/>
-<text x="30" y="726" font-size="16" font-weight="bold">Container chết, không</text>
-<text x="30" y="753" font-size="16" font-weight="bold">tự chạy lại</text>
-<text x="30" y="780" font-size="16" font-weight="normal">Đặt restart policy, ví dụ</text>
-<text x="30" y="807" font-size="16" font-weight="normal">unless-stopped</text>
+<text x="30" y="640" font-size="16" font-weight="normal">EXPOSE không tự publish;</text>
+<text x="30" y="667" font-size="16" font-weight="normal">chỉ cờ -P dùng nó để</text>
+<text x="30" y="694" font-size="16" font-weight="normal">publish ra cổng ngẫu nhiên</text>
+<text x="30" y="721" font-size="16" font-weight="normal">Network host bỏ qua các tùy</text>
+<text x="30" y="748" font-size="16" font-weight="normal">chọn publish</text>
+<rect x="16" y="779" width="288" height="128" rx="10" fill="#fee2e2" stroke="#94a3b8"/>
+<text x="30" y="807" font-size="16" font-weight="bold">Container chết, không</text>
+<text x="30" y="834" font-size="16" font-weight="bold">tự chạy lại</text>
+<text x="30" y="861" font-size="16" font-weight="normal">Đặt restart policy, ví dụ</text>
+<text x="30" y="888" font-size="16" font-weight="normal">unless-stopped</text>
 </g></svg>

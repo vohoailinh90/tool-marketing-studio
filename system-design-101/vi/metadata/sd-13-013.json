@@ -66,6 +66,10 @@
       "source": "https://docs.docker.com/engine/network/drivers/host/"
     },
     {
+      "claim_vi": "Chỉ thị EXPOSE không publish cổng; cờ -P của docker run publish các cổng đã được EXPOSE (hoặc --expose) ra cổng ngẫu nhiên của máy chủ.",
+      "source": "https://docs.docker.com/reference/cli/docker/container/run/#publish-all"
+    },
+    {
       "claim_vi": "Image PostgreSQL chính thức khởi tạo dữ liệu lần đầu bằng một máy chủ tạm chỉ nghe trên socket Unix, nên kiểm tra sẵn sàng cho dịch vụ khác nên đi qua TCP.",
       "source": "https://github.com/docker-library/postgres/blob/master/docker-entrypoint.sh"
     },

@@ -102,6 +102,12 @@
       "source": "https://www.w3.org/TR/css-cascade-5/#cascade-sort",
       "section": "§6.1 Origin and Importance",
       "verified_by": "Trực tiếp đọc đặc tả CSS Cascade ngày2026-10-13."
+    },
+    {
+      "claim_vi": "Cascade sorting order, highest precedence first: origin and importance (including transition and animation declarations), encapsulation context (outer context wins for normal declarations, inner context for important ones), declarations attached to an element such as the style attribute, cascade layers, specificity, scope proximity, order of appearance.",
+      "source": "https://github.com/w3c/csswg-drafts/blob/1c249b342ee7a0dfe0fcf7f7dc75272b1e794d52/css-cascade-6/Overview.bs",
+      "section": "Cascade Sorting Order (id cascade-sort)",
+      "verified_by": "css-cascade-6/Overview.bs read from a sparse clone of w3c/csswg-drafts checked out at commit 1c249b342ee7a0dfe0fcf7f7dc75272b1e794d52 (committed 2026-10-14); the seven criteria and their order were re-read at that revision."
     }
   ],
   "design_notes_vi": "Một quy tắc rồi ba bước cascade, kèm ví dụ .note thắng p; cascade layer và scoping proximity được lược khỏi hình và nói trong phần sâu. Không dùng ảnh nguồn.",

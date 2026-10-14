@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1148" width="320" height="1148" role="img" aria-labelledby="title desc">
 <title id="title">Nginx làm reverse proxy cho một API: năm chỗ hay sai</title>
-<desc id="desc">Năm chỗ hay sai khi dùng Nginx làm reverse proxy cho một API (Application Programming Interface — giao diện lập trình ứng dụng): dấu gạch chéo cuối của proxy_pass đổi đường dẫn, backend không thấy địa chỉ client thật và header của client có thể bị giả mạo, lỗi 502 khi không nối được hoặc backend không trả phản hồi hợp lệ và lỗi 504 khi quá hạn ở bước nối, gửi hay chờ header phản hồi từ backend (nếu header đã gửi cho client rồi thì Nginx đóng kết nối thay vì đổi sang 504; proxy_read_timeout chỉ đo khoảng giữa hai lần đọc), mở lại kết nối tới backend liên tục (trước Nginx 1.29.7 phải bật keepalive trong upstream, HTTP/1.1 (HyperText Transfer Protocol — giao thức truyền siêu văn bản) và bỏ header Connection, từ 1.29.7 chúng là mặc định), và đổi cấu hình mà không kiểm tra.</desc>
+<desc id="desc">Năm chỗ hay sai khi dùng Nginx làm reverse proxy cho một API (Application Programming Interface — giao diện lập trình ứng dụng): dấu gạch chéo cuối của proxy_pass đổi đường dẫn, backend không thấy địa chỉ client thật và header của client có thể bị giả mạo, lỗi 502 khi không nối được hoặc backend không trả phản hồi hợp lệ và lỗi 504 khi quá hạn ở bước nối, gửi hay chờ header phản hồi từ backend (nếu header đã gửi cho client rồi thì Nginx đóng kết nối thay vì đổi sang 504; proxy_read_timeout chỉ đo khoảng giữa hai lần đọc), mở lại kết nối tới backend liên tục (trước Nginx 1.29.7 nên bật keepalive trong upstream, HTTP/1.1 (HyperText Transfer Protocol — giao thức truyền siêu văn bản) và bỏ header Connection, từ 1.29.7 chúng là mặc định), và đổi cấu hình mà không kiểm tra.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="1148" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="30" font-size="20" font-weight="bold">NGINX TRƯỚC MỘT API</text>
@@ -33,7 +33,7 @@
 <rect x="16" y="779" width="288" height="236" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
 <text x="30" y="807" font-size="16" font-weight="bold">Mở kết nối mới cho mỗi</text>
 <text x="30" y="834" font-size="16" font-weight="bold">request</text>
-<text x="30" y="861" font-size="16" font-weight="normal">Trước Nginx 1.29.7: cần</text>
+<text x="30" y="861" font-size="16" font-weight="normal">Trước Nginx 1.29.7: nên đặt</text>
 <text x="30" y="888" font-size="16" font-weight="normal">keepalive trong upstream,</text>
 <text x="30" y="915" font-size="16" font-weight="normal">HTTP/1.1 (giao thức truyền</text>
 <text x="30" y="942" font-size="16" font-weight="normal">siêu văn bản) và bỏ header</text>

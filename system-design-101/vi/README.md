@@ -19,6 +19,17 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 
 8. [Trình duyệt dựng trang web thế nào?](lessons/sd-01-008/lesson.md)
 
+## AI và học máy
+
+1. [Năm hàm gộp dữ liệu trong pandas](lessons/sd-03-001/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+2. [Các thuật ngữ dữ liệu cốt lõi](lessons/sd-03-002/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+3. [Dòng thời gian dẫn tới ChatGPT](lessons/sd-03-003/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+4. [DeepSeek trong một trang](lessons/sd-03-004/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+5. [Ngăn xếp AI mã nguồn mở](lessons/sd-03-005/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+6. [AI agent là gì?](lessons/sd-03-006/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+7. [Tổng quan về đường ống dữ liệu](lessons/sd-03-007/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+8. [ChatGPT hoạt động thế nào?](lessons/sd-03-008/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+
 ## Phỏng vấn kỹ thuật
 
 1. [Các kiểu SQL JOIN hoạt động thế nào?](lessons/sd-05-001/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
@@ -59,14 +70,20 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 
 ## Bảo mật
 
-Đợt bốn của nhóm. Các bài sd-14-001..006 nằm ở PR #57 và #58, chưa có trong nhánh này; số thứ tự dưới đây chỉ tính trong nhánh này.
+Đợt hai của nhóm. Các bài từ sd-14-013 trở đi chưa viết; số thứ tự dưới đây chỉ tính các bài đã viết.
 
-1. [Tường lửa hoạt động thế nào?](lessons/sd-14-007/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
-2. [Cookie và session khác nhau thế nào?](lessons/sd-14-008/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
-3. [Cookie HTTP hoạt động thế nào?](lessons/sd-14-009/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
-4. [Token, cookie và session: nhận ra người dùng thế nào?](lessons/sd-14-010/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
-5. [SSO và OAuth 2.0: đăng nhập khác ủy quyền](lessons/sd-14-011/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
-6. [Thiết kế hệ thống an toàn: mười hai câu cần hỏi](lessons/sd-14-012/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+1. [DevSecOps là gì?](lessons/sd-14-001/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+2. [Encoding, encryption và tokenization](lessons/sd-14-002/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+3. [Lưu mật khẩu an toàn](lessons/sd-14-003/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+4. [Thiết kế hệ thống phân quyền](lessons/sd-14-004/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+5. [Trình quản lý mật khẩu hoạt động thế nào?](lessons/sd-14-005/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+6. [Passkey có thay được mật khẩu?](lessons/sd-14-006/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+7. [Tường lửa hoạt động thế nào?](lessons/sd-14-007/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+8. [Cookie và session khác nhau thế nào?](lessons/sd-14-008/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+9. [Cookie HTTP hoạt động thế nào?](lessons/sd-14-009/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+10. [Token, cookie và session: nhận ra người dùng thế nào?](lessons/sd-14-010/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+11. [SSO và OAuth 2.0: đăng nhập khác ủy quyền](lessons/sd-14-011/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+12. [Thiết kế hệ thống an toàn: mười hai câu cần hỏi](lessons/sd-14-012/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 
 Danh mục đầy đủ và snapshot nguồn: [bảng đối chiếu](../../brainstorm/system-design-101-vi/source-map.json).
 Quy tắc đã chốt: [kết luận brainstorm](../../brainstorm/system-design-101-vi/DECISIONS.md).
@@ -90,7 +107,7 @@ và hình đạt; không coi đọc nguồn là mọi claim đã đúng, không 
 
 ## Các nhóm còn lại theo thứ tự nguồn
 
-Tình huống thực tế → AI và học máy → Cơ sở dữ liệu và lưu trữ →
+Tình huống thực tế → Cơ sở dữ liệu và lưu trữ →
 Bộ nhớ đệm và hiệu năng → Thanh toán và công nghệ tài chính → Kiến trúc phần mềm →
 Công cụ và năng suất → Phát triển phần mềm → Đám mây và hệ thống phân tán →
 Hệ thống hoạt động thế nào? → Bảo mật (đã viết một phần) → Nền tảng máy tính.

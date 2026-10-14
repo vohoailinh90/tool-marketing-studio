@@ -506,6 +506,7 @@ class WorkflowTests(unittest.TestCase):
         self.assertNotIn("paths", triggers["pull_request"])
         self.assertNotIn("paths-ignore", triggers["pull_request"])
         self.assertIn("synchronize", triggers["pull_request"]["types"])
+        self.assertIn("edited", triggers["pull_request"]["types"])           # a changed base branch changes the diff, the merge and the engine
 
     def test_the_token_can_read_the_code_and_write_the_one_comment_and_nothing_else(self):
         self.assertEqual({"contents": "read", "pull-requests": "write"}, workflow()["permissions"])
@@ -515,6 +516,15 @@ class WorkflowTests(unittest.TestCase):
         self.assertIn("github.event.pull_request.head.repo.full_name == github.repository", job["if"])
         self.assertIn("startsWith(github.event.pull_request.head.ref, 'radar/')", job["if"])
         self.assertIn("vars.CI_RUNNER || 'self-hosted'", job["runs-on"])
+
+    def test_an_edit_runs_the_preview_only_when_it_changed_the_base_branch(self):
+        job = workflow()["jobs"]["preview"]
+        self.assertIn("(github.event.action != 'edited' || github.event.changes.base != null)", job["if"])
+
+    def test_an_edit_that_is_not_a_base_change_cannot_cancel_a_preview_in_progress(self):
+        group = workflow()["concurrency"]["group"]
+        self.assertIn("github.event.action == 'edited' && !github.event.changes.base && '-ignored'", group)
+        self.assertTrue(group.startswith("radar-preview-${{ github.event.pull_request.number }}"))     # the real group is unchanged
 
     def test_the_planner_and_the_comment_writer_run_from_the_base_commit_not_from_the_pull_request(self):
         by_name = {s.get("name"): s for s in steps()}

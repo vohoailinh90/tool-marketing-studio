@@ -13,11 +13,15 @@ on:
   # No `paths:` filter: it looks at the whole diff of the pull request, so a push that removes the campaign would never run
   # this workflow and its comment would go on saying the campaign was drawn. The job below picks the radar branches, and
   # `plan` answers "no radar campaign" (a comment that replaces the old one) when there is nothing left to draw.
+  #
+  # `edited` is for a pull request whose base branch was changed: the diff, the merge and the engine all come from the base, so the
+  # old comment no longer describes it. A title or description edit fires it too; the job below skips those, and the concurrency
+  # group below keeps them away from a preview in progress (they must not cancel it).
   pull_request:
-    types: [opened, synchronize, reopened, ready_for_review]
+    types: [opened, synchronize, reopened, ready_for_review, edited]
 
 concurrency:
-  group: radar-preview-${{ github.event.pull_request.number }}
+  group: radar-preview-${{ github.event.pull_request.number }}${{ github.event.action == 'edited' && !github.event.changes.base && '-ignored' || '' }}
   cancel-in-progress: true
 
 permissions:
@@ -33,6 +37,7 @@ jobs:
     if: >-
       github.event.pull_request.head.repo.full_name == github.repository
       && startsWith(github.event.pull_request.head.ref, 'radar/')
+      && (github.event.action != 'edited' || github.event.changes.base != null)
     steps:
       - uses: actions/checkout@v4
         with:

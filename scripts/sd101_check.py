@@ -184,6 +184,8 @@ ABBREVIATION = re.compile(r"(?<!\w)(?:(" + "|".join(MIXED_CASE_TERMS) + r")|([A-
 GLOSSARY_BULLET = re.compile(r"^- \*\*(?P<abbreviation>(?=[A-Za-z0-9]*[A-Z])[A-Za-z][A-Za-z0-9]+)\*\* "
                              r"\((?P<full>[^()]+)\) — (?P<meaning>\S.*)$")
 MIN_MEANING_WORDS = 3
+# An address typed into the text is a link destination, not prose: https://example.com/API/TLS names no abbreviation.
+URL = re.compile(r"(?:https?|ftp)://[^\s<>]+")
 # Capital words that are not abbreviations: HTTP methods, SQL keywords, Dockerfile instructions, kubectl column titles,
 # log levels and a few file or status names. They need no
 # entry in the glossary. In lesson.md a `code span` is skipped too, so a new one can usually stay out of this list.
@@ -1038,9 +1040,15 @@ def lesson_prose(text: str) -> tuple[list[str], list[str], str | None, list[str]
             (glossary if section == GLOSSARY_HEADING else body).append(piece)
         elif token.type == "inline" and section != SOURCES_HEADING:
             pieces = []
+            in_autolink = False
             for child in token.children or []:
-                if child.type == "text":
-                    pieces.append(child.content)
+                if child.markup == "autolink" and child.type in ("link_open", "link_close"):
+                    in_autolink = child.type == "link_open"  # <https://...> shows its destination as the link text
+                    pieces.append(" ")
+                elif in_autolink:
+                    continue
+                elif child.type == "text":
+                    pieces.append(URL.sub(" ", child.content))
                 elif child.type == "image":
                     pieces.append(" " + child.content + " ")
                 elif child.type in ("softbreak", "hardbreak"):

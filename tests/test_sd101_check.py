@@ -1922,6 +1922,19 @@ class AbbreviationRuleTests(StoreCase):
                 self.lesson(intro, glossary=None)
                 self.assertProblem("uses the abbreviation(s) LLM")
 
+    def test_an_address_is_not_prose_but_the_label_of_a_link_is(self) -> None:
+        for name, intro in {"an autolink": "Xem <https://example.com/API/TLS> nhé.",
+                            "an address in the text": "Xem https://example.org/DNS/SSE nhé.",
+                            "an address after a break": "Xem\nhttps://example.org/DNS/SSE\nnhé.",
+                            "an autolink of another scheme": "Xem <irc://example.org/API/TLS> nhé.",
+                            "an autolink of a mail address": "Viết tới <API.TLS@example.com> nhé."}.items():
+            with self.subTest(name=name):
+                self.lesson(intro, glossary=None)
+                self.assertEqual([], self.problems())
+        self.lesson("Xem [bài về LLM](https://example.com/API/TLS) nhé.", glossary=None)
+        self.assertProblem("uses the abbreviation(s) LLM")
+        self.assertFalse(any("API" in line or "TLS" in line for line in self.problems()))
+
     def test_the_glossary_comes_after_the_figure_not_before_it(self) -> None:
         figure = "![Sơ đồ của bài](../../diagrams/sd-01-001-main.svg)"
         tail = f"## Liên hệ nguồn\n\n[bài nguồn]({SNAPSHOT}).\n"

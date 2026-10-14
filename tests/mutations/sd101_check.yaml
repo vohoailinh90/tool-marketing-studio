@@ -1807,7 +1807,7 @@ mutations:
   replace: "except (OSError, LookupError):"
   test: tests.test_sd101_check.RobustnessTests.test_odd_svg_files_are_reported_not_raised
 - label: the mixed-case terms (gRPC, IPv4) are not recognised as abbreviations
-  find: 'MIXED_CASE_TERMS = ("gRPC", "IPv4", "IPv6", "OAuth", "mTLS", "NoSQL", "vCPU")'
+  find: 'MIXED_CASE_TERMS = ("gRPC", "IPv4", "IPv6", "OAuth", "mTLS", "NoSQL", "vCPU", "IaC", "MoE")'
   replace: 'MIXED_CASE_TERMS = ("ZZZ",)'
   test: tests.test_sd101_check.AbbreviationRuleTests.test_the_forms_an_abbreviation_takes
 - label: a glossary bullet for a mixed-case term is not in the form

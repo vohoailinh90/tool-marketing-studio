@@ -9,6 +9,7 @@ và không ít số trộn lẫn hai mô hình khác nhau: V3 và R1.
 
 - **USD** (United States Dollar) — đô la Mỹ: đơn vị tiền dùng trong con số chi phí huấn luyện của bài.
 - **GPU** (Graphics Processing Unit) — bộ xử lý đồ họa: chip tính toán song song, thường dùng để huấn luyện mô hình học máy.
+- **MoE** (Mixture of Experts) — hỗn hợp chuyên gia: kiến trúc chia mô hình thành nhiều khối chuyên gia, mỗi token chỉ kích hoạt một phần trong số đó.
 - **RL** (Reinforcement Learning) — học tăng cường: mô hình thử nhiều cách, được thưởng khi làm tốt và dần chọn cách tốt hơn.
 - **GRPO** (Group Relative Policy Optimization) — một thuật toán học tăng cường; R1 dùng nó ở bước học tăng cường, chi tiết cách tính nằm trong bài.
 - **SFT** (Supervised Fine-Tuning) — tinh chỉnh có giám sát: dạy mô hình bằng các mẫu đã có đáp án cho sẵn.

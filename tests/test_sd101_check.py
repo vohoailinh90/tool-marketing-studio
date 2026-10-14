@@ -1908,7 +1908,7 @@ class AbbreviationRuleTests(StoreCase):
     def test_the_forms_an_abbreviation_takes(self) -> None:
         found = check.abbreviations_in("APIs, HTTP/2, REST/JSON, TCP/UDP, (SSE), \"DNS\", HTTPS.")
         self.assertEqual({"API", "HTTP", "REST", "JSON", "TCP", "UDP", "SSE", "DNS", "HTTPS"}, found)
-        self.assertEqual({"gRPC", "IPv4", "mTLS"}, check.abbreviations_in("gRPC qua IPv4 và mTLS."))
+        self.assertEqual({"gRPC", "IPv4", "mTLS", "IaC", "MoE"}, check.abbreviations_in("gRPC qua IPv4 và mTLS, IaC cùng MoE."))
         for text in ("MAX_SIZE", "A80", "WebSocket", "I", "ĐƠN HÀNG", "TÓM", "gRPCs", "myIPv4"):
             with self.subTest(text=text):
                 self.assertEqual(set(), check.abbreviations_in(text))

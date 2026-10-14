@@ -15,7 +15,8 @@ Hướng dẫn DevSecOps của OWASP nêu mục tiêu là phát hiện vấn đ�
 - **DAST** (Dynamic Application Security Testing) — kiểm thử bảo mật động: tấn công thử ứng dụng đang chạy từ bên ngoài.
 - **API** (Application Programming Interface) — giao diện lập trình ứng dụng: cách để một chương trình gọi chức năng hoặc lấy dữ liệu của chương trình khác theo quy ước đã định.
 - **CI** (Continuous Integration) — tích hợp liên tục: tự động xây dựng và kiểm tra mã mỗi khi có thay đổi.
-- **CD** (Continuous Delivery) — chuyển giao liên tục: tự động đưa bản đã kiểm tra tới bước phát hành; CI/CD là đường ống gồm cả hai.
+- **CD** (Continuous Delivery) — chuyển giao (hoặc triển khai) liên tục: tự động đưa bản đã kiểm tra tới bước phát hành; CI/CD là đường ống gồm cả hai.
+- **IaC** (Infrastructure as Code) — hạ tầng dưới dạng mã: mô tả máy chủ, mạng và cấu hình bằng tệp mã để tạo và kiểm tra lại được.
 
 ## Đọc hình
 

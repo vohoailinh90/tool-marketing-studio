@@ -40,33 +40,33 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 
 ## DevOps và CI/CD
 
-1. [Tắt êm một API trên Kubernetes: năm chỗ làm rớt request](lessons/sd-13-001/lesson.md) — bài nháp, chờ review kỹ thuật.
-2. [Sách đáng đọc cho người làm DevOps và vận hành](lessons/sd-13-002/lesson.md) — bài nháp, chờ review kỹ thuật.
-3. [Cần bao nhiêu người chuyên kiểm thử: đọc từ số đo của chính đội](lessons/sd-13-003/lesson.md) — bài nháp, chờ review kỹ thuật.
-4. [Thu thập số đo: kéo hay đẩy](lessons/sd-13-004/lesson.md) — bài nháp, chờ review kỹ thuật.
-5. [Chọn cơ sở dữ liệu cho hệ thống số đo](lessons/sd-13-005/lesson.md) — bài nháp, chờ review kỹ thuật.
-6. [Service Kubernetes không nhận traffic: năm chỗ cần kiểm tra](lessons/sd-13-006/lesson.md) — bài nháp, chờ review kỹ thuật.
-7. [Tăng từ một lên ba bản sao thì ứng dụng hỏng: bốn giả định ẩn](lessons/sd-13-007/lesson.md) — bài nháp, chờ review kỹ thuật.
-8. [Chọn công cụ Kubernetes theo lớp](lessons/sd-13-008/lesson.md) — bài nháp, chờ review kỹ thuật.
-9. [Cụm Kubernetes cần thêm công cụ nào trước: đi từ triệu chứng](lessons/sd-13-009/lesson.md) — bài nháp, chờ review kỹ thuật.
-10. [Bảng tuần hoàn Kubernetes: đọc để tra cứu](lessons/sd-13-010/lesson.md) — bài nháp, chờ review kỹ thuật.
-11. [Vì sao Docker build chạy lại bước nặng: năm nguyên nhân mất cache](lessons/sd-13-011/lesson.md) — bài nháp, chờ review kỹ thuật.
-12. [Học từ chuỗi CI/CD của công ty lớn mà không chép công cụ](lessons/sd-13-012/lesson.md) — bài nháp, chờ review kỹ thuật.
-13. [Docker khi chạy web kèm cơ sở dữ liệu: bốn chỗ hay hỏng](lessons/sd-13-013/lesson.md) — bài nháp, chờ review kỹ thuật.
-14. [CI đỏ mà máy bạn chạy được: năm nguồn khác biệt](lessons/sd-13-014/lesson.md) — bài nháp, chờ review kỹ thuật.
-15. [Vòng đời một tính năng có cờ: từ mã đã lên đến dọn cờ](lessons/sd-13-015/lesson.md) — bài nháp, chờ review kỹ thuật.
-16. [Tìm đúng Pod trong cụm lớn: selector và cách in kết quả của kubectl](lessons/sd-13-016/lesson.md) — bài nháp, chờ review kỹ thuật.
-17. [Deployment của Kubernetes thay Pod như thế nào](lessons/sd-13-017/lesson.md) — bài nháp, chờ review kỹ thuật.
-18. [Terraform plan báo thay đổi bạn không định làm: năm nguyên nhân](lessons/sd-13-018/lesson.md) — bài nháp, chờ review kỹ thuật.
-19. [Bốn nút thắt giữa các nhóm khi đưa phần mềm lên chạy](lessons/sd-13-019/lesson.md) — bài nháp, chờ review kỹ thuật.
-20. [Rủi ro khi triển khai và cách giảm](lessons/sd-13-020/lesson.md) — bài nháp, chờ review kỹ thuật.
-21. [Làm cho một request chậm truy vết được](lessons/sd-13-021/lesson.md) — bài nháp, chờ review kỹ thuật.
-22. [Tìm nguyên nhân từ nhật ký bằng dòng lệnh](lessons/sd-13-022/lesson.md) — bài nháp, chờ review kỹ thuật.
-23. [NoOps và DevOps: mô hình hosting khác cách tổ chức nhóm](lessons/sd-13-023/lesson.md) — bài nháp, chờ review kỹ thuật.
-24. [Nginx làm reverse proxy cho một API: năm chỗ hay sai](lessons/sd-13-024/lesson.md) — bài nháp, chờ review kỹ thuật.
-25. [Pod không chạy: chẩn đoán theo từng chặng](lessons/sd-13-025/lesson.md) — bài nháp, chờ review kỹ thuật.
-26. [Container Docker thoát ngay hoặc khởi động lại mãi: bốn manh mối](lessons/sd-13-026/lesson.md) — bài nháp, chờ review kỹ thuật.
-27. [Thiết kế pipeline CI/CD cho một repo: năm quyết định](lessons/sd-13-027/lesson.md) — bài nháp, chờ review kỹ thuật.
+1. [Tắt êm một API trên Kubernetes: năm chỗ làm rớt request](lessons/sd-13-001/lesson.md)
+2. [Sách đáng đọc cho người làm DevOps và vận hành](lessons/sd-13-002/lesson.md)
+3. [Cần bao nhiêu người chuyên kiểm thử: đọc từ số đo của chính đội](lessons/sd-13-003/lesson.md)
+4. [Thu thập số đo: kéo hay đẩy](lessons/sd-13-004/lesson.md)
+5. [Chọn cơ sở dữ liệu cho hệ thống số đo](lessons/sd-13-005/lesson.md)
+6. [Service Kubernetes không nhận traffic: năm chỗ cần kiểm tra](lessons/sd-13-006/lesson.md)
+7. [Tăng từ một lên ba bản sao thì ứng dụng hỏng: bốn giả định ẩn](lessons/sd-13-007/lesson.md)
+8. [Chọn công cụ Kubernetes theo lớp](lessons/sd-13-008/lesson.md)
+9. [Cụm Kubernetes cần thêm công cụ nào trước: đi từ triệu chứng](lessons/sd-13-009/lesson.md)
+10. [Bảng tuần hoàn Kubernetes: đọc để tra cứu](lessons/sd-13-010/lesson.md)
+11. [Vì sao Docker build chạy lại bước nặng: năm nguyên nhân mất cache](lessons/sd-13-011/lesson.md)
+12. [Học từ chuỗi CI/CD của công ty lớn mà không chép công cụ](lessons/sd-13-012/lesson.md)
+13. [Docker khi chạy web kèm cơ sở dữ liệu: bốn chỗ hay hỏng](lessons/sd-13-013/lesson.md)
+14. [CI đỏ mà máy bạn chạy được: năm nguồn khác biệt](lessons/sd-13-014/lesson.md)
+15. [Vòng đời một tính năng có cờ: từ mã đã lên đến dọn cờ](lessons/sd-13-015/lesson.md)
+16. [Tìm đúng Pod trong cụm lớn: selector và cách in kết quả của kubectl](lessons/sd-13-016/lesson.md)
+17. [Deployment của Kubernetes thay Pod như thế nào](lessons/sd-13-017/lesson.md)
+18. [Terraform plan báo thay đổi bạn không định làm: năm nguyên nhân](lessons/sd-13-018/lesson.md)
+19. [Bốn nút thắt giữa các nhóm khi đưa phần mềm lên chạy](lessons/sd-13-019/lesson.md)
+20. [Rủi ro khi triển khai và cách giảm](lessons/sd-13-020/lesson.md)
+21. [Làm cho một request chậm truy vết được](lessons/sd-13-021/lesson.md)
+22. [Tìm nguyên nhân từ nhật ký bằng dòng lệnh](lessons/sd-13-022/lesson.md)
+23. [NoOps và DevOps: mô hình hosting khác cách tổ chức nhóm](lessons/sd-13-023/lesson.md)
+24. [Nginx làm reverse proxy cho một API: năm chỗ hay sai](lessons/sd-13-024/lesson.md)
+25. [Pod không chạy: chẩn đoán theo từng chặng](lessons/sd-13-025/lesson.md)
+26. [Container Docker thoát ngay hoặc khởi động lại mãi: bốn manh mối](lessons/sd-13-026/lesson.md)
+27. [Thiết kế pipeline CI/CD cho một repo: năm quyết định](lessons/sd-13-027/lesson.md)
 
 ## Bảo mật
 

@@ -58,6 +58,10 @@
       "source": "https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners"
     },
     {
+      "claim_vi": "Phần mềm cài sẵn trên image runner do GitHub cung cấp được cập nhật hằng tuần; GitHub khuyên dùng các action để tương tác với phần mềm trên runner vì phiên bản công cụ của workflow khi đó không đổi theo các lần cập nhật.",
+      "source": "https://docs.github.com/en/actions/concepts/runners/github-hosted-runners#runner-images"
+    },
+    {
       "claim_vi": "Một job có thể chạy trong container với image được chỉ định.",
       "source": "https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions"
     },

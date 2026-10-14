@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1040" width="320" height="1040" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1121" width="320" height="1121" role="img" aria-labelledby="title desc">
 <title id="title">CI đỏ mà máy bạn chạy được: năm nguồn khác biệt</title>
 <desc id="desc">Năm nguồn khác biệt khiến CI (Continuous Integration — tích hợp liên tục) đỏ trong khi máy bạn chạy được: phiên bản công cụ và phụ thuộc, môi trường chạy như nhãn runner, trạng thái còn sót ở máy bạn, cấu hình và bí mật chỉ có ở một bên, và thứ tự chạy, múi giờ hay tài nguyên dùng chung giữa các test.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="1040" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<rect width="320" height="1121" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="30" font-size="20" font-weight="bold">MÁY TÔI CHẠY ĐƯỢC</text>
 <text x="16" y="58" font-size="16" font-weight="normal">Năm nguồn khác biệt với CI</text>
 <text x="16" y="85" font-size="16" font-weight="normal">(tích hợp liên tục)</text>
@@ -13,30 +13,33 @@
 <text x="30" y="225" font-size="16" font-weight="normal">khác phiên bản</text>
 <text x="30" y="252" font-size="16" font-weight="normal">Khóa bằng tệp khóa và cài</text>
 <text x="30" y="279" font-size="16" font-weight="normal">đúng theo nó</text>
-<rect x="16" y="310" width="288" height="155" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
+<rect x="16" y="310" width="288" height="236" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
 <text x="30" y="338" font-size="16" font-weight="bold">2 · Môi trường chạy</text>
-<text x="30" y="365" font-size="16" font-weight="normal">Nhãn như ubuntu-latest đổi</text>
-<text x="30" y="392" font-size="16" font-weight="normal">hệ điều hành theo thời gian</text>
-<text x="30" y="419" font-size="16" font-weight="normal">Ghim phiên bản hoặc chạy</text>
-<text x="30" y="446" font-size="16" font-weight="normal">trong container cố định</text>
-<rect x="16" y="477" width="288" height="155" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
-<text x="30" y="505" font-size="16" font-weight="bold">3 · Trạng thái còn sót</text>
-<text x="30" y="532" font-size="16" font-weight="normal">Máy bạn giữ cache, tệp sinh</text>
-<text x="30" y="559" font-size="16" font-weight="normal">ra, dịch vụ nền</text>
-<text x="30" y="586" font-size="16" font-weight="normal">Runner bắt đầu sạch: thử</text>
-<text x="30" y="613" font-size="16" font-weight="normal">lại bằng bản checkout mới</text>
-<rect x="16" y="644" width="288" height="155" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
-<text x="30" y="672" font-size="16" font-weight="bold">4 · Cấu hình và bí mật</text>
-<text x="30" y="699" font-size="16" font-weight="normal">Biến môi trường chỉ có ở</text>
-<text x="30" y="726" font-size="16" font-weight="normal">một bên</text>
-<text x="30" y="753" font-size="16" font-weight="normal">Khai báo mọi đầu vào của</text>
-<text x="30" y="780" font-size="16" font-weight="normal">job trong tệp workflow</text>
-<rect x="16" y="811" width="288" height="209" rx="10" fill="#fee2e2" stroke="#94a3b8"/>
-<text x="30" y="839" font-size="16" font-weight="bold">5 · Thứ tự, giờ và tài</text>
-<text x="30" y="866" font-size="16" font-weight="bold">nguyên chung</text>
-<text x="30" y="893" font-size="16" font-weight="normal">Test phụ thuộc thứ tự, múi</text>
-<text x="30" y="920" font-size="16" font-weight="normal">giờ, cổng, cơ sở dữ liệu</text>
-<text x="30" y="947" font-size="16" font-weight="normal">dùng chung</text>
-<text x="30" y="974" font-size="16" font-weight="normal">Cho mỗi test tự dựng dữ</text>
-<text x="30" y="1001" font-size="16" font-weight="normal">liệu của nó</text>
+<text x="30" y="365" font-size="16" font-weight="normal">ubuntu-latest đổi hệ điều</text>
+<text x="30" y="392" font-size="16" font-weight="normal">hành; nhãn có số chỉ ghim</text>
+<text x="30" y="419" font-size="16" font-weight="normal">hệ điều hành, công cụ cài</text>
+<text x="30" y="446" font-size="16" font-weight="normal">sẵn vẫn cập nhật định kỳ</text>
+<text x="30" y="473" font-size="16" font-weight="normal">Chỉ định phiên bản từng</text>
+<text x="30" y="500" font-size="16" font-weight="normal">công cụ, hoặc chạy trong</text>
+<text x="30" y="527" font-size="16" font-weight="normal">container ghim digest</text>
+<rect x="16" y="558" width="288" height="155" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="586" font-size="16" font-weight="bold">3 · Trạng thái còn sót</text>
+<text x="30" y="613" font-size="16" font-weight="normal">Máy bạn giữ cache, tệp sinh</text>
+<text x="30" y="640" font-size="16" font-weight="normal">ra, dịch vụ nền</text>
+<text x="30" y="667" font-size="16" font-weight="normal">Runner bắt đầu sạch: thử</text>
+<text x="30" y="694" font-size="16" font-weight="normal">lại bằng bản checkout mới</text>
+<rect x="16" y="725" width="288" height="155" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="753" font-size="16" font-weight="bold">4 · Cấu hình và bí mật</text>
+<text x="30" y="780" font-size="16" font-weight="normal">Biến môi trường chỉ có ở</text>
+<text x="30" y="807" font-size="16" font-weight="normal">một bên</text>
+<text x="30" y="834" font-size="16" font-weight="normal">Khai báo mọi đầu vào của</text>
+<text x="30" y="861" font-size="16" font-weight="normal">job trong tệp workflow</text>
+<rect x="16" y="892" width="288" height="209" rx="10" fill="#fee2e2" stroke="#94a3b8"/>
+<text x="30" y="920" font-size="16" font-weight="bold">5 · Thứ tự, giờ và tài</text>
+<text x="30" y="947" font-size="16" font-weight="bold">nguyên chung</text>
+<text x="30" y="974" font-size="16" font-weight="normal">Test phụ thuộc thứ tự, múi</text>
+<text x="30" y="1001" font-size="16" font-weight="normal">giờ, cổng, cơ sở dữ liệu</text>
+<text x="30" y="1028" font-size="16" font-weight="normal">dùng chung</text>
+<text x="30" y="1055" font-size="16" font-weight="normal">Cho mỗi test tự dựng dữ</text>
+<text x="30" y="1082" font-size="16" font-weight="normal">liệu của nó</text>
 </g></svg>

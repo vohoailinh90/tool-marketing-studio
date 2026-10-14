@@ -24,8 +24,8 @@ Bài chỉ nêu năm nguồn khác biệt hay gặp, không phải mọi nguyên
 <details>
 <summary>Xem sâu hơn</summary>
 
-- **Phiên bản:** cài phụ thuộc theo tệp khóa bằng lệnh nghiêm ngặt (như `npm ci`, báo lỗi khi tệp khóa không khớp khai báo) và chỉ định phiên bản ngôn ngữ trong workflow thay vì dùng bản có sẵn trên runner.
-- **Môi trường:** nhãn dạng `-latest` có thể trỏ sang hệ điều hành mới hơn theo thời gian; hãy ghim nhãn phiên bản, hoặc chạy job trong một container có image cố định (tốt nhất ghim theo digest) và dùng đúng image đó ở máy bạn.
+- **Phiên bản:** cài phụ thuộc theo tệp khóa bằng lệnh nghiêm ngặt (như `npm ci`, báo lỗi khi tệp khóa không khớp khai báo) và chỉ định phiên bản ngôn ngữ và công cụ trong workflow thay vì dùng bản cài sẵn trên runner.
+- **Môi trường:** nhãn dạng `-latest` có thể trỏ sang hệ điều hành mới hơn theo thời gian. Nhãn có số phiên bản (như `ubuntu-24.04`) chỉ cố định bản hệ điều hành; phần mềm cài sẵn trên image runner vẫn được GitHub cập nhật định kỳ, nên cùng một job có thể đổi kết quả mà repo không đổi. Hãy chỉ định rõ phiên bản từng công cụ trong workflow (ví dụ qua các action cài đặt có tham số phiên bản), hoặc chạy job trong một container có image cố định (tốt nhất ghim theo digest) và dùng đúng image đó ở máy bạn.
 - **Trạng thái sót:** thử lại bằng một bản clone mới ở thư mục khác trước khi nghi ngờ CI; nếu lỗi xuất hiện thì máy bạn đang che nó.
 - **Cấu hình:** liệt kê mọi biến môi trường và bí mật mà test cần; nhớ rằng mặc định workflow chạy từ pull request của fork không nhận bí mật.
 - **Thứ tự và tranh chấp:** test chập chờn khi chạy song song thường do dùng chung cổng, tệp hay cơ sở dữ liệu; ghi lại múi giờ và hạt giống ngẫu nhiên của lần chạy để dựng lại lỗi.

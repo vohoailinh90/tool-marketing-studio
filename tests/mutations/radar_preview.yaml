@@ -143,7 +143,7 @@ mutations:
   find: 'if len(whole) > len(caption) else ""'
   replace: 'if len(whole) >= len(caption) else ""'
   test: tests.test_radar_preview.CommentTests.test_a_caption_that_fits_is_not_marked_as_cut
-\n- label: a failed or empty preview still invites the owner to approve
+- label: a failed or empty preview still invites the owner to approve
   find: '    lines += [NEXT if complete else RETRY]'
   replace: '    lines += [NEXT]'
   test: tests.test_radar_preview.CommentTests.test_the_invitation_to_approve_is_made_only_when_the_pull_request_was_checked_and_drawn

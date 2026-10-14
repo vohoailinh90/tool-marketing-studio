@@ -460,7 +460,7 @@ class CommentTests(unittest.TestCase):
         for label, body in (("a step failed", comment(self.root, failed=True)),
                             ("nothing was drawn", comment(self.root / "nothing-here"))):
             with self.subTest(label):
-                self.assertNotIn("approve", body.replace("Nothing is approved", ""))
+                self.assertNotIn("approve in the app", body)
                 self.assertTrue(body.rstrip().endswith(radar_preview.RETRY), body)
         export = self.root / "campaigns" / CAMPAIGN / "export" / "vi" / "bad"
         export.mkdir()

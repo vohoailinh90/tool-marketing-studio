@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 838" width="320" height="838" role="img" aria-labelledby="title desc">
+<title id="title">HTTP/2: điều giúp nhanh hơn và điều cần nhớ</title>
+<desc id="desc">Ba cải tiến so với HTTP/1.1: khung nhị phân, ghép luồng nhiều yêu cầu trên một kết nối, và nén header bằng HPACK. Hai tính năng cần cập nhật: cơ chế ưu tiên luồng gốc bị đánh dấu deprecated trong bản HTTP/2 mới và Server Push bị Chrome tắt mặc định từ bản 106. Giới hạn: HTTP/2 vẫn chạy trên một kết nối TCP nên mất gói có thể chặn mọi luồng.</desc>
+<rect width="320" height="838" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="21" font-weight="bold">HTTP/2 NHANH HƠN</text>
+<text x="16" y="54" font-size="21" font-weight="bold">Ở ĐÂU?</text>
+<rect x="16" y="80" width="288" height="38" rx="10" fill="#1e293b"/>
+<text x="29" y="103" font-size="16" font-weight="bold" fill="#ffffff">Cải tiến so với HTTP/1.1</text>
+<rect x="16" y="128" width="288" height="100" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="29" y="157" font-size="16" font-weight="bold">Khung nhị phân</text>
+<text x="29" y="185" font-size="16" font-weight="normal">Thông điệp chia thành khung</text>
+<text x="29" y="209" font-size="16" font-weight="normal">(frame)</text>
+<rect x="16" y="236" width="288" height="100" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="29" y="265" font-size="16" font-weight="bold">Ghép luồng</text>
+<text x="29" y="293" font-size="16" font-weight="normal">Nhiều yêu cầu song song trên</text>
+<text x="29" y="317" font-size="16" font-weight="normal">một kết nối</text>
+<rect x="16" y="344" width="288" height="76" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="29" y="373" font-size="16" font-weight="bold">Nén header (HPACK)</text>
+<text x="29" y="401" font-size="16" font-weight="normal">Bớt lặp các header giống nhau</text>
+<rect x="16" y="432" width="288" height="38" rx="10" fill="#1e293b"/>
+<text x="29" y="455" font-size="16" font-weight="bold" fill="#ffffff">Cần cập nhật</text>
+<rect x="16" y="480" width="288" height="100" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="29" y="509" font-size="16" font-weight="bold">Ưu tiên luồng</text>
+<text x="29" y="537" font-size="16" font-weight="normal">Cơ chế gốc bị deprecated; có</text>
+<text x="29" y="561" font-size="16" font-weight="normal">chuẩn thay thế</text>
+<rect x="16" y="588" width="288" height="76" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="29" y="617" font-size="16" font-weight="bold">Server Push</text>
+<text x="29" y="645" font-size="16" font-weight="normal">Chrome tắt mặc định từ bản 106</text>
+<rect x="16" y="676" width="288" height="38" rx="10" fill="#9f1239"/>
+<text x="29" y="699" font-size="16" font-weight="bold" fill="#ffffff">Giới hạn</text>
+<rect x="16" y="724" width="288" height="100" rx="12" fill="#fee2e2" stroke="#94a3b8"/>
+<text x="29" y="753" font-size="16" font-weight="bold">Vẫn một kết nối TCP</text>
+<text x="29" y="781" font-size="16" font-weight="normal">Mất gói có thể làm mọi luồng</text>
+<text x="29" y="805" font-size="16" font-weight="normal">cùng chờ</text>
+</g></svg>

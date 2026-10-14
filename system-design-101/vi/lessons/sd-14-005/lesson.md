@@ -51,7 +51,7 @@ Mô hình thử nghiệm dùng `scrypt` với tham số nhẹ và AES-GCM của 
 ## Nguồn đối chiếu
 
 - [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-a-password-manager-such-as-1password-or-lastpass-work.md): ý tưởng một mật khẩu chủ, khóa kho và mã hóa từng mục.
-- [Bitwarden — Cryptography guide](https://github.com/bitwarden/contributing-docs/blob/main/docs/architecture/cryptography/crypto-guide.md): khóa chủ từ mật khẩu, khóa đối xứng của người dùng, khóa riêng cho từng mục, bọc khóa và giá trị băm gửi lên máy chủ để đăng nhập. Đọc từ bản clone của kho.
+- [Bitwarden — Cryptography guide](https://github.com/bitwarden/contributing-docs/blob/d9ef0de61d27d2a9c8e0594992f231c1d30b9761/docs/architecture/cryptography/crypto-guide.md): khóa chủ từ mật khẩu, khóa đối xứng của người dùng, khóa riêng cho từng mục, bọc khóa và giá trị băm gửi lên máy chủ để đăng nhập. Đọc từ bản clone của kho.
 - [1Password Developer — Service Account security](https://developer.1password.com/docs/service-accounts/security/): khóa mở khóa từ mật khẩu cộng Secret Key, bộ khóa cá nhân mã hóa các kho. Chỉ đọc được qua tóm tắt tìm kiếm, chưa mở trang.
 - [1Password Support — About your Secret Key](https://support.1password.com/secret-key-security/): nơi Secret Key được cất và việc nhà cung cấp không có bản sao. Chỉ đọc được qua tóm tắt tìm kiếm, chưa mở trang.
 

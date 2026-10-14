@@ -54,8 +54,8 @@ Kết quả minh họa chạy bằng Python (thư viện Casbin cho ACL, RBAC, A
 ## Nguồn đối chiếu
 
 - [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-we-design-a-permission-system.md): năm mô hình ACL, DAC, MAC, ABAC, RBAC.
-- [SELinux Notebook — Mandatory Access Control](https://github.com/SELinuxProject/selinux-notebook/blob/main/src/mac.md): MAC dùng thuộc tính bảo mật trên chủ thể và đối tượng, người dùng không tự bỏ qua chính sách, DAC cho người dùng tự quyết, quy tắc không đọc lên và không ghi xuống. Đọc từ bản clone của kho.
-- [Kubernetes — Using RBAC Authorization](https://github.com/kubernetes/website/blob/main/content/en/docs/reference/access-authn-authz/rbac.md): RBAC theo vai trò; quyền chỉ cộng thêm. Đọc từ nguồn trên GitHub.
-- [Kubernetes — Using ABAC Authorization](https://github.com/kubernetes/website/blob/main/content/en/docs/reference/access-authn-authz/abac.md): ABAC cấp quyền qua chính sách kết hợp các thuộc tính. Đọc từ nguồn trên GitHub.
+- [SELinux Notebook — Mandatory Access Control](https://github.com/SELinuxProject/selinux-notebook/blob/1666b22828a5db37a331663936eb9a30b0df777b/src/mac.md): MAC dùng thuộc tính bảo mật trên chủ thể và đối tượng, người dùng không tự bỏ qua chính sách, DAC cho người dùng tự quyết, quy tắc không đọc lên và không ghi xuống. Đọc từ bản clone của kho.
+- [Kubernetes — Using RBAC Authorization](https://github.com/kubernetes/website/blob/0874a528cfdcd1d0f96766c04111bbaffd2baf0c/content/en/docs/reference/access-authn-authz/rbac.md): RBAC theo vai trò; quyền chỉ cộng thêm. Đọc từ nguồn trên GitHub ngày 2026-10-13, đọc lại ngày 2026-10-14 từ bản clone ở commit này.
+- [Kubernetes — Using ABAC Authorization](https://github.com/kubernetes/website/blob/0874a528cfdcd1d0f96766c04111bbaffd2baf0c/content/en/docs/reference/access-authn-authz/abac.md): ABAC cấp quyền qua chính sách kết hợp các thuộc tính. Đọc từ nguồn trên GitHub ngày 2026-10-13, đọc lại ngày 2026-10-14 từ bản clone ở commit này.
 
 Đã đọc nguồn ngày 2026-10-13. Ví dụ ACL, RBAC và ABAC chạy bằng Casbin 1.43.0 trên Python; ví dụ DAC chạy bằng lệnh `chmod` của hai người dùng Linux; luật mức bảo mật là mã Python viết tay theo quy tắc trong tài liệu SELinux. Bài viết và hình được thiết kế độc lập.

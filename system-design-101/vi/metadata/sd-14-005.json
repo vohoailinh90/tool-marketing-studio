@@ -60,21 +60,21 @@
     },
     {
       "claim_vi": "Bitwarden derives a master key from the master password with PBKDF2 or Argon2id (email as salt), expands it with HKDF into a stretched key, and uses that to encrypt the user's symmetric key.",
-      "source": "https://github.com/bitwarden/contributing-docs/blob/main/docs/architecture/cryptography/crypto-guide.md",
+      "source": "https://github.com/bitwarden/contributing-docs/blob/d9ef0de61d27d2a9c8e0594992f231c1d30b9761/docs/architecture/cryptography/crypto-guide.md",
       "section": "MasterKey",
-      "verified_by": "Read from a local clone of the repository."
+      "verified_by": "Read from a local clone of the bitwarden contributing-docs repository at commit d9ef0de61d27d2a9c8e0594992f231c1d30b9761, the head of the default branch when read (a later change to that branch does not alter this URL)."
     },
     {
       "claim_vi": "For login, Bitwarden also sends the server an authorization hash derived from the master key (PBKDF2, the password as salt, one iteration), in addition to the KDF settings and salt; the master key used for unlock is also reused for authentication.",
-      "source": "https://github.com/bitwarden/contributing-docs/blob/main/docs/architecture/cryptography/crypto-guide.md",
+      "source": "https://github.com/bitwarden/contributing-docs/blob/d9ef0de61d27d2a9c8e0594992f231c1d30b9761/docs/architecture/cryptography/crypto-guide.md",
       "section": "Authenticating with a password",
-      "verified_by": "Read from a local clone of the repository."
+      "verified_by": "Read from a local clone of the bitwarden contributing-docs repository at commit d9ef0de61d27d2a9c8e0594992f231c1d30b9761, the head of the default branch when read (a later change to that branch does not alter this URL)."
     },
     {
       "claim_vi": "Per-item content-encryption keys decouple data from upstream keys, so rotating an upstream key only requires re-uploading the re-encrypted item key; key wrapping also lets one key be shared instead of a set of keys.",
-      "source": "https://github.com/bitwarden/contributing-docs/blob/main/docs/architecture/cryptography/crypto-guide.md",
+      "source": "https://github.com/bitwarden/contributing-docs/blob/d9ef0de61d27d2a9c8e0594992f231c1d30b9761/docs/architecture/cryptography/crypto-guide.md",
       "section": "Content-encryption-key; Key wrapping",
-      "verified_by": "Read from a local clone of the repository."
+      "verified_by": "Read from a local clone of the bitwarden contributing-docs repository at commit d9ef0de61d27d2a9c8e0594992f231c1d30b9761, the head of the default branch when read (a later change to that branch does not alter this URL)."
     },
     {
       "claim_vi": "1Password's two-secret key derivation takes the account password and the Secret Key and derives the Account Unlock Key (formerly Master Unlock Key) and an SRP value; the Account Unlock Key encrypts the personal keyset, which encrypts and decrypts vaults.",

@@ -47,6 +47,6 @@ Ví dụ chạy thử là mô hình tối giản bằng ECDSA P-256 của thư v
 ## Nguồn đối chiếu
 
 - [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/is-passkey-shaping-a-passwordless-future.md): hai bước tạo và dùng passkey.
-- [W3C — Web Authentication (nguồn đặc tả)](https://github.com/w3c/webauthn/blob/main/index.bs): cặp khóa do bộ xác thực tạo và gắn với trang; khóa công khai gửi về trang khi đăng ký; tên miền nằm trong dữ liệu được ký; thử thách ngẫu nhiên từ máy chủ; khóa trên một thiết bị cần thiết bị thêm hoặc khôi phục tài khoản. Đọc từ bản clone của kho.
+- [W3C — Web Authentication (nguồn đặc tả)](https://github.com/w3c/webauthn/blob/0c50bd034f4ee86c524b652a4f96362df4a5bd80/index.bs): cặp khóa do bộ xác thực tạo và gắn với trang; khóa công khai gửi về trang khi đăng ký; tên miền nằm trong dữ liệu được ký; thử thách ngẫu nhiên từ máy chủ; khóa trên một thiết bị cần thiết bị thêm hoặc khôi phục tài khoản. Đọc từ bản clone của kho.
 
 Đã đọc nguồn ngày 2026-10-13. Ví dụ chạy thử bằng Python và `cryptography` 50.0.1. Đặc tả được đọc ở các đoạn về cặp khóa, phạm vi theo trang, thử thách và khóa một thiết bị; không đọc toàn bộ. Bài viết và hình được thiết kế độc lập.

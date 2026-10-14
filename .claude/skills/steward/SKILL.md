@@ -69,7 +69,8 @@ else owns, no skipped or quarantined test.
 | The linked task posts a failure, error or cancellation | A terminal failure (§17) | Post nothing; section 4's last step |
 | A usage-limit or error post in place of a review | An immediate trigger failure (§17) | The single authorized retry now, only if `scripts/codex_round_count.py` exits 0 and none was posted for this SHA; otherwise section 4's last step. Delete the pending check-in (`delete_trigger`) and arm a new one from the retry's `created_at` (section 2, step 3): the old one would fire inside the retry's own window |
 | A review with findings | A result (§14) | Validate each finding against the code (§13); fix the real ones with a regression test; answer a wrong one on its thread with the evidence; resolve the threads you addressed. Fixed anything: section 5, then section 6. Rejected a P2 or P3: it stands at once and blocks nothing, and with nothing fixed the review counts as clean for its command. Rejected a P0 or P1: the next review of the new head decides it when other fixes make one; with no code change pending it is an unresolved disagreement (§16), so report it to the repository owner and do not merge |
-| A review of the current head with no finding | A clean review for that command | Check every other review command the work requires, then CI and mergeability, then section 7 |
+| A review whose reviewed commit is not the current head | Stale (§14) | A no-findings result is not a clean review of the current head, and findings are checked against the current code before anything is fixed. Then request each required review for the current head (section 6): the pending request is answered now |
+| A review of the current head with no finding | A clean review for that command only | Each review command the work requires needs its own review of this head: request every one still missing as section 6 says (the security review is §12's) and wait for it. When all are clean on this head: CI and mergeability, then section 7 |
 | CI red | Work now | Reproduce it, fix it, section 5, then section 6 |
 | A merge conflict, or the base branch advanced (the harness's "base recovered" notice is one such event) | Work now | Merge the base into the PR branch (never rebase or force-push), section 5, then section 6 |
 | A human comment | A request | A small, local ask: do it. A larger or ambiguous one: ask the user, with enough context to answer cold |
@@ -80,7 +81,8 @@ about 4 hours apart, silent when nothing changed, stopping after three empty one
 
 ## 4. When a check-in fires
 
-Re-fetch the PR, its reviews and its comments first, and read the `reactions` counts
+Re-fetch the PR, its reviews, its comments and its review-thread comments first (a review's findings are its
+inline review-thread comments, so the review alone never shows whether it is clean), and read the `reactions` counts
 on the request comment: a reaction is trigger evidence (§17), no event announces it,
 and an acknowledged request must not be classified as silent and retried. A count
 carries no time: take the evidence's time from the reaction record where the toolset

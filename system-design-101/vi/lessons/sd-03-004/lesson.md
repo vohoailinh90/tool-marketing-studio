@@ -5,6 +5,16 @@ và không ít số trộn lẫn hai mô hình khác nhau: V3 và R1.
 
 ![Ba nhóm xếp dọc. Mô hình nền V3-Base: kiến trúc MoE 671 tỷ tham số tổng, 37 tỷ kích hoạt mỗi token, 14,8 nghìn tỷ token; con số khoảng 5,6 triệu USD là của V3, tính từ 2,788 triệu giờ GPU H800 nhân 2 USD giả định thuê, chỉ lần huấn luyện chính thức. Hai cách dạy suy luận: R1-Zero dùng học tăng cường trực tiếp trên mô hình nền; R1 cũng từ V3-Base, thêm vài nghìn mẫu khởi động và nhiều giai đoạn, RL dùng GRPO. Nhóm cuối đánh dấu hai con số của bài nguồn chưa đủ căn cứ.](../../diagrams/sd-03-004-main.svg)
 
+## Từ viết tắt
+
+- **USD** (United States Dollar) — đô la Mỹ: đơn vị tiền dùng trong con số chi phí huấn luyện của bài.
+- **GPU** (Graphics Processing Unit) — bộ xử lý đồ họa: chip tính toán song song, thường dùng để huấn luyện mô hình học máy.
+- **RL** (Reinforcement Learning) — học tăng cường: mô hình thử nhiều cách, được thưởng khi làm tốt và dần chọn cách tốt hơn.
+- **GRPO** (Group Relative Policy Optimization) — một thuật toán học tăng cường; R1 dùng nó ở bước học tăng cường, chi tiết cách tính nằm trong bài.
+- **SFT** (Supervised Fine-Tuning) — tinh chỉnh có giám sát: dạy mô hình bằng các mẫu đã có đáp án cho sẵn.
+- **GPT** (Generative Pretrained Transformer) — tên một dòng mô hình ngôn ngữ được huấn luyện sẵn trên lượng văn bản rất lớn rồi mới dùng cho việc cụ thể.
+- **MIT** (Massachusetts Institute of Technology) — giấy phép MIT: giấy phép phần mềm ngắn và thoáng, cho phép dùng, sửa và phân phối lại; tên gọi theo viện MIT.
+
 ## Đọc hình
 
 **Mô hình nền V3.** DeepSeek-V3 dùng kiến trúc Mixture-of-Experts (MoE): 671 tỷ tham số tổng cộng,

@@ -1851,6 +1851,8 @@ class AbbreviationRuleTests(StoreCase):
         self.assertTrue(check.spells("NAPT", "Network Address and Port Translation"))
         self.assertTrue(check.spells("RFC", "Request for Comments"))
         self.assertTrue(check.spells("TTL", "Time To Live"))
+        self.assertTrue(check.spells("HKDF", "HMAC-based Key Derivation Function"))
+        self.assertTrue(check.spells("RBAC", "Role-Based Access Control"))
         self.assertFalse(check.spells("NAPT", "Network Address Elsewhere Port Translation"))
 
     def test_an_all_caps_word_gives_its_run_or_its_first_letter(self) -> None:

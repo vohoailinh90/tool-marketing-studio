@@ -5,6 +5,18 @@ Hướng dẫn DevSecOps của OWASP nêu mục tiêu là phát hiện vấn đ�
 
 ![Chín thẻ xếp dọc. Bảy chặng nối nhau theo cấu trúc hướng dẫn của OWASP. 1 Thiết kế: mô hình hóa mối đe dọa, yêu cầu và thiết kế an toàn. 2 Phát triển: quản lý bí mật, kiểm tra trước khi commit, rà soát mã. 3 Xây dựng: SAST, SCA, quét container, quét IaC, cổng bảo mật, SBOM. 4 Kiểm thử: IAST, DAST, bảo mật API. 5 Phát hành: cổng bảo mật cuối, ký bản build, đính kèm SBOM, phê duyệt phát hành. 6 Triển khai: chỉ chạy bản build đã xác minh chữ ký, quản lý bí mật trên Kubernetes và GitOps. 7 Vận hành: ghi nhật ký và giám sát, quản lý lỗ hổng, kiểm thử xâm nhập. Thẻ thứ tám: xuyên suốt, quản trị, gồm kiểm tra tuân thủ và chính sách dưới dạng mã. Thẻ cuối: chính đường ống cũng là mục tiêu, công cụ CI/CD mở rộng bề mặt tấn công và cần được bảo vệ.](../../diagrams/sd-14-001-main.svg)
 
+## Từ viết tắt
+
+- **OWASP** (Open Worldwide Application Security Project) — tổ chức cộng đồng chuyên về bảo mật ứng dụng, có các hướng dẫn mà bài dùng để đối chiếu.
+- **SAST** (Static Application Security Testing) — phân tích mã tĩnh: tìm lỗi bảo mật ngay trong mã nguồn, khi chưa chạy ứng dụng.
+- **SCA** (Software Composition Analysis) — phân tích thành phần phần mềm: tìm thư viện phụ thuộc có lỗ hổng đã biết.
+- **SBOM** (Software Bill of Materials) — bảng kê thành phần phần mềm: danh sách mọi thư viện và thành phần có trong một bản build.
+- **IAST** (Interactive Application Security Testing) — kiểm thử tương tác: quan sát ứng dụng từ bên trong khi chạy kiểm thử.
+- **DAST** (Dynamic Application Security Testing) — kiểm thử bảo mật động: tấn công thử ứng dụng đang chạy từ bên ngoài.
+- **API** (Application Programming Interface) — giao diện lập trình ứng dụng: cách để một chương trình gọi chức năng hoặc lấy dữ liệu của chương trình khác theo quy ước đã định.
+- **CI** (Continuous Integration) — tích hợp liên tục: tự động xây dựng và kiểm tra mã mỗi khi có thay đổi.
+- **CD** (Continuous Delivery) — chuyển giao liên tục: tự động đưa bản đã kiểm tra tới bước phát hành; CI/CD là đường ống gồm cả hai.
+
 ## Đọc hình
 
 Các chặng và hạng mục dưới đây theo mục lục của hướng dẫn OWASP; phần giải nghĩa từng kỹ thuật là của người biên soạn.

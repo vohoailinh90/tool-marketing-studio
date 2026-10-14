@@ -1060,9 +1060,9 @@ def glossary_entries(lines: list[str]) -> tuple[list[tuple[str, str, str]], list
     return entries, malformed
 
 
-# Little words a full form may leave out of its abbreviation: "Request for Comments" gives RFC and "Network Address and
-# Port Translation" NAPT.
-FILLER_WORDS = frozenset({"a", "an", "and", "for", "in", "of", "on", "or", "the", "to", "with"})
+# Little words a full form may leave out of its abbreviation: "Request for Comments" gives RFC, "Network Address and
+# Port Translation" NAPT and "HMAC-based Key Derivation Function" HKDF.
+FILLER_WORDS = frozenset({"a", "an", "and", "based", "for", "in", "of", "on", "or", "the", "to", "with"})
 
 
 def spells(abbreviation: str, full_form: str) -> bool:

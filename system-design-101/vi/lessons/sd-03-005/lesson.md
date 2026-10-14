@@ -5,6 +5,14 @@
 
 ![Năm thẻ nối nhau từ trên xuống. 1 Giao diện: Streamlit, Next.js. 2 Backend và gọi mô hình: FastAPI, Metaflow, Ollama. 3 Embedding và RAG: biến văn bản thành vector, tìm đoạn liên quan cho prompt. 4 Lưu trữ và truy xuất: Postgres với pgvector, Milvus, Weaviate; Faiss là thư viện tìm kiếm vector. 5 Mô hình: Llama, Mistral, Qwen, Phi, Gemma, mỗi họ có giấy phép riêng. Thẻ cuối nhắc rằng mở có nhiều mức.](../../diagrams/sd-03-005-main.svg)
 
+## Từ viết tắt
+
+- **AI** (Artificial Intelligence) — trí tuệ nhân tạo: các hệ thống máy tính làm những việc thường cần trí thông minh của con người, như hiểu ngôn ngữ hay nhận ra hình ảnh.
+- **RAG** (Retrieval-Augmented Generation) — tạo sinh tăng cường truy xuất: tìm các đoạn tài liệu liên quan rồi đưa vào câu lệnh để mô hình trả lời dựa trên đó.
+- **API** (Application Programming Interface) — giao diện lập trình ứng dụng: cách để một chương trình gọi chức năng hoặc lấy dữ liệu của chương trình khác theo quy ước đã định.
+- **ML** (Machine Learning) — học máy: cách cho máy tự rút ra quy luật từ dữ liệu, thay vì có người viết sẵn từng luật.
+- **OSI** (Open Source Initiative) — tổ chức giữ định nghĩa chính thức của "mã nguồn mở".
+
 ## Đọc hình
 
 **1 · Giao diện.** Nơi người dùng thao tác. Streamlit dựng ứng dụng dữ liệu bằng Python; Next.js là framework web.

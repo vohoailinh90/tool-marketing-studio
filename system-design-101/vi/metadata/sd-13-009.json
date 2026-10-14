@@ -50,29 +50,37 @@
   },
   "claims": [
     {
-      "claim_vi": "HPA điều chỉnh số Pod theo số đo như CPU.",
-      "source": "https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/"
+      "claim_vi": "Argo CD mặc định không tự đồng bộ khi chỉ có thay đổi trực tiếp trên cụm; bật selfHeal thì nó đồng bộ để đưa cụm về trạng thái trong Git.",
+      "source": "https://argo-cd.readthedocs.io/en/stable/user-guide/auto_sync/#automatic-self-healing"
     },
     {
-      "claim_vi": "ResourceQuota giới hạn tài nguyên theo namespace.",
-      "source": "https://kubernetes.io/docs/concepts/policy/resource-quotas/"
+      "claim_vi": "Flux giữ cụm Kubernetes đồng bộ với nguồn cấu hình như kho Git.",
+      "source": "https://fluxcd.io/flux/"
     },
     {
-      "claim_vi": "NetworkPolicy chỉ có hiệu lực khi plugin mạng hỗ trợ.",
-      "source": "https://kubernetes.io/docs/concepts/services-networking/network-policies/"
+      "claim_vi": "Alertmanager gom nhóm, loại trùng và định tuyến các cảnh báo mà máy chủ Prometheus gửi tới.",
+      "source": "https://prometheus.io/docs/alerting/latest/alertmanager/"
     },
     {
-      "claim_vi": "Argo CD là công cụ GitOps cho Kubernetes.",
-      "source": "https://argo-cd.readthedocs.io/"
+      "claim_vi": "Tài liệu Prometheus khuyên cảnh báo theo triệu chứng gắn với người dùng cuối và giữ số cảnh báo ít.",
+      "source": "https://prometheus.io/docs/practices/alerting/"
     },
     {
-      "claim_vi": "Cluster Autoscaler thêm node khi có Pod không đặt được.",
-      "source": "https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler"
+      "claim_vi": "Secret của Kubernetes mặc định được lưu không mã hóa trong etcd, và giá trị trong trường data chỉ được mã hóa base64.",
+      "source": "https://kubernetes.io/docs/concepts/configuration/secret/"
+    },
+    {
+      "claim_vi": "External Secrets Operator đọc bí mật từ API bên ngoài và đưa giá trị vào Secret của Kubernetes.",
+      "source": "https://external-secrets.io/"
+    },
+    {
+      "claim_vi": "Secrets Store CSI Driver cho phép gắn bí mật từ kho bên ngoài vào Pod như một volume.",
+      "source": "https://secrets-store-csi-driver.sigs.k8s.io/"
     }
   ],
   "source_deviations": [
-    "Nguồn chia hệ sinh thái thành sáu mảng; bài bỏ cách chia đó, chọn năm nhu cầu vận hành độc lập kèm cơ chế và công cụ ví dụ."
+    "Nguồn chỉ liệt kê sáu mảng của hệ sinh thái (bảo mật, mạng, container runtime, quản lý cụm, giám sát, điều phối hạ tầng). Bài không đi qua các mảng đó: chọn ba triệu chứng của một nhóm nhỏ mới vận hành cụm (không rõ cụm chạy bản nào, người dùng biết lỗi trước, bí mật nằm trong Git), chạm tới ba trong sáu mảng; ba mảng còn lại (mạng, container runtime, quản lý cụm) không được bàn tới. Cơ chế, câu hỏi và giới hạn là nội dung tự viết."
   ],
-  "design_notes_vi": "Năm thẻ nhu cầu vận hành kèm cơ chế.",
+  "design_notes_vi": "Ba thẻ triệu chứng kèm công cụ ví dụ.",
   "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Tiêu đề hiển thị của bài là dòng đầu của lesson.md; title_vi giữ bản dịch tiêu đề nguồn theo source-map. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
 }

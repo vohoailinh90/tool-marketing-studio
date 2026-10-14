@@ -37,7 +37,7 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 6. [Service Kubernetes không nhận traffic: năm chỗ cần kiểm tra](lessons/sd-13-006/lesson.md) — bài nháp, chờ review kỹ thuật.
 7. [Tăng từ một lên ba bản sao thì ứng dụng hỏng: bốn giả định ẩn](lessons/sd-13-007/lesson.md) — bài nháp, chờ review kỹ thuật.
 8. [Chọn công cụ Kubernetes theo lớp](lessons/sd-13-008/lesson.md) — bài nháp, chờ review kỹ thuật.
-9. [Hệ sinh thái Kubernetes theo nhu cầu vận hành](lessons/sd-13-009/lesson.md) — bài nháp, chờ review kỹ thuật.
+9. [Cụm Kubernetes cần thêm công cụ nào trước: đi từ triệu chứng](lessons/sd-13-009/lesson.md) — bài nháp, chờ review kỹ thuật.
 10. [Bảng tuần hoàn Kubernetes: đọc để tra cứu](lessons/sd-13-010/lesson.md) — bài nháp, chờ review kỹ thuật.
 11. [Vì sao Docker build chạy lại bước nặng: năm nguyên nhân mất cache](lessons/sd-13-011/lesson.md) — bài nháp, chờ review kỹ thuật.
 12. [Học từ chuỗi CI/CD của công ty lớn mà không chép công cụ](lessons/sd-13-012/lesson.md) — bài nháp, chờ review kỹ thuật.

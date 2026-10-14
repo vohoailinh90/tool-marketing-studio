@@ -9,11 +9,23 @@ mutations:
 - label: the recorded size is never used
   find: "        if recorded is not None:\n            return recorded\n"
   replace: ""
-  test: tests.test_session_budget_window.HookReadsTheWindowTests.test_what_the_status_line_recorded_wins
+  test: tests.test_session_budget_window.HookReadsTheWindowTests.test_what_the_status_line_recorded_is_used_when_the_variable_is_unset
 - label: the payload is not consulted
   find: "    if payload:\n        recorded = recorded_window("
   replace: "    if False:\n        recorded = recorded_window("
-  test: tests.test_session_budget_window.HookReadsTheWindowTests.test_what_the_status_line_recorded_wins
+  test: tests.test_session_budget_window.HookReadsTheWindowTests.test_what_the_status_line_recorded_is_used_when_the_variable_is_unset
+- label: the variable no longer wins over what the status line recorded
+  find: "    configured = configured_window()\n    if configured is not None:\n        return configured\n"
+  replace: ""
+  test: tests.test_session_budget_window.HookReadsTheWindowTests.test_the_variable_beats_what_the_status_line_recorded
+- label: a variable that is not a positive number is used
+  find: "    return value if value > 0 else None"
+  replace: "    return value"
+  test: tests.test_session_budget_window.HookReadsTheWindowTests.test_a_variable_that_cannot_be_used_leaves_the_recording_in_charge
+- label: a variable that is not a number raises
+  find: "    except ValueError:\n        return None\n    return value if value > 0 else None"
+  replace: "    except KeyError:\n        return None\n    return value if value > 0 else None"
+  test: tests.test_session_budget_window.HookReadsTheWindowTests.test_a_variable_that_cannot_be_used_leaves_the_recording_in_charge
 - label: a session id that is not a plain name is used as a file name
   find: "    if not isinstance(session_id, str) or not SESSION_ID.fullmatch(session_id):\n        return None\n"
   replace: "    if not isinstance(session_id, str):\n        return None\n"
@@ -37,7 +49,7 @@ mutations:
 - label: the given checkout is ignored when reading the record
   find: "recorded_window(payload.get(\"session_id\"), root or repo_root())"
   replace: "recorded_window(payload.get(\"session_id\"), repo_root())"
-  test: tests.test_session_budget_window.HookReadsTheWindowTests.test_what_the_status_line_recorded_wins
+  test: tests.test_session_budget_window.HookReadsTheWindowTests.test_what_the_status_line_recorded_is_used_when_the_variable_is_unset
 - label: the handoff is measured against the default window
   find: "        \"context_window\": context_window(payload, root),"
   replace: "        \"context_window\": context_window(),"
@@ -45,4 +57,4 @@ mutations:
 - label: the nudge is measured against the default window
   find: "    window = context_window(payload)\n    fraction = used / window"
   replace: "    window = context_window()\n    fraction = used / window"
-  test: tests.test_session_budget_window.SessionOfAMillionTokensIsNotToldItIsFullTests.test_a_recorded_million_token_window_gives_no_nudge
+  test: tests.test_session_budget_window.SessionOfAMillionTokensIsNotToldItIsFullTests.test_a_recorded_small_window_nudges_when_the_variable_is_unset

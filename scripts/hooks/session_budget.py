@@ -37,10 +37,10 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-# Hook payloads do not carry the context window's size the way the status line payload does, so
-# scripts/hooks/statusline.py records it, one file per session in WINDOW_STATE, and context_window() reads it
-# from there. Without that record (no status line yet, or a payload that omits the size) the size comes
-# from CLAUDE_SESSION_BUDGET_CONTEXT_WINDOW, and failing that this default, which assumes 200K.
+# Hook payloads do not carry the context window's size the way the status line payload does. The size is
+# CLAUDE_SESSION_BUDGET_CONTEXT_WINDOW when that is set (an explicit setting wins, and it is the only thing
+# that can correct a status line that reports a wrong size); else what scripts/hooks/statusline.py recorded
+# for this session, one file per session in WINDOW_STATE; else this default, which assumes 200K.
 DEFAULT_CONTEXT_WINDOW = 200_000
 # Keep these four in step with statusline.py (a test asserts it).
 WINDOW_STATE = ("artifacts", "handoff", "context-window")
@@ -260,19 +260,26 @@ def recorded_window(session_id: object, root: Path) -> int | None:
     return size if size is not None and MIN_WINDOW_TOKENS <= size <= MAX_WINDOW_TOKENS else None
 
 
+def configured_window() -> int | None:
+    """The size CLAUDE_SESSION_BUDGET_CONTEXT_WINDOW sets, in tokens; None when it is unset or not a positive whole number."""
+    try:
+        value = int(os.environ.get("CLAUDE_SESSION_BUDGET_CONTEXT_WINDOW", ""))
+    except ValueError:
+        return None
+    return value if value > 0 else None
+
+
 def context_window(payload: dict[str, Any] | None = None, root: Path | None = None) -> int:
-    """The context window size in tokens: what the status line recorded for this session, else the environment
-    variable CLAUDE_SESSION_BUDGET_CONTEXT_WINDOW, else DEFAULT_CONTEXT_WINDOW."""
+    """The context window size in tokens: the environment variable CLAUDE_SESSION_BUDGET_CONTEXT_WINDOW when it is
+    set, else what the status line recorded for this session, else DEFAULT_CONTEXT_WINDOW."""
+    configured = configured_window()
+    if configured is not None:
+        return configured
     if payload:
         recorded = recorded_window(payload.get("session_id"), root or repo_root())
         if recorded is not None:
             return recorded
-    raw = os.environ.get("CLAUDE_SESSION_BUDGET_CONTEXT_WINDOW", "")
-    try:
-        value = int(raw)
-    except ValueError:
-        return DEFAULT_CONTEXT_WINDOW
-    return value if value > 0 else DEFAULT_CONTEXT_WINDOW
+    return DEFAULT_CONTEXT_WINDOW
 
 
 def collect_state(payload: dict[str, Any], trigger: str, root: Path) -> dict[str, Any]:

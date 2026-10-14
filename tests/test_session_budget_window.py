@@ -1,10 +1,10 @@
 """The context window size: statusline.py records it, session_budget.py reads it.
 
 Hook payloads do not carry the window's size, so session_budget.py once assumed 200K and told a 1M-context
-session it was 86% full at 171K tokens. The status line payload does carry the size, so it leaves it in a file
-of its own per session, which the hook reads first; then the CLAUDE_SESSION_BUDGET_CONTEXT_WINDOW variable; then
-the 200K default. One file per session, because two status lines that read and rewrite one shared file lose each
-other's entries.
+session it was 86% full at 171K tokens. The size is the CLAUDE_SESSION_BUDGET_CONTEXT_WINDOW variable when it is
+set (an explicit setting wins, and it is what corrects a status line that reports a wrong size); else the size the
+status line recorded in a file of its own per session; else the 200K default. One file per session, because two
+status lines that read and rewrite one shared file lose each other's entries.
 """
 
 from __future__ import annotations
@@ -249,15 +249,25 @@ class HookReadsTheWindowTests(TempRoot):
         self.assertEqual(STATUSLINE.MIN_WINDOW_TOKENS, BUDGET.MIN_WINDOW_TOKENS)
         self.assertEqual(STATUSLINE.MAX_WINDOW_TOKENS, BUDGET.MAX_WINDOW_TOKENS)
 
-    def test_what_the_status_line_recorded_wins(self) -> None:
+    def test_the_variable_beats_what_the_status_line_recorded(self) -> None:
+        self.record("s1", 200_000)
+        self.assertEqual(1_000_000, self.window({"session_id": "s1"}, env="1000000"))
+
+    def test_what_the_status_line_recorded_is_used_when_the_variable_is_unset(self) -> None:
         self.record("s1", 1_000_000)
-        self.assertEqual(1_000_000, self.window({"session_id": "s1"}, env="500000"))
+        self.assertEqual(1_000_000, self.window({"session_id": "s1"}))
+
+    def test_a_variable_that_cannot_be_used_leaves_the_recording_in_charge(self) -> None:
+        self.record("s1", 1_000_000)
+        for env in ("", "many", "0", "-5", "1.5"):
+            with self.subTest(env=env):
+                self.assertEqual(1_000_000, self.window({"session_id": "s1"}, env=env))
 
     def test_a_trailing_newline_is_fine(self) -> None:
         self.record("s1", "1000000\n")
         self.assertEqual(1_000_000, self.window({"session_id": "s1"}))
 
-    def test_the_environment_variable_comes_next(self) -> None:
+    def test_the_variable_applies_with_no_recording_for_the_session(self) -> None:
         self.assertEqual(500_000, self.window({"session_id": "s1"}, env="500000"))
         self.record("other", 1_000_000)
         self.assertEqual(500_000, self.window({"session_id": "s1"}, env="500000"))
@@ -278,7 +288,7 @@ class HookReadsTheWindowTests(TempRoot):
         self.assertEqual(500_000, self.window(None, env="500000"))
         self.assertEqual(200_000, self.window({}))
 
-    def test_a_recording_that_cannot_be_used_is_ignored(self) -> None:
+    def test_a_recording_that_cannot_be_used_is_ignored(self) -> None:  # the variable is unset in `window`
         bad = {
             "text": "many", "empty file": "", "a fraction": "12.5", "negative": "-5000", "an exponent": "1e6",
             "two numbers": "1000000 2000000", "zero": "0", "a binary mark": "\x00",
@@ -344,8 +354,11 @@ class SessionOfAMillionTokensIsNotToldItIsFullTests(TempRoot):
     def test_with_no_record_the_old_default_still_nudges(self) -> None:
         self.assertIn("~86% full", self.nudge(None))
 
-    def test_a_recorded_small_window_still_nudges(self) -> None:
-        self.assertIn("~86% full", self.nudge(200_000, env="1000000"))
+    def test_a_recorded_small_window_nudges_when_the_variable_is_unset(self) -> None:
+        self.assertIn("~86% full", self.nudge(200_000))
+
+    def test_the_variable_corrects_a_status_line_that_reports_a_wrong_size(self) -> None:
+        self.assertEqual("", self.nudge(200_000, env="1000000"))
 
     def test_the_variable_still_covers_a_session_the_status_line_has_not_seen(self) -> None:
         self.assertEqual("", self.nudge(None, env="1000000"))
@@ -357,7 +370,10 @@ class SessionOfAMillionTokensIsNotToldItIsFullTests(TempRoot):
 
     def test_the_handoff_records_the_window_it_was_measured_against(self) -> None:
         self.record(1_000_000)
-        state = BUDGET.collect_state({"session_id": "s1", "transcript_path": str(self.transcript)}, "manual", self.root)
+        with mock.patch.dict(os.environ):
+            os.environ.pop(ENV, None)
+            state = BUDGET.collect_state({"session_id": "s1", "transcript_path": str(self.transcript)}, "manual",
+                                         self.root)
         self.assertEqual(1_000_000, state["context_window"])
         self.assertIn("171,021 / 1,000,000 tokens", BUDGET.render_auto_state(state))
 

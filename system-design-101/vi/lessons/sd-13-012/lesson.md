@@ -13,7 +13,7 @@ Vì sao đóng ứng dụng vào image rồi thay máy lại giảm rủi ro hơ
 <details>
 <summary>Xem đáp án</summary>
 
-Máy chạy thật giống hệt thứ đã kiểm thử, không bị lệch cấu hình do sửa tại chỗ, và quay lui bằng cách thay lại image trước đó.
+Nếu triển khai đúng image đã kiểm thử thì phần đã dựng vào image là cùng một bản, không bị lệch do ai đó sửa tại chỗ trên từng máy, và quay lui bằng cách thay lại image trước đó. Image chỉ cố định thứ nằm trong nó: cấu hình truyền lúc chạy, dữ liệu, loại máy, mạng và các dịch vụ xung quanh vẫn có thể khác giữa kiểm thử và chạy thật, nên cần quản lý và kiểm tra riêng.
 
 </details>
 
@@ -37,4 +37,4 @@ Mô tả về Netflix dựa trên thông tin công khai tại một thời đi�
 - [ByteByteGo tại snapshot cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/netflix-tech-stack-cicd-pipeline.md).
 - [Spinnaker](https://spinnaker.io/) và [Kayenta](https://github.com/spinnaker/kayenta). Google SRE Workbook (SRE là Site Reliability Engineering — kỹ thuật độ tin cậy của hệ thống): [canarying releases](https://sre.google/workbook/canarying-releases/).
 - Google Testing Blog: [flaky tests](https://testing.googleblog.com/2016/05/flaky-tests-at-google-and-how-we.html). [SLSA](https://slsa.dev/), OWASP: [Top 10 CI/CD Security Risks](https://owasp.org/www-project-top-10-ci-cd-security-risks/).
-- Martin Fowler: [ImmutableServer](https://martinfowler.com/bliki/ImmutableServer.html).
+- Martin Fowler: [ImmutableServer](https://martinfowler.com/bliki/ImmutableServer.html). Twelve-Factor App: [cấu hình](https://12factor.net/config).

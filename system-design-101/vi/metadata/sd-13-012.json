@@ -63,6 +63,14 @@
     {
       "claim_vi": "SLSA là khung bảo vệ chuỗi cung ứng phần mềm; OWASP có danh sách 10 rủi ro bảo mật CI/CD.",
       "source": "https://owasp.org/www-project-top-10-ci-cd-security-risks/"
+    },
+    {
+      "claim_vi": "Máy chủ bất biến không bị sửa sau khi triển khai mà được thay bằng một bản mới.",
+      "source": "https://martinfowler.com/bliki/ImmutableServer.html"
+    },
+    {
+      "claim_vi": "Cấu hình là mọi thứ có khả năng khác nhau giữa các lần triển khai (staging, production, máy lập trình viên), nên cùng một bản dựng vẫn có thể chạy với cấu hình khác ở mỗi môi trường.",
+      "source": "https://12factor.net/config"
     }
   ],
   "source_deviations": [

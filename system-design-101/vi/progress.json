@@ -11,6 +11,8 @@
     "sd-01-006",
     "sd-01-007",
     "sd-01-008",
+    "sd-01-009",
+    "sd-01-010",
     "sd-03-001",
     "sd-03-002",
     "sd-03-003",
@@ -65,7 +67,7 @@
     "sd-14-012"
   ],
   "reviewed_ids": [],
-  "next_id": "sd-01-009",
+  "next_id": "sd-01-011",
   "active_batch_ids": [
     "sd-13-001",
     "sd-13-002",
@@ -98,10 +100,10 @@
   "active_pr": 50,
   "updated_on": "2026-10-14",
   "active_branch": "claude/optimistic-galileo-ins11l",
-  "previous_pr": 49,
+  "previous_pr": 53,
   "superseded_pr": 24,
   "integration_review_pending": true,
-  "adopted_main_sha": "eabe3dc52db13ce556f46ad219c458bb8ece7d27",
+  "adopted_main_sha": "c9077eb4085832bdec3cb109020e2312049d7fa2",
   "prior_repository_reviewed_ids": [
     "sd-01-001",
     "sd-01-002",
@@ -113,8 +115,8 @@
   ],
   "repository": "vohoailinh90/tool-marketing-studio",
   "previous_repository": "vohoailinh90/Agentic-coding-course",
-  "destination_base_sha": "eabe3dc52db13ce556f46ad219c458bb8ece7d27",
+  "destination_base_sha": "c9077eb4085832bdec3cb109020e2312049d7fa2",
   "migration_source_sha": "b8dff434ff75499137bbb10b61122958fdaaafa5",
   "previous_repository_main_sha": "89186c1a1aeb90a47e2a563fdc7786b2dacec787",
-  "last_merged_pr": 49
+  "last_merged_pr": 53
 }

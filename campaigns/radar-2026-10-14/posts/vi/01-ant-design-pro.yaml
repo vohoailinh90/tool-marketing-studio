@@ -1,0 +1,75 @@
+id: 01-ant-design-pro
+status: draft
+format: portrait
+series: Radar GitHub · 2026-10-14
+link: 01-ant-design-pro
+slides:
+- layout: cover
+  emoji: 🚀
+  eyebrow: Radar GitHub · Khởi nghiệp
+  title: 'Ant Design Pro: Giải pháp UI React cho enterprise'
+  subtitle: Ant Design Pro là bộ khung ứng dụng (boilerplate) React sẵn sàng sử dụng, cung cấp các template
+    giao diện doanh nghiệp, hỗ trợ TypeScript và tích hợp công cụ…
+- layout: stat
+  eyebrow: Số liệu theo ngày quét
+  value: '38.852'
+  label: sao trên GitHub
+  caption: MIT · TypeScript
+- layout: quote
+  text: Lập trình viên khi phát triển ứng dụng quản trị doanh nghiệp thường mất nhiều thời gian tự dựng
+    layout, trang đăng nhập, quản lý form và bảng biểu từ đầu.
+  author: Vấn đề nó giải quyết
+- layout: flow
+  variant: after
+  title: Nó chạy thế nào
+  steps:
+  - text: 'Tải mã nguồn: Sao chép kho lưu trữ mã nguồn dự án về máy tính cục bộ bằng lệnh git clone.'
+  - text: 'Cài đặt thư viện: Chạy lệnh cài đặt các gói phụ thuộc cần thiết cho môi trường phát triển ứng
+      dụng.'
+  - text: 'Khởi động: Chạy lệnh khởi động máy chủ phát triển để bắt đầu xem và tùy chỉnh giao diện ứng
+      dụng.'
+- layout: features
+  title: Các mảnh ghép
+  items:
+  - emoji: 🧩
+    title: Thư mục mã nguồn
+    text: Chứa các thành phần giao diện, trang quản trị, cấu hình định tuyến và logic ứng dụng chính trong
+      src/.
+  - emoji: ⚙️
+    title: Thư mục tài liệu
+    text: Chứa các tài liệu hướng dẫn chi tiết và thông tin trợ giúp cho người phát triển ở docs/.
+- layout: checklist
+  title: Học được gì
+  tone: ok
+  items:
+  - Cách cấu trúc một dự án React quy mô doanh nghiệp lớn
+  - Ứng dụng TypeScript trong phát triển ứng dụng web quy mô lớn
+  - Tích hợp các template giao diện mẫu vào quy trình làm việc thực tế
+- layout: pains
+  title: Lưu ý
+  tone: accent
+  items:
+  - emoji: ⚠️
+    text: 'Giấy phép sử dụng: MIT.'
+  - emoji: ⚠️
+    text: Lệnh đơn giản hóa (npm run simple) sẽ xóa vĩnh viễn các thư mục trang mẫu và không thể hoàn
+      tác.
+  - emoji: ⚠️
+    text: Yêu cầu môi trường phát triển Node.js và Git trên máy tính.
+- layout: cta
+  emoji: 📌
+  title: Lưu lại để học dần
+  text: Mỗi tuần hai lần có một repo mới.
+  show_link: false
+platforms:
+  facebook:
+    caption: 'Tăng tốc phát triển ứng dụng web doanh nghiệp với Ant Design Pro!
+
+
+      Nội dung do AI tóm tắt từ README và cấu trúc repo; hãy đọc repo gốc trước khi dùng.'
+    first_comment: 'Repo gốc: {link}'
+    hashtags:
+    - AntDesignPro
+    - React
+    - TypeScript
+    - WebDev

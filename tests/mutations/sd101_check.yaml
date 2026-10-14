@@ -1924,10 +1924,10 @@ mutations:
   find: "token.map[0] < heading_line"
   replace: "token.map[0] >= 0"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_a_reference_style_figure_is_found_wherever_its_definition_is
-- label: the lead-in of a glossary bullet counts as a use of what it explains
-  find: "                piece = piece.split(\"—\", 1)[-1]  # the bullet"
-  replace: "                piece = piece  # the bullet"
-  test: tests.test_sd101_check.AbbreviationRuleTests.test_the_full_form_in_the_parenthesis_is_not_a_use
+- label: the lead-in of a bullet that is not in the form counts as a use of what it names
+  find: "                piece = piece.split(\"—\", 1)[-1]"
+  replace: "                piece = piece"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_the_lead_in_of_a_bullet_that_is_not_in_the_form_is_not_also_a_use
 - label: an abbreviation with no glossary section is accepted
   find: "        if used:\n            problems.append(Problem(lesson_id, f\"uses the abbreviation(s)"
   replace: "        if False:\n            problems.append(Problem(lesson_id, f\"uses the abbreviation(s)"
@@ -2100,3 +2100,23 @@ mutations:
   find: "    if len(groups) > 8:\n        return False\n"
   replace: ""
   test: tests.test_sd101_check.AbbreviationRuleTests.test_a_number_the_full_form_writes_stands_where_the_abbreviation_puts_its_digits
+- label: an abbreviation inside a glossary full form needs no bullet (HMAC in the full form of HKDF)
+  find: "    used |= set(inside)\n"
+  replace: ""
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_an_abbreviation_inside_a_full_form_needs_a_bullet_of_its_own
+- label: only the mixed-case terms of a full form are read
+  find: "        for name in sorted(abbreviations_in(full_form)):"
+  replace: "        for name in sorted(abbreviations_in(full_form, capitals=False)):"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_an_abbreviation_inside_a_full_form_needs_a_bullet_of_its_own
+- label: the report never says that the abbreviation stands in a full form
+  find: "if abbreviation in inside and abbreviation not in elsewhere else \"\"))"
+  replace: "if False else \"\"))"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_an_abbreviation_inside_a_full_form_needs_a_bullet_of_its_own
+- label: the report points at a full form even when the lesson uses the abbreviation elsewhere
+  find: "if abbreviation in inside and abbreviation not in elsewhere else \"\"))"
+  replace: "if abbreviation in inside else \"\"))"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_an_abbreviation_inside_a_full_form_needs_a_bullet_of_its_own
+- label: KILL in SIGnal KILL is read as an abbreviation
+  find: "    \"KILL\",  # SIGnal KILL: an ordinary word set in capitals to show the letters of SIGKILL\n"
+  replace: ""
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_an_abbreviation_inside_a_full_form_needs_a_bullet_of_its_own

@@ -1825,6 +1825,7 @@ class AbbreviationRuleTests(StoreCase):
                    "JSON": "JavaScript Object Notation", "ID": "IDentifier", "SYN": "SYNchronize",
                    "CSSOM": "CSS Object Model", "REST": "REpresentational State Transfer",
                    "HSTS": "HTTP Strict Transport Security", "CSDL": "cơ sở dữ liệu",
+                   "CSS": "Cascading Style Sheets", "HTTP": "HyperText Transfer Protocol",
                    "gRPC": "gRPC Remote Procedure Calls", "IPv4": "Internet Protocol version 4",
                    "mTLS": "mutual Transport Layer Security"}
         glossary = "".join(f"- **{abbreviation}** ({full}) — giải thích cho người mới học.\n"
@@ -1918,9 +1919,10 @@ class AbbreviationRuleTests(StoreCase):
         self.lesson("Về LLM.", glossary="- **LLM** (Large Language Model) — mô hình chạy trên GPU.\n")
         self.assertProblem("uses the abbreviation GPU but the glossary does not explain it")
 
-    def test_the_full_form_in_the_parenthesis_is_not_a_use(self) -> None:
-        self.lesson("Về CSSOM.", glossary="- **CSSOM** (CSS Object Model) — các luật kiểu đã đọc xong.\n")
-        self.assertEqual([], self.problems())
+    def test_the_lead_in_of_a_bullet_that_is_not_in_the_form_is_not_also_a_use(self) -> None:
+        self.lesson("Nội dung.", glossary="- **LLM** Large Language Model — mô hình ngôn ngữ lớn: chương trình sinh văn bản.\n")
+        self.assertProblem("is not in the form")
+        self.assertFalse(any("uses the abbreviation" in line for line in self.problems()))
 
     def test_a_wrapped_line_does_not_glue_an_abbreviation_to_the_next_word(self) -> None:
         for name, intro in {"a soft break": "Bài này nói về LLM\nrất hay.", "a hard break": "Bài này nói về LLM  \nrất hay.",
@@ -1964,7 +1966,8 @@ class AbbreviationRuleTests(StoreCase):
         self.assertFalse(any("API" in line or "TLS" in line for line in self.problems()))
 
     def test_an_acronym_in_a_capitals_only_label_is_read_when_it_cannot_be_a_word(self) -> None:
-        jwt = "- **JWT** (JSON Web Token) — chuỗi ký tên chứa thông tin người dùng.\n"
+        jwt = ("- **JSON** (JavaScript Object Notation) — định dạng văn bản gồm các cặp tên và giá trị.\n"
+               "- **JWT** (JSON Web Token) — chuỗi ký tên chứa thông tin người dùng.\n")
         for name, label in {"standalone": "JWT", "among Vietnamese words": "HAI MÁY · JWT", "in a longer label": "JWT HẾT HẠN"}.items():
             with self.subTest(name=name):
                 self.lesson(glossary=None, figure=svg_with(label))
@@ -2032,6 +2035,24 @@ class AbbreviationRuleTests(StoreCase):
         self.lesson("Gửi qua IPv4.", glossary="- **IPv4** (Internet Protocol version 6) — địa chỉ 32 bit.\n")
         self.assertProblem("glossary spells IPv4 out as 'Internet Protocol version 6'")
         self.lesson("Gửi qua IPv4.", glossary="- **IPv4** (Internet Protocol version 4) — địa chỉ 32 bit.\n")
+        self.assertEqual([], self.problems())
+
+    def test_an_abbreviation_inside_a_full_form_needs_a_bullet_of_its_own(self) -> None:
+        hkdf = "- **HKDF** (HMAC-based Key Derivation Function) — hàm sinh thêm khóa từ một khóa gốc, để mở rộng nó.\n"
+        hmac = "- **HMAC** (Hash-based Message Authentication Code) — mã kiểm tra dữ liệu tính từ một khóa bí mật.\n"
+        self.lesson("Nói về HKDF.", glossary=hkdf)
+        self.assertProblem("sd-01-001: uses the abbreviation HMAC but the glossary does not explain it "
+                           "(it stands in the full form of HKDF)")
+        self.lesson("Nói về HKDF.", glossary=hmac + hkdf)
+        self.assertEqual([], self.problems())
+        self.lesson("Nói về HKDF và HMAC.", glossary=hkdf)  # used elsewhere too: the plain message, no pointer to the entry
+        self.assertProblem("sd-01-001: uses the abbreviation HMAC but the glossary does not explain it")
+        self.assertFalse(any("stands in the full form" in line for line in self.problems()))
+        # the entry's own abbreviation, a letter run that spells part of it and a word in capitals are not abbreviations to explain
+        self.lesson("Nói về gRPC, SYN và SIGKILL.", glossary=(
+            "- **gRPC** (gRPC Remote Procedure Calls) — gọi hàm trên máy khác như gọi hàm trong máy mình.\n"
+            "- **SYN** (SYNchronize) — gói đầu của bắt tay, báo muốn mở kết nối.\n"
+            "- **SIGKILL** (SIGnal KILL) — tín hiệu buộc dừng tiến trình ngay, tiến trình không kịp dọn dẹp.\n"))
         self.assertEqual([], self.problems())
 
     def test_a_number_the_full_form_writes_stands_where_the_abbreviation_puts_its_digits(self) -> None:

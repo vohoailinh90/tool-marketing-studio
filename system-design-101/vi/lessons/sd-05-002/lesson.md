@@ -20,6 +20,7 @@ có sáu việc nối nhau: kiểm tra cache, tra DNS, mở kết nối, gửi y
 - **DOM** (Document Object Model) — mô hình đối tượng tài liệu: cây các phần tử của trang mà trình duyệt dựng từ HTML; JavaScript có thể sửa cây này.
 - **CSS** (Cascading Style Sheets) — bảng kiểu xếp tầng: các luật mô tả màu sắc, cỡ chữ và cách bố trí của trang.
 - **CSSOM** (CSS Object Model) — mô hình đối tượng CSS: các luật CSS sau khi trình duyệt đọc xong, xếp thành cấu trúc để tra cứu.
+- **UDP** (User Datagram Protocol) — giao thức gói dữ liệu người dùng: gửi từng gói tin đi mà không bắt tay trước và không bảo đảm gói nào đến nơi; nhẹ và nhanh hơn TCP, nên giao thức mới tự thêm phần tin cậy lên trên.
 - **QUIC** (Quick UDP Internet Connections) — tên gọi ban đầu của giao thức truyền tải mà HTTP/3 dùng thay cho TCP; ngày nay QUIC thường được dùng như một tên riêng.
 
 ## Đọc hình

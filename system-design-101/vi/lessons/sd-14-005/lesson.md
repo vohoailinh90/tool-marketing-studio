@@ -11,6 +11,7 @@ Nhờ vậy bạn chỉ nhớ một mật khẩu, và với thiết kế này m�
 - **MP** (Master Password) — mật khẩu chủ; "MP key" là tên khóa trong quy trình của một sản phẩm cụ thể mà bài nguồn nhắc, bài này không dùng tên đó.
 - **SRP** (Secure Remote Password) — giao thức mật khẩu từ xa an toàn: cho phép chứng minh biết mật khẩu mà không gửi mật khẩu đi; bài nguồn nhắc tên SRP-X.
 - **PBKDF** (Password-Based Key Derivation Function) — hàm sinh khóa từ mật khẩu: băm mật khẩu nhiều vòng để khó đoán; PBKDF2 là một phiên bản.
+- **HMAC** (Hash-based Message Authentication Code) — mã xác thực thông điệp dựa trên hàm băm: giá trị tính từ một khóa bí mật và dữ liệu, để kiểm tra dữ liệu không bị sửa và do người biết khóa tạo ra.
 - **HKDF** (HMAC-based Key Derivation Function) — hàm sinh thêm khóa từ một khóa gốc, dùng để mở rộng một khóa thành nhiều khóa.
 - **AES** (Advanced Encryption Standard) — chuẩn mã hóa tiên tiến: thuật toán mã hóa đối xứng, cùng một khóa để mã hóa và giải mã.
 - **GCM** (Galois/Counter Mode) — một chế độ hoạt động của mã hóa khối, vừa mã hóa vừa phát hiện dữ liệu bị sửa; AES-GCM là cặp thường dùng.

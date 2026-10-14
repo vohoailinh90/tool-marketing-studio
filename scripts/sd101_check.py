@@ -215,6 +215,7 @@ NOT_ACRONYMS = frozenset({
     "DROP", "TABLE", "VALUES", "SET",
     "OK", "README", "TODO",
     "COPY", "RUN", "EXPOSE", "STOPSIGNAL", "GOAWAY", "READY", "RESTARTS", "STATUS", "END", "ERROR",
+    "KILL",  # SIGnal KILL: an ordinary word set in capitals to show the letters of SIGKILL
 })
 
 
@@ -1106,7 +1107,7 @@ def lesson_prose(text: str) -> tuple[list[str], list[str], str | None, list[str]
                     pieces.append(" " + html_text(child.content) + " ")
             piece = "".join(pieces)
             if section == GLOSSARY_HEADING:
-                piece = piece.split("—", 1)[-1]  # the bullet's lead-in names the abbreviation it explains
+                piece = piece.split("—", 1)[-1]  # the lead-in names what the bullet explains; the entry's full form is read apart
             (glossary if section == GLOSSARY_HEADING else body).append(piece)
     return body, glossary, glossary_lines, titles, above
 
@@ -1249,6 +1250,12 @@ def check_abbreviations(lesson_id: str, text: str, figure: list[str], headings: 
     entries, malformed = glossary_entries(glossary_lines)
     problems.extend(Problem(lesson_id, f"glossary bullet {bullet[:70]!r} is not in the form {template}")
                     for bullet in malformed)
+    inside: dict[str, str] = {}  # an abbreviation a full form holds (HMAC in HKDF's) -> the entry it stands in
+    for abbreviation, full_form, _ in entries:
+        for name in sorted(abbreviations_in(full_form)):
+            inside.setdefault(name, abbreviation)
+    elsewhere = set(used)
+    used |= set(inside)
     seen: set[str] = set()
     for abbreviation, full_form, meaning in entries:
         if abbreviation in seen:
@@ -1262,7 +1269,9 @@ def check_abbreviations(lesson_id: str, text: str, figure: list[str], headings: 
             problems.append(Problem(lesson_id, f"glossary entry {abbreviation} has no explanation after the dash"))
     if not entries and not malformed:
         problems.append(Problem(lesson_id, f'"## {GLOSSARY_HEADING}" has no bullets'))
-    problems.extend(Problem(lesson_id, f"uses the abbreviation {abbreviation} but the glossary does not explain it")
+    problems.extend(Problem(lesson_id, f"uses the abbreviation {abbreviation} but the glossary does not explain it"
+                                       + (f" (it stands in the full form of {inside[abbreviation]})"
+                                          if abbreviation in inside and abbreviation not in elsewhere else ""))
                     for abbreviation in sorted(used - seen))
     return problems
 

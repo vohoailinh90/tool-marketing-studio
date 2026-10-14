@@ -8,6 +8,7 @@ Bốn cách phổ biến: gửi lại tên và mật khẩu, mã session, token 
 ## Từ viết tắt
 
 - **HTTP** (HyperText Transfer Protocol) — giao thức truyền siêu văn bản: quy ước để trình duyệt gửi yêu cầu và máy chủ gửi trả lời.
+- **JSON** (JavaScript Object Notation) — ký hiệu đối tượng JavaScript: định dạng văn bản gồm các cặp tên và giá trị, được dùng rất rộng rãi để các chương trình trao đổi dữ liệu với nhau.
 - **JWT** (JSON Web Token) — token web: chuỗi tự mang thông tin người dùng và có chữ ký, để máy chủ kiểm mà không cần tra bảng.
 - **MDN** (Mozilla Developer Network) — tên cũ của MDN Web Docs, bộ tài liệu tra cứu công nghệ web do Mozilla và cộng đồng viết; bài dùng nó để đối chiếu.
 - **HTTPS** (HyperText Transfer Protocol Secure) — HTTP được mã hóa: cùng cách gửi yêu cầu và trả lời như HTTP nhưng nội dung được giữ kín trên đường đi.

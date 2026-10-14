@@ -303,8 +303,9 @@ script can. One rule applies to every lesson a session writes or edits:
   the first `##` section, one bullet each: `- **LLM** (Large Language Model) — mô hình ngôn ngữ lớn: what
   it is, in plain words, in this lesson's context`. The parenthesis spells the abbreviation out in Latin
   letters so that its initials give it back (`IDentifier`, `SYNchronize`; a Vietnamese abbreviation such
-  as CSDL gets its Vietnamese form); an explanation may not lean on an abbreviation that has no bullet
-  of its own. Words that only look like abbreviations (HTTP methods, SQL keywords, file names) go in
+  as CSDL gets its Vietnamese form); a full form or an explanation may not lean on an abbreviation that
+  has no bullet of its own (`HMAC-based` in the full form of HKDF needs an HMAC bullet). Words that only
+  look like abbreviations (HTTP methods, SQL keywords, file names) go in
   `` `code` `` or in `NOT_ACRONYMS`. Mixed-case terms (gRPC, IPv4, OAuth, ...) follow the same rule once
   they are in `MIXED_CASE_TERMS`: add a new one there when a lesson introduces it. A product name that
   carries an abbreviation (OpenAI, MySQL, macOS) is in `EMBEDDED_ABBREVIATIONS`, and the abbreviation

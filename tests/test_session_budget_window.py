@@ -140,6 +140,29 @@ class StatuslineRecordsTheWindowTests(TempRoot):
             STATUSLINE.record_window_size(payload("new", 200_000), self.root)
         self.assertIn("new", self.sessions())
 
+    def test_a_file_pruned_between_the_read_and_the_touch_is_written_again(self) -> None:
+        STATUSLINE.record_window_size(payload("s1", 1_000_000), self.root)
+        with mock.patch.object(os, "utime", side_effect=FileNotFoundError("pruned")):
+            STATUSLINE.record_window_size(payload("s1", 1_000_000), self.root)
+        self.assertEqual(["s1"], self.sessions())
+        with mock.patch.object(os, "utime", side_effect=FileNotFoundError("pruned")), \
+                mock.patch.object(STATUSLINE, "forget_the_oldest"):
+            (self.state / "s1").write_text("1000000", encoding="utf-8")
+            os.unlink(self.state / "s1")
+            STATUSLINE.record_window_size(payload("s1", 1_000_000), self.root)
+        self.assertEqual("1000000", self.recorded())
+
+    def test_the_session_just_written_is_never_the_one_forgotten_even_on_tied_timestamps(self) -> None:
+        cap = STATUSLINE.MAX_RECORDED_SESSIONS
+        for number in range(cap):
+            STATUSLINE.record_window_size(payload(f"z{number}", 200_000), self.root)
+        original = Path.iterdir
+        with mock.patch.object(STATUSLINE, "modified", return_value=1.0), \
+                mock.patch.object(Path, "iterdir", lambda directory: iter(sorted(original(directory)))):
+            STATUSLINE.record_window_size(payload("a-new", 200_000), self.root)
+        self.assertIn("a-new", self.sessions())
+        self.assertEqual(cap, len(self.sessions()))
+
     def test_a_size_or_a_session_that_cannot_be_used_records_nothing(self) -> None:
         unusable = {
             "no size": payload("s1", None),

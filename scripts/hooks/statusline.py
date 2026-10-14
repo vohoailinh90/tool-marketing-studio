@@ -248,10 +248,12 @@ def modified(path: Path) -> float:
         return 0.0  # removed by a status line that pruned at the same moment
 
 
-def forget_the_oldest(directory: Path) -> None:
-    """Keep the MAX_RECORDED_SESSIONS most recently drawn sessions; the one just written is the newest."""
+def forget_the_oldest(directory: Path, keep: Path) -> None:
+    """Keep the MAX_RECORDED_SESSIONS most recently drawn sessions, and always `keep`, the one just written (a
+    filesystem with coarse timestamps can tie it with the oldest)."""
     recorded = [path for path in directory.iterdir() if SESSION_ID.fullmatch(path.name)]
-    for path in sorted(recorded, key=modified)[:max(0, len(recorded) - MAX_RECORDED_SESSIONS)]:
+    oldest = [path for path in sorted(recorded, key=modified) if path != keep]
+    for path in oldest[:max(0, len(recorded) - MAX_RECORDED_SESSIONS)]:
         path.unlink(missing_ok=True)
 
 
@@ -274,8 +276,11 @@ def record_window_size(payload: dict[str, Any], root: Path | None = None) -> Non
     except (OSError, ValueError):
         known = None
     if known == str(size):
-        os.utime(path)
-        return
+        try:
+            os.utime(path)
+            return
+        except FileNotFoundError:
+            pass  # pruned by another status line just now: write it again
     directory.mkdir(parents=True, exist_ok=True)
     tmp = directory / f".{session}.{os.getpid()}.tmp"
     try:
@@ -284,7 +289,7 @@ def record_window_size(payload: dict[str, Any], root: Path | None = None) -> Non
     except OSError:
         tmp.unlink(missing_ok=True)
         raise
-    forget_the_oldest(directory)
+    forget_the_oldest(directory, path)
 
 
 def note(reason: str) -> None:

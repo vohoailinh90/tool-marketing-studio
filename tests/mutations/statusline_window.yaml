@@ -19,21 +19,29 @@ mutations:
   replace: "or not isinstance(session, str):"
   test: tests.test_session_budget_window.StatuslineRecordsTheWindowTests.test_a_size_or_a_session_that_cannot_be_used_records_nothing
 - label: an unchanged size rewrites the file on every render
-  find: "    if known == str(size):\n        os.utime(path)\n        return\n"
+  find: "    if known == str(size):\n        try:\n            os.utime(path)\n            return\n        except FileNotFoundError:\n            pass  # pruned by another status line just now: write it again\n"
   replace: ""
   test: tests.test_session_budget_window.StatuslineRecordsTheWindowTests.test_an_unchanged_size_is_not_rewritten_but_is_touched
 - label: an unchanged size does not keep its session out of the pruning
-  find: "        os.utime(path)\n"
-  replace: "        pass\n"
+  find: "            os.utime(path)\n"
+  replace: "            pass\n"
   test: tests.test_session_budget_window.StatuslineRecordsTheWindowTests.test_a_session_still_drawing_with_an_unchanged_size_outlives_newer_ones
+- label: a file pruned between the read and the touch stops the recording
+  find: "        except FileNotFoundError:\n            pass  # pruned by another status line just now: write it again"
+  replace: "        except KeyError:\n            pass  # pruned by another status line just now: write it again"
+  test: tests.test_session_budget_window.StatuslineRecordsTheWindowTests.test_a_file_pruned_between_the_read_and_the_touch_is_written_again
 - label: the oldest sessions are never forgotten
-  find: "    forget_the_oldest(directory)\n"
+  find: "    forget_the_oldest(directory, path)\n"
   replace: ""
   test: tests.test_session_budget_window.StatuslineRecordsTheWindowTests.test_the_least_recently_drawn_sessions_are_forgotten_past_the_cap
 - label: the newest sessions are forgotten instead of the oldest
-  find: "    for path in sorted(recorded, key=modified)[:max(0, len(recorded) - MAX_RECORDED_SESSIONS)]:"
-  replace: "    for path in sorted(recorded, key=modified, reverse=True)[:max(0, len(recorded) - MAX_RECORDED_SESSIONS)]:"
+  find: "    oldest = [path for path in sorted(recorded, key=modified) if path != keep]"
+  replace: "    oldest = [path for path in sorted(recorded, key=modified, reverse=True) if path != keep]"
   test: tests.test_session_budget_window.StatuslineRecordsTheWindowTests.test_the_least_recently_drawn_sessions_are_forgotten_past_the_cap
+- label: the session just written can be the one forgotten
+  find: "    oldest = [path for path in sorted(recorded, key=modified) if path != keep]"
+  replace: "    oldest = sorted(recorded, key=modified)"
+  test: tests.test_session_budget_window.StatuslineRecordsTheWindowTests.test_the_session_just_written_is_never_the_one_forgotten_even_on_tied_timestamps
 - label: a file gone while pruning makes the status line fail
   find: "        return 0.0  # removed by a status line that pruned at the same moment"
   replace: "        raise"

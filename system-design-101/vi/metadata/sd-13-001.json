@@ -50,8 +50,12 @@
   },
   "claims": [
     {
-      "claim_vi": "Khi Pod bị xóa, hook preStop chạy rồi container nhận tín hiệu dừng (mặc định là SIGTERM); thời gian ân hạn đếm từ trước preStop và hết hạn thì container bị dừng cưỡng bức; nếu hook preStop vẫn chạy khi hết hạn, kubelet xin gia hạn một lần thêm 2 giây. Trình tự này áp dụng khi thời gian ân hạn khác 0; với terminationGracePeriodSeconds bằng 0 hook preStop không chạy, còn xóa cưỡng bức gỡ Pod khỏi API ngay và chỉ cho container một khoảng ân hạn rất nhỏ trước khi dừng cưỡng bức.",
+      "claim_vi": "Khi Pod bị xóa, hook preStop chạy rồi container nhận tín hiệu dừng (mặc định là SIGTERM); thời gian ân hạn đếm từ trước preStop và hết hạn thì container bị dừng cưỡng bức; nếu hook preStop vẫn chạy khi hết hạn, kubelet xin gia hạn một lần thêm 2 giây. Trình tự này áp dụng khi thời gian ân hạn khác 0; với terminationGracePeriodSeconds bằng 0 hook preStop không chạy, còn xóa cưỡng bức gỡ Pod khỏi API ngay mà không chờ xác nhận tiến trình đã dừng; khi node còn nối được thì container chỉ có một khoảng ân hạn rất nhỏ trước khi dừng cưỡng bức, còn khi node mất kết nối tiến trình cũ có thể còn chạy.",
       "source": "https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/"
+    },
+    {
+      "claim_vi": "Xóa cưỡng bức Pod không chờ xác nhận rằng tiến trình đã dừng, có thể để tiến trình chạy tới khi node phát hiện việc xóa; nếu tiến trình dùng chung bộ nhớ chia sẻ hoặc cùng gọi một API từ xa và dựa vào tên Pod để nhận diện, hai bản cùng chạy có thể làm hỏng hoặc lệch dữ liệu.",
+      "source": "https://kubernetes.io/docs/reference/kubectl/generated/kubectl_delete/"
     },
     {
       "claim_vi": "Khi Pod bắt đầu tắt, endpoint của Pod trong EndpointSlice không bị xóa ngay mà được đánh dấu terminating; với Service không đặt publishNotReadyAddresses: true thì ready luôn là false, còn Service đặt true báo endpoint là ready kể cả khi Pod đang tắt; điều kiện serving cho biết Pod còn phục vụ được hay không; nếu mọi endpoint đều đang tắt, proxy của Service có thể vẫn chuyển traffic tới endpoint vừa serving vừa terminating để khỏi mất traffic khi cập nhật cuốn chiếu.",

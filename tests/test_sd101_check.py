@@ -2004,6 +2004,42 @@ class AbbreviationRuleTests(StoreCase):
             with self.subTest(text=text):
                 self.assertEqual(set(), check.abbreviations_in(text))
 
+    def test_an_abbreviation_that_begins_with_a_digit_is_read_and_explained(self) -> None:
+        self.assertEqual({"2FA", "3DES", "2PC", "3PC"}, check.abbreviations_in("Bật 2FA, mã hoá 3DES, commit 2PC hoặc 3PC (2FAs)."))
+        for text in ("2fa, 5xx", "A80 và 4K", "10 GB"):
+            with self.subTest(text=text):
+                self.assertNotIn("2FA", check.abbreviations_in(text))
+        self.assertEqual({"GB"}, check.abbreviations_in("10 GB"))
+        entry = "- **2FA** (Two-Factor Authentication) — xác thực bằng hai yếu tố khác nhau."
+        self.lesson("Bật 2FA cho tài khoản.", glossary=None)
+        self.assertProblem("uses the abbreviation(s) 2FA")
+        self.lesson("Bật 2FA cho tài khoản.")
+        self.assertProblem("uses the abbreviation 2FA but the glossary does not explain it")
+        self.lesson("Bật 2FA cho tài khoản.", glossary=entry)
+        self.assertEqual([], self.problems())
+        self.lesson("Bật 2FA cho tài khoản.", glossary=entry.replace("Two-Factor", "Two Wrong"))
+        self.assertProblem("whose initials do not give exactly 2FA")
+
+    def test_the_digit_of_an_abbreviation_stands_for_a_number_word(self) -> None:
+        for abbreviation, full_form, spelled in (("2FA", "Two-Factor Authentication", True),
+                                                 ("2FA", "Factor Authentication", True),
+                                                 ("3DES", "Triple Data Encryption Standard", True),
+                                                 ("3DES", "Triple DES", True),
+                                                 ("2PC", "Two-Phase Commit", True),
+                                                 ("2FA", "Two Wrong Authentication", False),
+                                                 ("FA", "Two Factor Authentication", False)):
+            with self.subTest(abbreviation=abbreviation, full_form=full_form):
+                self.assertEqual(spelled, check.spells(abbreviation, full_form))
+
+    def test_the_text_nodes_of_a_figure_label_are_separate_words(self) -> None:
+        for name, label in {"lines": '<tspan x="1" dy="1">LLM</tspan><tspan x="1" dy="14">máy chủ</tspan>',
+                            "styled runs": 'Gọi <tspan font-weight="bold">LLM</tspan><tspan>máy chủ</tspan>.'}.items():
+            with self.subTest(name=name):
+                self.lesson(glossary=None, figure=svg_with(label))
+                self.assertProblem("uses the abbreviation(s) LLM")
+                self.lesson(figure=svg_with(label))
+                self.assertEqual([], self.problems())
+
 
 class RobustnessTests(StoreCase):
     """Whatever an author types, the checker reports problems and keeps going; it never raises."""

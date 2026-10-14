@@ -1731,8 +1731,8 @@ mutations:
   replace: "))s?(?!\\w)"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_the_forms_an_abbreviation_takes
 - label: a plural or version suffix hides a mixed-case abbreviation (vCPUs, MiBs, OAuth2)
-  find: "r\")|([A-Z]{2,}))(?:v?\\d+)?s?(?!\\w)\")"
-  replace: "r\")|([A-Z]{2,})(?:v?\\d+)?s?)(?!\\w)\")"
+  find: "r\")|(\\d*[A-Z]{2,}))(?:v?\\d+)?s?(?!\\w)\")"
+  replace: "r\")|(\\d*[A-Z]{2,})(?:v?\\d+)?s?)(?!\\w)\")"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_the_forms_an_abbreviation_takes
 - label: the text of the figure is not read for abbreviations
   find: "body + glossary + figure))"
@@ -1782,6 +1782,26 @@ mutations:
   find: "URL = re.compile(r\"(?:https?|ftp)://[^\\s<>]+\", re.IGNORECASE)"
   replace: "URL = re.compile(r\"(?:https?|ftp)://[^\\s<>]+\")"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_an_address_is_not_prose_but_the_label_of_a_link_is
+- label: an abbreviation that begins with a digit is not read (2FA, 3DES)
+  find: "(\\d*[A-Z]{2,})"
+  replace: "([A-Z]{2,})"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_an_abbreviation_that_begins_with_a_digit_is_read_and_explained
+- label: a glossary bullet may not begin with a digit
+  find: "(?P<abbreviation>(?=[A-Za-z0-9]*[A-Z])[A-Za-z0-9][A-Za-z0-9]+)"
+  replace: "(?P<abbreviation>(?=[A-Za-z0-9]*[A-Z])[A-Za-z][A-Za-z0-9]+)"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_an_abbreviation_that_begins_with_a_digit_is_read_and_explained
+- label: the number word of a digit abbreviation must be written out as an initial
+  find: "(numbered and hump.lower() in NUMBER_WORDS)"
+  replace: "False"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_the_digit_of_an_abbreviation_stands_for_a_number_word
+- label: number words may be left out of any full form, digit or not
+  find: "(numbered and hump.lower() in NUMBER_WORDS)"
+  replace: "(hump.lower() in NUMBER_WORDS)"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_the_digit_of_an_abbreviation_stands_for_a_number_word
+- label: the text nodes of a figure label are joined without a gap
+  find: "string = \" \".join(element.itertext())"
+  replace: "string = \"\".join(element.itertext())"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_the_text_nodes_of_a_figure_label_are_separate_words
 - label: a glossary above the figure is accepted
   find: "    elif not figure_above(text, above, lesson_id):"
   replace: "    elif False and not figure_above(text, above, lesson_id):"
@@ -1863,7 +1883,7 @@ mutations:
   replace: 'MIXED_CASE_TERMS = ("ZZZ",)'
   test: tests.test_sd101_check.AbbreviationRuleTests.test_the_forms_an_abbreviation_takes
 - label: a glossary bullet for a mixed-case term is not in the form
-  find: '(?=[A-Za-z0-9]*[A-Z])[A-Za-z][A-Za-z0-9]+'
+  find: '(?=[A-Za-z0-9]*[A-Z])[A-Za-z0-9][A-Za-z0-9]+'
   replace: '[A-Z]{2,}'
   test: tests.test_sd101_check.AbbreviationRuleTests.test_the_full_form_may_skip_little_words_and_use_the_camel_case_of_a_name
 - label: a mixed-case term used with no glossary is accepted
@@ -1895,7 +1915,7 @@ mutations:
   replace: "                pattern += hump[0]"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_an_all_caps_word_gives_its_run_or_its_first_letter
 - label: the little words must be written out
-  find: "            elif hump == word and hump.lower() in FILLER_WORDS:"
+  find: "            elif hump == word and (hump.lower() in FILLER_WORDS or (numbered and hump.lower() in NUMBER_WORDS)):"
   replace: "            elif False:"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_only_the_little_words_may_be_left_out
 - label: a recursive name is not read as a whole

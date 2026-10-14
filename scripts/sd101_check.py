@@ -164,8 +164,9 @@ URL_CALL = re.compile(r"url\(\s*['\"]?\s*([^)'\"\s]*)", re.IGNORECASE)
 
 GLOSSARY_HEADING = "Từ viết tắt"
 SOURCES_HEADING = "Nguồn đối chiếu"
-# Two or more capital letters standing alone: LLM, DNS, HTTP/2 (-> HTTP), APIs (-> API). Not MAX_SIZE or a Vietnamese
-# capital word with a mark on it, which are not read as abbreviations.
+# Two or more capital letters standing alone: LLM, DNS, HTTP/2 (-> HTTP), APIs (-> API). Digits written straight before
+# the capitals belong to the abbreviation (2FA, 3DES, 2PC), so a quantity is written with a space ("10 GB", not 10GB).
+# Not MAX_SIZE or a Vietnamese capital word with a mark on it, which are not read as abbreviations.
 # A few terms carry their abbreviation in mixed case (gRPC, IPv4), which the capital-letter rule cannot see; they are
 # listed here, so add a new one when a lesson introduces it. Either kind may end in a version number or a plural
 # (OAuth2, vCPUs, MiBs, gRPCs, DHCPv4, TLSv1), which is read as the term itself.
@@ -184,8 +185,8 @@ IRREGULAR_FORMS = {"HPACK": "Header Compression for HTTP/2", "SLSA": "Supply-cha
 MIXED_CASE_TERMS = ("gRPC", "IPv4", "IPv6", "OAuth", "mTLS", "NoSQL", "vCPU", "IaC", "MoE", "PaaS", "IaaS", "SaaS", "FaaS", "BaaS",
                     "W3C", "SELinux", "WebAuthn", "OpenID", "DevOps", "DevSecOps", "GitOps", "NoOps", "EdDSA", "NetBIOS",
                     *UNIT_SYMBOLS)
-ABBREVIATION = re.compile(r"(?<!\w)(?:(" + "|".join(MIXED_CASE_TERMS) + r")|([A-Z]{2,}))(?:v?\d+)?s?(?!\w)")
-GLOSSARY_BULLET = re.compile(r"^- \*\*(?P<abbreviation>(?=[A-Za-z0-9]*[A-Z])[A-Za-z][A-Za-z0-9]+)\*\* "
+ABBREVIATION = re.compile(r"(?<!\w)(?:(" + "|".join(MIXED_CASE_TERMS) + r")|(\d*[A-Z]{2,}))(?:v?\d+)?s?(?!\w)")
+GLOSSARY_BULLET = re.compile(r"^- \*\*(?P<abbreviation>(?=[A-Za-z0-9]*[A-Z])[A-Za-z0-9][A-Za-z0-9]+)\*\* "
                              r"\((?P<full>[^()]+)\) — (?P<meaning>\S.*)$")
 MIN_MEANING_WORDS = 3
 # An address typed into the text is a link destination, not prose: https://example.com/API/TLS names no abbreviation.
@@ -1006,7 +1007,7 @@ def figure_strings(path: pathlib.Path) -> tuple[list[str], list[str]]:
     headings: list[str] = []
     for element in root.iter():
         if local_name(element.tag) in ("title", "desc", "text"):
-            string = "".join(element.itertext())
+            string = " ".join(element.itertext())  # <tspan>LLM</tspan><tspan>máy</tspan> is two words, not LLMmáy
             (prose if any(word.islower() and len(word) > 1 for word in re.findall(r"[^\W\d_]+", string)) else headings).append(string)
     return prose, headings
 
@@ -1093,6 +1094,10 @@ def glossary_entries(lines: list[str]) -> tuple[list[tuple[str, str, str]], list
 # Little words a full form may leave out of its abbreviation: "Request for Comments" gives RFC, "Network Address and
 # Port Translation" NAPT and "HMAC-based Key Derivation Function" HKDF.
 FILLER_WORDS = frozenset({"a", "an", "and", "based", "for", "in", "of", "on", "or", "the", "to", "with"})
+# The digit of an abbreviation that begins with one stands for a number word: "Two-Factor Authentication" gives 2FA,
+# "Triple Data Encryption Standard" 3DES.
+NUMBER_WORDS = frozenset({"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "single", "double",
+                          "dual", "triple", "quad", "first", "second", "third", "fourth", "fifth"})
 
 
 def spells(abbreviation: str, full_form: str) -> bool:
@@ -1102,11 +1107,13 @@ def spells(abbreviation: str, full_form: str) -> bool:
     One initial per word and per camelCase hump (HyperText, JavaScript, REpresentational); an all-caps word gives its
     whole run or its first letter ("CSS Object Model" is CSSOM, "HTTP Strict Transport Security" is HSTS; a hidden
     run works the same: "SYNchronize"); a word that is the abbreviation itself gives its first letter (a recursive
-    name: "gRPC Remote Procedure Calls"); digits are not letters; accents are dropped (cơ sở dữ liệu is CSDL).
+    name: "gRPC Remote Procedure Calls"); digits are not letters, and when the abbreviation has one the number word it
+    stands for may be left out (NUMBER_WORDS); accents are dropped (cơ sở dữ liệu is CSDL).
     """
     if (UNIT_SYMBOLS | IRREGULAR_FORMS).get(abbreviation) == full_form.strip():
         return True
     letters = re.sub(r"[^A-Za-z]", "", abbreviation).upper()
+    numbered = any(char.isdigit() for char in abbreviation)
     plain = unicodedata.normalize("NFD", full_form.replace("đ", "d").replace("Đ", "D"))
     plain = "".join(char for char in plain if not unicodedata.combining(char))
     pattern = ""
@@ -1117,7 +1124,7 @@ def spells(abbreviation: str, full_form: str) -> bool:
         for hump in re.findall(r"[A-Z]+(?![a-z])|[A-Z][a-z]*|[a-z]+", word):
             if hump.isupper() and len(hump) > 1:
                 pattern += f"(?:{hump}|{hump[0]})"
-            elif hump == word and hump.lower() in FILLER_WORDS:
+            elif hump == word and (hump.lower() in FILLER_WORDS or (numbered and hump.lower() in NUMBER_WORDS)):
                 pattern += f"(?:{hump[0].upper()})?"
             else:
                 pattern += hump[0].upper()

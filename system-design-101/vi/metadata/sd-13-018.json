@@ -1,0 +1,71 @@
+{
+  "id": "sd-13-018",
+  "title_vi": "Terraform biến mã thành đám mây như thế nào?",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "draft",
+  "source_ref": "sd-13-018",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/how-does-terraform-turn-code-into-cloud.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-terraform-turn-code-into-cloud.md",
+    "blob_sha": "43a65557dc54840fbe76fd6ce732b7bc7a713933",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "3f8027af89cc11a1143b333c22e1a70765d3d2d7f3f167c7c646023846e42702",
+    "retrieved_body_bytes": 1570
+  },
+  "diagram": "../diagrams/sd-13-018-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Plan và apply mặc định làm mới state trong bộ nhớ theo hạ tầng thật trước khi so với cấu hình; -refresh=false bỏ bước này; plan không ghi phần làm mới vào state đã lưu, chỉ apply mới ghi.",
+      "source": "https://developer.hashicorp.com/terraform/cli/commands/plan"
+    },
+    {
+      "claim_vi": "Chế độ refresh-only lập plan nhằm cập nhật state và giá trị output cho khớp với thay đổi ở hạ tầng ngoài Terraform, không đề xuất thay đổi hạ tầng; plan -refresh-only chỉ đề xuất, state chỉ được ghi khi chạy apply -refresh-only hoặc apply một plan refresh-only đã lưu.",
+      "source": "https://developer.hashicorp.com/terraform/cli/commands/plan"
+    },
+    {
+      "claim_vi": "Tệp .terraform.lock.hcl ghi phiên bản provider đã chọn; terraform init -upgrade chọn bản mới trong khoảng ràng buộc và cập nhật tệp.",
+      "source": "https://developer.hashicorp.com/terraform/language/files/dependency-lock"
+    },
+    {
+      "claim_vi": "Đối số lifecycle ignore_changes bỏ qua thay đổi của các thuộc tính được liệt kê.",
+      "source": "https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle"
+    },
+    {
+      "claim_vi": "Nhiều backend hỗ trợ khóa state để ngăn hai thao tác cùng ghi state.",
+      "source": "https://developer.hashicorp.com/terraform/language/state/locking"
+    },
+    {
+      "claim_vi": "Khối import đưa tài nguyên có sẵn vào state, dùng được từ Terraform 1.5.",
+      "source": "https://developer.hashicorp.com/terraform/language/import"
+    }
+  ],
+  "source_deviations": [
+    "Nguồn mô tả quy trình viết mã, plan, apply rồi cập nhật hạ tầng; bài bỏ quy trình đó và theo dõi một vấn đề cụ thể là plan báo thay đổi ngoài ý muốn, nên chỉ dùng lại plan và state như công cụ chẩn đoán."
+  ],
+  "design_notes_vi": "Năm thẻ nguồn lệch khiến plan báo thay đổi bất ngờ, mỗi thẻ kèm cách xác nhận.",
+  "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Tiêu đề hiển thị của bài là dòng đầu của lesson.md; title_vi giữ bản dịch tiêu đề nguồn theo source-map. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
+}

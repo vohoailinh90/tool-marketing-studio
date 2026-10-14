@@ -61,7 +61,11 @@
       "source": "https://testing.googleblog.com/2016/05/flaky-tests-at-google-and-how-we.html"
     },
     {
-      "claim_vi": "SLSA là khung bảo vệ chuỗi cung ứng phần mềm; OWASP có danh sách 10 rủi ro bảo mật CI/CD.",
+      "claim_vi": "SLSA (Supply-chain Levels for Software Artifacts) là khung bảo mật cho chuỗi cung ứng phần mềm, đưa ra các mức tăng dần về an toàn và toàn vẹn của chuỗi cung ứng.",
+      "source": "https://slsa.dev/"
+    },
+    {
+      "claim_vi": "OWASP có danh sách 10 rủi ro bảo mật hàng đầu của CI/CD.",
       "source": "https://owasp.org/www-project-top-10-ci-cd-security-risks/"
     },
     {

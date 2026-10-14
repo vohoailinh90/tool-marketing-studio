@@ -153,23 +153,15 @@ the next outstanding task through the full routing flow.
 
 ## 8. The codex-cli lane
 
-Only a repository that ships `scripts/codex_cli.py` has this lane
-(`docs/codex-cli-lane.md`). The review runs on this machine and returns its report
-before the command exits, so there is no request to post, nothing to wait for, no
-check-in to arm and no reaction to read: skip step 3 of section 2 and the check-in
-rules of section 4. Wherever this file says to request a review, do this instead,
-then validate the report at once (§14) and work it through section 3's review rows:
-
-- For each review command the work requires (the standard review, and `--security`
-  where the route calls for one), compare the PR head with the SHA that command
-  already ran on. A review run before the push is the PR's review only while the
-  pushed head is exactly that SHA (CLAUDE.md, lifecycle step 1), so when they are
-  equal reuse that command's report: the ledger refuses a second run of the same
-  review command on one head. A standard report never stands in for the security
-  command, or the reverse.
-- Otherwise run that command on the head the PR carries:
-  `python3 scripts/codex_cli.py review --branch <branch>`, with `--security` for
-  the security review.
+Only a repository that ships `scripts/codex_cli.py` has this lane. CLAUDE.md
+(lifecycle step 1) and `docs/codex-cli-lane.md` define the review itself: which
+command runs, when a review run before the push already counts for the pushed head,
+and what the ledger refuses. This file changes only the waiting. The review runs on
+this machine and returns its report before the command exits, so there is no request
+to post, nothing to wait for, no check-in to arm and no reaction to read: skip step 3
+of section 2 and the check-in rules of section 4. Wherever this file says to request a
+review, follow those two documents instead, then validate the report at once (§14)
+and work it through section 3's review rows.
 
 ## Never
 

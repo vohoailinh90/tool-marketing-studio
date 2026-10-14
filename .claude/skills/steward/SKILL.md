@@ -40,8 +40,9 @@ else owns, no skipped or quarantined test.
    do not stop to ask. Subscribing first means nothing posted below is missed.
 2. **Request the first review** (lifecycle step 1). Claude and codex lanes:
    `python3 scripts/codex_round_count.py` must exit 0, then post the §11 command.
-   Codex-cli lane: `python3 scripts/codex_cli.py review --branch <branch>`; no
-   comment is posted and there is nothing to wait for, so skip step 3.
+   Codex-cli lane (only a repository that ships `scripts/codex_cli.py` has it):
+   `python3 scripts/codex_cli.py review --branch <branch>`; no comment is posted
+   and there is nothing to wait for, so skip step 3.
 3. **Arm one check-in** with `send_later`, at the request's `created_at` + 11
    minutes, rounded up to the next whole minute. Take `created_at` from the API
    response, not the session clock. 11 is §17's silent window plus one minute for
@@ -91,8 +92,8 @@ Re-fetch the PR, its reviews and its comments first; nothing remembered is curre
 
 ## 5. Before every push
 
-Run what CI runs for what you changed; `.github/workflows/python-app.yml` is the
-list. Reproduce a CI failure before fixing it and show the same check passing
+Run what CI runs for what you changed; the workflows under `.github/workflows/`
+are the list. Reproduce a CI failure before fixing it and show the same check passing
 after. Re-read the diff as a reviewer would. A fix ships with the test that would
 have caught it, and its entry in `tests/mutations/` where one applies. No commit
 message carries the literal trigger string.
@@ -107,9 +108,10 @@ lane run `scripts/codex_cli.py review` on exactly the pushed SHA.
 
 ## 7. Merge, then move on
 
-Lifecycle step 5, under §20. Its precondition is a repository setting:
-`scripts/protect_branches.py` reports it and the operator applies it, since it
-needs an admin token a session does not hold. Record what you learn in
+Lifecycle step 5, under §20. Its precondition is a repository setting that the
+operator applies, since it needs an admin token a session does not hold, and that
+`scripts/protect_branches.py` reports where the repository ships that script (the
+operator confirms it by hand where it does not). Record what you learn in
 `model-notes`. Missing or unconfirmed means a genuine blocker: escalate, do not
 merge. Re-fetch head and base immediately before merging and scope the merge to
 `validated_head_sha`. Then record the merge commit SHA and a one-line summary on

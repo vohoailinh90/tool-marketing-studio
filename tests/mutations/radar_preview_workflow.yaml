@@ -56,8 +56,8 @@ mutations:
   replace: '          UPLOAD: skipped'
   test: tests.test_radar_preview.WorkflowTests.test_the_comment_is_told_the_outcome_of_every_step_it_reports_on
 - label: a path filter hides the push that removes the campaign, and the old comment stays
-  find: "    types: [opened, synchronize, reopened, ready_for_review]\n"
-  replace: "    types: [opened, synchronize, reopened, ready_for_review]\n    paths:\n      - \"campaigns/radar-*/**\"\n"
+  find: "    types: [opened, synchronize, reopened, ready_for_review, edited]\n"
+  replace: "    types: [opened, synchronize, reopened, ready_for_review, edited]\n    paths:\n      - \"campaigns/radar-*/**\"\n"
   test: tests.test_radar_preview.WorkflowTests.test_it_runs_on_every_push_to_a_pull_request_never_on_pull_request_target_and_without_a_path_filter
 - label: an export the pull request carried is listed and attached as if it had just been drawn
   find: '          for campaign in $CAMPAIGNS; do rm -rf -- "campaigns/$campaign/export"; done'

@@ -1,9 +1,9 @@
 # Bốn cơ chế xác thực: khóa SSH, token OAuth, chứng chỉ và mật khẩu
 
-**Bốn thứ bài nguồn liệt kê cùng trả lời câu hỏi “cái gì chứng minh bạn là bạn?”, nhưng bằng bốn cách khác nhau: giữ một khóa riêng, cầm một token, có tên được một tổ chức xác nhận là gắn với một khóa, hoặc biết một bí mật.**
+**Bốn thứ bài nguồn liệt kê đều là thứ bạn đưa ra để được hệ thống cho vào hoặc cho làm một việc, nhưng chúng chứng minh những điều khác nhau: khóa SSH, chứng chỉ và mật khẩu liên quan tới việc bạn là ai (giữ một khóa riêng, có tên được một tổ chức xác nhận là gắn với một khóa, biết một bí mật), còn token OAuth chỉ là bằng chứng của một quyền đã được ủy cho bên đang cầm nó.**
 Bài này chạy thử từng cơ chế để thấy mỗi cái chứng minh được gì và không chứng minh được gì, rồi trả lời câu hỏi cuối bài nguồn: có nên để khóa trong một kho mã không?
 
-![Sáu thẻ xếp dọc. Thẻ đầu là câu hỏi chung: cái gì chứng minh bạn là bạn. Khóa SSH: chứng minh bằng việc giữ khóa riêng, máy chủ chỉ giữ khóa công khai. Token OAuth: ủy quyền có giới hạn, và ai đang giữ token thì dùng được. Chứng chỉ, trong giao thức TLS trước đây gọi là SSL: gắn một tên với một khóa công khai, do tổ chức cấp chứng chỉ xác nhận; mã hóa vẫn chạy ngay cả khi không kiểm tra chứng chỉ. Mật khẩu: điều bạn biết, máy chủ nên lưu bản băm, thêm yếu tố thứ hai. Thẻ cuối: xóa một tệp chứa khóa ở commit sau không xóa nó khỏi lịch sử; phải thu hồi và đổi khóa.](../../diagrams/sd-14-014-main.svg)
+![Sáu thẻ xếp dọc. Thẻ đầu là câu hỏi chung: bạn đưa ra thứ gì để được vào hoặc được làm một việc. Khóa SSH: chứng minh bằng việc giữ khóa riêng, máy chủ chỉ giữ khóa công khai. Token OAuth: bằng chứng của quyền đã được ủy, không chứng minh người cầm là ai, và ai đang giữ token thì dùng được. Chứng chỉ, trong giao thức TLS trước đây gọi là SSL: gắn một tên với một khóa công khai, do tổ chức cấp chứng chỉ xác nhận; mã hóa vẫn chạy ngay cả khi không kiểm tra chứng chỉ. Mật khẩu: điều bạn biết, máy chủ nên lưu bản băm, thêm yếu tố thứ hai. Thẻ cuối: xóa một tệp chứa khóa ở commit sau không xóa nó khỏi lịch sử; phải thu hồi và đổi khóa.](../../diagrams/sd-14-014-main.svg)
 
 ## Đọc hình
 

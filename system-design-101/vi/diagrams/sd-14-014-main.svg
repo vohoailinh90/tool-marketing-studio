@@ -1,35 +1,37 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 814" width="320" height="814" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 862" width="320" height="862" role="img" aria-labelledby="title desc">
 <title id="title">Bốn cơ chế xác thực</title>
-<desc id="desc">Câu hỏi chung: cái gì chứng minh bạn là bạn. Khóa SSH: chứng minh bằng việc giữ khóa riêng, máy chủ chỉ giữ khóa công khai. Token OAuth: ủy quyền có giới hạn, và ai đang giữ token thì dùng được. Chứng chỉ, trong giao thức TLS trước đây gọi là SSL: gắn một tên với một khóa công khai, do tổ chức cấp chứng chỉ xác nhận; mã hóa vẫn chạy ngay cả khi không kiểm tra chứng chỉ. Mật khẩu: điều bạn biết, máy chủ nên lưu bản băm, thêm yếu tố thứ hai. Thẻ cuối: xóa một tệp chứa khóa ở commit sau không xóa nó khỏi lịch sử; phải thu hồi và đổi khóa.</desc>
-<rect width="320" height="814" fill="#f8fafc"/>
+<desc id="desc">Câu hỏi chung: bạn đưa ra thứ gì để được vào hoặc được làm một việc. Khóa SSH: chứng minh bằng việc giữ khóa riêng, máy chủ chỉ giữ khóa công khai. Token OAuth: bằng chứng của quyền đã được ủy, không chứng minh người cầm là ai, và ai đang giữ token thì dùng được. Chứng chỉ, trong giao thức TLS trước đây gọi là SSL: gắn một tên với một khóa công khai, do tổ chức cấp chứng chỉ xác nhận; mã hóa vẫn chạy ngay cả khi không kiểm tra chứng chỉ. Mật khẩu: điều bạn biết, máy chủ nên lưu bản băm, thêm yếu tố thứ hai. Thẻ cuối: xóa một tệp chứa khóa ở commit sau không xóa nó khỏi lịch sử; phải thu hồi và đổi khóa.</desc>
+<rect width="320" height="862" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="30" font-size="21" font-weight="bold">BỐN CƠ CHẾ</text>
 <text x="16" y="54" font-size="21" font-weight="bold">XÁC THỰC</text>
-<rect x="16" y="80" width="288" height="76" rx="12" fill="#e2e8f0" stroke="#94a3b8"/>
+<rect x="16" y="80" width="288" height="100" rx="12" fill="#e2e8f0" stroke="#94a3b8"/>
 <text x="29" y="109" font-size="16" font-weight="bold">Câu hỏi chung</text>
-<text x="29" y="137" font-size="16" font-weight="normal">Cái gì chứng minh bạn là bạn?</text>
-<rect x="16" y="168" width="288" height="124" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
-<text x="29" y="197" font-size="16" font-weight="bold">Khóa SSH</text>
-<text x="29" y="225" font-size="16" font-weight="normal">Chứng minh bằng việc giữ khóa</text>
-<text x="29" y="249" font-size="16" font-weight="normal">riêng. Máy chủ chỉ giữ khóa</text>
-<text x="29" y="273" font-size="16" font-weight="normal">công khai.</text>
-<rect x="16" y="300" width="288" height="100" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
-<text x="29" y="329" font-size="16" font-weight="bold">Token OAuth</text>
-<text x="29" y="357" font-size="16" font-weight="normal">Ủy quyền có giới hạn. Ai giữ</text>
-<text x="29" y="381" font-size="16" font-weight="normal">token thì dùng được.</text>
-<rect x="16" y="408" width="288" height="148" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
-<text x="29" y="437" font-size="16" font-weight="bold">Chứng chỉ TLS</text>
-<text x="29" y="465" font-size="16" font-weight="normal">Gắn một tên với một khóa công</text>
-<text x="29" y="489" font-size="16" font-weight="normal">khai, do tổ chức cấp chứng chỉ</text>
-<text x="29" y="513" font-size="16" font-weight="normal">(CA) xác nhận. Mã hóa vẫn chạy</text>
-<text x="29" y="537" font-size="16" font-weight="normal">khi không kiểm tra.</text>
-<rect x="16" y="564" width="288" height="100" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
-<text x="29" y="593" font-size="16" font-weight="bold">Mật khẩu</text>
-<text x="29" y="621" font-size="16" font-weight="normal">Điều bạn biết. Máy chủ nên lưu</text>
-<text x="29" y="645" font-size="16" font-weight="normal">bản băm. Thêm yếu tố thứ hai.</text>
-<rect x="16" y="676" width="288" height="124" rx="12" fill="#fee2e2" stroke="#94a3b8"/>
-<text x="29" y="705" font-size="16" font-weight="bold">Khóa trong kho mã</text>
-<text x="29" y="733" font-size="16" font-weight="normal">Xóa tệp ở commit sau không</text>
-<text x="29" y="757" font-size="16" font-weight="normal">xóa khỏi lịch sử. Thu hồi và đổi</text>
-<text x="29" y="781" font-size="16" font-weight="normal">khóa.</text>
+<text x="29" y="137" font-size="16" font-weight="normal">Bạn đưa ra thứ gì để được vào</text>
+<text x="29" y="161" font-size="16" font-weight="normal">hoặc được làm một việc?</text>
+<rect x="16" y="192" width="288" height="124" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="29" y="221" font-size="16" font-weight="bold">Khóa SSH</text>
+<text x="29" y="249" font-size="16" font-weight="normal">Chứng minh bằng việc giữ khóa</text>
+<text x="29" y="273" font-size="16" font-weight="normal">riêng. Máy chủ chỉ giữ khóa</text>
+<text x="29" y="297" font-size="16" font-weight="normal">công khai.</text>
+<rect x="16" y="324" width="288" height="124" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="29" y="353" font-size="16" font-weight="bold">Token OAuth</text>
+<text x="29" y="381" font-size="16" font-weight="normal">Quyền đã được ủy, không chứng</text>
+<text x="29" y="405" font-size="16" font-weight="normal">minh người cầm là ai. Ai giữ</text>
+<text x="29" y="429" font-size="16" font-weight="normal">token thì dùng được.</text>
+<rect x="16" y="456" width="288" height="148" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="29" y="485" font-size="16" font-weight="bold">Chứng chỉ TLS</text>
+<text x="29" y="513" font-size="16" font-weight="normal">Gắn một tên với một khóa công</text>
+<text x="29" y="537" font-size="16" font-weight="normal">khai, do tổ chức cấp chứng chỉ</text>
+<text x="29" y="561" font-size="16" font-weight="normal">(CA) xác nhận. Mã hóa vẫn chạy</text>
+<text x="29" y="585" font-size="16" font-weight="normal">khi không kiểm tra.</text>
+<rect x="16" y="612" width="288" height="100" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="29" y="641" font-size="16" font-weight="bold">Mật khẩu</text>
+<text x="29" y="669" font-size="16" font-weight="normal">Điều bạn biết. Máy chủ nên lưu</text>
+<text x="29" y="693" font-size="16" font-weight="normal">bản băm. Thêm yếu tố thứ hai.</text>
+<rect x="16" y="724" width="288" height="124" rx="12" fill="#fee2e2" stroke="#94a3b8"/>
+<text x="29" y="753" font-size="16" font-weight="bold">Khóa trong kho mã</text>
+<text x="29" y="781" font-size="16" font-weight="normal">Xóa tệp ở commit sau không</text>
+<text x="29" y="805" font-size="16" font-weight="normal">xóa khỏi lịch sử. Thu hồi và đổi</text>
+<text x="29" y="829" font-size="16" font-weight="normal">khóa.</text>
 </g></svg>

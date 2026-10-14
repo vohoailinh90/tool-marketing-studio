@@ -1,0 +1,110 @@
+{
+  "id": "sd-14-005",
+  "title_vi": "Trình quản lý mật khẩu hoạt động thế nào?",
+  "language": "vi",
+  "kind": "flow",
+  "content_status": "review",
+  "source_ref": "sd-14-005",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/how-does-a-password-manager-such-as-1password-or-lastpass-work.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-a-password-manager-such-as-1password-or-lastpass-work.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches provider tree OID. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "84e87cbbe5317d3f784f692f244e8a781e3fce84",
+    "retrieved_body_sha256": "2ac6182cc3521cc29cdaaed32fdd011ab5bd5d26b586d25c45113262db7ab516",
+    "retrieved_body_bytes": 1861
+  },
+  "diagram": "../diagrams/sd-14-005-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "evidence": "Bitwarden's cryptography guide read from a clone; 1Password terms known only from web search result summaries (the page was not opened); the key hierarchy demonstration executed in Python; the limits are the author's inference."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 14.4,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright) rendered the full lesson at each width with optional sections open; diagram scale measured from the rendered image and every SVG text box checked against the viewBox. Not learner testing and not GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "The source describes a password manager that stores and generates passwords, where one account password plus a secret key derive keys that unlock a vault whose items are encrypted, so the manager cannot read the encrypted passwords. It uses product-specific names (MUK, MP key, SRP-X) that the lesson does not reuse.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-a-password-manager-such-as-1password-or-lastpass-work.md",
+      "section": "Whole guide",
+      "verified_by": "Source body read."
+    },
+    {
+      "claim_vi": "Bitwarden derives a master key from the master password with PBKDF2 or Argon2id (email as salt), expands it with HKDF into a stretched key, and uses that to encrypt the user's symmetric key.",
+      "source": "https://github.com/bitwarden/contributing-docs/blob/d9ef0de61d27d2a9c8e0594992f231c1d30b9761/docs/architecture/cryptography/crypto-guide.md",
+      "section": "MasterKey",
+      "verified_by": "Read from a local clone of the bitwarden contributing-docs repository at commit d9ef0de61d27d2a9c8e0594992f231c1d30b9761, the head of the default branch when read (a later change to that branch does not alter this URL)."
+    },
+    {
+      "claim_vi": "For login, Bitwarden also sends the server an authorization hash derived from the master key (PBKDF2, the password as salt, one iteration), in addition to the KDF settings and salt; the master key used for unlock is also reused for authentication.",
+      "source": "https://github.com/bitwarden/contributing-docs/blob/d9ef0de61d27d2a9c8e0594992f231c1d30b9761/docs/architecture/cryptography/crypto-guide.md",
+      "section": "Authenticating with a password",
+      "verified_by": "Read from a local clone of the bitwarden contributing-docs repository at commit d9ef0de61d27d2a9c8e0594992f231c1d30b9761, the head of the default branch when read (a later change to that branch does not alter this URL)."
+    },
+    {
+      "claim_vi": "Per-item content-encryption keys decouple data from upstream keys, so rotating an upstream key only requires re-uploading the re-encrypted item key; key wrapping also lets one key be shared instead of a set of keys.",
+      "source": "https://github.com/bitwarden/contributing-docs/blob/d9ef0de61d27d2a9c8e0594992f231c1d30b9761/docs/architecture/cryptography/crypto-guide.md",
+      "section": "Content-encryption-key; Key wrapping",
+      "verified_by": "Read from a local clone of the bitwarden contributing-docs repository at commit d9ef0de61d27d2a9c8e0594992f231c1d30b9761, the head of the default branch when read (a later change to that branch does not alter this URL)."
+    },
+    {
+      "claim_vi": "1Password's two-secret key derivation takes the account password and the Secret Key and derives the Account Unlock Key (formerly Master Unlock Key) and an SRP value; the Account Unlock Key encrypts the personal keyset, which encrypts and decrypts vaults.",
+      "source": "https://developer.1password.com/docs/service-accounts/security/",
+      "section": "Two-secret key derivation",
+      "verified_by": "Web search result summary only; the page itself was not opened and is unverified beyond that summary."
+    },
+    {
+      "claim_vi": "1Password's Secret Key is held by the user rather than by 1Password: it is kept on devices signed in to the account (apps and browsers), in encrypted device backups and keychains, and in the Emergency Kit PDF; 1Password has no copy and cannot recover or reset it.",
+      "source": "https://support.1password.com/secret-key-security/",
+      "section": "About your Secret Key",
+      "verified_by": "Web search result summary only; the page itself was not opened and is unverified beyond that summary."
+    },
+    {
+      "claim_vi": "Toy hierarchy (scrypt, light parameters, plus AES-GCM): a random vault key encrypts items; a key derived from the master password wraps the vault key; a wrong password raises InvalidTag; changing the password re-wraps only the vault key and leaves the item ciphertexts unchanged, the old password no longer opens the new wrapped key; mixing in a random secret held outside the server (a local value in the script) makes the password alone fail with InvalidTag.",
+      "source": "https://pypi.org/project/cryptography/",
+      "section": "AES-GCM (AEAD)",
+      "verified_by": "No external page reports this output; observed by executing the code on the authoring machine. Used cryptography 50.0.1 and hashlib.scrypt."
+    },
+    {
+      "claim_vi": "In the toy model, password change was only demonstrated as re-wrapping the vault key, and a snapshot of the server data taken before the change still opens with the old password, so a password change does not revoke data copied earlier (the advice to treat the stored passwords as possibly exposed and change them is the author's inference); the design protects data stored on the server but not a device that is unlocked; a weak master password can still be guessed; losing the master password (and the user-held secret, if used) means the provider cannot open the vault unless the product offers its own recovery.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-a-password-manager-such-as-1password-or-lastpass-work.md",
+      "section": "Closing paragraph",
+      "verified_by": "Author's inference from the described design; not checked against a vendor document."
+    }
+  ],
+  "design_notes_vi": "Hai nhóm tạo tài khoản và mở khóa, một thẻ riêng nói máy chủ giữ gì, thẻ đỏ nêu giới hạn. Không dùng tên gọi riêng của sản phẩm trong hình. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Source walks through a specific product's six steps with names (MUK, MP key, SRP-X); the lesson teaches the general key hierarchy and does not reuse names it could not check.",
+    "Source concludes the manager has no way to know the passwords; the lesson narrows it to data on the server and names what stays outside that protection."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

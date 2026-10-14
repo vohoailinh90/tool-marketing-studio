@@ -2,7 +2,7 @@
 
 Hãy hình dung một ứng dụng web kèm cơ sở dữ liệu chạy bằng Docker trên một máy chủ. Có bốn chỗ người mới hay vấp, và mỗi chỗ chỉ ra một khái niệm Docker cần hiểu.
 
-![Bốn sự cố và cách xử lý: xóa container làm mất dữ liệu thì dùng volume, web không gọi được cơ sở dữ liệu thì dùng network do người dùng tạo và gọi bằng tên dịch vụ, từ ngoài không vào được web thì publish cổng, container chết không tự chạy lại thì đặt restart policy.](../../diagrams/sd-13-013-main.svg)
+![Bốn sự cố và cách xử lý: xóa container làm mất dữ liệu thì dùng volume, web không gọi được cơ sở dữ liệu thì dùng network do người dùng tạo và gọi bằng tên dịch vụ, từ ngoài không vào được web thì với network bridge phải publish cổng (network host bỏ qua publish), container chết không tự chạy lại thì đặt restart policy.](../../diagrams/sd-13-013-main.svg)
 
 **Đọc hình:** bốn sự cố độc lập; cuối bài có một tệp Compose ghép cả bốn.
 

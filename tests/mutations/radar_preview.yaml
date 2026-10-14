@@ -115,3 +115,23 @@ mutations:
   find: '    if failed or unreadable or not rows:'
   replace: '    if failed or unreadable:'
   test: tests.test_radar_preview.CommentTests.test_the_claim_that_the_pull_request_was_checked_and_drawn_is_made_only_when_it_was
+- label: the captions together have no budget, so thirty long ones overflow the comment
+  find: '            if used + size > CAPTION_BUDGET:'
+  replace: '            if False:'
+  test: tests.test_radar_preview.CommentTests.test_many_long_captions_leave_the_comment_under_the_size_github_accepts
+- label: the fences around a caption are not counted in its budget
+  find: '            size = sum(len(line) + 1 for line in block)'
+  replace: '            size = len(caption)'
+  test: tests.test_radar_preview.CommentTests.test_a_caption_that_is_all_backticks_counts_its_fences_in_the_budget
+- label: the table has no budget, so every post is listed
+  find: '            if used + len(row) > TABLE_BUDGET:'
+  replace: '            if False:'
+  test: tests.test_radar_preview.CommentTests.test_very_many_posts_are_not_all_listed_and_a_long_overflow_list_is_cut
+- label: a row names every slide that overflows
+  find: 'r["overflow"][:OVERFLOW_SHOWN]'
+  replace: 'r["overflow"]'
+  test: tests.test_radar_preview.CommentTests.test_very_many_posts_are_not_all_listed_and_a_long_overflow_list_is_cut
+- label: a comment past the limit is posted whole
+  find: '    if len(body) <= BODY_LIMIT:'
+  replace: '    if True:'
+  test: tests.test_radar_preview.CommentTests.test_a_comment_that_no_budget_counts_is_replaced_by_a_short_one_that_claims_nothing

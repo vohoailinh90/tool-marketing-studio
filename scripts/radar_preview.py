@@ -40,7 +40,13 @@ ROOT = Path(__file__).resolve().parent.parent
 MARKER = "<!-- radar-preview -->"
 CAMPAIGN = re.compile(r"campaigns/(radar-[0-9]{4}-[0-9]{2}-[0-9]{2}(?:-[0-9]+)?)/")   # [0-9]: \d also matches other scripts' digits
 DATA_PREFIXES = ("tools/github-radar/",)
-CAPTION_LIMIT = 3000
+CAPTION_LIMIT = 3000        # one caption
+CAPTION_BUDGET = 30000      # all the captions of one comment, fences and headings included
+TABLE_BUDGET = 15000        # all the rows of its table
+OVERFLOW_SHOWN = 10         # slide numbers named in one row
+BODY_LIMIT = 60000          # GitHub refuses a comment of 65536 characters: the budgets above keep the parts under this one
+NEXT = ("Next: look at the images, then approve in the app (Publish page) or with `studio.py approve`. "
+        "Publishing stays yours.")
 
 
 def classify(paths: Sequence[str]) -> tuple[list[str], list[str]]:
@@ -157,6 +163,19 @@ def rendered(root: Path, campaign: str) -> tuple[list[dict], list[str]]:
 
 def build_comment(root: Path, *, plan_ok: bool, campaigns: Sequence[str], reason: str, outside: Sequence[str],
                   failed: bool, artifact_url: str, run_url: str) -> str:
+    """The comment, never longer than BODY_LIMIT: past it the API refuses the post and the old comment goes on saying what it said.
+    The parts are budgeted (captions, table), so this is the backstop for what no budget counts; it states nothing about the checks."""
+    body = _comment(root, plan_ok=plan_ok, campaigns=campaigns, reason=reason, outside=outside, failed=failed,
+                    artifact_url=artifact_url, run_url=run_url)
+    if len(body) <= BODY_LIMIT:
+        return body
+    return "\n".join([MARKER, "### Radar preview", "",
+                      f"This preview is too large for one comment, so it says nothing about the check or the drawing: read [the run]({run_url}).",
+                      "", NEXT]) + "\n"
+
+
+def _comment(root: Path, *, plan_ok: bool, campaigns: Sequence[str], reason: str, outside: Sequence[str],
+             failed: bool, artifact_url: str, run_url: str) -> str:
     lines = [MARKER, "### Radar preview", ""]
     if not plan_ok:
         lines += ["Not drawn here: " + printable(reason) + ".", ""]
@@ -182,21 +201,38 @@ def build_comment(root: Path, *, plan_ok: bool, campaigns: Sequence[str], reason
         lines += ["Manifests that could not be read:", ""] + [f"- `{w}`" for w in unreadable[:5]] + [""]
     if rows:
         lines += ["| Campaign | Post | Slides | Slides that overflow | Drawn from |", "|---|---|---|---|---|"]
-        lines += [f"| {c} | {r['where']} | {r['slides']} | {', '.join(r['overflow']) or 'none'} | `{r['sha']}` |" for c, r in rows]
+        listed, used = 0, 0
+        for c, r in rows:
+            overflow = ", ".join(r["overflow"][:OVERFLOW_SHOWN]) + (f" (+{len(r['overflow']) - OVERFLOW_SHOWN} more)" if len(r["overflow"]) > OVERFLOW_SHOWN else "")
+            row = f"| {c} | {r['where']} | {r['slides']} | {overflow or 'none'} | `{r['sha']}` |"
+            if used + len(row) > TABLE_BUDGET:
+                break
+            lines.append(row)
+            listed, used = listed + 1, used + len(row)
+        if listed < len(rows):
+            lines += ["", f"{len(rows) - listed} more post(s) are not listed here: they are in the artifact."]
         if artifact_url:
             lines += ["", f"Images and texts: [download the artifact]({artifact_url}) (one zip; the same files are on [the run]({run_url})).", ""]
         else:
             lines += ["", f"The images and texts could not be attached to the run: read [the run]({run_url}).", ""]
+        omitted, used = 0, 0
         for c, r in rows:
             caption = r["caption"].strip()[:CAPTION_LIMIT]
-            if caption:
-                bar = fence(caption)
-                lines += [f"<details><summary>Facebook caption · {r['where']}</summary>", "",
-                          f"{bar}text", caption, bar, "", "</details>", ""]
+            if not caption:
+                continue
+            bar = fence(caption)
+            block = [f"<details><summary>Facebook caption · {r['where']}</summary>", "", f"{bar}text", caption, bar, "", "</details>", ""]
+            size = sum(len(line) + 1 for line in block)
+            if used + size > CAPTION_BUDGET:
+                omitted += 1
+                continue
+            lines += block
+            used += size
+        if omitted:
+            lines += [f"{omitted} caption(s) are not shown here: they are in the artifact, as `facebook.txt` beside each post.", ""]
     elif not unreadable:
         lines += ["No post was drawn.", ""]
-    lines += ["Next: look at the images, then approve in the app (Publish page) or with `studio.py approve`. "
-              "Publishing stays yours."]
+    lines += [NEXT]
     return "\n".join(lines) + "\n"
 
 

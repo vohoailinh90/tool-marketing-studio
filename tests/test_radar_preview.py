@@ -237,6 +237,16 @@ def render_fixture(root: Path, caption: str, overflow: list[int]) -> None:
     (folder / "facebook.txt").write_text(caption, encoding="utf-8")
 
 
+def render_many(root: Path, count: int, caption, overflow: list[int] | None = None) -> None:
+    """`count` drawn posts of the fixture campaign, the caption of post n being `caption(n)`."""
+    for n in range(count):
+        folder = root / "campaigns" / CAMPAIGN / "export" / "vi" / f"post-{n:03d}"
+        folder.mkdir(parents=True)
+        (folder / "manifest.json").write_text(json.dumps({"sha": "0123456789abcdef", "slides": ["01.png"], "overflow": overflow or []}),
+                                              encoding="utf-8")
+        (folder / "facebook.txt").write_text(caption(n), encoding="utf-8")
+
+
 def render_fixture_once(root: Path) -> None:
     if not (root / "campaigns" / CAMPAIGN / "export" / "vi" / "01-x").exists():
         render_fixture(root, "Caption", [])
@@ -279,6 +289,44 @@ class CommentTests(unittest.TestCase):
     def test_a_very_long_caption_is_cut(self):
         render_fixture(self.root, "x" * 10000, [])
         self.assertLess(len(comment(self.root)), 6000)
+
+    def test_many_long_captions_leave_the_comment_under_the_size_github_accepts(self):
+        render_many(self.root, 30, lambda n: f"Caption {n:03d} " + "x" * 2980)               # 30 x 3000 characters
+        body = comment(self.root)
+        shown = body.count("<details>")
+        self.assertLess(len(body), radar_preview.BODY_LIMIT)
+        self.assertLess(radar_preview.BODY_LIMIT, 65536)
+        self.assertTrue(body.startswith(radar_preview.MARKER + "\n"))
+        self.assertTrue(0 < shown < 30, shown)
+        self.assertIn(f"{30 - shown} caption(s) are not shown here", body)
+        self.assertIn("Caption 000 ", body)                                                   # the first are kept
+        self.assertNotIn("Caption 029 ", body)
+        self.assertTrue(body.rstrip().endswith(radar_preview.NEXT))                           # and the last line survives the cut
+        self.assertIn("| radar-2026-10-13-5 | vi/post-029 |", body)                          # every post is still in the table
+
+    def test_a_caption_that_is_all_backticks_counts_its_fences_in_the_budget(self):
+        render_many(self.root, 12, lambda n: "`" * 3000)                                      # fences of 3001 backticks, twice each
+        body = comment(self.root)
+        self.assertLess(len(body), radar_preview.BODY_LIMIT)
+        self.assertLess(body.count("<details>"), 12)
+
+    def test_very_many_posts_are_not_all_listed_and_a_long_overflow_list_is_cut(self):
+        render_many(self.root, 400, lambda n: "", overflow=list(range(1, 51)))
+        body = comment(self.root)
+        self.assertLess(len(body), radar_preview.BODY_LIMIT)
+        rows = [line for line in body.splitlines() if line.startswith("| radar-2026-10-13-5 |")]
+        self.assertTrue(0 < len(rows) < 400, len(rows))
+        self.assertIn(f"{400 - len(rows)} more post(s) are not listed here", body)
+        self.assertIn("(+40 more)", rows[0])
+        self.assertNotIn("11, 12", rows[0])
+
+    def test_a_comment_that_no_budget_counts_is_replaced_by_a_short_one_that_claims_nothing(self):
+        body = comment(self.root, plan_ok=False, reason="r", outside=["a" * 20000 for _ in range(5)])
+        self.assertLess(len(body), 2000)
+        self.assertTrue(body.startswith(radar_preview.MARKER + "\n"))
+        self.assertIn("too large for one comment", body)
+        self.assertIn("(https://example.test/run)", body)
+        self.assertNotIn("Checked and drawn", body)
 
     def test_a_failure_points_at_the_run(self):
         render_fixture(self.root, "Caption", [])

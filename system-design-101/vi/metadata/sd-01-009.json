@@ -59,28 +59,28 @@
   },
   "claims": [
     {
-      "claim_vi": "HTTP/2 uses binary message framing and multiplexes request/response exchanges as independent streams, so a stalled stream does not prevent progress on others; HTTP/1.x clients use multiple connections for concurrency.",
-      "source": "https://github.com/httpwg/http2-spec/blob/main/draft-ietf-httpbis-http2bis.xml",
+      "claim_vi": "HTTP/2 uses binary message framing and multiplexes request/response exchanges as independent streams, so a stalled stream does not prevent progress on others. The same Introduction says HTTP/1.1 added request pipelining, which only partially addressed concurrency and still suffers from application-layer head-of-line blocking, so HTTP/1.0 and HTTP/1.1 clients use multiple connections to make concurrent requests: common practice, not a requirement; pipelining on one connection is permitted (RFC 9112 section 9.3.2, claim below).",
+      "source": "https://github.com/httpwg/http2-spec/blob/670dbedffb04d2470cc1ebf2ceccdabc6677a823/draft-ietf-httpbis-http2bis.xml",
       "section": "Introduction; Overview",
-      "verified_by": "Read in draft-ietf-httpbis-http2bis.xml from a local clone of httpwg/http2-spec (the source of RFC 9113, which obsoletes RFC 7540 and 8740)."
+      "verified_by": "draft-ietf-httpbis-http2bis.xml (the source of RFC 9113, which obsoletes RFC 7540 and 8740) read from a clone of httpwg/http2-spec checked out at commit 670dbedffb04d2470cc1ebf2ceccdabc6677a823 (committed 2022-05-31); the cited text was re-read at that revision."
     },
     {
       "claim_vi": "This revision of HTTP/2 deprecates the priority signaling scheme of RFC 7540 but retains the frame field descriptions and some mandatory handling so implementations stay interoperable with those that use it; it does not remove it.",
-      "source": "https://github.com/httpwg/http2-spec/blob/main/draft-ietf-httpbis-http2bis.xml",
+      "source": "https://github.com/httpwg/http2-spec/blob/670dbedffb04d2470cc1ebf2ceccdabc6677a823/draft-ietf-httpbis-http2bis.xml",
       "section": "Overview",
-      "verified_by": "Read in draft-ietf-httpbis-http2bis.xml from a local clone of httpwg/http2-spec (the source of RFC 9113, which obsoletes RFC 7540 and 8740)."
+      "verified_by": "draft-ietf-httpbis-http2bis.xml (the source of RFC 9113, which obsoletes RFC 7540 and 8740) read from a clone of httpwg/http2-spec checked out at commit 670dbedffb04d2470cc1ebf2ceccdabc6677a823 (committed 2022-05-31); the cited text was re-read at that revision."
     },
     {
       "claim_vi": "TCP head-of-line blocking is not addressed by HTTP/2; HTTP/1.1 pipelining only partially addressed concurrency.",
-      "source": "https://github.com/httpwg/http2-spec/blob/main/draft-ietf-httpbis-http2bis.xml",
+      "source": "https://github.com/httpwg/http2-spec/blob/670dbedffb04d2470cc1ebf2ceccdabc6677a823/draft-ietf-httpbis-http2bis.xml",
       "section": "Introduction",
-      "verified_by": "Read in draft-ietf-httpbis-http2bis.xml from a local clone of httpwg/http2-spec (the source of RFC 9113, which obsoletes RFC 7540 and 8740)."
+      "verified_by": "draft-ietf-httpbis-http2bis.xml (the source of RFC 9113, which obsoletes RFC 7540 and 8740) read from a clone of httpwg/http2-spec checked out at commit 670dbedffb04d2470cc1ebf2ceccdabc6677a823 (committed 2022-05-31); the cited text was re-read at that revision."
     },
     {
       "claim_vi": "HPACK is the header compression format for HTTP/2; MDN lists binary, multiplexing and header compression as differences from HTTP/1.1, and says packet loss at the TCP layer can block all streams, which QUIC avoids.",
-      "source": "https://github.com/httpwg/http2-spec/blob/main/draft-ietf-httpbis-header-compression.xml",
+      "source": "https://github.com/httpwg/http2-spec/blob/670dbedffb04d2470cc1ebf2ceccdabc6677a823/draft-ietf-httpbis-header-compression.xml",
       "section": "Abstract",
-      "verified_by": "HPACK draft read from a local clone of httpwg/http2-spec; MDN read from a local clone of mdn/content."
+      "verified_by": "HPACK draft (draft-ietf-httpbis-header-compression.xml) read from a clone of httpwg/http2-spec checked out at commit 670dbedffb04d2470cc1ebf2ceccdabc6677a823 (committed 2022-05-31); the cited text was re-read at that revision. MDN read from a local clone of mdn/content."
     },
     {
       "claim_vi": "Chrome turned HTTP/2 Server Push off by default in version 106, citing low use, unclear benefit and missing HTTP/3 support, and suggests 103 Early Hints or preload.",

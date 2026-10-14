@@ -55,8 +55,8 @@ và vẫn bị chặn đầu hàng ở tầng ứng dụng.
 - [RFC 9112 §9.3.2–9.4](https://www.rfc-editor.org/rfc/rfc9112.html#section-9.3.2): pipelining và lý do dùng nhiều kết nối.
 
 - [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-makes-http2-faster-than-http1.md): năm tính năng.
-- [Đặc tả HTTP/2 (RFC 9113) — bản nguồn của nhóm HTTP](https://github.com/httpwg/http2-spec/blob/main/draft-ietf-httpbis-http2bis.xml): khung nhị phân, ghép luồng, cơ chế ưu tiên cũ bị deprecated, Server Push, chặn đầu hàng TCP.
-- [HPACK (RFC 7541) — bản nguồn](https://github.com/httpwg/http2-spec/blob/main/draft-ietf-httpbis-header-compression.xml): nén header cho HTTP/2.
+- [Đặc tả HTTP/2 (RFC 9113) — bản nguồn của nhóm HTTP](https://github.com/httpwg/http2-spec/blob/670dbedffb04d2470cc1ebf2ceccdabc6677a823/draft-ietf-httpbis-http2bis.xml): khung nhị phân, ghép luồng, cơ chế ưu tiên cũ bị deprecated, Server Push, chặn đầu hàng TCP.
+- [HPACK (RFC 7541) — bản nguồn](https://github.com/httpwg/http2-spec/blob/670dbedffb04d2470cc1ebf2ceccdabc6677a823/draft-ietf-httpbis-header-compression.xml): nén header cho HTTP/2.
 - [MDN — Evolution of HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Evolution_of_HTTP): nhị phân, ghép luồng, nén header; HTTP/3 và QUIC.
 - [Chrome — removing push](https://developer.chrome.com/blog/removing-push) và [RFC 9218](https://www.rfc-editor.org/rfc/rfc9218): tắt Server Push; chuẩn ưu tiên thay thế. Hai trang này không mở được; nội dung đối chiếu qua trích đoạn tìm kiếm.
 

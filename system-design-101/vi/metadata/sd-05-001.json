@@ -1,0 +1,92 @@
+{
+  "id": "sd-05-001",
+  "title_vi": "Các kiểu SQL JOIN hoạt động thế nào?",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "review",
+  "source_ref": "sd-05-001",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/how-do-sql-joins-work.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-sql-joins-work.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches provider tree OID. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "fae6a42aadb1667f71a76d44d7fedaedb9c20cab",
+    "retrieved_body_sha256": "65981b443a6fe544f0ae9aefffccafcd6a9bad6d879efe93e6e1ce2c496bd831",
+    "retrieved_body_bytes": 809
+  },
+  "diagram": "../diagrams/sd-05-001-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-03-001",
+      "relation": "compares",
+      "reason_vi": "merge của pandas có các kiểu inner, left, right, outer tương ứng với bốn kiểu JOIN."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "evidence": "Every result in the lesson was produced by running the SQL in SQLite 3.45.1; sqlite.org was unreachable."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 14.4,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright) rendered the full lesson at each width with optional sections open; diagram scale measured from the rendered image and every SVG text box checked against the viewBox. Not learner testing and not GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "On the lesson's example tables INNER JOIN returns the two matching pairs; LEFT JOIN adds Binh and Chi with NULL orders; RIGHT JOIN adds order 12 with a NULL customer; FULL OUTER JOIN returns five rows.",
+      "source": "https://www.sqlite.org/lang_select.html",
+      "section": "Joins",
+      "verified_by": "Executed in SQLite 3.45.1 (python sqlite3)."
+    },
+    {
+      "claim_vi": "A NULL-rejecting WHERE condition on a right-table column after a LEFT JOIN removes the unmatched rows (An-10 only for tien > 60), while the same condition in ON keeps Binh and Chi.",
+      "source": "https://www.sqlite.org/lang_select.html",
+      "section": "Joins",
+      "verified_by": "Executed in SQLite 3.45.1 (python sqlite3)."
+    },
+    {
+      "claim_vi": "LEFT JOIN ... WHERE don.id IS NULL deliberately keeps only the unmatched customers (Binh, Chi), unlike INNER JOIN.",
+      "source": "https://www.sqlite.org/lang_select.html",
+      "section": "Joins",
+      "verified_by": "Executed in SQLite 3.45.1 (python sqlite3)."
+    },
+    {
+      "claim_vi": "A key matching several rows (An has two orders) yields several result rows.",
+      "source": "https://www.sqlite.org/lang_select.html",
+      "section": "Joins",
+      "verified_by": "Executed in SQLite 3.45.1 (python sqlite3)."
+    }
+  ],
+  "design_notes_vi": "Một ví dụ nhỏ chung cho cả bốn kiểu để so sánh trực tiếp; thẻ cuối là cái bẫy WHERE/ON. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Source describes FULL OUTER JOIN as rows with a match in either table; the lesson states that unmatched rows from both sides are kept with NULLs.",
+    "Source gives only the four definitions; the lesson adds the WHERE-versus-ON pitfall and the row-multiplication note, both measured."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

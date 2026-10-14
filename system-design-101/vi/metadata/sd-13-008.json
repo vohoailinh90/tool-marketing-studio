@@ -1,0 +1,57 @@
+{
+  "id": "sd-13-008",
+  "title_vi": "Vòng tròn bộ công cụ Kubernetes",
+  "language": "vi",
+  "kind": "flow",
+  "content_status": "draft",
+  "source_ref": "sd-13-008",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/kubernetes-tools-stack-wheel.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/kubernetes-tools-stack-wheel.md",
+    "blob_sha": "e99f9548108d32d8bb5cdb9b52299fa0388bd9e5",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "bbacc2f722e09783d6ef672e78e3680d97d29fc735b89fb8575994afaffa13dc",
+    "retrieved_body_bytes": 1216
+  },
+  "diagram": "../diagrams/sd-13-008-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-13-009",
+      "relation": "next",
+      "reason_vi": "Ba nhu cầu nên giải quyết sớm trên cụm."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "CNCF xếp dự án theo ba mức: sandbox, incubating, graduated.",
+      "source": "https://www.cncf.io/projects/"
+    }
+  ],
+  "source_deviations": [
+    "Nguồn chỉ là một hình bánh xe công cụ với lời giới thiệu; quy trình năm bước là đề xuất của bài này."
+  ],
+  "design_notes_vi": "Năm bước dọc nối bằng mũi tên; không liệt kê tên công cụ để tránh nhanh cũ.",
+  "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Tiêu đề hiển thị của bài là dòng đầu của lesson.md; title_vi giữ bản dịch tiêu đề nguồn theo source-map. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
+}

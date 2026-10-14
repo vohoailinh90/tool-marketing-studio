@@ -1,0 +1,82 @@
+{
+  "id": "sd-13-020",
+  "title_vi": "Các chiến lược triển khai",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "draft",
+  "source_ref": "sd-13-020",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/how-to-deploy-services.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-to-deploy-services.md",
+    "blob_sha": "627eae9be6476ba9bb25756ba05915bc4342f9fb",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "30f92baa8fbf4158e820be438518df0eb34cbd9572975ad16fcd30f6bc94c47f",
+    "retrieved_body_bytes": 1958
+  },
+  "diagram": "../diagrams/sd-13-020-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-13-015",
+      "relation": "compare-with",
+      "reason_vi": "Vòng đời một tính năng có cờ."
+    },
+    {
+      "lesson_id": "sd-13-017",
+      "relation": "compare-with",
+      "reason_vi": "Triển khai trên Kubernetes."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Mẫu parallel change (mở rộng rồi thu gọn) cho phép đổi giao diện hay dữ liệu mà hai phiên bản vẫn dùng được.",
+      "source": "https://martinfowler.com/bliki/ParallelChange.html"
+    },
+    {
+      "claim_vi": "Canary release giảm rủi ro bằng cách thử với một nhóm nhỏ trước.",
+      "source": "https://martinfowler.com/bliki/CanaryRelease.html"
+    },
+    {
+      "claim_vi": "Canary được đánh giá bằng cách so số đo của canary với bản đối chứng.",
+      "source": "https://sre.google/workbook/canarying-releases/"
+    },
+    {
+      "claim_vi": "Làm việc theo lô nhỏ là một năng lực DORA liên quan tới hiệu quả giao phần mềm.",
+      "source": "https://dora.dev/capabilities/working-in-small-batches/"
+    },
+    {
+      "claim_vi": "Với INSERT, cột bị bỏ qua nhận giá trị mặc định đã khai báo của nó.",
+      "source": "https://www.postgresql.org/docs/current/sql-insert.html"
+    },
+    {
+      "claim_vi": "Trong PostgreSQL, thêm cột NOT NULL không có giá trị mặc định vào bảng đã có dòng bị từ chối vì các dòng hiện có sẽ nhận null; cần điền dữ liệu cho cột trước rồi mới thêm ràng buộc, hoặc cho một giá trị mặc định thỏa ràng buộc.",
+      "source": "https://www.postgresql.org/docs/current/ddl-alter.html"
+    }
+  ],
+  "source_deviations": [
+    "Nguồn có bốn mục theo thứ tự: nhiều dịch vụ cùng lúc, blue-green, canary, A/B; bài bỏ cấu trúc đó, tổ chức theo năm rủi ro triển khai chọn độc lập và không dựng thành so sánh chiến lược."
+  ],
+  "design_notes_vi": "Năm thẻ rủi ro kèm cách giảm.",
+  "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Tiêu đề hiển thị của bài là dòng đầu của lesson.md; title_vi giữ bản dịch tiêu đề nguồn theo source-map. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
+}

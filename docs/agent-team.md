@@ -57,10 +57,11 @@ Never give the VPS workers the app's `.env` (Page token, Anthropic key): the gat
 
 ## CI runner
 
-`.github/workflows/ci.yml` runs on `${{ vars.CI_RUNNER || 'self-hosted' }}`: the VPS runner
-registered for this repository (`tool-marketing-studio-runner`, labels `self-hosted`, `Linux`,
-`X64`). This repository is private, so GitHub-hosted minutes are billed; without minutes a job
-on `ubuntu-latest` fails at once with no log.
+`.github/workflows/ci.yml` runs on `${{ vars.CI_RUNNER || 'self-hosted' }}`: the two VPS runners
+registered for this repository (`tool-marketing-studio-runner` and
+`tool-marketing-studio-runner-2`, both with labels `self-hosted`, `Linux`, `X64`). This
+repository is private, so GitHub-hosted minutes are billed; without minutes a job on
+`ubuntu-latest` fails at once with no log.
 
 - Move every job to GitHub-hosted runners: set the repository variable `CI_RUNNER=ubuntu-latest`
   (Settings → Secrets and variables → Actions → Variables). Delete it to come back.
@@ -68,6 +69,50 @@ on `ubuntu-latest` fails at once with no log.
   `claude-agent-routing-template` does not serve this one, which is why it has its own.
 - On the VPS, install Chromium's system libraries once so the render test runs instead of
   skipping: `sudo python3 -m playwright install-deps chromium`.
+- Each runner takes one job at a time, so two jobs run at once. `engine` takes about 30 minutes,
+  27 of them in `mutation_check.py --all`. A pull request that changes only the System Design
+  store skips that check: `scripts/ci_changes.py` decides, and every push to `main` still runs it.
+- The second runner was added on 2026-10-13 because one runner left the queue hours long. Both
+  live on the same VPS, under the `ci-runner` user, one folder each:
+  `/home/ci-runner/actions-runner-tool-marketing-studio` and `...-2`, each its own systemd
+  service (`actions.runner.vohoailinh90-tool-marketing-studio.<runner name>.service`). That VPS
+  has 4 CPU cores and about 7.6 GiB of RAM and also serves the runners of the owner's other
+  repositories, so do not add a third without watching memory and swap (`free -h`) while two
+  `engine` jobs run.
+- To add a runner: as `ci-runner`, copy a working runner folder, delete `_work`, `_diag`,
+  `.runner`, `.runner_migrated`, `.credentials*`, `.service` and the downloaded `.tar.gz` from the
+  copy, register it with a fresh token (this repository → Settings → Actions → Runners → New
+  self-hosted runner; the token expires in about an hour, never write it in a file) using
+  `./config.sh --url https://github.com/vohoailinh90/tool-marketing-studio --token <token>
+  --name <new name> --unattended`, then, as root in that folder,
+  `./svc.sh install ci-runner && ./svc.sh start`. To remove one: `./svc.sh stop`,
+  `./svc.sh uninstall`, then `./config.sh remove --token <removal token>` as `ci-runner`.
 - The VPS keeps its files between jobs, so it runs only code from people who can push to this
   repository: every job skips a pull request whose branch lives in a fork. Keep the repository
   private, or keep that guard, while CI runs on the VPS (`tests/test_codex_review.py` checks it).
+
+## Radar preview
+
+github-radar opens a **draft pull request** on branch `radar/<campaign>` for each scan (it adds
+`campaigns/radar-<date>[-n]/` and `tools/github-radar/`). `.github/workflows/radar-preview.yml` looks at it for you:
+
+- it runs `studio.py check` and then `studio.py render` on that campaign with this repository's engine; the drawing runs only
+  when the check passed, because `render` revalidates the posts and not the tool brief (a `brand.accent` that is CSS would
+  reach the page, which may load local images into the uploaded screenshots);
+- it attaches the PNGs, the platform texts and the manifests to the run (artifact `radar-preview-pr-<number>`, kept
+  14 days) and keeps **one comment** on the pull request with the slide count, the slides that overflow, the
+  Facebook caption and a link to the artifact (edited in place on every push). The comment is budgeted to stay under the
+  size GitHub accepts: captions past the budget and table rows past theirs are left out with a note, and the files stay in the artifact;
+- it never approves, publishes, commits or pushes: reading the images, `studio.py approve` and publishing stay the owner's.
+
+The engine of a pull request is code that would run on the shared runner, so `scripts/radar_preview.py` first lists the
+files the pull request changed (against the base as it is now, the first parent of GitHub's merge commit) and draws it only
+when every one is under `campaigns/radar-*/` or `tools/github-radar/` and none is, or sits under, a symbolic link; otherwise
+the comment says which files are the problem and nothing runs. The planner and the comment writer run from the **base commit** (read with `git show` into the runner's
+temp folder, not checked out into the workspace, where a symbolic link of the pull request could steer the checkout), so a
+pull request that edits or deletes them is judged by the version on the base branch. That is still not a boundary against
+someone who can already push a branch here: GitHub runs the workflow file of the pull request's merge, so that person can
+edit the workflow itself, which runs on the same runner, exactly as with `ci.yml`.
+Only branches of this repository named `radar/...` are drawn (never a fork), the token can write pull-request comments
+and nothing else (and is not kept in `.git/config`), and no pull-request value is written into a script. The job is a
+few minutes and waits in the same runner queue as `ci.yml` (`CI_RUNNER` moves both). Tests: `tests/test_radar_preview.py`; mutations: `tests/mutations/radar_preview*.yaml`.

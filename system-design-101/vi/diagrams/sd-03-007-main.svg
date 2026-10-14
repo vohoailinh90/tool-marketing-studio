@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 746" width="320" height="746" role="img" aria-labelledby="title desc">
+<title id="title">Năm giai đoạn của một đường ống dữ liệu</title>
+<desc id="desc">Ví dụ cửa hàng trực tuyến: thu thập sự kiện đơn hàng từ ứng dụng; nạp vào hàng đợi hoặc theo lô; lưu bản thô ở data lake và bảng sạch ở data warehouse; tính toán làm sạch gộp tổng hợp theo lô hoặc luồng; sử dụng qua bảng điều khiển, báo cáo và mô hình học máy. Lưu ý gửi lại có thể tạo dòng trùng.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="746" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="21" font-weight="bold">ĐƯỜNG ỐNG DỮ LIỆU</text>
+<text x="16" y="54" font-size="21" font-weight="bold">VÍ DỤ CỬA HÀNG</text>
+<rect x="16" y="80" width="288" height="76" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="29" y="109" font-size="16" font-weight="bold">1 · Thu thập</text>
+<text x="29" y="137" font-size="16" font-weight="normal">Ứng dụng tạo sự kiện đơn hàng</text>
+<line x1="160" y1="157" x2="160" y2="176" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="178" width="288" height="76" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="29" y="207" font-size="16" font-weight="bold">2 · Nạp dữ liệu</text>
+<text x="29" y="235" font-size="16" font-weight="normal">Vào hàng đợi, hoặc nạp theo lô</text>
+<line x1="160" y1="255" x2="160" y2="274" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="276" width="288" height="100" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="29" y="305" font-size="16" font-weight="bold">3 · Lưu trữ</text>
+<text x="29" y="333" font-size="16" font-weight="normal">Lake giữ bản thô; warehouse giữ</text>
+<text x="29" y="357" font-size="16" font-weight="normal">bảng sạch</text>
+<line x1="160" y1="377" x2="160" y2="396" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="398" width="288" height="100" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="29" y="427" font-size="16" font-weight="bold">4 · Tính toán</text>
+<text x="29" y="455" font-size="16" font-weight="normal">Làm sạch, gộp, tổng hợp: theo</text>
+<text x="29" y="479" font-size="16" font-weight="normal">lô hoặc luồng</text>
+<line x1="160" y1="499" x2="160" y2="518" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="520" width="288" height="100" rx="12" fill="#e2e8f0" stroke="#94a3b8"/>
+<text x="29" y="549" font-size="16" font-weight="bold">5 · Sử dụng</text>
+<text x="29" y="577" font-size="16" font-weight="normal">Bảng điều khiển, báo cáo, mô</text>
+<text x="29" y="601" font-size="16" font-weight="normal">hình ML</text>
+<rect x="16" y="632" width="288" height="100" rx="12" fill="#fee2e2" stroke="#94a3b8"/>
+<text x="29" y="661" font-size="16" font-weight="bold">Lỗi hay gặp</text>
+<text x="29" y="689" font-size="16" font-weight="normal">Gửi lại sau lỗi làm trùng dòng.</text>
+<text x="29" y="713" font-size="16" font-weight="normal">Thiết kế bước chạy lại được.</text>
+</g></svg>

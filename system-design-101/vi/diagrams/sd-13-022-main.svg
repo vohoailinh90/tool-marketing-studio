@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 851" width="320" height="851" role="img" aria-labelledby="title desc">
+<title id="title">Tìm nguyên nhân từ nhật ký bằng dòng lệnh</title>
+<desc id="desc">Năm tình huống và lệnh: xem ngữ cảnh quanh dòng lỗi bằng grep -C, tìm trong nhật ký đã nén bằng zgrep, theo dõi nhật ký đang ghi bằng tail -f nối grep, thêm --line-buffered khi đầu ra của grep còn chuyển tiếp sang lệnh khác, lọc nhật ký JSON (JavaScript Object Notation — định dạng dữ liệu văn bản dạng khóa và giá trị) bằng jq, và tính trung bình một cột số bằng awk.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="851" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">TÌNH HUỐNG → LỆNH</text>
+<text x="16" y="58" font-size="16" font-weight="normal">Chọn theo đặc điểm của nhật</text>
+<text x="16" y="85" font-size="16" font-weight="normal">ký</text>
+<rect x="16" y="116" width="288" height="128" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="144" font-size="16" font-weight="bold">Cần ngữ cảnh quanh</text>
+<text x="30" y="171" font-size="16" font-weight="bold">dòng lỗi</text>
+<text x="30" y="198" font-size="16" font-weight="normal">grep -n -C 3 timeout</text>
+<text x="30" y="225" font-size="16" font-weight="normal">app.log</text>
+<rect x="16" y="256" width="288" height="101" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="284" font-size="16" font-weight="bold">Nhật ký đã xoay vòng</text>
+<text x="30" y="311" font-size="16" font-weight="bold">và nén</text>
+<text x="30" y="338" font-size="16" font-weight="normal">zgrep ERROR app.log.*.gz</text>
+<rect x="16" y="369" width="288" height="128" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="397" font-size="16" font-weight="bold">Nhật ký đang được ghi</text>
+<text x="30" y="424" font-size="16" font-weight="normal">tail -f app.log |</text>
+<text x="30" y="451" font-size="16" font-weight="normal">grep --line-buffered ERROR</text>
+<text x="30" y="478" font-size="16" font-weight="normal">| tee errors.log</text>
+<rect x="16" y="509" width="288" height="182" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="537" font-size="16" font-weight="bold">Nhật ký dạng JSON</text>
+<text x="30" y="564" font-size="16" font-weight="bold">(định dạng dữ liệu văn</text>
+<text x="30" y="591" font-size="16" font-weight="bold">bản)</text>
+<text x="30" y="618" font-size="16" font-weight="normal">jq -r</text>
+<text x="30" y="645" font-size="16" font-weight="normal">'select(.level=="error")</text>
+<text x="30" y="672" font-size="16" font-weight="normal">| .message' app.json</text>
+<rect x="16" y="703" width="288" height="128" rx="10" fill="#fee2e2" stroke="#94a3b8"/>
+<text x="30" y="731" font-size="16" font-weight="bold">Cần một con số</text>
+<text x="30" y="758" font-size="16" font-weight="normal">awk '{s+=$5; n++} END</text>
+<text x="30" y="785" font-size="16" font-weight="normal">{if (n) print s/n}'</text>
+<text x="30" y="812" font-size="16" font-weight="normal">latency.log</text>
+</g></svg>

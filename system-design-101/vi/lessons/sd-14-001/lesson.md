@@ -7,6 +7,7 @@ Hướng dẫn DevSecOps của OWASP nêu mục tiêu là phát hiện vấn đ�
 
 ## Từ viết tắt
 
+- **DevSecOps** (Development, Security and Operations) — phát triển, bảo mật và vận hành: đưa kiểm tra bảo mật vào từng chặng của đường ống phát triển thay vì dồn lại cuối.
 - **OWASP** (Open Worldwide Application Security Project) — tổ chức cộng đồng chuyên về bảo mật ứng dụng, có các hướng dẫn mà bài dùng để đối chiếu.
 - **SAST** (Static Application Security Testing) — phân tích mã tĩnh: tìm lỗi bảo mật ngay trong mã nguồn, khi chưa chạy ứng dụng.
 - **SCA** (Software Composition Analysis) — phân tích thành phần phần mềm: tìm thư viện phụ thuộc có lỗ hổng đã biết.
@@ -17,6 +18,7 @@ Hướng dẫn DevSecOps của OWASP nêu mục tiêu là phát hiện vấn đ�
 - **CI** (Continuous Integration) — tích hợp liên tục: tự động xây dựng và kiểm tra mã mỗi khi có thay đổi.
 - **CD** (Continuous Delivery) — chuyển giao (hoặc triển khai) liên tục: tự động đưa bản đã kiểm tra tới bước phát hành; CI/CD là đường ống gồm cả hai.
 - **IaC** (Infrastructure as Code) — hạ tầng dưới dạng mã: mô tả máy chủ, mạng và cấu hình bằng tệp mã để tạo và kiểm tra lại được.
+- **GitOps** (Git Operations) — vận hành dựa trên Git: cấu hình đặt trong Git là bản chuẩn và hệ thống tự đồng bộ theo nó; bài chỉ nhắc nó như một mảng của đường ống.
 
 ## Đọc hình
 

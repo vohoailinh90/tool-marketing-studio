@@ -10,6 +10,7 @@ Hai việc này khác nhau, nên đừng coi một access token bất kỳ của
 - **SSO** (Single Sign-On) — đăng nhập một lần: đăng nhập một lần rồi dùng được nhiều ứng dụng.
 - **OAuth** (Open AUTHorization) — chuẩn ủy quyền mở: cho một ứng dụng được làm một số việc thay bạn mà không biết mật khẩu của bạn.
 - **PKCE** (Proof Key for Code Exchange) — một lớp bảo vệ cho luồng mã ủy quyền: ứng dụng chứng minh chính nó là bên đã bắt đầu luồng.
+- **OpenID** (Open IDentity) — tên một chuẩn xác thực mở, phần cuối của tên là identity (danh tính); OpenID Connect là lớp xác thực xây trên OAuth, giúp ứng dụng biết người dùng là ai.
 - **SHA** (Secure Hash Algorithm) — họ thuật toán băm: biến dữ liệu bất kỳ thành một chuỗi cố định; SHA-256 là một loại trong họ này.
 - **CAS** (Central Authentication Service) — "dịch vụ xác thực trung tâm": một cách cài đặt đăng nhập một lần, bài nguồn nhắc tên này nhưng bài chưa kiểm.
 - **OWASP** (Open Worldwide Application Security Project) — tổ chức cộng đồng chuyên về bảo mật ứng dụng, có các hướng dẫn mà bài dùng để đối chiếu.

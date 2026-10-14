@@ -12,6 +12,7 @@ Thay vì kể pipeline CI/CD (Continuous Integration/Continuous Delivery hoặc 
 - **CD** (Continuous Delivery) — chuyển giao liên tục: tự động đưa bản đã kiểm tra tới bước phát hành hoặc triển khai.
 - **PR** (Pull Request) — yêu cầu gộp mã: đề nghị đưa thay đổi từ một nhánh vào nhánh chính để người khác xem xét.
 - **OIDC** (OpenID Connect) — chuẩn xác thực dựa trên token định danh: workflow nhận một token từ GitHub rồi đổi lấy thông tin xác thực ngắn hạn từ nhà cung cấp cloud, thay vì lưu khóa dài hạn trong bí mật.
+- **OpenID** (Open IDentity) — tên một chuẩn xác thực mở, phần cuối của tên là identity (danh tính); bài dùng OpenID Connect để workflow đổi token của GitHub lấy thông tin xác thực ngắn hạn.
 
 ## Nhìn hình thử trả lời
 

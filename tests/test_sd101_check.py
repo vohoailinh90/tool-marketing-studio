@@ -1872,6 +1872,11 @@ class AbbreviationRuleTests(StoreCase):
         self.assertTrue(check.spells("W3C", "World Wide Web Consortium"))
         self.assertTrue(check.spells("SELinux", "Security-Enhanced Linux"))
         self.assertTrue(check.spells("WebAuthn", "Web Authentication"))
+        self.assertTrue(check.spells("OpenID", "Open IDentity"))
+        self.assertTrue(check.spells("DevOps", "Development and Operations"))
+        self.assertTrue(check.spells("DevSecOps", "Development, Security and Operations"))
+        self.assertFalse(check.spells("DevSecOps", "Development and Operations"))
+        self.assertFalse(check.spells("OpenID", "Open Identity Provider"))
         self.assertFalse(check.spells("W3C", "World Wide Web"))
         self.assertTrue(check.spells("PaaS", "Platform as a Service"))
         self.lesson("Bộ nhớ tối thiểu 19 MiB.", glossary=None)
@@ -1954,10 +1959,12 @@ class AbbreviationRuleTests(StoreCase):
         found = check.abbreviations_in("APIs, HTTP/2, REST/JSON, TCP/UDP, (SSE), \"DNS\", HTTPS.")
         self.assertEqual({"API", "HTTP", "REST", "JSON", "TCP", "UDP", "SSE", "DNS", "HTTPS"}, found)
         self.assertEqual({"gRPC", "IPv4", "mTLS", "IaC", "MoE", "MiB"}, check.abbreviations_in("gRPC qua IPv4 và mTLS, IaC cùng MoE, 19 MiB."))
-        self.assertEqual({"PaaS", "IaaS", "SaaS", "FaaS", "BaaS", "W3C", "SELinux", "WebAuthn"},
-                         check.abbreviations_in("PaaS, IaaS, SaaS, FaaS và BaaS; chuẩn W3C; SELinux cùng WebAuthn."))
+        self.assertEqual({"PaaS", "IaaS", "SaaS", "FaaS", "BaaS", "W3C", "SELinux", "WebAuthn", "OpenID", "DevOps", "DevSecOps",
+                          "GitOps", "NoOps"},
+                         check.abbreviations_in("PaaS, IaaS, SaaS, FaaS và BaaS; chuẩn W3C; SELinux cùng WebAuthn; OpenID Connect; "
+                                                "DevOps, DevSecOps, GitOps và NoOps."))
         for text in ("MAX_SIZE", "A80", "WebSocket", "I", "ĐƠN HÀNG", "TÓM", "gRPCs", "myIPv4", "JavaScript", "GitHub",
-                     "PostgreSQL", "DevOps", "OOMKilled"):
+                     "PostgreSQL", "OOMKilled"):
             with self.subTest(text=text):
                 self.assertEqual(set(), check.abbreviations_in(text))
 

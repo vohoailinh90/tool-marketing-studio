@@ -10,37 +10,45 @@ mutations:
   find: "    if size != int(size) or not MIN_WINDOW_TOKENS <= size <= MAX_WINDOW_TOKENS:"
   replace: "    if False:"
   test: tests.test_session_budget_window.StatuslineRecordsTheWindowTests.test_a_size_or_a_session_that_cannot_be_used_records_nothing
-- label: a payload with no usable session id is recorded
-  find: "    if size is None or not isinstance(session, str) or not session.strip():"
-  replace: "    if size is None:"
-  test: tests.test_session_budget_window.StatuslineRecordsTheWindowTests.test_a_size_or_a_session_that_cannot_be_used_records_nothing
 - label: a payload whose context_window is not an object raises
   find: "    window = payload.get(\"context_window\")\n    if not isinstance(window, dict):\n        return None\n    size = number("
   replace: "    window = payload.get(\"context_window\")\n    size = number("
   test: tests.test_session_budget_window.StatuslineRecordsTheWindowTests.test_a_size_or_a_session_that_cannot_be_used_records_nothing
+- label: a session id that is not a plain name is used as a file name
+  find: "or not isinstance(session, str) or not SESSION_ID.fullmatch(session):"
+  replace: "or not isinstance(session, str):"
+  test: tests.test_session_budget_window.StatuslineRecordsTheWindowTests.test_a_size_or_a_session_that_cannot_be_used_records_nothing
 - label: an unchanged size rewrites the file on every render
-  find: "    if known.get(session) == size:\n        return\n"
+  find: "    if known == str(size):\n        os.utime(path)\n        return\n"
   replace: ""
-  test: tests.test_session_budget_window.StatuslineRecordsTheWindowTests.test_an_unchanged_size_does_not_rewrite_the_file
-- label: a session seen again keeps its old place
-  find: "    known.pop(session, None)\n"
+  test: tests.test_session_budget_window.StatuslineRecordsTheWindowTests.test_an_unchanged_size_is_not_rewritten_but_is_touched
+- label: an unchanged size does not keep its session out of the pruning
+  find: "        os.utime(path)\n"
+  replace: "        pass\n"
+  test: tests.test_session_budget_window.StatuslineRecordsTheWindowTests.test_a_session_still_drawing_with_an_unchanged_size_outlives_newer_ones
+- label: the oldest sessions are never forgotten
+  find: "    forget_the_oldest(directory)\n"
   replace: ""
-  test: tests.test_session_budget_window.StatuslineRecordsTheWindowTests.test_a_session_seen_again_becomes_the_newest
-- label: the file grows without a cap
-  find: "    known = dict(list(known.items())[-MAX_RECORDED_SESSIONS:])"
-  replace: "    known = dict(known.items())"
-  test: tests.test_session_budget_window.StatuslineRecordsTheWindowTests.test_the_oldest_sessions_are_dropped_past_the_cap
-- label: a state file holding something other than a mapping raises
-  find: "    if not isinstance(known, dict):\n        known = {}\n"
-  replace: ""
-  test: tests.test_session_budget_window.StatuslineRecordsTheWindowTests.test_a_state_file_that_is_not_a_mapping_is_replaced
-- label: a state file that is not JSON raises
-  find: "    except (OSError, ValueError):\n        known = {}"
-  replace: "    except OSError:\n        known = {}"
-  test: tests.test_session_budget_window.StatuslineRecordsTheWindowTests.test_a_state_file_that_is_not_a_mapping_is_replaced
+  test: tests.test_session_budget_window.StatuslineRecordsTheWindowTests.test_the_least_recently_drawn_sessions_are_forgotten_past_the_cap
+- label: the newest sessions are forgotten instead of the oldest
+  find: "    for path in sorted(recorded, key=modified)[:max(0, len(recorded) - MAX_RECORDED_SESSIONS)]:"
+  replace: "    for path in sorted(recorded, key=modified, reverse=True)[:max(0, len(recorded) - MAX_RECORDED_SESSIONS)]:"
+  test: tests.test_session_budget_window.StatuslineRecordsTheWindowTests.test_the_least_recently_drawn_sessions_are_forgotten_past_the_cap
+- label: a file gone while pruning makes the status line fail
+  find: "        return 0.0  # removed by a status line that pruned at the same moment"
+  replace: "        raise"
+  test: tests.test_session_budget_window.StatuslineRecordsTheWindowTests.test_a_status_line_that_finds_a_file_gone_while_pruning_still_succeeds
+- label: a file that is not text stops the recording
+  find: "    except (OSError, ValueError):\n        known = None"
+  replace: "    except OSError:\n        known = None"
+  test: tests.test_session_budget_window.StatuslineRecordsTheWindowTests.test_a_file_that_is_not_a_size_is_replaced
+- label: the directory of sessions is not created with its parents
+  find: "    directory.mkdir(parents=True, exist_ok=True)"
+  replace: "    directory.mkdir(exist_ok=True)"
+  test: tests.test_session_budget_window.StatuslineRecordsTheWindowTests.test_the_size_is_recorded_for_the_session
 - label: the file is written in place, not renamed whole
-  find: "        tmp.write_text(json.dumps(known), encoding=\"utf-8\")\n        os.replace(tmp, path)"
-  replace: "        path.write_text(json.dumps(known), encoding=\"utf-8\")"
+  find: "        tmp.write_text(str(size), encoding=\"utf-8\")\n        os.replace(tmp, path)"
+  replace: "        path.write_text(str(size), encoding=\"utf-8\")"
   test: tests.test_session_budget_window.StatuslineRecordsTheWindowTests.test_the_file_is_put_in_place_whole_through_a_temporary_file
 - label: a failed write leaves its temporary file behind
   find: "        tmp.unlink(missing_ok=True)\n        raise"

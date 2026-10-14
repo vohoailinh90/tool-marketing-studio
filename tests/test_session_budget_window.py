@@ -2,7 +2,9 @@
 
 Hook payloads do not carry the window's size, so session_budget.py once assumed 200K and told a 1M-context
 session it was 86% full at 171K tokens. The status line payload does carry the size, so it leaves it in a file
-the hook reads first; then the CLAUDE_SESSION_BUDGET_CONTEXT_WINDOW variable; then the 200K default.
+of its own per session, which the hook reads first; then the CLAUDE_SESSION_BUDGET_CONTEXT_WINDOW variable; then
+the 200K default. One file per session, because two status lines that read and rewrite one shared file lose each
+other's entries.
 """
 
 from __future__ import annotations
@@ -47,64 +49,96 @@ class TempRoot(unittest.TestCase):
         self.root = Path(self._tmp.name)
         self.state = self.root.joinpath(*STATUSLINE.WINDOW_STATE)
 
-    def recorded(self) -> object:
-        return json.loads(self.state.read_text(encoding="utf-8"))
+    def recorded(self, session: str = "s1") -> str:
+        return (self.state / session).read_text(encoding="utf-8")
+
+    def sessions(self) -> list[str]:
+        return sorted(path.name for path in self.state.iterdir()) if self.state.is_dir() else []
+
+    def age(self, session: str, seconds: float) -> None:
+        """Pretend this session's file was last written at that time (small numbers are long ago)."""
+        os.utime(self.state / session, (seconds, seconds))
 
 
 class StatuslineRecordsTheWindowTests(TempRoot):
     def test_the_size_is_recorded_for_the_session(self) -> None:
         STATUSLINE.record_window_size(payload("s1", 1_000_000), self.root)
-        self.assertEqual({"s1": 1_000_000}, self.recorded())
+        self.assertEqual("1000000", self.recorded())
 
     def test_a_float_that_is_a_whole_number_is_accepted(self) -> None:
         STATUSLINE.record_window_size(payload("s1", 200000.0), self.root)
-        self.assertEqual({"s1": 200_000}, self.recorded())
+        self.assertEqual("200000", self.recorded())
 
     def test_a_new_size_replaces_the_old_one_for_the_same_session(self) -> None:
         STATUSLINE.record_window_size(payload("s1", 200_000), self.root)
         STATUSLINE.record_window_size(payload("s1", 1_000_000), self.root)
-        self.assertEqual({"s1": 1_000_000}, self.recorded())
+        self.assertEqual("1000000", self.recorded())
 
     def test_other_sessions_are_kept(self) -> None:
         STATUSLINE.record_window_size(payload("small", 200_000), self.root)
         STATUSLINE.record_window_size(payload("large", 1_000_000), self.root)
-        self.assertEqual({"small": 200_000, "large": 1_000_000}, self.recorded())
+        self.assertEqual(["large", "small"], self.sessions())
+        self.assertEqual(("200000", "1000000"), (self.recorded("small"), self.recorded("large")))
 
-    def test_an_unchanged_size_does_not_rewrite_the_file(self) -> None:
+    def test_an_unchanged_size_is_not_rewritten_but_is_touched(self) -> None:
         STATUSLINE.record_window_size(payload("s1", 1_000_000), self.root)
+        self.age("s1", 1000)
         with mock.patch.object(os, "replace") as replace:
             STATUSLINE.record_window_size(payload("s1", 1_000_000), self.root)
         replace.assert_not_called()
+        self.assertGreater((self.state / "s1").stat().st_mtime, 1_000_000)
 
     def test_the_file_is_put_in_place_whole_through_a_temporary_file(self) -> None:
         with mock.patch.object(os, "replace", wraps=os.replace) as replace:
             STATUSLINE.record_window_size(payload("s1", 1_000_000), self.root)
         replace.assert_called_once()
         source, target = replace.call_args.args
-        self.assertEqual(self.state, Path(target))
-        self.assertNotEqual(self.state, Path(source))
-        self.assertEqual([self.state.name], sorted(path.name for path in self.state.parent.iterdir()))
+        self.assertEqual(self.state / "s1", Path(target))
+        self.assertNotEqual(self.state / "s1", Path(source))
+        self.assertEqual(["s1"], [name for name in os.listdir(self.state)])
 
     def test_a_failed_write_leaves_no_temporary_file_behind(self) -> None:
         STATUSLINE.record_window_size(payload("s1", 200_000), self.root)
         with mock.patch.object(os, "replace", side_effect=OSError("disk full")), self.assertRaises(OSError):
-            STATUSLINE.record_window_size(payload("s2", 1_000_000), self.root)
-        self.assertEqual([self.state.name], sorted(path.name for path in self.state.parent.iterdir()))
-        self.assertEqual({"s1": 200_000}, self.recorded())
+            STATUSLINE.record_window_size(payload("s1", 1_000_000), self.root)
+        self.assertEqual(["s1"], os.listdir(self.state))
+        self.assertEqual("200000", self.recorded())
 
-    def test_the_oldest_sessions_are_dropped_past_the_cap(self) -> None:
-        for number in range(STATUSLINE.MAX_RECORDED_SESSIONS + 8):
+    def test_the_least_recently_drawn_sessions_are_forgotten_past_the_cap(self) -> None:
+        cap = STATUSLINE.MAX_RECORDED_SESSIONS
+        for number in range(cap + 8):
             STATUSLINE.record_window_size(payload(f"s{number}", 200_000), self.root)
-        kept = list(self.recorded())
-        self.assertEqual(STATUSLINE.MAX_RECORDED_SESSIONS, len(kept))
-        self.assertEqual(f"s{STATUSLINE.MAX_RECORDED_SESSIONS + 7}", kept[-1])
+            self.age(f"s{number}", number + 1)
+        kept = self.sessions()
+        self.assertEqual(cap, len(kept))
+        self.assertIn(f"s{cap + 7}", kept)
         self.assertNotIn("s0", kept)
 
-    def test_a_session_seen_again_becomes_the_newest(self) -> None:
-        for name in ("a", "b", "c"):
-            STATUSLINE.record_window_size(payload(name, 200_000), self.root)
-        STATUSLINE.record_window_size(payload("a", 1_000_000), self.root)
-        self.assertEqual(["b", "c", "a"], list(self.recorded()))
+    def test_a_session_still_drawing_with_an_unchanged_size_outlives_newer_ones(self) -> None:
+        cap = STATUSLINE.MAX_RECORDED_SESSIONS
+        for number in range(cap):
+            STATUSLINE.record_window_size(payload(f"s{number}", 1_000_000), self.root)
+            self.age(f"s{number}", number + 1)
+        STATUSLINE.record_window_size(payload("s0", 1_000_000), self.root)  # s0 draws again, the size unchanged
+        STATUSLINE.record_window_size(payload("new", 1_000_000), self.root)  # a newer session appears
+        self.assertIn("s0", self.sessions())
+        self.assertNotIn("s1", self.sessions())
+
+    def test_a_status_line_that_finds_a_file_gone_while_pruning_still_succeeds(self) -> None:
+        cap = STATUSLINE.MAX_RECORDED_SESSIONS
+        for number in range(cap):
+            STATUSLINE.record_window_size(payload(f"s{number}", 200_000), self.root)
+            self.age(f"s{number}", number + 1)
+        original = Path.stat
+
+        def vanishing(path: Path, *args: object, **kwargs: object):
+            if path.name == "s0":
+                raise FileNotFoundError(path)
+            return original(path, *args, **kwargs)
+
+        with mock.patch.object(Path, "stat", vanishing):
+            STATUSLINE.record_window_size(payload("new", 200_000), self.root)
+        self.assertIn("new", self.sessions())
 
     def test_a_size_or_a_session_that_cannot_be_used_records_nothing(self) -> None:
         unusable = {
@@ -122,6 +156,11 @@ class StatuslineRecordsTheWindowTests(TempRoot):
             "empty session": payload("", 1_000_000),
             "a blank session": payload("  ", 1_000_000),
             "a numeric session": payload(7, 1_000_000),
+            "a path as session": payload("../s1", 1_000_000),
+            "a nested path as session": payload("a/b", 1_000_000),
+            "a dotted session": payload("a.b", 1_000_000),
+            "a hidden session": payload(".s1", 1_000_000),
+            "a very long session": payload("s" * 129, 1_000_000),
             "window not an object": {"session_id": "s1", "context_window": 1_000_000},
             "no window": {"session_id": "s1"},
         }
@@ -130,13 +169,17 @@ class StatuslineRecordsTheWindowTests(TempRoot):
                 STATUSLINE.record_window_size(body, self.root)
                 self.assertFalse(self.state.exists())
 
-    def test_a_state_file_that_is_not_a_mapping_is_replaced(self) -> None:
-        self.state.parent.mkdir(parents=True)
-        for text in ("not json", "[1, 2]", "7", ""):
+    def test_a_file_that_is_not_a_size_is_replaced(self) -> None:
+        self.state.mkdir(parents=True)
+        for text in ("not a number", "", "12.5", "\x00"):
             with self.subTest(content=text):
-                self.state.write_text(text, encoding="utf-8")
+                (self.state / "s1").write_text(text, encoding="utf-8")
                 STATUSLINE.record_window_size(payload("s1", 1_000_000), self.root)
-                self.assertEqual({"s1": 1_000_000}, self.recorded())
+                self.assertEqual("1000000", self.recorded())
+        with self.subTest(content="bytes that are not text"):
+            (self.state / "s1").write_bytes(b"\xff\xfe\xfa")
+            STATUSLINE.record_window_size(payload("s1", 1_000_000), self.root)
+            self.assertEqual("1000000", self.recorded())
 
     def test_the_status_line_is_printed_even_when_the_file_cannot_be_written(self) -> None:
         blocker = self.root / "a-file"
@@ -155,7 +198,7 @@ class StatuslineRecordsTheWindowTests(TempRoot):
         with mock.patch.object(STATUSLINE, "project_root", return_value=self.root), \
                 mock.patch("sys.stdin", stdin), contextlib.redirect_stdout(io.StringIO()):
             self.assertEqual(0, STATUSLINE.main())
-        self.assertEqual({"s1": 1_000_000}, self.recorded())
+        self.assertEqual("1000000", self.recorded())
 
     def test_the_project_directory_variable_picks_the_checkout(self) -> None:
         with mock.patch.dict(os.environ, {"CLAUDE_PROJECT_DIR": str(self.root)}):
@@ -166,9 +209,9 @@ class StatuslineRecordsTheWindowTests(TempRoot):
 
 
 class HookReadsTheWindowTests(TempRoot):
-    def record(self, content: object) -> None:
-        self.state.parent.mkdir(parents=True, exist_ok=True)
-        self.state.write_text(content if isinstance(content, str) else json.dumps(content), encoding="utf-8")
+    def record(self, session: str, content: object) -> None:
+        self.state.mkdir(parents=True, exist_ok=True)
+        (self.state / session).write_text(str(content), encoding="utf-8")
 
     def window(self, body: dict | None, env: str | None = None) -> int:
         with mock.patch.dict(os.environ):
@@ -179,16 +222,21 @@ class HookReadsTheWindowTests(TempRoot):
 
     def test_the_two_scripts_agree_on_where_and_how_much(self) -> None:
         self.assertEqual(STATUSLINE.WINDOW_STATE, BUDGET.WINDOW_STATE)
+        self.assertEqual(STATUSLINE.SESSION_ID.pattern, BUDGET.SESSION_ID.pattern)
         self.assertEqual(STATUSLINE.MIN_WINDOW_TOKENS, BUDGET.MIN_WINDOW_TOKENS)
         self.assertEqual(STATUSLINE.MAX_WINDOW_TOKENS, BUDGET.MAX_WINDOW_TOKENS)
 
     def test_what_the_status_line_recorded_wins(self) -> None:
-        self.record({"s1": 1_000_000})
+        self.record("s1", 1_000_000)
         self.assertEqual(1_000_000, self.window({"session_id": "s1"}, env="500000"))
+
+    def test_a_trailing_newline_is_fine(self) -> None:
+        self.record("s1", "1000000\n")
+        self.assertEqual(1_000_000, self.window({"session_id": "s1"}))
 
     def test_the_environment_variable_comes_next(self) -> None:
         self.assertEqual(500_000, self.window({"session_id": "s1"}, env="500000"))
-        self.record({"other": 1_000_000})
+        self.record("other", 1_000_000)
         self.assertEqual(500_000, self.window({"session_id": "s1"}, env="500000"))
 
     def test_the_default_comes_last(self) -> None:
@@ -198,33 +246,43 @@ class HookReadsTheWindowTests(TempRoot):
                 self.assertEqual(200_000, self.window({"session_id": "s1"}, env=env))
 
     def test_another_sessions_size_is_not_used(self) -> None:
-        self.record({"other": 1_000_000})
+        self.record("other", 1_000_000)
         self.assertEqual(200_000, self.window({"session_id": "s1"}))
 
     def test_a_call_without_a_payload_keeps_the_old_behaviour(self) -> None:
-        self.record({"s1": 1_000_000})
+        self.record("s1", 1_000_000)
         self.assertEqual(200_000, self.window(None))
         self.assertEqual(500_000, self.window(None, env="500000"))
         self.assertEqual(200_000, self.window({}))
 
     def test_a_recording_that_cannot_be_used_is_ignored(self) -> None:
         bad = {
-            "not json": "not json", "a list": "[1]", "empty file": "",
-            "a boolean": {"s1": True}, "text": {"s1": "1000000"}, "a float": {"s1": 1e6}, "zero": {"s1": 0},
-            "too small": {"s1": BUDGET.MIN_WINDOW_TOKENS - 1}, "too large": {"s1": BUDGET.MAX_WINDOW_TOKENS + 1},
+            "text": "many", "empty file": "", "a fraction": "12.5", "negative": "-5000", "an exponent": "1e6",
+            "two numbers": "1000000 2000000", "zero": "0", "a binary mark": "\x00",
+            "too small": str(BUDGET.MIN_WINDOW_TOKENS - 1), "too large": str(BUDGET.MAX_WINDOW_TOKENS + 1),
+            "far too long": "9" * 40,
         }
         for name, content in bad.items():
             with self.subTest(content=name):
-                self.record(content)
+                self.record("s1", content)
                 self.assertEqual(200_000, self.window({"session_id": "s1"}))
+        with self.subTest(content="bytes that are not text"):
+            (self.state / "s1").write_bytes(b"\xff\xfe\xfa")
+            self.assertEqual(200_000, self.window({"session_id": "s1"}))
 
-    def test_a_payload_without_a_usable_session_id_reads_nothing(self) -> None:
-        self.record({"": 1_000_000, "7": 1_000_000})
-        for body in ({}, {"session_id": ""}, {"session_id": 7}, {"session_id": None}):
+    def test_a_directory_where_the_file_should_be_is_ignored(self) -> None:
+        (self.state / "s1").mkdir(parents=True)
+        self.assertEqual(200_000, self.window({"session_id": "s1"}))
+
+    def test_a_session_id_that_is_not_a_plain_name_reads_nothing(self) -> None:
+        self.record("s1", 1_000_000)
+        (self.state.parent / "outside").write_text("1000000", encoding="utf-8")
+        for body in ({}, {"session_id": ""}, {"session_id": 7}, {"session_id": None}, {"session_id": "../outside"},
+                     {"session_id": "context-window/s1"}, {"session_id": "s1/../s1"}, {"session_id": "s" * 129}):
             with self.subTest(body=body):
                 self.assertEqual(200_000, self.window(body))
 
-    def test_a_missing_state_file_is_fine(self) -> None:
+    def test_a_missing_state_directory_is_fine(self) -> None:
         self.assertFalse(self.state.exists())
         self.assertEqual(200_000, self.window({"session_id": "s1"}))
 
@@ -240,10 +298,13 @@ class SessionOfAMillionTokensIsNotToldItIsFullTests(TempRoot):
         self.transcript.write_text(json.dumps({"message": {"role": "assistant", "usage": usage}}) + "\n",
                                    encoding="utf-8")
 
-    def nudge(self, recorded: dict | None, env: str | None = None) -> str:
+    def record(self, size: int) -> None:
+        self.state.mkdir(parents=True, exist_ok=True)
+        (self.state / "s1").write_text(str(size), encoding="utf-8")
+
+    def nudge(self, recorded: int | None, env: str | None = None) -> str:
         if recorded is not None:
-            self.state.parent.mkdir(parents=True, exist_ok=True)
-            self.state.write_text(json.dumps(recorded), encoding="utf-8")
+            self.record(recorded)
         body = {"session_id": "s1", "transcript_path": str(self.transcript)}
         out = io.StringIO()
         with mock.patch.dict(os.environ, {"CLAUDE_PROJECT_DIR": str(self.root)}):
@@ -255,20 +316,24 @@ class SessionOfAMillionTokensIsNotToldItIsFullTests(TempRoot):
         return out.getvalue()
 
     def test_a_recorded_million_token_window_gives_no_nudge(self) -> None:
-        self.assertEqual("", self.nudge({"s1": 1_000_000}))
+        self.assertEqual("", self.nudge(1_000_000))
 
     def test_with_no_record_the_old_default_still_nudges(self) -> None:
         self.assertIn("~86% full", self.nudge(None))
 
     def test_a_recorded_small_window_still_nudges(self) -> None:
-        self.assertIn("~86% full", self.nudge({"s1": 200_000}, env="1000000"))
+        self.assertIn("~86% full", self.nudge(200_000, env="1000000"))
 
     def test_the_variable_still_covers_a_session_the_status_line_has_not_seen(self) -> None:
         self.assertEqual("", self.nudge(None, env="1000000"))
 
+    def test_the_status_line_and_the_hook_meet_at_the_same_file(self) -> None:
+        with mock.patch.object(STATUSLINE, "project_root", return_value=self.root):
+            STATUSLINE.record_window_size(payload("s1", 1_000_000), STATUSLINE.project_root())
+        self.assertEqual("", self.nudge(None))
+
     def test_the_handoff_records_the_window_it_was_measured_against(self) -> None:
-        self.state.parent.mkdir(parents=True, exist_ok=True)
-        self.state.write_text(json.dumps({"s1": 1_000_000}), encoding="utf-8")
+        self.record(1_000_000)
         state = BUDGET.collect_state({"session_id": "s1", "transcript_path": str(self.transcript)}, "manual", self.root)
         self.assertEqual(1_000_000, state["context_window"])
         self.assertIn("171,021 / 1,000,000 tokens", BUDGET.render_auto_state(state))

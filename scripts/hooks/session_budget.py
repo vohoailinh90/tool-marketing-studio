@@ -29,6 +29,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import subprocess
 import sys
 import time
@@ -37,12 +38,13 @@ from pathlib import Path
 from typing import Any
 
 # Hook payloads do not carry the context window's size the way the status line payload does, so
-# scripts/hooks/statusline.py records it per session in WINDOW_STATE and context_window() reads it
+# scripts/hooks/statusline.py records it, one file per session in WINDOW_STATE, and context_window() reads it
 # from there. Without that record (no status line yet, or a payload that omits the size) the size comes
 # from CLAUDE_SESSION_BUDGET_CONTEXT_WINDOW, and failing that this default, which assumes 200K.
 DEFAULT_CONTEXT_WINDOW = 200_000
-# Keep these three in step with statusline.py (a test asserts it).
-WINDOW_STATE = ("artifacts", "handoff", ".context-window.json")
+# Keep these four in step with statusline.py (a test asserts it).
+WINDOW_STATE = ("artifacts", "handoff", "context-window")
+SESSION_ID = re.compile(r"[A-Za-z0-9_-]{1,128}")
 MIN_WINDOW_TOKENS = 1_000
 MAX_WINDOW_TOKENS = 100_000_000
 WRITE_HANDOFF_AT = 0.70
@@ -248,16 +250,14 @@ def last_user_prompt(lines: list[str]) -> str:
 
 def recorded_window(session_id: object, root: Path) -> int | None:
     """The window size the status line recorded for this session, or None when it recorded none or it is unusable."""
-    if not isinstance(session_id, str) or not session_id:
+    if not isinstance(session_id, str) or not SESSION_ID.fullmatch(session_id):
         return None
     try:
-        known = json.loads(root.joinpath(*WINDOW_STATE).read_text(encoding="utf-8"))
+        text = root.joinpath(*WINDOW_STATE, session_id).read_text(encoding="utf-8").strip()
     except (OSError, ValueError):
         return None
-    size = known.get(session_id) if isinstance(known, dict) else None
-    if isinstance(size, bool) or not isinstance(size, int) or not MIN_WINDOW_TOKENS <= size <= MAX_WINDOW_TOKENS:
-        return None
-    return size
+    size = int(text) if re.fullmatch(r"[0-9]{1,12}", text) else None
+    return size if size is not None and MIN_WINDOW_TOKENS <= size <= MAX_WINDOW_TOKENS else None
 
 
 def context_window(payload: dict[str, Any] | None = None, root: Path | None = None) -> int:

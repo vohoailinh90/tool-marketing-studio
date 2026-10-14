@@ -53,7 +53,7 @@ check your CLI version against the table before treating it as one.
 
 The status line also does one thing besides drawing: it records the context window's
 size (`context_window.context_window_size`) for the session in
-`artifacts/handoff/.context-window.json`, because the hooks cannot see it. See
+`artifacts/handoff/context-window/<session id>`, because the hooks cannot see it. See
 *Configuration* below. A payload that omits the field, or gives a value that is not a plausible
 size (1,000 to 100,000,000 tokens), records nothing and costs the line nothing.
 
@@ -135,9 +135,11 @@ The occupancy estimate divides the tokens in use by the context window's size, a
 payload does not say how large the window is. The size is therefore taken from the first of these
 that gives a usable value:
 
-1. **What the status line recorded for this session** — `artifacts/handoff/.context-window.json`,
-   a map from session id to size, written by `statusline.py` and kept to the newest 32 sessions.
-   This is right for a 200K and a 1M model alike, with nothing to configure, and it is why the
+1. **What the status line recorded for this session** — the file
+   `artifacts/handoff/context-window/<session id>`, which holds the size in tokens and is written
+   by `statusline.py`. Each session has a file of its own, so status lines of different sessions
+   never read and rewrite the same file; the file is rewritten only when the size changes, and
+   touched otherwise, and the 32 files drawn most recently are kept. This is right for a 200K and a 1M model alike, with nothing to configure, and it is why the
    status line must be enabled (it is in `.claude/settings.json`). The first hook call of a session
    can run before the status line has rendered once.
 2. **The `CLAUDE_SESSION_BUDGET_CONTEXT_WINDOW` variable**, in tokens: for a session the status line
@@ -148,8 +150,8 @@ that gives a usable value:
 |---|---|---|
 | `CLAUDE_SESSION_BUDGET_CONTEXT_WINDOW` | `200000` | Window size when the status line has recorded none for the session; ignored when it has. |
 
-To see what was recorded: `cat artifacts/handoff/.context-window.json`. If a 1M session is told it
-is "~86% full" at about 170,000 tokens, this file has no entry for it (the payload of that release
+To see what was recorded: `head artifacts/handoff/context-window/*`. If a 1M session is told it
+is "~86% full" at about 170,000 tokens, there is no file for it (the payload of that release
 may not carry the size), and the variable above is the fallback. The handoff's *Context at capture*
 line shows the size it used.
 

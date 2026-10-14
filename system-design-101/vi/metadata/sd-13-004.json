@@ -62,6 +62,10 @@
       "source": "https://prometheus.io/docs/practices/pushing/"
     },
     {
+      "claim_vi": "Đích scrape của Prometheus có thể được khai báo tĩnh bằng static_configs hoặc tìm động bằng một cơ chế service discovery được hỗ trợ.",
+      "source": "https://prometheus.io/docs/prometheus/latest/configuration/configuration/"
+    },
+    {
       "claim_vi": "Prometheus hỗ trợ service discovery cho Kubernetes qua kubernetes_sd_config.",
       "source": "https://prometheus.io/docs/prometheus/latest/configuration/configuration/"
     },

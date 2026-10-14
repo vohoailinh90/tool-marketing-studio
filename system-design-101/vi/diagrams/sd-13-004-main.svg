@@ -1,28 +1,30 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 652" width="320" height="652" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 706" width="320" height="706" role="img" aria-labelledby="title desc">
 <title id="title">Thu thập số đo: kéo hay đẩy</title>
 <desc id="desc">Ba tình huống và lựa chọn tương ứng: dịch vụ chạy lâu trong cụm thì kéo, tác vụ batch cấp dịch vụ thì đẩy qua Pushgateway, đích nằm sau tường lửa thì đặt agent trong mạng đó, kéo cục bộ rồi chuyển tiếp mẫu về bằng remote write.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="652" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<rect width="320" height="706" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="30" font-size="20" font-weight="bold">KÉO HAY ĐẨY</text>
 <text x="16" y="58" font-size="16" font-weight="normal">Chọn theo tình huống</text>
-<rect x="16" y="89" width="288" height="155" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
+<rect x="16" y="89" width="288" height="209" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
 <text x="30" y="117" font-size="16" font-weight="bold">Dịch vụ chạy lâu,</text>
 <text x="30" y="144" font-size="16" font-weight="bold">trong cụm</text>
 <text x="30" y="171" font-size="16" font-weight="normal">Hợp: kéo</text>
-<text x="30" y="198" font-size="16" font-weight="normal">Collector tự tìm đích, thấy</text>
-<text x="30" y="225" font-size="16" font-weight="normal">ngay đích nào không trả lời</text>
-<rect x="16" y="256" width="288" height="155" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
-<text x="30" y="284" font-size="16" font-weight="bold">Tác vụ batch cấp dịch</text>
-<text x="30" y="311" font-size="16" font-weight="bold">vụ</text>
-<text x="30" y="338" font-size="16" font-weight="normal">Hợp: đẩy qua Pushgateway</text>
-<text x="30" y="365" font-size="16" font-weight="normal">Kết quả còn lại sau khi tác</text>
-<text x="30" y="392" font-size="16" font-weight="normal">vụ kết thúc</text>
-<rect x="16" y="423" width="288" height="209" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
-<text x="30" y="451" font-size="16" font-weight="bold">Đích nằm sau tường</text>
-<text x="30" y="478" font-size="16" font-weight="bold">lửa/NAT</text>
-<text x="30" y="505" font-size="16" font-weight="normal">Collector trung tâm không</text>
-<text x="30" y="532" font-size="16" font-weight="normal">với tới</text>
-<text x="30" y="559" font-size="16" font-weight="normal">Hợp: agent trong mạng đó</text>
-<text x="30" y="586" font-size="16" font-weight="normal">kéo cục bộ rồi chuyển tiếp</text>
-<text x="30" y="613" font-size="16" font-weight="normal">bằng remote write</text>
+<text x="30" y="198" font-size="16" font-weight="normal">Collector kéo từ danh sách</text>
+<text x="30" y="225" font-size="16" font-weight="normal">đích (khai báo tay hoặc qua</text>
+<text x="30" y="252" font-size="16" font-weight="normal">service discovery), thấy</text>
+<text x="30" y="279" font-size="16" font-weight="normal">ngay đích nào không trả lời</text>
+<rect x="16" y="310" width="288" height="155" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="338" font-size="16" font-weight="bold">Tác vụ batch cấp dịch</text>
+<text x="30" y="365" font-size="16" font-weight="bold">vụ</text>
+<text x="30" y="392" font-size="16" font-weight="normal">Hợp: đẩy qua Pushgateway</text>
+<text x="30" y="419" font-size="16" font-weight="normal">Kết quả còn lại sau khi tác</text>
+<text x="30" y="446" font-size="16" font-weight="normal">vụ kết thúc</text>
+<rect x="16" y="477" width="288" height="209" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="505" font-size="16" font-weight="bold">Đích nằm sau tường</text>
+<text x="30" y="532" font-size="16" font-weight="bold">lửa/NAT</text>
+<text x="30" y="559" font-size="16" font-weight="normal">Collector trung tâm không</text>
+<text x="30" y="586" font-size="16" font-weight="normal">với tới</text>
+<text x="30" y="613" font-size="16" font-weight="normal">Hợp: agent trong mạng đó</text>
+<text x="30" y="640" font-size="16" font-weight="normal">kéo cục bộ rồi chuyển tiếp</text>
+<text x="30" y="667" font-size="16" font-weight="normal">bằng remote write</text>
 </g></svg>

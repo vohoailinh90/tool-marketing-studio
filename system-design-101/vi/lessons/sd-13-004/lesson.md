@@ -19,12 +19,12 @@ Không phải lựa chọn mặc định. Tài liệu Prometheus khuyên Pushgat
 
 ## Giới hạn cần nhớ
 
-Với kéo, đích phải bật sẵn một địa chỉ phơi số đo và collector phải tới được nó. Với đẩy trực tiếp qua Pushgateway, Prometheus không tự sinh số đo `up` cho từng nguồn đẩy, nên bạn mất tín hiệu tự động "đích có còn sống không" (một hệ thống đẩy khác có thể gửi tín hiệu còn sống riêng, và agent kéo cục bộ rồi chuyển tiếp bằng remote write vẫn giữ `up`). Với mọi cách đẩy, bạn phải tự chặn việc đẩy quá nhiều làm quá tải kho. Pushgateway giữ số đo cho tới khi bị xóa, nên số đo cũ có thể ở lại nếu không dọn.
+Với kéo, đích phải bật sẵn một địa chỉ phơi số đo, collector phải tới được nó và biết nó ở đâu: danh sách khai báo tay phải được cập nhật, còn service discovery chỉ giúp khi đã được cấu hình. Với đẩy trực tiếp qua Pushgateway, Prometheus không tự sinh số đo `up` cho từng nguồn đẩy, nên bạn mất tín hiệu tự động "đích có còn sống không" (một hệ thống đẩy khác có thể gửi tín hiệu còn sống riêng, và agent kéo cục bộ rồi chuyển tiếp bằng remote write vẫn giữ `up`). Với mọi cách đẩy, bạn phải tự chặn việc đẩy quá nhiều làm quá tải kho. Pushgateway giữ số đo cho tới khi bị xóa, nên số đo cũ có thể ở lại nếu không dọn.
 
 <details>
 <summary>Xem sâu hơn</summary>
 
-- **Kéo trong Prometheus:** cấu hình `scrape_configs`; đích thường tìm bằng service discovery (ví dụ `kubernetes_sd_config`) thay vì tệp ghi cứng, để danh sách theo kịp khi máy chủ thêm bớt.
+- **Kéo trong Prometheus:** cấu hình `scrape_configs`; đích có thể khai báo tay bằng `static_configs` (người vận hành tự cập nhật danh sách) hoặc tìm bằng service discovery, ví dụ `kubernetes_sd_configs`, để danh sách theo kịp khi máy chủ thêm bớt. Việc tự tìm đích chỉ xảy ra khi bạn đã cấu hình cơ chế đó.
 - **Tín hiệu sẵn có:** mỗi lần kéo Prometheus ghi số đo `up` cho biết kéo có thành công không.
 - **Pushgateway:** nhận số đo đẩy lên từ tác vụ ngắn rồi để Prometheus kéo từ chính nó; không phải cách đẩy chung cho mọi dịch vụ.
 - **Agent và remote write:** agent vẫn kéo (scrape) đích trong mạng của nó rồi chuyển tiếp các mẫu đã thu; vì còn kéo cục bộ nên vẫn thấy tín hiệu `up`. Remote write không dành cho ứng dụng đẩy thẳng số đo của chính nó.

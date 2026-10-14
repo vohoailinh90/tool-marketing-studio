@@ -6,6 +6,10 @@ Số đo có thể được bộ thu thập kéo về hoặc được dịch v�
 
 **Đọc hình:** không có cách đúng cho mọi trường hợp; một hệ thống thật thường dùng cả hai.
 
+## Từ viết tắt
+
+- **NAT** (Network Address Translation) — dịch địa chỉ mạng: thiết bị đổi địa chỉ nguồn hoặc đích của gói tin khi đi qua; đích nằm sau tường lửa hay NAT là một lý do bộ thu thập không với tới được mục tiêu.
+
 ## Nhìn hình thử trả lời
 
 Một tác vụ batch chạy trên một máy cụ thể và chỉ có ý nghĩa với máy đó. Pushgateway có hợp không?

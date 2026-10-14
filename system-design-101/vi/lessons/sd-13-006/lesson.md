@@ -6,6 +6,12 @@ Service là lớp địa chỉ ổn định trước một nhóm Pod. Khi nó kh
 
 **Đọc hình:** năm bước xếp theo thứ tự kiểm tra thường hiệu quả, không phải thứ tự dữ liệu chạy.
 
+## Từ viết tắt
+
+- **DNS** (Domain Name System) — hệ thống tên miền: "danh bạ" của Internet, đổi tên như example.com thành địa chỉ để các máy tìm thấy nhau.
+- **HTTP** (HyperText Transfer Protocol) — giao thức truyền siêu văn bản: quy ước để trình duyệt gửi yêu cầu và máy chủ gửi trả lời.
+- **LB** (Load Balancer) — bộ cân bằng tải: thành phần chia các yêu cầu tới nhiều bản sao của một dịch vụ; Service kiểu LoadBalancer cần có thành phần tạo ra LB, thiếu nó thì Service đứng ở trạng thái pending.
+
 ## Nhìn hình thử trả lời
 
 `kubectl get endpointslices -l kubernetes.io/service-name=web` không trả về endpoint nào. Nghi vấn đầu tiên là gì và so sánh cái gì với cái gì?

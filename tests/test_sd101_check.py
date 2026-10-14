@@ -1867,6 +1867,8 @@ class AbbreviationRuleTests(StoreCase):
         self.assertFalse(check.spells("MiB", "Mebibyte Extra"))
         self.assertTrue(check.spells("HPACK", "Header Compression for HTTP/2"))
         self.assertFalse(check.spells("HPACK", "Header Compression"))
+        self.assertTrue(check.spells("SLSA", "Supply-chain Levels for Software Artifacts"))
+        self.assertFalse(check.spells("SLSA", "Supply-chain Levels"))
         self.lesson("Bộ nhớ tối thiểu 19 MiB.", glossary=None)
         self.assertProblem("uses the abbreviation(s) MiB")
         self.lesson("Bộ nhớ tối thiểu 19 MiB.", glossary="- **MiB** (Mebibyte) — mebibyte: đơn vị dung lượng bằng 1.048.576 byte.\n")
@@ -1905,6 +1907,9 @@ class AbbreviationRuleTests(StoreCase):
 
     def test_words_that_only_look_like_abbreviations_need_no_entry(self) -> None:
         self.lesson("Gửi GET /phone, dùng LEFT JOIN, kiểm tra NULL và trả OK; mở README.", glossary=None)
+        self.assertEqual([], self.problems())
+        self.lesson("Dockerfile: COPY, RUN, EXPOSE và STOPSIGNAL; kubectl: READY, RESTARTS, STATUS; log: ERROR, END; "
+                    "khung GOAWAY.", glossary=None)
         self.assertEqual([], self.problems())
 
     def test_a_code_span_a_code_block_a_link_and_a_comment_are_not_read(self) -> None:

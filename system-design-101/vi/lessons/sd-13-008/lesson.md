@@ -6,6 +6,10 @@ Hệ sinh thái Kubernetes có quá nhiều công cụ. Cách đỡ rối là ch
 
 **Đọc hình:** năm bước do bài này đề xuất để dùng bản đồ công cụ; bản đồ gốc chỉ là hình minh họa các công cụ.
 
+## Từ viết tắt
+
+- **CNCF** (Cloud Native Computing Foundation) — quỹ bảo trợ các dự án điện toán đám mây nguyên bản; bài dùng mức trưởng thành của dự án do quỹ này phân (sandbox, incubating, graduated) để đối chiếu.
+
 ## Nhìn hình thử trả lời
 
 Một dự án đã ở mức "graduated" của CNCF (Cloud Native Computing Foundation — quỹ bảo trợ các dự án điện toán đám mây nguyên bản như Kubernetes). Có nghĩa là nó luôn phù hợp với hệ thống của bạn?

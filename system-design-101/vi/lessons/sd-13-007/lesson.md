@@ -6,6 +6,14 @@ Một dịch vụ chạy ổn với một bản sao thường ngầm giả đị
 
 **Đọc hình:** bốn thẻ là bốn giả định độc lập; thẻ nào cũng kèm cách gỡ.
 
+## Từ viết tắt
+
+- **ID** (IDentifier) — mã định danh: chuỗi hoặc số dùng để phân biệt một đối tượng với các đối tượng khác, ví dụ một người dùng, một thông điệp hay một lượt xử lý.
+- **UUID** (Universally Unique IDentifier) — mã định danh duy nhất toàn cầu: chuỗi dài sinh ngẫu nhiên, gần như không bao giờ trùng giữa các bản sao.
+- **API** (Application Programming Interface) — giao diện lập trình ứng dụng: cách để một chương trình gọi chức năng hoặc lấy dữ liệu của chương trình khác theo quy ước đã định.
+- **TTL** (Time To Live) — thời gian sống: khoảng thời gian một bản ghi trong bộ nhớ đệm được coi là còn dùng được trước khi hết hạn.
+- **SQS** (Simple Queue Service) — dịch vụ hàng đợi thông điệp của Amazon: nơi bên gửi đặt thông điệp để bên nhận lấy ra xử lý sau.
+
 ## Nhìn hình thử trả lời
 
 Bạn tăng một API (Application Programming Interface — giao diện lập trình ứng dụng) từ 1 lên 3 bản sao thì người dùng thỉnh thoảng bị đăng xuất dù mã không đổi. Nguyên nhân hay gặp nhất là gì, và chữa thế nào?

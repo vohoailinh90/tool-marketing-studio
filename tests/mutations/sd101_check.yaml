@@ -1714,6 +1714,10 @@ mutations:
   find: "    problems = check_store(arguments.store, arguments.source_map, pin_roster)"
   replace: "    problems = []"
   test: tests.test_sd101_check.CommandLineTests.test_a_broken_store_exits_one_and_prints_the_problem
+- label: the Dockerfile, kubectl and log words are read as abbreviations
+  find: "    \"COPY\", \"RUN\", \"EXPOSE\", \"STOPSIGNAL\", \"GOAWAY\", \"READY\", \"RESTARTS\", \"STATUS\", \"END\", \"ERROR\",\n"
+  replace: ""
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_words_that_only_look_like_abbreviations_need_no_entry
 - label: a word in NOT_ACRONYMS is still read as an abbreviation
   find: "    return found - {\"\"} - NOT_ACRONYMS"
   replace: "    return found - {\"\"}"
@@ -1867,6 +1871,6 @@ mutations:
   replace: "UNIT_SYMBOLS = {}"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_the_forms_an_abbreviation_takes
 - label: a name with its own full form is held to the initials rule
-  find: "IRREGULAR_FORMS = {\"HPACK\": \"Header Compression for HTTP/2\"}"
+  find: "IRREGULAR_FORMS = {\"HPACK\": \"Header Compression for HTTP/2\", \"SLSA\": \"Supply-chain Levels for Software Artifacts\"}"
   replace: "IRREGULAR_FORMS = {}"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_a_unit_symbol_is_explained_by_the_name_of_the_unit

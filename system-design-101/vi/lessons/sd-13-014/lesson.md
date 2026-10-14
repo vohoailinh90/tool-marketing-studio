@@ -6,6 +6,10 @@ Lỗi khó chịu nhất của CI (Continuous Integration — tích hợp liên 
 
 **Đọc hình:** năm thẻ là năm nguồn khác biệt độc lập; thẻ nào cũng kèm cách khóa lại.
 
+## Từ viết tắt
+
+- **CI** (Continuous Integration) — tích hợp liên tục: tự động xây dựng và kiểm tra mã mỗi khi có thay đổi.
+
 ## Nhìn hình thử trả lời
 
 Test qua trên máy macOS của bạn nhưng lỗi trên runner Linux vì không tìm thấy tệp `Config.json`, trong khi tệp trong repo (viết tắt của repository — kho mã nguồn) tên `config.json`. Nguyên nhân hay gặp nhất là gì?

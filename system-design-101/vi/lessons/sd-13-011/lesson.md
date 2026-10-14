@@ -6,6 +6,10 @@ Sửa một dòng mã mà docker build lại cài lại toàn bộ phụ thuộc
 
 **Đọc hình:** năm thẻ là năm nguyên nhân độc lập; thẻ nào cũng kèm cách chữa.
 
+## Từ viết tắt
+
+- **CI** (Continuous Integration) — tích hợp liên tục: tự động xây dựng và kiểm tra mã mỗi khi có thay đổi.
+
 ## Nhìn hình thử trả lời
 
 Dockerfile có `COPY . .` rồi `RUN npm ci`. Bạn sửa một dòng trong tệp README. Lần build sau có phải cài lại phụ thuộc không, và chữa thế nào?

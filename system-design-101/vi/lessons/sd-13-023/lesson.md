@@ -6,6 +6,10 @@ Hai thuật ngữ này, NoOps (No Operations — không cần nhóm vận hành 
 
 **Đọc hình:** thẻ 1 và 2 là hai trục độc lập, chọn một ô ở mỗi thẻ; hai thẻ sau là phần còn lại bất kể bạn chọn gì.
 
+## Từ viết tắt
+
+- **AWS** (Amazon Web Services) — dịch vụ điện toán đám mây của Amazon; bài chỉ dẫn tới tài liệu của họ.
+
 ## Nhìn hình thử trả lời
 
 Một nhóm theo DevOps chạy hàm serverless đóng gói bằng container image. Khi có bản vá cho ảnh cơ sở, ai chịu trách nhiệm cập nhật?

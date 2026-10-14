@@ -6,6 +6,11 @@ Bạn chạy `docker run -d` và vài giây sau container đã biến mất kh�
 
 **Đọc hình:** bốn thẻ là bốn chỗ để hỏi một container đã thoát; làm theo thứ tự hoặc chỉ đọc chỗ cần.
 
+## Từ viết tắt
+
+- **SIGKILL** (SIGnal KILL) — tín hiệu số 9, buộc dừng tiến trình ngay và tiến trình không kịp dọn dẹp; mã thoát 137 thường là dấu hiệu của nó.
+- **PID** (Process IDentifier) — mã số tiến trình: số hệ điều hành gán cho mỗi tiến trình; trong container, tiến trình chính có PID 1 và container chạy đến khi nó thoát.
+
 ## Nhìn hình thử trả lời
 
 Container thoát với mã 137 ngay sau khi nhận nhiều request, và `docker logs` không có dòng lỗi nào. Bước kiểm tra tiếp theo là gì?

@@ -170,14 +170,16 @@ SOURCES_HEADING = "Nguồn đối chiếu"
 # listed here, so add a new one when a lesson introduces it.
 # Unit symbols whose letters are not initials (MiB is "mebi" + byte): the full form is the unit's name.
 UNIT_SYMBOLS = {"KiB": "Kibibyte", "MiB": "Mebibyte", "GiB": "Gibibyte", "TiB": "Tebibyte"}
-# Names whose letters are not (all) initials: the full form is what they stand for (HPACK is "Header Compression for HTTP/2").
-IRREGULAR_FORMS = {"HPACK": "Header Compression for HTTP/2"}
+# Names whose letters are not (all) initials: the full form is what they stand for (HPACK is "Header Compression for
+# HTTP/2"; SLSA is "Supply-chain Levels for Software Artifacts", where "Supply-chain" is one word but two hyphen parts).
+IRREGULAR_FORMS = {"HPACK": "Header Compression for HTTP/2", "SLSA": "Supply-chain Levels for Software Artifacts"}
 MIXED_CASE_TERMS = ("gRPC", "IPv4", "IPv6", "OAuth", "mTLS", "NoSQL", "vCPU", "IaC", "MoE", *UNIT_SYMBOLS)
 ABBREVIATION = re.compile(r"(?<!\w)(?:(" + "|".join(MIXED_CASE_TERMS) + r")|([A-Z]{2,})\d*s?)(?!\w)")
 GLOSSARY_BULLET = re.compile(r"^- \*\*(?P<abbreviation>(?=[A-Za-z0-9]*[A-Z])[A-Za-z][A-Za-z0-9]+)\*\* "
                              r"\((?P<full>[^()]+)\) — (?P<meaning>\S.*)$")
 MIN_MEANING_WORDS = 3
-# Capital words that are not abbreviations: HTTP methods, SQL keywords and a few file or status names. They need no
+# Capital words that are not abbreviations: HTTP methods, SQL keywords, Dockerfile instructions, kubectl column titles,
+# log levels and a few file or status names. They need no
 # entry in the glossary. In lesson.md a `code span` is skipped too, so a new one can usually stay out of this list.
 NOT_ACRONYMS = frozenset({
     "GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS", "CONNECT", "TRACE",
@@ -185,6 +187,7 @@ NOT_ACRONYMS = frozenset({
     "NOT", "IS", "NULL", "IN", "AS", "GROUP", "ORDER", "BY", "HAVING", "LIMIT", "UNION", "INSERT", "UPDATE", "CREATE",
     "DROP", "TABLE", "VALUES", "SET",
     "OK", "README", "TODO",
+    "COPY", "RUN", "EXPOSE", "STOPSIGNAL", "GOAWAY", "READY", "RESTARTS", "STATUS", "END", "ERROR",
 })
 
 

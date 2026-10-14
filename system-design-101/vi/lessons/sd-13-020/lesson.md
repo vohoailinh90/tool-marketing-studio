@@ -6,6 +6,11 @@ Triển khai thất bại theo vài cách quen thuộc. Gọi tên đúng rủi 
 
 **Đọc hình:** bài không nhằm xếp hạng cơ chế; mỗi rủi ro có thể giảm bằng nhiều cơ chế, và cơ chế nào cũng có giá.
 
+## Từ viết tắt
+
+- **SLO** (Service Level Objective) — mục tiêu mức dịch vụ: con số cam kết về độ tin cậy, như tỉ lệ yêu cầu thành công trong một khoảng thời gian; bài lấy ngưỡng chấp nhận của bản mới từ nó.
+- **DORA** (DevOps Research and Assessment) — chương trình nghiên cứu và đánh giá DevOps; các thước đo DORA đo tốc độ và độ ổn định khi giao phần mềm.
+
 ## Nhìn hình thử trả lời
 
 Bản mới thêm một cột bắt buộc vào bảng, trong khi bản cũ vẫn đang chạy. Chuyện gì xảy ra nếu triển khai dần từng nhóm máy?

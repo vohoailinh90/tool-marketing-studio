@@ -308,7 +308,8 @@ class CommentTests(unittest.TestCase):
         render_many(self.root, 12, lambda n: "`" * 3000)                                      # fences of 3001 backticks, twice each
         body = comment(self.root)
         self.assertLess(len(body), radar_preview.BODY_LIMIT)
-        self.assertLess(body.count("<details>"), 12)
+        self.assertNotIn("too large for one comment", body)                                   # the budget held; the backstop did not have to
+        self.assertTrue(0 < body.count("<details>") < 12, body.count("<details>"))
 
     def test_very_many_posts_are_not_all_listed_and_a_long_overflow_list_is_cut(self):
         render_many(self.root, 400, lambda n: "", overflow=list(range(1, 51)))

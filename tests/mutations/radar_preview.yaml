@@ -32,8 +32,8 @@ mutations:
   replace: '3'
   test: tests.test_radar_preview.CommentTests.test_a_caption_cannot_close_its_fence_or_ping_anyone
 - label: a caption is not cut
-  find: 'r["caption"].strip()[:CAPTION_LIMIT]'
-  replace: 'r["caption"].strip()'
+  find: '            caption = whole[:CAPTION_LIMIT]'
+  replace: '            caption = whole'
   test: tests.test_radar_preview.CommentTests.test_a_very_long_caption_is_cut
 - label: every file outside radar data is listed
   find: 'for p in outside[:5]]'

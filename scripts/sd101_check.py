@@ -194,6 +194,10 @@ EMBEDDED_ABBREVIATIONS = {"ChatGPT": "GPT", "FastAPI": "API", "InfluxDB": "DB", 
                           "LLMWare": "LLM", "MetalLB": "LB", "MySQL": "SQL", "OOMKilled": "OOM", "OpenAI": "AI",
                           "OpenSSH": "SSH", "PostgreSQL": "SQL", "PyJWT": "JWT", "SQLite": "SQL", "TimescaleDB": "DB",
                           "macOS": "OS"}
+# The same terms and names set in capitals (OAUTH 2.0 in a heading), which read as the term they are.
+UPPER_FORMS = {**{term.upper(): term for term in MIXED_CASE_TERMS},
+               **{name.upper(): abbreviation for name, abbreviation in EMBEDDED_ABBREVIATIONS.items()}}
+UPPER_FORM = re.compile(r"(?<!\w)(" + "|".join(UPPER_FORMS) + r")(?:V?\d+)?S?(?!\w)")
 EMBEDDED_NAME = re.compile(r"(?<!\w)(" + "|".join(EMBEDDED_ABBREVIATIONS) + r")(?:v?\d+)?(?:[\u2019']?s)?(?!\w)")
 GLOSSARY_BULLET = re.compile(r"^- \*\*(?P<abbreviation>(?=[A-Za-z0-9]*[A-Z])[A-Za-z0-9][A-Za-z0-9]+)\*\* "
                              r"\((?P<full>[^()]+)\) — (?P<meaning>\S.*)$")
@@ -997,7 +1001,9 @@ def abbreviations_in(text: str, capitals: bool = True) -> set[str]:
     name of EMBEDDED_ABBREVIATIONS, minus the words in NOT_ACRONYMS. With capitals=False only the mixed-case terms and
     names count: in a heading set in capitals a Vietnamese word cannot be told from an abbreviation, but gRPC, IPv4 and
     OpenAI can."""
-    found = {match.group(1) or (match.group(2) if capitals else "") for match in ABBREVIATION.finditer(text)}
+    found = {UPPER_FORMS[match.group(1)] for match in UPPER_FORM.finditer(text)}
+    text = UPPER_FORM.sub(" ", text)  # a term in capitals is the term, not a capital run of its own
+    found |= {match.group(1) or (match.group(2) if capitals else "") for match in ABBREVIATION.finditer(text)}
     found |= {EMBEDDED_ABBREVIATIONS[match.group(1)] for match in EMBEDDED_NAME.finditer(text)}
     return found - {""} - NOT_ACRONYMS
 
@@ -1105,10 +1111,11 @@ def glossary_entries(lines: list[str]) -> tuple[list[tuple[str, str, str]], list
 # Little words a full form may leave out of its abbreviation: "Request for Comments" gives RFC, "Network Address and
 # Port Translation" NAPT and "HMAC-based Key Derivation Function" HKDF.
 FILLER_WORDS = frozenset({"a", "an", "and", "based", "for", "in", "of", "on", "or", "the", "to", "with"})
-# The digit of an abbreviation that begins with one stands for a number word: "Two-Factor Authentication" gives 2FA,
-# "Triple Data Encryption Standard" 3DES.
-NUMBER_WORDS = frozenset({"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "single", "double",
-                          "dual", "triple", "quad", "first", "second", "third", "fourth", "fifth"})
+# The digits of an abbreviation stand for number words: "Two-Factor Authentication" gives 2FA, "Triple Data Encryption
+# Standard" 3DES. Only the words of the abbreviation's own number may be left out of its full form.
+NUMBER_WORDS = {"1": ("one", "first", "single"), "2": ("two", "second", "double", "dual"), "3": ("three", "third", "triple"),
+                "4": ("four", "fourth", "quad"), "5": ("five", "fifth"), "6": ("six", "sixth"), "7": ("seven", "seventh"),
+                "8": ("eight", "eighth"), "9": ("nine", "ninth"), "10": ("ten", "tenth")}
 
 
 def spells(abbreviation: str, full_form: str) -> bool:
@@ -1118,13 +1125,14 @@ def spells(abbreviation: str, full_form: str) -> bool:
     One initial per word and per camelCase hump (HyperText, JavaScript, REpresentational); an all-caps word gives its
     whole run or its first letter ("CSS Object Model" is CSSOM, "HTTP Strict Transport Security" is HSTS; a hidden
     run works the same: "SYNchronize"); a word that is the abbreviation itself gives its first letter (a recursive
-    name: "gRPC Remote Procedure Calls"); digits are not letters, and when the abbreviation has one the number word it
-    stands for may be left out (NUMBER_WORDS); accents are dropped (cơ sở dữ liệu is CSDL).
+    name: "gRPC Remote Procedure Calls"); digits are not letters, and the number words of the abbreviation's own
+    digits may be left out (NUMBER_WORDS: "Two-Factor" for 2FA, never "Triple"); accents are dropped (cơ sở dữ liệu
+    is CSDL).
     """
     if (UNIT_SYMBOLS | IRREGULAR_FORMS).get(abbreviation) == full_form.strip():
         return True
     letters = re.sub(r"[^A-Za-z]", "", abbreviation).upper()
-    numbered = any(char.isdigit() for char in abbreviation)
+    number_words = {word for number in re.findall(r"\d+", abbreviation) for word in NUMBER_WORDS.get(number, ())}
     plain = unicodedata.normalize("NFD", full_form.replace("đ", "d").replace("Đ", "D"))
     plain = "".join(char for char in plain if not unicodedata.combining(char))
     pattern = ""
@@ -1135,7 +1143,7 @@ def spells(abbreviation: str, full_form: str) -> bool:
         for hump in re.findall(r"[A-Z]+(?![a-z])|[A-Z][a-z]*|[a-z]+", word):
             if hump.isupper() and len(hump) > 1:
                 pattern += f"(?:{hump}|{hump[0]})"
-            elif hump == word and (hump.lower() in FILLER_WORDS or (numbered and hump.lower() in NUMBER_WORDS)):
+            elif hump == word and (hump.lower() in FILLER_WORDS or hump.lower() in number_words):
                 pattern += f"(?:{hump[0].upper()})?"
             else:
                 pattern += hump[0].upper()

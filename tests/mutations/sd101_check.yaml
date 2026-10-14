@@ -1814,13 +1814,39 @@ mutations:
   find: EMBEDDED_NAME = re.compile(r"(?<!\w)("
   replace: EMBEDDED_NAME = re.compile(r"("
   test: tests.test_sd101_check.AbbreviationRuleTests.test_a_name_that_carries_an_abbreviation_is_read_as_that_abbreviation
+- label: a configured term in capitals is not read as the term
+  find: '    found = {UPPER_FORMS[match.group(1)] for match in UPPER_FORM.finditer(text)}
+
+    '
+  replace: '    found = set()
+
+    '
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_configured_term_in_capitals_is_the_term
+- label: a configured term in capitals is also read as a capital run
+  find: '    text = UPPER_FORM.sub(" ", text)  # a term in capitals is the term, not a capital run of its own
+
+    '
+  replace: ''
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_configured_term_in_capitals_is_the_term
+- label: a version or plural hides a configured term in capitals
+  find: (?:V?\d+)?S?(?!\w)")
+  replace: (?!\w)")
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_configured_term_in_capitals_is_the_term
+- label: a configured term in capitals is read inside a longer word
+  find: UPPER_FORM = re.compile(r"(?<!\w)("
+  replace: UPPER_FORM = re.compile(r"("
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_configured_term_in_capitals_is_the_term
+- label: a product name in capitals is not read as its abbreviation
+  find: '               **{name.upper(): abbreviation for name, abbreviation in EMBEDDED_ABBREVIATIONS.items()}}'
+  replace: '               }'
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_configured_term_in_capitals_is_the_term
 - label: the number word of a digit abbreviation must be written out as an initial
-  find: "(numbered and hump.lower() in NUMBER_WORDS)"
-  replace: "False"
+  find: hump.lower() in number_words
+  replace: 'False'
   test: tests.test_sd101_check.AbbreviationRuleTests.test_the_digit_of_an_abbreviation_stands_for_a_number_word
-- label: number words may be left out of any full form, digit or not
-  find: "(numbered and hump.lower() in NUMBER_WORDS)"
-  replace: "(hump.lower() in NUMBER_WORDS)"
+- label: a number word of another number may be left out of the full form
+  find: hump.lower() in number_words
+  replace: any(hump.lower() in words for words in NUMBER_WORDS.values())
   test: tests.test_sd101_check.AbbreviationRuleTests.test_the_digit_of_an_abbreviation_stands_for_a_number_word
 - label: the text nodes of a figure label are joined without a gap
   find: "string = \" \".join(element.itertext())"
@@ -1939,8 +1965,8 @@ mutations:
   replace: "                pattern += hump[0]"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_an_all_caps_word_gives_its_run_or_its_first_letter
 - label: the little words must be written out
-  find: "            elif hump == word and (hump.lower() in FILLER_WORDS or (numbered and hump.lower() in NUMBER_WORDS)):"
-  replace: "            elif False:"
+  find: '            elif hump == word and (hump.lower() in FILLER_WORDS or hump.lower() in number_words):'
+  replace: '            elif False:'
   test: tests.test_sd101_check.AbbreviationRuleTests.test_only_the_little_words_may_be_left_out
 - label: a recursive name is not read as a whole
   find: "        if word == abbreviation:\n            pattern += word[0].upper()\n            continue\n"

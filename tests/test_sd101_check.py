@@ -2012,7 +2012,8 @@ class AbbreviationRuleTests(StoreCase):
             with self.subTest(text=text):
                 self.assertEqual(set(), check.abbreviations_in(text))
         self.assertEqual({"AI"}, check.abbreviations_in("HAI MÁY · OpenAI", capitals=False))
-        self.assertEqual(set(), check.abbreviations_in("HAI MÁY · OPENAI", capitals=False))
+        self.assertEqual({"AI"}, check.abbreviations_in("HAI MÁY · OPENAI", capitals=False))
+        self.assertEqual(set(), check.abbreviations_in("HAI MÁY · OPENAIX", capitals=False))
         for where, figure in {"a drawn label": svg_with("Gọi OpenAI qua mạng"),
                               "the description": svg_with("Gọi OpenAI qua mạng", tag="desc")}.items():
             with self.subTest(where=where):
@@ -2024,6 +2025,19 @@ class AbbreviationRuleTests(StoreCase):
         self.lesson("Bài nói về OpenAI.")
         self.assertProblem("uses the abbreviation AI but the glossary does not explain it")
         self.lesson("Bài nói về OpenAI.", glossary=entry)
+        self.assertEqual([], self.problems())
+
+    def test_a_configured_term_in_capitals_is_the_term(self) -> None:
+        self.assertEqual({"OAuth"}, check.abbreviations_in("OAUTH 2.0", capitals=False))
+        self.assertEqual({"OAuth", "SQL", "IPv4", "W3C"}, check.abbreviations_in("Dùng OAUTH2, MYSQL's, IPV4 và W3C."))
+        self.assertEqual({"AI"}, check.abbreviations_in("HAI MÁY · OPENAI", capitals=False))
+        self.assertEqual(set(), check.abbreviations_in("OAUTHORITY", capitals=False))
+        self.assertEqual(set(), check.abbreviations_in("XOAUTH", capitals=False))
+        self.assertEqual({"OAUTHORITY", "MYSQLX"}, check.abbreviations_in("OAUTHORITY và MYSQLX"))
+        entry = "- **OAuth** (Open AUTHorization) — chuẩn ủy quyền mở: cho ứng dụng làm việc thay bạn."
+        self.lesson(glossary=None, figure=svg_with("OAUTH 2.0:"))
+        self.assertProblem("uses the abbreviation(s) OAuth")
+        self.lesson(glossary=entry, figure=svg_with("OAUTH 2.0:"))
         self.assertEqual([], self.problems())
 
     def test_an_abbreviation_that_begins_with_a_digit_is_read_and_explained(self) -> None:
@@ -2048,7 +2062,11 @@ class AbbreviationRuleTests(StoreCase):
                                                  ("3DES", "Triple Data Encryption Standard", True),
                                                  ("3DES", "Triple DES", True),
                                                  ("2PC", "Two-Phase Commit", True),
+                                                 ("2PC", "Second Phase Commit", True),
                                                  ("2FA", "Two Wrong Authentication", False),
+                                                 ("2FA", "Triple Factor Authentication", False),
+                                                 ("3DES", "Two Data Encryption Standard", False),
+                                                 ("2PC", "Nine Phase Commit", False),
                                                  ("FA", "Two Factor Authentication", False)):
             with self.subTest(abbreviation=abbreviation, full_form=full_form):
                 self.assertEqual(spelled, check.spells(abbreviation, full_form))

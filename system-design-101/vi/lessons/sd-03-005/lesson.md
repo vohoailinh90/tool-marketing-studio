@@ -53,9 +53,9 @@ Danh sách chỉ là ví dụ để hình dung từng tầng, không phải khuy
 ## Nguồn đối chiếu
 
 - [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/the-open-source-ai-stack.md): năm tầng và ví dụ.
-- [Streamlit](https://github.com/streamlit/streamlit), [FastAPI](https://github.com/tiangolo/fastapi), [Metaflow](https://github.com/Netflix/metaflow), [Ollama](https://github.com/ollama/ollama): README mô tả vai trò.
-- [pgvector](https://github.com/pgvector/pgvector): phần mở rộng Postgres. [Faiss](https://github.com/facebookresearch/faiss): thư viện tìm kiếm vector.
-- [Milvus](https://github.com/milvus-io/milvus) và [Weaviate](https://github.com/weaviate/weaviate): cơ sở dữ liệu vector.
+- [Streamlit](https://github.com/streamlit/streamlit/blob/5557b5ac644375e8b9d2c4d6f1449b3e08fa2993/README.md), [FastAPI](https://github.com/tiangolo/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/README.md), [Metaflow](https://github.com/Netflix/metaflow/blob/cb63fe94d6ae223ece6776edd567a59cb40eea0b/README.md), [Ollama](https://github.com/ollama/ollama/blob/665f9e074c99fe5abd57f6c2c2948dd60543a637/README.md): README mô tả vai trò.
+- [pgvector](https://github.com/pgvector/pgvector/blob/f37c13f68b57d2c3472b2214fbcff699d6d34876/README.md): phần mở rộng Postgres. [Faiss](https://github.com/facebookresearch/faiss/blob/1a9ddc60d2201c9a44dfca3acead6ee38fbe21dc/README.md): thư viện tìm kiếm vector.
+- [Milvus](https://github.com/milvus-io/milvus/blob/b48661d3162164c7f2d10147ca2a217b52827b6f/README.md) và [Weaviate](https://github.com/weaviate/weaviate/blob/350ad1194906242d23fa29f5994cd370356de286/README.md): cơ sở dữ liệu vector.
 - [OSI — giấy phép Llama không phải mã nguồn mở](https://opensource.org/blog/metas-llama-2-license-is-not-open-source) và định nghĩa Open Source AI 1.0 (10/2024): đối chiếu qua trích đoạn tìm kiếm; trang OSI không mở được.
 
 Đã đọc nguồn ngày 2026-10-13. Bài viết và hình được thiết kế độc lập.

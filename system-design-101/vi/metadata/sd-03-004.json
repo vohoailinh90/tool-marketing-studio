@@ -60,9 +60,9 @@
   "claims": [
     {
       "claim_vi": "DeepSeek-V3 is a MoE model with 671B total parameters, 37B activated per token, pre-trained on 14.8T tokens, with 2.788M H800 GPU hours for full training.",
-      "source": "https://github.com/deepseek-ai/DeepSeek-V3",
+      "source": "https://github.com/deepseek-ai/DeepSeek-V3/blob/9b4e9788e4a3a731f7567338ed15d3ec549ce03b/README.md",
       "section": "README: Introduction",
-      "verified_by": "Read from a local clone of the repository."
+      "verified_by": "README.md read from a clone checked out at commit 9b4e9788e4a3a731f7567338ed15d3ec549ce03b (committed 2025-08-28); the cited text was re-read at that revision."
     },
     {
       "claim_vi": "The roughly 5.6M USD figure is 2.788M GPU hours at an assumed 2 USD per H800 GPU hour for the official V3 training run, a rental estimate rather than total research cost, and not R1's cost.",
@@ -72,21 +72,21 @@
     },
     {
       "claim_vi": "DeepSeek-R1-Zero applies RL directly to the base model without SFT as a preliminary step; R1 adds thousands of cold-start examples and a multi-stage pipeline because R1-Zero had poor readability and language mixing.",
-      "source": "https://github.com/deepseek-ai/DeepSeek-R1/blob/main/DeepSeek_R1.pdf",
+      "source": "https://github.com/deepseek-ai/DeepSeek-R1/blob/0cf78561f1d51c84a21b2190626b21116d5c68bb/DeepSeek_R1.pdf",
       "section": "Sections 1, 2.2, 2.3",
-      "verified_by": "Read in DeepSeek_R1.pdf from a local clone of deepseek-ai/DeepSeek-R1 (pdftotext)."
+      "verified_by": "DeepSeek_R1.pdf read (pdftotext) from a clone of deepseek-ai/DeepSeek-R1 checked out at commit 0cf78561f1d51c84a21b2190626b21116d5c68bb (committed 2025-04-09); the cited text was re-read at that revision."
     },
     {
       "claim_vi": "GRPO drops the critic model and estimates the baseline from the scores of a sampled group of outputs per question.",
-      "source": "https://github.com/deepseek-ai/DeepSeek-R1/blob/main/DeepSeek_R1.pdf",
+      "source": "https://github.com/deepseek-ai/DeepSeek-R1/blob/0cf78561f1d51c84a21b2190626b21116d5c68bb/DeepSeek_R1.pdf",
       "section": "2.2.1",
-      "verified_by": "Read in DeepSeek_R1.pdf from a local clone of deepseek-ai/DeepSeek-R1 (pdftotext)."
+      "verified_by": "DeepSeek_R1.pdf read (pdftotext) from a clone of deepseek-ai/DeepSeek-R1 checked out at commit 0cf78561f1d51c84a21b2190626b21116d5c68bb (committed 2025-04-09); the cited text was re-read at that revision."
     },
     {
       "claim_vi": "R1 weights and code are MIT-licensed and trained from DeepSeek-V3-Base; distilled variants inherit Qwen/Llama licences; V3 code is MIT with a separate Model License for weights.",
-      "source": "https://github.com/deepseek-ai/DeepSeek-R1",
+      "source": "https://github.com/deepseek-ai/DeepSeek-R1/blob/0cf78561f1d51c84a21b2190626b21116d5c68bb/README.md",
       "section": "README: License",
-      "verified_by": "Read from a local clone of the repository."
+      "verified_by": "R1 README.md section 7 (License) and the base-model line read from a clone at commit 0cf78561f1d51c84a21b2190626b21116d5c68bb (committed 2025-04-09); the V3 licence sentence (code MIT, separate Model License for the models) from README.md section 7 of https://github.com/deepseek-ai/DeepSeek-V3/blob/9b4e9788e4a3a731f7567338ed15d3ec549ce03b/README.md; both re-read at those revisions."
     },
     {
       "claim_vi": "The R1 Nature paper (Sep 2025) was reported by news outlets to give about 294,000 USD for R1 training, separate from the base model; GPU counts differ between reports.",

@@ -72,9 +72,9 @@
     },
     {
       "claim_vi": "Delta Lake is an open-source storage framework for building a lakehouse; its ACID guarantees rest on guarantees of the underlying storage system.",
-      "source": "https://github.com/delta-io/delta",
+      "source": "https://github.com/delta-io/delta/blob/72b563515251e26a51571d80d62661a3af3b2835/README.md",
       "section": "README",
-      "verified_by": "README read from a clone of the repository."
+      "verified_by": "README.md read from a clone checked out at commit 72b563515251e26a51571d80d62661a3af3b2835 (committed 2026-10-13); the cited text was re-read at that revision."
     },
     {
       "claim_vi": "Data mesh is an organizational approach with four principles: domain ownership, data as a product, self-serve platform, federated computational governance.",

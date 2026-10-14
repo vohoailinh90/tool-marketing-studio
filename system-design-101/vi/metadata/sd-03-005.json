@@ -59,34 +59,52 @@
   },
   "claims": [
     {
-      "claim_vi": "Streamlit is a faster way to build and share data apps; FastAPI is a Python web framework for building APIs.",
-      "source": "https://github.com/streamlit/streamlit",
+      "claim_vi": "Streamlit is a faster way to build and share data apps.",
+      "source": "https://github.com/streamlit/streamlit/blob/5557b5ac644375e8b9d2c4d6f1449b3e08fa2993/README.md",
       "section": "README",
-      "verified_by": "Read from a local clone of the repository."
+      "verified_by": "README.md read from a clone checked out at commit 5557b5ac644375e8b9d2c4d6f1449b3e08fa2993 (committed 2026-10-12); the cited text was re-read at that revision."
     },
     {
-      "claim_vi": "Metaflow is a framework for building and managing AI/ML systems, originally developed at Netflix.",
-      "source": "https://github.com/Netflix/metaflow",
+      "claim_vi": "FastAPI is a modern, fast web framework for building APIs with Python based on standard Python type hints.",
+      "source": "https://github.com/tiangolo/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/README.md",
       "section": "README",
-      "verified_by": "Read from a local clone of the repository."
+      "verified_by": "README.md read from a clone checked out at commit f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007 (committed 2026-10-08); the cited text was re-read at that revision."
+    },
+    {
+      "claim_vi": "Metaflow is a human-centric framework to build and manage real-life AI and ML systems, originally developed at Netflix.",
+      "source": "https://github.com/Netflix/metaflow/blob/cb63fe94d6ae223ece6776edd567a59cb40eea0b/README.md",
+      "section": "README",
+      "verified_by": "README.md read from a clone checked out at commit cb63fe94d6ae223ece6776edd567a59cb40eea0b (committed 2026-10-06); the cited text was re-read at that revision."
+    },
+    {
+      "claim_vi": "Ollama installs locally, runs open models from the command line (ollama run) and has a REST API for running and managing models.",
+      "source": "https://github.com/ollama/ollama/blob/665f9e074c99fe5abd57f6c2c2948dd60543a637/README.md",
+      "section": "README",
+      "verified_by": "README.md read from a clone checked out at commit 665f9e074c99fe5abd57f6c2c2948dd60543a637 (committed 2026-10-12); the cited text was re-read at that revision."
     },
     {
       "claim_vi": "pgvector is vector similarity search for Postgres, installed as an extension.",
-      "source": "https://github.com/pgvector/pgvector",
+      "source": "https://github.com/pgvector/pgvector/blob/f37c13f68b57d2c3472b2214fbcff699d6d34876/README.md",
       "section": "README",
-      "verified_by": "Read from a local clone of the repository."
+      "verified_by": "README.md read from a clone checked out at commit f37c13f68b57d2c3472b2214fbcff699d6d34876 (committed 2026-10-01); the cited text was re-read at that revision."
     },
     {
-      "claim_vi": "Faiss is a library for similarity search and clustering of dense vectors.",
-      "source": "https://github.com/facebookresearch/faiss",
+      "claim_vi": "Faiss is a library for efficient similarity search and clustering of dense vectors.",
+      "source": "https://github.com/facebookresearch/faiss/blob/1a9ddc60d2201c9a44dfca3acead6ee38fbe21dc/README.md",
       "section": "README",
-      "verified_by": "Read from a local clone of the repository."
+      "verified_by": "README.md read from a clone checked out at commit 1a9ddc60d2201c9a44dfca3acead6ee38fbe21dc (committed 2026-10-12); the cited text was re-read at that revision."
     },
     {
-      "claim_vi": "Milvus and Weaviate describe themselves as vector databases.",
-      "source": "https://github.com/milvus-io/milvus",
+      "claim_vi": "Milvus describes itself as a high-performance vector database built for scale.",
+      "source": "https://github.com/milvus-io/milvus/blob/b48661d3162164c7f2d10147ca2a217b52827b6f/README.md",
       "section": "README",
-      "verified_by": "Read from a local clone of the repository. (Weaviate: https://github.com/weaviate/weaviate)"
+      "verified_by": "README.md read from a clone checked out at commit b48661d3162164c7f2d10147ca2a217b52827b6f (committed 2026-10-13); the cited text was re-read at that revision."
+    },
+    {
+      "claim_vi": "Weaviate describes itself as a cloud-native vector database that stores both objects and vectors.",
+      "source": "https://github.com/weaviate/weaviate/blob/350ad1194906242d23fa29f5994cd370356de286/README.md",
+      "section": "README",
+      "verified_by": "README.md read from a clone checked out at commit 350ad1194906242d23fa29f5994cd370356de286 (committed 2026-10-13); the cited text was re-read at that revision."
     },
     {
       "claim_vi": "OSI Open Source AI Definition 1.0 (Oct 2024) asks for information about training data and code; OSI has said Llama's licence is not open source.",

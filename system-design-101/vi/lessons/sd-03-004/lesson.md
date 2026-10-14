@@ -50,10 +50,10 @@ tách khỏi chi phí mô hình nền. Con số này chỉ có qua trích dẫn 
 ## Nguồn đối chiếu
 
 - [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/deepseek-1-pager.md): các số liệu được đối chiếu ở trên.
-- [DeepSeek-V3 — README](https://github.com/deepseek-ai/DeepSeek-V3): 671B/37B, 14,8T token, 2,788M giờ GPU H800, giấy phép.
+- [DeepSeek-V3 — README](https://github.com/deepseek-ai/DeepSeek-V3/blob/9b4e9788e4a3a731f7567338ed15d3ec549ce03b/README.md): 671B/37B, 14,8T token, 2,788M giờ GPU H800, giấy phép.
 - [DeepSeek-V3 — báo cáo kỹ thuật](https://arxiv.org/abs/2412.19437): bảng chi phí 2 USD mỗi giờ GPU. Trang không mở được; nội dung đối chiếu qua trích đoạn tìm kiếm.
-- [DeepSeek-R1 — README](https://github.com/deepseek-ai/DeepSeek-R1): R1 huấn luyện từ V3-Base, giấy phép MIT.
-- [DeepSeek-R1 — báo cáo kỹ thuật (PDF trong repo)](https://github.com/deepseek-ai/DeepSeek-R1/blob/main/DeepSeek_R1.pdf): R1-Zero không SFT, mẫu khởi động, nhiều giai đoạn, GRPO.
+- [DeepSeek-R1 — README](https://github.com/deepseek-ai/DeepSeek-R1/blob/0cf78561f1d51c84a21b2190626b21116d5c68bb/README.md): R1 huấn luyện từ V3-Base, giấy phép MIT.
+- [DeepSeek-R1 — báo cáo kỹ thuật (PDF trong repo)](https://github.com/deepseek-ai/DeepSeek-R1/blob/0cf78561f1d51c84a21b2190626b21116d5c68bb/DeepSeek_R1.pdf): R1-Zero không SFT, mẫu khởi động, nhiều giai đoạn, GRPO.
 
 Đã đọc nguồn ngày 2026-10-13. Bài viết và hình được thiết kế độc lập. Không giữ các tuyên bố của bài nguồn về
 52 ngôn ngữ, số GPU của GPT-4, mức rẻ hơn 85–90% và “ứng dụng miễn phí số 1” vì chưa có nguồn kiểm chứng;

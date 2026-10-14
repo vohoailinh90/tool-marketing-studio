@@ -55,7 +55,7 @@ nền tảng tự phục vụ và quản trị liên hợp. Đây là cách nhì
 - [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/key-data-terms.md): danh sách sáu thuật ngữ.
 - [Google Cloud — Data lake là gì](https://cloud.google.com/learn/what-is-a-data-lake): kho tập trung cho dữ liệu có cấu trúc, bán cấu trúc và phi cấu trúc ở dạng gốc.
 - [Google Cloud — Data warehouse là gì](https://cloud.google.com/learn/what-is-a-data-warehouse): hệ thống doanh nghiệp để phân tích và báo cáo dữ liệu từ nhiều nguồn.
-- [Delta Lake — README](https://github.com/delta-io/delta): lớp lưu trữ mã nguồn mở cho lakehouse; ACID dựa vào hệ lưu trữ bên dưới.
+- [Delta Lake — README](https://github.com/delta-io/delta/blob/72b563515251e26a51571d80d62661a3af3b2835/README.md): lớp lưu trữ mã nguồn mở cho lakehouse; ACID dựa vào hệ lưu trữ bên dưới.
 - [Dehghani — Data Mesh Principles and Logical Architecture](https://martinfowler.com/articles/data-mesh-principles.html): bốn nguyên tắc. Trang này không mở được trong môi trường biên soạn; nội dung đối chiếu qua trích đoạn tìm kiếm.
 
 Đã đọc nguồn ngày 2026-10-13. Bài viết và hình được thiết kế độc lập. Không giữ mô tả “data lake là dữ liệu

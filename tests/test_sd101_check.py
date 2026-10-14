@@ -1779,6 +1779,12 @@ class AbbreviationRuleTests(StoreCase):
         self.assertProblem("uses the abbreviation(s) IPv4")
         self.lesson(glossary="- **IPv4** (Internet Protocol version 4) — phiên bản 4 của giao thức Internet.\n", figure=figure)
         self.assertEqual([], self.problems())
+        # a term spelled in capitals is the term, whether or not a glossary of the store explains it: OAUTH is OAuth
+        figure = svg_with("LUỒNG OAUTH 2.0")
+        self.lesson(glossary=None, figure=figure)
+        self.assertProblem("uses the abbreviation(s) OAuth")
+        self.lesson(glossary="- **OAuth** (Open AUTHorization) — chuẩn cho phép một ứng dụng hành động thay bạn.\n", figure=figure)
+        self.assertEqual([], self.problems())
 
     def test_the_alt_text_of_a_raw_html_image_counts_as_use(self) -> None:
         for where, tag in {"a block": '<img src="../../diagrams/sd-01-001-main.svg" alt="Sơ đồ LLM">',
@@ -2025,6 +2031,29 @@ class AbbreviationRuleTests(StoreCase):
         self.assertFalse(any("sd-01-001: uses the abbreviation" in line and "HAI" in line for line in self.problems()))
         self.lesson(glossary=api, figure=figure)
         self.assertFalse(any(line.startswith("sd-01-001: uses the abbreviation") for line in self.problems()))
+
+    def test_a_plain_word_in_a_capitals_only_label_is_not_taken_for_what_another_lesson_explains(self) -> None:
+        tin = "- **TIN** (Taxpayer Identification Number) — mã số thuế của một người hay một tổ chức.\n"
+        cpu = "- **CPU** (Central Processing Unit) — bộ xử lý trung tâm của máy tính.\n"
+        other = (f"# Bài hai\n\n![Sơ đồ của bài](../../diagrams/sd-01-002-main.svg)\n\n## Từ viết tắt\n\n{{entry}}\n"
+                 f"## Liên hệ nguồn\n\n[bài nguồn]({SNAPSHOT}).\n")
+        self.lesson(glossary=None, figure=svg_with("ĐƠN HÀNG CÓ TIN MỚI", "CPU"))
+        self.write_lesson("sd-01-002", body=other.format(entry=tin))
+        # TIN is "news" here: the glossary of another lesson does not make it an abbreviation
+        self.assertFalse(any(line.startswith("sd-01-001") for line in self.problems()))
+        self.write_lesson("sd-01-002", body=other.format(entry=tin + cpu))
+        # while a word outside the list is read once another lesson explains it
+        self.assertProblem("sd-01-001: uses the abbreviation(s) CPU but has no")
+        self.assertFalse(any(line.startswith("sd-01-001") and "TIN" in line for line in self.problems()))
+        # the report says how to stop it, whether the lesson has a glossary or not, and only for a word that can be a word
+        self.assertProblem("if it is an ordinary word there, add it to PLAIN_LABEL_WORDS")
+        self.lesson(glossary=LLM_ENTRY, figure=svg_with("ĐƠN HÀNG CÓ TIN MỚI", "CPU"))
+        self.assertProblem("sd-01-001: uses the abbreviation CPU but the glossary does not explain it (it stands in a figure label")
+        self.lesson(glossary=None, figure=svg_with("JWT"))
+        self.assertProblem("sd-01-001: uses the abbreviation(s) JWT but has no")
+        self.assertFalse(any("PLAIN_LABEL_WORDS" in line for line in self.problems()))
+        self.assertTrue(all(word.isascii() and word.isalpha() and word.isupper() and set(word) & check.VOWELS
+                            for word in check.PLAIN_LABEL_WORDS))  # a word that cannot be taken for an acronym needs no entry
 
     def test_a_number_word_of_another_number_does_not_stand_for_the_leading_digit(self) -> None:
         for abbreviation, full_form, spelled in (

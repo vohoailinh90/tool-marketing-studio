@@ -220,6 +220,16 @@ NOT_ACRONYMS = frozenset({
 })
 
 
+# Ordinary words that read as an abbreviation when a figure label is set in capitals: Vietnamese ones without their accents
+# (TIN is "news", RA is "out", HAY is "or"). A label word the glossary of some lesson explains is taken for that abbreviation
+# (label_acronyms), which would make every unrelated figure that says TIN ask for a TIN entry the day another lesson defines
+# TIN; a word here is never taken from the store. Add one when the checker reports a label-only abbreviation that is a plain word.
+PLAIN_LABEL_WORDS = frozenset({
+    "AN", "BA", "CHO", "HAI", "HAY", "KHI", "KHO", "NHANH", "NHU", "QUY", "RA", "SAO", "TAY", "THANH", "THEO", "TIN", "TRANG",
+    "TRUY", "COOKIE", "POD",
+})
+
+
 @dataclass(frozen=True)
 class Problem:
     where: str
@@ -1014,15 +1024,17 @@ def abbreviations_in(text: str, capitals: bool = True) -> set[str]:
 def label_acronyms(headings: list[str] | tuple[str, ...], known: frozenset[str] = frozenset()) -> set[str]:
     """The abbreviations in figure labels set in capitals. There a word of capital letters cannot be told from an
     abbreviation (the Vietnamese TIN and HAI, the English COOKIE), so the abbreviation in it is read only when it cannot
-    be a word: it has no vowel (JWT, DNS, LB), or some glossary of the store explains it (`known`). A word that is not
-    capital letters alone cannot be a Vietnamese or English word: a plural (APIs, LLMs) or a digit (2FA, 3DES, POP3)
-    shows that it is an abbreviation, and one with an accent is Vietnamese, never an abbreviation."""
+    be a word: it has no vowel (JWT, DNS, LB), or some glossary of the store explains it (`known`) and it is not one of
+    the PLAIN_LABEL_WORDS. A word that is not capital letters alone cannot be a Vietnamese or English word: a plural (APIs,
+    LLMs) or a digit (2FA, 3DES, POP3) shows that it is an abbreviation, and one with an accent is Vietnamese, never an
+    abbreviation."""
     found: set[str] = set()
     for word in re.findall(r"\w+", unicodedata.normalize("NFC", "\n".join(headings))):  # NFD would split KHÔNG at the accent
         if word.isascii():
             ambiguous = word.isalpha() and word.isupper()
             found |= {name for name in abbreviations_in(word)
-                      if not ambiguous or name in known or word in known or not set(name) & VOWELS}
+                      if not ambiguous or ((name in known or word in known) and word not in PLAIN_LABEL_WORDS)
+                      or not set(name) & VOWELS}
     return found
 
 
@@ -1235,13 +1247,19 @@ def check_abbreviations(lesson_id: str, text: str, figure: list[str], headings: 
     """Every abbreviation the lesson or its figure uses is explained, in full, in the lesson's own glossary."""
     body, glossary, glossary_lines, titles, above = lesson_prose(text)
     used = abbreviations_in("\n".join(body + glossary + figure))
-    used |= abbreviations_in("\n".join(headings), capitals=False) | label_acronyms(headings, known)
+    labels = label_acronyms(headings, known)
+    mixed = abbreviations_in("\n".join(headings), capitals=False)
+    # a word with a vowel that only a figure label set in capitals gives, and only because another lesson explains it
+    label_only = {name for name in labels - used - mixed if set(name) & VOWELS}
+    used |= mixed | labels
+    label_hint = " (it stands in a figure label set in capitals; if it is an ordinary word there, add it to PLAIN_LABEL_WORDS in scripts/sd101_check.py)"
     problems: list[Problem] = []
     template = f'"- **LLM** (Large Language Model) — meaning in plain words" under "## {GLOSSARY_HEADING}"'
     if glossary_lines is None:
         if used:
             problems.append(Problem(lesson_id, f"uses the abbreviation(s) {', '.join(sorted(used))} but has no "
-                                               f'"## {GLOSSARY_HEADING}" section; add one bullet each, like {template}'))
+                                               f'"## {GLOSSARY_HEADING}" section; add one bullet each, like {template}'
+                                               + (f"; {', '.join(sorted(label_only))}{label_hint}" if label_only else "")))
         return problems
     if titles[0] != GLOSSARY_HEADING:
         problems.append(Problem(lesson_id, f'"## {GLOSSARY_HEADING}" must be the first "##" section, right after the '
@@ -1273,7 +1291,8 @@ def check_abbreviations(lesson_id: str, text: str, figure: list[str], headings: 
         problems.append(Problem(lesson_id, f'"## {GLOSSARY_HEADING}" has no bullets'))
     problems.extend(Problem(lesson_id, f"uses the abbreviation {abbreviation} but the glossary does not explain it"
                                        + (f" (it stands in the full form of {inside[abbreviation]})"
-                                          if abbreviation in inside and abbreviation not in elsewhere else ""))
+                                          if abbreviation in inside and abbreviation not in elsewhere else "")
+                                       + (label_hint if abbreviation in label_only and abbreviation not in inside else ""))
                     for abbreviation in sorted(used - seen))
     return problems
 

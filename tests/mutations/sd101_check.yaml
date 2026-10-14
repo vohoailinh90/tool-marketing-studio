@@ -1819,8 +1819,8 @@ mutations:
   replace: "ambiguous = word.isalpha()"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_a_plural_or_a_digit_shows_that_a_word_in_capitals_is_an_acronym
 - label: an acronym the store explains elsewhere is not read in a capitals-only label
-  find: " or name in known or word in known"
-  replace: ""
+  find: (name in known or word in known) and word not in PLAIN_LABEL_WORDS
+  replace: 'False'
   test: tests.test_sd101_check.AbbreviationRuleTests.test_an_acronym_the_store_explains_elsewhere_is_read_in_a_capitals_only_label
 - label: the glossaries of the store are not consulted for the words of a label
   find: "known = store_vocabulary(lessons_dir, lesson_ids)"
@@ -2013,8 +2013,8 @@ mutations:
   replace: "                elif False:"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_the_alt_text_of_a_raw_html_image_counts_as_use
 - label: a mixed-case term in a heading in capitals is not read
-  find: "    used |= abbreviations_in(\"\\n\".join(headings), capitals=False)"
-  replace: "    pass"
+  find: '    mixed = abbreviations_in("\n".join(headings), capitals=False)'
+  replace: '    mixed = set()'
   test: tests.test_sd101_check.AbbreviationRuleTests.test_a_mixed_case_term_in_a_heading_in_capitals_still_counts
 - label: the capitals of a heading are read as abbreviations
   find: "(match.group(2) if capitals else \"\")"
@@ -2113,14 +2113,34 @@ mutations:
   replace: "        for name in sorted(abbreviations_in(full_form, capitals=False)):"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_an_abbreviation_inside_a_full_form_needs_a_bullet_of_its_own
 - label: the report never says that the abbreviation stands in a full form
-  find: "if abbreviation in inside and abbreviation not in elsewhere else \"\"))"
-  replace: "if False else \"\"))"
+  find: if abbreviation in inside and abbreviation not in elsewhere else "")
+  replace: if False else "")
   test: tests.test_sd101_check.AbbreviationRuleTests.test_an_abbreviation_inside_a_full_form_needs_a_bullet_of_its_own
 - label: the report points at a full form even when the lesson uses the abbreviation elsewhere
-  find: "if abbreviation in inside and abbreviation not in elsewhere else \"\"))"
-  replace: "if abbreviation in inside else \"\"))"
+  find: if abbreviation in inside and abbreviation not in elsewhere else "")
+  replace: if abbreviation in inside else "")
   test: tests.test_sd101_check.AbbreviationRuleTests.test_an_abbreviation_inside_a_full_form_needs_a_bullet_of_its_own
 - label: KILL in SIGnal KILL is read as an abbreviation
   find: "    \"KILL\",  # SIGnal KILL: an ordinary word set in capitals to show the letters of SIGKILL\n"
   replace: ""
   test: tests.test_sd101_check.AbbreviationRuleTests.test_an_abbreviation_inside_a_full_form_needs_a_bullet_of_its_own
+- label: a plain word in a capitals-only label is taken for an acronym another lesson explains (TIN is news)
+  find: ((name in known or word in known) and word not in PLAIN_LABEL_WORDS)
+  replace: (name in known or word in known)
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_plain_word_in_a_capitals_only_label_is_not_taken_for_what_another_lesson_explains
+- label: the list of plain label words is empty
+  find: PLAIN_LABEL_WORDS = frozenset({
+  replace: PLAIN_LABEL_WORDS = frozenset() and frozenset({
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_plain_word_in_a_capitals_only_label_is_not_taken_for_what_another_lesson_explains
+- label: the report does not say how to stop a label-only abbreviation (a glossary is there)
+  find: (label_hint if abbreviation in label_only and abbreviation not in inside else "")
+  replace: '""'
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_plain_word_in_a_capitals_only_label_is_not_taken_for_what_another_lesson_explains
+- label: the report does not say how to stop a label-only abbreviation (no glossary)
+  find: (f"; {', '.join(sorted(label_only))}{label_hint}" if label_only else "")
+  replace: '""'
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_plain_word_in_a_capitals_only_label_is_not_taken_for_what_another_lesson_explains
+- label: the hint is given for a label word that cannot be a word (JWT)
+  find: label_only = {name for name in labels - used - mixed if set(name) & VOWELS}
+  replace: label_only = {name for name in labels - used - mixed}
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_plain_word_in_a_capitals_only_label_is_not_taken_for_what_another_lesson_explains

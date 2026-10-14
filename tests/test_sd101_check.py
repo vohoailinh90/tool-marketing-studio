@@ -1881,6 +1881,10 @@ class AbbreviationRuleTests(StoreCase):
         self.assertTrue(check.spells("PaaS", "Platform as a Service"))
         self.assertTrue(check.spells("UTC", "Coordinated Universal Time"))
         self.assertFalse(check.spells("UTC", "Universal Time"))
+        self.assertTrue(check.spells("EdDSA", "Edwards-curve Digital Signature Algorithm"))
+        self.assertFalse(check.spells("EdDSA", "Edwards Digital Signature Algorithm"))
+        self.assertTrue(check.spells("NetBIOS", "Network Basic Input/Output System"))
+        self.assertFalse(check.spells("NetBIOS", "Network Input/Output System"))
         self.lesson("Bộ nhớ tối thiểu 19 MiB.", glossary=None)
         self.assertProblem("uses the abbreviation(s) MiB")
         self.lesson("Bộ nhớ tối thiểu 19 MiB.", glossary="- **MiB** (Mebibyte) — mebibyte: đơn vị dung lượng bằng 1.048.576 byte.\n")
@@ -1980,6 +1984,8 @@ class AbbreviationRuleTests(StoreCase):
                                                 "DevOps, DevSecOps, GitOps và NoOps."))
         self.assertEqual({"vCPU", "MiB", "OAuth", "gRPC", "IPv4", "NoSQL", "API"},
                          check.abbreviations_in("16 vCPUs, 4 MiBs, OAuth2, gRPCs, IPv4s, NoSQLs và API2."))
+        self.assertEqual({"EdDSA", "NetBIOS"}, check.abbreviations_in("Ký bằng EdDSA, chia sẻ qua NetBIOS."))
+        self.assertEqual({"DHCP", "TLS", "SHA"}, check.abbreviations_in("DHCPv4 và DHCPv6, TLSv1.3, SHA256."))
         for text in ("MAX_SIZE", "A80", "WebSocket", "I", "ĐƠN HÀNG", "TÓM", "myIPv4", "JavaScript", "GitHub",
                      "PostgreSQL", "OOMKilled", "OAuthority", "vCPUx", "gRPCsx"):
             with self.subTest(text=text):

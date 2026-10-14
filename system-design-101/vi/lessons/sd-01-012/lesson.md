@@ -26,6 +26,7 @@
 - **FTP** (File Transfer Protocol) — giao thức truyền tệp: chuyển tệp giữa hai máy, ở dạng gốc không mã hóa.
 - **SFTP** (SSH File Transfer Protocol) — giao thức truyền tệp qua SSH: chuyển tệp có mã hóa, thường thay cho FTP.
 - **SMB** (Server Message Block) — khối thông điệp máy chủ: giao thức chia sẻ tệp và máy in trong mạng, hay gặp trên Windows.
+- **NetBIOS** (Network Basic Input/Output System) — hệ thống nhập xuất cơ bản qua mạng: giao thức cũ để máy trong mạng nội bộ tìm nhau theo tên và chia sẻ tệp, dùng các cổng 137, 138 và 139.
 
 ## Đọc hình
 

@@ -9,6 +9,7 @@ Bài này gom tám bước của bài nguồn thành sáu bước, chạy thử 
 
 - **RSA** (Rivest-Shamir-Adleman) — tên một thuật toán mã hóa khóa công khai, đặt theo ba tác giả.
 - **ECDSA** (Elliptic Curve Digital Signature Algorithm) — thuật toán chữ ký số dùng đường cong elliptic: ký bằng khóa riêng, kiểm bằng khóa công khai.
+- **EdDSA** (Edwards-curve Digital Signature Algorithm) — thuật toán chữ ký số dùng đường cong Edwards: ký bằng khóa riêng, kiểm bằng khóa công khai; Ed25519 là một biến thể của nó.
 - **PKCS** (Public-Key Cryptography Standards) — các chuẩn mật mã khóa công khai: bộ tài liệu về cách dùng các thuật toán như RSA; PKCS#1 v1.5 là một kiểu đệm (độn thêm dữ liệu trước khi ký).
 - **PSS** (Probabilistic Signature Scheme) — lược đồ chữ ký xác suất: kiểu đệm có thêm giá trị ngẫu nhiên, nên ký hai lần cùng một thông điệp cho hai chữ ký khác nhau.
 - **SHA** (Secure Hash Algorithm) — họ thuật toán băm: biến dữ liệu bất kỳ thành một chuỗi cố định; SHA-256 là một loại trong họ này.

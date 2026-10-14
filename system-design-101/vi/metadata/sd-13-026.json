@@ -50,6 +50,10 @@
   },
   "claims": [
     {
+      "claim_vi": "Theo quy ước của Bash, một lệnh kết thúc vì tín hiệu N có mã thoát 128+N, nên SIGKILL (tín hiệu 9) cho mã 137.",
+      "source": "https://www.gnu.org/software/bash/manual/html_node/Exit-Status.html"
+    },
+    {
       "claim_vi": "docker run dùng mã thoát 125 cho lỗi của chính Docker, 126 khi lệnh trong container không thực thi được và 127 khi không tìm thấy lệnh; mã khác là mã của lệnh trong container.",
       "source": "https://docs.docker.com/reference/cli/docker/container/run/"
     },

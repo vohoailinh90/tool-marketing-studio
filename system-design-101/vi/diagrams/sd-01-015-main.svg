@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1071" width="320" height="1071" role="img" aria-labelledby="title desc">
 <title id="title">Tám gợi ý thiết kế API</title>
-<desc id="desc">Tám khung dọc, mỗi khung một gợi ý: đường dẫn theo miền dùng danh từ như /orders/42/items; phương thức đúng như GET đọc, POST tạo, PUT thay; idempotent nghĩa là gửi lại có cùng tác động lên máy chủ như gửi một lần, đúng với GET, PUT, DELETE còn POST dùng Idempotency-Key; mã trạng thái ít và nhất quán, 201 kèm Location khi tạo mới; phiên bản như /v1/orders hoặc header; tên dễ hiểu dạng danh từ số nhiều; thao tác hàng loạt như POST /orders/batch trả kết quả từng phần tử; truy vấn với lọc, sắp xếp và phân trang.</desc>
+<desc id="desc">Tám khung dọc, mỗi khung một gợi ý: đường dẫn theo miền dùng danh từ như /orders/42/items; phương thức đúng như GET đọc, POST tạo, PUT thay; idempotent nghĩa là gửi lại có cùng tác động lên máy chủ như gửi một lần, đúng với GET, PUT, DELETE còn POST dùng Idempotency-Key; mã trạng thái ít và nhất quán, 201 nên kèm Location khi tạo mới; phiên bản như /v1/orders hoặc header; tên dễ hiểu dạng danh từ số nhiều; thao tác hàng loạt như POST /orders/batch trả kết quả từng phần tử; truy vấn với lọc, sắp xếp và phân trang.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="1071" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
@@ -23,7 +23,7 @@
 <rect x="16" y="483" width="288" height="104" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
 <text x="30" y="513" font-size="16" font-weight="bold">4 · Mã trạng thái</text>
 <text x="30" y="540" font-size="16" font-weight="normal">Dùng ít mã, nhất quán</text>
-<text x="30" y="567" font-size="16" font-weight="normal">201 + Location khi tạo mới</text>
+<text x="30" y="567" font-size="16" font-weight="normal">201 nên kèm Location</text>
 <rect x="16" y="599" width="288" height="104" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
 <text x="30" y="629" font-size="16" font-weight="bold">5 · Phiên bản</text>
 <text x="30" y="656" font-size="16" font-weight="normal">/v1/orders hoặc header</text>

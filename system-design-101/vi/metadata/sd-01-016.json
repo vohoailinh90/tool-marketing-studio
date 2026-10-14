@@ -52,6 +52,10 @@
   },
   "claims": [
     {
+      "claim_vi": "Reverse proxy chỉ giảm bề mặt bị tấn công khi máy gốc không nhận được lưu lượng trực tiếp từ bên ngoài (chặn mọi nguồn trừ proxy hoặc xác thực yêu cầu từ proxy); nếu máy gốc vẫn mở ra Internet, client có thể đi vòng qua proxy.",
+      "source": "https://developers.cloudflare.com/fundamentals/security/protect-your-origin-server/"
+    },
+    {
       "claim_vi": "Reverse proxy chuyển yêu cầu của client tới máy gốc; thường dùng để che máy gốc, kết thúc TLS, cache, nén.",
       "sources": [
         "https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/",
@@ -66,7 +70,7 @@
       ]
     },
     {
-      "claim_vi": "Load balancer chia request giữa các bản sao của cùng một dịch vụ và loại máy lỗi khỏi nhóm.",
+      "claim_vi": "Load balancer chia lưu lượng (từng request ở tầng HTTP, từng kết nối ở tầng kết nối) giữa các bản sao của cùng một dịch vụ và loại máy lỗi khỏi nhóm.",
       "sources": [
         "https://docs.haproxy.org/",
         "https://nginx.org/en/docs/http/load_balancing.html"

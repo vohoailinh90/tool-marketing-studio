@@ -8,12 +8,12 @@
 
 - **Reverse proxy:** một máy trung gian đứng *phía máy chủ*. Client nói chuyện với proxy như với chính máy chủ, proxy chuyển yêu cầu tới máy gốc. Việc thường làm: che địa chỉ máy gốc, kết thúc TLS, cache, nén. (Khác *forward proxy*, đứng phía client.)
 - **API gateway:** cửa vào chung cho nhiều dịch vụ. Nó hiểu API: định tuyến theo đường dẫn (`/orders` tới dịch vụ đơn hàng), xác thực, giới hạn tốc độ, đổi định dạng. Có thể coi nó là reverse proxy có thêm quản lý API.
-- **Load balancer:** chia request giữa nhiều bản sao của *cùng một* dịch vụ, kiểm tra sức khỏe và loại máy lỗi khỏi nhóm.
+- **Load balancer:** chia lưu lượng (từng request ở tầng HTTP, từng kết nối ở tầng kết nối) giữa nhiều bản sao của *cùng một* dịch vụ, kiểm tra sức khỏe và loại máy lỗi khỏi nhóm.
 - **Xếp chồng:** gateway chọn *dịch vụ*, load balancer chọn *máy trong dịch vụ*.
 
 ## Giới hạn cần nhớ
 
-Ranh giới không cứng: NGINX, Envoy, HAProxy hay dịch vụ cloud có thể đóng nhiều vai trong một cấu hình. "Che máy gốc" không phải là bảo mật đầy đủ: reverse proxy giảm bề mặt bị tấn công nhưng không thay xác thực hay tường lửa. Thêm một lớp trung gian cũng thêm độ trễ và thêm một chỗ có thể lỗi.
+Ranh giới không cứng: NGINX, Envoy, HAProxy hay dịch vụ cloud có thể đóng nhiều vai trong một cấu hình. "Che máy gốc" không phải là bảo mật đầy đủ: reverse proxy chỉ giảm bề mặt bị tấn công khi máy gốc không còn nhận lưu lượng trực tiếp từ bên ngoài (chặn mọi nguồn trừ proxy, hoặc xác thực yêu cầu đến từ proxy); nếu máy gốc vẫn mở ra Internet, client có thể đi vòng qua proxy. Nó cũng không thay xác thực hay tường lửa. Thêm một lớp trung gian cũng thêm độ trễ và thêm một chỗ có thể lỗi.
 
 ## Nhìn hình thử trả lời
 

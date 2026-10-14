@@ -52,7 +52,7 @@
   },
   "claims": [
     {
-      "claim_vi": "Phương thức idempotent là phương thức mà nhiều yêu cầu giống hệt có cùng tác động dự kiến lên máy chủ như một yêu cầu (phản hồi có thể khác); GET, PUT, DELETE là idempotent theo định nghĩa còn POST thì không; GET là phương thức an toàn.",
+      "claim_vi": "Phương thức idempotent là phương thức mà nhiều yêu cầu giống hệt có cùng tác động dự kiến lên máy chủ như một yêu cầu (phản hồi có thể khác); GET, PUT, DELETE là idempotent theo định nghĩa còn POST thì không; GET là phương thức an toàn: client không yêu cầu và không kỳ vọng thay đổi trạng thái, dù máy chủ vẫn có thể có tác dụng phụ như ghi nhật ký.",
       "source": "https://www.rfc-editor.org/rfc/rfc9110"
     },
     {
@@ -63,7 +63,7 @@
       ]
     },
     {
-      "claim_vi": "201 kèm Location khi tạo mới; 204, 400, 401, 403, 404, 409 và 500 là các mã thường dùng.",
+      "claim_vi": "201 nên kèm Location khi tạo mới (RFC 9110: nếu có Location thì nó xác định tài nguyên mới, nếu không thì tài nguyên mới là URI đích của yêu cầu); 204, 400, 401, 403, 404, 409 và 500 là các mã thường dùng.",
       "source": "https://www.rfc-editor.org/rfc/rfc9110"
     },
     {

@@ -1779,9 +1779,21 @@ mutations:
   replace: "                    pieces.append(child.content)"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_an_address_is_not_prose_but_the_label_of_a_link_is
 - label: a glossary above the figure is accepted
-  find: "    elif not any(posixpath.normpath(source).endswith("
-  replace: "    elif False and not any(posixpath.normpath(source).endswith("
+  find: "    elif not figure_above(text, above, lesson_id):"
+  replace: "    elif False and not figure_above(text, above, lesson_id):"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_the_glossary_comes_after_the_figure_not_before_it
+- label: a raw <img> figure above the glossary is not found in the text above it
+  find: "    if any(posixpath.normpath(source).endswith(suffix) for source in image_sources(above)):\n        return True\n"
+  replace: ""
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_the_glossary_comes_after_the_figure_not_before_it
+- label: a reference-style figure whose definition comes later is not found
+  find: "    return any(token.map and token.map[0] < heading_line"
+  replace: "    return False and any(token.map and token.map[0] < heading_line"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_reference_style_figure_is_found_wherever_its_definition_is
+- label: a reference-style figure below the glossary heading counts as above it
+  find: "token.map[0] < heading_line"
+  replace: "token.map[0] >= 0"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_reference_style_figure_is_found_wherever_its_definition_is
 - label: the lead-in of a glossary bullet counts as a use of what it explains
   find: "                piece = piece.split(\"—\", 1)[-1]  # the bullet"
   replace: "                piece = piece  # the bullet"

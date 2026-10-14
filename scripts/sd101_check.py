@@ -1124,6 +1124,20 @@ def spells(abbreviation: str, full_form: str) -> bool:
     return re.fullmatch(pattern, letters) is not None
 
 
+def figure_above(text: str, above: str, lesson_id: str) -> bool:
+    """True when the lesson's own figure comes before the glossary heading. A Markdown image is looked for in the whole
+    document, by the line it is on, because ![x][fig] takes its source from a definition that may come later (often at
+    the end); a raw <img> needs no definition and is looked for in the text above the heading."""
+    suffix = f"diagrams/{lesson_id}-main.svg"
+    if any(posixpath.normpath(source).endswith(suffix) for source in image_sources(above)):
+        return True
+    heading_line = above.count("\n") + 1
+    return any(token.map and token.map[0] < heading_line
+               and any(child.type == "image" and posixpath.normpath(child.attrGet("src") or "").endswith(suffix)
+                       for child in token.children or [])
+               for token in markdown_tokens(text) if token.type == "inline")
+
+
 def check_abbreviations(lesson_id: str, text: str, figure: list[str], headings: list[str] | tuple[str, ...] = ()) -> list[Problem]:
     """Every abbreviation the lesson or its figure uses is explained, in full, in the lesson's own glossary."""
     body, glossary, glossary_lines, titles, above = lesson_prose(text)
@@ -1139,7 +1153,7 @@ def check_abbreviations(lesson_id: str, text: str, figure: list[str], headings: 
     if titles[0] != GLOSSARY_HEADING:
         problems.append(Problem(lesson_id, f'"## {GLOSSARY_HEADING}" must be the first "##" section, right after the '
                                            f"figure, but comes after {titles[0]!r}"))
-    elif not any(posixpath.normpath(source).endswith(f"diagrams/{lesson_id}-main.svg") for source in image_sources(above)):
+    elif not figure_above(text, above, lesson_id):
         problems.append(Problem(lesson_id, f'"## {GLOSSARY_HEADING}" must come after the figure '
                                            f"diagrams/{lesson_id}-main.svg, not before it"))
     entries, malformed = glossary_entries(glossary_lines)

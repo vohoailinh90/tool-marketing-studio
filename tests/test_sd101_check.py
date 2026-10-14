@@ -1952,6 +1952,17 @@ class AbbreviationRuleTests(StoreCase):
         self.write_lesson("sd-01-001", body=f"# Bài\n\n{html}\n\n## Từ viết tắt\n\n{LLM_ENTRY}\n{tail}")
         self.assertEqual([], self.problems())
 
+    def test_a_reference_style_figure_is_found_wherever_its_definition_is(self) -> None:
+        definition = "[fig]: ../../diagrams/sd-01-001-main.svg\n"
+        tail = f"## Liên hệ nguồn\n\n[bài nguồn]({SNAPSHOT}).\n\n{definition}"
+        self.write_lesson("sd-01-001", body=f"# Bài\n\n![Sơ đồ của bài][fig]\n\n## Từ viết tắt\n\n{LLM_ENTRY}\n{tail}")
+        self.assertEqual([], self.problems())
+        self.write_lesson("sd-01-001", body=f"# Bài\n\n{definition}\n![Sơ đồ của bài][fig]\n\n## Từ viết tắt\n\n{LLM_ENTRY}\n"
+                                            f"## Liên hệ nguồn\n\n[bài nguồn]({SNAPSHOT}).\n")
+        self.assertEqual([], self.problems())
+        self.write_lesson("sd-01-001", body=f"# Bài\n\n## Từ viết tắt\n\n{LLM_ENTRY}\n![Sơ đồ của bài][fig]\n\n{tail}")
+        self.assertProblem("must come after the figure diagrams/sd-01-001-main.svg")
+
     def test_words_that_only_look_like_abbreviations_need_no_entry(self) -> None:
         self.lesson("Gửi GET /phone, dùng LEFT JOIN, kiểm tra NULL và trả OK; mở README.", glossary=None)
         self.assertEqual([], self.problems())

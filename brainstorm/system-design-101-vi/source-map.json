@@ -3788,31 +3788,31 @@
         },
         {
           "id": "sd-14-010",
-          "title_vi": null,
+          "title_vi": "Token, cookie và session: nhận ra người dùng thế nào?",
           "title_source": "Token, Cookie, Session",
           "source_url": "https://bytebytego.com/guides/token-cookie-session",
           "source_path": "data/guides/token-cookie-session.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "7f97f0c7d59150c5285fce7b69c994184f52cc93",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/token-cookie-session.md"
         },
         {
           "id": "sd-14-011",
-          "title_vi": null,
+          "title_vi": "SSO và OAuth 2.0: đăng nhập khác ủy quyền",
           "title_source": "Sessions, Tokens, JWT, SSO, and OAuth Explained",
           "source_url": "https://bytebytego.com/guides/explaining-sessions-tokens-jwt-sso-and-oauth-in-one-diagram",
           "source_path": "data/guides/explaining-sessions-tokens-jwt-sso-and-oauth-in-one-diagram.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "4f23b467eb7b943ab4acda2f2f14ff267f7fe92b",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/explaining-sessions-tokens-jwt-sso-and-oauth-in-one-diagram.md"
         },
         {
           "id": "sd-14-012",
-          "title_vi": null,
+          "title_vi": "Thiết kế hệ thống an toàn: mười hai câu cần hỏi",
           "title_source": "How to Design a Secure System",
           "source_url": "https://bytebytego.com/guides/how-do-we-design-a-secure-system",
           "source_path": "data/guides/how-do-we-design-a-secure-system.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "203782be8cca260523b87301b39dce6314e92420",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-we-design-a-secure-system.md"
         },

@@ -44,7 +44,7 @@ awk '{s += $5; n++} END {if (n) print s/n}' latency.log
 - **grep -C:** in thêm dòng ngữ cảnh quanh dòng khớp; `-A` chỉ dòng sau, `-B` chỉ dòng trước.
 - **zgrep:** tìm trong tệp nén gzip mà không giải nén ra đĩa.
 - **jq:** đọc từng đối tượng JSON, lọc và chọn trường.
-- **awk:** xử lý theo cột; `END` chạy sau khi đọc hết tệp.
+- **awk:** xử lý theo cột; `END` chạy sau khi đọc hết tệp. Điều kiện `if (n)` chặn phép chia cho 0 khi tệp rỗng, vì gawk dừng với lỗi nghiêm trọng khi chia cho 0.
 
 </details>
 

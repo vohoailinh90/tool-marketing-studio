@@ -57,6 +57,10 @@
     {
       "claim_vi": "awk xử lý văn bản theo cột và có khối END.",
       "source": "https://www.gnu.org/software/gawk/manual/gawk.html"
+    },
+    {
+      "claim_vi": "gawk dừng với lỗi nghiêm trọng khi chia cho 0, nên lệnh tính trung bình kiểm tra n khác 0 trước khi chia.",
+      "source": "https://www.gnu.org/software/gawk/manual/html_node/Errors-accumulate.html"
     }
   ],
   "source_deviations": [

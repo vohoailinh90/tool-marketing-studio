@@ -1932,6 +1932,8 @@ class AbbreviationRuleTests(StoreCase):
         for name, intro in {"an autolink": "Xem <https://example.com/API/TLS> nhé.",
                             "an address in the text": "Xem https://example.org/DNS/SSE nhé.",
                             "an address after a break": "Xem\nhttps://example.org/DNS/SSE\nnhé.",
+                            "an address with an uppercase scheme": "Xem HTTPS://example.org/API/TLS nhé.",
+                            "an address with a mixed-case scheme": "Xem Ftp://example.org/DNS/SSE nhé.",
                             "an autolink of another scheme": "Xem <irc://example.org/API/TLS> nhé.",
                             "an autolink of a mail address": "Viết tới <API.TLS@example.com> nhé."}.items():
             with self.subTest(name=name):

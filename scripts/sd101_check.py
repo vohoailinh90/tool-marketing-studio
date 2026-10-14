@@ -189,7 +189,7 @@ GLOSSARY_BULLET = re.compile(r"^- \*\*(?P<abbreviation>(?=[A-Za-z0-9]*[A-Z])[A-Z
                              r"\((?P<full>[^()]+)\) — (?P<meaning>\S.*)$")
 MIN_MEANING_WORDS = 3
 # An address typed into the text is a link destination, not prose: https://example.com/API/TLS names no abbreviation.
-URL = re.compile(r"(?:https?|ftp)://[^\s<>]+")
+URL = re.compile(r"(?:https?|ftp)://[^\s<>]+", re.IGNORECASE)
 # Capital words that are not abbreviations: HTTP methods, SQL keywords, Dockerfile instructions, kubectl column titles,
 # log levels and a few file or status names. They need no
 # entry in the glossary. In lesson.md a `code span` is skipped too, so a new one can usually stay out of this list.

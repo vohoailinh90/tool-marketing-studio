@@ -64,10 +64,11 @@
       "source": "https://docs.oracle.com/en/database/oracle/oracle-database/19/netag/configuring-and-administering-oracle-net-listener.html"
     },
     {
-      "claim_vi": "DNS dùng UDP và TCP cổng 53; DHCP dùng UDP 67 và 68; NTP dùng UDP 123.",
+      "claim_vi": "DNS dùng UDP và TCP cổng 53; DHCPv4 dùng UDP 67 (máy chủ) và 68 (máy khách), DHCPv6 dùng UDP 547 (máy chủ hoặc relay) và 546 (máy khách); NTP dùng UDP 123.",
       "sources": [
         "https://www.rfc-editor.org/rfc/rfc1035",
         "https://www.rfc-editor.org/rfc/rfc2131",
+        "https://www.rfc-editor.org/rfc/rfc8415",
         "https://www.rfc-editor.org/rfc/rfc5905"
       ]
     },

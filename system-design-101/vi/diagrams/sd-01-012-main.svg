@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1003" width="320" height="1003" role="img" aria-labelledby="title desc">
 <title id="title">Mười tám cổng mạng thường gặp</title>
-<desc id="desc">Sáu khung dọc chia mười tám cổng theo mục đích: truy cập từ xa gồm 22 SSH, 23 Telnet, 3389 RDP; web gồm 80 HTTP, 443 HTTPS; thư điện tử gồm 25 SMTP, 110 POP3, 143 IMAP; hạ tầng mạng gồm 53 DNS dùng UDP và TCP, 67 và 68 DHCP dùng UDP, 123 NTP dùng UDP; chia sẻ tệp gồm 21 FTP, 139 NetBIOS, 445 SMB; cơ sở dữ liệu gồm 1521 Oracle, 3306 MySQL, 5432 PostgreSQL. Cổng mặc định là quy ước.</desc>
+<desc id="desc">Sáu khung dọc chia mười tám cổng theo mục đích: truy cập từ xa gồm 22 SSH, 23 Telnet, 3389 RDP; web gồm 80 HTTP, 443 HTTPS; thư điện tử gồm 25 SMTP, 110 POP3, 143 IMAP; hạ tầng mạng gồm 53 DNS dùng UDP và TCP, 67 và 68 DHCPv4 dùng UDP, 123 NTP dùng UDP; chia sẻ tệp gồm 21 FTP, 139 NetBIOS, 445 SMB; cơ sở dữ liệu gồm 1521 Oracle, 3306 MySQL, 5432 PostgreSQL. Cổng mặc định là quy ước.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="1003" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
@@ -34,7 +34,7 @@
 <text x="30" y="577" font-size="16" font-weight="bold">53</text>
 <text x="100" y="577" font-size="16" font-weight="normal">DNS (UDP và TCP)</text>
 <text x="30" y="604" font-size="16" font-weight="bold">67/68</text>
-<text x="100" y="604" font-size="16" font-weight="normal">DHCP (UDP)</text>
+<text x="100" y="604" font-size="16" font-weight="normal">DHCPv4 (UDP)</text>
 <text x="30" y="631" font-size="16" font-weight="bold">123</text>
 <text x="100" y="631" font-size="16" font-weight="normal">NTP (UDP)</text>
 <rect x="16" y="665" width="288" height="131" rx="12" fill="#e2e8f0" stroke="#94a3b8"/>

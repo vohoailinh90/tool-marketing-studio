@@ -56,7 +56,7 @@
       "source": "https://v8.dev/blog/launching-ignition-and-turbofan"
     },
     {
-      "claim_vi": "Hàng đợi microtask (phần việc tiếp theo của promise) chạy trước task kế tiếp như setTimeout; event loop lấy việc khi stack rỗng.",
+      "claim_vi": "Hàng đợi microtask (phần việc tiếp theo của promise) chạy trước task kế tiếp như setTimeout; event loop lấy việc khi stack rỗng. Task có thể nằm ở một hoặc nhiều hàng đợi do môi trường chọn (HTML Standard cho phép một hoặc nhiều hàng đợi task; Node chia thành các pha như timers, poll, check).",
       "sources": [
         "https://html.spec.whatwg.org/multipage/webappapis.html#event-loops",
         "https://tc39.es/ecma262/",

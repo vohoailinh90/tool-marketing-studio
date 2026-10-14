@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 746" width="320" height="746" role="img" aria-labelledby="title desc">
 <title id="title">JavaScript chạy một việc một lúc</title>
-<desc id="desc">Năm khung dọc: engine đọc mã thành bytecode và JIT tối ưu đoạn hay chạy; call stack chạy mã từng việc một nên việc dài làm trang đứng; môi trường như trình duyệt hoặc Node lo timer, mạng và sự kiện; hai hàng đợi gồm microtask cho promise chạy trước và task cho setTimeout và sự kiện; event loop lấy việc kế tiếp khi stack rỗng và chạy hết microtask trước. Ví dụ trong bài in A, D, C, B.</desc>
+<desc id="desc">Năm khung dọc: engine đọc mã thành bytecode và JIT tối ưu đoạn hay chạy; call stack chạy mã từng việc một nên việc dài làm trang đứng; môi trường như trình duyệt hoặc Node lo timer, mạng và sự kiện; hai loại việc chờ gồm microtask cho promise chạy trước và task cho setTimeout và sự kiện, trong đó task có thể nằm ở một hoặc nhiều hàng đợi; event loop lấy việc kế tiếp khi stack rỗng và chạy hết microtask trước. Ví dụ trong bài in A, D, C, B.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="746" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">

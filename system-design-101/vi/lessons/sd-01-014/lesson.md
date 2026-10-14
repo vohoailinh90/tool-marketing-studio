@@ -2,7 +2,7 @@
 
 **JavaScript chạy từng việc một, nhưng vẫn lo được nhiều việc đang chờ.** Hiểu engine, call stack, hàng đợi và event loop giải thích vì sao trang không đứng khi chờ mạng, và vì sao một vòng lặp dài lại làm trang đứng.
 
-![Năm khung dọc: engine đọc mã thành bytecode và JIT tối ưu đoạn hay chạy; call stack chạy mã từng việc một nên việc dài làm trang đứng; môi trường như trình duyệt hoặc Node lo timer, mạng và sự kiện; hai hàng đợi gồm microtask cho promise chạy trước và task cho setTimeout và sự kiện; event loop lấy việc kế tiếp khi stack rỗng và chạy hết microtask trước. Ví dụ trong bài in A, D, C, B.](../../diagrams/sd-01-014-main.svg)
+![Năm khung dọc: engine đọc mã thành bytecode và JIT tối ưu đoạn hay chạy; call stack chạy mã từng việc một nên việc dài làm trang đứng; môi trường như trình duyệt hoặc Node lo timer, mạng và sự kiện; hai loại việc chờ gồm microtask cho promise chạy trước và task cho setTimeout và sự kiện, trong đó task có thể nằm ở một hoặc nhiều hàng đợi; event loop lấy việc kế tiếp khi stack rỗng và chạy hết microtask trước. Ví dụ trong bài in A, D, C, B.](../../diagrams/sd-01-014-main.svg)
 
 ## Đọc hình
 
@@ -12,13 +12,13 @@
 
 **3. Môi trường làm hộ.** Chờ timer, mạng hay sự kiện không phải việc của engine mà của môi trường (trình duyệt, Node). Khi xong, môi trường đưa hàm gọi lại vào một hàng đợi.
 
-**4. Hai hàng đợi.** Hàng *microtask* chứa phần việc tiếp theo của promise (`.then`, sau `await`). Hàng *task* chứa `setTimeout` và các sự kiện.
+**4. Hai loại việc chờ.** *Microtask* là phần việc tiếp theo của promise (`.then`, sau `await`) và nằm trong hàng đợi microtask riêng. *Task* gồm `setTimeout`, I/O và các sự kiện; chúng có thể nằm ở một hoặc nhiều hàng đợi do môi trường chọn (trình duyệt tự phân loại, còn Node chia theo pha như timers, poll, check).
 
 **5. Event loop.** Khi stack rỗng, nó lấy việc kế tiếp: chạy hết microtask trước, rồi mới lấy một task.
 
 ## Giới hạn cần nhớ
 
-"Bất đồng bộ" không có nghĩa là "song song". Mã JavaScript của bạn vẫn chạy từng việc một; chỉ việc *chờ* được giao cho môi trường. Việc nặng về tính toán nên đưa ra khỏi luồng chính, ví dụ bằng Web Worker hoặc worker thread của Node. Thứ tự hàng đợi do chuẩn quy định, còn cách tối ưu thì tùy engine.
+"Bất đồng bộ" không có nghĩa là "song song". Mã JavaScript của bạn vẫn chạy từng việc một; chỉ việc *chờ* được giao cho môi trường. Việc nặng về tính toán nên đưa ra khỏi luồng chính, ví dụ bằng Web Worker hoặc worker thread của Node. Thứ tự giữa microtask và task do đặc tả (HTML, ECMAScript) và tài liệu của từng môi trường quy định, còn cách tối ưu thì tùy engine.
 
 ## Nhìn hình thử trả lời
 

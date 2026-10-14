@@ -1,9 +1,9 @@
 # Bốn cơ chế xác thực: khóa SSH, token OAuth, chứng chỉ và mật khẩu
 
-**Bốn thứ bài nguồn liệt kê đều là thứ bạn đưa ra để được hệ thống cho vào hoặc cho làm một việc, nhưng chúng chứng minh những điều khác nhau: khóa SSH, chứng chỉ và mật khẩu liên quan tới việc bạn là ai (giữ một khóa riêng, có tên được một tổ chức xác nhận là gắn với một khóa, biết một bí mật), còn token OAuth chỉ là bằng chứng của một quyền đã được ủy cho bên đang cầm nó.**
+**Bốn thứ bài nguồn liệt kê đều là thứ bạn đưa ra để được hệ thống cho vào hoặc cho làm một việc, nhưng chúng chứng minh những điều khác nhau: khóa SSH, chứng chỉ và mật khẩu liên quan tới việc bạn là ai (giữ một khóa riêng, có tên được một tổ chức xác nhận là gắn với một khóa, biết một bí mật), còn token OAuth chỉ là bằng chứng của một quyền đã được ủy, và tự nó không chứng minh người dùng token là ai.**
 Bài này chạy thử từng cơ chế để thấy mỗi cái chứng minh được gì và không chứng minh được gì, rồi trả lời câu hỏi cuối bài nguồn: có nên để khóa trong một kho mã không?
 
-![Sáu thẻ xếp dọc. Thẻ đầu là câu hỏi chung: bạn đưa ra thứ gì để được vào hoặc được làm một việc. Khóa SSH: chứng minh bằng việc giữ khóa riêng, máy chủ chỉ giữ khóa công khai. Token OAuth: bằng chứng của quyền đã được ủy, không chứng minh người cầm là ai, và ai đang giữ token thì dùng được. Chứng chỉ, trong giao thức TLS trước đây gọi là SSL: gắn một tên với một khóa công khai, do tổ chức cấp chứng chỉ xác nhận; mã hóa vẫn chạy ngay cả khi không kiểm tra chứng chỉ. Mật khẩu: điều bạn biết, máy chủ nên lưu bản băm, thêm yếu tố thứ hai. Thẻ cuối: xóa một tệp chứa khóa ở commit sau không xóa nó khỏi lịch sử; phải thu hồi và đổi khóa.](../../diagrams/sd-14-014-main.svg)
+![Sáu thẻ xếp dọc. Thẻ đầu là câu hỏi chung: bạn đưa ra thứ gì để được vào hoặc được làm một việc. Khóa SSH: chứng minh bằng việc giữ khóa riêng, máy chủ chỉ giữ khóa công khai. Token OAuth: bằng chứng của quyền đã được ủy, không chứng minh người dùng token là ai, và với token bearer thì ai đang giữ cũng dùng được. Chứng chỉ, trong giao thức TLS trước đây gọi là SSL: gắn một tên với một khóa công khai, do tổ chức cấp chứng chỉ xác nhận; mã hóa vẫn chạy ngay cả khi không kiểm tra chứng chỉ. Mật khẩu: điều bạn biết, máy chủ nên lưu bản băm, thêm yếu tố thứ hai. Thẻ cuối: xóa một tệp chứa khóa ở commit sau không xóa nó khỏi lịch sử; phải thu hồi và đổi khóa.](../../diagrams/sd-14-014-main.svg)
 
 ## Đọc hình
 
@@ -19,7 +19,7 @@ Bài này chạy thử từng cơ chế để thấy mỗi cái chứng minh đ�
 
 ## Giới hạn cần nhớ
 
-Cách gom bốn cơ chế vào bốn kiểu bằng chứng (giữ khóa riêng, cầm token, được CA xác nhận, biết bí mật) là của người biên soạn để dễ so sánh; thực tế chúng giao nhau, ví dụ khóa riêng của SSH có thể được bảo vệ bằng một cụm mật khẩu, và một token OAuth có thể được cấp sau khi người dùng đăng nhập bằng mật khẩu (hai ví dụ này là hiểu biết chung của người biên soạn, chưa chạy thử). Các phần chưa chạy thử: thu hồi chứng chỉ (danh sách thu hồi CRL, giao thức hỏi trạng thái OCSP), chứng chỉ SSH, token OAuth gắn với khóa, tính năng quét bí mật của GitHub và tài liệu GitHub, nên bài không kết luận về cách GitHub xử lý khóa bị lộ.
+Cách gom bốn cơ chế vào bốn kiểu bằng chứng (giữ khóa riêng, giữ một token bearer, được CA xác nhận, biết bí mật) là của người biên soạn để dễ so sánh; thực tế chúng giao nhau, ví dụ khóa riêng của SSH có thể được bảo vệ bằng một cụm mật khẩu, và một token OAuth có thể được cấp sau khi người dùng đăng nhập bằng mật khẩu (hai ví dụ này là hiểu biết chung của người biên soạn, chưa chạy thử). Các phần chưa chạy thử: thu hồi chứng chỉ (danh sách thu hồi CRL, giao thức hỏi trạng thái OCSP), chứng chỉ SSH, token OAuth gắn với khóa, tính năng quét bí mật của GitHub và tài liệu GitHub, nên bài không kết luận về cách GitHub xử lý khóa bị lộ.
 
 ## Nhìn hình trả lời
 
@@ -37,7 +37,7 @@ Thử nghiệm chỉ chạy trên một kho git cục bộ.
 <details>
 <summary>Xem sâu hơn: điều đã chỉnh so với bài nguồn</summary>
 
-Bài nguồn gọi token OAuth là một cơ chế xác thực. Bài này giữ nó trong danh sách nhưng nói rõ: token ủy quyền một quyền hạn cho bất kỳ ai giữ nó; việc xác nhận người dùng là ai thuộc về lớp xác thực đứng trên OAuth (bài sd-14-011).
+Bài nguồn gọi token OAuth là một cơ chế xác thực. Bài này giữ nó trong danh sách nhưng nói rõ: một token OAuth ủy quyền một quyền hạn, và với token bearer thì cho bất kỳ ai giữ nó; việc xác nhận người dùng là ai thuộc về lớp xác thực đứng trên OAuth (bài sd-14-011).
 Bài nguồn viết “chứng chỉ SSL đảm bảo giao tiếp an toàn và được mã hóa”. Phép thử cho thấy mã hóa vẫn chạy khi chứng chỉ không được kiểm tra, nên bài này nói chứng chỉ xác thực một tên và một khóa, còn việc mã hóa đến từ giao thức TLS. Bài giữ tên SSL theo nguồn và nói TLS là giao thức hiện hành.
 Câu hỏi cuối của bài nguồn (có nên để khóa trong kho GitHub không) được trả lời bằng thử nghiệm git cục bộ và hướng dẫn của OWASP thay vì một ý kiến.
 Bài không dùng ảnh của bài nguồn.

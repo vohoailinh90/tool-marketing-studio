@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 862" width="320" height="862" role="img" aria-labelledby="title desc">
 <title id="title">Bốn cơ chế xác thực</title>
-<desc id="desc">Câu hỏi chung: bạn đưa ra thứ gì để được vào hoặc được làm một việc. Khóa SSH: chứng minh bằng việc giữ khóa riêng, máy chủ chỉ giữ khóa công khai. Token OAuth: bằng chứng của quyền đã được ủy, không chứng minh người cầm là ai, và ai đang giữ token thì dùng được. Chứng chỉ, trong giao thức TLS trước đây gọi là SSL: gắn một tên với một khóa công khai, do tổ chức cấp chứng chỉ xác nhận; mã hóa vẫn chạy ngay cả khi không kiểm tra chứng chỉ. Mật khẩu: điều bạn biết, máy chủ nên lưu bản băm, thêm yếu tố thứ hai. Thẻ cuối: xóa một tệp chứa khóa ở commit sau không xóa nó khỏi lịch sử; phải thu hồi và đổi khóa.</desc>
+<desc id="desc">Câu hỏi chung: bạn đưa ra thứ gì để được vào hoặc được làm một việc. Khóa SSH: chứng minh bằng việc giữ khóa riêng, máy chủ chỉ giữ khóa công khai. Token OAuth: bằng chứng của quyền đã được ủy, không chứng minh người dùng token là ai, và với token bearer thì ai đang giữ cũng dùng được. Chứng chỉ, trong giao thức TLS trước đây gọi là SSL: gắn một tên với một khóa công khai, do tổ chức cấp chứng chỉ xác nhận; mã hóa vẫn chạy ngay cả khi không kiểm tra chứng chỉ. Mật khẩu: điều bạn biết, máy chủ nên lưu bản băm, thêm yếu tố thứ hai. Thẻ cuối: xóa một tệp chứa khóa ở commit sau không xóa nó khỏi lịch sử; phải thu hồi và đổi khóa.</desc>
 <rect width="320" height="862" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="30" font-size="21" font-weight="bold">BỐN CƠ CHẾ</text>
@@ -17,8 +17,8 @@
 <rect x="16" y="324" width="288" height="124" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
 <text x="29" y="353" font-size="16" font-weight="bold">Token OAuth</text>
 <text x="29" y="381" font-size="16" font-weight="normal">Quyền đã được ủy, không chứng</text>
-<text x="29" y="405" font-size="16" font-weight="normal">minh người cầm là ai. Ai giữ</text>
-<text x="29" y="429" font-size="16" font-weight="normal">token thì dùng được.</text>
+<text x="29" y="405" font-size="16" font-weight="normal">minh người dùng là ai. Token</text>
+<text x="29" y="429" font-size="16" font-weight="normal">bearer: ai giữ cũng dùng được.</text>
 <rect x="16" y="456" width="288" height="148" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
 <text x="29" y="485" font-size="16" font-weight="bold">Chứng chỉ TLS</text>
 <text x="29" y="513" font-size="16" font-weight="normal">Gắn một tên với một khóa công</text>

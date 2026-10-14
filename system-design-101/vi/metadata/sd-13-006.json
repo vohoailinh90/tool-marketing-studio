@@ -49,6 +49,10 @@
       "source": "https://kubernetes.io/docs/concepts/services-networking/endpoint-slices/"
     },
     {
+      "claim_vi": "Điều kiện ready của endpoint về cơ bản là serving và không terminating; serving theo điều kiện Ready của Pod, còn terminating được đặt khi Pod bị xóa (có deletion timestamp), nên endpoint của Pod đang bị xóa có ready là false dù serving vẫn có thể là true.",
+      "source": "https://kubernetes.io/docs/concepts/services-networking/endpoint-slices/"
+    },
+    {
       "claim_vi": "port là cổng của Service, targetPort là cổng của Pod.",
       "source": "https://kubernetes.io/docs/concepts/services-networking/service/"
     },

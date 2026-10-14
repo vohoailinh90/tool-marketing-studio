@@ -2,7 +2,7 @@
 
 Service là lớp địa chỉ ổn định trước một nhóm Pod. Khi nó không nhận traffic, hãy kiểm tra theo thứ tự từ trong ra ngoài: nhãn, cổng, trạng thái sẵn sàng, tên và đường vào từ ngoài cụm.
 
-![Năm chỗ cần kiểm tra khi Service không nhận traffic: selector không khớp nhãn Pod nên EndpointSlice trống, port và targetPort lệch, Pod chưa sẵn sàng nên với Service ở cấu hình mặc định endpoint có ready là false và không nhận traffic (Service đặt publishNotReadyAddresses: true là ngoại lệ), tên DNS (Domain Name System — hệ thống phân giải tên miền) sai namespace, và đường vào từ ngoài cụm như NodePort bị chặn hoặc LoadBalancer ở trạng thái pending.](../../diagrams/sd-13-006-main.svg)
+![Năm chỗ cần kiểm tra khi Service không nhận traffic: selector không khớp nhãn Pod nên EndpointSlice trống, port và targetPort lệch, với Service ở cấu hình mặc định endpoint có ready là false thì không nhận traffic, và cần xem serving và terminating để biết Pod chưa qua readiness hay đang bị xóa (Service đặt publishNotReadyAddresses: true là ngoại lệ), tên DNS (Domain Name System — hệ thống phân giải tên miền) sai namespace, và đường vào từ ngoài cụm như NodePort bị chặn hoặc LoadBalancer ở trạng thái pending.](../../diagrams/sd-13-006-main.svg)
 
 **Đọc hình:** năm bước xếp theo thứ tự kiểm tra thường hiệu quả, không phải thứ tự dữ liệu chạy.
 
@@ -13,7 +13,7 @@ Service là lớp địa chỉ ổn định trước một nhóm Pod. Khi nó kh
 <details>
 <summary>Xem đáp án</summary>
 
-Chủ yếu là selector của Service không khớp nhãn của Pod nào (hoặc chưa có Pod). So selector trong `kubectl get svc web -o yaml` với nhãn của Pod trong `kubectl get pods --show-labels`. Nếu EndpointSlice có endpoint nhưng điều kiện `ready` là false thì vấn đề là readiness của Pod, không phải selector. Riêng Service đặt `publishNotReadyAddresses: true` báo mọi endpoint là ready bất kể Pod, nên với loại Service đó hãy xem `serving` hoặc `kubectl get pods`.
+Chủ yếu là selector của Service không khớp nhãn của Pod nào (hoặc chưa có Pod). So selector trong `kubectl get svc web -o yaml` với nhãn của Pod trong `kubectl get pods --show-labels`. Nếu EndpointSlice có endpoint nhưng điều kiện `ready` là false thì selector không phải nguyên nhân, vì endpoint đã được tạo từ Pod khớp. Hãy xem tiếp `serving` và `terminating`, vì `ready` về cơ bản là `serving` và không `terminating`: `serving: false` nghĩa là Pod chưa Ready, nên xem readiness probe; `terminating: true` nghĩa là Pod đang bị xóa (đã có deletion timestamp, thường gặp khi cập nhật cuốn chiếu), và `ready` là false dù Pod có thể vẫn Ready. Riêng Service đặt `publishNotReadyAddresses: true` báo mọi endpoint là ready bất kể Pod, nên với loại Service đó hãy xem `serving` hoặc `kubectl get pods`.
 
 </details>
 
@@ -24,7 +24,7 @@ Chuỗi kiểm tra trên giả định Service có selector. Service không sele
 <details>
 <summary>Xem sâu hơn</summary>
 
-- **Endpoint:** EndpointSlice được tạo từ các Pod khớp selector, mỗi endpoint kèm điều kiện như `ready`; với Service ở cấu hình mặc định, chỉ endpoint ready nhận traffic bình thường và Pod chưa sẵn sàng vẫn được liệt kê với `ready: false`. Ngoại lệ: Service đặt `spec.publishNotReadyAddresses: true` (thường để các Pod của StatefulSet tìm thấy nhau) báo mọi endpoint là `ready: true` bất kể Pod có sẵn sàng hay không, còn `serving` vẫn theo readiness của Pod. Để so khớp selector, xem `kubectl get svc web -o yaml` và `kubectl get pods --show-labels`.
+- **Endpoint:** EndpointSlice được tạo từ các Pod khớp selector, mỗi endpoint kèm điều kiện như `ready`; với Service ở cấu hình mặc định, chỉ endpoint ready nhận traffic bình thường. `ready` về cơ bản là `serving` và không `terminating`: Pod chưa sẵn sàng vẫn được liệt kê với `serving: false` và `ready: false`, còn Pod đang bị xóa có `terminating: true` và `ready: false` dù `serving` vẫn có thể là true. Ngoại lệ: Service đặt `spec.publishNotReadyAddresses: true` (thường để các Pod của StatefulSet tìm thấy nhau) báo mọi endpoint là `ready: true` bất kể Pod có sẵn sàng hay không, còn `serving` vẫn theo readiness của Pod. Để so khớp selector, xem `kubectl get svc web -o yaml` và `kubectl get pods --show-labels`.
 - **port và targetPort:** `port` là cổng của Service, `targetPort` là cổng container nhận traffic; nếu không ghi, `targetPort` bằng `port`.
 - **DNS (Domain Name System — hệ thống phân giải tên miền):** trong cùng namespace gọi `web`; khác namespace dùng `web.ten-namespace` hoặc tên đầy đủ `web.ten-namespace.svc.<miền-cụm>`, trong đó `<miền-cụm>` là miền DNS đã cấu hình của cụm (thường là `cluster.local`).
 - **NodePort:** mặc định dải 30000–32767 trên mọi node; cần cho phép trong tường lửa hoặc security group.

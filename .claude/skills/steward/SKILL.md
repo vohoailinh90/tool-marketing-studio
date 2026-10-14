@@ -39,10 +39,8 @@ else owns, no skipped or quarantined test.
    lifecycle makes it the first action once the PR exists. Claude and codex lanes:
    `python3 scripts/codex_round_count.py` must exit 0, then post the §11 command.
    Codex-cli lane (only a repository that ships `scripts/codex_cli.py` has it):
-   `python3 scripts/codex_cli.py review --branch <branch>`; no comment is posted
-   and there is nothing to wait for, so skip step 3. The review runs to completion
-   on this machine, so its report is the result: after step 2, validate it
-   (§14, `docs/codex-cli-lane.md`) and work it through section 3's review rows.
+   section 8 replaces this step and step 3, and its report is validated after
+   step 2.
 2. **Subscribe** with `subscribe_pr_activity`, right after the request. The
    lifecycle is the user's standing instruction to drive every PR to merge, so
    subscribing is part of it: do not stop to ask. The check-in in step 3 re-fetches
@@ -73,7 +71,7 @@ else owns, no skipped or quarantined test.
 | A review with findings | A result (§14) | Validate each finding against the code (§13); fix the real ones with a regression test; answer a wrong one on its thread with the evidence; resolve the threads you addressed. Fixed anything: section 5, then section 6. Rejected a P2 or P3: it stands at once and blocks nothing, and with nothing fixed the review counts as clean for its command. Rejected a P0 or P1: the next review of the new head decides it when other fixes make one; with no code change pending it is an unresolved disagreement (§16), so report it to the repository owner and do not merge |
 | A review of the current head with no finding | A clean review for that command | Check every other review command the work requires, then CI and mergeability, then section 7 |
 | CI red | Work now | Reproduce it, fix it, section 5, then section 6 |
-| A merge conflict, or the base branch recovered | Work now | Merge the base into the PR branch (never rebase or force-push), section 5, then section 6 |
+| A merge conflict, or the base branch advanced (the harness's "base recovered" notice is one such event) | Work now | Merge the base into the PR branch (never rebase or force-push), section 5, then section 6 |
 | A human comment | A request | A small, local ask: do it. A larger or ambiguous one: ask the user, with enough context to answer cold |
 
 After the first check-in, the harness's own safety-net check-ins cover the gaps
@@ -84,8 +82,10 @@ about 4 hours apart, silent when nothing changed, stopping after three empty one
 
 Re-fetch the PR, its reviews and its comments first, and read the `reactions` counts
 on the request comment: a reaction is trigger evidence (§17), no event announces it,
-and an acknowledged request must not be classified as silent and retried. Nothing
-remembered is current.
+and an acknowledged request must not be classified as silent and retried. A count
+carries no time: take the evidence's time from the reaction record where the toolset
+can list it, and otherwise from this check-in, which is never earlier than the truth,
+so a stall is never declared early. Nothing remembered is current.
 
 Every window is measured from the newest request, retry or evidence. A check-in
 that fires before its window has run out is re-armed from that newest time and does
@@ -122,7 +122,7 @@ The pushed head is unreviewed. For each review command the work requires, reques
 it on the new head once `scripts/codex_round_count.py` exits 0: once per command
 per head, none while a request is unanswered, and only after the previous response
 was validated (§16). Arm section 2's check-in for each request. In the codex-cli
-lane run `scripts/codex_cli.py review` on exactly the pushed SHA.
+lane, section 8.
 
 ## 7. Merge, then move on
 
@@ -132,10 +132,29 @@ operator applies, since it needs an admin token a session does not hold, and tha
 operator confirms it by hand where it does not). Record what you learn in
 `model-notes`. Missing or unconfirmed means a genuine blocker: escalate, do not
 merge. Re-fetch head and base immediately before merging and scope the merge to
-`validated_head_sha`. Then record the merge commit SHA and a one-line summary on
+`validated_head_sha`. If either moved, do not merge (§20, STALE): a moved head is
+unvalidated and goes back through the review rows, and a moved base is merged into
+the PR branch and the checks re-run before fresh SHAs are recorded. Then record the merge commit SHA and a one-line summary on
 the PR, call `unsubscribe_pr_activity`, delete this PR's pending check-in
 (`delete_trigger` on the id `send_later` returned), update `model-notes`, and take
 the next outstanding task through the full routing flow.
+
+## 8. The codex-cli lane
+
+Only a repository that ships `scripts/codex_cli.py` has this lane
+(`docs/codex-cli-lane.md`). The review runs on this machine and returns its report
+before the command exits, so there is no request to post, nothing to wait for, no
+check-in to arm and no reaction to read: skip step 3 of section 2 and the check-in
+rules of section 4. Wherever this file says to request a review, do this instead,
+then validate the report at once (§14) and work it through section 3's review rows:
+
+- Compare the PR head with the SHA a review already ran on. A review run before the
+  push is the PR's review only while the pushed head is exactly that SHA
+  (CLAUDE.md, lifecycle step 1), so when they are equal reuse that report: the
+  ledger refuses a second run of the same review command on one head.
+- Otherwise run `python3 scripts/codex_cli.py review --branch <branch>` on the head
+  the PR carries, with `--security` as well where the work requires a security
+  review.
 
 ## Never
 

@@ -123,7 +123,7 @@
       "verified_by": "Read from a local clone of the repository at the pinned commit."
     },
     {
-      "claim_vi": "OWASP's Secrets Management cheat sheet says many organizations have secrets hardcoded in source code in plaintext, and that exposed secrets should be revoked, rotated and removed, noting that squashing commit history to before a secret was introduced rewrites history and breaks other links to a commit.",
+      "claim_vi": "OWASP's Secrets Management cheat sheet says many organizations have secrets hardcoded in source code in plaintext, and that exposed secrets are contained by revocation, rotation and deletion, listed in that order (deletion from the exposed system, including secrets found in code), noting that squashing commit history to before a secret was introduced rewrites history and breaks other links to a commit.",
       "source": "https://github.com/OWASP/CheatSheetSeries/blob/ae965343cb82e6b8f42aff1ccee57c4fa0f171c2/cheatsheets/Secrets_Management_Cheat_Sheet.md",
       "section": "Introduction; Secret Lifecycle (compromise)",
       "verified_by": "Read from a local clone of the repository at the pinned commit."

@@ -1,7 +1,7 @@
 # Chữ ký số: ký bằng khóa riêng, kiểm bằng khóa công khai
 
 **Chữ ký số trả lời hai câu hỏi về một tài liệu: nó có bị sửa sau khi ký không, và có đúng người giữ khóa riêng này đã ký không. Nó không giấu nội dung, và tự nó không cho biết người giữ khóa là ai.**
-Bài này đi qua sáu bước của bài nguồn, chạy thử từng bước bằng thư viện `cryptography` của Python, và chỉ ra chỗ mô tả “mã hóa bản băm bằng khóa riêng” đúng cho một kiểu chữ ký nhưng không đúng cho các kiểu khác.
+Bài này gom tám bước của bài nguồn thành sáu bước, chạy thử từng bước bằng thư viện `cryptography` của Python, và chỉ ra chỗ mô tả “mã hóa bản băm bằng khóa riêng” đúng cho một kiểu chữ ký nhưng không đúng cho các kiểu khác.
 
 ![Bảy thẻ xếp dọc, sáu thẻ đầu nối bằng mũi tên. Một: người ký tạo cặp khóa, khóa riêng giữ kín, khóa công khai chia sẻ được. Hai: băm tài liệu thành một dấu vân tay ngắn cố định, đổi một byte thì dấu vân tay đổi. Ba: ký bằng khóa riêng ra chữ ký. Bốn: gửi tài liệu cùng chữ ký; tài liệu vẫn đọc được. Năm: người nhận dùng khóa công khai của người ký để kiểm chữ ký với chính tài liệu nhận được. Sáu: khớp thì đúng khóa riêng đã ký và nội dung chưa đổi kể từ lúc ký; không khớp thì từ chối. Thẻ cuối: chữ ký không giấu nội dung và không tự cho biết khóa công khai là của ai.](../../diagrams/sd-14-015-main.svg)
 
@@ -9,11 +9,11 @@ Bài này đi qua sáu bước của bài nguồn, chạy thử từng bước b
 
 Các lần thử dưới đây dùng thư viện `cryptography` 50.0.1 của Python với khóa tạm; ví dụ thông điệp là `Pay Bob 100 USD`.
 
-**1 · Cặp khóa.** Người ký tạo khóa riêng (giữ kín) và khóa công khai (chia sẻ được). Đối tượng khóa công khai trong thư viện chỉ có thao tác kiểm (`verify`); không có thao tác nào cho phép nó ký.
+**1 · Cặp khóa.** Người ký tạo khóa riêng (giữ kín) và khóa công khai (chia sẻ được). Đối tượng khóa công khai trong thư viện có thao tác kiểm (`verify`) và không có thao tác giải mã (`decrypt`).
 
-**2 · Băm.** Băm (hash) biến tài liệu thành một dãy ngắn có độ dài cố định, như một dấu vân tay. SHA-256 của `Pay Bob 100 USD` và của `Pay Bob 900 USD` khác nhau ở 129 trong 256 bit, dù hai câu chỉ khác một ký tự.
+**2 · Băm.** Băm (hash) biến tài liệu thành một dãy ngắn có độ dài cố định, như một dấu vân tay. SHA-256 (một hàm băm cho ra 256 bit) của `Pay Bob 100 USD` và của `Pay Bob 900 USD` khác nhau ở 129 trong 256 bit, dù hai câu chỉ khác một ký tự.
 
-**3 · Ký.** Người ký dùng khóa riêng để tạo chữ ký. Với Ed25519, chữ ký luôn dài 64 byte, dù thông điệp dài 0 byte, 15 byte hay 1 MB, và ký hai lần cùng một thông điệp cho cùng một chữ ký. Bài nguồn mô tả bước này là mã hóa bản băm bằng khóa riêng; mục “Xem sâu hơn” giải thích mô tả đó đúng với kiểu nào.
+**3 · Ký.** Người ký dùng khóa riêng để tạo chữ ký. Với Ed25519, chữ ký dài 64 byte với cả ba cỡ thông điệp đã thử (0 byte, 15 byte và 1 MB), và ký hai lần cùng một thông điệp cho cùng một chữ ký. Bài nguồn mô tả bước này là mã hóa bản băm bằng khóa riêng; mục “Xem sâu hơn” giải thích mô tả đó đúng với kiểu nào.
 
 **4 · Gửi.** Tài liệu đi cùng chữ ký, và tài liệu vẫn đọc được: thứ được gửi đi vẫn chứa dòng chữ `Pay Bob 100 USD` ở dạng đọc ra được. Chữ ký số không phải mã hóa nội dung.
 
@@ -25,7 +25,7 @@ Các lần thử dưới đây dùng thư viện `cryptography` 50.0.1 của Pyt
 
 ## Giới hạn cần nhớ
 
-Bài này kiểm chứng cơ chế kỹ thuật của chữ ký (đổi nội dung thì kiểm thất bại, khác khóa thì thất bại), chứ không bàn hiệu lực pháp lý của chữ ký, vấn đề không thể chối bỏ (non-repudiation), cách bảo quản khóa riêng hay thu hồi khóa. Các đặc tả của NIST và RFC không đọc được nên không được trích dẫn; hành vi của từng kiểu chữ ký dựa trên tài liệu của thư viện `cryptography` và các lần chạy.
+Bài này kiểm chứng cơ chế kỹ thuật của chữ ký (đổi nội dung thì kiểm thất bại, khác khóa thì thất bại), chứ không bàn hiệu lực pháp lý của chữ ký, vấn đề không thể chối bỏ (non-repudiation), cách bảo quản khóa riêng hay thu hồi khóa. Các đặc tả của NIST (viện tiêu chuẩn Hoa Kỳ) và RFC (văn bản đặc tả của IETF) không đọc được nên không được trích dẫn; hành vi của từng kiểu chữ ký dựa trên tài liệu của thư viện `cryptography` và các lần chạy.
 
 ## Nhìn hình trả lời
 
@@ -42,7 +42,7 @@ Mallory có thể ký bản sửa bằng khóa riêng của chính mình, và ch
 <details>
 <summary>Xem sâu hơn: điều đã chỉnh so với bài nguồn</summary>
 
-Bài nguồn nói người ký “mã hóa bản băm bằng khóa riêng” và người nhận “giải mã chữ ký bằng khóa công khai” để ra bản băm. MDN dùng cùng mô hình đơn giản đó. Chạy thử cho thấy mô tả ấy khớp với một kiểu cụ thể: RSA-2048 theo PKCS#1 v1.5 với SHA-256. Ở đó, tính `chữ ký ^ e mod n` bằng khóa công khai cho ra một giá trị 256 byte bắt đầu bằng `00 01 ff ff` và kết thúc đúng bằng SHA-256 của thông điệp, và ký hai lần cùng thông điệp cho cùng chữ ký. Với các kiểu khác thì không: RSA-PSS cho hai chữ ký khác nhau khi ký hai lần cùng thông điệp (cả hai đều hợp lệ), và giá trị `chữ ký ^ e mod n` kết thúc bằng byte `0xbc` chứ không bằng bản băm thuần; ECDSA P-256 cũng cho hai chữ ký khác nhau mà cả hai đều hợp lệ, và ký riêng bản băm SHA-256 (tùy chọn Prehashed) vẫn kiểm đúng với toàn bộ thông điệp; Ed25519 là kiểu EdDSA trên đường cong Curve25519. Tài liệu của thư viện coi PSS là lựa chọn nên dùng cho giao thức mới và chỉ dành PKCS#1 v1.5 cho giao thức cũ. Vì vậy bài này giữ sáu bước của bài nguồn nhưng nói “ký” thay cho “mã hóa bản băm”.
+Bài nguồn nói người ký “mã hóa bản băm bằng khóa riêng” và người nhận “giải mã chữ ký bằng khóa công khai” để ra bản băm. MDN dùng cùng mô hình đơn giản đó. Chạy thử cho thấy mô tả ấy khớp với một kiểu cụ thể: RSA-2048 (kiểu mật mã khóa công khai RSA, khóa dài 2048 bit) theo kiểu đệm PKCS#1 v1.5 với SHA-256. Ở đó, tính `chữ ký ^ e mod n` bằng khóa công khai cho ra một giá trị 256 byte bắt đầu bằng `00 01 ff ff` và kết thúc đúng bằng SHA-256 của thông điệp, và ký hai lần cùng thông điệp cho cùng chữ ký. Với các kiểu khác thì không: RSA-PSS (RSA với kiểu đệm ngẫu nhiên PSS) cho hai chữ ký khác nhau khi ký hai lần cùng thông điệp (cả hai đều hợp lệ), và giá trị `chữ ký ^ e mod n` kết thúc bằng byte `0xbc` chứ không bằng bản băm thuần; ECDSA P-256 (chữ ký trên đường cong elliptic P-256) cũng cho hai chữ ký khác nhau mà cả hai đều hợp lệ, và ký riêng bản băm SHA-256 (tùy chọn Prehashed) vẫn kiểm đúng với toàn bộ thông điệp; Ed25519 là kiểu chữ ký EdDSA (chữ ký trên đường cong elliptic) dùng đường cong Curve25519. Tài liệu của thư viện coi PSS là lựa chọn nên dùng cho giao thức mới và chỉ dành PKCS#1 v1.5 cho giao thức cũ. Vì vậy bài này giữ sáu bước của bài nguồn nhưng nói “ký” thay cho “mã hóa bản băm”.
 Bài nguồn nói người nhận “lấy bản băm gốc từ tài liệu”. Tài liệu không chứa bản băm: người nhận tự tính bản băm từ tài liệu nhận được, rồi kiểm chữ ký với nó (ở kiểu PKCS#1 v1.5, bản băm được khôi phục từ chữ ký để so với bản băm tự tính).
 Bài nguồn nói chữ ký “là duy nhất cho mỗi người”. Bài này nói chữ ký gắn với một khóa riêng và một thông điệp; việc khóa đó thuộc về ai phải được xác lập riêng.
 Bài nguồn không nói rõ tài liệu vẫn đọc được sau khi ký; bài này nói rõ.

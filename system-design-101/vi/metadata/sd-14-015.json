@@ -88,7 +88,7 @@
       "verified_by": "No external page reports this output; observed by executing the code on the authoring machine."
     },
     {
-      "claim_vi": "Observed: SHA-256 of 'Pay Bob 100 USD' and of 'Pay Bob 900 USD' differed in 129 of 256 bits.",
+      "claim_vi": "Observed: SHA-256 of 'Pay Bob 100 USD' and of 'Pay Bob 900 USD' differed in 129 of 256 bits; and the bytes that were sent together with an Ed25519 signature began with the plain message b'Pay Bob 100 USD', so a signature does not hide the message.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-digital-signatures-work.md",
       "section": "Step 2 (hash)",
       "verified_by": "No external page reports this output; observed by executing the code on the authoring machine."

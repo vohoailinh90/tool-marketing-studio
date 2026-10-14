@@ -1,43 +1,44 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1062" width="320" height="1062" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1089" width="320" height="1089" role="img" aria-labelledby="title desc">
 <title id="title">Container Docker thoát ngay hoặc khởi động lại mãi: bốn manh mối</title>
-<desc id="desc">Bốn manh mối khi container Docker thoát ngay hoặc khởi động lại liên tục: mã thoát trong docker ps -a, nhật ký bằng docker logs, trạng thái chi tiết trong docker inspect như ExitCode và OOMKilled (Out Of Memory Killed — bị dừng vì hết bộ nhớ), và chính sách khởi động lại quyết định container có chạy lại sau khi thoát hay không.</desc>
+<desc id="desc">Bốn manh mối khi container Docker thoát ngay hoặc khởi động lại liên tục: trạng thái và mã thoát trong docker ps -a, nhật ký bằng docker logs, trạng thái chi tiết trong docker inspect như ExitCode và OOMKilled (Out Of Memory Killed — bị dừng vì hết bộ nhớ), và chính sách khởi động lại quyết định container có chạy lại sau khi thoát hay không.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="1062" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<rect width="320" height="1089" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="30" font-size="20" font-weight="bold">CONTAINER ĐÃ THOÁT</text>
 <text x="16" y="58" font-size="16" font-weight="normal">Bốn chỗ để hỏi</text>
-<rect x="16" y="89" width="288" height="236" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
+<rect x="16" y="89" width="288" height="263" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
 <text x="30" y="117" font-size="16" font-weight="bold">1 · Mã thoát</text>
 <text x="30" y="144" font-size="16" font-weight="normal">docker ps -a hiện Exited</text>
-<text x="30" y="171" font-size="16" font-weight="normal">kèm mã</text>
-<text x="30" y="198" font-size="16" font-weight="normal">0: tự kết thúc; 137 thường</text>
-<text x="30" y="225" font-size="16" font-weight="normal">là 128 + 9, gợi ý SIGKILL</text>
-<text x="30" y="252" font-size="16" font-weight="normal">(tín hiệu buộc dừng) nhưng</text>
-<text x="30" y="279" font-size="16" font-weight="normal">ứng dụng cũng có thể tự</text>
-<text x="30" y="306" font-size="16" font-weight="normal">thoát với mã này</text>
-<rect x="16" y="337" width="288" height="209" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
-<text x="30" y="365" font-size="16" font-weight="bold">2 · Nhật ký</text>
-<text x="30" y="392" font-size="16" font-weight="normal">docker logs in stdout (đầu</text>
-<text x="30" y="419" font-size="16" font-weight="normal">ra chuẩn) và stderr (đầu ra</text>
-<text x="30" y="446" font-size="16" font-weight="normal">lỗi chuẩn) của tiến trình</text>
-<text x="30" y="473" font-size="16" font-weight="normal">chính</text>
-<text x="30" y="500" font-size="16" font-weight="normal">Ứng dụng chỉ ghi vào tệp</text>
-<text x="30" y="527" font-size="16" font-weight="normal">thì không thấy gì</text>
-<rect x="16" y="558" width="288" height="263" rx="10" fill="#fee2e2" stroke="#94a3b8"/>
-<text x="30" y="586" font-size="16" font-weight="bold">3 · Trạng thái chi</text>
-<text x="30" y="613" font-size="16" font-weight="bold">tiết</text>
-<text x="30" y="640" font-size="16" font-weight="normal">docker inspect cho</text>
-<text x="30" y="667" font-size="16" font-weight="normal">State.ExitCode,</text>
-<text x="30" y="694" font-size="16" font-weight="normal">State.OOMKilled,</text>
-<text x="30" y="721" font-size="16" font-weight="normal">State.Error</text>
-<text x="30" y="748" font-size="16" font-weight="normal">OOMKilled (bị dừng vì hết</text>
-<text x="30" y="775" font-size="16" font-weight="normal">bộ nhớ) là true: bị dừng vì</text>
-<text x="30" y="802" font-size="16" font-weight="normal">hết bộ nhớ</text>
-<rect x="16" y="833" width="288" height="209" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
-<text x="30" y="861" font-size="16" font-weight="bold">4 · Chính sách khởi</text>
-<text x="30" y="888" font-size="16" font-weight="bold">động lại</text>
-<text x="30" y="915" font-size="16" font-weight="normal">--restart chọn no,</text>
-<text x="30" y="942" font-size="16" font-weight="normal">on-failure, always hoặc</text>
-<text x="30" y="969" font-size="16" font-weight="normal">unless-stopped</text>
-<text x="30" y="996" font-size="16" font-weight="normal">Vòng thoát rồi chạy lại</text>
-<text x="30" y="1023" font-size="16" font-weight="normal">hiện là Restarting</text>
+<text x="30" y="171" font-size="16" font-weight="normal">kèm mã thoát, hoặc</text>
+<text x="30" y="198" font-size="16" font-weight="normal">Restarting</text>
+<text x="30" y="225" font-size="16" font-weight="normal">0: tự kết thúc; 137 thường</text>
+<text x="30" y="252" font-size="16" font-weight="normal">là 128 + 9, gợi ý SIGKILL</text>
+<text x="30" y="279" font-size="16" font-weight="normal">(tín hiệu buộc dừng) nhưng</text>
+<text x="30" y="306" font-size="16" font-weight="normal">ứng dụng cũng có thể tự</text>
+<text x="30" y="333" font-size="16" font-weight="normal">thoát với mã này</text>
+<rect x="16" y="364" width="288" height="209" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="392" font-size="16" font-weight="bold">2 · Nhật ký</text>
+<text x="30" y="419" font-size="16" font-weight="normal">docker logs in stdout (đầu</text>
+<text x="30" y="446" font-size="16" font-weight="normal">ra chuẩn) và stderr (đầu ra</text>
+<text x="30" y="473" font-size="16" font-weight="normal">lỗi chuẩn) của tiến trình</text>
+<text x="30" y="500" font-size="16" font-weight="normal">chính</text>
+<text x="30" y="527" font-size="16" font-weight="normal">Ứng dụng chỉ ghi vào tệp</text>
+<text x="30" y="554" font-size="16" font-weight="normal">thì không thấy gì</text>
+<rect x="16" y="585" width="288" height="263" rx="10" fill="#fee2e2" stroke="#94a3b8"/>
+<text x="30" y="613" font-size="16" font-weight="bold">3 · Trạng thái chi</text>
+<text x="30" y="640" font-size="16" font-weight="bold">tiết</text>
+<text x="30" y="667" font-size="16" font-weight="normal">docker inspect cho</text>
+<text x="30" y="694" font-size="16" font-weight="normal">State.ExitCode,</text>
+<text x="30" y="721" font-size="16" font-weight="normal">State.OOMKilled,</text>
+<text x="30" y="748" font-size="16" font-weight="normal">State.Error</text>
+<text x="30" y="775" font-size="16" font-weight="normal">OOMKilled (bị dừng vì hết</text>
+<text x="30" y="802" font-size="16" font-weight="normal">bộ nhớ) là true: bị dừng vì</text>
+<text x="30" y="829" font-size="16" font-weight="normal">hết bộ nhớ</text>
+<rect x="16" y="860" width="288" height="209" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="888" font-size="16" font-weight="bold">4 · Chính sách khởi</text>
+<text x="30" y="915" font-size="16" font-weight="bold">động lại</text>
+<text x="30" y="942" font-size="16" font-weight="normal">--restart chọn no,</text>
+<text x="30" y="969" font-size="16" font-weight="normal">on-failure, always hoặc</text>
+<text x="30" y="996" font-size="16" font-weight="normal">unless-stopped</text>
+<text x="30" y="1023" font-size="16" font-weight="normal">Vòng thoát rồi chạy lại</text>
+<text x="30" y="1050" font-size="16" font-weight="normal">hiện là Restarting</text>
 </g></svg>

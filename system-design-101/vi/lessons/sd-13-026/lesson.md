@@ -2,7 +2,7 @@
 
 Bạn chạy `docker run -d` và vài giây sau container đã biến mất khỏi `docker ps`, hoặc cứ ở trạng thái Restarting. Docker giữ lại trạng thái thoát của container cho đến khi bạn xóa nó, và bốn chỗ dưới đây cho biết vì sao nó dừng.
 
-![Bốn manh mối khi container Docker thoát ngay hoặc khởi động lại liên tục: mã thoát trong docker ps -a, nhật ký bằng docker logs, trạng thái chi tiết trong docker inspect như ExitCode và OOMKilled (Out Of Memory Killed — bị dừng vì hết bộ nhớ), và chính sách khởi động lại quyết định container có chạy lại sau khi thoát hay không.](../../diagrams/sd-13-026-main.svg)
+![Bốn manh mối khi container Docker thoát ngay hoặc khởi động lại liên tục: trạng thái và mã thoát trong docker ps -a, nhật ký bằng docker logs, trạng thái chi tiết trong docker inspect như ExitCode và OOMKilled (Out Of Memory Killed — bị dừng vì hết bộ nhớ), và chính sách khởi động lại quyết định container có chạy lại sau khi thoát hay không.](../../diagrams/sd-13-026-main.svg)
 
 **Đọc hình:** bốn thẻ là bốn chỗ để hỏi một container đã thoát; làm theo thứ tự hoặc chỉ đọc chỗ cần.
 
@@ -25,7 +25,7 @@ Trạng thái thoát chỉ còn khi container chưa bị xóa: chạy với `--r
 <summary>Xem sâu hơn</summary>
 
 ```bash
-docker ps -a --filter status=exited --format 'table {{.Names}}\t{{.Status}}'   # container đã thoát và mã thoát
+docker ps -a --format 'table {{.Names}}\t{{.Status}}'                          # mọi container: Exited kèm mã thoát, Restarting khi đang tự khởi động lại
 docker logs --tail 50 tên-container                                              # 50 dòng cuối
 docker inspect --format 'code={{.State.ExitCode}} oom={{.State.OOMKilled}} err={{.State.Error}}' tên-container
 docker events --since 10m --filter container=tên-container                      # die, oom, kill, restart
@@ -34,12 +34,12 @@ docker events --since 10m --filter container=tên-container                     
 - **Tiến trình chính quyết định đời container:** container chạy đến khi tiến trình chính (PID — process identifier, mã số tiến trình — bằng 1) thoát. Lệnh tự chạy nền rồi trả về (kiểu daemonize), hay một shell không có gì để chờ (như `docker run ubuntu bash` không có `-it`), làm container thoát ngay; hãy chạy ứng dụng ở foreground.
 - **Mã đặc biệt của docker run:** 125 là lỗi của chính Docker (như cờ sai), 126 là lệnh trong container không thực thi được, 127 là không tìm thấy lệnh; mã khác là mã thoát của lệnh trong container, nên một ứng dụng tự thoát với mã 137 cũng cho đúng mã mà một tiến trình bị SIGKILL cho.
 - **OOMKilled (Out Of Memory Killed — bị dừng vì hết bộ nhớ):** `true` cho biết kernel đã dừng container vì hết bộ nhớ. `false` chưa bảo đảm mã 137 không đến từ bộ nhớ, nên đối chiếu thêm với nhật ký kernel của máy chủ.
-- **Chính sách khởi động lại:** `no` (mặc định), `on-failure[:số lần]` (chỉ chạy lại khi mã thoát khác 0), `always`, `unless-stopped`. Container ở vòng Restarting thì sửa nguyên nhân thoát; gỡ chính sách bằng `docker update --restart=no` chỉ che triệu chứng.
+- **Chính sách khởi động lại:** `no` (mặc định), `on-failure[:số lần]` (chỉ chạy lại khi mã thoát khác 0), `always`, `unless-stopped`. Container ở vòng Restarting thì sửa nguyên nhân thoát; gỡ chính sách bằng `docker update --restart=no` chỉ che triệu chứng. Docker coi Restarting và Exited là hai trạng thái riêng, nên lọc `--filter status=exited` sẽ bỏ sót container đang ở vòng khởi động lại.
 
 </details>
 
 ## Nguồn đối chiếu
 
 - [ByteByteGo tại snapshot cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-docker-work.md).
-- Docker: [docker run và mã thoát](https://docs.docker.com/reference/cli/docker/container/run/), [chính sách khởi động lại](https://docs.docker.com/engine/containers/start-containers-automatically/), [docker container inspect](https://docs.docker.com/reference/cli/docker/container/inspect/), [docker events](https://docs.docker.com/reference/cli/docker/system/events/), [docker container logs](https://docs.docker.com/reference/cli/docker/container/logs/).
+- Docker: [docker run và mã thoát](https://docs.docker.com/reference/cli/docker/container/run/), [chính sách khởi động lại](https://docs.docker.com/engine/containers/start-containers-automatically/), [docker container inspect](https://docs.docker.com/reference/cli/docker/container/inspect/), [docker events](https://docs.docker.com/reference/cli/docker/system/events/), [docker container logs](https://docs.docker.com/reference/cli/docker/container/logs/), [docker container ls và bộ lọc status](https://docs.docker.com/reference/cli/docker/container/ls/#status).
 - Bash: [trạng thái thoát](https://www.gnu.org/software/bash/manual/html_node/Exit-Status.html).

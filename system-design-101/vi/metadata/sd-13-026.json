@@ -50,6 +50,10 @@
   },
   "claims": [
     {
+      "claim_vi": "Theo tài liệu docker container ls, status=exited và status=restarting là hai giá trị riêng của bộ lọc status: container đang khởi động lại theo chính sách không nằm trong status=exited, nên lọc exited bỏ sót nó.",
+      "source": "https://docs.docker.com/reference/cli/docker/container/ls/#status"
+    },
+    {
       "claim_vi": "Theo quy ước của Bash, một lệnh kết thúc vì tín hiệu N có mã thoát 128+N, nên SIGKILL (tín hiệu 9) cho mã 137.",
       "source": "https://www.gnu.org/software/bash/manual/html_node/Exit-Status.html"
     },

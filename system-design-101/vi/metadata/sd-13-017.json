@@ -54,7 +54,11 @@
       "source": "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/"
     },
     {
-      "claim_vi": "minReadySeconds điều chỉnh khi nào một Pod đã sẵn sàng được tính là có sẵn (available), và progressDeadlineSeconds điều chỉnh khi nào Deployment bị coi là không tiến triển.",
+      "claim_vi": "minReadySeconds điều chỉnh khi nào một Pod đã sẵn sàng được tính là có sẵn (available).",
+      "source": "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/"
+    },
+    {
+      "claim_vi": "progressDeadlineSeconds chỉ quyết định khi nào Deployment được báo là không tiến triển bằng điều kiện ProgressDeadlineExceeded; Kubernetes không làm gì khác với Deployment bị kẹt và controller vẫn tiếp tục thử lại.",
       "source": "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/"
     },
     {

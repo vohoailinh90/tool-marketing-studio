@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1019" width="320" height="1019" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1154" width="320" height="1154" role="img" aria-labelledby="title desc">
 <title id="title">Deployment của Kubernetes thay Pod như thế nào</title>
-<desc id="desc">Năm chặng: đổi image thì Deployment tạo ReplicaSet mới, maxSurge và maxUnavailable điều chỉnh nhịp, readiness probe và minReadySeconds quyết định khi nào đi tiếp, kubectl rollout undo hoặc pause khi cần, và Recreate cùng chia traffic theo phần trăm nằm ngoài nhịp mặc định.</desc>
+<desc id="desc">Năm chặng: đổi image thì Deployment tạo ReplicaSet mới, maxSurge và maxUnavailable điều chỉnh nhịp, readiness probe và minReadySeconds quyết định khi nào đi tiếp, progressDeadlineSeconds chỉ báo trạng thái kẹt chứ không tự dừng, kubectl rollout undo hoặc pause khi cần, và Recreate cùng chia traffic theo phần trăm nằm ngoài nhịp mặc định.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="1019" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<rect width="320" height="1154" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="30" font-size="20" font-weight="bold">MỘT LẦN CẬP NHẬT</text>
 <text x="16" y="58" font-size="16" font-weight="normal">Nhịp thay Pod của Deployment</text>
 <rect x="16" y="89" width="288" height="155" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
@@ -23,18 +23,23 @@
 <text x="30" y="527" font-size="16" font-weight="bold">Điều kiện đi tiếp</text>
 <text x="30" y="554" font-size="16" font-weight="normal">Pod mới phải sẵn sàng</text>
 <text x="30" y="581" font-size="16" font-weight="normal">(readiness probe)</text>
-<text x="30" y="608" font-size="16" font-weight="normal">minReadySeconds,</text>
-<text x="30" y="635" font-size="16" font-weight="normal">progressDeadlineSeconds</text>
+<text x="30" y="608" font-size="16" font-weight="normal">minReadySeconds: giữ thêm</text>
+<text x="30" y="635" font-size="16" font-weight="normal">vài giây sau khi sẵn sàng</text>
 <line x1="160" y1="666" x2="160" y2="694" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
-<rect x="16" y="704" width="288" height="101" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
-<text x="30" y="732" font-size="16" font-weight="bold">Cần dừng hay quay lui</text>
-<text x="30" y="759" font-size="16" font-weight="normal">kubectl rollout pause hoặc</text>
-<text x="30" y="786" font-size="16" font-weight="normal">undo</text>
-<rect x="16" y="817" width="288" height="182" rx="10" fill="#fee2e2" stroke="#94a3b8"/>
-<text x="30" y="845" font-size="16" font-weight="bold">Ngoài nhịp mặc định</text>
-<text x="30" y="872" font-size="16" font-weight="normal">Recreate: dừng hết rồi chạy</text>
-<text x="30" y="899" font-size="16" font-weight="normal">bản mới</text>
-<text x="30" y="926" font-size="16" font-weight="normal">Chia traffic theo %: cần</text>
-<text x="30" y="953" font-size="16" font-weight="normal">Ingress, mesh hoặc Argo</text>
-<text x="30" y="980" font-size="16" font-weight="normal">Rollouts, Flagger</text>
+<rect x="16" y="704" width="288" height="236" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="732" font-size="16" font-weight="bold">Kẹt thì báo, không tự</text>
+<text x="30" y="759" font-size="16" font-weight="bold">dừng</text>
+<text x="30" y="786" font-size="16" font-weight="normal">progressDeadlineSeconds:</text>
+<text x="30" y="813" font-size="16" font-weight="normal">quá hạn chỉ thêm điều kiện</text>
+<text x="30" y="840" font-size="16" font-weight="normal">ProgressDeadlineExceeded</text>
+<text x="30" y="867" font-size="16" font-weight="normal">Muốn dừng hay quay lui:</text>
+<text x="30" y="894" font-size="16" font-weight="normal">kubectl rollout pause hoặc</text>
+<text x="30" y="921" font-size="16" font-weight="normal">undo</text>
+<rect x="16" y="952" width="288" height="182" rx="10" fill="#fee2e2" stroke="#94a3b8"/>
+<text x="30" y="980" font-size="16" font-weight="bold">Ngoài nhịp mặc định</text>
+<text x="30" y="1007" font-size="16" font-weight="normal">Recreate: dừng hết rồi chạy</text>
+<text x="30" y="1034" font-size="16" font-weight="normal">bản mới</text>
+<text x="30" y="1061" font-size="16" font-weight="normal">Chia traffic theo %: cần</text>
+<text x="30" y="1088" font-size="16" font-weight="normal">Ingress, mesh hoặc Argo</text>
+<text x="30" y="1115" font-size="16" font-weight="normal">Rollouts, Flagger</text>
 </g></svg>

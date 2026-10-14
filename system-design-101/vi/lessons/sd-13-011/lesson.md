@@ -2,7 +2,7 @@
 
 Sửa một dòng mã mà docker build lại cài lại toàn bộ phụ thuộc là chuyện quen thuộc. Cache của Docker hoạt động theo quy tắc cụ thể, nên mỗi lần mất cache đều truy ra được nguyên nhân. Bài nêu năm nguyên nhân hay gặp và cách chữa từng cái.
 
-![Năm nguyên nhân Docker build mất cache và cách chữa: đổi một lớp thì các lớp sau phải build lại nên đặt phần ít đổi lên trên, COPY quá rộng và quá sớm nên copy tệp khóa trước rồi cài phụ thuộc, ngữ cảnh build lẫn tệp hay đổi mà COPY rộng hay bind mount lấy vào nên loại chúng khỏi ngữ cảnh, cache dùng được nhưng đã cũ nên build sạch định kỳ, và máy mới không có cache nên cần xuất nhập cache từ nơi khác, còn cache mount chỉ giúp khi builder giữ được cache.](../../diagrams/sd-13-011-main.svg)
+![Năm nguyên nhân Docker build mất cache và cách chữa: đổi một lớp thì các lớp sau phải build lại nên đặt phần ít đổi lên trên, COPY quá rộng và quá sớm nên copy các tệp khai báo phụ thuộc trước rồi cài phụ thuộc, ngữ cảnh build lẫn tệp hay đổi mà COPY rộng hay bind mount lấy vào nên loại chúng khỏi ngữ cảnh, cache dùng được nhưng đã cũ nên build sạch định kỳ, và máy mới không có cache nên cần xuất nhập cache từ nơi khác, còn cache mount chỉ giúp khi builder giữ được cache.](../../diagrams/sd-13-011-main.svg)
 
 **Đọc hình:** năm thẻ là năm nguyên nhân độc lập; thẻ nào cũng kèm cách chữa.
 
@@ -27,7 +27,7 @@ Cache giúp nhanh nhưng không bảo đảm đúng: lớp cũ có thể giữ p
 ```dockerfile
 FROM node:22-slim
 WORKDIR /app
-# lớp ít đổi trước: chỉ tệp khóa
+# lớp ít đổi trước: chỉ các tệp khai báo phụ thuộc
 COPY package.json package-lock.json ./
 RUN --mount=type=cache,target=/root/.npm npm ci
 # lớp hay đổi sau cùng

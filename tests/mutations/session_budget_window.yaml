@@ -57,4 +57,4 @@ mutations:
 - label: the nudge is measured against the default window
   find: "    window = context_window(payload)\n    fraction = used / window"
   replace: "    window = context_window()\n    fraction = used / window"
-  test: tests.test_session_budget_window.SessionOfAMillionTokensIsNotToldItIsFullTests.test_a_recorded_small_window_nudges_when_the_variable_is_unset
+  test: tests.test_session_budget_window.SessionOfAMillionTokensIsNotToldItIsFullTests.test_a_recorded_million_token_window_gives_no_nudge

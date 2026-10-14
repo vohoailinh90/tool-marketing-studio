@@ -50,12 +50,16 @@
   },
   "claims": [
     {
-      "claim_vi": "Khi Pod bị xóa, hook preStop chạy rồi container nhận SIGTERM; thời gian ân hạn đếm từ trước preStop và hết hạn thì container bị dừng cưỡng bức; nếu hook preStop vẫn chạy khi hết hạn, kubelet xin gia hạn một lần thêm 2 giây. Trình tự này áp dụng khi thời gian ân hạn khác 0; với terminationGracePeriodSeconds bằng 0 hook preStop không chạy, còn xóa cưỡng bức gỡ Pod khỏi API ngay và chỉ cho container một khoảng ân hạn rất nhỏ trước khi dừng cưỡng bức.",
+      "claim_vi": "Khi Pod bị xóa, hook preStop chạy rồi container nhận tín hiệu dừng (mặc định là SIGTERM); thời gian ân hạn đếm từ trước preStop và hết hạn thì container bị dừng cưỡng bức; nếu hook preStop vẫn chạy khi hết hạn, kubelet xin gia hạn một lần thêm 2 giây. Trình tự này áp dụng khi thời gian ân hạn khác 0; với terminationGracePeriodSeconds bằng 0 hook preStop không chạy, còn xóa cưỡng bức gỡ Pod khỏi API ngay và chỉ cho container một khoảng ân hạn rất nhỏ trước khi dừng cưỡng bức.",
       "source": "https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/"
     },
     {
       "claim_vi": "Khi Pod bắt đầu tắt, endpoint của Pod trong EndpointSlice không bị xóa ngay mà được đánh dấu terminating; với Service không đặt publishNotReadyAddresses: true thì ready luôn là false, còn Service đặt true báo endpoint là ready kể cả khi Pod đang tắt; điều kiện serving cho biết Pod còn phục vụ được hay không; nếu mọi endpoint đều đang tắt, proxy của Service có thể vẫn chuyển traffic tới endpoint vừa serving vừa terminating để khỏi mất traffic khi cập nhật cuốn chiếu.",
       "source": "https://kubernetes.io/docs/concepts/services-networking/endpoint-slices/"
+    },
+    {
+      "claim_vi": "Runtime thường gửi STOPSIGNAL của image thay cho SIGTERM nếu khác nhau; khi bật ContainerStopSignals, lifecycle.stopSignal của container ghi đè tín hiệu của image; nếu không đặt gì thì dùng tín hiệu mặc định của runtime (SIGTERM với containerd và CRI-O).",
+      "source": "https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-termination-stop-signals"
     },
     {
       "claim_vi": "terminationGracePeriodSeconds mặc định là 30 giây.",

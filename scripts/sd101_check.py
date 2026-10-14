@@ -86,6 +86,7 @@ import sys
 import unicodedata
 import xml.etree.ElementTree as ElementTree
 import xml.parsers.expat as expat
+from collections.abc import Iterable
 from dataclasses import dataclass
 from html.parser import HTMLParser
 from urllib.parse import unquote, urlparse
@@ -1008,6 +1009,28 @@ def abbreviations_in(text: str, capitals: bool = True) -> set[str]:
     return found - {""} - NOT_ACRONYMS
 
 
+def label_acronyms(headings: list[str] | tuple[str, ...], known: frozenset[str] = frozenset()) -> set[str]:
+    """The abbreviations in figure labels set in capitals. There a word cannot be told from an abbreviation (the Vietnamese
+    TIN and HAI, the English COOKIE), so a word is read only when it cannot be a word: it has no vowel (JWT, DNS, LB), or
+    some glossary of the store explains it (`known`). A word with an accent is Vietnamese, never an abbreviation."""
+    found: set[str] = set()
+    for word in re.findall(r"\w+", unicodedata.normalize("NFC", "\n".join(headings))):  # NFD would split KHÔNG at the accent
+        if word.isascii() and word.isupper():
+            found |= {name for name in abbreviations_in(word) if name in known or word in known or not set(word) & VOWELS}
+    return found
+
+
+def store_vocabulary(lessons_dir: pathlib.Path, lesson_ids: Iterable[str]) -> frozenset[str]:
+    """Every abbreviation the glossary of some lesson explains: what a word in a capitals-only label is known by."""
+    known: set[str] = set()
+    for lesson_id in lesson_ids:
+        markdown = lessons_dir / lesson_id / "lesson.md"
+        text = read_text(markdown)[0] if markdown.is_file() else None
+        if text is not None and (glossary_lines := lesson_prose(text)[2]) is not None:
+            known |= {abbreviation for abbreviation, _, _ in glossary_entries(glossary_lines)[0]}
+    return frozenset(known)
+
+
 def figure_strings(path: pathlib.Path) -> tuple[list[str], list[str]]:
     """What a reader (or a screen reader) takes from a figure: its <title>, <desc> and <text> strings, as (prose,
     headings).
@@ -1110,6 +1133,7 @@ def glossary_entries(lines: list[str]) -> tuple[list[tuple[str, str, str]], list
 
 # Little words a full form may leave out of its abbreviation: "Request for Comments" gives RFC, "Network Address and
 # Port Translation" NAPT and "HMAC-based Key Derivation Function" HKDF.
+VOWELS = frozenset("AEIOUY")  # a word in capitals with none of them is no Vietnamese or English word
 FILLER_WORDS = frozenset({"a", "an", "and", "based", "for", "in", "of", "on", "or", "the", "to", "with"})
 # The digits of an abbreviation stand for number words: "Two-Factor Authentication" gives 2FA, "Triple Data Encryption
 # Standard" 3DES. Only the words of the abbreviation's own number may be left out of its full form.
@@ -1125,12 +1149,15 @@ def spells(abbreviation: str, full_form: str) -> bool:
     One initial per word and per camelCase hump (HyperText, JavaScript, REpresentational); an all-caps word gives its
     whole run or its first letter ("CSS Object Model" is CSSOM, "HTTP Strict Transport Security" is HSTS; a hidden
     run works the same: "SYNchronize"); a word that is the abbreviation itself gives its first letter (a recursive
-    name: "gRPC Remote Procedure Calls"); digits are not letters, and the number words of the abbreviation's own
-    digits may be left out (NUMBER_WORDS: "Two-Factor" for 2FA, never "Triple"); accents are dropped (cơ sở dữ liệu
-    is CSDL).
+    name: "gRPC Remote Procedure Calls"); digits are not letters, so the full form may leave a number out, but one it
+    writes must be the abbreviation's own ("version 4" for IPv4, never "version 6"), and so are the number words that may
+    be left out (NUMBER_WORDS: "Two-Factor" for 2FA, never "Triple"); accents are dropped (cơ sở dữ liệu is CSDL).
     """
     if (UNIT_SYMBOLS | IRREGULAR_FORMS).get(abbreviation) == full_form.strip():
         return True
+    numbers = re.findall(r"\d+", abbreviation)
+    if numbers and re.findall(r"\d+", full_form) not in ([], numbers):
+        return False  # "Internet Protocol version 6" is not IPv4: a number the full form writes is the abbreviation's
     letters = re.sub(r"[^A-Za-z]", "", abbreviation).upper()
     number_words = {word for number in re.findall(r"\d+", abbreviation) for word in NUMBER_WORDS.get(number, ())}
     plain = unicodedata.normalize("NFD", full_form.replace("đ", "d").replace("Đ", "D"))
@@ -1164,11 +1191,12 @@ def figure_above(text: str, above: str, lesson_id: str) -> bool:
                for token in markdown_tokens(text) if token.type == "inline")
 
 
-def check_abbreviations(lesson_id: str, text: str, figure: list[str], headings: list[str] | tuple[str, ...] = ()) -> list[Problem]:
+def check_abbreviations(lesson_id: str, text: str, figure: list[str], headings: list[str] | tuple[str, ...] = (),
+                        known: frozenset[str] = frozenset()) -> list[Problem]:
     """Every abbreviation the lesson or its figure uses is explained, in full, in the lesson's own glossary."""
     body, glossary, glossary_lines, titles, above = lesson_prose(text)
     used = abbreviations_in("\n".join(body + glossary + figure))
-    used |= abbreviations_in("\n".join(headings), capitals=False)
+    used |= abbreviations_in("\n".join(headings), capitals=False) | label_acronyms(headings, known)
     problems: list[Problem] = []
     template = f'"- **LLM** (Large Language Model) — meaning in plain words" under "## {GLOSSARY_HEADING}"'
     if glossary_lines is None:
@@ -1298,6 +1326,7 @@ def check_store(store: pathlib.Path, source_map: pathlib.Path, pin_roster: bool 
             problems.append(Problem("diagrams", f"{path.name} is not the <id>-main.svg figure of a lesson directory"))
         elif reason := svg_problem(path):
             problems.append(Problem("diagrams", f"{path.name} {reason}"))
+    known = store_vocabulary(lessons_dir, lesson_ids)
     for lesson_id in sorted(lesson_ids):
         lesson_dir = lessons_dir / lesson_id
         markdown, pointer = lesson_dir / "lesson.md", lesson_dir / "lesson.yaml"
@@ -1332,7 +1361,7 @@ def check_store(store: pathlib.Path, source_map: pathlib.Path, pin_roster: bool 
                 problems.append(Problem(lesson_id, f"lesson.md {why}"))
             else:
                 problems.extend(check_markdown(lesson_id, text, lesson_dir, entries, lesson_ids, boundary, diagrams_dir))
-                problems.extend(check_abbreviations(lesson_id, text, *figure_strings(diagrams_dir / f"{lesson_id}-main.svg")))
+                problems.extend(check_abbreviations(lesson_id, text, *figure_strings(diagrams_dir / f"{lesson_id}-main.svg"), known=known))
     for name in STORE_PAGES:
         page = store / name
         if not page.is_file():

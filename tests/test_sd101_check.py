@@ -12,6 +12,7 @@ import os
 import re
 import sys
 import tempfile
+import unicodedata
 import unittest
 from unittest import mock
 from pathlib import Path
@@ -1961,6 +1962,49 @@ class AbbreviationRuleTests(StoreCase):
         self.lesson(glossary=None, figure=svg_with("LLM tại https://example.org/API/TLS."))
         self.assertProblem("uses the abbreviation(s) LLM")
         self.assertFalse(any("API" in line or "TLS" in line for line in self.problems()))
+
+    def test_an_acronym_in_a_capitals_only_label_is_read_when_it_cannot_be_a_word(self) -> None:
+        jwt = "- **JWT** (JSON Web Token) — chuỗi ký tên chứa thông tin người dùng.\n"
+        for name, label in {"standalone": "JWT", "among Vietnamese words": "HAI MÁY · JWT", "in a longer label": "JWT HẾT HẠN"}.items():
+            with self.subTest(name=name):
+                self.lesson(glossary=None, figure=svg_with(label))
+                self.assertProblem("uses the abbreviation(s) JWT")
+                self.lesson(glossary=jwt, figure=svg_with(label))
+                self.assertEqual([], self.problems())
+        self.lesson(glossary=None, figure=svg_with("DNS", "LB", "HTTP/2", "SMTP"))
+        self.assertProblem("uses the abbreviation(s) DNS, HTTP, LB, SMTP")
+        for word in ("HAI MÁY · TIN · HAY · THEO · TRANG · RA", "COOKIE · BALANCER · REQUEST · SESSION · NHANH · CHO",
+                     unicodedata.normalize("NFD", "KHÔNG ĐƯỢC · MẠNG CHẬM · TRẠNG THÁI")):  # accents as separate marks
+            with self.subTest(words=word):
+                self.lesson(glossary=None, figure=svg_with(word))
+                self.assertEqual([], self.problems())
+
+    def test_an_acronym_the_store_explains_elsewhere_is_read_in_a_capitals_only_label(self) -> None:
+        figure = svg_with("API", "HAI MÁY")
+        api = "- **API** (Application Programming Interface) — cách để chương trình này gọi chương trình kia.\n"
+        self.lesson(glossary=None, figure=figure)
+        self.assertEqual([], self.problems())  # nothing in the store says that API is an acronym
+        self.write_lesson("sd-01-002", body=f"# Bài hai\n\n![Sơ đồ của bài](../../diagrams/sd-01-002-main.svg)\n\n"
+                                            f"## Từ viết tắt\n\n{api}\n## Liên hệ nguồn\n\n[bài nguồn]({SNAPSHOT}).\n")
+        self.assertProblem("sd-01-001: uses the abbreviation(s) API but has no")
+        self.assertFalse(any("sd-01-001: uses the abbreviation" in line and "HAI" in line for line in self.problems()))
+        self.lesson(glossary=api, figure=figure)
+        self.assertFalse(any(line.startswith("sd-01-001: uses the abbreviation") for line in self.problems()))
+
+    def test_the_number_inside_an_abbreviation_must_be_the_number_in_its_full_form(self) -> None:
+        for abbreviation, full_form, spelled in (
+                ("IPv4", "Internet Protocol version 4", True), ("IPv6", "Internet Protocol version 6", True),
+                ("IPv4", "Internet Protocol version 6", False), ("IPv6", "Internet Protocol version 4", False),
+                ("IPv4", "Internet Protocol version four", True), ("IPv4", "Internet Protocol version six", False),
+                ("IPv4", "Internet Protocol version", True), ("IPv4", "Internet Protocol", False),
+                ("2FA", "2-Factor Authentication", True), ("2FA", "3-Factor Authentication", False),
+                ("2FA", "Two-Factor Authentication", True), ("3DES", "Triple DES", True)):
+            with self.subTest(abbreviation=abbreviation, full_form=full_form):
+                self.assertEqual(spelled, check.spells(abbreviation, full_form))
+        self.lesson("Gửi qua IPv4.", glossary="- **IPv4** (Internet Protocol version 6) — địa chỉ 32 bit.\n")
+        self.assertProblem("glossary spells IPv4 out as 'Internet Protocol version 6'")
+        self.lesson("Gửi qua IPv4.", glossary="- **IPv4** (Internet Protocol version 4) — địa chỉ 32 bit.\n")
+        self.assertEqual([], self.problems())
 
     def test_the_glossary_comes_after_the_figure_not_before_it(self) -> None:
         figure = "![Sơ đồ của bài](../../diagrams/sd-01-001-main.svg)"

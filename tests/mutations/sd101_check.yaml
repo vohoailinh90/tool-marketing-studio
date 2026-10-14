@@ -1818,6 +1818,22 @@ mutations:
   find: "known = store_vocabulary(lessons_dir, lesson_ids)"
   replace: "known = frozenset()"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_an_acronym_the_store_explains_elsewhere_is_read_in_a_capitals_only_label
+- label: a number word of another number may stand for the leading digit (Four Authentication is 2FA)
+  find: "if foreign & {word.lower() for word in re.findall(r\"[A-Za-z]+\", plain)}:"
+  replace: "if False:"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_number_word_of_another_number_does_not_stand_for_the_leading_digit
+- label: a number word beyond ten is not a number word (Fifteen Authentication is 2FA)
+  find: " fifteen sixteen"
+  replace: " sixteen"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_number_word_of_another_number_does_not_stand_for_the_leading_digit
+- label: the own number word of a leading digit is refused too (Two-Factor Authentication)
+  find: "foreign = ALL_NUMBER_WORDS - set(NUMBER_WORDS.get(leading.group(), ()))"
+  replace: "foreign = ALL_NUMBER_WORDS"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_number_word_of_another_number_does_not_stand_for_the_leading_digit
+- label: a digit anywhere is a leading digit (Double Data Rate is not DDR4)
+  find: "leading = re.match(r\"\\d+\", abbreviation)"
+  replace: "leading = re.search(r\"\\d+\", abbreviation)"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_number_word_of_another_number_does_not_stand_for_the_leading_digit
 - label: a number the full form writes may differ from the abbreviation's (IPv4, version 6)
   find: "if numbers and re.findall(r\"\\d+\", full_form) not in ([], numbers):"
   replace: "if False:"

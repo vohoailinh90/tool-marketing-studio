@@ -1144,6 +1144,12 @@ FILLER_WORDS = frozenset({"a", "an", "and", "based", "for", "in", "of", "on", "o
 NUMBER_WORDS = {"1": ("one", "first", "single"), "2": ("two", "second", "double", "dual"), "3": ("three", "third", "triple"),
                 "4": ("four", "fourth", "quad"), "5": ("five", "fifth"), "6": ("six", "sixth"), "7": ("seven", "seventh"),
                 "8": ("eight", "eighth"), "9": ("nine", "ninth"), "10": ("ten", "tenth")}
+# Every other number word. The full form of an abbreviation that begins with digits may hold no number word but its own:
+# "Four Authentication" is not 2FA although F and A are its letters.
+ALL_NUMBER_WORDS = frozenset(word for words in NUMBER_WORDS.values() for word in words) | frozenset((
+    "zero eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty thirty forty fifty sixty seventy "
+    "eighty ninety hundred thousand million billion eleventh twelfth thirteenth fourteenth fifteenth sixteenth seventeenth "
+    "eighteenth nineteenth twentieth twice thrice half").split())
 
 
 def spells(abbreviation: str, full_form: str) -> bool:
@@ -1155,7 +1161,9 @@ def spells(abbreviation: str, full_form: str) -> bool:
     run works the same: "SYNchronize"); a word that is the abbreviation itself gives its first letter (a recursive
     name: "gRPC Remote Procedure Calls"); digits are not letters, so the full form may leave a number out, but one it
     writes must be the abbreviation's own ("version 4" for IPv4, never "version 6"), and so are the number words that may
-    be left out (NUMBER_WORDS: "Two-Factor" for 2FA, never "Triple"); accents are dropped (cơ sở dữ liệu is CSDL).
+    be left out (NUMBER_WORDS: "Two-Factor" for 2FA, never "Triple"; where the digits come first the full form holds no
+    other number word at all: "Four Authentication" is not 2FA although F and A are its letters, while a name such as
+    "Double Data Rate" is fine for DDR4); accents are dropped (cơ sở dữ liệu is CSDL).
     """
     if (UNIT_SYMBOLS | IRREGULAR_FORMS).get(abbreviation) == full_form.strip():
         return True
@@ -1166,6 +1174,11 @@ def spells(abbreviation: str, full_form: str) -> bool:
     number_words = {word for number in re.findall(r"\d+", abbreviation) for word in NUMBER_WORDS.get(number, ())}
     plain = unicodedata.normalize("NFD", full_form.replace("đ", "d").replace("Đ", "D"))
     plain = "".join(char for char in plain if not unicodedata.combining(char))
+    leading = re.match(r"\d+", abbreviation)
+    if leading:
+        foreign = ALL_NUMBER_WORDS - set(NUMBER_WORDS.get(leading.group(), ()))
+        if foreign & {word.lower() for word in re.findall(r"[A-Za-z]+", plain)}:
+            return False  # the leading digits are a number word of their own: "Four Authentication" is not 2FA
     pattern = ""
     for word in re.findall(r"[A-Za-z]+", plain):
         if word == abbreviation:

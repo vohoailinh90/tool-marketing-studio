@@ -2003,6 +2003,22 @@ class AbbreviationRuleTests(StoreCase):
         self.lesson(glossary=api, figure=figure)
         self.assertFalse(any(line.startswith("sd-01-001: uses the abbreviation") for line in self.problems()))
 
+    def test_a_number_word_of_another_number_does_not_stand_for_the_leading_digit(self) -> None:
+        for abbreviation, full_form, spelled in (
+                ("2FA", "Four Authentication", False), ("3DES", "Double Encryption Standard", False),
+                ("2FA", "Fifteen Authentication", False), ("3DES", "Third Data Encryption Standard", True),
+                ("2FA", "Fifth Factor Authentication", False), ("3PC", "Triple Phase Commit", True),
+                ("2FA", "Two-Factor Authentication", True), ("2FA", "Second Factor Authentication", True),
+                ("2PC", "Two-Phase Commit", True), ("3DES", "Triple DES", True),
+                ("3DES", "Triple Data Encryption Standard", True),
+                # a trailing digit is no stand-in: "Double Data Rate" is a name, and a word without digits is a word
+                ("DDR4", "Double Data Rate 4", True), ("DDR4", "Double Data Rate", True),
+                ("OTP", "One-Time Password", True), ("IPv4", "Internet Protocol version four", True)):
+            with self.subTest(abbreviation=abbreviation, full_form=full_form):
+                self.assertEqual(spelled, check.spells(abbreviation, full_form))
+        self.lesson("Đăng nhập bằng 2FA.", glossary="- **2FA** (Four Authentication) — đăng nhập bằng hai bước.\n")
+        self.assertProblem("glossary spells 2FA out as 'Four Authentication'")
+
     def test_the_number_inside_an_abbreviation_must_be_the_number_in_its_full_form(self) -> None:
         for abbreviation, full_form, spelled in (
                 ("IPv4", "Internet Protocol version 4", True), ("IPv6", "Internet Protocol version 6", True),

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 662" width="320" height="662" role="img" aria-labelledby="title desc">
+<title id="title">CSS: một quy tắc và cách cascade chọn quy tắc thắng</title>
+<desc id="desc">Một quy tắc CSS gồm selector và khai báo, ví dụ p color blue. Khi hai quy tắc xung đột, trình duyệt xét theo thứ tự: nguồn gốc và important; độ cụ thể của selector; rồi thứ tự xuất hiện, quy tắc viết sau thắng khi các bước trước hòa. Hình lược bớt các bước ngữ cảnh, thuộc tính style, layer và phạm vi @scope. Ví dụ: lớp note màu đỏ thắng p màu xanh dù p viết sau.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="662" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="21" font-weight="bold">CSS: QUY TẮC VÀ</text>
+<text x="16" y="54" font-size="21" font-weight="bold">CASCADE</text>
+<rect x="16" y="80" width="288" height="76" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="29" y="109" font-size="16" font-weight="bold">Selector + khai báo</text>
+<text x="29" y="137" font-size="16" font-weight="normal">p { color: blue; }</text>
+<rect x="16" y="168" width="288" height="38" rx="10" fill="#1e293b"/>
+<text x="29" y="191" font-size="16" font-weight="bold" fill="#ffffff">Khi hai quy tắc xung đột</text>
+<rect x="16" y="216" width="288" height="76" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="29" y="245" font-size="16" font-weight="bold">1 · Nguồn gốc, !important</text>
+<text x="29" y="273" font-size="16" font-weight="normal">Mức cao hơn thắng trước</text>
+<line x1="160" y1="293" x2="160" y2="312" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="314" width="288" height="100" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="29" y="343" font-size="16" font-weight="bold">2 · Độ cụ thể</text>
+<text x="29" y="371" font-size="16" font-weight="normal">Selector cụ thể hơn thắng, dù</text>
+<text x="29" y="395" font-size="16" font-weight="normal">viết trước</text>
+<line x1="160" y1="415" x2="160" y2="434" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="436" width="288" height="100" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="29" y="465" font-size="16" font-weight="bold">3 · Thứ tự xuất hiện</text>
+<text x="29" y="493" font-size="16" font-weight="normal">Các bước trước hòa thì quy tắc</text>
+<text x="29" y="517" font-size="16" font-weight="normal">viết sau thắng</text>
+<rect x="16" y="548" width="288" height="100" rx="12" fill="#fee2e2" stroke="#94a3b8"/>
+<text x="29" y="577" font-size="16" font-weight="bold">Ví dụ</text>
+<text x="29" y="605" font-size="16" font-weight="normal">.note { color: red; } thắng p {</text>
+<text x="29" y="629" font-size="16" font-weight="normal">color: blue; } dù p viết sau</text>
+</g></svg>

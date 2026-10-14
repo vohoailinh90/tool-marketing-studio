@@ -1,0 +1,78 @@
+{
+  "id": "sd-13-025",
+  "title_vi": "Kubernetes (k8s) là gì?",
+  "language": "vi",
+  "kind": "flow",
+  "content_status": "draft",
+  "source_ref": "sd-13-025",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/what-is-k8s-kubernetes.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-is-k8s-kubernetes.md",
+    "blob_sha": "59e6c6a6b039e9eea7afffd96e3011e86a15a034",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "a75fb55c6a2d6b30f6c207d98634c9426c36f254bb8954ed5aba15d2da01b3de",
+    "retrieved_body_bytes": 2149
+  },
+  "diagram": "../diagrams/sd-13-025-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-13-016",
+      "relation": "context",
+      "reason_vi": "Chọn đúng Pod cần chẩn đoán trong cụm lớn."
+    },
+    {
+      "lesson_id": "sd-13-001",
+      "relation": "context",
+      "reason_vi": "Tắt êm một Pod."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Scheduler đặt Pod dựa trên requests; sự kiện FailedScheduling nêu lý do.",
+      "source": "https://kubernetes.io/docs/concepts/scheduling-eviction/kube-scheduler/"
+    },
+    {
+      "claim_vi": "requests dùng để đặt Pod còn limits giới hạn mức dùng tối đa; nếu container chỉ khai limits mà không khai requests và không có cơ chế admission nào áp requests mặc định, Kubernetes sao chép limits thành requests.",
+      "source": "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/"
+    },
+    {
+      "claim_vi": "Container khởi động lại có thời gian chờ tăng dần (CrashLoopBackOff).",
+      "source": "https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/"
+    },
+    {
+      "claim_vi": "Các bước gỡ lỗi Pod: describe, logs, events.",
+      "source": "https://kubernetes.io/docs/tasks/debug/debug-application/debug-pods/"
+    },
+    {
+      "claim_vi": "Khi node hết bộ nhớ, kernel có thể dừng một container kể cả khi container chưa vượt limit của chính nó.",
+      "source": "https://kubernetes.io/docs/concepts/scheduling-eviction/node-pressure-eviction/"
+    }
+  ],
+  "source_deviations": [
+    "Nguồn mô tả kiến trúc cụm (control plane, node, Pod); bài bỏ cấu trúc đó, đổi phạm vi sang chẩn đoán Pod không chạy theo từng chặng."
+  ],
+  "design_notes_vi": "Bốn chặng khởi động nối mũi tên, kèm ghi chú bắt đầu bằng describe.",
+  "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Tiêu đề hiển thị của bài là dòng đầu của lesson.md; title_vi giữ bản dịch tiêu đề nguồn theo source-map. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
+}

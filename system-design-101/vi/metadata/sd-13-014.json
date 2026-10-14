@@ -1,0 +1,82 @@
+{
+  "id": "sd-13-014",
+  "title_vi": "Hướng dẫn trực quan đơn giản về CI/CD",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "draft",
+  "source_ref": "sd-13-014",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/cicd-simplified-visual-guide.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/cicd-simplified-visual-guide.md",
+    "blob_sha": "97257178f41717bdd36919c42c511b4e36d12278",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "caf1537304ea791c759f2d5cee596a08946ed45ba427603187f24b7c45de8f7e",
+    "retrieved_body_bytes": 1132
+  },
+  "diagram": "../diagrams/sd-13-014-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-13-027",
+      "relation": "compare-with",
+      "reason_vi": "Quyết định khi thiết kế pipeline."
+    },
+    {
+      "lesson_id": "sd-13-012",
+      "relation": "compare-with",
+      "reason_vi": "Học từ chuỗi CI/CD của công ty lớn."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "npm ci cài đúng theo tệp khóa và báo lỗi nếu tệp khóa không khớp package.json.",
+      "source": "https://docs.npmjs.com/cli/commands/npm-ci"
+    },
+    {
+      "claim_vi": "Nhãn runner như ubuntu-latest trỏ tới một phiên bản hệ điều hành có thể đổi theo thời gian, và có thể chọn nhãn phiên bản cụ thể.",
+      "source": "https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners"
+    },
+    {
+      "claim_vi": "Phần mềm cài sẵn trên image runner do GitHub cung cấp được cập nhật hằng tuần; GitHub khuyên dùng các action để tương tác với phần mềm trên runner vì phiên bản công cụ của workflow khi đó không đổi theo các lần cập nhật.",
+      "source": "https://docs.github.com/en/actions/concepts/runners/github-hosted-runners#runner-images"
+    },
+    {
+      "claim_vi": "Một job có thể chạy trong container với image được chỉ định.",
+      "source": "https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions"
+    },
+    {
+      "claim_vi": "Mặc định, với sự kiện pull_request từ fork, bí mật (trừ GITHUB_TOKEN) không được chuyển cho runner.",
+      "source": "https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions"
+    },
+    {
+      "claim_vi": "Docker khuyến nghị ghim phiên bản image cơ sở, và ghim theo digest để build lặp lại được.",
+      "source": "https://docs.docker.com/build/building/best-practices/"
+    }
+  ],
+  "source_deviations": [
+    "Nguồn kể CI rồi triển khai liên tục theo một thang; bài bỏ thang đó và chọn một vấn đề riêng: vì sao CI đỏ trong khi máy bạn chạy được, với năm nguồn khác biệt và cách khóa từng nguồn."
+  ],
+  "design_notes_vi": "Năm thẻ nguồn khác biệt, mỗi thẻ kèm cách khóa lại.",
+  "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Tiêu đề hiển thị của bài là dòng đầu của lesson.md; title_vi giữ bản dịch tiêu đề nguồn theo source-map. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
+}

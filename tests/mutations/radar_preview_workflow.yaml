@@ -1,0 +1,105 @@
+# Mutation manifest — see scripts/mutation_check.py
+
+target: .github/workflows/radar-preview.yml
+note: The radar preview runs on the shared runner and may comment on a pull request; it must not run a pull request's code, approve or publish.
+mutations:
+- label: the preview runs with the pull request's own token rights (pull_request_target)
+  find: "  pull_request:\n    types: [opened"
+  replace: "  pull_request_target:\n    types: [opened"
+  test: tests.test_radar_preview.WorkflowTests.test_it_runs_on_every_push_to_a_pull_request_never_on_pull_request_target_and_without_a_path_filter
+- label: the token may write the repository
+  find: "  contents: read\n  pull-requests: write"
+  replace: "  contents: write\n  pull-requests: write"
+  test: tests.test_radar_preview.WorkflowTests.test_the_token_can_read_the_code_and_write_the_one_comment_and_nothing_else
+- label: a fork's pull request runs on the shared runner
+  find: "      github.event.pull_request.head.repo.full_name == github.repository\n      && startsWith("
+  replace: "      startsWith("
+  test: tests.test_radar_preview.WorkflowTests.test_only_a_branch_of_this_repository_named_radar_runs_on_the_shared_runner
+- label: any branch of this repository runs on the shared runner
+  find: "\n      && startsWith(github.event.pull_request.head.ref, 'radar/')"
+  replace: ""
+  test: tests.test_radar_preview.WorkflowTests.test_only_a_branch_of_this_repository_named_radar_runs_on_the_shared_runner
+- label: a value of the pull request is written into a script
+  find: 'for campaign in $CAMPAIGNS; do python studio.py check'
+  replace: 'for campaign in ${{ steps.plan.outputs.campaigns }}; do python studio.py check'
+  test: tests.test_radar_preview.WorkflowTests.test_no_script_interpolates_anything_a_pull_request_controls
+- label: the engine of a pull request that changes code is installed and run
+  find: "        id: install\n        if: steps.plan.outputs.ok == 'true'"
+  replace: "        id: install"
+  test: tests.test_radar_preview.WorkflowTests.test_it_draws_only_what_the_plan_allowed
+- label: the preview publishes
+  find: 'python studio.py render "$campaign" || status=1'
+  replace: 'python studio.py render "$campaign" || status=1; python studio.py publish "$campaign"'
+  test: tests.test_radar_preview.WorkflowTests.test_it_never_approves_publishes_or_commits
+- label: the comment step may edit anyone's comment that starts like its own
+  find: "c.user.login === 'github-actions[bot]' && "
+  replace: ''
+  test: tests.test_radar_preview.WorkflowTests.test_the_comment_it_edits_is_its_own_and_carries_the_marker_of_the_script
+- label: a newer push does not replace the run of the same pull request
+  find: 'cancel-in-progress: true'
+  replace: 'cancel-in-progress: false'
+  test: tests.test_radar_preview.WorkflowTests.test_a_newer_push_replaces_the_run_of_the_same_pull_request
+- label: a failed drawing no longer fails the run
+  find: "if: always() && (steps.check.outcome == 'failure' || steps.render.outcome == 'failure')"
+  replace: "if: always() && steps.check.outcome == 'failure'"
+  test: tests.test_radar_preview.WorkflowTests.test_a_failed_check_or_drawing_still_fails_the_run_after_the_comment_is_posted
+- label: a failed check stops the comment
+  find: "        id: check\n        if: steps.plan.outputs.ok == 'true'\n        continue-on-error: true"
+  replace: "        id: check\n        if: steps.plan.outputs.ok == 'true'"
+  test: tests.test_radar_preview.WorkflowTests.test_the_checks_and_the_drawing_do_not_stop_the_comment
+- label: the token stays in .git/config of the persistent runner
+  find: "persist-credentials: false\n      - uses: actions/setup-python@v5"
+  replace: "persist-credentials: true\n      - uses: actions/setup-python@v5"
+  test: tests.test_radar_preview.WorkflowTests.test_the_checkout_does_not_leave_the_token_in_the_workspace_of_a_persistent_runner
+- label: the comment is not told whether the install or the upload succeeded
+  find: '          UPLOAD: ${{ steps.upload.outcome }}'
+  replace: '          UPLOAD: skipped'
+  test: tests.test_radar_preview.WorkflowTests.test_the_comment_is_told_the_outcome_of_every_step_it_reports_on
+- label: a path filter hides the push that removes the campaign, and the old comment stays
+  find: "    types: [opened, synchronize, reopened, ready_for_review, edited]\n"
+  replace: "    types: [opened, synchronize, reopened, ready_for_review, edited]\n    paths:\n      - \"campaigns/radar-*/**\"\n"
+  test: tests.test_radar_preview.WorkflowTests.test_it_runs_on_every_push_to_a_pull_request_never_on_pull_request_target_and_without_a_path_filter
+- label: an export the pull request carried is listed and attached as if it had just been drawn
+  find: '          for campaign in $CAMPAIGNS; do rm -rf -- "campaigns/$campaign/export"; done'
+  replace: '          true'
+  test: tests.test_radar_preview.WorkflowTests.test_an_export_the_pull_request_carried_is_cleared_before_anything_can_fail_or_be_uploaded
+- label: the clearing of carried exports is skipped when the install fails
+  find: "        if: steps.plan.outputs.ok == 'true'\n        env:\n          CAMPAIGNS: ${{ steps.plan.outputs.campaigns }}\n        run: |\n          for campaign in $CAMPAIGNS; do rm -rf"
+  replace: "        if: always() && steps.plan.outputs.ok == 'true'\n        env:\n          CAMPAIGNS: ${{ steps.plan.outputs.campaigns }}\n        run: |\n          for campaign in $CAMPAIGNS; do rm -rf"
+  test: tests.test_radar_preview.WorkflowTests.test_an_export_the_pull_request_carried_is_cleared_before_anything_can_fail_or_be_uploaded
+- label: the planner runs from the pull request's own copy
+  find: '        run: python "$RUNNER_TEMP/trusted/scripts/radar_preview.py" plan'
+  replace: '        run: python scripts/radar_preview.py plan'
+  test: tests.test_radar_preview.WorkflowTests.test_the_planner_and_the_comment_writer_run_from_the_base_commit_not_from_the_pull_request
+- label: the comment writer runs from the pull request's own copy
+  find: '          python "$RUNNER_TEMP/trusted/scripts/radar_preview.py" comment --root="$GITHUB_WORKSPACE" \'
+  replace: '          python scripts/radar_preview.py comment --root="$GITHUB_WORKSPACE" \'
+  test: tests.test_radar_preview.WorkflowTests.test_the_planner_and_the_comment_writer_run_from_the_base_commit_not_from_the_pull_request
+- label: the planner is read from the pull request's head, not from the base
+  find: 'git show "$2:scripts/$script"'
+  replace: 'git show "$3:scripts/$script"'
+  test: tests.test_radar_preview.WorkflowTests.test_the_planner_copy_step_reads_the_base_version_even_when_the_pull_request_replaces_it
+- label: the planner is copied even when HEAD is not the merge of the pull request
+  find: '          [ "$#" -eq 3 ] || { echo "HEAD is not the merge of the pull request into its base"; exit 1; }'
+  replace: '          true'
+  test: tests.test_radar_preview.WorkflowTests.test_the_planner_copy_step_refuses_a_head_that_is_not_the_merge_of_the_pull_request
+- label: the planner is checked out into a folder of the workspace again
+  find: '      - uses: actions/setup-python@v5'
+  replace: "      - uses: actions/checkout@v4\n        with:\n          path: trusted\n      - uses: actions/setup-python@v5"
+  test: tests.test_radar_preview.WorkflowTests.test_there_is_one_checkout_and_none_into_a_folder_of_the_workspace
+- label: the drawing runs on data the check refused
+  find: "        if: steps.plan.outputs.ok == 'true' && steps.check.outcome == 'success'"
+  replace: "        if: steps.plan.outputs.ok == 'true'"
+  test: tests.test_radar_preview.WorkflowTests.test_nothing_is_drawn_from_data_the_check_refused
+- label: a changed base branch does not rerun the preview
+  find: 'types: [opened, synchronize, reopened, ready_for_review, edited]'
+  replace: 'types: [opened, synchronize, reopened, ready_for_review]'
+  test: tests.test_radar_preview.WorkflowTests.test_it_runs_on_every_push_to_a_pull_request_never_on_pull_request_target_and_without_a_path_filter
+- label: every edit of a title or description runs the preview
+  find: "      && (github.event.action != 'edited' || github.event.changes.base != null)\n"
+  replace: ""
+  test: tests.test_radar_preview.WorkflowTests.test_an_edit_runs_the_preview_only_when_it_changed_the_base_branch
+- label: a title edit shares the concurrency group of the preview in progress and cancels it
+  find: "${{ github.event.action == 'edited' && !github.event.changes.base && '-ignored' || '' }}"
+  replace: ""
+  test: tests.test_radar_preview.WorkflowTests.test_an_edit_that_is_not_a_base_change_cannot_cancel_a_preview_in_progress

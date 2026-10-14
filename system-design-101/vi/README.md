@@ -29,17 +29,20 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 
 ## Bảo mật
 
-Đợt đầu của nhóm. Các bài sd-14-004..006 nằm ở PR #58, chưa có trong nhánh này; số thứ tự dưới đây chỉ tính trong nhánh này.
+Đợt hai của nhóm. Các bài từ sd-14-013 trở đi chưa viết; số thứ tự dưới đây chỉ tính các bài đã viết.
 
 1. [DevSecOps là gì?](lessons/sd-14-001/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 2. [Encoding, encryption và tokenization](lessons/sd-14-002/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 3. [Lưu mật khẩu an toàn](lessons/sd-14-003/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
-4. [Tường lửa hoạt động thế nào?](lessons/sd-14-007/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
-5. [Cookie và session khác nhau thế nào?](lessons/sd-14-008/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
-6. [Cookie HTTP hoạt động thế nào?](lessons/sd-14-009/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
-7. [Token, cookie và session: nhận ra người dùng thế nào?](lessons/sd-14-010/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
-8. [SSO và OAuth 2.0: đăng nhập khác ủy quyền](lessons/sd-14-011/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
-9. [Thiết kế hệ thống an toàn: mười hai câu cần hỏi](lessons/sd-14-012/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+4. [Thiết kế hệ thống phân quyền](lessons/sd-14-004/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+5. [Trình quản lý mật khẩu hoạt động thế nào?](lessons/sd-14-005/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+6. [Passkey có thay được mật khẩu?](lessons/sd-14-006/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+7. [Tường lửa hoạt động thế nào?](lessons/sd-14-007/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+8. [Cookie và session khác nhau thế nào?](lessons/sd-14-008/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+9. [Cookie HTTP hoạt động thế nào?](lessons/sd-14-009/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+10. [Token, cookie và session: nhận ra người dùng thế nào?](lessons/sd-14-010/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+11. [SSO và OAuth 2.0: đăng nhập khác ủy quyền](lessons/sd-14-011/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+12. [Thiết kế hệ thống an toàn: mười hai câu cần hỏi](lessons/sd-14-012/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 
 Danh mục đầy đủ và snapshot nguồn: [bảng đối chiếu](../../brainstorm/system-design-101-vi/source-map.json).
 Quy tắc đã chốt: [kết luận brainstorm](../../brainstorm/system-design-101-vi/DECISIONS.md).

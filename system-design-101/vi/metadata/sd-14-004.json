@@ -1,0 +1,124 @@
+{
+  "id": "sd-14-004",
+  "title_vi": "Thiết kế hệ thống phân quyền",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "review",
+  "source_ref": "sd-14-004",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/how-do-we-design-a-permission-system.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-we-design-a-permission-system.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches provider tree OID. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "8a8501c66c0a96e07b238ec9fe0df8a253c9929f",
+    "retrieved_body_sha256": "518d9b6d3d2f1061217d99de3c34706b9403ab4aab736b89398ccd31698f4212",
+    "retrieved_body_bytes": 1559
+  },
+  "diagram": "../diagrams/sd-14-004-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "evidence": "Concepts from the source and the SELinux Notebook, Kubernetes RBAC and ABAC pages read from clones or raw GitHub; decisions and counts produced by running Casbin 1.43.0, two Linux users and a hand-written level rule. NIST's attribute definition was unreachable and not checked."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 14.4,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright) rendered the full lesson at each width with optional sections open; diagram scale measured from the rendered image and every SVG text box checked against the viewBox. Not learner testing and not GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "The source lists five common permission models: ACL (a list of rules granting or denying users access to a resource), DAC (access policy determined by the object's owner group), MAC (owners and resources carry classification labels), ABAC (permissions from attributes of resource owner, action, resource and environment) and RBAC (permissions from roles).",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-we-design-a-permission-system.md",
+      "section": "Whole guide",
+      "verified_by": "Source body read."
+    },
+    {
+      "claim_vi": "In Mandatory Access Control the operating system constrains a subject from performing an operation on an object; both subjects and objects have security attributes; the user cannot bypass the enforced policy, unlike standard Linux discretionary access control, which lets users make policy decisions; multi-level security implements rules such as no write down and no read up.",
+      "source": "https://github.com/SELinuxProject/selinux-notebook/blob/1666b22828a5db37a331663936eb9a30b0df777b/src/mac.md",
+      "section": "Mandatory Access Control",
+      "verified_by": "Read from a local clone of the selinux-notebook repository at commit 1666b22828a5db37a331663936eb9a30b0df777b, the head of the default branch when read (a later change to that branch does not alter this URL)."
+    },
+    {
+      "claim_vi": "Observed with two unprivileged Linux users: a file created with mode rw------- was refused to the other user (Permission denied); after its owner ran chmod to rw-r--r-- the other user could read it. Linux file mode bits are used here, without ACLs (setfacl is not installed).",
+      "source": "https://github.com/SELinuxProject/selinux-notebook/blob/1666b22828a5db37a331663936eb9a30b0df777b/src/mac.md",
+      "section": "Mandatory Access Control (describes Linux DAC)",
+      "verified_by": "No external page reports this output; observed by executing the code on the authoring machine. The notebook describes Linux DAC but not this output."
+    },
+    {
+      "claim_vi": "RBAC regulates access based on the roles of individual users; in Kubernetes RBAC permissions are purely additive and there are no deny rules.",
+      "source": "https://github.com/kubernetes/website/blob/0874a528cfdcd1d0f96766c04111bbaffd2baf0c/content/en/docs/reference/access-authn-authz/rbac.md",
+      "section": "Overview; permissions",
+      "verified_by": "Read from the Kubernetes website source on raw GitHub, then re-read on 2026-10-14 from a local clone at commit 0874a528cfdcd1d0f96766c04111bbaffd2baf0c to confirm the cited passage is present at that revision."
+    },
+    {
+      "claim_vi": "ABAC defines an access control paradigm in which access rights are granted to users through policies that combine attributes together.",
+      "source": "https://github.com/kubernetes/website/blob/0874a528cfdcd1d0f96766c04111bbaffd2baf0c/content/en/docs/reference/access-authn-authz/abac.md",
+      "section": "Overview",
+      "verified_by": "Read from the Kubernetes website source on raw GitHub, then re-read on 2026-10-14 from a local clone at commit 0874a528cfdcd1d0f96766c04111bbaffd2baf0c to confirm the cited passage is present at that revision."
+    },
+    {
+      "claim_vi": "With Casbin 1.43.0: an ACL that lists individual users (a policy line for Lan) lets Lan read payroll, refuses Minh, and a new accountant Mai needs one added line per document (two lines for two documents); under RBAC the same Mai needs one role-assignment line for both documents; under ABAC a matcher comparing user and document department allows Lan and Mai to read finance documents with no added policy line, refuses Minh (engineering) and refuses a write.",
+      "source": "https://github.com/casbin/casbin/tree/1e19095c5287eff82ae0d5cc07502d87017944f2/examples",
+      "section": "basic_model.conf, rbac_model.conf, abac_model.conf (models the demo is patterned on)",
+      "verified_by": "No external page reports this output; observed by executing the code on the authoring machine. Models were written for the demo, patterned on the repository's examples."
+    },
+    {
+      "claim_vi": "ACL entries can name groups instead of individual users, and then adding a new person to the group is a single change that grants every access the group has. Observed with a real POSIX ACL: three files each carried an ACL with a named-group entry giving group daemon (gid 1) read permission (owner rw-, owning group ---, mask r--, other ---); a user outside the group was refused on all three files, and the same user, after being added to the group once, could read all three.",
+      "source": "https://github.com/SELinuxProject/selinux-notebook/blob/1666b22828a5db37a331663936eb9a30b0df777b/src/mac.md",
+      "section": "Mandatory Access Control (describes Linux DAC); ACL group entries observed with a POSIX ACL",
+      "verified_by": "No external page reports this output; observed by executing the code on the authoring machine on 2026-10-14. setfacl and getfacl were not installed, so the POSIX ACL was written directly as the system.posix_acl_access extended attribute (version 2, entries USER_OBJ, GROUP_OBJ, GROUP for gid 1, MASK, OTHER) on a tmpfs file system and the kernel enforced it: the attribute read back with 5 entries, an outsider process with no supplementary groups was denied on all three files, and the same uid with gid 1 added to its supplementary groups read all three. The earlier version of this claim used plain Unix group mode bits, which is not an ACL, and was replaced. A NIST page on group-based ACLs implementing role-based access, cited by a reviewer, was not reachable and was not checked."
+    },
+    {
+      "claim_vi": "A hand-written level rule allows a read only when the subject level is at least the object level and a write only when it is at most the object level: level 2 reading level 2 is allowed, level 1 reading level 2 is refused, level 2 writing level 1 is refused, level 1 writing level 2 is allowed.",
+      "source": "https://github.com/SELinuxProject/selinux-notebook/blob/1666b22828a5db37a331663936eb9a30b0df777b/src/mac.md",
+      "section": "Mandatory Access Control (multi-level security)",
+      "verified_by": "The rule is the one the notebook states; the four outputs come from the author's Python function."
+    },
+    {
+      "claim_vi": "The models layer in real systems: on Linux with SELinux the DAC checks are carried out first and, if they pass, the security server is consulted for the MAC decision; Kubernetes can run several authorizers in sequence, such as RBAC then ABAC, and a request allowed by either is allowed.",
+      "source": "https://github.com/SELinuxProject/selinux-notebook/blob/1666b22828a5db37a331663936eb9a30b0df777b/src/mac.md",
+      "section": "Mandatory Access Control (Figure 3: processing a system call)",
+      "verified_by": "Read from a local clone of the selinux-notebook repository at commit 1666b22828a5db37a331663936eb9a30b0df777b, the head of the default branch when read (a later change to that branch does not alter this URL). The Kubernetes sequence is stated in the Kubernetes RBAC page (Parallel authorizers), also read from raw GitHub; ACL as a storage mechanism versus DAC, MAC, RBAC and ABAC as decision policies is the author's framing, not checked against NIST."
+    },
+    {
+      "claim_vi": "ABAC only gives correct decisions when user and document attributes are kept correct, and complex rules are harder to read and audit.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-we-design-a-permission-system.md",
+      "section": "ABAC",
+      "verified_by": "The source says ABAC rules can be complicated and hard to implement; the dependence on correct attributes is the author's inference."
+    }
+  ],
+  "design_notes_vi": "Một yêu cầu chung (Lan đọc bảng lương) đi qua năm mô hình, mỗi mô hình một câu hỏi; thẻ cuối nói mỗi cách chuyển việc bảo trì sang chỗ khác. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Source says DAC is based on ACL; the Linux example here runs on owner/group/other mode bits without ACLs, so the lesson does not tie DAC to ACL.",
+    "Source calls ABAC 'not commonly used' and puts MAC labels on 'resource owners and resources'; the lesson does not repeat either (unchecked; SELinux labels subjects and objects).",
+    "Source presents the five as peer models; the lesson keeps that layout for comparison but states that ACL (storage of permissions) overlaps with DAC, MAC, RBAC and ABAC (decision policies) and that real systems layer them.",
+    "Source gives no cons for RBAC; the lesson compares the maintenance each model moves around, measured in the demo, and notes that Kubernetes RBAC has no deny rules as a Kubernetes property."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

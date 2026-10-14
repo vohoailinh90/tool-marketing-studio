@@ -1,0 +1,110 @@
+{
+  "id": "sd-14-002",
+  "title_vi": "Encoding, encryption và tokenization",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "review",
+  "source_ref": "sd-14-002",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/encoding-vs-encryption-vs-tokenization.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/encoding-vs-encryption-vs-tokenization.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches provider tree OID. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "6e3b9573101bd629726a1c0cbeef3048f5d91bef",
+    "retrieved_body_sha256": "00154006ca87f8266da441cc6e04976888076e10e07d1d35272c481373bf05a0",
+    "retrieved_body_bytes": 2322
+  },
+  "diagram": "../diagrams/sd-14-002-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-14-003",
+      "relation": "continues",
+      "reason_vi": "Mật khẩu nên được băm chậm chứ không phải mã hóa hay encode."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "evidence": "Concepts come from the source and OWASP cheat sheets read from local clones; the example outputs were produced by running Python; the vault inference is the author's reasoning."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 14.4,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright) rendered the full lesson at each width with optional sections open; diagram scale measured from the rendered image and every SVG text box checked against the viewBox. Not learner testing and not GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Encoding (e.g. Base64) changes the format by a reversible scheme without a key and is not meant to secure data; encryption uses an algorithm and a key so only holders of the key can read the data; tokenization substitutes tokens for sensitive data with the mapping kept in a token vault.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/encoding-vs-encryption-vs-tokenization.md",
+      "section": "Encoding; Encryption; Tokenization",
+      "verified_by": "Source body read."
+    },
+    {
+      "claim_vi": "The figure's example outputs: Base64 of '4111 1111 1111 1111' starts with NDExMSAxMTEx and decodes without a key; a Fernet token starts with gAAAAAB and a wrong key raises InvalidToken; a random 'tok_' token returns the data through a dictionary acting as the vault.",
+      "source": "https://pypi.org/project/cryptography/",
+      "section": "Fernet (symmetric encryption)",
+      "verified_by": "No external page describes this exact output; observed by executing the code on the authoring machine. Used the Python standard library (base64, secrets) and cryptography 50.0.1 (Fernet); the PyPI page identifies the package only."
+    },
+    {
+      "claim_vi": "In public-key (asymmetric) encryption the public key can be distributed because it can only encrypt; only the private key decrypts. Observed with RSA-OAEP: data encrypted using only the public key was decrypted by the private key, and the public key object has no decrypt operation.",
+      "source": "https://pypi.org/project/cryptography/",
+      "section": "RSA (asymmetric encryption)",
+      "verified_by": "No external page describes this exact output; observed by executing the code on the authoring machine. Executed RSA-OAEP with cryptography 50.0.1. The property is standard public-key cryptography; NIST's glossary entry for a public key, cited by a reviewer, was not reachable from the authoring environment."
+    },
+    {
+      "claim_vi": "Symmetric encryption should use AES with a key of at least 128 bits (ideally 256); dedicated secret or key management systems add protection at the cost of complexity and administrative overhead.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/ae965343cb82e6b8f42aff1ccee57c4fa0f171c2/cheatsheets/Cryptographic_Storage_Cheat_Sheet.md",
+      "section": "Algorithms; Key management",
+      "verified_by": "Read from a local clone of the OWASP CheatSheetSeries repository at commit ae965343cb82e6b8f42aff1ccee57c4fa0f171c2, the head of master when read (a later change to master does not alter this URL)."
+    },
+    {
+      "claim_vi": "In almost all circumstances passwords should be hashed with modern adaptive algorithms rather than encrypted; hashing is a one-way function.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/ae965343cb82e6b8f42aff1ccee57c4fa0f171c2/cheatsheets/Password_Storage_Cheat_Sheet.md",
+      "section": "Hashing vs Encryption",
+      "verified_by": "Read from a local clone of the OWASP CheatSheetSeries repository at commit ae965343cb82e6b8f42aff1ccee57c4fa0f171c2, the head of master when read (a later change to master does not alter this URL)."
+    },
+    {
+      "claim_vi": "Anyone who obtains the token vault can recover the original data, so the security of vault-based tokenization concentrates in the vault.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/encoding-vs-encryption-vs-tokenization.md",
+      "section": "Tokenization",
+      "verified_by": "Author's inference from the described design (mapping stored in a vault); not checked against a standard."
+    },
+    {
+      "claim_vi": "Tokenization is often used for payment card data and helps with PCI DSS compliance.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/encoding-vs-encryption-vs-tokenization.md",
+      "section": "Tokenization",
+      "verified_by": "Carried from the source as general description; not independently checked. The OWASP Cryptographic Storage cheat sheet does not mention tokenization."
+    }
+  ],
+  "design_notes_vi": "Một dữ liệu mẫu cho cả ba cách để so sánh; thẻ cuối nói mỗi cách có một chỗ phải bảo vệ. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Source calls tokenization 'highly secure' because tokens cannot be reverse-engineered; true for random vault-based tokens, but the risk moves to the token vault, which the lesson names as the place to protect.",
+    "Source does not distinguish hashing; the lesson adds a short note that hashing is a separate one-way operation."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

@@ -19,13 +19,24 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 
 8. [Trình duyệt dựng trang web thế nào?](lessons/sd-01-008/lesson.md)
 
+## Phỏng vấn kỹ thuật
+
+1. [Các kiểu SQL JOIN hoạt động thế nào?](lessons/sd-05-001/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+2. [Gõ google.com vào trình duyệt thì chuyện gì xảy ra?](lessons/sd-05-002/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+3. [Một URL biến thành yêu cầu HTTP thế nào?](lessons/sd-05-003/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+4. [Làm tốt phỏng vấn thiết kế hệ thống: bảy bước](lessons/sd-05-004/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+5. [Tài liệu gợi ý để ôn phỏng vấn kỹ thuật](lessons/sd-05-005/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+
 ## Bảo mật
 
-Đợt bốn của nhóm. Các bài sd-14-001..009 nằm ở PR #57, #58 và #60, chưa có trong nhánh này; số thứ tự dưới đây chỉ tính trong nhánh này.
+Đợt bốn của nhóm. Các bài sd-14-001..006 nằm ở PR #57 và #58, chưa có trong nhánh này; số thứ tự dưới đây chỉ tính trong nhánh này.
 
-1. [Token, cookie và session: nhận ra người dùng thế nào?](lessons/sd-14-010/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
-2. [SSO và OAuth 2.0: đăng nhập khác ủy quyền](lessons/sd-14-011/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
-3. [Thiết kế hệ thống an toàn: mười hai câu cần hỏi](lessons/sd-14-012/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+1. [Tường lửa hoạt động thế nào?](lessons/sd-14-007/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+2. [Cookie và session khác nhau thế nào?](lessons/sd-14-008/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+3. [Cookie HTTP hoạt động thế nào?](lessons/sd-14-009/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+4. [Token, cookie và session: nhận ra người dùng thế nào?](lessons/sd-14-010/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+5. [SSO và OAuth 2.0: đăng nhập khác ủy quyền](lessons/sd-14-011/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+6. [Thiết kế hệ thống an toàn: mười hai câu cần hỏi](lessons/sd-14-012/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 
 Danh mục đầy đủ và snapshot nguồn: [bảng đối chiếu](../../brainstorm/system-design-101-vi/source-map.json).
 Quy tắc đã chốt: [kết luận brainstorm](../../brainstorm/system-design-101-vi/DECISIONS.md).
@@ -49,7 +60,7 @@ và hình đạt; không coi đọc nguồn là mọi claim đã đúng, không 
 
 ## Các nhóm còn lại theo thứ tự nguồn
 
-Tình huống thực tế → AI và học máy → Cơ sở dữ liệu và lưu trữ → Phỏng vấn kỹ thuật →
+Tình huống thực tế → AI và học máy → Cơ sở dữ liệu và lưu trữ →
 Bộ nhớ đệm và hiệu năng → Thanh toán và công nghệ tài chính → Kiến trúc phần mềm →
 Công cụ và năng suất → Phát triển phần mềm → Đám mây và hệ thống phân tán →
 Hệ thống hoạt động thế nào? → DevOps và CI/CD → Bảo mật (đã viết một phần) → Nền tảng máy tính.

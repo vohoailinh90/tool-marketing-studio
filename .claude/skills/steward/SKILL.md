@@ -40,18 +40,24 @@ else owns, no skipped or quarantined test.
    `python3 scripts/codex_round_count.py` must exit 0, then post the §11 command.
    Codex-cli lane (only a repository that ships `scripts/codex_cli.py` has it):
    `python3 scripts/codex_cli.py review --branch <branch>`; no comment is posted
-   and there is nothing to wait for, so skip step 3.
+   and there is nothing to wait for, so skip step 3. The review runs to completion
+   on this machine, so its report is the result: after step 2, validate it
+   (§14, `docs/codex-cli-lane.md`) and work it through section 3's review rows.
 2. **Subscribe** with `subscribe_pr_activity`, right after the request. The
    lifecycle is the user's standing instruction to drive every PR to merge, so
    subscribing is part of it: do not stop to ask. The check-in in step 3 re-fetches
-   every list, so nothing delivered before the subscription is lost.
+   every list and the request's reactions, so nothing that happened before the
+   subscription is lost.
 3. **Arm one check-in** with `send_later`, at the request's `created_at` + 11
    minutes, rounded up to the next whole minute. Take `created_at` from the API
    response, not the session clock. 11 is §17's silent window plus one minute for
    the scheduler's whole-minute truncation; this one check-in is what turns "Codex
    never answered" from an endless wait into a decision.
-4. Record the PR number, head SHA, pending request and the check-in's time and trigger id in the
-   handoff `model-notes`, then end the turn. Never wait with `sleep` or polling.
+4. Record the PR number, head SHA and what is pending in the handoff
+   `model-notes`: in the cloud lanes the pending request with the check-in's time
+   and trigger id, in the codex-cli lane the SHA the review ran on and what is left
+   to do. Then end the turn once nothing in this section is left to do. Never wait
+   with `sleep` or polling.
 
 ## 3. What each event means
 
@@ -76,7 +82,10 @@ about 4 hours apart, silent when nothing changed, stopping after three empty one
 
 ## 4. When a check-in fires
 
-Re-fetch the PR, its reviews and its comments first; nothing remembered is current.
+Re-fetch the PR, its reviews and its comments first, and read the `reactions` counts
+on the request comment: a reaction is trigger evidence (§17), no event announces it,
+and an acknowledged request must not be classified as silent and retried. Nothing
+remembered is current.
 
 Every window is measured from the newest request, retry or evidence. A check-in
 that fires before its window has run out is re-armed from that newest time and does
@@ -93,9 +102,10 @@ when its replacement is armed, so at most one is pending per PR.
   when `scripts/codex_round_count.py` exits 0 and none was posted for this SHA,
   then arm the same check-in again.
 - A second trigger failure, no retry left, a stalled review or a task that failed
-  or was cancelled: post nothing more. The PR is BLOCKED —
-  report it once to the user, leave it open, and take the next task that does not
-  depend on it (lifecycle step 6). It is never merged unreviewed, and no API,
+  or was cancelled: post nothing more and delete the pending check-in
+  (`delete_trigger`), so it cannot wake the session to re-arm or report again. The
+  PR is BLOCKED — report it once to the user, leave it open, and take the next task
+  that does not depend on it (lifecycle step 6). It is never merged unreviewed, and no API,
   Action, SDK, browser or other lane stands in for the review.
 
 ## 5. Before every push

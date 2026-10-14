@@ -35,20 +35,22 @@ else owns, no skipped or quarantined test.
 
 ## 2. Immediately after it opens
 
-1. **Subscribe** with `subscribe_pr_activity`. The lifecycle is the user's
-   standing instruction to drive every PR to merge, so subscribing is part of it:
-   do not stop to ask. Subscribing first means nothing posted below is missed.
-2. **Request the first review** (lifecycle step 1). Claude and codex lanes:
+1. **Request the first review** (lifecycle step 1), before anything else: the
+   lifecycle makes it the first action once the PR exists. Claude and codex lanes:
    `python3 scripts/codex_round_count.py` must exit 0, then post the §11 command.
    Codex-cli lane (only a repository that ships `scripts/codex_cli.py` has it):
    `python3 scripts/codex_cli.py review --branch <branch>`; no comment is posted
    and there is nothing to wait for, so skip step 3.
+2. **Subscribe** with `subscribe_pr_activity`, right after the request. The
+   lifecycle is the user's standing instruction to drive every PR to merge, so
+   subscribing is part of it: do not stop to ask. The check-in in step 3 re-fetches
+   every list, so nothing delivered before the subscription is lost.
 3. **Arm one check-in** with `send_later`, at the request's `created_at` + 11
    minutes, rounded up to the next whole minute. Take `created_at` from the API
    response, not the session clock. 11 is §17's silent window plus one minute for
    the scheduler's whole-minute truncation; this one check-in is what turns "Codex
    never answered" from an endless wait into a decision.
-4. Record the PR number, head SHA, pending request and check-in time in the
+4. Record the PR number, head SHA, pending request and the check-in's time and trigger id in the
    handoff `model-notes`, then end the turn. Never wait with `sleep` or polling.
 
 ## 3. What each event means
@@ -57,12 +59,12 @@ else owns, no skipped or quarantined test.
 |---|---|---|
 | Subscription confirmation: the first event after `subscribe_pr_activity`, with no review, CI or comment content | An acknowledgement, not feedback | Nothing. Do not re-deliberate and do not arm another check-in; step 2.3 already did |
 | Your own request or reply coming back | An echo | Nothing |
-| A reaction or linked task on the request | Trigger evidence (§17); the review is still pending | Wait. Arm a check-in at the evidence's time + 31 minutes (§17's stall window plus one) and post nothing. If it fires with no result, section 4's last step |
+| A reaction or linked task on the request | Trigger evidence (§17); the review is still pending | Wait. Replace the pending check-in with one at the evidence's time + 31 minutes (§17's stall window plus one) and post nothing. If it fires with no result, section 4's last step |
 | The bot's review-status summary comment | Neither a review nor trigger evidence (§16, §17) | Nothing |
 | A bare 👍, no review | An unsuccessful completion, never a clean review (§17) | Handle it as the reaction-or-linked-task row: the review stays pending and the stall check-in is armed |
 | The linked task posts a failure, error or cancellation | A terminal failure (§17) | Post nothing; section 4's last step |
-| A usage-limit or error post in place of a review | An immediate trigger failure (§17) | The single authorized retry now, only if `scripts/codex_round_count.py` exits 0 and none was posted for this SHA; otherwise section 4's last step |
-| A review with findings | A result (§14) | Validate each finding against the code (§13); fix the real ones with a regression test; answer a wrong one on its thread with the evidence; resolve the threads you addressed; section 5, then section 6 |
+| A usage-limit or error post in place of a review | An immediate trigger failure (§17) | The single authorized retry now, only if `scripts/codex_round_count.py` exits 0 and none was posted for this SHA; otherwise section 4's last step. Delete the pending check-in (`delete_trigger`) and arm a new one from the retry's `created_at` (section 2, step 3): the old one would fire inside the retry's own window |
+| A review with findings | A result (§14) | Validate each finding against the code (§13); fix the real ones with a regression test; answer a wrong one on its thread with the evidence; resolve the threads you addressed. Fixed anything: section 5, then section 6. Rejected a P2 or P3: it stands at once and blocks nothing, and with nothing fixed the review counts as clean for its command. Rejected a P0 or P1: the next review of the new head decides it when other fixes make one; with no code change pending it is an unresolved disagreement (§16), so report it to the repository owner and do not merge |
 | A review of the current head with no finding | A clean review for that command | Check every other review command the work requires, then CI and mergeability, then section 7 |
 | CI red | Work now | Reproduce it, fix it, section 5, then section 6 |
 | A merge conflict, or the base branch recovered | Work now | Merge the base into the PR branch (never rebase or force-push), section 5, then section 6 |
@@ -76,11 +78,17 @@ about 4 hours apart, silent when nothing changed, stopping after three empty one
 
 Re-fetch the PR, its reviews and its comments first; nothing remembered is current.
 
+Every window is measured from the newest request, retry or evidence. A check-in
+that fires before its window has run out is re-armed from that newest time and does
+nothing else. A check-in that a later event supersedes is deleted (`delete_trigger`)
+when its replacement is armed, so at most one is pending per PR.
+
 - A result of the requested kind for the current head: validate it (§14) and
   continue the loop.
 - Evidence of Codex but no result: not a trigger failure, so no retry. If §17's
   stall window has not yet run out since the last update, post nothing and arm the
-  stall check-in. If it has, the review is stalled: the last step below.
+  stall check-in unless one is already pending. If it has, the review is stalled:
+  the last step below.
 - No evidence at all: a trigger failure (§17). Post the one authorized retry only
   when `scripts/codex_round_count.py` exits 0 and none was posted for this SHA,
   then arm the same check-in again.

@@ -47,6 +47,7 @@ OVERFLOW_SHOWN = 10         # slide numbers named in one row
 BODY_LIMIT = 60000          # GitHub refuses a comment of 65536 characters: the budgets above keep the parts under this one
 NEXT = ("Next: look at the images, then approve in the app (Publish page) or with `studio.py approve`. "
         "Publishing stays yours.")
+RETRY = "Next: read the run, fix what failed and push again. There is nothing here to approve yet."
 
 
 def classify(paths: Sequence[str]) -> tuple[list[str], list[str]]:
@@ -171,7 +172,7 @@ def build_comment(root: Path, *, plan_ok: bool, campaigns: Sequence[str], reason
         return body
     return "\n".join([MARKER, "### Radar preview", "",
                       f"This preview is too large for one comment, so it says nothing about the check or the drawing: read [the run]({run_url}).",
-                      "", NEXT]) + "\n"
+                      "", RETRY]) + "\n"
 
 
 def _comment(root: Path, *, plan_ok: bool, campaigns: Sequence[str], reason: str, outside: Sequence[str],
@@ -188,13 +189,15 @@ def _comment(root: Path, *, plan_ok: bool, campaigns: Sequence[str], reason: str
     found = [(c, *rendered(root, c)) for c in campaigns]
     rows = [(c, r) for c, got, _ in found for r in got]
     unreadable = [f"{c}/{where}" for c, _, bad in found for where in bad]
-    if failed or unreadable or not rows:
-        # the claim is made only when every step succeeded and something was drawn: a skipped check or an empty drawing is not "drawn"
-        lines += ["The check and the drawing were attempted with this repository's engine on the files of this pull request, "
-                  "but they did not all succeed. Nothing is approved, committed or published.", ""]
-    else:
+    # the claim, and the invitation to approve, are made only when every step succeeded and something was drawn:
+    # a skipped check or an empty drawing is not "drawn"
+    complete = not (failed or unreadable or not rows)
+    if complete:
         lines += ["Checked and drawn with this repository's engine from the files of this pull request. "
                   "Nothing is approved, committed or published.", ""]
+    else:
+        lines += ["The check and the drawing were attempted with this repository's engine on the files of this pull request, "
+                  "but they did not all succeed. Nothing is approved, committed or published.", ""]
     if failed or unreadable:
         lines += [f"**A step failed or a manifest could not be read: read [the run]({run_url}).**", ""]
     if unreadable:
@@ -238,7 +241,7 @@ def _comment(root: Path, *, plan_ok: bool, campaigns: Sequence[str], reason: str
             lines += [f"{omitted} caption(s) are not shown here: they are in the artifact, as `facebook.txt` beside each post.", ""]
     elif not unreadable:
         lines += ["No post was drawn.", ""]
-    lines += [NEXT]
+    lines += [NEXT if complete else RETRY]
     return "\n".join(lines) + "\n"
 
 

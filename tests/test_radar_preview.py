@@ -341,6 +341,7 @@ class CommentTests(unittest.TestCase):
         self.assertIn("too large for one comment", body)
         self.assertIn("(https://example.test/run)", body)
         self.assertNotIn("Checked and drawn", body)
+        self.assertNotIn("approve in the app", body)                                          # it says nothing about the check: no invitation either
 
     def test_a_failure_points_at_the_run(self):
         render_fixture(self.root, "Caption", [])
@@ -452,6 +453,21 @@ class CommentTests(unittest.TestCase):
         body = comment(self.root)                                                                # a manifest could not be read
         self.assertNotIn("Checked and drawn", body)
         self.assertIn("Manifests that could not be read", body)
+
+    def test_the_invitation_to_approve_is_made_only_when_the_pull_request_was_checked_and_drawn(self):
+        render_fixture(self.root, "Caption", [])
+        self.assertTrue(comment(self.root).rstrip().endswith(radar_preview.NEXT))                # every step succeeded, a post was drawn
+        for label, body in (("a step failed", comment(self.root, failed=True)),
+                            ("nothing was drawn", comment(self.root / "nothing-here"))):
+            with self.subTest(label):
+                self.assertNotIn("approve", body.replace("Nothing is approved", ""))
+                self.assertTrue(body.rstrip().endswith(radar_preview.RETRY), body)
+        export = self.root / "campaigns" / CAMPAIGN / "export" / "vi" / "bad"
+        export.mkdir()
+        (export / "manifest.json").write_text("{not json", encoding="utf-8")
+        body = comment(self.root)                                                                # a manifest could not be read
+        self.assertNotIn("approve in the app", body)
+        self.assertTrue(body.rstrip().endswith(radar_preview.RETRY), body)
 
     def test_a_campaign_without_a_drawing_says_so(self):
         self.assertIn("No post was drawn.", comment(self.root))

@@ -55,7 +55,7 @@ Trong gần như mọi trường hợp, không nên mã hóa mật khẩu: OWASP
 ## Nguồn đối chiếu
 
 - [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-to-store-passwords-in-the-database.md): các việc không nên làm, salt, quy trình lưu và kiểm tra.
-- [OWASP — Password Storage Cheat Sheet](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Password_Storage_Cheat_Sheet.md): định nghĩa salt, hàm băm chậm, cấu hình khuyến nghị, giới hạn 72 byte của bcrypt, pepper, băm khác mã hóa. Đọc từ bản clone của kho.
+- [OWASP — Password Storage Cheat Sheet](https://github.com/OWASP/CheatSheetSeries/blob/ae965343cb82e6b8f42aff1ccee57c4fa0f171c2/cheatsheets/Password_Storage_Cheat_Sheet.md): định nghĩa salt, hàm băm chậm, cấu hình khuyến nghị, giới hạn 72 byte của bcrypt, pepper, băm khác mã hóa. Đọc từ bản clone của kho.
 
 Đã đọc nguồn ngày 2026-10-13. Các kết quả minh họa chạy bằng `argon2-cffi` 25.1.0, `bcrypt` 5.0.0 và `hashlib` trên Python. Các cấu hình khuyến nghị có thể đổi theo thời gian;
 hãy đối chiếu bản OWASP mới nhất khi triển khai. Bài viết và hình được thiết kế độc lập.

@@ -50,8 +50,8 @@ Với khóa công khai, thử bằng RSA-OAEP của thư viện `cryptography`: 
 ## Nguồn đối chiếu
 
 - [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/encoding-vs-encryption-vs-tokenization.md): ba khái niệm.
-- [OWASP — Cryptographic Storage Cheat Sheet](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Cryptographic_Storage_Cheat_Sheet.md): mã hóa đối xứng và khóa công khai; quản lý khóa. Đọc từ bản clone của kho.
-- [OWASP — Password Storage Cheat Sheet](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Password_Storage_Cheat_Sheet.md): băm khác với mã hóa. Đọc từ bản clone của kho.
+- [OWASP — Cryptographic Storage Cheat Sheet](https://github.com/OWASP/CheatSheetSeries/blob/ae965343cb82e6b8f42aff1ccee57c4fa0f171c2/cheatsheets/Cryptographic_Storage_Cheat_Sheet.md): mã hóa đối xứng và khóa công khai; quản lý khóa. Đọc từ bản clone của kho.
+- [OWASP — Password Storage Cheat Sheet](https://github.com/OWASP/CheatSheetSeries/blob/ae965343cb82e6b8f42aff1ccee57c4fa0f171c2/cheatsheets/Password_Storage_Cheat_Sheet.md): băm khác với mã hóa. Đọc từ bản clone của kho.
 
 Đã đọc nguồn ngày 2026-10-13. Cryptographic Storage Cheat Sheet của OWASP không nhắc tới tokenization; phần mô tả tokenization lấy từ bài nguồn và từ ví dụ chạy thử, chưa đối chiếu tiêu chuẩn nào.
 Bài viết và hình được thiết kế độc lập.

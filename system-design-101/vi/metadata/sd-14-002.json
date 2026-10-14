@@ -78,15 +78,15 @@
     },
     {
       "claim_vi": "Symmetric encryption should use AES with a key of at least 128 bits (ideally 256); dedicated secret or key management systems add protection at the cost of complexity and administrative overhead.",
-      "source": "https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Cryptographic_Storage_Cheat_Sheet.md",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/ae965343cb82e6b8f42aff1ccee57c4fa0f171c2/cheatsheets/Cryptographic_Storage_Cheat_Sheet.md",
       "section": "Algorithms; Key management",
-      "verified_by": "Read from a local clone of the OWASP repository."
+      "verified_by": "Read from a local clone of the OWASP CheatSheetSeries repository at commit ae965343cb82e6b8f42aff1ccee57c4fa0f171c2, the head of master when read (a later change to master does not alter this URL)."
     },
     {
       "claim_vi": "In almost all circumstances passwords should be hashed with modern adaptive algorithms rather than encrypted; hashing is a one-way function.",
-      "source": "https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Password_Storage_Cheat_Sheet.md",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/ae965343cb82e6b8f42aff1ccee57c4fa0f171c2/cheatsheets/Password_Storage_Cheat_Sheet.md",
       "section": "Hashing vs Encryption",
-      "verified_by": "Read from a local clone of the OWASP repository."
+      "verified_by": "Read from a local clone of the OWASP CheatSheetSeries repository at commit ae965343cb82e6b8f42aff1ccee57c4fa0f171c2, the head of master when read (a later change to master does not alter this URL)."
     },
     {
       "claim_vi": "Anyone who obtains the token vault can recover the original data, so the security of vault-based tokenization concentrates in the vault.",

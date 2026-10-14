@@ -19,7 +19,7 @@ SBOM là danh mục thành phần của bản build.
 
 **4 · Kiểm thử.** Kiểm thử bảo mật động (DAST) tấn công thử ứng dụng đang chạy; kiểm thử tương tác (IAST) quan sát ứng dụng từ bên trong khi chạy kiểm thử; thêm kiểm thử bảo mật API.
 
-**5 · Phát hành.** Chặng cuối trước khi bản build rời đường ống. Hướng dẫn OWASP nêu cổng bảo mật cuối, ký bản build, đính kèm SBOM và nguồn gốc bản build, phê duyệt phát hành và ghi chú phát hành về bảo mật.
+**5 · Phát hành.** Chặng cuối trước khi bản build rời đường ống. Hướng dẫn OWASP nêu cổng bảo mật cuối, ký bản build, đính kèm SBOM và nguồn gốc bản build, phê duyệt phát hành và ghi chú phát hành về bảo mật. Các trang về cách tạo SBOM và về ký bản build, nguồn gốc nằm ở chặng Xây dựng trong mục lục; chương Phát hành dẫn tới chúng và nói gắn chúng vào bản phát hành, rồi ký.
 
 **6 · Triển khai.** Đưa bản đã phát hành vào môi trường chạy. Chỉ cho chạy bản build đã xác minh được chữ ký và nguồn gốc; mục lục còn có phần riêng về quản lý bí mật trên Kubernetes và GitOps.
 
@@ -56,8 +56,8 @@ Bài này đọc mục lục, phần mở đầu và phần đầu hai chương 
 ## Nguồn đối chiếu
 
 - [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-is-devsecops.md): mười khái niệm chính.
-- [OWASP — DevSecOps Guideline](https://github.com/OWASP/DevSecOpsGuideline): mục tiêu phát hiện sớm; mục lục bảy chặng thiết kế, phát triển, xây dựng, kiểm thử, phát hành, triển khai, vận hành và phần quản trị; phần đầu hai chương Phát hành và Triển khai; lưu ý CI/CD mở rộng bề mặt tấn công. Đọc từ bản clone của kho.
-- [OWASP — Secrets Management Cheat Sheet](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Secrets_Management_Cheat_Sheet.md): quản lý và xoay vòng bí mật. Đọc từ bản clone của kho.
+- [OWASP — DevSecOps Guideline, tại commit cố định](https://github.com/OWASP/DevSecOpsGuideline/blob/a4d07324cec24f222be5e8f2b12d3ec27bba714c/README.md): mục tiêu phát hiện sớm; mục lục bảy chặng thiết kế, phát triển, xây dựng, kiểm thử, phát hành, triển khai, vận hành và phần quản trị; phần đầu hai chương Phát hành và Triển khai; lưu ý CI/CD mở rộng bề mặt tấn công. Đọc từ bản clone của kho.
+- [OWASP — Secrets Management Cheat Sheet](https://github.com/OWASP/CheatSheetSeries/blob/ae965343cb82e6b8f42aff1ccee57c4fa0f171c2/cheatsheets/Secrets_Management_Cheat_Sheet.md): quản lý và xoay vòng bí mật. Đọc từ bản clone của kho.
 
 Đã đọc nguồn ngày 2026-10-13. Tên chặng được dịch sang tiếng Việt; phần giải nghĩa từng kỹ thuật (SAST, SCA, DAST, IAST, SBOM…) là kiến thức chung của người biên soạn, chưa đối chiếu với các chương Xây dựng và Kiểm thử của OWASP.
 Bài viết và hình được thiết kế độc lập.

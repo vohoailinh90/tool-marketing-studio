@@ -60,43 +60,43 @@
   "claims": [
     {
       "claim_vi": "The OWASP DevSecOps Guideline aims to detect security issues (by design or application vulnerability) as early as possible and promotes a shift-left security culture.",
-      "source": "https://github.com/OWASP/DevSecOpsGuideline",
+      "source": "https://github.com/OWASP/DevSecOpsGuideline/blob/a4d07324cec24f222be5e8f2b12d3ec27bba714c/README.md",
       "section": "README introduction",
-      "verified_by": "Read from a local clone of the OWASP repository."
+      "verified_by": "Read from a local clone of the OWASP DevSecOpsGuideline repository at commit a4d07324cec24f222be5e8f2b12d3ec27bba714c, the head of master when read (a later change to master does not alter this URL)."
     },
     {
       "claim_vi": "The guideline's process section has seven stages, Design (threat modeling, secure design and requirements), Develop (pre-commit, secrets management, linting, repository hardening, secure code review), Build (SAST, SCA, container scanning and hardening, IaC scanning, security gates, SBOM, artifact signing, CI/CD pipeline security), Test (IAST, DAST, mobile, API security, misconfiguration, AI/LLM application testing), Release, Deploy (including secrets in Kubernetes and GitOps) and Operate (logging and monitoring, vulnerability management, pentest and more); Governance covers compliance auditing and policy as code.",
-      "source": "https://github.com/OWASP/DevSecOpsGuideline",
+      "source": "https://github.com/OWASP/DevSecOpsGuideline/blob/a4d07324cec24f222be5e8f2b12d3ec27bba714c/README.md",
       "section": "README table of contents",
-      "verified_by": "Read from a local clone of the OWASP repository. Only the table of contents was read, not the chapters."
+      "verified_by": "Read from a local clone of the OWASP DevSecOpsGuideline repository at commit a4d07324cec24f222be5e8f2b12d3ec27bba714c, the head of master when read (a later change to master does not alter this URL). Only the table of contents was read, not the chapters."
     },
     {
-      "claim_vi": "The Release chapter lists these security activities at release: a final security gate, attaching the SBOM and build provenance to the artifact, signing the artifact, release approval, and security-relevant release notes.",
-      "source": "https://github.com/OWASP/DevSecOpsGuideline/blob/master/current-version/2-Process/2-5-Release/2-5-1-Release.md",
+      "claim_vi": "The Release chapter lists these security activities at release: a final security gate, attaching the SBOM and build provenance to the artifact, signing the artifact, release approval, and security-relevant release notes. The README table of contents files the SBOM and the artifact signing and provenance pages under Build; the Release chapter links to them and says to attach the SBOM and provenance to the release artifact and to sign it.",
+      "source": "https://github.com/OWASP/DevSecOpsGuideline/blob/a4d07324cec24f222be5e8f2b12d3ec27bba714c/current-version/2-Process/2-5-Release/2-5-1-Release.md",
       "section": "Security activities at release",
-      "verified_by": "Read from a local clone of the OWASP repository. Only the opening sections were read."
+      "verified_by": "Read from a local clone of the OWASP DevSecOpsGuideline repository at commit a4d07324cec24f222be5e8f2b12d3ec27bba714c, the head of master when read (a later change to master does not alter this URL). Only the opening sections were read. At that commit the Release page is about 9 KB with a bulleted list under 'Security activities at release' containing those five items, and the README table of contents lists the SBOM and artifact signing pages under 2-3-6 Supply-Chain-Security in Build."
     },
     {
       "claim_vi": "The Deploy chapter opens with admission control: only artifacts with valid signatures and acceptable provenance are admitted to run; a separate Deploy page covers secrets in Kubernetes and GitOps.",
-      "source": "https://github.com/OWASP/DevSecOpsGuideline/blob/master/current-version/2-Process/2-6-Deploy/2-6-1-Deploy.md",
+      "source": "https://github.com/OWASP/DevSecOpsGuideline/blob/a4d07324cec24f222be5e8f2b12d3ec27bba714c/current-version/2-Process/2-6-Deploy/2-6-1-Deploy.md",
       "section": "Verify before you run: admission control",
-      "verified_by": "Read from a local clone of the OWASP repository. Only the opening sections were read; the secrets page was read by title only."
+      "verified_by": "Read from a local clone of the OWASP DevSecOpsGuideline repository at commit a4d07324cec24f222be5e8f2b12d3ec27bba714c, the head of master when read (a later change to master does not alter this URL). Only the opening sections were read; the secrets page was read by title only. At that commit the README table of contents lists '2-6-2-Secrets-in-Kubernetes-and-GitOps' under Deploy."
     },
     {
       "claim_vi": "CI/CD tools often expand the attack surface, so security controls are needed around them; CI/CD pipeline security is a topic under Build.",
-      "source": "https://github.com/OWASP/DevSecOpsGuideline",
+      "source": "https://github.com/OWASP/DevSecOpsGuideline/blob/a4d07324cec24f222be5e8f2b12d3ec27bba714c/README.md",
       "section": "README introduction; table of contents",
-      "verified_by": "Read from a local clone of the OWASP repository."
+      "verified_by": "Read from a local clone of the OWASP DevSecOpsGuideline repository at commit a4d07324cec24f222be5e8f2b12d3ec27bba714c, the head of master when read (a later change to master does not alter this URL)."
     },
     {
       "claim_vi": "Secrets management includes centralised storage, auditing and rotation of secrets to prevent leaks and compromise.",
-      "source": "https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Secrets_Management_Cheat_Sheet.md",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/ae965343cb82e6b8f42aff1ccee57c4fa0f171c2/cheatsheets/Secrets_Management_Cheat_Sheet.md",
       "section": "Introduction",
-      "verified_by": "Read from a local clone of the OWASP repository."
+      "verified_by": "Read from a local clone of the OWASP CheatSheetSeries repository at commit ae965343cb82e6b8f42aff1ccee57c4fa0f171c2, the head of master when read (a later change to master does not alter this URL)."
     },
     {
       "claim_vi": "Short glosses of SAST, SCA, DAST, IAST, IaC scanning and SBOM are general knowledge.",
-      "source": "https://github.com/OWASP/DevSecOpsGuideline",
+      "source": "https://github.com/OWASP/DevSecOpsGuideline/blob/a4d07324cec24f222be5e8f2b12d3ec27bba714c/README.md",
       "section": "README table of contents",
       "verified_by": "Author's general knowledge; not checked against the OWASP chapters."
     },

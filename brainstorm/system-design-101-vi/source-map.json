@@ -3818,31 +3818,31 @@
         },
         {
           "id": "sd-14-013",
-          "title_vi": null,
+          "title_vi": "Tường lửa: sáu cách viết một luật",
           "title_source": "Top 6 Firewall Use Cases",
           "source_url": "https://bytebytego.com/guides/top-6-firewall-use-cases",
           "source_path": "data/guides/top-6-firewall-use-cases.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "cea917e38406c978e6e3aec227231249872db443",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-6-firewall-use-cases.md"
         },
         {
           "id": "sd-14-014",
-          "title_vi": null,
+          "title_vi": "Bốn cơ chế xác thực: khóa SSH, token OAuth, chứng chỉ và mật khẩu",
           "title_source": "Top 4 Authentication Mechanisms",
           "source_url": "https://bytebytego.com/guides/top-4-forms-of-authentication-mechanisms",
           "source_path": "data/guides/top-4-forms-of-authentication-mechanisms.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "3ef146efc91b3ac09d33cdde6f44adb6989dfd8d",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-4-forms-of-authentication-mechanisms.md"
         },
         {
           "id": "sd-14-015",
-          "title_vi": null,
+          "title_vi": "Chữ ký số: ký bằng khóa riêng, kiểm bằng khóa công khai",
           "title_source": "How Digital Signatures Work",
           "source_url": "https://bytebytego.com/guides/how-digital-signatures-work",
           "source_path": "data/guides/how-digital-signatures-work.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "7d085e39cdfb37d2c2c845541414e0231686d732",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-digital-signatures-work.md"
         },

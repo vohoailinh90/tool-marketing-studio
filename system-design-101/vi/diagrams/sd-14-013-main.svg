@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1030" width="320" height="1030" role="img" aria-labelledby="title desc">
+<title id="title">Sáu cách viết một luật tường lửa</title>
+<desc id="desc">Mọi luật tường lửa đều là một điều kiện cộng một hành động: nếu gói tin khớp điều kiện thì cho qua hoặc chặn. Sáu cách viết điều kiện. Cổng: nhìn số cổng chứ không nhìn ứng dụng đứng sau, nên một dịch vụ không phải HTTP vẫn đi qua cổng được phép. Địa chỉ IP: cho hoặc chặn theo địa chỉ nguồn hoặc đích; danh sách trắng và danh sách đen. Giao thức: TCP, UDP, ICMP, có thể không cần nêu cổng; luật chặn UDP chặn mọi cổng UDP trên địa chỉ đó. Thời gian: khớp theo đồng hồ của máy; kết nối đang mở có còn sống khi cửa sổ chặn mở ra hay không tùy thứ tự luật. Trạng thái: cho qua gói thuộc kết nối đã có, xem bài về tường lửa trạng thái. Ứng dụng: thử nghiệm nhận ra được người dùng tạo gói tin, không nhận ra nội dung. Thẻ cuối: thứ tự luật có thể quyết định kết quả.</desc>
+<rect width="320" height="1030" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="21" font-weight="bold">TƯỜNG LỬA:</text>
+<text x="16" y="54" font-size="21" font-weight="bold">SÁU CÁCH VIẾT LUẬT</text>
+<rect x="16" y="80" width="288" height="100" rx="12" fill="#e2e8f0" stroke="#94a3b8"/>
+<text x="29" y="109" font-size="16" font-weight="bold">Một luật</text>
+<text x="29" y="137" font-size="16" font-weight="normal">Điều kiện + hành động: gói</text>
+<text x="29" y="161" font-size="16" font-weight="normal">khớp thì cho qua hoặc chặn.</text>
+<rect x="16" y="192" width="288" height="100" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="29" y="221" font-size="16" font-weight="bold">Cổng</text>
+<text x="29" y="249" font-size="16" font-weight="normal">Nhìn số cổng, không nhìn ứng</text>
+<text x="29" y="273" font-size="16" font-weight="normal">dụng đứng sau.</text>
+<rect x="16" y="300" width="288" height="100" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="29" y="329" font-size="16" font-weight="bold">Địa chỉ IP</text>
+<text x="29" y="357" font-size="16" font-weight="normal">Cho hoặc chặn theo nguồn hay</text>
+<text x="29" y="381" font-size="16" font-weight="normal">đích. Danh sách trắng hoặc đen.</text>
+<rect x="16" y="408" width="288" height="124" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="29" y="437" font-size="16" font-weight="bold">Giao thức</text>
+<text x="29" y="465" font-size="16" font-weight="normal">TCP, UDP, ICMP. Có thể không</text>
+<text x="29" y="489" font-size="16" font-weight="normal">nêu cổng: chặn UDP là chặn mọi</text>
+<text x="29" y="513" font-size="16" font-weight="normal">cổng UDP.</text>
+<rect x="16" y="540" width="288" height="100" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="29" y="569" font-size="16" font-weight="bold">Thời gian</text>
+<text x="29" y="597" font-size="16" font-weight="normal">Khớp theo đồng hồ của máy chủ</text>
+<text x="29" y="621" font-size="16" font-weight="normal">chạy tường lửa.</text>
+<rect x="16" y="648" width="288" height="100" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="29" y="677" font-size="16" font-weight="bold">Trạng thái</text>
+<text x="29" y="705" font-size="16" font-weight="normal">Cho gói thuộc kết nối đã có.</text>
+<text x="29" y="729" font-size="16" font-weight="normal">Xem bài sd-14-007.</text>
+<rect x="16" y="756" width="288" height="124" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="29" y="785" font-size="16" font-weight="bold">Ứng dụng</text>
+<text x="29" y="813" font-size="16" font-weight="normal">Thử được: nhận ra người dùng</text>
+<text x="29" y="837" font-size="16" font-weight="normal">tạo gói. Không thử: nhận ra nội</text>
+<text x="29" y="861" font-size="16" font-weight="normal">dung.</text>
+<rect x="16" y="892" width="288" height="124" rx="12" fill="#fee2e2" stroke="#94a3b8"/>
+<text x="29" y="921" font-size="16" font-weight="bold">Thứ tự luật</text>
+<text x="29" y="949" font-size="16" font-weight="normal">Luật cho kết nối đã mở mà xếp</text>
+<text x="29" y="973" font-size="16" font-weight="normal">trước luật chặn thì kết nối cũ</text>
+<text x="29" y="997" font-size="16" font-weight="normal">còn sống.</text>
+</g></svg>

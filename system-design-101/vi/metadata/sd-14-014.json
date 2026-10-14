@@ -1,0 +1,152 @@
+{
+  "id": "sd-14-014",
+  "title_vi": "Bốn cơ chế xác thực: khóa SSH, token OAuth, chứng chỉ và mật khẩu",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "review",
+  "source_ref": "sd-14-014",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/top-4-forms-of-authentication-mechanisms.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-4-forms-of-authentication-mechanisms.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches provider tree OID. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "3ef146efc91b3ac09d33cdde6f44adb6989dfd8d",
+    "retrieved_body_sha256": "77bbe1754b784a7356fd2be63de9f378fc15e8bffa5919896e813918a3373107",
+    "retrieved_body_bytes": 1147
+  },
+  "diagram": "../diagrams/sd-14-014-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-14-003",
+      "relation": "builds-on",
+      "reason_vi": "Lưu mật khẩu an toàn."
+    },
+    {
+      "lesson_id": "sd-14-011",
+      "relation": "builds-on",
+      "reason_vi": "OAuth là ủy quyền, không phải đăng nhập."
+    },
+    {
+      "lesson_id": "sd-14-015",
+      "relation": "compare-with",
+      "reason_vi": "Chữ ký số và khóa công khai."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-14"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-14",
+      "evidence": "Source read; OpenSSH manual, OAuth 2.1 draft, OWASP cheat sheets and MDN pages read from local clones at pinned commits; OpenSSH 10.6p1 built from the pinned commit and run as a throw-away server on loopback; certificate checks run with Python 3.13 ssl (OpenSSL 3.0.13) and throw-away keys; the git history demonstration run in a throw-away repository; certificate revocation, OCSP, SSH certificates, GitHub's secret scanning and OAuth sender-constrained tokens were not run."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-14",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 14.4,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright) rendered the full lesson at each width with optional sections open; diagram scale measured from the rendered image and every SVG text box checked against the viewBox. Not learner testing and not GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "The source lists four authentication mechanisms: SSH keys (cryptographic keys to access remote systems and servers securely), OAuth tokens (tokens that provide limited access to user data on third-party applications), SSL certificates (digital certificates ensuring secure, encrypted communication between servers and clients) and credentials (user authentication information used to verify and grant access), and asks how those security keys are managed and whether it is a good idea to put them in a GitHub repository.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-4-forms-of-authentication-mechanisms.md",
+      "section": "Whole guide",
+      "verified_by": "Source body read."
+    },
+    {
+      "claim_vi": "The OpenSSH manual says that in public key authentication each user creates a key pair, the server knows the public key and only the user knows the private key; ~/.ssh/authorized_keys lists the public keys permitted for logging in; the client proves that it has access to the private key and the server checks that the corresponding public key is authorized.",
+      "source": "https://github.com/openssh/openssh-portable/blob/75ef208b8882bc8a1fb2ee3a538a4e63b05b970a/ssh.1",
+      "section": "AUTHENTICATION (public key authentication)",
+      "verified_by": "Read from a local clone of the repository at the pinned commit. Read from the manual source ssh.1."
+    },
+    {
+      "claim_vi": "Observed with OpenSSH 10.6p1 built from the pinned commit and a throw-away sshd on 127.0.0.1:18022 with password authentication off: a client with a key listed in authorized_keys printed 'Offering public key', 'Server accepts key' and 'Authenticated to 127.0.0.1 using \"publickey\"' and ran the forced command; a client with a key not listed got 'Permission denied (publickey)'; after the listed key was removed from the file the same client was refused. The server log recorded the fingerprint of each key that was offered and contained no private-key text; the private key is never sent to the server.",
+      "source": "https://github.com/openssh/openssh-portable/blob/75ef208b8882bc8a1fb2ee3a538a4e63b05b970a/ssh.1",
+      "section": "AUTHENTICATION (public key authentication)",
+      "verified_by": "No external page reports this output; observed by executing the code on the authoring machine. Built from the cloned source; the demo keys and directory were deleted afterwards."
+    },
+    {
+      "claim_vi": "The OpenSSH manual says host keys are stored in ~/.ssh/known_hosts and that, if a host's identification changes, ssh warns and disables password authentication to prevent server spoofing or man-in-the-middle attacks; StrictHostKeyChecking controls logins to hosts whose key is unknown or changed. Observed: with a different key recorded for the address and StrictHostKeyChecking=yes, ssh printed 'REMOTE HOST IDENTIFICATION HAS CHANGED!' and 'Host key verification failed.', exited with status 255, and the server logged no new accepted login.",
+      "source": "https://github.com/openssh/openssh-portable/blob/75ef208b8882bc8a1fb2ee3a538a4e63b05b970a/ssh.1",
+      "section": "known_hosts; host keys",
+      "verified_by": "Read from a local clone of the repository at the pinned commit. The refusal was observed in the same throw-away setup."
+    },
+    {
+      "claim_vi": "The OAuth 2.1 draft defines a bearer token as a token that any party in possession (a bearer) can use in any way that any other party in possession of it can, without having to prove possession of key material; it notes bearer tokens may be enhanced with proof-of-possession and defines sender-constrained access tokens that bind use to a key. The draft treats OAuth as an authorization protocol; the sibling lesson sd-14-011 covers that point.",
+      "source": "https://github.com/oauth-wg/oauth-v2-1/blob/d04b368313c8835a930a2e55a68ef547312b7b32/draft-ietf-oauth-v2-1.md",
+      "section": "Bearer Tokens; Sender-Constrained Access Tokens",
+      "verified_by": "Read from a local clone of the repository at the pinned commit. Sender-constrained tokens were not run."
+    },
+    {
+      "claim_vi": "MDN: Transport Layer Security (TLS) was formerly known as Secure Sockets Layer (SSL), which has been superseded; TLS provides encryption and authentication; servers usually authenticate themselves to clients while client authentication is rare on the web outside specialised applications; a digital certificate binds a publicly known cryptographic key to an organization and is most commonly signed by a certificate authority, which asserts that the contained information and keys are correct.",
+      "source": "https://github.com/mdn/content/blob/19370346042efad9e179fbf1f55deeeadee98c40/files/en-us/web/security/defenses/transport_layer_security/index.md",
+      "section": "Overview; Server authentication",
+      "verified_by": "Read from a local clone of the repository at the pinned commit. The glossary entries for SSL, TLS, digital certificate and certificate authority (files/en-us/glossary/) were read in the same clone."
+    },
+    {
+      "claim_vi": "Observed with Python 3.13.16 ssl (OpenSSL 3.0.13), throw-away ECDSA P-256 keys and a throw-away CA: a client that trusts the CA connected over TLS 1.3 to a certificate for 'localhost' signed by it; the same server was refused with 'unable to get local issuer certificate' by a client that does not trust the CA; a certificate issued for another name was refused ('Hostname mismatch'); an expired certificate was refused ('certificate has expired'); a self-made certificate claiming localhost was refused ('self-signed certificate'). With verification switched off on the client, the connection to the self-made certificate still completed over TLS 1.3 and the data arrived, so encryption does not depend on the certificate being checked.",
+      "source": "https://github.com/mdn/content/blob/19370346042efad9e179fbf1f55deeeadee98c40/files/en-us/web/security/defenses/transport_layer_security/index.md",
+      "section": "Server authentication",
+      "verified_by": "No external page reports this output; observed by executing the code on the authoring machine. Keys and certificates existed only in a temporary directory that was removed."
+    },
+    {
+      "claim_vi": "Observed: with the server set to require a client certificate, a client without one failed with 'tlsv13 alert certificate required' and a client with a certificate signed by the CA connected and the server saw its common name. OWASP's Authentication cheat sheet describes TLS client authentication as both sides sending their certificates and the server validating the client's certificate against a CA.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/ae965343cb82e6b8f42aff1ccee57c4fa0f171c2/cheatsheets/Authentication_Cheat_Sheet.md",
+      "section": "TLS Client Authentication",
+      "verified_by": "Read from a local clone of the repository at the pinned commit. The refusal and success were observed in the same throw-away setup."
+    },
+    {
+      "claim_vi": "OWASP's Authentication cheat sheet says multi-factor authentication is by far the best defense against the majority of password-related attacks, and describes credential stuffing as testing username and password pairs obtained from the breach of another site.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/ae965343cb82e6b8f42aff1ccee57c4fa0f171c2/cheatsheets/Authentication_Cheat_Sheet.md",
+      "section": "Protect Against Automated Attacks",
+      "verified_by": "Read from a local clone of the repository at the pinned commit."
+    },
+    {
+      "claim_vi": "OWASP's Secrets Management cheat sheet says many organizations have secrets hardcoded in source code in plaintext, and that exposed secrets should be revoked, rotated and removed, noting that squashing commit history to before a secret was introduced rewrites history and breaks other links to a commit.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/ae965343cb82e6b8f42aff1ccee57c4fa0f171c2/cheatsheets/Secrets_Management_Cheat_Sheet.md",
+      "section": "Introduction; Secret Lifecycle (compromise)",
+      "verified_by": "Read from a local clone of the repository at the pinned commit."
+    },
+    {
+      "claim_vi": "Observed in a throw-away local git repository: a file with a fake key was committed and then removed in the next commit; the latest commit no longer listed it, but 'git show HEAD~1:.env' still printed the key, 'git log -S' found both commits, and the key was still readable after 'git gc --prune=now'. With '.env' listed in .gitignore, 'git add .env' was refused unless forced. This was a local repository, not GitHub.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/ae965343cb82e6b8f42aff1ccee57c4fa0f171c2/cheatsheets/Secrets_Management_Cheat_Sheet.md",
+      "section": "Secret Lifecycle (compromise)",
+      "verified_by": "No external page reports this output; observed by executing the code on the authoring machine. The repository was deleted afterwards."
+    },
+    {
+      "claim_vi": "That public keys and the public part of a certificate are meant to be shared, that a public repository's history is readable by anyone, and what GitHub's own secret scanning does were not tested or checked here (GitHub documentation was not read).",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-4-forms-of-authentication-mechanisms.md",
+      "section": "Over to you",
+      "verified_by": "Author's general knowledge; not checked."
+    }
+  ],
+  "design_notes_vi": "Một thẻ câu hỏi chung, bốn thẻ cơ chế mỗi thẻ ghi điều nó chứng minh và một giới hạn, một thẻ đỏ về việc để khóa trong kho mã. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "The source calls OAuth tokens an authentication mechanism; the lesson says a bearer token delegates limited access to whoever holds it, and points to sd-14-011 for authorization versus authentication.",
+    "The source says SSL certificates ensure secure and encrypted communication; the lesson says the certificate authenticates a name and key, and shows that the encryption works even when the certificate is not checked.",
+    "The source's closing question about putting keys in a GitHub repository is answered with a local git demonstration and OWASP's guidance instead of an opinion.",
+    "The source's mention of SSL is kept by name, and the lesson says the current protocol is TLS."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

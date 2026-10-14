@@ -108,12 +108,12 @@ mutations:
   replace: '"outside": "\n".join(outside[:5]),'
   test: tests.test_radar_preview.PlanTests.test_a_file_name_that_is_not_utf8_does_not_stop_the_planner_from_answering
 - label: the comment claims the pull request was checked and drawn although a step failed or nothing was drawn
-  find: '    if failed or unreadable or not rows:'
-  replace: '    if False:'
+  find: '    complete = not (failed or unreadable or not rows)'
+  replace: '    complete = True'
   test: tests.test_radar_preview.CommentTests.test_the_claim_that_the_pull_request_was_checked_and_drawn_is_made_only_when_it_was
 - label: a missing drawing no longer retracts the claim
-  find: '    if failed or unreadable or not rows:'
-  replace: '    if failed or unreadable:'
+  find: '    complete = not (failed or unreadable or not rows)'
+  replace: '    complete = not (failed or unreadable)'
   test: tests.test_radar_preview.CommentTests.test_the_claim_that_the_pull_request_was_checked_and_drawn_is_made_only_when_it_was
 - label: the captions together have no budget, so thirty long ones overflow the comment
   find: '            if used + size > CAPTION_BUDGET:'

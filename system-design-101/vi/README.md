@@ -19,6 +19,9 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 8. [Trình duyệt dựng trang web thế nào?](lessons/sd-01-008/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 9. [Vì sao HTTP/2 nhanh hơn HTTP/1?](lessons/sd-01-009/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 10. [CSS là gì?](lessons/sd-01-010/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+11. [Các tình huống dùng bộ cân bằng tải](lessons/sd-01-011/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+12. [18 cổng mạng thường gặp](lessons/sd-01-012/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+13. [Phân biệt WAN, LAN, PAN và MAN](lessons/sd-01-013/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
 
 ## AI và học máy
 

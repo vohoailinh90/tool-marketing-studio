@@ -39,7 +39,7 @@
   },
   "claims": [
     {
-      "claim_vi": "Mô hình ban đầu của DORA (nghiên cứu năm 2014) có bốn thước đo: tần suất triển khai, thời gian dẫn thay đổi, thời gian khôi phục trung bình (mean time to recover) và tỉ lệ thay đổi lỗi.",
+      "claim_vi": "Nghiên cứu DORA năm 2014 xem xét bốn biến: tần suất triển khai, thời gian dẫn thay đổi, thời gian khôi phục trung bình (mean time to recover) và tỉ lệ thay đổi lỗi; tỉ lệ thay đổi lỗi không tương quan với ba biến còn lại nên định nghĩa hiệu suất năm 2014 chỉ dùng ba biến, và đến năm 2015 mô hình bốn thước đo chia thành thông lượng (tần suất triển khai, thời gian dẫn) và ổn định (thời gian khôi phục, tỉ lệ thay đổi lỗi).",
       "source": "https://dora.dev/insights/dora-metrics-history/"
     },
     {

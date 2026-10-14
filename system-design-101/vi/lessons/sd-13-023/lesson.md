@@ -8,6 +8,9 @@ Hai thuật ngữ này, NoOps (No Operations — không cần nhóm vận hành 
 
 ## Từ viết tắt
 
+- **PaaS** (Platform as a Service) — nền tảng như một dịch vụ: nhà cung cấp quản lý máy chủ và hệ điều hành, bạn chỉ lo ứng dụng; bài dùng nó làm ví dụ về cách giảm phần máy chủ phải tự quản.
+- **FaaS** (Function as a Service) — hàm như một dịch vụ (hàm serverless): bạn viết hàm, nhà cung cấp lo máy chủ, hệ điều hành và cả runtime khi ở chế độ cập nhật tự động.
+- **BaaS** (Backend as a Service) — phần máy chủ phía sau như một dịch vụ: nhà cung cấp cấp sẵn cơ sở dữ liệu, xác thực... dưới dạng dịch vụ để bạn không tự dựng.
 - **AWS** (Amazon Web Services) — dịch vụ điện toán đám mây của Amazon; bài chỉ dẫn tới tài liệu của họ.
 
 ## Nhìn hình thử trả lời

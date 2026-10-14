@@ -172,8 +172,12 @@ SOURCES_HEADING = "Nguồn đối chiếu"
 UNIT_SYMBOLS = {"KiB": "Kibibyte", "MiB": "Mebibyte", "GiB": "Gibibyte", "TiB": "Tebibyte"}
 # Names whose letters are not (all) initials: the full form is what they stand for (HPACK is "Header Compression for
 # HTTP/2"; SLSA is "Supply-chain Levels for Software Artifacts", where "Supply-chain" is one word but two hyphen parts).
-IRREGULAR_FORMS = {"HPACK": "Header Compression for HTTP/2", "SLSA": "Supply-chain Levels for Software Artifacts"}
-MIXED_CASE_TERMS = ("gRPC", "IPv4", "IPv6", "OAuth", "mTLS", "NoSQL", "vCPU", "IaC", "MoE", *UNIT_SYMBOLS)
+IRREGULAR_FORMS = {"HPACK": "Header Compression for HTTP/2", "SLSA": "Supply-chain Levels for Software Artifacts",
+                   "W3C": "World Wide Web Consortium", "SELinux": "Security-Enhanced Linux", "WebAuthn": "Web Authentication"}
+# Names made from the initials of what they stand for, with lowercase or digits inside, so that no run of capitals
+# shows them. A name that merely has capitals (JavaScript, GitHub, PostgreSQL, DevOps) is not an abbreviation.
+MIXED_CASE_TERMS = ("gRPC", "IPv4", "IPv6", "OAuth", "mTLS", "NoSQL", "vCPU", "IaC", "MoE", "PaaS", "IaaS", "SaaS", "FaaS", "BaaS",
+                    "W3C", "SELinux", "WebAuthn", *UNIT_SYMBOLS)
 ABBREVIATION = re.compile(r"(?<!\w)(?:(" + "|".join(MIXED_CASE_TERMS) + r")|([A-Z]{2,})\d*s?)(?!\w)")
 GLOSSARY_BULLET = re.compile(r"^- \*\*(?P<abbreviation>(?=[A-Za-z0-9]*[A-Z])[A-Za-z][A-Za-z0-9]+)\*\* "
                              r"\((?P<full>[^()]+)\) — (?P<meaning>\S.*)$")

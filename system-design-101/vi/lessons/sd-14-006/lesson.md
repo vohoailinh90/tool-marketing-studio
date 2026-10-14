@@ -8,6 +8,7 @@
 ## Từ viết tắt
 
 - **PIN** (Personal Identification Number) — mã số cá nhân: dãy số ngắn người dùng nhập để xác nhận trên thiết bị.
+- **WebAuthn** (Web Authentication) — xác thực web: đặc tả chuẩn mô tả cách trang web và trình duyệt làm việc với bộ xác thực (như khóa bảo mật hay khóa trên điện thoại) để đăng nhập; bài trích lưu ý của đặc tả về việc mất thiết bị và kiểm tra tên miền.
 - **ECDSA** (Elliptic Curve Digital Signature Algorithm) — thuật toán chữ ký số dùng đường cong elliptic: ký bằng khóa riêng, kiểm bằng khóa công khai.
 
 ## Đọc hình

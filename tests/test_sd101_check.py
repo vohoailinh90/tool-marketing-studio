@@ -1869,6 +1869,11 @@ class AbbreviationRuleTests(StoreCase):
         self.assertFalse(check.spells("HPACK", "Header Compression"))
         self.assertTrue(check.spells("SLSA", "Supply-chain Levels for Software Artifacts"))
         self.assertFalse(check.spells("SLSA", "Supply-chain Levels"))
+        self.assertTrue(check.spells("W3C", "World Wide Web Consortium"))
+        self.assertTrue(check.spells("SELinux", "Security-Enhanced Linux"))
+        self.assertTrue(check.spells("WebAuthn", "Web Authentication"))
+        self.assertFalse(check.spells("W3C", "World Wide Web"))
+        self.assertTrue(check.spells("PaaS", "Platform as a Service"))
         self.lesson("Bộ nhớ tối thiểu 19 MiB.", glossary=None)
         self.assertProblem("uses the abbreviation(s) MiB")
         self.lesson("Bộ nhớ tối thiểu 19 MiB.", glossary="- **MiB** (Mebibyte) — mebibyte: đơn vị dung lượng bằng 1.048.576 byte.\n")
@@ -1942,7 +1947,10 @@ class AbbreviationRuleTests(StoreCase):
         found = check.abbreviations_in("APIs, HTTP/2, REST/JSON, TCP/UDP, (SSE), \"DNS\", HTTPS.")
         self.assertEqual({"API", "HTTP", "REST", "JSON", "TCP", "UDP", "SSE", "DNS", "HTTPS"}, found)
         self.assertEqual({"gRPC", "IPv4", "mTLS", "IaC", "MoE", "MiB"}, check.abbreviations_in("gRPC qua IPv4 và mTLS, IaC cùng MoE, 19 MiB."))
-        for text in ("MAX_SIZE", "A80", "WebSocket", "I", "ĐƠN HÀNG", "TÓM", "gRPCs", "myIPv4"):
+        self.assertEqual({"PaaS", "IaaS", "SaaS", "FaaS", "BaaS", "W3C", "SELinux", "WebAuthn"},
+                         check.abbreviations_in("PaaS, IaaS, SaaS, FaaS và BaaS; chuẩn W3C; SELinux cùng WebAuthn."))
+        for text in ("MAX_SIZE", "A80", "WebSocket", "I", "ĐƠN HÀNG", "TÓM", "gRPCs", "myIPv4", "JavaScript", "GitHub",
+                     "PostgreSQL", "DevOps", "OOMKilled"):
             with self.subTest(text=text):
                 self.assertEqual(set(), check.abbreviations_in(text))
 

@@ -8,6 +8,7 @@ Muốn tìm vì sao một request chậm, bạn cần dữ liệu nối được
 
 ## Từ viết tắt
 
+- **W3C** (World Wide Web Consortium) — tổ chức xây dựng các chuẩn web; bài dùng chuẩn Trace Context do tổ chức này công bố, định nghĩa header `traceparent`.
 - **JSON** (JavaScript Object Notation) — ký hiệu đối tượng JavaScript: định dạng văn bản biểu diễn dữ liệu bằng các cặp tên và giá trị, dễ đọc với cả người và máy.
 - **ID** (IDentifier) — mã định danh: chuỗi hoặc số dùng để phân biệt một đối tượng với các đối tượng khác, ví dụ một người dùng, một thông điệp hay một lượt xử lý.
 

@@ -12,6 +12,7 @@ Chọn mô hình nào thì quyết định bạn phải bảo trì thứ gì v�
 - **MAC** (Mandatory Access Control) — kiểm soát truy cập bắt buộc: hệ thống quyết định theo nhãn mức bảo mật, chủ sở hữu không tự đổi được.
 - **RBAC** (Role-Based Access Control) — kiểm soát truy cập theo vai trò: quyền gắn với vai trò, người dùng được gán vai trò.
 - **ABAC** (Attribute-Based Access Control) — kiểm soát truy cập theo thuộc tính: luật dựa trên thuộc tính của người dùng, tài nguyên và hoàn cảnh.
+- **SELinux** (Security-Enhanced Linux) — cơ chế kiểm soát truy cập bắt buộc (MAC) của Linux, gắn nhãn cho cả chủ thể lẫn đối tượng; kiểm tra quyền thông thường (DAC) chạy trước, rồi mới hỏi chính sách của nó.
 - **POSIX** (Portable Operating System Interface X) — chuẩn giao diện cho hệ điều hành kiểu Unix (chữ X gợi nhớ Unix); ACL POSIX là cách ghi danh sách quyền trên tệp của Linux.
 - **NIST** (National Institute of Standards and Technology) — viện tiêu chuẩn và công nghệ của Mỹ, ban hành nhiều tiêu chuẩn và định nghĩa kỹ thuật về bảo mật.
 

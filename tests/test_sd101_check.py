@@ -1910,6 +1910,13 @@ class AbbreviationRuleTests(StoreCase):
         self.lesson("Về CSSOM.", glossary="- **CSSOM** (CSS Object Model) — các luật kiểu đã đọc xong.\n")
         self.assertEqual([], self.problems())
 
+    def test_a_wrapped_line_does_not_glue_an_abbreviation_to_the_next_word(self) -> None:
+        for name, intro in {"a soft break": "Bài này nói về LLM\nrất hay.", "a hard break": "Bài này nói về LLM  \nrất hay.",
+                            "a break before it": "Bài này nói về\nLLM rất hay.", "an image beside it": "Nói về LLM![hình](../../diagrams/sd-01-001-main.svg)rất hay."}.items():
+            with self.subTest(name=name):
+                self.lesson(intro, glossary=None)
+                self.assertProblem("uses the abbreviation(s) LLM")
+
     def test_the_glossary_comes_after_the_figure_not_before_it(self) -> None:
         figure = "![Sơ đồ của bài](../../diagrams/sd-01-001-main.svg)"
         tail = f"## Liên hệ nguồn\n\n[bài nguồn]({SNAPSHOT}).\n"

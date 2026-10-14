@@ -1040,7 +1040,9 @@ def lesson_prose(text: str) -> tuple[list[str], list[str], str | None, list[str]
                 if child.type == "text":
                     pieces.append(child.content)
                 elif child.type == "image":
-                    pieces.append(child.content)
+                    pieces.append(" " + child.content + " ")
+                elif child.type in ("softbreak", "hardbreak"):
+                    pieces.append(" ")  # a wrapped line must not glue its last word to the next line's first
                 elif child.type == "html_inline":
                     pieces.append(" " + html_text(child.content) + " ")
             piece = "".join(pieces)

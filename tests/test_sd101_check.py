@@ -1965,6 +1965,26 @@ class AbbreviationRuleTests(StoreCase):
         self.assertProblem("uses the abbreviation(s) LLM")
         self.assertFalse(any("API" in line or "TLS" in line for line in self.problems()))
 
+    def test_an_address_of_any_scheme_is_not_prose(self) -> None:
+        figure = "../../diagrams/sd-01-001-main.svg"
+        for address in ("wss://example.com/API/TLS", "ssh://host/API", "git+ssh://host/API/TLS.git", "s3://bucket/API/TLS",
+                        "file:///API/TLS", "WSS://example.com/API/TLS", "Irc://example.org/DNS/SSE", "tcp://10.0.0.1:80/API"):
+            with self.subTest(address=address):
+                for name, intro in {"the text": f"Xem {address} nhé.", "an html block": f"<details>{address}</details>",
+                                    "the alt text of an html image": f'<img src="{figure}" alt="{address}">',
+                                    "the alt text of a markdown image": f"![{address}]({figure})"}.items():
+                    with self.subTest(name=name):
+                        self.lesson(intro, glossary=None)
+                        self.assertEqual([], self.problems())
+                self.lesson(glossary=None, figure=svg_with(f"Gọi {address} nhé."))
+                self.assertEqual([], self.problems())
+                self.lesson(glossary=None, figure=svg_with(address.upper()))  # a label set in capitals, address and all
+                self.assertEqual([], self.problems())
+        # a colon alone makes no address, and the words around an address are still read
+        self.lesson("Note:LLM và wss://example.com/API.", glossary=None)
+        self.assertProblem("uses the abbreviation(s) LLM")
+        self.assertFalse(any("API" in line for line in self.problems()))
+
     def test_an_acronym_in_a_capitals_only_label_is_read_when_it_cannot_be_a_word(self) -> None:
         jwt = ("- **JSON** (JavaScript Object Notation) — định dạng văn bản gồm các cặp tên và giá trị.\n"
                "- **JWT** (JSON Web Token) — chuỗi ký tên chứa thông tin người dùng.\n")

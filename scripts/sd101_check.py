@@ -203,8 +203,9 @@ EMBEDDED_NAME = re.compile(r"(?<!\w)(" + "|".join(EMBEDDED_ABBREVIATIONS) + r")(
 GLOSSARY_BULLET = re.compile(r"^- \*\*(?P<abbreviation>(?=[A-Za-z0-9]*[A-Z])[A-Za-z0-9][A-Za-z0-9]+)\*\* "
                              r"\((?P<full>[^()]+)\) — (?P<meaning>\S.*)$")
 MIN_MEANING_WORDS = 3
-# An address typed into the text is a link destination, not prose: https://example.com/API/TLS names no abbreviation.
-URL = re.compile(r"(?:https?|ftp)://[^\s<>]+", re.IGNORECASE)
+# An address typed into the text is a link destination, not prose: https://example.com/API/TLS, wss://host/API and
+# git+ssh://host/TLS.git name no abbreviation. Any scheme counts; only "://" marks an address (a colon alone is prose).
+URL = re.compile(r"[A-Za-z][A-Za-z0-9+.\-]*://[^\s<>]+")
 # Capital words that are not abbreviations: HTTP methods, SQL keywords, Dockerfile instructions, kubectl column titles,
 # log levels and a few file or status names. They need no
 # entry in the glossary. In lesson.md a `code span` is skipped too, so a new one can usually stay out of this list.

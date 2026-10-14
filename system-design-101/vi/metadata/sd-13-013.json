@@ -70,6 +70,10 @@
       "source": "https://github.com/docker-library/postgres/blob/master/docker-entrypoint.sh"
     },
     {
+      "claim_vi": "pg_isready chỉ cho biết máy chủ PostgreSQL có nhận kết nối hay không và không cần tên người dùng, mật khẩu hay cơ sở dữ liệu đúng để lấy trạng thái đó, nên một healthcheck bằng lệnh này không kiểm tra thông tin đăng nhập của ứng dụng.",
+      "source": "https://www.postgresql.org/docs/current/app-pg-isready.html"
+    },
+    {
       "claim_vi": "Restart policy giúp container tự chạy lại.",
       "source": "https://docs.docker.com/engine/containers/start-containers-automatically/"
     },

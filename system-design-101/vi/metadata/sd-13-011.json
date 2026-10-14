@@ -50,6 +50,14 @@
   },
   "claims": [
     {
+      "claim_vi": "Cache chỉ bị vô hiệu khi siêu dữ liệu đổi ở tệp mà lệnh COPY, ADD hay RUN --mount=type=bind thực sự dùng.",
+      "source": "https://docs.docker.com/build/cache/invalidation/"
+    },
+    {
+      "claim_vi": "Giữ ngữ cảnh build nhỏ bằng .dockerignore làm giảm lượng dữ liệu gửi cho builder và giảm khả năng mất cache.",
+      "source": "https://docs.docker.com/build/cache/optimize/#keep-the-context-small"
+    },
+    {
       "claim_vi": "Khi một lớp bị vô hiệu hóa, mọi lớp sau nó phải build lại; với COPY và ADD Docker tính checksum từ các tệp được sao chép, gồm nội dung và siêu dữ liệu nhưng không gồm thời gian sửa đổi (mtime), với RUN thường chỉ so chuỗi lệnh, riêng RUN --mount=type=bind còn tính checksum từ các tệp được gắn.",
       "source": "https://docs.docker.com/build/cache/invalidation/"
     },

@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1094" width="320" height="1094" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1202" width="320" height="1202" role="img" aria-labelledby="title desc">
 <title id="title">Vì sao Docker build chạy lại bước nặng: năm nguyên nhân mất cache</title>
-<desc id="desc">Năm nguyên nhân Docker build mất cache và cách chữa: đổi một lớp thì các lớp sau phải build lại nên đặt phần ít đổi lên trên, COPY quá rộng và quá sớm nên copy tệp khóa trước rồi cài phụ thuộc, ngữ cảnh build lẫn tệp hay đổi nên loại chúng khỏi ngữ cảnh, cache dùng được nhưng đã cũ nên build sạch định kỳ, và máy mới không có cache nên cần xuất nhập cache từ nơi khác, còn cache mount chỉ giúp khi builder giữ được cache.</desc>
+<desc id="desc">Năm nguyên nhân Docker build mất cache và cách chữa: đổi một lớp thì các lớp sau phải build lại nên đặt phần ít đổi lên trên, COPY quá rộng và quá sớm nên copy tệp khóa trước rồi cài phụ thuộc, ngữ cảnh build lẫn tệp hay đổi mà COPY rộng hay bind mount lấy vào nên loại chúng khỏi ngữ cảnh, cache dùng được nhưng đã cũ nên build sạch định kỳ, và máy mới không có cache nên cần xuất nhập cache từ nơi khác, còn cache mount chỉ giúp khi builder giữ được cache.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="1094" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<rect width="320" height="1202" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="30" font-size="20" font-weight="bold">MẤT CACHE KHI BUILD</text>
 <text x="16" y="58" font-size="16" font-weight="normal">Năm nguyên nhân hay gặp</text>
 <rect x="16" y="89" width="288" height="128" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
@@ -17,28 +17,32 @@
 <text x="30" y="338" font-size="16" font-weight="normal">trước khi cài phụ thuộc</text>
 <text x="30" y="365" font-size="16" font-weight="normal">Copy tệp khóa, cài, rồi mới</text>
 <text x="30" y="392" font-size="16" font-weight="normal">copy mã</text>
-<rect x="16" y="423" width="288" height="182" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
+<rect x="16" y="423" width="288" height="290" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
 <text x="30" y="451" font-size="16" font-weight="bold">3 · Ngữ cảnh lẫn tệp</text>
 <text x="30" y="478" font-size="16" font-weight="bold">hay đổi</text>
-<text x="30" y="505" font-size="16" font-weight="normal">Log, thư mục tạm, .git làm</text>
-<text x="30" y="532" font-size="16" font-weight="normal">đổi checksum</text>
-<text x="30" y="559" font-size="16" font-weight="normal">Loại chúng khỏi ngữ cảnh</text>
-<text x="30" y="586" font-size="16" font-weight="normal">build</text>
-<rect x="16" y="617" width="288" height="209" rx="10" fill="#fee2e2" stroke="#94a3b8"/>
-<text x="30" y="645" font-size="16" font-weight="bold">4 · Cache dùng được</text>
-<text x="30" y="672" font-size="16" font-weight="bold">nhưng đã cũ</text>
-<text x="30" y="699" font-size="16" font-weight="normal">RUN thường chỉ so chuỗi</text>
-<text x="30" y="726" font-size="16" font-weight="normal">lệnh, không xét trạng thái</text>
-<text x="30" y="753" font-size="16" font-weight="normal">bên ngoài</text>
-<text x="30" y="780" font-size="16" font-weight="normal">Build sạch định kỳ bằng</text>
-<text x="30" y="807" font-size="16" font-weight="normal">--no-cache và --pull</text>
-<rect x="16" y="838" width="288" height="236" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
-<text x="30" y="866" font-size="16" font-weight="bold">5 · Máy mới không có</text>
-<text x="30" y="893" font-size="16" font-weight="bold">cache</text>
-<text x="30" y="920" font-size="16" font-weight="normal">Runner CI (tích hợp liên</text>
-<text x="30" y="947" font-size="16" font-weight="normal">tục) mới tinh bắt đầu từ</text>
-<text x="30" y="974" font-size="16" font-weight="normal">rỗng, kể cả cache mount</text>
-<text x="30" y="1001" font-size="16" font-weight="normal">Xuất nhập cache từ nơi</text>
-<text x="30" y="1028" font-size="16" font-weight="normal">khác; cache mount chỉ giúp</text>
-<text x="30" y="1055" font-size="16" font-weight="normal">khi builder giữ được cache</text>
+<text x="30" y="505" font-size="16" font-weight="normal">Khi COPY rộng hoặc bind</text>
+<text x="30" y="532" font-size="16" font-weight="normal">mount lấy cả log, thư mục</text>
+<text x="30" y="559" font-size="16" font-weight="normal">tạm, .git thì chúng làm đổi</text>
+<text x="30" y="586" font-size="16" font-weight="normal">checksum</text>
+<text x="30" y="613" font-size="16" font-weight="normal">Loại chúng khỏi ngữ cảnh</text>
+<text x="30" y="640" font-size="16" font-weight="normal">build; tệp không lệnh nào</text>
+<text x="30" y="667" font-size="16" font-weight="normal">lấy vào thì không làm mất</text>
+<text x="30" y="694" font-size="16" font-weight="normal">cache</text>
+<rect x="16" y="725" width="288" height="209" rx="10" fill="#fee2e2" stroke="#94a3b8"/>
+<text x="30" y="753" font-size="16" font-weight="bold">4 · Cache dùng được</text>
+<text x="30" y="780" font-size="16" font-weight="bold">nhưng đã cũ</text>
+<text x="30" y="807" font-size="16" font-weight="normal">RUN thường chỉ so chuỗi</text>
+<text x="30" y="834" font-size="16" font-weight="normal">lệnh, không xét trạng thái</text>
+<text x="30" y="861" font-size="16" font-weight="normal">bên ngoài</text>
+<text x="30" y="888" font-size="16" font-weight="normal">Build sạch định kỳ bằng</text>
+<text x="30" y="915" font-size="16" font-weight="normal">--no-cache và --pull</text>
+<rect x="16" y="946" width="288" height="236" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="974" font-size="16" font-weight="bold">5 · Máy mới không có</text>
+<text x="30" y="1001" font-size="16" font-weight="bold">cache</text>
+<text x="30" y="1028" font-size="16" font-weight="normal">Runner CI (tích hợp liên</text>
+<text x="30" y="1055" font-size="16" font-weight="normal">tục) mới tinh bắt đầu từ</text>
+<text x="30" y="1082" font-size="16" font-weight="normal">rỗng, kể cả cache mount</text>
+<text x="30" y="1109" font-size="16" font-weight="normal">Xuất nhập cache từ nơi</text>
+<text x="30" y="1136" font-size="16" font-weight="normal">khác; cache mount chỉ giúp</text>
+<text x="30" y="1163" font-size="16" font-weight="normal">khi builder giữ được cache</text>
 </g></svg>

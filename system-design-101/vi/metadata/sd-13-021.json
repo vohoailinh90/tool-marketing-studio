@@ -54,6 +54,10 @@
       "source": "https://www.w3.org/TR/trace-context/"
     },
     {
+      "claim_vi": "Theo chuẩn W3C Trace Context, dịch vụ nhận traceparent phải gửi tiếp header này; cách đổi mặc định là đặt parent-id thành mã hoạt động hiện tại, còn chuyển nguyên vẹn là cách làm điển hình của dịch vụ chuyển tiếp thuần.",
+      "source": "https://www.w3.org/TR/trace-context/#mutating-the-traceparent-field"
+    },
+    {
       "claim_vi": "OpenTelemetry truyền ngữ cảnh vết giữa các dịch vụ qua context propagation.",
       "source": "https://opentelemetry.io/docs/concepts/context-propagation/"
     },

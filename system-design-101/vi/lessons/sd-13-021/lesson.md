@@ -24,7 +24,7 @@ Không có bộ thiết bị đo đúng cho mọi hệ thống: truyền ngữ c
 <details>
 <summary>Xem sâu hơn</summary>
 
-- **Trace Context:** chuẩn W3C (World Wide Web Consortium — tổ chức xây dựng chuẩn web) định nghĩa header `traceparent` có dạng `00-<trace-id>-<parent-id>-<cờ>`; thư viện đo lường như OpenTelemetry tự đọc và truyền nó nếu được bật.
+- **Trace Context:** chuẩn W3C (World Wide Web Consortium — tổ chức xây dựng chuẩn web) định nghĩa header `traceparent` có dạng `00-<trace-id>-<parent-id>-<cờ>`. Dịch vụ có thu thập vết (ví dụ qua thư viện đo lường như OpenTelemetry khi được bật) giữ nguyên `trace-id` và đặt `parent-id` của header gửi đi thành mã của hoạt động hiện tại của chính nó; chuẩn coi đây là cách đổi thường gặp nhất và nên là mặc định. Chuyển nguyên header đã nhận là việc điển hình của dịch vụ chuyển tiếp thuần như proxy, hoặc của dịch vụ chưa thu thập vết.
 - **Nhật ký có cấu trúc:** mỗi dòng là một đối tượng (ví dụ JSON, tức JavaScript Object Notation — định dạng dữ liệu văn bản dạng khóa và giá trị) có trường như `trace_id`, `service`, `level`, để tìm kiếm chính xác thay vì đoán chuỗi.
 - **Histogram:** chia độ trễ vào các khoảng; phân vị tính xấp xỉ từ các khoảng, nên chọn ranh giới khoảng quanh mục tiêu mức dịch vụ.
 - **Nhãn:** mỗi tổ hợp giá trị nhãn là một chuỗi riêng, nên nhãn có vô hạn giá trị làm số chuỗi bùng nổ.
@@ -35,5 +35,5 @@ Không có bộ thiết bị đo đúng cho mọi hệ thống: truyền ngữ c
 ## Nguồn đối chiếu
 
 - [ByteByteGo tại snapshot cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/logging-tracing-metrics.md).
-- W3C: [Trace Context](https://www.w3.org/TR/trace-context/). OpenTelemetry: [context propagation](https://opentelemetry.io/docs/concepts/context-propagation/), [sampling](https://opentelemetry.io/docs/concepts/sampling/).
+- W3C: [Trace Context](https://www.w3.org/TR/trace-context/), riêng việc đổi trường traceparent ở [mục này](https://www.w3.org/TR/trace-context/#mutating-the-traceparent-field). OpenTelemetry: [context propagation](https://opentelemetry.io/docs/concepts/context-propagation/), [sampling](https://opentelemetry.io/docs/concepts/sampling/).
 - Prometheus: [histograms và summaries](https://prometheus.io/docs/practices/histograms/), [đặt tên và nhãn](https://prometheus.io/docs/practices/naming/).

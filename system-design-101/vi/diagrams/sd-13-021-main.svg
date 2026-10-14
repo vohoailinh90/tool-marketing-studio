@@ -8,8 +8,8 @@
 <text x="16" y="86" font-size="16" font-weight="normal">Năm việc khi gắn thiết bị đo</text>
 <rect x="16" y="117" width="288" height="128" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
 <text x="30" y="145" font-size="16" font-weight="bold">Truyền ngữ cảnh vết</text>
-<text x="30" y="172" font-size="16" font-weight="normal">Mỗi dịch vụ chuyển tiếp</text>
-<text x="30" y="199" font-size="16" font-weight="normal">header traceparent</text>
+<text x="30" y="172" font-size="16" font-weight="normal">Giữ trace-id, đặt parent-id</text>
+<text x="30" y="199" font-size="16" font-weight="normal">của chính mình</text>
 <text x="30" y="226" font-size="16" font-weight="normal">Không truyền thì vết bị đứt</text>
 <rect x="16" y="257" width="288" height="155" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
 <text x="30" y="285" font-size="16" font-weight="bold">Nhật ký có trace_id</text>

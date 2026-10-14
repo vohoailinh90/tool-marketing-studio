@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1451" width="320" height="1451" role="img" aria-labelledby="title desc">
+<title id="title">Tắt êm một API trên Kubernetes: năm chỗ làm rớt request</title>
+<desc id="desc">Năm chặng khi một Pod của API (Application Programming Interface — giao diện lập trình ứng dụng) bị xóa: Pod chuyển sang Terminating và endpoint của nó được đánh dấu terminating, thường không sẵn sàng và chưa bị xóa ngay, song song với việc tắt, traffic vẫn có thể đến thêm một lúc (do cập nhật chậm, hoặc do proxy cố ý chuyển tới endpoint còn phục vụ khi mọi endpoint đều đang tắt) nên cần chờ ngắn trong preStop, tiến trình chính nhận tín hiệu dừng, mặc định là SIGTERM (signal terminate — tín hiệu yêu cầu tiến trình tự kết thúc) nhưng image hoặc Pod có thể đổi, phải ngừng nhận kết nối mới và làm xong việc đang chạy, hết thời gian ân hạn thì bị dừng cưỡng bức (hook preStop chạy quá hạn được gia hạn một lần thêm 2 giây; với ân hạn bằng 0 thì hook preStop không chạy, còn xóa cưỡng bức không chờ xác nhận tiến trình đã dừng: node còn nối được thì chỉ có một khoảng ân hạn rất nhỏ, node mất kết nối thì tiến trình cũ có thể còn chạy), và khi dồn node thì PodDisruptionBudget giữ số Pod tối thiểu.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1451" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">TẮT ÊM MỘT POD</text>
+<text x="16" y="58" font-size="16" font-weight="normal">Từ lúc bị xóa đến lúc dừng</text>
+<rect x="16" y="89" width="288" height="155" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="117" font-size="16" font-weight="bold">1 · Pod bị xóa</text>
+<text x="30" y="144" font-size="16" font-weight="normal">Pod chuyển sang Terminating</text>
+<text x="30" y="171" font-size="16" font-weight="normal">Endpoint thành terminating,</text>
+<text x="30" y="198" font-size="16" font-weight="normal">thường ready=false, chưa bị</text>
+<text x="30" y="225" font-size="16" font-weight="normal">xóa ngay</text>
+<line x1="160" y1="256" x2="160" y2="284" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="294" width="288" height="236" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="322" font-size="16" font-weight="bold">2 · Traffic còn đến</text>
+<text x="30" y="349" font-size="16" font-weight="bold">một lúc</text>
+<text x="30" y="376" font-size="16" font-weight="normal">Proxy, ingress, bộ cân bằng</text>
+<text x="30" y="403" font-size="16" font-weight="normal">tải ngoài cập nhật chậm hơn</text>
+<text x="30" y="430" font-size="16" font-weight="normal">Mọi endpoint đang tắt:</text>
+<text x="30" y="457" font-size="16" font-weight="normal">proxy có thể vẫn gửi tới</text>
+<text x="30" y="484" font-size="16" font-weight="normal">endpoint còn phục vụ</text>
+<text x="30" y="511" font-size="16" font-weight="normal">Chờ vài giây trong preStop</text>
+<line x1="160" y1="542" x2="160" y2="570" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="580" width="288" height="263" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="608" font-size="16" font-weight="bold">3 · Tín hiệu dừng,</text>
+<text x="30" y="635" font-size="16" font-weight="bold">thường là SIGTERM (tín</text>
+<text x="30" y="662" font-size="16" font-weight="bold">hiệu yêu cầu tự dừng)</text>
+<text x="30" y="689" font-size="16" font-weight="normal">Ngừng nhận kết nối mới, làm</text>
+<text x="30" y="716" font-size="16" font-weight="normal">xong request đang chạy</text>
+<text x="30" y="743" font-size="16" font-weight="normal">Dạng exec để tín hiệu tới</text>
+<text x="30" y="770" font-size="16" font-weight="normal">đúng tiến trình; STOPSIGNAL</text>
+<text x="30" y="797" font-size="16" font-weight="normal">hoặc lifecycle.stopSignal</text>
+<text x="30" y="824" font-size="16" font-weight="normal">có thể đổi tín hiệu</text>
+<line x1="160" y1="855" x2="160" y2="883" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="893" width="288" height="344" rx="10" fill="#fee2e2" stroke="#94a3b8"/>
+<text x="30" y="921" font-size="16" font-weight="bold">4 · Hết ân hạn thì bị</text>
+<text x="30" y="948" font-size="16" font-weight="bold">dừng</text>
+<text x="30" y="975" font-size="16" font-weight="normal">Thời gian ân hạn tính từ</text>
+<text x="30" y="1002" font-size="16" font-weight="normal">lúc xóa, gồm cả preStop</text>
+<text x="30" y="1029" font-size="16" font-weight="normal">Hết hạn: bị dừng cưỡng bức;</text>
+<text x="30" y="1056" font-size="16" font-weight="normal">preStop quá hạn được thêm 2</text>
+<text x="30" y="1083" font-size="16" font-weight="normal">giây một lần</text>
+<text x="30" y="1110" font-size="16" font-weight="normal">Ân hạn bằng 0: preStop</text>
+<text x="30" y="1137" font-size="16" font-weight="normal">không chạy; xóa cưỡng bức</text>
+<text x="30" y="1164" font-size="16" font-weight="normal">không chờ xác nhận, node</text>
+<text x="30" y="1191" font-size="16" font-weight="normal">mất kết nối thì tiến trình</text>
+<text x="30" y="1218" font-size="16" font-weight="normal">cũ có thể còn chạy</text>
+<rect x="16" y="1249" width="288" height="182" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="1277" font-size="16" font-weight="bold">5 · Dồn node có chủ</text>
+<text x="30" y="1304" font-size="16" font-weight="bold">đích</text>
+<text x="30" y="1331" font-size="16" font-weight="normal">PodDisruptionBudget giữ số</text>
+<text x="30" y="1358" font-size="16" font-weight="normal">Pod tối thiểu</text>
+<text x="30" y="1385" font-size="16" font-weight="normal">Chỉ áp dụng cho eviction tự</text>
+<text x="30" y="1412" font-size="16" font-weight="normal">nguyện</text>
+</g></svg>

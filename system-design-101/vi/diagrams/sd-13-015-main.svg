@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1057" width="320" height="1057" role="img" aria-labelledby="title desc">
+<title id="title">Vòng đời một tính năng có cờ: từ mã đã lên đến dọn cờ</title>
+<desc id="desc">Năm điểm dừng của một tính năng có cờ: mã lên với cờ tắt, thử nội bộ ở cả hai nhánh, mở dần cho một phần người dùng cố định với số đo và điều kiện dừng, mở hết và giữ cờ làm công tắc khẩn cấp một thời gian, rồi dọn cờ và nhánh cũ.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1057" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">VÒNG ĐỜI MỘT CỜ</text>
+<text x="16" y="58" font-size="16" font-weight="normal">Từ mã đã lên đến dọn cờ</text>
+<rect x="16" y="89" width="288" height="155" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="117" font-size="16" font-weight="bold">1 · Mã lên, cờ tắt</text>
+<text x="30" y="144" font-size="16" font-weight="normal">Hành vi mới nằm sau cờ, mặc</text>
+<text x="30" y="171" font-size="16" font-weight="normal">định tắt</text>
+<text x="30" y="198" font-size="16" font-weight="normal">Người dùng chưa thấy gì</text>
+<text x="30" y="225" font-size="16" font-weight="normal">thay đổi</text>
+<line x1="160" y1="256" x2="160" y2="284" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="294" width="288" height="155" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="322" font-size="16" font-weight="bold">2 · Thử nội bộ</text>
+<text x="30" y="349" font-size="16" font-weight="normal">Bật cờ cho nhân viên hoặc</text>
+<text x="30" y="376" font-size="16" font-weight="normal">tài khoản thử</text>
+<text x="30" y="403" font-size="16" font-weight="normal">Kiểm thử cả hai nhánh: cờ</text>
+<text x="30" y="430" font-size="16" font-weight="normal">bật và cờ tắt</text>
+<line x1="160" y1="461" x2="160" y2="489" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="499" width="288" height="182" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="527" font-size="16" font-weight="bold">3 · Mở dần</text>
+<text x="30" y="554" font-size="16" font-weight="normal">Bật cho một phần người</text>
+<text x="30" y="581" font-size="16" font-weight="normal">dùng, cố định theo người</text>
+<text x="30" y="608" font-size="16" font-weight="normal">dùng</text>
+<text x="30" y="635" font-size="16" font-weight="normal">Có số đo và điều kiện dừng</text>
+<text x="30" y="662" font-size="16" font-weight="normal">đặt trước</text>
+<line x1="160" y1="693" x2="160" y2="721" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="731" width="288" height="155" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="759" font-size="16" font-weight="bold">4 · Mở hết</text>
+<text x="30" y="786" font-size="16" font-weight="normal">Mọi người dùng thấy hành vi</text>
+<text x="30" y="813" font-size="16" font-weight="normal">mới</text>
+<text x="30" y="840" font-size="16" font-weight="normal">Giữ cờ làm công tắc khẩn</text>
+<text x="30" y="867" font-size="16" font-weight="normal">cấp một thời gian</text>
+<line x1="160" y1="898" x2="160" y2="926" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="936" width="288" height="101" rx="10" fill="#fee2e2" stroke="#94a3b8"/>
+<text x="30" y="964" font-size="16" font-weight="bold">5 · Dọn cờ</text>
+<text x="30" y="991" font-size="16" font-weight="normal">Xóa cờ và nhánh cũ khỏi mã</text>
+<text x="30" y="1018" font-size="16" font-weight="normal">Cờ để lại thành nợ kỹ thuật</text>
+</g></svg>

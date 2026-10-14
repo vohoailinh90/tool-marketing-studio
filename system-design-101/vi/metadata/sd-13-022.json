@@ -1,0 +1,71 @@
+{
+  "id": "sd-13-022",
+  "title_vi": "Bảng tra phân tích nhật ký",
+  "language": "vi",
+  "kind": "reference",
+  "content_status": "draft",
+  "source_ref": "sd-13-022",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/log-parsing-cheat-sheet.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/log-parsing-cheat-sheet.md",
+    "blob_sha": "1822c28bf9be07d86f76925970ceb8943ea9b045",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "2bc6a48140a7cf9eb17ea21fccb5c23effd1f5b2f34c57dd66c8601d96267bec",
+    "retrieved_body_bytes": 1378
+  },
+  "diagram": "../diagrams/sd-13-022-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "grep -C in dòng ngữ cảnh quanh dòng khớp.",
+      "source": "https://www.gnu.org/software/grep/manual/grep.html"
+    },
+    {
+      "claim_vi": "Đầu ra chuẩn của grep được đệm theo dòng khi ra thiết bị tương tác và theo khối ở nơi khác; --line-buffered ép xả từng dòng.",
+      "source": "https://www.gnu.org/software/grep/manual/grep.html"
+    },
+    {
+      "claim_vi": "zgrep tìm trong tệp nén gzip.",
+      "source": "https://www.gnu.org/software/gzip/manual/gzip.html"
+    },
+    {
+      "claim_vi": "jq lọc và chọn trường từ JSON.",
+      "source": "https://jqlang.github.io/jq/manual/"
+    },
+    {
+      "claim_vi": "awk xử lý văn bản theo cột và có khối END.",
+      "source": "https://www.gnu.org/software/gawk/manual/gawk.html"
+    },
+    {
+      "claim_vi": "gawk dừng với lỗi nghiêm trọng khi chia cho 0, nên lệnh tính trung bình kiểm tra n khác 0 trước khi chia.",
+      "source": "https://www.gnu.org/software/gawk/manual/html_node/Errors-accumulate.html"
+    }
+  ],
+  "source_deviations": [
+    "Nguồn liệt kê sáu lệnh grep, cut, sed, awk, sort, uniq; bài chọn lại lệnh và ví dụ theo bài toán tìm nguyên nhân từ nhật ký (thêm zgrep, tail -f, jq, grep -C) và bỏ phần còn lại."
+  ],
+  "design_notes_vi": "Năm thẻ tình huống kèm lệnh gợi ý.",
+  "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Tiêu đề hiển thị của bài là dòng đầu của lesson.md; title_vi giữ bản dịch tiêu đề nguồn theo source-map. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
+}

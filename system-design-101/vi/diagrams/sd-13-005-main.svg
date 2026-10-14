@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 684" width="320" height="684" role="img" aria-labelledby="title desc">
+<title id="title">Chọn cơ sở dữ liệu cho hệ thống số đo</title>
+<desc id="desc">Bốn câu hỏi xếp dọc: tốc độ ghi, kiểu truy vấn, thời gian giữ dữ liệu và số chuỗi cùng người vận hành.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="684" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">4 CÂU HỎI CHỌN KHO</text>
+<text x="16" y="58" font-size="16" font-weight="normal">Trả lời trước khi chọn công</text>
+<text x="16" y="85" font-size="16" font-weight="normal">nghệ</text>
+<rect x="16" y="116" width="288" height="101" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="144" font-size="16" font-weight="bold">1 · Ghi bao nhiêu?</text>
+<text x="30" y="171" font-size="16" font-weight="normal">Bao nhiêu điểm mỗi giây</text>
+<text x="30" y="198" font-size="16" font-weight="normal">Có tăng đột biến không</text>
+<rect x="16" y="229" width="288" height="128" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="257" font-size="16" font-weight="bold">2 · Hỏi kiểu gì?</text>
+<text x="30" y="284" font-size="16" font-weight="normal">Theo khoảng thời gian</text>
+<text x="30" y="311" font-size="16" font-weight="normal">Tổng hợp, tốc độ tăng, phân</text>
+<text x="30" y="338" font-size="16" font-weight="normal">vị</text>
+<rect x="16" y="369" width="288" height="155" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="397" font-size="16" font-weight="bold">3 · Giữ bao lâu?</text>
+<text x="30" y="424" font-size="16" font-weight="normal">Dữ liệu cũ có cần độ chi</text>
+<text x="30" y="451" font-size="16" font-weight="normal">tiết?</text>
+<text x="30" y="478" font-size="16" font-weight="normal">Có thể xóa hoặc gộp lại</text>
+<text x="30" y="505" font-size="16" font-weight="normal">không</text>
+<rect x="16" y="536" width="288" height="128" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="564" font-size="16" font-weight="bold">4 · Bao nhiêu chuỗi?</text>
+<text x="30" y="591" font-size="16" font-weight="normal">Tổ hợp nhãn sinh ra bao</text>
+<text x="30" y="618" font-size="16" font-weight="normal">nhiêu chuỗi</text>
+<text x="30" y="645" font-size="16" font-weight="normal">Ai sẽ vận hành kho này</text>
+</g></svg>

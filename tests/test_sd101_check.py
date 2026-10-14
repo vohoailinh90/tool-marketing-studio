@@ -2085,13 +2085,17 @@ class AbbreviationRuleTests(StoreCase):
                 ("2FA", "Factor Authentication", True), ("IPv4", "Internet Protocol version 4", True),
                 ("IPv4", "Internet Protocol version four", True), ("3DES", "Triple Data Encryption Standard", True),
                 ("DDR4", "Double Data Rate 4", True), ("P2P", "Peer 2 Peer", True), ("P2P", "Peer-to-Peer", True),
-                # an abbreviation with no digits has no place for one: a number the full form writes is just a number
-                ("RFC", "Request for Comments 2616", True), ("RFC", "Request for Comments", True)):
+                # an abbreviation with no digits takes no number either, whatever the number
+                ("API", "Application Programming Interface 6", False), ("LLM", "Large 99 Language Model", False),
+                ("RFC", "Request for Comments 2616", False), ("RFC", "Request for Comments", True),
+                ("HPACK", "Header Compression for HTTP/2", True)):  # a name with a full form of its own is read as it is
             with self.subTest(abbreviation=abbreviation, full_form=full_form):
                 self.assertEqual(spelled, check.spells(abbreviation, full_form))
         self.assertFalse(check.spells("A" + "1A" * 9, "Alpha " * 10))  # a key with many numbers is refused, not expanded
         self.lesson("Đăng nhập bằng 2FA.", glossary="- **2FA** (Factor Two Authentication) — đăng nhập bằng hai bước.\n")
         self.assertProblem("glossary spells 2FA out as 'Factor Two Authentication'")
+        self.lesson("Nói về API.", glossary="- **API** (Application Programming Interface 6) — cách để chương trình này gọi chương trình kia.\n")
+        self.assertProblem("glossary spells API out as 'Application Programming Interface 6'")
 
     def test_a_figure_link_with_a_fragment_a_query_or_an_encoded_name_is_still_the_figure(self) -> None:
         tail = f"## Liên hệ nguồn\n\n[bài nguồn]({SNAPSHOT}).\n"

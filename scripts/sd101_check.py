@@ -1162,7 +1162,8 @@ def spells(abbreviation: str, full_form: str) -> bool:
     whole run or its first letter ("CSS Object Model" is CSSOM, "HTTP Strict Transport Security" is HSTS; a hidden
     run works the same: "SYNchronize"); a word that is the abbreviation itself gives its first letter (a recursive
     name: "gRPC Remote Procedure Calls"); digits are not letters, so the full form may leave a number out, but one it
-    writes must be the abbreviation's own ("version 4" for IPv4, never "version 6"), and so are the number words that may
+    writes must be the abbreviation's own ("version 4" for IPv4, never "version 6"; an abbreviation with no digits takes
+    none: "Application Programming Interface 6" is not API), and so are the number words that may
     be left out (NUMBER_WORDS: "Two-Factor" for 2FA, never "Triple"; where the digits come first the full form holds no
     other number word at all: "Four Authentication" is not 2FA although F and A are its letters, while a name such as
     "Double Data Rate" is fine for DDR4). A number the full form does write, as digits or as one of those words, stands
@@ -1172,8 +1173,9 @@ def spells(abbreviation: str, full_form: str) -> bool:
     if (UNIT_SYMBOLS | IRREGULAR_FORMS).get(abbreviation) == full_form.strip():
         return True
     numbers = re.findall(r"\d+", abbreviation)
-    if numbers and re.findall(r"\d+", full_form) not in ([], numbers):
-        return False  # "Internet Protocol version 6" is not IPv4: a number the full form writes is the abbreviation's
+    digits = re.findall(r"\d+", full_form)
+    if digits and digits != numbers:
+        return False  # "Internet Protocol version 6" is not IPv4, and no number is an API's: a number written is the abbreviation's own
     parts = ["#" if part.isdigit() else part.upper() for part in re.findall(r"[A-Za-z]|\d+", abbreviation)]
     groups = [index for index, part in enumerate(parts) if part == "#"]  # where the abbreviation puts its numbers
     if len(groups) > 8:
@@ -1190,9 +1192,8 @@ def spells(abbreviation: str, full_form: str) -> bool:
     written = 0  # the numbers the full form writes: each stands as "#" where it is written
     for word in re.findall(r"[A-Za-z]+|\d+", plain):
         if word.isdigit():
-            if groups:
-                pattern += "#"
-                written += 1
+            pattern += "#"
+            written += 1
             continue
         if word == abbreviation:
             pattern += word[0].upper()

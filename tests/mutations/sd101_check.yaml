@@ -1843,8 +1843,8 @@ mutations:
   replace: "leading = re.search(r\"\\d+\", abbreviation)"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_a_number_word_of_another_number_does_not_stand_for_the_leading_digit
 - label: a number the full form writes may differ from the abbreviation's (IPv4, version 6)
-  find: "if numbers and re.findall(r\"\\d+\", full_form) not in ([], numbers):"
-  replace: "if False:"
+  find: "    if digits and digits != numbers:"
+  replace: "    if False:"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_the_number_inside_an_abbreviation_must_be_the_number_in_its_full_form
 - label: an abbreviation that begins with a digit is not read (2FA, 3DES)
   find: "(\\d*[A-Z]{2,})"
@@ -2085,12 +2085,8 @@ mutations:
   replace: "and posixpath.normpath(child.attrGet(\"src\") or \"\").endswith(suffix) for child in token.children or [])"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_a_figure_link_with_a_fragment_a_query_or_an_encoded_name_is_still_the_figure
 - label: a digit the full form writes stands nowhere (Factor Authentication 2 is 2FA)
-  find: "            if groups:\n                pattern += \"#\"\n                written += 1\n            continue\n"
-  replace: "            continue\n"
-  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_number_the_full_form_writes_stands_where_the_abbreviation_puts_its_digits
-- label: the digits of a full form count for an abbreviation that has none (Request for Comments 2616)
-  find: "            if groups:\n                pattern += \"#\""
-  replace: "            if True:\n                pattern += \"#\""
+  find: "        if word.isdigit():\n            pattern += \"#\"\n            written += 1\n            continue\n"
+  replace: "        if word.isdigit():\n            continue\n"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_a_number_the_full_form_writes_stands_where_the_abbreviation_puts_its_digits
 - label: a number word of the abbreviation may stand anywhere (Factor Two Authentication is 2FA)
   find: "            elif hump == word and hump.lower() in number_words:\n                pattern += \"#\"\n                written += 1\n"

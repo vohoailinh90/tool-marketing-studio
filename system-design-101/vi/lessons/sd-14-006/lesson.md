@@ -3,7 +3,7 @@
 **Passkey thay mật khẩu bằng một cặp khóa: khóa riêng do thiết bị của bạn giữ và không gửi cho trang, trang web chỉ giữ khóa công khai.**
 Đăng nhập khi đó là chứng minh bạn giữ khóa riêng, chứ không phải gửi một bí mật cho trang.
 
-![Bảy thẻ xếp dọc. Nhóm đăng ký: 1 thử thách, trang gửi một chuỗi ngẫu nhiên; 2 tạo cặp khóa, bạn xác nhận và thiết bị tạo khóa gắn với trang này; 3 lưu khóa công khai, trang giữ khóa công khai, không có khóa riêng, cạnh tài khoản. Nhóm đăng nhập: 4 thử thách mới, mỗi lần đăng nhập một chuỗi ngẫu nhiên khác; 5 ký, bạn xác nhận và khóa riêng ký thử thách cùng tên miền; 6 kiểm tra, trang dùng khóa công khai để kiểm tra chữ ký. Thẻ cuối: điểm yếu còn lại là mất thiết bị hoặc tài khoản đồng bộ, và khôi phục tài khoản.](../../diagrams/sd-14-006-main.svg)
+![Bảy thẻ xếp dọc. Nhóm đăng ký: 1 thử thách, trang gửi một chuỗi ngẫu nhiên; 2 tạo cặp khóa, bạn xác nhận và thiết bị tạo khóa gắn với trang này; 3 lưu khóa công khai, trang giữ khóa công khai, không có khóa riêng, cạnh tài khoản. Nhóm đăng nhập: 4 thử thách mới, mỗi lần đăng nhập một chuỗi ngẫu nhiên khác; 5 ký, trình duyệt ghi tên miền và thử thách vào dữ liệu, khóa riêng ký dữ liệu đó; 6 kiểm tra, trang kiểm tra chữ ký bằng khóa công khai cả tên miền. Thẻ cuối: điểm yếu còn lại là mất thiết bị hoặc tài khoản đồng bộ, và khôi phục tài khoản.](../../diagrams/sd-14-006-main.svg)
 
 ## Đọc hình
 
@@ -13,7 +13,7 @@
 
 **3 · Lưu khóa công khai.** Trang lưu khóa công khai cạnh tài khoản của bạn. Khóa công khai không dùng được để ký, nên lộ nó không giúp ai đăng nhập thay bạn.
 
-**4–6 · Đăng nhập.** Trang gửi một thử thách mới. Bạn xác nhận trên thiết bị, khóa riêng ký thử thách cùng tên miền của nơi đang yêu cầu, và trang kiểm tra chữ ký bằng khóa công khai đã lưu.
+**4–6 · Đăng nhập.** Trang gửi một thử thách mới. Bạn xác nhận trên thiết bị. Trình duyệt ghi thử thách cùng tên miền của nơi đang yêu cầu vào dữ liệu gửi đi, khóa riêng trên thiết bị ký dữ liệu đó, và trang kiểm tra chữ ký bằng khóa công khai đã lưu, đồng thời kiểm tra tên miền và định danh trang ghi trong đó đúng là cái nó mong đợi.
 Khi chạy thử, chữ ký cũ đem so với một thử thách mới thì không hợp lệ.
 
 ## Giới hạn cần nhớ
@@ -28,7 +28,7 @@ Kẻ lừa đảo dựng một trang giả có tên miền gần giống trang t
 <details>
 <summary>Xem đáp án</summary>
 
-Thiết bị gắn mỗi khóa với trang đã đăng ký và đưa tên miền của nơi đang yêu cầu vào dữ liệu được ký, nên trang giả có tên miền khác không dùng được khóa của trang thật, và chữ ký tạo cho trang giả không có giá trị với trang thật. Đặc tả WebAuthn mô tả đúng cơ chế này.
+Bộ xác thực gắn mỗi khóa với trang đã đăng ký, còn trình duyệt đưa tên miền của nơi đang yêu cầu vào dữ liệu mà bộ xác thực ký; trang kiểm tra cả hai. Nhờ đó trang giả có tên miền khác không dùng được khóa của trang thật, và chữ ký tạo cho trang giả không có giá trị với trang thật, miễn là trang thật thực sự kiểm tra tên miền và định danh trang. Đặc tả WebAuthn mô tả cơ chế này như sự phối hợp giữa trình duyệt và bộ xác thực, và yêu cầu trang thực hiện các bước kiểm tra đó.
 Với mật khẩu, bạn tự gõ bí mật vào trang giả, và kẻ lừa đảo có ngay bản rõ để dùng ở trang thật. Khi chạy thử, chữ ký tạo cho tên miền giả không được trang thật chấp nhận.
 
 </details>
@@ -40,7 +40,7 @@ Bài nguồn viết khóa riêng “được tạo dựa trên khóa công khai 
 Bài nguồn cũng nói “không có rủi ro lộ mật khẩu” vì trang không lưu mật khẩu. Đúng là không có mật khẩu để lộ, nhưng đó là cách nói quá: điểm yếu chuyển sang thiết bị và khôi phục, như phần trên. Bài này bỏ ý “trải nghiệm đồng nhất trên mọi nền tảng” của bài nguồn vì chưa kiểm được.
 Đặc tả gọi khóa dùng được trên nhiều thiết bị là “multi-device credential”, thường gọi là passkey đồng bộ.
 
-Ví dụ chạy thử là mô hình tối giản bằng ECDSA P-256 của thư viện `cryptography`, trong đó phần “thiết bị” tự ghép tên miền vào dữ liệu ký; trong WebAuthn thật, trình duyệt cung cấp tên miền và bộ xác thực mới là nơi giữ khóa.
+Ví dụ chạy thử là mô hình tối giản bằng ECDSA P-256 của thư viện `cryptography`, trong đó phần “thiết bị” tự ghép tên miền vào dữ liệu ký; trong WebAuthn thật, trình duyệt đưa tên miền vào dữ liệu, bộ xác thực giữ khóa và ký, còn trang phải kiểm tra tên miền và định danh trang.
 
 </details>
 

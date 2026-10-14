@@ -135,7 +135,8 @@ The occupancy estimate divides the tokens in use by the context window's size, a
 payload does not say how large the window is. The size is therefore taken from the first of these
 that gives a usable value:
 
-1. **The `CLAUDE_SESSION_BUDGET_CONTEXT_WINDOW` variable**, in tokens (a positive whole number). An
+1. **The `CLAUDE_SESSION_BUDGET_CONTEXT_WINDOW` variable**, in tokens (a whole number from 1,000 to
+   100,000,000, the range a recorded size must be in too; anything else is ignored as a typo). An
    explicit setting wins over detection, and it is the only thing that can correct a status line
    that reports a wrong size (some releases report 200,000 for a 1M session). This repository sets
    it to `1000000` in the `env` block of `.claude/settings.json` (and of the example it must equal),

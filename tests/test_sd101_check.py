@@ -1905,6 +1905,17 @@ class AbbreviationRuleTests(StoreCase):
         self.lesson("Về CSSOM.", glossary="- **CSSOM** (CSS Object Model) — các luật kiểu đã đọc xong.\n")
         self.assertEqual([], self.problems())
 
+    def test_the_glossary_comes_after_the_figure_not_before_it(self) -> None:
+        figure = "![Sơ đồ của bài](../../diagrams/sd-01-001-main.svg)"
+        tail = f"## Liên hệ nguồn\n\n[bài nguồn]({SNAPSHOT}).\n"
+        self.write_lesson("sd-01-001", body=f"# Bài\n\n## Từ viết tắt\n\n{LLM_ENTRY}\n{figure}\n\n{tail}")
+        self.assertProblem("must come after the figure diagrams/sd-01-001-main.svg")
+        self.write_lesson("sd-01-001", body=f"# Bài\n\n{figure}\n\nNội dung.\n\n## Từ viết tắt\n\n{LLM_ENTRY}\n{tail}")
+        self.assertEqual([], self.problems())
+        html = '<img src="../../diagrams/sd-01-001-main.svg" alt="Sơ đồ của bài">'
+        self.write_lesson("sd-01-001", body=f"# Bài\n\n{html}\n\n## Từ viết tắt\n\n{LLM_ENTRY}\n{tail}")
+        self.assertEqual([], self.problems())
+
     def test_words_that_only_look_like_abbreviations_need_no_entry(self) -> None:
         self.lesson("Gửi GET /phone, dùng LEFT JOIN, kiểm tra NULL và trả OK; mở README.", glossary=None)
         self.assertEqual([], self.problems())

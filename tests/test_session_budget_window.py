@@ -259,9 +259,17 @@ class HookReadsTheWindowTests(TempRoot):
 
     def test_a_variable_that_cannot_be_used_leaves_the_recording_in_charge(self) -> None:
         self.record("s1", 1_000_000)
-        for env in ("", "many", "0", "-5", "1.5"):
+        for env in ("", "many", "0", "-5", "1.5", "1", "999", "100000001", "99999999999"):
             with self.subTest(env=env):
                 self.assertEqual(1_000_000, self.window({"session_id": "s1"}, env=env))
+
+    def test_a_variable_outside_the_plausible_range_leaves_the_default_when_nothing_was_recorded(self) -> None:
+        for env in ("1", "999", "100000001"):
+            with self.subTest(env=env):
+                self.assertEqual(200_000, self.window({"session_id": "s1"}, env=env))
+        for env in ("1000", "100000000"):
+            with self.subTest(env=env):
+                self.assertEqual(int(env), self.window({"session_id": "s1"}, env=env))
 
     def test_a_trailing_newline_is_fine(self) -> None:
         self.record("s1", "1000000\n")

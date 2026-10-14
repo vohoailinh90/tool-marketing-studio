@@ -261,12 +261,13 @@ def recorded_window(session_id: object, root: Path) -> int | None:
 
 
 def configured_window() -> int | None:
-    """The size CLAUDE_SESSION_BUDGET_CONTEXT_WINDOW sets, in tokens; None when it is unset or not a positive whole number."""
+    """The size CLAUDE_SESSION_BUDGET_CONTEXT_WINDOW sets, in tokens; None when it is unset, not a whole number or
+    outside the range a recorded size must also be in (a typo such as 1 or 10000000000 must not decide)."""
     try:
         value = int(os.environ.get("CLAUDE_SESSION_BUDGET_CONTEXT_WINDOW", ""))
     except ValueError:
         return None
-    return value if value > 0 else None
+    return value if MIN_WINDOW_TOKENS <= value <= MAX_WINDOW_TOKENS else None
 
 
 def context_window(payload: dict[str, Any] | None = None, root: Path | None = None) -> int:

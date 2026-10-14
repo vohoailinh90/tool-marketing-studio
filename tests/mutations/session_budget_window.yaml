@@ -18,13 +18,21 @@ mutations:
   find: "    configured = configured_window()\n    if configured is not None:\n        return configured\n"
   replace: ""
   test: tests.test_session_budget_window.HookReadsTheWindowTests.test_the_variable_beats_what_the_status_line_recorded
-- label: a variable that is not a positive number is used
-  find: "    return value if value > 0 else None"
+- label: a variable outside the plausible range is used
+  find: "    return value if MIN_WINDOW_TOKENS <= value <= MAX_WINDOW_TOKENS else None"
   replace: "    return value"
   test: tests.test_session_budget_window.HookReadsTheWindowTests.test_a_variable_that_cannot_be_used_leaves_the_recording_in_charge
+- label: a variable below the smallest plausible window is used
+  find: "    return value if MIN_WINDOW_TOKENS <= value <= MAX_WINDOW_TOKENS else None"
+  replace: "    return value if 0 < value <= MAX_WINDOW_TOKENS else None"
+  test: tests.test_session_budget_window.HookReadsTheWindowTests.test_a_variable_outside_the_plausible_range_leaves_the_default_when_nothing_was_recorded
+- label: a variable above the largest plausible window is used
+  find: "    return value if MIN_WINDOW_TOKENS <= value <= MAX_WINDOW_TOKENS else None"
+  replace: "    return value if MIN_WINDOW_TOKENS <= value else None"
+  test: tests.test_session_budget_window.HookReadsTheWindowTests.test_a_variable_outside_the_plausible_range_leaves_the_default_when_nothing_was_recorded
 - label: a variable that is not a number raises
-  find: "    except ValueError:\n        return None\n    return value if value > 0 else None"
-  replace: "    except KeyError:\n        return None\n    return value if value > 0 else None"
+  find: "    except ValueError:\n        return None\n    return value if MIN_WINDOW_TOKENS <= value <= MAX_WINDOW_TOKENS else None"
+  replace: "    except KeyError:\n        return None\n    return value if MIN_WINDOW_TOKENS <= value <= MAX_WINDOW_TOKENS else None"
   test: tests.test_session_budget_window.HookReadsTheWindowTests.test_a_variable_that_cannot_be_used_leaves_the_recording_in_charge
 - label: a session id that is not a plain name is used as a file name
   find: "    if not isinstance(session_id, str) or not SESSION_ID.fullmatch(session_id):\n        return None\n"

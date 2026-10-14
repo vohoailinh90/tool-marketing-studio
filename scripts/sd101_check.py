@@ -999,9 +999,10 @@ def figure_strings(path: pathlib.Path) -> tuple[list[str], list[str]]:
     return prose, headings
 
 
-def lesson_prose(text: str) -> tuple[list[str], list[str], str | None, list[str]]:
+def lesson_prose(text: str) -> tuple[list[str], list[str], str | None, list[str], str]:
     """The visible words of a lesson, by section: (prose outside the glossary and the sources, prose inside the
-    glossary with each bullet's lead-in removed, the glossary's lines or None, every "##" title in order).
+    glossary with each bullet's lead-in removed, the glossary's lines or None, every "##" title in order, the
+    text above the glossary heading, "" when there is no glossary).
 
     Code blocks, `code spans`, link destinations and the sources section are not prose a beginner has to decode.
     """
@@ -1014,10 +1015,12 @@ def lesson_prose(text: str) -> tuple[list[str], list[str], str | None, list[str]
             titles.append(tokens[index + 1].content.strip())
             starts.append(token.map[0])
     glossary_lines = None
+    above = ""
     if GLOSSARY_HEADING in titles:
         first = starts[titles.index(GLOSSARY_HEADING)]
         end = next((start for start in starts if start > first), len(lines))
         glossary_lines = lines[first + 1:end]
+        above = "\n".join(lines[:first])
     body: list[str] = []
     glossary: list[str] = []
     section = ""
@@ -1040,7 +1043,7 @@ def lesson_prose(text: str) -> tuple[list[str], list[str], str | None, list[str]
             if section == GLOSSARY_HEADING:
                 piece = piece.split("—", 1)[-1]  # the bullet's lead-in names the abbreviation it explains
             (glossary if section == GLOSSARY_HEADING else body).append(piece)
-    return body, glossary, glossary_lines, titles
+    return body, glossary, glossary_lines, titles, above
 
 
 def glossary_entries(lines: list[str]) -> tuple[list[tuple[str, str, str]], list[str]]:
@@ -1103,7 +1106,7 @@ def spells(abbreviation: str, full_form: str) -> bool:
 
 def check_abbreviations(lesson_id: str, text: str, figure: list[str], headings: list[str] | tuple[str, ...] = ()) -> list[Problem]:
     """Every abbreviation the lesson or its figure uses is explained, in full, in the lesson's own glossary."""
-    body, glossary, glossary_lines, titles = lesson_prose(text)
+    body, glossary, glossary_lines, titles, above = lesson_prose(text)
     used = abbreviations_in("\n".join(body + glossary + figure))
     used |= abbreviations_in("\n".join(headings), capitals=False)
     problems: list[Problem] = []
@@ -1116,6 +1119,9 @@ def check_abbreviations(lesson_id: str, text: str, figure: list[str], headings: 
     if titles[0] != GLOSSARY_HEADING:
         problems.append(Problem(lesson_id, f'"## {GLOSSARY_HEADING}" must be the first "##" section, right after the '
                                            f"figure, but comes after {titles[0]!r}"))
+    elif not any(posixpath.normpath(source).endswith(f"diagrams/{lesson_id}-main.svg") for source in image_sources(above)):
+        problems.append(Problem(lesson_id, f'"## {GLOSSARY_HEADING}" must come after the figure '
+                                           f"diagrams/{lesson_id}-main.svg, not before it"))
     entries, malformed = glossary_entries(glossary_lines)
     problems.extend(Problem(lesson_id, f"glossary bullet {bullet[:70]!r} is not in the form {template}")
                     for bullet in malformed)

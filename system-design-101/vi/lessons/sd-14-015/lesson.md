@@ -5,6 +5,20 @@ Bài này gom tám bước của bài nguồn thành sáu bước, chạy thử 
 
 ![Bảy thẻ xếp dọc, sáu thẻ đầu nối bằng mũi tên. Một: người ký tạo cặp khóa, khóa riêng giữ kín, khóa công khai chia sẻ được. Hai: hàm băm biến tài liệu thành một dấu vân tay ngắn cố định, đổi một byte thì dấu vân tay đổi. Ba: ký bằng khóa riêng ra chữ ký; tùy kiểu chữ ký, bản băm được ký hoặc việc băm nằm ngay trong phép ký. Bốn: gửi tài liệu cùng chữ ký; tài liệu vẫn đọc được. Năm: người nhận dùng khóa công khai của người ký để kiểm chữ ký với chính tài liệu nhận được. Sáu: khớp thì đúng khóa riêng đã ký và nội dung chưa đổi kể từ lúc ký; không khớp thì từ chối. Thẻ cuối: chữ ký không giấu nội dung và không tự cho biết khóa công khai là của ai.](../../diagrams/sd-14-015-main.svg)
 
+## Từ viết tắt
+
+- **RSA** (Rivest-Shamir-Adleman) — tên một thuật toán mã hóa khóa công khai, đặt theo ba tác giả.
+- **ECDSA** (Elliptic Curve Digital Signature Algorithm) — thuật toán chữ ký số dùng đường cong elliptic: ký bằng khóa riêng, kiểm bằng khóa công khai.
+- **PKCS** (Public-Key Cryptography Standards) — các chuẩn mật mã khóa công khai: bộ tài liệu về cách dùng các thuật toán như RSA; PKCS#1 v1.5 là một kiểu đệm (độn thêm dữ liệu trước khi ký).
+- **PSS** (Probabilistic Signature Scheme) — lược đồ chữ ký xác suất: kiểu đệm có thêm giá trị ngẫu nhiên, nên ký hai lần cùng một thông điệp cho hai chữ ký khác nhau.
+- **SHA** (Secure Hash Algorithm) — họ thuật toán băm: biến dữ liệu bất kỳ thành một chuỗi cố định; SHA-256 là một loại trong họ này.
+- **MB** (MegaByte) — megabyte: đơn vị dung lượng cỡ một triệu byte; ở đây dùng để nói thông điệp thử cỡ 1 MB.
+- **USD** (United States Dollar) — đô la Mỹ: đơn vị tiền dùng trong số tiền của ví dụ "Pay Bob 100 USD".
+- **NIST** (National Institute of Standards and Technology) — viện tiêu chuẩn và công nghệ của Mỹ, ban hành nhiều tiêu chuẩn và định nghĩa kỹ thuật về bảo mật.
+- **IETF** (Internet Engineering Task Force) — nhóm đặc nhiệm kỹ thuật Internet: cộng đồng soạn các tiêu chuẩn của Internet và công bố chúng dưới dạng RFC.
+- **RFC** (Request for Comments) — "đề nghị bình luận": loạt tài liệu kỹ thuật đánh số của cộng đồng Internet; nhiều RFC là tiêu chuẩn.
+- **MDN** (Mozilla Developer Network) — tên cũ của MDN Web Docs, bộ tài liệu tra cứu công nghệ web do Mozilla và cộng đồng viết; bài dùng nó để đối chiếu.
+
 ## Đọc hình
 
 Các lần thử dưới đây dùng thư viện `cryptography` 50.0.1 của Python với khóa tạm; ví dụ thông điệp là `Pay Bob 100 USD`.

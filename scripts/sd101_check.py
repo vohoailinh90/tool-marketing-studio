@@ -176,7 +176,8 @@ UNIT_SYMBOLS = {"KiB": "Kibibyte", "MiB": "Mebibyte", "GiB": "Gibibyte", "TiB": 
 IRREGULAR_FORMS = {"HPACK": "Header Compression for HTTP/2", "SLSA": "Supply-chain Levels for Software Artifacts",
                    "W3C": "World Wide Web Consortium", "SELinux": "Security-Enhanced Linux", "WebAuthn": "Web Authentication",
                    "OpenID": "Open IDentity", "DevOps": "Development and Operations",
-                   "DevSecOps": "Development, Security and Operations", "GitOps": "Git Operations", "NoOps": "No Operations"}
+                   "DevSecOps": "Development, Security and Operations", "GitOps": "Git Operations", "NoOps": "No Operations",
+                   "UTC": "Coordinated Universal Time"}
 # Names made from the initials of what they stand for, with lowercase or digits inside, so that no run of capitals
 # shows them. A name that merely has capitals (JavaScript, GitHub, PostgreSQL) is not an abbreviation.
 MIXED_CASE_TERMS = ("gRPC", "IPv4", "IPv6", "OAuth", "mTLS", "NoSQL", "vCPU", "IaC", "MoE", "PaaS", "IaaS", "SaaS", "FaaS", "BaaS",

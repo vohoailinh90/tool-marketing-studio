@@ -1903,6 +1903,10 @@ mutations:
   replace: "*UNIT_SYMBOLS)"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_the_forms_an_abbreviation_takes
 - label: a name with its own full form is held to the initials rule
-  find: "IRREGULAR_FORMS = {\"HPACK\": \"Header Compression for HTTP/2\", \"SLSA\": \"Supply-chain Levels for Software Artifacts\",\n                   \"W3C\": \"World Wide Web Consortium\", \"SELinux\": \"Security-Enhanced Linux\", \"WebAuthn\": \"Web Authentication\",\n                   \"OpenID\": \"Open IDentity\", \"DevOps\": \"Development and Operations\",\n                   \"DevSecOps\": \"Development, Security and Operations\", \"GitOps\": \"Git Operations\", \"NoOps\": \"No Operations\"}"
+  find: "IRREGULAR_FORMS = {\"HPACK\": \"Header Compression for HTTP/2\", \"SLSA\": \"Supply-chain Levels for Software Artifacts\",\n                   \"W3C\": \"World Wide Web Consortium\", \"SELinux\": \"Security-Enhanced Linux\", \"WebAuthn\": \"Web Authentication\",\n                   \"OpenID\": \"Open IDentity\", \"DevOps\": \"Development and Operations\",\n                   \"DevSecOps\": \"Development, Security and Operations\", \"GitOps\": \"Git Operations\", \"NoOps\": \"No Operations\",\n                   \"UTC\": \"Coordinated Universal Time\"}"
   replace: "IRREGULAR_FORMS = {}"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_unit_symbol_is_explained_by_the_name_of_the_unit
+- label: UTC is not explained by the name it stands for
+  find: ",\n                   \"UTC\": \"Coordinated Universal Time\"}"
+  replace: "}"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_a_unit_symbol_is_explained_by_the_name_of_the_unit

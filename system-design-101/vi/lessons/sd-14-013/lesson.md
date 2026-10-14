@@ -5,6 +5,16 @@ Bài này chạy thử từng cách viết trên Linux với nftables, để th�
 
 ![Tám thẻ xếp dọc. Thẻ đầu: mọi luật tường lửa là một điều kiện cộng một hành động, gói tin khớp điều kiện thì cho qua hoặc chặn. Sáu thẻ là sáu cách viết điều kiện. Cổng: nhìn số cổng chứ không nhìn ứng dụng đứng sau, nên một dịch vụ không phải HTTP vẫn đi qua cổng được phép. Địa chỉ IP: cho hoặc chặn theo địa chỉ nguồn hay đích, danh sách trắng hoặc danh sách đen. Giao thức: TCP, UDP, ICMP, có thể không nêu cổng; luật chặn UDP không nêu cổng chặn cả hai cổng UDP đã thử trên địa chỉ đó. Thời gian: khớp theo đồng hồ của máy chạy tường lửa. Trạng thái: cho qua gói thuộc kết nối đã có, xem bài sd-14-007. Ứng dụng: thử được là nhận ra người dùng tạo gói tin, không thử được là nhận ra nội dung. Thẻ cuối: thứ tự luật có thể quyết định kết quả; luật cho kết nối đã mở mà xếp trước luật chặn thì kết nối cũ còn sống.](../../diagrams/sd-14-013-main.svg)
 
+## Từ viết tắt
+
+- **HTTP** (HyperText Transfer Protocol) — giao thức truyền siêu văn bản: quy ước để trình duyệt gửi yêu cầu và máy chủ gửi trả lời; ở đây là ví dụ một dịch vụ mà luật cổng không phân biệt được với dịch vụ khác.
+- **IP** (Internet Protocol) — giao thức Internet: quy ước đánh địa chỉ và chuyển gói tin giữa các máy; địa chỉ IP là địa chỉ của một máy trên mạng.
+- **TCP** (Transmission Control Protocol) — giao thức điều khiển truyền: tạo kết nối đáng tin cậy, dữ liệu đến đủ và đúng thứ tự.
+- **UDP** (User Datagram Protocol) — giao thức gói dữ liệu người dùng: gửi gói tin đơn giản, nhanh, không có kết nối và không bảo đảm đến đủ hay đúng thứ tự.
+- **ICMP** (Internet Control Message Protocol) — giao thức thông điệp điều khiển Internet: để các máy báo lỗi và kiểm tra đường đi, lệnh ping dùng nó; không có số cổng.
+- **SSH** (Secure SHell) — vỏ lệnh an toàn: cách đăng nhập và điều khiển máy từ xa có mã hóa.
+- **UTC** (Coordinated Universal Time) — giờ phối hợp quốc tế: múi giờ chuẩn mà các máy dùng làm mốc chung, không đổi theo mùa.
+
 ## Đọc hình
 
 **Một luật = điều kiện + hành động.** Bài nguồn gọi chúng là “sáu trường hợp sử dụng”; nhìn gần hơn thì đó là sáu thứ có thể đặt vào phần điều kiện. Toàn bộ các lần thử dưới đây chạy trên một máy Linux, bằng nftables v1.0.9, với một bảng luật tạm thời trên địa chỉ loopback (đã xóa sau khi thử).

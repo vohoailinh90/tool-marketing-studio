@@ -1879,6 +1879,8 @@ class AbbreviationRuleTests(StoreCase):
         self.assertFalse(check.spells("OpenID", "Open Identity Provider"))
         self.assertFalse(check.spells("W3C", "World Wide Web"))
         self.assertTrue(check.spells("PaaS", "Platform as a Service"))
+        self.assertTrue(check.spells("UTC", "Coordinated Universal Time"))
+        self.assertFalse(check.spells("UTC", "Universal Time"))
         self.lesson("Bộ nhớ tối thiểu 19 MiB.", glossary=None)
         self.assertProblem("uses the abbreviation(s) MiB")
         self.lesson("Bộ nhớ tối thiểu 19 MiB.", glossary="- **MiB** (Mebibyte) — mebibyte: đơn vị dung lượng bằng 1.048.576 byte.\n")

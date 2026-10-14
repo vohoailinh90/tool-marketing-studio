@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 856" width="320" height="856" role="img" aria-labelledby="title desc">
+<title id="title">Sáu thuật ngữ dữ liệu trả lời bốn câu hỏi khác nhau</title>
+<desc id="desc">Chứa ở đâu: data lake giữ dữ liệu thô, data warehouse giữ dữ liệu tích hợp để phân tích, data mart là phần phục vụ một nhóm. Chứa bằng gì: Delta Lake là lớp lưu trữ thêm giao dịch ACID. Di chuyển thế nào: data pipeline. Ai chịu trách nhiệm: data mesh là cách tổ chức, không phải sản phẩm để cài.</desc>
+<rect width="320" height="856" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="21" font-weight="bold">SÁU THUẬT NGỮ</text>
+<text x="16" y="54" font-size="21" font-weight="bold">BỐN CÂU HỎI</text>
+<rect x="16" y="80" width="288" height="38" rx="10" fill="#1e293b"/>
+<text x="29" y="103" font-size="16" font-weight="bold" fill="#ffffff">1 · Chứa ở đâu?</text>
+<rect x="16" y="128" width="288" height="76" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="29" y="157" font-size="16" font-weight="bold">Data lake</text>
+<text x="29" y="185" font-size="16" font-weight="normal">Giữ dữ liệu thô, nhiều dạng</text>
+<rect x="16" y="212" width="288" height="76" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="29" y="241" font-size="16" font-weight="bold">Data warehouse</text>
+<text x="29" y="269" font-size="16" font-weight="normal">Dữ liệu đã tích hợp để phân tích</text>
+<rect x="16" y="296" width="288" height="76" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="29" y="325" font-size="16" font-weight="bold">Data mart</text>
+<text x="29" y="353" font-size="16" font-weight="normal">Phần riêng cho một nhóm</text>
+<rect x="16" y="384" width="288" height="38" rx="10" fill="#1e293b"/>
+<text x="29" y="407" font-size="16" font-weight="bold" fill="#ffffff">2 · Chứa bằng gì?</text>
+<rect x="16" y="432" width="288" height="76" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="29" y="461" font-size="16" font-weight="bold">Delta Lake</text>
+<text x="29" y="489" font-size="16" font-weight="normal">Lớp lưu trữ, thêm giao dịch ACID</text>
+<rect x="16" y="520" width="288" height="38" rx="10" fill="#1e293b"/>
+<text x="29" y="543" font-size="16" font-weight="bold" fill="#ffffff">3 · Di chuyển thế nào?</text>
+<rect x="16" y="568" width="288" height="76" rx="12" fill="#e2e8f0" stroke="#94a3b8"/>
+<text x="29" y="597" font-size="16" font-weight="bold">Data pipeline</text>
+<text x="29" y="625" font-size="16" font-weight="normal">Lấy, biến đổi, chuyển dữ liệu</text>
+<rect x="16" y="656" width="288" height="38" rx="10" fill="#1e293b"/>
+<text x="29" y="679" font-size="16" font-weight="bold" fill="#ffffff">4 · Ai chịu trách nhiệm?</text>
+<rect x="16" y="704" width="288" height="100" rx="12" fill="#fee2e2" stroke="#94a3b8"/>
+<text x="29" y="733" font-size="16" font-weight="bold">Data mesh</text>
+<text x="29" y="761" font-size="16" font-weight="normal">Cách tổ chức: mỗi miền sở hữu</text>
+<text x="29" y="785" font-size="16" font-weight="normal">dữ liệu của mình</text>
+<text x="16" y="832" font-size="16" font-weight="normal" fill="#334155">Mesh không phải sản phẩm để cài.</text>
+</g></svg>

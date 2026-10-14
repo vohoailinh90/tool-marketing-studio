@@ -1,0 +1,92 @@
+{
+  "id": "sd-03-007",
+  "title_vi": "Tổng quan về đường ống dữ liệu",
+  "language": "vi",
+  "kind": "flow",
+  "content_status": "review",
+  "source_ref": "sd-03-007",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/data-pipelines-overview.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/data-pipelines-overview.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches provider tree OID. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "d110acb6477e1e8335092b819363e63342d6b40f",
+    "retrieved_body_sha256": "6ba9c55c005d95713c946fe025303cefb1a941222884c08a73a1f389dc6918ee",
+    "retrieved_body_bytes": 1686
+  },
+  "diagram": "../diagrams/sd-03-007-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-03-002",
+      "relation": "uses",
+      "reason_vi": "Lake, warehouse và pipeline được định nghĩa ở bài thuật ngữ dữ liệu."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "evidence": "Google Cloud pages were opened; Kafka delivery semantics come from search excerpts of Confluent documentation and third-party guides (the Apache and Confluent pages were unreachable)."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 14.4,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright) rendered the full lesson at each width with optional sections open; diagram scale measured from the rendered image and every SVG text box checked against the viewBox. Not learner testing and not GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "A pipeline is commonly described in five phases: collect, ingest, store, compute, consume; compute covers cleansing, aggregation and format conversion in batch or stream.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/data-pipelines-overview.md",
+      "section": "Phases",
+      "verified_by": "Carried from the source as a general description; read, not independently checked."
+    },
+    {
+      "claim_vi": "Data lakes and data warehouses are the storage roles named in the store phase.",
+      "source": "https://cloud.google.com/learn/what-is-a-data-lake",
+      "section": "What is a Data Lake?",
+      "verified_by": "Page opened and read (warehouse page: https://cloud.google.com/learn/what-is-a-data-warehouse)."
+    },
+    {
+      "claim_vi": "Kafka describes at-most-once, at-least-once and exactly-once delivery; at-least-once can write duplicates when a producer retries after a lost acknowledgement.",
+      "source": "https://docs.confluent.io/kafka/design/delivery-semantics.html",
+      "section": "Delivery semantics",
+      "verified_by": "Search-result excerpt only; the page itself was not opened (host blocked in the authoring environment)."
+    },
+    {
+      "claim_vi": "An idempotent producer deduplicates with a producer id and sequence number; Kafka transactions do not make external side effects exactly-once.",
+      "source": "https://docs.confluent.io/kafka/design/delivery-semantics.html",
+      "section": "Idempotent producer; transactions",
+      "verified_by": "Search-result excerpt only; the page itself was not opened (host blocked in the authoring environment). The external-side-effect caveat was stated by a third-party guide in the same results."
+    }
+  ],
+  "design_notes_vi": "Năm giai đoạn dọc với ví dụ cửa hàng trực tuyến tự đặt; thẻ cuối nêu lỗi gửi lại làm trùng dòng. So sánh lô/luồng là giải thích của người biên soạn, không phải tuyên bố có nguồn. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Source describes the phases abstractly; the lesson adds a concrete example and the duplicate-delivery limitation, which the source does not mention.",
+    "Source lists consumers (dashboards, BI, ML) generically; the lesson shortens it to three examples."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

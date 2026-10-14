@@ -1,0 +1,99 @@
+{
+  "id": "sd-14-012",
+  "title_vi": "Thiết kế hệ thống an toàn: mười hai câu cần hỏi",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "review",
+  "source_ref": "sd-14-012",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/how-do-we-design-a-secure-system.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-we-design-a-secure-system.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches provider tree OID. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "203782be8cca260523b87301b39dce6314e92420",
+    "retrieved_body_sha256": "f5d67328a01dd34fdf695d020d13d492a793828fc103122126c8d60dd2cda8d0",
+    "retrieved_body_bytes": 1060
+  },
+  "diagram": "../diagrams/sd-14-012-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "evidence": "The source's text is only a list of twelve areas; OWASP cheat sheets read from a local clone (introductions only) and the clone's file names listed (137 cheat sheets at commit ae965343cb82); whether OWASP covers the unmatched areas elsewhere was not searched."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 14.4,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright) rendered the full lesson at each width with optional sections open; diagram scale measured from the rendered image and every SVG text box checked against the viewBox. Not learner testing and not GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "The source says designing secure systems matters from protecting sensitive information to keeping infrastructure stable and that developers should apply security guidelines by default; it lists twelve key design points: Authentication, Authorization, Encryption, Vulnerability, Audit & Compliance, Network Security, Terminal Security, Emergency Responses, Container Security, API Security, 3rd-Party Vendor Management, Disaster Recovery. The details are in an image that is not used.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-we-design-a-secure-system.md",
+      "section": "Whole guide",
+      "verified_by": "Source body read."
+    },
+    {
+      "claim_vi": "OWASP's Secure Product Design cheat sheet starts from establishing secure defaults, minimizing the attack surface area and failing securely.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/ae965343cb82e6b8f42aff1ccee57c4fa0f171c2/cheatsheets/Secure_Product_Design_Cheat_Sheet.md",
+      "section": "Methodology",
+      "verified_by": "Read from a local clone of the repository."
+    },
+    {
+      "claim_vi": "Authentication is the process of verifying that an individual, entity or website is who or what it claims to be; authorization is verifying that a requested action is approved for a specific entity and is distinct from authentication.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/ae965343cb82e6b8f42aff1ccee57c4fa0f171c2/cheatsheets/Authorization_Cheat_Sheet.md",
+      "section": "Introduction",
+      "verified_by": "Read from a local clone of the repository. Authentication wording is from the Authentication cheat sheet introduction, also read."
+    },
+    {
+      "claim_vi": "OWASP has cheat sheets matching: cryptographic storage, transport layer security, REST security, Docker security, Kubernetes security, vulnerable dependency management, logging, software supply chain security and third-party JavaScript management.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/tree/ae965343cb82e6b8f42aff1ccee57c4fa0f171c2/cheatsheets",
+      "section": "Cheat sheet file list",
+      "verified_by": "Read from a local clone of the repository. Only the introductions of these sheets were read."
+    },
+    {
+      "claim_vi": "Among the 137 cheat sheet files at the clone's commit, no file name refers to endpoint or terminal security, incident response, disaster recovery, compliance, audit or backup (a Mobile Application Security sheet exists). Determined by file name only; contents were not searched.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/tree/ae965343cb82e6b8f42aff1ccee57c4fa0f171c2/cheatsheets",
+      "section": "Cheat sheet file list",
+      "verified_by": "Read from a local clone of the repository. Listed with git ls-tree and filtered by name."
+    },
+    {
+      "claim_vi": "Grouping the twelve areas into four sets of questions (who gets in; data and transport; infrastructure; when something goes wrong) is the author's organization.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-we-design-a-secure-system.md",
+      "section": "Key Design Points",
+      "verified_by": "Author's organization of the source's list; not from the source or OWASP."
+    }
+  ],
+  "design_notes_vi": "Một thẻ nguyên tắc nền, bốn thẻ nhóm câu hỏi, một thẻ đỏ nêu mảng chưa có tài liệu tên tương ứng. Cách chia nhóm là của người biên soạn. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "The source's image holds the detail and its text is a bare list; the lesson does not use the image and instead maps each area to an OWASP cheat sheet that was read.",
+    "The lesson says which areas have no cheat sheet by name in the clone, which the source does not address.",
+    "Grouping into four question sets is the author's."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

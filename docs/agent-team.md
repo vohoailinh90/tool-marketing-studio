@@ -90,3 +90,29 @@ repository is private, so GitHub-hosted minutes are billed; without minutes a jo
 - The VPS keeps its files between jobs, so it runs only code from people who can push to this
   repository: every job skips a pull request whose branch lives in a fork. Keep the repository
   private, or keep that guard, while CI runs on the VPS (`tests/test_codex_review.py` checks it).
+
+## Radar preview
+
+github-radar opens a **draft pull request** on branch `radar/<campaign>` for each scan (it adds
+`campaigns/radar-<date>[-n]/` and `tools/github-radar/`). `.github/workflows/radar-preview.yml` looks at it for you:
+
+- it runs `studio.py check` and then `studio.py render` on that campaign with this repository's engine; the drawing runs only
+  when the check passed, because `render` revalidates the posts and not the tool brief (a `brand.accent` that is CSS would
+  reach the page, which may load local images into the uploaded screenshots);
+- it attaches the PNGs, the platform texts and the manifests to the run (artifact `radar-preview-pr-<number>`, kept
+  14 days) and keeps **one comment** on the pull request with the slide count, the slides that overflow, the
+  Facebook caption and a link to the artifact (edited in place on every push). The comment is budgeted to stay under the
+  size GitHub accepts: captions past the budget and table rows past theirs are left out with a note, and the files stay in the artifact;
+- it never approves, publishes, commits or pushes: reading the images, `studio.py approve` and publishing stay the owner's.
+
+The engine of a pull request is code that would run on the shared runner, so `scripts/radar_preview.py` first lists the
+files the pull request changed (against the base as it is now, the first parent of GitHub's merge commit) and draws it only
+when every one is under `campaigns/radar-*/` or `tools/github-radar/` and none is, or sits under, a symbolic link; otherwise
+the comment says which files are the problem and nothing runs. The planner and the comment writer run from the **base commit** (read with `git show` into the runner's
+temp folder, not checked out into the workspace, where a symbolic link of the pull request could steer the checkout), so a
+pull request that edits or deletes them is judged by the version on the base branch. That is still not a boundary against
+someone who can already push a branch here: GitHub runs the workflow file of the pull request's merge, so that person can
+edit the workflow itself, which runs on the same runner, exactly as with `ci.yml`.
+Only branches of this repository named `radar/...` are drawn (never a fork), the token can write pull-request comments
+and nothing else (and is not kept in `.git/config`), and no pull-request value is written into a script. The job is a
+few minutes and waits in the same runner queue as `ci.yml` (`CI_RUNNER` moves both). Tests: `tests/test_radar_preview.py`; mutations: `tests/mutations/radar_preview*.yaml`.

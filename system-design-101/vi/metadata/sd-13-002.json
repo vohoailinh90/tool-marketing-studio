@@ -39,11 +39,15 @@
   },
   "claims": [
     {
-      "claim_vi": "Bốn thước đo DORA ban đầu: tần suất triển khai, thời gian dẫn thay đổi, tỉ lệ thay đổi lỗi, thời gian khôi phục.",
-      "source": "https://dora.dev/guides/dora-metrics-four-keys/"
+      "claim_vi": "Mô hình ban đầu của DORA (nghiên cứu năm 2014) có bốn thước đo: tần suất triển khai, thời gian dẫn thay đổi, thời gian khôi phục trung bình (mean time to recover) và tỉ lệ thay đổi lỗi.",
+      "source": "https://dora.dev/insights/dora-metrics-history/"
     },
     {
-      "claim_vi": "DORA cập nhật mô hình thành năm thước đo, thêm tỉ lệ làm lại triển khai.",
+      "claim_vi": "Năm 2023 DORA đổi tên và định nghĩa lại thước đo khôi phục thành thời gian khôi phục sau triển khai lỗi: chỉ tính lỗi do thay đổi đưa lên môi trường thật gây ra, không tính nguyên nhân bên ngoài như sự cố trung tâm dữ liệu.",
+      "source": "https://dora.dev/insights/dora-metrics-history/"
+    },
+    {
+      "claim_vi": "Năm 2024 DORA thêm tỉ lệ làm lại triển khai; hướng dẫn hiện hành có năm thước đo: thời gian dẫn thay đổi, tần suất triển khai và thời gian khôi phục sau triển khai lỗi (thông lượng), tỉ lệ thay đổi lỗi và tỉ lệ làm lại triển khai (mất ổn định).",
       "source": "https://dora.dev/guides/dora-metrics/"
     },
     {

@@ -1807,7 +1807,7 @@ mutations:
   replace: "except (OSError, LookupError):"
   test: tests.test_sd101_check.RobustnessTests.test_odd_svg_files_are_reported_not_raised
 - label: the mixed-case terms (gRPC, IPv4) are not recognised as abbreviations
-  find: 'MIXED_CASE_TERMS = ("gRPC", "IPv4", "IPv6", "OAuth", "mTLS", "NoSQL", "vCPU", "IaC", "MoE")'
+  find: 'MIXED_CASE_TERMS = ("gRPC", "IPv4", "IPv6", "OAuth", "mTLS", "NoSQL", "vCPU", "IaC", "MoE", *UNIT_SYMBOLS)'
   replace: 'MIXED_CASE_TERMS = ("ZZZ",)'
   test: tests.test_sd101_check.AbbreviationRuleTests.test_the_forms_an_abbreviation_takes
 - label: a glossary bullet for a mixed-case term is not in the form
@@ -1854,3 +1854,11 @@ mutations:
   find: "    return re.fullmatch(pattern, letters) is not None"
   replace: "    return re.match(pattern, letters) is not None"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_the_initials_must_be_exactly_the_abbreviation
+- label: a unit symbol is held to the initials rule
+  find: "    if UNIT_SYMBOLS.get(abbreviation) == full_form.strip():\n        return True\n"
+  replace: ""
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_unit_symbol_is_explained_by_the_name_of_the_unit
+- label: the binary unit symbols are not recognised as abbreviations
+  find: "UNIT_SYMBOLS = {\"KiB\": \"Kibibyte\", \"MiB\": \"Mebibyte\", \"GiB\": \"Gibibyte\", \"TiB\": \"Tebibyte\"}"
+  replace: "UNIT_SYMBOLS = {}"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_the_forms_an_abbreviation_takes

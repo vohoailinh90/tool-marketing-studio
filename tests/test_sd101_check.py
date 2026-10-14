@@ -1860,6 +1860,16 @@ class AbbreviationRuleTests(StoreCase):
         self.assertTrue(check.spells("HSTS", "HTTP Strict Transport Security"))
         self.assertTrue(check.spells("QUIC", "Quick UDP Internet Connections"))
 
+    def test_a_unit_symbol_is_explained_by_the_name_of_the_unit(self) -> None:
+        self.assertTrue(check.spells("MiB", "Mebibyte"))
+        self.assertTrue(check.spells("GiB", "Gibibyte"))
+        self.assertFalse(check.spells("MiB", "Megabyte"))
+        self.assertFalse(check.spells("MiB", "Mebibyte Extra"))
+        self.lesson("Bộ nhớ tối thiểu 19 MiB.", glossary=None)
+        self.assertProblem("uses the abbreviation(s) MiB")
+        self.lesson("Bộ nhớ tối thiểu 19 MiB.", glossary="- **MiB** (Mebibyte) — mebibyte: đơn vị dung lượng bằng 1.048.576 byte.\n")
+        self.assertEqual([], self.problems())
+
     def test_a_recursive_name_gives_its_first_letter(self) -> None:
         self.assertTrue(check.spells("gRPC", "gRPC Remote Procedure Calls"))
 
@@ -1908,7 +1918,7 @@ class AbbreviationRuleTests(StoreCase):
     def test_the_forms_an_abbreviation_takes(self) -> None:
         found = check.abbreviations_in("APIs, HTTP/2, REST/JSON, TCP/UDP, (SSE), \"DNS\", HTTPS.")
         self.assertEqual({"API", "HTTP", "REST", "JSON", "TCP", "UDP", "SSE", "DNS", "HTTPS"}, found)
-        self.assertEqual({"gRPC", "IPv4", "mTLS", "IaC", "MoE"}, check.abbreviations_in("gRPC qua IPv4 và mTLS, IaC cùng MoE."))
+        self.assertEqual({"gRPC", "IPv4", "mTLS", "IaC", "MoE", "MiB"}, check.abbreviations_in("gRPC qua IPv4 và mTLS, IaC cùng MoE, 19 MiB."))
         for text in ("MAX_SIZE", "A80", "WebSocket", "I", "ĐƠN HÀNG", "TÓM", "gRPCs", "myIPv4"):
             with self.subTest(text=text):
                 self.assertEqual(set(), check.abbreviations_in(text))

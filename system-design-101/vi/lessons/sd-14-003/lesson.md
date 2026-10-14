@@ -10,6 +10,7 @@ và việc đoán từng mật khẩu một trở nên tốn kém.
 - **SHA** (Secure Hash Algorithm) — họ thuật toán băm: biến dữ liệu bất kỳ thành một chuỗi cố định; SHA-256 là một loại trong họ này.
 - **OWASP** (Open Worldwide Application Security Project) — tổ chức cộng đồng chuyên về bảo mật ứng dụng, có các hướng dẫn mà bài dùng để đối chiếu.
 - **PBKDF** (Password-Based Key Derivation Function) — hàm sinh khóa từ mật khẩu: băm mật khẩu nhiều vòng để khó đoán; PBKDF2 là một phiên bản.
+- **MiB** (Mebibyte) — mebibyte: đơn vị dung lượng bằng 1.048.576 byte (2 mũ 20), gần bằng một triệu byte.
 - **HMAC** (Hash-based Message Authentication Code) — mã xác thực thông điệp dựa trên hàm băm và một khóa bí mật.
 - **FIPS** (Federal Information Processing Standards) — các tiêu chuẩn xử lý thông tin của chính phủ Mỹ; FIPS-140 là tiêu chuẩn cho mô-đun mã hóa.
 

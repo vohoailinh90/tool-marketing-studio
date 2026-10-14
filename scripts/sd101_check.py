@@ -168,7 +168,9 @@ SOURCES_HEADING = "Nguồn đối chiếu"
 # MAX_SIZE or a Vietnamese capital word with a mark on it, which are not read as abbreviations.
 # A few terms carry their abbreviation in mixed case (gRPC, IPv4), which the capital-letter rule cannot see; they are
 # listed here, so add a new one when a lesson introduces it.
-MIXED_CASE_TERMS = ("gRPC", "IPv4", "IPv6", "OAuth", "mTLS", "NoSQL", "vCPU", "IaC", "MoE")
+# Unit symbols whose letters are not initials (MiB is "mebi" + byte): the full form is the unit's name.
+UNIT_SYMBOLS = {"KiB": "Kibibyte", "MiB": "Mebibyte", "GiB": "Gibibyte", "TiB": "Tebibyte"}
+MIXED_CASE_TERMS = ("gRPC", "IPv4", "IPv6", "OAuth", "mTLS", "NoSQL", "vCPU", "IaC", "MoE", *UNIT_SYMBOLS)
 ABBREVIATION = re.compile(r"(?<!\w)(?:(" + "|".join(MIXED_CASE_TERMS) + r")|([A-Z]{2,})\d*s?)(?!\w)")
 GLOSSARY_BULLET = re.compile(r"^- \*\*(?P<abbreviation>(?=[A-Za-z0-9]*[A-Z])[A-Za-z][A-Za-z0-9]+)\*\* "
                              r"\((?P<full>[^()]+)\) — (?P<meaning>\S.*)$")
@@ -1074,6 +1076,8 @@ def spells(abbreviation: str, full_form: str) -> bool:
     run works the same: "SYNchronize"); a word that is the abbreviation itself gives its first letter (a recursive
     name: "gRPC Remote Procedure Calls"); digits are not letters; accents are dropped (cơ sở dữ liệu is CSDL).
     """
+    if UNIT_SYMBOLS.get(abbreviation) == full_form.strip():
+        return True
     letters = re.sub(r"[^A-Za-z]", "", abbreviation).upper()
     plain = unicodedata.normalize("NFD", full_form.replace("đ", "d").replace("Đ", "D"))
     plain = "".join(char for char in plain if not unicodedata.combining(char))

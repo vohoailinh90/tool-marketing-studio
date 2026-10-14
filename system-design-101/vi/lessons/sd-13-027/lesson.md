@@ -51,7 +51,7 @@ jobs:
 - **Hủy lượt cũ:** chỉ hủy với PR; không nên hủy lượt đang chạy trên nhánh chính hay phát hành.
 - **Quyền tối thiểu:** khai `permissions` ở mức workflow hoặc job, chỉ mở thêm khi cần.
 - **OIDC (OpenID Connect — chuẩn xác thực dựa trên token định danh):** workflow nhận một token OIDC từ GitHub rồi đổi lấy thông tin xác thực ngắn hạn từ nhà cung cấp cloud, thay vì lưu khóa dài hạn trong bí mật.
-- **Environment:** đặt người duyệt bắt buộc và bí mật riêng cho từng môi trường.
+- **Environment:** gắn bí mật riêng cho từng môi trường và có thể đặt người duyệt bắt buộc. Người duyệt bắt buộc phụ thuộc gói: trên gói Free, Pro và Team nó chỉ dùng được ở kho công khai, còn kho riêng tư hoặc nội bộ cần gói cao hơn như GitHub Enterprise. Environment và bí mật của environment ở kho riêng tư cần gói Pro, Team hoặc Enterprise. Nếu không có người duyệt bắt buộc, cần một cơ chế duyệt khác.
 - **Branch protection:** đặt các kiểm tra bắt buộc phải qua trước khi merge vào nhánh chính.
 
 </details>
@@ -59,5 +59,5 @@ jobs:
 ## Nguồn đối chiếu
 
 - [ByteByteGo tại snapshot cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/cicd-pipeline-explained-in-simple-terms.md).
-- GitHub Docs: [workflow syntax](https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions), [bảo mật workflow](https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions), [cài đặt Actions của kho](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-github-actions-settings-for-a-repository), [environments](https://docs.github.com/en/actions/managing-workflow-runs-and-deployments/managing-deployments/managing-environments-for-deployment), [protected branches](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches).
+- GitHub Docs: [workflow syntax](https://docs.github.com/en/actions/writing-workflows/workflow-syntax-for-github-actions), [bảo mật workflow](https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions), [cài đặt Actions của kho](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-github-actions-settings-for-a-repository), [environments](https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments), [protected branches](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches).
 - Martin Fowler: [DeploymentPipeline](https://martinfowler.com/bliki/DeploymentPipeline.html).

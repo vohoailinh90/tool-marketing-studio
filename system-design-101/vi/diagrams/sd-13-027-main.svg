@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 959" width="320" height="959" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 986" width="320" height="986" role="img" aria-labelledby="title desc">
 <title id="title">Thiết kế pipeline CI/CD cho một repo: năm quyết định</title>
 <desc id="desc">Năm quyết định khi dựng pipeline cho một repo (viết tắt của repository — kho mã nguồn): khi nào chạy, làm sao chạy nhanh, cấp quyền gì, ai được đưa lên môi trường nào, và điều kiện để merge.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="959" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<rect width="320" height="986" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="30" font-size="20" font-weight="bold">NĂM QUYẾT ĐỊNH</text>
 <text x="16" y="58" font-size="16" font-weight="normal">Ví dụ minh họa bằng GitHub</text>
 <text x="16" y="85" font-size="16" font-weight="normal">Actions</text>
@@ -27,13 +27,14 @@
 <text x="30" y="613" font-size="16" font-weight="normal">OIDC (chuẩn xác thực bằng</text>
 <text x="30" y="640" font-size="16" font-weight="normal">token) thay cho khóa dài</text>
 <text x="30" y="667" font-size="16" font-weight="normal">hạn khi vào cloud</text>
-<rect x="16" y="698" width="288" height="128" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
+<rect x="16" y="698" width="288" height="155" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
 <text x="30" y="726" font-size="16" font-weight="bold">Ai lên môi trường nào?</text>
-<text x="30" y="753" font-size="16" font-weight="normal">Environment production cần</text>
-<text x="30" y="780" font-size="16" font-weight="normal">người duyệt</text>
-<text x="30" y="807" font-size="16" font-weight="normal">Bí mật gắn theo environment</text>
-<rect x="16" y="838" width="288" height="101" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
-<text x="30" y="866" font-size="16" font-weight="bold">Khi nào được merge?</text>
-<text x="30" y="893" font-size="16" font-weight="normal">Required status checks và</text>
-<text x="30" y="920" font-size="16" font-weight="normal">branch protection</text>
+<text x="30" y="753" font-size="16" font-weight="normal">Environment production có</text>
+<text x="30" y="780" font-size="16" font-weight="normal">thể bắt buộc người duyệt</text>
+<text x="30" y="807" font-size="16" font-weight="normal">(tùy gói và loại kho)</text>
+<text x="30" y="834" font-size="16" font-weight="normal">Bí mật gắn theo environment</text>
+<rect x="16" y="865" width="288" height="101" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="893" font-size="16" font-weight="bold">Khi nào được merge?</text>
+<text x="30" y="920" font-size="16" font-weight="normal">Required status checks và</text>
+<text x="30" y="947" font-size="16" font-weight="normal">branch protection</text>
 </g></svg>

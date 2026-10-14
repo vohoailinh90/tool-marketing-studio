@@ -57,8 +57,12 @@
       "source": "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-github-actions-settings-for-a-repository"
     },
     {
-      "claim_vi": "Environment có thể yêu cầu người duyệt và có bí mật riêng.",
-      "source": "https://docs.github.com/en/actions/managing-workflow-runs-and-deployments/managing-deployments/managing-environments-for-deployment"
+      "claim_vi": "Bí mật của environment chỉ có sẵn cho job tham chiếu environment đó, và nếu environment cần duyệt thì job chỉ đọc được bí mật sau khi người duyệt chấp thuận.",
+      "source": "https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments#environment-secrets"
+    },
+    {
+      "claim_vi": "Trên gói Free, Pro và Team, người duyệt bắt buộc của environment chỉ có ở kho công khai; environment và bí mật của environment ở kho riêng tư hoặc nội bộ cần gói Pro, Team hoặc Enterprise.",
+      "source": "https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments#required-reviewers"
     },
     {
       "claim_vi": "Protected branches cho phép đặt các kiểm tra trạng thái bắt buộc trước khi merge.",

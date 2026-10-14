@@ -1723,8 +1723,16 @@ mutations:
   replace: "    return found - {\"\"}"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_words_that_only_look_like_abbreviations_need_no_entry
 - label: a plural abbreviation (APIs) is not recognised
-  find: "\\d*s?)(?!\\w)"
-  replace: "\\d*)(?!\\w)"
+  find: "))\\d*s?(?!\\w)"
+  replace: "))\\d*(?!\\w)"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_the_forms_an_abbreviation_takes
+- label: a version number after an abbreviation (OAuth2, API2) hides it
+  find: "))\\d*s?(?!\\w)"
+  replace: "))s?(?!\\w)"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_the_forms_an_abbreviation_takes
+- label: a plural or version suffix hides a mixed-case abbreviation (vCPUs, MiBs, OAuth2)
+  find: "r\")|([A-Z]{2,}))\\d*s?(?!\\w)\")"
+  replace: "r\")|([A-Z]{2,})\\d*s?)(?!\\w)\")"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_the_forms_an_abbreviation_takes
 - label: the text of the figure is not read for abbreviations
   find: "body + glossary + figure))"

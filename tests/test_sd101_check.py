@@ -1976,8 +1976,10 @@ class AbbreviationRuleTests(StoreCase):
                           "GitOps", "NoOps"},
                          check.abbreviations_in("PaaS, IaaS, SaaS, FaaS và BaaS; chuẩn W3C; SELinux cùng WebAuthn; OpenID Connect; "
                                                 "DevOps, DevSecOps, GitOps và NoOps."))
-        for text in ("MAX_SIZE", "A80", "WebSocket", "I", "ĐƠN HÀNG", "TÓM", "gRPCs", "myIPv4", "JavaScript", "GitHub",
-                     "PostgreSQL", "OOMKilled"):
+        self.assertEqual({"vCPU", "MiB", "OAuth", "gRPC", "IPv4", "NoSQL", "API"},
+                         check.abbreviations_in("16 vCPUs, 4 MiBs, OAuth2, gRPCs, IPv4s, NoSQLs và API2."))
+        for text in ("MAX_SIZE", "A80", "WebSocket", "I", "ĐƠN HÀNG", "TÓM", "myIPv4", "JavaScript", "GitHub",
+                     "PostgreSQL", "OOMKilled", "OAuthority", "vCPUx", "gRPCsx"):
             with self.subTest(text=text):
                 self.assertEqual(set(), check.abbreviations_in(text))
 

@@ -164,10 +164,11 @@ URL_CALL = re.compile(r"url\(\s*['\"]?\s*([^)'\"\s]*)", re.IGNORECASE)
 
 GLOSSARY_HEADING = "Từ viết tắt"
 SOURCES_HEADING = "Nguồn đối chiếu"
-# Two or more capital letters standing alone: LLM, DNS, HTTP/2 (-> HTTP), APIs (-> API). Not IPv4, gRPC, OAuth,
-# MAX_SIZE or a Vietnamese capital word with a mark on it, which are not read as abbreviations.
+# Two or more capital letters standing alone: LLM, DNS, HTTP/2 (-> HTTP), APIs (-> API). Not MAX_SIZE or a Vietnamese
+# capital word with a mark on it, which are not read as abbreviations.
 # A few terms carry their abbreviation in mixed case (gRPC, IPv4), which the capital-letter rule cannot see; they are
-# listed here, so add a new one when a lesson introduces it.
+# listed here, so add a new one when a lesson introduces it. Either kind may end in a version number or a plural
+# (OAuth2, vCPUs, MiBs, gRPCs), which is read as the term itself.
 # Unit symbols whose letters are not initials (MiB is "mebi" + byte): the full form is the unit's name.
 UNIT_SYMBOLS = {"KiB": "Kibibyte", "MiB": "Mebibyte", "GiB": "Gibibyte", "TiB": "Tebibyte"}
 # Names whose letters are not (all) initials: the full form is what they stand for (HPACK is "Header Compression for
@@ -180,7 +181,7 @@ IRREGULAR_FORMS = {"HPACK": "Header Compression for HTTP/2", "SLSA": "Supply-cha
 # shows them. A name that merely has capitals (JavaScript, GitHub, PostgreSQL) is not an abbreviation.
 MIXED_CASE_TERMS = ("gRPC", "IPv4", "IPv6", "OAuth", "mTLS", "NoSQL", "vCPU", "IaC", "MoE", "PaaS", "IaaS", "SaaS", "FaaS", "BaaS",
                     "W3C", "SELinux", "WebAuthn", "OpenID", "DevOps", "DevSecOps", "GitOps", "NoOps", *UNIT_SYMBOLS)
-ABBREVIATION = re.compile(r"(?<!\w)(?:(" + "|".join(MIXED_CASE_TERMS) + r")|([A-Z]{2,})\d*s?)(?!\w)")
+ABBREVIATION = re.compile(r"(?<!\w)(?:(" + "|".join(MIXED_CASE_TERMS) + r")|([A-Z]{2,}))\d*s?(?!\w)")
 GLOSSARY_BULLET = re.compile(r"^- \*\*(?P<abbreviation>(?=[A-Za-z0-9]*[A-Z])[A-Za-z][A-Za-z0-9]+)\*\* "
                              r"\((?P<full>[^()]+)\) — (?P<meaning>\S.*)$")
 MIN_MEANING_WORDS = 3

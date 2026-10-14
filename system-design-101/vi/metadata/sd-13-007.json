@@ -61,6 +61,10 @@
       "source": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/standard-queues.html"
     },
     {
+      "claim_vi": "Mẫu Idempotent Consumer ghi dấu đã xử lý và tác dụng nghiệp vụ trong một thao tác nguyên tử, dùng ràng buộc duy nhất để chặn bản trùng đồng thời, và dùng trạng thái đang xử lý kèm đối soát cho tác dụng không nằm trong giao dịch.",
+      "source": "https://learn.microsoft.com/en-us/azure/architecture/patterns/idempotent-consumer"
+    },
+    {
       "claim_vi": "Dữ liệu ghi trong lớp ghi của container không còn khi container bị xóa; muốn giữ phải dùng volume hoặc bind mount.",
       "source": "https://docs.docker.com/engine/storage/"
     }

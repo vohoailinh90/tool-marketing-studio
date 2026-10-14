@@ -27,6 +27,9 @@ jobs:
     if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
     steps:
       - uses: actions/checkout@v4
+        with:
+          # The pull request's diff against its base decides whether the mutation check runs.
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -60,7 +63,16 @@ jobs:
           python scripts/lesson_coverage.py check --all --course-dir "$course"
       - name: Tests
         run: python -m pytest -q
+      - name: Does this change need the mutation check?
+        id: changes
+        # Takes about 27 of this job's 30 minutes. A pull request that touches only the System Design
+        # store cannot break the safety-rail tests, so it skips the check; every push to main and every
+        # other pull request runs it (scripts/ci_changes.py). An unset output runs it too.
+        env:
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: python scripts/ci_changes.py
       - name: Mutation check (safety-rail tests catch their own removal)
+        if: steps.changes.outputs.mutation != 'false'
         run: python scripts/mutation_check.py --all
 
   web:

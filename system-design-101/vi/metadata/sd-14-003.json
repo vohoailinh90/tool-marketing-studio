@@ -1,0 +1,104 @@
+{
+  "id": "sd-14-003",
+  "title_vi": "Lưu mật khẩu an toàn",
+  "language": "vi",
+  "kind": "flow",
+  "content_status": "review",
+  "source_ref": "sd-14-003",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/how-to-store-passwords-in-the-database.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-to-store-passwords-in-the-database.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches provider tree OID. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "c1afc3b01249c74b5fa05172a6c22b4594635df5",
+    "retrieved_body_sha256": "f432097fed694d14cd27f3ca78d4506a6a7290fd5f702a98301c7ba8df5b9330",
+    "retrieved_body_bytes": 1631
+  },
+  "diagram": "../diagrams/sd-14-003-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-14-002",
+      "relation": "uses",
+      "reason_vi": "Băm khác mã hóa và encode, như bài trước phân biệt."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "evidence": "OWASP Password Storage Cheat Sheet read from a local clone; the demonstrations were executed in Python and are not described by OWASP; the speed figures are one measurement on the authoring machine."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 14.4,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright) rendered the full lesson at each width with optional sections open; diagram scale measured from the rendered image and every SVG text box checked against the viewBox. Not learner testing and not GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Passwords must be protected with strong, slow hashing algorithms such as Argon2id, bcrypt or PBKDF2, with a unique salt per password against rainbow tables; fast hashes such as SHA-256 are not suitable.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/ae965343cb82e6b8f42aff1ccee57c4fa0f171c2/cheatsheets/Password_Storage_Cheat_Sheet.md",
+      "section": "Introduction",
+      "verified_by": "Read from a local clone of the OWASP CheatSheetSeries repository at commit ae965343cb82e6b8f42aff1ccee57c4fa0f171c2, the head of master when read (a later change to master does not alter this URL)."
+    },
+    {
+      "claim_vi": "Recommended settings: Argon2id with at least 19 MiB memory, 2 iterations, parallelism 1; scrypt as fallback; bcrypt work factor 10 or more with a 72-byte password limit for legacy systems; PBKDF2 with HMAC-SHA-256 and 600,000 or more iterations if FIPS-140 is required.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/ae965343cb82e6b8f42aff1ccee57c4fa0f171c2/cheatsheets/Password_Storage_Cheat_Sheet.md",
+      "section": "Password Hashing Algorithms (summary)",
+      "verified_by": "Read from a local clone of the OWASP CheatSheetSeries repository at commit ae965343cb82e6b8f42aff1ccee57c4fa0f171c2, the head of master when read (a later change to master does not alter this URL)."
+    },
+    {
+      "claim_vi": "A salt is unique and random per password, forces the attacker to crack hashes one at a time, protects against pre-computed tables, and hides whether two users share a password; a pepper is a secret kept separately from the hash and is only defence in depth.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/ae965343cb82e6b8f42aff1ccee57c4fa0f171c2/cheatsheets/Password_Storage_Cheat_Sheet.md",
+      "section": "Salting; Peppering",
+      "verified_by": "Read from a local clone of the OWASP CheatSheetSeries repository at commit ae965343cb82e6b8f42aff1ccee57c4fa0f171c2, the head of master when read (a later change to master does not alter this URL)."
+    },
+    {
+      "claim_vi": "Hashing the same password twice with argon2-cffi 25.1.0 gives two different strings (random salt), both verify, a wrong password raises VerifyMismatchError, and the string starts with $argon2id$v=19$m=65536,t=3,p=4$ (the library's default parameters).",
+      "source": "https://pypi.org/project/argon2-cffi/",
+      "section": "Library behaviour",
+      "verified_by": "No external page describes this exact output; observed by executing the code on the authoring machine. The OWASP page does not describe this output."
+    },
+    {
+      "claim_vi": "bcrypt 5.0.0 raises ValueError for a 73-byte password, consistent with bcrypt's 72-byte input limit that OWASP describes.",
+      "source": "https://pypi.org/project/bcrypt/",
+      "section": "Library behaviour",
+      "verified_by": "No external page describes this exact output; observed by executing the code on the authoring machine. OWASP states the 72-byte limit; the ValueError itself comes from the library."
+    },
+    {
+      "claim_vi": "In one second on a single thread, SHA-256 hashed about 1.77 million times and argon2-cffi defaults about 16 times; a repeat run by the reviewer gave about 1.27 million and 12, the same order of magnitude (illustrative only).",
+      "source": "https://pypi.org/project/argon2-cffi/",
+      "section": "Measurement",
+      "verified_by": "No external page describes this exact output; observed by executing the code on the authoring machine. Machine-specific; no external source."
+    }
+  ],
+  "design_notes_vi": "Hai nhóm đăng ký và đăng nhập để thấy salt và tham số đi cùng chuỗi đã lưu; thẻ đỏ liệt kê ba điều không nên làm. Số đo tốc độ chỉ minh họa. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Source stores hash(password + salt) without saying the hash must be slow; the lesson adds that a slow password-hashing function such as Argon2id is required, with OWASP's recommended settings.",
+    "Source treats salting as the main defence; the lesson states its limit (precomputation and shared-password leaks, not brute force) and adds pepper and the bcrypt input limit."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

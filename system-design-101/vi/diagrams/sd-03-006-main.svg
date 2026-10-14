@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 722" width="320" height="722" role="img" aria-labelledby="title desc">
+<title id="title">Vòng lặp của một agent dùng mô hình ngôn ngữ</title>
+<desc id="desc">Đây là agent dùng mô hình ngôn ngữ (LLM agent). Người dùng nêu mục tiêu. LLM chọn bước tiếp theo, agent gọi công cụ, quan sát kết quả thật từ môi trường rồi quay lại để LLM chọn bước kế tiếp. Vòng lặp dừng khi xong mục tiêu, hết số lượt cho phép hoặc chờ người duyệt.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="722" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="21" font-weight="bold">VÒNG LẶP CỦA</text>
+<text x="16" y="54" font-size="21" font-weight="bold">MỘT LLM AGENT</text>
+<rect x="16" y="80" width="268" height="100" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="29" y="109" font-size="16" font-weight="bold">Mục tiêu</text>
+<text x="29" y="137" font-size="16" font-weight="normal">Ví dụ: đặt lịch họp cho ba</text>
+<text x="29" y="161" font-size="16" font-weight="normal">người</text>
+<line x1="150" y1="181" x2="150" y2="200" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="202" width="268" height="100" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="29" y="231" font-size="16" font-weight="bold">1 · LLM chọn bước kế tiếp</text>
+<text x="29" y="259" font-size="16" font-weight="normal">Dựa trên mục tiêu, bộ nhớ,</text>
+<text x="29" y="283" font-size="16" font-weight="normal">kết quả trước</text>
+<line x1="150" y1="303" x2="150" y2="322" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="324" width="268" height="76" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="29" y="353" font-size="16" font-weight="bold">2 · Gọi công cụ</text>
+<text x="29" y="381" font-size="16" font-weight="normal">API lịch, tìm kiếm, chạy mã</text>
+<line x1="150" y1="401" x2="150" y2="420" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="422" width="268" height="76" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="29" y="451" font-size="16" font-weight="bold">3 · Quan sát kết quả</text>
+<text x="29" y="479" font-size="16" font-weight="normal">Dữ liệu thật từ môi trường</text>
+<path d="M284,460 H302 V252 H286" fill="none" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<line x1="150" y1="499" x2="150" y2="518" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="520" width="268" height="124" rx="12" fill="#e2e8f0" stroke="#94a3b8"/>
+<text x="29" y="549" font-size="16" font-weight="bold">Dừng</text>
+<text x="29" y="577" font-size="16" font-weight="normal">Xong mục tiêu, hết số lượt</text>
+<text x="29" y="601" font-size="16" font-weight="normal">cho phép, hoặc chờ người</text>
+<text x="29" y="625" font-size="16" font-weight="normal">duyệt</text>
+<text x="16" y="674" font-size="16" font-weight="normal" fill="#334155">Thao tác khó hoàn tác nên có người</text>
+<text x="16" y="698" font-size="16" font-weight="normal" fill="#334155">duyệt trước.</text>
+</g></svg>

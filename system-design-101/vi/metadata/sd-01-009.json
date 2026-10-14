@@ -98,7 +98,7 @@
       "claim_vi": "HTTP/1.1 cho phép pipelining trên kết nối bền; server có thể xử lý song song các request dùng safe method nhưng phải trả response theo thứ tự. Nhiều kết nối thường dùng để tránh chặn đầu hàng.",
       "source": "https://www.rfc-editor.org/rfc/rfc9112.html#section-9.3.2",
       "section": "9.3.2 và 9.4",
-      "verified_by": "Đọc trực tiếp RFC 9112 ngày 2026-10-13."
+      "verified_by": "Văn bản RFC 9112 đã xuất bản (rfc9112.xml) trong kho httpwg/http-core, commit bde37f634681bd5462568b73aa722af9c9a3ef5e (2025-11-14), mục 9.3.2 và 9.4, đọc từ bản clone ngày 2026-10-14: 9.3.2 cho server xử lý song song các yêu cầu pipeline có safe method nhưng phải trả response theo thứ tự; 9.4 nêu nhiều kết nối thường dùng để tránh chặn đầu hàng. Trang rfc-editor.org không truy cập được từ môi trường soạn thảo nên đường dẫn nguồn chưa mở trực tiếp."
     }
   ],
   "design_notes_vi": "Ba nhóm: cải tiến, cần cập nhật, giới hạn; thẻ giới hạn nằm cuối với dải đỏ có chữ. Không dùng ảnh nguồn.",

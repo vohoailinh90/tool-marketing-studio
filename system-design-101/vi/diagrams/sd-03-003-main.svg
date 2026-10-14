@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 992" width="320" height="992" role="img" aria-labelledby="title desc">
+<title id="title">Dòng thời gian dẫn tới ChatGPT</title>
+<desc id="desc">Từ thập niên 1950 hệ luật; thập niên 1980 học máy; 1990 đến 2010 mạng nơ-ron CNN và RNN; 2014 GAN; 2017 Transformer; 2018 đến 2020 GPT tiền huấn luyện quy mô lớn; tháng 3 năm 2022 InstructGPT; ngày 30 tháng 11 năm 2022 ChatGPT ra mắt bản xem thử.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="992" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="21" font-weight="bold">TỪ LUẬT VIẾT TAY</text>
+<text x="16" y="54" font-size="21" font-weight="bold">ĐẾN CHATGPT</text>
+<rect x="16" y="80" width="288" height="76" rx="12" fill="#e2e8f0" stroke="#94a3b8"/>
+<text x="29" y="109" font-size="16" font-weight="bold">Từ thập niên 1950</text>
+<text x="29" y="137" font-size="16" font-weight="normal">Hệ thống dựa trên luật viết tay</text>
+<line x1="160" y1="157" x2="160" y2="174" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="176" width="288" height="76" rx="12" fill="#e2e8f0" stroke="#94a3b8"/>
+<text x="29" y="205" font-size="16" font-weight="bold">Từ thập niên 1980</text>
+<text x="29" y="233" font-size="16" font-weight="normal">Học máy trên dữ liệu nhỏ hơn</text>
+<line x1="160" y1="253" x2="160" y2="270" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="272" width="288" height="100" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="29" y="301" font-size="16" font-weight="bold">Thập niên 1990–2010</text>
+<text x="29" y="329" font-size="16" font-weight="normal">Mạng nơ-ron: CNN cho ảnh, RNN</text>
+<text x="29" y="353" font-size="16" font-weight="normal">cho chuỗi</text>
+<line x1="160" y1="373" x2="160" y2="390" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="392" width="288" height="76" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="29" y="421" font-size="16" font-weight="bold">2014</text>
+<text x="29" y="449" font-size="16" font-weight="normal">GAN: hai mạng đối kháng nhau</text>
+<line x1="160" y1="469" x2="160" y2="486" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="488" width="288" height="100" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="29" y="517" font-size="16" font-weight="bold">2017</text>
+<text x="29" y="545" font-size="16" font-weight="normal">Transformer: chỉ dùng attention,</text>
+<text x="29" y="569" font-size="16" font-weight="normal">huấn luyện song song hơn</text>
+<line x1="160" y1="589" x2="160" y2="606" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="608" width="288" height="100" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="29" y="637" font-size="16" font-weight="bold">2018–2020</text>
+<text x="29" y="665" font-size="16" font-weight="normal">GPT: tiền huấn luyện quy mô</text>
+<text x="29" y="689" font-size="16" font-weight="normal">lớn; GPT-3 có 175 tỷ tham số</text>
+<line x1="160" y1="709" x2="160" y2="726" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="728" width="288" height="100" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="29" y="757" font-size="16" font-weight="bold">Tháng 3/2022</text>
+<text x="29" y="785" font-size="16" font-weight="normal">InstructGPT: học từ phản hồi của</text>
+<text x="29" y="809" font-size="16" font-weight="normal">con người</text>
+<line x1="160" y1="829" x2="160" y2="846" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="848" width="288" height="76" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="29" y="877" font-size="16" font-weight="bold">30/11/2022</text>
+<text x="29" y="905" font-size="16" font-weight="normal">ChatGPT ra mắt bản xem thử</text>
+<text x="16" y="944" font-size="16" font-weight="normal" fill="#334155">Các mốc đầu là xu hướng, không</text>
+<text x="16" y="968" font-size="16" font-weight="normal" fill="#334155">phải ranh giới chính xác.</text>
+</g></svg>

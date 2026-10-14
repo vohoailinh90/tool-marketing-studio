@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 938" width="320" height="938" role="img" aria-labelledby="title desc">
+<title id="title">Lưu mật khẩu: đăng ký và đăng nhập</title>
+<desc id="desc">Đăng ký: sinh một salt ngẫu nhiên riêng cho mỗi mật khẩu; băm chậm mật khẩu cùng salt bằng một hàm như Argon2id; lưu chuỗi kết quả chứa hash, salt và tham số. Đăng nhập: lấy chuỗi đã lưu; băm lại mật khẩu vừa nhập với salt và tham số đã lưu; so sánh hai hash, khớp thì hợp lệ. Đừng: lưu mật khẩu dạng văn bản thô, chỉ dùng hàm băm nhanh như SHA-256, hoặc dùng chung một salt.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="938" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="21" font-weight="bold">LƯU MẬT KHẨU</text>
+<text x="16" y="54" font-size="21" font-weight="bold">AN TOÀN</text>
+<rect x="16" y="80" width="288" height="38" rx="10" fill="#1e293b"/>
+<text x="29" y="103" font-size="16" font-weight="bold" fill="#ffffff">Đăng ký</text>
+<rect x="16" y="128" width="288" height="100" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="29" y="157" font-size="16" font-weight="bold">1 · Sinh salt</text>
+<text x="29" y="185" font-size="16" font-weight="normal">Ngẫu nhiên, riêng cho từng mật</text>
+<text x="29" y="209" font-size="16" font-weight="normal">khẩu</text>
+<line x1="160" y1="229" x2="160" y2="244" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="246" width="288" height="76" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="29" y="275" font-size="16" font-weight="bold">2 · Băm chậm</text>
+<text x="29" y="303" font-size="16" font-weight="normal">Mật khẩu + salt qua Argon2id</text>
+<line x1="160" y1="323" x2="160" y2="338" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="340" width="288" height="100" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="29" y="369" font-size="16" font-weight="bold">3 · Lưu kết quả</text>
+<text x="29" y="397" font-size="16" font-weight="normal">Một chuỗi gồm hash, salt, tham</text>
+<text x="29" y="421" font-size="16" font-weight="normal">số</text>
+<rect x="16" y="452" width="288" height="38" rx="10" fill="#1e293b"/>
+<text x="29" y="475" font-size="16" font-weight="bold" fill="#ffffff">Đăng nhập</text>
+<rect x="16" y="500" width="288" height="76" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="29" y="529" font-size="16" font-weight="bold">4 · Lấy chuỗi đã lưu</text>
+<text x="29" y="557" font-size="16" font-weight="normal">Của đúng người dùng đó</text>
+<line x1="160" y1="577" x2="160" y2="592" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="594" width="288" height="100" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="29" y="623" font-size="16" font-weight="bold">5 · Băm lại</text>
+<text x="29" y="651" font-size="16" font-weight="normal">Mật khẩu vừa nhập, cùng salt và</text>
+<text x="29" y="675" font-size="16" font-weight="normal">tham số</text>
+<line x1="160" y1="695" x2="160" y2="710" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="712" width="288" height="76" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="29" y="741" font-size="16" font-weight="bold">6 · So sánh</text>
+<text x="29" y="769" font-size="16" font-weight="normal">Hai hash khớp thì hợp lệ</text>
+<rect x="16" y="800" width="288" height="124" rx="12" fill="#fee2e2" stroke="#94a3b8"/>
+<text x="29" y="829" font-size="16" font-weight="bold">Đừng</text>
+<text x="29" y="857" font-size="16" font-weight="normal">Lưu văn bản thô. Chỉ dùng hàm</text>
+<text x="29" y="881" font-size="16" font-weight="normal">băm nhanh như SHA-256. Dùng</text>
+<text x="29" y="905" font-size="16" font-weight="normal">chung một salt.</text>
+</g></svg>

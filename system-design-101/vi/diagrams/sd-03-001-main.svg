@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 664" width="320" height="664" role="img" aria-labelledby="title desc">
+<title id="title">Chọn hàm gộp dữ liệu pandas theo việc cần làm</title>
+<desc id="desc">Bốn việc và hàm phù hợp: nối thêm dòng dùng concat; ghép cột theo khóa dùng merge, mặc định inner; ghép theo chỉ số dòng dùng join, mặc định left; chọn giá trị từng ô dùng combine. Hàm append đã bị gỡ từ pandas 2.0, dùng concat thay thế.</desc>
+<rect width="320" height="664" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="21" font-weight="bold">GỘP DỮ LIỆU PANDAS</text>
+<text x="16" y="54" font-size="21" font-weight="bold">Bạn muốn làm gì?</text>
+<rect x="16" y="80" width="288" height="100" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="29" y="109" font-size="16" font-weight="bold">Nối thêm dòng</text>
+<text x="29" y="137" font-size="16" font-weight="normal">pd.concat([a, b])</text>
+<text x="29" y="161" font-size="16" font-weight="normal">Cột giống nhau, dòng nối tiếp</text>
+<rect x="16" y="190" width="288" height="100" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="29" y="219" font-size="16" font-weight="bold">Ghép cột theo khóa</text>
+<text x="29" y="247" font-size="16" font-weight="normal">a.merge(b, on=&#x27;ma&#x27;)</text>
+<text x="29" y="271" font-size="16" font-weight="normal">Như SQL JOIN; mặc định inner</text>
+<rect x="16" y="300" width="288" height="100" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="29" y="329" font-size="16" font-weight="bold">Ghép theo chỉ số dòng</text>
+<text x="29" y="357" font-size="16" font-weight="normal">a.join(b)</text>
+<text x="29" y="381" font-size="16" font-weight="normal">Mặc định left, theo index</text>
+<rect x="16" y="410" width="288" height="100" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="29" y="439" font-size="16" font-weight="bold">Chọn giá trị từng ô</text>
+<text x="29" y="467" font-size="16" font-weight="normal">a.combine(b, hàm)</text>
+<text x="29" y="491" font-size="16" font-weight="normal">Ví dụ: lấy số nhỏ hơn</text>
+<rect x="16" y="520" width="288" height="76" rx="12" fill="#fee2e2" stroke="#94a3b8"/>
+<text x="29" y="549" font-size="16" font-weight="bold">append(): đã bị gỡ</text>
+<text x="29" y="577" font-size="16" font-weight="normal">Từ pandas 2.0. Dùng concat.</text>
+<text x="16" y="616" font-size="16" font-weight="normal" fill="#334155">Sau khi ghép theo khóa, so số dòng</text>
+<text x="16" y="640" font-size="16" font-weight="normal" fill="#334155">trước và sau.</text>
+</g></svg>

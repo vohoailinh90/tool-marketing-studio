@@ -11,7 +11,7 @@ Nhưng vài tính năng hay được nêu đã thay đổi, và “nhanh hơn”
 Máy xử lý hiệu quả hơn, nhưng người không đọc trực tiếp được.
 
 **Ghép luồng.** Nhiều cặp yêu cầu–phản hồi chạy song song trên một kết nối, các khung xen kẽ nhau.
-Một luồng chậm không chặn luồng khác. HTTP/1.1 có pipelining trên một kết nối nhưng response phải theo thứ tự.\nClient thường mở nhiều kết nối để giảm chặn đầu hàng ở tầng ứng dụng.
+Một luồng chậm không chặn luồng khác. HTTP/1.1 có pipelining trên một kết nối nhưng response phải theo thứ tự. Client thường mở nhiều kết nối để giảm chặn đầu hàng ở tầng ứng dụng.
 
 **Nén header.** HPACK giảm phần header lặp lại giữa các yêu cầu.
 

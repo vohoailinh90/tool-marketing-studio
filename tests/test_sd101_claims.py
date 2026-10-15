@@ -295,6 +295,18 @@ class ClaimTests(Sessions):
                 git(a, "commit", "--quiet", "-m", "the final lesson with its registry record")
                 self.assertEqual(0, self.run_in(a, "touch", "--publish")[0], "committed together: it may go up")
 
+    def test_a_finished_lesson_that_git_ignores_is_not_pushed(self) -> None:
+        a = self.session("a")
+        self.run_in(a, "claim", "sd-01-001", "--publish")
+        (a / ".gitignore").write_text("store/lessons/\n", encoding="utf-8")  # git status shows nothing for the lesson
+        git(a, "add", ".gitignore")
+        git(a, "commit", "--quiet", "-m", "ignore the lessons")
+        self.write_lesson(a, "sd-01-001")
+        self.assertEqual(0, self.run_in(a, "finish", "sd-01-001")[0])
+        code, _, err = self.run_in(a, "claim", "sd-01-002", "--publish")
+        self.assertEqual(1, code, err)
+        self.assertIn("sd-01-001 is marked written but the lesson files are not committed", err)
+
     def test_reworking_a_lesson_that_was_already_pushed_does_not_block_a_claim(self) -> None:
         a = self.session("a")
         self.run_in(a, "claim", "sd-01-001", "--publish")

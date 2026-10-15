@@ -43,8 +43,8 @@ mutations:
   replace: "    if False:\n        print(\"claim refused"
   test: tests.test_sd101_claims.ClaimTests.test_a_claim_is_all_or_nothing
 - label: --publish pushes main
-  find: "if context.branch in (None, \"main\", \"master\"):\n        raise ClaimsError(\"--publish pushes"
-  replace: "if False:\n        raise ClaimsError(\"--publish pushes"
+  find: "    if on_default_branch(context, strict=True):\n        raise ClaimsError(f\"--publish pushes"
+  replace: "    if False:\n        raise ClaimsError(f\"--publish pushes"
   test: tests.test_sd101_claims.RemoteTests.test_nothing_is_published_from_main
 - label: a lost claim is renewed by touch
   find: "        if results[lesson_id] is None:\n            lessons[lesson_id][\"heartbeat_at\"]"
@@ -236,8 +236,8 @@ mutations:
   replace: "    except OSError as error:\n        raise ClaimsError(f\"cannot read {context.path}"
   test: tests.test_sd101_claims.RemoteTests.test_a_local_registry_that_is_not_valid_utf8_is_reported_not_raised
 - label: the default branch is taken from the local origin/HEAD, which goes stale when it is renamed
-  find: '    for line in git(root, "ls-remote", "--symref", remote, "HEAD").stdout.decode("utf-8", "replace").splitlines():'
-  replace: '    for line in []:'
+  find: 'if ask else []):'
+  replace: 'if False else []):'
   test: tests.test_sd101_claims.RemoteTests.test_a_renamed_default_branch_is_found_by_asking_the_remote
 - label: publishing judges only the claims a command names and pushes the others unjudged
   find: "    mine = my_claims(context, lessons, [])\n    if not mine:\n        return\n    results = verdicts(context, header, lessons, mine, live=False)"
@@ -254,7 +254,7 @@ mutations:
 - label: a lesson finished but not committed is pushed as written
   find: '        in_head = git(context.root, "cat-file", "-e", f"HEAD:{files[0]}/lesson.md", check=False).returncode == 0'
   replace: '        in_head = True'
-  test: tests.test_sd101_claims.ClaimTests.test_a_finished_lesson_is_not_pushed_ahead_of_its_files
+  test: tests.test_sd101_claims.ClaimTests.test_a_finished_lesson_that_git_ignores_is_not_pushed
 - label: a written lesson edited after its commit is pushed with the stale draft
   find: '        dirty = git_text(context.root, "status", "--porcelain", "--untracked-files=all", "--", *files)'
   replace: '        dirty = ""'

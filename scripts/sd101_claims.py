@@ -371,8 +371,8 @@ def beats(first: Holding, second: Holding) -> bool:
     return (first.claimed_at or "", first.owner or "") < (second.claimed_at or "", second.owner or "")
 
 
-def gather(local: dict[str, dict], remote: dict[str, str], base: str, me: str,
-           offline: bool) -> tuple[dict[str, list[Holding]], list[str]]:
+def gather(local: dict[str, dict], remote: dict[str, str], base: str, me: str, offline: bool,
+           roster: tuple[str, ...] = ()) -> tuple[dict[str, list[Holding]], list[str]]:
     """Every claim and every written lesson that any view shows, per lesson, and the views that could not be read."""
     found: dict[str, list[Holding]] = {}
     unreadable: list[str] = []
@@ -387,6 +387,8 @@ def gather(local: dict[str, dict], remote: dict[str, str], base: str, me: str,
     for branch, text in remote.items():
         _, lessons, problems = parse(text)
         problems += record_problems(lessons)  # a typo in a status would otherwise hide the claim it sits in
+        if missing := [lesson_id for lesson_id in roster if lesson_id not in lessons]:  # so would a truncated file
+            problems.append(f"lacks {len(missing)} source-map lesson(s), e.g. {missing[0]}")
         if problems:
             unreadable.append(f"origin/{branch} ({problems[0]})")
         for entry in lessons.values():
@@ -514,7 +516,8 @@ def world_of(context: Context, local: dict[str, dict],
         except ClaimsError as error:
             raise ClaimsError(f"cannot read the other sessions' claims from {context.remote}: {error}; "
                               "nothing was decided (pass --offline only if you accept that risk)") from error
-    found, unreadable = gather(local, remote, base, context.me, context.offline)
+    roster = tuple(lesson_id for lesson_id, _ in context.source.lessons)
+    found, unreadable = gather(local, remote, base, context.me, context.offline, roster)
     if unreadable and not tolerate and not context.ignore_unreadable:
         raise ClaimsError(f"the registry on {len(unreadable)} branch(es) cannot be parsed, e.g. {unreadable[0]}; "
                           "a claim in it could be missed, so nothing was decided. Fix or delete that branch, "
@@ -538,17 +541,22 @@ def cmd_sync(context: Context, _: argparse.Namespace) -> int:
     on_disk = context.on_disk()
     if context.path.is_file():
         header, lessons = load_registry(context)
+        # A repinned or retitled source map: the registry follows it, keeping every status and claim.
+        header = {**header, "source_repository": context.source.repository, "source_commit_sha": context.source.commit_sha}
     else:
         header, lessons = new_header(context.source), {}
-    added = 0
+    added = retitled = 0
     for lesson_id, title in context.source.lessons:
         if lesson_id not in lessons:
             lessons[lesson_id] = {"id": lesson_id, "status": "written" if lesson_id in on_disk else "todo", "title": title}
             added += 1
+        elif lessons[lesson_id].get("title") != title:
+            lessons[lesson_id]["title"] = title
+            retitled += 1
     known = {lesson_id for lesson_id, _ in context.source.lessons}
     extra = [lesson_id for lesson_id in lessons if lesson_id not in known]
     write_registry(context, header, lessons)
-    print(f"sync: {context.relative} has {len(lessons)} lesson(s), {added} added")
+    print(f"sync: {context.relative} has {len(lessons)} lesson(s), {added} added, {retitled} retitled")
     if extra:
         print(f"sync: {len(extra)} id(s) are not in the source map and were kept: {', '.join(extra[:5])}", file=sys.stderr)
     return 0
@@ -809,6 +817,12 @@ def cmd_release(context: Context, args: argparse.Namespace) -> int:
 
 # ---------------------------------------------------------------------------------------------- main
 
+def pull_request_number(value: str) -> int:
+    if not value.isdecimal() or int(value) < 1:
+        raise argparse.ArgumentTypeError(f"{value!r} is not a pull request number")
+    return int(value)
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     parser.add_argument("--store", type=pathlib.Path, default=DEFAULT_STORE)
@@ -849,7 +863,7 @@ def build_parser() -> argparse.ArgumentParser:
     touch.add_argument("--message")
     finish = add("finish", cmd_finish, "mark my claimed lessons written")
     finish.add_argument("ids", nargs="+")
-    finish.add_argument("--pr", type=int)
+    finish.add_argument("--pr", type=pull_request_number)
     release = add("release", cmd_release, "give claimed lessons back")
     release.add_argument("ids", nargs="+")
     release.add_argument("--publish", action="store_true")

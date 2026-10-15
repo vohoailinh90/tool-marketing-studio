@@ -378,6 +378,22 @@ class RemoteTests(Sessions):
                 git(a, "reset", "--quiet", "--hard", original)  # each damage is judged on its own
                 git(a, "push", "--quiet", "-f", "origin", "claude/a")
 
+    def test_a_truncated_registry_on_a_branch_stops_the_decision(self) -> None:
+        a = self.session("a")
+        self.run_in(a, "claim", "sd-01-001", "sd-01-002", "--publish")
+        original = git(a, "rev-parse", "HEAD")
+        lines = (a / REGISTRY).read_text(encoding="utf-8").split("\n\n")
+        (a / REGISTRY).write_text("\n\n".join(lines[:3]).rstrip("\n") + "\n", encoding="utf-8")  # header + one lesson survive
+        git(a, "commit", "--quiet", "-am", "truncated by mistake")
+        git(a, "push", "--quiet", "origin", "claude/a")
+        b = self.session("b")
+        code, _, err = self.run_in(b, "claim", "sd-01-002")
+        self.assertEqual(2, code)
+        self.assertIn("origin/claude/a (lacks", err)
+        git(a, "reset", "--quiet", "--hard", original)
+        git(a, "push", "--quiet", "-f", "origin", "claude/a")
+        self.assertEqual(1, self.run_in(b, "claim", "sd-01-002")[0], "intact again: the claim is seen and respected")
+
     def test_publish_with_an_owner_that_is_not_the_branch_is_refused_before_anything_is_written(self) -> None:
         a = self.session("a")
         before = (a / REGISTRY).read_text(encoding="utf-8")
@@ -409,6 +425,23 @@ class RemoteTests(Sessions):
         self.assertIn("doing 1", out)
         self.assertIn("sd-01-001  claude/a", out)
         self.assertIn("Next free: sd-01-002", out)
+
+
+class SyncTests(Sessions):
+    def test_sync_follows_a_repinned_and_retitled_source_map_and_keeps_every_claim(self) -> None:
+        a = self.session("a")
+        self.run_in(a, "claim", "sd-01-001")
+        data = json.loads(self.source_map.read_text(encoding="utf-8"))
+        data["source_commit_sha"] = "c" * 40
+        data["categories"][0]["lessons"][1]["title_source"] = "Two, renamed"
+        self.source_map.write_text(json.dumps(data), encoding="utf-8")
+        code, out, _ = self.run_in(a, "--offline", "sync")
+        self.assertEqual(0, code)
+        self.assertIn("1 retitled", out)
+        header, lessons, problems = claims.parse((a / REGISTRY).read_text(encoding="utf-8"))
+        self.assertEqual(([], "c" * 40, "Two, renamed", "doing"),
+                         (problems, header["source_commit_sha"], lessons["sd-01-002"]["title"], lessons["sd-01-001"]["status"]))
+        self.assertEqual("claude/a", lessons["sd-01-001"]["owner"])
 
 
 class MergeTests(Sessions):
@@ -449,6 +482,19 @@ class FinishAndReleaseTests(Sessions):
         self.write_lesson(b, "sd-01-001")
         self.assertEqual(1, self.run_in(b, "finish", "sd-01-001")[0], "claimed by a, not b")
         self.assertEqual("doing", self.entry(a, "sd-01-001")["status"])
+
+    def test_finish_refuses_a_pull_request_number_that_is_not_one(self) -> None:
+        a = self.session("a")
+        self.run_in(a, "claim", "sd-01-001")
+        self.write_lesson(a, "sd-01-001")
+        before = (a / REGISTRY).read_text(encoding="utf-8")
+        for bad in ("-1", "0", "x", "1.5"):
+            with self.subTest(bad), self.assertRaises(SystemExit) as raised:
+                self.run_in(a, "finish", "sd-01-001", "--pr", bad)
+            self.assertEqual(2, raised.exception.code)
+        self.assertEqual(before, (a / REGISTRY).read_text(encoding="utf-8"))
+        self.assertEqual(0, self.run_in(a, "finish", "sd-01-001", "--pr", "12")[0])
+        self.assertEqual(12, self.entry(a, "sd-01-001")["pr"])
 
     def test_finish_refuses_a_claim_that_was_lost(self) -> None:
         a, b = self.session("a"), self.session("b")

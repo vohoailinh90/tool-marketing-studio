@@ -26,8 +26,8 @@ work on that lesson, release it and take another; do not push the draft.
 
 A claim refused because the remote could not be read (exit 2) is not a refusal to argue with: fix the
 network or ask the owner. `--offline` exists for a machine with no remote and accepts the risk. The same
-exit 2 comes when the registry on some branch cannot be parsed (conflict markers committed by mistake, say),
-because a claim in it could be missed: fix or delete that branch, or pass `--ignore-unreadable` to decide
+exit 2 comes when the registry on some branch cannot be read as a whole registry (conflict markers committed
+by mistake, an invalid record, a truncated file that lost source-map lessons), because a claim in it could be missed: fix or delete that branch, or pass `--ignore-unreadable` to decide
 without it. `status` only reports such a branch.
 
 ## What the file holds
@@ -37,7 +37,7 @@ commit `b28380a4710c5ec9638ec037d4168e288f334cba`). Every other record is one of
 positions, in source-map order, with a blank line between every two records. Git reports two changes on
 adjacent lines as one conflict, and sessions that claim the next free lessons change neighbouring records,
 so the blank line is what lets two sessions that claim different lessons merge without a conflict; two that
-claim the same one always conflict. `sd101_claims.py fmt` writes this layout and the checker requires it.
+claim the same one always conflict. `sd101_claims.py fmt` writes this layout and the checker requires it. `sd101_claims.py sync` also follows a repinned or retitled source map: it refreshes the header's pin and every title and keeps all statuses and claims.
 
 | status | meaning | extra fields |
 |---|---|---|

@@ -460,10 +460,12 @@ class ClaimTests(Sessions):
         git(a, "commit", "--quiet", "-m", "the lesson")
         self.assertEqual(0, self.run_in(a, "finish", "sd-01-001")[0])
         git(a, "commit", "--quiet", "-am", "with its record")
+        pushed = git(self.tmp, "--git-dir", str(self.origin), "rev-parse", "claude/a")
         with mock.patch.object(claims, "content_problems", return_value=["lessons/sd-01-001/lesson.yaml: is empty"]):
             code, _, err = self.run_in(a, "touch", "--publish")
         self.assertEqual(1, code, err)
         self.assertIn("the lesson files are not committed", err)
+        self.assertEqual(pushed, git(self.tmp, "--git-dir", str(self.origin), "rev-parse", "claude/a"), "nothing was pushed")
 
     def test_the_lesson_is_checked_as_head_holds_it_not_as_the_working_tree_does(self) -> None:
         a = self.pushed_lesson("a")
@@ -1569,3 +1571,5 @@ class OrphanTests(unittest.TestCase):
             (store / "lessons" / "sd-99-999").mkdir()
             (store / "lessons" / "sd-99-999" / "lesson.md").write_text("# left behind\n", encoding="utf-8")
             self.assertEqual(["sd-99-999"], claims.orphan_problems(store, ContentTests.SOURCE_MAP, known))
+            (store / "metadata" / "sd-01-001.json").write_text("{", encoding="utf-8")  # damage in a lesson the registry holds
+            self.assertEqual(["sd-99-999"], claims.orphan_problems(store, ContentTests.SOURCE_MAP, known), "that one is not an orphan")

@@ -353,11 +353,11 @@
         },
         {
           "id": "sd-01-035",
-          "title_vi": null,
+          "title_vi": "Bộ cân bằng tải: chọn đích cho mỗi yêu cầu",
           "title_source": "What is a Load Balancer?",
           "source_url": "https://bytebytego.com/guides/what-is-a-load-balancer",
           "source_path": "data/guides/what-is-a-load-balancer.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "98268f5cc7dfaa6040a2f1a5e58e0fd337479f97",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-is-a-load-balancer.md"
         },

@@ -39,7 +39,7 @@
     },
     "mobile": {
       "status": "pending",
-      "reason": "figure drawn with 16px text in a 320px-wide viewBox (about 14.4px at a 320px screen); text widths checked against card width with DejaVu Sans; no whole-lesson browser check yet"
+      "reason": "figure drawn with 16px text in a 320px-wide viewBox; at a 320px screen with 16px side gutters it scales by (320-32)/320 = 0.9, so about 14.4px; text widths checked against card width with DejaVu Sans; no whole-lesson browser check yet"
     },
     "user_testing": {
       "status": "not_performed"
@@ -53,8 +53,12 @@
     },
     {
       "claim_vi": "V8 dùng bộ thông dịch bytecode và trình biên dịch tối ưu; có thêm Sparkplug và Maglev.",
-      "source": "https://v8.dev/blog/launching-ignition-and-turbofan",
-      "verified_by": "Đọc bài V8 (v8/v8.dev) và xác nhận cờ --sparkplug, --maglev trong Node.js 22."
+      "verified_by": "Đọc ba bài V8 (v8/v8.dev) ngày 2026-10-15: bài Ignition và TurboFan (2017) cho bộ thông dịch và trình biên dịch tối ưu, bài Sparkplug (2021) và bài Maglev nêu hai tầng còn lại; bài 2017 không nhắc Sparkplug hay Maglev. Cờ --sparkplug và --maglev có trong Node.js 22.",
+      "sources": [
+        "https://v8.dev/blog/launching-ignition-and-turbofan",
+        "https://v8.dev/blog/sparkplug",
+        "https://v8.dev/blog/maglev"
+      ]
     },
     {
       "claim_vi": "Callback của promise chạy trước callback của setTimeout(0); vòng lặp đồng bộ dài làm trễ timer.",

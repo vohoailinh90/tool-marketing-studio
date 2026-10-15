@@ -62,9 +62,9 @@
       "verified_by": "Đọc mã nguồn tài liệu tại nginx/nginx.org ngày 2026-10-15; chưa chạy cấu hình."
     },
     {
-      "claim_vi": "Che địa chỉ máy gốc không thay cho bảo vệ máy gốc; địa chỉ có thể lộ qua cấu hình hay tiêu đề.",
+      "claim_vi": "Với client, reverse proxy (gateway) đóng vai máy chủ gốc; việc che địa chỉ máy gốc không thay cho bảo vệ máy gốc, vì địa chỉ có thể lộ qua cấu hình hay tiêu đề.",
       "source": "https://www.rfc-editor.org/rfc/rfc9110.html#name-intermediaries",
-      "verified_by": "Nhận định của người biên soạn, chưa có nguồn riêng."
+      "verified_by": "RFC 9110 §3.7 chỉ hỗ trợ vế đầu (gateway đóng vai máy chủ gốc với client). Vế sau là nhận định của người biên soạn, RFC không nói điều đó và chưa có nguồn riêng."
     }
   ],
   "design_notes_vi": "Ba khung vai trò và một khung nhấn mạnh ba tên là vai trò chứ không phải ba hộp. Sơ đồ tự thiết kế, không dùng ảnh nguồn.",

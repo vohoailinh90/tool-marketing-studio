@@ -16,7 +16,7 @@
 
 ## Giới hạn cần nhớ
 
-Bất đồng bộ không có nghĩa là song song: callback vẫn chạy lần lượt trên cùng luồng đó, nên việc tính toán nặng phải chia nhỏ hoặc đưa sang worker. `setTimeout(fn, 0)` cũng chỉ hứa "không sớm hơn", không hứa "ngay lập tức".
+Bất đồng bộ không có nghĩa là song song: callback vẫn chạy lần lượt trên cùng luồng đó, nên việc tính toán nặng phải chia nhỏ hoặc đưa sang worker. `setTimeout(fn, 0)` cũng chỉ hứa chờ tối thiểu một khoảng ngắn rồi xếp callback vào hàng đợi, không hứa chạy ngay.
 
 ## Nhìn hình thử trả lời
 

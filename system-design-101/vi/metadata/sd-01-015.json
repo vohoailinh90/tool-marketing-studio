@@ -75,6 +75,11 @@
       "claim_vi": "Problem details là định dạng lỗi do IETF chuẩn hóa (RFC 9457, thay RFC 7807).",
       "source": "https://www.rfc-editor.org/rfc/rfc9457",
       "verified_by": "Chưa mở RFC; bản nháp Idempotency-Key vẫn dẫn RFC 7807."
+    },
+    {
+      "claim_vi": "Phân trang theo offset bị lệch khi dữ liệu thay đổi giữa hai lần gọi, con trỏ (cursor) ổn định hơn; lời gọi hàng loạt có thể thành công một phần; thay đổi chỉ thêm trường thường không cần tăng phiên bản.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/8-tips-for-efficient-api-design.md",
+      "verified_by": "Nhận định của người biên soạn về đánh đổi khi thiết kế; nguồn chỉ nêu chủ đề (phân trang, hàng loạt, phiên bản) chứ không nêu các đánh đổi này. Chưa có tài liệu chuẩn đối chiếu."
     }
   ],
   "design_notes_vi": "Tám khung dọc, mỗi khung một gợi ý và một ví dụ trên API đơn hàng. Sơ đồ tự thiết kế, không dùng ảnh nguồn.",

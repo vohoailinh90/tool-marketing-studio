@@ -293,11 +293,11 @@
         },
         {
           "id": "sd-01-029",
-          "title_vi": null,
+          "title_vi": "API và SDK: giao diện gọi và bộ công cụ",
           "title_source": "API vs SDK",
           "source_url": "https://bytebytego.com/guides/api-vs-sdk",
           "source_path": "data/guides/api-vs-sdk.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "8189347ed06bb008dae7ee2f6f8c9a69c4173b1f",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/api-vs-sdk.md"
         },

@@ -5,6 +5,13 @@ Bài này gom mười hai mảng của bài nguồn thành bốn nhóm câu hỏ
 
 ![Sáu thẻ xếp dọc. Thẻ đầu: bắt đầu từ mặc định an toàn, thu nhỏ bề mặt tấn công và thất bại một cách an toàn. Bốn nhóm câu hỏi. Ai được vào: xác thực, phân quyền, bảo mật API, quản lý nhà cung cấp bên thứ ba. Dữ liệu và đường truyền: mã hóa, bảo mật mạng. Hạ tầng: bảo mật container, bảo mật thiết bị đầu cuối. Khi có chuyện: quản lý lỗ hổng, kiểm toán và tuân thủ, ứng phó khẩn cấp, khôi phục sau thảm họa. Thẻ cuối: thiết bị đầu cuối, ứng phó khẩn cấp và khôi phục sau thảm họa chưa có tài liệu mang tên tương ứng trong bộ OWASP Cheat Sheet Series.](../../diagrams/sd-14-012-main.svg)
 
+## Từ viết tắt
+
+- **OWASP** (Open Worldwide Application Security Project) — tổ chức cộng đồng chuyên về bảo mật ứng dụng, có các hướng dẫn mà bài dùng để đối chiếu.
+- **API** (Application Programming Interface) — giao diện lập trình ứng dụng: cách để một chương trình gọi chức năng hoặc lấy dữ liệu của chương trình khác theo quy ước đã định.
+- **TLS** (Transport Layer Security) — bảo mật tầng truyền tải: lớp mã hóa giữ kín dữ liệu đi giữa hai máy.
+- **REST** (REpresentational State Transfer) — kiểu thiết kế dịch vụ web: mỗi tài nguyên có một địa chỉ riêng và được lấy hay sửa qua các yêu cầu chuẩn.
+
 ## Đọc hình
 
 **Nguyên tắc nền.** OWASP, trong tài liệu thiết kế sản phẩm an toàn, bắt đầu bằng ba điều: đặt mặc định an toàn, thu nhỏ bề mặt tấn công và thất bại theo cách an toàn.

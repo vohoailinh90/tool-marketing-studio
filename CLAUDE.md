@@ -310,6 +310,27 @@ Several sessions write lessons of `system-design-101/vi/` at the same time. The 
 - Rendered images: the engine's fixed words live in `mkt/text.py` (`UI`), one entry per language.
 - This repository's harness (`scripts/`, hooks, agent and skill files, CLI output) stays English.
 
+## System Design lessons (Vietnamese store)
+
+`system-design-101/vi/` is a learning store for readers who are new to the field; its rules are in
+`brainstorm/system-design-101-vi/DECISIONS.md` and `python3 scripts/sd101_check.py` enforces what a
+script can. One rule applies to every lesson a session writes or edits:
+
+- **Spell out every abbreviation.** Any abbreviation of two or more capital letters that `lesson.md` or
+  its figure uses (LLM, DNS, SSE, API, ...) is explained in the lesson's own `## Từ viết tắt` section,
+  the first `##` section, one bullet each: `- **LLM** (Large Language Model) — mô hình ngôn ngữ lớn: what
+  it is, in plain words, in this lesson's context`. The parenthesis spells the abbreviation out in Latin
+  letters so that its initials give it back (`IDentifier`, `SYNchronize`; a Vietnamese abbreviation such
+  as CSDL gets its Vietnamese form); a full form or an explanation may not lean on an abbreviation that
+  has no bullet of its own (`HMAC-based` in the full form of HKDF needs an HMAC bullet). Words that only
+  look like abbreviations (HTTP methods, SQL keywords, file names) go in
+  `` `code` `` or in `NOT_ACRONYMS`. Mixed-case terms (gRPC, IPv4, OAuth, ...) follow the same rule once
+  they are in `MIXED_CASE_TERMS`: add a new one there when a lesson introduces it. A product name that
+  carries an abbreviation (OpenAI, MySQL, macOS) is in `EMBEDDED_ABBREVIATIONS`, and the abbreviation
+  inside it (AI, SQL, OS) is explained the same way. The checker fails a
+  lesson that skips the rule; whether an explanation is correct and clear to a beginner is the
+  reviewer's call.
+
 ## UI implementation source
 
 `web/` is built from `vohoailinh90/Automation-UI-Kit` (React 19 + Tailwind CSS v4 + Radix).

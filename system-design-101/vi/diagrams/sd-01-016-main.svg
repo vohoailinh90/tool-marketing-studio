@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 668" width="320" height="668" role="img" aria-labelledby="title desc">
+<title id="title">Reverse proxy, API gateway và load balancer</title>
+<desc id="desc">Bốn khung dọc: reverse proxy đứng trước máy chủ gốc, che máy gốc và lo TLS, cache; API gateway là cửa vào chung của các API với định tuyến, xác thực và giới hạn tốc độ; load balancer chia tải trong một dịch vụ và loại máy lỗi khỏi nhóm; chúng hay xếp chồng, client tới gateway rồi tới load balancer, gateway chọn dịch vụ còn load balancer chọn máy trong dịch vụ. Một phần mềm có thể làm cả ba.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="668" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">PROXY · GATEWAY</text>
+<text x="16" y="56" font-size="20" font-weight="bold">· LOAD BALANCER</text>
+<text x="16" y="86" font-size="16" font-weight="normal">Ba vai hay chồng lên nhau</text>
+<rect x="16" y="108" width="288" height="104" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="138" font-size="16" font-weight="bold">Reverse proxy</text>
+<text x="30" y="165" font-size="16" font-weight="normal">Đứng trước máy chủ gốc</text>
+<text x="30" y="192" font-size="16" font-weight="normal">Che máy gốc, TLS, cache</text>
+<rect x="16" y="226" width="288" height="104" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="256" font-size="16" font-weight="bold">API gateway</text>
+<text x="30" y="283" font-size="16" font-weight="normal">Cửa vào chung của các API</text>
+<text x="30" y="310" font-size="16" font-weight="normal">Định tuyến, xác thực, giới hạn</text>
+<rect x="16" y="344" width="288" height="104" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="374" font-size="16" font-weight="bold">Load balancer</text>
+<text x="30" y="401" font-size="16" font-weight="normal">Chia tải trong một dịch vụ</text>
+<text x="30" y="428" font-size="16" font-weight="normal">Loại máy lỗi khỏi nhóm</text>
+<rect x="16" y="462" width="288" height="158" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="492" font-size="16" font-weight="bold">Hay xếp chồng</text>
+<rect x="30" y="502" width="74.0208" height="34" rx="7" fill="#ffffff" stroke="#64748b"/>
+<text x="67.0104" y="525" text-anchor="middle" font-size="16" font-weight="normal">Client</text>
+<line x1="106.021" y1="519" x2="119.021" y2="519" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="124.021" y="502" width="98.3958" height="34" rx="7" fill="#ffffff" stroke="#64748b"/>
+<text x="173.219" y="525" text-anchor="middle" font-size="16" font-weight="normal">Gateway</text>
+<line x1="224.417" y1="519" x2="237.417" y2="519" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="242.417" y="502" width="47.5833" height="34" rx="7" fill="#ffffff" stroke="#64748b"/>
+<text x="266.208" y="525" text-anchor="middle" font-size="16" font-weight="normal">LB</text>
+<text x="30" y="573" font-size="16" font-weight="normal">Gateway chọn dịch vụ</text>
+<text x="30" y="600" font-size="16" font-weight="normal">LB chọn máy trong dịch vụ</text>
+<text x="16" y="648" font-size="16" font-weight="normal">Một phần mềm có thể làm cả ba.</text>
+</g></svg>

@@ -147,7 +147,7 @@
           "title_source": "How does Javascript Work?",
           "source_url": "https://bytebytego.com/guides/how-does-javascript-work",
           "source_path": "data/guides/how-does-javascript-work.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "f3249fd95b8fda5acf1571cd35c760c23408a7da",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-javascript-work.md"
         },
@@ -157,7 +157,7 @@
           "title_source": "8 Tips for Efficient API Design",
           "source_url": "https://bytebytego.com/guides/8-tips-for-efficient-api-design",
           "source_path": "data/guides/8-tips-for-efficient-api-design.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "96a8ec7a3dbb4adec04dba3087838e34de5a05b0",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/8-tips-for-efficient-api-design.md"
         },
@@ -167,7 +167,7 @@
           "title_source": "Reverse Proxy vs. API Gateway vs. Load Balancer",
           "source_url": "https://bytebytego.com/guides/reverse-proxy-vs-api-gateway-vs-load-balancer",
           "source_path": "data/guides/reverse-proxy-vs-api-gateway-vs-load-balancer.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "be4677ba88ada869f71cf4f41b9d2d4118ffee30",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/reverse-proxy-vs-api-gateway-vs-load-balancer.md"
         },
@@ -177,7 +177,7 @@
           "title_source": "How does REST API work?",
           "source_url": "https://bytebytego.com/guides/how-does-rest-api-work",
           "source_path": "data/guides/how-does-rest-api-work.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "fcee2a827d5d79d60466db0a224d7b1e79380748",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-rest-api-work.md"
         },
@@ -187,7 +187,7 @@
           "title_source": "Load Balancer vs. API Gateway",
           "source_url": "https://bytebytego.com/guides/what-are-the-differences-between-a-load-balancer-and-an-api-gateway",
           "source_path": "data/guides/what-are-the-differences-between-a-load-balancer-and-an-api-gateway.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "755a17e403c9ecf75c5eec826e1922d40c408c40",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-are-the-differences-between-a-load-balancer-and-an-api-gateway.md"
         },
@@ -197,7 +197,7 @@
           "title_source": "How GraphQL Works at LinkedIn",
           "source_url": "https://bytebytego.com/guides/how-does-graphql-work-in-the-real-world",
           "source_path": "data/guides/how-does-graphql-work-in-the-real-world.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "7c797467c26a0cddf718069ad98ba332dcac55b9",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-graphql-work-in-the-real-world.md"
         },
@@ -207,7 +207,7 @@
           "title_source": "GraphQL Adoption Patterns",
           "source_url": "https://bytebytego.com/guides/graphql-adoption-patterns",
           "source_path": "data/guides/graphql-adoption-patterns.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "c6f5bf3b052d704e2f4b0395d3594fe6c6f9429d",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/graphql-adoption-patterns.md"
         },
@@ -217,7 +217,7 @@
           "title_source": "A cheat sheet for API designs",
           "source_url": "https://bytebytego.com/guides/a-cheat-sheet-for-api-designs",
           "source_path": "data/guides/a-cheat-sheet-for-api-designs.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "1e51e00a07bdb56e2ab1772d618f234aab41207b",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/a-cheat-sheet-for-api-designs.md"
         },
@@ -227,7 +227,7 @@
           "title_source": "API Gateway 101",
           "source_url": "https://bytebytego.com/guides/api-gateway-101",
           "source_path": "data/guides/api-gateway-101.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "2eb6b08ce0d1643a4e376575c13aaa0bf8c4bf77",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/api-gateway-101.md"
         },
@@ -4055,121 +4055,121 @@
       "lessons": [
         {
           "id": "sd-15-001",
-          "title_vi": null,
+          "title_vi": "Phân trang và phân đoạn",
           "title_source": "Paging vs Segmentation",
           "source_url": "https://bytebytego.com/guides/what-are-the-differences-between-paging-and-segmentation",
           "source_path": "data/guides/what-are-the-differences-between-paging-and-segmentation.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "65f5fffb1c58cd8a47de6ff72395143c9d5ee17a",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-are-the-differences-between-paging-and-segmentation.md"
         },
         {
           "id": "sd-15-002",
-          "title_vi": null,
+          "title_vi": "IPv4 và IPv6",
           "title_source": "IPv4 vs. IPv6: Differences",
           "source_url": "https://bytebytego.com/guides/ipv4-vs-ipv6",
           "source_path": "data/guides/ipv4-vs-ipv6.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "ec5164b8666be78bd8c3484820029dbe4ebe8ba2",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/ipv4-vs-ipv6.md"
         },
         {
           "id": "sd-15-003",
-          "title_vi": null,
+          "title_vi": "Bốn nơi UDP thường được dùng",
           "title_source": "Top 4 Most Popular Use Cases for UDP",
           "source_url": "https://bytebytego.com/guides/top-4-most-popular-use-cases-for-udp",
           "source_path": "data/guides/top-4-most-popular-use-cases-for-udp.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "7aecbf6d78cdf1837fda6f94e6a7b30072a36bb0",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-4-most-popular-use-cases-for-udp.md"
         },
         {
           "id": "sd-15-004",
-          "title_vi": null,
+          "title_vi": "DNS tra cứu hoạt động thế nào?",
           "title_source": "How Does the Domain Name System (DNS) Lookup Work?",
           "source_url": "https://bytebytego.com/guides/how-does-the-domain-name-system-dns-lookup-work",
           "source_path": "data/guides/how-does-the-domain-name-system-dns-lookup-work.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "b59e73ff9e78f2c6cf49476b536079ca844d16dc",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-the-domain-name-system-dns-lookup-work.md"
         },
         {
           "id": "sd-15-005",
-          "title_vi": null,
+          "title_vi": "Các loại bản ghi DNS cần biết",
           "title_source": "DNS Record Types You Should Know",
           "source_url": "https://bytebytego.com/guides/dns-record-types-you-should-know",
           "source_path": "data/guides/dns-record-types-you-should-know.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "5ace65bb57cbbf0c17de9639eeaf17d51b8eea1c",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/dns-record-types-you-should-know.md"
         },
         {
           "id": "sd-15-006",
-          "title_vi": null,
+          "title_vi": "TCP hay UDP cho game online?",
           "title_source": "TCP vs UDP for Online Gaming",
           "source_url": "https://bytebytego.com/guides/what-protocol-does-online-gaming-use-to-transmit-data",
           "source_path": "data/guides/what-protocol-does-online-gaming-use-to-transmit-data.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "0fa77dbff080263160f686d4613facb218ac4490",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-protocol-does-online-gaming-use-to-transmit-data.md"
         },
         {
           "id": "sd-15-007",
-          "title_vi": null,
+          "title_vi": "Deadlock là gì?",
           "title_source": "What is a Deadlock?",
           "source_url": "https://bytebytego.com/guides/what-is-a-deadlock",
           "source_path": "data/guides/what-is-a-deadlock.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "97baedfcd3062c4aec8ba1d3cd4f7fd2af224998",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-is-a-deadlock.md"
         },
         {
           "id": "sd-15-008",
-          "title_vi": null,
+          "title_vi": "Tiến trình và luồng",
           "title_source": "Process vs Thread: Key Differences",
           "source_url": "https://bytebytego.com/guides/what-is-the-difference-between-process-and-thread",
           "source_path": "data/guides/what-is-the-difference-between-process-and-thread.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "99619e02b5e439bfdd797a1d7eaba5e1dba91cc2",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-is-the-difference-between-process-and-thread.md"
         },
         {
           "id": "sd-15-009",
-          "title_vi": null,
+          "title_vi": "Mô hình OSI",
           "title_source": "OSI Model Explained",
           "source_url": "https://bytebytego.com/guides/what-is-osi-model",
           "source_path": "data/guides/what-is-osi-model.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "a136eb8a8ea2137427037c3eed153f7a0eec2ed9",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-is-osi-model.md"
         },
         {
           "id": "sd-15-010",
-          "title_vi": null,
+          "title_vi": "Hình dung một câu lệnh SQL",
           "title_source": "Visualizing a SQL Query",
           "source_url": "https://bytebytego.com/guides/visualizing-a-sql-query",
           "source_path": "data/guides/visualizing-a-sql-query.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "7f8c105967ccddcf5728ca6d310feda6181fa690",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/visualizing-a-sql-query.md"
         },
         {
           "id": "sd-15-011",
-          "title_vi": null,
+          "title_vi": "Tám giao thức mạng phổ biến",
           "title_source": "Explaining 8 Popular Network Protocols in 1 Diagram",
           "source_url": "https://bytebytego.com/guides/explaining-8-popular-network-protocols-in-1-diagram",
           "source_path": "data/guides/explaining-8-popular-network-protocols-in-1-diagram.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "079a6ebae3bd9694279b6977a5a20a945b85bddf",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/explaining-8-popular-network-protocols-in-1-diagram.md"
         },
         {
           "id": "sd-15-012",
-          "title_vi": null,
+          "title_vi": "Cách học SQL",
           "title_source": "What is the Best Way to Learn SQL?",
           "source_url": "https://bytebytego.com/guides/what-is-the-best-way-to-learn-sql",
           "source_path": "data/guides/what-is-the-best-way-to-learn-sql.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "79a576c5e8111bb1a01ad39d80a9eecf6b4bb5d3",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-is-the-best-way-to-learn-sql.md"
         }

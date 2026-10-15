@@ -688,6 +688,23 @@ class ClaimTests(Sessions):
                     self.assertIn("origin/claude/b", err)
                     self.assertIn("its source map does not list", err)
 
+    def test_sync_imports_a_todo_row_whose_lesson_arrived_on_disk_with_a_merge(self) -> None:
+        a = self.mapped_clone("a")
+        self.write_lesson(a, "sd-01-003")  # as if a merge of the default branch had brought it
+        self.write_lesson(a, "sd-01-004")
+        (a / "store" / "metadata" / "sd-01-004.json").unlink()  # incomplete: refused, and nothing is written
+        before = (a / REGISTRY).read_text(encoding="utf-8")
+        code, _, err = self.run_mapped(a, "sync")
+        self.assertEqual(1, code, err)
+        self.assertEqual(before, (a / REGISTRY).read_text(encoding="utf-8"))
+        shutil.rmtree(a / "store" / "lessons" / "sd-01-004")
+        (a / "store" / "diagrams" / "sd-01-004-main.svg").unlink()
+        self.assertEqual(0, self.run_mapped(a, "sync")[0])
+        record = self.entry(a, "sd-01-003")
+        self.assertEqual(("written", "claude/a"), (record["status"], record["owner"]))
+        self.assertEqual("todo", self.entry(a, "sd-01-004")["status"])
+        self.assertEqual(0, self.run_mapped(a, "sync")[0], "nothing left to import: idempotent")
+
     def test_sync_does_not_import_a_lesson_that_is_incomplete_or_rejected(self) -> None:
         a = self.mapped_clone("a")
         self.edit_map(a, lambda data: data["categories"][0]["lessons"].append({"id": "sd-01-006", "title_source": "Six-bis"}))

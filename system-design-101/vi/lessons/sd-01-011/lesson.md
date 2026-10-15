@@ -4,6 +4,14 @@
 
 ![Sáu khung dọc: phân phối tải chia lưu lượng cho nhiều máy theo một thuật toán; sẵn sàng cao loại máy lỗi khỏi nhóm và bản thân LB cũng cần dự phòng; kết thúc TLS giải mã tại LB và chặng sau có thể mã hóa lại; giữ phiên đưa cùng người dùng về cùng máy nhưng tải dễ bị lệch; mở rộng ngang thêm máy khi tải tăng và ứng dụng nên ít giữ trạng thái; theo dõi sức khỏe kiểm tra định kỳ từng máy, kiểm tra quá sâu dễ loại nhầm.](../../diagrams/sd-01-011-main.svg)
 
+## Từ viết tắt
+
+- **LB** (Load Balancer) — bộ cân bằng tải: máy đứng trước một nhóm máy chủ, nhận lưu lượng rồi chia cho máy phù hợp.
+- **HTTP** (HyperText Transfer Protocol) — giao thức truyền siêu văn bản: quy ước để trình duyệt gửi yêu cầu (request) và máy chủ gửi trả lời.
+- **HTTPS** (HyperText Transfer Protocol Secure) — HTTP chạy trên TLS: cách gửi yêu cầu và trả lời như HTTP nhưng nội dung được mã hóa.
+- **TLS** (Transport Layer Security) — bảo mật tầng truyền tải: lớp mã hóa giữ kín dữ liệu giữa trình duyệt và máy chủ; "kết thúc TLS tại LB" nghĩa là LB giải mã ở cửa vào.
+- **TCP** (Transmission Control Protocol) — giao thức điều khiển truyền: tạo kết nối đáng tin cậy, dữ liệu đến đủ và đúng thứ tự.
+
 ## Đọc hình
 
 **1. Phân phối tải.** LB nhận lưu lượng rồi chia cho các máy: ở tầng HTTP là từng request, ở tầng kết nối là từng kết nối hoặc luồng, và một kết nối TCP ở lại cùng một máy suốt thời gian sống của nó. "Chia đều" không tự có: *vòng tròn* chia theo lượt, *ít kết nối nhất* ưu tiên máy đang rảnh, *băm* chọn máy theo một khóa. Các request hay kết nối tốn công không như nhau, nên chọn thuật toán hợp với tải thật.

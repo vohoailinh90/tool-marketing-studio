@@ -680,7 +680,11 @@ def cmd_sync(context: Context, _: argparse.Namespace) -> int:
     imported: list[str] = []
     bootstrap = on_default_branch(context, strict=False)  # the registry is born on the default branch, ownerless
     for lesson_id, title in context.source.lessons:
-        if lesson_id not in lessons:
+        # A lesson that arrived on disk without the registry hearing of it (a merge of the default branch brings the
+        # lessons other sessions finished) is imported as written, whether its row is new or still says todo.
+        arrived = lesson_id in on_disk and (lesson_id not in lessons or lessons[lesson_id].get("status") == "todo")
+        if lesson_id not in lessons or arrived:
+            fresh = lesson_id not in lessons
             lessons[lesson_id] = {"id": lesson_id, "status": "written" if lesson_id in on_disk else "todo", "title": title}
             if lesson_id in on_disk:
                 imported.append(lesson_id)
@@ -688,7 +692,7 @@ def cmd_sync(context: Context, _: argparse.Namespace) -> int:
                 # Imported on a work branch: other sessions count a record on a non-default branch only when its owner is
                 # that branch, so an ownerless one would be invisible to them until it is merged.
                 lessons[lesson_id].update(owner=context.me, done_at=stamp(context.now))
-            added += 1
+            added += fresh
         elif lessons[lesson_id].get("title") != title:
             lessons[lesson_id]["title"] = title
             retitled += 1

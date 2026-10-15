@@ -464,3 +464,7 @@ mutations:
   find: 'holding.owner != me and not holding.shared:  # finished, by someone else or before the registry'
   replace: 'holding.owner != me:  # finished, by someone else or before the registry'
   test: tests.test_sd101_claims.ClaimTests.test_a_shared_half_stays_shared_once_it_is_written
+- label: sync leaves a todo row whose lesson arrived on disk
+  find: '        arrived = lesson_id in on_disk and (lesson_id not in lessons or lessons[lesson_id].get("status") == "todo")'
+  replace: '        arrived = False'
+  test: tests.test_sd101_claims.ClaimTests.test_sync_imports_a_todo_row_whose_lesson_arrived_on_disk_with_a_merge

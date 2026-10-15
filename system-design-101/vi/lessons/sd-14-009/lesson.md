@@ -5,6 +5,12 @@ Hiểu từng thuộc tính là hiểu vì sao cùng một cookie lúc có mặt
 
 ![Tám thẻ xếp dọc. Thẻ đầu: máy chủ trả Set-Cookie gồm tên, giá trị và các thuộc tính; trình duyệt lưu lại. Thẻ thứ hai: mỗi yêu cầu sau, trình duyệt tự quyết cookie nào được gắn vào tiêu đề Cookie. Bốn thẻ thuộc tính: Domain và Path giới hạn địa chỉ nhận cookie; Secure chỉ gửi qua HTTPS; HttpOnly để JavaScript không đọc được cookie; SameSite quyết định có gửi cookie trong yêu cầu từ trang khác site hay không, với Strict, Lax và None; Lax chỉ gửi khi đó là điều hướng cấp cao nhất bằng phương thức an toàn như GET; None phải kèm Secure và trình duyệt vẫn có thể chặn cookie bên thứ ba. Thẻ thời hạn: Expires hoặc Max-Age, không có thì là cookie phiên. Thẻ cuối: nên khai SameSite rõ ràng vì trình duyệt có thể xử lý cookie không khai theo cách khác nhau.](../../diagrams/sd-14-009-main.svg)
 
+## Từ viết tắt
+
+- **HTTP** (HyperText Transfer Protocol) — giao thức truyền siêu văn bản: quy ước để trình duyệt gửi yêu cầu và máy chủ gửi trả lời.
+- **HTTPS** (HyperText Transfer Protocol Secure) — HTTP được mã hóa: cùng cách gửi yêu cầu và trả lời như HTTP nhưng nội dung được giữ kín trên đường đi.
+- **MDN** (Mozilla Developer Network) — tên cũ của MDN Web Docs, bộ tài liệu tra cứu công nghệ web do Mozilla và cộng đồng viết; bài dùng nó để đối chiếu.
+
 ## Đọc hình
 
 **Set-Cookie.** Máy chủ gửi `Set-Cookie: tên=giá trị; thuộc tính…`. Tên và giá trị là phần dữ liệu; phần còn lại là thuộc tính điều khiển cách dùng. Trình duyệt lưu cookie và, ở mỗi yêu cầu sau, tự quyết định cookie nào được gắn vào tiêu đề `Cookie`.

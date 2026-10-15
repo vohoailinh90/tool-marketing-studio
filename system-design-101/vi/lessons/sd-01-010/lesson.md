@@ -5,6 +5,12 @@ Khi hai quy tắc xung đột, cascade quyết định quy tắc nào thắng.
 
 ![Bốn thẻ xếp dọc kèm một thẻ ví dụ. Thẻ đầu: một quy tắc gồm selector và khai báo, ví dụ p mở ngoặc nhọn color blue đóng ngoặc nhọn. Dải tiêu đề: khi hai quy tắc xung đột. Bước 1, nguồn gốc và important, mức cao hơn thắng trước. Bước 2, độ cụ thể, selector cụ thể hơn thắng dù viết trước. Bước 3, thứ tự xuất hiện, khi các bước trước hòa thì quy tắc viết sau thắng. Hình lược bớt các bước ngữ cảnh, thuộc tính style, layer và phạm vi @scope. Ví dụ: lớp note màu đỏ thắng p màu xanh dù p viết sau.](../../diagrams/sd-01-010-main.svg)
 
+## Từ viết tắt
+
+- **CSS** (Cascading Style Sheets) — bảng kiểu xếp tầng: các luật mô tả màu sắc, cỡ chữ và cách bố trí của trang.
+- **HTML** (HyperText Markup Language) — ngôn ngữ đánh dấu siêu văn bản: văn bản dùng thẻ để mô tả cấu trúc của một trang web.
+- **DOM** (Document Object Model) — mô hình đối tượng tài liệu: cây các phần tử của trang mà trình duyệt dựng từ HTML; JavaScript có thể sửa cây này.
+
 ## Đọc hình
 
 **Một quy tắc.** Gồm **selector** (chọn phần tử) và các **khai báo** (thuộc tính: giá trị).

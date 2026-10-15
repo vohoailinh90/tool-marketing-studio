@@ -6,6 +6,10 @@ Một bảng tuần hoàn gom rất nhiều thành phần vào một trang. Đ�
 
 **Đọc hình:** các loại này hay bị lẫn trên một bảng; tách ra giúp biết cái nào đi kèm cụm, cái nào tùy chọn, cái nào phải tự cài.
 
+## Từ viết tắt
+
+- **API** (Application Programming Interface) — giao diện lập trình ứng dụng: cách để một chương trình gọi chức năng hoặc lấy dữ liệu của chương trình khác theo quy ước đã định.
+
 ## Nhìn hình thử trả lời
 
 Helm có phải thành phần lõi của Kubernetes không?

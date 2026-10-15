@@ -22,6 +22,15 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 11. [Các tình huống dùng bộ cân bằng tải](lessons/sd-01-011/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
 12. [18 cổng mạng thường gặp](lessons/sd-01-012/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
 13. [Phân biệt WAN, LAN, PAN và MAN](lessons/sd-01-013/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+14. [JavaScript hoạt động thế nào?](lessons/sd-01-014/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+15. [8 gợi ý thiết kế API hiệu quả](lessons/sd-01-015/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+16. [Reverse Proxy, API Gateway và Load Balancer](lessons/sd-01-016/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+17. [REST API hoạt động thế nào?](lessons/sd-01-017/lesson.md)
+18. [Load Balancer và API Gateway](lessons/sd-01-018/lesson.md)
+19. [GraphQL tại LinkedIn](lessons/sd-01-019/lesson.md)
+20. [Các cách đưa GraphQL vào hệ thống](lessons/sd-01-020/lesson.md)
+21. [Bảng tra cứu thiết kế API](lessons/sd-01-021/lesson.md)
+22. [Nhập môn API Gateway](lessons/sd-01-022/lesson.md)
 
 ## AI và học máy
 
@@ -92,6 +101,21 @@ Các bài từ sd-14-016 trở đi chưa viết; số thứ tự dưới đây c
 14. [Bốn cơ chế xác thực: khóa SSH, token OAuth, chứng chỉ và mật khẩu](lessons/sd-14-014/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 15. [Chữ ký số: ký bằng khóa riêng, kiểm bằng khóa công khai](lessons/sd-14-015/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 
+## Nền tảng máy tính
+
+1. [Phân trang và phân đoạn](lessons/sd-15-001/lesson.md)
+2. [IPv4 và IPv6](lessons/sd-15-002/lesson.md)
+3. [Bốn nơi UDP thường được dùng](lessons/sd-15-003/lesson.md)
+4. [DNS tra cứu hoạt động thế nào?](lessons/sd-15-004/lesson.md)
+5. [Các loại bản ghi DNS cần biết](lessons/sd-15-005/lesson.md)
+6. [TCP hay UDP cho game online?](lessons/sd-15-006/lesson.md)
+7. [Deadlock là gì?](lessons/sd-15-007/lesson.md)
+8. [Tiến trình và luồng](lessons/sd-15-008/lesson.md)
+9. [Mô hình OSI](lessons/sd-15-009/lesson.md)
+10. [Hình dung một câu lệnh SQL](lessons/sd-15-010/lesson.md)
+11. [Tám giao thức mạng phổ biến](lessons/sd-15-011/lesson.md)
+12. [Cách học SQL](lessons/sd-15-012/lesson.md)
+
 Danh mục đầy đủ và snapshot nguồn: [bảng đối chiếu](../../brainstorm/system-design-101-vi/source-map.json).
 Quy tắc đã chốt: [kết luận brainstorm](../../brainstorm/system-design-101-vi/DECISIONS.md).
 Tiến độ từng đợt: [PROGRESS.md](PROGRESS.md).
@@ -111,6 +135,10 @@ Không cần đọc phần nâng cao để nắm ý chính. Các sơ đồ đư�
   Phiên viết bài phải nhận bài bằng `python3 scripts/sd101_claims.py claim` **trước khi viết** và ghi xong bằng `finish`,
   để hai phiên không viết cùng một bài; không lấy bài theo `next_id`. Quy trình: [docs/sd101-claims.md](../../docs/sd101-claims.md).
   `written` chỉ nói bài đã được viết và bàn giao; bài đã review hay chưa vẫn ghi ở `metadata/`.
+- Từ viết tắt: bài viết cho người mới, nên mọi từ viết tắt (như LLM, DNS, SSE) mà bài hoặc hình có dùng đều được giải
+  thích đầy đủ ở mục `## Từ viết tắt` ngay sau hình, mỗi từ một dòng: `- **LLM** (Large Language Model) — mô hình
+  ngôn ngữ lớn: lời giải thích đơn giản`. Dạng đầy đủ trong ngoặc phải ghép đúng chữ cái đầu; quy tắc chi tiết ở
+  [kết luận brainstorm](../../brainstorm/system-design-101-vi/DECISIONS.md), `scripts/sd101_check.py` kiểm bằng máy.
 
 Trạng thái nội dung: `draft → review → done`. Kiểm chứng nguồn, review kỹ thuật,
 kiểm tra hình mobile và thử với người học được ghi riêng. `done` cần review kỹ thuật
@@ -121,6 +149,8 @@ và hình đạt; không coi đọc nguồn là mọi claim đã đúng, không 
 Tình huống thực tế → Cơ sở dữ liệu và lưu trữ →
 Bộ nhớ đệm và hiệu năng → Thanh toán và công nghệ tài chính → Kiến trúc phần mềm →
 Công cụ và năng suất → Phát triển phần mềm → Đám mây và hệ thống phân tán →
-Hệ thống hoạt động thế nào? → Bảo mật (đã viết một phần) → Nền tảng máy tính.
+Hệ thống hoạt động thế nào? → Bảo mật (đã viết một phần).
+
+Nhóm “Nền tảng máy tính” (cuối mục lục nguồn) được viết trước theo yêu cầu người dùng ngày 2026-10-13; nhóm “API và phát triển web” viết tiếp theo thứ tự source-map.
 
 `lessons/<id>/lesson.yaml` chỉ trỏ tới metadata JSON; không giữ bản sao trạng thái.

@@ -5,6 +5,13 @@ Khi bạn gửi prompt, mô hình sinh câu trả lời từng token một.
 
 ![Hai nhóm xếp dọc. A, huấn luyện: bước 1 tiền huấn luyện dự đoán token kế tiếp trên lượng văn bản rất lớn; bước 2 tinh chỉnh có giám sát từ câu trả lời mẫu do người viết; bước 3 mô hình thưởng học từ xếp hạng của người, rồi mô hình được tối ưu theo điểm thưởng bằng học tăng cường. B, khi bạn gửi prompt: bước 4 chia văn bản thành token; bước 5 sinh từng token một, lặp tới khi xong; bước 6 hiển thị câu trả lời. Thẻ cuối nhắc chi tiết kiểm duyệt và hạ tầng của ChatGPT chưa được công bố đầy đủ.](../../diagrams/sd-03-008-main.svg)
 
+## Từ viết tắt
+
+- **RL** (Reinforcement Learning) — học tăng cường: mô hình thử nhiều cách, được thưởng khi làm tốt và dần chọn cách tốt hơn.
+- **PPO** (Proximal Policy Optimization) — một thuật toán học tăng cường, dùng để tinh chỉnh mô hình theo điểm thưởng.
+- **GPT** (Generative Pretrained Transformer) — tên một dòng mô hình ngôn ngữ được huấn luyện sẵn trên lượng văn bản rất lớn rồi mới dùng cho việc cụ thể.
+- **AI** (Artificial Intelligence) — trí tuệ nhân tạo: các hệ thống máy tính làm những việc thường cần trí thông minh của con người, như hiểu ngôn ngữ hay nhận ra hình ảnh.
+
 ## Đọc hình
 
 **A · Huấn luyện.** Mô tả công khai đầy đủ nhất là của InstructGPT, họ hàng gần của ChatGPT.

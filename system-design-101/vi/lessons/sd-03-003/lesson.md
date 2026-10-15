@@ -5,6 +5,13 @@ tiền huấn luyện ở quy mô lớn và việc dạy mô hình làm theo ch�
 
 ![Tám thẻ nối nhau theo chiều dọc: thập niên 1950 hệ luật viết tay; thập niên 1980 học máy trên dữ liệu nhỏ; 1990 đến 2010 mạng nơ-ron CNN và RNN; 2014 GAN; 2017 Transformer; 2018 đến 2020 GPT, GPT-3 có 175 tỷ tham số; tháng 3 năm 2022 InstructGPT; ngày 30 tháng 11 năm 2022 ChatGPT ra mắt bản xem thử. Ghi chú: các mốc đầu là xu hướng, không phải ranh giới chính xác.](../../diagrams/sd-03-003-main.svg)
 
+## Từ viết tắt
+
+- **CNN** (Convolutional Neural Network) — mạng nơ-ron tích chập: loại mạng nơ-ron đặc biệt mạnh với ảnh.
+- **RNN** (Recurrent Neural Network) — mạng nơ-ron hồi quy: loại mạng nơ-ron xử lý dữ liệu theo chuỗi, như văn bản.
+- **GAN** (Generative Adversarial Network) — mạng đối sinh: hai mạng nơ-ron đối kháng nhau, một mạng sinh mẫu và một mạng phân biệt thật giả.
+- **GPT** (Generative Pretrained Transformer) — tên một dòng mô hình ngôn ngữ được huấn luyện sẵn trên lượng văn bản rất lớn rồi mới dùng cho việc cụ thể.
+
 ## Đọc hình
 
 **Trước 2017.** Hệ luật viết tay nhường chỗ cho học máy từ dữ liệu, rồi tới mạng nơ-ron: CNN mạnh với ảnh,

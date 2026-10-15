@@ -7,6 +7,14 @@ Ngoài chia tải, một LB phù hợp còn hỗ trợ các tình huống dướ
 
 ![Sáu khung dọc: tránh máy A lỗi và chọn B; kiểm tra sức khỏe; phân luồng mobile và desktop; kết thúc TLS tại LB; chia tải giữa vùng sẵn sàng A và B; giữ các lượt của cùng người dùng tới máy A khi A còn đủ điều kiện.](../../diagrams/sd-01-002-main.svg)
 
+## Từ viết tắt
+
+- **LB** (Load Balancer) — bộ cân bằng tải: máy đứng trước nhiều máy chủ, nhận request rồi chia cho máy chủ phù hợp.
+- **TLS** (Transport Layer Security) — bảo mật tầng truyền tải: lớp mã hóa giữ kín dữ liệu giữa trình duyệt và máy chủ; "kết thúc TLS tại LB" nghĩa là LB giải mã ở cửa vào.
+- **HTTP** (HyperText Transfer Protocol) — giao thức truyền siêu văn bản: quy ước để trình duyệt gửi yêu cầu (request) và máy chủ gửi trả lời (response).
+- **HTTPS** (HyperText Transfer Protocol Secure) — HTTP chạy trên TLS: cách gửi yêu cầu và trả lời như HTTP nhưng nội dung được mã hóa.
+- **AWS** (Amazon Web Services) — dịch vụ điện toán đám mây của Amazon; bài lấy Application Load Balancer của AWS làm ví dụ.
+
 ## Đọc hình
 
 **1. Xử lý lỗi.** Khi A bị loại khỏi nhóm phục vụ, request mới có thể đi tới B còn khỏe.

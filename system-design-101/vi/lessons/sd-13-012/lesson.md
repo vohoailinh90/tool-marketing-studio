@@ -6,6 +6,14 @@ Chuỗi công cụ của một công ty lớn trả lời câu hỏi "họ sợ 
 
 **Đọc hình:** hai thẻ đầu là ví dụ công khai của Netflix, ba thẻ sau là rủi ro chung bài thêm vào; tên công cụ chỉ là minh họa.
 
+## Từ viết tắt
+
+- **CI** (Continuous Integration) — tích hợp liên tục: tự động xây dựng và kiểm tra mã mỗi khi có thay đổi.
+- **CD** (Continuous Delivery) — chuyển giao liên tục: tự động đưa bản đã kiểm tra tới bước phát hành hoặc triển khai.
+- **SLSA** (Supply-chain Levels for Software Artifacts) — các mức bảo đảm an toàn chuỗi cung ứng phần mềm: khung nói một bản build đáng tin đến đâu.
+- **OWASP** (Open Worldwide Application Security Project) — tổ chức cộng đồng chuyên về bảo mật ứng dụng, có các hướng dẫn mà bài dùng để đối chiếu.
+- **AMI** (Amazon Machine Image) — ảnh máy ảo của Amazon: bản chụp sẵn hệ điều hành và phần mềm để tạo máy chủ ảo; trong ví dụ Netflix của bài, ứng dụng được đóng vào một image kiểu này rồi thay máy, không sửa tại chỗ.
+
 ## Nhìn hình thử trả lời
 
 Vì sao đóng ứng dụng vào image rồi thay máy lại giảm rủi ro hơn cập nhật phần mềm trên máy đang chạy?

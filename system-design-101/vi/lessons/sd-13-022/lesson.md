@@ -6,6 +6,10 @@ Khi tìm nguyên nhân sự cố trong nhật ký, đặc điểm của tệp qu
 
 **Đọc hình:** mỗi thẻ là một tình huống riêng và lệnh gợi ý; các lệnh có thể ghép bằng dấu `|` khi cần.
 
+## Từ viết tắt
+
+- **JSON** (JavaScript Object Notation) — ký hiệu đối tượng JavaScript: định dạng văn bản biểu diễn dữ liệu bằng các cặp tên và giá trị, dễ đọc với cả người và máy.
+
 ## Nhìn hình thử trả lời
 
 Khi nào cần thêm `--line-buffered` cho `grep` trong một đường ống với `tail -f`?

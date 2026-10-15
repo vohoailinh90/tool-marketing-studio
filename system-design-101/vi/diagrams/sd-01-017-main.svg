@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 799" width="320" height="799" role="img" aria-labelledby="title desc">
+<title id="title">REST: tài nguyên, yêu cầu và phản hồi</title>
+<desc id="desc">Năm khung dọc: tài nguyên có địa chỉ riêng như /orders/42; yêu cầu gồm phương thức, đường dẫn và header; máy chủ không nhớ yêu cầu trước nên mỗi yêu cầu tự đủ thông tin; phản hồi gồm mã trạng thái, header và bản trình bày JSON, có thể kèm chỉ dẫn cache; các ràng buộc gồm client và máy chủ tách biệt, phi trạng thái, cache được, giao diện thống nhất và phân tầng. REST là phong cách chứ không phải chuẩn.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="799" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">REST API</text>
+<text x="16" y="56" font-size="20" font-weight="bold">HOẠT ĐỘNG RA SAO</text>
+<text x="16" y="86" font-size="16" font-weight="normal">Tài nguyên có địa chỉ riêng</text>
+<rect x="16" y="108" width="288" height="104" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="138" font-size="16" font-weight="bold">1 · Tài nguyên</text>
+<text x="30" y="165" font-size="16" font-weight="normal">Đơn hàng 42 có địa chỉ</text>
+<text x="30" y="192" font-size="16" font-weight="normal">/orders/42</text>
+<rect x="16" y="226" width="288" height="104" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="256" font-size="16" font-weight="bold">2 · Yêu cầu</text>
+<text x="30" y="283" font-size="16" font-weight="normal">GET /orders/42</text>
+<text x="30" y="310" font-size="16" font-weight="normal">Header: Accept, Authorization</text>
+<rect x="16" y="344" width="288" height="104" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="374" font-size="16" font-weight="bold">3 · Máy chủ</text>
+<text x="30" y="401" font-size="16" font-weight="normal">Không nhớ yêu cầu trước</text>
+<text x="30" y="428" font-size="16" font-weight="normal">Mỗi yêu cầu tự đủ thông tin</text>
+<rect x="16" y="462" width="288" height="104" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="492" font-size="16" font-weight="bold">4 · Phản hồi</text>
+<text x="30" y="519" font-size="16" font-weight="normal">200 + JSON của đơn 42</text>
+<text x="30" y="546" font-size="16" font-weight="normal">Cache-Control, ETag</text>
+<rect x="16" y="580" width="288" height="131" rx="12" fill="#e2e8f0" stroke="#94a3b8"/>
+<text x="30" y="610" font-size="16" font-weight="bold">5 · Ràng buộc</text>
+<text x="30" y="637" font-size="16" font-weight="normal">Client và máy chủ tách biệt</text>
+<text x="30" y="664" font-size="16" font-weight="normal">Phi trạng thái, cache được</text>
+<text x="30" y="691" font-size="16" font-weight="normal">Thống nhất, phân tầng</text>
+<text x="16" y="753" font-size="16" font-weight="normal">REST là phong cách,</text>
+<text x="16" y="779" font-size="16" font-weight="normal">không phải chuẩn.</text>
+</g></svg>

@@ -38,6 +38,7 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 27. [Các vai trò trong một ứng dụng web vận hành thật](lessons/sd-01-027/lesson.md)
 28. [URI, URL và URN: định danh, vị trí và tên](lessons/sd-01-028/lesson.md)
 29. [API và SDK: giao diện gọi và bộ công cụ](lessons/sd-01-029/lesson.md)
+30. [Bảo vệ API: kiểm tra nhiều lớp](lessons/sd-01-030/lesson.md)
 
 ## AI và học máy
 

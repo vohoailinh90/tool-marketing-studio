@@ -32,6 +32,7 @@
     "sd-01-027",
     "sd-01-028",
     "sd-01-029",
+    "sd-01-030",
     "sd-03-001",
     "sd-03-002",
     "sd-03-003",
@@ -101,14 +102,14 @@
     "sd-15-012"
   ],
   "reviewed_ids": [],
-  "next_id": "sd-01-030",
+  "next_id": "sd-01-031",
   "active_batch_ids": [
-    "sd-01-029"
+    "sd-01-030"
   ],
   "active_pr": null,
   "updated_on": "2026-10-15",
-  "active_branch": "codex/sd01-029-api-sdk",
-  "previous_pr": 79,
+  "active_branch": "codex/sd01-030-api-security",
+  "previous_pr": 80,
   "superseded_pr": 24,
   "integration_review_pending": true,
   "adopted_main_sha": "7397e5c4deca80a76058261bab6f3ed54ac4afe3",
@@ -123,32 +124,11 @@
   ],
   "repository": "vohoailinh90/tool-marketing-studio",
   "previous_repository": "vohoailinh90/Agentic-coding-course",
-  "destination_base_sha": "0c1428aed8fb4cb36093659fa37abc37a1a2c2e5",
+  "destination_base_sha": "b7bbb013d54c4d125c95cb6f5eec9ea5a15bf8ca",
   "migration_source_sha": "b8dff434ff75499137bbb10b61122958fdaaafa5",
   "previous_repository_main_sha": "89186c1a1aeb90a47e2a563fdc7786b2dacec787",
   "last_merged_pr": 68,
-  "pending_ci_prs": [
-    {
-      "pr": 78,
-      "head_sha": "66c0caf8cea0df7837da7ab77f93b43e52aa0d5f",
-      "base_sha": "67832e591e99118508b493f6d14f98151ffb4705",
-      "run_id": 38760239431,
-      "status": "in_progress",
-      "review_id": 6195858816,
-      "review_status": "clean",
-      "checked_on": "2026-10-15"
-    },
-    {
-      "pr": 79,
-      "head_sha": "0c1428aed8fb4cb36093659fa37abc37a1a2c2e5",
-      "base_sha": "66c0caf8cea0df7837da7ab77f93b43e52aa0d5f",
-      "run_id": 38768647860,
-      "status": "queued",
-      "review_id": 6197133407,
-      "review_status": "clean",
-      "checked_on": "2026-10-15"
-    }
-  ],
+  "pending_ci_prs": [],
   "prior_ci_evidence": [
     {
       "pr": 75,
@@ -190,6 +170,29 @@
       "review_status": "clean",
       "checked_on": "2026-10-15",
       "note": "Prior head only; glossary/main integration requires new review/checks."
+    }
+  ],
+  "ci_evidence": [
+    {
+      "pr": 78,
+      "head_sha": "66c0caf8cea0df7837da7ab77f93b43e52aa0d5f",
+      "run_id": 38760239431,
+      "status": "success",
+      "checked_on": "2026-10-15"
+    },
+    {
+      "pr": 79,
+      "head_sha": "0c1428aed8fb4cb36093659fa37abc37a1a2c2e5",
+      "run_id": 38768647860,
+      "status": "success",
+      "checked_on": "2026-10-15"
+    },
+    {
+      "pr": 80,
+      "head_sha": "b7bbb013d54c4d125c95cb6f5eec9ea5a15bf8ca",
+      "run_id": 38779485889,
+      "status": "success",
+      "checked_on": "2026-10-15"
     }
   ]
 }

@@ -303,11 +303,11 @@
         },
         {
           "id": "sd-01-030",
-          "title_vi": null,
+          "title_vi": "Bảo vệ API: kiểm tra nhiều lớp",
           "title_source": "A Cheatsheet to Build Secure APIs",
           "source_url": "https://bytebytego.com/guides/a-cheatsheet-to-build-secure-apis",
           "source_path": "data/guides/a-cheatsheet-to-build-secure-apis.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "456be8c1c8bb73c4429c48318823ede8c3d14273",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/a-cheatsheet-to-build-secure-apis.md"
         },

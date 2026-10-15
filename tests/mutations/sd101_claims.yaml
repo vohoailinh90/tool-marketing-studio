@@ -51,7 +51,7 @@ mutations:
   replace: "        if True:\n            lessons[lesson_id][\"heartbeat_at\"]"
   test: tests.test_sd101_claims.LeaseTests.test_a_session_that_wakes_up_cannot_win_back_a_lesson_that_was_taken
 - label: finish accepts a lesson that does not exist
-  find: 'elif not (context.store / "lessons" / lesson_id / "lesson.md").is_file():'
+  find: 'elif (lesson := context.store / "lessons" / lesson_id / "lesson.md").is_symlink() or not lesson.is_file():'
   replace: 'elif False:'
   test: tests.test_sd101_claims.FinishAndReleaseTests.test_finish_needs_a_claim_of_yours_and_the_lesson_file
 - label: finish accepts a lost claim
@@ -220,8 +220,8 @@ mutations:
   test: tests.test_sd101_claims.ClaimTests.test_an_expired_claim_revived_by_a_local_renewal_does_not_beat_a_partner_taken_fairly
 - label: a truncated local registry is read and published as if it were whole
   find: "        if missing := [lesson_id for lesson_id, _ in context.source.lessons if lesson_id not in lessons]:\n            problems.append(f\"lacks {len(missing)} source-map lesson(s), e.g. {missing[0]}\"\
-    )\n        if problems:"
-  replace: '        if problems:'
+    )\n        elif extra :="
+  replace: "        if False:\n            pass\n        elif extra :="
   test: tests.test_sd101_claims.LocalFileTests.test_a_truncated_local_registry_is_refused_before_anything_is_written_or_pushed
 - label: a local registry for another source pin is used as it is
   find: "        problems += header_problems(header, context.source.commit_sha, context.source.repository)\n        if missing"
@@ -252,7 +252,7 @@ mutations:
   replace: '    if False:  # a legacy feature branch'
   test: tests.test_sd101_claims.RemoteTests.test_a_default_branch_without_a_registry_stops_the_decision
 - label: a lesson finished but not committed is pushed as written
-  find: '        in_head = all(git(context.root, "cat-file", "-e", f"HEAD:{path}", check=False).returncode == 0 for path in required)'
+  find: '        in_head = all(regular_in_head(context.root, path) for path in required)'
   replace: '        in_head = True'
   test: tests.test_sd101_claims.ClaimTests.test_a_finished_lesson_that_git_ignores_is_not_pushed
 - label: a written lesson edited after its commit is pushed with the stale draft
@@ -268,8 +268,8 @@ mutations:
   replace: '        return False'
   test: tests.test_sd101_claims.RemoteTests.test_nothing_is_published_from_a_renamed_default_branch
 - label: a written lesson is accepted when only its lesson.md is in HEAD
-  find: check=False).returncode == 0 for path in required)
-  replace: check=False).returncode == 0 for path in required[:1])
+  find: for path in required)
+  replace: for path in required[:1])
   test: tests.test_sd101_claims.ClaimTests.test_a_finished_lesson_without_its_metadata_and_figure_is_not_pushed
 - label: a claim with no live published copy beats a visible replacement because it is older
   find: '(is_stale(mine, now, lease) or not published_live or beats(other, mine)):'

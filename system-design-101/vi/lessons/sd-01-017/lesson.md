@@ -23,7 +23,7 @@ Trình duyệt và CDN lưu `GET /products/9` trong một giờ. Chủ shop đ�
 <details>
 <summary>Xem đáp án</summary>
 
-Ràng buộc cache: phản hồi được phép dùng lại trong thời hạn mà `Cache-Control` cho phép (như `max-age`), nên bản cũ vẫn hợp lệ cho tới khi hết hạn. Cách giảm tác hại: đặt thời hạn ngắn cho dữ liệu hay đổi; dùng `ETag` để lần sau client hỏi lại bằng `If-None-Match` và nhận `304` nếu chưa đổi; dùng `no-cache` (phải hỏi lại máy chủ trước khi dùng) hoặc `no-store` (không lưu) cho dữ liệu không được cũ; xóa bản trong cache của CDN khi đổi giá.
+Ràng buộc cache: phản hồi được phép dùng lại trong thời hạn mà `Cache-Control` cho phép (như `max-age`), nên bản cũ vẫn hợp lệ cho tới khi hết hạn. Cách giảm tác hại: đặt thời hạn ngắn cho dữ liệu hay đổi; dùng `no-cache` (phải hỏi lại máy chủ trước khi dùng) hoặc `no-store` (không lưu) cho dữ liệu không được cũ; xóa bản trong cache của CDN khi đổi giá. `ETag` không rút ngắn thời gian giá cũ: khi bản còn trong thời hạn, cache dùng lại mà không hỏi máy chủ. Nó chỉ làm việc hỏi lại rẻ hơn: khi cache hỏi lại bằng `If-None-Match`, máy chủ trả `304` nếu chưa đổi và không gửi lại cả thân, nên `ETag` đi cùng `no-cache` hoặc thời hạn ngắn.
 
 </details>
 

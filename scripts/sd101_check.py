@@ -176,7 +176,8 @@ UNIT_SYMBOLS = {"KiB": "Kibibyte", "MiB": "Mebibyte", "GiB": "Gibibyte", "TiB": 
 # Names whose letters are not (all) initials: the full form is what they stand for (HPACK is "Header Compression for
 # HTTP/2"; SLSA is "Supply-chain Levels for Software Artifacts", where "Supply-chain" is one word but two hyphen parts).
 IRREGULAR_FORMS = {"HPACK": "Header Compression for HTTP/2", "AAAA": "Quad A", "EDNS": "Extension Mechanisms for DNS",
-                   "ISO": "International Organization for Standardization", "MX": "Mail eXchange", "SLSA": "Supply-chain Levels for Software Artifacts",
+                   "ISO": "International Organization for Standardization", "MX": "Mail eXchange", "CoAP": "Constrained Application Protocol",
+                   "RRset": "Resource Record set", "SLSA": "Supply-chain Levels for Software Artifacts",
                    "W3C": "World Wide Web Consortium", "SELinux": "Security-Enhanced Linux", "WebAuthn": "Web Authentication",
                    "OpenID": "Open IDentity", "DevOps": "Development and Operations",
                    "DevSecOps": "Development, Security and Operations", "GitOps": "Git Operations", "NoOps": "No Operations",
@@ -189,6 +190,7 @@ RECURSIVE_NAMES = frozenset({"gRPC"})
 # shows them. A name that merely has capitals (JavaScript, GitHub, PostgreSQL) is not an abbreviation.
 MIXED_CASE_TERMS = ("gRPC", "ETag", "IPv4", "IPv6", "OAuth", "mTLS", "NoSQL", "vCPU", "IaC", "MoE", "PaaS", "IaaS", "SaaS", "FaaS", "BaaS",
                     "W3C", "SELinux", "WebAuthn", "OpenID", "DevOps", "DevSecOps", "GitOps", "NoOps", "EdDSA", "NetBIOS",
+                    "IoT", "CoAP", "DoH", "DoT", "RRset",
                     *UNIT_SYMBOLS)
 ABBREVIATION = re.compile(r"(?<!\w)(?:(" + "|".join(MIXED_CASE_TERMS) + r")|(\d*[A-Z]{2,}))(?:v?\d+)?s?(?!\w)")
 # Product names with an abbreviation inside them, which no run of capitals standing alone shows (OpenAI, MySQL, macOS):
@@ -196,7 +198,7 @@ ABBREVIATION = re.compile(r"(?<!\w)(?:(" + "|".join(MIXED_CASE_TERMS) + r")|(\d*
 # the abbreviation it carries; add a new one when a lesson introduces such a name. A possessive, a plural or a version
 # number may follow (OpenAI's, MySQL8).
 EMBEDDED_ABBREVIATIONS = {"ChatGPT": "GPT", "CommonJS": "JS", "ECMAScript": "ECMA", "FastAPI": "API", "GraphQL": "QL",
-                          "HAProxy": "HA", "InfluxDB": "DB", "InstructGPT": "GPT", "JinaAI": "AI", "LLMWare": "LLM",
+                          "HAProxy": "HA", "InfluxDB": "DB", "InnoDB": "DB", "InstructGPT": "GPT", "JinaAI": "AI", "LLMWare": "LLM",
                           "MetalLB": "LB", "MySQL": "SQL", "OOMKilled": "OOM", "OpenAI": "AI", "OpenSSH": "SSH",
                           "PostgreSQL": "SQL", "PyJWT": "JWT", "SQLite": "SQL", "TimescaleDB": "DB", "macOS": "OS"}
 # The same terms and names set in capitals (OAUTH 2.0 in a heading), which read as the term they are.

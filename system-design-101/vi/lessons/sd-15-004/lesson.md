@@ -11,6 +11,11 @@
 - **TLD** (Top-Level Domain) — miền cấp cao nhất: phần cuối cùng của tên miền, như .com.
 - **TTL** (Time To Live) — thời gian sống: khoảng thời gian một bản ghi trong bộ nhớ đệm được coi là còn dùng được trước khi hết hạn.
 - **DNSSEC** (DNS SECurity) — bảo mật cho DNS: thêm chữ ký số vào dữ liệu DNS để kiểm tra nó không bị làm giả; bài này không đi sâu vào nó.
+- **DoH** (DNS over HTTPS) — DNS qua HTTPS: gửi truy vấn DNS bên trong một kết nối HTTPS để người ngoài khó đọc.
+- **DoT** (DNS over TLS) — DNS qua TLS: gửi truy vấn DNS bên trong một kết nối TLS để người ngoài khó đọc.
+- **HTTPS** (HyperText Transfer Protocol Secure) — HTTP chạy trên TLS: cách gửi yêu cầu và trả lời như HTTP nhưng nội dung được mã hóa.
+- **HTTP** (HyperText Transfer Protocol) — giao thức truyền siêu văn bản: quy ước để trình duyệt gửi yêu cầu (request) và máy chủ gửi trả lời (response).
+- **TLS** (Transport Layer Security) — bảo mật tầng truyền tải: lớp mã hóa giữ kín dữ liệu giữa client và máy chủ.
 
 ## Đọc hình
 

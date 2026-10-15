@@ -1898,6 +1898,11 @@ class AbbreviationRuleTests(StoreCase):
         self.assertTrue(check.spells("EDNS", "Extension Mechanisms for DNS"))
         self.assertTrue(check.spells("ISO", "International Organization for Standardization"))
         self.assertTrue(check.spells("MX", "Mail eXchange"))
+        self.assertTrue(check.spells("CoAP", "Constrained Application Protocol"))
+        self.assertTrue(check.spells("RRset", "Resource Record set"))
+        self.assertTrue(check.spells("IoT", "Internet of Things"))
+        self.assertTrue(check.spells("DoH", "DNS over HTTPS"))
+        self.assertTrue(check.spells("DoT", "DNS over TLS"))
         self.assertFalse(check.spells("MX", "Mail Exchange"))
         self.assertFalse(check.spells("ETag", "Electronic Tag"))
         self.lesson("Bộ nhớ tối thiểu 19 MiB.", glossary=None)
@@ -2223,6 +2228,8 @@ class AbbreviationRuleTests(StoreCase):
                          check.abbreviations_in("16 vCPUs, 4 MiBs, OAuth2, gRPCs, IPv4s, NoSQLs và API2."))
         self.assertEqual({"EdDSA", "NetBIOS"}, check.abbreviations_in("Ký bằng EdDSA, chia sẻ qua NetBIOS."))
         self.assertEqual({"ETag"}, check.abbreviations_in("Cache-Control, ETag"))
+        self.assertEqual({"IoT", "CoAP", "DoH", "DoT", "RRset"},
+                         check.abbreviations_in("Thiết bị IoT dùng CoAP; truy vấn qua DoH hoặc DoT; RRset là tập bản ghi."))
         self.assertEqual({"IPv4", "gRPC", "OAuth"}, check.abbreviations_in("IPV4s GRPCs OAUTHs"))  # a lowercase plural after capitals
         self.assertEqual({"DHCP", "TLS", "SHA"}, check.abbreviations_in("DHCPv4 và DHCPv6, TLSv1.3, SHA256."))
         for text in ("MAX_SIZE", "A80", "WebSocket", "I", "ĐƠN HÀNG", "TÓM", "myIPv4", "JavaScript", "GitHub",
@@ -2232,6 +2239,7 @@ class AbbreviationRuleTests(StoreCase):
 
     def test_a_name_that_carries_an_abbreviation_is_read_as_that_abbreviation(self) -> None:
         self.assertEqual({"AI", "LLM"}, check.abbreviations_in("OpenAI và LLMWare."))
+        self.assertEqual({"DB"}, check.abbreviations_in("Bảng dùng InnoDB."))  # InnoDB carries DB
         self.assertEqual({"HA", "JS", "QL", "ECMA"},
                          check.abbreviations_in("HAProxy chia tải, CommonJS là kiểu mô-đun cũ, GraphQL theo ECMAScript."))
         self.assertEqual({"AI", "SQL", "OS", "OOM", "DB", "GPT"},

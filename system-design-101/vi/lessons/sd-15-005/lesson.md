@@ -25,6 +25,7 @@
 - **DNSKEY** (DNS KEY) — bản ghi khóa DNS: bản ghi của DNSSEC chứa khóa công khai dùng để kiểm chữ ký.
 - **DNSSEC** (DNS SECurity) — bảo mật cho DNS: thêm chữ ký số vào dữ liệu DNS để kiểm tra nó không bị làm giả; bài này không đi sâu vào nó.
 - **TTL** (Time To Live) — thời gian sống: khoảng thời gian một bản ghi trong bộ nhớ đệm được coi là còn dùng được trước khi hết hạn.
+- **RRset** (Resource Record set) — tập bản ghi tài nguyên: các bản ghi cùng tên, loại và lớp; TTL thuộc về cả tập chứ không phải từng bản ghi.
 
 ## Đọc hình
 

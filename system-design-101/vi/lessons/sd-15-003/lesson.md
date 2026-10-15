@@ -11,6 +11,8 @@
 - **DNS** (Domain Name System) — hệ thống tên miền: "danh bạ" của Internet, đổi tên miền như example.com thành địa chỉ IP.
 - **IP** (Internet Protocol) — giao thức Internet: quy ước đánh địa chỉ và chuyển gói tin giữa các máy; địa chỉ IP là địa chỉ của một máy trên mạng.
 - **EDNS** (Extension Mechanisms for DNS) — cơ chế mở rộng của DNS: cho phép câu đáp DNS qua UDP lớn hơn giới hạn mặc định.
+- **IoT** (Internet of Things) — Internet vạn vật: các thiết bị nhỏ như cảm biến hay đồng hồ thông minh tự nối mạng và gửi dữ liệu.
+- **CoAP** (Constrained Application Protocol) — giao thức ứng dụng cho thiết bị hạn chế: giao thức nhẹ chạy trên UDP, dùng cho thiết bị IoT có ít bộ nhớ và pin.
 
 ## Đọc hình
 

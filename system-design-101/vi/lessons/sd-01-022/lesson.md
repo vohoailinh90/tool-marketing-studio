@@ -4,6 +4,14 @@
 
 ![Năm khung dọc: điểm vào chung, API gateway nằm giữa client và các dịch vụ phía sau, nhận yêu cầu và trả kết quả; định tuyến và cân bằng tải, đưa yêu cầu tới đúng dịch vụ và rải đều giữa các bản chạy; bảo mật và giới hạn tốc độ, gồm xác thực, phân quyền, mã hóa và giới hạn số yêu cầu của một client trong một khoảng thời gian; gom API và cache, gộp nhiều lời gọi phía sau thành một và lưu tạm phản hồi; cái giá phải trả là thêm một chặng và nếu chỉ chạy một bản thì thành điểm đơn lỗi.](../../diagrams/sd-01-022-main.svg)
 
+## Từ viết tắt
+
+- **API** (Application Programming Interface) — giao diện lập trình ứng dụng: cách để một chương trình gọi chức năng hoặc lấy dữ liệu của chương trình khác theo quy ước đã định.
+- **HTTP** (HyperText Transfer Protocol) — giao thức truyền siêu văn bản: quy ước để trình duyệt gửi yêu cầu (request) và máy chủ gửi trả lời (response).
+- **TLS** (Transport Layer Security) — bảo mật tầng truyền tải: lớp mã hóa giữ kín dữ liệu giữa client và máy chủ.
+- **AWS** (Amazon Web Services) — dịch vụ điện toán đám mây của Amazon; bài chỉ dẫn tới tài liệu của họ.
+- **RFC** (Request for Comments) — "đề nghị bình luận": loạt tài liệu kỹ thuật đánh số của cộng đồng Internet; nhiều RFC là tiêu chuẩn.
+
 ## Đọc hình
 
 1. **Điểm vào chung.** Gateway ở giữa client và máy chủ phía sau, quản lý và tối ưu lưu lượng API. Theo suy luận của bài, client chỉ cần biết địa chỉ của gateway.

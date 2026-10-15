@@ -4,6 +4,18 @@
 
 ![Năm khung dọc: cấp khóa, mỗi client một mã ứng dụng và mỗi mức quyền như chỉ đọc hoặc đọc ghi một cặp mã truy cập với khóa bí mật; ký, thu thập tham số, dựng chuỗi cần ký, tính HMAC với SHA-256 bằng khóa bí mật rồi gửi yêu cầu kèm chữ ký, khóa bí mật không cần gửi đi; tham số của yêu cầu gồm thông tin xác thực, thời điểm, dữ liệu riêng của yêu cầu và nonce; máy chủ kiểm tra bằng cách tìm khóa bí mật theo mã truy cập, tính lại chữ ký, so sánh rồi kiểm tra thời điểm và nonce; chữ ký không làm thay mã hóa đường truyền, kiểm tra quyền theo tài nguyên và thu hồi khóa.](../../diagrams/sd-01-021-main.svg)
 
+## Từ viết tắt
+
+- **API** (Application Programming Interface) — giao diện lập trình ứng dụng: cách để một chương trình gọi chức năng hoặc lấy dữ liệu của chương trình khác theo quy ước đã định.
+- **HMAC** (Hash-based Message Authentication Code) — mã xác thực thông điệp dựa trên hàm băm: giá trị tính từ một khóa bí mật và dữ liệu, để kiểm tra dữ liệu không bị sửa và do người biết khóa tạo ra.
+- **SHA** (Secure Hash Algorithm) — họ thuật toán băm: biến dữ liệu bất kỳ thành một chuỗi cố định; SHA-256 là một loại trong họ này.
+- **ECDSA** (Elliptic Curve Digital Signature Algorithm) — thuật toán chữ ký số dùng đường cong elliptic: ký bằng khóa riêng, kiểm bằng khóa công khai.
+- **RSA** (Rivest-Shamir-Adleman) — tên một thuật toán mã hóa khóa công khai, đặt theo ba tác giả.
+- **ID** (IDentifier) — mã định danh: chuỗi hoặc số dùng để phân biệt một đối tượng với các đối tượng khác, ví dụ một người dùng, một thông điệp hay một lượt xử lý.
+- **AWS** (Amazon Web Services) — dịch vụ điện toán đám mây của Amazon; bài chỉ dẫn tới tài liệu của họ.
+- **OWASP** (Open Worldwide Application Security Project) — tổ chức cộng đồng chuyên về bảo mật ứng dụng, có các hướng dẫn mà bài dùng để đối chiếu.
+- **TLS** (Transport Layer Security) — bảo mật tầng truyền tải: lớp mã hóa giữ kín dữ liệu giữa client và máy chủ.
+
 ## Đọc hình
 
 1. **Cấp khóa.** Mỗi client có một mã ứng dụng (app ID). Với mỗi mức quyền, ví dụ chỉ đọc hoặc đọc và ghi, cấp một cặp khóa riêng: mã truy cập (access key) cho máy chủ biết ai đang gọi, và khóa bí mật (secret key) dùng để ký. Nguồn gọi mã truy cập là "public key"; trong cách ký dưới đây đó chỉ là một định danh, không phải khóa công khai của mật mã bất đối xứng.

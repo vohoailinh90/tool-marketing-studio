@@ -562,11 +562,12 @@ def cmd_sync(context: Context, _: argparse.Namespace) -> int:
             lessons[lesson_id]["title"] = title
             retitled += 1
     known = {lesson_id for lesson_id, _ in context.source.lessons}
-    extra = [lesson_id for lesson_id in lessons if lesson_id not in known]
+    gone = {lesson_id: lessons.pop(lesson_id) for lesson_id in [i for i in lessons if i not in known]}
     write_registry(context, header, lessons)
-    print(f"sync: {context.relative} has {len(lessons)} lesson(s), {added} added, {retitled} retitled")
-    if extra:
-        print(f"sync: {len(extra)} id(s) are not in the source map and were kept: {', '.join(extra[:5])}", file=sys.stderr)
+    print(f"sync: {context.relative} has {len(lessons)} lesson(s), {added} added, {retitled} retitled, {len(gone)} dropped")
+    if held := [f"{lesson_id} ({entry.get('status')})" for lesson_id, entry in gone.items() if entry.get("status") != "todo"]:
+        print(f"sync: dropped lessons the source map no longer lists that were not todo: {', '.join(held)}; "
+              "git history keeps their records", file=sys.stderr)
     return 0
 
 
@@ -676,13 +677,17 @@ def check_ids(context: Context, lessons: dict[str, dict], ids: list[str]) -> Non
             raise ClaimsError(f"{lesson_id} is not a lesson of the source map (or of the registry; run sync)")
 
 
-def verdicts(context: Context, header: dict, lessons: dict[str, dict], ids: list[str]) -> dict[str, str | None]:
+def verdicts(context: Context, header: dict, lessons: dict[str, dict], ids: list[str],
+             live: bool = True) -> dict[str, str | None]:
     """Per claim, why it is not (or not safely) held, or None. Online, a claim that exists only in this working tree
-    is not held: no other session can see it, so none of them would respect it."""
+    is not held: no other session can see it, so none of them would respect it. The published copy has to be live
+    too (`live`): a heartbeat renewed only here, behind a published one past its lease, leaves the claim open to a
+    takeover. `touch` asks only for the copy to be there, since renewing an expired claim is what it is for."""
     found, _ = world_of(context, lessons)
     lease = lease_of(header)
     published = {holding.lesson_id for holdings in found.values() for holding in holdings
-                 if holding.owner == context.me and holding.status == "doing" and holding.where != LOCAL}
+                 if holding.owner == context.me and holding.status == "doing" and holding.where != LOCAL
+                 and not (live and is_stale(holding, context.now, lease))}
     out: dict[str, str | None] = {}
     for lesson_id in ids:
         mine = _holding(lessons[lesson_id], LOCAL)
@@ -691,8 +696,8 @@ def verdicts(context: Context, header: dict, lessons: dict[str, dict], ids: list
             continue
         out[lesson_id] = lost_reason(mine, found, context.me, context.now, lease)
         if out[lesson_id] is None and not context.offline and lesson_id not in published:
-            out[lesson_id] = (f"{UNPUBLISHED}{context.remote}/{context.branch} yet; push it (git push -u {context.remote} "
-                              f"{context.branch}) so the other sessions can see it")
+            out[lesson_id] = (f"{UNPUBLISHED}{context.remote}/{context.branch} with a live heartbeat yet; push it "
+                              f"(git push -u {context.remote} {context.branch}) so the other sessions can see it")
     return out
 
 
@@ -779,7 +784,7 @@ def cmd_touch(context: Context, args: argparse.Namespace) -> int:
         return 0
     if args.publish:
         publish(context, args.message or f"System Design vi: publish the claim of {', '.join(ids)}")  # a forgotten push first
-    results = verdicts(context, header, lessons, ids)
+    results = verdicts(context, header, lessons, ids, live=False)
     for lesson_id in ids:
         if results[lesson_id] is None:
             lessons[lesson_id]["heartbeat_at"] = stamp(context.now)

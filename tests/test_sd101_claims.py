@@ -452,7 +452,7 @@ class VerifyTests(Sessions):
             with self.subTest(command[0]):
                 code, _, err = self.run_in(a, *command)
                 self.assertEqual(1, code)
-                self.assertIn("your claim is not on origin/claude/a yet", err)
+                self.assertIn("your claim is not on origin/claude/a with a live heartbeat yet", err)
                 self.assertNotIn("Stop work", err, "the remedy is to push, not to release")
         self.assertEqual("2026-10-15T08:00:00Z", self.entry(a, "sd-01-001")["heartbeat_at"])
         self.write_lesson(a, "sd-01-001")
@@ -463,6 +463,30 @@ class VerifyTests(Sessions):
         git(a, "commit", "--quiet", "-m", "claim")
         git(a, "push", "--quiet", "-u", "origin", "claude/a")
         self.assertEqual(0, self.run_in(a, "verify")[0], "pushed: the other sessions can see it")
+
+    def test_a_heartbeat_renewed_only_here_does_not_keep_a_published_claim_alive(self) -> None:
+        a, b = self.session("a"), self.session("b")
+        self.run_in(a, "claim", "sd-01-001", "--publish")
+        self.at(hours=50)
+        self.assertEqual(0, self.run_in(a, "touch")[0], "the claim is published, and live at that time")
+        self.at(hours=80)  # the published heartbeat (hour 0) has expired; the local one (hour 50) has not
+        code, _, err = self.run_in(a, "verify")
+        self.assertEqual(1, code)
+        self.assertIn("with a live heartbeat yet", err)
+        self.write_lesson(a, "sd-01-001")
+        code, _, err = self.run_in(b, "claim", "sd-01-001")
+        self.assertEqual((1, True), (code, "--take-stale" in err), "to b the published claim is stale, so it is open to a takeover")
+        self.assertEqual(1, self.run_in(a, "finish", "sd-01-001")[0])
+        self.assertEqual(0, self.run_in(a, "touch", "--publish")[0], "touch publishes the renewal first")
+        self.assertEqual(0, self.run_in(a, "verify")[0], "now the published heartbeat is live")
+
+    def test_touch_renews_an_expired_claim_that_nobody_took(self) -> None:
+        a = self.session("a")
+        self.run_in(a, "claim", "sd-01-001", "--publish")
+        self.at(hours=100)
+        self.assertEqual(0, self.run_in(a, "touch", "--publish")[0])
+        self.assertEqual("2026-10-19T12:00:00Z", self.entry(a, "sd-01-001")["heartbeat_at"])
+        self.assertEqual(0, self.run_in(a, "verify")[0])
 
     def test_touch_publish_pushes_a_forgotten_claim_before_judging_it(self) -> None:
         a, b = self.session("a"), self.session("b")
@@ -481,6 +505,24 @@ class VerifyTests(Sessions):
                 self.assertEqual(1, code, "one foreign id fails the whole command")
                 self.assertEqual(2, self.run_in(a, command, "banana")[0])
                 self.assertEqual(0, self.run_in(a, command, "sd-01-001")[0])
+
+
+class SyncDropTests(Sessions):
+    def test_sync_drops_what_the_source_map_no_longer_lists_and_says_what_it_dropped(self) -> None:
+        a = self.session("a")
+        self.run_in(a, "claim", "sd-01-003")
+        data = json.loads(self.source_map.read_text(encoding="utf-8"))
+        data["categories"][0]["lessons"] = [e for e in data["categories"][0]["lessons"] if e["id"] != "sd-01-003"]
+        data["categories"][1]["lessons"] = []  # sd-02-001 (todo) is gone too
+        self.source_map.write_text(json.dumps(data), encoding="utf-8")
+        code, out, err = self.run_in(a, "--offline", "sync")
+        self.assertEqual(0, code)
+        self.assertIn("2 dropped", out)
+        self.assertIn("sd-01-003 (doing)", err)
+        self.assertNotIn("sd-02-001", err, "a todo record carries no work worth a warning")
+        text = (a / REGISTRY).read_text(encoding="utf-8")
+        expected = [(lid, title) for lid, title in LESSONS if lid not in ("sd-01-003", "sd-02-001")]
+        self.assertEqual([], claims.registry_problems(text, expected, "b" * 40, set()))
 
 
 class MergeTests(Sessions):

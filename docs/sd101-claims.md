@@ -22,7 +22,8 @@ python3 scripts/sd101_claims.py release sd-14-018 --publish   # give a lesson ba
 
 `--publish` commits only `claims.jsonl` and pushes your own branch (any other commit of yours that was not
 pushed yet goes with it), which is what makes the claim visible to the others. A claim that is not pushed protects nothing. `verify`, `touch` and `finish` therefore fail (exit 1) while a claim exists only in your working tree,
-and `verify` or `touch` with named ids fail unless every id is one of your claims. If `claim` or `verify` says you lost, stop
+and `verify` or `touch` with named ids fail unless every id is one of your claims. The copy on your branch must also have a live heartbeat: a renewal made only in your working
+tree does not keep a published claim from going stale, so `touch --publish` (which pushes first) is the way to renew. If `claim` or `verify` says you lost, stop
 work on that lesson, release it and take another; do not push the draft.
 
 A claim refused because the remote could not be read (exit 2) is not a refusal to argue with: fix the
@@ -38,7 +39,8 @@ commit `b28380a4710c5ec9638ec037d4168e288f334cba`). Every other record is one of
 positions, in source-map order, with a blank line between every two records. Git reports two changes on
 adjacent lines as one conflict, and sessions that claim the next free lessons change neighbouring records,
 so the blank line is what lets two sessions that claim different lessons merge without a conflict; two that
-claim the same one always conflict. `sd101_claims.py fmt` writes this layout and the checker requires it. `sd101_claims.py sync` also follows a repinned or retitled source map: it refreshes the header's pin and every title and keeps all statuses and claims.
+claim the same one always conflict. `sd101_claims.py fmt` writes this layout and the checker requires it. `sd101_claims.py sync` also follows a repinned or retitled source map: it refreshes the header's pin and every title, keeps all statuses and claims, and drops records of lessons the
+source map no longer lists (naming any that were not `todo`; git history keeps them).
 
 | status | meaning | extra fields |
 |---|---|---|

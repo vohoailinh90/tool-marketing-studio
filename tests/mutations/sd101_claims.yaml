@@ -154,7 +154,7 @@ mutations:
   replace: '    if False:'
   test: tests.test_sd101_claims.VerifyTests.test_ids_named_to_verify_or_touch_must_all_be_claims_of_the_caller
 - label: touch --publish no longer pushes a forgotten claim first
-  find: '        publish(context, args.message or f"System Design vi: publish the claim of {'', ''.join(ids)}")  # a forgotten push
+  find: '        conflicts = publish(context, args.message or f"System Design vi: publish the claim of {'', ''.join(ids)}")  # a forgotten push
 
     '
   replace: ''
@@ -213,10 +213,8 @@ mutations:
   replace: '            if is_stale(mine, now, lease) or beats(other, mine):'
   test: tests.test_sd101_claims.ClaimTests.test_an_expired_claim_revived_by_a_local_renewal_does_not_beat_a_partner_taken_fairly
 - label: touch --publish pushes the renewal before judging the claim
-  find: "    check_publishable(context)\n    guard_publish(context)\n"
-  replace: '    check_publishable(context)
-
-    '
+  find: "    check_publishable(context)\n    stand_ins = guard_publish(context)\n"
+  replace: "    check_publishable(context)\n    stand_ins = {}\n"
   test: tests.test_sd101_claims.ClaimTests.test_an_expired_claim_revived_by_a_local_renewal_does_not_beat_a_partner_taken_fairly
 - label: a truncated local registry is read and published as if it were whole
   find: "        if missing := [lesson_id for lesson_id, _ in context.source.lessons if lesson_id not in lessons]:\n            problems.append(f\"lacks {len(missing)} source-map lesson(s), e.g. {missing[0]}\"\
@@ -561,8 +559,8 @@ mutations:
   replace: '    exclude = (*exclude, *removed_upstream(context))'
   test: tests.test_sd101_claims.ClaimTests.test_a_stale_checkout_does_not_judge_claims_by_a_pairing_the_default_branch_changed
 - label: a finished lesson taken over meanwhile is pushed anyway
-  find: '    if overtaken := overtaken_writes(context, header, lessons):'
-  replace: '    if (overtaken := {}):'
+  find: "    overtaken, stand_ins = overtaken_writes(context, header, lessons)\n    if overtaken:"
+  replace: "    overtaken, stand_ins = overtaken_writes(context, header, lessons)\n    if False:"
   test: tests.test_sd101_claims.LeaseTests.test_a_finished_lesson_that_was_taken_over_meanwhile_is_not_pushed
 - label: a finished lesson is judged without the claim the others last saw
   find: '        published = next((h for h in holdings if h.status == "doing" and h.owner == context.me and h.where != LOCAL), None)'
@@ -573,13 +571,13 @@ mutations:
   replace: '        if reason := lost_reason(stand_in, others, context.me, context.now, lease, (),'
   test: tests.test_sd101_claims.ClaimTests.test_a_finished_half_is_not_pushed_over_a_rival_on_the_other_half
 - label: a written record of another session is no rival of a finished lesson
-  find: "        others = {**found, lesson_id: [h for h in holdings if not (h.status == \"written\" and (\n            h.where == LOCAL or (h.owner in adopted_from and finished_at is not None and h.done_at\
-    \ == finished_at)))]}"
-  replace: '        others = {**found, lesson_id: [h for h in holdings if h.status != "written"]}'
+  find: "        others = {**found, lesson_id: [h for h in found.get(lesson_id, []) if not (h.status == \"written\" and (\n            h.owner == context.me or (h.owner in adopted_from and finished_at is\
+    \ not None and h.done_at == finished_at)))]}"
+  replace: '        others = {**found, lesson_id: [h for h in found.get(lesson_id, []) if h.status != "written"]}'
   test: tests.test_sd101_claims.LeaseTests.test_a_finished_lesson_whose_taker_finished_it_first_is_not_pushed
 - label: an adoption copy of a finished lesson counts as a rival
-  find: h.where == LOCAL or (h.owner in adopted_from and finished_at is not None and h.done_at == finished_at)))]}
-  replace: h.where == LOCAL))]}
+  find: h.owner == context.me or (h.owner in adopted_from and finished_at is not None and h.done_at == finished_at)))]}
+  replace: h.owner == context.me))]}
   test: tests.test_sd101_claims.ClaimTests.test_a_lesson_merged_from_another_work_branch_is_adopted_by_sync
 - label: a rival finished in the same second counts as an adoption copy
   find: (h.owner in adopted_from and finished_at is not None and h.done_at == finished_at)
@@ -597,3 +595,11 @@ mutations:
   find: '    if "adopted_from" in entry and not (isinstance(entry["adopted_from"], list) and entry["adopted_from"]'
   replace: '    if False and "adopted_from" in entry and not (isinstance(entry["adopted_from"], list) and entry["adopted_from"]'
   test: tests.test_sd101_claims.FormatTests.test_each_rule_reports_its_own_problem
+- label: a finished lesson taken over while it went up is not looked at again
+  find: '    return judge_finished(context, header, lessons, found, stand_ins)  # looked at again now that the record is up'
+  replace: '    return {}  # looked at again now that the record is up'
+  test: tests.test_sd101_claims.LeaseTests.test_a_finished_lesson_taken_over_while_it_went_up_is_reported_after_the_push
+- label: a conflict after the push does not fail the command
+  find: '    return 1 if conflicts else 0'
+  replace: '    return 0'
+  test: tests.test_sd101_claims.LeaseTests.test_a_finished_lesson_taken_over_while_it_went_up_is_reported_after_the_push

@@ -1341,18 +1341,42 @@ class LeaseTests(Sessions):
         self.at(hours=73)  # a's published claim is stale, so b may take the lesson
         real, calls = claims.guard_publish, []
 
-        def racing(context: claims.Context) -> None:
-            real(context)  # a's last look at the remote
+        def racing(context: claims.Context) -> dict:
+            result = real(context)  # a's last look at the remote
             if context.branch == "claude/a":
                 calls.append(1)
                 if len(calls) == 2:  # the heartbeat publication: b takes the lesson just after a looked
                     self.assertEqual(0, self.run_in(b, "claim", "sd-01-001", "--take-stale", "--publish")[0])
+            return result
 
         with mock.patch.object(claims, "guard_publish", racing):
             code, _, err = self.run_in(a, "touch", "--publish")
         self.assertEqual(2, len(calls))
         self.assertEqual(1, code, err)
         self.assertIn("lost to claude/b", err)
+
+    def test_a_finished_lesson_taken_over_while_it_went_up_is_reported_after_the_push(self) -> None:
+        a, b = self.session("a"), self.session("b")
+        self.run_in(a, "claim", "sd-01-001", "--publish")
+        self.write_lesson(a, "sd-01-001")
+        self.assertEqual(0, self.run_in(a, "finish", "sd-01-001")[0])
+        git(a, "add", "-A")
+        git(a, "commit", "--quiet", "-m", "the lesson with its registry record")
+        self.at(hours=73)  # a's published claim is stale
+        real, taken = claims.guard_publish, []
+
+        def racing(context: claims.Context) -> dict:
+            result = real(context)  # a's last look at the remote: nobody holds the lesson yet
+            if context.branch == "claude/a" and not taken:
+                taken.append(self.run_in(b, "claim", "sd-01-001", "--take-stale", "--publish")[0])  # b takes it just after
+            return result
+
+        with mock.patch.object(claims, "guard_publish", racing):
+            code, out, err = self.run_in(a, "claim", "sd-01-002", "--publish")
+        self.assertEqual([0], taken)
+        self.assertEqual(1, code, err)
+        self.assertIn("sd-01-002: yours", out, "the claim being made is reported as before")
+        self.assertIn("pushed, but sd-01-001 is finished here and lost to claude/b", err)
 
     def test_a_finished_lesson_nobody_took_over_is_pushed_even_when_the_claim_went_stale(self) -> None:
         a = self.session("a")

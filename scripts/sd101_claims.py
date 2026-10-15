@@ -1024,7 +1024,7 @@ def uncommitted_source_map(context: Context) -> bool:
     return relative is not None and bool(git_text(context.root, "status", "--porcelain", "--", relative))
 
 
-def guard_publish(context: Context) -> None:
+def guard_publish(context: Context) -> dict[str, Holding]:
     """The registry is pushed whole, so every claim of this session in it is judged before anything is pushed, not only
     the ones the command names: a renewal made earlier in the working tree would otherwise reach the remote unjudged."""
     header, lessons = load_registry(context)
@@ -1052,46 +1052,60 @@ def guard_publish(context: Context) -> None:
         if lost := {lesson_id: reason for lesson_id, reason in results.items() if reason and not reason.startswith(UNPUBLISHED)}:
             raise Refusal("nothing was pushed: " + "; ".join(f"{lesson_id} {reason}" for lesson_id, reason in lost.items())
                           + f". Release {' '.join(lost)} first (python3 scripts/sd101_claims.py release {' '.join(lost)} --publish)")
-    if overtaken := overtaken_writes(context, header, lessons):
+    overtaken, stand_ins = overtaken_writes(context, header, lessons)
+    if overtaken:
         raise Refusal("nothing was pushed: " + "; ".join(f"{lesson_id} is finished here but {reason}" for lesson_id, reason in overtaken.items())
                       + ". Pushing it would make the session that holds the lesson lose it as already written; "
                         "settle it with that session first (it releases the lesson, or you drop yours)")
+    return stand_ins
 
 
-def overtaken_writes(context: Context, header: dict, lessons: dict[str, dict]) -> dict[str, str]:
-    """Lessons this session finished but has not pushed yet, which another session took over (or wrote) in the meantime.
+def overtaken_writes(context: Context, header: dict, lessons: dict[str, dict]) -> tuple[dict[str, str], dict[str, Holding]]:
+    """Lessons this session finished but has not pushed yet, which another session took over (or wrote) in the meantime,
+    and the claim each of them stands on.
 
     `finish` judged the claim, but a claim turns into a written record that carries no claim identity, and a takeover
     of the stale published claim can come after it. The record is judged again as the claim the other sessions last saw
     from this branch (none at all when it never went up), so pushing it cannot make a legitimate claimant lose."""
     candidates = [lesson_id for lesson_id, entry in lessons.items() if entry.get("status") == "written" and entry.get("owner") == context.me]
     if not candidates or context.offline:
-        return {}
+        return {}, {}
     found, _ = world_of(context, lessons)
-    lease, out = lease_of(header), {}
+    stand_ins: dict[str, Holding] = {}
     for lesson_id in candidates:
         holdings = found.get(lesson_id, [])
         if any(h.status == "written" and h.owner == context.me and h.where != LOCAL for h in holdings):
             continue  # already advertised: nothing new goes up
         published = next((h for h in holdings if h.status == "doing" and h.owner == context.me and h.where != LOCAL), None)
         shared = lessons[lesson_id].get("shared_source") is True  # finish keeps the override on the written record
-        stand_in = (with_changes(published, shared=published.shared or shared) if published
-                    else Holding(lesson_id, "doing", context.me, None, None, (), LOCAL, shared))  # a claim nobody saw loses to a live one
+        stand_ins[lesson_id] = (with_changes(published, shared=published.shared or shared) if published
+                                else Holding(lesson_id, "doing", context.me, None, None, (), LOCAL, shared))  # a claim nobody saw loses to a live one
+    return judge_finished(context, header, lessons, found, stand_ins), stand_ins
+
+
+def judge_finished(context: Context, header: dict, lessons: dict[str, dict], found: dict[str, list[Holding]],
+                   stand_ins: dict[str, Holding]) -> dict[str, str]:
+    """Why each finished lesson, judged as the claim it stands on, would lose against what the remote shows now."""
+    lease, out = lease_of(header), {}
+    for lesson_id, stand_in in stand_ins.items():
         finished_at, adopted_from = lessons[lesson_id].get("done_at"), lessons[lesson_id].get("adopted_from") or []
-        # Only this record itself and the records it was adopted from (`sync` names their owners and keeps their done_at)
-        # are no rivals; any other session's written record of the lesson is, whenever it was finished.
-        others = {**found, lesson_id: [h for h in holdings if not (h.status == "written" and (
-            h.where == LOCAL or (h.owner in adopted_from and finished_at is not None and h.done_at == finished_at)))]}
+        # Only this session's own record and the records it was adopted from (`sync` names their owners and keeps their
+        # done_at) are no rivals; any other session's written record of the lesson is, whenever it was finished.
+        others = {**found, lesson_id: [h for h in found.get(lesson_id, []) if not (h.status == "written" and (
+            h.owner == context.me or (h.owner in adopted_from and finished_at is not None and h.done_at == finished_at)))]}
         if reason := lost_reason(stand_in, others, context.me, context.now, lease, context.source.partners.get(lesson_id, ()),
                                  True):  # a stale or absent claim loses on its own
             out[lesson_id] = reason
     return out
 
 
-def publish(context: Context, message: str) -> None:
-    """Commit only the registry and push it to the same-named branch, so the other sessions can see it."""
+def publish(context: Context, message: str) -> dict[str, str]:
+    """Commit only the registry and push it to the same-named branch, so the other sessions can see it.
+
+    Returns the finished lessons that another session took over between the guard's last look at the remote and the
+    push: it cannot be undone, but it is reported (see `report_pushed_conflicts`)."""
     check_publishable(context)
-    guard_publish(context)
+    stand_ins = guard_publish(context)
     git(context.root, "add", "--", context.relative)
     if git(context.root, "diff", "--cached", "--quiet", "--", context.relative, check=False).returncode != 0:
         git(context.root, "commit", "--quiet", "--only", "-m", message, "--", context.relative)
@@ -1100,8 +1114,22 @@ def publish(context: Context, message: str) -> None:
         time.sleep(delay)
         pushed = git(context.root, "push", "--quiet", "-u", context.remote, f"HEAD:refs/heads/{context.branch}", check=False)
         if pushed.returncode == 0:
-            return
-    raise ClaimsError(f"the push failed: {pushed.stderr.decode('utf-8', 'replace').strip()}")
+            break
+    else:
+        raise ClaimsError(f"the push failed: {pushed.stderr.decode('utf-8', 'replace').strip()}")
+    if not stand_ins:
+        return {}
+    header, lessons = load_registry(context)
+    found, _ = world_of(context, lessons)
+    return judge_finished(context, header, lessons, found, stand_ins)  # looked at again now that the record is up
+
+
+def report_pushed_conflicts(conflicts: dict[str, str]) -> int:
+    """Say which finished lessons went up although another session took them over meanwhile (exit status 1)."""
+    for lesson_id, reason in conflicts.items():
+        print(f"pushed, but {lesson_id} is finished here and {reason}; settle it with that session "
+              "(it releases the lesson, or you drop yours)", file=sys.stderr)
+    return 1 if conflicts else 0
 
 
 def my_claims(context: Context, lessons: dict[str, dict], ids: list[str]) -> list[str]:
@@ -1227,8 +1255,8 @@ def cmd_claim(context: Context, args: argparse.Namespace) -> int:
               f"  git add {context.relative} && git commit -m {json.dumps(message)} && git push -u {context.remote} {context.branch}\n"
               "  python3 scripts/sd101_claims.py verify")
         return 0
-    publish(context, message)
-    return report_verdicts(verdicts(context, header, lessons, ids), context)
+    conflicts = publish(context, message)
+    return max(report_verdicts(verdicts(context, header, lessons, ids), context), report_pushed_conflicts(conflicts))
 
 
 def report_verdicts(results: dict[str, str | None], context: Context) -> int:
@@ -1262,19 +1290,20 @@ def cmd_touch(context: Context, args: argparse.Namespace) -> int:
     if not ids:
         print(f"touch: {context.me} has no claim in progress")
         return 0
+    conflicts: dict[str, str] = {}
     if args.publish:
         # publish() judges every claim of this session before it pushes anything: pushing a renewal first would
         # revive an expired public claim and let it win against a claim that was taken fairly while it was expired.
-        publish(context, args.message or f"System Design vi: publish the claim of {', '.join(ids)}")  # a forgotten push
+        conflicts = publish(context, args.message or f"System Design vi: publish the claim of {', '.join(ids)}")  # a forgotten push
     results = verdicts(context, header, lessons, ids, live=False)
     for lesson_id in ids:
         if results[lesson_id] is None:
             lessons[lesson_id]["heartbeat_at"] = renewal(lessons[lesson_id], context.now)
     write_registry(context, header, lessons)
     if args.publish:
-        publish(context, args.message or f"System Design vi: heartbeat for {', '.join(ids)}")
+        conflicts |= publish(context, args.message or f"System Design vi: heartbeat for {', '.join(ids)}")
         results = verdicts(context, header, lessons, ids)  # a rival may have pushed while the renewal went up
-    return report_verdicts(results, context)
+    return max(report_verdicts(results, context), report_pushed_conflicts(conflicts))
 
 
 STORE_LEVEL_FILES = ("README.md", "PROGRESS.md", "MIGRATION.md", "progress.json", "claims.jsonl")
@@ -1406,7 +1435,7 @@ def cmd_release(context: Context, args: argparse.Namespace) -> int:
     write_registry(context, header, lessons)
     print(f"released {', '.join(args.ids)}")
     if args.publish:
-        publish(context, args.message or f"System Design vi: release {', '.join(args.ids)}")
+        return report_pushed_conflicts(publish(context, args.message or f"System Design vi: release {', '.join(args.ids)}"))
     return 0
 
 

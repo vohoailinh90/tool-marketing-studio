@@ -688,6 +688,24 @@ class ClaimTests(Sessions):
                     self.assertIn("origin/claude/b", err)
                     self.assertIn("its source map does not list", err)
 
+    def test_sync_does_not_import_a_lesson_that_is_incomplete_or_rejected(self) -> None:
+        a = self.mapped_clone("a")
+        self.edit_map(a, lambda data: data["categories"][0]["lessons"].append({"id": "sd-01-006", "title_source": "Six-bis"}))
+        (a / "store" / "lessons" / "sd-01-006").mkdir(parents=True)
+        (a / "store" / "lessons" / "sd-01-006" / "lesson.md").write_text("# only the text\n", encoding="utf-8")
+        before = (a / REGISTRY).read_text(encoding="utf-8")
+        code, _, err = self.run_mapped(a, "sync")
+        self.assertEqual(1, code, err)
+        self.assertIn("sd-01-006: lessons/sd-01-006/lesson.yaml does not exist yet", err)
+        self.assertEqual(before, (a / REGISTRY).read_text(encoding="utf-8"), "nothing was written")
+        self.write_lesson(a, "sd-01-006")
+        with mock.patch.object(claims, "content_problems", return_value=["metadata/sd-01-006.json: is not valid JSON"]):
+            code, _, err = self.run_mapped(a, "sync")
+        self.assertEqual(1, code, err)
+        self.assertIn("the store checker rejects the lesson", err)
+        self.assertEqual(0, self.run_mapped(a, "sync")[0], "complete and accepted: imported")
+        self.assertEqual("written", self.entry(a, "sd-01-006")["status"])
+
     def test_a_lesson_imported_by_sync_on_a_work_branch_stays_visible_to_the_others(self) -> None:
         a, c = self.mapped_clone("a"), self.mapped_clone("c")
         add = lambda data: data["categories"][0]["lessons"].append({"id": "sd-01-006", "title_source": "Six-bis"})  # noqa: E731

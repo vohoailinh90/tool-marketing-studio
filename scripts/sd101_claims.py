@@ -654,6 +654,19 @@ def effective_status(lesson_id: str, found: dict[str, list[Holding]], now: datet
     return "stale" if holdings else "todo"
 
 
+def imported_problems(context: Context, ids: list[str]) -> list[str]:
+    """Why lessons that sync would record as written cannot be: their four files must exist and the store checker must
+    accept them, or the remote would advertise a terminal lesson the others cannot touch and the store cannot check."""
+    cache: dict = {}
+    out = []
+    for lesson_id in ids:
+        if missing := missing_artifacts(context, lesson_id):
+            out.append(f"{lesson_id}: " + "; ".join(f"{path} does not exist yet (or is a symbolic link)" for path in missing))
+        elif broken := content_problems(context.store, context.source_map, lesson_id, cache):
+            out.append(f"{lesson_id}: the store checker rejects the lesson: " + "; ".join(broken))
+    return out
+
+
 def cmd_sync(context: Context, _: argparse.Namespace) -> int:
     on_disk = context.on_disk()
     if context.path.is_file():
@@ -664,10 +677,13 @@ def cmd_sync(context: Context, _: argparse.Namespace) -> int:
     else:
         header, lessons = new_header(context.source), {}
     added = retitled = 0
+    imported: list[str] = []
     bootstrap = on_default_branch(context, strict=False)  # the registry is born on the default branch, ownerless
     for lesson_id, title in context.source.lessons:
         if lesson_id not in lessons:
             lessons[lesson_id] = {"id": lesson_id, "status": "written" if lesson_id in on_disk else "todo", "title": title}
+            if lesson_id in on_disk:
+                imported.append(lesson_id)
             if lesson_id in on_disk and not bootstrap:
                 # Imported on a work branch: other sessions count a record on a non-default branch only when its owner is
                 # that branch, so an ownerless one would be invisible to them until it is merged.
@@ -676,6 +692,9 @@ def cmd_sync(context: Context, _: argparse.Namespace) -> int:
         elif lessons[lesson_id].get("title") != title:
             lessons[lesson_id]["title"] = title
             retitled += 1
+    if broken := imported_problems(context, imported):
+        raise Refusal("sync refused, nothing was written: a lesson that is on disk cannot be imported as written yet:\n  "
+                      + "\n  ".join(broken))
     known = {lesson_id for lesson_id, _ in context.source.lessons}
     listing = git(context.root, "ls-tree", "-r", "--name-only", "HEAD", "--",
                   context.store.resolve().relative_to(context.root.resolve()).as_posix(), check=False)

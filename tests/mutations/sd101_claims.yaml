@@ -443,3 +443,12 @@ mutations:
   find: '            if other.status == "written" and other.owner != me and not mine.shared:  # the partner is finished: nothing to wait for'
   replace: '            if False:  # the partner is finished: nothing to wait for'
   test: tests.test_sd101_claims.ClaimTests.test_a_claim_loses_when_its_shared_source_partner_turns_out_to_be_written
+- label: sync imports a lesson whose files are missing
+  find: "        if missing := missing_artifacts(context, lesson_id):\n            out.append(f\"{lesson_id}: \" + \"; \".join("
+  replace: "        if False:\n            out.append(f\"{lesson_id}: \" + \"; \".join("
+  test: tests.test_sd101_claims.ClaimTests.test_sync_does_not_import_a_lesson_that_is_incomplete_or_rejected
+- label: sync imports a lesson the store checker rejects
+  find: "        elif broken := content_problems(context.store, context.source_map, lesson_id, cache):\n            out.append(f\"{lesson_id}: the store checker rejects the lesson: \" + \"; \".join(broken))\n\
+    \    return out"
+  replace: "        elif False:\n            out.append(f\"{lesson_id}: the store checker rejects the lesson: \" + \"; \".join(broken))\n    return out"
+  test: tests.test_sd101_claims.ClaimTests.test_sync_does_not_import_a_lesson_that_is_incomplete_or_rejected

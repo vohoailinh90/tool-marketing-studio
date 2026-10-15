@@ -10,6 +10,7 @@
 - **HTTP** (HyperText Transfer Protocol) — giao thức truyền siêu văn bản: quy ước để trình duyệt gửi yêu cầu (request) và máy chủ gửi trả lời (response).
 - **TLS** (Transport Layer Security) — bảo mật tầng truyền tải: lớp mã hóa giữ kín dữ liệu giữa client và máy chủ; "kết thúc TLS" nghĩa là reverse proxy giải mã ở cửa vào.
 - **LB** (Load Balancer) — bộ cân bằng tải: máy hoặc phần mềm chia lưu lượng cho nhiều bản sao của cùng một dịch vụ.
+- **HA** (High Availability) — tính sẵn sàng cao: thiết kế để dịch vụ vẫn chạy khi một máy hỏng; HAProxy là phần mềm cân bằng tải mang chữ HA này trong tên.
 - **CDN** (Content Delivery Network) — mạng phân phối nội dung: nhiều máy đặt ở nhiều nơi, lưu bản sao nội dung và phát cho người dùng từ máy gần họ.
 
 ## Đọc hình

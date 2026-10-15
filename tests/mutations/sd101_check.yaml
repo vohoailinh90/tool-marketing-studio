@@ -1864,6 +1864,14 @@ mutations:
     '
   replace: ''
   test: tests.test_sd101_check.AbbreviationRuleTests.test_a_name_that_carries_an_abbreviation_is_read_as_that_abbreviation
+- label: the product name HAProxy is not read as the abbreviation HA
+  find: "\"HAProxy\": \"HA\", "
+  replace: ""
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_name_that_carries_an_abbreviation_is_read_as_that_abbreviation
+- label: the product name CommonJS is not read as the abbreviation JS
+  find: "\"CommonJS\": \"JS\", "
+  replace: ""
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_name_that_carries_an_abbreviation_is_read_as_that_abbreviation
 - label: a name that carries an abbreviation is read as the name, not the abbreviation
   find: '{EMBEDDED_ABBREVIATIONS[match.group(1)] for match in EMBEDDED_NAME.finditer(text)}'
   replace: '{match.group(1) for match in EMBEDDED_NAME.finditer(text)}'

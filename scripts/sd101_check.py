@@ -191,10 +191,10 @@ ABBREVIATION = re.compile(r"(?<!\w)(?:(" + "|".join(MIXED_CASE_TERMS) + r")|(\d*
 # whoever reads the name meets the abbreviation, so the lesson explains it (AI, SQL, OS) like any other. The name maps to
 # the abbreviation it carries; add a new one when a lesson introduces such a name. A possessive, a plural or a version
 # number may follow (OpenAI's, MySQL8).
-EMBEDDED_ABBREVIATIONS = {"ChatGPT": "GPT", "FastAPI": "API", "InfluxDB": "DB", "InstructGPT": "GPT", "JinaAI": "AI",
-                          "LLMWare": "LLM", "MetalLB": "LB", "MySQL": "SQL", "OOMKilled": "OOM", "OpenAI": "AI",
-                          "OpenSSH": "SSH", "PostgreSQL": "SQL", "PyJWT": "JWT", "SQLite": "SQL", "TimescaleDB": "DB",
-                          "macOS": "OS"}
+EMBEDDED_ABBREVIATIONS = {"ChatGPT": "GPT", "CommonJS": "JS", "FastAPI": "API", "HAProxy": "HA", "InfluxDB": "DB",
+                          "InstructGPT": "GPT", "JinaAI": "AI", "LLMWare": "LLM", "MetalLB": "LB", "MySQL": "SQL",
+                          "OOMKilled": "OOM", "OpenAI": "AI", "OpenSSH": "SSH", "PostgreSQL": "SQL", "PyJWT": "JWT",
+                          "SQLite": "SQL", "TimescaleDB": "DB", "macOS": "OS"}
 # The same terms and names set in capitals (OAUTH 2.0 in a heading), which read as the term they are.
 UPPER_FORMS = {**{term.upper(): term for term in MIXED_CASE_TERMS},
                **{name.upper(): abbreviation for name, abbreviation in EMBEDDED_ABBREVIATIONS.items()}}

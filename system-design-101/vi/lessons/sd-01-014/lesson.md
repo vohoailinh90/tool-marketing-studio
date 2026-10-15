@@ -8,6 +8,7 @@
 
 - **ESM** (ECMAScript Modules) — mô-đun ECMAScript: cách chia mã JavaScript thành các tệp nối với nhau bằng `import` và `export`; thứ tự giữa `nextTick` và promise ở cấp cao nhất của kiểu mô-đun này có thể khác kiểu cũ.
 - **HTML** (HyperText Markup Language) — ngôn ngữ đánh dấu siêu văn bản: văn bản dùng thẻ để mô tả cấu trúc một trang web; bài nhắc tới đặc tả của nó, nơi quy định hàng đợi và event loop của trình duyệt.
+- **JS** (JavaScript) — ngôn ngữ lập trình của trình duyệt; CommonJS là tên kiểu mô-đun cũ của Node mang chữ JS này trong tên.
 - **JIT** (Just-In-Time) — biên dịch đúng lúc: engine dịch đoạn mã chạy nhiều sang dạng chạy nhanh hơn ngay trong lúc chương trình đang chạy.
 
 ## Đọc hình

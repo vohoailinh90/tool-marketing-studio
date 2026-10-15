@@ -2205,6 +2205,7 @@ class AbbreviationRuleTests(StoreCase):
 
     def test_a_name_that_carries_an_abbreviation_is_read_as_that_abbreviation(self) -> None:
         self.assertEqual({"AI", "LLM"}, check.abbreviations_in("OpenAI và LLMWare."))
+        self.assertEqual({"HA", "JS"}, check.abbreviations_in("HAProxy chia tải, CommonJS là kiểu mô-đun cũ."))
         self.assertEqual({"AI", "SQL", "OS", "OOM", "DB", "GPT"},
                          check.abbreviations_in("OpenAI's, MySQL8, macOS, OOMKilled, TimescaleDBs và ChatGPT."))
         for text in ("myOpenAI", "OpenAIX", "OpenAi", "MacOS", "Github"):  # a longer word is not the name

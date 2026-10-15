@@ -504,3 +504,27 @@ mutations:
   find: '        if lesson_id in gone:  # a claim taken before the default branch dropped the lesson is not a claim on anything'
   replace: '        if False and lesson_id in gone:  # a claim taken before the default branch dropped the lesson is not a claim on anything'
   test: tests.test_sd101_claims.ClaimTests.test_a_claim_the_default_branch_dropped_is_not_held
+- label: the earlier clock time outranks the takeover count (left side)
+  find: '        return ((first.generation, first.claimed_at or "", first.owner or "")'
+  replace: '        return ((0, first.claimed_at or "", first.owner or "")'
+  test: tests.test_sd101_claims.LeaseTests.test_a_fast_clock_cannot_outrank_the_takeover_that_replaced_it
+- label: the earlier clock time outranks the takeover count (right side)
+  find: '                > (second.generation, second.claimed_at or "", second.owner or ""))'
+  replace: '                > (0, second.claimed_at or "", second.owner or ""))'
+  test: tests.test_sd101_claims.LeaseTests.test_a_fast_clock_cannot_outrank_the_takeover_that_replaced_it
+- label: a takeover does not count above the claim it replaces
+  find: '            fresh["generation"] = 1 + max((h.generation for h in found.get(lesson_id, []) if h.status == "doing"), default=0)'
+  replace: '            fresh["generation"] = 1'
+  test: tests.test_sd101_claims.LeaseTests.test_a_fast_clock_cannot_outrank_the_takeover_that_replaced_it
+- label: a generation on a record is not read
+  find: entry["generation"] if _count(entry.get("generation")) else 0)
+  replace: 0)
+  test: tests.test_sd101_claims.LeaseTests.test_a_fast_clock_cannot_outrank_the_takeover_that_replaced_it
+- label: a takeover does not record its generation
+  find: '            fresh["generation"] = 1 + max((h.generation for h in found.get(lesson_id, []) if h.status == "doing"), default=0)'
+  replace: '            pass'
+  test: tests.test_sd101_claims.LeaseTests.test_a_stale_claim_blocks_nobody_until_it_is_taken_on_purpose
+- label: a malformed generation is accepted
+  find: '    if "generation" in entry and not _count(entry["generation"]):'
+  replace: '    if False and "generation" in entry and not _count(entry["generation"]):'
+  test: tests.test_sd101_claims.FormatTests.test_each_rule_reports_its_own_problem

@@ -1191,6 +1191,7 @@ class LeaseTests(Sessions):
         self.assertIn("--take-stale", err)
         self.assertEqual(0, self.run_in(b, "claim", "sd-01-001", "--take-stale", "--publish")[0])
         self.assertEqual(["claude/a"], self.entry(b, "sd-01-001")["taken_from"])
+        self.assertEqual(1, self.entry(b, "sd-01-001")["generation"], "a first takeover stands on one")
 
     def test_a_session_that_wakes_up_cannot_win_back_a_lesson_that_was_taken(self) -> None:
         a, b = self.session("a"), self.session("b")
@@ -1265,6 +1266,22 @@ class LeaseTests(Sessions):
         git(b, "push", "--quiet", "origin", "claude/b")
         self.assertEqual(0, self.run_in(a, "verify")[0], "a's takeover is the later one and stands")
         self.assertEqual(1, self.run_in(b, "verify")[0])
+
+    def test_a_fast_clock_cannot_outrank_the_takeover_that_replaced_it(self) -> None:
+        a, b = self.session("a"), self.session("b")
+        self.run_in(a, "claim", "sd-01-001", "--publish")
+        self.at(hours=78)  # b's clock runs five hours ahead: it is hour 73 for everybody else
+        self.assertEqual(0, self.run_in(b, "claim", "sd-01-001", "--take-stale", "--publish")[0])
+        self.at(hours=74)  # b's claim is dated four hours ahead, so it counts as expired and a takes the lesson back
+        self.assertEqual(0, self.run_in(a, "claim", "sd-01-001", "--take-stale", "--publish")[0])
+        self.assertEqual((["claude/a"], 1), (self.entry(b, "sd-01-001")["taken_from"], self.entry(b, "sd-01-001")["generation"]))
+        self.assertEqual((["claude/b"], 2), (self.entry(a, "sd-01-001")["taken_from"], self.entry(a, "sd-01-001")["generation"]))
+        self.at(hours=77.5)  # b's frozen heartbeat (hour 78) is within the allowed skew again: both claims look live
+        code, _, err = self.run_in(a, "verify")
+        self.assertEqual(0, code, "a's takeover is the later one, whatever b's clock said: " + err)
+        code, _, err = self.run_in(b, "verify")
+        self.assertEqual(1, code)
+        self.assertIn("lost to claude/a", err)
 
     def test_touching_keeps_a_claim_alive(self) -> None:
         a, b = self.session("a"), self.session("b")
@@ -1764,6 +1781,9 @@ class FormatTests(unittest.TestCase):
             "field of another status": (self.text(done_at="2026-10-15T09:00:00Z"), "done_at is not allowed"),
             "status": (self.text(status="done"), "status must be one of"),
             "taken_from": (self.text(taken_from="claude/a"), "taken_from must be a list"),
+            "generation": (self.text(taken_from=["claude/b"], generation=0), "generation must be a whole number"),
+            "generation flag": (self.text(taken_from=["claude/b"], generation=True), "generation must be a whole number"),
+            "generation of another status": (self.text(status="written", generation=1), "generation is not allowed"),
             "repository": (self.text().replace('"source_repository": "r/r"', '"source_repository": "x/y"'),
                            "source_repository is 'x/y'"),
             "repository missing": (self.text().replace('"source_repository": "r/r", ', ""), "source_repository is None"),

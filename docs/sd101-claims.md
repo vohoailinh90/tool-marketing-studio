@@ -46,7 +46,7 @@ source map no longer lists (naming any that were not `todo`; git history keeps t
 | status | meaning | extra fields |
 |---|---|---|
 | `todo` | nobody has it | none |
-| `doing` | a session is writing it | `owner` (its branch), `claimed_at`, `heartbeat_at`, optional `session`, `taken_from` (a list) |
+| `doing` | a session is writing it | `owner` (its branch), `claimed_at`, `heartbeat_at`, optional `session`, `taken_from` (a list), `generation` (a takeover count, 1 or more) |
 | `written` | the lesson, its figure and its metadata are committed | optional `owner`, `done_at`, `pr`, `session` |
 
 `written` is not metadata's `content_status: done`. It says the lesson was handed over; whether it was
@@ -80,7 +80,7 @@ A `doing` claim whose `heartbeat_at` is older than `lease_hours` (72) is stale. 
 anyone, but it is taken over on purpose: `claim <id> --take-stale`. The new entry records `taken_from`,
 every owner whose stale claim it superseded, chain included, which makes it win against each of them even
 if one wakes up and touches its heartbeat. A session that takes back a lesson it once held (because the session that took it from it let its
-published heartbeat expire) starts a new claim, so the later takeover is the one that stands. Run
+published heartbeat expire) starts a new claim, so the later takeover is the one that stands. "Later" is counted, not timed: a takeover records `generation`, one more than the highest claim it superseded, and the higher generation wins between two claims that took the lesson from each other, so a session whose clock ran ahead cannot outrank the takeover that replaced it. Run
 `touch --publish` while you work so a slow session is not mistaken for a dead one. A heartbeat dated more than an hour ahead of the observing clock
 (a session whose clock is wrong) is not proof of life: it counts as expired, so it cannot block a lesson for days.
 

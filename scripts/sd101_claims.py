@@ -72,12 +72,12 @@ SCHEMA_VERSION = 1
 DEFAULT_LEASE_HOURS = 72
 CLOCK_SKEW_HOURS = 1  # a heartbeat further ahead of the observing clock than this is not proof of life
 STATUSES = ("todo", "doing", "written")
-KEY_ORDER = ("id", "status", "title", "owner", "session", "taken_from", "shared_source", "claimed_at", "heartbeat_at",
-             "done_at", "pr")
+KEY_ORDER = ("id", "status", "title", "owner", "session", "taken_from", "generation", "shared_source", "claimed_at",
+             "heartbeat_at", "done_at", "pr")
 HEADER_KEYS = ("schema_version", "lease_hours", "source_repository", "source_commit_sha")
 FIELDS_BY_STATUS = {
     "todo": set(),
-    "doing": {"owner", "session", "taken_from", "shared_source", "claimed_at", "heartbeat_at"},
+    "doing": {"owner", "session", "taken_from", "generation", "shared_source", "claimed_at", "heartbeat_at"},
     "written": {"owner", "session", "done_at", "pr", "shared_source"},
 }
 STAMP = re.compile(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z")
@@ -191,6 +191,10 @@ def _text(value: object) -> bool:
     return isinstance(value, str) and bool(value.strip())
 
 
+def _count(value: object) -> bool:
+    return isinstance(value, int) and not isinstance(value, bool) and value >= 1
+
+
 def entry_problems(entry: dict) -> list[str]:
     """What is wrong with one lesson record, apart from how it relates to other lessons or to the disk."""
     status = entry.get("status")
@@ -209,6 +213,8 @@ def entry_problems(entry: dict) -> list[str]:
     if "taken_from" in entry and not (isinstance(entry["taken_from"], list) and entry["taken_from"]
                                       and all(_text(owner) for owner in entry["taken_from"])):
         problems.append("taken_from must be a list of the owners whose stale claim was taken over")
+    if "generation" in entry and not _count(entry["generation"]):
+        problems.append("generation must be a whole number, 1 or more: the takeovers this claim stands on")
     for key in ("claimed_at", "heartbeat_at", "done_at"):
         if key in entry and parse_stamp(entry[key]) is None:
             problems.append(f"{key} must be a UTC time like 2026-10-15T08:30:00Z")
@@ -389,6 +395,7 @@ class Holding:
     taken_from: tuple[str, ...]
     where: str
     shared: bool = False              # claimed with --allow-same-source: the owner knowingly shares a source file
+    generation: int = 0               # takeovers behind the claim: counts them where a clock could misorder them
 
     def who(self) -> str:
         return self.owner or "an earlier import"
@@ -401,7 +408,7 @@ def _holding(entry: dict, where: str) -> Holding | None:
     taken = entry.get("taken_from")
     superseded = tuple(owner for owner in taken if isinstance(owner, str)) if isinstance(taken, list) else ()
     return Holding(entry["id"], entry["status"], pick("owner"), pick("claimed_at"), pick("heartbeat_at"), superseded, where,
-                   entry.get("shared_source") is True)
+                   entry.get("shared_source") is True, entry["generation"] if _count(entry.get("generation")) else 0)
 
 
 def is_stale(holding: Holding, now: datetime.datetime, lease_hours: int) -> bool:
@@ -415,10 +422,13 @@ def beats(first: Holding, second: Holding) -> bool:
     """Which of two live claims on one lesson wins: a takeover, else the earlier claim, else the smaller owner.
 
     Two sessions can each have taken the lesson over from the other, one after the other; the later takeover stands.
+    It is the higher generation (each takeover counts one more than the claim it supersedes), never the later clock
+    time: a session whose clock ran ahead would otherwise outrank the takeover that legitimately replaced it.
     """
     first_took, second_took = second.owner in first.taken_from, first.owner in second.taken_from
     if first_took and second_took:
-        return (first.claimed_at or "", first.owner or "") > (second.claimed_at or "", second.owner or "")
+        return ((first.generation, first.claimed_at or "", first.owner or "")
+                > (second.generation, second.claimed_at or "", second.owner or ""))
     if first_took:
         return True
     if second_took:
@@ -1126,6 +1136,7 @@ def cmd_claim(context: Context, args: argparse.Namespace) -> int:
             fresh["session"] = context.session
         if lesson_id in takes:
             fresh["taken_from"] = takes[lesson_id]
+            fresh["generation"] = 1 + max((h.generation for h in found.get(lesson_id, []) if h.status == "doing"), default=0)
         if args.allow_same_source and context.source.partners.get(lesson_id):
             fresh["shared_source"] = True
         lessons[lesson_id] = fresh

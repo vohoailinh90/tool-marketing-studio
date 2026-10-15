@@ -688,6 +688,24 @@ class ClaimTests(Sessions):
                     self.assertIn("origin/claude/b", err)
                     self.assertIn("its source map does not list", err)
 
+    def test_a_lesson_imported_by_sync_on_a_work_branch_stays_visible_to_the_others(self) -> None:
+        a, c = self.mapped_clone("a"), self.mapped_clone("c")
+        add = lambda data: data["categories"][0]["lessons"].append({"id": "sd-01-006", "title_source": "Six-bis"})  # noqa: E731
+        self.edit_map(a, add)
+        self.write_lesson(a, "sd-01-006")
+        self.assertEqual(0, self.run_mapped(a, "sync")[0])
+        record = self.entry(a, "sd-01-006")
+        self.assertEqual(("written", "claude/a"), (record["status"], record["owner"]))
+        self.assertIn("done_at", record)
+        git(a, "add", "-A")
+        git(a, "commit", "--quiet", "-m", "the imported lesson with its registry")
+        self.assertEqual(0, self.run_mapped(a, "claim", "sd-01-001", "--publish")[0])
+        self.edit_map(c, add)
+        self.assertEqual(0, self.run_mapped(c, "sync")[0])
+        code, _, err = self.run_mapped(c, "claim", "sd-01-006")
+        self.assertEqual(1, code, err)
+        self.assertIn("already written by claude/a", err)
+
     def test_a_default_registry_that_disagrees_with_its_own_source_map_stops_the_decision(self) -> None:
         seed = self.tmp / "seed"
         a = self.mapped_clone("a")  # origin/main holds the map and a registry of the same pin

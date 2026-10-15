@@ -431,3 +431,7 @@ mutations:
   find: '        elif extra := [lesson_id for lesson_id in lessons if lesson_id not in ids]:  # and a row its own map dropped'
   replace: '        elif False:  # and a row its own map dropped'
   test: tests.test_sd101_claims.ClaimTests.test_a_branch_whose_registry_keeps_a_lesson_its_own_source_map_dropped_is_unreadable
+- label: a lesson imported by sync on a work branch has no owner
+  find: '            if lesson_id in on_disk and not bootstrap:'
+  replace: '            if False:'
+  test: tests.test_sd101_claims.ClaimTests.test_a_lesson_imported_by_sync_on_a_work_branch_stays_visible_to_the_others

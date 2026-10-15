@@ -50,6 +50,7 @@ from __future__ import annotations
 
 import argparse
 import datetime
+import importlib.util
 import json
 import os
 import pathlib
@@ -515,6 +516,7 @@ class Context:
     branch: str | None = None
     owner_given: bool = False
     ignore_unreadable: bool = False
+    source_map: pathlib.Path | None = None
 
     @property
     def path(self) -> pathlib.Path:
@@ -601,6 +603,9 @@ def world_of(context: Context, local: dict[str, dict],
         if not tolerate:  # not even --ignore-unreadable decides without the records of every merged lesson
             raise ClaimsError(f"{absent}; nothing was decided (--ignore-unreadable does not cover the default branch)")
         unreadable.append(absent)
+    if (core := [item for item in unreadable if item.startswith((f"origin/{base} (", f"{context.remote}/{base} ("))]) and not tolerate:
+        raise ClaimsError(f"the default branch's registry cannot be used ({core[0]}); nothing was decided "
+                          "(--ignore-unreadable does not cover the default branch)")
     if unreadable and not tolerate and not context.ignore_unreadable:
         raise ClaimsError(f"the registry on {len(unreadable)} branch(es) cannot be parsed, e.g. {unreadable[0]}; "
                           "a claim in it could be missed, so nothing was decided. Fix or delete that branch, "
@@ -974,6 +979,25 @@ def cmd_touch(context: Context, args: argparse.Namespace) -> int:
     return report_verdicts(results, context)
 
 
+STORE_LEVEL_FILES = ("README.md", "PROGRESS.md", "MIGRATION.md", "progress.json", "claims.jsonl")
+
+
+def content_problems(store: pathlib.Path, source_map: pathlib.Path | None, lesson_id: str) -> list[str]:
+    """What the store checker finds wrong with this one lesson (its text, metadata, figure). The findings about the
+    store as a whole (README links, progress) are not the lesson's: they are fixed after finishing, before the pull
+    request, and `scripts/sd101_check.py` stays the authority on them."""
+    if source_map is None:
+        return []
+    spec = importlib.util.spec_from_file_location("sd101_check", pathlib.Path(__file__).with_name("sd101_check.py"))
+    if spec is None or spec.loader is None:
+        raise ClaimsError("scripts/sd101_check.py cannot be loaded, so the lesson cannot be checked")
+    module = importlib.util.module_from_spec(spec)
+    sys.modules.setdefault("sd101_check", module)
+    spec.loader.exec_module(module)
+    return [str(problem) for problem in module.check_store(store, source_map)
+            if problem.where not in STORE_LEVEL_FILES and lesson_id in f"{problem.where} {problem.message}"]
+
+
 def missing_artifacts(context: Context, lesson_id: str) -> list[str]:
     """The files the store needs for a finished lesson that are absent or symbolic links, relative to the store."""
     return [path for path in (f"lessons/{lesson_id}/lesson.md", f"lessons/{lesson_id}/lesson.yaml",
@@ -991,6 +1015,10 @@ def cmd_finish(context: Context, args: argparse.Namespace) -> int:
             problems.append(f"{lesson_id}: is not claimed by {context.me} (claim it first)")
         elif missing := missing_artifacts(context, lesson_id):
             problems.append(f"{lesson_id}: " + "; ".join(f"{path} does not exist yet (or is a symbolic link)" for path in missing))
+    if not problems:
+        for lesson_id in args.ids:
+            if broken := content_problems(context.store, context.source_map, lesson_id):
+                problems.append(f"{lesson_id}: the store checker rejects the lesson: " + "; ".join(broken))
     if problems:
         print("finish refused, nothing was written:\n  " + "\n  ".join(problems), file=sys.stderr)
         return 1
@@ -1100,7 +1128,7 @@ def main(argv: list[str] | None = None) -> int:
         if not me:
             raise ClaimsError("HEAD is detached; check out a work branch or pass --owner")
         context = Context(root, store, load_source(args.source_map), me, args.session, args.remote, args.offline, utcnow(),
-                          branch, bool(args.owner), args.ignore_unreadable)
+                          branch, bool(args.owner), args.ignore_unreadable, args.source_map)
         return args.handler(context, args)
     except Refusal as error:
         print(f"sd101_claims: {error}", file=sys.stderr)

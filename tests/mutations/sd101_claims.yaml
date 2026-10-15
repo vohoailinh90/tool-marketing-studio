@@ -337,3 +337,15 @@ mutations:
   find: "f\"lessons/{lesson_id}/lesson.yaml\",\n                              f\"metadata/{lesson_id}.json\", f\"diagrams/{lesson_id}-main.svg\")"
   replace: f"lessons/{lesson_id}/lesson.yaml")
   test: tests.test_sd101_claims.ClaimTests.test_finish_needs_every_artifact_of_the_lesson
+- label: a damaged default-branch registry can be ignored
+  find: 'if (core := [item for item in unreadable if item.startswith((f"origin/{base} (", f"{context.remote}/{base} (")))]) and not tolerate:'
+  replace: 'if False:'
+  test: tests.test_sd101_claims.ClaimTests.test_a_default_branch_with_a_damaged_registry_cannot_be_ignored
+- label: finish does not ask the store checker about the lesson
+  find: '            if broken := content_problems(context.store, context.source_map, lesson_id):'
+  replace: '            if False:'
+  test: tests.test_sd101_claims.ClaimTests.test_finish_stops_at_what_the_store_checker_finds_in_the_lesson
+- label: the store checker's findings about a lesson are dropped
+  find: '    return [str(problem) for problem in module.check_store(store, source_map)'
+  replace: '    return [str(problem) for problem in module.check_store(store, source_map)[:0]'
+  test: tests.test_sd101_claims.ContentTests.test_a_good_lesson_passes_and_each_damage_is_found

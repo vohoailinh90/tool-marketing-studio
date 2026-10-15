@@ -62,6 +62,9 @@ class Sessions(unittest.TestCase):
             self.addCleanup(patch.stop)
         self.source_map = self.tmp / "source-map.json"
         self.source_map.write_text(json.dumps(source_map()), encoding="utf-8")
+        check = mock.patch.object(claims, "content_problems", return_value=[])  # the fake store holds placeholder files
+        check.start()
+        self.addCleanup(check.stop)
         self.origin = self.tmp / "origin.git"
         git(self.tmp, "init", "--quiet", "--bare", "-b", "main", str(self.origin))
         seed = self.clone("seed", branch=None)
@@ -411,6 +414,30 @@ class ClaimTests(Sessions):
         self.assertEqual(0, self.run_in(c, "claim", "sd-01-002", "--publish")[0])
         self.at(hours=0)
         self.assertEqual(1, self.run_in(b, "claim", "sd-01-002")[0], "still a live claim")
+
+    def test_a_default_branch_with_a_damaged_registry_cannot_be_ignored(self) -> None:
+        b = self.session("b")
+        seed = self.tmp / "seed"
+        (seed / REGISTRY).write_text((seed / REGISTRY).read_text(encoding="utf-8") + "<<<<<<< ours\n", encoding="utf-8")
+        git(seed, "commit", "--quiet", "-am", "conflict markers on main")
+        git(seed, "push", "--quiet", "origin", "main")
+        for flags in ((), ("--ignore-unreadable",)):
+            with self.subTest(flags):
+                code, _, err = self.run_in(b, *flags, "claim", "sd-01-001")
+                self.assertEqual(2, code, err)
+                self.assertIn("origin/main", err)
+        self.assertIn("does not cover the default branch", err)
+
+    def test_finish_stops_at_what_the_store_checker_finds_in_the_lesson(self) -> None:
+        a = self.session("a")
+        self.run_in(a, "claim", "sd-01-001", "--publish")
+        self.write_lesson(a, "sd-01-001")
+        with mock.patch.object(claims, "content_problems", return_value=["metadata/sd-01-001.json: is not valid JSON"]):
+            code, _, err = self.run_in(a, "finish", "sd-01-001")
+        self.assertEqual(1, code)
+        self.assertIn("the store checker rejects the lesson: metadata/sd-01-001.json: is not valid JSON", err)
+        self.assertEqual("doing", self.entry(a, "sd-01-001")["status"])
+        self.assertEqual(0, self.run_in(a, "finish", "sd-01-001")[0])
 
     def test_every_registry_must_use_the_same_lease(self) -> None:
         odd = self.session("odd")
@@ -1229,3 +1256,25 @@ class FormatTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class ContentTests(unittest.TestCase):
+    """The store checker's findings about one lesson, against a copy of the real store."""
+
+    STORE = Path(claims.__file__).resolve().parents[1] / "system-design-101" / "vi"
+    SOURCE_MAP = Path(claims.__file__).resolve().parents[1] / "brainstorm" / "system-design-101-vi" / "source-map.json"
+
+    def test_a_good_lesson_passes_and_each_damage_is_found(self) -> None:
+        self.assertEqual([], claims.content_problems(self.STORE, self.SOURCE_MAP, "sd-01-001"))
+        damages = {
+            "metadata": ("metadata/sd-01-001.json", "{"),
+            "lesson.yaml": ("lessons/sd-01-001/lesson.yaml", ""),
+            "figure": ("diagrams/sd-01-001-main.svg", "not an svg"),
+        }
+        for name, (path, text) in damages.items():
+            with self.subTest(name), tempfile.TemporaryDirectory() as tmp:
+                store = Path(tmp) / "vi"
+                shutil.copytree(self.STORE, store)
+                (store / path).write_text(text, encoding="utf-8")
+                self.assertTrue(claims.content_problems(store, self.SOURCE_MAP, "sd-01-001"), name)
+                self.assertEqual([], claims.content_problems(store, self.SOURCE_MAP, "sd-01-002"), "another lesson is not blamed")

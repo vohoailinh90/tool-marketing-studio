@@ -54,6 +54,10 @@ reviewed, and whether its figure passed the phone check, stays in `metadata/<id>
 that were on disk when the registry was created are `written` without an owner or a date: nobody
 recorded them and the registry does not invent them.
 
+`finish` writes the terminal `written` record only when the lesson is complete: the four files exist as regular files and the
+store checker (`scripts/sd101_check.py`) finds nothing wrong with the lesson's text, metadata and figure. What it says about the store
+as a whole (README links, progress) is fixed afterwards, before the pull request.
+
 ## How a claim is seen by other sessions
 
 Sessions share only the remote. Every command that decides something first fetches all branches of the
@@ -65,7 +69,7 @@ remote and reads the registry on each:
 - Your working tree: the entries you own, and every written lesson.
 
 The default branch must carry the registry: if it has none, every deciding command stops (exit 2), because a feature
-branch's own copy cannot stand in for the claims already merged. `--ignore-unreadable` does not cover this case. Only `status` still reports, with a warning.
+branch's own copy cannot stand in for the claims already merged. `--ignore-unreadable` does not cover this case, nor a default-branch registry that cannot be read or parsed. Only `status` still reports, with a warning.
 
 So a claim becomes visible the moment it is pushed to a branch, with no pull request needed, and it stops
 counting when its branch is deleted or the lesson is released or merged as `written`.

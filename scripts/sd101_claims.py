@@ -67,11 +67,12 @@ SCHEMA_VERSION = 1
 DEFAULT_LEASE_HOURS = 72
 MAX_LEASE_HOURS = 720
 STATUSES = ("todo", "doing", "written")
-KEY_ORDER = ("id", "status", "title", "owner", "session", "taken_from", "claimed_at", "heartbeat_at", "done_at", "pr")
+KEY_ORDER = ("id", "status", "title", "owner", "session", "taken_from", "shared_source", "claimed_at", "heartbeat_at",
+             "done_at", "pr")
 HEADER_KEYS = ("schema_version", "lease_hours", "source_repository", "source_commit_sha")
 FIELDS_BY_STATUS = {
     "todo": set(),
-    "doing": {"owner", "session", "taken_from", "claimed_at", "heartbeat_at"},
+    "doing": {"owner", "session", "taken_from", "shared_source", "claimed_at", "heartbeat_at"},
     "written": {"owner", "session", "done_at", "pr"},
 }
 STAMP = re.compile(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z")
@@ -191,6 +192,8 @@ def entry_problems(entry: dict) -> list[str]:
     for key in ("owner", "session"):
         if key in entry and not _text(entry[key]):
             problems.append(f"{key} must be text")
+    if "shared_source" in entry and entry["shared_source"] is not True:
+        problems.append("shared_source must be true when present")
     if "taken_from" in entry and not (isinstance(entry["taken_from"], list) and entry["taken_from"]
                                       and all(_text(owner) for owner in entry["taken_from"])):
         problems.append("taken_from must be a list of the owners whose stale claim was taken over")
@@ -351,6 +354,7 @@ class Holding:
     heartbeat_at: str | None
     taken_from: tuple[str, ...]
     where: str
+    shared: bool = False              # claimed with --allow-same-source: the owner knowingly shares a source file
 
     def who(self) -> str:
         return self.owner or "an earlier import"
@@ -362,7 +366,8 @@ def _holding(entry: dict, where: str) -> Holding | None:
     pick = lambda key: entry[key] if isinstance(entry.get(key), str) else None  # noqa: E731
     taken = entry.get("taken_from")
     superseded = tuple(owner for owner in taken if isinstance(owner, str)) if isinstance(taken, list) else ()
-    return Holding(entry["id"], entry["status"], pick("owner"), pick("claimed_at"), pick("heartbeat_at"), superseded, where)
+    return Holding(entry["id"], entry["status"], pick("owner"), pick("claimed_at"), pick("heartbeat_at"), superseded, where,
+                   entry.get("shared_source") is True)
 
 
 def is_stale(holding: Holding, now: datetime.datetime, lease_hours: int) -> bool:
@@ -431,8 +436,14 @@ def refusal(lesson_id: str, found: dict[str, list[Holding]], source: Source, me:
     return None, taken
 
 
-def lost_reason(mine: Holding, found: dict[str, list[Holding]], me: str, now: datetime.datetime, lease: int) -> str | None:
-    """Why `me` does not hold `mine` any more, or None when it is the winner."""
+def lost_reason(mine: Holding, found: dict[str, list[Holding]], me: str, now: datetime.datetime, lease: int,
+                partners: tuple[str, ...] = ()) -> str | None:
+    """Why `me` does not hold `mine` any more, or None when it is the winner.
+
+    `partners` are the lessons that share this one's source file. Two sessions that claimed the two halves of a pair
+    before either push was visible hold claims on different ids, so the same precedence decides between them, unless
+    one of them took its half on purpose (--allow-same-source).
+    """
     for other in found.get(mine.lesson_id, []):
         if other.owner == me and other.status == "doing":
             continue
@@ -444,6 +455,13 @@ def lost_reason(mine: Holding, found: dict[str, list[Holding]], me: str, now: da
         # expired one (its branch was deleted), so it could not record the takeover in `taken_from`.
         if not is_stale(other, now, lease) and (is_stale(mine, now, lease) or beats(other, mine)):
             return f"lost to {other.owner}, who claimed it at {other.claimed_at} ({other.where})"
+    for partner in partners:
+        for other in found.get(partner, []):
+            if other.status != "doing" or other.owner == me or mine.shared or other.shared or is_stale(other, now, lease):
+                continue
+            if is_stale(mine, now, lease) or beats(other, mine):
+                return (f"shares its source file with {partner}, which {other.owner} claimed first ({other.where}); "
+                        "release it, or keep it on purpose by claiming it again with --allow-same-source")
     return None
 
 
@@ -694,7 +712,7 @@ def verdicts(context: Context, header: dict, lessons: dict[str, dict], ids: list
         if mine is None:
             out[lesson_id] = "is not claimed by you"
             continue
-        out[lesson_id] = lost_reason(mine, found, context.me, context.now, lease)
+        out[lesson_id] = lost_reason(mine, found, context.me, context.now, lease, context.source.partners.get(lesson_id, ()))
         if out[lesson_id] is None and not context.offline and lesson_id not in published:
             out[lesson_id] = (f"{UNPUBLISHED}{context.remote}/{context.branch} with a live heartbeat yet; push it "
                               f"(git push -u {context.remote} {context.branch}) so the other sessions can see it")
@@ -738,6 +756,8 @@ def cmd_claim(context: Context, args: argparse.Namespace) -> int:
             fresh["session"] = context.session
         if lesson_id in takes:
             fresh["taken_from"] = takes[lesson_id]
+        if args.allow_same_source and context.source.partners.get(lesson_id):
+            fresh["shared_source"] = True
         lessons[lesson_id] = fresh
     write_registry(context, header, lessons)
     print(f"claimed {', '.join(ids)} as {context.me}")

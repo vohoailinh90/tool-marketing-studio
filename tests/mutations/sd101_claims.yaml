@@ -171,3 +171,19 @@ mutations:
   find: 'gone = {lesson_id: lessons.pop(lesson_id) for lesson_id in [i for i in lessons if i not in known]}'
   replace: gone = {}
   test: tests.test_sd101_claims.SyncDropTests.test_sync_drops_what_the_source_map_no_longer_lists_and_says_what_it_dropped
+- label: verify ignores a claim on the other half of a shared source
+  find: "            if is_stale(mine, now, lease) or beats(other, mine):\n                return (f\"shares its source file with"
+  replace: "            if False:\n                return (f\"shares its source file with"
+  test: tests.test_sd101_claims.ClaimTests.test_two_halves_of_a_shared_source_claimed_before_either_was_visible_are_decided_by_verify
+- label: a half taken knowingly with --allow-same-source still loses to the other half
+  find: 'or mine.shared or other.shared or is_stale(other, now, lease):'
+  replace: 'or is_stale(other, now, lease):'
+  test: tests.test_sd101_claims.ClaimTests.test_a_shared_source_taken_on_purpose_is_not_a_conflict
+- label: one session cannot hold both halves of a shared source
+  find: if other.status != "doing" or other.owner == me or mine.shared
+  replace: if other.status != "doing" or mine.shared
+  test: tests.test_sd101_claims.ClaimTests.test_one_session_may_hold_both_halves_of_a_shared_source
+- label: --allow-same-source is not recorded, so the other half cannot tell it was intentional
+  find: "        if args.allow_same_source and context.source.partners.get(lesson_id):\n            fresh[\"shared_source\"] = True\n"
+  replace: ''
+  test: tests.test_sd101_claims.ClaimTests.test_a_shared_source_taken_on_purpose_is_not_a_conflict

@@ -185,6 +185,39 @@ class ClaimTests(Sessions):
         self.assertIn("shares its source file with sd-01-005", err)
         self.assertEqual(0, self.run_in(b, "claim", "sd-02-001", "--allow-same-source")[0])
 
+    def test_two_halves_of_a_shared_source_claimed_before_either_was_visible_are_decided_by_verify(self) -> None:
+        a, b = self.session("a"), self.session("b")
+        self.at(seconds=0)
+        self.run_in(a, "--offline", "claim", "sd-01-005")
+        self.at(seconds=3)
+        self.run_in(b, "--offline", "claim", "sd-02-001")  # neither has seen the other's claim
+        for clone, name in ((a, "claude/a"), (b, "claude/b")):
+            git(clone, "add", REGISTRY)
+            git(clone, "commit", "--quiet", "-m", "claim")
+            git(clone, "push", "--quiet", "-u", "origin", name)
+        self.assertEqual(0, self.run_in(a, "verify")[0], "a claimed first")
+        for command in ("verify", "touch"):
+            with self.subTest(command):
+                code, _, err = self.run_in(b, command)
+                self.assertEqual(1, code)
+                self.assertIn("shares its source file with sd-01-005, which claude/a claimed first", err)
+        self.write_lesson(b, "sd-02-001")
+        self.assertEqual(1, self.run_in(b, "finish", "sd-02-001")[0])
+
+    def test_a_shared_source_taken_on_purpose_is_not_a_conflict(self) -> None:
+        a, b = self.session("a"), self.session("b")
+        self.run_in(a, "claim", "sd-01-005", "--publish")
+        self.assertEqual(0, self.run_in(b, "claim", "sd-02-001", "--allow-same-source", "--publish")[0])
+        self.assertIs(True, self.entry(b, "sd-02-001")["shared_source"])
+        self.assertNotIn("shared_source", self.entry(a, "sd-01-005"))
+        self.assertEqual(0, self.run_in(b, "verify")[0])
+        self.assertEqual(0, self.run_in(a, "verify")[0], "a is not told to give up what b took knowingly")
+
+    def test_one_session_may_hold_both_halves_of_a_shared_source(self) -> None:
+        a = self.session("a")
+        self.assertEqual(0, self.run_in(a, "claim", "sd-01-005", "sd-02-001", "--publish")[0])
+        self.assertEqual(0, self.run_in(a, "verify")[0])
+
     def test_next_skips_what_is_taken_or_written(self) -> None:
         a, b = self.session("a"), self.session("b")
         self.run_in(a, "claim", "sd-01-001", "sd-01-002", "--publish")
@@ -641,6 +674,7 @@ class FormatTests(unittest.TestCase):
             "field of another status": (self.text(done_at="2026-10-15T09:00:00Z"), "done_at is not allowed"),
             "status": (self.text(status="done"), "status must be one of"),
             "taken_from": (self.text(taken_from="claude/a"), "taken_from must be a list"),
+            "shared_source": (self.text(shared_source=False), "shared_source must be true"),
             "pr": (self.text().replace('"title": "One"', '"title": "One", "pr": 0'), "pr must be a pull request number"),
             "pin": (self.text().replace(COMMIT, "c" * 40), "source_commit_sha"),
             "lease": (self.text().replace('"lease_hours": 72', '"lease_hours": 0'), "lease_hours must be"),

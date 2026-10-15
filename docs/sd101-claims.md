@@ -84,7 +84,9 @@ Four pairs of positions share one source file (`same_source_as` in the source ma
 `sd-02-019`/`sd-13-012`, `sd-07-012`/`sd-12-010`, `sd-08-020`/`sd-10-026`. Each keeps its own id, but two
 sessions writing both halves would write the same lesson twice, so `claim` refuses one half while another
 session holds the other. Claim both in one session, or pass `--allow-same-source` when the lessons are
-meant to differ.
+meant to differ. The check is repeated by `verify`, `touch` and `finish`, so two sessions that took the two halves before either
+push was visible are decided like two claims on one lesson (the earlier claim wins). A half taken with
+`--allow-same-source` is recorded as `shared_source` and is never asked to give way.
 
 ## What the registry does not guarantee
 

@@ -195,3 +195,16 @@ mutations:
   find: "        return (first.claimed_at or \"\", first.owner or \"\") > (second.claimed_at or \"\", second.owner or \"\")\n    if first_took:"
   replace: "        return True\n    if first_took:"
   test: tests.test_sd101_claims.LeaseTests.test_a_session_that_takes_back_a_lesson_it_once_held_starts_a_new_claim_that_wins
+- label: claiming a held half again with --allow-same-source does not record the override
+  find: "            if args.allow_same_source and context.source.partners.get(lesson_id):\n                entry[\"shared_source\"] = True  # the way to keep a half on purpose after losing it to the other\
+    \ half\n"
+  replace: ''
+  test: tests.test_sd101_claims.ClaimTests.test_claiming_again_with_allow_same_source_is_the_way_to_keep_a_half_on_purpose
+- label: any published record of the lesson proves the local claim is published
+  find: '    return holding.lesson_id, holding.claimed_at, holding.taken_from, holding.shared'
+  replace: '    return holding.lesson_id'
+  test: tests.test_sd101_claims.ClaimTests.test_a_shared_source_override_that_is_not_published_does_not_count_as_held
+- label: a registry for another repository is accepted
+  find: '    if pin_repository is not None and header.get("source_repository") != pin_repository:'
+  replace: '    if False:'
+  test: tests.test_sd101_claims.FormatTests.test_each_rule_reports_its_own_problem

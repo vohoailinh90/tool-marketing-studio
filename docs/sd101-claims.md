@@ -87,7 +87,9 @@ sessions writing both halves would write the same lesson twice, so `claim` refus
 session holds the other. Claim both in one session, or pass `--allow-same-source` when the lessons are
 meant to differ. The check is repeated by `verify`, `touch` and `finish`, so two sessions that took the two halves before either
 push was visible are decided like two claims on one lesson (the earlier claim wins). A half taken with
-`--allow-same-source` is recorded as `shared_source` and is never asked to give way.
+`--allow-same-source` is recorded as `shared_source` and is never asked to give way. Claiming a half you already hold again with that flag records it too, which is how you keep it
+on purpose after `verify` says it lost to the other half. `verify` also compares the published record with your
+own claim (same `claimed_at`, takeover history and `shared_source`), not just the lesson id.
 
 ## What the registry does not guarantee
 

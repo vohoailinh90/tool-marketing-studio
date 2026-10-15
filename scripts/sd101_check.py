@@ -996,7 +996,8 @@ def check_claims(path: pathlib.Path, entries: dict[str, dict], lesson_ids: set[s
     if len(expected) != len(entries):
         expected = []  # a broken source map is reported by its own rules
     return [Problem(path.name, reason)
-            for reason in claims.registry_problems(text, expected, pin[1] if pin else None, lesson_ids)]
+            for reason in claims.registry_problems(text, expected, pin[1] if pin else None, lesson_ids,
+                                                    pin_repository=pin[0] if pin else None)]
 
 
 def check_store(store: pathlib.Path, source_map: pathlib.Path, pin_roster: bool = False) -> list[Problem]:

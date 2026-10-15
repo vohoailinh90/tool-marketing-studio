@@ -220,6 +220,38 @@ class ClaimTests(Sessions):
         self.assertEqual(0, self.run_in(a, "claim", "sd-01-005", "--publish")[0])
         self.assertEqual(0, self.run_in(a, "verify")[0], "its own earlier claim on the other half is not a rival")
 
+    def test_claiming_again_with_allow_same_source_is_the_way_to_keep_a_half_on_purpose(self) -> None:
+        a, b = self.session("a"), self.session("b")
+        self.at(seconds=0)
+        self.run_in(a, "--offline", "claim", "sd-01-005")
+        self.at(seconds=3)
+        self.run_in(b, "--offline", "claim", "sd-02-001")  # neither saw the other
+        for clone, name in ((a, "claude/a"), (b, "claude/b")):
+            git(clone, "add", REGISTRY)
+            git(clone, "commit", "--quiet", "-m", "claim")
+            git(clone, "push", "--quiet", "-u", "origin", name)
+        self.assertEqual(1, self.run_in(b, "verify")[0], "b lost the pair")
+        self.assertEqual(0, self.run_in(b, "claim", "sd-02-001", "--allow-same-source", "--publish")[0])
+        self.assertIs(True, self.entry(b, "sd-02-001")["shared_source"])
+        self.assertEqual(0, self.run_in(b, "verify")[0], "kept on purpose and published")
+
+    def test_a_shared_source_override_that_is_not_published_does_not_count_as_held(self) -> None:
+        a, b = self.session("a"), self.session("b")
+        self.at(seconds=0)
+        self.run_in(a, "--offline", "claim", "sd-01-005")
+        self.at(seconds=3)
+        self.run_in(b, "--offline", "claim", "sd-02-001")
+        for clone, name in ((a, "claude/a"), (b, "claude/b")):
+            git(clone, "add", REGISTRY)
+            git(clone, "commit", "--quiet", "-m", "claim")
+            git(clone, "push", "--quiet", "-u", "origin", name)
+        self.run_in(b, "--offline", "claim", "sd-02-001", "--allow-same-source")  # recorded here only
+        code, _, err = self.run_in(b, "verify")
+        self.assertEqual(1, code)
+        self.assertIn("your claim is not on origin/claude/b", err)
+        self.assertEqual(0, self.run_in(b, "touch", "--publish")[0])
+        self.assertEqual(0, self.run_in(b, "verify")[0])
+
     def test_next_skips_what_is_taken_or_written(self) -> None:
         a, b = self.session("a"), self.session("b")
         self.run_in(a, "claim", "sd-01-001", "sd-01-002", "--publish")
@@ -676,7 +708,8 @@ class FormatTests(unittest.TestCase):
         return "\n\n".join(lines) + "\n"
 
     def problems(self, text: str, on_disk: set[str] | None = None) -> list[str]:
-        return claims.registry_problems(text, self.EXPECTED, COMMIT, {"sd-01-001"} if on_disk is None else on_disk)
+        return claims.registry_problems(text, self.EXPECTED, COMMIT, {"sd-01-001"} if on_disk is None else on_disk,
+                                        pin_repository="r/r")
 
     def test_a_correct_registry_has_no_problem_and_survives_a_round_trip(self) -> None:
         text = self.text()
@@ -693,6 +726,9 @@ class FormatTests(unittest.TestCase):
             "field of another status": (self.text(done_at="2026-10-15T09:00:00Z"), "done_at is not allowed"),
             "status": (self.text(status="done"), "status must be one of"),
             "taken_from": (self.text(taken_from="claude/a"), "taken_from must be a list"),
+            "repository": (self.text().replace('"source_repository": "r/r"', '"source_repository": "x/y"'),
+                           "source_repository is 'x/y'"),
+            "repository missing": (self.text().replace('"source_repository": "r/r", ', ""), "source_repository is None"),
             "shared_source": (self.text(shared_source=False), "shared_source must be true"),
             "pr": (self.text().replace('"title": "One"', '"title": "One", "pr": 0'), "pr must be a pull request number"),
             "pin": (self.text().replace(COMMIT, "c" * 40), "source_commit_sha"),

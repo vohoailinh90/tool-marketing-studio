@@ -214,7 +214,7 @@ def record_problems(lessons: dict[str, dict]) -> list[str]:
 
 
 def registry_problems(text: str, expected: list[tuple[str, str]], pin_commit: str | None,
-                      on_disk: set[str]) -> list[str]:
+                      on_disk: set[str], pin_repository: str | None = None) -> list[str]:
     """Every reason `text` is not the registry of `expected` (source-map id, title) pairs for the lessons `on_disk`."""
     header, lessons, problems = parse(text)
     if header.get("schema_version") != SCHEMA_VERSION or isinstance(header.get("schema_version"), bool):
@@ -222,6 +222,9 @@ def registry_problems(text: str, expected: list[tuple[str, str]], pin_commit: st
     lease = header.get("lease_hours")
     if not isinstance(lease, int) or isinstance(lease, bool) or not 1 <= lease <= MAX_LEASE_HOURS:
         problems.append(f"the header's lease_hours must be a whole number from 1 to {MAX_LEASE_HOURS}")
+    if pin_repository is not None and header.get("source_repository") != pin_repository:
+        problems.append(f"the header's source_repository is {header.get('source_repository')!r}, "
+                        f"but the source map is of {pin_repository}")
     if pin_commit is not None and header.get("source_commit_sha") != pin_commit:
         problems.append(f"the header's source_commit_sha is {header.get('source_commit_sha')!r}, "
                         f"but the source map pins {pin_commit}")
@@ -701,6 +704,12 @@ def check_ids(context: Context, lessons: dict[str, dict], ids: list[str]) -> Non
             raise ClaimsError(f"{lesson_id} is not a lesson of the source map (or of the registry; run sync)")
 
 
+def identity(holding: Holding) -> tuple:
+    """What makes two records the same claim: the lesson, when it was claimed, whom it was taken from, and whether
+    the owner shares the source knowingly. The heartbeat is not part of it: it changes every time the claim is renewed."""
+    return holding.lesson_id, holding.claimed_at, holding.taken_from, holding.shared
+
+
 def verdicts(context: Context, header: dict, lessons: dict[str, dict], ids: list[str],
              live: bool = True) -> dict[str, str | None]:
     """Per claim, why it is not (or not safely) held, or None. Online, a claim that exists only in this working tree
@@ -709,7 +718,7 @@ def verdicts(context: Context, header: dict, lessons: dict[str, dict], ids: list
     takeover. `touch` asks only for the copy to be there, since renewing an expired claim is what it is for."""
     found, _ = world_of(context, lessons)
     lease = lease_of(header)
-    published = {holding.lesson_id for holdings in found.values() for holding in holdings
+    published = {identity(holding) for holdings in found.values() for holding in holdings
                  if holding.owner == context.me and holding.status == "doing" and holding.where != LOCAL
                  and not (live and is_stale(holding, context.now, lease))}
     out: dict[str, str | None] = {}
@@ -719,7 +728,7 @@ def verdicts(context: Context, header: dict, lessons: dict[str, dict], ids: list
             out[lesson_id] = "is not claimed by you"
             continue
         out[lesson_id] = lost_reason(mine, found, context.me, context.now, lease, context.source.partners.get(lesson_id, ()))
-        if out[lesson_id] is None and not context.offline and lesson_id not in published:
+        if out[lesson_id] is None and not context.offline and identity(mine) not in published:
             out[lesson_id] = (f"{UNPUBLISHED}{context.remote}/{context.branch} with a live heartbeat yet; push it "
                               f"(git push -u {context.remote} {context.branch}) so the other sessions can see it")
     return out
@@ -755,6 +764,8 @@ def cmd_claim(context: Context, args: argparse.Namespace) -> int:
         entry = lessons[lesson_id]
         if entry.get("status") == "doing" and entry.get("owner") == context.me and lesson_id not in takes:
             entry["heartbeat_at"] = stamp(context.now)
+            if args.allow_same_source and context.source.partners.get(lesson_id):
+                entry["shared_source"] = True  # the way to keep a half on purpose after losing it to the other half
             continue  # (a takeover below starts a new claim even when this session held the lesson before)
         fresh = {"id": lesson_id, "status": "doing", "title": entry.get("title", ""), "owner": context.me,
                  "claimed_at": stamp(context.now), "heartbeat_at": stamp(context.now)}

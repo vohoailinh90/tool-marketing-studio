@@ -2271,6 +2271,12 @@ class ClaimsRuleTests(StoreCase):
         self.write(self.registry().replace('"id": "sd-01-001", "status": "written"', '"status": "written", "id": "sd-01-001"'))
         self.assertProblem("canonical form")
 
+    def test_the_registry_header_must_name_the_source_maps_repository(self) -> None:
+        self.write(self.registry().replace(PIN["source_repository"], "someone/else"))
+        self.assertProblem("claims.jsonl: the header's source_repository is 'someone/else'")
+        self.write(self.registry().replace(f'"source_repository": "{PIN["source_repository"]}", ', ""))
+        self.assertProblem("claims.jsonl: the header's source_repository is None")
+
     def test_a_registry_that_is_not_a_file_is_reported(self) -> None:
         (self.store / "claims.jsonl").mkdir()
         self.assertProblem("claims.jsonl: is not a regular file")

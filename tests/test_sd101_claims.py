@@ -688,6 +688,30 @@ class ClaimTests(Sessions):
                     self.assertIn("origin/claude/b", err)
                     self.assertIn("its source map does not list", err)
 
+    def test_a_lesson_merged_from_another_work_branch_is_adopted_by_sync(self) -> None:
+        a, b = self.mapped_clone("a"), self.mapped_clone("b")
+        self.assertEqual(0, self.run_mapped(a, "claim", "sd-01-001", "--publish")[0])
+        self.write_lesson(a, "sd-01-001")
+        self.assertEqual(0, self.run_mapped(a, "finish", "sd-01-001")[0])
+        git(a, "add", "-A")
+        git(a, "commit", "--quiet", "-m", "the lesson")
+        git(a, "push", "--quiet", "origin", "claude/a")
+        git(b, "fetch", "--quiet", "origin", "claude/a")
+        git(b, "merge", "--quiet", "--no-edit", "origin/claude/a")  # a stacked branch: b carries a's unmerged lesson
+        self.assertEqual("claude/a", self.entry(b, "sd-01-001")["owner"])
+        code, _, err = self.run_mapped(b, "sync")
+        self.assertEqual(0, code, err)
+        self.assertEqual("claude/b", self.entry(b, "sd-01-001")["owner"])
+        self.assertIn("sd-01-001 came from another work branch", err)
+        git(b, "add", "-A")
+        git(b, "commit", "--quiet", "-m", "adopted")
+        self.assertEqual(0, self.run_mapped(b, "claim", "sd-01-002", "--publish")[0])
+        git(self.tmp, "--git-dir", str(self.origin), "update-ref", "-d", "refs/heads/claude/a")  # a's branch is deleted
+        c = self.mapped_clone("c")
+        code, _, err = self.run_mapped(c, "claim", "sd-01-001")
+        self.assertEqual(1, code, err)
+        self.assertIn("already written by claude/b", err)
+
     def test_sync_imports_a_todo_row_whose_lesson_arrived_on_disk_with_a_merge(self) -> None:
         a = self.mapped_clone("a")
         self.write_lesson(a, "sd-01-003")  # as if a merge of the default branch had brought it

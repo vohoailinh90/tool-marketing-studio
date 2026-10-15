@@ -678,6 +678,7 @@ def cmd_sync(context: Context, _: argparse.Namespace) -> int:
         header, lessons = new_header(context.source), {}
     added = retitled = 0
     imported: list[str] = []
+    adopted: list[str] = []
     bootstrap = on_default_branch(context, strict=False)  # the registry is born on the default branch, ownerless
     for lesson_id, title in context.source.lessons:
         # A lesson that arrived on disk without the registry hearing of it (a merge of the default branch brings the
@@ -699,6 +700,19 @@ def cmd_sync(context: Context, _: argparse.Namespace) -> int:
     if broken := imported_problems(context, imported):
         raise Refusal("sync refused, nothing was written: a lesson that is on disk cannot be imported as written yet:\n  "
                       + "\n  ".join(broken))
+    if not bootstrap:
+        # A lesson merged from another work branch keeps that branch as its owner, and a record on a non-default branch
+        # counts only for its own owner: if the other branch is deleted the lesson would vanish for everybody. Until the
+        # default branch holds the record, the branch that now carries the lesson's files answers for it.
+        try:
+            merged = registry_at(context, f"refs/remotes/{context.remote}/{default_branch(context.root, context.remote, ask=not context.offline)}")
+        except ClaimsError:
+            merged = {}
+        for lesson_id, entry in lessons.items():
+            if (entry.get("status") == "written" and entry.get("owner") not in (None, context.me) and lesson_id in on_disk
+                    and merged.get(lesson_id) != entry):
+                entry["owner"] = context.me
+                adopted.append(lesson_id)
     known = {lesson_id for lesson_id, _ in context.source.lessons}
     listing = git(context.root, "ls-tree", "-r", "--name-only", "HEAD", "--",
                   context.store.resolve().relative_to(context.root.resolve()).as_posix(), check=False)
@@ -712,6 +726,8 @@ def cmd_sync(context: Context, _: argparse.Namespace) -> int:
     gone = {lesson_id: lessons.pop(lesson_id) for lesson_id in [i for i in lessons if i not in known]}
     write_registry(context, header, lessons)
     print(f"sync: {context.relative} has {len(lessons)} lesson(s), {added} added, {retitled} retitled, {len(gone)} dropped")
+    if adopted:
+        print(f"sync: {', '.join(adopted)} came from another work branch and now belong to {context.me}", file=sys.stderr)
     if held := [f"{lesson_id} ({entry.get('status')})" for lesson_id, entry in gone.items() if entry.get("status") != "todo"]:
         print(f"sync: dropped lessons the source map no longer lists that were not todo: {', '.join(held)}; "
               "git history keeps their records", file=sys.stderr)

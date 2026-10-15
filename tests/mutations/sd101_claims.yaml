@@ -472,3 +472,7 @@ mutations:
   find: "holding.owner != me and not holding.shared and not is_stale(holding, now, lease):\n                    return (f\"shares its source file with {partner}, which {holding.owner} is writing \""
   replace: "holding.owner != me and not is_stale(holding, now, lease):\n                    return (f\"shares its source file with {partner}, which {holding.owner} is writing \""
   test: tests.test_sd101_claims.ClaimTests.test_a_live_half_taken_on_purpose_does_not_block_the_other_half
+- label: sync leaves a lesson merged from another work branch with its foreign owner
+  find: '            if (entry.get("status") == "written" and entry.get("owner") not in (None, context.me) and lesson_id in on_disk'
+  replace: '            if (False and entry.get("status") == "written" and entry.get("owner") not in (None, context.me) and lesson_id in on_disk'
+  test: tests.test_sd101_claims.ClaimTests.test_a_lesson_merged_from_another_work_branch_is_adopted_by_sync

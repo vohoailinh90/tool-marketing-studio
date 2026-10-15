@@ -282,6 +282,24 @@ What the loop does not change:
   aggregates and insight reports only.
 - **Secrets only in `.env`.** Never in YAML, code, logs or commits.
 
+## System Design lessons: claim before you write
+
+Several sessions write lessons of `system-design-101/vi/` at the same time. The registry
+`system-design-101/vi/claims.jsonl`, changed only through `scripts/sd101_claims.py`, says which of the
+404 source-map positions is free (`todo`), being written (`doing`, owned by a branch) or handed over
+(`written`). Full protocol: `docs/sd101-claims.md`.
+
+- **Before** writing or editing a lesson body: `python3 scripts/sd101_claims.py claim --next N --publish`
+  (or `claim <id>... --publish`). Never take `progress.json`'s `next_id`, and never start a lesson the
+  registry shows as `doing` or `written` — it reads every remote branch, so another session's pushed claim is visible.
+- **While working**: `touch --publish` now and then; `verify` must exit 0 before you push the lesson.
+  If you lost a claim, stop on that lesson and `release` it; do not push the draft.
+- **When done**: `finish <id>... --pr <n>` and commit `claims.jsonl` with the lesson files, so no
+  commit shows a written lesson that is not there. A lesson you will not write: `release <id> --publish`.
+- `claim` stops with exit 2 when the remote cannot be read; fix that, do not guess. A claim of a dead
+  session (no heartbeat for 72 h) is taken over with `claim --take-stale`.
+- Claiming reserves a lesson; it does not approve, review or publish it (`written` is not `content_status: done`).
+
 ## Languages (Vietnamese / Japanese / English)
 
 - Content: three complete versions, as above.

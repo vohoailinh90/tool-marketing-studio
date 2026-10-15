@@ -363,11 +363,11 @@
         },
         {
           "id": "sd-01-036",
-          "title_vi": null,
+          "title_vi": "Forward proxy và reverse proxy: đại diện phía nào?",
           "title_source": "Proxy vs Reverse Proxy",
           "source_url": "https://bytebytego.com/guides/proxy-vs-reverse-proxy",
           "source_path": "data/guides/proxy-vs-reverse-proxy.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "f25a285655e694ccfc403a6173ac4d77b47d3076",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/proxy-vs-reverse-proxy.md"
         },

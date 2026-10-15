@@ -476,3 +476,7 @@ mutations:
   find: '            if (entry.get("status") == "written" and entry.get("owner") not in (None, context.me) and lesson_id in on_disk'
   replace: '            if (False and entry.get("status") == "written" and entry.get("owner") not in (None, context.me) and lesson_id in on_disk'
   test: tests.test_sd101_claims.ClaimTests.test_a_lesson_merged_from_another_work_branch_is_adopted_by_sync
+- label: sync adopts a merged lesson without checking it
+  find: '                imported.append(lesson_id)  # the same file and content checks as for any lesson that becomes written here'
+  replace: '                pass'
+  test: tests.test_sd101_claims.ClaimTests.test_sync_does_not_adopt_a_merged_lesson_that_is_now_incomplete

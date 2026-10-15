@@ -697,9 +697,6 @@ def cmd_sync(context: Context, _: argparse.Namespace) -> int:
         elif lessons[lesson_id].get("title") != title:
             lessons[lesson_id]["title"] = title
             retitled += 1
-    if broken := imported_problems(context, imported):
-        raise Refusal("sync refused, nothing was written: a lesson that is on disk cannot be imported as written yet:\n  "
-                      + "\n  ".join(broken))
     if not bootstrap:
         # A lesson merged from another work branch keeps that branch as its owner, and a record on a non-default branch
         # counts only for its own owner: if the other branch is deleted the lesson would vanish for everybody. Until the
@@ -713,6 +710,10 @@ def cmd_sync(context: Context, _: argparse.Namespace) -> int:
                     and merged.get(lesson_id) != entry):
                 entry["owner"] = context.me
                 adopted.append(lesson_id)
+                imported.append(lesson_id)  # the same file and content checks as for any lesson that becomes written here
+    if broken := imported_problems(context, imported):
+        raise Refusal("sync refused, nothing was written: a lesson that is on disk cannot be imported as written yet:\n  "
+                      + "\n  ".join(broken))
     known = {lesson_id for lesson_id, _ in context.source.lessons}
     listing = git(context.root, "ls-tree", "-r", "--name-only", "HEAD", "--",
                   context.store.resolve().relative_to(context.root.resolve()).as_posix(), check=False)

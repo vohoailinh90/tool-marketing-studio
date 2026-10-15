@@ -712,6 +712,23 @@ class ClaimTests(Sessions):
         self.assertEqual(1, code, err)
         self.assertIn("already written by claude/b", err)
 
+    def test_sync_does_not_adopt_a_merged_lesson_that_is_now_incomplete(self) -> None:
+        a, b = self.mapped_clone("a"), self.mapped_clone("b")
+        self.assertEqual(0, self.run_mapped(a, "claim", "sd-01-001", "--publish")[0])
+        self.write_lesson(a, "sd-01-001")
+        self.assertEqual(0, self.run_mapped(a, "finish", "sd-01-001")[0])
+        git(a, "add", "-A")
+        git(a, "commit", "--quiet", "-m", "the lesson")
+        git(a, "push", "--quiet", "origin", "claude/a")
+        git(b, "fetch", "--quiet", "origin", "claude/a")
+        git(b, "merge", "--quiet", "--no-edit", "origin/claude/a")
+        (b / "store" / "metadata" / "sd-01-001.json").unlink()  # damaged after the merge
+        before = (b / REGISTRY).read_text(encoding="utf-8")
+        code, _, err = self.run_mapped(b, "sync")
+        self.assertEqual(1, code, err)
+        self.assertIn("sd-01-001: metadata/sd-01-001.json does not exist yet", err)
+        self.assertEqual(before, (b / REGISTRY).read_text(encoding="utf-8"), "the owner did not change")
+
     def test_sync_imports_a_todo_row_whose_lesson_arrived_on_disk_with_a_merge(self) -> None:
         a = self.mapped_clone("a")
         self.write_lesson(a, "sd-01-003")  # as if a merge of the default branch had brought it

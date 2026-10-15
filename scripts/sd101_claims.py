@@ -697,6 +697,7 @@ def cmd_sync(context: Context, _: argparse.Namespace) -> int:
         elif lessons[lesson_id].get("title") != title:
             lessons[lesson_id]["title"] = title
             retitled += 1
+    clashes: list[str] = []
     if not bootstrap:
         # A lesson merged from another work branch keeps that branch as its owner, and a record on a non-default branch
         # counts only for its own owner: if the other branch is deleted the lesson would vanish for everybody. Until the
@@ -708,9 +709,17 @@ def cmd_sync(context: Context, _: argparse.Namespace) -> int:
         for lesson_id, entry in lessons.items():
             if (entry.get("status") == "written" and entry.get("owner") not in (None, context.me) and lesson_id in on_disk
                     and merged.get(lesson_id) != entry):
+                for partner in context.source.partners.get(lesson_id, ()):
+                    mine = lessons.get(partner, {})
+                    if (mine.get("owner") == context.me and mine.get("status") in ("doing", "written")
+                            and not mine.get("shared_source") and not entry.get("shared_source")):
+                        clashes.append(f"{lesson_id} (written by {entry.get('owner')}) shares its source file with {partner}, which {context.me} holds")
                 entry["owner"] = context.me
                 adopted.append(lesson_id)
                 imported.append(lesson_id)  # the same file and content checks as for any lesson that becomes written here
+    if clashes:
+        raise Refusal("sync refused, nothing was written: adopting would hide a shared-source conflict:\n  "
+                      + "\n  ".join(clashes) + "\nrelease that half, or claim it again with --allow-same-source, first")
     if broken := imported_problems(context, imported):
         raise Refusal("sync refused, nothing was written: a lesson that is on disk cannot be imported as written yet:\n  "
                       + "\n  ".join(broken))
@@ -843,13 +852,13 @@ def registry_at(context: Context, ref: str) -> dict[str, dict]:
     return parse(shown.stdout.decode("utf-8", "replace"))[1] if shown.returncode == 0 else {}
 
 
-def unfinished_commits(context: Context, lessons: dict[str, dict]) -> tuple[list[str], list[str]]:
+def unfinished_commits(context: Context, lessons: dict[str, dict]) -> tuple[list[str], list[str], list[str]]:
     with contextlib.ExitStack() as stack:  # the exported tree lives as long as the judgement does
         return _unfinished_commits(context, lessons, stack)
 
 
 def _unfinished_commits(context: Context, lessons: dict[str, dict], stack: contextlib.ExitStack
-                        ) -> tuple[list[str], list[str]]:
+                        ) -> tuple[list[str], list[str], list[str]]:
     """Lessons that --publish would advertise as written without their files: a record that turned `written` since
     the pushed branch and whose lesson is absent from HEAD or changed after the last commit. Only the registry is committed by
     --publish, so such a lesson would be terminal for every other session while the pushed branch lacks it (or holds
@@ -893,7 +902,7 @@ def _unfinished_commits(context: Context, lessons: dict[str, dict], stack: conte
         if not in_head or dirty or pushed_content_problems(context, lesson_id):
             out.append(lesson_id)
     orphans = orphan_problems(exported()[0], context.source_map, set(lessons), cache, exported()[1])
-    return out, orphans
+    return out, orphans, source_map_problems(exported()[0], context.source_map, cache, exported()[1])
 
 
 def drafts_left_behind(context: Context, lessons: dict[str, dict]) -> list[str]:
@@ -958,7 +967,9 @@ def guard_publish(context: Context) -> None:
     if uncommitted_source_map(context):
         raise Refusal("nothing was pushed: the source map has uncommitted changes that the registry was synchronized with; "
                       "commit them together with the registry first (git add -A && git commit), then push")
-    pending, orphans = unfinished_commits(context, lessons)
+    pending, orphans, map_findings = unfinished_commits(context, lessons)
+    if map_findings:
+        raise Refusal("nothing was pushed: the store checker rejects the source map: " + "; ".join(map_findings))
     if orphans:
         raise Refusal(f"nothing was pushed: the store holds {', '.join(orphans)}, which the registry no longer lists; "
                       "remove the files (and commit their deletion) or restore the source-map entry first")
@@ -1173,10 +1184,19 @@ def _store_problems(store: pathlib.Path, source_map: pathlib.Path | None, cache:
     module = importlib.util.module_from_spec(spec)
     sys.modules.setdefault("sd101_check", module)
     spec.loader.exec_module(module)
-    found = module.check_store(store, source_map, boundary=boundary)
+    # The roster pin (15 groups, 404 ids) belongs to the repository's own source map; a copy elsewhere is judged without it.
+    pinned = source_map.resolve() == pathlib.Path(module.DEFAULT_SOURCE_MAP).resolve()
+    found = module.check_store(store, source_map, pin_roster=pinned, boundary=boundary)
     if cache is not None:
         cache[key] = found
     return found
+
+
+def source_map_problems(store: pathlib.Path, source_map: pathlib.Path | None, cache: dict | None = None,
+                        boundary: pathlib.Path | None = None) -> list[str]:
+    """The store checker's findings about the source map itself (not about a lesson): a map it rejects is no ground to
+    publish a registry synchronized with it."""
+    return [str(problem) for problem in _store_problems(store, source_map, cache, boundary) if problem.where == "source map"]
 
 
 def orphan_problems(store: pathlib.Path, source_map: pathlib.Path | None, known: set[str], cache: dict | None = None,

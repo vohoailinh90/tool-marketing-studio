@@ -62,7 +62,7 @@ class Sessions(unittest.TestCase):
             self.addCleanup(patch.stop)
         self.source_map = self.tmp / "source-map.json"
         self.source_map.write_text(json.dumps(source_map()), encoding="utf-8")
-        for name in ("content_problems", "orphan_problems"):  # the fake store holds placeholder files
+        for name in ("content_problems", "orphan_problems", "source_map_problems"):  # the fake store holds placeholder files
             check = mock.patch.object(claims, name, return_value=[])
             check.start()
             self.addCleanup(check.stop)
@@ -728,6 +728,35 @@ class ClaimTests(Sessions):
         self.assertEqual(1, code, err)
         self.assertIn("sd-01-001: metadata/sd-01-001.json does not exist yet", err)
         self.assertEqual(before, (b / REGISTRY).read_text(encoding="utf-8"), "the owner did not change")
+
+    def test_adoption_does_not_hide_a_shared_source_conflict(self) -> None:
+        a, b = self.mapped_clone("a"), self.mapped_clone("b")
+        self.assertEqual(0, self.run_mapped(b, "claim", "sd-02-001")[0])  # b's claim on one half is not visible yet
+        self.assertEqual(0, self.run_mapped(a, "claim", "sd-01-005", "--publish")[0])
+        self.write_lesson(a, "sd-01-005")
+        self.assertEqual(0, self.run_mapped(a, "finish", "sd-01-005")[0])
+        git(a, "add", "-A")
+        git(a, "commit", "--quiet", "-m", "the other half")
+        git(a, "push", "--quiet", "origin", "claude/a")
+        git(b, "add", "-A")
+        git(b, "commit", "--quiet", "-m", "b's claim")
+        git(b, "fetch", "--quiet", "origin", "claude/a")
+        git(b, "merge", "--quiet", "--no-edit", "origin/claude/a")
+        before = (b / REGISTRY).read_text(encoding="utf-8")
+        code, _, err = self.run_mapped(b, "sync")
+        self.assertEqual(1, code, err)
+        self.assertIn("sd-01-005 (written by claude/a) shares its source file with sd-02-001", err)
+        self.assertEqual(before, (b / REGISTRY).read_text(encoding="utf-8"))
+        self.assertEqual(0, self.run_mapped(b, "claim", "sd-02-001", "--allow-same-source")[0], "on purpose")
+        self.assertEqual(0, self.run_mapped(b, "sync")[0], "the conflict is acknowledged: the adoption may go on")
+
+    def test_a_source_map_the_checker_rejects_blocks_publication(self) -> None:
+        a = self.session("a")
+        with mock.patch.object(claims, "source_map_problems", return_value=["source map: schema_version must be 1"]):
+            code, _, err = self.run_in(a, "claim", "sd-01-001", "--publish")
+        self.assertEqual(1, code, err)
+        self.assertIn("nothing was pushed: the store checker rejects the source map: source map: schema_version must be 1", err)
+        self.assertEqual(0, self.run_in(a, "claim", "sd-01-001", "--publish")[0])
 
     def test_sync_imports_a_todo_row_whose_lesson_arrived_on_disk_with_a_merge(self) -> None:
         a = self.mapped_clone("a")
@@ -1772,3 +1801,15 @@ class OrphanTests(unittest.TestCase):
             self.assertEqual(["sd-99-999"], claims.orphan_problems(store, ContentTests.SOURCE_MAP, known))
             (store / "metadata" / "sd-01-001.json").write_text("{", encoding="utf-8")  # damage in a lesson the registry holds
             self.assertEqual(["sd-99-999"], claims.orphan_problems(store, ContentTests.SOURCE_MAP, known), "that one is not an orphan")
+
+
+class SourceMapFindingsTests(unittest.TestCase):
+    def test_the_real_map_passes_and_a_damaged_copy_is_found(self) -> None:
+        self.assertEqual([], claims.source_map_problems(ContentTests.STORE, ContentTests.SOURCE_MAP))
+        with tempfile.TemporaryDirectory() as tmp:
+            damaged = Path(tmp) / "source-map.json"
+            data = json.loads(ContentTests.SOURCE_MAP.read_text(encoding="utf-8"))
+            data["source_commit_sha"] = "not a commit"
+            damaged.write_text(json.dumps(data), encoding="utf-8")
+            found = claims.source_map_problems(ContentTests.STORE, damaged)
+        self.assertTrue(found and all(item.startswith("source map:") for item in found), found)

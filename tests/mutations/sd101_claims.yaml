@@ -480,3 +480,15 @@ mutations:
   find: '                imported.append(lesson_id)  # the same file and content checks as for any lesson that becomes written here'
   replace: '                pass'
   test: tests.test_sd101_claims.ClaimTests.test_sync_does_not_adopt_a_merged_lesson_that_is_now_incomplete
+- label: adoption erases a shared-source conflict
+  find: "    if clashes:\n        raise Refusal(\"sync refused, nothing was written: adopting would hide"
+  replace: "    if False:\n        raise Refusal(\"sync refused, nothing was written: adopting would hide"
+  test: tests.test_sd101_claims.ClaimTests.test_adoption_does_not_hide_a_shared_source_conflict
+- label: a source map the checker rejects does not block publication
+  find: "    if map_findings:\n        raise Refusal("
+  replace: "    if False:\n        raise Refusal("
+  test: tests.test_sd101_claims.ClaimTests.test_a_source_map_the_checker_rejects_blocks_publication
+- label: source-map findings are dropped
+  find: if problem.where == "source map"]
+  replace: if problem.where == "no such place"]
+  test: tests.test_sd101_claims.SourceMapFindingsTests.test_the_real_map_passes_and_a_damaged_copy_is_found

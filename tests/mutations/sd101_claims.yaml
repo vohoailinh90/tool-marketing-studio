@@ -493,12 +493,12 @@ mutations:
   replace: if problem.where == "no such place"]
   test: tests.test_sd101_claims.SourceMapFindingsTests.test_the_real_map_passes_and_a_damaged_copy_is_found
 - label: a lesson the default branch dropped can still be claimed
-  find: '    if gone := [lesson_id for lesson_id in ids if lesson_id in removed_upstream(context)]:'
+  find: '    if gone := [lesson_id for lesson_id in ids if lesson_id in removed]:'
   replace: '    if gone := []:'
   test: tests.test_sd101_claims.ClaimTests.test_a_stale_checkout_cannot_claim_a_lesson_the_default_branch_dropped
 - label: a lesson the default branch dropped is still offered
-  find: '    exclude = (*exclude, *removed_upstream(context))'
-  replace: '    exclude = (*exclude,)'
+  find: '    exclude = (*exclude, *removed_upstream(context), *repartnered_upstream(context))'
+  replace: '    exclude = (*exclude, *repartnered_upstream(context))'
   test: tests.test_sd101_claims.ClaimTests.test_a_stale_checkout_cannot_claim_a_lesson_the_default_branch_dropped
 - label: an existing claim on a lesson the default branch dropped is still held
   find: '        if lesson_id in gone:  # a claim taken before the default branch dropped the lesson is not a claim on anything'
@@ -544,3 +544,19 @@ mutations:
   find: '                if (partner not in arrived and held.get'
   replace: '                if (held.get'
   test: tests.test_sd101_claims.ClaimTests.test_a_pair_that_arrives_together_is_not_a_conflict
+- label: a changed pairing upstream is not noticed
+  find: '    return {lesson_id for lesson_id in both if set(then.partners.get(lesson_id, ())) != set(current.partners.get(lesson_id, ()))}'
+  replace: '    return set()'
+  test: tests.test_sd101_claims.ClaimTests.test_a_stale_checkout_does_not_judge_claims_by_a_pairing_the_default_branch_changed
+- label: a claim on a lesson whose pairing changed upstream is accepted
+  find: '    if moved := [lesson_id for lesson_id in ids if lesson_id in repartnered]:'
+  replace: '    if False and [lesson_id for lesson_id in ids if lesson_id in repartnered]:'
+  test: tests.test_sd101_claims.ClaimTests.test_a_stale_checkout_does_not_judge_claims_by_a_pairing_the_default_branch_changed
+- label: a held claim on a lesson whose pairing changed upstream stays held
+  find: '        if lesson_id in moved:  # judged by a stale map'
+  replace: '        if False and lesson_id in moved:  # judged by a stale map'
+  test: tests.test_sd101_claims.ClaimTests.test_a_stale_checkout_does_not_judge_claims_by_a_pairing_the_default_branch_changed
+- label: a lesson whose pairing changed upstream is still offered
+  find: '    exclude = (*exclude, *removed_upstream(context), *repartnered_upstream(context))'
+  replace: '    exclude = (*exclude, *removed_upstream(context))'
+  test: tests.test_sd101_claims.ClaimTests.test_a_stale_checkout_does_not_judge_claims_by_a_pairing_the_default_branch_changed

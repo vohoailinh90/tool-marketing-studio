@@ -803,26 +803,42 @@ def cmd_status(context: Context, args: argparse.Namespace) -> int:
     return 0
 
 
+def upstream_maps(context: Context) -> tuple[Source, Source] | None:
+    """The source map as the default branch holds it now and as it stood where this branch was cut, when both can be read."""
+    if context.offline or source_map_in_checkout(context) is None:
+        return None
+    try:
+        base_ref = f"refs/remotes/{context.remote}/{default_branch(context.root, context.remote)}"
+    except ClaimsError:
+        return None
+    forked = git(context.root, "merge-base", "HEAD", base_ref, check=False)
+    current, then = source_at(context, base_ref), (source_at(context, forked.stdout.decode().strip()) if forked.returncode == 0 else None)
+    return None if current is None or then is None else (then, current)
+
+
 def removed_upstream(context: Context) -> set[str]:
     """Lessons the default branch dropped from its source map after this branch was cut: a checkout that still has the
     old map would otherwise take, write and publish a lesson the roster no longer holds. A lesson added on this branch
     (it was never in the map at the fork point) is not one of them."""
-    if context.offline or source_map_in_checkout(context) is None:
+    if (maps := upstream_maps(context)) is None:
         return set()
-    try:
-        base_ref = f"refs/remotes/{context.remote}/{default_branch(context.root, context.remote)}"
-    except ClaimsError:
-        return set()
-    forked = git(context.root, "merge-base", "HEAD", base_ref, check=False)
-    current, then = source_at(context, base_ref), (source_at(context, forked.stdout.decode().strip()) if forked.returncode == 0 else None)
-    if current is None or then is None:
-        return set()
+    then, current = maps
     return {lesson_id for lesson_id, _ in then.lessons} - {lesson_id for lesson_id, _ in current.lessons}
+
+
+def repartnered_upstream(context: Context) -> set[str]:
+    """Lessons whose shared-source pairing the default branch changed after this branch was cut: a checkout that still
+    has the old map would judge a claim on them without the partner the current map gives them."""
+    if (maps := upstream_maps(context)) is None:
+        return set()
+    then, current = maps
+    both = {lesson_id for lesson_id, _ in then.lessons} & {lesson_id for lesson_id, _ in current.lessons}
+    return {lesson_id for lesson_id in both if set(then.partners.get(lesson_id, ())) != set(current.partners.get(lesson_id, ()))}
 
 
 def free_lessons(context: Context, found: dict[str, list[Holding]], lease: int, group: str | None, count: int,
                  take_stale: bool = False, allow_same_source: bool = False, exclude: tuple[str, ...] = ()) -> list[str]:
-    exclude = (*exclude, *removed_upstream(context))
+    exclude = (*exclude, *removed_upstream(context), *repartnered_upstream(context))
     chosen: list[str] = []
     for lesson_id, _ in context.source.lessons:
         if len(chosen) >= count:
@@ -1090,7 +1106,7 @@ def verdicts(context: Context, header: dict, lessons: dict[str, dict], ids: list
                       if holding.owner == context.me and holding.status == "doing" and holding.where != LOCAL
                       and not is_stale(holding, context.now, lease)}
     out: dict[str, str | None] = {}
-    gone = removed_upstream(context)
+    gone, moved = removed_upstream(context), repartnered_upstream(context)
     for lesson_id in ids:
         mine = _holding(lessons[lesson_id], LOCAL)
         if mine is None:
@@ -1098,6 +1114,10 @@ def verdicts(context: Context, header: dict, lessons: dict[str, dict], ids: list
             continue
         if lesson_id in gone:  # a claim taken before the default branch dropped the lesson is not a claim on anything
             out[lesson_id] = ("was removed from the source map by the default branch after this branch was cut; "
+                              "merge the default branch into this branch")
+            continue
+        if lesson_id in moved:  # judged by a stale map: the partner the current one gives this lesson is not known here
+            out[lesson_id] = ("shares its source file with different lessons on the default branch than on this branch; "
                               "merge the default branch into this branch")
             continue
         out[lesson_id] = lost_reason(mine, found, context.me, context.now, lease, context.source.partners.get(lesson_id, ()),
@@ -1123,9 +1143,14 @@ def cmd_claim(context: Context, args: argparse.Namespace) -> int:
         print("claim: no free lesson to claim", file=sys.stderr)
         return 1
     check_ids(context, lessons, ids)
-    if gone := [lesson_id for lesson_id in ids if lesson_id in removed_upstream(context)]:
+    removed, repartnered = removed_upstream(context), repartnered_upstream(context)
+    if gone := [lesson_id for lesson_id in ids if lesson_id in removed]:
         print(f"claim refused, nothing was written: the default branch removed {', '.join(gone)} from the source map after "
               "this branch was cut; merge it into this branch first", file=sys.stderr)
+        return 1
+    if moved := [lesson_id for lesson_id in ids if lesson_id in repartnered]:
+        print(f"claim refused, nothing was written: the default branch changed which lessons share a source file with "
+              f"{', '.join(moved)} after this branch was cut; merge it into this branch first", file=sys.stderr)
         return 1
     refused, takes = [], {}
     for lesson_id in ids:

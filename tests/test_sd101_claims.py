@@ -776,6 +776,37 @@ class ClaimTests(Sessions):
         code, _, err = self.run_mapped(a, "release", "sd-01-004", "--publish")
         self.assertEqual(0, code, "the way out is still open: " + err)
 
+    def test_a_stale_checkout_does_not_judge_claims_by_a_pairing_the_default_branch_changed(self) -> None:
+        a = self.mapped_clone("a")  # cut while sd-01-001 and sd-01-002 shared no source file
+        self.assertEqual(0, self.run_mapped(a, "claim", "sd-01-001", "--publish")[0])
+        seed = self.tmp / "seed"
+        data = json.loads((seed / "source-map.json").read_text(encoding="utf-8"))
+        for lesson in data["categories"][0]["lessons"]:
+            if lesson["id"] in ("sd-01-001", "sd-01-002"):
+                lesson["same_source_as"] = ["sd-01-002" if lesson["id"] == "sd-01-001" else "sd-01-001"]
+        (seed / "source-map.json").write_text(json.dumps(data), encoding="utf-8")
+        git(seed, "add", "-A")
+        git(seed, "commit", "--quiet", "-m", "the roster pairs sd-01-001 with sd-01-002")
+        git(seed, "push", "--quiet", "origin", "main")
+        code, _, err = self.run_mapped(a, "claim", "sd-01-002")
+        self.assertEqual(1, code, err)
+        self.assertIn("changed which lessons share a source file with sd-01-002", err)
+        offered = self.run_mapped(a, "next", "--group", "sd-01", "--count", "6")[1].split()
+        self.assertIn("sd-01-003", offered)
+        self.assertNotIn("sd-01-002", offered, "a lesson judged by a stale pairing is not offered")
+        for command in (("verify",), ("touch",), ("finish", "sd-01-001")):  # the claim held before the change is not held either
+            with self.subTest(command[0]):
+                self.write_lesson(a, "sd-01-001")
+                code, _, err = self.run_mapped(a, *command)
+                self.assertEqual(1, code, err)
+                self.assertIn("shares its source file with different lessons on the default branch", err)
+        git(a, "add", "-A")
+        git(a, "commit", "--quiet", "-m", "the claim with its draft")
+        git(a, "fetch", "--quiet", "origin", "main")
+        git(a, "merge", "--quiet", "--no-edit", "origin/main")
+        self.assertEqual(0, self.run_mapped(a, "verify")[0], "merged: the branch judges by the current pairing")
+        self.assertEqual(0, self.run_mapped(a, "claim", "sd-01-002")[0], "a session may hold both halves of a pair")
+
     def test_adoption_does_not_hide_a_shared_source_conflict(self) -> None:
         a, b = self.mapped_clone("a"), self.mapped_clone("b")
         self.assertEqual(0, self.run_mapped(b, "claim", "sd-02-001")[0])  # b's claim on one half is not visible yet

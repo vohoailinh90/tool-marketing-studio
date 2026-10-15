@@ -311,6 +311,33 @@ class ClaimTests(Sessions):
         self.assertEqual(1, code, err)
         self.assertIn("sd-01-001 is marked written but the lesson files are not committed", err)
 
+    def test_a_written_record_committed_by_itself_is_still_judged_before_it_goes_up(self) -> None:
+        a = self.session("a")
+        self.run_in(a, "claim", "sd-01-001", "--publish")
+        (a / "store" / "lessons" / "sd-01-001").mkdir(parents=True)
+        (a / "store" / "lessons" / "sd-01-001" / "lesson.md").write_text("# x\n", encoding="utf-8")
+        self.assertEqual(0, self.run_in(a, "finish", "sd-01-001")[0])
+        git(a, "add", REGISTRY)
+        git(a, "commit", "--quiet", "-m", "the registry alone, by accident")
+        pushed = git(self.tmp, "--git-dir", str(self.origin), "rev-parse", "claude/a")
+        code, _, err = self.run_in(a, "claim", "sd-01-002", "--publish")
+        self.assertEqual(1, code, err)
+        self.assertIn("sd-01-001 is marked written but the lesson files are not committed", err)
+        self.assertEqual(pushed, git(self.tmp, "--git-dir", str(self.origin), "rev-parse", "claude/a"))
+
+    def test_a_hidden_claim_with_a_fresh_local_heartbeat_loses_to_a_visible_replacement(self) -> None:
+        a, b = self.session("a"), self.session("b")
+        self.run_in(a, "claim", "sd-01-001", "--publish")
+        self.at(hours=50)
+        self.assertEqual(0, self.run_in(a, "touch")[0], "renewed in a's copy only")
+        git(self.tmp, "--git-dir", str(self.origin), "branch", "-D", "claude/a")  # nothing of a is visible any more
+        self.at(hours=51)
+        self.assertEqual(0, self.run_in(b, "claim", "sd-01-001", "--publish")[0], "free as far as anyone can see")
+        code, _, err = self.run_in(a, "touch", "--publish")
+        self.assertEqual(1, code, err)
+        self.assertIn("lost to claude/b", err)
+        self.assertEqual("", git(self.tmp, "--git-dir", str(self.origin), "branch", "--list", "claude/a"), "a was not recreated")
+
     def test_a_finished_lesson_that_git_ignores_is_not_pushed(self) -> None:
         a = self.session("a")
         self.run_in(a, "claim", "sd-01-001", "--publish")

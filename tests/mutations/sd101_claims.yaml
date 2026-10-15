@@ -271,3 +271,11 @@ mutations:
   find: check=False).returncode == 0 for path in required)
   replace: check=False).returncode == 0 for path in required[:1])
   test: tests.test_sd101_claims.ClaimTests.test_a_finished_lesson_without_its_metadata_and_figure_is_not_pushed
+- label: a claim with no live published copy beats a visible replacement because it is older
+  find: '(is_stale(mine, now, lease) or not published_live or beats(other, mine)):'
+  replace: '(is_stale(mine, now, lease) or beats(other, mine)):'
+  test: tests.test_sd101_claims.ClaimTests.test_a_hidden_claim_with_a_fresh_local_heartbeat_loses_to_a_visible_replacement
+- label: a written record that is merely committed locally is trusted as already pushed
+  find: f"refs/remotes/{context.remote}/{context.branch}:{context.relative}"
+  replace: f"HEAD:{context.relative}"
+  test: tests.test_sd101_claims.ClaimTests.test_a_written_record_committed_by_itself_is_still_judged_before_it_goes_up

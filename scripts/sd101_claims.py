@@ -478,9 +478,10 @@ def lost_reason(mine: Holding, found: dict[str, list[Holding]], me: str, now: da
             continue
         if other.status == "written":  # whoever wrote it: a stale container's own claim is just as finished
             return f"already written by {other.who()} ({other.where})"
-        # An expired claim loses to a live one whatever their order: the live claimant may never have seen the
-        # expired one (its branch was deleted), so it could not record the takeover in `taken_from`.
-        if not is_stale(other, now, lease) and (is_stale(mine, now, lease) or beats(other, mine)):
+        # An expired claim, or one with no live published copy (its branch was deleted, or it never went up), loses to
+        # a live one whatever their order: the live claimant may never have seen it, so it could not record the
+        # takeover in `taken_from`, and a heartbeat renewed only locally proves nothing to the others.
+        if not is_stale(other, now, lease) and (is_stale(mine, now, lease) or not published_live or beats(other, mine)):
             return f"lost to {other.owner}, who claimed it at {other.claimed_at} ({other.where})"
     for partner in partners:
         for other in found.get(partner, []):
@@ -727,10 +728,11 @@ def lesson_files(context: Context, lesson_id: str) -> list[str]:
 
 def unfinished_commits(context: Context, lessons: dict[str, dict]) -> list[str]:
     """Lessons that --publish would advertise as written without their files: a record that turned `written` since
-    HEAD and whose lesson is absent from HEAD or changed after the last commit. Only the registry is committed by
+    the pushed branch and whose lesson is absent from HEAD or changed after the last commit. Only the registry is committed by
     --publish, so such a lesson would be terminal for every other session while the pushed branch lacks it (or holds
-    an older draft). A record HEAD already carries was judged when it was committed, and is left alone."""
-    shown = git(context.root, "show", f"HEAD:{context.relative}", check=False)
+    an older draft). A record the pushed branch already advertises was judged when it went up, and is left alone; one that is merely
+    committed locally has not been, so a registry-only commit does not vouch for it."""
+    shown = git(context.root, "show", f"refs/remotes/{context.remote}/{context.branch}:{context.relative}", check=False)
     head = parse(shown.stdout.decode("utf-8", "replace"))[1] if shown.returncode == 0 else {}
     out = []
     for lesson_id, entry in lessons.items():

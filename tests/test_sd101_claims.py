@@ -314,7 +314,7 @@ class ClaimTests(Sessions):
     def test_a_finished_lesson_that_git_ignores_is_not_pushed(self) -> None:
         a = self.session("a")
         self.run_in(a, "claim", "sd-01-001", "--publish")
-        (a / ".gitignore").write_text("store/lessons/\n", encoding="utf-8")  # git status shows nothing for the lesson
+        (a / ".gitignore").write_text("store/lessons/\nstore/metadata/\nstore/diagrams/\n", encoding="utf-8")  # git status shows nothing
         git(a, "add", ".gitignore")
         git(a, "commit", "--quiet", "-m", "ignore the lessons")
         self.write_lesson(a, "sd-01-001")

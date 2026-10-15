@@ -412,7 +412,8 @@ def beats(first: Holding, second: Holding) -> bool:
 
 
 def gather(local: dict[str, dict], remote: dict[str, str], base: str, me: str, offline: bool,
-           roster: tuple[str, ...] = ()) -> tuple[dict[str, list[Holding]], list[str]]:
+           roster: tuple[str, ...] = (), expected: tuple[str | None, str | None] | None = None
+           ) -> tuple[dict[str, list[Holding]], list[str]]:
     """Every claim and every written lesson that any view shows, per lesson, and the views that could not be read."""
     found: dict[str, list[Holding]] = {}
     unreadable: list[str] = []
@@ -425,7 +426,9 @@ def gather(local: dict[str, dict], remote: dict[str, str], base: str, me: str, o
         if offline or entry.get("owner") == me or entry.get("status") == "written":
             add(entry, LOCAL)
     for branch, text in remote.items():
-        _, lessons, problems = parse(text)
+        header, lessons, problems = parse(text)
+        if expected is not None:  # a header of another schema or source says the records cannot be read as ours
+            problems += header_problems(header, *expected)
         problems += record_problems(lessons)  # a typo in a status would otherwise hide the claim it sits in
         if missing := [lesson_id for lesson_id in roster if lesson_id not in lessons]:  # so would a truncated file
             problems.append(f"lacks {len(missing)} source-map lesson(s), e.g. {missing[0]}")
@@ -582,7 +585,8 @@ def world_of(context: Context, local: dict[str, dict],
             raise ClaimsError(f"cannot read the other sessions' claims from {context.remote}: {error}; "
                               "nothing was decided (pass --offline only if you accept that risk)") from error
     roster = tuple(lesson_id for lesson_id, _ in context.source.lessons)
-    found, unreadable = gather(local, remote, base, context.me, context.offline, roster)
+    found, unreadable = gather(local, remote, base, context.me, context.offline, roster,
+                               (context.source.commit_sha, context.source.repository))
     unreadable += [f"{context.remote}/{name} (not valid UTF-8)" for name in undecodable]
     if base in missing:  # a legacy feature branch may lack the file, the branch that holds every merged lesson may not
         unreadable.append(f"{context.remote}/{base} (the default branch has no {REGISTRY_NAME})")
@@ -734,11 +738,16 @@ def unfinished_commits(context: Context, lessons: dict[str, dict]) -> list[str]:
     committed locally has not been, so a registry-only commit does not vouch for it."""
     shown = git(context.root, "show", f"refs/remotes/{context.remote}/{context.branch}:{context.relative}", check=False)
     head = parse(shown.stdout.decode("utf-8", "replace"))[1] if shown.returncode == 0 else {}
+    ref = f"refs/remotes/{context.remote}/{context.branch}"
     out = []
     for lesson_id, entry in lessons.items():
-        if entry.get("status") != "written" or head.get(lesson_id) == entry:
+        if entry.get("status") != "written":
             continue
         files = lesson_files(context, lesson_id)
+        if head.get(lesson_id) == entry:  # already advertised: a rework is fine, a committed deletion is not
+            if git_text(context.root, "diff", "--diff-filter=D", "--name-only", ref, "HEAD", "--", *files):
+                out.append(lesson_id)
+            continue
         required = [f"{files[0]}/lesson.md", f"{files[0]}/lesson.yaml", files[2], files[3]]  # what the store checker requires
         in_head = all(git(context.root, "cat-file", "-e", f"HEAD:{path}", check=False).returncode == 0 for path in required)
         dirty = git_text(context.root, "status", "--porcelain", "--untracked-files=all", "--", *files)

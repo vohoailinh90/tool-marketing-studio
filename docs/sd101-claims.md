@@ -30,7 +30,7 @@ work on that lesson, release it and take another; do not push the draft.
 A claim refused because the remote could not be read (exit 2) is not a refusal to argue with: fix the
 network or ask the owner. `--offline` exists for a machine with no remote and accepts the risk. The same
 exit 2 comes when the registry on some branch cannot be read as a whole registry (conflict markers committed
-by mistake, an invalid record, a truncated file that lost source-map lessons), because a claim in it could be missed: fix or delete that branch, or pass `--ignore-unreadable` to decide
+by mistake, an invalid record, a header of another schema or source pin, a truncated file that lost source-map lessons), because a claim in it could be missed: fix or delete that branch, or pass `--ignore-unreadable` to decide
 without it. `status` only reports such a branch.
 
 ## What the file holds
@@ -97,7 +97,7 @@ half, whoever claimed first, because a takeover across a pair leaves no record o
 registry before it pushes (it is pushed whole), not only the ones you named, and refuses with the list to release. It also refuses to push a lesson that turned `written` since the last commit while its files (`lessons/<id>/`,
 `metadata/<id>.json`, `diagrams/<id>-main.svg`) are not all committed as they are now (the lesson, its `lesson.yaml`, metadata and figure must each be in the last commit): commit the lesson and its registry
 record together (`git add -A && git commit`) first, so the remote never advertises a finished lesson that its branch lacks
-(or holds only an older draft of).
+(or holds only an older draft of). A lesson already pushed may be reworked, but a commit that deletes one of its files is refused the same way.
 `touch --publish`
 judges this before it pushes a renewal. Every command except `sync` and `fmt` refuses a local registry that lags the source map (lessons missing, another
 pin), so a truncated file is never written back or pushed; `sync` repairs it. `verify` also compares the published record with your

@@ -338,6 +338,22 @@ class ClaimTests(Sessions):
         self.assertIn("lost to claude/b", err)
         self.assertEqual("", git(self.tmp, "--git-dir", str(self.origin), "branch", "--list", "claude/a"), "a was not recreated")
 
+    def test_deleting_a_file_of_a_pushed_lesson_is_not_pushed_with_its_written_record(self) -> None:
+        a = self.session("a")
+        self.run_in(a, "claim", "sd-01-001", "--publish")
+        self.write_lesson(a, "sd-01-001")
+        self.assertEqual(0, self.run_in(a, "finish", "sd-01-001")[0])
+        git(a, "add", "-A")
+        git(a, "commit", "--quiet", "-m", "the lesson")
+        git(a, "push", "--quiet", "origin", "claude/a")
+        git(a, "rm", "--quiet", "store/metadata/sd-01-001.json")
+        git(a, "commit", "--quiet", "-m", "the metadata was removed, cleanly committed")
+        pushed = git(self.tmp, "--git-dir", str(self.origin), "rev-parse", "claude/a")
+        code, _, err = self.run_in(a, "claim", "sd-01-002", "--publish")
+        self.assertEqual(1, code, err)
+        self.assertIn("sd-01-001 is marked written but the lesson files are not committed", err)
+        self.assertEqual(pushed, git(self.tmp, "--git-dir", str(self.origin), "rev-parse", "claude/a"))
+
     def test_a_finished_lesson_that_git_ignores_is_not_pushed(self) -> None:
         a = self.session("a")
         self.run_in(a, "claim", "sd-01-001", "--publish")
@@ -704,6 +720,19 @@ class RemoteTests(Sessions):
         self.assertEqual("todo", self.entry(trunk, "sd-01-001")["status"], "nothing was written")
         self.assertEqual(before, git(self.tmp, "--git-dir", str(self.origin), "rev-parse", "trunk"))
         self.assertEqual(0, self.run_in(self.session("a"), "claim", "sd-01-001", "--publish")[0], "a work branch still may")
+
+    def test_a_remote_registry_with_a_header_of_another_pin_stops_the_decision(self) -> None:
+        odd = self.clone("odd", branch="claude/odd")
+        header, lessons, _ = claims.parse((odd / REGISTRY).read_text(encoding="utf-8"))
+        header["source_commit_sha"] = "0" * 40
+        (odd / REGISTRY).write_text(claims.render(header, lessons), encoding="utf-8")
+        git(odd, "commit", "--quiet", "-am", "a registry pinned to another source commit")
+        git(odd, "push", "--quiet", "-u", "origin", "claude/odd")
+        a = self.session("a")
+        code, _, err = self.run_in(a, "claim", "sd-01-001")
+        self.assertEqual(2, code)
+        self.assertIn("origin/claude/odd", err)
+        self.assertIn("nothing was decided", err)
 
     def test_a_default_branch_without_a_registry_stops_the_decision(self) -> None:
         b = self.session("b")  # holds a registry of its own, which must not be trusted instead of the default branch's

@@ -470,7 +470,7 @@ class ClaimTests(Sessions):
         a = self.pushed_lesson("a")
         metadata = a / "store" / "metadata" / "sd-01-001.json"
 
-        def checker(store: Path, source_map: Path, lesson_id: str) -> list[str]:
+        def checker(store: Path, source_map: Path, lesson_id: str, cache: dict | None = None) -> list[str]:
             text = (store / "metadata" / f"{lesson_id}.json").read_text(encoding="utf-8")
             return ["metadata: is not valid JSON"] if text == "{\n" else []
 
@@ -503,6 +503,38 @@ class ClaimTests(Sessions):
                 self.assertEqual(original, (a / REGISTRY).read_text(encoding="utf-8"))
                 self.assertEqual(0, self.run_in(a, "claim", "sd-01-001")[0], "the repaired file is usable")
                 (a / REGISTRY).write_text(original, encoding="utf-8")
+
+    def test_a_first_publication_does_not_answer_for_the_lessons_the_default_branch_already_holds(self) -> None:
+        seed = self.tmp / "seed"
+        header, lessons, _ = claims.parse((seed / REGISTRY).read_text(encoding="utf-8"))
+        for lesson_id in ("sd-01-003", "sd-01-004"):
+            lessons[lesson_id] = {"id": lesson_id, "status": "written", "title": lessons[lesson_id]["title"],
+                                  "owner": "claude/x", "done_at": "2026-10-15T07:00:00Z"}  # merged long ago: no files here
+        (seed / REGISTRY).write_text(claims.render(header, lessons), encoding="utf-8")
+        git(seed, "commit", "--quiet", "-am", "two lessons were written and merged")
+        git(seed, "push", "--quiet", "origin", "main")
+        a = self.session("a")  # a work branch that was never pushed
+        with mock.patch.object(claims, "content_problems", side_effect=AssertionError("inherited lessons are not rechecked")):
+            self.assertEqual(0, self.run_in(a, "claim", "sd-01-001", "--publish")[0])
+
+    def test_the_whole_store_is_checked_once_for_all_the_lessons_of_a_publication(self) -> None:
+        a = self.session("a")
+        self.run_in(a, "claim", "sd-01-001", "sd-01-002", "sd-01-003", "--publish")
+        for lesson_id in ("sd-01-001", "sd-01-002"):
+            self.write_lesson(a, lesson_id)
+            self.assertEqual(0, self.run_in(a, "finish", lesson_id)[0])
+        git(a, "add", "-A")
+        git(a, "commit", "--quiet", "-m", "two lessons")
+        calls = []
+
+        def counted(store: Path, source_map: Path, lesson_id: str, cache: dict | None = None) -> list[str]:
+            calls.append((lesson_id, cache))  # kept alive, so that no two caches can share an address
+            return []
+
+        with mock.patch.object(claims, "content_problems", side_effect=counted):
+            self.assertEqual(0, self.run_in(a, "touch", "--publish")[0])
+        self.assertEqual(["sd-01-001", "sd-01-002"], [lesson_id for lesson_id, _ in calls])
+        self.assertEqual(1, len({id(cache) for _, cache in calls}), "one cache shared by both lessons")
 
     def test_every_registry_must_use_the_same_lease(self) -> None:
         odd = self.session("odd")

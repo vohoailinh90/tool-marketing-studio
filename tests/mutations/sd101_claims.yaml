@@ -369,3 +369,11 @@ mutations:
   find: "        header = new_header(context.source)\n    else:"
   replace: "        header = {**header, \"source_repository\": context.source.repository, \"source_commit_sha\": context.source.commit_sha}\n    else:"
   test: tests.test_sd101_claims.ClaimTests.test_sync_rebuilds_the_whole_header_of_an_empty_or_damaged_registry
+- label: a first publication answers for every lesson the default branch already holds
+  find: '        if head.get(lesson_id) == entry or (lesson_id not in head and inherited.get(lesson_id) == entry):'
+  replace: '        if head.get(lesson_id) == entry:'
+  test: tests.test_sd101_claims.ClaimTests.test_a_first_publication_does_not_answer_for_the_lessons_the_default_branch_already_holds
+- label: the whole-store check runs again for every lesson
+  find: '        return content_problems(tree[0], context.source_map, lesson_id, cache)'
+  replace: '        return content_problems(tree[0], context.source_map, lesson_id, {})'
+  test: tests.test_sd101_claims.ClaimTests.test_the_whole_store_is_checked_once_for_all_the_lessons_of_a_publication

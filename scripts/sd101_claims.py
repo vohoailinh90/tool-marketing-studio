@@ -49,6 +49,7 @@ Exit status: 0 done, 1 refused (or a claim lost), 2 the repository, the remote o
 from __future__ import annotations
 
 import argparse
+import contextlib
 import datetime
 import importlib.util
 import io
@@ -757,26 +758,51 @@ def regular_in_head(root: pathlib.Path, path: str) -> bool:
     return bool(entry) and entry[0] in ("100644", "100755")
 
 
+def registry_at(context: Context, ref: str) -> dict[str, dict]:
+    """The lesson records the registry holds at `ref` (a remote-tracking ref), empty when there is none."""
+    shown = git(context.root, "show", f"{ref}:{context.relative}", check=False)
+    return parse(shown.stdout.decode("utf-8", "replace"))[1] if shown.returncode == 0 else {}
+
+
 def unfinished_commits(context: Context, lessons: dict[str, dict]) -> list[str]:
+    with contextlib.ExitStack() as stack:  # the exported tree lives as long as the judgement does
+        return _unfinished_commits(context, lessons, stack)
+
+
+def _unfinished_commits(context: Context, lessons: dict[str, dict], stack: contextlib.ExitStack) -> list[str]:
     """Lessons that --publish would advertise as written without their files: a record that turned `written` since
     the pushed branch and whose lesson is absent from HEAD or changed after the last commit. Only the registry is committed by
     --publish, so such a lesson would be terminal for every other session while the pushed branch lacks it (or holds
     an older draft). A record the pushed branch already advertises was judged when it went up, and is left alone; one that is merely
     committed locally has not been, so a registry-only commit does not vouch for it."""
-    shown = git(context.root, "show", f"refs/remotes/{context.remote}/{context.branch}:{context.relative}", check=False)
-    head = parse(shown.stdout.decode("utf-8", "replace"))[1] if shown.returncode == 0 else {}
     ref = f"refs/remotes/{context.remote}/{context.branch}"
+    head = registry_at(context, ref)
+    # A branch cut from the default branch inherits its written lessons: those are advertised there already, so a branch
+    # that was never pushed does not answer for all of them (the first publication would check the whole store per lesson).
+    base_ref = f"refs/remotes/{context.remote}/{default_branch(context.root, context.remote, ask=False)}"
+    inherited = registry_at(context, base_ref)
     out = []
+    cache: dict = {}
+    tree: list[pathlib.Path] = []
+
+    def pushed_content_problems(_: Context, lesson_id: str) -> list[str]:
+        if not tree:
+            tree.append(stack.enter_context(pushed_tree(context)))
+        return content_problems(tree[0], context.source_map, lesson_id, cache)
+
     for lesson_id, entry in lessons.items():
         if entry.get("status") != "written":
             continue
         files = lesson_files(context, lesson_id)
         required = [f"{files[0]}/lesson.md", f"{files[0]}/lesson.yaml", files[2], files[3]]  # what the store checker requires
-        if head.get(lesson_id) == entry:  # already advertised: a rework is fine, a committed deletion or rename is not
+        if head.get(lesson_id) == entry or (lesson_id not in head and inherited.get(lesson_id) == entry):
+            # already advertised, on the pushed branch or on the default branch this one was cut from: a rework is
+            # fine, a committed deletion or rename is not
+            against = ref if lesson_id in head else base_ref
             # T is a regular file turned into a symbolic link, which the checker rejects; the optional pointer may go
-            if git_text(context.root, "diff", "--no-renames", "--diff-filter=DT", "--name-only", ref, "HEAD", "--", *required):
+            if git_text(context.root, "diff", "--no-renames", "--diff-filter=DT", "--name-only", against, "HEAD", "--", *required):
                 out.append(lesson_id)
-            elif (git_text(context.root, "diff", "--name-only", ref, "HEAD", "--", *files)  # a rework: still a valid lesson?
+            elif (git_text(context.root, "diff", "--name-only", against, "HEAD", "--", *files)  # a rework: still valid?
                   and pushed_content_problems(context, lesson_id)):
                 out.append(lesson_id)
             continue
@@ -990,7 +1016,8 @@ def cmd_touch(context: Context, args: argparse.Namespace) -> int:
 STORE_LEVEL_FILES = ("README.md", "PROGRESS.md", "MIGRATION.md", "progress.json", "claims.jsonl")
 
 
-def content_problems(store: pathlib.Path, source_map: pathlib.Path | None, lesson_id: str) -> list[str]:
+def content_problems(store: pathlib.Path, source_map: pathlib.Path | None, lesson_id: str,
+                     cache: dict | None = None) -> list[str]:
     """What the store checker finds wrong with this one lesson (its text, metadata, figure). The findings about the
     store as a whole (README links, progress) are not the lesson's: they are fixed after finishing, before the pull
     request, and `scripts/sd101_check.py` stays the authority on them."""
@@ -1002,18 +1029,25 @@ def content_problems(store: pathlib.Path, source_map: pathlib.Path | None, lesso
     module = importlib.util.module_from_spec(spec)
     sys.modules.setdefault("sd101_check", module)
     spec.loader.exec_module(module)
-    return [str(problem) for problem in module.check_store(store, source_map)
+    key = (str(store), str(source_map))
+    if cache is None or key not in cache:  # the whole-store check is the expensive part: once per tree, not per lesson
+        found = module.check_store(store, source_map)
+        if cache is not None:
+            cache[key] = found
+    problems = found if cache is None or key not in cache else cache[key]
+    return [str(problem) for problem in problems
             if problem.where not in STORE_LEVEL_FILES and lesson_id in f"{problem.where} {problem.message}"]
 
 
-def pushed_content_problems(context: Context, lesson_id: str) -> list[str]:
-    """The store checker's findings about the lesson as HEAD holds it: that is the tree --publish pushes, not the
-    working tree, which may carry an uncommitted repair (or damage) the remote will never see."""
+@contextlib.contextmanager
+def pushed_tree(context: Context):
+    """The store as HEAD holds it, exported to a temporary directory: that is the tree --publish pushes, not the working
+    tree, which may carry an uncommitted repair (or damage) the remote will never see."""
     relative = context.store.resolve().relative_to(context.root.resolve()).as_posix()
     archive = git(context.root, "archive", "--format=tar", "HEAD", "--", relative).stdout
     with tempfile.TemporaryDirectory() as tmp, tarfile.open(fileobj=io.BytesIO(archive)) as tar:
         tar.extractall(tmp, filter="data")
-        return content_problems(pathlib.Path(tmp) / relative, context.source_map, lesson_id)
+        yield pathlib.Path(tmp) / relative
 
 
 def missing_artifacts(context: Context, lesson_id: str) -> list[str]:

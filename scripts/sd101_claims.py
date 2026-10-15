@@ -446,12 +446,14 @@ def refusal(lesson_id: str, found: dict[str, list[Holding]], source: Source, me:
 
 
 def lost_reason(mine: Holding, found: dict[str, list[Holding]], me: str, now: datetime.datetime, lease: int,
-                partners: tuple[str, ...] = ()) -> str | None:
+                partners: tuple[str, ...] = (), published_live: bool = True) -> str | None:
     """Why `me` does not hold `mine` any more, or None when it is the winner.
 
     `partners` are the lessons that share this one's source file. Two sessions that claimed the two halves of a pair
     before either push was visible hold claims on different ids, so the same precedence decides between them, unless
-    one of them took its half on purpose (--allow-same-source).
+    one of them took its half on purpose (--allow-same-source). A takeover of the same id is recorded in
+    `taken_from`; one across a pair is not, so a claim that has no live published copy (expired in public, or never
+    pushed) gives way to a live partner claim, whoever claimed first.
     """
     for other in found.get(mine.lesson_id, []):
         if other.owner == me and other.status == "doing":
@@ -468,8 +470,8 @@ def lost_reason(mine: Holding, found: dict[str, list[Holding]], me: str, now: da
         for other in found.get(partner, []):
             if other.status != "doing" or other.owner == me or mine.shared or other.shared or is_stale(other, now, lease):
                 continue
-            if is_stale(mine, now, lease) or beats(other, mine):
-                return (f"shares its source file with {partner}, which {other.owner} claimed first ({other.where}); "
+            if not published_live or is_stale(mine, now, lease) or beats(other, mine):
+                return (f"shares its source file with {partner}, which {other.owner} holds ({other.where}); "
                         "release it, or keep it on purpose by claiming it again with --allow-same-source")
     return None
 
@@ -721,13 +723,17 @@ def verdicts(context: Context, header: dict, lessons: dict[str, dict], ids: list
     published = {identity(holding) for holdings in found.values() for holding in holdings
                  if holding.owner == context.me and holding.status == "doing" and holding.where != LOCAL
                  and not (live and is_stale(holding, context.now, lease))}
+    live_published = {identity(holding) for holdings in found.values() for holding in holdings
+                      if holding.owner == context.me and holding.status == "doing" and holding.where != LOCAL
+                      and not is_stale(holding, context.now, lease)}
     out: dict[str, str | None] = {}
     for lesson_id in ids:
         mine = _holding(lessons[lesson_id], LOCAL)
         if mine is None:
             out[lesson_id] = "is not claimed by you"
             continue
-        out[lesson_id] = lost_reason(mine, found, context.me, context.now, lease, context.source.partners.get(lesson_id, ()))
+        out[lesson_id] = lost_reason(mine, found, context.me, context.now, lease, context.source.partners.get(lesson_id, ()),
+                                     context.offline or identity(mine) in live_published)
         if out[lesson_id] is None and not context.offline and identity(mine) not in published:
             out[lesson_id] = (f"{UNPUBLISHED}{context.remote}/{context.branch} with a live heartbeat yet; push it "
                               f"(git push -u {context.remote} {context.branch}) so the other sessions can see it")
@@ -820,7 +826,12 @@ def cmd_touch(context: Context, args: argparse.Namespace) -> int:
         print(f"touch: {context.me} has no claim in progress")
         return 0
     if args.publish:
-        publish(context, args.message or f"System Design vi: publish the claim of {', '.join(ids)}")  # a forgotten push first
+        # Judged before anything is pushed: pushing a renewal first would revive an expired public claim and let it
+        # win against a claim that was taken fairly while it was expired.
+        before = verdicts(context, header, lessons, ids, live=False)
+        if any(reason and not reason.startswith(UNPUBLISHED) for reason in before.values()):
+            return report_verdicts(before, context)
+        publish(context, args.message or f"System Design vi: publish the claim of {', '.join(ids)}")  # a forgotten push
     results = verdicts(context, header, lessons, ids, live=False)
     for lesson_id in ids:
         if results[lesson_id] is None:

@@ -200,9 +200,26 @@ class ClaimTests(Sessions):
             with self.subTest(command):
                 code, _, err = self.run_in(b, command)
                 self.assertEqual(1, code)
-                self.assertIn("shares its source file with sd-01-005, which claude/a claimed first", err)
+                self.assertIn("shares its source file with sd-01-005, which claude/a holds", err)
         self.write_lesson(b, "sd-02-001")
         self.assertEqual(1, self.run_in(b, "finish", "sd-02-001")[0])
+
+    def test_an_expired_claim_revived_by_a_local_renewal_does_not_beat_a_partner_taken_fairly(self) -> None:
+        a, b = self.session("a"), self.session("b")
+        self.run_in(a, "claim", "sd-01-005", "--publish")
+        self.at(hours=50)
+        self.assertEqual(0, self.run_in(a, "touch")[0], "renewed in a's copy only")
+        self.at(hours=80)  # a's published claim has expired; its local heartbeat has not
+        code, _, err = self.run_in(b, "claim", "sd-02-001", "--publish")
+        self.assertEqual(0, code, err)  # valid against the public state: the other half is only expired there
+        before = git(self.tmp, "--git-dir", str(self.origin), "rev-parse", "claude/a")
+        self.at(hours=81)
+        code, _, err = self.run_in(a, "touch", "--publish")
+        self.assertEqual(1, code)
+        self.assertIn("shares its source file with sd-02-001, which claude/b holds", err)
+        self.assertEqual(before, git(self.tmp, "--git-dir", str(self.origin), "rev-parse", "claude/a"),
+                         "the renewal was not pushed")
+        self.assertEqual(0, self.run_in(b, "verify")[0])
 
     def test_a_shared_source_taken_on_purpose_is_not_a_conflict(self) -> None:
         a, b = self.session("a"), self.session("b")

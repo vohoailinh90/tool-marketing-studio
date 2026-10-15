@@ -208,3 +208,11 @@ mutations:
   find: '    if pin_repository is not None and header.get("source_repository") != pin_repository:'
   replace: '    if False:'
   test: tests.test_sd101_claims.FormatTests.test_each_rule_reports_its_own_problem
+- label: a claim with no live published copy beats a live partner claim because it is older
+  find: '            if not published_live or is_stale(mine, now, lease) or beats(other, mine):'
+  replace: '            if is_stale(mine, now, lease) or beats(other, mine):'
+  test: tests.test_sd101_claims.ClaimTests.test_an_expired_claim_revived_by_a_local_renewal_does_not_beat_a_partner_taken_fairly
+- label: touch --publish pushes the renewal before judging the claim
+  find: "        if any(reason and not reason.startswith(UNPUBLISHED) for reason in before.values()):\n            return report_verdicts(before, context)\n"
+  replace: ''
+  test: tests.test_sd101_claims.ClaimTests.test_an_expired_claim_revived_by_a_local_renewal_does_not_beat_a_partner_taken_fairly

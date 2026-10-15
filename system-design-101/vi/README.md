@@ -42,6 +42,7 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 31. [Mã phản hồi HTTP: đọc nhóm trước, đọc nghĩa sau](lessons/sd-01-031/lesson.md)
 32. [SOAP, REST, GraphQL và RPC: bốn góc nhìn giao tiếp](lessons/sd-01-032/lesson.md)
 33. [So sánh sáu cách giao tiếp: bắt đầu từ nhu cầu](lessons/sd-01-033/lesson.md)
+34. [Chín phương thức HTTP: yêu cầu làm việc gì?](lessons/sd-01-034/lesson.md)
 
 ## AI và học máy
 

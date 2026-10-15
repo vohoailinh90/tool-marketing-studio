@@ -1,0 +1,89 @@
+{
+  "id": "sd-01-033",
+  "title_vi": "So sánh sáu cách giao tiếp: bắt đầu từ nhu cầu",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "draft",
+  "source_ref": "sd-01-033",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/a-cheatsheet-on-comparing-api-architectural-styles.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/a-cheatsheet-on-comparing-api-architectural-styles.md",
+    "blob_sha": "0877a94ff2bf18e5626cd824d325f5eb6c2e5efd",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "cffc789af603bea6eec0ad830e81166481649cd7bbae7f71aeb7b6bab7c05866",
+    "retrieved_body_bytes": 574
+  },
+  "diagram": "../diagrams/sd-01-033-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-01-032",
+      "relation": "see_also",
+      "reason_vi": "Phân biệt các khái niệm khác cấp độ và cách chúng giao nhau."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-15"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-15",
+      "evidence": "Đọc gRPC core service definition/four method types, RFC6455§1.2, GitHub About webhooks§About. SOAP1.2§1/Fielding§5.1/GraphQLQueries đã đọc khi viết032, áp đúng phạm vi nhận diện. Ba câu hỏi/ví dụ cửa hàng là thiết kế biên tập; không benchmark/khẳng định giao nhận đúngmộtlần."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "new lesson awaiting current-head review"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-15",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "evidence": "Chromium cục bộ toàn bài/details mở320/375/430: không overflow/chữ SVG ngoài viewBox; min14.4/16/16px; đã xem screenshot320. Chưa GitHub/device/user testing."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "SOAP là khung thông điệp; tên SOAP1.2 không còn là acronym.",
+      "source": "https://www.w3.org/TR/soap12-part1/"
+    },
+    {
+      "claim_vi": "REST là phong cách kiến trúc với giao diện thống nhất và các ràng buộc khác.",
+      "source": "https://ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm"
+    },
+    {
+      "claim_vi": "GraphQL cho bên gọi lựa chọn trường theo schema.",
+      "source": "https://graphql.org/learn/queries/"
+    },
+    {
+      "claim_vi": "gRPC có phương thức/tham số/kiểu trả về và hỗ trợ gọi đơn cùng ba dạng luồng.",
+      "source": "https://grpc.io/docs/what-is-grpc/core-concepts/"
+    },
+    {
+      "claim_vi": "WebSocket cho hai phía gửi độc lập sau bắt tay.",
+      "source": "https://www.rfc-editor.org/rfc/rfc6455.html#section-1.2"
+    },
+    {
+      "claim_vi": "Webhook gửi dữ liệu sự kiện tới bên đã đăng ký.",
+      "source": "https://docs.github.com/en/webhooks/about-webhooks"
+    }
+  ],
+  "design_notes_vi": "Sáu thẻ điểm đối chiếu dọc, không timeline hoặc pipeline; hình độc lập.",
+  "editorial_note_vi": "Nháp giáo dục; sáu tên không cùng cấp độ và không loại trừ nhau.",
+  "source_deviations": [
+    "Body chỉ liệt kê sáu tên; ảnh chưa đọc, không nhận đã xác minh bảng ảnh.",
+    "Không gọi sáu mục là cùng cấp kiến trúc, không xếp hạng hiệu năng; ba câu hỏi lựa chọn là tổng hợp biên tập."
+  ]
+}

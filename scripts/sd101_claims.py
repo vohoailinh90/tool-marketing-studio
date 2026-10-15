@@ -617,8 +617,10 @@ def world_of(context: Context, local: dict[str, dict],
                                {} if context.offline else {name: own for name in remote if (
                                    own := source_at(context, f"refs/remotes/{context.remote}/{name}")) is not None})
     unreadable += [f"{context.remote}/{name} (not valid UTF-8)" for name in undecodable]
-    if base in missing:  # a legacy feature branch may lack the file, the branch that holds every merged lesson may not
-        absent = f"{context.remote}/{base} (the default branch has no {REGISTRY_NAME})"
+    gone = not context.offline and base not in remote and base not in missing and base not in undecodable
+    if base in missing or gone:  # a legacy feature branch may lack the file, the branch that holds every merged lesson may not
+        absent = (f"{context.remote}/{base} (the default branch does not exist on the remote)" if gone
+                  else f"{context.remote}/{base} (the default branch has no {REGISTRY_NAME})")
         if not tolerate:  # not even --ignore-unreadable decides without the records of every merged lesson
             raise ClaimsError(f"{absent}; nothing was decided (--ignore-unreadable does not cover the default branch)")
         unreadable.append(absent)

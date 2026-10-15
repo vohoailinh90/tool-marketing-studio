@@ -248,7 +248,7 @@ mutations:
   replace: "        if other.status == \"written\" and other.owner != me:\n            return f\"already written by"
   test: tests.test_sd101_claims.ClaimTests.test_a_claim_of_the_same_owner_is_ended_by_its_own_written_record
 - label: a default branch without a registry is treated as having no claims
-  find: '    if base in missing:  # a legacy feature branch'
+  find: '    if base in missing or gone:  # a legacy feature branch'
   replace: '    if False:  # a legacy feature branch'
   test: tests.test_sd101_claims.RemoteTests.test_a_default_branch_without_a_registry_stops_the_decision
 - label: a lesson finished but not committed is pushed as written
@@ -423,3 +423,7 @@ mutations:
   find: own := source_at(context, f"refs/remotes/{context.remote}/{name}")) is not None})
   replace: own := source_at(context, f"refs/remotes/{context.remote}/{name}")) is not None and name == base})
   test: tests.test_sd101_claims.ClaimTests.test_a_branch_on_the_old_roster_stays_visible_while_another_adds_a_lesson
+- label: a dangling default branch is not an error
+  find: '    gone = not context.offline and base not in remote and base not in missing and base not in undecodable'
+  replace: '    gone = False'
+  test: tests.test_sd101_claims.RemoteTests.test_a_default_branch_that_no_longer_exists_stops_the_decision

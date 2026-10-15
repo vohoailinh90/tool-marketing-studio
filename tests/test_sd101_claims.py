@@ -1227,6 +1227,17 @@ class RemoteTests(Sessions):
         self.assertIn("origin/claude/odd", err)
         self.assertIn("nothing was decided", err)
 
+    def test_a_default_branch_that_no_longer_exists_stops_the_decision(self) -> None:
+        b = self.session("b")  # its local origin/HEAD still says main
+        git(self.tmp, "--git-dir", str(self.origin), "update-ref", "-d", "refs/heads/main")  # the remote's default is dangling
+        for flags in ((), ("--ignore-unreadable",)):
+            with self.subTest(flags):
+                code, _, err = self.run_in(b, *flags, "claim", "sd-01-001")
+                self.assertEqual(2, code, err)
+                self.assertIn("the default branch does not exist on the remote", err)
+        self.assertEqual("todo", self.entry(b, "sd-01-001")["status"])
+        self.assertEqual(0, self.run_in(b, "status")[0], "reporting is not deciding")
+
     def test_a_default_branch_without_a_registry_stops_the_decision(self) -> None:
         b = self.session("b")  # holds a registry of its own, which must not be trusted instead of the default branch's
         seed = self.tmp / "seed"

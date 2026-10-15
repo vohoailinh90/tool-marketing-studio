@@ -398,6 +398,19 @@ class ClaimTests(Sessions):
         git(a, "commit", "--quiet", "-m", "the optional pointer was removed")
         self.assertEqual(0, self.run_in(a, "claim", "sd-01-002", "--publish")[0])
 
+    def test_a_claim_dated_from_the_future_cannot_block_a_lesson(self) -> None:
+        a, b = self.session("a"), self.session("b")
+        self.at(hours=1000)  # a's clock is wrong
+        self.assertEqual(0, self.run_in(a, "claim", "sd-01-001", "--publish")[0])
+        self.at(hours=0)
+        self.assertEqual(0, self.run_in(b, "claim", "sd-01-001", "--take-stale", "--publish")[0], "not proof of life")
+        self.assertEqual("claude/b", self.entry(b, "sd-01-001")["owner"])
+        c = self.session("c")
+        self.at(hours=0.5)  # c's clock is half an hour ahead: that much skew is tolerated
+        self.assertEqual(0, self.run_in(c, "claim", "sd-01-002", "--publish")[0])
+        self.at(hours=0)
+        self.assertEqual(1, self.run_in(b, "claim", "sd-01-002")[0], "still a live claim")
+
     def test_a_symlinked_artifact_is_not_a_finished_lesson(self) -> None:
         a = self.session("a")
         self.run_in(a, "claim", "sd-01-001", "sd-01-003", "--publish")

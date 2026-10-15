@@ -65,6 +65,7 @@ DEFAULT_SOURCE_MAP = ROOT / "brainstorm" / "system-design-101-vi" / "source-map.
 REGISTRY_NAME = "claims.jsonl"
 SCHEMA_VERSION = 1
 DEFAULT_LEASE_HOURS = 72
+CLOCK_SKEW_HOURS = 1  # a heartbeat further ahead of the observing clock than this is not proof of life
 MAX_LEASE_HOURS = 720
 STATUSES = ("todo", "doing", "written")
 KEY_ORDER = ("id", "status", "title", "owner", "session", "taken_from", "shared_source", "claimed_at", "heartbeat_at",
@@ -393,7 +394,9 @@ def _holding(entry: dict, where: str) -> Holding | None:
 
 def is_stale(holding: Holding, now: datetime.datetime, lease_hours: int) -> bool:
     beat = parse_stamp(holding.heartbeat_at) or parse_stamp(holding.claimed_at)
-    return beat is None or now - beat > datetime.timedelta(hours=lease_hours)
+    if beat is None or beat - now > datetime.timedelta(hours=CLOCK_SKEW_HOURS):  # dated from the future: a clock gone wrong
+        return True  # would otherwise block the lesson for as long as it is ahead, plus the whole lease
+    return now - beat > datetime.timedelta(hours=lease_hours)
 
 
 def beats(first: Holding, second: Holding) -> bool:

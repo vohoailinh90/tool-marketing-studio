@@ -321,3 +321,7 @@ mutations:
   find: '            continue  # --ignore-unreadable decides without the branch, so none of its records may count'
   replace: '            pass'
   test: tests.test_sd101_claims.ClaimTests.test_ignoring_an_unreadable_branch_ignores_its_claims_too
+- label: a heartbeat dated from the future counts as proof of life
+  find: beat is None or beat - now > datetime.timedelta(hours=CLOCK_SKEW_HOURS)
+  replace: beat is None
+  test: tests.test_sd101_claims.ClaimTests.test_a_claim_dated_from_the_future_cannot_block_a_lesson

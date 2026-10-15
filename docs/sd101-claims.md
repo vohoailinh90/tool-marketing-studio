@@ -77,7 +77,8 @@ anyone, but it is taken over on purpose: `claim <id> --take-stale`. The new entr
 every owner whose stale claim it superseded, chain included, which makes it win against each of them even
 if one wakes up and touches its heartbeat. A session that takes back a lesson it once held (because the session that took it from it let its
 published heartbeat expire) starts a new claim, so the later takeover is the one that stands. Run
-`touch --publish` while you work so a slow session is not mistaken for a dead one.
+`touch --publish` while you work so a slow session is not mistaken for a dead one. A heartbeat dated more than an hour ahead of the observing clock
+(a session whose clock is wrong) is not proof of life: it counts as expired, so it cannot block a lesson for days.
 
 A claim that has itself expired loses to any live claim on the same lesson, whichever is older. A session
 that took a lesson over cannot always record whom it took it from (the dead owner's branch may have been

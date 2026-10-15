@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 825" width="320" height="825" role="img" aria-labelledby="title desc">
+<title id="title">Mô hình OSI và việc đóng gói dữ liệu</title>
+<desc id="desc">Hai khung dọc: bảy tầng OSI từ ứng dụng, trình bày, phiên, giao vận, mạng, liên kết đến vật lý; khi gửi đi, dữ liệu HTTP lần lượt được thêm tiêu đề TCP, tiêu đề IP, rồi tiêu đề và phần cuối Ethernet; bên nhận gỡ ngược lại từng lớp. Địa chỉ MAC đổi qua từng chặng, địa chỉ IP đi suốt đường.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="825" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">MÔ HÌNH OSI</text>
+<text x="16" y="60" font-size="16" font-weight="normal">Mỗi tầng một việc</text>
+<rect x="16" y="82" width="288" height="352" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="112" font-size="16" font-weight="bold">Bảy tầng</text>
+<rect x="30" y="120" width="260" height="34" rx="7" fill="#ffffff" stroke="#64748b"/>
+<text x="40" y="143" font-size="16" font-weight="normal">7 Ứng dụng · HTTP</text>
+<rect x="30" y="162" width="260" height="34" rx="7" fill="#ffffff" stroke="#64748b"/>
+<text x="40" y="185" font-size="16" font-weight="normal">6 Trình bày · định dạng</text>
+<rect x="30" y="204" width="260" height="34" rx="7" fill="#ffffff" stroke="#64748b"/>
+<text x="40" y="227" font-size="16" font-weight="normal">5 Phiên · quản lý phiên</text>
+<rect x="30" y="246" width="260" height="34" rx="7" fill="#ffffff" stroke="#64748b"/>
+<text x="40" y="269" font-size="16" font-weight="normal">4 Giao vận · TCP, UDP</text>
+<rect x="30" y="288" width="260" height="34" rx="7" fill="#ffffff" stroke="#64748b"/>
+<text x="40" y="311" font-size="16" font-weight="normal">3 Mạng · IP</text>
+<rect x="30" y="330" width="260" height="34" rx="7" fill="#ffffff" stroke="#64748b"/>
+<text x="40" y="353" font-size="16" font-weight="normal">2 Liên kết · Ethernet</text>
+<rect x="30" y="372" width="260" height="34" rx="7" fill="#ffffff" stroke="#64748b"/>
+<text x="40" y="395" font-size="16" font-weight="normal">1 Vật lý · bit</text>
+<line x1="160" y1="435" x2="160" y2="455" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="458" width="288" height="293" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="488" font-size="16" font-weight="bold">Gửi đi: thêm tiêu đề</text>
+<rect x="30" y="498" width="56.9688" height="34" rx="4" fill="#fef3c7" stroke="#64748b"/>
+<text x="58.4844" y="521" text-anchor="middle" font-size="16" font-weight="normal">HTTP</text>
+<rect x="30" y="552" width="45.6719" height="34" rx="4" fill="#dbeafe" stroke="#64748b"/>
+<text x="52.8359" y="575" text-anchor="middle" font-size="16" font-weight="normal">TCP</text>
+<rect x="75.6719" y="552" width="56.9688" height="34" rx="4" fill="#fef3c7" stroke="#64748b"/>
+<text x="104.156" y="575" text-anchor="middle" font-size="16" font-weight="normal">HTTP</text>
+<rect x="30" y="606" width="30.375" height="34" rx="4" fill="#dcfce7" stroke="#64748b"/>
+<text x="45.1875" y="629" text-anchor="middle" font-size="16" font-weight="normal">IP</text>
+<rect x="60.375" y="606" width="45.6719" height="34" rx="4" fill="#dbeafe" stroke="#64748b"/>
+<text x="83.2109" y="629" text-anchor="middle" font-size="16" font-weight="normal">TCP</text>
+<rect x="106.047" y="606" width="56.9688" height="34" rx="4" fill="#fef3c7" stroke="#64748b"/>
+<text x="134.531" y="629" text-anchor="middle" font-size="16" font-weight="normal">HTTP</text>
+<rect x="30" y="660" width="47.9219" height="34" rx="4" fill="#fee2e2" stroke="#64748b"/>
+<text x="53.9609" y="683" text-anchor="middle" font-size="16" font-weight="normal">ETH</text>
+<rect x="77.9219" y="660" width="30.375" height="34" rx="4" fill="#ede9fe" stroke="#64748b"/>
+<text x="93.1094" y="683" text-anchor="middle" font-size="16" font-weight="normal">IP</text>
+<rect x="108.297" y="660" width="45.6719" height="34" rx="4" fill="#dcfce7" stroke="#64748b"/>
+<text x="131.133" y="683" text-anchor="middle" font-size="16" font-weight="normal">TCP</text>
+<rect x="153.969" y="660" width="56.9688" height="34" rx="4" fill="#dbeafe" stroke="#64748b"/>
+<text x="182.453" y="683" text-anchor="middle" font-size="16" font-weight="normal">HTTP</text>
+<rect x="210.938" y="660" width="46.5312" height="34" rx="4" fill="#fef3c7" stroke="#64748b"/>
+<text x="234.203" y="683" text-anchor="middle" font-size="16" font-weight="normal">FCS</text>
+<text x="30" y="731" font-size="16" font-weight="normal">Bên nhận gỡ ngược lại từng lớp</text>
+<text x="16" y="779" font-size="16" font-weight="normal">Địa chỉ MAC đổi qua từng chặng,</text>
+<text x="16" y="805" font-size="16" font-weight="normal">địa chỉ IP đi suốt đường.</text>
+</g></svg>

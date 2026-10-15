@@ -101,6 +101,21 @@ Các bài từ sd-14-016 trở đi chưa viết; số thứ tự dưới đây c
 14. [Bốn cơ chế xác thực: khóa SSH, token OAuth, chứng chỉ và mật khẩu](lessons/sd-14-014/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 15. [Chữ ký số: ký bằng khóa riêng, kiểm bằng khóa công khai](lessons/sd-14-015/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 
+## Nền tảng máy tính
+
+1. [Phân trang và phân đoạn](lessons/sd-15-001/lesson.md)
+2. [IPv4 và IPv6](lessons/sd-15-002/lesson.md)
+3. [Bốn nơi UDP thường được dùng](lessons/sd-15-003/lesson.md)
+4. [DNS tra cứu hoạt động thế nào?](lessons/sd-15-004/lesson.md)
+5. [Các loại bản ghi DNS cần biết](lessons/sd-15-005/lesson.md)
+6. [TCP hay UDP cho game online?](lessons/sd-15-006/lesson.md)
+7. [Deadlock là gì?](lessons/sd-15-007/lesson.md)
+8. [Tiến trình và luồng](lessons/sd-15-008/lesson.md)
+9. [Mô hình OSI](lessons/sd-15-009/lesson.md)
+10. [Hình dung một câu lệnh SQL](lessons/sd-15-010/lesson.md)
+11. [Tám giao thức mạng phổ biến](lessons/sd-15-011/lesson.md)
+12. [Cách học SQL](lessons/sd-15-012/lesson.md)
+
 Danh mục đầy đủ và snapshot nguồn: [bảng đối chiếu](../../brainstorm/system-design-101-vi/source-map.json).
 Quy tắc đã chốt: [kết luận brainstorm](../../brainstorm/system-design-101-vi/DECISIONS.md).
 Tiến độ từng đợt: [PROGRESS.md](PROGRESS.md).
@@ -130,6 +145,8 @@ và hình đạt; không coi đọc nguồn là mọi claim đã đúng, không 
 Tình huống thực tế → Cơ sở dữ liệu và lưu trữ →
 Bộ nhớ đệm và hiệu năng → Thanh toán và công nghệ tài chính → Kiến trúc phần mềm →
 Công cụ và năng suất → Phát triển phần mềm → Đám mây và hệ thống phân tán →
-Hệ thống hoạt động thế nào? → Bảo mật (đã viết một phần) → Nền tảng máy tính.
+Hệ thống hoạt động thế nào? → Bảo mật (đã viết một phần).
+
+Nhóm “Nền tảng máy tính” (cuối mục lục nguồn) được viết trước theo yêu cầu người dùng ngày 2026-10-13; nhóm “API và phát triển web” viết tiếp theo thứ tự source-map.
 
 `lessons/<id>/lesson.yaml` chỉ trỏ tới metadata JSON; không giữ bản sao trạng thái.

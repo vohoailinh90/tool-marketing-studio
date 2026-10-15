@@ -500,3 +500,7 @@ mutations:
   find: '    exclude = (*exclude, *removed_upstream(context))'
   replace: '    exclude = (*exclude,)'
   test: tests.test_sd101_claims.ClaimTests.test_a_stale_checkout_cannot_claim_a_lesson_the_default_branch_dropped
+- label: an existing claim on a lesson the default branch dropped is still held
+  find: '        if lesson_id in gone:  # a claim taken before the default branch dropped the lesson is not a claim on anything'
+  replace: '        if False and lesson_id in gone:  # a claim taken before the default branch dropped the lesson is not a claim on anything'
+  test: tests.test_sd101_claims.ClaimTests.test_a_claim_the_default_branch_dropped_is_not_held

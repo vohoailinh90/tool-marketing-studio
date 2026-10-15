@@ -749,6 +749,33 @@ class ClaimTests(Sessions):
         self.assertNotIn("sd-01-004", offered, "nor is the dropped one")
         self.assertEqual(0, self.run_mapped(a, "claim", "sd-01-001")[0], "the rest of the roster is untouched")
 
+    def test_a_claim_the_default_branch_dropped_is_not_held(self) -> None:
+        a = self.mapped_clone("a")
+        self.assertEqual(0, self.run_mapped(a, "claim", "sd-01-004", "--publish")[0])  # taken while the roster still held it
+        self.write_lesson(a, "sd-01-004")
+        seed = self.tmp / "seed"
+        data = json.loads((seed / "source-map.json").read_text(encoding="utf-8"))
+        data["categories"][0]["lessons"] = [lesson for lesson in data["categories"][0]["lessons"] if lesson["id"] != "sd-01-004"]
+        (seed / "source-map.json").write_text(json.dumps(data), encoding="utf-8")
+        with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
+            self.assertEqual(0, claims.main(["--store", str(seed / "store"), "--source-map", str(seed / "source-map.json"), "sync"]))
+        git(seed, "add", "-A")
+        git(seed, "commit", "--quiet", "-m", "the roster dropped sd-01-004")
+        git(seed, "push", "--quiet", "origin", "main")
+        pushed = git(self.tmp, "--git-dir", str(self.origin), "rev-parse", "claude/a")
+        before = (a / REGISTRY).read_text(encoding="utf-8")
+        for command in (("verify",), ("touch", "--publish"), ("touch",), ("finish", "sd-01-004")):
+            with self.subTest(command[0]):
+                code, _, err = self.run_mapped(a, *command)
+                self.assertEqual(1, code, err)
+                self.assertIn("sd-01-004", err)
+                self.assertIn("removed from the source map by the default branch", err)
+        self.assertEqual(pushed, git(self.tmp, "--git-dir", str(self.origin), "rev-parse", "claude/a"))
+        self.assertEqual(before, (a / REGISTRY).read_text(encoding="utf-8"), "nothing was renewed or finished")
+        shutil.rmtree(a / "store" / "lessons" / "sd-01-004")  # the draft goes first, as for any release
+        code, _, err = self.run_mapped(a, "release", "sd-01-004", "--publish")
+        self.assertEqual(0, code, "the way out is still open: " + err)
+
     def test_adoption_does_not_hide_a_shared_source_conflict(self) -> None:
         a, b = self.mapped_clone("a"), self.mapped_clone("b")
         self.assertEqual(0, self.run_mapped(b, "claim", "sd-02-001")[0])  # b's claim on one half is not visible yet

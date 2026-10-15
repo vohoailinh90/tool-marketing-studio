@@ -1065,10 +1065,15 @@ def verdicts(context: Context, header: dict, lessons: dict[str, dict], ids: list
                       if holding.owner == context.me and holding.status == "doing" and holding.where != LOCAL
                       and not is_stale(holding, context.now, lease)}
     out: dict[str, str | None] = {}
+    gone = removed_upstream(context)
     for lesson_id in ids:
         mine = _holding(lessons[lesson_id], LOCAL)
         if mine is None:
             out[lesson_id] = "is not claimed by you"
+            continue
+        if lesson_id in gone:  # a claim taken before the default branch dropped the lesson is not a claim on anything
+            out[lesson_id] = ("was removed from the source map by the default branch after this branch was cut; "
+                              "merge the default branch into this branch")
             continue
         out[lesson_id] = lost_reason(mine, found, context.me, context.now, lease, context.source.partners.get(lesson_id, ()),
                                      context.offline or identity(mine) in live_published)

@@ -823,10 +823,25 @@ def drafts_left_behind(context: Context, lessons: dict[str, dict]) -> list[str]:
     return sorted({lesson_id for lesson_id, entry in lessons.items() if entry.get("status") == "todo"} & held)
 
 
+def uncommitted_source_map(context: Context) -> bool:
+    """Whether the source map this session validated against has changes HEAD does not hold: --publish commits only the
+    registry, so the remote would pair a registry synchronized with the new map with the old one."""
+    if context.source_map is None:
+        return False
+    try:
+        relative = context.source_map.resolve().relative_to(context.root.resolve()).as_posix()
+    except ValueError:  # a source map outside the checkout is not something this branch can carry
+        return False
+    return bool(git_text(context.root, "status", "--porcelain", "--", relative))
+
+
 def guard_publish(context: Context) -> None:
     """The registry is pushed whole, so every claim of this session in it is judged before anything is pushed, not only
     the ones the command names: a renewal made earlier in the working tree would otherwise reach the remote unjudged."""
     header, lessons = load_registry(context)
+    if uncommitted_source_map(context):
+        raise Refusal("nothing was pushed: the source map has uncommitted changes that the registry was synchronized with; "
+                      "commit them together with the registry first (git add -A && git commit), then push")
     if pending := unfinished_commits(context, lessons):
         raise Refusal(f"nothing was pushed: {', '.join(pending)} {'is' if len(pending) == 1 else 'are'} marked written but "
                       "the lesson files are not committed as they are now (or the store checker rejects them); commit them together "

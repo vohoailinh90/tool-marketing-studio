@@ -536,6 +536,32 @@ class ClaimTests(Sessions):
         self.assertEqual(["sd-01-001", "sd-01-002"], [lesson_id for lesson_id, _ in calls])
         self.assertEqual(1, len({id(cache) for _, cache in calls}), "one cache shared by both lessons")
 
+    def test_a_source_map_changed_since_the_last_commit_is_not_left_behind_by_a_publication(self) -> None:
+        a = self.session("a")
+        in_clone = a / "source-map.json"  # the map is part of the checkout, as it is in the real repository
+        in_clone.write_text(self.source_map.read_text(encoding="utf-8"), encoding="utf-8")
+        git(a, "add", "-A")
+        git(a, "commit", "--quiet", "-m", "the source map")
+
+        def run(*args: str) -> tuple[int, str, str]:
+            out, err = io.StringIO(), io.StringIO()
+            with contextlib.redirect_stdout(out), contextlib.redirect_stderr(err):
+                code = claims.main(["--store", str(a / "store"), "--source-map", str(in_clone), *args])
+            return code, out.getvalue(), err.getvalue()
+
+        self.assertEqual(0, run("claim", "sd-01-001", "--publish")[0])
+        in_clone.write_text(in_clone.read_text(encoding="utf-8").replace('"title_source": "One"', '"title_source": "One, renamed"', 1),
+                            encoding="utf-8")
+        self.assertEqual(0, run("sync")[0])  # the registry now follows the edited map
+        pushed = git(self.tmp, "--git-dir", str(self.origin), "rev-parse", "claude/a")
+        code, _, err = run("touch", "--publish")
+        self.assertEqual(1, code, err)
+        self.assertIn("the source map has uncommitted changes", err)
+        self.assertEqual(pushed, git(self.tmp, "--git-dir", str(self.origin), "rev-parse", "claude/a"))
+        git(a, "add", "-A")
+        git(a, "commit", "--quiet", "-m", "the edited map with its registry")
+        self.assertEqual(0, run("touch", "--publish")[0], "committed together: it may go up")
+
     def test_every_registry_must_use_the_same_lease(self) -> None:
         odd = self.session("odd")
         header, lessons, _ = claims.parse((odd / REGISTRY).read_text(encoding="utf-8"))

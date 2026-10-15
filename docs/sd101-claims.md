@@ -103,7 +103,7 @@ registry before it pushes (it is pushed whole), not only the ones you named, and
 `metadata/<id>.json`, `diagrams/<id>-main.svg`) are not all committed as they are now (the lesson, its `lesson.yaml`, metadata and figure must each be in the last commit): commit the lesson and its registry
 record together (`git add -A && git commit`) first, so the remote never advertises a finished lesson that its branch lacks
 (or holds only an older draft of). A lesson already pushed may be reworked, but a commit that deletes one of its files, or leaves its text, metadata or figure
-rejected by the store checker (judged on the committed tree, which is what the push carries, not on uncommitted edits), is refused the same way. Lessons your branch inherited from the default branch are not judged again, so the first publication stays quick. A released lesson is not pushed while the draft you committed for it is still in git: delete the files, commit
+rejected by the store checker (judged on the committed tree, which is what the push carries, not on uncommitted edits), is refused the same way. Lessons your branch inherited from the default branch are not judged again, so the first publication stays quick. Nor is a registry pushed ahead of the source-map edit it was synchronized with: commit both together. A released lesson is not pushed while the draft you committed for it is still in git: delete the files, commit
 the deletion (`git add -A && git commit`), then push.
 `touch --publish`
 judges this before it pushes a renewal. Every command except `sync` and `fmt` refuses a local registry that lags the source map (lessons missing, another

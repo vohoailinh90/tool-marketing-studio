@@ -272,6 +272,40 @@ class ClaimTests(Sessions):
         git(a, "commit", "--quiet", "-m", "the lesson with its registry record")
         self.assertEqual(0, self.run_in(a, "claim", "sd-01-002", "--publish")[0], "committed together: it may go up")
 
+    def test_a_finished_lesson_changed_after_its_commit_is_not_pushed(self) -> None:
+        a = self.session("a")
+        self.run_in(a, "claim", "sd-01-001", "sd-01-002", "sd-01-003", "sd-01-004", "--publish")  # sd-01-004 stays in progress
+        files = ("lessons/{id}/lesson.md", "metadata/{id}.json", "diagrams/{id}-main.svg")
+        for lesson_id, changed in zip(("sd-01-001", "sd-01-002", "sd-01-003"), files):
+            with self.subTest(changed):
+                for path in files:
+                    target = a / "store" / path.format(id=lesson_id)
+                    target.parent.mkdir(parents=True, exist_ok=True)
+                    target.write_text("a draft\n", encoding="utf-8")
+                git(a, "add", "-A")
+                git(a, "commit", "--quiet", "-m", "a draft")
+                (a / "store" / changed.format(id=lesson_id)).write_text("the final text\n", encoding="utf-8")
+                self.assertEqual(0, self.run_in(a, "finish", lesson_id)[0])
+                pushed = git(self.tmp, "--git-dir", str(self.origin), "rev-parse", "claude/a")
+                code, _, err = self.run_in(a, "touch", "--publish")
+                self.assertEqual(1, code, err)
+                self.assertIn(f"nothing was pushed: {lesson_id} is marked written but the lesson files are not committed", err)
+                self.assertEqual(pushed, git(self.tmp, "--git-dir", str(self.origin), "rev-parse", "claude/a"))
+                git(a, "add", "-A")
+                git(a, "commit", "--quiet", "-m", "the final lesson with its registry record")
+                self.assertEqual(0, self.run_in(a, "touch", "--publish")[0], "committed together: it may go up")
+
+    def test_reworking_a_lesson_that_was_already_pushed_does_not_block_a_claim(self) -> None:
+        a = self.session("a")
+        self.run_in(a, "claim", "sd-01-001", "--publish")
+        self.write_lesson(a, "sd-01-001")
+        self.assertEqual(0, self.run_in(a, "finish", "sd-01-001")[0])
+        git(a, "add", "-A")
+        git(a, "commit", "--quiet", "-m", "the lesson")
+        git(a, "push", "--quiet", "origin", "claude/a")
+        (a / "store" / "lessons" / "sd-01-001" / "lesson.md").write_text("# a rework in progress\n", encoding="utf-8")
+        self.assertEqual(0, self.run_in(a, "claim", "sd-01-002", "--publish")[0], "its record was committed with its files")
+
     def test_a_shared_source_taken_on_purpose_is_not_a_conflict(self) -> None:
         a, b = self.session("a"), self.session("b")
         self.run_in(a, "claim", "sd-01-005", "--publish")
@@ -491,7 +525,7 @@ class RemoteTests(Sessions):
         self.assertEqual("todo", self.entry(main, "sd-01-001")["status"])
         code, _, err = self.run_in(main, "--owner", "someone", "claim", "sd-01-001", "--publish")
         self.assertEqual(2, code)
-        self.assertIn("never pushes main", err)
+        self.assertIn("never pushes main, the default branch", err)
 
     def test_a_branch_whose_registry_cannot_be_parsed_stops_the_decision(self) -> None:
         broken = self.clone("broken", branch="claude/broken")
@@ -594,6 +628,25 @@ class RemoteTests(Sessions):
         code, _, err = self.run_in(b, "claim", "sd-01-001")
         self.assertEqual(1, code, err)
         self.assertIn("already written by claude/x (origin/trunk)", err)
+
+    def test_nothing_is_published_from_a_renamed_default_branch(self) -> None:
+        seed = self.tmp / "seed"
+        git(seed, "checkout", "--quiet", "-b", "trunk")
+        git(seed, "push", "--quiet", "origin", "trunk")
+        git(self.tmp, "--git-dir", str(self.origin), "symbolic-ref", "HEAD", "refs/heads/trunk")
+        git(self.tmp, "--git-dir", str(self.origin), "branch", "-D", "main")  # the default branch is now called trunk
+        trunk = self.tmp / "t"
+        git(self.tmp, "clone", "--quiet", str(self.origin), str(trunk))  # checked out on trunk
+        before = git(self.tmp, "--git-dir", str(self.origin), "rev-parse", "trunk")
+        code, _, err = self.run_in(trunk, "claim", "sd-01-001")
+        self.assertEqual(2, code)
+        self.assertIn("claims belong to a work branch", err)
+        code, _, err = self.run_in(trunk, "--owner", "someone", "claim", "sd-01-001", "--publish")
+        self.assertEqual(2, code)
+        self.assertIn("never pushes trunk, the default branch", err)
+        self.assertEqual("todo", self.entry(trunk, "sd-01-001")["status"], "nothing was written")
+        self.assertEqual(before, git(self.tmp, "--git-dir", str(self.origin), "rev-parse", "trunk"))
+        self.assertEqual(0, self.run_in(self.session("a"), "claim", "sd-01-001", "--publish")[0], "a work branch still may")
 
     def test_a_default_branch_without_a_registry_stops_the_decision(self) -> None:
         b = self.session("b")  # holds a registry of its own, which must not be trusted instead of the default branch's

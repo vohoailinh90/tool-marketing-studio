@@ -20,7 +20,8 @@ python3 scripts/sd101_claims.py finish sd-14-016 sd-14-017 --pr <number>   # com
 python3 scripts/sd101_claims.py release sd-14-018 --publish   # give a lesson back you will not write
 ```
 
-`--publish` commits only `claims.jsonl` and pushes your own branch (any other commit of yours that was not
+`--publish` commits only `claims.jsonl` and pushes your own work branch, never the remote's default branch
+(whatever it is called; `main`/`master` are refused even on a remote that renamed its default) (any other commit of yours that was not
 pushed yet goes with it), which is what makes the claim visible to the others. A claim that is not pushed protects nothing. `verify`, `touch` and `finish` therefore fail (exit 1) while a claim exists only in your working tree,
 and `verify` or `touch` with named ids fail unless every id is one of your claims. The copy on your branch must also have a live heartbeat: a renewal made only in your working
 tree does not keep a published claim from going stale, so `touch --publish` (which pushes first) is the way to renew. If `claim` or `verify` says you lost, stop
@@ -93,8 +94,10 @@ push was visible are decided like two claims on one lesson (the earlier claim wi
 `--allow-same-source` is recorded as `shared_source` and is never asked to give way. Claiming a half you already hold again with that flag records it too, which is how you keep it
 on purpose after `verify` says it lost to the other half. A claim that has no live published copy (expired in public, or never pushed) gives way to a live claim on the other
 half, whoever claimed first, because a takeover across a pair leaves no record of whom it replaced; Every `--publish` judges all of your claims in the
-registry before it pushes (it is pushed whole), not only the ones you named, and refuses with the list to release. It also refuses to push a lesson marked `written` whose files are not committed yet: commit the lesson and its registry
-record together (`git add -A && git commit`) first, so the remote never advertises a finished lesson that its branch lacks.
+registry before it pushes (it is pushed whole), not only the ones you named, and refuses with the list to release. It also refuses to push a lesson that turned `written` since the last commit while its files (`lessons/<id>/`,
+`metadata/<id>.json`, `diagrams/<id>-main.svg`) are not committed as they are now: commit the lesson and its registry
+record together (`git add -A && git commit`) first, so the remote never advertises a finished lesson that its branch lacks
+(or holds only an older draft of).
 `touch --publish`
 judges this before it pushes a renewal. Every command except `sync` and `fmt` refuses a local registry that lags the source map (lessons missing, another
 pin), so a truncated file is never written back or pushed; `sync` repairs it. `verify` also compares the published record with your

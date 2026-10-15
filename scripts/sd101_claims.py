@@ -313,10 +313,11 @@ def current_branch(root: pathlib.Path) -> str | None:
     return result.stdout.decode().strip() or None
 
 
-def default_branch(root: pathlib.Path, remote: str) -> str:
+def default_branch(root: pathlib.Path, remote: str, ask: bool = True) -> str:
     """The branch the remote calls its default. The remote is asked: the local origin/HEAD is written once, at clone
     time, and goes stale when the default branch is renamed, which would make the real one look like a feature branch."""
-    for line in git(root, "ls-remote", "--symref", remote, "HEAD").stdout.decode("utf-8", "replace").splitlines():
+    for line in (git(root, "ls-remote", "--symref", remote, "HEAD").stdout.decode("utf-8", "replace").splitlines()
+                 if ask else []):
         if line.startswith("ref: refs/heads/") and "\t" in line:
             return line[len("ref: refs/heads/"):].split("\t", 1)[0]
     head = git(root, "symbolic-ref", "--short", "-q", f"refs/remotes/{remote}/HEAD", check=False).stdout.decode().strip()
@@ -687,32 +688,69 @@ def cmd_next(context: Context, args: argparse.Namespace) -> int:
     return 0 if free else 1
 
 
+def on_default_branch(context: Context, strict: bool) -> bool:
+    """Whether the checked-out branch is the one the remote calls its default (main and master always count). With
+    `strict` a remote that cannot be asked is an error; without it the cached refs decide, and the read that follows
+    reports the broken remote in its own words."""
+    if context.branch is None or context.branch in ("main", "master"):
+        return True
+    try:
+        return context.branch == default_branch(context.root, context.remote, ask=not context.offline)
+    except ClaimsError:
+        if strict:
+            raise
+        return context.branch == default_branch(context.root, context.remote, ask=False)
+
+
 def require_owner(context: Context) -> None:
-    if context.branch in (None, "main", "master") and not context.owner_given:
+    if not context.owner_given and on_default_branch(context, strict=False):
         raise ClaimsError("claims belong to a work branch; check one out first (or pass --owner)")
 
 
 def check_publishable(context: Context) -> None:
     """--publish is only for the owner's own work branch: a claim counts on the branch its owner names."""
-    if context.branch in (None, "main", "master"):
-        raise ClaimsError("--publish pushes the current work branch; it never pushes main")
+    if context.branch is None:
+        raise ClaimsError("--publish pushes the current work branch, but HEAD is detached")
+    if on_default_branch(context, strict=True):
+        raise ClaimsError(f"--publish pushes the current work branch; it never pushes {context.branch}, the default branch")
     if context.me != context.branch:
         raise ClaimsError(f"--publish pushes branch {context.branch}, but the claims are owned by {context.me}; "
                           "other sessions count a claim only on the branch its owner names, so publish from that branch")
+
+
+def lesson_files(context: Context, lesson_id: str) -> list[str]:
+    """Everything a written lesson consists of, relative to the repository root."""
+    store = context.store.resolve().relative_to(context.root.resolve())
+    return [(store / "lessons" / lesson_id).as_posix(), (store / "lessons" / f"{lesson_id}.md").as_posix(),
+            (store / "metadata" / f"{lesson_id}.json").as_posix(), (store / "diagrams" / f"{lesson_id}-main.svg").as_posix()]
+
+
+def unfinished_commits(context: Context, lessons: dict[str, dict]) -> list[str]:
+    """Lessons that --publish would advertise as written without their files: a record that turned `written` since
+    HEAD and whose lesson is absent from HEAD or changed after the last commit. Only the registry is committed by
+    --publish, so such a lesson would be terminal for every other session while the pushed branch lacks it (or holds
+    an older draft). A record HEAD already carries was judged when it was committed, and is left alone."""
+    shown = git(context.root, "show", f"HEAD:{context.relative}", check=False)
+    head = parse(shown.stdout.decode("utf-8", "replace"))[1] if shown.returncode == 0 else {}
+    out = []
+    for lesson_id, entry in lessons.items():
+        if entry.get("status") != "written" or head.get(lesson_id) == entry:
+            continue
+        files = lesson_files(context, lesson_id)
+        in_head = git(context.root, "cat-file", "-e", f"HEAD:{files[0]}/lesson.md", check=False).returncode == 0
+        dirty = git_text(context.root, "status", "--porcelain", "--untracked-files=all", "--", *files)
+        if not in_head or dirty:
+            out.append(lesson_id)
+    return out
 
 
 def guard_publish(context: Context) -> None:
     """The registry is pushed whole, so every claim of this session in it is judged before anything is pushed, not only
     the ones the command names: a renewal made earlier in the working tree would otherwise reach the remote unjudged."""
     header, lessons = load_registry(context)
-    lessons_dir = (context.store / "lessons").resolve().relative_to(context.root.resolve()).as_posix()
-    committed = set(git_text(context.root, "ls-tree", "-r", "--name-only", "HEAD", "--", lessons_dir).splitlines())
-    if pending := [lesson_id for lesson_id, entry in lessons.items()
-                   if entry.get("status") == "written" and f"{lessons_dir}/{lesson_id}/lesson.md" not in committed]:
-        # Only the registry is committed by --publish, so a lesson finished but not yet committed would be advertised
-        # as written on a branch that does not contain it.
+    if pending := unfinished_commits(context, lessons):
         raise Refusal(f"nothing was pushed: {', '.join(pending)} {'is' if len(pending) == 1 else 'are'} marked written but "
-                      "the lesson files are not committed; commit them together with the registry first "
+                      "the lesson files are not committed as they are now; commit them together with the registry first "
                       "(git add -A && git commit), then push")
     mine = my_claims(context, lessons, [])
     if not mine:

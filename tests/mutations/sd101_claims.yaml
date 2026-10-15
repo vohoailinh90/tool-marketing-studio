@@ -252,6 +252,18 @@ mutations:
   replace: '    if False:  # a legacy feature branch'
   test: tests.test_sd101_claims.RemoteTests.test_a_default_branch_without_a_registry_stops_the_decision
 - label: a lesson finished but not committed is pushed as written
-  find: '    committed = set(git_text(context.root, "ls-tree", "-r", "--name-only", "HEAD", "--", lessons_dir).splitlines())'
-  replace: '    committed = set(f"{lessons_dir}/{lesson_id}/lesson.md" for lesson_id in lessons)'
+  find: '        in_head = git(context.root, "cat-file", "-e", f"HEAD:{files[0]}/lesson.md", check=False).returncode == 0'
+  replace: '        in_head = True'
   test: tests.test_sd101_claims.ClaimTests.test_a_finished_lesson_is_not_pushed_ahead_of_its_files
+- label: a written lesson edited after its commit is pushed with the stale draft
+  find: '        dirty = git_text(context.root, "status", "--porcelain", "--untracked-files=all", "--", *files)'
+  replace: '        dirty = ""'
+  test: tests.test_sd101_claims.ClaimTests.test_a_finished_lesson_changed_after_its_commit_is_not_pushed
+- label: a written record HEAD already carries is judged again on every publish
+  find: '        if entry.get("status") != "written" or head.get(lesson_id) == entry:'
+  replace: '        if entry.get("status") != "written":'
+  test: tests.test_sd101_claims.ClaimTests.test_reworking_a_lesson_that_was_already_pushed_does_not_block_a_claim
+- label: only main and master are recognised as the default branch
+  find: '        return context.branch == default_branch(context.root, context.remote, ask=not context.offline)'
+  replace: '        return False'
+  test: tests.test_sd101_claims.RemoteTests.test_nothing_is_published_from_a_renamed_default_branch

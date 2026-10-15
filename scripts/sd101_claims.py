@@ -772,10 +772,13 @@ def unfinished_commits(context: Context, lessons: dict[str, dict]) -> list[str]:
             # T is a regular file turned into a symbolic link, which the checker rejects; the optional pointer may go
             if git_text(context.root, "diff", "--no-renames", "--diff-filter=DT", "--name-only", ref, "HEAD", "--", *required):
                 out.append(lesson_id)
+            elif (git_text(context.root, "diff", "--name-only", ref, "HEAD", "--", *required)  # a rework: still a valid lesson?
+                  and content_problems(context.store, context.source_map, lesson_id)):
+                out.append(lesson_id)
             continue
         in_head = all(regular_in_head(context.root, path) for path in required)
         dirty = git_text(context.root, "status", "--porcelain", "--untracked-files=all", "--", *files)
-        if not in_head or dirty:
+        if not in_head or dirty or content_problems(context.store, context.source_map, lesson_id):
             out.append(lesson_id)
     return out
 
@@ -796,7 +799,8 @@ def guard_publish(context: Context) -> None:
     header, lessons = load_registry(context)
     if pending := unfinished_commits(context, lessons):
         raise Refusal(f"nothing was pushed: {', '.join(pending)} {'is' if len(pending) == 1 else 'are'} marked written but "
-                      "the lesson files are not committed as they are now; commit them together with the registry first "
+                      "the lesson files are not committed as they are now (or the store checker rejects them); commit them together "
+                      "with the registry first "
                       "(git add -A && git commit), then push")
     if left := drafts_left_behind(context, lessons):
         raise Refusal(f"nothing was pushed: {', '.join(left)} {'is' if len(left) == 1 else 'are'} released but the lesson "

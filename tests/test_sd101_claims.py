@@ -439,6 +439,33 @@ class ClaimTests(Sessions):
         self.assertEqual("doing", self.entry(a, "sd-01-001")["status"])
         self.assertEqual(0, self.run_in(a, "finish", "sd-01-001")[0])
 
+    def test_a_reworked_lesson_that_the_store_checker_rejects_is_not_pushed(self) -> None:
+        a = self.pushed_lesson("a")
+        with mock.patch.object(claims, "content_problems", side_effect=AssertionError("nothing changed: no need to check")):
+            self.assertEqual(0, self.run_in(a, "claim", "sd-01-002", "--publish")[0], "an untouched lesson is not rechecked")
+        (a / "store" / "metadata" / "sd-01-001.json").write_text("{\n", encoding="utf-8")
+        git(a, "commit", "--quiet", "-am", "the metadata was broken, cleanly committed")
+        pushed = git(self.tmp, "--git-dir", str(self.origin), "rev-parse", "claude/a")
+        with mock.patch.object(claims, "content_problems", return_value=["metadata/sd-01-001.json: is not valid JSON"]):
+            code, _, err = self.run_in(a, "touch", "--publish")
+        self.assertEqual(1, code, err)
+        self.assertIn("sd-01-001 is marked written but the lesson files are not committed", err)
+        self.assertEqual(pushed, git(self.tmp, "--git-dir", str(self.origin), "rev-parse", "claude/a"))
+        self.assertEqual(0, self.run_in(a, "touch", "--publish")[0], "a rework the checker accepts may go up")
+
+    def test_a_finished_lesson_that_the_store_checker_rejects_at_publication_is_not_pushed(self) -> None:
+        a = self.session("a")
+        self.run_in(a, "claim", "sd-01-001", "sd-01-002", "--publish")
+        self.write_lesson(a, "sd-01-001")
+        git(a, "add", "-A")
+        git(a, "commit", "--quiet", "-m", "the lesson")
+        self.assertEqual(0, self.run_in(a, "finish", "sd-01-001")[0])
+        git(a, "commit", "--quiet", "-am", "with its record")
+        with mock.patch.object(claims, "content_problems", return_value=["lessons/sd-01-001/lesson.yaml: is empty"]):
+            code, _, err = self.run_in(a, "touch", "--publish")
+        self.assertEqual(1, code, err)
+        self.assertIn("the lesson files are not committed", err)
+
     def test_every_registry_must_use_the_same_lease(self) -> None:
         odd = self.session("odd")
         header, lessons, _ = claims.parse((odd / REGISTRY).read_text(encoding="utf-8"))

@@ -349,3 +349,11 @@ mutations:
   find: '    return [str(problem) for problem in module.check_store(store, source_map)'
   replace: '    return [str(problem) for problem in module.check_store(store, source_map)[:0]'
   test: tests.test_sd101_claims.ContentTests.test_a_good_lesson_passes_and_each_damage_is_found
+- label: a reworked pushed lesson is not checked by the store checker
+  find: '                  and content_problems(context.store, context.source_map, lesson_id)):'
+  replace: '                  and False):'
+  test: tests.test_sd101_claims.ClaimTests.test_a_reworked_lesson_that_the_store_checker_rejects_is_not_pushed
+- label: a newly written lesson is not checked by the store checker at publication
+  find: '        if not in_head or dirty or content_problems(context.store, context.source_map, lesson_id):'
+  replace: '        if not in_head or dirty:'
+  test: tests.test_sd101_claims.ClaimTests.test_a_finished_lesson_that_the_store_checker_rejects_at_publication_is_not_pushed

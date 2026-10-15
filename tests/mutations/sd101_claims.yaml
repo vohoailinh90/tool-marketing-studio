@@ -19,8 +19,8 @@ mutations:
   replace: return (first.claimed_at or "", first.owner or "") > (second.claimed_at or "", second.owner or "")
   test: tests.test_sd101_claims.ClaimTests.test_the_earlier_claim_wins_even_when_it_is_pushed_second
 - label: a takeover does not beat the stale claim it took over
-  find: "    if first.taken_from and first.taken_from == second.owner:\n        return True"
-  replace: "    if first.taken_from and first.taken_from == second.owner:\n        return False"
+  find: "    if second.owner in first.taken_from:\n        return True"
+  replace: "    if second.owner in first.taken_from:\n        return False"
   test: tests.test_sd101_claims.LeaseTests.test_a_session_that_wakes_up_cannot_win_back_a_lesson_that_was_taken
 - label: a stale claim is taken over without asking
   find: "        if not take_stale:\n            return (f\"claimed by"

@@ -77,8 +77,11 @@
       "source": "https://www.rfc-editor.org/rfc/rfc6750"
     },
     {
-      "claim_vi": "AWS Signature Version 4 ký yêu cầu bằng HMAC với SHA-256 trên một dạng chuẩn hóa của yêu cầu.",
-      "source": "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_sigv.html"
+      "claim_vi": "AWS Signature Version 4 ký yêu cầu bằng HMAC với SHA-256 trên một dạng chuẩn hóa của yêu cầu; khóa ký được dẫn xuất từ khóa bí mật theo ngày, vùng và dịch vụ chứ không dùng trực tiếp khóa bí mật.",
+      "sources": [
+        "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_sigv.html",
+        "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_sigv-create-signed-request.html"
+      ]
     },
     {
       "claim_vi": "OWASP API Security Top 10 (2023) liệt kê lỗi kiểm quyền ở cấp đối tượng (Broken Object Level Authorization) là rủi ro số 1, và chữ ký yêu cầu không chữa được lỗi này.",
@@ -91,6 +94,7 @@
     "Bản chữ của nguồn dừng ngay sau câu dẫn của mục hướng dẫn bảo mật; nội dung mục này nếu có thì nằm trong hình gốc và bài không suy diễn nó.",
     "Nguồn gọi mã truy cập là public key; bài ghi rõ đó chỉ là định danh trong cách ký bằng HMAC, không phải khóa công khai của mật mã bất đối xứng.",
     "Hai khung 'Máy chủ kiểm tra' và 'Chữ ký không làm thay' do bài bổ sung từ cách các dịch vụ ký yêu cầu, không có trong bản chữ của nguồn.",
-    "Ý 'khóa bí mật không cần gửi đi' là suy luận của bài, không phải lời của nguồn."
+    "Ý 'khóa bí mật không cần gửi đi' là suy luận của bài, không phải lời của nguồn.",
+    "Câu hỏi ví dụ đặt cửa sổ thời điểm là năm phút để đáp án xác định; đó là giả định của bài, độ dài cửa sổ do mỗi dịch vụ chọn."
   ]
 }

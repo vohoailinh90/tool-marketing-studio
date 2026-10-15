@@ -18,12 +18,12 @@ Chữ ký chứng minh người gửi giữ khóa bí mật và phần đã ký 
 
 ## Nhìn hình thử trả lời
 
-Máy chủ nhận được một yêu cầu có chữ ký đúng, nhưng thời điểm trong yêu cầu cách hiện tại hai giờ. Có nên chấp nhận không, và nếu chấp nhận thì kẻ tấn công làm được gì?
+Một dịch vụ chỉ chấp nhận yêu cầu có thời điểm lệch không quá năm phút so với đồng hồ của máy chủ. Máy chủ nhận được một yêu cầu có chữ ký đúng, nhưng thời điểm trong yêu cầu cách hiện tại hai giờ. Có nên chấp nhận không, và nếu chấp nhận thì kẻ tấn công làm được gì?
 
 <details>
 <summary>Xem đáp án</summary>
 
-Không nên. Chữ ký đúng chỉ chứng minh người ký có khóa bí mật vào lúc ký và nội dung không bị sửa. Nếu ai đó chụp lại được yêu cầu (từ nhật ký, từ một đoạn mạng không mã hóa) và gửi lại, chữ ký vẫn đúng, nên giao dịch có thể bị lặp. Thời điểm cho yêu cầu một hạn dùng ngắn; nonce cho phép máy chủ từ chối một yêu cầu đã thấy trong hạn đó.
+Không nên, vì hai giờ vượt xa cửa sổ năm phút của dịch vụ này. Chữ ký đúng chỉ chứng minh người ký có khóa bí mật vào lúc ký và nội dung không bị sửa. Nếu ai đó chụp lại được yêu cầu (từ nhật ký, từ một đoạn mạng không mã hóa) và gửi lại, chữ ký vẫn đúng, nên giao dịch có thể bị lặp. Thời điểm cho yêu cầu một hạn dùng ngắn; nonce cho phép máy chủ từ chối một yêu cầu đã thấy trong hạn đó. Độ dài cửa sổ do mỗi dịch vụ chọn: cửa sổ càng dài thì kẻ tấn công càng có nhiều thời gian gửi lại, và máy chủ phải nhớ nonce càng lâu.
 
 </details>
 
@@ -32,7 +32,7 @@ Không nên. Chữ ký đúng chỉ chứng minh người ký có khóa bí mậ
 
 - **HMAC:** hàm tính một giá trị ngắn từ khóa bí mật và thông điệp; ai không có khóa thì không tính ra giá trị đúng. Hai bên dùng cùng một khóa, khác chữ ký số dùng cặp khóa công khai và riêng (RSA, ECDSA).
 - **Token mang danh (bearer token):** ai cầm được token là dùng được, nên phải đi qua kênh mã hóa và dễ bị dùng lại nếu lộ. Yêu cầu có ký không gửi bí mật đi, đổi lại client phải làm phép ký cho mỗi yêu cầu.
-- **Ví dụ thực tế:** AWS Signature Version 4 ký yêu cầu bằng HMAC với SHA-256, trên một dạng chuẩn hóa của yêu cầu và ngày giờ; xem tài liệu của AWS để thấy các bước chi tiết.
+- **Ví dụ thực tế:** AWS Signature Version 4 ký yêu cầu bằng HMAC với SHA-256, trên một dạng chuẩn hóa của yêu cầu và ngày giờ. AWS không dùng trực tiếp khóa bí mật để ký mà dẫn xuất từ nó một khóa ký theo ngày, vùng và dịch vụ; xem tài liệu của AWS để thấy các bước chi tiết.
 - **OWASP API Security Top 10:** danh sách rủi ro API phổ biến (OWASP là Open Worldwide Application Security Project, dự án cộng đồng về an toàn ứng dụng), trong đó có lỗi kiểm quyền ở cấp đối tượng; chữ ký không chữa được lỗi đó.
 
 </details>
@@ -41,7 +41,7 @@ Không nên. Chữ ký đúng chỉ chứng minh người ký có khóa bí mậ
 
 - [ByteByteGo tại snapshot cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/a-cheat-sheet-for-api-designs.md): bản chữ gồm cấp khóa, ký yêu cầu và tham số của yêu cầu.
 - [RFC 2104 — HMAC](https://www.rfc-editor.org/rfc/rfc2104) và [RFC 6750 — Bearer Token](https://www.rfc-editor.org/rfc/rfc6750).
-- [AWS — Signature Version 4](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_sigv.html).
+- [AWS — Signature Version 4](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_sigv.html) và [các bước tạo yêu cầu có ký](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_sigv-create-signed-request.html).
 - [OWASP — API Security Top 10 (2023)](https://owasp.org/API-Security/editions/2023/en/0x11-t10/).
 
 Đã đọc bản nguồn ByteByteGo ngày 2026-10-15; các tài liệu nêu trên chưa được mở để đối chiếu trực tiếp trong lượt biên soạn này. Bài viết và hình được thiết kế độc lập.

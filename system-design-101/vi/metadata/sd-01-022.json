@@ -80,7 +80,7 @@
       ]
     },
     {
-      "claim_vi": "Amazon API Gateway áp giới hạn tốc độ và làm chậm yêu cầu; vượt giới hạn thì trả lỗi 429.",
+      "claim_vi": "Amazon API Gateway áp giới hạn tốc độ và làm chậm yêu cầu; vượt giới hạn thì trả lỗi 429. Tài liệu của AWS mô tả các giới hạn này là mục tiêu theo nỗ lực tối đa, không phải trần tuyệt đối.",
       "source": "https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-request-throttling.html"
     }
   ],

@@ -30,7 +30,7 @@ Lợi: việc chung được làm một lần, chính sách đồng nhất, dị
 <details>
 <summary>Xem sâu hơn</summary>
 
-- **Giới hạn tốc độ và làm chậm:** nhiều sản phẩm dùng hai từ gần như đồng nghĩa. Cách hiểu thường gặp: giới hạn tốc độ đặt trần số yêu cầu trong một khoảng thời gian (ví dụ theo khóa API), còn làm chậm là giảm hoặc từ chối khi tải vượt mức. Thuật toán hay dùng là token bucket (xô token) và cửa sổ trượt.
+- **Giới hạn tốc độ và làm chậm:** nhiều sản phẩm dùng hai từ gần như đồng nghĩa. Cách hiểu thường gặp: giới hạn tốc độ đặt mức tối đa số yêu cầu trong một khoảng thời gian (ví dụ theo khóa API), còn làm chậm là giảm hoặc từ chối khi tải vượt mức. Thuật toán hay dùng là token bucket (xô token) và cửa sổ trượt. Mức này thường là mục tiêu theo nỗ lực tối đa chứ không phải trần tuyệt đối: tài liệu của AWS API Gateway nói rõ giới hạn của họ có tính chất đó, nên đừng coi chúng là bảo đảm một dịch vụ phía sau không bao giờ quá tải.
 - **Cân bằng tải ở gateway:** gateway có thể tự chọn một trong các bản chạy của dịch vụ, hoặc đứng sau một bộ cân bằng tải riêng; cách xếp nào còn tùy sản phẩm.
 - **Gom API:** là mẫu "Gateway Aggregation" trong tài liệu kiến trúc của Microsoft, hợp khi client gọi nhiều dịch vụ cho một màn hình.
 - **Cache:** quy tắc cache của HTTP nằm ở RFC 9111; phản hồi riêng của từng người dùng thường dùng Cache-Control: private hoặc không lưu.

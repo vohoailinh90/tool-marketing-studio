@@ -31,7 +31,7 @@ Không có một đáp án duy nhất; điều cần thấy là mỗi cách đ�
 <summary>Xem sâu hơn</summary>
 
 - **BFF:** mẫu "Backends for Frontends" cho mỗi loại trải nghiệm (web, di động) một backend riêng. GraphQL chỉ là một cách dựng BFF; BFF vẫn có thể viết bằng REST.
-- **Siêu đồ thị và dịch vụ con:** mỗi nhóm công bố lược đồ của phần mình; công cụ liên hợp ghép các lược đồ thành một lược đồ chung, và cổng dùng nó để chia truy vấn xuống từng dịch vụ con. Theo suy luận của bài, khác với API gateway thông thường, cổng liên hợp hiểu lược đồ GraphQL chứ không chỉ chuyển tiếp HTTP.
+- **Siêu đồ thị và dịch vụ con:** mỗi nhóm công bố lược đồ của phần mình; công cụ liên hợp ghép các lược đồ thành một lược đồ chung, và cổng dùng nó để chia truy vấn xuống từng dịch vụ con. Theo suy luận của bài, điểm riêng của cổng liên hợp so với một API gateway thông thường không phải là chuyển tiếp HTTP (API gateway thông thường cũng xác thực, giới hạn tốc độ, cache và gom lời gọi) mà là dùng lược đồ GraphQL đã ghép để lập kế hoạch và chạy một truy vấn qua nhiều dịch vụ con.
 - **Điểm chung của bốn cách (suy luận của bài):** đều có một lớp GraphQL đứng giữa client và các nguồn dữ liệu; chỗ đặt lớp đó và nhóm sở hữu nó là chỗ bốn cách khác nhau.
 
 </details>

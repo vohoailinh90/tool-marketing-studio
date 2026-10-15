@@ -19,8 +19,8 @@ mutations:
   replace: return (first.claimed_at or "", first.owner or "") > (second.claimed_at or "", second.owner or "")
   test: tests.test_sd101_claims.ClaimTests.test_the_earlier_claim_wins_even_when_it_is_pushed_second
 - label: a takeover does not beat the stale claim it took over
-  find: "    if second.owner in first.taken_from:\n        return True"
-  replace: "    if second.owner in first.taken_from:\n        return False"
+  find: "    if first_took:\n        return True"
+  replace: "    if first_took:\n        return False"
   test: tests.test_sd101_claims.LeaseTests.test_a_takeover_beats_a_claim_whose_renewal_was_never_pushed
 - label: a stale claim is taken over without asking
   find: "        if not take_stale:\n            return (f\"claimed by"
@@ -91,8 +91,8 @@ mutations:
   replace: ".returncode == 0:\n        return\n    git(context.root, \"commit\", \"--quiet\", \"--only\", \"-m\", message, \"--\", context.relative)\n"
   test: tests.test_sd101_claims.RemoteTests.test_a_claim_committed_by_hand_but_never_pushed_is_pushed_by_publish
 - label: a takeover remembers only the owner it took the lesson from, not the chain behind it
-  find: taken += [owner for owner in (holding.owner, *holding.taken_from) if owner and owner not in taken]
-  replace: taken += [holding.owner] if holding.owner and holding.owner not in taken else []
+  find: taken += [owner for owner in (holding.owner, *holding.taken_from) if owner and owner != me and owner not in taken]
+  replace: taken += [holding.owner] if holding.owner and holding.owner != me and holding.owner not in taken else []
   test: tests.test_sd101_claims.LeaseTests.test_a_lesson_taken_over_twice_is_still_won_against_the_first_owner
 - label: a tree or symlink at the registry's path is read as if it were a file
   find: 'if len(fields) == 3:  # <oid>'

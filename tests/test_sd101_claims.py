@@ -493,6 +493,17 @@ class ClaimTests(Sessions):
         self.assertEqual(1, code, err)
         self.assertTrue(checker.called)
 
+    def test_sync_rebuilds_the_whole_header_of_an_empty_or_damaged_registry(self) -> None:
+        a = self.session("a")
+        original = (a / REGISTRY).read_text(encoding="utf-8")
+        for name, text in (("empty", ""), ("wrong lease", original.replace('"lease_hours": 72', '"lease_hours": 720'))):
+            with self.subTest(name):
+                (a / REGISTRY).write_text(text, encoding="utf-8")
+                self.assertEqual(0, self.run_in(a, "sync")[0])
+                self.assertEqual(original, (a / REGISTRY).read_text(encoding="utf-8"))
+                self.assertEqual(0, self.run_in(a, "claim", "sd-01-001")[0], "the repaired file is usable")
+                (a / REGISTRY).write_text(original, encoding="utf-8")
+
     def test_every_registry_must_use_the_same_lease(self) -> None:
         odd = self.session("odd")
         header, lessons, _ = claims.parse((odd / REGISTRY).read_text(encoding="utf-8"))

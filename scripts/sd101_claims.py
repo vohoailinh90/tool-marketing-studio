@@ -632,8 +632,9 @@ def cmd_sync(context: Context, _: argparse.Namespace) -> int:
     on_disk = context.on_disk()
     if context.path.is_file():
         header, lessons = load_registry(context, complete=False)
-        # A repinned or retitled source map: the registry follows it, keeping every status and claim.
-        header = {**header, "source_repository": context.source.repository, "source_commit_sha": context.source.commit_sha}
+        # A repinned or retitled source map: the registry follows it, keeping every status and claim. The header is
+        # rebuilt whole (an empty file has none, a damaged one a wrong schema or lease), never patched.
+        header = new_header(context.source)
     else:
         header, lessons = new_header(context.source), {}
     added = retitled = 0

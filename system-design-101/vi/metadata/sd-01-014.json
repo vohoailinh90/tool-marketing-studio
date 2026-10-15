@@ -56,12 +56,13 @@
       "source": "https://v8.dev/blog/launching-ignition-and-turbofan"
     },
     {
-      "claim_vi": "Hàng đợi microtask (phần việc tiếp theo của promise) chạy trước task kế tiếp như setTimeout; event loop lấy việc khi stack rỗng. Task có thể nằm ở một hoặc nhiều hàng đợi do môi trường chọn (HTML Standard cho phép một hoặc nhiều hàng đợi task; Node chia thành các pha như timers, poll, check).",
+      "claim_vi": "Hàng đợi microtask (phần việc tiếp theo của promise) chạy trước task kế tiếp như setTimeout; event loop lấy việc khi stack rỗng. Task có thể nằm ở một hoặc nhiều hàng đợi do môi trường chọn (HTML Standard cho phép một hoặc nhiều hàng đợi task; Node chia thành các pha như timers, poll, check). Node có thêm hàng đợi process.nextTick riêng: trong CommonJS nó thường được xử lý trước microtask của promise, còn ở cấp cao nhất của ESM thứ tự có thể ngược lại.",
       "sources": [
         "https://html.spec.whatwg.org/multipage/webappapis.html#event-loops",
         "https://tc39.es/ecma262/",
         "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Event_loop",
-        "https://nodejs.org/en/learn/asynchronous-work/event-loop-timers-and-nexttick"
+        "https://nodejs.org/en/learn/asynchronous-work/event-loop-timers-and-nexttick",
+        "https://nodejs.org/api/process.html#when-to-use-queuemicrotask-vs-processnexttick"
       ]
     },
     {

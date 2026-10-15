@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 746" width="320" height="746" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 772" width="320" height="772" role="img" aria-labelledby="title desc">
 <title id="title">JavaScript chạy một việc một lúc</title>
-<desc id="desc">Năm khung dọc: engine đọc mã thành bytecode và JIT tối ưu đoạn hay chạy; call stack chạy mã từng việc một nên việc dài làm trang đứng; môi trường như trình duyệt hoặc Node lo timer, mạng và sự kiện; hai loại việc chờ gồm microtask cho promise chạy trước và task cho setTimeout và sự kiện, trong đó task có thể nằm ở một hoặc nhiều hàng đợi; event loop lấy việc kế tiếp khi stack rỗng và chạy hết microtask trước. Ví dụ trong bài in A, D, C, B.</desc>
+<desc id="desc">Năm khung dọc: engine đọc mã thành bytecode và JIT tối ưu đoạn hay chạy; call stack chạy mã từng việc một nên việc dài làm trang đứng; môi trường như trình duyệt hoặc Node lo timer, mạng và sự kiện; hai loại việc chờ cơ bản gồm microtask cho promise chạy trước và task cho setTimeout và sự kiện, trong đó task có thể nằm ở một hoặc nhiều hàng đợi; event loop lấy việc kế tiếp khi stack rỗng và chạy hết microtask trước. Hình chưa vẽ hàng đợi nextTick riêng của Node. Ví dụ trong bài in A, D, C, B.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="746" fill="#f8fafc"/>
+<rect width="320" height="772" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="30" font-size="20" font-weight="bold">JAVASCRIPT</text>
 <text x="16" y="56" font-size="20" font-weight="bold">CHẠY RA SAO</text>
@@ -20,12 +20,13 @@
 <text x="30" y="401" font-size="16" font-weight="normal">Timer, mạng, sự kiện</text>
 <text x="30" y="428" font-size="16" font-weight="normal">Do trình duyệt hoặc Node lo</text>
 <rect x="16" y="462" width="288" height="104" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
-<text x="30" y="492" font-size="16" font-weight="bold">4 · Hàng đợi</text>
+<text x="30" y="492" font-size="16" font-weight="bold">4 · Hàng đợi (cơ bản)</text>
 <text x="30" y="519" font-size="16" font-weight="normal">Microtask: promise, chạy trước</text>
 <text x="30" y="546" font-size="16" font-weight="normal">Task: setTimeout, sự kiện</text>
 <rect x="16" y="580" width="288" height="104" rx="12" fill="#e2e8f0" stroke="#94a3b8"/>
 <text x="30" y="610" font-size="16" font-weight="bold">5 · Event loop</text>
 <text x="30" y="637" font-size="16" font-weight="normal">Stack rỗng → lấy việc kế</text>
 <text x="30" y="664" font-size="16" font-weight="normal">Chạy hết microtask trước</text>
-<text x="16" y="726" font-size="16" font-weight="normal">Ví dụ trong bài: in A, D, C, B.</text>
+<text x="16" y="726" font-size="16" font-weight="normal">Chưa vẽ nextTick của Node.</text>
+<text x="16" y="752" font-size="16" font-weight="normal">Ví dụ trong bài: in A, D, C, B.</text>
 </g></svg>

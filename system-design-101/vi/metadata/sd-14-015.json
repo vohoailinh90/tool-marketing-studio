@@ -1,0 +1,136 @@
+{
+  "id": "sd-14-015",
+  "title_vi": "Chữ ký số: ký bằng khóa riêng, kiểm bằng khóa công khai",
+  "language": "vi",
+  "kind": "flow",
+  "content_status": "review",
+  "source_ref": "sd-14-015",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/how-digital-signatures-work.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-digital-signatures-work.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches provider tree OID. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "7d085e39cdfb37d2c2c845541414e0231686d732",
+    "retrieved_body_sha256": "d36c629f6c29b7a0f039722a2d151dbcb6c5e722653d891963506ddcaf0fe786",
+    "retrieved_body_bytes": 2100
+  },
+  "diagram": "../diagrams/sd-14-015-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-14-014",
+      "relation": "builds-on",
+      "reason_vi": "Chứng chỉ gắn khóa công khai với một tên."
+    },
+    {
+      "lesson_id": "sd-14-002",
+      "relation": "builds-on",
+      "reason_vi": "Băm, mã hóa và mã hóa ký tự."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-14"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-14",
+      "evidence": "Source read; MDN glossary and pyca/cryptography documentation read from local clones at pinned commits; signing and verification behaviour observed with cryptography 50.0.1 using throw-away keys (Ed25519, RSA-2048 with PKCS#1 v1.5 and PSS, ECDSA P-256); NIST and RFC specifications were not reachable and were not read."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-14",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 14.4,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright) rendered the full lesson at each width with optional sections open; diagram scale measured from the rendered image and every SVG text box checked against the viewBox. Not learner testing and not GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "The source describes a digital signature as a kind of electronic signature, similar to a physical signature because it is unique to every person and identifies the signer, and lists eight steps: the signer generates a key pair; hashes the document; encrypts the hash with the private key, calling it the digital signature; attaches it to the document and sends both; the recipient extracts the signature and 'the original hash value' from the document; decrypts the signature with the public key; recalculates the hash of the received message; and compares the two, equal values meaning the signature is valid and the document unaltered.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-digital-signatures-work.md",
+      "section": "Whole guide",
+      "verified_by": "Source body read."
+    },
+    {
+      "claim_vi": "MDN describes the same model: to sign, the key pair's owner hashes the document and encrypts the hash with the private key; the verifier hashes the document, retrieves the public key and decrypts the signature, and a match shows it was created by an entity with access to the private key. MDN also says that with signatures the private key signs and the public key verifies, so anyone can verify but only the private key's owner could have generated the signature. MDN adds that the security of a signature system depends on the verifier using the genuine public key, and that verifiers often use digital certificates to check that public keys are genuine.",
+      "source": "https://github.com/mdn/content/blob/19370346042efad9e179fbf1f55deeeadee98c40/files/en-us/glossary/digital_signature/index.md",
+      "section": "Digital signature; Public-key cryptography",
+      "verified_by": "Read from a local clone of the repository at the pinned commit. The Public-key cryptography glossary entry was read in the same clone."
+    },
+    {
+      "claim_vi": "The cryptography library documents RSA signing with PSS or PKCS1v15 padding, calling PSS the recommended choice for new protocols and applications and PKCS1v15 suitable only for legacy protocols; it describes Ed25519 as an elliptic curve signing algorithm using EdDSA and Curve25519; and ECDSA signing accepts either the message or an already computed digest (Prehashed).",
+      "source": "https://github.com/pyca/cryptography/blob/1fbd556897daba9479bddf82b9a1824b72ea33eb/docs/hazmat/primitives/asymmetric/rsa.rst",
+      "section": "Signing; Padding",
+      "verified_by": "Read from a local clone of the repository at the pinned commit. ed25519.rst and ec.rst were read in the same clone."
+    },
+    {
+      "claim_vi": "Observed with Ed25519: a signature verified; changing one byte of the message ('Pay Bob 100 USD' to 'Pay Bob 900 USD') or using another public key made verification raise InvalidSignature; the signature was 64 bytes for messages of 0 bytes, 15 bytes and 1 MB; signing the same message twice gave the same signature; the public key object offers a verify method and no decrypt method.",
+      "source": "https://github.com/pyca/cryptography/blob/1fbd556897daba9479bddf82b9a1824b72ea33eb/docs/hazmat/primitives/asymmetric/ed25519.rst",
+      "section": "Signing and verification",
+      "verified_by": "No external page reports this output; observed by executing the code on the authoring machine."
+    },
+    {
+      "claim_vi": "Observed: SHA-256 of 'Pay Bob 100 USD' and of 'Pay Bob 900 USD' differed in 129 of 256 bits; and the bytes that were sent together with an Ed25519 signature began with the plain message b'Pay Bob 100 USD', so a signature does not hide the message.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-digital-signatures-work.md",
+      "section": "Step 2 (hash)",
+      "verified_by": "No external page reports this output; observed by executing the code on the authoring machine."
+    },
+    {
+      "claim_vi": "Observed with cryptography 50.0.1: Ed25519PrivateKey.sign takes only the data (no hash argument), while the ECDSA and RSA sign methods take a signature algorithm or padding plus a hash algorithm; the Ed25519 signature of the SHA-256 digest of a message differed from the signature of the message and did not verify against the message (it verified only against the digest bytes). That Ed25519 hashes internally as part of its definition is the author's general knowledge; the library documentation read here does not state it and the specification was not read.",
+      "source": "https://github.com/pyca/cryptography/blob/1fbd556897daba9479bddf82b9a1824b72ea33eb/docs/hazmat/primitives/asymmetric/ed25519.rst",
+      "section": "Signing and verification",
+      "verified_by": "No external page reports this output; observed by executing the code on the authoring machine."
+    },
+    {
+      "claim_vi": "Observed with RSA-2048, PKCS#1 v1.5 and SHA-256: computing signature^e mod n with the public key gave a 256-byte value starting 00 01 ff ff and ending with the SHA-256 of the message, and the signature was identical when signing the same message twice. This is an observation about the recovered value (padding followed by the digest) and does not make signing a public-key decryption; that signing is a separate operation from encryption is the author's general knowledge, and RFC 8017 was not reachable.",
+      "source": "https://github.com/pyca/cryptography/blob/1fbd556897daba9479bddf82b9a1824b72ea33eb/docs/hazmat/primitives/asymmetric/rsa.rst",
+      "section": "Signing (PKCS1v15)",
+      "verified_by": "No external page reports this output; observed by executing the code on the authoring machine."
+    },
+    {
+      "claim_vi": "Observed with RSA-PSS: signing the same message twice gave two different signatures and both verified; signature^e mod n ended with the byte 0xbc and did not end with the plain SHA-256 of the message. With ECDSA P-256 two signatures of the same message also differed and both verified, and signing only the SHA-256 digest with the Prehashed option produced a signature that verified against the full message; the ECDSA public key object has a verify method and no decrypt method. So the 'encrypt the hash with the private key' description does not describe these schemes.",
+      "source": "https://github.com/pyca/cryptography/blob/1fbd556897daba9479bddf82b9a1824b72ea33eb/docs/hazmat/primitives/asymmetric/ec.rst",
+      "section": "Signing; Prehashed",
+      "verified_by": "No external page reports this output; observed by executing the code on the authoring machine."
+    },
+    {
+      "claim_vi": "Observed: a forged message and a forged signature made with an attacker's own key pair verified against the attacker's public key when that key was supplied together with them, and failed against the real sender's public key. A valid signature therefore shows that the holder of the matching private key signed the message; who that holder is depends on knowing which public key belongs to whom.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-digital-signatures-work.md",
+      "section": "Step 6-8",
+      "verified_by": "No external page reports this output; observed by executing the code on the authoring machine. The binding of keys to names through certificates is covered in the sibling lesson sd-14-014."
+    },
+    {
+      "claim_vi": "Legal effect of signatures, non-repudiation, key storage and certificate revocation were not examined here.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-digital-signatures-work.md",
+      "section": "Whole guide",
+      "verified_by": "Not examined."
+    }
+  ],
+  "design_notes_vi": "Sáu thẻ nối bằng mũi tên theo đúng thứ tự (cặp khóa, băm, ký, gửi, kiểm, kết quả), một thẻ đỏ nói chữ ký không giấu nội dung và không tự nói người ký là ai. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "The source says the signer 'encrypts' the hash with the private key and the recipient 'decrypts' it; the lesson presents that as an intuitive picture, not a definition of signing; it notes that for RSA PKCS#1 v1.5 the recovered value looks like padding plus the digest without that making signing encryption, and shows that RSA-PSS, ECDSA and Ed25519 do not fit the picture even in form.",
+    "The source says the recipient extracts 'the original hash value' from the document; the document does not contain the hash, the recipient computes it, and the lesson says so.",
+    "The source says signatures are 'unique to every person'; the lesson says a signature is tied to a key and a message, and that who owns the key must be established separately.",
+    "The source separates hashing from signing as steps 2 and 3; the lesson keeps six steps but says that in the library hashing is part of each scheme's signing operation, and that the separate SHA-256 digest in step 2 is only an illustration for Ed25519.",
+    "The source does not say that a signature leaves the document readable; the lesson does."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

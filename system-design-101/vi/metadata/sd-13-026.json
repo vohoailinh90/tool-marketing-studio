@@ -1,0 +1,86 @@
+{
+  "id": "sd-13-026",
+  "title_vi": "Docker hoạt động thế nào?",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "draft",
+  "source_ref": "sd-13-026",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/how-does-docker-work.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-docker-work.md",
+    "blob_sha": "5fe7b2678517c405c6d96e9b47f6ef9dfefdfa50",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "6b76becb8a454a46d0424d33573a72356131bc27c9cd0bcc5e3fdbd7a39c83eb",
+    "retrieved_body_bytes": 1244
+  },
+  "diagram": "../diagrams/sd-13-026-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-13-013",
+      "relation": "previous",
+      "reason_vi": "Docker khi chạy ứng dụng."
+    },
+    {
+      "lesson_id": "sd-13-025",
+      "relation": "compare-with",
+      "reason_vi": "Pod Kubernetes không chạy."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Theo tài liệu docker container ls, status=exited và status=restarting là hai giá trị riêng của bộ lọc status: container đang khởi động lại theo chính sách không nằm trong status=exited, nên lọc exited bỏ sót nó.",
+      "source": "https://docs.docker.com/reference/cli/docker/container/ls/#status"
+    },
+    {
+      "claim_vi": "Theo quy ước của Bash, một lệnh kết thúc vì tín hiệu N có mã thoát 128+N, nên SIGKILL (tín hiệu 9) cho mã 137.",
+      "source": "https://www.gnu.org/software/bash/manual/html_node/Exit-Status.html"
+    },
+    {
+      "claim_vi": "docker run dùng mã thoát 125 cho lỗi của chính Docker, 126 khi lệnh trong container không thực thi được và 127 khi không tìm thấy lệnh; mã khác là mã của lệnh trong container.",
+      "source": "https://docs.docker.com/reference/cli/docker/container/run/"
+    },
+    {
+      "claim_vi": "Chính sách khởi động lại gồm no (mặc định), on-failure, always và unless-stopped.",
+      "source": "https://docs.docker.com/engine/containers/start-containers-automatically/"
+    },
+    {
+      "claim_vi": "docker inspect trả về trạng thái container gồm ExitCode và OOMKilled.",
+      "source": "https://docs.docker.com/reference/cli/docker/container/inspect/"
+    },
+    {
+      "claim_vi": "docker events phát các sự kiện của container như die, oom, kill và restart, và lọc được theo container.",
+      "source": "https://docs.docker.com/reference/cli/docker/system/events/"
+    },
+    {
+      "claim_vi": "docker logs hiển thị thông tin mà tiến trình chính của container ghi ra STDOUT và STDERR.",
+      "source": "https://docs.docker.com/reference/cli/docker/container/logs/"
+    }
+  ],
+  "source_deviations": [
+    "Nguồn mô tả ba thành phần của Docker (client, host, registry) và các bước docker run; bài bỏ cấu trúc đó và theo dõi một sự cố cụ thể là container thoát ngay hoặc khởi động lại liên tục, nên không còn mô tả các thành phần ấy."
+  ],
+  "design_notes_vi": "Bốn thẻ manh mối khi container đã thoát: mã thoát, nhật ký, trạng thái chi tiết, chính sách khởi động lại.",
+  "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Tiêu đề hiển thị của bài là dòng đầu của lesson.md; title_vi giữ bản dịch tiêu đề nguồn theo source-map. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
+}

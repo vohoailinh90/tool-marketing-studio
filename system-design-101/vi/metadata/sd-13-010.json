@@ -1,0 +1,66 @@
+{
+  "id": "sd-13-010",
+  "title_vi": "Bảng tuần hoàn Kubernetes",
+  "language": "vi",
+  "kind": "reference",
+  "content_status": "draft",
+  "source_ref": "sd-13-010",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/kubernetes-periodic-table.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/kubernetes-periodic-table.md",
+    "blob_sha": "062c4dfd4a97e6461fdd6154874448c39b8fcb19",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "7d22059a43518a9850a5904aea92e81884e96666bc0956ca9aea55cc40ad0df4",
+    "retrieved_body_bytes": 778
+  },
+  "diagram": "../diagrams/sd-13-010-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-13-009",
+      "relation": "previous",
+      "reason_vi": "Ba nhu cầu nên giải quyết sớm trên cụm."
+    },
+    {
+      "lesson_id": "sd-13-025",
+      "relation": "context",
+      "reason_vi": "Chẩn đoán Pod không chạy dùng lại các thành phần lõi."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Kubernetes có các thành phần lõi như kube-apiserver, etcd, kube-scheduler, kube-controller-manager, kubelet và container runtime; kube-proxy là thành phần tùy chọn.",
+      "source": "https://kubernetes.io/docs/concepts/overview/components/"
+    },
+    {
+      "claim_vi": "Helm là trình quản lý gói cho Kubernetes, một dự án riêng.",
+      "source": "https://helm.sh/docs/"
+    }
+  ],
+  "source_deviations": [
+    "Nguồn chỉ giới thiệu bảng ảnh; bài đưa cách đọc bốn loại: thành phần lõi, thành phần tùy chọn, đối tượng API và dự án hệ sinh thái."
+  ],
+  "design_notes_vi": "Bốn thẻ dọc xếp từ lõi ra ngoài.",
+  "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Tiêu đề hiển thị của bài là dòng đầu của lesson.md; title_vi giữ bản dịch tiêu đề nguồn theo source-map. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
+}

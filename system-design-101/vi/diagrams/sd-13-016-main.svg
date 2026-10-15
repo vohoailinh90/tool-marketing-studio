@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1138" width="320" height="1138" role="img" aria-labelledby="title desc">
+<title id="title">Tìm đúng Pod trong cụm lớn: selector và cách in kết quả của kubectl</title>
+<desc id="desc">Năm cách thu hẹp danh sách Pod khi cụm có hàng trăm Pod: chọn phạm vi bằng -n cho một namespace hoặc -A cho mọi namespace, chọn theo nhãn bằng -l, chọn theo trường bằng --field-selector với các trường mà loại tài nguyên hỗ trợ, chọn thông tin in ra bằng -o wide, custom-columns hoặc jsonpath, và sắp thứ tự bằng --sort-by.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1138" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">TÌM ĐÚNG POD</text>
+<text x="16" y="58" font-size="16" font-weight="normal">Từ cả cụm xuống vài Pod</text>
+<rect x="16" y="89" width="288" height="155" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="117" font-size="16" font-weight="bold">1 · Phạm vi</text>
+<text x="30" y="144" font-size="16" font-weight="normal">-n shop chọn một namespace,</text>
+<text x="30" y="171" font-size="16" font-weight="normal">-A chọn mọi namespace</text>
+<text x="30" y="198" font-size="16" font-weight="normal">Mặc định chỉ namespace hiện</text>
+<text x="30" y="225" font-size="16" font-weight="normal">tại</text>
+<line x1="160" y1="256" x2="160" y2="284" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="294" width="288" height="155" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="322" font-size="16" font-weight="bold">2 · Nhãn</text>
+<text x="30" y="349" font-size="16" font-weight="normal">-l app=web chọn Pod theo</text>
+<text x="30" y="376" font-size="16" font-weight="normal">nhãn</text>
+<text x="30" y="403" font-size="16" font-weight="normal">Dấu phẩy nối điều kiện: tất</text>
+<text x="30" y="430" font-size="16" font-weight="normal">cả phải đúng</text>
+<line x1="160" y1="461" x2="160" y2="489" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="499" width="288" height="155" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="527" font-size="16" font-weight="bold">3 · Trường</text>
+<text x="30" y="554" font-size="16" font-weight="normal">--field-selector</text>
+<text x="30" y="581" font-size="16" font-weight="normal">status.phase=Pending</text>
+<text x="30" y="608" font-size="16" font-weight="normal">Mỗi loại tài nguyên chỉ hỗ</text>
+<text x="30" y="635" font-size="16" font-weight="normal">trợ một số trường</text>
+<line x1="160" y1="666" x2="160" y2="694" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="704" width="288" height="182" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="732" font-size="16" font-weight="bold">4 · Thông tin in ra</text>
+<text x="30" y="759" font-size="16" font-weight="normal">-o wide thêm node và IP</text>
+<text x="30" y="786" font-size="16" font-weight="normal">(địa chỉ mạng)</text>
+<text x="30" y="813" font-size="16" font-weight="normal">custom-columns hoặc</text>
+<text x="30" y="840" font-size="16" font-weight="normal">jsonpath trích đúng trường,</text>
+<text x="30" y="867" font-size="16" font-weight="normal">ví dụ image</text>
+<line x1="160" y1="898" x2="160" y2="926" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="936" width="288" height="182" rx="10" fill="#fee2e2" stroke="#94a3b8"/>
+<text x="30" y="964" font-size="16" font-weight="bold">5 · Thứ tự</text>
+<text x="30" y="991" font-size="16" font-weight="normal">--sort-by sắp theo một</text>
+<text x="30" y="1018" font-size="16" font-weight="normal">trường, ví dụ số lần khởi</text>
+<text x="30" y="1045" font-size="16" font-weight="normal">động lại</text>
+<text x="30" y="1072" font-size="16" font-weight="normal">Tăng dần: số lớn nhất nằm</text>
+<text x="30" y="1099" font-size="16" font-weight="normal">cuối</text>
+</g></svg>

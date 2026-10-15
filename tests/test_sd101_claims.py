@@ -770,6 +770,13 @@ class ClaimTests(Sessions):
         self.run_in(a, "release", "sd-01-005", "--publish")
         self.assertEqual(0, self.run_in(c, "claim", "sd-01-005")[0], "nor is anyone else kept off the other half")
 
+    def test_a_live_half_taken_on_purpose_does_not_block_the_other_half(self) -> None:
+        a, b = self.session("a"), self.session("b")
+        self.assertEqual(0, self.run_in(a, "claim", "sd-01-005", "--allow-same-source", "--publish")[0], "shared before the partner is taken")
+        _, out, _ = self.run_in(b, "next", "--group", "sd-02")
+        self.assertIn("sd-02-001", out.split(), "the other half is offered")
+        self.assertEqual(0, self.run_in(b, "claim", "sd-02-001", "--publish")[0], "no override needed: a agreed to share")
+
     def test_a_claim_loses_when_its_shared_source_partner_turns_out_to_be_written(self) -> None:
         a, b = self.session("a"), self.session("b")
         self.run_in(b, "claim", "sd-02-001")  # b's claim is not visible yet

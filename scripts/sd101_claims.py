@@ -487,7 +487,7 @@ def refusal(lesson_id: str, found: dict[str, list[Holding]], source: Source, me:
                 if holding.status == "written" and holding.owner != me and not holding.shared:  # finished, by someone else or before the registry
                     return (f"shares its source file with {partner}, which {holding.who()} already wrote "
                             f"({holding.where}); pass --allow-same-source only if the two lessons are meant to differ"), []
-                if holding.status == "doing" and holding.owner != me and not is_stale(holding, now, lease):
+                if holding.status == "doing" and holding.owner != me and not holding.shared and not is_stale(holding, now, lease):
                     return (f"shares its source file with {partner}, which {holding.owner} is writing "
                             f"({holding.where}); ask that session to cover both, or pass --allow-same-source"), []
     return None, taken

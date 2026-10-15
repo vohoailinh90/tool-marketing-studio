@@ -468,3 +468,7 @@ mutations:
   find: '        arrived = lesson_id in on_disk and (lesson_id not in lessons or lessons[lesson_id].get("status") == "todo")'
   replace: '        arrived = False'
   test: tests.test_sd101_claims.ClaimTests.test_sync_imports_a_todo_row_whose_lesson_arrived_on_disk_with_a_merge
+- label: a live half taken on purpose still blocks the other half at claim time
+  find: "holding.owner != me and not holding.shared and not is_stale(holding, now, lease):\n                    return (f\"shares its source file with {partner}, which {holding.owner} is writing \""
+  replace: "holding.owner != me and not is_stale(holding, now, lease):\n                    return (f\"shares its source file with {partner}, which {holding.owner} is writing \""
+  test: tests.test_sd101_claims.ClaimTests.test_a_live_half_taken_on_purpose_does_not_block_the_other_half

@@ -54,6 +54,7 @@ Mỗi bài chỉ có một nội dung ở `lessons/<id>/lesson.md`. Trạng thá
 - Đã có review trên SHA cũ không đồng nghĩa review tổ hợp với main mới; lưu evidence cũ và chờ review mới.
 - Chưa thử người học thì không ghi đã thử hoặc đã được phê duyệt phát hành. Viết nháp tiếp không bị chặn.
 - `progress.json` là điều phối công việc (PR đang mở, ID kế tiếp), không thay metadata làm nguồn quyết định.
+- `claims.jsonl` (từ 2026-10-15) ghi phiên nào đang viết bài nào để các phiên song song không viết trùng; nhận bài trước khi viết, ghi xong khi xong. Nó không thay `content_status` trong metadata.
 - Evidence ảnh nguồn chỉ ghi khi thực sự dùng ảnh nguồn để kiểm chứng; không lưu ảnh nguồn vào repo.
 
 ## Phản biện kỹ thuật dựa trên tiêu chuẩn

@@ -18,3 +18,7 @@ Trạng thái từng bài và bằng chứng kiểm chứng (claim, review kỹ 
 ## Đợt sd-14-013..015 (2026-10-14): Bảo mật
 
 Theo yêu cầu người dùng, viết tiếp ba bài của nhóm Bảo mật (sd-14-013 tường lửa, sd-14-014 bốn cơ chế xác thực, sd-14-015 chữ ký số) trên nhánh claude/sd101-sd14-batch5. Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Thân ba bài nguồn đã đọc tại snapshot ghim và blob SHA khớp. Hành vi nêu trong bài được chạy thử (nftables, OpenSSH dựng từ mã nguồn ghim, Python ssl, git, thư viện cryptography); kết quả và giới hạn ghi ở `metadata/sd-14-013.json` đến `sd-14-015.json`.
+
+## Điều phối nhiều phiên (2026-10-15)
+
+Nhiều phiên Claude viết bài cùng lúc, nên `claims.jsonl` ghi từng trong 404 vị trí là chưa ai nhận, đang có phiên viết hay đã viết xong. Phiên nào cũng phải nhận bài trước khi viết và ghi xong khi viết xong (`scripts/sd101_claims.py`, quy trình ở `docs/sd101-claims.md`). Lúc tạo, 68 bài đã có trên disk được ghi là đã viết, không ghi chủ hay ngày vì không ai ghi lại; 336 bài còn lại chưa ai nhận. `next_id` trong `progress.json` chỉ là bài đầu tiên chưa viết, không phải lệnh nhận bài.

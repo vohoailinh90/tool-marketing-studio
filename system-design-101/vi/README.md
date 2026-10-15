@@ -107,6 +107,10 @@ Không cần đọc phần nâng cao để nắm ý chính. Các sơ đồ đư�
 - `diagrams/<id>-main.svg`: hình chính, có mô tả văn bản trong SVG và alt text trong bài.
 - `metadata/<id>.json`: trạng thái bài, nguồn ghim phiên bản, claim và kiểm chứng.
 - `progress.json`: bài đã viết và ID sẽ viết tiếp; cập nhật sau mỗi đợt.
+- `claims.jsonl`: ai đang viết bài nào (`todo` chưa ai nhận, `doing` đang viết, `written` đã viết xong).
+  Phiên viết bài phải nhận bài bằng `python3 scripts/sd101_claims.py claim` **trước khi viết** và ghi xong bằng `finish`,
+  để hai phiên không viết cùng một bài; không lấy bài theo `next_id`. Quy trình: [docs/sd101-claims.md](../../docs/sd101-claims.md).
+  `written` chỉ nói bài đã được viết và bàn giao; bài đã review hay chưa vẫn ghi ở `metadata/`.
 
 Trạng thái nội dung: `draft → review → done`. Kiểm chứng nguồn, review kỹ thuật,
 kiểm tra hình mobile và thử với người học được ghi riêng. `done` cần review kỹ thuật

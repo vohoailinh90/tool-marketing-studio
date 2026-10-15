@@ -73,12 +73,12 @@ DEFAULT_LEASE_HOURS = 72
 CLOCK_SKEW_HOURS = 1  # a heartbeat further ahead of the observing clock than this is not proof of life
 STATUSES = ("todo", "doing", "written")
 KEY_ORDER = ("id", "status", "title", "owner", "session", "taken_from", "generation", "shared_source", "claimed_at",
-             "heartbeat_at", "done_at", "pr")
+             "heartbeat_at", "done_at", "pr", "adopted_from")
 HEADER_KEYS = ("schema_version", "lease_hours", "source_repository", "source_commit_sha")
 FIELDS_BY_STATUS = {
     "todo": set(),
     "doing": {"owner", "session", "taken_from", "generation", "shared_source", "claimed_at", "heartbeat_at"},
-    "written": {"owner", "session", "done_at", "pr", "shared_source"},
+    "written": {"owner", "session", "done_at", "pr", "shared_source", "adopted_from"},
 }
 STAMP = re.compile(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z")
 LESSON_ID = re.compile(r"sd-\d{2}-\d{3}")
@@ -213,6 +213,9 @@ def entry_problems(entry: dict) -> list[str]:
     if "taken_from" in entry and not (isinstance(entry["taken_from"], list) and entry["taken_from"]
                                       and all(_text(owner) for owner in entry["taken_from"])):
         problems.append("taken_from must be a list of the owners whose stale claim was taken over")
+    if "adopted_from" in entry and not (isinstance(entry["adopted_from"], list) and entry["adopted_from"]
+                                        and all(_text(owner) for owner in entry["adopted_from"])):
+        problems.append("adopted_from must be a list of the owners whose written record this branch adopted")
     if "generation" in entry and not _count(entry["generation"]):
         problems.append("generation must be a whole number, 1 or more: the takeovers this claim stands on")
     for key in ("claimed_at", "heartbeat_at", "done_at"):
@@ -740,6 +743,7 @@ def cmd_sync(context: Context, _: argparse.Namespace) -> int:
                     if (mine.get("owner") == context.me and mine.get("status") in ("doing", "written")
                             and not mine.get("shared_source") and not entry.get("shared_source")):
                         clashes.append(f"{lesson_id} (written by {entry.get('owner')}) shares its source file with {partner}, which {context.me} holds")
+                entry["adopted_from"] = [*(entry.get("adopted_from") or []), entry["owner"]]  # the original stays identifiable
                 entry["owner"] = context.me
                 adopted.append(lesson_id)
                 imported.append(lesson_id)  # the same file and content checks as for any lesson that becomes written here
@@ -1073,11 +1077,11 @@ def overtaken_writes(context: Context, header: dict, lessons: dict[str, dict]) -
         shared = lessons[lesson_id].get("shared_source") is True  # finish keeps the override on the written record
         stand_in = (with_changes(published, shared=published.shared or shared) if published
                     else Holding(lesson_id, "doing", context.me, None, None, (), LOCAL, shared))  # a claim nobody saw loses to a live one
-        finished_at = lessons[lesson_id].get("done_at")
-        # Only this record itself and its adoption copies (the same record under another owner, so the same done_at) are no
-        # rivals; another session's written record of the lesson, finished at another time, is.
+        finished_at, adopted_from = lessons[lesson_id].get("done_at"), lessons[lesson_id].get("adopted_from") or []
+        # Only this record itself and the records it was adopted from (`sync` names their owners and keeps their done_at)
+        # are no rivals; any other session's written record of the lesson is, whenever it was finished.
         others = {**found, lesson_id: [h for h in holdings if not (h.status == "written" and (
-            h.where == LOCAL or (finished_at is not None and h.done_at == finished_at)))]}
+            h.where == LOCAL or (h.owner in adopted_from and finished_at is not None and h.done_at == finished_at)))]}
         if reason := lost_reason(stand_in, others, context.me, context.now, lease, context.source.partners.get(lesson_id, ()),
                                  True):  # a stale or absent claim loses on its own
             out[lesson_id] = reason
@@ -1269,6 +1273,7 @@ def cmd_touch(context: Context, args: argparse.Namespace) -> int:
     write_registry(context, header, lessons)
     if args.publish:
         publish(context, args.message or f"System Design vi: heartbeat for {', '.join(ids)}")
+        results = verdicts(context, header, lessons, ids)  # a rival may have pushed while the renewal went up
     return report_verdicts(results, context)
 
 

@@ -702,6 +702,7 @@ class ClaimTests(Sessions):
         code, _, err = self.run_mapped(b, "sync")
         self.assertEqual(0, code, err)
         self.assertEqual("claude/b", self.entry(b, "sd-01-001")["owner"])
+        self.assertEqual(["claude/a"], self.entry(b, "sd-01-001")["adopted_from"], "the original stays identifiable")
         self.assertIn("sd-01-001 came from another work branch", err)
         git(b, "add", "-A")
         git(b, "commit", "--quiet", "-m", "adopted")
@@ -1315,6 +1316,43 @@ class LeaseTests(Sessions):
         self.assertEqual(1, code, err)
         self.assertIn("sd-01-001 is finished here but already written by claude/b", err)
         self.assertEqual(pushed, git(self.tmp, "--git-dir", str(self.origin), "rev-parse", "claude/a"))
+
+    def test_a_rival_that_finished_in_the_same_second_is_still_a_rival(self) -> None:
+        a, b = self.session("a"), self.session("b")
+        self.run_in(a, "claim", "sd-01-001", "--publish")
+        self.write_lesson(a, "sd-01-001")
+        self.assertEqual(0, self.run_in(a, "finish", "sd-01-001")[0])
+        git(a, "add", "-A")
+        git(a, "commit", "--quiet", "-m", "the lesson with its registry record")
+        self.assertEqual(0, self.run_in(b, "--offline", "claim", "sd-01-001")[0])  # b never saw a's claim
+        self.write_lesson(b, "sd-01-001")
+        self.assertEqual(0, self.run_in(b, "--offline", "finish", "sd-01-001")[0])  # in the very second a finished
+        self.assertEqual(self.entry(a, "sd-01-001")["done_at"], self.entry(b, "sd-01-001")["done_at"])
+        git(b, "add", "-A")
+        git(b, "commit", "--quiet", "-m", "b's lesson")
+        git(b, "push", "--quiet", "origin", "claude/b")
+        code, _, err = self.run_in(a, "claim", "sd-01-002", "--publish")
+        self.assertEqual(1, code, err)
+        self.assertIn("sd-01-001 is finished here but already written by claude/b", err)
+
+    def test_touch_publish_reports_a_takeover_that_arrived_while_the_renewal_went_up(self) -> None:
+        a, b = self.session("a"), self.session("b")
+        self.run_in(a, "claim", "sd-01-001", "--publish")
+        self.at(hours=73)  # a's published claim is stale, so b may take the lesson
+        real, calls = claims.guard_publish, []
+
+        def racing(context: claims.Context) -> None:
+            real(context)  # a's last look at the remote
+            if context.branch == "claude/a":
+                calls.append(1)
+                if len(calls) == 2:  # the heartbeat publication: b takes the lesson just after a looked
+                    self.assertEqual(0, self.run_in(b, "claim", "sd-01-001", "--take-stale", "--publish")[0])
+
+        with mock.patch.object(claims, "guard_publish", racing):
+            code, _, err = self.run_in(a, "touch", "--publish")
+        self.assertEqual(2, len(calls))
+        self.assertEqual(1, code, err)
+        self.assertIn("lost to claude/b", err)
 
     def test_a_finished_lesson_nobody_took_over_is_pushed_even_when_the_claim_went_stale(self) -> None:
         a = self.session("a")
@@ -1934,6 +1972,7 @@ class FormatTests(unittest.TestCase):
             "generation": (self.text(taken_from=["claude/b"], generation=0), "generation must be a whole number"),
             "generation flag": (self.text(taken_from=["claude/b"], generation=True), "generation must be a whole number"),
             "generation of another status": (self.text(status="written", generation=1), "generation is not allowed"),
+            "adopted_from": (self.text(status="written", adopted_from="claude/a"), "adopted_from must be a list"),
             "repository": (self.text().replace('"source_repository": "r/r"', '"source_repository": "x/y"'),
                            "source_repository is 'x/y'"),
             "repository missing": (self.text().replace('"source_repository": "r/r", ', ""), "source_repository is None"),

@@ -21,7 +21,8 @@ python3 scripts/sd101_claims.py release sd-14-018 --publish   # give a lesson ba
 ```
 
 `--publish` commits only `claims.jsonl` and pushes your own branch (any other commit of yours that was not
-pushed yet goes with it), which is what makes the claim visible to the others. A claim that is not pushed protects nothing. If `claim` or `verify` says you lost, stop
+pushed yet goes with it), which is what makes the claim visible to the others. A claim that is not pushed protects nothing. `verify`, `touch` and `finish` therefore fail (exit 1) while a claim exists only in your working tree,
+and `verify` or `touch` with named ids fail unless every id is one of your claims. If `claim` or `verify` says you lost, stop
 work on that lesson, release it and take another; do not push the draft.
 
 A claim refused because the remote could not be read (exit 2) is not a refusal to argue with: fix the

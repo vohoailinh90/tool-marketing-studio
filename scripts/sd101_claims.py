@@ -84,6 +84,14 @@ class ClaimsError(Exception):
     """The repository, the remote or the registry could not be read (exit status 2)."""
 
 
+class Refusal(Exception):
+    """The command asked for something the registry does not allow (exit status 1)."""
+
+
+LOCAL = "this working tree"
+UNPUBLISHED = "your claim is not on "
+
+
 # --------------------------------------------------------------------------------------------- time
 
 def utcnow() -> datetime.datetime:
@@ -383,7 +391,7 @@ def gather(local: dict[str, dict], remote: dict[str, str], base: str, me: str, o
 
     for entry in local.values():
         if offline or entry.get("owner") == me or entry.get("status") == "written":
-            add(entry, "this working tree")
+            add(entry, LOCAL)
     for branch, text in remote.items():
         _, lessons, problems = parse(text)
         problems += record_problems(lessons)  # a typo in a status would otherwise hide the claim it sits in
@@ -649,9 +657,16 @@ def publish(context: Context, message: str) -> None:
     raise ClaimsError(f"the push failed: {pushed.stderr.decode('utf-8', 'replace').strip()}")
 
 
-def my_claims(lessons: dict[str, dict], me: str, ids: list[str] | None) -> list[str]:
-    owned = [lesson_id for lesson_id, entry in lessons.items() if entry.get("status") == "doing" and entry.get("owner") == me]
-    return [lesson_id for lesson_id in owned if not ids or lesson_id in ids]
+def my_claims(context: Context, lessons: dict[str, dict], ids: list[str]) -> list[str]:
+    """The claims in progress of this session; ids named on the command line must each be one of them."""
+    owned = [lesson_id for lesson_id, entry in lessons.items()
+             if entry.get("status") == "doing" and entry.get("owner") == context.me]
+    if not ids:
+        return owned
+    check_ids(context, lessons, ids)
+    if foreign := [lesson_id for lesson_id in dict.fromkeys(ids) if lesson_id not in owned]:
+        raise Refusal(f"{', '.join(foreign)}: not claimed by {context.me}")
+    return list(dict.fromkeys(ids))
 
 
 def check_ids(context: Context, lessons: dict[str, dict], ids: list[str]) -> None:
@@ -662,12 +677,22 @@ def check_ids(context: Context, lessons: dict[str, dict], ids: list[str]) -> Non
 
 
 def verdicts(context: Context, header: dict, lessons: dict[str, dict], ids: list[str]) -> dict[str, str | None]:
+    """Per claim, why it is not (or not safely) held, or None. Online, a claim that exists only in this working tree
+    is not held: no other session can see it, so none of them would respect it."""
     found, _ = world_of(context, lessons)
     lease = lease_of(header)
+    published = {holding.lesson_id for holdings in found.values() for holding in holdings
+                 if holding.owner == context.me and holding.status == "doing" and holding.where != LOCAL}
     out: dict[str, str | None] = {}
     for lesson_id in ids:
-        mine = _holding(lessons[lesson_id], "this working tree")
-        out[lesson_id] = lost_reason(mine, found, context.me, context.now, lease) if mine else "is not claimed by you"
+        mine = _holding(lessons[lesson_id], LOCAL)
+        if mine is None:
+            out[lesson_id] = "is not claimed by you"
+            continue
+        out[lesson_id] = lost_reason(mine, found, context.me, context.now, lease)
+        if out[lesson_id] is None and not context.offline and lesson_id not in published:
+            out[lesson_id] = (f"{UNPUBLISHED}{context.remote}/{context.branch} yet; push it (git push -u {context.remote} "
+                              f"{context.branch}) so the other sessions can see it")
     return out
 
 
@@ -722,7 +747,8 @@ def cmd_claim(context: Context, args: argparse.Namespace) -> int:
 
 
 def report_verdicts(results: dict[str, str | None], context: Context) -> int:
-    lost = {lesson_id: reason for lesson_id, reason in results.items() if reason}
+    unpublished = [lesson_id for lesson_id, reason in results.items() if reason and reason.startswith(UNPUBLISHED)]
+    lost = [lesson_id for lesson_id, reason in results.items() if reason and lesson_id not in unpublished]
     for lesson_id, reason in results.items():
         if reason is None:
             print(f"  {lesson_id}: yours")
@@ -731,13 +757,12 @@ def report_verdicts(results: dict[str, str | None], context: Context) -> int:
     if lost:
         print(f"Stop work on {', '.join(lost)} and release it: python3 scripts/sd101_claims.py release "
               f"{' '.join(lost)} --publish", file=sys.stderr)
-        return 1
-    return 0
+    return 1 if lost or unpublished else 0
 
 
 def cmd_verify(context: Context, args: argparse.Namespace) -> int:
     header, lessons = load_registry(context)
-    ids = my_claims(lessons, context.me, args.ids)
+    ids = my_claims(context, lessons, args.ids)
     if not ids:
         print(f"verify: {context.me} has no claim in progress")
         return 0
@@ -748,10 +773,12 @@ def cmd_touch(context: Context, args: argparse.Namespace) -> int:
     if args.publish:
         check_publishable(context)
     header, lessons = load_registry(context)
-    ids = my_claims(lessons, context.me, args.ids)
+    ids = my_claims(context, lessons, args.ids)
     if not ids:
         print(f"touch: {context.me} has no claim in progress")
         return 0
+    if args.publish:
+        publish(context, args.message or f"System Design vi: publish the claim of {', '.join(ids)}")  # a forgotten push first
     results = verdicts(context, header, lessons, ids)
     for lesson_id in ids:
         if results[lesson_id] is None:
@@ -883,6 +910,9 @@ def main(argv: list[str] | None = None) -> int:
         context = Context(root, store, load_source(args.source_map), me, args.session, args.remote, args.offline, utcnow(),
                           branch, bool(args.owner), args.ignore_unreadable)
         return args.handler(context, args)
+    except Refusal as error:
+        print(f"sd101_claims: {error}", file=sys.stderr)
+        return 1
     except ClaimsError as error:
         print(f"sd101_claims: {error}", file=sys.stderr)
         return 2

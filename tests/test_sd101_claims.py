@@ -444,6 +444,45 @@ class SyncTests(Sessions):
         self.assertEqual("claude/a", lessons["sd-01-001"]["owner"])
 
 
+class VerifyTests(Sessions):
+    def test_a_claim_that_exists_only_in_the_working_tree_is_not_held(self) -> None:
+        a = self.session("a")
+        self.run_in(a, "claim", "sd-01-001")  # the documented push was forgotten
+        for command in (("verify",), ("touch",)):
+            with self.subTest(command[0]):
+                code, _, err = self.run_in(a, *command)
+                self.assertEqual(1, code)
+                self.assertIn("your claim is not on origin/claude/a yet", err)
+                self.assertNotIn("Stop work", err, "the remedy is to push, not to release")
+        self.assertEqual("2026-10-15T08:00:00Z", self.entry(a, "sd-01-001")["heartbeat_at"])
+        self.write_lesson(a, "sd-01-001")
+        self.assertEqual(1, self.run_in(a, "finish", "sd-01-001")[0])
+        self.assertEqual("doing", self.entry(a, "sd-01-001")["status"])
+        self.assertEqual(0, self.run_in(a, "--offline", "verify")[0], "offline there is no remote to ask")
+        git(a, "add", REGISTRY)
+        git(a, "commit", "--quiet", "-m", "claim")
+        git(a, "push", "--quiet", "-u", "origin", "claude/a")
+        self.assertEqual(0, self.run_in(a, "verify")[0], "pushed: the other sessions can see it")
+
+    def test_touch_publish_pushes_a_forgotten_claim_before_judging_it(self) -> None:
+        a, b = self.session("a"), self.session("b")
+        self.run_in(a, "claim", "sd-01-001")
+        self.assertEqual(0, self.run_in(a, "touch", "--publish")[0])
+        self.assertEqual(1, self.run_in(b, "claim", "sd-01-001")[0])
+
+    def test_ids_named_to_verify_or_touch_must_all_be_claims_of_the_caller(self) -> None:
+        a = self.session("a")
+        self.run_in(a, "claim", "sd-01-001", "--publish")
+        for command in ("verify", "touch"):
+            with self.subTest(command):
+                code, _, err = self.run_in(a, command, "sd-01-002")
+                self.assertEqual((1, True), (code, "sd-01-002: not claimed by claude/a" in err))
+                code, _, err = self.run_in(a, command, "sd-01-001", "sd-01-002")
+                self.assertEqual(1, code, "one foreign id fails the whole command")
+                self.assertEqual(2, self.run_in(a, command, "banana")[0])
+                self.assertEqual(0, self.run_in(a, command, "sd-01-001")[0])
+
+
 class MergeTests(Sessions):
     def test_sessions_that_claim_neighbouring_lessons_merge_without_a_conflict(self) -> None:
         a, b = self.session("a"), self.session("b")
@@ -485,7 +524,7 @@ class FinishAndReleaseTests(Sessions):
 
     def test_finish_refuses_a_pull_request_number_that_is_not_one(self) -> None:
         a = self.session("a")
-        self.run_in(a, "claim", "sd-01-001")
+        self.run_in(a, "claim", "sd-01-001", "--publish")
         self.write_lesson(a, "sd-01-001")
         before = (a / REGISTRY).read_text(encoding="utf-8")
         for bad in ("-1", "0", "x", "1.5"):

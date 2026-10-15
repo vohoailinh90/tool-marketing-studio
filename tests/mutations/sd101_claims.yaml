@@ -145,3 +145,17 @@ mutations:
   find: "            lessons[lesson_id][\"title\"] = title\n            retitled += 1"
   replace: '            retitled += 1'
   test: tests.test_sd101_claims.SyncTests.test_sync_follows_a_repinned_and_retitled_source_map_and_keeps_every_claim
+- label: a claim that only the working tree has counts as held
+  find: 'if out[lesson_id] is None and not context.offline and lesson_id not in published:'
+  replace: 'if False:'
+  test: tests.test_sd101_claims.VerifyTests.test_a_claim_that_exists_only_in_the_working_tree_is_not_held
+- label: verify and touch ignore named ids that are not claims of the caller
+  find: '    if foreign := [lesson_id for lesson_id in dict.fromkeys(ids) if lesson_id not in owned]:'
+  replace: '    if False:'
+  test: tests.test_sd101_claims.VerifyTests.test_ids_named_to_verify_or_touch_must_all_be_claims_of_the_caller
+- label: touch --publish no longer pushes a forgotten claim first
+  find: '        publish(context, args.message or f"System Design vi: publish the claim of {'', ''.join(ids)}")  # a forgotten push first
+
+    '
+  replace: ''
+  test: tests.test_sd101_claims.VerifyTests.test_touch_publish_pushes_a_forgotten_claim_before_judging_it

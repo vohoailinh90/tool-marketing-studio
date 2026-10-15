@@ -423,12 +423,15 @@ def beats(first: Holding, second: Holding) -> bool:
 
     Two sessions can each have taken the lesson over from the other, one after the other; the later takeover stands.
     It is the higher generation (each takeover counts one more than the claim it supersedes), never the later clock
-    time: a session whose clock ran ahead would otherwise outrank the takeover that legitimately replaced it.
+    time: a session whose clock ran ahead would otherwise outrank the takeover that legitimately replaced it. Two
+    takeovers of one generation are concurrent, and the smaller owner wins them: every observer reaches the same answer
+    and no clock has a say.
     """
     first_took, second_took = second.owner in first.taken_from, first.owner in second.taken_from
     if first_took and second_took:
-        return ((first.generation, first.claimed_at or "", first.owner or "")
-                > (second.generation, second.claimed_at or "", second.owner or ""))
+        if first.generation != second.generation:
+            return first.generation > second.generation
+        return (first.owner or "") < (second.owner or "")
     if first_took:
         return True
     if second_took:
@@ -1055,9 +1058,10 @@ def check_ids(context: Context, lessons: dict[str, dict], ids: list[str]) -> Non
 
 
 def identity(holding: Holding) -> tuple:
-    """What makes two records the same claim: the lesson, when it was claimed, whom it was taken from, and whether
-    the owner shares the source knowingly. The heartbeat is not part of it: it changes every time the claim is renewed."""
-    return holding.lesson_id, holding.claimed_at, holding.taken_from, holding.shared
+    """What makes two records the same claim: the lesson, when it was claimed, whom it was taken from, how many takeovers
+    it stands on, and whether the owner shares the source knowingly. The heartbeat is not part of it: it changes every
+    time the claim is renewed."""
+    return holding.lesson_id, holding.claimed_at, holding.taken_from, holding.generation, holding.shared
 
 
 def verdicts(context: Context, header: dict, lessons: dict[str, dict], ids: list[str],

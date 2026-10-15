@@ -192,7 +192,7 @@ mutations:
   replace: ':'
   test: tests.test_sd101_claims.LeaseTests.test_a_session_that_takes_back_a_lesson_it_once_held_starts_a_new_claim_that_wins
 - label: two takeovers of each other are both won by the earlier claim
-  find: "        return ((first.generation, first.claimed_at or \"\", first.owner or \"\")\n                > (second.generation, second.claimed_at or \"\", second.owner or \"\"))\n    if first_took:"
+  find: "        if first.generation != second.generation:\n            return first.generation > second.generation\n        return (first.owner or \"\") < (second.owner or \"\")\n    if first_took:"
   replace: "        return True\n    if first_took:"
   test: tests.test_sd101_claims.LeaseTests.test_a_session_that_takes_back_a_lesson_it_once_held_starts_a_new_claim_that_wins
 - label: claiming a held half again with --allow-same-source does not record the override
@@ -201,7 +201,7 @@ mutations:
   replace: ''
   test: tests.test_sd101_claims.ClaimTests.test_claiming_again_with_allow_same_source_is_the_way_to_keep_a_half_on_purpose
 - label: any published record of the lesson proves the local claim is published
-  find: '    return holding.lesson_id, holding.claimed_at, holding.taken_from, holding.shared'
+  find: '    return holding.lesson_id, holding.claimed_at, holding.taken_from, holding.generation, holding.shared'
   replace: '    return holding.lesson_id'
   test: tests.test_sd101_claims.ClaimTests.test_a_shared_source_override_that_is_not_published_does_not_count_as_held
 - label: a registry for another repository is accepted
@@ -504,14 +504,6 @@ mutations:
   find: '        if lesson_id in gone:  # a claim taken before the default branch dropped the lesson is not a claim on anything'
   replace: '        if False and lesson_id in gone:  # a claim taken before the default branch dropped the lesson is not a claim on anything'
   test: tests.test_sd101_claims.ClaimTests.test_a_claim_the_default_branch_dropped_is_not_held
-- label: the earlier clock time outranks the takeover count (left side)
-  find: '        return ((first.generation, first.claimed_at or "", first.owner or "")'
-  replace: '        return ((0, first.claimed_at or "", first.owner or "")'
-  test: tests.test_sd101_claims.LeaseTests.test_a_fast_clock_cannot_outrank_the_takeover_that_replaced_it
-- label: the earlier clock time outranks the takeover count (right side)
-  find: '                > (second.generation, second.claimed_at or "", second.owner or ""))'
-  replace: '                > (0, second.claimed_at or "", second.owner or ""))'
-  test: tests.test_sd101_claims.LeaseTests.test_a_fast_clock_cannot_outrank_the_takeover_that_replaced_it
 - label: a takeover does not count above the claim it replaces
   find: '            fresh["generation"] = 1 + max((h.generation for h in found.get(lesson_id, []) if h.status == "doing"), default=0)'
   replace: '            fresh["generation"] = 1'
@@ -528,3 +520,19 @@ mutations:
   find: '    if "generation" in entry and not _count(entry["generation"]):'
   replace: '    if False and "generation" in entry and not _count(entry["generation"]):'
   test: tests.test_sd101_claims.FormatTests.test_each_rule_reports_its_own_problem
+- label: the generation of two takeovers is ignored
+  find: "        if first.generation != second.generation:\n            return first.generation > second.generation"
+  replace: "        if False:\n            return first.generation > second.generation"
+  test: tests.test_sd101_claims.LeaseTests.test_a_fast_clock_cannot_outrank_the_takeover_that_replaced_it
+- label: a higher generation loses
+  find: '            return first.generation > second.generation'
+  replace: '            return first.generation < second.generation'
+  test: tests.test_sd101_claims.LeaseTests.test_a_fast_clock_cannot_outrank_the_takeover_that_replaced_it
+- label: equal generations are decided by the clock
+  find: "        return (first.owner or \"\") < (second.owner or \"\")\n    if first_took:"
+  replace: "        return (first.claimed_at or \"\", first.owner or \"\") > (second.claimed_at or \"\", second.owner or \"\")\n    if first_took:"
+  test: tests.test_sd101_claims.LeaseTests.test_concurrent_takeovers_are_decided_without_a_clock
+- label: the generation is not part of the identity of a claim
+  find: holding.taken_from, holding.generation, holding.shared
+  replace: holding.taken_from, holding.shared
+  test: tests.test_sd101_claims.LeaseTests.test_a_higher_generation_is_a_different_claim

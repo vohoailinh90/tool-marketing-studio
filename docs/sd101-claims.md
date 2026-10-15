@@ -80,7 +80,7 @@ A `doing` claim whose `heartbeat_at` is older than `lease_hours` (72) is stale. 
 anyone, but it is taken over on purpose: `claim <id> --take-stale`. The new entry records `taken_from`,
 every owner whose stale claim it superseded, chain included, which makes it win against each of them even
 if one wakes up and touches its heartbeat. A session that takes back a lesson it once held (because the session that took it from it let its
-published heartbeat expire) starts a new claim, so the later takeover is the one that stands. "Later" is counted, not timed: a takeover records `generation`, one more than the highest claim it superseded, and the higher generation wins between two claims that took the lesson from each other, so a session whose clock ran ahead cannot outrank the takeover that replaced it. Run
+published heartbeat expire) starts a new claim, so the later takeover is the one that stands. "Later" is counted, not timed: a takeover records `generation`, one more than the highest claim it superseded, and the higher generation wins between two claims that took the lesson from each other, so a session whose clock ran ahead cannot outrank the takeover that replaced it. Concurrent takeovers (equal generations) go to the smaller owner name, which every observer computes alike and no clock influences. Run
 `touch --publish` while you work so a slow session is not mistaken for a dead one. A heartbeat dated more than an hour ahead of the observing clock
 (a session whose clock is wrong) is not proof of life: it counts as expired, so it cannot block a lesson for days.
 

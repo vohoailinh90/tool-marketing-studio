@@ -1268,20 +1268,37 @@ class LeaseTests(Sessions):
         self.assertEqual(1, self.run_in(b, "verify")[0])
 
     def test_a_fast_clock_cannot_outrank_the_takeover_that_replaced_it(self) -> None:
+        # The later takeover is by the larger owner name, so the tie-break between equal generations would pick the wrong one.
         a, b = self.session("a"), self.session("b")
-        self.run_in(a, "claim", "sd-01-001", "--publish")
-        self.at(hours=78)  # b's clock runs five hours ahead: it is hour 73 for everybody else
-        self.assertEqual(0, self.run_in(b, "claim", "sd-01-001", "--take-stale", "--publish")[0])
-        self.at(hours=74)  # b's claim is dated four hours ahead, so it counts as expired and a takes the lesson back
+        self.run_in(b, "claim", "sd-01-001", "--publish")
+        self.at(hours=78)  # a's clock runs five hours ahead: it is hour 73 for everybody else
         self.assertEqual(0, self.run_in(a, "claim", "sd-01-001", "--take-stale", "--publish")[0])
-        self.assertEqual((["claude/a"], 1), (self.entry(b, "sd-01-001")["taken_from"], self.entry(b, "sd-01-001")["generation"]))
-        self.assertEqual((["claude/b"], 2), (self.entry(a, "sd-01-001")["taken_from"], self.entry(a, "sd-01-001")["generation"]))
-        self.at(hours=77.5)  # b's frozen heartbeat (hour 78) is within the allowed skew again: both claims look live
-        code, _, err = self.run_in(a, "verify")
-        self.assertEqual(0, code, "a's takeover is the later one, whatever b's clock said: " + err)
+        self.at(hours=74)  # a's claim is dated four hours ahead, so it counts as expired and b takes the lesson back
+        self.assertEqual(0, self.run_in(b, "claim", "sd-01-001", "--take-stale", "--publish")[0])
+        self.assertEqual((["claude/b"], 1), (self.entry(a, "sd-01-001")["taken_from"], self.entry(a, "sd-01-001")["generation"]))
+        self.assertEqual((["claude/a"], 2), (self.entry(b, "sd-01-001")["taken_from"], self.entry(b, "sd-01-001")["generation"]))
+        self.at(hours=77.5)  # a's frozen heartbeat (hour 78) is within the allowed skew again: both claims look live
         code, _, err = self.run_in(b, "verify")
+        self.assertEqual(0, code, "b's takeover is the later one, whatever a's clock said: " + err)
+        code, _, err = self.run_in(a, "verify")
         self.assertEqual(1, code)
-        self.assertIn("lost to claude/a", err)
+        self.assertIn("lost to claude/b", err)
+
+    def test_concurrent_takeovers_are_decided_without_a_clock(self) -> None:
+        def holding(owner: str, other: str, claimed_at: str, generation: int = 1) -> claims.Holding:
+            return claims.Holding("sd-01-001", "doing", owner, claimed_at, claimed_at, (other,), "origin/x", False, generation)
+        early, late = "2026-10-15T08:00:00Z", "2026-10-15T13:00:00Z"
+        for a_time, b_time in ((early, late), (late, early), (early, early)):
+            with self.subTest(a_time=a_time, b_time=b_time):
+                a, b = holding("claude/a", "claude/b", a_time), holding("claude/b", "claude/a", b_time)
+                self.assertEqual((True, False), (claims.beats(a, b), claims.beats(b, a)), "the smaller owner wins, whatever the times")
+
+    def test_a_higher_generation_is_a_different_claim(self) -> None:
+        def holding(generation: int) -> claims.Holding:
+            return claims.Holding("sd-01-001", "doing", "claude/a", "2026-10-15T08:00:00Z", "2026-10-15T08:00:00Z",
+                                  ("claude/b",), "origin/claude/a", False, generation)
+        self.assertEqual(claims.identity(holding(1)), claims.identity(holding(1)))
+        self.assertNotEqual(claims.identity(holding(1)), claims.identity(holding(2)), "published copies must not be confused")
 
     def test_touching_keeps_a_claim_alive(self) -> None:
         a, b = self.session("a"), self.session("b")

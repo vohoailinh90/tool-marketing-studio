@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 934" width="320" height="934" role="img" aria-labelledby="title desc">
+<title id="title">Ký yêu cầu API bằng khóa bí mật</title>
+<desc id="desc">Năm khung dọc: cấp khóa, mỗi client một mã ứng dụng và mỗi mức quyền như chỉ đọc hoặc đọc ghi một cặp mã truy cập với khóa bí mật; ký, thu thập tham số, dựng chuỗi cần ký, tính HMAC với SHA-256 bằng khóa bí mật rồi gửi yêu cầu kèm chữ ký, khóa bí mật không bao giờ được gửi; tham số của yêu cầu gồm thông tin xác thực, thời điểm, dữ liệu riêng của yêu cầu và nonce; máy chủ kiểm tra bằng cách tìm khóa bí mật theo mã truy cập, tính lại chữ ký, so sánh rồi kiểm tra thời điểm và nonce; chữ ký không làm thay mã hóa đường truyền, kiểm tra quyền theo tài nguyên và thu hồi khóa.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="934" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">KÝ YÊU CẦU API</text>
+<text x="16" y="56" font-size="20" font-weight="bold">BẰNG KHÓA BÍ MẬT</text>
+<text x="16" y="86" font-size="16" font-weight="normal">Khóa, chữ ký, tham số</text>
+<rect x="16" y="108" width="288" height="131" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="138" font-size="16" font-weight="bold">1 · Cấp khóa</text>
+<text x="30" y="165" font-size="16" font-weight="normal">Mỗi client một app ID</text>
+<text x="30" y="192" font-size="16" font-weight="normal">Mỗi mức quyền một cặp:</text>
+<text x="30" y="219" font-size="16" font-weight="normal">mã truy cập + khóa bí mật</text>
+<rect x="16" y="253" width="288" height="158" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="283" font-size="16" font-weight="bold">2 · Ký</text>
+<text x="30" y="310" font-size="16" font-weight="normal">Thu thập tham số</text>
+<text x="30" y="337" font-size="16" font-weight="normal">Dựng chuỗi cần ký</text>
+<text x="30" y="364" font-size="16" font-weight="normal">HMAC-SHA256 bằng khóa bí mật</text>
+<text x="30" y="391" font-size="16" font-weight="normal">Khóa bí mật không gửi đi</text>
+<rect x="16" y="425" width="288" height="131" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="455" font-size="16" font-weight="bold">3 · Tham số</text>
+<text x="30" y="482" font-size="16" font-weight="normal">Thông tin xác thực</text>
+<text x="30" y="509" font-size="16" font-weight="normal">Thời điểm và nonce</text>
+<text x="30" y="536" font-size="16" font-weight="normal">Dữ liệu riêng của yêu cầu</text>
+<rect x="16" y="570" width="288" height="131" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="600" font-size="16" font-weight="bold">4 · Máy chủ kiểm</text>
+<text x="30" y="627" font-size="16" font-weight="normal">Tìm khóa theo mã truy cập</text>
+<text x="30" y="654" font-size="16" font-weight="normal">Tính lại chữ ký, so sánh</text>
+<text x="30" y="681" font-size="16" font-weight="normal">Kiểm tra thời điểm, nonce</text>
+<rect x="16" y="715" width="288" height="131" rx="12" fill="#e2e8f0" stroke="#94a3b8"/>
+<text x="30" y="745" font-size="16" font-weight="bold">5 · Chữ ký chưa làm thay</text>
+<text x="30" y="772" font-size="16" font-weight="normal">Mã hóa đường truyền</text>
+<text x="30" y="799" font-size="16" font-weight="normal">Kiểm quyền theo tài nguyên</text>
+<text x="30" y="826" font-size="16" font-weight="normal">Thu hồi và thay khóa</text>
+<text x="16" y="888" font-size="16" font-weight="normal">Chữ ký chứng minh giữ khóa,</text>
+<text x="16" y="914" font-size="16" font-weight="normal">không chứng minh được phép.</text>
+</g></svg>

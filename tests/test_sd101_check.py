@@ -10,6 +10,7 @@ import io
 import json
 import os
 import re
+import shutil
 import sys
 import tempfile
 import unittest
@@ -2258,7 +2259,6 @@ class ClaimsRuleTests(StoreCase):
         self.write(self.registry(written=False))
         self.assertProblem("claims.jsonl: sd-01-001: lessons/sd-01-001/ exists, but the registry says todo")
         (self.store / "lessons" / "sd-01-001" / "lesson.md").unlink()
-        import shutil
         shutil.rmtree(self.store / "lessons" / "sd-01-001")
         (self.store / "metadata" / "sd-01-001.json").unlink()
         (self.store / "diagrams" / "sd-01-001-main.svg").unlink()

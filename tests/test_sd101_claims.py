@@ -234,7 +234,10 @@ class LeaseTests(Sessions):
         self.at(hours=50)
         self.assertEqual(0, self.run_in(a, "touch", "--publish")[0])
         self.at(hours=100)
-        self.assertEqual(1, self.run_in(b, "claim", "sd-01-001")[0])
+        code, _, err = self.run_in(b, "claim", "sd-01-001")
+        self.assertEqual(1, code)
+        self.assertIn("claimed by claude/a since", err)
+        self.assertNotIn("--take-stale", err, "50 hours after the heartbeat is inside the lease")
 
 
 class RemoteTests(Sessions):

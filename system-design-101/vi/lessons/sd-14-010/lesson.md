@@ -5,6 +5,17 @@ Bốn cách phổ biến: gửi lại tên và mật khẩu, mã session, token 
 
 ![Sáu thẻ xếp dọc. Thẻ đầu là câu hỏi chung: mỗi yêu cầu đi kèm gì để máy chủ biết đó là ai. Bốn cách. Basic: mỗi yêu cầu gửi lại tên và mật khẩu, mã hóa base64 nên ai cũng giải ngược được. Session cookie: máy chủ giữ dữ liệu, trình duyệt gửi lại một mã. Token ngẫu nhiên: cùng mô hình trạng thái với session, máy chủ vẫn tra cứu; khác ở chỗ client gắn mã vào tiêu đề thay vì cookie. JWT: token tự mang thông tin và chữ ký, kiểm tra được mà không cần tra máy chủ, nhưng nội dung đọc được và khó thu hồi trước hạn. Thẻ cuối là cái giá: càng ít trạng thái ở máy chủ thì càng khó thu hồi.](../../diagrams/sd-14-010-main.svg)
 
+## Từ viết tắt
+
+- **HTTP** (HyperText Transfer Protocol) — giao thức truyền siêu văn bản: quy ước để trình duyệt gửi yêu cầu và máy chủ gửi trả lời.
+- **JSON** (JavaScript Object Notation) — ký hiệu đối tượng JavaScript: định dạng văn bản gồm các cặp tên và giá trị, được dùng rất rộng rãi để các chương trình trao đổi dữ liệu với nhau.
+- **JWT** (JSON Web Token) — token web: chuỗi tự mang thông tin người dùng và có chữ ký, để máy chủ kiểm mà không cần tra bảng.
+- **MDN** (Mozilla Developer Network) — tên cũ của MDN Web Docs, bộ tài liệu tra cứu công nghệ web do Mozilla và cộng đồng viết; bài dùng nó để đối chiếu.
+- **HTTPS** (HyperText Transfer Protocol Secure) — HTTP được mã hóa: cùng cách gửi yêu cầu và trả lời như HTTP nhưng nội dung được giữ kín trên đường đi.
+- **SSO** (Single Sign-On) — đăng nhập một lần: đăng nhập một lần rồi dùng được nhiều ứng dụng.
+- **OAuth** (Open AUTHorization) — chuẩn ủy quyền mở: cho một ứng dụng được làm một số việc thay bạn mà không biết mật khẩu của bạn.
+- **OWASP** (Open Worldwide Application Security Project) — tổ chức cộng đồng chuyên về bảo mật ứng dụng, có các hướng dẫn mà bài dùng để đối chiếu.
+
 ## Đọc hình
 
 **Basic.** Trình duyệt hỏi tên và mật khẩu rồi gửi lại trong tiêu đề `Authorization` ở mọi yêu cầu. Khi chạy thử, máy chủ trả 401 kèm `WWW-Authenticate: Basic`, và hai yêu cầu liên tiếp mang cùng một tiêu đề. Phần sau “Basic” chỉ là base64, giải ngược được mà không cần khóa; MDN nhấn mạnh Basic gửi thông tin đăng nhập ở dạng mã hóa ký tự chứ không phải mã hóa bảo mật, nên chỉ nên dùng qua HTTPS.

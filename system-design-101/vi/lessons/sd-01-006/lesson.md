@@ -11,6 +11,11 @@ Gửi một ghi chú dạng văn bản, nhận kết quả dạng JSON: headers 
 
 Hình là ví dụ HTTP/1.1; một số giá trị được xuống dòng để dễ đọc trên điện thoại, không phải bản sao bytes trên mạng.
 
+## Từ viết tắt
+
+- **HTTP** (HyperText Transfer Protocol) — giao thức truyền siêu văn bản: mỗi yêu cầu và mỗi câu trả lời gồm dòng đầu, headers (thông tin kèm theo) và body (nội dung).
+- **JSON** (JavaScript Object Notation) — ký hiệu đối tượng JavaScript: định dạng văn bản biểu diễn dữ liệu bằng các cặp tên và giá trị, dễ đọc với cả người và máy.
+
 ## Nhìn hình thử trả lời
 
 Request có `Accept: application/json`. Body của request là JSON hay văn bản? Trường nào cho biết?

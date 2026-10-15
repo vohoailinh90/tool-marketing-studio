@@ -4,6 +4,18 @@
 
 ![Năm khung dọc: bộ cân bằng tải tầng kết nối chia theo địa chỉ IP, cổng và kết nối mà không đọc nội dung HTTP; bộ cân bằng tải tầng HTTP đọc host, đường dẫn và header để định tuyến phong phú hơn; API gateway lo xác thực, giới hạn tốc độ và cache như một cửa chung cho nhiều API; cách A là bộ cân bằng tải tầng HTTP tới thẳng các dịch vụ, mỗi dịch vụ tự lo xác thực nên linh hoạt nhưng lặp việc; cách B là qua API gateway lo việc chung nên dịch vụ nhẹ hơn nhưng thêm một chặng và kém linh hoạt. Dịch vụ nhỏ thường chỉ cần một bộ cân bằng tải.](../../diagrams/sd-01-018-main.svg)
 
+## Từ viết tắt
+
+- **LB** (Load Balancer) — bộ cân bằng tải: máy hoặc phần mềm chia lưu lượng cho nhiều bản sao của cùng một dịch vụ.
+- **ALB** (Application Load Balancer) — bộ cân bằng tải ứng dụng: bộ cân bằng tải tầng HTTP của AWS, đọc host, đường dẫn và header để định tuyến.
+- **NLB** (Network Load Balancer) — bộ cân bằng tải mạng: bộ cân bằng tải tầng kết nối của AWS, chia theo địa chỉ IP, cổng và kết nối TCP hoặc UDP.
+- **AWS** (Amazon Web Services) — dịch vụ điện toán đám mây của Amazon; bài lấy ALB và NLB của AWS làm ví dụ.
+- **API** (Application Programming Interface) — giao diện lập trình ứng dụng: cách để một chương trình gọi chức năng hoặc lấy dữ liệu của chương trình khác theo quy ước đã định.
+- **HTTP** (HyperText Transfer Protocol) — giao thức truyền siêu văn bản: quy ước để trình duyệt gửi yêu cầu (request) và máy chủ gửi trả lời (response).
+- **IP** (Internet Protocol) — giao thức Internet: quy ước đánh địa chỉ và chuyển gói tin giữa các máy; địa chỉ IP là địa chỉ của một máy trên mạng.
+- **TCP** (Transmission Control Protocol) — giao thức điều khiển truyền: tạo kết nối đáng tin cậy, dữ liệu đến đủ và đúng thứ tự.
+- **UDP** (User Datagram Protocol) — giao thức gói dữ liệu người dùng: gửi gói tin đơn giản, nhanh, không có kết nối và không bảo đảm đến đủ hay đúng thứ tự.
+
 ## Đọc hình
 
 1. **Tầng kết nối** (tầng 4, như NLB của AWS): chọn máy theo địa chỉ IP, cổng và kết nối TCP hoặc UDP, không đọc nội dung HTTP. Việc đơn giản nên nhanh, hợp khi chỉ cần chia kết nối, hoặc khi đặt trước một lớp khác như gateway.

@@ -5,6 +5,13 @@ cho biết kết quả xử lý yêu cầu. Hãy nhìn cả số mã lẫn nơi 
 
 ![Năm thẻ dọc: 451 được đăng ký cho lý do pháp lý; 218 và 420 chưa được IANA gán; 530 chưa được gán nhưng Pantheon dùng riêng; 418 được giữ chỗ là Unused. Nhãn chữ phân biệt trạng thái, không chỉ dựa vào màu.](../../diagrams/sd-01-003-main.svg)
 
+## Từ viết tắt
+
+- **HTTP** (HyperText Transfer Protocol) — giao thức truyền siêu văn bản: quy ước để trình duyệt gửi yêu cầu và máy chủ trả lời; mã trạng thái HTTP là số ba chữ số trong câu trả lời, cho biết kết quả.
+- **IANA** (Internet Assigned Numbers Authority) — tổ chức giữ danh sách đăng ký chính thức các con số và tên dùng trên Internet, trong đó có mã trạng thái HTTP.
+- **RFC** (Request for Comments) — "đề nghị bình luận": loạt tài liệu kỹ thuật đánh số của cộng đồng Internet; nhiều RFC là tiêu chuẩn.
+- **API** (Application Programming Interface) — giao diện lập trình ứng dụng: tập quy ước để một chương trình dùng chức năng của chương trình khác.
+
 ## Đọc hình
 
 **451 — Unavailable For Legal Reasons.** Mã đã đăng ký cho trường hợp truy cập bị từ chối

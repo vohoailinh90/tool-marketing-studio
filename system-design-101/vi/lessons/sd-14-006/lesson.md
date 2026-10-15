@@ -5,6 +5,12 @@
 
 ![Bảy thẻ xếp dọc. Nhóm đăng ký: 1 thử thách, trang gửi một chuỗi ngẫu nhiên; 2 tạo cặp khóa, bạn xác nhận và thiết bị tạo khóa gắn với trang này; 3 lưu khóa công khai, trang giữ khóa công khai, không có khóa riêng, cạnh tài khoản. Nhóm đăng nhập: 4 thử thách mới, mỗi lần đăng nhập một chuỗi ngẫu nhiên khác; 5 ký, trình duyệt ghi tên miền và thử thách vào dữ liệu, khóa riêng ký dữ liệu đó; 6 kiểm tra, trang kiểm tra chữ ký bằng khóa công khai cả tên miền. Thẻ cuối: điểm yếu còn lại là mất thiết bị hoặc tài khoản đồng bộ, và khôi phục tài khoản.](../../diagrams/sd-14-006-main.svg)
 
+## Từ viết tắt
+
+- **PIN** (Personal Identification Number) — mã số cá nhân: dãy số ngắn người dùng nhập để xác nhận trên thiết bị.
+- **WebAuthn** (Web Authentication) — xác thực web: đặc tả chuẩn mô tả cách trang web và trình duyệt làm việc với bộ xác thực (như khóa bảo mật hay khóa trên điện thoại) để đăng nhập; bài trích lưu ý của đặc tả về việc mất thiết bị và kiểm tra tên miền.
+- **ECDSA** (Elliptic Curve Digital Signature Algorithm) — thuật toán chữ ký số dùng đường cong elliptic: ký bằng khóa riêng, kiểm bằng khóa công khai.
+
 ## Đọc hình
 
 **1 · Thử thách.** Trang tạo một chuỗi ngẫu nhiên trên máy chủ của mình. Chuỗi này chỉ dùng cho lần đăng ký đó, nên một lời đáp cũ không dùng lại được.

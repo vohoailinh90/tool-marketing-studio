@@ -21,8 +21,10 @@ from __future__ import annotations
 import json
 import math
 import os
+import re
 import sys
 from datetime import datetime
+from pathlib import Path
 from typing import Any
 
 RESET = "\033[0m"
@@ -36,6 +38,18 @@ SEP = f" {DIM}·{RESET} "
 RESET_TIME_AT = 60
 # A name from the payload should not push the numbers off the right edge.
 MAX_LABEL = 40
+
+# Only this payload carries the context window's real size; the hook payloads do not. The status line leaves the
+# size where scripts/hooks/session_budget.py looks for it, so a 1M-context session is measured against 1M and not
+# against that script's 200K default. One file per session, named by its id and holding the size in tokens, so no
+# two status lines ever read and rewrite the same file. Keep these four in step with session_budget.py (a test
+# asserts it).
+WINDOW_STATE = ("artifacts", "handoff", "context-window")
+SESSION_ID = re.compile(r"[A-Za-z0-9_-]{1,128}")
+MIN_WINDOW_TOKENS = 1_000
+MAX_WINDOW_TOKENS = 100_000_000
+# One checkout can host many sessions over time; the newest few (by when their status line last drew) are kept.
+MAX_RECORDED_SESSIONS = 32
 
 
 def paint(text: str, color: str) -> str:
@@ -208,6 +222,76 @@ def build_line(payload: dict[str, Any]) -> str:
     return SEP.join(segments) if segments else paint("no session data", DIM)
 
 
+def project_root() -> Path:
+    """The checkout this script belongs to, found the way session_budget.repo_root() finds it."""
+    env_root = os.environ.get("CLAUDE_PROJECT_DIR")
+    return Path(env_root) if env_root else Path(__file__).resolve().parents[2]
+
+
+def window_size(payload: dict[str, Any]) -> int | None:
+    """The context window size in tokens the payload reports, or None when it is absent or implausible."""
+    window = payload.get("context_window")
+    if not isinstance(window, dict):
+        return None
+    size = number(window.get("context_window_size"), "context_window.context_window_size")
+    if size is None:
+        return None
+    if size != int(size) or not MIN_WINDOW_TOKENS <= size <= MAX_WINDOW_TOKENS:
+        return rejected("context_window.context_window_size", f"{size:g} is not a plausible window size")
+    return int(size)
+
+
+def modified(path: Path) -> float:
+    try:
+        return path.stat().st_mtime
+    except OSError:
+        return 0.0  # removed by a status line that pruned at the same moment
+
+
+def forget_the_oldest(directory: Path, keep: Path) -> None:
+    """Keep the MAX_RECORDED_SESSIONS most recently drawn sessions, and always `keep`, the one just written (a
+    filesystem with coarse timestamps can tie it with the oldest)."""
+    recorded = [path for path in directory.iterdir() if SESSION_ID.fullmatch(path.name)]
+    oldest = [path for path in sorted(recorded, key=modified) if path != keep]
+    for path in oldest[:max(0, len(recorded) - MAX_RECORDED_SESSIONS)]:
+        path.unlink(missing_ok=True)
+
+
+def record_window_size(payload: dict[str, Any], root: Path | None = None) -> None:
+    """Remember this session's window size for the hooks, which cannot see it.
+
+    The size goes in a file of its own, so concurrent status lines of different sessions share nothing to lose. It
+    is rewritten only when it changes, through a temporary file renamed into place, so a hook reading it never sees
+    half a write; otherwise the file is touched, which is what keeps a session that is still drawing out of the
+    oldest-first pruning.
+    """
+    session = payload.get("session_id")
+    size = window_size(payload)
+    if size is None or not isinstance(session, str) or not SESSION_ID.fullmatch(session):
+        return
+    directory = (root or project_root()).joinpath(*WINDOW_STATE)
+    path = directory / session
+    try:
+        known = path.read_text(encoding="utf-8").strip()
+    except (OSError, ValueError):
+        known = None
+    if known == str(size):
+        try:
+            os.utime(path)
+            return
+        except FileNotFoundError:
+            pass  # pruned by another status line just now: write it again
+    directory.mkdir(parents=True, exist_ok=True)
+    tmp = directory / f".{session}.{os.getpid()}.tmp"
+    try:
+        tmp.write_text(str(size), encoding="utf-8")
+        os.replace(tmp, path)
+    except OSError:
+        tmp.unlink(missing_ok=True)
+        raise
+    forget_the_oldest(directory, path)
+
+
 def note(reason: str) -> None:
     """Fail open, but never fail silently: a dropped field must leave a trace.
 
@@ -235,6 +319,10 @@ def main() -> int:
     if not isinstance(payload, dict):
         note(f"payload is {type(payload).__name__}, expected an object")
         payload = {}
+    try:
+        record_window_size(payload)
+    except Exception as exc:  # a side channel for the hooks must never cost the line
+        note(f"could not record the window size ({type(exc).__name__}: {exc})")
     try:
         print(build_line(payload))
     except Exception as exc:  # a broken status line must never look like a broken session

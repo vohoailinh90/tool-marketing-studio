@@ -5,6 +5,18 @@ Các loại tường lửa khác nhau ở chỗ chúng nhìn vào cái gì: mộ
 
 ![Bảy thẻ xếp dọc. Thẻ đầu là câu hỏi chung: gói tin đi tới tường lửa thì cho qua hay chặn. Năm thẻ tiếp theo là năm loại, mỗi loại nhìn vào một thứ khác. Lọc gói tin: nhìn địa chỉ nguồn, đích, giao thức và cổng của từng gói, không nhớ gói trước. Cổng mức mạch: theo dõi bắt tay TCP để xem phiên có hợp lệ không. Cổng ứng dụng, hay proxy: nhận kết nối thay cho máy bên trong và đọc nội dung ở tầng ứng dụng nếu giải mã được lưu lượng; HTTPS qua CONNECT là đường hầm mù, trừ khi proxy kết thúc TLS. Theo dõi trạng thái: nhớ các kết nối đang mở, nên nhận ra gói trả lời. Tường lửa thế hệ mới: tường lửa truyền thống cộng thêm các tính năng như ngăn chặn xâm nhập và nhận diện ứng dụng. Thẻ cuối là lời nhắc: tường lửa chỉ áp luật tại điểm nó đứng, luật sai hoặc lưu lượng đi đường khác thì không được bảo vệ.](../../diagrams/sd-14-007-main.svg)
 
+## Từ viết tắt
+
+- **TCP** (Transmission Control Protocol) — giao thức điều khiển truyền: tạo kết nối đáng tin cậy, dữ liệu đến đủ và đúng thứ tự; cờ TCP như ACK và RST báo trạng thái của kết nối.
+- **HTTPS** (HyperText Transfer Protocol Secure) — HTTP được mã hóa: cùng cách gửi yêu cầu và trả lời như HTTP nhưng nội dung được giữ kín trên đường đi.
+- **TLS** (Transport Layer Security) — bảo mật tầng truyền tải: lớp mã hóa giữ kín dữ liệu đi giữa hai máy.
+- **HTTP** (HyperText Transfer Protocol) — giao thức truyền siêu văn bản: quy ước để trình duyệt gửi yêu cầu và máy chủ gửi trả lời.
+- **MDN** (Mozilla Developer Network) — tên cũ của MDN Web Docs, bộ tài liệu tra cứu công nghệ web do Mozilla và cộng đồng viết; bài dùng nó để đối chiếu.
+- **NGFW** (Next-Generation FireWall) — tường lửa thế hệ mới: tường lửa truyền thống cộng thêm các tính năng như ngăn chặn xâm nhập và kiểm tra sâu gói tin.
+- **ACK** (ACKnowledgement) — "xác nhận": cờ TCP báo "tôi đã nhận được".
+- **RST** (ReSeT) — "đặt lại": cờ TCP báo ngắt kết nối ngay.
+- **NIST** (National Institute of Standards and Technology) — viện tiêu chuẩn và công nghệ của Mỹ, ban hành nhiều tiêu chuẩn và định nghĩa kỹ thuật về bảo mật.
+
 ## Đọc hình
 
 **Lọc gói tin.** Mỗi gói được xét riêng theo địa chỉ nguồn, địa chỉ đích, giao thức và cổng. Không nhớ gói trước đó.

@@ -4,6 +4,14 @@
 
 ![Năm khung dọc: điểm xuất phát là một ứng dụng client hỏi một máy chủ GraphQL; GraphQL phía client bọc các API sẵn có sau một điểm vào nên người lập trình dễ làm việc hơn nhưng client vẫn chịu chi phí gom dữ liệu; GraphQL cùng BFF, mỗi loại client có một dịch vụ BFF riêng nên hiệu năng và trải nghiệm tốt hơn nhưng phải xây và duy trì thêm; GraphQL nguyên khối, nhiều nhóm dùng chung một mã nguồn hoặc một nhóm sở hữu một API cho nhiều nhóm client; GraphQL liên hợp, nhiều đồ thị gộp thành siêu đồ thị, cổng liên hợp định tuyến yêu cầu tới các dịch vụ con và dữ liệu vẫn thuộc nhóm lĩnh vực.](../../diagrams/sd-01-020-main.svg)
 
+## Từ viết tắt
+
+- **API** (Application Programming Interface) — giao diện lập trình ứng dụng: cách để một chương trình gọi chức năng hoặc lấy dữ liệu của chương trình khác theo quy ước đã định.
+- **HTTP** (HyperText Transfer Protocol) — giao thức truyền siêu văn bản: quy ước để trình duyệt gửi yêu cầu (request) và máy chủ gửi trả lời (response).
+- **REST** (REpresentational State Transfer) — kiểu thiết kế dịch vụ qua HTTP: mỗi tài nguyên có một địa chỉ riêng và được lấy hay sửa qua các phương thức chuẩn.
+- **QL** (Query Language) — ngôn ngữ truy vấn: chữ QL trong tên GraphQL, cho biết đây là cách để client mô tả dữ liệu mình muốn lấy.
+- **BFF** (Backend for Frontend) — dịch vụ phía sau riêng cho từng client: một lớp trung gian mà mỗi loại client, như web hay di động, có một cái riêng để gom dữ liệu đúng theo nhu cầu của loại client đó.
+
 ## Đọc hình
 
 1. **Điểm xuất phát.** Nguồn nói nhiều nhóm bắt đầu bằng kiến trúc đơn giản: một ứng dụng client hỏi một máy chủ GraphQL. Bốn cách dưới đây là các hướng mở rộng từ đó.

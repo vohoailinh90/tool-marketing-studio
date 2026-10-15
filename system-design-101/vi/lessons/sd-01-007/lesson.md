@@ -6,6 +6,18 @@ Một tên miền, nhiều nơi phục vụ: DNS có thể chọn câu trả l�
 
 **Đọc hình:** A/B là hai nơi phục vụ minh họa. DNS chọn câu trả lời; client dùng địa chỉ nhận được để kết nối. DNS không đứng giữa mọi request của ứng dụng.
 
+## Từ viết tắt
+
+- **DNS** (Domain Name System) — hệ thống tên miền: "danh bạ" của Internet, đổi tên miền như example.com thành địa chỉ IP.
+- **IP** (Internet Protocol) — giao thức Internet: quy ước đánh địa chỉ và chuyển gói tin giữa các máy; địa chỉ IP là địa chỉ của một máy trên mạng.
+- **TTL** (Time To Live) — thời gian sống: bao lâu một câu trả lời DNS được lưu trong cache trước khi phải hỏi lại.
+- **HTTP** (HyperText Transfer Protocol) — giao thức truyền siêu văn bản: quy ước để trình duyệt gửi yêu cầu và máy chủ trả lời.
+- **AWS** (Amazon Web Services) — dịch vụ điện toán đám mây của Amazon; Route 53 là dịch vụ DNS của AWS.
+- **BGP** (Border Gateway Protocol) — giao thức cổng biên: cách các nhà mạng báo cho nhau đường đi tới từng dải địa chỉ IP; khác với DNS, vốn chỉ chọn câu trả lời.
+- **GPS** (Global Positioning System) — hệ thống định vị toàn cầu bằng vệ tinh; DNS không dùng GPS mà suy ra vị trí từ địa chỉ IP.
+- **VN** (VietNam) — mã hai chữ cái của Việt Nam, dùng trong ví dụ về định tuyến theo vị trí.
+- **JP** (JaPan) — mã hai chữ cái của Nhật Bản, dùng trong ví dụ về định tuyến theo vị trí.
+
 ## Nhìn hình thử trả lời
 
 Trong khung Latency, A là 80 ms, B là 25 ms theo dữ liệu minh họa. DNS chọn nơi nào? Có thể kết luận nơi đó gần hơn về địa lý không?

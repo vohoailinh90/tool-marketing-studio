@@ -1714,3 +1714,521 @@ mutations:
   find: "    problems = check_store(arguments.store, arguments.source_map, pin_roster)"
   replace: "    problems = []"
   test: tests.test_sd101_check.CommandLineTests.test_a_broken_store_exits_one_and_prints_the_problem
+- label: the Dockerfile, kubectl and log words are read as abbreviations
+  find: "    \"COPY\", \"RUN\", \"EXPOSE\", \"STOPSIGNAL\", \"GOAWAY\", \"READY\", \"RESTARTS\", \"STATUS\", \"END\", \"ERROR\",\n"
+  replace: ""
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_words_that_only_look_like_abbreviations_need_no_entry
+- label: the product name NGINX is read as an abbreviation
+  find: "    \"NGINX\",  # a product name set in capitals (said \"engine x\"), not the initials of anything\n"
+  replace: ""
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_words_that_only_look_like_abbreviations_need_no_entry
+- label: a word in NOT_ACRONYMS is still read as an abbreviation
+  find: "    return found - {\"\"} - NOT_ACRONYMS"
+  replace: "    return found - {\"\"}"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_words_that_only_look_like_abbreviations_need_no_entry
+- label: a plural abbreviation (APIs) is not recognised
+  find: "))(?:v?\\d+)?s?(?!\\w)"
+  replace: "))(?:v?\\d+)?(?!\\w)"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_the_forms_an_abbreviation_takes
+- label: a version number after an abbreviation (OAuth2, API2) hides it
+  find: "))(?:v?\\d+)?s?(?!\\w)"
+  replace: "))s?(?!\\w)"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_the_forms_an_abbreviation_takes
+- label: a plural or version suffix hides a mixed-case abbreviation (vCPUs, MiBs, OAuth2)
+  find: "r\")|(\\d*[A-Z]{2,}))(?:v?\\d+)?s?(?!\\w)\")"
+  replace: "r\")|(\\d*[A-Z]{2,})(?:v?\\d+)?s?)(?!\\w)\")"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_the_forms_an_abbreviation_takes
+- label: the text of the figure is not read for abbreviations
+  find: "body + glossary + figure))"
+  replace: "body + glossary))"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_the_figure_text_counts_as_use
+- label: a heading in capitals in a figure is read for abbreviations
+  find: "(prose if any(word.islower() and len(word) > 1 for word in re.findall(r\"[^\\W\\d_]+\", string)) else headings).append(string)"
+  replace: "prose.append(string)"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_heading_in_capitals_is_not_read_for_abbreviations
+- label: the text of a details block is not read for abbreviations
+  find: "        elif token.type == \"html_block\" and section != SOURCES_HEADING:"
+  replace: "        elif False:"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_text_inside_a_details_block_counts_as_use
+- label: the alt text of an image is not read for abbreviations
+  find: "                elif child.type == \"image\":"
+  replace: "                elif False:"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_the_alt_text_of_the_figure_counts_as_use
+- label: a code span is read for abbreviations
+  find: "                elif child.type == \"text\":"
+  replace: "                elif child.type in (\"text\", \"code_inline\"):"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_code_span_a_code_block_a_link_and_a_comment_are_not_read
+- label: the sources section is read for abbreviations
+  find: "        elif token.type == \"inline\" and section != SOURCES_HEADING:"
+  replace: "        elif token.type == \"inline\":"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_the_sources_section_names_organisations_and_is_not_read
+- label: a html block of the sources section is read for abbreviations
+  find: "        elif token.type == \"html_block\" and section != SOURCES_HEADING:"
+  replace: "        elif token.type == \"html_block\":"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_html_block_in_the_sources_section_is_not_read_either
+- label: a wrapped line glues its last word to the next line's first
+  find: "                elif child.type in (\"softbreak\", \"hardbreak\"):\n                    pieces.append(\" \")  # a wrapped line must not glue its last word to the next line's first\n"
+  replace: ""
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_wrapped_line_does_not_glue_an_abbreviation_to_the_next_word
+- label: an image glues its alt text to the words beside it
+  find: "                    pieces.append(\" \" + URL.sub(\" \", child.content) + \" \")\n                elif child.type in"
+  replace: "                    pieces.append(URL.sub(\" \", child.content))\n                elif child.type in"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_wrapped_line_does_not_glue_an_abbreviation_to_the_next_word
+- label: the displayed address of an autolink is read as prose
+  find: "                elif in_autolink:\n                    continue\n"
+  replace: ""
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_an_address_is_not_prose_but_the_label_of_a_link_is
+- label: an address typed into the text is read as prose
+  find: "                    pieces.append(URL.sub(\" \", child.content))"
+  replace: "                    pieces.append(child.content)"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_an_address_is_not_prose_but_the_label_of_a_link_is
+- label: an address typed into HTML is read as prose
+  find: "return URL.sub(\" \", \" \".join(parser.pieces))"
+  replace: "return \" \".join(parser.pieces)"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_an_address_is_not_prose_in_html_an_image_or_a_figure_either
+- label: an address in the alt text of a Markdown image is read as prose
+  find: "\" \" + URL.sub(\" \", child.content) + \" \""
+  replace: "\" \" + child.content + \" \""
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_an_address_is_not_prose_in_html_an_image_or_a_figure_either
+- label: an address in the text of a figure is read as prose
+  find: "string = URL.sub(\" \", \" \".join(element.itertext()))"
+  replace: "string = \" \".join(element.itertext())"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_an_address_is_not_prose_in_html_an_image_or_a_figure_either
+- label: the scheme of an address is matched in lower case only
+  find: "[A-Za-z][A-Za-z0-9+.\\-]*://[^\\s<>]+"
+  replace: "[a-z][a-z0-9+.\\-]*://[^\\s<>]+"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_an_address_is_not_prose_but_the_label_of_a_link_is
+- label: only an http, https or ftp address is no prose (wss://example.com/API/TLS)
+  find: "[A-Za-z][A-Za-z0-9+.\\-]*://[^\\s<>]+"
+  replace: "(?:[Hh][Tt][Tt][Pp][Ss]?|[Ff][Tt][Pp])://[^\\s<>]+"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_an_address_of_any_scheme_is_not_prose
+- label: a colon alone makes an address (Note:LLM)
+  find: "[A-Za-z][A-Za-z0-9+.\\-]*://[^\\s<>]+"
+  replace: "[A-Za-z][A-Za-z0-9+.\\-]*:(?://)?[^\\s<>]+"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_an_address_of_any_scheme_is_not_prose
+- label: a word with no vowel in a capitals-only label is not read (JWT, DNS)
+  find: " or not set(name) & VOWELS"
+  replace: ""
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_an_acronym_in_a_capitals_only_label_is_read_when_it_cannot_be_a_word
+- label: a decomposed accent splits a Vietnamese word in a capitals-only label
+  find: "unicodedata.normalize(\"NFC\", \"\\n\".join(headings))"
+  replace: "\"\\n\".join(headings)"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_an_acronym_in_a_capitals_only_label_is_read_when_it_cannot_be_a_word
+- label: a digit does not show that a word in capitals is an acronym (2FA, 3DES, POP3)
+  find: "ambiguous = word.isalpha() and word.isupper()"
+  replace: "ambiguous = word.isupper()"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_plural_or_a_digit_shows_that_a_word_in_capitals_is_an_acronym
+- label: a plural does not show that a word in capitals is an acronym (APIs, LLMs)
+  find: "ambiguous = word.isalpha() and word.isupper()"
+  replace: "ambiguous = word.isalpha()"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_plural_or_a_digit_shows_that_a_word_in_capitals_is_an_acronym
+- label: an acronym the store explains elsewhere is not read in a capitals-only label
+  find: (name in known or word in known) and word not in PLAIN_LABEL_WORDS
+  replace: 'False'
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_an_acronym_the_store_explains_elsewhere_is_read_in_a_capitals_only_label
+- label: the glossaries of the store are not consulted for the words of a label
+  find: "known = store_vocabulary(lessons_dir, lesson_ids)"
+  replace: "known = frozenset()"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_an_acronym_the_store_explains_elsewhere_is_read_in_a_capitals_only_label
+- label: a number word of another number may stand for the leading digit (Four Authentication is 2FA)
+  find: "if foreign & {word.lower() for word in re.findall(r\"[A-Za-z]+\", plain)}:"
+  replace: "if False:"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_number_word_of_another_number_does_not_stand_for_the_leading_digit
+- label: a number word beyond ten is not a number word (Fifteen Authentication is 2FA)
+  find: " fifteen sixteen"
+  replace: " sixteen"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_number_word_of_another_number_does_not_stand_for_the_leading_digit
+- label: the own number word of a leading digit is refused too (Two-Factor Authentication)
+  find: "foreign = ALL_NUMBER_WORDS - set(NUMBER_WORDS.get(leading.group(), ()))"
+  replace: "foreign = ALL_NUMBER_WORDS"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_number_word_of_another_number_does_not_stand_for_the_leading_digit
+- label: a digit anywhere is a leading digit (Double Data Rate is not DDR4)
+  find: "leading = re.match(r\"\\d+\", abbreviation)"
+  replace: "leading = re.search(r\"\\d+\", abbreviation)"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_number_word_of_another_number_does_not_stand_for_the_leading_digit
+- label: a number the full form writes may differ from the abbreviation's (IPv4, version 6)
+  find: "    if digits and digits != numbers:"
+  replace: "    if False:"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_the_number_inside_an_abbreviation_must_be_the_number_in_its_full_form
+- label: an abbreviation that begins with a digit is not read (2FA, 3DES)
+  find: "(\\d*[A-Z]{2,})"
+  replace: "([A-Z]{2,})"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_an_abbreviation_that_begins_with_a_digit_is_read_and_explained
+- label: a glossary bullet may not begin with a digit
+  find: "(?P<abbreviation>(?=[A-Za-z0-9]*[A-Z])[A-Za-z0-9][A-Za-z0-9]+)"
+  replace: "(?P<abbreviation>(?=[A-Za-z0-9]*[A-Z])[A-Za-z][A-Za-z0-9]+)"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_an_abbreviation_that_begins_with_a_digit_is_read_and_explained
+- label: a name that carries an abbreviation is not read (OpenAI, MySQL)
+  find: '    found |= {EMBEDDED_ABBREVIATIONS[match.group(1)] for match in EMBEDDED_NAME.finditer(text)}
+
+    '
+  replace: ''
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_name_that_carries_an_abbreviation_is_read_as_that_abbreviation
+- label: the product name HAProxy is not read as the abbreviation HA
+  find: "\"HAProxy\": \"HA\", "
+  replace: ""
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_name_that_carries_an_abbreviation_is_read_as_that_abbreviation
+- label: the product name CommonJS is not read as the abbreviation JS
+  find: "\"CommonJS\": \"JS\", "
+  replace: ""
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_name_that_carries_an_abbreviation_is_read_as_that_abbreviation
+- label: the product name GraphQL is not read as the abbreviation QL
+  find: "\"GraphQL\": \"QL\","
+  replace: ""
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_name_that_carries_an_abbreviation_is_read_as_that_abbreviation
+- label: the product name ECMAScript is not read as the abbreviation ECMA
+  find: "\"ECMAScript\": \"ECMA\", "
+  replace: ""
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_name_that_carries_an_abbreviation_is_read_as_that_abbreviation
+- label: a skipped code span glues the text on both sides of it
+  find: "                elif child.type == \"code_inline\":\n                    pieces.append(\" \")  # a skipped code span is a word boundary: A`code`PI is not API\n"
+  replace: ""
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_skipped_code_span_is_a_word_boundary
+- label: a name that carries an abbreviation is read as the name, not the abbreviation
+  find: '{EMBEDDED_ABBREVIATIONS[match.group(1)] for match in EMBEDDED_NAME.finditer(text)}'
+  replace: '{match.group(1) for match in EMBEDDED_NAME.finditer(text)}'
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_name_that_carries_an_abbreviation_is_read_as_that_abbreviation
+- label: a name that carries an abbreviation is read only where capitals are read
+  find: '    found |= {EMBEDDED_ABBREVIATIONS[match.group(1)] for match in EMBEDDED_NAME.finditer(text)}
+
+    '
+  replace: "    if capitals:\n        found |= {EMBEDDED_ABBREVIATIONS[match.group(1)] for match in EMBEDDED_NAME.finditer(text)}\n"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_name_that_carries_an_abbreviation_is_read_as_that_abbreviation
+- label: a possessive, plural or version hides a name that carries an abbreviation
+  find: (?:v?\d+)?(?:[\u2019']?s)?(?!\w)")
+  replace: (?!\w)")
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_name_that_carries_an_abbreviation_is_read_as_that_abbreviation
+- label: a name that carries an abbreviation is read inside a longer word
+  find: EMBEDDED_NAME = re.compile(r"(?<!\w)("
+  replace: EMBEDDED_NAME = re.compile(r"("
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_name_that_carries_an_abbreviation_is_read_as_that_abbreviation
+- label: a configured term in capitals is not read as the term
+  find: '    found = {UPPER_FORMS[match.group(1)] for match in UPPER_FORM.finditer(text)}
+
+    '
+  replace: '    found = set()
+
+    '
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_configured_term_in_capitals_is_the_term
+- label: a configured term in capitals is also read as a capital run
+  find: '    text = UPPER_FORM.sub(" ", text)  # a term in capitals is the term, not a capital run of its own
+
+    '
+  replace: ''
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_configured_term_in_capitals_is_the_term
+- label: a version or plural hides a configured term in capitals
+  find: (?:V?\d+)?[Ss]?(?!\w)")
+  replace: (?!\w)")
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_configured_term_in_capitals_is_the_term
+- label: a configured term in capitals is read inside a longer word
+  find: UPPER_FORM = re.compile(r"(?<!\w)("
+  replace: UPPER_FORM = re.compile(r"("
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_configured_term_in_capitals_is_the_term
+- label: a product name in capitals is not read as its abbreviation
+  find: '               **{name.upper(): abbreviation for name, abbreviation in EMBEDDED_ABBREVIATIONS.items()}}'
+  replace: '               }'
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_configured_term_in_capitals_is_the_term
+- label: the number word of a digit abbreviation must be written out as an initial
+  find: hump.lower() in number_words
+  replace: 'False'
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_the_digit_of_an_abbreviation_stands_for_a_number_word
+- label: a number word of another number may stand for the number of the abbreviation (IPv4, version six)
+  find: hump.lower() in number_words
+  replace: any(hump.lower() in words for words in NUMBER_WORDS.values())
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_the_number_inside_an_abbreviation_must_be_the_number_in_its_full_form
+- label: the text nodes of a figure label are joined without a gap
+  find: "\" \".join(element.itertext())"
+  replace: "\"\".join(element.itertext())"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_the_text_nodes_of_a_figure_label_are_separate_words
+- label: a glossary above the figure is accepted
+  find: "    elif not figure_above(text, above, lesson_id):"
+  replace: "    elif False and not figure_above(text, above, lesson_id):"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_the_glossary_comes_after_the_figure_not_before_it
+- label: a raw <img> figure above the glossary is not found in the text above it
+  find: "    if any(is_figure(source) for source in image_sources(above)):\n        return True\n"
+  replace: ""
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_the_glossary_comes_after_the_figure_not_before_it
+- label: a reference-style figure whose definition comes later is not found
+  find: "    return any(token.map and token.map[0] < heading_line"
+  replace: "    return False and any(token.map and token.map[0] < heading_line"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_reference_style_figure_is_found_wherever_its_definition_is
+- label: a reference-style figure below the glossary heading counts as above it
+  find: "token.map[0] < heading_line"
+  replace: "token.map[0] >= 0"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_reference_style_figure_is_found_wherever_its_definition_is
+- label: the lead-in of a bullet that is not in the form counts as a use of what it names
+  find: "                piece = piece.split(\"—\", 1)[-1]"
+  replace: "                piece = piece"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_the_lead_in_of_a_bullet_that_is_not_in_the_form_is_not_also_a_use
+- label: an abbreviation with no glossary section is accepted
+  find: "        if used:\n            problems.append(Problem(lesson_id, f\"uses the abbreviation(s)"
+  replace: "        if False:\n            problems.append(Problem(lesson_id, f\"uses the abbreviation(s)"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_an_abbreviation_with_no_glossary_section_is_reported
+- label: a glossary that is not the first section is accepted
+  find: "    if titles[0] != GLOSSARY_HEADING:"
+  replace: "    if False:"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_glossary_must_be_the_first_section_of_the_lesson
+- label: a glossary bullet that is not in the form is accepted
+  find: "                    for bullet in malformed)"
+  replace: "                    for bullet in [])"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_bullet_that_is_not_in_the_form_is_reported
+- label: an abbreviation explained twice is accepted
+  find: "        if abbreviation in seen:"
+  replace: "        if False:"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_an_abbreviation_explained_twice_is_reported
+- label: a full form that does not spell the abbreviation is accepted
+  find: "        if not spells(abbreviation, full_form):"
+  replace: "        if False:"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_the_full_form_must_spell_the_abbreviation_out
+- label: an entry with no explanation is accepted
+  find: "        if len(meaning.split()) < MIN_MEANING_WORDS:"
+  replace: "        if False:"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_an_entry_with_no_real_explanation_is_reported
+- label: a glossary with no bullet is accepted
+  find: "    if not entries and not malformed:"
+  replace: "    if False:"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_glossary_with_no_bullet_is_reported
+- label: an abbreviation the glossary leaves out is accepted
+  find: "for abbreviation in sorted(used - seen))"
+  replace: "for abbreviation in [])"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_an_abbreviation_the_glossary_leaves_out_is_reported
+- label: a bullet that runs onto the next line is cut at the line break
+  find: "            bullets[-1] += \" \" + line.strip()"
+  replace: "            bullets.append(\"\")"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_bullet_may_run_onto_the_next_line
+- label: any word of the full form may be left out of the abbreviation
+  find: "                pattern += hump[0].upper()"
+  replace: "                pattern += f\"(?:{hump[0].upper()})?\""
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_the_initials_must_be_exactly_the_abbreviation
+- label: a Vietnamese đ is dropped from the initials
+  find: "unicodedata.normalize(\"NFD\", full_form.replace(\"đ\", \"d\").replace(\"Đ\", \"D\"))"
+  replace: "unicodedata.normalize(\"NFD\", full_form)"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_accents_are_dropped_and_dj_is_read_as_d
+- label: a camelCase name is one initial (JavaScript is J, not JS)
+  find: "for hump in re.findall(r\"[A-Z]+(?![a-z])|[A-Z][a-z]*|[a-z]+\", word):"
+  replace: "for hump in [word]:"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_the_full_form_may_skip_little_words_and_use_the_camel_case_of_a_name
+- label: what a glossary entry says is not read for abbreviations
+  find: "            (glossary if section == GLOSSARY_HEADING else body).append(piece)\n    return body, glossary,"
+  replace: "            (glossary if section == GLOSSARY_HEADING else body).append(\"\" if section == GLOSSARY_HEADING else piece)\n    return body, glossary,"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_what_a_glossary_entry_says_is_read_for_abbreviations_too
+- label: a figure that is not XML raises while its text is read for abbreviations
+  find: "except (OSError, LookupError, ElementTree.ParseError):"
+  replace: "except (OSError, LookupError):"
+  test: tests.test_sd101_check.RobustnessTests.test_odd_svg_files_are_reported_not_raised
+- label: the mixed-case terms (gRPC, IPv4) are not recognised as abbreviations
+  find: "MIXED_CASE_TERMS = (\"gRPC\", \"ETag\", \"IPv4\", \"IPv6\", \"OAuth\", \"mTLS\", \"NoSQL\", \"vCPU\", \"IaC\", \"MoE\", \"PaaS\", \"IaaS\", \"SaaS\", \"FaaS\", \"BaaS\",\n                    \"W3C\", \"SELinux\", \"WebAuthn\", \"OpenID\", \"DevOps\", \"DevSecOps\", \"GitOps\", \"NoOps\", \"EdDSA\", \"NetBIOS\",\n                    \"IoT\", \"CoAP\", \"DoH\", \"DoT\", \"RRset\",\n                    *UNIT_SYMBOLS)"
+  replace: 'MIXED_CASE_TERMS = ("ZZZ",)'
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_the_forms_an_abbreviation_takes
+- label: a glossary bullet for a mixed-case term is not in the form
+  find: '(?=[A-Za-z0-9]*[A-Z])[A-Za-z0-9][A-Za-z0-9]+'
+  replace: '[A-Z]{2,}'
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_the_full_form_may_skip_little_words_and_use_the_camel_case_of_a_name
+- label: a mixed-case term used with no glossary is accepted
+  find: "match.group(1) or (match.group(2) if capitals else \"\")"
+  replace: "(match.group(2) if capitals else \"\")"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_mixed_case_term_needs_a_glossary_bullet_too
+- label: the alt text of a raw HTML image is not read
+  find: "            self.pieces.extend(value for name, value in attrs if name == \"alt\" and value)"
+  replace: "            pass"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_the_alt_text_of_a_raw_html_image_counts_as_use
+- label: an inline raw HTML image is not read
+  find: "                elif child.type == \"html_inline\":"
+  replace: "                elif False:"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_the_alt_text_of_a_raw_html_image_counts_as_use
+- label: a mixed-case term in a heading in capitals is not read
+  find: '    mixed = abbreviations_in("\n".join(headings), capitals=False)'
+  replace: '    mixed = set()'
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_mixed_case_term_in_a_heading_in_capitals_still_counts
+- label: the capitals of a heading are read as abbreviations
+  find: "(match.group(2) if capitals else \"\")"
+  replace: "match.group(2)"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_heading_in_capitals_is_not_read_for_abbreviations
+- label: an all-caps word gives only its whole run
+  find: "                pattern += f\"(?:{hump}|{hump[0]})\""
+  replace: "                pattern += hump"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_an_all_caps_word_gives_its_run_or_its_first_letter
+- label: an all-caps word gives only its first letter
+  find: "                pattern += f\"(?:{hump}|{hump[0]})\""
+  replace: "                pattern += hump[0]"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_an_all_caps_word_gives_its_run_or_its_first_letter
+- label: the little words must be written out
+  find: '            elif hump == word and hump.lower() in FILLER_WORDS:'
+  replace: '            elif False:'
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_only_the_little_words_may_be_left_out
+- label: a recursive name is not read as a whole
+  find: "        if word == abbreviation:\n            if abbreviation not in RECURSIVE_NAMES:\n                return False  # \"API Programming Interface\": the abbreviation written again does not spell itself\n            pattern += word[0].upper()\n            continue\n"
+  replace: ""
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_recursive_name_gives_its_first_letter
+- label: any abbreviation written again in its own full form spells itself
+  find: "            if abbreviation not in RECURSIVE_NAMES:\n                return False  # \"API Programming Interface\": the abbreviation written again does not spell itself\n"
+  replace: ""
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_recursive_name_gives_its_first_letter
+- label: no name is recursive any more
+  find: "RECURSIVE_NAMES = frozenset({\"gRPC\"})"
+  replace: "RECURSIVE_NAMES = frozenset()"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_recursive_name_gives_its_first_letter
+- label: the term ETag is not read as an abbreviation
+  find: "\"gRPC\", \"ETag\", "
+  replace: "\"gRPC\", "
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_the_forms_an_abbreviation_takes
+- label: the initials need only start the abbreviation
+  find: "    return any(re.fullmatch(pattern, "
+  replace: "    return any(re.match(pattern, "
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_the_initials_must_be_exactly_the_abbreviation
+- label: a unit symbol is held to the initials rule
+  find: "    if (UNIT_SYMBOLS | IRREGULAR_FORMS).get(abbreviation) == full_form.strip():\n        return True\n"
+  replace: ""
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_unit_symbol_is_explained_by_the_name_of_the_unit
+- label: the binary unit symbols are not recognised as abbreviations
+  find: "UNIT_SYMBOLS = {\"KiB\": \"Kibibyte\", \"MiB\": \"Mebibyte\", \"GiB\": \"Gibibyte\", \"TiB\": \"Tebibyte\"}"
+  replace: "UNIT_SYMBOLS = {}"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_the_forms_an_abbreviation_takes
+- label: the cloud service models and the W3C, SELinux and WebAuthn names are not recognised as abbreviations
+  find: "\"PaaS\", \"IaaS\", \"SaaS\", \"FaaS\", \"BaaS\",\n                    \"W3C\", \"SELinux\", \"WebAuthn\", \"OpenID\", \"DevOps\", \"DevSecOps\", \"GitOps\", \"NoOps\", \"EdDSA\", \"NetBIOS\",\n                    \"IoT\", \"CoAP\", \"DoH\", \"DoT\", \"RRset\",\n                    *UNIT_SYMBOLS)"
+  replace: "*UNIT_SYMBOLS)"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_the_forms_an_abbreviation_takes
+- label: a name with its own full form is held to the initials rule
+  find: "IRREGULAR_FORMS = {\"HPACK\": \"Header Compression for HTTP/2\", \"AAAA\": \"Quad A\", \"EDNS\": \"Extension Mechanisms for DNS\",\n                   \"ISO\": \"International Organization for Standardization\", \"MX\": \"Mail eXchange\", \"CoAP\": \"Constrained Application Protocol\",\n                   \"RRset\": \"Resource Record set\", \"SLSA\": \"Supply-chain Levels for Software Artifacts\",\n                   \"W3C\": \"World Wide Web Consortium\", \"SELinux\": \"Security-Enhanced Linux\", \"WebAuthn\": \"Web Authentication\",\n                   \"OpenID\": \"Open IDentity\", \"DevOps\": \"Development and Operations\",\n                   \"DevSecOps\": \"Development, Security and Operations\", \"GitOps\": \"Git Operations\", \"NoOps\": \"No Operations\",\n                   \"UTC\": \"Coordinated Universal Time\", \"EdDSA\": \"Edwards-curve Digital Signature Algorithm\",\n                   \"NetBIOS\": \"Network Basic Input/Output System\", \"ETag\": \"Entity Tag\"}"
+  replace: "IRREGULAR_FORMS = {}"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_unit_symbol_is_explained_by_the_name_of_the_unit
+- label: AAAA is not explained by the name it stands for
+  find: "\"AAAA\": \"Quad A\", "
+  replace: ""
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_unit_symbol_is_explained_by_the_name_of_the_unit
+- label: EDNS is not explained by the name it stands for
+  find: "\"EDNS\": \"Extension Mechanisms for DNS\",\n"
+  replace: "\n"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_unit_symbol_is_explained_by_the_name_of_the_unit
+- label: ISO is not explained by the name it stands for
+  find: "\"ISO\": \"International Organization for Standardization\", "
+  replace: ""
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_unit_symbol_is_explained_by_the_name_of_the_unit
+- label: MX is not explained by the name it stands for
+  find: "\"MX\": \"Mail eXchange\", "
+  replace: ""
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_unit_symbol_is_explained_by_the_name_of_the_unit
+- label: the SQL keyword DISTINCT is read as an abbreviation
+  find: "\"SET\", \"DISTINCT\",\n"
+  replace: "\"SET\",\n"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_words_that_only_look_like_abbreviations_need_no_entry
+- label: the words KEY and NAME in a full form are read as abbreviations
+  find: "    \"KEY\", \"NAME\",  # ordinary words set in capitals inside a full form: DNS KEY, Canonical NAME\n"
+  replace: ""
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_words_that_only_look_like_abbreviations_need_no_entry
+- label: the word VS (versus) is read as an abbreviation
+  find: "    \"VS\",  # versus: an ordinary word set in capitals\n"
+  replace: ""
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_words_that_only_look_like_abbreviations_need_no_entry
+- label: a lowercase plural after a term in capitals hides the term
+  find: "(?:V?\\d+)?[Ss]?(?!\\w)"
+  replace: "(?:V?\\d+)?S?(?!\\w)"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_the_forms_an_abbreviation_takes
+- label: CoAP is not explained by the name it stands for
+  find: "\"CoAP\": \"Constrained Application Protocol\",\n                   "
+  replace: ""
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_unit_symbol_is_explained_by_the_name_of_the_unit
+- label: RRset is not explained by the name it stands for
+  find: "\"RRset\": \"Resource Record set\", "
+  replace: ""
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_unit_symbol_is_explained_by_the_name_of_the_unit
+- label: the terms IoT, CoAP, DoH, DoT and RRset are not read as abbreviations
+  find: "                    \"IoT\", \"CoAP\", \"DoH\", \"DoT\", \"RRset\",\n"
+  replace: ""
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_the_forms_an_abbreviation_takes
+- label: the product name InnoDB is not read as the abbreviation DB
+  find: "\"InnoDB\": \"DB\", "
+  replace: ""
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_name_that_carries_an_abbreviation_is_read_as_that_abbreviation
+- label: ETag is not explained by the name it stands for
+  find: "\"NetBIOS\": \"Network Basic Input/Output System\", \"ETag\": \"Entity Tag\"}"
+  replace: "\"NetBIOS\": \"Network Basic Input/Output System\"}"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_unit_symbol_is_explained_by_the_name_of_the_unit
+- label: UTC is not explained by the name it stands for
+  find: "\"UTC\": \"Coordinated Universal Time\", "
+  replace: ""
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_unit_symbol_is_explained_by_the_name_of_the_unit
+- label: EdDSA and NetBIOS are not explained by the names they stand for
+  find: ", \"EdDSA\": \"Edwards-curve Digital Signature Algorithm\",\n                   \"NetBIOS\": \"Network Basic Input/Output System\", \"ETag\": \"Entity Tag\"}"
+  replace: "}"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_unit_symbol_is_explained_by_the_name_of_the_unit
+- label: EdDSA and NetBIOS are not recognised as abbreviations
+  find: "\"EdDSA\", \"NetBIOS\",\n                    \"IoT\", \"CoAP\", \"DoH\", \"DoT\", \"RRset\",\n                    *UNIT_SYMBOLS)"
+  replace: "*UNIT_SYMBOLS)"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_the_forms_an_abbreviation_takes
+- label: a v before the version (DHCPv4, TLSv1) hides the abbreviation
+  find: "(?:v?\\d+)?s?(?!\\w)"
+  replace: "(?:\\d+)?s?(?!\\w)"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_the_forms_an_abbreviation_takes
+- label: a figure link is compared as written, with its fragment, query and encoding (a lesson whose figure is ...svg#view)
+  find: "posixpath.normpath(relative_target(source) or \"\").endswith(suffix)"
+  replace: "posixpath.normpath(source).endswith(suffix)"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_figure_link_with_a_fragment_a_query_or_an_encoded_name_is_still_the_figure
+- label: a raw <img> figure with a fragment is compared as written
+  find: "    if any(is_figure(source) for source in image_sources(above)):"
+  replace: "    if any(posixpath.normpath(source).endswith(suffix) for source in image_sources(above)):"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_figure_link_with_a_fragment_a_query_or_an_encoded_name_is_still_the_figure
+- label: a reference-style figure with a fragment is compared as written
+  find: "and is_figure(child.attrGet(\"src\") or \"\") for child in token.children or [])"
+  replace: "and posixpath.normpath(child.attrGet(\"src\") or \"\").endswith(suffix) for child in token.children or [])"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_figure_link_with_a_fragment_a_query_or_an_encoded_name_is_still_the_figure
+- label: a digit the full form writes stands nowhere (Factor Authentication 2 is 2FA)
+  find: "        if word.isdigit():\n            pattern += \"#\"\n            written += 1\n            continue\n"
+  replace: "        if word.isdigit():\n            continue\n"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_number_the_full_form_writes_stands_where_the_abbreviation_puts_its_digits
+- label: a number word of the abbreviation may stand anywhere (Factor Two Authentication is 2FA)
+  find: "            elif hump == word and hump.lower() in number_words:\n                pattern += \"#\"\n                written += 1\n"
+  replace: "            elif hump == word and hump.lower() in number_words:\n                pattern += f\"(?:{hump[0].upper()})?\"\n"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_number_the_full_form_writes_stands_where_the_abbreviation_puts_its_digits
+- label: the abbreviation never keeps the number the full form writes
+  find: "if part != \"#\" or index in kept)"
+  replace: "if part != \"#\")"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_number_the_full_form_writes_stands_where_the_abbreviation_puts_its_digits
+- label: the abbreviation keeps every number even when the full form leaves it out (Factor Authentication)
+  find: "if part != \"#\" or index in kept)"
+  replace: "if part != \"#\" or True)"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_number_the_full_form_writes_stands_where_the_abbreviation_puts_its_digits
+- label: a key with many numbers is expanded instead of refused
+  find: "    if len(groups) > 8:\n        return False\n"
+  replace: ""
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_number_the_full_form_writes_stands_where_the_abbreviation_puts_its_digits
+- label: an abbreviation inside a glossary full form needs no bullet (HMAC in the full form of HKDF)
+  find: "    used |= set(inside)\n"
+  replace: ""
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_an_abbreviation_inside_a_full_form_needs_a_bullet_of_its_own
+- label: only the mixed-case terms of a full form are read
+  find: "        for name in sorted(abbreviations_in(full_form)):"
+  replace: "        for name in sorted(abbreviations_in(full_form, capitals=False)):"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_an_abbreviation_inside_a_full_form_needs_a_bullet_of_its_own
+- label: the report never says that the abbreviation stands in a full form
+  find: if abbreviation in inside and abbreviation not in elsewhere else "")
+  replace: if False else "")
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_an_abbreviation_inside_a_full_form_needs_a_bullet_of_its_own
+- label: the report points at a full form even when the lesson uses the abbreviation elsewhere
+  find: if abbreviation in inside and abbreviation not in elsewhere else "")
+  replace: if abbreviation in inside else "")
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_an_abbreviation_inside_a_full_form_needs_a_bullet_of_its_own
+- label: KILL in SIGnal KILL is read as an abbreviation
+  find: "    \"KILL\",  # SIGnal KILL: an ordinary word set in capitals to show the letters of SIGKILL\n"
+  replace: ""
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_an_abbreviation_inside_a_full_form_needs_a_bullet_of_its_own
+- label: a plain word in a capitals-only label is taken for an acronym another lesson explains (TIN is news)
+  find: ((name in known or word in known) and word not in PLAIN_LABEL_WORDS)
+  replace: (name in known or word in known)
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_plain_word_in_a_capitals_only_label_is_not_taken_for_what_another_lesson_explains
+- label: the list of plain label words is empty
+  find: PLAIN_LABEL_WORDS = frozenset({
+  replace: PLAIN_LABEL_WORDS = frozenset() and frozenset({
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_plain_word_in_a_capitals_only_label_is_not_taken_for_what_another_lesson_explains
+- label: the report does not say how to stop a label-only abbreviation (a glossary is there)
+  find: (label_hint if abbreviation in label_only and abbreviation not in inside else "")
+  replace: '""'
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_plain_word_in_a_capitals_only_label_is_not_taken_for_what_another_lesson_explains
+- label: the report does not say how to stop a label-only abbreviation (no glossary)
+  find: (f"; {', '.join(sorted(label_only))}{label_hint}" if label_only else "")
+  replace: '""'
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_plain_word_in_a_capitals_only_label_is_not_taken_for_what_another_lesson_explains
+- label: the hint is given for a label word that cannot be a word (JWT)
+  find: label_only = {name for name in labels - used - mixed if set(name) & VOWELS}
+  replace: label_only = {name for name in labels - used - mixed}
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_plain_word_in_a_capitals_only_label_is_not_taken_for_what_another_lesson_explains

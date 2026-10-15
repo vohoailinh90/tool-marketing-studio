@@ -5,6 +5,11 @@ Hình chia thành sáu mảng; danh sách tài nguyên cụ thể chỉ là ph�
 
 ![Sáu thẻ xếp dọc và một thẻ cảnh báo. Coding: giải bài, nói to cách nghĩ. Thiết kế hệ thống: luyện khung bảy bước. Hành vi: chuẩn bị câu chuyện theo STAR. Thiết kế hướng đối tượng: luyện thiết kế lớp. Phỏng vấn thử: luyện với người thật. Tìm việc: nộp hồ sơ, theo dõi kết quả. Thẻ cuối: danh sách tài nguyên lấy từ bài nguồn, chưa kiểm còn hoạt động, hãy kiểm tra giá và chất lượng trước khi dùng.](../../diagrams/sd-05-005-main.svg)
 
+## Từ viết tắt
+
+- **OOD** (Object-Oriented Design) — thiết kế hướng đối tượng: chia chương trình thành các "đối tượng" có dữ liệu và hành vi riêng; một dạng câu hỏi trong phỏng vấn.
+- **STAR** (Situation, Task, Action, Result) — tình huống, nhiệm vụ, hành động, kết quả: bốn bước để kể một câu chuyện công việc khi trả lời câu hỏi phỏng vấn hành vi.
+
 ## Đọc hình
 
 **Coding.** Luyện giải bài thuật toán và cấu trúc dữ liệu, và tập nói to cách bạn nghĩ để người phỏng vấn theo được.

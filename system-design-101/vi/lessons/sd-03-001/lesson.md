@@ -5,6 +5,10 @@ ghép theo chỉ số dòng và chọn giá trị từng ô là bốn việc kh�
 
 ![Năm thẻ dọc: nối thêm dòng dùng concat; ghép cột theo khóa dùng merge, mặc định inner; ghép theo chỉ số dòng dùng join, mặc định left; chọn giá trị từng ô dùng combine; thẻ cuối cho biết append đã bị gỡ từ pandas 2.0 và dùng concat thay thế.](../../diagrams/sd-03-001-main.svg)
 
+## Từ viết tắt
+
+- **SQL** (Structured Query Language) — ngôn ngữ truy vấn có cấu trúc: ngôn ngữ để hỏi và sửa dữ liệu trong cơ sở dữ liệu quan hệ; phép `JOIN` của SQL gần với `merge` của pandas.
+
 ## Đọc hình
 
 **Nối thêm dòng — `concat`.** Dùng khi hai bảng cùng loại cột, như dữ liệu của nhiều shard hay nhiều tháng.

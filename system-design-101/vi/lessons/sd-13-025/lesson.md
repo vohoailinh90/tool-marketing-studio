@@ -6,6 +6,11 @@ Khi một Pod không chạy, trạng thái hiển thị cho biết nó dừng �
 
 **Đọc hình:** bốn chặng theo thứ tự Pod đi qua khi khởi động; lỗi ở chặng nào thì dừng ở đó.
 
+## Từ viết tắt
+
+- **PVC** (PersistentVolumeClaim) — yêu cầu cấp ổ lưu trữ bền vững của Pod trong Kubernetes; chưa gắn được thì Pod chưa chạy được.
+- **OOM** (Out Of Memory) — hết bộ nhớ: tình trạng một tiến trình cần nhiều bộ nhớ hơn mức được cấp nên bị hệ điều hành dừng; OOMKilled là trạng thái ghi lại việc đó.
+
 ## Nhìn hình thử trả lời
 
 Pod ở Pending, `kubectl describe pod` báo `0/3 nodes are available: 3 Insufficient memory`. Điều gì đang xảy ra và nên làm gì?

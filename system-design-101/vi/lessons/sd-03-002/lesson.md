@@ -5,6 +5,10 @@ dữ liệu nằm ở đâu, được lưu bằng lớp nào, đi bằng đườ
 
 ![Bốn nhóm câu hỏi xếp dọc. Chứa ở đâu: data lake giữ dữ liệu thô nhiều dạng, data warehouse giữ dữ liệu đã tích hợp để phân tích, data mart là phần riêng cho một nhóm. Chứa bằng gì: Delta Lake là lớp lưu trữ thêm giao dịch ACID. Di chuyển thế nào: data pipeline. Ai chịu trách nhiệm: data mesh, một cách tổ chức chứ không phải sản phẩm để cài.](../../diagrams/sd-03-002-main.svg)
 
+## Từ viết tắt
+
+- **ACID** (Atomicity, Consistency, Isolation, Durability) — bốn tính chất của một giao dịch dữ liệu đáng tin cậy: nguyên tử (làm trọn hoặc không làm), nhất quán, cô lập (giao dịch không lẫn vào nhau) và bền vững (đã ghi thì không mất).
+
 ## Đọc hình
 
 **1 · Chứa ở đâu?**

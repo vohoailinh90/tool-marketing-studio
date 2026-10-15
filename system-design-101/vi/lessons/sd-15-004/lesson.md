@@ -4,6 +4,19 @@
 
 ![Năm khung dọc: trình duyệt hỏi resolver; resolver hỏi root và nhận hướng tới máy chủ .com; resolver hỏi .com và nhận máy chủ tên của example.com; resolver hỏi máy chủ thẩm quyền và nhận địa chỉ minh họa 192.0.2.10; resolver trả lời và lưu cache theo TTL.](../../diagrams/sd-15-004-main.svg)
 
+## Từ viết tắt
+
+- **DNS** (Domain Name System) — hệ thống tên miền: "danh bạ" của Internet, đổi tên miền như example.com thành địa chỉ IP.
+- **IP** (Internet Protocol) — giao thức Internet: quy ước đánh địa chỉ và chuyển gói tin giữa các máy; địa chỉ IP là địa chỉ của một máy trên mạng.
+- **TLD** (Top-Level Domain) — miền cấp cao nhất: phần cuối cùng của tên miền, như .com.
+- **TTL** (Time To Live) — thời gian sống: khoảng thời gian một bản ghi trong bộ nhớ đệm được coi là còn dùng được trước khi hết hạn.
+- **DNSSEC** (DNS SECurity) — bảo mật cho DNS: thêm chữ ký số vào dữ liệu DNS để kiểm tra nó không bị làm giả; bài này không đi sâu vào nó.
+- **DoH** (DNS over HTTPS) — DNS qua HTTPS: gửi truy vấn DNS bên trong một kết nối HTTPS để người ngoài khó đọc.
+- **DoT** (DNS over TLS) — DNS qua TLS: gửi truy vấn DNS bên trong một kết nối TLS để người ngoài khó đọc.
+- **HTTPS** (HyperText Transfer Protocol Secure) — HTTP chạy trên TLS: cách gửi yêu cầu và trả lời như HTTP nhưng nội dung được mã hóa.
+- **HTTP** (HyperText Transfer Protocol) — giao thức truyền siêu văn bản: quy ước để trình duyệt gửi yêu cầu (request) và máy chủ gửi trả lời (response).
+- **TLS** (Transport Layer Security) — bảo mật tầng truyền tải: lớp mã hóa giữ kín dữ liệu giữa client và máy chủ.
+
 ## Đọc hình
 
 Ví dụ tra `www.example.com`.

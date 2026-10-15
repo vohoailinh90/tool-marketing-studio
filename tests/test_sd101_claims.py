@@ -562,6 +562,40 @@ class ClaimTests(Sessions):
         git(a, "commit", "--quiet", "-m", "the edited map with its registry")
         self.assertEqual(0, run("touch", "--publish")[0], "committed together: it may go up")
 
+    def test_a_committed_source_map_change_revalidates_the_lessons_already_written(self) -> None:
+        a = self.session("a")
+        in_clone = a / "source-map.json"
+        in_clone.write_text(self.source_map.read_text(encoding="utf-8"), encoding="utf-8")
+        git(a, "add", "-A")
+        git(a, "commit", "--quiet", "-m", "the source map")
+
+        def run(*args: str) -> tuple[int, str, str]:
+            out, err = io.StringIO(), io.StringIO()
+            with contextlib.redirect_stdout(out), contextlib.redirect_stderr(err):
+                code = claims.main(["--store", str(a / "store"), "--source-map", str(in_clone), *args])
+            return code, out.getvalue(), err.getvalue()
+
+        self.assertEqual(0, run("claim", "sd-01-001", "sd-01-004", "--publish")[0])
+        self.write_lesson(a, "sd-01-001")
+        self.assertEqual(0, run("finish", "sd-01-001")[0])
+        git(a, "add", "-A")
+        git(a, "commit", "--quiet", "-m", "the lesson")
+        git(a, "push", "--quiet", "origin", "claude/a")
+        with mock.patch.object(claims, "content_problems", side_effect=AssertionError("nothing changed: no need to check")):
+            self.assertEqual(0, run("touch", "--publish")[0], "an unchanged source map revalidates nothing")
+        in_clone.write_text(in_clone.read_text(encoding="utf-8").replace('"title_source": "Two"', '"title_source": "Two, renamed"', 1),
+                            encoding="utf-8")
+        self.assertEqual(0, run("sync")[0])
+        git(a, "add", "-A")
+        git(a, "commit", "--quiet", "-m", "the edited map with its registry")
+        pushed = git(self.tmp, "--git-dir", str(self.origin), "rev-parse", "claude/a")
+        with mock.patch.object(claims, "content_problems", return_value=["metadata/sd-01-001.json: pins the old commit"]):
+            code, _, err = run("touch", "--publish")
+        self.assertEqual(1, code, err)
+        self.assertIn("sd-01-001 is marked written but the lesson files are not committed", err)
+        self.assertEqual(pushed, git(self.tmp, "--git-dir", str(self.origin), "rev-parse", "claude/a"))
+        self.assertEqual(0, run("touch", "--publish")[0], "the lessons are valid under the new map")
+
     def test_every_registry_must_use_the_same_lease(self) -> None:
         odd = self.session("odd")
         header, lessons, _ = claims.parse((odd / REGISTRY).read_text(encoding="utf-8"))

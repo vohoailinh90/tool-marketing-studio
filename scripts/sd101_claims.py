@@ -784,6 +784,7 @@ def _unfinished_commits(context: Context, lessons: dict[str, dict], stack: conte
     out = []
     cache: dict = {}
     tree: list[pathlib.Path] = []
+    map_changed = source_map_changed(context, ref if head else base_ref)
 
     def pushed_content_problems(_: Context, lesson_id: str) -> list[str]:
         if not tree:
@@ -802,7 +803,7 @@ def _unfinished_commits(context: Context, lessons: dict[str, dict], stack: conte
             # T is a regular file turned into a symbolic link, which the checker rejects; the optional pointer may go
             if git_text(context.root, "diff", "--no-renames", "--diff-filter=DT", "--name-only", against, "HEAD", "--", *required):
                 out.append(lesson_id)
-            elif (git_text(context.root, "diff", "--name-only", against, "HEAD", "--", *files)  # a rework: still valid?
+            elif ((map_changed or git_text(context.root, "diff", "--name-only", against, "HEAD", "--", *files))  # still valid?
                   and pushed_content_problems(context, lesson_id)):
                 out.append(lesson_id)
             continue
@@ -823,16 +824,32 @@ def drafts_left_behind(context: Context, lessons: dict[str, dict]) -> list[str]:
     return sorted({lesson_id for lesson_id, entry in lessons.items() if entry.get("status") == "todo"} & held)
 
 
+def source_map_in_checkout(context: Context) -> str | None:
+    """The source map's path relative to the repository, or None when there is none to commit with this branch."""
+    if context.source_map is None:
+        return None
+    try:
+        return context.source_map.resolve().relative_to(context.root.resolve()).as_posix()
+    except ValueError:  # a source map outside the checkout is not something this branch can carry
+        return None
+
+
+def source_map_changed(context: Context, against: str) -> bool:
+    """Whether the source map differs from what `against` holds. A repin or retitle can change what makes every written
+    lesson valid (the commit its metadata snapshots, the titles), although none of their files changed."""
+    relative = source_map_in_checkout(context)
+    if relative is None:
+        return False
+    if git(context.root, "rev-parse", "--verify", "-q", against, check=False).returncode != 0:
+        return True  # nothing to compare with
+    return bool(git_text(context.root, "diff", "--name-only", against, "HEAD", "--", relative))
+
+
 def uncommitted_source_map(context: Context) -> bool:
     """Whether the source map this session validated against has changes HEAD does not hold: --publish commits only the
     registry, so the remote would pair a registry synchronized with the new map with the old one."""
-    if context.source_map is None:
-        return False
-    try:
-        relative = context.source_map.resolve().relative_to(context.root.resolve()).as_posix()
-    except ValueError:  # a source map outside the checkout is not something this branch can carry
-        return False
-    return bool(git_text(context.root, "status", "--porcelain", "--", relative))
+    relative = source_map_in_checkout(context)
+    return relative is not None and bool(git_text(context.root, "status", "--porcelain", "--", relative))
 
 
 def guard_publish(context: Context) -> None:

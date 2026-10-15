@@ -260,8 +260,8 @@ mutations:
   replace: '        dirty = ""'
   test: tests.test_sd101_claims.ClaimTests.test_a_finished_lesson_changed_after_its_commit_is_not_pushed
 - label: a written record HEAD already carries is judged again on every publish
-  find: '        if head.get(lesson_id) == entry:  # already advertised'
-  replace: '        if False:  # already advertised'
+  find: '        if head.get(lesson_id) == entry or (lesson_id not in head and inherited.get(lesson_id) == entry):'
+  replace: '        if False:'
   test: tests.test_sd101_claims.ClaimTests.test_reworking_a_lesson_that_was_already_pushed_does_not_block_a_claim
 - label: only main and master are recognised as the default branch
   find: '        return context.branch == default_branch(context.root, context.remote, ask=not context.offline)'
@@ -276,30 +276,28 @@ mutations:
   replace: '(is_stale(mine, now, lease) or beats(other, mine)):'
   test: tests.test_sd101_claims.ClaimTests.test_a_hidden_claim_with_a_fresh_local_heartbeat_loses_to_a_visible_replacement
 - label: a written record that is merely committed locally is trusted as already pushed
-  find: f"refs/remotes/{context.remote}/{context.branch}:{context.relative}"
-  replace: f"HEAD:{context.relative}"
+  find: "    ref = f\"refs/remotes/{context.remote}/{context.branch}\"\n    head = registry_at(context, ref)"
+  replace: "    ref = f\"refs/remotes/{context.remote}/{context.branch}\"\n    head = registry_at(context, \"HEAD\")"
   test: tests.test_sd101_claims.ClaimTests.test_a_written_record_committed_by_itself_is_still_judged_before_it_goes_up
 - label: a committed deletion from a pushed lesson goes up with its written record
-  find: "        if head.get(lesson_id) == entry:  # already advertised: a rework is fine, a committed deletion or rename is not\n            # T is a regular file turned into a symbolic link, which the\
-    \ checker rejects; the optional pointer may go\n            if git_text("
-  replace: "        if head.get(lesson_id) == entry:  # already advertised: a rework is fine, a committed deletion or rename is not\n            # T is a regular file turned into a symbolic link, which\
-    \ the checker rejects; the optional pointer may go\n            if False and git_text("
+  find: '            if git_text(context.root, "diff", "--no-renames"'
+  replace: '            if False and git_text(context.root, "diff", "--no-renames"'
   test: tests.test_sd101_claims.ClaimTests.test_deleting_a_file_of_a_pushed_lesson_is_not_pushed_with_its_written_record
 - label: the header of a remote registry is not validated
   find: '        if expected is not None:  # a header of another schema'
   replace: '        if False:  # a header of another schema'
   test: tests.test_sd101_claims.RemoteTests.test_a_remote_registry_with_a_header_of_another_pin_stops_the_decision
 - label: a committed rename of a pushed lesson's file goes up with its written record
-  find: '"diff", "--no-renames", "--diff-filter=DT", "--name-only", ref, "HEAD", "--", *required'
-  replace: '"diff", "--diff-filter=DT", "--name-only", ref, "HEAD", "--", *files'
+  find: '"diff", "--no-renames", "--diff-filter=DT", "--name-only", against, "HEAD", "--", *required'
+  replace: '"diff", "--diff-filter=DT", "--name-only", against, "HEAD", "--", *files'
   test: tests.test_sd101_claims.ClaimTests.test_renaming_a_file_of_a_pushed_lesson_is_not_pushed_with_its_written_record
 - label: a type change of a pushed lesson's file goes up with its written record
   find: '"--no-renames", "--diff-filter=DT"'
   replace: '"--no-renames", "--diff-filter=D"'
   test: tests.test_sd101_claims.ClaimTests.test_turning_a_file_of_a_pushed_lesson_into_a_symlink_is_not_pushed_with_its_written_record
 - label: the optional pointer of a pushed lesson counts as a required file
-  find: '"--diff-filter=DT", "--name-only", ref, "HEAD", "--", *required):'
-  replace: '"--diff-filter=DT", "--name-only", ref, "HEAD", "--", *files):'
+  find: '"--diff-filter=DT", "--name-only", against, "HEAD", "--", *required):'
+  replace: '"--diff-filter=DT", "--name-only", against, "HEAD", "--", *files):'
   test: tests.test_sd101_claims.ClaimTests.test_removing_the_optional_pointer_of_a_pushed_lesson_blocks_nothing
 - label: a symbolic link or directory in HEAD counts as a lesson file
   find: bool(entry) and entry[0] in ("100644", "100755")
@@ -346,8 +344,8 @@ mutations:
   replace: '            if False:'
   test: tests.test_sd101_claims.ClaimTests.test_finish_stops_at_what_the_store_checker_finds_in_the_lesson
 - label: the store checker's findings about a lesson are dropped
-  find: '    return [str(problem) for problem in module.check_store(store, source_map)'
-  replace: '    return [str(problem) for problem in module.check_store(store, source_map)[:0]'
+  find: "    return [str(problem) for problem in problems\n            if problem.where not in STORE_LEVEL_FILES"
+  replace: "    return [str(problem) for problem in problems[:0]\n            if problem.where not in STORE_LEVEL_FILES"
   test: tests.test_sd101_claims.ContentTests.test_a_good_lesson_passes_and_each_damage_is_found
 - label: a reworked pushed lesson is not checked by the store checker
   find: '                  and pushed_content_problems(context, lesson_id)):'
@@ -358,12 +356,12 @@ mutations:
   replace: '        if not in_head or dirty:'
   test: tests.test_sd101_claims.ClaimTests.test_a_finished_lesson_that_the_store_checker_rejects_at_publication_is_not_pushed
 - label: the lesson is checked in the working tree instead of in HEAD
-  find: '        return content_problems(pathlib.Path(tmp) / relative, context.source_map, lesson_id)'
-  replace: '        return content_problems(context.store, context.source_map, lesson_id)'
+  find: '        return content_problems(tree[0], context.source_map, lesson_id, cache)'
+  replace: '        return content_problems(context.store, context.source_map, lesson_id, cache)'
   test: tests.test_sd101_claims.ClaimTests.test_the_lesson_is_checked_as_head_holds_it_not_as_the_working_tree_does
 - label: a change to the optional pointer does not trigger the content check
-  find: 'git_text(context.root, "diff", "--name-only", ref, "HEAD", "--", *files)  # a rework'
-  replace: 'git_text(context.root, "diff", "--name-only", ref, "HEAD", "--", *required)  # a rework'
+  find: 'git_text(context.root, "diff", "--name-only", against, "HEAD", "--", *files)  # a rework'
+  replace: 'git_text(context.root, "diff", "--name-only", against, "HEAD", "--", *required)  # a rework'
   test: tests.test_sd101_claims.ClaimTests.test_changing_the_optional_pointer_of_a_pushed_lesson_is_checked_too
 - label: sync patches the header of an existing registry instead of rebuilding it
   find: "        header = new_header(context.source)\n    else:"

@@ -313,11 +313,11 @@
         },
         {
           "id": "sd-01-031",
-          "title_vi": null,
+          "title_vi": "Mã phản hồi HTTP: đọc nhóm trước, đọc nghĩa sau",
           "title_source": "HTTP Status Codes You Should Know",
           "source_url": "https://bytebytego.com/guides/http-status-code-you-should-know",
           "source_path": "data/guides/http-status-code-you-should-know.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "965b2161782b277d799b4f6b9df92f994094aaaa",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/http-status-code-you-should-know.md"
         },

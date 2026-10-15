@@ -338,7 +338,7 @@ mutations:
   replace: f"lessons/{lesson_id}/lesson.yaml")
   test: tests.test_sd101_claims.ClaimTests.test_finish_needs_every_artifact_of_the_lesson
 - label: a damaged default-branch registry can be ignored
-  find: 'if (core := [item for item in unreadable if item.startswith((f"origin/{base} (", f"{context.remote}/{base} (")))]) and not tolerate:'
+  find: 'if (core := [item for item in unreadable if item.startswith((f"origin/{base} (", f"{context.remote}/{base} ("))]) and not tolerate:'
   replace: 'if False:'
   test: tests.test_sd101_claims.ClaimTests.test_a_default_branch_with_a_damaged_registry_cannot_be_ignored
 - label: finish does not ask the store checker about the lesson

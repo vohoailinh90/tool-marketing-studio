@@ -21,7 +21,7 @@ mutations:
 - label: a takeover does not beat the stale claim it took over
   find: "    if second.owner in first.taken_from:\n        return True"
   replace: "    if second.owner in first.taken_from:\n        return False"
-  test: tests.test_sd101_claims.LeaseTests.test_a_session_that_wakes_up_cannot_win_back_a_lesson_that_was_taken
+  test: tests.test_sd101_claims.LeaseTests.test_a_takeover_beats_a_claim_whose_renewal_was_never_pushed
 - label: a stale claim is taken over without asking
   find: "        if not take_stale:\n            return (f\"claimed by"
   replace: "        if False:\n            return (f\"claimed by"

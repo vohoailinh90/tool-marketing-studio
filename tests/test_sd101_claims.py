@@ -228,6 +228,18 @@ class LeaseTests(Sessions):
         self.assertIn("lost to claude/b", err)
         self.assertEqual("2026-10-15T08:00:00Z", self.entry(a, "sd-01-001")["heartbeat_at"], "a lost claim is not renewed")
 
+    def test_a_takeover_beats_a_claim_whose_renewal_was_never_pushed(self) -> None:
+        a, b = self.session("a"), self.session("b")
+        self.run_in(a, "claim", "sd-01-001", "--publish")
+        self.at(hours=71)
+        self.run_in(a, "touch")  # renewed in a's copy only: the remote still shows the claim of hour 0
+        self.at(hours=73)
+        self.assertEqual(0, self.run_in(b, "claim", "sd-01-001", "--take-stale", "--publish")[0])
+        self.at(hours=74)
+        code, _, err = self.run_in(a, "verify")  # a's own copy is fresh, and older than b's claim
+        self.assertEqual(1, code)
+        self.assertIn("lost to claude/b", err)
+
     def test_a_lesson_taken_over_twice_is_still_won_against_the_first_owner(self) -> None:
         a, b, c = self.session("a"), self.session("b"), self.session("c")
         self.run_in(a, "claim", "sd-01-001", "--publish")

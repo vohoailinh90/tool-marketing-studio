@@ -673,6 +673,21 @@ class ClaimTests(Sessions):
         self.assertIn("claimed by claude/b", err)
         self.assertEqual(0, self.run_mapped(a, "claim", "sd-01-006", "--publish")[0])
 
+    def test_a_branch_whose_registry_keeps_a_lesson_its_own_source_map_dropped_is_unreadable(self) -> None:
+        b = self.mapped_clone("b")
+        self.edit_map(b, lambda data: data["categories"][0]["lessons"].__setitem__(
+            slice(None), [lesson for lesson in data["categories"][0]["lessons"] if lesson["id"] != "sd-01-004"]))
+        git(b, "commit", "--quiet", "-am", "the map dropped a lesson, the registry kept it")
+        git(b, "push", "--quiet", "origin", "claude/b")
+        a = self.mapped_clone("a")
+        for flags in ((), ("--ignore-unreadable",)):
+            with self.subTest(flags):
+                code, out, err = self.run_mapped(a, *flags, "claim", "sd-01-001")
+                self.assertEqual(0 if flags else 2, code, err)
+                if not flags:
+                    self.assertIn("origin/claude/b", err)
+                    self.assertIn("its source map does not list", err)
+
     def test_a_default_registry_that_disagrees_with_its_own_source_map_stops_the_decision(self) -> None:
         seed = self.tmp / "seed"
         a = self.mapped_clone("a")  # origin/main holds the map and a registry of the same pin

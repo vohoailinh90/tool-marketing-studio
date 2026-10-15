@@ -453,6 +453,8 @@ def gather(local: dict[str, dict], remote: dict[str, str], base: str, me: str, o
         problems += record_problems(lessons)  # a typo in a status would otherwise hide the claim it sits in
         if missing := [lesson_id for lesson_id in ids if lesson_id not in lessons]:  # so would a truncated file
             problems.append(f"lacks {len(missing)} source-map lesson(s), e.g. {missing[0]}")
+        elif extra := [lesson_id for lesson_id in lessons if lesson_id not in ids]:  # and a row its own map dropped
+            problems.append(f"holds {len(extra)} lesson(s) its source map does not list, e.g. {extra[0]}")
         if problems:
             unreadable.append(f"origin/{branch} ({problems[0]})")
             continue  # --ignore-unreadable decides without the branch, so none of its records may count

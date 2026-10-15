@@ -427,3 +427,7 @@ mutations:
   find: '    gone = not context.offline and base not in remote and base not in missing and base not in undecodable'
   replace: '    gone = False'
   test: tests.test_sd101_claims.RemoteTests.test_a_default_branch_that_no_longer_exists_stops_the_decision
+- label: a remote registry keeping a row its own map dropped is accepted
+  find: '        elif extra := [lesson_id for lesson_id in lessons if lesson_id not in ids]:  # and a row its own map dropped'
+  replace: '        elif False:  # and a row its own map dropped'
+  test: tests.test_sd101_claims.ClaimTests.test_a_branch_whose_registry_keeps_a_lesson_its_own_source_map_dropped_is_unreadable

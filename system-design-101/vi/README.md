@@ -25,9 +25,9 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 14. [JavaScript hoạt động thế nào?](lessons/sd-01-014/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
 15. [8 gợi ý thiết kế API hiệu quả](lessons/sd-01-015/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
 16. [Reverse Proxy, API Gateway và Load Balancer](lessons/sd-01-016/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
-17. [REST API hoạt động thế nào?](lessons/sd-01-017/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
-18. [Load Balancer và API Gateway](lessons/sd-01-018/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
-19. [GraphQL tại LinkedIn](lessons/sd-01-019/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+17. [REST API hoạt động thế nào?](lessons/sd-01-017/lesson.md)
+18. [Load Balancer và API Gateway](lessons/sd-01-018/lesson.md)
+19. [GraphQL tại LinkedIn](lessons/sd-01-019/lesson.md)
 
 ## AI và học máy
 

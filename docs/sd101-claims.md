@@ -89,7 +89,8 @@ What is lost in that race is the loser's work, never a duplicate lesson on `main
 The `owner` of a claim is the branch name. That is deliberate: a session that continues another
 session's branch inherits its claims, and cloud sessions get distinct branch names. The cost is that two
 containers working on the same branch name are one owner to the registry, and renaming a branch that
-holds claims orphans them (release them first). `--owner` overrides the name; use it only for that.
+holds claims orphans them (release them first). `--owner` overrides the name for tests and detached checkouts; `--publish` refuses an owner that is not the
+branch it would push, because a claim counts only on the branch its owner names.
 
 ## Checks
 

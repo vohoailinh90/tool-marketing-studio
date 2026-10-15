@@ -360,8 +360,8 @@ def beats(first: Holding, second: Holding) -> bool:
     return (first.claimed_at or "", first.owner or "") < (second.claimed_at or "", second.owner or "")
 
 
-def gather(local: dict[str, dict], remote: dict[str, str], base: str, me: str, offline: bool,
-           everything: bool = False) -> tuple[dict[str, list[Holding]], list[str]]:
+def gather(local: dict[str, dict], remote: dict[str, str], base: str, me: str,
+           offline: bool) -> tuple[dict[str, list[Holding]], list[str]]:
     """Every claim and every written lesson that any view shows, per lesson, and the views that could not be read."""
     found: dict[str, list[Holding]] = {}
     unreadable: list[str] = []
@@ -371,7 +371,7 @@ def gather(local: dict[str, dict], remote: dict[str, str], base: str, me: str, o
             found.setdefault(holding.lesson_id, []).append(holding)
 
     for entry in local.values():
-        if offline or everything or entry.get("owner") == me or entry.get("status") == "written":
+        if offline or entry.get("owner") == me or entry.get("status") == "written":
             add(entry, "this working tree")
     for branch, text in remote.items():
         _, lessons, problems = parse(text)
@@ -481,7 +481,7 @@ def lease_of(header: dict) -> int:
     return lease if isinstance(lease, int) and not isinstance(lease, bool) and lease > 0 else DEFAULT_LEASE_HOURS
 
 
-def world_of(context: Context, local: dict[str, dict], everything: bool = False) -> tuple[dict[str, list[Holding]], list[str]]:
+def world_of(context: Context, local: dict[str, dict]) -> tuple[dict[str, list[Holding]], list[str]]:
     """What every session can see, after reading the remote (a failure to read it is an error unless offline)."""
     remote: dict[str, str] = {}
     base = "main"
@@ -493,7 +493,7 @@ def world_of(context: Context, local: dict[str, dict], everything: bool = False)
         except ClaimsError as error:
             raise ClaimsError(f"cannot read the other sessions' claims from {context.remote}: {error}; "
                               "nothing was decided (pass --offline only if you accept that risk)") from error
-    return gather(local, remote, base, context.me, context.offline, everything)
+    return gather(local, remote, base, context.me, context.offline)
 
 
 # ------------------------------------------------------------------------------------------- commands
@@ -538,7 +538,7 @@ def cmd_fmt(context: Context, _: argparse.Namespace) -> int:
 def cmd_status(context: Context, args: argparse.Namespace) -> int:
     header, lessons = load_registry(context)
     lease = lease_of(header)
-    found, unreadable = world_of(context, lessons, everything=True)
+    found, unreadable = world_of(context, lessons)
     states = {lesson_id: effective_status(lesson_id, found, context.now, lease) for lesson_id, _ in context.source.lessons}
     counts = {name: list(states.values()).count(name) for name in ("written", "doing", "stale", "todo")}
     print(f"System Design 101 (vi): {len(states)} lessons, source {context.source.commit_sha[:7]}")
@@ -591,10 +591,18 @@ def require_owner(context: Context) -> None:
         raise ClaimsError("claims belong to a work branch; check one out first (or pass --owner)")
 
 
-def publish(context: Context, message: str) -> None:
-    """Commit only the registry and push it to the same-named branch, so the other sessions can see it."""
+def check_publishable(context: Context) -> None:
+    """--publish is only for the owner's own work branch: a claim counts on the branch its owner names."""
     if context.branch in (None, "main", "master"):
         raise ClaimsError("--publish pushes the current work branch; it never pushes main")
+    if context.me != context.branch:
+        raise ClaimsError(f"--publish pushes branch {context.branch}, but the claims are owned by {context.me}; "
+                          "other sessions count a claim only on the branch its owner names, so publish from that branch")
+
+
+def publish(context: Context, message: str) -> None:
+    """Commit only the registry and push it to the same-named branch, so the other sessions can see it."""
+    check_publishable(context)
     git(context.root, "add", "--", context.relative)
     if git(context.root, "diff", "--cached", "--quiet", "--", context.relative, check=False).returncode != 0:
         git(context.root, "commit", "--quiet", "--only", "-m", message, "--", context.relative)
@@ -631,6 +639,8 @@ def verdicts(context: Context, header: dict, lessons: dict[str, dict], ids: list
 
 def cmd_claim(context: Context, args: argparse.Namespace) -> int:
     require_owner(context)
+    if args.publish:
+        check_publishable(context)
     header, lessons = load_registry(context)
     lease = lease_of(header)
     found, _ = world_of(context, lessons)
@@ -700,6 +710,8 @@ def cmd_verify(context: Context, args: argparse.Namespace) -> int:
 
 
 def cmd_touch(context: Context, args: argparse.Namespace) -> int:
+    if args.publish:
+        check_publishable(context)
     header, lessons = load_registry(context)
     ids = my_claims(lessons, context.me, args.ids)
     if not ids:
@@ -745,6 +757,8 @@ def cmd_finish(context: Context, args: argparse.Namespace) -> int:
 
 
 def cmd_release(context: Context, args: argparse.Namespace) -> int:
+    if args.publish:
+        check_publishable(context)
     header, lessons = load_registry(context)
     check_ids(context, lessons, args.ids)
     problems = []

@@ -98,3 +98,11 @@ mutations:
   find: 'if len(fields) == 3:  # <oid>'
   replace: 'if len(fields) == 3 and fields[1] == b"blob":  # <oid>'
   test: tests.test_sd101_claims.RemoteTests.test_a_branch_with_a_directory_where_the_registry_should_be_does_not_shift_the_others
+- label: publish accepts an owner that is not the branch it pushes
+  find: "    if context.me != context.branch:\n        raise ClaimsError(f\"--publish pushes branch"
+  replace: "    if False:\n        raise ClaimsError(f\"--publish pushes branch"
+  test: tests.test_sd101_claims.RemoteTests.test_publish_with_an_owner_that_is_not_the_branch_is_refused_before_anything_is_written
+- label: a claim another branch only inherited is counted from the working tree
+  find: 'if offline or entry.get("owner") == me or entry.get("status") == "written":'
+  replace: 'if True:'
+  test: tests.test_sd101_claims.RemoteTests.test_status_does_not_count_a_claim_the_branch_only_inherited

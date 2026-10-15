@@ -303,6 +303,29 @@ class RemoteTests(Sessions):
         self.assertEqual(2, code)
         self.assertIn("never pushes main", err)
 
+    def test_publish_with_an_owner_that_is_not_the_branch_is_refused_before_anything_is_written(self) -> None:
+        a = self.session("a")
+        before = (a / REGISTRY).read_text(encoding="utf-8")
+        for command in (("claim", "sd-01-001"), ("touch",), ("release", "sd-01-001")):
+            with self.subTest(command[0]):
+                code, _, err = self.run_in(a, "--owner", "someone-else", *command, "--publish")
+                self.assertEqual(2, code)
+                self.assertIn("claims are owned by someone-else", err)
+        self.assertEqual(before, (a / REGISTRY).read_text(encoding="utf-8"))
+        self.assertNotIn("claude/a", git(self.tmp, "--git-dir", str(self.origin), "branch", "--list", "claude/a"))
+
+    def test_status_does_not_count_a_claim_the_branch_only_inherited(self) -> None:
+        a, b = self.session("a"), self.session("b")
+        self.run_in(a, "claim", "sd-01-001", "--publish")
+        c = self.clone("c", branch=None)
+        git(c, "checkout", "--quiet", "-b", "claude/c", "origin/claude/a")  # c's copy shows a's claim
+        self.run_in(a, "release", "sd-01-001", "--publish")                 # which a has since given back
+        code, out, _ = self.run_in(c, "status")
+        self.assertEqual(0, code)
+        self.assertIn("doing 0", out)
+        self.assertIn("Next free: sd-01-001", out)
+        self.assertEqual("sd-01-001\n", self.run_in(c, "next")[1])
+
     def test_status_shows_what_other_sessions_hold(self) -> None:
         a, b = self.session("a"), self.session("b")
         self.run_in(a, "claim", "sd-01-001", "--publish")

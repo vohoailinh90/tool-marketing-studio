@@ -661,6 +661,18 @@ class ClaimTests(Sessions):
         code, _, err = self.run_mapped(a, "claim", "sd-01-006", "--publish")
         self.assertEqual(0, code, err)
 
+    def test_a_branch_on_the_old_roster_stays_visible_while_another_adds_a_lesson(self) -> None:
+        a, b = self.mapped_clone("a"), self.mapped_clone("b")  # both on the old map
+        self.assertEqual(0, self.run_mapped(b, "claim", "sd-01-001", "--publish")[0])
+        self.edit_map(a, lambda data: data["categories"][0]["lessons"].append({"id": "sd-01-006", "title_source": "Six-bis"}))
+        self.assertEqual(0, self.run_mapped(a, "sync")[0])
+        git(a, "add", "-A")
+        git(a, "commit", "--quiet", "-m", "a new lesson in the map and the registry")
+        code, _, err = self.run_mapped(a, "claim", "sd-01-001")
+        self.assertEqual(1, code, err)  # b's claim is still seen: its branch is judged against its own map
+        self.assertIn("claimed by claude/b", err)
+        self.assertEqual(0, self.run_mapped(a, "claim", "sd-01-006", "--publish")[0])
+
     def test_a_default_registry_that_disagrees_with_its_own_source_map_stops_the_decision(self) -> None:
         seed = self.tmp / "seed"
         a = self.mapped_clone("a")  # origin/main holds the map and a registry of the same pin

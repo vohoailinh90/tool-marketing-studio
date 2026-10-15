@@ -388,15 +388,15 @@ mutations:
   replace: '    return stamp(now)'
   test: tests.test_sd101_claims.ClaimTests.test_a_renewal_after_the_clock_went_backwards_never_predates_the_claim
 - label: the default branch must carry the new pin during a repin
-  find: 'if branch == base and base_source is not None:'
+  find: 'if sources and branch in sources:'
   replace: 'if False:'
   test: tests.test_sd101_claims.ClaimTests.test_a_repin_can_be_published_while_the_default_branch_still_has_the_old_pin
 - label: a default registry is judged against the new roster during a roster edit
-  find: 'if branch == base and base_source is not None:'
+  find: 'if sources and branch in sources:'
   replace: 'if False:'
   test: tests.test_sd101_claims.ClaimTests.test_a_new_lesson_can_be_published_while_the_default_branch_still_has_the_old_roster
 - label: a default registry is not judged against its own source map
-  find: '            want, ids = (base_source.commit_sha, base_source.repository), tuple(lesson_id for lesson_id, _ in base_source.lessons)'
+  find: '            want, ids = (own.commit_sha, own.repository), tuple(lesson_id for lesson_id, _ in own.lessons)'
   replace: '            want, ids = None, roster'
   test: tests.test_sd101_claims.ClaimTests.test_a_default_registry_that_disagrees_with_its_own_source_map_stops_the_decision
 - label: sync drops a record whose lesson files remain
@@ -419,3 +419,7 @@ mutations:
   find: '            if broken := content_problems(context.store, context.source_map, lesson_id, cache):'
   replace: '            if broken := content_problems(context.store, context.source_map, lesson_id, {}):'
   test: tests.test_sd101_claims.ClaimTests.test_finish_checks_the_store_once_for_a_whole_batch
+- label: only the default branch is judged against its own source map
+  find: own := source_at(context, f"refs/remotes/{context.remote}/{name}")) is not None})
+  replace: own := source_at(context, f"refs/remotes/{context.remote}/{name}")) is not None and name == base})
+  test: tests.test_sd101_claims.ClaimTests.test_a_branch_on_the_old_roster_stays_visible_while_another_adds_a_lesson

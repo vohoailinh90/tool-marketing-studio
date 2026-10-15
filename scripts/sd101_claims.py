@@ -428,7 +428,7 @@ def beats(first: Holding, second: Holding) -> bool:
 
 def gather(local: dict[str, dict], remote: dict[str, str], base: str, me: str, offline: bool,
            roster: tuple[str, ...] = (), expected: tuple[str | None, str | None] | None = None,
-           base_source: Source | None = None) -> tuple[dict[str, list[Holding]], list[str]]:
+           sources: dict[str, Source] | None = None) -> tuple[dict[str, list[Holding]], list[str]]:
     """Every claim and every written lesson that any view shows, per lesson, and the views that could not be read."""
     found: dict[str, list[Holding]] = {}
     unreadable: list[str] = []
@@ -443,10 +443,11 @@ def gather(local: dict[str, dict], remote: dict[str, str], base: str, me: str, o
     for branch, text in remote.items():
         header, lessons, problems = parse(text)
         want, ids = expected, roster
-        if branch == base and base_source is not None:
-            # A repin or a new lesson is published from a work branch while the default branch still has the old pin and
-            # roster: its registry is judged against the source map that branch itself holds.
-            want, ids = (base_source.commit_sha, base_source.repository), tuple(lesson_id for lesson_id, _ in base_source.lessons)
+        if sources and branch in sources:
+            # A repin or a new lesson is published from one branch while the others still have the old pin and roster:
+            # each registry is judged against the source map its own branch holds.
+            own = sources[branch]
+            want, ids = (own.commit_sha, own.repository), tuple(lesson_id for lesson_id, _ in own.lessons)
         if want is not None:  # a header of another schema or source says the records cannot be read as ours
             problems += header_problems(header, *want)
         problems += record_problems(lessons)  # a typo in a status would otherwise hide the claim it sits in
@@ -613,7 +614,8 @@ def world_of(context: Context, local: dict[str, dict],
     roster = tuple(lesson_id for lesson_id, _ in context.source.lessons)
     found, unreadable = gather(local, remote, base, context.me, context.offline, roster,
                                (context.source.commit_sha, context.source.repository),
-                               None if context.offline else source_at(context, f"refs/remotes/{context.remote}/{base}"))
+                               {} if context.offline else {name: own for name in remote if (
+                                   own := source_at(context, f"refs/remotes/{context.remote}/{name}")) is not None})
     unreadable += [f"{context.remote}/{name} (not valid UTF-8)" for name in undecodable]
     if base in missing:  # a legacy feature branch may lack the file, the branch that holds every merged lesson may not
         absent = f"{context.remote}/{base} (the default branch has no {REGISTRY_NAME})"

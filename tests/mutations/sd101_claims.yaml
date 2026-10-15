@@ -280,8 +280,8 @@ mutations:
   replace: "    ref = f\"refs/remotes/{context.remote}/{context.branch}\"\n    head = registry_at(context, \"HEAD\")"
   test: tests.test_sd101_claims.ClaimTests.test_a_written_record_committed_by_itself_is_still_judged_before_it_goes_up
 - label: a committed deletion from a pushed lesson goes up with its written record
-  find: '            if git_text(context.root, "diff", "--no-renames"'
-  replace: '            if False and git_text(context.root, "diff", "--no-renames"'
+  find: '            if (git_text(context.root, "diff", "--no-renames"'
+  replace: '            if (False and git_text(context.root, "diff", "--no-renames"'
   test: tests.test_sd101_claims.ClaimTests.test_deleting_a_file_of_a_pushed_lesson_is_not_pushed_with_its_written_record
 - label: the header of a remote registry is not validated
   find: '        if want is not None:  # a header of another schema'
@@ -296,8 +296,8 @@ mutations:
   replace: '"--no-renames", "--diff-filter=D"'
   test: tests.test_sd101_claims.ClaimTests.test_turning_a_file_of_a_pushed_lesson_into_a_symlink_is_not_pushed_with_its_written_record
 - label: the optional pointer of a pushed lesson counts as a required file
-  find: '"--diff-filter=DT", "--name-only", against, "HEAD", "--", *required):'
-  replace: '"--diff-filter=DT", "--name-only", against, "HEAD", "--", *files):'
+  find: '"--diff-filter=DT", "--name-only", against, "HEAD", "--", *required)'
+  replace: '"--diff-filter=DT", "--name-only", against, "HEAD", "--", *files)'
   test: tests.test_sd101_claims.ClaimTests.test_removing_the_optional_pointer_of_a_pushed_lesson_blocks_nothing
 - label: a symbolic link or directory in HEAD counts as a lesson file
   find: bool(entry) and entry[0] in ("100644", "100755")
@@ -344,25 +344,25 @@ mutations:
   replace: '            if False:'
   test: tests.test_sd101_claims.ClaimTests.test_finish_stops_at_what_the_store_checker_finds_in_the_lesson
 - label: the store checker's findings about a lesson are dropped
-  find: "    return [str(problem) for problem in problems\n            if problem.where not in STORE_LEVEL_FILES"
-  replace: "    return [str(problem) for problem in problems[:0]\n            if problem.where not in STORE_LEVEL_FILES"
+  find: '    return [str(problem) for problem in _store_problems(store, source_map, cache, boundary)
+
+    '
+  replace: '    return [str(problem) for problem in _store_problems(store, source_map, cache, boundary)[:0]
+
+    '
   test: tests.test_sd101_claims.ContentTests.test_a_good_lesson_passes_and_each_damage_is_found
 - label: a reworked pushed lesson is not checked by the store checker
-  find: '                  and pushed_content_problems(context, lesson_id)):'
-  replace: '                  and False):'
+  find: '                    or pushed_content_problems(context, lesson_id)):'
+  replace: '                    or False):'
   test: tests.test_sd101_claims.ClaimTests.test_a_reworked_lesson_that_the_store_checker_rejects_is_not_pushed
 - label: a newly written lesson is not checked by the store checker at publication
   find: '        if not in_head or dirty or pushed_content_problems(context, lesson_id):'
   replace: '        if not in_head or dirty:'
   test: tests.test_sd101_claims.ClaimTests.test_a_finished_lesson_that_the_store_checker_rejects_at_publication_is_not_pushed
 - label: the lesson is checked in the working tree instead of in HEAD
-  find: '        return content_problems(tree[0][0], context.source_map, lesson_id, cache, tree[0][1])'
-  replace: '        return content_problems(context.store, context.source_map, lesson_id, cache, tree[0][1])'
+  find: '        return content_problems(exported()[0], context.source_map, lesson_id, cache, exported()[1])'
+  replace: '        return content_problems(context.store, context.source_map, lesson_id, cache, exported()[1])'
   test: tests.test_sd101_claims.ClaimTests.test_the_lesson_is_checked_as_head_holds_it_not_as_the_working_tree_does
-- label: a change to the optional pointer does not trigger the content check
-  find: 'git_text(context.root, "diff", "--name-only", against, "HEAD", "--", *files))  # still valid?'
-  replace: 'git_text(context.root, "diff", "--name-only", against, "HEAD", "--", *required))  # still valid?'
-  test: tests.test_sd101_claims.ClaimTests.test_changing_the_optional_pointer_of_a_pushed_lesson_is_checked_too
 - label: sync patches the header of an existing registry instead of rebuilding it
   find: "        header = new_header(context.source)\n    else:"
   replace: "        header = {**header, \"source_repository\": context.source.repository, \"source_commit_sha\": context.source.commit_sha}\n    else:"
@@ -372,17 +372,13 @@ mutations:
   replace: '        if head.get(lesson_id) == entry:'
   test: tests.test_sd101_claims.ClaimTests.test_a_first_publication_does_not_answer_for_the_lessons_the_default_branch_already_holds
 - label: the whole-store check runs again for every lesson
-  find: '        return content_problems(tree[0][0], context.source_map, lesson_id, cache, tree[0][1])'
-  replace: '        return content_problems(tree[0][0], context.source_map, lesson_id, {}, tree[0][1])'
+  find: '        return content_problems(exported()[0], context.source_map, lesson_id, cache, exported()[1])'
+  replace: '        return content_problems(exported()[0], context.source_map, lesson_id, {}, exported()[1])'
   test: tests.test_sd101_claims.ClaimTests.test_the_whole_store_is_checked_once_for_all_the_lessons_of_a_publication
 - label: a publication leaves the edited source map behind
   find: "    if uncommitted_source_map(context):\n        raise Refusal("
   replace: "    if False:\n        raise Refusal("
   test: tests.test_sd101_claims.ClaimTests.test_a_source_map_changed_since_the_last_commit_is_not_left_behind_by_a_publication
-- label: a committed source-map change does not revalidate the lessons already written
-  find: '            elif ((map_changed or git_text('
-  replace: '            elif ((False or git_text('
-  test: tests.test_sd101_claims.ClaimTests.test_a_committed_source_map_change_revalidates_the_lessons_already_written
 - label: the pushed tree holds only the store
   find: '"archive", "--format=tar", "HEAD").stdout'
   replace: '"archive", "--format=tar", "HEAD", "--", relative).stdout'
@@ -404,6 +400,18 @@ mutations:
   replace: '            want, ids = None, roster'
   test: tests.test_sd101_claims.ClaimTests.test_a_default_registry_that_disagrees_with_its_own_source_map_stops_the_decision
 - label: sync drops a record whose lesson files remain
-  find: '    if orphans := [lesson_id for lesson_id in lessons if lesson_id not in known and any('
-  replace: '    if orphans := [lesson_id for lesson_id in lessons if False and lesson_id not in known and any('
+  find: '    if orphans := [lesson_id for lesson_id in lessons if lesson_id not in known and (any('
+  replace: '    if orphans := [lesson_id for lesson_id in lessons if False and lesson_id not in known and (any('
   test: tests.test_sd101_claims.ClaimTests.test_sync_does_not_drop_a_record_while_its_lesson_files_remain
+- label: dropped ids whose files remain are not reported at publication
+  find: '    orphans = orphan_problems(exported()[0], context.source_map, set(lessons), cache, exported()[1])'
+  replace: '    orphans = []'
+  test: tests.test_sd101_claims.ClaimTests.test_the_store_checker_runs_for_every_written_lesson_and_for_ids_the_registry_dropped
+- label: sync ignores the committed tree when dropping a record
+  find: '            or any(re.search(rf"/(lessons|metadata|diagrams)/{lesson_id}[./-]", f"/{name}") for name in committed))]:'
+  replace: '            or False)]:'
+  test: tests.test_sd101_claims.ClaimTests.test_sync_looks_at_the_committed_tree_before_dropping_a_record
+- label: orphan_problems reports ids the registry holds
+  find: "            if lesson_id not in known:\n                found.setdefault(lesson_id, str(problem))"
+  replace: "            if lesson_id in known or True:\n                found.setdefault(lesson_id, str(problem))"
+  test: tests.test_sd101_claims.OrphanTests.test_files_of_an_unlisted_lesson_are_found_and_the_real_store_has_none

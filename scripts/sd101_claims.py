@@ -660,9 +660,13 @@ def cmd_sync(context: Context, _: argparse.Namespace) -> int:
             lessons[lesson_id]["title"] = title
             retitled += 1
     known = {lesson_id for lesson_id, _ in context.source.lessons}
-    if orphans := [lesson_id for lesson_id in lessons if lesson_id not in known and any(
+    listing = git(context.root, "ls-tree", "-r", "--name-only", "HEAD", "--",
+                  context.store.resolve().relative_to(context.root.resolve()).as_posix(), check=False)
+    committed = set(listing.stdout.decode("utf-8", "replace").splitlines()) if listing.returncode == 0 else set()  # no commit yet
+    if orphans := [lesson_id for lesson_id in lessons if lesson_id not in known and (any(
             (context.store / path).exists() or (context.store / path).is_symlink() for path in (
-                f"lessons/{lesson_id}", f"lessons/{lesson_id}.md", f"metadata/{lesson_id}.json", f"diagrams/{lesson_id}-main.svg"))]:
+                f"lessons/{lesson_id}", f"lessons/{lesson_id}.md", f"metadata/{lesson_id}.json", f"diagrams/{lesson_id}-main.svg"))
+            or any(re.search(rf"/(lessons|metadata|diagrams)/{lesson_id}[./-]", f"/{name}") for name in committed))]:
         raise Refusal(f"sync refused, nothing was written: the source map no longer lists {', '.join(orphans)}, but its lesson "
                       "files are still in the store; remove them (or restore the source-map entry) first")
     gone = {lesson_id: lessons.pop(lesson_id) for lesson_id in [i for i in lessons if i not in known]}
@@ -782,12 +786,13 @@ def registry_at(context: Context, ref: str) -> dict[str, dict]:
     return parse(shown.stdout.decode("utf-8", "replace"))[1] if shown.returncode == 0 else {}
 
 
-def unfinished_commits(context: Context, lessons: dict[str, dict]) -> list[str]:
+def unfinished_commits(context: Context, lessons: dict[str, dict]) -> tuple[list[str], list[str]]:
     with contextlib.ExitStack() as stack:  # the exported tree lives as long as the judgement does
         return _unfinished_commits(context, lessons, stack)
 
 
-def _unfinished_commits(context: Context, lessons: dict[str, dict], stack: contextlib.ExitStack) -> list[str]:
+def _unfinished_commits(context: Context, lessons: dict[str, dict], stack: contextlib.ExitStack
+                        ) -> tuple[list[str], list[str]]:
     """Lessons that --publish would advertise as written without their files: a record that turned `written` since
     the pushed branch and whose lesson is absent from HEAD or changed after the last commit. Only the registry is committed by
     --publish, so such a lesson would be terminal for every other session while the pushed branch lacks it (or holds
@@ -802,12 +807,14 @@ def _unfinished_commits(context: Context, lessons: dict[str, dict], stack: conte
     out = []
     cache: dict = {}
     tree: list[tuple[pathlib.Path, pathlib.Path]] = []
-    map_changed = source_map_changed(context, ref if head else base_ref)
 
-    def pushed_content_problems(_: Context, lesson_id: str) -> list[str]:
+    def exported() -> tuple[pathlib.Path, pathlib.Path]:
         if not tree:
             tree.append(stack.enter_context(pushed_tree(context)))
-        return content_problems(tree[0][0], context.source_map, lesson_id, cache, tree[0][1])
+        return tree[0]
+
+    def pushed_content_problems(_: Context, lesson_id: str) -> list[str]:
+        return content_problems(exported()[0], context.source_map, lesson_id, cache, exported()[1])
 
     for lesson_id, entry in lessons.items():
         if entry.get("status") != "written":
@@ -819,17 +826,17 @@ def _unfinished_commits(context: Context, lessons: dict[str, dict], stack: conte
             # fine, a committed deletion or rename is not
             against = ref if lesson_id in head else base_ref
             # T is a regular file turned into a symbolic link, which the checker rejects; the optional pointer may go
-            if git_text(context.root, "diff", "--no-renames", "--diff-filter=DT", "--name-only", against, "HEAD", "--", *required):
-                out.append(lesson_id)
-            elif ((map_changed or git_text(context.root, "diff", "--name-only", against, "HEAD", "--", *files))  # still valid?
-                  and pushed_content_problems(context, lesson_id)):
+            # Valid still? Whatever changed (its files, a link target elsewhere, the source map): the store checker decides.
+            if (git_text(context.root, "diff", "--no-renames", "--diff-filter=DT", "--name-only", against, "HEAD", "--", *required)
+                    or pushed_content_problems(context, lesson_id)):
                 out.append(lesson_id)
             continue
         in_head = all(regular_in_head(context.root, path) for path in required)
         dirty = git_text(context.root, "status", "--porcelain", "--untracked-files=all", "--", *files)
         if not in_head or dirty or pushed_content_problems(context, lesson_id):
             out.append(lesson_id)
-    return out
+    orphans = orphan_problems(exported()[0], context.source_map, set(lessons), cache, exported()[1])
+    return out, orphans
 
 
 def drafts_left_behind(context: Context, lessons: dict[str, dict]) -> list[str]:
@@ -894,7 +901,11 @@ def guard_publish(context: Context) -> None:
     if uncommitted_source_map(context):
         raise Refusal("nothing was pushed: the source map has uncommitted changes that the registry was synchronized with; "
                       "commit them together with the registry first (git add -A && git commit), then push")
-    if pending := unfinished_commits(context, lessons):
+    pending, orphans = unfinished_commits(context, lessons)
+    if orphans:
+        raise Refusal(f"nothing was pushed: the store holds {', '.join(orphans)}, which the registry no longer lists; "
+                      "remove the files (and commit their deletion) or restore the source-map entry first")
+    if pending:
         raise Refusal(f"nothing was pushed: {', '.join(pending)} {'is' if len(pending) == 1 else 'are'} marked written but "
                       "the lesson files are not committed as they are now (or the store checker rejects them); commit them together "
                       "with the registry first "
@@ -1088,22 +1099,41 @@ def content_problems(store: pathlib.Path, source_map: pathlib.Path | None, lesso
     """What the store checker finds wrong with this one lesson (its text, metadata, figure). The findings about the
     store as a whole (README links, progress) are not the lesson's: they are fixed after finishing, before the pull
     request, and `scripts/sd101_check.py` stays the authority on them."""
+    return [str(problem) for problem in _store_problems(store, source_map, cache, boundary)
+            if problem.where not in STORE_LEVEL_FILES and lesson_id in f"{problem.where} {problem.message}"]
+
+
+def _store_problems(store: pathlib.Path, source_map: pathlib.Path | None, cache: dict | None, boundary: pathlib.Path | None) -> list:
+    """The store checker's findings about the whole tree, run once per tree: it is the expensive part, not the filtering."""
     if source_map is None:
         return []
+    key = (str(store), str(source_map))
+    if cache is not None and key in cache:
+        return cache[key]
     spec = importlib.util.spec_from_file_location("sd101_check", pathlib.Path(__file__).with_name("sd101_check.py"))
     if spec is None or spec.loader is None:
         raise ClaimsError("scripts/sd101_check.py cannot be loaded, so the lesson cannot be checked")
     module = importlib.util.module_from_spec(spec)
     sys.modules.setdefault("sd101_check", module)
     spec.loader.exec_module(module)
-    key = (str(store), str(source_map))
-    if cache is None or key not in cache:  # the whole-store check is the expensive part: once per tree, not per lesson
-        found = module.check_store(store, source_map, boundary=boundary)
-        if cache is not None:
-            cache[key] = found
-    problems = found if cache is None or key not in cache else cache[key]
-    return [str(problem) for problem in problems
-            if problem.where not in STORE_LEVEL_FILES and lesson_id in f"{problem.where} {problem.message}"]
+    found = module.check_store(store, source_map, boundary=boundary)
+    if cache is not None:
+        cache[key] = found
+    return found
+
+
+def orphan_problems(store: pathlib.Path, source_map: pathlib.Path | None, known: set[str], cache: dict | None = None,
+                    boundary: pathlib.Path | None = None) -> list[str]:
+    """Lesson ids the store checker reports that the registry does not hold: the files of a record that was dropped (or
+    never made) are still in the tree, so the store would fail its check while no record answers for them."""
+    found: dict[str, str] = {}
+    for problem in _store_problems(store, source_map, cache, boundary):
+        if problem.where in STORE_LEVEL_FILES:
+            continue
+        for lesson_id in re.findall(r"sd-\d{2}-\d{3}", f"{problem.where} {problem.message}"):
+            if lesson_id not in known:
+                found.setdefault(lesson_id, str(problem))
+    return sorted(found)
 
 
 @contextlib.contextmanager

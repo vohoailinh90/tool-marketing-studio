@@ -62,9 +62,10 @@ class Sessions(unittest.TestCase):
             self.addCleanup(patch.stop)
         self.source_map = self.tmp / "source-map.json"
         self.source_map.write_text(json.dumps(source_map()), encoding="utf-8")
-        check = mock.patch.object(claims, "content_problems", return_value=[])  # the fake store holds placeholder files
-        check.start()
-        self.addCleanup(check.stop)
+        for name in ("content_problems", "orphan_problems"):  # the fake store holds placeholder files
+            check = mock.patch.object(claims, name, return_value=[])
+            check.start()
+            self.addCleanup(check.stop)
         self.origin = self.tmp / "origin.git"
         git(self.tmp, "init", "--quiet", "--bare", "-b", "main", str(self.origin))
         seed = self.clone("seed", branch=None)
@@ -441,17 +442,15 @@ class ClaimTests(Sessions):
 
     def test_a_reworked_lesson_that_the_store_checker_rejects_is_not_pushed(self) -> None:
         a = self.pushed_lesson("a")
-        with mock.patch.object(claims, "content_problems", side_effect=AssertionError("nothing changed: no need to check")):
-            self.assertEqual(0, self.run_in(a, "claim", "sd-01-002", "--publish")[0], "an untouched lesson is not rechecked")
         (a / "store" / "metadata" / "sd-01-001.json").write_text("{\n", encoding="utf-8")
         git(a, "commit", "--quiet", "-am", "the metadata was broken, cleanly committed")
         pushed = git(self.tmp, "--git-dir", str(self.origin), "rev-parse", "claude/a")
         with mock.patch.object(claims, "content_problems", return_value=["metadata/sd-01-001.json: is not valid JSON"]):
-            code, _, err = self.run_in(a, "touch", "--publish")
+            code, _, err = self.run_in(a, "claim", "sd-01-002", "--publish")
         self.assertEqual(1, code, err)
         self.assertIn("sd-01-001 is marked written but the lesson files are not committed", err)
         self.assertEqual(pushed, git(self.tmp, "--git-dir", str(self.origin), "rev-parse", "claude/a"))
-        self.assertEqual(0, self.run_in(a, "touch", "--publish")[0], "a rework the checker accepts may go up")
+        self.assertEqual(0, self.run_in(a, "claim", "sd-01-002", "--publish")[0], "a rework the checker accepts may go up")
 
     def test_a_finished_lesson_that_the_store_checker_rejects_at_publication_is_not_pushed(self) -> None:
         a = self.session("a")
@@ -514,8 +513,7 @@ class ClaimTests(Sessions):
         git(seed, "commit", "--quiet", "-am", "two lessons were written and merged")
         git(seed, "push", "--quiet", "origin", "main")
         a = self.session("a")  # a work branch that was never pushed
-        with mock.patch.object(claims, "content_problems", side_effect=AssertionError("inherited lessons are not rechecked")):
-            self.assertEqual(0, self.run_in(a, "claim", "sd-01-001", "--publish")[0])
+        self.assertEqual(0, self.run_in(a, "claim", "sd-01-001", "--publish")[0])
 
     def test_the_whole_store_is_checked_once_for_all_the_lessons_of_a_publication(self) -> None:
         a = self.session("a")
@@ -533,8 +531,8 @@ class ClaimTests(Sessions):
 
         with mock.patch.object(claims, "content_problems", side_effect=counted):
             self.assertEqual(0, self.run_in(a, "touch", "--publish")[0])
-        self.assertEqual(["sd-01-001", "sd-01-002"], [lesson_id for lesson_id, _ in calls])
-        self.assertEqual(1, len({id(cache) for _, cache in calls}), "one cache shared by both lessons")
+        self.assertEqual(["sd-01-001", "sd-01-002"] * 2, [lesson_id for lesson_id, _ in calls], "two publications: before and after the heartbeat")
+        self.assertEqual(1, len({id(cache) for _, cache in calls[:2]}), "one cache shared by both lessons of a publication")
 
     def test_a_source_map_changed_since_the_last_commit_is_not_left_behind_by_a_publication(self) -> None:
         a = self.session("a")
@@ -581,8 +579,6 @@ class ClaimTests(Sessions):
         git(a, "add", "-A")
         git(a, "commit", "--quiet", "-m", "the lesson")
         git(a, "push", "--quiet", "origin", "claude/a")
-        with mock.patch.object(claims, "content_problems", side_effect=AssertionError("nothing changed: no need to check")):
-            self.assertEqual(0, run("touch", "--publish")[0], "an unchanged source map revalidates nothing")
         in_clone.write_text(in_clone.read_text(encoding="utf-8").replace('"title_source": "Two"', '"title_source": "Two, renamed"', 1),
                             encoding="utf-8")
         self.assertEqual(0, run("sync")[0])
@@ -692,6 +688,32 @@ class ClaimTests(Sessions):
         shutil.rmtree(a / "store" / "metadata")
         shutil.rmtree(a / "store" / "diagrams")
         self.assertEqual(0, self.run_mapped(a, "sync")[0])
+
+    def test_the_store_checker_runs_for_every_written_lesson_and_for_ids_the_registry_dropped(self) -> None:
+        a = self.pushed_lesson("a")
+        with mock.patch.object(claims, "orphan_problems", return_value=["sd-09-999"]) as orphans:
+            code, _, err = self.run_in(a, "claim", "sd-01-002", "--publish")
+        self.assertEqual(1, code, err)
+        self.assertIn("the store holds sd-09-999, which the registry no longer lists", err)
+        self.assertTrue(orphans.called)
+        with mock.patch.object(claims, "content_problems", return_value=["a link target elsewhere was deleted"]) as checked:
+            code, _, err = self.run_in(a, "claim", "sd-01-002", "--publish")
+        self.assertEqual(1, code, err)  # nothing in the lesson's own paths changed: the checker still decides
+        self.assertTrue(checked.called)
+
+    def test_sync_looks_at_the_committed_tree_before_dropping_a_record(self) -> None:
+        a = self.mapped_clone("a")
+        self.run_mapped(a, "claim", "sd-01-004")
+        self.write_lesson(a, "sd-01-004")
+        git(a, "add", "-A")
+        git(a, "commit", "--quiet", "-m", "a draft")
+        self.edit_map(a, lambda data: data["categories"][0]["lessons"].__setitem__(
+            slice(None), [lesson for lesson in data["categories"][0]["lessons"] if lesson["id"] != "sd-01-004"]))
+        for folder in ("lessons/sd-01-004", "metadata", "diagrams"):
+            shutil.rmtree(a / "store" / folder)  # deleted in the working tree only: HEAD still holds the draft
+        code, _, err = self.run_mapped(a, "sync")
+        self.assertEqual(1, code, err)
+        self.assertIn("no longer lists sd-01-004", err)
 
     def test_every_registry_must_use_the_same_lease(self) -> None:
         odd = self.session("odd")
@@ -1532,3 +1554,18 @@ class ContentTests(unittest.TestCase):
                 (store / path).write_text(text, encoding="utf-8")
                 self.assertTrue(claims.content_problems(store, self.SOURCE_MAP, "sd-01-001"), name)
                 self.assertEqual([], claims.content_problems(store, self.SOURCE_MAP, "sd-01-002"), "another lesson is not blamed")
+
+
+class OrphanTests(unittest.TestCase):
+    """The store checker's findings about ids the registry does not hold, against a copy of the real store."""
+
+    def test_files_of_an_unlisted_lesson_are_found_and_the_real_store_has_none(self) -> None:
+        store_root = ContentTests.STORE
+        known = {lesson_id for lesson_id, _ in claims.load_source(ContentTests.SOURCE_MAP).lessons}
+        self.assertEqual([], claims.orphan_problems(store_root, ContentTests.SOURCE_MAP, known))
+        with tempfile.TemporaryDirectory() as tmp:
+            store = Path(tmp) / "vi"
+            shutil.copytree(store_root, store)
+            (store / "lessons" / "sd-99-999").mkdir()
+            (store / "lessons" / "sd-99-999" / "lesson.md").write_text("# left behind\n", encoding="utf-8")
+            self.assertEqual(["sd-99-999"], claims.orphan_problems(store, ContentTests.SOURCE_MAP, known))

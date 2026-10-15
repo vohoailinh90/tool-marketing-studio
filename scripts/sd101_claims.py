@@ -213,10 +213,9 @@ def record_problems(lessons: dict[str, dict]) -> list[str]:
     return [f"{lesson_id}: {reason}" for lesson_id, entry in lessons.items() for reason in entry_problems(entry)]
 
 
-def registry_problems(text: str, expected: list[tuple[str, str]], pin_commit: str | None,
-                      on_disk: set[str], pin_repository: str | None = None) -> list[str]:
-    """Every reason `text` is not the registry of `expected` (source-map id, title) pairs for the lessons `on_disk`."""
-    header, lessons, problems = parse(text)
+def header_problems(header: dict, pin_commit: str | None, pin_repository: str | None) -> list[str]:
+    """Every reason the header line is not the one the source map calls for."""
+    problems = []
     if header.get("schema_version") != SCHEMA_VERSION or isinstance(header.get("schema_version"), bool):
         problems.append(f"the header's schema_version must be {SCHEMA_VERSION}")
     lease = header.get("lease_hours")
@@ -230,6 +229,14 @@ def registry_problems(text: str, expected: list[tuple[str, str]], pin_commit: st
                         f"but the source map pins {pin_commit}")
     if set(header) - set(HEADER_KEYS):
         problems.append(f"the header has unknown key(s) {', '.join(sorted(set(header) - set(HEADER_KEYS)))}")
+    return problems
+
+
+def registry_problems(text: str, expected: list[tuple[str, str]], pin_commit: str | None,
+                      on_disk: set[str], pin_repository: str | None = None) -> list[str]:
+    """Every reason `text` is not the registry of `expected` (source-map id, title) pairs for the lessons `on_disk`."""
+    header, lessons, problems = parse(text)
+    problems += header_problems(header, pin_commit, pin_repository)
     ids = [lesson_id for lesson_id, _ in expected]
     if missing := [lesson_id for lesson_id in ids if lesson_id not in lessons]:
         problems.append(f"lacks {len(missing)} source-map lesson(s), e.g. {missing[0]} (run sd101_claims.py sync)")
@@ -510,13 +517,22 @@ def new_header(source: Source, lease: int = DEFAULT_LEASE_HOURS) -> dict:
             "source_commit_sha": source.commit_sha}
 
 
-def load_registry(context: Context) -> tuple[dict, dict[str, dict]]:
+def load_registry(context: Context, complete: bool = True) -> tuple[dict, dict[str, dict]]:
+    """The local registry, refused when it is damaged. Unless `complete` is off (sync and fmt, which repair it), a file
+    that lags the source map (a truncated roster, another pin) is refused too: a command that wrote and pushed it
+    would publish a registry every other session then has to stop for."""
     try:
         text = context.path.read_text(encoding="utf-8")
     except OSError as error:
         raise ClaimsError(f"cannot read {context.path}: {error} (run sd101_claims.py sync to create it)") from error
     header, lessons, problems = parse(text)
     problems += record_problems(lessons)
+    if complete and not problems:
+        problems += header_problems(header, context.source.commit_sha, context.source.repository)
+        if missing := [lesson_id for lesson_id, _ in context.source.lessons if lesson_id not in lessons]:
+            problems.append(f"lacks {len(missing)} source-map lesson(s), e.g. {missing[0]}")
+        if problems:
+            problems[0] += "; sd101_claims.py sync repairs a registry that lags the source map"
     if problems:
         raise ClaimsError(f"{context.path.name} is not readable: {problems[0]}")
     return header, lessons
@@ -577,7 +593,7 @@ def effective_status(lesson_id: str, found: dict[str, list[Holding]], now: datet
 def cmd_sync(context: Context, _: argparse.Namespace) -> int:
     on_disk = context.on_disk()
     if context.path.is_file():
-        header, lessons = load_registry(context)
+        header, lessons = load_registry(context, complete=False)
         # A repinned or retitled source map: the registry follows it, keeping every status and claim.
         header = {**header, "source_repository": context.source.repository, "source_commit_sha": context.source.commit_sha}
     else:
@@ -601,7 +617,7 @@ def cmd_sync(context: Context, _: argparse.Namespace) -> int:
 
 
 def cmd_fmt(context: Context, _: argparse.Namespace) -> int:
-    header, lessons = load_registry(context)
+    header, lessons = load_registry(context, complete=False)
     write_registry(context, header, lessons)
     print(f"fmt: {context.relative} rewritten in canonical form")
     return 0

@@ -216,3 +216,12 @@ mutations:
   find: "        if any(reason and not reason.startswith(UNPUBLISHED) for reason in before.values()):\n            return report_verdicts(before, context)\n"
   replace: ''
   test: tests.test_sd101_claims.ClaimTests.test_an_expired_claim_revived_by_a_local_renewal_does_not_beat_a_partner_taken_fairly
+- label: a truncated local registry is read and published as if it were whole
+  find: "        if missing := [lesson_id for lesson_id, _ in context.source.lessons if lesson_id not in lessons]:\n            problems.append(f\"lacks {len(missing)} source-map lesson(s), e.g. {missing[0]}\"\
+    )\n        if problems:"
+  replace: '        if problems:'
+  test: tests.test_sd101_claims.LocalFileTests.test_a_truncated_local_registry_is_refused_before_anything_is_written_or_pushed
+- label: a local registry for another source pin is used as it is
+  find: "        problems += header_problems(header, context.source.commit_sha, context.source.repository)\n        if missing"
+  replace: '        if missing'
+  test: tests.test_sd101_claims.LocalFileTests.test_a_local_registry_for_another_source_pin_is_refused_until_sync

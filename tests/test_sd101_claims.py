@@ -631,6 +631,34 @@ class SyncDropTests(Sessions):
         self.assertEqual([], claims.registry_problems(text, expected, "b" * 40, set()))
 
 
+class LocalFileTests(Sessions):
+    def test_a_truncated_local_registry_is_refused_before_anything_is_written_or_pushed(self) -> None:
+        a = self.session("a")
+        lines = (a / REGISTRY).read_text(encoding="utf-8").split("\n\n")
+        truncated = "\n\n".join(lines[:2]).rstrip("\n") + "\n"  # the header and one lesson: valid, but not the roster
+        (a / REGISTRY).write_text(truncated, encoding="utf-8")
+        for command in (("claim", "sd-01-005", "--publish"), ("claim", "--next", "1"), ("verify",), ("touch",), ("next",),
+                        ("status",), ("release", "sd-01-001"), ("finish", "sd-01-001")):
+            with self.subTest(" ".join(command)):
+                code, _, err = self.run_in(a, *command)
+                self.assertEqual(2, code)
+                self.assertIn("lacks 5 source-map lesson(s), e.g. sd-01-002; sd101_claims.py sync repairs", err)
+        self.assertEqual(truncated, (a / REGISTRY).read_text(encoding="utf-8"))
+        self.assertEqual("", git(self.tmp, "--git-dir", str(self.origin), "branch", "--list", "claude/a"), "nothing was pushed")
+        self.assertEqual(0, self.run_in(a, "--offline", "sync")[0], "sync is how a lagging registry is repaired")
+        self.assertEqual(0, self.run_in(a, "claim", "sd-01-005")[0])
+
+    def test_a_local_registry_for_another_source_pin_is_refused_until_sync(self) -> None:
+        a = self.session("a")
+        text = (a / REGISTRY).read_text(encoding="utf-8")
+        (a / REGISTRY).write_text(text.replace(COMMIT, "c" * 40), encoding="utf-8")
+        code, _, err = self.run_in(a, "claim", "sd-01-001")
+        self.assertEqual(2, code)
+        self.assertIn("source_commit_sha", err)
+        self.assertEqual(0, self.run_in(a, "--offline", "sync")[0])
+        self.assertEqual(0, self.run_in(a, "claim", "sd-01-001")[0])
+
+
 class MergeTests(Sessions):
     def test_sessions_that_claim_neighbouring_lessons_merge_without_a_conflict(self) -> None:
         a, b = self.session("a"), self.session("b")

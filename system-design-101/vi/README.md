@@ -31,6 +31,7 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 20. [Các cách đưa GraphQL vào hệ thống](lessons/sd-01-020/lesson.md)
 21. [Bảng tra cứu thiết kế API](lessons/sd-01-021/lesson.md)
 22. [Nhập môn API Gateway](lessons/sd-01-022/lesson.md)
+23. [3 tình huống dùng API Gateway](lessons/sd-01-023/lesson.md)
 
 ## AI và học máy
 

@@ -329,3 +329,7 @@ mutations:
   find: 'or lease != DEFAULT_LEASE_HOURS:'
   replace: 'or not 1 <= lease <= 720:'
   test: tests.test_sd101_claims.ClaimTests.test_every_registry_must_use_the_same_lease
+- label: a released lesson is pushed while its committed draft is still in git
+  find: return sorted({lesson_id for lesson_id, entry in lessons.items() if entry.get("status") == "todo"} & held)
+  replace: return []
+  test: tests.test_sd101_claims.ClaimTests.test_a_release_is_not_pushed_while_the_committed_draft_is_still_in_git

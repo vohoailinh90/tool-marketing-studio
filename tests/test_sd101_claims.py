@@ -7,6 +7,7 @@ import datetime
 import io
 import json
 import os
+import shutil
 import subprocess
 import tempfile
 import unittest
@@ -427,6 +428,26 @@ class ClaimTests(Sessions):
         code, _, err = self.run_in(a, "--ignore-unreadable", "claim", "sd-01-001")
         self.assertEqual(2, code, "the local registry is held to the same lease")
         self.assertIn("lease_hours must be 72", err)
+
+    def test_a_release_is_not_pushed_while_the_committed_draft_is_still_in_git(self) -> None:
+        a = self.session("a")
+        self.run_in(a, "claim", "sd-01-001", "--publish")
+        self.write_lesson(a, "sd-01-001")
+        git(a, "add", "-A")
+        git(a, "commit", "--quiet", "-m", "a draft")
+        git(a, "push", "--quiet", "origin", "claude/a")
+        for folder in ("lessons/sd-01-001", "metadata", "diagrams"):
+            shutil.rmtree(a / "store" / folder)  # deleted in the working tree only
+        pushed = git(self.tmp, "--git-dir", str(self.origin), "rev-parse", "claude/a")
+        code, _, err = self.run_in(a, "release", "sd-01-001", "--publish")
+        self.assertEqual(1, code, err)
+        self.assertIn("nothing was pushed: sd-01-001 is released but the lesson files are still committed", err)
+        self.assertEqual(pushed, git(self.tmp, "--git-dir", str(self.origin), "rev-parse", "claude/a"))
+        git(a, "add", "-A")
+        git(a, "commit", "--quiet", "-m", "the draft is gone")
+        self.assertEqual(0, self.run_in(a, "claim", "sd-01-002", "--publish")[0], "released and deleted together: it may go up")
+        shown = git(self.tmp, "--git-dir", str(self.origin), "show", f"claude/a:{REGISTRY}")
+        self.assertEqual("todo", claims.parse(shown)[1]["sd-01-001"]["status"])
 
     def test_a_symlinked_artifact_is_not_a_finished_lesson(self) -> None:
         a = self.session("a")

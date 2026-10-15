@@ -772,6 +772,16 @@ def unfinished_commits(context: Context, lessons: dict[str, dict]) -> list[str]:
     return out
 
 
+def drafts_left_behind(context: Context, lessons: dict[str, dict]) -> list[str]:
+    """Released lessons (`todo`) whose files HEAD still holds: deleted only in the working tree, they would be pushed as
+    free next to the very draft that makes them look taken, and another session could claim over it."""
+    store = context.store.resolve().relative_to(context.root.resolve())
+    names = git_text(context.root, "ls-tree", "-r", "--name-only", "HEAD", "--",
+                     *[(store / folder).as_posix() for folder in ("lessons", "metadata", "diagrams")]).splitlines()
+    held = {match.group(0) for name in names if (match := re.search(r"sd-\d{2}-\d{3}", name))}
+    return sorted({lesson_id for lesson_id, entry in lessons.items() if entry.get("status") == "todo"} & held)
+
+
 def guard_publish(context: Context) -> None:
     """The registry is pushed whole, so every claim of this session in it is judged before anything is pushed, not only
     the ones the command names: a renewal made earlier in the working tree would otherwise reach the remote unjudged."""
@@ -779,6 +789,10 @@ def guard_publish(context: Context) -> None:
     if pending := unfinished_commits(context, lessons):
         raise Refusal(f"nothing was pushed: {', '.join(pending)} {'is' if len(pending) == 1 else 'are'} marked written but "
                       "the lesson files are not committed as they are now; commit them together with the registry first "
+                      "(git add -A && git commit), then push")
+    if left := drafts_left_behind(context, lessons):
+        raise Refusal(f"nothing was pushed: {', '.join(left)} {'is' if len(left) == 1 else 'are'} released but the lesson "
+                      "files are still committed; commit their deletion together with the registry first "
                       "(git add -A && git commit), then push")
     mine = my_claims(context, lessons, [])
     if not mine:

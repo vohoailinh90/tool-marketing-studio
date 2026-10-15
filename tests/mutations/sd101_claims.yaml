@@ -415,3 +415,7 @@ mutations:
   find: "            if lesson_id not in known:\n                found.setdefault(lesson_id, str(problem))"
   replace: "            if lesson_id in known or True:\n                found.setdefault(lesson_id, str(problem))"
   test: tests.test_sd101_claims.OrphanTests.test_files_of_an_unlisted_lesson_are_found_and_the_real_store_has_none
+- label: finish runs the whole-store check again for every lesson of a batch
+  find: '            if broken := content_problems(context.store, context.source_map, lesson_id, cache):'
+  replace: '            if broken := content_problems(context.store, context.source_map, lesson_id, {}):'
+  test: tests.test_sd101_claims.ClaimTests.test_finish_checks_the_store_once_for_a_whole_batch

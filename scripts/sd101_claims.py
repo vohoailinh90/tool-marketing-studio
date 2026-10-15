@@ -1166,8 +1166,9 @@ def cmd_finish(context: Context, args: argparse.Namespace) -> int:
         elif missing := missing_artifacts(context, lesson_id):
             problems.append(f"{lesson_id}: " + "; ".join(f"{path} does not exist yet (or is a symbolic link)" for path in missing))
     if not problems:
+        cache: dict = {}  # one traversal of the store for the whole batch
         for lesson_id in args.ids:
-            if broken := content_problems(context.store, context.source_map, lesson_id):
+            if broken := content_problems(context.store, context.source_map, lesson_id, cache):
                 problems.append(f"{lesson_id}: the store checker rejects the lesson: " + "; ".join(broken))
     if problems:
         print("finish refused, nothing was written:\n  " + "\n  ".join(problems), file=sys.stderr)

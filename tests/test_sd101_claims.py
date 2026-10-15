@@ -717,6 +717,23 @@ class ClaimTests(Sessions):
         self.assertEqual(1, code, err)
         self.assertIn("no longer lists sd-01-004", err)
 
+    def test_finish_checks_the_store_once_for_a_whole_batch(self) -> None:
+        a = self.session("a")
+        self.run_in(a, "claim", "sd-01-001", "sd-01-002", "sd-01-003", "--publish")
+        for lesson_id in ("sd-01-001", "sd-01-002", "sd-01-003"):
+            self.write_lesson(a, lesson_id)
+        caches = []
+
+        def counted(store: Path, source_map: Path, lesson_id: str, cache: dict | None = None, boundary: Path | None = None) -> list[str]:
+            caches.append(cache)  # kept alive, so that no two caches can share an address
+            return []
+
+        with mock.patch.object(claims, "content_problems", side_effect=counted):
+            self.assertEqual(0, self.run_in(a, "finish", "sd-01-001", "sd-01-002", "sd-01-003")[0])
+        self.assertEqual(3, len(caches))
+        self.assertEqual(1, len({id(cache) for cache in caches}), "one cache shared by the whole batch")
+        self.assertTrue(all(cache is not None for cache in caches))
+
     def test_every_registry_must_use_the_same_lease(self) -> None:
         odd = self.session("odd")
         header, lessons, _ = claims.parse((odd / REGISTRY).read_text(encoding="utf-8"))

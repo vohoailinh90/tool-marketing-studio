@@ -2168,6 +2168,8 @@ class AbbreviationRuleTests(StoreCase):
         self.lesson("Dockerfile: COPY, RUN, EXPOSE và STOPSIGNAL; kubectl: READY, RESTARTS, STATUS; log: ERROR, END; "
                     "khung GOAWAY.", glossary=None)
         self.assertEqual([], self.problems())
+        self.lesson("Đặt NGINX trước ứng dụng làm reverse proxy.", glossary=None)  # a product name, not initials
+        self.assertEqual([], self.problems())
 
     def test_a_code_span_a_code_block_a_link_and_a_comment_are_not_read(self) -> None:
         intro = ("Gõ `LLM`, xem [trang này](https://example.com/DNS/TLS) hoặc <!-- GPU -->.\n\n"

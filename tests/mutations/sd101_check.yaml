@@ -1718,6 +1718,10 @@ mutations:
   find: "    \"COPY\", \"RUN\", \"EXPOSE\", \"STOPSIGNAL\", \"GOAWAY\", \"READY\", \"RESTARTS\", \"STATUS\", \"END\", \"ERROR\",\n"
   replace: ""
   test: tests.test_sd101_check.AbbreviationRuleTests.test_words_that_only_look_like_abbreviations_need_no_entry
+- label: the product name NGINX is read as an abbreviation
+  find: "    \"NGINX\",  # a product name set in capitals (said \"engine x\"), not the initials of anything\n"
+  replace: ""
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_words_that_only_look_like_abbreviations_need_no_entry
 - label: a word in NOT_ACRONYMS is still read as an abbreviation
   find: "    return found - {\"\"} - NOT_ACRONYMS"
   replace: "    return found - {\"\"}"

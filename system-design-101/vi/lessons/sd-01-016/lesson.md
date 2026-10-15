@@ -4,6 +4,14 @@
 
 ![Bốn khung dọc: reverse proxy đứng trước máy chủ gốc, che máy gốc và lo TLS, cache; API gateway là cửa vào chung của các API với định tuyến, xác thực và giới hạn tốc độ; load balancer chia tải trong một dịch vụ và loại máy lỗi khỏi nhóm; chúng hay xếp chồng, client tới gateway rồi tới load balancer, gateway chọn dịch vụ còn load balancer chọn máy trong dịch vụ. Một phần mềm có thể làm cả ba.](../../diagrams/sd-01-016-main.svg)
 
+## Từ viết tắt
+
+- **API** (Application Programming Interface) — giao diện lập trình ứng dụng: cách để một chương trình gọi chức năng hoặc lấy dữ liệu của chương trình khác theo quy ước đã định; API gateway là cửa vào chung của nhiều API như vậy.
+- **HTTP** (HyperText Transfer Protocol) — giao thức truyền siêu văn bản: quy ước để trình duyệt gửi yêu cầu (request) và máy chủ gửi trả lời (response).
+- **TLS** (Transport Layer Security) — bảo mật tầng truyền tải: lớp mã hóa giữ kín dữ liệu giữa client và máy chủ; "kết thúc TLS" nghĩa là reverse proxy giải mã ở cửa vào.
+- **LB** (Load Balancer) — bộ cân bằng tải: máy hoặc phần mềm chia lưu lượng cho nhiều bản sao của cùng một dịch vụ.
+- **CDN** (Content Delivery Network) — mạng phân phối nội dung: nhiều máy đặt ở nhiều nơi, lưu bản sao nội dung và phát cho người dùng từ máy gần họ.
+
 ## Đọc hình
 
 - **Reverse proxy:** một máy trung gian đứng *phía máy chủ*. Client nói chuyện với proxy như với chính máy chủ, proxy chuyển yêu cầu tới máy gốc. Việc thường làm: che địa chỉ máy gốc, kết thúc TLS, cache, nén. (Khác *forward proxy*, đứng phía client.)

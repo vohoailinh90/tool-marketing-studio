@@ -217,6 +217,7 @@ NOT_ACRONYMS = frozenset({
     "OK", "README", "TODO",
     "COPY", "RUN", "EXPOSE", "STOPSIGNAL", "GOAWAY", "READY", "RESTARTS", "STATUS", "END", "ERROR",
     "KILL",  # SIGnal KILL: an ordinary word set in capitals to show the letters of SIGKILL
+    "NGINX",  # a product name set in capitals (said "engine x"), not the initials of anything
 })
 
 

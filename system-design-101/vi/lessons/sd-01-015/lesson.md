@@ -4,6 +4,15 @@
 
 ![Tám khung dọc, mỗi khung một gợi ý: đường dẫn theo miền dùng danh từ như /orders/42/items; phương thức đúng như GET đọc, POST tạo, PUT thay; idempotent nghĩa là gửi lại có cùng tác động lên máy chủ như gửi một lần, đúng với GET, PUT, DELETE còn POST dùng Idempotency-Key; mã trạng thái ít và nhất quán, 201 nên kèm Location khi tạo mới; phiên bản như /v1/orders hoặc header; tên dễ hiểu dạng danh từ số nhiều; thao tác hàng loạt như POST /orders/batch trả kết quả từng phần tử; truy vấn với lọc, sắp xếp và phân trang.](../../diagrams/sd-01-015-main.svg)
 
+## Từ viết tắt
+
+- **API** (Application Programming Interface) — giao diện lập trình ứng dụng: cách để một chương trình gọi chức năng hoặc lấy dữ liệu của chương trình khác theo quy ước đã định; ở đây là hợp đồng giữa người viết và người dùng.
+- **HTTP** (HyperText Transfer Protocol) — giao thức truyền siêu văn bản: quy ước để trình duyệt gửi yêu cầu (request) và máy chủ gửi trả lời (response); các phương thức `GET`, `POST`, `PUT`, `DELETE` của nó là những động từ mà API dùng.
+- **REST** (REpresentational State Transfer) — kiểu thiết kế dịch vụ qua HTTP: mỗi tài nguyên có một địa chỉ riêng và được lấy hay sửa qua các phương thức chuẩn.
+- **RPC** (Remote Procedure Call) — gọi thủ tục từ xa: chương trình này gọi một hàm chạy trên máy khác như gọi hàm trong cùng chương trình; là một phong cách khác để thiết kế API.
+- **RFC** (Request for Comments) — "đề nghị bình luận": loạt tài liệu kỹ thuật đánh số của cộng đồng Internet; nhiều RFC là tiêu chuẩn, như RFC 9110 về ngữ nghĩa của HTTP.
+- **IETF** (Internet Engineering Task Force) — nhóm đặc nhiệm kỹ thuật Internet: cộng đồng soạn các tiêu chuẩn của Internet và công bố chúng dưới dạng RFC.
+
 ## Đọc hình
 
 1. **Đường dẫn theo miền.** Cấu trúc đường dẫn phản ánh mô hình nghiệp vụ: `/orders/42/items` là các mục của đơn 42. Hành động nằm ở phương thức HTTP, không nằm trong đường dẫn.

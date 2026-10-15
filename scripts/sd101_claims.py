@@ -1041,12 +1041,38 @@ def guard_publish(context: Context) -> None:
                       "files are still committed; commit their deletion together with the registry first "
                       "(git add -A && git commit), then push")
     mine = my_claims(context, lessons, [])
-    if not mine:
-        return
-    results = verdicts(context, header, lessons, mine, live=False)
-    if lost := {lesson_id: reason for lesson_id, reason in results.items() if reason and not reason.startswith(UNPUBLISHED)}:
-        raise Refusal("nothing was pushed: " + "; ".join(f"{lesson_id} {reason}" for lesson_id, reason in lost.items())
-                      + f". Release {' '.join(lost)} first (python3 scripts/sd101_claims.py release {' '.join(lost)} --publish)")
+    if mine:
+        results = verdicts(context, header, lessons, mine, live=False)
+        if lost := {lesson_id: reason for lesson_id, reason in results.items() if reason and not reason.startswith(UNPUBLISHED)}:
+            raise Refusal("nothing was pushed: " + "; ".join(f"{lesson_id} {reason}" for lesson_id, reason in lost.items())
+                          + f". Release {' '.join(lost)} first (python3 scripts/sd101_claims.py release {' '.join(lost)} --publish)")
+    if overtaken := overtaken_writes(context, header, lessons):
+        raise Refusal("nothing was pushed: " + "; ".join(f"{lesson_id} is finished here but {reason}" for lesson_id, reason in overtaken.items())
+                      + ". Pushing it would make the session that holds the lesson lose it as already written; "
+                        "settle it with that session first (it releases the lesson, or you drop yours)")
+
+
+def overtaken_writes(context: Context, header: dict, lessons: dict[str, dict]) -> dict[str, str]:
+    """Lessons this session finished but has not pushed yet, which another session took over (or wrote) in the meantime.
+
+    `finish` judged the claim, but a claim turns into a written record that carries no claim identity, and a takeover
+    of the stale published claim can come after it. The record is judged again as the claim the other sessions last saw
+    from this branch (none at all when it never went up), so pushing it cannot make a legitimate claimant lose."""
+    candidates = [lesson_id for lesson_id, entry in lessons.items() if entry.get("status") == "written" and entry.get("owner") == context.me]
+    if not candidates or context.offline:
+        return {}
+    found, _ = world_of(context, lessons)
+    lease, out = lease_of(header), {}
+    for lesson_id in candidates:
+        holdings = found.get(lesson_id, [])
+        if any(h.status == "written" and h.owner == context.me and h.where != LOCAL for h in holdings):
+            continue  # already advertised: nothing new goes up
+        published = next((h for h in holdings if h.status == "doing" and h.owner == context.me and h.where != LOCAL), None)
+        stand_in = published or Holding(lesson_id, "doing", context.me, None, None, (), LOCAL)  # a claim nobody saw loses to a live one
+        others = {**found, lesson_id: [h for h in holdings if h.status == "doing"]}  # a written copy is no rival: an adoption has one
+        if reason := lost_reason(stand_in, others, context.me, context.now, lease, (), published is not None and not is_stale(published, context.now, lease)):
+            out[lesson_id] = reason
+    return out
 
 
 def publish(context: Context, message: str) -> None:

@@ -1245,6 +1245,34 @@ class LeaseTests(Sessions):
         self.assertEqual(["claude/a"], self.entry(b, "sd-01-001")["taken_from"])
         self.assertEqual(1, self.entry(b, "sd-01-001")["generation"], "a first takeover stands on one")
 
+    def test_a_finished_lesson_that_was_taken_over_meanwhile_is_not_pushed(self) -> None:
+        a, b = self.session("a"), self.session("b")
+        self.run_in(a, "claim", "sd-01-001", "--publish")
+        self.write_lesson(a, "sd-01-001")
+        self.assertEqual(0, self.run_in(a, "finish", "sd-01-001")[0])  # written here, the record not pushed
+        git(a, "add", "-A")
+        git(a, "commit", "--quiet", "-m", "the lesson with its registry record")
+        self.at(hours=73)  # a's published claim goes stale and b legitimately takes the lesson
+        self.assertEqual(0, self.run_in(b, "claim", "sd-01-001", "--take-stale", "--publish")[0])
+        pushed = git(self.tmp, "--git-dir", str(self.origin), "rev-parse", "claude/a")
+        for command in (("claim", "sd-01-002", "--publish"), ("touch", "--publish")):
+            with self.subTest(command[0]):
+                code, _, err = self.run_in(a, *command)
+                self.assertEqual(1, code, err)
+                self.assertIn("sd-01-001 is finished here but lost to claude/b", err)
+                self.assertEqual(pushed, git(self.tmp, "--git-dir", str(self.origin), "rev-parse", "claude/a"))
+        self.assertEqual(0, self.run_in(b, "verify")[0], "b still holds the lesson")
+
+    def test_a_finished_lesson_nobody_took_over_is_pushed_even_when_the_claim_went_stale(self) -> None:
+        a = self.session("a")
+        self.run_in(a, "claim", "sd-01-001", "--publish")
+        self.write_lesson(a, "sd-01-001")
+        self.assertEqual(0, self.run_in(a, "finish", "sd-01-001")[0])
+        git(a, "add", "-A")
+        git(a, "commit", "--quiet", "-m", "the lesson with its registry record")
+        self.at(hours=100)  # the published claim is long expired, but nobody holds the lesson
+        self.assertEqual(0, self.run_in(a, "claim", "sd-01-002", "--publish")[0])
+
     def test_a_session_that_wakes_up_cannot_win_back_a_lesson_that_was_taken(self) -> None:
         a, b = self.session("a"), self.session("b")
         self.run_in(a, "claim", "sd-01-001", "--publish")

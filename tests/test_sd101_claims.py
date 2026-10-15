@@ -354,6 +354,22 @@ class ClaimTests(Sessions):
         self.assertIn("sd-01-001 is marked written but the lesson files are not committed", err)
         self.assertEqual(pushed, git(self.tmp, "--git-dir", str(self.origin), "rev-parse", "claude/a"))
 
+    def test_renaming_a_file_of_a_pushed_lesson_is_not_pushed_with_its_written_record(self) -> None:
+        a = self.session("a")
+        self.run_in(a, "claim", "sd-01-001", "--publish")
+        self.write_lesson(a, "sd-01-001")
+        self.assertEqual(0, self.run_in(a, "finish", "sd-01-001")[0])
+        git(a, "add", "-A")
+        git(a, "commit", "--quiet", "-m", "the lesson")
+        git(a, "push", "--quiet", "origin", "claude/a")
+        git(a, "mv", "store/lessons/sd-01-001/lesson.md", "store/lessons/sd-01-001/lesson-old.md")  # git reports R100, not D
+        git(a, "commit", "--quiet", "-m", "lesson.md was renamed, cleanly committed")
+        pushed = git(self.tmp, "--git-dir", str(self.origin), "rev-parse", "claude/a")
+        code, _, err = self.run_in(a, "claim", "sd-01-002", "--publish")
+        self.assertEqual(1, code, err)
+        self.assertIn("sd-01-001 is marked written but the lesson files are not committed", err)
+        self.assertEqual(pushed, git(self.tmp, "--git-dir", str(self.origin), "rev-parse", "claude/a"))
+
     def test_a_finished_lesson_that_git_ignores_is_not_pushed(self) -> None:
         a = self.session("a")
         self.run_in(a, "claim", "sd-01-001", "--publish")

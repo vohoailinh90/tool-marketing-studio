@@ -744,8 +744,8 @@ def unfinished_commits(context: Context, lessons: dict[str, dict]) -> list[str]:
         if entry.get("status") != "written":
             continue
         files = lesson_files(context, lesson_id)
-        if head.get(lesson_id) == entry:  # already advertised: a rework is fine, a committed deletion is not
-            if git_text(context.root, "diff", "--diff-filter=D", "--name-only", ref, "HEAD", "--", *files):
+        if head.get(lesson_id) == entry:  # already advertised: a rework is fine, a committed deletion or rename is not
+            if git_text(context.root, "diff", "--no-renames", "--diff-filter=D", "--name-only", ref, "HEAD", "--", *files):
                 out.append(lesson_id)
             continue
         required = [f"{files[0]}/lesson.md", f"{files[0]}/lesson.yaml", files[2], files[3]]  # what the store checker requires

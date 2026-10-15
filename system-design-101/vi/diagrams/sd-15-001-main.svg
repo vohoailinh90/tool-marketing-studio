@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 829" width="320" height="829" role="img" aria-labelledby="title desc">
+<title id="title">Phân trang và phân đoạn dịch địa chỉ ra sao</title>
+<desc id="desc">Hai khung dọc: phân trang với địa chỉ 0x3A5C tách thành trang 3 và offset 0xA5C, bảng trang cho khung 7 nên địa chỉ vật lý là 0x7A5C; phân đoạn với đoạn 2 có base 0x5000 và limit 0x800, offset 0x120 hợp lệ cho 0x5120, offset 0x900 vượt limit nên bị chặn.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="829" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">PHÂN TRANG</text>
+<text x="16" y="56" font-size="20" font-weight="bold">VS PHÂN ĐOẠN</text>
+<text x="16" y="86" font-size="16" font-weight="normal">Cùng việc: dịch địa chỉ logic</text>
+<text x="16" y="116" font-size="16" font-weight="normal">→ địa chỉ vật lý</text>
+<rect x="16" y="138" width="288" height="293" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="168" font-size="16" font-weight="bold">Phân trang · khối bằng nhau</text>
+<text x="30" y="195" font-size="16" font-weight="normal">Trang 4 KiB · địa chỉ 0x3A5C</text>
+<rect x="30" y="205" width="95.9453" height="34" rx="7" fill="#ffffff" stroke="#64748b"/>
+<text x="77.9727" y="228" text-anchor="middle" font-size="16" font-weight="normal">trang 3</text>
+<line x1="127.945" y1="222" x2="144.945" y2="222" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="149.945" y="205" width="140.055" height="34" rx="7" fill="#ffffff" stroke="#64748b"/>
+<text x="219.973" y="228" text-anchor="middle" font-size="16" font-weight="normal">offset 0xA5C</text>
+<text x="30" y="276" font-size="16" font-weight="normal">Bảng trang: trang 3 → khung 7</text>
+<rect x="30" y="286" width="99.3828" height="34" rx="7" fill="#ffffff" stroke="#64748b"/>
+<text x="79.6914" y="309" text-anchor="middle" font-size="16" font-weight="normal">khung 7</text>
+<line x1="131.383" y1="303" x2="148.383" y2="303" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="153.383" y="286" width="136.617" height="34" rx="7" fill="#ffffff" stroke="#64748b"/>
+<text x="221.691" y="309" text-anchor="middle" font-size="16" font-weight="normal">offset 0xA5C</text>
+<text x="30" y="357" font-size="16" font-weight="bold">Vật lý = 0x7A5C</text>
+<text x="30" y="384" font-size="16" font-weight="normal">Không có phân mảnh ngoài</text>
+<text x="30" y="411" font-size="16" font-weight="normal">Trang cuối có thể thừa chỗ</text>
+<line x1="160" y1="432" x2="160" y2="458" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="461" width="288" height="320" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="491" font-size="16" font-weight="bold">Phân đoạn · khối logic</text>
+<text x="30" y="518" font-size="16" font-weight="normal">Đoạn 2: base 0x5000,</text>
+<text x="30" y="545" font-size="16" font-weight="normal">limit 0x800</text>
+<rect x="30" y="555" width="95.2891" height="34" rx="7" fill="#ffffff" stroke="#64748b"/>
+<text x="77.6445" y="578" text-anchor="middle" font-size="16" font-weight="normal">đoạn 2</text>
+<line x1="127.289" y1="572" x2="144.289" y2="572" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="149.289" y="555" width="140.711" height="34" rx="7" fill="#ffffff" stroke="#64748b"/>
+<text x="219.645" y="578" text-anchor="middle" font-size="16" font-weight="normal">offset 0x120</text>
+<text x="30" y="626" font-size="16" font-weight="normal">Kiểm tra: 0x120 &lt; limit → hợp lệ</text>
+<text x="30" y="653" font-size="16" font-weight="bold">Vật lý = 0x5000 + 0x120</text>
+<text x="30" y="680" font-size="16" font-weight="bold">= 0x5120</text>
+<text x="30" y="707" font-size="16" font-weight="normal">Offset 0x900 &gt; limit → chặn</text>
+<text x="30" y="734" font-size="16" font-weight="normal">Dễ bảo vệ từng đoạn</text>
+<text x="30" y="761" font-size="16" font-weight="normal">Dễ phân mảnh ngoài</text>
+<text x="16" y="809" font-size="16" font-weight="normal">Số trong hình là ví dụ.</text>
+</g></svg>

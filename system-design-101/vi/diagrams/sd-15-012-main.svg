@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 733" width="320" height="733" role="img" aria-labelledby="title desc">
+<title id="title">Học SQL theo năm nhóm lệnh</title>
+<desc id="desc">Ba khung dọc: năm nhóm lệnh DDL, DQL, DML, DCL và TCL kèm ví dụ lệnh; lộ trình gợi ý từ SELECT và WHERE, JOIN và GROUP BY, thêm sửa xóa dữ liệu, giao dịch, đến tạo bảng, ràng buộc và chỉ mục; chọn trọng tâm cho người phân tích dữ liệu và người làm backend.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="733" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">HỌC SQL</text>
+<text x="16" y="60" font-size="16" font-weight="normal">Năm nhóm lệnh</text>
+<rect x="16" y="82" width="288" height="212" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="112" font-size="16" font-weight="bold">Năm nhóm</text>
+<text x="30" y="139" font-size="16" font-weight="bold">DDL</text>
+<text x="86" y="139" font-size="16" font-weight="normal">CREATE · ALTER · DROP</text>
+<text x="30" y="166" font-size="16" font-weight="bold">DQL</text>
+<text x="86" y="166" font-size="16" font-weight="normal">SELECT</text>
+<text x="30" y="193" font-size="16" font-weight="bold">DML</text>
+<text x="86" y="193" font-size="16" font-weight="normal">INSERT · UPDATE</text>
+<text x="86" y="220" font-size="16" font-weight="normal">DELETE</text>
+<text x="30" y="247" font-size="16" font-weight="bold">DCL</text>
+<text x="86" y="247" font-size="16" font-weight="normal">GRANT · REVOKE</text>
+<text x="30" y="274" font-size="16" font-weight="bold">TCL</text>
+<text x="86" y="274" font-size="16" font-weight="normal">COMMIT · ROLLBACK</text>
+<line x1="160" y1="295" x2="160" y2="315" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="318" width="288" height="185" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="348" font-size="16" font-weight="bold">Lộ trình gợi ý</text>
+<text x="30" y="375" font-size="16" font-weight="normal">1 · SELECT, WHERE, ORDER BY</text>
+<text x="30" y="402" font-size="16" font-weight="normal">2 · JOIN, GROUP BY</text>
+<text x="30" y="429" font-size="16" font-weight="normal">3 · INSERT, UPDATE, DELETE</text>
+<text x="30" y="456" font-size="16" font-weight="normal">4 · COMMIT, ROLLBACK</text>
+<text x="30" y="483" font-size="16" font-weight="normal">5 · Tạo bảng, ràng buộc, chỉ mục</text>
+<line x1="160" y1="504" x2="160" y2="524" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="527" width="288" height="158" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="557" font-size="16" font-weight="bold">Chọn trọng tâm</text>
+<text x="30" y="584" font-size="16" font-weight="bold">Phân tích dữ liệu</text>
+<text x="30" y="611" font-size="16" font-weight="normal">DQL sâu: JOIN, hàm cửa sổ</text>
+<text x="30" y="638" font-size="16" font-weight="bold">Backend</text>
+<text x="30" y="665" font-size="16" font-weight="normal">DML, DDL, giao dịch, index</text>
+<text x="16" y="713" font-size="16" font-weight="normal">Thực hành trên một hệ cụ thể.</text>
+</g></svg>

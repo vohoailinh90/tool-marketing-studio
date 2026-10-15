@@ -209,10 +209,20 @@ class PlanTests(unittest.TestCase):
             self.assertEqual("mkt/bad?.py", got["outside"])
 
     def test_an_unreadable_base_is_not_planned(self):
+        # a checkout of its own: in the repository's CI of a radar pull request HEAD is a merge, and the merge's first parent
+        # is a base that can be read, so the test would plan the very pull request it runs in
         with tempfile.TemporaryDirectory() as tmp:
-            out = Path(tmp) / "output"
-            self.assertEqual(0, radar_preview.main(["plan"], {"PR_BASE_SHA": "", "GITHUB_OUTPUT": str(out)}))
-            self.assertEqual("false", parse_outputs(out.read_text(encoding="utf-8"))["ok"])
+            repo = Path(tmp) / "repo"
+            repo.mkdir()
+            git(repo, "init", "-q")
+            (repo / POST).parent.mkdir(parents=True)
+            (repo / POST).write_text("a", encoding="utf-8")
+            git(repo, "add", "-A")
+            git(repo, "commit", "-q", "-m", "radar")
+            for base in ("", "0" * 40):
+                out = Path(tmp) / f"output-{base[:1] or 'none'}"
+                self.assertEqual(0, radar_preview.main(["plan"], {"PR_BASE_SHA": base, "GITHUB_OUTPUT": str(out)}, cwd=repo))
+                self.assertEqual("false", parse_outputs(out.read_text(encoding="utf-8"))["ok"], base or "empty base")
 
 
 def parse_outputs(text: str) -> dict[str, str]:

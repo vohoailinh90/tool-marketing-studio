@@ -22,9 +22,15 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 11. [Các tình huống dùng bộ cân bằng tải](lessons/sd-01-011/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
 12. [18 cổng mạng thường gặp](lessons/sd-01-012/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
 13. [Phân biệt WAN, LAN, PAN và MAN](lessons/sd-01-013/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
-14. [Các cách đưa GraphQL vào hệ thống](lessons/sd-01-020/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
-15. [Bảng tra cứu thiết kế API](lessons/sd-01-021/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
-16. [Nhập môn API Gateway](lessons/sd-01-022/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+14. [JavaScript hoạt động thế nào?](lessons/sd-01-014/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+15. [8 gợi ý thiết kế API hiệu quả](lessons/sd-01-015/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+16. [Reverse Proxy, API Gateway và Load Balancer](lessons/sd-01-016/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+17. [REST API hoạt động thế nào?](lessons/sd-01-017/lesson.md)
+18. [Load Balancer và API Gateway](lessons/sd-01-018/lesson.md)
+19. [GraphQL tại LinkedIn](lessons/sd-01-019/lesson.md)
+20. [Các cách đưa GraphQL vào hệ thống](lessons/sd-01-020/lesson.md)
+21. [Bảng tra cứu thiết kế API](lessons/sd-01-021/lesson.md)
+22. [Nhập môn API Gateway](lessons/sd-01-022/lesson.md)
 
 ## AI và học máy
 

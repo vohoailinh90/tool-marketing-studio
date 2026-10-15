@@ -1,0 +1,81 @@
+{
+  "id": "sd-01-032",
+  "title_vi": "SOAP, REST, GraphQL và RPC: bốn góc nhìn giao tiếp",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "draft",
+  "source_ref": "sd-01-032",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/soap-vs-rest-vs-graphql-vs-rpc.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/soap-vs-rest-vs-graphql-vs-rpc.md",
+    "blob_sha": "b9cdeaf630e44853452f3bcca19fdcf3153966f5",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "3b073cda5170a7c877d4df9dcc95b9e99c387a1510237b6be550e48217a8e9cb",
+    "retrieved_body_bytes": 637
+  },
+  "diagram": "../diagrams/sd-01-032-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-01-018",
+      "relation": "see_also",
+      "reason_vi": "Đào sâu cách tối ưu lời gọi GraphQL."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-15"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-15",
+      "evidence": "Đọc SOAP1.2§1/5,Fielding§5.1,GraphQL Queries/learn,RFC5531§3–4. Source body chỉ giới thiệu, không đọc ảnh. Ví dụ giuSach/sach-ten tự đặt, chưa triển khai/benchmark. Đọc thêm SOAPpart2§1/4 representation và GraphQL security/demand control,authorization."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "new lesson awaiting current-head review"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-15",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "evidence": "Chromium cục bộ toàn bài/details mở320/375/430: không overflow/chữ SVG ngoài viewBox; min14.4/16/16px; đã xem screenshot320. Chưa GitHub/device/user testing."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "SOAP1.2 là khung thông điệp XML với Envelope/Body, tên SOAP không còn acronym và không tự bao gồm mọi tính năng bảo mật/tin cậy.",
+      "source": "https://www.w3.org/TR/soap12-part1/"
+    },
+    {
+      "claim_vi": "REST là tập ràng buộc kiến trúc gồm giao diện thống nhất; HTTP không tự chứng minh REST.",
+      "source": "https://ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm"
+    },
+    {
+      "claim_vi": "GraphQL cho lựa chọn trường qua truy vấn theo schema; không hứa hiệu năng/không quyết định cơ sở dữ liệu.",
+      "source": "https://graphql.org/learn/queries/"
+    },
+    {
+      "claim_vi": "RPC mô tả gọi thủ tục với tham số/kết quả, cần xử lý lỗi máy chủ hoặc mạng.",
+      "source": "https://www.rfc-editor.org/rfc/rfc5531.html"
+    }
+  ],
+  "design_notes_vi": "Bốn thẻ góc nhìn, không timeline/bảng xếp hạng hiệu năng; chữ/hình độc lập.",
+  "editorial_note_vi": "Nháp so sánh khái niệm khác cấp độ; tên mở rộng SOAP là lịch sử.",
+  "source_deviations": [
+    "Body nguồn giới thiệu ngắn, dẫn chi tiết sang ảnh; chưa đọc ảnh, không dùng làm evidence so sánh.",
+    "Không vẽ timeline hoặc các công nghệ như bốn giao thức cùng cấp thay thế nhau; dựa vào tài liệu chuẩn."
+  ]
+}

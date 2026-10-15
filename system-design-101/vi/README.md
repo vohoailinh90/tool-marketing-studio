@@ -40,6 +40,7 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 29. [API và SDK: giao diện gọi và bộ công cụ](lessons/sd-01-029/lesson.md)
 30. [Bảo vệ API: kiểm tra nhiều lớp](lessons/sd-01-030/lesson.md)
 31. [Mã phản hồi HTTP: đọc nhóm trước, đọc nghĩa sau](lessons/sd-01-031/lesson.md)
+32. [SOAP, REST, GraphQL và RPC: bốn góc nhìn giao tiếp](lessons/sd-01-032/lesson.md)
 
 ## AI và học máy
 

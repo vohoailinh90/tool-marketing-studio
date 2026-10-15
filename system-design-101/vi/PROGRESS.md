@@ -3,9 +3,9 @@
 Chuyển sang vohoailinh90/tool-marketing-studio ngày 2026-10-13 theo yêu cầu người dùng.
 Repo cũ tạm dừng; không merge/đóng/xóa các PR cũ.
 
-98/404 vị trí đã viết (89 bài đã có trên main; 023 trong PR75, 024–025 trong PR76, 026 trong PR77, 027 trong PR78, 028 trong PR79, 029 trong PR80, 030 trong PR81 và 031 của nhánh này); 15 nhóm và 400 nguồn duy nhất giữ nguyên. Bảy bài đầu nhập từ repo cũ (PR #40, đã merge vào main) có evidence review ở repo cũ, kể cả bài 7 tại comment6133492501/headb8dff434ff75499137bbb10b61122958fdaaafa5. Các evidence này là prior_reviews, không duyệt tổ hợp trong repo mới.
+99/404 vị trí đã viết (89 bài đã có trên main; 023 trong PR75, 024–025 trong PR76, 026 trong PR77, 027 trong PR78, 028 trong PR79, 029 trong PR80, 030 trong PR81, 031 trong PR82 và 032 của nhánh này); 15 nhóm và 400 nguồn duy nhất giữ nguyên. Bảy bài đầu nhập từ repo cũ (PR #40, đã merge vào main) có evidence review ở repo cũ, kể cả bài 7 tại comment6133492501/headb8dff434ff75499137bbb10b61122958fdaaafa5. Các evidence này là prior_reviews, không duyệt tổ hợp trong repo mới.
 
-Đã vào main: nhóm API và phát triển web đến sd-01-022 (PR #53 cho sd-01-008..010, PR #54 cho sd-01-011..013, PR #55 cho sd-01-014..016, PR #62 cho sd-01-017..019, PR #73 cho sd-01-020..022), nhóm sd-03, sd-05, nhóm DevOps và CI/CD sd-13-001..027 (PR #50) và nhóm Bảo mật sd-14-001..015 (đến PR #72). Nhóm Nền tảng máy tính sd-15-001..012 đã có trên main qua PR #48. PR75 cho sd-01-023 có review sạch 6189117443 trên head 1546428 và CI38714324531 success, vẫn open. PR76 có review5531739397 trên f3b6c65; P2 về PR75 đã merged được bác bằng GitHub API tại thread4282519794 theo protocol§16, không gọi đây là verdict bot sạch. CI76 đã success đúng f3b6c65. PR77 có review6192364922 sạch/CI38735906200 success đúng67832e5; các PR vẫn open, metadata chưa tự đổi done. Đợt hiện tại là bài031 xếp trên PR81; review6199390252 sạch và CI38785896699 success đúngf43150c8; các PR vẫn open, không tự đổi done.
+Đã vào main: nhóm API và phát triển web đến sd-01-022 (PR #53 cho sd-01-008..010, PR #54 cho sd-01-011..013, PR #55 cho sd-01-014..016, PR #62 cho sd-01-017..019, PR #73 cho sd-01-020..022), nhóm sd-03, sd-05, nhóm DevOps và CI/CD sd-13-001..027 (PR #50) và nhóm Bảo mật sd-14-001..015 (đến PR #72). Nhóm Nền tảng máy tính sd-15-001..012 đã có trên main qua PR #48. PR75 cho sd-01-023 có review sạch 6189117443 trên head 1546428 và CI38714324531 success, vẫn open. PR76 có review5531739397 trên f3b6c65; P2 về PR75 đã merged được bác bằng GitHub API tại thread4282519794 theo protocol§16, không gọi đây là verdict bot sạch. CI76 đã success đúng f3b6c65. PR77 có review6192364922 sạch/CI38735906200 success đúng67832e5; các PR vẫn open, metadata chưa tự đổi done. Đợt hiện tại là bài032 xếp trên PR82; review6200875301 sạch và CI38796468467success đúnge7f1d60d; các PR vẫn open, không tự đổi done.
 
 Metadata JSON duy nhất giữ trạng thái; YAML chỉ id/metadata_ref. Hình/bài giữ nguyên byte khi nhập. User testing chưa thực hiện; không tự merge/deploy hoặc đăng bài. Mốc main repo cũ giữ previous_repository_main_sha. Review tổ hợp vẫn pending.
 
@@ -66,3 +66,7 @@ Bảng kiểm bảo vệ API, ví dụ hồ sơ thú cưng và hình mới. Gi�
 ## Bài031 (2026-10-15)
 
 Năm nhóm mã phản hồi HTTP, sơ đồ mới, ví dụ202 chưa xử lý xong/304 liên quan bản lưu. PR81 review6199390252 sạch và CI38785896699success đúngf43150c8, evidence lưu cùng nội dung031; main7397e5c/lastmerged68 giữ, registryPR74open chưaáp. Active PR chưa có số lúc initialcommit, ghi ở đợt nội dung thực chất sau; không merge/deploy/markdone.
+
+## Bài032 (2026-10-15)
+
+Bốn góc nhìn SOAP/REST/GraphQL/RPC; body nguồn ngắn và ảnh chưa đọc nên đối chiếu chuẩn trực tiếp, hình mới không timeline. PR82 review6200875301 sạch/CI38796468467success đúnge7f1d60d lưu evidence cùng nội dung032. Main7397e5c/lastmerged68 giữ, PR74registryopen chưaáp. Active PR chưa có số lúc initialcommit; ghi ở đợt nội dung thực chất tiếp, không merge/deploy/markdone.

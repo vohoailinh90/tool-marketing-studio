@@ -323,11 +323,11 @@
         },
         {
           "id": "sd-01-032",
-          "title_vi": null,
+          "title_vi": "SOAP, REST, GraphQL và RPC: bốn góc nhìn giao tiếp",
           "title_source": "SOAP vs REST vs GraphQL vs RPC",
           "source_url": "https://bytebytego.com/guides/soap-vs-rest-vs-graphql-vs-rpc",
           "source_path": "data/guides/soap-vs-rest-vs-graphql-vs-rpc.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "b9cdeaf630e44853452f3bcca19fdcf3153966f5",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/soap-vs-rest-vs-graphql-vs-rpc.md"
         },

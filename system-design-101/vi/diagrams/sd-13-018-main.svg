@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1094" width="320" height="1094" role="img" aria-labelledby="title desc">
+<title id="title">Terraform plan báo thay đổi bạn không định làm: năm nguyên nhân</title>
+<desc id="desc">Năm nguyên nhân Terraform plan báo thay đổi ngoài ý muốn: hạ tầng bị sửa ngoài Terraform nên có drift, phiên bản provider hoặc module đổi, sai workspace hoặc đầu vào, giá trị do hệ thống ngoài tự điền hoặc thứ tự phần tử, và state không dùng chung hoặc bị người khác cập nhật.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1094" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">PLAN BÁO BẤT NGỜ</text>
+<text x="16" y="58" font-size="16" font-weight="normal">Năm nguồn lệch hay gặp</text>
+<rect x="16" y="89" width="288" height="182" rx="10" fill="#fee2e2" stroke="#94a3b8"/>
+<text x="30" y="117" font-size="16" font-weight="bold">1 · Hạ tầng bị sửa</text>
+<text x="30" y="144" font-size="16" font-weight="bold">ngoài Terraform</text>
+<text x="30" y="171" font-size="16" font-weight="normal">Ai đó đổi tài nguyên trên</text>
+<text x="30" y="198" font-size="16" font-weight="normal">giao diện cloud (drift)</text>
+<text x="30" y="225" font-size="16" font-weight="normal">plan -refresh-only cho xem</text>
+<text x="30" y="252" font-size="16" font-weight="normal">phần lệch</text>
+<rect x="16" y="283" width="288" height="209" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="311" font-size="16" font-weight="bold">2 · Phiên bản đổi</text>
+<text x="30" y="338" font-size="16" font-weight="normal">Provider hoặc module mới có</text>
+<text x="30" y="365" font-size="16" font-weight="normal">thể đổi mặc định hay cách</text>
+<text x="30" y="392" font-size="16" font-weight="normal">chuẩn hóa giá trị</text>
+<text x="30" y="419" font-size="16" font-weight="normal">Khóa bằng</text>
+<text x="30" y="446" font-size="16" font-weight="normal">.terraform.lock.hcl và ràng</text>
+<text x="30" y="473" font-size="16" font-weight="normal">buộc version</text>
+<rect x="16" y="504" width="288" height="155" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="532" font-size="16" font-weight="bold">3 · Sai workspace hoặc</text>
+<text x="30" y="559" font-size="16" font-weight="bold">đầu vào</text>
+<text x="30" y="586" font-size="16" font-weight="normal">Khác workspace, tệp tfvars</text>
+<text x="30" y="613" font-size="16" font-weight="normal">hay biến TF_VAR_</text>
+<text x="30" y="640" font-size="16" font-weight="normal">Kiểm tra trước khi đọc plan</text>
+<rect x="16" y="671" width="288" height="209" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="699" font-size="16" font-weight="bold">4 · Giá trị tự điền,</text>
+<text x="30" y="726" font-size="16" font-weight="bold">thứ tự</text>
+<text x="30" y="753" font-size="16" font-weight="normal">Thuộc tính do hệ thống</text>
+<text x="30" y="780" font-size="16" font-weight="normal">ngoài điền, hoặc danh sách</text>
+<text x="30" y="807" font-size="16" font-weight="normal">đổi thứ tự</text>
+<text x="30" y="834" font-size="16" font-weight="normal">ignore_changes khi thay đổi</text>
+<text x="30" y="861" font-size="16" font-weight="normal">đó vô hại</text>
+<rect x="16" y="892" width="288" height="182" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="920" font-size="16" font-weight="bold">5 · State không dùng</text>
+<text x="30" y="947" font-size="16" font-weight="bold">chung</text>
+<text x="30" y="974" font-size="16" font-weight="normal">State để ở máy mỗi người,</text>
+<text x="30" y="1001" font-size="16" font-weight="normal">hoặc hai lần apply chồng</text>
+<text x="30" y="1028" font-size="16" font-weight="normal">nhau</text>
+<text x="30" y="1055" font-size="16" font-weight="normal">Dùng backend từ xa có khóa</text>
+</g></svg>

@@ -398,6 +398,55 @@ class ClaimTests(Sessions):
         git(a, "commit", "--quiet", "-m", "the optional pointer was removed")
         self.assertEqual(0, self.run_in(a, "claim", "sd-01-002", "--publish")[0])
 
+    def test_a_symlinked_artifact_is_not_a_finished_lesson(self) -> None:
+        a = self.session("a")
+        self.run_in(a, "claim", "sd-01-001", "sd-01-003", "--publish")
+        self.write_lesson(a, "sd-01-001")
+        figure = a / "store" / "diagrams" / "sd-01-001-main.svg"
+        figure.unlink()
+        figure.symlink_to("../metadata/sd-01-001.json")  # an object exists, but not a regular file
+        git(a, "add", "-A")
+        git(a, "commit", "--quiet", "-m", "the figure is a symbolic link")
+        self.assertEqual(0, self.run_in(a, "finish", "sd-01-001")[0])
+        code, _, err = self.run_in(a, "claim", "sd-01-002", "--publish")
+        self.assertEqual(1, code, err)
+        self.assertIn("sd-01-001 is marked written but the lesson files are not committed", err)
+        (a / "store" / "lessons" / "sd-01-003").mkdir(parents=True)
+        (a / "store" / "lessons" / "sd-01-003" / "lesson.md").symlink_to("../sd-01-001/lesson.md")
+        code, _, err = self.run_in(a, "finish", "sd-01-003")
+        self.assertEqual(1, code, err)
+        self.assertIn("or is a symbolic link", err)
+
+    def test_a_registry_with_an_extra_lesson_or_a_stale_title_is_refused(self) -> None:
+        a = self.session("a")
+        header, lessons, _ = claims.parse((a / REGISTRY).read_text(encoding="utf-8"))
+        original = (a / REGISTRY).read_text(encoding="utf-8")
+        lessons["sd-09-999"] = {"id": "sd-09-999", "status": "todo", "title": "Ghost"}
+        (a / REGISTRY).write_text(claims.render(header, lessons), encoding="utf-8")
+        code, _, err = self.run_in(a, "claim", "sd-01-001")
+        self.assertEqual(2, code)
+        self.assertIn("no longer lists", err)
+        del lessons["sd-09-999"]
+        lessons["sd-01-001"]["title"] = "An old title"
+        (a / REGISTRY).write_text(claims.render(header, lessons), encoding="utf-8")
+        code, _, err = self.run_in(a, "claim", "sd-01-001")
+        self.assertEqual(2, code)
+        self.assertIn("title(s) differ from the source map", err)
+        self.assertEqual(0, self.run_in(a, "sync")[0])
+        self.assertEqual(original, (a / REGISTRY).read_text(encoding="utf-8"))
+
+    def test_ignoring_an_unreadable_branch_ignores_its_claims_too(self) -> None:
+        odd = self.session("odd")
+        self.run_in(odd, "claim", "sd-01-001", "--publish")
+        header, lessons, _ = claims.parse((odd / REGISTRY).read_text(encoding="utf-8"))
+        header["source_commit_sha"] = "0" * 40  # the claim itself is valid, the header is not
+        (odd / REGISTRY).write_text(claims.render(header, lessons), encoding="utf-8")
+        git(odd, "commit", "--quiet", "-am", "a header of another pin")
+        git(odd, "push", "--quiet", "origin", "claude/odd")
+        a = self.session("a")
+        self.assertEqual(2, self.run_in(a, "claim", "sd-01-001")[0])
+        self.assertEqual(0, self.run_in(a, "--ignore-unreadable", "claim", "sd-01-001")[0], "decided without that branch")
+
     def test_a_finished_lesson_that_git_ignores_is_not_pushed(self) -> None:
         a = self.session("a")
         self.run_in(a, "claim", "sd-01-001", "--publish")

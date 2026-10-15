@@ -434,6 +434,7 @@ def gather(local: dict[str, dict], remote: dict[str, str], base: str, me: str, o
             problems.append(f"lacks {len(missing)} source-map lesson(s), e.g. {missing[0]}")
         if problems:
             unreadable.append(f"origin/{branch} ({problems[0]})")
+            continue  # --ignore-unreadable decides without the branch, so none of its records may count
         for entry in lessons.values():
             if branch == base or entry.get("owner") == branch:
                 add(entry, f"origin/{branch}")
@@ -544,6 +545,10 @@ def load_registry(context: Context, complete: bool = True) -> tuple[dict, dict[s
         problems += header_problems(header, context.source.commit_sha, context.source.repository)
         if missing := [lesson_id for lesson_id, _ in context.source.lessons if lesson_id not in lessons]:
             problems.append(f"lacks {len(missing)} source-map lesson(s), e.g. {missing[0]}")
+        elif extra := [lesson_id for lesson_id in lessons if lesson_id not in dict(context.source.lessons)]:
+            problems.append(f"holds {len(extra)} lesson(s) the source map no longer lists, e.g. {extra[0]}")
+        elif stale := [lesson_id for lesson_id, title in context.source.lessons if lessons[lesson_id].get("title") != title]:
+            problems.append(f"{len(stale)} title(s) differ from the source map, e.g. {stale[0]}")
         if problems:
             problems[0] += "; sd101_claims.py sync repairs a registry that lags the source map"
     if problems:
@@ -730,6 +735,13 @@ def lesson_files(context: Context, lesson_id: str) -> list[str]:
             (store / "metadata" / f"{lesson_id}.json").as_posix(), (store / "diagrams" / f"{lesson_id}-main.svg").as_posix()]
 
 
+def regular_in_head(root: pathlib.Path, path: str) -> bool:
+    """Whether HEAD holds `path` as a regular file: a symbolic link or a directory exists as an object but is rejected
+    by the store checker, which `git cat-file -e` would not tell."""
+    entry = git_text(root, "ls-tree", "HEAD", "--", path).split(None, 1)
+    return bool(entry) and entry[0] in ("100644", "100755")
+
+
 def unfinished_commits(context: Context, lessons: dict[str, dict]) -> list[str]:
     """Lessons that --publish would advertise as written without their files: a record that turned `written` since
     the pushed branch and whose lesson is absent from HEAD or changed after the last commit. Only the registry is committed by
@@ -750,7 +762,7 @@ def unfinished_commits(context: Context, lessons: dict[str, dict]) -> list[str]:
             if git_text(context.root, "diff", "--no-renames", "--diff-filter=DT", "--name-only", ref, "HEAD", "--", *required):
                 out.append(lesson_id)
             continue
-        in_head = all(git(context.root, "cat-file", "-e", f"HEAD:{path}", check=False).returncode == 0 for path in required)
+        in_head = all(regular_in_head(context.root, path) for path in required)
         dirty = git_text(context.root, "status", "--porcelain", "--untracked-files=all", "--", *files)
         if not in_head or dirty:
             out.append(lesson_id)
@@ -950,8 +962,8 @@ def cmd_finish(context: Context, args: argparse.Namespace) -> int:
         entry = lessons[lesson_id]
         if entry.get("status") != "doing" or entry.get("owner") != context.me:
             problems.append(f"{lesson_id}: is not claimed by {context.me} (claim it first)")
-        elif not (context.store / "lessons" / lesson_id / "lesson.md").is_file():
-            problems.append(f"{lesson_id}: lessons/{lesson_id}/lesson.md does not exist yet")
+        elif (lesson := context.store / "lessons" / lesson_id / "lesson.md").is_symlink() or not lesson.is_file():
+            problems.append(f"{lesson_id}: lessons/{lesson_id}/lesson.md does not exist yet (or is a symbolic link)")
     if problems:
         print("finish refused, nothing was written:\n  " + "\n  ".join(problems), file=sys.stderr)
         return 1

@@ -301,3 +301,23 @@ mutations:
   find: "\"HEAD\", \"--\", *required):\n                out.append(lesson_id)\n            continue"
   replace: "\"HEAD\", \"--\", *files):\n                out.append(lesson_id)\n            continue"
   test: tests.test_sd101_claims.ClaimTests.test_removing_the_optional_pointer_of_a_pushed_lesson_blocks_nothing
+- label: a symbolic link or directory in HEAD counts as a lesson file
+  find: bool(entry) and entry[0] in ("100644", "100755")
+  replace: bool(entry)
+  test: tests.test_sd101_claims.ClaimTests.test_a_symlinked_artifact_is_not_a_finished_lesson
+- label: finish accepts a lesson.md that is a symbolic link
+  find: .is_symlink() or not lesson.is_file()
+  replace: .is_symlink() and False or not lesson.is_file()
+  test: tests.test_sd101_claims.ClaimTests.test_a_symlinked_artifact_is_not_a_finished_lesson
+- label: a registry with an extra lesson is used as it is
+  find: 'elif extra := [lesson_id for lesson_id in lessons if lesson_id not in dict(context.source.lessons)]:'
+  replace: 'elif False:'
+  test: tests.test_sd101_claims.ClaimTests.test_a_registry_with_an_extra_lesson_or_a_stale_title_is_refused
+- label: a registry with a stale title is used as it is
+  find: 'elif stale := [lesson_id for lesson_id, title in context.source.lessons if lessons[lesson_id].get("title") != title]:'
+  replace: 'elif False:'
+  test: tests.test_sd101_claims.ClaimTests.test_a_registry_with_an_extra_lesson_or_a_stale_title_is_refused
+- label: the claims of an ignored unreadable branch still count
+  find: '            continue  # --ignore-unreadable decides without the branch, so none of its records may count'
+  replace: '            pass'
+  test: tests.test_sd101_claims.ClaimTests.test_ignoring_an_unreadable_branch_ignores_its_claims_too

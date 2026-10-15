@@ -4,6 +4,28 @@
 
 ![Ba khung dọc: A, AAAA và CNAME trỏ tên tới địa chỉ hoặc tên khác; MX và NS chỉ máy chủ nhận thư và máy chủ tên của vùng; TXT, PTR và SRV chứa văn bản, tra ngược địa chỉ ra tên, và chỉ máy chủ cùng cổng của một dịch vụ.](../../diagrams/sd-15-005-main.svg)
 
+## Từ viết tắt
+
+- **DNS** (Domain Name System) — hệ thống tên miền: "danh bạ" của Internet, đổi tên miền như example.com thành địa chỉ IP.
+- **IP** (Internet Protocol) — giao thức Internet: quy ước đánh địa chỉ và chuyển gói tin giữa các máy; địa chỉ IP là địa chỉ của một máy trên mạng.
+- **IPv4** (Internet Protocol version 4) — phiên bản 4 của giao thức IP: địa chỉ gồm bốn số từ 0 đến 255 như 203.0.113.10; số địa chỉ có hạn.
+- **IPv6** (Internet Protocol version 6) — phiên bản 6 của giao thức IP: địa chỉ dài hơn IPv4 nhiều, dùng khi IPv4 hết địa chỉ.
+- **AAAA** (Quad A) — bản ghi AAAA, đọc là "quad A": loại bản ghi DNS trả về địa chỉ IPv6 của một tên; địa chỉ IPv6 dài gấp bốn lần địa chỉ IPv4 nên tên có bốn chữ A.
+- **CNAME** (Canonical NAME) — bản ghi tên chính tắc: biến một tên thành bí danh của tên khác, resolver tra tiếp tên đích.
+- **MX** (Mail eXchange) — bản ghi trao đổi thư: chỉ máy chủ nhận thư của một miền.
+- **NS** (Name Server) — bản ghi máy chủ tên: chỉ máy chủ tên chịu trách nhiệm cho một vùng.
+- **TXT** (TeXT) — bản ghi văn bản: chứa văn bản tự do, như xác minh quyền sở hữu miền.
+- **PTR** (PoinTeR) — bản ghi con trỏ: tra ngược từ địa chỉ IP ra tên.
+- **SRV** (SeRVice) — bản ghi dịch vụ: chỉ máy chủ và cổng của một dịch vụ.
+- **SOA** (Start Of Authority) — bản ghi bắt đầu thẩm quyền: thông tin gốc của một vùng DNS.
+- **SPF** (Sender Policy Framework) — khung chính sách người gửi: cho biết máy nào được gửi thư thay mặt một miền; ngày nay thường khai trong bản ghi TXT.
+- **CAA** (Certification Authority Authorization) — bản ghi ủy quyền cấp chứng chỉ: giới hạn tổ chức cấp chứng chỉ nào được cấp chứng chỉ cho miền.
+- **CA** (Certificate Authority) — tổ chức cấp chứng chỉ: bên ký xác nhận rằng một khóa công khai thuộc về một tên hay một tổ chức.
+- **DS** (Delegation Signer) — bản ghi người ký ủy quyền: bản ghi của DNSSEC chứa mã băm khóa DNSKEY của vùng con.
+- **DNSKEY** (DNS KEY) — bản ghi khóa DNS: bản ghi của DNSSEC chứa khóa công khai dùng để kiểm chữ ký.
+- **DNSSEC** (DNS SECurity) — bảo mật cho DNS: thêm chữ ký số vào dữ liệu DNS để kiểm tra nó không bị làm giả; bài này không đi sâu vào nó.
+- **TTL** (Time To Live) — thời gian sống: khoảng thời gian một bản ghi trong bộ nhớ đệm được coi là còn dùng được trước khi hết hạn.
+
 ## Đọc hình
 
 - **A / AAAA:** tên → địa chỉ IPv4 / IPv6.

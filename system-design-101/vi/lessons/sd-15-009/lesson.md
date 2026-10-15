@@ -4,6 +4,19 @@
 
 ![Hai khung dọc: bảy tầng OSI từ ứng dụng, trình bày, phiên, giao vận, mạng, liên kết đến vật lý; khi gửi đi, dữ liệu HTTP lần lượt được thêm tiêu đề TCP, tiêu đề IP, rồi tiêu đề và phần cuối Ethernet; bên nhận gỡ ngược lại từng lớp. Địa chỉ MAC đổi qua từng chặng, địa chỉ IP đi suốt đường.](../../diagrams/sd-15-009-main.svg)
 
+## Từ viết tắt
+
+- **OSI** (Open Systems Interconnection) — kết nối các hệ thống mở: mô hình chia chức năng mạng thành bảy tầng.
+- **HTTP** (HyperText Transfer Protocol) — giao thức truyền siêu văn bản: quy ước để trình duyệt gửi yêu cầu (request) và máy chủ gửi trả lời (response).
+- **TCP** (Transmission Control Protocol) — giao thức điều khiển truyền: tạo kết nối đáng tin cậy, dữ liệu đến đủ và đúng thứ tự.
+- **UDP** (User Datagram Protocol) — giao thức gói dữ liệu người dùng: gửi gói tin đơn giản, nhanh, không có kết nối và không bảo đảm đến đủ hay đúng thứ tự.
+- **IP** (Internet Protocol) — giao thức Internet: quy ước đánh địa chỉ và chuyển gói tin giữa các máy; địa chỉ IP là địa chỉ của một máy trên mạng.
+- **MAC** (Media Access Control) — điều khiển truy cập phương tiện: địa chỉ MAC là địa chỉ của card mạng, chỉ có nghĩa trên một đoạn mạng và đổi qua từng chặng.
+- **FCS** (Frame Check Sequence) — chuỗi kiểm tra khung: đoạn ở cuối khung Ethernet để phát hiện khung bị lỗi.
+- **NAT** (Network Address Translation) — dịch địa chỉ mạng: thiết bị đổi địa chỉ nguồn hoặc đích của gói tin khi đi qua; nhờ nó nhiều máy dùng chung được một địa chỉ công cộng.
+- **TLS** (Transport Layer Security) — bảo mật tầng truyền tải: lớp mã hóa giữ kín dữ liệu giữa client và máy chủ.
+- **QUIC** (Quick UDP Internet Connections) — tên gọi ban đầu của giao thức truyền tải mà HTTP/3 dùng thay cho TCP; ngày nay QUIC thường được dùng như một tên riêng.
+
 ## Đọc hình
 
 **Gửi đi.** Ứng dụng tạo dữ liệu HTTP. Tầng giao vận thêm tiêu đề TCP (cổng nguồn, cổng đích, số thứ tự). Tầng mạng thêm tiêu đề IP (địa chỉ nguồn, đích). Tầng liên kết thêm tiêu đề Ethernet (địa chỉ MAC) và phần cuối kiểm tra lỗi. Tầng vật lý đưa thành bit lên dây hoặc sóng.

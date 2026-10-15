@@ -4,6 +4,17 @@
 
 ![Ba khung dọc: năm nhóm lệnh DDL, DQL, DML, DCL và TCL kèm ví dụ lệnh; lộ trình gợi ý từ SELECT và WHERE, JOIN và GROUP BY, thêm sửa xóa dữ liệu, giao dịch, đến tạo bảng, ràng buộc và chỉ mục; chọn trọng tâm cho người phân tích dữ liệu và người làm backend.](../../diagrams/sd-15-012-main.svg)
 
+## Từ viết tắt
+
+- **SQL** (Structured Query Language) — ngôn ngữ truy vấn có cấu trúc: ngôn ngữ chuẩn để hỏi và ghi dữ liệu trong cơ sở dữ liệu quan hệ.
+- **DDL** (Data Definition Language) — ngôn ngữ định nghĩa dữ liệu: nhóm lệnh tạo, sửa và xóa cấu trúc như bảng.
+- **DQL** (Data Query Language) — ngôn ngữ truy vấn dữ liệu: nhóm lệnh đọc dữ liệu ra.
+- **DML** (Data Manipulation Language) — ngôn ngữ thao tác dữ liệu: nhóm lệnh thêm, sửa và xóa các dòng dữ liệu.
+- **DCL** (Data Control Language) — ngôn ngữ điều khiển dữ liệu: nhóm lệnh cấp và thu hồi quyền.
+- **TCL** (Transaction Control Language) — ngôn ngữ điều khiển giao dịch: nhóm lệnh chốt hoặc hủy một giao dịch.
+- **ISO** (International Organization for Standardization) — Tổ chức Tiêu chuẩn hóa Quốc tế: cùng IEC duy trì chuẩn SQL.
+- **IEC** (International Electrotechnical Commission) — Ủy ban Kỹ thuật điện Quốc tế: cùng ISO duy trì chuẩn SQL.
+
 ## Đọc hình
 
 Năm nhóm thường dùng để học:

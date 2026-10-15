@@ -1894,6 +1894,11 @@ class AbbreviationRuleTests(StoreCase):
         self.assertTrue(check.spells("NetBIOS", "Network Basic Input/Output System"))
         self.assertFalse(check.spells("NetBIOS", "Network Input/Output System"))
         self.assertTrue(check.spells("ETag", "Entity Tag"))
+        self.assertTrue(check.spells("AAAA", "Quad A"))
+        self.assertTrue(check.spells("EDNS", "Extension Mechanisms for DNS"))
+        self.assertTrue(check.spells("ISO", "International Organization for Standardization"))
+        self.assertTrue(check.spells("MX", "Mail eXchange"))
+        self.assertFalse(check.spells("MX", "Mail Exchange"))
         self.assertFalse(check.spells("ETag", "Electronic Tag"))
         self.lesson("Bộ nhớ tối thiểu 19 MiB.", glossary=None)
         self.assertProblem("uses the abbreviation(s) MiB")
@@ -2176,6 +2181,14 @@ class AbbreviationRuleTests(StoreCase):
         self.assertEqual([], self.problems())
         self.lesson("Đặt NGINX trước ứng dụng làm reverse proxy.", glossary=None)  # a product name, not initials
         self.assertEqual([], self.problems())
+        self.lesson("TCP VS UDP; SELECT DISTINCT cột.", glossary=None)  # VS is the word versus, DISTINCT a keyword
+        self.assertProblem("uses the abbreviation(s) TCP, UDP")
+        self.assertFalse(any("VS" in line or "DISTINCT" in line for line in self.problems()))
+        self.lesson("Bản ghi DNSKEY và CNAME.", glossary=(
+            "- **DNS** (Domain Name System) — hệ thống tên miền: danh bạ của Internet.\n"
+            "- **DNSKEY** (DNS KEY) — bản ghi khóa DNS: chứa khóa công khai dùng để kiểm chữ ký.\n"
+            "- **CNAME** (Canonical NAME) — bản ghi tên chính tắc: biến một tên thành bí danh của tên khác.\n"))
+        self.assertEqual([], self.problems())  # KEY and NAME are the words key and name, not abbreviations
 
     def test_a_skipped_code_span_is_a_word_boundary(self) -> None:
         for text, expected in (("A`code`PI", {"PI"}), ("API`/users`TLS", {"API", "TLS"}), ("`GET`API", {"API"})):
@@ -2210,6 +2223,7 @@ class AbbreviationRuleTests(StoreCase):
                          check.abbreviations_in("16 vCPUs, 4 MiBs, OAuth2, gRPCs, IPv4s, NoSQLs và API2."))
         self.assertEqual({"EdDSA", "NetBIOS"}, check.abbreviations_in("Ký bằng EdDSA, chia sẻ qua NetBIOS."))
         self.assertEqual({"ETag"}, check.abbreviations_in("Cache-Control, ETag"))
+        self.assertEqual({"IPv4", "gRPC", "OAuth"}, check.abbreviations_in("IPV4s GRPCs OAUTHs"))  # a lowercase plural after capitals
         self.assertEqual({"DHCP", "TLS", "SHA"}, check.abbreviations_in("DHCPv4 và DHCPv6, TLSv1.3, SHA256."))
         for text in ("MAX_SIZE", "A80", "WebSocket", "I", "ĐƠN HÀNG", "TÓM", "myIPv4", "JavaScript", "GitHub",
                      "OAuthority", "vCPUx", "gRPCsx"):

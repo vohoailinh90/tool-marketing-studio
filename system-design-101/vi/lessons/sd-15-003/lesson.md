@@ -4,6 +4,14 @@
 
 ![Bốn khung dọc: gọi thoại và video trực tiếp chấp nhận mất vài gói; DNS một câu hỏi một câu đáp, đáp bị cắt thì thử lại bằng TCP; dữ liệu thị trường gửi một lần cho nhiều bên nhận bằng multicast; thiết bị IoT gửi gói nhỏ, ví dụ CoAP trên UDP.](../../diagrams/sd-15-003-main.svg)
 
+## Từ viết tắt
+
+- **UDP** (User Datagram Protocol) — giao thức gói dữ liệu người dùng: gửi gói tin đơn giản, nhanh, không có kết nối và không bảo đảm đến đủ hay đúng thứ tự.
+- **TCP** (Transmission Control Protocol) — giao thức điều khiển truyền: tạo kết nối đáng tin cậy, dữ liệu đến đủ và đúng thứ tự.
+- **DNS** (Domain Name System) — hệ thống tên miền: "danh bạ" của Internet, đổi tên miền như example.com thành địa chỉ IP.
+- **IP** (Internet Protocol) — giao thức Internet: quy ước đánh địa chỉ và chuyển gói tin giữa các máy; địa chỉ IP là địa chỉ của một máy trên mạng.
+- **EDNS** (Extension Mechanisms for DNS) — cơ chế mở rộng của DNS: cho phép câu đáp DNS qua UDP lớn hơn giới hạn mặc định.
+
 ## Đọc hình
 
 **1 · Gọi thoại, video trực tiếp.** Một khung âm thanh đến trễ thường vô ích: cuộc gọi đã đi tiếp. Gửi lại gói cũ chỉ làm trễ thêm, nên mất vài gói được chấp nhận hơn là chờ.

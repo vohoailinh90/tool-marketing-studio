@@ -1917,7 +1917,7 @@ mutations:
   replace: ''
   test: tests.test_sd101_check.AbbreviationRuleTests.test_a_configured_term_in_capitals_is_the_term
 - label: a version or plural hides a configured term in capitals
-  find: (?:V?\d+)?S?(?!\w)")
+  find: (?:V?\d+)?[Ss]?(?!\w)")
   replace: (?!\w)")
   test: tests.test_sd101_check.AbbreviationRuleTests.test_a_configured_term_in_capitals_is_the_term
 - label: a configured term in capitals is read inside a longer word
@@ -2089,9 +2089,41 @@ mutations:
   replace: "*UNIT_SYMBOLS)"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_the_forms_an_abbreviation_takes
 - label: a name with its own full form is held to the initials rule
-  find: "IRREGULAR_FORMS = {\"HPACK\": \"Header Compression for HTTP/2\", \"SLSA\": \"Supply-chain Levels for Software Artifacts\",\n                   \"W3C\": \"World Wide Web Consortium\", \"SELinux\": \"Security-Enhanced Linux\", \"WebAuthn\": \"Web Authentication\",\n                   \"OpenID\": \"Open IDentity\", \"DevOps\": \"Development and Operations\",\n                   \"DevSecOps\": \"Development, Security and Operations\", \"GitOps\": \"Git Operations\", \"NoOps\": \"No Operations\",\n                   \"UTC\": \"Coordinated Universal Time\", \"EdDSA\": \"Edwards-curve Digital Signature Algorithm\",\n                   \"NetBIOS\": \"Network Basic Input/Output System\", \"ETag\": \"Entity Tag\"}"
+  find: "IRREGULAR_FORMS = {\"HPACK\": \"Header Compression for HTTP/2\", \"AAAA\": \"Quad A\", \"EDNS\": \"Extension Mechanisms for DNS\",\n                   \"ISO\": \"International Organization for Standardization\", \"MX\": \"Mail eXchange\", \"SLSA\": \"Supply-chain Levels for Software Artifacts\",\n                   \"W3C\": \"World Wide Web Consortium\", \"SELinux\": \"Security-Enhanced Linux\", \"WebAuthn\": \"Web Authentication\",\n                   \"OpenID\": \"Open IDentity\", \"DevOps\": \"Development and Operations\",\n                   \"DevSecOps\": \"Development, Security and Operations\", \"GitOps\": \"Git Operations\", \"NoOps\": \"No Operations\",\n                   \"UTC\": \"Coordinated Universal Time\", \"EdDSA\": \"Edwards-curve Digital Signature Algorithm\",\n                   \"NetBIOS\": \"Network Basic Input/Output System\", \"ETag\": \"Entity Tag\"}"
   replace: "IRREGULAR_FORMS = {}"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_a_unit_symbol_is_explained_by_the_name_of_the_unit
+- label: AAAA is not explained by the name it stands for
+  find: "\"AAAA\": \"Quad A\", "
+  replace: ""
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_unit_symbol_is_explained_by_the_name_of_the_unit
+- label: EDNS is not explained by the name it stands for
+  find: "\"EDNS\": \"Extension Mechanisms for DNS\",\n"
+  replace: "\n"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_unit_symbol_is_explained_by_the_name_of_the_unit
+- label: ISO is not explained by the name it stands for
+  find: "\"ISO\": \"International Organization for Standardization\", "
+  replace: ""
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_unit_symbol_is_explained_by_the_name_of_the_unit
+- label: MX is not explained by the name it stands for
+  find: "\"MX\": \"Mail eXchange\", "
+  replace: ""
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_unit_symbol_is_explained_by_the_name_of_the_unit
+- label: the SQL keyword DISTINCT is read as an abbreviation
+  find: "\"SET\", \"DISTINCT\",\n"
+  replace: "\"SET\",\n"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_words_that_only_look_like_abbreviations_need_no_entry
+- label: the words KEY and NAME in a full form are read as abbreviations
+  find: "    \"KEY\", \"NAME\",  # ordinary words set in capitals inside a full form: DNS KEY, Canonical NAME\n"
+  replace: ""
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_words_that_only_look_like_abbreviations_need_no_entry
+- label: the word VS (versus) is read as an abbreviation
+  find: "    \"VS\",  # versus: an ordinary word set in capitals\n"
+  replace: ""
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_words_that_only_look_like_abbreviations_need_no_entry
+- label: a lowercase plural after a term in capitals hides the term
+  find: "(?:V?\\d+)?[Ss]?(?!\\w)"
+  replace: "(?:V?\\d+)?S?(?!\\w)"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_the_forms_an_abbreviation_takes
 - label: ETag is not explained by the name it stands for
   find: "\"NetBIOS\": \"Network Basic Input/Output System\", \"ETag\": \"Entity Tag\"}"
   replace: "\"NetBIOS\": \"Network Basic Input/Output System\"}"

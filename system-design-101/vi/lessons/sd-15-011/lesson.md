@@ -4,6 +4,20 @@
 
 ![Ba khung dọc: trên TCP gồm HTTP lấy tài nguyên web (bản 1.1 và 2), HTTPS là HTTP trong TLS cho bản 1.1 và 2, WebSocket bắt tay bằng HTTP rồi hai chiều và cũng chạy trên HTTP/3, SMTP chuyển thư, FTP chuyển file bằng kênh điều khiển và kênh dữ liệu; trên UDP gồm UDP gửi gói không kết nối và HTTP/3 chạy trên QUIC trên UDP và QUIC đã gồm TLS 1.3; nền gồm TCP kết nối, giao đủ, đúng thứ tự.](../../diagrams/sd-15-011-main.svg)
 
+## Từ viết tắt
+
+- **TCP** (Transmission Control Protocol) — giao thức điều khiển truyền: tạo kết nối đáng tin cậy, dữ liệu đến đủ và đúng thứ tự.
+- **UDP** (User Datagram Protocol) — giao thức gói dữ liệu người dùng: gửi gói tin đơn giản, nhanh, không có kết nối và không bảo đảm đến đủ hay đúng thứ tự.
+- **HTTP** (HyperText Transfer Protocol) — giao thức truyền siêu văn bản: quy ước để trình duyệt gửi yêu cầu (request) và máy chủ gửi trả lời (response).
+- **HTTPS** (HyperText Transfer Protocol Secure) — HTTP chạy trên TLS: cách gửi yêu cầu và trả lời như HTTP nhưng nội dung được mã hóa.
+- **TLS** (Transport Layer Security) — bảo mật tầng truyền tải: lớp mã hóa giữ kín dữ liệu giữa client và máy chủ.
+- **QUIC** (Quick UDP Internet Connections) — tên gọi ban đầu của giao thức truyền tải mà HTTP/3 dùng thay cho TCP; ngày nay QUIC thường được dùng như một tên riêng.
+- **WS** (WebSocket) — kết nối hai chiều lâu dài giữa trình duyệt và máy chủ: bắt tay bằng HTTP rồi chạy tiếp trên cùng kết nối.
+- **SMTP** (Simple Mail Transfer Protocol) — giao thức truyền thư đơn giản: dùng để gửi thư và chuyển thư giữa các máy chủ thư.
+- **FTP** (File Transfer Protocol) — giao thức truyền tệp: chuyển tệp giữa hai máy, ở dạng gốc không mã hóa.
+- **SFTP** (SSH File Transfer Protocol) — giao thức truyền tệp qua SSH: khác FTP, chạy trên SSH nên được mã hóa.
+- **SSH** (Secure SHell) — vỏ lệnh an toàn: cách đăng nhập và điều khiển máy từ xa có mã hóa.
+
 ## Đọc hình
 
 - **TCP:** tạo kết nối, giao dữ liệu đủ và đúng thứ tự. Nhiều giao thức ứng dụng chạy trên đó.

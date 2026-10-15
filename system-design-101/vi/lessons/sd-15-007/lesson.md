@@ -4,6 +4,11 @@
 
 ![Ba khung dọc: giao dịch T1 giữ khóa A và xin B, T2 giữ khóa B và xin A nên chờ vòng tròn; bốn điều kiện cần cùng lúc là loại trừ lẫn nhau, giữ và chờ, không bị cưỡng đoạt, chờ vòng tròn; cách xử lý là khóa theo thứ tự cố định, hoặc phát hiện và hủy một giao dịch rồi thử lại.](../../diagrams/sd-15-007-main.svg)
 
+## Từ viết tắt
+
+- **DB** (DataBase) — cơ sở dữ liệu: kho lưu dữ liệu có tổ chức để ghi và tìm lại nhanh.
+- **SQL** (Structured Query Language) — ngôn ngữ truy vấn có cấu trúc: ngôn ngữ chuẩn để hỏi và ghi dữ liệu trong cơ sở dữ liệu quan hệ.
+
 ## Đọc hình
 
 Hai giao dịch chuyển tiền giữa tài khoản A và B, mỗi giao dịch cần khóa cả hai dòng. T1 khóa A rồi xin B; cùng lúc T2 khóa B rồi xin A. T1 chờ T2, T2 chờ T1: một vòng chờ.

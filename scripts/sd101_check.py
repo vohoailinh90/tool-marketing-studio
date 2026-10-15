@@ -175,7 +175,8 @@ SOURCES_HEADING = "Nguồn đối chiếu"
 UNIT_SYMBOLS = {"KiB": "Kibibyte", "MiB": "Mebibyte", "GiB": "Gibibyte", "TiB": "Tebibyte"}
 # Names whose letters are not (all) initials: the full form is what they stand for (HPACK is "Header Compression for
 # HTTP/2"; SLSA is "Supply-chain Levels for Software Artifacts", where "Supply-chain" is one word but two hyphen parts).
-IRREGULAR_FORMS = {"HPACK": "Header Compression for HTTP/2", "SLSA": "Supply-chain Levels for Software Artifacts",
+IRREGULAR_FORMS = {"HPACK": "Header Compression for HTTP/2", "AAAA": "Quad A", "EDNS": "Extension Mechanisms for DNS",
+                   "ISO": "International Organization for Standardization", "MX": "Mail eXchange", "SLSA": "Supply-chain Levels for Software Artifacts",
                    "W3C": "World Wide Web Consortium", "SELinux": "Security-Enhanced Linux", "WebAuthn": "Web Authentication",
                    "OpenID": "Open IDentity", "DevOps": "Development and Operations",
                    "DevSecOps": "Development, Security and Operations", "GitOps": "Git Operations", "NoOps": "No Operations",
@@ -201,7 +202,7 @@ EMBEDDED_ABBREVIATIONS = {"ChatGPT": "GPT", "CommonJS": "JS", "ECMAScript": "ECM
 # The same terms and names set in capitals (OAUTH 2.0 in a heading), which read as the term they are.
 UPPER_FORMS = {**{term.upper(): term for term in MIXED_CASE_TERMS},
                **{name.upper(): abbreviation for name, abbreviation in EMBEDDED_ABBREVIATIONS.items()}}
-UPPER_FORM = re.compile(r"(?<!\w)(" + "|".join(UPPER_FORMS) + r")(?:V?\d+)?S?(?!\w)")
+UPPER_FORM = re.compile(r"(?<!\w)(" + "|".join(UPPER_FORMS) + r")(?:V?\d+)?[Ss]?(?!\w)")
 EMBEDDED_NAME = re.compile(r"(?<!\w)(" + "|".join(EMBEDDED_ABBREVIATIONS) + r")(?:v?\d+)?(?:[\u2019']?s)?(?!\w)")
 GLOSSARY_BULLET = re.compile(r"^- \*\*(?P<abbreviation>(?=[A-Za-z0-9]*[A-Z])[A-Za-z0-9][A-Za-z0-9]+)\*\* "
                              r"\((?P<full>[^()]+)\) — (?P<meaning>\S.*)$")
@@ -216,11 +217,13 @@ NOT_ACRONYMS = frozenset({
     "GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS", "CONNECT", "TRACE",
     "SELECT", "FROM", "WHERE", "JOIN", "INNER", "LEFT", "RIGHT", "FULL", "OUTER", "CROSS", "ON", "USING", "AND", "OR",
     "NOT", "IS", "NULL", "IN", "AS", "GROUP", "ORDER", "BY", "HAVING", "LIMIT", "UNION", "INSERT", "UPDATE", "CREATE",
-    "DROP", "TABLE", "VALUES", "SET",
+    "DROP", "TABLE", "VALUES", "SET", "DISTINCT",
     "OK", "README", "TODO",
     "COPY", "RUN", "EXPOSE", "STOPSIGNAL", "GOAWAY", "READY", "RESTARTS", "STATUS", "END", "ERROR",
     "KILL",  # SIGnal KILL: an ordinary word set in capitals to show the letters of SIGKILL
     "NGINX",  # a product name set in capitals (said "engine x"), not the initials of anything
+    "VS",  # versus: an ordinary word set in capitals
+    "KEY", "NAME",  # ordinary words set in capitals inside a full form: DNS KEY, Canonical NAME
 })
 
 

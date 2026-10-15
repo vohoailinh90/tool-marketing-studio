@@ -51,12 +51,15 @@ from __future__ import annotations
 import argparse
 import datetime
 import importlib.util
+import io
 import json
 import os
 import pathlib
 import re
 import subprocess
 import sys
+import tarfile
+import tempfile
 import time
 from dataclasses import dataclass
 
@@ -772,13 +775,13 @@ def unfinished_commits(context: Context, lessons: dict[str, dict]) -> list[str]:
             # T is a regular file turned into a symbolic link, which the checker rejects; the optional pointer may go
             if git_text(context.root, "diff", "--no-renames", "--diff-filter=DT", "--name-only", ref, "HEAD", "--", *required):
                 out.append(lesson_id)
-            elif (git_text(context.root, "diff", "--name-only", ref, "HEAD", "--", *required)  # a rework: still a valid lesson?
-                  and content_problems(context.store, context.source_map, lesson_id)):
+            elif (git_text(context.root, "diff", "--name-only", ref, "HEAD", "--", *files)  # a rework: still a valid lesson?
+                  and pushed_content_problems(context, lesson_id)):
                 out.append(lesson_id)
             continue
         in_head = all(regular_in_head(context.root, path) for path in required)
         dirty = git_text(context.root, "status", "--porcelain", "--untracked-files=all", "--", *files)
-        if not in_head or dirty or content_problems(context.store, context.source_map, lesson_id):
+        if not in_head or dirty or pushed_content_problems(context, lesson_id):
             out.append(lesson_id)
     return out
 
@@ -1000,6 +1003,16 @@ def content_problems(store: pathlib.Path, source_map: pathlib.Path | None, lesso
     spec.loader.exec_module(module)
     return [str(problem) for problem in module.check_store(store, source_map)
             if problem.where not in STORE_LEVEL_FILES and lesson_id in f"{problem.where} {problem.message}"]
+
+
+def pushed_content_problems(context: Context, lesson_id: str) -> list[str]:
+    """The store checker's findings about the lesson as HEAD holds it: that is the tree --publish pushes, not the
+    working tree, which may carry an uncommitted repair (or damage) the remote will never see."""
+    relative = context.store.resolve().relative_to(context.root.resolve()).as_posix()
+    archive = git(context.root, "archive", "--format=tar", "HEAD", "--", relative).stdout
+    with tempfile.TemporaryDirectory() as tmp, tarfile.open(fileobj=io.BytesIO(archive)) as tar:
+        tar.extractall(tmp, filter="data")
+        return content_problems(pathlib.Path(tmp) / relative, context.source_map, lesson_id)
 
 
 def missing_artifacts(context: Context, lesson_id: str) -> list[str]:

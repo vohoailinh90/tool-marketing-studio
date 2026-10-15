@@ -466,6 +466,33 @@ class ClaimTests(Sessions):
         self.assertEqual(1, code, err)
         self.assertIn("the lesson files are not committed", err)
 
+    def test_the_lesson_is_checked_as_head_holds_it_not_as_the_working_tree_does(self) -> None:
+        a = self.pushed_lesson("a")
+        metadata = a / "store" / "metadata" / "sd-01-001.json"
+
+        def checker(store: Path, source_map: Path, lesson_id: str) -> list[str]:
+            text = (store / "metadata" / f"{lesson_id}.json").read_text(encoding="utf-8")
+            return ["metadata: is not valid JSON"] if text == "{\n" else []
+
+        metadata.write_text("{\n", encoding="utf-8")
+        git(a, "commit", "--quiet", "-am", "the metadata was broken and committed")
+        metadata.write_text("{}\n", encoding="utf-8")  # repaired in the working tree only: the remote would never see it
+        with mock.patch.object(claims, "content_problems", side_effect=checker):
+            code, _, err = self.run_in(a, "claim", "sd-01-002", "--publish")
+            self.assertEqual(1, code, err)
+            self.assertIn("sd-01-001 is marked written but the lesson files are not committed", err)
+            git(a, "commit", "--quiet", "-am", "the repair")
+            self.assertEqual(0, self.run_in(a, "claim", "sd-01-002", "--publish")[0], "the repaired tree is what goes up")
+
+    def test_changing_the_optional_pointer_of_a_pushed_lesson_is_checked_too(self) -> None:
+        a = self.pushed_lesson("a")
+        (a / "store" / "lessons" / "sd-01-001.md").write_text("an invalid pointer\n", encoding="utf-8")
+        git(a, "commit", "--quiet", "-am", "the pointer was changed")
+        with mock.patch.object(claims, "content_problems", return_value=["lessons/sd-01-001.md: is not a pointer"]) as checker:
+            code, _, err = self.run_in(a, "claim", "sd-01-002", "--publish")
+        self.assertEqual(1, code, err)
+        self.assertTrue(checker.called)
+
     def test_every_registry_must_use_the_same_lease(self) -> None:
         odd = self.session("odd")
         header, lessons, _ = claims.parse((odd / REGISTRY).read_text(encoding="utf-8"))

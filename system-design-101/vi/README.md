@@ -34,6 +34,7 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 23. [3 tình huống dùng API Gateway](lessons/sd-01-023/lesson.md)
 24. [Đọc số phiên bản theo SemVer](lessons/sd-01-024/lesson.md)
 25. [Tách các thành phần của URL](lessons/sd-01-025/lesson.md)
+26. [Unicast, broadcast, multicast và anycast](lessons/sd-01-026/lesson.md)
 
 ## AI và học máy
 

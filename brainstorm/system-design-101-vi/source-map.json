@@ -263,11 +263,11 @@
         },
         {
           "id": "sd-01-026",
-          "title_vi": null,
+          "title_vi": "Unicast, broadcast, multicast và anycast",
           "title_source": "Unicast vs Broadcast vs Multicast vs Anycast",
           "source_url": "https://bytebytego.com/guides/unicast-vs-broadcast-vs-multicast-vs-anycast",
           "source_path": "data/guides/unicast-vs-broadcast-vs-multicast-vs-anycast.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "7b1649e92b4a69eb090c8e74a21fddcdacf62c33",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/unicast-vs-broadcast-vs-multicast-vs-anycast.md"
         },

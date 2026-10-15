@@ -233,3 +233,7 @@ mutations:
   find: "    except (OSError, UnicodeDecodeError) as error:\n        raise ClaimsError(f\"cannot read {context.path}"
   replace: "    except OSError as error:\n        raise ClaimsError(f\"cannot read {context.path}"
   test: tests.test_sd101_claims.RemoteTests.test_a_local_registry_that_is_not_valid_utf8_is_reported_not_raised
+- label: the default branch is taken from the local origin/HEAD, which goes stale when it is renamed
+  find: '    for line in git(root, "ls-remote", "--symref", remote, "HEAD").stdout.decode("utf-8", "replace").splitlines():'
+  replace: '    for line in []:'
+  test: tests.test_sd101_claims.RemoteTests.test_a_renamed_default_branch_is_found_by_asking_the_remote

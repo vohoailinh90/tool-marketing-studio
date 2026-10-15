@@ -314,6 +314,11 @@ def current_branch(root: pathlib.Path) -> str | None:
 
 
 def default_branch(root: pathlib.Path, remote: str) -> str:
+    """The branch the remote calls its default. The remote is asked: the local origin/HEAD is written once, at clone
+    time, and goes stale when the default branch is renamed, which would make the real one look like a feature branch."""
+    for line in git(root, "ls-remote", "--symref", remote, "HEAD").stdout.decode("utf-8", "replace").splitlines():
+        if line.startswith("ref: refs/heads/") and "\t" in line:
+            return line[len("ref: refs/heads/"):].split("\t", 1)[0]
     head = git(root, "symbolic-ref", "--short", "-q", f"refs/remotes/{remote}/HEAD", check=False).stdout.decode().strip()
     if head.startswith(f"{remote}/"):
         return head[len(remote) + 1:]

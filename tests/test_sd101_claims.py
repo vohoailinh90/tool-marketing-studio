@@ -528,6 +528,22 @@ class RemoteTests(Sessions):
         self.assertEqual(2, code)
         self.assertIn("cannot read", err)
 
+    def test_a_renamed_default_branch_is_found_by_asking_the_remote(self) -> None:
+        b = self.session("b")  # cloned while the default branch was still called main: its origin/HEAD says so
+        seed = self.tmp / "seed"
+        git(seed, "checkout", "--quiet", "-b", "trunk")
+        header, lessons, _ = claims.parse((seed / REGISTRY).read_text(encoding="utf-8"))
+        lessons["sd-01-001"] = {"id": "sd-01-001", "status": "written", "title": "One", "owner": "claude/x",
+                                "done_at": "2026-10-15T07:00:00Z"}
+        (seed / REGISTRY).write_text(claims.render(header, lessons), encoding="utf-8")
+        git(seed, "commit", "--quiet", "-am", "a lesson was written and merged")
+        git(seed, "push", "--quiet", "origin", "trunk")
+        git(self.tmp, "--git-dir", str(self.origin), "symbolic-ref", "HEAD", "refs/heads/trunk")
+        git(self.tmp, "--git-dir", str(self.origin), "branch", "-D", "main")  # the default branch was renamed
+        code, _, err = self.run_in(b, "claim", "sd-01-001")
+        self.assertEqual(1, code, err)
+        self.assertIn("already written by claude/x (origin/trunk)", err)
+
     def test_publish_with_an_owner_that_is_not_the_branch_is_refused_before_anything_is_written(self) -> None:
         a = self.session("a")
         before = (a / REGISTRY).read_text(encoding="utf-8")

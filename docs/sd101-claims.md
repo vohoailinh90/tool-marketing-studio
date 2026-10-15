@@ -20,8 +20,8 @@ python3 scripts/sd101_claims.py finish sd-14-016 sd-14-017 --pr <number>   # com
 python3 scripts/sd101_claims.py release sd-14-018 --publish   # give a lesson back you will not write
 ```
 
-`--publish` commits only `claims.jsonl` and pushes your own branch, which is what makes the claim visible
-to the others. A claim that is not pushed protects nothing. If `claim` or `verify` says you lost, stop
+`--publish` commits only `claims.jsonl` and pushes your own branch (any other commit of yours that was not
+pushed yet goes with it), which is what makes the claim visible to the others. A claim that is not pushed protects nothing. If `claim` or `verify` says you lost, stop
 work on that lesson, release it and take another; do not push the draft.
 
 A claim refused because the remote could not be read (exit 2) is not a refusal to argue with: fix the
@@ -37,7 +37,7 @@ two that claim the same one always conflict.
 | status | meaning | extra fields |
 |---|---|---|
 | `todo` | nobody has it | none |
-| `doing` | a session is writing it | `owner` (its branch), `claimed_at`, `heartbeat_at`, optional `session`, `taken_from` |
+| `doing` | a session is writing it | `owner` (its branch), `claimed_at`, `heartbeat_at`, optional `session`, `taken_from` (a list) |
 | `written` | the lesson, its figure and its metadata are committed | optional `owner`, `done_at`, `pr`, `session` |
 
 `written` is not metadata's `content_status: done`. It says the lesson was handed over; whether it was
@@ -62,7 +62,8 @@ counting when its branch is deleted or the lesson is released or merged as `writ
 
 A `doing` claim whose `heartbeat_at` is older than `lease_hours` (72) is stale. It no longer blocks
 anyone, but it is taken over on purpose: `claim <id> --take-stale`. The new entry records `taken_from`,
-which makes it win against the old owner even if that session wakes up and touches its heartbeat. Run
+every owner whose stale claim it superseded, chain included, which makes it win against each of them even
+if one wakes up and touches its heartbeat. Run
 `touch --publish` while you work so a slow session is not mistaken for a dead one.
 
 ## Lessons that share a source
@@ -83,8 +84,12 @@ pushed can each write a claim for the same lesson. The protocol narrows and then
 3. `sd101_check.py` (CI) fails a branch whose registry disagrees with its lessons, and two branches that
    wrote the same lesson conflict at merge.
 
-What is lost in that race is the loser's work, never a duplicate lesson on `main`. Registry commands
-also trust `owner` strings: they are branch names, so do not rename a branch that holds claims.
+What is lost in that race is the loser's work, never a duplicate lesson on `main`.
+
+The `owner` of a claim is the branch name. That is deliberate: a session that continues another
+session's branch inherits its claims, and cloud sessions get distinct branch names. The cost is that two
+containers working on the same branch name are one owner to the registry, and renaming a branch that
+holds claims orphans them (release them first). `--owner` overrides the name; use it only for that.
 
 ## Checks
 

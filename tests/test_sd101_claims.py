@@ -215,7 +215,7 @@ class LeaseTests(Sessions):
         self.assertEqual(1, code)
         self.assertIn("--take-stale", err)
         self.assertEqual(0, self.run_in(b, "claim", "sd-01-001", "--take-stale", "--publish")[0])
-        self.assertEqual("claude/a", self.entry(b, "sd-01-001")["taken_from"])
+        self.assertEqual(["claude/a"], self.entry(b, "sd-01-001")["taken_from"])
 
     def test_a_session_that_wakes_up_cannot_win_back_a_lesson_that_was_taken(self) -> None:
         a, b = self.session("a"), self.session("b")
@@ -227,6 +227,20 @@ class LeaseTests(Sessions):
         self.assertEqual(1, code)
         self.assertIn("lost to claude/b", err)
         self.assertEqual("2026-10-15T08:00:00Z", self.entry(a, "sd-01-001")["heartbeat_at"], "a lost claim is not renewed")
+
+    def test_a_lesson_taken_over_twice_is_still_won_against_the_first_owner(self) -> None:
+        a, b, c = self.session("a"), self.session("b"), self.session("c")
+        self.run_in(a, "claim", "sd-01-001", "--publish")
+        self.at(hours=73)
+        self.run_in(b, "claim", "sd-01-001", "--take-stale", "--publish")
+        git(self.origin, "branch", "-D", "claude/a")  # a's container is gone and its branch was cleaned up
+        self.at(hours=146)
+        self.assertEqual(0, self.run_in(c, "claim", "sd-01-001", "--take-stale", "--publish")[0])
+        self.assertEqual(["claude/b", "claude/a"], self.entry(c, "sd-01-001")["taken_from"])
+        self.at(hours=147)
+        code, _, err = self.run_in(a, "touch", "--publish")  # a wakes up and pushes its old claim again
+        self.assertEqual(1, code)
+        self.assertIn("lost to claude/c", err)
 
     def test_touching_keeps_a_claim_alive(self) -> None:
         a, b = self.session("a"), self.session("b")
@@ -258,6 +272,28 @@ class RemoteTests(Sessions):
         self.assertEqual(REGISTRY, git(a, "show", "--name-only", "--format=", "HEAD"))
         self.assertEqual("A  other.txt", git(a, "status", "--short"))
         self.assertEqual(git(a, "rev-parse", "HEAD"), git(self.tmp, "--git-dir", str(self.origin), "rev-parse", "claude/a"))
+
+    def test_a_claim_committed_by_hand_but_never_pushed_is_pushed_by_publish(self) -> None:
+        a = self.session("a")
+        self.run_in(a, "claim", "sd-01-001")
+        git(a, "add", REGISTRY)
+        git(a, "commit", "--quiet", "-m", "claim by hand")  # the push was forgotten
+        self.assertEqual(0, self.run_in(a, "touch", "--publish")[0], "same second: nothing new to commit")
+        self.assertEqual(git(a, "rev-parse", "HEAD"), git(self.tmp, "--git-dir", str(self.origin), "rev-parse", "claude/a"))
+
+    def test_a_branch_with_a_directory_where_the_registry_should_be_does_not_shift_the_others(self) -> None:
+        odd = self.clone("odd", branch="aaa")  # sorts before every claude/* branch
+        git(odd, "rm", "-q", REGISTRY)
+        (odd / REGISTRY).mkdir(parents=True)
+        (odd / REGISTRY / "f.txt").write_text("a tree, not a file\n", encoding="utf-8")
+        git(odd, "add", "-A")
+        git(odd, "commit", "--quiet", "-m", "odd")
+        git(odd, "push", "--quiet", "-u", "origin", "aaa")
+        a, b = self.session("a"), self.session("b")
+        self.run_in(a, "claim", "sd-01-001", "--publish")
+        code, _, err = self.run_in(b, "claim", "sd-01-001")
+        self.assertEqual(1, code)
+        self.assertIn("claimed by claude/a since 2026-10-15T08:00:00Z (origin/claude/a)", err)
 
     def test_nothing_is_published_from_main(self) -> None:
         main = self.clone("m", branch=None)
@@ -341,6 +377,7 @@ class FormatTests(unittest.TestCase):
             "heartbeat early": (self.text(heartbeat_at="2026-10-15T07:00:00Z"), "heartbeat_at is before claimed_at"),
             "field of another status": (self.text(done_at="2026-10-15T09:00:00Z"), "done_at is not allowed"),
             "status": (self.text(status="done"), "status must be one of"),
+            "taken_from": (self.text(taken_from="claude/a"), "taken_from must be a list"),
             "pr": (self.text().replace('"title": "One"', '"title": "One", "pr": 0'), "pr must be a pull request number"),
             "pin": (self.text().replace(COMMIT, "c" * 40), "source_commit_sha"),
             "lease": (self.text().replace('"lease_hours": 72', '"lease_hours": 0'), "lease_hours must be"),

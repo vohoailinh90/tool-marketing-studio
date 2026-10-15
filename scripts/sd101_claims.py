@@ -174,9 +174,12 @@ def entry_problems(entry: dict) -> list[str]:
     if status == "doing":
         problems += [f"{key} is required when the status is doing" for key in ("owner", "claimed_at", "heartbeat_at")
                      if key not in entry]
-    for key in ("owner", "session", "taken_from"):
+    for key in ("owner", "session"):
         if key in entry and not _text(entry[key]):
             problems.append(f"{key} must be text")
+    if "taken_from" in entry and not (isinstance(entry["taken_from"], list) and entry["taken_from"]
+                                      and all(_text(owner) for owner in entry["taken_from"])):
+        problems.append("taken_from must be a list of the owners whose stale claim was taken over")
     for key in ("claimed_at", "heartbeat_at", "done_at"):
         if key in entry and parse_stamp(entry[key]) is None:
             problems.append(f"{key} must be a UTC time like 2026-10-15T08:30:00Z")
@@ -303,14 +306,18 @@ def remote_registries(root: pathlib.Path, remote: str, relative: str) -> tuple[d
     output = git(root, "cat-file", "--batch", data=request).stdout
     found: dict[str, str] = {}
     position = 0
-    for name in names:
-        end = output.index(b"\n", position)
-        fields = output[position:end].split(b" ")
-        position = end + 1
-        if len(fields) == 3 and fields[1] == b"blob":
-            size = int(fields[2])
-            found[name] = output[position:position + size].decode("utf-8", "replace")
-            position += size + 1
+    try:
+        for name in names:
+            end = output.index(b"\n", position)
+            fields = output[position:end].split(b" ")
+            position = end + 1
+            if len(fields) == 3:  # <oid> <type> <size>, then the content; a tree or a symlink is skipped, not read
+                size = int(fields[2])
+                if fields[1] == b"blob":
+                    found[name] = output[position:position + size].decode("utf-8", "replace")
+                position += size + 1
+    except ValueError as error:
+        raise ClaimsError(f"git cat-file printed something unexpected: {error}") from error
     return found, [name for name in names if name not in found]
 
 
@@ -323,7 +330,7 @@ class Holding:
     owner: str | None
     claimed_at: str | None
     heartbeat_at: str | None
-    taken_from: str | None
+    taken_from: tuple[str, ...]
     where: str
 
     def who(self) -> str:
@@ -334,8 +341,9 @@ def _holding(entry: dict, where: str) -> Holding | None:
     if entry.get("status") not in ("doing", "written") or not isinstance(entry.get("id"), str):
         return None
     pick = lambda key: entry[key] if isinstance(entry.get(key), str) else None  # noqa: E731
-    return Holding(entry["id"], entry["status"], pick("owner"), pick("claimed_at"), pick("heartbeat_at"),
-                   pick("taken_from"), where)
+    taken = entry.get("taken_from")
+    superseded = tuple(owner for owner in taken if isinstance(owner, str)) if isinstance(taken, list) else ()
+    return Holding(entry["id"], entry["status"], pick("owner"), pick("claimed_at"), pick("heartbeat_at"), superseded, where)
 
 
 def is_stale(holding: Holding, now: datetime.datetime, lease_hours: int) -> bool:
@@ -345,9 +353,9 @@ def is_stale(holding: Holding, now: datetime.datetime, lease_hours: int) -> bool
 
 def beats(first: Holding, second: Holding) -> bool:
     """Which of two live claims on one lesson wins: a takeover, else the earlier claim, else the smaller owner."""
-    if first.taken_from and first.taken_from == second.owner:
+    if second.owner in first.taken_from:
         return True
-    if second.taken_from and second.taken_from == first.owner:
+    if first.owner in second.taken_from:
         return False
     return (first.claimed_at or "", first.owner or "") < (second.claimed_at or "", second.owner or "")
 
@@ -376,28 +384,29 @@ def gather(local: dict[str, dict], remote: dict[str, str], base: str, me: str, o
 
 
 def refusal(lesson_id: str, found: dict[str, list[Holding]], source: Source, me: str, now: datetime.datetime,
-            lease: int, take_stale: bool, allow_same_source: bool) -> tuple[str | None, str | None]:
-    """Why `me` may not claim the lesson (None when it may), and the stale owner the claim would take it from."""
-    taken: Holding | None = None
+            lease: int, take_stale: bool, allow_same_source: bool) -> tuple[str | None, list[str]]:
+    """Why `me` may not claim the lesson (None when it may), and every owner whose stale claim it would take over."""
+    taken: list[str] = []
     for holding in found.get(lesson_id, []):
         if holding.owner == me and holding.status == "doing":
             continue
         if holding.status == "written":
-            return f"already written by {holding.who()} ({holding.where})", None
+            return f"already written by {holding.who()} ({holding.where})", []
         if not is_stale(holding, now, lease):
-            return f"claimed by {holding.owner} since {holding.claimed_at} ({holding.where})", None
+            return f"claimed by {holding.owner} since {holding.claimed_at} ({holding.where})", []
         if not take_stale:
             return (f"claimed by {holding.owner}, but its last heartbeat was {holding.heartbeat_at or holding.claimed_at} "
-                    f"({holding.where}), more than {lease} hours ago; if that session is gone, claim with --take-stale"), None
-        if taken is None or (holding.claimed_at or "") > (taken.claimed_at or ""):
-            taken = holding
+                    f"({holding.where}), more than {lease} hours ago; if that session is gone, claim with --take-stale"), []
+        # The whole chain, so a session that took the lesson over from a session that had itself taken it over
+        # still beats the first owner when that one wakes up and renews its heartbeat.
+        taken += [owner for owner in (holding.owner, *holding.taken_from) if owner and owner not in taken]
     if not allow_same_source:
         for partner in source.partners.get(lesson_id, ()):
             for holding in found.get(partner, []):
                 if holding.status == "doing" and holding.owner != me and not is_stale(holding, now, lease):
                     return (f"shares its source file with {partner}, which {holding.owner} is writing "
-                            f"({holding.where}); ask that session to cover both, or pass --allow-same-source"), None
-    return None, taken.owner if taken else None
+                            f"({holding.where}); ask that session to cover both, or pass --allow-same-source"), []
+    return None, taken
 
 
 def lost_reason(mine: Holding, found: dict[str, list[Holding]], me: str, now: datetime.datetime, lease: int) -> str | None:
@@ -587,9 +596,9 @@ def publish(context: Context, message: str) -> None:
     if context.branch in (None, "main", "master"):
         raise ClaimsError("--publish pushes the current work branch; it never pushes main")
     git(context.root, "add", "--", context.relative)
-    if git(context.root, "diff", "--cached", "--quiet", "--", context.relative, check=False).returncode == 0:
-        return
-    git(context.root, "commit", "--quiet", "--only", "-m", message, "--", context.relative)
+    if git(context.root, "diff", "--cached", "--quiet", "--", context.relative, check=False).returncode != 0:
+        git(context.root, "commit", "--quiet", "--only", "-m", message, "--", context.relative)
+    # Pushed even when there was nothing to commit: the claim may sit in a commit made by hand and never pushed.
     for delay in (0, *PUSH_BACKOFF_SECONDS):
         time.sleep(delay)
         pushed = git(context.root, "push", "--quiet", "-u", context.remote, f"HEAD:refs/heads/{context.branch}", check=False)

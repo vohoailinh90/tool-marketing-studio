@@ -14,7 +14,7 @@
 
 ## Giới hạn cần nhớ
 
-Chữ ký chứng minh người gửi giữ khóa bí mật và phần đã ký không bị sửa; nó không giữ kín nội dung (vẫn cần TLS, Transport Layer Security, giao thức mã hóa đường truyền), không cho biết người đó được phép làm việc gì, và không tự chặn việc gửi lại nếu thiếu thời điểm hoặc nonce. Theo suy luận của bài: nếu một tham số không nằm trong chuỗi cần ký thì kẻ tấn công đổi được nó mà chữ ký vẫn đúng; nonce chỉ chặn được gửi lại khi máy chủ nhớ các nonce đã thấy trong khoảng thời gian mà thời điểm còn được chấp nhận; và máy chủ nên so sánh chữ ký bằng phép so sánh thời gian không đổi. Mọi chi tiết về cách dựng chuỗi (thứ tự tham số, cách mã hóa ký tự, băm thân yêu cầu) khác nhau giữa các dịch vụ; bài không mô tả một định dạng cụ thể nào.
+Chữ ký chứng minh bên đã ký yêu cầu giữ khóa bí mật vào lúc ký và phần đã ký không bị sửa kể từ đó; nó không chứng minh bên đang gửi lúc này chính là bên đã ký (một yêu cầu bị chụp lại và gửi lại vẫn mang chữ ký đúng), không giữ kín nội dung (vẫn cần TLS, Transport Layer Security, giao thức mã hóa đường truyền), không cho biết người đó được phép làm việc gì, và không tự chặn việc gửi lại nếu thiếu thời điểm hoặc nonce. Theo suy luận của bài: nếu một tham số không nằm trong chuỗi cần ký thì kẻ tấn công đổi được nó mà chữ ký vẫn đúng; nonce chỉ chặn được gửi lại khi máy chủ nhớ các nonce đã thấy trong khoảng thời gian mà thời điểm còn được chấp nhận; và máy chủ nên so sánh chữ ký bằng phép so sánh thời gian không đổi. Mọi chi tiết về cách dựng chuỗi (thứ tự tham số, cách mã hóa ký tự, băm thân yêu cầu) khác nhau giữa các dịch vụ; bài không mô tả một định dạng cụ thể nào.
 
 ## Nhìn hình thử trả lời
 

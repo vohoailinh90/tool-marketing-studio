@@ -569,18 +569,21 @@ def world_of(context: Context, local: dict[str, dict],
     """
     remote: dict[str, str] = {}
     undecodable: list[str] = []
+    missing: list[str] = []
     base = "main"
     if not context.offline:
         try:
             fetch_remote(context.root, context.remote)
             base = default_branch(context.root, context.remote)
-            remote, _, undecodable = remote_registries(context.root, context.remote, context.relative)
+            remote, missing, undecodable = remote_registries(context.root, context.remote, context.relative)
         except ClaimsError as error:
             raise ClaimsError(f"cannot read the other sessions' claims from {context.remote}: {error}; "
                               "nothing was decided (pass --offline only if you accept that risk)") from error
     roster = tuple(lesson_id for lesson_id, _ in context.source.lessons)
     found, unreadable = gather(local, remote, base, context.me, context.offline, roster)
     unreadable += [f"{context.remote}/{name} (not valid UTF-8)" for name in undecodable]
+    if base in missing:  # a legacy feature branch may lack the file, the branch that holds every merged lesson may not
+        unreadable.append(f"{context.remote}/{base} (the default branch has no {REGISTRY_NAME})")
     if unreadable and not tolerate and not context.ignore_unreadable:
         raise ClaimsError(f"the registry on {len(unreadable)} branch(es) cannot be parsed, e.g. {unreadable[0]}; "
                           "a claim in it could be missed, so nothing was decided. Fix or delete that branch, "
@@ -702,6 +705,15 @@ def guard_publish(context: Context) -> None:
     """The registry is pushed whole, so every claim of this session in it is judged before anything is pushed, not only
     the ones the command names: a renewal made earlier in the working tree would otherwise reach the remote unjudged."""
     header, lessons = load_registry(context)
+    lessons_dir = (context.store / "lessons").resolve().relative_to(context.root.resolve()).as_posix()
+    committed = set(git_text(context.root, "ls-tree", "-r", "--name-only", "HEAD", "--", lessons_dir).splitlines())
+    if pending := [lesson_id for lesson_id, entry in lessons.items()
+                   if entry.get("status") == "written" and f"{lessons_dir}/{lesson_id}/lesson.md" not in committed]:
+        # Only the registry is committed by --publish, so a lesson finished but not yet committed would be advertised
+        # as written on a branch that does not contain it.
+        raise Refusal(f"nothing was pushed: {', '.join(pending)} {'is' if len(pending) == 1 else 'are'} marked written but "
+                      "the lesson files are not committed; commit them together with the registry first "
+                      "(git add -A && git commit), then push")
     mine = my_claims(context, lessons, [])
     if not mine:
         return

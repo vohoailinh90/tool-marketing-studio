@@ -63,6 +63,9 @@ remote and reads the registry on each:
   someone's claim holds a stale copy of it; that copy is not a claim.
 - Your working tree: the entries you own, and every written lesson.
 
+The default branch must carry the registry: if it has none, every deciding command stops (exit 2), because a feature
+branch's own copy cannot stand in for the claims already merged. Only `status` still reports, with a warning.
+
 So a claim becomes visible the moment it is pushed to a branch, with no pull request needed, and it stops
 counting when its branch is deleted or the lesson is released or merged as `written`.
 
@@ -90,7 +93,8 @@ push was visible are decided like two claims on one lesson (the earlier claim wi
 `--allow-same-source` is recorded as `shared_source` and is never asked to give way. Claiming a half you already hold again with that flag records it too, which is how you keep it
 on purpose after `verify` says it lost to the other half. A claim that has no live published copy (expired in public, or never pushed) gives way to a live claim on the other
 half, whoever claimed first, because a takeover across a pair leaves no record of whom it replaced; Every `--publish` judges all of your claims in the
-registry before it pushes (it is pushed whole), not only the ones you named, and refuses with the list to release.
+registry before it pushes (it is pushed whole), not only the ones you named, and refuses with the list to release. It also refuses to push a lesson marked `written` whose files are not committed yet: commit the lesson and its registry
+record together (`git add -A && git commit`) first, so the remote never advertises a finished lesson that its branch lacks.
 `touch --publish`
 judges this before it pushes a renewal. Every command except `sync` and `fmt` refuses a local registry that lags the source map (lessons missing, another
 pin), so a truncated file is never written back or pushed; `sync` repairs it. `verify` also compares the published record with your

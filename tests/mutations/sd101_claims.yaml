@@ -247,3 +247,11 @@ mutations:
   find: "        if other.status == \"written\":  # whoever wrote it: a stale container's own claim is just as finished\n            return f\"already written by"
   replace: "        if other.status == \"written\" and other.owner != me:\n            return f\"already written by"
   test: tests.test_sd101_claims.ClaimTests.test_a_claim_of_the_same_owner_is_ended_by_its_own_written_record
+- label: a default branch without a registry is treated as having no claims
+  find: '    if base in missing:  # a legacy feature branch'
+  replace: '    if False:  # a legacy feature branch'
+  test: tests.test_sd101_claims.RemoteTests.test_a_default_branch_without_a_registry_stops_the_decision
+- label: a lesson finished but not committed is pushed as written
+  find: '    committed = set(git_text(context.root, "ls-tree", "-r", "--name-only", "HEAD", "--", lessons_dir).splitlines())'
+  replace: '    committed = set(f"{lessons_dir}/{lesson_id}/lesson.md" for lesson_id in lessons)'
+  test: tests.test_sd101_claims.ClaimTests.test_a_finished_lesson_is_not_pushed_ahead_of_its_files

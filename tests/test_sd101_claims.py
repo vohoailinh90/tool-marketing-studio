@@ -256,6 +256,22 @@ class ClaimTests(Sessions):
         self.assertEqual(1, code)
         self.assertEqual(pushed, git(self.tmp, "--git-dir", str(self.origin), "rev-parse", "claude/a"), "nothing was pushed")
 
+    def test_a_finished_lesson_is_not_pushed_ahead_of_its_files(self) -> None:
+        a = self.session("a")
+        self.run_in(a, "claim", "sd-01-001", "--publish")
+        self.write_lesson(a, "sd-01-001")
+        self.assertEqual(0, self.run_in(a, "finish", "sd-01-001")[0])  # written in the registry, files not committed
+        pushed = git(self.tmp, "--git-dir", str(self.origin), "rev-parse", "claude/a")
+        for command in (("claim", "sd-01-002", "--publish"), ("touch", "--publish"), ("release", "sd-01-002", "--publish")):
+            with self.subTest(command[0]):
+                code, _, err = self.run_in(a, *command)
+                self.assertEqual(1, code, err)
+                self.assertIn("nothing was pushed: sd-01-001 is marked written but the lesson files are not committed", err)
+        self.assertEqual(pushed, git(self.tmp, "--git-dir", str(self.origin), "rev-parse", "claude/a"))
+        git(a, "add", "-A")
+        git(a, "commit", "--quiet", "-m", "the lesson with its registry record")
+        self.assertEqual(0, self.run_in(a, "claim", "sd-01-002", "--publish")[0], "committed together: it may go up")
+
     def test_a_shared_source_taken_on_purpose_is_not_a_conflict(self) -> None:
         a, b = self.session("a"), self.session("b")
         self.run_in(a, "claim", "sd-01-005", "--publish")
@@ -578,6 +594,19 @@ class RemoteTests(Sessions):
         code, _, err = self.run_in(b, "claim", "sd-01-001")
         self.assertEqual(1, code, err)
         self.assertIn("already written by claude/x (origin/trunk)", err)
+
+    def test_a_default_branch_without_a_registry_stops_the_decision(self) -> None:
+        b = self.session("b")  # holds a registry of its own, which must not be trusted instead of the default branch's
+        seed = self.tmp / "seed"
+        git(seed, "rm", "--quiet", REGISTRY)
+        git(seed, "commit", "--quiet", "-m", "the registry was deleted from main")
+        git(seed, "push", "--quiet", "origin", "main")
+        code, _, err = self.run_in(b, "claim", "sd-01-001")
+        self.assertEqual(2, code)
+        self.assertIn("origin/main (the default branch has no claims.jsonl)", err)
+        self.assertEqual("todo", self.entry(b, "sd-01-001")["status"])
+        self.assertEqual(0, self.run_in(b, "status")[0], "reporting is not deciding")
+        self.assertEqual(0, self.run_in(b, "--ignore-unreadable", "claim", "sd-01-001")[0])
 
     def test_publish_with_an_owner_that_is_not_the_branch_is_refused_before_anything_is_written(self) -> None:
         a = self.session("a")

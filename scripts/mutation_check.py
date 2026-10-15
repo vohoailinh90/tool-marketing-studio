@@ -127,13 +127,36 @@ def mutate(source: str, entry: dict, where: pathlib.Path) -> str:
     return source.replace(entry["find"], entry["replace"], 1)
 
 
-def run_test(target: str) -> bool:
-    """True when the test failed, which is what a mutation must cause."""
+def drop_bytecode(source: pathlib.Path) -> None:
+    """Delete the cached bytecode of `source`, so the next run compiles the file as it is now.
+
+    Python trusts a cached .pyc whose recorded source mtime (whole seconds) and size equal the file's, so a
+    mutation of the same size written in the same second as an earlier compile would run the earlier code.
+    """
+    for cached in (source.parent / "__pycache__").glob(f"{source.stem}.*.pyc"):
+        cached.unlink(missing_ok=True)
+
+
+def child_environment() -> dict[str, str]:
+    """The environment a test subprocess runs in.
+
+    It writes no bytecode, so a mutated file leaves none behind, and it reads none from a configured cache prefix:
+    with PYTHONPYCACHEPREFIX set Python loads compiled code from that tree and ignores the sibling __pycache__ that
+    drop_bytecode() clears, so a stale entry there would run the unmutated file. Without the prefix it reads the
+    sibling cache, which drop_bytecode() has just emptied for the mutated file.
+    """
     environment = dict(os.environ)
     environment[DEPTH_VAR] = str(depth() + 1)
+    environment.pop("PYTHONPYCACHEPREFIX", None)
+    environment["PYTHONDONTWRITEBYTECODE"] = "1"
+    return environment
+
+
+def run_test(target: str) -> bool:
+    """True when the test failed, which is what a mutation must cause."""
     result = subprocess.run(
         [sys.executable, "-m", "unittest", target],
-        cwd=ROOT, capture_output=True, text=True, check=False, env=environment,
+        cwd=ROOT, capture_output=True, text=True, check=False, env=child_environment(),
         timeout=300,
     )
     return result.returncode != 0
@@ -174,6 +197,7 @@ def check(manifest_path: pathlib.Path, allow_outside: bool = False) -> list[tupl
         if not where.is_file():
             results.append((BROKEN, entry["label"], f"no such file: {shown(where)}"))
             continue
+        drop_bytecode(where)
         if run_test(entry["test"]):
             # A missing or already-failing test exits non-zero for reasons that
             # have nothing to do with the mutation, and "non-zero" is exactly
@@ -194,6 +218,7 @@ def check(manifest_path: pathlib.Path, allow_outside: bool = False) -> list[tupl
             continue
         try:
             where.write_text(mutated, encoding="utf-8")
+            drop_bytecode(where)
             caught = run_test(entry["test"])
         finally:
             # Restore before anything else can fail: a crash mid-run must never

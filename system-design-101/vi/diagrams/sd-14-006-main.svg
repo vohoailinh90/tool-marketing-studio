@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 986" width="320" height="986" role="img" aria-labelledby="title desc">
+<title id="title">Passkey: khóa riêng không gửi cho trang</title>
+<desc id="desc">Đăng ký: trang web gửi một thử thách ngẫu nhiên; bạn xác nhận trên thiết bị (thường bằng sinh trắc học hoặc mã PIN, tùy cấu hình có thể chỉ cần chạm vào khóa bảo mật); thiết bị tạo cặp khóa gắn với trang đó và gửi khóa công khai; trang lưu khóa công khai, không có khóa riêng, cạnh tài khoản. Đăng nhập: trang gửi thử thách mới; bạn xác nhận; trình duyệt ghi thử thách và tên miền của nơi yêu cầu vào dữ liệu, khóa riêng trên thiết bị ký dữ liệu đó; trang kiểm tra chữ ký bằng khóa công khai đã lưu cùng tên miền và định danh trang. Thẻ cuối: điểm yếu còn lại là mất thiết bị hoặc tài khoản đồng bộ, và khôi phục tài khoản.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="986" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="21" font-weight="bold">PASSKEY:</text>
+<text x="16" y="54" font-size="21" font-weight="bold">KHÓA RIÊNG KHÔNG</text>
+<text x="16" y="78" font-size="21" font-weight="bold">GỬI CHO TRANG</text>
+<rect x="16" y="104" width="288" height="38" rx="10" fill="#1e293b"/>
+<text x="29" y="127" font-size="16" font-weight="bold" fill="#ffffff">Đăng ký</text>
+<rect x="16" y="152" width="288" height="76" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="29" y="181" font-size="16" font-weight="bold">1 · Thử thách</text>
+<text x="29" y="209" font-size="16" font-weight="normal">Trang gửi một chuỗi ngẫu nhiên</text>
+<line x1="160" y1="229" x2="160" y2="244" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="246" width="288" height="100" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="29" y="275" font-size="16" font-weight="bold">2 · Tạo cặp khóa</text>
+<text x="29" y="303" font-size="16" font-weight="normal">Bạn xác nhận; thiết bị tạo khóa</text>
+<text x="29" y="327" font-size="16" font-weight="normal">gắn với trang này</text>
+<line x1="160" y1="347" x2="160" y2="362" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="364" width="288" height="100" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="29" y="393" font-size="16" font-weight="bold">3 · Lưu khóa công khai</text>
+<text x="29" y="421" font-size="16" font-weight="normal">Trang giữ khóa công khai, không</text>
+<text x="29" y="445" font-size="16" font-weight="normal">có khóa riêng, cạnh tài khoản</text>
+<rect x="16" y="476" width="288" height="38" rx="10" fill="#1e293b"/>
+<text x="29" y="499" font-size="16" font-weight="bold" fill="#ffffff">Đăng nhập</text>
+<rect x="16" y="524" width="288" height="100" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="29" y="553" font-size="16" font-weight="bold">4 · Thử thách mới</text>
+<text x="29" y="581" font-size="16" font-weight="normal">Mỗi lần đăng nhập một chuỗi</text>
+<text x="29" y="605" font-size="16" font-weight="normal">ngẫu nhiên khác</text>
+<line x1="160" y1="625" x2="160" y2="640" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="642" width="288" height="100" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="29" y="671" font-size="16" font-weight="bold">5 · Ký</text>
+<text x="29" y="699" font-size="16" font-weight="normal">Trình duyệt ghi tên miền; khóa</text>
+<text x="29" y="723" font-size="16" font-weight="normal">riêng ký thử thách và tên miền</text>
+<line x1="160" y1="743" x2="160" y2="758" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="760" width="288" height="100" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="29" y="789" font-size="16" font-weight="bold">6 · Kiểm tra</text>
+<text x="29" y="817" font-size="16" font-weight="normal">Trang kiểm tra chữ ký bằng khóa</text>
+<text x="29" y="841" font-size="16" font-weight="normal">công khai, cả tên miền</text>
+<rect x="16" y="872" width="288" height="100" rx="12" fill="#fee2e2" stroke="#94a3b8"/>
+<text x="29" y="901" font-size="16" font-weight="bold">Điểm yếu còn lại</text>
+<text x="29" y="929" font-size="16" font-weight="normal">Mất thiết bị hoặc tài khoản đồng</text>
+<text x="29" y="953" font-size="16" font-weight="normal">bộ; khôi phục tài khoản.</text>
+</g></svg>

@@ -1,0 +1,77 @@
+{
+  "id": "sd-13-007",
+  "title_vi": "Các anti-pattern của cloud-native",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "draft",
+  "source_ref": "sd-13-007",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/cloud-native-anti-patterns.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/cloud-native-anti-patterns.md",
+    "blob_sha": "0089c010c7fbb64cad0920884711149d3129e35c",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "dcafa16b90b490ed749f15538fb73e4c8a71d107efce94814c4dba853fa18d6f",
+    "retrieved_body_bytes": 2076
+  },
+  "diagram": "../diagrams/sd-13-007-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-13-001",
+      "relation": "context",
+      "reason_vi": "Tắt êm một Pod khi bản sao bị thay thế."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Tiến trình theo Twelve-Factor không chia sẻ gì và không giữ trạng thái; dữ liệu cần lưu lâu dài phải nằm ở dịch vụ lưu trữ ngoài tiến trình.",
+      "source": "https://12factor.net/processes"
+    },
+    {
+      "claim_vi": "Twelve-Factor mở rộng bằng cách chạy thêm tiến trình thay vì làm một tiến trình lớn hơn.",
+      "source": "https://12factor.net/concurrency"
+    },
+    {
+      "claim_vi": "CronJob tạo Job khoảng một lần mỗi lượt theo lịch, hiếm khi có thể hai lần hoặc không lần nào, nên công việc nên idempotent; concurrencyPolicy Forbid bỏ lượt mới khi lượt trước chưa xong.",
+      "source": "https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/"
+    },
+    {
+      "claim_vi": "Hàng đợi Standard của Amazon SQS giao tin ít nhất một lần và chỉ cố gắng giữ thứ tự, nên một tin có thể tới nhiều lần.",
+      "source": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/standard-queues.html"
+    },
+    {
+      "claim_vi": "Mẫu Idempotent Consumer ghi dấu đã xử lý và tác dụng nghiệp vụ trong một thao tác nguyên tử, dùng ràng buộc duy nhất để chặn bản trùng đồng thời, và dùng trạng thái đang xử lý kèm đối soát cho tác dụng không nằm trong giao dịch.",
+      "source": "https://learn.microsoft.com/en-us/azure/architecture/patterns/idempotent-consumer"
+    },
+    {
+      "claim_vi": "Dữ liệu ghi trong lớp ghi của container không còn khi container bị xóa; muốn giữ phải dùng volume hoặc bind mount.",
+      "source": "https://docs.docker.com/engine/storage/"
+    }
+  ],
+  "source_deviations": [
+    "Nguồn liệt kê chín anti-pattern cloud-native; bài bỏ danh mục đó và theo dõi một tình huống cụ thể là tăng số bản sao của một dịch vụ, chỉ còn dùng lại ý trạng thái nằm trong tiến trình; việc định kỳ, ID cục bộ và xử lý tin hai lần do bài tự chọn."
+  ],
+  "design_notes_vi": "Bốn thẻ giả định ẩn khi tăng số bản sao, mỗi thẻ kèm cách gỡ.",
+  "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Tiêu đề hiển thị của bài là dòng đầu của lesson.md; title_vi giữ bản dịch tiêu đề nguồn theo source-map. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
+}

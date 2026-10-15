@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1016" width="320" height="1016" role="img" aria-labelledby="title desc">
+<title id="title">Chữ ký số: sáu bước</title>
+<desc id="desc">Sáu thẻ nối bằng mũi tên. Một: người ký tạo cặp khóa, khóa riêng giữ kín, khóa công khai chia sẻ được. Hai: hàm băm biến tài liệu thành một dấu vân tay ngắn cố định, đổi một byte thì dấu vân tay đổi. Ba: ký bằng khóa riêng ra chữ ký; tùy kiểu chữ ký, bản băm được ký hoặc việc băm nằm ngay trong phép ký. Bốn: gửi tài liệu cùng chữ ký; tài liệu vẫn đọc được. Năm: người nhận dùng khóa công khai của người ký để kiểm chữ ký với chính tài liệu nhận được. Sáu: khớp thì đúng khóa riêng đã ký và nội dung chưa đổi kể từ lúc ký; không khớp thì từ chối. Thẻ cuối: chữ ký không giấu nội dung và không tự cho biết khóa công khai là của ai.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1016" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="21" font-weight="bold">CHỮ KÝ SỐ:</text>
+<text x="16" y="54" font-size="21" font-weight="bold">SÁU BƯỚC</text>
+<rect x="16" y="80" width="288" height="100" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="29" y="109" font-size="16" font-weight="bold">1 · Cặp khóa</text>
+<text x="29" y="137" font-size="16" font-weight="normal">Khóa riêng giữ kín. Khóa công</text>
+<text x="29" y="161" font-size="16" font-weight="normal">khai chia sẻ được.</text>
+<line x1="160" y1="181" x2="160" y2="196" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="198" width="288" height="124" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="29" y="227" font-size="16" font-weight="bold">2 · Băm</text>
+<text x="29" y="255" font-size="16" font-weight="normal">Hàm băm: tài liệu thành dấu</text>
+<text x="29" y="279" font-size="16" font-weight="normal">vân tay ngắn. Đổi một byte, dấu</text>
+<text x="29" y="303" font-size="16" font-weight="normal">vân tay đổi.</text>
+<line x1="160" y1="323" x2="160" y2="338" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="340" width="288" height="124" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="29" y="369" font-size="16" font-weight="bold">3 · Ký</text>
+<text x="29" y="397" font-size="16" font-weight="normal">Ký bằng khóa riêng. Tùy kiểu, ký</text>
+<text x="29" y="421" font-size="16" font-weight="normal">bản băm hoặc băm ngay trong</text>
+<text x="29" y="445" font-size="16" font-weight="normal">phép ký.</text>
+<line x1="160" y1="465" x2="160" y2="480" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="482" width="288" height="100" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="29" y="511" font-size="16" font-weight="bold">4 · Gửi</text>
+<text x="29" y="539" font-size="16" font-weight="normal">Gửi tài liệu cùng chữ ký. Tài liệu</text>
+<text x="29" y="563" font-size="16" font-weight="normal">vẫn đọc được.</text>
+<line x1="160" y1="583" x2="160" y2="598" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="600" width="288" height="124" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="29" y="629" font-size="16" font-weight="bold">5 · Kiểm</text>
+<text x="29" y="657" font-size="16" font-weight="normal">Người nhận dùng khóa công</text>
+<text x="29" y="681" font-size="16" font-weight="normal">khai của người ký, kiểm với</text>
+<text x="29" y="705" font-size="16" font-weight="normal">chính tài liệu nhận được.</text>
+<line x1="160" y1="725" x2="160" y2="740" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="742" width="288" height="124" rx="12" fill="#e2e8f0" stroke="#94a3b8"/>
+<text x="29" y="771" font-size="16" font-weight="bold">6 · Kết quả</text>
+<text x="29" y="799" font-size="16" font-weight="normal">Khớp: đúng khóa riêng đã ký,</text>
+<text x="29" y="823" font-size="16" font-weight="normal">nội dung chưa đổi. Không khớp:</text>
+<text x="29" y="847" font-size="16" font-weight="normal">từ chối.</text>
+<rect x="16" y="878" width="288" height="124" rx="12" fill="#fee2e2" stroke="#94a3b8"/>
+<text x="29" y="907" font-size="16" font-weight="bold">Chưa nói được</text>
+<text x="29" y="935" font-size="16" font-weight="normal">Chữ ký không giấu nội dung và</text>
+<text x="29" y="959" font-size="16" font-weight="normal">không tự cho biết khóa công</text>
+<text x="29" y="983" font-size="16" font-weight="normal">khai là của ai.</text>
+</g></svg>

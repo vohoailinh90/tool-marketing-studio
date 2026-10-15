@@ -1,0 +1,111 @@
+{
+  "id": "sd-01-002",
+  "title_vi": "Ứng dụng thực tế của bộ cân bằng tải",
+  "language": "vi",
+  "kind": "topology",
+  "content_status": "review",
+  "source_ref": "sd-01-002",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/load-balancer-realistic-use-cases-you-may-not-know.md",
+    "blob_sha": "7c1a3c6e60a7c0adbbe2bbde4e3f55451b69138a"
+  },
+  "diagram": "../diagrams/sd-01-002-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-01-011",
+      "relation": "compare-with",
+      "reason_vi": "Các tình huống dùng Load Balancer khác."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-12"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-12"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "integration_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 12.6,
+      "overflow": false,
+      "text_outside_viewbox": false,
+      "checked_on": "2026-10-12",
+      "evidence": "Chromium rendered SVG at 320/375/430 px; 320px screenshot visually inspected. Minimum 12.6px at 320, 14px at 375/430. Not user testing.",
+      "whole_lesson_no_horizontal_overflow": true,
+      "optional_sections_checked_open": true
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Health checks định kỳ và lựa chọn target; ngoại lệ fail open khi mọi target unhealthy.",
+      "source": "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/target-group-health-checks.html",
+      "section": "Health checks; Health check settings"
+    },
+    {
+      "claim_vi": "LB HTTP hỗ trợ luật theo header để phân luồng; không coi header là bằng chứng ủy quyền.",
+      "source": "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/rule-condition-types.html",
+      "section": "HTTP header conditions"
+    },
+    {
+      "claim_vi": "TLS client kết thúc ở ALB; target group HTTP/HTTPS cấu hình chặng backend riêng.",
+      "source": "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-target-groups.html",
+      "section": "Routing configuration"
+    },
+    {
+      "claim_vi": "Cross-zone chia lưu lượng trên các Availability Zones đã đăng ký; không đồng nghĩa nhiều quốc gia.",
+      "source": "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/edit-target-group-attributes.html",
+      "section": "Cross-zone load balancing"
+    },
+    {
+      "claim_vi": "Stickiness gắn lượt của một phiên tới một target; không thay cho khôi phục state khi target lỗi.",
+      "source": "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/edit-target-group-attributes.html",
+      "section": "Sticky sessions"
+    }
+  ],
+  "design_notes_vi": "Sáu khung topology dọc mới, tương ứng sáu use case nguồn. Hình lỗi có đường bị gạch và đường tới máy khỏe; câu hỏi chỉ hỏi thông tin có trên hình. Không dùng asset gốc vì URL ảnh tên HTTP status codes; chưa khẳng định đã mở/kiểm tra pixel asset đó.",
+  "editorial_note_vi": "Đã nhập từ repo cũ; review kỹ thuật của tổ hợp trong repo mới đang chờ. Chưa user testing hoặc phê duyệt phát hành.",
+  "prior_reviews": [
+    {
+      "sha": "f4fda4798d08ce982061d67a483fa26fd6e3decf",
+      "url": "https://github.com/vohoailinh90/Agentic-coding-course/pull/25#issuecomment-6126952093",
+      "result": "No major issues reported; applies only to that commit."
+    },
+    {
+      "sha": "cc77dd212a0432075590348c16e3761d9ace1bce",
+      "url": "https://github.com/vohoailinh90/Agentic-coding-course/pull/25#issuecomment-6127917483",
+      "result": "No major issues reported; CI 38273986497 successful for that snapshot. Does not cover newer main."
+    },
+    {
+      "repository": "vohoailinh90/Agentic-coding-course",
+      "status": "checked",
+      "reviewed_sha": "034a992d1b90d023083b2fe03790c06fdf991bca",
+      "base_sha": "89186c1a1aeb90a47e2a563fdc7786b2dacec787",
+      "evidence_url": "https://github.com/vohoailinh90/Agentic-coding-course/pull/25#issuecomment-6128611337",
+      "ci_run": 38279292220,
+      "note": "Technical completion on stated snapshot, not approval to publish; user testing remains not performed."
+    }
+  ],
+  "migration": {
+    "source_repository": "vohoailinh90/Agentic-coding-course",
+    "source_commit_sha": "b8dff434ff75499137bbb10b61122958fdaaafa5",
+    "destination_repository": "vohoailinh90/tool-marketing-studio",
+    "imported_on": "2026-10-13"
+  }
+}

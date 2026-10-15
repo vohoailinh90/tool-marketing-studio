@@ -68,11 +68,14 @@ fix only findings you confirmed against the code.
 - T3: spawn `code-reviewer-t3` on the PR diff.
 - Verification that needs designing: `python3 scripts/hooks/agent_budget.py
   grant escalation_reserve --agent test-engineer`, then spawn it.
-- Done and merge: §20, unchanged.
+- Done and merge: §20, unchanged. Every PR runs CLAUDE.md's *Pull request
+  lifecycle*: the review row above is its step 1, the fix row its step 3. Repeat
+  until every review command the work requires is clean on the current head (reviews have no cap, §16),
+  merge under §20 without asking, then take the next outstanding task.
 
 ## 4. When Codex is blocked
 
 Trigger failure past its one retry, a stalled or failed task, the wrong account:
 set the task BLOCKED, tell the user, and re-record the same requirement in the
 claude lane (`--lane claude --record --requirement <id>`). Charges carry over;
-validated Codex output is input to the claude lane, not discarded.
+validated Codex output is input to the claude lane, not discarded. This moves who does the work and never waives the PR's Codex review (CLAUDE.md, *Pull request lifecycle*): an open PR stays BLOCKED until its head is reviewed.

@@ -1,0 +1,48 @@
+# Vì sao Docker build chạy lại bước nặng: năm nguyên nhân mất cache
+
+Sửa một dòng mã mà docker build lại cài lại toàn bộ phụ thuộc là chuyện quen thuộc. Cache của Docker hoạt động theo quy tắc cụ thể, nên mỗi lần mất cache đều truy ra được nguyên nhân. Bài nêu năm nguyên nhân hay gặp và cách chữa từng cái.
+
+![Năm nguyên nhân Docker build mất cache và cách chữa: đổi một lớp thì các lớp sau phải build lại nên đặt phần ít đổi lên trên, COPY quá rộng và quá sớm nên copy các tệp khai báo phụ thuộc trước rồi cài phụ thuộc, ngữ cảnh build lẫn tệp hay đổi mà COPY rộng hay bind mount lấy vào nên loại chúng khỏi ngữ cảnh, cache dùng được nhưng đã cũ nên build sạch định kỳ, và máy mới không có cache nên cần xuất nhập cache từ nơi khác, còn cache mount chỉ giúp khi builder giữ được cache.](../../diagrams/sd-13-011-main.svg)
+
+**Đọc hình:** năm thẻ là năm nguyên nhân độc lập; thẻ nào cũng kèm cách chữa.
+
+## Nhìn hình thử trả lời
+
+Dockerfile có `COPY . .` rồi `RUN npm ci`. Bạn sửa một dòng trong tệp README. Lần build sau có phải cài lại phụ thuộc không, và chữa thế nào?
+
+<details>
+<summary>Xem đáp án</summary>
+
+Có. `COPY . .` tính checksum từ các tệp được sao chép (nội dung cùng siêu dữ liệu như quyền truy cập, trừ thời gian sửa đổi), nên chỉ cần một tệp đổi là lớp đó mất cache và `RUN npm ci` sau nó phải chạy lại. Hãy `COPY package.json package-lock.json ./`, chạy `npm ci`, rồi mới `COPY . .`; khi chỉ mã đổi, hai lớp đầu vẫn dùng lại được.
+
+</details>
+
+## Giới hạn cần nhớ
+
+Cache giúp nhanh nhưng không bảo đảm đúng: lớp cũ có thể giữ phụ thuộc hay danh sách gói đã lỗi thời, nên cần build sạch định kỳ. Cache từ xa tốn dung lượng và băng thông, và cache mount cần BuildKit và sống trong cache của builder nên không thay được cache từ xa trên runner dùng một lần. Bài không bàn kích thước image, người dùng không đặc quyền hay quét lỗ hổng.
+
+<details>
+<summary>Xem sâu hơn</summary>
+
+```dockerfile
+FROM node:22-slim
+WORKDIR /app
+# lớp ít đổi trước: chỉ các tệp khai báo phụ thuộc
+COPY package.json package-lock.json ./
+RUN --mount=type=cache,target=/root/.npm npm ci
+# lớp hay đổi sau cùng
+COPY . .
+CMD ["node", "server.js"]
+```
+
+- **Quy tắc vô hiệu hóa:** khi một lớp bị vô hiệu hóa, mọi lớp sau nó phải build lại. Với `COPY` và `ADD`, Docker tính checksum từ các tệp được sao chép, gồm nội dung và siêu dữ liệu như quyền truy cập nhưng không gồm thời gian sửa đổi (mtime), nên đổi nội dung hay đổi quyền đều làm lớp mất cache còn chỉ đổi mtime thì không; với `RUN`, thường chỉ so chuỗi lệnh. Riêng `RUN --mount=type=bind` còn tính checksum từ các tệp được gắn vào, nên tệp đó đổi thì lớp mất cache dù chuỗi lệnh không đổi. Tệp nằm trong ngữ cảnh nhưng không được `COPY`, `ADD` hay bind mount lấy vào thì không làm lớp nào mất cache; `.dockerignore` giữ ngữ cảnh nhỏ, giảm dữ liệu gửi cho builder và giảm khả năng một `COPY` rộng lấy phải các tệp hay đổi.
+- **Cache cũ:** vì `RUN` thường chỉ so chuỗi lệnh, `apt-get update` có thể được dùng lại với danh sách gói cũ; gộp `apt-get update` và `apt-get install` trong cùng một `RUN` để chúng cùng mất cache. `--no-cache` bỏ qua cache và `--pull` luôn kéo image cơ sở mới.
+- **Cache từ xa:** `--cache-to` và `--cache-from` xuất và nhập cache qua các backend như registry hay thư mục cục bộ, để máy CI (Continuous Integration — tích hợp liên tục) mới không bắt đầu từ rỗng.
+- **Cache mount:** `RUN --mount=type=cache` giữ thư mục cache của trình quản lý gói giữa các lần build trên cùng builder mà không đưa vào image, nên cài lại nhanh dù lớp bị mất cache. Mount nằm trong cache của builder: builder mới tạo hay tạm thời (như runner CI dùng một lần) bắt đầu với mount rỗng, nên ở CI hãy dùng cache từ xa cho các lớp và chỉ trông vào cache mount khi cache của builder được giữ lại hoặc khôi phục giữa các lần chạy.
+
+</details>
+
+## Nguồn đối chiếu
+
+- [ByteByteGo tại snapshot cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/9-docker-best-practices-you-must-know.md).
+- Docker: [vô hiệu hóa cache build](https://docs.docker.com/build/cache/invalidation/), [tối ưu cache](https://docs.docker.com/build/cache/optimize/), [backend cache từ xa](https://docs.docker.com/build/cache/backends/), [docker buildx build](https://docs.docker.com/reference/cli/docker/buildx/build/).

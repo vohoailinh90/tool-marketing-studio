@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1090" width="320" height="1090" role="img" aria-labelledby="title desc">
+<title id="title">Năm mã HTTP và trạng thái đăng ký</title>
+<desc id="desc">451 được đăng ký với ý nghĩa pháp lý. 218, 420, 530 chưa được IANA gán; Pantheon dùng riêng 530 Site Frozen. 418 giữ chỗ là Unused, có lịch sử từ RFC đùa.</desc>
+<rect width="320" height="1090" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="21" font-weight="bold" fill="#0f172a">5 MÃ HTTP ĐẶC BIỆT</text>
+<text x="16" y="55" font-size="16" font-weight="normal" fill="#0f172a">Đọc số mã và trạng thái đăng ký.</text>
+<rect x="8" y="75" width="304" height="190" rx="14" fill="white" stroke="#cbd5e1"/>
+<rect x="18" y="93" width="80" height="67" rx="10" fill="#dcfce7"/>
+<text x="27" y="136" font-size="31" font-weight="bold" fill="#0f172a">451</text>
+<text x="109" y="118" font-size="17" font-weight="bold" fill="#0f172a">Unavailable For</text>
+<text x="109" y="143" font-size="17" font-weight="bold" fill="#0f172a">Legal Reasons</text>
+<rect x="18" y="173" width="284" height="35" rx="7" fill="#dcfce7"/>
+<text x="30" y="196" font-size="16" font-weight="bold" fill="#0f172a">IANA: đã đăng ký</text>
+<text x="22" y="238" font-size="16" font-weight="normal" fill="#0f172a">Từ chối do lý do pháp lý.</text>
+<rect x="8" y="275" width="304" height="190" rx="14" fill="white" stroke="#cbd5e1"/>
+<rect x="18" y="293" width="80" height="67" rx="10" fill="#e2e8f0"/>
+<text x="27" y="336" font-size="31" font-weight="bold" fill="#0f172a">218</text>
+<text x="109" y="318" font-size="17" font-weight="bold" fill="#0f172a">This Is Fine</text>
+<rect x="18" y="373" width="284" height="35" rx="7" fill="#e2e8f0"/>
+<text x="30" y="396" font-size="16" font-weight="bold" fill="#0f172a">IANA: chưa được gán</text>
+<text x="22" y="438" font-size="16" font-weight="normal" fill="#0f172a">Tên trong bài nguồn.</text>
+<rect x="8" y="475" width="304" height="190" rx="14" fill="white" stroke="#cbd5e1"/>
+<rect x="18" y="493" width="80" height="67" rx="10" fill="#e2e8f0"/>
+<text x="27" y="536" font-size="31" font-weight="bold" fill="#0f172a">420</text>
+<text x="109" y="518" font-size="17" font-weight="bold" fill="#0f172a">Enhance Your Calm</text>
+<rect x="18" y="573" width="284" height="35" rx="7" fill="#e2e8f0"/>
+<text x="30" y="596" font-size="16" font-weight="bold" fill="#0f172a">IANA: chưa được gán</text>
+<text x="22" y="638" font-size="16" font-weight="normal" fill="#0f172a">Chuẩn rate limit: 429.</text>
+<rect x="8" y="675" width="304" height="190" rx="14" fill="white" stroke="#cbd5e1"/>
+<rect x="18" y="693" width="80" height="67" rx="10" fill="#e2e8f0"/>
+<text x="27" y="736" font-size="31" font-weight="bold" fill="#0f172a">530</text>
+<text x="109" y="718" font-size="17" font-weight="bold" fill="#0f172a">Site Frozen</text>
+<rect x="18" y="773" width="284" height="35" rx="7" fill="#e2e8f0"/>
+<text x="30" y="796" font-size="16" font-weight="bold" fill="#0f172a">IANA: chưa được gán</text>
+<text x="22" y="838" font-size="16" font-weight="normal" fill="#0f172a">Pantheon: site đóng băng.</text>
+<rect x="8" y="875" width="304" height="190" rx="14" fill="white" stroke="#cbd5e1"/>
+<rect x="18" y="893" width="80" height="67" rx="10" fill="#ffedd5"/>
+<text x="27" y="936" font-size="31" font-weight="bold" fill="#0f172a">418</text>
+<text x="109" y="918" font-size="17" font-weight="bold" fill="#0f172a">I&#x27;m a Teapot</text>
+<rect x="18" y="973" width="284" height="35" rx="7" fill="#ffedd5"/>
+<text x="30" y="996" font-size="16" font-weight="bold" fill="#0f172a">IANA: giữ chỗ (Unused)</text>
+<text x="22" y="1038" font-size="16" font-weight="normal" fill="#0f172a">Lịch sử: RFC đùa.</text>
+</g></svg>

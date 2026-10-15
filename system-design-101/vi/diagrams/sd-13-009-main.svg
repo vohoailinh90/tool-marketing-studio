@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 626" width="320" height="626" role="img" aria-labelledby="title desc">
+<title id="title">Cụm Kubernetes cần thêm công cụ nào trước: đi từ triệu chứng</title>
+<desc id="desc">Ba triệu chứng và công cụ ví dụ: không rõ cụm đang chạy bản nào thì để cấu hình trong Git và để Argo CD (CD là Continuous Delivery — chuyển giao liên tục) hoặc Flux đồng bộ cụm theo Git; người dùng biết lỗi trước nhóm thì đặt cảnh báo từ số đo bằng Prometheus với Alertmanager; bí mật nằm trong Git thì giữ chúng ở kho bí mật bên ngoài và đồng bộ vào cụm bằng External Secrets Operator hoặc Secrets Store CSI (Container Storage Interface — giao diện lưu trữ cho container) Driver.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="626" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">TRIỆU CHỨNG → CÔNG</text>
+<text x="16" y="58" font-size="20" font-weight="bold">CỤ</text>
+<text x="16" y="86" font-size="16" font-weight="normal">Tên công cụ chỉ là ví dụ</text>
+<rect x="16" y="117" width="288" height="182" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="145" font-size="16" font-weight="bold">Không rõ cụm chạy bản</text>
+<text x="30" y="172" font-size="16" font-weight="bold">nào</text>
+<text x="30" y="199" font-size="16" font-weight="normal">Cấu hình nằm trong Git;</text>
+<text x="30" y="226" font-size="16" font-weight="normal">Argo CD (CD: chuyển giao</text>
+<text x="30" y="253" font-size="16" font-weight="normal">liên tục) hoặc Flux đồng bộ</text>
+<text x="30" y="280" font-size="16" font-weight="normal">cụm theo Git</text>
+<rect x="16" y="311" width="288" height="128" rx="10" fill="#fee2e2" stroke="#94a3b8"/>
+<text x="30" y="339" font-size="16" font-weight="bold">Người dùng biết lỗi</text>
+<text x="30" y="366" font-size="16" font-weight="bold">trước</text>
+<text x="30" y="393" font-size="16" font-weight="normal">Cảnh báo từ số đo, ví dụ</text>
+<text x="30" y="420" font-size="16" font-weight="normal">Prometheus với Alertmanager</text>
+<rect x="16" y="451" width="288" height="155" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="479" font-size="16" font-weight="bold">Bí mật nằm trong Git</text>
+<text x="30" y="506" font-size="16" font-weight="normal">Giữ ở kho bí mật bên ngoài,</text>
+<text x="30" y="533" font-size="16" font-weight="normal">đồng bộ vào cụm (External</text>
+<text x="30" y="560" font-size="16" font-weight="normal">Secrets Operator, Secrets</text>
+<text x="30" y="587" font-size="16" font-weight="normal">Store CSI Driver)</text>
+</g></svg>

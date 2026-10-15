@@ -1,0 +1,82 @@
+{
+  "id": "sd-13-011",
+  "title_vi": "9 thực hành tốt nhất với Docker bạn phải biết",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "draft",
+  "source_ref": "sd-13-011",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/9-docker-best-practices-you-must-know.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/9-docker-best-practices-you-must-know.md",
+    "blob_sha": "664fa5a8725c78a94f810faa0a5b72041d4c4de6",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "306137d9b19bf0bba309cfd27edd8c4d28c52f604cd4baf8ca8e003997bcac83",
+    "retrieved_body_bytes": 1365
+  },
+  "diagram": "../diagrams/sd-13-011-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-13-013",
+      "relation": "compare-with",
+      "reason_vi": "Docker khi chạy web kèm cơ sở dữ liệu."
+    },
+    {
+      "lesson_id": "sd-13-026",
+      "relation": "compare-with",
+      "reason_vi": "Container Docker thoát ngay hoặc khởi động lại."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Cache chỉ bị vô hiệu khi siêu dữ liệu đổi ở tệp mà lệnh COPY, ADD hay RUN --mount=type=bind thực sự dùng.",
+      "source": "https://docs.docker.com/build/cache/invalidation/"
+    },
+    {
+      "claim_vi": "Giữ ngữ cảnh build nhỏ bằng .dockerignore làm giảm lượng dữ liệu gửi cho builder và giảm khả năng mất cache.",
+      "source": "https://docs.docker.com/build/cache/optimize/#keep-the-context-small"
+    },
+    {
+      "claim_vi": "Khi một lớp bị vô hiệu hóa, mọi lớp sau nó phải build lại; với COPY và ADD Docker tính checksum từ các tệp được sao chép, gồm nội dung và siêu dữ liệu nhưng không gồm thời gian sửa đổi (mtime), với RUN thường chỉ so chuỗi lệnh, riêng RUN --mount=type=bind còn tính checksum từ các tệp được gắn.",
+      "source": "https://docs.docker.com/build/cache/invalidation/"
+    },
+    {
+      "claim_vi": "RUN --mount=type=cache giữ thư mục cache của trình quản lý gói giữa các lần build trên cùng builder mà không đưa vào image; builder mới hoặc tạm thời bắt đầu với mount rỗng, và Docker khuyến nghị cache từ xa cho builder tạm thời trong CI.",
+      "source": "https://docs.docker.com/build/cache/optimize/"
+    },
+    {
+      "claim_vi": "Cache build có thể xuất và nhập qua các backend như registry hoặc thư mục cục bộ bằng --cache-to và --cache-from.",
+      "source": "https://docs.docker.com/build/cache/backends/"
+    },
+    {
+      "claim_vi": "docker buildx build có tùy chọn --no-cache để bỏ qua cache và --pull để luôn kéo image cơ sở mới.",
+      "source": "https://docs.docker.com/reference/cli/docker/buildx/build/"
+    }
+  ],
+  "source_deviations": [
+    "Nguồn liệt kê chín thực hành tốt khi viết Dockerfile; bài bỏ danh mục đó và theo dõi một vấn đề cụ thể là build mất cache, chỉ còn nhắc tới thứ tự lệnh và việc loại tệp khỏi ngữ cảnh như nguyên nhân của vấn đề này."
+  ],
+  "design_notes_vi": "Năm thẻ nguyên nhân mất cache, mỗi thẻ kèm cách chữa.",
+  "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Tiêu đề hiển thị của bài là dòng đầu của lesson.md; title_vi giữ bản dịch tiêu đề nguồn theo source-map. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
+}

@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1300" viewBox="0 0 320 1300" role="img" aria-labelledby="title desc">
+<title id="title">Bốn cách cập nhật trạng thái đơn hàng</title>
+<desc id="desc">Thời gian đi từ trên xuống dưới. Polling ngắn hỏi định kỳ. Polling dài chờ có tin hoặc hết hạn rồi hỏi tiếp. SSE gửi sự kiện một chiều sau khi trình duyệt mở luồng. WebSocket cho hai phía gửi message sau khi thiết lập kết nối.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1300" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="28" font-size="19" fill="#0f172a" font-weight="bold" text-anchor="start">ĐƠN HÀNG CÓ TIN MỚI</text>
+<text x="16" y="51" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Đọc từng khung từ trên xuống.</text>
+<rect x="8" y="68" width="304" height="294" rx="14" fill="white" stroke="#cbd5e1"/>
+<rect x="8" y="68" width="304" height="65" rx="14" fill="#dbeafe"/>
+<text x="22" y="95" font-size="19" fill="#0f172a" font-weight="bold" text-anchor="start">1 · Polling ngắn</text>
+<text x="22" y="118" font-size="16" fill="#334155" font-weight="normal" text-anchor="start">Hỏi lại định kỳ</text>
+<text x="22" y="153" font-size="16" fill="#1d4ed8" font-weight="bold" text-anchor="start">Trình duyệt</text>
+<text x="298" y="153" font-size="16" fill="#6d28d9" font-weight="bold" text-anchor="end">Máy chủ</text>
+<line x1="54" y1="164" x2="54" y2="353" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
+<line x1="266" y1="164" x2="266" y2="353" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
+<text x="160" y="189" font-size="16" fill="#0f172a" font-weight="normal" text-anchor="middle">Có tin mới?</text>
+<line x1="54" y1="198" x2="266" y2="198" stroke="#334155" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="160" y="231" font-size="16" fill="#0f172a" font-weight="normal" text-anchor="middle">Chưa có</text>
+<line x1="266" y1="240" x2="54" y2="240" stroke="#334155" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="68" y="251" width="184" height="27" rx="7" fill="#fff7ed" stroke="#fdba74"/>
+<text x="160" y="271" font-size="16" fill="#9a3412" font-weight="normal" text-anchor="middle">Đợi tới lượt hỏi</text>
+<text x="160" y="302" font-size="16" fill="#0f172a" font-weight="normal" text-anchor="middle">Có tin mới?</text>
+<line x1="54" y1="311" x2="266" y2="311" stroke="#334155" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="160" y="342" font-size="16" fill="#0f172a" font-weight="normal" text-anchor="middle">Đang giao hàng</text>
+<line x1="266" y1="351" x2="54" y2="351" stroke="#334155" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="8" y="372" width="304" height="294" rx="14" fill="white" stroke="#cbd5e1"/>
+<rect x="8" y="372" width="304" height="65" rx="14" fill="#ede9fe"/>
+<text x="22" y="399" font-size="19" fill="#0f172a" font-weight="bold" text-anchor="start">2 · Polling dài</text>
+<text x="22" y="422" font-size="16" fill="#334155" font-weight="normal" text-anchor="start">Có tin hoặc hết hạn → hỏi tiếp</text>
+<text x="22" y="457" font-size="16" fill="#1d4ed8" font-weight="bold" text-anchor="start">Trình duyệt</text>
+<text x="298" y="457" font-size="16" fill="#6d28d9" font-weight="bold" text-anchor="end">Máy chủ</text>
+<line x1="54" y1="468" x2="54" y2="657" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
+<line x1="266" y1="468" x2="266" y2="657" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
+<text x="160" y="493" font-size="16" fill="#0f172a" font-weight="normal" text-anchor="middle">Chờ tin mới</text>
+<line x1="54" y1="502" x2="266" y2="502" stroke="#334155" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="68" y="518" width="184" height="27" rx="7" fill="#fff7ed" stroke="#fdba74"/>
+<text x="160" y="538" font-size="16" fill="#9a3412" font-weight="normal" text-anchor="middle">Máy chủ giữ lượt hỏi</text>
+<text x="160" y="576" font-size="16" fill="#0f172a" font-weight="normal" text-anchor="middle">Có tin / hết hạn</text>
+<line x1="266" y1="585" x2="54" y2="585" stroke="#334155" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="160" y="628" font-size="16" fill="#0f172a" font-weight="normal" text-anchor="middle">Mở lượt chờ mới</text>
+<line x1="54" y1="637" x2="266" y2="637" stroke="#334155" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="8" y="676" width="304" height="294" rx="14" fill="white" stroke="#cbd5e1"/>
+<rect x="8" y="676" width="304" height="65" rx="14" fill="#dcfce7"/>
+<text x="22" y="703" font-size="19" fill="#0f172a" font-weight="bold" text-anchor="start">3 · SSE</text>
+<text x="22" y="726" font-size="16" fill="#334155" font-weight="normal" text-anchor="start">Luồng sự kiện một chiều</text>
+<text x="22" y="761" font-size="16" fill="#1d4ed8" font-weight="bold" text-anchor="start">Trình duyệt</text>
+<text x="298" y="761" font-size="16" fill="#6d28d9" font-weight="bold" text-anchor="end">Máy chủ</text>
+<line x1="54" y1="772" x2="54" y2="961" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
+<line x1="266" y1="772" x2="266" y2="961" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
+<text x="160" y="797" font-size="16" fill="#0f172a" font-weight="normal" text-anchor="middle">Mở luồng SSE</text>
+<line x1="54" y1="806" x2="266" y2="806" stroke="#334155" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="160" y="849" font-size="16" fill="#0f172a" font-weight="normal" text-anchor="middle">Đơn được xác nhận</text>
+<line x1="266" y1="858" x2="54" y2="858" stroke="#334155" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="160" y="901" font-size="16" fill="#0f172a" font-weight="normal" text-anchor="middle">Đang giao hàng</text>
+<line x1="266" y1="910" x2="54" y2="910" stroke="#334155" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="160" y="949" font-size="16" fill="#0f172a" font-weight="normal" text-anchor="middle">Đã giao</text>
+<line x1="266" y1="958" x2="54" y2="958" stroke="#334155" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="8" y="980" width="304" height="294" rx="14" fill="white" stroke="#cbd5e1"/>
+<rect x="8" y="980" width="304" height="65" rx="14" fill="#fce7f3"/>
+<text x="22" y="1007" font-size="19" fill="#0f172a" font-weight="bold" text-anchor="start">4 · WebSocket</text>
+<text x="22" y="1030" font-size="16" fill="#334155" font-weight="normal" text-anchor="start">Kênh trao đổi hai chiều</text>
+<text x="22" y="1065" font-size="16" fill="#1d4ed8" font-weight="bold" text-anchor="start">Trình duyệt</text>
+<text x="298" y="1065" font-size="16" fill="#6d28d9" font-weight="bold" text-anchor="end">Máy chủ</text>
+<line x1="54" y1="1076" x2="54" y2="1265" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
+<line x1="266" y1="1076" x2="266" y2="1265" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
+<text x="160" y="1101" font-size="16" fill="#0f172a" font-weight="normal" text-anchor="middle">Yêu cầu kết nối</text>
+<line x1="54" y1="1110" x2="266" y2="1110" stroke="#334155" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="160" y="1145" font-size="16" fill="#0f172a" font-weight="normal" text-anchor="middle">Thiết lập thành công</text>
+<line x1="266" y1="1154" x2="54" y2="1154" stroke="#334155" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="160" y="1197" font-size="16" fill="#0f172a" font-weight="normal" text-anchor="middle">Tin từ máy chủ</text>
+<line x1="266" y1="1206" x2="54" y2="1206" stroke="#334155" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="160" y="1249" font-size="16" fill="#0f172a" font-weight="normal" text-anchor="middle">Tin từ trình duyệt</text>
+<line x1="54" y1="1258" x2="266" y2="1258" stroke="#334155" stroke-width="1.8" marker-end="url(#arrow)"/>
+<text x="160" y="1292" font-size="16" fill="#475569" font-weight="normal" text-anchor="middle">Thời gian: trên → dưới</text>
+</g></svg>

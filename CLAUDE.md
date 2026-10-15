@@ -44,6 +44,7 @@ For non-trivial feature/change requests:
 5. When the session will execute the requirement, run it again with `--record` so the agent budget is enforced (below).
 6. Execute only the roles required by that profile, staying inside `budget.max_agent_invocations`.
 7. Verify independently before declaring success.
+8. If the work ships as a pull request, run it through *Pull request lifecycle* (below): Codex review until every review command the work requires is clean on the current head, merge, then the next task.
 
 The semantic analysis may be probabilistic; policy enforcement must not be — which is why steps 4–5 are a script and a hook, not instructions to the model. See `docs/agent-budget.md`.
 
@@ -113,7 +114,7 @@ has no codex lane. Run it with `.claude/skills/codex-lane/SKILL.md`; every task
 comment it posts is rendered by `scripts/codex_task.py`, which refuses a
 duplicate, a skipped round, a round past its cap, a second request of one mode
 at one SHA, or a thread with a request still unanswered. When Codex is blocked, re-record the requirement in the
-claude lane under the same label.
+claude lane under the same label; that moves who does the work and never waives the PR's Codex review (*Pull request lifecycle*).
 
 ## Agent budget
 
@@ -239,7 +240,27 @@ Whatever the tier, a check whose answer is computable belongs in a script — se
 
 ## Delegating to Codex Cloud
 
-`docs/claude-to-codex.md` is the only approved protocol for delegating work to Codex Cloud (the `@codex` GitHub mention). Claude must read that file in full before posting any GitHub comment that mentions `@codex`, and must follow it exactly — task contract, comment tracking marker, GitHub location rules, duplicate-call and loop prevention (how rounds are counted against the caps included), and response-validation steps included. Codex's automatic review when a PR is opened is turned off (the owner's setting, 2026-10-10): Codex never reviews a PR on its own, so request every review yourself, the first one as soon as the PR is open — never wait for an opening run. Before every review request, `python3 scripts/codex_round_count.py` is the count of review rounds used against the cap of three; request only when it exits 0. Every task comment (BRAINSTORM, IMPLEMENT, FIX) is rendered by `python3 scripts/codex_task.py render` and posted only when it exits 0. Do not invent a different Codex invocation path (API, GitHub Action, CLI, SDK, or browser automation) — the file explicitly forbids all of those.
+`docs/claude-to-codex.md` is the only approved protocol for delegating work to Codex Cloud (the `@codex` GitHub mention). Claude must read that file in full before posting any GitHub comment that mentions `@codex`, and must follow it exactly — task contract, comment tracking marker, GitHub location rules, duplicate-call and loop prevention (how rounds are counted against the caps included), and response-validation steps included. Codex's automatic review when a PR is opened is turned off (the owner's setting, 2026-10-10): Codex never reviews a PR on its own, so request every review yourself, the first one as soon as the PR is open — never wait for an opening run. This is mandatory for every PR you create; the full loop from review to merge to the next task is *Pull request lifecycle*, below. Before every review request, `python3 scripts/codex_round_count.py` counts the review rounds and proves the PR's three lists complete (reviews have no cap since 2026-10-12, §16); request only when it exits 0. Every task comment (BRAINSTORM, IMPLEMENT, FIX) is rendered by `python3 scripts/codex_task.py render` and posted only when it exits 0. Do not invent a different Codex invocation path (API, GitHub Action, CLI, SDK, or browser automation) — the file explicitly forbids all of those.
+
+## Pull request lifecycle
+
+Every pull request you create or drive for a requirement goes through the loop below — at any tier, in any lane, a T0 typo fix included. It is a standing rule, not a judgement call, and a requirement never has to ask for it. The rule starts when a PR exists; it does not authorize opening one, so a PR is still opened only when the user asks for it or the flow calls for it.
+
+1. **Open, then Codex review — immediately.** The first action after the PR exists is the Codex review. The review request of `docs/claude-to-codex.md` §11, posted only when `python3 scripts/codex_round_count.py` exits 0. Codex never reviews a PR on its own here, so nothing arrives unless you ask. A PR with no Codex review is not done and is never merged.
+2. **Validate every finding before acting.** Per §14 and §13: check it against the code. A confirmed finding is fixed; a wrong one is answered on its thread with the evidence, never silently skipped, and never "fixed" speculatively.
+3. **Fix, then have the new head reviewed.** Fix each confirmed finding with a regression test, run the repository's checks, push, and request the next review on the new head SHA — each review command once per head, with no request still unanswered (§11, §16).
+4. **Stop when the review is clean.** Clean means every review command the work requires — the standard review, and a security review where the protocol or the route calls for one (§12) — has a review of the *current* head that carries no finding (other than a P2/P3 whose recorded rejection stands, see the last bullet below), every earlier finding was fixed or rejected with evidence, CI and the required checks are green, and there is no merge conflict. A fix pushed after the last review is unreviewed, so it is not clean — review it with every command the work requires.
+5. **Merge it yourself.** A clean PR is merged under `docs/claude-to-codex.md` §20 (branch-protection precondition, merge scoped to the validated head SHA, base unchanged) without waiting for or asking the user for approval. Record the merge commit SHA and a one-line summary on the PR.
+6. **Then continue.** Do not stop after the merge to ask what is next. Update the handoff `model-notes`, then start the next outstanding task from the latest default branch (a merged branch is finished; never stack new commits on it), through the full routing flow again under a new requirement id. An outstanding task is one the user explicitly asked for and that is not done yet, as recorded in this session, the session task list or the handoff `model-notes`; never invent work or pick up an item the user did not ask for. A task that needs the code of a PR that is not merged (blocked, or waiting on the owner) waits: skip it rather than stack on that branch. When none remains, report what merged and stop.
+
+The loop adds to the tier's verification and replaces none of it: in the claude lane `code-reviewer` still runs as the profile says. A Codex review is not a Claude subagent and spends no agent budget, so T0 stays main-session. The PR description never mentions Codex (§16), and no comment or commit message carries the literal trigger string except the intentional trigger comments the protocol authorizes — each review request of steps 1 and 3, a security review, an authorized retry, each task-contract request (BRAINSTORM, INVESTIGATE, AUDIT, IMPLEMENT, FIX) or a delegated merge command (§3, §7–§13, §20).
+
+What the loop does not change:
+
+- **No review cap.** The owner removed the limit of three on 2026-10-12, so the loop runs until every review command the work requires is clean on the current head. A review is still bounded by §16's other rules: each review command (standard, security) once per head SHA — a required security review may follow the standard one on the same head, never while a request is unanswered, never before the previous response was validated. Two exits remain: a finding you reject with evidence — a P2/P3 stands at once and blocks nothing, even if Codex raises it again; a P0/P1 is a disagreement unless a review drops it: when other fixes make a new head, push it and let the next review decide (raised again, unchanged or reworded or moved when it is substantially the same issue, means escalate; not raised again means closed), and when no code change is pending escalate at once — report it to the repository owner and do not merge until they decide — and a genuine blocker (§20). Those brakes are rules, not script gates: the count script sees neither the PR head nor Codex's reaction. The BRAINSTORM and FIX round caps are unchanged.
+- **Codex unreachable.** A trigger failure past its one retry, a stalled or failed task, or a wrong account (§17, §18) makes the PR BLOCKED, not merged unreviewed and not worked around with the API, an Action, the SDK or browser automation. Report it once, leave the PR open and continue with the next task that does not depend on it (step 6). Re-recording the requirement in the claude lane, as the lane section above says for a blocked design or implement step, moves who does the work and never waives the PR's Codex review: the PR stays BLOCKED until Codex has reviewed its head. Choosing the lane is the operator's choice, never a fallback you take.
+- **The merge preconditions.** Branches required to be up to date, and a merging identity that cannot bypass the rule (§20; read the base branch's protection to confirm both). Where they are missing, merging is a genuine blocker: escalate, do not merge.
+- **Who may stop the loop.** A human is needed only for §20's two cases — a genuine blocker, or a change to the original requirement.
 
 ## Marketing content rules
 
@@ -294,6 +315,7 @@ python3 -m pytest -q                      # engine, server guards, publisher fak
 python3 studio.py check                   # every campaign: 0 errors
 python3 scripts/layout_check.py           # repository layout
 python3 scripts/i18n_check.py             # app catalogs in vi/ja/en
+python3 scripts/sd101_check.py            # the System Design store (system-design-101/vi): schema, sources, figures, progress
 python3 scripts/mutation_check.py --all   # the safety-rail tests catch their own removal
 (cd web && npm run build)                 # typecheck + build the UI (a subshell: the block runs top to bottom from the root)
 python3 scripts/office/snapshot.py --check            # the agent office's data contract

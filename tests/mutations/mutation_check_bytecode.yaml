@@ -1,0 +1,41 @@
+# Mutation manifest — see scripts/mutation_check.py
+
+target: scripts/mutation_check.py
+note: The mutation runner must not trust bytecode cached from another version of the file it mutates.
+mutations:
+- label: the cached bytecode of the mutated file is not removed
+  find: '        cached.unlink(missing_ok=True)'
+  replace: '        pass'
+  test: tests.test_mutation_check.DropBytecodeTests.test_a_stale_cache_of_the_same_size_and_second_no_longer_hides_a_mutation
+- label: the bytecode of every module is removed
+  find: glob(f"{source.stem}.*.pyc")
+  replace: glob("*.pyc")
+  test: tests.test_mutation_check.DropBytecodeTests.test_the_cached_bytecode_of_the_mutated_file_is_removed_and_nothing_else
+- label: the bytecode of a module with a longer name is removed
+  find: glob(f"{source.stem}.*.pyc")
+  replace: glob(f"{source.stem}*.pyc")
+  test: tests.test_mutation_check.DropBytecodeTests.test_the_cached_bytecode_of_the_mutated_file_is_removed_and_nothing_else
+- label: the bytecode is not dropped before the clean run
+  find: "        drop_bytecode(where)\n        if run_test(entry[\"test\"]):"
+  replace: '        if run_test(entry["test"]):'
+  test: tests.test_mutation_check.DropBytecodeTests.test_the_cache_is_dropped_before_the_clean_run_and_again_before_the_mutated_run
+- label: the bytecode is not dropped before the mutated run
+  find: "            where.write_text(mutated, encoding=\"utf-8\")\n            drop_bytecode(where)\n"
+  replace: "            where.write_text(mutated, encoding=\"utf-8\")\n"
+  test: tests.test_mutation_check.DropBytecodeTests.test_the_cache_is_dropped_before_the_clean_run_and_again_before_the_mutated_run
+- label: the test subprocess reads bytecode from a configured cache prefix
+  find: '    environment.pop("PYTHONPYCACHEPREFIX", None)'
+  replace: '    pass'
+  test: tests.test_mutation_check.DropBytecodeTests.test_the_test_subprocess_writes_no_bytecode_and_is_one_level_deeper
+- label: the test subprocess keeps the configured cache prefix
+  find: '    environment.pop("PYTHONPYCACHEPREFIX", None)'
+  replace: '    environment["PYTHONPYCACHEPREFIX"] = os.environ.get("PYTHONPYCACHEPREFIX", "")'
+  test: tests.test_mutation_check.DropBytecodeTests.test_a_stale_cache_under_a_configured_prefix_no_longer_hides_a_mutation
+- label: the test subprocess writes bytecode
+  find: '    environment["PYTHONDONTWRITEBYTECODE"] = "1"'
+  replace: '    environment["PYTHONDONTWRITEBYTECODE"] = "0"'
+  test: tests.test_mutation_check.DropBytecodeTests.test_the_test_subprocess_writes_no_bytecode_and_is_one_level_deeper
+- label: the test subprocess does not use the child environment
+  find: 'check=False, env=child_environment(),'
+  replace: 'check=False, env=dict(os.environ),'
+  test: tests.test_mutation_check.DropBytecodeTests.test_run_test_runs_the_child_environment

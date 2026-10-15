@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1550" width="320" height="1550" role="img" aria-labelledby="title desc">
+<title id="title">Sáu cách chọn câu trả lời DNS</title>
+<desc id="desc">DNS trả địa chỉ rồi client kết nối dịch vụ. Simple chọn A trong ví dụ; failover từ A lỗi sang B khỏe; geolocation VN tới A và JP tới B; latency chọn B25ms thay vì A80ms; multivalue trả A,B để client chọn; weighted trọng số A80,B20 không bảo đảm tỷ lệ request HTTP. Mỗi khung là cấu hình riêng.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1550" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">DNS CHỌN CÂU TRẢ LỜI</text>
+<text x="16" y="60" font-size="16" font-weight="normal">Client hỏi tên → resolver → DNS</text>
+<text x="16" y="90" font-size="16" font-weight="normal">DNS trả địa chỉ → client kết nối</text>
+<text x="16" y="120" font-size="16" font-weight="normal">Sáu cấu hình riêng · ví dụ A/B</text>
+<rect x="16" y="145" width="288" height="200" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="175" font-size="16" font-weight="bold">1 · Simple · đơn giản</text>
+<rect x="30" y="197" width="70" height="38" rx="7" fill="#fff" stroke="#64748b"/>
+<text x="40" y="222" font-size="16" font-weight="normal">DNS</text>
+<line x1="101" y1="216" x2="190" y2="216" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="197" y="197" width="82" height="38" rx="7" fill="#fff" stroke="#64748b"/>
+<text x="207" y="222" font-size="16" font-weight="normal">A</text>
+<text x="30" y="273" font-size="16" font-weight="normal">Không chọn theo vị trí/độ trễ</text>
+<text x="30" y="305" font-size="16" font-weight="normal">Ví dụ: một nơi phục vụ</text>
+<rect x="16" y="365" width="288" height="200" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="395" font-size="16" font-weight="bold">2 · Failover · dự phòng</text>
+<rect x="30" y="417" width="95" height="38" rx="7" fill="#fff" stroke="#64748b"/>
+<text x="40" y="442" font-size="16" font-weight="normal">A lỗi</text>
+<line x1="126" y1="436" x2="169" y2="436" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="176" y="417" width="113" height="38" rx="7" fill="#fff" stroke="#64748b"/>
+<text x="186" y="442" font-size="16" font-weight="normal">B khỏe</text>
+<text x="30" y="493" font-size="16" font-weight="normal">Chọn dự phòng theo sức khỏe</text>
+<text x="30" y="525" font-size="16" font-weight="normal">Cache cũ vẫn có thể còn</text>
+<rect x="16" y="585" width="288" height="200" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="615" font-size="16" font-weight="bold">3 · Geolocation · vị trí</text>
+<rect x="30" y="633" width="70" height="38" rx="7" fill="#fff" stroke="#64748b"/>
+<text x="40" y="658" font-size="16" font-weight="normal">VN</text>
+<line x1="101" y1="652" x2="186" y2="652" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="193" y="633" width="75" height="38" rx="7" fill="#fff" stroke="#64748b"/>
+<text x="203" y="658" font-size="16" font-weight="normal">A</text>
+<rect x="30" y="683" width="70" height="38" rx="7" fill="#fff" stroke="#64748b"/>
+<text x="40" y="708" font-size="16" font-weight="normal">JP</text>
+<line x1="101" y1="702" x2="186" y2="702" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="193" y="683" width="75" height="38" rx="7" fill="#fff" stroke="#64748b"/>
+<text x="203" y="708" font-size="16" font-weight="normal">B</text>
+<text x="30" y="759" font-size="16" font-weight="normal">Vị trí truy vấn → quy tắc</text>
+<rect x="16" y="805" width="288" height="200" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="835" font-size="16" font-weight="bold">4 · Latency · độ trễ</text>
+<rect x="30" y="857" width="120" height="38" rx="7" fill="#fff" stroke="#64748b"/>
+<text x="40" y="882" font-size="16" font-weight="normal">A · 80 ms</text>
+<rect x="164" y="857" width="125" height="38" rx="7" fill="#fff" stroke="#64748b"/>
+<text x="174" y="882" font-size="16" font-weight="normal">B · 25 ms</text>
+<text x="30" y="933" font-size="16" font-weight="bold">DNS chọn B theo dữ liệu</text>
+<text x="30" y="965" font-size="16" font-weight="normal">Không bảo đảm gần địa lý</text>
+<rect x="16" y="1025" width="288" height="200" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="1055" font-size="16" font-weight="bold">5 · Multivalue · nhiều giá trị</text>
+<rect x="30" y="1077" width="70" height="38" rx="7" fill="#fff" stroke="#64748b"/>
+<text x="40" y="1102" font-size="16" font-weight="normal">DNS</text>
+<line x1="101" y1="1096" x2="167" y2="1096" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="175" y="1077" width="114" height="38" rx="7" fill="#fff" stroke="#64748b"/>
+<text x="185" y="1102" font-size="16" font-weight="normal">A, B</text>
+<text x="30" y="1153" font-size="16" font-weight="normal">Client chọn địa chỉ để kết nối</text>
+<text x="30" y="1185" font-size="16" font-weight="normal">Không thay load balancer</text>
+<rect x="16" y="1245" width="288" height="200" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="1275" font-size="16" font-weight="bold">6 · Weighted · trọng số</text>
+<text x="30" y="1310" font-size="16" font-weight="normal">A · 80</text>
+<text x="30" y="1360" font-size="16" font-weight="normal">B · 20</text>
+<rect x="110" y="1289" width="176" height="26" fill="#2563eb"/><rect x="110" y="1339" width="44" height="26" fill="#7c3aed"/>
+<text x="30" y="1403" font-size="16" font-weight="normal">Trọng số chọn câu trả lời DNS</text>
+<text x="30" y="1429" font-size="16" font-weight="normal">Không cố định % request HTTP</text>
+<text x="16" y="1510" font-size="16" font-weight="normal">Cache / TTL ảnh hưởng chuyển đổi.</text>
+<text x="16" y="1540" font-size="16" font-weight="normal">DNS không xử lý từng request.</text>
+</g></svg>

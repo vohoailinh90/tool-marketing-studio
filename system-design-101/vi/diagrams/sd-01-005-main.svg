@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1120" width="320" height="1120" role="img" aria-labelledby="title desc">
+<title id="title">NAPT: hai máy chia sẻ một IPv4 phía ngoài</title>
+<desc id="desc">TCP tới máy chủ 198.51.100.20 cổng 443. Máy A 10.0.0.2 cổng 50000 được ánh xạ tới 203.0.113.10 cổng 62001; B 10.0.0.3 cổng 50000 tới cùng IP cổng 62002. Phản hồi cho 62002 trở về B. Địa chỉ ngoài chỉ dùng minh họa.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1120" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="21" font-weight="bold">HAI MÁY · MỘT IPv4</text>
+<text x="16" y="57" font-size="16" font-weight="normal">Ví dụ TCP → máy chủ :443</text>
+<rect x="16" y="75" width="288" height="143" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="104" font-size="16" font-weight="bold">1 · Mạng riêng</text>
+<text x="30" y="137" font-size="16" font-weight="normal">A · 10.0.0.2:50000</text>
+<text x="30" y="168" font-size="16" font-weight="normal">B · 10.0.0.3:50000</text>
+<text x="30" y="199" font-size="16" font-weight="normal">Cùng cổng, khác IP</text>
+<line x1="160" y1="222" x2="160" y2="249" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="257" width="288" height="205" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="287" font-size="16" font-weight="bold">2 · Router làm NAPT</text>
+<text x="30" y="320" font-size="16" font-weight="normal">Đổi IP + cổng nguồn</text>
+<text x="30" y="352" font-size="16" font-weight="normal">A → 203.0.113.10:62001</text>
+<text x="30" y="383" font-size="16" font-weight="normal">B → 203.0.113.10:62002</text>
+<text x="30" y="414" font-size="16" font-weight="normal">Lưu hai ánh xạ để trả về</text>
+<text x="30" y="445" font-size="16" font-weight="normal">Đích vẫn là server :443</text>
+<line x1="160" y1="466" x2="160" y2="493" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="503" width="288" height="135" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="533" font-size="16" font-weight="bold">3 · Máy chủ ngoài mạng</text>
+<text x="30" y="567" font-size="16" font-weight="normal">198.51.100.20:443</text>
+<text x="30" y="599" font-size="16" font-weight="normal">Thấy cùng IP, khác cổng</text>
+<text x="30" y="626" font-size="16" font-weight="normal">Nguồn: :62001 hoặc :62002</text>
+<line x1="160" y1="642" x2="160" y2="669" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="681" width="288" height="133" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="711" font-size="16" font-weight="bold">4 · Phản hồi cho B</text>
+<text x="30" y="745" font-size="16" font-weight="normal">Nguồn 198.51.100.20:443</text>
+<text x="30" y="779" font-size="16" font-weight="normal">Đích 203.0.113.10:62002</text>
+<line x1="160" y1="818" x2="160" y2="845" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="857" width="288" height="136" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="887" font-size="16" font-weight="bold">5 · Router tra ánh xạ</text>
+<text x="30" y="921" font-size="16" font-weight="normal">:62002 → 10.0.0.3:50000</text>
+<text x="30" y="955" font-size="16" font-weight="normal">Đổi đích, chuyển về B</text>
+<text x="30" y="982" font-size="16" font-weight="normal">Ánh xạ phải còn hiệu lực</text>
+<line x1="160" y1="997" x2="160" y2="1024" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="1033" width="288" height="65" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="1061" font-size="16" font-weight="bold">B nhận phản hồi</text>
+<text x="30" y="1087" font-size="16" font-weight="normal">A dùng ánh xạ :62001</text>
+</g></svg>

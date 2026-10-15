@@ -187,3 +187,11 @@ mutations:
   find: "        if args.allow_same_source and context.source.partners.get(lesson_id):\n            fresh[\"shared_source\"] = True\n"
   replace: ''
   test: tests.test_sd101_claims.ClaimTests.test_a_shared_source_taken_on_purpose_is_not_a_conflict
+- label: a takeover by the session that held the lesson before only renews its old claim
+  find: 'and lesson_id not in takes:'
+  replace: ':'
+  test: tests.test_sd101_claims.LeaseTests.test_a_session_that_takes_back_a_lesson_it_once_held_starts_a_new_claim_that_wins
+- label: two takeovers of each other are both won by the earlier claim
+  find: "        return (first.claimed_at or \"\", first.owner or \"\") > (second.claimed_at or \"\", second.owner or \"\")\n    if first_took:"
+  replace: "        return True\n    if first_took:"
+  test: tests.test_sd101_claims.LeaseTests.test_a_session_that_takes_back_a_lesson_it_once_held_starts_a_new_claim_that_wins

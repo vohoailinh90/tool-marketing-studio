@@ -71,7 +71,8 @@ counting when its branch is deleted or the lesson is released or merged as `writ
 A `doing` claim whose `heartbeat_at` is older than `lease_hours` (72) is stale. It no longer blocks
 anyone, but it is taken over on purpose: `claim <id> --take-stale`. The new entry records `taken_from`,
 every owner whose stale claim it superseded, chain included, which makes it win against each of them even
-if one wakes up and touches its heartbeat. Run
+if one wakes up and touches its heartbeat. A session that takes back a lesson it once held (because the session that took it from it let its
+published heartbeat expire) starts a new claim, so the later takeover is the one that stands. Run
 `touch --publish` while you work so a slow session is not mistaken for a dead one.
 
 A claim that has itself expired loses to any live claim on the same lesson, whichever is older. A session

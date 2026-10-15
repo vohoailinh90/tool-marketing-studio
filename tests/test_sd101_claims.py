@@ -215,8 +215,10 @@ class ClaimTests(Sessions):
 
     def test_one_session_may_hold_both_halves_of_a_shared_source(self) -> None:
         a = self.session("a")
-        self.assertEqual(0, self.run_in(a, "claim", "sd-01-005", "sd-02-001", "--publish")[0])
-        self.assertEqual(0, self.run_in(a, "verify")[0])
+        self.assertEqual(0, self.run_in(a, "claim", "sd-02-001", "--publish")[0])
+        self.at(seconds=10)
+        self.assertEqual(0, self.run_in(a, "claim", "sd-01-005", "--publish")[0])
+        self.assertEqual(0, self.run_in(a, "verify")[0], "its own earlier claim on the other half is not a rival")
 
     def test_next_skips_what_is_taken_or_written(self) -> None:
         a, b = self.session("a"), self.session("b")
@@ -307,6 +309,23 @@ class LeaseTests(Sessions):
         self.assertEqual(1, code)
         self.assertIn("lost to claude/b", err)
         self.assertEqual(0, self.run_in(b, "verify")[0])
+
+    def test_a_session_that_takes_back_a_lesson_it_once_held_starts_a_new_claim_that_wins(self) -> None:
+        a, b = self.session("a"), self.session("b")
+        self.run_in(a, "claim", "sd-01-001", "--publish")
+        self.at(hours=73)
+        self.run_in(b, "claim", "sd-01-001", "--take-stale", "--publish")  # b took it from a
+        self.at(hours=140)
+        self.assertEqual(0, self.run_in(b, "touch")[0], "renewed in b's copy only")
+        self.at(hours=150)  # b's published heartbeat (hour 73) has expired; its local one has not
+        code, _, err = self.run_in(a, "claim", "sd-01-001", "--take-stale", "--publish")
+        self.assertEqual(0, code, err)
+        taken = self.entry(a, "sd-01-001")
+        self.assertEqual((["claude/b"], "2026-10-21T14:00:00Z"), (taken["taken_from"], taken["claimed_at"]))
+        b_code, _, b_err = self.run_in(b, "touch", "--publish")  # b publishes its fresh copy, which names a as taken from
+        self.assertEqual(1, b_code)
+        self.assertIn("lost to claude/a", b_err)
+        self.assertEqual(0, self.run_in(a, "verify")[0], "a's takeover is the later one and stands")
 
     def test_touching_keeps_a_claim_alive(self) -> None:
         a, b = self.session("a"), self.session("b")

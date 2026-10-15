@@ -376,10 +376,16 @@ def is_stale(holding: Holding, now: datetime.datetime, lease_hours: int) -> bool
 
 
 def beats(first: Holding, second: Holding) -> bool:
-    """Which of two live claims on one lesson wins: a takeover, else the earlier claim, else the smaller owner."""
-    if second.owner in first.taken_from:
+    """Which of two live claims on one lesson wins: a takeover, else the earlier claim, else the smaller owner.
+
+    Two sessions can each have taken the lesson over from the other, one after the other; the later takeover stands.
+    """
+    first_took, second_took = second.owner in first.taken_from, first.owner in second.taken_from
+    if first_took and second_took:
+        return (first.claimed_at or "", first.owner or "") > (second.claimed_at or "", second.owner or "")
+    if first_took:
         return True
-    if first.owner in second.taken_from:
+    if second_took:
         return False
     return (first.claimed_at or "", first.owner or "") < (second.claimed_at or "", second.owner or "")
 
@@ -426,7 +432,7 @@ def refusal(lesson_id: str, found: dict[str, list[Holding]], source: Source, me:
                     f"({holding.where}), more than {lease} hours ago; if that session is gone, claim with --take-stale"), []
         # The whole chain, so a session that took the lesson over from a session that had itself taken it over
         # still beats the first owner when that one wakes up and renews its heartbeat.
-        taken += [owner for owner in (holding.owner, *holding.taken_from) if owner and owner not in taken]
+        taken += [owner for owner in (holding.owner, *holding.taken_from) if owner and owner != me and owner not in taken]
     if not allow_same_source:
         for partner in source.partners.get(lesson_id, ()):
             for holding in found.get(partner, []):
@@ -747,9 +753,9 @@ def cmd_claim(context: Context, args: argparse.Namespace) -> int:
         return 1
     for lesson_id in ids:
         entry = lessons[lesson_id]
-        if entry.get("status") == "doing" and entry.get("owner") == context.me:
+        if entry.get("status") == "doing" and entry.get("owner") == context.me and lesson_id not in takes:
             entry["heartbeat_at"] = stamp(context.now)
-            continue
+            continue  # (a takeover below starts a new claim even when this session held the lesson before)
         fresh = {"id": lesson_id, "status": "doing", "title": entry.get("title", ""), "owner": context.me,
                  "claimed_at": stamp(context.now), "heartbeat_at": stamp(context.now)}
         if context.session:

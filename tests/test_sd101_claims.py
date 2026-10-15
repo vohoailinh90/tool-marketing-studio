@@ -706,6 +706,34 @@ class ClaimTests(Sessions):
         self.assertEqual(1, code, err)
         self.assertIn("already written by claude/a", err)
 
+    def test_a_written_half_of_a_shared_source_pair_blocks_the_other_half(self) -> None:
+        a, b = self.session("a"), self.session("b")
+        self.run_in(a, "claim", "sd-01-005", "--publish")
+        self.write_lesson(a, "sd-01-005")
+        self.assertEqual(0, self.run_in(a, "finish", "sd-01-005")[0])
+        git(a, "add", "-A")
+        git(a, "commit", "--quiet", "-m", "the first half")
+        git(a, "push", "--quiet", "origin", "claude/a")
+        _, out, _ = self.run_in(b, "next")
+        self.assertNotIn("sd-02-001", out.split(), "the other half is not offered")
+        code, _, err = self.run_in(b, "claim", "sd-02-001")
+        self.assertEqual(1, code, err)
+        self.assertIn("shares its source file with sd-01-005, which claude/a already wrote", err)
+        self.assertEqual(0, self.run_in(b, "claim", "sd-02-001", "--allow-same-source")[0], "on purpose, it may")
+
+    def test_a_claim_loses_when_its_shared_source_partner_turns_out_to_be_written(self) -> None:
+        a, b = self.session("a"), self.session("b")
+        self.run_in(b, "claim", "sd-02-001")  # b's claim is not visible yet
+        self.run_in(a, "claim", "sd-01-005", "--publish")
+        self.write_lesson(a, "sd-01-005")
+        self.assertEqual(0, self.run_in(a, "finish", "sd-01-005")[0])
+        git(a, "add", "-A")
+        git(a, "commit", "--quiet", "-m", "the first half")
+        git(a, "push", "--quiet", "origin", "claude/a")
+        code, _, err = self.run_in(b, "verify")
+        self.assertEqual(1, code, err)
+        self.assertIn("sd-01-005, which claude/a has written", err)
+
     def test_a_default_registry_that_disagrees_with_its_own_source_map_stops_the_decision(self) -> None:
         seed = self.tmp / "seed"
         a = self.mapped_clone("a")  # origin/main holds the map and a registry of the same pin

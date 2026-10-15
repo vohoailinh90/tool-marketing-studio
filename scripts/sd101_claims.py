@@ -484,6 +484,9 @@ def refusal(lesson_id: str, found: dict[str, list[Holding]], source: Source, me:
     if not allow_same_source:
         for partner in source.partners.get(lesson_id, ()):
             for holding in found.get(partner, []):
+                if holding.status == "written" and holding.owner != me:  # finished, by someone else or before the registry
+                    return (f"shares its source file with {partner}, which {holding.who()} already wrote "
+                            f"({holding.where}); pass --allow-same-source only if the two lessons are meant to differ"), []
                 if holding.status == "doing" and holding.owner != me and not is_stale(holding, now, lease):
                     return (f"shares its source file with {partner}, which {holding.owner} is writing "
                             f"({holding.where}); ask that session to cover both, or pass --allow-same-source"), []
@@ -512,6 +515,9 @@ def lost_reason(mine: Holding, found: dict[str, list[Holding]], me: str, now: da
             return f"lost to {other.owner}, who claimed it at {other.claimed_at} ({other.where})"
     for partner in partners:
         for other in found.get(partner, []):
+            if other.status == "written" and other.owner != me and not mine.shared:  # the partner is finished: nothing to wait for
+                return (f"shares its source file with {partner}, which {other.who()} has written ({other.where}); "
+                        "release it, or keep it on purpose by claiming it again with --allow-same-source")
             if other.status != "doing" or other.owner == me or mine.shared or other.shared or is_stale(other, now, lease):
                 continue
             if not published_live or is_stale(mine, now, lease) or beats(other, mine):

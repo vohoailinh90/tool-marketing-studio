@@ -6,6 +6,11 @@ Hệ sinh thái Kubernetes có rất nhiều công cụ, và một nhóm nhỏ m
 
 **Đọc hình:** ba triệu chứng độc lập, không theo thứ tự; bài chỉ chọn ba nhu cầu nên giải quyết sớm, không phải bản đồ của cả hệ sinh thái.
 
+## Từ viết tắt
+
+- **CD** (Continuous Delivery) — chuyển giao liên tục: tự động đưa bản đã kiểm tra tới bước phát hành; Argo CD là công cụ đồng bộ cụm với cấu hình đặt trong Git.
+- **CSI** (Container Storage Interface) — giao diện lưu trữ cho container: chuẩn để Kubernetes gắn các loại kho lưu trữ khác nhau; Secrets Store CSI Driver dùng nó để gắn bí mật từ kho bên ngoài vào Pod.
+
 ## Nhìn hình thử trả lời
 
 Ai đó sửa tay một Deployment bằng `kubectl` trên cụm, còn Git vẫn giữ bản cũ. Argo CD (CD là Continuous Delivery — chuyển giao liên tục) sẽ làm gì?

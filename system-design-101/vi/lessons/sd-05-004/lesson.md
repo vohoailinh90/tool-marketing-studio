@@ -5,6 +5,11 @@ không bỏ sót điều quan trọng và luôn biết mình đang ở đâu.
 
 ![Bảy thẻ nối nhau từ trên xuống, mỗi thẻ là một câu hỏi. 1 Yêu cầu: hệ thống phải làm gì, tốt đến mức nào. 2 Quy mô: bao nhiêu người dùng, dữ liệu, lưu lượng. 3 Thiết kế cấp cao: các thành phần nối nhau thế nào. 4 Dữ liệu: lưu gì, bằng loại cơ sở dữ liệu nào. 5 Giao diện: API hay sự kiện giữa các phần. 6 Mở rộng và hiệu năng: chỗ nghẽn đầu tiên khi tải tăng. 7 Độ tin cậy: nếu một khối hỏng thì sao. Ghi chú: bản đồ, không phải kịch bản, thứ tự có thể đổi.](../../diagrams/sd-05-004-main.svg)
 
+## Từ viết tắt
+
+- **API** (Application Programming Interface) — giao diện lập trình ứng dụng: tập quy ước để các phần của hệ thống gọi chức năng của nhau.
+- **CSDL** (cơ sở dữ liệu) — viết tắt tiếng Việt của "cơ sở dữ liệu" (database): nơi lưu dữ liệu có tổ chức để về sau tìm và cập nhật.
+
 ## Đọc hình
 
 Ví dụ xuyên suốt: một dịch vụ rút gọn đường dẫn. Mỗi bước dưới đây nói bạn nên nói ra điều gì.

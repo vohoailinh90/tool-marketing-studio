@@ -4,6 +4,20 @@
 
 ![Năm khung dọc: tài nguyên có địa chỉ riêng như /orders/42; yêu cầu gồm phương thức, đường dẫn và header; máy chủ không nhớ yêu cầu trước nên mỗi yêu cầu tự đủ thông tin; phản hồi gồm mã trạng thái, header và bản trình bày JSON, có thể kèm chỉ dẫn cache; các ràng buộc gồm client và máy chủ tách biệt, phi trạng thái, cache được, giao diện thống nhất và phân tầng. REST là phong cách chứ không phải chuẩn.](../../diagrams/sd-01-017-main.svg)
 
+## Từ viết tắt
+
+- **REST** (REpresentational State Transfer) — kiểu thiết kế dịch vụ qua HTTP: mỗi tài nguyên có một địa chỉ riêng và được lấy hay sửa qua các phương thức chuẩn.
+- **API** (Application Programming Interface) — giao diện lập trình ứng dụng: cách để một chương trình gọi chức năng hoặc lấy dữ liệu của chương trình khác theo quy ước đã định.
+- **URL** (Uniform Resource Locator) — địa chỉ đầy đủ của một tài nguyên trên web, ví dụ địa chỉ một trang.
+- **HTTP** (HyperText Transfer Protocol) — giao thức truyền siêu văn bản: quy ước để trình duyệt gửi yêu cầu (request) và máy chủ gửi trả lời (response).
+- **ETag** (Entity Tag) — thẻ thực thể: header HTTP mang mã nhận dạng một phiên bản của tài nguyên; cache gửi lại mã này để hỏi máy chủ xem bản đang giữ còn dùng được không.
+- **JSON** (JavaScript Object Notation) — ký hiệu đối tượng JavaScript: định dạng văn bản biểu diễn dữ liệu bằng các cặp tên và giá trị, dễ đọc với cả người và máy.
+- **CDN** (Content Delivery Network) — mạng phân phối nội dung: nhiều máy đặt ở nhiều nơi, lưu bản sao nội dung và phát cho người dùng từ máy gần họ.
+- **TLS** (Transport Layer Security) — bảo mật tầng truyền tải: lớp mã hóa giữ kín dữ liệu giữa client và máy chủ.
+- **OAuth** (Open AUTHorization) — chuẩn ủy quyền mở: cho một ứng dụng được làm một số việc thay bạn mà không biết mật khẩu của bạn; token OAuth là thứ nó nhận được để làm việc đó.
+- **JWT** (JSON Web Token) — token web: chuỗi tự mang thông tin người dùng và có chữ ký, để máy chủ kiểm mà không cần tra bảng.
+- **HATEOAS** (Hypermedia As The Engine Of Application State) — siêu phương tiện dẫn dắt trạng thái ứng dụng: ràng buộc của REST cho phản hồi kèm các liên kết, để client biết bước tiếp theo mà không phải tự ghép địa chỉ.
+
 ## Đọc hình
 
 1. **Tài nguyên và địa chỉ.** Một đơn hàng, một người dùng hay một danh sách đều là tài nguyên, mỗi cái có URL riêng, ví dụ `/orders/42`. Địa chỉ nói *cái gì*; *làm gì* nằm ở phương thức HTTP.

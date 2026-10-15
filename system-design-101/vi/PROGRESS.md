@@ -40,3 +40,7 @@ Bốn kiểu tập đích của gói, hình tự thiết kế; anycast chọn m�
 ## Bài027 (2026-10-15)
 
 Thêm bản đồ vai trò của ứng dụng web, không coi mười chủ đề là mười máy chủ bắt buộc. Đối chiếu tài liệu chính thức; ví dụ và hình nguyên bản. Giữ nguyên bài trước và tooling. Main nền e4af7d6; PR75/76/77 vẫn open lúc viết. Số PR mới chưa có lúc initialcommit, bổ sung trong đợt nội dung thực chất; không push state-only.
+
+## Hòa nhập main7397e5c và glossary (2026-10-15)
+
+PR68 đã vào main, quy tắc mới yêu cầu mục Từ viết tắt ngay sau hình. Giữ nguyên main và checker, thêm glossary cho023–027. MAJOR/MINOR là tên trường SemVer, dùng code/cách viết thường thay vì giải thích sai thành acronym. PR78 vẫn xếp trên PR77; tích hợp main bằng parent thứ hai, chưa merge PR. Review6193640376/CI38744382938 sạch trên e596fe4 chỉ là evidence trước hòa nhập; cần review head mới. 94 bài không đồng nghĩa94done.

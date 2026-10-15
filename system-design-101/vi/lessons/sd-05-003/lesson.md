@@ -5,6 +5,14 @@ chỉ ra tài nguyên, hoặc ở lại trình duyệt.
 
 ![Các thẻ xếp dọc cho URL ví dụ https://example.com/phone?color=black#specs. Scheme https chọn giao thức kết nối. Host example.com được tra DNS và vào header Host. Path cộng query /phone?color=black nằm trong dòng yêu cầu khi gửi thẳng tới máy chủ gốc. Fragment #specs không bao giờ gửi tới server. Yêu cầu gửi thẳng gồm dòng GET /phone?color=black HTTP/1.1 và header Host example.com. Phản hồi gồm dòng HTTP/1.1 200 OK, các header, một dòng trống và nội dung.](../../diagrams/sd-05-003-main.svg)
 
+## Từ viết tắt
+
+- **URL** (Uniform Resource Locator) — địa chỉ đầy đủ của một tài nguyên trên web, ví dụ địa chỉ một trang.
+- **DNS** (Domain Name System) — hệ thống tên miền: "danh bạ" của Internet, đổi tên miền như example.com thành địa chỉ IP.
+- **HTTP** (HyperText Transfer Protocol) — giao thức truyền siêu văn bản: quy ước để trình duyệt gửi yêu cầu (request) và máy chủ gửi trả lời (response).
+- **IP** (Internet Protocol) — giao thức Internet: quy ước đánh địa chỉ và chuyển gói tin giữa các máy; địa chỉ IP là địa chỉ của một máy trên mạng.
+- **MDN** (Mozilla Developer Network) — tên cũ của MDN Web Docs, bộ tài liệu tra cứu công nghệ web do Mozilla và cộng đồng viết; bài dùng nó để mô tả yêu cầu HTTP.
+
 ## Đọc hình
 
 **scheme.** `https` cho trình duyệt biết cần dùng giao thức nào để kết nối.

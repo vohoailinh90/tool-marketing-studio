@@ -5,6 +5,11 @@ Năm giai đoạn thường gặp là thu thập, nạp, lưu trữ, tính toán
 
 ![Năm thẻ nối nhau từ trên xuống, ví dụ cửa hàng trực tuyến. 1 Thu thập: ứng dụng tạo sự kiện đơn hàng. 2 Nạp dữ liệu: vào hàng đợi hoặc nạp theo lô. 3 Lưu trữ: data lake giữ bản thô, data warehouse giữ bảng sạch. 4 Tính toán: làm sạch, gộp, tổng hợp theo lô hoặc theo luồng. 5 Sử dụng: bảng điều khiển, báo cáo, mô hình học máy. Thẻ cuối nêu lỗi hay gặp: gửi lại sau lỗi làm trùng dòng, nên thiết kế bước chạy lại được.](../../diagrams/sd-03-007-main.svg)
 
+## Từ viết tắt
+
+- **API** (Application Programming Interface) — giao diện lập trình ứng dụng: cách để một chương trình gọi chức năng hoặc lấy dữ liệu của chương trình khác theo quy ước đã định.
+- **ML** (Machine Learning) — học máy: cách cho máy tự rút ra quy luật từ dữ liệu, thay vì có người viết sẵn từng luật.
+
 ## Đọc hình
 
 **1 · Thu thập.** Dữ liệu sinh ra ở ứng dụng, thiết bị hoặc hệ thống nghiệp vụ. Ở đây: mỗi đơn hàng tạo một sự kiện.

@@ -6,6 +6,12 @@ Khi nhiều nhóm cùng đưa một sản phẩm lên chạy, thời gian thư�
 
 **Đọc hình:** mỗi thẻ là một nút thắt độc lập; nút nào đang chậm nhất ở tổ chức của bạn nên được xử lý trước.
 
+## Từ viết tắt
+
+- **SLO** (Service Level Objective) — mục tiêu mức dịch vụ: con số cam kết về độ tin cậy, như tỉ lệ yêu cầu thành công trong một khoảng thời gian; hết ngân sách lỗi thì ưu tiên độ tin cậy.
+- **DevOps** (Development and Operations) — phát triển và vận hành: cách tổ chức công việc để việc viết phần mềm và việc vận hành nó gắn với nhau, thay vì giao cho hai nhóm tách rời.
+- **SRE** (Site Reliability Engineering) — kỹ thuật độ tin cậy của hệ thống: cách làm đưa kỹ thuật phần mềm vào việc vận hành dịch vụ; SRE cũng là tên nhóm làm việc đó, như nhóm SRE của Google.
+
 ## Nhìn hình thử trả lời
 
 Nhóm đã dùng hết "ngân sách lỗi" của tháng nhưng còn ba tính năng phải ra. Theo quy tắc đã thỏa thuận từ trước thì nên làm gì?

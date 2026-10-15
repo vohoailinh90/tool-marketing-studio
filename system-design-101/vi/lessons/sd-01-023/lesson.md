@@ -4,6 +4,11 @@
 
 ![Ba khung dọc: đối tác gọi API giao hàng qua gateway; nhà phát triển khám phá và đăng ký gói API qua portal rồi gọi gateway; web và ứng dụng di động gọi gateway để tới các dịch vụ cũ và mới. Gateway xử lý lời gọi, còn portal và quản lý sản phẩm có vai riêng.](../../diagrams/sd-01-023-main.svg)
 
+## Từ viết tắt
+
+- **API** (Application Programming Interface) — giao diện lập trình ứng dụng: cách phần mềm gọi chức năng của phần mềm khác.
+- **AWS** (Amazon Web Services) — nền tảng dịch vụ đám mây được dùng làm ví dụ về khóa và hạn mức trong bài.
+
 ## Đọc hình
 
 1. **Kết nối đối tác.** Một cửa hàng cho hãng vận chuyển gọi API tra cứu đơn. Gateway định tuyến và áp chính sách truy cập; dịch vụ đơn hàng vẫn kiểm tra hãng đó có quyền xem đơn cụ thể hay không.

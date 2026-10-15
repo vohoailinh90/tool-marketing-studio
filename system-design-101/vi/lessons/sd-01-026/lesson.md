@@ -4,6 +4,12 @@
 
 ![Bốn khung dọc: unicast chọn B; broadcast cục bộ hướng tới B,C,D; multicast hướng tới nhóm B,D; anycast dùng địa chỉ chung cho B,C,D nhưng định tuyến chọn một đích, ở hình là C.](../../diagrams/sd-01-026-main.svg)
 
+## Từ viết tắt
+
+- **IP** (Internet Protocol) — giao thức mạng chuyển các gói theo địa chỉ đích.
+- **IPv4** (Internet Protocol version 4) — phiên bản 4 của giao thức mạng, dùng trong ví dụ broadcast cục bộ.
+- **IPv6** (Internet Protocol version 6) — phiên bản 6 của giao thức mạng; không có địa chỉ broadcast.
+
 ## Đọc hình
 
 - **Unicast — một đích riêng:** A gửi tới địa chỉ của B.

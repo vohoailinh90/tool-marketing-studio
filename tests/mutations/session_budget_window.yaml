@@ -1,0 +1,68 @@
+# Mutation manifest — see scripts/mutation_check.py
+#
+# A passing test proves nothing on its own. These break one rule of the window-size
+# hand-off between the status line and the session budget hook and require the named test to fail.
+
+target: scripts/hooks/session_budget.py
+note: The hook measures context against the window size; a wrong size is how a 1M session was told it was 86% full at 171K tokens.
+mutations:
+- label: the recorded size is never used
+  find: "        if recorded is not None:\n            return recorded\n"
+  replace: ""
+  test: tests.test_session_budget_window.HookReadsTheWindowTests.test_what_the_status_line_recorded_is_used_when_the_variable_is_unset
+- label: the payload is not consulted
+  find: "    if payload:\n        recorded = recorded_window("
+  replace: "    if False:\n        recorded = recorded_window("
+  test: tests.test_session_budget_window.HookReadsTheWindowTests.test_what_the_status_line_recorded_is_used_when_the_variable_is_unset
+- label: the variable no longer wins over what the status line recorded
+  find: "    configured = configured_window()\n    if configured is not None:\n        return configured\n"
+  replace: ""
+  test: tests.test_session_budget_window.HookReadsTheWindowTests.test_the_variable_beats_what_the_status_line_recorded
+- label: a variable outside the plausible range is used
+  find: "    return value if MIN_WINDOW_TOKENS <= value <= MAX_WINDOW_TOKENS else None"
+  replace: "    return value"
+  test: tests.test_session_budget_window.HookReadsTheWindowTests.test_a_variable_that_cannot_be_used_leaves_the_recording_in_charge
+- label: a variable below the smallest plausible window is used
+  find: "    return value if MIN_WINDOW_TOKENS <= value <= MAX_WINDOW_TOKENS else None"
+  replace: "    return value if 0 < value <= MAX_WINDOW_TOKENS else None"
+  test: tests.test_session_budget_window.HookReadsTheWindowTests.test_a_variable_outside_the_plausible_range_leaves_the_default_when_nothing_was_recorded
+- label: a variable above the largest plausible window is used
+  find: "    return value if MIN_WINDOW_TOKENS <= value <= MAX_WINDOW_TOKENS else None"
+  replace: "    return value if MIN_WINDOW_TOKENS <= value else None"
+  test: tests.test_session_budget_window.HookReadsTheWindowTests.test_a_variable_outside_the_plausible_range_leaves_the_default_when_nothing_was_recorded
+- label: a variable that is not a number raises
+  find: "    except ValueError:\n        return None\n    return value if MIN_WINDOW_TOKENS <= value <= MAX_WINDOW_TOKENS else None"
+  replace: "    except KeyError:\n        return None\n    return value if MIN_WINDOW_TOKENS <= value <= MAX_WINDOW_TOKENS else None"
+  test: tests.test_session_budget_window.HookReadsTheWindowTests.test_a_variable_that_cannot_be_used_leaves_the_recording_in_charge
+- label: a session id that is not a plain name is used as a file name
+  find: "    if not isinstance(session_id, str) or not SESSION_ID.fullmatch(session_id):\n        return None\n"
+  replace: "    if not isinstance(session_id, str):\n        return None\n"
+  test: tests.test_session_budget_window.HookReadsTheWindowTests.test_a_session_id_that_is_not_a_plain_name_reads_nothing
+- label: a recording that is not a number raises
+  find: "    size = int(text) if re.fullmatch(r\"[0-9]{1,12}\", text) else None"
+  replace: "    size = int(text)"
+  test: tests.test_session_budget_window.HookReadsTheWindowTests.test_a_recording_that_cannot_be_used_is_ignored
+- label: a recorded size out of range is used
+  find: "    return size if size is not None and MIN_WINDOW_TOKENS <= size <= MAX_WINDOW_TOKENS else None"
+  replace: "    return size"
+  test: tests.test_session_budget_window.HookReadsTheWindowTests.test_a_recording_that_cannot_be_used_is_ignored
+- label: a recording that is not text raises
+  find: "    except (OSError, ValueError):\n        return None\n    size = int(text)"
+  replace: "    except OSError:\n        return None\n    size = int(text)"
+  test: tests.test_session_budget_window.HookReadsTheWindowTests.test_a_recording_that_cannot_be_used_is_ignored
+- label: a directory in place of the file raises
+  find: "    except (OSError, ValueError):\n        return None\n    size = int(text)"
+  replace: "    except ValueError:\n        return None\n    size = int(text)"
+  test: tests.test_session_budget_window.HookReadsTheWindowTests.test_a_directory_where_the_file_should_be_is_ignored
+- label: the given checkout is ignored when reading the record
+  find: "recorded_window(payload.get(\"session_id\"), root or repo_root())"
+  replace: "recorded_window(payload.get(\"session_id\"), repo_root())"
+  test: tests.test_session_budget_window.HookReadsTheWindowTests.test_what_the_status_line_recorded_is_used_when_the_variable_is_unset
+- label: the handoff is measured against the default window
+  find: "        \"context_window\": context_window(payload, root),"
+  replace: "        \"context_window\": context_window(),"
+  test: tests.test_session_budget_window.SessionOfAMillionTokensIsNotToldItIsFullTests.test_the_handoff_records_the_window_it_was_measured_against
+- label: the nudge is measured against the default window
+  find: "    window = context_window(payload)\n    fraction = used / window"
+  replace: "    window = context_window()\n    fraction = used / window"
+  test: tests.test_session_budget_window.SessionOfAMillionTokensIsNotToldItIsFullTests.test_a_recorded_million_token_window_gives_no_nudge

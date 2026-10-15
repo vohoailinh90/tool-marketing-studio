@@ -5,6 +5,15 @@ hay một thẻ script có thể làm trang hiện chậm.
 
 ![Sáu thẻ xếp dọc. Bước 1, HTML được phân tích thành cây DOM. Bước 2, CSS được phân tích thành cây CSSOM. Bước 3, hai cây được gộp thành render tree: bỏ head và phần tử display none, giữ phần tử visibility hidden. Bước 4, layout tính kích thước và vị trí. Bước 5, paint ghi lệnh vẽ, raster tạo điểm ảnh. Bước 6, đôi khi ghép lớp bằng GPU. Ghi chú: đổi thuộc tính hình học như width hay left thì layout tính lại, gọi là reflow; transform thường không cần.](../../diagrams/sd-01-008-main.svg)
 
+## Từ viết tắt
+
+- **HTML** (HyperText Markup Language) — ngôn ngữ đánh dấu siêu văn bản: văn bản dùng thẻ để mô tả cấu trúc của một trang web.
+- **DOM** (Document Object Model) — mô hình đối tượng tài liệu: cây các phần tử của trang mà trình duyệt dựng từ HTML; JavaScript có thể sửa cây này.
+- **CSS** (Cascading Style Sheets) — bảng kiểu xếp tầng: các luật mô tả màu sắc, cỡ chữ và cách bố trí của trang.
+- **CSSOM** (CSS Object Model) — mô hình đối tượng CSS: các luật CSS sau khi trình duyệt đọc xong, xếp thành cấu trúc để tra cứu.
+- **GPU** (Graphics Processing Unit) — bộ xử lý đồ họa: chip chuyên vẽ hình, giúp trình duyệt ghép lớp và hiển thị hình ảnh nhanh.
+- **MDN** (Mozilla Developer Network) — tên cũ của MDN Web Docs, bộ tài liệu tra cứu công nghệ web do Mozilla và cộng đồng viết; bài dùng nó để đối chiếu.
+
 ## Đọc hình
 
 **1–2. DOM và CSSOM.** Trình duyệt phân tích HTML thành cây DOM (cấu trúc tài liệu) và phân tích CSS

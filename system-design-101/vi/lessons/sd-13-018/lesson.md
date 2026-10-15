@@ -6,6 +6,10 @@ Bạn không sửa dòng mã nào mà `terraform plan` vẫn báo sẽ thêm, s�
 
 **Đọc hình:** năm thẻ là năm nguồn lệch độc lập; thẻ nào cũng kèm cách xác nhận hoặc ngăn.
 
+## Từ viết tắt
+
+- **CI** (Continuous Integration) — tích hợp liên tục: tự động xây dựng và kiểm tra mã mỗi khi có thay đổi.
+
 ## Nhìn hình thử trả lời
 
 Sáng nay bạn chạy `terraform plan` mà không đổi mã, và plan báo sẽ sửa kích thước một máy ảo về giá trị cũ trong mã. Đêm qua đồng nghiệp đã tăng kích thước máy đó trên giao diện cloud để xử lý sự cố. Có nên `apply` ngay không?

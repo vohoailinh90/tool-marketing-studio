@@ -29,6 +29,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import subprocess
 import sys
 import time
@@ -36,10 +37,16 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-# Default assumes a 200K context. Override for a 1M-context model with
-# CLAUDE_SESSION_BUDGET_CONTEXT_WINDOW; hook payloads do not carry the size the
-# way the status line payload does.
+# Hook payloads do not carry the context window's size the way the status line payload does. The size is
+# CLAUDE_SESSION_BUDGET_CONTEXT_WINDOW when that is set (an explicit setting wins, and it is the only thing
+# that can correct a status line that reports a wrong size); else what scripts/hooks/statusline.py recorded
+# for this session, one file per session in WINDOW_STATE; else this default, which assumes 200K.
 DEFAULT_CONTEXT_WINDOW = 200_000
+# Keep these four in step with statusline.py (a test asserts it).
+WINDOW_STATE = ("artifacts", "handoff", "context-window")
+SESSION_ID = re.compile(r"[A-Za-z0-9_-]{1,128}")
+MIN_WINDOW_TOKENS = 1_000
+MAX_WINDOW_TOKENS = 100_000_000
 WRITE_HANDOFF_AT = 0.70
 WRAP_UP_AT = 0.85
 
@@ -241,13 +248,39 @@ def last_user_prompt(lines: list[str]) -> str:
     return ""
 
 
-def context_window() -> int:
-    raw = os.environ.get("CLAUDE_SESSION_BUDGET_CONTEXT_WINDOW", "")
+def recorded_window(session_id: object, root: Path) -> int | None:
+    """The window size the status line recorded for this session, or None when it recorded none or it is unusable."""
+    if not isinstance(session_id, str) or not SESSION_ID.fullmatch(session_id):
+        return None
     try:
-        value = int(raw)
+        text = root.joinpath(*WINDOW_STATE, session_id).read_text(encoding="utf-8").strip()
+    except (OSError, ValueError):
+        return None
+    size = int(text) if re.fullmatch(r"[0-9]{1,12}", text) else None
+    return size if size is not None and MIN_WINDOW_TOKENS <= size <= MAX_WINDOW_TOKENS else None
+
+
+def configured_window() -> int | None:
+    """The size CLAUDE_SESSION_BUDGET_CONTEXT_WINDOW sets, in tokens; None when it is unset, not a whole number or
+    outside the range a recorded size must also be in (a typo such as 1 or 10000000000 must not decide)."""
+    try:
+        value = int(os.environ.get("CLAUDE_SESSION_BUDGET_CONTEXT_WINDOW", ""))
     except ValueError:
-        return DEFAULT_CONTEXT_WINDOW
-    return value if value > 0 else DEFAULT_CONTEXT_WINDOW
+        return None
+    return value if MIN_WINDOW_TOKENS <= value <= MAX_WINDOW_TOKENS else None
+
+
+def context_window(payload: dict[str, Any] | None = None, root: Path | None = None) -> int:
+    """The context window size in tokens: the environment variable CLAUDE_SESSION_BUDGET_CONTEXT_WINDOW when it is
+    set, else what the status line recorded for this session, else DEFAULT_CONTEXT_WINDOW."""
+    configured = configured_window()
+    if configured is not None:
+        return configured
+    if payload:
+        recorded = recorded_window(payload.get("session_id"), root or repo_root())
+        if recorded is not None:
+            return recorded
+    return DEFAULT_CONTEXT_WINDOW
 
 
 def collect_state(payload: dict[str, Any], trigger: str, root: Path) -> dict[str, Any]:
@@ -275,7 +308,7 @@ def collect_state(payload: dict[str, Any], trigger: str, root: Path) -> dict[str
             git(root, "diff", "--stat", "HEAD", deadline=deadline).splitlines()[:MAX_DIFFSTAT_LINES]
         ),
         "context_tokens": used,
-        "context_window": context_window(),
+        "context_window": context_window(payload, root),
         "last_user_prompt": last_user_prompt(lines),
     }
 
@@ -409,7 +442,7 @@ def cmd_pre_tool_use(payload: dict[str, Any]) -> int:
     if used is None:
         return 0
 
-    window = context_window()
+    window = context_window(payload)
     fraction = used / window
     level = "wrap-up" if fraction >= WRAP_UP_AT else "handoff" if fraction >= WRITE_HANDOFF_AT else None
     if level is None:

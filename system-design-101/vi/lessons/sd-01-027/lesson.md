@@ -4,6 +4,14 @@
 
 ![Năm vùng trách nhiệm: trình duyệt và DNS cùng cửa vào; CDN và API phục vụ nội dung; dữ liệu và tìm kiếm; queue và worker làm việc nền; CI/CD, quan sát và cảnh báo phục vụ vận hành. Không phải chuỗi mười bước hoặc mười máy chủ bắt buộc.](../../diagrams/sd-01-027-main.svg)
 
+## Từ viết tắt
+
+- **DNS** (Domain Name System) — hệ thống phân giải tên thành thông tin địa chỉ để trình duyệt tìm dịch vụ.
+- **API** (Application Programming Interface) — giao diện lập trình ứng dụng: cách app trao đổi với phần xử lý khác.
+- **CDN** (Content Delivery Network) — mạng phân phối nội dung; có thể phục vụ ảnh bìa được cache trong ví dụ.
+- **CI** (Continuous Integration) — tích hợp liên tục: quy trình tự động kiểm tra thay đổi mã.
+- **CD** (Continuous Delivery) — phân phối liên tục; trong cách dùng Continuous Deployment thì chỉ triển khai liên tục. Quy trình quyết định lúc phát hành.
+
 ## Đọc hình
 
 Ví dụ một thư viện: người đọc tìm sách, còn nhân viên yêu cầu xuất báo cáo dài.

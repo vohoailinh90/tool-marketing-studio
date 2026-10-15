@@ -4,6 +4,14 @@
 
 ![Ba khung dọc: TCP giao đúng thứ tự nên khi gói A bắn bị mất, gói vị trí mới đến vẫn phải chờ; UDP thuần không báo mất gói nên hai bên có thể lệch trạng thái; UDP cộng lớp tin cậy của game có kênh vị trí không gửi lại và kênh sự kiện có xác nhận và gửi lại.](../../diagrams/sd-15-006-main.svg)
 
+## Từ viết tắt
+
+- **TCP** (Transmission Control Protocol) — giao thức điều khiển truyền: tạo kết nối đáng tin cậy, dữ liệu đến đủ và đúng thứ tự.
+- **UDP** (User Datagram Protocol) — giao thức gói dữ liệu người dùng: gửi gói tin đơn giản, nhanh, không có kết nối và không bảo đảm đến đủ hay đúng thứ tự.
+- **HTTP** (HyperText Transfer Protocol) — giao thức truyền siêu văn bản: quy ước để trình duyệt gửi yêu cầu (request) và máy chủ gửi trả lời (response).
+- **QUIC** (Quick UDP Internet Connections) — tên gọi ban đầu của giao thức truyền tải mà HTTP/3 dùng thay cho TCP; ngày nay QUIC thường được dùng như một tên riêng.
+- **RUDP** (Reliable UDP) — UDP tin cậy: tên gọi chung cho các cách thêm việc gửi lại và giữ thứ tự lên trên UDP; không có một chuẩn duy nhất.
+
 ## Đọc hình
 
 Server gửi ba gói: vị trí, *A bắn*, vị trí mới. Gói *A bắn* bị mất.

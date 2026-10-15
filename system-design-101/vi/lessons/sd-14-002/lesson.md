@@ -5,6 +5,15 @@ tưởng đã “mã hóa” trong khi dữ liệu vẫn đọc được bởi b
 
 ![Năm thẻ xếp dọc. Dữ liệu mẫu là số thẻ mẫu 4111 1111 1111 1111. Encoding, Base64, cho ra NDExMSAxMTEx…; ai cũng giải ngược được, không cần khóa. Encryption cho ra gAAAAAB…; đúng khóa mới giải được, sai khóa thì lỗi. Tokenization cho ra tok_3159c9a6…; dữ liệu thật nằm trong kho token. Thẻ cuối nêu chỗ phải bảo vệ: encoding không có gì để giữ, encryption là khóa bí mật, tokenization là kho token.](../../diagrams/sd-14-002-main.svg)
 
+## Từ viết tắt
+
+- **ASCII** (American Standard Code for Information Interchange) — bộ mã chuẩn cho ký tự cơ bản của chữ Latin, mỗi ký tự ứng với một số.
+- **OWASP** (Open Worldwide Application Security Project) — tổ chức cộng đồng chuyên về bảo mật ứng dụng, có các hướng dẫn mà bài dùng để đối chiếu.
+- **PCI** (Payment Card Industry) — ngành thẻ thanh toán: nói tới các tổ chức đặt quy định cho dữ liệu thẻ.
+- **DSS** (Data Security Standard) — tiêu chuẩn bảo mật dữ liệu: PCI DSS là bộ yêu cầu bảo vệ dữ liệu thẻ thanh toán; bài chưa đối chiếu tiêu chuẩn này.
+- **RSA** (Rivest-Shamir-Adleman) — tên một thuật toán mã hóa khóa công khai, đặt theo ba tác giả.
+- **OAEP** (Optimal Asymmetric Encryption Padding) — một cách đệm dữ liệu trước khi mã hóa bằng khóa công khai, để an toàn hơn khi dùng với RSA.
+
 ## Đọc hình
 
 **Encoding.** Đổi dữ liệu sang một định dạng khác bằng một quy tắc công khai, ví dụ Base64 biến byte thành ký tự ASCII để truyền qua kênh dạng văn bản.

@@ -6,6 +6,13 @@
 
 ![URL được chia thành scheme https, host shop.example, port 8443, path /items/42, query view=compact và fragment details. Dấu hai chấm tách host với port.](../../diagrams/sd-01-025-main.svg)
 
+## Từ viết tắt
+
+- **URL** (Uniform Resource Locator) — địa chỉ tài nguyên, gồm các phần được tách trong hình.
+- **HTTP** (HyperText Transfer Protocol) — giao thức trao đổi request và response trên web.
+- **HTTPS** (HyperText Transfer Protocol Secure) — trao đổi web có lớp bảo vệ kết nối; scheme của ví dụ trong bài.
+- **IP** (Internet Protocol) — giao thức mạng dùng địa chỉ để chuyển gói; host có thể viết bằng địa chỉ này.
+
 ## Đọc hình
 
 - **Scheme** xác định cách xử lý; ví dụ này dùng HTTPS. **Host** là `shop.example`.

@@ -5,6 +5,20 @@ Bài này chạy thử từng cơ chế để thấy mỗi cái chứng minh đ�
 
 ![Sáu thẻ xếp dọc. Thẻ đầu là câu hỏi chung: bạn đưa ra thứ gì để được vào hoặc được làm một việc. Khóa SSH: chứng minh bằng việc giữ khóa riêng, máy chủ chỉ giữ khóa công khai. Token OAuth: bằng chứng của quyền đã được ủy, không chứng minh người dùng token là ai, và với token bearer thì ai đang giữ cũng dùng được. Chứng chỉ, trong giao thức TLS trước đây gọi là SSL: gắn một tên với một khóa công khai, do tổ chức cấp chứng chỉ xác nhận; mã hóa vẫn chạy ngay cả khi không kiểm tra chứng chỉ. Mật khẩu: điều bạn biết, máy chủ nên lưu bản băm, thêm yếu tố thứ hai. Thẻ cuối: xóa một tệp chứa khóa ở commit sau không xóa nó khỏi lịch sử; phải thu hồi và đổi khóa.](../../diagrams/sd-14-014-main.svg)
 
+## Từ viết tắt
+
+- **API** (Application Programming Interface) — giao diện lập trình ứng dụng: tập quy ước để một chương trình dùng chức năng của chương trình khác; khóa API là thứ chương trình đưa ra để chứng minh nó được phép gọi.
+- **SSH** (Secure SHell) — vỏ lệnh an toàn: cách đăng nhập và điều khiển máy từ xa có mã hóa, thường bằng khóa thay cho mật khẩu.
+- **OAuth** (Open AUTHorization) — chuẩn ủy quyền mở: cho một ứng dụng được làm một số việc thay bạn mà không biết mật khẩu của bạn; token OAuth là thứ nó nhận được để làm việc đó.
+- **TLS** (Transport Layer Security) — bảo mật tầng truyền tải: lớp mã hóa giữ kín dữ liệu giữa hai đầu của một kết nối và giúp xác nhận đầu bên kia là ai.
+- **SSL** (Secure Sockets Layer) — lớp ổ cắm an toàn: tên cũ của TLS, nay đã lỗi thời nhưng người ta vẫn quen gọi.
+- **mTLS** (mutual Transport Layer Security) — TLS hai chiều: máy khách cũng đưa chứng chỉ của mình, không chỉ máy chủ, nên cả hai bên cùng xác nhận nhau.
+- **CA** (Certificate Authority) — tổ chức cấp chứng chỉ: bên ký xác nhận rằng một khóa công khai thuộc về một tên hay một tổ chức.
+- **CRL** (Certificate Revocation List) — danh sách thu hồi chứng chỉ: danh sách các chứng chỉ đã bị hủy trước hạn và không còn được tin.
+- **OCSP** (Online Certificate Status Protocol) — giao thức hỏi trạng thái chứng chỉ trực tuyến: cách hỏi một máy chủ xem một chứng chỉ còn hiệu lực hay đã bị thu hồi.
+- **MDN** (Mozilla Developer Network) — tên cũ của MDN Web Docs, bộ tài liệu tra cứu công nghệ web do Mozilla và cộng đồng viết; bài dùng nó để đối chiếu.
+- **OWASP** (Open Worldwide Application Security Project) — tổ chức cộng đồng chuyên về bảo mật ứng dụng, có các hướng dẫn mà bài dùng để đối chiếu.
+
 ## Đọc hình
 
 **Khóa SSH.** SSH là giao thức đăng nhập và chạy lệnh từ xa trên một máy khác. Theo sách hướng dẫn của OpenSSH, mỗi người dùng tạo một cặp khóa; máy chủ biết khóa công khai, chỉ người dùng biết khóa riêng, và tệp `authorized_keys` liệt kê các khóa công khai được phép đăng nhập. Máy khách chứng minh mình có khóa riêng. Chạy thử với OpenSSH 10.6p1 dựng từ mã nguồn đã ghim, một máy chủ tạm trên 127.0.0.1:18022 tắt đăng nhập bằng mật khẩu: khóa nằm trong danh sách được đăng nhập (dòng “Authenticated … using "publickey"”, và lệnh ép buộc của khóa đó chạy); khóa không có trong danh sách nhận `Permission denied (publickey)`; xóa khóa đúng khỏi tệp thì chính máy khách đó bị từ chối. Nhật ký máy chủ ghi dấu vân tay của từng khóa chứ không có nội dung khóa riêng (máy chủ vốn không nhận được khóa riêng). Chiều ngược lại cũng quan trọng: ssh ghi khóa của máy chủ vào `known_hosts`. Khi ghi sẵn một khóa khác cho địa chỉ đó và đặt `StrictHostKeyChecking=yes`, ssh in `REMOTE HOST IDENTIFICATION HAS CHANGED!` và `Host key verification failed.`, thoát với mã 255, và máy chủ không ghi thêm lần đăng nhập nào. Sách hướng dẫn giải thích rằng cảnh báo này nhằm ngăn giả mạo máy chủ hay tấn công xen giữa.

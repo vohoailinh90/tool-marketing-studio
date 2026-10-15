@@ -4,6 +4,14 @@
 
 ![Năm khung dọc: engine đọc mã thành bytecode và JIT tối ưu đoạn hay chạy; call stack chạy mã từng việc một nên việc dài làm trang đứng; môi trường như trình duyệt hoặc Node lo timer, mạng và sự kiện; hai loại việc chờ cơ bản gồm microtask cho promise chạy trước và task cho setTimeout và sự kiện, trong đó task có thể nằm ở một hoặc nhiều hàng đợi; event loop lấy việc kế tiếp khi stack rỗng và chạy hết microtask trước. Hình chưa vẽ hàng đợi nextTick riêng của Node. Ví dụ trong bài in A, D, C, B.](../../diagrams/sd-01-014-main.svg)
 
+## Từ viết tắt
+
+- **ECMA** (European Computer Manufacturers Association) — hiệp hội các nhà sản xuất máy tính châu Âu, nay gọi là Ecma International: tổ chức ban hành đặc tả ECMAScript mà JavaScript tuân theo.
+- **ESM** (ECMAScript Modules) — mô-đun ECMAScript: cách chia mã JavaScript thành các tệp nối với nhau bằng `import` và `export`; thứ tự giữa `nextTick` và promise ở cấp cao nhất của kiểu mô-đun này có thể khác kiểu cũ.
+- **HTML** (HyperText Markup Language) — ngôn ngữ đánh dấu siêu văn bản: văn bản dùng thẻ để mô tả cấu trúc một trang web; bài nhắc tới đặc tả của nó, nơi quy định hàng đợi và event loop của trình duyệt.
+- **JS** (JavaScript) — ngôn ngữ lập trình của trình duyệt; CommonJS là tên kiểu mô-đun cũ của Node mang chữ JS này trong tên.
+- **JIT** (Just-In-Time) — biên dịch đúng lúc: engine dịch đoạn mã chạy nhiều sang dạng chạy nhanh hơn ngay trong lúc chương trình đang chạy.
+
 ## Đọc hình
 
 **1. Engine.** Trình duyệt hoặc Node có một engine JavaScript (như V8). Nó đọc mã thành dạng trung gian (bytecode) rồi chạy; đoạn chạy nhiều có thể được biên dịch tối ưu ngay lúc đang chạy (JIT). Nên nói "JavaScript là ngôn ngữ thông dịch" chỉ đúng một phần.

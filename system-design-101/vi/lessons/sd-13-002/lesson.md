@@ -6,6 +6,12 @@ Chọn sách theo điều bạn đang cần giải quyết, không theo một da
 
 **Đọc hình:** danh sách là lựa chọn của bài, không phải thứ hạng; mỗi cuốn trả lời một câu hỏi khác nhau.
 
+## Từ viết tắt
+
+- **DevOps** (Development and Operations) — phát triển và vận hành: cách tổ chức công việc để việc viết phần mềm và việc vận hành nó gắn với nhau, thay vì giao cho hai nhóm tách rời.
+- **DORA** (DevOps Research and Assessment) — chương trình nghiên cứu và đánh giá DevOps; các thước đo DORA đo tốc độ và độ ổn định khi giao phần mềm.
+- **SRE** (Site Reliability Engineering) — kỹ thuật độ tin cậy của hệ thống: cách làm đưa kỹ thuật phần mềm vào việc vận hành dịch vụ; SRE cũng là tên nhóm làm việc đó, như nhóm SRE của Google.
+
 ## Nhìn hình thử trả lời
 
 Nhóm muốn biết việc giao phần mềm của mình đang tốt lên hay tệ đi. Bắt đầu từ cuốn nào, và đo những gì?

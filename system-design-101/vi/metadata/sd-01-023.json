@@ -36,7 +36,7 @@
     },
     "technical_review": {
       "status": "pending",
-      "reason": "new lesson awaiting review on PR head"
+      "reason": "Glossary added and main7397e5c integrated; prior-head review does not validate this combination."
     },
     "mobile": {
       "status": "checked",
@@ -48,7 +48,7 @@
       ],
       "whole_lesson_no_horizontal_overflow": true,
       "text_outside_viewbox": false,
-      "evidence": "Chromium: render Markdown toàn bài với SVG inline và mở mọi details. 320/375/430 px không overflow/text ngoài viewBox; chữ SVG nhỏ nhất hiệu dụng 14.4/16/16 px. Đã xem screenshot toàn bài 320 px. Chưa GitHub/điện thoại thật và chưa thử người học."
+      "evidence": "Chromium cục bộ toàn bài với glossary mới, details mở320/375/430px; không tràn ngang/không chữ SVG ngoài viewBox, min14.4/16/16px. Đã xem năm screenshot320px cho023–027. Chưa GitHub/device/user testing."
     },
     "user_testing": {
       "status": "not_performed"

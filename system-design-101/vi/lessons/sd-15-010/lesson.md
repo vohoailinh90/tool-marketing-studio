@@ -4,6 +4,10 @@
 
 ![Ba khung dọc: thứ tự viết SELECT, FROM, WHERE, GROUP BY, HAVING, ORDER BY, LIMIT; hệ thống chạy câu lệnh qua ba bước phân tích, tối ưu, chạy, và bộ tối ưu có thể chọn cách chạy khác miễn kết quả không đổi; ý nghĩa của câu lệnh được mô tả bằng thứ tự logic FROM và JOIN, WHERE, GROUP BY, HAVING, SELECT cùng alias, DISTINCT, ORDER BY, LIMIT, là một mô hình chứ không phải giai đoạn chạy thêm. Alias ở SELECT chưa có khi WHERE chạy.](../../diagrams/sd-15-010-main.svg)
 
+## Từ viết tắt
+
+- **SQL** (Structured Query Language) — ngôn ngữ truy vấn có cấu trúc: ngôn ngữ chuẩn để hỏi và ghi dữ liệu trong cơ sở dữ liệu quan hệ.
+
 ## Đọc hình
 
 ```sql

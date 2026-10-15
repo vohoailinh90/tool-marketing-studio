@@ -4,6 +4,16 @@
 
 ![Ba khung dọc: địa chỉ IPv4 32 bit ví dụ 192.0.2.12 và IPv6 128 bit ví dụ 2001:db8::1; tiêu đề IPv4 từ 20 byte có checksum, tiêu đề IPv6 đúng 40 byte không có checksum; dual stack chạy cả hai giao thức và dùng bản ghi A hoặc AAAA; IPv6 không tự làm mạng nhanh hơn.](../../diagrams/sd-15-002-main.svg)
 
+## Từ viết tắt
+
+- **IPv4** (Internet Protocol version 4) — phiên bản 4 của giao thức IP: địa chỉ gồm bốn số từ 0 đến 255 như 203.0.113.10; số địa chỉ có hạn, một lý do NAT được dùng.
+- **IPv6** (Internet Protocol version 6) — phiên bản 6 của giao thức IP: địa chỉ dài hơn IPv4 nhiều, dùng khi IPv4 hết địa chỉ.
+- **DNS** (Domain Name System) — hệ thống tên miền: "danh bạ" của Internet, đổi tên miền như example.com thành địa chỉ IP.
+- **IP** (Internet Protocol) — giao thức Internet: quy ước đánh địa chỉ và chuyển gói tin giữa các máy; địa chỉ IP là địa chỉ của một máy trên mạng.
+- **AAAA** (Quad A) — bản ghi AAAA, đọc là "quad A": loại bản ghi DNS trả về địa chỉ IPv6 của một tên; địa chỉ IPv6 dài gấp bốn lần địa chỉ IPv4 nên tên có bốn chữ A.
+- **MTU** (Maximum Transmission Unit) — đơn vị truyền tối đa: kích thước gói lớn nhất mà một đường truyền chuyển được mà không phải chia nhỏ.
+- **NAT** (Network Address Translation) — dịch địa chỉ mạng: thiết bị đổi địa chỉ nguồn hoặc đích của gói tin khi đi qua; nhờ nó nhiều máy dùng chung được một địa chỉ IPv4 công cộng.
+
 ## Đọc hình
 
 **Địa chỉ.** IPv4 có 2³² giá trị (khoảng 4,3 tỷ), viết bốn số thập phân cách dấu chấm. IPv6 có 2¹²⁸ giá trị, viết tám nhóm số hex cách dấu hai chấm; được rút gọn bằng cách bỏ số 0 đầu và dùng `::` một lần để thay chuỗi nhóm toàn 0.

@@ -2,15 +2,19 @@
 
 **Ba số nói về thay đổi của API công khai — khi dự án cam kết dùng SemVer.**
 
-![Ba thẻ: sửa lỗi tương thích tăng PATCH; tính năng tương thích tăng MINOR; thay đổi phá tương thích tăng MAJOR. Các ví dụ đều bắt đầu từ 2.4.7.](../../diagrams/sd-01-024-main.svg)
+![Ba thẻ: sửa lỗi tương thích tăng patch; tính năng tương thích tăng minor; thay đổi phá tương thích tăng major. Các ví dụ đều bắt đầu từ 2.4.7.](../../diagrams/sd-01-024-main.svg)
+
+## Từ viết tắt
+
+- **API** (Application Programming Interface) — giao diện lập trình ứng dụng: phần hợp đồng công khai mà người dùng thư viện dựa vào.
 
 ## Đọc hình
 
 `MAJOR.MINOR.PATCH` là ba số nguyên, không phải số thập phân. Hình cho ba hướng phát hành độc lập từ `2.4.7`; không phải ba bước liên tiếp.
 
 - **PATCH:** sửa lỗi tương thích ngược với API công khai.
-- **MINOR:** thêm chức năng tương thích ngược; đặt PATCH về 0.
-- **MAJOR:** thay đổi API công khai không tương thích ngược; đặt hai số sau về 0.
+- **`MINOR`:** thêm chức năng tương thích ngược; đặt PATCH về 0.
+- **`MAJOR`:** thay đổi API công khai không tương thích ngược; đặt hai số sau về 0.
 
 ## Giới hạn cần nhớ
 
@@ -23,7 +27,7 @@ Từ `2.4.7`, nhóm bỏ một tham số công khai mà khách hàng đang dùng
 <details>
 <summary>Xem đáp án</summary>
 
-Thẻ MAJOR: `3.0.0`, nếu đây là thay đổi không tương thích theo hợp đồng đã công bố.
+Thẻ `MAJOR`: `3.0.0`, nếu đây là thay đổi không tương thích theo hợp đồng đã công bố.
 
 </details>
 

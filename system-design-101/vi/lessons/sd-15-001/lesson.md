@@ -4,6 +4,12 @@
 
 ![Hai khung dọc: phân trang với địa chỉ 0x3A5C tách thành trang 3 và offset 0xA5C, bảng trang cho khung 7 nên địa chỉ vật lý là 0x7A5C; phân đoạn với đoạn 2 có base 0x5000 và limit 0x800, offset 0x120 hợp lệ cho 0x5120, offset 0x900 vượt limit nên bị chặn.](../../diagrams/sd-15-001-main.svg)
 
+## Từ viết tắt
+
+- **RAM** (Random Access Memory) — bộ nhớ truy cập ngẫu nhiên: bộ nhớ chính của máy, nơi chương trình đang chạy giữ dữ liệu; nó được đánh địa chỉ vật lý.
+- **KiB** (Kibibyte) — kibibyte: đơn vị dung lượng bằng 1.024 byte; một trang bộ nhớ thường lớn 4 KiB.
+- **TLB** (Translation Lookaside Buffer) — bộ đệm dịch địa chỉ: bộ nhớ nhỏ và nhanh trong phần cứng, giữ các phép dịch trang sang khung gần đây để khỏi tra bảng trang ở mọi lần truy cập.
+
 ## Đọc hình
 
 **Phân trang.** Bộ nhớ logic chia thành *trang*, RAM chia thành *khung* cùng kích thước (ví dụ 4 KiB). Địa chỉ logic tách thành số trang và offset. Bảng trang cho biết trang nằm ở khung nào; địa chỉ vật lý ghép số khung với chính offset đó. Trong ví dụ, 0x3A5C là trang 3, offset 0xA5C; trang 3 nằm ở khung 7 nên địa chỉ thật là 0x7A5C.

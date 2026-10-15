@@ -103,13 +103,13 @@
   "active_batch_ids": [
     "sd-01-027"
   ],
-  "active_pr": null,
+  "active_pr": 78,
   "updated_on": "2026-10-15",
   "active_branch": "codex/sd01-027-web-app-roles",
   "previous_pr": 77,
   "superseded_pr": 24,
   "integration_review_pending": true,
-  "adopted_main_sha": "e4af7d6fd2b977ac29cefb355d565240693c1993",
+  "adopted_main_sha": "7397e5c4deca80a76058261bab6f3ed54ac4afe3",
   "prior_repository_reviewed_ids": [
     "sd-01-001",
     "sd-01-002",
@@ -124,7 +124,7 @@
   "destination_base_sha": "67832e591e99118508b493f6d14f98151ffb4705",
   "migration_source_sha": "b8dff434ff75499137bbb10b61122958fdaaafa5",
   "previous_repository_main_sha": "89186c1a1aeb90a47e2a563fdc7786b2dacec787",
-  "last_merged_pr": 73,
+  "last_merged_pr": 68,
   "pending_ci_prs": [],
   "prior_ci_evidence": [
     {
@@ -156,6 +156,17 @@
       "review_id": 6192364922,
       "review_status": "clean",
       "checked_on": "2026-10-15"
+    },
+    {
+      "pr": 78,
+      "head_sha": "e596fe42ddd5ec8a862f9df21324237be4aea237",
+      "base_sha": "67832e591e99118508b493f6d14f98151ffb4705",
+      "run_id": 38744382938,
+      "conclusion": "success",
+      "review_id": 6193640376,
+      "review_status": "clean",
+      "checked_on": "2026-10-15",
+      "note": "Prior head only; glossary/main integration requires new review/checks."
     }
   ]
 }

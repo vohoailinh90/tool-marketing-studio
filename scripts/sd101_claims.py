@@ -104,6 +104,13 @@ def utcnow() -> datetime.datetime:
     return datetime.datetime.now(datetime.timezone.utc).replace(microsecond=0)
 
 
+def renewal(entry: dict, now: datetime.datetime) -> str:
+    """A renewed heartbeat, never earlier than the claim itself: a clock corrected backwards would otherwise write a
+    record the loader refuses."""
+    claimed = parse_stamp(entry.get("claimed_at"))
+    return stamp(max(now, claimed) if claimed else now)
+
+
 def stamp(moment: datetime.datetime) -> str:
     return moment.astimezone(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
@@ -436,7 +443,8 @@ def gather(local: dict[str, dict], remote: dict[str, str], base: str, me: str, o
     for branch, text in remote.items():
         header, lessons, problems = parse(text)
         if expected is not None:  # a header of another schema or source says the records cannot be read as ours
-            problems += header_problems(header, *expected)
+            # the default branch keeps the old pin while a repin is published from a work branch: its records stand
+            problems += header_problems(header, None if branch == base else expected[0], expected[1])
         problems += record_problems(lessons)  # a typo in a status would otherwise hide the claim it sits in
         if missing := [lesson_id for lesson_id in roster if lesson_id not in lessons]:  # so would a truncated file
             problems.append(f"lacks {len(missing)} source-map lesson(s), e.g. {missing[0]}")
@@ -783,13 +791,13 @@ def _unfinished_commits(context: Context, lessons: dict[str, dict], stack: conte
     inherited = registry_at(context, base_ref)
     out = []
     cache: dict = {}
-    tree: list[pathlib.Path] = []
+    tree: list[tuple[pathlib.Path, pathlib.Path]] = []
     map_changed = source_map_changed(context, ref if head else base_ref)
 
     def pushed_content_problems(_: Context, lesson_id: str) -> list[str]:
         if not tree:
             tree.append(stack.enter_context(pushed_tree(context)))
-        return content_problems(tree[0], context.source_map, lesson_id, cache)
+        return content_problems(tree[0][0], context.source_map, lesson_id, cache, tree[0][1])
 
     for lesson_id, entry in lessons.items():
         if entry.get("status") != "written":
@@ -975,7 +983,7 @@ def cmd_claim(context: Context, args: argparse.Namespace) -> int:
     for lesson_id in ids:
         entry = lessons[lesson_id]
         if entry.get("status") == "doing" and entry.get("owner") == context.me and lesson_id not in takes:
-            entry["heartbeat_at"] = stamp(context.now)
+            entry["heartbeat_at"] = renewal(entry, context.now)
             if args.allow_same_source and context.source.partners.get(lesson_id):
                 entry["shared_source"] = True  # the way to keep a half on purpose after losing it to the other half
             continue  # (a takeover below starts a new claim even when this session held the lesson before)
@@ -1038,7 +1046,7 @@ def cmd_touch(context: Context, args: argparse.Namespace) -> int:
     results = verdicts(context, header, lessons, ids, live=False)
     for lesson_id in ids:
         if results[lesson_id] is None:
-            lessons[lesson_id]["heartbeat_at"] = stamp(context.now)
+            lessons[lesson_id]["heartbeat_at"] = renewal(lessons[lesson_id], context.now)
     write_registry(context, header, lessons)
     if args.publish:
         publish(context, args.message or f"System Design vi: heartbeat for {', '.join(ids)}")
@@ -1049,7 +1057,7 @@ STORE_LEVEL_FILES = ("README.md", "PROGRESS.md", "MIGRATION.md", "progress.json"
 
 
 def content_problems(store: pathlib.Path, source_map: pathlib.Path | None, lesson_id: str,
-                     cache: dict | None = None) -> list[str]:
+                     cache: dict | None = None, boundary: pathlib.Path | None = None) -> list[str]:
     """What the store checker finds wrong with this one lesson (its text, metadata, figure). The findings about the
     store as a whole (README links, progress) are not the lesson's: they are fixed after finishing, before the pull
     request, and `scripts/sd101_check.py` stays the authority on them."""
@@ -1063,7 +1071,7 @@ def content_problems(store: pathlib.Path, source_map: pathlib.Path | None, lesso
     spec.loader.exec_module(module)
     key = (str(store), str(source_map))
     if cache is None or key not in cache:  # the whole-store check is the expensive part: once per tree, not per lesson
-        found = module.check_store(store, source_map)
+        found = module.check_store(store, source_map, boundary=boundary)
         if cache is not None:
             cache[key] = found
     problems = found if cache is None or key not in cache else cache[key]
@@ -1073,13 +1081,14 @@ def content_problems(store: pathlib.Path, source_map: pathlib.Path | None, lesso
 
 @contextlib.contextmanager
 def pushed_tree(context: Context):
-    """The store as HEAD holds it, exported to a temporary directory: that is the tree --publish pushes, not the working
-    tree, which may carry an uncommitted repair (or damage) the remote will never see."""
+    """The checkout as HEAD holds it, exported to a temporary directory: that is the tree --publish pushes, not the
+    working tree, which may carry an uncommitted repair (or damage) the remote will never see. The whole checkout is
+    exported, not only the store, because a lesson may link to a file elsewhere in it. Yields (store, boundary)."""
     relative = context.store.resolve().relative_to(context.root.resolve()).as_posix()
-    archive = git(context.root, "archive", "--format=tar", "HEAD", "--", relative).stdout
+    archive = git(context.root, "archive", "--format=tar", "HEAD").stdout
     with tempfile.TemporaryDirectory() as tmp, tarfile.open(fileobj=io.BytesIO(archive)) as tar:
         tar.extractall(tmp, filter="data")
-        yield pathlib.Path(tmp) / relative
+        yield pathlib.Path(tmp) / relative, pathlib.Path(tmp)
 
 
 def missing_artifacts(context: Context, lesson_id: str) -> list[str]:

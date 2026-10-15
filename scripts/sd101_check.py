@@ -1000,9 +1000,11 @@ def check_claims(path: pathlib.Path, entries: dict[str, dict], lesson_ids: set[s
                                                     pin_repository=pin[0] if pin else None)]
 
 
-def check_store(store: pathlib.Path, source_map: pathlib.Path, pin_roster: bool = False) -> list[Problem]:
+def check_store(store: pathlib.Path, source_map: pathlib.Path, pin_roster: bool = False,
+                boundary: pathlib.Path | None = None) -> list[Problem]:
+    """`boundary` is how far a relative link may reach; by default the checkout (or the store itself outside one)."""
     entries, pin, problems = load_source_map(source_map, pin_roster)
-    boundary = repository_root(store)
+    boundary = boundary or repository_root(store)
     lessons_dir, metadata_dir, diagrams_dir = store / "lessons", store / "metadata", store / "diagrams"
 
     def listing(directory: pathlib.Path) -> list[pathlib.Path]:

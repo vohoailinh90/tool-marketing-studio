@@ -356,8 +356,8 @@ mutations:
   replace: '        if not in_head or dirty:'
   test: tests.test_sd101_claims.ClaimTests.test_a_finished_lesson_that_the_store_checker_rejects_at_publication_is_not_pushed
 - label: the lesson is checked in the working tree instead of in HEAD
-  find: '        return content_problems(tree[0], context.source_map, lesson_id, cache)'
-  replace: '        return content_problems(context.store, context.source_map, lesson_id, cache)'
+  find: '        return content_problems(tree[0][0], context.source_map, lesson_id, cache, tree[0][1])'
+  replace: '        return content_problems(context.store, context.source_map, lesson_id, cache, tree[0][1])'
   test: tests.test_sd101_claims.ClaimTests.test_the_lesson_is_checked_as_head_holds_it_not_as_the_working_tree_does
 - label: a change to the optional pointer does not trigger the content check
   find: 'git_text(context.root, "diff", "--name-only", against, "HEAD", "--", *files))  # still valid?'
@@ -372,8 +372,8 @@ mutations:
   replace: '        if head.get(lesson_id) == entry:'
   test: tests.test_sd101_claims.ClaimTests.test_a_first_publication_does_not_answer_for_the_lessons_the_default_branch_already_holds
 - label: the whole-store check runs again for every lesson
-  find: '        return content_problems(tree[0], context.source_map, lesson_id, cache)'
-  replace: '        return content_problems(tree[0], context.source_map, lesson_id, {})'
+  find: '        return content_problems(tree[0][0], context.source_map, lesson_id, cache, tree[0][1])'
+  replace: '        return content_problems(tree[0][0], context.source_map, lesson_id, {}, tree[0][1])'
   test: tests.test_sd101_claims.ClaimTests.test_the_whole_store_is_checked_once_for_all_the_lessons_of_a_publication
 - label: a publication leaves the edited source map behind
   find: "    if uncommitted_source_map(context):\n        raise Refusal("
@@ -383,3 +383,15 @@ mutations:
   find: '            elif ((map_changed or git_text('
   replace: '            elif ((False or git_text('
   test: tests.test_sd101_claims.ClaimTests.test_a_committed_source_map_change_revalidates_the_lessons_already_written
+- label: the pushed tree holds only the store
+  find: '"archive", "--format=tar", "HEAD").stdout'
+  replace: '"archive", "--format=tar", "HEAD", "--", relative).stdout'
+  test: tests.test_sd101_claims.ClaimTests.test_the_pushed_tree_carries_the_whole_checkout_for_links_outside_the_store
+- label: a renewed heartbeat can predate the claim
+  find: '    return stamp(max(now, claimed) if claimed else now)'
+  replace: '    return stamp(now)'
+  test: tests.test_sd101_claims.ClaimTests.test_a_renewal_after_the_clock_went_backwards_never_predates_the_claim
+- label: the default branch must carry the new pin during a repin
+  find: None if branch == base else expected[0], expected[1])
+  replace: expected[0], expected[1])
+  test: tests.test_sd101_claims.ClaimTests.test_a_repin_can_be_published_while_the_default_branch_still_has_the_old_pin

@@ -470,7 +470,7 @@ class ClaimTests(Sessions):
         a = self.pushed_lesson("a")
         metadata = a / "store" / "metadata" / "sd-01-001.json"
 
-        def checker(store: Path, source_map: Path, lesson_id: str, cache: dict | None = None) -> list[str]:
+        def checker(store: Path, source_map: Path, lesson_id: str, cache: dict | None = None, boundary: Path | None = None) -> list[str]:
             text = (store / "metadata" / f"{lesson_id}.json").read_text(encoding="utf-8")
             return ["metadata: is not valid JSON"] if text == "{\n" else []
 
@@ -527,7 +527,7 @@ class ClaimTests(Sessions):
         git(a, "commit", "--quiet", "-m", "two lessons")
         calls = []
 
-        def counted(store: Path, source_map: Path, lesson_id: str, cache: dict | None = None) -> list[str]:
+        def counted(store: Path, source_map: Path, lesson_id: str, cache: dict | None = None, boundary: Path | None = None) -> list[str]:
             calls.append((lesson_id, cache))  # kept alive, so that no two caches can share an address
             return []
 
@@ -595,6 +595,46 @@ class ClaimTests(Sessions):
         self.assertIn("sd-01-001 is marked written but the lesson files are not committed", err)
         self.assertEqual(pushed, git(self.tmp, "--git-dir", str(self.origin), "rev-parse", "claude/a"))
         self.assertEqual(0, run("touch", "--publish")[0], "the lessons are valid under the new map")
+
+    def test_the_pushed_tree_carries_the_whole_checkout_for_links_outside_the_store(self) -> None:
+        a = self.pushed_lesson("a")
+        (a / "NOTES.md").write_text("a file elsewhere in the checkout\n", encoding="utf-8")
+        git(a, "add", "-A")
+        git(a, "commit", "--quiet", "-m", "a file outside the store")
+        (a / "store" / "metadata" / "sd-01-001.json").write_text("{}\n", encoding="utf-8")
+        git(a, "commit", "--quiet", "-am", "a rework")
+        seen = []
+
+        def checker(store: Path, source_map: Path, lesson_id: str, cache: dict | None = None, boundary: Path | None = None) -> list[str]:
+            seen.append((boundary is not None and (boundary / "NOTES.md").is_file(), boundary is not None and store.is_relative_to(boundary)))
+            return []
+
+        with mock.patch.object(claims, "content_problems", side_effect=checker):
+            self.assertEqual(0, self.run_in(a, "claim", "sd-01-002", "--publish")[0])
+        self.assertEqual([(True, True)], seen)
+
+    def test_a_renewal_after_the_clock_went_backwards_never_predates_the_claim(self) -> None:
+        a = self.session("a")
+        self.at(hours=0.5)  # a clock that runs fast
+        self.assertEqual(0, self.run_in(a, "claim", "sd-01-001", "--publish")[0])
+        self.at(hours=0)  # corrected
+        self.assertEqual(0, self.run_in(a, "touch")[0])
+        entry = self.entry(a, "sd-01-001")
+        self.assertEqual(entry["claimed_at"], entry["heartbeat_at"])
+        self.assertEqual(0, self.run_in(a, "claim", "sd-01-001")[0], "the registry is still readable")
+
+    def test_a_repin_can_be_published_while_the_default_branch_still_has_the_old_pin(self) -> None:
+        a = self.session("a")
+        data = json.loads(self.source_map.read_text(encoding="utf-8"))
+        data["source_commit_sha"] = "c" * 40
+        self.source_map.write_text(json.dumps(data), encoding="utf-8")
+        self.assertEqual(0, self.run_in(a, "sync")[0])  # the work branch follows the new pin; origin/main keeps the old one
+        code, _, err = self.run_in(a, "claim", "sd-01-001", "--publish")
+        self.assertEqual(0, code, err)
+        b = self.session("b")  # another session follows the new pin too; origin/main is still on the old one
+        self.assertEqual(0, self.run_in(b, "sync")[0])
+        code, _, err = self.run_in(b, "claim", "sd-01-002")
+        self.assertEqual(0, code, err)
 
     def test_every_registry_must_use_the_same_lease(self) -> None:
         odd = self.session("odd")

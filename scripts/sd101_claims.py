@@ -744,11 +744,12 @@ def unfinished_commits(context: Context, lessons: dict[str, dict]) -> list[str]:
         if entry.get("status") != "written":
             continue
         files = lesson_files(context, lesson_id)
+        required = [f"{files[0]}/lesson.md", f"{files[0]}/lesson.yaml", files[2], files[3]]  # what the store checker requires
         if head.get(lesson_id) == entry:  # already advertised: a rework is fine, a committed deletion or rename is not
-            if git_text(context.root, "diff", "--no-renames", "--diff-filter=D", "--name-only", ref, "HEAD", "--", *files):
+            # T is a regular file turned into a symbolic link, which the checker rejects; the optional pointer may go
+            if git_text(context.root, "diff", "--no-renames", "--diff-filter=DT", "--name-only", ref, "HEAD", "--", *required):
                 out.append(lesson_id)
             continue
-        required = [f"{files[0]}/lesson.md", f"{files[0]}/lesson.yaml", files[2], files[3]]  # what the store checker requires
         in_head = all(git(context.root, "cat-file", "-e", f"HEAD:{path}", check=False).returncode == 0 for path in required)
         dirty = git_text(context.root, "status", "--porcelain", "--untracked-files=all", "--", *files)
         if not in_head or dirty:

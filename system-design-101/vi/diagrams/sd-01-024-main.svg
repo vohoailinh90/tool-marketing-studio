@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="630" viewBox="0 0 320 630" role="img" aria-labelledby="title desc"><title id="title">Đọc số phiên bản theo SemVer</title><desc id="desc">Ba thẻ dọc với ví dụ độc lập do bài thiết kế.</desc><rect width="320" height="630" fill="#f8fafc"/><g font-family="Arial, sans-serif" font-size="16" fill="#0f172a">
+<text x="16" y="32" font-size="20" font-weight="bold">MAJOR.MINOR.PATCH</text>
+<rect x="12" y="65" width="296" height="150" rx="12" fill="#dbeafe"/>
+<text x="22" y="94" font-weight="bold">Sửa lỗi</text>
+<text x="22" y="124">2.4.7 → 2.4.8</text>
+<text x="22" y="154">Giữ tương thích API công khai.</text>
+<rect x="12" y="235" width="296" height="150" rx="12" fill="#dcfce7"/>
+<text x="22" y="264" font-weight="bold">Thêm tính năng</text>
+<text x="22" y="294">2.4.7 → 2.5.0</text>
+<text x="22" y="324">Tương thích; PATCH về 0.</text>
+<rect x="12" y="405" width="296" height="150" rx="12" fill="#fef3c7"/>
+<text x="22" y="434" font-weight="bold">Thay đổi phá tương thích</text>
+<text x="22" y="464">2.4.7 → 3.0.0</text>
+<text x="22" y="494">MINOR và PATCH về 0.</text>
+<text x="16" y="610">Ba hướng từ cùng bản 2.4.7</text></g></svg>

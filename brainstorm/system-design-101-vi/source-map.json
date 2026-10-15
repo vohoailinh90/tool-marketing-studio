@@ -243,21 +243,21 @@
         },
         {
           "id": "sd-01-024",
-          "title_vi": null,
+          "title_vi": "Đọc số phiên bản theo SemVer",
           "title_source": "What do version numbers mean?",
           "source_url": "https://bytebytego.com/guides/what-do-version-numbers-mean",
           "source_path": "data/guides/what-do-version-numbers-mean.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "0a598471f15722278ba9cd4e499b41a0312d12d1",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-do-version-numbers-mean.md"
         },
         {
           "id": "sd-01-025",
-          "title_vi": null,
+          "title_vi": "Tách các thành phần của URL",
           "title_source": "Do you know all the components of a URL?",
           "source_url": "https://bytebytego.com/guides/do-you-know-all-the-components-of-a-url",
           "source_path": "data/guides/do-you-know-all-the-components-of-a-url.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "ef790d94e564b33ea7966995cd9d6c4d009c4858",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/do-you-know-all-the-components-of-a-url.md"
         },

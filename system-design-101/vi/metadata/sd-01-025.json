@@ -1,0 +1,62 @@
+{
+  "id": "sd-01-025",
+  "title_vi": "Tách các thành phần của URL",
+  "language": "vi",
+  "kind": "concept",
+  "content_status": "draft",
+  "source_ref": "sd-01-025",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/do-you-know-all-the-components-of-a-url.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/do-you-know-all-the-components-of-a-url.md",
+    "blob_sha": "ef790d94e564b33ea7966995cd9d6c4d009c4858",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "e2240f8a9bdca594fe02a51428459b5f1e1def280f4a3ead2f3e461449f691b0",
+    "retrieved_body_bytes": 1065
+  },
+  "diagram": "../diagrams/sd-01-025-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-15"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-15",
+      "evidence": "Đọc RFC 3986 §3.2 authority host-colon-port, §3.4 query và §3.5 fragment tách trước dereference; không coi mọi query là key/value."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "new lesson awaiting current-head review"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-15",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "evidence": "Chromium cục bộ, toàn bài với details mở tại 320/375/430 px; không tràn ngang, không chữ SVG ngoài viewBox, chữ SVG nhỏ nhất 14.4/16/16 px; đã xem ảnh 320 px. Chưa kiểm GitHub/thiết bị thật/người học."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Đọc RFC 3986 §3.2 authority host-colon-port, §3.4 query và §3.5 fragment tách trước dereference; không coi mọi query là key/value.",
+      "source": "https://www.rfc-editor.org/rfc/rfc3986.html"
+    }
+  ],
+  "design_notes_vi": "Ba thẻ dọc nguyên bản; ví dụ tự đặt, không dùng hoặc trace hình nguồn.",
+  "editorial_note_vi": "Giới hạn phạm vi theo tài liệu chính thức; draft, chưa thử người học.",
+  "source_deviations": [
+    "Body nguồn ghi dấu chấm tách host/port; bài sửa thành dấu hai chấm theo RFC 3986 §3.2."
+  ]
+}

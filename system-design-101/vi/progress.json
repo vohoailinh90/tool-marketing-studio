@@ -26,6 +26,8 @@
     "sd-01-021",
     "sd-01-022",
     "sd-01-023",
+    "sd-01-024",
+    "sd-01-025",
     "sd-03-001",
     "sd-03-002",
     "sd-03-003",
@@ -95,14 +97,15 @@
     "sd-15-012"
   ],
   "reviewed_ids": [],
-  "next_id": "sd-01-024",
+  "next_id": "sd-01-026",
   "active_batch_ids": [
-    "sd-01-023"
+    "sd-01-024",
+    "sd-01-025"
   ],
   "active_pr": null,
   "updated_on": "2026-10-15",
-  "active_branch": "codex/sd01-023-gateway-use-cases",
-  "previous_pr": 73,
+  "active_branch": "codex/sd01-024-025",
+  "previous_pr": 75,
   "superseded_pr": 24,
   "integration_review_pending": true,
   "adopted_main_sha": "e4af7d6fd2b977ac29cefb355d565240693c1993",
@@ -117,8 +120,20 @@
   ],
   "repository": "vohoailinh90/tool-marketing-studio",
   "previous_repository": "vohoailinh90/Agentic-coding-course",
-  "destination_base_sha": "e4af7d6fd2b977ac29cefb355d565240693c1993",
+  "destination_base_sha": "15464281c08b5a414cb220a32ee0712d958108e6",
   "migration_source_sha": "b8dff434ff75499137bbb10b61122958fdaaafa5",
   "previous_repository_main_sha": "89186c1a1aeb90a47e2a563fdc7786b2dacec787",
-  "last_merged_pr": 73
+  "last_merged_pr": 73,
+  "pending_ci_prs": [
+    {
+      "pr": 75,
+      "head_sha": "15464281c08b5a414cb220a32ee0712d958108e6",
+      "base_sha": "e4af7d6fd2b977ac29cefb355d565240693c1993",
+      "run_id": 38714324531,
+      "status": "queued",
+      "review_id": 6189117443,
+      "review_status": "clean",
+      "checked_on": "2026-10-15"
+    }
+  ]
 }

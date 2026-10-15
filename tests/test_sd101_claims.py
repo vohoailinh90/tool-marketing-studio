@@ -729,6 +729,24 @@ class ClaimTests(Sessions):
         self.assertIn("sd-01-001: metadata/sd-01-001.json does not exist yet", err)
         self.assertEqual(before, (b / REGISTRY).read_text(encoding="utf-8"), "the owner did not change")
 
+    def test_a_stale_checkout_cannot_claim_a_lesson_the_default_branch_dropped(self) -> None:
+        a = self.mapped_clone("a")  # cut while sd-01-004 was still in the map
+        seed = self.tmp / "seed"
+        data = json.loads((seed / "source-map.json").read_text(encoding="utf-8"))
+        data["categories"][0]["lessons"] = [lesson for lesson in data["categories"][0]["lessons"] if lesson["id"] != "sd-01-004"]
+        (seed / "source-map.json").write_text(json.dumps(data), encoding="utf-8")
+        out, err = io.StringIO(), io.StringIO()
+        with contextlib.redirect_stdout(out), contextlib.redirect_stderr(err):
+            self.assertEqual(0, claims.main(["--store", str(seed / "store"), "--source-map", str(seed / "source-map.json"), "sync"]))
+        git(seed, "add", "-A")
+        git(seed, "commit", "--quiet", "-m", "the roster dropped sd-01-004")
+        git(seed, "push", "--quiet", "origin", "main")
+        code, _, err = self.run_mapped(a, "claim", "sd-01-004", "--publish")
+        self.assertEqual(1, code, err)
+        self.assertIn("the default branch removed sd-01-004 from the source map", err)
+        self.assertNotIn("sd-01-004", self.run_mapped(a, "next", "--group", "sd-01")[1].split(), "nor is it offered")
+        self.assertEqual(0, self.run_mapped(a, "claim", "sd-01-001")[0], "the rest of the roster is untouched")
+
     def test_adoption_does_not_hide_a_shared_source_conflict(self) -> None:
         a, b = self.mapped_clone("a"), self.mapped_clone("b")
         self.assertEqual(0, self.run_mapped(b, "claim", "sd-02-001")[0])  # b's claim on one half is not visible yet

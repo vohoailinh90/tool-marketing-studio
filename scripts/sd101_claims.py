@@ -779,8 +779,26 @@ def cmd_status(context: Context, args: argparse.Namespace) -> int:
     return 0
 
 
+def removed_upstream(context: Context) -> set[str]:
+    """Lessons the default branch dropped from its source map after this branch was cut: a checkout that still has the
+    old map would otherwise take, write and publish a lesson the roster no longer holds. A lesson added on this branch
+    (it was never in the map at the fork point) is not one of them."""
+    if context.offline or source_map_in_checkout(context) is None:
+        return set()
+    try:
+        base_ref = f"refs/remotes/{context.remote}/{default_branch(context.root, context.remote)}"
+    except ClaimsError:
+        return set()
+    forked = git(context.root, "merge-base", "HEAD", base_ref, check=False)
+    current, then = source_at(context, base_ref), (source_at(context, forked.stdout.decode().strip()) if forked.returncode == 0 else None)
+    if current is None or then is None:
+        return set()
+    return {lesson_id for lesson_id, _ in then.lessons} - {lesson_id for lesson_id, _ in current.lessons}
+
+
 def free_lessons(context: Context, found: dict[str, list[Holding]], lease: int, group: str | None, count: int,
                  take_stale: bool = False, allow_same_source: bool = False, exclude: tuple[str, ...] = ()) -> list[str]:
+    exclude = (*exclude, *removed_upstream(context))
     chosen: list[str] = []
     for lesson_id, _ in context.source.lessons:
         if len(chosen) >= count:
@@ -1075,6 +1093,10 @@ def cmd_claim(context: Context, args: argparse.Namespace) -> int:
         print("claim: no free lesson to claim", file=sys.stderr)
         return 1
     check_ids(context, lessons, ids)
+    if gone := [lesson_id for lesson_id in ids if lesson_id in removed_upstream(context)]:
+        print(f"claim refused, nothing was written: the default branch removed {', '.join(gone)} from the source map after "
+              "this branch was cut; merge it into this branch first", file=sys.stderr)
+        return 1
     refused, takes = [], {}
     for lesson_id in ids:
         reason, taken = refusal(lesson_id, found, context.source, context.me, context.now, lease, args.take_stale,

@@ -28,6 +28,9 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 17. [REST API hoạt động thế nào?](lessons/sd-01-017/lesson.md)
 18. [Load Balancer và API Gateway](lessons/sd-01-018/lesson.md)
 19. [GraphQL tại LinkedIn](lessons/sd-01-019/lesson.md)
+20. [Các cách đưa GraphQL vào hệ thống](lessons/sd-01-020/lesson.md)
+21. [Bảng tra cứu thiết kế API](lessons/sd-01-021/lesson.md)
+22. [Nhập môn API Gateway](lessons/sd-01-022/lesson.md)
 
 ## AI và học máy
 

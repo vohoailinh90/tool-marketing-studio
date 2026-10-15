@@ -1,0 +1,109 @@
+{
+  "id": "sd-01-021",
+  "title_vi": "Bảng tra cứu thiết kế API",
+  "language": "vi",
+  "kind": "reference",
+  "content_status": "draft",
+  "source_ref": "sd-01-021",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/a-cheat-sheet-for-api-designs.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/a-cheat-sheet-for-api-designs.md",
+    "blob_sha": "1e51e00a07bdb56e2ab1772d618f234aab41207b",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "16967efeb7dcede42da15b5798933392c7925927a4f6271378c7f1515ab9caa6",
+    "retrieved_body_bytes": 1852
+  },
+  "diagram": "../diagrams/sd-01-021-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-01-015",
+      "relation": "see_also",
+      "reason_vi": "Gợi ý thiết kế API hiệu quả."
+    },
+    {
+      "lesson_id": "sd-01-017",
+      "relation": "see_also",
+      "reason_vi": "REST API hoạt động thế nào."
+    },
+    {
+      "lesson_id": "sd-01-030",
+      "relation": "see_also",
+      "reason_vi": "Bảng tra cứu xây API an toàn."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-15"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-15",
+      "evidence": "Đối chiếu 2026-10-15: body ByteByteGo ghim xác nhận cấp khóa, chuỗi cần ký và các tham số, dừng sau câu dẫn Security guidelines. RFC 2104 xác nhận MAC dùng khóa chung; RFC 6750 abstract/§1.2 xác nhận bearer token; AWS SigV4 và Create a signed AWS API request xác nhận canonical request, HMAC-SHA256 và khóa ký dẫn xuất; OWASP API1:2023 xác nhận cần kiểm quyền theo đối tượng. Phân biệt xác thực và phân quyền là lập luận của bài; cửa sổ năm phút là giả định bài tập, không phải quy tắc chung."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "not_yet_reviewed"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-15",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "evidence": "Chromium cục bộ, Markdown toàn bài và SVG inline; mở mọi details. Không cuộn ngang, không text SVG ngoài viewBox; chữ SVG nhỏ nhất hiệu dụng 14.4/16/16 px ở 320/375/430 px. Đã xem screenshot toàn bài 320 px sau cập nhật. Không phải kiểm tra GitHub, điện thoại thật hay thử người học."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Theo nguồn, mỗi client được cấp một mã ứng dụng (app ID) và các cặp khóa khác nhau cho các quyền khác nhau, ví dụ một cặp chỉ đọc và một cặp đọc ghi.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/a-cheat-sheet-for-api-designs.md"
+    },
+    {
+      "claim_vi": "Theo nguồn, tạo chữ ký gồm thu thập tham số, tạo chuỗi cần ký, băm chuỗi bằng HMAC kết hợp SHA-256 với khóa bí mật, rồi gửi yêu cầu.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/a-cheat-sheet-for-api-designs.md"
+    },
+    {
+      "claim_vi": "Theo nguồn, tham số của yêu cầu nên có thông tin xác thực, thời điểm (timestamp) để chống phát lại, dữ liệu riêng của yêu cầu và nonce là chuỗi ngẫu nhiên giúp mỗi yêu cầu là duy nhất.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/a-cheat-sheet-for-api-designs.md"
+    },
+    {
+      "claim_vi": "HMAC là cơ chế xác thực thông điệp dùng hàm băm và một khóa bí mật chung; ai không có khóa thì không tính được giá trị đúng.",
+      "source": "https://www.rfc-editor.org/rfc/rfc2104"
+    },
+    {
+      "claim_vi": "Token mang danh (bearer token) dùng được bởi bất kỳ bên nào nắm giữ nó, nên phải được bảo vệ khi lưu và khi truyền.",
+      "source": "https://www.rfc-editor.org/rfc/rfc6750"
+    },
+    {
+      "claim_vi": "AWS Signature Version 4 ký yêu cầu bằng HMAC với SHA-256 trên một dạng chuẩn hóa của yêu cầu; khóa ký được dẫn xuất từ khóa bí mật theo ngày, vùng và dịch vụ chứ không dùng trực tiếp khóa bí mật.",
+      "sources": [
+        "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_sigv.html",
+        "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_sigv-create-signed-request.html"
+      ]
+    },
+    {
+      "claim_vi": "OWASP API Security Top 10 (2023) liệt kê lỗi kiểm quyền ở cấp đối tượng (Broken Object Level Authorization) là rủi ro số 1, và chữ ký yêu cầu không chữa được lỗi này.",
+      "source": "https://owasp.org/API-Security/editions/2023/en/0x11-t10/"
+    }
+  ],
+  "design_notes_vi": "Năm khung dọc: cấp khóa, ký, tham số, máy chủ kiểm, những việc chữ ký không làm thay. Sơ đồ tự thiết kế, không dùng ảnh nguồn.",
+  "editorial_note_vi": "Viết độc lập theo DECISIONS.md; đã đối chiếu các claim liệt kê trong metadata, giữ riêng attribution nguồn và suy luận thiết kế. Review kỹ thuật của head sau cập nhật còn chờ; chưa thử người học hoặc phê duyệt phát hành.",
+  "source_deviations": [
+    "Bản chữ của nguồn dừng ngay sau câu dẫn của mục hướng dẫn bảo mật; nội dung mục này nếu có thì nằm trong hình gốc và bài không suy diễn nó.",
+    "Nguồn gọi mã truy cập là public key; bài ghi rõ đó chỉ là định danh trong cách ký bằng HMAC, không phải khóa công khai của mật mã bất đối xứng.",
+    "Hai khung 'Máy chủ kiểm tra' và 'Chữ ký không làm thay' do bài bổ sung từ cách các dịch vụ ký yêu cầu, không có trong bản chữ của nguồn.",
+    "Ý 'khóa bí mật không cần gửi đi' là suy luận của bài, không phải lời của nguồn.",
+    "Câu hỏi ví dụ đặt cửa sổ thời điểm là năm phút để đáp án xác định; đó là giả định của bài, độ dài cửa sổ do mỗi dịch vụ chọn."
+  ]
+}

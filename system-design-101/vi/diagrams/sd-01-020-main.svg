@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 799" width="320" height="799" role="img" aria-labelledby="title desc">
+<title id="title">Bốn cách đưa GraphQL vào hệ thống</title>
+<desc id="desc">Năm khung dọc: điểm xuất phát là một ứng dụng client hỏi một máy chủ GraphQL; GraphQL phía client bọc các API sẵn có sau một điểm vào nên người lập trình dễ làm việc hơn nhưng client vẫn chịu chi phí gom dữ liệu; GraphQL cùng BFF, mỗi loại client có một dịch vụ BFF riêng nên hiệu năng và trải nghiệm tốt hơn nhưng phải xây và duy trì thêm; GraphQL nguyên khối, nhiều nhóm dùng chung một mã nguồn hoặc một nhóm sở hữu một API cho nhiều nhóm client; GraphQL liên hợp, nhiều đồ thị gộp thành siêu đồ thị, cổng liên hợp định tuyến yêu cầu tới các dịch vụ con và dữ liệu vẫn thuộc nhóm lĩnh vực.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="799" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">GRAPHQL</text>
+<text x="16" y="56" font-size="20" font-weight="bold">BỐN CÁCH ĐƯA VÀO</text>
+<text x="16" y="86" font-size="16" font-weight="normal">Gom dữ liệu ở đâu, ai sở hữu</text>
+<rect x="16" y="108" width="288" height="104" rx="12" fill="#e2e8f0" stroke="#94a3b8"/>
+<text x="30" y="138" font-size="16" font-weight="bold">Điểm xuất phát</text>
+<text x="30" y="165" font-size="16" font-weight="normal">Một client hỏi một</text>
+<text x="30" y="192" font-size="16" font-weight="normal">máy chủ GraphQL</text>
+<rect x="16" y="226" width="288" height="104" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="256" font-size="16" font-weight="bold">1 · Phía client</text>
+<text x="30" y="283" font-size="16" font-weight="normal">Client bọc API sẵn có</text>
+<text x="30" y="310" font-size="16" font-weight="normal">Dễ làm; client vẫn gom dữ liệu</text>
+<rect x="16" y="344" width="288" height="104" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="374" font-size="16" font-weight="bold">2 · Cùng BFF</text>
+<text x="30" y="401" font-size="16" font-weight="normal">Mỗi client một dịch vụ BFF</text>
+<text x="30" y="428" font-size="16" font-weight="normal">Tốt hơn, tốn công duy trì</text>
+<rect x="16" y="462" width="288" height="104" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="492" font-size="16" font-weight="bold">3 · Nguyên khối</text>
+<text x="30" y="519" font-size="16" font-weight="normal">Một máy chủ GraphQL chung</text>
+<text x="30" y="546" font-size="16" font-weight="normal">Nhiều nhóm chung mã nguồn</text>
+<rect x="16" y="580" width="288" height="131" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="610" font-size="16" font-weight="bold">4 · Liên hợp</text>
+<text x="30" y="637" font-size="16" font-weight="normal">Nhiều đồ thị → siêu đồ thị</text>
+<text x="30" y="664" font-size="16" font-weight="normal">Cổng định tuyến tới dịch vụ con</text>
+<text x="30" y="691" font-size="16" font-weight="normal">Dữ liệu thuộc nhóm lĩnh vực</text>
+<text x="16" y="753" font-size="16" font-weight="normal">Mỗi cách đặt chi phí</text>
+<text x="16" y="779" font-size="16" font-weight="normal">ở một chỗ khác.</text>
+</g></svg>

@@ -192,7 +192,7 @@ mutations:
   replace: ':'
   test: tests.test_sd101_claims.LeaseTests.test_a_session_that_takes_back_a_lesson_it_once_held_starts_a_new_claim_that_wins
 - label: two takeovers of each other are both won by the earlier claim
-  find: "        return (first.claimed_at or \"\", first.owner or \"\") > (second.claimed_at or \"\", second.owner or \"\")\n    if first_took:"
+  find: "        return ((first.generation, first.claimed_at or \"\", first.owner or \"\")\n                > (second.generation, second.claimed_at or \"\", second.owner or \"\"))\n    if first_took:"
   replace: "        return True\n    if first_took:"
   test: tests.test_sd101_claims.LeaseTests.test_a_session_that_takes_back_a_lesson_it_once_held_starts_a_new_claim_that_wins
 - label: claiming a held half again with --allow-same-source does not record the override

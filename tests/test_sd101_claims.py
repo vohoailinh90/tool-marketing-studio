@@ -1050,6 +1050,7 @@ class RemoteTests(Sessions):
         before = (a / REGISTRY).read_text(encoding="utf-8")
         code, _, err = self.run_in(a, "--remote", "nowhere", "claim", "sd-01-001")
         self.assertEqual(2, code)
+        self.assertIn("cannot read the other sessions' claims from nowhere", err)
         self.assertIn("nothing was decided", err)
         self.assertEqual(before, (a / REGISTRY).read_text(encoding="utf-8"))
         self.assertEqual(0, self.run_in(a, "--offline", "claim", "sd-01-001")[0])

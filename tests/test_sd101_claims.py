@@ -115,6 +115,14 @@ class ClaimTests(Sessions):
         self.assertEqual("claude/b", self.entry(b, "sd-01-003")["owner"])
         self.assertEqual("todo", self.entry(b, "sd-01-005")["status"])
 
+    def test_next_adds_to_the_lessons_named_and_never_repeats_them(self) -> None:
+        a = self.session("a")
+        code, out, err = self.run_in(a, "claim", "sd-01-001", "sd-01-001", "--next", "2")
+        self.assertEqual(0, code, err)
+        self.assertIn("claimed sd-01-001, sd-01-002, sd-01-003 as claude/a", out)
+        self.assertEqual(["sd-01-001", "sd-01-002", "sd-01-003"],
+                         [lid for lid, _ in LESSONS if self.entry(a, lid)["status"] == "doing"])
+
     def test_a_claim_is_all_or_nothing(self) -> None:
         a, b = self.session("a"), self.session("b")
         self.run_in(a, "claim", "sd-01-001", "--publish")
@@ -348,6 +356,27 @@ class RemoteTests(Sessions):
         code, _, err = self.run_in(a, "status")
         self.assertEqual(0, code, "reporting is not deciding")
         self.assertIn("could not be parsed", err)
+
+    def test_a_branch_whose_registry_parses_but_holds_an_invalid_record_stops_the_decision(self) -> None:
+        a = self.session("a")
+        self.run_in(a, "claim", "sd-01-001", "--publish")
+        original = git(a, "rev-parse", "HEAD")
+        for name, damage in (("status typo", ('"status": "doing"', '"status": "doign"')),
+                             ("no owner", ('"owner": "claude/a", ', "")),
+                             ("bad heartbeat", ('"heartbeat_at": "2026-10-15T08:00:00Z"', '"heartbeat_at": "soon"'))):
+            with self.subTest(name):
+                text = (a / REGISTRY).read_text(encoding="utf-8")
+                self.assertIn(damage[0], text)
+                (a / REGISTRY).write_text(text.replace(*damage), encoding="utf-8")
+                git(a, "commit", "--quiet", "-am", "damage")
+                git(a, "push", "--quiet", "origin", "claude/a")
+                b = self.session(f"b-{name.replace(' ', '-')}")
+                code, _, err = self.run_in(b, "claim", "sd-01-001")
+                self.assertEqual(2, code)
+                self.assertIn("origin/claude/a", err)
+                self.assertEqual("todo", self.entry(b, "sd-01-001")["status"])
+                git(a, "reset", "--quiet", "--hard", original)  # each damage is judged on its own
+                git(a, "push", "--quiet", "-f", "origin", "claude/a")
 
     def test_publish_with_an_owner_that_is_not_the_branch_is_refused_before_anything_is_written(self) -> None:
         a = self.session("a")

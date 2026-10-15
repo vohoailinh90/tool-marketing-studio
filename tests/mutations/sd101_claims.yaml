@@ -118,3 +118,13 @@ mutations:
   find: 'if unreadable and not tolerate and not context.ignore_unreadable:'
   replace: 'if False:'
   test: tests.test_sd101_claims.RemoteTests.test_a_branch_whose_registry_cannot_be_parsed_stops_the_decision
+- label: a record with an invalid field on a remote branch is trusted
+  find: '        problems += record_problems(lessons)  # a typo in a status would otherwise hide the claim it sits in
+
+    '
+  replace: ''
+  test: tests.test_sd101_claims.RemoteTests.test_a_branch_whose_registry_parses_but_holds_an_invalid_record_stops_the_decision
+- label: --next may pick a lesson that was named explicitly
+  find: '                            exclude=tuple(ids))'
+  replace: '                            exclude=())'
+  test: tests.test_sd101_claims.ClaimTests.test_next_adds_to_the_lessons_named_and_never_repeats_them

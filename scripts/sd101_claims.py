@@ -197,6 +197,11 @@ def entry_problems(entry: dict) -> list[str]:
     return problems
 
 
+def record_problems(lessons: dict[str, dict]) -> list[str]:
+    """Every reason a record of a parsed registry is not a valid claim record, as `<id>: <reason>`."""
+    return [f"{lesson_id}: {reason}" for lesson_id, entry in lessons.items() for reason in entry_problems(entry)]
+
+
 def registry_problems(text: str, expected: list[tuple[str, str]], pin_commit: str | None,
                       on_disk: set[str]) -> list[str]:
     """Every reason `text` is not the registry of `expected` (source-map id, title) pairs for the lessons `on_disk`."""
@@ -381,6 +386,7 @@ def gather(local: dict[str, dict], remote: dict[str, str], base: str, me: str,
             add(entry, "this working tree")
     for branch, text in remote.items():
         _, lessons, problems = parse(text)
+        problems += record_problems(lessons)  # a typo in a status would otherwise hide the claim it sits in
         if problems:
             unreadable.append(f"origin/{branch} ({problems[0]})")
         for entry in lessons.values():
@@ -471,6 +477,7 @@ def load_registry(context: Context) -> tuple[dict, dict[str, dict]]:
     except OSError as error:
         raise ClaimsError(f"cannot read {context.path}: {error} (run sd101_claims.py sync to create it)") from error
     header, lessons, problems = parse(text)
+    problems += record_problems(lessons)
     if problems:
         raise ClaimsError(f"{context.path.name} is not readable: {problems[0]}")
     return header, lessons
@@ -583,12 +590,12 @@ def cmd_status(context: Context, args: argparse.Namespace) -> int:
 
 
 def free_lessons(context: Context, found: dict[str, list[Holding]], lease: int, group: str | None, count: int,
-                 take_stale: bool = False, allow_same_source: bool = False) -> list[str]:
+                 take_stale: bool = False, allow_same_source: bool = False, exclude: tuple[str, ...] = ()) -> list[str]:
     chosen: list[str] = []
     for lesson_id, _ in context.source.lessons:
         if len(chosen) >= count:
             break
-        if group and not lesson_id.startswith(group + "-"):
+        if lesson_id in exclude or (group and not lesson_id.startswith(group + "-")):
             continue
         if any(h.status == "written" or h.owner == context.me for h in found.get(lesson_id, [])):
             continue
@@ -663,9 +670,10 @@ def cmd_claim(context: Context, args: argparse.Namespace) -> int:
     header, lessons = load_registry(context)
     lease = lease_of(header)
     found, _ = world_of(context, lessons)
-    ids = list(args.ids)
+    ids = list(dict.fromkeys(args.ids))
     if args.count:
-        ids += free_lessons(context, found, lease, args.group, args.count, args.take_stale, args.allow_same_source)
+        ids += free_lessons(context, found, lease, args.group, args.count, args.take_stale, args.allow_same_source,
+                            exclude=tuple(ids))
     if not ids:
         print("claim: no free lesson to claim", file=sys.stderr)
         return 1

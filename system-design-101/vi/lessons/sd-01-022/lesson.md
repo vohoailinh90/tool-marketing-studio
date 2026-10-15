@@ -7,7 +7,7 @@
 ## Đọc hình
 
 1. **Điểm vào chung.** Gateway ở giữa client và máy chủ phía sau, quản lý và tối ưu lưu lượng API. Theo suy luận của bài, client chỉ cần biết địa chỉ của gateway.
-2. **Định tuyến và cân bằng tải.** Định tuyến yêu cầu (request routing) đưa mỗi yêu cầu tới đúng dịch vụ phía sau. Cân bằng tải (load balancing) rải yêu cầu qua nhiều máy chủ để không máy nào bị quá tải.
+2. **Định tuyến và cân bằng tải.** Định tuyến yêu cầu (request routing) đưa mỗi yêu cầu tới đúng dịch vụ phía sau. Cân bằng tải (load balancing) phân bố yêu cầu giữa nhiều máy chủ; nếu tổng nhu cầu vượt năng lực phục vụ thì các máy vẫn có thể quá tải.
 3. **Bảo mật, giới hạn tốc độ.** Gateway áp các biện pháp như xác thực (biết người gọi là ai), phân quyền (người đó được làm gì) và mã hóa dữ liệu. Giới hạn tốc độ (rate limiting) và làm chậm (throttling) kiểm soát số yêu cầu một client được gửi trong một khoảng thời gian.
 4. **Gom API và cache.** Gom API (API composition) kết hợp nhiều lời gọi tới các dịch vụ phía sau thành một yêu cầu phía trước để tối ưu hiệu năng. Cache lưu phản hồi tạm thời để khỏi xử lý lặp lại.
 5. **Cái giá.** Khung này do bài bổ sung, không có trong nguồn: gateway thêm một chặng mạng, và nếu chỉ chạy một bản thì nó thành điểm đơn lỗi cho mọi API phía sau.
@@ -31,7 +31,7 @@ Lợi: việc chung được làm một lần, chính sách đồng nhất, dị
 <summary>Xem sâu hơn</summary>
 
 - **Giới hạn tốc độ và làm chậm:** nhiều sản phẩm dùng hai từ gần như đồng nghĩa. Cách hiểu thường gặp: giới hạn tốc độ đặt mức tối đa số yêu cầu trong một khoảng thời gian (ví dụ theo khóa API), còn làm chậm là giảm hoặc từ chối khi tải vượt mức. Thuật toán hay dùng là token bucket (xô token) và cửa sổ trượt. Mức này thường là mục tiêu theo nỗ lực tối đa chứ không phải trần tuyệt đối: tài liệu của AWS API Gateway nói rõ giới hạn của họ có tính chất đó, nên đừng coi chúng là bảo đảm một dịch vụ phía sau không bao giờ quá tải.
-- **Cân bằng tải ở gateway:** gateway có thể tự chọn một trong các bản chạy của dịch vụ, hoặc đứng sau một bộ cân bằng tải riêng; cách xếp nào còn tùy sản phẩm.
+- **Cân bằng tải ở gateway:** gateway có thể tự chọn một trong các bản chạy của dịch vụ, hoặc chuyển yêu cầu tới bộ cân bằng tải phía sau để bộ đó chọn bản chạy. Một bộ cân bằng tải phía trước gateway lại chia tải giữa các bản sao của gateway; cách xếp tùy sản phẩm.
 - **Gom API:** là mẫu "Gateway Aggregation" trong tài liệu kiến trúc của Microsoft, hợp khi client gọi nhiều dịch vụ cho một màn hình.
 - **Cache:** quy tắc cache của HTTP nằm ở RFC 9111; phản hồi riêng của từng người dùng thường dùng Cache-Control: private hoặc không lưu.
 
@@ -44,4 +44,4 @@ Lợi: việc chung được làm một lần, chính sách đồng nhất, dị
 - [Microsoft — mẫu Gateway Aggregation](https://learn.microsoft.com/en-us/azure/architecture/patterns/gateway-aggregation) và [mẫu Gateway Routing](https://learn.microsoft.com/en-us/azure/architecture/patterns/gateway-routing).
 - [AWS — API Gateway, giới hạn tốc độ](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-request-throttling.html).
 
-Đã đọc bản nguồn ByteByteGo ngày 2026-10-15; các tài liệu nêu trên chưa được mở để đối chiếu trực tiếp trong lượt biên soạn này. Bài viết và hình được thiết kế độc lập.
+Đã đọc body nguồn ByteByteGo ghim và đối chiếu các claim được liệt kê trong metadata ngày 2026-10-15. Phạm vi và giới hạn evidence nằm trong metadata; các đánh đổi và giả định của bài được ghi riêng. Bài viết và hình được thiết kế độc lập; chưa thử với người học.

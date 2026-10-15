@@ -109,5 +109,15 @@
   "destination_base_sha": "584c91dc890267eba705fe8cf3c1f6a53a30cefc",
   "migration_source_sha": "b8dff434ff75499137bbb10b61122958fdaaafa5",
   "previous_repository_main_sha": "89186c1a1aeb90a47e2a563fdc7786b2dacec787",
-  "last_merged_pr": 62
+  "last_merged_pr": 62,
+  "pending_ci_prs": [
+    {
+      "pr": 73,
+      "head_sha": "599ddb96f5d8c91263e93c04c76153059f6951ec",
+      "base_sha": "584c91dc890267eba705fe8cf3c1f6a53a30cefc",
+      "run_id": 38694878874,
+      "status": "queued",
+      "evidence_scope": "historical snapshot before this content/evidence edit; recheck current head, not success"
+    }
+  ]
 }

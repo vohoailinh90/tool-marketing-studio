@@ -40,16 +40,25 @@
       "checked_on": "2026-10-15"
     },
     "claims": {
-      "status": "pending",
-      "reason": "standards_and_docs_hosts_unreachable_from_authoring_environment"
+      "status": "checked",
+      "checked_on": "2026-10-15",
+      "evidence": "Đối chiếu 2026-10-15: body ByteByteGo ghim xác nhận cấp khóa, chuỗi cần ký và các tham số, dừng sau câu dẫn Security guidelines. RFC 2104 xác nhận MAC dùng khóa chung; RFC 6750 abstract/§1.2 xác nhận bearer token; AWS SigV4 và Create a signed AWS API request xác nhận canonical request, HMAC-SHA256 và khóa ký dẫn xuất; OWASP API1:2023 xác nhận cần kiểm quyền theo đối tượng. Phân biệt xác thực và phân quyền là lập luận của bài; cửa sổ năm phút là giả định bài tập, không phải quy tắc chung."
     },
     "technical_review": {
       "status": "pending",
       "reason": "not_yet_reviewed"
     },
     "mobile": {
-      "status": "pending",
-      "reason": "figure drawn with 16px text in a 320px-wide viewBox (about 14.4px at a 320px screen); no whole-lesson browser check and no automated check in the repository yet"
+      "status": "checked",
+      "checked_on": "2026-10-15",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "evidence": "Chromium cục bộ, Markdown toàn bài và SVG inline; mở mọi details. Không cuộn ngang, không text SVG ngoài viewBox; chữ SVG nhỏ nhất hiệu dụng 14.4/16/16 px ở 320/375/430 px. Đã xem screenshot toàn bài 320 px sau cập nhật. Không phải kiểm tra GitHub, điện thoại thật hay thử người học."
     },
     "user_testing": {
       "status": "not_performed"
@@ -89,7 +98,7 @@
     }
   ],
   "design_notes_vi": "Năm khung dọc: cấp khóa, ký, tham số, máy chủ kiểm, những việc chữ ký không làm thay. Sơ đồ tự thiết kế, không dùng ảnh nguồn.",
-  "editorial_note_vi": "Viết độc lập từ kiến thức và tiêu chuẩn kỹ thuật theo DECISIONS.md; claim chưa được đối chiếu trực tiếp với tài liệu chuẩn nên chờ review kỹ thuật. Chưa thử người học hoặc phê duyệt phát hành.",
+  "editorial_note_vi": "Viết độc lập theo DECISIONS.md; đã đối chiếu các claim liệt kê trong metadata, giữ riêng attribution nguồn và suy luận thiết kế. Review kỹ thuật của head sau cập nhật còn chờ; chưa thử người học hoặc phê duyệt phát hành.",
   "source_deviations": [
     "Bản chữ của nguồn dừng ngay sau câu dẫn của mục hướng dẫn bảo mật; nội dung mục này nếu có thì nằm trong hình gốc và bài không suy diễn nó.",
     "Nguồn gọi mã truy cập là public key; bài ghi rõ đó chỉ là định danh trong cách ký bằng HMAC, không phải khóa công khai của mật mã bất đối xứng.",

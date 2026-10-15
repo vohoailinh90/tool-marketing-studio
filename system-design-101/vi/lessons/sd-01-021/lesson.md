@@ -44,4 +44,4 @@ Không nên, vì hai giờ vượt xa cửa sổ năm phút của dịch vụ n�
 - [AWS — Signature Version 4](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_sigv.html) và [các bước tạo yêu cầu có ký](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_sigv-create-signed-request.html).
 - [OWASP — API Security Top 10 (2023)](https://owasp.org/API-Security/editions/2023/en/0x11-t10/).
 
-Đã đọc bản nguồn ByteByteGo ngày 2026-10-15; các tài liệu nêu trên chưa được mở để đối chiếu trực tiếp trong lượt biên soạn này. Bài viết và hình được thiết kế độc lập.
+Đã đọc body nguồn ByteByteGo ghim và đối chiếu các claim được liệt kê trong metadata ngày 2026-10-15. Phạm vi và giới hạn evidence nằm trong metadata; các đánh đổi và giả định của bài được ghi riêng. Bài viết và hình được thiết kế độc lập; chưa thử với người học.

@@ -43,4 +43,4 @@ Không có một đáp án duy nhất; điều cần thấy là mỗi cách đ�
 - [Microsoft — mẫu Backends for Frontends](https://learn.microsoft.com/en-us/azure/architecture/patterns/backends-for-frontends) và [Sam Newman — Pattern: Backends For Frontends](https://samnewman.io/patterns/architectural/bff/).
 - [Apollo — Federation](https://www.apollographql.com/docs/graphos/schema-design/federated-schemas/federation).
 
-Đã đọc bản nguồn ByteByteGo ngày 2026-10-15; các tài liệu nêu trên chưa được mở để đối chiếu trực tiếp trong lượt biên soạn này. Bài viết và hình được thiết kế độc lập.
+Đã đọc body nguồn ByteByteGo ghim và đối chiếu các claim được liệt kê trong metadata ngày 2026-10-15. Phạm vi và giới hạn evidence nằm trong metadata; các đánh đổi và giả định của bài được ghi riêng. Bài viết và hình được thiết kế độc lập; chưa thử với người học.

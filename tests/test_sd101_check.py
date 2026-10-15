@@ -1893,6 +1893,8 @@ class AbbreviationRuleTests(StoreCase):
         self.assertFalse(check.spells("EdDSA", "Edwards Digital Signature Algorithm"))
         self.assertTrue(check.spells("NetBIOS", "Network Basic Input/Output System"))
         self.assertFalse(check.spells("NetBIOS", "Network Input/Output System"))
+        self.assertTrue(check.spells("ETag", "Entity Tag"))
+        self.assertFalse(check.spells("ETag", "Electronic Tag"))
         self.lesson("Bộ nhớ tối thiểu 19 MiB.", glossary=None)
         self.assertProblem("uses the abbreviation(s) MiB")
         self.lesson("Bộ nhớ tối thiểu 19 MiB.", glossary="- **MiB** (Mebibyte) — mebibyte: đơn vị dung lượng bằng 1.048.576 byte.\n")
@@ -1900,6 +1902,10 @@ class AbbreviationRuleTests(StoreCase):
 
     def test_a_recursive_name_gives_its_first_letter(self) -> None:
         self.assertTrue(check.spells("gRPC", "gRPC Remote Procedure Calls"))
+        for abbreviation, full_form in (("API", "API Programming Interface"), ("LLM", "LLM Language Model"),
+                                        ("DNS", "DNS Name System"), ("TLS", "Transport TLS Security")):
+            with self.subTest(abbreviation=abbreviation):  # the abbreviation written again does not spell itself
+                self.assertFalse(check.spells(abbreviation, full_form))
 
     def test_accents_are_dropped_and_dj_is_read_as_d(self) -> None:
         self.assertTrue(check.spells("DV", "đơn vị"))
@@ -2203,6 +2209,7 @@ class AbbreviationRuleTests(StoreCase):
         self.assertEqual({"vCPU", "MiB", "OAuth", "gRPC", "IPv4", "NoSQL", "API"},
                          check.abbreviations_in("16 vCPUs, 4 MiBs, OAuth2, gRPCs, IPv4s, NoSQLs và API2."))
         self.assertEqual({"EdDSA", "NetBIOS"}, check.abbreviations_in("Ký bằng EdDSA, chia sẻ qua NetBIOS."))
+        self.assertEqual({"ETag"}, check.abbreviations_in("Cache-Control, ETag"))
         self.assertEqual({"DHCP", "TLS", "SHA"}, check.abbreviations_in("DHCPv4 và DHCPv6, TLSv1.3, SHA256."))
         for text in ("MAX_SIZE", "A80", "WebSocket", "I", "ĐƠN HÀNG", "TÓM", "myIPv4", "JavaScript", "GitHub",
                      "OAuthority", "vCPUx", "gRPCsx"):

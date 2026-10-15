@@ -180,10 +180,13 @@ IRREGULAR_FORMS = {"HPACK": "Header Compression for HTTP/2", "SLSA": "Supply-cha
                    "OpenID": "Open IDentity", "DevOps": "Development and Operations",
                    "DevSecOps": "Development, Security and Operations", "GitOps": "Git Operations", "NoOps": "No Operations",
                    "UTC": "Coordinated Universal Time", "EdDSA": "Edwards-curve Digital Signature Algorithm",
-                   "NetBIOS": "Network Basic Input/Output System"}
+                   "NetBIOS": "Network Basic Input/Output System", "ETag": "Entity Tag"}
+# Names whose full form starts with the name itself ("gRPC Remote Procedure Calls"): the repeated word gives its first letter.
+# Any other abbreviation written again in its own full form ("API Programming Interface") does not spell itself.
+RECURSIVE_NAMES = frozenset({"gRPC"})
 # Names made from the initials of what they stand for, with lowercase or digits inside, so that no run of capitals
 # shows them. A name that merely has capitals (JavaScript, GitHub, PostgreSQL) is not an abbreviation.
-MIXED_CASE_TERMS = ("gRPC", "IPv4", "IPv6", "OAuth", "mTLS", "NoSQL", "vCPU", "IaC", "MoE", "PaaS", "IaaS", "SaaS", "FaaS", "BaaS",
+MIXED_CASE_TERMS = ("gRPC", "ETag", "IPv4", "IPv6", "OAuth", "mTLS", "NoSQL", "vCPU", "IaC", "MoE", "PaaS", "IaaS", "SaaS", "FaaS", "BaaS",
                     "W3C", "SELinux", "WebAuthn", "OpenID", "DevOps", "DevSecOps", "GitOps", "NoOps", "EdDSA", "NetBIOS",
                     *UNIT_SYMBOLS)
 ABBREVIATION = re.compile(r"(?<!\w)(?:(" + "|".join(MIXED_CASE_TERMS) + r")|(\d*[A-Z]{2,}))(?:v?\d+)?s?(?!\w)")
@@ -1175,8 +1178,8 @@ def spells(abbreviation: str, full_form: str) -> bool:
 
     One initial per word and per camelCase hump (HyperText, JavaScript, REpresentational); an all-caps word gives its
     whole run or its first letter ("CSS Object Model" is CSSOM, "HTTP Strict Transport Security" is HSTS; a hidden
-    run works the same: "SYNchronize"); a word that is the abbreviation itself gives its first letter (a recursive
-    name: "gRPC Remote Procedure Calls"); digits are not letters, so the full form may leave a number out, but one it
+    run works the same: "SYNchronize"); a word that is the abbreviation itself gives its first letter only for a name
+    in RECURSIVE_NAMES ("gRPC Remote Procedure Calls"), and in any other full form it is refused; digits are not letters, so the full form may leave a number out, but one it
     writes must be the abbreviation's own ("version 4" for IPv4, never "version 6"; an abbreviation with no digits takes
     none: "Application Programming Interface 6" is not API), and so are the number words that may
     be left out (NUMBER_WORDS: "Two-Factor" for 2FA, never "Triple"; where the digits come first the full form holds no
@@ -1211,6 +1214,8 @@ def spells(abbreviation: str, full_form: str) -> bool:
             written += 1
             continue
         if word == abbreviation:
+            if abbreviation not in RECURSIVE_NAMES:
+                return False  # "API Programming Interface": the abbreviation written again does not spell itself
             pattern += word[0].upper()
             continue
         for hump in re.findall(r"[A-Z]+(?![a-z])|[A-Z][a-z]*|[a-z]+", word):

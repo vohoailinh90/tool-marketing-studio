@@ -2017,7 +2017,7 @@ mutations:
   replace: "except (OSError, LookupError):"
   test: tests.test_sd101_check.RobustnessTests.test_odd_svg_files_are_reported_not_raised
 - label: the mixed-case terms (gRPC, IPv4) are not recognised as abbreviations
-  find: "MIXED_CASE_TERMS = (\"gRPC\", \"IPv4\", \"IPv6\", \"OAuth\", \"mTLS\", \"NoSQL\", \"vCPU\", \"IaC\", \"MoE\", \"PaaS\", \"IaaS\", \"SaaS\", \"FaaS\", \"BaaS\",\n                    \"W3C\", \"SELinux\", \"WebAuthn\", \"OpenID\", \"DevOps\", \"DevSecOps\", \"GitOps\", \"NoOps\", \"EdDSA\", \"NetBIOS\",\n                    *UNIT_SYMBOLS)"
+  find: "MIXED_CASE_TERMS = (\"gRPC\", \"ETag\", \"IPv4\", \"IPv6\", \"OAuth\", \"mTLS\", \"NoSQL\", \"vCPU\", \"IaC\", \"MoE\", \"PaaS\", \"IaaS\", \"SaaS\", \"FaaS\", \"BaaS\",\n                    \"W3C\", \"SELinux\", \"WebAuthn\", \"OpenID\", \"DevOps\", \"DevSecOps\", \"GitOps\", \"NoOps\", \"EdDSA\", \"NetBIOS\",\n                    *UNIT_SYMBOLS)"
   replace: 'MIXED_CASE_TERMS = ("ZZZ",)'
   test: tests.test_sd101_check.AbbreviationRuleTests.test_the_forms_an_abbreviation_takes
 - label: a glossary bullet for a mixed-case term is not in the form
@@ -2057,9 +2057,21 @@ mutations:
   replace: '            elif False:'
   test: tests.test_sd101_check.AbbreviationRuleTests.test_only_the_little_words_may_be_left_out
 - label: a recursive name is not read as a whole
-  find: "        if word == abbreviation:\n            pattern += word[0].upper()\n            continue\n"
+  find: "        if word == abbreviation:\n            if abbreviation not in RECURSIVE_NAMES:\n                return False  # \"API Programming Interface\": the abbreviation written again does not spell itself\n            pattern += word[0].upper()\n            continue\n"
   replace: ""
   test: tests.test_sd101_check.AbbreviationRuleTests.test_a_recursive_name_gives_its_first_letter
+- label: any abbreviation written again in its own full form spells itself
+  find: "            if abbreviation not in RECURSIVE_NAMES:\n                return False  # \"API Programming Interface\": the abbreviation written again does not spell itself\n"
+  replace: ""
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_recursive_name_gives_its_first_letter
+- label: no name is recursive any more
+  find: "RECURSIVE_NAMES = frozenset({\"gRPC\"})"
+  replace: "RECURSIVE_NAMES = frozenset()"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_recursive_name_gives_its_first_letter
+- label: the term ETag is not read as an abbreviation
+  find: "\"gRPC\", \"ETag\", "
+  replace: "\"gRPC\", "
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_the_forms_an_abbreviation_takes
 - label: the initials need only start the abbreviation
   find: "    return any(re.fullmatch(pattern, "
   replace: "    return any(re.match(pattern, "
@@ -2077,15 +2089,19 @@ mutations:
   replace: "*UNIT_SYMBOLS)"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_the_forms_an_abbreviation_takes
 - label: a name with its own full form is held to the initials rule
-  find: "IRREGULAR_FORMS = {\"HPACK\": \"Header Compression for HTTP/2\", \"SLSA\": \"Supply-chain Levels for Software Artifacts\",\n                   \"W3C\": \"World Wide Web Consortium\", \"SELinux\": \"Security-Enhanced Linux\", \"WebAuthn\": \"Web Authentication\",\n                   \"OpenID\": \"Open IDentity\", \"DevOps\": \"Development and Operations\",\n                   \"DevSecOps\": \"Development, Security and Operations\", \"GitOps\": \"Git Operations\", \"NoOps\": \"No Operations\",\n                   \"UTC\": \"Coordinated Universal Time\", \"EdDSA\": \"Edwards-curve Digital Signature Algorithm\",\n                   \"NetBIOS\": \"Network Basic Input/Output System\"}"
+  find: "IRREGULAR_FORMS = {\"HPACK\": \"Header Compression for HTTP/2\", \"SLSA\": \"Supply-chain Levels for Software Artifacts\",\n                   \"W3C\": \"World Wide Web Consortium\", \"SELinux\": \"Security-Enhanced Linux\", \"WebAuthn\": \"Web Authentication\",\n                   \"OpenID\": \"Open IDentity\", \"DevOps\": \"Development and Operations\",\n                   \"DevSecOps\": \"Development, Security and Operations\", \"GitOps\": \"Git Operations\", \"NoOps\": \"No Operations\",\n                   \"UTC\": \"Coordinated Universal Time\", \"EdDSA\": \"Edwards-curve Digital Signature Algorithm\",\n                   \"NetBIOS\": \"Network Basic Input/Output System\", \"ETag\": \"Entity Tag\"}"
   replace: "IRREGULAR_FORMS = {}"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_unit_symbol_is_explained_by_the_name_of_the_unit
+- label: ETag is not explained by the name it stands for
+  find: "\"NetBIOS\": \"Network Basic Input/Output System\", \"ETag\": \"Entity Tag\"}"
+  replace: "\"NetBIOS\": \"Network Basic Input/Output System\"}"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_a_unit_symbol_is_explained_by_the_name_of_the_unit
 - label: UTC is not explained by the name it stands for
   find: "\"UTC\": \"Coordinated Universal Time\", "
   replace: ""
   test: tests.test_sd101_check.AbbreviationRuleTests.test_a_unit_symbol_is_explained_by_the_name_of_the_unit
 - label: EdDSA and NetBIOS are not explained by the names they stand for
-  find: ", \"EdDSA\": \"Edwards-curve Digital Signature Algorithm\",\n                   \"NetBIOS\": \"Network Basic Input/Output System\"}"
+  find: ", \"EdDSA\": \"Edwards-curve Digital Signature Algorithm\",\n                   \"NetBIOS\": \"Network Basic Input/Output System\", \"ETag\": \"Entity Tag\"}"
   replace: "}"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_a_unit_symbol_is_explained_by_the_name_of_the_unit
 - label: EdDSA and NetBIOS are not recognised as abbreviations

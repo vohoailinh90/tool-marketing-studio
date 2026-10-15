@@ -807,6 +807,22 @@ class ClaimTests(Sessions):
         self.assertEqual(0, self.run_mapped(a, "verify")[0], "merged: the branch judges by the current pairing")
         self.assertEqual(0, self.run_mapped(a, "claim", "sd-01-002")[0], "a session may hold both halves of a pair")
 
+    def test_a_finished_half_is_not_pushed_over_a_rival_on_the_other_half(self) -> None:
+        a, b = self.mapped_clone("a"), self.mapped_clone("b")
+        self.assertEqual(0, self.run_mapped(a, "claim", "sd-01-005", "--publish")[0])
+        self.write_lesson(a, "sd-01-005")
+        self.assertEqual(0, self.run_mapped(a, "finish", "sd-01-005")[0])
+        git(a, "add", "-A")
+        git(a, "commit", "--quiet", "-m", "one half with its registry record")
+        self.at(hours=73)  # a's published claim goes stale, so b may take the other half of the pair without an override
+        self.assertEqual(0, self.run_mapped(b, "claim", "sd-02-001", "--publish")[0])
+        pushed = git(self.tmp, "--git-dir", str(self.origin), "rev-parse", "claude/a")
+        code, _, err = self.run_mapped(a, "claim", "sd-01-001", "--publish")
+        self.assertEqual(1, code, err)
+        self.assertIn("sd-01-005 is finished here but shares its source file with sd-02-001, which claude/b holds", err)
+        self.assertEqual(pushed, git(self.tmp, "--git-dir", str(self.origin), "rev-parse", "claude/a"))
+        self.assertEqual(0, self.run_mapped(b, "verify")[0], "b keeps its claim")
+
     def test_adoption_does_not_hide_a_shared_source_conflict(self) -> None:
         a, b = self.mapped_clone("a"), self.mapped_clone("b")
         self.assertEqual(0, self.run_mapped(b, "claim", "sd-02-001")[0])  # b's claim on one half is not visible yet
@@ -1278,6 +1294,27 @@ class LeaseTests(Sessions):
         self.at(hours=2)
         code, _, err = self.run_in(a, "claim", "sd-01-002", "--publish")
         self.assertEqual(0, code, "a's claim is the older one and wins against b's: " + err)
+
+    def test_a_finished_lesson_whose_taker_finished_it_first_is_not_pushed(self) -> None:
+        a, b = self.session("a"), self.session("b")
+        self.run_in(a, "claim", "sd-01-001", "--publish")
+        self.write_lesson(a, "sd-01-001")
+        self.assertEqual(0, self.run_in(a, "finish", "sd-01-001")[0])
+        git(a, "add", "-A")
+        git(a, "commit", "--quiet", "-m", "the lesson with its registry record")
+        self.at(hours=73)
+        self.assertEqual(0, self.run_in(b, "claim", "sd-01-001", "--take-stale", "--publish")[0])
+        self.at(hours=74)
+        self.write_lesson(b, "sd-01-001")
+        self.assertEqual(0, self.run_in(b, "finish", "sd-01-001")[0])  # b took the lesson over and finished it
+        git(b, "add", "-A")
+        git(b, "commit", "--quiet", "-m", "b's lesson")
+        git(b, "push", "--quiet", "origin", "claude/b")
+        pushed = git(self.tmp, "--git-dir", str(self.origin), "rev-parse", "claude/a")
+        code, _, err = self.run_in(a, "claim", "sd-01-002", "--publish")
+        self.assertEqual(1, code, err)
+        self.assertIn("sd-01-001 is finished here but already written by claude/b", err)
+        self.assertEqual(pushed, git(self.tmp, "--git-dir", str(self.origin), "rev-parse", "claude/a"))
 
     def test_a_finished_lesson_nobody_took_over_is_pushed_even_when_the_claim_went_stale(self) -> None:
         a = self.session("a")

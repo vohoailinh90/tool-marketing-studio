@@ -62,7 +62,7 @@ import sys
 import tarfile
 import tempfile
 import time
-from dataclasses import dataclass
+from dataclasses import dataclass, replace as with_changes
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 DEFAULT_STORE = ROOT / "system-design-101" / "vi"
@@ -396,6 +396,7 @@ class Holding:
     where: str
     shared: bool = False              # claimed with --allow-same-source: the owner knowingly shares a source file
     generation: int = 0               # takeovers behind the claim: counts them where a clock could misorder them
+    done_at: str | None = None        # when a written lesson was finished: what an adoption copy shares with its original
 
     def who(self) -> str:
         return self.owner or "an earlier import"
@@ -408,7 +409,8 @@ def _holding(entry: dict, where: str) -> Holding | None:
     taken = entry.get("taken_from")
     superseded = tuple(owner for owner in taken if isinstance(owner, str)) if isinstance(taken, list) else ()
     return Holding(entry["id"], entry["status"], pick("owner"), pick("claimed_at"), pick("heartbeat_at"), superseded, where,
-                   entry.get("shared_source") is True, entry["generation"] if _count(entry.get("generation")) else 0)
+                   entry.get("shared_source") is True, entry["generation"] if _count(entry.get("generation")) else 0,
+                   pick("done_at"))
 
 
 def is_stale(holding: Holding, now: datetime.datetime, lease_hours: int) -> bool:
@@ -1068,9 +1070,16 @@ def overtaken_writes(context: Context, header: dict, lessons: dict[str, dict]) -
         if any(h.status == "written" and h.owner == context.me and h.where != LOCAL for h in holdings):
             continue  # already advertised: nothing new goes up
         published = next((h for h in holdings if h.status == "doing" and h.owner == context.me and h.where != LOCAL), None)
-        stand_in = published or Holding(lesson_id, "doing", context.me, None, None, (), LOCAL)  # a claim nobody saw loses to a live one
-        others = {**found, lesson_id: [h for h in holdings if h.status == "doing"]}  # a written copy is no rival: an adoption has one
-        if reason := lost_reason(stand_in, others, context.me, context.now, lease, (), True):  # a stale or absent claim loses on its own
+        shared = lessons[lesson_id].get("shared_source") is True  # finish keeps the override on the written record
+        stand_in = (with_changes(published, shared=published.shared or shared) if published
+                    else Holding(lesson_id, "doing", context.me, None, None, (), LOCAL, shared))  # a claim nobody saw loses to a live one
+        finished_at = lessons[lesson_id].get("done_at")
+        # Only this record itself and its adoption copies (the same record under another owner, so the same done_at) are no
+        # rivals; another session's written record of the lesson, finished at another time, is.
+        others = {**found, lesson_id: [h for h in holdings if not (h.status == "written" and (
+            h.where == LOCAL or (finished_at is not None and h.done_at == finished_at)))]}
+        if reason := lost_reason(stand_in, others, context.me, context.now, lease, context.source.partners.get(lesson_id, ()),
+                                 True):  # a stale or absent claim loses on its own
             out[lesson_id] = reason
     return out
 

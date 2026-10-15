@@ -509,8 +509,8 @@ mutations:
   replace: '            fresh["generation"] = 1'
   test: tests.test_sd101_claims.LeaseTests.test_a_fast_clock_cannot_outrank_the_takeover_that_replaced_it
 - label: a generation on a record is not read
-  find: entry["generation"] if _count(entry.get("generation")) else 0)
-  replace: 0)
+  find: 'entry["generation"] if _count(entry.get("generation")) else 0,'
+  replace: '0,'
   test: tests.test_sd101_claims.LeaseTests.test_a_fast_clock_cannot_outrank_the_takeover_that_replaced_it
 - label: a takeover does not record its generation
   find: '            fresh["generation"] = 1 + max((h.generation for h in found.get(lesson_id, []) if h.status == "doing"), default=0)'
@@ -568,3 +568,15 @@ mutations:
   find: '        published = next((h for h in holdings if h.status == "doing" and h.owner == context.me and h.where != LOCAL), None)'
   replace: '        published = None'
   test: tests.test_sd101_claims.LeaseTests.test_a_finished_lesson_older_than_a_rival_that_never_saw_it_is_pushed
+- label: a finished half is not judged against the other half of its pair
+  find: '        if reason := lost_reason(stand_in, others, context.me, context.now, lease, context.source.partners.get(lesson_id, ()),'
+  replace: '        if reason := lost_reason(stand_in, others, context.me, context.now, lease, (),'
+  test: tests.test_sd101_claims.ClaimTests.test_a_finished_half_is_not_pushed_over_a_rival_on_the_other_half
+- label: a written record of another session is no rival of a finished lesson
+  find: "        others = {**found, lesson_id: [h for h in holdings if not (h.status == \"written\" and (\n            h.where == LOCAL or (finished_at is not None and h.done_at == finished_at)))]}"
+  replace: '        others = {**found, lesson_id: [h for h in holdings if h.status != "written"]}'
+  test: tests.test_sd101_claims.LeaseTests.test_a_finished_lesson_whose_taker_finished_it_first_is_not_pushed
+- label: an adoption copy of a finished lesson counts as a rival
+  find: h.where == LOCAL or (finished_at is not None and h.done_at == finished_at)))]}
+  replace: h.where == LOCAL))]}
+  test: tests.test_sd101_claims.ClaimTests.test_a_lesson_merged_from_another_work_branch_is_adopted_by_sync

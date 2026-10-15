@@ -1070,7 +1070,7 @@ def overtaken_writes(context: Context, header: dict, lessons: dict[str, dict]) -
         published = next((h for h in holdings if h.status == "doing" and h.owner == context.me and h.where != LOCAL), None)
         stand_in = published or Holding(lesson_id, "doing", context.me, None, None, (), LOCAL)  # a claim nobody saw loses to a live one
         others = {**found, lesson_id: [h for h in holdings if h.status == "doing"]}  # a written copy is no rival: an adoption has one
-        if reason := lost_reason(stand_in, others, context.me, context.now, lease, (), published is not None and not is_stale(published, context.now, lease)):
+        if reason := lost_reason(stand_in, others, context.me, context.now, lease, (), True):  # a stale or absent claim loses on its own
             out[lesson_id] = reason
     return out
 

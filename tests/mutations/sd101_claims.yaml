@@ -564,7 +564,7 @@ mutations:
   find: '    if overtaken := overtaken_writes(context, header, lessons):'
   replace: '    if (overtaken := {}):'
   test: tests.test_sd101_claims.LeaseTests.test_a_finished_lesson_that_was_taken_over_meanwhile_is_not_pushed
-- label: a finished lesson is judged as a claim that is live
-  find: 'published is not None and not is_stale(published, context.now, lease)):'
-  replace: 'True):'
-  test: tests.test_sd101_claims.LeaseTests.test_a_finished_lesson_that_was_taken_over_meanwhile_is_not_pushed
+- label: a finished lesson is judged without the claim the others last saw
+  find: '        published = next((h for h in holdings if h.status == "doing" and h.owner == context.me and h.where != LOCAL), None)'
+  replace: '        published = None'
+  test: tests.test_sd101_claims.LeaseTests.test_a_finished_lesson_older_than_a_rival_that_never_saw_it_is_pushed

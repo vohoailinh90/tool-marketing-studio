@@ -1263,6 +1263,22 @@ class LeaseTests(Sessions):
                 self.assertEqual(pushed, git(self.tmp, "--git-dir", str(self.origin), "rev-parse", "claude/a"))
         self.assertEqual(0, self.run_in(b, "verify")[0], "b still holds the lesson")
 
+    def test_a_finished_lesson_older_than_a_rival_that_never_saw_it_is_pushed(self) -> None:
+        a, b = self.session("a"), self.session("b")
+        self.run_in(a, "claim", "sd-01-001", "--publish")  # hour 0, live
+        self.write_lesson(a, "sd-01-001")
+        self.assertEqual(0, self.run_in(a, "finish", "sd-01-001")[0])
+        git(a, "add", "-A")
+        git(a, "commit", "--quiet", "-m", "the lesson with its registry record")
+        self.at(hours=1)
+        self.assertEqual(0, self.run_in(b, "--offline", "claim", "sd-01-001")[0])  # b never saw a's claim
+        git(b, "add", "-A")
+        git(b, "commit", "--quiet", "-m", "b's claim")
+        git(b, "push", "--quiet", "origin", "claude/b")
+        self.at(hours=2)
+        code, _, err = self.run_in(a, "claim", "sd-01-002", "--publish")
+        self.assertEqual(0, code, "a's claim is the older one and wins against b's: " + err)
+
     def test_a_finished_lesson_nobody_took_over_is_pushed_even_when_the_claim_went_stale(self) -> None:
         a = self.session("a")
         self.run_in(a, "claim", "sd-01-001", "--publish")

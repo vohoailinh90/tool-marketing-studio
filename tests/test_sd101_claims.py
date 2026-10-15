@@ -739,6 +739,20 @@ class ClaimTests(Sessions):
         self.assertIn("shares its source file with sd-01-005, which claude/a already wrote", err)
         self.assertEqual(0, self.run_in(b, "claim", "sd-02-001", "--allow-same-source")[0], "on purpose, it may")
 
+    def test_a_shared_half_stays_shared_once_it_is_written(self) -> None:
+        a, b, c = self.session("a"), self.session("b"), self.session("c")
+        self.assertEqual(0, self.run_in(a, "claim", "sd-01-005", "--publish")[0])
+        self.assertEqual(0, self.run_in(b, "claim", "sd-02-001", "--allow-same-source", "--publish")[0], "shared on purpose")
+        self.write_lesson(b, "sd-02-001")
+        self.assertEqual(0, self.run_in(b, "finish", "sd-02-001")[0])
+        self.assertIs(True, self.entry(b, "sd-02-001")["shared_source"])
+        git(b, "add", "-A")
+        git(b, "commit", "--quiet", "-m", "the shared half")
+        git(b, "push", "--quiet", "origin", "claude/b")
+        self.assertEqual(0, self.run_in(a, "verify")[0], "a is not ordered to give way to a half that was shared on purpose")
+        self.run_in(a, "release", "sd-01-005", "--publish")
+        self.assertEqual(0, self.run_in(c, "claim", "sd-01-005")[0], "nor is anyone else kept off the other half")
+
     def test_a_claim_loses_when_its_shared_source_partner_turns_out_to_be_written(self) -> None:
         a, b = self.session("a"), self.session("b")
         self.run_in(b, "claim", "sd-02-001")  # b's claim is not visible yet

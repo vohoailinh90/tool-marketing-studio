@@ -436,12 +436,12 @@ mutations:
   replace: '            if False:'
   test: tests.test_sd101_claims.ClaimTests.test_a_lesson_imported_by_sync_on_a_work_branch_stays_visible_to_the_others
 - label: a written half of a shared-source pair does not block the other half at claim time
-  find: '                if holding.status == "written" and holding.owner != me:  # finished, by someone else or before the registry'
-  replace: '                if False:  # finished, by someone else or before the registry'
+  find: '                if holding.status == "written" and holding.owner != me and not holding.shared:'
+  replace: '                if False:'
   test: tests.test_sd101_claims.ClaimTests.test_a_written_half_of_a_shared_source_pair_blocks_the_other_half
 - label: a claim survives when its shared-source partner has been written
-  find: '            if other.status == "written" and other.owner != me and not mine.shared:  # the partner is finished: nothing to wait for'
-  replace: '            if False:  # the partner is finished: nothing to wait for'
+  find: '            if other.status == "written" and other.owner != me and not mine.shared and not other.shared:'
+  replace: '            if False:'
   test: tests.test_sd101_claims.ClaimTests.test_a_claim_loses_when_its_shared_source_partner_turns_out_to_be_written
 - label: sync imports a lesson whose files are missing
   find: "        if missing := missing_artifacts(context, lesson_id):\n            out.append(f\"{lesson_id}: \" + \"; \".join("
@@ -452,3 +452,15 @@ mutations:
     \    return out"
   replace: "        elif False:\n            out.append(f\"{lesson_id}: the store checker rejects the lesson: \" + \"; \".join(broken))\n    return out"
   test: tests.test_sd101_claims.ClaimTests.test_sync_does_not_import_a_lesson_that_is_incomplete_or_rejected
+- label: finish drops the sharing override
+  find: '        if lessons[lesson_id].get("shared_source"):'
+  replace: '        if False:'
+  test: tests.test_sd101_claims.ClaimTests.test_a_shared_half_stays_shared_once_it_is_written
+- label: a shared written half still orders the other claim to give way
+  find: 'and not mine.shared and not other.shared:  # finished: nothing to wait for'
+  replace: 'and not mine.shared:  # finished: nothing to wait for'
+  test: tests.test_sd101_claims.ClaimTests.test_a_shared_half_stays_shared_once_it_is_written
+- label: a shared written half still blocks the other half at claim time
+  find: 'holding.owner != me and not holding.shared:  # finished, by someone else or before the registry'
+  replace: 'holding.owner != me:  # finished, by someone else or before the registry'
+  test: tests.test_sd101_claims.ClaimTests.test_a_shared_half_stays_shared_once_it_is_written

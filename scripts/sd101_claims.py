@@ -78,7 +78,7 @@ HEADER_KEYS = ("schema_version", "lease_hours", "source_repository", "source_com
 FIELDS_BY_STATUS = {
     "todo": set(),
     "doing": {"owner", "session", "taken_from", "shared_source", "claimed_at", "heartbeat_at"},
-    "written": {"owner", "session", "done_at", "pr"},
+    "written": {"owner", "session", "done_at", "pr", "shared_source"},
 }
 STAMP = re.compile(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z")
 LESSON_ID = re.compile(r"sd-\d{2}-\d{3}")
@@ -484,7 +484,7 @@ def refusal(lesson_id: str, found: dict[str, list[Holding]], source: Source, me:
     if not allow_same_source:
         for partner in source.partners.get(lesson_id, ()):
             for holding in found.get(partner, []):
-                if holding.status == "written" and holding.owner != me:  # finished, by someone else or before the registry
+                if holding.status == "written" and holding.owner != me and not holding.shared:  # finished, by someone else or before the registry
                     return (f"shares its source file with {partner}, which {holding.who()} already wrote "
                             f"({holding.where}); pass --allow-same-source only if the two lessons are meant to differ"), []
                 if holding.status == "doing" and holding.owner != me and not is_stale(holding, now, lease):
@@ -515,7 +515,7 @@ def lost_reason(mine: Holding, found: dict[str, list[Holding]], me: str, now: da
             return f"lost to {other.owner}, who claimed it at {other.claimed_at} ({other.where})"
     for partner in partners:
         for other in found.get(partner, []):
-            if other.status == "written" and other.owner != me and not mine.shared:  # the partner is finished: nothing to wait for
+            if other.status == "written" and other.owner != me and not mine.shared and not other.shared:  # finished: nothing to wait for
                 return (f"shares its source file with {partner}, which {other.who()} has written ({other.where}); "
                         "release it, or keep it on purpose by claiming it again with --allow-same-source")
             if other.status != "doing" or other.owner == me or mine.shared or other.shared or is_stale(other, now, lease):
@@ -1219,6 +1219,8 @@ def cmd_finish(context: Context, args: argparse.Namespace) -> int:
             entry["session"] = context.session
         if args.pr:
             entry["pr"] = args.pr
+        if lessons[lesson_id].get("shared_source"):
+            entry["shared_source"] = True  # a half taken on purpose stays one once it is written
         lessons[lesson_id] = entry
     write_registry(context, header, lessons)
     print(f"written: {', '.join(args.ids)}. Commit {context.relative} together with the lesson files.")

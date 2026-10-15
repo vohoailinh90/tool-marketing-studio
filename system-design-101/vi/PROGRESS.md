@@ -44,3 +44,9 @@ Thêm bản đồ vai trò của ứng dụng web, không coi mười chủ đ�
 ## Hòa nhập main7397e5c và glossary (2026-10-15)
 
 PR68 đã vào main, quy tắc mới yêu cầu mục Từ viết tắt ngay sau hình. Giữ nguyên main và checker, thêm glossary cho023–027. MAJOR/MINOR là tên trường SemVer, dùng code/cách viết thường thay vì giải thích sai thành acronym. PR78 vẫn xếp trên PR77; tích hợp main bằng parent thứ hai, chưa merge PR. Review6193640376/CI38744382938 sạch trên e596fe4 chỉ là evidence trước hòa nhập; cần review head mới. 94 bài không đồng nghĩa94done.
+
+## Sửa P1 hiệu năng loại URL trong checker (2026-10-15)
+
+Finding4284532128 trên bc5753e đã tái hiện: regex scheme không neo quét lặp hậu tố chuỗi dài không có URL. Sửa bằng quét dấu :// rồi xác định scheme/đích, giữ hành vi loại URL và phát hiện acronym ở prose. Thêm test hồi quy và mutation hiệu năng, cập nhật anchor mutation cũ, không bỏ quy tắc glossary hoặc loại trường hợp dài khỏi test. Nội dung/hình023–027 không đổi; review/CIbc5753e chỉ là evidence prior cho fix mới. Chưa tiếp028.
+
+Xác minh fix: 58 test liên quan (glossary, pathological Markdown và URL scanner) đạt; ba test URL mới nằm trong số này. Mutation regex cũ và tám mutation liên quan URL đều caught, 554 anchor mutation cũ áp được. Checker94bài/0lỗi. Không coi test suite bổ sung chưa kết thúc là pass; CI head mới cần kiểm riêng.

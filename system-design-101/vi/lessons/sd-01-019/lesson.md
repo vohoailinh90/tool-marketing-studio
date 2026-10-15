@@ -9,6 +9,7 @@
 - **URL** (Uniform Resource Locator) — địa chỉ đầy đủ của một tài nguyên trên web, ví dụ địa chỉ một trang.
 - **CDN** (Content Delivery Network) — mạng phân phối nội dung: nhiều máy đặt ở nhiều nơi, lưu bản sao nội dung và phát cho người dùng từ máy gần họ.
 - **APQ** (Automatic Persisted Queries) — truy vấn đã đăng ký tự động: cơ chế của Apollo cho client gửi mã băm của truy vấn thay vì cả chuỗi, để giảm kích thước yêu cầu.
+- **QL** (Query Language) — ngôn ngữ truy vấn: chữ QL trong tên GraphQL, cho biết đây là cách để client mô tả dữ liệu mình muốn lấy.
 
 ## Đọc hình
 

@@ -2171,6 +2171,12 @@ class AbbreviationRuleTests(StoreCase):
         self.lesson("Đặt NGINX trước ứng dụng làm reverse proxy.", glossary=None)  # a product name, not initials
         self.assertEqual([], self.problems())
 
+    def test_a_skipped_code_span_is_a_word_boundary(self) -> None:
+        for text, expected in (("A`code`PI", {"PI"}), ("API`/users`TLS", {"API", "TLS"}), ("`GET`API", {"API"})):
+            with self.subTest(text=text):
+                body = check.lesson_prose(f"# T\n\n{text}\n")[0]
+                self.assertEqual(expected, check.abbreviations_in(" ".join(body)))
+
     def test_a_code_span_a_code_block_a_link_and_a_comment_are_not_read(self) -> None:
         intro = ("Gõ `LLM`, xem [trang này](https://example.com/DNS/TLS) hoặc <!-- GPU -->.\n\n"
                  "```\nSELECT * FROM LLM;\nDNS\n```")
@@ -2205,7 +2211,8 @@ class AbbreviationRuleTests(StoreCase):
 
     def test_a_name_that_carries_an_abbreviation_is_read_as_that_abbreviation(self) -> None:
         self.assertEqual({"AI", "LLM"}, check.abbreviations_in("OpenAI và LLMWare."))
-        self.assertEqual({"HA", "JS"}, check.abbreviations_in("HAProxy chia tải, CommonJS là kiểu mô-đun cũ."))
+        self.assertEqual({"HA", "JS", "QL", "ECMA"},
+                         check.abbreviations_in("HAProxy chia tải, CommonJS là kiểu mô-đun cũ, GraphQL theo ECMAScript."))
         self.assertEqual({"AI", "SQL", "OS", "OOM", "DB", "GPT"},
                          check.abbreviations_in("OpenAI's, MySQL8, macOS, OOMKilled, TimescaleDBs và ChatGPT."))
         for text in ("myOpenAI", "OpenAIX", "OpenAi", "MacOS", "Github"):  # a longer word is not the name

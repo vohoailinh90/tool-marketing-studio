@@ -12,6 +12,7 @@
 - **RPC** (Remote Procedure Call) — gọi thủ tục từ xa: chương trình này gọi một hàm chạy trên máy khác như gọi hàm trong cùng chương trình; là một phong cách khác để thiết kế API.
 - **RFC** (Request for Comments) — "đề nghị bình luận": loạt tài liệu kỹ thuật đánh số của cộng đồng Internet; nhiều RFC là tiêu chuẩn, như RFC 9110 về ngữ nghĩa của HTTP.
 - **IETF** (Internet Engineering Task Force) — nhóm đặc nhiệm kỹ thuật Internet: cộng đồng soạn các tiêu chuẩn của Internet và công bố chúng dưới dạng RFC.
+- **QL** (Query Language) — ngôn ngữ truy vấn: chữ QL trong tên GraphQL, cho biết đây là cách để client mô tả dữ liệu mình muốn lấy.
 
 ## Đọc hình
 

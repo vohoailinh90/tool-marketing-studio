@@ -6,6 +6,7 @@
 
 ## Từ viết tắt
 
+- **ECMA** (European Computer Manufacturers Association) — hiệp hội các nhà sản xuất máy tính châu Âu, nay gọi là Ecma International: tổ chức ban hành đặc tả ECMAScript mà JavaScript tuân theo.
 - **ESM** (ECMAScript Modules) — mô-đun ECMAScript: cách chia mã JavaScript thành các tệp nối với nhau bằng `import` và `export`; thứ tự giữa `nextTick` và promise ở cấp cao nhất của kiểu mô-đun này có thể khác kiểu cũ.
 - **HTML** (HyperText Markup Language) — ngôn ngữ đánh dấu siêu văn bản: văn bản dùng thẻ để mô tả cấu trúc một trang web; bài nhắc tới đặc tả của nó, nơi quy định hàng đợi và event loop của trình duyệt.
 - **JS** (JavaScript) — ngôn ngữ lập trình của trình duyệt; CommonJS là tên kiểu mô-đun cũ của Node mang chữ JS này trong tên.

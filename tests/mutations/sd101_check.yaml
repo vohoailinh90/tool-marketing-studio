@@ -1872,6 +1872,18 @@ mutations:
   find: "\"CommonJS\": \"JS\", "
   replace: ""
   test: tests.test_sd101_check.AbbreviationRuleTests.test_a_name_that_carries_an_abbreviation_is_read_as_that_abbreviation
+- label: the product name GraphQL is not read as the abbreviation QL
+  find: "\"GraphQL\": \"QL\","
+  replace: ""
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_name_that_carries_an_abbreviation_is_read_as_that_abbreviation
+- label: the product name ECMAScript is not read as the abbreviation ECMA
+  find: "\"ECMAScript\": \"ECMA\", "
+  replace: ""
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_name_that_carries_an_abbreviation_is_read_as_that_abbreviation
+- label: a skipped code span glues the text on both sides of it
+  find: "                elif child.type == \"code_inline\":\n                    pieces.append(\" \")  # a skipped code span is a word boundary: A`code`PI is not API\n"
+  replace: ""
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_skipped_code_span_is_a_word_boundary
 - label: a name that carries an abbreviation is read as the name, not the abbreviation
   find: '{EMBEDDED_ABBREVIATIONS[match.group(1)] for match in EMBEDDED_NAME.finditer(text)}'
   replace: '{match.group(1) for match in EMBEDDED_NAME.finditer(text)}'

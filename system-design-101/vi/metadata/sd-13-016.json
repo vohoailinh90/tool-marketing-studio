@@ -1,0 +1,82 @@
+{
+  "id": "sd-13-016",
+  "title_vi": "Bảng tra lệnh Kubernetes",
+  "language": "vi",
+  "kind": "flow",
+  "content_status": "draft",
+  "source_ref": "sd-13-016",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/the-ultimate-kubernetes-command-cheatsheet.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/the-ultimate-kubernetes-command-cheatsheet.md",
+    "blob_sha": "b7bb19eed6d465278a90573e86c6ba88d73da6c4",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "136780ae6d030b2834dba42617418c24524ed2d5314195a514110fb2e744683d",
+    "retrieved_body_bytes": 964
+  },
+  "diagram": "../diagrams/sd-13-016-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-13-025",
+      "relation": "context",
+      "reason_vi": "Sau khi chọn được Pod, chẩn đoán vì sao nó không chạy."
+    },
+    {
+      "lesson_id": "sd-13-006",
+      "relation": "context",
+      "reason_vi": "Service chọn Pod bằng selector nhãn."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Bộ chọn nhãn dạng bằng nhau có =, == và !=; dấu phẩy nối các điều kiện nghĩa là tất cả phải thỏa; != cũng chọn đối tượng không có nhãn đó.",
+      "source": "https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/"
+    },
+    {
+      "claim_vi": "--field-selector hỗ trợ =, == và !=; mọi loại tài nguyên hỗ trợ metadata.name và metadata.namespace, các trường khác tùy loại; dùng trường không hỗ trợ thì báo lỗi; nhiều điều kiện nối bằng dấu phẩy.",
+      "source": "https://kubernetes.io/docs/concepts/overview/working-with-objects/field-selectors/"
+    },
+    {
+      "claim_vi": "Phase của Pod chỉ gồm Pending, Running, Succeeded, Failed và Unknown; Running gồm cả trường hợp container đang khởi động lại; Terminating không phải một phase.",
+      "source": "https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/"
+    },
+    {
+      "claim_vi": "restartPolicy của Pod mặc định là Always.",
+      "source": "https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/"
+    },
+    {
+      "claim_vi": "kubectl có các định dạng đầu ra wide, custom-columns và jsonpath, và --sort-by sắp theo một đường dẫn trường như số lần khởi động lại của container đầu tiên.",
+      "source": "https://kubernetes.io/docs/reference/kubectl/quick-reference/"
+    },
+    {
+      "claim_vi": "Mẫu jsonpath của kubectl hỗ trợ range ... end để lặp qua .items[*] và chuỗi trong dấu nháy kép như \"\\t\" và \"\\n\".",
+      "source": "https://kubernetes.io/docs/reference/kubectl/jsonpath/"
+    }
+  ],
+  "source_deviations": [
+    "Phần chữ của nguồn chỉ giới thiệu một bảng lệnh kubectl chia theo sáu mục đích (cài đặt, quản lý cụm, triển khai, xem Pod, xử lý sự cố và cấu hình, lệnh khác); bảng nằm trong ảnh chưa được mở nên không đối chiếu. Bài không dùng lại nội dung nào của bảng mà theo một vấn đề riêng là tìm đúng Pod trong cụm lớn; lệnh get, phần chọn lọc, định dạng đầu ra và sắp thứ tự do bài tự chọn từ tài liệu kubectl."
+  ],
+  "design_notes_vi": "Năm thẻ nối mũi tên: ba thẻ thu hẹp tập Pod, hai thẻ chọn cách hiện kết quả.",
+  "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Tiêu đề hiển thị của bài là dòng đầu của lesson.md; title_vi giữ bản dịch tiêu đề nguồn theo source-map. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
+}

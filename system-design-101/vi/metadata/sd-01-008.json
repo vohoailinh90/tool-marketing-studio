@@ -1,0 +1,105 @@
+{
+  "id": "sd-01-008",
+  "title_vi": "Trình duyệt dựng trang web thế nào?",
+  "language": "vi",
+  "kind": "flow",
+  "content_status": "review",
+  "source_ref": "sd-01-008",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/how-does-the-browser-render-a-web-page.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-the-browser-render-a-web-page.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches provider tree OID. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "4ff1f63edf1e8f413830db135db893affac4baed",
+    "retrieved_body_sha256": "8fd2b6c5df74fdf26bc6782a0c74527e9e97121ec060444e322726bd78f95a38",
+    "retrieved_body_bytes": 1446
+  },
+  "diagram": "../diagrams/sd-01-008-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-01-010",
+      "relation": "uses",
+      "reason_vi": "CSSOM được dựng từ các luật CSS mà bài CSS giải thích."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "evidence": "MDN pages read from a local clone of mdn/content; the display:none / visibility:hidden behaviour measured in Chromium 141. Paint/raster và điều kiện script chờ CSS đối chiếu trực tiếp Chrome RenderingNG và HTML Standard ngày 2026-10-13."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 14.4,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright) rendered the full lesson at each width with optional sections open; diagram scale measured from the rendered image and every SVG text box checked against the viewBox. Not learner testing and not GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "The render tree is built from the DOM and CSSOM; head and display:none nodes are left out, visibility:hidden nodes are kept because they take up space.",
+      "source": "https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/How_browsers_work",
+      "section": "Render",
+      "verified_by": "Read from a local clone of mdn/content (developer.mozilla.org was unreachable)."
+    },
+    {
+      "claim_vi": "Rendering steps are style, layout, paint and, in some cases, compositing on the GPU; reflow is any later size/position determination.",
+      "source": "https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/How_browsers_work",
+      "section": "Render",
+      "verified_by": "Read from a local clone of mdn/content (developer.mozilla.org was unreachable)."
+    },
+    {
+      "claim_vi": "CSS đang tải không tự chặn phân tích HTML; script classic ngoài parser-inserted không async/defer có thể chờ stylesheet đang chặn script, đồng thời dừng parser. Không suy rộng cho mọi JavaScript.",
+      "source": "https://html.spec.whatwg.org/multipage/scripting.html#prepare-the-script-element",
+      "section": "Preparing the script element",
+      "verified_by": "Đọc HTML Standard ngày 2026-10-13: nhánh parser-inserted classic và stylesheet blocking scripts."
+    },
+    {
+      "claim_vi": "Changing width or left adds one layout pass in Chromium 141 (LayoutCount via CDP); changing the transform value of an element that already has a transform adds none. Applying a transform to an element that had none can still trigger one layout.",
+      "source": "https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/How_browsers_work",
+      "section": "Render",
+      "verified_by": "Measured in Chromium 141 with Playwright."
+    },
+    {
+      "claim_vi": "A 40px-high div with visibility:hidden keeps its 40px height while the same div with display:none measures 0.",
+      "source": "https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/How_browsers_work",
+      "section": "Render",
+      "verified_by": "Measured in Chromium 141 with Playwright."
+    },
+    {
+      "claim_vi": "Paint ghi danh sách lệnh vẽ; raster chuyển lệnh vẽ thành điểm ảnh. Hình gộp hai công đoạn trong một thẻ để đọc trên mobile.",
+      "source": "https://developer.chrome.com/docs/chromium/renderingng-architecture",
+      "section": "Rendering pipeline",
+      "verified_by": "Đọc trực tiếp tài liệu Chrome ngày 2026-10-13."
+    }
+  ],
+  "design_notes_vi": "Sáu thẻ; DOM và CSSOM đặt cạnh nhau rồi mới có mũi tên vào render tree vì chúng độc lập. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Source ends with a 'Display' step that sends pixels to the GPU; MDN describes compositing as happening only in some cases, so the figure separates paint from an optional compositing step.",
+    "Source says the render tree leaves out invisible elements such as head or display:none; the lesson adds that visibility:hidden elements stay because they take up space.",
+    "Main 42f9d808 đã nhận bản nháp cùng ID từ PR44. Tích hợp giữ bản hiện hành của PR53 với body source đã đọc và claim evidence; lịch sử PR44 bảo toàn bằng parent main, không tạo bài trùng."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

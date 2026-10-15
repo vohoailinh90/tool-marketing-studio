@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 746" width="320" height="746" role="img" aria-labelledby="title desc">
+<title id="title">Load balancer và API gateway</title>
+<desc id="desc">Năm khung dọc: bộ cân bằng tải tầng kết nối chia theo địa chỉ IP, cổng và kết nối mà không đọc nội dung HTTP; bộ cân bằng tải tầng HTTP đọc host, đường dẫn và header để định tuyến phong phú hơn; API gateway lo xác thực, giới hạn tốc độ và cache như một cửa chung cho nhiều API; cách A là bộ cân bằng tải tầng HTTP tới thẳng các dịch vụ, mỗi dịch vụ tự lo xác thực nên linh hoạt nhưng lặp việc; cách B là qua API gateway lo việc chung nên dịch vụ nhẹ hơn nhưng thêm một chặng và kém linh hoạt. Dịch vụ nhỏ thường chỉ cần một bộ cân bằng tải.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="746" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">LOAD BALANCER</text>
+<text x="16" y="56" font-size="20" font-weight="bold">VÀ API GATEWAY</text>
+<text x="16" y="86" font-size="16" font-weight="normal">Chia lưu lượng khác lo việc chung</text>
+<rect x="16" y="108" width="288" height="104" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="138" font-size="16" font-weight="bold">NLB · tầng kết nối</text>
+<text x="30" y="165" font-size="16" font-weight="normal">Chia theo IP, cổng, kết nối</text>
+<text x="30" y="192" font-size="16" font-weight="normal">Không đọc nội dung HTTP</text>
+<rect x="16" y="226" width="288" height="104" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="256" font-size="16" font-weight="bold">ALB · tầng HTTP</text>
+<text x="30" y="283" font-size="16" font-weight="normal">Đọc host, đường dẫn, header</text>
+<text x="30" y="310" font-size="16" font-weight="normal">Định tuyến phong phú hơn</text>
+<rect x="16" y="344" width="288" height="104" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="374" font-size="16" font-weight="bold">API gateway</text>
+<text x="30" y="401" font-size="16" font-weight="normal">Xác thực, giới hạn tốc độ</text>
+<text x="30" y="428" font-size="16" font-weight="normal">Cache; cửa chung nhiều API</text>
+<rect x="16" y="462" width="288" height="104" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="492" font-size="16" font-weight="bold">Cách A: LB → dịch vụ</text>
+<text x="30" y="519" font-size="16" font-weight="normal">Dịch vụ tự lo xác thực</text>
+<text x="30" y="546" font-size="16" font-weight="normal">Linh hoạt nhưng lặp việc</text>
+<rect x="16" y="580" width="288" height="104" rx="12" fill="#e2e8f0" stroke="#94a3b8"/>
+<text x="30" y="610" font-size="16" font-weight="bold">Cách B: qua gateway</text>
+<text x="30" y="637" font-size="16" font-weight="normal">Gateway lo việc chung</text>
+<text x="30" y="664" font-size="16" font-weight="normal">Dịch vụ nhẹ, thêm một chặng</text>
+<text x="16" y="726" font-size="16" font-weight="normal">Dịch vụ nhỏ: một LB thường đủ.</text>
+</g></svg>

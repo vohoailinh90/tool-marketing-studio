@@ -1,0 +1,99 @@
+{
+  "id": "sd-03-006",
+  "title_vi": "AI agent là gì?",
+  "language": "vi",
+  "kind": "flow",
+  "content_status": "review",
+  "source_ref": "sd-03-006",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/what-is-an-ai-agent.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-is-an-ai-agent.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches provider tree OID. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "2523a05bc20d8afe32b1fb8d8c9339a1fa764812",
+    "retrieved_body_sha256": "bfd00e1fb2a0d8cb9b8c68b88d44363d4c716dbbdea96b09a9694f043fc191db",
+    "retrieved_body_bytes": 1767
+  },
+  "diagram": "../diagrams/sd-03-006-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-03-008",
+      "relation": "uses",
+      "reason_vi": "LLM trong vòng lặp agent được huấn luyện như mô tả ở bài ChatGPT."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "evidence": "The Anthropic article was fetched and each quoted sentence found in its text."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 14.4,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright) rendered the full lesson at each width with optional sections open; diagram scale measured from the rendered image and every SVG text box checked against the viewBox. Not learner testing and not GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Workflows orchestrate LLMs and tools through predefined code paths; agents are systems where LLMs dynamically direct their own process and tool use.",
+      "source": "https://www.anthropic.com/engineering/building-effective-agents",
+      "section": "What are agents?",
+      "verified_by": "Page fetched; sentence found."
+    },
+    {
+      "claim_vi": "Agents are typically LLMs using tools based on environmental feedback in a loop, and need ground truth from the environment at each step.",
+      "source": "https://www.anthropic.com/engineering/building-effective-agents",
+      "section": "Agents",
+      "verified_by": "Page fetched; sentence found."
+    },
+    {
+      "claim_vi": "Agentic systems often trade latency and cost for better task performance and can compound errors; simplest solution first.",
+      "source": "https://www.anthropic.com/engineering/building-effective-agents",
+      "section": "When (and when not) to use agents",
+      "verified_by": "Page fetched; sentence found."
+    },
+    {
+      "claim_vi": "Agents can pause for human feedback at checkpoints, and stopping conditions such as a maximum number of iterations maintain control.",
+      "source": "https://www.anthropic.com/engineering/building-effective-agents",
+      "section": "Agents",
+      "verified_by": "Page fetched; sentence found."
+    },
+    {
+      "claim_vi": "An agent can have memory for preferences and knowledge, and a system can be single-agent, multi-agent or human-machine.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-is-an-ai-agent.md",
+      "section": "Key characteristics",
+      "verified_by": "Carried from the source as general description; not independently checked."
+    }
+  ],
+  "design_notes_vi": "Vòng lặp dọc có mũi tên quay lại; thẻ dừng nêu ba điều kiện. Chọn ví dụ đặt lịch họp tự nghĩ ra. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Source lists five agent types (simple reflex, model-based reflex, goal-based, utility-based, learning); not needed for the main idea and not verified, so omitted.",
+    "The lesson scopes the word agent to LLM agents (language-model agents with a tool loop); agents in the broad AI sense, such as simple-reflex agents, need neither a language model nor a tool loop and are only mentioned as out of scope.",
+    "Source defines an agent by its capabilities only; the lesson adds the cost and error trade-off and the workflow-versus-agent distinction from Anthropic."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

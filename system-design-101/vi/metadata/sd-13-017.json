@@ -1,0 +1,78 @@
+{
+  "id": "sd-13-017",
+  "title_vi": "Các chiến lược triển khai trên Kubernetes",
+  "language": "vi",
+  "kind": "flow",
+  "content_status": "draft",
+  "source_ref": "sd-13-017",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/kubernetes-deployment-strategies.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/kubernetes-deployment-strategies.md",
+    "blob_sha": "1b5457dc128296cf8fefd13e9aad4516f7d53aed",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "805c24051f0f4f5cc4756cbc81085fdd948c0fc3e85e5aef7f09091dd6916556",
+    "retrieved_body_bytes": 1931
+  },
+  "diagram": "../diagrams/sd-13-017-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-13-015",
+      "relation": "compare-with",
+      "reason_vi": "Vòng đời một tính năng có cờ."
+    },
+    {
+      "lesson_id": "sd-13-020",
+      "relation": "compare-with",
+      "reason_vi": "Chọn theo nhu cầu."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Deployment có hai strategy.type: Recreate và RollingUpdate, kèm maxSurge và maxUnavailable.",
+      "source": "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/"
+    },
+    {
+      "claim_vi": "minReadySeconds điều chỉnh khi nào một Pod đã sẵn sàng được tính là có sẵn (available).",
+      "source": "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/"
+    },
+    {
+      "claim_vi": "progressDeadlineSeconds chỉ quyết định khi nào Deployment được báo là không tiến triển bằng điều kiện ProgressDeadlineExceeded; Kubernetes không làm gì khác với Deployment bị kẹt và controller vẫn tiếp tục thử lại.",
+      "source": "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/"
+    },
+    {
+      "claim_vi": "kubectl rollout undo quay lui một Deployment.",
+      "source": "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/"
+    },
+    {
+      "claim_vi": "Argo Rollouts hỗ trợ blue-green và canary.",
+      "source": "https://argo-rollouts.readthedocs.io/"
+    }
+  ],
+  "source_deviations": [
+    "Nguồn là bảng sáu chiến lược kèm cột ngừng dịch vụ; bài đổi phạm vi sang cơ chế cập nhật của Deployment (tham số, điều kiện đi tiếp, quay lui) và chỉ nhắc ngắn các cách nằm ngoài Deployment."
+  ],
+  "design_notes_vi": "Bốn chặng của một lần cập nhật rồi thẻ ngoài nhịp mặc định.",
+  "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Tiêu đề hiển thị của bài là dòng đầu của lesson.md; title_vi giữ bản dịch tiêu đề nguồn theo source-map. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
+}

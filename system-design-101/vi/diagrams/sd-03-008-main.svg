@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1018" width="320" height="1018" role="img" aria-labelledby="title desc">
+<title id="title">ChatGPT: huấn luyện và trả lời một prompt</title>
+<desc id="desc">Phần A, huấn luyện: tiền huấn luyện dự đoán token kế tiếp trên lượng văn bản rất lớn; tinh chỉnh có giám sát từ câu trả lời mẫu; mô hình thưởng học từ xếp hạng của con người rồi tối ưu bằng học tăng cường. Phần B, khi bạn gửi prompt: prompt được chia thành token, mô hình sinh từng token một, rồi hiển thị câu trả lời. Chi tiết kiểm duyệt và hạ tầng thực tế chưa được công bố đầy đủ.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1018" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="21" font-weight="bold">CHATGPT HOẠT ĐỘNG</text>
+<text x="16" y="54" font-size="21" font-weight="bold">THẾ NÀO?</text>
+<rect x="16" y="80" width="288" height="62" rx="10" fill="#1e293b"/>
+<text x="29" y="103" font-size="16" font-weight="bold" fill="#ffffff">A · Huấn luyện (trước khi</text>
+<text x="29" y="127" font-size="16" font-weight="bold" fill="#ffffff">dùng)</text>
+<rect x="16" y="152" width="288" height="100" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="29" y="181" font-size="16" font-weight="bold">1 · Tiền huấn luyện</text>
+<text x="29" y="209" font-size="16" font-weight="normal">Dự đoán token kế tiếp trên</text>
+<text x="29" y="233" font-size="16" font-weight="normal">lượng văn bản rất lớn</text>
+<line x1="160" y1="253" x2="160" y2="270" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="272" width="288" height="100" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="29" y="301" font-size="16" font-weight="bold">2 · Tinh chỉnh có giám sát</text>
+<text x="29" y="329" font-size="16" font-weight="normal">Học từ câu trả lời mẫu do người</text>
+<text x="29" y="353" font-size="16" font-weight="normal">viết</text>
+<line x1="160" y1="373" x2="160" y2="390" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="392" width="288" height="124" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="29" y="421" font-size="16" font-weight="bold">3 · Thưởng và RL</text>
+<text x="29" y="449" font-size="16" font-weight="normal">Người xếp hạng câu trả lời; mô</text>
+<text x="29" y="473" font-size="16" font-weight="normal">hình được tối ưu theo điểm</text>
+<text x="29" y="497" font-size="16" font-weight="normal">thưởng</text>
+<rect x="16" y="528" width="288" height="38" rx="10" fill="#1e293b"/>
+<text x="29" y="551" font-size="16" font-weight="bold" fill="#ffffff">B · Khi bạn gửi prompt</text>
+<rect x="16" y="576" width="288" height="100" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="29" y="605" font-size="16" font-weight="bold">4 · Chia thành token</text>
+<text x="29" y="633" font-size="16" font-weight="normal">Văn bản của bạn thành các</text>
+<text x="29" y="657" font-size="16" font-weight="normal">token</text>
+<line x1="160" y1="677" x2="160" y2="694" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="696" width="288" height="100" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="29" y="725" font-size="16" font-weight="bold">5 · Sinh từng token</text>
+<text x="29" y="753" font-size="16" font-weight="normal">Mỗi bước chọn token kế tiếp, lặp</text>
+<text x="29" y="777" font-size="16" font-weight="normal">tới khi xong</text>
+<line x1="160" y1="797" x2="160" y2="814" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="816" width="288" height="76" rx="12" fill="#e2e8f0" stroke="#94a3b8"/>
+<text x="29" y="845" font-size="16" font-weight="bold">6 · Hiển thị câu trả lời</text>
+<text x="29" y="873" font-size="16" font-weight="normal">Văn bản được ghép từ các token</text>
+<rect x="16" y="904" width="288" height="100" rx="12" fill="#fee2e2" stroke="#94a3b8"/>
+<text x="29" y="933" font-size="16" font-weight="bold">Chưa công bố đầy đủ</text>
+<text x="29" y="961" font-size="16" font-weight="normal">Chi tiết kiểm duyệt và hạ tầng</text>
+<text x="29" y="985" font-size="16" font-weight="normal">của ChatGPT.</text>
+</g></svg>

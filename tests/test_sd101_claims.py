@@ -744,7 +744,9 @@ class ClaimTests(Sessions):
         code, _, err = self.run_mapped(a, "claim", "sd-01-004", "--publish")
         self.assertEqual(1, code, err)
         self.assertIn("the default branch removed sd-01-004 from the source map", err)
-        self.assertNotIn("sd-01-004", self.run_mapped(a, "next", "--group", "sd-01")[1].split(), "nor is it offered")
+        offered = self.run_mapped(a, "next", "--group", "sd-01", "--count", "6")[1].split()
+        self.assertIn("sd-01-005", offered)  # the others around it are offered
+        self.assertNotIn("sd-01-004", offered, "nor is the dropped one")
         self.assertEqual(0, self.run_mapped(a, "claim", "sd-01-001")[0], "the rest of the roster is untouched")
 
     def test_adoption_does_not_hide_a_shared_source_conflict(self) -> None:

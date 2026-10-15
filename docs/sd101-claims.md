@@ -25,14 +25,19 @@ pushed yet goes with it), which is what makes the claim visible to the others. A
 work on that lesson, release it and take another; do not push the draft.
 
 A claim refused because the remote could not be read (exit 2) is not a refusal to argue with: fix the
-network or ask the owner. `--offline` exists for a machine with no remote and accepts the risk.
+network or ask the owner. `--offline` exists for a machine with no remote and accepts the risk. The same
+exit 2 comes when the registry on some branch cannot be parsed (conflict markers committed by mistake, say),
+because a claim in it could be missed: fix or delete that branch, or pass `--ignore-unreadable` to decide
+without it. `status` only reports such a branch.
 
 ## What the file holds
 
 JSON Lines. Line 1 is the header (`schema_version`, `lease_hours`, the source repository and the pinned
-commit `b28380a4710c5ec9638ec037d4168e288f334cba`). Every other line is one of the 404 source-map
-positions, in source-map order, so two sessions that claim different lessons merge without a conflict and
-two that claim the same one always conflict.
+commit `b28380a4710c5ec9638ec037d4168e288f334cba`). Every other record is one of the 404 source-map
+positions, in source-map order, with a blank line between every two records. Git reports two changes on
+adjacent lines as one conflict, and sessions that claim the next free lessons change neighbouring records,
+so the blank line is what lets two sessions that claim different lessons merge without a conflict; two that
+claim the same one always conflict. `sd101_claims.py fmt` writes this layout and the checker requires it.
 
 | status | meaning | extra fields |
 |---|---|---|
@@ -65,6 +70,10 @@ anyone, but it is taken over on purpose: `claim <id> --take-stale`. The new entr
 every owner whose stale claim it superseded, chain included, which makes it win against each of them even
 if one wakes up and touches its heartbeat. Run
 `touch --publish` while you work so a slow session is not mistaken for a dead one.
+
+A claim that has itself expired loses to any live claim on the same lesson, whichever is older. A session
+that took a lesson over cannot always record whom it took it from (the dead owner's branch may have been
+deleted first), and a container that wakes up after days must not push its old claim over the new one.
 
 ## Lessons that share a source
 

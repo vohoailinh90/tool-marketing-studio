@@ -122,8 +122,12 @@ def render_line(record: dict, order: tuple[str, ...]) -> str:
 
 
 def render(header: dict, lessons: dict[str, dict]) -> str:
-    """The canonical text of the registry: one line per record, so git merges and conflicts per lesson."""
-    return "\n".join([render_line(header, HEADER_KEYS), *(render_line(lessons[key], KEY_ORDER) for key in lessons)]) + "\n"
+    """The canonical text of the registry: one line per record with a blank line between records.
+
+    Git treats two changes on adjacent lines as one conflict, and sessions that claim the next free lessons
+    change adjacent records, so an unchanged blank line sits between every two records.
+    """
+    return "\n\n".join([render_line(header, HEADER_KEYS), *(render_line(lessons[key], KEY_ORDER) for key in lessons)]) + "\n"
 
 
 def parse(text: str) -> tuple[dict, dict[str, dict], list[str]]:
@@ -134,6 +138,8 @@ def parse(text: str) -> tuple[dict, dict[str, dict], list[str]]:
         lines.pop()
     records: list[tuple[int, dict]] = []
     for number, line in enumerate(lines, start=1):
+        if not line.strip():
+            continue
         try:
             record = json.loads(line, object_pairs_hook=_no_duplicate_keys)
         except (ValueError, RecursionError) as error:
@@ -376,7 +382,7 @@ def gather(local: dict[str, dict], remote: dict[str, str], base: str, me: str,
     for branch, text in remote.items():
         _, lessons, problems = parse(text)
         if problems:
-            unreadable.append(branch)
+            unreadable.append(f"origin/{branch} ({problems[0]})")
         for entry in lessons.values():
             if branch == base or entry.get("owner") == branch:
                 add(entry, f"origin/{branch}")
@@ -418,7 +424,9 @@ def lost_reason(mine: Holding, found: dict[str, list[Holding]], me: str, now: da
             if other.owner == me:
                 continue
             return f"already written by {other.who()} ({other.where})"
-        if not is_stale(other, now, lease) and beats(other, mine):
+        # An expired claim loses to a live one whatever their order: the live claimant may never have seen the
+        # expired one (its branch was deleted), so it could not record the takeover in `taken_from`.
+        if not is_stale(other, now, lease) and (is_stale(mine, now, lease) or beats(other, mine)):
             return f"lost to {other.owner}, who claimed it at {other.claimed_at} ({other.where})"
     return None
 
@@ -437,6 +445,7 @@ class Context:
     now: datetime.datetime
     branch: str | None = None
     owner_given: bool = False
+    ignore_unreadable: bool = False
 
     @property
     def path(self) -> pathlib.Path:
@@ -481,8 +490,13 @@ def lease_of(header: dict) -> int:
     return lease if isinstance(lease, int) and not isinstance(lease, bool) and lease > 0 else DEFAULT_LEASE_HOURS
 
 
-def world_of(context: Context, local: dict[str, dict]) -> tuple[dict[str, list[Holding]], list[str]]:
-    """What every session can see, after reading the remote (a failure to read it is an error unless offline)."""
+def world_of(context: Context, local: dict[str, dict],
+             tolerate: bool = False) -> tuple[dict[str, list[Holding]], list[str]]:
+    """What every session can see, after reading the remote (a failure to read it is an error unless offline).
+
+    A registry on a branch that cannot be parsed may hide a claim, so it stops the decision as well, unless the
+    caller only reports (`tolerate`) or was told to go on without it (--ignore-unreadable).
+    """
     remote: dict[str, str] = {}
     base = "main"
     if not context.offline:
@@ -493,7 +507,12 @@ def world_of(context: Context, local: dict[str, dict]) -> tuple[dict[str, list[H
         except ClaimsError as error:
             raise ClaimsError(f"cannot read the other sessions' claims from {context.remote}: {error}; "
                               "nothing was decided (pass --offline only if you accept that risk)") from error
-    return gather(local, remote, base, context.me, context.offline)
+    found, unreadable = gather(local, remote, base, context.me, context.offline)
+    if unreadable and not tolerate and not context.ignore_unreadable:
+        raise ClaimsError(f"the registry on {len(unreadable)} branch(es) cannot be parsed, e.g. {unreadable[0]}; "
+                          "a claim in it could be missed, so nothing was decided. Fix or delete that branch, "
+                          "or pass --ignore-unreadable to decide without it")
+    return found, unreadable
 
 
 # ------------------------------------------------------------------------------------------- commands
@@ -538,7 +557,7 @@ def cmd_fmt(context: Context, _: argparse.Namespace) -> int:
 def cmd_status(context: Context, args: argparse.Namespace) -> int:
     header, lessons = load_registry(context)
     lease = lease_of(header)
-    found, unreadable = world_of(context, lessons)
+    found, unreadable = world_of(context, lessons, tolerate=True)
     states = {lesson_id: effective_status(lesson_id, found, context.now, lease) for lesson_id, _ in context.source.lessons}
     counts = {name: list(states.values()).count(name) for name in ("written", "doing", "stale", "todo")}
     print(f"System Design 101 (vi): {len(states)} lessons, source {context.source.commit_sha[:7]}")
@@ -558,7 +577,7 @@ def cmd_status(context: Context, args: argparse.Namespace) -> int:
     free = free_lessons(context, found, lease, args.group, 5)
     print("\nNext free: " + (", ".join(free) if free else "none"))
     if unreadable:
-        print(f"warning: the registry on {len(unreadable)} branch(es) could not be read: {', '.join(unreadable[:3])}",
+        print(f"warning: the registry on {len(unreadable)} branch(es) could not be parsed: {'; '.join(unreadable[:3])}",
               file=sys.stderr)
     return 0
 
@@ -790,6 +809,8 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--owner", help="who holds the claims; default is the current branch")
     parser.add_argument("--session", default=os.environ.get("CLAUDE_CODE_REMOTE_SESSION_ID"))
     parser.add_argument("--offline", action="store_true", help="decide from this working tree alone")
+    parser.add_argument("--ignore-unreadable", action="store_true",
+                        help="decide even though the registry on some branch cannot be parsed")
     commands = parser.add_subparsers(dest="command", required=True)
 
     def add(name: str, handler, help_text: str) -> argparse.ArgumentParser:
@@ -838,7 +859,7 @@ def main(argv: list[str] | None = None) -> int:
         if not me:
             raise ClaimsError("HEAD is detached; check out a work branch or pass --owner")
         context = Context(root, store, load_source(args.source_map), me, args.session, args.remote, args.offline, utcnow(),
-                          branch, bool(args.owner))
+                          branch, bool(args.owner), args.ignore_unreadable)
         return args.handler(context, args)
     except ClaimsError as error:
         print(f"sd101_claims: {error}", file=sys.stderr)

@@ -242,6 +242,19 @@ class LeaseTests(Sessions):
         self.assertEqual(1, code)
         self.assertIn("lost to claude/c", err)
 
+    def test_an_expired_claim_that_comes_back_loses_to_a_live_one_even_though_it_is_older(self) -> None:
+        a, b = self.session("a"), self.session("b")
+        self.run_in(a, "claim", "sd-01-001", "--publish")
+        git(self.origin, "branch", "-D", "claude/a")  # the branch is gone, so b cannot see a's claim or take it over
+        self.at(hours=80)
+        self.assertEqual(0, self.run_in(b, "claim", "sd-01-001", "--publish")[0])
+        self.assertNotIn("taken_from", self.entry(b, "sd-01-001"))
+        self.at(hours=81)
+        code, _, err = self.run_in(a, "touch", "--publish")  # a wakes up with a claim 81 hours old
+        self.assertEqual(1, code)
+        self.assertIn("lost to claude/b", err)
+        self.assertEqual(0, self.run_in(b, "verify")[0])
+
     def test_touching_keeps_a_claim_alive(self) -> None:
         a, b = self.session("a"), self.session("b")
         self.run_in(a, "claim", "sd-01-001", "--publish")
@@ -303,6 +316,27 @@ class RemoteTests(Sessions):
         self.assertEqual(2, code)
         self.assertIn("never pushes main", err)
 
+    def test_a_branch_whose_registry_cannot_be_parsed_stops_the_decision(self) -> None:
+        broken = self.clone("broken", branch="claude/broken")
+        (broken / REGISTRY).write_text((broken / REGISTRY).read_text(encoding="utf-8") + "<<<<<<< ours\n", encoding="utf-8")
+        git(broken, "commit", "--quiet", "-am", "conflict markers committed by mistake")
+        git(broken, "push", "--quiet", "-u", "origin", "claude/broken")
+        a = self.session("a")
+        self.assertEqual(2, self.run_in(a, "claim", "sd-01-001")[0])
+        self.assertEqual("todo", self.entry(a, "sd-01-001")["status"])
+        self.assertEqual(0, self.run_in(a, "--ignore-unreadable", "claim", "sd-01-002")[0], "the flag goes on without it")
+        self.write_lesson(a, "sd-01-002")
+        for command in (("claim", "sd-01-001"), ("verify",), ("next",), ("touch",), ("finish", "sd-01-002")):
+            with self.subTest(command[0]):
+                code, _, err = self.run_in(a, *command)
+                self.assertEqual(2, code)
+                self.assertIn("origin/claude/broken", err)
+                self.assertIn("nothing was decided", err)
+        self.assertEqual("doing", self.entry(a, "sd-01-002")["status"])
+        code, _, err = self.run_in(a, "status")
+        self.assertEqual(0, code, "reporting is not deciding")
+        self.assertIn("could not be parsed", err)
+
     def test_publish_with_an_owner_that_is_not_the_branch_is_refused_before_anything_is_written(self) -> None:
         a = self.session("a")
         before = (a / REGISTRY).read_text(encoding="utf-8")
@@ -334,6 +368,36 @@ class RemoteTests(Sessions):
         self.assertIn("doing 1", out)
         self.assertIn("sd-01-001  claude/a", out)
         self.assertIn("Next free: sd-01-002", out)
+
+
+class MergeTests(Sessions):
+    def test_sessions_that_claim_neighbouring_lessons_merge_without_a_conflict(self) -> None:
+        a, b = self.session("a"), self.session("b")
+        self.assertEqual(0, self.run_in(a, "claim", "sd-01-001", "sd-01-002", "--publish")[0])
+        self.assertEqual(0, self.run_in(b, "claim", "sd-01-003", "sd-01-004", "--publish")[0])
+        git(a, "push", "--quiet", "origin", "claude/a:main")  # a's pull request is merged
+        git(b, "fetch", "--quiet", "origin")
+        merged = subprocess.run(["git", "merge", "--no-edit", "origin/main"], cwd=b, capture_output=True, text=True, check=False)
+        self.assertEqual(0, merged.returncode, merged.stdout + merged.stderr)
+        owners = {lesson_id: self.entry(b, lesson_id).get("owner") for lesson_id, _ in LESSONS[:5]}
+        self.assertEqual({"sd-01-001": "claude/a", "sd-01-002": "claude/a", "sd-01-003": "claude/b", "sd-01-004": "claude/b",
+                          "sd-01-005": None}, owners)
+
+    def test_two_sessions_that_claimed_the_same_lesson_do_conflict(self) -> None:
+        a, b = self.session("a"), self.session("b")
+        self.at(seconds=0)
+        self.run_in(a, "--offline", "claim", "sd-01-002")
+        self.at(seconds=3)
+        self.run_in(b, "--offline", "claim", "sd-01-002")
+        for clone, name in ((a, "claude/a"), (b, "claude/b")):
+            git(clone, "add", REGISTRY)
+            git(clone, "commit", "--quiet", "-m", "claim")
+            git(clone, "push", "--quiet", "-u", "origin", name)
+        git(a, "push", "--quiet", "origin", "claude/a:main")
+        git(b, "fetch", "--quiet", "origin")
+        merged = subprocess.run(["git", "merge", "--no-edit", "origin/main"], cwd=b, capture_output=True, text=True, check=False)
+        self.assertNotEqual(0, merged.returncode)
+        subprocess.run(["git", "merge", "--abort"], cwd=b, check=False)
 
 
 class FinishAndReleaseTests(Sessions):
@@ -383,6 +447,14 @@ class FormatTests(unittest.TestCase):
         lessons["sd-01-002"].update(changes)
         return claims.render(header, lessons)
 
+    @staticmethod
+    def records(text: str) -> list[str]:
+        return [line for line in text.split("\n") if line]
+
+    @staticmethod
+    def join(lines: list[str]) -> str:
+        return "\n\n".join(lines) + "\n"
+
     def problems(self, text: str, on_disk: set[str] | None = None) -> list[str]:
         return claims.registry_problems(text, self.EXPECTED, COMMIT, {"sd-01-001"} if on_disk is None else on_disk)
 
@@ -404,17 +476,25 @@ class FormatTests(unittest.TestCase):
             "pr": (self.text().replace('"title": "One"', '"title": "One", "pr": 0'), "pr must be a pull request number"),
             "pin": (self.text().replace(COMMIT, "c" * 40), "source_commit_sha"),
             "lease": (self.text().replace('"lease_hours": 72', '"lease_hours": 0'), "lease_hours must be"),
-            "missing lesson": (self.text().split("\n")[0] + "\n" + self.text().split("\n")[1] + "\n", "lacks 1 source-map lesson"),
+            "missing lesson": (self.join(self.records(self.text())[:2]), "lacks 1 source-map lesson"),
             "extra lesson": (self.text() + '{"id": "sd-09-009", "status": "todo", "title": "x"}\n', "lists 1 id(s)"),
-            "twice": (self.text() + self.text().split("\n")[1] + "\n", "appears twice"),
+            "twice": (self.text() + self.records(self.text())[1] + "\n", "appears twice"),
             "not json": (self.text() + "{oops\n", "is not a JSON object"),
-            "order": ("\n".join([self.text().split("\n")[0], *reversed(self.text().split("\n")[1:3])]) + "\n", "out of source-map order"),
+            "order": (self.join([self.records(self.text())[0], *reversed(self.records(self.text())[1:3])]), "out of source-map order"),
             "canonical": (self.text().replace('{"id": "sd-01-001", "status": "written", "title": "One"}',
                                               '{"title": "One", "id": "sd-01-001", "status": "written"}'), "canonical form"),
         }
         for name, (text, fragment) in cases.items():
             with self.subTest(name):
                 self.assertTrue(any(fragment in line for line in self.problems(text)), f"{fragment!r} not in {self.problems(text)}")
+
+    def test_records_are_set_apart_by_a_blank_line_and_either_layout_is_read(self) -> None:
+        text = self.text()
+        self.assertEqual(3, len(self.records(text)))
+        self.assertEqual(2 * len(self.records(text)) - 1, len(text.rstrip("\n").split("\n")), "a blank line between records")
+        _, packed, problems = claims.parse("\n".join(self.records(text)) + "\n")
+        self.assertEqual(([], ["sd-01-001", "sd-01-002"]), (problems, list(packed)))
+        self.assertTrue(any("canonical form" in line for line in self.problems("\n".join(self.records(text)) + "\n")))
 
     def test_the_registry_must_agree_with_the_lessons_on_disk(self) -> None:
         self.assertTrue(any("is written, but lessons/sd-01-001/ does not exist" in p for p in self.problems(self.text(), set())))

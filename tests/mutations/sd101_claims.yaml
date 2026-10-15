@@ -106,3 +106,15 @@ mutations:
   find: 'if offline or entry.get("owner") == me or entry.get("status") == "written":'
   replace: 'if True:'
   test: tests.test_sd101_claims.RemoteTests.test_status_does_not_count_a_claim_the_branch_only_inherited
+- label: records are written without a blank line between them
+  find: '    return "\n\n".join([render_line(header, HEADER_KEYS)'
+  replace: '    return "\n".join([render_line(header, HEADER_KEYS)'
+  test: tests.test_sd101_claims.MergeTests.test_sessions_that_claim_neighbouring_lessons_merge_without_a_conflict
+- label: an expired claim wins over a live one because it is older
+  find: (is_stale(mine, now, lease) or beats(other, mine))
+  replace: (beats(other, mine))
+  test: tests.test_sd101_claims.LeaseTests.test_an_expired_claim_that_comes_back_loses_to_a_live_one_even_though_it_is_older
+- label: a registry that cannot be parsed does not stop the decision
+  find: 'if unreadable and not tolerate and not context.ignore_unreadable:'
+  replace: 'if False:'
+  test: tests.test_sd101_claims.RemoteTests.test_a_branch_whose_registry_cannot_be_parsed_stops_the_decision

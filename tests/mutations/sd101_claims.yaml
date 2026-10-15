@@ -154,7 +154,7 @@ mutations:
   replace: '    if False:'
   test: tests.test_sd101_claims.VerifyTests.test_ids_named_to_verify_or_touch_must_all_be_claims_of_the_caller
 - label: touch --publish no longer pushes a forgotten claim first
-  find: '        publish(context, args.message or f"System Design vi: publish the claim of {'', ''.join(ids)}")  # a forgotten push first
+  find: '        publish(context, args.message or f"System Design vi: publish the claim of {'', ''.join(ids)}")  # a forgotten push
 
     '
   replace: ''
@@ -172,7 +172,7 @@ mutations:
   replace: gone = {}
   test: tests.test_sd101_claims.SyncDropTests.test_sync_drops_what_the_source_map_no_longer_lists_and_says_what_it_dropped
 - label: verify ignores a claim on the other half of a shared source
-  find: "            if is_stale(mine, now, lease) or beats(other, mine):\n                return (f\"shares its source file with"
+  find: "            if not published_live or is_stale(mine, now, lease) or beats(other, mine):\n                return (f\"shares its source file with"
   replace: "            if False:\n                return (f\"shares its source file with"
   test: tests.test_sd101_claims.ClaimTests.test_two_halves_of_a_shared_source_claimed_before_either_was_visible_are_decided_by_verify
 - label: a half taken knowingly with --allow-same-source still loses to the other half

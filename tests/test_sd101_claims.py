@@ -371,10 +371,15 @@ class LeaseTests(Sessions):
         self.assertEqual(0, code, err)
         taken = self.entry(a, "sd-01-001")
         self.assertEqual((["claude/b"], "2026-10-21T14:00:00Z"), (taken["taken_from"], taken["claimed_at"]))
-        b_code, _, b_err = self.run_in(b, "touch", "--publish")  # b publishes its fresh copy, which names a as taken from
+        b_code, _, b_err = self.run_in(b, "touch", "--publish")  # judged before anything is pushed
         self.assertEqual(1, b_code)
         self.assertIn("lost to claude/a", b_err)
+        # b's fresh copy reaches the remote by hand, so both public records are live and each names the other as taken from
+        git(b, "add", REGISTRY)
+        git(b, "commit", "--quiet", "-m", "b pushes its copy by hand")
+        git(b, "push", "--quiet", "origin", "claude/b")
         self.assertEqual(0, self.run_in(a, "verify")[0], "a's takeover is the later one and stands")
+        self.assertEqual(1, self.run_in(b, "verify")[0])
 
     def test_touching_keeps_a_claim_alive(self) -> None:
         a, b = self.session("a"), self.session("b")

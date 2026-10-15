@@ -623,18 +623,75 @@ class ClaimTests(Sessions):
         self.assertEqual(entry["claimed_at"], entry["heartbeat_at"])
         self.assertEqual(0, self.run_in(a, "claim", "sd-01-001")[0], "the registry is still readable")
 
+    def mapped_clone(self, name: str) -> Path:
+        """A session whose checkout holds the source map, as the real repository does; origin/main holds it too."""
+        seed = self.tmp / "seed"
+        if not (seed / "source-map.json").exists():
+            (seed / "source-map.json").write_text(self.source_map.read_text(encoding="utf-8"), encoding="utf-8")
+            git(seed, "add", "-A")
+            git(seed, "commit", "--quiet", "-m", "the source map")
+            git(seed, "push", "--quiet", "origin", "main")
+        return self.session(name)
+
+    def run_mapped(self, clone: Path, *args: str) -> tuple[int, str, str]:
+        out, err = io.StringIO(), io.StringIO()
+        with contextlib.redirect_stdout(out), contextlib.redirect_stderr(err):
+            code = claims.main(["--store", str(clone / "store"), "--source-map", str(clone / "source-map.json"), *args])
+        return code, out.getvalue(), err.getvalue()
+
+    def edit_map(self, clone: Path, edit) -> None:
+        path = clone / "source-map.json"
+        data = json.loads(path.read_text(encoding="utf-8"))
+        edit(data)
+        path.write_text(json.dumps(data), encoding="utf-8")
+
     def test_a_repin_can_be_published_while_the_default_branch_still_has_the_old_pin(self) -> None:
-        a = self.session("a")
-        data = json.loads(self.source_map.read_text(encoding="utf-8"))
-        data["source_commit_sha"] = "c" * 40
-        self.source_map.write_text(json.dumps(data), encoding="utf-8")
-        self.assertEqual(0, self.run_in(a, "sync")[0])  # the work branch follows the new pin; origin/main keeps the old one
-        code, _, err = self.run_in(a, "claim", "sd-01-001", "--publish")
+        a = self.mapped_clone("a")
+        self.edit_map(a, lambda data: data.update(source_commit_sha="c" * 40))
+        self.assertEqual(0, self.run_mapped(a, "sync")[0])  # the work branch follows the new pin; origin/main keeps the old one
+        git(a, "add", "-A")
+        git(a, "commit", "--quiet", "-m", "the repin with its registry")
+        code, _, err = self.run_mapped(a, "claim", "sd-01-001", "--publish")
         self.assertEqual(0, code, err)
-        b = self.session("b")  # another session follows the new pin too; origin/main is still on the old one
-        self.assertEqual(0, self.run_in(b, "sync")[0])
-        code, _, err = self.run_in(b, "claim", "sd-01-002")
+
+    def test_a_new_lesson_can_be_published_while_the_default_branch_still_has_the_old_roster(self) -> None:
+        a = self.mapped_clone("a")
+        self.edit_map(a, lambda data: data["categories"][0]["lessons"].append({"id": "sd-01-006", "title_source": "Six-bis"}))
+        self.assertEqual(0, self.run_mapped(a, "sync")[0])
+        git(a, "add", "-A")
+        git(a, "commit", "--quiet", "-m", "a new lesson in the map and the registry")
+        code, _, err = self.run_mapped(a, "claim", "sd-01-006", "--publish")
         self.assertEqual(0, code, err)
+
+    def test_a_default_registry_that_disagrees_with_its_own_source_map_stops_the_decision(self) -> None:
+        seed = self.tmp / "seed"
+        a = self.mapped_clone("a")  # origin/main holds the map and a registry of the same pin
+        header, lessons, _ = claims.parse((seed / REGISTRY).read_text(encoding="utf-8"))
+        header["source_commit_sha"] = "d" * 40  # a stale or corrupted header: the default branch's own map says otherwise
+        (seed / REGISTRY).write_text(claims.render(header, lessons), encoding="utf-8")
+        git(seed, "commit", "--quiet", "-am", "a header that does not match the map beside it")
+        git(seed, "push", "--quiet", "origin", "main")
+        for flags in ((), ("--ignore-unreadable",)):
+            with self.subTest(flags):
+                code, _, err = self.run_mapped(a, *flags, "claim", "sd-01-001")
+                self.assertEqual(2, code, err)
+                self.assertIn("origin/main", err)
+
+    def test_sync_does_not_drop_a_record_while_its_lesson_files_remain(self) -> None:
+        a = self.mapped_clone("a")
+        self.run_mapped(a, "claim", "sd-01-004")
+        self.write_lesson(a, "sd-01-004")
+        self.edit_map(a, lambda data: data["categories"][0]["lessons"].__setitem__(
+            slice(None), [lesson for lesson in data["categories"][0]["lessons"] if lesson["id"] != "sd-01-004"]))
+        before = (a / REGISTRY).read_text(encoding="utf-8")
+        code, _, err = self.run_mapped(a, "sync")
+        self.assertEqual(1, code, err)
+        self.assertIn("no longer lists sd-01-004", err)
+        self.assertEqual(before, (a / REGISTRY).read_text(encoding="utf-8"), "nothing was written")
+        shutil.rmtree(a / "store" / "lessons" / "sd-01-004")
+        shutil.rmtree(a / "store" / "metadata")
+        shutil.rmtree(a / "store" / "diagrams")
+        self.assertEqual(0, self.run_mapped(a, "sync")[0])
 
     def test_every_registry_must_use_the_same_lease(self) -> None:
         odd = self.session("odd")

@@ -129,7 +129,7 @@ mutations:
   replace: '                            exclude=())'
   test: tests.test_sd101_claims.ClaimTests.test_next_adds_to_the_lessons_named_and_never_repeats_them
 - label: a truncated registry on a branch is trusted
-  find: "        if missing := [lesson_id for lesson_id in roster if lesson_id not in lessons]:  # so would a truncated file\n            problems.append(f\"lacks {len(missing)} source-map lesson(s), e.g.\
+  find: "        if missing := [lesson_id for lesson_id in ids if lesson_id not in lessons]:  # so would a truncated file\n            problems.append(f\"lacks {len(missing)} source-map lesson(s), e.g.\
     \ {missing[0]}\")\n"
   replace: ''
   test: tests.test_sd101_claims.RemoteTests.test_a_truncated_registry_on_a_branch_stops_the_decision
@@ -284,7 +284,7 @@ mutations:
   replace: '            if False and git_text(context.root, "diff", "--no-renames"'
   test: tests.test_sd101_claims.ClaimTests.test_deleting_a_file_of_a_pushed_lesson_is_not_pushed_with_its_written_record
 - label: the header of a remote registry is not validated
-  find: '        if expected is not None:  # a header of another schema'
+  find: '        if want is not None:  # a header of another schema'
   replace: '        if False:  # a header of another schema'
   test: tests.test_sd101_claims.RemoteTests.test_a_remote_registry_with_a_header_of_another_pin_stops_the_decision
 - label: a committed rename of a pushed lesson's file goes up with its written record
@@ -392,6 +392,18 @@ mutations:
   replace: '    return stamp(now)'
   test: tests.test_sd101_claims.ClaimTests.test_a_renewal_after_the_clock_went_backwards_never_predates_the_claim
 - label: the default branch must carry the new pin during a repin
-  find: None if branch == base else expected[0], expected[1])
-  replace: expected[0], expected[1])
+  find: 'if branch == base and base_source is not None:'
+  replace: 'if False:'
   test: tests.test_sd101_claims.ClaimTests.test_a_repin_can_be_published_while_the_default_branch_still_has_the_old_pin
+- label: a default registry is judged against the new roster during a roster edit
+  find: 'if branch == base and base_source is not None:'
+  replace: 'if False:'
+  test: tests.test_sd101_claims.ClaimTests.test_a_new_lesson_can_be_published_while_the_default_branch_still_has_the_old_roster
+- label: a default registry is not judged against its own source map
+  find: '            want, ids = (base_source.commit_sha, base_source.repository), tuple(lesson_id for lesson_id, _ in base_source.lessons)'
+  replace: '            want, ids = None, roster'
+  test: tests.test_sd101_claims.ClaimTests.test_a_default_registry_that_disagrees_with_its_own_source_map_stops_the_decision
+- label: sync drops a record whose lesson files remain
+  find: '    if orphans := [lesson_id for lesson_id in lessons if lesson_id not in known and any('
+  replace: '    if orphans := [lesson_id for lesson_id in lessons if False and lesson_id not in known and any('
+  test: tests.test_sd101_claims.ClaimTests.test_sync_does_not_drop_a_record_while_its_lesson_files_remain

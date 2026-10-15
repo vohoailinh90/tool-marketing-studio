@@ -427,8 +427,8 @@ def beats(first: Holding, second: Holding) -> bool:
 
 
 def gather(local: dict[str, dict], remote: dict[str, str], base: str, me: str, offline: bool,
-           roster: tuple[str, ...] = (), expected: tuple[str | None, str | None] | None = None
-           ) -> tuple[dict[str, list[Holding]], list[str]]:
+           roster: tuple[str, ...] = (), expected: tuple[str | None, str | None] | None = None,
+           base_source: Source | None = None) -> tuple[dict[str, list[Holding]], list[str]]:
     """Every claim and every written lesson that any view shows, per lesson, and the views that could not be read."""
     found: dict[str, list[Holding]] = {}
     unreadable: list[str] = []
@@ -442,11 +442,15 @@ def gather(local: dict[str, dict], remote: dict[str, str], base: str, me: str, o
             add(entry, LOCAL)
     for branch, text in remote.items():
         header, lessons, problems = parse(text)
-        if expected is not None:  # a header of another schema or source says the records cannot be read as ours
-            # the default branch keeps the old pin while a repin is published from a work branch: its records stand
-            problems += header_problems(header, None if branch == base else expected[0], expected[1])
+        want, ids = expected, roster
+        if branch == base and base_source is not None:
+            # A repin or a new lesson is published from a work branch while the default branch still has the old pin and
+            # roster: its registry is judged against the source map that branch itself holds.
+            want, ids = (base_source.commit_sha, base_source.repository), tuple(lesson_id for lesson_id, _ in base_source.lessons)
+        if want is not None:  # a header of another schema or source says the records cannot be read as ours
+            problems += header_problems(header, *want)
         problems += record_problems(lessons)  # a typo in a status would otherwise hide the claim it sits in
-        if missing := [lesson_id for lesson_id in roster if lesson_id not in lessons]:  # so would a truncated file
+        if missing := [lesson_id for lesson_id in ids if lesson_id not in lessons]:  # so would a truncated file
             problems.append(f"lacks {len(missing)} source-map lesson(s), e.g. {missing[0]}")
         if problems:
             unreadable.append(f"origin/{branch} ({problems[0]})")
@@ -608,7 +612,8 @@ def world_of(context: Context, local: dict[str, dict],
                               "nothing was decided (pass --offline only if you accept that risk)") from error
     roster = tuple(lesson_id for lesson_id, _ in context.source.lessons)
     found, unreadable = gather(local, remote, base, context.me, context.offline, roster,
-                               (context.source.commit_sha, context.source.repository))
+                               (context.source.commit_sha, context.source.repository),
+                               None if context.offline else source_at(context, f"refs/remotes/{context.remote}/{base}"))
     unreadable += [f"{context.remote}/{name} (not valid UTF-8)" for name in undecodable]
     if base in missing:  # a legacy feature branch may lack the file, the branch that holds every merged lesson may not
         absent = f"{context.remote}/{base} (the default branch has no {REGISTRY_NAME})"
@@ -655,6 +660,11 @@ def cmd_sync(context: Context, _: argparse.Namespace) -> int:
             lessons[lesson_id]["title"] = title
             retitled += 1
     known = {lesson_id for lesson_id, _ in context.source.lessons}
+    if orphans := [lesson_id for lesson_id in lessons if lesson_id not in known and any(
+            (context.store / path).exists() or (context.store / path).is_symlink() for path in (
+                f"lessons/{lesson_id}", f"lessons/{lesson_id}.md", f"metadata/{lesson_id}.json", f"diagrams/{lesson_id}-main.svg"))]:
+        raise Refusal(f"sync refused, nothing was written: the source map no longer lists {', '.join(orphans)}, but its lesson "
+                      "files are still in the store; remove them (or restore the source-map entry) first")
     gone = {lesson_id: lessons.pop(lesson_id) for lesson_id in [i for i in lessons if i not in known]}
     write_registry(context, header, lessons)
     print(f"sync: {context.relative} has {len(lessons)} lesson(s), {added} added, {retitled} retitled, {len(gone)} dropped")
@@ -851,6 +861,23 @@ def source_map_changed(context: Context, against: str) -> bool:
     if git(context.root, "rev-parse", "--verify", "-q", against, check=False).returncode != 0:
         return True  # nothing to compare with
     return bool(git_text(context.root, "diff", "--name-only", against, "HEAD", "--", relative))
+
+
+def source_at(context: Context, ref: str) -> Source | None:
+    """The source map as `ref` holds it, or None when the map is not part of this checkout or not on that branch."""
+    relative = source_map_in_checkout(context)
+    if relative is None:
+        return None
+    shown = git(context.root, "show", f"{ref}:{relative}", check=False)
+    if shown.returncode != 0:
+        return None
+    with tempfile.TemporaryDirectory() as tmp:
+        path = pathlib.Path(tmp) / "source-map.json"
+        path.write_bytes(shown.stdout)
+        try:
+            return load_source(path)
+        except ClaimsError:
+            return None
 
 
 def uncommitted_source_map(context: Context) -> bool:

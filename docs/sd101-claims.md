@@ -72,7 +72,7 @@ counting when its branch is deleted or the lesson is released or merged as `writ
 
 ## Dead sessions: the lease
 
-A `doing` claim whose `heartbeat_at` is older than `lease_hours` (72) is stale. It no longer blocks
+A `doing` claim whose `heartbeat_at` is older than `lease_hours` (72) is stale. The lease is the same 72 hours in every registry (a header with another value is refused, locally and on every branch), so no two branches disagree about who is stale. It no longer blocks
 anyone, but it is taken over on purpose: `claim <id> --take-stale`. The new entry records `taken_from`,
 every owner whose stale claim it superseded, chain included, which makes it win against each of them even
 if one wakes up and touches its heartbeat. A session that takes back a lesson it once held (because the session that took it from it let its

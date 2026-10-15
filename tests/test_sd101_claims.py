@@ -411,6 +411,23 @@ class ClaimTests(Sessions):
         self.at(hours=0)
         self.assertEqual(1, self.run_in(b, "claim", "sd-01-002")[0], "still a live claim")
 
+    def test_every_registry_must_use_the_same_lease(self) -> None:
+        odd = self.session("odd")
+        header, lessons, _ = claims.parse((odd / REGISTRY).read_text(encoding="utf-8"))
+        header["lease_hours"] = 720  # would make this branch and the others disagree about who is stale
+        (odd / REGISTRY).write_text(claims.render(header, lessons), encoding="utf-8")
+        git(odd, "commit", "--quiet", "-am", "a longer lease")
+        git(odd, "push", "--quiet", "origin", "claude/odd")
+        a = self.session("a")
+        code, _, err = self.run_in(a, "claim", "sd-01-001")
+        self.assertEqual(2, code)
+        self.assertIn("origin/claude/odd", err)
+        self.assertIn("lease_hours must be 72", err)
+        (a / REGISTRY).write_text(claims.render(header, lessons), encoding="utf-8")
+        code, _, err = self.run_in(a, "--ignore-unreadable", "claim", "sd-01-001")
+        self.assertEqual(2, code, "the local registry is held to the same lease")
+        self.assertIn("lease_hours must be 72", err)
+
     def test_a_symlinked_artifact_is_not_a_finished_lesson(self) -> None:
         a = self.session("a")
         self.run_in(a, "claim", "sd-01-001", "sd-01-003", "--publish")

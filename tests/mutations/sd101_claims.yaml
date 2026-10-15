@@ -325,3 +325,7 @@ mutations:
   find: beat is None or beat - now > datetime.timedelta(hours=CLOCK_SKEW_HOURS)
   replace: beat is None
   test: tests.test_sd101_claims.ClaimTests.test_a_claim_dated_from_the_future_cannot_block_a_lesson
+- label: any lease from 1 to 720 hours is accepted in a header
+  find: 'or lease != DEFAULT_LEASE_HOURS:'
+  replace: 'or not 1 <= lease <= 720:'
+  test: tests.test_sd101_claims.ClaimTests.test_every_registry_must_use_the_same_lease

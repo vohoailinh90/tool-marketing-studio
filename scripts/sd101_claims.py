@@ -66,7 +66,6 @@ REGISTRY_NAME = "claims.jsonl"
 SCHEMA_VERSION = 1
 DEFAULT_LEASE_HOURS = 72
 CLOCK_SKEW_HOURS = 1  # a heartbeat further ahead of the observing clock than this is not proof of life
-MAX_LEASE_HOURS = 720
 STATUSES = ("todo", "doing", "written")
 KEY_ORDER = ("id", "status", "title", "owner", "session", "taken_from", "shared_source", "claimed_at", "heartbeat_at",
              "done_at", "pr")
@@ -220,8 +219,9 @@ def header_problems(header: dict, pin_commit: str | None, pin_repository: str | 
     if header.get("schema_version") != SCHEMA_VERSION or isinstance(header.get("schema_version"), bool):
         problems.append(f"the header's schema_version must be {SCHEMA_VERSION}")
     lease = header.get("lease_hours")
-    if not isinstance(lease, int) or isinstance(lease, bool) or not 1 <= lease <= MAX_LEASE_HOURS:
-        problems.append(f"the header's lease_hours must be a whole number from 1 to {MAX_LEASE_HOURS}")
+    if not isinstance(lease, int) or isinstance(lease, bool) or lease != DEFAULT_LEASE_HOURS:
+        # one lease for every registry: two branches with different leases would disagree about who is stale
+        problems.append(f"the header's lease_hours must be {DEFAULT_LEASE_HOURS}")
     if pin_repository is not None and header.get("source_repository") != pin_repository:
         problems.append(f"the header's source_repository is {header.get('source_repository')!r}, "
                         f"but the source map is of {pin_repository}")

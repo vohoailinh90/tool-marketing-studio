@@ -89,7 +89,9 @@ meant to differ. The check is repeated by `verify`, `touch` and `finish`, so two
 push was visible are decided like two claims on one lesson (the earlier claim wins). A half taken with
 `--allow-same-source` is recorded as `shared_source` and is never asked to give way. Claiming a half you already hold again with that flag records it too, which is how you keep it
 on purpose after `verify` says it lost to the other half. A claim that has no live published copy (expired in public, or never pushed) gives way to a live claim on the other
-half, whoever claimed first, because a takeover across a pair leaves no record of whom it replaced; `touch --publish`
+half, whoever claimed first, because a takeover across a pair leaves no record of whom it replaced; Every `--publish` judges all of your claims in the
+registry before it pushes (it is pushed whole), not only the ones you named, and refuses with the list to release.
+`touch --publish`
 judges this before it pushes a renewal. Every command except `sync` and `fmt` refuses a local registry that lags the source map (lessons missing, another
 pin), so a truncated file is never written back or pushed; `sync` repairs it. `verify` also compares the published record with your
 own claim (same `claimed_at`, takeover history and `shared_source`), not just the lesson id.

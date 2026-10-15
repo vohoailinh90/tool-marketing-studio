@@ -475,9 +475,7 @@ def lost_reason(mine: Holding, found: dict[str, list[Holding]], me: str, now: da
     for other in found.get(mine.lesson_id, []):
         if other.owner == me and other.status == "doing":
             continue
-        if other.status == "written":
-            if other.owner == me:
-                continue
+        if other.status == "written":  # whoever wrote it: a stale container's own claim is just as finished
             return f"already written by {other.who()} ({other.where})"
         # An expired claim loses to a live one whatever their order: the live claimant may never have seen the
         # expired one (its branch was deleted), so it could not record the takeover in `taken_from`.
@@ -700,9 +698,23 @@ def check_publishable(context: Context) -> None:
                           "other sessions count a claim only on the branch its owner names, so publish from that branch")
 
 
+def guard_publish(context: Context) -> None:
+    """The registry is pushed whole, so every claim of this session in it is judged before anything is pushed, not only
+    the ones the command names: a renewal made earlier in the working tree would otherwise reach the remote unjudged."""
+    header, lessons = load_registry(context)
+    mine = my_claims(context, lessons, [])
+    if not mine:
+        return
+    results = verdicts(context, header, lessons, mine, live=False)
+    if lost := {lesson_id: reason for lesson_id, reason in results.items() if reason and not reason.startswith(UNPUBLISHED)}:
+        raise Refusal("nothing was pushed: " + "; ".join(f"{lesson_id} {reason}" for lesson_id, reason in lost.items())
+                      + f". Release {' '.join(lost)} first (python3 scripts/sd101_claims.py release {' '.join(lost)} --publish)")
+
+
 def publish(context: Context, message: str) -> None:
     """Commit only the registry and push it to the same-named branch, so the other sessions can see it."""
     check_publishable(context)
+    guard_publish(context)
     git(context.root, "add", "--", context.relative)
     if git(context.root, "diff", "--cached", "--quiet", "--", context.relative, check=False).returncode != 0:
         git(context.root, "commit", "--quiet", "--only", "-m", message, "--", context.relative)
@@ -854,11 +866,8 @@ def cmd_touch(context: Context, args: argparse.Namespace) -> int:
         print(f"touch: {context.me} has no claim in progress")
         return 0
     if args.publish:
-        # Judged before anything is pushed: pushing a renewal first would revive an expired public claim and let it
-        # win against a claim that was taken fairly while it was expired.
-        before = verdicts(context, header, lessons, ids, live=False)
-        if any(reason and not reason.startswith(UNPUBLISHED) for reason in before.values()):
-            return report_verdicts(before, context)
+        # publish() judges every claim of this session before it pushes anything: pushing a renewal first would
+        # revive an expired public claim and let it win against a claim that was taken fairly while it was expired.
         publish(context, args.message or f"System Design vi: publish the claim of {', '.join(ids)}")  # a forgotten push
     results = verdicts(context, header, lessons, ids, live=False)
     for lesson_id in ids:

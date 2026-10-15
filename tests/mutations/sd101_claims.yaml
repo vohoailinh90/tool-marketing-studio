@@ -213,8 +213,10 @@ mutations:
   replace: '            if is_stale(mine, now, lease) or beats(other, mine):'
   test: tests.test_sd101_claims.ClaimTests.test_an_expired_claim_revived_by_a_local_renewal_does_not_beat_a_partner_taken_fairly
 - label: touch --publish pushes the renewal before judging the claim
-  find: "        if any(reason and not reason.startswith(UNPUBLISHED) for reason in before.values()):\n            return report_verdicts(before, context)\n"
-  replace: ''
+  find: "    check_publishable(context)\n    guard_publish(context)\n"
+  replace: '    check_publishable(context)
+
+    '
   test: tests.test_sd101_claims.ClaimTests.test_an_expired_claim_revived_by_a_local_renewal_does_not_beat_a_partner_taken_fairly
 - label: a truncated local registry is read and published as if it were whole
   find: "        if missing := [lesson_id for lesson_id, _ in context.source.lessons if lesson_id not in lessons]:\n            problems.append(f\"lacks {len(missing)} source-map lesson(s), e.g. {missing[0]}\"\
@@ -237,3 +239,11 @@ mutations:
   find: '    for line in git(root, "ls-remote", "--symref", remote, "HEAD").stdout.decode("utf-8", "replace").splitlines():'
   replace: '    for line in []:'
   test: tests.test_sd101_claims.RemoteTests.test_a_renamed_default_branch_is_found_by_asking_the_remote
+- label: publishing judges only the claims a command names and pushes the others unjudged
+  find: "    mine = my_claims(context, lessons, [])\n    if not mine:\n        return\n    results = verdicts(context, header, lessons, mine, live=False)"
+  replace: "    mine = my_claims(context, lessons, [])[:0]\n    if not mine:\n        return\n    results = verdicts(context, header, lessons, mine, live=False)"
+  test: tests.test_sd101_claims.ClaimTests.test_touching_one_claim_does_not_push_another_claim_unjudged
+- label: a written record of the same owner does not end a claim of that owner
+  find: "        if other.status == \"written\":  # whoever wrote it: a stale container's own claim is just as finished\n            return f\"already written by"
+  replace: "        if other.status == \"written\" and other.owner != me:\n            return f\"already written by"
+  test: tests.test_sd101_claims.ClaimTests.test_a_claim_of_the_same_owner_is_ended_by_its_own_written_record

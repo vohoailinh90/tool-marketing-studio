@@ -221,6 +221,41 @@ class ClaimTests(Sessions):
                          "the renewal was not pushed")
         self.assertEqual(0, self.run_in(b, "verify")[0])
 
+    def test_touching_one_claim_does_not_push_another_claim_unjudged(self) -> None:
+        a, b = self.session("a"), self.session("b")
+        self.run_in(a, "claim", "sd-01-005", "sd-01-001", "--publish")
+        self.at(hours=50)
+        self.assertEqual(0, self.run_in(a, "touch")[0], "both claims renewed in a's copy only")
+        self.at(hours=80)  # the published heartbeats have expired; the local ones have not
+        self.assertEqual(0, self.run_in(b, "claim", "sd-02-001", "--publish")[0])  # valid against the public state
+        before = git(self.tmp, "--git-dir", str(self.origin), "rev-parse", "claude/a")
+        self.at(hours=81)
+        code, _, err = self.run_in(a, "touch", "sd-01-001", "--publish")  # names only the unrelated claim
+        self.assertEqual(1, code)
+        self.assertIn("nothing was pushed: sd-01-005 shares its source file with sd-02-001, which claude/b holds", err)
+        self.assertIn("release sd-01-005", err)
+        self.assertEqual(before, git(self.tmp, "--git-dir", str(self.origin), "rev-parse", "claude/a"))
+        self.assertEqual(0, self.run_in(b, "verify")[0])
+        self.assertEqual(0, self.run_in(a, "release", "sd-01-005", "--publish")[0], "the lost claim can be given back")
+
+    def test_a_claim_of_the_same_owner_is_ended_by_its_own_written_record(self) -> None:
+        a1 = self.session("a")
+        self.run_in(a1, "claim", "sd-01-001", "--publish")
+        a2 = self.clone("a2", branch=None)  # a second container on the same branch, still holding the claim
+        git(a2, "checkout", "--quiet", "-b", "claude/a", "origin/claude/a")
+        self.write_lesson(a1, "sd-01-001")
+        self.assertEqual(0, self.run_in(a1, "finish", "sd-01-001")[0])
+        git(a1, "add", "-A")
+        git(a1, "commit", "--quiet", "-m", "the lesson")
+        git(a1, "push", "--quiet", "origin", "claude/a")
+        pushed = git(self.tmp, "--git-dir", str(self.origin), "rev-parse", "claude/a")
+        code, _, err = self.run_in(a2, "verify")
+        self.assertEqual(1, code)
+        self.assertIn("already written by claude/a (origin/claude/a)", err)
+        code, _, err = self.run_in(a2, "touch", "--publish")
+        self.assertEqual(1, code)
+        self.assertEqual(pushed, git(self.tmp, "--git-dir", str(self.origin), "rev-parse", "claude/a"), "nothing was pushed")
+
     def test_a_shared_source_taken_on_purpose_is_not_a_conflict(self) -> None:
         a, b = self.session("a"), self.session("b")
         self.run_in(a, "claim", "sd-01-005", "--publish")

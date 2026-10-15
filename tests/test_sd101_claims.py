@@ -468,7 +468,9 @@ class LeaseTests(Sessions):
         self.at(hours=73)
         self.assertEqual(0, self.run_in(b, "claim", "sd-01-001", "--take-stale", "--publish")[0])
         self.at(hours=74)
-        code, _, err = self.run_in(a, "verify")  # a's own copy is fresh, and older than b's claim
+        git(a, "commit", "--quiet", "-am", "the renewal, pushed by hand")
+        git(a, "push", "--quiet", "origin", "claude/a")  # now a's published copy is live again, and older than b's claim
+        code, _, err = self.run_in(a, "verify")
         self.assertEqual(1, code)
         self.assertIn("lost to claude/b", err)
 

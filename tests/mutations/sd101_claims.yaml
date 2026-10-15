@@ -111,7 +111,7 @@ mutations:
   replace: '    return "\n".join([render_line(header, HEADER_KEYS)'
   test: tests.test_sd101_claims.MergeTests.test_sessions_that_claim_neighbouring_lessons_merge_without_a_conflict
 - label: an expired claim wins over a live one because it is older
-  find: (is_stale(mine, now, lease) or beats(other, mine))
+  find: (is_stale(mine, now, lease) or not published_live or beats(other, mine))
   replace: (beats(other, mine))
   test: tests.test_sd101_claims.LeaseTests.test_an_expired_claim_that_comes_back_loses_to_a_live_one_even_though_it_is_older
 - label: a registry that cannot be parsed does not stop the decision

@@ -95,6 +95,10 @@ class Sessions(unittest.TestCase):
     def write_lesson(self, clone: Path, lesson_id: str) -> None:
         (clone / "store" / "lessons" / lesson_id).mkdir(parents=True, exist_ok=True)
         (clone / "store" / "lessons" / lesson_id / "lesson.md").write_text("# x\n", encoding="utf-8")
+        (clone / "store" / "lessons" / lesson_id / "lesson.yaml").write_text("id: x\n", encoding="utf-8")
+        for path in (f"metadata/{lesson_id}.json", f"diagrams/{lesson_id}-main.svg"):
+            (clone / "store" / path).parent.mkdir(parents=True, exist_ok=True)
+            (clone / "store" / path).write_text("x\n", encoding="utf-8")
 
 
 class ClaimTests(Sessions):
@@ -278,7 +282,7 @@ class ClaimTests(Sessions):
         files = ("lessons/{id}/lesson.md", "metadata/{id}.json", "diagrams/{id}-main.svg")
         for lesson_id, changed in zip(("sd-01-001", "sd-01-002", "sd-01-003"), files):
             with self.subTest(changed):
-                for path in files:
+                for path in (*files, "lessons/{id}/lesson.yaml"):
                     target = a / "store" / path.format(id=lesson_id)
                     target.parent.mkdir(parents=True, exist_ok=True)
                     target.write_text("a draft\n", encoding="utf-8")
@@ -294,6 +298,18 @@ class ClaimTests(Sessions):
                 git(a, "add", "-A")
                 git(a, "commit", "--quiet", "-m", "the final lesson with its registry record")
                 self.assertEqual(0, self.run_in(a, "touch", "--publish")[0], "committed together: it may go up")
+
+    def test_a_finished_lesson_without_its_metadata_and_figure_is_not_pushed(self) -> None:
+        a = self.session("a")
+        self.run_in(a, "claim", "sd-01-001", "--publish")
+        (a / "store" / "lessons" / "sd-01-001").mkdir(parents=True)
+        (a / "store" / "lessons" / "sd-01-001" / "lesson.md").write_text("# x\n", encoding="utf-8")  # nothing else was written
+        git(a, "add", "-A")
+        git(a, "commit", "--quiet", "-m", "the lesson text only")
+        self.assertEqual(0, self.run_in(a, "finish", "sd-01-001")[0])
+        code, _, err = self.run_in(a, "claim", "sd-01-002", "--publish")  # clean tree, but metadata and figure are absent
+        self.assertEqual(1, code, err)
+        self.assertIn("sd-01-001 is marked written but the lesson files are not committed", err)
 
     def test_a_finished_lesson_that_git_ignores_is_not_pushed(self) -> None:
         a = self.session("a")

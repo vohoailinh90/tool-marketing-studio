@@ -737,7 +737,8 @@ def unfinished_commits(context: Context, lessons: dict[str, dict]) -> list[str]:
         if entry.get("status") != "written" or head.get(lesson_id) == entry:
             continue
         files = lesson_files(context, lesson_id)
-        in_head = git(context.root, "cat-file", "-e", f"HEAD:{files[0]}/lesson.md", check=False).returncode == 0
+        required = [f"{files[0]}/lesson.md", f"{files[0]}/lesson.yaml", files[2], files[3]]  # what the store checker requires
+        in_head = all(git(context.root, "cat-file", "-e", f"HEAD:{path}", check=False).returncode == 0 for path in required)
         dirty = git_text(context.root, "status", "--porcelain", "--untracked-files=all", "--", *files)
         if not in_head or dirty:
             out.append(lesson_id)

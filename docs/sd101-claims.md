@@ -95,7 +95,7 @@ push was visible are decided like two claims on one lesson (the earlier claim wi
 on purpose after `verify` says it lost to the other half. A claim that has no live published copy (expired in public, or never pushed) gives way to a live claim on the other
 half, whoever claimed first, because a takeover across a pair leaves no record of whom it replaced; Every `--publish` judges all of your claims in the
 registry before it pushes (it is pushed whole), not only the ones you named, and refuses with the list to release. It also refuses to push a lesson that turned `written` since the last commit while its files (`lessons/<id>/`,
-`metadata/<id>.json`, `diagrams/<id>-main.svg`) are not committed as they are now: commit the lesson and its registry
+`metadata/<id>.json`, `diagrams/<id>-main.svg`) are not all committed as they are now (the lesson, its `lesson.yaml`, metadata and figure must each be in the last commit): commit the lesson and its registry
 record together (`git add -A && git commit`) first, so the remote never advertises a finished lesson that its branch lacks
 (or holds only an older draft of).
 `touch --publish`

@@ -252,7 +252,7 @@ mutations:
   replace: '    if False:  # a legacy feature branch'
   test: tests.test_sd101_claims.RemoteTests.test_a_default_branch_without_a_registry_stops_the_decision
 - label: a lesson finished but not committed is pushed as written
-  find: '        in_head = git(context.root, "cat-file", "-e", f"HEAD:{files[0]}/lesson.md", check=False).returncode == 0'
+  find: '        in_head = all(git(context.root, "cat-file", "-e", f"HEAD:{path}", check=False).returncode == 0 for path in required)'
   replace: '        in_head = True'
   test: tests.test_sd101_claims.ClaimTests.test_a_finished_lesson_that_git_ignores_is_not_pushed
 - label: a written lesson edited after its commit is pushed with the stale draft
@@ -267,3 +267,7 @@ mutations:
   find: '        return context.branch == default_branch(context.root, context.remote, ask=not context.offline)'
   replace: '        return False'
   test: tests.test_sd101_claims.RemoteTests.test_nothing_is_published_from_a_renamed_default_branch
+- label: a written lesson is accepted when only its lesson.md is in HEAD
+  find: check=False).returncode == 0 for path in required)
+  replace: check=False).returncode == 0 for path in required[:1])
+  test: tests.test_sd101_claims.ClaimTests.test_a_finished_lesson_without_its_metadata_and_figure_is_not_pushed

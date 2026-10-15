@@ -1,0 +1,72 @@
+# Mutation manifest — see scripts/mutation_check.py
+target: scripts/ci_changes.py
+note: Which pull requests skip the CI mutation check — only a change that stays inside the System Design store may.
+mutations:
+- label: a push to main stops running the check
+  find: '    if event != "pull_request":'
+  replace: '    if False:'
+  test: tests.test_ci_changes.MutationNeededTests.test_a_push_always_runs_the_check
+- label: any changed path counts as part of the store
+  find: '    return posixpath.normpath(path) == path and path.startswith(STORE_PREFIXES)'
+  replace: '    return posixpath.normpath(path) == path'
+  test: tests.test_ci_changes.MutationNeededTests.test_a_pull_request_that_touches_code_tests_or_ci_runs_it
+- label: a path that climbs out of the store still counts as inside it
+  find: '    return posixpath.normpath(path) == path and path.startswith(STORE_PREFIXES)'
+  replace: '    return path.startswith(STORE_PREFIXES)'
+  test: tests.test_ci_changes.MutationNeededTests.test_a_path_that_climbs_out_of_the_store_is_not_in_it
+- label: the whole brainstorm folder counts as the store
+  find: 'STORE_PREFIXES = ("system-design-101/", "brainstorm/system-design-101-vi/")'
+  replace: 'STORE_PREFIXES = ("system-design-101/", "brainstorm/")'
+  test: tests.test_ci_changes.MutationNeededTests.test_other_content_directories_are_not_the_store
+- label: a folder named like the store but longer counts as the store
+  find: 'STORE_PREFIXES = ("system-design-101/", "brainstorm/system-design-101-vi/")'
+  replace: 'STORE_PREFIXES = ("system-design-101", "brainstorm/system-design-101-vi")'
+  test: tests.test_ci_changes.MutationNeededTests.test_other_content_directories_are_not_the_store
+- label: an empty change list skips the check instead of running it
+  find: '    if not changed:'
+  replace: '    if changed is None:'
+  test: tests.test_ci_changes.MutationNeededTests.test_a_change_that_cannot_be_read_runs_the_check
+- label: a rename is listed only under its new name
+  find: '    command = ["git", "diff", "--name-only", "--no-renames", "-z", base, "HEAD"]'
+  replace: '    command = ["git", "diff", "--name-only", "-z", base, "HEAD"]'
+  test: tests.test_ci_changes.ChangedFilesTests.test_a_file_moved_out_of_the_store_lists_both_places
+- label: paths are read quoted and newline-separated instead of NUL-separated
+  find: '    command = ["git", "diff", "--name-only", "--no-renames", "-z", base, "HEAD"]'
+  replace: '    command = ["git", "diff", "--name-only", "--no-renames", base, "HEAD"]'
+  test: tests.test_ci_changes.ChangedFilesTests.test_lists_every_changed_path_including_odd_names
+- label: a failed git diff is read as an empty change list
+  find: |-
+    result.returncode != 0:
+            return None
+  replace: |-
+    result.returncode == -1:
+            return None
+  test: tests.test_ci_changes.ChangedFilesTests.test_an_unknown_base_or_an_empty_one_is_none
+- label: the decision is written inverted
+  find: "                handle.write(f\"mutation={'true' if needed else 'false'}\\n\")"
+  replace: "                handle.write(f\"mutation={'false' if needed else 'true'}\\n\")"
+  test: tests.test_ci_changes.MainTests.test_a_store_only_pull_request_writes_false
+- label: a write error on the output file fails the job
+  find: '        except OSError as error:'
+  replace: '        except ZeroDivisionError as error:'
+  test: tests.test_ci_changes.MainTests.test_an_unwritable_output_file_still_exits_zero
+- label: the checkout fetches only the tip, so the base is missing
+  file: .github/workflows/ci.yml
+  find: "      - uses: actions/checkout@v4\n        with:\n          # The pull request's diff against its base decides whether the mutation check runs.\n          fetch-depth: 0\n"
+  replace: "      - uses: actions/checkout@v4\n"
+  test: tests.test_ci_changes.WorkflowUsesItTests.test_the_checkout_fetches_the_history_the_diff_needs
+- label: the decision step is not given the pull request's base
+  file: .github/workflows/ci.yml
+  find: "        env:\n          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}\n"
+  replace: ""
+  test: tests.test_ci_changes.WorkflowUsesItTests.test_the_decision_runs_before_the_mutation_check_with_the_base_of_the_pull_request
+- label: the mutation check runs only when the decision says true
+  file: .github/workflows/ci.yml
+  find: "        if: steps.changes.outputs.mutation != 'false'\n"
+  replace: "        if: steps.changes.outputs.mutation == 'true'\n"
+  test: tests.test_ci_changes.WorkflowUsesItTests.test_the_mutation_check_skips_only_when_the_decision_says_false
+- label: the mutation check no longer waits for the decision
+  file: .github/workflows/ci.yml
+  find: "        if: steps.changes.outputs.mutation != 'false'\n"
+  replace: ""
+  test: tests.test_ci_changes.WorkflowUsesItTests.test_the_mutation_check_skips_only_when_the_decision_says_false

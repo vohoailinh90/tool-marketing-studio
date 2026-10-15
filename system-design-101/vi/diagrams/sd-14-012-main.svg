@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 790" width="320" height="790" role="img" aria-labelledby="title desc">
+<title id="title">Mười hai mảng thiết kế an toàn, gom thành bốn nhóm câu hỏi</title>
+<desc id="desc">Bắt đầu từ mặc định an toàn, thu nhỏ bề mặt tấn công và thất bại một cách an toàn. Bốn nhóm câu hỏi. Ai được vào: xác thực, phân quyền, bảo mật API, quản lý nhà cung cấp bên thứ ba. Dữ liệu và đường truyền: mã hóa, bảo mật mạng. Hạ tầng: bảo mật container, bảo mật thiết bị đầu cuối. Khi có chuyện: quản lý lỗ hổng, kiểm toán và tuân thủ, ứng phó khẩn cấp, khôi phục sau thảm họa. Một số mảng chưa có tài liệu mang tên tương ứng trong bộ OWASP Cheat Sheet Series.</desc>
+<rect width="320" height="790" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="21" font-weight="bold">THIẾT KẾ AN TOÀN:</text>
+<text x="16" y="54" font-size="21" font-weight="bold">MƯỜI HAI MẢNG</text>
+<rect x="16" y="80" width="288" height="124" rx="12" fill="#e2e8f0" stroke="#94a3b8"/>
+<text x="29" y="109" font-size="16" font-weight="bold">Nguyên tắc nền</text>
+<text x="29" y="137" font-size="16" font-weight="normal">Mặc định an toàn. Thu nhỏ bề</text>
+<text x="29" y="161" font-size="16" font-weight="normal">mặt tấn công. Thất bại một</text>
+<text x="29" y="185" font-size="16" font-weight="normal">cách an toàn.</text>
+<rect x="16" y="216" width="288" height="100" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="29" y="245" font-size="16" font-weight="bold">Ai được vào</text>
+<text x="29" y="273" font-size="16" font-weight="normal">Xác thực, phân quyền, bảo mật</text>
+<text x="29" y="297" font-size="16" font-weight="normal">API, nhà cung cấp bên thứ ba.</text>
+<rect x="16" y="324" width="288" height="76" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="29" y="353" font-size="16" font-weight="bold">Dữ liệu và đường truyền</text>
+<text x="29" y="381" font-size="16" font-weight="normal">Mã hóa, bảo mật mạng.</text>
+<rect x="16" y="408" width="288" height="100" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="29" y="437" font-size="16" font-weight="bold">Hạ tầng</text>
+<text x="29" y="465" font-size="16" font-weight="normal">Bảo mật container, bảo mật</text>
+<text x="29" y="489" font-size="16" font-weight="normal">thiết bị đầu cuối.</text>
+<rect x="16" y="516" width="288" height="124" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="29" y="545" font-size="16" font-weight="bold">Khi có chuyện</text>
+<text x="29" y="573" font-size="16" font-weight="normal">Quản lý lỗ hổng, kiểm toán và</text>
+<text x="29" y="597" font-size="16" font-weight="normal">tuân thủ, ứng phó khẩn cấp,</text>
+<text x="29" y="621" font-size="16" font-weight="normal">khôi phục sau thảm họa.</text>
+<rect x="16" y="652" width="288" height="124" rx="12" fill="#fee2e2" stroke="#94a3b8"/>
+<text x="29" y="681" font-size="16" font-weight="bold">Chưa có tài liệu tương ứng</text>
+<text x="29" y="709" font-size="16" font-weight="normal">Thiết bị đầu cuối, ứng phó khẩn</text>
+<text x="29" y="733" font-size="16" font-weight="normal">cấp, khôi phục thảm họa: không</text>
+<text x="29" y="757" font-size="16" font-weight="normal">có tên tài liệu OWASP khớp.</text>
+</g></svg>

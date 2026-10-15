@@ -1,0 +1,99 @@
+{
+  "id": "sd-03-001",
+  "title_vi": "Năm hàm gộp dữ liệu trong pandas",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "review",
+  "source_ref": "sd-03-001",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/5-functions-to-merge-data-with-pandas.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/5-functions-to-merge-data-with-pandas.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches provider tree OID. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "359698c15ed2e3342b308160db5721867b2094d1",
+    "retrieved_body_sha256": "d1e86c57bd0713891dea5f5b022f3f359bc8be0bff44e092533b724a8961d478",
+    "retrieved_body_bytes": 1270
+  },
+  "diagram": "../diagrams/sd-03-001-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-03-007",
+      "relation": "uses",
+      "reason_vi": "Gộp bảng thường là một bước trong giai đoạn tính toán của đường ống dữ liệu."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "evidence": "pandas behaviour was executed locally (pandas 3.0.5) and matched against the installed docstrings; pandas.pydata.org itself was unreachable."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 14.4,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright) rendered the full lesson at each width with optional sections open; diagram scale measured from the rendered image and every SVG text box checked against the viewBox. Not learner testing and not GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "concat stacks rows by default (axis=0) and aligns on index with axis=1; the docs advise collecting rows in a list and calling concat once.",
+      "source": "https://pandas.pydata.org/docs/reference/api/pandas.concat.html",
+      "section": "Notes",
+      "verified_by": "Ran pandas 3.0.5 locally and read the installed docstring; pandas.pydata.org was unreachable from the authoring environment."
+    },
+    {
+      "claim_vi": "merge defaults to how='inner' and offers left/right/outer and a validate check for key relationship.",
+      "source": "https://pandas.pydata.org/docs/reference/api/pandas.merge.html",
+      "section": "Parameters: how, validate",
+      "verified_by": "Ran pandas 3.0.5 locally and read the installed docstring; pandas.pydata.org was unreachable from the authoring environment."
+    },
+    {
+      "claim_vi": "DataFrame.join defaults to how='left' and joins on the index.",
+      "source": "https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.join.html",
+      "section": "Parameters: how",
+      "verified_by": "Ran pandas 3.0.5 locally and read the installed docstring; pandas.pydata.org was unreachable from the authoring environment."
+    },
+    {
+      "claim_vi": "DataFrame.combine applies a function column-wise to two frames; np.minimum keeps the smaller value in each cell.",
+      "source": "https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.combine.html",
+      "section": "Description, Examples",
+      "verified_by": "Ran pandas 3.0.5 locally and read the installed docstring; pandas.pydata.org was unreachable from the authoring environment."
+    },
+    {
+      "claim_vi": "DataFrame.append no longer exists (removed in pandas 2.0); concat replaces it.",
+      "source": "https://pandas.pydata.org/docs/whatsnew/v2.0.0.html",
+      "section": "Removal of prior version deprecations",
+      "verified_by": "hasattr(pd.DataFrame, 'append') is False in pandas 3.0.5; the 2.0.0 release-note page itself was not opened."
+    }
+  ],
+  "design_notes_vi": "Bốn thẻ cho bốn việc, thẻ cuối nói append đã bị gỡ; dùng ví dụ bảng khách và doanh thu để thấy khác biệt inner/outer. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Source says join works like a database outer join; pandas defaults to a left join on the index, so the lesson states that.",
+    "Source lists append as a current function; it was removed in pandas 2.0, so the lesson replaces it with concat.",
+    "Source's examples (shards, web crawlers) are reduced to one sentence; the lesson adds the row-count pitfall and merge validate."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

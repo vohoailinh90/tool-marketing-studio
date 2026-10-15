@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 868" width="320" height="868" role="img" aria-labelledby="title desc">
+<title id="title">Chọn công cụ Kubernetes theo lớp</title>
+<desc id="desc">Năm bước xếp dọc: nêu bài toán, tìm theo lớp, so sánh vài ứng viên, thử nhỏ, ghi lại quyết định.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="868" fill="#f8fafc"/><g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">CHỌN THEO LỚP</text>
+<text x="16" y="58" font-size="16" font-weight="normal">Quy trình gợi ý của bài này</text>
+<rect x="16" y="89" width="288" height="101" rx="10" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="117" font-size="16" font-weight="bold">1 · Nêu bài toán</text>
+<text x="30" y="144" font-size="16" font-weight="normal">Cần gì: mạng, bảo mật, quan</text>
+<text x="30" y="171" font-size="16" font-weight="normal">sát...</text>
+<line x1="160" y1="202" x2="160" y2="230" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="240" width="288" height="101" rx="10" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="268" font-size="16" font-weight="bold">2 · Tìm theo lớp</text>
+<text x="30" y="295" font-size="16" font-weight="normal">Xem bản đồ hệ sinh thái cho</text>
+<text x="30" y="322" font-size="16" font-weight="normal">đúng lớp</text>
+<line x1="160" y1="353" x2="160" y2="381" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="391" width="288" height="155" rx="10" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="419" font-size="16" font-weight="bold">3 · So sánh 2–3 ứng</text>
+<text x="30" y="446" font-size="16" font-weight="bold">viên</text>
+<text x="30" y="473" font-size="16" font-weight="normal">Độ trưởng thành, tương</text>
+<text x="30" y="500" font-size="16" font-weight="normal">thích phiên bản</text>
+<text x="30" y="527" font-size="16" font-weight="normal">Cộng đồng, chi phí vận hành</text>
+<line x1="160" y1="558" x2="160" y2="586" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="596" width="288" height="101" rx="10" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="624" font-size="16" font-weight="bold">4 · Thử nhỏ</text>
+<text x="30" y="651" font-size="16" font-weight="normal">Một cụm thử, một nhóm dùng</text>
+<text x="30" y="678" font-size="16" font-weight="normal">thử</text>
+<line x1="160" y1="709" x2="160" y2="737" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="16" y="747" width="288" height="101" rx="10" fill="#e2e8f0" stroke="#94a3b8"/>
+<text x="30" y="775" font-size="16" font-weight="bold">5 · Ghi quyết định</text>
+<text x="30" y="802" font-size="16" font-weight="normal">Lý do chọn, điều kiện xem</text>
+<text x="30" y="829" font-size="16" font-weight="normal">lại</text>
+</g></svg>

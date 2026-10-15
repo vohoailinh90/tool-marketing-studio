@@ -1,0 +1,71 @@
+{
+  "id": "sd-13-002",
+  "title_vi": "Một số cuốn sách DevOps mở mang đầu óc",
+  "language": "vi",
+  "kind": "reference",
+  "content_status": "draft",
+  "source_ref": "sd-13-002",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/some-devops-books-i-find-enlightening.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/some-devops-books-i-find-enlightening.md",
+    "blob_sha": "90e7712bacae6f97ceef88afd4035e5fd0be32fa",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "223bdd73dc64f5d7bc41f2c9d726a606e472b6c0df2c6def47d02f3c0ea1f36a",
+    "retrieved_body_bytes": 1292
+  },
+  "diagram": "../diagrams/sd-13-002-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Nghiên cứu DORA năm 2014 xem xét bốn biến: tần suất triển khai, thời gian dẫn thay đổi, thời gian khôi phục trung bình (mean time to recover) và tỉ lệ thay đổi lỗi; tỉ lệ thay đổi lỗi không tương quan với ba biến còn lại nên định nghĩa hiệu suất năm 2014 chỉ dùng ba biến, và đến năm 2015 mô hình bốn thước đo chia thành thông lượng (tần suất triển khai, thời gian dẫn) và ổn định (thời gian khôi phục, tỉ lệ thay đổi lỗi).",
+      "source": "https://dora.dev/insights/dora-metrics-history/"
+    },
+    {
+      "claim_vi": "Năm 2023 DORA đổi tên và định nghĩa lại thước đo khôi phục thành thời gian khôi phục sau triển khai lỗi: chỉ tính lỗi do thay đổi đưa lên môi trường thật gây ra, không tính nguyên nhân bên ngoài như sự cố trung tâm dữ liệu.",
+      "source": "https://dora.dev/insights/dora-metrics-history/"
+    },
+    {
+      "claim_vi": "Năm 2024 DORA thêm tỉ lệ làm lại triển khai; hướng dẫn hiện hành có năm thước đo: thời gian dẫn thay đổi, tần suất triển khai và thời gian khôi phục sau triển khai lỗi (thông lượng), tỉ lệ thay đổi lỗi và tỉ lệ làm lại triển khai (mất ổn định).",
+      "source": "https://dora.dev/guides/dora-metrics/"
+    },
+    {
+      "claim_vi": "Google công bố các sách SRE, trong đó có Building Secure and Reliable Systems.",
+      "source": "https://sre.google/books/"
+    },
+    {
+      "claim_vi": "Release It! của Michael Nygard nói về phần mềm chịu lỗi khi chạy thật.",
+      "source": "https://pragprog.com/titles/mnee2/release-it-second-edition/"
+    },
+    {
+      "claim_vi": "Infrastructure as Code do Kief Morris viết.",
+      "source": "https://infrastructure-as-code.com/"
+    }
+  ],
+  "source_deviations": [
+    "Nguồn liệt kê sáu cuốn kèm một dòng mô tả; bài chọn lại danh sách theo nhu cầu, chỉ giữ Accelerate và sách SRE của Google, thêm các sách khác không có trong nguồn."
+  ],
+  "design_notes_vi": "Năm thẻ nhu cầu đọc, mỗi thẻ gợi ý sách.",
+  "editorial_note_vi": "Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn. Tiêu đề hiển thị của bài là dòng đầu của lesson.md; title_vi giữ bản dịch tiêu đề nguồn theo source-map. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
+}

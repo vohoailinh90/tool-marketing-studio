@@ -1,0 +1,157 @@
+# Mutation manifest — see scripts/mutation_check.py
+
+target: scripts/radar_preview.py
+note: What a github-radar pull request may have the shared runner draw, and the comment that carries the preview.
+mutations:
+- label: a path that climbs out of a campaign counts as radar data
+  find: 'if posixpath.normpath(path) != path:'
+  replace: 'if False:'
+  test: tests.test_radar_preview.ClassifyTests.test_a_path_that_climbs_out_of_the_campaign_is_outside
+- label: a changed code file no longer counts as outside radar data
+  find: 'elif not path.startswith(DATA_PREFIXES):'
+  replace: 'elif False:'
+  test: tests.test_radar_preview.ClassifyTests.test_code_is_never_drawn_because_the_engine_would_run_on_the_shared_runner
+- label: a folder named like radar's tool data but longer counts as it
+  find: 'DATA_PREFIXES = ("tools/github-radar/",)'
+  replace: 'DATA_PREFIXES = ("tools/github-radar",)'
+  test: tests.test_radar_preview.ClassifyTests.test_other_campaigns_and_look_alike_folders_are_outside
+- label: a pull request with files outside radar data is still drawn
+  find: "    if outside:\n        return False, campaigns, outside,"
+  replace: "    if False:\n        return False, campaigns, outside,"
+  test: tests.test_radar_preview.ClassifyTests.test_code_is_never_drawn_because_the_engine_would_run_on_the_shared_runner
+- label: a pull request with no campaign is drawn
+  find: '    if not campaigns:'
+  replace: '    if False:'
+  test: tests.test_radar_preview.ClassifyTests.test_nothing_to_draw_when_the_changes_cannot_be_read_or_hold_no_campaign
+- label: a pull request that is not drawn still hands the workflow paths to upload
+  find: '"export_paths": "\n".join(f"campaigns/{c}/export/**" for c in campaigns) if ok else "",'
+  replace: '"export_paths": "\n".join(f"campaigns/{c}/export/**" for c in campaigns),'
+  test: tests.test_radar_preview.PlanTests.test_a_pull_request_that_also_changes_code_is_not_planned_and_names_the_file
+- label: a caption can close its own code fence
+  find: 'max(3, longest + 1)'
+  replace: '3'
+  test: tests.test_radar_preview.CommentTests.test_a_caption_cannot_close_its_fence_or_ping_anyone
+- label: a caption is not cut
+  find: '            caption = whole[:CAPTION_LIMIT]'
+  replace: '            caption = whole'
+  test: tests.test_radar_preview.CommentTests.test_a_very_long_caption_is_cut
+- label: every file outside radar data is listed
+  find: 'for p in outside[:5]]'
+  replace: 'for p in outside]'
+  test: tests.test_radar_preview.CommentTests.test_a_pull_request_that_is_not_drawn_says_why_and_lists_at_most_five_files
+- label: the comment loses the marker the workflow finds it by
+  find: 'lines = [MARKER, "### Radar preview", ""]'
+  replace: 'lines = ["### Radar preview", ""]'
+  test: tests.test_radar_preview.CommentTests.test_it_starts_with_the_marker_the_workflow_looks_for_and_links_the_images
+- label: a failed step is not mentioned in the comment
+  find: '    if failed or unreadable:'
+  replace: '    if unreadable:'
+  test: tests.test_radar_preview.CommentTests.test_a_failure_points_at_the_run
+- label: a skipped or failed install, or a failed upload, is not a failure of the preview
+  find: 'failed=any(outcome != "success" for outcome in (args.install, args.check, args.render, args.upload)),'
+  replace: 'failed=args.check == "failure" or args.render == "failure",'
+  test: tests.test_radar_preview.CommentTests.test_every_step_that_did_not_succeed_makes_the_comment_say_so
+- label: a manifest that is not valid JSON stops the comment
+  find: '        except (OSError, ValueError):                       # JSONDecodeError and UnicodeDecodeError are ValueErrors'
+  replace: '        except OSError:'
+  test: tests.test_radar_preview.CommentTests.test_a_manifest_that_cannot_be_read_does_not_stop_the_comment_that_reports_the_failure
+- label: a manifest that is JSON but not an object stops the comment
+  find: '            if not isinstance(data, dict):'
+  replace: '            if False:'
+  test: tests.test_radar_preview.CommentTests.test_a_manifest_that_cannot_be_read_does_not_stop_the_comment_that_reports_the_failure
+- label: slides of an unexpected type stop the comment
+  find: '"slides": len(slides) if isinstance(slides, list) else 0,'
+  replace: '"slides": len(slides),'
+  test: tests.test_radar_preview.CommentTests.test_a_manifest_that_cannot_be_read_does_not_stop_the_comment_that_reports_the_failure
+- label: an empty artifact link is published
+  find: '        if artifact_url:'
+  replace: '        if True:'
+  test: tests.test_radar_preview.CommentTests.test_a_missing_artifact_link_is_not_published_as_an_empty_link
+- label: an output block ends with a fixed delimiter a file name can write
+  find: 'delimiter = f"RADAR_EOF_{uuid.uuid4().hex}"'
+  replace: 'delimiter = "RADAR_EOF"'
+  test: tests.test_radar_preview.PlanTests.test_an_output_value_cannot_end_its_own_block_and_set_an_output_of_its_own
+- label: a file name breaks out of its code span in the comment
+  find: 'return re.sub(r"[^A-Za-z0-9._/-]", "?", text)'
+  replace: 'return text'
+  test: tests.test_radar_preview.CommentTests.test_a_file_name_cannot_break_out_of_its_code_span
+- label: the reason can hold a newline or a backtick
+  find: 'return re.sub(r"[`\x00-\x1f\x7f]", "?", text)'
+  replace: 'return text'
+  test: tests.test_radar_preview.CommentTests.test_the_reason_is_one_printable_line
+- label: a symbolic link inside a campaign counts as radar data
+  find: '    if linked:'
+  replace: '    if False:'
+  test: tests.test_radar_preview.PlanTests.test_a_symbolic_link_in_a_campaign_is_not_drawn_even_when_the_path_looks_like_radar_data
+- label: the pull request's files are measured from the base the event named, not from the merge's first parent
+  find: 'return parents[1] if len(parents) == 3 else environ.get("PR_BASE_SHA", "")'
+  replace: 'return environ.get("PR_BASE_SHA", "")'
+  test: tests.test_radar_preview.PlanTests.test_a_base_that_moved_after_the_event_does_not_put_its_files_into_the_pull_request
+- label: a base that cannot be read plans the pull request anyway
+  find: 'return False, [], [], "the changed files could not be read, so nothing is drawn"'
+  replace: 'return True, [], [], "the changed files could not be read, so nothing is drawn"'
+  test: tests.test_radar_preview.PlanTests.test_an_unreadable_base_is_not_planned
+- label: other scripts' digits make a campaign name
+  find: 'CAMPAIGN = re.compile(r"campaigns/(radar-[0-9]{4}-[0-9]{2}-[0-9]{2}(?:-[0-9]+)?)/")'
+  replace: 'CAMPAIGN = re.compile(r"campaigns/(radar-\d{4}-\d{2}-\d{2}(?:-\d+)?)/")'
+  test: tests.test_radar_preview.ClassifyTests.test_other_campaigns_and_look_alike_folders_are_outside
+- label: a post or language folder name goes into the comment as it is
+  find: 'where = f"{safe(folder.parent.name)}/{safe(folder.name)}"'
+  replace: 'where = f"{folder.parent.name}/{folder.name}"'
+  test: tests.test_radar_preview.CommentTests.test_a_post_or_language_folder_name_cannot_put_a_link_or_html_in_the_comment
+- label: the file named in the reason goes in as it is
+  find: 'f"{len(outside)} changed file(s) are not radar data, e.g. {safe(outside[0])}"'
+  replace: 'f"{len(outside)} changed file(s) are not radar data, e.g. {outside[0]}"'
+  test: tests.test_radar_preview.CommentTests.test_the_file_named_in_the_reason_cannot_carry_a_link
+- label: the comment ignores the checkout it is given and reads the one holding the script
+  find: 'build_comment(Path(args.root) if args.root else ROOT,'
+  replace: 'build_comment(ROOT,'
+  test: tests.test_radar_preview.CommentTests.test_the_comment_reads_the_drawn_files_of_the_checkout_it_is_given
+- label: a file name that is not UTF-8 reaches the output writer as it is
+  find: '"outside": "\n".join(safe(p) for p in outside[:5]),'
+  replace: '"outside": "\n".join(outside[:5]),'
+  test: tests.test_radar_preview.PlanTests.test_a_file_name_that_is_not_utf8_does_not_stop_the_planner_from_answering
+- label: the comment claims the pull request was checked and drawn although a step failed or nothing was drawn
+  find: '    complete = not (failed or unreadable or not rows)'
+  replace: '    complete = True'
+  test: tests.test_radar_preview.CommentTests.test_the_claim_that_the_pull_request_was_checked_and_drawn_is_made_only_when_it_was
+- label: a missing drawing no longer retracts the claim
+  find: '    complete = not (failed or unreadable or not rows)'
+  replace: '    complete = not (failed or unreadable)'
+  test: tests.test_radar_preview.CommentTests.test_the_claim_that_the_pull_request_was_checked_and_drawn_is_made_only_when_it_was
+- label: the captions together have no budget, so thirty long ones overflow the comment
+  find: '            if used + size > CAPTION_BUDGET:'
+  replace: '            if False:'
+  test: tests.test_radar_preview.CommentTests.test_many_long_captions_leave_the_comment_under_the_size_github_accepts
+- label: the fences around a caption are not counted in its budget
+  find: '            size = sum(len(line) + 1 for line in block)'
+  replace: '            size = len(caption)'
+  test: tests.test_radar_preview.CommentTests.test_a_caption_that_is_all_backticks_counts_its_fences_in_the_budget
+- label: the table has no budget, so every post is listed
+  find: '            if used + len(row) > TABLE_BUDGET:'
+  replace: '            if False:'
+  test: tests.test_radar_preview.CommentTests.test_very_many_posts_are_not_all_listed_and_a_long_overflow_list_is_cut
+- label: a row names every slide that overflows
+  find: 'r["overflow"][:OVERFLOW_SHOWN]'
+  replace: 'r["overflow"]'
+  test: tests.test_radar_preview.CommentTests.test_very_many_posts_are_not_all_listed_and_a_long_overflow_list_is_cut
+- label: a comment past the limit is posted whole
+  find: '    if len(body) <= BODY_LIMIT:'
+  replace: '    if True:'
+  test: tests.test_radar_preview.CommentTests.test_a_comment_that_no_budget_counts_is_replaced_by_a_short_one_that_claims_nothing
+- label: a caption that is cut is shown as if it were whole
+  find: '            cut = f" · cut: the first {len(caption)} of {len(whole)} characters" if len(whole) > len(caption) else ""'
+  replace: '            cut = ""'
+  test: tests.test_radar_preview.CommentTests.test_a_caption_that_is_cut_says_so_where_a_collapsed_reader_sees_it_and_points_at_the_whole_text
+- label: a caption is marked as cut although it fits
+  find: 'if len(whole) > len(caption) else ""'
+  replace: 'if len(whole) >= len(caption) else ""'
+  test: tests.test_radar_preview.CommentTests.test_a_caption_that_fits_is_not_marked_as_cut
+- label: a failed or empty preview still invites the owner to approve
+  find: '    lines += [NEXT if complete else RETRY]'
+  replace: '    lines += [NEXT]'
+  test: tests.test_radar_preview.CommentTests.test_the_invitation_to_approve_is_made_only_when_the_pull_request_was_checked_and_drawn
+- label: a comment too large to post still invites the owner to approve
+  find: '                      "", RETRY]) + "\n"'
+  replace: '                      "", NEXT]) + "\n"'
+  test: tests.test_radar_preview.CommentTests.test_a_comment_that_no_budget_counts_is_replaced_by_a_short_one_that_claims_nothing

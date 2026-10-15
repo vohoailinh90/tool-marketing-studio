@@ -35,6 +35,7 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 24. [Đọc số phiên bản theo SemVer](lessons/sd-01-024/lesson.md)
 25. [Tách các thành phần của URL](lessons/sd-01-025/lesson.md)
 26. [Unicast, broadcast, multicast và anycast](lessons/sd-01-026/lesson.md)
+27. [Các vai trò trong một ứng dụng web vận hành thật](lessons/sd-01-027/lesson.md)
 
 ## AI và học máy
 

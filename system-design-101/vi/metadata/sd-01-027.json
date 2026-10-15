@@ -1,0 +1,79 @@
+{
+  "id": "sd-01-027",
+  "title_vi": "Các vai trò trong một ứng dụng web vận hành thật",
+  "language": "vi",
+  "kind": "architecture",
+  "content_status": "draft",
+  "source_ref": "sd-01-027",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/10-essential-components-of-a-production-web-application.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/10-essential-components-of-a-production-web-application.md",
+    "blob_sha": "0e1c06752bda7d1ef720d0b38431ed67003aa612",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "f34abb1b270de001ed9a39fad27236fe27e593e2a266d7990910effd008be3f1",
+    "retrieved_body_bytes": 1514
+  },
+  "diagram": "../diagrams/sd-01-027-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-15"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-15",
+      "evidence": "Đọc Microsoft Web-Queue-Worker phần architecture/challenges/other considerations, baseline components/network flow, Elastic full-text introduction, Prometheus alerting overview và GitHub Actions overview. Claim chỉ vai trò/hạn chế, không bảo đảm hiệu năng hoặc production readiness."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "new lesson awaiting current-head review"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-15",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "evidence": "Chromium cục bộ toàn bài sau rút gọn, details mở320/375/430px: không tràn ngang/không chữ SVG ngoài viewBox; min14.4/16/16px. Đã xem ảnh320px. Chưa GitHub/device/user testing."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Web trao đổi việc với worker qua queue; có DB/cache/CDN; worker tùy nhu cầu, rủi ro ghi DB/gửi message không nguyên tử.",
+      "source": "https://learn.microsoft.com/en-us/azure/architecture/guide/architecture-styles/web-queue-worker"
+    },
+    {
+      "claim_vi": "Ví dụ Azure tách cửa vào định tuyến, DNS và theo dõi; bài không hứa phân tải đều hoặc áp toàn bộ cấu hình Azure.",
+      "source": "https://learn.microsoft.com/en-us/azure/architecture/web-apps/app-service/architectures/baseline-zone-redundant"
+    },
+    {
+      "claim_vi": "Full-text search dùng trường văn bản được phân tích và lập chỉ mục.",
+      "source": "https://www.elastic.co/docs/solutions/search/full-text"
+    },
+    {
+      "claim_vi": "Prometheus có alerting rules và Alertmanager gửi thông báo theo cấu hình, khác chỉ xem dashboard.",
+      "source": "https://prometheus.io/docs/alerting/latest/overview/"
+    },
+    {
+      "claim_vi": "GitHub Actions tự động hóa build/test/deploy qua workflow cấu hình; đây là ví dụ công cụ, không yêu cầu triển khai tự động.",
+      "source": "https://docs.github.com/en/actions/get-started/understand-github-actions"
+    }
+  ],
+  "design_notes_vi": "Năm vùng công việc, mười nhãn chủ đề, không mũi tên chuỗi xuyên toàn hình; ví dụ thư viện nguyên bản.",
+  "editorial_note_vi": "Bản nháp, không đồng nhất đủ thành phần với sẵn sàng phát hành; chỉ tiếng Việt.",
+  "source_deviations": [
+    "Không lặp bảo đảm load balancer phân tải đều hoặc giám sát bảo đảm mọi thứ hoạt động tốt; chỉ mô tả vai trò và giới hạn.",
+    "Mười mục là chủ đề tham khảo; không khẳng định mười máy chủ/dịch vụ bắt buộc cho mọi production app."
+  ]
+}

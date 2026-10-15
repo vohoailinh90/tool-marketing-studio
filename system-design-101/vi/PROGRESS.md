@@ -3,9 +3,9 @@
 Chuyển sang vohoailinh90/tool-marketing-studio ngày 2026-10-13 theo yêu cầu người dùng.
 Repo cũ tạm dừng; không merge/đóng/xóa các PR cũ.
 
-93/404 vị trí đã viết (89 bài đã có trên main; 023 trong PR75, 024–025 trong PR76 và 026 của nhánh này); 15 nhóm và 400 nguồn duy nhất giữ nguyên. Bảy bài đầu nhập từ repo cũ (PR #40, đã merge vào main) có evidence review ở repo cũ, kể cả bài 7 tại comment6133492501/headb8dff434ff75499137bbb10b61122958fdaaafa5. Các evidence này là prior_reviews, không duyệt tổ hợp trong repo mới.
+94/404 vị trí đã viết (89 bài đã có trên main; 023 trong PR75, 024–025 trong PR76, 026 trong PR77 và 027 của nhánh này); 15 nhóm và 400 nguồn duy nhất giữ nguyên. Bảy bài đầu nhập từ repo cũ (PR #40, đã merge vào main) có evidence review ở repo cũ, kể cả bài 7 tại comment6133492501/headb8dff434ff75499137bbb10b61122958fdaaafa5. Các evidence này là prior_reviews, không duyệt tổ hợp trong repo mới.
 
-Đã vào main: nhóm API và phát triển web đến sd-01-022 (PR #53 cho sd-01-008..010, PR #54 cho sd-01-011..013, PR #55 cho sd-01-014..016, PR #62 cho sd-01-017..019, PR #73 cho sd-01-020..022), nhóm sd-03, sd-05, nhóm DevOps và CI/CD sd-13-001..027 (PR #50) và nhóm Bảo mật sd-14-001..015 (đến PR #72). Nhóm Nền tảng máy tính sd-15-001..012 đã có trên main qua PR #48. PR75 cho sd-01-023 có review sạch 6189117443 trên head 1546428 và CI38714324531 success, vẫn open. PR76 có review5531739397 trên f3b6c65; P2 về PR75 đã merged được bác bằng GitHub API tại thread4282519794 theo protocol§16, không gọi đây là verdict bot sạch. CI76 còn queued. Đợt hiện tại là bài026 trên nhánh codex/sd01-026-cast-modes xếp trên PR76.
+Đã vào main: nhóm API và phát triển web đến sd-01-022 (PR #53 cho sd-01-008..010, PR #54 cho sd-01-011..013, PR #55 cho sd-01-014..016, PR #62 cho sd-01-017..019, PR #73 cho sd-01-020..022), nhóm sd-03, sd-05, nhóm DevOps và CI/CD sd-13-001..027 (PR #50) và nhóm Bảo mật sd-14-001..015 (đến PR #72). Nhóm Nền tảng máy tính sd-15-001..012 đã có trên main qua PR #48. PR75 cho sd-01-023 có review sạch 6189117443 trên head 1546428 và CI38714324531 success, vẫn open. PR76 có review5531739397 trên f3b6c65; P2 về PR75 đã merged được bác bằng GitHub API tại thread4282519794 theo protocol§16, không gọi đây là verdict bot sạch. CI76 đã success đúng f3b6c65. PR77 có review6192364922 sạch/CI38735906200 success đúng67832e5; các PR vẫn open, metadata chưa tự đổi done. Đợt hiện tại là bài027 trên nhánh codex/sd01-027-web-app-roles xếp trên PR77.
 
 Metadata JSON duy nhất giữ trạng thái; YAML chỉ id/metadata_ref. Hình/bài giữ nguyên byte khi nhập. User testing chưa thực hiện; không tự merge/deploy hoặc đăng bài. Mốc main repo cũ giữ previous_repository_main_sha. Review tổ hợp vẫn pending.
 
@@ -36,3 +36,7 @@ Hai bài mới về SemVer và thành phần URL. Nhánh xếp trên head 154642
 ## Bài026 (2026-10-15)
 
 Bốn kiểu tập đích của gói, hình tự thiết kế; anycast chọn một đích theo định tuyến, không phải multicast. Đọc chuẩn đối chiếu và ghi scope tại metadata. Không đổi các bài trước/tooling; main nền vẫn e4af7d6. PR75/76 chưa merged tại lúc viết. Số PR mới chưa có khi initial commit, ghi ở đợt nội dung thực chất tiếp theo; không push chỉ state.
+
+## Bài027 (2026-10-15)
+
+Thêm bản đồ vai trò của ứng dụng web, không coi mười chủ đề là mười máy chủ bắt buộc. Đối chiếu tài liệu chính thức; ví dụ và hình nguyên bản. Giữ nguyên bài trước và tooling. Main nền e4af7d6; PR75/76/77 vẫn open lúc viết. Số PR mới chưa có lúc initialcommit, bổ sung trong đợt nội dung thực chất; không push state-only.

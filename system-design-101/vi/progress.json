@@ -29,6 +29,7 @@
     "sd-01-024",
     "sd-01-025",
     "sd-01-026",
+    "sd-01-027",
     "sd-03-001",
     "sd-03-002",
     "sd-03-003",
@@ -98,14 +99,14 @@
     "sd-15-012"
   ],
   "reviewed_ids": [],
-  "next_id": "sd-01-027",
+  "next_id": "sd-01-028",
   "active_batch_ids": [
-    "sd-01-026"
+    "sd-01-027"
   ],
   "active_pr": null,
   "updated_on": "2026-10-15",
-  "active_branch": "codex/sd01-026-cast-modes",
-  "previous_pr": 76,
+  "active_branch": "codex/sd01-027-web-app-roles",
+  "previous_pr": 77,
   "superseded_pr": 24,
   "integration_review_pending": true,
   "adopted_main_sha": "e4af7d6fd2b977ac29cefb355d565240693c1993",
@@ -120,24 +121,11 @@
   ],
   "repository": "vohoailinh90/tool-marketing-studio",
   "previous_repository": "vohoailinh90/Agentic-coding-course",
-  "destination_base_sha": "f3b6c65a79f71ddc0348645191ba18f62c57dd5d",
+  "destination_base_sha": "67832e591e99118508b493f6d14f98151ffb4705",
   "migration_source_sha": "b8dff434ff75499137bbb10b61122958fdaaafa5",
   "previous_repository_main_sha": "89186c1a1aeb90a47e2a563fdc7786b2dacec787",
   "last_merged_pr": 73,
-  "pending_ci_prs": [
-    {
-      "pr": 76,
-      "head_sha": "f3b6c65a79f71ddc0348645191ba18f62c57dd5d",
-      "base_sha": "15464281c08b5a414cb220a32ee0712d958108e6",
-      "run_id": 38720354587,
-      "status": "queued",
-      "review_id": 5531739397,
-      "review_status": "reviewed_with_P2_rejected_by_evidence",
-      "rejected_finding": 4281884887,
-      "response_comment": 4282519794,
-      "checked_on": "2026-10-15"
-    }
-  ],
+  "pending_ci_prs": [],
   "prior_ci_evidence": [
     {
       "pr": 75,
@@ -148,6 +136,26 @@
       "review_id": 6189117443,
       "checked_on": "2026-10-15",
       "note": "PR vẫn open, không đồng nghĩa đã merged hoặc done."
+    },
+    {
+      "pr": 76,
+      "head_sha": "f3b6c65a79f71ddc0348645191ba18f62c57dd5d",
+      "base_sha": "15464281c08b5a414cb220a32ee0712d958108e6",
+      "run_id": 38720354587,
+      "conclusion": "success",
+      "review_id": 5531739397,
+      "review_status": "P2_rejected_with_evidence_4282519794",
+      "checked_on": "2026-10-15"
+    },
+    {
+      "pr": 77,
+      "head_sha": "67832e591e99118508b493f6d14f98151ffb4705",
+      "base_sha": "f3b6c65a79f71ddc0348645191ba18f62c57dd5d",
+      "run_id": 38735906200,
+      "conclusion": "success",
+      "review_id": 6192364922,
+      "review_status": "clean",
+      "checked_on": "2026-10-15"
     }
   ]
 }

@@ -712,6 +712,17 @@ def cmd_sync(context: Context, _: argparse.Namespace) -> int:
             retitled += 1
     clashes: list[str] = []
     if not bootstrap:
+        # Importing a lesson as written on this branch hides who wrote it: when the branch holds the other half of the
+        # lesson's shared-source pair, the import must not turn the two into one session's knowing choice. A pair that
+        # arrives together is not a clash.
+        arrived = set(imported)
+        for lesson_id in imported:
+            for partner in context.source.partners.get(lesson_id, ()):
+                held = lessons.get(partner, {})
+                if (partner not in arrived and held.get("owner") == context.me and held.get("status") in ("doing", "written")
+                        and not held.get("shared_source")):
+                    clashes.append(f"{lesson_id} (found on disk) shares its source file with {partner}, which {context.me} holds")
+    if not bootstrap:
         # A lesson merged from another work branch keeps that branch as its owner, and a record on a non-default branch
         # counts only for its own owner: if the other branch is deleted the lesson would vanish for everybody. Until the
         # default branch holds the record, the branch that now carries the lesson's files answers for it.
@@ -731,7 +742,7 @@ def cmd_sync(context: Context, _: argparse.Namespace) -> int:
                 adopted.append(lesson_id)
                 imported.append(lesson_id)  # the same file and content checks as for any lesson that becomes written here
     if clashes:
-        raise Refusal("sync refused, nothing was written: adopting would hide a shared-source conflict:\n  "
+        raise Refusal("sync refused, nothing was written: this would hide a shared-source conflict:\n  "
                       + "\n  ".join(clashes) + "\nrelease that half, or claim it again with --allow-same-source, first")
     if broken := imported_problems(context, imported):
         raise Refusal("sync refused, nothing was written: a lesson that is on disk cannot be imported as written yet:\n  "

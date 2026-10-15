@@ -797,6 +797,27 @@ class ClaimTests(Sessions):
         self.assertEqual(0, self.run_mapped(b, "claim", "sd-02-001", "--allow-same-source")[0], "on purpose")
         self.assertEqual(0, self.run_mapped(b, "sync")[0], "the conflict is acknowledged: the adoption may go on")
 
+    def test_importing_a_lesson_does_not_hide_a_shared_source_conflict(self) -> None:
+        b = self.mapped_clone("b")
+        self.assertEqual(0, self.run_mapped(b, "claim", "sd-02-001")[0])  # b holds one half
+        self.write_lesson(b, "sd-01-005")  # the other half turns up on disk without the registry hearing of it
+        before = (b / REGISTRY).read_text(encoding="utf-8")
+        code, _, err = self.run_mapped(b, "sync")
+        self.assertEqual(1, code, err)
+        self.assertIn("sd-01-005 (found on disk) shares its source file with sd-02-001", err)
+        self.assertEqual(before, (b / REGISTRY).read_text(encoding="utf-8"))
+        self.assertEqual(0, self.run_mapped(b, "claim", "sd-02-001", "--allow-same-source")[0], "on purpose")
+        self.assertEqual(0, self.run_mapped(b, "sync")[0], "the conflict is acknowledged: the import may go on")
+        self.assertEqual("written", self.entry(b, "sd-01-005")["status"])
+
+    def test_a_pair_that_arrives_together_is_not_a_conflict(self) -> None:
+        c = self.mapped_clone("c")
+        self.write_lesson(c, "sd-01-005")
+        self.write_lesson(c, "sd-02-001")  # both halves turn up in one merge
+        code, _, err = self.run_mapped(c, "sync")
+        self.assertEqual(0, code, err)
+        self.assertEqual(["written", "written"], [self.entry(c, "sd-01-005")["status"], self.entry(c, "sd-02-001")["status"]])
+
     def test_a_source_map_the_checker_rejects_blocks_publication(self) -> None:
         a = self.session("a")
         with mock.patch.object(claims, "source_map_problems", return_value=["source map: schema_version must be 1"]):

@@ -481,8 +481,8 @@ mutations:
   replace: '                pass'
   test: tests.test_sd101_claims.ClaimTests.test_sync_does_not_adopt_a_merged_lesson_that_is_now_incomplete
 - label: adoption erases a shared-source conflict
-  find: "    if clashes:\n        raise Refusal(\"sync refused, nothing was written: adopting would hide"
-  replace: "    if False:\n        raise Refusal(\"sync refused, nothing was written: adopting would hide"
+  find: "    if clashes:\n        raise Refusal(\"sync refused, nothing was written: this would hide"
+  replace: "    if False:\n        raise Refusal(\"sync refused, nothing was written: this would hide"
   test: tests.test_sd101_claims.ClaimTests.test_adoption_does_not_hide_a_shared_source_conflict
 - label: a source map the checker rejects does not block publication
   find: "    if map_findings:\n        raise Refusal("
@@ -536,3 +536,11 @@ mutations:
   find: holding.taken_from, holding.generation, holding.shared
   replace: holding.taken_from, holding.shared
   test: tests.test_sd101_claims.LeaseTests.test_a_higher_generation_is_a_different_claim
+- label: an imported lesson is not checked against the shared-source half this branch holds
+  find: '                if (partner not in arrived and held.get("owner") == context.me and held.get("status") in ("doing", "written")'
+  replace: '                if (False and partner not in arrived and held.get("owner") == context.me and held.get("status") in ("doing", "written")'
+  test: tests.test_sd101_claims.ClaimTests.test_importing_a_lesson_does_not_hide_a_shared_source_conflict
+- label: a pair imported together clashes with itself
+  find: '                if (partner not in arrived and held.get'
+  replace: '                if (held.get'
+  test: tests.test_sd101_claims.ClaimTests.test_a_pair_that_arrives_together_is_not_a_conflict

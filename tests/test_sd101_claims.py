@@ -500,6 +500,34 @@ class RemoteTests(Sessions):
         git(a, "push", "--quiet", "-f", "origin", "claude/a")
         self.assertEqual(1, self.run_in(b, "claim", "sd-01-002")[0], "intact again: the claim is seen and respected")
 
+    def test_a_branch_whose_registry_is_not_valid_utf8_stops_the_decision(self) -> None:
+        a = self.session("a")
+        self.run_in(a, "claim", "sd-01-001", "--publish")
+        original = git(a, "rev-parse", "HEAD")
+        data = (a / REGISTRY).read_bytes()
+        self.assertIn(b'"owner": "claude/a"', data)
+        (a / REGISTRY).write_bytes(data.replace(b'"owner": "claude/a"', b'"owner": "claude/\xffa"'))  # one bad byte in a name
+        git(a, "commit", "--quiet", "-am", "a byte that is not UTF-8")
+        git(a, "push", "--quiet", "origin", "claude/a")
+        b = self.session("b")
+        code, _, err = self.run_in(b, "claim", "sd-01-001")
+        self.assertEqual(2, code)
+        self.assertIn("origin/claude/a (not valid UTF-8)", err)
+        self.assertEqual("todo", self.entry(b, "sd-01-001")["status"])
+        code, _, err = self.run_in(b, "status")
+        self.assertEqual(0, code, "reporting is not deciding")
+        self.assertIn("not valid UTF-8", err)
+        git(a, "reset", "--quiet", "--hard", original)
+        git(a, "push", "--quiet", "-f", "origin", "claude/a")
+        self.assertEqual(1, self.run_in(b, "claim", "sd-01-001")[0], "intact again: the claim is seen and respected")
+
+    def test_a_local_registry_that_is_not_valid_utf8_is_reported_not_raised(self) -> None:
+        a = self.session("a")
+        (a / REGISTRY).write_bytes((a / REGISTRY).read_bytes() + b"\xff\n")
+        code, _, err = self.run_in(a, "claim", "sd-01-001")
+        self.assertEqual(2, code)
+        self.assertIn("cannot read", err)
+
     def test_publish_with_an_owner_that_is_not_the_branch_is_refused_before_anything_is_written(self) -> None:
         a = self.session("a")
         before = (a / REGISTRY).read_text(encoding="utf-8")

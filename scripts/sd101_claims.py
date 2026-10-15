@@ -328,15 +328,17 @@ def fetch_remote(root: pathlib.Path, remote: str) -> None:
     git(root, "fetch", "--quiet", "--prune", remote, f"+refs/heads/*:refs/remotes/{remote}/*")
 
 
-def remote_registries(root: pathlib.Path, remote: str, relative: str) -> tuple[dict[str, str], list[str]]:
-    """branch -> registry text for every remote branch that has one, and the branches whose file is missing."""
+def remote_registries(root: pathlib.Path, remote: str, relative: str) -> tuple[dict[str, str], list[str], list[str]]:
+    """branch -> registry text for every remote branch that has one, the branches whose file is missing, and the
+    branches whose file is not valid UTF-8 (decoded strictly: a replaced byte could turn an owner into another name)."""
     names = [name for name in git_text(root, "for-each-ref", "--format=%(refname:lstrip=3)",
                                        f"refs/remotes/{remote}").splitlines() if name and name != "HEAD"]
     if not names:
-        return {}, []
+        return {}, [], []
     request = "".join(f"refs/remotes/{remote}/{name}:{relative}\n" for name in names).encode()
     output = git(root, "cat-file", "--batch", data=request).stdout
     found: dict[str, str] = {}
+    undecodable: list[str] = []
     position = 0
     try:
         for name in names:
@@ -346,11 +348,14 @@ def remote_registries(root: pathlib.Path, remote: str, relative: str) -> tuple[d
             if len(fields) == 3:  # <oid> <type> <size>, then the content; a tree or a symlink is skipped, not read
                 size = int(fields[2])
                 if fields[1] == b"blob":
-                    found[name] = output[position:position + size].decode("utf-8", "replace")
+                    try:
+                        found[name] = output[position:position + size].decode("utf-8")
+                    except UnicodeDecodeError:
+                        undecodable.append(name)
                 position += size + 1
     except ValueError as error:
         raise ClaimsError(f"git cat-file printed something unexpected: {error}") from error
-    return found, [name for name in names if name not in found]
+    return found, [name for name in names if name not in found and name not in undecodable], undecodable
 
 
 # -------------------------------------------------------------------------------------------- the world
@@ -523,7 +528,7 @@ def load_registry(context: Context, complete: bool = True) -> tuple[dict, dict[s
     would publish a registry every other session then has to stop for."""
     try:
         text = context.path.read_text(encoding="utf-8")
-    except OSError as error:
+    except (OSError, UnicodeDecodeError) as error:
         raise ClaimsError(f"cannot read {context.path}: {error} (run sd101_claims.py sync to create it)") from error
     header, lessons, problems = parse(text)
     problems += record_problems(lessons)
@@ -560,17 +565,19 @@ def world_of(context: Context, local: dict[str, dict],
     caller only reports (`tolerate`) or was told to go on without it (--ignore-unreadable).
     """
     remote: dict[str, str] = {}
+    undecodable: list[str] = []
     base = "main"
     if not context.offline:
         try:
             fetch_remote(context.root, context.remote)
             base = default_branch(context.root, context.remote)
-            remote, _ = remote_registries(context.root, context.remote, context.relative)
+            remote, _, undecodable = remote_registries(context.root, context.remote, context.relative)
         except ClaimsError as error:
             raise ClaimsError(f"cannot read the other sessions' claims from {context.remote}: {error}; "
                               "nothing was decided (pass --offline only if you accept that risk)") from error
     roster = tuple(lesson_id for lesson_id, _ in context.source.lessons)
     found, unreadable = gather(local, remote, base, context.me, context.offline, roster)
+    unreadable += [f"{context.remote}/{name} (not valid UTF-8)" for name in undecodable]
     if unreadable and not tolerate and not context.ignore_unreadable:
         raise ClaimsError(f"the registry on {len(unreadable)} branch(es) cannot be parsed, e.g. {unreadable[0]}; "
                           "a claim in it could be missed, so nothing was decided. Fix or delete that branch, "

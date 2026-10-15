@@ -225,3 +225,11 @@ mutations:
   find: "        problems += header_problems(header, context.source.commit_sha, context.source.repository)\n        if missing"
   replace: '        if missing'
   test: tests.test_sd101_claims.LocalFileTests.test_a_local_registry_for_another_source_pin_is_refused_until_sync
+- label: a registry with a byte that is not UTF-8 is decoded with replacement characters
+  find: ".decode(\"utf-8\")\n                    except UnicodeDecodeError:\n                        undecodable.append(name)"
+  replace: ".decode(\"utf-8\", \"replace\")\n                    except UnicodeDecodeError:\n                        undecodable.append(name)"
+  test: tests.test_sd101_claims.RemoteTests.test_a_branch_whose_registry_is_not_valid_utf8_stops_the_decision
+- label: a local registry that is not UTF-8 raises
+  find: "    except (OSError, UnicodeDecodeError) as error:\n        raise ClaimsError(f\"cannot read {context.path}"
+  replace: "    except OSError as error:\n        raise ClaimsError(f\"cannot read {context.path}"
+  test: tests.test_sd101_claims.RemoteTests.test_a_local_registry_that_is_not_valid_utf8_is_reported_not_raised

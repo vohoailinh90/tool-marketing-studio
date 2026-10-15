@@ -1714,3 +1714,11 @@ mutations:
   find: "    problems = check_store(arguments.store, arguments.source_map, pin_roster)"
   replace: "    problems = []"
   test: tests.test_sd101_check.CommandLineTests.test_a_broken_store_exits_one_and_prints_the_problem
+- label: claims.jsonl is not checked at all
+  find: problems.extend(check_claims(store / "claims.jsonl", entries, lesson_ids, pin, pin_roster))
+  replace: pass
+  test: tests.test_sd101_check.ClaimsRuleTests.test_the_registry_title_must_be_the_source_maps
+- label: the real store may lack claims.jsonl
+  find: return [Problem(path.name, "is missing (python3 scripts/sd101_claims.py sync creates it)")] if required else []
+  replace: return []
+  test: tests.test_sd101_check.ClaimsRuleTests.test_the_real_store_must_have_the_registry

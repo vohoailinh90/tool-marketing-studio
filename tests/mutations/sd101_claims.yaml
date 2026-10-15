@@ -1,0 +1,88 @@
+# Mutation manifest — see scripts/mutation_check.py
+#
+# A passing test proves nothing on its own. These break each rule of the System Design claim registry
+# in turn and require the named test to fail. A mutation that SURVIVES means the test guards nothing.
+
+target: scripts/sd101_claims.py
+note: The registry is what stops two sessions writing one lesson. Each entry switches one rule off and names the test that must notice.
+mutations:
+- label: claims copied into another branch are counted as that branch's claims
+  find: 'if branch == base or entry.get("owner") == branch:'
+  replace: 'if True:'
+  test: tests.test_sd101_claims.ClaimTests.test_a_copy_of_a_claim_inherited_by_another_branch_is_not_a_claim
+- label: the other sessions' claims are never read from the remote
+  find: "    if not context.offline:\n        try:\n            fetch_remote"
+  replace: "    if False:\n        try:\n            fetch_remote"
+  test: tests.test_sd101_claims.RemoteTests.test_an_unreadable_remote_stops_the_claim_unless_offline_is_asked_for
+- label: the later of two claims wins instead of the earlier
+  find: return (first.claimed_at or "", first.owner or "") < (second.claimed_at or "", second.owner or "")
+  replace: return (first.claimed_at or "", first.owner or "") > (second.claimed_at or "", second.owner or "")
+  test: tests.test_sd101_claims.ClaimTests.test_the_earlier_claim_wins_even_when_it_is_pushed_second
+- label: a takeover does not beat the stale claim it took over
+  find: "    if first.taken_from and first.taken_from == second.owner:\n        return True"
+  replace: "    if first.taken_from and first.taken_from == second.owner:\n        return False"
+  test: tests.test_sd101_claims.LeaseTests.test_a_session_that_wakes_up_cannot_win_back_a_lesson_that_was_taken
+- label: a stale claim is taken over without asking
+  find: "        if not take_stale:\n            return (f\"claimed by"
+  replace: "        if False:\n            return (f\"claimed by"
+  test: tests.test_sd101_claims.LeaseTests.test_a_stale_claim_blocks_nobody_until_it_is_taken_on_purpose
+- label: a claim never goes stale
+  find: now - beat > datetime.timedelta(hours=lease_hours)
+  replace: now - beat < datetime.timedelta(hours=lease_hours)
+  test: tests.test_sd101_claims.LeaseTests.test_touching_keeps_a_claim_alive
+- label: a lesson that shares its source with a claimed one is claimable
+  find: "    if not allow_same_source:\n        for partner"
+  replace: "    if False:\n        for partner"
+  test: tests.test_sd101_claims.ClaimTests.test_a_lesson_sharing_its_source_is_refused_unless_allowed
+- label: a written lesson can be claimed again
+  find: "        if holding.status == \"written\":\n            return f\"already written by"
+  replace: "        if False:\n            return f\"already written by"
+  test: tests.test_sd101_claims.ClaimTests.test_a_lesson_written_on_another_branch_cannot_be_claimed
+- label: a claim with a refused lesson still writes the others
+  find: "    if refused:\n        print(\"claim refused"
+  replace: "    if False:\n        print(\"claim refused"
+  test: tests.test_sd101_claims.ClaimTests.test_a_claim_is_all_or_nothing
+- label: --publish pushes main
+  find: "if context.branch in (None, \"main\", \"master\"):\n        raise ClaimsError(\"--publish pushes"
+  replace: "if False:\n        raise ClaimsError(\"--publish pushes"
+  test: tests.test_sd101_claims.RemoteTests.test_nothing_is_published_from_main
+- label: a lost claim is renewed by touch
+  find: "        if results[lesson_id] is None:\n            lessons[lesson_id][\"heartbeat_at\"]"
+  replace: "        if True:\n            lessons[lesson_id][\"heartbeat_at\"]"
+  test: tests.test_sd101_claims.LeaseTests.test_a_session_that_wakes_up_cannot_win_back_a_lesson_that_was_taken
+- label: finish accepts a lesson that does not exist
+  find: 'elif not (context.store / "lessons" / lesson_id / "lesson.md").is_file():'
+  replace: 'elif False:'
+  test: tests.test_sd101_claims.FinishAndReleaseTests.test_finish_needs_a_claim_of_yours_and_the_lesson_file
+- label: finish accepts a lost claim
+  find: "    if any(results.values()):\n        return report_verdicts"
+  replace: "    if False:\n        return report_verdicts"
+  test: tests.test_sd101_claims.FinishAndReleaseTests.test_finish_refuses_a_claim_that_was_lost
+- label: release drops a draft that is on disk
+  find: 'elif lesson_id in context.on_disk():'
+  replace: 'elif False:'
+  test: tests.test_sd101_claims.FinishAndReleaseTests.test_release_gives_the_lesson_back_but_not_with_a_draft_on_disk
+- label: release gives back another session's claim
+  find: "        if entry.get(\"status\") != \"doing\" or entry.get(\"owner\") != context.me:\n            problems.append(f\"{lesson_id}: is not a claim of"
+  replace: "        if entry.get(\"status\") != \"doing\":\n            problems.append(f\"{lesson_id}: is not a claim of"
+  test: tests.test_sd101_claims.FinishAndReleaseTests.test_a_session_cannot_release_the_claim_of_another
+- label: the registry may say written for a lesson that does not exist
+  find: 'if status == "written" and lesson_id not in on_disk:'
+  replace: 'if False and status == "written" and lesson_id not in on_disk:'
+  test: tests.test_sd101_claims.FormatTests.test_the_registry_must_agree_with_the_lessons_on_disk
+- label: the registry may say todo for a lesson that exists
+  find: 'elif status == "todo" and lesson_id in on_disk:'
+  replace: 'elif False and status == "todo" and lesson_id in on_disk:'
+  test: tests.test_sd101_claims.FormatTests.test_the_registry_must_agree_with_the_lessons_on_disk
+- label: a registry that is not in canonical form is accepted
+  find: 'if render(header, lessons) != text:'
+  replace: 'if False:'
+  test: tests.test_sd101_claims.FormatTests.test_each_rule_reports_its_own_problem
+- label: a title that differs from the source map is accepted
+  find: 'if lesson_id in titles and entry.get("title") != titles[lesson_id]:'
+  replace: 'if False:'
+  test: tests.test_sd101_claims.FormatTests.test_each_rule_reports_its_own_problem
+- label: a registry for another source commit is accepted
+  find: 'if pin_commit is not None and header.get("source_commit_sha") != pin_commit:'
+  replace: 'if False:'
+  test: tests.test_sd101_claims.FormatTests.test_each_rule_reports_its_own_problem

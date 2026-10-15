@@ -1,0 +1,405 @@
+{"schema_version": 1, "lease_hours": 72, "source_repository": "ByteByteGoHq/system-design-101", "source_commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba"}
+{"id": "sd-01-001", "status": "written", "title": "Short/long polling, SSE, WebSocket"}
+{"id": "sd-01-002", "status": "written", "title": "Load Balancer Realistic Use Cases"}
+{"id": "sd-01-003", "status": "written", "title": "5 HTTP Status Codes That Should Never Have Been Created"}
+{"id": "sd-01-004", "status": "written", "title": "How does gRPC work?"}
+{"id": "sd-01-005", "status": "written", "title": "How NAT Enabled the Internet"}
+{"id": "sd-01-006", "status": "written", "title": "Important Things About HTTP Headers"}
+{"id": "sd-01-007", "status": "written", "title": "Internet Traffic Routing Policies"}
+{"id": "sd-01-008", "status": "written", "title": "How Browsers Render Web Pages"}
+{"id": "sd-01-009", "status": "written", "title": "What makes HTTP2 faster than HTTP1?"}
+{"id": "sd-01-010", "status": "written", "title": "What is CSS (Cascading Style Sheets)?"}
+{"id": "sd-01-011", "status": "written", "title": "Key Use Cases for Load Balancers"}
+{"id": "sd-01-012", "status": "written", "title": "18 Common Ports Worth Knowing"}
+{"id": "sd-01-013", "status": "written", "title": "What are the differences between WAN, LAN, PAN and MAN?"}
+{"id": "sd-01-014", "status": "todo", "title": "How does Javascript Work?"}
+{"id": "sd-01-015", "status": "todo", "title": "8 Tips for Efficient API Design"}
+{"id": "sd-01-016", "status": "todo", "title": "Reverse Proxy vs. API Gateway vs. Load Balancer"}
+{"id": "sd-01-017", "status": "todo", "title": "How does REST API work?"}
+{"id": "sd-01-018", "status": "todo", "title": "Load Balancer vs. API Gateway"}
+{"id": "sd-01-019", "status": "todo", "title": "How GraphQL Works at LinkedIn"}
+{"id": "sd-01-020", "status": "todo", "title": "GraphQL Adoption Patterns"}
+{"id": "sd-01-021", "status": "todo", "title": "A cheat sheet for API designs"}
+{"id": "sd-01-022", "status": "todo", "title": "API Gateway 101"}
+{"id": "sd-01-023", "status": "todo", "title": "Top 3 API Gateway Use Cases"}
+{"id": "sd-01-024", "status": "todo", "title": "What do version numbers mean?"}
+{"id": "sd-01-025", "status": "todo", "title": "Do you know all the components of a URL?"}
+{"id": "sd-01-026", "status": "todo", "title": "Unicast vs Broadcast vs Multicast vs Anycast"}
+{"id": "sd-01-027", "status": "todo", "title": "10 Essential Components of a Production Web Application"}
+{"id": "sd-01-028", "status": "todo", "title": "URL, URI, URN - Differences Explained"}
+{"id": "sd-01-029", "status": "todo", "title": "API vs SDK"}
+{"id": "sd-01-030", "status": "todo", "title": "A Cheatsheet to Build Secure APIs"}
+{"id": "sd-01-031", "status": "todo", "title": "HTTP Status Codes You Should Know"}
+{"id": "sd-01-032", "status": "todo", "title": "SOAP vs REST vs GraphQL vs RPC"}
+{"id": "sd-01-033", "status": "todo", "title": "A Cheatsheet on Comparing API Architectural Styles"}
+{"id": "sd-01-034", "status": "todo", "title": "Top 9 HTTP Request Methods"}
+{"id": "sd-01-035", "status": "todo", "title": "What is a Load Balancer?"}
+{"id": "sd-01-036", "status": "todo", "title": "Proxy vs Reverse Proxy"}
+{"id": "sd-01-037", "status": "todo", "title": "HTTP/1 -> HTTP/2 -> HTTP/3"}
+{"id": "sd-01-038", "status": "todo", "title": "Polling vs Webhooks"}
+{"id": "sd-01-039", "status": "todo", "title": "How do we Perform Pagination in API Design?"}
+{"id": "sd-01-040", "status": "todo", "title": "How to Design Effective and Safe APIs"}
+{"id": "sd-01-041", "status": "todo", "title": "How to Design Secure Web API Access"}
+{"id": "sd-01-042", "status": "todo", "title": "What Does an API Gateway Do?"}
+{"id": "sd-01-043", "status": "todo", "title": "What is gRPC?"}
+{"id": "sd-01-044", "status": "todo", "title": "Top 12 Tips for API Security"}
+{"id": "sd-01-045", "status": "todo", "title": "Explaining 9 Types of API Testing"}
+{"id": "sd-01-046", "status": "todo", "title": "REST API vs. GraphQL"}
+{"id": "sd-01-047", "status": "todo", "title": "What is GraphQL?"}
+{"id": "sd-01-048", "status": "todo", "title": "REST API Cheatsheet"}
+{"id": "sd-01-049", "status": "todo", "title": "The Ultimate API Learning Roadmap"}
+{"id": "sd-01-050", "status": "todo", "title": "The Evolving Landscape of API Protocols in 2023"}
+{"id": "sd-02-001", "status": "todo", "title": "100X Postgres Scaling at Figma"}
+{"id": "sd-02-002", "status": "todo", "title": "API of APIs - App Integrations"}
+{"id": "sd-02-003", "status": "todo", "title": "The one-line change that reduced clone times by 99% at Pinterest"}
+{"id": "sd-02-004", "status": "todo", "title": "Is Telegram Secure?"}
+{"id": "sd-02-005", "status": "todo", "title": "Fixing Bugs Automatically at Meta Scale"}
+{"id": "sd-02-006", "status": "todo", "title": "How Levelsfyi Scaled to Millions of Users with Google Sheets"}
+{"id": "sd-02-007", "status": "todo", "title": "McDonald’s Event-Driven Architecture"}
+{"id": "sd-02-008", "status": "todo", "title": "Uber Tech Stack - CI/CD"}
+{"id": "sd-02-009", "status": "todo", "title": "How to Design Stack Overflow"}
+{"id": "sd-02-010", "status": "todo", "title": "Twitter 1.0 Tech Stack"}
+{"id": "sd-02-011", "status": "todo", "title": "How does Twitter recommend “For You” Timeline in 1.5 seconds?"}
+{"id": "sd-02-012", "status": "todo", "title": "How YouTube Handles Massive Video Uploads"}
+{"id": "sd-02-013", "status": "todo", "title": "How Does a Typical Push Notification System Work?"}
+{"id": "sd-02-014", "status": "todo", "title": "4 Ways Netflix Uses Caching"}
+{"id": "sd-02-015", "status": "todo", "title": "Netflix Tech Stack - Databases"}
+{"id": "sd-02-016", "status": "todo", "title": "0 to 1.5 Billion Guests: Airbnb's Architectural Evolution"}
+{"id": "sd-02-017", "status": "todo", "title": "How Netflix Scales Push Messaging"}
+{"id": "sd-02-018", "status": "todo", "title": "Netflix's Overall Architecture"}
+{"id": "sd-02-019", "status": "todo", "title": "Netflix Tech Stack - CI/CD Pipeline"}
+{"id": "sd-02-020", "status": "todo", "title": "How TikTok Manages a 200K File Frontend MonoRepo"}
+{"id": "sd-02-021", "status": "todo", "title": "How Netflix Really Uses Java"}
+{"id": "sd-02-022", "status": "todo", "title": "Evolution of Airbnb’s Microservice Architecture"}
+{"id": "sd-02-023", "status": "todo", "title": "Reddit's Core Architecture"}
+{"id": "sd-02-024", "status": "todo", "title": "10 Principles for Building Resilient Payment Systems"}
+{"id": "sd-02-025", "status": "todo", "title": "What is the Journey of a Slack Message?"}
+{"id": "sd-02-026", "status": "todo", "title": "Top 9 Engineering Blogs"}
+{"id": "sd-02-027", "status": "todo", "title": "Uber Tech Stack"}
+{"id": "sd-02-028", "status": "todo", "title": "Evolution of the Netflix API Architecture"}
+{"id": "sd-02-029", "status": "todo", "title": "How Discord Stores Trillions of Messages"}
+{"id": "sd-02-030", "status": "todo", "title": "Twitter Architecture 2022 vs. 2012"}
+{"id": "sd-02-031", "status": "todo", "title": "Evolution of Uber's API Layer"}
+{"id": "sd-02-032", "status": "todo", "title": "Netflix's Tech Stack"}
+{"id": "sd-03-001", "status": "written", "title": "5 Functions to Merge Data with Pandas"}
+{"id": "sd-03-002", "status": "written", "title": "Key Data Terms"}
+{"id": "sd-03-003", "status": "written", "title": "ChatGPT Timeline"}
+{"id": "sd-03-004", "status": "written", "title": "DeepSeek 1-Pager"}
+{"id": "sd-03-005", "status": "written", "title": "The Open Source AI Stack"}
+{"id": "sd-03-006", "status": "written", "title": "What is an AI Agent?"}
+{"id": "sd-03-007", "status": "written", "title": "Data Pipelines Overview"}
+{"id": "sd-03-008", "status": "written", "title": "How does ChatGPT work?"}
+{"id": "sd-04-001", "status": "todo", "title": "Read Replica Pattern"}
+{"id": "sd-04-002", "status": "todo", "title": "Pessimistic vs Optimistic Locking"}
+{"id": "sd-04-003", "status": "todo", "title": "How to Upload a Large File to S3"}
+{"id": "sd-04-004", "status": "todo", "title": "Types of Message Queues"}
+{"id": "sd-04-005", "status": "todo", "title": "Smooth Data Migration with Avro"}
+{"id": "sd-04-006", "status": "todo", "title": "The Ultimate Kafka 101 You Cannot Miss"}
+{"id": "sd-04-007", "status": "todo", "title": "Database Isolation Levels"}
+{"id": "sd-04-008", "status": "todo", "title": "Top 6 Data Management Patterns"}
+{"id": "sd-04-009", "status": "todo", "title": "Why is Kafka Fast?"}
+{"id": "sd-04-010", "status": "todo", "title": "Explaining the 4 Most Commonly Used Types of Queues"}
+{"id": "sd-04-011", "status": "todo", "title": "Time Series DB (TSDB) in 20 Lines"}
+{"id": "sd-04-012", "status": "todo", "title": "Differences in Event Sourcing System Design"}
+{"id": "sd-04-013", "status": "todo", "title": "Erasure Coding"}
+{"id": "sd-04-014", "status": "todo", "title": "Delivery Semantics"}
+{"id": "sd-04-015", "status": "todo", "title": "Change Data Capture: Key to Leverage Real-time Data"}
+{"id": "sd-04-016", "status": "todo", "title": "Can Kafka Lose Messages?"}
+{"id": "sd-04-017", "status": "todo", "title": "Storage Systems Overview"}
+{"id": "sd-04-018", "status": "todo", "title": "Explain the Top 6 Use Cases of Object Stores"}
+{"id": "sd-04-019", "status": "todo", "title": "Top Eventual Consistency Patterns You Must Know"}
+{"id": "sd-04-020", "status": "todo", "title": "B-Tree vs. LSM-Tree"}
+{"id": "sd-04-021", "status": "todo", "title": "How to Decide Which Type of Database to Use"}
+{"id": "sd-04-022", "status": "todo", "title": "Cloud Database Cheat Sheet"}
+{"id": "sd-04-023", "status": "todo", "title": "Types of Memory"}
+{"id": "sd-04-024", "status": "todo", "title": "Understanding Database Types"}
+{"id": "sd-04-025", "status": "todo", "title": "Top 4 Data Sharding Algorithms Explained"}
+{"id": "sd-04-026", "status": "todo", "title": "Top 6 Database Models"}
+{"id": "sd-04-027", "status": "todo", "title": "SQL Statement Execution in Database"}
+{"id": "sd-04-028", "status": "todo", "title": "What is Serverless DB?"}
+{"id": "sd-04-029", "status": "todo", "title": "Why PostgreSQL is the Most Loved Database"}
+{"id": "sd-04-030", "status": "todo", "title": "Top 10 Most Popular Open-Source Databases"}
+{"id": "sd-04-031", "status": "todo", "title": "Is PostgreSQL Eating the Database World?"}
+{"id": "sd-04-032", "status": "todo", "title": "How to Choose the Right Database"}
+{"id": "sd-04-033", "status": "todo", "title": "iQIYI Database Selection Trees"}
+{"id": "sd-04-034", "status": "todo", "title": "8 Data Structures That Power Your Databases"}
+{"id": "sd-04-035", "status": "todo", "title": "How to Implement Read Replica Pattern"}
+{"id": "sd-04-036", "status": "todo", "title": "A Crash Course on Database Sharding"}
+{"id": "sd-04-037", "status": "todo", "title": "IBM MQ -> RabbitMQ -> Kafka -> Pulsar: Message Queue Evolution"}
+{"id": "sd-04-038", "status": "todo", "title": "CAP Theorem: One of the Most Misunderstood Terms"}
+{"id": "sd-04-039", "status": "todo", "title": "Consistent Hashing Explained"}
+{"id": "sd-04-040", "status": "todo", "title": "Types of Databases"}
+{"id": "sd-04-041", "status": "todo", "title": "Key Concepts to Understand Database Sharding"}
+{"id": "sd-04-042", "status": "todo", "title": "Database Locks Explained"}
+{"id": "sd-04-043", "status": "todo", "title": "A Cheatsheet on Database Performance"}
+{"id": "sd-04-044", "status": "todo", "title": "What does ACID mean?"}
+{"id": "sd-04-045", "status": "todo", "title": "Top 5 Kafka Use Cases"}
+{"id": "sd-04-046", "status": "todo", "title": "Types of Memory and Storage"}
+{"id": "sd-04-047", "status": "todo", "title": "7 Must-Know Strategies to Scale Your Database"}
+{"id": "sd-05-001", "status": "written", "title": "How do SQL Joins Work?"}
+{"id": "sd-05-002", "status": "written", "title": "What Happens When You Type google.com Into a Browser?"}
+{"id": "sd-05-003", "status": "written", "title": "What Happens When You Type a URL Into Your Browser?"}
+{"id": "sd-05-004", "status": "written", "title": "How to Ace System Design Interviews"}
+{"id": "sd-05-005", "status": "written", "title": "Recommended Materials for Technical Interviews"}
+{"id": "sd-06-001", "status": "todo", "title": "What is ELK Stack and Why is it Popular?"}
+{"id": "sd-06-002", "status": "todo", "title": "Why are Content Delivery Networks (CDN) so Popular?"}
+{"id": "sd-06-003", "status": "todo", "title": "How Big Keys Impact Redis Persistence"}
+{"id": "sd-06-004", "status": "todo", "title": "A Beginner's Guide to CDN"}
+{"id": "sd-06-005", "status": "todo", "title": "The Ultimate Redis 101"}
+{"id": "sd-06-006", "status": "todo", "title": "Cache Systems Every Developer Should Know"}
+{"id": "sd-06-007", "status": "todo", "title": "Top 5 Strategies to Reduce Latency"}
+{"id": "sd-06-008", "status": "todo", "title": "Top 5 Caching Strategies"}
+{"id": "sd-06-009", "status": "todo", "title": "Things to Consider When Using Cache"}
+{"id": "sd-06-010", "status": "todo", "title": "Cache Eviction Policies"}
+{"id": "sd-06-011", "status": "todo", "title": "Memcached vs Redis"}
+{"id": "sd-06-012", "status": "todo", "title": "Low Latency Stock Exchange"}
+{"id": "sd-06-013", "status": "todo", "title": "Cache Miss Attack"}
+{"id": "sd-06-014", "status": "todo", "title": "Top 8 Cache Eviction Strategies"}
+{"id": "sd-06-015", "status": "todo", "title": "How Can Cache Systems Go Wrong?"}
+{"id": "sd-06-016", "status": "todo", "title": "Top 6 Elasticsearch Use Cases"}
+{"id": "sd-06-017", "status": "todo", "title": "How Does CDN Work?"}
+{"id": "sd-06-018", "status": "todo", "title": "How Redis Architecture Evolved"}
+{"id": "sd-06-019", "status": "todo", "title": "How Does Redis Persist Data?"}
+{"id": "sd-06-020", "status": "todo", "title": "How can Redis be used?"}
+{"id": "sd-06-021", "status": "todo", "title": "Why is Redis so Fast?"}
+{"id": "sd-06-022", "status": "todo", "title": "How to Learn Elasticsearch"}
+{"id": "sd-06-023", "status": "todo", "title": "What is CDN (Content Delivery Network)?"}
+{"id": "sd-06-024", "status": "todo", "title": "Frontend Performance Optimization"}
+{"id": "sd-06-025", "status": "todo", "title": "Which Latency Numbers Should You Know?"}
+{"id": "sd-06-026", "status": "todo", "title": "Top Caching Strategies"}
+{"id": "sd-06-027", "status": "todo", "title": "Top 9 Website Performance Metrics You Cannot Ignore"}
+{"id": "sd-06-028", "status": "todo", "title": "Top 5 Common Ways to Improve API Performance"}
+{"id": "sd-06-029", "status": "todo", "title": "Learn Cache"}
+{"id": "sd-07-001", "status": "todo", "title": "E-commerce Workflow"}
+{"id": "sd-07-002", "status": "todo", "title": "Digital Wallets: Banks vs. Blockchain"}
+{"id": "sd-07-003", "status": "todo", "title": "What is a Stop-Loss Order and How Does it Work?"}
+{"id": "sd-07-004", "status": "todo", "title": "What is Web 3.0? Why doesn't it have ads?"}
+{"id": "sd-07-005", "status": "todo", "title": "SWIFT Payment Messaging System"}
+{"id": "sd-07-006", "status": "todo", "title": "4 Ways of QR Code Payment"}
+{"id": "sd-07-007", "status": "todo", "title": "Handling Hotspot Accounts"}
+{"id": "sd-07-008", "status": "todo", "title": "Reconciliation in Payment"}
+{"id": "sd-07-009", "status": "todo", "title": "Unified Payments Interface (UPI)"}
+{"id": "sd-07-010", "status": "todo", "title": "How Scan to Pay Works"}
+{"id": "sd-07-011", "status": "todo", "title": "Money Movement"}
+{"id": "sd-07-012", "status": "todo", "title": "Payment System"}
+{"id": "sd-07-013", "status": "todo", "title": "How to Learn Payments"}
+{"id": "sd-07-014", "status": "todo", "title": "The Payments Ecosystem"}
+{"id": "sd-07-015", "status": "todo", "title": "Foreign Exchange Payments"}
+{"id": "sd-07-016", "status": "todo", "title": "How to Avoid Double Payment"}
+{"id": "sd-07-017", "status": "todo", "title": "How do Apple Pay and Google Pay work?"}
+{"id": "sd-07-018", "status": "todo", "title": "How VISA Works When Swiping a Credit Card"}
+{"id": "sd-07-019", "status": "todo", "title": "How ACH Payment Works"}
+{"id": "sd-07-020", "status": "todo", "title": "How does Visa make money?"}
+{"id": "sd-08-001", "status": "todo", "title": "Inter-Process Communication on Linux"}
+{"id": "sd-08-002", "status": "todo", "title": "Orchestration vs. Choreography in Microservices"}
+{"id": "sd-08-003", "status": "todo", "title": "UML Class Diagrams Cheatsheet"}
+{"id": "sd-08-004", "status": "todo", "title": "Amazon Prime Video Monitoring Service"}
+{"id": "sd-08-005", "status": "todo", "title": "Is Microservice Architecture the Silver Bullet?"}
+{"id": "sd-08-006", "status": "todo", "title": "Database Middleware"}
+{"id": "sd-08-007", "status": "todo", "title": "9 Best Practices for Developing Microservices"}
+{"id": "sd-08-008", "status": "todo", "title": "Design Patterns Cheat Sheet"}
+{"id": "sd-08-009", "status": "todo", "title": "Key Terms in Domain-Driven Design"}
+{"id": "sd-08-010", "status": "todo", "title": "8 Key OOP Concepts Every Developer Should Know"}
+{"id": "sd-08-011", "status": "todo", "title": "18 Key Design Patterns Every Developer Should Know"}
+{"id": "sd-08-012", "status": "todo", "title": "10 System Design Tradeoffs You Cannot Ignore"}
+{"id": "sd-08-013", "status": "todo", "title": "9 Essential Components of a Production Microservice Application"}
+{"id": "sd-08-014", "status": "todo", "title": "9 Best Practices for Building Microservices"}
+{"id": "sd-08-015", "status": "todo", "title": "8 Key Concepts in Domain-Driven Design"}
+{"id": "sd-08-016", "status": "todo", "title": "8 Common System Design Problems and Solutions"}
+{"id": "sd-08-017", "status": "todo", "title": "6 Software Architectural Patterns You Must Know"}
+{"id": "sd-08-018", "status": "todo", "title": "How To Release A Mobile App"}
+{"id": "sd-08-019", "status": "todo", "title": "How Do Computer Programs Run?"}
+{"id": "sd-08-020", "status": "todo", "title": "Linux Boot Process Explained"}
+{"id": "sd-08-021", "status": "todo", "title": "MVC, MVP, MVVM, VIPER Patterns"}
+{"id": "sd-08-022", "status": "todo", "title": "The Ultimate Software Architect Knowledge Map"}
+{"id": "sd-08-023", "status": "todo", "title": "Typical Microservice Architecture"}
+{"id": "sd-08-024", "status": "todo", "title": "Top 5 Software Architectural Patterns"}
+{"id": "sd-09-001", "status": "todo", "title": "Git Commands Cheat Sheet"}
+{"id": "sd-09-002", "status": "todo", "title": "How does Git Work?"}
+{"id": "sd-09-003", "status": "todo", "title": "JSON Crack: Visualize JSON Files"}
+{"id": "sd-09-004", "status": "todo", "title": "Git vs GitHub"}
+{"id": "sd-09-005", "status": "todo", "title": "Git Merge vs. Git Rebase"}
+{"id": "sd-09-006", "status": "todo", "title": "30 Useful AI Apps That Can Help You in 2025"}
+{"id": "sd-09-007", "status": "todo", "title": "Diagram as Code"}
+{"id": "sd-09-008", "status": "todo", "title": "Top 9 Causes of 100% CPU Usage"}
+{"id": "sd-09-009", "status": "todo", "title": "Top 6 Tools to Turn Code into Beautiful Diagrams"}
+{"id": "sd-09-010", "status": "todo", "title": "Tools for Shipping Code to Production"}
+{"id": "sd-09-011", "status": "todo", "title": "Making Sense of Search Engine Optimization"}
+{"id": "sd-09-012", "status": "todo", "title": "Most Used Linux Commands Map"}
+{"id": "sd-09-013", "status": "todo", "title": "Linux File Permissions Illustrated"}
+{"id": "sd-09-014", "status": "todo", "title": "5 Important Components of Linux"}
+{"id": "sd-09-015", "status": "todo", "title": "15 Open-Source Projects That Changed the World"}
+{"id": "sd-09-016", "status": "todo", "title": "20 Popular Open Source Projects Started by Big Companies"}
+{"id": "sd-09-017", "status": "todo", "title": "Linux File System Explained"}
+{"id": "sd-09-018", "status": "todo", "title": "Life is Short, Use Dev Tools"}
+{"id": "sd-09-019", "status": "todo", "title": "How Git Works"}
+{"id": "sd-09-020", "status": "todo", "title": "How do Companies Ship Code to Production?"}
+{"id": "sd-10-001", "status": "todo", "title": "Top 6 Most Commonly Used Server Types"}
+{"id": "sd-10-002", "status": "todo", "title": "How does Garbage Collection work?"}
+{"id": "sd-10-003", "status": "todo", "title": "A Roadmap for Full-Stack Development"}
+{"id": "sd-10-004", "status": "todo", "title": "What Are the Greenest Programming Languages?"}
+{"id": "sd-10-005", "status": "todo", "title": "Java Collection Hierarchy"}
+{"id": "sd-10-006", "status": "todo", "title": "Running C, C++, or Rust in a Web Browser"}
+{"id": "sd-10-007", "status": "todo", "title": "Top 8 C++ Use Cases"}
+{"id": "sd-10-008", "status": "todo", "title": "Top 6 Multithreading Design Patterns You Must Know"}
+{"id": "sd-10-009", "status": "todo", "title": "Data Transmission Between Applications"}
+{"id": "sd-10-010", "status": "todo", "title": "Blocking vs Non-Blocking Queue"}
+{"id": "sd-10-011", "status": "todo", "title": "Big Endian vs Little Endian"}
+{"id": "sd-10-012", "status": "todo", "title": "How to Avoid Crawling Duplicate URLs at Google Scale?"}
+{"id": "sd-10-013", "status": "todo", "title": "10 Books for Software Developers"}
+{"id": "sd-10-014", "status": "todo", "title": "Top 8 Standards Every Developer Should Know"}
+{"id": "sd-10-015", "status": "todo", "title": "How Do C++, Java, Python Work?"}
+{"id": "sd-10-016", "status": "todo", "title": "10 Key Data Structures We Use Every Day"}
+{"id": "sd-10-017", "status": "todo", "title": "A Brief History of Programming Languages"}
+{"id": "sd-10-018", "status": "todo", "title": "Top 6 Load Balancing Algorithms"}
+{"id": "sd-10-019", "status": "todo", "title": "The Fundamental Pillars of Object-Oriented Programming"}
+{"id": "sd-10-020", "status": "todo", "title": "Top 8 Programming Paradigms"}
+{"id": "sd-10-021", "status": "todo", "title": "Algorithms for System Design Interviews"}
+{"id": "sd-10-022", "status": "todo", "title": "Imperative vs Functional vs Object-oriented Programming"}
+{"id": "sd-10-023", "status": "todo", "title": "Explaining 9 Types of API Testing"}
+{"id": "sd-10-024", "status": "todo", "title": "The 9 Algorithms That Dominate Our World"}
+{"id": "sd-10-025", "status": "todo", "title": "Concurrency vs Parallelism"}
+{"id": "sd-10-026", "status": "todo", "title": "Linux Boot Process Explained"}
+{"id": "sd-10-027", "status": "todo", "title": "11 Steps to Go From Junior to Senior Developer"}
+{"id": "sd-10-028", "status": "todo", "title": "10 Good Coding Principles to Improve Code Quality"}
+{"id": "sd-11-001", "status": "todo", "title": "How AWS Lambda Works Behind the Scenes"}
+{"id": "sd-11-002", "status": "todo", "title": "8 Must-Know Scalability Strategies"}
+{"id": "sd-11-003", "status": "todo", "title": "System Design Cheat Sheet"}
+{"id": "sd-11-004", "status": "todo", "title": "Cloud Disaster Recovery Strategies"}
+{"id": "sd-11-005", "status": "todo", "title": "Vertical vs Horizontal Partitioning"}
+{"id": "sd-11-006", "status": "todo", "title": "Top 9 Architectural Patterns for Data and Communication Flow"}
+{"id": "sd-11-007", "status": "todo", "title": "Top 6 Cases to Apply Idempotency"}
+{"id": "sd-11-008", "status": "todo", "title": "Top 5 Trade-offs in System Designs"}
+{"id": "sd-11-009", "status": "todo", "title": "How to Detect Node Failures in Distributed Systems"}
+{"id": "sd-11-010", "status": "todo", "title": "Why Meta, Google, and Amazon Stop Using Leap Seconds"}
+{"id": "sd-11-011", "status": "todo", "title": "The Fantastic Four of System Design"}
+{"id": "sd-11-012", "status": "todo", "title": "What makes AWS Lambda so fast?"}
+{"id": "sd-11-013", "status": "todo", "title": "Scaling Websites for Millions of Users"}
+{"id": "sd-11-014", "status": "todo", "title": "Resiliency Patterns"}
+{"id": "sd-11-015", "status": "todo", "title": "25 Papers That Completely Transformed the Computer World"}
+{"id": "sd-11-016", "status": "todo", "title": "A Crash Course on Architectural Scalability"}
+{"id": "sd-11-017", "status": "todo", "title": "Must Know System Design Building Blocks"}
+{"id": "sd-11-018", "status": "todo", "title": "Monorepo vs. Microrepo: Which is Best?"}
+{"id": "sd-11-019", "status": "todo", "title": "How to Handle Web Request Errors"}
+{"id": "sd-11-020", "status": "todo", "title": "A Cheat Sheet for Designing Fault-Tolerant Systems"}
+{"id": "sd-11-021", "status": "todo", "title": "Typical AWS Network Architecture"}
+{"id": "sd-11-022", "status": "todo", "title": "Unique ID Generator"}
+{"id": "sd-11-023", "status": "todo", "title": "Amazon's Build System: Brazil"}
+{"id": "sd-11-024", "status": "todo", "title": "Infrastructure as Code Landscape Cheatsheet"}
+{"id": "sd-11-025", "status": "todo", "title": "How do we manage configurations in a system?"}
+{"id": "sd-11-026", "status": "todo", "title": "How do we incorporate Event Sourcing into systems?"}
+{"id": "sd-11-027", "status": "todo", "title": "The 12-Factor App"}
+{"id": "sd-11-028", "status": "todo", "title": "Explaining 5 Unique ID Generators"}
+{"id": "sd-11-029", "status": "todo", "title": "Retry Strategies for System Failures"}
+{"id": "sd-11-030", "status": "todo", "title": "Cloud Monitoring Cheat Sheet"}
+{"id": "sd-11-031", "status": "todo", "title": "Why Use a Distributed Lock?"}
+{"id": "sd-11-032", "status": "todo", "title": "Top 6 Cloud Messaging Patterns"}
+{"id": "sd-11-033", "status": "todo", "title": "Most Important AWS Services to Learn"}
+{"id": "sd-11-034", "status": "todo", "title": "How to Transform a System to be Cloud Native"}
+{"id": "sd-11-035", "status": "todo", "title": "Hidden Costs of the Cloud"}
+{"id": "sd-11-036", "status": "todo", "title": "2 Decades of Cloud Evolution"}
+{"id": "sd-11-037", "status": "todo", "title": "Cloud Cost Reduction Techniques"}
+{"id": "sd-11-038", "status": "todo", "title": "Top 7 Most-Used Distributed System Patterns"}
+{"id": "sd-11-039", "status": "todo", "title": "Cloud Load Balancer Cheat Sheet"}
+{"id": "sd-11-040", "status": "todo", "title": "AWS Services Evolution"}
+{"id": "sd-11-041", "status": "todo", "title": "Azure Services Cheat Sheet"}
+{"id": "sd-11-042", "status": "todo", "title": "A cheat sheet for system designs"}
+{"id": "sd-11-043", "status": "todo", "title": "CAP, BASE, SOLID, KISS, What do these acronyms mean?"}
+{"id": "sd-11-044", "status": "todo", "title": "System Design Blueprint: The Ultimate Guide"}
+{"id": "sd-11-045", "status": "todo", "title": "How to Design for High Availability"}
+{"id": "sd-11-046", "status": "todo", "title": "What is Cloud Native?"}
+{"id": "sd-11-047", "status": "todo", "title": "Cloud Comparison Cheat Sheet"}
+{"id": "sd-11-048", "status": "todo", "title": "Big Data Pipeline Cheatsheet for AWS, Azure, and Google Cloud"}
+{"id": "sd-11-049", "status": "todo", "title": "AWS Services Cheat Sheet"}
+{"id": "sd-12-001", "status": "todo", "title": "How do AirTags work?"}
+{"id": "sd-12-002", "status": "todo", "title": "How is Email Delivered?"}
+{"id": "sd-12-003", "status": "todo", "title": "Design Gmail"}
+{"id": "sd-12-004", "status": "todo", "title": "How Google/Apple Maps Blur License Plates and Faces"}
+{"id": "sd-12-005", "status": "todo", "title": "Quadtree"}
+{"id": "sd-12-006", "status": "todo", "title": "Build a Simple Chat Application with Redis"}
+{"id": "sd-12-007", "status": "todo", "title": "Live Streaming Explained"}
+{"id": "sd-12-008", "status": "todo", "title": "How to Design a System for Internationalization"}
+{"id": "sd-12-009", "status": "todo", "title": "How to Design Google Docs"}
+{"id": "sd-12-010", "status": "todo", "title": "Payment System"}
+{"id": "sd-12-011", "status": "todo", "title": "Experiment Platform Architecture"}
+{"id": "sd-12-012", "status": "todo", "title": "Design Google Maps"}
+{"id": "sd-12-013", "status": "todo", "title": "Designing a Chat Application"}
+{"id": "sd-12-014", "status": "todo", "title": "Design Stock Exchange"}
+{"id": "sd-12-015", "status": "todo", "title": "How are Notifications Pushed to Our Phones or PCs?"}
+{"id": "sd-12-016", "status": "todo", "title": "What Happens When You Upload a File to Amazon S3?"}
+{"id": "sd-12-017", "status": "todo", "title": "Proximity Service"}
+{"id": "sd-12-018", "status": "todo", "title": "How Do Search Engines Work?"}
+{"id": "sd-13-001", "status": "written", "title": "Top 10 Kubernetes Design Patterns"}
+{"id": "sd-13-002", "status": "written", "title": "Some DevOps Books I Find Enlightening"}
+{"id": "sd-13-003", "status": "written", "title": "Paradigm Shift: Developer to Tester Ratio"}
+{"id": "sd-13-004", "status": "written", "title": "Push vs Pull in Metrics Collection Systems"}
+{"id": "sd-13-005", "status": "written", "title": "Choose the Right Database for Metric Collection"}
+{"id": "sd-13-006", "status": "written", "title": "Top 4 Kubernetes Service Types"}
+{"id": "sd-13-007", "status": "written", "title": "Cloud Native Anti-Patterns"}
+{"id": "sd-13-008", "status": "written", "title": "Kubernetes Tools Stack Wheel"}
+{"id": "sd-13-009", "status": "written", "title": "Kubernetes Tools Ecosystem"}
+{"id": "sd-13-010", "status": "written", "title": "Kubernetes Periodic Table"}
+{"id": "sd-13-011", "status": "written", "title": "9 Docker Best Practices You Must Know"}
+{"id": "sd-13-012", "status": "written", "title": "Netflix Tech Stack - CI/CD Pipeline"}
+{"id": "sd-13-013", "status": "written", "title": "Top 8 Must-Know Docker Concepts"}
+{"id": "sd-13-014", "status": "written", "title": "CI/CD Simplified Visual Guide"}
+{"id": "sd-13-015", "status": "written", "title": "Top 5 Most-Used Deployment Strategies"}
+{"id": "sd-13-016", "status": "written", "title": "Kubernetes Command Cheatsheet"}
+{"id": "sd-13-017", "status": "written", "title": "Kubernetes Deployment Strategies"}
+{"id": "sd-13-018", "status": "written", "title": "How does Terraform turn Code into Cloud?"}
+{"id": "sd-13-019", "status": "written", "title": "DevOps vs. SRE vs. Platform Engineering"}
+{"id": "sd-13-020", "status": "written", "title": "Deployment Strategies"}
+{"id": "sd-13-021", "status": "written", "title": "Logging, Tracing, and Metrics"}
+{"id": "sd-13-022", "status": "written", "title": "Log Parsing Cheat Sheet"}
+{"id": "sd-13-023", "status": "written", "title": "DevOps vs NoOps: What's the Difference?"}
+{"id": "sd-13-024", "status": "written", "title": "Why is Nginx so Popular?"}
+{"id": "sd-13-025", "status": "written", "title": "What is Kubernetes (k8s)?"}
+{"id": "sd-13-026", "status": "written", "title": "How does Docker work?"}
+{"id": "sd-13-027", "status": "written", "title": "CI/CD Pipeline Explained in Simple Terms"}
+{"id": "sd-14-001", "status": "written", "title": "What is DevSecOps?"}
+{"id": "sd-14-002", "status": "written", "title": "Encoding vs Encryption vs Tokenization"}
+{"id": "sd-14-003", "status": "written", "title": "Storing Passwords Safely: A Comprehensive Guide"}
+{"id": "sd-14-004", "status": "written", "title": "Designing a Permission System"}
+{"id": "sd-14-005", "status": "written", "title": "How Password Managers Work"}
+{"id": "sd-14-006", "status": "written", "title": "Is PassKey Shaping a Passwordless Future?"}
+{"id": "sd-14-007", "status": "written", "title": "Firewall Explained to Kids and Adults"}
+{"id": "sd-14-008", "status": "written", "title": "Cookies vs Sessions"}
+{"id": "sd-14-009", "status": "written", "title": "HTTP Cookies Explained With a Simple Diagram"}
+{"id": "sd-14-010", "status": "written", "title": "Token, Cookie, Session"}
+{"id": "sd-14-011", "status": "written", "title": "Sessions, Tokens, JWT, SSO, and OAuth Explained"}
+{"id": "sd-14-012", "status": "written", "title": "How to Design a Secure System"}
+{"id": "sd-14-013", "status": "written", "title": "Top 6 Firewall Use Cases"}
+{"id": "sd-14-014", "status": "written", "title": "Top 4 Authentication Mechanisms"}
+{"id": "sd-14-015", "status": "written", "title": "How Digital Signatures Work"}
+{"id": "sd-14-016", "status": "todo", "title": "How do we manage sensitive data in a system?"}
+{"id": "sd-14-017", "status": "todo", "title": "HTTPS, SSL Handshake, and Data Encryption Explained"}
+{"id": "sd-14-018", "status": "todo", "title": "Symmetric vs Asymmetric Encryption"}
+{"id": "sd-14-019", "status": "todo", "title": "Session-based Authentication vs. JWT"}
+{"id": "sd-14-020", "status": "todo", "title": "JWT 101: Key to Stateless Authentication"}
+{"id": "sd-14-021", "status": "todo", "title": "Is HTTPS Safe?"}
+{"id": "sd-14-022", "status": "todo", "title": "Cybersecurity 101"}
+{"id": "sd-14-023", "status": "todo", "title": "Cookies vs Sessions vs JWT vs PASETO"}
+{"id": "sd-14-024", "status": "todo", "title": "How does SSH work?"}
+{"id": "sd-14-025", "status": "todo", "title": "How Does a VPN Work?"}
+{"id": "sd-14-026", "status": "todo", "title": "How Google Authenticator Works"}
+{"id": "sd-14-027", "status": "todo", "title": "Types of VPNs"}
+{"id": "sd-14-028", "status": "todo", "title": "What is a Cookie?"}
+{"id": "sd-14-029", "status": "todo", "title": "OAuth 2.0 Flows"}
+{"id": "sd-14-030", "status": "todo", "title": "Top Network Security Cheatsheet"}
+{"id": "sd-14-031", "status": "todo", "title": "What is SSO (Single Sign-On)?"}
+{"id": "sd-14-032", "status": "todo", "title": "How does HTTPS work?"}
+{"id": "sd-14-033", "status": "todo", "title": "Session, Cookie, JWT, Token, SSO, and OAuth 2.0 Explained"}
+{"id": "sd-14-034", "status": "todo", "title": "Explaining JSON Web Token (JWT) to a 10 Year Old Kid"}
+{"id": "sd-14-035", "status": "todo", "title": "OAuth 2.0 Explained With Simple Terms"}
+{"id": "sd-15-001", "status": "todo", "title": "Paging vs Segmentation"}
+{"id": "sd-15-002", "status": "todo", "title": "IPv4 vs. IPv6: Differences"}
+{"id": "sd-15-003", "status": "todo", "title": "Top 4 Most Popular Use Cases for UDP"}
+{"id": "sd-15-004", "status": "todo", "title": "How Does the Domain Name System (DNS) Lookup Work?"}
+{"id": "sd-15-005", "status": "todo", "title": "DNS Record Types You Should Know"}
+{"id": "sd-15-006", "status": "todo", "title": "TCP vs UDP for Online Gaming"}
+{"id": "sd-15-007", "status": "todo", "title": "What is a Deadlock?"}
+{"id": "sd-15-008", "status": "todo", "title": "Process vs Thread: Key Differences"}
+{"id": "sd-15-009", "status": "todo", "title": "OSI Model Explained"}
+{"id": "sd-15-010", "status": "todo", "title": "Visualizing a SQL Query"}
+{"id": "sd-15-011", "status": "todo", "title": "Explaining 8 Popular Network Protocols in 1 Diagram"}
+{"id": "sd-15-012", "status": "todo", "title": "What is the Best Way to Learn SQL?"}

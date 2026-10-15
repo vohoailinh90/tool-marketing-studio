@@ -11,6 +11,7 @@ hand with the same ad hoc commands, and moved here with the store.
 The store, `system-design-101/vi/`, holds:
   README.md, PROGRESS.md, MIGRATION.md   prose; README.md is the index
   progress.json                          what is written, what is next
+  claims.jsonl                           which session is writing which lesson (scripts/sd101_claims.py)
   lessons/<id>/lesson.md, lesson.yaml    the lesson; lesson.yaml only points at its metadata
   lessons/<id>.md                        optional one-line pointer to lessons/<id>/lesson.md
   metadata/<id>.json                     the single record of a lesson's status and evidence
@@ -51,7 +52,10 @@ one in a lesson); README.md, PROGRESS.md and MIGRATION.md embed no image, use on
 lesson directory (as a real link, not a path in a comment or a code block) in source-map order and has no
 status word (draft, review, done) in a table cell, however formatted or decorated (status lives only in
 metadata/); progress.json's written_ids are the lessons on disk in source-map order, next_id is the first
-source-map id not yet written, and its totals are the source map's.
+source-map id not yet written, and its totals are the source map's; claims.jsonl lists every source-map
+id in order with its title, a well-formed status (todo, doing, written), `written` only for a lesson that exists
+and `todo` only for one that does not, and is in the canonical form scripts/sd101_claims.py writes (the real
+store must have it; a fixture store without one is not asked for it).
 
 This guards against honest mistakes while ~400 lessons are written; it is not a security
 boundary. Markup crafted to slip past a rule on purpose is out of scope.
@@ -70,6 +74,7 @@ from __future__ import annotations
 
 import argparse
 import datetime
+import importlib.util
 import ipaddress
 import itertools
 import json
@@ -122,7 +127,8 @@ STATUS_WORD = re.compile(r"(?<![^\W_])(?:draft|review|done)(?![^\W_])", re.IGNOR
 SCHEME = re.compile(r"^[A-Za-z][A-Za-z0-9+.-]*:")
 SOURCE_IMAGE_HOST = "assets.bytebytego.com"
 LESSON_FILES = {"lesson.md", "lesson.yaml"}
-STORE_ENTRIES = {"README.md", "PROGRESS.md", "MIGRATION.md", "progress.json", "diagrams", "lessons", "metadata"}
+STORE_ENTRIES = {"README.md", "PROGRESS.md", "MIGRATION.md", "progress.json", "claims.jsonl", "diagrams", "lessons",
+                 "metadata"}
 STORE_PAGES = ("README.md", "PROGRESS.md", "MIGRATION.md")
 PROGRESS_REQUIRED = {"language", "total_occurrences", "total_source_documents", "written_ids", "reviewed_ids", "next_id"}
 PROGRESS_ID_LISTS = ("reviewed_ids", "active_batch_ids", "prior_repository_reviewed_ids")
@@ -971,6 +977,28 @@ def check_progress(path: pathlib.Path, entries: dict[str, dict], written: list[s
     return [Problem("progress.json", reason) for reason in reasons]
 
 
+def check_claims(path: pathlib.Path, entries: dict[str, dict], lesson_ids: set[str],
+                 pin: tuple[str, str] | None, required: bool) -> list[Problem]:
+    """claims.jsonl is the claim registry; the format and its rules live in scripts/sd101_claims.py."""
+    if not path.exists():
+        return [Problem(path.name, "is missing (python3 scripts/sd101_claims.py sync creates it)")] if required else []
+    text, why = read_text(path) if path.is_file() and not path.is_symlink() else (None, "is not a regular file")
+    if why or text is None:
+        return [Problem(path.name, why or "cannot be read")]
+    spec = importlib.util.spec_from_file_location("sd101_claims", pathlib.Path(__file__).with_name("sd101_claims.py"))
+    if spec is None or spec.loader is None:
+        return [Problem(path.name, "cannot be checked: scripts/sd101_claims.py cannot be loaded")]
+    claims = importlib.util.module_from_spec(spec)
+    sys.modules.setdefault("sd101_claims", claims)
+    spec.loader.exec_module(claims)
+    expected = [(lesson_id, entry["title_source"]) for lesson_id, entry in entries.items()
+                if isinstance(entry.get("title_source"), str)]
+    if len(expected) != len(entries):
+        expected = []  # a broken source map is reported by its own rules
+    return [Problem(path.name, reason)
+            for reason in claims.registry_problems(text, expected, pin[1] if pin else None, lesson_ids)]
+
+
 def check_store(store: pathlib.Path, source_map: pathlib.Path, pin_roster: bool = False) -> list[Problem]:
     entries, pin, problems = load_source_map(source_map, pin_roster)
     boundary = repository_root(store)
@@ -1058,6 +1086,7 @@ def check_store(store: pathlib.Path, source_map: pathlib.Path, pin_roster: bool 
             problems.extend(check_readme(text, lesson_ids, entries))
     written = [lesson_id for lesson_id in entries if lesson_id in lesson_ids]
     problems.extend(check_progress(store / "progress.json", entries, written))
+    problems.extend(check_claims(store / "claims.jsonl", entries, lesson_ids, pin, pin_roster))
     return problems
 
 

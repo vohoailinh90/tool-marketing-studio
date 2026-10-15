@@ -597,7 +597,10 @@ def world_of(context: Context, local: dict[str, dict],
                                (context.source.commit_sha, context.source.repository))
     unreadable += [f"{context.remote}/{name} (not valid UTF-8)" for name in undecodable]
     if base in missing:  # a legacy feature branch may lack the file, the branch that holds every merged lesson may not
-        unreadable.append(f"{context.remote}/{base} (the default branch has no {REGISTRY_NAME})")
+        absent = f"{context.remote}/{base} (the default branch has no {REGISTRY_NAME})"
+        if not tolerate:  # not even --ignore-unreadable decides without the records of every merged lesson
+            raise ClaimsError(f"{absent}; nothing was decided (--ignore-unreadable does not cover the default branch)")
+        unreadable.append(absent)
     if unreadable and not tolerate and not context.ignore_unreadable:
         raise ClaimsError(f"the registry on {len(unreadable)} branch(es) cannot be parsed, e.g. {unreadable[0]}; "
                           "a claim in it could be missed, so nothing was decided. Fix or delete that branch, "
@@ -971,6 +974,13 @@ def cmd_touch(context: Context, args: argparse.Namespace) -> int:
     return report_verdicts(results, context)
 
 
+def missing_artifacts(context: Context, lesson_id: str) -> list[str]:
+    """The files the store needs for a finished lesson that are absent or symbolic links, relative to the store."""
+    return [path for path in (f"lessons/{lesson_id}/lesson.md", f"lessons/{lesson_id}/lesson.yaml",
+                              f"metadata/{lesson_id}.json", f"diagrams/{lesson_id}-main.svg")
+            if (context.store / path).is_symlink() or not (context.store / path).is_file()]
+
+
 def cmd_finish(context: Context, args: argparse.Namespace) -> int:
     header, lessons = load_registry(context)
     check_ids(context, lessons, args.ids)
@@ -979,8 +989,8 @@ def cmd_finish(context: Context, args: argparse.Namespace) -> int:
         entry = lessons[lesson_id]
         if entry.get("status") != "doing" or entry.get("owner") != context.me:
             problems.append(f"{lesson_id}: is not claimed by {context.me} (claim it first)")
-        elif (lesson := context.store / "lessons" / lesson_id / "lesson.md").is_symlink() or not lesson.is_file():
-            problems.append(f"{lesson_id}: lessons/{lesson_id}/lesson.md does not exist yet (or is a symbolic link)")
+        elif missing := missing_artifacts(context, lesson_id):
+            problems.append(f"{lesson_id}: " + "; ".join(f"{path} does not exist yet (or is a symbolic link)" for path in missing))
     if problems:
         print("finish refused, nothing was written:\n  " + "\n  ".join(problems), file=sys.stderr)
         return 1

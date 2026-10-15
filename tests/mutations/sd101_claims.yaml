@@ -51,7 +51,7 @@ mutations:
   replace: "        if True:\n            lessons[lesson_id][\"heartbeat_at\"]"
   test: tests.test_sd101_claims.LeaseTests.test_a_session_that_wakes_up_cannot_win_back_a_lesson_that_was_taken
 - label: finish accepts a lesson that does not exist
-  find: 'elif (lesson := context.store / "lessons" / lesson_id / "lesson.md").is_symlink() or not lesson.is_file():'
+  find: 'elif missing := missing_artifacts(context, lesson_id):'
   replace: 'elif False:'
   test: tests.test_sd101_claims.FinishAndReleaseTests.test_finish_needs_a_claim_of_yours_and_the_lesson_file
 - label: finish accepts a lost claim
@@ -306,8 +306,8 @@ mutations:
   replace: bool(entry)
   test: tests.test_sd101_claims.ClaimTests.test_a_symlinked_artifact_is_not_a_finished_lesson
 - label: finish accepts a lesson.md that is a symbolic link
-  find: .is_symlink() or not lesson.is_file()
-  replace: .is_symlink() and False or not lesson.is_file()
+  find: if (context.store / path).is_symlink() or not (context.store / path).is_file()]
+  replace: if not (context.store / path).is_file()]
   test: tests.test_sd101_claims.ClaimTests.test_a_symlinked_artifact_is_not_a_finished_lesson
 - label: a registry with an extra lesson is used as it is
   find: 'elif extra := [lesson_id for lesson_id in lessons if lesson_id not in dict(context.source.lessons)]:'
@@ -333,3 +333,7 @@ mutations:
   find: return sorted({lesson_id for lesson_id, entry in lessons.items() if entry.get("status") == "todo"} & held)
   replace: return []
   test: tests.test_sd101_claims.ClaimTests.test_a_release_is_not_pushed_while_the_committed_draft_is_still_in_git
+- label: finish only asks for lesson.md
+  find: "f\"lessons/{lesson_id}/lesson.yaml\",\n                              f\"metadata/{lesson_id}.json\", f\"diagrams/{lesson_id}-main.svg\")"
+  replace: f"lessons/{lesson_id}/lesson.yaml")
+  test: tests.test_sd101_claims.ClaimTests.test_finish_needs_every_artifact_of_the_lesson

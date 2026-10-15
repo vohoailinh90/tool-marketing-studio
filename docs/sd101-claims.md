@@ -65,7 +65,7 @@ remote and reads the registry on each:
 - Your working tree: the entries you own, and every written lesson.
 
 The default branch must carry the registry: if it has none, every deciding command stops (exit 2), because a feature
-branch's own copy cannot stand in for the claims already merged. Only `status` still reports, with a warning.
+branch's own copy cannot stand in for the claims already merged. `--ignore-unreadable` does not cover this case. Only `status` still reports, with a warning.
 
 So a claim becomes visible the moment it is pushed to a branch, with no pull request needed, and it stops
 counting when its branch is deleted or the lesson is released or merged as `written`.

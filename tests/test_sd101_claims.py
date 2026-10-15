@@ -303,11 +303,12 @@ class ClaimTests(Sessions):
     def test_a_finished_lesson_without_its_metadata_and_figure_is_not_pushed(self) -> None:
         a = self.session("a")
         self.run_in(a, "claim", "sd-01-001", "--publish")
-        (a / "store" / "lessons" / "sd-01-001").mkdir(parents=True)
-        (a / "store" / "lessons" / "sd-01-001" / "lesson.md").write_text("# x\n", encoding="utf-8")  # nothing else was written
+        self.write_lesson(a, "sd-01-001")
         git(a, "add", "-A")
-        git(a, "commit", "--quiet", "-m", "the lesson text only")
+        git(a, "commit", "--quiet", "-m", "the lesson")
         self.assertEqual(0, self.run_in(a, "finish", "sd-01-001")[0])
+        git(a, "rm", "--quiet", "store/metadata/sd-01-001.json", "store/diagrams/sd-01-001-main.svg")
+        git(a, "commit", "--quiet", "-m", "metadata and figure were removed, cleanly committed")
         code, _, err = self.run_in(a, "claim", "sd-01-002", "--publish")  # clean tree, but metadata and figure are absent
         self.assertEqual(1, code, err)
         self.assertIn("sd-01-001 is marked written but the lesson files are not committed", err)
@@ -315,8 +316,7 @@ class ClaimTests(Sessions):
     def test_a_written_record_committed_by_itself_is_still_judged_before_it_goes_up(self) -> None:
         a = self.session("a")
         self.run_in(a, "claim", "sd-01-001", "--publish")
-        (a / "store" / "lessons" / "sd-01-001").mkdir(parents=True)
-        (a / "store" / "lessons" / "sd-01-001" / "lesson.md").write_text("# x\n", encoding="utf-8")
+        self.write_lesson(a, "sd-01-001")
         self.assertEqual(0, self.run_in(a, "finish", "sd-01-001")[0])
         git(a, "add", REGISTRY)
         git(a, "commit", "--quiet", "-m", "the registry alone, by accident")
@@ -449,20 +449,35 @@ class ClaimTests(Sessions):
         shown = git(self.tmp, "--git-dir", str(self.origin), "show", f"claude/a:{REGISTRY}")
         self.assertEqual("todo", claims.parse(shown)[1]["sd-01-001"]["status"])
 
+    def test_finish_needs_every_artifact_of_the_lesson(self) -> None:
+        a = self.session("a")
+        self.run_in(a, "claim", "sd-01-001", "--publish")
+        self.write_lesson(a, "sd-01-001")
+        for path in ("metadata/sd-01-001.json", "diagrams/sd-01-001-main.svg", "lessons/sd-01-001/lesson.yaml"):
+            with self.subTest(path):
+                (a / "store" / path).rename(a / "store" / (path + ".away"))
+                code, _, err = self.run_in(a, "finish", "sd-01-001")
+                self.assertEqual(1, code, err)
+                self.assertIn(f"{path} does not exist yet", err)
+                self.assertEqual("doing", self.entry(a, "sd-01-001")["status"])
+                (a / "store" / (path + ".away")).rename(a / "store" / path)
+        self.assertEqual(0, self.run_in(a, "finish", "sd-01-001")[0])
+
     def test_a_symlinked_artifact_is_not_a_finished_lesson(self) -> None:
         a = self.session("a")
         self.run_in(a, "claim", "sd-01-001", "sd-01-003", "--publish")
         self.write_lesson(a, "sd-01-001")
+        self.assertEqual(0, self.run_in(a, "finish", "sd-01-001")[0])
         figure = a / "store" / "diagrams" / "sd-01-001-main.svg"
         figure.unlink()
         figure.symlink_to("../metadata/sd-01-001.json")  # an object exists, but not a regular file
         git(a, "add", "-A")
         git(a, "commit", "--quiet", "-m", "the figure is a symbolic link")
-        self.assertEqual(0, self.run_in(a, "finish", "sd-01-001")[0])
         code, _, err = self.run_in(a, "claim", "sd-01-002", "--publish")
         self.assertEqual(1, code, err)
         self.assertIn("sd-01-001 is marked written but the lesson files are not committed", err)
-        (a / "store" / "lessons" / "sd-01-003").mkdir(parents=True)
+        self.write_lesson(a, "sd-01-003")
+        (a / "store" / "lessons" / "sd-01-003" / "lesson.md").unlink()
         (a / "store" / "lessons" / "sd-01-003" / "lesson.md").symlink_to("../sd-01-001/lesson.md")
         code, _, err = self.run_in(a, "finish", "sd-01-003")
         self.assertEqual(1, code, err)
@@ -889,7 +904,9 @@ class RemoteTests(Sessions):
         self.assertIn("origin/main (the default branch has no claims.jsonl)", err)
         self.assertEqual("todo", self.entry(b, "sd-01-001")["status"])
         self.assertEqual(0, self.run_in(b, "status")[0], "reporting is not deciding")
-        self.assertEqual(0, self.run_in(b, "--ignore-unreadable", "claim", "sd-01-001")[0])
+        code, _, err = self.run_in(b, "--ignore-unreadable", "claim", "sd-01-001")
+        self.assertEqual(2, code, "the override never covers the default branch")
+        self.assertIn("--ignore-unreadable does not cover the default branch", err)
 
     def test_publish_with_an_owner_that_is_not_the_branch_is_refused_before_anything_is_written(self) -> None:
         a = self.session("a")

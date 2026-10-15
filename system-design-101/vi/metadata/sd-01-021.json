@@ -90,6 +90,7 @@
   "source_deviations": [
     "Bản chữ của nguồn dừng ngay sau câu dẫn của mục hướng dẫn bảo mật; nội dung mục này nếu có thì nằm trong hình gốc và bài không suy diễn nó.",
     "Nguồn gọi mã truy cập là public key; bài ghi rõ đó chỉ là định danh trong cách ký bằng HMAC, không phải khóa công khai của mật mã bất đối xứng.",
-    "Hai khung 'Máy chủ kiểm tra' và 'Chữ ký không làm thay' do bài bổ sung từ cách các dịch vụ ký yêu cầu, không có trong bản chữ của nguồn."
+    "Hai khung 'Máy chủ kiểm tra' và 'Chữ ký không làm thay' do bài bổ sung từ cách các dịch vụ ký yêu cầu, không có trong bản chữ của nguồn.",
+    "Ý 'khóa bí mật không cần gửi đi' là suy luận của bài, không phải lời của nguồn."
   ]
 }

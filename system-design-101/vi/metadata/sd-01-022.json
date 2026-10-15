@@ -88,6 +88,7 @@
   "editorial_note_vi": "Viết độc lập từ kiến thức và tiêu chuẩn kỹ thuật theo DECISIONS.md; claim chưa được đối chiếu trực tiếp với tài liệu chuẩn nên chờ review kỹ thuật. Chưa thử người học hoặc phê duyệt phát hành.",
   "source_deviations": [
     "Nguồn chỉ liệt kê chức năng; khung 'Cái giá' và phần giới hạn (kết thúc TLS, mã 429, cache phản hồi riêng, logic nghiệp vụ trong gateway, kiểm quyền ở dịch vụ) là phần bài bổ sung.",
-    "Bài bỏ cách nguồn gom 'mã hóa dữ liệu' vào bảo mật mà không nói đoạn nào được mã hóa, và ghi rõ đó là cấu hình riêng."
+    "Bài bỏ cách nguồn gom 'mã hóa dữ liệu' vào bảo mật mà không nói đoạn nào được mã hóa, và ghi rõ đó là cấu hình riêng.",
+    "Ý 'client chỉ cần biết địa chỉ của gateway' là suy luận của bài, được ghi rõ trong bài."
   ]
 }

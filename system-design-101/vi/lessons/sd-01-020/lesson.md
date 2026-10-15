@@ -1,6 +1,6 @@
 # Các cách đưa GraphQL vào hệ thống
 
-**Theo nguồn, có bốn cách đặt GraphQL vào một hệ thống: ở phía client, cùng các lớp BFF, trong một máy chủ nguyên khối, hoặc liên hợp nhiều đồ thị thành một.** Điểm khác nhau chính là việc gom dữ liệu diễn ra ở đâu và nhóm nào sở hữu lớp GraphQL.
+**Theo nguồn, có bốn cách đặt GraphQL vào một hệ thống: ở phía client, cùng các lớp BFF, trong một máy chủ nguyên khối, hoặc liên hợp nhiều đồ thị thành một.** Theo cách đọc của bài, điểm khác nhau chính là việc gom dữ liệu diễn ra ở đâu và nhóm nào sở hữu lớp GraphQL.
 
 ![Năm khung dọc: điểm xuất phát là một ứng dụng client hỏi một máy chủ GraphQL; GraphQL phía client bọc các API sẵn có sau một điểm vào nên người lập trình dễ làm việc hơn nhưng client vẫn chịu chi phí gom dữ liệu; GraphQL cùng BFF, mỗi loại client có một dịch vụ BFF riêng nên hiệu năng và trải nghiệm tốt hơn nhưng phải xây và duy trì thêm; GraphQL nguyên khối, nhiều nhóm dùng chung một mã nguồn hoặc một nhóm sở hữu một API cho nhiều nhóm client; GraphQL liên hợp, nhiều đồ thị gộp thành siêu đồ thị, cổng liên hợp định tuyến yêu cầu tới các dịch vụ con và dữ liệu vẫn thuộc nhóm lĩnh vực.](../../diagrams/sd-01-020-main.svg)
 
@@ -23,7 +23,7 @@ Công ty có ba nhóm backend (đơn hàng, thanh toán, kho), mỗi nhóm đã 
 <details>
 <summary>Xem đáp án</summary>
 
-Không có một đáp án duy nhất; điều cần thấy là mỗi cách đặt chi phí ở đâu. Gom ở client: không cần dịch vụ mới, nhưng điện thoại phải gọi cả ba API qua mạng di động. BFF cho ứng dụng di động: việc gom chuyển sang máy chủ, một lần gọi từ điện thoại, đổi lại có thêm một dịch vụ phải xây và vận hành. Liên hợp: mỗi nhóm giữ lược đồ và dữ liệu của mình, nhưng cần cổng liên hợp và thỏa thuận giữa các nhóm. Nguyên khối: một máy chủ GraphQL dùng chung, vận hành đơn giản, nhưng các nhóm phải phối hợp trên cùng mã nguồn hoặc phụ thuộc vào nhóm sở hữu nó.
+Không có một đáp án duy nhất; điều cần thấy là mỗi cách đặt chi phí ở đâu. Gom ở client: không cần dịch vụ mới, nhưng điện thoại phải gọi cả ba API qua mạng di động. BFF cho ứng dụng di động: việc gom chuyển sang máy chủ, một lần gọi từ điện thoại, đổi lại có thêm một dịch vụ phải xây và vận hành. Liên hợp: mỗi nhóm giữ lược đồ và dữ liệu của mình, nhưng cần cổng liên hợp và thỏa thuận giữa các nhóm. Nguyên khối: một máy chủ GraphQL dùng chung, nhưng theo suy luận của bài, các nhóm phải phối hợp trên cùng mã nguồn hoặc phụ thuộc vào nhóm sở hữu nó.
 
 </details>
 
@@ -31,8 +31,8 @@ Không có một đáp án duy nhất; điều cần thấy là mỗi cách đ�
 <summary>Xem sâu hơn</summary>
 
 - **BFF:** mẫu "Backends for Frontends" cho mỗi loại trải nghiệm (web, di động) một backend riêng. GraphQL chỉ là một cách dựng BFF; BFF vẫn có thể viết bằng REST.
-- **Siêu đồ thị và dịch vụ con:** mỗi nhóm công bố lược đồ của phần mình; công cụ liên hợp ghép các lược đồ thành một lược đồ chung, và cổng dùng nó để chia truy vấn xuống từng dịch vụ con. Khác với API gateway thông thường, cổng liên hợp hiểu lược đồ GraphQL chứ không chỉ chuyển tiếp HTTP.
-- **Điểm chung của bốn cách:** client vẫn chỉ cần một truy vấn cho một màn hình, còn việc lấy dữ liệu từ nhiều nguồn do một lớp ở giữa lo; chỗ đặt lớp đó là chỗ bốn cách khác nhau.
+- **Siêu đồ thị và dịch vụ con:** mỗi nhóm công bố lược đồ của phần mình; công cụ liên hợp ghép các lược đồ thành một lược đồ chung, và cổng dùng nó để chia truy vấn xuống từng dịch vụ con. Theo suy luận của bài, khác với API gateway thông thường, cổng liên hợp hiểu lược đồ GraphQL chứ không chỉ chuyển tiếp HTTP.
+- **Điểm chung của bốn cách (suy luận của bài):** đều có một lớp GraphQL đứng giữa client và các nguồn dữ liệu; chỗ đặt lớp đó và nhóm sở hữu nó là chỗ bốn cách khác nhau.
 
 </details>
 

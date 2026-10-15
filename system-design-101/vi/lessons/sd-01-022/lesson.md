@@ -6,7 +6,7 @@
 
 ## Đọc hình
 
-1. **Điểm vào chung.** Gateway ở giữa client và máy chủ phía sau, quản lý và tối ưu lưu lượng API. Client chỉ cần biết địa chỉ của gateway.
+1. **Điểm vào chung.** Gateway ở giữa client và máy chủ phía sau, quản lý và tối ưu lưu lượng API. Theo suy luận của bài, client chỉ cần biết địa chỉ của gateway.
 2. **Định tuyến và cân bằng tải.** Định tuyến yêu cầu (request routing) đưa mỗi yêu cầu tới đúng dịch vụ phía sau. Cân bằng tải (load balancing) rải yêu cầu qua nhiều máy chủ để không máy nào bị quá tải.
 3. **Bảo mật, giới hạn tốc độ.** Gateway áp các biện pháp như xác thực (biết người gọi là ai), phân quyền (người đó được làm gì) và mã hóa dữ liệu. Giới hạn tốc độ (rate limiting) và làm chậm (throttling) kiểm soát số yêu cầu một client được gửi trong một khoảng thời gian.
 4. **Gom API và cache.** Gom API (API composition) kết hợp nhiều lời gọi tới các dịch vụ phía sau thành một yêu cầu phía trước để tối ưu hiệu năng. Cache lưu phản hồi tạm thời để khỏi xử lý lặp lại.

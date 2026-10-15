@@ -14,3 +14,7 @@ mutations:
   find: '            if len(text) >= MIN_QUOTE and any(text in comment for comment in corpus):'
   replace: '            if any(text in comment for comment in corpus):'
   test: tests.test_review_fixes.InsightRobustnessTests.test_short_quotes_and_bad_counts_are_cleaned
+- label: a post points at the first link of the campaign, not at the link named like it
+  find: '    if slot in links:'
+  replace: '    if False:'
+  test: tests.test_ai.DraftTests.test_a_post_points_at_the_link_named_like_it_not_at_the_first_link

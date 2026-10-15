@@ -28,6 +28,9 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 17. [REST API hoạt động thế nào?](lessons/sd-01-017/lesson.md)
 18. [Load Balancer và API Gateway](lessons/sd-01-018/lesson.md)
 19. [GraphQL tại LinkedIn](lessons/sd-01-019/lesson.md)
+20. [Các cách đưa GraphQL vào hệ thống](lessons/sd-01-020/lesson.md)
+21. [Bảng tra cứu thiết kế API](lessons/sd-01-021/lesson.md)
+22. [Nhập môn API Gateway](lessons/sd-01-022/lesson.md)
 
 ## AI và học máy
 
@@ -100,18 +103,18 @@ Các bài từ sd-14-016 trở đi chưa viết; số thứ tự dưới đây c
 
 ## Nền tảng máy tính
 
-1. [Phân trang và phân đoạn](lessons/sd-15-001/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
-2. [IPv4 và IPv6](lessons/sd-15-002/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
-3. [Bốn nơi UDP thường được dùng](lessons/sd-15-003/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
-4. [DNS tra cứu hoạt động thế nào?](lessons/sd-15-004/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
-5. [Các loại bản ghi DNS cần biết](lessons/sd-15-005/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
-6. [TCP hay UDP cho game online?](lessons/sd-15-006/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
-7. [Deadlock là gì?](lessons/sd-15-007/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
-8. [Tiến trình và luồng](lessons/sd-15-008/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
-9. [Mô hình OSI](lessons/sd-15-009/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
-10. [Hình dung một câu lệnh SQL](lessons/sd-15-010/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
-11. [Tám giao thức mạng phổ biến](lessons/sd-15-011/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
-12. [Cách học SQL](lessons/sd-15-012/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+1. [Phân trang và phân đoạn](lessons/sd-15-001/lesson.md)
+2. [IPv4 và IPv6](lessons/sd-15-002/lesson.md)
+3. [Bốn nơi UDP thường được dùng](lessons/sd-15-003/lesson.md)
+4. [DNS tra cứu hoạt động thế nào?](lessons/sd-15-004/lesson.md)
+5. [Các loại bản ghi DNS cần biết](lessons/sd-15-005/lesson.md)
+6. [TCP hay UDP cho game online?](lessons/sd-15-006/lesson.md)
+7. [Deadlock là gì?](lessons/sd-15-007/lesson.md)
+8. [Tiến trình và luồng](lessons/sd-15-008/lesson.md)
+9. [Mô hình OSI](lessons/sd-15-009/lesson.md)
+10. [Hình dung một câu lệnh SQL](lessons/sd-15-010/lesson.md)
+11. [Tám giao thức mạng phổ biến](lessons/sd-15-011/lesson.md)
+12. [Cách học SQL](lessons/sd-15-012/lesson.md)
 
 Danh mục đầy đủ và snapshot nguồn: [bảng đối chiếu](../../brainstorm/system-design-101-vi/source-map.json).
 Quy tắc đã chốt: [kết luận brainstorm](../../brainstorm/system-design-101-vi/DECISIONS.md).

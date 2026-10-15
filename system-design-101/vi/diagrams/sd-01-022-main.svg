@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 772" width="320" height="772" role="img" aria-labelledby="title desc">
+<title id="title">API gateway: cửa trước của các API</title>
+<desc id="desc">Năm khung dọc: điểm vào chung, API gateway nằm giữa client và các dịch vụ phía sau, nhận yêu cầu và trả kết quả; định tuyến và cân bằng tải, đưa yêu cầu tới đúng dịch vụ và rải đều giữa các bản chạy; bảo mật và giới hạn tốc độ, gồm xác thực, phân quyền, mã hóa và giới hạn số yêu cầu của một client trong một khoảng thời gian; gom API và cache, gộp nhiều lời gọi phía sau thành một và lưu tạm phản hồi; cái giá phải trả là thêm một chặng và nếu chỉ chạy một bản thì thành điểm đơn lỗi.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="772" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">API GATEWAY</text>
+<text x="16" y="56" font-size="20" font-weight="bold">NHẬP MÔN</text>
+<text x="16" y="86" font-size="16" font-weight="normal">Một cửa chung cho nhiều dịch vụ</text>
+<rect x="16" y="108" width="288" height="104" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="138" font-size="16" font-weight="bold">1 · Điểm vào chung</text>
+<text x="30" y="165" font-size="16" font-weight="normal">Giữa client và dịch vụ</text>
+<text x="30" y="192" font-size="16" font-weight="normal">Nhận yêu cầu, trả kết quả</text>
+<rect x="16" y="226" width="288" height="104" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="256" font-size="16" font-weight="bold">2 · Định tuyến, cân bằng</text>
+<text x="30" y="283" font-size="16" font-weight="normal">Yêu cầu tới đúng dịch vụ</text>
+<text x="30" y="310" font-size="16" font-weight="normal">Rải đều qua các bản chạy</text>
+<rect x="16" y="344" width="288" height="104" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="374" font-size="16" font-weight="bold">3 · Bảo mật, giới hạn</text>
+<text x="30" y="401" font-size="16" font-weight="normal">Xác thực, phân quyền, mã hóa</text>
+<text x="30" y="428" font-size="16" font-weight="normal">Giới hạn yêu cầu theo thời gian</text>
+<rect x="16" y="462" width="288" height="104" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="492" font-size="16" font-weight="bold">4 · Gom API, cache</text>
+<text x="30" y="519" font-size="16" font-weight="normal">Nhiều lời gọi → một yêu cầu</text>
+<text x="30" y="546" font-size="16" font-weight="normal">Lưu tạm phản hồi</text>
+<rect x="16" y="580" width="288" height="104" rx="12" fill="#e2e8f0" stroke="#94a3b8"/>
+<text x="30" y="610" font-size="16" font-weight="bold">5 · Cái giá</text>
+<text x="30" y="637" font-size="16" font-weight="normal">Thêm một chặng mạng</text>
+<text x="30" y="664" font-size="16" font-weight="normal">Chỉ một bản = điểm đơn lỗi</text>
+<text x="16" y="726" font-size="16" font-weight="normal">Việc chung làm một lần,</text>
+<text x="16" y="752" font-size="16" font-weight="normal">đổi lấy một chặng thêm.</text>
+</g></svg>

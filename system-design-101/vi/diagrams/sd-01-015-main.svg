@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1027" width="320" height="1027" role="img" aria-labelledby="title desc">
+<title id="title">Tám gợi ý thiết kế API</title>
+<desc id="desc">Tám khung dọc, mỗi khung một gợi ý kèm ví dụ trên API đơn hàng: đường dẫn theo nghiệp vụ như /orders; ít phương thức HTTP và dùng đúng nghĩa, PATCH cần thống nhất cách vá; gọi lại không gây trùng, POST kèm Idempotency-Key; một tập nhỏ mã trạng thái ghi trong tài liệu; đánh phiên bản từ đầu như /v1/orders; đường dẫn là danh từ số nhiều nhất quán; xử lý hàng loạt qua /orders/batch trả kết quả từng mục; truy vấn thống nhất để lọc, sắp xếp và phân trang. Đây là quy ước, không phải chuẩn.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1027" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">API HIỆU QUẢ</text>
+<text x="16" y="60" font-size="16" font-weight="normal">Tám gợi ý, ví dụ API đơn hàng</text>
+<rect x="16" y="82" width="288" height="77" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="112" font-size="16" font-weight="bold">1 · Đường dẫn theo miền</text>
+<text x="30" y="139" font-size="16" font-weight="normal">/orders, /orders/42/items</text>
+<rect x="16" y="173" width="288" height="104" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="203" font-size="16" font-weight="bold">2 · Ít phương thức HTTP</text>
+<text x="30" y="230" font-size="16" font-weight="normal">GET đọc, POST tạo, PUT thay</text>
+<text x="30" y="257" font-size="16" font-weight="normal">PATCH: thống nhất cách vá</text>
+<rect x="16" y="291" width="288" height="104" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="321" font-size="16" font-weight="bold">3 · Gọi lại không gây trùng</text>
+<text x="30" y="348" font-size="16" font-weight="normal">POST kèm Idempotency-Key</text>
+<text x="30" y="375" font-size="16" font-weight="normal">PUT, DELETE: lặp lại vẫn ổn</text>
+<rect x="16" y="409" width="288" height="104" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="439" font-size="16" font-weight="bold">4 · Ít mã trạng thái</text>
+<text x="30" y="466" font-size="16" font-weight="normal">200 201 204 400 404 409</text>
+<text x="30" y="493" font-size="16" font-weight="normal">Ghi rõ trong tài liệu</text>
+<rect x="16" y="527" width="288" height="104" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="557" font-size="16" font-weight="bold">5 · Phiên bản từ đầu</text>
+<text x="30" y="584" font-size="16" font-weight="normal">/v1/orders</text>
+<text x="30" y="611" font-size="16" font-weight="normal">Chọn một cách, dùng đều</text>
+<rect x="16" y="645" width="288" height="104" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="675" font-size="16" font-weight="bold">6 · Đường dẫn dễ đoán</text>
+<text x="30" y="702" font-size="16" font-weight="normal">Danh từ số nhiều, nhất quán</text>
+<text x="30" y="729" font-size="16" font-weight="normal">Tránh /getOrder</text>
+<rect x="16" y="763" width="288" height="104" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="793" font-size="16" font-weight="bold">7 · Xử lý hàng loạt</text>
+<text x="30" y="820" font-size="16" font-weight="normal">POST /orders/batch</text>
+<text x="30" y="847" font-size="16" font-weight="normal">Trả kết quả từng mục</text>
+<rect x="16" y="881" width="288" height="104" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="911" font-size="16" font-weight="bold">8 · Truy vấn thống nhất</text>
+<text x="30" y="938" font-size="16" font-weight="normal">?status=paid&amp;limit=20</text>
+<text x="30" y="965" font-size="16" font-weight="normal">Lọc, sắp xếp, phân trang</text>
+<text x="16" y="1007" font-size="16" font-weight="normal">Quy ước, không phải chuẩn.</text>
+</g></svg>

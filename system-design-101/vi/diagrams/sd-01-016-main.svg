@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 608" width="320" height="608" role="img" aria-labelledby="title desc">
+<title id="title">Reverse proxy, load balancer và API gateway</title>
+<desc id="desc">Bốn khung dọc: reverse proxy thay mặt máy gốc, che máy gốc và có thể kết thúc TLS, nén hoặc cache; load balancer chia request cho nhiều bản sao của cùng một dịch vụ và loại máy lỗi khỏi nhóm; API gateway là một cửa vào cho nhiều dịch vụ, định tuyến theo đường dẫn, xác thực và giới hạn tần suất; ba tên này là vai trò chứ không phải ba hộp riêng, một phần mềm như NGINX có thể đảm nhiệm cả ba.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="608" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">BA VAI ĐỨNG TRƯỚC</text>
+<text x="16" y="56" font-size="20" font-weight="bold">MÁY CHỦ</text>
+<text x="16" y="86" font-size="16" font-weight="normal">Cùng vị trí, việc chính khác nhau</text>
+<rect x="16" y="108" width="288" height="104" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="138" font-size="16" font-weight="bold">1 · Reverse proxy</text>
+<text x="30" y="165" font-size="16" font-weight="normal">Thay mặt máy gốc</text>
+<text x="30" y="192" font-size="16" font-weight="normal">Che máy gốc, TLS, nén, cache</text>
+<rect x="16" y="226" width="288" height="104" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="256" font-size="16" font-weight="bold">2 · Load balancer</text>
+<text x="30" y="283" font-size="16" font-weight="normal">Chia request cho nhiều bản sao</text>
+<text x="30" y="310" font-size="16" font-weight="normal">Loại máy lỗi khỏi nhóm</text>
+<rect x="16" y="344" width="288" height="104" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="374" font-size="16" font-weight="bold">3 · API gateway</text>
+<text x="30" y="401" font-size="16" font-weight="normal">Một cửa vào cho nhiều dịch vụ</text>
+<text x="30" y="428" font-size="16" font-weight="normal">Định tuyến, xác thực, giới hạn</text>
+<rect x="16" y="462" width="288" height="104" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="492" font-size="16" font-weight="bold">4 · Vai trò, không phải hộp</text>
+<text x="30" y="519" font-size="16" font-weight="normal">Một phần mềm làm được cả ba</text>
+<text x="30" y="546" font-size="16" font-weight="normal">Ví dụ: NGINX</text>
+<text x="16" y="588" font-size="16" font-weight="normal">Hỏi: nó đang làm việc gì?</text>
+</g></svg>

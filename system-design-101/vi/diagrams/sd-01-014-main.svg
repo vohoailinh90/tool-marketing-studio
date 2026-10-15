@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 582" width="320" height="582" role="img" aria-labelledby="title desc">
+<title id="title">JavaScript chạy thế nào</title>
+<desc id="desc">Bốn khung dọc: engine đọc và biên dịch mã, còn trình duyệt hoặc Node.js cấp timer, mạng và DOM; mã chạy trên một luồng với một ngăn xếp, mỗi việc chạy trọn vẹn và một vòng lặp đồng bộ dài làm mọi thứ đứng; việc chờ như mạng hay timer do môi trường lo, khi xong thì callback xếp hàng và chỉ chạy khi ngăn xếp rỗng; hàng đợi promise chạy hết trước rồi mới tới callback timer. Bất đồng bộ không có nghĩa là song song.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="582" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">JAVASCRIPT</text>
+<text x="16" y="60" font-size="16" font-weight="normal">Một luồng, nhiều việc chờ</text>
+<rect x="16" y="82" width="288" height="104" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="112" font-size="16" font-weight="bold">1 · Engine và môi trường</text>
+<text x="30" y="139" font-size="16" font-weight="normal">Engine đọc và biên dịch mã</text>
+<text x="30" y="166" font-size="16" font-weight="normal">Trình duyệt/Node: timer, mạng</text>
+<rect x="16" y="200" width="288" height="104" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="230" font-size="16" font-weight="bold">2 · Một luồng, một ngăn xếp</text>
+<text x="30" y="257" font-size="16" font-weight="normal">Mỗi việc chạy trọn vẹn</text>
+<text x="30" y="284" font-size="16" font-weight="normal">Vòng lặp dài làm tất cả đứng</text>
+<rect x="16" y="318" width="288" height="104" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="348" font-size="16" font-weight="bold">3 · Chờ xong thì xếp hàng</text>
+<text x="30" y="375" font-size="16" font-weight="normal">Môi trường lo phần chờ</text>
+<text x="30" y="402" font-size="16" font-weight="normal">Ngăn xếp rỗng mới nhận việc</text>
+<rect x="16" y="436" width="288" height="104" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="466" font-size="16" font-weight="bold">4 · Promise đi trước timer</text>
+<text x="30" y="493" font-size="16" font-weight="normal">Hàng đợi promise chạy hết</text>
+<text x="30" y="520" font-size="16" font-weight="normal">rồi mới tới callback timer</text>
+<text x="16" y="562" font-size="16" font-weight="normal">Bất đồng bộ ≠ song song.</text>
+</g></svg>

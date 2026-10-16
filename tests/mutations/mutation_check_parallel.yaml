@@ -1,0 +1,89 @@
+# Mutation manifest — see scripts/mutation_check.py
+
+target: scripts/mutation_check.py
+note: The checker may share clean runs and use several tree copies, but never trust a worker that did not answer.
+mutations:
+- label: the clean run is repeated for every entry
+  find: '    if entry["test"] not in baseline:'
+  replace: '    if True:'
+  test: tests.test_mutation_check.BaselineTests.test_a_test_named_by_several_entries_is_run_on_clean_source_once
+- label: a test that failed on clean source is run as if it had passed
+  find: '        baseline[entry["test"]] = run_test(entry["test"])'
+  replace: '        baseline[entry["test"]] = run_test(entry["test"]) and False'
+  test: tests.test_mutation_check.BaselineTests.test_a_test_that_fails_on_clean_source_is_broken_for_every_entry_and_is_not_run_again
+- label: the manifests of one run do not share their clean runs
+  find: '    baseline = {} if baseline is None else baseline'
+  replace: '    baseline = {}'
+  test: tests.test_mutation_check.BaselineTests.test_manifests_of_one_run_share_the_clean_runs
+- label: a sequential run does not share its clean runs between manifests
+  find: '            results = check(path, baseline=baseline)'
+  replace: '            results = check(path)'
+  test: tests.test_mutation_check.ParallelTests.test_a_test_named_by_several_entries_is_run_clean_once_in_either_mode
+- label: a parallel run gives every entry its own clean run
+  find: 'by_test.setdefault(entry["test"], []).append((name, index))'
+  replace: 'by_test.setdefault((name, index), []).append((name, index))'
+  test: tests.test_mutation_check.ParallelTests.test_a_test_named_by_several_entries_is_run_clean_once_in_either_mode
+- label: entries are printed in the order the groups finished
+  find: '            results = [verdicts[(name, index)] for index in range(len(manifest["mutations"]))]'
+  replace: '            results = [verdict for (named, _), verdict in verdicts.items() if named == name]'
+  test: tests.test_mutation_check.ParallelTests.test_entries_are_printed_in_manifest_order_whichever_finishes_first
+- label: an entry a worker did not finish counts as caught
+  find: '        answers.setdefault(unit, (BROKEN, labels[unit],'
+  replace: '        answers.setdefault(unit, (CAUGHT, labels[unit],'
+  test: tests.test_mutation_check.ParallelTests.test_an_entry_the_worker_did_not_finish_is_broken_never_caught
+- label: a verdict a worker invents is trusted
+  find: 'item["verdict"] in (CAUGHT, SURVIVED, BROKEN)'
+  replace: 'True'
+  test: tests.test_mutation_check.ParallelTests.test_an_entry_the_worker_did_not_finish_is_broken_never_caught
+- label: the workers run in the real tree
+  find: '            roots.append(root)'
+  replace: '            roots.append(ROOT)'
+  test: tests.test_mutation_check.ParallelTests.test_the_real_tree_is_not_touched_and_the_workers_never_run_in_it
+- label: the tree copies are left behind
+  find: '    with tempfile.TemporaryDirectory(prefix="mutation-check-", dir=os.environ.get("RUNNER_TEMP") or None) as scratch_name:'
+  replace: "    scratch_name = tempfile.mkdtemp(prefix=\"mutation-check-\")\n    if True:"
+  test: tests.test_mutation_check.ParallelTests.test_the_tree_copies_are_removed_when_the_run_ends
+- label: a parallel run does not need a git checkout
+  find: '    if listing.returncode != 0:'
+  replace: '    if False:'
+  test: tests.test_mutation_check.ParallelTests.test_jobs_needs_a_git_checkout
+- label: a manifest outside the repository is run in parallel
+  find: "        if not inside_repo(path):\n            raise ParallelError("
+  replace: "        if False:\n            raise ParallelError("
+  test: tests.test_mutation_check.ParallelTests.test_a_manifest_outside_the_repository_is_refused_with_jobs
+- label: uncommitted targets are not refused
+  find: '        if conflicts and not args.allow_dirty:'
+  replace: '        if False:'
+  test: tests.test_mutation_check.ParallelTests.test_an_uncommitted_target_is_refused_before_any_worker_starts
+- label: zero workers are accepted
+  find: '    if value < 1:'
+  replace: '    if False:'
+  test: tests.test_mutation_check.ParallelTests.test_jobs_must_be_a_positive_number
+- label: an answer for a unit outside the group is taken from the worker
+  find: 'if unit in group and '
+  replace: 'if '
+  test: tests.test_mutation_check.ParallelTests.test_a_row_for_a_unit_outside_the_group_is_not_taken_from_the_worker
+- label: the result of an earlier group is read again for the next one
+  find: '    result.unlink(missing_ok=True)'
+  replace: '    pass'
+  test: tests.test_mutation_check.ParallelTests.test_a_result_left_by_an_earlier_group_is_not_read_for_the_next_one
+- label: the tree copies are not put below RUNNER_TEMP
+  find: 'dir=os.environ.get("RUNNER_TEMP") or None'
+  replace: 'dir=None'
+  test: tests.test_mutation_check.ParallelTests.test_the_tree_copies_go_below_runner_temp_when_the_runner_sets_it
+- label: an interrupt of the caller does not stop the workers
+  find: "                stop.set()\n"
+  replace: "                pass\n"
+  test: tests.test_mutation_check.ParallelTests.test_an_interrupt_of_the_caller_stops_the_workers_from_taking_new_groups
+- label: a failing worker does not stop the others until the caller reaches its future
+  find: "            stop.set()  # a failing worker stops the others at once, whichever future the caller happens to be waiting on\n"
+  replace: "            pass\n"
+  test: tests.test_mutation_check.ParallelTests.test_a_worker_that_fails_stops_the_others_from_taking_new_groups
+- label: a copy a dead worker may have left mutated is used again
+  find: "                copy_tree(names, root)\n"
+  replace: "                pass\n"
+  test: tests.test_mutation_check.ParallelTests.test_the_copy_of_a_worker_that_did_not_end_cleanly_is_made_again
+- label: a worker that answered nothing is called clean
+  find: '    clean = not problem and len(answers) == len(group)'
+  replace: '    clean = True'
+  test: tests.test_mutation_check.ParallelTests.test_a_result_left_by_an_earlier_group_is_not_read_for_the_next_one

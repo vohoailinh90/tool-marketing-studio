@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Decide whether the CI mutation check has to run for this change.
 
-`scripts/mutation_check.py --all` is about 27 of the 30 minutes of the engine job. It proves that the
+`scripts/mutation_check.py --all` is by far the longest step of the engine job. It proves that the
 safety-rail tests notice their own removal, which only a change to code, tests or CI can break. A pull
 request that touches nothing but the System Design store (lessons, figures, metadata, progress files and
 its source map) cannot, so it skips the step. Every push to main, and every pull request that touches

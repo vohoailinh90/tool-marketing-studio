@@ -1055,8 +1055,9 @@ def guard_publish(context: Context) -> dict[str, Holding]:
     overtaken, stand_ins = overtaken_writes(context, header, lessons)
     if overtaken:
         raise Refusal("nothing was pushed: " + "; ".join(f"{lesson_id} is finished here but {reason}" for lesson_id, reason in overtaken.items())
-                      + ". Pushing it would make the session that holds the lesson lose it as already written; "
-                        "settle it with that session first (it releases the lesson, or you drop yours)")
+                      + ". Pushing it could make the session that holds the lesson lose it as already written, or advertise a lesson "
+                        "the default branch changed; settle it first (merge the default branch, or settle it with that session: "
+                        "it releases the lesson, or you drop yours)")
     return stand_ins
 
 
@@ -1087,7 +1088,11 @@ def judge_finished(context: Context, header: dict, lessons: dict[str, dict], fou
                    stand_ins: dict[str, Holding]) -> dict[str, str]:
     """Why each finished lesson, judged as the claim it stands on, would lose against what the remote shows now."""
     lease, out = lease_of(header), {}
+    gone, moved = (removed_upstream(context), repartnered_upstream(context)) if stand_ins else (set(), set())
     for lesson_id, stand_in in stand_ins.items():
+        if reason := upstream_reason(lesson_id, gone, moved):  # a finished lesson is no safer than a claim on the same map
+            out[lesson_id] = reason
+            continue
         finished_at, adopted_from = lessons[lesson_id].get("done_at"), lessons[lesson_id].get("adopted_from") or []
         # Only this session's own record and the records it was adopted from (`sync` names their owners and keeps their
         # done_at) are no rivals; any other session's written record of the lesson is, whenever it was finished.
@@ -1127,8 +1132,8 @@ def publish(context: Context, message: str) -> dict[str, str]:
 def report_pushed_conflicts(conflicts: dict[str, str]) -> int:
     """Say which finished lessons went up although another session took them over meanwhile (exit status 1)."""
     for lesson_id, reason in conflicts.items():
-        print(f"pushed, but {lesson_id} is finished here and {reason}; settle it with that session "
-              "(it releases the lesson, or you drop yours)", file=sys.stderr)
+        print(f"pushed, but {lesson_id} is finished here and {reason}; settle it first (merge the default branch, or settle it "
+              "with that session: it releases the lesson, or you drop yours)", file=sys.stderr)
     return 1 if conflicts else 0
 
 
@@ -1158,6 +1163,17 @@ def identity(holding: Holding) -> tuple:
     return holding.lesson_id, holding.claimed_at, holding.taken_from, holding.generation, holding.shared
 
 
+def upstream_reason(lesson_id: str, gone: set[str], moved: set[str]) -> str | None:
+    """Why a claim on the lesson cannot be judged by this branch's source map, or None: the default branch dropped the
+    lesson, or changed which lessons share its source file, after this branch was cut."""
+    if lesson_id in gone:
+        return "was removed from the source map by the default branch after this branch was cut; merge the default branch into this branch"
+    if lesson_id in moved:
+        return ("shares its source file with different lessons on the default branch than on this branch; "
+                "merge the default branch into this branch")
+    return None
+
+
 def verdicts(context: Context, header: dict, lessons: dict[str, dict], ids: list[str],
              live: bool = True) -> dict[str, str | None]:
     """Per claim, why it is not (or not safely) held, or None. Online, a claim that exists only in this working tree
@@ -1179,13 +1195,8 @@ def verdicts(context: Context, header: dict, lessons: dict[str, dict], ids: list
         if mine is None:
             out[lesson_id] = "is not claimed by you"
             continue
-        if lesson_id in gone:  # a claim taken before the default branch dropped the lesson is not a claim on anything
-            out[lesson_id] = ("was removed from the source map by the default branch after this branch was cut; "
-                              "merge the default branch into this branch")
-            continue
-        if lesson_id in moved:  # judged by a stale map: the partner the current one gives this lesson is not known here
-            out[lesson_id] = ("shares its source file with different lessons on the default branch than on this branch; "
-                              "merge the default branch into this branch")
+        if reason := upstream_reason(lesson_id, gone, moved):  # a claim made before the default branch changed the lesson
+            out[lesson_id] = reason
             continue
         out[lesson_id] = lost_reason(mine, found, context.me, context.now, lease, context.source.partners.get(lesson_id, ()),
                                      context.offline or identity(mine) in live_published)

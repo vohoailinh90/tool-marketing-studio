@@ -499,8 +499,8 @@ mutations:
   replace: '    exclude = (*exclude, *repartnered_upstream(context))'
   test: tests.test_sd101_claims.ClaimTests.test_a_stale_checkout_cannot_claim_a_lesson_the_default_branch_dropped
 - label: an existing claim on a lesson the default branch dropped is still held
-  find: '        if lesson_id in gone:  # a claim taken before the default branch dropped the lesson is not a claim on anything'
-  replace: '        if False and lesson_id in gone:  # a claim taken before the default branch dropped the lesson is not a claim on anything'
+  find: "    if lesson_id in gone:\n        return \"was removed from the source map"
+  replace: "    if False and lesson_id in gone:\n        return \"was removed from the source map"
   test: tests.test_sd101_claims.ClaimTests.test_a_claim_the_default_branch_dropped_is_not_held
 - label: a takeover does not count above the claim it replaces
   find: '            fresh["generation"] = 1 + max((h.generation for h in found.get(lesson_id, []) if h.status == "doing"), default=0)'
@@ -551,8 +551,8 @@ mutations:
   replace: '    if False and [lesson_id for lesson_id in ids if lesson_id in repartnered]:'
   test: tests.test_sd101_claims.ClaimTests.test_a_stale_checkout_does_not_judge_claims_by_a_pairing_the_default_branch_changed
 - label: a held claim on a lesson whose pairing changed upstream stays held
-  find: '        if lesson_id in moved:  # judged by a stale map'
-  replace: '        if False and lesson_id in moved:  # judged by a stale map'
+  find: "    if lesson_id in moved:\n        return (\"shares its source file with different lessons"
+  replace: "    if False and lesson_id in moved:\n        return (\"shares its source file with different lessons"
   test: tests.test_sd101_claims.ClaimTests.test_a_stale_checkout_does_not_judge_claims_by_a_pairing_the_default_branch_changed
 - label: a lesson whose pairing changed upstream is still offered
   find: '    exclude = (*exclude, *removed_upstream(context), *repartnered_upstream(context))'
@@ -603,3 +603,11 @@ mutations:
   find: '    return 1 if conflicts else 0'
   replace: '    return 0'
   test: tests.test_sd101_claims.LeaseTests.test_a_finished_lesson_taken_over_while_it_went_up_is_reported_after_the_push
+- label: a finished lesson the default branch dropped is pushed anyway
+  find: '        if reason := upstream_reason(lesson_id, gone, moved):  # a finished lesson is no safer than a claim on the same map'
+  replace: '        if False:  # a finished lesson is no safer than a claim on the same map'
+  test: tests.test_sd101_claims.ClaimTests.test_a_finished_lesson_the_default_branch_dropped_is_not_pushed
+- label: a finished lesson whose pairing changed upstream is pushed anyway
+  find: '    gone, moved = (removed_upstream(context), repartnered_upstream(context)) if stand_ins else (set(), set())'
+  replace: '    gone, moved = (removed_upstream(context), set()) if stand_ins else (set(), set())'
+  test: tests.test_sd101_claims.ClaimTests.test_a_finished_lesson_whose_pairing_changed_upstream_is_not_pushed

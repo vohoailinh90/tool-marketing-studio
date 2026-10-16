@@ -808,6 +808,50 @@ class ClaimTests(Sessions):
         self.assertEqual(0, self.run_mapped(a, "verify")[0], "merged: the branch judges by the current pairing")
         self.assertEqual(0, self.run_mapped(a, "claim", "sd-01-002")[0], "a session may hold both halves of a pair")
 
+    def test_a_finished_lesson_the_default_branch_dropped_is_not_pushed(self) -> None:
+        a = self.mapped_clone("a")
+        self.assertEqual(0, self.run_mapped(a, "claim", "sd-01-004", "--publish")[0])
+        self.write_lesson(a, "sd-01-004")
+        self.assertEqual(0, self.run_mapped(a, "finish", "sd-01-004")[0])
+        git(a, "add", "-A")
+        git(a, "commit", "--quiet", "-m", "the lesson with its registry record")
+        seed = self.tmp / "seed"
+        data = json.loads((seed / "source-map.json").read_text(encoding="utf-8"))
+        data["categories"][0]["lessons"] = [lesson for lesson in data["categories"][0]["lessons"] if lesson["id"] != "sd-01-004"]
+        (seed / "source-map.json").write_text(json.dumps(data), encoding="utf-8")
+        with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
+            self.assertEqual(0, claims.main(["--store", str(seed / "store"), "--source-map", str(seed / "source-map.json"), "sync"]))
+        git(seed, "add", "-A")
+        git(seed, "commit", "--quiet", "-m", "the roster dropped sd-01-004")
+        git(seed, "push", "--quiet", "origin", "main")
+        pushed = git(self.tmp, "--git-dir", str(self.origin), "rev-parse", "claude/a")
+        code, _, err = self.run_mapped(a, "claim", "sd-01-001", "--publish")
+        self.assertEqual(1, code, err)
+        self.assertIn("sd-01-004 is finished here but was removed from the source map by the default branch", err)
+        self.assertEqual(pushed, git(self.tmp, "--git-dir", str(self.origin), "rev-parse", "claude/a"))
+
+    def test_a_finished_lesson_whose_pairing_changed_upstream_is_not_pushed(self) -> None:
+        a = self.mapped_clone("a")
+        self.assertEqual(0, self.run_mapped(a, "claim", "sd-01-001", "--publish")[0])
+        self.write_lesson(a, "sd-01-001")
+        self.assertEqual(0, self.run_mapped(a, "finish", "sd-01-001")[0])
+        git(a, "add", "-A")
+        git(a, "commit", "--quiet", "-m", "the lesson with its registry record")
+        seed = self.tmp / "seed"
+        data = json.loads((seed / "source-map.json").read_text(encoding="utf-8"))
+        for lesson in data["categories"][0]["lessons"]:
+            if lesson["id"] in ("sd-01-001", "sd-01-002"):
+                lesson["same_source_as"] = ["sd-01-002" if lesson["id"] == "sd-01-001" else "sd-01-001"]
+        (seed / "source-map.json").write_text(json.dumps(data), encoding="utf-8")
+        git(seed, "add", "-A")
+        git(seed, "commit", "--quiet", "-m", "the roster pairs sd-01-001 with sd-01-002")
+        git(seed, "push", "--quiet", "origin", "main")
+        pushed = git(self.tmp, "--git-dir", str(self.origin), "rev-parse", "claude/a")
+        code, _, err = self.run_mapped(a, "claim", "sd-01-003", "--publish")
+        self.assertEqual(1, code, err)
+        self.assertIn("sd-01-001 is finished here but shares its source file with different lessons on the default branch", err)
+        self.assertEqual(pushed, git(self.tmp, "--git-dir", str(self.origin), "rev-parse", "claude/a"))
+
     def test_a_finished_half_is_not_pushed_over_a_rival_on_the_other_half(self) -> None:
         a, b = self.mapped_clone("a"), self.mapped_clone("b")
         self.assertEqual(0, self.run_mapped(a, "claim", "sd-01-005", "--publish")[0])

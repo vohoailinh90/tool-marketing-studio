@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="740" viewBox="0 0 320 740" role="img" aria-labelledby="title desc"><title id="title">Trang tiếp bắt đầu ở đâu?</title><desc id="desc">Đã đọc101,102,103 trong dãy101tới106. Khi chèn100, offset3lặp103, keyset sau103 tiếp tục104,105,106. Cursor là token, không riêng một thuật toán.</desc><rect width="320" height="740" fill="#f8fafc"/><g font-family="Arial, sans-serif" font-size="16" fill="#0f172a"><text x="16" y="30" font-size="20" font-weight="bold">Trang tiếp bắt đầu ở đâu?</text><text x="16" y="60">Đã đọc: 101, 102, 103.</text>
+<rect x="12" y="83" width="296" height="180" rx="12" fill="#dbeafe"/><text x="24" y="115" font-size="18" font-weight="bold">Offset · đếm vị trí</text>
+<text x="24" y="156">Chèn 100 trước danh sách</text>
+<text x="24" y="188">Bỏ 3: lấy 103, 104, 105</text>
+<text x="24" y="220">103 bị lặp</text>
+<rect x="12" y="283" width="296" height="180" rx="12" fill="#dcfce7"/><text x="24" y="315" font-size="18" font-weight="bold">Keyset · sau khóa 103</text>
+<text x="24" y="356">Cùng thứ tự khóa tăng dần</text>
+<text x="24" y="388">Lấy 104, 105, 106</text>
+<text x="24" y="420">100 không đẩy mốc lùi</text>
+<rect x="12" y="483" width="296" height="180" rx="12" fill="#fef3c7"/><text x="24" y="515" font-size="18" font-weight="bold">Cursor · token tiếp tục</text>
+<text x="24" y="556">Gửi lại token máy chủ cấp</text>
+<text x="24" y="588">Không tự phân tích token</text>
+<text x="24" y="620">Không suy cách truy vấn</text>
+<text x="16" y="716">Ví dụ khóa duy nhất, không đổi.</text></g></svg>

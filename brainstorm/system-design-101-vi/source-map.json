@@ -383,11 +383,11 @@
         },
         {
           "id": "sd-01-038",
-          "title_vi": null,
+          "title_vi": "Polling và webhook: hỏi định kỳ hay nhận thông báo?",
           "title_source": "Polling vs Webhooks",
           "source_url": "https://bytebytego.com/guides/polling-vs-webhooks",
           "source_path": "data/guides/polling-vs-webhooks.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "7074f338fbcfa2c27e1f7bd365c2a761746b6853",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/polling-vs-webhooks.md"
         },

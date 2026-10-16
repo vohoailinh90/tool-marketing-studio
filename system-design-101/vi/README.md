@@ -46,6 +46,7 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 35. [Bộ cân bằng tải: chọn đích cho mỗi yêu cầu](lessons/sd-01-035/lesson.md)
 36. [Forward proxy và reverse proxy: đại diện phía nào?](lessons/sd-01-036/lesson.md)
 37. [HTTP/1.1, HTTP/2, HTTP/3: dữ liệu chờ nhau ở đâu?](lessons/sd-01-037/lesson.md)
+38. [Polling và webhook: hỏi định kỳ hay nhận thông báo?](lessons/sd-01-038/lesson.md)
 
 ## AI và học máy
 

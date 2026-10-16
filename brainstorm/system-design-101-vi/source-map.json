@@ -373,11 +373,11 @@
         },
         {
           "id": "sd-01-037",
-          "title_vi": null,
+          "title_vi": "HTTP/1.1, HTTP/2, HTTP/3: dữ liệu chờ nhau ở đâu?",
           "title_source": "HTTP/1 -> HTTP/2 -> HTTP/3",
           "source_url": "https://bytebytego.com/guides/http1-http2-http3",
           "source_path": "data/guides/http1-http2-http3.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "ffa9adcf029fa16a3cc9de2497555ebb67e1546c",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/http1-http2-http3.md"
         },

@@ -39,6 +39,7 @@
     "sd-01-034",
     "sd-01-035",
     "sd-01-036",
+    "sd-01-037",
     "sd-03-001",
     "sd-03-002",
     "sd-03-003",
@@ -108,14 +109,14 @@
     "sd-15-012"
   ],
   "reviewed_ids": [],
-  "next_id": "sd-01-037",
+  "next_id": "sd-01-038",
   "active_batch_ids": [
-    "sd-01-036"
+    "sd-01-037"
   ],
   "active_pr": null,
-  "updated_on": "2026-10-15",
-  "active_branch": "codex/sd01-036-proxy-roles",
-  "previous_pr": 86,
+  "updated_on": "2026-10-16",
+  "active_branch": "codex/sd01-037-http-versions",
+  "previous_pr": 87,
   "superseded_pr": 24,
   "integration_review_pending": true,
   "adopted_main_sha": "7397e5c4deca80a76058261bab6f3ed54ac4afe3",
@@ -130,7 +131,7 @@
   ],
   "repository": "vohoailinh90/tool-marketing-studio",
   "previous_repository": "vohoailinh90/Agentic-coding-course",
-  "destination_base_sha": "bb8ed1dcdfd9ac2de4445f9aaaa1bc9fbba25f69",
+  "destination_base_sha": "d899b8f9927330bc6b95d25beb182db0a280c07b",
   "migration_source_sha": "b8dff434ff75499137bbb10b61122958fdaaafa5",
   "previous_repository_main_sha": "89186c1a1aeb90a47e2a563fdc7786b2dacec787",
   "last_merged_pr": 68,
@@ -247,6 +248,14 @@
       "status": "success",
       "review_id": 6203556247,
       "checked_on": "2026-10-15"
+    },
+    {
+      "pr": 87,
+      "head_sha": "d899b8f9927330bc6b95d25beb182db0a280c07b",
+      "run_id": 38823923783,
+      "status": "success",
+      "review_id": 6204475123,
+      "checked_on": "2026-10-16"
     }
   ]
 }

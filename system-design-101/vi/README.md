@@ -55,6 +55,7 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 44. [Bảo vệ API: bắt đầu từ rủi ro](lessons/sd-01-044/lesson.md)
 45. [Kiểm thử API: chọn câu hỏi trước tên gọi](lessons/sd-01-045/lesson.md)
 46. [REST API và GraphQL: ai chọn dữ liệu trả về?](lessons/sd-01-046/lesson.md)
+47. [GraphQL: từ schema đến dữ liệu và lỗi](lessons/sd-01-047/lesson.md)
 
 ## AI và học máy
 

@@ -476,11 +476,11 @@
         },
         {
           "id": "sd-01-047",
-          "title_vi": null,
+          "title_vi": "GraphQL: từ schema đến dữ liệu và lỗi",
           "title_source": "What is GraphQL?",
           "source_url": "https://bytebytego.com/guides/what-is-graphql",
           "source_path": "data/guides/what-is-graphql.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "14c0962683bced23d6a410d8835477356edc42f9",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-is-graphql.md"
         },

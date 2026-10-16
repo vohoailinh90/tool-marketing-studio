@@ -53,6 +53,7 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 42. [API gateway: chọn đích, áp chính sách](lessons/sd-01-042/lesson.md)
 43. [gRPC: gọi phương thức qua mạng](lessons/sd-01-043/lesson.md)
 44. [Bảo vệ API: bắt đầu từ rủi ro](lessons/sd-01-044/lesson.md)
+45. [Kiểm thử API: chọn câu hỏi trước tên gọi](lessons/sd-01-045/lesson.md)
 
 ## AI và học máy
 
@@ -72,6 +73,10 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 3. [Một URL biến thành yêu cầu HTTP thế nào?](lessons/sd-05-003/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 4. [Làm tốt phỏng vấn thiết kế hệ thống: bảy bước](lessons/sd-05-004/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 5. [Tài liệu gợi ý để ôn phỏng vấn kỹ thuật](lessons/sd-05-005/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+
+## Phát triển phần mềm
+
+23. [Sau thay đổi API: chọn bộ kiểm tra theo rủi ro](lessons/sd-10-023/lesson.md)
 
 ## DevOps và CI/CD
 

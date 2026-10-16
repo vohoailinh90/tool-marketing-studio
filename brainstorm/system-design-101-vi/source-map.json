@@ -453,14 +453,14 @@
         },
         {
           "id": "sd-01-045",
-          "title_vi": null,
+          "title_vi": "Kiểm thử API: chọn câu hỏi trước tên gọi",
           "title_source": "Explaining 9 Types of API Testing",
           "source_url": "https://bytebytego.com/guides/explaining-9-types-of-api-testing",
           "source_path": "data/guides/explaining-9-types-of-api-testing.md",
           "same_source_as": [
             "sd-10-023"
           ],
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "dfb763005e5240e76e7309efb8df1dd4f750f486",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/explaining-9-types-of-api-testing.md"
         },
@@ -2658,14 +2658,14 @@
         },
         {
           "id": "sd-10-023",
-          "title_vi": null,
+          "title_vi": "Sau thay đổi API: chọn bộ kiểm tra theo rủi ro",
           "title_source": "Explaining 9 Types of API Testing",
           "source_url": "https://bytebytego.com/guides/explaining-9-types-of-api-testing",
           "source_path": "data/guides/explaining-9-types-of-api-testing.md",
           "same_source_as": [
             "sd-01-045"
           ],
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "dfb763005e5240e76e7309efb8df1dd4f750f486",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/explaining-9-types-of-api-testing.md"
         },

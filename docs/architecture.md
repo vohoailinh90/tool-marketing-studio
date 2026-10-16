@@ -6,7 +6,8 @@
 |---|---|
 | `model.py` | Loads `studio.yaml`, briefs, positioning, campaigns, posts (`posts/<lang>/<id>.yaml`) |
 | `check.py` | Every computable rule: layouts and fields, statuses, no URL in post text, image paths confined to the campaign/tool folder, platform limits (X weighted length), TODO/placeholder links blocking ready posts, cross-language number parity, unsourced numbers for AI drafts |
-| `layouts.py`, `page.py`, `theme.css`, `text.py` | 15 slide layouts → HTML; every string escaped; only `**hl**` / `~~strike~~` marks |
+| `layouts.py`, `page.py`, `theme.css`, `text.py` | 16 slide layouts → HTML; every string escaped; only `**hl**` / `~~strike~~` marks |
+| `diagram.py`, `vendor/mermaid/` | The `diagram` layout: `check` validates the Mermaid source (types, no links/clicks/HTML/CSS/directives, tones only); the renderer loads the pinned, hash-checked Mermaid bundle into the open slide page through CDP (the page's CSP stays script-free), draws with `securityLevel: strict`, refuses links in the result, and warns when text lands under 22 px |
 | `render.py`, `fonts.py` | HTML per slide → Playwright Chromium → PNG; text auto-shrinks to 0.7 and overflow is reported; webfonts cached in `.fonts/` and served by route interception |
 | `links.py` | Tracked link per post × language × platform (utm or Google Forms `{source}`), QR via segno |
 | `approvals.py` | `content_sha` over everything the audience sees; approval valid only while the hash matches |

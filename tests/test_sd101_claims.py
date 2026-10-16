@@ -9,7 +9,9 @@ import json
 import os
 import shutil
 import subprocess
+import tarfile
 import tempfile
+import types
 import unittest
 from pathlib import Path
 from unittest import mock
@@ -40,6 +42,25 @@ def git(cwd: Path, *args: str) -> str:
     if result.returncode != 0:
         raise AssertionError(f"git {' '.join(args)} failed: {result.stderr}")
     return result.stdout.strip()
+
+
+@contextlib.contextmanager
+def tarfile_without_extraction_filters():
+    """The script runs on tarfile as Python 3.10.0-3.10.11 has it: no data_filter, and extractall takes no filter=
+    argument, so it unpacks whatever the archive says. A newer Python is made to behave the same way for the script."""
+    old = types.ModuleType("tarfile")
+    old.__dict__.update({name: value for name, value in vars(tarfile).items() if name != "data_filter"})
+    with contextlib.ExitStack() as stack:
+        stack.enter_context(mock.patch.object(claims, "tarfile", old))
+        if hasattr(tarfile, "fully_trusted_filter"):
+            unpack = tarfile.TarFile.extractall
+
+            def extractall(self, path=".", members=None, *, numeric_owner=False):
+                return unpack(self, path, members, numeric_owner=numeric_owner, filter="fully_trusted")
+
+            stack.enter_context(mock.patch.object(tarfile.TarFile, "extractall", extractall))
+            stack.enter_context(mock.patch.object(tarfile.TarFile, "extraction_filter", staticmethod(tarfile.fully_trusted_filter)))
+        yield
 
 
 class Sessions(unittest.TestCase):
@@ -610,6 +631,23 @@ class ClaimTests(Sessions):
         with mock.patch.object(claims, "content_problems", side_effect=checker):
             self.assertEqual(0, self.run_in(a, "claim", "sd-01-002", "--publish")[0])
         self.assertEqual([(True, True)], seen)
+
+    def test_publishing_works_on_a_python_whose_tarfile_cannot_filter_an_extraction(self) -> None:
+        """README: Python 3.10+. 3.10.0-3.10.11 and 3.11.0-3.11.3 have no `filter=` argument, and every --publish unpacks the pushed tree."""
+        a = self.pushed_lesson("a")
+        (a / "NOTES.md").write_text("a file elsewhere in the checkout\n", encoding="utf-8")
+        git(a, "add", "-A")
+        git(a, "commit", "--quiet", "-m", "a file outside the store")
+        seen = []
+
+        def checker(store: Path, source_map: Path, lesson_id: str, cache: dict | None = None, boundary: Path | None = None) -> list[str]:
+            seen.append(boundary is not None and (boundary / "NOTES.md").is_file())
+            return []
+
+        with tarfile_without_extraction_filters(), mock.patch.object(claims, "content_problems", side_effect=checker):
+            code, _, err = self.run_in(a, "claim", "sd-01-002", "--publish")
+        self.assertEqual(0, code, err)
+        self.assertEqual([True], seen)
 
     def test_a_renewal_after_the_clock_went_backwards_never_predates_the_claim(self) -> None:
         a = self.session("a")
@@ -2082,6 +2120,75 @@ class FormatTests(unittest.TestCase):
         on_disk = {path.name for path in (claims.DEFAULT_STORE / "lessons").iterdir() if path.is_dir()}
         self.assertEqual(404, len(source.lessons))
         self.assertEqual([], claims.registry_problems(text, list(source.lessons), source.commit_sha, on_disk))
+
+
+class ArchiveExtractionTests(unittest.TestCase):
+    """claims.extract_archive unpacks the pushed tree the way tarfile's "data" filter does, on a Python with the filter
+    and on one without it."""
+
+    MODES = {"with the data filter": contextlib.nullcontext, "by hand (Python before 3.10.12)": tarfile_without_extraction_filters}
+    HOSTILE = {
+        "a path that climbs out": [("../escape.txt", "file", "x")],
+        "a path that climbs out below a directory": [("sub", "dir", ""), ("sub/../../escape.txt", "file", "x")],
+        "a symlink to a place outside": [("up", "sym", "../outside")],
+        "a symlink below a directory to a place outside": [("sub", "dir", ""), ("sub/up", "sym", "../../outside")],
+        "a symlink to an absolute path": [("etc", "sym", "/etc")],
+        "a hard link to a place outside": [("pw", "hard", "../outside")],
+        "a hard link to an absolute path": [("pw", "hard", "/etc/passwd")],
+        "a pipe": [("pipe", "fifo", "")],
+    }
+
+    def archive(self, entries: list[tuple[str, str, str]]) -> tarfile.TarFile:
+        buffer = io.BytesIO()
+        with tarfile.open(fileobj=buffer, mode="w") as tar:
+            for name, kind, extra in entries:
+                info = tarfile.TarInfo(name)
+                if kind == "file":
+                    info.size = len(extra.encode())
+                    tar.addfile(info, io.BytesIO(extra.encode()))
+                    continue
+                info.type = {"dir": tarfile.DIRTYPE, "sym": tarfile.SYMTYPE, "hard": tarfile.LNKTYPE, "fifo": tarfile.FIFOTYPE}[kind]
+                info.mode = 0o755
+                info.linkname = extra if kind in ("sym", "hard") else ""
+                tar.addfile(info)
+        buffer.seek(0)
+        return tarfile.open(fileobj=buffer)
+
+    def unpack(self, entries: list[tuple[str, str, str]], mode) -> Path:
+        tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(tmp.cleanup)
+        base = Path(tmp.name)
+        (base / "destination").mkdir()
+        with self.archive(entries) as tar, mode():
+            claims.extract_archive(tar, str(base / "destination"))
+        return base
+
+    def test_what_would_leave_the_destination_or_make_a_device_is_refused(self) -> None:
+        for mode_name, mode in self.MODES.items():
+            for case, entries in self.HOSTILE.items():
+                with self.subTest(mode=mode_name, case=case):
+                    base = self.unpack_refused(entries, mode)
+                    self.assertEqual(["destination"], sorted(path.name for path in base.iterdir()), "nothing was written next to the destination")
+
+    def unpack_refused(self, entries: list[tuple[str, str, str]], mode) -> Path:
+        tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(tmp.cleanup)
+        base = Path(tmp.name)
+        (base / "destination").mkdir()
+        with self.archive(entries) as tar, mode(), self.assertRaises(tarfile.TarError):
+            claims.extract_archive(tar, str(base / "destination"))
+        return base
+
+    def test_files_and_links_that_stay_inside_are_unpacked_as_they_are(self) -> None:
+        entries = [("store", "dir", ""), ("store/lesson.md", "file", "text\n"), ("store/link.md", "sym", "lesson.md"),
+                   ("copy.md", "hard", "store/lesson.md"), ("store/lessons", "dir", ""), ("store/lessons/up.md", "sym", "../lesson.md")]
+        for mode_name, mode in self.MODES.items():
+            with self.subTest(mode=mode_name):
+                destination = self.unpack(entries, mode) / "destination"
+                self.assertEqual("text\n", (destination / "store" / "lesson.md").read_text(encoding="utf-8"))
+                self.assertTrue((destination / "store" / "link.md").is_symlink(), "the checker tells a symlink from a file")
+                self.assertTrue((destination / "store" / "lessons" / "up.md").is_symlink())
+                self.assertEqual("text\n", (destination / "copy.md").read_text(encoding="utf-8"))
 
 
 if __name__ == "__main__":

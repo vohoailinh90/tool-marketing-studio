@@ -1371,6 +1371,36 @@ def orphan_problems(store: pathlib.Path, source_map: pathlib.Path | None, known:
     return sorted(found)
 
 
+def inside(root: str, path: str) -> bool:
+    """Whether `path`, with every link already on disk resolved, is `root` or lies below it."""
+    try:
+        return os.path.commonpath([root, os.path.realpath(path)]) == root
+    except ValueError:  # another drive on Windows
+        return False
+
+
+def extract_archive(tar: tarfile.TarFile, destination: str) -> None:
+    """Unpack `tar` below `destination` so that nothing lands outside it, no device or pipe is made and no link leads
+    out: tarfile's "data" filter. Python 3.10.0-3.10.11 (3.10.11 is the last 3.10 with a Windows installer) and
+    3.11.0-3.11.3 have no `filter=` argument, so there the same rules are applied by hand, one member at a time and each
+    against what the earlier members already put on disk."""
+    if hasattr(tarfile, "data_filter"):  # added together with `filter=` (3.10.12, 3.11.4, 3.12)
+        tar.extractall(destination, filter="data")
+        return
+    root = os.path.realpath(destination)
+    for member in tar:  # os.path.join keeps an absolute second part, so an absolute name or target is "outside" too
+        place = os.path.join(root, member.name)
+        if not inside(root, place):
+            raise tarfile.TarError(f"{member.name}: would be written outside {destination}")
+        if member.isdev():
+            raise tarfile.TarError(f"{member.name}: is a device or a pipe")
+        if member.issym() and not inside(root, os.path.join(os.path.dirname(place), member.linkname)):
+            raise tarfile.TarError(f"{member.name}: links to {member.linkname}, outside {destination}")
+        if member.islnk() and not inside(root, os.path.join(root, member.linkname)):
+            raise tarfile.TarError(f"{member.name}: is a hard link to {member.linkname}, outside {destination}")
+        tar.extract(member, destination)
+
+
 @contextlib.contextmanager
 def pushed_tree(context: Context):
     """The checkout as HEAD holds it, exported to a temporary directory: that is the tree --publish pushes, not the
@@ -1379,7 +1409,7 @@ def pushed_tree(context: Context):
     relative = context.store.resolve().relative_to(context.root.resolve()).as_posix()
     archive = git(context.root, "archive", "--format=tar", "HEAD").stdout
     with tempfile.TemporaryDirectory() as tmp, tarfile.open(fileobj=io.BytesIO(archive)) as tar:
-        tar.extractall(tmp, filter="data")
+        extract_archive(tar, tmp)
         yield pathlib.Path(tmp) / relative, pathlib.Path(tmp)
 
 

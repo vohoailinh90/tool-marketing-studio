@@ -611,3 +611,23 @@ mutations:
   find: '    gone, moved = (removed_upstream(context), repartnered_upstream(context)) if stand_ins else (set(), set())'
   replace: '    gone, moved = (removed_upstream(context), set()) if stand_ins else (set(), set())'
   test: tests.test_sd101_claims.ClaimTests.test_a_finished_lesson_whose_pairing_changed_upstream_is_not_pushed
+- label: the unpacking asks tarfile for a filter that Python before 3.10.12 does not have
+  find: 'if hasattr(tarfile, "data_filter"):'
+  replace: 'if True:'
+  test: tests.test_sd101_claims.ClaimTests.test_publishing_works_on_a_python_whose_tarfile_cannot_filter_an_extraction
+- label: the hand-made unpacking lets a path climb out of the destination
+  find: '        if not inside(root, place):'
+  replace: '        if False:'
+  test: tests.test_sd101_claims.ArchiveExtractionTests.test_what_would_leave_the_destination_or_make_a_device_is_refused
+- label: the hand-made unpacking makes a device or a pipe
+  find: '        if member.isdev():'
+  replace: '        if False:'
+  test: tests.test_sd101_claims.ArchiveExtractionTests.test_what_would_leave_the_destination_or_make_a_device_is_refused
+- label: the hand-made unpacking lets a symlink lead out of the destination
+  find: 'if member.issym() and not inside('
+  replace: 'if False and not inside('
+  test: tests.test_sd101_claims.ArchiveExtractionTests.test_what_would_leave_the_destination_or_make_a_device_is_refused
+- label: the hand-made unpacking lets a hard link lead out of the destination
+  find: 'if member.islnk() and not inside('
+  replace: 'if False and not inside('
+  test: tests.test_sd101_claims.ArchiveExtractionTests.test_what_would_leave_the_destination_or_make_a_device_is_refused

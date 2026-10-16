@@ -26,7 +26,7 @@
     "claims": {
       "status": "checked",
       "checked_on": "2026-10-16",
-      "scope": "Chạy PostgreSQL 16.15 (hai phiên, một cụm cục bộ), SQLite 3.45.1 và Python 3.13.16: hoàn tác DDL, TRUNCATE, GRANT, bộ đếm; SELECT INTO; SELECT FOR UPDATE; chỉ mục và kế hoạch; commit trong Python sqlite3. Đọc tệp nguồn tài liệu PostgreSQL (nhánh master, ba chương, SELECT INTO, ROLLBACK, CREATE SEQUENCE, SQL Conformance). KHÔNG kiểm: MySQL, MariaDB, Oracle, SQL Server (không cài, tài liệu không mở được), tài liệu sqlite.org, tài liệu thư viện sqlite3 của Python; các nhóm lệnh theo từng nhà cung cấp; thứ tự bậc học là gợi ý chưa thử với người học."
+      "scope": "Chạy PostgreSQL 16.15 (hai phiên, một cụm cục bộ), SQLite 3.45.1 và Python 3.13.16: hoàn tác DDL, TRUNCATE, GRANT, bộ đếm; SELECT INTO; SELECT FOR UPDATE; chỉ mục và kế hoạch; commit trong Python sqlite3. Đọc tệp nguồn tài liệu PostgreSQL (nhánh master, ba chương, SELECT INTO, ROLLBACK, CREATE SEQUENCE, SQL Conformance). KHÔNG kiểm: MySQL, MariaDB, Oracle, SQL Server (không cài, tài liệu không mở được), tài liệu sqlite.org, các nhóm lệnh theo từng nhà cung cấp; thứ tự bậc học là gợi ý chưa thử với người học."
     },
     "technical_review": {
       "status": "pending",
@@ -104,8 +104,8 @@
       "id": "python-commit",
       "claim_vi": "Với thư viện sqlite3 của Python, INSERT rồi đóng kết nối mà không commit() thì dòng đó mất; có commit() thì còn.",
       "source": "https://github.com/python/cpython/blob/v3.13.0/Doc/library/sqlite3.rst",
-      "section": "Transaction control",
-      "verified_by": "Chạy thử ngày 2026-10-16 trên Python 3.13.16: 0 dòng sau khi không commit, 1 dòng sau khi commit (chế độ mặc định của thư viện). Chưa đọc tài liệu thư viện."
+      "section": "Connection.close; transaction control",
+      "verified_by": "Đọc Connection.close trong sqlite3.rst (v3.13.0): ở chế độ mặc định (LEGACY_TRANSACTION_CONTROL) close() không thực hiện điều khiển giao dịch ngầm và tài liệu dặn phải commit() trước khi đóng. Chạy thử ngày 2026-10-16 trên Python 3.13.16: 0 dòng sau khi không commit, 1 dòng sau khi commit."
     },
     {
       "id": "standard-name",

@@ -413,11 +413,11 @@
         },
         {
           "id": "sd-01-041",
-          "title_vi": null,
+          "title_vi": "Bearer token và HMAC: gửi bằng chứng gì?",
           "title_source": "How to Design Secure Web API Access",
           "source_url": "https://bytebytego.com/guides/how-to-design-secure-web-api-access-for-your-website",
           "source_path": "data/guides/how-to-design-secure-web-api-access-for-your-website.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "29a98ae116a5b79b349432305d6001109a8b9dd6",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-to-design-secure-web-api-access-for-your-website.md"
         },

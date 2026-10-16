@@ -49,6 +49,7 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 38. [Polling và webhook: hỏi định kỳ hay nhận thông báo?](lessons/sd-01-038/lesson.md)
 39. [Phân trang: vị trí, khóa tiếp tục và cursor](lessons/sd-01-039/lesson.md)
 40. [Thiết kế API: hợp đồng trước đường dẫn](lessons/sd-01-040/lesson.md)
+41. [Bearer token và HMAC: gửi bằng chứng gì?](lessons/sd-01-041/lesson.md)
 
 ## AI và học máy
 

@@ -43,6 +43,7 @@
     "sd-01-038",
     "sd-01-039",
     "sd-01-040",
+    "sd-01-041",
     "sd-03-001",
     "sd-03-002",
     "sd-03-003",
@@ -112,14 +113,14 @@
     "sd-15-012"
   ],
   "reviewed_ids": [],
-  "next_id": "sd-01-041",
+  "next_id": "sd-01-042",
   "active_batch_ids": [
-    "sd-01-040"
+    "sd-01-041"
   ],
   "active_pr": null,
   "updated_on": "2026-10-16",
-  "active_branch": "codex/sd01-040-api-design",
-  "previous_pr": 92,
+  "active_branch": "codex/sd01-041-token-hmac",
+  "previous_pr": 93,
   "superseded_pr": 24,
   "integration_review_pending": true,
   "adopted_main_sha": "7397e5c4deca80a76058261bab6f3ed54ac4afe3",
@@ -134,22 +135,11 @@
   ],
   "repository": "vohoailinh90/tool-marketing-studio",
   "previous_repository": "vohoailinh90/Agentic-coding-course",
-  "destination_base_sha": "1e3353bcd957c72abb36fa07504216ae9e9aaee3",
+  "destination_base_sha": "bb65abc9bb9932e355f0fca27cd41c65961c1847",
   "migration_source_sha": "b8dff434ff75499137bbb10b61122958fdaaafa5",
   "previous_repository_main_sha": "89186c1a1aeb90a47e2a563fdc7786b2dacec787",
   "last_merged_pr": 68,
-  "pending_ci_prs": [
-    {
-      "pr": 91,
-      "head_sha": "db68c70c2a5bf03df8a9f46dce5be26072c4550a",
-      "base_sha": "202caa49ca24880760601951d87814f5599820f5",
-      "run_id": 38835687553,
-      "status": "in_progress",
-      "review_id": 6206100767,
-      "review_status": "clean",
-      "checked_on": "2026-10-16"
-    }
-  ],
+  "pending_ci_prs": [],
   "prior_ci_evidence": [
     {
       "pr": 75,
@@ -285,6 +275,22 @@
       "run_id": 38842531516,
       "status": "success",
       "review_id": 6206961009,
+      "checked_on": "2026-10-16"
+    },
+    {
+      "pr": 91,
+      "head_sha": "db68c70c2a5bf03df8a9f46dce5be26072c4550a",
+      "run_id": 38835687553,
+      "status": "success",
+      "review_id": 6206100767,
+      "checked_on": "2026-10-16"
+    },
+    {
+      "pr": 93,
+      "head_sha": "bb65abc9bb9932e355f0fca27cd41c65961c1847",
+      "run_id": 38847122889,
+      "status": "success",
+      "review_id": 6207637578,
       "checked_on": "2026-10-16"
     }
   ]

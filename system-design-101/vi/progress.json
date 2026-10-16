@@ -48,6 +48,7 @@
     "sd-01-043",
     "sd-01-044",
     "sd-01-045",
+    "sd-01-046",
     "sd-03-001",
     "sd-03-002",
     "sd-03-003",
@@ -118,15 +119,14 @@
     "sd-15-012"
   ],
   "reviewed_ids": [],
-  "next_id": "sd-01-046",
+  "next_id": "sd-01-047",
   "active_batch_ids": [
-    "sd-01-045",
-    "sd-10-023"
+    "sd-01-046"
   ],
   "active_pr": null,
   "updated_on": "2026-10-16",
-  "active_branch": "codex/sd01-045-api-testing",
-  "previous_pr": 97,
+  "active_branch": "codex/sd01-046-rest-graphql",
+  "previous_pr": 98,
   "superseded_pr": 24,
   "integration_review_pending": true,
   "adopted_main_sha": "a4fe9f30bcd4e4afda9d2e48aae19154d57e719f",
@@ -141,7 +141,7 @@
   ],
   "repository": "vohoailinh90/tool-marketing-studio",
   "previous_repository": "vohoailinh90/Agentic-coding-course",
-  "destination_base_sha": "6dc0f5b98179ddbb1b299d139922362f0cbce318",
+  "destination_base_sha": "7d16275786ef5acf4c264cbcf410c51b506a359b",
   "migration_source_sha": "b8dff434ff75499137bbb10b61122958fdaaafa5",
   "previous_repository_main_sha": "89186c1a1aeb90a47e2a563fdc7786b2dacec787",
   "last_merged_pr": 74,
@@ -153,6 +153,16 @@
       "run_id": 38867100906,
       "status": "queued",
       "review_id": 6210461044,
+      "review_status": "clean",
+      "checked_on": "2026-10-16"
+    },
+    {
+      "pr": 98,
+      "head_sha": "7d16275786ef5acf4c264cbcf410c51b506a359b",
+      "base_sha": "6dc0f5b98179ddbb1b299d139922362f0cbce318",
+      "run_id": 38871111122,
+      "status": "queued",
+      "review_id": 6211060925,
       "review_status": "clean",
       "checked_on": "2026-10-16"
     }
@@ -335,5 +345,6 @@
       "checked_on": "2026-10-16",
       "note": "Prior head before registry/main integration; new combined tree needs review."
     }
-  ]
+  ],
+  "registry_note_vi": "sync từ PR98 bị từ chối do vòng adoption kiểm tra lần lượt cặp written045/10-023 cùng owner cha, không ghi gì. Giữ nguyên owner các bài kế thừa và PR98 còn open; claim046 qua script đã publish/yours. Không sửa tooling hoặc registry bằng tay."
 }

@@ -54,6 +54,7 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 43. [gRPC: gọi phương thức qua mạng](lessons/sd-01-043/lesson.md)
 44. [Bảo vệ API: bắt đầu từ rủi ro](lessons/sd-01-044/lesson.md)
 45. [Kiểm thử API: chọn câu hỏi trước tên gọi](lessons/sd-01-045/lesson.md)
+46. [REST API và GraphQL: ai chọn dữ liệu trả về?](lessons/sd-01-046/lesson.md)
 
 ## AI và học máy
 

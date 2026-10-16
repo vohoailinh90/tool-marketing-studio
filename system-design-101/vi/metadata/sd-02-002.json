@@ -84,6 +84,12 @@
       "verified_by": "Chưa kiểm chứng: RFC 6749 chưa mở được từ máy biên soạn."
     },
     {
+      "id": "token-revocation-provider-dependent",
+      "claim_vi": "Token OAuth có phạm vi; thu hồi token và thời hạn của token tùy nhà cung cấp: có chuẩn riêng mô tả thu hồi nhưng việc hỗ trợ không bảo đảm, và token đã cấp có thể còn dùng được tới khi hết hạn.",
+      "source": "https://www.rfc-editor.org/rfc/rfc7009",
+      "verified_by": "Chưa kiểm chứng: RFC 7009 chưa mở được từ máy biên soạn; câu chữ đã được thu hẹp theo review để không khẳng định mọi token đều thu hồi được."
+    },
+    {
       "id": "operational-costs",
       "claim_vi": "Quy tắc nhiều bước chịu trễ do polling, báo trùng khi thử lại, lỗi giữa chừng không tự quay lui, vòng lặp giữa hai ứng dụng và giới hạn số lời gọi của ứng dụng đích.",
       "sources": [

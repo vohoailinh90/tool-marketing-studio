@@ -39,7 +39,7 @@ Các điểm dưới đây là kiến thức chung về mô hình này, chưa đ
 
 - **Tên gọi:** Zapier gọi một quy tắc là *Zap*, If This Then That gọi là *applet*; cả hai đều xoay quanh một trigger và một hoặc nhiều action.
 - **Polling cần nhớ, webhook cần chịu lặp:** để không báo lại mục cũ, nền tảng phải nhớ mục đã thấy. Với webhook thì ngược lại: ứng dụng nguồn có thể gửi lại cùng một sự kiện nếu không nhận được xác nhận, nên bước đầu cần chịu được sự kiện lặp.
-- **OAuth:** ứng dụng B không đưa mật khẩu cho nền tảng mà cấp một token có phạm vi và thu hồi được. Nền tảng giữ token của bạn nên là một điểm cần tin cậy; hãy cấp phạm vi nhỏ nhất đủ dùng.
+- **OAuth:** ứng dụng B không đưa mật khẩu cho nền tảng mà cấp một token có phạm vi, chỉ làm được những việc đã cho phép. Token thu hồi được hay không và hết hạn lúc nào là do nhà cung cấp quyết định: có một chuẩn riêng mô tả cách thu hồi token, nhưng việc hỗ trợ tùy nhà cung cấp, và token đã cấp có thể còn dùng được tới khi hết hạn. Nền tảng giữ token của bạn nên là một điểm cần tin cậy; hãy cấp phạm vi nhỏ nhất đủ dùng và xem nhà cung cấp có cho thu hồi quyền hay không.
 - **Vòng lặp:** nếu action ở B tự nó là sự kiện kích trigger ở A, quy tắc có thể gọi lại chính mình mãi. Thêm điều kiện lọc để bỏ qua mục do chính quy tắc tạo ra.
 - **Giới hạn của ứng dụng đích:** API của B thường giới hạn số lời gọi trong một khoảng thời gian; gọi dồn có thể bị từ chối, và việc thử lại sau đó là một lý do nữa dẫn tới trùng.
 
@@ -49,6 +49,7 @@ Các điểm dưới đây là kiến thức chung về mô hình này, chưa đ
 
 - [ByteByteGo tại snapshot cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/api-of-apis-app-integrations.md): công cụ no-code, tự động hóa quy trình qua giao diện trực quan.
 - [RFC 6749: The OAuth 2.0 Authorization Framework](https://www.rfc-editor.org/rfc/rfc6749): ủy quyền, token và phạm vi.
+- [RFC 7009: OAuth 2.0 Token Revocation](https://www.rfc-editor.org/rfc/rfc7009): thu hồi token; việc hỗ trợ tùy nhà cung cấp.
 - [Trung tâm trợ giúp của Zapier](https://help.zapier.com/) và [trung tâm trợ giúp của If This Then That](https://help.ifttt.com/): cách mỗi dịch vụ gọi và chạy trigger, action.
 - Bài báo mà nguồn nêu làm xuất xứ lưu đồ: *IFTTT vs. Zapier: A Comparative Study of Trigger-Action Programming Frameworks* (chưa mở, lưu đồ không được dùng lại).
 

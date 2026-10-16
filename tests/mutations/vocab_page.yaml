@@ -1,0 +1,61 @@
+# Mutation manifest — see scripts/mutation_check.py
+#
+# The vocabulary page keeps the owner's own words in the browser. These break each rule that protects them
+# (what is carried over, what is never lost, what the page refuses to repeat) and require the named browser
+# test to notice. They need Chromium, which the engine job installs.
+
+target: vocab/vocab_standalone.html
+note: The page is a single file the owner opens by double click; its storage code is the only thing between an update of the repository's words and the loss of the words kept on one machine.
+mutations:
+- label: words kept by the old version are not carried over
+  find: '(Array.isArray(v1) ? v1 : [])'
+  replace: '[]'
+  test: tests.test_vocab.PageTests.test_words_the_old_version_kept_move_to_this_machine_and_the_old_copy_stays
+- label: the new storage is not written after the carry-over
+  find: 'saveLocal(localLoaded);'
+  replace: ''
+  test: tests.test_vocab.PageTests.test_words_the_old_version_kept_move_to_this_machine_and_the_old_copy_stays
+- label: a local word the repository now holds stays in the local list
+  find: 'if (!c || seen.has(termKey(c.term))) return;'
+  replace: 'if (!c) return;'
+  test: tests.test_vocab.PageTests.test_a_local_word_the_repository_has_since_gained_is_dropped_from_the_local_list
+- label: a repository word can be deleted from the page
+  find: |-
+    if (v.repo) {
+          // A word in the repository
+  replace: |-
+    if (false) {
+          // A word in the repository
+  test: tests.test_vocab.PageTests.test_only_a_word_kept_on_this_machine_can_be_deleted_from_the_page
+- label: every dated word is marked new, not only the latest batch
+  find: 'return !!(v.repo && LATEST_ADDED && v.added === LATEST_ADDED);'
+  replace: 'return !!(v.repo && v.added);'
+  test: tests.test_vocab.PageTests.test_the_latest_batch_is_marked_new_and_the_filter_shows_only_it
+- label: adding by hand accepts a word the page already has
+  find: |-
+    if (hasWord(entry.term)) {
+          saveBtn.textContent
+  replace: |-
+    if (false) {
+          saveBtn.textContent
+  test: tests.test_vocab.PageTests.test_adding_by_hand_refuses_a_word_the_repository_already_has
+- label: the paste import accepts words already stored
+  find: |-
+    const c = cleanEntry(row);
+          if (!c || hasWord(c.term)) return;
+  replace: |-
+    const c = cleanEntry(row);
+          if (!c) return;
+  test: tests.test_vocab.PageTests.test_the_paste_import_skips_words_already_stored_and_says_how_many
+- label: the page's word identity ignores a kana reading differently from the script
+  find: '.replace(/\s*\([぀-ゟ゠-ヿ・\s]+\)$/, "")'
+  replace: ''
+  test: tests.test_vocab.PageTests.test_the_page_and_the_script_agree_on_what_makes_two_words_the_same
+- label: the backup holds the repository's words too
+  find: 'JSON.stringify(localWords().map(function (v) {'
+  replace: 'JSON.stringify(state.vocab.map(function (v) {'
+  test: tests.test_vocab.PageTests.test_the_backup_holds_only_this_machines_words_and_restoring_it_skips_stored_ones
+- label: a pipe inside a copied word breaks the table
+  find: '.replace(/\|/g, "/")'
+  replace: ''
+  test: tests.test_vocab.PageTests.test_the_table_the_page_copies_is_what_the_command_line_reads

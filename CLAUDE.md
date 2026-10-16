@@ -15,12 +15,16 @@ they are commercialised. It holds:
 - **The agent office** (`office/` + `scripts/office/`): a read-only page that shows which
   agent is doing what, from the hook log, the agent budget ledger and the VPS team's
   `state.json`; see `docs/office-dashboard.md`.
+- **Vocabulary study** (`vocab/` + `scripts/vocab.py`): the owner's English and Japanese word
+  list as one standalone HTML page; words are explained in chat, then folded into the page by the
+  script; see `docs/vocab-study.md`.
 
 Development of the engine and the app follows the routing and agent-team rules below,
 inherited from `vohoailinh90/claude-agent-routing-template`. The three lanes that can do
 the work — Claude subagents, Codex, and the free-model team on the VPS — and how CI picks
 its runner are in `docs/agent-team.md`. Writing marketing content is
-not a routed software requirement: follow `.claude/skills/tool-campaign/SKILL.md`.
+not a routed software requirement: follow `.claude/skills/tool-campaign/SKILL.md`. Neither is explaining
+words and passages and storing the new words: follow `.claude/skills/vocab-study/SKILL.md`.
 
 Your primary job is to select the lowest-cost profile that safely handles a requirement,
 not to maximise the number of agents.
@@ -313,6 +317,21 @@ script can. One rule applies to every lesson a session writes or edits:
   lesson that skips the rule; whether an explanation is correct and clear to a beginner is the
   reviewer's call.
 
+## Vocabulary study
+
+When the owner pastes a word, phrase or passage (English or Japanese) and asks what it means, or says
+"tổng hợp từ vựng", follow `.claude/skills/vocab-study/SKILL.md`. It is content work, not a routed
+requirement; changing `scripts/vocab.py` or the page's code is a software requirement and is routed.
+
+- **Two phases.** Explaining writes nothing; storing happens only when the owner asks. Explanations are in
+  Vietnamese; the owner reads them, then says "tổng hợp từ vựng".
+- **Only the script writes the words.** `vocab/vocab_standalone.html` holds them in one generated block;
+  add, change and remove words with `python3 scripts/vocab.py`, never by hand. `check` is the verdict and CI runs it.
+- **Passages stay out of git.** Store the word, its meaning, one short note; quote the owner's text in at
+  most ~12 words, inside a note. The script caps every field's length to enforce it.
+- **Storing is not publishing.** Commit `vocab/vocab_standalone.html` and push the session branch; open a
+  pull request only when the owner asks (then *Pull request lifecycle* applies).
+
 ## UI implementation source
 
 `web/` is built from `vohoailinh90/Automation-UI-Kit` (React 19 + Tailwind CSS v4 + Radix).
@@ -337,6 +356,7 @@ python3 studio.py check                   # every campaign: 0 errors
 python3 scripts/layout_check.py           # repository layout
 python3 scripts/i18n_check.py             # app catalogs in vi/ja/en
 python3 scripts/sd101_check.py            # the System Design store (system-design-101/vi): schema, sources, figures, progress
+python3 scripts/vocab.py check            # the vocabulary page: schema, duplicates, field limits, canonical block
 python3 scripts/mutation_check.py --all   # the safety-rail tests catch their own removal
 (cd web && npm run build)                 # typecheck + build the UI (a subshell: the block runs top to bottom from the root)
 python3 scripts/office/snapshot.py --check            # the agent office's data contract

@@ -47,6 +47,8 @@ jobs:
           python -m playwright install ${{ runner.environment == 'github-hosted' && '--with-deps' || '' }} chromium
       - name: Repository layout
         run: python scripts/layout_check.py
+      - name: Vocabulary page (schema, duplicates, field limits)
+        run: python scripts/vocab.py check
       - name: UI catalogs (vi / ja / en; the app's and the agent office's)
         run: python scripts/i18n_check.py
       - name: Agent office snapshot contract

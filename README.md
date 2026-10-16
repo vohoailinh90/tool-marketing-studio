@@ -80,6 +80,7 @@ playbooks/                           chiến lược, hình ảnh, Facebook, ki�
 research/                            mẫu khảo sát và kịch bản phỏng vấn (3 ngôn ngữ)
 mkt/                                 engine (Python)        web/   giao diện (React + UI kit)
 office/ + scripts/office/            văn phòng agent: ai đang làm gì (trang React + server chỉ-đọc)
+vocab/ + scripts/vocab.py            từ vựng Anh/Nhật: một file HTML tự chứa + công cụ thêm từ
 .claude/                             team agent + skill cho Claude Code
 ```
 
@@ -120,3 +121,15 @@ Kiến trúc: `docs/architecture.md`. Kết nối Facebook: `docs/facebook-page.
 ## System Design tiếng Việt
 
 Chương trình học bằng hình, chỉ tiếng Việt: [mục lục](system-design-101/vi/README.md), [tiến độ](system-design-101/vi/PROGRESS.md). Giữ đúng15 nhóm/404 vị trí ByteByteGo (400 tài liệu nguồn). Kho giáo dục riêng; chưa đưa vào giao diện chiến dịch hoặc phê duyệt phát hành. `python3 scripts/sd101_check.py` kiểm kho (schema metadata, nguồn ghim, hình, tiến độ); CI chạy nó qua pytest.
+
+## Từ vựng (Anh / Nhật)
+
+`vocab/vocab_standalone.html` là trang học từ vựng một file, mở bằng cách bấm đúp, không cần server. Từ mới đi vào
+đó qua Claude Code, không cần sửa tay:
+
+1. Hỏi Claude Code về từ hoặc đoạn văn như bình thường — Claude giải thích bằng tiếng Việt theo chuẩn của repo và **chưa ghi gì**.
+2. Đọc xong, gõ **“Tổng hợp từ vựng”**. Claude gom các từ đã giải thích, kiểm tra trùng, thêm vào file, chạy kiểm tra, commit và push lên nhánh của phiên.
+3. Tải lại file: từ của lô mới có nhãn **✨ Mới**. Muốn file nằm ở `main`, nhờ Claude mở pull request.
+
+Từ thêm tay trong trình duyệt chỉ nằm trên máy đó; tab “Cập nhật từ vựng” có nút copy chúng dạng bảng để gửi cho Claude đưa vào repo.
+Quy trình đầy đủ, định dạng và các lệnh: `docs/vocab-study.md`; kiểm tra: `python3 scripts/vocab.py check`.

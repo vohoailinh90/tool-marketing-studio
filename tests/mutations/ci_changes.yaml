@@ -70,3 +70,8 @@ mutations:
   find: "        if: steps.changes.outputs.mutation != 'false'\n"
   replace: ""
   test: tests.test_ci_changes.WorkflowUsesItTests.test_the_mutation_check_skips_only_when_the_decision_says_false
+- label: the CI mutation check goes back to one tree
+  file: .github/workflows/ci.yml
+  find: " --jobs ${{ vars.MUTATION_JOBS || '2' }}\n"
+  replace: "\n"
+  test: tests.test_ci_changes.WorkflowUsesItTests.test_the_mutation_check_runs_on_several_tree_copies_unless_the_variable_says_otherwise

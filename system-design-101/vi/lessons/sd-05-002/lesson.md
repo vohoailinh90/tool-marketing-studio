@@ -5,6 +5,24 @@ có sáu việc nối nhau: kiểm tra cache, tra DNS, mở kết nối, gửi y
 
 ![Sáu thẻ nối nhau từ trên xuống. 1 Nhập địa chỉ: gõ rồi nhấn Enter. 2 Kiểm tra cache: đã có gì dùng lại được chưa. 3 Tra DNS: tên miền ra địa chỉ IP. 4 Mở kết nối: bắt tay TCP, HTTPS thêm TLS. 5 Yêu cầu HTTP: gửi yêu cầu, nhận HTML. 6 Dựng trang: DOM, CSSOM, layout, paint. Ghi chú: đây là đường chính, không phải đường duy nhất.](../../diagrams/sd-05-002-main.svg)
 
+## Từ viết tắt
+
+- **DNS** (Domain Name System) — hệ thống tên miền: "danh bạ" của Internet, đổi tên miền như example.com thành địa chỉ IP.
+- **IP** (Internet Protocol) — giao thức Internet: quy ước đánh địa chỉ và chuyển gói tin giữa các máy; địa chỉ IP là địa chỉ của một máy trên mạng.
+- **TCP** (Transmission Control Protocol) — giao thức điều khiển truyền: tạo kết nối đáng tin cậy bằng bắt tay ba bước SYN, SYN-ACK, ACK.
+- **SYN** (SYNchronize) — "đồng bộ": gói đầu tiên của bắt tay TCP, báo "tôi muốn mở kết nối".
+- **ACK** (ACKnowledgement) — "xác nhận": gói báo "tôi đã nhận được"; bước cuối của bắt tay TCP.
+- **TLS** (Transport Layer Security) — bảo mật tầng truyền tải: lớp mã hóa giữ kín dữ liệu đi giữa trình duyệt và máy chủ.
+- **HTTP** (HyperText Transfer Protocol) — giao thức truyền siêu văn bản: quy ước để trình duyệt gửi yêu cầu (request) và máy chủ gửi trả lời (response).
+- **HTTPS** (HyperText Transfer Protocol Secure) — HTTP chạy trên TLS: cách gửi yêu cầu và trả lời như HTTP nhưng nội dung được mã hóa.
+- **HSTS** (HTTP Strict Transport Security) — "bảo mật truyền tải nghiêm ngặt của HTTP": máy chủ dặn trình duyệt lần sau chỉ truy cập qua HTTPS.
+- **HTML** (HyperText Markup Language) — ngôn ngữ đánh dấu siêu văn bản: văn bản dùng thẻ để mô tả cấu trúc của một trang web.
+- **DOM** (Document Object Model) — mô hình đối tượng tài liệu: cây các phần tử của trang mà trình duyệt dựng từ HTML; JavaScript có thể sửa cây này.
+- **CSS** (Cascading Style Sheets) — bảng kiểu xếp tầng: các luật mô tả màu sắc, cỡ chữ và cách bố trí của trang.
+- **CSSOM** (CSS Object Model) — mô hình đối tượng CSS: các luật CSS sau khi trình duyệt đọc xong, xếp thành cấu trúc để tra cứu.
+- **UDP** (User Datagram Protocol) — giao thức gói dữ liệu người dùng: gửi từng gói tin đi mà không bắt tay trước và không bảo đảm gói nào đến nơi; nhẹ và nhanh hơn TCP, nên giao thức mới tự thêm phần tin cậy lên trên.
+- **QUIC** (Quick UDP Internet Connections) — tên gọi ban đầu của giao thức truyền tải mà HTTP/3 dùng thay cho TCP; ngày nay QUIC thường được dùng như một tên riêng.
+
 ## Đọc hình
 
 **1–2. Nhập địa chỉ và kiểm tra cache.** Trước khi ra mạng, trình duyệt xem đã có gì dùng lại được chưa:

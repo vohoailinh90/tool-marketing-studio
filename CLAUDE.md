@@ -282,6 +282,24 @@ What the loop does not change:
   aggregates and insight reports only.
 - **Secrets only in `.env`.** Never in YAML, code, logs or commits.
 
+## System Design lessons: claim before you write
+
+Several sessions write lessons of `system-design-101/vi/` at the same time. The registry
+`system-design-101/vi/claims.jsonl`, changed only through `scripts/sd101_claims.py`, says which of the
+404 source-map positions is free (`todo`), being written (`doing`, owned by a branch) or handed over
+(`written`). Full protocol: `docs/sd101-claims.md`.
+
+- **Before** writing or editing a lesson body: `python3 scripts/sd101_claims.py claim --next N --publish`
+  (or `claim <id>... --publish`). Never take `progress.json`'s `next_id`, and never start a lesson the
+  registry shows as `doing` or `written` — it reads every remote branch, so another session's pushed claim is visible.
+- **While working**: `touch --publish` now and then; `verify` must exit 0 before you push the lesson.
+  If you lost a claim, stop on that lesson and `release` it; do not push the draft.
+- **When done**: `finish <id>... --pr <n>` and commit `claims.jsonl` with the lesson files, so no
+  commit shows a written lesson that is not there. A lesson you will not write: `release <id> --publish`.
+- `claim` stops with exit 2 when the remote cannot be read; fix that, do not guess. A claim of a dead
+  session (no heartbeat for 72 h) is taken over with `claim --take-stale`.
+- Claiming reserves a lesson; it does not approve, review or publish it (`written` is not `content_status: done`).
+
 ## Languages (Vietnamese / Japanese / English)
 
 - Content: three complete versions, as above.
@@ -291,6 +309,27 @@ What the loop does not change:
   same script checks them.
 - Rendered images: the engine's fixed words live in `mkt/text.py` (`UI`), one entry per language.
 - This repository's harness (`scripts/`, hooks, agent and skill files, CLI output) stays English.
+
+## System Design lessons (Vietnamese store)
+
+`system-design-101/vi/` is a learning store for readers who are new to the field; its rules are in
+`brainstorm/system-design-101-vi/DECISIONS.md` and `python3 scripts/sd101_check.py` enforces what a
+script can. One rule applies to every lesson a session writes or edits:
+
+- **Spell out every abbreviation.** Any abbreviation of two or more capital letters that `lesson.md` or
+  its figure uses (LLM, DNS, SSE, API, ...) is explained in the lesson's own `## Từ viết tắt` section,
+  the first `##` section, one bullet each: `- **LLM** (Large Language Model) — mô hình ngôn ngữ lớn: what
+  it is, in plain words, in this lesson's context`. The parenthesis spells the abbreviation out in Latin
+  letters so that its initials give it back (`IDentifier`, `SYNchronize`; a Vietnamese abbreviation such
+  as CSDL gets its Vietnamese form); a full form or an explanation may not lean on an abbreviation that
+  has no bullet of its own (`HMAC-based` in the full form of HKDF needs an HMAC bullet). Words that only
+  look like abbreviations (HTTP methods, SQL keywords, file names) go in
+  `` `code` `` or in `NOT_ACRONYMS`. Mixed-case terms (gRPC, IPv4, OAuth, ...) follow the same rule once
+  they are in `MIXED_CASE_TERMS`: add a new one there when a lesson introduces it. A product name that
+  carries an abbreviation (OpenAI, MySQL, macOS) is in `EMBEDDED_ABBREVIATIONS`, and the abbreviation
+  inside it (AI, SQL, OS) is explained the same way. The checker fails a
+  lesson that skips the rule; whether an explanation is correct and clear to a beginner is the
+  reviewer's call.
 
 ## UI implementation source
 

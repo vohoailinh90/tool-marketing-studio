@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 755" width="320" height="755" role="img" aria-labelledby="title desc">
+<title id="title">Bốn nơi UDP thường được dùng</title>
+<desc id="desc">Bốn khung dọc: gọi thoại và video trực tiếp chấp nhận mất vài gói; DNS một câu hỏi một câu đáp, đáp bị cắt thì thử lại bằng TCP; dữ liệu thị trường gửi một lần cho nhiều bên nhận bằng multicast; thiết bị IoT gửi gói nhỏ, ví dụ CoAP trên UDP.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="755" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">4 NƠI DÙNG UDP</text>
+<text x="16" y="60" font-size="16" font-weight="normal">Gói gửi đi, không bắt tay,</text>
+<text x="16" y="90" font-size="16" font-weight="normal">không tự gửi lại</text>
+<rect x="16" y="112" width="288" height="104" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="142" font-size="16" font-weight="bold">1 · Gọi thoại, video trực tiếp</text>
+<text x="30" y="169" font-size="16" font-weight="normal">Gói đến muộn thì hết giá trị</text>
+<text x="30" y="196" font-size="16" font-weight="normal">Mất vài gói: chấp nhận được</text>
+<line x1="160" y1="217" x2="160" y2="237" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="240" width="288" height="104" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="270" font-size="16" font-weight="bold">2 · DNS</text>
+<text x="30" y="297" font-size="16" font-weight="normal">Một câu hỏi nhỏ → một câu đáp</text>
+<text x="30" y="324" font-size="16" font-weight="normal">Đáp bị cắt: thử lại bằng TCP</text>
+<line x1="160" y1="345" x2="160" y2="365" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="368" width="288" height="158" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="398" font-size="16" font-weight="bold">3 · Dữ liệu thị trường</text>
+<rect x="30" y="408" width="94.1172" height="34" rx="7" fill="#ffffff" stroke="#64748b"/>
+<text x="77.0586" y="431" text-anchor="middle" font-size="16" font-weight="normal">Gửi 1</text>
+<line x1="126.117" y1="425" x2="143.117" y2="425" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="148.117" y="408" width="141.883" height="34" rx="7" fill="#ffffff" stroke="#64748b"/>
+<text x="219.059" y="431" text-anchor="middle" font-size="16" font-weight="normal">nhiều nhận</text>
+<text x="30" y="479" font-size="16" font-weight="normal">TCP chỉ nối một đầu với một đầu</text>
+<text x="30" y="506" font-size="16" font-weight="normal">Ứng dụng tự phát hiện gói mất</text>
+<line x1="160" y1="527" x2="160" y2="547" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="550" width="288" height="131" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="580" font-size="16" font-weight="bold">4 · IoT</text>
+<text x="30" y="607" font-size="16" font-weight="normal">Thiết bị nhỏ, gói nhỏ</text>
+<text x="30" y="634" font-size="16" font-weight="normal">Ví dụ: CoAP chạy trên UDP</text>
+<text x="30" y="661" font-size="16" font-weight="normal">Không phải IoT nào cũng UDP</text>
+<text x="16" y="709" font-size="16" font-weight="normal">Không bảo đảm giao hay thứ tự:</text>
+<text x="16" y="735" font-size="16" font-weight="normal">ứng dụng tự quyết.</text>
+</g></svg>

@@ -6,6 +6,12 @@ Cách học Nginx nhanh nhất là đặt nó trước một API (Application Pr
 
 **Đọc hình:** mỗi thẻ là một chỗ hay sai, không theo thứ tự; cấu hình mẫu nằm ở phần sâu.
 
+## Từ viết tắt
+
+- **API** (Application Programming Interface) — giao diện lập trình ứng dụng: cách để một chương trình gọi chức năng hoặc lấy dữ liệu của chương trình khác theo quy ước đã định.
+- **HTTP** (HyperText Transfer Protocol) — giao thức truyền siêu văn bản: quy ước để trình duyệt gửi yêu cầu và máy chủ gửi trả lời.
+- **URI** (Uniform Resource Identifier) — định danh tài nguyên thống nhất: chuỗi viết ra một tài nguyên theo quy tắc chung; trong bài, phần URI của `proxy_pass` (như dấu `/` cuối) quyết định phần khớp của đường dẫn có bị thay trước khi gửi tới backend hay không.
+
 ## Nhìn hình thử trả lời
 
 Với `location /api/ { proxy_pass http://backend/; }`, request tới `/api/users` đến backend với đường dẫn nào?

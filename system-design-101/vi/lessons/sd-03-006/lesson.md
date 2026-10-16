@@ -5,6 +5,12 @@ bước kế tiếp, gọi công cụ, nhìn kết quả thật rồi chọn ti�
 
 ![Vòng lặp dọc. Mục tiêu: đặt lịch họp cho ba người. Bước 1, LLM chọn bước kế tiếp dựa trên mục tiêu, bộ nhớ và kết quả trước. Bước 2, gọi công cụ như API lịch, tìm kiếm, chạy mã. Bước 3, quan sát kết quả thật từ môi trường; một mũi tên đi từ bước 3 trở lại bước 1. Cuối cùng là dừng: xong mục tiêu, hết số lượt cho phép hoặc chờ người duyệt. Ghi chú: thao tác khó hoàn tác nên có người duyệt trước.](../../diagrams/sd-03-006-main.svg)
 
+## Từ viết tắt
+
+- **AI** (Artificial Intelligence) — trí tuệ nhân tạo: các hệ thống máy tính làm những việc thường cần trí thông minh của con người, như hiểu ngôn ngữ hay nhận ra hình ảnh.
+- **LLM** (Large Language Model) — mô hình ngôn ngữ lớn: mô hình huấn luyện trên lượng văn bản rất lớn để hiểu và sinh ngôn ngữ.
+- **API** (Application Programming Interface) — giao diện lập trình ứng dụng: cách để một chương trình gọi chức năng hoặc lấy dữ liệu của chương trình khác theo quy ước đã định.
+
 ## Đọc hình
 
 **Mục tiêu.** Người dùng nêu việc cần làm, ví dụ đặt lịch họp cho ba người.

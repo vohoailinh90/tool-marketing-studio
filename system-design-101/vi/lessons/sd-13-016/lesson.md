@@ -6,6 +6,10 @@ Sau một lần triển khai, cụm có vài trăm Pod mà chỉ vài Pod của 
 
 **Đọc hình:** ba thẻ đầu thu hẹp tập Pod, hai thẻ sau chọn cách hiện kết quả; có thể dùng riêng hoặc kết hợp.
 
+## Từ viết tắt
+
+- **IP** (Internet Protocol) — giao thức Internet: quy ước đánh địa chỉ và chuyển gói tin giữa các máy; địa chỉ IP là địa chỉ của một máy hay một Pod trên mạng.
+
 ## Nhìn hình thử trả lời
 
 Bạn chạy `kubectl get pods -A --field-selector status.phase!=Running` để tìm Pod hỏng sau khi triển khai, nhưng Pod đang `CrashLoopBackOff` không xuất hiện. Vì sao, và nên nhìn vào đâu?

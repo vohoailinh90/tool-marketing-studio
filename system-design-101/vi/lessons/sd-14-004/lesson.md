@@ -5,6 +5,17 @@ Chọn mô hình nào thì quyết định bạn phải bảo trì thứ gì v�
 
 ![Bảy thẻ xếp dọc. Thẻ đầu là yêu cầu chung: Lan muốn đọc tệp bảng lương. Năm thẻ tiếp theo là năm mô hình, mỗi mô hình hỏi một câu khác. ACL: trên tệp có dòng cho phép Lan không. DAC: chủ sở hữu tệp đã cho Lan chưa. MAC: nhãn của Lan có đủ mức so với nhãn của tệp không, chủ sở hữu không tự đổi được. RBAC: Lan có vai trò nào được đọc tệp. ABAC: thuộc tính của Lan, tệp, hành động và hoàn cảnh có khớp luật không. Thẻ cuối nêu cái phải bảo trì: ACL ghi từng người là mỗi người nhân mỗi tài liệu, RBAC là gán vai trò, ABAC là thuộc tính và luật.](../../diagrams/sd-14-004-main.svg)
 
+## Từ viết tắt
+
+- **ACL** (Access Control List) — danh sách kiểm soát truy cập: danh sách gắn với tài nguyên, ghi ai được làm gì với nó.
+- **DAC** (Discretionary Access Control) — kiểm soát truy cập tùy quyền chủ sở hữu: chủ của tài nguyên tự quyết định cho ai dùng.
+- **MAC** (Mandatory Access Control) — kiểm soát truy cập bắt buộc: hệ thống quyết định theo nhãn mức bảo mật, chủ sở hữu không tự đổi được.
+- **RBAC** (Role-Based Access Control) — kiểm soát truy cập theo vai trò: quyền gắn với vai trò, người dùng được gán vai trò.
+- **ABAC** (Attribute-Based Access Control) — kiểm soát truy cập theo thuộc tính: luật dựa trên thuộc tính của người dùng, tài nguyên và hoàn cảnh.
+- **SELinux** (Security-Enhanced Linux) — cơ chế kiểm soát truy cập bắt buộc (MAC) của Linux, gắn nhãn cho cả chủ thể lẫn đối tượng; kiểm tra quyền thông thường (DAC) chạy trước, rồi mới hỏi chính sách của nó.
+- **POSIX** (Portable Operating System Interface X) — chuẩn giao diện cho hệ điều hành kiểu Unix (chữ X gợi nhớ Unix); ACL POSIX là cách ghi danh sách quyền trên tệp của Linux.
+- **NIST** (National Institute of Standards and Technology) — viện tiêu chuẩn và công nghệ của Mỹ, ban hành nhiều tiêu chuẩn và định nghĩa kỹ thuật về bảo mật.
+
 ## Đọc hình
 
 Năm tên này không loại trừ nhau. ACL nói về cách lưu quyền (một danh sách gắn với tài nguyên); DAC, MAC, RBAC và ABAC nói về ai quyết định và dựa vào đâu. Hệ thống thật hay xếp chồng nhiều lớp: trên Linux có SELinux, kiểm tra DAC chạy trước rồi mới hỏi chính sách MAC; Kubernetes cho chạy nối tiếp nhiều bộ phân quyền, ví dụ RBAC rồi ABAC, và yêu cầu nào một trong hai cho phép thì được phép. Vì vậy chọn DAC hay RBAC không có nghĩa là bỏ ACL; bài chỉ xếp chúng cạnh nhau để so cách nghĩ.

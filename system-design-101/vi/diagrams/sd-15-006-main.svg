@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 677" width="320" height="677" role="img" aria-labelledby="title desc">
+<title id="title">Game online: không phải gói nào cũng đáng gửi lại</title>
+<desc id="desc">Ba khung dọc: TCP giao đúng thứ tự nên khi gói A bắn bị mất, gói vị trí mới đến vẫn phải chờ; UDP thuần không báo mất gói nên hai bên có thể lệch trạng thái; UDP cộng lớp tin cậy của game có kênh vị trí không gửi lại và kênh sự kiện có xác nhận và gửi lại.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="677" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">GAME ONLINE</text>
+<text x="16" y="56" font-size="20" font-weight="bold">TCP HAY UDP?</text>
+<text x="16" y="86" font-size="16" font-weight="normal">Ba gói: vị trí · A bắn · vị trí</text>
+<rect x="16" y="108" width="288" height="185" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="138" font-size="16" font-weight="bold">TCP: giao đúng thứ tự</text>
+<text x="30" y="165" font-size="16" font-weight="normal">Gói A bắn mất → các gói sau chờ</text>
+<rect x="30" y="175" width="130.086" height="34" rx="7" fill="#ffffff" stroke="#64748b"/>
+<text x="95.043" y="198" text-anchor="middle" font-size="16" font-weight="normal">A bắn (mất)</text>
+<line x1="162.086" y1="192" x2="179.086" y2="192" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="184.086" y="175" width="105.914" height="34" rx="7" fill="#ffffff" stroke="#64748b"/>
+<text x="237.043" y="198" text-anchor="middle" font-size="16" font-weight="normal">vị trí mới</text>
+<text x="30" y="246" font-size="16" font-weight="normal">Vị trí mới đến vẫn phải chờ</text>
+<text x="30" y="273" font-size="16" font-weight="normal">Hợp khi cần đủ, đúng thứ tự</text>
+<line x1="160" y1="294" x2="160" y2="314" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="317" width="288" height="104" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="347" font-size="16" font-weight="bold">UDP thuần</text>
+<text x="30" y="374" font-size="16" font-weight="normal">Gói mất là mất, không ai báo</text>
+<text x="30" y="401" font-size="16" font-weight="normal">Mất A bắn → hai bên lệch nhau</text>
+<line x1="160" y1="422" x2="160" y2="442" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="445" width="288" height="158" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="475" font-size="16" font-weight="bold">UDP + lớp tin cậy của game</text>
+<text x="30" y="502" font-size="16" font-weight="bold">Kênh vị trí: không gửi lại</text>
+<text x="30" y="529" font-size="16" font-weight="normal">Gói mới thay gói cũ</text>
+<text x="30" y="556" font-size="16" font-weight="bold">Kênh sự kiện: ack + gửi lại</text>
+<text x="30" y="583" font-size="16" font-weight="normal">A bắn mất → gửi lại tới khi ack</text>
+<text x="16" y="631" font-size="16" font-weight="normal">Nhiều game dùng UDP và tự chọn</text>
+<text x="16" y="657" font-size="16" font-weight="normal">cách tin cậy cho từng kênh.</text>
+</g></svg>

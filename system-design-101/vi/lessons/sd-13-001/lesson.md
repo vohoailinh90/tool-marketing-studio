@@ -6,6 +6,14 @@ Mỗi lần triển khai bản mới hoặc dồn node, Kubernetes xóa Pod cũ.
 
 **Đọc hình:** bốn thẻ đầu là trình tự thời gian của một Pod bị xóa; thẻ cuối nói về lúc nhiều Pod bị gỡ có chủ đích cùng một thời điểm.
 
+## Từ viết tắt
+
+- **API** (Application Programming Interface) — giao diện lập trình ứng dụng: cách để một chương trình gọi chức năng hoặc lấy dữ liệu của chương trình khác theo quy ước đã định.
+- **SIGTERM** (SIGnal TERMinate) — tín hiệu yêu cầu tiến trình tự kết thúc: mặc định kubelet gửi nó tới tiến trình chính của container khi Pod bị dừng, để ứng dụng kịp dọn dẹp rồi thoát.
+- **HTTP** (HyperText Transfer Protocol) — giao thức truyền siêu văn bản: quy ước để trình duyệt gửi yêu cầu và máy chủ gửi trả lời.
+- **gRPC** (gRPC Remote Procedure Calls) — khung gọi thủ tục từ xa mã nguồn mở của Google; trong bài, nó là một ví dụ về kết nối sống lâu cần xử lý khi tắt dịch vụ.
+- **RPC** (Remote Procedure Call) — gọi hàm từ xa: gọi một hàm chạy trên máy khác như thể gọi hàm trong chính chương trình.
+
 ## Nhìn hình thử trả lời
 
 Pod đã chuyển sang Terminating thì còn nhận được request nào nữa không?

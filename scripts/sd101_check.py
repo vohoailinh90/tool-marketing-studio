@@ -11,6 +11,7 @@ hand with the same ad hoc commands, and moved here with the store.
 The store, `system-design-101/vi/`, holds:
   README.md, PROGRESS.md, MIGRATION.md   prose; README.md is the index
   progress.json                          what is written, what is next
+  claims.jsonl                           which session is writing which lesson (scripts/sd101_claims.py)
   lessons/<id>/lesson.md, lesson.yaml    the lesson; lesson.yaml only points at its metadata
   lessons/<id>.md                        optional one-line pointer to lessons/<id>/lesson.md
   metadata/<id>.json                     the single record of a lesson's status and evidence
@@ -45,13 +46,22 @@ What is checked, per lesson id:
     in a code block or a comment; a #fragment on it is fine), it mentions no lesson id that has no lesson
     directory, and it never contains assets.bytebytego.com, the host of every source image, in any form:
     ![]() , ![x][ref], <img>, <picture>, a bare URL
+  - abbreviations: every abbreviation a beginner could trip on (LLM, DNS, SSE: two or more capital letters,
+    and the mixed-case terms in MIXED_CASE_TERMS such as gRPC and IPv4) that lesson.md or its figure's text uses is explained in a "## Từ viết tắt" section, the first "##" of the
+    lesson, one bullet each: - **LLM** (Large Language Model) — meaning: a plain-words explanation. The
+    parenthesis spells the abbreviation out in Latin letters, so its initials give exactly the abbreviation
+    (little words may be left out; camelCase and all-caps runs count: HyperText, SYNchronize); keywords, HTTP methods and file names that only
+    look like abbreviations are in NOT_ACRONYMS or in `code`. The section may be left out when none is used.
 And once for the store: it holds only the entries above (an image dropped beside the README is refused like
 one in a lesson); README.md, PROGRESS.md and MIGRATION.md embed no image, use only the allowed raw HTML tags
 (so no HTML table can hide a status), and every relative link in them resolves; README.md links every
 lesson directory (as a real link, not a path in a comment or a code block) in source-map order and has no
 status word (draft, review, done) in a table cell, however formatted or decorated (status lives only in
 metadata/); progress.json's written_ids are the lessons on disk in source-map order, next_id is the first
-source-map id not yet written, and its totals are the source map's.
+source-map id not yet written, and its totals are the source map's; claims.jsonl lists every source-map
+id in order with its title, a well-formed status (todo, doing, written), `written` only for a lesson that exists
+and `todo` only for one that does not, and is in the canonical form scripts/sd101_claims.py writes (the real
+store must have it; a fixture store without one is not asked for it).
 
 This guards against honest mistakes while ~400 lessons are written; it is not a security
 boundary. Markup crafted to slip past a rule on purpose is out of scope.
@@ -70,6 +80,7 @@ from __future__ import annotations
 
 import argparse
 import datetime
+import importlib.util
 import ipaddress
 import itertools
 import json
@@ -77,8 +88,10 @@ import pathlib
 import posixpath
 import re
 import sys
+import unicodedata
 import xml.etree.ElementTree as ElementTree
 import xml.parsers.expat as expat
+from collections.abc import Iterable
 from dataclasses import dataclass
 from html.parser import HTMLParser
 from urllib.parse import unquote, urlparse
@@ -122,7 +135,8 @@ STATUS_WORD = re.compile(r"(?<![^\W_])(?:draft|review|done)(?![^\W_])", re.IGNOR
 SCHEME = re.compile(r"^[A-Za-z][A-Za-z0-9+.-]*:")
 SOURCE_IMAGE_HOST = "assets.bytebytego.com"
 LESSON_FILES = {"lesson.md", "lesson.yaml"}
-STORE_ENTRIES = {"README.md", "PROGRESS.md", "MIGRATION.md", "progress.json", "diagrams", "lessons", "metadata"}
+STORE_ENTRIES = {"README.md", "PROGRESS.md", "MIGRATION.md", "progress.json", "claims.jsonl", "diagrams", "lessons",
+                 "metadata"}
 STORE_PAGES = ("README.md", "PROGRESS.md", "MIGRATION.md")
 PROGRESS_REQUIRED = {"language", "total_occurrences", "total_source_documents", "written_ids", "reviewed_ids", "next_id"}
 PROGRESS_ID_LISTS = ("reviewed_ids", "active_batch_ids", "prior_repository_reviewed_ids")
@@ -154,6 +168,81 @@ SVG_ELEMENTS = {
 }
 ANIMATION = re.compile(r"@keyframes|\banimation(?:-[a-z-]+)?\s*:|\btransition(?:-[a-z-]+)?\s*:", re.IGNORECASE)
 URL_CALL = re.compile(r"url\(\s*['\"]?\s*([^)'\"\s]*)", re.IGNORECASE)
+
+GLOSSARY_HEADING = "Từ viết tắt"
+SOURCES_HEADING = "Nguồn đối chiếu"
+# Two or more capital letters standing alone: LLM, DNS, HTTP/2 (-> HTTP), APIs (-> API). Digits written straight before
+# the capitals belong to the abbreviation (2FA, 3DES, 2PC), so a quantity is written with a space ("10 GB", not 10GB).
+# Not MAX_SIZE or a Vietnamese capital word with a mark on it, which are not read as abbreviations.
+# A few terms carry their abbreviation in mixed case (gRPC, IPv4), which the capital-letter rule cannot see; they are
+# listed here, so add a new one when a lesson introduces it. Either kind may end in a version number or a plural
+# (OAuth2, vCPUs, MiBs, gRPCs, DHCPv4, TLSv1), which is read as the term itself.
+# Unit symbols whose letters are not initials (MiB is "mebi" + byte): the full form is the unit's name.
+UNIT_SYMBOLS = {"KiB": "Kibibyte", "MiB": "Mebibyte", "GiB": "Gibibyte", "TiB": "Tebibyte"}
+# Names whose letters are not (all) initials: the full form is what they stand for (HPACK is "Header Compression for
+# HTTP/2"; SLSA is "Supply-chain Levels for Software Artifacts", where "Supply-chain" is one word but two hyphen parts).
+IRREGULAR_FORMS = {"HPACK": "Header Compression for HTTP/2", "AAAA": "Quad A", "EDNS": "Extension Mechanisms for DNS",
+                   "ISO": "International Organization for Standardization", "MX": "Mail eXchange", "CoAP": "Constrained Application Protocol",
+                   "RRset": "Resource Record set", "SLSA": "Supply-chain Levels for Software Artifacts",
+                   "W3C": "World Wide Web Consortium", "SELinux": "Security-Enhanced Linux", "WebAuthn": "Web Authentication",
+                   "OpenID": "Open IDentity", "DevOps": "Development and Operations",
+                   "DevSecOps": "Development, Security and Operations", "GitOps": "Git Operations", "NoOps": "No Operations",
+                   "UTC": "Coordinated Universal Time", "EdDSA": "Edwards-curve Digital Signature Algorithm",
+                   "NetBIOS": "Network Basic Input/Output System", "ETag": "Entity Tag"}
+# Names whose full form starts with the name itself ("gRPC Remote Procedure Calls"): the repeated word gives its first letter.
+# Any other abbreviation written again in its own full form ("API Programming Interface") does not spell itself.
+RECURSIVE_NAMES = frozenset({"gRPC"})
+# Names made from the initials of what they stand for, with lowercase or digits inside, so that no run of capitals
+# shows them. A name that merely has capitals (JavaScript, GitHub, PostgreSQL) is not an abbreviation.
+MIXED_CASE_TERMS = ("gRPC", "ETag", "IPv4", "IPv6", "OAuth", "mTLS", "NoSQL", "vCPU", "IaC", "MoE", "PaaS", "IaaS", "SaaS", "FaaS", "BaaS",
+                    "W3C", "SELinux", "WebAuthn", "OpenID", "DevOps", "DevSecOps", "GitOps", "NoOps", "EdDSA", "NetBIOS",
+                    "IoT", "CoAP", "DoH", "DoT", "RRset",
+                    *UNIT_SYMBOLS)
+ABBREVIATION = re.compile(r"(?<!\w)(?:(" + "|".join(MIXED_CASE_TERMS) + r")|(\d*[A-Z]{2,}))(?:v?\d+)?s?(?!\w)")
+# Product names with an abbreviation inside them, which no run of capitals standing alone shows (OpenAI, MySQL, macOS):
+# whoever reads the name meets the abbreviation, so the lesson explains it (AI, SQL, OS) like any other. The name maps to
+# the abbreviation it carries; add a new one when a lesson introduces such a name. A possessive, a plural or a version
+# number may follow (OpenAI's, MySQL8).
+EMBEDDED_ABBREVIATIONS = {"ChatGPT": "GPT", "CommonJS": "JS", "ECMAScript": "ECMA", "FastAPI": "API", "GraphQL": "QL",
+                          "HAProxy": "HA", "InfluxDB": "DB", "InnoDB": "DB", "InstructGPT": "GPT", "JinaAI": "AI", "LLMWare": "LLM",
+                          "MetalLB": "LB", "MySQL": "SQL", "OOMKilled": "OOM", "OpenAI": "AI", "OpenSSH": "SSH",
+                          "PostgreSQL": "SQL", "PyJWT": "JWT", "SQLite": "SQL", "TimescaleDB": "DB", "macOS": "OS"}
+# The same terms and names set in capitals (OAUTH 2.0 in a heading), which read as the term they are.
+UPPER_FORMS = {**{term.upper(): term for term in MIXED_CASE_TERMS},
+               **{name.upper(): abbreviation for name, abbreviation in EMBEDDED_ABBREVIATIONS.items()}}
+UPPER_FORM = re.compile(r"(?<!\w)(" + "|".join(UPPER_FORMS) + r")(?:V?\d+)?[Ss]?(?!\w)")
+EMBEDDED_NAME = re.compile(r"(?<!\w)(" + "|".join(EMBEDDED_ABBREVIATIONS) + r")(?:v?\d+)?(?:[\u2019']?s)?(?!\w)")
+GLOSSARY_BULLET = re.compile(r"^- \*\*(?P<abbreviation>(?=[A-Za-z0-9]*[A-Z])[A-Za-z0-9][A-Za-z0-9]+)\*\* "
+                             r"\((?P<full>[^()]+)\) — (?P<meaning>\S.*)$")
+MIN_MEANING_WORDS = 3
+# An address typed into the text is a link destination, not prose: https://example.com/API/TLS, wss://host/API and
+# git+ssh://host/TLS.git name no abbreviation. Any scheme counts; only "://" marks an address (a colon alone is prose).
+URL = re.compile(r"[A-Za-z][A-Za-z0-9+.\-]*://[^\s<>]+")
+# Capital words that are not abbreviations: HTTP methods, SQL keywords, Dockerfile instructions, kubectl column titles,
+# log levels and a few file or status names. They need no
+# entry in the glossary. In lesson.md a `code span` is skipped too, so a new one can usually stay out of this list.
+NOT_ACRONYMS = frozenset({
+    "GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS", "CONNECT", "TRACE",
+    "SELECT", "FROM", "WHERE", "JOIN", "INNER", "LEFT", "RIGHT", "FULL", "OUTER", "CROSS", "ON", "USING", "AND", "OR",
+    "NOT", "IS", "NULL", "IN", "AS", "GROUP", "ORDER", "BY", "HAVING", "LIMIT", "UNION", "INSERT", "UPDATE", "CREATE",
+    "DROP", "TABLE", "VALUES", "SET", "DISTINCT",
+    "OK", "README", "TODO",
+    "COPY", "RUN", "EXPOSE", "STOPSIGNAL", "GOAWAY", "READY", "RESTARTS", "STATUS", "END", "ERROR",
+    "KILL",  # SIGnal KILL: an ordinary word set in capitals to show the letters of SIGKILL
+    "NGINX",  # a product name set in capitals (said "engine x"), not the initials of anything
+    "VS",  # versus: an ordinary word set in capitals
+    "KEY", "NAME",  # ordinary words set in capitals inside a full form: DNS KEY, Canonical NAME
+})
+
+
+# Ordinary words that read as an abbreviation when a figure label is set in capitals: Vietnamese ones without their accents
+# (TIN is "news", RA is "out", HAY is "or"). A label word the glossary of some lesson explains is taken for that abbreviation
+# (label_acronyms), which would make every unrelated figure that says TIN ask for a TIN entry the day another lesson defines
+# TIN; a word here is never taken from the store. Add one when the checker reports a label-only abbreviation that is a plain word.
+PLAIN_LABEL_WORDS = frozenset({
+    "AN", "BA", "CHO", "HAI", "HAY", "KHI", "KHO", "NHANH", "NHU", "QUY", "RA", "SAO", "TAY", "THANH", "THEO", "TIN", "TRANG",
+    "TRUY", "COOKIE", "POD",
+})
 
 
 @dataclass(frozen=True)
@@ -912,6 +1001,321 @@ def check_markdown(lesson_id: str, text: str, lesson_dir: pathlib.Path, entries:
     return problems
 
 
+class HtmlText(HTMLParser):
+    """What a reader (or a screen reader) takes from a piece of HTML: its text and the alt text of its images, not
+    its tags, attributes or comments."""
+
+    def __init__(self) -> None:
+        super().__init__(convert_charrefs=True)
+        self.pieces: list[str] = []
+
+    def handle_data(self, data: str) -> None:
+        self.pieces.append(data)
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        if tag == "img":
+            self.pieces.extend(value for name, value in attrs if name == "alt" and value)
+
+
+def html_text(html: str) -> str:
+    parser = HtmlText()
+    parser.feed(html)
+    parser.close()
+    return URL.sub(" ", " ".join(parser.pieces))  # a typed address is no more prose in HTML than in Markdown
+
+
+def abbreviations_in(text: str, capitals: bool = True) -> set[str]:
+    """The abbreviations a piece of text uses: capital-letter runs, MIXED_CASE_TERMS and the abbreviation inside each
+    name of EMBEDDED_ABBREVIATIONS, minus the words in NOT_ACRONYMS. With capitals=False only the mixed-case terms and
+    names count: in a heading set in capitals a Vietnamese word cannot be told from an abbreviation, but gRPC, IPv4 and
+    OpenAI can."""
+    found = {UPPER_FORMS[match.group(1)] for match in UPPER_FORM.finditer(text)}
+    text = UPPER_FORM.sub(" ", text)  # a term in capitals is the term, not a capital run of its own
+    found |= {match.group(1) or (match.group(2) if capitals else "") for match in ABBREVIATION.finditer(text)}
+    found |= {EMBEDDED_ABBREVIATIONS[match.group(1)] for match in EMBEDDED_NAME.finditer(text)}
+    return found - {""} - NOT_ACRONYMS
+
+
+def label_acronyms(headings: list[str] | tuple[str, ...], known: frozenset[str] = frozenset()) -> set[str]:
+    """The abbreviations in figure labels set in capitals. There a word of capital letters cannot be told from an
+    abbreviation (the Vietnamese TIN and HAI, the English COOKIE), so the abbreviation in it is read only when it cannot
+    be a word: it has no vowel (JWT, DNS, LB), or some glossary of the store explains it (`known`) and it is not one of
+    the PLAIN_LABEL_WORDS. A word that is not capital letters alone cannot be a Vietnamese or English word: a plural (APIs,
+    LLMs) or a digit (2FA, 3DES, POP3) shows that it is an abbreviation, and one with an accent is Vietnamese, never an
+    abbreviation."""
+    found: set[str] = set()
+    for word in re.findall(r"\w+", unicodedata.normalize("NFC", "\n".join(headings))):  # NFD would split KHÔNG at the accent
+        if word.isascii():
+            ambiguous = word.isalpha() and word.isupper()
+            found |= {name for name in abbreviations_in(word)
+                      if not ambiguous or ((name in known or word in known) and word not in PLAIN_LABEL_WORDS)
+                      or not set(name) & VOWELS}
+    return found
+
+
+def store_vocabulary(lessons_dir: pathlib.Path, lesson_ids: Iterable[str]) -> frozenset[str]:
+    """Every abbreviation the glossary of some lesson explains: what a word in a capitals-only label is known by."""
+    known: set[str] = set()
+    for lesson_id in lesson_ids:
+        markdown = lessons_dir / lesson_id / "lesson.md"
+        text = read_text(markdown)[0] if markdown.is_file() else None
+        if text is not None and (glossary_lines := lesson_prose(text)[2]) is not None:
+            known |= {abbreviation for abbreviation, _, _ in glossary_entries(glossary_lines)[0]}
+    return frozenset(known)
+
+
+def figure_strings(path: pathlib.Path) -> tuple[list[str], list[str]]:
+    """What a reader (or a screen reader) takes from a figure: its <title>, <desc> and <text> strings, as (prose,
+    headings).
+
+    A string with no lower-case word is a heading set in capitals (ĐƠN HÀNG CÓ TIN MỚI, HAI MÁY · MỘT IPv4), in which
+    a Vietnamese word such as TIN cannot be told from an abbreviation: only the mixed-case terms of a heading are read.
+    A figure that cannot be parsed is reported elsewhere.
+    """
+    try:
+        root = ElementTree.parse(path).getroot()
+    except (OSError, LookupError, ElementTree.ParseError):
+        return [], []
+    prose: list[str] = []
+    headings: list[str] = []
+    for element in root.iter():
+        if local_name(element.tag) in ("title", "desc", "text"):
+            string = URL.sub(" ", " ".join(element.itertext()))  # <tspan>LLM</tspan><tspan>máy</tspan> is two words, not LLMmáy
+            (prose if any(word.islower() and len(word) > 1 for word in re.findall(r"[^\W\d_]+", string)) else headings).append(string)
+    return prose, headings
+
+
+def lesson_prose(text: str) -> tuple[list[str], list[str], str | None, list[str], str]:
+    """The visible words of a lesson, by section: (prose outside the glossary and the sources, prose inside the
+    glossary with each bullet's lead-in removed, the glossary's lines or None, every "##" title in order, the
+    text above the glossary heading, "" when there is no glossary).
+
+    Code blocks, `code spans`, link destinations and the sources section are not prose a beginner has to decode.
+    """
+    tokens = markdown_tokens(text)  # a block token is followed by its inline children, which no branch below reads
+    lines = text.split("\n")
+    titles: list[str] = []
+    starts: list[int] = []
+    for index, token in enumerate(tokens):
+        if token.type == "heading_open" and token.tag == "h2" and token.map:
+            titles.append(tokens[index + 1].content.strip())
+            starts.append(token.map[0])
+    glossary_lines = None
+    above = ""
+    if GLOSSARY_HEADING in titles:
+        first = starts[titles.index(GLOSSARY_HEADING)]
+        end = next((start for start in starts if start > first), len(lines))
+        glossary_lines = lines[first + 1:end]
+        above = "\n".join(lines[:first])
+    body: list[str] = []
+    glossary: list[str] = []
+    section = ""
+    for index, token in enumerate(tokens):
+        if token.type == "heading_open" and token.tag == "h2":
+            section = tokens[index + 1].content.strip()
+        elif token.type == "html_block" and section != SOURCES_HEADING:
+            piece = html_text(token.content)
+            (glossary if section == GLOSSARY_HEADING else body).append(piece)
+        elif token.type == "inline" and section != SOURCES_HEADING:
+            pieces = []
+            in_autolink = False
+            for child in token.children or []:
+                if child.markup == "autolink" and child.type in ("link_open", "link_close"):
+                    in_autolink = child.type == "link_open"  # <https://...> shows its destination as the link text
+                    pieces.append(" ")
+                elif in_autolink:
+                    continue
+                elif child.type == "text":
+                    pieces.append(URL.sub(" ", child.content))
+                elif child.type == "image":
+                    pieces.append(" " + URL.sub(" ", child.content) + " ")
+                elif child.type in ("softbreak", "hardbreak"):
+                    pieces.append(" ")  # a wrapped line must not glue its last word to the next line's first
+                elif child.type == "code_inline":
+                    pieces.append(" ")  # a skipped code span is a word boundary: A`code`PI is not API
+                elif child.type == "html_inline":
+                    pieces.append(" " + html_text(child.content) + " ")
+            piece = "".join(pieces)
+            if section == GLOSSARY_HEADING:
+                piece = piece.split("—", 1)[-1]  # the lead-in names what the bullet explains; the entry's full form is read apart
+            (glossary if section == GLOSSARY_HEADING else body).append(piece)
+    return body, glossary, glossary_lines, titles, above
+
+
+def glossary_entries(lines: list[str]) -> tuple[list[tuple[str, str, str]], list[str]]:
+    """The (abbreviation, full form, meaning) of each "- **X** (Full Form) — meaning" bullet, and the bullets that are
+    not in that form. A bullet may run onto following lines until a blank line or the next bullet."""
+    bullets: list[str] = []
+    for line in lines:
+        if line.startswith("- "):
+            bullets.append(line.rstrip())
+        elif line.strip() and bullets and not line.startswith(("#", "```", "~~~")):
+            bullets[-1] += " " + line.strip()
+        elif not line.strip():
+            bullets.append("")  # a blank line ends the bullet it follows
+    entries: list[tuple[str, str, str]] = []
+    malformed: list[str] = []
+    for bullet in bullets:
+        if not bullet.startswith("- "):
+            continue
+        match = GLOSSARY_BULLET.match(bullet)
+        if match:
+            entries.append((match["abbreviation"], match["full"].strip(), match["meaning"].strip()))
+        else:
+            malformed.append(bullet)
+    return entries, malformed
+
+
+# Little words a full form may leave out of its abbreviation: "Request for Comments" gives RFC, "Network Address and
+# Port Translation" NAPT and "HMAC-based Key Derivation Function" HKDF.
+VOWELS = frozenset("AEIOUY")  # a word in capitals with none of them is no Vietnamese or English word
+FILLER_WORDS = frozenset({"a", "an", "and", "based", "for", "in", "of", "on", "or", "the", "to", "with"})
+# The digits of an abbreviation stand for number words: "Two-Factor Authentication" gives 2FA, "Triple Data Encryption
+# Standard" 3DES. Only the words of the abbreviation's own number may be left out of its full form.
+NUMBER_WORDS = {"1": ("one", "first", "single"), "2": ("two", "second", "double", "dual"), "3": ("three", "third", "triple"),
+                "4": ("four", "fourth", "quad"), "5": ("five", "fifth"), "6": ("six", "sixth"), "7": ("seven", "seventh"),
+                "8": ("eight", "eighth"), "9": ("nine", "ninth"), "10": ("ten", "tenth")}
+# Every other number word. The full form of an abbreviation that begins with digits may hold no number word but its own:
+# "Four Authentication" is not 2FA although F and A are its letters.
+ALL_NUMBER_WORDS = frozenset(word for words in NUMBER_WORDS.values() for word in words) | frozenset((
+    "zero eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty thirty forty fifty sixty seventy "
+    "eighty ninety hundred thousand million billion eleventh twelfth thirteenth fourteenth fifteenth sixteenth seventeenth "
+    "eighteenth nineteenth twentieth twice thrice half").split())
+
+
+def spells(abbreviation: str, full_form: str) -> bool:
+    """True when the initials of the full form's words are exactly the abbreviation's letters, in order: no word is
+    left out, but the little words in FILLER_WORDS may be. The abbreviation written again does not spell itself.
+
+    One initial per word and per camelCase hump (HyperText, JavaScript, REpresentational); an all-caps word gives its
+    whole run or its first letter ("CSS Object Model" is CSSOM, "HTTP Strict Transport Security" is HSTS; a hidden
+    run works the same: "SYNchronize"); a word that is the abbreviation itself gives its first letter only for a name
+    in RECURSIVE_NAMES ("gRPC Remote Procedure Calls"), and in any other full form it is refused; digits are not letters, so the full form may leave a number out, but one it
+    writes must be the abbreviation's own ("version 4" for IPv4, never "version 6"; an abbreviation with no digits takes
+    none: "Application Programming Interface 6" is not API), and so are the number words that may
+    be left out (NUMBER_WORDS: "Two-Factor" for 2FA, never "Triple"; where the digits come first the full form holds no
+    other number word at all: "Four Authentication" is not 2FA although F and A are its letters, while a name such as
+    "Double Data Rate" is fine for DDR4). A number the full form does write, as digits or as one of those words, stands
+    where the abbreviation puts its digits: "Factor Two Authentication" and "Factor Authentication 2" are not 2FA, and
+    "4 Internet Protocol version" is not IPv4; accents are dropped (cơ sở dữ liệu is CSDL).
+    """
+    if (UNIT_SYMBOLS | IRREGULAR_FORMS).get(abbreviation) == full_form.strip():
+        return True
+    numbers = re.findall(r"\d+", abbreviation)
+    digits = re.findall(r"\d+", full_form)
+    if digits and digits != numbers:
+        return False  # "Internet Protocol version 6" is not IPv4, and no number is an API's: a number written is the abbreviation's own
+    parts = ["#" if part.isdigit() else part.upper() for part in re.findall(r"[A-Za-z]|\d+", abbreviation)]
+    groups = [index for index, part in enumerate(parts) if part == "#"]  # where the abbreviation puts its numbers
+    if len(groups) > 8:
+        return False
+    number_words = {word for number in re.findall(r"\d+", abbreviation) for word in NUMBER_WORDS.get(number, ())}
+    plain = unicodedata.normalize("NFD", full_form.replace("đ", "d").replace("Đ", "D"))
+    plain = "".join(char for char in plain if not unicodedata.combining(char))
+    leading = re.match(r"\d+", abbreviation)
+    if leading:
+        foreign = ALL_NUMBER_WORDS - set(NUMBER_WORDS.get(leading.group(), ()))
+        if foreign & {word.lower() for word in re.findall(r"[A-Za-z]+", plain)}:
+            return False  # the leading digits are a number word of their own: "Four Authentication" is not 2FA
+    pattern = ""
+    written = 0  # the numbers the full form writes: each stands as "#" where it is written
+    for word in re.findall(r"[A-Za-z]+|\d+", plain):
+        if word.isdigit():
+            pattern += "#"
+            written += 1
+            continue
+        if word == abbreviation:
+            if abbreviation not in RECURSIVE_NAMES:
+                return False  # "API Programming Interface": the abbreviation written again does not spell itself
+            pattern += word[0].upper()
+            continue
+        for hump in re.findall(r"[A-Z]+(?![a-z])|[A-Z][a-z]*|[a-z]+", word):
+            if hump.isupper() and len(hump) > 1:
+                pattern += f"(?:{hump}|{hump[0]})"
+            elif hump == word and hump.lower() in number_words:
+                pattern += "#"
+                written += 1
+            elif hump == word and hump.lower() in FILLER_WORDS:
+                pattern += f"(?:{hump[0].upper()})?"
+            else:
+                pattern += hump[0].upper()
+    # The abbreviation keeps the numbers the full form writes, in the place it writes them, and drops the rest.
+    return any(re.fullmatch(pattern, "".join(part for index, part in enumerate(parts) if part != "#" or index in kept))
+               for kept in itertools.combinations(groups, written))
+
+
+def figure_above(text: str, above: str, lesson_id: str) -> bool:
+    """True when the lesson's own figure comes before the glossary heading. A Markdown image is looked for in the whole
+    document, by the line it is on, because ![x][fig] takes its source from a definition that may come later (often at
+    the end); a raw <img> needs no definition and is looked for in the text above the heading."""
+    suffix = f"diagrams/{lesson_id}-main.svg"
+
+    def is_figure(source: str) -> bool:  # the path the image check resolves: no #fragment, no ?query, percent-decoded
+        return posixpath.normpath(relative_target(source) or "").endswith(suffix)
+
+    if any(is_figure(source) for source in image_sources(above)):
+        return True
+    heading_line = above.count("\n") + 1
+    return any(token.map and token.map[0] < heading_line
+               and any(child.type == "image" and is_figure(child.attrGet("src") or "") for child in token.children or [])
+               for token in markdown_tokens(text) if token.type == "inline")
+
+
+def check_abbreviations(lesson_id: str, text: str, figure: list[str], headings: list[str] | tuple[str, ...] = (),
+                        known: frozenset[str] = frozenset()) -> list[Problem]:
+    """Every abbreviation the lesson or its figure uses is explained, in full, in the lesson's own glossary."""
+    body, glossary, glossary_lines, titles, above = lesson_prose(text)
+    used = abbreviations_in("\n".join(body + glossary + figure))
+    labels = label_acronyms(headings, known)
+    mixed = abbreviations_in("\n".join(headings), capitals=False)
+    # a word with a vowel that only a figure label set in capitals gives, and only because another lesson explains it
+    label_only = {name for name in labels - used - mixed if set(name) & VOWELS}
+    used |= mixed | labels
+    label_hint = " (it stands in a figure label set in capitals; if it is an ordinary word there, add it to PLAIN_LABEL_WORDS in scripts/sd101_check.py)"
+    problems: list[Problem] = []
+    template = f'"- **LLM** (Large Language Model) — meaning in plain words" under "## {GLOSSARY_HEADING}"'
+    if glossary_lines is None:
+        if used:
+            problems.append(Problem(lesson_id, f"uses the abbreviation(s) {', '.join(sorted(used))} but has no "
+                                               f'"## {GLOSSARY_HEADING}" section; add one bullet each, like {template}'
+                                               + (f"; {', '.join(sorted(label_only))}{label_hint}" if label_only else "")))
+        return problems
+    if titles[0] != GLOSSARY_HEADING:
+        problems.append(Problem(lesson_id, f'"## {GLOSSARY_HEADING}" must be the first "##" section, right after the '
+                                           f"figure, but comes after {titles[0]!r}"))
+    elif not figure_above(text, above, lesson_id):
+        problems.append(Problem(lesson_id, f'"## {GLOSSARY_HEADING}" must come after the figure '
+                                           f"diagrams/{lesson_id}-main.svg, not before it"))
+    entries, malformed = glossary_entries(glossary_lines)
+    problems.extend(Problem(lesson_id, f"glossary bullet {bullet[:70]!r} is not in the form {template}")
+                    for bullet in malformed)
+    inside: dict[str, str] = {}  # an abbreviation a full form holds (HMAC in HKDF's) -> the entry it stands in
+    for abbreviation, full_form, _ in entries:
+        for name in sorted(abbreviations_in(full_form)):
+            inside.setdefault(name, abbreviation)
+    elsewhere = set(used)
+    used |= set(inside)
+    seen: set[str] = set()
+    for abbreviation, full_form, meaning in entries:
+        if abbreviation in seen:
+            problems.append(Problem(lesson_id, f"glossary explains {abbreviation} twice"))
+        seen.add(abbreviation)
+        if not spells(abbreviation, full_form):
+            problems.append(Problem(lesson_id, f"glossary spells {abbreviation} out as {full_form!r}, whose initials "
+                                               f"do not give exactly {abbreviation}; write the full form in Latin letters, with a capital "
+                                               "where a word hides an initial (REpresentational, SYNchronize)"))
+        if len(meaning.split()) < MIN_MEANING_WORDS:
+            problems.append(Problem(lesson_id, f"glossary entry {abbreviation} has no explanation after the dash"))
+    if not entries and not malformed:
+        problems.append(Problem(lesson_id, f'"## {GLOSSARY_HEADING}" has no bullets'))
+    problems.extend(Problem(lesson_id, f"uses the abbreviation {abbreviation} but the glossary does not explain it"
+                                       + (f" (it stands in the full form of {inside[abbreviation]})"
+                                          if abbreviation in inside and abbreviation not in elsewhere else "")
+                                       + (label_hint if abbreviation in label_only and abbreviation not in inside else ""))
+                    for abbreviation in sorted(used - seen))
+    return problems
+
+
 def check_readme(text: str, lesson_ids: set[str], entries: dict[str, dict]) -> list[Problem]:
     destinations = {destination: relative_target(destination) for destination in link_sequence(text)}
     linked = {posixpath.normpath(target) for target in destinations.values() if target}
@@ -971,9 +1375,34 @@ def check_progress(path: pathlib.Path, entries: dict[str, dict], written: list[s
     return [Problem("progress.json", reason) for reason in reasons]
 
 
-def check_store(store: pathlib.Path, source_map: pathlib.Path, pin_roster: bool = False) -> list[Problem]:
+def check_claims(path: pathlib.Path, entries: dict[str, dict], lesson_ids: set[str],
+                 pin: tuple[str, str] | None, required: bool) -> list[Problem]:
+    """claims.jsonl is the claim registry; the format and its rules live in scripts/sd101_claims.py."""
+    if not path.exists():
+        return [Problem(path.name, "is missing (python3 scripts/sd101_claims.py sync creates it)")] if required else []
+    text, why = read_text(path) if path.is_file() and not path.is_symlink() else (None, "is not a regular file")
+    if why or text is None:
+        return [Problem(path.name, why or "cannot be read")]
+    spec = importlib.util.spec_from_file_location("sd101_claims", pathlib.Path(__file__).with_name("sd101_claims.py"))
+    if spec is None or spec.loader is None:
+        return [Problem(path.name, "cannot be checked: scripts/sd101_claims.py cannot be loaded")]
+    claims = importlib.util.module_from_spec(spec)
+    sys.modules.setdefault("sd101_claims", claims)
+    spec.loader.exec_module(claims)
+    expected = [(lesson_id, entry["title_source"]) for lesson_id, entry in entries.items()
+                if isinstance(entry.get("title_source"), str)]
+    if len(expected) != len(entries):
+        expected = []  # a broken source map is reported by its own rules
+    return [Problem(path.name, reason)
+            for reason in claims.registry_problems(text, expected, pin[1] if pin else None, lesson_ids,
+                                                    pin_repository=pin[0] if pin else None)]
+
+
+def check_store(store: pathlib.Path, source_map: pathlib.Path, pin_roster: bool = False,
+                boundary: pathlib.Path | None = None) -> list[Problem]:
+    """`boundary` is how far a relative link may reach; by default the checkout (or the store itself outside one)."""
     entries, pin, problems = load_source_map(source_map, pin_roster)
-    boundary = repository_root(store)
+    boundary = boundary or repository_root(store)
     lessons_dir, metadata_dir, diagrams_dir = store / "lessons", store / "metadata", store / "diagrams"
 
     def listing(directory: pathlib.Path) -> list[pathlib.Path]:
@@ -1007,6 +1436,7 @@ def check_store(store: pathlib.Path, source_map: pathlib.Path, pin_roster: bool 
             problems.append(Problem("diagrams", f"{path.name} is not the <id>-main.svg figure of a lesson directory"))
         elif reason := svg_problem(path):
             problems.append(Problem("diagrams", f"{path.name} {reason}"))
+    known = store_vocabulary(lessons_dir, lesson_ids)
     for lesson_id in sorted(lesson_ids):
         lesson_dir = lessons_dir / lesson_id
         markdown, pointer = lesson_dir / "lesson.md", lesson_dir / "lesson.yaml"
@@ -1041,6 +1471,7 @@ def check_store(store: pathlib.Path, source_map: pathlib.Path, pin_roster: bool 
                 problems.append(Problem(lesson_id, f"lesson.md {why}"))
             else:
                 problems.extend(check_markdown(lesson_id, text, lesson_dir, entries, lesson_ids, boundary, diagrams_dir))
+                problems.extend(check_abbreviations(lesson_id, text, *figure_strings(diagrams_dir / f"{lesson_id}-main.svg"), known=known))
     for name in STORE_PAGES:
         page = store / name
         if not page.is_file():
@@ -1058,6 +1489,7 @@ def check_store(store: pathlib.Path, source_map: pathlib.Path, pin_roster: bool 
             problems.extend(check_readme(text, lesson_ids, entries))
     written = [lesson_id for lesson_id in entries if lesson_id in lesson_ids]
     problems.extend(check_progress(store / "progress.json", entries, written))
+    problems.extend(check_claims(store / "claims.jsonl", entries, lesson_ids, pin, pin_roster))
     return problems
 
 

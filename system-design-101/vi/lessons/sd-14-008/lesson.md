@@ -5,6 +5,12 @@ Với cookie, dữ liệu nằm trong trình duyệt. Với session phía máy c
 
 ![Bốn thẻ xếp dọc, chia thành hai nhánh bằng hai nhãn. Thẻ đầu: HTTP không nhớ ai, nên cần một cách nhận ra người dùng qua nhiều yêu cầu. Hai nhánh. Cookie: máy chủ gửi Set-Cookie, trình duyệt lưu giá trị và gửi lại trong tiêu đề Cookie, dữ liệu nằm ở trình duyệt. Session phía máy chủ: máy chủ tạo một mã ngẫu nhiên, cất dữ liệu ở bên mình, chỉ đưa mã cho trình duyệt, thường qua một cookie. Thẻ cuối là hệ quả: mã session bừa, không trùng phiên nào, thì máy chủ không tìm thấy dữ liệu, nhưng ai lấy được mã đúng thì dùng được session đó.](../../diagrams/sd-14-008-main.svg)
 
+## Từ viết tắt
+
+- **HTTP** (HyperText Transfer Protocol) — giao thức truyền siêu văn bản: quy ước để trình duyệt gửi yêu cầu và máy chủ gửi trả lời.
+- **KB** (KiloByte) — kilôbyte: đơn vị dung lượng, khoảng một nghìn byte.
+- **MDN** (Mozilla Developer Network) — tên cũ của MDN Web Docs, bộ tài liệu tra cứu công nghệ web do Mozilla và cộng đồng viết; bài dùng nó để đối chiếu.
+
 ## Đọc hình
 
 **Vì sao cần.** HTTP không tự nhớ yêu cầu trước, nên máy chủ cần một cách nối các yêu cầu của cùng một người.

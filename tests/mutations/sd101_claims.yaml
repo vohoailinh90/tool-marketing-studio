@@ -1,0 +1,633 @@
+# Mutation manifest — see scripts/mutation_check.py
+#
+# A passing test proves nothing on its own. These break each rule of the System Design claim registry
+# in turn and require the named test to fail. A mutation that SURVIVES means the test guards nothing.
+
+target: scripts/sd101_claims.py
+note: The registry is what stops two sessions writing one lesson. Each entry switches one rule off and names the test that must notice.
+mutations:
+- label: claims copied into another branch are counted as that branch's claims
+  find: 'if branch == base or entry.get("owner") == branch:'
+  replace: 'if True:'
+  test: tests.test_sd101_claims.ClaimTests.test_a_copy_of_a_claim_inherited_by_another_branch_is_not_a_claim
+- label: the other sessions' claims are never read from the remote
+  find: "    if not context.offline:\n        try:\n            fetch_remote"
+  replace: "    if False:\n        try:\n            fetch_remote"
+  test: tests.test_sd101_claims.RemoteTests.test_an_unreadable_remote_stops_the_claim_unless_offline_is_asked_for
+- label: the later of two claims wins instead of the earlier
+  find: return (first.claimed_at or "", first.owner or "") < (second.claimed_at or "", second.owner or "")
+  replace: return (first.claimed_at or "", first.owner or "") > (second.claimed_at or "", second.owner or "")
+  test: tests.test_sd101_claims.ClaimTests.test_the_earlier_claim_wins_even_when_it_is_pushed_second
+- label: a takeover does not beat the stale claim it took over
+  find: "    if first_took:\n        return True"
+  replace: "    if first_took:\n        return False"
+  test: tests.test_sd101_claims.LeaseTests.test_a_takeover_beats_a_claim_whose_renewal_was_never_pushed
+- label: a stale claim is taken over without asking
+  find: "        if not take_stale:\n            return (f\"claimed by"
+  replace: "        if False:\n            return (f\"claimed by"
+  test: tests.test_sd101_claims.LeaseTests.test_a_stale_claim_blocks_nobody_until_it_is_taken_on_purpose
+- label: a claim never goes stale
+  find: now - beat > datetime.timedelta(hours=lease_hours)
+  replace: now - beat < datetime.timedelta(hours=lease_hours)
+  test: tests.test_sd101_claims.LeaseTests.test_touching_keeps_a_claim_alive
+- label: a lesson that shares its source with a claimed one is claimable
+  find: "    if not allow_same_source:\n        for partner"
+  replace: "    if False:\n        for partner"
+  test: tests.test_sd101_claims.ClaimTests.test_a_lesson_sharing_its_source_is_refused_unless_allowed
+- label: a written lesson can be claimed again
+  find: "        if holding.status == \"written\":\n            return f\"already written by"
+  replace: "        if False:\n            return f\"already written by"
+  test: tests.test_sd101_claims.ClaimTests.test_a_lesson_written_on_another_branch_cannot_be_claimed
+- label: a claim with a refused lesson still writes the others
+  find: "    if refused:\n        print(\"claim refused"
+  replace: "    if False:\n        print(\"claim refused"
+  test: tests.test_sd101_claims.ClaimTests.test_a_claim_is_all_or_nothing
+- label: --publish pushes main
+  find: "    if on_default_branch(context, strict=True):\n        raise ClaimsError(f\"--publish pushes"
+  replace: "    if False:\n        raise ClaimsError(f\"--publish pushes"
+  test: tests.test_sd101_claims.RemoteTests.test_nothing_is_published_from_main
+- label: a lost claim is renewed by touch
+  find: "        if results[lesson_id] is None:\n            lessons[lesson_id][\"heartbeat_at\"]"
+  replace: "        if True:\n            lessons[lesson_id][\"heartbeat_at\"]"
+  test: tests.test_sd101_claims.LeaseTests.test_a_session_that_wakes_up_cannot_win_back_a_lesson_that_was_taken
+- label: finish accepts a lesson that does not exist
+  find: 'elif missing := missing_artifacts(context, lesson_id):'
+  replace: 'elif False:'
+  test: tests.test_sd101_claims.FinishAndReleaseTests.test_finish_needs_a_claim_of_yours_and_the_lesson_file
+- label: finish accepts a lost claim
+  find: "    if any(results.values()):\n        return report_verdicts"
+  replace: "    if False:\n        return report_verdicts"
+  test: tests.test_sd101_claims.FinishAndReleaseTests.test_finish_refuses_a_claim_that_was_lost
+- label: release drops a draft that is on disk
+  find: 'elif lesson_id in context.on_disk():'
+  replace: 'elif False:'
+  test: tests.test_sd101_claims.FinishAndReleaseTests.test_release_gives_the_lesson_back_but_not_with_a_draft_on_disk
+- label: release gives back another session's claim
+  find: "        if entry.get(\"status\") != \"doing\" or entry.get(\"owner\") != context.me:\n            problems.append(f\"{lesson_id}: is not a claim of"
+  replace: "        if entry.get(\"status\") != \"doing\":\n            problems.append(f\"{lesson_id}: is not a claim of"
+  test: tests.test_sd101_claims.FinishAndReleaseTests.test_a_session_cannot_release_the_claim_of_another
+- label: the registry may say written for a lesson that does not exist
+  find: 'if status == "written" and lesson_id not in on_disk:'
+  replace: 'if False and status == "written" and lesson_id not in on_disk:'
+  test: tests.test_sd101_claims.FormatTests.test_the_registry_must_agree_with_the_lessons_on_disk
+- label: the registry may say todo for a lesson that exists
+  find: 'elif status == "todo" and lesson_id in on_disk:'
+  replace: 'elif False and status == "todo" and lesson_id in on_disk:'
+  test: tests.test_sd101_claims.FormatTests.test_the_registry_must_agree_with_the_lessons_on_disk
+- label: a registry that is not in canonical form is accepted
+  find: 'if render(header, lessons) != text:'
+  replace: 'if False:'
+  test: tests.test_sd101_claims.FormatTests.test_each_rule_reports_its_own_problem
+- label: a title that differs from the source map is accepted
+  find: 'if lesson_id in titles and entry.get("title") != titles[lesson_id]:'
+  replace: 'if False:'
+  test: tests.test_sd101_claims.FormatTests.test_each_rule_reports_its_own_problem
+- label: a registry for another source commit is accepted
+  find: 'if pin_commit is not None and header.get("source_commit_sha") != pin_commit:'
+  replace: 'if False:'
+  test: tests.test_sd101_claims.FormatTests.test_each_rule_reports_its_own_problem
+- label: publish returns before pushing when it has nothing new to commit
+  find: ".returncode != 0:\n        git(context.root, \"commit\", \"--quiet\", \"--only\", \"-m\", message, \"--\", context.relative)\n"
+  replace: ".returncode == 0:\n        return\n    git(context.root, \"commit\", \"--quiet\", \"--only\", \"-m\", message, \"--\", context.relative)\n"
+  test: tests.test_sd101_claims.RemoteTests.test_a_claim_committed_by_hand_but_never_pushed_is_pushed_by_publish
+- label: a takeover remembers only the owner it took the lesson from, not the chain behind it
+  find: taken += [owner for owner in (holding.owner, *holding.taken_from) if owner and owner != me and owner not in taken]
+  replace: taken += [holding.owner] if holding.owner and holding.owner != me and holding.owner not in taken else []
+  test: tests.test_sd101_claims.LeaseTests.test_a_lesson_taken_over_twice_is_still_won_against_the_first_owner
+- label: a tree or symlink at the registry's path is read as if it were a file
+  find: 'if len(fields) == 3:  # <oid>'
+  replace: 'if len(fields) == 3 and fields[1] == b"blob":  # <oid>'
+  test: tests.test_sd101_claims.RemoteTests.test_a_branch_with_a_directory_where_the_registry_should_be_does_not_shift_the_others
+- label: publish accepts an owner that is not the branch it pushes
+  find: "    if context.me != context.branch:\n        raise ClaimsError(f\"--publish pushes branch"
+  replace: "    if False:\n        raise ClaimsError(f\"--publish pushes branch"
+  test: tests.test_sd101_claims.RemoteTests.test_publish_with_an_owner_that_is_not_the_branch_is_refused_before_anything_is_written
+- label: a claim another branch only inherited is counted from the working tree
+  find: 'if offline or entry.get("owner") == me or entry.get("status") == "written":'
+  replace: 'if True:'
+  test: tests.test_sd101_claims.RemoteTests.test_status_does_not_count_a_claim_the_branch_only_inherited
+- label: records are written without a blank line between them
+  find: '    return "\n\n".join([render_line(header, HEADER_KEYS)'
+  replace: '    return "\n".join([render_line(header, HEADER_KEYS)'
+  test: tests.test_sd101_claims.MergeTests.test_sessions_that_claim_neighbouring_lessons_merge_without_a_conflict
+- label: an expired claim wins over a live one because it is older
+  find: (is_stale(mine, now, lease) or not published_live or beats(other, mine))
+  replace: (beats(other, mine))
+  test: tests.test_sd101_claims.LeaseTests.test_an_expired_claim_that_comes_back_loses_to_a_live_one_even_though_it_is_older
+- label: a registry that cannot be parsed does not stop the decision
+  find: 'if unreadable and not tolerate and not context.ignore_unreadable:'
+  replace: 'if False:'
+  test: tests.test_sd101_claims.RemoteTests.test_a_branch_whose_registry_cannot_be_parsed_stops_the_decision
+- label: a record with an invalid field on a remote branch is trusted
+  find: '        problems += record_problems(lessons)  # a typo in a status would otherwise hide the claim it sits in
+
+    '
+  replace: ''
+  test: tests.test_sd101_claims.RemoteTests.test_a_branch_whose_registry_parses_but_holds_an_invalid_record_stops_the_decision
+- label: --next may pick a lesson that was named explicitly
+  find: '                            exclude=tuple(ids))'
+  replace: '                            exclude=())'
+  test: tests.test_sd101_claims.ClaimTests.test_next_adds_to_the_lessons_named_and_never_repeats_them
+- label: a truncated registry on a branch is trusted
+  find: "        if missing := [lesson_id for lesson_id in ids if lesson_id not in lessons]:  # so would a truncated file\n            problems.append(f\"lacks {len(missing)} source-map lesson(s), e.g.\
+    \ {missing[0]}\")\n"
+  replace: ''
+  test: tests.test_sd101_claims.RemoteTests.test_a_truncated_registry_on_a_branch_stops_the_decision
+- label: finish accepts any integer as the pull request number
+  find: finish.add_argument("--pr", type=pull_request_number)
+  replace: finish.add_argument("--pr", type=int)
+  test: tests.test_sd101_claims.FinishAndReleaseTests.test_finish_refuses_a_pull_request_number_that_is_not_one
+- label: sync keeps the old pin in the header
+  find: "        header = new_header(context.source)\n    else:"
+  replace: "        header = {**new_header(context.source), \"source_commit_sha\": header.get(\"source_commit_sha\")}\n    else:"
+  test: tests.test_sd101_claims.SyncTests.test_sync_follows_a_repinned_and_retitled_source_map_and_keeps_every_claim
+- label: sync keeps the old titles
+  find: "            lessons[lesson_id][\"title\"] = title\n            retitled += 1"
+  replace: '            retitled += 1'
+  test: tests.test_sd101_claims.SyncTests.test_sync_follows_a_repinned_and_retitled_source_map_and_keeps_every_claim
+- label: a claim that only the working tree has counts as held
+  find: 'if out[lesson_id] is None and not context.offline and identity(mine) not in published:'
+  replace: 'if False:'
+  test: tests.test_sd101_claims.VerifyTests.test_a_claim_that_exists_only_in_the_working_tree_is_not_held
+- label: verify and touch ignore named ids that are not claims of the caller
+  find: '    if foreign := [lesson_id for lesson_id in dict.fromkeys(ids) if lesson_id not in owned]:'
+  replace: '    if False:'
+  test: tests.test_sd101_claims.VerifyTests.test_ids_named_to_verify_or_touch_must_all_be_claims_of_the_caller
+- label: touch --publish no longer pushes a forgotten claim first
+  find: '        conflicts = publish(context, args.message or f"System Design vi: publish the claim of {'', ''.join(ids)}")  # a forgotten push
+
+    '
+  replace: ''
+  test: tests.test_sd101_claims.VerifyTests.test_touch_publish_pushes_a_forgotten_claim_before_judging_it
+- label: a published heartbeat that has expired still proves the claim is held
+  find: '                 and not (live and is_stale(holding, context.now, lease))}'
+  replace: '}'
+  test: tests.test_sd101_claims.VerifyTests.test_a_heartbeat_renewed_only_here_does_not_keep_a_published_claim_alive
+- label: touch asks for a live published copy and so cannot renew an expired claim
+  find: results = verdicts(context, header, lessons, ids, live=False)
+  replace: results = verdicts(context, header, lessons, ids)
+  test: tests.test_sd101_claims.VerifyTests.test_touch_renews_an_expired_claim_that_nobody_took
+- label: sync keeps lessons the source map no longer lists
+  find: 'gone = {lesson_id: lessons.pop(lesson_id) for lesson_id in [i for i in lessons if i not in known]}'
+  replace: gone = {}
+  test: tests.test_sd101_claims.SyncDropTests.test_sync_drops_what_the_source_map_no_longer_lists_and_says_what_it_dropped
+- label: verify ignores a claim on the other half of a shared source
+  find: "            if not published_live or is_stale(mine, now, lease) or beats(other, mine):\n                return (f\"shares its source file with"
+  replace: "            if False:\n                return (f\"shares its source file with"
+  test: tests.test_sd101_claims.ClaimTests.test_two_halves_of_a_shared_source_claimed_before_either_was_visible_are_decided_by_verify
+- label: a half taken knowingly with --allow-same-source still loses to the other half
+  find: 'or mine.shared or other.shared or is_stale(other, now, lease):'
+  replace: 'or is_stale(other, now, lease):'
+  test: tests.test_sd101_claims.ClaimTests.test_a_shared_source_taken_on_purpose_is_not_a_conflict
+- label: one session cannot hold both halves of a shared source
+  find: if other.status != "doing" or other.owner == me or mine.shared
+  replace: if other.status != "doing" or mine.shared
+  test: tests.test_sd101_claims.ClaimTests.test_one_session_may_hold_both_halves_of_a_shared_source
+- label: --allow-same-source is not recorded, so the other half cannot tell it was intentional
+  find: "        if args.allow_same_source and context.source.partners.get(lesson_id):\n            fresh[\"shared_source\"] = True\n"
+  replace: ''
+  test: tests.test_sd101_claims.ClaimTests.test_a_shared_source_taken_on_purpose_is_not_a_conflict
+- label: a takeover by the session that held the lesson before only renews its old claim
+  find: 'and lesson_id not in takes:'
+  replace: ':'
+  test: tests.test_sd101_claims.LeaseTests.test_a_session_that_takes_back_a_lesson_it_once_held_starts_a_new_claim_that_wins
+- label: two takeovers of each other are both won by the earlier claim
+  find: "        if first.generation != second.generation:\n            return first.generation > second.generation\n        return (first.owner or \"\") < (second.owner or \"\")\n    if first_took:"
+  replace: "        return True\n    if first_took:"
+  test: tests.test_sd101_claims.LeaseTests.test_a_session_that_takes_back_a_lesson_it_once_held_starts_a_new_claim_that_wins
+- label: claiming a held half again with --allow-same-source does not record the override
+  find: "            if args.allow_same_source and context.source.partners.get(lesson_id):\n                entry[\"shared_source\"] = True  # the way to keep a half on purpose after losing it to the other\
+    \ half\n"
+  replace: ''
+  test: tests.test_sd101_claims.ClaimTests.test_claiming_again_with_allow_same_source_is_the_way_to_keep_a_half_on_purpose
+- label: any published record of the lesson proves the local claim is published
+  find: '    return holding.lesson_id, holding.claimed_at, holding.taken_from, holding.generation, holding.shared'
+  replace: '    return holding.lesson_id'
+  test: tests.test_sd101_claims.ClaimTests.test_a_shared_source_override_that_is_not_published_does_not_count_as_held
+- label: a registry for another repository is accepted
+  find: '    if pin_repository is not None and header.get("source_repository") != pin_repository:'
+  replace: '    if False:'
+  test: tests.test_sd101_claims.FormatTests.test_each_rule_reports_its_own_problem
+- label: a claim with no live published copy beats a live partner claim because it is older
+  find: '            if not published_live or is_stale(mine, now, lease) or beats(other, mine):'
+  replace: '            if is_stale(mine, now, lease) or beats(other, mine):'
+  test: tests.test_sd101_claims.ClaimTests.test_an_expired_claim_revived_by_a_local_renewal_does_not_beat_a_partner_taken_fairly
+- label: touch --publish pushes the renewal before judging the claim
+  find: "    check_publishable(context)\n    stand_ins = guard_publish(context)\n"
+  replace: "    check_publishable(context)\n    stand_ins = {}\n"
+  test: tests.test_sd101_claims.ClaimTests.test_an_expired_claim_revived_by_a_local_renewal_does_not_beat_a_partner_taken_fairly
+- label: a truncated local registry is read and published as if it were whole
+  find: "        if missing := [lesson_id for lesson_id, _ in context.source.lessons if lesson_id not in lessons]:\n            problems.append(f\"lacks {len(missing)} source-map lesson(s), e.g. {missing[0]}\"\
+    )\n        elif extra :="
+  replace: "        if False:\n            pass\n        elif extra :="
+  test: tests.test_sd101_claims.LocalFileTests.test_a_truncated_local_registry_is_refused_before_anything_is_written_or_pushed
+- label: a local registry for another source pin is used as it is
+  find: "        problems += header_problems(header, context.source.commit_sha, context.source.repository)\n        if missing"
+  replace: '        if missing'
+  test: tests.test_sd101_claims.LocalFileTests.test_a_local_registry_for_another_source_pin_is_refused_until_sync
+- label: a registry with a byte that is not UTF-8 is decoded with replacement characters
+  find: ".decode(\"utf-8\")\n                    except UnicodeDecodeError:\n                        undecodable.append(name)"
+  replace: ".decode(\"utf-8\", \"replace\")\n                    except UnicodeDecodeError:\n                        undecodable.append(name)"
+  test: tests.test_sd101_claims.RemoteTests.test_a_branch_whose_registry_is_not_valid_utf8_stops_the_decision
+- label: a local registry that is not UTF-8 raises
+  find: "    except (OSError, UnicodeDecodeError) as error:\n        raise ClaimsError(f\"cannot read {context.path}"
+  replace: "    except OSError as error:\n        raise ClaimsError(f\"cannot read {context.path}"
+  test: tests.test_sd101_claims.RemoteTests.test_a_local_registry_that_is_not_valid_utf8_is_reported_not_raised
+- label: the default branch is taken from the local origin/HEAD, which goes stale when it is renamed
+  find: 'if ask else []):'
+  replace: 'if False else []):'
+  test: tests.test_sd101_claims.RemoteTests.test_a_renamed_default_branch_is_found_by_asking_the_remote
+- label: publishing judges only the claims a command names and pushes the others unjudged
+  find: "    mine = my_claims(context, lessons, [])\n    if mine:\n        results = verdicts(context, header, lessons, mine, live=False)"
+  replace: "    mine = my_claims(context, lessons, [])[:0]\n    if mine:\n        results = verdicts(context, header, lessons, mine, live=False)"
+  test: tests.test_sd101_claims.ClaimTests.test_touching_one_claim_does_not_push_another_claim_unjudged
+- label: a written record of the same owner does not end a claim of that owner
+  find: "        if other.status == \"written\":  # whoever wrote it: a stale container's own claim is just as finished\n            return f\"already written by"
+  replace: "        if other.status == \"written\" and other.owner != me:\n            return f\"already written by"
+  test: tests.test_sd101_claims.ClaimTests.test_a_claim_of_the_same_owner_is_ended_by_its_own_written_record
+- label: a default branch without a registry is treated as having no claims
+  find: '    if base in missing or gone:  # a legacy feature branch'
+  replace: '    if False:  # a legacy feature branch'
+  test: tests.test_sd101_claims.RemoteTests.test_a_default_branch_without_a_registry_stops_the_decision
+- label: a lesson finished but not committed is pushed as written
+  find: '        in_head = all(regular_in_head(context.root, path) for path in required)'
+  replace: '        in_head = True'
+  test: tests.test_sd101_claims.ClaimTests.test_a_finished_lesson_that_git_ignores_is_not_pushed
+- label: a written lesson edited after its commit is pushed with the stale draft
+  find: '        dirty = git_text(context.root, "status", "--porcelain", "--untracked-files=all", "--", *files)'
+  replace: '        dirty = ""'
+  test: tests.test_sd101_claims.ClaimTests.test_a_finished_lesson_changed_after_its_commit_is_not_pushed
+- label: a written record HEAD already carries is judged again on every publish
+  find: '        if head.get(lesson_id) == entry or (lesson_id not in head and inherited.get(lesson_id) == entry):'
+  replace: '        if False:'
+  test: tests.test_sd101_claims.ClaimTests.test_reworking_a_lesson_that_was_already_pushed_does_not_block_a_claim
+- label: only main and master are recognised as the default branch
+  find: '        return context.branch == default_branch(context.root, context.remote, ask=not context.offline)'
+  replace: '        return False'
+  test: tests.test_sd101_claims.RemoteTests.test_nothing_is_published_from_a_renamed_default_branch
+- label: a written lesson is accepted when only its lesson.md is in HEAD
+  find: for path in required)
+  replace: for path in required[:1])
+  test: tests.test_sd101_claims.ClaimTests.test_a_finished_lesson_without_its_metadata_and_figure_is_not_pushed
+- label: a claim with no live published copy beats a visible replacement because it is older
+  find: '(is_stale(mine, now, lease) or not published_live or beats(other, mine)):'
+  replace: '(is_stale(mine, now, lease) or beats(other, mine)):'
+  test: tests.test_sd101_claims.ClaimTests.test_a_hidden_claim_with_a_fresh_local_heartbeat_loses_to_a_visible_replacement
+- label: a written record that is merely committed locally is trusted as already pushed
+  find: "    ref = f\"refs/remotes/{context.remote}/{context.branch}\"\n    head = registry_at(context, ref)"
+  replace: "    ref = f\"refs/remotes/{context.remote}/{context.branch}\"\n    head = registry_at(context, \"HEAD\")"
+  test: tests.test_sd101_claims.ClaimTests.test_a_written_record_committed_by_itself_is_still_judged_before_it_goes_up
+- label: a committed deletion from a pushed lesson goes up with its written record
+  find: '            if (git_text(context.root, "diff", "--no-renames"'
+  replace: '            if (False and git_text(context.root, "diff", "--no-renames"'
+  test: tests.test_sd101_claims.ClaimTests.test_deleting_a_file_of_a_pushed_lesson_is_not_pushed_with_its_written_record
+- label: the header of a remote registry is not validated
+  find: '        if want is not None:  # a header of another schema'
+  replace: '        if False:  # a header of another schema'
+  test: tests.test_sd101_claims.RemoteTests.test_a_remote_registry_with_a_header_of_another_pin_stops_the_decision
+- label: a committed rename of a pushed lesson's file goes up with its written record
+  find: '"diff", "--no-renames", "--diff-filter=DT", "--name-only", against, "HEAD", "--", *required'
+  replace: '"diff", "--diff-filter=DT", "--name-only", against, "HEAD", "--", *files'
+  test: tests.test_sd101_claims.ClaimTests.test_renaming_a_file_of_a_pushed_lesson_is_not_pushed_with_its_written_record
+- label: a type change of a pushed lesson's file goes up with its written record
+  find: '"--no-renames", "--diff-filter=DT"'
+  replace: '"--no-renames", "--diff-filter=D"'
+  test: tests.test_sd101_claims.ClaimTests.test_turning_a_file_of_a_pushed_lesson_into_a_symlink_is_not_pushed_with_its_written_record
+- label: the optional pointer of a pushed lesson counts as a required file
+  find: '"--diff-filter=DT", "--name-only", against, "HEAD", "--", *required)'
+  replace: '"--diff-filter=DT", "--name-only", against, "HEAD", "--", *files)'
+  test: tests.test_sd101_claims.ClaimTests.test_removing_the_optional_pointer_of_a_pushed_lesson_blocks_nothing
+- label: a symbolic link or directory in HEAD counts as a lesson file
+  find: bool(entry) and entry[0] in ("100644", "100755")
+  replace: bool(entry)
+  test: tests.test_sd101_claims.ClaimTests.test_a_symlinked_artifact_is_not_a_finished_lesson
+- label: finish accepts a lesson.md that is a symbolic link
+  find: if (context.store / path).is_symlink() or not (context.store / path).is_file()]
+  replace: if not (context.store / path).is_file()]
+  test: tests.test_sd101_claims.ClaimTests.test_a_symlinked_artifact_is_not_a_finished_lesson
+- label: a registry with an extra lesson is used as it is
+  find: 'elif extra := [lesson_id for lesson_id in lessons if lesson_id not in dict(context.source.lessons)]:'
+  replace: 'elif False:'
+  test: tests.test_sd101_claims.ClaimTests.test_a_registry_with_an_extra_lesson_or_a_stale_title_is_refused
+- label: a registry with a stale title is used as it is
+  find: 'elif stale := [lesson_id for lesson_id, title in context.source.lessons if lessons[lesson_id].get("title") != title]:'
+  replace: 'elif False:'
+  test: tests.test_sd101_claims.ClaimTests.test_a_registry_with_an_extra_lesson_or_a_stale_title_is_refused
+- label: the claims of an ignored unreadable branch still count
+  find: '            continue  # --ignore-unreadable decides without the branch, so none of its records may count'
+  replace: '            pass'
+  test: tests.test_sd101_claims.ClaimTests.test_ignoring_an_unreadable_branch_ignores_its_claims_too
+- label: a heartbeat dated from the future counts as proof of life
+  find: beat is None or beat - now > datetime.timedelta(hours=CLOCK_SKEW_HOURS)
+  replace: beat is None
+  test: tests.test_sd101_claims.ClaimTests.test_a_claim_dated_from_the_future_cannot_block_a_lesson
+- label: any lease from 1 to 720 hours is accepted in a header
+  find: 'or lease != DEFAULT_LEASE_HOURS:'
+  replace: 'or not 1 <= lease <= 720:'
+  test: tests.test_sd101_claims.ClaimTests.test_every_registry_must_use_the_same_lease
+- label: a released lesson is pushed while its committed draft is still in git
+  find: return sorted({lesson_id for lesson_id, entry in lessons.items() if entry.get("status") == "todo"} & held)
+  replace: return []
+  test: tests.test_sd101_claims.ClaimTests.test_a_release_is_not_pushed_while_the_committed_draft_is_still_in_git
+- label: finish only asks for lesson.md
+  find: "f\"lessons/{lesson_id}/lesson.yaml\",\n                              f\"metadata/{lesson_id}.json\", f\"diagrams/{lesson_id}-main.svg\")"
+  replace: f"lessons/{lesson_id}/lesson.yaml")
+  test: tests.test_sd101_claims.ClaimTests.test_finish_needs_every_artifact_of_the_lesson
+- label: a damaged default-branch registry can be ignored
+  find: 'if (core := [item for item in unreadable if item.startswith((f"origin/{base} (", f"{context.remote}/{base} ("))]) and not tolerate:'
+  replace: 'if False:'
+  test: tests.test_sd101_claims.ClaimTests.test_a_default_branch_with_a_damaged_registry_cannot_be_ignored
+- label: finish does not ask the store checker about the lesson
+  find: '            if broken := content_problems(context.store, context.source_map, lesson_id, cache):'
+  replace: '            if False:'
+  test: tests.test_sd101_claims.ClaimTests.test_finish_stops_at_what_the_store_checker_finds_in_the_lesson
+- label: the store checker's findings about a lesson are dropped
+  find: '    return [str(problem) for problem in _store_problems(store, source_map, cache, boundary)
+
+    '
+  replace: '    return [str(problem) for problem in _store_problems(store, source_map, cache, boundary)[:0]
+
+    '
+  test: tests.test_sd101_claims.ContentTests.test_a_good_lesson_passes_and_each_damage_is_found
+- label: a reworked pushed lesson is not checked by the store checker
+  find: '                    or pushed_content_problems(context, lesson_id)):'
+  replace: '                    or False):'
+  test: tests.test_sd101_claims.ClaimTests.test_a_reworked_lesson_that_the_store_checker_rejects_is_not_pushed
+- label: a newly written lesson is not checked by the store checker at publication
+  find: '        if not in_head or dirty or pushed_content_problems(context, lesson_id):'
+  replace: '        if not in_head or dirty:'
+  test: tests.test_sd101_claims.ClaimTests.test_a_finished_lesson_that_the_store_checker_rejects_at_publication_is_not_pushed
+- label: the lesson is checked in the working tree instead of in HEAD
+  find: '        return content_problems(exported()[0], context.source_map, lesson_id, cache, exported()[1])'
+  replace: '        return content_problems(context.store, context.source_map, lesson_id, cache, exported()[1])'
+  test: tests.test_sd101_claims.ClaimTests.test_the_lesson_is_checked_as_head_holds_it_not_as_the_working_tree_does
+- label: sync patches the header of an existing registry instead of rebuilding it
+  find: "        header = new_header(context.source)\n    else:"
+  replace: "        header = {**header, \"source_repository\": context.source.repository, \"source_commit_sha\": context.source.commit_sha}\n    else:"
+  test: tests.test_sd101_claims.ClaimTests.test_sync_rebuilds_the_whole_header_of_an_empty_or_damaged_registry
+- label: a first publication answers for every lesson the default branch already holds
+  find: '        if head.get(lesson_id) == entry or (lesson_id not in head and inherited.get(lesson_id) == entry):'
+  replace: '        if head.get(lesson_id) == entry:'
+  test: tests.test_sd101_claims.ClaimTests.test_a_first_publication_does_not_answer_for_the_lessons_the_default_branch_already_holds
+- label: the whole-store check runs again for every lesson
+  find: '        return content_problems(exported()[0], context.source_map, lesson_id, cache, exported()[1])'
+  replace: '        return content_problems(exported()[0], context.source_map, lesson_id, {}, exported()[1])'
+  test: tests.test_sd101_claims.ClaimTests.test_the_whole_store_is_checked_once_for_all_the_lessons_of_a_publication
+- label: a publication leaves the edited source map behind
+  find: "    if uncommitted_source_map(context):\n        raise Refusal("
+  replace: "    if False:\n        raise Refusal("
+  test: tests.test_sd101_claims.ClaimTests.test_a_source_map_changed_since_the_last_commit_is_not_left_behind_by_a_publication
+- label: the pushed tree holds only the store
+  find: '"archive", "--format=tar", "HEAD").stdout'
+  replace: '"archive", "--format=tar", "HEAD", "--", relative).stdout'
+  test: tests.test_sd101_claims.ClaimTests.test_the_pushed_tree_carries_the_whole_checkout_for_links_outside_the_store
+- label: a renewed heartbeat can predate the claim
+  find: '    return stamp(max(now, claimed) if claimed else now)'
+  replace: '    return stamp(now)'
+  test: tests.test_sd101_claims.ClaimTests.test_a_renewal_after_the_clock_went_backwards_never_predates_the_claim
+- label: the default branch must carry the new pin during a repin
+  find: 'if sources and branch in sources:'
+  replace: 'if False:'
+  test: tests.test_sd101_claims.ClaimTests.test_a_repin_can_be_published_while_the_default_branch_still_has_the_old_pin
+- label: a default registry is judged against the new roster during a roster edit
+  find: 'if sources and branch in sources:'
+  replace: 'if False:'
+  test: tests.test_sd101_claims.ClaimTests.test_a_new_lesson_can_be_published_while_the_default_branch_still_has_the_old_roster
+- label: a default registry is not judged against its own source map
+  find: '            want, ids = (own.commit_sha, own.repository), tuple(lesson_id for lesson_id, _ in own.lessons)'
+  replace: '            want, ids = None, roster'
+  test: tests.test_sd101_claims.ClaimTests.test_a_default_registry_that_disagrees_with_its_own_source_map_stops_the_decision
+- label: sync drops a record whose lesson files remain
+  find: '    if orphans := [lesson_id for lesson_id in lessons if lesson_id not in known and (any('
+  replace: '    if orphans := [lesson_id for lesson_id in lessons if False and lesson_id not in known and (any('
+  test: tests.test_sd101_claims.ClaimTests.test_sync_does_not_drop_a_record_while_its_lesson_files_remain
+- label: dropped ids whose files remain are not reported at publication
+  find: '    orphans = orphan_problems(exported()[0], context.source_map, set(lessons), cache, exported()[1])'
+  replace: '    orphans = []'
+  test: tests.test_sd101_claims.ClaimTests.test_the_store_checker_runs_for_every_written_lesson_and_for_ids_the_registry_dropped
+- label: sync ignores the committed tree when dropping a record
+  find: '            or any(re.search(rf"/(lessons|metadata|diagrams)/{lesson_id}[./-]", f"/{name}") for name in committed))]:'
+  replace: '            or False)]:'
+  test: tests.test_sd101_claims.ClaimTests.test_sync_looks_at_the_committed_tree_before_dropping_a_record
+- label: orphan_problems reports ids the registry holds
+  find: "            if lesson_id not in known:\n                found.setdefault(lesson_id, str(problem))"
+  replace: "            if lesson_id in known or True:\n                found.setdefault(lesson_id, str(problem))"
+  test: tests.test_sd101_claims.OrphanTests.test_files_of_an_unlisted_lesson_are_found_and_the_real_store_has_none
+- label: finish runs the whole-store check again for every lesson of a batch
+  find: '            if broken := content_problems(context.store, context.source_map, lesson_id, cache):'
+  replace: '            if broken := content_problems(context.store, context.source_map, lesson_id, {}):'
+  test: tests.test_sd101_claims.ClaimTests.test_finish_checks_the_store_once_for_a_whole_batch
+- label: only the default branch is judged against its own source map
+  find: own := source_at(context, f"refs/remotes/{context.remote}/{name}")) is not None})
+  replace: own := source_at(context, f"refs/remotes/{context.remote}/{name}")) is not None and name == base})
+  test: tests.test_sd101_claims.ClaimTests.test_a_branch_on_the_old_roster_stays_visible_while_another_adds_a_lesson
+- label: a dangling default branch is not an error
+  find: '    gone = not context.offline and base not in remote and base not in missing and base not in undecodable'
+  replace: '    gone = False'
+  test: tests.test_sd101_claims.RemoteTests.test_a_default_branch_that_no_longer_exists_stops_the_decision
+- label: a remote registry keeping a row its own map dropped is accepted
+  find: '        elif extra := [lesson_id for lesson_id in lessons if lesson_id not in ids]:  # and a row its own map dropped'
+  replace: '        elif False:  # and a row its own map dropped'
+  test: tests.test_sd101_claims.ClaimTests.test_a_branch_whose_registry_keeps_a_lesson_its_own_source_map_dropped_is_unreadable
+- label: a lesson imported by sync on a work branch has no owner
+  find: '            if lesson_id in on_disk and not bootstrap:'
+  replace: '            if False:'
+  test: tests.test_sd101_claims.ClaimTests.test_a_lesson_imported_by_sync_on_a_work_branch_stays_visible_to_the_others
+- label: a written half of a shared-source pair does not block the other half at claim time
+  find: '                if holding.status == "written" and holding.owner != me and not holding.shared:'
+  replace: '                if False:'
+  test: tests.test_sd101_claims.ClaimTests.test_a_written_half_of_a_shared_source_pair_blocks_the_other_half
+- label: a claim survives when its shared-source partner has been written
+  find: '            if other.status == "written" and other.owner != me and not mine.shared and not other.shared:'
+  replace: '            if False:'
+  test: tests.test_sd101_claims.ClaimTests.test_a_claim_loses_when_its_shared_source_partner_turns_out_to_be_written
+- label: sync imports a lesson whose files are missing
+  find: "        if missing := missing_artifacts(context, lesson_id):\n            out.append(f\"{lesson_id}: \" + \"; \".join("
+  replace: "        if False:\n            out.append(f\"{lesson_id}: \" + \"; \".join("
+  test: tests.test_sd101_claims.ClaimTests.test_sync_does_not_import_a_lesson_that_is_incomplete_or_rejected
+- label: sync imports a lesson the store checker rejects
+  find: "        elif broken := content_problems(context.store, context.source_map, lesson_id, cache):\n            out.append(f\"{lesson_id}: the store checker rejects the lesson: \" + \"; \".join(broken))\n\
+    \    return out"
+  replace: "        elif False:\n            out.append(f\"{lesson_id}: the store checker rejects the lesson: \" + \"; \".join(broken))\n    return out"
+  test: tests.test_sd101_claims.ClaimTests.test_sync_does_not_import_a_lesson_that_is_incomplete_or_rejected
+- label: finish drops the sharing override
+  find: '        if lessons[lesson_id].get("shared_source"):'
+  replace: '        if False:'
+  test: tests.test_sd101_claims.ClaimTests.test_a_shared_half_stays_shared_once_it_is_written
+- label: a shared written half still orders the other claim to give way
+  find: 'and not mine.shared and not other.shared:  # finished: nothing to wait for'
+  replace: 'and not mine.shared:  # finished: nothing to wait for'
+  test: tests.test_sd101_claims.ClaimTests.test_a_shared_half_stays_shared_once_it_is_written
+- label: a shared written half still blocks the other half at claim time
+  find: 'holding.owner != me and not holding.shared:  # finished, by someone else or before the registry'
+  replace: 'holding.owner != me:  # finished, by someone else or before the registry'
+  test: tests.test_sd101_claims.ClaimTests.test_a_shared_half_stays_shared_once_it_is_written
+- label: sync leaves a todo row whose lesson arrived on disk
+  find: '        arrived = lesson_id in on_disk and (lesson_id not in lessons or lessons[lesson_id].get("status") == "todo")'
+  replace: '        arrived = False'
+  test: tests.test_sd101_claims.ClaimTests.test_sync_imports_a_todo_row_whose_lesson_arrived_on_disk_with_a_merge
+- label: a live half taken on purpose still blocks the other half at claim time
+  find: "holding.owner != me and not holding.shared and not is_stale(holding, now, lease):\n                    return (f\"shares its source file with {partner}, which {holding.owner} is writing \""
+  replace: "holding.owner != me and not is_stale(holding, now, lease):\n                    return (f\"shares its source file with {partner}, which {holding.owner} is writing \""
+  test: tests.test_sd101_claims.ClaimTests.test_a_live_half_taken_on_purpose_does_not_block_the_other_half
+- label: sync leaves a lesson merged from another work branch with its foreign owner
+  find: '            if (entry.get("status") == "written" and entry.get("owner") not in (None, context.me) and lesson_id in on_disk'
+  replace: '            if (False and entry.get("status") == "written" and entry.get("owner") not in (None, context.me) and lesson_id in on_disk'
+  test: tests.test_sd101_claims.ClaimTests.test_a_lesson_merged_from_another_work_branch_is_adopted_by_sync
+- label: sync adopts a merged lesson without checking it
+  find: '                imported.append(lesson_id)  # the same file and content checks as for any lesson that becomes written here'
+  replace: '                pass'
+  test: tests.test_sd101_claims.ClaimTests.test_sync_does_not_adopt_a_merged_lesson_that_is_now_incomplete
+- label: adoption erases a shared-source conflict
+  find: "    if clashes:\n        raise Refusal(\"sync refused, nothing was written: this would hide"
+  replace: "    if False:\n        raise Refusal(\"sync refused, nothing was written: this would hide"
+  test: tests.test_sd101_claims.ClaimTests.test_adoption_does_not_hide_a_shared_source_conflict
+- label: a source map the checker rejects does not block publication
+  find: "    if map_findings:\n        raise Refusal("
+  replace: "    if False:\n        raise Refusal("
+  test: tests.test_sd101_claims.ClaimTests.test_a_source_map_the_checker_rejects_blocks_publication
+- label: source-map findings are dropped
+  find: if problem.where == "source map"]
+  replace: if problem.where == "no such place"]
+  test: tests.test_sd101_claims.SourceMapFindingsTests.test_the_real_map_passes_and_a_damaged_copy_is_found
+- label: a lesson the default branch dropped can still be claimed
+  find: '    if gone := [lesson_id for lesson_id in ids if lesson_id in removed]:'
+  replace: '    if gone := []:'
+  test: tests.test_sd101_claims.ClaimTests.test_a_stale_checkout_cannot_claim_a_lesson_the_default_branch_dropped
+- label: a lesson the default branch dropped is still offered
+  find: '    exclude = (*exclude, *removed_upstream(context), *repartnered_upstream(context))'
+  replace: '    exclude = (*exclude, *repartnered_upstream(context))'
+  test: tests.test_sd101_claims.ClaimTests.test_a_stale_checkout_cannot_claim_a_lesson_the_default_branch_dropped
+- label: an existing claim on a lesson the default branch dropped is still held
+  find: "    if lesson_id in gone:\n        return \"was removed from the source map"
+  replace: "    if False and lesson_id in gone:\n        return \"was removed from the source map"
+  test: tests.test_sd101_claims.ClaimTests.test_a_claim_the_default_branch_dropped_is_not_held
+- label: a takeover does not count above the claim it replaces
+  find: '            fresh["generation"] = 1 + max((h.generation for h in found.get(lesson_id, []) if h.status == "doing"), default=0)'
+  replace: '            fresh["generation"] = 1'
+  test: tests.test_sd101_claims.LeaseTests.test_a_fast_clock_cannot_outrank_the_takeover_that_replaced_it
+- label: a generation on a record is not read
+  find: entry["generation"] if _count(entry.get("generation")) else 0,
+  replace: 0,
+  test: tests.test_sd101_claims.LeaseTests.test_a_fast_clock_cannot_outrank_the_takeover_that_replaced_it
+- label: a takeover does not record its generation
+  find: '            fresh["generation"] = 1 + max((h.generation for h in found.get(lesson_id, []) if h.status == "doing"), default=0)'
+  replace: '            pass'
+  test: tests.test_sd101_claims.LeaseTests.test_a_stale_claim_blocks_nobody_until_it_is_taken_on_purpose
+- label: a malformed generation is accepted
+  find: '    if "generation" in entry and not _count(entry["generation"]):'
+  replace: '    if False and "generation" in entry and not _count(entry["generation"]):'
+  test: tests.test_sd101_claims.FormatTests.test_each_rule_reports_its_own_problem
+- label: the generation of two takeovers is ignored
+  find: "        if first.generation != second.generation:\n            return first.generation > second.generation"
+  replace: "        if False:\n            return first.generation > second.generation"
+  test: tests.test_sd101_claims.LeaseTests.test_a_fast_clock_cannot_outrank_the_takeover_that_replaced_it
+- label: a higher generation loses
+  find: '            return first.generation > second.generation'
+  replace: '            return first.generation < second.generation'
+  test: tests.test_sd101_claims.LeaseTests.test_a_fast_clock_cannot_outrank_the_takeover_that_replaced_it
+- label: equal generations are decided by the clock
+  find: "        return (first.owner or \"\") < (second.owner or \"\")\n    if first_took:"
+  replace: "        return (first.claimed_at or \"\", first.owner or \"\") > (second.claimed_at or \"\", second.owner or \"\")\n    if first_took:"
+  test: tests.test_sd101_claims.LeaseTests.test_concurrent_takeovers_are_decided_without_a_clock
+- label: the generation is not part of the identity of a claim
+  find: holding.taken_from, holding.generation, holding.shared
+  replace: holding.taken_from, holding.shared
+  test: tests.test_sd101_claims.LeaseTests.test_a_higher_generation_is_a_different_claim
+- label: an imported lesson is not checked against the shared-source half this branch holds
+  find: '                if (partner not in arrived and held.get("owner") == context.me and held.get("status") in ("doing", "written")'
+  replace: '                if (False and partner not in arrived and held.get("owner") == context.me and held.get("status") in ("doing", "written")'
+  test: tests.test_sd101_claims.ClaimTests.test_importing_a_lesson_does_not_hide_a_shared_source_conflict
+- label: a pair imported together clashes with itself
+  find: '                if (partner not in arrived and held.get'
+  replace: '                if (held.get'
+  test: tests.test_sd101_claims.ClaimTests.test_a_pair_that_arrives_together_is_not_a_conflict
+- label: a changed pairing upstream is not noticed
+  find: '    return {lesson_id for lesson_id in both if set(then.partners.get(lesson_id, ())) != set(current.partners.get(lesson_id, ()))}'
+  replace: '    return set()'
+  test: tests.test_sd101_claims.ClaimTests.test_a_stale_checkout_does_not_judge_claims_by_a_pairing_the_default_branch_changed
+- label: a claim on a lesson whose pairing changed upstream is accepted
+  find: '    if moved := [lesson_id for lesson_id in ids if lesson_id in repartnered]:'
+  replace: '    if False and [lesson_id for lesson_id in ids if lesson_id in repartnered]:'
+  test: tests.test_sd101_claims.ClaimTests.test_a_stale_checkout_does_not_judge_claims_by_a_pairing_the_default_branch_changed
+- label: a held claim on a lesson whose pairing changed upstream stays held
+  find: "    if lesson_id in moved:\n        return (\"shares its source file with different lessons"
+  replace: "    if False and lesson_id in moved:\n        return (\"shares its source file with different lessons"
+  test: tests.test_sd101_claims.ClaimTests.test_a_stale_checkout_does_not_judge_claims_by_a_pairing_the_default_branch_changed
+- label: a lesson whose pairing changed upstream is still offered
+  find: '    exclude = (*exclude, *removed_upstream(context), *repartnered_upstream(context))'
+  replace: '    exclude = (*exclude, *removed_upstream(context))'
+  test: tests.test_sd101_claims.ClaimTests.test_a_stale_checkout_does_not_judge_claims_by_a_pairing_the_default_branch_changed
+- label: a finished lesson taken over meanwhile is pushed anyway
+  find: "    overtaken, stand_ins = overtaken_writes(context, header, lessons)\n    if overtaken:"
+  replace: "    overtaken, stand_ins = overtaken_writes(context, header, lessons)\n    if False:"
+  test: tests.test_sd101_claims.LeaseTests.test_a_finished_lesson_that_was_taken_over_meanwhile_is_not_pushed
+- label: a finished lesson is judged without the claim the others last saw
+  find: '        published = next((h for h in holdings if h.status == "doing" and h.owner == context.me and h.where != LOCAL), None)'
+  replace: '        published = None'
+  test: tests.test_sd101_claims.LeaseTests.test_a_finished_lesson_older_than_a_rival_that_never_saw_it_is_pushed
+- label: a finished half is not judged against the other half of its pair
+  find: '        if reason := lost_reason(stand_in, others, context.me, context.now, lease, context.source.partners.get(lesson_id, ()),'
+  replace: '        if reason := lost_reason(stand_in, others, context.me, context.now, lease, (),'
+  test: tests.test_sd101_claims.ClaimTests.test_a_finished_half_is_not_pushed_over_a_rival_on_the_other_half
+- label: a written record of another session is no rival of a finished lesson
+  find: "        others = {**found, lesson_id: [h for h in found.get(lesson_id, []) if not (h.status == \"written\" and (\n            h.owner == context.me or (h.owner in adopted_from and finished_at is\
+    \ not None and h.done_at == finished_at)))]}"
+  replace: '        others = {**found, lesson_id: [h for h in found.get(lesson_id, []) if h.status != "written"]}'
+  test: tests.test_sd101_claims.LeaseTests.test_a_finished_lesson_whose_taker_finished_it_first_is_not_pushed
+- label: an adoption copy of a finished lesson counts as a rival
+  find: h.owner == context.me or (h.owner in adopted_from and finished_at is not None and h.done_at == finished_at)))]}
+  replace: h.owner == context.me))]}
+  test: tests.test_sd101_claims.ClaimTests.test_a_lesson_merged_from_another_work_branch_is_adopted_by_sync
+- label: a rival finished in the same second counts as an adoption copy
+  find: (h.owner in adopted_from and finished_at is not None and h.done_at == finished_at)
+  replace: (finished_at is not None and h.done_at == finished_at)
+  test: tests.test_sd101_claims.LeaseTests.test_a_rival_that_finished_in_the_same_second_is_still_a_rival
+- label: a touch does not look again after the renewal went up
+  find: '        results = verdicts(context, header, lessons, ids)  # a rival may have pushed while the renewal went up'
+  replace: '        pass  # a rival may have pushed while the renewal went up'
+  test: tests.test_sd101_claims.LeaseTests.test_touch_publish_reports_a_takeover_that_arrived_while_the_renewal_went_up
+- label: sync does not record where an adopted record came from
+  find: '                entry["adopted_from"] = [*(entry.get("adopted_from") or []), entry["owner"]]  # the original stays identifiable'
+  replace: '                pass  # the original stays identifiable'
+  test: tests.test_sd101_claims.ClaimTests.test_a_lesson_merged_from_another_work_branch_is_adopted_by_sync
+- label: a malformed adopted_from is accepted
+  find: '    if "adopted_from" in entry and not (isinstance(entry["adopted_from"], list) and entry["adopted_from"]'
+  replace: '    if False and "adopted_from" in entry and not (isinstance(entry["adopted_from"], list) and entry["adopted_from"]'
+  test: tests.test_sd101_claims.FormatTests.test_each_rule_reports_its_own_problem
+- label: a finished lesson taken over while it went up is not looked at again
+  find: '    return judge_finished(context, header, lessons, found, stand_ins)  # looked at again now that the record is up'
+  replace: '    return {}  # looked at again now that the record is up'
+  test: tests.test_sd101_claims.LeaseTests.test_a_finished_lesson_taken_over_while_it_went_up_is_reported_after_the_push
+- label: a conflict after the push does not fail the command
+  find: '    return 1 if conflicts else 0'
+  replace: '    return 0'
+  test: tests.test_sd101_claims.LeaseTests.test_a_finished_lesson_taken_over_while_it_went_up_is_reported_after_the_push
+- label: a finished lesson the default branch dropped is pushed anyway
+  find: '        if reason := upstream_reason(lesson_id, gone, moved):  # a finished lesson is no safer than a claim on the same map'
+  replace: '        if False:  # a finished lesson is no safer than a claim on the same map'
+  test: tests.test_sd101_claims.ClaimTests.test_a_finished_lesson_the_default_branch_dropped_is_not_pushed
+- label: a finished lesson whose pairing changed upstream is pushed anyway
+  find: '    gone, moved = (removed_upstream(context), repartnered_upstream(context)) if stand_ins else (set(), set())'
+  replace: '    gone, moved = (removed_upstream(context), set()) if stand_ins else (set(), set())'
+  test: tests.test_sd101_claims.ClaimTests.test_a_finished_lesson_whose_pairing_changed_upstream_is_not_pushed
+- label: the unpacking asks tarfile for a filter that Python before 3.10.12 does not have
+  find: 'if hasattr(tarfile, "data_filter"):'
+  replace: 'if True:'
+  test: tests.test_sd101_claims.ClaimTests.test_publishing_works_on_a_python_whose_tarfile_cannot_filter_an_extraction
+- label: the hand-made unpacking lets a path climb out of the destination
+  find: '        if not inside(root, place):'
+  replace: '        if False:'
+  test: tests.test_sd101_claims.ArchiveExtractionTests.test_what_would_leave_the_destination_or_make_a_device_is_refused
+- label: the hand-made unpacking makes a device or a pipe
+  find: '        if member.isdev():'
+  replace: '        if False:'
+  test: tests.test_sd101_claims.ArchiveExtractionTests.test_what_would_leave_the_destination_or_make_a_device_is_refused
+- label: the hand-made unpacking lets a symlink lead out of the destination
+  find: 'if member.issym() and not inside('
+  replace: 'if False and not inside('
+  test: tests.test_sd101_claims.ArchiveExtractionTests.test_what_would_leave_the_destination_or_make_a_device_is_refused
+- label: the hand-made unpacking lets a hard link lead out of the destination
+  find: 'if member.islnk() and not inside('
+  replace: 'if False and not inside('
+  test: tests.test_sd101_claims.ArchiveExtractionTests.test_what_would_leave_the_destination_or_make_a_device_is_refused

@@ -4,6 +4,13 @@
 
 ![Bốn khung theo chiều dọc: polling ngắn hỏi định kỳ; polling dài chờ tin hoặc hết hạn rồi hỏi tiếp; SSE nhận sự kiện một chiều; WebSocket trao đổi hai chiều sau khi kết nối được thiết lập.](../../diagrams/sd-01-001-main.svg)
 
+## Từ viết tắt
+
+- **SSE** (Server-Sent Events) — "sự kiện do máy chủ gửi": trình duyệt mở một luồng HTTP, máy chủ đẩy tin mới xuống luồng đó, chỉ theo một chiều.
+- **HTTP** (HyperText Transfer Protocol) — giao thức truyền siêu văn bản: quy ước để trình duyệt gửi yêu cầu (request) và máy chủ gửi trả lời (response).
+- **API** (Application Programming Interface) — giao diện lập trình ứng dụng: tập quy ước để một chương trình dùng chức năng của chương trình khác; ở đây là `EventSource`, có sẵn trong trình duyệt.
+- **ID** (IDentifier) — mã định danh: chuỗi phân biệt một mục với mục khác; ở đây là mã của sự kiện cuối cùng trình duyệt đã nhận.
+
 ## Đọc hình
 
 **1. Polling ngắn — hỏi lại định kỳ.** Máy chủ trả lời mỗi lượt, dù chưa có tin mới.

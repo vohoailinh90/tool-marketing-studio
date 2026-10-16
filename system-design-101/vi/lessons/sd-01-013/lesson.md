@@ -4,6 +4,22 @@
 
 ![Bốn khung dọc theo phạm vi tăng dần: PAN quanh một người trong vài mét như Bluetooth hoặc USB, ví dụ đồng hồ thông minh nối điện thoại; LAN trong một nơi như nhà, văn phòng hoặc tòa nhà bằng Ethernet hoặc Wi-Fi, ví dụ TV, loa và máy tính cùng một mạng Wi-Fi trong nhà; MAN phủ cả một thành phố hoặc khuôn viên lớn, ví dụ mạng cáp quang trong thành phố; WAN trải nhiều thành phố và quốc gia qua nhà mạng, cáp biển hoặc VPN, trong đó Internet là mạng của các mạng. Ranh giới là quy ước, không cứng.](../../diagrams/sd-01-013-main.svg)
 
+## Từ viết tắt
+
+- **PAN** (Personal Area Network) — mạng cá nhân: mạng quanh một người, cỡ vài mét.
+- **LAN** (Local Area Network) — mạng cục bộ: mạng trong một nơi như nhà, văn phòng hoặc tòa nhà.
+- **MAN** (Metropolitan Area Network) — mạng đô thị: mạng phủ một thành phố hoặc khuôn viên lớn.
+- **WAN** (Wide Area Network) — mạng diện rộng: mạng trải nhiều thành phố hoặc quốc gia, thường dùng đường truyền thuê.
+- **TV** (TeleVision) — ti vi: máy thu hình, ở đây là ví dụ một thiết bị trong mạng LAN của nhà.
+- **USB** (Universal Serial Bus) — cổng nối tuần tự đa năng: chuẩn cổng cắm có dây để nối thiết bị với máy tính.
+- **VPN** (Virtual Private Network) — mạng riêng ảo: đường nối có mã hóa chạy qua Internet, làm các nơi xa nhau như cùng một mạng riêng.
+- **WLAN** (Wireless Local Area Network) — mạng cục bộ không dây: LAN dùng sóng vô tuyến, thường là Wi-Fi.
+- **IEEE** (Institute of Electrical and Electronics Engineers) — Viện Kỹ sư Điện và Điện tử: tổ chức nghề nghiệp ban hành các chuẩn mạng như Ethernet và Wi-Fi.
+- **SIG** (Special Interest Group) — nhóm quan tâm đặc biệt: nhóm nhiều công ty cùng duy trì một chuẩn; Bluetooth SIG duy trì chuẩn Bluetooth.
+- **SD** (Software-Defined) — định nghĩa bằng phần mềm: SD-WAN là cách quản lý nhiều đường WAN bằng phần mềm.
+- **CAN** (Campus Area Network) — mạng khuôn viên: mạng nối các tòa nhà trong một khuôn viên như trường học hay khu công nghiệp.
+- **SAN** (Storage Area Network) — mạng lưu trữ: mạng riêng nối máy chủ với thiết bị lưu trữ.
+
 ## Đọc hình
 
 - **PAN (Personal Area Network):** quanh một người, cỡ vài mét. Ví dụ: đồng hồ thông minh hoặc vòng đeo tay nối với điện thoại, tay cầm chơi game nối với máy.

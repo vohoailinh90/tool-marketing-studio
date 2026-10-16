@@ -59,3 +59,27 @@ mutations:
   find: '    if value < 1:'
   replace: '    if False:'
   test: tests.test_mutation_check.ParallelTests.test_jobs_must_be_a_positive_number
+- label: an answer for a unit outside the group is taken from the worker
+  find: 'if unit in group and '
+  replace: 'if '
+  test: tests.test_mutation_check.ParallelTests.test_a_row_for_a_unit_outside_the_group_is_not_taken_from_the_worker
+- label: the result of an earlier group is read again for the next one
+  find: '    result.unlink(missing_ok=True)'
+  replace: '    pass'
+  test: tests.test_mutation_check.ParallelTests.test_a_result_left_by_an_earlier_group_is_not_read_for_the_next_one
+- label: the tree copies are not put below RUNNER_TEMP
+  find: 'dir=os.environ.get("RUNNER_TEMP") or None'
+  replace: 'dir=None'
+  test: tests.test_mutation_check.ParallelTests.test_the_tree_copies_go_below_runner_temp_when_the_runner_sets_it
+- label: a failing run does not stop the other workers
+  find: "                stop.set()\n"
+  replace: "                pass\n"
+  test: tests.test_mutation_check.ParallelTests.test_a_worker_that_fails_stops_the_others_from_taking_new_groups
+- label: a copy a dead worker may have left mutated is used again
+  find: "                copy_tree(names, root)\n"
+  replace: "                pass\n"
+  test: tests.test_mutation_check.ParallelTests.test_the_copy_of_a_worker_that_did_not_end_cleanly_is_made_again
+- label: a worker that answered nothing is called clean
+  find: '    clean = not problem and len(answers) == len(group)'
+  replace: '    clean = True'
+  test: tests.test_mutation_check.ParallelTests.test_a_result_left_by_an_earlier_group_is_not_read_for_the_next_one

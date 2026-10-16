@@ -11,6 +11,7 @@ import subprocess
 import sys
 import tempfile
 import textwrap
+import time
 import unittest
 from pathlib import Path
 from unittest import mock
@@ -244,6 +245,7 @@ class ParallelTests(unittest.TestCase):
         patcher = mock.patch.dict(os.environ, {"COUNT_FILE": str(self.counter)})
         patcher.start()
         self.addCleanup(patcher.stop)
+        os.environ.pop("RUNNER_TEMP", None)  # set on a CI runner; restored by the patcher above
 
     def repo(self, name: str = "repo", script: str | None = None, init_git: bool = True) -> Path:
         repo = self.tmp / name
@@ -397,6 +399,93 @@ class ParallelTests(unittest.TestCase):
                 else:
                     self.assertEqual(["BROKEN"] * 4, verdicts)
                 self.assertEqual([], list(self.scratch_root.iterdir()), "the copies are removed after a failure too")
+
+    def worker_root(self, script: str) -> Path:
+        root = self.tmp / "worker-root"
+        (root / "scripts").mkdir(parents=True, exist_ok=True)
+        (root / "scripts" / "mutation_check.py").write_text(script, encoding="utf-8")
+        return root
+
+    ROWS = textwrap.dedent("""\
+        import json, sys
+        rows = [{"manifest": "m.yaml", "index": i, "verdict": "caught", "label": "x", "detail": "t"} for i in %s]
+        json.dump(rows, open(sys.argv[sys.argv.index("--result") + 1], "w"))
+        """)
+
+    def test_a_row_for_a_unit_outside_the_group_is_not_taken_from_the_worker(self) -> None:
+        group = [("m.yaml", 0), ("m.yaml", 1)]
+        labels = {unit: f"entry {unit[1]}" for unit in group}
+        scratch = self.tmp / "scratch-rows"
+        scratch.mkdir()
+        answers, clean = mutation_check.run_group_in(self.worker_root(self.ROWS % "(0, 5)"), group, labels, scratch, 0)
+        self.assertEqual({("m.yaml", 0), ("m.yaml", 1)}, set(answers), "the foreign unit 5 is not an answer")
+        self.assertEqual("caught", answers[("m.yaml", 0)][0])
+        self.assertEqual("BROKEN", answers[("m.yaml", 1)][0], "the unit the worker skipped")
+        self.assertFalse(clean)
+
+    def test_a_result_left_by_an_earlier_group_is_not_read_for_the_next_one(self) -> None:
+        group = [("m.yaml", 0), ("m.yaml", 1)]
+        labels = {unit: f"entry {unit[1]}" for unit in group}
+        scratch = self.tmp / "scratch-stale"
+        scratch.mkdir()
+        answers, clean = mutation_check.run_group_in(self.worker_root(self.ROWS % "(0, 1)"), group, labels, scratch, 0)
+        self.assertEqual(["caught", "caught"], [answers[unit][0] for unit in group])
+        self.assertTrue(clean)
+        # the next group of the same worker slot: its worker exits 0 and writes nothing
+        answers, clean = mutation_check.run_group_in(self.worker_root("raise SystemExit(0)\n"), group, labels, scratch, 0)
+        self.assertEqual(["BROKEN", "BROKEN"], [answers[unit][0] for unit in group], "the file of the first group is gone")
+        self.assertFalse(clean)
+
+    def test_the_tree_copies_go_below_runner_temp_when_the_runner_sets_it(self) -> None:
+        repo = self.repo()
+        runner_temp = self.tmp / "runner-temp"
+        runner_temp.mkdir()
+        self.manifest(repo, "one.yaml", [("VALUE = 1", "VALUE = 7", "tests.test_thing.Good.test_value")])
+        seen: list[Path] = []
+        real = mutation_check.copy_tree
+
+        def spy(names: list[str], destination: Path) -> None:
+            seen.append(destination)
+            real(names, destination)
+
+        with mock.patch.dict(os.environ, {"RUNNER_TEMP": str(runner_temp)}), mock.patch.object(mutation_check, "copy_tree", spy):
+            self.assertEqual(0, self.main(repo, self.path(repo, "one.yaml"), "--jobs", "2")[0])
+        self.assertTrue(seen and all(runner_temp in path.parents for path in seen), seen)
+        self.assertEqual([], list(runner_temp.iterdir()), "and they are removed again")
+
+    def test_a_worker_that_fails_stops_the_others_from_taking_new_groups(self) -> None:
+        repo = self.repo()
+        self.manifest(repo, "many.yaml", [("VALUE = 1", f"VALUE = {n}", f"tests.test_thing.Good.test_{n}") for n in range(8)])
+        calls: list[int] = []
+
+        def fake(root: Path, group: list, labels: dict, scratch: Path, number: int):
+            calls.append(number)
+            if number == 0:
+                raise RuntimeError("the first worker fails")
+            time.sleep(0.3)
+            return {unit: ("caught", labels[unit], "t") for unit in group}, True
+
+        with mock.patch.object(mutation_check, "run_group_in", fake), self.assertRaises(RuntimeError):
+            self.main(repo, self.path(repo, "many.yaml"), "--jobs", "2")
+        self.assertLessEqual(len(calls), 4, f"the other worker went on through the queue: {calls}")
+
+    def test_the_copy_of_a_worker_that_did_not_end_cleanly_is_made_again(self) -> None:
+        repo = self.repo(script=self.STUBS["a worker that dies"])
+        self.manifest(repo, "pairs.yaml", [
+            ("VALUE = 1", "VALUE = 7", "tests.test_thing.Good.test_value"),
+            ("return True", "return False", "tests.test_thing.Good.test_flag"),
+        ])
+        made: list[Path] = []
+        real = mutation_check.copy_tree
+
+        def spy(names: list[str], destination: Path) -> None:
+            made.append(destination)
+            real(names, destination)
+
+        with mock.patch.object(mutation_check, "copy_tree", spy):
+            code = self.main(repo, self.path(repo, "pairs.yaml"), "--jobs", "2")[0]
+        self.assertEqual(2, code)
+        self.assertEqual(4, len(made), "two copies at the start, and one more for each of the two groups that failed")
 
     def test_jobs_needs_a_git_checkout(self) -> None:
         repo = self.repo("plain", init_git=False)

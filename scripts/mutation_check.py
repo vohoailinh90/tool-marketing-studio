@@ -316,8 +316,11 @@ def run_group(plan: pathlib.Path, result: pathlib.Path) -> int:
 
 
 def run_group_in(root: pathlib.Path, group: list[Unit], labels: dict[Unit, str], scratch: pathlib.Path,
-                 number: int) -> dict[Unit, tuple[str, str, str]]:
-    """Coordinator side: run one group in the tree copy `root`. A unit with no valid result comes back BROKEN."""
+                 number: int) -> tuple[dict[Unit, tuple[str, str, str]], bool]:
+    """Coordinator side: run one group in the tree copy `root`. A unit with no valid result comes back BROKEN.
+
+    The second value says whether the worker answered every unit and exited cleanly; when it did not, it may have been
+    killed in the middle of a mutation, so the copy may still carry one and must not be used again."""
     plan, result = scratch / f"plan-{number}.json", scratch / f"result-{number}.json"
     plan.write_text(json.dumps(group), encoding="utf-8")
     result.unlink(missing_ok=True)
@@ -338,10 +341,11 @@ def run_group_in(root: pathlib.Path, group: list[Unit], labels: dict[Unit, str],
                 answers[unit] = (item["verdict"], item["label"], item["detail"])
     except (OSError, ValueError, KeyError, TypeError):
         problem = problem or "worker left no readable result"
+    clean = not problem and len(answers) == len(group)
     for unit in group:
         # Fail closed: a worker that died must never turn the entries it did not finish into "caught".
         answers.setdefault(unit, (BROKEN, labels[unit], f"no verdict from the worker ({problem or 'result incomplete'})"))
-    return answers
+    return answers, clean
 
 
 def run_parallel(paths: list[pathlib.Path], jobs: int) -> dict[Unit, tuple[str, str, str]]:
@@ -362,24 +366,30 @@ def run_parallel(paths: list[pathlib.Path], jobs: int) -> dict[Unit, tuple[str, 
         queue_of_groups.put(group)
     verdicts: dict[Unit, tuple[str, str, str]] = {}
     lock = threading.Lock()
+    stop = threading.Event()  # set when the run is failing: the workers finish the group in hand and take no more
     finished = 0
 
     def work(root: pathlib.Path, scratch: pathlib.Path, number: int) -> None:
         nonlocal finished
-        while True:
+        while not stop.is_set():
             try:
                 group = queue_of_groups.get_nowait()
             except queue.Empty:
                 return
-            answers = run_group_in(root, group, labels, scratch, number)
+            answers, clean = run_group_in(root, group, labels, scratch, number)
             with lock:
                 verdicts.update(answers)
                 finished += 1
                 if finished % 25 == 0 or finished == len(groups):
                     print(f"  mutation_check: {finished}/{len(groups)} test groups done", file=sys.stderr, flush=True)
+            if not clean:  # a worker killed in the middle of a mutation leaves the file mutated: start from a fresh copy
+                shutil.rmtree(root, ignore_errors=True)
+                copy_tree(names, root)
 
     workers = max(1, min(jobs, len(groups)))
-    with tempfile.TemporaryDirectory(prefix="mutation-check-") as scratch_name:
+    # Below RUNNER_TEMP where the Actions runner sets it: the runner empties that folder between jobs, which also
+    # covers a run that is killed outright (a pull request run cancelled by a newer push leaves nothing to clean up).
+    with tempfile.TemporaryDirectory(prefix="mutation-check-", dir=os.environ.get("RUNNER_TEMP") or None) as scratch_name:
         scratch = pathlib.Path(scratch_name)
         roots = []
         for number in range(workers):
@@ -387,8 +397,12 @@ def run_parallel(paths: list[pathlib.Path], jobs: int) -> dict[Unit, tuple[str, 
             copy_tree(names, root)
             roots.append(root)
         with concurrent.futures.ThreadPoolExecutor(max_workers=workers) as pool:
-            for future in [pool.submit(work, root, scratch, number) for number, root in enumerate(roots)]:
-                future.result()
+            try:
+                for future in [pool.submit(work, root, scratch, number) for number, root in enumerate(roots)]:
+                    future.result()
+            except BaseException:
+                stop.set()
+                raise
     return verdicts
 
 

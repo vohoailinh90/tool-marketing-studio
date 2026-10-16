@@ -72,8 +72,8 @@ repository is private, so GitHub-hosted minutes are billed; without minutes a jo
 - Each runner takes one job at a time, so two jobs run at once. `engine` is `pytest -q` (about 20
   minutes) plus `mutation_check.py --all`, which is most of the job: it runs every entry of
   `tests/mutations/` (over a thousand), so its time grows with each fix that ships a mutation.
-  The step starts `MUTATION_JOBS` workers (repository variable, default 2), each mutating its own
-  copy of the tree; with two runners busy that uses the VPS's four cores, so raise it only where
+  The step starts `MUTATION_JOBS` workers (repository variable, a whole number from 1; default 2), each
+  mutating its own copy of the tree under `$RUNNER_TEMP`; with two runners busy that uses the VPS's four cores, so raise it only where
   cores are free, and set it to 1 for the old single-tree run. Time the step in a run's log before
   and after changing it. A pull request that changes only the System Design store skips the check:
   `scripts/ci_changes.py` decides, and every push to `main` still runs it.

@@ -143,7 +143,7 @@ def post_prompt(campaign: Campaign, slot: str, lang: str, platforms: list[str], 
     if unknown:
         raise AIError(f"unknown platform(s): {', '.join(unknown)}")
     user = context_blocks(campaign, lang, readme) + "\n\n" + POST_FORMAT.format(
-        slot=slot, purpose=purpose, link_name=_link_name(campaign),
+        slot=slot, purpose=purpose, link_name=_link_name(campaign, slot),
         platform_shapes="\n".join(PLATFORM_SHAPES[p] for p in platforms),
         layouts="\n".join(f"- {name}: {doc}" for name, doc in LAYOUT_DOCS.items() if name not in OPTIONAL_LAYOUTS))
     return system_prompt(lang), user
@@ -159,8 +159,13 @@ def paste_prompt(system: str, user: str) -> str:
     return f"{system}\n\n---\n\n{user}"
 
 
-def _link_name(campaign: Campaign) -> str:
+def _link_name(campaign: Campaign, slot: str = "") -> str:
+    """The link a drafted post points at: the one named like the post (a lesson post is named after its lesson's
+    link), else `survey`, else the first. Without the first rule every lesson of a campaign with one link per
+    lesson would point at whichever link is written first."""
     links = campaign.data.get("links") or {}
+    if slot in links:
+        return slot
     return "survey" if "survey" in links else next(iter(links), "survey")
 
 
@@ -279,7 +284,7 @@ def draft_post(campaign: Campaign, slot: str, lang: str, platforms: list[str], c
         for key in total:
             total[key] += usage.get(key, 0)
         try:
-            data = sanitize_post(parse_yaml_answer(text), slot=slot, link_name=_link_name(campaign),
+            data = sanitize_post(parse_yaml_answer(text), slot=slot, link_name=_link_name(campaign, slot),
                                  platforms=platforms, source="AI draft")
             issues = validate_draft(campaign, lang, slot, data, guidance)
         except AIError as exc:
@@ -296,7 +301,7 @@ def draft_post(campaign: Campaign, slot: str, lang: str, platforms: list[str], c
 def accept_pasted_post(campaign: Campaign, slot: str, lang: str, platforms: list[str], text: str, *,
                        guidance: str = "") -> tuple[dict | None, list[Issue]]:
     try:
-        data = sanitize_post(parse_yaml_answer(text), slot=slot, link_name=_link_name(campaign),
+        data = sanitize_post(parse_yaml_answer(text), slot=slot, link_name=_link_name(campaign, slot),
                              platforms=platforms, source="Pasted AI answer")
     except AIError as exc:
         return None, [Issue("error", f"{slot}/{lang}", str(exc))]

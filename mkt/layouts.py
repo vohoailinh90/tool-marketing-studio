@@ -83,6 +83,11 @@ FIELDS = {
 }
 
 
+# Layouts an author adds by hand. The AI drafting prompt never lists them, so a draft only uses one the
+# author wrote in; nothing existing changes when one is added to the engine.
+OPTIONAL_LAYOUTS = ("diagram",)
+
+
 def enum(value, kind: str, default: str) -> str:
     return value if value in ENUMS[kind] else default
 

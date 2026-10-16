@@ -39,7 +39,7 @@ TONE_SUFFIX = re.compile(r":::\s*(\w+)")
 # `<` opens HTML when a letter, `/` or `!` follows; arrows (`<-->`, `<<->>`, `<|`) never do. `<br>` is a line break.
 HTML_TAG = re.compile(r"<\s*[/!A-Za-z]")
 LINE_BREAK = re.compile(r"<\s*br\s*/?\s*>", re.IGNORECASE)
-FORBIDDEN_TEXT = re.compile(r"javascript:|vbscript:|data:[a-z]+/|&#|%%\{", re.IGNORECASE)
+FORBIDDEN_TEXT = re.compile(r"javascript:|vbscript:|data:[a-z]+/|&#|%%\{|@\s*\{", re.IGNORECASE)
 # A node id with a digit in it (`A1`, `step12`) is syntax, not a number the post states.
 ID_WITH_DIGIT = re.compile(r"\b[^\W\d]\w*\d\w*\b")
 
@@ -65,7 +65,7 @@ def source_problems(source) -> list[str]:
     if first[0] not in TYPES:
         problems.append(f"diagram must start with one of: {', '.join(TYPES)} (got '{first[0]}')")
     if FORBIDDEN_TEXT.search(text):
-        problems.append("diagram contains a directive, script or URL scheme that is not allowed")
+        problems.append("diagram contains a directive, script, URL scheme or @{ } node attribute (it can load an image) that is not allowed")
     if HTML_TAG.search(LINE_BREAK.sub(" ", text)):
         problems.append("diagram labels cannot contain HTML (only <br/> for a line break)")
     parts = [part for line in statements for part in line.split(";")]       # `;` separates statements
@@ -176,8 +176,9 @@ async (opt) => {
       const art = document.createElement('div');
       art.className = 'diagram__art';
       art.innerHTML = svg;
-      // Strict mode still turns `click … href` into a link; a diagram never carries one, or a script.
-      if (art.querySelector('a, script, iframe, object, embed')) throw new Error('links and scripts are not allowed in a diagram');
+      // Strict mode still turns `click … href` into a link and `A@{ img: … }` into a picture of any file the
+      // page may read; a diagram carries neither, nor a script.
+      if (art.querySelector('a, script, iframe, object, embed, image, img')) throw new Error('links, images and scripts are not allowed in a diagram');
       const drawing = art.querySelector('svg');
       const box = drawing.viewBox.baseVal;
       drawing.removeAttribute('width'); drawing.removeAttribute('height');

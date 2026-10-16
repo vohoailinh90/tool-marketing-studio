@@ -8,7 +8,7 @@ from mkt.check import check_post, unsourced_numbers
 from mkt.layouts import Ctx, render_body
 from mkt.model import load_campaign
 from mkt.page import build_page
-from tests.support import cleanup, make_root, post_data, write_yaml
+from tests.support import PNG, cleanup, make_root, post_data, write_yaml
 from tests.test_render import chromium_available, png_size
 
 FLOW = "flowchart TD\n  A[Khách gửi form] --> B{Hợp lệ?}\n  B -->|Có| C[Lưu vào bảng tính]:::ok\n  B -->|Không| D[Báo lỗi]:::bad\n  C --> E[Gửi email]:::hl"
@@ -47,6 +47,8 @@ class SourceTests(unittest.TestCase):
             "javascript url": 'flowchart TD\n  A["javascript:alert(1)"] --> B',
             "data url": 'flowchart TD\n  A["data:text/html;base64,AA"] --> B',
             "accTitle": "flowchart TD\n  accTitle: x\n  A --> B",
+            "image node": 'flowchart TD\n  A@{ img: "file:///etc/hostname", label: "x" } --> B',
+            "node attributes": "flowchart TD\n  A@{ shape: cyl } --> B",
         }
         for name, source in refused.items():
             self.assertTrue(self.problems(source), name)
@@ -211,7 +213,15 @@ class DrawTests(unittest.TestCase):
         self.open('flowchart TD\n  A[Start] --> B[End]\n  click A href "https://example.com" _blank')
         with self.assertRaises(diagram.DiagramError) as caught:
             diagram.render_in_page(self.page)
-        self.assertIn("links and scripts", str(caught.exception))
+        self.assertIn("links, images and scripts", str(caught.exception))
+
+    def test_an_image_in_the_drawing_is_refused_even_when_check_was_skipped(self):
+        picture = self.folder / "local.png"
+        picture.write_bytes(PNG)
+        self.open(f'flowchart TD\n  A@{{ img: "{picture.as_uri()}", label: "x", w: 60, h: 60 }} --> B[End]')
+        with self.assertRaises(diagram.DiagramError) as caught:
+            diagram.render_in_page(self.page)
+        self.assertIn("images", str(caught.exception))
 
     def test_a_source_mermaid_cannot_parse_is_an_error_that_says_where(self):
         self.open(BROKEN)

@@ -88,6 +88,11 @@ class DraftTests(unittest.TestCase):
         self.assertIn("<source", user)
         self.assertIn("日本語", system)
 
+    def test_the_prompt_offers_the_standard_layouts_but_not_the_optional_ones(self):
+        _, user = ai.post_prompt(self.campaign, "01-pain", "vi", ["facebook"])
+        self.assertIn("- timeline:", user)
+        self.assertNotIn("- diagram:", user)
+
 
 class InsightTests(unittest.TestCase):
     def test_quotes_must_come_from_the_comments(self):

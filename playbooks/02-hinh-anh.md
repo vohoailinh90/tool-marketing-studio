@@ -19,7 +19,9 @@
 | "Cho xem thật đi" | `image` | Ảnh chụp màn hình thật (đặt trong thư mục chiến dịch) |
 | "Nó chạy từng bước thế nào?" | `diagram` | Sơ đồ quy trình, ai gọi ai, vòng đời trạng thái — viết bằng Mermaid |
 
-## Sơ đồ (`diagram`)
+## Sơ đồ (`diagram`) — tùy chọn
+
+Kiểu này **không phải mặc định**: không bài nào có sẵn, và AI soạn bài không tự chọn nó. Chỉ khi bạn thấy một sơ đồ giải thích tốt hơn chữ, hãy tự thêm slide `diagram` vào file YAML của bài.
 
 Viết sơ đồ bằng chữ (Mermaid); engine vẽ theo màu thương hiệu của chiến dịch và font của từng ngôn ngữ.
 Mỗi ngôn ngữ viết sơ đồ riêng bằng chính ngôn ngữ đó (không copy nhãn từ bản khác).

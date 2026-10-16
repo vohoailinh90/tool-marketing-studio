@@ -39,7 +39,7 @@ mutations:
   replace: 'securityLevel: ''loose'''
   test: tests.test_diagram.DrawTests.test_mermaid_runs_in_strict_mode
 - label: a link in the drawing is accepted
-  find: '      if (art.querySelector(''a, script, iframe, object, embed'')) throw new Error('
+  find: '      if (art.querySelector(''a, script, iframe, object, embed, image, img'')) throw new Error('
   replace: '      if (false) throw new Error('
   test: tests.test_diagram.DrawTests.test_a_link_in_the_drawing_is_refused_even_when_check_was_skipped
 - label: text of any size is called readable
@@ -50,3 +50,11 @@ mutations:
   find: 'hl: [c.accent, c[''accent-strong''], luminance(c.accent) < 0.18 ? ''#ffffff'' : c.ink],'
   replace: 'hl: [''#2563eb'', ''#1e40af'', ''#ffffff''],'
   test: tests.test_diagram.DrawTests.test_the_campaign_accent_colours_the_diagram
+- label: an image in the drawing is accepted
+  find: '''a, script, iframe, object, embed, image, img'''
+  replace: '''a, script, iframe, object, embed'''
+  test: tests.test_diagram.DrawTests.test_an_image_in_the_drawing_is_refused_even_when_check_was_skipped
+- label: a node attribute block that can load an image is allowed
+  find: '|&#|%%\{|@\s*\{"'
+  replace: '|&#|%%\{"'
+  test: tests.test_diagram.SourceTests.test_links_clicks_directives_and_css_are_refused

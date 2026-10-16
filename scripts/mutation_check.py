@@ -371,20 +371,24 @@ def run_parallel(paths: list[pathlib.Path], jobs: int) -> dict[Unit, tuple[str, 
 
     def work(root: pathlib.Path, scratch: pathlib.Path, number: int) -> None:
         nonlocal finished
-        while not stop.is_set():
-            try:
-                group = queue_of_groups.get_nowait()
-            except queue.Empty:
-                return
-            answers, clean = run_group_in(root, group, labels, scratch, number)
-            with lock:
-                verdicts.update(answers)
-                finished += 1
-                if finished % 25 == 0 or finished == len(groups):
-                    print(f"  mutation_check: {finished}/{len(groups)} test groups done", file=sys.stderr, flush=True)
-            if not clean:  # a worker killed in the middle of a mutation leaves the file mutated: start from a fresh copy
-                shutil.rmtree(root, ignore_errors=True)
-                copy_tree(names, root)
+        try:
+            while not stop.is_set():
+                try:
+                    group = queue_of_groups.get_nowait()
+                except queue.Empty:
+                    return
+                answers, clean = run_group_in(root, group, labels, scratch, number)
+                with lock:
+                    verdicts.update(answers)
+                    finished += 1
+                    if finished % 25 == 0 or finished == len(groups):
+                        print(f"  mutation_check: {finished}/{len(groups)} test groups done", file=sys.stderr, flush=True)
+                if not clean:  # a worker killed in the middle of a mutation leaves the file mutated: start from a fresh copy
+                    shutil.rmtree(root, ignore_errors=True)
+                    copy_tree(names, root)
+        except BaseException:
+            stop.set()  # a failing worker stops the others at once, whichever future the caller happens to be waiting on
+            raise
 
     workers = max(1, min(jobs, len(groups)))
     # Below RUNNER_TEMP where the Actions runner sets it: the runner empties that folder between jobs, which also

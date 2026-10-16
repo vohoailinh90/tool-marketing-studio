@@ -71,9 +71,13 @@ mutations:
   find: 'dir=os.environ.get("RUNNER_TEMP") or None'
   replace: 'dir=None'
   test: tests.test_mutation_check.ParallelTests.test_the_tree_copies_go_below_runner_temp_when_the_runner_sets_it
-- label: a failing run does not stop the other workers
+- label: an interrupt of the caller does not stop the workers
   find: "                stop.set()\n"
   replace: "                pass\n"
+  test: tests.test_mutation_check.ParallelTests.test_an_interrupt_of_the_caller_stops_the_workers_from_taking_new_groups
+- label: a failing worker does not stop the others until the caller reaches its future
+  find: "            stop.set()  # a failing worker stops the others at once, whichever future the caller happens to be waiting on\n"
+  replace: "            pass\n"
   test: tests.test_mutation_check.ParallelTests.test_a_worker_that_fails_stops_the_others_from_taking_new_groups
 - label: a copy a dead worker may have left mutated is used again
   find: "                copy_tree(names, root)\n"

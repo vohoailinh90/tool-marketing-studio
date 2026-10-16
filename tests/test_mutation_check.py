@@ -453,21 +453,42 @@ class ParallelTests(unittest.TestCase):
         self.assertTrue(seen and all(runner_temp in path.parents for path in seen), seen)
         self.assertEqual([], list(runner_temp.iterdir()), "and they are removed again")
 
-    def test_a_worker_that_fails_stops_the_others_from_taking_new_groups(self) -> None:
-        repo = self.repo()
+    def run_with_fake_groups(self, repo: Path, fake) -> None:
         self.manifest(repo, "many.yaml", [("VALUE = 1", f"VALUE = {n}", f"tests.test_thing.Good.test_{n}") for n in range(8)])
+        self.main(repo, self.path(repo, "many.yaml"), "--jobs", "2")
+
+    def test_a_worker_that_fails_stops_the_others_from_taking_new_groups(self) -> None:
+        for failing in (0, 1):  # the caller waits for worker 0 first, so a failure of worker 1 must not wait behind it
+            with self.subTest(failing_worker=failing):
+                repo = self.repo(f"failing-{failing}")
+                calls: list[int] = []
+
+                def fake(root: Path, group: list, labels: dict, scratch: Path, number: int):
+                    calls.append(number)
+                    if number == failing:
+                        raise RuntimeError("a worker fails")
+                    time.sleep(0.3)
+                    return {unit: ("caught", labels[unit], "t") for unit in group}, True
+
+                with mock.patch.object(mutation_check, "run_group_in", fake), self.assertRaises(RuntimeError):
+                    self.run_with_fake_groups(repo, fake)
+                self.assertLessEqual(len(calls), 4, f"the other worker went on through the queue: {calls}")
+
+    def test_an_interrupt_of_the_caller_stops_the_workers_from_taking_new_groups(self) -> None:
+        repo = self.repo()
         calls: list[int] = []
 
         def fake(root: Path, group: list, labels: dict, scratch: Path, number: int):
             calls.append(number)
-            if number == 0:
-                raise RuntimeError("the first worker fails")
             time.sleep(0.3)
             return {unit: ("caught", labels[unit], "t") for unit in group}, True
 
-        with mock.patch.object(mutation_check, "run_group_in", fake), self.assertRaises(RuntimeError):
-            self.main(repo, self.path(repo, "many.yaml"), "--jobs", "2")
-        self.assertLessEqual(len(calls), 4, f"the other worker went on through the queue: {calls}")
+        with mock.patch.object(mutation_check, "run_group_in", fake), \
+                mock.patch.object(mutation_check.concurrent.futures.Future, "result", side_effect=KeyboardInterrupt), \
+                self.assertRaises(KeyboardInterrupt):
+            self.run_with_fake_groups(repo, fake)
+        self.assertLessEqual(len(calls), 4, f"the workers went on through the queue: {calls}")
+        self.assertEqual([], list(self.scratch_root.iterdir()), "and the copies are removed")
 
     def test_the_copy_of_a_worker_that_did_not_end_cleanly_is_made_again(self) -> None:
         repo = self.repo(script=self.STUBS["a worker that dies"])

@@ -91,7 +91,7 @@
     },
     {
       "id": "depth-limits-history-not-refs",
-      "claim_vi": "--depth giới hạn số commit lấy từ đầu mỗi nhánh được lấy, không giới hạn số nhánh; vì vậy với refspec mặc định trên kho nhiều nhánh, clone nông một mình ít cắt được lượng tải.",
+      "claim_vi": "Với git fetch, --depth giới hạn số commit lấy từ đầu mỗi nhánh được lấy, không giới hạn số nhánh; vì vậy với refspec mặc định trên kho nhiều nhánh, giới hạn độ sâu một mình có thể ít cắt được lượng tải (nhiều hay ít tùy độ dài của các nhánh).",
       "source": "https://git-scm.com/docs/git-fetch",
       "verified_by": "Chạy cục bộ: --depth=50 mọi nhánh 4.720 object so với 4.860 object không --depth (nhánh thử chỉ có 5 commit riêng); chỉ lấy master còn 220 object. Kết quả phụ thuộc kho thử và không tái hiện số của Pinterest."
     },

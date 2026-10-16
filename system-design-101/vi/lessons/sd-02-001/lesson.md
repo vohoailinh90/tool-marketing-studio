@@ -19,7 +19,7 @@
 
 ## Giới hạn cần nhớ
 
-Nguồn là bản tóm tắt ngắn, hầu như không có số đo, và bài gốc của Figma chưa được mở để đối chiếu; đừng xem đây là mô tả đầy đủ cách Figma làm. Ba bậc là thứ tự phổ biến chứ không phải luật: nhiều hệ thống ở lại bậc 1 hoặc 2 rất lâu, vì chia sớm là mua phức tạp sớm: ghép bảng và giao dịch xuyên cơ sở dữ liệu khó hơn, truy vấn không mang khóa chia phải hỏi mọi mảnh, và đổi cách chia về sau tốn công. Cũng đừng nhầm tên: nguồn gọi bậc 3 là *horizontal partitioning*, nhiều tài liệu gọi việc rải hàng ra nhiều máy là *sharding*, còn "partitioning" trong tài liệu Postgres là chia một bảng thành nhiều phần *trong cùng một máy chủ*.
+Nguồn là bản tóm tắt ngắn, hầu như không có số đo, và bài gốc của Figma chưa được mở để đối chiếu; đừng xem đây là mô tả đầy đủ cách Figma làm. Ba bậc là thứ tự phổ biến chứ không phải luật: nhiều hệ thống ở lại bậc 1 hoặc 2 rất lâu, vì chia sớm là mua phức tạp sớm: ghép bảng và giao dịch xuyên cơ sở dữ liệu khó hơn, truy vấn không mang khóa chia phải hỏi mọi mảnh, và đổi cách chia về sau tốn công. Cũng đừng nhầm tên: nguồn gọi bậc 3 là *horizontal partitioning*, nhiều tài liệu gọi việc rải hàng ra nhiều máy là *sharding*, còn "partitioning" trong tài liệu Postgres là chia một bảng thành các *partition*: thường là bảng cục bộ trong cùng một máy chủ, nhưng một partition cũng có thể là bảng ngoài trỏ sang máy khác (xem mục "Xem sâu hơn"), nên chỉ riêng từ này chưa cho biết dữ liệu nằm ở đâu.
 
 ## Nhìn hình thử trả lời
 
@@ -28,7 +28,7 @@ Nguồn là bản tóm tắt ngắn, hầu như không có số đo, và bài g�
 <details>
 <summary>Xem đáp án</summary>
 
-Bậc 1: thêm bản sao đọc và bộ gom kết nối, vì thứ cần chia là việc đọc, chưa cần đổi cách tổ chức dữ liệu. Bản sao nhận dữ liệu từ máy chính sau một khoảng trễ nên người dùng có thể thấy dữ liệu cũ. Cách thường dùng để tránh: ngay sau một lượt ghi, đọc từ máy chính trong một khoảng ngắn, hoặc chỉ đưa sang bản sao những truy vấn chấp nhận được dữ liệu hơi cũ.
+Bậc 1: thêm bản sao đọc và bộ gom kết nối, vì thứ cần chia là việc đọc, chưa cần đổi cách tổ chức dữ liệu. Bản sao thường nhận thay đổi chậm hơn máy chính một chút (mặc định máy chính không chờ bản sao), nên người dùng có thể thấy dữ liệu cũ. Cách thường dùng để tránh: ngay sau một lượt ghi, đọc từ máy chính trong một khoảng ngắn, hoặc chỉ đưa sang bản sao những truy vấn chấp nhận được dữ liệu hơi cũ.
 
 </details>
 
@@ -40,8 +40,8 @@ Các điểm dưới đây được người biên soạn chạy thử trên Pos
 - **Vì sao cần bộ gom kết nối:** Postgres dùng một tiến trình hệ điều hành cho mỗi kết nối của client. Mở 20 phiên cùng lúc cho ra đúng 20 tiến trình phục vụ, so với 0 lúc nghỉ. Bộ gom kết nối cho nhiều kết nối của ứng dụng dùng chung một số ít kết nối thật tới cơ sở dữ liệu.
 - **Bản sao chỉ đọc và độ trễ:** ghi vào bản sao bị từ chối với `cannot execute INSERT in a read-only transaction`. Cấu hình mặc định không bắt máy chính chờ bản sao, nên bản sao có thể chậm hơn. Khi tạm dừng việc áp dụng thay đổi ở bản sao để dựng tình huống trễ, máy chính có 2 hàng còn bản sao vẫn thấy 1; cho chạy lại thì bản sao có đủ 2. Đây là tình huống dựng, không phải phép đo độ trễ thật.
 - **Ghép xuyên cơ sở dữ liệu:** gọi thẳng tên bảng của một cơ sở dữ liệu khác bị từ chối với `cross-database references are not implemented`, trong khi hai bảng cùng một cơ sở dữ liệu ghép bình thường. Có đường vòng: với tiện ích mở rộng `postgres_fdw` (hoặc `dblink`), một câu lệnh vẫn ghép được bảng của cơ sở dữ liệu khác; kế hoạch thực thi lúc đó có bước `Foreign Scan`, tức dữ liệu được lấy qua một kết nối thay vì đọc trực tiếp. Vì vậy chia theo bảng không làm phép ghép bất khả thi, mà bắt nó đi qua cầu nối; theo suy luận của bài, việc đó thêm một chặng và thêm chỗ để hỏng so với ghép trong cùng cơ sở dữ liệu.
-- **Dọn dẹp:** khi cập nhật một hàng, Postgres giữ cả phiên bản cũ cho tới khi dọn. Với 200.000 hàng, cập nhật mỗi hàng một lần cho ra 200.000 phiên bản chết và tệp dữ liệu to gấp đôi (từ hơn 7 lên hơn 14 megabyte); sau `VACUUM` số phiên bản chết về 0 nhưng tệp không nhỏ lại, chỗ trống chỉ để dùng lại. Bảng càng lớn thì việc dọn càng tốn.
-- **Chia bảng trong một máy:** `PARTITION BY HASH` tạo các bảng con trong cùng một cơ sở dữ liệu trên cùng một máy chủ; nó không rải dữ liệu ra nhiều máy.
+- **Dọn dẹp:** khi cập nhật một hàng, Postgres giữ cả phiên bản cũ cho tới khi dọn. Với 200.000 hàng, cập nhật mỗi hàng một lần cho ra 200.000 phiên bản chết và tệp dữ liệu to gấp đôi (từ hơn 7 lên hơn 14 megabyte); sau `VACUUM` số phiên bản chết về 0 nhưng tệp không nhỏ lại trong thử nghiệm này: `VACUUM` thường chỉ đánh dấu chỗ trống để dùng lại. Bảng càng lớn thì việc dọn thường càng tốn.
+- **Partition và vị trí của dữ liệu:** `PARTITION BY HASH` (hay `LIST`) chia một bảng thành các bảng con. Với bảng con thường, chúng nằm trong cùng một cơ sở dữ liệu trên cùng một máy chủ. Nhưng một partition có thể là bảng ngoài qua `postgres_fdw`: thử với một cụm Postgres thứ hai làm "máy khác", `INSERT` vào bảng cha đưa đúng các hàng sang máy kia (đếm trực tiếp ở máy đó thấy 2 hàng) và kế hoạch có bước `Foreign Scan`. Vì vậy partition là cách chia một bảng thành nhiều phần; phần nào nằm trên máy nào là tùy từng partition.
 
 Con số trong thử nghiệm chỉ minh họa; hiệu năng thật phụ thuộc phần cứng, cấu hình và tải.
 

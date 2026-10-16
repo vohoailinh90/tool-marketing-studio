@@ -11,11 +11,11 @@
 
 ## Đọc hình
 
-1. **Sự kiện ở ứng dụng A.** Mọi quy tắc bắt đầu từ một việc xảy ra trong một ứng dụng: có email mới, có dòng mới trong bảng tính, có đơn hàng mới.
-2. **Trigger (điều kiện kích hoạt).** Nền tảng phải biết sự kiện đã xảy ra, và có hai cách phổ biến. *Polling*: nền tảng hỏi API của A theo chu kỳ "có gì mới không?"; đơn giản, nhưng trễ tối đa một chu kỳ hỏi. *Webhook*: A tự gọi tới một địa chỉ web do nền tảng cấp mỗi khi có sự kiện; gần như tức thì, nhưng A phải hỗ trợ.
+1. **Sự kiện ở ứng dụng A.** Phần lớn quy tắc bắt đầu từ một việc xảy ra trong một ứng dụng: có email mới, có dòng mới trong bảng tính, có đơn hàng mới (cũng có trigger theo lịch, như "mỗi sáng thứ hai").
+2. **Trigger (điều kiện kích hoạt).** Nền tảng phải biết sự kiện đã xảy ra, và có hai cách phổ biến. *Polling*: nền tảng hỏi API của A theo chu kỳ "có gì mới không?"; đơn giản, nhưng trễ cỡ một chu kỳ hỏi. *Webhook*: A tự gọi tới một địa chỉ web do nền tảng cấp mỗi khi có sự kiện; thường gần như tức thì, nhưng A phải hỗ trợ.
 3. **Lọc và ghép trường.** Nền tảng kiểm điều kiện ("chỉ khi tiêu đề có chữ hóa đơn"), rồi chuyển các trường của sự kiện sang ô nhập của bước sau ("người gửi" thành "tên khách").
 4. **Action (hành động).** Nền tảng gọi API của ứng dụng B để làm việc thay bạn: tạo một dòng, gửi một tin, tạo một thẻ. Quyền để gọi thường do bạn cấp một lần, qua OAuth, khi nối tài khoản. Một quy tắc có thể có nhiều action nối tiếp.
-5. **Cái giá.** Khung này do bài bổ sung, không có trong nguồn: trễ do polling, báo trùng khi một bước bị thử lại, lỗi giữa chừng không tự quay lui, và giới hạn số lời gọi của ứng dụng B.
+5. **Cái giá.** Khung này do bài bổ sung, không có trong nguồn: trễ do polling, báo trùng khi một bước bị thử lại, lỗi giữa chừng thường không tự quay lui, và giới hạn số lời gọi của ứng dụng B.
 
 ## Giới hạn cần nhớ
 
@@ -28,7 +28,7 @@ Quy tắc: "khi có email kèm tệp, lưu tệp vào kho lưu trữ rồi báo 
 <details>
 <summary>Xem đáp án</summary>
 
-Hai hiện tượng chính. Một là trễ: tin báo đến muộn tới một chu kỳ hỏi; nếu ứng dụng email hỗ trợ webhook thì chọn trigger kiểu đó. Hai là trùng: nếu lần gửi đầu thực ra đã tới nơi nhưng nền tảng không nhận được xác nhận, lần thử lại báo thêm một tin nữa; giảm bằng cách ghi lại "đã xử lý email này" và kiểm trước khi gửi, hoặc dùng khóa chống trùng nếu ứng dụng đích có hỗ trợ. Ngoài ra, nếu bước lưu tệp đã xong mà bước báo hỏng hẳn thì tệp vẫn nằm đó và không ai được báo, vì nền tảng không tự quay lui.
+Hai hiện tượng chính. Một là trễ: tin báo có thể đến muộn cỡ một chu kỳ hỏi; nếu ứng dụng email hỗ trợ webhook thì chọn trigger kiểu đó. Hai là trùng: nếu lần gửi đầu thực ra đã tới nơi nhưng nền tảng không nhận được xác nhận, lần thử lại báo thêm một tin nữa; giảm bằng cách ghi lại "đã xử lý email này" và kiểm trước khi gửi, hoặc dùng khóa chống trùng nếu ứng dụng đích có hỗ trợ. Ngoài ra, nếu bước lưu tệp đã xong mà bước báo hỏng hẳn thì tệp vẫn nằm đó và không ai được báo, vì nền tảng thường không tự quay lui.
 
 </details>
 
@@ -39,7 +39,7 @@ Các điểm dưới đây là kiến thức chung về mô hình này, chưa đ
 
 - **Tên gọi:** Zapier gọi một quy tắc là *Zap*, If This Then That gọi là *applet*; cả hai đều xoay quanh một trigger và một hoặc nhiều action.
 - **Polling cần nhớ, webhook cần chịu lặp:** để không báo lại mục cũ, nền tảng phải nhớ mục đã thấy. Với webhook thì ngược lại: ứng dụng nguồn có thể gửi lại cùng một sự kiện nếu không nhận được xác nhận, nên bước đầu cần chịu được sự kiện lặp.
-- **OAuth:** ứng dụng B không đưa mật khẩu cho nền tảng mà cấp một token có phạm vi, chỉ làm được những việc đã cho phép. Token thu hồi được hay không và hết hạn lúc nào là do nhà cung cấp quyết định: có một chuẩn riêng mô tả cách thu hồi token, nhưng việc hỗ trợ tùy nhà cung cấp, và token đã cấp có thể còn dùng được tới khi hết hạn. Nền tảng giữ token của bạn nên là một điểm cần tin cậy; hãy cấp phạm vi nhỏ nhất đủ dùng và xem nhà cung cấp có cho thu hồi quyền hay không.
+- **OAuth:** với OAuth, ứng dụng B không đưa mật khẩu cho nền tảng mà cấp một token có phạm vi, chỉ làm được những việc đã cho phép. Token thu hồi được hay không và hết hạn lúc nào là do nhà cung cấp quyết định: có một chuẩn riêng mô tả cách thu hồi token, nhưng việc hỗ trợ tùy nhà cung cấp, và token đã cấp có thể còn dùng được tới khi hết hạn. Nền tảng giữ token của bạn nên là một điểm cần tin cậy; hãy cấp phạm vi nhỏ nhất đủ dùng và xem nhà cung cấp có cho thu hồi quyền hay không.
 - **Vòng lặp:** nếu action ở B tự nó là sự kiện kích trigger ở A, quy tắc có thể gọi lại chính mình mãi. Thêm điều kiện lọc để bỏ qua mục do chính quy tắc tạo ra.
 - **Giới hạn của ứng dụng đích:** API của B thường giới hạn số lời gọi trong một khoảng thời gian; gọi dồn có thể bị từ chối, và việc thử lại sau đó là một lý do nữa dẫn tới trùng.
 

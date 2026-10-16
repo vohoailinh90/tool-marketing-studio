@@ -91,7 +91,7 @@
     },
     {
       "id": "operational-costs",
-      "claim_vi": "Quy tắc nhiều bước chịu trễ do polling, báo trùng khi thử lại, lỗi giữa chừng không tự quay lui, vòng lặp giữa hai ứng dụng và giới hạn số lời gọi của ứng dụng đích.",
+      "claim_vi": "Quy tắc nhiều bước chịu trễ do polling, báo trùng khi thử lại, lỗi giữa chừng thường không tự quay lui, vòng lặp giữa hai ứng dụng và giới hạn số lời gọi của ứng dụng đích.",
       "sources": [
         "https://help.zapier.com/",
         "https://help.ifttt.com/"

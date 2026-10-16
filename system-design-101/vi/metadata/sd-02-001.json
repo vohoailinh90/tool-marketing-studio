@@ -42,7 +42,7 @@
     "claims": {
       "status": "checked",
       "checked_on": "2026-10-16",
-      "evidence": "Đã đọc body nguồn ghim. Hành vi của Postgres 16.15 (gói Ubuntu, chạy cục bộ qua socket Unix, tắt autovacuum) được chạy thử ngày 2026-10-16: 20 phiên đồng thời cho ra 20 tiến trình phục vụ (0 lúc nghỉ); gọi thẳng tên bảng của cơ sở dữ liệu khác bị từ chối với 'cross-database references are not implemented' còn hai bảng cùng cơ sở dữ liệu ghép bình thường, nhưng với postgres_fdw một câu lệnh ghép được bảng của cơ sở dữ liệu khác (kế hoạch có bước Foreign Scan) và dblink đọc được bảng đó; bản sao dựng bằng pg_basebackup -R -X stream ở chế độ recovery, ghi vào bản sao bị từ chối ('cannot execute INSERT in a read-only transaction'), synchronous_standby_names rỗng, và khi tạm dừng áp dụng thay đổi ở bản sao thì máy chính có 2 hàng còn bản sao thấy 1 (độ trễ được dựng chứ không đo); bảng PARTITION BY HASH cho ra các bảng con cùng cơ sở dữ liệu; 200.000 hàng sau một lượt cập nhật có 200.000 phiên bản chết, tệp dữ liệu từ 7.080 lên 14.160 KiB, sau VACUUM số phiên bản chết về 0 và tệp không nhỏ lại. KHÔNG kiểm chứng: câu chuyện và con số của Figma (chỉ có bản tóm tắt thứ cấp, bài gốc chưa mở), Amazon RDS, PgBouncer (không cài trên máy biên soạn), DBProxy, chia hàng ra nhiều máy, độ trễ sao chép dưới tải thật. Không trang tài liệu PostgreSQL, PgBouncer hay Figma nào mở được từ máy biên soạn."
+      "evidence": "Đã đọc body nguồn ghim. Hành vi của Postgres 16.15 (gói Ubuntu, chạy cục bộ qua socket Unix, tắt autovacuum) được chạy thử ngày 2026-10-16: 20 phiên đồng thời cho ra 20 tiến trình phục vụ (0 lúc nghỉ); gọi thẳng tên bảng của cơ sở dữ liệu khác bị từ chối với 'cross-database references are not implemented' còn hai bảng cùng cơ sở dữ liệu ghép bình thường, nhưng với postgres_fdw một câu lệnh ghép được bảng của cơ sở dữ liệu khác (kế hoạch có bước Foreign Scan) và dblink đọc được bảng đó; bản sao dựng bằng pg_basebackup -R -X stream ở chế độ recovery, ghi vào bản sao bị từ chối ('cannot execute INSERT in a read-only transaction'), synchronous_standby_names rỗng, và khi tạm dừng áp dụng thay đổi ở bản sao thì máy chính có 2 hàng còn bản sao thấy 1 (độ trễ được dựng chứ không đo); bảng PARTITION BY HASH cho ra các bảng con cùng cơ sở dữ liệu, còn một partition là bảng ngoài (postgres_fdw) trỏ sang cụm Postgres thứ hai (thư mục dữ liệu khác) nhận đúng các hàng được định tuyến tới nó (2 hàng, đếm trực tiếp ở máy kia) và kế hoạch có Foreign Scan; 200.000 hàng sau một lượt cập nhật có 200.000 phiên bản chết, tệp dữ liệu từ 7.080 lên 14.160 KiB, sau VACUUM số phiên bản chết về 0 và tệp không nhỏ lại. KHÔNG kiểm chứng: câu chuyện và con số của Figma (chỉ có bản tóm tắt thứ cấp, bài gốc chưa mở), Amazon RDS, PgBouncer (không cài trên máy biên soạn), DBProxy và cách Figma chia hàng ra nhiều máy, độ trễ sao chép dưới tải thật. Không trang tài liệu PostgreSQL, PgBouncer hay Figma nào mở được từ máy biên soạn."
     },
     "technical_review": {
       "status": "pending",
@@ -100,10 +100,13 @@
       "verified_by": "Chạy Postgres 16.15 cục bộ: lỗi 'cross-database references are not implemented' khi gọi thẳng; hai bảng cùng cơ sở dữ liệu ghép bình thường; với postgres_fdw (máy chủ ngoài trỏ tới cơ sở dữ liệu kia) một câu JOIN trả đúng kết quả và kế hoạch có Foreign Scan; dblink trả đúng hàng. Chi phí và độ tin cậy của cầu nối là suy luận của bài, chưa đo; trang tài liệu chưa mở được."
     },
     {
-      "id": "partitioning-single-server",
-      "claim_vi": "Partitioning khai báo của Postgres chia một bảng thành các bảng con trong cùng cơ sở dữ liệu và cùng máy chủ; nó không rải dữ liệu ra nhiều máy.",
-      "source": "https://www.postgresql.org/docs/current/ddl-partitioning.html",
-      "verified_by": "Chạy cục bộ: bảng PARTITION BY HASH có hai bảng con cùng cơ sở dữ liệu (pg_inherits); trang tài liệu chưa mở được."
+      "id": "partitioning-local-or-foreign",
+      "claim_vi": "Partitioning khai báo của Postgres chia một bảng thành các partition; partition thường là bảng cục bộ cùng cơ sở dữ liệu và máy chủ, nhưng cũng có thể là bảng ngoài trỏ sang máy khác qua postgres_fdw, nên bản thân partitioning không cho biết dữ liệu nằm ở đâu.",
+      "sources": [
+        "https://www.postgresql.org/docs/current/ddl-partitioning.html",
+        "https://www.postgresql.org/docs/16/postgres-fdw.html"
+      ],
+      "verified_by": "Chạy cục bộ: bảng PARTITION BY HASH có hai bảng con cùng cơ sở dữ liệu (pg_inherits); với một cụm Postgres thứ hai (thư mục dữ liệu khác), partition là bảng ngoài nhận các hàng được định tuyến (2 hàng đếm trực tiếp ở máy kia) và kế hoạch có Foreign Scan; trang tài liệu chưa mở được."
     },
     {
       "id": "vacuum-dead-versions",

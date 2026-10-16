@@ -97,9 +97,9 @@
     },
     {
       "id": "protocol-v2-ls-refs-prefix",
-      "claim_vi": "Với giao thức v2, client gửi ls-refs kèm ref-prefix và server chỉ liệt kê tham chiếu khớp, nên nhánh cũ trên máy chủ không ảnh hưởng tới client có refspec hẹp.",
+      "claim_vi": "Với giao thức v2, client gửi ls-refs kèm ref-prefix; tài liệu coi đây là tối ưu hóa nên server có thể trả thêm tham chiếu không khớp. Ở Git 2.43.0 (cả hai đầu) server chỉ trả tham chiếu khớp, và client không yêu cầu tải đối tượng của nhánh nằm ngoài refspec.",
       "source": "https://git-scm.com/docs/gitprotocol-v2",
-      "verified_by": "Chạy Git 2.43.0 cục bộ qua file:// với GIT_TRACE_PACKET: refspec chỉ master -> ref-prefix refs/heads/master, server trả 1 tham chiếu; refspec mọi nhánh -> ref-prefix refs/heads/, 301 tham chiếu. Chỉ đo số tham chiếu được liệt kê, không đo thời gian; trang tài liệu chưa mở được."
+      "verified_by": "Chạy Git 2.43.0 cục bộ qua file:// (client và server cùng là Git 2.43.0) với GIT_TRACE_PACKET: refspec chỉ master -> ref-prefix refs/heads/master, server trả 1 tham chiếu; refspec mọi nhánh -> ref-prefix refs/heads/, 301 tham chiếu. Chỉ chứng minh hành vi của cài đặt này, không phải bảo đảm của giao thức (ref-prefix là tối ưu hóa); không đo thời gian; trang tài liệu chưa mở được."
     },
     {
       "id": "clone-depth-single-branch",

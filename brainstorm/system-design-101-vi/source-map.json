@@ -423,11 +423,11 @@
         },
         {
           "id": "sd-01-042",
-          "title_vi": null,
+          "title_vi": "API gateway: chọn đích, áp chính sách",
           "title_source": "What Does an API Gateway Do?",
           "source_url": "https://bytebytego.com/guides/what-does-api-gateway-do",
           "source_path": "data/guides/what-does-api-gateway-do.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "e96f8daaacaf2b18e4f83c09b144b527171b5e33",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-does-api-gateway-do.md"
         },

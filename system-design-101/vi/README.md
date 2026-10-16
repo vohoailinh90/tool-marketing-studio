@@ -55,7 +55,7 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 2. [Gõ google.com vào trình duyệt thì chuyện gì xảy ra?](lessons/sd-05-002/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 3. [Một URL biến thành yêu cầu HTTP thế nào?](lessons/sd-05-003/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 4. [Làm tốt phỏng vấn thiết kế hệ thống: bảy bước](lessons/sd-05-004/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
-5. [Tài liệu gợi ý để ôn phỏng vấn kỹ thuật](lessons/sd-05-005/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+5. [Ôn phỏng vấn kỹ thuật: từ danh sách tài liệu đến kế hoạch luyện](lessons/sd-05-005/lesson.md) — viết lại ngày 2026-10-16 để làm sâu (đọc và đếm trực tiếp ba tài liệu công khai); chờ review kỹ thuật.
 
 ## DevOps và CI/CD
 

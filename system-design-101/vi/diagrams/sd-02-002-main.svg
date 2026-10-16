@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 770" width="320" height="770" role="img" aria-labelledby="title desc">
+<title id="title">Nối hai ứng dụng bằng trigger và action</title>
+<desc id="desc">Năm khung nối tiếp nhau bằng mũi tên. Một: sự kiện xảy ra ở ứng dụng A, như email mới hoặc dòng mới trong bảng tính. Hai: trigger, nền tảng biết sự kiện bằng cách hỏi định kỳ hoặc nhờ ứng dụng A gọi webhook. Ba: lọc điều kiện và ghép trường của sự kiện vào ô nhập của bước sau. Bốn: action, nền tảng gọi API của ứng dụng B bằng quyền người dùng đã cấp. Năm: cái giá, gồm trễ, báo trùng, lỗi giữa chừng và giới hạn số lời gọi của ứng dụng B.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="770" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">NỐI ỨNG DỤNG</text>
+<text x="16" y="56" font-size="20" font-weight="bold">TRIGGER → ACTION</text>
+<text x="16" y="86" font-size="16" font-weight="normal">Khi A xảy ra thì làm B</text>
+<rect x="16" y="108" width="288" height="104" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="138" font-size="16" font-weight="bold">1 · Sự kiện ở ứng dụng A</text>
+<text x="30" y="165" font-size="16" font-weight="normal">Email mới, đơn mới,</text>
+<text x="30" y="192" font-size="16" font-weight="normal">dòng mới trong bảng</text>
+<path d="M160,213 L160,225" stroke="#475569" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+<rect x="16" y="226" width="288" height="104" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="256" font-size="16" font-weight="bold">2 · Trigger</text>
+<text x="30" y="283" font-size="16" font-weight="normal">Nền tảng hỏi định kỳ,</text>
+<text x="30" y="310" font-size="16" font-weight="normal">hoặc A gọi webhook</text>
+<path d="M160,331 L160,343" stroke="#475569" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+<rect x="16" y="344" width="288" height="104" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="374" font-size="16" font-weight="bold">3 · Lọc và ghép trường</text>
+<text x="30" y="401" font-size="16" font-weight="normal">Đúng điều kiện thì đi tiếp;</text>
+<text x="30" y="428" font-size="16" font-weight="normal">trường này vào ô kia</text>
+<path d="M160,449 L160,461" stroke="#475569" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+<rect x="16" y="462" width="288" height="104" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="492" font-size="16" font-weight="bold">4 · Action ở ứng dụng B</text>
+<text x="30" y="519" font-size="16" font-weight="normal">Nền tảng gọi API của B</text>
+<text x="30" y="546" font-size="16" font-weight="normal">bằng quyền bạn đã cấp</text>
+<path d="M160,567 L160,579" stroke="#475569" stroke-width="2" fill="none" marker-end="url(#arrow)"/>
+<rect x="16" y="580" width="288" height="104" rx="12" fill="#e2e8f0" stroke="#94a3b8"/>
+<text x="30" y="610" font-size="16" font-weight="bold">5 · Cái giá</text>
+<text x="30" y="637" font-size="16" font-weight="normal">Trễ, báo trùng, lỗi giữa</text>
+<text x="30" y="664" font-size="16" font-weight="normal">chừng, giới hạn của B</text>
+<text x="16" y="724" font-size="16" font-weight="normal">Dễ nối hơn viết code,</text>
+<text x="16" y="750" font-size="16" font-weight="normal">nhưng vẫn có chỗ hỏng.</text>
+</g></svg>

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 733" width="320" height="733" role="img" aria-labelledby="title desc">
+<title id="title">Mở rộng cơ sở dữ liệu Postgres qua ba bậc</title>
+<desc id="desc">Ba bậc mở rộng và một quy tắc. Bậc một: giữ một cơ sở dữ liệu, nâng máy lên, thêm bản sao chỉ đọc và bộ gom kết nối; cái giá là mọi lệnh ghi vẫn đi qua một máy chính. Bậc hai: chia theo bảng, đưa bảng nặng sang cơ sở dữ liệu riêng; cái giá là không còn ghép bảng hay giao dịch một lệnh giữa hai bên. Bậc ba: chia theo hàng, rải các hàng của một bảng ra nhiều máy và thêm lớp định tuyến; cái giá là truy vấn xuyên nhiều mảnh khó hơn nhiều. Quy tắc: leo bậc rẻ trước, chỉ leo tiếp khi bậc hiện tại hết đường.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="733" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">MỞ RỘNG POSTGRES</text>
+<text x="16" y="56" font-size="20" font-weight="bold">QUA BA BẬC</text>
+<text x="16" y="86" font-size="16" font-weight="normal">Ví dụ Figma, qua nguồn thứ cấp</text>
+<rect x="16" y="108" width="288" height="131" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="138" font-size="16" font-weight="bold">1 · Một máy, nhiều bản sao</text>
+<text x="30" y="165" font-size="16" font-weight="normal">Máy mạnh hơn, bản sao đọc,</text>
+<text x="30" y="192" font-size="16" font-weight="normal">bộ gom kết nối</text>
+<text x="30" y="219" font-size="16" font-weight="normal">Giá: ghi vẫn qua một máy</text>
+<rect x="16" y="253" width="288" height="131" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="283" font-size="16" font-weight="bold">2 · Chia theo bảng</text>
+<text x="30" y="310" font-size="16" font-weight="normal">Bảng nặng sang cơ sở</text>
+<text x="30" y="337" font-size="16" font-weight="normal">dữ liệu riêng</text>
+<text x="30" y="364" font-size="16" font-weight="normal">Giá: hết ghép bảng một lệnh</text>
+<rect x="16" y="398" width="288" height="131" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="428" font-size="16" font-weight="bold">3 · Chia theo hàng</text>
+<text x="30" y="455" font-size="16" font-weight="normal">Hàng của một bảng rải ra</text>
+<text x="30" y="482" font-size="16" font-weight="normal">nhiều máy, có lớp định tuyến</text>
+<text x="30" y="509" font-size="16" font-weight="normal">Giá: truy vấn xuyên mảnh khó</text>
+<rect x="16" y="543" width="288" height="104" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="573" font-size="16" font-weight="bold">Quy tắc</text>
+<text x="30" y="600" font-size="16" font-weight="normal">Bậc rẻ trước; chỉ leo tiếp</text>
+<text x="30" y="627" font-size="16" font-weight="normal">khi bậc này hết đường</text>
+<text x="16" y="687" font-size="16" font-weight="normal">Mỗi bậc mua thêm thời gian,</text>
+<text x="16" y="713" font-size="16" font-weight="normal">đổi lại bằng độ phức tạp.</text>
+</g></svg>

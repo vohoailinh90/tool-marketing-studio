@@ -28,3 +28,7 @@ Nhiều phiên Claude viết bài cùng lúc, nên `claims.jsonl` ghi từng tro
 Theo yêu cầu người dùng, viết nhóm cuối của mục lục nguồn trước; `next_id` giữ theo thứ tự source-map vì nhóm API chưa viết hết. Mười hai bài viết độc lập từ kiến thức và tiêu chuẩn kỹ thuật, sơ đồ tự thiết kế, không dùng ảnh nguồn. Đã đọc thân bài nguồn tại commit ghim và đối chiếu blob SHA; tiêu đề tiếng Việt được điền vào bảng đối chiếu.
 
 Chưa làm: kiểm chứng claim với tài liệu chuẩn (môi trường biên soạn không mở được rfc-editor.org, postgresql.org, mysql.com, man7.org), review kỹ thuật, kiểm tra mobile toàn bài trên trình duyệt (chữ trong sơ đồ được đo bằng công cụ tạm khi vẽ là vừa khung; repo chưa có kiểm tra tự động cho việc này), thử người học. Mọi bài ở trạng thái draft; không tự merge, deploy hay phê duyệt.
+
+## Đợt sd-02-001..003 (2026-10-16): Tình huống thực tế
+
+Theo yêu cầu người dùng, viết ba bài đầu của nhóm Tình huống thực tế (Figma mở rộng Postgres, nối ứng dụng bằng trigger và action, Pinterest và refspec) sau khi nhận bài bằng `claims.jsonl`. Bài viết độc lập, sơ đồ thiết kế mới, không dùng ảnh nguồn; thân ba bài nguồn đã đọc tại snapshot ghim và blob SHA khớp. Hành vi của Postgres 16.15 (sd-02-001) và của Git 2.43.0 (sd-02-003) được chạy thử cục bộ; các con số của Figma và Pinterest chỉ theo nguồn thứ cấp, và trang tài liệu chuẩn không mở được từ máy biên soạn. Chi tiết kiểm chứng và giới hạn ở `metadata/sd-02-001.json` đến `sd-02-003.json`; review kỹ thuật, thử người học chưa làm, và không tự deploy hay đăng bài.

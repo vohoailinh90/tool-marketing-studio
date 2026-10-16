@@ -40,7 +40,7 @@ mutations:
   replace: '            roots.append(ROOT)'
   test: tests.test_mutation_check.ParallelTests.test_the_real_tree_is_not_touched_and_the_workers_never_run_in_it
 - label: the tree copies are left behind
-  find: '    with tempfile.TemporaryDirectory(prefix="mutation-check-") as scratch_name:'
+  find: '    with tempfile.TemporaryDirectory(prefix="mutation-check-", dir=os.environ.get("RUNNER_TEMP") or None) as scratch_name:'
   replace: "    scratch_name = tempfile.mkdtemp(prefix=\"mutation-check-\")\n    if True:"
   test: tests.test_mutation_check.ParallelTests.test_the_tree_copies_are_removed_when_the_run_ends
 - label: a parallel run does not need a git checkout

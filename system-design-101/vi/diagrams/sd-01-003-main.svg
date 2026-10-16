@@ -1,44 +1,29 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1090" width="320" height="1090" role="img" aria-labelledby="title desc">
-<title id="title">Năm mã HTTP và trạng thái đăng ký</title>
-<desc id="desc">451 được đăng ký với ý nghĩa pháp lý. 218, 420, 530 chưa được IANA gán; Pantheon dùng riêng 530 Site Frozen. 418 giữ chỗ là Unused, có lịch sử từ RFC đùa.</desc>
-<rect width="320" height="1090" fill="#f8fafc"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 679" width="320" height="679" role="img" aria-labelledby="title desc">
+<title id="title">Máy khách đọc số, không đọc tên mã HTTP</title>
+<desc id="desc">Bốn khung. Một: chữ số đầu là lớp; 218 thuộc nhóm hai trăm nên được coi là thành công, còn 420, 418, 451 là lỗi phía bên gọi và 530 là lỗi phía máy chủ. Hai: tên không đi theo số; 218, 420 và 530 không có trong bảng tên của Python. Ba: danh sách liệt kê tường minh bỏ sót; thư viện được cấu hình thử lại 500, 502, 503 và 504 sẽ thử lại 500 nhưng không thử lại 530. Bốn: 429 kèm Retry-After khiến máy khách chờ rồi thử lại, còn 420 thì không. Kết quả đo một lần trên một máy.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="679" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
-<text x="16" y="30" font-size="21" font-weight="bold" fill="#0f172a">5 MÃ HTTP ĐẶC BIỆT</text>
-<text x="16" y="55" font-size="16" font-weight="normal" fill="#0f172a">Đọc số mã và trạng thái đăng ký.</text>
-<rect x="8" y="75" width="304" height="190" rx="14" fill="white" stroke="#cbd5e1"/>
-<rect x="18" y="93" width="80" height="67" rx="10" fill="#dcfce7"/>
-<text x="27" y="136" font-size="31" font-weight="bold" fill="#0f172a">451</text>
-<text x="109" y="118" font-size="17" font-weight="bold" fill="#0f172a">Unavailable For</text>
-<text x="109" y="143" font-size="17" font-weight="bold" fill="#0f172a">Legal Reasons</text>
-<rect x="18" y="173" width="284" height="35" rx="7" fill="#dcfce7"/>
-<text x="30" y="196" font-size="16" font-weight="bold" fill="#0f172a">IANA: đã đăng ký</text>
-<text x="22" y="238" font-size="16" font-weight="normal" fill="#0f172a">Từ chối do lý do pháp lý.</text>
-<rect x="8" y="275" width="304" height="190" rx="14" fill="white" stroke="#cbd5e1"/>
-<rect x="18" y="293" width="80" height="67" rx="10" fill="#e2e8f0"/>
-<text x="27" y="336" font-size="31" font-weight="bold" fill="#0f172a">218</text>
-<text x="109" y="318" font-size="17" font-weight="bold" fill="#0f172a">This Is Fine</text>
-<rect x="18" y="373" width="284" height="35" rx="7" fill="#e2e8f0"/>
-<text x="30" y="396" font-size="16" font-weight="bold" fill="#0f172a">IANA: chưa được gán</text>
-<text x="22" y="438" font-size="16" font-weight="normal" fill="#0f172a">Tên trong bài nguồn.</text>
-<rect x="8" y="475" width="304" height="190" rx="14" fill="white" stroke="#cbd5e1"/>
-<rect x="18" y="493" width="80" height="67" rx="10" fill="#e2e8f0"/>
-<text x="27" y="536" font-size="31" font-weight="bold" fill="#0f172a">420</text>
-<text x="109" y="518" font-size="17" font-weight="bold" fill="#0f172a">Enhance Your Calm</text>
-<rect x="18" y="573" width="284" height="35" rx="7" fill="#e2e8f0"/>
-<text x="30" y="596" font-size="16" font-weight="bold" fill="#0f172a">IANA: chưa được gán</text>
-<text x="22" y="638" font-size="16" font-weight="normal" fill="#0f172a">Chuẩn rate limit: 429.</text>
-<rect x="8" y="675" width="304" height="190" rx="14" fill="white" stroke="#cbd5e1"/>
-<rect x="18" y="693" width="80" height="67" rx="10" fill="#e2e8f0"/>
-<text x="27" y="736" font-size="31" font-weight="bold" fill="#0f172a">530</text>
-<text x="109" y="718" font-size="17" font-weight="bold" fill="#0f172a">Site Frozen</text>
-<rect x="18" y="773" width="284" height="35" rx="7" fill="#e2e8f0"/>
-<text x="30" y="796" font-size="16" font-weight="bold" fill="#0f172a">IANA: chưa được gán</text>
-<text x="22" y="838" font-size="16" font-weight="normal" fill="#0f172a">Pantheon: site đóng băng.</text>
-<rect x="8" y="875" width="304" height="190" rx="14" fill="white" stroke="#cbd5e1"/>
-<rect x="18" y="893" width="80" height="67" rx="10" fill="#ffedd5"/>
-<text x="27" y="936" font-size="31" font-weight="bold" fill="#0f172a">418</text>
-<text x="109" y="918" font-size="17" font-weight="bold" fill="#0f172a">I&#x27;m a Teapot</text>
-<rect x="18" y="973" width="284" height="35" rx="7" fill="#ffedd5"/>
-<text x="30" y="996" font-size="16" font-weight="bold" fill="#0f172a">IANA: giữ chỗ (Unused)</text>
-<text x="22" y="1038" font-size="16" font-weight="normal" fill="#0f172a">Lịch sử: RFC đùa.</text>
+<text x="16" y="30" font-size="20" font-weight="bold">MÃ HTTP LẠ</text>
+<text x="16" y="56" font-size="20" font-weight="bold">ĐỌC SỐ, KHÔNG ĐỌC TÊN</text>
+<text x="16" y="86" font-size="16" font-weight="normal">Một lần thử trên một máy</text>
+<rect x="16" y="108" width="288" height="131" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="138" font-size="16" font-weight="bold">1 · Chữ số đầu là lớp</text>
+<text x="30" y="165" font-size="16" font-weight="normal">218 → 2xx: coi là thành công</text>
+<text x="30" y="192" font-size="16" font-weight="normal">420, 418, 451 → lỗi (4xx)</text>
+<text x="30" y="219" font-size="16" font-weight="normal">530 → lỗi máy chủ (5xx)</text>
+<rect x="16" y="253" width="288" height="104" rx="12" fill="#e2e8f0" stroke="#94a3b8"/>
+<text x="30" y="283" font-size="16" font-weight="bold">2 · Tên không đi theo số</text>
+<text x="30" y="310" font-size="16" font-weight="normal">218, 420, 530 không có trong</text>
+<text x="30" y="337" font-size="16" font-weight="normal">bảng tên của Python</text>
+<rect x="16" y="371" width="288" height="104" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="401" font-size="16" font-weight="bold">3 · Danh sách bỏ sót</text>
+<text x="30" y="428" font-size="16" font-weight="normal">Thử lại [500,502,503,504]:</text>
+<text x="30" y="455" font-size="16" font-weight="normal">500 thử lại, 530 thì không</text>
+<rect x="16" y="489" width="288" height="104" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="519" font-size="16" font-weight="bold">4 · 429 khác 420</text>
+<text x="30" y="546" font-size="16" font-weight="normal">429 + Retry-After: chờ, thử lại</text>
+<text x="30" y="573" font-size="16" font-weight="normal">420: dừng sau một lần</text>
+<text x="16" y="633" font-size="16" font-weight="normal">Chọn mã chuẩn, đúng nhóm;</text>
+<text x="16" y="659" font-size="16" font-weight="normal">tên chỉ để người đọc.</text>
 </g></svg>

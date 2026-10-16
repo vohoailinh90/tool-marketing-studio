@@ -1,57 +1,32 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 1003" width="320" height="1003" role="img" aria-labelledby="title desc">
-<title id="title">Mười tám cổng mạng thường gặp</title>
-<desc id="desc">Sáu khung dọc chia mười tám cổng theo mục đích: truy cập từ xa gồm 22 SSH, 23 Telnet, 3389 RDP; web gồm 80 HTTP, 443 HTTPS; thư điện tử gồm 25 SMTP, 110 POP3, 143 IMAP; hạ tầng mạng gồm 53 DNS dùng UDP và TCP, 67 và 68 DHCPv4 dùng UDP, 123 NTP dùng UDP; chia sẻ tệp gồm 21 FTP, 139 NetBIOS, 445 SMB; cơ sở dữ liệu gồm 1521 Oracle, 3306 MySQL, 5432 PostgreSQL. Cổng mặc định là quy ước.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 770" width="320" height="770" role="img" aria-labelledby="title desc">
+<title id="title">Số cổng mạng và điều hệ điều hành làm với nó</title>
+<desc id="desc">Năm khung đo trên Linux. Một: cổng cùng giao thức vận chuyển mới tạo thành một chỗ nhận, nên TCP 53 và UDP 53 cùng tồn tại được còn hai TCP cùng số thì báo địa chỉ đang dùng. Hai: cổng dưới 1024 cần quyền, người dùng thường bind 80 bị từ chối nhưng 1024 thì được. Ba: máy khách mượn cổng tạm, Linux mặc định dùng dải 32768 đến 60999. Bốn: cổng TCP đóng từ chối ngay, còn UDP đóng thì socket chưa kết nối chỉ thấy hết giờ chờ, giống cổng UDP mở mà im lặng. Năm: một máy chủ web chạy trên cổng 3306 vẫn trả lời, vì số cổng không nói ai đang nghe. Kết quả đo một lần trên một máy.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="1003" fill="#f8fafc"/>
+<rect width="320" height="770" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="30" font-size="20" font-weight="bold">CỔNG MẠNG</text>
-<text x="16" y="60" font-size="16" font-weight="normal">Số chỉ tới một dịch vụ</text>
-<text x="16" y="90" font-size="16" font-weight="normal">trên một địa chỉ IP</text>
-<rect x="16" y="112" width="288" height="131" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
-<text x="30" y="142" font-size="16" font-weight="bold">Truy cập từ xa</text>
-<text x="30" y="169" font-size="16" font-weight="bold">22</text>
-<text x="100" y="169" font-size="16" font-weight="normal">SSH</text>
-<text x="30" y="196" font-size="16" font-weight="bold">23</text>
-<text x="100" y="196" font-size="16" font-weight="normal">Telnet</text>
-<text x="30" y="223" font-size="16" font-weight="bold">3389</text>
-<text x="100" y="223" font-size="16" font-weight="normal">RDP</text>
-<rect x="16" y="257" width="288" height="104" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
-<text x="30" y="287" font-size="16" font-weight="bold">Web</text>
-<text x="30" y="314" font-size="16" font-weight="bold">80</text>
-<text x="100" y="314" font-size="16" font-weight="normal">HTTP</text>
-<text x="30" y="341" font-size="16" font-weight="bold">443</text>
-<text x="100" y="341" font-size="16" font-weight="normal">HTTPS</text>
-<rect x="16" y="375" width="288" height="131" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
-<text x="30" y="405" font-size="16" font-weight="bold">Thư điện tử</text>
-<text x="30" y="432" font-size="16" font-weight="bold">25</text>
-<text x="100" y="432" font-size="16" font-weight="normal">SMTP</text>
-<text x="30" y="459" font-size="16" font-weight="bold">110</text>
-<text x="100" y="459" font-size="16" font-weight="normal">POP3</text>
-<text x="30" y="486" font-size="16" font-weight="bold">143</text>
-<text x="100" y="486" font-size="16" font-weight="normal">IMAP</text>
-<rect x="16" y="520" width="288" height="131" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
-<text x="30" y="550" font-size="16" font-weight="bold">Hạ tầng mạng</text>
-<text x="30" y="577" font-size="16" font-weight="bold">53</text>
-<text x="100" y="577" font-size="16" font-weight="normal">DNS (UDP và TCP)</text>
-<text x="30" y="604" font-size="16" font-weight="bold">67/68</text>
-<text x="100" y="604" font-size="16" font-weight="normal">DHCPv4 (UDP)</text>
-<text x="30" y="631" font-size="16" font-weight="bold">123</text>
-<text x="100" y="631" font-size="16" font-weight="normal">NTP (UDP)</text>
-<rect x="16" y="665" width="288" height="131" rx="12" fill="#e2e8f0" stroke="#94a3b8"/>
-<text x="30" y="695" font-size="16" font-weight="bold">Chia sẻ tệp</text>
-<text x="30" y="722" font-size="16" font-weight="bold">21</text>
-<text x="100" y="722" font-size="16" font-weight="normal">FTP</text>
-<text x="30" y="749" font-size="16" font-weight="bold">139</text>
-<text x="100" y="749" font-size="16" font-weight="normal">NetBIOS</text>
-<text x="30" y="776" font-size="16" font-weight="bold">445</text>
-<text x="100" y="776" font-size="16" font-weight="normal">SMB</text>
-<rect x="16" y="810" width="288" height="131" rx="12" fill="#fee2e2" stroke="#94a3b8"/>
-<text x="30" y="840" font-size="16" font-weight="bold">Cơ sở dữ liệu</text>
-<text x="30" y="867" font-size="16" font-weight="bold">1521</text>
-<text x="100" y="867" font-size="16" font-weight="normal">Oracle</text>
-<text x="30" y="894" font-size="16" font-weight="bold">3306</text>
-<text x="100" y="894" font-size="16" font-weight="normal">MySQL</text>
-<text x="30" y="921" font-size="16" font-weight="bold">5432</text>
-<text x="100" y="921" font-size="16" font-weight="normal">PostgreSQL</text>
-<text x="16" y="983" font-size="16" font-weight="normal">Cổng mặc định là quy ước.</text>
+<text x="16" y="56" font-size="20" font-weight="bold">HỆ ĐIỀU HÀNH ĐỌC SỐ</text>
+<text x="16" y="86" font-size="16" font-weight="normal">Đo một lần trên một máy Linux</text>
+<rect x="16" y="108" width="288" height="104" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="138" font-size="16" font-weight="bold">1 · Cổng + giao thức</text>
+<text x="30" y="165" font-size="16" font-weight="normal">TCP 53 và UDP 53 cùng có</text>
+<text x="30" y="192" font-size="16" font-weight="normal">Hai TCP cùng số: bị từ chối</text>
+<rect x="16" y="226" width="288" height="104" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="256" font-size="16" font-weight="bold">2 · Dưới 1024 cần quyền</text>
+<text x="30" y="283" font-size="16" font-weight="normal">Người dùng thường: 80 bị</text>
+<text x="30" y="310" font-size="16" font-weight="normal">từ chối, 1024 thì được</text>
+<rect x="16" y="344" width="288" height="104" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="374" font-size="16" font-weight="bold">3 · Cổng tạm của máy khách</text>
+<text x="30" y="401" font-size="16" font-weight="normal">Linux mặc định 32768–60999</text>
+<text x="30" y="428" font-size="16" font-weight="normal">(IANA: 49152–65535)</text>
+<rect x="16" y="462" width="288" height="104" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="492" font-size="16" font-weight="bold">4 · Đóng khác im lặng</text>
+<text x="30" y="519" font-size="16" font-weight="normal">TCP đóng: từ chối ngay</text>
+<text x="30" y="546" font-size="16" font-weight="normal">UDP: có thể chỉ hết giờ chờ</text>
+<rect x="16" y="580" width="288" height="104" rx="12" fill="#e2e8f0" stroke="#94a3b8"/>
+<text x="30" y="610" font-size="16" font-weight="bold">5 · Số không nói ai nghe</text>
+<text x="30" y="637" font-size="16" font-weight="normal">Máy chủ web trên cổng 3306</text>
+<text x="30" y="664" font-size="16" font-weight="normal">vẫn trả lời bình thường</text>
+<text x="16" y="724" font-size="16" font-weight="normal">Cổng là quy ước;</text>
+<text x="16" y="750" font-size="16" font-weight="normal">hệ điều hành chỉ biết số.</text>
 </g></svg>

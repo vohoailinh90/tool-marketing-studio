@@ -7,7 +7,7 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 
 1. [Polling ngắn, polling dài, SSE và WebSocket](lessons/sd-01-001/lesson.md) — có review tại repo cũ; chờ review tích hợp tại repo mới.
 2. [Ứng dụng thực tế của bộ cân bằng tải](lessons/sd-01-002/lesson.md) — có review tại repo cũ; chờ review tích hợp tại repo mới.
-3. [Năm mã trạng thái HTTP kỳ lạ](lessons/sd-01-003/lesson.md) — có review tại repo cũ; chờ review tích hợp tại repo mới.
+3. [Mã HTTP lạ: máy khách đọc số, không đọc tên](lessons/sd-01-003/lesson.md) — viết lại ngày 2026-10-16 để làm sâu (có thử nghiệm riêng); chờ review kỹ thuật.
 
 4. [gRPC hoạt động thế nào?](lessons/sd-01-004/lesson.md) — có review tại repo cũ; chờ review tích hợp tại repo mới.
 
@@ -20,7 +20,7 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 9. [Vì sao HTTP/2 nhanh hơn HTTP/1?](lessons/sd-01-009/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 10. [CSS là gì?](lessons/sd-01-010/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 11. [Các tình huống dùng bộ cân bằng tải](lessons/sd-01-011/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
-12. [18 cổng mạng thường gặp](lessons/sd-01-012/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+12. [Cổng mạng: 18 cổng quen thuộc và điều hệ điều hành làm với số cổng](lessons/sd-01-012/lesson.md) — viết lại ngày 2026-10-16 để làm sâu (có đo trên Linux); chờ review kỹ thuật.
 13. [Phân biệt WAN, LAN, PAN và MAN](lessons/sd-01-013/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
 14. [JavaScript hoạt động thế nào?](lessons/sd-01-014/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
 15. [8 gợi ý thiết kế API hiệu quả](lessons/sd-01-015/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.

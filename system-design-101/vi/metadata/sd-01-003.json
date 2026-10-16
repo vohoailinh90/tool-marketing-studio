@@ -1,6 +1,6 @@
 {
   "id": "sd-01-003",
-  "title_vi": "Năm mã trạng thái HTTP kỳ lạ",
+  "title_vi": "Mã HTTP lạ: máy khách đọc số, không đọc tên",
   "language": "vi",
   "kind": "reference",
   "content_status": "review",
@@ -21,12 +21,12 @@
     },
     "claims": {
       "status": "checked",
-      "checked_on": "2026-10-12",
-      "scope": "Registration status, 451/418/429 semantics and Pantheon usage. Source-only trivia explicitly qualified; not independently verified."
+      "checked_on": "2026-10-16",
+      "scope": "Hành vi của urllib, requests 2.34.2, urllib3 2.8.0, http.client (Python 3.13.16) và curl 8.5.0 trước 13 mã trạng thái trên máy chủ giả cục bộ; đọc RFC 9110 mục 15 và 15.5.19, RFC 6585 mục 4, RFC 7725 mục 3 (bản của nhóm HTTP trên GitHub), mã nguồn retry.py, models.py, client.py. Chưa thử trình duyệt, proxy, bộ cân bằng tải hay cổng API. IANA và Pantheon: chỉ lần đọc 2026-10-12. Chuyện Twitter 420 và 218 'This Is Fine' chỉ là lời nguồn."
     },
     "technical_review": {
       "status": "pending",
-      "reason": "integration_in_destination_repository"
+      "reason": "rewritten_2026_10_16_awaiting_review"
     },
     "mobile": {
       "status": "checked",
@@ -39,8 +39,8 @@
       "whole_lesson_no_horizontal_overflow": true,
       "text_outside_viewbox": false,
       "optional_sections_checked_open": true,
-      "checked_on": "2026-10-12",
-      "evidence": "Chromium whole lesson with SVG and optional sections open; screenshot at 320px visually inspected. Not learner testing."
+      "checked_on": "2026-10-16",
+      "evidence": "Chromium: hình và cả bài (Markdown dựng thành HTML, mục tùy chọn mở) ở 320, 375, 430 px; chữ hình hiệu dụng tối thiểu 14,4 px ở 320 px, không tràn ngang, không chữ ngoài viewBox. Không phải thử với người học."
     },
     "user_testing": {
       "status": "not_performed"
@@ -48,55 +48,85 @@
   },
   "claims": [
     {
-      "id": "registry",
-      "claim_vi": "451 đã đăng ký; 218, 420, 530 chưa được gán; 418 là Unused, được giữ chỗ.",
-      "source": "https://www.iana.org/assignments/http-status-codes",
-      "section": "HTTP Status Codes",
-      "result": "verified"
+      "id": "class-rule",
+      "claim_vi": "Máy khách phải hiểu lớp của mọi mã trạng thái theo chữ số đầu và coi mã không nhận ra như mã tròn trăm của lớp đó; giá trị ngoài 100–599 là không hợp lệ dù cài đặt hay dùng 600–999 cho báo lỗi nội bộ.",
+      "source": "https://httpwg.org/specs/rfc9110.html",
+      "section": "15",
+      "verified_by": "Đọc đoạn mở đầu mục 15 của RFC 9110 trong bản do nhóm HTTP lưu trên GitHub (httpwg/httpwg.github.io) ngày 2026-10-16; httpwg.org chưa mở được từ máy biên soạn."
     },
     {
-      "id": "451",
-      "claim_vi": "451 diễn đạt từ chối truy cập là hệ quả yêu cầu pháp lý.",
-      "source": "https://www.rfc-editor.org/rfc/rfc7725.html",
-      "section": "3",
-      "result": "verified"
+      "id": "class-behaviour",
+      "claim_vi": "Ở urllib, requests và curl --fail, mã lạ 420 và 530 cho kết quả giống 400 và 500, còn 218 được coi là thành công; biên 299 và 399 là thành công, 499 và 599 là lỗi.",
+      "source": "https://github.com/psf/requests/blob/v2.34.2/src/requests/models.py",
+      "section": "Response.ok, raise_for_status",
+      "verified_by": "Chạy máy chủ giả cục bộ (Python 3.13.16, requests 2.34.2, curl 8.5.0) ngày 2026-10-16 với 200, 218, 299, 399, 400, 418, 420, 429, 451, 499, 500, 530, 599; đọc mã nguồn models.py v2.34.2 (khoảng 400–499 và 500–599 mới ném lỗi)."
     },
     {
-      "id": "418",
-      "claim_vi": "418 có lịch sử từ RFC đùa, được giữ chỗ theo RFC 9110.",
-      "source": "https://www.rfc-editor.org/rfc/rfc9110.html",
-      "section": "15.5.19",
-      "result": "verified"
+      "id": "names",
+      "claim_vi": "Bảng tên http.HTTPStatus của Python 3.13 có 418, 429 và 451 nhưng không có 218, 420, 530; máy khách trả lại đúng phần chữ máy chủ gửi và xử lý theo số.",
+      "section": "parse_status line",
+      "verified_by": "Chạy http.HTTPStatus và http.client ngày 2026-10-16: reason rỗng khi máy chủ không gửi chữ; dòng 'HTTP/1.1 218 This Is Fine' cho status 218 và reason 'This Is Fine'. Đọc server.py v3.13.0: send_response_only gửi chữ rỗng khi mã không có trong bảng responses.",
+      "sources": [
+        "https://github.com/python/cpython/blob/v3.13.0/Lib/http/client.py",
+        "https://github.com/python/cpython/blob/v3.13.0/Lib/http/server.py"
+      ]
+    },
+    {
+      "id": "retry-list",
+      "claim_vi": "Cấu hình thử lại của urllib3 chỉ thử lại mã nằm trong status_forcelist, cộng 413, 429 và 503 khi phản hồi có Retry-After; với danh sách 500, 502, 503, 504 thì 500 được thử lại còn 530 thì không.",
+      "source": "https://github.com/urllib3/urllib3/blob/2.8.0/src/urllib3/util/retry.py",
+      "section": "Retry.is_retry",
+      "verified_by": "Đọc retry.py 2.8.0 (is_retry, RETRY_AFTER_STATUS_CODES) và chạy requests 2.34.2 với urllib3 2.8.0 ngày 2026-10-16: total=3, 500 nhận 4 yêu cầu, 530 và 599 nhận 1; 429 có Retry-After: 1 nhận 3 yêu cầu trong khoảng 2 giây, 429 không có Retry-After nhận 1, 420 nhận 1."
     },
     {
       "id": "429",
-      "claim_vi": "429 dùng cho quá nhiều yêu cầu trong khoảng thời gian.",
-      "source": "https://www.rfc-editor.org/rfc/rfc6585.html",
+      "claim_vi": "429 dùng cho quá nhiều yêu cầu trong khoảng thời gian (giới hạn tần suất) và có thể kèm Retry-After.",
+      "source": "https://httpwg.org/specs/rfc6585.html",
       "section": "4",
-      "result": "verified"
+      "verified_by": "Đọc mục 4 RFC 6585 trong bản do nhóm HTTP lưu trên GitHub ngày 2026-10-16."
+    },
+    {
+      "id": "451",
+      "claim_vi": "451 là mã đã đăng ký cho trường hợp máy chủ từ chối truy cập do yêu cầu pháp lý.",
+      "source": "https://httpwg.org/specs/rfc7725.html",
+      "section": "3",
+      "verified_by": "Đọc mục 3 RFC 7725 trong bản do nhóm HTTP lưu trên GitHub ngày 2026-10-16."
+    },
+    {
+      "id": "418",
+      "claim_vi": "418 xuất phát từ RFC đùa ngày Cá tháng Tư và được giữ chỗ (Unused) trong registry.",
+      "source": "https://httpwg.org/specs/rfc9110.html",
+      "section": "15.5.19",
+      "verified_by": "Đọc mục 15.5.19 RFC 9110 trong bản do nhóm HTTP lưu trên GitHub ngày 2026-10-16."
+    },
+    {
+      "id": "unassigned",
+      "claim_vi": "218, 420 và 530 chưa được IANA gán.",
+      "source": "https://www.iana.org/assignments/http-status-codes",
+      "verified_by": "Lần đọc registry ngày 2026-10-12 (lượt biên soạn trước); ngày 2026-10-16 trang IANA không mở được. Đối chiếu phụ: danh sách codes.json của jshttp/statuses (tổng hợp từ registry cùng nguồn Node.js, NGINX, Apache) không có 218, 420, 530; có 418, 429, 451."
     },
     {
       "id": "530",
       "claim_vi": "Pantheon dùng 530 Site Frozen cho site sandbox bị đóng băng do không hoạt động theo điều kiện nhà cung cấp.",
       "source": "https://docs.pantheon.io/guides/platform-considerations/platform-site-info",
       "section": "Inactive Site Freezing",
-      "result": "verified"
+      "verified_by": "Lần đọc ngày 2026-10-12; trang Pantheon không mở được lại ngày 2026-10-16."
     }
   ],
   "source_only_trivia": [
     {
       "topic": "218 meme/error-page override",
       "status": "not_independently_verified",
-      "treatment": "Omitted implementation claim from main explanation; only attributed in optional section."
+      "treatment": "Chỉ nêu như lời kể của nguồn trong mục tùy chọn; phần chính chỉ nêu điều đã thử (218 là 2xx nên được coi là thành công)."
     },
     {
       "topic": "Historical Twitter 420 usage",
       "status": "not_independently_verified",
-      "treatment": "Attributed to source in optional section, not guidance for current APIs. Current X docs opened but contain no 420 entry."
+      "treatment": "Nêu như lời kể của nguồn, không phải hướng dẫn cho API hiện tại; phần chính dùng 420 làm ví dụ về mã chưa gán, không dựa vào chuyện Twitter."
     }
   ],
-  "design_notes_vi": "Five new vertical cards distinguish registered, unassigned and reserved status using text, not only colour. No source image used. Based on technical registry and standards, not a trace of source art.",
-  "editorial_note_vi": "Đã nhập từ repo cũ; review kỹ thuật của tổ hợp trong repo mới đang chờ. Chưa user testing hoặc phê duyệt phát hành.",
+  "design_notes_vi": "Bốn khung dọc theo lập luận của bài (lớp, tên, danh sách bỏ sót, 429 so với 420) thay cho năm thẻ mỗi mã một thẻ của bản trước. Sơ đồ tự thiết kế, không dùng ảnh nguồn.",
+  "editorial_note_vi": "Viết lại ngày 2026-10-16 để làm sâu và tách khỏi nguồn. Review ở repo cũ (mục prior_reviews) áp dụng cho bản trước, không cho nội dung hiện tại; review kỹ thuật bản mới đang chờ. Chưa user testing hoặc phê duyệt phát hành.",
   "prior_reviews": [
     {
       "repository": "vohoailinh90/Agentic-coding-course",
@@ -113,5 +143,9 @@
     "source_commit_sha": "b8dff434ff75499137bbb10b61122958fdaaafa5",
     "destination_repository": "vohoailinh90/tool-marketing-studio",
     "imported_on": "2026-10-13"
-  }
+  },
+  "source_deviations": [
+    "Bài nguồn là danh sách năm mã kèm một dòng giải thích mỗi mã theo thứ tự 451, 218, 420, 530, 418. Bài này không đi qua từng mã theo thứ tự đó; nó dùng năm mã làm mẫu thử cho một câu hỏi khác (máy khách làm gì với mã lạ) và sắp theo lập luận: lớp, tên, danh sách liệt kê, 429 so với 420, 418 và 451.",
+    "Mọi điều về hành vi của urllib, requests, urllib3, curl và http.client là kết quả chạy thử của người biên soạn, không có trong nguồn."
+  ]
 }

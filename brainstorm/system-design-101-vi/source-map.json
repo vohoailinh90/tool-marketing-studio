@@ -433,11 +433,11 @@
         },
         {
           "id": "sd-01-043",
-          "title_vi": null,
+          "title_vi": "gRPC: gọi phương thức qua mạng",
           "title_source": "What is gRPC?",
           "source_url": "https://bytebytego.com/guides/what-is-grpc",
           "source_path": "data/guides/what-is-grpc.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "5cf07b5496aa8b4fab09c6d649de7c36dc1a3b17",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-is-grpc.md"
         },

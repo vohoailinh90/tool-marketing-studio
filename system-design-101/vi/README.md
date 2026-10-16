@@ -51,6 +51,7 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 40. [Thiết kế API: hợp đồng trước đường dẫn](lessons/sd-01-040/lesson.md)
 41. [Bearer token và HMAC: gửi bằng chứng gì?](lessons/sd-01-041/lesson.md)
 42. [API gateway: chọn đích, áp chính sách](lessons/sd-01-042/lesson.md)
+43. [gRPC: gọi phương thức qua mạng](lessons/sd-01-043/lesson.md)
 
 ## AI và học máy
 

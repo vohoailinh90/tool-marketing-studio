@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 797" width="320" height="797" role="img" aria-labelledby="title desc">
+<title id="title">Clone nhanh hơn bằng cách chỉ lấy nhánh cần</title>
+<desc id="desc">Năm khung. Một: trước đây bước checkout không đặt refspec nên mỗi lần build lấy hơn 2500 nhánh dù đã clone nông. Hai: sau khi thêm refspec chỉ trỏ vào nhánh master, chỉ nhánh đó được tải. Ba: ba núm riêng biệt, depth chọn sâu bao nhiêu, no-tags chọn có lấy tag không, refspec chọn lấy những nhánh nào; giảm một núm không thay hai núm còn lại. Bốn: theo nguồn thứ cấp, thời gian clone giảm từ 40 phút xuống 30 giây, chưa được kiểm chứng độc lập. Năm: cái giá là các nhánh khác không có sẵn trong bản clone, build nào cần thì phải khai thêm. Kết luận: giảm bề sâu chưa đủ, phải giảm cả bề rộng.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="797" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">CLONE NHANH HƠN</text>
+<text x="16" y="56" font-size="20" font-weight="bold">CHỈ LẤY THỨ CẦN</text>
+<text x="16" y="86" font-size="16" font-weight="normal">Pinterest, theo nguồn thứ cấp</text>
+<rect x="16" y="108" width="288" height="104" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="138" font-size="16" font-weight="bold">1 · Trước: mọi nhánh</text>
+<text x="30" y="165" font-size="16" font-weight="normal">Không đặt refspec nên lấy</text>
+<text x="30" y="192" font-size="16" font-weight="normal">hơn 2500 nhánh mỗi build</text>
+<rect x="16" y="226" width="288" height="104" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="256" font-size="16" font-weight="bold">2 · Sau: một nhánh</text>
+<text x="30" y="283" font-size="16" font-weight="normal">Refspec chỉ trỏ vào master;</text>
+<text x="30" y="310" font-size="16" font-weight="normal">chỉ nhánh đó được tải</text>
+<rect x="16" y="344" width="288" height="131" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="374" font-size="16" font-weight="bold">3 · Ba núm riêng biệt</text>
+<text x="30" y="401" font-size="16" font-weight="normal">depth: sâu bao nhiêu</text>
+<text x="30" y="428" font-size="16" font-weight="normal">no-tags: có lấy tag không</text>
+<text x="30" y="455" font-size="16" font-weight="normal">refspec: lấy những nhánh nào</text>
+<rect x="16" y="489" width="288" height="104" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="519" font-size="16" font-weight="bold">4 · Kết quả theo nguồn</text>
+<text x="30" y="546" font-size="16" font-weight="normal">40 phút → 30 giây</text>
+<text x="30" y="573" font-size="16" font-weight="normal">Chưa kiểm chứng độc lập</text>
+<rect x="16" y="607" width="288" height="104" rx="12" fill="#e2e8f0" stroke="#94a3b8"/>
+<text x="30" y="637" font-size="16" font-weight="bold">5 · Cái giá</text>
+<text x="30" y="664" font-size="16" font-weight="normal">Nhánh khác không có sẵn;</text>
+<text x="30" y="691" font-size="16" font-weight="normal">build cần thì khai thêm</text>
+<text x="16" y="751" font-size="16" font-weight="normal">Giảm bề sâu chưa đủ,</text>
+<text x="16" y="777" font-size="16" font-weight="normal">phải giảm cả bề rộng.</text>
+</g></svg>

@@ -2144,6 +2144,10 @@ mutations:
   find: "                    \"IoT\", \"CoAP\", \"DoH\", \"DoT\", \"RRset\",\n"
   replace: ""
   test: tests.test_sd101_check.AbbreviationRuleTests.test_the_forms_an_abbreviation_takes
+- label: the product name DBProxy is not read as the abbreviation DB
+  find: "\"DBProxy\": \"DB\", "
+  replace: ""
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_name_that_carries_an_abbreviation_is_read_as_that_abbreviation
 - label: the product name InnoDB is not read as the abbreviation DB
   find: "\"InnoDB\": \"DB\", "
   replace: ""

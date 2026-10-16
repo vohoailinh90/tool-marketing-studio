@@ -523,31 +523,31 @@
       "lessons": [
         {
           "id": "sd-02-001",
-          "title_vi": null,
+          "title_vi": "Figma mở rộng Postgres: ba bậc thang",
           "title_source": "100X Postgres Scaling at Figma",
           "source_url": "https://bytebytego.com/guides/100x-postgres-scaling-at-figma",
           "source_path": "data/guides/100x-postgres-scaling-at-figma.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "4f10f81e144591b782b3c524253497ca20b53304",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/100x-postgres-scaling-at-figma.md"
         },
         {
           "id": "sd-02-002",
-          "title_vi": null,
+          "title_vi": "API của các API: nối ứng dụng bằng trigger và action",
           "title_source": "API of APIs - App Integrations",
           "source_url": "https://bytebytego.com/guides/api-of-apis-app-integrations",
           "source_path": "data/guides/api-of-apis-app-integrations.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "38bf57d3e15b8fad825e8f3648221b1c9e8eae80",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/api-of-apis-app-integrations.md"
         },
         {
           "id": "sd-02-003",
-          "title_vi": null,
+          "title_vi": "Pinterest cắt thời gian clone bằng một dòng refspec",
           "title_source": "The one-line change that reduced clone times by 99% at Pinterest",
           "source_url": "https://bytebytego.com/guides/the-one-line-change-that-reduced-clone-times-by-a-whopping-99-says-pinterest",
           "source_path": "data/guides/the-one-line-change-that-reduced-clone-times-by-a-whopping-99-says-pinterest.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "309564bfd6af777b0b7fd095704f41700de1ba93",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/the-one-line-change-that-reduced-clone-times-by-a-whopping-99-says-pinterest.md"
         },

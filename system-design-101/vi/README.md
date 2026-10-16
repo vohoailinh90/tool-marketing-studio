@@ -32,6 +32,12 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 21. [Bảng tra cứu thiết kế API](lessons/sd-01-021/lesson.md)
 22. [Nhập môn API Gateway](lessons/sd-01-022/lesson.md)
 
+## Tình huống thực tế
+
+1. [Figma mở rộng Postgres: ba bậc thang](lessons/sd-02-001/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+2. [API của các API: nối ứng dụng bằng trigger và action](lessons/sd-02-002/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+3. [Pinterest cắt thời gian clone bằng một dòng refspec](lessons/sd-02-003/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+
 ## AI và học máy
 
 1. [Năm hàm gộp dữ liệu trong pandas](lessons/sd-03-001/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
@@ -146,7 +152,7 @@ và hình đạt; không coi đọc nguồn là mọi claim đã đúng, không 
 
 ## Các nhóm còn lại theo thứ tự nguồn
 
-Tình huống thực tế → Cơ sở dữ liệu và lưu trữ →
+Tình huống thực tế (đã viết một phần) → Cơ sở dữ liệu và lưu trữ →
 Bộ nhớ đệm và hiệu năng → Thanh toán và công nghệ tài chính → Kiến trúc phần mềm →
 Công cụ và năng suất → Phát triển phần mềm → Đám mây và hệ thống phân tán →
 Hệ thống hoạt động thế nào? → Bảo mật (đã viết một phần).

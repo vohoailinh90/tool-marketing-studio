@@ -2241,6 +2241,7 @@ class AbbreviationRuleTests(StoreCase):
     def test_a_name_that_carries_an_abbreviation_is_read_as_that_abbreviation(self) -> None:
         self.assertEqual({"AI", "LLM"}, check.abbreviations_in("OpenAI và LLMWare."))
         self.assertEqual({"DB"}, check.abbreviations_in("Bảng dùng InnoDB."))  # InnoDB carries DB
+        self.assertEqual({"DB"}, check.abbreviations_in("DBProxy định tuyến truy vấn."))  # so does DBProxy
         self.assertEqual({"HA", "JS", "QL", "ECMA"},
                          check.abbreviations_in("HAProxy chia tải, CommonJS là kiểu mô-đun cũ, GraphQL theo ECMAScript."))
         self.assertEqual({"AI", "SQL", "OS", "OOM", "DB", "GPT"},

@@ -42,7 +42,7 @@
     "claims": {
       "status": "checked",
       "checked_on": "2026-10-16",
-      "evidence": "Đã đọc body nguồn ghim. Hành vi của Git 2.43.0 được chạy thử ngày 2026-10-16 trên kho tự dựng (master 120 commit, 300 nhánh, mỗi nhánh 5 commit riêng toàn dữ liệu ngẫu nhiên; tải qua file://, số đo tương đối trên đĩa cục bộ): git clone thường để lại refspec +refs/heads/*:refs/remotes/origin/* và lấy cả 302 tham chiếu; git fetch --depth=50 --no-tags với refspec mặc định lấy 301 tham chiếu, 4.720 object, 13.969.746 byte trong .git, 1,49 s; cùng lệnh với refspec chỉ master lấy 1 tham chiếu, 220 object, 559.666 byte, 0,07 s; không --depth, mọi nhánh: 4.860 object; --depth=1, mọi nhánh: 2.222 object, 13.515.549 byte; git clone --depth=50 để lại refspec +refs/heads/master:refs/remotes/origin/master. KHÔNG kiểm chứng: các con số của Pinterest và Pinboard (40 phút, 30 giây, 350 nghìn commit, 20 gigabyte, 60 nghìn lần pull, hơn 2500 nhánh) chỉ dựa trên bản tóm tắt thứ cấp, bài gốc chưa mở; pipeline Jenkins và plugin Git không được tái hiện; thời gian trên mạng thật không đo. Không trang tài liệu Git, Pro Git hay Jenkins nào mở được từ máy biên soạn."
+      "evidence": "Đã đọc body nguồn ghim. Hành vi của Git 2.43.0 được chạy thử ngày 2026-10-16 trên kho tự dựng (master 120 commit, 300 nhánh, mỗi nhánh 5 commit riêng toàn dữ liệu ngẫu nhiên; tải qua file://, số đo tương đối trên đĩa cục bộ): git clone thường để lại refspec +refs/heads/*:refs/remotes/origin/* và lấy cả 302 tham chiếu; git fetch --depth=50 --no-tags với refspec mặc định lấy 301 tham chiếu, 4.720 object, 13.969.746 byte trong .git, 1,49 s; cùng lệnh với refspec chỉ master lấy 1 tham chiếu, 220 object, 559.666 byte, 0,07 s; không --depth, mọi nhánh: 4.860 object; --depth=1, mọi nhánh: 2.222 object, 13.515.549 byte; git clone --depth=50 để lại refspec +refs/heads/master:refs/remotes/origin/master; bắt gói tin (GIT_TRACE_PACKET, protocol.version=2): refspec chỉ master gửi ref-prefix refs/heads/master và server trả 1 tham chiếu, refspec mọi nhánh gửi ref-prefix refs/heads/ và nhận 301. KHÔNG kiểm chứng: các con số của Pinterest và Pinboard (40 phút, 30 giây, 350 nghìn commit, 20 gigabyte, 60 nghìn lần pull, hơn 2500 nhánh) chỉ dựa trên bản tóm tắt thứ cấp, bài gốc chưa mở; pipeline Jenkins và plugin Git không được tái hiện; thời gian trên mạng thật không đo. Không trang tài liệu Git, Pro Git hay Jenkins nào mở được từ máy biên soạn."
     },
     "technical_review": {
       "status": "pending",
@@ -94,6 +94,12 @@
       "claim_vi": "--depth giới hạn số commit lấy từ đầu mỗi nhánh được lấy, không giới hạn số nhánh; vì vậy với refspec mặc định trên kho nhiều nhánh, clone nông một mình ít cắt được lượng tải.",
       "source": "https://git-scm.com/docs/git-fetch",
       "verified_by": "Chạy cục bộ: --depth=50 mọi nhánh 4.720 object so với 4.860 object không --depth (nhánh thử chỉ có 5 commit riêng); chỉ lấy master còn 220 object. Kết quả phụ thuộc kho thử và không tái hiện số của Pinterest."
+    },
+    {
+      "id": "protocol-v2-ls-refs-prefix",
+      "claim_vi": "Với giao thức v2, client gửi ls-refs kèm ref-prefix và server chỉ liệt kê tham chiếu khớp, nên nhánh cũ trên máy chủ không ảnh hưởng tới client có refspec hẹp.",
+      "source": "https://git-scm.com/docs/gitprotocol-v2",
+      "verified_by": "Chạy Git 2.43.0 cục bộ qua file:// với GIT_TRACE_PACKET: refspec chỉ master -> ref-prefix refs/heads/master, server trả 1 tham chiếu; refspec mọi nhánh -> ref-prefix refs/heads/, 301 tham chiếu. Chỉ đo số tham chiếu được liệt kê, không đo thời gian; trang tài liệu chưa mở được."
     },
     {
       "id": "clone-depth-single-branch",

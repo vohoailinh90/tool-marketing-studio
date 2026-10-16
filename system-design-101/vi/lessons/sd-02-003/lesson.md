@@ -23,7 +23,7 @@ Kho của bạn có 800 nhánh cũ, bước build chỉ cần nhánh chính và 
 <details>
 <summary>Xem đáp án</summary>
 
-`--depth` chỉ giới hạn bề sâu: mỗi nhánh được lấy vẫn kéo theo tới 50 commit gần nhất của nó, và nếu refspec là mặc định thì cả 800 nhánh đều được lấy. Sửa bằng cách đặt refspec chỉ nêu nhánh chính (kèm `--no-tags` nếu không cần tag), và khai thêm đúng những nhánh mà build thật sự dùng. Dọn các nhánh cũ trên máy chủ cũng giúp, vì mọi client đều phải xét số tham chiếu đó.
+`--depth` chỉ giới hạn bề sâu: mỗi nhánh được lấy vẫn kéo theo tới 50 commit gần nhất của nó, và nếu refspec là mặc định thì cả 800 nhánh đều được lấy. Sửa bằng cách đặt refspec chỉ nêu nhánh chính (kèm `--no-tags` nếu không cần tag), và khai thêm đúng những nhánh mà build thật sự dùng. Đừng vội xóa nhánh cũ trên máy chủ: với client dùng refspec hẹp trên giao thức v2, các nhánh đó không được liệt kê nên không ảnh hưởng gì (xem mục dưới), còn xóa nhánh là việc khó hoàn lại và thuộc quyền chủ kho. Dọn nhánh chỉ đáng cân nhắc khi vẫn còn client lấy mọi nhánh mà chưa sửa được.
 
 </details>
 
@@ -36,6 +36,7 @@ Thử nghiệm cục bộ của người biên soạn ngày 2026-10-16, Git 2.43
 - **Cùng lệnh nhưng refspec chỉ nêu master:** 1 tham chiếu, 220 object, khoảng 0,56 megabyte, 0,07 giây. Giảm khoảng 95% trở lên so với dòng trên, ở cả ba số đo.
 - **Mọi nhánh, không `--depth`:** 4.860 object, gần bằng dòng đầu. Mỗi nhánh thử chỉ có 5 commit riêng, ít hơn 50, nên giới hạn độ sâu gần như không cắt được gì; đây là lý do clone nông một mình không cứu được kho nhiều nhánh.
 - **Mọi nhánh, `--depth=1`:** 2.222 object, vẫn khoảng 13,5 megabyte vì commit mới nhất của mỗi nhánh vẫn có 5 tệp riêng.
+- **Giao thức v2 chỉ liệt kê nhánh được hỏi:** client gửi lệnh `ls-refs` kèm `ref-prefix`, và server chỉ trả những tham chiếu khớp. Bắt gói tin thấy refspec chỉ master gửi `ref-prefix refs/heads/master` và server trả về 1 tham chiếu; refspec mọi nhánh gửi `ref-prefix refs/heads/` và nhận 301. Vì thế số nhánh cũ trên máy chủ chỉ làm chậm những client lấy mọi nhánh; client có refspec hẹp không phải trả giá đó.
 - **Mặc định và `git clone --depth=50`:** một lần `git clone` thường để lại refspec `+refs/heads/*:refs/remotes/origin/*` và lấy cả 301 nhánh (kèm HEAD). Còn `git clone --depth=50` cho ra bản chỉ có một nhánh: tài liệu Git ghi `--depth` ngầm kèm `--single-branch`, và thử cho thấy cấu hình sinh ra là `+refs/heads/master:refs/remotes/origin/master`. Vì vậy cùng một ý "clone nông" có thể cho kết quả rất khác nhau tùy công cụ gọi `git clone` hay gọi `git fetch` với refspec đã cấu hình; muốn chắc thì đặt refspec rõ ràng.
 
 </details>

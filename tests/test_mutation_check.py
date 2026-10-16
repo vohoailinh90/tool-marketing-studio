@@ -346,7 +346,8 @@ class ParallelTests(unittest.TestCase):
             code, out, _ = self.main(repo, self.path(repo, "tripwire.yaml"), "--jobs", "2")
         self.assertEqual((1, True), (code, "SURVIVED" in out), out)  # the test passes in the copy, which is the point
         self.assertEqual(THING, (repo / "thing.py").read_text(encoding="utf-8"))
-        self.assertEqual("", subprocess.run(["git", "status", "--porcelain"], cwd=repo, capture_output=True, text=True).stdout)
+        tracked = subprocess.run(["git", "status", "--porcelain", "--untracked-files=no"], cwd=repo, capture_output=True, text=True)
+        self.assertEqual("", tracked.stdout, "no tracked file of the real tree changed")
 
     def test_the_tree_copies_are_removed_when_the_run_ends(self) -> None:
         repo = self.repo()

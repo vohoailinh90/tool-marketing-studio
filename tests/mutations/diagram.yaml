@@ -15,8 +15,8 @@ mutations:
   replace: (?:href|call|callback|links?|classDef|style|linkStyle)
   test: tests.test_diagram.SourceTests.test_links_clicks_directives_and_css_are_refused
 - label: an init directive is allowed
-  find: FORBIDDEN_TEXT = re.compile(r"javascript:|vbscript:|data:[a-z]+/|&#|%%\{", re.IGNORECASE)
-  replace: FORBIDDEN_TEXT = re.compile(r"javascript:|vbscript:|data:[a-z]+/|&#", re.IGNORECASE)
+  find: '|&#|%%\{|@\s*\{"'
+  replace: '|&#|@\s*\{"'
   test: tests.test_diagram.SourceTests.test_links_clicks_directives_and_css_are_refused
 - label: HTML in a label is allowed
   find: '    if HTML_TAG.search(LINE_BREAK.sub(" ", text)):'

@@ -8,6 +8,7 @@ import unicodedata
 from dataclasses import dataclass
 from pathlib import Path
 
+from . import diagram
 from .i18n import LANGS
 from .layouts import ENUMS, FIELDS, LAYOUTS, AssetError, resolve_asset
 from .links import PLACEHOLDER, is_configured
@@ -109,7 +110,7 @@ def claim_numbers(post: Post) -> set[str]:
     found = numbers(post.platforms)
     for slide in post.slides:
         if isinstance(slide, dict) and slide.get("layout") not in ILLUSTRATIVE:
-            found |= numbers({k: v for k, v in slide.items() if k != "layout"})
+            found |= numbers({k: diagram.label_text(v) if k == "source" else v for k, v in slide.items() if k != "layout"})
             for step in slide.get("steps") or []:
                 if isinstance(step, dict) and isinstance(step.get("minutes"), int):
                     found.add(str(step["minutes"]))
@@ -223,6 +224,9 @@ def check_post(campaign: Campaign, post: Post) -> list[Issue]:
                 resolve_asset(slide["src"], roots)
             except AssetError as exc:
                 add("error", str(exc), spot)
+        if name == "diagram" and slide.get("source"):
+            for problem in diagram.source_problems(slide["source"]):
+                add("error", problem, spot)
         if name == "flow":
             for step in slide.get("steps") or []:
                 if isinstance(step, dict) and "minutes" in step and not isinstance(step["minutes"], int):

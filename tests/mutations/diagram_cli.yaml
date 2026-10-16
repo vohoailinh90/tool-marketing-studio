@@ -1,0 +1,8 @@
+# Mutation manifest — see scripts/mutation_check.py
+target: mkt/cli.py
+note: A render that could not draw a post is a failed command, not a green one.
+mutations:
+- label: render exits 0 although a post could not be drawn
+  find: '    return 1 if blocked or has_errors(warnings) else 0'
+  replace: '    return 1 if blocked else 0'
+  test: tests.test_diagram.RenderPostTests.test_the_cli_exits_non_zero_when_a_diagram_cannot_be_drawn

@@ -252,3 +252,14 @@ tbody tr:last-child td, tbody tr:last-child th { border-bottom: 0; }
 /* square and landscape formats are shorter: tighten the frame */
 .fmt-square { padding: 56px 64px 48px; gap: 22px; }
 .fmt-landscape { padding: 44px 56px 36px; gap: 16px; }
+
+/* diagram: the renderer swaps the <pre> source for an SVG (mkt/diagram.py); a no-browser preview keeps the source */
+.diagram { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; gap: 16px; }
+.diagram__art { flex: 1 1 0; min-height: 0; display: flex; align-items: center; justify-content: center; }
+.diagram__art svg { display: block; width: 100%; height: 100%; margin: 0 auto; overflow: visible; }
+.diagram__src {
+  font: 600 24px/1.5 ui-monospace, "Cascadia Mono", Consolas, monospace; white-space: pre-wrap; overflow: hidden;
+  padding: 24px; border-radius: 18px; background: var(--card); border: 2px solid var(--line); color: var(--muted);
+}
+.diagram figcaption { font-size: calc(26px * var(--scale)); color: var(--muted); font-weight: 600; text-align: center; }
+html:lang(ja) .diagram__art .nodeLabel, html:lang(ja) .diagram__art .edgeLabel { word-break: auto-phrase; line-break: strict; }

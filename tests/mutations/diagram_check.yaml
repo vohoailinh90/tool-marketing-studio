@@ -1,0 +1,12 @@
+# Mutation manifest — see scripts/mutation_check.py
+target: mkt/check.py
+note: '`studio.py check` refuses a diagram source it should not draw, and counts only label numbers.'
+mutations:
+- label: a diagram source is not validated
+  find: '        if name == "diagram" and slide.get("source"):'
+  replace: '        if False:'
+  test: tests.test_diagram.PostCheckTests.test_a_bad_source_is_an_error_on_its_slide
+- label: node ids with a digit are read as numbers the post states
+  find: diagram.label_text(v) if k == "source" else v
+  replace: v
+  test: tests.test_diagram.PostCheckTests.test_numbers_in_labels_must_come_from_the_brief_but_node_ids_need_not

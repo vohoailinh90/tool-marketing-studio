@@ -10,6 +10,7 @@ import io
 import json
 import os
 import re
+import shutil
 import sys
 import tempfile
 import unicodedata
@@ -2817,6 +2818,63 @@ class OtherPageRuleTests(StoreCase):
             real.write_text("# x\n", encoding="utf-8")
             (self.store / "MIGRATION.md").symlink_to(real)
             self.assertProblem("MIGRATION.md: is a symbolic link")
+
+
+class ClaimsRuleTests(StoreCase):
+    """claims.jsonl says which session writes which lesson; the store checker holds it to the source map and the disk."""
+
+    def registry(self, written: bool = True, **changes: object) -> str:
+        from scripts import sd101_claims as claims
+        header = {"schema_version": 1, "lease_hours": 72, "source_repository": PIN["source_repository"],
+                  "source_commit_sha": COMMIT}
+        entry = {"id": "sd-01-001", "status": "written" if written else "todo", "title": "One"}
+        return claims.render(header, {"sd-01-001": {**entry, **changes}})
+
+    def write(self, text: str) -> None:
+        (self.store / "claims.jsonl").write_text(text, encoding="utf-8")
+
+    def test_a_fixture_store_without_a_registry_is_not_asked_for_one(self) -> None:
+        self.assertEqual([], self.problems())
+
+    def test_the_real_store_must_have_the_registry(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            problems = check.check_claims(Path(tmp) / "claims.jsonl", {}, set(), None, required=True)
+        self.assertEqual(["claims.jsonl: is missing (python3 scripts/sd101_claims.py sync creates it)"],
+                         [str(problem) for problem in problems])
+
+    def test_a_registry_that_agrees_with_the_source_map_and_the_disk_passes(self) -> None:
+        self.write(self.registry())
+        self.assertEqual([], self.problems())
+
+    def test_the_registry_title_must_be_the_source_maps(self) -> None:
+        self.write(self.registry(title="Eins"))
+        self.assertProblem("claims.jsonl: sd-01-001: title is 'Eins'")
+
+    def test_a_lesson_on_disk_cannot_be_todo_and_a_missing_one_cannot_be_written(self) -> None:
+        self.write(self.registry(written=False))
+        self.assertProblem("claims.jsonl: sd-01-001: lessons/sd-01-001/ exists, but the registry says todo")
+        (self.store / "lessons" / "sd-01-001" / "lesson.md").unlink()
+        shutil.rmtree(self.store / "lessons" / "sd-01-001")
+        (self.store / "metadata" / "sd-01-001.json").unlink()
+        (self.store / "diagrams" / "sd-01-001-main.svg").unlink()
+        self.write(self.registry())
+        self.assertProblem("claims.jsonl: sd-01-001: is written, but lessons/sd-01-001/ does not exist")
+
+    def test_the_registry_must_be_canonical_and_pin_the_source_commit(self) -> None:
+        self.write(self.registry().replace(COMMIT, "c" * 40))
+        self.assertProblem("source_commit_sha")
+        self.write(self.registry().replace('"id": "sd-01-001", "status": "written"', '"status": "written", "id": "sd-01-001"'))
+        self.assertProblem("canonical form")
+
+    def test_the_registry_header_must_name_the_source_maps_repository(self) -> None:
+        self.write(self.registry().replace(PIN["source_repository"], "someone/else"))
+        self.assertProblem("claims.jsonl: the header's source_repository is 'someone/else'")
+        self.write(self.registry().replace(f'"source_repository": "{PIN["source_repository"]}", ', ""))
+        self.assertProblem("claims.jsonl: the header's source_repository is None")
+
+    def test_a_registry_that_is_not_a_file_is_reported(self) -> None:
+        (self.store / "claims.jsonl").mkdir()
+        self.assertProblem("claims.jsonl: is not a regular file")
 
 
 class ProgressRuleTests(StoreCase):

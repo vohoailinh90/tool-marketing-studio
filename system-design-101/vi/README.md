@@ -120,7 +120,7 @@ Các bài từ sd-14-016 trở đi chưa viết; số thứ tự dưới đây c
 9. [Mô hình OSI](lessons/sd-15-009/lesson.md)
 10. [Hình dung một câu lệnh SQL](lessons/sd-15-010/lesson.md)
 11. [Tám giao thức mạng phổ biến](lessons/sd-15-011/lesson.md)
-12. [Cách học SQL](lessons/sd-15-012/lesson.md)
+12. [Học SQL bằng thử nghiệm: năm nhóm lệnh làm gì và hoàn tác được không](lessons/sd-15-012/lesson.md) — viết lại ngày 2026-10-16 để làm sâu (thử trên PostgreSQL và SQLite); chờ review kỹ thuật.
 
 Danh mục đầy đủ và snapshot nguồn: [bảng đối chiếu](../../brainstorm/system-design-101-vi/source-map.json).
 Quy tắc đã chốt: [kết luận brainstorm](../../brainstorm/system-design-101-vi/DECISIONS.md).

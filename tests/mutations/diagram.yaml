@@ -30,10 +30,6 @@ mutations:
   find: '    if len(text) > MAX_CHARS or len(lines) > MAX_LINES:'
   replace: '    if False:'
   test: tests.test_diagram.SourceTests.test_a_diagram_too_big_for_a_phone_is_refused
-- label: node ids with a digit count as numbers
-  find: '    return ID_WITH_DIGIT.sub(" ", source) if isinstance(source, str) else ""'
-  replace: '    return source if isinstance(source, str) else ""'
-  test: tests.test_diagram.SourceTests.test_node_ids_with_a_digit_are_not_numbers
 - label: Mermaid runs in loose mode
   find: 'securityLevel: ''strict'''
   replace: 'securityLevel: ''loose'''

@@ -40,8 +40,6 @@ TONE_SUFFIX = re.compile(r":::\s*(\w+)")
 HTML_TAG = re.compile(r"<\s*[/!A-Za-z]")
 LINE_BREAK = re.compile(r"<\s*br\s*/?\s*>", re.IGNORECASE)
 FORBIDDEN_TEXT = re.compile(r"javascript:|vbscript:|data:[a-z]+/|&#|%%\{|@\s*\{", re.IGNORECASE)
-# A node id with a digit in it (`A1`, `step12`) is syntax, not a number the post states.
-ID_WITH_DIGIT = re.compile(r"\b[^\W\d]\w*\d\w*\b")
 
 
 class DiagramError(ValueError):
@@ -80,11 +78,6 @@ def source_problems(source) -> list[str]:
     if unknown:
         problems.append(f"unknown tone {', '.join(unknown)}: use {', '.join(TONES)}")
     return problems
-
-
-def label_text(source) -> str:
-    """The source without node ids that carry a digit, for the cross-language number check."""
-    return ID_WITH_DIGIT.sub(" ", source) if isinstance(source, str) else ""
 
 
 def bundle() -> str:

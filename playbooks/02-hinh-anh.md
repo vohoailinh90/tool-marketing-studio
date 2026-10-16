@@ -44,7 +44,7 @@ Mỗi ngôn ngữ viết sơ đồ riêng bằng chính ngôn ngữ đó (không
 - Làm nổi bật bằng `:::hl` (ô đặc màu thương hiệu), `:::ok`, `:::bad`, `:::warn`, `:::muted`, hoặc `class A,B bad`.
   Không có `style`/`classDef`: màu do theme quyết định để mọi ảnh trong chiến dịch đồng bộ.
 - Không được: link/`click`, HTML (trừ `<br/>` để xuống dòng), `%%{init}%%`, front matter. `studio.py check` báo lỗi ngay.
-- Số trong nhãn phải có trong brief như mọi slide khác; id nút như `A1`, `step12` không bị tính là số.
+- Số trong sơ đồ phải có trong brief như mọi slide khác (kể cả `ISO27001`, `v12`). Id nút cũng bị tính: dùng id ngắn như `A`, `B`, `A1` (số từ 0 đến 10 luôn được phép), đừng đặt `step12`.
 - Thư viện Mermaid đã ghim phiên bản và nằm sẵn trong repo (`mkt/vendor/mermaid/`): render không cần Node hay mạng.
 
 ## Kích thước

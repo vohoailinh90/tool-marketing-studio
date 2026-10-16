@@ -110,7 +110,7 @@ def claim_numbers(post: Post) -> set[str]:
     found = numbers(post.platforms)
     for slide in post.slides:
         if isinstance(slide, dict) and slide.get("layout") not in ILLUSTRATIVE:
-            found |= numbers({k: diagram.label_text(v) if k == "source" else v for k, v in slide.items() if k != "layout"})
+            found |= numbers({k: v for k, v in slide.items() if k != "layout"})
             for step in slide.get("steps") or []:
                 if isinstance(step, dict) and isinstance(step.get("minutes"), int):
                     found.add(str(step["minutes"]))

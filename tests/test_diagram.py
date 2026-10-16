@@ -80,10 +80,6 @@ class SourceTests(unittest.TestCase):
         for source in (None, 12, ["flowchart TD"], {"a": 1}):
             self.assertTrue(self.problems(source), source)
 
-    def test_node_ids_with_a_digit_are_not_numbers(self):
-        self.assertNotIn("12", diagram.label_text("flowchart TD\n  step12[Gửi] --> A1[Xong]"))
-        self.assertIn("45", diagram.label_text("flowchart TD\n  A[Mất 45 phút] --> B"))
-
 
 class BundleTests(unittest.TestCase):
     def test_the_vendored_bundle_is_the_pinned_one(self):
@@ -133,11 +129,16 @@ class PostCheckTests(unittest.TestCase):
     def test_a_url_in_a_label_is_an_error(self):
         self.assertTrue(any("URL" in m for m in self.errors([slide('flowchart TD\n  A["xem www.example.com"] --> B')])))
 
-    def test_numbers_in_labels_must_come_from_the_brief_but_node_ids_need_not(self):
-        campaign, post = self.campaign_post([slide("flowchart TD\n  step12[Gửi form] --> n99[Xong]")])
-        self.assertEqual([i for i in unsourced_numbers(campaign, post) if i.level == "error"], [])
-        campaign, post = self.campaign_post([slide("flowchart TD\n  A[Mất 45 phút] --> B[Xong]")])
-        self.assertTrue(any(i.level == "error" and "45" in i.message for i in unsourced_numbers(campaign, post)))
+    def test_every_number_in_a_diagram_must_come_from_the_brief(self):
+        def flagged(source):
+            campaign, post = self.campaign_post([slide(source)])
+            return sorted(n for i in unsourced_numbers(campaign, post) if i.level == "error"
+                          for n in i.message.rsplit(": ", 1)[1].split(", "))
+        self.assertEqual(flagged("flowchart TD\n  A1[Gửi form] --> B2[Xong]"), [], "small numbers are counting words")
+        self.assertEqual(flagged("flowchart TD\n  A[Cần ISO27001] --> B[Xong]"), ["27001"])
+        self.assertEqual(flagged("flowchart TD\n  A[Nâng lên v12] --> B[Xong]"), ["12"])
+        self.assertEqual(flagged("flowchart TD\n  A[Mất 45 phút] --> B[Xong]"), ["45"])
+        self.assertEqual(flagged("flowchart TD\n  n99[Gửi form] --> B[Xong]"), ["99"], "a node id counts too: rename it")
 
 
 class LayoutTests(unittest.TestCase):

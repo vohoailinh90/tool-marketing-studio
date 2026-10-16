@@ -69,9 +69,14 @@ repository is private, so GitHub-hosted minutes are billed; without minutes a jo
   `claude-agent-routing-template` does not serve this one, which is why it has its own.
 - On the VPS, install Chromium's system libraries once so the render test runs instead of
   skipping: `sudo python3 -m playwright install-deps chromium`.
-- Each runner takes one job at a time, so two jobs run at once. `engine` takes about 30 minutes,
-  27 of them in `mutation_check.py --all`. A pull request that changes only the System Design
-  store skips that check: `scripts/ci_changes.py` decides, and every push to `main` still runs it.
+- Each runner takes one job at a time, so two jobs run at once. `engine` is `pytest -q` (about 20
+  minutes) plus `mutation_check.py --all`, which is most of the job: it runs every entry of
+  `tests/mutations/` (over a thousand), so its time grows with each fix that ships a mutation.
+  The step starts `MUTATION_JOBS` workers (repository variable, default 2), each mutating its own
+  copy of the tree; with two runners busy that uses the VPS's four cores, so raise it only where
+  cores are free, and set it to 1 for the old single-tree run. Time the step in a run's log before
+  and after changing it. A pull request that changes only the System Design store skips the check:
+  `scripts/ci_changes.py` decides, and every push to `main` still runs it.
 - The second runner was added on 2026-10-13 because one runner left the queue hours long. Both
   live on the same VPS, under the `ci-runner` user, one folder each:
   `/home/ci-runner/actions-runner-tool-marketing-studio` and `...-2`, each its own systemd

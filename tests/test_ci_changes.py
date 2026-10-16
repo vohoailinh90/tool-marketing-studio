@@ -172,6 +172,10 @@ class WorkflowUsesItTests(unittest.TestCase):
         mutation = next(step for step in self.engine() if "mutation_check.py --all" in step.get("run", ""))
         self.assertEqual("steps.changes.outputs.mutation != 'false'", mutation["if"])
 
+    def test_the_mutation_check_runs_on_several_tree_copies_unless_the_variable_says_otherwise(self):
+        mutation = next(step for step in self.engine() if "mutation_check.py --all" in step.get("run", ""))
+        self.assertEqual("python scripts/mutation_check.py --all --jobs ${{ vars.MUTATION_JOBS || '2' }}", mutation["run"])
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -42,7 +42,7 @@
     "claims": {
       "status": "checked",
       "checked_on": "2026-10-16",
-      "evidence": "Đã đọc body nguồn ghim. Hành vi của Postgres 16.15 (gói Ubuntu, chạy cục bộ qua socket Unix, tắt autovacuum) được chạy thử ngày 2026-10-16: 20 phiên đồng thời cho ra 20 tiến trình phục vụ (0 lúc nghỉ); truy vấn bảng của cơ sở dữ liệu khác bị từ chối với 'cross-database references are not implemented' còn hai bảng cùng cơ sở dữ liệu ghép bình thường; bản sao dựng bằng pg_basebackup -R -X stream ở chế độ recovery, ghi vào bản sao bị từ chối ('cannot execute INSERT in a read-only transaction'), synchronous_standby_names rỗng, và khi tạm dừng áp dụng thay đổi ở bản sao thì máy chính có 2 hàng còn bản sao thấy 1 (độ trễ được dựng chứ không đo); bảng PARTITION BY HASH cho ra các bảng con cùng cơ sở dữ liệu; 200.000 hàng sau một lượt cập nhật có 200.000 phiên bản chết, tệp dữ liệu từ 7.080 lên 14.160 KiB, sau VACUUM số phiên bản chết về 0 và tệp không nhỏ lại. KHÔNG kiểm chứng: câu chuyện và con số của Figma (chỉ có bản tóm tắt thứ cấp, bài gốc chưa mở), Amazon RDS, PgBouncer (không cài trên máy biên soạn), DBProxy, chia hàng ra nhiều máy, độ trễ sao chép dưới tải thật. Không trang tài liệu PostgreSQL, PgBouncer hay Figma nào mở được từ máy biên soạn."
+      "evidence": "Đã đọc body nguồn ghim. Hành vi của Postgres 16.15 (gói Ubuntu, chạy cục bộ qua socket Unix, tắt autovacuum) được chạy thử ngày 2026-10-16: 20 phiên đồng thời cho ra 20 tiến trình phục vụ (0 lúc nghỉ); gọi thẳng tên bảng của cơ sở dữ liệu khác bị từ chối với 'cross-database references are not implemented' còn hai bảng cùng cơ sở dữ liệu ghép bình thường, nhưng với postgres_fdw một câu lệnh ghép được bảng của cơ sở dữ liệu khác (kế hoạch có bước Foreign Scan) và dblink đọc được bảng đó; bản sao dựng bằng pg_basebackup -R -X stream ở chế độ recovery, ghi vào bản sao bị từ chối ('cannot execute INSERT in a read-only transaction'), synchronous_standby_names rỗng, và khi tạm dừng áp dụng thay đổi ở bản sao thì máy chính có 2 hàng còn bản sao thấy 1 (độ trễ được dựng chứ không đo); bảng PARTITION BY HASH cho ra các bảng con cùng cơ sở dữ liệu; 200.000 hàng sau một lượt cập nhật có 200.000 phiên bản chết, tệp dữ liệu từ 7.080 lên 14.160 KiB, sau VACUUM số phiên bản chết về 0 và tệp không nhỏ lại. KHÔNG kiểm chứng: câu chuyện và con số của Figma (chỉ có bản tóm tắt thứ cấp, bài gốc chưa mở), Amazon RDS, PgBouncer (không cài trên máy biên soạn), DBProxy, chia hàng ra nhiều máy, độ trễ sao chép dưới tải thật. Không trang tài liệu PostgreSQL, PgBouncer hay Figma nào mở được từ máy biên soạn."
     },
     "technical_review": {
       "status": "pending",
@@ -90,10 +90,14 @@
       "verified_by": "Chạy bản sao streaming cục bộ: ghi bị từ chối, synchronous_standby_names rỗng, trễ được dựng bằng cách tạm dừng áp dụng thay đổi (không đo trễ thật); trang tài liệu chưa mở được."
     },
     {
-      "id": "no-cross-database-query",
-      "claim_vi": "Một kết nối Postgres chỉ truy cập một cơ sở dữ liệu; không ghép được bảng của hai cơ sở dữ liệu bằng một lệnh.",
-      "source": "https://www.postgresql.org/docs/current/managing-databases.html",
-      "verified_by": "Chạy cục bộ: lỗi 'cross-database references are not implemented'; hai bảng cùng cơ sở dữ liệu ghép bình thường; trang tài liệu chưa mở được."
+      "id": "cross-database-query",
+      "claim_vi": "Một kết nối Postgres chỉ truy cập một cơ sở dữ liệu và gọi thẳng tên bảng của cơ sở dữ liệu khác bị từ chối; tiện ích mở rộng postgres_fdw hoặc dblink cho phép một câu lệnh ghép hoặc đọc bảng của cơ sở dữ liệu khác, qua một kết nối.",
+      "sources": [
+        "https://www.postgresql.org/docs/current/managing-databases.html",
+        "https://www.postgresql.org/docs/16/postgres-fdw.html",
+        "https://www.postgresql.org/docs/16/dblink.html"
+      ],
+      "verified_by": "Chạy Postgres 16.15 cục bộ: lỗi 'cross-database references are not implemented' khi gọi thẳng; hai bảng cùng cơ sở dữ liệu ghép bình thường; với postgres_fdw (máy chủ ngoài trỏ tới cơ sở dữ liệu kia) một câu JOIN trả đúng kết quả và kế hoạch có Foreign Scan; dblink trả đúng hàng. Chi phí và độ tin cậy của cầu nối là suy luận của bài, chưa đo; trang tài liệu chưa mở được."
     },
     {
       "id": "partitioning-single-server",

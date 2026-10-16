@@ -203,7 +203,7 @@ ABBREVIATION = re.compile(r"(?<!\w)(?:(" + "|".join(MIXED_CASE_TERMS) + r")|(\d*
 # whoever reads the name meets the abbreviation, so the lesson explains it (AI, SQL, OS) like any other. The name maps to
 # the abbreviation it carries; add a new one when a lesson introduces such a name. A possessive, a plural or a version
 # number may follow (OpenAI's, MySQL8).
-EMBEDDED_ABBREVIATIONS = {"ChatGPT": "GPT", "CommonJS": "JS", "ECMAScript": "ECMA", "FastAPI": "API", "GraphQL": "QL",
+EMBEDDED_ABBREVIATIONS = {"ChatGPT": "GPT", "CommonJS": "JS", "DBProxy": "DB", "ECMAScript": "ECMA", "FastAPI": "API", "GraphQL": "QL",
                           "HAProxy": "HA", "InfluxDB": "DB", "InnoDB": "DB", "InstructGPT": "GPT", "JinaAI": "AI", "LLMWare": "LLM",
                           "MetalLB": "LB", "MySQL": "SQL", "OOMKilled": "OOM", "OpenAI": "AI", "OpenSSH": "SSH",
                           "PostgreSQL": "SQL", "PyJWT": "JWT", "SQLite": "SQL", "TimescaleDB": "DB", "macOS": "OS"}

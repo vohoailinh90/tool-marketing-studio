@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 733" width="320" height="733" role="img" aria-labelledby="title desc">
 <title id="title">Mở rộng cơ sở dữ liệu Postgres qua ba bậc</title>
-<desc id="desc">Ba bậc mở rộng và một quy tắc. Bậc một: giữ một cơ sở dữ liệu, nâng máy lên, thêm bản sao chỉ đọc và bộ gom kết nối; cái giá là mọi lệnh ghi vẫn đi qua một máy chính. Bậc hai: chia theo bảng, đưa bảng nặng sang cơ sở dữ liệu riêng; cái giá là không còn ghép bảng hay giao dịch một lệnh giữa hai bên. Bậc ba: chia theo hàng, rải các hàng của một bảng ra nhiều máy và thêm lớp định tuyến; cái giá là truy vấn xuyên nhiều mảnh khó hơn nhiều. Quy tắc: leo bậc rẻ trước, chỉ leo tiếp khi bậc hiện tại hết đường.</desc>
+<desc id="desc">Ba bậc mở rộng và một quy tắc. Bậc một: giữ một cơ sở dữ liệu, nâng máy lên, thêm bản sao chỉ đọc và bộ gom kết nối; cái giá là mọi lệnh ghi vẫn đi qua một máy chính. Bậc hai: chia theo bảng, đưa bảng nặng sang cơ sở dữ liệu riêng; cái giá là ghép bảng hay chạy giao dịch giữa hai bên phải đi vòng, không còn đơn giản như trong một cơ sở dữ liệu. Bậc ba: chia theo hàng, rải các hàng của một bảng ra nhiều máy và thêm lớp định tuyến; cái giá là truy vấn xuyên nhiều mảnh khó hơn nhiều. Quy tắc: leo bậc rẻ trước, chỉ leo tiếp khi bậc hiện tại hết đường.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="733" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
@@ -16,7 +16,7 @@
 <text x="30" y="283" font-size="16" font-weight="bold">2 · Chia theo bảng</text>
 <text x="30" y="310" font-size="16" font-weight="normal">Bảng nặng sang cơ sở</text>
 <text x="30" y="337" font-size="16" font-weight="normal">dữ liệu riêng</text>
-<text x="30" y="364" font-size="16" font-weight="normal">Giá: hết ghép bảng một lệnh</text>
+<text x="30" y="364" font-size="16" font-weight="normal">Giá: ghép bảng phải đi vòng</text>
 <rect x="16" y="398" width="288" height="131" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
 <text x="30" y="428" font-size="16" font-weight="bold">3 · Chia theo hàng</text>
 <text x="30" y="455" font-size="16" font-weight="normal">Hàng của một bảng rải ra</text>

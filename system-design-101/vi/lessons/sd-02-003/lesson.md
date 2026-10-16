@@ -6,7 +6,7 @@
 
 ## Đọc hình
 
-1. **Trước: lấy mọi nhánh.** *Refspec* của Git là quy tắc nói "lấy những tham chiếu nào từ kho ở xa và đặt vào đâu". Quy tắc mặc định của một remote thông thường, `+refs/heads/*:refs/remotes/origin/*`, nghĩa là mọi nhánh. Theo nguồn, bước Checkout trong pipeline build của Pinboard đã chọn clone nông, chỉ 50 commit cuối và bỏ tag, nhưng không đặt refspec, nên mỗi lần build Git lấy hơn 2500 nhánh.
+1. **Trước: lấy mọi nhánh.** *Refspec* của Git là quy tắc nói "lấy những tham chiếu nào từ kho ở xa và đặt vào đâu". Quy tắc mặc định của một remote thông thường, `+refs/heads/*:refs/remotes/origin/*`, nghĩa là mọi nhánh. Theo nguồn, bước Checkout trong pipeline build của Pinboard đã chọn clone nông, chỉ 50 commit cuối và bỏ tag, nhưng không đặt refspec, nên mỗi lần build Git lấy hơn 2500 nhánh. Một lệnh `git clone --depth` thuần thì chỉ lấy một nhánh (xem mục cuối), nên theo suy luận của bài, công cụ checkout ở đây phải chạy `git fetch` với refspec đã cấu hình; bài chưa tái hiện pipeline đó.
 2. **Sau: một nhánh.** Đội thêm refspec chỉ nêu nhánh cần, ở đây là master. Git chỉ tải nhánh đó (tag đã bị bỏ sẵn).
 3. **Ba núm riêng biệt.** `depth` giới hạn lịch sử *của mỗi nhánh được lấy*, `no-tags` bỏ các tag, refspec chọn *những nhánh nào*. Chỉnh một núm không thay cho hai núm kia: khi `git fetch` dùng refspec mặc định, giới hạn độ sâu không làm số nhánh được lấy ít đi (`git clone --depth` thì ngầm chỉ lấy một nhánh, xem mục cuối).
 4. **Kết quả theo nguồn.** Từ 40 phút còn 30 giây, tức giảm khoảng 99% (2.400 giây còn 30 giây là giảm 98,75%). Nguồn nêu thêm vài số của Pinboard: 350 nghìn commit, 20 gigabyte khi clone đầy đủ, 60 nghìn lệnh pull mỗi ngày làm việc.
@@ -18,12 +18,12 @@ Các con số của Pinterest và của Pinboard là theo nguồn ByteByteGo; b�
 
 ## Nhìn hình thử trả lời
 
-Kho của bạn có 800 nhánh cũ, bước build chỉ cần nhánh chính và đã dùng `--depth=50`, nhưng clone vẫn chậm. Vì sao, và bạn sửa gì?
+Công cụ build của bạn chạy `git fetch --depth=50` với refspec mặc định trên một kho có 800 nhánh cũ. Bước build chỉ cần nhánh chính, nhưng việc tải vẫn chậm. Vì sao, và bạn sửa gì?
 
 <details>
 <summary>Xem đáp án</summary>
 
-Khi `git fetch` dùng refspec mặc định, `--depth` chỉ giới hạn bề sâu: mỗi nhánh được lấy vẫn kéo theo tới 50 commit gần nhất của nó, và cả 800 nhánh đều được lấy. Sửa bằng cách đặt refspec chỉ nêu nhánh chính (kèm `--no-tags` nếu không cần tag), và khai thêm đúng những nhánh mà build thật sự dùng. Đừng vội xóa nhánh cũ trên máy chủ: với client dùng refspec hẹp trên giao thức v2, Git thường chỉ xin liệt kê nhánh cần nên các nhánh đó thường không ảnh hưởng gì (xem mục dưới; đây là một tối ưu hóa chứ không phải bảo đảm của giao thức), còn xóa nhánh là việc khó hoàn lại và thuộc quyền chủ kho. Dọn nhánh chỉ đáng cân nhắc khi vẫn còn client lấy mọi nhánh mà chưa sửa được.
+Khi `git fetch` dùng refspec mặc định, `--depth` chỉ giới hạn bề sâu: mỗi nhánh được lấy vẫn kéo theo tới 50 commit gần nhất của nó, và cả 800 nhánh đều được lấy. Nếu công cụ chạy đúng `git clone --depth=50` thì Git đã ngầm chỉ lấy một nhánh (xem mục cuối), và nguyên nhân phải tìm ở chỗ khác. Với `git fetch` như trên, sửa bằng cách đặt refspec chỉ nêu nhánh chính (kèm `--no-tags` nếu không cần tag), và khai thêm đúng những nhánh mà build thật sự dùng. Đừng vội xóa nhánh cũ trên máy chủ: với client dùng refspec hẹp trên giao thức v2, Git thường chỉ xin liệt kê nhánh cần nên các nhánh đó thường không ảnh hưởng gì (xem mục dưới; đây là một tối ưu hóa chứ không phải bảo đảm của giao thức), còn xóa nhánh là việc khó hoàn lại và thuộc quyền chủ kho. Dọn nhánh chỉ đáng cân nhắc khi vẫn còn client lấy mọi nhánh mà chưa sửa được.
 
 </details>
 

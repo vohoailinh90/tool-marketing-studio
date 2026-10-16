@@ -107,6 +107,11 @@ class ParseTests(unittest.TestCase):
         self.assertEqual(rows[0].values["term"], "dodge")
         self.assertEqual(rows[0].values["meaning"], "Né tránh lách")
 
+    def test_every_markdown_alignment_row_is_a_separator_not_a_word(self):
+        for separator in ("|---|---|---|", "|:--|--:|:-:|", "| :---: | --- | --- |"):
+            rows, errors = vocab.parse_table(TABLE_HEAD.splitlines()[0] + "\n" + separator + "\n| a | b | Văn nói |\n")
+            self.assertEqual((len(rows), errors), (1, []), separator)
+
     def test_text_around_the_table_is_ignored(self):
         rows, errors = vocab.parse_table("Đây là bảng:\n\n| a | b | Văn nói |\n\nHết.")
         self.assertEqual((len(rows), errors), (1, []))
@@ -350,6 +355,15 @@ class AddTests(Workspace):
         code, out = self.run_cli("add", "--from", self.batch("nothing here\n"))
         self.assertEqual(code, 1)
         self.assertIn("no table rows", out)
+
+    def test_the_report_does_not_say_written_when_nothing_was_written(self):
+        self.make([ENTRY])
+        before = self.page.read_bytes()
+        code, out = self.run_cli("add", "--from", self.batch("| dodge | Một nghĩa khác | Văn nói | | s |\n"))
+        self.assertEqual(code, 0)
+        self.assertIn("nothing to write", out)
+        self.assertNotIn("(written)", out)
+        self.assertEqual(self.page.read_bytes(), before)
 
     def test_a_word_without_a_note_is_added_but_the_report_says_so(self):
         self.make()

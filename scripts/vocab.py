@@ -64,7 +64,7 @@ JAPANESE = re.compile("[\u3040-\u309f\u30a0-\u30ff\u3400-\u4dbf\u4e00-\u9fff\uff
 KANA_READING = re.compile(r"\s*\([\u3040-\u309f\u30a0-\u30ff\u30fb\s]+\)$")
 TRAILING_PAREN = re.compile(r"\s*\([^()]*\)$")
 HEADER_CELL = re.compile(r"^(từ\s*/?\s*cụm|term)$", re.IGNORECASE)
-SEPARATOR_CELL = re.compile(r"^:?-{2,}:?$")
+SEPARATOR_CELL = re.compile(r"^:?-+:?$")  # ---, :--, --:, and the centred :-:
 ISO_DATE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 
 
@@ -437,7 +437,10 @@ def print_report(report: Report, dry_run: bool) -> None:
         print(f"    new:    {short(new)}  note: {new.get('note', '')}")
     for new, old in report.near:
         print(f"~ {new['term']} shares its headword with stored {old['term']!r}: a second sense, or the same word?")
-    verdict = "dry run, nothing written" if dry_run else "written"
+    if dry_run:
+        verdict = "dry run, nothing written"
+    else:
+        verdict = "written" if report.added or report.updated else "nothing to write"
     print(f"add: {len(report.added)} new, {len(report.updated)} updated, {len(report.unchanged)} already stored, "
           f"{len(report.differs)} differ ({verdict})")
 

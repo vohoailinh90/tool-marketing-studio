@@ -120,3 +120,11 @@ mutations:
             print(f"WARN {warning}")
         print_report
   test: tests.test_vocab.AddTests.test_a_word_without_a_note_is_added_but_the_report_says_so
+- label: a centred alignment row (:-:) is read as a word
+  find: 'SEPARATOR_CELL = re.compile(r"^:?-+:?$")'
+  replace: 'SEPARATOR_CELL = re.compile(r"^:?-{2,}:?$")'
+  test: tests.test_vocab.ParseTests.test_every_markdown_alignment_row_is_a_separator_not_a_word
+- label: the report says written when nothing was written
+  find: 'verdict = "written" if report.added or report.updated else "nothing to write"'
+  replace: 'verdict = "written"'
+  test: tests.test_vocab.AddTests.test_the_report_does_not_say_written_when_nothing_was_written

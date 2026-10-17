@@ -27,6 +27,12 @@ class CiRunnerTests(unittest.TestCase):
             self.assertIn("github.event_name != 'pull_request'", guard, name)
             self.assertIn(SAME_REPO, guard, name)
 
+    def test_every_job_runs_on_a_github_hosted_runner_unless_the_repository_variable_says_otherwise(self):
+        for path in (".github/workflows/ci.yml", ".github/workflows/radar-preview.yml"):
+            workflow = yaml.safe_load((ROOT / path).read_text(encoding="utf-8"))
+            for name, job in workflow["jobs"].items():
+                self.assertEqual("${{ vars.CI_RUNNER || 'ubuntu-latest' }}", job["runs-on"], f"{path}: {name}")
+
 
 class BareDomainTests(unittest.TestCase):
     def test_a_bare_domain_with_any_real_ending_is_a_link(self):

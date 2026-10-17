@@ -3,7 +3,7 @@ name: CI
 on:
   push:
     # A branch with a pull request is checked by the pull request run; its push run only repeated
-    # that work on the single VPS runner, and no later push ever replaced a push run still waiting.
+    # that work, and no later push ever replaced a push run still waiting.
     branches: [main]
   pull_request:
 
@@ -18,11 +18,10 @@ permissions:
 
 jobs:
   engine:
-    # The VPS runner registered for this repository by default (GitHub-hosted minutes are
-    # billed for a private repository); set the repository variable CI_RUNNER, e.g. to
-    # ubuntu-latest, to move every job at once — docs/agent-team.md, "CI runner".
-    runs-on: ${{ vars.CI_RUNNER || 'self-hosted' }}
-    # A persistent runner executes only code from people who can push here: a pull request
+    # A GitHub-hosted runner by default (free for a public repository); set the repository variable
+    # CI_RUNNER, e.g. to self-hosted, to move every job at once — docs/agent-team.md, "CI runner".
+    runs-on: ${{ vars.CI_RUNNER || 'ubuntu-latest' }}
+    # A persistent runner (CI_RUNNER) executes only code from people who can push here: a pull request
     # from a fork never runs on it (the same commits still run once someone with access pushes them).
     if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
     steps:
@@ -74,13 +73,13 @@ jobs:
         run: python scripts/ci_changes.py
       - name: Mutation check (safety-rail tests catch their own removal)
         if: steps.changes.outputs.mutation != 'false'
-        # Each worker mutates its own copy of the tree, so MUTATION_JOBS entries run at once. Two matches the
-        # VPS (4 cores, two runners, one job each); set the repository variable MUTATION_JOBS to 1 to go back to
-        # one tree, or higher on a runner with cores to spare (docs/agent-team.md, "CI runner").
+        # Each worker mutates its own copy of the tree, so MUTATION_JOBS entries run at once. Two is the default;
+        # set the repository variable MUTATION_JOBS to 1 to go back to one tree, or higher on a runner with cores
+        # to spare, after timing this step in a run's log (docs/agent-team.md, "CI runner").
         run: python scripts/mutation_check.py --all --jobs ${{ vars.MUTATION_JOBS || '2' }}
 
   web:
-    runs-on: ${{ vars.CI_RUNNER || 'self-hosted' }}
+    runs-on: ${{ vars.CI_RUNNER || 'ubuntu-latest' }}
     if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
     defaults:
       run:
@@ -100,7 +99,7 @@ jobs:
 
   office:
     # The agent office (docs/office-dashboard.md): a read-only page that shows which agent is doing what.
-    runs-on: ${{ vars.CI_RUNNER || 'self-hosted' }}
+    runs-on: ${{ vars.CI_RUNNER || 'ubuntu-latest' }}
     if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
     defaults:
       run:

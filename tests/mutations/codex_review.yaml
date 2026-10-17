@@ -14,12 +14,48 @@ mutations:
   file: .github/workflows/ci.yml
   find: |2-
       web:
-        runs-on: ${{ vars.CI_RUNNER || 'self-hosted' }}
+        runs-on: ${{ vars.CI_RUNNER || 'ubuntu-latest' }}
         if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
   replace: |2-
       web:
-        runs-on: ${{ vars.CI_RUNNER || 'self-hosted' }}
+        runs-on: ${{ vars.CI_RUNNER || 'ubuntu-latest' }}
   test: tests.test_codex_review.CiRunnerTests.test_pull_requests_from_forks_never_reach_the_self_hosted_runner
+- label: the engine job falls back to a self-hosted runner when the variable is unset
+  file: .github/workflows/ci.yml
+  find: |2-
+        # CI_RUNNER, e.g. to self-hosted, to move every job at once — docs/agent-team.md, "CI runner".
+        runs-on: ${{ vars.CI_RUNNER || 'ubuntu-latest' }}
+  replace: |2-
+        # CI_RUNNER, e.g. to self-hosted, to move every job at once — docs/agent-team.md, "CI runner".
+        runs-on: ${{ vars.CI_RUNNER || 'self-hosted' }}
+  test: tests.test_codex_review.CiRunnerTests.test_every_job_runs_on_a_github_hosted_runner_unless_the_repository_variable_says_otherwise
+- label: the web job falls back to a self-hosted runner when the variable is unset
+  file: .github/workflows/ci.yml
+  find: |2-
+      web:
+        runs-on: ${{ vars.CI_RUNNER || 'ubuntu-latest' }}
+  replace: |2-
+      web:
+        runs-on: ${{ vars.CI_RUNNER || 'self-hosted' }}
+  test: tests.test_codex_review.CiRunnerTests.test_every_job_runs_on_a_github_hosted_runner_unless_the_repository_variable_says_otherwise
+- label: the office job falls back to a self-hosted runner when the variable is unset
+  file: .github/workflows/ci.yml
+  find: |2-
+        # The agent office (docs/office-dashboard.md): a read-only page that shows which agent is doing what.
+        runs-on: ${{ vars.CI_RUNNER || 'ubuntu-latest' }}
+  replace: |2-
+        # The agent office (docs/office-dashboard.md): a read-only page that shows which agent is doing what.
+        runs-on: ${{ vars.CI_RUNNER || 'self-hosted' }}
+  test: tests.test_codex_review.CiRunnerTests.test_every_job_runs_on_a_github_hosted_runner_unless_the_repository_variable_says_otherwise
+- label: the radar preview falls back to a self-hosted runner when the variable is unset
+  file: .github/workflows/radar-preview.yml
+  find: |2-
+        # Same runner switch as ci.yml (docs/agent-team.md, "CI runner").
+        runs-on: ${{ vars.CI_RUNNER || 'ubuntu-latest' }}
+  replace: |2-
+        # Same runner switch as ci.yml (docs/agent-team.md, "CI runner").
+        runs-on: ${{ vars.CI_RUNNER || 'self-hosted' }}
+  test: tests.test_codex_review.CiRunnerTests.test_every_job_runs_on_a_github_hosted_runner_unless_the_repository_variable_says_otherwise
 - label: only a short list of domain endings counts as a link
   find: '        if not line.startswith("#") for word in line.split()}'
   replace: '        if not line.startswith("#") for word in line.split() if word in ("com", "vn", "jp")}'

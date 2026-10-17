@@ -51,7 +51,7 @@ mutations:
   replace: 'sec.get("kind") not in KINDS:'
   test: tests.test_figures.SpecTests.test_a_section_kind_that_is_not_text_is_a_problem_not_a_crash
 - label: a bare domain or a spaced scheme is accepted as text
-  find: '    return bool(LINK.search(text)) or has_url(IDNA_DOT.sub(".", text))'
+  find: '    return bool(LINK.search(text)) or has_url(text.replace("\u3002", "."))'
   replace: '    return bool(LINK.search(text))'
   test: tests.test_figures.SpecTests.test_bare_and_obfuscated_addresses_are_refused_and_technical_text_is_not
 - label: a control or invisible character in a text is accepted
@@ -91,10 +91,6 @@ mutations:
   replace: '    text = value                                                # fullwidth letters and the halfwidth full stop (U+FF61) become plain ones here'
   test: tests.test_figures.SpecTests.test_an_address_is_refused_in_any_text
 - label: an ideographic full stop between two names is not read as a dot
-  find: 'has_url(IDNA_DOT.sub(".", text))'
+  find: 'has_url(text.replace("\u3002", "."))'
   replace: 'has_url(text)'
-  test: tests.test_figures.SpecTests.test_an_ideographic_full_stop_between_ascii_names_is_a_dot_and_in_a_sentence_it_is_not
-- label: every ideographic full stop is read as a dot, sentences included
-  find: 'IDNA_DOT = re.compile("(?<=[A-Za-z0-9-])\u3002(?=[A-Za-z0-9-])")'
-  replace: 'IDNA_DOT = re.compile("\u3002")'
   test: tests.test_figures.SpecTests.test_an_ideographic_full_stop_between_ascii_names_is_a_dot_and_in_a_sentence_it_is_not

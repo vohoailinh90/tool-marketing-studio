@@ -37,7 +37,6 @@ TOP_KEYS = {"id", "lang", "title", "subtitle", "desc", "sections"}
 LANGS = ("vi", "en", "ja")
 MAX_RAILS = 4                       # cross links that run beside the cards of one `parts` section
 HIDDEN = {"Cc", "Cf", "Cs", "Zl", "Zp"}      # Unicode categories nobody sees: controls, format (zero-width, direction marks, joiners), surrogates, separators
-IDNA_DOT = re.compile("(?<=[A-Za-z0-9-])\u3002(?=[A-Za-z0-9-])")      # a browser reads the ideographic full stop between two names as a dot (`fb\u3002com`); in a Japanese sentence it ends a sentence and has no ASCII name on both sides
 LINK = re.compile(r":\s*/\s*/")            # any scheme, `ftp://` included, with spaces round the separator: has_url reads only http(s), www. and domains
 
 
@@ -87,8 +86,8 @@ def orphan_mark(value: str) -> bool:
 def has_address(value: str) -> bool:
     """True when the text holds an address: a scheme with `://` (spaced or fullwidth too), or what `has_url`, the studio's rule for posts, reads
     (bare domains and spaced schemes). A figure and a slide carry none: a link goes through the post's `{link}`."""
-    text = unicodedata.normalize("NFKC", value)                 # fullwidth letters and the halfwidth full stop (U+FF61) become plain ones here
-    return bool(LINK.search(text)) or has_url(IDNA_DOT.sub(".", text))
+    text = unicodedata.normalize("NFKC", value)                 # fullwidth letters and the halfwidth full stop (U+FF61, which becomes U+3002) become plain ones here
+    return bool(LINK.search(text)) or has_url(text.replace("\u3002", "."))        # a browser reads the ideographic full stop as a dot (`fb\u3002com`); has_url still needs a name and an ending round it, so a sentence stays one
 
 
 def _text(value, where: str, low: int, high: int, found: list[str]) -> None:

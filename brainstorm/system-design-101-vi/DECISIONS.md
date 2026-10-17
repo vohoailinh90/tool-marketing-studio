@@ -120,8 +120,10 @@ Cả hai là ý kiến của chủ repo, không phải kết luận pháp lý.
 Đánh giá của trợ lý trong cùng phiên, không phải tư vấn pháp lý:
 
 - Lập luận thứ nhất là cột chính. Bản quyền bảo vệ cách diễn đạt, không bảo vệ ý tưởng hay chủ đề; một bài thật sự không
-  lấy phần diễn đạt nào của nguồn thì không cần giấy phép. Bằng chứng tốt nhất là mỗi bài ghi các nguồn độc lập đã dùng
-  (RFC, tài liệu chính thức, sách) cùng kết quả của `scripts/sd101_source_distance.py`.
+  lấy phần diễn đạt nào của nguồn thì không cần giấy phép. Bằng chứng tốt nhất là nguồn gốc của từng bài: mỗi bài ghi
+  các nguồn độc lập đã dùng (RFC, tài liệu chính thức, sách), và người review đã đọc bài đối chiếu trực tiếp với nguồn.
+  `scripts/sd101_source_distance.py` chỉ là sàng lọc để chọn bài cần đọc lại, không phải bằng chứng: nó chỉ so từ vựng
+  ASCII (tên, thuật ngữ, số) giữa nguồn tiếng Anh và bài tiếng Việt, nên không thấy được bản dịch sát hay một câu chép lại.
 - Lập luận thứ hai yếu hơn. NC (phi thương mại) và ND (không cải biên rồi chia sẻ) là hai điều kiện riêng: nếu một bài bị
   coi là bản cải biên thì ND cấm chia sẻ nó kể cả khi phi thương mại. Phi thương mại chỉ làm giảm rủi ro thực tế, không
   thay cho tính độc lập. Điều kiện này cũng phải còn đúng: kho này nằm cạnh studio quảng bá các tool chủ repo định thương

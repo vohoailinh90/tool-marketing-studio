@@ -69,6 +69,7 @@ PPTX_PARTS = ("[Content_Types].xml", "ppt/presentation.xml")  # what any PowerPo
 PNG_CHANNELS = {0: 1, 2: 3, 3: 1, 4: 2, 6: 4}  # samples per pixel by colour type
 ADAM7 = ((0, 0, 8, 8), (4, 0, 8, 8), (0, 4, 4, 8), (2, 0, 4, 4), (0, 2, 2, 4), (1, 0, 2, 2), (0, 1, 1, 2))  # x0, y0, dx, dy
 MAX_PPTX_BYTES = 512 * 1024 * 1024  # what a deck's parts may add up to once unpacked
+MAX_PNG_BYTES = 64 * 1024 * 1024  # what one slide's scanlines may add up to once inflated (1920x1080 at 16 bits is 17 MB)
 
 
 class SlidesError(Exception):
@@ -267,6 +268,8 @@ def png_damage(path: pathlib.Path) -> str | None:
             if not (width and height and colour in PNG_CHANNELS and depth in (1, 2, 4, 8, 16) and interlace in (0, 1)):
                 return "IHDR does not describe an image"
             expected = png_scanlines(width, height, PNG_CHANNELS[colour] * depth, interlace)
+            if expected > MAX_PNG_BYTES:  # also keeps the size handed to the inflater inside a C ssize_t
+                return "IHDR describes an image too large to be a slide"
         first = False
         if kind == b"IDAT":
             images += 1
@@ -390,6 +393,8 @@ class Context:
     offline: bool
 
     def record_path(self, lesson_id: str) -> pathlib.Path:
+        if not LESSON_ID.fullmatch(lesson_id):  # a `..` or an absolute path would reach a file outside lessons/
+            raise SlidesError(f"{lesson_id!r} is not a lesson id (sd-NN-NNN)")
         return self.store / "lessons" / lesson_id / SLIDES_DIR / RECORD
 
     def relative(self, lesson_id: str) -> str:
@@ -955,7 +960,8 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--store", type=pathlib.Path, default=DEFAULT_STORE, help="the store (default: system-design-101/vi)")
     parser.add_argument("--remote", default="origin")
     parser.add_argument("--owner", help="override the owner, which is the current branch (tests, detached checkouts)")
-    parser.add_argument("--offline", action="store_true", help="decide without reading the remote (accepts the risk)")
+    parser.add_argument("--offline", action="store_true", help="decide without reading the remote (accepts the risk; "
+                        "not with --publish, which checks the remote afterwards)")
     commands = parser.add_subparsers(dest="command", required=True)
     status = commands.add_parser("status", help="counts per group and the next free lessons")
     status.add_argument("--all", action="store_true", help="list every live claim, not only mine")
@@ -1003,6 +1009,9 @@ def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     store = args.store.resolve()
     try:
+        if args.offline and getattr(args, "publish", False):  # decided before anything is written or pushed
+            raise SlidesError("--publish pushes the branch and then checks the claim against the remote, so it cannot be "
+                              "combined with --offline")
         root = pathlib.Path(git_text(store, "rev-parse", "--show-toplevel"))
         context = Context(root, store, args.remote, args.owner or current_branch(root), args.offline)
         return args.run(context, args)

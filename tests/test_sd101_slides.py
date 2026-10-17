@@ -220,11 +220,25 @@ class ClaimTests(Sessions):
 
     def test_offline_never_publishes_the_default_branch(self) -> None:
         before = git(self.seed, "rev-parse", "origin/main")
-        code, _, err = self.run_in(self.seed, "--offline", "claim", "sd-01-001", "--publish")
+        code, _, err = self.run_in(self.seed, "--offline", "claim", "sd-01-001")
         self.assertEqual(2, code)
         self.assertIn("default branch", err)
+        code, _, err = self.run_in(self.seed, "--offline", "claim", "sd-01-001", "--publish")
+        self.assertEqual(2, code)
         self.assertEqual(before, git(self.seed, "ls-remote", "origin", "refs/heads/main").split()[0])
         self.assertFalse((self.seed / "store" / "lessons" / "sd-01-001" / "slides").exists())
+
+    def test_publishing_checks_the_remote_afterwards_so_it_refuses_to_run_offline(self) -> None:
+        a = self.session("a")
+        finish = ("finish", "sd-01-001", "--canvas", CANVAS, "--url", URL, "--slides", "8")
+        for command in (("claim", "sd-01-001"), ("touch",), finish, ("exported", "sd-01-001"), ("release", "sd-01-001")):
+            with self.subTest(command=command[0]):
+                code, _, err = self.run_in(a, "--offline", *command, "--publish")
+                self.assertEqual(2, code)
+                self.assertIn("cannot be combined with --offline", err)
+                self.assertIsNone(self.record(a, "sd-01-001"), "nothing was written")
+                self.assertEqual("", git(a, "ls-remote", "origin", "refs/heads/claude/a"), "nothing was pushed")
+        self.assertEqual(0, self.run_in(a, "--offline", "claim", "sd-01-001")[0], "offline without --publish still works")
 
     def test_a_parseable_record_without_an_owner_or_with_an_unknown_status_blocks_its_lesson(self) -> None:
         for text in ("id: sd-01-001\nstatus: doing\nclaimed_at: 2026-10-17T08:00:00Z\nheartbeat_at: 2026-10-17T08:00:00Z\n",
@@ -892,6 +906,32 @@ class FinishTests(Sessions):
         self.assertEqual(0, self.run_in(a, "release", "sd-01-001", "--publish")[0])
         self.assertIsNone(self.record(a, "sd-01-001"))
 
+    def test_a_lesson_id_with_path_parts_never_reaches_a_file_outside_lessons(self) -> None:
+        a = self.session("a")
+        base = {"id": "sd-01-001", "owner": "claude/a", "claimed_at": "2026-10-17T08:00:00Z"}
+        doing = slides.render({**base, "status": "doing", "heartbeat_at": "2026-10-17T08:00:00Z"})
+        done = slides.render({**base, "status": "done", "done_at": "2026-10-17T09:00:00Z", "moda_canvas": CANVAS,
+                              "moda_url": URL, "slide_count": 8, "size": "1920x1080", "exports": "pending"})
+        decoys = {}
+        for name, text in (("victim", doing), ("trophy", done)):
+            folder = a / "store" / name / "slides"
+            folder.mkdir(parents=True)
+            (folder / "deck.yaml").write_text(text, encoding="utf-8")
+            decoys[name] = (folder / "deck.yaml", text)
+        for lesson_id, name in (("../victim", "victim"), ("sd-01-001/../../victim", "victim"),
+                                (str(a / "store" / "victim"), "victim")):
+            with self.subTest(command="release", lesson_id=lesson_id):
+                code, _, err = self.run_in(a, "release", lesson_id)
+                self.assertEqual(2, code)
+                self.assertIn("is not a lesson id", err)
+                self.assertEqual(decoys[name][1], decoys[name][0].read_text(encoding="utf-8"), "the decoy is left alone")
+        for lesson_id in ("../trophy", str(a / "store" / "trophy")):
+            with self.subTest(command="exported", lesson_id=lesson_id):
+                code, _, err = self.run_in(a, "exported", lesson_id)
+                self.assertEqual(2, code)
+                self.assertIn("is not a lesson id", err)
+                self.assertEqual(decoys["trophy"][1], decoys["trophy"][0].read_text(encoding="utf-8"))
+
 
 class FolderTests(unittest.TestCase):
     def setUp(self) -> None:
@@ -1111,6 +1151,22 @@ class FolderTests(unittest.TestCase):
             self.assertEqual("image data inflates to more than the header describes", slides.png_damage(path))
         self.assertTrue(asked)
         self.assertTrue(all(0 < size <= 16 * 49 + 1 for size in asked), asked)
+
+    def test_a_header_describing_an_absurd_image_is_reported_not_raised(self) -> None:
+        reason = "IHDR describes an image too large to be a slide"
+        self.write(exports="done")
+        self.exports()
+        for width, height, interlace in ((0xFFFFFFFF, 0xFFFFFFFF, 0), (0xFFFFFFFF, 0xFFFFFFFF, 1), (0x7FFFFFFF, 1, 0),
+                                         (20_000, 20_000, 0)):
+            with self.subTest(width=width, height=height, interlace=interlace):
+                header = struct.pack(">IIBBBBB", width, height, 16, 6, 0, 0, interlace)
+                data = (slides.PNG_SIGNATURE + chunk(b"IHDR", header) + chunk(b"IDAT", zlib.compress(b""))
+                        + chunk(b"IEND", b""))
+                (self.dir / "01.png").write_bytes(data)
+                self.assertEqual(reason, slides.png_damage(self.dir / "01.png"))
+                self.assertEqual([f"01.png is not a whole PNG: {reason}"], self.problems())
+        png(self.dir / "01.png")
+        self.assertEqual([], self.problems(), "a real slide is nowhere near the bound")
 
     def test_a_pptx_whose_parts_unpack_to_more_than_a_deck_can_hold_is_refused(self) -> None:
         import zipfile

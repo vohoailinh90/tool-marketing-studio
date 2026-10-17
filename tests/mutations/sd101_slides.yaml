@@ -310,3 +310,15 @@ mutations:
   find: "    if damaged:  # on the remote or in this tree, about to be pushed"
   replace: "    if False:  # on the remote or in this tree, about to be pushed"
   test: tests.test_sd101_slides.FinishTests.test_verify_rejects_a_finished_record_that_was_damaged_before_it_was_pushed
+- label: a header describing an absurd image reaches the inflater
+  find: "            if expected > MAX_PNG_BYTES:  # also keeps the size handed to the inflater inside a C ssize_t\n                return \"IHDR describes an image too large to be a slide\"\n"
+  replace: ""
+  test: tests.test_sd101_slides.FolderTests.test_a_header_describing_an_absurd_image_is_reported_not_raised
+- label: a lesson id with path parts is turned into a path
+  find: "        if not LESSON_ID.fullmatch(lesson_id):  # a `..` or an absolute path would reach a file outside lessons/\n            raise SlidesError(f\"{lesson_id!r} is not a lesson id (sd-NN-NNN)\")\n"
+  replace: ""
+  test: tests.test_sd101_slides.FinishTests.test_a_lesson_id_with_path_parts_never_reaches_a_file_outside_lessons
+- label: publishing is allowed offline
+  find: "        if args.offline and getattr(args, \"publish\", False):  # decided before anything is written or pushed\n            raise SlidesError(\"--publish pushes the branch and then checks the claim against the remote, so it cannot be \"\n                              \"combined with --offline\")\n"
+  replace: ""
+  test: tests.test_sd101_slides.ClaimTests.test_publishing_checks_the_remote_afterwards_so_it_refuses_to_run_offline

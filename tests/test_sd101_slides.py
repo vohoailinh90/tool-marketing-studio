@@ -1240,6 +1240,31 @@ class FolderTests(unittest.TestCase):
                 path.write_bytes(data)
                 self.assertEqual(reason, slides.png_damage(path))
 
+    def test_a_chunk_layout_that_no_decoder_accepts_is_reported(self) -> None:
+        sig, end = slides.PNG_SIGNATURE, chunk(b"IEND", b"")
+        header = chunk(b"IHDR", struct.pack(">IIBBBBB", 16, 16, 8, 2, 0, 0, 0))
+        stream = zlib.compress(b"\x00" * slides.png_scanlines(16, 16, 24, 0))
+        idat, first, second = chunk(b"IDAT", stream), chunk(b"IDAT", stream[:9]), chunk(b"IDAT", stream[9:])
+        text = chunk(b"tEXt", b"a\x00b")
+        cases = {
+            "a chunk type that is not four letters": (sig + header + chunk(b"ID1T", b"") + idat + end,
+                                                      "a chunk type is not four letters"),
+            "a second IHDR": (sig + header + header + idat + end, "IHDR appears more than once"),
+            "a critical chunk no decoder knows": (sig + header + chunk(b"ABCD", b"") + idat + end,
+                                                  "unknown critical chunk ABCD"),
+            "image data split by another chunk": (sig + header + first + text + second + end,
+                                                  "image data is split by another chunk"),
+            "an IEND that is not empty": (sig + header + idat + chunk(b"IEND", b"x"), "IEND chunk is not empty"),
+            "an ancillary chunk nobody knows": (sig + header + chunk(b"abCd", b"x") + idat + end, None),
+            "image data in two chunks in a row": (sig + header + first + second + end, None),
+            "an ancillary chunk after the image data": (sig + header + idat + text + end, None),
+        }
+        for label, (data, reason) in cases.items():
+            with self.subTest(label):
+                path = self.dir / "01.png"
+                path.write_bytes(data)
+                self.assertEqual(reason, slides.png_damage(path))
+
     def test_a_scanline_with_a_filter_type_that_does_not_exist_is_reported(self) -> None:
         reason = "a scanline has a filter type that does not exist"
         for interlace in (0, 1):

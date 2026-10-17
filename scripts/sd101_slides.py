@@ -266,7 +266,8 @@ def png_bad_filter(out: bytes, start: int, layout: list[tuple[int, int, int]]) -
 
 
 def png_damage(path: pathlib.Path) -> str | None:
-    """Why a file is not a whole PNG, or None: the signature, an IHDR first, every chunk's checksum, an image stream that
+    """Why a file is not a whole PNG, or None: the signature, an IHDR first, every chunk's checksum, a chunk layout a
+    decoder accepts (four-letter types, one IHDR, no critical chunk it does not know, consecutive IDATs), an image stream that
     inflates to its end and to exactly what the header describes, every scanline opening with a filter type that exists,
     and an IEND chunk closing the file with nothing after it. The stream is inflated under that size, so a small file
     cannot expand into gigabytes."""
@@ -277,7 +278,7 @@ def png_damage(path: pathlib.Path) -> str | None:
     if data[:8] != PNG_SIGNATURE:
         return "no PNG signature"
     position, first, finished, images, inflater = 8, True, False, 0, zlib.decompressobj()
-    produced, expected, colour, palette, layout = 0, 0, 0, False, []
+    produced, expected, colour, palette, layout, previous = 0, 0, 0, False, [], b""
     while position < len(data):
         if finished:
             return "bytes after IEND"
@@ -291,6 +292,16 @@ def png_damage(path: pathlib.Path) -> str | None:
             return f"checksum of {kind.decode('latin-1')} does not match"
         if first and (kind != b"IHDR" or length != 13):
             return "IHDR is not the first chunk"
+        if not kind.isalpha():  # bytes.isalpha() is ASCII letters only
+            return "a chunk type is not four letters"
+        if kind == b"IHDR" and not first:
+            return "IHDR appears more than once"
+        if not kind[0] & 0x20 and kind not in (b"IHDR", b"PLTE", b"IDAT", b"IEND"):  # a capital first letter: critical
+            return f"unknown critical chunk {kind.decode('ascii')}"
+        if kind == b"IDAT" and images and previous != b"IDAT":
+            return "image data is split by another chunk"
+        if kind == b"IEND" and length:
+            return "IEND chunk is not empty"
         if first:
             width, height, depth, colour, compression, filtering, interlace = struct.unpack(">IIBBBBB", data[position + 8:end])
             if not (width and height and depth in PNG_DEPTHS.get(colour, ()) and compression == 0 and filtering == 0
@@ -324,7 +335,7 @@ def png_damage(path: pathlib.Path) -> str | None:
                     piece = inflater.unconsumed_tail
             except zlib.error:
                 return "image data is damaged"
-        finished = kind == b"IEND"
+        finished, previous = kind == b"IEND", kind
         position = end + 4
     if not finished:
         return "no IEND chunk"

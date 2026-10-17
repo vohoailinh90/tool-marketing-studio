@@ -358,3 +358,23 @@ mutations:
   find: "max(0, -(-(start - first) // row))"
   replace: "max(0, (start - first) // row)"
   test: tests.test_sd101_slides.FolderTests.test_a_scanline_with_a_filter_type_that_does_not_exist_is_reported
+- label: a chunk type that is not four letters passes
+  find: "        if not kind.isalpha():  # bytes.isalpha() is ASCII letters only"
+  replace: "        if False:  # bytes.isalpha() is ASCII letters only"
+  test: tests.test_sd101_slides.FolderTests.test_a_chunk_layout_that_no_decoder_accepts_is_reported
+- label: a second IHDR passes
+  find: "        if kind == b\"IHDR\" and not first:"
+  replace: "        if False:"
+  test: tests.test_sd101_slides.FolderTests.test_a_chunk_layout_that_no_decoder_accepts_is_reported
+- label: a critical chunk no decoder knows passes
+  find: "        if not kind[0] & 0x20 and kind not in (b\"IHDR\", b\"PLTE\", b\"IDAT\", b\"IEND\"):  # a capital first letter: critical"
+  replace: "        if False:  # a capital first letter: critical"
+  test: tests.test_sd101_slides.FolderTests.test_a_chunk_layout_that_no_decoder_accepts_is_reported
+- label: image data split by another chunk passes
+  find: "        if kind == b\"IDAT\" and images and previous != b\"IDAT\":"
+  replace: "        if False:"
+  test: tests.test_sd101_slides.FolderTests.test_a_chunk_layout_that_no_decoder_accepts_is_reported
+- label: an IEND chunk that carries data passes
+  find: "        if kind == b\"IEND\" and length:"
+  replace: "        if False:"
+  test: tests.test_sd101_slides.FolderTests.test_a_chunk_layout_that_no_decoder_accepts_is_reported

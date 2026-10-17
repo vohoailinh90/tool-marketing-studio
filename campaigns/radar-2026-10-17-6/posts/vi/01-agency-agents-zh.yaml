@@ -1,0 +1,89 @@
+id: 01-agency-agents-zh
+status: draft
+format: portrait
+series: Radar GitHub · 2026-10-17-6
+link: 01-agency-agents-zh
+slides:
+- layout: cover
+  emoji: 🧩
+  eyebrow: Radar GitHub · Giải pháp
+  title: 'agency-agents-zh: Biến AI thành 277 chuyên gia'
+  subtitle: Bộ sưu tập 277 vai trò AI chuyên gia có sẵn quy trình và tiêu chuẩn bàn giao, hỗ trợ tích
+    hợp tự động vào 20 công cụ lập trình AI khác nhau.
+- layout: stat
+  eyebrow: Số liệu theo ngày quét
+  value: '21.331'
+  label: sao trên GitHub
+  caption: MIT · Shell
+- layout: quote
+  text: Người dùng thường mất nhiều thời gian viết prompt chi tiết cho từng tác vụ chuyên môn trong công
+    việc. Các prompt thông thường thiếu ngữ cảnh sâu, không có quy trình nghiệp vụ rõ ràng và khó đồng
+    bộ qua các công cụ AI khác nhau.
+  author: Vấn đề nó giải quyết
+- layout: flow
+  variant: after
+  title: Nó chạy thế nào
+  steps:
+  - text: 'Định nghĩa nhân sự: Mỗi vai trò AI được mô tả trong tài liệu chuẩn hóa, xác định rõ danh tính,
+      chuyên môn, quy trình và kết quả đầu ra cụ thể.'
+  - text: 'Chuyển đổi cú pháp: Kịch bản chuyển đổi cấu trúc tài liệu sang định dạng phù hợp từng công
+      cụ (ví dụ với OpenClaw sẽ tách thành ba phần: nhân cách, năng lực và hồ sơ).'
+  - text: 'Nạp vào môi trường: Kịch bản cài đặt đưa cấu hình đã xử lý vào đúng thư mục dữ liệu cục bộ
+      của công cụ AI tương ứng trên máy tính.'
+- layout: features
+  title: Các mảnh ghép
+  items:
+  - emoji: 🧩
+    title: Tập hợp AI Agents
+    text: Chứa các tài liệu mô tả 277 vai trò chuyên gia thuộc 20 phòng ban.
+  - emoji: ⚙️
+    title: Kịch bản chuyển đổi định dạng
+    text: Chuyển đổi cấu trúc tài liệu sang định dạng tương thích của từng phần mềm AI.
+  - emoji: 🔌
+    title: Kịch bản cài đặt tự động
+    text: Tự động phát hiện phần mềm trên máy và cài đặt vai trò vào thư mục tương ứng.
+  - emoji: 📦
+    title: Công cụ AI người dùng
+    text: Các phần mềm như Claude Code, Cursor, OpenClaw tiếp nhận và kích hoạt vai trò chuyên gia.
+- layout: checklist
+  title: Học được gì
+  tone: ok
+  items:
+  - 'Thiết kế prompt theo dạng nhân sự: cần phân định rõ vai trò, quy trình và chuẩn bàn giao thay vì
+    chỉ hỏi đáp'
+  - 'Cách tổ chức vai trò đa nền tảng: chuyển đổi một định dạng gốc sang nhiều cấu hình công cụ khác nhau'
+  - 'Chuẩn hóa mô-đun hoá AI: chia nhỏ nhân cách, năng lực và hồ sơ tóm tắt'
+- layout: pains
+  title: Lưu ý
+  tone: accent
+  items:
+  - emoji: ⚠️
+    text: Claude Code và Copilot có thể dùng trực tiếp, nhưng các công cụ khác cần thực hiện lệnh chuyển
+      đổi định dạng trước khi cài
+  - emoji: ⚠️
+    text: Một số công cụ yêu cầu khởi động lại ứng dụng hoặc cổng kết nối (như OpenClaw gateway) để nhận
+      diện cấu hình mới
+- layout: cta
+  emoji: 📌
+  title: Lưu lại để học dần
+  text: Mỗi tuần hai lần có một repo mới.
+  show_link: false
+platforms:
+  facebook:
+    caption: 'Biến trợ lý AI thành 277 chuyên gia với agency-agents-zh!
+
+      Bộ hồ sơ vai trò đầy đủ từ kỹ thuật đến marketing.
+
+      Hỗ trợ tích hợp tự động vào Cursor, Claude Code, OpenClaw.
+
+      Cài đặt nhanh chỉ bằng một dòng lệnh trong terminal.
+
+
+      Nội dung do AI tóm tắt từ README và cấu trúc repo; hãy đọc repo gốc trước khi dùng.'
+    first_comment: 'Repo gốc: {link}'
+    hashtags:
+    - AIAgents
+    - Cursor
+    - ClaudeCode
+    - Productivity
+    - PromptEngineering

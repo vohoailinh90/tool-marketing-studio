@@ -377,7 +377,7 @@ class TextTests(unittest.TestCase):
     def test_a_combining_mark_advances_nothing_and_never_starts_a_line(self):
         self.assertEqual(text.width("x\u0301", 15), text.width("x", 15))
         word = "x\u0301" * 30                                   # no composed form exists: the mark stays a character of its own
-        for box in range(30, 200, 3):
+        for box in range(1, 200, 2):                         # also boxes narrower than one letter, where the first character is already too wide
             for line in text.wrap(word, 15, box):
                 self.assertFalse(text.combining(line[0]), (box, line))
         self.assertEqual("".join(text.wrap(word, 15, 60)), word)
@@ -679,8 +679,9 @@ class FacebookTests(unittest.TestCase):
             self.assertFalse((Path(tmp) / "out").exists())
 
     def test_nothing_is_written_when_the_plan_has_problems(self):
-        with tempfile.TemporaryDirectory() as tmp:
+        with tempfile.TemporaryDirectory() as tmp, mock.patch.object(browser, "png") as draw:
             files, problems = facebook.export(too_tall(), Path(tmp), ROOT)
+            draw.assert_not_called()                           # refused before any slide is drawn, not after
             self.assertEqual(files, [])
             self.assertTrue(problems)
             self.assertFalse((Path(tmp) / "t-parts").exists())
@@ -856,8 +857,9 @@ class RobustnessTests(unittest.TestCase):
             stale = Path(tmp) / "demo-small" / "09.png"
             stale.parent.mkdir()
             stale.write_bytes(b"old")
-            with self.assertRaises(UnicodeEncodeError):
+            with mock.patch.object(browser, "png") as draw, self.assertRaises(UnicodeEncodeError):
                 facebook.export(data, Path(tmp), ROOT)
+            draw.assert_not_called()                           # it fails before the first slide is drawn
             self.assertTrue(stale.exists())
 
 

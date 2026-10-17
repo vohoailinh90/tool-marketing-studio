@@ -1,0 +1,16 @@
+# Mutation manifest — see scripts/mutation_check.py
+target: mkt/render.py
+note: A diagram Mermaid cannot draw stops its own post, leaves no half-render behind, and says so.
+mutations:
+- label: a post that could not be drawn keeps its old manifest and images
+  find: '                leftover.unlink(missing_ok=True)'
+  replace: '                pass'
+  test: tests.test_diagram.RenderPostTests.test_a_diagram_mermaid_cannot_draw_costs_only_its_own_post
+- label: a diagram error escapes and stops every post
+  find: '        except DiagramError as exc:'
+  replace: '        except ZeroDivisionError as exc:'
+  test: tests.test_diagram.RenderPostTests.test_a_diagram_mermaid_cannot_draw_costs_only_its_own_post
+- label: small diagram text is never reported
+  find: '                for advice in text_warnings(page) if drawn else []:'
+  replace: '                for advice in []:'
+  test: tests.test_diagram.RenderPostTests.test_a_crowded_diagram_still_renders_with_a_warning

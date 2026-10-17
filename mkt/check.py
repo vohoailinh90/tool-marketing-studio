@@ -8,6 +8,7 @@ import unicodedata
 from dataclasses import dataclass
 from pathlib import Path
 
+from . import diagram
 from .i18n import LANGS
 from .layouts import ENUMS, FIELDS, LAYOUTS, AssetError, resolve_asset
 from .links import PLACEHOLDER, is_configured
@@ -223,6 +224,9 @@ def check_post(campaign: Campaign, post: Post) -> list[Issue]:
                 resolve_asset(slide["src"], roots)
             except AssetError as exc:
                 add("error", str(exc), spot)
+        if name == "diagram" and slide.get("source") not in (None, "", [], {}):     # the required-field check reports those
+            for problem in diagram.source_problems(slide["source"]):
+                add("error", problem, spot)
         if name == "flow":
             for step in slide.get("steps") or []:
                 if isinstance(step, dict) and "minutes" in step and not isinstance(step["minutes"], int):

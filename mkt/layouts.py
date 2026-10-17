@@ -79,7 +79,13 @@ FIELDS = {
     "email": ("eyebrow", "title", "subject", "from", "infobar", "buttons", "body", "note"),
     "timeline": ("eyebrow", "title", "items", "note"),
     "image": ("eyebrow", "title", "src", "caption", "note"),
+    "diagram": ("eyebrow", "title", "source", "caption", "note"),
 }
+
+
+# Layouts an author adds by hand. The AI drafting prompt never lists them, so a draft only uses one the
+# author wrote in; nothing existing changes when one is added to the engine.
+OPTIONAL_LAYOUTS = ("diagram",)
 
 
 def enum(value, kind: str, default: str) -> str:
@@ -105,6 +111,10 @@ LAYOUT_DOCS = {
     "email": "title, subject*, from, infobar, buttons: [text], body*, note — a mock e-mail",
     "timeline": "title*, items*: [{when, text}] (3–6), note",
     "image": "title, src* (an image file inside the campaign folder), caption — a real screenshot",
+    "diagram": "title, source* (Mermaid text starting flowchart TD, sequenceDiagram or stateDiagram-v2; "
+               "at most 40 lines, one idea, labels in the post's language; highlight a node with :::hl, :::ok, :::bad, "
+               ":::warn or :::muted; no links, clicks, HTML, rect/box colour blocks or style lines), caption, note — a flow, a sequence or a "
+               "state machine drawn in the campaign's colours",
 }
 
 
@@ -326,6 +336,14 @@ def image(s: dict, ctx: Ctx) -> str:
     src = resolve_asset(s["src"], roots).as_uri()
     caption = f'<figcaption>{fmt(s["caption"])}</figcaption>' if s.get("caption") else ""
     return f'{_title(s)}<figure class="shot"><img src="{esc(src)}" alt="">{caption}</figure>{_note(s)}'
+
+
+@layout("diagram", ("source",))
+def diagram(s: dict, ctx: Ctx) -> str:
+    # Only the escaped source goes into the page. The renderer draws it (mkt/diagram.py); a preview
+    # written without a browser keeps showing the source.
+    caption = f'<figcaption>{fmt(s["caption"])}</figcaption>' if s.get("caption") else ""
+    return f'{_title(s)}<figure class="diagram"><pre class="diagram__src">{esc(s["source"])}</pre>{caption}</figure>{_note(s)}'
 
 
 def _as_items(items) -> list[dict]:

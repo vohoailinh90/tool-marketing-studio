@@ -12,7 +12,8 @@ Dữ kiện (brief) → Định vị theo từng ngôn ngữ → Bài đăng + �
 - **3 ngôn ngữ, viết riêng**: mỗi bài có 3 bản hoàn chỉnh — Tiếng Việt, 日本語, English —
   viết cho đúng khán giả của từng ngôn ngữ, không dịch từng câu.
 - **Nhiều ảnh giải thích**: 15 kiểu slide (đoạn chat, quy trình có tính giờ, trước/sau, bảng Excel
-  "hỗn loạn", email Outlook giả lập, số liệu lớn, khảo sát…) render ra PNG 1080×1350 cho Facebook.
+  "hỗn loạn", email Outlook giả lập, số liệu lớn, khảo sát…) render ra PNG 1080×1350 cho Facebook,
+  cộng 1 kiểu **tùy chọn** `diagram` (sơ đồ Mermaid) — chỉ dùng khi bạn tự thêm vào bài, AI không tự chọn.
 - **App có giao diện** (Automation UI Kit): phân tích → viết bài bằng AI → xem trước & duyệt →
   đăng → lịch sử đăng → phân tích nhu cầu.
 - **Chiến dịch mẫu**: Outlook RSVP Tool — 6 bài × 3 ngôn ngữ = 99 ảnh trong

@@ -1,0 +1,96 @@
+# Mutation manifest — see scripts/mutation_check.py
+target: mkt/diagram.py
+note: The diagram layout draws only Mermaid text that cannot link, script, restyle itself, or run an unpinned library.
+mutations:
+- label: a Mermaid bundle that is not the pinned one is run
+  find: '    if hashlib.sha256(data).hexdigest() != MERMAID_SHA256:'
+  replace: '    if False:'
+  test: tests.test_diagram.BundleTests.test_a_different_bundle_is_never_run
+- label: any diagram type may be drawn
+  find: TYPES = ("flowchart", "graph", "sequenceDiagram", "stateDiagram-v2")
+  replace: TYPES = ("flowchart", "graph", "sequenceDiagram", "stateDiagram-v2", "classDiagram")
+  test: tests.test_diagram.SourceTests.test_it_must_start_with_a_supported_type
+- label: a click statement is allowed
+  find: GENERAL_COMMANDS = r"click|style|classDef|linkStyle"
+  replace: GENERAL_COMMANDS = r"style|classDef|linkStyle"
+  test: tests.test_diagram.SourceTests.test_links_clicks_directives_and_css_are_refused
+- label: an init directive is allowed
+  find: '|&#|%%\{|@\s*\{"'
+  replace: '|&#|@\s*\{"'
+  test: tests.test_diagram.SourceTests.test_links_clicks_directives_and_css_are_refused
+- label: HTML in a label is allowed
+  find: '    if HTML_TAG.search(STATE_MARKER.sub(" ", LINE_BREAK.sub(" ", text))):'
+  replace: '    if False:'
+  test: tests.test_diagram.SourceTests.test_html_is_refused_but_arrows_and_line_breaks_are_not
+- label: any tone name is allowed
+  find: '    unknown = sorted({tone for tone in tones if tone not in TONES})'
+  replace: '    unknown = []'
+  test: tests.test_diagram.SourceTests.test_only_the_known_tones_may_highlight
+- label: a diagram of any size is allowed
+  find: '    if len(text) > MAX_CHARS or len(lines) > MAX_LINES:'
+  replace: '    if False:'
+  test: tests.test_diagram.SourceTests.test_a_diagram_too_big_for_a_phone_is_refused
+- label: Mermaid runs in loose mode
+  find: 'securityLevel: ''strict'''
+  replace: 'securityLevel: ''loose'''
+  test: tests.test_diagram.DrawTests.test_mermaid_runs_in_strict_mode
+- label: a link in the drawing is accepted
+  find: '      if (art.querySelector(''a, script, iframe, object, embed, image, img'')) throw new Error('
+  replace: '      if (false) throw new Error('
+  test: tests.test_diagram.DrawTests.test_a_link_in_the_drawing_is_refused_even_when_check_was_skipped
+- label: text of any size is called readable
+  find: 'MIN_TEXT_PX = 22 '
+  replace: 'MIN_TEXT_PX = 0 '
+  test: tests.test_diagram.DrawTests.test_text_too_small_to_read_is_a_warning
+- label: the campaign accent is ignored
+  find: 'hl: [c.accent, c[''accent-strong''], luminance(c.accent) < 0.18 ? ''#ffffff'' : c.ink],'
+  replace: 'hl: [''#2563eb'', ''#1e40af'', ''#ffffff''],'
+  test: tests.test_diagram.DrawTests.test_the_campaign_accent_colours_the_diagram
+- label: an image in the drawing is accepted
+  find: '''a, script, iframe, object, embed, image, img'''
+  replace: '''a, script, iframe, object, embed'''
+  test: tests.test_diagram.DrawTests.test_an_image_in_the_drawing_is_refused_even_when_check_was_skipped
+- label: a node attribute block that can load an image is allowed
+  find: '|&#|%%\{|@\s*\{"'
+  replace: '|&#|%%\{"'
+  test: tests.test_diagram.SourceTests.test_links_clicks_directives_and_css_are_refused
+- label: a state diagram's choice or fork counts as HTML
+  find: '    if HTML_TAG.search(STATE_MARKER.sub(" ", LINE_BREAK.sub(" ", text))):'
+  replace: '    if HTML_TAG.search(LINE_BREAK.sub(" ", text)):'
+  test: tests.test_diagram.SourceTests.test_state_diagram_choice_fork_and_join_are_not_html
+- label: a command in capitals or split over two lines is allowed
+  find: '|^\s*acc(?:Title|Descr)\b", re.IGNORECASE)'
+  replace: '|^\s*acc(?:Title|Descr)\b")'
+  test: tests.test_diagram.SourceTests.test_links_clicks_directives_and_css_are_refused
+- label: a node named like a keyword is refused
+  find: (?:{GENERAL_COMMANDS})(?:\s|$)
+  replace: (?:{GENERAL_COMMANDS})
+  test: tests.test_diagram.SourceTests.test_a_node_may_be_named_like_a_keyword_when_it_is_not_a_statement
+- label: a command after a semicolon is not looked for
+  find: '    parts = [part for line in statements for part in split_statements(line)]'
+  replace: '    parts = list(statements)'
+  test: tests.test_diagram.SourceTests.test_a_command_after_a_semicolon_is_refused
+- label: an entity code's semicolon starts a new statement
+  find: ' and depth == 0 and not ENTITY_TAIL.search(current):'
+  replace: ' and depth == 0:'
+  test: tests.test_diagram.SourceTests.test_a_semicolon_inside_a_label_or_an_entity_code_is_not_read_as_a_command
+- label: a semicolon inside a bracketed label starts a new statement
+  find: ' and not quoted and depth == 0 and not ENTITY_TAIL'
+  replace: ' and not quoted and not ENTITY_TAIL'
+  test: tests.test_diagram.SourceTests.test_a_semicolon_inside_a_label_or_an_entity_code_is_not_read_as_a_command
+- label: a semicolon inside a quoted string starts a new statement
+  find: '        if char == ";" and not quoted and depth == 0'
+  replace: '        if char == ";" and depth == 0'
+  test: tests.test_diagram.SourceTests.test_a_semicolon_inside_a_label_or_an_entity_code_is_not_read_as_a_command
+- label: a colour block (rect, box) is allowed in a sequence diagram
+  find: SEQUENCE_COMMANDS = r"links?|box|rect"
+  replace: SEQUENCE_COMMANDS = r"links?"
+  test: tests.test_diagram.SourceTests.test_links_clicks_directives_and_css_are_refused
+- label: the sequence-only commands are refused in every diagram type
+  find: ([FORBIDDEN_SEQUENCE_STATEMENT] if kind == "sequenceDiagram" else [])
+  replace: '[FORBIDDEN_SEQUENCE_STATEMENT]'
+  test: tests.test_diagram.SourceTests.test_a_flowchart_may_name_a_node_like_a_command_of_another_diagram
+- label: the diagram header is read on the normalised text
+  find: '    raw = [line for line in source.splitlines() if'
+  replace: '    raw = [line for line in text.splitlines() if'
+  test: tests.test_diagram.SourceTests.test_the_diagram_header_is_read_as_mermaid_will_get_it

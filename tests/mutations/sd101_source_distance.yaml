@@ -1,0 +1,44 @@
+# Mutation manifest — see scripts/mutation_check.py
+#
+# A passing test proves nothing on its own. These switch off each part of the source-distance ranking in turn and
+# require the named test to fail. A mutation that SURVIVES means the test guards nothing.
+
+target: scripts/sd101_source_distance.py
+note: The ranking points a reader at the System Design lessons that follow their source too closely. A body fetched from the network that is not the pinned blob, a score that ignores order or the lesson's own vocabulary, or a cache written inside the repository would each make the ranking wrong or leak source text into git.
+mutations:
+- label: a fetched or cached body whose git blob sha differs from the pin is accepted
+  find: "    if blob_sha(data) != pinned:"
+  replace: "    if False:"
+  test: tests.test_sd101_source_distance.FetchTests.test_a_cached_body_with_another_blob_sha_is_rejected_and_removed
+- label: the order of the shared vocabulary no longer lowers the score
+  find: "order = lcs_length(in_source, in_lesson) / len(in_source) if in_source else 0.0"
+  replace: "order = 1.0 if in_source else 0.0"
+  test: tests.test_sd101_source_distance.DistanceTests.test_the_same_vocabulary_in_another_order_lowers_order_but_not_coverage
+- label: the lesson's own vocabulary no longer lowers the score
+  find: "novelty = len(set(lesson_seq) - set(source_seq)) / len(set(lesson_seq)) if lesson_seq else 0.0"
+  replace: "novelty = 0.0"
+  test: tests.test_sd101_source_distance.DistanceTests.test_new_material_of_the_lessons_own_raises_novelty_and_lowers_closeness
+- label: the glossary and the list of sources count as the lesson's own words
+  find: "if title not in SKIPPED_SECTIONS]"
+  replace: "if True]"
+  test: tests.test_sd101_source_distance.TextTests.test_lesson_prose_leaves_out_the_glossary_the_sources_and_link_targets
+- label: very short words count as names
+  find: "MIN_WORD = 4"
+  replace: "MIN_WORD = 1"
+  test: tests.test_sd101_source_distance.TextTests.test_words_shorter_than_the_minimum_are_not_signals
+- label: the pinned source repository counts as an independent host
+  find: "if not any(mark in url.lower() for mark in own)"
+  replace: "if True"
+  test: tests.test_sd101_source_distance.MetadataTests.test_independent_hosts_leave_out_the_source_itself
+- label: a cache directory inside the repository is allowed
+  find: "    if args.cache_dir.resolve().is_relative_to(ROOT):"
+  replace: "    if False:"
+  test: tests.test_sd101_source_distance.SurveyTests.test_a_cache_inside_the_repository_is_refused
+- label: a lesson that cannot be measured no longer fails the run
+  find: "    return 2 if problems else 0"
+  replace: "    return 0"
+  test: tests.test_sd101_source_distance.SurveyTests.test_main_exits_2_when_a_lesson_cannot_be_measured
+- label: lessons are listed in id order, not closest first
+  find: "    rows.sort(key=lambda row: row[\"closeness\"], reverse=True)"
+  replace: "    rows.sort(key=lambda row: row[\"id\"])"
+  test: tests.test_sd101_source_distance.SurveyTests.test_the_closest_lesson_comes_first

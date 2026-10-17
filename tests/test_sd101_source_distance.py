@@ -1,0 +1,211 @@
+"""scripts/sd101_source_distance.py: the closeness ranking, on synthetic text and a fixture store (no network)."""
+
+from __future__ import annotations
+
+import contextlib
+import io
+import json
+import pathlib
+import tempfile
+import unittest
+
+from scripts import sd101_source_distance as distance_tool
+
+SOURCE = """---
+title: 'One guide'
+---
+
+![](https://assets.example.com/one.png)
+
+*   Postgres replicates writes
+*   Redis caches 1,000 sessions
+*   Kafka streams events
+"""
+# The same names and numbers in the same order, in Vietnamese prose.
+FOLLOWS = """# Bài
+
+## Đọc hình
+
+- Postgres replicates writes ở bản sao.
+- Redis caches 1000 phiên.
+- Kafka streams events liên tục.
+"""
+REORDERED = """# Bài
+
+## Đọc hình
+
+- Kafka streams events liên tục.
+- Redis caches 1000 phiên.
+- Postgres replicates writes ở bản sao.
+"""
+DEEPENED = FOLLOWS + """
+Thử nghiệm riêng: hàng đợi Rabbitmq giữ thông điệp, Cassandra chia khóa, Etcd bầu chủ, Zookeeper điều phối,
+Memcached đọc nhanh, Consul đăng ký dịch vụ.
+"""
+UNRELATED = "# Bài\n\n## Đọc hình\n\n- Hoàn toàn khác: Mongodb lưu tài liệu, Elasticsearch đánh chỉ mục.\n"
+
+
+def snapshot_for(data: bytes) -> dict:
+    return {"repository": "ByteByteGoHq/system-design-101", "commit_sha": "c" * 40, "path": "data/guides/one.md",
+            "blob_sha": distance_tool.blob_sha(data)}
+
+
+class TextTests(unittest.TestCase):
+    def test_blob_sha_is_the_git_blob_id(self) -> None:
+        self.assertEqual(distance_tool.blob_sha(b"hello\n"), "ce013625030ba8dba906f756967f9e9ca394464a")
+
+    def test_source_body_drops_front_matter_and_images(self) -> None:
+        body = distance_tool.source_body(SOURCE)
+        self.assertNotIn("title:", body)
+        self.assertNotIn("assets.example.com", body)
+        self.assertIn("Redis caches", body)
+
+    def test_signal_tokens_keep_names_and_numbers_in_order_and_drop_noise(self) -> None:
+        tokens = distance_tool.signal_tokens("Redis caches 1,000 sessions; trong đó với dữ liệu a 7 và 42 Redis again with-hyphen_part")
+        self.assertEqual(tokens[:3], ["redis", "caches", "1000"])
+        self.assertEqual(tokens.count("redis"), 1)           # first appearance only
+        self.assertIn("42", tokens)
+        self.assertNotIn("7", tokens)                         # one digit is not a signal
+        self.assertNotIn("with", tokens)                      # stop word
+        self.assertIn("hyphen", tokens)                       # compound words are split
+        self.assertNotIn("dữ", tokens)
+
+    def test_words_shorter_than_the_minimum_are_not_signals(self) -> None:
+        self.assertEqual(distance_tool.signal_tokens("api tcp udp http"), ["http"])
+
+    def test_lcs_length(self) -> None:
+        self.assertEqual(distance_tool.lcs_length(list("abcde"), list("ace")), 3)
+        self.assertEqual(distance_tool.lcs_length(list("abc"), list("cba")), 1)
+        self.assertEqual(distance_tool.lcs_length([], list("abc")), 0)
+
+    def test_lesson_prose_leaves_out_the_glossary_the_sources_and_link_targets(self) -> None:
+        lesson = ("# T\n\n![alt text](../../diagrams/x.svg)\n\n## Từ viết tắt\n\n- **GLOSSARYWORD** (Full Form) — x\n\n"
+                  "## Đọc hình\n\nPlain [link text](https://example.com/hidden-target) end.\n\n## Nguồn đối chiếu\n\n- SOURCELISTWORD\n")
+        prose = distance_tool.lesson_prose(lesson)
+        self.assertIn("Plain", prose)
+        self.assertIn("link text", prose)
+        for left_out in ("GLOSSARYWORD", "SOURCELISTWORD", "hidden-target", "diagrams"):
+            self.assertNotIn(left_out, prose)
+
+    def test_lesson_units_count_the_reading_section_items(self) -> None:
+        lesson = "# T\n\n- outside\n\n## Đọc hình\n\n1. one\n2. two\n**Bold lead.** three\n\ntext\n\n## Khác\n\n- elsewhere\n"
+        self.assertEqual(distance_tool.lesson_units(lesson), 3)
+
+
+class DistanceTests(unittest.TestCase):
+    def test_a_lesson_that_replays_its_source_scores_high_and_one_that_adds_nothing_has_no_novelty(self) -> None:
+        numbers = distance_tool.distance(SOURCE, FOLLOWS)
+        self.assertAlmostEqual(numbers["coverage"], 0.9)    # 9 of the source's 10 names ("sessions" is "phiên" here)
+        self.assertEqual(numbers["order"], 1.0)
+        self.assertAlmostEqual(numbers["replay"], 0.9)
+        self.assertLess(numbers["novelty"], 0.2)
+        self.assertGreater(numbers["closeness"], 0.8)
+
+    def test_the_same_vocabulary_in_another_order_lowers_order_but_not_coverage(self) -> None:
+        followed, reordered = distance_tool.distance(SOURCE, FOLLOWS), distance_tool.distance(SOURCE, REORDERED)
+        self.assertEqual(reordered["coverage"], followed["coverage"])
+        self.assertLess(reordered["order"], followed["order"])
+        self.assertLess(reordered["closeness"], followed["closeness"])
+
+    def test_new_material_of_the_lessons_own_raises_novelty_and_lowers_closeness(self) -> None:
+        followed, deepened = distance_tool.distance(SOURCE, FOLLOWS), distance_tool.distance(SOURCE, DEEPENED)
+        self.assertGreater(deepened["novelty"], followed["novelty"] + 0.3)
+        self.assertLess(deepened["closeness"], followed["closeness"] * 0.6)
+
+    def test_a_lesson_with_nothing_in_common_scores_zero(self) -> None:
+        numbers = distance_tool.distance(SOURCE, UNRELATED)
+        self.assertEqual(numbers["coverage"], 0.0)
+        self.assertEqual(numbers["closeness"], 0.0)
+
+    def test_unit_mirror_compares_item_counts_and_is_none_for_a_single_item(self) -> None:
+        self.assertEqual(distance_tool.distance(SOURCE, FOLLOWS)["unit_mirror"], 1.0)
+        self.assertIsNone(distance_tool.distance(SOURCE, "# T\n\n## Đọc hình\n\n- only one\n")["unit_mirror"])
+
+
+class MetadataTests(unittest.TestCase):
+    META = {"source_snapshot": {"repository": "ByteByteGoHq/system-design-101"},
+            "claims": [{"source": "https://github.com/ByteByteGoHq/system-design-101/blob/x/y.md"},
+                       {"source": "https://bytebytego.com/guides/one"},
+                       {"sources": ["https://www.rfc-editor.org/rfc/rfc9110", "https://docs.python.org/3/library/http.html",
+                                    "https://docs.python.org/3/library/ssl.html"]}],
+            "verification": {"claims": {}}}
+
+    def test_independent_hosts_leave_out_the_source_itself(self) -> None:
+        self.assertEqual(distance_tool.independent_hosts(self.META), ["docs.python.org", "www.rfc-editor.org"])
+
+    def test_own_evidence_needs_a_recorded_run_or_measurement(self) -> None:
+        self.assertFalse(distance_tool.own_evidence({"claims": [{"verified_by": "Đã đọc tài liệu"}]}))
+        self.assertTrue(distance_tool.own_evidence({"claims": [{"verified_by": "Chạy thử trên máy cục bộ"}]}))
+        self.assertTrue(distance_tool.own_evidence({"claims": [], "verification": {"claims": {"evidence": "measured on 3 hosts"}}}))
+
+
+class FetchTests(unittest.TestCase):
+    def setUp(self) -> None:
+        self.tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.tmp.cleanup)
+        self.cache = pathlib.Path(self.tmp.name) / "cache"
+        self.cache.mkdir()
+
+    def test_a_cached_body_whose_blob_sha_matches_the_pin_is_returned(self) -> None:
+        data = SOURCE.encode()
+        snapshot = snapshot_for(data)
+        (self.cache / f"{snapshot['blob_sha']}.md").write_bytes(data)
+        self.assertEqual(distance_tool.fetch_source(snapshot, self.cache, offline=True), SOURCE)
+
+    def test_a_cached_body_with_another_blob_sha_is_rejected_and_removed(self) -> None:
+        snapshot = snapshot_for(SOURCE.encode())
+        cached = self.cache / f"{snapshot['blob_sha']}.md"
+        cached.write_bytes(b"tampered")
+        with self.assertRaises(ValueError):
+            distance_tool.fetch_source(snapshot, self.cache, offline=True)
+        self.assertFalse(cached.exists())
+
+    def test_offline_without_a_cache_entry_raises(self) -> None:
+        with self.assertRaises(FileNotFoundError):
+            distance_tool.fetch_source(snapshot_for(SOURCE.encode()), self.cache, offline=True)
+
+
+class SurveyTests(unittest.TestCase):
+    def setUp(self) -> None:
+        self.tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.tmp.cleanup)
+        base = pathlib.Path(self.tmp.name)
+        self.cache, self.store = base / "cache", base / "store"
+        self.cache.mkdir()
+        for lesson_id, text in (("sd-01-001", DEEPENED), ("sd-01-002", FOLLOWS)):
+            (self.store / "lessons" / lesson_id).mkdir(parents=True)
+            (self.store / "lessons" / lesson_id / "lesson.md").write_text(text, encoding="utf-8")
+            (self.store / "metadata").mkdir(exist_ok=True)
+            (self.store / "metadata" / f"{lesson_id}.json").write_text(json.dumps(
+                {"title_vi": lesson_id, "source_snapshot": snapshot_for(SOURCE.encode()), "claims": []}), encoding="utf-8")
+        data = SOURCE.encode()
+        (self.cache / f"{distance_tool.blob_sha(data)}.md").write_bytes(data)
+
+    def test_the_closest_lesson_comes_first(self) -> None:
+        rows, problems = distance_tool.survey(self.store, self.cache, offline=True)
+        self.assertEqual(problems, [])
+        self.assertEqual([row["id"] for row in rows], ["sd-01-002", "sd-01-001"])
+
+    def test_main_prints_a_table_and_writes_the_numbers(self) -> None:
+        report = pathlib.Path(self.tmp.name) / "report.json"
+        out = io.StringIO()
+        with contextlib.redirect_stdout(out):
+            code = distance_tool.main(["--store", str(self.store), "--cache-dir", str(self.cache), "--offline", "--json", str(report)])
+        self.assertEqual(code, 0)
+        self.assertIn("sd-01-002", out.getvalue())
+        self.assertEqual([row["id"] for row in json.loads(report.read_text(encoding="utf-8"))["lessons"]], ["sd-01-002", "sd-01-001"])
+
+    def test_main_exits_2_when_a_lesson_cannot_be_measured(self) -> None:
+        (self.cache / f"{distance_tool.blob_sha(SOURCE.encode())}.md").unlink()
+        with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
+            code = distance_tool.main(["--store", str(self.store), "--cache-dir", str(self.cache), "--offline"])
+        self.assertEqual(code, 2)
+
+    def test_a_cache_inside_the_repository_is_refused(self) -> None:
+        with contextlib.redirect_stderr(io.StringIO()), self.assertRaises(SystemExit) as raised:
+            distance_tool.main(["--store", str(self.store), "--cache-dir", str(distance_tool.ROOT / "source-cache"), "--offline"])
+        self.assertEqual(raised.exception.code, 2)
+
+
+if __name__ == "__main__":
+    unittest.main()

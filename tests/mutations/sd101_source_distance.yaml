@@ -78,3 +78,15 @@ mutations:
   find: '            row.update({"independent_hosts": len(independent_hosts(metadata)), "own_evidence": own_evidence(metadata)})'
   replace: '            pass\n        else:\n            row.update({"independent_hosts": len(independent_hosts(metadata)), "own_evidence": own_evidence(metadata)})'
   test: tests.test_sd101_source_distance.SurveyTests.test_metadata_of_the_wrong_shape_is_reported_for_that_lesson_only
+- label: a Vietnamese word without marks is read as a name
+  find: "                    and not VIETNAMESE_SYLLABLE.fullmatch(piece) and piece not in seen):"
+  replace: "                    and piece not in seen):"
+  test: tests.test_sd101_source_distance.TextTests.test_vietnamese_words_without_marks_are_language_not_names
+- label: HTML tags of the lesson are read as words
+  find: "    return strip_html(re.sub(r\"https?://\\S+\", \" \", prose))"
+  replace: "    return re.sub(r\"https?://\\S+\", \" \", prose)"
+  test: tests.test_sd101_source_distance.TextTests.test_html_markup_is_not_vocabulary_in_the_lesson_or_the_source
+- label: HTML tags of the source are read as words
+  find: "    return strip_html(\"\\n\".join(lines))"
+  replace: "    return \"\\n\".join(lines)"
+  test: tests.test_sd101_source_distance.TextTests.test_html_markup_is_not_vocabulary_in_the_lesson_or_the_source

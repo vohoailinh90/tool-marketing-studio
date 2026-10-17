@@ -63,9 +63,15 @@ ENGLISH_STOPWORDS = frozenset(
     also other some such more most very when what where will your each many much only over after before being because
     while every still just like make made used uses using does doing both same next first second third called known
     here should must need needs want wants take takes give gives know knows well even less least ever never always""".split())
-# Vietnamese syllables written without a mark, which the ASCII filter cannot tell from English words.
-VIETNAMESE_NOISE = frozenset("trong chung mang cung dang cong tung chua thay nang hang bang nhan quan thanh tinh dung".split())
-STOPWORDS = ENGLISH_STOPWORDS | VIETNAMESE_NOISE
+# A Vietnamese word is one syllable, and written without marks it still has a recognisable shape: an optional initial,
+# a vowel group and an optional final. The ASCII filter alone cannot tell "theo" or "nhau" from an English word, so
+# this shape is rejected as language, not as a name. A few real English words fit it too ("long", "ping", "tech");
+# they are dropped from both sides alike, which costs a little coverage and nothing else.
+INITIAL = r"(?:ngh|ng|nh|ph|th|tr|ch|kh|gh|gi|qu|[bcdghklmnprstvx])?"
+VOWEL_WITHOUT_FINAL = r"(?:ieu|yeu|oai|oao|oay|oeo|uai|uay|uoi|uou|uya|ai|ao|au|ay|eo|eu|iu|oi|ui|uu|ia|ua|ya)"
+VOWEL_WITH_FINAL = r"(?:uyen|uyet|uy|ie|uo|oa|oe|ue|ye|[aeiouy])(?:ng|nh|ch|[cmnpt])?"
+VIETNAMESE_SYLLABLE = re.compile(f"{INITIAL}(?:{VOWEL_WITHOUT_FINAL}|{VOWEL_WITH_FINAL})")
+STOPWORDS = ENGLISH_STOPWORDS
 
 # A recorded run or measurement: the verbs the metadata uses for it, in Vietnamese and English. A match counts only when no
 # negation comes shortly before it in the same clause, so "chưa chạy thử" (not run) is not evidence of a run.
@@ -80,11 +86,16 @@ def blob_sha(data: bytes) -> str:
     return hashlib.sha1(b"blob %d\0" % len(data) + data).hexdigest()
 
 
+def strip_html(text: str) -> str:
+    """Comments and tags, so that <details> and <summary> are not read as words of the text."""
+    return re.sub(r"<[^>]*>", " ", re.sub(r"<!--.*?-->", " ", text, flags=re.DOTALL))
+
+
 def source_body(raw: str) -> str:
-    """The guide without its front matter, its images and its image-source line."""
+    """The guide without its front matter, its images, its image-source line and its markup."""
     body = re.sub(r"\A---\n.*?\n---\n", "", raw, count=1, flags=re.DOTALL)
     lines = [line for line in body.splitlines() if not re.match(r"\s*!\[", line) and not line.lower().startswith("image source")]
-    return "\n".join(lines)
+    return strip_html("\n".join(lines))
 
 
 def source_units(body: str) -> int:
@@ -116,7 +127,7 @@ def lesson_prose(markdown: str) -> str:
     prose = "\n".join(kept)
     prose = re.sub(r"!\[[^\]]*\]\([^)]*\)", " ", prose)
     prose = re.sub(r"\]\([^)]*\)", "]", prose)
-    return re.sub(r"https?://\S+", " ", prose)
+    return strip_html(re.sub(r"https?://\S+", " ", prose))
 
 
 def lesson_units(markdown: str) -> int:
@@ -146,7 +157,8 @@ def signal_tokens(text: str) -> list[str]:
                 ordered.append(token)
             continue
         for piece in re.split(r"[_-]", token.lower()):
-            if len(piece) >= MIN_WORD and piece.isalpha() and piece.isascii() and piece not in STOPWORDS and piece not in seen:
+            if (len(piece) >= MIN_WORD and piece.isalpha() and piece.isascii() and piece not in STOPWORDS
+                    and not VIETNAMESE_SYLLABLE.fullmatch(piece) and piece not in seen):
                 seen.add(piece)
                 ordered.append(piece)
     return ordered

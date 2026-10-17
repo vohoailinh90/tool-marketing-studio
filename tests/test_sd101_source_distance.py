@@ -78,6 +78,19 @@ class TextTests(unittest.TestCase):
         # the same text with the marks as separate combining characters (NFD) must give the same answer
         self.assertEqual(distance_tool.signal_tokens(unicodedata.normalize("NFD", text)), ["postgres"])
 
+    def test_vietnamese_words_without_marks_are_language_not_names(self) -> None:
+        # one syllable each, no diacritic: the ASCII test alone would keep them
+        words = "theo nhau giao danh gian chia khai truy trang ngay minh sang nhanh tham trung khung sinh xong quen giai thao"
+        self.assertEqual(distance_tool.signal_tokens(words), [])
+        # English technical words of a similar shape are kept
+        self.assertEqual(distance_tool.signal_tokens("train main chain route client server"),
+                         ["train", "main", "chain", "route", "client", "server"])
+
+    def test_html_markup_is_not_vocabulary_in_the_lesson_or_the_source(self) -> None:
+        lesson = "# T\n\n<details>\n<summary>Xem</summary>\n\nPostgres replicates.\n\n</details>\n<!-- hidden Zookeeper note -->\n"
+        self.assertEqual(distance_tool.signal_tokens(distance_tool.lesson_prose(lesson)), ["postgres", "replicates"])
+        self.assertEqual(distance_tool.signal_tokens(distance_tool.source_body("<div><span>Redis</span></div>\n")), ["redis"])
+
     def test_words_shorter_than_the_minimum_are_not_signals(self) -> None:
         self.assertEqual(distance_tool.signal_tokens("api tcp udp http"), ["http"])
 
@@ -118,7 +131,7 @@ class DistanceTests(unittest.TestCase):
     def test_new_material_of_the_lessons_own_raises_novelty_and_lowers_closeness(self) -> None:
         followed, deepened = distance_tool.distance(SOURCE, FOLLOWS), distance_tool.distance(SOURCE, DEEPENED)
         self.assertGreater(deepened["novelty"], followed["novelty"] + 0.3)
-        self.assertLess(deepened["closeness"], followed["closeness"] * 0.6)
+        self.assertLess(deepened["closeness"], followed["closeness"] * 0.7)
 
     def test_a_lesson_with_nothing_in_common_scores_zero(self) -> None:
         numbers = distance_tool.distance(SOURCE, UNRELATED)

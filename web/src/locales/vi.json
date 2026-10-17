@@ -83,6 +83,7 @@
   "not_rendered": "Chưa render",
   "render_button": "Render ảnh",
   "rendering": "Đang render bằng trình duyệt ẩn… (khoảng 1 giây mỗi ảnh)",
+  "render_failed": "Chưa render được ảnh cho bài này. Sửa các lỗi trong danh sách dưới ô YAML rồi render lại; ảnh đang hiện (nếu có) là từ lần render trước.",
   "approval": "Duyệt",
   "cannot_approve": "Chưa duyệt được vì:",
   "approve_button": "Duyệt",

@@ -39,6 +39,7 @@ import struct
 import sys
 import time
 import zipfile
+import zlib
 from dataclasses import dataclass
 
 import yaml
@@ -64,6 +65,7 @@ LEASE_HOURS = 72
 CLOCK_SKEW_HOURS = 1
 PUSH_BACKOFF_SECONDS = (2, 4, 8, 16)
 PNG_SIGNATURE = b"\x89PNG\r\n\x1a\n"
+PPTX_PARTS = ("[Content_Types].xml", "ppt/presentation.xml")  # what any PowerPoint file holds
 
 
 class SlidesError(Exception):
@@ -187,12 +189,11 @@ def record_problems(record: object, lesson_id: str) -> list[str]:
         problems.append("generation and taken_from come together: both after a takeover, neither otherwise")
     elif "taken_from" in record and record.get("owner") in record["taken_from"]:
         problems.append("taken_from must not name the owner itself")
-    if "claimed_at" in record and parse_stamp(record["claimed_at"]) is None:
+    if parse_stamp(record.get("claimed_at")) is None:  # a finished deck keeps its claim's time: it decides who was first
         problems.append("claimed_at must look like 2026-10-17T11:00:00Z")
     if status == "doing":
-        for key in ("claimed_at", "heartbeat_at"):
-            if parse_stamp(record.get(key)) is None:
-                problems.append(f"{key} must look like 2026-10-17T11:00:00Z")
+        if parse_stamp(record.get("heartbeat_at")) is None:
+            problems.append("heartbeat_at must look like 2026-10-17T11:00:00Z")
         return problems
     if parse_stamp(record.get("done_at")) is None:
         problems.append("done_at must look like 2026-10-17T11:00:00Z")
@@ -220,6 +221,60 @@ def png_size(path: pathlib.Path) -> tuple[int, int] | None:
     if len(head) < 24 or head[:8] != PNG_SIGNATURE or head[12:16] != b"IHDR":
         return None
     return struct.unpack(">II", head[16:24])
+
+
+def png_damage(path: pathlib.Path) -> str | None:
+    """Why a file is not a whole PNG, or None: the signature, an IHDR first, every chunk's checksum, an image stream that
+    inflates to its end, and an IEND chunk closing the file with nothing after it."""
+    try:
+        data = path.read_bytes()
+    except OSError as error:
+        return f"cannot be read: {error.strerror or error}"
+    if data[:8] != PNG_SIGNATURE:
+        return "no PNG signature"
+    position, first, finished, images, inflater = 8, True, False, 0, zlib.decompressobj()
+    while position < len(data):
+        if finished:
+            return "bytes after IEND"
+        if position + 12 > len(data):
+            return "cut off inside a chunk"
+        length, kind = struct.unpack(">I4s", data[position:position + 8])
+        end = position + 8 + length
+        if end + 4 > len(data):
+            return "cut off inside a chunk"
+        if zlib.crc32(data[position + 4:end]) != struct.unpack(">I", data[end:end + 4])[0]:
+            return f"checksum of {kind.decode('latin-1')} does not match"
+        if first and (kind != b"IHDR" or length != 13):
+            return "IHDR is not the first chunk"
+        first = False
+        if kind == b"IDAT":
+            images += 1
+            try:
+                inflater.decompress(data[position + 8:end])
+            except zlib.error:
+                return "image data is damaged"
+        finished = kind == b"IEND"
+        position = end + 4
+    if not finished:
+        return "no IEND chunk"
+    if not images or not inflater.eof:
+        return "image data is missing or cut short"
+    return None
+
+
+def pptx_damage(path: pathlib.Path) -> str | None:
+    """Why a file is not a PowerPoint presentation, or None: a ZIP archive that reads through and holds the parts every
+    presentation has."""
+    try:
+        with zipfile.ZipFile(path) as archive:
+            names = set(archive.namelist())
+            damaged = archive.testzip()
+    except (zipfile.BadZipFile, OSError):
+        return "not a ZIP archive"
+    if damaged:
+        return f"{damaged} is damaged"
+    missing = [part for part in PPTX_PARTS if part not in names]
+    return f"{', '.join(missing)} missing" if missing else None
 
 
 def folder_problems(slides_dir: pathlib.Path, lesson_id: str) -> list[str]:
@@ -257,10 +312,16 @@ def folder_problems(slides_dir: pathlib.Path, lesson_id: str) -> list[str]:
         width, height = (int(part) for part in record["size"].split("x"))
         for name in sorted(want & set(names)):
             path = slides_dir / name
-            if name.endswith(".png") and png_size(path) != (width, height):
-                problems.append(f"{name} is not a {width}x{height} PNG")
-            if name.endswith(".pptx") and not zipfile.is_zipfile(path):
-                problems.append(f"{name} is not a PowerPoint file")
+            if name.endswith(".png"):
+                damage = png_damage(path)
+                if damage:
+                    problems.append(f"{name} is not a whole PNG: {damage}")
+                elif png_size(path) != (width, height):
+                    problems.append(f"{name} is not a {width}x{height} PNG")
+            if name.endswith(".pptx"):
+                damage = pptx_damage(path)
+                if damage:
+                    problems.append(f"{name} is not a PowerPoint file: {damage}")
     return problems
 
 
@@ -459,10 +520,11 @@ def lost_reason(lesson_id: str, found: list[Holding], context: Context, moment: 
     if not published:
         return f"{lesson_id}: your claim is not on {context.remote}/{context.me}; run with --publish"
     me = max(published, key=lambda holding: holding.heartbeat_at or "")
-    if me.problems:
-        return f"{lesson_id}: your record on {me.where} cannot be used as a claim ({'; '.join(me.problems)}); fix it"
     for holding in found:
         if holding.owner == context.me and holding.status == "doing":
+            if holding.problems:  # the published copy and the one in this tree: finish builds the deck's record from it
+                return (f"{lesson_id}: your record on {holding.where} cannot be used as a claim "
+                        f"({'; '.join(holding.problems)}); fix it")
             continue
         if is_broken(holding):
             return f"{lesson_id}: {holding.where} holds a record that cannot be read as a claim; fix it first"

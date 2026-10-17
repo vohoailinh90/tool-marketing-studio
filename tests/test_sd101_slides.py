@@ -32,10 +32,27 @@ def git(cwd: Path, *args: str) -> str:
     return result.stdout.strip()
 
 
-def png(path: Path, width: int = 1920, height: int = 1080) -> None:
+def chunk(kind: bytes, body: bytes) -> bytes:
+    return struct.pack(">I", len(body)) + kind + body + struct.pack(">I", zlib.crc32(kind + body))
+
+
+def png_bytes(width: int = 1920, height: int = 1080) -> bytes:
+    """A whole PNG: signature, IHDR, one IDAT with every scanline, IEND."""
     header = struct.pack(">IIBBBBB", width, height, 8, 2, 0, 0, 0)
-    chunk = struct.pack(">I", len(header)) + b"IHDR" + header + struct.pack(">I", zlib.crc32(b"IHDR" + header))
-    path.write_bytes(slides.PNG_SIGNATURE + chunk)
+    image = zlib.compress(b"\x00" * (height * (1 + 3 * width)))
+    return slides.PNG_SIGNATURE + chunk(b"IHDR", header) + chunk(b"IDAT", image) + chunk(b"IEND", b"")
+
+
+def png(path: Path, width: int = 1920, height: int = 1080) -> None:
+    path.write_bytes(png_bytes(width, height))
+
+
+def pptx(path: Path, parts: tuple[str, ...] = slides.PPTX_PARTS) -> None:
+    import zipfile
+
+    with zipfile.ZipFile(path, "w") as archive:
+        for part in parts:
+            archive.writestr(part, "<x/>")
 
 
 class Sessions(unittest.TestCase):
@@ -233,6 +250,24 @@ class ClaimTests(Sessions):
         self.assertEqual(1, code)
         self.assertIn("cannot be used as a claim", err)
         self.assertEqual(1, self.finish(a, "sd-01-001")[0])
+
+    def test_a_damaged_copy_of_my_claim_in_this_tree_does_not_verify_touch_or_finish(self) -> None:
+        a = self.session("a")
+        self.run_in(a, "claim", "sd-01-001", "--publish")
+        path = a / "store" / "lessons" / "sd-01-001" / "slides" / "deck.yaml"
+        published = path.read_text(encoding="utf-8")
+        lines = [line for line in published.splitlines() if not line.startswith("claimed_at")]
+        path.write_text("\n".join(lines) + "\n", encoding="utf-8")  # damaged here only: the pushed copy is fine
+        damaged = path.read_text(encoding="utf-8")
+        for command in (("verify",), ("touch",)):
+            with self.subTest(command=command[0]):
+                code, _, err = self.run_in(a, *command)
+                self.assertEqual(1, code)
+                self.assertIn("your record on this working tree cannot be used as a claim", err)
+        self.assertEqual(1, self.finish(a, "sd-01-001")[0])
+        self.assertEqual(damaged, path.read_text(encoding="utf-8"))
+        path.write_text(published, encoding="utf-8")
+        self.assertEqual(0, self.run_in(a, "verify")[0])
 
     def test_an_invalid_utf8_record_or_a_directory_in_its_place_blocks_the_lesson(self) -> None:
         import shutil
@@ -533,8 +568,6 @@ class FinishTests(Sessions):
         self.assertEqual(before, self.record(a, "sd-01-001"))
 
     def test_exported_records_complete_exports_and_refuses_incomplete_ones(self) -> None:
-        import zipfile
-
         a = self.session("a")
         self.run_in(a, "claim", "sd-01-001", "--publish")
         self.finish(a, "sd-01-001")
@@ -543,8 +576,7 @@ class FinishTests(Sessions):
         self.assertEqual(1, code)
         self.assertIn("sd-01-001.pptx is missing", err)
         self.assertEqual("pending", self.record(a, "sd-01-001")["exports"])
-        with zipfile.ZipFile(folder / "sd-01-001.pptx", "w") as archive:
-            archive.writestr("x", "x")
+        pptx(folder / "sd-01-001.pptx")
         for number in range(1, 11):
             png(folder / f"{number:02d}.png")
         code, _, err = self.run_in(a, "exported", "sd-01-001", "--publish")
@@ -594,16 +626,14 @@ class FolderTests(unittest.TestCase):
         self.dir.mkdir()
 
     def write(self, **fields: object) -> None:
-        record = {"id": "sd-01-001", "status": "done", "owner": "claude/a", "done_at": "2026-10-17T09:00:00Z",
+        record = {"id": "sd-01-001", "status": "done", "owner": "claude/a", "claimed_at": "2026-10-17T08:00:00Z",
+                  "done_at": "2026-10-17T09:00:00Z",
                   "moda_canvas": CANVAS, "moda_url": URL, "slide_count": 8, "size": "1920x1080", "exports": "pending"}
         record.update(fields)
         (self.dir / "deck.yaml").write_text(slides.render(record), encoding="utf-8")
 
     def exports(self, count: int = 8) -> None:
-        import zipfile
-
-        with zipfile.ZipFile(self.dir / "sd-01-001.pptx", "w") as archive:
-            archive.writestr("x", "x")
+        pptx(self.dir / "sd-01-001.pptx")
         for number in range(1, count + 1):
             png(self.dir / f"{number:02d}.png")
 
@@ -646,7 +676,59 @@ class FolderTests(unittest.TestCase):
         self.write(exports="done")
         self.exports()
         (self.dir / "sd-01-001.pptx").write_bytes(b"not a zip")
-        self.assertEqual(["sd-01-001.pptx is not a PowerPoint file"], self.problems())
+        self.assertEqual(["sd-01-001.pptx is not a PowerPoint file: not a ZIP archive"], self.problems())
+
+    def test_a_zip_without_the_parts_of_a_presentation_is_not_a_pptx(self) -> None:
+        self.write(exports="done")
+        self.exports()
+        pptx(self.dir / "sd-01-001.pptx", ("x",))
+        self.assertEqual(["sd-01-001.pptx is not a PowerPoint file: [Content_Types].xml, ppt/presentation.xml missing"],
+                         self.problems())
+        pptx(self.dir / "sd-01-001.pptx", ("[Content_Types].xml",))
+        self.assertEqual(["sd-01-001.pptx is not a PowerPoint file: ppt/presentation.xml missing"], self.problems())
+
+    def test_a_pptx_with_a_damaged_member_is_reported(self) -> None:
+        self.write(exports="done")
+        self.exports()
+        path = self.dir / "sd-01-001.pptx"
+        data = bytearray(path.read_bytes())
+        data[data.index(b"<x/>")] ^= 0xFF  # the first member's stored bytes no longer match their checksum
+        path.write_bytes(bytes(data))
+        self.assertEqual(["sd-01-001.pptx is not a PowerPoint file: [Content_Types].xml is damaged"], self.problems())
+
+    def test_a_png_that_is_not_whole_is_reported(self) -> None:
+        self.write(exports="done")
+        self.exports()
+        whole = png_bytes()
+        end = chunk(b"IEND", b"")
+        header = slides.PNG_SIGNATURE + chunk(b"IHDR", whole[16:29])
+        flipped = bytearray(whole)
+        flipped[len(header) + 20] ^= 0xFF
+        cases = {
+            "only the signature and IHDR": (header, "no IEND chunk"),
+            "cut inside a chunk": (whole[:len(whole) // 2], "cut off inside a chunk"),
+            "no IEND": (whole[:-len(end)], "no IEND chunk"),
+            "bytes after IEND": (whole + b"\x00", "bytes after IEND"),
+            "a changed byte": (bytes(flipped), "checksum of IDAT does not match"),
+            "no image chunk": (header + end, "image data is missing or cut short"),
+            "an image stream that stops early": (header + chunk(b"IDAT", zlib.compress(b"\x00" * 99)[:-6]) + end,
+                                                 "image data is missing or cut short"),
+            "image data that is not a zlib stream": (header + chunk(b"IDAT", b"not a zlib stream") + end,
+                                                     "image data is damaged"),
+            "IHDR not first": (slides.PNG_SIGNATURE + end + whole[8:], "IHDR is not the first chunk"),
+            "not a PNG": (b"GIF89a" + whole[6:], "no PNG signature"),
+        }
+        for label, (data, reason) in cases.items():
+            with self.subTest(label):
+                (self.dir / "03.png").write_bytes(data)
+                self.assertEqual([f"03.png is not a whole PNG: {reason}"], self.problems())
+        png(self.dir / "03.png")
+        self.assertEqual([], self.problems())
+
+    def test_a_finished_deck_keeps_the_time_of_its_claim(self) -> None:
+        record = {"id": "sd-01-001", "status": "done", "owner": "claude/a", "done_at": "2026-10-17T09:00:00Z",
+                  "moda_canvas": CANVAS, "moda_url": URL, "slide_count": 8, "size": "1920x1080", "exports": "pending"}
+        self.assertEqual(["claimed_at must look like 2026-10-17T11:00:00Z"], slides.record_problems(record, "sd-01-001"))
 
     def test_a_record_for_another_lesson_or_with_a_stray_key_is_reported(self) -> None:
         self.write(id="sd-01-002", heartbeat_at="2026-10-17T09:00:00Z")

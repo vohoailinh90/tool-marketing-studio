@@ -45,6 +45,9 @@ a deck is finished with `exports: pending`. Once the owner's plan exports withou
 finished deck: `export` each page as PNG (`pixel_ratio` 1) and the whole deck as PPTX, download the links with `curl`
 (the host `assets-cdn.moda.app` must be in the environment's allowed domains), save them as above
 (`<id>.pptx`, `01.png` to `NN.png`) and run `exported <id> --publish`, which checks the files and records `exports: done`.
+The check opens every file: a PNG must be whole (every chunk's checksum, an image stream that inflates to its end, an
+`IEND` chunk and nothing after it) and exactly 1920x1080; a PPTX must be a ZIP archive that reads through and holds
+`[Content_Types].xml` and `ppt/presentation.xml`.
 Re-exporting does not change the slides, so it needs no claim.
 
 ## The style (the approved sample is sd-01-001)

@@ -47,8 +47,8 @@ mutations:
   replace: "    if False:"
   test: tests.test_sd101_slides.FolderTests.test_a_record_for_another_lesson_or_with_a_stray_key_is_reported
 - label: the size of an exported PNG is not checked
-  find: "            if name.endswith(\".png\") and png_size(path) != (width, height):"
-  replace: "            if False:"
+  find: "                elif png_size(path) != (width, height):"
+  replace: "                elif False:"
   test: tests.test_sd101_slides.FolderTests.test_a_missing_slide_or_a_wrong_size_is_reported
 - label: exports not recorded as done may sit in the folder
   find: "            problems.append(f\"{name} is not expected here\" + (\"\" if exported else \" (exports are not recorded as done)\"))"
@@ -131,9 +131,45 @@ mutations:
   replace: "        if False:"
   test: tests.test_sd101_slides.FinishTests.test_finish_reports_an_unreadable_record_that_appeared_while_it_published
 - label: my own published record is trusted even when it fails validation
-  find: "    if me.problems:"
-  replace: "    if False:"
+  find: "            if holding.problems:  # the published copy and the one in this tree"
+  replace: "            if False:  # the published copy and the one in this tree"
   test: tests.test_sd101_slides.ClaimTests.test_a_published_claim_that_fails_validation_is_not_a_claim_that_verifies
+- label: a damaged copy of my own claim in this tree is skipped because the pushed copy is fine
+  find: "        if holding.owner == context.me and holding.status == \"doing\":\n            if holding.problems:"
+  replace: "        if holding.owner == context.me and holding.status == \"doing\" and holding.where != LOCAL:\n            if holding.problems:"
+  test: tests.test_sd101_slides.ClaimTests.test_a_damaged_copy_of_my_claim_in_this_tree_does_not_verify_touch_or_finish
+- label: a finished deck may lose the time of its claim
+  find: "    if parse_stamp(record.get(\"claimed_at\")) is None:  # a finished deck keeps"
+  replace: "    if \"claimed_at\" in record and parse_stamp(record[\"claimed_at\"]) is None:  # a finished deck keeps"
+  test: tests.test_sd101_slides.FolderTests.test_a_finished_deck_keeps_the_time_of_its_claim
+- label: a PNG with no IEND chunk passes
+  find: "    if not finished:\n        return \"no IEND chunk\""
+  replace: "    if False:\n        return \"no IEND chunk\""
+  test: tests.test_sd101_slides.FolderTests.test_a_png_that_is_not_whole_is_reported
+- label: a PNG chunk with a wrong checksum passes
+  find: "        if zlib.crc32(data[position + 4:end]) != struct.unpack(\">I\", data[end:end + 4])[0]:"
+  replace: "        if False:"
+  test: tests.test_sd101_slides.FolderTests.test_a_png_that_is_not_whole_is_reported
+- label: bytes after the IEND chunk pass
+  find: "        if finished:\n            return \"bytes after IEND\""
+  replace: "        if False:\n            return \"bytes after IEND\""
+  test: tests.test_sd101_slides.FolderTests.test_a_png_that_is_not_whole_is_reported
+- label: a PNG whose image stream stops early passes
+  find: "    if not images or not inflater.eof:"
+  replace: "    if not images:"
+  test: tests.test_sd101_slides.FolderTests.test_a_png_that_is_not_whole_is_reported
+- label: a PNG that does not start with IHDR passes
+  find: "        if first and (kind != b\"IHDR\" or length != 13):"
+  replace: "        if False:"
+  test: tests.test_sd101_slides.FolderTests.test_a_png_that_is_not_whole_is_reported
+- label: a ZIP archive without the parts of a presentation passes as a PPTX
+  find: "    return f\"{', '.join(missing)} missing\" if missing else None"
+  replace: "    return None"
+  test: tests.test_sd101_slides.FolderTests.test_a_zip_without_the_parts_of_a_presentation_is_not_a_pptx
+- label: a PPTX with a damaged member passes
+  find: "    if damaged:\n        return f\"{damaged} is damaged\""
+  replace: "    if False:\n        return f\"{damaged} is damaged\""
+  test: tests.test_sd101_slides.FolderTests.test_a_pptx_with_a_damaged_member_is_reported
 - label: a malformed record that is not unreadable is not rechecked after finishing
   find: "        broken = [holding for holding in remote if is_broken(holding) and holding.owner != context.me]"
   replace: "        broken = [holding for holding in remote if holding.status == \"invalid\" and holding.owner != context.me]"

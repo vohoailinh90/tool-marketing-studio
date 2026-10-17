@@ -21,6 +21,7 @@ import re
 from pathlib import Path
 
 from . import icons
+from .text import XML_BAD
 
 ID = re.compile(r"[a-z0-9][a-z0-9-]{1,40}")
 KINDS = {
@@ -32,6 +33,7 @@ KINDS = {
 TOP_KEYS = {"id", "lang", "title", "subtitle", "desc", "sections"}
 LANGS = ("vi", "en", "ja")
 MAX_RAILS = 4                       # cross links that run beside the cards of one `parts` section
+INVISIBLE = re.compile(XML_BAD.pattern[:-1] + "\u2028\u2029\u202a-\u202e\u2066-\u2069]")      # what XML drops, plus line separators and bidi overrides
 LINK = re.compile(r"://|\bwww\.|bytebytego", re.IGNORECASE)
 
 
@@ -68,8 +70,8 @@ def _text(value, where: str, low: int, high: int, found: list[str]) -> None:
         found.append(f"{where} is {len(value.strip())} characters, expected {low}-{high}")
     if LINK.search(value):
         found.append(f"{where} holds a link or a source-image host; a figure carries no address")
-    if any(ord(c) < 32 and c not in "\n\t" for c in value):
-        found.append(f"{where} holds a control character")
+    if INVISIBLE.search(value) or any(ord(c) < 32 and c not in "\n\t" for c in value):
+        found.append(f"{where} holds a control or invisible character")
 
 
 def _index(value, size: int) -> bool:

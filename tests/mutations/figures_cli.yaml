@@ -30,3 +30,35 @@ mutations:
   find: 'if path.is_file() and path.read_bytes() == content.encode("utf-8"):'
   replace: 'if False:'
   test: tests.test_figures.CliTests.test_build_writes_the_figure_and_check_then_passes
+- label: a scale of nan, 0 or 1e9 is accepted
+  find: '    if not math.isfinite(value) or not 0 < value <= MAX_SCALE:'
+  replace: '    if False:'
+  test: tests.test_figures.RobustnessTests.test_a_scale_that_would_draw_garbage_is_refused
+- label: an unwritable output path raises a traceback
+  find: '    except OSError as exc:                                     # an unwritable'
+  replace: '    except ZeroDivisionError as exc:                           # an unwritable'
+  test: tests.test_figures.RobustnessTests.test_a_file_that_cannot_be_written_is_a_sentence_not_a_traceback
+- label: a bug while drawing the preview is reported as a missing browser
+  find: "    except browser.Unavailable as exc:                         # Playwright or Chromium missing: say how to get it\n        print(f\"cannot draw the preview"
+  replace: "    except Exception as exc:                                   # Playwright or Chromium missing: say how to get it\n        print(f\"cannot draw the preview"
+  test: tests.test_figures.RobustnessTests.test_only_a_missing_browser_gets_the_install_hint_and_a_real_bug_surfaces
+- label: a missing browser while exporting slides is not reported
+  find: "    except browser.Unavailable as exc:                         # Playwright or Chromium missing: say how to get it\n        print(f\"cannot draw the slides"
+  replace: "    except ZeroDivisionError as exc:                           # Playwright or Chromium missing: say how to get it\n        print(f\"cannot draw the slides"
+  test: tests.test_figures.RobustnessTests.test_only_a_missing_browser_gets_the_install_hint_and_a_real_bug_surfaces
+- label: a missing browser in the text check is not reported
+  find: "            except browser.Unavailable as exc:\n                print(f\"cannot measure the text"
+  replace: "            except ZeroDivisionError as exc:\n                print(f\"cannot measure the text"
+  test: tests.test_figures.RobustnessTests.test_the_text_check_without_a_browser_says_so
+- label: a tampered icon set does not stop a build
+  find: '    found.extend(f"icons: {p}" for p in icons.verify())      # a tampered'
+  replace: '    found.extend([])      # a tampered'
+  test: tests.test_figures.RobustnessTests.test_a_tampered_icon_set_stops_a_build_and_an_export_before_anything_is_written
+- label: a tampered icon set does not stop a Facebook export
+  find: "    if icon_problems:\n        print("
+  replace: "    if False:\n        print("
+  test: tests.test_figures.RobustnessTests.test_a_tampered_icon_set_stops_a_build_and_an_export_before_anything_is_written
+- label: an editor-file scale of 0 falls back to the default
+  find: if scale is not None else make(spec)
+  replace: if scale else make(spec)
+  test: tests.test_figures.CliTests.test_render_prints_or_writes_each_format_and_icons_lists_the_set

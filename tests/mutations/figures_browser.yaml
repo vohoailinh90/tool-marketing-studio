@@ -1,0 +1,12 @@
+# Mutation manifest — see scripts/mutation_check.py
+#
+# A passing test proves nothing on its own. These break each rule of the figure toolkit in turn
+# and require the named test to fail. A mutation that SURVIVES means the test guards nothing.
+
+target: scripts/figures/browser.py
+note: A browser that does not start is a message about the install, not a crash.
+mutations:
+- label: a browser that does not start raises its own error
+  find: "except Exception as exc:\n        raise Unavailable("
+  replace: "except ZeroDivisionError as exc:\n        raise Unavailable("
+  test: tests.test_figures.RobustnessTests.test_a_browser_that_does_not_start_is_reported_as_unavailable

@@ -283,7 +283,7 @@ What the loop does not change:
 - **Secrets only in `.env`.** Never in YAML, code, logs or commits.
 - **Images for Facebook are standard images.** A lesson figure goes to Facebook only as the slides `python3 -m scripts.figures facebook
   SPEC` draws from its spec (`docs/figures.md`, *Images for Facebook*): PNG at the studio's sizes (portrait 1080x1350 by default, square
-  1080x1080, `mkt/page.py`), one section per slide, no text under 30 px, the handle and `n/N` in the footer, no address on the image, the
+  1080x1080, `mkt/page.py`), one section per slide, no body text under 30 px, the handle and `n/N` in the footer, no address on the image, the
   alt text from `alt.txt`. Never hand-edit a slide and never upload a picture exported from Moda, Canva, Figma, draw.io or Excalidraw as a
   standard image. The slides are written to `build/figures/facebook/` (gitignored) and uploaded by the owner; a session never uploads.
 

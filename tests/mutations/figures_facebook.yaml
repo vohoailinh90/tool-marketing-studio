@@ -1,6 +1,6 @@
 # Mutation manifest — see scripts/mutation_check.py
 #
-# A passing test proves nothing on its own. These break each rule of the Facebook standard in turn
+# A passing test proves nothing on its own. These break each rule of the figure toolkit in turn
 # and require the named test to fail. A mutation that SURVIVES means the test guards nothing.
 
 target: scripts/figures/facebook.py
@@ -46,3 +46,7 @@ mutations:
   find: return str(author.get("handle") or "").strip() if isinstance(author, dict) else ""
   replace: return ""
   test: tests.test_figures.FacebookTests.test_the_handle_comes_from_studio_yaml_and_is_empty_when_it_cannot_be_read
+- label: an alt text that cannot be encoded fails after stale slides were deleted
+  find: '    alt.encode("utf-8")                                    # fails here, before anything is deleted or written'
+  replace: '    pass'
+  test: tests.test_figures.RobustnessTests.test_an_alt_text_that_cannot_be_encoded_fails_before_a_stale_slide_is_deleted

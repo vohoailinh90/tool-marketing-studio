@@ -14,18 +14,20 @@ Exit 0 when nothing is wrong, 1 for a problem in a spec or a figure, 2 when the 
 from __future__ import annotations
 
 import argparse
+import math
 import re
 import sys
 import tempfile
 from pathlib import Path
 
-from . import drawio, excalidraw, facebook, icons, mobile, moda, spec as specs, svg
+from . import browser, drawio, excalidraw, facebook, icons, mobile, moda, spec as specs, svg
 
 ROOT = Path(__file__).resolve().parents[2]
 STORE = ROOT / "system-design-101"
 SPEC_DIR = STORE / "figures" / "vi"
 DIAGRAMS = STORE / "vi" / "diagrams"
 LESSONS = STORE / "vi" / "lessons"
+MAX_SCALE = 8.0
 EDITORS = {"drawio": (".drawio", drawio.diagram), "excalidraw": (".excalidraw", excalidraw.board), "moda": ("-moda.xml", moda.markup)}
 LESSON_ID = re.compile(r"sd-\d{2}-\d{3}")
 
@@ -71,8 +73,20 @@ def _load(paths: list[Path]) -> tuple[list[dict], list[str]]:
     return loaded, found
 
 
+def scale_argument(text: str) -> float:
+    """A positive, finite scale of at most MAX_SCALE: anything else would draw garbage or a huge file."""
+    try:
+        value = float(text)
+    except ValueError as exc:
+        raise argparse.ArgumentTypeError(f"{text!r} is not a number") from exc
+    if not math.isfinite(value) or not 0 < value <= MAX_SCALE:
+        raise argparse.ArgumentTypeError(f"must be above 0 and at most {MAX_SCALE:g}")
+    return value
+
+
 def build(paths: list[Path], out) -> int:
     loaded, found = _load(paths)
+    found.extend(f"icons: {p}" for p in icons.verify())      # a tampered icon file is never drawn into a stored figure
     for spec in loaded:
         if not LESSON_ID.fullmatch(spec["id"]) or not (LESSONS / spec["id"]).is_dir():
             found.append(f"{spec['id']}: there is no lesson of that id in {LESSONS.relative_to(ROOT)}; use `render` for a trial figure")
@@ -88,7 +102,7 @@ def build(paths: list[Path], out) -> int:
     return 1 if found else 0
 
 
-def check(paths: list[Path], browser: bool = False) -> int:
+def check(paths: list[Path], measure_text: bool = False) -> int:
     found = [f"icons: {p}" for p in icons.verify()]
     loaded, bad = _load(paths)
     found.extend(bad)
@@ -105,10 +119,12 @@ def check(paths: list[Path], browser: bool = False) -> int:
             beside = SPEC_DIR / f"{spec['id']}{suffix}"
             if beside.is_file() and beside.read_bytes() != make(spec).encode("utf-8"):
                 found.append(f"{spec['id']}: {beside.relative_to(ROOT)} is not what the spec draws; render it again")
-        if browser:
-            from . import browser as measuring
-
-            found.extend(f"{spec['id']}: {p}" for p in measuring.measure(spec))
+        if measure_text:
+            try:
+                found.extend(f"{spec['id']}: {p}" for p in browser.measure(spec))
+            except browser.Unavailable as exc:
+                print(f"cannot measure the text ({exc}); run: python -m playwright install chromium", file=sys.stderr)
+                return 2
     for line in found:
         print(line, file=sys.stderr)
     if not found:
@@ -126,7 +142,7 @@ def render(path: Path, fmt: str, out: Path | None, scale: float | None) -> int:
         content = svg.figure(spec)
     else:
         make = EDITORS[fmt][1]
-        content = make(spec, scale) if scale else make(spec)
+        content = make(spec, scale) if scale is not None else make(spec)
     if out is None:
         sys.stdout.write(content)
     else:
@@ -146,10 +162,9 @@ def preview(path: Path, out: Path | None, scale: float) -> int:
     target = out or ROOT / "build" / "figures" / f"{spec['id']}.png"
     target.parent.mkdir(parents=True, exist_ok=True)
     try:
-        from . import browser
         browser.png(markup, target, 320, height, scale)
-    except Exception as exc:                                   # Playwright or Chromium missing: say how to get it
-        print(f"cannot draw the preview ({str(exc).splitlines()[0]}); run: python -m playwright install chromium", file=sys.stderr)
+    except browser.Unavailable as exc:                         # Playwright or Chromium missing: say how to get it
+        print(f"cannot draw the preview ({exc}); run: python -m playwright install chromium", file=sys.stderr)
         return 2
     print(f"wrote {target}")
     return 0
@@ -160,10 +175,14 @@ def to_facebook(path: Path, fmt: str, out: Path | None) -> int:
     if found:
         print("\n".join(found), file=sys.stderr)
         return 1
+    icon_problems = [f"icons: {p}" for p in icons.verify()]
+    if icon_problems:
+        print("\n".join(icon_problems), file=sys.stderr)
+        return 1
     try:
         files, problems = facebook.export(loaded[0], out or ROOT / "build" / "figures" / "facebook", ROOT, fmt)
-    except Exception as exc:                                   # Playwright or Chromium missing: say how to get it
-        print(f"cannot draw the slides ({str(exc).splitlines()[0]}); run: python -m playwright install chromium", file=sys.stderr)
+    except browser.Unavailable as exc:                         # Playwright or Chromium missing: say how to get it
+        print(f"cannot draw the slides ({exc}); run: python -m playwright install chromium", file=sys.stderr)
         return 2
     for line in problems:
         print(line, file=sys.stderr)
@@ -183,11 +202,11 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("spec")
     p.add_argument("--format", choices=["svg", *EDITORS], default="svg")
     p.add_argument("--out", type=Path)
-    p.add_argument("--scale", type=float, help="editor files only: times the 320 px figure (default 2)")
+    p.add_argument("--scale", type=scale_argument, help="editor files only: times the 320 px figure (default 2)")
     p = sub.add_parser("preview")
     p.add_argument("spec")
     p.add_argument("--out", type=Path)
-    p.add_argument("--scale", type=float, default=2.0)
+    p.add_argument("--scale", type=scale_argument, default=2.0)
     p = sub.add_parser("facebook")
     p.add_argument("spec")
     p.add_argument("--format", choices=list(facebook.FORMATS), default=facebook.DEFAULT)
@@ -195,6 +214,14 @@ def main(argv: list[str] | None = None) -> int:
     p = sub.add_parser("icons")
     p.add_argument("--verify", action="store_true")
     args = parser.parse_args(argv)
+    try:
+        return dispatch(args)
+    except OSError as exc:                                     # an unwritable --out, a vanished file: a sentence, not a traceback
+        print(f"cannot read or write a file: {exc}", file=sys.stderr)
+        return 2
+
+
+def dispatch(args: argparse.Namespace) -> int:
     if args.command == "build":
         return build(_spec_paths(args.specs), sys.stdout)
     if args.command == "check":

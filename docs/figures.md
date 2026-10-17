@@ -29,7 +29,8 @@ One JSON file per figure, `system-design-101/figures/vi/<lesson id>.json` (next 
   most 4 lanes; the spec check says when a flow needs more). Name an icon for every card or for none.
 - `steps`: 2-8 numbered cards joined by short arrows. `notes`: 2-8 cards with a tick.
 - `sequence`: 2-3 actors, 2-10 messages; `reply` draws the arrow dashed.
-- Limits on lengths and counts are in `scripts/figures/spec.py`. No address is accepted in any text, and no icon outside the set
+- Limits on lengths and counts are in `scripts/figures/spec.py`. No address is accepted in any text, no control, line-separator or
+  text-direction character, and no icon outside the set
   (`python3 -m scripts.figures icons` lists the 81 names and what each means).
 
 Every word on the figure is a field of the spec: no caption, arrow label or icon is invented by the drawing code.
@@ -72,13 +73,18 @@ is made for upload: `python3 -m scripts.figures facebook SPEC` writes `build/fig
 | File | PNG, opaque, exactly the canvas size, at most 4 MB (checked after writing) |
 | Canvas | `portrait` 1080x1350 (4:5, the default for the feed), `square` 1080x1080, `landscape` 1200x630 (a link preview: figures rarely fit it). The sizes are read from `mkt/page.py`, never copied |
 | Slides | one section of the figure per slide, under the figure's title (the subtitle on the first slide only); at most 10 slides per post (`MAX_SLIDES` of `mkt/check.py`) |
-| Text | the smallest text on a slide is at least 30 px on the canvas (the studio's body text runs 28-34 px; on a 375 px phone that is about 10 px). A section that cannot be scaled that far is refused: split it in the spec or shorten its words, never lower the limit |
+| Text | the smallest body text on a slide is at least 30 px on the canvas (the studio's body text runs 28-34 px; on a 375 px phone that is about 10 px; the 22 px footer is the studio's own and is not body text). A section that cannot be scaled that far is refused: split it in the spec or shorten its words, never lower the limit |
 | Footer | `author.handle` of `studio.yaml` bottom left when set, `n/N` bottom right, 22 px muted: the studio's footer |
 | Words | no address on any slide (the spec check refuses one); a link goes only through `{link}` in the first comment of a campaign post |
 | Alt text | `alt.txt` holds the figure's `desc` and one line per slide from the spec's own headings: paste it into Facebook's alt-text field when uploading |
 
 `check` also runs the portrait plan on every spec, so a figure that could not be exported to the standard fails CI instead of
-failing when someone wants to post it. A figure of 4 cards fits a portrait slide and not a square one; the tool says which slide.
+failing when someone wants to post it. That is a limit on every spec in the store, not only on the ones to be posted: **a section must
+fit one portrait slide.** Measured with the portrait canvas: about 4 cards of a `parts` section when the roles are short (3 when they
+run to two or three lines), 4 steps, 5 notes, and a `sequence` of up to 10 short messages. The spec limits (6 cards, 8 steps, 8 notes)
+are looser than that on purpose; the Facebook plan names the slide that is too tall, and the author splits the section in the spec. A
+figure of 4 cards fits a portrait slide and not a square one. The two layout fixtures that stress the drawing (`tests/fixtures/figures/stress.json`)
+are not specs of the store and are not meant to export.
 
 What a session does and does not do:
 - It regenerates the slides after any change to a spec, and looks at them (read the PNGs) before saying they are ready.

@@ -97,6 +97,12 @@ class SpecTests(unittest.TestCase):
         self.assertTrue(any("lanes" in p for p in spec.problems(parts_spec(5, many))))
         self.assertEqual(spec.problems(parts_spec(5, [[0, 1], [1, 2], [2, 3], [3, 4], [4, 0]])), [])
 
+    def test_characters_that_xml_drops_or_that_reorder_text_are_refused(self):
+        for label, bad in (("a lone surrogate", "a \ud800 b"), ("U+FFFE", "a \ufffe b"), ("a right-to-left override", "a \u202e b"),
+                           ("a bidi isolate", "a \u2066 b"), ("a line separator", "a \u2028 b"), ("a carriage return", "a \r b")):
+            self.assertTrue(any("invisible character" in p for p in self.problems_after(lambda d: d["sections"][2]["items"][0].update(text=bad))), label)
+        self.assertEqual(self.problems_after(lambda d: d["sections"][2]["items"][0].update(text="Tiếng Việt, 日本語, \u00b7 và \u2192")), [])
+
     def test_a_language_outside_the_three_is_refused(self):
         self.assertTrue(any("lang" in p for p in self.problems_after(lambda d: d.update(lang="fr"))))
 
@@ -350,7 +356,7 @@ class SvgTests(unittest.TestCase):
         data["sections"][3]["items"][0] = HOSTILE
         found = spec.problems(data)
         self.assertTrue(any("address" in p for p in found), found)
-        self.assertTrue(any("control character" in p for p in found), found)
+        self.assertTrue(any("invisible character" in p for p in found), found)
         markup = svg.figure(data)                           # drawn anyway: the writer is the second lock
         root = ET.fromstring(markup)
         self.assertEqual({e.tag.rsplit("}", 1)[-1] for e in root.iter()} - sd101_check.SVG_ELEMENTS, set())
@@ -614,6 +620,83 @@ class FacebookTests(unittest.TestCase):
             self.assertTrue((out / "demo-polling" / "alt.txt").is_file())
             self.assertEqual(cli.main(["facebook", str(FIXTURES / "small.json"), "--format", "square", "--out", str(out / "sq")]), 0)
             self.assertEqual(facebook.png_problems(out / "sq" / "demo-small" / "01.png", "square"), [])
+
+
+class RobustnessTests(unittest.TestCase):
+    def run_cli(self, *argv: str) -> tuple[int, str]:
+        err = io.StringIO()
+        with contextlib.redirect_stderr(err), contextlib.redirect_stdout(io.StringIO()):
+            try:
+                code = cli.main(list(argv))
+            except SystemExit as exc:
+                code = exc.code
+        return code, err.getvalue()
+
+    def test_a_scale_that_would_draw_garbage_is_refused(self):
+        for bad in ("nan", "inf", "-2", "0", "1e9", "abc"):
+            code, err = self.run_cli("render", str(POLLING), "--format", "drawio", "--scale", bad)
+            self.assertEqual(code, 2, bad)
+            self.assertIn("--scale", err)
+        self.assertEqual(self.run_cli("render", str(POLLING), "--format", "drawio", "--scale", "1.5")[0], 0)
+
+    def test_a_file_that_cannot_be_written_is_a_sentence_not_a_traceback(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            blocker = Path(tmp) / "file"
+            blocker.write_text("x", encoding="utf-8")
+            code, err = self.run_cli("render", str(POLLING), "--out", str(blocker / "inside" / "f.svg"))
+        self.assertEqual(code, 2)
+        self.assertIn("cannot read or write a file", err)
+
+    def test_only_a_missing_browser_gets_the_install_hint_and_a_real_bug_surfaces(self):
+        with mock.patch.object(browser, "png", side_effect=browser.Unavailable("no chromium")):
+            code, err = self.run_cli("preview", str(POLLING), "--out", "/nonexistent-dir-for-test/p.png")
+            self.assertEqual(code, 2)
+            self.assertIn("playwright install chromium", err)
+            code, err = self.run_cli("facebook", str(FIXTURES / "small.json"), "--out", tempfile.gettempdir() + "/fb-test-unavailable")
+            self.assertEqual(code, 2)
+            self.assertIn("playwright install chromium", err)
+        with mock.patch.object(browser, "png", side_effect=RuntimeError("a bug")):
+            with self.assertRaises(RuntimeError):
+                self.run_cli("preview", str(POLLING), "--out", str(Path(tempfile.gettempdir()) / "fb-test-bug.png"))
+
+    def test_a_browser_that_does_not_start_is_reported_as_unavailable(self):
+        class Chromium:
+            def launch(self):
+                raise RuntimeError("Executable doesn't exist at /nowhere\nlong playwright banner")
+
+        class Playwright:
+            chromium = Chromium()
+        with self.assertRaises(browser.Unavailable) as caught:
+            browser._page(Playwright(), "<svg/>", 10, 10)
+        self.assertEqual(str(caught.exception), "Executable doesn't exist at /nowhere")
+
+    def test_the_text_check_without_a_browser_says_so(self):
+        with mock.patch.object(browser, "measure", side_effect=browser.Unavailable("no chromium")):
+            code, err = self.run_cli("check", "--browser", str(POLLING))
+        self.assertEqual(code, 2)
+        self.assertIn("cannot measure the text", err)
+
+    def test_a_tampered_icon_set_stops_a_build_and_an_export_before_anything_is_written(self):
+        with tempfile.TemporaryDirectory() as tmp, mock.patch.object(icons, "verify", return_value=["server.svg differs from the hash in index.json"]):
+            out = Path(tmp) / "fb"
+            code, err = self.run_cli("facebook", str(FIXTURES / "small.json"), "--out", str(out))
+            self.assertEqual(code, 1)
+            self.assertIn("server.svg differs", err)
+            self.assertFalse(out.exists())
+            code, err = self.run_cli("build", str(POLLING))
+            self.assertEqual(code, 1)
+            self.assertIn("server.svg differs", err)
+
+    def test_an_alt_text_that_cannot_be_encoded_fails_before_a_stale_slide_is_deleted(self):
+        data = load("small.json")
+        data["desc"] = "A description that holds a lone surrogate \ud800 on purpose, so the text file cannot be written."
+        with tempfile.TemporaryDirectory() as tmp:
+            stale = Path(tmp) / "demo-small" / "09.png"
+            stale.parent.mkdir()
+            stale.write_bytes(b"old")
+            with self.assertRaises(UnicodeEncodeError):
+                facebook.export(data, Path(tmp), ROOT)
+            self.assertTrue(stale.exists())
 
 
 class CliTests(unittest.TestCase):

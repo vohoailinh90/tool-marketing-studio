@@ -21,7 +21,7 @@ import yaml
 from mkt.check import MAX_SLIDES
 from mkt.page import FORMATS
 
-from . import scene as scenes, svg
+from . import browser, scene as scenes, svg
 from .text import esc
 
 MIN_TEXT_PX = 30                    # smallest text on a slide, in canvas px
@@ -103,11 +103,11 @@ def alt_text(spec: dict, slides: list[dict]) -> str:
 
 def export(spec: dict, out: Path, root: Path, fmt: str = DEFAULT) -> tuple[list[Path], list[str]]:
     """Writes `out/<id>/NN.png` and `alt.txt`; returns the files and the problems (nothing is written when the plan has problems)."""
-    from . import browser
-
     slides, problems = plan(spec, fmt)
     if problems:
         return [], problems
+    alt = alt_text(spec, slides)
+    alt.encode("utf-8")                                    # fails here, before anything is deleted or written
     folder = out / spec["id"]
     folder.mkdir(parents=True, exist_ok=True)
     for stale in folder.glob("[0-9][0-9].png"):
@@ -119,6 +119,6 @@ def export(spec: dict, out: Path, root: Path, fmt: str = DEFAULT) -> tuple[list[
         browser.png(page(slide, len(slides), fmt, author), path, *FORMATS[fmt], 1.0)
         problems += png_problems(path, fmt)
         files.append(path)
-    (folder / "alt.txt").write_text(alt_text(spec, slides), encoding="utf-8")
+    (folder / "alt.txt").write_text(alt, encoding="utf-8")
     return files, problems
 

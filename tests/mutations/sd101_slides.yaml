@@ -110,3 +110,11 @@ mutations:
   find: "    if record.get(\"size\") != DECK_SIZE:"
   replace: "    if False:"
   test: tests.test_sd101_slides.FolderTests.test_a_deck_has_the_documented_size
+- label: a finished rival is not compared after publishing
+  find: "holding.status in (\"doing\", \"done\") and holding.owner != context.me"
+  replace: "holding.status == \"doing\" and holding.owner != context.me"
+  test: tests.test_sd101_slides.FinishTests.test_finish_reports_an_earlier_claimant_that_finished_while_it_published
+- label: offline drops the records of other owners that the checkout holds
+  find: "            if holding.owner == context.me or context.offline:  # offline, the checkout is all there is to read"
+  replace: "            if holding.owner == context.me:  # offline, the checkout is all there is to read"
+  test: tests.test_sd101_slides.FinishTests.test_offline_honours_the_records_a_checkout_already_holds

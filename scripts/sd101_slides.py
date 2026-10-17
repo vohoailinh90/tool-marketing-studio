@@ -357,7 +357,7 @@ def gather(context: Context, ids: list[str]) -> tuple[dict[str, list[Holding]], 
         path = context.record_path(lesson_id)
         if path.is_file():
             holding = _holding(lesson_id, parse_record(path.read_text(encoding="utf-8")), LOCAL)
-            if holding.owner == context.me:
+            if holding.owner == context.me or context.offline:  # offline, the checkout is all there is to read
                 holdings[lesson_id].append(holding)
     return holdings, warnings
 
@@ -678,7 +678,7 @@ def cmd_finish(context: Context, args: argparse.Namespace) -> int:
             print(f"{lesson_id}: the finished record is not on {context.remote}/{context.me}", file=sys.stderr)
             return 1
         moment = now()  # the finished record keeps its claim's time and generation, so it is judged as that claim
-        rivals = [holding for holding in remote if holding.status == "doing" and holding.owner != context.me
+        rivals = [holding for holding in remote if holding.status in ("doing", "done") and holding.owner != context.me
                   and not is_stale(holding, moment) and beats(holding, mine[0])]
         if rivals:
             print(f"pushed, but {lesson_id} is finished here and {rivals[0].owner} holds the earlier claim; delete this "

@@ -357,6 +357,41 @@ class FinishTests(Sessions):
         self.assertEqual(1, code)
         self.assertIn("claude/b holds the earlier claim", err)
 
+    def test_finish_reports_an_earlier_claimant_that_finished_while_it_published(self) -> None:
+        a, b = self.session("a"), self.session("b")
+        self.at(seconds=0)
+        self.run_in(b, "claim", "sd-01-001")  # b claimed first but has not pushed yet
+        self.at(seconds=5)
+        self.run_in(a, "claim", "sd-01-001", "--publish")
+        real = slides.publish
+
+        def racing(context, paths, message):
+            if context.me == "claude/a":  # b pushes its claim and its finished deck while a is publishing
+                self.assertEqual(0, self.run_in(b, "claim", "sd-01-001", "--publish")[0])
+                self.assertEqual(0, self.finish(b, "sd-01-001", "--publish")[0])
+            return real(context, paths, message)
+
+        with mock.patch.object(slides, "publish", racing):
+            code, _, err = self.finish(a, "sd-01-001", "--publish")
+        self.assertEqual(1, code)
+        self.assertIn("claude/b holds the earlier claim", err)
+
+    def test_offline_honours_the_records_a_checkout_already_holds(self) -> None:
+        a, b = self.session("a"), self.session("b")
+        self.run_in(a, "claim", "sd-01-001", "--publish")
+        self.assertEqual(0, self.finish(a, "sd-01-001", "--publish")[0])
+        self.merge_into_main("claude/a")
+        git(b, "fetch", "--quiet", "origin", "main")
+        git(b, "merge", "--quiet", "--no-edit", "origin/main")
+        before = self.record(b, "sd-01-001")
+        code, _, err = self.run_in(b, "--offline", "claim", "sd-01-001")
+        self.assertEqual(1, code)
+        self.assertIn("already built by claude/a", err)
+        self.assertEqual(before, self.record(b, "sd-01-001"))
+        code, out, _ = self.run_in(b, "--offline", "status")
+        self.assertEqual(0, code)
+        self.assertIn("done 1 | doing 0", out)
+
     def test_finish_refuses_a_deck_the_session_does_not_hold(self) -> None:
         a, b = self.session("a"), self.session("b")
         self.run_in(a, "claim", "sd-01-001", "--publish")

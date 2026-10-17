@@ -999,16 +999,17 @@ class RobustnessTests(unittest.TestCase):
         self.assertIn("cannot read or write a file", err)
 
     def test_only_a_missing_browser_gets_the_install_hint_and_a_real_bug_surfaces(self):
-        with mock.patch.object(browser, "png", side_effect=browser.Unavailable("no chromium")):
-            code, err = self.run_cli("preview", str(POLLING), "--out", "/nonexistent-dir-for-test/p.png")
-            self.assertEqual(code, 2)
-            self.assertIn("playwright install chromium", err)
-            code, err = self.run_cli("facebook", str(FIXTURES / "small.json"), "--out", tempfile.gettempdir() + "/fb-test-unavailable")
-            self.assertEqual(code, 2)
-            self.assertIn("playwright install chromium", err)
-        with mock.patch.object(browser, "png", side_effect=RuntimeError("a bug")):
-            with self.assertRaises(RuntimeError):
-                self.run_cli("preview", str(POLLING), "--out", str(Path(tempfile.gettempdir()) / "fb-test-bug.png"))
+        with tempfile.TemporaryDirectory() as tmp:                 # every output goes under a folder the test owns: a path like /nonexistent-dir cannot be made by a user who is not root
+            with mock.patch.object(browser, "png", side_effect=browser.Unavailable("no chromium")):
+                code, err = self.run_cli("preview", str(POLLING), "--out", str(Path(tmp) / "preview" / "p.png"))
+                self.assertEqual(code, 2)
+                self.assertIn("playwright install chromium", err)
+                code, err = self.run_cli("facebook", str(FIXTURES / "small.json"), "--out", str(Path(tmp) / "fb-unavailable"))
+                self.assertEqual(code, 2)
+                self.assertIn("playwright install chromium", err)
+            with mock.patch.object(browser, "png", side_effect=RuntimeError("a bug")):
+                with self.assertRaises(RuntimeError):
+                    self.run_cli("preview", str(POLLING), "--out", str(Path(tmp) / "bug.png"))
 
     def test_a_browser_that_does_not_start_is_reported_as_unavailable(self):
         class Chromium:

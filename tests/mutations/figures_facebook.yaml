@@ -46,19 +46,31 @@ mutations:
   find: '    alt.encode("utf-8")                                    # fails here, before anything is drawn'
   replace: '    pass'
   test: tests.test_figures.RobustnessTests.test_an_alt_text_that_cannot_be_encoded_fails_before_a_stale_slide_is_deleted
-- label: slides of an earlier export stay in the folder
-  find: '            stale.unlink()'
-  replace: '            pass'
-  test: tests.test_figures.FacebookTests.test_a_successful_export_replaces_the_whole_previous_pack_and_leaves_no_temporary_folder
 - label: the temporary folder is left behind
   find: "    finally:\n        shutil.rmtree(work, ignore_errors=True)"
   replace: "    finally:\n        pass"
   test: tests.test_figures.FacebookTests.test_a_failed_export_leaves_the_previous_pack_and_no_temporary_folder
 - label: a pack that failed its checks replaces the previous one
-  find: "        if problems:\n            return [], problems\n        folder.mkdir"
-  replace: "        if False:\n            return [], problems\n        folder.mkdir"
+  find: "        if problems:\n            return [], problems\n        names = sorted("
+  replace: "        if False:\n            return [], problems\n        names = sorted("
   test: tests.test_figures.FacebookTests.test_a_failed_export_leaves_the_previous_pack_and_no_temporary_folder
 - label: two exports of one figure share one staging folder
   find: '    work = Path(tempfile.mkdtemp(prefix=f".{spec[''id'']}.", suffix=".new", dir=out))'
   replace: "    work = out / f\".{spec['id']}.new\"\n    shutil.rmtree(work, ignore_errors=True)\n    work.mkdir()\n    work = work"
   test: tests.test_figures.FacebookTests.test_two_exports_of_one_figure_at_the_same_time_do_not_share_a_staging_folder
+- label: a finished pack is merged into the previous one instead of replacing it
+  find: '        swap(work, folder)
+
+    '
+  replace: '        shutil.copytree(work, folder, dirs_exist_ok=True)
+
+    '
+  test: tests.test_figures.FacebookTests.test_a_competing_export_never_leaves_a_mix_of_two_packs
+- label: the pack swap never tries
+  find: "    for _ in range(5):\n        try:\n            os.replace(work, folder)"
+  replace: "    for _ in range(0):\n        try:\n            os.replace(work, folder)"
+  test: tests.test_figures.FacebookTests.test_swap_puts_a_folder_in_place_in_one_rename_and_gives_up_cleanly
+- label: a pack that is already there is not moved aside
+  find: '            os.replace(folder, old / "pack")               # the pack that is there now'
+  replace: '            pass                                           # the pack that is there now'
+  test: tests.test_figures.FacebookTests.test_swap_puts_a_folder_in_place_in_one_rename_and_gives_up_cleanly

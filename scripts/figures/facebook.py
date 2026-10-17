@@ -104,6 +104,25 @@ def alt_text(spec: dict, slides: list[dict]) -> str:
     return "\n".join(lines) + "\n"
 
 
+def swap(work: Path, folder: Path) -> None:
+    """Puts the finished `work` folder in place of `folder` as one rename, so the pack is always one export's whole set and never a mix of
+    two. A destination that already holds a pack is moved aside first; if another export got there between the two renames, try again."""
+    for _ in range(5):
+        try:
+            os.replace(work, folder)                       # the destination is free
+            return
+        except OSError:
+            pass
+        old = Path(tempfile.mkdtemp(prefix=f".{folder.name}.", suffix=".old", dir=folder.parent))
+        try:
+            os.replace(folder, old / "pack")               # the pack that is there now (another export may have moved it already)
+        except OSError:
+            pass
+        finally:
+            shutil.rmtree(old, ignore_errors=True)
+    raise OSError(f"could not put the new pack in place of {folder}")
+
+
 def export(spec: dict, out: Path, root: Path, fmt: str = DEFAULT) -> tuple[list[Path], list[str]]:
     """Writes `out/<id>/NN.png` and `alt.txt`; returns the files and the problems. The slides are drawn into a temporary folder and replace
     the previous pack only when every one of them was drawn and passed `png_problems`: nothing is written when the plan has problems, and a
@@ -125,15 +144,9 @@ def export(spec: dict, out: Path, root: Path, fmt: str = DEFAULT) -> tuple[list[
         (work / "alt.txt").write_text(alt, encoding="utf-8")
         if problems:
             return [], problems
-        folder.mkdir(parents=True, exist_ok=True)
-        for stale in folder.glob("[0-9][0-9].png"):
-            stale.unlink()
-        files = []
-        for made in sorted(work.iterdir()):
-            os.replace(made, folder / made.name)
-            if made.suffix == ".png":
-                files.append(folder / made.name)
-        return files, []
+        names = sorted(p.name for p in work.glob("[0-9][0-9].png"))
+        swap(work, folder)
+        return [folder / name for name in names], []
     finally:
         shutil.rmtree(work, ignore_errors=True)
 

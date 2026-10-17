@@ -7,8 +7,8 @@ target: scripts/figures/scene.py
 note: The layout decides where every arrow runs and how text breaks; these rules are what keep an arrow off a card, two arrows off one line, and text inside its box.
 mutations:
 - label: two links whose card ranges overlap share a lane
-  find: lanes[link] = max(used, default=-1) + 1
-  replace: lanes[link] = 0
+  find: "        lane = 0\n        while lane in used:\n            lane += 1\n        lanes[link] = lane"
+  replace: '        lanes[link] = 0'
   test: tests.test_figures.SceneTests.test_rails_are_shared_only_by_links_that_do_not_overlap_and_nest_outward
 - label: the links going down a card are not ordered farthest first
   find: 'key=lambda e: (e[0] - card, e[1], e[2]), reverse=True)'
@@ -22,3 +22,9 @@ mutations:
   find: cw = CONTENT_W - (0 if not lane_count else 14 + RAIL * (lane_count - 1))
   replace: cw = CONTENT_W
   test: tests.test_figures.SceneTests.test_random_flows_never_cross_a_card_or_share_a_line
+- label: a lane is not used again once it is free
+  find: "        lane = 0\n        while lane in used:\n            lane += 1\n"
+  replace: '        lane = max(used, default=-1) + 1
+
+    '
+  test: tests.test_figures.SceneTests.test_a_chain_of_neighbour_links_uses_two_lanes_and_still_never_collides

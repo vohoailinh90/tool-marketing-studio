@@ -11,8 +11,8 @@ mutations:
   replace: 'elif False:'
   test: tests.test_figures.CliTests.test_a_figure_that_is_not_what_the_spec_draws_fails_the_check
 - label: a stale editor file beside the spec passes the check
-  find: 'if beside.is_file() and beside.read_bytes() != make(spec).encode("utf-8"):'
-  replace: 'if False:'
+  find: '                if beside.read_bytes() != (make(spec, scale) if scale else make(spec)).encode("utf-8"):'
+  replace: '                if False:'
   test: tests.test_figures.CliTests.test_an_editor_file_beside_the_spec_must_not_go_stale
 - label: a figure is built for a lesson that does not exist
   find: ' or not (LESSONS / spec["id"]).is_dir():'
@@ -51,17 +51,17 @@ mutations:
   replace: "            except ZeroDivisionError as exc:\n                print(f\"cannot measure the text"
   test: tests.test_figures.RobustnessTests.test_the_text_check_without_a_browser_says_so
 - label: a tampered icon set does not stop a build
-  find: "    if broken:                                               # a tampered icon file is never drawn into a stored figure\n        print("
-  replace: "    if False:                                                # a tampered icon file is never drawn into a stored figure\n        print("
+  find: "def build(paths: list[Path], out) -> int:\n    if broken_icons():"
+  replace: "def build(paths: list[Path], out) -> int:\n    if False:"
   test: tests.test_figures.RobustnessTests.test_a_tampered_icon_set_never_overwrites_a_stored_figure
 - label: a tampered icon set does not stop a Facebook export
-  find: "    if icon_problems:\n        print("
-  replace: "    if False:\n        print("
-  test: tests.test_figures.RobustnessTests.test_a_tampered_icon_set_stops_a_build_and_an_export_before_anything_is_written
+  find: "    if broken_icons():\n        return 1\n    try:\n        files, problems = facebook.export("
+  replace: "    if False:\n        return 1\n    try:\n        files, problems = facebook.export("
+  test: tests.test_figures.RobustnessTests.test_no_command_draws_from_a_broken_icon_set
 - label: the check goes on to draw from a broken icon set
-  find: '    if found:                                                # a figure cannot be drawn from a broken icon set: say so, do not try'
-  replace: '    if False:                                                # a figure cannot be drawn from a broken icon set: say so, do not try'
-  test: tests.test_figures.RobustnessTests.test_check_with_a_structurally_broken_icon_file_reports_it_instead_of_raising
+  find: '    if broken_icons():                                       # a figure cannot be drawn from a broken icon set'
+  replace: '    if False:                                                # a figure cannot be drawn from a broken icon set'
+  test: tests.test_figures.RobustnessTests.test_no_command_draws_from_a_broken_icon_set
 - label: editor files are looked for in the store folder instead of beside the given spec
   find: beside = path.parent / f"{spec['id']}{suffix}"
   replace: beside = SPEC_DIR / f"{spec['id']}{suffix}"
@@ -74,3 +74,19 @@ mutations:
   find: '    found.extend(duplicate_ids(loaded))'
   replace: '    found.extend([])'
   test: tests.test_figures.RobustnessTests.test_two_specs_for_one_figure_are_refused_before_anything_is_written
+- label: render draws from a broken icon set
+  find: "def render(path: Path, fmt: str, out: Path | None, scale: float | None) -> int:\n    if broken_icons():"
+  replace: "def render(path: Path, fmt: str, out: Path | None, scale: float | None) -> int:\n    if False:"
+  test: tests.test_figures.RobustnessTests.test_no_command_draws_from_a_broken_icon_set
+- label: preview draws from a broken icon set
+  find: "def preview(path: Path, out: Path | None, scale: float) -> int:\n    if broken_icons():"
+  replace: "def preview(path: Path, out: Path | None, scale: float) -> int:\n    if False:"
+  test: tests.test_figures.RobustnessTests.test_no_command_draws_from_a_broken_icon_set
+- label: an editor file kept at another scale is read as stale
+  find: '                scale = stored_scale(suffix, text)             # drawn at its own scale: compared at that one'
+  replace: '                scale = None                                   # drawn at its own scale: compared at that one'
+  test: tests.test_figures.RobustnessTests.test_editor_files_kept_at_another_scale_pass_the_check_and_a_stale_one_does_not
+- label: the icon problems are not reported
+  find: '    return bool(problems)'
+  replace: '    return False'
+  test: tests.test_figures.RobustnessTests.test_no_command_draws_from_a_broken_icon_set

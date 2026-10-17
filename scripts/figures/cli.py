@@ -14,13 +14,14 @@ Exit 0 when nothing is wrong, 1 for a problem in a spec or a figure, 2 when the 
 from __future__ import annotations
 
 import argparse
+import json
 import math
 import re
 import sys
 import tempfile
 from pathlib import Path
 
-from . import browser, drawio, excalidraw, facebook, icons, mobile, moda, spec as specs, svg
+from . import browser, drawio, excalidraw, facebook, icons, mobile, moda, scene as scenes, spec as specs, svg
 
 ROOT = Path(__file__).resolve().parents[2]
 STORE = ROOT / "system-design-101"
@@ -110,10 +111,33 @@ def scale_argument(text: str) -> float:
     return value
 
 
+def broken_icons() -> bool:
+    """Prints the problems of the icon set and says whether there are any: nothing is drawn from a broken or tampered set."""
+    problems = icons.verify()
+    for problem in problems:
+        print(f"icons: {problem}", file=sys.stderr)
+    return bool(problems)
+
+
+def stored_scale(suffix: str, text: str) -> float | None:
+    """The scale an editor file was drawn at, read from the file itself (draw.io: the page width, Moda: the canvas width, Excalidraw: the width
+    of the first panel), or None when it cannot be read: a file kept at the scale `render --scale` gave it is still current."""
+    try:
+        if suffix == ".drawio":
+            width = float(re.search(r'pageWidth="([\d.]+)"', text).group(1))
+        elif suffix == "-moda.xml":
+            width = float(re.search(r"Moda canvas ([\d.]+)x", text).group(1))
+        else:
+            panel = next(e for e in json.loads(text)["elements"] if e["type"] == "rectangle")
+            width = panel["width"] / (scenes.W - 2 * scenes.MARGIN) * scenes.W
+    except (AttributeError, ValueError, KeyError, StopIteration, TypeError):
+        return None
+    scale = round(width / scenes.W, 4)
+    return scale if MIN_SCALE <= scale <= MAX_SCALE else None
+
+
 def build(paths: list[Path], out) -> int:
-    broken = [f"icons: {p}" for p in icons.verify()]
-    if broken:                                               # a tampered icon file is never drawn into a stored figure
-        print("\n".join(broken), file=sys.stderr)
+    if broken_icons():                                       # a tampered icon file is never drawn into a stored figure
         return 1
     loaded, found = _load_each(paths)
     clashes = duplicate_ids(loaded)
@@ -136,10 +160,9 @@ def build(paths: list[Path], out) -> int:
 
 
 def check(paths: list[Path], measure_text: bool = False) -> int:
-    found = [f"icons: {p}" for p in icons.verify()]
-    if found:                                                # a figure cannot be drawn from a broken icon set: say so, do not try
-        print("\n".join(found), file=sys.stderr)
+    if broken_icons():                                       # a figure cannot be drawn from a broken icon set: say so, do not try
         return 1
+    found: list[str] = []
     loaded, bad = _load_each(paths)
     found.extend(bad)
     found.extend(duplicate_ids(loaded))
@@ -154,8 +177,11 @@ def check(paths: list[Path], measure_text: bool = False) -> int:
             found.append(f"{spec['id']}: {stored.relative_to(ROOT)} is not what the spec draws; run `python3 -m scripts.figures build`")
         for suffix, make in EDITORS.values():                 # an editor file kept beside the spec must not go stale
             beside = path.parent / f"{spec['id']}{suffix}"            # beside the spec that was given, wherever it is
-            if beside.is_file() and beside.read_bytes() != make(spec).encode("utf-8"):
-                found.append(f"{spec['id']}: {_shown(beside)} is not what the spec draws; render it again")
+            if beside.is_file():
+                text = beside.read_bytes().decode("utf-8", "replace")
+                scale = stored_scale(suffix, text)             # drawn at its own scale: compared at that one
+                if beside.read_bytes() != (make(spec, scale) if scale else make(spec)).encode("utf-8"):
+                    found.append(f"{spec['id']}: {_shown(beside)} is not what the spec draws; render it again")
         if measure_text:
             try:
                 found.extend(f"{spec['id']}: {p}" for p in browser.measure(spec))
@@ -170,6 +196,8 @@ def check(paths: list[Path], measure_text: bool = False) -> int:
 
 
 def render(path: Path, fmt: str, out: Path | None, scale: float | None) -> int:
+    if broken_icons():
+        return 1
     loaded, found = _load([path])
     if found:
         print("\n".join(found), file=sys.stderr)
@@ -189,6 +217,8 @@ def render(path: Path, fmt: str, out: Path | None, scale: float | None) -> int:
 
 
 def preview(path: Path, out: Path | None, scale: float) -> int:
+    if broken_icons():
+        return 1
     loaded, found = _load([path])
     if found:
         print("\n".join(found), file=sys.stderr)
@@ -212,9 +242,7 @@ def to_facebook(path: Path, fmt: str, out: Path | None) -> int:
     if found:
         print("\n".join(found), file=sys.stderr)
         return 1
-    icon_problems = [f"icons: {p}" for p in icons.verify()]
-    if icon_problems:
-        print("\n".join(icon_problems), file=sys.stderr)
+    if broken_icons():
         return 1
     try:
         files, problems = facebook.export(loaded[0], out or ROOT / "build" / "figures" / "facebook", ROOT, fmt)

@@ -332,6 +332,21 @@ class SceneTests(unittest.TestCase):
                         self.assertFalse(overlap(seg_a, seg_b), f"two arrows share a line in {flow}")
         self.assertGreater(checked, 150)
 
+    def test_a_chain_of_neighbour_links_uses_two_lanes_and_still_never_collides(self):
+        for flow in ([[1, 0], [2, 1], [3, 2], [4, 3], [5, 4]], [[0, 2], [2, 4], [3, 5]]):
+            lanes = scene.assign_rails([tuple(p) for p in flow if not spec.forward(*p)])
+            self.assertLessEqual(max(lanes.values()) + 1, 2, flow)
+            data = parts_spec(6, flow)
+            self.assertEqual(spec.problems(data), [], flow)
+            built = scene.build(data, svg.STYLE)
+            cards = [i for i in built["items"] if i["k"] == "rect" and "comp" in i]
+            lines = [(a, seg) for a in built["items"] if a["k"] == "arrow" for seg in segments(a["pts"])]
+            for _, (p, q) in lines:
+                self.assertFalse(any(crosses_inside(p, q, card) for card in cards), flow)
+            for i, (arrow_a, seg_a) in enumerate(lines):
+                for arrow_b, seg_b in lines[i + 1:]:
+                    self.assertTrue(arrow_a is arrow_b or not overlap(seg_a, seg_b), flow)
+
     def test_every_arrow_starts_and_ends_on_the_cards_it_joins(self):
         built = scene.build(parts_spec(4, [[0, 1], [1, 2], [2, 3], [3, 0], [0, 2]]), svg.STYLE)
         for arrow in (i for i in built["items"] if i["k"] == "arrow"):
@@ -367,6 +382,10 @@ class SceneTests(unittest.TestCase):
         built = scene.build(data, scene.Style(title=15, subtitle=15))
         title, subtitle = (next(i for i in built["items"] if i["k"] == "text" and i["color"] == c) for c in ("title", "muted"))
         self.assertGreater(len(title["lines"]), len(subtitle["lines"]))
+
+    def test_a_scale_gives_the_same_scene_as_an_int_or_a_float(self):
+        self.assertEqual(scene.scaled(scene.build(load(), svg.STYLE), 3), scene.scaled(scene.build(load(), svg.STYLE), 3.0))
+        self.assertEqual(excalidraw.board(load(), 3), excalidraw.board(load(), 3.0))
 
     def test_a_scaled_scene_is_the_same_picture_larger(self):
         built = scene.build(load(), svg.STYLE)
@@ -770,6 +789,51 @@ class FacebookTests(unittest.TestCase):
             self.assertEqual(sorted(p.name for p in (out / "demo-small").iterdir()), ["01.png", "02.png", "alt.txt"])
             self.assertEqual([p.name for p in out.iterdir()], ["demo-small"])
 
+    def test_a_competing_export_never_leaves_a_mix_of_two_packs(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            out = Path(tmp)
+            three = load("small.json")
+            three["sections"].append({"kind": "notes", "heading": "Thêm", "items": ["Một ý nữa.", "Và một ý khác."]})
+            inner: list = []
+            draw_once = self.fake_png()
+            calls: list = []
+
+            def draw(markup, path, width, height, scale=1.0):
+                calls.append(path.name)
+                draw_once(markup, path, width, height, scale)
+                if len(calls) == 2 and not inner:               # the first export has drawn its last slide: a longer export of the same figure runs and finishes
+                    inner.append(None)
+                    inner[0] = facebook.export(three, out, ROOT)
+
+            with mock.patch.object(browser, "png", draw):
+                files, problems = facebook.export(load("small.json"), out, ROOT)
+            self.assertEqual((problems, inner[0][1]), ([], []))
+            self.assertEqual(len(inner[0][0]), 3)
+            self.assertEqual(sorted(p.name for p in (out / "demo-small").iterdir()), ["01.png", "02.png", "alt.txt"])      # the last export, whole: no 03.png of the other
+            self.assertEqual((out / "demo-small" / "alt.txt").read_text(encoding="utf-8").count("/2:"), 2)
+            self.assertEqual([p.name for p in out.iterdir()], ["demo-small"])
+
+    def test_swap_puts_a_folder_in_place_in_one_rename_and_gives_up_cleanly(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            out = Path(tmp)
+            for existing in (False, True):
+                folder, work = out / "pack", out / "work"
+                work.mkdir()
+                (work / "new.txt").write_text("new", encoding="utf-8")
+                if existing:
+                    folder.mkdir()
+                    (folder / "old.txt").write_text("old", encoding="utf-8")
+                facebook.swap(work, folder)
+                self.assertEqual([p.name for p in folder.iterdir()], ["new.txt"])
+                self.assertEqual(sorted(p.name for p in out.iterdir()), ["pack"])
+                shutil.rmtree(folder)
+            work.mkdir()
+            folder.mkdir()
+            with mock.patch("os.replace", side_effect=OSError("never")):
+                with self.assertRaises(OSError):
+                    facebook.swap(work, folder)
+            self.assertEqual(sorted(p.name for p in out.iterdir()), ["pack", "work"])
+
     def test_a_successful_export_replaces_the_whole_previous_pack_and_leaves_no_temporary_folder(self):
         with tempfile.TemporaryDirectory() as tmp:
             out = Path(tmp)
@@ -902,6 +966,40 @@ class RobustnessTests(unittest.TestCase):
             self.assertIn(f"{beside} is not what the spec draws; render it again", err)
             beside.write_text(drawio.diagram(load()), encoding="utf-8")
             self.assertNotIn("render it again", self.run_cli("check", str(folder / "demo-polling.json"))[1])
+
+    def test_no_command_draws_from_a_broken_icon_set(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            folder = Path(tmp) / "icons"
+            shutil.copytree(icons.HERE, folder, ignore=shutil.ignore_patterns("__pycache__"))
+            (folder / "server.svg").write_text('<svg xmlns="http://www.w3.org/2000/svg"><script>x</script></svg>', encoding="utf-8")
+            self.addCleanup(icons.shapes.cache_clear)
+            self.addCleanup(icons.index.cache_clear)
+            with mock.patch.object(icons, "HERE", folder):
+                icons.shapes.cache_clear()
+                icons.index.cache_clear()
+                for argv in (["render", str(POLLING), "--format", "svg"], ["render", str(POLLING), "--format", "drawio"], ["render", str(POLLING), "--format", "moda"],
+                             ["preview", str(POLLING), "--out", str(Path(tmp) / "p.png")], ["facebook", str(FIXTURES / "small.json"), "--out", str(Path(tmp) / "fb")],
+                             ["build", str(POLLING)], ["check", str(POLLING)]):
+                    code, err = self.run_cli(*argv)
+                    self.assertEqual(code, 1, argv)
+                    self.assertIn("icons: ", err, argv)
+
+    def test_editor_files_kept_at_another_scale_pass_the_check_and_a_stale_one_does_not(self):
+        makers = {".drawio": drawio.diagram, ".excalidraw": excalidraw.board, "-moda.xml": moda.markup}
+        with tempfile.TemporaryDirectory() as tmp:
+            folder = Path(tmp)
+            (folder / "demo-polling.json").write_text(POLLING.read_text(encoding="utf-8"), encoding="utf-8")
+            target = str(folder / "demo-polling.json")
+            for suffix, make in makers.items():
+                beside = folder / f"demo-polling{suffix}"
+                for scale in (0.5, 1, 3, 8):
+                    beside.write_text(make(load(), scale), encoding="utf-8")
+                    self.assertNotIn("render it again", self.run_cli("check", target)[1], (suffix, scale))
+                beside.write_text(make(load(), 3).replace("Trình duyệt", "Trinh duyet", 1), encoding="utf-8")
+                self.assertIn("render it again", self.run_cli("check", target)[1], suffix)
+                beside.write_text("not an editor file", encoding="utf-8")
+                self.assertIn("render it again", self.run_cli("check", target)[1], suffix)
+                beside.unlink()
 
     def test_a_tampered_icon_set_never_overwrites_a_stored_figure(self):
         with tempfile.TemporaryDirectory() as tmp:

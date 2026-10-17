@@ -46,14 +46,18 @@ class Style:
 
 def assign_rails(links: list[tuple[int, int]]) -> dict[tuple[int, int], int]:
     """Lane number (0 = nearest the cards) of each link that cannot run straight down to the next card. Two links whose card
-    ranges overlap never share a lane, and of two nested links the longer one is the outer, so a short hop is not crossed by the
-    long one that encloses it. Links that do not overlap share a lane."""
+    ranges overlap never share a lane, and every link takes the lowest lane no overlapping link already holds, so a lane is used
+    again as soon as it is free (a chain of neighbour links needs two lanes, not one per link). Of two nested links the longer is
+    processed later, and every lane below the inner one is held by a link that overlaps the longer one too, so it lands outside."""
     spans = {link: (min(link), max(link)) for link in links}
     lanes: dict[tuple[int, int], int] = {}
     for link in sorted(spans, key=lambda x: (spans[x][1] - spans[x][0], x)):
         lo, hi = spans[link]
         used = [lanes[o] for o in lanes if not (spans[o][1] < lo or hi < spans[o][0])]
-        lanes[link] = max(used, default=-1) + 1
+        lane = 0
+        while lane in used:
+            lane += 1
+        lanes[link] = lane
     return lanes
 
 
@@ -232,7 +236,9 @@ def build(spec: dict, st: Style) -> dict:
 
 
 def scaled(scene: dict, k: float) -> dict:
-    """The scene `k` times as large: every length, font size and point. The words and the line breaks stay."""
+    """The scene `k` times as large: every length, font size and point. The words and the line breaks stay. `k` is a float whatever it is
+    given as, so a scale of 3 and of 3.0 write the same bytes."""
+    k = float(k)
     if k == 1:
         return scene
     items = []

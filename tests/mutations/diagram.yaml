@@ -11,8 +11,8 @@ mutations:
   replace: TYPES = ("flowchart", "graph", "sequenceDiagram", "stateDiagram-v2", "classDiagram")
   test: tests.test_diagram.SourceTests.test_it_must_start_with_a_supported_type
 - label: a click statement is allowed
-  find: (?:click|href|call|callback|links?|classDef|style|linkStyle)
-  replace: (?:href|call|callback|links?|classDef|style|linkStyle)
+  find: (?:click|href|call|callback|links?|classDef|style|linkStyle|rect|box)
+  replace: (?:href|call|callback|links?|classDef|style|linkStyle|rect|box)
   test: tests.test_diagram.SourceTests.test_links_clicks_directives_and_css_are_refused
 - label: an init directive is allowed
   find: '|&#|%%\{|@\s*\{"'
@@ -63,8 +63,8 @@ mutations:
   replace: '|^\s*acc(?:Title|Descr)\b")'
   test: tests.test_diagram.SourceTests.test_links_clicks_directives_and_css_are_refused
 - label: a node named like a keyword is refused
-  find: links?|classDef|style|linkStyle)(?:\s|$)
-  replace: links?|classDef|style|linkStyle)
+  find: links?|classDef|style|linkStyle|rect|box)(?:\s|$)
+  replace: links?|classDef|style|linkStyle|rect|box)
   test: tests.test_diagram.SourceTests.test_a_node_may_be_named_like_a_keyword_when_it_is_not_a_statement
 - label: a command after a semicolon is not looked for
   find: '    parts = [part for line in statements for part in split_statements(line)]'

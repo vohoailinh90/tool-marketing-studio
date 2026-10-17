@@ -175,6 +175,16 @@ class SpecTests(unittest.TestCase):
         for fine in ("\u26a0 c\u1ea3nh b\u00e1o \u00ae \u00a9 \u2122", "\u0110\u01a1n h\u00e0ng \u0111\u00e3 giao \u2713 \u2192 \u2014 \u00b7 \u2026", "\u65e5\u672c\u8a9e\u3001\u30c6\u30b9\u30c8\u3002", "caf\u00e9 na\u00efve"):
             self.assertEqual(self.problems_after(lambda d: d["sections"][2]["items"][0].update(text=fine)), [], fine)
 
+    def test_an_ideographic_full_stop_between_ascii_names_is_a_dot_and_in_a_sentence_it_is_not(self):
+        """A browser's address parser treats U+3002 and U+FF61 as a dot; Japanese prose uses them to end a sentence."""
+        for bad in ("fb\u3002com/page", "example\u3002com", "example\uff61com", "\uff45\uff58\uff41\uff4d\uff50\uff4c\uff45\u3002\uff43\uff4f\uff4d", "a-b\u3002io/x"):
+            self.assertTrue(spec.has_address(bad), bad)
+            found = self.problems_after(lambda d: d["sections"][2]["items"][0].update(text=bad))
+            self.assertTrue(any("address" in p for p in found), (bad, found))
+        for fine in ("\u52d5\u4f5c\u3057\u307e\u3059\u3002com\u306f", "\u3067\u3059\u3002AI\u306f", "Next\u3002 Then", "OK\u3002", "\u3053\u308c\u306f\u3002example"):
+            self.assertFalse(spec.has_address(fine), fine)
+            self.assertEqual(self.problems_after(lambda d: d["sections"][2]["items"][0].update(text=fine)), [], fine)
+
     def test_a_mark_that_advances_in_the_font_is_refused_with_its_letter_and_the_accents_are_not(self):
         """Chromium gives many marks an advance of their own (a spacing mark, a mark of a script the font does not hold), so only measured marks pass."""
         for label, mark in (("Devanagari visarga (spacing)", "\u0903"), ("N'Ko tone mark", "\u07eb"), ("an enclosing circle", "\u20dd"),
@@ -817,7 +827,7 @@ class FacebookTests(unittest.TestCase):
 
     def test_a_footer_handle_that_is_an_address_is_refused_before_anything_is_drawn(self):
         small = load("small.json")
-        for handle in ("fb.com/your-page", "https://example.test/page", "www.example.test", "ftp : // host", "\uff46\uff54\uff50\uff1a\uff0f\uff0fhost"):
+        for handle in ("fb.com/your-page", "https://example.test/page", "www.example.test", "fb\u3002com/page", "ftp : // host", "\uff46\uff54\uff50\uff1a\uff0f\uff0fhost"):
             with tempfile.TemporaryDirectory() as tmp:
                 root, out = Path(tmp) / "root", Path(tmp) / "out"
                 root.mkdir()

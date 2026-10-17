@@ -21,7 +21,7 @@ Các ý dưới đây rút từ ba tài liệu công khai đọc ngày 2026-10-1
 
 ## Giới hạn cần nhớ
 
-Bài chỉ đọc ba tài liệu và đếm tham số liên kết; không dùng thử từng khóa học, không so sánh chất lượng và không biết các lời gợi ý có trả phí hay không. Các mục tài nguyên còn lại của bài nguồn (LeetCode, NeetCode, sách, nền tảng phỏng vấn thử, trang tuyển dụng) không được kiểm còn hoạt động hay còn phù hợp. Vòng lặp luyện cho coding và thiết kế hướng đối tượng, và cách chia thời gian, là ý kiến của người biên soạn.
+Bài chỉ đọc ba tài liệu và đếm tham số liên kết; không dùng thử từng khóa học, không so sánh chất lượng và không biết các lời gợi ý có trả phí hay không. Các mục tài nguyên còn lại của bài nguồn (khóa học, sách, nền tảng phỏng vấn thử, trang tuyển dụng) không được kiểm còn hoạt động hay còn phù hợp. Vòng lặp luyện cho coding và thiết kế hướng đối tượng, và cách chia thời gian, là ý kiến của người biên soạn.
 
 ## Nhìn hình thử trả lời
 
@@ -46,7 +46,7 @@ curl -s https://raw.githubusercontent.com/donnemartin/system-design-primer/maste
 
 Lệnh trên không in gì với README của Primer ngày thử. Với README của Tech Interview Handbook, cùng lệnh in 4 lần `afftrack=`, 4 lần `?aff=kJSIoU` và 1 lần `?fpr=techinterviewhandbook`. Nhớ rằng nội dung của các nhánh chính đổi theo thời gian, nên kết quả của bạn có thể khác.
 
-Bài nguồn nêu, theo từng mảng: LeetCode, sách *Cracking the Coding Interview* và NeetCode cho coding; sách System Design Interview (tập 1, 2), Grokking the System Design và *Designing Data-Intensive Applications* cho thiết kế hệ thống; Tech Interview Handbook, kênh A Life Engineered và phương pháp STAR cho hành vi; Interviewready, khóa OOD của Educative và sách *Head First Design Patterns* cho thiết kế hướng đối tượng; interviewing.io, Pramp, Meetapro cho phỏng vấn thử; LinkedIn, Monster, Indeed để tìm việc. Bài này không kiểm các mục đó.
+Bài nguồn liệt kê ba mục cho mỗi mảng trong sáu mảng (tổng cộng 18 mục), gồm sách, khóa học, kênh video, nền tảng phỏng vấn thử và trang tuyển dụng. Danh sách đầy đủ nằm ở bài nguồn (liên kết ở phần cuối); bài này chỉ phân tích những mục đã nêu ở trên và không kiểm các mục còn lại.
 
 </details>
 

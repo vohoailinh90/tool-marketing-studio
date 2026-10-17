@@ -60,10 +60,10 @@
   "claims": [
     {
       "id": "source-list",
-      "claim_vi": "Bài nguồn liệt kê tài nguyên theo sáu mảng (coding, thiết kế hệ thống, hành vi, thiết kế hướng đối tượng, phỏng vấn thử, tìm việc); bài này không kiểm các mục đó còn hoạt động hay không.",
+      "claim_vi": "Bài nguồn liệt kê ba mục cho mỗi mảng trong sáu mảng (coding, thiết kế hệ thống, hành vi, thiết kế hướng đối tượng, phỏng vấn thử, tìm việc), tổng cộng 18 mục; bài này không kiểm các mục đó còn hoạt động hay không.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/my-recommended-materials-for-cracking-your-next-technical-interview.md",
       "section": "All sections",
-      "verified_by": "Đọc body nguồn ghim; chỉ ghi lại cái nguồn liệt kê và cách nó nhóm."
+      "verified_by": "Đọc body nguồn ghim và đếm: sáu mảng, mỗi mảng ba mục; chỉ ghi lại cái nguồn liệt kê và cách nó nhóm."
     },
     {
       "id": "behavioral-prep",

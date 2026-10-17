@@ -28,10 +28,12 @@ class CiRunnerTests(unittest.TestCase):
             self.assertIn(SAME_REPO, guard, name)
 
     def test_every_job_runs_on_a_github_hosted_runner_unless_the_repository_variable_says_otherwise(self):
-        for path in (".github/workflows/ci.yml", ".github/workflows/radar-preview.yml"):
-            workflow = yaml.safe_load((ROOT / path).read_text(encoding="utf-8"))
+        paths = sorted((ROOT / ".github/workflows").glob("*.yml"))
+        self.assertIn("ci.yml", [p.name for p in paths])
+        for path in paths:
+            workflow = yaml.safe_load(path.read_text(encoding="utf-8"))
             for name, job in workflow["jobs"].items():
-                self.assertEqual("${{ vars.CI_RUNNER || 'ubuntu-latest' }}", job["runs-on"], f"{path}: {name}")
+                self.assertEqual("${{ vars.CI_RUNNER || 'ubuntu-latest' }}", job.get("runs-on"), f"{path.name}: {name}")
 
 
 class BareDomainTests(unittest.TestCase):

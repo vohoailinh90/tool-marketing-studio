@@ -29,6 +29,15 @@ mutations:
         # CI_RUNNER, e.g. to self-hosted, to move every job at once — docs/agent-team.md, "CI runner".
         runs-on: ${{ vars.CI_RUNNER || 'self-hosted' }}
   test: tests.test_codex_review.CiRunnerTests.test_every_job_runs_on_a_github_hosted_runner_unless_the_repository_variable_says_otherwise
+- label: the engine job ignores the CI_RUNNER variable
+  file: .github/workflows/ci.yml
+  find: |2-
+        # CI_RUNNER, e.g. to self-hosted, to move every job at once — docs/agent-team.md, "CI runner".
+        runs-on: ${{ vars.CI_RUNNER || 'ubuntu-latest' }}
+  replace: |2-
+        # CI_RUNNER, e.g. to self-hosted, to move every job at once — docs/agent-team.md, "CI runner".
+        runs-on: ubuntu-latest
+  test: tests.test_codex_review.CiRunnerTests.test_every_job_runs_on_a_github_hosted_runner_unless_the_repository_variable_says_otherwise
 - label: the web job falls back to a self-hosted runner when the variable is unset
   file: .github/workflows/ci.yml
   find: |2-

@@ -35,8 +35,8 @@ mutations:
   replace: '    if False:'
   test: tests.test_figures.FacebookTests.test_a_written_slide_is_checked_for_type_size_and_weight
 - label: slides are written although the plan has problems
-  find: "    slides, problems = plan(spec, fmt)\n    if problems:\n        return [], problems\n    alt = alt_text(spec, slides)"
-  replace: "    slides, problems = plan(spec, fmt)\n    if False:\n        return [], problems\n    alt = alt_text(spec, slides)"
+  find: "    slides, problems = plan(spec, fmt)\n    if problems:\n        return [], problems\n    author = handle(root)"
+  replace: "    slides, problems = plan(spec, fmt)\n    if False:\n        return [], problems\n    author = handle(root)"
   test: tests.test_figures.FacebookTests.test_nothing_is_written_when_the_plan_has_problems
 - label: the handle of studio.yaml is not read
   find: return str(author.get("handle") or "").strip() if isinstance(author, dict) else ""

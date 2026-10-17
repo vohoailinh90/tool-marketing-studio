@@ -27,7 +27,7 @@ mutations:
   replace: 'if False:'
   test: tests.test_figures.CliTests.test_build_writes_the_figure_and_check_then_passes
 - label: the file is rewritten even when nothing changed
-  find: 'if path.is_file() and path.read_bytes() == content.encode("utf-8"):'
+  find: 'if path.is_file() and path.read_bytes() == data:'
   replace: 'if False:'
   test: tests.test_figures.CliTests.test_build_writes_the_figure_and_check_then_passes
 - label: a scale of nan, 0.1 or 1e9 is accepted

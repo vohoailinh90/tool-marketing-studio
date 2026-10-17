@@ -115,11 +115,11 @@
     },
     {
       "id": "other-defaults",
-      "claim_vi": "Cổng mặc định của Telnet 23, FTP 21 (dữ liệu 20 hay cổng chỉ định), SSH 22, SMTP 25 (587 gửi thư, 465 qua TLS), POP3 110 (995 qua TLS), IMAP 143 (993 qua TLS), DNS 53 (UDP và TCP), DHCPv4 67/68, DHCPv6 547/546, NTP 123, NetBIOS 137–139, SMB 445, RDP 3389 (có thể kèm UDP) và Oracle 1521.",
+      "claim_vi": "Cổng mặc định của Telnet 23, FTP 21 (dữ liệu 20 hay cổng chỉ định), SSH 22, SMTP 25 (chuyển thư giữa các máy chủ; người dùng gửi thư qua submission 587 hoặc 465, trong đó 465 dùng TLS ngay từ đầu), POP3 110 (995 qua TLS), IMAP 143 (993 qua TLS), DNS 53 (UDP và TCP), DHCPv4 67/68, DHCPv6 547/546, NTP 123, NetBIOS 137–139, SMB 445, RDP 3389 (có thể kèm UDP) và Oracle 1521.",
       "sources": [
         "https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml"
       ],
-      "verified_by": "Chỉ đối chiếu với bảng dịch vụ netbase trên máy thử (các cổng TCP/UDP trên có mục; RDP trên UDP và Oracle 1521 không có mục). Các RFC 854, 959, 5321, 1939, 9051, 2131, 5905, 1001/1002, 6409, 8314, 8415, MS-RDPBCGR, MS-SMB2 và tài liệu Oracle chưa được mở lần này."
+      "verified_by": "Chỉ đối chiếu với bảng dịch vụ netbase trên máy thử (các cổng TCP/UDP trên có mục; RDP trên UDP và Oracle 1521 không có mục). Các RFC 854, 959, 5321, 1939, 9051, 2131, 5905, 1001/1002, 6409, 8314, 8415, MS-RDPBCGR, MS-SMB2 và tài liệu Oracle chưa được mở lần này. Gợi ý từ review (ngày 2026-10-17): 465 là cổng submission dùng TLS ngay từ đầu, không phải bản TLS của relay ở 25; phù hợp với tên trong bảng dịch vụ (25 smtp, 587 submission, 465 submissions) và với RFC 8314 và RFC 6409 do reviewer nêu, nhưng hai RFC này chưa được mở."
     },
     {
       "id": "http-on-3306",

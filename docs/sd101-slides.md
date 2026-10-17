@@ -13,7 +13,7 @@ python3 scripts/sd101_slides.py claim --next 3 --publish     # or: claim sd-01-0
 python3 scripts/sd101_slides.py verify                       # exit 0 = every claim of mine is still mine and pushed
 # ... build the decks on Moda; every few hours and before each push:
 python3 scripts/sd101_slides.py touch --publish
-python3 scripts/sd101_slides.py finish sd-01-002 --canvas cvs_... --url https://moda.app/canvas/... --slides 10
+python3 scripts/sd101_slides.py finish sd-01-002 --canvas cvs_... --url https://moda.app/canvas/... --slides 10 --publish
 python3 scripts/sd101_slides.py exported sd-01-002 --publish # its PPTX and PNG files are now in slides/
 python3 scripts/sd101_slides.py release sd-01-003 --publish  # give back a lesson you will not build
 ```
@@ -28,6 +28,8 @@ and finish them; claiming more than you will build in the next hours keeps them 
 remote still holds, so a deck is never finished over a claim another session has taken; `exported --publish` asks the
 remote the same before it pushes a finished record that only exists in your checkout. The tool refuses a symbolic link
 anywhere between `lessons/` and `deck.yaml`: a write through one would land outside the lesson's folder.
+`verify` also checks a finished deck of yours (its record must be on the remote and no earlier claim may beat it), which
+is the check to run after pushing a finished folder by hand.
 `python3 scripts/sd101_check.py` judges the folder (CI runs it).
 
 ## What a lesson folder holds

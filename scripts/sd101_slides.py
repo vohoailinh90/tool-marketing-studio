@@ -66,6 +66,8 @@ CLOCK_SKEW_HOURS = 1
 PUSH_BACKOFF_SECONDS = (2, 4, 8, 16)
 PNG_SIGNATURE = b"\x89PNG\r\n\x1a\n"
 PPTX_PARTS = ("[Content_Types].xml", "ppt/presentation.xml")  # what any PowerPoint file holds
+PNG_CHANNELS = {0: 1, 2: 3, 3: 1, 4: 2, 6: 4}  # samples per pixel by colour type
+MAX_PPTX_BYTES = 512 * 1024 * 1024  # what a deck's parts may add up to once unpacked
 
 
 class SlidesError(Exception):
@@ -225,7 +227,8 @@ def png_size(path: pathlib.Path) -> tuple[int, int] | None:
 
 def png_damage(path: pathlib.Path) -> str | None:
     """Why a file is not a whole PNG, or None: the signature, an IHDR first, every chunk's checksum, an image stream that
-    inflates to its end, and an IEND chunk closing the file with nothing after it."""
+    inflates to its end and to no more than the header describes, and an IEND chunk closing the file with nothing after
+    it. The stream is inflated under that bound, so a small file cannot expand into gigabytes."""
     try:
         data = path.read_bytes()
     except OSError as error:
@@ -233,6 +236,7 @@ def png_damage(path: pathlib.Path) -> str | None:
     if data[:8] != PNG_SIGNATURE:
         return "no PNG signature"
     position, first, finished, images, inflater = 8, True, False, 0, zlib.decompressobj()
+    produced, limit, expected = 0, 0, 0
     while position < len(data):
         if finished:
             return "bytes after IEND"
@@ -246,11 +250,27 @@ def png_damage(path: pathlib.Path) -> str | None:
             return f"checksum of {kind.decode('latin-1')} does not match"
         if first and (kind != b"IHDR" or length != 13):
             return "IHDR is not the first chunk"
+        if first:
+            width, height, depth, colour, _, _, interlace = struct.unpack(">IIBBBBB", data[position + 8:end])
+            if not (width and height and colour in PNG_CHANNELS and depth in (1, 2, 4, 8, 16)):
+                return "IHDR does not describe an image"
+            row = 1 + (width * PNG_CHANNELS[colour] * depth + 7) // 8  # a filter byte and the samples of one line
+            lines = height * row
+            limit = 2 * lines + 16 * row if interlace else lines  # the seven passes of an interlaced image cost more lines
+            expected = 0 if interlace else lines  # an interlaced image has only an upper bound
         first = False
         if kind == b"IDAT":
             images += 1
+            piece = data[position + 8:end]
             try:
-                inflater.decompress(data[position + 8:end])
+                while piece:
+                    out = inflater.decompress(piece, limit + 1 - produced)
+                    produced += len(out)
+                    if produced > limit:
+                        return "image data inflates to more than the header describes"
+                    if not out and inflater.unconsumed_tail == piece:
+                        break
+                    piece = inflater.unconsumed_tail
             except zlib.error:
                 return "image data is damaged"
         finished = kind == b"IEND"
@@ -259,6 +279,10 @@ def png_damage(path: pathlib.Path) -> str | None:
         return "no IEND chunk"
     if not images or not inflater.eof:
         return "image data is missing or cut short"
+    if inflater.unused_data:
+        return "image data continues after the end of its stream"
+    if expected and produced != expected:
+        return "image data is shorter than the header describes"
     return None
 
 
@@ -268,6 +292,8 @@ def pptx_damage(path: pathlib.Path) -> str | None:
     try:
         with zipfile.ZipFile(path) as archive:
             names = set(archive.namelist())
+            if sum(info.file_size for info in archive.infolist()) > MAX_PPTX_BYTES:
+                return f"its parts add up to more than {MAX_PPTX_BYTES >> 20} MB unpacked"
             damaged = archive.testzip()
     except (zipfile.BadZipFile, OSError):
         return "not a ZIP archive"
@@ -599,13 +625,13 @@ def publish(context: Context, paths: list[pathlib.Path], message: str) -> None:
 
 # ------------------------------------------------------------------------------------------------ commands
 
-def my_records(context: Context) -> list[str]:
-    """The lessons whose deck.yaml in this tree is a `doing` claim of mine."""
+def my_records(context: Context, statuses: tuple[str, ...] = ("doing",)) -> list[str]:
+    """The lessons whose deck.yaml in this tree is a record of mine with one of these statuses."""
     mine = []
     for lesson_id in context.written():
         path = context.record_path(lesson_id)
         record = parse_record(path.read_text(encoding="utf-8")) if path.is_file() else None
-        if record and record.get("owner") == context.me and record.get("status") == "doing":
+        if record and record.get("owner") == context.me and record.get("status") in statuses:
             mine.append(lesson_id)
     return mine
 
@@ -709,7 +735,10 @@ def cmd_claim(context: Context, args: argparse.Namespace) -> int:
 def report(context: Context, ids: list[str]) -> int:
     holdings, _ = gather(context, ids)
     moment = now()
-    problems = [reason for lesson_id in ids if (reason := lost_reason(lesson_id, holdings[lesson_id], context, moment))]
+    finished = my_records(context, ("done",))  # a finished deck is verified like a claim: by the same remote state
+    problems = [reason for lesson_id in ids
+                if (reason := finished_problem(context, lesson_id, holdings[lesson_id]) if lesson_id in finished
+                    else lost_reason(lesson_id, holdings[lesson_id], context, moment))]
     for reason in problems:
         print(reason, file=sys.stderr)
     if problems:
@@ -719,8 +748,8 @@ def report(context: Context, ids: list[str]) -> int:
     return 0
 
 
-def named_or_mine(context: Context, ids: list[str]) -> list[str]:
-    mine = my_records(context)
+def named_or_mine(context: Context, ids: list[str], statuses: tuple[str, ...] = ("doing",)) -> list[str]:
+    mine = my_records(context, statuses)
     chosen = list(dict.fromkeys(ids)) if ids else mine
     stranger = [lesson_id for lesson_id in chosen if lesson_id not in mine]
     if stranger:
@@ -731,7 +760,7 @@ def named_or_mine(context: Context, ids: list[str]) -> list[str]:
 
 
 def cmd_verify(context: Context, args: argparse.Namespace) -> int:
-    return report(context, named_or_mine(context, args.ids))
+    return report(context, named_or_mine(context, args.ids, ("doing", "done")))
 
 
 def cmd_touch(context: Context, args: argparse.Namespace) -> int:
@@ -757,9 +786,10 @@ def cmd_touch(context: Context, args: argparse.Namespace) -> int:
     return 0
 
 
-def finished_problem(context: Context, lesson_id: str) -> str | None:
+def finished_problem(context: Context, lesson_id: str, remote: list[Holding] | None = None) -> str | None:
     """After a finished record of mine was pushed: why that deck cannot stand, or None when the remote accepts it."""
-    remote = gather(context, [lesson_id])[0][lesson_id]
+    if remote is None:
+        remote = gather(context, [lesson_id])[0][lesson_id]
     mine = [holding for holding in remote
             if holding.status == "done" and holding.owner == context.me and holding.where != LOCAL]
     if not mine:

@@ -242,3 +242,43 @@ mutations:
   find: "        return pathlib.PurePosixPath(os.path.relpath(self.record_path(lesson_id), self.root)).as_posix()"
   replace: "        return self.record_path(lesson_id).resolve().relative_to(self.root.resolve()).as_posix()"
   test: tests.test_sd101_slides.FinishTests.test_a_symbolic_link_to_a_folder_outside_the_repository_is_refused_not_followed
+- label: the image stream is inflated without a bound
+  find: "                    out = inflater.decompress(piece, limit + 1 - produced)"
+  replace: "                    out = inflater.decompress(piece)"
+  test: tests.test_sd101_slides.FolderTests.test_the_stream_is_never_inflated_past_its_bound_in_one_piece
+- label: an image stream that inflates to more than its header describes passes
+  find: "                    if produced > limit:"
+  replace: "                    if False:"
+  test: tests.test_sd101_slides.FolderTests.test_the_inflated_image_data_is_bounded_by_what_the_header_describes
+- label: an interlaced image is bounded like a plain one
+  find: "            limit = 2 * lines + 16 * row if interlace else lines"
+  replace: "            limit = lines"
+  test: tests.test_sd101_slides.FolderTests.test_the_inflated_image_data_is_bounded_by_what_the_header_describes
+- label: an image stream shorter than its header describes passes
+  find: "    if expected and produced != expected:"
+  replace: "    if False:"
+  test: tests.test_sd101_slides.FolderTests.test_the_inflated_image_data_is_bounded_by_what_the_header_describes
+- label: bytes after the end of the image stream pass
+  find: "    if inflater.unused_data:"
+  replace: "    if False:"
+  test: tests.test_sd101_slides.FolderTests.test_the_inflated_image_data_is_bounded_by_what_the_header_describes
+- label: a header that describes no image passes
+  find: "            if not (width and height and colour in PNG_CHANNELS and depth in (1, 2, 4, 8, 16)):"
+  replace: "            if False:"
+  test: tests.test_sd101_slides.FolderTests.test_the_inflated_image_data_is_bounded_by_what_the_header_describes
+- label: a pptx whose parts unpack to more than a deck can hold passes
+  find: "            if sum(info.file_size for info in archive.infolist()) > MAX_PPTX_BYTES:"
+  replace: "            if False:"
+  test: tests.test_sd101_slides.FolderTests.test_a_pptx_whose_parts_unpack_to_more_than_a_deck_can_hold_is_refused
+- label: verify ignores a finished deck
+  find: "    finished = my_records(context, (\"done\",))"
+  replace: "    finished = []"
+  test: tests.test_sd101_slides.FinishTests.test_verify_checks_a_finished_deck_that_was_pushed_by_hand
+- label: verify refuses to look at a finished deck
+  find: "    return report(context, named_or_mine(context, args.ids, (\"doing\", \"done\")))"
+  replace: "    return report(context, named_or_mine(context, args.ids))"
+  test: tests.test_sd101_slides.FinishTests.test_verify_checks_a_finished_deck_that_was_pushed_by_hand
+- label: touch renews a finished deck as if it were a claim
+  find: "def named_or_mine(context: Context, ids: list[str], statuses: tuple[str, ...] = (\"doing\",))"
+  replace: "def named_or_mine(context: Context, ids: list[str], statuses: tuple[str, ...] = (\"doing\", \"done\"))"
+  test: tests.test_sd101_slides.FinishTests.test_touch_does_not_treat_a_finished_deck_as_a_claim_to_renew

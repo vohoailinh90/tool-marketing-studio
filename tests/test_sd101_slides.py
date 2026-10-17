@@ -43,6 +43,13 @@ def png_bytes(width: int = 1920, height: int = 1080) -> bytes:
     return slides.PNG_SIGNATURE + chunk(b"IHDR", header) + chunk(b"IDAT", image) + chunk(b"IEND", b"")
 
 
+def png_of(raw: bytes, width: int = 16, height: int = 16, colour: int = 2, interlace: int = 0, tail: bytes = b"") -> bytes:
+    """A PNG whose single IDAT inflates to `raw`, whatever its header says about the size of the image."""
+    header = struct.pack(">IIBBBBB", width, height, 8, colour, 0, 0, interlace)
+    return (slides.PNG_SIGNATURE + chunk(b"IHDR", header) + chunk(b"IDAT", zlib.compress(raw) + tail)
+            + chunk(b"IEND", b""))
+
+
 def png(path: Path, width: int = 1920, height: int = 1080) -> None:
     path.write_bytes(png_bytes(width, height))
 
@@ -741,6 +748,35 @@ class FinishTests(Sessions):
         self.assertIn("is a symbolic link", err)
         self.assertEqual([], list(outside.iterdir()))
 
+    def test_verify_checks_a_finished_deck_that_was_pushed_by_hand(self) -> None:
+        a, b = self.session("a"), self.session("b")
+        self.at(seconds=0)
+        self.run_in(b, "claim", "sd-01-001")  # b claimed first but has not pushed yet
+        self.at(seconds=5)
+        self.run_in(a, "claim", "sd-01-001", "--publish")
+        self.assertEqual(0, self.finish(a, "sd-01-001")[0])
+        code, _, err = self.run_in(a, "verify")
+        self.assertEqual(1, code)
+        self.assertIn("the finished record is not on origin/claude/a", err)
+        git(a, "add", "-A")  # what a documented `commit the slides/ folder` does: no check on the way out
+        git(a, "commit", "--quiet", "-m", "slides")
+        git(a, "push", "--quiet", "origin", "claude/a")
+        self.assertEqual(0, self.run_in(a, "verify")[0], "nobody else has pushed a claim yet")
+        git(b, "add", "-A")
+        git(b, "commit", "--quiet", "-m", "claim")
+        git(b, "push", "--quiet", "-u", "origin", "claude/b")
+        code, _, err = self.run_in(a, "verify")
+        self.assertEqual(1, code)
+        self.assertIn("claude/b holds the earlier claim", err)
+
+    def test_touch_does_not_treat_a_finished_deck_as_a_claim_to_renew(self) -> None:
+        a = self.session("a")
+        self.run_in(a, "claim", "sd-01-001", "--publish")
+        self.assertEqual(0, self.finish(a, "sd-01-001")[0])
+        code, _, err = self.run_in(a, "touch")
+        self.assertEqual(2, code)
+        self.assertIn("you hold no claim", err)
+
     def test_a_staging_failure_stops_publishing_instead_of_pushing_nothing(self) -> None:
         a = self.session("a")
         self.run_in(a, "claim", "sd-01-001", "--publish")
@@ -891,6 +927,60 @@ class FolderTests(unittest.TestCase):
                 (self.dir / "03.png").write_bytes(data)
                 self.assertEqual([f"03.png is not a whole PNG: {reason}"], self.problems())
         png(self.dir / "03.png")
+        self.assertEqual([], self.problems())
+
+    def test_the_inflated_image_data_is_bounded_by_what_the_header_describes(self) -> None:
+        lines = 16 * (1 + 16 * 3)  # a 16x16 RGB image: a filter byte and 48 sample bytes per line
+        cases = {
+            "exactly the image": (png_of(b"\x00" * lines), None),
+            "far more than the image": (png_of(b"\x00" * 5_000_000),
+                                        "image data inflates to more than the header describes"),
+            "one line short": (png_of(b"\x00" * (lines - 49)), "image data is shorter than the header describes"),
+            "bytes after the stream": (png_of(b"\x00" * lines, tail=b"junk"),
+                                       "image data continues after the end of its stream"),
+            "a colour type that does not exist": (png_of(b"\x00" * lines, colour=5), "IHDR does not describe an image"),
+            "an interlaced image within its bound": (png_of(b"\x00" * 900, interlace=1), None),
+            "an interlaced image beyond its bound": (png_of(b"\x00" * 10_000, interlace=1),
+                                                     "image data inflates to more than the header describes"),
+        }
+        for label, (data, reason) in cases.items():
+            with self.subTest(label):
+                path = self.dir / "01.png"
+                path.write_bytes(data)
+                self.assertEqual(reason, slides.png_damage(path))
+
+    def test_the_stream_is_never_inflated_past_its_bound_in_one_piece(self) -> None:
+        path = self.dir / "01.png"
+        path.write_bytes(png_of(b"\x00" * 20_000_000))
+        asked = []
+        real = zlib.decompressobj
+
+        class Spy:
+            def __init__(self) -> None:
+                self.inner = real()
+
+            def decompress(self, data: bytes, max_length: int = 0) -> bytes:
+                asked.append(max_length)
+                return self.inner.decompress(data, max_length)
+
+            def __getattr__(self, name: str):
+                return getattr(self.inner, name)
+
+        with mock.patch.object(zlib, "decompressobj", Spy):
+            self.assertEqual("image data inflates to more than the header describes", slides.png_damage(path))
+        self.assertTrue(asked)
+        self.assertTrue(all(0 < size <= 16 * 49 + 1 for size in asked), asked)
+
+    def test_a_pptx_whose_parts_unpack_to_more_than_a_deck_can_hold_is_refused(self) -> None:
+        import zipfile
+
+        self.write(exports="done")
+        self.exports()
+        with zipfile.ZipFile(self.dir / "sd-01-001.pptx", "a") as archive:
+            archive.writestr("ppt/media/big.bin", b"\x00" * 5000)
+        with mock.patch.object(slides, "MAX_PPTX_BYTES", 4096):
+            self.assertEqual(["sd-01-001.pptx is not a PowerPoint file: its parts add up to more than 0 MB unpacked"],
+                             self.problems())
         self.assertEqual([], self.problems())
 
     def test_a_finished_deck_keeps_the_time_of_its_claim(self) -> None:

@@ -49,16 +49,26 @@ def one_line(text) -> str:
     return unicodedata.normalize("NFC", re.sub(r"\s+", " ", str(text)).strip())
 
 
+ZERO_MARKS = ((0x0300, 0x034E),)       # the combining accents: measured at no advance in Chromium (tests/test_figures.py measures them again)
+
+
 def combining(ch: str) -> bool:
-    """A mark that sits on the letter before it (an accent that has no composed form): never a place to end a line."""
+    """A mark of any script (it sits on the letter before it): never a place to end a line, and never the first thing of a text."""
     return unicodedata.category(ch)[0] == "M"
 
 
+def zero_mark(ch: str) -> bool:
+    """A mark measured at no advance. Most marks are not: Chromium gives a spacing mark (Devanagari visarga) or a mark of a script the font does
+    not hold (N'Ko, the enclosing circle) a width of its own, and a variation selector (U+FE0F) turns the letter before
+    it into a colour emoji of unknown width, so a mark is only measurable when it is listed here."""
+    return any(lo <= ord(ch) <= hi for lo, hi in ZERO_MARKS)
+
+
 def measurable(c: str) -> bool:
-    """True when `width()` knows this character: ASCII, the measured symbols above, a combining mark, a letter that is an ASCII letter with
-    marks (Vietnamese, French ...), or a wide (CJK) character. Anything else (emoji, other scripts, symbols nobody measured) has an advance
-    this module can only guess, so a figure's text may not hold it: a guess that is too small lets text run out of its card."""
-    if c in "\n\t" or " " <= c <= "~" or c in _OTHER or combining(c):
+    """True when `width()` knows this character: ASCII, the measured symbols above, a combining mark that advances nothing, a letter that is
+    an ASCII letter with marks (Vietnamese, French ...), or a wide (CJK) character. Anything else (emoji, other scripts, symbols nobody
+    measured) has an advance this module can only guess, so a figure's text may not hold it: a guess that is too small lets text run out of its card."""
+    if c in "\n\t" or " " <= c <= "~" or c in _OTHER or zero_mark(c):
         return True
     if wide(c):
         return ord(c) < 0x1F000                              # emoji come from a colour font of unknown width
@@ -81,7 +91,7 @@ def _em(c: str, bold: bool = False) -> float:
         return (_BOLD if bold else _REGULAR)[ord(c) - 32] / 1000
     if c in _OTHER:
         return _OTHER[c][bold] / 1000
-    if combining(c):
+    if zero_mark(c):
         return 0.0                                          # drawn on the letter before it, advances nothing
     base = unicodedata.normalize("NFD", c)[0]               # ă, ơ, ế ... advance like the letter under the mark
     if " " <= base <= "~" and base != c:

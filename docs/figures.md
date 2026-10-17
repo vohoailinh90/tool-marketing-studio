@@ -33,7 +33,9 @@ One JSON file per figure, `system-design-101/figures/vi/<lesson id>.json` (next 
   domain, a spaced scheme; it also reads a file name that ends in a country code, such as `server.py` or `README.md`, as a domain, so
   write the name as a word), no control or invisible character (any Unicode control, format, surrogate or line-separator character: zero-width spaces and joiners, direction marks, a byte-order mark),
   and only characters whose width the toolkit knows (ASCII, Latin letters with accents such as Vietnamese, Japanese and other CJK text, and the
-  measured symbols listed in `scripts/figures/text.py`: arrows, `\u26a0`, `\u00ae`, `\u2713` and so on; emoji, other scripts and unlisted symbols are refused), and no icon outside the set
+  measured symbols listed in `scripts/figures/text.py`: arrows, ⚠, ®, ✓ and so on; emoji, other scripts and unlisted symbols are refused;
+  of the combining marks only the accents U+0300-U+034E are measured, because Chromium gives a spacing mark, a mark of a script the font does not hold and a
+  variation selector such as U+FE0F, which turns a symbol into a colour emoji, a width of their own), and no icon outside the set
   (`python3 -m scripts.figures icons` lists the 81 names and what each means).
 
 Every word on the figure is a field of the spec: no caption, arrow label or icon is invented by the drawing code.

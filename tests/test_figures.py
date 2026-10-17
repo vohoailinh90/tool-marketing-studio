@@ -166,12 +166,23 @@ class SpecTests(unittest.TestCase):
         for fine in ("\u26a0 c\u1ea3nh b\u00e1o \u00ae \u00a9 \u2122", "\u0110\u01a1n h\u00e0ng \u0111\u00e3 giao \u2713 \u2192 \u2014 \u00b7 \u2026", "\u65e5\u672c\u8a9e\u3001\u30c6\u30b9\u30c8\u3002", "caf\u00e9 na\u00efve"):
             self.assertEqual(self.problems_after(lambda d: d["sections"][2]["items"][0].update(text=fine)), [], fine)
 
+    def test_a_mark_that_advances_in_the_font_is_refused_with_its_letter_and_the_accents_are_not(self):
+        """Chromium gives many marks an advance of their own (a spacing mark, a mark of a script the font does not hold), so only measured marks pass."""
+        for label, mark in (("Devanagari visarga (spacing)", "\u0903"), ("N'Ko tone mark", "\u07eb"), ("an enclosing circle", "\u20dd"),
+                            ("a combining letter", "\u0363"), ("a grapheme joiner", "\u034f"), ("a half mark", "\u0350"),
+                            ("a tag variation selector", "\U000e0100"), ("the emoji variation selector", "\ufe0f"), ("the text variation selector", "\ufe0e")):
+            for bad in ("a" + mark, "a" + mark * 60, "\u65e5" + mark):
+                found = self.problems_after(lambda d: d["sections"][2]["items"][0].update(text=bad))
+                self.assertTrue(any("cannot measure" in p for p in found), (label, bad, found))
+        for fine in ("e\u0301", "x\u0301\u0323\u0302", "Vie\u0323\u0302t", "\u26a0", "a\u0300\u034e"):
+            self.assertEqual(self.problems_after(lambda d: d["sections"][2]["items"][0].update(text=fine)), [], fine)
+
     def test_a_combining_mark_with_no_letter_before_it_is_refused(self):
         for label, bad in (("only a mark", "\u0301"), ("two marks", "\u0301\u0301"), ("a mark after a space", "a \u0301 b"), ("a variation selector alone", "\ufe0f"),
                            ("a mark at the start", "\u0301abc"), ("a mark after a new line", "a\n\u0301")):
             found = self.problems_after(lambda d: d["sections"][2]["items"][0].update(text=bad))
             self.assertTrue(any("combining mark with no letter" in p for p in found), (label, found))
-        for fine in ("e\u0301", "x\u0301\u0323 and \u26a0\ufe0f", "Vie\u0323\u0302t"):
+        for fine in ("e\u0301", "x\u0301\u0323 and \u26a0", "Vie\u0323\u0302t"):
             self.assertEqual(self.problems_after(lambda d: d["sections"][2]["items"][0].update(text=fine)), [], fine)
 
     def test_lengths_are_counted_on_the_text_as_it_is_drawn(self):
@@ -428,6 +439,16 @@ class TextTests(unittest.TestCase):
                 self.assertFalse(text.combining(line[0]), (box, line))
         self.assertEqual("".join(text.wrap(word, 15, 60)), word)
 
+    def test_only_the_marks_measured_at_no_advance_are_measured_at_none(self):
+        for o in range(0x0300, 0x034F):
+            self.assertEqual(text.width("a" + chr(o), 100), text.width("a", 100), hex(o))
+            self.assertTrue(text.measurable(chr(o)), hex(o))
+        for o in (0x034F, 0x0350, 0x0363, 0x036F, 0x0903, 0x07EB, 0x1AB0, 0x20DD, 0xFE00, 0xFE0F, 0xFE20, 0xE0100):
+            self.assertGreater(text.width("a" + chr(o), 100), text.width("a", 100), hex(o))     # an unknown mark is counted as a letter, never as nothing
+            self.assertFalse(text.measurable(chr(o)), hex(o))
+            self.assertTrue(text.combining(chr(o)), hex(o))                                      # but it still never starts a line
+        self.assertGreater(text.width("a\u3099", 100), text.width("a", 100))                       # a dakuten is counted as the wide (CJK) character it sits in the table as
+
     def test_symbols_and_vietnamese_capital_d_are_measured_at_least_as_wide_as_the_font_draws_them(self):
         for char, regular, bold in (("\u26a0", 896, 896), ("\u00ae", 1000, 1000), ("\u00a9", 1000, 1000), ("\u2122", 1000, 1000), ("\u0110", 775, 838), ("\u0111", 635, 716)):
             self.assertGreaterEqual(text.width(char, 1000), regular, char)
@@ -623,6 +644,27 @@ class BrowserTests(unittest.TestCase):
                         self.assertGreaterEqual(text.width(c, 100, bold), real - 0.6, (c, weight))
             finally:
                 chromium.close()
+
+    def test_the_marks_a_figure_may_use_advance_nothing_in_the_real_font(self):
+        from playwright.sync_api import sync_playwright
+        marks = [chr(o) for lo, hi in text.ZERO_MARKS for o in range(lo, hi + 1)]
+        with sync_playwright() as p:
+            chromium = p.chromium.launch()
+            try:
+                page = chromium.new_page()
+                page.set_content('<svg xmlns="http://www.w3.org/2000/svg" width="300" height="100"><g font-family="DejaVu Sans, Arial, sans-serif" font-size="100">'
+                                 '<text id="t" xml:space="preserve" x="0" y="50">a</text></g></svg>')
+                base = page.evaluate("document.getElementById('t').getComputedTextLength()")
+                widths = page.evaluate("""(chars) => { const t = document.getElementById('t'); return chars.map(c => { t.textContent = 'a' + c; return t.getComputedTextLength(); }); }""", marks)
+            finally:
+                chromium.close()
+        self.assertEqual([hex(ord(c)) for c, w in zip(marks, widths) if w > base + 0.6], [])
+
+    def test_a_run_of_accents_still_fits_its_card_in_the_real_font(self):
+        data = load("small.json")
+        data["sections"][1]["items"] = ["a\u0301\u0323\u0302" * 30, "\u26a0" * 20 + " ge\u0300 " * 6]
+        self.assertEqual(spec.problems(data), [])
+        self.assertEqual(browser.measure(data), [])
 
     def test_a_run_of_wide_symbols_still_fits_its_card_in_the_real_font(self):
         data = load("small.json")

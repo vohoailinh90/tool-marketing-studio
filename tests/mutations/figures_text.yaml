@@ -19,9 +19,29 @@ mutations:
   replace: return re.sub(r"\s+", " ", str(text)).strip()
   test: tests.test_figures.TextTests.test_text_is_composed_before_it_is_measured_and_drawn
 - label: a combining mark is measured as a letter
-  find: "    if combining(c):\n        return 0.0"
+  find: "    if zero_mark(c):\n        return 0.0"
   replace: "    if False:\n        return 0.0"
   test: tests.test_figures.TextTests.test_a_combining_mark_advances_nothing_and_never_starts_a_line
+- label: every mark of every script is measured at no advance
+  find: "    if zero_mark(c):\n        return 0.0"
+  replace: "    if combining(c):\n        return 0.0"
+  test: tests.test_figures.TextTests.test_only_the_marks_measured_at_no_advance_are_measured_at_none
+- label: any mark counts as measurable
+  find: 'or c in _OTHER or zero_mark(c):'
+  replace: 'or c in _OTHER or combining(c):'
+  test: tests.test_figures.SpecTests.test_a_mark_that_advances_in_the_font_is_refused_with_its_letter_and_the_accents_are_not
+- label: the measured accents reach past U+034E
+  find: 'ZERO_MARKS = ((0x0300, 0x034E),)'
+  replace: 'ZERO_MARKS = ((0x0300, 0x036F),)'
+  test: tests.test_figures.TextTests.test_only_the_marks_measured_at_no_advance_are_measured_at_none
+- label: the variation selectors count as measured marks
+  find: 'ZERO_MARKS = ((0x0300, 0x034E),)'
+  replace: 'ZERO_MARKS = ((0x0300, 0x034E), (0xFE00, 0xFE0F))'
+  test: tests.test_figures.SpecTests.test_a_mark_that_advances_in_the_font_is_refused_with_its_letter_and_the_accents_are_not
+- label: a spacing mark is listed as measured, though the font gives it an advance
+  find: 'ZERO_MARKS = ((0x0300, 0x034E),)'
+  replace: 'ZERO_MARKS = ((0x0300, 0x034E), (0x0903, 0x0903))'
+  test: tests.test_figures.BrowserTests.test_the_marks_a_figure_may_use_advance_nothing_in_the_real_font
 - label: a line may end before a combining mark
   find: if cur and not combining(ch) and width(
   replace: if cur and width(

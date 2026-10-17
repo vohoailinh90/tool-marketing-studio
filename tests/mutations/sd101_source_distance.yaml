@@ -114,3 +114,19 @@ mutations:
   find: '        match = None if fenced else re.match(r"##\s+(.+?)\s*$", line)'
   replace: '        match = re.match(r"##\s+(.+?)\s*$", line)'
   test: tests.test_sd101_source_distance.TextTests.test_a_heading_like_line_inside_a_code_fence_does_not_split_the_lesson
+- label: link destinations of the source are read as words
+  find: "    return strip_html(strip_links(\"\\n\".join(lines)))"
+  replace: "    return strip_html(\"\\n\".join(lines))"
+  test: tests.test_sd101_source_distance.TextTests.test_link_destinations_are_not_vocabulary_of_the_source_or_the_lesson
+- label: link destinations of the lesson are read as words
+  find: "    return strip_html(strip_links(\"\\n\".join(kept)))"
+  replace: "    return strip_html(\"\\n\".join(kept))"
+  test: tests.test_sd101_source_distance.TextTests.test_link_destinations_are_not_vocabulary_of_the_source_or_the_lesson
+- label: bare URLs are read as words
+  find: "    return re.sub(r\"https?://\\S+\", \" \", text)"
+  replace: "    return text"
+  test: tests.test_sd101_source_distance.TextTests.test_link_destinations_are_not_vocabulary_of_the_source_or_the_lesson
+- label: link destinations in parentheses are read as words
+  find: "    text = re.sub(r\"\\]\\([^)]*\\)\", \"]\", text)"
+  replace: "    pass"
+  test: tests.test_sd101_source_distance.TextTests.test_link_destinations_are_not_vocabulary_of_the_source_or_the_lesson

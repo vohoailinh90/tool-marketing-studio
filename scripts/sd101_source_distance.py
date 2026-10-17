@@ -100,11 +100,21 @@ def strip_html(text: str) -> str:
     return "".join(parts)
 
 
+def strip_links(text: str) -> str:
+    """Images, link destinations and bare URLs: where a text points is not what it says.
+
+    The link text stays, because it is read by the reader. Both sides of the comparison pass through here, so that a
+    host name or a path segment is never vocabulary of one side only."""
+    text = re.sub(r"!\[[^\]]*\]\([^)]*\)", " ", text)
+    text = re.sub(r"\]\([^)]*\)", "]", text)
+    return re.sub(r"https?://\S+", " ", text)
+
+
 def source_body(raw: str) -> str:
-    """The guide without its front matter, its images, its image-source line and its markup."""
+    """The guide without its front matter, its images, its image-source line, its link destinations and its markup."""
     body = re.sub(r"\A---\n.*?\n---\n", "", raw, count=1, flags=re.DOTALL)
     lines = [line for line in body.splitlines() if not re.match(r"\s*!\[", line) and not line.lower().startswith("image source")]
-    return strip_html("\n".join(lines))
+    return strip_html(strip_links("\n".join(lines)))
 
 
 def source_units(body: str) -> int:
@@ -138,10 +148,7 @@ def sections(markdown: str) -> dict[str, str]:
 def lesson_prose(markdown: str) -> str:
     """What the lesson itself says: no glossary, no source list, no link destinations or image sources."""
     kept = [text for title, text in sections(markdown).items() if title not in SKIPPED_SECTIONS]
-    prose = "\n".join(kept)
-    prose = re.sub(r"!\[[^\]]*\]\([^)]*\)", " ", prose)
-    prose = re.sub(r"\]\([^)]*\)", "]", prose)
-    return strip_html(re.sub(r"https?://\S+", " ", prose))
+    return strip_html(strip_links("\n".join(kept)))
 
 
 def lesson_units(markdown: str) -> int:

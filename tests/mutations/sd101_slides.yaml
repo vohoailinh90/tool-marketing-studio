@@ -19,7 +19,7 @@ mutations:
   replace: '    return (-first.generation, first.claimed_at or "", first.owner) > (-second.generation, second.claimed_at or "", second.owner)'
   test: tests.test_sd101_slides.ClaimTests.test_the_earlier_claim_wins_even_when_it_is_pushed_second
 - label: a takeover does not beat the claim it took over
-  find: "    if second.owner in first.taken_from:\n        return True\n    if first.owner in second.taken_from:\n        return False\n    return (-first.generation,"
+  find: "    if first_took != second_took:\n        return first_took\n    return (-first.generation,"
   replace: "    return (first.generation,"
   test: tests.test_sd101_slides.LeaseTests.test_a_takeover_beats_the_claim_it_took_over_even_if_the_old_owner_wakes_up
 - label: a claim never goes stale
@@ -182,3 +182,11 @@ mutations:
   find: "                found[pair] = None\n                if fields[1] == b\"blob\":"
   replace: "                if fields[1] == b\"blob\":"
   test: tests.test_sd101_slides.ClaimTests.test_an_invalid_utf8_record_or_a_directory_in_its_place_blocks_the_lesson
+- label: two claims that each name the other as taken_from both beat each other
+  find: "    if first_took != second_took:\n        return first_took\n"
+  replace: "    if first_took:\n        return True\n    if second_took:\n        return False\n"
+  test: tests.test_sd101_slides.LeaseTests.test_two_sessions_that_reclaim_each_others_expired_claims_at_once_still_have_one_winner
+- label: a session that reclaims a lesson taken from it names itself as its own ancestor
+  find: " for item in (other.owner, *other.taken_from) if item != context.me})"
+  replace: " for item in (other.owner, *other.taken_from)})"
+  test: tests.test_sd101_slides.LeaseTests.test_an_owner_who_reclaims_a_lesson_taken_from_it_is_not_its_own_ancestor

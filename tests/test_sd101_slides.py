@@ -379,6 +379,39 @@ class LeaseTests(Sessions):
         self.assertEqual(1, self.run_in(a, "touch", "--publish")[0], "a's renewal does not outrank the takeover")
         self.assertEqual(0, self.run_in(b, "verify")[0])
 
+    def test_two_sessions_that_reclaim_each_others_expired_claims_at_once_still_have_one_winner(self) -> None:
+        a, b = self.session("a"), self.session("b")
+        self.at(seconds=0)
+        self.run_in(a, "claim", "sd-01-001")
+        self.at(seconds=5)
+        self.run_in(b, "claim", "sd-01-001")
+        self.run_in(b, "claim", "sd-01-001", "--publish")
+        self.run_in(a, "claim", "sd-01-001", "--publish")  # both claims are published, then both go quiet
+        self.at(hours=slides.LEASE_HOURS + 1)
+        self.assertEqual(0, self.run_in(a, "claim", "sd-01-001")[0])  # each reads the other's expired claim, neither has pushed
+        self.assertEqual(0, self.run_in(b, "claim", "sd-01-001")[0])
+        self.assertEqual((["claude/b"], 1), (self.record(a, "sd-01-001")["taken_from"], self.record(a, "sd-01-001")["generation"]))
+        self.assertEqual((["claude/a"], 1), (self.record(b, "sd-01-001")["taken_from"], self.record(b, "sd-01-001")["generation"]))
+        self.run_in(a, "claim", "sd-01-001", "--publish")
+        self.run_in(b, "claim", "sd-01-001", "--publish")
+        self.assertEqual(0, self.run_in(a, "verify")[0], "the smaller owner wins when nothing else tells the claims apart")
+        code, _, err = self.run_in(b, "verify")
+        self.assertEqual(1, code)
+        self.assertIn("lost to claude/a", err)
+
+    def test_an_owner_who_reclaims_a_lesson_taken_from_it_is_not_its_own_ancestor(self) -> None:
+        a, b = self.session("a"), self.session("b")
+        self.run_in(a, "claim", "sd-01-001", "--publish")
+        self.at(hours=slides.LEASE_HOURS + 1)
+        self.run_in(b, "claim", "sd-01-001", "--take-stale", "--publish")  # taken_from [a]
+        self.at(hours=2 * slides.LEASE_HOURS + 2)  # b goes quiet too
+        code, _, err = self.run_in(a, "claim", "sd-01-001", "--publish")
+        self.assertEqual(0, code, err)
+        record = self.record(a, "sd-01-001")
+        self.assertEqual((["claude/b"], 2), (record["taken_from"], record["generation"]))
+        self.assertEqual(0, self.run_in(a, "verify")[0])
+        self.assertEqual(1, self.run_in(b, "claim", "sd-01-001")[0], "the lesson is a's again, not blocked")
+
     def test_touching_keeps_a_claim_alive(self) -> None:
         a, b = self.session("a"), self.session("b")
         self.run_in(a, "claim", "sd-01-001", "--publish")

@@ -460,11 +460,11 @@ def is_stale(holding: Holding, moment: datetime.datetime) -> bool:
 
 def beats(first: Holding, second: Holding) -> bool:
     """Whether first wins the lesson over second: a takeover over the claim it took, then the higher generation, the
-    earlier claim, the smaller owner. No clock decides between two takeovers."""
-    if second.owner in first.taken_from:
-        return True
-    if first.owner in second.taken_from:
-        return False
+    earlier claim, the smaller owner. Two sessions that each took the other's expired claim at once are no takeover of
+    each other, so the same order decides between them: exactly one of beats(a, b) and beats(b, a) is true."""
+    first_took, second_took = second.owner in first.taken_from, first.owner in second.taken_from
+    if first_took != second_took:
+        return first_took
     return (-first.generation, first.claimed_at or "", first.owner) < (-second.generation, second.claimed_at or "", second.owner)
 
 
@@ -668,7 +668,7 @@ def cmd_claim(context: Context, args: argparse.Namespace) -> int:
         if state == "doing" and holding.owner == context.me:
             continue  # already mine; --publish below pushes it if it is not on the remote yet
         taken = sorted({item for other in holdings[lesson_id] if other.status == "doing" and other.owner != context.me
-                        for item in (other.owner, *other.taken_from)})
+                        for item in (other.owner, *other.taken_from) if item != context.me})  # I am never my own ancestor
         generation = max([other.generation for other in holdings[lesson_id] if other.owner != context.me] + [0]) + 1 \
             if taken else 0
         record = {"id": lesson_id, "status": "doing", "owner": branch, "claimed_at": stamp(moment),

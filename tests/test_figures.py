@@ -102,7 +102,9 @@ class SpecTests(unittest.TestCase):
 
     def test_a_json_file_that_names_a_key_twice_or_is_not_json_is_an_error_not_a_crash(self):
         with tempfile.TemporaryDirectory() as tmp:
-            for name, body in (("twice.json", '{"id": "a-b", "id": "c-d"}'), ("junk.json", "{nope"), ("list.json", "[]"), ("deep.json", "[" * 50000)):
+            twice = POLLING.read_text(encoding="utf-8").replace('"title": ', '"title": "first", "title": ', 1)   # a complete spec that names one key twice
+            self.assertEqual(spec.problems(json.loads(twice)), [])
+            for name, body in (("twice.json", twice), ("junk.json", "{nope"), ("list.json", "[]"), ("deep.json", "[" * 50000)):
                 path = Path(tmp) / name
                 path.write_text(body, encoding="utf-8")
                 with self.assertRaises(spec.SpecError, msg=name):
@@ -363,6 +365,8 @@ class SvgTests(unittest.TestCase):
         self.assertEqual(markup.count('stroke-linecap="round"'), 2)
         shapes = "".join(f"<{tag} " + " ".join(f'{k}="{"#ffffff" if v == "currentColor" else v}"' for k, v in attrs) + "/>" for tag, attrs in icons.shapes("key-round"))
         self.assertEqual(markup.count(shapes.replace("#ffffff", "#FFFFFF")), 2)
+        tiles = re.findall(r'<circle cx="[\d.]+" cy="[\d.]+" r="18" fill="(#[0-9a-f]{6})"/><g transform', markup)
+        self.assertEqual(tiles, [svg.ACCENT["card0"]] * 2)
 
     def test_text_that_is_too_small_or_runs_off_the_drawing_is_reported(self):
         markup = svg.figure(load())

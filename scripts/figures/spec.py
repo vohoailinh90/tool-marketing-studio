@@ -37,7 +37,7 @@ TOP_KEYS = {"id", "lang", "title", "subtitle", "desc", "sections"}
 LANGS = ("vi", "en", "ja")
 MAX_RAILS = 4                       # cross links that run beside the cards of one `parts` section
 HIDDEN = {"Cc", "Cf", "Cs", "Zl", "Zp"}      # Unicode categories nobody sees: controls, format (zero-width, direction marks, joiners), surrogates, separators
-LINK = re.compile(r"://")                  # any scheme, `ftp://` included: has_url reads only http(s), www. and domains
+LINK = re.compile(r":\s*/\s*/")            # any scheme, `ftp://` included, with spaces round the separator: has_url reads only http(s), www. and domains
 
 
 class SpecError(ValueError):
@@ -90,7 +90,7 @@ def _text(value, where: str, low: int, high: int, found: list[str]) -> None:
     shown = one_line(value)                                  # what is drawn: whitespace collapsed, composed form
     if len(shown) < low or len(shown) > high:
         found.append(f"{where} is {len(shown)} characters, expected {low}-{high}")
-    if LINK.search(value) or has_url(value):             # has_url is the studio's rule for posts: bare domains and spaced schemes too
+    if LINK.search(unicodedata.normalize("NFKC", value)) or has_url(value):             # has_url is the studio's rule for posts: bare domains and spaced schemes too
         found.append(f"{where} holds a link or a source-image host; a figure carries no address")
     if hidden(value):
         found.append(f"{where} holds a control or invisible character")

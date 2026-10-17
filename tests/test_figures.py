@@ -68,7 +68,8 @@ class SpecTests(unittest.TestCase):
         self.assertTrue(any("unknown keys" in p for p in self.problems_after(lambda d: d["sections"][0]["messages"][0].update(color="red"))))
 
     def test_an_address_is_refused_in_any_text(self):
-        for bad in ("see https://example.test/x", "go to www.example.test", "from assets.bytebytego.com", "ftp://host", "a://b"):
+        for bad in ("see https://example.test/x", "go to www.example.test", "from assets.bytebytego.com", "ftp://host", "a://b", "ftp : //host", "ftp ://host", "a:/ /b",
+                    "\uff46\uff54\uff50\uff1a\uff0f\uff0fhost"):
             self.assertTrue(any("address" in p for p in self.problems_after(lambda d: d["sections"][2]["items"][0].update(text=bad))), bad)
 
     def test_an_icon_outside_the_set_is_refused_and_all_or_none_is_required(self):
@@ -116,7 +117,7 @@ class SpecTests(unittest.TestCase):
     def test_bare_and_obfuscated_addresses_are_refused_and_technical_text_is_not(self):
         for bad in ("example.com", "see example.com today", "https : //example.com", "\uff45\uff58\uff41\uff4d\uff50\uff4c\uff45.com/x", "api.example.io/v1"):
             self.assertTrue(any("address" in p for p in self.problems_after(lambda d: d["sections"][2]["items"][0].update(text=bad))), bad)
-        for fine in ("Cache-Control: max-age=3600", "GET /api/v1/orders?page=2", "HTTP/2 và TLS 1.3", "Node.js 22", "v1.2.3"):
+        for fine in ("Cache-Control: max-age=3600", "GET /api/v1/orders?page=2", "HTTP/2 và TLS 1.3", "Node.js 22", "v1.2.3", "Tỉ lệ 3:1 và 1/2", "Path: /api/v1", "Giờ 10:30 / 11:00"):
             self.assertEqual(self.problems_after(lambda d: d["sections"][2]["items"][0].update(text=fine)), [], fine)
 
     def test_no_json_value_in_any_place_crashes_the_spec_check_and_an_accepted_spec_always_draws(self):

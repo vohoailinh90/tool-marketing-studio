@@ -36,7 +36,7 @@ brainstorm; nếu mâu thuẫn với tài liệu này thì tài liệu này th�
 | Duyệt | Ghim nguồn, kiểm chứng claim, review kỹ thuật, kiểm tra hình mobile |
 | Hình trên điện thoại | Không cuộn ngang; chữ thông điệp hiệu dụng ≥ 14 px ở 375 px và ≥ 12 px ở 320 px. Đo ước lượng bằng Mermaid + Chromium, hệ số thu = min(1, (W − 32) / chiều rộng SVG); chưa thay cho kiểm tra thật trên GitHub hoặc điện thoại |
 | Người học thử | Ghi riêng; chưa thực hiện thì không báo đạt. Chỉ chặn việc chuyển bài sang `approved` hoặc phát hành, không chặn viết nháp hay viết bài kế tiếp |
-| Giấy phép nguồn | Nguồn là CC BY-NC-ND 4.0. Theo văn bản giấy phép, ND cho phép làm bản cải biên phi thương mại nhưng không cho chia sẻ (chưa đối chiếu lại văn bản trong phiên rà soát); kho này công khai nên đẩy lên đã là chia sẻ. Chủ repo quyết định hoãn việc giải quyết quyền dùng. Cho tới khi giải quyết, repo công khai chỉ nhận: (a) metadata nguồn (tiêu đề, URL, hash); (b) bài viết độc lập, tự viết từ kiến thức và tiêu chuẩn kỹ thuật, sơ đồ tự thiết kế, không dịch hay diễn đạt lại sát câu chữ nguồn, không dùng ảnh nguồn. Bản dịch hoặc cải biên sát nguồn không đưa vào repo công khai trước khi quyền được giải quyết. Việc một bài bám cùng chủ đề và thứ tự với nguồn có phải là cải biên hay không là câu hỏi pháp lý chưa kết luận. Đây là rủi ro còn mở, không phải đã được cho phép; không thêm bước xin duyệt cho việc viết bài độc lập. Mức bám nguồn của từng bài được xếp hạng bằng `scripts/sd101_source_distance.py` (chỉ in con số, không lưu văn bản nguồn trong repo; đây là xếp hạng để chọn bài cần đọc lại, không phải kết luận pháp lý). Bài nào chỉ lặp lại danh sách và thứ tự của nguồn thì làm sâu bằng thử nghiệm và lập luận riêng thay vì diễn đạt lại |
+| Giấy phép nguồn | Nguồn là CC BY-NC-ND 4.0. Theo văn bản giấy phép, ND cho phép làm bản cải biên phi thương mại nhưng không cho chia sẻ (chưa đối chiếu lại văn bản trong phiên rà soát); kho này công khai nên đẩy lên đã là chia sẻ. Chủ repo quyết định hoãn việc giải quyết quyền dùng. Cho tới khi giải quyết, repo công khai chỉ nhận: (a) metadata nguồn (tiêu đề, URL, hash); (b) bài viết độc lập, tự viết từ kiến thức và tiêu chuẩn kỹ thuật, sơ đồ tự thiết kế, không dịch hay diễn đạt lại sát câu chữ nguồn, không dùng ảnh nguồn. Bản dịch hoặc cải biên sát nguồn không đưa vào repo công khai trước khi quyền được giải quyết. Việc một bài bám cùng chủ đề và thứ tự với nguồn có phải là cải biên hay không là câu hỏi pháp lý chưa kết luận. Đây là rủi ro còn mở, không phải đã được cho phép; không thêm bước xin duyệt cho việc viết bài độc lập. Mức bám nguồn của từng bài được xếp hạng bằng `scripts/sd101_source_distance.py` (chỉ in con số, không lưu văn bản nguồn trong repo; đây là xếp hạng để chọn bài cần đọc lại, không phải kết luận pháp lý). Bài nào chỉ lặp lại danh sách và thứ tự của nguồn thì làm sâu bằng thử nghiệm và lập luận riêng thay vì diễn đạt lại. Cập nhật 2026-10-17: kho đã chuyển sang công khai theo quyết định của chủ repo, xem mục “Kho công khai” ở cuối |
 | Ảnh nguồn | Ảnh của bài nguồn nằm ở URL ngoài (`assets.bytebytego.com`), chưa được mở và chưa được ghim, trừ khi `lesson.yaml` ghi khác. Khi review của một bài dựa vào nội dung ảnh (như ảnh Load Balancer), ghi `image_evidence` trước khi dùng làm bằng chứng. Không ghim hàng loạt ảnh từ đầu và không lưu ảnh nguồn vào repo |
 | Công cụ | Metadata JSON + Markdown + SVG thiết kế mới; chưa xây framework renderer. `scripts/sd101_check.py` kiểm kho bằng máy (CI chạy qua pytest); việc đúng/sai của claim và độ dễ đọc của hình vẫn do người review |
 | PR | Đợt nhỏ theo thứ tự; gọi Codex review sau thay đổi. Yêu cầu người dùng hiện tại: không tự merge/deploy, kể cả khi review sạch. Các quyền merge ghi trước đó không áp dụng cho phiên này |
@@ -84,3 +84,51 @@ Sửa chữa theo review sau này được ghi vào PR nội dung, không mở t
 ## Chuyển repo ngày 2026-10-13
 
 Theo yêu cầu người dùng, kho biên soạn chuyển sang vohoailinh90/tool-marketing-studio; chương trình ở repo cũ tạm dừng. Nội dung giáo dục chỉ tiếng Việt, giữ nguyên 404 vị trí/15 nhóm/400 nguồn, dùng thư mục riêng ngoài campaigns của marketing tool. Không áp dụng mẫu ba ngôn ngữ hoặc số liệu quảng cáo cho bài học. Không tự merge/deploy/phê duyệt/đăng bài; review repo cũ chỉ là evidence lịch sử, cần review tổ hợp ở repo mới.
+
+## Kho công khai (ghi nhận ngày 2026-10-17)
+
+Chủ repo chuyển `vohoailinh90/tool-marketing-studio` sang công khai, vì theo lời chủ repo “các bài system đủ độc lập”
+(với nguồn CC BY-NC-ND 4.0). Đây là phán đoán của chủ repo, nói trong phiên làm việc; nó không phải kết luận pháp lý
+và không phải sự cho phép của chủ nguồn. Hàng “Giấy phép nguồn” vẫn đúng ở chỗ nó nói: bài bám cùng chủ đề và thứ tự
+với nguồn có phải là cải biên hay không là câu hỏi pháp lý chưa kết luận.
+
+Điều quyết định này đổi và không đổi:
+
+- Quy tắc của hàng “Giấy phép nguồn” không đổi và giờ áp dụng cho kho đang công khai: repo chỉ nhận metadata nguồn
+  (tiêu đề, URL, hash) và bài tự viết độc lập, sơ đồ tự thiết kế; không dịch hay diễn đạt lại sát câu chữ nguồn, không
+  dùng ảnh nguồn. Bản dịch hoặc cải biên sát nguồn vẫn không vào kho trước khi quyền dùng được giải quyết.
+- “Độc lập” là điều kiện phải giữ ở từng bài, không phải nhãn gán cho cả kho. `scripts/sd101_source_distance.py` vẫn chỉ
+  xếp hạng để chọn bài cần đọc lại; bài chỉ lặp lại danh sách và thứ tự của nguồn thì làm sâu bằng thử nghiệm và lập luận riêng.
+- Không thêm bước xin duyệt cho việc viết bài độc lập.
+- Metadata của team agent chưa đổi theo: khối `team-onboarding` trong `AGENTS.md`, `CLAUDE.md` và `docs/TEAM.md`
+  vẫn ghi mức nhạy cảm `private`. Giá trị đó là bản sao của `repos.conf` trên VPS, nằm ngoài repo này (`docs/TEAM.md`:
+  “Muốn đổi thì sửa ở VPS”), nên mục này không sửa các bản sao. Chủ repo quyết định đổi `repos.conf` sang `public` hay
+  giữ `private`; cho tới lúc đó các bản sao nói `private` dù kho đã công khai.
+
+### Lập luận của chủ repo
+
+Chủ repo giải thích thêm (cũng trong phiên làm việc, ngày 2026-10-17):
+
+- Nội dung bài chỉ đi theo thứ tự của nguồn, có kết hợp thêm nhiều nguồn khác, không sao chép. Giống một người đọc
+  nhiều sách để hiểu vấn đề rồi viết lại theo suy nghĩ của mình.
+- Repo không có mục đích thương mại, nên theo ý kiến của chủ repo thì không bị ảnh hưởng về pháp lý.
+
+Cả hai là ý kiến của chủ repo, không phải kết luận pháp lý.
+
+### Lưu ý khi giữ lập luận này
+
+Đánh giá của trợ lý trong cùng phiên, không phải tư vấn pháp lý:
+
+- Lập luận thứ nhất là cột chính. Bản quyền bảo vệ cách diễn đạt, không bảo vệ ý tưởng hay chủ đề; một bài thật sự không
+  lấy phần diễn đạt nào của nguồn thì không cần giấy phép. Bằng chứng tốt nhất là nguồn gốc của từng bài: mỗi bài ghi
+  các nguồn độc lập đã dùng (RFC, tài liệu chính thức, sách), và người review đã đọc bài đối chiếu trực tiếp với nguồn.
+  `scripts/sd101_source_distance.py` chỉ là sàng lọc để chọn bài cần đọc lại, không phải bằng chứng: nó chỉ so từ vựng
+  ASCII (tên, thuật ngữ, số) giữa nguồn tiếng Anh và bài tiếng Việt, nên không thấy được bản dịch sát hay một câu chép lại.
+- Lập luận thứ hai yếu hơn. NC (phi thương mại) và ND (không cải biên rồi chia sẻ) là hai điều kiện riêng: nếu một bài bị
+  coi là bản cải biên thì ND cấm chia sẻ nó kể cả khi phi thương mại. Phi thương mại chỉ làm giảm rủi ro thực tế, không
+  thay cho tính độc lập. Điều kiện này cũng phải còn đúng: kho này nằm cạnh studio quảng bá các tool chủ repo định thương
+  mại hóa; nếu các bài System Design gắn với khóa học, sách hoặc nguồn thu thì phải xem lại quyết định này.
+- Điểm yếu nhất là thứ tự: mục lục đi đúng 404 vị trí của nguồn (hàng “Mục lục”). Cách chọn và sắp xếp thường chỉ được bảo
+  vệ mỏng, nên đây là rủi ro thấp chứ không bằng không. Quyết định “đúng thứ tự nguồn” vẫn giữ nguyên. Muốn giảm rủi ro thì
+  có thể sắp mục lục theo lộ trình học và giữ ID nguồn trong metadata; muốn đóng hẳn câu hỏi thì xin phép chủ nguồn hoặc
+  nhờ luật sư xem một lần. Cả hai là việc của chủ repo, chưa làm.

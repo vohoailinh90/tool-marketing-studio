@@ -111,8 +111,8 @@ mutations:
   replace: ''
   test: tests.test_figures.FacebookTests.test_only_a_folder_that_is_a_pack_is_replaced
 - label: a file is taken for a pack folder
-  find: '    if not folder.is_dir():\n        return False'
-  replace: '    if False:\n        return False'
+  find: "    if not folder.is_dir():\n        return False"
+  replace: "    if False:\n        return False"
   test: tests.test_figures.FacebookTests.test_only_a_folder_that_is_a_pack_is_replaced
 - label: the export goes on although the footer handle is an address
   find: "    if reason:\n        return [], [reason]"

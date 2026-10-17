@@ -855,6 +855,7 @@ class FacebookTests(unittest.TestCase):
             "the folder of the spec": {"demo-small.json": json.dumps(small)},
             "a pack with an extra file": {"01.png": "x", "alt.txt": "x", "notes.txt": "mine"},
             "a pack with a folder in it": {"01.png": "x", "sub/02.png": "x"},
+            "a folder named like a slide": {"01.png/inner.txt": "mine"},
             "a numbered file with the wrong name": {"1.png": "x", "001.png": "x"},
         }
         for label, contents in keep.items():

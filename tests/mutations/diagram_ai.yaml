@@ -1,0 +1,8 @@
+# Mutation manifest — see scripts/mutation_check.py
+target: mkt/ai.py
+note: 'The AI drafting prompt never offers an optional layout (diagram): only an author adds one.'
+mutations:
+- label: the prompt lists optional layouts
+  find: ' if name not in OPTIONAL_LAYOUTS))'
+  replace: ))
+  test: tests.test_ai.DraftTests.test_the_prompt_offers_the_standard_layouts_but_not_the_optional_ones

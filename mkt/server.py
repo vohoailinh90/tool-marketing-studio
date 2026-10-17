@@ -206,7 +206,7 @@ def create_app(root: Path = ROOT, *, port: int = 8765, dist: Path | None = None,
         if errors:
             return {"rendered": False, "issues": issue_dicts(errors)}
         warnings = render_posts(c, [p], cfg, log=lambda *_: None)
-        return {"rendered": True, "issues": issue_dicts(warnings)}
+        return {"rendered": not has_errors(warnings), "issues": issue_dicts(warnings)}
 
     @app.post("/api/campaigns/{slug}/posts/{lang}/{post_id}/approve")
     def post_approve(slug: str, lang: str, post_id: str, body: dict = Body(...)):

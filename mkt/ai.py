@@ -20,7 +20,7 @@ import yaml
 
 from .check import POST_KEYS, Issue, check_post, has_errors, has_url, strings, unsourced_numbers
 from .i18n import LANG_NAMES
-from .layouts import LAYOUT_DOCS
+from .layouts import LAYOUT_DOCS, OPTIONAL_LAYOUTS
 from .model import Campaign, Post, dump_yaml, load_yaml
 from .platforms import PLATFORMS
 
@@ -145,7 +145,7 @@ def post_prompt(campaign: Campaign, slot: str, lang: str, platforms: list[str], 
     user = context_blocks(campaign, lang, readme) + "\n\n" + POST_FORMAT.format(
         slot=slot, purpose=purpose, link_name=_link_name(campaign, slot),
         platform_shapes="\n".join(PLATFORM_SHAPES[p] for p in platforms),
-        layouts="\n".join(f"- {name}: {doc}" for name, doc in LAYOUT_DOCS.items()))
+        layouts="\n".join(f"- {name}: {doc}" for name, doc in LAYOUT_DOCS.items() if name not in OPTIONAL_LAYOUTS))
     return system_prompt(lang), user
 
 

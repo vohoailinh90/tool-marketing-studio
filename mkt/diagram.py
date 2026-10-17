@@ -71,7 +71,7 @@ def source_problems(source) -> list[str]:
         problems.append("diagram contains a directive, script, URL scheme or @{ } node attribute (it can load an image) that is not allowed")
     if HTML_TAG.search(STATE_MARKER.sub(" ", LINE_BREAK.sub(" ", text))):
         problems.append("diagram labels cannot contain HTML (only <br/> for a line break)")
-    parts = [part for line in statements for part in line.split(";")]       # `;` separates statements
+    parts = [part for line in statements for part in split_statements(line)]
     for part in parts:
         if FORBIDDEN_STATEMENT.match(part):
             problems.append(f"'{part.split()[0]}' is not allowed in a diagram "
@@ -83,6 +83,20 @@ def source_problems(source) -> list[str]:
     if unknown:
         problems.append(f"unknown tone {', '.join(unknown)}: use {', '.join(TONES)}")
     return problems
+
+
+def split_statements(line: str) -> list[str]:
+    """`;` ends a statement, except inside a double-quoted label (`A["pick a style; click Next"]`)."""
+    parts, current, quoted = [], [], False
+    for char in line:
+        quoted ^= char == '"'
+        if char == ";" and not quoted:
+            parts.append("".join(current))
+            current = []
+        else:
+            current.append(char)
+    parts.append("".join(current))
+    return parts
 
 
 def bundle() -> str:

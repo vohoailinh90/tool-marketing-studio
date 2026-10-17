@@ -57,6 +57,14 @@ class SourceTests(unittest.TestCase):
         for name, source in refused.items():
             self.assertTrue(self.problems(source), name)
 
+    def test_a_semicolon_inside_a_quoted_label_does_not_start_a_statement(self):
+        for source in ('flowchart TD\n  A["Choose a style; click Continue"] --> B',
+                       'sequenceDiagram\n  A->>B: "Pick a look; style it"'):
+            self.assertEqual(self.problems(source), [], source)
+        for source in ('flowchart TD\n  A --> B; click A href "x"', 'flowchart TD\n  A["x"]; click A "y"',
+                       'flowchart TD\n  A["a; b"]; style A fill:#f00'):
+            self.assertTrue(self.problems(source), source)
+
     def test_a_fullwidth_spelling_is_refused_too(self):
         self.assertTrue(self.problems("flowchart TD\n  A --> B\n  ｃｌｉｃｋ A href \"x\""))
 

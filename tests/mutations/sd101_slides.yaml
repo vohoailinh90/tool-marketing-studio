@@ -83,8 +83,8 @@ mutations:
   replace: "    if state == \"stale\" and holding.owner != context.me and not take_stale:"
   test: tests.test_sd101_slides.LeaseTests.test_my_own_stale_claim_can_be_claimed_again_when_an_older_stale_claim_exists
 - label: an unreadable record on a feature branch is dropped because it names no owner
-  find: " or holding.status == \"invalid\" or not holding.owner:"
-  replace: ":"
+  find: "elif holding.owner == name or holding.status == \"invalid\" or not holding.owner:"
+  replace: "elif holding.owner == name:"
   test: tests.test_sd101_slides.ClaimTests.test_an_unreadable_record_on_a_feature_branch_blocks_its_lesson
 - label: a deck may have any number of slides from 4 to 12
   find: "SLIDE_COUNTS = range(8, 11)"
@@ -95,12 +95,12 @@ mutations:
   replace: "        if False:"
   test: tests.test_sd101_slides.FinishTests.test_finish_reports_an_earlier_claim_that_was_pushed_while_it_published
 - label: a record with a valid status but no owner is dropped from a feature branch
-  find: " or not holding.owner:"
-  replace: ":"
+  find: "or not holding.owner:  # a malformed record blocks"
+  replace: ":  # a malformed record blocks"
   test: tests.test_sd101_slides.ClaimTests.test_a_parseable_record_without_an_owner_or_with_an_unknown_status_blocks_its_lesson
 - label: a record with an unknown status but another owner is dropped from a feature branch
-  find: " or holding.status == \"invalid\" or not holding.owner:"
-  replace: " or not holding.owner:"
+  find: "or holding.status == \"invalid\" or not holding.owner:  # a malformed record blocks"
+  replace: "or not holding.owner:  # a malformed record blocks"
   test: tests.test_sd101_slides.ClaimTests.test_a_parseable_record_without_an_owner_or_with_an_unknown_status_blocks_its_lesson
 - label: offline mode may publish the default branch
   find: "    if context.me in bases:"
@@ -115,8 +115,8 @@ mutations:
   replace: "holding.status == \"doing\" and holding.owner != context.me"
   test: tests.test_sd101_slides.FinishTests.test_finish_reports_an_earlier_claimant_that_finished_while_it_published
 - label: offline drops the records of other owners that the checkout holds
-  find: "            if holding.owner == context.me or context.offline:  # offline, the checkout is all there is to read"
-  replace: "            if holding.owner == context.me:  # offline, the checkout is all there is to read"
+  find: "            if holding.owner == context.me or context.offline or holding.status == \"invalid\" or not holding.owner:"
+  replace: "            if holding.owner == context.me or holding.status == \"invalid\" or not holding.owner:"
   test: tests.test_sd101_slides.FinishTests.test_offline_honours_the_records_a_checkout_already_holds
 - label: a key named twice in a record is silently resolved to the last one
   find: "        data = yaml.load(text, Loader=StrictLoader)  # noqa: S506 - StrictLoader is a SafeLoader"

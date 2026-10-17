@@ -19,7 +19,7 @@ mutations:
   replace: '|&#|@\s*\{"'
   test: tests.test_diagram.SourceTests.test_links_clicks_directives_and_css_are_refused
 - label: HTML in a label is allowed
-  find: '    if HTML_TAG.search(LINE_BREAK.sub(" ", text)):'
+  find: '    if HTML_TAG.search(STATE_MARKER.sub(" ", LINE_BREAK.sub(" ", text))):'
   replace: '    if False:'
   test: tests.test_diagram.SourceTests.test_html_is_refused_but_arrows_and_line_breaks_are_not
 - label: any tone name is allowed

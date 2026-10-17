@@ -1,0 +1,32 @@
+# Mutation manifest — see scripts/mutation_check.py
+#
+# A passing test proves nothing on its own. These break each rule of the figure toolkit in turn
+# and require the named test to fail. A mutation that SURVIVES means the test guards nothing.
+
+target: scripts/figures/icons/__init__.py
+note: The icons are a third party's files drawn into a public figure; the hash, the folder listing and the shape allowlist are what stop a swapped or planted file from carrying anything but a drawing.
+mutations:
+- label: a changed icon file is accepted
+  find: '.hexdigest() != index()["icons"][name]["sha256"]:'
+  replace: '.hexdigest() == "":'
+  test: tests.test_figures.IconTests.test_a_changed_file_is_reported
+- label: a file that is not listed is accepted
+  find: for n in sorted(present - listed)]
+  replace: for n in []]
+  test: tests.test_figures.IconTests.test_an_extra_file_and_a_missing_file_are_reported
+- label: a listed file that is missing is accepted
+  find: for n in sorted(listed - present)]
+  replace: for n in []]
+  test: tests.test_figures.IconTests.test_an_extra_file_and_a_missing_file_are_reported
+- label: an element outside the allowlist is drawn
+  find: 'if tag not in SHAPES or len(el):'
+  replace: 'if False:'
+  test: tests.test_figures.IconTests.test_a_script_a_link_or_a_strange_attribute_in_an_icon_is_refused
+- label: an attribute outside the allowlist is drawn
+  find: 'if key not in SHAPES[tag] or not _NUMBERS.fullmatch(value) or (key == "fill" and value != "currentColor"):'
+  replace: 'if False:'
+  test: tests.test_figures.IconTests.test_a_script_a_link_or_a_strange_attribute_in_an_icon_is_refused
+- label: 'a colour that is not #RRGGBB is written into the figure'
+  find: and _COLOUR.fullmatch(tile) and _COLOUR.fullmatch(ink))
+  replace: and True)
+  test: tests.test_figures.IconTests.test_group_is_plain_shapes_and_refuses_odd_arguments

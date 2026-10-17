@@ -1,0 +1,12 @@
+# Mutation manifest — see scripts/mutation_check.py
+#
+# A passing test proves nothing on its own. These break each rule of the figure toolkit in turn
+# and require the named test to fail. A mutation that SURVIVES means the test guards nothing.
+
+target: scripts/figures/excalidraw.py
+note: The Excalidraw board shows a reply as a dashed arrow like the figure does.
+mutations:
+- label: a dashed arrow is drawn solid
+  find: endArrowhead="arrow" if arrow else None, elbowed=False, strokeStyle="dashed" if dashed else "solid")
+  replace: endArrowhead="arrow" if arrow else None, elbowed=False, strokeStyle="solid")
+  test: tests.test_figures.EditorTests.test_excalidraw_is_valid_numbered_and_repeatable

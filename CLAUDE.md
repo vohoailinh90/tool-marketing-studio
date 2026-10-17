@@ -281,6 +281,11 @@ What the loop does not change:
   `campaigns/*/feedback/`; raw survey exports in gitignored `research/raw/`. Commit
   aggregates and insight reports only.
 - **Secrets only in `.env`.** Never in YAML, code, logs or commits.
+- **Images for Facebook are standard images.** A lesson figure goes to Facebook only as the slides `python3 -m scripts.figures facebook
+  SPEC` draws from its spec (`docs/figures.md`, *Images for Facebook*): PNG at the studio's sizes (portrait 1080x1350 by default, square
+  1080x1080, `mkt/page.py`), one section per slide, no body text under 30 px, the handle and `n/N` in the footer, no address on the image, the
+  alt text from `alt.txt`. Never hand-edit a slide and never upload a picture exported from Moda, Canva, Figma, draw.io or Excalidraw as a
+  standard image. The slides are written to `build/figures/facebook/` (gitignored) and uploaded by the owner; a session never uploads.
 
 ## System Design lessons: claim before you write
 
@@ -349,6 +354,11 @@ script can. One rule applies to every lesson a session writes or edits:
   lesson that skips the rule; whether an explanation is correct and clear to a beginner is the
   reviewer's call.
 
+A figure drawn with the toolkit (`scripts/figures/`, `docs/figures.md`, `.claude/skills/visual-lessons/SKILL.md`) comes from a JSON spec in
+`system-design-101/figures/vi/<id>.json`, never from SVG a session wrote: change the spec and run `python3 -m scripts.figures build`;
+`check` fails on a stored figure that differs from its spec or whose text is too small for a phone. A figure is part of the lesson body,
+so claim the lesson first. Its icons are the closed Lucide set in `scripts/figures/icons/` (hashed byte for byte, `docs/third-party/lucide/`).
+
 ## UI implementation source
 
 `web/` is built from `vohoailinh90/Automation-UI-Kit` (React 19 + Tailwind CSS v4 + Radix).
@@ -373,6 +383,7 @@ python3 studio.py check                   # every campaign: 0 errors
 python3 scripts/layout_check.py           # repository layout
 python3 scripts/i18n_check.py             # app catalogs in vi/ja/en
 python3 scripts/sd101_check.py            # the System Design store (system-design-101/vi): schema, sources, figures, progress
+python3 -m scripts.figures check          # figure specs draw the stored figures exactly; the icon set is intact (docs/figures.md)
 python3 scripts/mutation_check.py --all   # the safety-rail tests catch their own removal
 (cd web && npm run build)                 # typecheck + build the UI (a subshell: the block runs top to bottom from the root)
 python3 scripts/office/snapshot.py --check            # the agent office's data contract
@@ -384,7 +395,7 @@ python3 scripts/office/snapshot.py --check            # the agent office's data 
 The root holds only what a user needs: README, the agent instruction files, dependency
 files, `studio.py` (CLI), `app.py` (the app), `start-app.bat`, `studio.yaml`. The engine is
 `mkt/`, the UI `web/`, the agent office `office/` (with its server in `scripts/office/`),
-tests `tests/`, developer tooling `scripts/`. When a requirement adds
+the System Design figure toolkit `scripts/figures/`, tests `tests/`, developer tooling `scripts/`. When a requirement adds
 a Python file, use `.claude/skills/repo-layout/SKILL.md`; `python3 scripts/layout_check.py`
 is the verdict and CI runs it.
 

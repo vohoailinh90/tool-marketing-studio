@@ -1,0 +1,24 @@
+{
+  "id": "demo-polling",
+  "title": "Bốn cách cập nhật đơn hàng",
+  "subtitle": "Đọc từng khung từ trên xuống.",
+  "desc": "Trình duyệt hỏi máy chủ theo bốn cách: polling ngắn, polling dài, SSE và WebSocket. Mỗi khung cho thấy ai nói trước và tin đi theo hướng nào.",
+  "sections": [
+    {"kind": "sequence", "heading": "1 · Polling ngắn",
+     "actors": [{"name": "Trình duyệt", "icon": "monitor"}, {"name": "Máy chủ", "icon": "server"}],
+     "messages": [{"from": 0, "to": 1, "text": "Có tin mới?"}, {"from": 1, "to": 0, "text": "Chưa có", "reply": true},
+                  {"from": 0, "to": 1, "text": "Có tin mới?"}, {"from": 1, "to": 0, "text": "Có: đơn đã giao", "reply": true}]},
+    {"kind": "parts", "heading": "Các mảnh ghép",
+     "items": [{"name": "Trình duyệt", "role": "Mở một kết nối và nhận tin đẩy xuống.", "icon": "monitor"},
+               {"name": "Cân bằng tải", "role": "Chia kết nối cho các máy chủ.", "icon": "scale"},
+               {"name": "Máy chủ", "role": "Giữ kết nối mở và gửi sự kiện.", "icon": "server"},
+               {"name": "Kho dữ liệu", "role": "Lưu trạng thái đơn hàng.", "icon": "database"}],
+     "flow": [[0, 1], [1, 2], [2, 3], [3, 0]]},
+    {"kind": "steps", "heading": "Cách đọc",
+     "items": [{"title": "Chọn nhu cầu", "text": "Xem tin có cần đến ngay hay chấp nhận chậm vài giây."},
+               {"title": "Chọn kết nối", "text": "Một chiều thì SSE, hai chiều thì WebSocket."},
+               {"title": "Thử tải thật", "text": "Đếm số kết nối mở cùng lúc trước khi chọn."}]},
+    {"kind": "notes", "heading": "Nhớ gì",
+     "items": ["Polling đơn giản nhưng tốn lượt hỏi trống.", "SSE chỉ đi một chiều từ máy chủ xuống trình duyệt.", "WebSocket cho hai phía gửi tin bất kỳ lúc nào."]}
+  ]
+}

@@ -1,0 +1,12 @@
+# Mutation manifest — see scripts/mutation_check.py
+#
+# A passing test proves nothing on its own. These break each rule of the Facebook standard in turn
+# and require the named test to fail. A mutation that SURVIVES means the test guards nothing.
+
+target: scripts/figures/cli.py
+note: A figure that cannot be exported to the Facebook standard must fail the check now, not when someone wants to post it.
+mutations:
+- label: the check does not plan the Facebook slides
+  find: found.extend(facebook.plan(spec)[1])
+  replace: pass
+  test: tests.test_figures.FacebookTests.test_a_figure_with_a_section_too_tall_for_the_standard_fails_the_check

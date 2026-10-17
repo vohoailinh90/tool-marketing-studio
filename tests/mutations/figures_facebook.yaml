@@ -1,0 +1,120 @@
+# Mutation manifest — see scripts/mutation_check.py
+#
+# A passing test proves nothing on its own. These break each rule of the figure toolkit in turn
+# and require the named test to fail. A mutation that SURVIVES means the test guards nothing.
+
+target: scripts/figures/facebook.py
+note: 'The Facebook standard is what the owner uploads to a public Page: size, text size, footer and the one-section-per-slide rule are checked by script, not by eye.'
+mutations:
+- label: a section with text too small for the standard is exported
+  find: '        if smallest < MIN_TEXT_PX:'
+  replace: '        if False:'
+  test: tests.test_figures.FacebookTests.test_a_section_that_cannot_be_scaled_to_readable_text_is_refused_with_its_slide_number
+- label: more slides than a post takes are exported
+  find: '    if len(sections) > MAX_SLIDES:'
+  replace: '    if False:'
+  test: tests.test_figures.FacebookTests.test_more_slides_than_a_post_takes_and_an_unknown_format_are_refused
+- label: a format outside the studio's three is accepted
+  find: '    if fmt not in FORMATS:'
+  replace: '    if False:'
+  test: tests.test_figures.FacebookTests.test_more_slides_than_a_post_takes_and_an_unknown_format_are_refused
+- label: the subtitle is repeated on every slide
+  find: "        if n > 1:\n            part.pop("
+  replace: "        if False:\n            part.pop("
+  test: tests.test_figures.FacebookTests.test_the_subtitle_is_on_the_first_slide_only_and_the_title_on_every_slide
+- label: the handle is written into the footer without escaping
+  find: left = f'<span>{esc(author)}</span>' if author
+  replace: left = f'<span>{author}</span>' if author
+  test: tests.test_figures.FacebookTests.test_the_footer_is_the_studios_handle_bottom_left_and_the_number_bottom_right
+- label: a slide of the wrong size passes
+  find: '    if size != FORMATS[fmt]:'
+  replace: '    if False:'
+  test: tests.test_figures.FacebookTests.test_a_written_slide_is_checked_for_type_size_and_weight
+- label: a slide that is too heavy passes
+  find: '    if len(data) > MAX_BYTES:'
+  replace: '    if False:'
+  test: tests.test_figures.FacebookTests.test_a_written_slide_is_checked_for_type_size_and_weight
+- label: slides are written although the plan has problems
+  find: "    slides, problems = plan(spec, fmt)\n    if problems:\n        return [], problems\n    author = handle(root)"
+  replace: "    slides, problems = plan(spec, fmt)\n    if False:\n        return [], problems\n    author = handle(root)"
+  test: tests.test_figures.FacebookTests.test_nothing_is_written_when_the_plan_has_problems
+- label: the handle of studio.yaml is not read
+  find: return str(author.get("handle") or "").strip() if isinstance(author, dict) else ""
+  replace: return ""
+  test: tests.test_figures.FacebookTests.test_the_handle_comes_from_studio_yaml_and_is_empty_when_it_cannot_be_read
+- label: an alt text that cannot be encoded fails after slides were drawn
+  find: '    alt.encode("utf-8")                                    # fails here, before anything is drawn'
+  replace: '    pass'
+  test: tests.test_figures.RobustnessTests.test_an_alt_text_that_cannot_be_encoded_fails_before_a_stale_slide_is_deleted
+- label: the temporary folder is left behind
+  find: "    finally:\n        shutil.rmtree(work, ignore_errors=True)"
+  replace: "    finally:\n        pass"
+  test: tests.test_figures.FacebookTests.test_a_failed_export_leaves_the_previous_pack_and_no_temporary_folder
+- label: a pack that failed its checks replaces the previous one
+  find: "        if problems:\n            return [], problems\n        names = sorted("
+  replace: "        if False:\n            return [], problems\n        names = sorted("
+  test: tests.test_figures.FacebookTests.test_a_failed_export_leaves_the_previous_pack_and_no_temporary_folder
+- label: two exports of one figure share one staging folder
+  find: '    work = Path(tempfile.mkdtemp(prefix=f".{spec[''id'']}.", suffix=".new", dir=out))'
+  replace: "    work = out / f\".{spec['id']}.new\"\n    shutil.rmtree(work, ignore_errors=True)\n    work.mkdir()\n    work = work"
+  test: tests.test_figures.FacebookTests.test_two_exports_of_one_figure_at_the_same_time_do_not_share_a_staging_folder
+- label: a finished pack is merged into the previous one instead of replacing it
+  find: '        swap(work, folder)
+
+    '
+  replace: '        shutil.copytree(work, folder, dirs_exist_ok=True)
+
+    '
+  test: tests.test_figures.FacebookTests.test_a_competing_export_never_leaves_a_mix_of_two_packs
+- label: the pack swap never tries
+  find: "    for _ in range(5):\n        try:\n            os.replace(work, folder)"
+  replace: "    for _ in range(0):\n        try:\n            os.replace(work, folder)"
+  test: tests.test_figures.FacebookTests.test_swap_puts_a_folder_in_place_in_one_rename_and_gives_up_cleanly
+- label: a pack that is already there is not moved aside
+  find: '            os.replace(folder, old / "pack")               # the pack that is there now'
+  replace: '            pass                                           # the pack that is there now'
+  test: tests.test_figures.FacebookTests.test_swap_puts_a_folder_in_place_in_one_rename_and_gives_up_cleanly
+- label: the old pack is not put back when the new one cannot be installed
+  find: '                    os.replace(old / "pack", folder)       # installing failed: the old pack goes back'
+  replace: '                    pass                                   # installing failed: the old pack goes back'
+  test: tests.test_figures.FacebookTests.test_the_old_pack_is_kept_until_the_new_one_is_in_place
+- label: the old pack is deleted although it cannot be put back
+  find: "                    if not folder.exists():\n                        raise OSError("
+  replace: "                    if False:\n                        raise OSError("
+  test: tests.test_figures.FacebookTests.test_the_old_pack_is_kept_until_the_new_one_is_in_place
+- label: the alt text keeps the line breaks of the spec
+  find: '    lines = [one_line(spec["desc"])]'
+  replace: '    lines = [spec["desc"].strip()]'
+  test: tests.test_figures.FacebookTests.test_the_alt_text_has_one_line_per_slide_whatever_the_specs_text_holds
+- label: a footer handle that is an address is drawn on every slide
+  find: '    if has_address(author):'
+  replace: '    if False:'
+  test: tests.test_figures.FacebookTests.test_a_footer_handle_that_is_an_address_is_refused_before_anything_is_drawn
+- label: any footer handle at all is refused
+  find: '    if has_address(author):'
+  replace: '    if author:'
+  test: tests.test_figures.FacebookTests.test_a_footer_handle_that_is_an_address_is_refused_before_anything_is_drawn
+- label: a folder of the owner's is replaced because it carries the figure's id
+  find: '    if folder.exists() and not is_pack(folder):'
+  replace: '    if False:'
+  test: tests.test_figures.FacebookTests.test_only_a_folder_that_is_a_pack_is_replaced
+- label: any folder counts as a pack
+  find: '    return all(entry.name in OS_FILES or (PACK_FILE.fullmatch(entry.name) and entry.is_file()) for entry in folder.iterdir())'
+  replace: '    return True'
+  test: tests.test_figures.FacebookTests.test_only_a_folder_that_is_a_pack_is_replaced
+- label: a folder inside the pack folder is overlooked
+  find: '(PACK_FILE.fullmatch(entry.name) and entry.is_file())'
+  replace: '(PACK_FILE.fullmatch(entry.name))'
+  test: tests.test_figures.FacebookTests.test_only_a_folder_that_is_a_pack_is_replaced
+- label: a pack a file manager has visited is no longer replaced
+  find: 'entry.name in OS_FILES or '
+  replace: ''
+  test: tests.test_figures.FacebookTests.test_only_a_folder_that_is_a_pack_is_replaced
+- label: a file is taken for a pack folder
+  find: "    if not folder.is_dir():\n        return False"
+  replace: "    if False:\n        return False"
+  test: tests.test_figures.FacebookTests.test_only_a_folder_that_is_a_pack_is_replaced
+- label: the export goes on although the footer handle is an address
+  find: "    if reason:\n        return [], [reason]"
+  replace: "    if False:\n        return [], [reason]"
+  test: tests.test_figures.FacebookTests.test_a_footer_handle_that_is_an_address_is_refused_before_anything_is_drawn

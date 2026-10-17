@@ -1,6 +1,6 @@
 # Studio-wide settings.
 author:
-  handle: ""            # e.g. "fb.com/your-page" — printed bottom-left on every image; empty = not shown
+  handle: ""            # e.g. "@your-page" (a page name: the figure slides refuse an address) — printed bottom-left on every image; empty = not shown
 
 ai:
   model: claude-opus-5-5   # any Claude model id

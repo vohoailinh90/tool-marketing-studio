@@ -1,0 +1,96 @@
+# Mutation manifest — see scripts/mutation_check.py
+#
+# A passing test proves nothing on its own. These break each rule of the figure toolkit in turn
+# and require the named test to fail. A mutation that SURVIVES means the test guards nothing.
+
+target: scripts/figures/spec.py
+note: The spec is the only input a session gives the renderer, so its checks are what keep an address, an icon nobody vetted or a control character out of a published figure.
+mutations:
+- label: a scheme such as ftp:// in a figure's text is accepted
+  find: LINK = re.compile(r":\s*/\s*/")
+  replace: LINK = re.compile(r"(?!x)x")
+  test: tests.test_figures.SpecTests.test_an_address_is_refused_in_any_text
+- label: an icon outside the closed set is accepted
+  find: 'if icon is not None and icon not in icons.NAMES:'
+  replace: 'if False:'
+  test: tests.test_figures.SpecTests.test_an_icon_outside_the_set_is_refused_and_all_or_none_is_required
+- label: cards may name an icon on some and not on others
+  find: 'if any(named) and not all(named):'
+  replace: 'if False:'
+  test: tests.test_figures.SpecTests.test_an_icon_outside_the_set_is_refused_and_all_or_none_is_required
+- label: a key named twice in a spec file is accepted
+  find: '        if key in out:'
+  replace: '        if False:'
+  test: tests.test_figures.SpecTests.test_a_json_file_that_names_a_key_twice_or_is_not_json_is_an_error_not_a_crash
+- label: a key outside the vocabulary is accepted
+  find: '    if extra:'
+  replace: '    if False:'
+  test: tests.test_figures.SpecTests.test_a_key_outside_the_vocabulary_is_refused_at_every_level
+- label: a link from a card to itself is accepted
+  find: 'or pair[0] == pair[1]:'
+  replace: 'or False:'
+  test: tests.test_figures.SpecTests.test_a_flow_must_name_two_different_cards_once
+- label: true counts as card number 1
+  find: isinstance(value, int) and not isinstance(value, bool) and
+  replace: isinstance(value, int) and
+  test: tests.test_figures.SpecTests.test_a_flow_must_name_two_different_cards_once
+- label: a flow that needs too many lanes beside the cards is accepted
+  find: 'if len(found) == before and rails_needed(flow) > MAX_RAILS:'
+  replace: 'if False:'
+  test: tests.test_figures.SpecTests.test_too_many_cross_links_for_a_narrow_column_are_refused
+- label: a message from an actor to itself is accepted
+  find: 'or message.get("from") == message.get("to"):'
+  replace: 'or False:'
+  test: tests.test_figures.SpecTests.test_a_message_goes_between_two_different_actors
+- label: a language outside vi, en and ja is accepted
+  find: 'if spec.get("lang", "vi") not in LANGS:'
+  replace: 'if False:'
+  test: tests.test_figures.SpecTests.test_a_language_outside_the_three_is_refused
+- label: a section kind that is a list crashes the check
+  find: 'not isinstance(sec.get("kind"), str) or sec["kind"] not in KINDS:'
+  replace: 'sec.get("kind") not in KINDS:'
+  test: tests.test_figures.SpecTests.test_a_section_kind_that_is_not_text_is_a_problem_not_a_crash
+- label: a bare domain or a spaced scheme is accepted as text
+  find: '    return bool(LINK.search(text)) or has_url(text.replace("\u3002", "."))'
+  replace: '    return bool(LINK.search(text))'
+  test: tests.test_figures.SpecTests.test_bare_and_obfuscated_addresses_are_refused_and_technical_text_is_not
+- label: a control or invisible character in a text is accepted
+  find: '    if hidden(value):'
+  replace: '    if False:'
+  test: tests.test_figures.SvgTests.test_hostile_text_stays_text_everywhere
+- label: format characters (zero-width, direction marks, joiners) are accepted
+  find: HIDDEN = {"Cc", "Cf", "Cs", "Zl", "Zp"}
+  replace: HIDDEN = {"Cc", "Cs", "Zl", "Zp"}
+  test: tests.test_figures.SpecTests.test_characters_nobody_sees_but_that_change_the_drawing_are_refused
+- label: controls are accepted
+  find: HIDDEN = {"Cc", "Cf", "Cs", "Zl", "Zp"}
+  replace: HIDDEN = {"Cf", "Cs", "Zl", "Zp"}
+  test: tests.test_figures.SpecTests.test_characters_nobody_sees_but_that_change_the_drawing_are_refused
+- label: the two XML non-characters are accepted
+  find: ' or c in "\ufffe\uffff" for c in value)'
+  replace: ' for c in value)'
+  test: tests.test_figures.SpecTests.test_characters_nobody_sees_but_that_change_the_drawing_are_refused
+- label: a character the figure cannot measure is accepted
+  find: "        if unknown:\n            shown"
+  replace: "        if False:\n            shown"
+  test: tests.test_figures.SpecTests.test_a_character_the_figure_cannot_measure_is_refused_and_the_measured_ones_are_not
+- label: a combining mark with no letter before it is accepted
+  find: '    elif orphan_mark(value):'
+  replace: '    elif False:'
+  test: tests.test_figures.SpecTests.test_a_combining_mark_with_no_letter_before_it_is_refused
+- label: a combining mark after a space counts as having a letter
+  find: '            base = not c.isspace()'
+  replace: '            base = True'
+  test: tests.test_figures.SpecTests.test_a_combining_mark_with_no_letter_before_it_is_refused
+- label: a length is counted on the text as written, not as drawn
+  find: '    shown = one_line(value)                                  # what is drawn: whitespace collapsed, composed form'
+  replace: '    shown = value.strip()                                    # what is drawn: whitespace collapsed, composed form'
+  test: tests.test_figures.SpecTests.test_lengths_are_counted_on_the_text_as_it_is_drawn
+- label: a fullwidth or spaced scheme is read without normalising
+  find: '    text = unicodedata.normalize("NFKC", value)'
+  replace: '    text = value'
+  test: tests.test_figures.SpecTests.test_an_address_is_refused_in_any_text
+- label: an ideographic full stop between two names is not read as a dot
+  find: 'has_url(text.replace("\u3002", "."))'
+  replace: 'has_url(text)'
+  test: tests.test_figures.SpecTests.test_an_ideographic_full_stop_between_ascii_names_is_a_dot_and_in_a_sentence_it_is_not

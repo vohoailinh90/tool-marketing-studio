@@ -1,0 +1,24 @@
+# Mutation manifest — see scripts/mutation_check.py
+#
+# A passing test proves nothing on its own. These break each rule of the figure toolkit in turn
+# and require the named test to fail. A mutation that SURVIVES means the test guards nothing.
+
+target: scripts/figures/svg.py
+note: 'The SVG is what a reader''s browser draws in a public lesson: text must stay text, and a reply must look different from a request.'
+mutations:
+- label: a line of text is written without escaping
+  find: f'text-anchor="{anchor}">{esc(line)}</text>')
+  replace: f'text-anchor="{anchor}">{line}</text>')
+  test: tests.test_figures.SvgTests.test_hostile_text_stays_text_everywhere
+- label: the figure's title is written without escaping
+  find: <title id="title">{esc(scene["title"])}</title>
+  replace: <title id="title">{scene["title"]}</title>
+  test: tests.test_figures.SvgTests.test_hostile_text_stays_text_everywhere
+- label: a reply is drawn like a request
+  find: dash = ' stroke-dasharray="5 4"' if item["dashed"] else ""
+  replace: dash = ""
+  test: tests.test_figures.SvgTests.test_a_reply_is_a_dashed_arrow_and_a_request_is_not
+- label: an icon is drawn in a colour of the spec's choosing
+  find: tile=ACCENT[item["role"]]))
+  replace: tile="#000000"))
+  test: tests.test_figures.SvgTests.test_every_icon_is_drawn_from_its_own_shapes

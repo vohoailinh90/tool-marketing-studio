@@ -1,0 +1,164 @@
+# Mutation manifest — see scripts/mutation_check.py
+#
+# A passing test proves nothing on its own. These break each rule of the figure toolkit in turn
+# and require the named test to fail. A mutation that SURVIVES means the test guards nothing.
+
+target: scripts/figures/cli.py
+note: 'The build and the check are the only things between a spec and a stored figure: a stale figure, a figure for a lesson that does not exist, or one a phone cannot read must not get through.'
+mutations:
+- label: a stored figure that is not what the spec draws passes the check
+  find: 'elif stored.read_bytes() != markup.encode("utf-8"):'
+  replace: 'elif False:'
+  test: tests.test_figures.CliTests.test_a_figure_that_is_not_what_the_spec_draws_fails_the_check
+- label: a stale editor file beside the spec passes the check
+  find: '                if beside.read_bytes() != (make(spec, scale) if scale else make(spec)).encode("utf-8"):'
+  replace: '                if False:'
+  test: tests.test_figures.CliTests.test_an_editor_file_beside_the_spec_must_not_go_stale
+- label: a figure is built for a lesson that does not exist
+  find: ' or not (LESSONS / spec["id"]).is_dir():'
+  replace: ':'
+  test: tests.test_figures.CliTests.test_build_refuses_a_spec_without_a_lesson_and_an_invalid_spec
+- label: a figure that fails its rules is written anyway
+  find: "        if not problems:\n            changed"
+  replace: "        if True:\n            changed"
+  test: tests.test_figures.CliTests.test_a_figure_with_text_too_small_for_a_phone_is_never_written
+- label: a missing stored figure is not reported
+  find: 'if not stored.is_file():'
+  replace: 'if False:'
+  test: tests.test_figures.CliTests.test_build_writes_the_figure_and_check_then_passes
+- label: the file is rewritten even when nothing changed
+  find: 'if path.is_file() and path.read_bytes() == data:'
+  replace: 'if False:'
+  test: tests.test_figures.CliTests.test_build_writes_the_figure_and_check_then_passes
+- label: a scale of nan, 0.1 or 1e9 is accepted
+  find: '    if not math.isfinite(value) or not MIN_SCALE <= value <= MAX_SCALE:'
+  replace: '    if False:'
+  test: tests.test_figures.RobustnessTests.test_a_scale_that_would_draw_garbage_is_refused
+- label: an unwritable output path raises a traceback
+  find: '    except OSError as exc:                                     # an unwritable'
+  replace: '    except ZeroDivisionError as exc:                           # an unwritable'
+  test: tests.test_figures.RobustnessTests.test_a_file_that_cannot_be_written_is_a_sentence_not_a_traceback
+- label: a bug while drawing the preview is reported as a missing browser
+  find: "    except browser.Unavailable as exc:                         # Playwright or Chromium missing, or failed while drawing\n        return browser_unavailable(\"draw the preview\""
+  replace: "    except Exception as exc:                                   # Playwright or Chromium missing, or failed while drawing\n        return browser_unavailable(\"draw the preview\""
+  test: tests.test_figures.RobustnessTests.test_only_a_missing_browser_gets_the_install_hint_and_a_real_bug_surfaces
+- label: a missing browser while exporting slides is not reported
+  find: "    except browser.Unavailable as exc:                         # Playwright or Chromium missing, or failed while drawing\n        return browser_unavailable(\"draw the slides\""
+  replace: "    except ZeroDivisionError as exc:                           # Playwright or Chromium missing, or failed while drawing\n        return browser_unavailable(\"draw the slides\""
+  test: tests.test_figures.RobustnessTests.test_only_a_missing_browser_gets_the_install_hint_and_a_real_bug_surfaces
+- label: a missing browser in the text check is not reported
+  find: "            except browser.Unavailable as exc:\n                return browser_unavailable(\"measure the text\""
+  replace: "            except ZeroDivisionError as exc:\n                return browser_unavailable(\"measure the text\""
+  test: tests.test_figures.RobustnessTests.test_the_text_check_without_a_browser_says_so
+- label: a browser that failed while drawing is told to reinstall Chromium
+  find: '    hint = "" if isinstance(exc, browser.Failed) else "; run: python -m playwright install chromium"'
+  replace: '    hint = "; run: python -m playwright install chromium"'
+  test: tests.test_figures.RobustnessTests.test_a_browser_that_fails_while_drawing_exits_2_and_is_not_told_to_reinstall
+- label: a missing browser is not told to install Chromium
+  find: '    hint = "" if isinstance(exc, browser.Failed) else "; run: python -m playwright install chromium"'
+  replace: '    hint = ""'
+  test: tests.test_figures.RobustnessTests.test_only_a_missing_browser_gets_the_install_hint_and_a_real_bug_surfaces
+- label: a scale with more digits than an editor file keeps is accepted
+  find: '    if abs(value * STEPS_PER_UNIT - steps) > 1e-9:'
+  replace: '    if False:'
+  test: tests.test_figures.RobustnessTests.test_a_scale_that_would_draw_garbage_is_refused
+- label: a tampered icon set does not stop a build
+  find: "def build(paths: list[Path], out) -> int:\n    if broken_icons():"
+  replace: "def build(paths: list[Path], out) -> int:\n    if False:"
+  test: tests.test_figures.RobustnessTests.test_a_tampered_icon_set_never_overwrites_a_stored_figure
+- label: a tampered icon set does not stop a Facebook export
+  find: "    if broken_icons():\n        return 1\n    target = out or ROOT"
+  replace: "    if False:\n        return 1\n    target = out or ROOT"
+  test: tests.test_figures.RobustnessTests.test_no_command_draws_from_a_broken_icon_set
+- label: the check goes on to draw from a broken icon set
+  find: '    if broken_icons():                                       # a figure cannot be drawn from a broken icon set'
+  replace: '    if False:                                                # a figure cannot be drawn from a broken icon set'
+  test: tests.test_figures.RobustnessTests.test_no_command_draws_from_a_broken_icon_set
+- label: editor files are looked for in the store folder instead of beside the given spec
+  find: beside = path.parent / f"{spec['id']}{suffix}"
+  replace: beside = SPEC_DIR / f"{spec['id']}{suffix}"
+  test: tests.test_figures.RobustnessTests.test_editor_files_are_looked_for_beside_the_spec_that_was_given
+- label: a build goes on although two specs claim one id
+  find: '    if clashes:                                               # two specs for one figure'
+  replace: '    if False:                                                 # two specs for one figure'
+  test: tests.test_figures.RobustnessTests.test_two_specs_for_one_figure_are_refused_before_anything_is_written
+- label: the check does not look for two specs with one id
+  find: '    found.extend(duplicate_ids(loaded))'
+  replace: '    found.extend([])'
+  test: tests.test_figures.RobustnessTests.test_two_specs_for_one_figure_are_refused_before_anything_is_written
+- label: render draws from a broken icon set
+  find: "def render(path: Path, fmt: str, out: Path | None, scale: float | None) -> int:\n    if broken_icons():"
+  replace: "def render(path: Path, fmt: str, out: Path | None, scale: float | None) -> int:\n    if False:"
+  test: tests.test_figures.RobustnessTests.test_no_command_draws_from_a_broken_icon_set
+- label: preview draws from a broken icon set
+  find: "def preview(path: Path, out: Path | None, scale: float) -> int:\n    if broken_icons():"
+  replace: "def preview(path: Path, out: Path | None, scale: float) -> int:\n    if False:"
+  test: tests.test_figures.RobustnessTests.test_no_command_draws_from_a_broken_icon_set
+- label: an editor file kept at another scale is read as stale
+  find: '                scale = stored_scale(suffix, text)             # drawn at its own scale: compared at that one'
+  replace: '                scale = None                                   # drawn at its own scale: compared at that one'
+  test: tests.test_figures.RobustnessTests.test_editor_files_kept_at_another_scale_pass_the_check_and_a_stale_one_does_not
+- label: the icon problems are not reported
+  find: '    return bool(problems)'
+  replace: '    return False'
+  test: tests.test_figures.RobustnessTests.test_no_command_draws_from_a_broken_icon_set
+- label: an editor file nested too deep for the JSON reader raises a traceback
+  find: 'TypeError, RecursionError, OverflowError):'
+  replace: 'TypeError, OverflowError):'
+  test: tests.test_figures.RobustnessTests.test_an_editor_file_that_cannot_be_read_is_stale_not_a_traceback
+- label: an editor file holding a number too large for a float raises a traceback
+  find: 'TypeError, RecursionError, OverflowError):'
+  replace: 'TypeError, RecursionError):'
+  test: tests.test_figures.RobustnessTests.test_an_editor_file_that_cannot_be_read_is_stale_not_a_traceback
+- label: a scale given for svg output is silently ignored
+  find: 'args.format == "svg" and args.scale is not None:'
+  replace: 'args.format == "svg" and False:'
+  test: tests.test_figures.RobustnessTests.test_a_scale_for_svg_output_is_refused_not_ignored
+- label: render writes over the spec when --out is the spec
+  find: "    if aliases(path, out):\n        print(f\"--out {out} is the spec itself; give another file\", file=sys.stderr)\n        return 2\n    spec = loaded[0]\n    if fmt == \"svg\":"
+  replace: "    spec = loaded[0]\n    if fmt == \"svg\":"
+  test: tests.test_figures.RobustnessTests.test_an_output_that_is_the_spec_is_refused_not_overwritten
+- label: preview writes over the spec when --out is the spec
+  find: "    if aliases(path, out):\n        print(f\"--out {out} is the spec itself; give another file\", file=sys.stderr)\n        return 2\n    spec = loaded[0]\n    markup = svg.figure(spec)"
+  replace: "    spec = loaded[0]\n    markup = svg.figure(spec)"
+  test: tests.test_figures.RobustnessTests.test_an_output_that_is_the_spec_is_refused_not_overwritten
+- label: an output that is the spec under another name is not noticed
+  find: 'return out is not None and out.exists() and spec_path.samefile(out)'
+  replace: 'return out is not None and out == spec_path'
+  test: tests.test_figures.RobustnessTests.test_an_output_that_is_the_spec_is_refused_not_overwritten
+- label: a figure is built over its own spec
+  find: "        if aliases(path, DIAGRAMS / f\"{spec['id']}-main.svg\"):"
+  replace: "        if False:"
+  test: tests.test_figures.RobustnessTests.test_build_refuses_a_spec_that_is_its_own_output_file
+- label: a footer handle that export would refuse passes the check
+  find: "        reason = facebook.handle_problem(facebook.handle(ROOT))\n        if reason:\n            found.append(reason)"
+  replace: "        pass"
+  test: tests.test_figures.RobustnessTests.test_check_refuses_a_footer_handle_that_the_export_would_refuse
+- label: an English figure replaces a Vietnamese lesson's
+  find: "        if wrong:                                                       # an English figure must not replace a Vietnamese lesson's"
+  replace: "        if False:"
+  test: tests.test_figures.RobustnessTests.test_a_spec_in_another_language_is_not_built_into_the_vietnamese_store
+- label: check accepts an English spec kept in the store's folder
+  find: "        if path.resolve().parent == SPEC_DIR.resolve() and language_problem(spec):"
+  replace: "        if False:"
+  test: tests.test_figures.RobustnessTests.test_a_spec_in_another_language_is_not_built_into_the_vietnamese_store
+- label: a spec with no language is not taken for Vietnamese
+  find: '    lang = spec.get("lang", "vi")'
+  replace: '    lang = spec.get("lang")'
+  test: tests.test_figures.RobustnessTests.test_a_spec_in_another_language_is_not_built_into_the_vietnamese_store
+- label: Japanese and English are taken for Vietnamese
+  find: '    if lang != "vi":'
+  replace: '    if False:'
+  test: tests.test_figures.RobustnessTests.test_a_spec_in_another_language_is_not_built_into_the_vietnamese_store
+- label: facebook replaces the folder its own spec is in
+  find: "    if inside(path, target / loaded[0][\"id\"]):"
+  replace: "    if False:"
+  test: tests.test_figures.RobustnessTests.test_facebook_never_replaces_the_folder_the_spec_is_in
+- label: a spec reached through a link is not recognised as inside the folder
+  find: "    target, root = Path(os.path.realpath(path)), Path(os.path.realpath(folder))"
+  replace: "    target, root = Path(os.path.abspath(path)), Path(os.path.abspath(folder))"
+  test: tests.test_figures.RobustnessTests.test_facebook_never_replaces_the_folder_the_spec_is_in
+- label: only the folder itself is taken for the folder of the spec, not what lies under it
+  find: "    return target == root or root in target.parents"
+  replace: "    return target == root"
+  test: tests.test_figures.RobustnessTests.test_facebook_never_replaces_the_folder_the_spec_is_in

@@ -1,0 +1,20 @@
+# Mutation manifest — see scripts/mutation_check.py
+#
+# A passing test proves nothing on its own. These break each rule of the figure toolkit in turn
+# and require the named test to fail. A mutation that SURVIVES means the test guards nothing.
+
+target: scripts/figures/files.py
+note: A file the toolkit writes is replaced whole or not at all; a full disk never leaves a truncated figure or preview.
+mutations:
+- label: a file is written in place, so a failed write truncates the previous one
+  find: "        temp.write_bytes(data)\n        os.replace(temp, path)"
+  replace: "        path.write_bytes(data)"
+  test: tests.test_figures.RobustnessTests.test_a_write_that_fails_half_way_leaves_the_previous_file_whole
+- label: a half-written temporary file is left behind
+  find: '        temp.unlink(missing_ok=True)                       # what is left of a write that failed; nothing after a successful rename'
+  replace: '        pass'
+  test: tests.test_figures.RobustnessTests.test_a_write_that_fails_half_way_leaves_the_previous_file_whole
+- label: a link is replaced by a file instead of written through
+  find: '    path = Path(os.path.realpath(path))'
+  replace: '    path = Path(path)'
+  test: tests.test_figures.RobustnessTests.test_a_write_goes_through_a_link_as_it_always_did

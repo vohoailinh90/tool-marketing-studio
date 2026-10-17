@@ -1,0 +1,24 @@
+{
+  "id": "demo-stress",
+  "lang": "en",
+  "title": "Kubernetes, TLS 1.3 và 日本語のタイトル 0123456789",
+  "desc": "A stress figure: three actors, six cards with cross links, unbreakable words, digits and Japanese text in every section kind.",
+  "sections": [
+    {"kind": "sequence", "heading": "Client, proxy, origin",
+     "actors": [{"name": "Client", "icon": "smartphone"}, {"name": "Reverse proxy", "icon": "shield"}, {"name": "Origin", "icon": "server"}],
+     "messages": [{"from": 0, "to": 1, "text": "GET /api/v1/orders?page=2"}, {"from": 1, "to": 2, "text": "Forwarded with X-Request-Id and a very long header value"},
+                  {"from": 2, "to": 0, "text": "Straight reply, 200 OK, with Cache-Control: max-age=3600", "reply": true},
+                  {"from": 1, "to": 0, "text": "ok", "reply": true}]},
+    {"kind": "parts", "heading": "Antidisestablishment-sized heading that must wrap",
+     "items": [{"name": "Supercalifragilisticexpialidoci", "role": "A card whose name is one very long word, then a role that wraps over several lines of the column.", "icon": "box"},
+               {"name": "日本語のカード名前", "role": "日本語の説明文は、スペースがなくても、どこかで折り返されます。", "icon": "globe"},
+               {"name": "Cache", "role": "0123456789012345678901234567890123456789", "icon": "zap"},
+               {"name": "Queue", "role": "WWWWWWWWWWWWWWWWWWWW iiiiiiiiiiiiiiiiiiii", "icon": "inbox"},
+               {"name": "Worker pool", "role": "Takes jobs, retries three times, then gives up.", "icon": "cpu"},
+               {"name": "Database", "role": "Keeps the order rows.", "icon": "database"}],
+     "flow": [[0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 0], [4, 2], [3, 1]]},
+    {"kind": "steps", "items": [{"title": "Add a request id", "text": "Every hop copies it, so one request can be followed from the client to the database."},
+                                 {"title": "日本語の手順", "text": "各ホップがそれをコピーします。"}]},
+    {"kind": "notes", "heading": "Notes", "items": ["The first note is a short one.", "The second note is longer and goes on for a while so that it has to wrap onto a third line in the card."]}
+  ]
+}

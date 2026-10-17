@@ -1,1 +1,5 @@
 mkt/vendor/** -diff linguist-vendored
+# The Lucide icons are hashed byte for byte (scripts/figures/icons/index.json): no end-of-line conversion, so a checkout with
+# core.autocrlf=true keeps the committed bytes.
+scripts/figures/icons/** -text
+docs/third-party/lucide/** -text

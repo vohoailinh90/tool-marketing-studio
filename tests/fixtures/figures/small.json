@@ -1,0 +1,10 @@
+{
+  "id": "demo-small",
+  "title": "Ba bước kiểm tra cache",
+  "desc": "Ba bước kiểm tra một bộ nhớ đệm: xem tiêu đề, xem thời gian sống, xem lần truy cập tiếp theo. Kèm hai điều cần nhớ.",
+  "sections": [
+    {"kind": "steps", "heading": "Làm lần lượt",
+     "items": [{"title": "Xem tiêu đề", "text": "Đọc Cache-Control của phản hồi."}, {"title": "Xem thời gian sống", "text": "Tìm max-age."}, {"title": "Gọi lại", "text": "Lần hai phải nhanh hơn."}]},
+    {"kind": "notes", "heading": "Nhớ", "items": ["Cache giúp nhanh, không giúp đúng.", "Xoá cache khi dữ liệu đổi."]}
+  ]
+}

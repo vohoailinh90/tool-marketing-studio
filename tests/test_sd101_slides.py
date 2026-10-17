@@ -221,6 +221,42 @@ class ClaimTests(Sessions):
                     import shutil
                     shutil.rmtree(path)
 
+    def test_a_published_claim_that_fails_validation_is_not_a_claim_that_verifies(self) -> None:
+        a = self.session("a")
+        self.run_in(a, "claim", "sd-01-001", "--publish")
+        path = a / "store" / "lessons" / "sd-01-001" / "slides" / "deck.yaml"
+        lines = [line for line in path.read_text(encoding="utf-8").splitlines() if not line.startswith("claimed_at")]
+        path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+        git(a, "commit", "--quiet", "-am", "claimed_at removed")
+        git(a, "push", "--quiet", "origin", "claude/a")
+        code, _, err = self.run_in(a, "verify")
+        self.assertEqual(1, code)
+        self.assertIn("cannot be used as a claim", err)
+        self.assertEqual(1, self.finish(a, "sd-01-001")[0])
+
+    def test_an_invalid_utf8_record_or_a_directory_in_its_place_blocks_the_lesson(self) -> None:
+        import shutil
+
+        for label in ("bytes", "directory"):
+            with self.subTest(label=label):
+                x, b = self.session("x"), self.session("b")
+                folder = x / "store" / "lessons" / "sd-01-001" / "slides"
+                if label == "bytes":
+                    folder.mkdir()
+                    (folder / "deck.yaml").write_bytes(b"id: sd-01-001\nstatus: doing\nowner: claude/x\xff\n")
+                else:
+                    (folder / "deck.yaml").mkdir(parents=True)
+                    (folder / "deck.yaml" / "note.txt").write_text("not a record", encoding="utf-8")
+                git(x, "add", "-A")
+                git(x, "commit", "--quiet", "-m", label)
+                git(x, "push", "--quiet", "-u", "origin", "claude/x")
+                code, _, err = self.run_in(b, "claim", "sd-01-001")
+                self.assertEqual(1, code)
+                self.assertIn("cannot be read", err)
+                git(x, "push", "--quiet", "origin", "--delete", "claude/x")
+                shutil.rmtree(x)
+                shutil.rmtree(b)
+
     def test_a_record_with_a_key_named_twice_blocks_its_lesson(self) -> None:
         x, b = self.session("x"), self.session("b")
         folder = x / "store" / "lessons" / "sd-01-001" / "slides"
@@ -413,6 +449,27 @@ class FinishTests(Sessions):
                 (folder / "deck.yaml").write_text("{{{ not yaml", encoding="utf-8")
                 git(x, "add", "-A")
                 git(x, "commit", "--quiet", "-m", "broken")
+                git(x, "push", "--quiet", "-u", "origin", "claude/x")
+            return real(context, paths, message)
+
+        with mock.patch.object(slides, "publish", racing):
+            code, _, err = self.finish(a, "sd-01-001", "--publish")
+        self.assertEqual(1, code)
+        self.assertIn("cannot be read", err)
+
+    def test_finish_reports_a_malformed_claim_that_appeared_while_it_published(self) -> None:
+        a, x = self.session("a"), self.session("x")
+        self.run_in(a, "claim", "sd-01-001", "--publish")
+        real = slides.publish
+
+        def racing(context, paths, message):
+            if context.me == "claude/a":  # a parseable record with no heartbeat, pushed by another branch
+                folder = x / "store" / "lessons" / "sd-01-001" / "slides"
+                folder.mkdir(parents=True)
+                (folder / "deck.yaml").write_text(
+                    "id: sd-01-001\nstatus: doing\nowner: claude/x\nclaimed_at: 2026-10-17T07:00:00Z\n", encoding="utf-8")
+                git(x, "add", "-A")
+                git(x, "commit", "--quiet", "-m", "no heartbeat")
                 git(x, "push", "--quiet", "-u", "origin", "claude/x")
             return real(context, paths, message)
 

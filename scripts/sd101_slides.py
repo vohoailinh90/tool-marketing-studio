@@ -323,15 +323,16 @@ def remote_branches(context: Context) -> list[str]:
     return [name for name in output.splitlines() if name and name != "HEAD"]
 
 
-def read_remote(context: Context, names: list[str], ids: list[str]) -> dict[tuple[str, str], str]:
-    """(branch, lesson id) -> deck.yaml text, for every pair that has one."""
+def read_remote(context: Context, names: list[str], ids: list[str]) -> dict[tuple[str, str], str | None]:
+    """(branch, lesson id) -> deck.yaml text, for every pair that has one; None where something is there that cannot be
+    read as text (a directory or another object, bytes that are not UTF-8): a replaced byte could change an owner."""
     pairs = [(name, lesson_id) for name in names for lesson_id in ids]
     if not pairs:
         return {}
     request = "".join(f"refs/remotes/{context.remote}/{name}:{context.relative(lesson_id)}\n"
                       for name, lesson_id in pairs).encode()
     output = git(context.root, "cat-file", "--batch", data=request).stdout
-    found: dict[tuple[str, str], str] = {}
+    found: dict[tuple[str, str], str | None] = {}
     position = 0
     try:
         for pair in pairs:
@@ -340,8 +341,12 @@ def read_remote(context: Context, names: list[str], ids: list[str]) -> dict[tupl
             position = end + 1
             if len(fields) == 3:
                 size = int(fields[2])
+                found[pair] = None
                 if fields[1] == b"blob":
-                    found[pair] = output[position:position + size].decode("utf-8", "replace")
+                    try:
+                        found[pair] = output[position:position + size].decode("utf-8")
+                    except UnicodeDecodeError:
+                        pass
                 position += size + 1
     except ValueError as error:
         raise SlidesError(f"git cat-file printed something unexpected: {error}") from error
@@ -362,7 +367,7 @@ def gather(context: Context, ids: list[str]) -> tuple[dict[str, list[Holding]], 
         names = remote_branches(context)
         for (name, lesson_id), text in read_remote(context, names, ids).items():
             where = f"{context.remote}/{name}"
-            holding = _holding(lesson_id, parse_record(text), where)
+            holding = _holding(lesson_id, parse_record(text) if text is not None else None, where)
             if holding.problems:
                 warnings.append(f"{where}: {lesson_id}/{SLIDES_DIR}/{RECORD} {'; '.join(holding.problems)}")
             if name == base:
@@ -402,12 +407,18 @@ def beats(first: Holding, second: Holding) -> bool:
     return (-first.generation, first.claimed_at or "", first.owner) < (-second.generation, second.claimed_at or "", second.owner)
 
 
+def is_broken(holding: Holding) -> bool:
+    """A record that cannot stand as a claim: unreadable, or a claim in progress that fails validation. It blocks its
+    lesson wherever it is found (a finished deck that fails validation still holds the lesson as done)."""
+    return holding.status == "invalid" or (bool(holding.problems) and holding.status != "done")
+
+
 def standing(holdings: list[Holding], moment: datetime.datetime) -> tuple[str, Holding | None]:
     """free | done | invalid (a record that cannot be read) | doing (the live winner) | stale (only stale claims)."""
     done = [holding for holding in holdings if holding.status == "done"]
     if done:
         return "done", min(done, key=lambda holding: (holding.claimed_at or "", holding.owner))
-    invalid = [holding for holding in holdings if holding.status == "invalid"]
+    invalid = [holding for holding in holdings if is_broken(holding)]
     if invalid:
         return "invalid", invalid[0]
     live = [holding for holding in holdings if holding.status == "doing" and not is_stale(holding, moment)]
@@ -428,7 +439,7 @@ def refusal(lesson_id: str, found: list[Holding], context: Context, moment: date
     state, holding = standing(found, moment)
     if state == "done":
         return f"{lesson_id}: already built by {holding.owner or 'an unknown owner'} ({holding.where})"
-    if state == "invalid" or (state in ("doing", "stale") and holding.problems):
+    if state == "invalid":
         return (f"{lesson_id}: {holding.where} holds a record that cannot be read as a claim "
                 f"({'; '.join(holding.problems)}); fix it first")
     if state == "doing" and holding.owner != context.me:
@@ -448,10 +459,12 @@ def lost_reason(lesson_id: str, found: list[Holding], context: Context, moment: 
     if not published:
         return f"{lesson_id}: your claim is not on {context.remote}/{context.me}; run with --publish"
     me = max(published, key=lambda holding: holding.heartbeat_at or "")
+    if me.problems:
+        return f"{lesson_id}: your record on {me.where} cannot be used as a claim ({'; '.join(me.problems)}); fix it"
     for holding in found:
         if holding.owner == context.me and holding.status == "doing":
             continue
-        if holding.status == "invalid" or (holding.problems and holding.status != "done"):
+        if is_broken(holding):
             return f"{lesson_id}: {holding.where} holds a record that cannot be read as a claim; fix it first"
         if holding.status == "done":
             return f"{lesson_id}: already built by {holding.owner}"
@@ -705,7 +718,7 @@ def cmd_finish(context: Context, args: argparse.Namespace) -> int:
             print(f"pushed, but {lesson_id} is finished here and {rivals[0].owner} holds the earlier claim; delete this "
                   f"branch's slides/ for it, commit and push, so the lesson goes to {rivals[0].owner}", file=sys.stderr)
             return 1
-        broken = [holding for holding in remote if holding.status == "invalid"]
+        broken = [holding for holding in remote if is_broken(holding) and holding.owner != context.me]
         if broken:
             print(f"pushed, but {broken[0].where} now holds a record for {lesson_id} that cannot be read; fix it before "
                   "this deck is relied on", file=sys.stderr)

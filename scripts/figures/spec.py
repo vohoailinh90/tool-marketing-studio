@@ -36,7 +36,7 @@ TOP_KEYS = {"id", "lang", "title", "subtitle", "desc", "sections"}
 LANGS = ("vi", "en", "ja")
 MAX_RAILS = 4                       # cross links that run beside the cards of one `parts` section
 HIDDEN = {"Cc", "Cf", "Cs", "Zl", "Zp"}      # Unicode categories nobody sees: controls, format (zero-width, direction marks, joiners), surrogates, separators
-LINK = re.compile(r"://|\bwww\.|bytebytego", re.IGNORECASE)
+LINK = re.compile(r"://")                  # any scheme, `ftp://` included: has_url reads only http(s), www. and domains
 
 
 class SpecError(ValueError):

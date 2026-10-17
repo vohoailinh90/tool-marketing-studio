@@ -6,9 +6,9 @@
 target: scripts/figures/spec.py
 note: The spec is the only input a session gives the renderer, so its checks are what keep an address, an icon nobody vetted or a control character out of a published figure.
 mutations:
-- label: an address in a figure's text is accepted
-  find: LINK = re.compile(r"://|\bwww\.|bytebytego", re.IGNORECASE)
-  replace: LINK = re.compile(r"(?!x)x", re.IGNORECASE)
+- label: a scheme such as ftp:// in a figure's text is accepted
+  find: LINK = re.compile(r"://")
+  replace: LINK = re.compile(r"(?!x)x")
   test: tests.test_figures.SpecTests.test_an_address_is_refused_in_any_text
 - label: an icon outside the closed set is accepted
   find: 'if icon is not None and icon not in icons.NAMES:'

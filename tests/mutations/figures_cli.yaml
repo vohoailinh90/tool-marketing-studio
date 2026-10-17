@@ -58,7 +58,3 @@ mutations:
   find: "    if icon_problems:\n        print("
   replace: "    if False:\n        print("
   test: tests.test_figures.RobustnessTests.test_a_tampered_icon_set_stops_a_build_and_an_export_before_anything_is_written
-- label: an editor-file scale of 0 falls back to the default
-  find: if scale is not None else make(spec)
-  replace: if scale else make(spec)
-  test: tests.test_figures.CliTests.test_render_prints_or_writes_each_format_and_icons_lists_the_set

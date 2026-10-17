@@ -67,7 +67,7 @@ class SpecTests(unittest.TestCase):
         self.assertTrue(any("unknown keys" in p for p in self.problems_after(lambda d: d["sections"][0]["messages"][0].update(color="red"))))
 
     def test_an_address_is_refused_in_any_text(self):
-        for bad in ("see https://example.test/x", "go to www.example.test", "from assets.bytebytego.com"):
+        for bad in ("see https://example.test/x", "go to www.example.test", "from assets.bytebytego.com", "ftp://host", "a://b"):
             self.assertTrue(any("address" in p for p in self.problems_after(lambda d: d["sections"][2]["items"][0].update(text=bad))), bad)
 
     def test_an_icon_outside_the_set_is_refused_and_all_or_none_is_required(self):

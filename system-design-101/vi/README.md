@@ -44,7 +44,7 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 2. [Các thuật ngữ dữ liệu cốt lõi](lessons/sd-03-002/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 3. [Dòng thời gian dẫn tới ChatGPT](lessons/sd-03-003/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 4. [DeepSeek trong một trang](lessons/sd-03-004/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
-5. [Ngăn xếp AI mã nguồn mở](lessons/sd-03-005/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+5. [Ngăn xếp AI mã nguồn mở: chọn công cụ bằng giấy phép và bằng phép đo](lessons/sd-03-005/lesson.md) — viết lại ngày 2026-10-16 để làm sâu (đọc giấy phép, đo Faiss); chờ review kỹ thuật.
 6. [AI agent là gì?](lessons/sd-03-006/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 7. [Tổng quan về đường ống dữ liệu](lessons/sd-03-007/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 8. [ChatGPT hoạt động thế nào?](lessons/sd-03-008/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.

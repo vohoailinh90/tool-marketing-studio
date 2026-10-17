@@ -29,8 +29,9 @@ One JSON file per figure, `system-design-101/figures/vi/<lesson id>.json` (next 
   most 4 lanes; the spec check says when a flow needs more). Name an icon for every card or for none.
 - `steps`: 2-8 numbered cards joined by short arrows. `notes`: 2-8 cards with a tick.
 - `sequence`: 2-3 actors, 2-10 messages; `reply` draws the arrow dashed.
-- Limits on lengths and counts are in `scripts/figures/spec.py`. No address is accepted in any text, no control, line-separator or
-  text-direction character, and no icon outside the set
+- Limits on lengths and counts are in `scripts/figures/spec.py`. No address is accepted in any text (the studio's own rule for posts, `mkt.check.has_url`: `https://`, `www.`, a bare
+  domain, a spaced scheme; it also reads a file name that ends in a country code, such as `server.py` or `README.md`, as a domain, so
+  write the name as a word), no control, line-separator or text-direction character, and no icon outside the set
   (`python3 -m scripts.figures icons` lists the 81 names and what each means).
 
 Every word on the figure is a field of the spec: no caption, arrow label or icon is invented by the drawing code.
@@ -43,7 +44,7 @@ python3 -m scripts.figures preview SPEC               # a PNG in build/figures/ 
 python3 -m scripts.figures build [SPEC ...]           # write system-design-101/vi/diagrams/<id>-main.svg (the lesson must exist)
 python3 -m scripts.figures check [SPEC ...]           # specs valid, stored figures are exactly what the specs draw, store and phone rules, icons intact
 python3 -m scripts.figures check --browser            # ... and measure every line of text in Chromium
-python3 -m scripts.figures render SPEC --format drawio|excalidraw|moda|svg [--out FILE] [--scale 2]
+python3 -m scripts.figures render SPEC --format drawio|excalidraw|moda|svg [--out FILE] [--scale 2]     # scale from 0.25 to 8
 python3 -m scripts.figures facebook SPEC [--format portrait|square|landscape] [--out DIR]   # Facebook slides, see below
 ```
 

@@ -30,8 +30,8 @@ mutations:
   find: 'if path.is_file() and path.read_bytes() == content.encode("utf-8"):'
   replace: 'if False:'
   test: tests.test_figures.CliTests.test_build_writes_the_figure_and_check_then_passes
-- label: a scale of nan, 0 or 1e9 is accepted
-  find: '    if not math.isfinite(value) or not 0 < value <= MAX_SCALE:'
+- label: a scale of nan, 0.1 or 1e9 is accepted
+  find: '    if not math.isfinite(value) or not MIN_SCALE <= value <= MAX_SCALE:'
   replace: '    if False:'
   test: tests.test_figures.RobustnessTests.test_a_scale_that_would_draw_garbage_is_refused
 - label: an unwritable output path raises a traceback

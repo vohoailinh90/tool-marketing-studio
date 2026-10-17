@@ -27,7 +27,7 @@ STORE = ROOT / "system-design-101"
 SPEC_DIR = STORE / "figures" / "vi"
 DIAGRAMS = STORE / "vi" / "diagrams"
 LESSONS = STORE / "vi" / "lessons"
-MAX_SCALE = 8.0
+MIN_SCALE, MAX_SCALE = 0.25, 8.0
 EDITORS = {"drawio": (".drawio", drawio.diagram), "excalidraw": (".excalidraw", excalidraw.board), "moda": ("-moda.xml", moda.markup)}
 LESSON_ID = re.compile(r"sd-\d{2}-\d{3}")
 
@@ -74,13 +74,13 @@ def _load(paths: list[Path]) -> tuple[list[dict], list[str]]:
 
 
 def scale_argument(text: str) -> float:
-    """A positive, finite scale of at most MAX_SCALE: anything else would draw garbage or a huge file."""
+    """A finite scale from MIN_SCALE to MAX_SCALE: anything else would draw garbage, text too small to see or a huge file."""
     try:
         value = float(text)
     except ValueError as exc:
         raise argparse.ArgumentTypeError(f"{text!r} is not a number") from exc
-    if not math.isfinite(value) or not 0 < value <= MAX_SCALE:
-        raise argparse.ArgumentTypeError(f"must be above 0 and at most {MAX_SCALE:g}")
+    if not math.isfinite(value) or not MIN_SCALE <= value <= MAX_SCALE:
+        raise argparse.ArgumentTypeError(f"must be from {MIN_SCALE:g} to {MAX_SCALE:g}")
     return value
 
 

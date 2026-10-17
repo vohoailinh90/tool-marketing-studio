@@ -18,3 +18,7 @@ mutations:
   find: return html.escape(XML_BAD.sub("", str(text)), quote=True)
   replace: return str(text)
   test: tests.test_figures.EditorTests.test_hostile_text_stays_text_in_the_three_editor_files
+- label: the icon file follows the scale, so a small scale writes an icon the set refuses
+  find: size=ICON_PX, tile=svg.ACCENT[item['role']])
+  replace: size=round(item['d']), tile=svg.ACCENT[item['role']])
+  test: tests.test_figures.EditorTests.test_a_small_editor_scale_still_draws_and_the_icon_file_does_not_follow_it

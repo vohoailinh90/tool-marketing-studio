@@ -103,6 +103,56 @@ class SpecTests(unittest.TestCase):
             self.assertTrue(any("invisible character" in p for p in self.problems_after(lambda d: d["sections"][2]["items"][0].update(text=bad))), label)
         self.assertEqual(self.problems_after(lambda d: d["sections"][2]["items"][0].update(text="Tiếng Việt, 日本語, \u00b7 và \u2192")), [])
 
+    def test_a_section_kind_that_is_not_text_is_a_problem_not_a_crash(self):
+        for kind in ([], {}, [[]], 3, None, True, {"a": 1}):
+            found = self.problems_after(lambda d: d["sections"][0].update(kind=kind))
+            self.assertTrue(any("kind must be one of" in p for p in found), (kind, found))
+
+    def test_bare_and_obfuscated_addresses_are_refused_and_technical_text_is_not(self):
+        for bad in ("example.com", "see example.com today", "https : //example.com", "\uff45\uff58\uff41\uff4d\uff50\uff4c\uff45.com/x", "api.example.io/v1"):
+            self.assertTrue(any("address" in p for p in self.problems_after(lambda d: d["sections"][2]["items"][0].update(text=bad))), bad)
+        for fine in ("Cache-Control: max-age=3600", "GET /api/v1/orders?page=2", "HTTP/2 và TLS 1.3", "Node.js 22", "v1.2.3"):
+            self.assertEqual(self.problems_after(lambda d: d["sections"][2]["items"][0].update(text=fine)), [], fine)
+
+    def test_no_json_value_in_any_place_crashes_the_spec_check_and_an_accepted_spec_always_draws(self):
+        rng = random.Random(20261017)
+        junk = [None, True, False, 0, -1, 1.5, 10 ** 30, "", "x", " ", "\ud800", [], {}, [[]], [None], {"a": 1}, {"kind": []}, [[0, 1, 2]], "a" * 500, ["x"] * 20]
+
+        def paths(node, prefix=()):
+            yield prefix
+            if isinstance(node, dict):
+                for key, value in node.items():
+                    yield from paths(value, prefix + (key,))
+            elif isinstance(node, list):
+                for i, value in enumerate(node):
+                    yield from paths(value, prefix + (i,))
+
+        base = load("stress.json")
+        places = list(paths(base))
+        accepted = 0
+        for _ in range(2000):
+            data = copy.deepcopy(base)
+            for _ in range(rng.randint(1, 3)):
+                path = rng.choice(places)
+                if not path:
+                    data = rng.choice(junk)
+                    break
+                node = data
+                try:
+                    for key in path[:-1]:
+                        node = node[key]
+                    if isinstance(node, dict) == isinstance(path[-1], str):      # JSON: a dict has text keys, a list has positions
+                        node[path[-1]] = rng.choice(junk)
+                except (KeyError, IndexError, TypeError):
+                    pass                                    # an earlier change removed this place
+            found = spec.problems(data)
+            self.assertIsInstance(found, list)
+            if not found:
+                accepted += 1
+                svg.figure(data)
+                facebook.plan(data)
+        self.assertGreater(accepted, 5)                     # the fuzz does reach the drawing code, not only the refusals
+
     def test_a_language_outside_the_three_is_refused(self):
         self.assertTrue(any("lang" in p for p in self.problems_after(lambda d: d.update(lang="fr"))))
 
@@ -408,6 +458,14 @@ class EditorTests(unittest.TestCase):
                 for key in ("exitX", "exitY", "entryX", "entryY"):
                     self.assertTrue(0 <= float(style[key]) <= 1, (key, style))
 
+    def test_a_small_editor_scale_still_draws_and_the_icon_file_does_not_follow_it(self):
+        for scale in (0.1, 0.25, 2, 8):
+            drawio.diagram(load(), scale)
+        for c in self.cells(load()):
+            if "shape=image" in (c.get("style") or ""):
+                uri = re.search(r"image=data:image/svg\+xml,([A-Za-z0-9+/=]+)", c.get("style")).group(1)
+                self.assertEqual(ET.fromstring(base64.b64decode(uri)).get("width"), str(drawio.ICON_PX))
+
     def test_the_diagram_holds_each_line_of_text_and_each_icon_once(self):
         data = load()
         built = scene.build(data, drawio.STYLE)
@@ -633,11 +691,12 @@ class RobustnessTests(unittest.TestCase):
         return code, err.getvalue()
 
     def test_a_scale_that_would_draw_garbage_is_refused(self):
-        for bad in ("nan", "inf", "-2", "0", "1e9", "abc"):
+        for bad in ("nan", "inf", "-2", "0", "0.1", "0.24", "1e9", "8.5", "abc"):
             code, err = self.run_cli("render", str(POLLING), "--format", "drawio", "--scale", bad)
             self.assertEqual(code, 2, bad)
             self.assertIn("--scale", err)
-        self.assertEqual(self.run_cli("render", str(POLLING), "--format", "drawio", "--scale", "1.5")[0], 0)
+        for good in ("0.25", "1.5", "8"):
+            self.assertEqual(self.run_cli("render", str(POLLING), "--format", "drawio", "--scale", good)[0], 0, good)
 
     def test_a_file_that_cannot_be_written_is_a_sentence_not_a_traceback(self):
         with tempfile.TemporaryDirectory() as tmp:

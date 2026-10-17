@@ -20,6 +20,8 @@ import json
 import re
 from pathlib import Path
 
+from mkt.check import has_url
+
 from . import icons
 from .text import XML_BAD
 
@@ -68,7 +70,7 @@ def _text(value, where: str, low: int, high: int, found: list[str]) -> None:
         return
     if len(value.strip()) < low or len(value.strip()) > high:
         found.append(f"{where} is {len(value.strip())} characters, expected {low}-{high}")
-    if LINK.search(value):
+    if LINK.search(value) or has_url(value):             # has_url is the studio's rule for posts: bare domains and spaced schemes too
         found.append(f"{where} holds a link or a source-image host; a figure carries no address")
     if INVISIBLE.search(value) or any(ord(c) < 32 and c not in "\n\t" for c in value):
         found.append(f"{where} holds a control or invisible character")
@@ -90,7 +92,7 @@ def _icons(items: list, where: str, found: list[str]) -> None:
 
 
 def _keys(obj: dict, allowed: set[str], where: str, found: list[str]) -> None:
-    extra = sorted(set(obj) - allowed)
+    extra = sorted(set(obj) - allowed, key=str)
     if extra:
         found.append(f"{where} has unknown keys {', '.join(map(str, extra))}")
 
@@ -208,7 +210,7 @@ def problems(spec) -> list[str]:
         return found
     for i, sec in enumerate(sections):
         where = f"sections[{i}]"
-        if not isinstance(sec, dict) or sec.get("kind") not in KINDS:
+        if not isinstance(sec, dict) or not isinstance(sec.get("kind"), str) or sec["kind"] not in KINDS:
             found.append(f"{where}.kind must be one of {', '.join(sorted(KINDS))}")
             continue
         _keys(sec, KINDS[sec["kind"]] | {"kind"}, where, found)

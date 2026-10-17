@@ -19,6 +19,7 @@ from .text import XML_BAD
 STYLE = scenes.Style()
 FONT = "Helvetica"
 SCALE = 2.0                 # the editor file is twice the lesson figure: room to move things about
+ICON_PX = 64                # the size the icon is drawn at inside its own file; draw.io scales it to the card, so it does not follow the scale
 FIXED = "movable=0;resizable=0;rotatable=0;deletable=0;editable=0;connectable=0;"      # the page behind the diagram
 
 
@@ -120,7 +121,7 @@ def diagram(spec: dict, scale: float = SCALE) -> str:
         elif kind == "icon":
             c = boxes[card]
             cells.vertex(item["x"] - c["x"], item["y"] - c["y"], item["d"], item["d"],
-                         f"shape=image;html=1;aspect=fixed;imageAspect=0;image={icons.data_uri(item['name'], size=round(item['d']), tile=svg.ACCENT[item['role']])};",
+                         f"shape=image;html=1;aspect=fixed;imageAspect=0;image={icons.data_uri(item['name'], size=ICON_PX, tile=svg.ACCENT[item['role']])};",
                          parent=ids[card])
         elif kind == "tick":
             c = boxes[card]

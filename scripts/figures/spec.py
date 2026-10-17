@@ -18,12 +18,12 @@ from __future__ import annotations
 
 import json
 import re
+import unicodedata
 from pathlib import Path
 
 from mkt.check import has_url
 
 from . import icons
-from .text import XML_BAD
 
 ID = re.compile(r"[a-z0-9][a-z0-9-]{1,40}")
 KINDS = {
@@ -35,7 +35,7 @@ KINDS = {
 TOP_KEYS = {"id", "lang", "title", "subtitle", "desc", "sections"}
 LANGS = ("vi", "en", "ja")
 MAX_RAILS = 4                       # cross links that run beside the cards of one `parts` section
-INVISIBLE = re.compile(XML_BAD.pattern[:-1] + "\u2028\u2029\u202a-\u202e\u2066-\u2069]")      # what XML drops, plus line separators and bidi overrides
+HIDDEN = {"Cc", "Cf", "Cs", "Zl", "Zp"}      # Unicode categories nobody sees: controls, format (zero-width, direction marks, joiners), surrogates, separators
 LINK = re.compile(r"://|\bwww\.|bytebytego", re.IGNORECASE)
 
 
@@ -64,6 +64,12 @@ def load(path: Path) -> dict:
     return spec
 
 
+def hidden(value: str) -> bool:
+    """True when the text holds a character that is not seen but changes what is drawn or in which order: a control (a tab and a new line
+    are fine), a format character, a lone surrogate, a line or paragraph separator, or one of the two non-characters XML refuses."""
+    return any((unicodedata.category(c) in HIDDEN and c not in "\n\t") or c in "\ufffe\uffff" for c in value)
+
+
 def _text(value, where: str, low: int, high: int, found: list[str]) -> None:
     if not isinstance(value, str) or not value.strip():
         found.append(f"{where} must be text")
@@ -72,7 +78,7 @@ def _text(value, where: str, low: int, high: int, found: list[str]) -> None:
         found.append(f"{where} is {len(value.strip())} characters, expected {low}-{high}")
     if LINK.search(value) or has_url(value):             # has_url is the studio's rule for posts: bare domains and spaced schemes too
         found.append(f"{where} holds a link or a source-image host; a figure carries no address")
-    if INVISIBLE.search(value) or any(ord(c) < 32 and c not in "\n\t" for c in value):
+    if hidden(value):
         found.append(f"{where} holds a control or invisible character")
 
 

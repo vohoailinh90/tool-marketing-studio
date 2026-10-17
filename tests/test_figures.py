@@ -97,11 +97,15 @@ class SpecTests(unittest.TestCase):
         self.assertTrue(any("lanes" in p for p in spec.problems(parts_spec(5, many))))
         self.assertEqual(spec.problems(parts_spec(5, [[0, 1], [1, 2], [2, 3], [3, 4], [4, 0]])), [])
 
-    def test_characters_that_xml_drops_or_that_reorder_text_are_refused(self):
+    def test_characters_nobody_sees_but_that_change_the_drawing_are_refused(self):
         for label, bad in (("a lone surrogate", "a \ud800 b"), ("U+FFFE", "a \ufffe b"), ("a right-to-left override", "a \u202e b"),
-                           ("a bidi isolate", "a \u2066 b"), ("a line separator", "a \u2028 b"), ("a carriage return", "a \r b")):
+                           ("a bidi isolate", "a \u2066 b"), ("a line separator", "a \u2028 b"), ("a carriage return", "a \r b"),
+                           ("a left-to-right mark", "a \u200e b"), ("a right-to-left mark", "a \u200f b"), ("an Arabic letter mark", "a \u061c b"),
+                           ("a zero-width space", "a \u200b b"), ("a byte-order mark", "a \ufeff b"), ("a soft hyphen", "a \u00ad b"),
+                           ("a zero-width joiner", "a \u200d b"), ("a C1 control", "a \u0085 b"), ("DEL", "a \x7f b")):
             self.assertTrue(any("invisible character" in p for p in self.problems_after(lambda d: d["sections"][2]["items"][0].update(text=bad))), label)
-        self.assertEqual(self.problems_after(lambda d: d["sections"][2]["items"][0].update(text="Tiếng Việt, 日本語, \u00b7 và \u2192")), [])
+        for fine in ("Tiếng Việt, 日本語, \u00b7 và \u2192", "Ti\u0302\u0301ng Vie\u0323\u0302t (decomposed marks)", "tab\tand\nnew line"):
+            self.assertEqual(self.problems_after(lambda d: d["sections"][2]["items"][0].update(text=fine)), [], fine)
 
     def test_a_section_kind_that_is_not_text_is_a_problem_not_a_crash(self):
         for kind in ([], {}, [[]], 3, None, True, {"a": 1}):
@@ -734,6 +738,24 @@ class RobustnessTests(unittest.TestCase):
             code, err = self.run_cli("check", "--browser", str(POLLING))
         self.assertEqual(code, 2)
         self.assertIn("cannot measure the text", err)
+
+    def test_a_tampered_icon_set_never_overwrites_a_stored_figure(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            store = Path(tmp) / "system-design-101"
+            (store / "vi" / "lessons" / "sd-01-001").mkdir(parents=True)
+            (store / "vi" / "diagrams").mkdir(parents=True)
+            figure = store / "vi" / "diagrams" / "sd-01-001-main.svg"
+            figure.write_text("old figure", encoding="utf-8")
+            data = load()
+            data["id"] = "sd-01-001"
+            spec_path = Path(tmp) / "sd-01-001.json"
+            spec_path.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
+            with mock.patch.multiple(cli, ROOT=Path(tmp), DIAGRAMS=store / "vi" / "diagrams", LESSONS=store / "vi" / "lessons"), \
+                    mock.patch.object(icons, "verify", return_value=["server.svg differs from the hash in index.json"]):
+                code, err = self.run_cli("build", str(spec_path))
+            self.assertEqual(code, 1)
+            self.assertIn("server.svg differs", err)
+            self.assertEqual(figure.read_text(encoding="utf-8"), "old figure")
 
     def test_a_tampered_icon_set_stops_a_build_and_an_export_before_anything_is_written(self):
         with tempfile.TemporaryDirectory() as tmp, mock.patch.object(icons, "verify", return_value=["server.svg differs from the hash in index.json"]):

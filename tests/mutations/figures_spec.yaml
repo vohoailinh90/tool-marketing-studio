@@ -38,10 +38,6 @@ mutations:
   find: 'if len(found) == before and rails_needed(flow) > MAX_RAILS:'
   replace: 'if False:'
   test: tests.test_figures.SpecTests.test_too_many_cross_links_for_a_narrow_column_are_refused
-- label: a control or invisible character in a text is accepted
-  find: 'if INVISIBLE.search(value) or any(ord(c) < 32 and c not in "\n\t" for c in value):'
-  replace: 'if False:'
-  test: tests.test_figures.SvgTests.test_hostile_text_stays_text_everywhere
 - label: a message from an actor to itself is accepted
   find: 'or message.get("from") == message.get("to"):'
   replace: 'or False:'
@@ -50,10 +46,6 @@ mutations:
   find: 'if spec.get("lang", "vi") not in LANGS:'
   replace: 'if False:'
   test: tests.test_figures.SpecTests.test_a_language_outside_the_three_is_refused
-- label: a bidi override or a line separator in a text is accepted
-  find: '"\u2028\u2029\u202a-\u202e\u2066-\u2069]")'
-  replace: '"]")'
-  test: tests.test_figures.SpecTests.test_characters_that_xml_drops_or_that_reorder_text_are_refused
 - label: a section kind that is a list crashes the check
   find: 'not isinstance(sec.get("kind"), str) or sec["kind"] not in KINDS:'
   replace: 'sec.get("kind") not in KINDS:'
@@ -62,3 +54,19 @@ mutations:
   find: 'if LINK.search(value) or has_url(value):'
   replace: 'if LINK.search(value):'
   test: tests.test_figures.SpecTests.test_bare_and_obfuscated_addresses_are_refused_and_technical_text_is_not
+- label: a control or invisible character in a text is accepted
+  find: '    if hidden(value):'
+  replace: '    if False:'
+  test: tests.test_figures.SvgTests.test_hostile_text_stays_text_everywhere
+- label: format characters (zero-width, direction marks, joiners) are accepted
+  find: HIDDEN = {"Cc", "Cf", "Cs", "Zl", "Zp"}
+  replace: HIDDEN = {"Cc", "Cs", "Zl", "Zp"}
+  test: tests.test_figures.SpecTests.test_characters_nobody_sees_but_that_change_the_drawing_are_refused
+- label: controls are accepted
+  find: HIDDEN = {"Cc", "Cf", "Cs", "Zl", "Zp"}
+  replace: HIDDEN = {"Cf", "Cs", "Zl", "Zp"}
+  test: tests.test_figures.SpecTests.test_characters_nobody_sees_but_that_change_the_drawing_are_refused
+- label: the two XML non-characters are accepted
+  find: ' or c in "\ufffe\uffff" for c in value)'
+  replace: ' for c in value)'
+  test: tests.test_figures.SpecTests.test_characters_nobody_sees_but_that_change_the_drawing_are_refused

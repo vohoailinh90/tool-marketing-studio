@@ -85,8 +85,11 @@ def scale_argument(text: str) -> float:
 
 
 def build(paths: list[Path], out) -> int:
+    broken = [f"icons: {p}" for p in icons.verify()]
+    if broken:                                               # a tampered icon file is never drawn into a stored figure
+        print("\n".join(broken), file=sys.stderr)
+        return 1
     loaded, found = _load(paths)
-    found.extend(f"icons: {p}" for p in icons.verify())      # a tampered icon file is never drawn into a stored figure
     for spec in loaded:
         if not LESSON_ID.fullmatch(spec["id"]) or not (LESSONS / spec["id"]).is_dir():
             found.append(f"{spec['id']}: there is no lesson of that id in {LESSONS.relative_to(ROOT)}; use `render` for a trial figure")

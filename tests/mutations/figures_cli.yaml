@@ -51,9 +51,9 @@ mutations:
   replace: "            except ZeroDivisionError as exc:\n                print(f\"cannot measure the text"
   test: tests.test_figures.RobustnessTests.test_the_text_check_without_a_browser_says_so
 - label: a tampered icon set does not stop a build
-  find: '    found.extend(f"icons: {p}" for p in icons.verify())      # a tampered'
-  replace: '    found.extend([])      # a tampered'
-  test: tests.test_figures.RobustnessTests.test_a_tampered_icon_set_stops_a_build_and_an_export_before_anything_is_written
+  find: "    if broken:                                               # a tampered icon file is never drawn into a stored figure\n        print("
+  replace: "    if False:                                                # a tampered icon file is never drawn into a stored figure\n        print("
+  test: tests.test_figures.CliTests.test_a_tampered_icon_set_never_overwrites_a_stored_figure
 - label: a tampered icon set does not stop a Facebook export
   find: "    if icon_problems:\n        print("
   replace: "    if False:\n        print("

@@ -14,6 +14,8 @@ Nothing here posts anything: publishing stays the owner's act (CLAUDE.md, "Publi
 from __future__ import annotations
 
 import copy
+import os
+import shutil
 from pathlib import Path
 
 import yaml
@@ -102,23 +104,36 @@ def alt_text(spec: dict, slides: list[dict]) -> str:
 
 
 def export(spec: dict, out: Path, root: Path, fmt: str = DEFAULT) -> tuple[list[Path], list[str]]:
-    """Writes `out/<id>/NN.png` and `alt.txt`; returns the files and the problems (nothing is written when the plan has problems)."""
+    """Writes `out/<id>/NN.png` and `alt.txt`; returns the files and the problems. The slides are drawn into a temporary folder and replace
+    the previous pack only when every one of them was drawn and passed `png_problems`: nothing is written when the plan has problems, and a
+    browser that fails half way, a slide that is too heavy or a full disk leaves the previous pack as it was."""
     slides, problems = plan(spec, fmt)
     if problems:
         return [], problems
     alt = alt_text(spec, slides)
-    alt.encode("utf-8")                                    # fails here, before anything is deleted or written
+    alt.encode("utf-8")                                    # fails here, before anything is drawn
     folder = out / spec["id"]
-    folder.mkdir(parents=True, exist_ok=True)
-    for stale in folder.glob("[0-9][0-9].png"):
-        stale.unlink()
-    author = handle(root)
-    files = []
-    for slide in slides:
-        path = folder / f"{slide['n']:02d}.png"
-        browser.png(page(slide, len(slides), fmt, author), path, *FORMATS[fmt], 1.0)
-        problems += png_problems(path, fmt)
-        files.append(path)
-    (folder / "alt.txt").write_text(alt, encoding="utf-8")
-    return files, problems
+    work = out / f".{spec['id']}.new"
+    shutil.rmtree(work, ignore_errors=True)
+    work.mkdir(parents=True)
+    try:
+        author = handle(root)
+        for slide in slides:
+            path = work / f"{slide['n']:02d}.png"
+            browser.png(page(slide, len(slides), fmt, author), path, *FORMATS[fmt], 1.0)
+            problems += png_problems(path, fmt)
+        (work / "alt.txt").write_text(alt, encoding="utf-8")
+        if problems:
+            return [], problems
+        folder.mkdir(parents=True, exist_ok=True)
+        for stale in folder.glob("[0-9][0-9].png"):
+            stale.unlink()
+        files = []
+        for made in sorted(work.iterdir()):
+            os.replace(made, folder / made.name)
+            if made.suffix == ".png":
+                files.append(folder / made.name)
+        return files, []
+    finally:
+        shutil.rmtree(work, ignore_errors=True)
 

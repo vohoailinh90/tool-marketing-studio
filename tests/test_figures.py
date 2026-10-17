@@ -373,6 +373,24 @@ class SceneTests(unittest.TestCase):
                 self.assertTrue(text.width(line, px) <= box or len(line) <= 1, (line, box))
 
 
+class TextTests(unittest.TestCase):
+    def test_a_combining_mark_advances_nothing_and_never_starts_a_line(self):
+        self.assertEqual(text.width("x\u0301", 15), text.width("x", 15))
+        word = "x\u0301" * 30                                   # no composed form exists: the mark stays a character of its own
+        for box in range(30, 200, 3):
+            for line in text.wrap(word, 15, box):
+                self.assertFalse(text.combining(line[0]), (box, line))
+        self.assertEqual("".join(text.wrap(word, 15, 60)), word)
+
+    def test_text_is_composed_before_it_is_measured_and_drawn(self):
+        data = load()
+        data["title"] = "Tie\u0302\u0301ng Vie\u0323\u0302t"
+        built = scene.build(data, svg.STYLE)
+        titles = [i["text"] for i in built["items"] if i["k"] == "text" and i["color"] == "title"]
+        self.assertEqual(titles, ["Tiếng Việt"])
+        self.assertIn("Tiếng Việt", svg.figure(data))
+
+
 class SvgTests(unittest.TestCase):
     def test_the_figure_passes_the_stores_own_svg_rules_and_the_phone_rules(self):
         for name in ("polling.json", "stress.json"):
@@ -667,6 +685,54 @@ class FacebookTests(unittest.TestCase):
             self.assertTrue(problems)
             self.assertFalse((Path(tmp) / "t-parts").exists())
 
+    def fake_png(self, calls=None, fail_on=None, error=browser.Unavailable("no chromium")):
+        """A stand-in for browser.png that writes a PNG header of the canvas size, so the export logic runs without a browser."""
+        def draw(markup, path, width, height, scale=1.0):
+            if calls is not None:
+                calls.append(path.name)
+            if fail_on is not None and len(calls or []) == fail_on:
+                raise error
+            path.write_bytes(b"\x89PNG\r\n\x1a\n" + (13).to_bytes(4, "big") + b"IHDR" + width.to_bytes(4, "big") + height.to_bytes(4, "big") + b"\0" * 20)
+        return draw
+
+    def old_pack(self, out: Path) -> Path:
+        folder = out / "demo-small"
+        folder.mkdir()
+        for name in ("01.png", "02.png", "09.png", "alt.txt"):
+            (folder / name).write_bytes(b"old " + name.encode())
+        return folder
+
+    def test_a_failed_export_leaves_the_previous_pack_and_no_temporary_folder(self):
+        for label, fail_on, patch_size in (("the browser cannot start", 1, False), ("the second slide fails", 2, False), ("a slide is too heavy", None, True)):
+            with tempfile.TemporaryDirectory() as tmp:
+                out = Path(tmp)
+                folder = self.old_pack(out)
+                calls: list[str] = []
+                with mock.patch.object(browser, "png", self.fake_png(calls, fail_on)), mock.patch.object(facebook, "MAX_BYTES", 10 if patch_size else facebook.MAX_BYTES):
+                    if fail_on:
+                        with self.assertRaises(browser.Unavailable):
+                            facebook.export(load("small.json"), out, ROOT)
+                    else:
+                        files, problems = facebook.export(load("small.json"), out, ROOT)
+                        self.assertEqual(files, [])
+                        self.assertTrue(any("bytes" in p for p in problems))
+                self.assertEqual(sorted(p.name for p in folder.iterdir()), ["01.png", "02.png", "09.png", "alt.txt"], label)
+                self.assertEqual((folder / "01.png").read_bytes(), b"old 01.png", label)
+                self.assertEqual([p.name for p in out.iterdir()], ["demo-small"], label)
+
+    def test_a_successful_export_replaces_the_whole_previous_pack_and_leaves_no_temporary_folder(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            out = Path(tmp)
+            folder = self.old_pack(out)
+            with mock.patch.object(browser, "png", self.fake_png()):
+                files, problems = facebook.export(load("small.json"), out, ROOT)
+            self.assertEqual(problems, [])
+            self.assertEqual([f.name for f in files], ["01.png", "02.png"])
+            self.assertEqual(sorted(p.name for p in folder.iterdir()), ["01.png", "02.png", "alt.txt"])
+            self.assertNotEqual((folder / "01.png").read_bytes(), b"old 01.png")
+            self.assertIn("1/2:", (folder / "alt.txt").read_text(encoding="utf-8"))
+            self.assertEqual([p.name for p in out.iterdir()], ["demo-small"])
+
     @unittest.skipUnless(chromium_available(), "Chromium not installed")
     def test_export_writes_png_slides_of_the_exact_canvas_size_and_replaces_old_ones(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -738,6 +804,21 @@ class RobustnessTests(unittest.TestCase):
             code, err = self.run_cli("check", "--browser", str(POLLING))
         self.assertEqual(code, 2)
         self.assertIn("cannot measure the text", err)
+
+    def test_check_with_a_structurally_broken_icon_file_reports_it_instead_of_raising(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            folder = Path(tmp) / "icons"
+            shutil.copytree(icons.HERE, folder, ignore=shutil.ignore_patterns("__pycache__"))
+            (folder / "server.svg").write_text('<svg xmlns="http://www.w3.org/2000/svg"><script>x</script></svg>', encoding="utf-8")
+            self.addCleanup(icons.shapes.cache_clear)
+            self.addCleanup(icons.index.cache_clear)
+            with mock.patch.object(icons, "HERE", folder):
+                icons.shapes.cache_clear()
+                icons.index.cache_clear()
+                code, err = self.run_cli("check", str(POLLING))
+        self.assertEqual(code, 1)
+        self.assertIn("icons: ", err)
+        self.assertIn("server", err)
 
     def test_a_tampered_icon_set_never_overwrites_a_stored_figure(self):
         with tempfile.TemporaryDirectory() as tmp:

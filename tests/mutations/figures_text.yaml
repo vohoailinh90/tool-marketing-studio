@@ -11,6 +11,18 @@ mutations:
   replace: 'return escape(str(text), {''"'': "&quot;"})'
   test: tests.test_figures.SvgTests.test_hostile_text_stays_text_everywhere
 - label: a word wider than the box is left to overflow
-  find: 'if cur and width(cur + ch, px * scale, bold) > max_w:'
+  find: 'if cur and not combining(ch) and width(cur + ch, px * scale, bold) > max_w:'
   replace: 'if False:'
   test: tests.test_figures.SceneTests.test_wrap_never_changes_the_text_or_overflows_a_box
+- label: text is not composed, so a decomposed accent can be cut off
+  find: return unicodedata.normalize("NFC", re.sub(r"\s+", " ", str(text)).strip())
+  replace: return re.sub(r"\s+", " ", str(text)).strip()
+  test: tests.test_figures.TextTests.test_text_is_composed_before_it_is_measured_and_drawn
+- label: a combining mark is measured as a letter
+  find: "    if combining(c):\n        return 0.0"
+  replace: "    if False:\n        return 0.0"
+  test: tests.test_figures.TextTests.test_a_combining_mark_advances_nothing_and_never_starts_a_line
+- label: a line may end before a combining mark
+  find: if cur and not combining(ch) and width(
+  replace: if cur and width(
+  test: tests.test_figures.TextTests.test_a_combining_mark_advances_nothing_and_never_starts_a_line

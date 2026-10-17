@@ -34,7 +34,13 @@ def esc(text) -> str:
 
 
 def one_line(text) -> str:
-    return re.sub(r"\s+", " ", str(text)).strip()
+    """The text on one line, in canonical composed form (a decomposed Vietnamese letter becomes one character, so no accent is left to be cut off)."""
+    return unicodedata.normalize("NFC", re.sub(r"\s+", " ", str(text)).strip())
+
+
+def combining(ch: str) -> bool:
+    """A mark that sits on the letter before it (an accent that has no composed form): never a place to end a line."""
+    return unicodedata.category(ch)[0] == "M"
 
 
 def wide(ch: str) -> bool:
@@ -52,6 +58,8 @@ def _em(c: str, bold: bool = False) -> float:
         return (_BOLD if bold else _REGULAR)[ord(c) - 32] / 1000
     if c in _OTHER:
         return _OTHER[c][bold] / 1000
+    if combining(c):
+        return 0.0                                          # drawn on the letter before it, advances nothing
     base = unicodedata.normalize("NFD", c)[0]               # ă, ơ, ế ... advance like the letter under the mark
     if " " <= base <= "~" and base != c:
         return _em(base, bold)
@@ -97,7 +105,7 @@ def wrap(text: str, px: float, max_w: float, scale: float = 1.0, bold: bool = Fa
             lines.append(cur)
         cur = ""
         for ch in tok:
-            if cur and width(cur + ch, px * scale, bold) > max_w:
+            if cur and not combining(ch) and width(cur + ch, px * scale, bold) > max_w:
                 lines.append(cur)
                 cur = ch
             else:

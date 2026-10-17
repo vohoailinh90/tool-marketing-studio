@@ -66,7 +66,8 @@ the editor files are not committed by default.
 
 A lesson figure is a 320 px column for a phone page. For Facebook it is exported as slides, and this is the one way a lesson image
 is made for upload: `python3 -m scripts.figures facebook SPEC` writes `build/figures/facebook/<id>/01.png ...` and `alt.txt`
-(`build/` is gitignored; the images are regenerated, never committed or edited). The standard is the studio's own
+(`build/` is gitignored; the images are regenerated, never committed or edited; a new pack is drawn in a temporary folder and replaces the
+previous one only when every slide was drawn and passed the checks below, so a failed export leaves the old pack as it was). The standard is the studio's own
 (`mkt/page.py`, `mkt/theme.css`) so a lesson's slides sit beside the campaign slides, and `scripts/figures/facebook.py` enforces it:
 
 | Rule | Value |

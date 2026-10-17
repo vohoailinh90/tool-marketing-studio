@@ -107,6 +107,9 @@ def build(paths: list[Path], out) -> int:
 
 def check(paths: list[Path], measure_text: bool = False) -> int:
     found = [f"icons: {p}" for p in icons.verify()]
+    if found:                                                # a figure cannot be drawn from a broken icon set: say so, do not try
+        print("\n".join(found), file=sys.stderr)
+        return 1
     loaded, bad = _load(paths)
     found.extend(bad)
     for spec in loaded:

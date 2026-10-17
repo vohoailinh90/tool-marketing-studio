@@ -11,8 +11,8 @@ mutations:
   replace: "        names = []\n        for (name, lesson_id), text in read_remote"
   test: tests.test_sd101_slides.ClaimTests.test_a_published_claim_keeps_every_other_session_off_the_lesson
 - label: a record copied into another branch is counted as that branch's claim
-  find: "elif holding.owner == name or holding.status == \"invalid\" or not holding.owner:"
-  replace: "elif True:"
+  find: "elif holding.owner == name or holding.problems:  # a malformed record blocks, whoever it names"
+  replace: "elif True:  # a malformed record blocks, whoever it names"
   test: tests.test_sd101_slides.ClaimTests.test_a_copy_of_a_claim_inherited_by_another_branch_is_not_a_claim
 - label: the later of two claims wins instead of the earlier
   find: '    return (-first.generation, first.claimed_at or "", first.owner) < (-second.generation, second.claimed_at or "", second.owner)'
@@ -83,8 +83,8 @@ mutations:
   replace: "    if state == \"stale\" and holding.owner != context.me and not take_stale:"
   test: tests.test_sd101_slides.LeaseTests.test_my_own_stale_claim_can_be_claimed_again_when_an_older_stale_claim_exists
 - label: an unreadable record on a feature branch is dropped because it names no owner
-  find: "elif holding.owner == name or holding.status == \"invalid\" or not holding.owner:"
-  replace: "elif holding.owner == name:"
+  find: "elif holding.owner == name or holding.problems:  # a malformed record blocks, whoever it names"
+  replace: "elif holding.owner == name:  # a malformed record blocks, whoever it names"
   test: tests.test_sd101_slides.ClaimTests.test_an_unreadable_record_on_a_feature_branch_blocks_its_lesson
 - label: a deck may have any number of slides from 4 to 12
   find: "SLIDE_COUNTS = range(8, 11)"
@@ -95,12 +95,12 @@ mutations:
   replace: "        if False:"
   test: tests.test_sd101_slides.FinishTests.test_finish_reports_an_earlier_claim_that_was_pushed_while_it_published
 - label: a record with a valid status but no owner is dropped from a feature branch
-  find: "or not holding.owner:  # a malformed record blocks"
-  replace: ":  # a malformed record blocks"
+  find: "or holding.problems:  # a malformed record blocks, whoever it names"
+  replace: "or (holding.problems and holding.status == \"invalid\"):  # a malformed record blocks, whoever it names"
   test: tests.test_sd101_slides.ClaimTests.test_a_parseable_record_without_an_owner_or_with_an_unknown_status_blocks_its_lesson
-- label: a record with an unknown status but another owner is dropped from a feature branch
-  find: "or holding.status == \"invalid\" or not holding.owner:  # a malformed record blocks"
-  replace: "or not holding.owner:  # a malformed record blocks"
+- label: a malformed record that names another owner is dropped from a feature branch
+  find: "or holding.problems:  # a malformed record blocks, whoever it names"
+  replace: "or (holding.problems and not holding.owner):  # a malformed record blocks, whoever it names"
   test: tests.test_sd101_slides.ClaimTests.test_a_parseable_record_without_an_owner_or_with_an_unknown_status_blocks_its_lesson
 - label: offline mode may publish the default branch
   find: "    if context.me in bases:"
@@ -115,15 +115,15 @@ mutations:
   replace: "holding.status == \"doing\" and holding.owner != context.me"
   test: tests.test_sd101_slides.FinishTests.test_finish_reports_an_earlier_claimant_that_finished_while_it_published
 - label: offline drops the records of other owners that the checkout holds
-  find: "            if holding.owner == context.me or context.offline or holding.status == \"invalid\" or not holding.owner:"
-  replace: "            if holding.owner == context.me or holding.status == \"invalid\" or not holding.owner:"
+  find: "            if holding.owner == context.me or context.offline or holding.problems:"
+  replace: "            if holding.owner == context.me or holding.problems:"
   test: tests.test_sd101_slides.FinishTests.test_offline_honours_the_records_a_checkout_already_holds
 - label: a key named twice in a record is silently resolved to the last one
   find: "        data = yaml.load(text, Loader=StrictLoader)  # noqa: S506 - StrictLoader is a SafeLoader"
   replace: "        data = yaml.safe_load(text)"
   test: tests.test_sd101_slides.FolderTests.test_a_key_named_twice_makes_the_record_unreadable
 - label: a malformed record in the checkout does not block the claim
-  find: " or context.offline or holding.status == \"invalid\" or not holding.owner:"
+  find: " or context.offline or holding.problems:"
   replace: " or context.offline:"
   test: tests.test_sd101_slides.ClaimTests.test_a_malformed_record_in_my_own_checkout_blocks_the_claim_and_is_left_alone
 - label: finish ignores an unreadable record that appeared while it published
@@ -190,3 +190,19 @@ mutations:
   find: " for item in (other.owner, *other.taken_from) if item != context.me})"
   replace: " for item in (other.owner, *other.taken_from)})"
   test: tests.test_sd101_slides.LeaseTests.test_an_owner_who_reclaims_a_lesson_taken_from_it_is_not_its_own_ancestor
+- label: a malformed record in the checkout that names another owner does not block the claim
+  find: " or context.offline or holding.problems:"
+  replace: " or context.offline or (holding.problems and not holding.owner):"
+  test: tests.test_sd101_slides.ClaimTests.test_a_malformed_record_in_my_checkout_blocks_the_claim_even_when_it_names_another_owner
+- label: a failed git add is ignored and the unchanged HEAD is pushed
+  find: "        if added.returncode != 0:"
+  replace: "        if False:"
+  test: tests.test_sd101_slides.FinishTests.test_a_staging_failure_stops_publishing_instead_of_pushing_nothing
+- label: a path that is nowhere in the repository is staged anyway
+  find: "               if (context.root / item).exists() or git_text(context.root, \"ls-files\", \"--\", item)]"
+  replace: "               if True]"
+  test: tests.test_sd101_slides.FinishTests.test_a_claim_that_was_never_pushed_can_be_released_and_pushed
+- label: a deleted record is not staged when it is gone from the disk
+  find: " or git_text(context.root, \"ls-files\", \"--\", item)]"
+  replace: "]"
+  test: tests.test_sd101_slides.FinishTests.test_release_gives_a_claim_back_but_never_a_finished_deck

@@ -435,7 +435,7 @@ def gather(context: Context, ids: list[str]) -> tuple[dict[str, list[Holding]], 
                 if holding.status == "doing" and holding.owner in names and holding.owner != base:
                     continue  # a claim in progress belongs to its owner's branch, which says whether it still stands
                 holdings[lesson_id].append(holding)
-            elif holding.owner == name or holding.status == "invalid" or not holding.owner:  # a malformed record blocks
+            elif holding.owner == name or holding.problems:  # a malformed record blocks, whoever it names
                 holdings[lesson_id].append(holding)
             else:
                 warnings.append(f"{where}: {lesson_id} names another owner ({holding.owner or 'none'}); not a claim")
@@ -444,7 +444,7 @@ def gather(context: Context, ids: list[str]) -> tuple[dict[str, list[Holding]], 
         if path.is_file():
             holding = _holding(lesson_id, parse_record(path.read_text(encoding="utf-8")), LOCAL)
             # offline the checkout is all there is to read; a malformed record blocks wherever it is
-            if holding.owner == context.me or context.offline or holding.status == "invalid" or not holding.owner:
+            if holding.owner == context.me or context.offline or holding.problems:
                 holdings[lesson_id].append(holding)
     return holdings, warnings
 
@@ -565,7 +565,14 @@ def publish(context: Context, paths: list[pathlib.Path], message: str) -> None:
     """Commit only these paths and push the work branch, never the default branch."""
     branch = require_branch(context)
     relative = [path.resolve().relative_to(context.root.resolve()).as_posix() for path in paths]
-    git(context.root, "add", "-A", "--", *relative, check=False)  # a record that was never committed has nothing to add
+    # a path that is neither on disk nor in the index (a claim that was never committed, then released) has nothing to
+    # stage; every other failure to stage stops here, before a push of the unchanged HEAD reports success
+    present = [item for item in relative
+               if (context.root / item).exists() or git_text(context.root, "ls-files", "--", item)]
+    if present:
+        added = git(context.root, "add", "-A", "--", *present, check=False)
+        if added.returncode != 0:
+            raise SlidesError(f"git add failed: {added.stderr.decode('utf-8', 'replace').strip()}")
     if git(context.root, "diff", "--cached", "--quiet", "--", *relative, check=False).returncode != 0:
         git(context.root, "commit", "--quiet", "--only", "-m", message, "--", *relative)
     last = ""

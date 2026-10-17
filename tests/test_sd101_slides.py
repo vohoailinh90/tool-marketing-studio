@@ -221,8 +221,9 @@ class ClaimTests(Sessions):
 
     def test_a_parseable_record_without_an_owner_or_with_an_unknown_status_blocks_its_lesson(self) -> None:
         for text in ("id: sd-01-001\nstatus: doing\nclaimed_at: 2026-10-17T08:00:00Z\nheartbeat_at: 2026-10-17T08:00:00Z\n",
-                     "id: sd-01-001\nstatus: banana\nowner: claude/y\n"):
-            with self.subTest(record=text.splitlines()[1]):
+                     "id: sd-01-001\nstatus: banana\nowner: claude/y\n",
+                     "id: sd-01-001\nstatus: doing\nowner: claude/z\nclaimed_at: 2026-10-17T08:00:00Z\n"):  # z is not x
+            with self.subTest(record=text.splitlines()[2]):
                 x, b = self.session("x"), self.session("b")
                 folder = x / "store" / "lessons" / "sd-01-001" / "slides"
                 folder.mkdir()
@@ -278,7 +279,9 @@ class ClaimTests(Sessions):
                 folder = x / "store" / "lessons" / "sd-01-001" / "slides"
                 if label == "bytes":
                     folder.mkdir()
-                    (folder / "deck.yaml").write_bytes(b"id: sd-01-001\nstatus: doing\nowner: claude/x\xff\n")
+                    (folder / "deck.yaml").write_bytes(  # otherwise valid: only the replaced byte would make its owner another one
+                        b"id: sd-01-001\nstatus: doing\nowner: claude/x\xff\nclaimed_at: 2026-10-17T08:00:00Z\n"
+                        b"heartbeat_at: 2026-10-17T08:00:00Z\n")
                 else:
                     (folder / "deck.yaml").mkdir(parents=True)
                     (folder / "deck.yaml" / "note.txt").write_text("not a record", encoding="utf-8")
@@ -311,6 +314,17 @@ class ClaimTests(Sessions):
         folder = b / "store" / "lessons" / "sd-01-001" / "slides"
         folder.mkdir()
         damaged = "<<<<<<< HEAD\nstatus: doing\n=======\nstatus: done\n>>>>>>> main\n"
+        (folder / "deck.yaml").write_text(damaged, encoding="utf-8")
+        code, _, err = self.run_in(b, "claim", "sd-01-001")
+        self.assertEqual(1, code)
+        self.assertIn("cannot be read", err)
+        self.assertEqual(damaged, (folder / "deck.yaml").read_text(encoding="utf-8"))
+
+    def test_a_malformed_record_in_my_checkout_blocks_the_claim_even_when_it_names_another_owner(self) -> None:
+        b = self.session("b")
+        folder = b / "store" / "lessons" / "sd-01-001" / "slides"
+        folder.mkdir()
+        damaged = "id: sd-01-001\nstatus: doing\nowner: claude/x\nclaimed_at: 2026-10-17T08:00:00Z\n"  # no heartbeat_at
         (folder / "deck.yaml").write_text(damaged, encoding="utf-8")
         code, _, err = self.run_in(b, "claim", "sd-01-001")
         self.assertEqual(1, code)
@@ -623,6 +637,24 @@ class FinishTests(Sessions):
         code, _, err = self.run_in(a, "exported", "sd-01-001")
         self.assertEqual(1, code)
         self.assertIn("not a finished deck", err)
+
+    def test_a_staging_failure_stops_publishing_instead_of_pushing_nothing(self) -> None:
+        a = self.session("a")
+        self.run_in(a, "claim", "sd-01-001", "--publish")
+        self.finish(a, "sd-01-001")
+        folder = a / "store" / "lessons" / "sd-01-001" / "slides"
+        pptx(folder / "sd-01-001.pptx")
+        for number in range(1, 11):
+            png(folder / f"{number:02d}.png")
+        lock = Path(git(a, "rev-parse", "--absolute-git-dir")) / "index.lock"
+        lock.write_text("", encoding="utf-8")  # the index is busy: git add cannot stage anything
+        code, _, err = self.run_in(a, "exported", "sd-01-001", "--publish")
+        self.assertEqual(2, code)
+        self.assertIn("git add failed", err)
+        lock.unlink()
+        self.assertNotIn("10.png", git(a, "ls-tree", "-r", "--name-only", "origin/claude/a"))
+        self.assertEqual(0, self.run_in(a, "exported", "sd-01-001", "--publish")[0], "once the index is free it publishes")
+        self.assertIn("10.png", git(a, "ls-tree", "-r", "--name-only", "origin/claude/a"))
 
     def test_release_gives_a_claim_back_but_never_a_finished_deck(self) -> None:
         a, b = self.session("a"), self.session("b")

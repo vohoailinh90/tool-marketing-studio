@@ -102,3 +102,15 @@ mutations:
   find: '    return bool(problems)'
   replace: '    return False'
   test: tests.test_figures.RobustnessTests.test_no_command_draws_from_a_broken_icon_set
+- label: an editor file nested too deep for the JSON reader raises a traceback
+  find: 'TypeError, RecursionError, OverflowError):'
+  replace: 'TypeError, OverflowError):'
+  test: tests.test_figures.RobustnessTests.test_an_editor_file_that_cannot_be_read_is_stale_not_a_traceback
+- label: an editor file holding a number too large for a float raises a traceback
+  find: 'TypeError, RecursionError, OverflowError):'
+  replace: 'TypeError, RecursionError):'
+  test: tests.test_figures.RobustnessTests.test_an_editor_file_that_cannot_be_read_is_stale_not_a_traceback
+- label: a scale given for svg output is silently ignored
+  find: 'args.format == "svg" and args.scale is not None:'
+  replace: 'args.format == "svg" and False:'
+  test: tests.test_figures.RobustnessTests.test_a_scale_for_svg_output_is_refused_not_ignored

@@ -142,7 +142,7 @@ def stored_scale(suffix: str, text: str) -> float | None:
         else:
             panel = next(e for e in json.loads(text)["elements"] if e["type"] == "rectangle")
             width = panel["width"] / (scenes.W - 2 * scenes.MARGIN) * scenes.W
-    except (AttributeError, ValueError, KeyError, StopIteration, TypeError):
+    except (AttributeError, ValueError, KeyError, StopIteration, TypeError, RecursionError, OverflowError):       # nested too deep, a number too large: not readable, so not current
         return None
     scale = round(width / scenes.W, 4)
     return scale if MIN_SCALE <= scale <= MAX_SCALE else None
@@ -288,6 +288,8 @@ def main(argv: list[str] | None = None) -> int:
     p = sub.add_parser("icons")
     p.add_argument("--verify", action="store_true")
     args = parser.parse_args(argv)
+    if args.command == "render" and args.format == "svg" and args.scale is not None:
+        parser.error("--scale applies to the editor formats (drawio, excalidraw, moda); an svg is always drawn at 320 px")
     try:
         return dispatch(args)
     except OSError as exc:                                     # an unwritable --out, a vanished file: a sentence, not a traceback

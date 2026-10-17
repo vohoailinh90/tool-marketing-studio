@@ -48,7 +48,7 @@ python3 -m scripts.figures preview SPEC               # a PNG in build/figures/ 
 python3 -m scripts.figures build [SPEC ...]           # write system-design-101/vi/diagrams/<id>-main.svg (the lesson must exist)
 python3 -m scripts.figures check [SPEC ...]           # specs valid, stored figures are exactly what the specs draw, store and phone rules, icons intact
 python3 -m scripts.figures check --browser            # ... and measure every line of text in Chromium
-python3 -m scripts.figures render SPEC --format drawio|excalidraw|moda|svg [--out FILE] [--scale 2]     # scale from 0.25 to 8 in steps of 0.05
+python3 -m scripts.figures render SPEC --format drawio|excalidraw|moda|svg [--out FILE] [--scale 2]     # scale (editor formats only; an svg is always 320 px) from 0.25 to 8 in steps of 0.05
 python3 -m scripts.figures facebook SPEC [--format portrait|square|landscape] [--out DIR]   # Facebook slides, see below
 ```
 

@@ -1187,6 +1187,34 @@ class RobustnessTests(unittest.TestCase):
                 self.assertIn("render it again", self.run_cli("check", target)[1], suffix)
                 beside.unlink()
 
+    def test_a_scale_for_svg_output_is_refused_not_ignored(self):
+        for argv in (("--format", "svg", "--scale", "2"), ("--scale", "2")):              # svg is also the default format
+            code, err = self.run_cli("render", str(POLLING), *argv)
+            self.assertEqual(code, 2, argv)
+            self.assertIn("--scale", err)
+            self.assertIn("editor formats", err)
+        for fmt in ("drawio", "excalidraw", "moda"):
+            self.assertEqual(self.run_cli("render", str(POLLING), "--format", fmt, "--scale", "2")[0], 0, fmt)
+        self.assertEqual(self.run_cli("render", str(POLLING), "--format", "svg")[0], 0)
+
+    def test_an_editor_file_that_cannot_be_read_is_stale_not_a_traceback(self):
+        deep = "[" * 100000 + "]" * 100000
+        huge = json.dumps({"elements": [{"type": "rectangle", "width": 10 ** 400}]})
+        hostile = {".excalidraw": (deep, huge, "[]", "{}", '{"elements": [1]}', '{"elements": [{"type": "rectangle", "width": "wide"}]}'),
+                   ".drawio": ('pageWidth="' + "9" * 400 + '"', 'pageWidth="1.2.3"', "pageWidth="),
+                   "-moda.xml": ("Moda canvas " + "9" * 400 + "x", "Moda canvas 1.2.3x", "Moda canvas")}
+        with tempfile.TemporaryDirectory() as tmp:
+            folder = Path(tmp)
+            (folder / "demo-polling.json").write_text(POLLING.read_text(encoding="utf-8"), encoding="utf-8")
+            for suffix, texts in hostile.items():
+                for content in texts:
+                    self.assertIsNone(cli.stored_scale(suffix, content), (suffix, content[:40]))
+                    (folder / f"demo-polling{suffix}").write_text(content, encoding="utf-8")
+                    code, err = self.run_cli("check", str(folder / "demo-polling.json"))
+                    self.assertEqual(code, 1, (suffix, content[:40]))
+                    self.assertIn("render it again", err)
+                (folder / f"demo-polling{suffix}").unlink()
+
     def test_a_tampered_icon_set_never_overwrites_a_stored_figure(self):
         with tempfile.TemporaryDirectory() as tmp:
             store = Path(tmp) / "system-design-101"

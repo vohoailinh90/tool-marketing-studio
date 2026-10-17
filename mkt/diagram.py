@@ -37,8 +37,12 @@ MAX_UPSCALE = 1.4       # a small diagram grows at most this much, so three boxe
 # the command stands alone on its line and its arguments follow on the next. Everything else a diagram can say is drawing.
 # `;` also separates statements (`A --> B; style A fill:#f00` restyles A), so lines are split at it by `split_statements`.
 # This is the early, friendly answer; the check in `RENDER_JS` on the drawn SVG is the barrier against a link, image or script.
-FORBIDDEN_STATEMENT = re.compile(r"^\s*(?:click|href|call|callback|links?|classDef|style|linkStyle|rect|box)(?:\s|$)|^\s*acc(?:Title|Descr)\b",
-                                 re.IGNORECASE)
+# Commands that every supported diagram reads (`click` makes a link, `style`/`classDef`/`linkStyle` restyle), and the ones that only a
+# sequence diagram reads (`link`/`links` menus, `box`/`rect` colour blocks): a flowchart may name a node `box` or `link`.
+GENERAL_COMMANDS = r"click|style|classDef|linkStyle"
+SEQUENCE_COMMANDS = r"links?|box|rect"
+FORBIDDEN_STATEMENT = re.compile(rf"^\s*(?:{GENERAL_COMMANDS})(?:\s|$)|^\s*acc(?:Title|Descr)\b", re.IGNORECASE)
+FORBIDDEN_SEQUENCE_STATEMENT = re.compile(rf"^\s*(?:{SEQUENCE_COMMANDS})(?:\s|$)", re.IGNORECASE)
 CLASS_STATEMENT = re.compile(r"^\s*class\s+\S+\s+(\w+)\s*$")
 TONE_SUFFIX = re.compile(r":::\s*(\w+)")
 # `<` opens HTML when a letter, `/` or `!` follows; arrows (`<-->`, `<<->>`, `<|`) never do. `<br>` is a line break.
@@ -88,16 +92,20 @@ def source_problems(source) -> list[str]:
     statements = [line for line in lines if line.strip() and not line.strip().startswith("%%")]
     if not statements:
         return problems + [f"diagram has no content; start with one of: {', '.join(TYPES)}"]
-    first = statements[0].split()
-    if first[0] not in TYPES:
-        problems.append(f"diagram must start with one of: {', '.join(TYPES)} (got '{first[0]}')")
+    # The header is read on the source exactly as Mermaid will get it: a fullwidth `ｆｌｏｗｃｈａｒｔ` normalises to a type
+    # name here but is no diagram type there. The normalised text is for catching disguised commands.
+    raw = [line for line in source.splitlines() if line.strip() and not line.strip().startswith("%%")]
+    kind = raw[0].split()[0] if raw else ""
+    if kind not in TYPES:
+        problems.append(f"diagram must start with one of: {', '.join(TYPES)} (got '{kind}')")
     if FORBIDDEN_TEXT.search(text):
         problems.append("diagram contains a directive, script, URL scheme or @{ } node attribute (it can load an image) that is not allowed")
     if HTML_TAG.search(STATE_MARKER.sub(" ", LINE_BREAK.sub(" ", text))):
         problems.append("diagram labels cannot contain HTML (only <br/> for a line break)")
     parts = [part for line in statements for part in split_statements(line)]
+    commands = [FORBIDDEN_STATEMENT] + ([FORBIDDEN_SEQUENCE_STATEMENT] if kind == "sequenceDiagram" else [])
     for statement in parts:
-        if FORBIDDEN_STATEMENT.match(statement):
+        if any(pattern.match(statement) for pattern in commands):
             problems.append(f"'{statement.split()[0]}' is not allowed in a diagram "
                             "(no links, clicks, colour blocks or CSS; highlight with :::hl, :::ok, :::bad, :::warn or :::muted)")
             break

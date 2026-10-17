@@ -37,7 +37,6 @@ class SourceTests(unittest.TestCase):
     def test_links_clicks_directives_and_css_are_refused(self):
         refused = {
             "click": 'flowchart TD\n  A --> B\n  click A href "x" _blank',
-            "href": 'flowchart TD\n  A --> B\n  href A "x"',
             "link in a sequence": 'sequenceDiagram\n  participant A\n  link A: Docs @ x',
             "style": "flowchart TD\n  A --> B\n  style A fill:#f00",
             "classDef": "flowchart TD\n  A --> B\n  classDef big fill:#f00",
@@ -76,6 +75,15 @@ class SourceTests(unittest.TestCase):
                        'flowchart TD\n  A["a; b"]; style A fill:#f00',
                        'flowchart TD\n  A[b]; STYLE A fill:#f00'):
             self.assertTrue(self.problems(source), source)
+
+    def test_the_diagram_header_is_read_as_mermaid_will_get_it(self):
+        for source in ("ｆｌｏｗｃｈａｒｔ TD\n  A --> B", "ｓｅｑｕｅｎｃｅDiagram\n  A->>B: hi"):
+            self.assertTrue(any("must start with" in m for m in self.problems(source)), source)
+
+    def test_a_flowchart_may_name_a_node_like_a_command_of_another_diagram(self):
+        for name in ("box", "rect", "link", "links", "callback"):          # names Mermaid itself draws as nodes
+            self.assertEqual(self.problems(f"flowchart TD\n  {name} --> A"), [], name)
+            self.assertEqual(self.problems(f"stateDiagram-v2\n  [*] --> {name}\n  {name} --> [*]"), [], name)
 
     def test_a_fullwidth_spelling_is_refused_too(self):
         self.assertTrue(self.problems("flowchart TD\n  A --> B\n  ｃｌｉｃｋ A href \"x\""))

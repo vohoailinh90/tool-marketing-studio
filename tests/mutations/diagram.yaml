@@ -11,8 +11,8 @@ mutations:
   replace: TYPES = ("flowchart", "graph", "sequenceDiagram", "stateDiagram-v2", "classDiagram")
   test: tests.test_diagram.SourceTests.test_it_must_start_with_a_supported_type
 - label: a click statement is allowed
-  find: (?:click|href|call|callback|links?|classDef|style|linkStyle|rect|box)
-  replace: (?:href|call|callback|links?|classDef|style|linkStyle|rect|box)
+  find: GENERAL_COMMANDS = r"click|style|classDef|linkStyle"
+  replace: GENERAL_COMMANDS = r"style|classDef|linkStyle"
   test: tests.test_diagram.SourceTests.test_links_clicks_directives_and_css_are_refused
 - label: an init directive is allowed
   find: '|&#|%%\{|@\s*\{"'
@@ -59,12 +59,12 @@ mutations:
   replace: '    if HTML_TAG.search(LINE_BREAK.sub(" ", text)):'
   test: tests.test_diagram.SourceTests.test_state_diagram_choice_fork_and_join_are_not_html
 - label: a command in capitals or split over two lines is allowed
-  find: "|^\\s*acc(?:Title|Descr)\\b\",\n                                 re.IGNORECASE)"
+  find: '|^\s*acc(?:Title|Descr)\b", re.IGNORECASE)'
   replace: '|^\s*acc(?:Title|Descr)\b")'
   test: tests.test_diagram.SourceTests.test_links_clicks_directives_and_css_are_refused
 - label: a node named like a keyword is refused
-  find: links?|classDef|style|linkStyle|rect|box)(?:\s|$)
-  replace: links?|classDef|style|linkStyle|rect|box)
+  find: (?:{GENERAL_COMMANDS})(?:\s|$)
+  replace: (?:{GENERAL_COMMANDS})
   test: tests.test_diagram.SourceTests.test_a_node_may_be_named_like_a_keyword_when_it_is_not_a_statement
 - label: a command after a semicolon is not looked for
   find: '    parts = [part for line in statements for part in split_statements(line)]'
@@ -83,6 +83,14 @@ mutations:
   replace: '        if char == ";" and depth == 0'
   test: tests.test_diagram.SourceTests.test_a_semicolon_inside_a_label_or_an_entity_code_is_not_read_as_a_command
 - label: a colour block (rect, box) is allowed in a sequence diagram
-  find: classDef|style|linkStyle|rect|box)(?:\s|$)
-  replace: classDef|style|linkStyle)(?:\s|$)
+  find: SEQUENCE_COMMANDS = r"links?|box|rect"
+  replace: SEQUENCE_COMMANDS = r"links?"
   test: tests.test_diagram.SourceTests.test_links_clicks_directives_and_css_are_refused
+- label: the sequence-only commands are refused in every diagram type
+  find: ([FORBIDDEN_SEQUENCE_STATEMENT] if kind == "sequenceDiagram" else [])
+  replace: '[FORBIDDEN_SEQUENCE_STATEMENT]'
+  test: tests.test_diagram.SourceTests.test_a_flowchart_may_name_a_node_like_a_command_of_another_diagram
+- label: the diagram header is read on the normalised text
+  find: '    raw = [line for line in source.splitlines() if'
+  replace: '    raw = [line for line in text.splitlines() if'
+  test: tests.test_diagram.SourceTests.test_the_diagram_header_is_read_as_mermaid_will_get_it

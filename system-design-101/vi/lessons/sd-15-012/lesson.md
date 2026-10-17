@@ -17,7 +17,7 @@
 
 ## Đọc hình
 
-Mọi phép thử chạy ngày 2026-10-16 với PostgreSQL 16.15, SQLite 3.45.1 và Python 3.13.16 trên một máy (cách tự thử ở phần "Xem sâu hơn"). Các hệ khác, hoặc phiên bản khác, có thể cho kết quả khác.
+Mọi phép thử chạy ngày 2026-10-16 với PostgreSQL 16.15, SQLite 3.45.1 và Python 3.13.16 trên một máy (phần "Xem sâu hơn" có đoạn mã tái hiện phần SQLite và vài lệnh PostgreSQL để tự thử; các phép thử PostgreSQL còn lại, như `FOR UPDATE` với hai phiên, chỉ được mô tả). Các hệ khác, hoặc phiên bản khác, có thể cho kết quả khác.
 
 1. **Nhóm theo việc làm, không theo từ đầu câu.** Năm nhóm quen thuộc là cách gọi để dạy: sổ tay PostgreSQL tự chia thành các chương "Data Definition", "Data Manipulation" và "Queries", và không dùng nhãn DQL, DCL hay TCL ở đó. Từ đầu câu cũng không đủ để biết một lệnh làm gì. Trong PostgreSQL, `SELECT * INTO copy_of_orders FROM orders` tạo ra một bảng mới và sao chép 3 dòng vào đó (về chức năng giống `CREATE TABLE AS`). `SELECT nextval('ord_seq')` đọc ra một số nhưng làm đổi trạng thái của bộ đếm.
 2. **Hoàn tác được không?** Mở giao dịch bằng `BEGIN`, làm vài việc, rồi `ROLLBACK`. Trong PostgreSQL, tạo bảng, thêm cột, xóa cả bảng (DDL), `TRUNCATE` và `GRANT` (DCL) đều được hoàn tác: sau `ROLLBACK`, bảng tạm không còn, bảng `orders` vẫn đủ 3 dòng và không có cột mới, quyền đọc vẫn chưa được cấp. Riêng bộ đếm thì không: `nextval` trả 1 trong giao dịch bị hủy, và lần gọi kế tiếp ra 2. Tài liệu của PostgreSQL cũng ghi bộ đếm không hoàn tác được. SQLite cũng hoàn tác được các lệnh DDL trong phép thử. Đừng suy ra mọi hệ làm vậy: bài chưa thử MySQL, Oracle hay SQL Server, và tài liệu của chúng chưa mở được; hãy tự thử trên hệ bạn dùng trước khi dựa vào việc "chạy thử rồi hoàn tác" cho DDL.
@@ -43,7 +43,7 @@ Trong phép thử riêng cho `ALTER TABLE ... ADD COLUMN`, PostgreSQL thấy c�
 <details>
 <summary>Xem sâu hơn: thang bài tập chạy được, và lệnh tự thử</summary>
 
-Đoạn mã dưới đây dùng SQLite có sẵn trong Python, không cần cài gì thêm, và chạy các bậc từ 2 đến 5 của thang bên dưới trên bảng ba dòng `orders` (`an` 10, `binh` 20, `an` 30) cùng bảng `customers`.
+Đoạn mã dưới đây dùng SQLite có sẵn trong Python, không cần cài gì thêm, và chạy các bậc từ 2 đến 5 của thang bên dưới, cộng một lần hoàn tác lệnh xóa bảng của bậc 6, trên bảng ba dòng `orders` (`an` 10, `binh` 20, `an` 30) cùng bảng `customers`.
 
 ```python
 import sqlite3
@@ -59,11 +59,18 @@ q("select customer, count(*), sum(amount) from orders group by customer order by
 q("select o.id, c.city from orders o join customers c on c.name = o.customer order by o.id")
 q("select c.name, count(o.id) from customers c left join orders o on o.customer = c.name group by c.name order by c.name")
 q("select id, amount, sum(amount) over (order by id) from orders order by id")
+c.execute("begin")
+c.execute("insert into orders values (4,'chi',40)")
+c.execute("update orders set amount = amount * 2 where customer = 'an'")
+c.execute("delete from orders where customer = 'binh'")
+q("select id, customer, amount from orders order by id")
+c.execute("rollback")
+q("select id, customer, amount from orders order by id")
 c.execute("begin"); c.execute("drop table orders"); c.execute("rollback")
 q("select count(*) from orders")
 ```
 
-Kết quả: `[('an', 2, 40.0), ('binh', 1, 20.0)]`; `[(1, 'Hà Nội'), (2, 'Huế'), (3, 'Hà Nội')]`; `[('an', 2), ('binh', 1), ('chi', 0)]` (khách `chi` chưa có đơn vẫn xuất hiện nhờ `LEFT JOIN`); `[(1, 10.0, 10.0), (2, 20.0, 30.0), (3, 30.0, 60.0)]` (tổng chạy dồn); và kết quả cuối `[(3,)]` cho biết sau `ROLLBACK` bảng `orders` vẫn còn 3 dòng.
+Kết quả: `[('an', 2, 40.0), ('binh', 1, 20.0)]`; `[(1, 'Hà Nội'), (2, 'Huế'), (3, 'Hà Nội')]`; `[('an', 2), ('binh', 1), ('chi', 0)]` (khách `chi` chưa có đơn vẫn xuất hiện nhờ `LEFT JOIN`); `[(1, 10.0, 10.0), (2, 20.0, 30.0), (3, 30.0, 60.0)]` (tổng chạy dồn); bên trong giao dịch sau khi thêm, sửa và xóa, `[(1, 'an', 20.0), (3, 'an', 60.0), (4, 'chi', 40.0)]`; sau `ROLLBACK`, `[(1, 'an', 10.0), (2, 'binh', 20.0), (3, 'an', 30.0)]` (ba dòng ban đầu nguyên vẹn); và kết quả cuối `[(3,)]` cho biết sau khi hoàn tác lệnh xóa bảng, bảng `orders` vẫn còn 3 dòng.
 
 Thang đề xuất: (1) `SELECT`, `WHERE`, `ORDER BY`; (2) `GROUP BY` và hàm tổng hợp; (3) `JOIN`, kể cả `LEFT JOIN`; (4) hàm cửa sổ; (5) `INSERT`, `UPDATE`, `DELETE` trong giao dịch với `ROLLBACK`; (6) tạo bảng, ràng buộc, chỉ mục và đọc kế hoạch. Người phân tích dữ liệu có thể dừng sâu ở bậc 1–4; người làm backend cần thêm bậc 5–6. Đây là gợi ý của người biên soạn, không phải tiêu chuẩn.
 

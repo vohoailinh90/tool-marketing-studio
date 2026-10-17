@@ -31,7 +31,7 @@
 
 ## Đọc hình
 
-Cổng là một số 16 bit (0 đến 65535). Mọi phép đo dưới đây chạy ngày 2026-10-16 trên Linux nhân 6.18 với Python 3.13 (cách thử ở phần "Xem sâu hơn"); máy khác, nhân khác hay cấu hình khác có thể cho số khác.
+Cổng là một số 16 bit (0 đến 65535). Mọi phép đo dưới đây chạy ngày 2026-10-16 trên Linux nhân 6.18 với Python 3.13 (đoạn mã ở phần "Xem sâu hơn" tái hiện được xung đột bind, tên dịch vụ và dải cổng tạm; các phép đo còn lại, như cổng đặc quyền với người dùng thường, UDP và máy chủ web trên cổng 3306, chỉ được mô tả, không kèm mã); máy khác, nhân khác hay cấu hình khác có thể cho số khác.
 
 1. **Cổng cộng giao thức là một chỗ nhận.** Mở hai socket TCP trên cùng địa chỉ và cùng số cổng thì socket thứ hai bị từ chối với lỗi `EADDRINUSE` (địa chỉ đang được dùng). Nhưng một socket UDP lấy được đúng số cổng đó khi TCP đang giữ. Vì vậy "cổng 53" của DNS có thể có mặt ở cả TCP lẫn UDP. Ghi nhớ: khi nói "cổng 53", nên nói cả giao thức vận chuyển.
 2. **Cổng dưới 1024 cần quyền.** Người dùng thường (`nobody`) bind cổng 80 và 1023 đều bị từ chối (`EACCES`), còn cổng 1024 thì được; tài khoản root bind được cả ba. Tài liệu nhân Linux ghi ngưỡng mặc định là 1024 (`ip_unprivileged_port_start`) và có thể đổi theo từng không gian tên mạng. Hệ quả: chương trình muốn nghe ở cổng 80 hoặc 443 phải có quyền (hoặc được cấp riêng quyền bind cổng thấp), còn chương trình thường tự chọn cổng từ 1024 trở lên.

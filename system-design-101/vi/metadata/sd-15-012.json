@@ -77,7 +77,7 @@
       "claim_vi": "Trong PostgreSQL 16.15, trong một giao dịch: create table, alter table add column, drop table, truncate và grant đều bị hoàn tác bởi rollback; SQLite 3.45.1 hoàn tác được create/alter/drop table.",
       "source": "https://github.com/postgres/postgres/blob/master/doc/src/sgml/ref/rollback.sgml",
       "section": "ROLLBACK",
-      "verified_by": "Chạy ngày 2026-10-16: PostgreSQL create+alter+drop rồi rollback: bảng tạm không tồn tại, orders còn 3 dòng, không có cột mới; alter ... add column riêng: 1 cột trong giao dịch, 0 sau rollback; truncate: 0 dòng trong giao dịch, 3 sau rollback; grant: has_table_privilege false sau rollback, true sau commit. SQLite (chế độ isolation_level=None): cùng kết quả cho create/alter/drop. Chưa thử MySQL, Oracle, SQL Server, MariaDB."
+      "verified_by": "Chạy ngày 2026-10-16: PostgreSQL create+alter+drop rồi rollback: bảng tạm không tồn tại, orders còn 3 dòng, không có cột mới; alter ... add column riêng: 1 cột trong giao dịch, 0 sau rollback; truncate: 0 dòng trong giao dịch, 3 sau rollback; grant: has_table_privilege false sau rollback, true sau commit. SQLite (chế độ isolation_level=None): cùng kết quả cho create/alter/drop. Chưa thử MySQL, Oracle, SQL Server, MariaDB. Đoạn mã tự thử trong bài (SQLite) cũng chạy thêm một giao dịch thêm, sửa, xóa rồi rollback: bên trong thấy 3 dòng đã đổi, sau rollback ba dòng ban đầu nguyên vẹn (chạy ngày 2026-10-17)."
     },
     {
       "id": "sequence-not-rolled-back",

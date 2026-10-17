@@ -525,7 +525,7 @@ class WorkflowTests(unittest.TestCase):
         job = workflow()["jobs"]["preview"]
         self.assertIn("github.event.pull_request.head.repo.full_name == github.repository", job["if"])
         self.assertIn("startsWith(github.event.pull_request.head.ref, 'radar/')", job["if"])
-        self.assertIn("vars.CI_RUNNER || 'self-hosted'", job["runs-on"])
+        self.assertIn("vars.CI_RUNNER || 'ubuntu-latest'", job["runs-on"])
 
     def test_an_edit_runs_the_preview_only_when_it_changed_the_base_branch(self):
         job = workflow()["jobs"]["preview"]

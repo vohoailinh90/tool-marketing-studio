@@ -114,8 +114,8 @@ Chưa có dữ liệu thì trang mở thẳng vào một lượt **chạy mẫu*
 `scripts/route.py --record`. Server chỉ nghe `127.0.0.1`. Cách dùng, nguồn từng con số và giới hạn:
 `docs/office-dashboard.md`.
 
-**CI:** repo private nên phút GitHub-hosted bị tính phí; nếu job CI fail ngay không có log, đăng ký runner
-VPS cho repo này và đặt biến `CI_RUNNER` (hướng dẫn trong `docs/agent-team.md`).
+**CI:** repo public nên CI chạy mặc định trên runner GitHub-hosted (`ubuntu-latest`), không tốn phút; muốn dùng
+runner riêng (ví dụ VPS) thì đặt biến `CI_RUNNER` (hướng dẫn và rủi ro trong `docs/agent-team.md`).
 Kiến trúc: `docs/architecture.md`. Kết nối Facebook: `docs/facebook-page.md`.
 
 ## System Design tiếng Việt

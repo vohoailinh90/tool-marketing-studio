@@ -74,3 +74,7 @@ mutations:
   find: "except (OSError, ValueError, KeyError, TypeError, AttributeError, urllib.error.URLError) as error:"
   replace: "except (OSError, KeyError, TypeError, AttributeError, urllib.error.URLError) as error:"
   test: tests.test_sd101_source_distance.SurveyTests.test_a_metadata_file_that_is_not_json_is_reported_not_raised
+- label: the host and evidence columns are built outside the error boundary of the survey
+  find: '            row.update({"independent_hosts": len(independent_hosts(metadata)), "own_evidence": own_evidence(metadata)})'
+  replace: '            pass\n        else:\n            row.update({"independent_hosts": len(independent_hosts(metadata)), "own_evidence": own_evidence(metadata)})'
+  test: tests.test_sd101_source_distance.SurveyTests.test_metadata_of_the_wrong_shape_is_reported_for_that_lesson_only

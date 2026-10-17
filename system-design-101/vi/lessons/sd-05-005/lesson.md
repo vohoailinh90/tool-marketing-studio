@@ -40,11 +40,11 @@ Bạn có ba tuần, đã giải nhiều bài thuật toán, và vòng sắp t�
 Tự kiểm một kho tài liệu có liên kết giới thiệu hay không (thay đường dẫn bằng kho bạn quan tâm):
 
 ```sh
-curl -s https://raw.githubusercontent.com/donnemartin/system-design-primer/master/README.md \
-  | grep -o -E '[?&](aff|fpr|afftrack|ref)=[^) &"]*' | sort | uniq -c
+curl -fsS -o readme.md https://raw.githubusercontent.com/donnemartin/system-design-primer/master/README.md \
+  && grep -o -E '[?&](aff|fpr|afftrack|ref)=[^) &"]*' readme.md | wc -l
 ```
 
-Lệnh trên không in gì với README của Primer ngày thử. Với README của Tech Interview Handbook, cùng lệnh in 4 lần `afftrack=`, 4 lần `?aff=kJSIoU` và 1 lần `?fpr=techinterviewhandbook`. Nhớ rằng nội dung của các nhánh chính đổi theo thời gian, nên kết quả của bạn có thể khác.
+Lệnh trên in `0` với README của Primer ngày thử. Đổi đường dẫn thành `https://raw.githubusercontent.com/yangshun/tech-interview-handbook/main/README.md` thì in `9`: 4 lần `afftrack=`, 4 lần `?aff=kJSIoU` và 1 lần `?fpr=techinterviewhandbook`. Tải bằng `curl -fsS` để một lần tải lỗi (không có mạng, sai đường dẫn) báo lỗi và không in số nào, nhờ đó `0` thật khác với tải hỏng; không dùng `curl -s` trần cùng một đường ống vì khi đó cả hai trường hợp đều không in gì. Nhớ rằng nội dung của các nhánh chính đổi theo thời gian, nên kết quả của bạn có thể khác.
 
 Bài nguồn liệt kê ba mục cho mỗi mảng trong sáu mảng (tổng cộng 18 mục), gồm sách, khóa học, kênh video, nền tảng phỏng vấn thử và trang tuyển dụng. Danh sách đầy đủ nằm ở bài nguồn (liên kết ở phần cuối); bài này chỉ phân tích những mục đã nêu ở trên và không kiểm các mục còn lại.
 

@@ -257,13 +257,12 @@ def survey(store: pathlib.Path, cache_dir: pathlib.Path, offline: bool) -> tuple
         try:
             metadata = json.loads(meta_path.read_text(encoding="utf-8"))
             source = fetch_source(metadata["source_snapshot"], cache_dir, offline)
-            numbers = distance(source, lesson.read_text(encoding="utf-8"))
+            row = {"id": lesson_id, "title_vi": metadata.get("title_vi"),
+                   **distance(source, lesson.read_text(encoding="utf-8"))}
+            row.update({"independent_hosts": len(independent_hosts(metadata)), "own_evidence": own_evidence(metadata)})
         except (OSError, ValueError, KeyError, TypeError, AttributeError, urllib.error.URLError) as error:
             problems.append(f"{lesson_id}: {type(error).__name__}: {error}")
             continue
-        row = {"id": lesson_id, "title_vi": metadata.get("title_vi"), **numbers}
-        hosts = independent_hosts(metadata)
-        row.update({"independent_hosts": len(hosts), "own_evidence": own_evidence(metadata)})
         rows.append(row)
     rows.sort(key=lambda row: row["closeness"], reverse=True)
     return rows, problems

@@ -245,6 +245,17 @@ class SurveyTests(unittest.TestCase):
         self.assertEqual(len(problems), 1)
         self.assertIn("sd-01-002", problems[0])
 
+    def test_metadata_of_the_wrong_shape_is_reported_for_that_lesson_only(self) -> None:
+        path = self.store / "metadata" / "sd-01-002.json"
+        for broken in ({"claims": None}, {"claims": [], "verification": ["x"]}):
+            meta = {"title_vi": "x", "source_snapshot": snapshot_for(SOURCE.encode()), **broken}
+            path.write_text(json.dumps(meta), encoding="utf-8")
+            with self.subTest(broken=broken):
+                rows, problems = distance_tool.survey(self.store, self.cache, offline=True)
+                self.assertEqual([row["id"] for row in rows], ["sd-01-001"])
+                self.assertEqual(len(problems), 1)
+                self.assertIn("sd-01-002", problems[0])
+
     def test_a_cache_inside_the_repository_is_refused(self) -> None:
         with contextlib.redirect_stderr(io.StringIO()), self.assertRaises(SystemExit) as raised:
             distance_tool.main(["--store", str(self.store), "--cache-dir", str(distance_tool.ROOT / "source-cache"), "--offline"])

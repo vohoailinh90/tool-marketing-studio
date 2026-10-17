@@ -91,7 +91,7 @@
       "claim_vi": "README của Tech Interview Handbook có 9 lần xuất hiện tham số kiểu mã giới thiệu (aff=, fpr=, afftrack=), trang hướng dẫn phỏng vấn hành vi có 5 (aff=, ref=), README của Primer không có lần nào; bài không biết có khoản thanh toán nào gắn với các tham số đó.",
       "source": "https://github.com/yangshun/tech-interview-handbook",
       "section": "README; behavioral-interview",
-      "verified_by": "Chạy grep -o -E '[?&](aff|fpr|afftrack|ref)=[^) &\"]*' trên ba tệp tải về ngày 2026-10-16: README Handbook 4 afftrack= + 4 aff= + 1 fpr=; trang hành vi 1 aff= + 4 ref=; README Primer 0. Chạy lại bằng curl trực tiếp từ README hai kho: kết quả giống. Không biết tham số có gắn thanh toán hay không."
+      "verified_by": "Chạy grep -o -E '[?&](aff|fpr|afftrack|ref)=[^) &\"]*' trên ba tệp tải về ngày 2026-10-16: README Handbook 4 afftrack= + 4 aff= + 1 fpr=; trang hành vi 1 aff= + 4 ref=; README Primer 0. Lệnh trong bài (curl -fsS -o tệp rồi grep ... | wc -l) chạy lại ngày 2026-10-17: Primer in 0, Handbook in 9; với đường dẫn không tồn tại curl thoát mã 22 và không in số nào. Không biết tham số có gắn thanh toán hay không."
     },
     {
       "id": "handbook-recommends-courses",

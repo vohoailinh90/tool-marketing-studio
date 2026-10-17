@@ -1010,15 +1010,85 @@ class FolderTests(unittest.TestCase):
             "bytes after the stream": (png_of(b"\x00" * lines, tail=b"junk"),
                                        "image data continues after the end of its stream"),
             "a colour type that does not exist": (png_of(b"\x00" * lines, colour=5), "IHDR does not describe an image"),
-            "an interlaced image within its bound": (png_of(b"\x00" * 900, interlace=1), None),
+            "an interlaced image, exactly": (png_of(b"\x00" * 798, interlace=1), None),  # seven passes of 16x16 RGB
+            "an interlaced image one byte short": (png_of(b"\x00" * 797, interlace=1),
+                                                   "image data is shorter than the header describes"),
+            "an interlaced image one byte over": (png_of(b"\x00" * 799, interlace=1),
+                                                  "image data inflates to more than the header describes"),
             "an interlaced image beyond its bound": (png_of(b"\x00" * 10_000, interlace=1),
                                                      "image data inflates to more than the header describes"),
+            "an interlaced image with no scanlines": (png_of(b"", width=1920, height=1080, interlace=1),
+                                                      "image data is shorter than the header describes"),
+            "an interlace method that does not exist": (png_of(b"\x00" * lines, interlace=2),
+                                                        "IHDR does not describe an image"),
         }
         for label, (data, reason) in cases.items():
             with self.subTest(label):
                 path = self.dir / "01.png"
                 path.write_bytes(data)
                 self.assertEqual(reason, slides.png_damage(path))
+
+    def test_the_scanlines_of_an_interlaced_image_are_counted_pass_by_pass(self) -> None:
+        # the published Adam7 pattern: the pass (1 to 7) every pixel of an 8x8 tile belongs to
+        pattern = ("16462646", "77777777", "56565656", "77777777", "34643464", "77777777", "56565656", "77777777")
+
+        def reference(width: int, height: int, bits: int) -> int:
+            lines: dict[str, dict[int, int]] = {}
+            for y in range(height):
+                for x in range(width):
+                    number = pattern[y % 8][x % 8]
+                    lines.setdefault(number, {}).setdefault(y, 0)
+                    lines[number][y] += 1
+            return sum(1 + (count * bits + 7) // 8 for rows in lines.values() for count in rows.values())
+
+        self.assertEqual(798, slides.png_scanlines(16, 16, 24, 1))
+        self.assertEqual(16 * 49, slides.png_scanlines(16, 16, 24, 0))
+        for width in (1, 2, 3, 5, 8, 9, 16, 17):
+            for height in (1, 2, 4, 5, 8, 9, 17):
+                for bits in (1, 2, 4, 8, 16, 24, 32, 64):
+                    with self.subTest(width=width, height=height, bits=bits):
+                        self.assertEqual(reference(width, height, bits), slides.png_scanlines(width, height, bits, 1))
+
+    def test_a_pptx_with_a_part_that_cannot_be_unpacked_is_reported_not_raised(self) -> None:
+        import zipfile
+
+        def patched(change, payload: bytes = b"<x/>" * 50, method: int = zipfile.ZIP_DEFLATED) -> bytes:
+            archive = io.BytesIO()
+            with zipfile.ZipFile(archive, "w", method) as zipped:
+                for part in slides.PPTX_PARTS:
+                    zipped.writestr(part, payload)
+            raw = bytearray(archive.getvalue())
+            change(raw)
+            return bytes(raw)
+
+        def field(raw: bytearray, local: int, central: int, value: int) -> None:  # one 16-bit header field of the first part
+            for signature, offset in ((b"PK\x03\x04", local), (b"PK\x01\x02", central)):
+                at = raw.find(signature) + offset
+                raw[at:at + 2] = struct.pack("<H", value)
+
+        def damaged_data(raw: bytearray) -> None:
+            at = raw.find(b"PK\x03\x04")
+            name, extra = struct.unpack("<HH", raw[at + 26:at + 30])
+            raw[at + 30 + name + extra:at + 34 + name + extra] = b"\xff\xff\xff\xff"
+
+        reason = "a part cannot be read (unsupported compression, encryption or damaged data)"
+        self.write(exports="done")
+        self.exports()
+        junk = b"\x09\x04\x05\x00" + b"\xff" * 40  # stored as it is, then declared to be compressed in another format
+        cases = {
+            "a compression method nobody supports": (lambda raw: field(raw, 8, 10, 99), {}),
+            "an encrypted part": (lambda raw: field(raw, 6, 8, 1), {}),
+            "a part whose data does not inflate": (damaged_data, {}),
+            "a part in a format whose reader raises its own error (lzma)":
+                (lambda raw: field(raw, 8, 10, 14), {"payload": junk, "method": zipfile.ZIP_STORED}),
+            "a part in a format whose reader raises an OSError (bzip2)":
+                (lambda raw: field(raw, 8, 10, 12), {"payload": junk, "method": zipfile.ZIP_STORED}),
+        }
+        for label, (change, options) in cases.items():
+            with self.subTest(label):
+                (self.dir / "sd-01-001.pptx").write_bytes(patched(change, **options))
+                self.assertEqual(reason, slides.pptx_damage(self.dir / "sd-01-001.pptx"))
+                self.assertEqual([f"sd-01-001.pptx is not a PowerPoint file: {reason}"], self.problems())
 
     def test_the_stream_is_never_inflated_past_its_bound_in_one_piece(self) -> None:
         path = self.dir / "01.png"

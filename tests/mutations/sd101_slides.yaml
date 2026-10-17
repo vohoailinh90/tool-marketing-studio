@@ -243,19 +243,19 @@ mutations:
   replace: "        return self.record_path(lesson_id).resolve().relative_to(self.root.resolve()).as_posix()"
   test: tests.test_sd101_slides.FinishTests.test_a_symbolic_link_to_a_folder_outside_the_repository_is_refused_not_followed
 - label: the image stream is inflated without a bound
-  find: "                    out = inflater.decompress(piece, limit + 1 - produced)"
+  find: "                    out = inflater.decompress(piece, expected + 1 - produced)"
   replace: "                    out = inflater.decompress(piece)"
   test: tests.test_sd101_slides.FolderTests.test_the_stream_is_never_inflated_past_its_bound_in_one_piece
 - label: an image stream that inflates to more than its header describes passes
-  find: "                    if produced > limit:"
+  find: "                    if produced > expected:"
   replace: "                    if False:"
   test: tests.test_sd101_slides.FolderTests.test_the_inflated_image_data_is_bounded_by_what_the_header_describes
-- label: an interlaced image is bounded like a plain one
-  find: "            limit = 2 * lines + 16 * row if interlace else lines"
-  replace: "            limit = lines"
+- label: an interlaced image is measured like a plain one
+  find: "    for x0, y0, dx, dy in (ADAM7 if interlace else ((0, 0, 1, 1),)):"
+  replace: "    for x0, y0, dx, dy in ((0, 0, 1, 1),):"
   test: tests.test_sd101_slides.FolderTests.test_the_inflated_image_data_is_bounded_by_what_the_header_describes
 - label: an image stream shorter than its header describes passes
-  find: "    if expected and produced != expected:"
+  find: "    if produced != expected:"
   replace: "    if False:"
   test: tests.test_sd101_slides.FolderTests.test_the_inflated_image_data_is_bounded_by_what_the_header_describes
 - label: bytes after the end of the image stream pass
@@ -263,9 +263,21 @@ mutations:
   replace: "    if False:"
   test: tests.test_sd101_slides.FolderTests.test_the_inflated_image_data_is_bounded_by_what_the_header_describes
 - label: a header that describes no image passes
-  find: "            if not (width and height and colour in PNG_CHANNELS and depth in (1, 2, 4, 8, 16)):"
+  find: "            if not (width and height and colour in PNG_CHANNELS and depth in (1, 2, 4, 8, 16) and interlace in (0, 1)):"
   replace: "            if False:"
   test: tests.test_sd101_slides.FolderTests.test_the_inflated_image_data_is_bounded_by_what_the_header_describes
+- label: an interlace method that does not exist passes
+  find: "            if not (width and height and colour in PNG_CHANNELS and depth in (1, 2, 4, 8, 16) and interlace in (0, 1)):"
+  replace: "            if not (width and height and colour in PNG_CHANNELS and depth in (1, 2, 4, 8, 16)):"
+  test: tests.test_sd101_slides.FolderTests.test_the_inflated_image_data_is_bounded_by_what_the_header_describes
+- label: the seven passes of an interlaced image are counted wrongly
+  find: "ADAM7 = ((0, 0, 8, 8), (4, 0, 8, 8), (0, 4, 4, 8), (2, 0, 4, 4), (0, 2, 2, 4), (1, 0, 2, 2), (0, 1, 1, 2))  # x0, y0, dx, dy"
+  replace: "ADAM7 = ((0, 0, 8, 8), (4, 0, 8, 8), (0, 4, 4, 8), (2, 0, 4, 4), (0, 2, 2, 4), (1, 0, 2, 2), (0, 0, 1, 2))  # x0, y0, dx, dy"
+  test: tests.test_sd101_slides.FolderTests.test_the_scanlines_of_an_interlaced_image_are_counted_pass_by_pass
+- label: a part of a pptx that cannot be unpacked crashes the check
+  find: "            except Exception:  # every codec has its own error for a part it cannot unpack: none of them is a crash here"
+  replace: "            except ():  # every codec has its own error for a part it cannot unpack: none of them is a crash here"
+  test: tests.test_sd101_slides.FolderTests.test_a_pptx_with_a_part_that_cannot_be_unpacked_is_reported_not_raised
 - label: a pptx whose parts unpack to more than a deck can hold passes
   find: "            if sum(info.file_size for info in archive.infolist()) > MAX_PPTX_BYTES:"
   replace: "            if False:"

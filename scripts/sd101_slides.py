@@ -67,6 +67,7 @@ PUSH_BACKOFF_SECONDS = (2, 4, 8, 16)
 PNG_SIGNATURE = b"\x89PNG\r\n\x1a\n"
 PPTX_PARTS = ("[Content_Types].xml", "ppt/presentation.xml")  # what any PowerPoint file holds
 PNG_CHANNELS = {0: 1, 2: 3, 3: 1, 4: 2, 6: 4}  # samples per pixel by colour type
+ADAM7 = ((0, 0, 8, 8), (4, 0, 8, 8), (0, 4, 4, 8), (2, 0, 4, 4), (0, 2, 2, 4), (1, 0, 2, 2), (0, 1, 1, 2))  # x0, y0, dx, dy
 MAX_PPTX_BYTES = 512 * 1024 * 1024  # what a deck's parts may add up to once unpacked
 
 
@@ -225,10 +226,21 @@ def png_size(path: pathlib.Path) -> tuple[int, int] | None:
     return struct.unpack(">II", head[16:24])
 
 
+def png_scanlines(width: int, height: int, bits: int, interlace: int) -> int:
+    """How many bytes the scanlines of an image take once inflated: a filter byte and the samples of each line, of the
+    whole image or, interlaced, of each of the seven Adam7 passes (a pass the image is too small for has no lines)."""
+    total = 0
+    for x0, y0, dx, dy in (ADAM7 if interlace else ((0, 0, 1, 1),)):
+        across, down = len(range(x0, width, dx)), len(range(y0, height, dy))
+        if across and down:
+            total += down * (1 + (across * bits + 7) // 8)
+    return total
+
+
 def png_damage(path: pathlib.Path) -> str | None:
     """Why a file is not a whole PNG, or None: the signature, an IHDR first, every chunk's checksum, an image stream that
-    inflates to its end and to no more than the header describes, and an IEND chunk closing the file with nothing after
-    it. The stream is inflated under that bound, so a small file cannot expand into gigabytes."""
+    inflates to its end and to exactly what the header describes, and an IEND chunk closing the file with nothing after
+    it. The stream is inflated under that size, so a small file cannot expand into gigabytes."""
     try:
         data = path.read_bytes()
     except OSError as error:
@@ -236,7 +248,7 @@ def png_damage(path: pathlib.Path) -> str | None:
     if data[:8] != PNG_SIGNATURE:
         return "no PNG signature"
     position, first, finished, images, inflater = 8, True, False, 0, zlib.decompressobj()
-    produced, limit, expected = 0, 0, 0
+    produced, expected = 0, 0
     while position < len(data):
         if finished:
             return "bytes after IEND"
@@ -252,21 +264,18 @@ def png_damage(path: pathlib.Path) -> str | None:
             return "IHDR is not the first chunk"
         if first:
             width, height, depth, colour, _, _, interlace = struct.unpack(">IIBBBBB", data[position + 8:end])
-            if not (width and height and colour in PNG_CHANNELS and depth in (1, 2, 4, 8, 16)):
+            if not (width and height and colour in PNG_CHANNELS and depth in (1, 2, 4, 8, 16) and interlace in (0, 1)):
                 return "IHDR does not describe an image"
-            row = 1 + (width * PNG_CHANNELS[colour] * depth + 7) // 8  # a filter byte and the samples of one line
-            lines = height * row
-            limit = 2 * lines + 16 * row if interlace else lines  # the seven passes of an interlaced image cost more lines
-            expected = 0 if interlace else lines  # an interlaced image has only an upper bound
+            expected = png_scanlines(width, height, PNG_CHANNELS[colour] * depth, interlace)
         first = False
         if kind == b"IDAT":
             images += 1
             piece = data[position + 8:end]
             try:
                 while piece:
-                    out = inflater.decompress(piece, limit + 1 - produced)
+                    out = inflater.decompress(piece, expected + 1 - produced)
                     produced += len(out)
-                    if produced > limit:
+                    if produced > expected:
                         return "image data inflates to more than the header describes"
                     if not out and inflater.unconsumed_tail == piece:
                         break
@@ -281,7 +290,7 @@ def png_damage(path: pathlib.Path) -> str | None:
         return "image data is missing or cut short"
     if inflater.unused_data:
         return "image data continues after the end of its stream"
-    if expected and produced != expected:
+    if produced != expected:
         return "image data is shorter than the header describes"
     return None
 
@@ -294,7 +303,10 @@ def pptx_damage(path: pathlib.Path) -> str | None:
             names = set(archive.namelist())
             if sum(info.file_size for info in archive.infolist()) > MAX_PPTX_BYTES:
                 return f"its parts add up to more than {MAX_PPTX_BYTES >> 20} MB unpacked"
-            damaged = archive.testzip()
+            try:
+                damaged = archive.testzip()
+            except Exception:  # every codec has its own error for a part it cannot unpack: none of them is a crash here
+                return "a part cannot be read (unsupported compression, encryption or damaged data)"
     except (zipfile.BadZipFile, OSError):
         return "not a ZIP archive"
     if damaged:

@@ -33,10 +33,10 @@ FONT_PX = 26            # Mermaid's text size before the diagram is scaled to th
 MIN_TEXT_PX = 22        # below this, on a 1080 px wide image, the text is too small for a phone
 MAX_UPSCALE = 1.4       # a small diagram grows at most this much, so three boxes do not become posters
 
-# A line that starts with one of these is refused, in any letter case (Mermaid reads `LINK` and `Click` too) and also when
-# the command stands alone on its line and its arguments follow on the next. Only the start of a line is read: a `;` can
-# separate statements but also sits inside a label or an entity code (`#59;`, `&amp;`), so a command that follows one is
-# not looked for here. This is the early, friendly answer; the check in `RENDER_JS` on what was drawn is the barrier.
+# A statement that starts with one of these is refused, in any letter case (Mermaid reads `LINK` and `Click` too) and also when
+# the command stands alone on its line and its arguments follow on the next. Everything else a diagram can say is drawing.
+# `;` also separates statements (`A --> B; style A fill:#f00` restyles A), so lines are split at it by `split_statements`.
+# This is the early, friendly answer; the check in `RENDER_JS` on the drawn SVG is the barrier against a link, image or script.
 FORBIDDEN_STATEMENT = re.compile(r"^\s*(?:click|href|call|callback|links?|classDef|style|linkStyle)(?:\s|$)|^\s*acc(?:Title|Descr)\b",
                                  re.IGNORECASE)
 CLASS_STATEMENT = re.compile(r"^\s*class\s+\S+\s+(\w+)\s*$")
@@ -50,6 +50,29 @@ FORBIDDEN_TEXT = re.compile(r"javascript:|vbscript:|data:[a-z]+/|&#|%%\{|@\s*\{"
 
 class DiagramError(ValueError):
     pass
+
+
+ENTITY_TAIL = re.compile(r"[#&][A-Za-z0-9]+$")          # `#59` or `&amp` right before a `;`: an entity code, not a separator
+
+
+def split_statements(line: str) -> list[str]:
+    """Where `;` really ends a statement: not inside a double-quoted string, not inside a bracketed label
+    (`A[pick a style; click Next]`), and not as the end of an entity code (`#59;`, `&amp;`)."""
+    parts, current, quoted, depth = [], "", False, 0
+    for char in line:
+        if char == '"':
+            quoted = not quoted
+        elif not quoted and char in "[({":
+            depth += 1
+        elif not quoted and char in "])}":
+            depth = max(depth - 1, 0)
+        if char == ";" and not quoted and depth == 0 and not ENTITY_TAIL.search(current):
+            parts.append(current)
+            current = ""
+        else:
+            current += char
+    parts.append(current)
+    return parts
 
 
 def source_problems(source) -> list[str]:
@@ -72,13 +95,14 @@ def source_problems(source) -> list[str]:
         problems.append("diagram contains a directive, script, URL scheme or @{ } node attribute (it can load an image) that is not allowed")
     if HTML_TAG.search(STATE_MARKER.sub(" ", LINE_BREAK.sub(" ", text))):
         problems.append("diagram labels cannot contain HTML (only <br/> for a line break)")
-    for statement in statements:
+    parts = [part for line in statements for part in split_statements(line)]
+    for statement in parts:
         if FORBIDDEN_STATEMENT.match(statement):
             problems.append(f"'{statement.split()[0]}' is not allowed in a diagram "
                             "(no links, clicks or CSS; highlight with :::hl, :::ok, :::bad, :::warn or :::muted)")
             break
     tones = [m.group(1) for m in TONE_SUFFIX.finditer(text)]
-    tones += [m.group(1) for m in map(CLASS_STATEMENT.match, statements) if m]
+    tones += [m.group(1) for m in map(CLASS_STATEMENT.match, parts) if m]
     unknown = sorted({tone for tone in tones if tone not in TONES})
     if unknown:
         problems.append(f"unknown tone {', '.join(unknown)}: use {', '.join(TONES)}")

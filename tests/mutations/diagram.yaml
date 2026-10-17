@@ -66,7 +66,19 @@ mutations:
   find: links?|classDef|style|linkStyle)(?:\s|$)
   replace: links?|classDef|style|linkStyle)
   test: tests.test_diagram.SourceTests.test_a_node_may_be_named_like_a_keyword_when_it_is_not_a_statement
-- label: a semicolon inside a label or an entity code starts a new statement
-  find: "    for statement in statements:\n        if FORBIDDEN_STATEMENT.match(statement):"
-  replace: "    for statement in [part for line in statements for part in line.split(\";\")]:\n        if FORBIDDEN_STATEMENT.match(statement):"
+- label: a command after a semicolon is not looked for
+  find: '    parts = [part for line in statements for part in split_statements(line)]'
+  replace: '    parts = list(statements)'
+  test: tests.test_diagram.SourceTests.test_a_command_after_a_semicolon_is_refused
+- label: an entity code's semicolon starts a new statement
+  find: ' and depth == 0 and not ENTITY_TAIL.search(current):'
+  replace: ' and depth == 0:'
+  test: tests.test_diagram.SourceTests.test_a_semicolon_inside_a_label_or_an_entity_code_is_not_read_as_a_command
+- label: a semicolon inside a bracketed label starts a new statement
+  find: ' and not quoted and depth == 0 and not ENTITY_TAIL'
+  replace: ' and not quoted and not ENTITY_TAIL'
+  test: tests.test_diagram.SourceTests.test_a_semicolon_inside_a_label_or_an_entity_code_is_not_read_as_a_command
+- label: a semicolon inside a quoted string starts a new statement
+  find: '        if char == ";" and not quoted and depth == 0'
+  replace: '        if char == ";" and depth == 0'
   test: tests.test_diagram.SourceTests.test_a_semicolon_inside_a_label_or_an_entity_code_is_not_read_as_a_command

@@ -58,10 +58,20 @@ class SourceTests(unittest.TestCase):
 
     def test_a_semicolon_inside_a_label_or_an_entity_code_is_not_read_as_a_command(self):
         for source in ('flowchart TD\n  A["Choose a style; click Continue"] --> B',
+                       'flowchart TD\n  A[Choose a style; click Continue] --> B',
+                       'flowchart TD\n  A -->|"pick one; style it"| B',
                        'sequenceDiagram\n  A->>B: Choose #59; click Continue',
-                       'sequenceDiagram\n  A->>B: Q&amp; click x',
-                       'sequenceDiagram\n  A->>B: Pick a look; style it'):
+                       'sequenceDiagram\n  A->>B: Q&amp; click x'):
             self.assertEqual(self.problems(source), [], source)
+
+    def test_a_command_after_a_semicolon_is_refused(self):
+        for source in ('flowchart TD\n  A --> B; click A href "x"',
+                       "flowchart TD\n  A --> B; style A fill:#f00",
+                       "flowchart TD\n  A --> B; classDef hl fill:#f00",
+                       "flowchart TD\n  A --> B; linkStyle 0 stroke:#f00",
+                       'flowchart TD\n  A["a; b"]; style A fill:#f00',
+                       'flowchart TD\n  A[b]; STYLE A fill:#f00'):
+            self.assertTrue(self.problems(source), source)
 
     def test_a_fullwidth_spelling_is_refused_too(self):
         self.assertTrue(self.problems("flowchart TD\n  A --> B\n  ｃｌｉｃｋ A href \"x\""))

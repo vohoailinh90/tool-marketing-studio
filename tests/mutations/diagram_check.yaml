@@ -3,10 +3,14 @@ target: mkt/check.py
 note: '`studio.py check` refuses a diagram source it should not draw, and counts every number in it.'
 mutations:
 - label: a diagram source is not validated
-  find: '        if name == "diagram" and slide.get("source"):'
+  find: '        if name == "diagram" and slide.get("source") not in (None, "", [], {}):     # the required-field check reports those'
   replace: '        if False:'
   test: tests.test_diagram.PostCheckTests.test_a_bad_source_is_an_error_on_its_slide
 - label: the numbers in a diagram's source are not checked against the brief
   find: slide.items() if k != "layout"})
   replace: slide.items() if k not in ("layout", "source")})
   test: tests.test_diagram.PostCheckTests.test_every_number_in_a_diagram_must_come_from_the_brief
+- label: a falsey source (0, false) is not validated
+  find: 'slide.get("source") not in (None, "", [], {}):     # the required-field check reports those'
+  replace: 'slide.get("source"):'
+  test: tests.test_diagram.PostCheckTests.test_a_source_that_is_not_text_is_an_error_even_when_it_is_falsey

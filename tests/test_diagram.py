@@ -135,6 +135,10 @@ class PostCheckTests(unittest.TestCase):
         messages = self.errors([slide('flowchart TD\n  A --> B\n  click A href "x"')])
         self.assertTrue(any("click" in m for m in messages))
 
+    def test_a_source_that_is_not_text_is_an_error_even_when_it_is_falsey(self):
+        for value in (0, 0.0, False, 12, True, ["flowchart TD"], {"a": 1}):
+            self.assertTrue(any("must be text" in m for m in self.errors([slide(value)])), repr(value))
+
     def test_the_slide_needs_a_source_and_knows_no_other_fields(self):
         self.assertTrue(any("needs 'source'" in m for m in self.errors([{"layout": "diagram", "title": "t"}])))
         self.assertTrue(any("no field 'code'" in m for m in self.errors([slide(FLOW, code="x")])))

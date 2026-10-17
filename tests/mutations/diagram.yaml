@@ -54,3 +54,15 @@ mutations:
   find: '|&#|%%\{|@\s*\{"'
   replace: '|&#|%%\{"'
   test: tests.test_diagram.SourceTests.test_links_clicks_directives_and_css_are_refused
+- label: a state diagram's choice or fork counts as HTML
+  find: '    if HTML_TAG.search(STATE_MARKER.sub(" ", LINE_BREAK.sub(" ", text))):'
+  replace: '    if HTML_TAG.search(LINE_BREAK.sub(" ", text)):'
+  test: tests.test_diagram.SourceTests.test_state_diagram_choice_fork_and_join_are_not_html
+- label: a command in capitals or split over two lines is allowed
+  find: "|^\\s*acc(?:Title|Descr)\\b\",\n                                 re.IGNORECASE)"
+  replace: '|^\s*acc(?:Title|Descr)\b")'
+  test: tests.test_diagram.SourceTests.test_links_clicks_directives_and_css_are_refused
+- label: a node named like a keyword is refused
+  find: links?|classDef|style|linkStyle)(?:\s|$)
+  replace: links?|classDef|style|linkStyle)
+  test: tests.test_diagram.SourceTests.test_a_node_may_be_named_like_a_keyword_when_it_is_not_a_statement

@@ -10,7 +10,8 @@ text ended up, so a diagram too crowded to read on a phone is a warning, not a s
 What `source_problems` refuses is what Mermaid could do beyond drawing: links and click handlers,
 HTML, init directives and front matter (they would change the theme or the security level), CSS
 (`style`, `classDef`) and any diagram type that was not tried against the theme. A highlight is a
-named tone instead: `A:::hl`, `class A,B bad`.
+named tone instead: `A:::hl`, `class A,B bad`. That list is the early, friendly answer in `studio.py check`;
+the barrier is the second check, on the SVG Mermaid drew: a link, image or script there fails the diagram.
 """
 
 from __future__ import annotations
@@ -32,13 +33,17 @@ FONT_PX = 26            # Mermaid's text size before the diagram is scaled to th
 MIN_TEXT_PX = 22        # below this, on a 1080 px wide image, the text is too small for a phone
 MAX_UPSCALE = 1.4       # a small diagram grows at most this much, so three boxes do not become posters
 
-# A statement that starts with one of these is refused. Everything else a diagram can say is drawing.
-FORBIDDEN_STATEMENT = re.compile(r"^\s*(?:click|href|call|callback|links?|classDef|style|linkStyle)\s+\S|^\s*acc(?:Title|Descr)\b")
+# A statement that starts with one of these is refused, in any letter case (Mermaid reads `LINK` and `Click` too) and
+# also when the command stands alone on its line and its arguments follow on the next. Everything else a diagram can
+# say is drawing. This is the early, friendly answer; the check in `RENDER_JS` on what was drawn is the barrier.
+FORBIDDEN_STATEMENT = re.compile(r"^\s*(?:click|href|call|callback|links?|classDef|style|linkStyle)(?:\s|$)|^\s*acc(?:Title|Descr)\b",
+                                 re.IGNORECASE)
 CLASS_STATEMENT = re.compile(r"^\s*class\s+\S+\s+(\w+)\s*$")
 TONE_SUFFIX = re.compile(r":::\s*(\w+)")
 # `<` opens HTML when a letter, `/` or `!` follows; arrows (`<-->`, `<<->>`, `<|`) never do. `<br>` is a line break.
 HTML_TAG = re.compile(r"<\s*[/!A-Za-z]")
 LINE_BREAK = re.compile(r"<\s*br\s*/?\s*>", re.IGNORECASE)
+STATE_MARKER = re.compile(r"<<\s*(?:choice|fork|join)\s*>>", re.IGNORECASE)      # `state c <<choice>>` in a state diagram
 FORBIDDEN_TEXT = re.compile(r"javascript:|vbscript:|data:[a-z]+/|&#|%%\{|@\s*\{", re.IGNORECASE)
 
 
@@ -64,7 +69,7 @@ def source_problems(source) -> list[str]:
         problems.append(f"diagram must start with one of: {', '.join(TYPES)} (got '{first[0]}')")
     if FORBIDDEN_TEXT.search(text):
         problems.append("diagram contains a directive, script, URL scheme or @{ } node attribute (it can load an image) that is not allowed")
-    if HTML_TAG.search(LINE_BREAK.sub(" ", text)):
+    if HTML_TAG.search(STATE_MARKER.sub(" ", LINE_BREAK.sub(" ", text))):
         problems.append("diagram labels cannot contain HTML (only <br/> for a line break)")
     parts = [part for line in statements for part in line.split(";")]       # `;` separates statements
     for part in parts:

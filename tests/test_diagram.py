@@ -47,6 +47,10 @@ class SourceTests(unittest.TestCase):
             "javascript url": 'flowchart TD\n  A["javascript:alert(1)"] --> B',
             "data url": 'flowchart TD\n  A["data:text/html;base64,AA"] --> B',
             "accTitle": "flowchart TD\n  accTitle: x\n  A --> B",
+            "LINK in capitals": "sequenceDiagram\n  participant A\n  LINK A: Docs @ x",
+            "Link in a mixed case": "sequenceDiagram\n  participant A\n  Link A: Docs @ x",
+            "CLICK in a state diagram": 'stateDiagram-v2\n  [*] --> A\n  CLICK A href "x"',
+            "click with its arguments on the next line": 'flowchart TD\n  A --> B\n  click\n  A href "x"',
             "image node": 'flowchart TD\n  A@{ img: "file:///etc/hostname", label: "x" } --> B',
             "node attributes": "flowchart TD\n  A@{ shape: cyl } --> B",
         }
@@ -64,6 +68,15 @@ class SourceTests(unittest.TestCase):
             self.assertTrue(any("HTML" in m for m in self.problems(source)), source)
         self.assertEqual(self.problems('flowchart TD\n  A["Dòng một<br/>dòng hai"] <-.-> B\n  B <==> C\n  C --- D'), [])
         self.assertEqual(self.problems("sequenceDiagram\n  A<<->>B: hi\n  A-->>B: back"), [])
+
+    def test_state_diagram_choice_fork_and_join_are_not_html(self):
+        for marker in ("choice", "fork", "join"):
+            self.assertEqual(self.problems(f"stateDiagram-v2\n  state s <<{marker}>>\n  [*] --> s\n  s --> A\n  s --> B"), [], marker)
+        for source in ("stateDiagram-v2\n  state s <<img>>", 'flowchart TD\n  A["<<b>>x"] --> B'):
+            self.assertTrue(any("HTML" in m for m in self.problems(source)), source)
+
+    def test_a_node_may_be_named_like_a_keyword_when_it_is_not_a_statement(self):
+        self.assertEqual(self.problems("sequenceDiagram\n  participant Click\n  Click->>Click: ping"), [])
 
     def test_only_the_known_tones_may_highlight(self):
         for tone in diagram.TONES:
@@ -192,6 +205,11 @@ class DrawTests(unittest.TestCase):
             diagram.render_in_page(self.page)
             self.assertEqual((self.count(".diagram__art svg"), self.count(".diagram__src")), (1, 0), source)
             self.assertEqual(diagram.text_warnings(self.page), [], source)
+
+    def test_a_state_diagram_with_choice_and_fork_is_drawn(self):
+        self.open("stateDiagram-v2\n  state c <<choice>>\n  state f <<fork>>\n  [*] --> c\n  c --> f: yes\n  c --> A: no\n  f --> B\n  f --> C")
+        diagram.render_in_page(self.page)
+        self.assertEqual(self.count(".diagram__art svg"), 1)
 
     def test_japanese_labels_are_drawn(self):
         self.open("flowchart TD\n  A[お客様がフォームを送信] --> B{入力は正しい?}", lang="ja")

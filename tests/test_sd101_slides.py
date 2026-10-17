@@ -84,6 +84,12 @@ class Sessions(unittest.TestCase):
         path = clone / "store" / "lessons" / lesson_id / "slides" / "deck.yaml"
         return yaml.safe_load(path.read_text(encoding="utf-8")) if path.is_file() else None
 
+    def merge_into_main(self, branch: str) -> None:
+        """What merging a pull request does to the registry: the branch's records land on the default branch."""
+        git(self.seed, "fetch", "--quiet", "origin", branch)
+        git(self.seed, "merge", "--quiet", "--no-edit", "FETCH_HEAD")
+        git(self.seed, "push", "--quiet", "origin", "main")
+
     def at(self, hours: float = 0, seconds: float = 0) -> None:
         self.clock = T0 + datetime.timedelta(hours=hours, seconds=seconds)
 
@@ -142,6 +148,51 @@ class ClaimTests(Sessions):
         self.run_in(a, "release", "sd-01-001", "--publish")
         code, _, err = self.run_in(b, "claim", "sd-01-001", "--publish")
         self.assertEqual(0, code, err)
+
+    def test_a_claim_released_on_its_own_branch_is_not_kept_alive_by_the_copy_merged_into_main(self) -> None:
+        a, b = self.session("a"), self.session("b")
+        self.run_in(a, "claim", "sd-01-001", "--publish")
+        self.merge_into_main("claude/a")
+        self.assertEqual(0, self.run_in(a, "release", "sd-01-001", "--publish")[0])
+        code, _, err = self.run_in(b, "claim", "sd-01-001", "--publish")
+        self.assertEqual(0, code, err)
+
+    def test_a_claim_merged_into_main_counts_again_once_its_branch_is_gone(self) -> None:
+        a, b = self.session("a"), self.session("b")
+        self.run_in(a, "claim", "sd-01-001", "--publish")
+        self.merge_into_main("claude/a")
+        git(a, "push", "--quiet", "origin", "--delete", "claude/a")
+        code, _, err = self.run_in(b, "claim", "sd-01-001")
+        self.assertEqual(1, code)
+        self.assertIn("claimed by claude/a", err)
+
+    def test_a_done_record_edited_into_an_invalid_one_still_holds_its_lesson(self) -> None:
+        a, b = self.session("a"), self.session("b")
+        self.run_in(a, "claim", "sd-01-001", "--publish")
+        self.assertEqual(0, self.finish(a, "sd-01-001", "--publish")[0])
+        path = a / "store" / "lessons" / "sd-01-001" / "slides" / "deck.yaml"
+        path.write_text(path.read_text(encoding="utf-8").replace("slide_count: 10", "slide_count: 99"), encoding="utf-8")
+        git(a, "commit", "--quiet", "-am", "edit")
+        git(a, "push", "--quiet", "origin", "claude/a")
+        code, _, err = self.run_in(b, "claim", "sd-01-001", "--publish")
+        self.assertEqual(1, code)
+        self.assertIn("already built by claude/a", err)
+
+    def test_a_record_that_cannot_be_read_blocks_its_lesson_until_it_is_fixed(self) -> None:
+        folder = self.seed / "store" / "lessons" / "sd-01-001" / "slides"
+        folder.mkdir()
+        (folder / "deck.yaml").write_text("{{{ not yaml", encoding="utf-8")
+        git(self.seed, "add", "-A")
+        git(self.seed, "commit", "--quiet", "-m", "broken record")
+        git(self.seed, "push", "--quiet", "origin", "main")
+        b = self.session("b")
+        code, _, err = self.run_in(b, "claim", "sd-01-001")
+        self.assertEqual(1, code)
+        self.assertIn("cannot be read", err)
+        self.assertEqual((0, "sd-01-002 sd-01-003\n"), self.run_in(b, "next", "--count", "2")[:2])
+        code, out, _ = self.run_in(b, "status")
+        self.assertEqual(0, code)
+        self.assertIn("invalid 1", out)
 
     def test_a_lesson_that_is_not_written_cannot_be_claimed(self) -> None:
         a = self.session("a")
@@ -203,6 +254,24 @@ class LeaseTests(Sessions):
         self.assertEqual(1, code)
         self.assertIn("claimed by claude/a", err)
         self.assertNotIn("--take-stale", err)
+
+    def test_a_stale_copy_of_my_claim_on_main_does_not_hide_its_renewal_on_my_branch(self) -> None:
+        z = self.tmp / "z"
+        git(self.tmp, "clone", "--quiet", str(self.origin), str(z))
+        git(z, "checkout", "--quiet", "-b", "zzz/a")  # sorts after main, so main's copy is read first
+        self.run_in(z, "claim", "sd-01-001", "--publish")
+        self.merge_into_main("zzz/a")
+        self.at(hours=slides.LEASE_HOURS + 8)
+        code, _, err = self.run_in(z, "touch", "--publish")
+        self.assertEqual(0, code, err)
+        self.assertEqual(0, self.run_in(z, "verify")[0])
+
+    def test_my_own_stale_claim_can_be_claimed_again_when_an_older_stale_claim_exists(self) -> None:
+        context = slides.Context(Path("."), Path("."), "origin", "claude/me", True)
+        old = slides.Holding("sd-01-001", "doing", "claude/old", "2026-10-01T08:00:00Z", "2026-10-01T08:00:00Z", 0, (), "x")
+        mine = slides.Holding("sd-01-001", "doing", "claude/me", "2026-10-10T08:00:00Z", "2026-10-10T08:00:00Z", 0, (), "y")
+        self.assertIsNone(slides.refusal("sd-01-001", [old, mine], context, T0, False))
+        self.assertIn("--take-stale", slides.refusal("sd-01-001", [old], context, T0, False))
 
     def test_a_heartbeat_from_the_future_is_not_proof_of_life(self) -> None:
         holding = slides.Holding("sd-01-001", "doing", "claude/a", "2026-10-17T08:00:00Z", "2026-10-20T08:00:00Z", 0, (), "x")
@@ -304,6 +373,16 @@ class FinishTests(Sessions):
         self.assertEqual(1, code)
         self.assertIn("already finished", err)
 
+    def test_release_refuses_to_leave_other_files_behind_in_slides(self) -> None:
+        a = self.session("a")
+        self.run_in(a, "claim", "sd-01-001", "--publish")
+        folder = a / "store" / "lessons" / "sd-01-001" / "slides"
+        (folder / "extra.txt").write_text("x", encoding="utf-8")
+        code, _, err = self.run_in(a, "release", "sd-01-001")
+        self.assertEqual(1, code)
+        self.assertIn("also holds extra.txt", err)
+        self.assertTrue((folder / "deck.yaml").is_file())
+
     def test_a_claim_that_was_never_pushed_can_be_released_and_pushed(self) -> None:
         a = self.session("a")
         self.run_in(a, "claim", "sd-01-001")
@@ -372,6 +451,15 @@ class FolderTests(unittest.TestCase):
         self.assertIsInstance(yaml.safe_load(unquoted)["claimed_at"], datetime.datetime)
         self.assertEqual("2026-10-17T09:00:00Z", slides.parse_record(unquoted)["claimed_at"])
         self.assertEqual([], slides.record_problems(slides.parse_record(unquoted), "sd-01-001"))
+
+    def test_generation_and_taken_from_come_together_and_never_name_the_owner(self) -> None:
+        base = {"id": "sd-01-001", "status": "doing", "owner": "claude/a", "claimed_at": "2026-10-17T09:00:00Z",
+                "heartbeat_at": "2026-10-17T09:00:00Z"}
+        self.assertEqual([], slides.record_problems({**base, "generation": 1, "taken_from": ["claude/b"]}, "sd-01-001"))
+        self.assertTrue(any("come together" in problem for problem in slides.record_problems({**base, "generation": 99}, "sd-01-001")))
+        self.assertTrue(any("come together" in problem for problem in slides.record_problems({**base, "taken_from": ["claude/b"]}, "sd-01-001")))
+        self.assertTrue(any("not name the owner" in problem
+                            for problem in slides.record_problems({**base, "generation": 1, "taken_from": ["claude/a"]}, "sd-01-001")))
 
     def test_the_record_is_required(self) -> None:
         self.assertEqual(["deck.yaml is missing"], self.problems())

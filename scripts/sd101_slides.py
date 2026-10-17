@@ -163,6 +163,10 @@ def record_problems(record: object, lesson_id: str) -> list[str]:
     if "taken_from" in record and not (isinstance(record["taken_from"], list) and record["taken_from"]
                                        and all(_text(item) for item in record["taken_from"])):
         problems.append("taken_from must be a list of owners")
+    elif ("taken_from" in record) != ("generation" in record):
+        problems.append("generation and taken_from come together: both after a takeover, neither otherwise")
+    elif "taken_from" in record and record.get("owner") in record["taken_from"]:
+        problems.append("taken_from must not name the owner itself")
     if "claimed_at" in record and parse_stamp(record["claimed_at"]) is None:
         problems.append("claimed_at must look like 2026-10-17T11:00:00Z")
     if status == "doing":
@@ -252,6 +256,7 @@ class Holding:
     generation: int
     taken_from: tuple[str, ...]
     where: str
+    problems: tuple[str, ...] = ()    # what is wrong with the record; status is "invalid" when it cannot be read at all
 
 
 LOCAL = "this working tree"
@@ -279,12 +284,18 @@ class Context:
         return sorted(found)
 
 
-def _holding(lesson_id: str, record: dict, where: str) -> Holding | None:
-    if record_problems(record, lesson_id):
-        return None
-    taken = record.get("taken_from") or []
-    return Holding(lesson_id, record["status"], record["owner"], record.get("claimed_at"), record.get("heartbeat_at"),
-                   record.get("generation", 0), tuple(taken), where)
+def _holding(lesson_id: str, record: dict | None, where: str) -> Holding:
+    """What a deck.yaml says, read leniently: a record that fails validation still holds its lesson (a bad `done`
+    must not offer the lesson again), and one that cannot be read at all is `invalid` and blocks it until fixed."""
+    if record is None:
+        return Holding(lesson_id, "invalid", "", None, None, 0, (), where, ("does not parse as a mapping",))
+    taken = record.get("taken_from") if isinstance(record.get("taken_from"), list) else []
+    return Holding(lesson_id, record["status"] if record.get("status") in STATUSES else "invalid",
+                   record["owner"] if _text(record.get("owner")) else "",
+                   record["claimed_at"] if isinstance(record.get("claimed_at"), str) else None,
+                   record["heartbeat_at"] if isinstance(record.get("heartbeat_at"), str) else None,
+                   record["generation"] if _count(record.get("generation")) else 0,
+                   tuple(item for item in taken if _text(item)), where, tuple(record_problems(record, lesson_id)))
 
 
 def remote_branches(context: Context) -> list[str]:
@@ -330,18 +341,23 @@ def gather(context: Context, ids: list[str]) -> tuple[dict[str, list[Holding]], 
             raise SlidesError(f"the remote could not be read ({error}); pass --offline to decide without it") from error
         names = remote_branches(context)
         for (name, lesson_id), text in read_remote(context, names, ids).items():
-            record = parse_record(text)
-            holding = _holding(lesson_id, record, f"{context.remote}/{name}") if record is not None else None
-            if holding is None:
-                warnings.append(f"{context.remote}/{name}: {lesson_id}/{SLIDES_DIR}/{RECORD} is not a valid record; ignored")
-            elif name == base or holding.owner == name:
+            where = f"{context.remote}/{name}"
+            holding = _holding(lesson_id, parse_record(text), where)
+            if holding.problems:
+                warnings.append(f"{where}: {lesson_id}/{SLIDES_DIR}/{RECORD} {'; '.join(holding.problems)}")
+            if name == base:
+                if holding.status == "doing" and holding.owner in names and holding.owner != base:
+                    continue  # a claim in progress belongs to its owner's branch, which says whether it still stands
                 holdings[lesson_id].append(holding)
+            elif holding.owner == name:
+                holdings[lesson_id].append(holding)
+            else:
+                warnings.append(f"{where}: {lesson_id} names another owner ({holding.owner or 'none'}); not a claim")
     for lesson_id in ids:
         path = context.record_path(lesson_id)
         if path.is_file():
-            record = parse_record(path.read_text(encoding="utf-8"))
-            holding = _holding(lesson_id, record, LOCAL) if record is not None else None
-            if holding is not None and holding.owner == context.me:
+            holding = _holding(lesson_id, parse_record(path.read_text(encoding="utf-8")), LOCAL)
+            if holding.owner == context.me:
                 holdings[lesson_id].append(holding)
     return holdings, warnings
 
@@ -366,10 +382,13 @@ def beats(first: Holding, second: Holding) -> bool:
 
 
 def standing(holdings: list[Holding], moment: datetime.datetime) -> tuple[str, Holding | None]:
-    """free | done | doing (the live winner) | stale (only stale claims) for one lesson."""
+    """free | done | invalid (a record that cannot be read) | doing (the live winner) | stale (only stale claims)."""
     done = [holding for holding in holdings if holding.status == "done"]
     if done:
         return "done", min(done, key=lambda holding: (holding.claimed_at or "", holding.owner))
+    invalid = [holding for holding in holdings if holding.status == "invalid"]
+    if invalid:
+        return "invalid", invalid[0]
     live = [holding for holding in holdings if holding.status == "doing" and not is_stale(holding, moment)]
     if live:
         winner = live[0]
@@ -387,10 +406,13 @@ def refusal(lesson_id: str, found: list[Holding], context: Context, moment: date
             take_stale: bool) -> str | None:
     state, holding = standing(found, moment)
     if state == "done":
-        return f"{lesson_id}: already built by {holding.owner}"
+        return f"{lesson_id}: already built by {holding.owner or 'an unknown owner'} ({holding.where})"
+    if state == "invalid":
+        return (f"{lesson_id}: {holding.where} holds a record that cannot be read ({'; '.join(holding.problems)}); "
+                "fix it first")
     if state == "doing" and holding.owner != context.me:
         return f"{lesson_id}: claimed by {holding.owner} (heartbeat {holding.heartbeat_at})"
-    if state == "stale" and holding.owner != context.me and not take_stale:
+    if state == "stale" and not any(other.owner == context.me for other in found) and not take_stale:
         return (f"{lesson_id}: claimed by {holding.owner}, whose heartbeat ({holding.heartbeat_at}) is older than "
                 f"{LEASE_HOURS} hours; take it over on purpose with --take-stale")
     return None
@@ -404,10 +426,12 @@ def lost_reason(lesson_id: str, found: list[Holding], context: Context, moment: 
     published = [holding for holding in mine if holding.where != LOCAL]
     if not published:
         return f"{lesson_id}: your claim is not on {context.remote}/{context.me}; run with --publish"
-    me = published[0]
+    me = max(published, key=lambda holding: holding.heartbeat_at or "")
     for holding in found:
         if holding.owner == context.me and holding.status == "doing":
             continue
+        if holding.status == "invalid":
+            return f"{lesson_id}: {holding.where} holds a record that cannot be read; fix it first"
         if holding.status == "done":
             return f"{lesson_id}: already built by {holding.owner}"
         if not is_stale(holding, moment) and beats(holding, me):
@@ -490,17 +514,18 @@ def cmd_status(context: Context, args: argparse.Namespace) -> int:
     table: dict[str, dict[str, int]] = {}
     for lesson_id in ids:
         state, _ = standing(holdings[lesson_id], moment)
-        table.setdefault(lesson_id[:5], {"free": 0, "doing": 0, "stale": 0, "done": 0})[state] += 1
-    totals = {key: sum(row[key] for row in table.values()) for key in ("free", "doing", "stale", "done")}
+        table.setdefault(lesson_id[:5], {"free": 0, "doing": 0, "stale": 0, "done": 0, "invalid": 0})[state] += 1
+    totals = {key: sum(row[key] for row in table.values()) for key in ("free", "doing", "stale", "done", "invalid")}
     print(f"Slide decks of {len(ids)} written lessons: done {totals['done']} | doing {totals['doing']} | "
-          f"stale {totals['stale']} | free {totals['free']}")
-    print(f"{'group':<8}{'done':>6}{'doing':>7}{'stale':>7}{'free':>6}")
+          f"stale {totals['stale']} | invalid {totals['invalid']} | free {totals['free']}")
+    print(f"{'group':<8}{'done':>6}{'doing':>7}{'stale':>7}{'invalid':>9}{'free':>6}")
     for group, row in sorted(table.items()):
-        print(f"{group:<8}{row['done']:>6}{row['doing']:>7}{row['stale']:>7}{row['free']:>6}")
+        print(f"{group:<8}{row['done']:>6}{row['doing']:>7}{row['stale']:>7}{row['invalid']:>9}{row['free']:>6}")
     for lesson_id in ids:
         state, holding = standing(holdings[lesson_id], moment)
-        if state in ("doing", "stale") and (args.all or holding.owner == context.me):
-            print(f"  {lesson_id} {state} by {holding.owner}, heartbeat {holding.heartbeat_at}")
+        if state in ("doing", "stale", "invalid") and (args.all or holding.owner == context.me or state == "invalid"):
+            print(f"  {lesson_id} {state} by {holding.owner or 'unknown'} ({holding.where}), "
+                  f"heartbeat {holding.heartbeat_at}")
     free = free_lessons(context, holdings, moment, None, 5, False)
     print("Next free: " + (", ".join(free) if free else "none"))
     for warning in warnings:
@@ -680,6 +705,10 @@ def cmd_release(context: Context, args: argparse.Namespace) -> int:
             return 1
         if record.get("status") == "done":
             print(f"{lesson_id}: already finished; a finished deck is not released", file=sys.stderr)
+            return 1
+        stray = sorted(other.name for other in path.parent.iterdir() if other.name != RECORD)
+        if stray:
+            print(f"{lesson_id}: slides/ also holds {', '.join(stray)}; remove them first", file=sys.stderr)
             return 1
         paths.append(path)
     for path in paths:

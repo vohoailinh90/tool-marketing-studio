@@ -134,3 +134,19 @@ mutations:
   find: "        reason = facebook.handle_problem(facebook.handle(ROOT))\n        if reason:\n            found.append(reason)"
   replace: "        pass"
   test: tests.test_figures.RobustnessTests.test_check_refuses_a_footer_handle_that_the_export_would_refuse
+- label: an English figure replaces a Vietnamese lesson's
+  find: "        if wrong:                                                       # an English figure must not replace a Vietnamese lesson's"
+  replace: "        if False:"
+  test: tests.test_figures.RobustnessTests.test_a_spec_in_another_language_is_not_built_into_the_vietnamese_store
+- label: check accepts an English spec kept in the store's folder
+  find: "        if path.resolve().parent == SPEC_DIR.resolve() and language_problem(spec):"
+  replace: "        if False:"
+  test: tests.test_figures.RobustnessTests.test_a_spec_in_another_language_is_not_built_into_the_vietnamese_store
+- label: a spec with no language is not taken for Vietnamese
+  find: '    lang = spec.get("lang", "vi")'
+  replace: '    lang = spec.get("lang")'
+  test: tests.test_figures.RobustnessTests.test_a_spec_in_another_language_is_not_built_into_the_vietnamese_store
+- label: Japanese and English are taken for Vietnamese
+  find: '    if lang != "vi":'
+  replace: '    if False:'
+  test: tests.test_figures.RobustnessTests.test_a_spec_in_another_language_is_not_built_into_the_vietnamese_store

@@ -1339,6 +1339,41 @@ class RobustnessTests(unittest.TestCase):
                 self.assertEqual(self.run_cli("build", str(spec_path))[0], 0)
             self.assertTrue(dest.read_text(encoding="utf-8").startswith("<svg"))
 
+    def test_a_spec_in_another_language_is_not_built_into_the_vietnamese_store(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            store = Path(tmp) / "system-design-101"
+            (store / "vi" / "lessons" / "sd-01-001").mkdir(parents=True)
+            (store / "figures" / "vi").mkdir(parents=True)
+            diagrams = store / "vi" / "diagrams"
+            diagrams.mkdir(parents=True)
+            data = load("small.json")
+            data["id"] = "sd-01-001"
+            dest = diagrams / "sd-01-001-main.svg"
+            dest.write_text("the Vietnamese figure", encoding="utf-8")
+            paths = {"constants": dict(ROOT=Path(tmp), DIAGRAMS=diagrams, LESSONS=store / "vi" / "lessons", SPEC_DIR=store / "figures" / "vi")}
+            for lang in ("en", "ja"):
+                other = Path(tmp) / f"{lang}.json"
+                other.write_text(json.dumps(dict(data, lang=lang), ensure_ascii=False), encoding="utf-8")
+                with mock.patch.multiple(cli, **paths["constants"]):
+                    code, err = self.run_cli("build", str(other))
+                self.assertEqual(code, 1, (lang, err))
+                self.assertIn("holds Vietnamese lessons", err)
+                self.assertEqual(dest.read_text(encoding="utf-8"), "the Vietnamese figure", lang)
+                kept = store / "figures" / "vi" / "sd-01-001.json"                         # kept in the store's folder, check says so too
+                kept.write_text(other.read_text(encoding="utf-8"), encoding="utf-8")
+                with mock.patch.multiple(cli, **paths["constants"]):
+                    self.assertIn(f"lang is {lang!r}", self.run_cli("check")[1])
+                    self.assertNotIn("lang is", self.run_cli("check", str(other))[1])        # the same spec outside the store is a trial figure: fine
+                kept.unlink()
+            for lang in (None, "vi"):                                                       # no language and Vietnamese are the store's own
+                spec_data = dict(data) if lang is None else dict(data, lang=lang)
+                path = Path(tmp) / "own.json"
+                path.write_text(json.dumps(spec_data, ensure_ascii=False), encoding="utf-8")
+                with mock.patch.multiple(cli, **paths["constants"]):
+                    self.assertEqual(self.run_cli("build", str(path))[0], 0, lang)
+                self.assertTrue(dest.read_text(encoding="utf-8").startswith("<svg"), lang)
+                dest.write_text("the Vietnamese figure", encoding="utf-8")
+
     def test_a_write_goes_through_a_link_as_it_always_did(self):
         with tempfile.TemporaryDirectory() as tmp:
             real, link = Path(tmp) / "real.svg", Path(tmp) / "link.svg"

@@ -29,6 +29,7 @@ One JSON file per figure, `system-design-101/figures/vi/<lesson id>.json` (next 
   most 4 lanes; the spec check says when a flow needs more). Name an icon for every card or for none.
 - `steps`: 2-8 numbered cards joined by short arrows. `notes`: 2-8 cards with a tick.
 - `sequence`: 2-3 actors, 2-10 messages; `reply` draws the arrow dashed.
+- `lang` is `vi` (the default), `en` or `ja`. The store (`system-design-101/vi`) holds Vietnamese lessons, so `build` refuses another language and `check` reports one kept in `system-design-101/figures/vi/`; `render`, `preview` and `facebook` draw any of the three.
 - Limits on lengths and counts are in `scripts/figures/spec.py`. No address is accepted in any text (the studio's own rule for posts, `mkt.check.has_url`: `https://`, `www.`, a bare
   domain, a spaced scheme, an ideographic full stop between two names such as `fb。com`; it also reads a file name that ends in a country code, such as `server.py` or `README.md`, as a domain, so
   write the name as a word), no control or invisible character (any Unicode control, format, surrogate or line-separator character: zero-width spaces and joiners, direction marks, a byte-order mark),

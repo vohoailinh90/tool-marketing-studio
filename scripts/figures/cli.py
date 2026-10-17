@@ -44,6 +44,14 @@ def _write(path: Path, content: str) -> bool:
     return True
 
 
+def language_problem(spec: dict) -> str | None:
+    """The store is Vietnamese (`system-design-101/vi`): a spec in another language is drawn with `render`, outside it."""
+    lang = spec.get("lang", "vi")
+    if lang != "vi":
+        return f"{spec['id']}: lang is {lang!r}, and the store holds Vietnamese lessons; draw other languages with `render`, outside the store"
+    return None
+
+
 def aliases(spec_path: Path, out: Path | None) -> bool:
     """True when `out` is the spec file itself, under another name, through a link or as a hard link: the output would overwrite the source
     everything is rebuilt from. An `out` that does not exist yet cannot be it."""
@@ -170,6 +178,10 @@ def build(paths: list[Path], out) -> int:
         if not LESSON_ID.fullmatch(spec["id"]) or not (LESSONS / spec["id"]).is_dir():
             found.append(f"{spec['id']}: there is no lesson of that id in {LESSONS.relative_to(ROOT)}; use `render` for a trial figure")
             continue
+        wrong = language_problem(spec)
+        if wrong:                                                       # an English figure must not replace a Vietnamese lesson's
+            found.append(wrong)
+            continue
         if aliases(path, DIAGRAMS / f"{spec['id']}-main.svg"):          # the figure would be written over its own spec
             found.append(f"{spec['id']}: {_shown(path)} is the figure's own output file; keep the spec in {SPEC_DIR.relative_to(ROOT)}")
             continue
@@ -191,6 +203,9 @@ def check(paths: list[Path], measure_text: bool = False) -> int:
     loaded, bad = _load_each(paths)
     found.extend(bad)
     found.extend(duplicate_ids(loaded))
+    for path, spec in loaded:                                 # a spec kept in the store's folder is a store figure
+        if path.resolve().parent == SPEC_DIR.resolve() and language_problem(spec):
+            found.append(language_problem(spec))
     if loaded:                                                # the footer of every slide: the export would refuse it, so a figure is not Facebook-ready
         reason = facebook.handle_problem(facebook.handle(ROOT))
         if reason:

@@ -58,3 +58,7 @@ mutations:
   find: "    if icon_problems:\n        print("
   replace: "    if False:\n        print("
   test: tests.test_figures.RobustnessTests.test_a_tampered_icon_set_stops_a_build_and_an_export_before_anything_is_written
+- label: the check goes on to draw from a broken icon set
+  find: '    if found:                                                # a figure cannot be drawn from a broken icon set: say so, do not try'
+  replace: '    if False:                                                # a figure cannot be drawn from a broken icon set: say so, do not try'
+  test: tests.test_figures.RobustnessTests.test_check_with_a_structurally_broken_icon_file_reports_it_instead_of_raising

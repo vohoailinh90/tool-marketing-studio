@@ -34,19 +34,27 @@ mutations:
   find: '    if len(data) > MAX_BYTES:'
   replace: '    if False:'
   test: tests.test_figures.FacebookTests.test_a_written_slide_is_checked_for_type_size_and_weight
-- label: a slide of an earlier export stays in the folder
-  find: '        stale.unlink()'
-  replace: '        pass'
-  test: tests.test_figures.FacebookTests.test_export_writes_png_slides_of_the_exact_canvas_size_and_replaces_old_ones
 - label: slides are written although the plan has problems
-  find: "    if problems:\n        return [], problems\n    folder"
-  replace: "    if False:\n        return [], problems\n    folder"
+  find: "    slides, problems = plan(spec, fmt)\n    if problems:\n        return [], problems\n    alt = alt_text(spec, slides)"
+  replace: "    slides, problems = plan(spec, fmt)\n    if False:\n        return [], problems\n    alt = alt_text(spec, slides)"
   test: tests.test_figures.FacebookTests.test_nothing_is_written_when_the_plan_has_problems
 - label: the handle of studio.yaml is not read
   find: return str(author.get("handle") or "").strip() if isinstance(author, dict) else ""
   replace: return ""
   test: tests.test_figures.FacebookTests.test_the_handle_comes_from_studio_yaml_and_is_empty_when_it_cannot_be_read
-- label: an alt text that cannot be encoded fails after stale slides were deleted
-  find: '    alt.encode("utf-8")                                    # fails here, before anything is deleted or written'
+- label: an alt text that cannot be encoded fails after slides were drawn
+  find: '    alt.encode("utf-8")                                    # fails here, before anything is drawn'
   replace: '    pass'
   test: tests.test_figures.RobustnessTests.test_an_alt_text_that_cannot_be_encoded_fails_before_a_stale_slide_is_deleted
+- label: slides of an earlier export stay in the folder
+  find: '            stale.unlink()'
+  replace: '            pass'
+  test: tests.test_figures.FacebookTests.test_a_successful_export_replaces_the_whole_previous_pack_and_leaves_no_temporary_folder
+- label: the temporary folder is left behind
+  find: "    finally:\n        shutil.rmtree(work, ignore_errors=True)"
+  replace: "    finally:\n        pass"
+  test: tests.test_figures.FacebookTests.test_a_failed_export_leaves_the_previous_pack_and_no_temporary_folder
+- label: a pack that failed its checks replaces the previous one
+  find: "        if problems:\n            return [], problems\n        folder.mkdir"
+  replace: "        if False:\n            return [], problems\n        folder.mkdir"
+  test: tests.test_figures.FacebookTests.test_a_failed_export_leaves_the_previous_pack_and_no_temporary_folder

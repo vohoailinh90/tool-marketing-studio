@@ -87,12 +87,12 @@ mutations:
   replace: "            if False:"
   test: tests.test_sd101_source_distance.TextTests.test_vietnamese_words_without_marks_are_language_not_names
 - label: HTML tags of the lesson are read as words
-  find: "    return strip_html(re.sub(r\"https?://\\S+\", \" \", prose))"
-  replace: "    return re.sub(r\"https?://\\S+\", \" \", prose)"
+  find: "    return strip_html(strip_links(\"\\n\".join(kept)))"
+  replace: "    return strip_links(\"\\n\".join(kept))"
   test: tests.test_sd101_source_distance.TextTests.test_html_markup_is_not_vocabulary_in_the_lesson_or_the_source
 - label: HTML tags of the source are read as words
-  find: "    return strip_html(\"\\n\".join(lines))"
-  replace: "    return \"\\n\".join(lines)"
+  find: "    return strip_html(strip_links(\"\\n\".join(lines)))"
+  replace: "    return strip_links(\"\\n\".join(lines))"
   test: tests.test_sd101_source_distance.TextTests.test_html_markup_is_not_vocabulary_in_the_lesson_or_the_source
 - label: a name that an English guide uses is dropped because it fits a Vietnamese syllable
   find: "            if VIETNAMESE_SYLLABLE.fullmatch(piece) and piece not in keep and piece not in TECHNICAL_NAMES:"

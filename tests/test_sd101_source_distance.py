@@ -63,10 +63,10 @@ class TextTests(unittest.TestCase):
         self.assertIn("Redis caches", body)
 
     def test_link_destinations_are_not_vocabulary_of_the_source_or_the_lesson(self) -> None:
-        text = "Postgres [replicates data](https://hosting.example/pathsegment/guide) and Redis, see https://bareurl.example/other for more.\n"
+        text = "Postgres [replicates data](https://hosting.example/pathsegment/guide) and Redis, see https://bareurl.example/other for more, then [Kafka](relativefolder/pathword.md).\n"
         for tokens in (distance_tool.signal_tokens(distance_tool.source_body(text)),
                        distance_tool.signal_tokens(distance_tool.lesson_prose(text))):
-            self.assertEqual(tokens, ["postgres", "replicates", "data", "redis"])
+            self.assertEqual(tokens, ["postgres", "replicates", "data", "redis", "kafka"])
         self.assertEqual(distance_tool.signal_tokens(distance_tool.source_body("Kafka ![shot](https://img.example/a.png) streams\n")), ["kafka", "streams"])
 
     def test_signal_tokens_keep_names_and_numbers_in_order_and_drop_noise(self) -> None:

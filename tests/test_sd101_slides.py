@@ -194,6 +194,33 @@ class ClaimTests(Sessions):
         self.assertEqual(0, code)
         self.assertIn("invalid 1", out)
 
+    def test_offline_never_publishes_the_default_branch(self) -> None:
+        before = git(self.seed, "rev-parse", "origin/main")
+        code, _, err = self.run_in(self.seed, "--offline", "claim", "sd-01-001", "--publish")
+        self.assertEqual(2, code)
+        self.assertIn("default branch", err)
+        self.assertEqual(before, git(self.seed, "ls-remote", "origin", "refs/heads/main").split()[0])
+        self.assertFalse((self.seed / "store" / "lessons" / "sd-01-001" / "slides").exists())
+
+    def test_a_parseable_record_without_an_owner_or_with_an_unknown_status_blocks_its_lesson(self) -> None:
+        for text in ("id: sd-01-001\nstatus: doing\nclaimed_at: 2026-10-17T08:00:00Z\nheartbeat_at: 2026-10-17T08:00:00Z\n",
+                     "id: sd-01-001\nstatus: banana\nowner: claude/y\n"):
+            with self.subTest(record=text.splitlines()[1]):
+                x, b = self.session("x"), self.session("b")
+                folder = x / "store" / "lessons" / "sd-01-001" / "slides"
+                folder.mkdir()
+                (folder / "deck.yaml").write_text(text, encoding="utf-8")
+                git(x, "add", "-A")
+                git(x, "commit", "--quiet", "-m", "record")
+                git(x, "push", "--quiet", "-u", "origin", "claude/x")
+                code, _, err = self.run_in(b, "claim", "sd-01-001")
+                self.assertEqual(1, code)
+                self.assertIn("cannot be read", err)
+                git(x, "push", "--quiet", "origin", "--delete", "claude/x")
+                for path in (self.tmp / "x", self.tmp / "b"):
+                    import shutil
+                    shutil.rmtree(path)
+
     def test_an_unreadable_record_on_a_feature_branch_blocks_its_lesson(self) -> None:
         x, b = self.session("x"), self.session("b")
         folder = x / "store" / "lessons" / "sd-01-001" / "slides"
@@ -463,6 +490,12 @@ class FolderTests(unittest.TestCase):
         self.assertEqual(["08.png is missing"], self.problems())
         png(self.dir / "08.png", 800, 600)
         self.assertEqual(["08.png is not a 1920x1080 PNG"], self.problems())
+
+    def test_a_deck_has_the_documented_size(self) -> None:
+        self.write(size="800x600")
+        self.assertIn("deck.yaml: size must be 1920x1080", self.problems())
+        self.write(size="1920x1080")
+        self.assertEqual([], self.problems())
 
     def test_a_deck_has_between_eight_and_ten_slides(self) -> None:
         for count, ok in ((7, False), (8, True), (10, True), (11, False)):

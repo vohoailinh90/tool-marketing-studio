@@ -57,7 +57,7 @@ DONE_KEYS = {"id", "status", "owner", "session", "taken_from", "generation", "cl
 STAMP = re.compile(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z")
 LESSON_ID = re.compile(r"sd-\d{2}-\d{3}")
 CANVAS_ID = re.compile(r"cvs_[0-9A-Za-z]{20,}")
-SIZE = re.compile(r"[1-9]\d{2,4}x[1-9]\d{2,4}")
+DECK_SIZE = "1920x1080"  # docs/sd101-slides.md: every canvas and exported PNG
 MODA_URL = "https://moda.app/canvas/"
 SLIDE_COUNTS = range(8, 11)  # docs/sd101-slides.md: 8 to 10 slides, one progress dot each
 LEASE_HOURS = 72
@@ -184,8 +184,8 @@ def record_problems(record: object, lesson_id: str) -> list[str]:
         problems.append(f"moda_url must start with {MODA_URL}")
     if not (_count(record.get("slide_count")) and record["slide_count"] in SLIDE_COUNTS):
         problems.append(f"slide_count must be between {SLIDE_COUNTS.start} and {SLIDE_COUNTS.stop - 1}")
-    if not (isinstance(record.get("size"), str) and SIZE.fullmatch(record["size"])):
-        problems.append("size must look like 1920x1080")
+    if record.get("size") != DECK_SIZE:
+        problems.append(f"size must be {DECK_SIZE}")
     if record.get("exports") not in EXPORTS:
         problems.append(f"exports must be one of {', '.join(EXPORTS)}")
     return problems
@@ -349,7 +349,7 @@ def gather(context: Context, ids: list[str]) -> tuple[dict[str, list[Holding]], 
                 if holding.status == "doing" and holding.owner in names and holding.owner != base:
                     continue  # a claim in progress belongs to its owner's branch, which says whether it still stands
                 holdings[lesson_id].append(holding)
-            elif holding.owner == name or holding.status == "invalid":  # an unreadable record names no owner but blocks
+            elif holding.owner == name or holding.status == "invalid" or not holding.owner:  # a malformed record blocks
                 holdings[lesson_id].append(holding)
             else:
                 warnings.append(f"{where}: {lesson_id} names another owner ({holding.owner or 'none'}); not a claim")
@@ -407,9 +407,9 @@ def refusal(lesson_id: str, found: list[Holding], context: Context, moment: date
     state, holding = standing(found, moment)
     if state == "done":
         return f"{lesson_id}: already built by {holding.owner or 'an unknown owner'} ({holding.where})"
-    if state == "invalid":
-        return (f"{lesson_id}: {holding.where} holds a record that cannot be read ({'; '.join(holding.problems)}); "
-                "fix it first")
+    if state == "invalid" or (state in ("doing", "stale") and holding.problems):
+        return (f"{lesson_id}: {holding.where} holds a record that cannot be read as a claim "
+                f"({'; '.join(holding.problems)}); fix it first")
     if state == "doing" and holding.owner != context.me:
         return f"{lesson_id}: claimed by {holding.owner} (heartbeat {holding.heartbeat_at})"
     if state == "stale" and not any(other.owner == context.me for other in found) and not take_stale:
@@ -430,8 +430,8 @@ def lost_reason(lesson_id: str, found: list[Holding], context: Context, moment: 
     for holding in found:
         if holding.owner == context.me and holding.status == "doing":
             continue
-        if holding.status == "invalid":
-            return f"{lesson_id}: {holding.where} holds a record that cannot be read; fix it first"
+        if holding.status == "invalid" or (holding.problems and holding.status != "done"):
+            return f"{lesson_id}: {holding.where} holds a record that cannot be read as a claim; fix it first"
         if holding.status == "done":
             return f"{lesson_id}: already built by {holding.owner}"
         if not is_stale(holding, moment) and beats(holding, me):
@@ -450,14 +450,18 @@ def current_branch(root: pathlib.Path) -> str | None:
 def require_branch(context: Context) -> str:
     if not context.me:
         raise SlidesError("HEAD is detached; work on a branch (or pass --owner)")
+    helpers = claims_module()
+    bases = {"main", "master"}  # refused even offline, where the remote cannot be asked which branch is its default
+    local = helpers.git(context.root, "symbolic-ref", "--short", "-q", f"refs/remotes/{context.remote}/HEAD", check=False)
+    if local.returncode == 0 and local.stdout.decode().strip().startswith(f"{context.remote}/"):
+        bases.add(local.stdout.decode().strip()[len(context.remote) + 1:])
     if not context.offline:
-        helpers = claims_module()
         try:
-            base = helpers.default_branch(context.root, context.remote)
+            bases.add(helpers.default_branch(context.root, context.remote))
         except helpers.ClaimsError as error:
             raise SlidesError(f"the remote could not be read ({error}); pass --offline to decide without it") from error
-        if context.me == base:
-            raise SlidesError(f"{context.me} is the default branch of {context.remote}; claims are pushed from a work branch")
+    if context.me in bases:
+        raise SlidesError(f"{context.me} is the default branch of {context.remote}; claims are pushed from a work branch")
     return context.me
 
 
@@ -652,7 +656,7 @@ def cmd_finish(context: Context, args: argparse.Namespace) -> int:
     old = parse_record(path.read_text(encoding="utf-8")) or {}
     record = {key: old[key] for key in ("id", "owner", "session", "taken_from", "generation", "claimed_at") if key in old}
     record.update(status="done", done_at=stamp(now()), moda_canvas=args.canvas, moda_url=args.url,
-                  slide_count=args.slides, size=args.size, exports=args.exports)
+                  slide_count=args.slides, size=DECK_SIZE, exports=args.exports)
     problems = record_problems(record, lesson_id)
     if problems:
         print("\n".join(f"{lesson_id}: {problem}" for problem in problems), file=sys.stderr)
@@ -768,7 +772,6 @@ def build_parser() -> argparse.ArgumentParser:
     finish.add_argument("--canvas", required=True, help="the Moda canvas id, cvs_...")
     finish.add_argument("--url", required=True, help="the Moda editor link, https://moda.app/canvas/...")
     finish.add_argument("--slides", type=int, required=True)
-    finish.add_argument("--size", default="1920x1080")
     finish.add_argument("--exports", choices=EXPORTS, default="pending",
                         help="done only when <id>.pptx and 01.png.. are in slides/")
     finish.add_argument("--publish", action="store_true")

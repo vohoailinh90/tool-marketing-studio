@@ -11,8 +11,8 @@ mutations:
   replace: "        names = []\n        for (name, lesson_id), text in read_remote"
   test: tests.test_sd101_slides.ClaimTests.test_a_published_claim_keeps_every_other_session_off_the_lesson
 - label: a record copied into another branch is counted as that branch's claim
-  find: "            elif holding.owner == name or holding.status == \"invalid\":"
-  replace: "            elif True:"
+  find: "elif holding.owner == name or holding.status == \"invalid\" or not holding.owner:"
+  replace: "elif True:"
   test: tests.test_sd101_slides.ClaimTests.test_a_copy_of_a_claim_inherited_by_another_branch_is_not_a_claim
 - label: the later of two claims wins instead of the earlier
   find: '    return (-first.generation, first.claimed_at or "", first.owner) < (-second.generation, second.claimed_at or "", second.owner)'
@@ -83,7 +83,7 @@ mutations:
   replace: "    if state == \"stale\" and holding.owner != context.me and not take_stale:"
   test: tests.test_sd101_slides.LeaseTests.test_my_own_stale_claim_can_be_claimed_again_when_an_older_stale_claim_exists
 - label: an unreadable record on a feature branch is dropped because it names no owner
-  find: " or holding.status == \"invalid\":"
+  find: " or holding.status == \"invalid\" or not holding.owner:"
   replace: ":"
   test: tests.test_sd101_slides.ClaimTests.test_an_unreadable_record_on_a_feature_branch_blocks_its_lesson
 - label: a deck may have any number of slides from 4 to 12
@@ -94,3 +94,19 @@ mutations:
   find: "        if rivals:"
   replace: "        if False:"
   test: tests.test_sd101_slides.FinishTests.test_finish_reports_an_earlier_claim_that_was_pushed_while_it_published
+- label: a record with a valid status but no owner is dropped from a feature branch
+  find: " or not holding.owner:"
+  replace: ":"
+  test: tests.test_sd101_slides.ClaimTests.test_a_parseable_record_without_an_owner_or_with_an_unknown_status_blocks_its_lesson
+- label: a record with an unknown status but another owner is dropped from a feature branch
+  find: " or holding.status == \"invalid\" or not holding.owner:"
+  replace: " or not holding.owner:"
+  test: tests.test_sd101_slides.ClaimTests.test_a_parseable_record_without_an_owner_or_with_an_unknown_status_blocks_its_lesson
+- label: offline mode may publish the default branch
+  find: "    if context.me in bases:"
+  replace: "    if context.me in bases and not context.offline:"
+  test: tests.test_sd101_slides.ClaimTests.test_offline_never_publishes_the_default_branch
+- label: any deck size is accepted
+  find: "    if record.get(\"size\") != DECK_SIZE:"
+  replace: "    if False:"
+  test: tests.test_sd101_slides.FolderTests.test_a_deck_has_the_documented_size

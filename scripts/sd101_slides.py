@@ -468,7 +468,7 @@ def gather(context: Context, ids: list[str]) -> tuple[dict[str, list[Holding]], 
             if holding.problems:
                 warnings.append(f"{where}: {lesson_id}/{SLIDES_DIR}/{RECORD} {'; '.join(holding.problems)}")
             if name == base:
-                if holding.status == "doing" and holding.owner in names and holding.owner != base:
+                if holding.status == "doing" and holding.owner in names and holding.owner != base and not holding.problems:
                     continue  # a claim in progress belongs to its owner's branch, which says whether it still stands
                 holdings[lesson_id].append(holding)
             elif holding.owner == name or holding.problems:  # a malformed record blocks, whoever it names
@@ -706,6 +706,39 @@ def cmd_claim(context: Context, args: argparse.Namespace) -> int:
     if refused:
         print("\n".join(refused), file=sys.stderr)
         return 1
+    for lesson_id in wanted:  # every destination is checked before the first one is written
+        context.writable_record(lesson_id)
+    before: dict[pathlib.Path, str | None] = {}
+    try:
+        write_claims(context, wanted, holdings, moment, branch, args, before)
+    except BaseException:
+        restore(before)  # a write that fails half way leaves no claim behind that later commands would treat as owned
+        raise
+    print(f"claimed {', '.join(wanted)} as {branch}")
+    for warning in warnings:
+        print(f"warning: {warning}", file=sys.stderr)
+    if args.publish:
+        publish(context, [context.record_path(lesson_id) for lesson_id in wanted], f"Slides: claim {', '.join(wanted)}")
+        return report(context, wanted)
+    return 0
+
+
+def restore(before: dict[pathlib.Path, str | None]) -> None:
+    """Put back what a claim command overwrote or created, as far as the disk lets it."""
+    for path, text in before.items():
+        try:
+            if text is None:
+                path.unlink(missing_ok=True)
+                if path.parent.is_dir() and not any(path.parent.iterdir()):
+                    path.parent.rmdir()
+            else:
+                path.write_text(text, encoding="utf-8")
+        except OSError:
+            pass
+
+
+def write_claims(context: Context, wanted: list[str], holdings: dict[str, list[Holding]], moment: datetime.datetime,
+                 branch: str, args: argparse.Namespace, before: dict[pathlib.Path, str | None]) -> None:
     for lesson_id in wanted:
         state, holding = standing(holdings[lesson_id], moment)
         if state == "doing" and holding.owner == context.me:
@@ -721,15 +754,9 @@ def cmd_claim(context: Context, args: argparse.Namespace) -> int:
         if taken:
             record.update(taken_from=taken, generation=generation)
         path = context.writable_record(lesson_id)
+        before[path] = path.read_text(encoding="utf-8") if path.is_file() else None
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(render(record), encoding="utf-8")
-    print(f"claimed {', '.join(wanted)} as {branch}")
-    for warning in warnings:
-        print(f"warning: {warning}", file=sys.stderr)
-    if args.publish:
-        publish(context, [context.record_path(lesson_id) for lesson_id in wanted], f"Slides: claim {', '.join(wanted)}")
-        return report(context, wanted)
-    return 0
 
 
 def report(context: Context, ids: list[str]) -> int:
@@ -794,6 +821,10 @@ def finished_problem(context: Context, lesson_id: str, remote: list[Holding] | N
             if holding.status == "done" and holding.owner == context.me and holding.where != LOCAL]
     if not mine:
         return f"{lesson_id}: the finished record is not on {context.remote}/{context.me}"
+    damaged = [holding for holding in remote if holding.status == "done" and holding.owner == context.me and holding.problems]
+    if damaged:  # on the remote or in this tree, about to be pushed
+        return (f"{lesson_id}: your finished record on {damaged[0].where} cannot be used "
+                f"({'; '.join(damaged[0].problems)}); fix it")
     moment = now()  # the finished record keeps its claim's time and generation, so it is judged as that claim
     rivals = [holding for holding in remote if holding.status in ("doing", "done") and holding.owner != context.me
               and not is_stale(holding, moment) and beats(holding, mine[0])]

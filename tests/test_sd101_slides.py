@@ -338,6 +338,60 @@ class ClaimTests(Sessions):
         self.assertIn("cannot be read", err)
         self.assertEqual(damaged, (folder / "deck.yaml").read_text(encoding="utf-8"))
 
+    def test_a_malformed_claim_on_the_default_branch_blocks_even_when_its_owner_branch_exists(self) -> None:
+        x, b = self.session("x"), self.session("b")
+        git(x, "push", "--quiet", "-u", "origin", "claude/x")  # x's branch exists and carries no record
+        folder = self.seed / "store" / "lessons" / "sd-01-001" / "slides"
+        folder.mkdir()
+        (folder / "deck.yaml").write_text(  # a doing record naming x, without its heartbeat
+            "id: sd-01-001\nstatus: doing\nowner: claude/x\nclaimed_at: 2026-10-17T08:00:00Z\n", encoding="utf-8")
+        git(self.seed, "add", "-A")
+        git(self.seed, "commit", "--quiet", "-m", "damaged record")
+        git(self.seed, "push", "--quiet", "origin", "main")
+        code, _, err = self.run_in(b, "claim", "sd-01-001")
+        self.assertEqual(1, code)
+        self.assertIn("cannot be read", err)
+
+    def test_a_batch_claim_writes_nothing_when_one_destination_is_refused(self) -> None:
+        import os
+
+        a = self.session("a")
+        store = a / "store"
+        (store / "elsewhere").mkdir()
+        os.symlink(store / "elsewhere", store / "lessons" / "sd-01-002" / "slides")
+        real, written = Path.write_text, []
+
+        def spy(self, *args, **kwargs):
+            if self.name == "deck.yaml":
+                written.append(self)
+            return real(self, *args, **kwargs)
+
+        with mock.patch.object(Path, "write_text", spy):
+            code, _, err = self.run_in(a, "claim", "sd-01-001", "sd-01-002")
+        self.assertEqual(2, code, err)
+        self.assertIn("is a symbolic link", err)
+        self.assertEqual([], written, "no record was written before every destination was known to be usable")
+        self.assertFalse((store / "lessons" / "sd-01-001" / "slides").exists(), "the first lesson was not touched")
+
+    def test_a_batch_claim_that_fails_half_way_puts_back_what_it_wrote(self) -> None:
+        a = self.session("a")
+        store = a / "store"
+        real, calls = Path.write_text, []
+
+        def flaky(self, *args, **kwargs):  # the disk fills up while the second record is written
+            if self.name == "deck.yaml":
+                calls.append(self)
+                if len(calls) == 2:
+                    raise OSError(28, "No space left on device")
+            return real(self, *args, **kwargs)
+
+        with mock.patch.object(Path, "write_text", flaky):
+            code, _, err = self.run_in(a, "claim", "sd-01-001", "sd-01-002")
+        self.assertEqual(2, code, err)
+        self.assertEqual(2, len(calls))
+        for lesson_id in ("sd-01-001", "sd-01-002"):
+            self.assertFalse((store / "lessons" / lesson_id / "slides").exists(), lesson_id)
+
     def test_an_unreadable_record_on_a_feature_branch_blocks_its_lesson(self) -> None:
         x, b = self.session("x"), self.session("b")
         folder = x / "store" / "lessons" / "sd-01-001" / "slides"
@@ -768,6 +822,23 @@ class FinishTests(Sessions):
         code, _, err = self.run_in(a, "verify")
         self.assertEqual(1, code)
         self.assertIn("claude/b holds the earlier claim", err)
+
+    def test_verify_rejects_a_finished_record_that_was_damaged_before_it_was_pushed(self) -> None:
+        a = self.session("a")
+        self.run_in(a, "claim", "sd-01-001", "--publish")
+        self.assertEqual(0, self.finish(a, "sd-01-001", "--publish")[0])
+        self.assertEqual(0, self.run_in(a, "verify")[0])
+        path = a / "store" / "lessons" / "sd-01-001" / "slides" / "deck.yaml"
+        lines = [line for line in path.read_text(encoding="utf-8").splitlines() if not line.startswith("claimed_at")]
+        path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+        code, _, err = self.run_in(a, "verify")
+        self.assertEqual(1, code, "damaged in this tree, before it is pushed")
+        self.assertIn("your finished record on this working tree cannot be used", err)
+        git(a, "commit", "--quiet", "-am", "claimed_at removed")
+        git(a, "push", "--quiet", "origin", "claude/a")
+        code, _, err = self.run_in(a, "verify")
+        self.assertEqual(1, code, "damaged on the remote")
+        self.assertIn("cannot be used", err)
 
     def test_touch_does_not_treat_a_finished_deck_as_a_claim_to_renew(self) -> None:
         a = self.session("a")

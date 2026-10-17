@@ -228,6 +228,32 @@ class ClaimTests(Sessions):
         self.assertEqual(before, git(self.seed, "ls-remote", "origin", "refs/heads/main").split()[0])
         self.assertFalse((self.seed / "store" / "lessons" / "sd-01-001" / "slides").exists())
 
+    def test_a_claim_whose_record_is_missing_here_is_not_published_as_a_deletion(self) -> None:
+        a, b = self.session("a"), self.session("b")
+        self.assertEqual(0, self.run_in(a, "claim", "sd-01-001", "--publish")[0])
+        relative = "store/lessons/sd-01-001/slides/deck.yaml"
+        foreign = slides.render({"id": "sd-01-001", "status": "doing", "owner": "claude/zz",
+                                 "claimed_at": "2026-10-17T07:00:00Z", "heartbeat_at": "2026-10-17T07:00:00Z"})
+        for change in ("deleted", "folder removed", "replaced by another owner's record"):
+            with self.subTest(change=change):
+                (a / relative).unlink()
+                if change == "folder removed":
+                    (a / relative).parent.rmdir()
+                if change.startswith("replaced"):
+                    (a / relative).write_text(foreign, encoding="utf-8")
+                pushed = git(a, "rev-parse", "origin/claude/a")
+                code, _, err = self.run_in(a, "claim", "sd-01-001", "--publish")
+                self.assertEqual(1, code)
+                self.assertIn(f"this tree's deck.yaml is missing or not yours; restore it with "
+                              f"`git checkout origin/claude/a -- {relative}`", err)
+                self.assertEqual(pushed, git(a, "ls-remote", "origin", "refs/heads/claude/a").split()[0], "nothing pushed")
+                self.assertIn(relative, git(a, "ls-tree", "-r", "--name-only", "origin/claude/a"))
+                code, _, err = self.run_in(b, "claim", "sd-01-001")
+                self.assertEqual(1, code)
+                self.assertIn("claimed by claude/a", err)
+                git(a, "checkout", "--quiet", "origin/claude/a", "--", relative)  # the hint the refusal gives
+                self.assertEqual(0, self.run_in(a, "claim", "sd-01-001", "--publish")[0])
+
     def test_publishing_checks_the_remote_afterwards_so_it_refuses_to_run_offline(self) -> None:
         a = self.session("a")
         finish = ("finish", "sd-01-001", "--canvas", CANVAS, "--url", URL, "--slides", "8")
@@ -1151,6 +1177,41 @@ class FolderTests(unittest.TestCase):
             self.assertEqual("image data inflates to more than the header describes", slides.png_damage(path))
         self.assertTrue(asked)
         self.assertTrue(all(0 < size <= 16 * 49 + 1 for size in asked), asked)
+
+    def test_a_header_or_palette_that_no_decoder_accepts_is_reported(self) -> None:
+        def image(colour: int, depth: int, compression: int = 0, filtering: int = 0, palette: bytes | None = None,
+                  palette_after: bool = False) -> bytes:
+            header = struct.pack(">IIBBBBB", 16, 16, depth, colour, compression, filtering, 0)
+            raw = b"\x00" * slides.png_scanlines(16, 16, slides.PNG_CHANNELS[colour] * depth, 0)  # exactly the scanlines
+            plte = chunk(b"PLTE", palette) if palette is not None else b""
+            data = chunk(b"IDAT", zlib.compress(raw))
+            return (slides.PNG_SIGNATURE + chunk(b"IHDR", header) + (data + plte if palette_after else plte + data)
+                    + chunk(b"IEND", b""))
+
+        header, plte = "IHDR does not describe an image", "PLTE chunk does not fit the image"
+        cases = {
+            "truecolour at 1 bit": (image(2, 1), header),
+            "truecolour with alpha at 4 bits": (image(6, 4), header),
+            "grey with alpha at 2 bits": (image(4, 2), header),
+            "a palette at 16 bits": (image(3, 16, palette=b"\x00" * 3), header),
+            "a compression method that does not exist": (image(2, 8, compression=1), header),
+            "a filter method that does not exist": (image(2, 8, filtering=1), header),
+            "a palette image without its palette": (image(3, 8), "a palette image has no PLTE chunk before its image data"),
+            "a palette in a grey image": (image(0, 8, palette=b"\x00" * 3), plte),
+            "a palette whose length is not whole entries": (image(3, 8, palette=b"\x00" * 4), plte),
+            "a palette of more than 256 entries": (image(3, 8, palette=b"\x00" * 771), plte),
+            "an empty palette": (image(3, 8, palette=b""), plte),
+            "a palette after the image data": (image(2, 8, palette=b"\x00" * 3, palette_after=True), plte),
+            "grey at 1 bit": (image(0, 1), None),
+            "a palette image at 8 bits": (image(3, 8, palette=b"\x00" * 768), None),
+            "truecolour with a suggested palette": (image(2, 8, palette=b"\x00" * 3), None),
+            "truecolour with alpha at 16 bits": (image(6, 16), None),
+        }
+        for label, (data, reason) in cases.items():
+            with self.subTest(label):
+                path = self.dir / "01.png"
+                path.write_bytes(data)
+                self.assertEqual(reason, slides.png_damage(path))
 
     def test_a_header_describing_an_absurd_image_is_reported_not_raised(self) -> None:
         reason = "IHDR describes an image too large to be a slide"

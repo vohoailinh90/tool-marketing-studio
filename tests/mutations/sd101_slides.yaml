@@ -263,12 +263,12 @@ mutations:
   replace: "    if False:"
   test: tests.test_sd101_slides.FolderTests.test_the_inflated_image_data_is_bounded_by_what_the_header_describes
 - label: a header that describes no image passes
-  find: "            if not (width and height and colour in PNG_CHANNELS and depth in (1, 2, 4, 8, 16) and interlace in (0, 1)):"
+  find: "            if not (width and height and depth in PNG_DEPTHS.get(colour, ()) and compression == 0 and filtering == 0\n                    and interlace in (0, 1)):"
   replace: "            if False:"
   test: tests.test_sd101_slides.FolderTests.test_the_inflated_image_data_is_bounded_by_what_the_header_describes
 - label: an interlace method that does not exist passes
-  find: "            if not (width and height and colour in PNG_CHANNELS and depth in (1, 2, 4, 8, 16) and interlace in (0, 1)):"
-  replace: "            if not (width and height and colour in PNG_CHANNELS and depth in (1, 2, 4, 8, 16)):"
+  find: "filtering == 0\n                    and interlace in (0, 1)):"
+  replace: "filtering == 0):"
   test: tests.test_sd101_slides.FolderTests.test_the_inflated_image_data_is_bounded_by_what_the_header_describes
 - label: the seven passes of an interlaced image are counted wrongly
   find: "ADAM7 = ((0, 0, 8, 8), (4, 0, 8, 8), (0, 4, 4, 8), (2, 0, 4, 4), (0, 2, 2, 4), (1, 0, 2, 2), (0, 1, 1, 2))  # x0, y0, dx, dy"
@@ -322,3 +322,23 @@ mutations:
   find: "        if args.offline and getattr(args, \"publish\", False):  # decided before anything is written or pushed\n            raise SlidesError(\"--publish pushes the branch and then checks the claim against the remote, so it cannot be \"\n                              \"combined with --offline\")\n"
   replace: ""
   test: tests.test_sd101_slides.ClaimTests.test_publishing_checks_the_remote_afterwards_so_it_refuses_to_run_offline
+- label: a claim of mine whose record is gone from the tree is published as a deletion
+  find: "    if state == \"doing\" and not any(other.where == LOCAL and other.owner == context.me and other.status == \"doing\""
+  replace: "    if False and not any(other.where == LOCAL and other.owner == context.me and other.status == \"doing\""
+  test: tests.test_sd101_slides.ClaimTests.test_a_claim_whose_record_is_missing_here_is_not_published_as_a_deletion
+- label: a bit depth is accepted whatever the colour type
+  find: "depth in PNG_DEPTHS.get(colour, ())"
+  replace: "depth in (1, 2, 4, 8, 16) and colour in PNG_DEPTHS"
+  test: tests.test_sd101_slides.FolderTests.test_a_header_or_palette_that_no_decoder_accepts_is_reported
+- label: the compression and filter methods of IHDR are ignored
+  find: " and compression == 0 and filtering == 0"
+  replace: ""
+  test: tests.test_sd101_slides.FolderTests.test_a_header_or_palette_that_no_decoder_accepts_is_reported
+- label: a palette image without its palette passes
+  find: "            if colour == 3 and not palette:"
+  replace: "            if False:"
+  test: tests.test_sd101_slides.FolderTests.test_a_header_or_palette_that_no_decoder_accepts_is_reported
+- label: a palette chunk anywhere and of any length passes
+  find: "            if colour not in (2, 3, 6) or palette or images or not 0 < length <= 768 or length % 3:"
+  replace: "            if False:"
+  test: tests.test_sd101_slides.FolderTests.test_a_header_or_palette_that_no_decoder_accepts_is_reported

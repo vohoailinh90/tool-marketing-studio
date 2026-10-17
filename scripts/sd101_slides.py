@@ -67,6 +67,7 @@ PUSH_BACKOFF_SECONDS = (2, 4, 8, 16)
 PNG_SIGNATURE = b"\x89PNG\r\n\x1a\n"
 PPTX_PARTS = ("[Content_Types].xml", "ppt/presentation.xml")  # what any PowerPoint file holds
 PNG_CHANNELS = {0: 1, 2: 3, 3: 1, 4: 2, 6: 4}  # samples per pixel by colour type
+PNG_DEPTHS = {0: (1, 2, 4, 8, 16), 2: (8, 16), 3: (1, 2, 4, 8), 4: (8, 16), 6: (8, 16)}  # the bit depths each type allows
 ADAM7 = ((0, 0, 8, 8), (4, 0, 8, 8), (0, 4, 4, 8), (2, 0, 4, 4), (0, 2, 2, 4), (1, 0, 2, 2), (0, 1, 1, 2))  # x0, y0, dx, dy
 MAX_PPTX_BYTES = 512 * 1024 * 1024  # what a deck's parts may add up to once unpacked
 MAX_PNG_BYTES = 64 * 1024 * 1024  # what one slide's scanlines may add up to once inflated (1920x1080 at 16 bits is 17 MB)
@@ -249,7 +250,7 @@ def png_damage(path: pathlib.Path) -> str | None:
     if data[:8] != PNG_SIGNATURE:
         return "no PNG signature"
     position, first, finished, images, inflater = 8, True, False, 0, zlib.decompressobj()
-    produced, expected = 0, 0
+    produced, expected, colour, palette = 0, 0, 0, False
     while position < len(data):
         if finished:
             return "bytes after IEND"
@@ -264,14 +265,21 @@ def png_damage(path: pathlib.Path) -> str | None:
         if first and (kind != b"IHDR" or length != 13):
             return "IHDR is not the first chunk"
         if first:
-            width, height, depth, colour, _, _, interlace = struct.unpack(">IIBBBBB", data[position + 8:end])
-            if not (width and height and colour in PNG_CHANNELS and depth in (1, 2, 4, 8, 16) and interlace in (0, 1)):
+            width, height, depth, colour, compression, filtering, interlace = struct.unpack(">IIBBBBB", data[position + 8:end])
+            if not (width and height and depth in PNG_DEPTHS.get(colour, ()) and compression == 0 and filtering == 0
+                    and interlace in (0, 1)):
                 return "IHDR does not describe an image"
             expected = png_scanlines(width, height, PNG_CHANNELS[colour] * depth, interlace)
             if expected > MAX_PNG_BYTES:  # also keeps the size handed to the inflater inside a C ssize_t
                 return "IHDR describes an image too large to be a slide"
         first = False
+        if kind == b"PLTE":  # one, of whole entries, before the image data, and never in a grey image
+            if colour not in (2, 3, 6) or palette or images or not 0 < length <= 768 or length % 3:
+                return "PLTE chunk does not fit the image"
+            palette = True
         if kind == b"IDAT":
+            if colour == 3 and not palette:
+                return "a palette image has no PLTE chunk before its image data"
             images += 1
             piece = data[position + 8:end]
             try:
@@ -558,6 +566,10 @@ def refusal(lesson_id: str, found: list[Holding], context: Context, moment: date
                 f"({'; '.join(holding.problems)}); fix it first")
     if state == "doing" and holding.owner != context.me:
         return f"{lesson_id}: claimed by {holding.owner} (heartbeat {holding.heartbeat_at})"
+    if state == "doing" and not any(other.where == LOCAL and other.owner == context.me and other.status == "doing"
+                                    for other in found):  # claiming would push what this tree holds in its place
+        return (f"{lesson_id}: your claim is on {holding.where} but this tree's {RECORD} is missing or not yours; "
+                f"restore it with `git checkout {holding.where} -- {context.relative(lesson_id)}`")
     if state == "stale" and not any(other.owner == context.me for other in found) and not take_stale:
         return (f"{lesson_id}: claimed by {holding.owner}, whose heartbeat ({holding.heartbeat_at}) is older than "
                 f"{LEASE_HOURS} hours; take it over on purpose with --take-stale")

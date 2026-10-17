@@ -138,6 +138,20 @@ class MetadataTests(unittest.TestCase):
         self.assertTrue(distance_tool.own_evidence({"claims": [{"verified_by": "Chạy thử trên máy cục bộ"}]}))
         self.assertTrue(distance_tool.own_evidence({"claims": [], "verification": {"claims": {"evidence": "measured on 3 hosts"}}}))
 
+    def test_a_negated_run_is_not_evidence_and_the_recorded_phrasing_is_read(self) -> None:
+        # sd-02-002 says it was not run; sd-01-003 says "Chạy máy chủ giả cục bộ" (ran a fake server locally).
+        self.assertFalse(distance_tool.own_evidence({"claims": [{"verified_by": "Suy luận của người biên soạn; chưa chạy thử trên sản phẩm nào."}]}))
+        self.assertFalse(distance_tool.own_evidence({"claims": [{"verified_by": "Not tested on any product."}]}))
+        self.assertTrue(distance_tool.own_evidence({"claims": [{"verified_by": "Chạy máy chủ giả cục bộ ngày 2026-10-16."}]}))
+
+    def test_a_run_in_one_clause_is_not_cancelled_by_a_negation_in_another(self) -> None:
+        self.assertTrue(distance_tool.recorded_run("Chạy Postgres 16 cục bộ: 20 phiên; trang tài liệu chưa mở được."))
+        self.assertTrue(distance_tool.recorded_run("Không đọc được tài liệu. Chạy thử cục bộ."))     # the negation ends with its clause
+        self.assertFalse(distance_tool.recorded_run("Lợi ích nguồn nêu, không phải bảo đảm hoặc số đo cho mọi hệ thống."))
+
+    def test_the_scope_of_the_claims_step_counts_as_a_record(self) -> None:
+        self.assertTrue(distance_tool.own_evidence({"claims": [], "verification": {"claims": {"scope": "Chạy PostgreSQL 16.15 và SQLite."}}}))
+
 
 class FetchTests(unittest.TestCase):
     def setUp(self) -> None:

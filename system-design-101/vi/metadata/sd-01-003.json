@@ -76,7 +76,7 @@
       "claim_vi": "Cấu hình thử lại của urllib3 chỉ thử lại mã nằm trong status_forcelist, cộng 413, 429 và 503 khi phản hồi có Retry-After; với danh sách 500, 502, 503, 504 thì 500 được thử lại còn 530 thì không.",
       "source": "https://github.com/urllib3/urllib3/blob/2.8.0/src/urllib3/util/retry.py",
       "section": "Retry.is_retry",
-      "verified_by": "Đọc retry.py 2.8.0 (is_retry, RETRY_AFTER_STATUS_CODES) và chạy requests 2.34.2 với urllib3 2.8.0 ngày 2026-10-16: total=3, 500 nhận 4 yêu cầu, 530 và 599 nhận 1; 429 có Retry-After: 1 nhận 3 yêu cầu trong khoảng 2 giây, 429 không có Retry-After nhận 1, 420 nhận 1."
+      "verified_by": "Đọc retry.py 2.8.0 (is_retry, RETRY_AFTER_STATUS_CODES) và chạy requests 2.34.2 với urllib3 2.8.0 ngày 2026-10-16: total=3, 500 nhận 4 yêu cầu, 530 và 599 nhận 1; 429 có Retry-After: 1 (máy chủ luôn trả 429): total=2 nhận 3 yêu cầu trong khoảng 2 giây, total=3 nhận 4 yêu cầu trong khoảng 3 giây; 429 không có Retry-After nhận 1 (total=2); 420 nhận 1."
     },
     {
       "id": "429",

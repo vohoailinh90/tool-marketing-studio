@@ -42,3 +42,15 @@ mutations:
   find: "    rows.sort(key=lambda row: row[\"closeness\"], reverse=True)"
   replace: "    rows.sort(key=lambda row: row[\"id\"])"
   test: tests.test_sd101_source_distance.SurveyTests.test_the_closest_lesson_comes_first
+- label: a run that the text says did not happen counts as evidence of a run
+  find: "            if not NEGATION.search(clause[max(0, match.start() - NEGATION_WINDOW):match.start()]):"
+  replace: "            if True:"
+  test: tests.test_sd101_source_distance.MetadataTests.test_a_negated_run_is_not_evidence_and_the_recorded_phrasing_is_read
+- label: a negation carries over into the next clause
+  find: 'CLAUSE_BREAK = re.compile(r"[.;:\n()]")'
+  replace: 'CLAUSE_BREAK = re.compile(r"[\n]")'
+  test: tests.test_sd101_source_distance.MetadataTests.test_a_run_in_one_clause_is_not_cancelled_by_a_negation_in_another
+- label: the scope of the claims step is not read for a recorded run
+  find: 'for key in ("evidence", "scope"))'
+  replace: 'for key in ("evidence",))'
+  test: tests.test_sd101_source_distance.MetadataTests.test_the_scope_of_the_claims_step_counts_as_a_record

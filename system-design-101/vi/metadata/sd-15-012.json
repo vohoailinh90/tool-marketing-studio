@@ -95,10 +95,10 @@
     },
     {
       "id": "index-plan",
-      "claim_vi": "Trên SQLite 3.45.1 với 200.000 dòng, tạo chỉ mục đổi kế hoạch từ SCAN sang SEARCH ... USING COVERING INDEX, giữ nguyên đáp án (40) và giảm thời gian trung bình từ khoảng 5,5 ms xuống khoảng 0,005 ms trên máy thử.",
+      "claim_vi": "Trên SQLite 3.45.1 với 200.000 dòng, tạo chỉ mục đổi kế hoạch từ SCAN sang SEARCH ... USING COVERING INDEX, giữ nguyên đáp án (40) và giảm thời gian trung bình từ khoảng 5 đến 6 ms xuống dưới 0,02 ms trên máy thử.",
       "source": "https://www.sqlite.org/eqp.html",
       "section": "EXPLAIN QUERY PLAN",
-      "verified_by": "Chạy thử ngày 2026-10-16: kế hoạch ['SCAN t'] rồi ['SEARCH t USING COVERING INDEX idx_k (k=?)']; trung bình 20 lần mỗi trạng thái, một máy. Trang sqlite.org không mở được; số đo chỉ là minh họa."
+      "verified_by": "Chạy thử ngày 2026-10-16: kế hoạch ['SCAN t'] rồi ['SEARCH t USING COVERING INDEX idx_k (k=?)']; trung bình 20 lần mỗi trạng thái, một máy. Trang sqlite.org không mở được; số đo chỉ là minh họa. Chạy lại: ba lần 5,3–5,7 ms và 0,005 ms; người đánh giá độc lập đo 5,5 ms và 0,016 ms."
     },
     {
       "id": "python-commit",

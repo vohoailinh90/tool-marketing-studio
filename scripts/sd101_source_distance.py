@@ -17,8 +17,11 @@ first appearance, from the pinned source body and from the lesson's prose, and r
   closeness replay x (1 - novelty): high means "replays the source and adds little"
   units     list items / bold leads / headings of the source against those of the lesson's reading section
   size      words of the lesson's prose per word of the source
-  evidence  independent source hosts cited by the claims, and whether any claim records a run or measurement
+  evidence  independent source hosts cited by the claims (hosts, not repositories: many pages on one host count once),
+            and whether any claim, or the claims step, records a run or measurement (a clause that says it was not run
+            does not count)
 
+Vocabulary is matched on ASCII words, so a Vietnamese word with marks leaves only short fragments that are dropped; that is noise, not signal.
 It is a ranking to point a reader at the lessons worth reading against their source, not a verdict: a lesson that
 follows a short source closely can still be fine, and one that scores low can still copy a sentence. The source text
 is fetched (never stored in the repository) at the commit and blob the lesson's metadata pins, and its git blob
@@ -60,8 +63,12 @@ ENGLISH_STOPWORDS = frozenset(
 VIETNAMESE_NOISE = frozenset("trong chung mang cung dang cong tung chua thay nang hang bang nhan quan thanh tinh dung".split())
 STOPWORDS = ENGLISH_STOPWORDS | VIETNAMESE_NOISE
 
-OWN_EVIDENCE = re.compile(r"\b(chạy thử|chạy cục bộ|chạy thật|observed|ran |run on|running|executed|measured|đo |thử nghiệm|rendered)\b",
-                          re.IGNORECASE)
+# A recorded run or measurement: the verbs the metadata uses for it, in Vietnamese and English. A match counts only when no
+# negation comes shortly before it in the same clause, so "chưa chạy thử" (not run) is not evidence of a run.
+RUN_PHRASE = re.compile(r"\b(chạy|đo|thử nghiệm|ran|measured|executed|observed|tested)\b", re.IGNORECASE)
+NEGATION = re.compile(r"\b(chưa|không|khong|not|never|no|without)\b|n't", re.IGNORECASE)
+NEGATION_WINDOW = 30
+CLAUSE_BREAK = re.compile(r"[.;:\n()]")
 
 
 def blob_sha(data: bytes) -> str:
@@ -194,12 +201,21 @@ def independent_hosts(metadata: dict) -> list[str]:
     return sorted({urlparse(url).netloc for url in claim_urls(metadata) if not any(mark in url.lower() for mark in own)} - {""})
 
 
+def recorded_run(text: str) -> bool:
+    """True when a clause of the text says something was run or measured, and does not say it was not."""
+    for clause in CLAUSE_BREAK.split(text):
+        for match in RUN_PHRASE.finditer(clause):
+            if not NEGATION.search(clause[max(0, match.start() - NEGATION_WINDOW):match.start()]):
+                return True
+    return False
+
+
 def own_evidence(metadata: dict) -> bool:
     """True when a claim or the claims step records that something was run or measured."""
     texts = [str(claim.get("verified_by", "")) for claim in metadata.get("claims", []) if isinstance(claim, dict)]
     step = (metadata.get("verification") or {}).get("claims") or {}
-    texts.append(str(step.get("evidence", "")))
-    return any(OWN_EVIDENCE.search(text) for text in texts)
+    texts.extend(str(step.get(key, "")) for key in ("evidence", "scope"))
+    return any(recorded_run(text) for text in texts)
 
 
 def fetch_source(snapshot: dict, cache_dir: pathlib.Path, offline: bool) -> str:

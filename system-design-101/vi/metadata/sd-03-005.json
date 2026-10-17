@@ -98,10 +98,10 @@
     },
     {
       "id": "faiss-recall",
-      "claim_vi": "Với 200.000 vector 64 chiều, IVF (1.024 ô) nprobe=1 có độ phủ 0,943 và nhanh khoảng 142 lần, nprobe=8 độ phủ 1,000 và nhanh khoảng 37 lần; HNSW (M=32) efSearch=32 độ phủ 0,998 và nhanh khoảng 37 lần so với tìm chính xác 2,10 ms mỗi truy vấn trên dữ liệu có cụm; trên dữ liệu không có cấu trúc, IVF nprobe=1, 8, 32 chỉ phủ 0,036, 0,153, 0,351 và HNSW efSearch=32, 128 phủ 0,509, 0,817.",
+      "claim_vi": "Với 200.000 vector 64 chiều, IVF (1.024 ô) nprobe=1 có độ phủ 0,943 và nhanh hơn hơn 100 lần, nprobe=8 độ phủ 1,000 và nhanh hơn khoảng 30 đến 40 lần; HNSW (M=32) efSearch=32 độ phủ 0,998 và nhanh hơn khoảng 40 đến 60 lần so với tìm chính xác 2,10 ms mỗi truy vấn trên dữ liệu có cụm; trên dữ liệu không có cấu trúc, IVF nprobe=1, 8, 32 chỉ phủ 0,036, 0,153, 0,351 và HNSW efSearch=32, 128 phủ 0,509, 0,817.",
       "source": "https://github.com/facebookresearch/faiss",
       "section": "Thư viện được đo (không phải tài liệu)",
-      "verified_by": "Chạy faiss-cpu 1.15.1 với numpy 2.5.4 và một luồng, bốn nhân, ngày 2026-10-16: 1.000 truy vấn, k=10, so với IndexFlatL2 làm chuẩn; dữ liệu tổng hợp (hỗn hợp 1.000 cụm Gauss, và Gauss đẳng hướng); một lần chạy mỗi cấu hình, không lặp lại để đo dao động. Chưa đọc tài liệu Faiss; chưa thử embedding thật, Milvus, Weaviate hay pgvector."
+      "verified_by": "Chạy faiss-cpu 1.15.1 với numpy 2.5.4 và một luồng, bốn nhân, ngày 2026-10-16: 1.000 truy vấn, k=10, so với IndexFlatL2 làm chuẩn; dữ liệu tổng hợp (hỗn hợp 1.000 cụm Gauss, và Gauss đẳng hướng); một lần chạy mỗi cấu hình, không lặp lại để đo dao động. Chưa đọc tài liệu Faiss; chưa thử embedding thật, Milvus, Weaviate hay pgvector. Chạy lại lần hai (người biên soạn) và ba (người đánh giá độc lập): các độ phủ giống hệt; tỉ lệ tốc độ khác nhau (IVF nprobe=1: 142x và 157x; nprobe=8: 37x, 42x, khoảng 30x; HNSW efSearch=32: 37x, 57x, khoảng 62x), nên bài nêu khoảng."
     },
     {
       "id": "exact-is-fast",

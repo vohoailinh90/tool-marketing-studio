@@ -74,7 +74,7 @@
         "https://github.com/torvalds/linux/blob/master/Documentation/networking/ip-sysctl.rst"
       ],
       "section": "ip_local_port_range",
-      "verified_by": "Đọc ip-sysctl.rst (dải mặc định 32768 và 60999) và đọc /proc/sys/net/ipv4/ip_local_port_range trên máy thử (32768 60999); 200 kết nối cục bộ nhận cổng từ 46860 đến 48752, đều trong dải Linux, không cái nào từ 49152 trở lên. Dải 49152–65535 của IANA (RFC 6335) chưa mở được để đối chiếu."
+      "verified_by": "Đọc ip-sysctl.rst (dải mặc định 32768 và 60999) và đọc /proc/sys/net/ipv4/ip_local_port_range trên máy thử (32768 60999). Chạy 200 kết nối cục bộ năm lần: mọi cổng đều trong dải Linux; mỗi lần chúng gom trong một khoảng khoảng 1.800 số nhưng khoảng đó đổi chỗ (từ 40.532–42.318 đến 58.308–59.958): ba lần không cổng nào từ 49152 trở lên, hai lần cả 200 cổng từ 49152 trở lên. Người đánh giá độc lập chạy lại ba lần cho kết quả cùng kiểu. Dải 49152–65535 của IANA (RFC 6335) chưa mở được để đối chiếu."
     },
     {
       "id": "bind-collision",
@@ -111,7 +111,7 @@
         "https://github.com/mysql/mysql-server/blob/trunk/sql/mysqld.cc",
         "https://httpwg.org/specs/rfc9110.html"
       ],
-      "verified_by": "Đọc config.sgml (mục port: 5432 theo mặc định), một chú thích trong mysqld.cc nhắc 3306 là giá trị mặc định cuối cùng, và RFC 9110 (ví dụ origin https có cổng 443); getservbyport cho 443/udp là https. RFC 9114 không nêu số 443 nên 'HTTP/3 thường dùng UDP 443' chỉ dựa vào bảng dịch vụ và quy ước chung."
+      "verified_by": "Đọc config.sgml (mục port: 5432 theo mặc định), một chú thích trong mysqld.cc (trunk) nói 3306 là giá trị mặc định nhà máy dùng khi không có cấu hình riêng và không có mục trong bảng dịch vụ; đã tải và đọc tệp ngày 2026-10-17, và RFC 9110 (ví dụ origin https có cổng 443); getservbyport cho 443/udp là https. RFC 9114 không nêu số 443 nên 'HTTP/3 thường dùng UDP 443' chỉ dựa vào bảng dịch vụ và quy ước chung."
     },
     {
       "id": "other-defaults",

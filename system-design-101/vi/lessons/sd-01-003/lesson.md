@@ -16,7 +16,7 @@
 1. **Chữ số đầu là lớp.** RFC 9110 (mục 15) yêu cầu máy khách hiểu *lớp* của mọi mã, theo chữ số đầu, và coi mã không nhận ra như mã tròn trăm của lớp đó: gặp 471 thì xử lý như 400. Thử với bốn công cụ ngày 2026-10-16 (cách thử ở phần "Xem sâu hơn"): mã lạ 420 cho đúng kết quả của 400, còn 530 đúng như 500. Ở `requests`, `urllib` và `curl --fail`, cả cặp đều là lỗi. Còn 218 nằm trong nhóm 2xx nên được coi là **thành công**: `urllib` trả về bình thường, `requests` báo `ok`, `curl --fail` thoát với mã 0. Đó là hệ quả thực tế nhất của một cái tên như "This Is Fine": nếu server dùng nhóm hai trăm cho một tình huống lỗi, bên gọi sẽ đọc nó là ổn.
 2. **Tên không đi theo số.** Bảng tên trong thư viện chuẩn của Python (`http.HTTPStatus`) có 418, 429 và 451 nhưng không có 218, 420 hay 530. Máy khách chỉ chuyển lại phần chữ mà máy chủ gửi: máy chủ thử không gửi chữ nào cho ba mã đó nên `reason` rỗng, còn khi máy chủ gửi "This Is Fine" kèm 218 thì máy khách hiện đúng chữ ấy và vẫn xử lý theo số 218. Tên chỉ để người đọc; mã máy khách rẽ nhánh theo số.
 3. **Danh sách liệt kê tường minh bỏ sót.** Quy tắc lớp nói cách *hiểu* một mã, không bắt thư viện *thử lại* theo lớp. Cấu hình thử lại của `urllib3` hoạt động theo danh sách. Khi chỉ liệt kê 500, 502, 503 và 504, máy chủ nhận 4 yêu cầu cho 500 (một lần cộng ba lần thử lại) nhưng chỉ 1 cho 530: thư viện không suy 530 thành "một dạng 500". Đọc mã nguồn bản đã thử (`retry.py` 2.8.0): ngoài danh sách bạn đưa ra, nó chỉ thử lại 413, 429 và 503, và chỉ khi phản hồi có `Retry-After`.
-4. **429 khác 420.** Cùng một ý "bạn gọi quá nhiều", nhưng khi máy chủ trả 429 kèm `Retry-After: 1`, cấu hình thử lại mặc định chờ rồi gọi lại (3 yêu cầu, tổng khoảng 2 giây) vì 429 có trong danh sách trên; 420 chỉ đến một lần rồi dừng. RFC 6585 (mục 4) định nghĩa 429 cho giới hạn tần suất và cho phép kèm `Retry-After`. Nếu thiếu `Retry-After`, 429 cũng chỉ được gọi 1 lần với cấu hình mặc định.
+4. **429 khác 420.** Cùng một ý "bạn gọi quá nhiều", nhưng khi máy chủ cứ trả 429 kèm `Retry-After: 1`, một cấu hình `Retry` chỉ đặt `total` (không liệt kê mã nào) chờ rồi gọi lại, vì 429 nằm trong danh sách ở mục 3: với `total=2` máy chủ nhận 3 yêu cầu (một lần đầu cộng hai lần thử lại) trong khoảng 2 giây, với `total=3` là 4 yêu cầu trong khoảng 3 giây. 420 trong cùng cấu hình chỉ đến một lần rồi dừng. RFC 6585 (mục 4) định nghĩa 429 cho giới hạn tần suất và cho phép kèm `Retry-After`. Nếu thiếu `Retry-After`, 429 cũng chỉ được gọi 1 lần khi chỉ đặt `total=2`.
 5. **418 và 451 là mã chuẩn, nhưng khác bản chất.** 451 là mã đăng ký thật cho trường hợp bị buộc từ chối truy cập vì yêu cầu pháp lý (RFC 7725, mục 3). 418 xuất phát từ RFC đùa ngày Cá tháng Tư (RFC 2324); RFC 9110 (mục 15.5.19) ghi nó là "Unused" và giữ chỗ, tức không cấp cho ứng dụng khác nhưng cũng không phải một mã có nghĩa chính thức. Cả hai nằm trong nhóm 4xx nên máy khách xử lý như lỗi.
 
 ## Giới hạn cần nhớ
@@ -25,12 +25,12 @@ Phép thử chỉ gồm một máy, `curl` 8.5.0, Python 3.13.16, `requests` 2.3
 
 ## Nhìn hình thử trả lời
 
-API của bạn trả **420** khi người dùng vượt hạn mức, và bạn mong ứng dụng khách dùng `urllib3` với cấu hình thử lại mặc định (`Retry(total=3)`) sẽ tự chờ rồi gọi lại. Thực tế nó không làm vậy. Vì sao, và bạn đổi gì ở phía máy chủ?
+API của bạn trả **420** khi người dùng vượt hạn mức, và bạn mong ứng dụng khách dùng `urllib3` với cấu hình thử lại chỉ đặt `Retry(total=3)` sẽ tự chờ rồi gọi lại. Thực tế nó không làm vậy. Vì sao, và bạn đổi gì ở phía máy chủ?
 
 <details>
 <summary>Xem đáp án</summary>
 
-Với cấu hình mặc định, `urllib3` chỉ tự thử lại 429 (cùng 413 và 503) khi phản hồi có `Retry-After`. Một 420 không nằm trong danh sách nào nên chỉ được coi là lỗi 4xx thông thường: thư viện dừng sau một lần gọi, và bên gọi tự quyết tiếp (báo lỗi, hoặc tự viết vòng gọi lại). Đổi sang **429** và thêm `Retry-After` (số giây) để thư viện chuẩn chờ đúng khoảng bạn muốn. Với ứng dụng khách cũ đã viết cứng 420, giữ tương thích một thời gian rồi mới bỏ.
+Với cấu hình chỉ đặt `total` (không liệt kê mã nào), `urllib3` chỉ tự thử lại 429 (cùng 413 và 503) khi phản hồi có `Retry-After`. Một 420 không nằm trong danh sách nào nên chỉ được coi là lỗi 4xx thông thường: thư viện dừng sau một lần gọi, và bên gọi tự quyết tiếp (báo lỗi, hoặc tự viết vòng gọi lại). Đổi sang **429** và thêm `Retry-After` (số giây) để thư viện chuẩn chờ đúng khoảng bạn muốn. Với ứng dụng khách cũ đã viết cứng 420, giữ tương thích một thời gian rồi mới bỏ.
 
 </details>
 

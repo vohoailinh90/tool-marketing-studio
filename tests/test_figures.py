@@ -164,6 +164,14 @@ class SpecTests(unittest.TestCase):
         for fine in ("\u26a0 c\u1ea3nh b\u00e1o \u00ae \u00a9 \u2122", "\u0110\u01a1n h\u00e0ng \u0111\u00e3 giao \u2713 \u2192 \u2014 \u00b7 \u2026", "\u65e5\u672c\u8a9e\u3001\u30c6\u30b9\u30c8\u3002", "caf\u00e9 na\u00efve"):
             self.assertEqual(self.problems_after(lambda d: d["sections"][2]["items"][0].update(text=fine)), [], fine)
 
+    def test_a_combining_mark_with_no_letter_before_it_is_refused(self):
+        for label, bad in (("only a mark", "\u0301"), ("two marks", "\u0301\u0301"), ("a mark after a space", "a \u0301 b"), ("a variation selector alone", "\ufe0f"),
+                           ("a mark at the start", "\u0301abc"), ("a mark after a new line", "a\n\u0301")):
+            found = self.problems_after(lambda d: d["sections"][2]["items"][0].update(text=bad))
+            self.assertTrue(any("combining mark with no letter" in p for p in found), (label, found))
+        for fine in ("e\u0301", "x\u0301\u0323 and \u26a0\ufe0f", "Vie\u0323\u0302t"):
+            self.assertEqual(self.problems_after(lambda d: d["sections"][2]["items"][0].update(text=fine)), [], fine)
+
     def test_a_language_outside_the_three_is_refused(self):
         self.assertTrue(any("lang" in p for p in self.problems_after(lambda d: d.update(lang="fr"))))
 
@@ -842,6 +850,27 @@ class RobustnessTests(unittest.TestCase):
         self.assertEqual(code, 1)
         self.assertIn("icons: ", err)
         self.assertIn("server", err)
+
+    def test_two_specs_for_one_figure_are_refused_before_anything_is_written(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            store = Path(tmp) / "system-design-101"
+            (store / "vi" / "lessons" / "sd-01-001").mkdir(parents=True)
+            (store / "vi" / "diagrams").mkdir(parents=True)
+            first = load()
+            first["id"] = "sd-01-001"
+            second = dict(first, title="A different figure")
+            paths = []
+            for name, data in (("a.json", first), ("b.json", second)):
+                (Path(tmp) / name).write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
+                paths.append(str(Path(tmp) / name))
+            with mock.patch.multiple(cli, ROOT=Path(tmp), DIAGRAMS=store / "vi" / "diagrams", LESSONS=store / "vi" / "lessons"):
+                code, err = self.run_cli("build", *paths)
+                self.assertEqual(code, 1)
+                self.assertIn("the id is used by two specs", err)
+                self.assertFalse(list((store / "vi" / "diagrams").iterdir()))
+                code, err = self.run_cli("check", *paths)
+                self.assertEqual(code, 1)
+                self.assertIn("the id is used by two specs", err)
 
     def test_editor_files_are_looked_for_beside_the_spec_that_was_given(self):
         with tempfile.TemporaryDirectory() as tmp:

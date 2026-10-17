@@ -24,7 +24,7 @@ from pathlib import Path
 from mkt.check import has_url
 
 from . import icons
-from .text import measurable
+from .text import combining, measurable
 
 ID = re.compile(r"[a-z0-9][a-z0-9-]{1,40}")
 KINDS = {
@@ -71,6 +71,18 @@ def hidden(value: str) -> bool:
     return any((unicodedata.category(c) in HIDDEN and c not in "\n\t") or c in "\ufffe\uffff" for c in value)
 
 
+def orphan_mark(value: str) -> bool:
+    """True when a combining mark has no letter before it (at the start, after a space, or after a line break): it would be drawn on nothing."""
+    base = False
+    for c in value:
+        if combining(c):
+            if not base:
+                return True
+        else:
+            base = not c.isspace()
+    return False
+
+
 def _text(value, where: str, low: int, high: int, found: list[str]) -> None:
     if not isinstance(value, str) or not value.strip():
         found.append(f"{where} must be text")
@@ -81,6 +93,8 @@ def _text(value, where: str, low: int, high: int, found: list[str]) -> None:
         found.append(f"{where} holds a link or a source-image host; a figure carries no address")
     if hidden(value):
         found.append(f"{where} holds a control or invisible character")
+    elif orphan_mark(value):
+        found.append(f"{where} holds a combining mark with no letter before it")
     else:
         unknown = sorted({c for c in value if not measurable(c)})
         if unknown:

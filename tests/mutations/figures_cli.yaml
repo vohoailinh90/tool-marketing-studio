@@ -66,3 +66,11 @@ mutations:
   find: beside = path.parent / f"{spec['id']}{suffix}"
   replace: beside = SPEC_DIR / f"{spec['id']}{suffix}"
   test: tests.test_figures.RobustnessTests.test_editor_files_are_looked_for_beside_the_spec_that_was_given
+- label: a build goes on although two specs claim one id
+  find: '    if clashes:                                               # two specs for one figure'
+  replace: '    if False:                                                 # two specs for one figure'
+  test: tests.test_figures.RobustnessTests.test_two_specs_for_one_figure_are_refused_before_anything_is_written
+- label: the check does not look for two specs with one id
+  find: '    found.extend(duplicate_ids(loaded))'
+  replace: '    found.extend([])'
+  test: tests.test_figures.RobustnessTests.test_two_specs_for_one_figure_are_refused_before_anything_is_written

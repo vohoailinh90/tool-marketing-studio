@@ -79,6 +79,18 @@ def _load(paths: list[Path]) -> tuple[list[dict], list[str]]:
     return [spec for _, spec in loaded], found
 
 
+def duplicate_ids(loaded: list[tuple[Path, dict]]) -> list[str]:
+    """One problem per figure id that two spec files claim: both would write the same `<id>-main.svg`."""
+    seen: dict[str, Path] = {}
+    found = []
+    for path, spec in loaded:
+        if spec["id"] in seen:
+            found.append(f"{spec['id']}: the id is used by two specs, {_shown(seen[spec['id']])} and {_shown(path)}; each figure has one spec")
+        else:
+            seen[spec["id"]] = path
+    return found
+
+
 def _shown(path: Path) -> Path:
     """The path as a sentence shows it: relative to the repository when it is inside it."""
     try:
@@ -103,8 +115,12 @@ def build(paths: list[Path], out) -> int:
     if broken:                                               # a tampered icon file is never drawn into a stored figure
         print("\n".join(broken), file=sys.stderr)
         return 1
-    loaded, found = _load(paths)
-    for spec in loaded:
+    loaded, found = _load_each(paths)
+    clashes = duplicate_ids(loaded)
+    if clashes:                                               # two specs for one figure: nothing is written, whichever came last would win
+        print("\n".join(found + clashes), file=sys.stderr)
+        return 1
+    for _, spec in loaded:
         if not LESSON_ID.fullmatch(spec["id"]) or not (LESSONS / spec["id"]).is_dir():
             found.append(f"{spec['id']}: there is no lesson of that id in {LESSONS.relative_to(ROOT)}; use `render` for a trial figure")
             continue
@@ -126,6 +142,7 @@ def check(paths: list[Path], measure_text: bool = False) -> int:
         return 1
     loaded, bad = _load_each(paths)
     found.extend(bad)
+    found.extend(duplicate_ids(loaded))
     for path, spec in loaded:
         markup = svg.figure(spec)
         found.extend(figure_problems(spec, markup))

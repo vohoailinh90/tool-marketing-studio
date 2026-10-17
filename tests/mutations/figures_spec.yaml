@@ -74,3 +74,11 @@ mutations:
   find: "        if unknown:\n            shown"
   replace: "        if False:\n            shown"
   test: tests.test_figures.SpecTests.test_a_character_the_figure_cannot_measure_is_refused_and_the_measured_ones_are_not
+- label: a combining mark with no letter before it is accepted
+  find: '    elif orphan_mark(value):'
+  replace: '    elif False:'
+  test: tests.test_figures.SpecTests.test_a_combining_mark_with_no_letter_before_it_is_refused
+- label: a combining mark after a space counts as having a letter
+  find: '            base = not c.isspace()'
+  replace: '            base = True'
+  test: tests.test_figures.SpecTests.test_a_combining_mark_with_no_letter_before_it_is_refused

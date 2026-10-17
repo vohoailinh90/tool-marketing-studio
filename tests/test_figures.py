@@ -806,6 +806,40 @@ class FacebookTests(unittest.TestCase):
             (folder / name).write_bytes(b"old " + name.encode())
         return folder
 
+    def test_a_footer_handle_that_is_an_address_is_refused_before_anything_is_drawn(self):
+        small = load("small.json")
+        for handle in ("fb.com/your-page", "https://example.test/page", "www.example.test", "ftp : // host", "\uff46\uff54\uff50\uff1a\uff0f\uff0fhost"):
+            with tempfile.TemporaryDirectory() as tmp:
+                root, out = Path(tmp) / "root", Path(tmp) / "out"
+                root.mkdir()
+                (root / "studio.yaml").write_text(f"author:\n  handle: {json.dumps(handle)}\n", encoding="utf-8")
+                calls: list[str] = []
+                with mock.patch.object(browser, "png", self.fake_png(calls)):
+                    files, problems = facebook.export(small, out, root)
+                self.assertEqual((files, calls, out.exists()), ([], [], False), handle)       # nothing drawn, nothing created
+                self.assertTrue(any("author.handle" in p and "is an address" in p for p in problems), (handle, problems))
+        for handle in ("@your-page", "Your Page", "", "vohoailinh90"):                         # a page name is not an address
+            with tempfile.TemporaryDirectory() as tmp:
+                root = Path(tmp) / "root"
+                root.mkdir()
+                (root / "studio.yaml").write_text(f"author:\n  handle: {json.dumps(handle)}\n", encoding="utf-8")
+                with mock.patch.object(browser, "png", self.fake_png([])):
+                    files, problems = facebook.export(small, Path(tmp) / "out", root)
+                self.assertEqual(problems, [], handle)
+                self.assertTrue(files, handle)
+
+    def test_a_pack_folder_that_is_a_file_is_not_replaced(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            out = Path(tmp)
+            (out / "demo-small").write_text("the owner's file, not a pack", encoding="utf-8")
+            calls: list[str] = []
+            with mock.patch.object(browser, "png", self.fake_png(calls)):
+                files, problems = facebook.export(load("small.json"), out, Path(tmp))
+            self.assertEqual((files, calls), ([], []))
+            self.assertTrue(any("is not a folder" in p for p in problems), problems)
+            self.assertEqual((out / "demo-small").read_text(encoding="utf-8"), "the owner's file, not a pack")
+            self.assertEqual(sorted(p.name for p in out.iterdir()), ["demo-small"])
+
     def test_a_failed_export_leaves_the_previous_pack_and_no_temporary_folder(self):
         for label, fail_on, patch_size in (("the browser cannot start", 1, False), ("the second slide fails", 2, False), ("a slide is too heavy", None, True)):
             with tempfile.TemporaryDirectory() as tmp:
@@ -1214,6 +1248,63 @@ class RobustnessTests(unittest.TestCase):
                     self.assertEqual(code, 1, (suffix, content[:40]))
                     self.assertIn("render it again", err)
                 (folder / f"demo-polling{suffix}").unlink()
+
+    def test_a_write_that_fails_half_way_leaves_the_previous_file_whole(self):
+        def half(self_, data):                                  # the disk fills after ten bytes
+            with open(self_, "wb") as handle:
+                handle.write(data[:10])
+            raise OSError(28, "No space left on device")
+        with tempfile.TemporaryDirectory() as tmp:
+            target = Path(tmp) / "figure.svg"
+            target.write_text("old valid figure", encoding="utf-8")
+            with mock.patch.object(Path, "write_bytes", half):
+                with self.assertRaises(OSError):
+                    cli._write(target, "<svg>new</svg>" * 50)
+                code, err = self.run_cli("render", str(POLLING), "--out", str(target))
+            self.assertEqual(code, 2)
+            self.assertIn("cannot read or write a file", err)
+            self.assertEqual(target.read_text(encoding="utf-8"), "old valid figure")
+            self.assertEqual(sorted(p.name for p in Path(tmp).iterdir()), ["figure.svg"])        # and no half-written temporary file
+            self.assertTrue(cli._write(target, "new\n"))                                       # a write that works replaces it in full
+            self.assertFalse(cli._write(target, "new\n"))
+            self.assertEqual((target.read_bytes(), sorted(p.name for p in Path(tmp).iterdir())), (b"new\n", ["figure.svg"]))
+
+    def test_a_write_goes_through_a_link_as_it_always_did(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            real, link = Path(tmp) / "real.svg", Path(tmp) / "link.svg"
+            real.write_text("old", encoding="utf-8")
+            try:
+                link.symlink_to(real)
+            except OSError:
+                self.skipTest("no symbolic links here")
+            self.assertTrue(cli._write(link, "new"))
+            self.assertTrue(link.is_symlink())
+            self.assertEqual(real.read_text(encoding="utf-8"), "new")
+
+    def test_an_output_that_is_the_spec_is_refused_not_overwritten(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            folder = Path(tmp)
+            spec_path = folder / "demo-polling.json"
+            spec_path.write_text(POLLING.read_text(encoding="utf-8"), encoding="utf-8")
+            before = spec_path.read_bytes()
+            aliases = [str(spec_path), str(folder / "." / "demo-polling.json"), str(folder / "sub" / ".." / "demo-polling.json")]
+            link, hard = folder / "link.json", folder / "hard.json"
+            try:
+                link.symlink_to(spec_path)
+                os.link(spec_path, hard)
+                aliases += [str(link), str(hard)]
+            except OSError:
+                pass
+            (folder / "sub").mkdir()
+            for alias in aliases:
+                for argv in (("render", str(spec_path), "--out", alias), ("render", str(spec_path), "--format", "drawio", "--out", alias),
+                             ("preview", str(spec_path), "--out", alias)):
+                    code, err = self.run_cli(*argv)
+                    self.assertEqual(code, 2, (argv, err))
+                    self.assertIn("is the spec itself", err)
+                    self.assertEqual(spec_path.read_bytes(), before, argv)
+            self.assertEqual(self.run_cli("render", str(spec_path), "--out", str(folder / "other.svg"))[0], 0)       # another file is fine
+            self.assertEqual(spec_path.read_bytes(), before)
 
     def test_a_tampered_icon_set_never_overwrites_a_stored_figure(self):
         with tempfile.TemporaryDirectory() as tmp:

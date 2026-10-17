@@ -25,6 +25,7 @@ from mkt.check import MAX_SLIDES
 from mkt.page import FORMATS
 
 from . import browser, scene as scenes, svg
+from .spec import has_address
 from .text import esc, one_line
 
 MIN_TEXT_PX = 30                    # smallest text on a slide, in canvas px
@@ -145,13 +146,17 @@ def export(spec: dict, out: Path, root: Path, fmt: str = DEFAULT) -> tuple[list[
     slides, problems = plan(spec, fmt)
     if problems:
         return [], problems
+    author = handle(root)
+    if has_address(author):                                # the footer is the studio's, but a slide carries no address
+        return [], [f"studio.yaml author.handle {author!r} is an address, and a Facebook slide carries none (docs/figures.md): write the page name as @name, or leave it empty"]
     alt = alt_text(spec, slides)
     alt.encode("utf-8")                                    # fails here, before anything is drawn
     folder = out / spec["id"]
+    if folder.exists() and not folder.is_dir():            # only a pack folder is replaced: never a file of the owner's, the spec among them
+        return [], [f"{folder} exists and is not a folder; the pack goes there, so move that file or choose another --out"]
     out.mkdir(parents=True, exist_ok=True)
     work = Path(tempfile.mkdtemp(prefix=f".{spec['id']}.", suffix=".new", dir=out))      # its own folder: two exports of one figure never share one
     try:
-        author = handle(root)
         for slide in slides:
             path = work / f"{slide['n']:02d}.png"
             browser.png(page(slide, len(slides), fmt, author), path, *FORMATS[fmt], 1.0)

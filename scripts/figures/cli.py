@@ -16,9 +16,11 @@ from __future__ import annotations
 import argparse
 import json
 import math
+import os
 import re
 import sys
 import tempfile
+import uuid
 from pathlib import Path
 
 from . import browser, drawio, excalidraw, facebook, icons, mobile, moda, scene as scenes, spec as specs, svg
@@ -35,12 +37,29 @@ LESSON_ID = re.compile(r"sd-\d{2}-\d{3}")
 
 
 def _write(path: Path, content: str) -> bool:
-    """Writes `content` (LF line ends) unless the file already has exactly it; True when it wrote."""
-    if path.is_file() and path.read_bytes() == content.encode("utf-8"):
+    """Writes `content` (LF line ends) unless the file already has exactly it; True when it wrote. The bytes go to a temporary file beside
+    `path` and replace it in one rename, so a full disk or an interrupted run leaves the previous file whole."""
+    data = content.encode("utf-8")
+    path = Path(os.path.realpath(path))                    # a link is written through, as it always was
+    if path.is_file() and path.read_bytes() == data:
         return False
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_bytes(content.encode("utf-8"))
+    temp = path.with_name(f".{path.name}.{os.getpid()}.{uuid.uuid4().hex[:8]}.tmp")
+    try:
+        temp.write_bytes(data)
+        os.replace(temp, path)
+    finally:
+        temp.unlink(missing_ok=True)                       # what is left of a write that failed; nothing after a successful rename
     return True
+
+
+def aliases(spec_path: Path, out: Path | None) -> bool:
+    """True when `out` is the spec file itself, under another name, through a link or as a hard link: the output would overwrite the source
+    everything is rebuilt from. An `out` that does not exist yet cannot be it."""
+    try:
+        return out is not None and out.exists() and spec_path.samefile(out)
+    except OSError:
+        return False
 
 
 def _store_problem(markup: str) -> str | None:
@@ -213,6 +232,9 @@ def render(path: Path, fmt: str, out: Path | None, scale: float | None) -> int:
     if found:
         print("\n".join(found), file=sys.stderr)
         return 1
+    if aliases(path, out):
+        print(f"--out {out} is the spec itself; give another file", file=sys.stderr)
+        return 2
     spec = loaded[0]
     if fmt == "svg":
         content = svg.figure(spec)
@@ -234,6 +256,9 @@ def preview(path: Path, out: Path | None, scale: float) -> int:
     if found:
         print("\n".join(found), file=sys.stderr)
         return 1
+    if aliases(path, out):
+        print(f"--out {out} is the spec itself; give another file", file=sys.stderr)
+        return 2
     spec = loaded[0]
     markup = svg.figure(spec)
     height = int(re.search(r'height="(\d+)"', markup).group(1))

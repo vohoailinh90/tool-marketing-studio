@@ -86,3 +86,15 @@ mutations:
   find: '    lines = [one_line(spec["desc"])]'
   replace: '    lines = [spec["desc"].strip()]'
   test: tests.test_figures.FacebookTests.test_the_alt_text_has_one_line_per_slide_whatever_the_specs_text_holds
+- label: a footer handle that is an address is drawn on every slide
+  find: '    if has_address(author):'
+  replace: '    if False:'
+  test: tests.test_figures.FacebookTests.test_a_footer_handle_that_is_an_address_is_refused_before_anything_is_drawn
+- label: any footer handle at all is refused
+  find: '    if has_address(author):'
+  replace: '    if author:'
+  test: tests.test_figures.FacebookTests.test_a_footer_handle_that_is_an_address_is_refused_before_anything_is_drawn
+- label: a file where the pack goes is replaced
+  find: '    if folder.exists() and not folder.is_dir():'
+  replace: '    if False:'
+  test: tests.test_figures.FacebookTests.test_a_pack_folder_that_is_a_file_is_not_replaced

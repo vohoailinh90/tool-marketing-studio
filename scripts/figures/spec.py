@@ -83,6 +83,12 @@ def orphan_mark(value: str) -> bool:
     return False
 
 
+def has_address(value: str) -> bool:
+    """True when the text holds an address: a scheme with `://` (spaced or fullwidth too), or what `has_url`, the studio's rule for posts, reads
+    (bare domains and spaced schemes). A figure and a slide carry none: a link goes through the post's `{link}`."""
+    return bool(LINK.search(unicodedata.normalize("NFKC", value))) or has_url(value)
+
+
 def _text(value, where: str, low: int, high: int, found: list[str]) -> None:
     if not isinstance(value, str) or not value.strip():
         found.append(f"{where} must be text")
@@ -90,7 +96,7 @@ def _text(value, where: str, low: int, high: int, found: list[str]) -> None:
     shown = one_line(value)                                  # what is drawn: whitespace collapsed, composed form
     if len(shown) < low or len(shown) > high:
         found.append(f"{where} is {len(shown)} characters, expected {low}-{high}")
-    if LINK.search(unicodedata.normalize("NFKC", value)) or has_url(value):             # has_url is the studio's rule for posts: bare domains and spaced schemes too
+    if has_address(value):
         found.append(f"{where} holds a link or a source-image host; a figure carries no address")
     if hidden(value):
         found.append(f"{where} holds a control or invisible character")

@@ -106,3 +106,7 @@ mutations:
   find: '**distance(source, lesson.read_text(encoding="utf-8"), keep)}'
   replace: '**distance(source, lesson.read_text(encoding="utf-8"))}'
   test: tests.test_sd101_source_distance.SurveyTests.test_a_name_used_by_another_guide_is_kept_for_every_lesson
+- label: angle brackets inside code are removed as if they were markup
+  find: "    for position in range(0, len(parts), 2):"
+  replace: "    for position in range(0, len(parts), 1):"
+  test: tests.test_sd101_source_distance.TextTests.test_angle_brackets_inside_code_are_kept_as_text

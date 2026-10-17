@@ -81,6 +81,8 @@ RUN_PHRASE = re.compile(r"\b(chạy|đo|thử nghiệm|ran|measured|executed|obs
 NEGATION = re.compile(r"\b(chưa|không|khong|not|never|no|without)\b|n't", re.IGNORECASE)
 NEGATION_WINDOW = 30
 CLAUSE_BREAK = re.compile(r"[.;:\n()]")
+# Fenced code blocks and single-line code spans; the group makes re.split keep them.
+CODE = re.compile(r"(```.*?```|~~~.*?~~~|`[^`\n]*`)", re.DOTALL)
 
 
 def blob_sha(data: bytes) -> str:
@@ -89,8 +91,13 @@ def blob_sha(data: bytes) -> str:
 
 
 def strip_html(text: str) -> str:
-    """Comments and tags, so that <details> and <summary> are not read as words of the text."""
-    return re.sub(r"<[^>]*>", " ", re.sub(r"<!--.*?-->", " ", text, flags=re.DOTALL))
+    """Comments and tags, so that <details> and <summary> are not read as words of the text.
+
+    Code is left alone: in a fenced block or a code span, `<trace-id>` is a term the lesson is about, not markup."""
+    parts = CODE.split(text)          # the code pieces are the odd items, because CODE has one group
+    for position in range(0, len(parts), 2):
+        parts[position] = re.sub(r"<[^>]*>", " ", re.sub(r"<!--.*?-->", " ", parts[position], flags=re.DOTALL))
+    return "".join(parts)
 
 
 def source_body(raw: str) -> str:

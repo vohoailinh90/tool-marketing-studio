@@ -95,6 +95,15 @@ class TextTests(unittest.TestCase):
     def test_shaped_names_are_the_words_of_a_guide_that_look_like_vietnamese_syllables(self) -> None:
         self.assertEqual(distance_tool.shaped_names("Short/long polling over QUIC, ping the Postgres server"), {"long", "quic", "ping"})
 
+    def test_angle_brackets_inside_code_are_kept_as_text(self) -> None:
+        lesson = ("# T\n\nDùng `<trace-id>` và <details>Zookeeper</details>.\n\n```html\n<p class=\"note\">Etcd</p>\n```\n"
+                  "<!-- hidden Consul -->\n")
+        tokens = distance_tool.signal_tokens(distance_tool.lesson_prose(lesson))
+        for kept in ("trace", "note", "etcd", "zookeeper"):
+            self.assertIn(kept, tokens)
+        for dropped in ("details", "consul"):
+            self.assertNotIn(dropped, tokens)
+
     def test_shaped_names_ignore_vietnamese_words_written_with_combining_marks(self) -> None:
         # "nhie" would be a syllable-shaped fragment of NFD "nhiều"; the whole word has a mark, so it is no English name
         self.assertEqual(distance_tool.shaped_names(unicodedata.normalize("NFD", "nhiều trường")), set())

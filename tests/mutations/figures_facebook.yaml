@@ -94,10 +94,26 @@ mutations:
   find: '    if has_address(author):'
   replace: '    if author:'
   test: tests.test_figures.FacebookTests.test_a_footer_handle_that_is_an_address_is_refused_before_anything_is_drawn
-- label: a file where the pack goes is replaced
-  find: '    if folder.exists() and not folder.is_dir():'
+- label: a folder of the owner's is replaced because it carries the figure's id
+  find: '    if folder.exists() and not is_pack(folder):'
   replace: '    if False:'
-  test: tests.test_figures.FacebookTests.test_a_pack_folder_that_is_a_file_is_not_replaced
+  test: tests.test_figures.FacebookTests.test_only_a_folder_that_is_a_pack_is_replaced
+- label: any folder counts as a pack
+  find: '    return all(entry.name in OS_FILES or (PACK_FILE.fullmatch(entry.name) and entry.is_file()) for entry in folder.iterdir())'
+  replace: '    return True'
+  test: tests.test_figures.FacebookTests.test_only_a_folder_that_is_a_pack_is_replaced
+- label: a folder inside the pack folder is overlooked
+  find: '(PACK_FILE.fullmatch(entry.name) and entry.is_file())'
+  replace: '(PACK_FILE.fullmatch(entry.name))'
+  test: tests.test_figures.FacebookTests.test_only_a_folder_that_is_a_pack_is_replaced
+- label: a pack a file manager has visited is no longer replaced
+  find: 'entry.name in OS_FILES or '
+  replace: ''
+  test: tests.test_figures.FacebookTests.test_only_a_folder_that_is_a_pack_is_replaced
+- label: a file is taken for a pack folder
+  find: '    if not folder.is_dir():\n        return False'
+  replace: '    if False:\n        return False'
+  test: tests.test_figures.FacebookTests.test_only_a_folder_that_is_a_pack_is_replaced
 - label: the export goes on although the footer handle is an address
   find: "    if reason:\n        return [], [reason]"
   replace: "    if False:\n        return [], [reason]"

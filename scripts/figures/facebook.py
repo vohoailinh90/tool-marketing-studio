@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import copy
 import os
+import re
 import shutil
 import tempfile
 from pathlib import Path
@@ -32,6 +33,8 @@ MIN_TEXT_PX = 30                    # smallest text on a slide, in canvas px
 PAD, FOOT = 36, 76                  # space round the picture; the footer band
 MAX_BYTES = 4_000_000               # Facebook takes much more; a figure this size is a mistake
 DEFAULT = "portrait"
+PACK_FILE = re.compile(r"\d{2}\.png|alt\.txt")                 # what a pack holds
+OS_FILES = {".DS_Store", "Thumbs.db", "desktop.ini"}             # what a file manager may add to a folder it has shown
 FOOT_PX = 22                        # the studio's footer size (mkt/theme.css .slide__foot)
 
 
@@ -43,6 +46,14 @@ def handle(root: Path) -> str:
         return ""
     author = data.get("author") if isinstance(data, dict) else None
     return str(author.get("handle") or "").strip() if isinstance(author, dict) else ""
+
+
+def is_pack(folder: Path) -> bool:
+    """True when `folder` holds nothing but what an export writes (numbered PNGs, alt.txt) and the files a file manager adds: only such a folder is
+    replaced. A folder of someone's work that happens to carry the figure's id (a lesson folder, the folder of the spec) is not."""
+    if not folder.is_dir():
+        return False
+    return all(entry.name in OS_FILES or (PACK_FILE.fullmatch(entry.name) and entry.is_file()) for entry in folder.iterdir())
 
 
 def handle_problem(author: str) -> str | None:
@@ -160,8 +171,8 @@ def export(spec: dict, out: Path, root: Path, fmt: str = DEFAULT) -> tuple[list[
     alt = alt_text(spec, slides)
     alt.encode("utf-8")                                    # fails here, before anything is drawn
     folder = out / spec["id"]
-    if folder.exists() and not folder.is_dir():            # only a pack folder is replaced: never a file of the owner's, the spec among them
-        return [], [f"{folder} exists and is not a folder; the pack goes there, so move that file or choose another --out"]
+    if folder.exists() and not is_pack(folder):            # only a pack is replaced: never a file or a folder of the owner's, a lesson or the spec among them
+        return [], [f"{folder} exists and is not a Facebook pack (numbered PNGs and alt.txt only); move it or choose another --out"]
     out.mkdir(parents=True, exist_ok=True)
     work = Path(tempfile.mkdtemp(prefix=f".{spec['id']}.", suffix=".new", dir=out))      # its own folder: two exports of one figure never share one
     try:

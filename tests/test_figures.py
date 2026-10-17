@@ -847,17 +847,44 @@ class FacebookTests(unittest.TestCase):
                 self.assertEqual(problems, [], handle)
                 self.assertTrue(files, handle)
 
-    def test_a_pack_folder_that_is_a_file_is_not_replaced(self):
-        with tempfile.TemporaryDirectory() as tmp:
-            out = Path(tmp)
-            (out / "demo-small").write_text("the owner's file, not a pack", encoding="utf-8")
-            calls: list[str] = []
-            with mock.patch.object(browser, "png", self.fake_png(calls)):
-                files, problems = facebook.export(load("small.json"), out, Path(tmp))
-            self.assertEqual((files, calls), ([], []))
-            self.assertTrue(any("is not a folder" in p for p in problems), problems)
-            self.assertEqual((out / "demo-small").read_text(encoding="utf-8"), "the owner's file, not a pack")
-            self.assertEqual(sorted(p.name for p in out.iterdir()), ["demo-small"])
+    def test_only_a_folder_that_is_a_pack_is_replaced(self):
+        small = load("small.json")
+        keep = {                                                    # label: files of the owner's that sit where the pack would go
+            "a file": None,
+            "a lesson folder": {"lesson.md": "the lesson", "diagrams/figure.svg": "a figure"},
+            "the folder of the spec": {"demo-small.json": json.dumps(small)},
+            "a pack with an extra file": {"01.png": "x", "alt.txt": "x", "notes.txt": "mine"},
+            "a pack with a folder in it": {"01.png": "x", "sub/02.png": "x"},
+            "a numbered file with the wrong name": {"1.png": "x", "001.png": "x"},
+        }
+        for label, contents in keep.items():
+            with tempfile.TemporaryDirectory() as tmp:
+                out = Path(tmp)
+                target = out / "demo-small"
+                if contents is None:
+                    target.write_text("the owner's file", encoding="utf-8")
+                else:
+                    for name, body in contents.items():
+                        (target / name).parent.mkdir(parents=True, exist_ok=True)
+                        (target / name).write_text(body, encoding="utf-8")
+                before = sorted(str(p.relative_to(out)) for p in out.rglob("*"))
+                calls: list[str] = []
+                with mock.patch.object(browser, "png", self.fake_png(calls)):
+                    files, problems = facebook.export(small, out, Path(tmp))
+                self.assertEqual((files, calls), ([], []), label)
+                self.assertTrue(any("is not a Facebook pack" in p for p in problems), (label, problems))
+                self.assertEqual(sorted(str(p.relative_to(out)) for p in out.rglob("*")), before, label)       # nothing moved, nothing deleted
+        for label, names in (("an empty folder", []), ("a pack", ["01.png", "02.png", "09.png", "alt.txt"]),
+                             ("a pack a file manager has visited", ["01.png", "alt.txt", ".DS_Store", "Thumbs.db", "desktop.ini"])):
+            with tempfile.TemporaryDirectory() as tmp:
+                out = Path(tmp)
+                (out / "demo-small").mkdir()
+                for name in names:
+                    (out / "demo-small" / name).write_bytes(b"old " + name.encode())
+                with mock.patch.object(browser, "png", self.fake_png([])):
+                    files, problems = facebook.export(small, out, Path(tmp))
+                self.assertEqual(problems, [], label)
+                self.assertEqual(sorted(p.name for p in (out / "demo-small").iterdir()), ["01.png", "02.png", "alt.txt"], label)
 
     def test_a_failed_export_leaves_the_previous_pack_and_no_temporary_folder(self):
         for label, fail_on, patch_size in (("the browser cannot start", 1, False), ("the second slide fails", 2, False), ("a slide is too heavy", None, True)):

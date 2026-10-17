@@ -12,6 +12,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Textarea } from "@/components/ui/textarea"
 import { api, fileUrl, postPath, type Issue, type PostView } from "@/lib/api"
 import { languageNames, useI18n } from "@/lib/i18n"
+import { renderOutcome, type RenderAnswer } from "@/lib/render-result"
 import { useStudio } from "@/lib/studio"
 
 export function PreviewPage() {
@@ -26,18 +27,23 @@ export function PreviewPage() {
   const [confirmOpen, setConfirmOpen] = React.useState(false)
   const [read, setRead] = React.useState(false)
   const [stamp, setStamp] = React.useState(0)
+  const [renderFailed, setRenderFailed] = React.useState(false)
 
   const path = campaign && picked ? postPath(campaign.slug, picked.lang, picked.id) : ""
+  // The post on screen now: an action that was started for another post must not write into this one when it ends.
+  const live = React.useRef(path)
+  React.useEffect(() => { live.current = path }, [path])
   const load = React.useCallback(async () => {
     if (!path) return
     const next = await api.get<PostView>(path)
     setView(next); setYaml(next.yaml)
   }, [path])
-  React.useEffect(() => { setNotes([]); setError(""); void load().catch((exc) => setError(errorText(exc))) }, [load])
+  React.useEffect(() => { setNotes([]); setError(""); setRenderFailed(false); void load().catch((exc) => setError(errorText(exc))) }, [load])
 
   async function run(name: string, action: () => Promise<void>) {
-    setBusy(name); setError("")
-    try { await action(); await load(); await refresh() } catch (exc) { setError(errorText(exc)) } finally { setBusy("") }
+    const started = path
+    setBusy(name); setError(""); setRenderFailed(false)
+    try { await action(); if (live.current === started) await load(); await refresh() } catch (exc) { setError(errorText(exc)) } finally { setBusy("") }
   }
 
   if (!campaign) return null
@@ -84,12 +90,13 @@ export function PreviewPage() {
               <CardContent className="space-y-4">
                 <Button size="sm" disabled={dirty || busy !== ""}
                   onClick={() => run("render", async () => {
-                    const answer = await api.post<{ issues: Issue[] }>(`${path}/render`, {})
-                    setNotes(answer.issues); setStamp(Date.now())
+                    const outcome = renderOutcome(await api.post<RenderAnswer>(`${path}/render`, {}), path, live.current)
+                    if (outcome) { setNotes(outcome.notes); setRenderFailed(outcome.failed); setStamp(Date.now()) }
                   })}>
                   <Busy on={busy === "render"}><RefreshCw /> {t("render_button")}</Busy>
                 </Button>
                 {busy === "render" && <p className="text-xs text-muted-foreground">{t("rendering")}</p>}
+                {renderFailed && <Notice tone="error">{t("render_failed")}</Notice>}
                 <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
                   {(view.manifest.slides ?? []).map((name) => {
                     const src = fileUrl(`/files/${campaign.slug}/${picked.lang}/${picked.id}/${name}`) + `&v=${stamp}`

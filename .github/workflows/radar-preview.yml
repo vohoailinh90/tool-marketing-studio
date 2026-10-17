@@ -31,7 +31,7 @@ permissions:
 jobs:
   preview:
     # Same runner switch as ci.yml (docs/agent-team.md, "CI runner").
-    runs-on: ${{ vars.CI_RUNNER || 'self-hosted' }}
+    runs-on: ${{ vars.CI_RUNNER || 'ubuntu-latest' }}
     timeout-minutes: 20
     # A persistent runner executes only code from people who can push here: never a fork. And only the bot's branches.
     if: >-

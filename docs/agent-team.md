@@ -57,44 +57,40 @@ Never give the VPS workers the app's `.env` (Page token, Anthropic key): the gat
 
 ## CI runner
 
-`.github/workflows/ci.yml` runs on `${{ vars.CI_RUNNER || 'self-hosted' }}`: the two VPS runners
-registered for this repository (`tool-marketing-studio-runner` and
-`tool-marketing-studio-runner-2`, both with labels `self-hosted`, `Linux`, `X64`). This
-repository is private, so GitHub-hosted minutes are billed; without minutes a job on
-`ubuntu-latest` fails at once with no log.
+`.github/workflows/ci.yml` and `radar-preview.yml` run on `${{ vars.CI_RUNNER || 'ubuntu-latest' }}`: a
+GitHub-hosted runner by default. The repository is public, so those minutes are free; a private repository would
+be billed, and without minutes a job on `ubuntu-latest` fails at once with no log.
 
-- Move every job to GitHub-hosted runners: set the repository variable `CI_RUNNER=ubuntu-latest`
-  (Settings → Secrets and variables → Actions → Variables). Delete it to come back.
-- A personal account's self-hosted runner belongs to one repository: the runner that serves
-  `claude-agent-routing-template` does not serve this one, which is why it has its own.
-- On the VPS, install Chromium's system libraries once so the render test runs instead of
-  skipping: `sudo python3 -m playwright install-deps chromium`.
-- Each runner takes one job at a time, so two jobs run at once. `engine` is `pytest -q` (about 20
-  minutes) plus `mutation_check.py --all`, which is most of the job: it runs every entry of
-  `tests/mutations/` (over a thousand), so its time grows with each fix that ships a mutation.
-  The step starts `MUTATION_JOBS` workers (repository variable, a whole number from 1; default 2), each
-  mutating its own copy of the tree under `$RUNNER_TEMP`; with two runners busy that uses the VPS's four cores, so raise it only where
-  cores are free, and set it to 1 for the old single-tree run. Time the step in a run's log before
-  and after changing it. A pull request that changes only the System Design store skips the check:
-  `scripts/ci_changes.py` decides, and every push to `main` still runs it.
-- The second runner was added on 2026-10-13 because one runner left the queue hours long. Both
-  live on the same VPS, under the `ci-runner` user, one folder each:
-  `/home/ci-runner/actions-runner-tool-marketing-studio` and `...-2`, each its own systemd
-  service (`actions.runner.vohoailinh90-tool-marketing-studio.<runner name>.service`). That VPS
-  has 4 CPU cores and about 7.6 GiB of RAM and also serves the runners of the owner's other
-  repositories, so do not add a third without watching memory and swap (`free -h`) while two
-  `engine` jobs run.
-- To add a runner: as `ci-runner`, copy a working runner folder, delete `_work`, `_diag`,
-  `.runner`, `.runner_migrated`, `.credentials*`, `.service` and the downloaded `.tar.gz` from the
-  copy, register it with a fresh token (this repository → Settings → Actions → Runners → New
-  self-hosted runner; the token expires in about an hour, never write it in a file) using
-  `./config.sh --url https://github.com/vohoailinh90/tool-marketing-studio --token <token>
-  --name <new name> --unattended`, then, as root in that folder,
-  `./svc.sh install ci-runner && ./svc.sh start`. To remove one: `./svc.sh stop`,
-  `./svc.sh uninstall`, then `./config.sh remove --token <removal token>` as `ci-runner`.
-- The VPS keeps its files between jobs, so it runs only code from people who can push to this
-  repository: every job skips a pull request whose branch lives in a fork. Keep the repository
-  private, or keep that guard, while CI runs on the VPS (`tests/test_codex_review.py` checks it).
+Until 2026-10-17 the default was `self-hosted`: two runners on the owner's VPS
+(`tool-marketing-studio-runner` and `tool-marketing-studio-runner-2`), added because one runner left the queue
+hours long. Both were removed when the repository went public and `CI_RUNNER=ubuntu-latest` was set, so nothing
+serves the `self-hosted` label now. Once this default is merged, that variable is redundant: delete it (Settings →
+Secrets and variables → Actions → Variables) or leave it, the result is the same.
+
+- Move every job to another runner: set the repository variable `CI_RUNNER` to its label (Settings →
+  Secrets and variables → Actions → Variables). Delete it to come back to `ubuntu-latest`.
+- The `engine` job is `pytest -q` (about 17 minutes on `ubuntu-latest`) plus `mutation_check.py --all`, which is most of
+  the job (about 35 minutes with two workers): it runs every entry of `tests/mutations/` (over a thousand), so its
+  time grows with each fix that ships a mutation. The step starts `MUTATION_JOBS` workers (repository variable, a whole
+  number from 1; default 2), each mutating its own copy of the tree under `$RUNNER_TEMP`; raise it only after timing the
+  step in a run's log before and after, and set it to 1 for the old single-tree run. A pull request that changes only
+  the System Design store skips the check: `scripts/ci_changes.py` decides, and every push to `main` still runs it.
+- A GitHub-hosted runner is a fresh machine for every job, so Chromium's system libraries are installed by the job
+  itself (`playwright install --with-deps`, only when `runner.environment == 'github-hosted'`).
+- Going back to a self-hosted runner (for example a VPS again) is a choice with a cost on a public repository: a
+  persistent runner keeps its files between jobs, so it must run only code from people who can push here. Every job
+  already skips a pull request whose branch lives in a fork for that reason (`tests/test_codex_review.py` checks it);
+  keep that guard, and read GitHub's advice on self-hosted runners for public repositories before registering one.
+  To register one: as the user that will own it, download and unpack the runner from this repository → Settings →
+  Actions → Runners → New self-hosted runner (the token expires in about an hour, never write it in a file), run
+  `./config.sh --url https://github.com/vohoailinh90/tool-marketing-studio --token <token> --name <name> --unattended`,
+  then, as root in that folder, `./svc.sh install <user> && ./svc.sh start`; set `CI_RUNNER` to a label the runner has
+  (`self-hosted` matches any). To remove one: `./svc.sh stop`, `./svc.sh uninstall`, then
+  `./config.sh remove --token <removal token>`.
+- A personal account's self-hosted runner belongs to one repository: a runner registered for another repository does
+  not serve this one.
+- On a VPS, install Chromium's system libraries once so the render test runs instead of skipping:
+  `sudo python3 -m playwright install-deps chromium`.
 
 ## Radar preview
 
@@ -110,7 +106,7 @@ github-radar opens a **draft pull request** on branch `radar/<campaign>` for eac
   size GitHub accepts: captions past the budget and table rows past theirs are left out with a note, and the files stay in the artifact;
 - it never approves, publishes, commits or pushes: reading the images, `studio.py approve` and publishing stay the owner's.
 
-The engine of a pull request is code that would run on the shared runner, so `scripts/radar_preview.py` first lists the
+The engine of a pull request is code that would run on the CI runner, so `scripts/radar_preview.py` first lists the
 files the pull request changed (against the base as it is now, the first parent of GitHub's merge commit) and draws it only
 when every one is under `campaigns/radar-*/` or `tools/github-radar/` and none is, or sits under, a symbolic link; otherwise
 the comment says which files are the problem and nothing runs. The planner and the comment writer run from the **base commit** (read with `git show` into the runner's
@@ -120,4 +116,4 @@ someone who can already push a branch here: GitHub runs the workflow file of the
 edit the workflow itself, which runs on the same runner, exactly as with `ci.yml`.
 Only branches of this repository named `radar/...` are drawn (never a fork), the token can write pull-request comments
 and nothing else (and is not kept in `.git/config`), and no pull-request value is written into a script. The job is a
-few minutes and waits in the same runner queue as `ci.yml` (`CI_RUNNER` moves both). Tests: `tests/test_radar_preview.py`; mutations: `tests/mutations/radar_preview*.yaml`.
+few minutes and runs on the same runner as `ci.yml` (`CI_RUNNER` moves both). Tests: `tests/test_radar_preview.py`; mutations: `tests/mutations/radar_preview*.yaml`.

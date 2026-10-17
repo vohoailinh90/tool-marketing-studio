@@ -1,6 +1,6 @@
 {
   "id": "sd-15-012",
-  "title_vi": "Cách học SQL",
+  "title_vi": "Học SQL bằng thử nghiệm: năm nhóm lệnh làm gì và hoàn tác được không",
   "language": "vi",
   "kind": "howto",
   "content_status": "draft",
@@ -24,16 +24,27 @@
       "checked_on": "2026-10-13"
     },
     "claims": {
-      "status": "pending",
-      "reason": "standards_and_docs_hosts_unreachable_from_authoring_environment"
+      "status": "checked",
+      "checked_on": "2026-10-16",
+      "scope": "Chạy PostgreSQL 16.15 (hai phiên, một cụm cục bộ), SQLite 3.45.1 và Python 3.13.16: hoàn tác DDL, TRUNCATE, GRANT, bộ đếm; SELECT INTO; SELECT FOR UPDATE; chỉ mục và kế hoạch; commit trong Python sqlite3. Đọc tệp nguồn tài liệu PostgreSQL (nhánh master, ba chương, SELECT INTO, ROLLBACK, CREATE SEQUENCE, SQL Conformance). KHÔNG kiểm: MySQL, MariaDB, Oracle, SQL Server (không cài, tài liệu không mở được), tài liệu sqlite.org, các nhóm lệnh theo từng nhà cung cấp; thứ tự bậc học là gợi ý chưa thử với người học."
     },
     "technical_review": {
       "status": "pending",
       "reason": "not_yet_reviewed"
     },
     "mobile": {
-      "status": "pending",
-      "reason": "figure drawn with 16px text in a 320px-wide viewBox (about 14.4px at a 320px screen); no whole-lesson browser check and no automated check in the repository yet"
+      "status": "checked",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 14.4,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "checked_on": "2026-10-16",
+      "evidence": "Chromium: hình và cả bài (Markdown dựng thành HTML, mục tùy chọn mở) ở 320, 375, 430 px; chữ hình hiệu dụng tối thiểu 14,4 px ở 320 px, không tràn ngang, không chữ ngoài viewBox. Không phải thử với người học."
     },
     "user_testing": {
       "status": "not_performed"
@@ -41,29 +52,74 @@
   },
   "claims": [
     {
-      "claim_vi": "Khi dạy học, SQL thường được gọi theo các nhóm không chính thức DQL, DDL, DML và DCL.",
-      "source": "https://en.wikipedia.org/wiki/SQL"
+      "id": "five-groups-source",
+      "claim_vi": "Nguồn chia SQL thành năm nhóm DDL, DQL, DML, DCL, TCL và khuyên chọn trọng tâm theo vai trò (backend cần hầu hết, nhà phân tích cần DQL).",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-is-the-best-way-to-learn-sql.md",
+      "section": "Whole guide",
+      "verified_by": "Đọc body nguồn ghim; ý của nguồn, bài không dựa vào đó cho bất kỳ khẳng định hành vi nào."
     },
     {
-      "claim_vi": "Lệnh điều khiển giao dịch (COMMIT, ROLLBACK) tạo thành một nhóm riêng trong phân loại của Oracle (Transaction Control); bài gọi gọn nhóm này là TCL.",
-      "source": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Types-of-SQL-Statements.html"
+      "id": "pg-manual-chapters",
+      "claim_vi": "Sổ tay PostgreSQL chia các chương Data Definition, Data Manipulation và Queries, và không dùng nhãn DQL, DCL, TCL trong ba chương đó.",
+      "source": "https://github.com/postgres/postgres/blob/master/doc/src/sgml/queries.sgml",
+      "section": "ddl.sgml, dml.sgml, queries.sgml",
+      "verified_by": "Tải ba tệp nguồn tài liệu từ kho postgres/postgres (nhánh master) ngày 2026-10-16; xem thẻ title của từng chương và đếm 0 lần DCL, TCL, DQL trong cả ba. Nhánh master, không ghim phiên bản."
     },
     {
-      "claim_vi": "Cách phân nhóm lệnh SQL khác nhau giữa tài liệu: Oracle xếp SELECT vào DML, xếp GRANT và REVOKE vào DDL, có nhóm giao dịch riêng và thêm các nhóm phiên, hệ thống, nhúng; Oracle không có nhóm DQL hoặc DCL riêng.",
-      "source": "https://docs.oracle.com/en/database/oracle/oracle-database/19/sqlrf/Types-of-SQL-Statements.html"
+      "id": "select-into",
+      "claim_vi": "Trong PostgreSQL, SELECT ... INTO new_table tạo một bảng mới từ kết quả truy vấn.",
+      "source": "https://github.com/postgres/postgres/blob/master/doc/src/sgml/ref/select_into.sgml",
+      "section": "SELECT INTO",
+      "verified_by": "Đọc tệp tài liệu ngày 2026-10-16 và chạy PostgreSQL 16.15: select * into copy_of_orders from orders tạo bảng copy_of_orders với 3 dòng."
     },
     {
-      "claim_vi": "Chuẩn SQL do ISO/IEC 9075 duy trì và có nhiều bản; hệ quản trị hỗ trợ một phần.",
-      "source": "https://www.postgresql.org/docs/current/features.html"
+      "id": "rollback-undoes",
+      "claim_vi": "Trong PostgreSQL 16.15, trong một giao dịch: create table, alter table add column, drop table, truncate và grant đều bị hoàn tác bởi rollback; SQLite 3.45.1 hoàn tác được create/alter/drop table.",
+      "source": "https://github.com/postgres/postgres/blob/master/doc/src/sgml/ref/rollback.sgml",
+      "section": "ROLLBACK",
+      "verified_by": "Chạy ngày 2026-10-16: PostgreSQL create+alter+drop rồi rollback: bảng tạm không tồn tại, orders còn 3 dòng, không có cột mới; alter ... add column riêng: 1 cột trong giao dịch, 0 sau rollback; truncate: 0 dòng trong giao dịch, 3 sau rollback; grant: has_table_privilege false sau rollback, true sau commit. SQLite (chế độ isolation_level=None): cùng kết quả cho create/alter/drop. Chưa thử MySQL, Oracle, SQL Server, MariaDB. Đoạn mã tự thử trong bài (SQLite) cũng chạy thêm một giao dịch thêm, sửa, xóa rồi rollback: bên trong thấy 3 dòng đã đổi, sau rollback ba dòng ban đầu nguyên vẹn (chạy ngày 2026-10-17)."
     },
     {
-      "claim_vi": "Giao dịch dùng BEGIN, COMMIT, ROLLBACK.",
-      "source": "https://www.postgresql.org/docs/current/tutorial-transactions.html"
+      "id": "sequence-not-rolled-back",
+      "claim_vi": "Lời gọi nextval của PostgreSQL không bị hoàn tác khi giao dịch bị hủy.",
+      "source": "https://github.com/postgres/postgres/blob/master/doc/src/sgml/ref/create_sequence.sgml",
+      "section": "Notes",
+      "verified_by": "Tài liệu ghi lời gọi nextval và setval không bao giờ bị hoàn tác. Chạy thử: nextval trả 1 trong giao dịch bị rollback, lần gọi tiếp theo trả 2."
+    },
+    {
+      "id": "for-update-blocks",
+      "claim_vi": "SELECT ... FOR UPDATE khóa các dòng được chọn: UPDATE trên dòng đó phải chờ trong khi SELECT thường và UPDATE dòng khác vẫn chạy.",
+      "source": "https://github.com/postgres/postgres/blob/master/doc/src/sgml/ref/select.sgml",
+      "section": "The Locking Clause",
+      "verified_by": "Chạy hai phiên PostgreSQL 16.15 ngày 2026-10-16: phiên A giữ for update trên id=1 bốn giây; phiên B select id=1 thấy 10, update id=2 thành công, update id=1 với lock_timeout=500ms báo 'canceling statement due to lock timeout'."
+    },
+    {
+      "id": "index-plan",
+      "claim_vi": "Trên SQLite 3.45.1 với 200.000 dòng, tạo chỉ mục đổi kế hoạch từ SCAN sang SEARCH ... USING COVERING INDEX, giữ nguyên đáp án (40) và giảm thời gian trung bình từ khoảng 5 đến 6 ms xuống dưới 0,02 ms trên máy thử.",
+      "source": "https://www.sqlite.org/eqp.html",
+      "section": "EXPLAIN QUERY PLAN",
+      "verified_by": "Chạy thử ngày 2026-10-16: kế hoạch ['SCAN t'] rồi ['SEARCH t USING COVERING INDEX idx_k (k=?)']; trung bình 20 lần mỗi trạng thái, một máy. Trang sqlite.org không mở được; số đo chỉ là minh họa. Chạy lại: ba lần 5,3–5,7 ms và 0,005 ms; người đánh giá độc lập đo 5,5 ms và 0,016 ms."
+    },
+    {
+      "id": "python-commit",
+      "claim_vi": "Với thư viện sqlite3 của Python, INSERT rồi đóng kết nối mà không commit() thì dòng đó mất; có commit() thì còn.",
+      "source": "https://github.com/python/cpython/blob/v3.13.0/Doc/library/sqlite3.rst",
+      "section": "Connection.close; transaction control",
+      "verified_by": "Đọc Connection.close trong sqlite3.rst (v3.13.0): ở chế độ mặc định (LEGACY_TRANSACTION_CONTROL) close() không thực hiện điều khiển giao dịch ngầm và tài liệu dặn phải commit() trước khi đóng. Chạy thử ngày 2026-10-16 trên Python 3.13.16: 0 dòng sau khi không commit, 1 dòng sau khi commit."
+    },
+    {
+      "id": "standard-name",
+      "claim_vi": "Chuẩn SQL là ISO/IEC 9075, có nhiều bản, trong đó SQL:2016 và SQL:2023.",
+      "source": "https://github.com/postgres/postgres/blob/master/doc/src/sgml/features.sgml",
+      "section": "SQL Conformance",
+      "verified_by": "Đọc tệp tài liệu PostgreSQL ngày 2026-10-16: 'ISO/IEC 9075', phiên bản 2023 gọi SQL:2023, các bản trước gồm SQL:2016."
     }
   ],
-  "design_notes_vi": "Ba khung dọc: năm nhóm lệnh, lộ trình, chọn trọng tâm theo vai trò. Sơ đồ tự thiết kế, không dùng ảnh nguồn.",
-  "editorial_note_vi": "Viết độc lập từ kiến thức và tiêu chuẩn kỹ thuật theo DECISIONS.md; claim chưa được đối chiếu trực tiếp với tài liệu chuẩn nên chờ review kỹ thuật. Chưa thử người học hoặc phê duyệt phát hành.",
+  "design_notes_vi": "Bốn khung dọc theo bốn phép thử (nhóm theo việc làm, hoàn tác được không, truy vấn chặn người ghi, chỉ mục đổi kế hoạch) thay cho ba khung (năm nhóm, lộ trình, vai trò) của bản trước. Từ khóa SQL trong hình viết thường để khỏi lẫn với từ viết tắt. Sơ đồ tự thiết kế, không dùng ảnh nguồn.",
+  "editorial_note_vi": "Viết lại ngày 2026-10-16 để làm sâu và tách khỏi nguồn; claim về MySQL, Oracle, SQL Server vẫn chưa đối chiếu. Review kỹ thuật bản mới đang chờ. Chưa user testing hoặc phê duyệt phát hành.",
   "source_deviations": [
-    "Không giữ nhận định 'chuẩn mới nhất là ANSI SQL 2016' của nguồn vì đã có bản mới hơn."
+    "Không giữ nhận định 'chuẩn mới nhất là ANSI SQL 2016' của nguồn vì đã có bản mới hơn (SQL:2023 theo tài liệu PostgreSQL).",
+    "Nguồn chỉ nêu năm nhóm lệnh kèm ví dụ và lời khuyên chọn trọng tâm. Bài này đổi trục sang câu hỏi 'lệnh làm gì, hoàn tác được không, có chặn ai không' và dựa hoàn toàn vào phép thử của người biên soạn (PostgreSQL, SQLite) cho phần đó; năm nhóm chỉ còn là nhãn tham khảo.",
+    "Thang sáu bậc học và đoạn mã tự thử là phần bài bổ sung, không có trong nguồn."
   ]
 }

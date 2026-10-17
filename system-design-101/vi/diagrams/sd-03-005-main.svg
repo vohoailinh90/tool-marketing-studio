@@ -1,39 +1,32 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 832" width="320" height="832" role="img" aria-labelledby="title desc">
-<title id="title">Ngăn xếp AI: năm tầng, mỗi tầng một câu hỏi</title>
-<desc id="desc">Năm tầng từ trên xuống: giao diện, backend và cách gọi mô hình, embedding và RAG, lưu trữ và truy xuất vector, và mô hình. Mỗi tầng có ví dụ công cụ công khai ở các mức mở khác nhau. Lưu ý: mở có nhiều mức, cần kiểm tra giấy phép của từng mô hình và công cụ.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 759" width="320" height="759" role="img" aria-labelledby="title desc">
+<title id="title">Chọn công cụ AI mở bằng giấy phép và phép đo</title>
+<desc id="desc">Bốn khung dọc. Một: trong chín kho phần mềm đã đọc giấy phép, tám kho dùng một giấy phép rộng rãi (Apache-2.0, MIT hoặc giấy phép của PostgreSQL), riêng Weaviate vừa BSD-3-Clause vừa có thư mục dưới giấy phép doanh nghiệp. Hai: mô hình Llama có giấy phép cộng đồng riêng, với điều khoản thương mại, yêu cầu ghi nguồn và chính sách sử dụng. Ba: tìm kiếm vector xấp xỉ nhanh hơn tìm chính xác nhưng có thể sót; cùng cấu hình, trên dữ liệu có cụm rõ độ phủ gần 1, trên dữ liệu không có cấu trúc chỉ từ 0,04 đến 0,35 ở chỉ mục chia ô. Bốn: với 200 nghìn vector 64 chiều, tìm chính xác mất khoảng 2 mili giây một truy vấn, nên kho nhỏ chưa cần chỉ mục xấp xỉ. Kết luận: đọc giấy phép, rồi đo trên dữ liệu của bạn.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="832" fill="#f8fafc"/>
+<rect width="320" height="759" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
-<text x="16" y="30" font-size="21" font-weight="bold">NGĂN XẾP AI</text>
-<text x="16" y="54" font-size="21" font-weight="bold">NĂM TẦNG</text>
-<rect x="16" y="80" width="288" height="100" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
-<text x="29" y="109" font-size="16" font-weight="bold">1 · Giao diện</text>
-<text x="29" y="137" font-size="16" font-weight="normal">Streamlit, Next.js</text>
-<text x="29" y="161" font-size="16" font-weight="normal">Người dùng thao tác ở đâu?</text>
-<line x1="160" y1="181" x2="160" y2="198" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="16" y="200" width="288" height="100" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
-<text x="29" y="229" font-size="16" font-weight="bold">2 · Backend, gọi mô hình</text>
-<text x="29" y="257" font-size="16" font-weight="normal">FastAPI, Metaflow, Ollama</text>
-<text x="29" y="281" font-size="16" font-weight="normal">Ai nhận yêu cầu, gọi mô hình?</text>
-<line x1="160" y1="301" x2="160" y2="318" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="16" y="320" width="288" height="100" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
-<text x="29" y="349" font-size="16" font-weight="bold">3 · Embedding và RAG</text>
-<text x="29" y="377" font-size="16" font-weight="normal">Biến văn bản thành vector</text>
-<text x="29" y="401" font-size="16" font-weight="normal">Tìm đoạn liên quan cho prompt</text>
-<line x1="160" y1="421" x2="160" y2="438" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="16" y="440" width="288" height="124" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
-<text x="29" y="469" font-size="16" font-weight="bold">4 · Lưu trữ, truy xuất</text>
-<text x="29" y="497" font-size="16" font-weight="normal">Postgres + pgvector, Milvus,</text>
-<text x="29" y="521" font-size="16" font-weight="normal">Weaviate</text>
-<text x="29" y="545" font-size="16" font-weight="normal">Faiss: thư viện tìm kiếm vector</text>
-<line x1="160" y1="565" x2="160" y2="582" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
-<rect x="16" y="584" width="288" height="124" rx="12" fill="#e2e8f0" stroke="#94a3b8"/>
-<text x="29" y="613" font-size="16" font-weight="bold">5 · Mô hình</text>
-<text x="29" y="641" font-size="16" font-weight="normal">Llama, Mistral, Qwen, Phi,</text>
-<text x="29" y="665" font-size="16" font-weight="normal">Gemma</text>
-<text x="29" y="689" font-size="16" font-weight="normal">Mỗi họ có giấy phép riêng</text>
-<rect x="16" y="718" width="288" height="100" rx="12" fill="#fee2e2" stroke="#94a3b8"/>
-<text x="29" y="747" font-size="16" font-weight="bold">“Mở” có nhiều mức</text>
-<text x="29" y="775" font-size="16" font-weight="normal">Mở trọng số chưa chắc là mã</text>
-<text x="29" y="799" font-size="16" font-weight="normal">nguồn mở. Đọc giấy phép.</text>
+<text x="16" y="30" font-size="20" font-weight="bold">NGĂN XẾP AI MỞ</text>
+<text x="16" y="56" font-size="20" font-weight="bold">ĐỌC GIẤY PHÉP,</text>
+<text x="16" y="82" font-size="20" font-weight="bold">RỒI ĐO ĐỘ PHỦ</text>
+<text x="16" y="112" font-size="16" font-weight="normal">Đọc và đo ngày 2026-10-16</text>
+<rect x="16" y="134" width="288" height="131" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="30" y="164" font-size="16" font-weight="bold">1 · Công cụ: rộng rãi</text>
+<text x="30" y="191" font-size="16" font-weight="normal">8/9 kho: Apache, MIT, Postgres</text>
+<text x="30" y="218" font-size="16" font-weight="normal">Weaviate: có thư mục 'wl'</text>
+<text x="30" y="245" font-size="16" font-weight="normal">dưới giấy phép doanh nghiệp</text>
+<rect x="16" y="279" width="288" height="131" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="30" y="309" font-size="16" font-weight="bold">2 · Mô hình: giấy phép riêng</text>
+<text x="30" y="336" font-size="16" font-weight="normal">Llama 3.3: điều khoản thương</text>
+<text x="30" y="363" font-size="16" font-weight="normal">mại, ghi nguồn, chính sách</text>
+<text x="30" y="390" font-size="16" font-weight="normal">sử dụng</text>
+<rect x="16" y="424" width="288" height="131" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="30" y="454" font-size="16" font-weight="bold">3 · Tìm xấp xỉ có thể sót</text>
+<text x="30" y="481" font-size="16" font-weight="normal">Dữ liệu có cụm: gần 1,00</text>
+<text x="30" y="508" font-size="16" font-weight="normal">Không cấu trúc: 0,04–0,35</text>
+<text x="30" y="535" font-size="16" font-weight="normal">(IVF, cùng cấu hình)</text>
+<rect x="16" y="569" width="288" height="104" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="30" y="599" font-size="16" font-weight="bold">4 · Kho nhỏ: tìm chính xác</text>
+<text x="30" y="626" font-size="16" font-weight="normal">200 nghìn vector, 64 chiều:</text>
+<text x="30" y="653" font-size="16" font-weight="normal">khoảng 2 mili giây/truy vấn</text>
+<text x="16" y="713" font-size="16" font-weight="normal">Đọc giấy phép,</text>
+<text x="16" y="739" font-size="16" font-weight="normal">rồi đo trên dữ liệu của bạn.</text>
 </g></svg>

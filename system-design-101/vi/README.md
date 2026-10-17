@@ -7,7 +7,7 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 
 1. [Polling ngắn, polling dài, SSE và WebSocket](lessons/sd-01-001/lesson.md) — có review tại repo cũ; chờ review tích hợp tại repo mới.
 2. [Ứng dụng thực tế của bộ cân bằng tải](lessons/sd-01-002/lesson.md) — có review tại repo cũ; chờ review tích hợp tại repo mới.
-3. [Năm mã trạng thái HTTP kỳ lạ](lessons/sd-01-003/lesson.md) — có review tại repo cũ; chờ review tích hợp tại repo mới.
+3. [Mã HTTP lạ: máy khách đọc số, không đọc tên](lessons/sd-01-003/lesson.md) — viết lại ngày 2026-10-16 để làm sâu (có thử nghiệm riêng); chờ review kỹ thuật.
 
 4. [gRPC hoạt động thế nào?](lessons/sd-01-004/lesson.md) — có review tại repo cũ; chờ review tích hợp tại repo mới.
 
@@ -20,7 +20,7 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 9. [Vì sao HTTP/2 nhanh hơn HTTP/1?](lessons/sd-01-009/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 10. [CSS là gì?](lessons/sd-01-010/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 11. [Các tình huống dùng bộ cân bằng tải](lessons/sd-01-011/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
-12. [18 cổng mạng thường gặp](lessons/sd-01-012/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+12. [Cổng mạng: 18 cổng quen thuộc và điều hệ điều hành làm với số cổng](lessons/sd-01-012/lesson.md) — viết lại ngày 2026-10-16 để làm sâu (có đo trên Linux); chờ review kỹ thuật.
 13. [Phân biệt WAN, LAN, PAN và MAN](lessons/sd-01-013/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
 14. [JavaScript hoạt động thế nào?](lessons/sd-01-014/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
 15. [8 gợi ý thiết kế API hiệu quả](lessons/sd-01-015/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
@@ -44,7 +44,7 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 2. [Các thuật ngữ dữ liệu cốt lõi](lessons/sd-03-002/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 3. [Dòng thời gian dẫn tới ChatGPT](lessons/sd-03-003/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 4. [DeepSeek trong một trang](lessons/sd-03-004/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
-5. [Ngăn xếp AI mã nguồn mở](lessons/sd-03-005/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+5. [Ngăn xếp AI mã nguồn mở: chọn công cụ bằng giấy phép và bằng phép đo](lessons/sd-03-005/lesson.md) — viết lại ngày 2026-10-16 để làm sâu (đọc giấy phép, đo Faiss); chờ review kỹ thuật.
 6. [AI agent là gì?](lessons/sd-03-006/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 7. [Tổng quan về đường ống dữ liệu](lessons/sd-03-007/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 8. [ChatGPT hoạt động thế nào?](lessons/sd-03-008/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
@@ -55,7 +55,7 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 2. [Gõ google.com vào trình duyệt thì chuyện gì xảy ra?](lessons/sd-05-002/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 3. [Một URL biến thành yêu cầu HTTP thế nào?](lessons/sd-05-003/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 4. [Làm tốt phỏng vấn thiết kế hệ thống: bảy bước](lessons/sd-05-004/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
-5. [Tài liệu gợi ý để ôn phỏng vấn kỹ thuật](lessons/sd-05-005/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+5. [Ôn phỏng vấn kỹ thuật: từ danh sách tài liệu đến kế hoạch luyện](lessons/sd-05-005/lesson.md) — viết lại ngày 2026-10-16 để làm sâu (đọc và đếm trực tiếp ba tài liệu công khai); chờ review kỹ thuật.
 
 ## DevOps và CI/CD
 
@@ -120,7 +120,7 @@ Các bài từ sd-14-016 trở đi chưa viết; số thứ tự dưới đây c
 9. [Mô hình OSI](lessons/sd-15-009/lesson.md)
 10. [Hình dung một câu lệnh SQL](lessons/sd-15-010/lesson.md)
 11. [Tám giao thức mạng phổ biến](lessons/sd-15-011/lesson.md)
-12. [Cách học SQL](lessons/sd-15-012/lesson.md)
+12. [Học SQL bằng thử nghiệm: năm nhóm lệnh làm gì và hoàn tác được không](lessons/sd-15-012/lesson.md) — viết lại ngày 2026-10-16 để làm sâu (thử trên PostgreSQL và SQLite); chờ review kỹ thuật.
 
 Danh mục đầy đủ và snapshot nguồn: [bảng đối chiếu](../../brainstorm/system-design-101-vi/source-map.json).
 Quy tắc đã chốt: [kết luận brainstorm](../../brainstorm/system-design-101-vi/DECISIONS.md).

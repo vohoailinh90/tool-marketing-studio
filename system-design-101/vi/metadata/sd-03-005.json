@@ -1,6 +1,6 @@
 {
   "id": "sd-03-005",
-  "title_vi": "Ngăn xếp AI mã nguồn mở",
+  "title_vi": "Ngăn xếp AI mã nguồn mở: chọn công cụ bằng giấy phép và bằng phép đo",
   "language": "vi",
   "kind": "topology",
   "content_status": "review",
@@ -32,16 +32,15 @@
     },
     "claims": {
       "status": "checked",
-      "checked_on": "2026-10-13",
-      "evidence": "Project READMEs were read from local clones; the OSI statements come from search excerpts (opensource.org was unreachable)."
+      "checked_on": "2026-10-16",
+      "scope": "Đọc phần đầu tệp giấy phép của chín kho phần mềm (nhánh chính, không ghim) và toàn văn giấy phép Llama 3.3; chạy Faiss 1.15.1 trên dữ liệu tổng hợp để so tìm chính xác với IVF và HNSW. KHÔNG kiểm: giấy phép của Mistral, Qwen, Phi, Gemma; trang OSI và định nghĩa Open Source AI 1.0 (không mở được); các công cụ bài nguồn nêu nhưng bài này bỏ (Vercel, Nomic, JinaAI, Cognito, LLMWare, Hugging Face, Langchain); embedding thật, độ chính xác cuối của RAG, Milvus, Weaviate, pgvector; ý nghĩa pháp lý của bất kỳ giấy phép nào."
     },
     "technical_review": {
       "status": "pending",
-      "reason": "awaiting_technical_review_in_destination_repository"
+      "reason": "rewritten_2026_10_16_awaiting_review"
     },
     "mobile": {
       "status": "checked",
-      "checked_on": "2026-10-13",
       "widths_px": [
         320,
         375,
@@ -51,7 +50,8 @@
       "whole_lesson_no_horizontal_overflow": true,
       "text_outside_viewbox": false,
       "optional_sections_checked_open": true,
-      "evidence": "Chromium (Playwright) rendered the full lesson at each width with optional sections open; diagram scale measured from the rendered image and every SVG text box checked against the viewBox. Not learner testing and not GitHub or a real phone."
+      "checked_on": "2026-10-16",
+      "evidence": "Chromium: hình và cả bài (Markdown dựng thành HTML, mục tùy chọn mở) ở 320, 375, 430 px; chữ hình hiệu dụng tối thiểu 14,4 px ở 320 px, không tràn ngang, không chữ ngoài viewBox. Không phải thử với người học."
     },
     "user_testing": {
       "status": "not_performed"
@@ -59,70 +59,63 @@
   },
   "claims": [
     {
-      "claim_vi": "Streamlit is a faster way to build and share data apps.",
-      "source": "https://github.com/streamlit/streamlit/blob/5557b5ac644375e8b9d2c4d6f1449b3e08fa2993/README.md",
-      "section": "README",
-      "verified_by": "README.md read from a clone checked out at commit 5557b5ac644375e8b9d2c4d6f1449b3e08fa2993 (committed 2026-10-12); the cited text was re-read at that revision."
-    },
-    {
-      "claim_vi": "FastAPI is a modern, fast web framework for building APIs with Python based on standard Python type hints.",
-      "source": "https://github.com/tiangolo/fastapi/blob/f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007/README.md",
-      "section": "README",
-      "verified_by": "README.md read from a clone checked out at commit f5c6e9b4f9cadc1bf0f9a1fd672e621206b63007 (committed 2026-10-08); the cited text was re-read at that revision."
-    },
-    {
-      "claim_vi": "Metaflow is a human-centric framework to build and manage real-life AI and ML systems, originally developed at Netflix.",
-      "source": "https://github.com/Netflix/metaflow/blob/cb63fe94d6ae223ece6776edd567a59cb40eea0b/README.md",
-      "section": "README",
-      "verified_by": "README.md read from a clone checked out at commit cb63fe94d6ae223ece6776edd567a59cb40eea0b (committed 2026-10-06); the cited text was re-read at that revision."
-    },
-    {
-      "claim_vi": "Ollama installs locally, runs open models from the command line (ollama run) and has a REST API for running and managing models.",
-      "source": "https://github.com/ollama/ollama/blob/665f9e074c99fe5abd57f6c2c2948dd60543a637/README.md",
-      "section": "README",
-      "verified_by": "README.md read from a clone checked out at commit 665f9e074c99fe5abd57f6c2c2948dd60543a637 (committed 2026-10-12); the cited text was re-read at that revision."
-    },
-    {
-      "claim_vi": "pgvector is vector similarity search for Postgres, installed as an extension.",
-      "source": "https://github.com/pgvector/pgvector/blob/f37c13f68b57d2c3472b2214fbcff699d6d34876/README.md",
-      "section": "README",
-      "verified_by": "README.md read from a clone checked out at commit f37c13f68b57d2c3472b2214fbcff699d6d34876 (committed 2026-10-01); the cited text was re-read at that revision."
-    },
-    {
-      "claim_vi": "Faiss is a library for efficient similarity search and clustering of dense vectors.",
-      "source": "https://github.com/facebookresearch/faiss/blob/1a9ddc60d2201c9a44dfca3acead6ee38fbe21dc/README.md",
-      "section": "README",
-      "verified_by": "README.md read from a clone checked out at commit 1a9ddc60d2201c9a44dfca3acead6ee38fbe21dc (committed 2026-10-12); the cited text was re-read at that revision."
-    },
-    {
-      "claim_vi": "Milvus describes itself as a high-performance vector database built for scale.",
-      "source": "https://github.com/milvus-io/milvus/blob/b48661d3162164c7f2d10147ca2a217b52827b6f/README.md",
-      "section": "README",
-      "verified_by": "README.md read from a clone checked out at commit b48661d3162164c7f2d10147ca2a217b52827b6f (committed 2026-10-13); the cited text was re-read at that revision."
-    },
-    {
-      "claim_vi": "Weaviate describes itself as a cloud-native vector database that stores both objects and vectors.",
-      "source": "https://github.com/weaviate/weaviate/blob/350ad1194906242d23fa29f5994cd370356de286/README.md",
-      "section": "README",
-      "verified_by": "README.md read from a clone checked out at commit 350ad1194906242d23fa29f5994cd370356de286 (committed 2026-10-13); the cited text was re-read at that revision."
-    },
-    {
-      "claim_vi": "OSI Open Source AI Definition 1.0 (Oct 2024) asks for information about training data and code; OSI has said Llama's licence is not open source.",
-      "source": "https://opensource.org/blog/metas-llama-2-license-is-not-open-source",
-      "section": "Blog post and OSAID 1.0",
-      "verified_by": "Search-result excerpt only; the page itself was not opened (host blocked in the authoring environment). The 1.0 definition details came from press coverage in the same results."
-    },
-    {
-      "claim_vi": "Llama, Mistral, Qwen, Phi and Gemma are open-weight model families; the lesson says each family has its own licence and that its terms were not read; the names come from the source.",
+      "id": "source-stack",
+      "claim_vi": "Bài nguồn chia ngăn xếp AI mã nguồn mở thành giao diện, embedding và RAG, backend và truy cập mô hình, dữ liệu và truy xuất, mô hình ngôn ngữ lớn, và nêu các công cụ ví dụ.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/the-open-source-ai-stack.md",
-      "section": "Large-Language Models",
-      "verified_by": "Names carried from the source; no licence text was read."
+      "section": "Whole guide",
+      "verified_by": "Đọc body nguồn ghim; bài này không dựa vào đó cho khẳng định giấy phép hay hiệu năng nào."
+    },
+    {
+      "id": "tool-licenses",
+      "claim_vi": "Tệp giấy phép của Streamlit, Metaflow, Milvus là Apache-2.0; của FastAPI, Ollama, Faiss, Next.js là MIT; của pgvector là giấy phép kiểu PostgreSQL; Weaviate nói mã nguồn trong kho phần lớn theo BSD-3-Clause nhưng thư mục wl theo giấy phép doanh nghiệp riêng.",
+      "sources": [
+        "https://github.com/streamlit/streamlit/blob/develop/LICENSE",
+        "https://github.com/fastapi/fastapi/blob/master/LICENSE",
+        "https://github.com/Netflix/metaflow/blob/master/LICENSE",
+        "https://github.com/ollama/ollama/blob/main/LICENSE",
+        "https://github.com/pgvector/pgvector/blob/master/LICENSE",
+        "https://github.com/facebookresearch/faiss/blob/main/LICENSE",
+        "https://github.com/milvus-io/milvus/blob/master/LICENSE",
+        "https://github.com/weaviate/weaviate/blob/main/LICENSE",
+        "https://github.com/vercel/next.js/blob/canary/license.md"
+      ],
+      "section": "LICENSE",
+      "verified_by": "Tải và đọc phần đầu của từng tệp giấy phép từ nhánh chính của kho ngày 2026-10-16 qua raw.githubusercontent.com (không ghim commit; nội dung có thể đổi). Weaviate: đọc toàn văn tệp (khoảng 790 byte). Chỉ nhận diện loại giấy phép từ văn bản đầu tệp, không phân tích pháp lý; các thư mục con và phụ thuộc có thể có giấy phép khác."
+    },
+    {
+      "id": "llama-license",
+      "claim_vi": "Giấy phép cộng đồng Llama 3.3 cấp quyền dùng, sao chép, sửa và phân phối miễn phí nhưng kèm điều kiện: cần xin phép Meta nếu số người dùng hoạt động hàng tháng của sản phẩm vượt 700 triệu vào ngày phát hành phiên bản; phải kèm bản giấy phép và ghi 'Built with Llama'; mô hình tạo ra từ nó phải mở đầu tên bằng 'Llama'; phải tuân theo chính sách sử dụng chấp nhận được.",
+      "source": "https://github.com/meta-llama/llama-models/blob/main/models/llama3_3/LICENSE",
+      "section": "1. License Rights and Redistribution; 2. Additional Commercial Terms",
+      "verified_by": "Đọc văn bản giấy phép Llama 3.3 (ngày 6/12/2024) ngày 2026-10-16 qua raw.githubusercontent.com. Không phải tư vấn pháp lý. Giấy phép của Mistral, Qwen, Phi, Gemma chưa đọc."
+    },
+    {
+      "id": "osi-llama",
+      "claim_vi": "OSI nói giấy phép của Llama 2 không phải mã nguồn mở.",
+      "source": "https://opensource.org/blog/metas-llama-2-license-is-not-open-source",
+      "section": "Whole post",
+      "verified_by": "Đối chiếu qua trích đoạn tìm kiếm ở lượt biên soạn trước; trang OSI không mở được ngày 2026-10-16 và bài này nói về Llama 2, bản 3.3 không được kiểm theo tiêu chí đó."
+    },
+    {
+      "id": "faiss-recall",
+      "claim_vi": "Với 200.000 vector 64 chiều, gọi từng truy vấn một (một luồng): tìm chính xác trung bình khoảng 2 ms mỗi lần gọi (p95 khoảng 2,5 ms); IVF (1.024 ô) nprobe=1 có độ phủ 0,943 và nhanh hơn khoảng 90 lần, nprobe=8 độ phủ 1,000 và nhanh hơn khoảng 30 lần; HNSW (M=32) efSearch=32 độ phủ 0,998 và nhanh hơn khoảng 40 lần (nhiều lần đo cho khoảng 30 đến 60 lần); trên dữ liệu không có cấu trúc, IVF nprobe=1, 8, 32 chỉ phủ 0,036, 0,153, 0,351 và HNSW efSearch=32, 128 phủ 0,509, 0,817.",
+      "source": "https://github.com/facebookresearch/faiss",
+      "section": "Thư viện được đo (không phải tài liệu)",
+      "verified_by": "Chạy faiss-cpu 1.15.1 với numpy 2.5.4, một luồng, bốn nhân, ngày 2026-10-16 và 2026-10-17: 1.000 truy vấn, k=10, so với IndexFlatL2 làm chuẩn; dữ liệu tổng hợp (hỗn hợp 1.000 cụm Gauss, và Gauss đẳng hướng). Độ phủ giống hệt qua các lần chạy lại. Thời gian: lần đầu đo theo lô (chia thời gian cả lô 1.000 truy vấn cho 1.000), sau đó (2026-10-17) đo từng lần gọi search với một truy vấn, lấy trung bình và p95: tìm chính xác 1,96 ms (p95 2,47) trên dữ liệu có cụm và 1,90 ms (p95 2,45) trên dữ liệu không cấu trúc, so với 1,89 và 1,95 ms theo lô; tỉ lệ tốc độ theo từng lần gọi (có cụm): IVF nprobe=1 90x, nprobe=8 31x, nprobe=32 10x; HNSW efSearch=32 39x; (không cấu trúc) IVF nprobe=1 119x, 8 56x, 32 20x; HNSW efSearch=128 7x; các lần đo theo lô và của người đánh giá cho 37x–42x (IVF nprobe=8) và 37x–62x (HNSW efSearch=32), nên bài nêu khoảng. Chưa đọc tài liệu Faiss; chưa thử embedding thật, Milvus, Weaviate hay pgvector."
+    },
+    {
+      "id": "exact-is-fast",
+      "claim_vi": "Tìm chính xác trên 200.000 vector 64 chiều, gọi từng truy vấn một với một luồng, mất trung bình khoảng 2 mili giây mỗi lần gọi (1,96 ms ở dữ liệu có cụm, 1,90 ms ở dữ liệu không cấu trúc; p95 khoảng 2,5 ms).",
+      "source": "https://github.com/facebookresearch/faiss",
+      "section": "Thư viện được đo (không phải tài liệu)",
+      "verified_by": "Đo ngày 2026-10-17 bằng 1.000 lần gọi search với một truy vấn mỗi lần (cũng khớp với phép đo theo lô: 1,89 và 1,95 ms); số đo của một máy, không áp dụng cho vector nhiều chiều hơn hay kho lớn hơn nhiều."
     }
   ],
-  "design_notes_vi": "Năm tầng xếp theo đường đi của một yêu cầu, mỗi tầng một câu hỏi; thẻ cuối nhắc mở có nhiều mức. Ví dụ ở tầng 1–4 là công cụ đã đọc README; Next.js và các họ mô hình ở tầng 5 lấy từ bài nguồn, chưa đối chiếu giấy phép. Không dùng ảnh nguồn.",
+  "design_notes_vi": "Bốn khung dọc theo bốn kết luận (giấy phép công cụ, giấy phép mô hình, tìm xấp xỉ có thể sót, kho nhỏ tìm chính xác là đủ) thay cho năm tầng của bản trước. Sơ đồ tự thiết kế, không dùng ảnh nguồn.",
   "source_deviations": [
-    "Source claims the best AI developer tools are open source and names Vercel, Nomic, JinaAI, Cognito, LLMWare and Hugging Face; those were not verified here and are omitted.",
-    "Source calls the listed open models great alternatives to proprietary ones 'based on benchmarks'; no benchmark is cited, so the lesson makes no quality claim."
+    "Nguồn là danh sách công cụ theo năm tầng. Bài này không đi qua từng tầng: nó nhóm công cụ theo giấy phép đọc trực tiếp từ tệp giấy phép và dùng phép đo Faiss riêng cho tầng truy xuất; năm tầng chỉ còn ở phần tùy chọn.",
+    "Bài nguồn nêu Vercel, Nomic, JinaAI, Cognito, LLMWare, Hugging Face và nhận định công cụ tốt nhất đều mã nguồn mở; những mục này không được kiểm tra nên không có trong phần chính.",
+    "Bài nguồn nói các mô hình mở là 'lựa chọn thay thế tuyệt vời' dựa trên benchmark; không có benchmark nào được trích nên bài này không đưa ra nhận định chất lượng."
   ],
-  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+  "editorial_note_vi": "Viết lại ngày 2026-10-16 để làm sâu và tách khỏi nguồn; review kỹ thuật bản mới đang chờ. Chưa user testing hoặc phê duyệt phát hành."
 }

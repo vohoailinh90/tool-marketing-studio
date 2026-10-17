@@ -90,3 +90,15 @@ mutations:
   find: "    return strip_html(\"\\n\".join(lines))"
   replace: "    return \"\\n\".join(lines)"
   test: tests.test_sd101_source_distance.TextTests.test_html_markup_is_not_vocabulary_in_the_lesson_or_the_source
+- label: a name that an English guide uses is dropped because it fits a Vietnamese syllable
+  find: "            if VIETNAMESE_SYLLABLE.fullmatch(piece) and piece not in keep and piece not in TECHNICAL_NAMES:"
+  replace: "            if VIETNAMESE_SYLLABLE.fullmatch(piece) and piece not in TECHNICAL_NAMES:"
+  test: tests.test_sd101_source_distance.TextTests.test_a_name_that_fits_a_vietnamese_syllable_is_kept_when_listed
+- label: a technical name listed by hand is dropped because it fits a Vietnamese syllable
+  find: "            if VIETNAMESE_SYLLABLE.fullmatch(piece) and piece not in keep and piece not in TECHNICAL_NAMES:"
+  replace: "            if VIETNAMESE_SYLLABLE.fullmatch(piece) and piece not in keep:"
+  test: tests.test_sd101_source_distance.TextTests.test_a_name_that_fits_a_vietnamese_syllable_is_kept_when_listed
+- label: the survey does not share the names of the English guides between lessons
+  find: '**distance(source, lesson.read_text(encoding="utf-8"), keep)}'
+  replace: '**distance(source, lesson.read_text(encoding="utf-8"))}'
+  test: tests.test_sd101_source_distance.SurveyTests.test_a_name_used_by_another_guide_is_kept_for_every_lesson

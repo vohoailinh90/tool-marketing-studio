@@ -86,6 +86,15 @@ class TextTests(unittest.TestCase):
         self.assertEqual(distance_tool.signal_tokens("train main chain route client server"),
                          ["train", "main", "chain", "route", "client", "server"])
 
+    def test_a_name_that_fits_a_vietnamese_syllable_is_kept_when_listed(self) -> None:
+        text = "CoAP QUIC ping long theo nhau"
+        # TECHNICAL_NAMES lists names that only the lessons use; the English sources supply the rest through `keep`
+        self.assertEqual(distance_tool.signal_tokens(text), ["coap"])
+        self.assertEqual(distance_tool.signal_tokens(text, frozenset({"quic", "ping", "long"})), ["coap", "quic", "ping", "long"])
+
+    def test_shaped_names_are_the_words_of_a_guide_that_look_like_vietnamese_syllables(self) -> None:
+        self.assertEqual(distance_tool.shaped_names("Short/long polling over QUIC, ping the Postgres server"), {"long", "quic", "ping"})
+
     def test_html_markup_is_not_vocabulary_in_the_lesson_or_the_source(self) -> None:
         lesson = "# T\n\n<details>\n<summary>Xem</summary>\n\nPostgres replicates.\n\n</details>\n<!-- hidden Zookeeper note -->\n"
         self.assertEqual(distance_tool.signal_tokens(distance_tool.lesson_prose(lesson)), ["postgres", "replicates"])
@@ -268,6 +277,23 @@ class SurveyTests(unittest.TestCase):
                 self.assertEqual([row["id"] for row in rows], ["sd-01-001"])
                 self.assertEqual(len(problems), 1)
                 self.assertIn("sd-01-002", problems[0])
+
+    def test_a_name_used_by_another_guide_is_kept_for_every_lesson(self) -> None:
+        # "ping" fits the shape of a Vietnamese syllable. Guide one uses it as a name; lesson two is written from guide two
+        # and uses it too, so it is vocabulary of lesson two (not of its source) and counts as novelty there.
+        first, second = "*   Redis ping\n*   Kafka streams\n", "*   Postgres replicates writes\n*   Etcd leases\n"
+        for data in (first, second):
+            (self.cache / f"{distance_tool.blob_sha(data.encode())}.md").write_bytes(data.encode())
+        for lesson_id, data, text in (("sd-01-001", first, "# T\n\n## Đọc hình\n\n- Redis ping\n- Kafka streams\n"),
+                                      ("sd-01-002", second, "# T\n\n## Đọc hình\n\n- Postgres replicates writes\n- Etcd leases ping\n")):
+            (self.store / "lessons" / lesson_id / "lesson.md").write_text(text, encoding="utf-8")
+            (self.store / "metadata" / f"{lesson_id}.json").write_text(json.dumps(
+                {"title_vi": lesson_id, "source_snapshot": snapshot_for(data.encode()), "claims": []}), encoding="utf-8")
+        rows, problems = distance_tool.survey(self.store, self.cache, offline=True)
+        self.assertEqual(problems, [])
+        novelty = {row["id"]: row["novelty"] for row in rows}
+        self.assertEqual(novelty["sd-01-001"], 0.0)
+        self.assertGreater(novelty["sd-01-002"], 0.1)    # "ping" is counted as the lesson's own word
 
     def test_a_cache_inside_the_repository_is_refused(self) -> None:
         with contextlib.redirect_stderr(io.StringIO()), self.assertRaises(SystemExit) as raised:

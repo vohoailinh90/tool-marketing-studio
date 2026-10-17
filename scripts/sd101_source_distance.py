@@ -65,13 +65,15 @@ ENGLISH_STOPWORDS = frozenset(
     here should must need needs want wants take takes give gives know knows well even less least ever never always""".split())
 # A Vietnamese word is one syllable, and written without marks it still has a recognisable shape: an optional initial,
 # a vowel group and an optional final. The ASCII filter alone cannot tell "theo" or "nhau" from an English word, so
-# this shape is rejected as language, not as a name. A few real English words fit it too ("long", "ping", "tech");
-# they are dropped from both sides alike, which costs a little coverage and nothing else.
+# this shape is rejected as language, not as a name. A few real names fit it too ("long" in long polling, "ping",
+# "quic"), so a shaped word is kept when any English source guide uses it (survey passes that set as `keep`), or when
+# TECHNICAL_NAMES lists it: names that only the lessons use.
 INITIAL = r"(?:ngh|ng|nh|ph|th|tr|ch|kh|gh|gi|qu|[bcdghklmnprstvx])?"
 VOWEL_WITHOUT_FINAL = r"(?:ieu|yeu|oai|oao|oay|oeo|uai|uay|uoi|uou|uya|ai|ao|au|ay|eo|eu|iu|oi|ui|uu|ia|ua|ya)"
 VOWEL_WITH_FINAL = r"(?:uyen|uyet|uy|ie|uo|oa|oe|ue|ye|[aeiouy])(?:ng|nh|ch|[cmnpt])?"
 VIETNAMESE_SYLLABLE = re.compile(f"{INITIAL}(?:{VOWEL_WITHOUT_FINAL}|{VOWEL_WITH_FINAL})")
 STOPWORDS = ENGLISH_STOPWORDS
+TECHNICAL_NAMES = frozenset({"coap", "true", "chat"})
 
 # A recorded run or measurement: the verbs the metadata uses for it, in Vietnamese and English. A match counts only when no
 # negation comes shortly before it in the same clause, so "chưa chạy thử" (not run) is not evidence of a run.
@@ -140,12 +142,30 @@ def lesson_units(markdown: str) -> int:
                if re.match(r"(\d+\.|[-*])\s+\S", line) or re.match(r"\*\*[^*]+\*\*", line))
 
 
-def signal_tokens(text: str) -> list[str]:
+def ascii_words(text: str) -> list[str]:
+    """Lower-cased ASCII words of at least MIN_WORD letters that are not stop words, in order, repeats included.
+
+    The text is split into whole Unicode words first, and a word counts only when all of it is ASCII letters. A
+    Vietnamese word has a mark somewhere in it, so it is dropped whole instead of leaving an ASCII fragment such as
+    "chuy" from "chuyển"."""
+    found: list[str] = []
+    for match in re.finditer(r"\w+(?:[_-]\w+)*", unicodedata.normalize("NFC", text)):
+        for piece in re.split(r"[_-]", match.group(0).lower()):
+            if len(piece) >= MIN_WORD and piece.isalpha() and piece.isascii() and piece not in STOPWORDS:
+                found.append(piece)
+    return found
+
+
+def shaped_names(text: str) -> set[str]:
+    """Words of the text that fit the shape of a Vietnamese syllable, which an English guide uses as names."""
+    return {word for word in ascii_words(text) if VIETNAMESE_SYLLABLE.fullmatch(word)}
+
+
+def signal_tokens(text: str, keep: frozenset[str] = frozenset()) -> list[str]:
     """Names, technical terms and numbers, lower-cased, in order of first appearance.
 
-    The text is split into whole Unicode words first, and a word counts only when all of it is ASCII letters, at least
-    MIN_WORD long and not a stop word. A Vietnamese word has a mark somewhere in it, so it is dropped whole instead of
-    leaving an ASCII fragment such as "chuy" from "chuyển". A number counts with its digits only."""
+    A word counts when ascii_words gives it and it does not fit the shape of a Vietnamese syllable, unless `keep` or
+    TECHNICAL_NAMES lists it. A number counts with its digits only."""
     seen: set[str] = set()
     ordered: list[str] = []
     for match in re.finditer(r"\d[\d.,]*\d|\w+(?:[_-]\w+)*", unicodedata.normalize("NFC", text)):
@@ -156,11 +176,13 @@ def signal_tokens(text: str) -> list[str]:
                 seen.add(token)
                 ordered.append(token)
             continue
-        for piece in re.split(r"[_-]", token.lower()):
-            if (len(piece) >= MIN_WORD and piece.isalpha() and piece.isascii() and piece not in STOPWORDS
-                    and not VIETNAMESE_SYLLABLE.fullmatch(piece) and piece not in seen):
-                seen.add(piece)
-                ordered.append(piece)
+        for piece in ascii_words(token):
+            if piece in seen:
+                continue
+            if VIETNAMESE_SYLLABLE.fullmatch(piece) and piece not in keep and piece not in TECHNICAL_NAMES:
+                continue
+            seen.add(piece)
+            ordered.append(piece)
     return ordered
 
 
@@ -178,11 +200,11 @@ def word_count(text: str) -> int:
     return len(re.findall(r"\w+", text))
 
 
-def distance(source_raw: str, lesson_markdown: str) -> dict[str, float | int | None]:
+def distance(source_raw: str, lesson_markdown: str, keep: frozenset[str] = frozenset()) -> dict[str, float | int | None]:
     """The numbers for one lesson against its source (see the module docstring)."""
     body = source_body(source_raw)
     prose = lesson_prose(lesson_markdown)
-    source_seq, lesson_seq = signal_tokens(body), signal_tokens(prose)
+    source_seq, lesson_seq = signal_tokens(body, keep), signal_tokens(prose, keep)
     shared = set(source_seq) & set(lesson_seq)
     coverage = len(shared) / len(source_seq) if source_seq else 0.0
     # Order is judged on the shared vocabulary only, so a lesson is not punished for words the source lacks.
@@ -259,7 +281,7 @@ def fetch_source(snapshot: dict, cache_dir: pathlib.Path, offline: bool) -> str:
 
 def survey(store: pathlib.Path, cache_dir: pathlib.Path, offline: bool) -> tuple[list[dict], list[str]]:
     """One row per lesson that has a lesson.md and a metadata file, and the lessons that could not be measured."""
-    rows: list[dict] = []
+    loaded: list[tuple[str, pathlib.Path, dict, str]] = []
     problems: list[str] = []
     for lesson in sorted((store / "lessons").glob("sd-*/lesson.md")):
         lesson_id = lesson.parent.name
@@ -268,11 +290,19 @@ def survey(store: pathlib.Path, cache_dir: pathlib.Path, offline: bool) -> tuple
             continue
         try:
             metadata = json.loads(meta_path.read_text(encoding="utf-8"))
-            source = fetch_source(metadata["source_snapshot"], cache_dir, offline)
-            row = {"id": lesson_id, "title_vi": metadata.get("title_vi"),
-                   **distance(source, lesson.read_text(encoding="utf-8"))}
-            row.update({"independent_hosts": len(independent_hosts(metadata)), "own_evidence": own_evidence(metadata)})
+            loaded.append((lesson_id, lesson, metadata, fetch_source(metadata["source_snapshot"], cache_dir, offline)))
         except (OSError, ValueError, KeyError, TypeError, AttributeError, urllib.error.URLError) as error:
+            problems.append(f"{lesson_id}: {type(error).__name__}: {error}")
+    # Every English source guide is evidence that a word is a name, so a name that looks like a Vietnamese syllable
+    # ("long", "ping", "quic") is kept for all the lessons, not only the one written from that guide.
+    keep = frozenset().union(*(shaped_names(source_body(source)) for _, _, _, source in loaded))
+    rows: list[dict] = []
+    for lesson_id, lesson, metadata, source in loaded:
+        try:
+            row = {"id": lesson_id, "title_vi": metadata.get("title_vi"),
+                   **distance(source, lesson.read_text(encoding="utf-8"), keep)}
+            row.update({"independent_hosts": len(independent_hosts(metadata)), "own_evidence": own_evidence(metadata)})
+        except (OSError, ValueError, KeyError, TypeError, AttributeError) as error:
             problems.append(f"{lesson_id}: {type(error).__name__}: {error}")
             continue
         rows.append(row)

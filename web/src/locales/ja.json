@@ -83,6 +83,7 @@
   "not_rendered": "まだ生成していません",
   "render_button": "画像を生成",
   "rendering": "ヘッドレスブラウザで生成中…（1枚約1秒）",
+  "render_failed": "この投稿の画像を生成できませんでした。YAML欄の下の一覧にあるエラーを直してから、もう一度生成してください。表示中の画像（ある場合）は前回の生成結果です。",
   "approval": "承認",
   "cannot_approve": "まだ承認できません：",
   "approve_button": "承認する",

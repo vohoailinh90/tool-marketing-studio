@@ -58,7 +58,7 @@ matches its spec fails CI. An editor file kept next to a spec (`<id>.drawio`, `<
 the editor files are not committed by default. `check` reads the scale an editor file was drawn at from the file itself (page width, canvas
 width, panel width), so a file made with `--scale 1` is current as long as it is what the spec draws at that scale. A scale is a multiple of
 0.05 because the editor files keep sizes to a tenth of a pixel: a scale with more digits could not be read back from the file it made.
-Files (figures, editor files, preview PNGs) are written to a temporary file beside the target and renamed over it, so a full disk leaves the previous file whole; `render` and `preview` refuse an `--out` that is the spec itself, and `build` a spec that is its own output file (by name, link or hard link), and `facebook` replaces a folder only when it is one of its own packs (numbered PNGs and `alt.txt`): a lesson folder or any other work that carries the figure's id is refused, not deleted.
+Files (figures, editor files, preview PNGs) are written to a temporary file beside the target and renamed over it, so a full disk leaves the previous file whole; `render` and `preview` refuse an `--out` that is the spec itself, and `build` a spec that is its own output file (by name, link or hard link), and `facebook` replaces a folder only when it is one of its own packs (numbered PNGs and `alt.txt`): a lesson folder or any other work that carries the figure's id is refused, not deleted, and so is a spec that lies inside the folder the pack would replace.
 A browser that starts and then fails (a crash, a timeout) makes `preview`, `facebook` and `check --browser` exit 2 with Playwright's first line; only a
 missing browser is told to install Chromium.
 

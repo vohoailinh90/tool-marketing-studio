@@ -16,6 +16,7 @@ from __future__ import annotations
 import argparse
 import json
 import math
+import os
 import re
 import sys
 import tempfile
@@ -42,6 +43,12 @@ def _write(path: Path, content: str) -> bool:
         return False
     write_atomic(path, data)
     return True
+
+
+def inside(path: Path, folder: Path) -> bool:
+    """True when `path` is `folder` or lies somewhere under it, links followed: what replaces the folder would replace the file."""
+    target, root = Path(os.path.realpath(path)), Path(os.path.realpath(folder))
+    return target == root or root in target.parents
 
 
 def language_problem(spec: dict) -> str | None:
@@ -292,8 +299,12 @@ def to_facebook(path: Path, fmt: str, out: Path | None) -> int:
         return 1
     if broken_icons():
         return 1
+    target = out or ROOT / "build" / "figures" / "facebook"
+    if inside(path, target / loaded[0]["id"]):                 # the export replaces this folder: the spec would go with it
+        print(f"the spec {path} is inside {target / loaded[0]['id']}, the folder the pack replaces; keep the spec elsewhere", file=sys.stderr)
+        return 2
     try:
-        files, problems = facebook.export(loaded[0], out or ROOT / "build" / "figures" / "facebook", ROOT, fmt)
+        files, problems = facebook.export(loaded[0], target, ROOT, fmt)
     except browser.Unavailable as exc:                         # Playwright or Chromium missing, or failed while drawing
         return browser_unavailable("draw the slides", exc)
     for line in problems:

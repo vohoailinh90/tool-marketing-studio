@@ -1402,6 +1402,32 @@ class RobustnessTests(unittest.TestCase):
                 self.assertTrue(dest.read_text(encoding="utf-8").startswith("<svg"), lang)
                 dest.write_text("the Vietnamese figure", encoding="utf-8")
 
+    def test_facebook_never_replaces_the_folder_the_spec_is_in(self):
+        for name in ("alt.txt", "01.png", "notes.json"):            # the first two look like pack files to the folder check
+            with tempfile.TemporaryDirectory() as tmp:
+                out = Path(tmp) / "out"
+                (out / "demo-small").mkdir(parents=True)
+                spec_path = out / "demo-small" / name
+                spec_path.write_text((FIXTURES / "small.json").read_text(encoding="utf-8"), encoding="utf-8")
+                before = spec_path.read_bytes()
+                link = Path(tmp) / "link.json"
+                try:
+                    link.symlink_to(spec_path)
+                    candidates = [spec_path, link]
+                except OSError:
+                    candidates = [spec_path]
+                for candidate in candidates:
+                    with mock.patch.object(browser, "png", side_effect=AssertionError("nothing may be drawn")):
+                        code, err = self.run_cli("facebook", str(candidate), "--out", str(out))
+                    self.assertEqual(code, 2, (name, candidate, err))
+                    self.assertIn("keep the spec elsewhere", err)
+                    self.assertEqual(spec_path.read_bytes(), before, (name, candidate))
+                    self.assertEqual(sorted(p.name for p in (out / "demo-small").iterdir()), [name])
+                elsewhere = Path(tmp) / "small.json"                                           # a spec outside the folder exports as before
+                elsewhere.write_text((FIXTURES / "small.json").read_text(encoding="utf-8"), encoding="utf-8")
+                with mock.patch.object(browser, "png", side_effect=browser.Unavailable("no chromium")):
+                    self.assertEqual(self.run_cli("facebook", str(elsewhere), "--out", str(Path(tmp) / "fresh"))[0], 2)      # reached the browser, which is not here
+
     def test_a_write_goes_through_a_link_as_it_always_did(self):
         with tempfile.TemporaryDirectory() as tmp:
             real, link = Path(tmp) / "real.svg", Path(tmp) / "link.svg"

@@ -1,0 +1,88 @@
+id: 01-oh-my-claudecode
+status: draft
+format: portrait
+series: Radar GitHub · 2026-10-17-3
+link: 01-oh-my-claudecode
+slides:
+- layout: cover
+  emoji: 🤖
+  eyebrow: Radar GitHub · AI
+  title: Điều phối đa tác nhân AI với oh-my-claudecode
+  subtitle: Hệ thống điều phối đa tác nhân (multi-agent orchestration) ưu tiên làm việc nhóm dành cho
+    Claude Code.
+- layout: stat
+  eyebrow: Số liệu theo ngày quét
+  value: '39.976'
+  label: sao trên GitHub
+  caption: MIT · TypeScript
+- layout: quote
+  text: Người dùng Claude Code thường phải tự gõ từng lệnh và chỉ đạo một AI duy nhất xử lý từ đầu đến
+    cuối. Khi dự án lớn, việc thiếu kiểm tra chéo, thiếu quy trình lập kế hoạch và thực thi tự động làm
+    giảm tốc độ phát triển phần mềm.
+  author: Vấn đề nó giải quyết
+- layout: flow
+  variant: after
+  title: Nó chạy thế nào
+  steps:
+  - text: 'Phân vai tác nhân: OMC cung cấp các tác nhân và kỹ năng chuyên biệt để phân rã nhiệm vụ lớn
+      thành các phần việc nhỏ.'
+  - text: 'Hỏi chéo đa mô hình: OMC có khả năng định tuyến câu hỏi và đánh giá chéo qua các AI providers
+      khác nhau như Codex, Gemini hay Grok.'
+  - text: 'Đánh giá chuẩn xác với Jev: Jev cung cấp cơ chế phán đoán quyết định việc kích hoạt kỹ năng,
+      định tuyến mô hình và cắt tỉa ngữ cảnh.'
+- layout: features
+  title: Các mảnh ghép
+  items:
+  - emoji: 🧩
+    title: Claude Code Plugin
+    text: Cung cấp giao diện kỹ năng trực tiếp bên trong phiên làm việc của Claude Code
+  - emoji: ⚙️
+    title: omc CLI
+    text: Công cụ dòng lệnh quản lý cài đặt, quét rủi ro và điều phối đội ngũ tmux
+  - emoji: 🔌
+    title: Jev Engine
+    text: Hệ thống phán đoán hỗ trợ định tuyến mô hình, kích hoạt kỹ năng và điều kiện lặp
+- layout: checklist
+  title: Học được gì
+  tone: ok
+  items:
+  - Cách chia tách bề mặt giao tiếp giữa Terminal CLI và In-session skills trong AI agents
+  - Mô hình tích hợp plugin trực tiếp qua lệnh slash command của Claude Code
+  - Chiến lược phòng vệ rủi ro và phán đoán quyết định (Jev) trước khi thực thi mã nguồn
+- layout: pains
+  title: Lưu ý
+  tone: accent
+  items:
+  - emoji: ⚠️
+    text: Các lệnh slash (/autopilot, /team, v.v.) yêu cầu phiên Claude Code đang chạy, không dùng được
+      trực tiếp trong CI/CD không tương tác
+  - emoji: ⚠️
+    text: Tính năng đặt tên workflow stage profile v1 hiện yêu cầu hệ điều hành Linux có tiện ích flock
+  - emoji: ⚠️
+    text: omc team và phát hiện giới hạn tốc độ yêu cầu cài đặt tmux (hoặc psmux trên Windows)
+- layout: cta
+  emoji: 📌
+  title: Lưu lại để học dần
+  text: Mỗi tuần hai lần có một repo mới.
+  show_link: false
+platforms:
+  facebook:
+    caption: 'Điều phối nhóm AI tự động hoá với oh-my-claudecode trên Claude Code
+
+
+      Nâng cấp quy trình lập trình với hệ thống multi-agent chuyên nghiệp:
+
+      - Hỗ trợ chạy autopilot xây dựng ứng dụng tự động
+
+      - Kết nối đa AI (Claude, Codex, Gemini) để kiểm tra chéo mã nguồn
+
+      - Phỏng vấn Socratic làm rõ yêu cầu trước khi viết code
+
+
+      Nội dung do AI tóm tắt từ README và cấu trúc repo; hãy đọc repo gốc trước khi dùng.'
+    first_comment: 'Repo gốc: {link}'
+    hashtags:
+    - ClaudeCode
+    - MultiAgent
+    - AIAutomation
+    - DevTools

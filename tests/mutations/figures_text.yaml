@@ -26,3 +26,15 @@ mutations:
   find: if cur and not combining(ch) and width(
   replace: if cur and width(
   test: tests.test_figures.TextTests.test_a_combining_mark_advances_nothing_and_never_starts_a_line
+- label: an emoji counts as measurable
+  find: '        return ord(c) < 0x1F000'
+  replace: '        return True'
+  test: tests.test_figures.TextTests.test_only_what_the_width_table_knows_is_measurable
+- label: any character that is not ASCII counts as measurable
+  find: '    return " " <= base <= "~" and base != c'
+  replace: '    return True'
+  test: tests.test_figures.TextTests.test_only_what_the_width_table_knows_is_measurable
+- label: a symbol is measured with the fallback width
+  find: "    if c in _OTHER:\n        return _OTHER[c][bold] / 1000"
+  replace: "    if False:\n        return _OTHER[c][bold] / 1000"
+  test: tests.test_figures.TextTests.test_symbols_and_vietnamese_capital_d_are_measured_at_least_as_wide_as_the_font_draws_them

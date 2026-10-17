@@ -62,3 +62,7 @@ mutations:
   find: '    if found:                                                # a figure cannot be drawn from a broken icon set: say so, do not try'
   replace: '    if False:                                                # a figure cannot be drawn from a broken icon set: say so, do not try'
   test: tests.test_figures.RobustnessTests.test_check_with_a_structurally_broken_icon_file_reports_it_instead_of_raising
+- label: editor files are looked for in the store folder instead of beside the given spec
+  find: beside = path.parent / f"{spec['id']}{suffix}"
+  replace: beside = SPEC_DIR / f"{spec['id']}{suffix}"
+  test: tests.test_figures.RobustnessTests.test_editor_files_are_looked_for_beside_the_spec_that_was_given

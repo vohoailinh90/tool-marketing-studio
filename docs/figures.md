@@ -31,7 +31,9 @@ One JSON file per figure, `system-design-101/figures/vi/<lesson id>.json` (next 
 - `sequence`: 2-3 actors, 2-10 messages; `reply` draws the arrow dashed.
 - Limits on lengths and counts are in `scripts/figures/spec.py`. No address is accepted in any text (the studio's own rule for posts, `mkt.check.has_url`: `https://`, `www.`, a bare
   domain, a spaced scheme; it also reads a file name that ends in a country code, such as `server.py` or `README.md`, as a domain, so
-  write the name as a word), no control or invisible character (any Unicode control, format, surrogate or line-separator character: zero-width spaces and joiners, direction marks, a byte-order mark), and no icon outside the set
+  write the name as a word), no control or invisible character (any Unicode control, format, surrogate or line-separator character: zero-width spaces and joiners, direction marks, a byte-order mark),
+  and only characters whose width the toolkit knows (ASCII, Latin letters with accents such as Vietnamese, Japanese and other CJK text, and the
+  measured symbols listed in `scripts/figures/text.py`: arrows, `\u26a0`, `\u00ae`, `\u2713` and so on; emoji, other scripts and unlisted symbols are refused), and no icon outside the set
   (`python3 -m scripts.figures icons` lists the 81 names and what each means).
 
 Every word on the figure is a field of the spec: no caption, arrow label or icon is invented by the drawing code.

@@ -24,6 +24,7 @@ from pathlib import Path
 from mkt.check import has_url
 
 from . import icons
+from .text import measurable
 
 ID = re.compile(r"[a-z0-9][a-z0-9-]{1,40}")
 KINDS = {
@@ -80,6 +81,11 @@ def _text(value, where: str, low: int, high: int, found: list[str]) -> None:
         found.append(f"{where} holds a link or a source-image host; a figure carries no address")
     if hidden(value):
         found.append(f"{where} holds a control or invisible character")
+    else:
+        unknown = sorted({c for c in value if not measurable(c)})
+        if unknown:
+            shown = ", ".join(f"{c!r} (U+{ord(c):04X})" for c in unknown[:3])
+            found.append(f"{where} holds a character the figure cannot measure: {shown}; write it as a word or use a measured symbol (scripts/figures/text.py)")
 
 
 def _index(value, size: int) -> bool:

@@ -157,6 +157,13 @@ class SpecTests(unittest.TestCase):
                 facebook.plan(data)
         self.assertGreater(accepted, 5)                     # the fuzz does reach the drawing code, not only the refusals
 
+    def test_a_character_the_figure_cannot_measure_is_refused_and_the_measured_ones_are_not(self):
+        for bad in ("\u2603 snowman", "emoji \U0001f600", "Greek \u03a9", "ligature \ufdfa"):
+            found = self.problems_after(lambda d: d["sections"][2]["items"][0].update(text=bad))
+            self.assertTrue(any("cannot measure" in p for p in found), (bad, found))
+        for fine in ("\u26a0 c\u1ea3nh b\u00e1o \u00ae \u00a9 \u2122", "\u0110\u01a1n h\u00e0ng \u0111\u00e3 giao \u2713 \u2192 \u2014 \u00b7 \u2026", "\u65e5\u672c\u8a9e\u3001\u30c6\u30b9\u30c8\u3002", "caf\u00e9 na\u00efve"):
+            self.assertEqual(self.problems_after(lambda d: d["sections"][2]["items"][0].update(text=fine)), [], fine)
+
     def test_a_language_outside_the_three_is_refused(self):
         self.assertTrue(any("lang" in p for p in self.problems_after(lambda d: d.update(lang="fr"))))
 
@@ -382,6 +389,15 @@ class TextTests(unittest.TestCase):
                 self.assertFalse(text.combining(line[0]), (box, line))
         self.assertEqual("".join(text.wrap(word, 15, 60)), word)
 
+    def test_symbols_and_vietnamese_capital_d_are_measured_at_least_as_wide_as_the_font_draws_them(self):
+        for char, regular, bold in (("\u26a0", 896, 896), ("\u00ae", 1000, 1000), ("\u00a9", 1000, 1000), ("\u2122", 1000, 1000), ("\u0110", 775, 838), ("\u0111", 635, 716)):
+            self.assertGreaterEqual(text.width(char, 1000), regular, char)
+            self.assertGreaterEqual(text.width(char, 1000, True), bold, char)
+
+    def test_only_what_the_width_table_knows_is_measurable(self):
+        self.assertTrue(all(text.measurable(c) for c in "aZ0 ~\u00e9\u1ebf\u0301\u26a0\u65e5\n"))
+        self.assertFalse(any(text.measurable(c) for c in "\u2603\U0001f600\u03a9\ufdfa"))
+
     def test_text_is_composed_before_it_is_measured_and_drawn(self):
         data = load()
         data["title"] = "Tie\u0302\u0301ng Vie\u0323\u0302t"
@@ -568,6 +584,12 @@ class BrowserTests(unittest.TestCase):
                         self.assertGreaterEqual(text.width(c, 100, bold), real - 0.6, (c, weight))
             finally:
                 chromium.close()
+
+    def test_a_run_of_wide_symbols_still_fits_its_card_in_the_real_font(self):
+        data = load("small.json")
+        data["sections"][1]["items"] = ["\u26a0" * 40, "\u00ae" * 40 + " " + "\u0110" * 30]
+        self.assertEqual(spec.problems(data), [])
+        self.assertEqual(browser.measure(data), [])
 
     def test_png_is_drawn_at_the_requested_size(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -820,6 +842,18 @@ class RobustnessTests(unittest.TestCase):
         self.assertEqual(code, 1)
         self.assertIn("icons: ", err)
         self.assertIn("server", err)
+
+    def test_editor_files_are_looked_for_beside_the_spec_that_was_given(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            folder = Path(tmp)
+            (folder / "demo-polling.json").write_text(POLLING.read_text(encoding="utf-8"), encoding="utf-8")
+            beside = folder / "demo-polling.drawio"
+            beside.write_text("<mxfile/>", encoding="utf-8")
+            code, err = self.run_cli("check", str(folder / "demo-polling.json"))
+            self.assertEqual(code, 1)
+            self.assertIn(f"{beside} is not what the spec draws; render it again", err)
+            beside.write_text(drawio.diagram(load()), encoding="utf-8")
+            self.assertNotIn("render it again", self.run_cli("check", str(folder / "demo-polling.json"))[1])
 
     def test_a_tampered_icon_set_never_overwrites_a_stored_figure(self):
         with tempfile.TemporaryDirectory() as tmp:

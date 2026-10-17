@@ -63,14 +63,28 @@ def _spec_paths(names: list[str]) -> list[Path]:
     return [Path(n) for n in names] if names else sorted(SPEC_DIR.glob("*.json"))
 
 
-def _load(paths: list[Path]) -> tuple[list[dict], list[str]]:
+def _load_each(paths: list[Path]) -> tuple[list[tuple[Path, dict]], list[str]]:
+    """Each spec that loads with the path it came from, and the problems of the ones that do not."""
     loaded, found = [], []
     for path in paths:
         try:
-            loaded.append(specs.load(path))
+            loaded.append((path, specs.load(path)))
         except specs.SpecError as exc:
             found.extend(exc.args[0])
     return loaded, found
+
+
+def _load(paths: list[Path]) -> tuple[list[dict], list[str]]:
+    loaded, found = _load_each(paths)
+    return [spec for _, spec in loaded], found
+
+
+def _shown(path: Path) -> Path:
+    """The path as a sentence shows it: relative to the repository when it is inside it."""
+    try:
+        return path.relative_to(ROOT)
+    except ValueError:
+        return path
 
 
 def scale_argument(text: str) -> float:
@@ -110,9 +124,9 @@ def check(paths: list[Path], measure_text: bool = False) -> int:
     if found:                                                # a figure cannot be drawn from a broken icon set: say so, do not try
         print("\n".join(found), file=sys.stderr)
         return 1
-    loaded, bad = _load(paths)
+    loaded, bad = _load_each(paths)
     found.extend(bad)
-    for spec in loaded:
+    for path, spec in loaded:
         markup = svg.figure(spec)
         found.extend(figure_problems(spec, markup))
         found.extend(facebook.plan(spec)[1])               # every figure can be exported to the studio's Facebook standard
@@ -122,9 +136,9 @@ def check(paths: list[Path], measure_text: bool = False) -> int:
         elif stored.read_bytes() != markup.encode("utf-8"):
             found.append(f"{spec['id']}: {stored.relative_to(ROOT)} is not what the spec draws; run `python3 -m scripts.figures build`")
         for suffix, make in EDITORS.values():                 # an editor file kept beside the spec must not go stale
-            beside = SPEC_DIR / f"{spec['id']}{suffix}"
+            beside = path.parent / f"{spec['id']}{suffix}"            # beside the spec that was given, wherever it is
             if beside.is_file() and beside.read_bytes() != make(spec).encode("utf-8"):
-                found.append(f"{spec['id']}: {beside.relative_to(ROOT)} is not what the spec draws; render it again")
+                found.append(f"{spec['id']}: {_shown(beside)} is not what the spec draws; render it again")
         if measure_text:
             try:
                 found.extend(f"{spec['id']}: {p}" for p in browser.measure(spec))

@@ -24,7 +24,18 @@ _BOLD = (
     733, 850, 770, 720, 682, 812, 774, 1103, 771, 724, 725, 457, 365, 457, 838, 500, 500, 675, 716, 593, 716, 678, 435, 716,
     712, 343, 343, 665, 343, 1042, 712, 687, 716, 716, 493, 595, 478, 712, 652, 924, 645, 652, 582, 712, 365, 712, 838,
 )
-_OTHER = {"·": (318, 380), "–": (500, 500), "—": (1000, 1000), "…": (1000, 1000), "’": (318, 380), "“": (518, 657), "”": (518, 657), "→": (838, 838), "×": (838, 838), "°": (500, 500), "€": (636, 696), "≥": (838, 838), "≤": (838, 838), "•": (590, 639)}              # (regular, bold)
+_OTHER = {
+    "·": (318, 380), "–": (500, 500), "—": (1000, 1000), "…": (1000, 1000), "’": (318, 380), "“": (518, 657), "”": (518, 657),
+    "→": (838, 838), "×": (838, 838), "°": (500, 500), "€": (636, 696), "≥": (838, 838), "≤": (838, 838), "•": (590, 639), "‘":
+    (318, 380), "←": (838, 838), "↑": (838, 838), "↓": (838, 838), "↔": (838, 838), "⇒": (838, 838), "⇄": (838, 838), "÷": (838,
+    838), "±": (838, 838), "©": (1000, 1000), "®": (1000, 1000), "™": (1000, 1000), "§": (500, 500), "¶": (636, 636), "µ": (636,
+    736), "£": (636, 696), "¥": (636, 696), "¢": (636, 696), "≈": (838, 838), "≠": (838, 838), "∞": (833, 833), "√": (637, 667),
+    "∑": (674, 718), "✓": (838, 838), "✔": (838, 838), "✗": (838, 838), "✘": (838, 838), "⚠": (896, 896), "★": (896, 896), "☆":
+    (896, 896), "♥": (896, 896), "▲": (769, 769), "▼": (769, 769), "►": (769, 769), "◄": (769, 769), "■": (945, 945), "□": (945,
+    945), "●": (873, 873), "○": (873, 873), "◆": (769, 769), "¿": (531, 580), "¡": (401, 456), "«": (612, 646), "»": (612, 646),
+    "‹": (400, 412), "›": (400, 412), "′": (227, 264), "″": (374, 447), "¹": (401, 438), "²": (401, 438), "³": (401, 438), "½":
+    (969, 1035), "¼": (969, 1035), "¾": (969, 1035), "đ": (635, 716), "Đ": (775, 838),
+}              # (regular, bold)
 FALLBACK = (700, 780)                  # any other narrow character: wider than every Latin letter, so a guess never overflows
 
 
@@ -41,6 +52,18 @@ def one_line(text) -> str:
 def combining(ch: str) -> bool:
     """A mark that sits on the letter before it (an accent that has no composed form): never a place to end a line."""
     return unicodedata.category(ch)[0] == "M"
+
+
+def measurable(c: str) -> bool:
+    """True when `width()` knows this character: ASCII, the measured symbols above, a combining mark, a letter that is an ASCII letter with
+    marks (Vietnamese, French ...), or a wide (CJK) character. Anything else (emoji, other scripts, symbols nobody measured) has an advance
+    this module can only guess, so a figure's text may not hold it: a guess that is too small lets text run out of its card."""
+    if c in "\n\t" or " " <= c <= "~" or c in _OTHER or combining(c):
+        return True
+    if wide(c):
+        return ord(c) < 0x1F000                              # emoji come from a colour font of unknown width
+    base = unicodedata.normalize("NFD", c)[0]
+    return " " <= base <= "~" and base != c
 
 
 def wide(ch: str) -> bool:

@@ -1,0 +1,86 @@
+id: 01-agency-agents-zh
+status: draft
+format: portrait
+series: Radar GitHub · 2026-10-17-7
+link: 01-agency-agents-zh
+slides:
+- layout: cover
+  emoji: 🧩
+  eyebrow: Radar GitHub · Giải pháp
+  title: Cài đặt 277 AI Agent chuyên gia vào công cụ lập trình
+  subtitle: Kho 277 vai trò AI chuyên gia bằng tiếng Trung, hỗ trợ cài đặt tự động vào 20 công cụ lập
+    trình AI phổ biến như Claude Code, Cursor và GitHub Copilot.
+- layout: stat
+  eyebrow: Số liệu theo ngày quét
+  value: '21.331'
+  label: sao trên GitHub
+  caption: MIT · Shell
+- layout: quote
+  text: Người dùng AI thường phải tự viết system prompt dài dòng mỗi khi cần giải quyết việc chuyên môn
+    trong từng phòng ban. Các prompt chung chung thiếu vai trò, quy trình chuẩn và định dạng kết quả bàn
+    giao cụ thể.
+  author: Vấn đề nó giải quyết
+- layout: flow
+  variant: after
+  title: Nó chạy thế nào
+  steps:
+  - text: 'Lưu trữ định nghĩa agent: Mỗi vai trò AI được định nghĩa chi tiết gồm nhân cách độc lập, quy
+      trình chuyên môn và sản phẩm bàn giao.'
+  - text: 'Chuyển đổi cấu trúc: Tập lệnh chuyển đổi đọc cấu hình gốc và tách thành cấu trúc phù hợp từng
+      công cụ (như SOUL, AGENTS, IDENTITY).'
+  - text: 'Tích hợp công cụ: Tập lệnh cài đặt phát hiện hoặc ghi trực tiếp tệp vào thư mục cấu hình của
+      công cụ AI cục bộ.'
+- layout: features
+  title: Các mảnh ghép
+  items:
+  - emoji: 🧩
+    title: Thư mục chuyên ngành
+    text: Chứa định nghĩa của 277 AI agent theo 20 bộ phận công việc.
+  - emoji: ⚙️
+    title: Tập lệnh chuyển đổi
+    text: Chuyển đổi định dạng prompt sang cú pháp riêng của từng công cụ hỗ trợ.
+  - emoji: 🔌
+    title: Tập lệnh cài đặt
+    text: Tự động phát hiện và cài đặt các agent vào môi trường AI đích.
+  - emoji: 📦
+    title: Tập lệnh kiểm tra
+    text: Kiểm tra cú pháp và tính toàn vẹn của các tệp định nghĩa agent.
+- layout: checklist
+  title: Học được gì
+  tone: ok
+  items:
+  - Cách đóng gói vai trò AI với đầy đủ nhân cách, quy trình và kết quả bàn giao thay vì prompt đơn lẻ
+  - Phương pháp tổ chức script tự động chuyển đổi prompt giữa nhiều công cụ lập trình AI khác nhau
+  - Kỹ thuật chuẩn hóa cấu trúc định nghĩa agent nhiều tệp (SOUL, AGENTS, IDENTITY)
+- layout: pains
+  title: Lưu ý
+  tone: accent
+  items:
+  - emoji: ⚠️
+    text: Dữ liệu nhân sự AI và tài liệu chủ yếu viết bằng tiếng Trung
+  - emoji: ⚠️
+    text: Claude Code và Copilot hỗ trợ cài trực tiếp, các công cụ khác bắt buộc chạy lệnh chuyển đổi
+      trước
+- layout: cta
+  emoji: 📌
+  title: Lưu lại để học dần
+  text: Mỗi tuần hai lần có một repo mới.
+  show_link: false
+platforms:
+  facebook:
+    caption: 'Kho 277 AI agent chuyên gia cài đặt trực tiếp vào Cursor và Claude Code chỉ với 1 dòng lệnh!
+
+      - Bao quát 20 bộ phận: Engineering, Design, Finance, HR...
+
+      - Hỗ trợ 20 công cụ AI phổ biến
+
+      - Script cài đặt tự động cực nhanh
+
+
+      Nội dung do AI tóm tắt từ README và cấu trúc repo; hãy đọc repo gốc trước khi dùng.'
+    first_comment: 'Repo gốc: {link}'
+    hashtags:
+    - AIAgents
+    - Cursor
+    - ClaudeCode
+    - OpenSource

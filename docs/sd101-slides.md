@@ -24,6 +24,10 @@ A claim is the file `lessons/<id>/slides/deck.yaml`; it protects nothing until i
 `docs/sd101-claims.md`, and a heartbeat older than 72 hours is stale and taken over with `claim <id> --take-stale`.
 If `claim` or `verify` says you lost, stop on that lesson, `release` it and take another. Claim a few lessons at a time
 and finish them; claiming more than you will build in the next hours keeps them from the other sessions.
+`finish` and the publishing of a finished deck need a lease that has not expired (`touch --publish` first) and a claim the
+remote still holds, so a deck is never finished over a claim another session has taken; `exported --publish` asks the
+remote the same before it pushes a finished record that only exists in your checkout. The tool refuses a symbolic link
+anywhere between `lessons/` and `deck.yaml`: a write through one would land outside the lesson's folder.
 `python3 scripts/sd101_check.py` judges the folder (CI runs it).
 
 ## What a lesson folder holds

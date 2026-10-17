@@ -638,6 +638,109 @@ class FinishTests(Sessions):
         self.assertEqual(1, code)
         self.assertIn("not a finished deck", err)
 
+    def exports_in(self, clone: Path) -> Path:
+        folder = clone / "store" / "lessons" / "sd-01-001" / "slides"
+        pptx(folder / "sd-01-001.pptx")
+        for number in range(1, 11):
+            png(folder / f"{number:02d}.png")
+        return folder
+
+    def test_finish_waits_for_a_renewal_when_the_lease_has_expired(self) -> None:
+        a = self.session("a")
+        self.run_in(a, "claim", "sd-01-001", "--publish")
+        self.at(hours=slides.LEASE_HOURS + 1)
+        before = self.record(a, "sd-01-001")
+        code, _, err = self.finish(a, "sd-01-001")
+        self.assertEqual(1, code)
+        self.assertIn("has expired; run touch --publish", err)
+        self.assertEqual(before, self.record(a, "sd-01-001"))
+        self.assertEqual(0, self.run_in(a, "touch", "--publish")[0])
+        self.assertEqual(0, self.finish(a, "sd-01-001", "--publish")[0])
+
+    def test_exports_of_a_claim_that_was_taken_over_meanwhile_are_not_published(self) -> None:
+        a, b = self.session("a"), self.session("b")
+        self.run_in(a, "claim", "sd-01-001", "--publish")
+        self.assertEqual(0, self.finish(a, "sd-01-001")[0])  # finished here only: the remote still holds the claim
+        self.exports_in(a)
+        self.at(hours=slides.LEASE_HOURS + 1)
+        self.assertEqual(0, self.run_in(b, "claim", "sd-01-001", "--take-stale", "--publish")[0])
+        code, _, err = self.run_in(a, "exported", "sd-01-001", "--publish")
+        self.assertEqual(1, code)
+        self.assertIn("lost to claude/b", err)
+        self.assertIn("status: doing", git(a, "show", "origin/claude/a:store/lessons/sd-01-001/slides/deck.yaml"))
+        self.assertEqual(0, self.run_in(b, "verify")[0], "the lesson is still b's")
+
+    def test_exports_are_checked_again_after_they_are_published(self) -> None:
+        a, b = self.session("a"), self.session("b")
+        self.at(seconds=0)
+        self.run_in(b, "claim", "sd-01-001")  # b claimed first but has not pushed yet
+        self.at(seconds=5)
+        self.run_in(a, "claim", "sd-01-001", "--publish")
+        self.assertEqual(0, self.finish(a, "sd-01-001")[0])
+        self.exports_in(a)
+        real = slides.publish
+
+        def racing(context, paths, message):
+            if context.me == "claude/a":  # b's push lands after a's check and before a's own push
+                git(b, "add", "-A")
+                git(b, "commit", "--quiet", "-m", "claim")
+                git(b, "push", "--quiet", "-u", "origin", "claude/b")
+            return real(context, paths, message)
+
+        with mock.patch.object(slides, "publish", racing):
+            code, _, err = self.run_in(a, "exported", "sd-01-001", "--publish")
+        self.assertEqual(1, code)
+        self.assertIn("claude/b holds the earlier claim", err)
+
+    def test_the_exports_of_another_sessions_deck_are_not_a_claim_of_mine(self) -> None:
+        a, b = self.session("a"), self.session("b")
+        self.run_in(a, "claim", "sd-01-001", "--publish")
+        self.finish(a, "sd-01-001", "--publish")
+        self.merge_into_main("claude/a")
+        git(b, "fetch", "--quiet", "origin", "main")
+        git(b, "merge", "--quiet", "--no-edit", "origin/main")
+        self.exports_in(b)
+        code, _, err = self.run_in(b, "exported", "sd-01-001", "--publish")
+        self.assertEqual(0, code, err)
+
+    def test_a_symbolic_link_in_the_way_of_a_record_stops_every_write(self) -> None:
+        import os
+        import shutil
+
+        for label in ("slides", "lesson", "record"):
+            with self.subTest(label=label):
+                name = f"s{label}"
+                clone = self.session(name)
+                store = clone / "store"
+                elsewhere = store / "elsewhere"
+                elsewhere.mkdir()
+                lesson = store / "lessons" / "sd-01-001"
+                if label == "slides":
+                    os.symlink(elsewhere, lesson / "slides")
+                elif label == "lesson":
+                    shutil.move(lesson, store / "moved-lesson")
+                    os.symlink(store / "moved-lesson", lesson)
+                else:
+                    (lesson / "slides").mkdir()
+                    os.symlink(elsewhere / "deck.yaml", lesson / "slides" / "deck.yaml")  # dangling
+                code, _, err = self.run_in(clone, "claim", "sd-01-001")
+                self.assertEqual(2, code, err)
+                self.assertIn("is a symbolic link", err)
+                self.assertEqual([], sorted(path.name for path in elsewhere.iterdir()))
+                self.assertFalse((store / "moved-lesson" / "slides").exists())
+
+    def test_a_symbolic_link_to_a_folder_outside_the_repository_is_refused_not_followed(self) -> None:
+        import os
+
+        clone = self.session("out")
+        outside = self.tmp / "outside"
+        outside.mkdir()
+        os.symlink(outside, clone / "store" / "lessons" / "sd-01-001" / "slides")
+        code, _, err = self.run_in(clone, "claim", "sd-01-001")
+        self.assertEqual(2, code, err)
+        self.assertIn("is a symbolic link", err)
+        self.assertEqual([], list(outside.iterdir()))
+
     def test_a_staging_failure_stops_publishing_instead_of_pushing_nothing(self) -> None:
         a = self.session("a")
         self.run_in(a, "claim", "sd-01-001", "--publish")

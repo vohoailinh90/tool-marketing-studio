@@ -91,8 +91,8 @@ mutations:
   replace: "SLIDE_COUNTS = range(4, 13)"
   test: tests.test_sd101_slides.FolderTests.test_a_deck_has_between_eight_and_ten_slides
 - label: finish does not look for an earlier claim pushed while it published
-  find: "        if rivals:"
-  replace: "        if False:"
+  find: "    if rivals:"
+  replace: "    if False:"
   test: tests.test_sd101_slides.FinishTests.test_finish_reports_an_earlier_claim_that_was_pushed_while_it_published
 - label: a record with a valid status but no owner is dropped from a feature branch
   find: "or holding.problems:  # a malformed record blocks, whoever it names"
@@ -127,8 +127,8 @@ mutations:
   replace: " or context.offline:"
   test: tests.test_sd101_slides.ClaimTests.test_a_malformed_record_in_my_own_checkout_blocks_the_claim_and_is_left_alone
 - label: finish ignores an unreadable record that appeared while it published
-  find: "        if broken:"
-  replace: "        if False:"
+  find: "    if broken:"
+  replace: "    if False:"
   test: tests.test_sd101_slides.FinishTests.test_finish_reports_an_unreadable_record_that_appeared_while_it_published
 - label: my own published record is trusted even when it fails validation
   find: "            if holding.problems:  # the published copy and the one in this tree"
@@ -171,8 +171,8 @@ mutations:
   replace: "    if False:\n        return f\"{damaged} is damaged\""
   test: tests.test_sd101_slides.FolderTests.test_a_pptx_with_a_damaged_member_is_reported
 - label: a malformed record that is not unreadable is not rechecked after finishing
-  find: "        broken = [holding for holding in remote if is_broken(holding) and holding.owner != context.me]"
-  replace: "        broken = [holding for holding in remote if holding.status == \"invalid\" and holding.owner != context.me]"
+  find: "    broken = [holding for holding in remote if is_broken(holding) and holding.owner != context.me]"
+  replace: "    broken = [holding for holding in remote if holding.status == \"invalid\" and holding.owner != context.me]"
   test: tests.test_sd101_slides.FinishTests.test_finish_reports_a_malformed_claim_that_appeared_while_it_published
 - label: a replaced byte is accepted in a remote record
   find: "                        found[pair] = output[position:position + size].decode(\"utf-8\")"
@@ -206,3 +206,39 @@ mutations:
   find: " or git_text(context.root, \"ls-files\", \"--\", item)]"
   replace: "]"
   test: tests.test_sd101_slides.FinishTests.test_release_gives_a_claim_back_but_never_a_finished_deck
+- label: finish accepts an expired lease
+  find: "    if reason:  # an expired lease too"
+  replace: "    if reason and \"expired\" not in reason:  # an expired lease too"
+  test: tests.test_sd101_slides.FinishTests.test_finish_waits_for_a_renewal_when_the_lease_has_expired
+- label: exports of a claim lost meanwhile are published without asking the remote
+  find: "    if args.publish and mine:"
+  replace: "    if False:"
+  test: tests.test_sd101_slides.FinishTests.test_exports_of_a_claim_that_was_taken_over_meanwhile_are_not_published
+- label: a lost claim is reported by exported but does not stop it
+  find: "            if reason:\n                print(f\"{reason}; the finished record"
+  replace: "            if False:\n                print(f\"{reason}; the finished record"
+  test: tests.test_sd101_slides.FinishTests.test_exports_of_a_claim_that_was_taken_over_meanwhile_are_not_published
+- label: another session's deck needs a claim of mine before its exports are published
+  find: "    if args.publish and mine:"
+  replace: "    if args.publish:"
+  test: tests.test_sd101_slides.FinishTests.test_the_exports_of_another_sessions_deck_are_not_a_claim_of_mine
+- label: published exports are not checked against the claims that arrived meanwhile
+  find: "        problem = finished_problem(context, args.id) if mine else None"
+  replace: "        problem = None"
+  test: tests.test_sd101_slides.FinishTests.test_exports_are_checked_again_after_they_are_published
+- label: the post-publish check is applied to another session's deck too
+  find: "finished_problem(context, args.id) if mine else None"
+  replace: "finished_problem(context, args.id)"
+  test: tests.test_sd101_slides.FinishTests.test_the_exports_of_another_sessions_deck_are_not_a_claim_of_mine
+- label: a record is written through a symbolic link
+  find: "            if part.is_symlink():"
+  replace: "            if False:"
+  test: tests.test_sd101_slides.FinishTests.test_a_symbolic_link_in_the_way_of_a_record_stops_every_write
+- label: only the record file itself is checked for a symbolic link
+  find: "        for part in (self.store / \"lessons\", self.store / \"lessons\" / lesson_id, path.parent, path):"
+  replace: "        for part in (path,):"
+  test: tests.test_sd101_slides.FinishTests.test_a_symbolic_link_in_the_way_of_a_record_stops_every_write
+- label: a symbolic link out of the repository is followed to find the record's name
+  find: "        return pathlib.PurePosixPath(os.path.relpath(self.record_path(lesson_id), self.root)).as_posix()"
+  replace: "        return self.record_path(lesson_id).resolve().relative_to(self.root.resolve()).as_posix()"
+  test: tests.test_sd101_slides.FinishTests.test_a_symbolic_link_to_a_folder_outside_the_repository_is_refused_not_followed

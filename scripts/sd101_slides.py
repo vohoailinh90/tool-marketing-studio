@@ -355,7 +355,17 @@ class Context:
         return self.store / "lessons" / lesson_id / SLIDES_DIR / RECORD
 
     def relative(self, lesson_id: str) -> str:
-        return self.record_path(lesson_id).resolve().relative_to(self.root.resolve()).as_posix()
+        return pathlib.PurePosixPath(os.path.relpath(self.record_path(lesson_id), self.root)).as_posix()
+
+    def writable_record(self, lesson_id: str) -> pathlib.Path:
+        """The record's path, refused when a symbolic link sits anywhere between the store and the file: a write through
+        one would land outside this lesson's folder."""
+        path = self.record_path(lesson_id)
+        for part in (self.store / "lessons", self.store / "lessons" / lesson_id, path.parent, path):
+            if part.is_symlink():
+                raise SlidesError(f"{os.path.relpath(part, self.root)} is a symbolic link; replace it with a real "
+                                  f"{'file' if part == path else 'directory'} before using this tool")
+        return path
 
     def written(self) -> list[str]:
         lessons = self.store / "lessons"
@@ -564,7 +574,7 @@ def require_branch(context: Context) -> str:
 def publish(context: Context, paths: list[pathlib.Path], message: str) -> None:
     """Commit only these paths and push the work branch, never the default branch."""
     branch = require_branch(context)
-    relative = [path.resolve().relative_to(context.root.resolve()).as_posix() for path in paths]
+    relative = [pathlib.PurePosixPath(os.path.relpath(path, context.root)).as_posix() for path in paths]
     # a path that is neither on disk nor in the index (a claim that was never committed, then released) has nothing to
     # stage; every other failure to stage stops here, before a push of the unchanged HEAD reports success
     present = [item for item in relative
@@ -684,7 +694,7 @@ def cmd_claim(context: Context, args: argparse.Namespace) -> int:
             record["session"] = args.session
         if taken:
             record.update(taken_from=taken, generation=generation)
-        path = context.record_path(lesson_id)
+        path = context.writable_record(lesson_id)
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(render(record), encoding="utf-8")
     print(f"claimed {', '.join(wanted)} as {branch}")
@@ -735,7 +745,7 @@ def cmd_touch(context: Context, args: argparse.Namespace) -> int:
         return 1
     paths = []
     for lesson_id in ids:
-        path = context.record_path(lesson_id)
+        path = context.writable_record(lesson_id)
         record = parse_record(path.read_text(encoding="utf-8")) or {}
         record["heartbeat_at"] = stamp(moment)
         path.write_text(render(record), encoding="utf-8")
@@ -747,15 +757,35 @@ def cmd_touch(context: Context, args: argparse.Namespace) -> int:
     return 0
 
 
+def finished_problem(context: Context, lesson_id: str) -> str | None:
+    """After a finished record of mine was pushed: why that deck cannot stand, or None when the remote accepts it."""
+    remote = gather(context, [lesson_id])[0][lesson_id]
+    mine = [holding for holding in remote
+            if holding.status == "done" and holding.owner == context.me and holding.where != LOCAL]
+    if not mine:
+        return f"{lesson_id}: the finished record is not on {context.remote}/{context.me}"
+    moment = now()  # the finished record keeps its claim's time and generation, so it is judged as that claim
+    rivals = [holding for holding in remote if holding.status in ("doing", "done") and holding.owner != context.me
+              and not is_stale(holding, moment) and beats(holding, mine[0])]
+    if rivals:
+        return (f"pushed, but {lesson_id} is finished here and {rivals[0].owner} holds the earlier claim; delete this "
+                f"branch's slides/ for it, commit and push, so the lesson goes to {rivals[0].owner}")
+    broken = [holding for holding in remote if is_broken(holding) and holding.owner != context.me]
+    if broken:
+        return (f"pushed, but {broken[0].where} now holds a record for {lesson_id} that cannot be read; fix it before "
+                "this deck is relied on")
+    return None
+
+
 def cmd_finish(context: Context, args: argparse.Namespace) -> int:
     lesson_id = args.id
     named_or_mine(context, [lesson_id])
     holdings, _ = gather(context, [lesson_id])
     reason = lost_reason(lesson_id, holdings[lesson_id], context, now())
-    if reason and "expired" not in reason:
+    if reason:  # an expired lease too: renew it (touch --publish) so nobody can take the claim while the deck goes out
         print(reason, file=sys.stderr)
         return 1
-    path = context.record_path(lesson_id)
+    path = context.writable_record(lesson_id)
     old = parse_record(path.read_text(encoding="utf-8")) or {}
     record = {key: old[key] for key in ("id", "owner", "session", "taken_from", "generation", "claimed_at") if key in old}
     record.update(status="done", done_at=stamp(now()), moda_canvas=args.canvas, moda_url=args.url,
@@ -774,35 +804,32 @@ def cmd_finish(context: Context, args: argparse.Namespace) -> int:
     print(f"finished {lesson_id}: {args.slides} slides, exports {args.exports}")
     if args.publish:
         publish(context, [path.parent], f"Slides: finish {lesson_id}")
-        remote = gather(context, [lesson_id])[0][lesson_id]
-        mine = [holding for holding in remote
-                if holding.status == "done" and holding.owner == context.me and holding.where != LOCAL]
-        if not mine:
-            print(f"{lesson_id}: the finished record is not on {context.remote}/{context.me}", file=sys.stderr)
-            return 1
-        moment = now()  # the finished record keeps its claim's time and generation, so it is judged as that claim
-        rivals = [holding for holding in remote if holding.status in ("doing", "done") and holding.owner != context.me
-                  and not is_stale(holding, moment) and beats(holding, mine[0])]
-        if rivals:
-            print(f"pushed, but {lesson_id} is finished here and {rivals[0].owner} holds the earlier claim; delete this "
-                  f"branch's slides/ for it, commit and push, so the lesson goes to {rivals[0].owner}", file=sys.stderr)
-            return 1
-        broken = [holding for holding in remote if is_broken(holding) and holding.owner != context.me]
-        if broken:
-            print(f"pushed, but {broken[0].where} now holds a record for {lesson_id} that cannot be read; fix it before "
-                  "this deck is relied on", file=sys.stderr)
+        problem = finished_problem(context, lesson_id)
+        if problem:
+            print(problem, file=sys.stderr)
             return 1
     return 0
 
 
 def cmd_exported(context: Context, args: argparse.Namespace) -> int:
     """A finished deck whose PPTX and PNG files were added to its folder: record that exports are done."""
-    path = context.record_path(args.id)
+    path = context.writable_record(args.id)
     previous = path.read_text(encoding="utf-8") if path.is_file() else ""
     record = parse_record(previous) if previous else None
     if not record or record.get("status") != "done":
         print(f"{args.id}: not a finished deck; finish it first", file=sys.stderr)
         return 1
+    mine = record.get("owner") == context.me
+    if args.publish and mine:
+        # `finish` without --publish leaves a done record only here: it goes out with these exports, so the claim it
+        # finishes must still stand on the remote, as `finish --publish` insists
+        remote = [holding for holding in gather(context, [args.id])[0][args.id] if holding.where != LOCAL]
+        if not any(holding.status == "done" and holding.owner == context.me for holding in remote):
+            reason = lost_reason(args.id, remote, context, now())
+            if reason:
+                print(f"{reason}; the finished record of this deck is not on {context.remote}/{context.me} yet, so it "
+                      "cannot go out with the exports", file=sys.stderr)
+                return 1
     record["exports"] = "done"
     path.write_text(render(record), encoding="utf-8")
     found = folder_problems(path.parent, args.id)
@@ -813,13 +840,17 @@ def cmd_exported(context: Context, args: argparse.Namespace) -> int:
     print(f"exports of {args.id} are done")
     if args.publish:
         publish(context, [path.parent], f"Slides: exports of {args.id}")
+        problem = finished_problem(context, args.id) if mine else None
+        if problem:
+            print(problem, file=sys.stderr)
+            return 1
     return 0
 
 
 def cmd_release(context: Context, args: argparse.Namespace) -> int:
     paths = []
     for lesson_id in dict.fromkeys(args.ids):
-        path = context.record_path(lesson_id)
+        path = context.writable_record(lesson_id)
         record = parse_record(path.read_text(encoding="utf-8")) if path.is_file() else None
         if not record or record.get("owner") != context.me:
             print(f"{lesson_id}: not a claim of {context.me}", file=sys.stderr)

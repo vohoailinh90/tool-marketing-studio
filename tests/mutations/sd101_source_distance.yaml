@@ -110,3 +110,7 @@ mutations:
   find: "    for position in range(0, len(parts), 2):"
   replace: "    for position in range(0, len(parts), 1):"
   test: tests.test_sd101_source_distance.TextTests.test_angle_brackets_inside_code_are_kept_as_text
+- label: a heading-like line inside a code fence starts a new section
+  find: '        match = None if fenced else re.match(r"##\s+(.+?)\s*$", line)'
+  replace: '        match = re.match(r"##\s+(.+?)\s*$", line)'
+  test: tests.test_sd101_source_distance.TextTests.test_a_heading_like_line_inside_a_code_fence_does_not_split_the_lesson

@@ -130,6 +130,11 @@ class TextTests(unittest.TestCase):
         for left_out in ("GLOSSARYWORD", "SOURCELISTWORD", "hidden-target", "diagrams"):
             self.assertNotIn(left_out, prose)
 
+    def test_a_heading_like_line_inside_a_code_fence_does_not_split_the_lesson(self) -> None:
+        lesson = "# T\n\n## Đọc hình\n\nPostgres replicates.\n\n```sh\n## Từ viết tắt\ncurl Kafka\n```\n\nRedis caches.\n"
+        self.assertEqual(list(distance_tool.sections(lesson)), ["", "Đọc hình"])
+        self.assertEqual(distance_tool.signal_tokens(distance_tool.lesson_prose(lesson)), ["postgres", "replicates", "kafka", "redis", "caches"])
+
     def test_lesson_units_count_the_reading_section_items(self) -> None:
         lesson = "# T\n\n- outside\n\n## Đọc hình\n\n1. one\n2. two\n**Bold lead.** three\n\ntext\n\n## Khác\n\n- elsewhere\n"
         self.assertEqual(distance_tool.lesson_units(lesson), 3)

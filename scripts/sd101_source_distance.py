@@ -117,11 +117,16 @@ def source_units(body: str) -> int:
 
 
 def sections(markdown: str) -> dict[str, str]:
-    """Split a lesson at its '## ' headings; the text before the first one is stored under ''."""
+    """Split a lesson at its '## ' headings; the text before the first one is stored under ''.
+
+    A line inside a fenced code block is never a heading (a shell comment may start with '## ')."""
     found: dict[str, list[str]] = {"": []}
     current = ""
+    fenced = False
     for line in markdown.splitlines():
-        match = re.match(r"##\s+(.+?)\s*$", line)
+        if re.match(r"\s*(```|~~~)", line):
+            fenced = not fenced
+        match = None if fenced else re.match(r"##\s+(.+?)\s*$", line)
         if match:
             current = match.group(1)
             found[current] = []

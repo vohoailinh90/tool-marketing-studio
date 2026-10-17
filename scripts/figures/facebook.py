@@ -25,7 +25,7 @@ from mkt.check import MAX_SLIDES
 from mkt.page import FORMATS
 
 from . import browser, scene as scenes, svg
-from .text import esc
+from .text import esc, one_line
 
 MIN_TEXT_PX = 30                    # smallest text on a slide, in canvas px
 PAD, FOOT = 36, 76                  # space round the picture; the footer band
@@ -99,14 +99,16 @@ def png_problems(path: Path, fmt: str = DEFAULT) -> list[str]:
 
 def alt_text(spec: dict, slides: list[dict]) -> str:
     """One line per slide, from the spec's own words: the figure's description for all of them, then each slide's heading."""
-    lines = [spec["desc"].strip()]
-    lines += [f"{s['n']}/{len(slides)}: {s['heading'] or spec['title']}" for s in slides]
+    lines = [one_line(spec["desc"])]                       # one line each, as the slide shows them: no text of the spec may add a line
+    lines += [f"{s['n']}/{len(slides)}: {one_line(s['heading'] or spec['title'])}" for s in slides]
     return "\n".join(lines) + "\n"
 
 
 def swap(work: Path, folder: Path) -> None:
     """Puts the finished `work` folder in place of `folder` as one rename, so the pack is always one export's whole set and never a mix of
-    two. A destination that already holds a pack is moved aside first; if another export got there between the two renames, try again."""
+    two. A destination that already holds a pack is moved aside first and kept until the new one is in place: if installing it fails, the
+    old pack is put back, and if even that fails it is left where it is (named in the error) instead of being deleted. If another export got
+    there between the two renames, try again."""
     for _ in range(5):
         try:
             os.replace(work, folder)                       # the destination is free
@@ -114,12 +116,25 @@ def swap(work: Path, folder: Path) -> None:
         except OSError:
             pass
         old = Path(tempfile.mkdtemp(prefix=f".{folder.name}.", suffix=".old", dir=folder.parent))
+        moved = False
         try:
             os.replace(folder, old / "pack")               # the pack that is there now (another export may have moved it already)
+            moved = True
         except OSError:
             pass
-        finally:
+        try:
+            os.replace(work, folder)
+        except OSError:
+            if moved:
+                try:
+                    os.replace(old / "pack", folder)       # installing failed: the old pack goes back
+                except OSError:
+                    if not folder.exists():
+                        raise OSError(f"could not put the new pack in place of {folder}; the previous pack is kept in {old / 'pack'}") from None
             shutil.rmtree(old, ignore_errors=True)
+            continue
+        shutil.rmtree(old, ignore_errors=True)             # the new pack is in place: now the old one can go
+        return
     raise OSError(f"could not put the new pack in place of {folder}")
 
 

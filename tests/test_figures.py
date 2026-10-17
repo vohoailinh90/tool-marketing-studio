@@ -7,6 +7,7 @@ import contextlib
 import copy
 import io
 import json
+import os
 import random
 import re
 import shutil
@@ -798,6 +799,50 @@ class FacebookTests(unittest.TestCase):
             self.assertEqual(inner[0][1], [])
             self.assertEqual(sorted(p.name for p in (out / "demo-small").iterdir()), ["01.png", "02.png", "alt.txt"])
             self.assertEqual([p.name for p in out.iterdir()], ["demo-small"])
+
+    def test_the_old_pack_is_kept_until_the_new_one_is_in_place(self):
+        real = os.replace
+        with tempfile.TemporaryDirectory() as tmp:
+            out = Path(tmp)
+            folder, work = out / "pack", out / "work"
+            work.mkdir()
+            (work / "new.txt").write_text("new", encoding="utf-8")
+            folder.mkdir()
+            (folder / "old.txt").write_text("old", encoding="utf-8")
+
+            def fails_to_install(src, dst):                     # installing the new pack never works; every other rename does
+                if Path(src) == work:
+                    raise OSError("disk trouble")
+                return real(src, dst)
+
+            with mock.patch("os.replace", side_effect=fails_to_install):
+                with self.assertRaises(OSError):
+                    facebook.swap(work, folder)
+            self.assertEqual([p.name for p in folder.iterdir()], ["old.txt"])            # the previous pack is back
+            self.assertTrue((work / "new.txt").is_file())
+            self.assertEqual(sorted(p.name for p in out.iterdir()), ["pack", "work"])   # and no backup folder is left
+
+            def fails_to_install_or_restore(src, dst):          # the old pack cannot even be put back
+                if Path(src) == work or (Path(dst) == folder and Path(src).name == "pack" and Path(src).parent != out):
+                    raise OSError("disk trouble")
+                return real(src, dst)
+
+            with mock.patch("os.replace", side_effect=fails_to_install_or_restore):
+                with self.assertRaises(OSError) as caught:
+                    facebook.swap(work, folder)
+            self.assertIn("the previous pack is kept in", str(caught.exception))
+            kept = Path(str(caught.exception).split("the previous pack is kept in ")[1])
+            self.assertEqual([p.name for p in kept.iterdir()], ["old.txt"])             # not deleted: it is the only copy
+
+    def test_the_alt_text_has_one_line_per_slide_whatever_the_specs_text_holds(self):
+        data = load("small.json")
+        data["desc"] = "first line\nsecond line\twith a tab, long enough to be a description"
+        data["sections"][0]["heading"] = "Làm\nlần lượt"
+        data["sections"][1].pop("heading")
+        data["title"] = "Ba\nbước"
+        slides, _ = facebook.plan(data)
+        lines = facebook.alt_text(data, slides).splitlines()
+        self.assertEqual(lines, ["first line second line with a tab, long enough to be a description", "1/2: Làm lần lượt", "2/2: Ba bước"])
 
     def test_a_competing_export_never_leaves_a_mix_of_two_packs(self):
         with tempfile.TemporaryDirectory() as tmp:

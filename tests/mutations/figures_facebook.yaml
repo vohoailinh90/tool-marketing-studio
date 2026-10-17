@@ -74,3 +74,15 @@ mutations:
   find: '            os.replace(folder, old / "pack")               # the pack that is there now'
   replace: '            pass                                           # the pack that is there now'
   test: tests.test_figures.FacebookTests.test_swap_puts_a_folder_in_place_in_one_rename_and_gives_up_cleanly
+- label: the old pack is not put back when the new one cannot be installed
+  find: '                    os.replace(old / "pack", folder)       # installing failed: the old pack goes back'
+  replace: '                    pass                                   # installing failed: the old pack goes back'
+  test: tests.test_figures.FacebookTests.test_the_old_pack_is_kept_until_the_new_one_is_in_place
+- label: the old pack is deleted although it cannot be put back
+  find: "                    if not folder.exists():\n                        raise OSError("
+  replace: "                    if False:\n                        raise OSError("
+  test: tests.test_figures.FacebookTests.test_the_old_pack_is_kept_until_the_new_one_is_in_place
+- label: the alt text keeps the line breaks of the spec
+  find: '    lines = [one_line(spec["desc"])]'
+  replace: '    lines = [spec["desc"].strip()]'
+  test: tests.test_figures.FacebookTests.test_the_alt_text_has_one_line_per_slide_whatever_the_specs_text_holds

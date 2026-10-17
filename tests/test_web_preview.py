@@ -20,6 +20,7 @@ from tests.test_render import chromium_available
 try:
     import fastapi  # noqa: F401
     import uvicorn
+    from playwright.sync_api import expect
 except ImportError:
     uvicorn = None
 
@@ -89,31 +90,33 @@ class PreviewRenderFailureTests(unittest.TestCase):
         self.failed = self.page.get_by_role("alert").filter(has_text=FAILED)
 
     def click_render(self):
-        self.render_button.click()
-        self.page.wait_for_function("() => !document.body.innerText.includes('Rendering in a headless browser')")
+        """Click, wait for the answer, then for the page to finish the action (the button is disabled while it runs)."""
+        with self.page.expect_response(lambda r: r.request.method == "POST" and r.url.endswith("/render")):
+            self.render_button.click()
+        expect(self.render_button).to_be_enabled()
 
     def test_a_render_the_server_refuses_is_shown_as_failed_next_to_its_errors(self):
         self.answer_render_with({"rendered": False, "issues": [ERROR]})
         self.open_preview()
-        self.assertEqual(self.failed.count(), 0)
+        expect(self.failed).to_have_count(0)
         self.click_render()
-        self.assertEqual(self.failed.count(), 1)
-        self.assertTrue(self.page.get_by_text(ERROR["message"]).is_visible())
+        expect(self.failed).to_have_count(1)
+        expect(self.page.get_by_text(ERROR["message"])).to_be_visible()
 
     def test_a_render_that_worked_shows_no_failure_even_with_warnings(self):
         self.answer_render_with({"rendered": True, "issues": [WARNING]})
         self.open_preview()
         self.click_render()
-        self.assertEqual(self.failed.count(), 0)
-        self.assertTrue(self.page.get_by_text(WARNING["message"]).is_visible())
+        expect(self.page.get_by_text(WARNING["message"])).to_be_visible()
+        expect(self.failed).to_have_count(0)
 
     def test_the_failure_is_gone_after_the_next_render_works(self):
         self.answer_render_with({"rendered": False, "issues": [ERROR]}, {"rendered": True, "issues": []})
         self.open_preview()
         self.click_render()
-        self.assertEqual(self.failed.count(), 1)
+        expect(self.failed).to_have_count(1)
         self.click_render()
-        self.assertEqual(self.failed.count(), 0)
+        expect(self.failed).to_have_count(0)
 
 
 if __name__ == "__main__":

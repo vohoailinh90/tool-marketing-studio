@@ -83,6 +83,7 @@
   "not_rendered": "Not rendered yet",
   "render_button": "Render images",
   "rendering": "Rendering in a headless browser… (about a second per image)",
+  "render_failed": "The images for this post could not be rendered. Fix the errors in the list under the YAML box and render again; any images shown are from the previous render.",
   "approval": "Approval",
   "cannot_approve": "Cannot approve yet:",
   "approve_button": "Approve",

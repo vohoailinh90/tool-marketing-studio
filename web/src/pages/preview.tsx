@@ -26,6 +26,7 @@ export function PreviewPage() {
   const [confirmOpen, setConfirmOpen] = React.useState(false)
   const [read, setRead] = React.useState(false)
   const [stamp, setStamp] = React.useState(0)
+  const [renderFailed, setRenderFailed] = React.useState(false)
 
   const path = campaign && picked ? postPath(campaign.slug, picked.lang, picked.id) : ""
   const load = React.useCallback(async () => {
@@ -33,10 +34,10 @@ export function PreviewPage() {
     const next = await api.get<PostView>(path)
     setView(next); setYaml(next.yaml)
   }, [path])
-  React.useEffect(() => { setNotes([]); setError(""); void load().catch((exc) => setError(errorText(exc))) }, [load])
+  React.useEffect(() => { setNotes([]); setError(""); setRenderFailed(false); void load().catch((exc) => setError(errorText(exc))) }, [load])
 
   async function run(name: string, action: () => Promise<void>) {
-    setBusy(name); setError("")
+    setBusy(name); setError(""); setRenderFailed(false)
     try { await action(); await load(); await refresh() } catch (exc) { setError(errorText(exc)) } finally { setBusy("") }
   }
 
@@ -84,12 +85,13 @@ export function PreviewPage() {
               <CardContent className="space-y-4">
                 <Button size="sm" disabled={dirty || busy !== ""}
                   onClick={() => run("render", async () => {
-                    const answer = await api.post<{ issues: Issue[] }>(`${path}/render`, {})
-                    setNotes(answer.issues); setStamp(Date.now())
+                    const answer = await api.post<{ rendered: boolean; issues: Issue[] }>(`${path}/render`, {})
+                    setNotes(answer.issues); setRenderFailed(!answer.rendered); setStamp(Date.now())
                   })}>
                   <Busy on={busy === "render"}><RefreshCw /> {t("render_button")}</Busy>
                 </Button>
                 {busy === "render" && <p className="text-xs text-muted-foreground">{t("rendering")}</p>}
+                {renderFailed && <Notice tone="error">{t("render_failed")}</Notice>}
                 <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
                   {(view.manifest.slides ?? []).map((name) => {
                     const src = fileUrl(`/files/${campaign.slug}/${picked.lang}/${picked.id}/${name}`) + `&v=${stamp}`

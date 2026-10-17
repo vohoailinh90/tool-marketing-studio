@@ -11,8 +11,8 @@ mutations:
   replace: "        names = []\n        for (name, lesson_id), text in read_remote"
   test: tests.test_sd101_slides.ClaimTests.test_a_published_claim_keeps_every_other_session_off_the_lesson
 - label: a record copied into another branch is counted as that branch's claim
-  find: "elif name == base or holding.owner == name:"
-  replace: "else:"
+  find: "            elif holding.owner == name:"
+  replace: "            elif True:"
   test: tests.test_sd101_slides.ClaimTests.test_a_copy_of_a_claim_inherited_by_another_branch_is_not_a_claim
 - label: the later of two claims wins instead of the earlier
   find: '    return (-first.generation, first.claimed_at or "", first.owner) < (-second.generation, second.claimed_at or "", second.owner)'
@@ -27,12 +27,12 @@ mutations:
   replace: "    return moment - beat < datetime.timedelta(hours=LEASE_HOURS)"
   test: tests.test_sd101_slides.LeaseTests.test_touching_keeps_a_claim_alive
 - label: a stale claim is taken over without asking
-  find: "    if state == \"stale\" and holding.owner != context.me and not take_stale:"
+  find: "    if state == \"stale\" and not any(other.owner == context.me for other in found) and not take_stale:"
   replace: "    if False:"
   test: tests.test_sd101_slides.LeaseTests.test_a_stale_claim_blocks_nobody_until_it_is_taken_on_purpose
 - label: a finished deck can be claimed again
-  find: "    if state == \"done\":\n        return f\"{lesson_id}: already built by {holding.owner}\""
-  replace: "    if False:\n        return f\"{lesson_id}: already built by {holding.owner}\""
+  find: "    if state == \"done\":\n        return f\"{lesson_id}: already built by {holding.owner or 'an unknown owner'} ({holding.where})\""
+  replace: "    if False:\n        return f\"{lesson_id}: already built by {holding.owner or 'an unknown owner'} ({holding.where})\""
   test: tests.test_sd101_slides.FinishTests.test_a_finished_deck_cannot_be_claimed_again
 - label: a claim that was never pushed counts as published
   find: "    if not published:\n        return f\"{lesson_id}: your claim is not on"

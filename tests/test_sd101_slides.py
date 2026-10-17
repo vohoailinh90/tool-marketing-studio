@@ -221,6 +221,31 @@ class ClaimTests(Sessions):
                     import shutil
                     shutil.rmtree(path)
 
+    def test_a_record_with_a_key_named_twice_blocks_its_lesson(self) -> None:
+        x, b = self.session("x"), self.session("b")
+        folder = x / "store" / "lessons" / "sd-01-001" / "slides"
+        folder.mkdir()
+        (folder / "deck.yaml").write_text(
+            "id: sd-01-001\nstatus: doing\nowner: claude/x\nclaimed_at: 2026-10-17T08:00:00Z\n"
+            "heartbeat_at: 2026-10-17T08:00:00Z\nowner: claude/b\n", encoding="utf-8")
+        git(x, "add", "-A")
+        git(x, "commit", "--quiet", "-m", "owner twice")
+        git(x, "push", "--quiet", "-u", "origin", "claude/x")
+        code, _, err = self.run_in(b, "claim", "sd-01-001")
+        self.assertEqual(1, code)
+        self.assertIn("cannot be read", err)
+
+    def test_a_malformed_record_in_my_own_checkout_blocks_the_claim_and_is_left_alone(self) -> None:
+        b = self.session("b")
+        folder = b / "store" / "lessons" / "sd-01-001" / "slides"
+        folder.mkdir()
+        damaged = "<<<<<<< HEAD\nstatus: doing\n=======\nstatus: done\n>>>>>>> main\n"
+        (folder / "deck.yaml").write_text(damaged, encoding="utf-8")
+        code, _, err = self.run_in(b, "claim", "sd-01-001")
+        self.assertEqual(1, code)
+        self.assertIn("cannot be read", err)
+        self.assertEqual(damaged, (folder / "deck.yaml").read_text(encoding="utf-8"))
+
     def test_an_unreadable_record_on_a_feature_branch_blocks_its_lesson(self) -> None:
         x, b = self.session("x"), self.session("b")
         folder = x / "store" / "lessons" / "sd-01-001" / "slides"
@@ -375,6 +400,26 @@ class FinishTests(Sessions):
             code, _, err = self.finish(a, "sd-01-001", "--publish")
         self.assertEqual(1, code)
         self.assertIn("claude/b holds the earlier claim", err)
+
+    def test_finish_reports_an_unreadable_record_that_appeared_while_it_published(self) -> None:
+        a, x = self.session("a"), self.session("x")
+        self.run_in(a, "claim", "sd-01-001", "--publish")
+        real = slides.publish
+
+        def racing(context, paths, message):
+            if context.me == "claude/a":
+                folder = x / "store" / "lessons" / "sd-01-001" / "slides"
+                folder.mkdir(parents=True)
+                (folder / "deck.yaml").write_text("{{{ not yaml", encoding="utf-8")
+                git(x, "add", "-A")
+                git(x, "commit", "--quiet", "-m", "broken")
+                git(x, "push", "--quiet", "-u", "origin", "claude/x")
+            return real(context, paths, message)
+
+        with mock.patch.object(slides, "publish", racing):
+            code, _, err = self.finish(a, "sd-01-001", "--publish")
+        self.assertEqual(1, code)
+        self.assertIn("cannot be read", err)
 
     def test_offline_honours_the_records_a_checkout_already_holds(self) -> None:
         a, b = self.session("a"), self.session("b")
@@ -568,6 +613,13 @@ class FolderTests(unittest.TestCase):
         self.assertTrue(any("come together" in problem for problem in slides.record_problems({**base, "taken_from": ["claude/b"]}, "sd-01-001")))
         self.assertTrue(any("not name the owner" in problem
                             for problem in slides.record_problems({**base, "generation": 1, "taken_from": ["claude/a"]}, "sd-01-001")))
+
+    def test_a_key_named_twice_makes_the_record_unreadable(self) -> None:
+        self.write()
+        text = (self.dir / "deck.yaml").read_text(encoding="utf-8")
+        (self.dir / "deck.yaml").write_text(text + "owner: claude/b\n", encoding="utf-8")
+        self.assertEqual(["deck.yaml does not parse as a mapping"], self.problems())
+        self.assertIsNone(slides.parse_record(text + "status: doing\n"))
 
     def test_the_record_is_required(self) -> None:
         self.assertEqual(["deck.yaml is missing"], self.problems())

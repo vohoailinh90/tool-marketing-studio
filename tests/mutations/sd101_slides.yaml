@@ -118,3 +118,15 @@ mutations:
   find: "            if holding.owner == context.me or context.offline:  # offline, the checkout is all there is to read"
   replace: "            if holding.owner == context.me:  # offline, the checkout is all there is to read"
   test: tests.test_sd101_slides.FinishTests.test_offline_honours_the_records_a_checkout_already_holds
+- label: a key named twice in a record is silently resolved to the last one
+  find: "        data = yaml.load(text, Loader=StrictLoader)  # noqa: S506 - StrictLoader is a SafeLoader"
+  replace: "        data = yaml.safe_load(text)"
+  test: tests.test_sd101_slides.FolderTests.test_a_key_named_twice_makes_the_record_unreadable
+- label: a malformed record in the checkout does not block the claim
+  find: " or context.offline or holding.status == \"invalid\" or not holding.owner:"
+  replace: " or context.offline:"
+  test: tests.test_sd101_slides.ClaimTests.test_a_malformed_record_in_my_own_checkout_blocks_the_claim_and_is_left_alone
+- label: finish ignores an unreadable record that appeared while it published
+  find: "        if broken:"
+  replace: "        if False:"
+  test: tests.test_sd101_slides.FinishTests.test_finish_reports_an_unreadable_record_that_appeared_while_it_published

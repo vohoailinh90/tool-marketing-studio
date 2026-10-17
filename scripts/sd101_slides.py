@@ -118,9 +118,29 @@ def render(record: dict) -> str:
     return yaml.safe_dump(ordered, sort_keys=False, allow_unicode=True, default_flow_style=False)
 
 
+class StrictLoader(yaml.SafeLoader):
+    """safe_load keeps the last of a key named twice, which a merge conflict resolved by hand can leave behind."""
+
+
+def _no_duplicate_keys(loader: yaml.SafeLoader, node: yaml.MappingNode, deep: bool = False) -> dict:
+    seen: set = set()
+    for key_node, _ in node.value:
+        key = loader.construct_object(key_node, deep=deep)
+        try:
+            if key in seen:
+                raise yaml.constructor.ConstructorError(None, None, f"found the key {key!r} twice", key_node.start_mark)
+            seen.add(key)
+        except TypeError:  # an unhashable key: safe_load itself refuses it
+            pass
+    return yaml.SafeLoader.construct_mapping(loader, node, deep=deep)
+
+
+StrictLoader.add_constructor(yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG, _no_duplicate_keys)
+
+
 def parse_record(text: str) -> dict | None:
     try:
-        data = yaml.safe_load(text)
+        data = yaml.load(text, Loader=StrictLoader)  # noqa: S506 - StrictLoader is a SafeLoader
     except yaml.YAMLError:
         return None
     if not isinstance(data, dict):
@@ -357,7 +377,8 @@ def gather(context: Context, ids: list[str]) -> tuple[dict[str, list[Holding]], 
         path = context.record_path(lesson_id)
         if path.is_file():
             holding = _holding(lesson_id, parse_record(path.read_text(encoding="utf-8")), LOCAL)
-            if holding.owner == context.me or context.offline:  # offline, the checkout is all there is to read
+            # offline the checkout is all there is to read; a malformed record blocks wherever it is
+            if holding.owner == context.me or context.offline or holding.status == "invalid" or not holding.owner:
                 holdings[lesson_id].append(holding)
     return holdings, warnings
 
@@ -683,6 +704,11 @@ def cmd_finish(context: Context, args: argparse.Namespace) -> int:
         if rivals:
             print(f"pushed, but {lesson_id} is finished here and {rivals[0].owner} holds the earlier claim; delete this "
                   f"branch's slides/ for it, commit and push, so the lesson goes to {rivals[0].owner}", file=sys.stderr)
+            return 1
+        broken = [holding for holding in remote if holding.status == "invalid"]
+        if broken:
+            print(f"pushed, but {broken[0].where} now holds a record for {lesson_id} that cannot be read; fix it before "
+                  "this deck is relied on", file=sys.stderr)
             return 1
     return 0
 

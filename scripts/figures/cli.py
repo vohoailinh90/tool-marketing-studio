@@ -16,14 +16,13 @@ from __future__ import annotations
 import argparse
 import json
 import math
-import os
 import re
 import sys
 import tempfile
-import uuid
 from pathlib import Path
 
 from . import browser, drawio, excalidraw, facebook, icons, mobile, moda, scene as scenes, spec as specs, svg
+from .files import write_atomic
 
 ROOT = Path(__file__).resolve().parents[2]
 STORE = ROOT / "system-design-101"
@@ -37,19 +36,11 @@ LESSON_ID = re.compile(r"sd-\d{2}-\d{3}")
 
 
 def _write(path: Path, content: str) -> bool:
-    """Writes `content` (LF line ends) unless the file already has exactly it; True when it wrote. The bytes go to a temporary file beside
-    `path` and replace it in one rename, so a full disk or an interrupted run leaves the previous file whole."""
+    """Writes `content` (LF line ends) unless the file already has exactly it; True when it wrote. A failed write leaves the previous file whole."""
     data = content.encode("utf-8")
-    path = Path(os.path.realpath(path))                    # a link is written through, as it always was
     if path.is_file() and path.read_bytes() == data:
         return False
-    path.parent.mkdir(parents=True, exist_ok=True)
-    temp = path.with_name(f".{path.name}.{os.getpid()}.{uuid.uuid4().hex[:8]}.tmp")
-    try:
-        temp.write_bytes(data)
-        os.replace(temp, path)
-    finally:
-        temp.unlink(missing_ok=True)                       # what is left of a write that failed; nothing after a successful rename
+    write_atomic(path, data)
     return True
 
 
@@ -175,9 +166,12 @@ def build(paths: list[Path], out) -> int:
     if clashes:                                               # two specs for one figure: nothing is written, whichever came last would win
         print("\n".join(found + clashes), file=sys.stderr)
         return 1
-    for _, spec in loaded:
+    for path, spec in loaded:
         if not LESSON_ID.fullmatch(spec["id"]) or not (LESSONS / spec["id"]).is_dir():
             found.append(f"{spec['id']}: there is no lesson of that id in {LESSONS.relative_to(ROOT)}; use `render` for a trial figure")
+            continue
+        if aliases(path, DIAGRAMS / f"{spec['id']}-main.svg"):          # the figure would be written over its own spec
+            found.append(f"{spec['id']}: {_shown(path)} is the figure's own output file; keep the spec in {SPEC_DIR.relative_to(ROOT)}")
             continue
         markup = svg.figure(spec)
         problems = figure_problems(spec, markup)
@@ -197,6 +191,10 @@ def check(paths: list[Path], measure_text: bool = False) -> int:
     loaded, bad = _load_each(paths)
     found.extend(bad)
     found.extend(duplicate_ids(loaded))
+    if loaded:                                                # the footer of every slide: the export would refuse it, so a figure is not Facebook-ready
+        reason = facebook.handle_problem(facebook.handle(ROOT))
+        if reason:
+            found.append(reason)
     for path, spec in loaded:
         markup = svg.figure(spec)
         found.extend(figure_problems(spec, markup))

@@ -98,3 +98,7 @@ mutations:
   find: '    if folder.exists() and not folder.is_dir():'
   replace: '    if False:'
   test: tests.test_figures.FacebookTests.test_a_pack_folder_that_is_a_file_is_not_replaced
+- label: the export goes on although the footer handle is an address
+  find: "    if reason:\n        return [], [reason]"
+  replace: "    if False:\n        return [], [reason]"
+  test: tests.test_figures.FacebookTests.test_a_footer_handle_that_is_an_address_is_refused_before_anything_is_drawn

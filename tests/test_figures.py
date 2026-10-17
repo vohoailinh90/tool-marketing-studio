@@ -46,6 +46,15 @@ def parts_spec(count: int, flow: list[list[int]], icon: str | None = "server") -
     return {"id": "t-parts", "title": "Title", "desc": "A figure drawn for a test of the layout.", "sections": [{"kind": "parts", "items": items, "flow": flow}]}
 
 
+FAKE_PNG = b"\x89PNG\r\n\x1a\n" + b"a fake screenshot"
+
+
+def half_write(self_, data):                                   # a stand-in for Path.write_bytes on a disk that fills after ten bytes
+    with open(self_, "wb") as handle:
+        handle.write(data[:10])
+    raise OSError(28, "No space left on device")
+
+
 def texts_of(root: ET.Element) -> str:
     return " ".join("".join(e.itertext()) for e in root.iter() if e.tag.endswith("text"))
 
@@ -1072,11 +1081,12 @@ class RobustnessTests(unittest.TestCase):
                     raise Error("Page.evaluate: Execution context was destroyed\nCall log:\n  - a long banner")
                 return []
 
-            def screenshot(self, path):
+            def screenshot(self):                              # no path: the bytes come back and the caller writes them
                 if fail == "screenshot":
                     raise PlaywrightTimeout("Page.screenshot: Timeout 30000ms exceeded.\nCall log:\n  - a long banner")
                 if fail == "bug":
                     raise RuntimeError("a bug in our code")
+                return FAKE_PNG
 
         class Browser:
             def new_page(self, **options):
@@ -1250,14 +1260,10 @@ class RobustnessTests(unittest.TestCase):
                 (folder / f"demo-polling{suffix}").unlink()
 
     def test_a_write_that_fails_half_way_leaves_the_previous_file_whole(self):
-        def half(self_, data):                                  # the disk fills after ten bytes
-            with open(self_, "wb") as handle:
-                handle.write(data[:10])
-            raise OSError(28, "No space left on device")
         with tempfile.TemporaryDirectory() as tmp:
             target = Path(tmp) / "figure.svg"
             target.write_text("old valid figure", encoding="utf-8")
-            with mock.patch.object(Path, "write_bytes", half):
+            with mock.patch.object(Path, "write_bytes", half_write):
                 with self.assertRaises(OSError):
                     cli._write(target, "<svg>new</svg>" * 50)
                 code, err = self.run_cli("render", str(POLLING), "--out", str(target))
@@ -1268,6 +1274,60 @@ class RobustnessTests(unittest.TestCase):
             self.assertTrue(cli._write(target, "new\n"))                                       # a write that works replaces it in full
             self.assertFalse(cli._write(target, "new\n"))
             self.assertEqual((target.read_bytes(), sorted(p.name for p in Path(tmp).iterdir())), (b"new\n", ["figure.svg"]))
+
+    def test_a_screenshot_that_cannot_be_written_leaves_the_previous_preview_whole(self):
+        sync_playwright, closed = self.fake_playwright(None)
+        with tempfile.TemporaryDirectory() as tmp, mock.patch.object(browser, "_playwright", return_value=sync_playwright):
+            target = Path(tmp) / "preview.png"
+            target.write_bytes(b"old preview")
+            with mock.patch.object(Path, "write_bytes", half_write):
+                with self.assertRaises(OSError):
+                    browser.png("<svg/>", target, 10, 10)
+            self.assertEqual(target.read_bytes(), b"old preview")                              # not truncated, not partly replaced
+            self.assertEqual(sorted(p.name for p in Path(tmp).iterdir()), ["preview.png"])     # and no half-written file beside it
+            self.assertEqual(len(closed), 1)
+            browser.png("<svg/>", target, 10, 10)
+            self.assertEqual((target.read_bytes(), sorted(p.name for p in Path(tmp).iterdir())), (FAKE_PNG, ["preview.png"]))
+
+    def test_check_refuses_a_footer_handle_that_the_export_would_refuse(self):
+        with mock.patch.object(facebook, "handle", return_value="fb.com/your-page"):
+            code, err = self.run_cli("check", str(POLLING), str(FIXTURES / "small.json"))
+        self.assertEqual(code, 1)
+        self.assertEqual(err.count("author.handle"), 1, err)                                   # said once, not once per figure
+        self.assertIn("is an address", err)
+        with mock.patch.object(facebook, "handle", return_value="@your-page"):
+            self.assertNotIn("author.handle", self.run_cli("check", str(POLLING), str(FIXTURES / "small.json"))[1])
+
+    def test_build_refuses_a_spec_that_is_its_own_output_file(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            store = Path(tmp) / "system-design-101"
+            (store / "vi" / "lessons" / "sd-01-001").mkdir(parents=True)
+            (store / "figures" / "vi").mkdir(parents=True)
+            diagrams = store / "vi" / "diagrams"
+            diagrams.mkdir(parents=True)
+            data = load()
+            data["id"] = "sd-01-001"
+            dest = diagrams / "sd-01-001-main.svg"
+            dest.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
+            paths = [dest]
+            try:
+                os.link(dest, Path(tmp) / "hard.json")
+                paths.append(Path(tmp) / "hard.json")
+            except OSError:
+                pass
+            before = dest.read_bytes()
+            for path in paths:
+                with mock.patch.multiple(cli, ROOT=Path(tmp), DIAGRAMS=diagrams, LESSONS=store / "vi" / "lessons", SPEC_DIR=store / "figures" / "vi"):
+                    code, err = self.run_cli("build", str(path))
+                self.assertEqual(code, 1, (path, err))
+                self.assertIn("own output file", err)
+                self.assertEqual(dest.read_bytes(), before, path)
+            spec_path = store / "figures" / "vi" / "sd-01-001.json"                              # the spec in its place still builds
+            spec_path.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
+            dest.unlink()
+            with mock.patch.multiple(cli, ROOT=Path(tmp), DIAGRAMS=diagrams, LESSONS=store / "vi" / "lessons", SPEC_DIR=store / "figures" / "vi"):
+                self.assertEqual(self.run_cli("build", str(spec_path))[0], 0)
+            self.assertTrue(dest.read_text(encoding="utf-8").startswith("<svg"))
 
     def test_a_write_goes_through_a_link_as_it_always_did(self):
         with tempfile.TemporaryDirectory() as tmp:

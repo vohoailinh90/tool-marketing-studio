@@ -30,3 +30,7 @@ mutations:
   find: "    with _drawing(), sync_playwright() as p:\n        browser, page = _page(p, markup, scene[\"w\"], scene[\"h\"])"
   replace: "    with sync_playwright() as p:\n        browser, page = _page(p, markup, scene[\"w\"], scene[\"h\"])"
   test: tests.test_figures.RobustnessTests.test_a_playwright_error_after_the_browser_started_is_a_failure_not_a_traceback
+- label: the preview is written in place, so a full disk truncates the previous one
+  find: '    write_atomic(path, data)'
+  replace: '    path.write_bytes(data)'
+  test: tests.test_figures.RobustnessTests.test_a_screenshot_that_cannot_be_written_leaves_the_previous_preview_whole

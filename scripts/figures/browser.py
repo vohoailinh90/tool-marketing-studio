@@ -11,6 +11,7 @@ import contextlib
 from pathlib import Path
 
 from . import scene as scenes, svg
+from .files import write_atomic
 
 class Unavailable(RuntimeError):
     """Playwright or its Chromium cannot be used here; the message says why."""
@@ -86,6 +87,7 @@ def png(markup: str, path: Path, width: int, height: int, scale: float = 2.0) ->
     with _drawing(), sync_playwright() as p:
         browser, page = _page(p, markup, width, height, scale)
         try:
-            page.screenshot(path=str(path))
+            data = page.screenshot()                          # the bytes, not a path: Playwright would write a path in place
         finally:
             browser.close()
+    write_atomic(path, data)

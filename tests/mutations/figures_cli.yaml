@@ -114,18 +114,6 @@ mutations:
   find: 'args.format == "svg" and args.scale is not None:'
   replace: 'args.format == "svg" and False:'
   test: tests.test_figures.RobustnessTests.test_a_scale_for_svg_output_is_refused_not_ignored
-- label: a file is written in place, so a failed write truncates the previous one
-  find: "        temp.write_bytes(data)\n        os.replace(temp, path)"
-  replace: "        path.write_bytes(data)"
-  test: tests.test_figures.RobustnessTests.test_a_write_that_fails_half_way_leaves_the_previous_file_whole
-- label: a half-written temporary file is left behind
-  find: '        temp.unlink(missing_ok=True)                       # what is left of a write that failed; nothing after a successful rename'
-  replace: '        pass'
-  test: tests.test_figures.RobustnessTests.test_a_write_that_fails_half_way_leaves_the_previous_file_whole
-- label: a link is replaced by a file instead of written through
-  find: 'path = Path(os.path.realpath(path))                    # a link is written through, as it always was'
-  replace: 'path = Path(path)'
-  test: tests.test_figures.RobustnessTests.test_a_write_goes_through_a_link_as_it_always_did
 - label: render writes over the spec when --out is the spec
   find: "    if aliases(path, out):\n        print(f\"--out {out} is the spec itself; give another file\", file=sys.stderr)\n        return 2\n    spec = loaded[0]\n    if fmt == \"svg\":"
   replace: "    spec = loaded[0]\n    if fmt == \"svg\":"
@@ -138,3 +126,11 @@ mutations:
   find: 'return out is not None and out.exists() and spec_path.samefile(out)'
   replace: 'return out is not None and out == spec_path'
   test: tests.test_figures.RobustnessTests.test_an_output_that_is_the_spec_is_refused_not_overwritten
+- label: a figure is built over its own spec
+  find: "        if aliases(path, DIAGRAMS / f\"{spec['id']}-main.svg\"):"
+  replace: "        if False:"
+  test: tests.test_figures.RobustnessTests.test_build_refuses_a_spec_that_is_its_own_output_file
+- label: a footer handle that export would refuse passes the check
+  find: "        reason = facebook.handle_problem(facebook.handle(ROOT))\n        if reason:\n            found.append(reason)"
+  replace: "        pass"
+  test: tests.test_figures.RobustnessTests.test_check_refuses_a_footer_handle_that_the_export_would_refuse

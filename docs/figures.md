@@ -57,7 +57,7 @@ matches its spec fails CI. An editor file kept next to a spec (`<id>.drawio`, `<
 the editor files are not committed by default. `check` reads the scale an editor file was drawn at from the file itself (page width, canvas
 width, panel width), so a file made with `--scale 1` is current as long as it is what the spec draws at that scale. A scale is a multiple of
 0.05 because the editor files keep sizes to a tenth of a pixel: a scale with more digits could not be read back from the file it made.
-Files are written to a temporary file beside the target and renamed over it, so a full disk leaves the previous file whole; `render` and `preview` refuse an `--out` that is the spec itself (by name, link or hard link), and `facebook` never replaces a file where its pack folder goes.
+Files (figures, editor files, preview PNGs) are written to a temporary file beside the target and renamed over it, so a full disk leaves the previous file whole; `render` and `preview` refuse an `--out` that is the spec itself, and `build` a spec that is its own output file (by name, link or hard link), and `facebook` never replaces a file where its pack folder goes.
 A browser that starts and then fails (a crash, a timeout) makes `preview`, `facebook` and `check --browser` exit 2 with Playwright's first line; only a
 missing browser is told to install Chromium.
 
@@ -86,7 +86,7 @@ exports of one figure never leave a mix of the two). The standard is the studio'
 | Canvas | `portrait` 1080x1350 (4:5, the default for the feed), `square` 1080x1080, `landscape` 1200x630 (a link preview: figures rarely fit it). The sizes are read from `mkt/page.py`, never copied |
 | Slides | one section of the figure per slide, under the figure's title (the subtitle on the first slide only); at most 10 slides per post (`MAX_SLIDES` of `mkt/check.py`) |
 | Text | the smallest body text on a slide is at least 30 px on the canvas (the studio's body text runs 28-34 px; on a 375 px phone that is about 10 px; the 22 px footer is the studio's own and is not body text). A section that cannot be scaled that far is refused: split it in the spec or shorten its words, never lower the limit |
-| Footer | `author.handle` of `studio.yaml` bottom left when set, `n/N` bottom right, 22 px muted: the studio's footer. A handle that is an address (`fb.com/your-page`, `https://...`) is refused with a message, because a slide carries none: write the page name as `@name` or leave it empty |
+| Footer | `author.handle` of `studio.yaml` bottom left when set, `n/N` bottom right, 22 px muted: the studio's footer. A handle that is an address (`fb.com/your-page`, `https://...`) is refused with a message by `facebook` and by `check`, because a slide carries none: write the page name as `@name` or leave it empty |
 | Words | no address on any slide (the spec check refuses one); a link goes only through `{link}` in the first comment of a campaign post |
 | Alt text | `alt.txt` holds the figure's `desc` and one line per slide from the spec's own headings: paste it into Facebook's alt-text field when uploading |
 

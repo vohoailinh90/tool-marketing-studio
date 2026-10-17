@@ -45,6 +45,13 @@ def handle(root: Path) -> str:
     return str(author.get("handle") or "").strip() if isinstance(author, dict) else ""
 
 
+def handle_problem(author: str) -> str | None:
+    """Why the footer handle cannot go on a slide, or None: the footer is the studio's, but a slide carries no address."""
+    if has_address(author):
+        return f"studio.yaml author.handle {author!r} is an address, and a Facebook slide carries none (docs/figures.md): write the page name as @name, or leave it empty"
+    return None
+
+
 def plan(spec: dict, fmt: str = DEFAULT) -> tuple[list[dict], list[str]]:
     """The slides of a figure and what is wrong with them: [{"n", "k", "w", "h", "x", "y", "markup", "scene", "heading"}], [problem]."""
     if fmt not in FORMATS:
@@ -147,8 +154,9 @@ def export(spec: dict, out: Path, root: Path, fmt: str = DEFAULT) -> tuple[list[
     if problems:
         return [], problems
     author = handle(root)
-    if has_address(author):                                # the footer is the studio's, but a slide carries no address
-        return [], [f"studio.yaml author.handle {author!r} is an address, and a Facebook slide carries none (docs/figures.md): write the page name as @name, or leave it empty"]
+    reason = handle_problem(author)
+    if reason:
+        return [], [reason]
     alt = alt_text(spec, slides)
     alt.encode("utf-8")                                    # fails here, before anything is drawn
     folder = out / spec["id"]

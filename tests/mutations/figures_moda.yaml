@@ -1,0 +1,12 @@
+# Mutation manifest — see scripts/mutation_check.py
+#
+# A passing test proves nothing on its own. These break each rule of the figure toolkit in turn
+# and require the named test to fail. A mutation that SURVIVES means the test guards nothing.
+
+target: scripts/figures/moda.py
+note: 'Moda markup is applied to a live canvas by a session: text goes in only as escaped element content.'
+mutations:
+- label: a sentence is written into the markup without escaping
+  find: text-align="{item["align"]}" line-height="{item["lh"]}">{esc(item["text"])}</text>')
+  replace: text-align="{item["align"]}" line-height="{item["lh"]}">{item["text"]}</text>')
+  test: tests.test_figures.EditorTests.test_hostile_text_stays_text_in_the_three_editor_files

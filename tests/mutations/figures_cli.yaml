@@ -1,0 +1,32 @@
+# Mutation manifest — see scripts/mutation_check.py
+#
+# A passing test proves nothing on its own. These break each rule of the figure toolkit in turn
+# and require the named test to fail. A mutation that SURVIVES means the test guards nothing.
+
+target: scripts/figures/cli.py
+note: 'The build and the check are the only things between a spec and a stored figure: a stale figure, a figure for a lesson that does not exist, or one a phone cannot read must not get through.'
+mutations:
+- label: a stored figure that is not what the spec draws passes the check
+  find: 'elif stored.read_bytes() != markup.encode("utf-8"):'
+  replace: 'elif False:'
+  test: tests.test_figures.CliTests.test_a_figure_that_is_not_what_the_spec_draws_fails_the_check
+- label: a stale editor file beside the spec passes the check
+  find: 'if beside.is_file() and beside.read_bytes() != make(spec).encode("utf-8"):'
+  replace: 'if False:'
+  test: tests.test_figures.CliTests.test_an_editor_file_beside_the_spec_must_not_go_stale
+- label: a figure is built for a lesson that does not exist
+  find: ' or not (LESSONS / spec["id"]).is_dir():'
+  replace: ':'
+  test: tests.test_figures.CliTests.test_build_refuses_a_spec_without_a_lesson_and_an_invalid_spec
+- label: a figure that fails its rules is written anyway
+  find: "        if not problems:\n            changed"
+  replace: "        if True:\n            changed"
+  test: tests.test_figures.CliTests.test_a_figure_with_text_too_small_for_a_phone_is_never_written
+- label: a missing stored figure is not reported
+  find: 'if not stored.is_file():'
+  replace: 'if False:'
+  test: tests.test_figures.CliTests.test_build_writes_the_figure_and_check_then_passes
+- label: the file is rewritten even when nothing changed
+  find: 'if path.is_file() and path.read_bytes() == content.encode("utf-8"):'
+  replace: 'if False:'
+  test: tests.test_figures.CliTests.test_build_writes_the_figure_and_check_then_passes

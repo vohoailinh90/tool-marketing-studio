@@ -1,0 +1,24 @@
+# Mutation manifest — see scripts/mutation_check.py
+#
+# A passing test proves nothing on its own. These break each rule of the figure toolkit in turn
+# and require the named test to fail. A mutation that SURVIVES means the test guards nothing.
+
+target: scripts/figures/scene.py
+note: The layout decides where every arrow runs and how text breaks; these rules are what keep an arrow off a card, two arrows off one line, and text inside its box.
+mutations:
+- label: two links whose card ranges overlap share a lane
+  find: lanes[link] = max(used, default=-1) + 1
+  replace: lanes[link] = 0
+  test: tests.test_figures.SceneTests.test_rails_are_shared_only_by_links_that_do_not_overlap_and_nest_outward
+- label: the links going down a card are not ordered farthest first
+  find: 'key=lambda e: (e[0] - card, e[1], e[2]), reverse=True)'
+  replace: 'key=lambda e: (e[0] - card, e[1], e[2]), reverse=False)'
+  test: tests.test_figures.SceneTests.test_the_ends_on_one_card_go_up_nearest_first_then_down_farthest_first
+- label: bold text is broken as if it were regular
+  find: return wrap(one_line(s), px, w, st.wscale, weight >= 700)
+  replace: return wrap(one_line(s), px, w, st.wscale, False)
+  test: tests.test_figures.SceneTests.test_bold_text_is_measured_in_bold
+- label: the lane beside the cards is not reserved
+  find: cw = CONTENT_W - (0 if not lane_count else 14 + RAIL * (lane_count - 1))
+  replace: cw = CONTENT_W
+  test: tests.test_figures.SceneTests.test_random_flows_never_cross_a_card_or_share_a_line

@@ -1,0 +1,48 @@
+# Mutation manifest — see scripts/mutation_check.py
+#
+# A passing test proves nothing on its own. These break each rule of the Facebook standard in turn
+# and require the named test to fail. A mutation that SURVIVES means the test guards nothing.
+
+target: scripts/figures/facebook.py
+note: 'The Facebook standard is what the owner uploads to a public Page: size, text size, footer and the one-section-per-slide rule are checked by script, not by eye.'
+mutations:
+- label: a section with text too small for the standard is exported
+  find: '        if smallest < MIN_TEXT_PX:'
+  replace: '        if False:'
+  test: tests.test_figures.FacebookTests.test_a_section_that_cannot_be_scaled_to_readable_text_is_refused_with_its_slide_number
+- label: more slides than a post takes are exported
+  find: '    if len(sections) > MAX_SLIDES:'
+  replace: '    if False:'
+  test: tests.test_figures.FacebookTests.test_more_slides_than_a_post_takes_and_an_unknown_format_are_refused
+- label: a format outside the studio's three is accepted
+  find: '    if fmt not in FORMATS:'
+  replace: '    if False:'
+  test: tests.test_figures.FacebookTests.test_more_slides_than_a_post_takes_and_an_unknown_format_are_refused
+- label: the subtitle is repeated on every slide
+  find: "        if n > 1:\n            part.pop("
+  replace: "        if False:\n            part.pop("
+  test: tests.test_figures.FacebookTests.test_the_subtitle_is_on_the_first_slide_only_and_the_title_on_every_slide
+- label: the handle is written into the footer without escaping
+  find: left = f'<span>{esc(author)}</span>' if author
+  replace: left = f'<span>{author}</span>' if author
+  test: tests.test_figures.FacebookTests.test_the_footer_is_the_studios_handle_bottom_left_and_the_number_bottom_right
+- label: a slide of the wrong size passes
+  find: '    if size != FORMATS[fmt]:'
+  replace: '    if False:'
+  test: tests.test_figures.FacebookTests.test_a_written_slide_is_checked_for_type_size_and_weight
+- label: a slide that is too heavy passes
+  find: '    if len(data) > MAX_BYTES:'
+  replace: '    if False:'
+  test: tests.test_figures.FacebookTests.test_a_written_slide_is_checked_for_type_size_and_weight
+- label: a slide of an earlier export stays in the folder
+  find: '        stale.unlink()'
+  replace: '        pass'
+  test: tests.test_figures.FacebookTests.test_export_writes_png_slides_of_the_exact_canvas_size_and_replaces_old_ones
+- label: slides are written although the plan has problems
+  find: "    if problems:\n        return [], problems\n    folder"
+  replace: "    if False:\n        return [], problems\n    folder"
+  test: tests.test_figures.FacebookTests.test_nothing_is_written_when_the_plan_has_problems
+- label: the handle of studio.yaml is not read
+  find: return str(author.get("handle") or "").strip() if isinstance(author, dict) else ""
+  replace: return ""
+  test: tests.test_figures.FacebookTests.test_the_handle_comes_from_studio_yaml_and_is_empty_when_it_cannot_be_read

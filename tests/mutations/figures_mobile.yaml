@@ -1,0 +1,20 @@
+# Mutation manifest — see scripts/mutation_check.py
+#
+# A passing test proves nothing on its own. These break each rule of the figure toolkit in turn
+# and require the named test to fail. A mutation that SURVIVES means the test guards nothing.
+
+target: scripts/figures/mobile.py
+note: The phone-size rule of the store (14 px at 375, 12 px at 320, nothing past the edge) is checked here instead of being left to a reviewer's eye.
+mutations:
+- label: text too small for a phone is accepted
+  find: 'if effective < least:'
+  replace: 'if False:'
+  test: tests.test_figures.SvgTests.test_text_that_is_too_small_or_runs_off_the_drawing_is_reported
+- label: text past the edge of the drawing is accepted
+  find: 'if left < -0.5 or left + run > size + 0.5:'
+  replace: 'if False:'
+  test: tests.test_figures.SvgTests.test_text_that_is_too_small_or_runs_off_the_drawing_is_reported
+- label: the 320 px screen is not checked
+  find: SCREENS = ((375, 14.0), (320, 12.0))
+  replace: SCREENS = ((375, 14.0),)
+  test: tests.test_figures.SvgTests.test_text_that_is_too_small_or_runs_off_the_drawing_is_reported

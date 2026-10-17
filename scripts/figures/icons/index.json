@@ -1,0 +1,332 @@
+{
+ "source": "lucide-static",
+ "version": "1.58.0",
+ "license": "ISC",
+ "upstream": "https://github.com/lucide-icons/lucide",
+ "icons": {
+  "activity": {
+   "gloss": "monitoring, health check, diagnostics",
+   "sha256": "6d37acf970c8fc7a4f350fc935e4a72aca50a0a6407cd54ac571009f900a9492"
+  },
+  "arrow-left-right": {
+   "gloss": "request and response, two-way traffic",
+   "sha256": "c4a90553e9884842540fabae631c59c522c549c57042a45abca475fe7d3f360f"
+  },
+  "bell": {
+   "gloss": "notification, alert",
+   "sha256": "35c21c37f0940806ea96cc7ba51fe654e06acdd3f25d4555c380442c0cc2c79b"
+  },
+  "book-open": {
+   "gloss": "docs, knowledge, learning",
+   "sha256": "81460d3e2057989614c2291526ffe3e8181c24d9690c9680bae1d788eb6d02fb"
+  },
+  "bot": {
+   "gloss": "agent, assistant",
+   "sha256": "8da922c0b725e41250841648ef0fef7ef230b1746a662bdebf9753ed0d265e6b"
+  },
+  "box": {
+   "gloss": "generic module, or when nothing else fits",
+   "sha256": "181f25a87d3faa62db9c312ddfd6f288dd6d5e6003851bbfb3d1d8d798024051"
+  },
+  "boxes": {
+   "gloss": "cluster, many instances, shards",
+   "sha256": "c53a3da9ba62ba2194f371387fe429d4065e698c3ee844cdb9627724f62afdd0"
+  },
+  "brain": {
+   "gloss": "AI or ML model, reasoning",
+   "sha256": "d859760e6e00a768e9942822cb048121fbfb747eb6cb0464270c2cd467ecd13d"
+  },
+  "bug": {
+   "gloss": "bugs, testing, debugging",
+   "sha256": "f706126a6a70652c7b904e7f0972435f15ed4b8f276cd7a94c9182dd2f4c2729"
+  },
+  "chart-column": {
+   "gloss": "analytics, metrics, report",
+   "sha256": "8cc0cf7ac1f93f45a433e1618b84610f915fe80baf40b413315f4a7b2cfc4f28"
+  },
+  "circle-check": {
+   "gloss": "success, acknowledged, done",
+   "sha256": "e963fb03e3180118ca0b99fba7cc9644769dc61a35280e3da75fc3a65fd450c4"
+  },
+  "circle-x": {
+   "gloss": "error, rejected, closed",
+   "sha256": "2b16f7f66feba8412175c1b3c45f793cb603f803b6c9de6daa16a7a928850cbd"
+  },
+  "clock": {
+   "gloss": "schedule, time",
+   "sha256": "863f184bbb4460fd133fb3da9b84b9158017d6af5b187c9f09b79cae0d1f972d"
+  },
+  "cloud": {
+   "gloss": "hosted or remote service",
+   "sha256": "f3486cab6524a5dbcc2cac00f1c84018d51f01af79f4467b55da03bf457fe22b"
+  },
+  "code": {
+   "gloss": "source code, SDK, library",
+   "sha256": "268aaf5c8e9418f1f2422d05b2acd27dd13efef35ff9613619fed28cead25a8e"
+  },
+  "container": {
+   "gloss": "container, packaged workload",
+   "sha256": "c1404b1bb7c05301c07c161ce7c672fd0fd02bd52095d4795c9a621c9066703b"
+  },
+  "cpu": {
+   "gloss": "compute, model runtime, inference engine",
+   "sha256": "3ae0497f58ee11864d1473feaa1eba2ed0a68e24669255f6e6ae16a016dced82"
+  },
+  "credit-card": {
+   "gloss": "payments, billing",
+   "sha256": "c6d2fa64410c5acf5af520d874ae762bc0171a39bb11c93a97685d25820e5d5d"
+  },
+  "database": {
+   "gloss": "structured data store",
+   "sha256": "f049feb7fb8eb248abeecc78d9ca3cef9a161a7a113ff01fb1bd92114d49d11e"
+  },
+  "download": {
+   "gloss": "fetch, ingest, install",
+   "sha256": "195448b5abcebcebbb2931d3b4d3079fbe26590f8b197033158c4cc4c9100a48"
+  },
+  "eye": {
+   "gloss": "observer, visibility, watching",
+   "sha256": "602bee368f3255e925846b7d5918f5621f3149a8635264444e87a04a4e77599d"
+  },
+  "file-text": {
+   "gloss": "document, text, README",
+   "sha256": "aa15a4da3a69c0757b771c4398ff10308121e89e2cdd571496c19374dc2f9f8a"
+  },
+  "fingerprint-pattern": {
+   "gloss": "identity, authentication of a person",
+   "sha256": "565cbefb76bb66fb5b5c9f812d91ed1d39d6316cf7de85a6e01f366b0bd391c3"
+  },
+  "folder": {
+   "gloss": "project, directory, workspace",
+   "sha256": "1387df31da06ddf4c4270788e9e8b9ede784faf981c06abf03b3b4f43655cd38"
+  },
+  "gauge": {
+   "gloss": "performance, limit, rate",
+   "sha256": "3aaef15cccfa8f9d2e60df8e374f35bb5b64530bf27075e3aeff07bb4d244086"
+  },
+  "git-branch": {
+   "gloss": "version control, branches",
+   "sha256": "802357036950bbf5ad323b8796e05f315817f00cd15518315f27a728c34130a5"
+  },
+  "globe": {
+   "gloss": "web, internet, browser",
+   "sha256": "1a293415b9348202de2bef4ac379efcc109259ac517bd013f32737452c666a5b"
+  },
+  "handshake": {
+   "gloss": "agreement, negotiation, connection set-up",
+   "sha256": "0d338cfd7dfd8cc6b5aa16d7bda82bd6339a3d54f12090132c623b2754fd017f"
+  },
+  "hard-drive": {
+   "gloss": "files, local storage",
+   "sha256": "a2f111a2d5f97dea7eb8f2357b1b1068dd06a30384509ca07f52303655cdae75"
+  },
+  "hash": {
+   "gloss": "hash, identifier, fingerprint of data",
+   "sha256": "ad81b89b428bad2019cb002dc770d73b260b315b34e9e26947052869eea5afaf"
+  },
+  "history": {
+   "gloss": "log, history, replay of past events",
+   "sha256": "c40d5f3133df70f9eaf3fdf03234c74995b10b2cc330e2d3b2ad73aeb0cf4409"
+  },
+  "image": {
+   "gloss": "image",
+   "sha256": "c21348188e72714f4866a9cbe02e03b832b16ef36b339640b73350280900dae9"
+  },
+  "inbox": {
+   "gloss": "queue, mailbox, buffer of waiting messages",
+   "sha256": "7d54bce88627817f1eafb17b4bb79ea2ee444c6a661b843afc49e731b859ccd8"
+  },
+  "key-round": {
+   "gloss": "credentials, API keys, authentication",
+   "sha256": "3759016546d8b51f6566bccb8c3620b0dda37000a1f4b86bdf5f9105a3cac9b1"
+  },
+  "layers": {
+   "gloss": "stack, layered architecture",
+   "sha256": "1098896b580d6981211785238905cfd5cf7e4d256207eb24fa5f374b06d97e62"
+  },
+  "list-checks": {
+   "gloss": "checklist, task list",
+   "sha256": "ff28569d8fee4ac821a6dcdf24e58fba296eb5f49001d8c15cb902a14bb84cd1"
+  },
+  "list-ordered": {
+   "gloss": "ordered list, sequence of items, queue order",
+   "sha256": "381fbca477f74cc763defb358dde0aa56b7c8a07602dbbe9d3ea5b63bd3c4ddb"
+  },
+  "lock": {
+   "gloss": "privacy, encryption, permissions",
+   "sha256": "4ed88f7dd31591a1ae7f00bfe739dd9ec685d43dc8f278537da2ae6534e586e0"
+  },
+  "lock-keyhole": {
+   "gloss": "locked resource, secret, private key",
+   "sha256": "0d7d87ce30b53b2b26d03237d47011b447d4f4d49e4456f1e2eeff2a410944d4"
+  },
+  "mail": {
+   "gloss": "email",
+   "sha256": "7a1770bdb5ee8c8365dcb3be75ed44f8b8961325dcc97962a285c3bbf2734d11"
+  },
+  "message-square": {
+   "gloss": "chat, messages",
+   "sha256": "b7c334926d35723a0dd6b6a4dfc058662eb4e372027877f4355c5d9d03941450"
+  },
+  "mic": {
+   "gloss": "voice input, recording",
+   "sha256": "b22e81c1ed6523da0a711af1fd25086b5bea96dd8f3fba7aa87fc42b025517d5"
+  },
+  "monitor": {
+   "gloss": "desktop app, user interface",
+   "sha256": "2d8341ea87b4c145f4f5b089416fe86c7f017c7e5f2017b329cb0ef7e5172fb4"
+  },
+  "music": {
+   "gloss": "music, sound generation",
+   "sha256": "69737117c30ab2616eb055916ac5aa3698a7c032b722aa1578cd432a7d4d325a"
+  },
+  "network": {
+   "gloss": "network, topology",
+   "sha256": "e957a5d234d37bdba0997ddaeb81417fc838237335da7813451ca18c1160f2c4"
+  },
+  "package": {
+   "gloss": "package, dependency, bundle",
+   "sha256": "d3844857c02f27ead446964da2dce0ca0848742f655324cdc3572e50c1f8a1af"
+  },
+  "plug": {
+   "gloss": "integration, connector, protocol",
+   "sha256": "621b2c8db885ed73703dac2d7f0acebbff268d5d59b71bc6992cea16dee04fa0"
+  },
+  "puzzle": {
+   "gloss": "plugin, skill, extension",
+   "sha256": "809128155e3074d18c514aea286a5966f3b19e3c2917a36c8ae7dfef714c8bd6"
+  },
+  "radio": {
+   "gloss": "broadcast, push, subscribe",
+   "sha256": "873d4fdaf100b5f0ed913ceda8a433440a22f6b0d6f8b67abb242099de79c02e"
+  },
+  "refresh-cw": {
+   "gloss": "sync, retry, fallback loop",
+   "sha256": "5714e8eeeca1bc3c1a600c840fce1e2cc001b93d2b210f9d04d74994fdbb5b5b"
+  },
+  "repeat": {
+   "gloss": "loop, retry, periodic polling",
+   "sha256": "e02f1d4059eaa66442a1b7df933169e835b0d436207e6be60077e3d0092ce9e9"
+  },
+  "rocket": {
+   "gloss": "deploy, launch",
+   "sha256": "962605481ceb3a61121a9d5342340b1f7b1d56cd3ea41e02b62113e4a5c04e17"
+  },
+  "route": {
+   "gloss": "routing, path selection",
+   "sha256": "70e39b081c760a76d1acc6ec75f9b1b5d0cc7736901df0e7418334ddb3fd227b"
+  },
+  "scale": {
+   "gloss": "balance, load balancer, fairness",
+   "sha256": "c6f451d364789d945a0869345e78964a4ae9dd607058986b91b35aead21300a4"
+  },
+  "search": {
+   "gloss": "search, lookup, discovery",
+   "sha256": "014a4a94c906b6a363be5c070d22a3323eff9b40e4caca52b97e0c098b690a85"
+  },
+  "send": {
+   "gloss": "send a message, publish",
+   "sha256": "132a6cc53001cbe45e4418838a7681b79d251790a236b4c201fc4eab09c85342"
+  },
+  "server": {
+   "gloss": "backend service, API server",
+   "sha256": "8f2b536ec2dc76b349affa010d382479297c8cea7c5e0a78a37b4d4e14bca879"
+  },
+  "settings": {
+   "gloss": "configuration",
+   "sha256": "109df42e03bb5382fc66f3195e30463cc8ff6f2edd8d8597e62c2de862bd0140"
+  },
+  "share-2": {
+   "gloss": "fan-out, sharing, replication to several places",
+   "sha256": "b8ca6c6f3a6e4fa4dc9f87beef47abb764e4d6a21e0429a88160a3826c011634"
+  },
+  "shield": {
+   "gloss": "firewall, protection, defence",
+   "sha256": "2890dea7e0efa48a6ab5e0cd3b0b5cb2dbb73fc781315bd3231ad1552de452bb"
+  },
+  "shield-check": {
+   "gloss": "security, safety checks, validation",
+   "sha256": "21b195f0bf7f6ed344d9327066c9e9db6fd2e03ab8673c19907001d87b710e06"
+  },
+  "shuffle": {
+   "gloss": "random choice, shuffling, mixing",
+   "sha256": "2500f6a39500b65495684935896ec73ddd479c2e9bbad3bd3ba1258461f02236"
+  },
+  "smartphone": {
+   "gloss": "mobile app",
+   "sha256": "6ff797d7a40676630da2bd1caefe090b00693b2f977e40a7ca12cf0dba985187"
+  },
+  "sparkles": {
+   "gloss": "generation, AI-powered feature",
+   "sha256": "292c5f9058a796c48940d640e43375f2990ceadf69eb4038fcafbb906f14a8c0"
+  },
+  "split": {
+   "gloss": "branching, partition, fork in a flow",
+   "sha256": "181f03438a4ced619973b5d44cc3c312cd3fdce741acf3ffab24d03f7e68b098"
+  },
+  "stethoscope": {
+   "gloss": "inspecting and reporting problems",
+   "sha256": "df0f1eb0a5a3eb123dcb6e8ef2172bb17ec15ec8a0bed9311b4a71058e81aea7"
+  },
+  "store": {
+   "gloss": "shop, marketplace, merchant",
+   "sha256": "e1e2d335b40691de091d88d19c4fa2288aebccfb123362e189c0db5e4e5be6fb"
+  },
+  "terminal": {
+   "gloss": "command line, CLI",
+   "sha256": "77a81a39a958b857e7bd2af00220471b3c7dc0914d37726f13d57906eb6d69d1"
+  },
+  "timer": {
+   "gloss": "timeout, expiry, short wait",
+   "sha256": "bbfd8c6565d4318dcb49ce2dca3b4d3bead646426fb9ee3d286ec2eb3706af97"
+  },
+  "triangle-alert": {
+   "gloss": "failure, warning, risk",
+   "sha256": "57b21e3ead643bb1eb69e0eed7fbcd8820b77491124c26b1bb342b0e1079711a"
+  },
+  "truck": {
+   "gloss": "delivery, transport of data or goods",
+   "sha256": "3fa1fe7bebfdeba04a7f6d4c6117f67eaeba4a9f55202f4a8b2c213eef777343"
+  },
+  "upload": {
+   "gloss": "publish, export",
+   "sha256": "868173535cd3a65071d2527e5284ad1d1a3144464f8a107fdab47314c2a945e8"
+  },
+  "user": {
+   "gloss": "one user, account, profile",
+   "sha256": "716514179cace34b6321ae3e0e90dcc321dd76106f5f8c58eb7025fa24cd8dd2"
+  },
+  "users": {
+   "gloss": "team, community, multi-user",
+   "sha256": "ddf23c8db14a90e93fb9210f14eca9d9b404b8141bc9aca8bd9cf2f6c3908d58"
+  },
+  "video": {
+   "gloss": "video",
+   "sha256": "898a1b8b815739f79aa95031428c2c11a35dd4b0492029ae407a8881250d489a"
+  },
+  "volume-2": {
+   "gloss": "speech output, audio playback",
+   "sha256": "9b629a707fe10ea4f8da68359b3a6ca63cf48ce4e97bfcdb5820cbd70e3c1bf1"
+  },
+  "webhook": {
+   "gloss": "callback, event delivery to another system",
+   "sha256": "f2dcd1bc75dafe437acc15751b68558644f9df1084befaeddb882111b892ec67"
+  },
+  "wifi": {
+   "gloss": "wireless link, connectivity",
+   "sha256": "63343b9e216b7a8ce9233440375b893b1541d59454beb7f3a2b417cef96b04aa"
+  },
+  "workflow": {
+   "gloss": "pipeline, orchestration",
+   "sha256": "7d9433e81f1afd8175c1210c6da1a3843e1b95a52178aeb4b1c3ae34e1ce4204"
+  },
+  "wrench": {
+   "gloss": "tooling, utilities",
+   "sha256": "78429793f42acf849b2d5b0bedcdf88792c24df2c28791a9d6408b2328a0e434"
+  },
+  "zap": {
+   "gloss": "fast action, trigger, event",
+   "sha256": "6a590b86899f52e584b62c321bda359c878bca813bdea365d80dc533e479f79a"
+  }
+ }
+}

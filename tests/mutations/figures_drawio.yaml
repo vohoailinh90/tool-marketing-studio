@@ -1,0 +1,20 @@
+# Mutation manifest — see scripts/mutation_check.py
+#
+# A passing test proves nothing on its own. These break each rule of the figure toolkit in turn
+# and require the named test to fail. A mutation that SURVIVES means the test guards nothing.
+
+target: scripts/figures/drawio.py
+note: 'The draw.io file is edited by hand afterwards: connectors must stay attached to their cards, ports must lie on the card edge and text must stay text.'
+mutations:
+- label: a connector port may lie outside its card
+  find: min(1.0, max(0.0, (value - origin) / size))
+  replace: (value - origin) / size
+  test: tests.test_figures.EditorTests.test_every_connector_is_attached_to_two_cards_with_ports_on_their_edges
+- label: a connector is not attached to its cards
+  find: source=ids[item["src"]], target=ids[item["dst"]],
+  replace: ''
+  test: tests.test_figures.EditorTests.test_every_connector_is_attached_to_two_cards_with_ports_on_their_edges
+- label: an attribute or label is written without escaping
+  find: return html.escape(XML_BAD.sub("", str(text)), quote=True)
+  replace: return str(text)
+  test: tests.test_figures.EditorTests.test_hostile_text_stays_text_in_the_three_editor_files

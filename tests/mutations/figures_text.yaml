@@ -1,0 +1,16 @@
+# Mutation manifest — see scripts/mutation_check.py
+#
+# A passing test proves nothing on its own. These break each rule of the figure toolkit in turn
+# and require the named test to fail. A mutation that SURVIVES means the test guards nothing.
+
+target: scripts/figures/text.py
+note: Every writer escapes and breaks text here, so a sentence stays a sentence and a long word cannot leave its box.
+mutations:
+- label: control characters are written into the file
+  find: 'return escape(XML_BAD.sub("", str(text)), {''"'': "&quot;"})'
+  replace: 'return escape(str(text), {''"'': "&quot;"})'
+  test: tests.test_figures.SvgTests.test_hostile_text_stays_text_everywhere
+- label: a word wider than the box is left to overflow
+  find: 'if cur and width(cur + ch, px * scale, bold) > max_w:'
+  replace: 'if False:'
+  test: tests.test_figures.SceneTests.test_wrap_never_changes_the_text_or_overflows_a_box

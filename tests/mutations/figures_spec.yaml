@@ -1,0 +1,52 @@
+# Mutation manifest — see scripts/mutation_check.py
+#
+# A passing test proves nothing on its own. These break each rule of the figure toolkit in turn
+# and require the named test to fail. A mutation that SURVIVES means the test guards nothing.
+
+target: scripts/figures/spec.py
+note: The spec is the only input a session gives the renderer, so its checks are what keep an address, an icon nobody vetted or a control character out of a published figure.
+mutations:
+- label: an address in a figure's text is accepted
+  find: LINK = re.compile(r"://|\bwww\.|bytebytego", re.IGNORECASE)
+  replace: LINK = re.compile(r"(?!x)x", re.IGNORECASE)
+  test: tests.test_figures.SpecTests.test_an_address_is_refused_in_any_text
+- label: an icon outside the closed set is accepted
+  find: 'if icon is not None and icon not in icons.NAMES:'
+  replace: 'if False:'
+  test: tests.test_figures.SpecTests.test_an_icon_outside_the_set_is_refused_and_all_or_none_is_required
+- label: cards may name an icon on some and not on others
+  find: 'if any(named) and not all(named):'
+  replace: 'if False:'
+  test: tests.test_figures.SpecTests.test_an_icon_outside_the_set_is_refused_and_all_or_none_is_required
+- label: a key named twice in a spec file is accepted
+  find: '        if key in out:'
+  replace: '        if False:'
+  test: tests.test_figures.SpecTests.test_a_json_file_that_names_a_key_twice_or_is_not_json_is_an_error_not_a_crash
+- label: a key outside the vocabulary is accepted
+  find: '    if extra:'
+  replace: '    if False:'
+  test: tests.test_figures.SpecTests.test_a_key_outside_the_vocabulary_is_refused_at_every_level
+- label: a link from a card to itself is accepted
+  find: 'or pair[0] == pair[1]:'
+  replace: 'or False:'
+  test: tests.test_figures.SpecTests.test_a_flow_must_name_two_different_cards_once
+- label: true counts as card number 1
+  find: isinstance(value, int) and not isinstance(value, bool) and
+  replace: isinstance(value, int) and
+  test: tests.test_figures.SpecTests.test_a_flow_must_name_two_different_cards_once
+- label: a flow that needs too many lanes beside the cards is accepted
+  find: 'if len(found) == before and rails_needed(flow) > MAX_RAILS:'
+  replace: 'if False:'
+  test: tests.test_figures.SpecTests.test_too_many_cross_links_for_a_narrow_column_are_refused
+- label: a control character in a text is accepted
+  find: 'if any(ord(c) < 32 and c not in "\n\t" for c in value):'
+  replace: 'if False:'
+  test: tests.test_figures.SvgTests.test_hostile_text_stays_text_everywhere
+- label: a message from an actor to itself is accepted
+  find: 'or message.get("from") == message.get("to"):'
+  replace: 'or False:'
+  test: tests.test_figures.SpecTests.test_a_message_goes_between_two_different_actors
+- label: a language outside vi, en and ja is accepted
+  find: 'if spec.get("lang", "vi") not in LANGS:'
+  replace: 'if False:'
+  test: tests.test_figures.SpecTests.test_a_language_outside_the_three_is_refused

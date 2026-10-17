@@ -43,7 +43,7 @@ Cổng là một số 16 bit (0 đến 65535). Mọi phép đo dưới đây ch�
 
 Bảng dưới chỉ gom 18 cổng quen thuộc theo một câu hỏi: nếu mở ra Internet thì có gì cần nghĩ thêm?
 
-- **Cặp "bản trần" và "bản có mã hóa".** Telnet (TCP 23) gửi mọi thứ dạng chữ thường; SSH (TCP 22) thay nó. HTTP (TCP 80) được thay bằng HTTPS (TCP 443; HTTP/3 chạy trên UDP và thường dùng cùng số 443). FTP (TCP 21) thường được thay bằng SFTP, một giao thức riêng chạy qua SSH nên dùng chung cổng 22. Với thư: POP3 (110), IMAP (143) và SMTP (25) có bản qua TLS ở 995, 993 và 465; người dùng gửi thư thường qua 587, còn 25 chủ yếu để chuyển thư giữa các máy chủ thư.
+- **Cặp "bản trần" và "bản có mã hóa".** Telnet (TCP 23) gửi dữ liệu không mã hóa; SSH (TCP 22) thường thay nó. HTTP (TCP 80) thường được thay bằng HTTPS (TCP 443; HTTP/3 chạy trên UDP và thường dùng cùng số 443). FTP (TCP 21) thường được thay bằng SFTP, một giao thức riêng chạy qua SSH nên dùng chung cổng 22. Với thư: POP3 (110), IMAP (143) và SMTP (25) có bản qua TLS ở 995, 993 và 465; người dùng gửi thư thường qua 587, còn 25 chủ yếu để chuyển thư giữa các máy chủ thư.
 - **Hạ tầng mạng, thường chỉ cần trong một phạm vi.** DNS (53, cả UDP và TCP), NTP (UDP 123), DHCP (UDP 67 cho máy chủ, 68 cho máy khách) thường chạy trong mạng nội bộ; DHCP lúc đầu dùng quảng bá trong mạng cục bộ nên thường không cần ra Internet.
 - **Dịch vụ nội bộ không nên lộ.** NetBIOS (139), SMB (445), RDP (3389), Oracle (1521), MySQL (3306), PostgreSQL (5432). Nếu cần truy cập từ xa, đặt sau một lớp truy cập có xác thực, hoặc ít nhất lọc theo địa chỉ nguồn, thay vì mở cho mọi địa chỉ.
 

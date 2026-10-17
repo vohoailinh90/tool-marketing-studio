@@ -87,8 +87,8 @@ mutations:
   replace: '    shown = value.strip()                                    # what is drawn: whitespace collapsed, composed form'
   test: tests.test_figures.SpecTests.test_lengths_are_counted_on_the_text_as_it_is_drawn
 - label: a fullwidth or spaced scheme is read without normalising
-  find: '    text = unicodedata.normalize("NFKC", value)                 # fullwidth letters and the halfwidth full stop (U+FF61) become plain ones here'
-  replace: '    text = value                                                # fullwidth letters and the halfwidth full stop (U+FF61) become plain ones here'
+  find: '    text = unicodedata.normalize("NFKC", value)'
+  replace: '    text = value'
   test: tests.test_figures.SpecTests.test_an_address_is_refused_in_any_text
 - label: an ideographic full stop between two names is not read as a dot
   find: 'has_url(text.replace("\u3002", "."))'

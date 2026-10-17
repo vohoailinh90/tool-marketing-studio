@@ -67,8 +67,8 @@ mutations:
   replace: "def build(paths: list[Path], out) -> int:\n    if False:"
   test: tests.test_figures.RobustnessTests.test_a_tampered_icon_set_never_overwrites_a_stored_figure
 - label: a tampered icon set does not stop a Facebook export
-  find: "    if broken_icons():\n        return 1\n    try:\n        files, problems = facebook.export("
-  replace: "    if False:\n        return 1\n    try:\n        files, problems = facebook.export("
+  find: "    if broken_icons():\n        return 1\n    target = out or ROOT"
+  replace: "    if False:\n        return 1\n    target = out or ROOT"
   test: tests.test_figures.RobustnessTests.test_no_command_draws_from_a_broken_icon_set
 - label: the check goes on to draw from a broken icon set
   find: '    if broken_icons():                                       # a figure cannot be drawn from a broken icon set'

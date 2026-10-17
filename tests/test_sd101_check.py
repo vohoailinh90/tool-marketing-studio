@@ -1287,7 +1287,7 @@ class LessonMarkdownRuleTests(StoreCase):
         slides.mkdir()
         self.assertProblem("slides/deck.yaml is missing")
         (slides / "deck.yaml").write_text(
-            "id: sd-01-001\nstatus: done\nowner: claude/a\ndone_at: 2026-10-17T09:00:00Z\n"
+            "id: sd-01-001\nstatus: done\nowner: claude/a\nclaimed_at: 2026-10-17T08:00:00Z\ndone_at: 2026-10-17T09:00:00Z\n"
             "moda_canvas: cvs_5ZDSW8ECGA8AZBX5S8S7FF58M2\nmoda_url: https://moda.app/canvas/bf6e7887\n"
             "slide_count: 10\nsize: 1920x1080\nexports: pending\n", encoding="utf-8")
         self.assertEqual([], self.problems())

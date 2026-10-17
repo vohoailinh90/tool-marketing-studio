@@ -1,0 +1,24 @@
+# Mutation manifest — see scripts/mutation_check.py
+target: web/src/lib/render-result.ts
+note: The preview page shows a render the server reports as rendered:false as a failed action, and shows no answer for a post the user has already left. The page itself is only in the built bundle, so what is mutated is the decision it takes from this module.
+mutations:
+- label: a render the server refused is not shown as a failure
+  find: '  return { notes: answer.issues, failed: answer.rendered === false }'
+  replace: '  return { notes: answer.issues, failed: false }'
+  test: tests.test_web_preview.RenderResultTests.test_the_decision_of_the_preview_page_about_a_render_answer
+- label: a render that worked is shown as a failure
+  find: '  return { notes: answer.issues, failed: answer.rendered === false }'
+  replace: '  return { notes: answer.issues, failed: true }'
+  test: tests.test_web_preview.RenderResultTests.test_the_decision_of_the_preview_page_about_a_render_answer
+- label: an answer without the field is read as a failure
+  find: '  return { notes: answer.issues, failed: answer.rendered === false }'
+  replace: '  return { notes: answer.issues, failed: !answer.rendered }'
+  test: tests.test_web_preview.RenderResultTests.test_the_decision_of_the_preview_page_about_a_render_answer
+- label: the errors of a refused render are dropped
+  find: '  return { notes: answer.issues, failed: answer.rendered === false }'
+  replace: '  return { notes: [], failed: answer.rendered === false }'
+  test: tests.test_web_preview.RenderResultTests.test_the_decision_of_the_preview_page_about_a_render_answer
+- label: an answer for the post the user already left is shown on the post now on screen
+  find: '  if (started !== current) return null'
+  replace: '  if (false) return null'
+  test: tests.test_web_preview.RenderResultTests.test_the_decision_of_the_preview_page_about_a_render_answer

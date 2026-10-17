@@ -33,9 +33,10 @@ FONT_PX = 26            # Mermaid's text size before the diagram is scaled to th
 MIN_TEXT_PX = 22        # below this, on a 1080 px wide image, the text is too small for a phone
 MAX_UPSCALE = 1.4       # a small diagram grows at most this much, so three boxes do not become posters
 
-# A statement that starts with one of these is refused, in any letter case (Mermaid reads `LINK` and `Click` too) and
-# also when the command stands alone on its line and its arguments follow on the next. Everything else a diagram can
-# say is drawing. This is the early, friendly answer; the check in `RENDER_JS` on what was drawn is the barrier.
+# A line that starts with one of these is refused, in any letter case (Mermaid reads `LINK` and `Click` too) and also when
+# the command stands alone on its line and its arguments follow on the next. Only the start of a line is read: a `;` can
+# separate statements but also sits inside a label or an entity code (`#59;`, `&amp;`), so a command that follows one is
+# not looked for here. This is the early, friendly answer; the check in `RENDER_JS` on what was drawn is the barrier.
 FORBIDDEN_STATEMENT = re.compile(r"^\s*(?:click|href|call|callback|links?|classDef|style|linkStyle)(?:\s|$)|^\s*acc(?:Title|Descr)\b",
                                  re.IGNORECASE)
 CLASS_STATEMENT = re.compile(r"^\s*class\s+\S+\s+(\w+)\s*$")
@@ -71,32 +72,17 @@ def source_problems(source) -> list[str]:
         problems.append("diagram contains a directive, script, URL scheme or @{ } node attribute (it can load an image) that is not allowed")
     if HTML_TAG.search(STATE_MARKER.sub(" ", LINE_BREAK.sub(" ", text))):
         problems.append("diagram labels cannot contain HTML (only <br/> for a line break)")
-    parts = [part for line in statements for part in split_statements(line)]
-    for part in parts:
-        if FORBIDDEN_STATEMENT.match(part):
-            problems.append(f"'{part.split()[0]}' is not allowed in a diagram "
+    for statement in statements:
+        if FORBIDDEN_STATEMENT.match(statement):
+            problems.append(f"'{statement.split()[0]}' is not allowed in a diagram "
                             "(no links, clicks or CSS; highlight with :::hl, :::ok, :::bad, :::warn or :::muted)")
             break
     tones = [m.group(1) for m in TONE_SUFFIX.finditer(text)]
-    tones += [m.group(1) for m in map(CLASS_STATEMENT.match, parts) if m]
+    tones += [m.group(1) for m in map(CLASS_STATEMENT.match, statements) if m]
     unknown = sorted({tone for tone in tones if tone not in TONES})
     if unknown:
         problems.append(f"unknown tone {', '.join(unknown)}: use {', '.join(TONES)}")
     return problems
-
-
-def split_statements(line: str) -> list[str]:
-    """`;` ends a statement, except inside a double-quoted label (`A["pick a style; click Next"]`)."""
-    parts, current, quoted = [], [], False
-    for char in line:
-        quoted ^= char == '"'
-        if char == ";" and not quoted:
-            parts.append("".join(current))
-            current = []
-        else:
-            current.append(char)
-    parts.append("".join(current))
-    return parts
 
 
 def bundle() -> str:

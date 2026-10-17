@@ -100,3 +100,7 @@ với nguồn có phải là cải biên hay không là câu hỏi pháp lý ch�
 - “Độc lập” là điều kiện phải giữ ở từng bài, không phải nhãn gán cho cả kho. `scripts/sd101_source_distance.py` vẫn chỉ
   xếp hạng để chọn bài cần đọc lại; bài chỉ lặp lại danh sách và thứ tự của nguồn thì làm sâu bằng thử nghiệm và lập luận riêng.
 - Không thêm bước xin duyệt cho việc viết bài độc lập.
+- Metadata của team agent chưa đổi theo: khối `team-onboarding` trong `AGENTS.md`, `CLAUDE.md` và `docs/TEAM.md`
+  vẫn ghi mức nhạy cảm `private`. Giá trị đó là bản sao của `repos.conf` trên VPS, nằm ngoài repo này (`docs/TEAM.md`:
+  “Muốn đổi thì sửa ở VPS”), nên mục này không sửa các bản sao. Chủ repo quyết định đổi `repos.conf` sang `public` hay
+  giữ `private`; cho tới lúc đó các bản sao nói `private` dù kho đã công khai.

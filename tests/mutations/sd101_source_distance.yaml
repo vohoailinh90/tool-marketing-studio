@@ -54,10 +54,14 @@ mutations:
   find: 'for key in ("evidence", "scope"))'
   replace: 'for key in ("evidence",))'
   test: tests.test_sd101_source_distance.MetadataTests.test_the_scope_of_the_claims_step_counts_as_a_record
-- label: a word with a combining mark is cut into ASCII fragments (no Unicode normalisation)
-  find: 'unicodedata.normalize("NFC", text)'
-  replace: 'text'
+- label: a word with a combining mark is cut into ASCII fragments when the text is tokenized
+  find: 'r"\d[\d.,]*\d|\w+(?:[_-]\w+)*", unicodedata.normalize("NFC", text)):'
+  replace: 'r"\d[\d.,]*\d|\w+(?:[_-]\w+)*", text):'
   test: tests.test_sd101_source_distance.TextTests.test_a_vietnamese_word_is_dropped_whole_not_cut_into_ascii_fragments
+- label: a word with a combining mark is cut into ASCII fragments when names are collected
+  find: 'for match in re.finditer(r"\w+(?:[_-]\w+)*", unicodedata.normalize("NFC", text)):'
+  replace: 'for match in re.finditer(r"\w+(?:[_-]\w+)*", text):'
+  test: tests.test_sd101_source_distance.TextTests.test_shaped_names_ignore_vietnamese_words_written_with_combining_marks
 - label: a word with marks is accepted as a signal because only its ASCII fragment was checked
   find: "piece.isalpha() and piece.isascii() and "
   replace: "piece.isalpha() and "
@@ -79,8 +83,8 @@ mutations:
   replace: '            pass\n        else:\n            row.update({"independent_hosts": len(independent_hosts(metadata)), "own_evidence": own_evidence(metadata)})'
   test: tests.test_sd101_source_distance.SurveyTests.test_metadata_of_the_wrong_shape_is_reported_for_that_lesson_only
 - label: a Vietnamese word without marks is read as a name
-  find: "                    and not VIETNAMESE_SYLLABLE.fullmatch(piece) and piece not in seen):"
-  replace: "                    and piece not in seen):"
+  find: "            if VIETNAMESE_SYLLABLE.fullmatch(piece) and piece not in keep and piece not in TECHNICAL_NAMES:"
+  replace: "            if False:"
   test: tests.test_sd101_source_distance.TextTests.test_vietnamese_words_without_marks_are_language_not_names
 - label: HTML tags of the lesson are read as words
   find: "    return strip_html(re.sub(r\"https?://\\S+\", \" \", prose))"

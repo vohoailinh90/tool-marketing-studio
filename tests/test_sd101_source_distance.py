@@ -95,6 +95,10 @@ class TextTests(unittest.TestCase):
     def test_shaped_names_are_the_words_of_a_guide_that_look_like_vietnamese_syllables(self) -> None:
         self.assertEqual(distance_tool.shaped_names("Short/long polling over QUIC, ping the Postgres server"), {"long", "quic", "ping"})
 
+    def test_shaped_names_ignore_vietnamese_words_written_with_combining_marks(self) -> None:
+        # "nhie" would be a syllable-shaped fragment of NFD "nhiều"; the whole word has a mark, so it is no English name
+        self.assertEqual(distance_tool.shaped_names(unicodedata.normalize("NFD", "nhiều trường")), set())
+
     def test_html_markup_is_not_vocabulary_in_the_lesson_or_the_source(self) -> None:
         lesson = "# T\n\n<details>\n<summary>Xem</summary>\n\nPostgres replicates.\n\n</details>\n<!-- hidden Zookeeper note -->\n"
         self.assertEqual(distance_tool.signal_tokens(distance_tool.lesson_prose(lesson)), ["postgres", "replicates"])

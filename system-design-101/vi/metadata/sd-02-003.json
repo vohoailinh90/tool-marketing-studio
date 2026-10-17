@@ -1,0 +1,119 @@
+{
+  "id": "sd-02-003",
+  "title_vi": "Pinterest cắt thời gian clone bằng một dòng refspec",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "draft",
+  "source_ref": "sd-02-003",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/the-one-line-change-that-reduced-clone-times-by-a-whopping-99-says-pinterest.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/the-one-line-change-that-reduced-clone-times-by-a-whopping-99-says-pinterest.md",
+    "blob_sha": "309564bfd6af777b0b7fd095704f41700de1ba93",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "31f6adcf3dd7b125c520d1230baad18a0dc904fdb5178c32752281afcd6bff56",
+    "retrieved_body_bytes": 1897
+  },
+  "diagram": "../diagrams/sd-02-003-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-11-018",
+      "relation": "see_also",
+      "reason_vi": "Monorepo và microrepo."
+    },
+    {
+      "lesson_id": "sd-02-020",
+      "relation": "see_also",
+      "reason_vi": "Một monorepo khác với rất nhiều tệp."
+    },
+    {
+      "lesson_id": "sd-13-014",
+      "relation": "see_also",
+      "reason_vi": "Pipeline CI/CD nơi bước checkout nằm."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-16"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-16",
+      "evidence": "Đã đọc body nguồn ghim. Hành vi của Git 2.43.0 được chạy thử ngày 2026-10-16 trên kho tự dựng (master 120 commit, 300 nhánh, mỗi nhánh 5 commit riêng toàn dữ liệu ngẫu nhiên; tải qua file://, số đo tương đối trên đĩa cục bộ): git clone thường để lại refspec +refs/heads/*:refs/remotes/origin/* và lấy cả 302 tham chiếu; git fetch --depth=50 --no-tags với refspec mặc định lấy 301 tham chiếu, 4.720 object, 13.969.746 byte trong .git, 1,49 s; cùng lệnh với refspec chỉ master lấy 1 tham chiếu, 220 object, 559.666 byte, 0,07 s; không --depth, mọi nhánh: 4.860 object; --depth=1, mọi nhánh: 2.222 object, 13.515.549 byte; git clone --depth=50 để lại refspec +refs/heads/master:refs/remotes/origin/master; bắt gói tin (GIT_TRACE_PACKET, protocol.version=2): refspec chỉ master gửi ref-prefix refs/heads/master và server trả 1 tham chiếu, refspec mọi nhánh gửi ref-prefix refs/heads/ và nhận 301. KHÔNG kiểm chứng: các con số của Pinterest và Pinboard (40 phút, 30 giây, 350 nghìn commit, 20 gigabyte, 60 nghìn lần pull, hơn 2500 nhánh) chỉ dựa trên bản tóm tắt thứ cấp, bài gốc chưa mở; pipeline Jenkins và plugin Git không được tái hiện; thời gian trên mạng thật không đo. Không trang tài liệu Git, Pro Git hay Jenkins nào mở được từ máy biên soạn."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "not_yet_reviewed"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-16",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "minimum_diagram_text_px": 14.4,
+      "evidence": "Chromium (Playwright) cục bộ: Markdown toàn bài với SVG inline và mọi <details> mở; không cuộn ngang ở 320, 375 và 430 px; mọi chữ SVG nằm trong viewBox và trong khung chứa nó (lề phải tối thiểu 8 px); chữ SVG nhỏ nhất hiệu dụng 14.4/16/16 px ở 320/375/430 px (cỡ 16 trong viewBox rộng 320, hệ số thu min(1, (W-32)/320)). Đã xem ảnh chụp của hình. Không phải kiểm tra trên GitHub, điện thoại thật hay thử người học."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "id": "pinterest-story",
+      "claim_vi": "Theo nguồn thứ cấp, pipeline build của monorepo Pinboard dùng clone nông (50 commit cuối) và bỏ tag nhưng không đặt refspec nên lấy hơn 2500 nhánh; thêm refspec chỉ trỏ vào master đưa thời gian clone từ 40 phút xuống 30 giây. Pinboard: 350 nghìn commit, 20 gigabyte khi clone đầy đủ, 60 nghìn lệnh pull mỗi ngày làm việc.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/the-one-line-change-that-reduced-clone-times-by-a-whopping-99-says-pinterest.md",
+      "section": "Whole guide",
+      "verified_by": "Body nguồn ByteByteGo ghim đã đọc; bài gốc của Pinterest chưa mở nên các con số chưa được kiểm chứng độc lập."
+    },
+    {
+      "id": "ninety-nine-percent",
+      "claim_vi": "40 phút là 2.400 giây; còn 30 giây là giảm 98,75%, tức khoảng 99%.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/the-one-line-change-that-reduced-clone-times-by-a-whopping-99-says-pinterest.md",
+      "verified_by": "Phép tính (2400 - 30) / 2400 = 0,9875; chỉ kiểm tính nhất quán của con số nguồn."
+    },
+    {
+      "id": "default-refspec-all-branches",
+      "claim_vi": "Refspec mặc định sau khi clone là +refs/heads/*:refs/remotes/origin/*, tức mọi nhánh.",
+      "sources": [
+        "https://git-scm.com/docs/git-fetch",
+        "https://git-scm.com/book/en/v2/Git-Internals-The-Refspec"
+      ],
+      "verified_by": "Chạy Git 2.43.0 cục bộ: git clone thường để lại đúng refspec đó và lấy 302 tham chiếu; trang tài liệu chưa mở được."
+    },
+    {
+      "id": "depth-limits-history-not-refs",
+      "claim_vi": "Với git fetch, --depth giới hạn số commit lấy từ đầu mỗi nhánh được lấy, không giới hạn số nhánh; vì vậy với refspec mặc định trên kho nhiều nhánh, giới hạn độ sâu một mình có thể ít cắt được lượng tải (nhiều hay ít tùy độ dài của các nhánh).",
+      "source": "https://git-scm.com/docs/git-fetch",
+      "verified_by": "Chạy cục bộ: --depth=50 mọi nhánh 4.720 object so với 4.860 object không --depth (nhánh thử chỉ có 5 commit riêng); chỉ lấy master còn 220 object. Kết quả phụ thuộc kho thử và không tái hiện số của Pinterest."
+    },
+    {
+      "id": "protocol-v2-ls-refs-prefix",
+      "claim_vi": "Với giao thức v2, client gửi ls-refs kèm ref-prefix; tài liệu coi đây là tối ưu hóa nên server có thể trả thêm tham chiếu không khớp. Ở Git 2.43.0 (cả hai đầu) server chỉ trả tham chiếu khớp, và client không yêu cầu tải đối tượng của nhánh nằm ngoài refspec.",
+      "source": "https://git-scm.com/docs/gitprotocol-v2",
+      "verified_by": "Chạy Git 2.43.0 cục bộ qua file:// (client và server cùng là Git 2.43.0) với GIT_TRACE_PACKET: refspec chỉ master -> ref-prefix refs/heads/master, server trả 1 tham chiếu; refspec mọi nhánh -> ref-prefix refs/heads/, 301 tham chiếu. Chỉ chứng minh hành vi của cài đặt này, không phải bảo đảm của giao thức (ref-prefix là tối ưu hóa); không đo thời gian; trang tài liệu chưa mở được."
+    },
+    {
+      "id": "clone-depth-single-branch",
+      "claim_vi": "git clone --depth ngầm kèm --single-branch nên chỉ lấy một nhánh.",
+      "source": "https://git-scm.com/docs/git-clone",
+      "verified_by": "Chạy cục bộ: git clone --depth=50 để lại refspec +refs/heads/master:refs/remotes/origin/master; trang tài liệu chưa mở được."
+    },
+    {
+      "id": "jenkins-checkout-refspec",
+      "claim_vi": "Cấu hình checkout của pipeline Jenkins cho khai báo refspec.",
+      "source": "https://plugins.jenkins.io/git/",
+      "verified_by": "Chưa kiểm chứng: chỉ dựa vào lời nguồn nói bước Checkout không dùng tùy chọn refspec; plugin Jenkins không có trên máy biên soạn."
+    }
+  ],
+  "design_notes_vi": "Năm khung dọc: trước (mọi nhánh), sau (một nhánh), ba núm riêng biệt (độ sâu, tag, nhánh), kết quả theo nguồn kèm cảnh báo chưa kiểm chứng, cái giá. Ý chính của bài là bề sâu khác bề rộng, được kiểm bằng thử nghiệm cục bộ nêu trong Xem sâu hơn. Sơ đồ tự thiết kế, không dùng ảnh nguồn.",
+  "editorial_note_vi": "Viết độc lập theo DECISIONS.md; không dịch hay diễn đạt sát nguồn. Hành vi của Git được chạy thử cục bộ; các con số của Pinterest chỉ theo nguồn thứ cấp. Review kỹ thuật chờ; chưa thử người học hoặc phê duyệt phát hành."
+}

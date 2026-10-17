@@ -1,0 +1,126 @@
+{
+  "id": "sd-02-001",
+  "title_vi": "Figma mở rộng Postgres: ba bậc thang",
+  "language": "vi",
+  "kind": "flow",
+  "content_status": "draft",
+  "source_ref": "sd-02-001",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/100x-postgres-scaling-at-figma.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/100x-postgres-scaling-at-figma.md",
+    "blob_sha": "4f10f81e144591b782b3c524253497ca20b53304",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "43e4fd9f76cbeea7b55e8f61365070966dc5c27000cf6ddb66b6505f89581bb2",
+    "retrieved_body_bytes": 1628
+  },
+  "diagram": "../diagrams/sd-02-001-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-04-036",
+      "relation": "see_also",
+      "reason_vi": "Chia theo hàng (sharding) được giải thích kỹ hơn."
+    },
+    {
+      "lesson_id": "sd-11-005",
+      "relation": "see_also",
+      "reason_vi": "Chia theo bảng và chia theo hàng."
+    },
+    {
+      "lesson_id": "sd-04-001",
+      "relation": "see_also",
+      "reason_vi": "Mẫu bản sao đọc ở bậc 1."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-16"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-16",
+      "evidence": "Đã đọc body nguồn ghim. Hành vi của Postgres 16.15 (gói Ubuntu, chạy cục bộ qua socket Unix, tắt autovacuum) được chạy thử ngày 2026-10-16: 20 phiên đồng thời cho ra 20 tiến trình phục vụ (0 lúc nghỉ); gọi thẳng tên bảng của cơ sở dữ liệu khác bị từ chối với 'cross-database references are not implemented' còn hai bảng cùng cơ sở dữ liệu ghép bình thường, nhưng với postgres_fdw một câu lệnh ghép được bảng của cơ sở dữ liệu khác (kế hoạch có bước Foreign Scan) và dblink đọc được bảng đó; bản sao dựng bằng pg_basebackup -R -X stream ở chế độ recovery, ghi vào bản sao bị từ chối ('cannot execute INSERT in a read-only transaction'), synchronous_standby_names rỗng, và khi tạm dừng áp dụng thay đổi ở bản sao thì máy chính có 2 hàng còn bản sao thấy 1 (độ trễ được dựng chứ không đo); bảng PARTITION BY HASH cho ra các bảng con cùng cơ sở dữ liệu, còn một partition là bảng ngoài (postgres_fdw) trỏ sang cụm Postgres thứ hai (thư mục dữ liệu khác) nhận đúng các hàng được định tuyến tới nó (2 hàng, đếm trực tiếp ở máy kia) và kế hoạch có Foreign Scan; 200.000 hàng sau một lượt cập nhật có 200.000 phiên bản chết, tệp dữ liệu từ 7.080 lên 14.160 KiB, sau VACUUM số phiên bản chết về 0 và tệp không nhỏ lại. KHÔNG kiểm chứng: câu chuyện và con số của Figma (chỉ có bản tóm tắt thứ cấp, bài gốc chưa mở), Amazon RDS, PgBouncer (không cài trên máy biên soạn), DBProxy và cách Figma chia hàng ra nhiều máy, độ trễ sao chép dưới tải thật. Không trang tài liệu PostgreSQL, PgBouncer hay Figma nào mở được từ máy biên soạn."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "not_yet_reviewed"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-16",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "minimum_diagram_text_px": 14.4,
+      "evidence": "Chromium (Playwright) cục bộ: Markdown toàn bài với SVG inline và mọi <details> mở; không cuộn ngang ở 320, 375 và 430 px; mọi chữ SVG nằm trong viewBox và trong khung chứa nó (lề phải tối thiểu 8 px); chữ SVG nhỏ nhất hiệu dụng 14.4/16/16 px ở 320/375/430 px (cỡ 16 trong viewBox rộng 320, hệ số thu min(1, (W-32)/320)). Đã xem ảnh chụp của hình. Không phải kiểm tra trên GitHub, điện thoại thật hay thử người học."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "id": "figma-three-steps",
+      "claim_vi": "Theo nguồn thứ cấp, Figma bắt đầu với một cơ sở dữ liệu Postgres lớn trên Amazon RDS (nâng cấu hình, nhiều bản sao đọc, PgBouncer), rồi chia các bảng nặng sang cơ sở dữ liệu riêng, rồi chia các bảng lớn ra nhiều cơ sở dữ liệu vật lý với dịch vụ DBProxy để định tuyến.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/100x-postgres-scaling-at-figma.md",
+      "section": "Whole guide",
+      "verified_by": "Body nguồn ByteByteGo ghim đã đọc; bài gốc của Figma chưa mở nên chưa đối chiếu."
+    },
+    {
+      "id": "process-per-connection",
+      "claim_vi": "Postgres dùng một tiến trình hệ điều hành cho mỗi kết nối của client.",
+      "source": "https://www.postgresql.org/docs/current/tutorial-arch.html",
+      "verified_by": "Chạy Postgres 16.15 cục bộ: 20 phiên đồng thời cho ra 20 tiến trình phục vụ, 0 lúc nghỉ; trang tài liệu chưa mở được."
+    },
+    {
+      "id": "replica-read-only-async",
+      "claim_vi": "Bản sao chỉ đọc nhận thay đổi từ máy chính và không nhận ghi; cấu hình mặc định không bắt máy chính chờ bản sao nên bản sao có thể thấy dữ liệu cũ.",
+      "sources": [
+        "https://www.postgresql.org/docs/current/warm-standby.html",
+        "https://www.postgresql.org/docs/current/high-availability.html"
+      ],
+      "verified_by": "Chạy bản sao streaming cục bộ: ghi bị từ chối, synchronous_standby_names rỗng, trễ được dựng bằng cách tạm dừng áp dụng thay đổi (không đo trễ thật); trang tài liệu chưa mở được."
+    },
+    {
+      "id": "cross-database-query",
+      "claim_vi": "Một kết nối Postgres chỉ truy cập một cơ sở dữ liệu và gọi thẳng tên bảng của cơ sở dữ liệu khác bị từ chối; tiện ích mở rộng postgres_fdw hoặc dblink cho phép một câu lệnh ghép hoặc đọc bảng của cơ sở dữ liệu khác, qua một kết nối.",
+      "sources": [
+        "https://www.postgresql.org/docs/current/managing-databases.html",
+        "https://www.postgresql.org/docs/16/postgres-fdw.html",
+        "https://www.postgresql.org/docs/16/dblink.html"
+      ],
+      "verified_by": "Chạy Postgres 16.15 cục bộ: lỗi 'cross-database references are not implemented' khi gọi thẳng; hai bảng cùng cơ sở dữ liệu ghép bình thường; với postgres_fdw (máy chủ ngoài trỏ tới cơ sở dữ liệu kia) một câu JOIN trả đúng kết quả và kế hoạch có Foreign Scan; dblink trả đúng hàng. Chi phí và độ tin cậy của cầu nối là suy luận của bài, chưa đo; trang tài liệu chưa mở được."
+    },
+    {
+      "id": "partitioning-local-or-foreign",
+      "claim_vi": "Partitioning khai báo của Postgres chia một bảng thành các partition; partition thường là bảng cục bộ cùng cơ sở dữ liệu và máy chủ, nhưng cũng có thể là bảng ngoài trỏ sang máy khác qua postgres_fdw, nên bản thân partitioning không cho biết dữ liệu nằm ở đâu.",
+      "sources": [
+        "https://www.postgresql.org/docs/current/ddl-partitioning.html",
+        "https://www.postgresql.org/docs/16/postgres-fdw.html"
+      ],
+      "verified_by": "Chạy cục bộ: bảng PARTITION BY HASH có hai bảng con cùng cơ sở dữ liệu (pg_inherits); với một cụm Postgres thứ hai (thư mục dữ liệu khác), partition là bảng ngoài nhận các hàng được định tuyến (2 hàng đếm trực tiếp ở máy kia) và kế hoạch có Foreign Scan; trang tài liệu chưa mở được."
+    },
+    {
+      "id": "vacuum-dead-versions",
+      "claim_vi": "Cập nhật một hàng để lại phiên bản cũ cho tới khi VACUUM dọn; VACUUM thường không làm tệp nhỏ lại.",
+      "source": "https://www.postgresql.org/docs/current/routine-vacuuming.html",
+      "verified_by": "Chạy cục bộ với 200.000 hàng và autovacuum tắt: 200.000 phiên bản chết sau một lượt cập nhật, về 0 sau VACUUM, tệp 7.080 -> 14.160 KiB và không nhỏ lại; trang tài liệu chưa mở được."
+    },
+    {
+      "id": "connection-pooler",
+      "claim_vi": "Bộ gom kết nối như PgBouncer cho nhiều kết nối của ứng dụng dùng chung một số ít kết nối thật tới Postgres.",
+      "source": "https://www.pgbouncer.org/",
+      "verified_by": "Chưa kiểm chứng: PgBouncer không có trên máy biên soạn và trang chủ chưa mở được."
+    }
+  ],
+  "design_notes_vi": "Bốn khung dọc: ba bậc (một máy nhiều bản sao, chia theo bảng, chia theo hàng) và một quy tắc, mỗi bậc kèm cái giá. Tách điều nguồn kể (Figma) khỏi điều bài giải thích thêm (cái giá, thuật ngữ partitioning/sharding). Sơ đồ tự thiết kế, không dùng ảnh nguồn.",
+  "editorial_note_vi": "Viết độc lập theo DECISIONS.md; không dịch hay diễn đạt sát nguồn. Hành vi của Postgres được chạy thử cục bộ, phần còn lại của câu chuyện Figma chỉ dựa trên bản tóm tắt thứ cấp. Review kỹ thuật chờ; chưa thử người học hoặc phê duyệt phát hành."
+}

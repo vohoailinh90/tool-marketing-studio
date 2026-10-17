@@ -19,6 +19,7 @@ from pathlib import Path
 from . import __version__
 from .approvals import content_sha, handle
 from .check import Issue
+from .diagram import DiagramError, render_in_page, text_warnings
 from .fonts import FONT_DIR, FONT_ORIGIN, ensure_fonts, font_face_css
 from .layouts import Ctx
 from .links import post_link, qr_svg
@@ -96,16 +97,28 @@ def render_posts(campaign: Campaign, posts: list[Post], config: dict, *, html_on
         width, height = FORMATS[post.format]
         page.set_viewport_size({"width": width, "height": height})
         names, overflow, scales = [], [], []
-        for index, path in enumerate(html_files, 1):
-            page.goto(path.as_uri(), wait_until="load" if font_css else "networkidle")
-            fit = page.evaluate("fit()")
-            scales.append(fit["scale"])
-            if fit["overflow"]:
-                overflow.append(index)
-                issues.append(Issue("warn", f"{where} slide {index}", "text still overflows at the smallest size: shorten it"))
-            name = f"{index:02d}.png"
-            page.locator(".slide").screenshot(path=str(out / name))
-            names.append(name)
+        try:
+            for index, path in enumerate(html_files, 1):
+                page.goto(path.as_uri(), wait_until="load" if font_css else "networkidle")
+                drawn = post.slides[index - 1].get("layout") == "diagram"
+                if drawn:
+                    render_in_page(page)
+                fit = page.evaluate("fit()")
+                scales.append(fit["scale"])
+                if fit["overflow"]:
+                    overflow.append(index)
+                    issues.append(Issue("warn", f"{where} slide {index}", "text still overflows at the smallest size: shorten it"))
+                for advice in text_warnings(page) if drawn else []:
+                    issues.append(Issue("warn", f"{where} slide {index}", advice))
+                name = f"{index:02d}.png"
+                page.locator(".slide").screenshot(path=str(out / name))
+                names.append(name)
+        except DiagramError as exc:
+            # A half-rendered post must not look rendered: drop what this run wrote, and the old manifest with it.
+            for leftover in list(out.glob("*.png")) + list(out.glob("*.txt")) + [out / "manifest.json"]:
+                leftover.unlink(missing_ok=True)
+            issues.append(Issue("error", f"{where} slide {index}", str(exc)))
+            return
         texts = write_texts(campaign, post, out)
         hashes = {name: hashlib.sha256((out / name).read_bytes()).hexdigest() for name in names + texts}
         (out / "manifest.json").write_text(json.dumps({

@@ -1,6 +1,6 @@
 {
   "id": "sd-05-005",
-  "title_vi": "Tài liệu gợi ý để ôn phỏng vấn kỹ thuật",
+  "title_vi": "Ôn phỏng vấn kỹ thuật: từ danh sách tài liệu đến kế hoạch luyện",
   "language": "vi",
   "kind": "reference",
   "content_status": "review",
@@ -32,16 +32,15 @@
     },
     "claims": {
       "status": "checked",
-      "checked_on": "2026-10-13",
-      "evidence": "Only the Tech Interview Handbook and System Design Primer READMEs were read (local clones); every other resource named in the lesson comes from the source and was not checked."
+      "checked_on": "2026-10-16",
+      "scope": "Đọc trực tiếp README của Tech Interview Handbook, trang hướng dẫn phỏng vấn hành vi của nó và README của System Design Primer (nhánh chính, không ghim phiên bản), và đếm tham số kiểu mã giới thiệu bằng grep. KHÔNG kiểm: các tài nguyên khác trong danh sách nguồn (LeetCode, NeetCode, sách, nền tảng phỏng vấn thử, trang tuyển dụng), giá, chất lượng, hoặc việc các tham số liên kết có kèm khoản tiền. Vòng lặp luyện coding/OOD và cách chia thời gian là ý kiến của người biên soạn."
     },
     "technical_review": {
       "status": "pending",
-      "reason": "awaiting_technical_review_in_destination_repository"
+      "reason": "rewritten_2026_10_16_awaiting_review"
     },
     "mobile": {
       "status": "checked",
-      "checked_on": "2026-10-13",
       "widths_px": [
         320,
         375,
@@ -51,7 +50,8 @@
       "whole_lesson_no_horizontal_overflow": true,
       "text_outside_viewbox": false,
       "optional_sections_checked_open": true,
-      "evidence": "Chromium (Playwright) rendered the full lesson at each width with optional sections open; diagram scale measured from the rendered image and every SVG text box checked against the viewBox. Not learner testing and not GitHub or a real phone."
+      "checked_on": "2026-10-16",
+      "evidence": "Chromium: hình và cả bài (Markdown dựng thành HTML, mục tùy chọn mở) ở 320, 375, 430 px; chữ hình hiệu dụng tối thiểu 14,4 px ở 320 px, không tràn ngang, không chữ ngoài viewBox. Không phải thử với người học."
     },
     "user_testing": {
       "status": "not_performed"
@@ -59,28 +59,52 @@
   },
   "claims": [
     {
-      "claim_vi": "Tech Interview Handbook is a repository of interview preparation material that includes behavioral questions.",
-      "source": "https://github.com/yangshun/tech-interview-handbook",
-      "section": "README",
-      "verified_by": "README read from a local clone."
-    },
-    {
-      "claim_vi": "System Design Primer is a repository for studying system design.",
-      "source": "https://github.com/donnemartin/system-design-primer",
-      "section": "README",
-      "verified_by": "README read from a local clone."
-    },
-    {
-      "claim_vi": "The pinned source lists LeetCode, Cracking the Coding Interview, NeetCode, System Design Interview books, Grokking, Designing Data-Intensive Applications, A Life Engineered, Interviewready, Educative OOD, Head First Design Patterns, interviewing.io, Pramp, Meetapro, LinkedIn, Monster and Indeed under its six areas; whether each resource currently exists or fits its area was not checked.",
+      "id": "source-list",
+      "claim_vi": "Bài nguồn liệt kê ba mục cho mỗi mảng trong sáu mảng (coding, thiết kế hệ thống, hành vi, thiết kế hướng đối tượng, phỏng vấn thử, tìm việc), tổng cộng 18 mục; bài này không kiểm các mục đó còn hoạt động hay không.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/my-recommended-materials-for-cracking-your-next-technical-interview.md",
       "section": "All sections",
-      "verified_by": "Carried from the source as general description; not independently checked. Only what the pinned source lists and how it groups the resources is recorded; availability, price and quality were not checked."
+      "verified_by": "Đọc body nguồn ghim và đếm: sáu mảng, mỗi mảng ba mục; chỉ ghi lại cái nguồn liệt kê và cách nó nhóm."
+    },
+    {
+      "id": "behavioral-prep",
+      "claim_vi": "Tech Interview Handbook khuyên tập hợp 3–5 dự án nổi bật, kể mỗi dự án theo STAR, chuẩn bị ba câu rất hay gặp (tự giới thiệu, dự án tâm đắc, giải quyết xung đột) bằng ý chính chứ không học thuộc, và không coi việc học thuộc từng câu hỏi là cách chuẩn bị tốt nhất.",
+      "source": "https://github.com/yangshun/tech-interview-handbook/blob/main/apps/website/contents/behavioral-interview.md",
+      "section": "How to prepare for behavioral interviews, mục 1–3",
+      "verified_by": "Đọc trang hướng dẫn (nhánh main) ngày 2026-10-16 qua raw.githubusercontent.com; không ghim commit."
+    },
+    {
+      "id": "primer-four-steps",
+      "claim_vi": "System Design Primer đưa bốn bước cho câu hỏi thiết kế hệ thống: làm rõ trường hợp dùng, ràng buộc, giả định; phác thiết kế tổng thể; đào sâu thành phần chính; mở rộng và xử lý điểm nghẽn.",
+      "source": "https://github.com/donnemartin/system-design-primer",
+      "section": "How to approach a system design interview question",
+      "verified_by": "Đọc README (nhánh master) ngày 2026-10-16 qua raw.githubusercontent.com; không ghim commit."
+    },
+    {
+      "id": "primer-study-guide",
+      "claim_vi": "Primer nói không cần biết hết mọi thứ; mức đòi hỏi phụ thuộc kinh nghiệm, vị trí, công ty; bảng Study guide chia ba mức thời gian (ngắn, vừa, dài) đều gồm đọc các chủ đề để có cái nhìn rộng, chỉ khác số bài có lời giải nên làm (một số, nhiều, hầu hết).",
+      "source": "https://github.com/donnemartin/system-design-primer",
+      "section": "Study guide",
+      "verified_by": "Đọc README (nhánh master) ngày 2026-10-16."
+    },
+    {
+      "id": "referral-parameters",
+      "claim_vi": "README của Tech Interview Handbook có 9 lần xuất hiện tham số kiểu mã giới thiệu (aff=, fpr=, afftrack=), trang hướng dẫn phỏng vấn hành vi có 5 (aff=, ref=), README của Primer không có lần nào; bài không biết có khoản thanh toán nào gắn với các tham số đó.",
+      "source": "https://github.com/yangshun/tech-interview-handbook",
+      "section": "README; behavioral-interview",
+      "verified_by": "Chạy grep -o -E '[?&](aff|fpr|afftrack|ref)=[^) &\"]*' trên ba tệp tải về ngày 2026-10-16: README Handbook 4 afftrack= + 4 aff= + 1 fpr=; trang hành vi 1 aff= + 4 ref=; README Primer 0. Lệnh trong bài (curl -fsS -o tệp rồi grep ... | wc -l) chạy lại ngày 2026-10-17: Primer in 0, Handbook in 9; với đường dẫn không tồn tại curl thoát mã 22 và không in số nào. Không biết tham số có gắn thanh toán hay không."
+    },
+    {
+      "id": "handbook-recommends-courses",
+      "claim_vi": "README của Tech Interview Handbook giới thiệu khóa học Grokking (bản coding và bản thiết kế hệ thống), khóa của ByteByteGo và AlgoMonster; danh sách bài nguồn nêu Grokking the System Design.",
+      "source": "https://github.com/yangshun/tech-interview-handbook",
+      "section": "README: Looking for interview courses / System Design content",
+      "verified_by": "Đọc README ngày 2026-10-16 và body nguồn ghim. Chưa kiểm khóa học nào có tồn tại, giá, hay chất lượng."
     }
   ],
-  "design_notes_vi": "Hình theo sáu mảng chứ không theo tên sản phẩm; thẻ đỏ nói danh sách tài nguyên chưa kiểm. Các gợi ý cách luyện là ý kiến chung của người biên soạn. Không dùng ảnh nguồn.",
+  "design_notes_vi": "Năm khung dọc theo lập luận của bài (vòng nào trước, vòng lặp luyện, thời gian chọn độ sâu, hỏi ai được lợi, kiểm tra trước khi mua) thay cho sáu thẻ theo mảng và thẻ cảnh báo của bản trước. Sơ đồ tự thiết kế, không dùng ảnh nguồn.",
   "source_deviations": [
-    "Source is a bare list of products; the lesson organizes it by area with a practice suggestion for each and flags that the list was not checked and may serve interests related to some of its entries.",
-    "STAR is named in the source without explanation; the lesson spells out the acronym as general knowledge."
+    "Nguồn là danh sách tên sản phẩm theo sáu mảng, không giải thích. Bài này đổi trục: thay vì lặp lại danh sách, nó đi từ câu hỏi 'vòng nào, luyện thế nào, ai được lợi' và dùng ba tài liệu công khai khác (Tech Interview Handbook, trang hành vi của nó, System Design Primer) làm bằng chứng; danh sách của nguồn chỉ còn trong phần tùy chọn.",
+    "Phần đếm tham số kiểu mã giới thiệu và kết luận 'hai lần nhắc không phải hai lần kiểm chứng độc lập' là phân tích của người biên soạn, không có trong nguồn."
   ],
-  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+  "editorial_note_vi": "Viết lại ngày 2026-10-16 để làm sâu và tách khỏi nguồn; review kỹ thuật bản mới đang chờ. Chưa user testing hoặc phê duyệt phát hành."
 }

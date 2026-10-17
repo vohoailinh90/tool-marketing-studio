@@ -1,6 +1,6 @@
 {
   "id": "sd-01-012",
-  "title_vi": "18 cổng mạng thường gặp",
+  "title_vi": "Cổng mạng: 18 cổng quen thuộc và điều hệ điều hành làm với số cổng",
   "language": "vi",
   "kind": "reference",
   "content_status": "draft",
@@ -30,16 +30,27 @@
       "checked_on": "2026-10-13"
     },
     "claims": {
-      "status": "pending",
-      "reason": "standards_and_docs_hosts_unreachable_from_authoring_environment"
+      "status": "checked",
+      "checked_on": "2026-10-16",
+      "scope": "Đo trên một máy Linux nhân 6.18.44, Python 3.13.16: cổng đặc quyền, dải cổng tạm, xung đột bind (kể cả SO_REUSEADDR), TCP đóng so với UDP đóng và IP_RECVERR, máy chủ web trên cổng 3306, 23 cặp cổng/giao thức trong bảng dịch vụ. Đọc man ip(7), udp(7), bind(2), ip-sysctl của Linux, tài liệu PostgreSQL, mã nguồn MySQL, RFC 9110. KHÔNG kiểm chứng: registry IANA, RFC 768/9293/6335 và các RFC giao thức khác, tài liệu Microsoft và Oracle (đều không mở được); dải cổng của IANA; hành vi UDP qua mạng thật, trên hệ điều hành khác hoặc sau tường lửa; udp(7) khác với kết quả đo."
     },
     "technical_review": {
       "status": "pending",
       "reason": "not_yet_reviewed"
     },
     "mobile": {
-      "status": "pending",
-      "reason": "figure drawn with 16px text in a 320px-wide viewBox (about 14.4px at a 320px screen); no whole-lesson browser check and no automated check in the repository yet"
+      "status": "checked",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 14.4,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "checked_on": "2026-10-16",
+      "evidence": "Chromium: hình và cả bài (Markdown dựng thành HTML, mục tùy chọn mở) ở 320, 375, 430 px; chữ hình hiệu dụng tối thiểu 14,4 px ở 320 px, không tràn ngang, không chữ ngoài viewBox. Không phải thử với người học."
     },
     "user_testing": {
       "status": "not_performed"
@@ -47,87 +58,87 @@
   },
   "claims": [
     {
-      "claim_vi": "Cổng là số 16 bit trong tiêu đề TCP và UDP; IANA chia dải 0-1023, 1024-49151, 49152-65535.",
+      "id": "privileged-ports",
+      "claim_vi": "Cổng dưới 1024 là cổng đặc quyền: trên Linux chỉ tiến trình có CAP_NET_BIND_SERVICE (hay root) bind được; ngưỡng mặc định là 1024 và cấu hình theo từng không gian tên mạng.",
       "sources": [
-        "https://www.rfc-editor.org/rfc/rfc768",
-        "https://www.rfc-editor.org/rfc/rfc9293",
-        "https://www.rfc-editor.org/rfc/rfc6335",
+        "https://github.com/mkerrisk/man-pages/blob/master/man7/ip.7",
+        "https://github.com/torvalds/linux/blob/master/Documentation/networking/ip-sysctl.rst"
+      ],
+      "section": "ip(7) mục Address format; ip_unprivileged_port_start",
+      "verified_by": "Đọc hai tài liệu trên ngày 2026-10-16 (bản master, không ghim phiên bản). Chạy với nhân 6.18.44: người dùng nobody bind 80 và 1023 bị EACCES, 1024 được; root bind được cả ba; /proc/sys/net/ipv4/ip_unprivileged_port_start là 1024."
+    },
+    {
+      "id": "ephemeral-range",
+      "claim_vi": "Linux chọn cổng tạm của máy khách trong ip_local_port_range, mặc định 32768–60999, khác dải 49152–65535 mà IANA gọi là cổng động.",
+      "sources": [
+        "https://github.com/torvalds/linux/blob/master/Documentation/networking/ip-sysctl.rst"
+      ],
+      "section": "ip_local_port_range",
+      "verified_by": "Đọc ip-sysctl.rst (dải mặc định 32768 và 60999) và đọc /proc/sys/net/ipv4/ip_local_port_range trên máy thử (32768 60999). Chạy 200 kết nối cục bộ năm lần: mọi cổng đều trong dải Linux; mỗi lần chúng gom trong một khoảng khoảng 1.800 số nhưng khoảng đó đổi chỗ (từ 40.532–42.318 đến 58.308–59.958): ba lần không cổng nào từ 49152 trở lên, hai lần cả 200 cổng từ 49152 trở lên. Người đánh giá độc lập chạy lại ba lần cho kết quả cùng kiểu. Dải 49152–65535 của IANA (RFC 6335) chưa mở được để đối chiếu."
+    },
+    {
+      "id": "bind-collision",
+      "claim_vi": "Hai socket TCP không bind được cùng địa chỉ và cùng số cổng (EADDRINUSE) nhưng một socket UDP lấy được số cổng đó khi TCP đang giữ; bind lại ngay sau khi phía máy chủ đóng kết nối cần SO_REUSEADDR; 0.0.0.0:p xung đột với 127.0.0.1:p đang nghe còn 127.0.0.2:p thì không.",
+      "sources": [
+        "https://github.com/mkerrisk/man-pages/blob/master/man2/bind.2",
+        "https://github.com/mkerrisk/man-pages/blob/master/man7/ip.7"
+      ],
+      "section": "bind(2) EADDRINUSE; ip(7) SO_REUSEADDR",
+      "verified_by": "Chạy trên nhân 6.18.44 ngày 2026-10-16: TCP thứ hai EADDRINUSE; UDP cùng số được; bind lại ngay khi chưa đặt SO_REUSEADDR EADDRINUSE, đặt thì được; 0.0.0.0:p EADDRINUSE; 127.0.0.2:p được. Đọc bind.2 (mô tả lỗi EADDRINUSE); ip.7 ghi địa chỉ TCP đã bind không dùng lại được một thời gian sau khi đóng nếu chưa đặt SO_REUSEADDR (khớp với phép thử)."
+    },
+    {
+      "id": "udp-silence",
+      "claim_vi": "Socket UDP chưa kết nối (chưa bật IP_RECVERR) gửi tới cổng UDP đóng chỉ thấy hết giờ chờ, giống cổng mở mà im lặng; socket đã connect thấy ECONNREFUSED; bật IP_RECVERR thì socket chưa kết nối cũng thấy ECONNREFUSED. TCP đóng bị từ chối gần như tức thì.",
+      "sources": [
+        "https://github.com/mkerrisk/man-pages/blob/master/man7/udp.7"
+      ],
+      "section": "Error handling",
+      "verified_by": "Chạy trên nhân 6.18.44 ngày 2026-10-16 qua loopback: TCP đóng ECONNREFUSED sau khoảng 2 ms; UDP đã connect ECONNREFUSED; UDP chưa connect hết giờ chờ 1 giây; UDP mở im lặng hết giờ chờ; UDP chưa connect với IP_RECVERR ECONNREFUSED. KHÔNG khớp với udp(7), vốn viết rằng lỗi nghiêm trọng được trả về cả khi socket chưa kết nối; nguyên nhân chưa tìm ra. Chưa thử qua mạng thật hay tường lửa."
+    },
+    {
+      "id": "service-names",
+      "claim_vi": "Bảng tên dịch vụ trên máy thử (netbase, ghi là cập nhật từ danh sách IANA) có tên cho phần lớn các cổng trong bài (143 là imap2, 465 là submissions, 3389 là ms-wbt-server) và không có mục cho 1521; DHCPv6 546/547, NetBIOS 137/138 (UDP) và FTP data 20 có mục.",
+      "sources": [
         "https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml"
-      ]
+      ],
+      "verified_by": "getservbyport trên máy thử ngày 2026-10-16 cho 23 cặp cổng/giao thức; header /etc/services ghi nguồn IANA. Bản thân registry IANA không mở được từ máy biên soạn."
     },
     {
-      "claim_vi": "Số cổng mặc định của các dịch vụ trong hình (trừ Oracle 1521) theo bảng đăng ký của IANA.",
-      "source": "https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml"
-    },
-    {
-      "claim_vi": "Oracle Net listener dùng cổng 1521 làm mặc định theo tài liệu của Oracle; đây không phải một đăng ký riêng của IANA cho Oracle.",
-      "source": "https://docs.oracle.com/en/database/oracle/oracle-database/19/netag/configuring-and-administering-oracle-net-listener.html"
-    },
-    {
-      "claim_vi": "DNS dùng UDP và TCP cổng 53; DHCPv4 dùng UDP 67 (máy chủ) và 68 (máy khách), DHCPv6 dùng UDP 547 (máy chủ hoặc relay) và 546 (máy khách); NTP dùng UDP 123.",
+      "id": "defaults",
+      "claim_vi": "PostgreSQL nghe TCP 5432 theo mặc định; MySQL mặc định 3306; địa chỉ https không nêu cổng dùng 443; HTTP/3 thường dùng UDP 443.",
       "sources": [
-        "https://www.rfc-editor.org/rfc/rfc1035",
-        "https://www.rfc-editor.org/rfc/rfc2131",
-        "https://www.rfc-editor.org/rfc/rfc8415",
-        "https://www.rfc-editor.org/rfc/rfc5905"
-      ]
+        "https://github.com/postgres/postgres/blob/master/doc/src/sgml/config.sgml",
+        "https://github.com/mysql/mysql-server/blob/trunk/sql/mysqld.cc",
+        "https://httpwg.org/specs/rfc9110.html"
+      ],
+      "verified_by": "Đọc config.sgml (mục port: 5432 theo mặc định), một chú thích trong mysqld.cc (trunk) nói 3306 là giá trị mặc định nhà máy dùng khi không có cấu hình riêng và không có mục trong bảng dịch vụ; đã tải và đọc tệp ngày 2026-10-17, và RFC 9110 (ví dụ origin https có cổng 443); getservbyport cho 443/udp là https. RFC 9114 không nêu số 443 nên 'HTTP/3 thường dùng UDP 443' chỉ dựa vào bảng dịch vụ và quy ước chung."
     },
     {
-      "claim_vi": "SMTP 25, POP3 110, IMAP 143, FTP 21, Telnet 23, HTTP 80, HTTPS 443.",
+      "id": "other-defaults",
+      "claim_vi": "Cổng mặc định của Telnet 23, FTP 21 (dữ liệu 20 hay cổng chỉ định), SSH 22, SMTP 25 (chuyển thư giữa các máy chủ; người dùng gửi thư qua submission 587 hoặc 465, trong đó 465 dùng TLS ngay từ đầu), POP3 110 (995 qua TLS), IMAP 143 (993 qua TLS), DNS 53 (UDP và TCP), DHCPv4 67/68, DHCPv6 547/546, NTP 123, NetBIOS 137–139, SMB 445, RDP 3389 (có thể kèm UDP) và Oracle 1521.",
       "sources": [
-        "https://www.rfc-editor.org/rfc/rfc5321",
-        "https://www.rfc-editor.org/rfc/rfc1939",
-        "https://www.rfc-editor.org/rfc/rfc9051",
-        "https://www.rfc-editor.org/rfc/rfc959",
-        "https://www.rfc-editor.org/rfc/rfc854",
-        "https://www.rfc-editor.org/rfc/rfc9110"
-      ]
-    },
-    {
-      "claim_vi": "HTTP/3 chạy trên QUIC qua UDP và thường dùng cổng 443.",
-      "source": "https://www.rfc-editor.org/rfc/rfc9114"
-    },
-    {
-      "claim_vi": "SSH dùng cổng 22.",
-      "sources": [
-        "https://www.rfc-editor.org/rfc/rfc4253",
         "https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml"
-      ]
+      ],
+      "verified_by": "Chỉ đối chiếu với bảng dịch vụ netbase trên máy thử (các cổng TCP/UDP trên có mục; RDP trên UDP và Oracle 1521 không có mục). Các RFC 854, 959, 5321, 1939, 9051, 2131, 5905, 1001/1002, 6409, 8314, 8415, MS-RDPBCGR, MS-SMB2 và tài liệu Oracle chưa được mở lần này. Gợi ý từ review (ngày 2026-10-17): 465 là cổng submission dùng TLS ngay từ đầu, không phải bản TLS của relay ở 25; phù hợp với tên trong bảng dịch vụ (25 smtp, 587 submission, 465 submissions) và với RFC 8314 và RFC 6409 do reviewer nêu, nhưng hai RFC này chưa được mở."
     },
     {
-      "claim_vi": "RDP dùng cổng 3389, chủ yếu TCP và có thể kèm UDP.",
-      "source": "https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-rdpbcgr/"
+      "id": "http-on-3306",
+      "claim_vi": "Số cổng không xác định giao thức đang nói trên nó: một máy chủ web chạy trên cổng 3306 trả lời curl bình thường.",
+      "source": "https://github.com/python/cpython/blob/v3.13.0/Lib/http/server.py",
+      "verified_by": "Chạy http.server của Python 3.13 (mã nguồn Lib/http/server.py v3.13.0) trên 127.0.0.1:3306 và curl 8.5.0 tới đó ngày 2026-10-16: nhận 200 và nội dung. Đây là thử nghiệm của người biên soạn, không có tài liệu riêng nói về điều này."
     },
     {
-      "claim_vi": "NetBIOS qua TCP/IP: dịch vụ tên dùng cổng 137 (UDP và TCP), dịch vụ gói dữ liệu dùng UDP 138, dịch vụ phiên dùng TCP 139; SMB hiện đại chạy trực tiếp qua TCP 445.",
-      "sources": [
-        "https://www.rfc-editor.org/rfc/rfc1001",
-        "https://www.rfc-editor.org/rfc/rfc1002",
-        "https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-smb2/"
-      ]
-    },
-    {
-      "claim_vi": "Cổng 587 dùng để gửi thư (submission); 465, 993 và 995 là các cổng thư qua TLS.",
-      "sources": [
-        "https://www.rfc-editor.org/rfc/rfc6409",
-        "https://www.rfc-editor.org/rfc/rfc8314"
-      ]
-    },
-    {
-      "claim_vi": "FTP dùng cổng 21 cho kênh điều khiển; kênh dữ liệu dùng cổng 20 ở chế độ chủ động hoặc cổng được chỉ định ở chế độ bị động.",
-      "source": "https://www.rfc-editor.org/rfc/rfc959"
-    },
-    {
-      "claim_vi": "PostgreSQL mặc định cổng 5432 và MySQL cổng 3306.",
-      "sources": [
-        "https://www.postgresql.org/docs/current/runtime-config-connection.html",
-        "https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_port"
-      ]
+      "id": "dns-roles-exposure",
+      "claim_vi": "Máy chủ DNS có thẩm quyền cho tên miền công khai phải nhận truy vấn từ Internet trên UDP và TCP cổng 53; resolver làm hộ người dùng thường chỉ nên phục vụ mạng của mình vì resolver mở hay bị lạm dụng; máy khách NTP chỉ cần đi ra, chỉ máy chủ giờ công cộng nhận truy vấn từ Internet.",
+      "source": "https://www.rfc-editor.org/rfc/rfc5358",
+      "section": "BCP 140",
+      "verified_by": "Thông lệ vận hành của người biên soạn, chưa đối chiếu: trang RFC không mở được từ máy biên soạn (RFC 5358, về việc ngăn resolver mở bị dùng khuếch đại tấn công, được ghi để người đọc tự kiểm). Gợi ý từ review: phân biệt máy chủ có thẩm quyền và resolver."
     }
   ],
-  "design_notes_vi": "Sáu khung dọc gom mười tám cổng theo mục đích, mỗi dòng 'số cổng → dịch vụ'. Sơ đồ tự thiết kế, không dùng ảnh nguồn.",
-  "editorial_note_vi": "Viết độc lập từ kiến thức và tiêu chuẩn kỹ thuật theo DECISIONS.md; claim chưa được đối chiếu trực tiếp với tài liệu chuẩn nên chờ review kỹ thuật. Chưa thử người học hoặc phê duyệt phát hành.",
+  "design_notes_vi": "Năm khung dọc, mỗi khung một phép đo (cổng cộng giao thức, cổng đặc quyền, cổng tạm, TCP đóng so với UDP đóng, số cổng không nói ai nghe) thay cho sáu khung gom 18 cổng theo mục đích của bản trước. Sơ đồ tự thiết kế, không dùng ảnh nguồn.",
+  "editorial_note_vi": "Viết lại ngày 2026-10-16 để làm sâu và tách khỏi nguồn; claim về số cổng mặc định của nhiều dịch vụ vẫn chờ đối chiếu với tiêu chuẩn. Review kỹ thuật bản mới đang chờ. Chưa user testing hoặc phê duyệt phát hành.",
   "source_deviations": [
-    "Nguồn chỉ liệt kê; bài gom theo mục đích, thêm giới hạn (số mặc định là quy ước, giao thức không mã hóa, không mở cơ sở dữ liệu ra Internet)."
+    "Nguồn chỉ liệt kê 18 dịch vụ kèm một số cổng mỗi dòng, theo thứ tự số cổng tăng dần. Bài này không giữ thứ tự ấy: nó mở bằng năm phép đo hành vi của số cổng trên Linux (phần không có trong nguồn) rồi xếp 18 cổng theo mức cần cân nhắc khi mở ra Internet.",
+    "Cổng 587, 465, 993, 995, 20, 137, 138 và 546/547 là phần bài bổ sung, không có trong danh sách nguồn."
   ]
 }

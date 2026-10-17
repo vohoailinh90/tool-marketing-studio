@@ -64,7 +64,7 @@ def cmd_render(args, root, config):
     warnings = render_posts(campaign, posts, config, html_only=args.html_only)
     for issue in warnings:
         print(issue)
-    return 1 if blocked else 0
+    return 1 if blocked or has_errors(warnings) else 0
 
 
 def cmd_approve(args, root, config):

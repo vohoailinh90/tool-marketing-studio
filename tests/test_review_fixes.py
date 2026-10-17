@@ -23,7 +23,7 @@ ENV = {"FB_PAGE_ID": "555", "FB_PAGE_TOKEN": TOKEN, "FB_GRAPH_VERSION": "v23.0"}
 
 # One slide per layout with every field it reads, every string set to the payload.
 SAMPLES = {
-    "cover": {}, "quote": {}, "stat": {},
+    "cover": {}, "quote": {}, "stat": {}, "diagram": {},
     "pains": {"items": [{"emoji": PAYLOAD, "text": PAYLOAD}]},
     "checklist": {"items": [PAYLOAD]},
     "chat": {"messages": [{"from": PAYLOAD, "text": PAYLOAD, "initial": PAYLOAD}, {"me": True, "text": PAYLOAD}]},

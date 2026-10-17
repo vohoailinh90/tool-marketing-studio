@@ -1,0 +1,132 @@
+# Mutation manifest — see scripts/mutation_check.py
+#
+# A passing test proves nothing on its own. These switch off each part of the source-distance ranking in turn and
+# require the named test to fail. A mutation that SURVIVES means the test guards nothing.
+
+target: scripts/sd101_source_distance.py
+note: The ranking points a reader at the System Design lessons that follow their source too closely. A body fetched from the network that is not the pinned blob, a score that ignores order or the lesson's own vocabulary, or a cache written inside the repository would each make the ranking wrong or leak source text into git.
+mutations:
+- label: a fetched or cached body whose git blob sha differs from the pin is accepted
+  find: "    if blob_sha(data) != pinned:"
+  replace: "    if False:"
+  test: tests.test_sd101_source_distance.FetchTests.test_a_cached_body_with_another_blob_sha_is_rejected_and_removed
+- label: the order of the shared vocabulary no longer lowers the score
+  find: "order = lcs_length(in_source, in_lesson) / len(in_source) if in_source else 0.0"
+  replace: "order = 1.0 if in_source else 0.0"
+  test: tests.test_sd101_source_distance.DistanceTests.test_the_same_vocabulary_in_another_order_lowers_order_but_not_coverage
+- label: the lesson's own vocabulary no longer lowers the score
+  find: "novelty = len(set(lesson_seq) - set(source_seq)) / len(set(lesson_seq)) if lesson_seq else 0.0"
+  replace: "novelty = 0.0"
+  test: tests.test_sd101_source_distance.DistanceTests.test_new_material_of_the_lessons_own_raises_novelty_and_lowers_closeness
+- label: the glossary and the list of sources count as the lesson's own words
+  find: "if title not in SKIPPED_SECTIONS]"
+  replace: "if True]"
+  test: tests.test_sd101_source_distance.TextTests.test_lesson_prose_leaves_out_the_glossary_the_sources_and_link_targets
+- label: very short words count as names
+  find: "MIN_WORD = 4"
+  replace: "MIN_WORD = 1"
+  test: tests.test_sd101_source_distance.TextTests.test_words_shorter_than_the_minimum_are_not_signals
+- label: the pinned source repository counts as an independent host
+  find: "if not any(mark in url.lower() for mark in own)"
+  replace: "if True"
+  test: tests.test_sd101_source_distance.MetadataTests.test_independent_hosts_leave_out_the_source_itself
+- label: a cache directory inside the repository is allowed
+  find: "    if args.cache_dir.resolve().is_relative_to(ROOT):"
+  replace: "    if False:"
+  test: tests.test_sd101_source_distance.SurveyTests.test_a_cache_inside_the_repository_is_refused
+- label: a lesson that cannot be measured no longer fails the run
+  find: "    return 2 if problems else 0"
+  replace: "    return 0"
+  test: tests.test_sd101_source_distance.SurveyTests.test_main_exits_2_when_a_lesson_cannot_be_measured
+- label: lessons are listed in id order, not closest first
+  find: "    rows.sort(key=lambda row: row[\"closeness\"], reverse=True)"
+  replace: "    rows.sort(key=lambda row: row[\"id\"])"
+  test: tests.test_sd101_source_distance.SurveyTests.test_the_closest_lesson_comes_first
+- label: a run that the text says did not happen counts as evidence of a run
+  find: "            if not NEGATION.search(clause[max(0, match.start() - NEGATION_WINDOW):match.start()]):"
+  replace: "            if True:"
+  test: tests.test_sd101_source_distance.MetadataTests.test_a_negated_run_is_not_evidence_and_the_recorded_phrasing_is_read
+- label: a negation carries over into the next clause
+  find: 'CLAUSE_BREAK = re.compile(r"[.;:\n()]")'
+  replace: 'CLAUSE_BREAK = re.compile(r"[\n]")'
+  test: tests.test_sd101_source_distance.MetadataTests.test_a_run_in_one_clause_is_not_cancelled_by_a_negation_in_another
+- label: the scope of the claims step is not read for a recorded run
+  find: 'for key in ("evidence", "scope"))'
+  replace: 'for key in ("evidence",))'
+  test: tests.test_sd101_source_distance.MetadataTests.test_the_scope_of_the_claims_step_counts_as_a_record
+- label: a word with a combining mark is cut into ASCII fragments when the text is tokenized
+  find: 'r"\d[\d.,]*\d|\w+(?:[_-]\w+)*", unicodedata.normalize("NFC", text)):'
+  replace: 'r"\d[\d.,]*\d|\w+(?:[_-]\w+)*", text):'
+  test: tests.test_sd101_source_distance.TextTests.test_a_vietnamese_word_is_dropped_whole_not_cut_into_ascii_fragments
+- label: a word with a combining mark is cut into ASCII fragments when names are collected
+  find: 'for match in re.finditer(r"\w+(?:[_-]\w+)*", unicodedata.normalize("NFC", text)):'
+  replace: 'for match in re.finditer(r"\w+(?:[_-]\w+)*", text):'
+  test: tests.test_sd101_source_distance.TextTests.test_shaped_names_ignore_vietnamese_words_written_with_combining_marks
+- label: a word with marks is accepted as a signal because only its ASCII fragment was checked
+  find: "piece.isalpha() and piece.isascii() and "
+  replace: "piece.isalpha() and "
+  test: tests.test_sd101_source_distance.TextTests.test_a_vietnamese_word_is_dropped_whole_not_cut_into_ascii_fragments
+- label: a pinned id that is not a git object id becomes a cache file name
+  find: "    if not (isinstance(pinned, str) and HEX40.fullmatch(pinned)):"
+  replace: "    if False:"
+  test: tests.test_sd101_source_distance.FetchTests.test_a_pinned_id_that_is_not_a_git_object_id_is_refused_before_it_becomes_a_file_name
+- label: a snapshot that is not a plain repository, commit and path is turned into a download address
+  find: "            if not (isinstance(snapshot[key], str) and pattern.fullmatch(snapshot[key])):"
+  replace: "            if False:"
+  test: tests.test_sd101_source_distance.FetchTests.test_a_snapshot_that_cannot_become_a_download_address_is_refused_without_a_request
+- label: a metadata file that is not JSON crashes the survey
+  find: "except (OSError, ValueError, KeyError, TypeError, AttributeError, urllib.error.URLError) as error:"
+  replace: "except (OSError, KeyError, TypeError, AttributeError, urllib.error.URLError) as error:"
+  test: tests.test_sd101_source_distance.SurveyTests.test_a_metadata_file_that_is_not_json_is_reported_not_raised
+- label: the host and evidence columns are built outside the error boundary of the survey
+  find: '            row.update({"independent_hosts": len(independent_hosts(metadata)), "own_evidence": own_evidence(metadata)})'
+  replace: '            pass\n        else:\n            row.update({"independent_hosts": len(independent_hosts(metadata)), "own_evidence": own_evidence(metadata)})'
+  test: tests.test_sd101_source_distance.SurveyTests.test_metadata_of_the_wrong_shape_is_reported_for_that_lesson_only
+- label: a Vietnamese word without marks is read as a name
+  find: "            if VIETNAMESE_SYLLABLE.fullmatch(piece) and piece not in keep and piece not in TECHNICAL_NAMES:"
+  replace: "            if False:"
+  test: tests.test_sd101_source_distance.TextTests.test_vietnamese_words_without_marks_are_language_not_names
+- label: HTML tags of the lesson are read as words
+  find: "    return strip_html(strip_links(\"\\n\".join(kept)))"
+  replace: "    return strip_links(\"\\n\".join(kept))"
+  test: tests.test_sd101_source_distance.TextTests.test_html_markup_is_not_vocabulary_in_the_lesson_or_the_source
+- label: HTML tags of the source are read as words
+  find: "    return strip_html(strip_links(\"\\n\".join(lines)))"
+  replace: "    return strip_links(\"\\n\".join(lines))"
+  test: tests.test_sd101_source_distance.TextTests.test_html_markup_is_not_vocabulary_in_the_lesson_or_the_source
+- label: a name that an English guide uses is dropped because it fits a Vietnamese syllable
+  find: "            if VIETNAMESE_SYLLABLE.fullmatch(piece) and piece not in keep and piece not in TECHNICAL_NAMES:"
+  replace: "            if VIETNAMESE_SYLLABLE.fullmatch(piece) and piece not in TECHNICAL_NAMES:"
+  test: tests.test_sd101_source_distance.TextTests.test_a_name_that_fits_a_vietnamese_syllable_is_kept_when_listed
+- label: a technical name listed by hand is dropped because it fits a Vietnamese syllable
+  find: "            if VIETNAMESE_SYLLABLE.fullmatch(piece) and piece not in keep and piece not in TECHNICAL_NAMES:"
+  replace: "            if VIETNAMESE_SYLLABLE.fullmatch(piece) and piece not in keep:"
+  test: tests.test_sd101_source_distance.TextTests.test_a_name_that_fits_a_vietnamese_syllable_is_kept_when_listed
+- label: the survey does not share the names of the English guides between lessons
+  find: '**distance(source, lesson.read_text(encoding="utf-8"), keep)}'
+  replace: '**distance(source, lesson.read_text(encoding="utf-8"))}'
+  test: tests.test_sd101_source_distance.SurveyTests.test_a_name_used_by_another_guide_is_kept_for_every_lesson
+- label: angle brackets inside code are removed as if they were markup
+  find: "    for position in range(0, len(parts), 2):"
+  replace: "    for position in range(0, len(parts), 1):"
+  test: tests.test_sd101_source_distance.TextTests.test_angle_brackets_inside_code_are_kept_as_text
+- label: a heading-like line inside a code fence starts a new section
+  find: '        match = None if fenced else re.match(r"##\s+(.+?)\s*$", line)'
+  replace: '        match = re.match(r"##\s+(.+?)\s*$", line)'
+  test: tests.test_sd101_source_distance.TextTests.test_a_heading_like_line_inside_a_code_fence_does_not_split_the_lesson
+- label: link destinations of the source are read as words
+  find: "    return strip_html(strip_links(\"\\n\".join(lines)))"
+  replace: "    return strip_html(\"\\n\".join(lines))"
+  test: tests.test_sd101_source_distance.TextTests.test_link_destinations_are_not_vocabulary_of_the_source_or_the_lesson
+- label: link destinations of the lesson are read as words
+  find: "    return strip_html(strip_links(\"\\n\".join(kept)))"
+  replace: "    return strip_html(\"\\n\".join(kept))"
+  test: tests.test_sd101_source_distance.TextTests.test_link_destinations_are_not_vocabulary_of_the_source_or_the_lesson
+- label: bare URLs are read as words
+  find: "    return re.sub(r\"https?://\\S+\", \" \", text)"
+  replace: "    return text"
+  test: tests.test_sd101_source_distance.TextTests.test_link_destinations_are_not_vocabulary_of_the_source_or_the_lesson
+- label: link destinations in parentheses are read as words
+  find: "    text = re.sub(r\"\\]\\([^)]*\\)\", \"]\", text)"
+  replace: "    pass"
+  test: tests.test_sd101_source_distance.TextTests.test_link_destinations_are_not_vocabulary_of_the_source_or_the_lesson

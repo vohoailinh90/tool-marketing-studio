@@ -1,0 +1,8 @@
+# Mutation manifest — see scripts/mutation_check.py
+target: mkt/server.py
+note: The app does not call a post rendered when its diagram could not be drawn.
+mutations:
+- label: the app says rendered although a post could not be drawn
+  find: '        return {"rendered": not has_errors(warnings), "issues": issue_dicts(warnings)}'
+  replace: '        return {"rendered": True, "issues": issue_dicts(warnings)}'
+  test: tests.test_diagram.RenderPostTests.test_the_app_reports_a_post_it_could_not_render

@@ -16,6 +16,7 @@ from __future__ import annotations
 import copy
 import os
 import shutil
+import tempfile
 from pathlib import Path
 
 import yaml
@@ -113,9 +114,8 @@ def export(spec: dict, out: Path, root: Path, fmt: str = DEFAULT) -> tuple[list[
     alt = alt_text(spec, slides)
     alt.encode("utf-8")                                    # fails here, before anything is drawn
     folder = out / spec["id"]
-    work = out / f".{spec['id']}.new"
-    shutil.rmtree(work, ignore_errors=True)
-    work.mkdir(parents=True)
+    out.mkdir(parents=True, exist_ok=True)
+    work = Path(tempfile.mkdtemp(prefix=f".{spec['id']}.", suffix=".new", dir=out))      # its own folder: two exports of one figure never share one
     try:
         author = handle(root)
         for slide in slides:

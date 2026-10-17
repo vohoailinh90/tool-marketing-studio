@@ -58,3 +58,7 @@ mutations:
   find: "        if problems:\n            return [], problems\n        folder.mkdir"
   replace: "        if False:\n            return [], problems\n        folder.mkdir"
   test: tests.test_figures.FacebookTests.test_a_failed_export_leaves_the_previous_pack_and_no_temporary_folder
+- label: two exports of one figure share one staging folder
+  find: '    work = Path(tempfile.mkdtemp(prefix=f".{spec[''id'']}.", suffix=".new", dir=out))'
+  replace: "    work = out / f\".{spec['id']}.new\"\n    shutil.rmtree(work, ignore_errors=True)\n    work.mkdir()\n    work = work"
+  test: tests.test_figures.FacebookTests.test_two_exports_of_one_figure_at_the_same_time_do_not_share_a_staging_folder

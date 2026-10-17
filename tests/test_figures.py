@@ -751,6 +751,25 @@ class FacebookTests(unittest.TestCase):
                 self.assertEqual((folder / "01.png").read_bytes(), b"old 01.png", label)
                 self.assertEqual([p.name for p in out.iterdir()], ["demo-small"], label)
 
+    def test_two_exports_of_one_figure_at_the_same_time_do_not_share_a_staging_folder(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            out = Path(tmp)
+            inner: list = []
+            draw_once = self.fake_png()
+
+            def draw(markup, path, width, height, scale=1.0):
+                if not inner:                                   # while the first export is drawing its first slide, a second one runs to the end
+                    inner.append(None)
+                    inner[0] = facebook.export(load("small.json"), out, ROOT)
+                draw_once(markup, path, width, height, scale)
+
+            with mock.patch.object(browser, "png", draw):
+                files, problems = facebook.export(load("small.json"), out, ROOT)
+            self.assertEqual((problems, [f.name for f in files]), ([], ["01.png", "02.png"]))
+            self.assertEqual(inner[0][1], [])
+            self.assertEqual(sorted(p.name for p in (out / "demo-small").iterdir()), ["01.png", "02.png", "alt.txt"])
+            self.assertEqual([p.name for p in out.iterdir()], ["demo-small"])
+
     def test_a_successful_export_replaces_the_whole_previous_pack_and_leaves_no_temporary_folder(self):
         with tempfile.TemporaryDirectory() as tmp:
             out = Path(tmp)

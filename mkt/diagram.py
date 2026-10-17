@@ -37,7 +37,7 @@ MAX_UPSCALE = 1.4       # a small diagram grows at most this much, so three boxe
 # the command stands alone on its line and its arguments follow on the next. Everything else a diagram can say is drawing.
 # `;` also separates statements (`A --> B; style A fill:#f00` restyles A), so lines are split at it by `split_statements`.
 # This is the early, friendly answer; the check in `RENDER_JS` on the drawn SVG is the barrier against a link, image or script.
-FORBIDDEN_STATEMENT = re.compile(r"^\s*(?:click|href|call|callback|links?|classDef|style|linkStyle)(?:\s|$)|^\s*acc(?:Title|Descr)\b",
+FORBIDDEN_STATEMENT = re.compile(r"^\s*(?:click|href|call|callback|links?|classDef|style|linkStyle|rect|box)(?:\s|$)|^\s*acc(?:Title|Descr)\b",
                                  re.IGNORECASE)
 CLASS_STATEMENT = re.compile(r"^\s*class\s+\S+\s+(\w+)\s*$")
 TONE_SUFFIX = re.compile(r":::\s*(\w+)")
@@ -99,7 +99,7 @@ def source_problems(source) -> list[str]:
     for statement in parts:
         if FORBIDDEN_STATEMENT.match(statement):
             problems.append(f"'{statement.split()[0]}' is not allowed in a diagram "
-                            "(no links, clicks or CSS; highlight with :::hl, :::ok, :::bad, :::warn or :::muted)")
+                            "(no links, clicks, colour blocks or CSS; highlight with :::hl, :::ok, :::bad, :::warn or :::muted)")
             break
     tones = [m.group(1) for m in TONE_SUFFIX.finditer(text)]
     tones += [m.group(1) for m in map(CLASS_STATEMENT.match, parts) if m]

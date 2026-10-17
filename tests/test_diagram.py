@@ -46,6 +46,10 @@ class SourceTests(unittest.TestCase):
             "javascript url": 'flowchart TD\n  A["javascript:alert(1)"] --> B',
             "data url": 'flowchart TD\n  A["data:text/html;base64,AA"] --> B',
             "accTitle": "flowchart TD\n  accTitle: x\n  A --> B",
+            "rect with a colour": "sequenceDiagram\n  A->>B: hi\n  rect rgb(255, 0, 0)\n    B->>A: ok\n  end",
+            "rect with rgba": "sequenceDiagram\n  rect rgba(0, 0, 255, .1)\n    A->>B: ok\n  end",
+            "box with a colour": "sequenceDiagram\n  box Aqua Team\n    participant A\n  end\n  A->>B: hi",
+            "BOX in capitals": "sequenceDiagram\n  BOX transparent Team\n    participant A\n  end",
             "LINK in capitals": "sequenceDiagram\n  participant A\n  LINK A: Docs @ x",
             "Link in a mixed case": "sequenceDiagram\n  participant A\n  Link A: Docs @ x",
             "CLICK in a state diagram": 'stateDiagram-v2\n  [*] --> A\n  CLICK A href "x"',
@@ -93,6 +97,7 @@ class SourceTests(unittest.TestCase):
 
     def test_a_node_may_be_named_like_a_keyword_when_it_is_not_a_statement(self):
         self.assertEqual(self.problems("sequenceDiagram\n  participant Click\n  Click->>Click: ping"), [])
+        self.assertEqual(self.problems("sequenceDiagram\n  participant Box\n  participant Rect\n  Box->>Rect: ping"), [])
 
     def test_only_the_known_tones_may_highlight(self):
         for tone in diagram.TONES:

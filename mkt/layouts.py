@@ -113,7 +113,7 @@ LAYOUT_DOCS = {
     "image": "title, src* (an image file inside the campaign folder), caption — a real screenshot",
     "diagram": "title, source* (Mermaid text starting flowchart TD, sequenceDiagram or stateDiagram-v2; "
                "at most 40 lines, one idea, labels in the post's language; highlight a node with :::hl, :::ok, :::bad, "
-               ":::warn or :::muted; no links, clicks, HTML or style lines), caption, note — a flow, a sequence or a "
+               ":::warn or :::muted; no links, clicks, HTML, rect/box colour blocks or style lines), caption, note — a flow, a sequence or a "
                "state machine drawn in the campaign's colours",
 }
 

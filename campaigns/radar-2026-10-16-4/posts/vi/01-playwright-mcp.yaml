@@ -1,0 +1,108 @@
+id: 01-playwright-mcp
+status: draft
+format: portrait
+series: Radar GitHub · 2026-10-16-4
+link: 01-playwright-mcp
+slides:
+- layout: cover
+  emoji: 🤖
+  eyebrow: Radar GitHub · AI
+  title: 'Playwright MCP: cho AI agent tự điều khiển trình duyệt'
+  subtitle: Máy chủ MCP dùng Playwright để một agent AI mở trình duyệt, bấm, gõ, điền form và đọc trang
+    qua ảnh chụp cấu trúc (accessibility snapshot) thay vì ảnh chụp…
+- layout: stat
+  eyebrow: Số liệu theo ngày quét
+  value: '38.200'
+  label: sao trên GitHub
+  caption: Apache-2.0
+- layout: quote
+  text: 'Muốn agent AI thao tác trên website, cách quen thuộc là chụp màn hình rồi nhờ mô hình xem ảnh
+    đoán chỗ cần bấm: dễ mơ hồ và cần mô hình biết xem ảnh.'
+  author: Vấn đề nó giải quyết
+- layout: flow
+  variant: after
+  title: Nó chạy thế nào
+  steps:
+  - text: 'Client gọi công cụ: MCP client khởi chạy máy chủ bằng npx @playwright/mcp@latest rồi gọi các
+      công cụ như browser_navigate hay browser_click.'
+  - text: 'Máy chủ điều khiển trình duyệt: Máy chủ dùng Playwright mở Chromium, Firefox, WebKit hoặc kênh
+      Chrome, Edge; hồ sơ có thể lưu bền, isolated hoặc nối vào trình duyệt…'
+  - text: 'Snapshot thay vì ảnh chụp: browser_snapshot trả cây accessibility của trang. Ảnh chụp màn hình
+      chỉ để xem: README nói không thể hành động dựa trên ảnh, hãy dùng snapshot.'
+  - text: 'Chọn phần tử theo tham chiếu: Công cụ thao tác như bấm, gõ nhận target là tham chiếu chính
+      xác lấy từ snapshot hoặc một selector duy nhất (kéo thả có điểm đầu và điểm…'
+  - text: 'Nhóm công cụ mở rộng: Ngoài nhóm cốt lõi và quản lý tab, các nhóm mạng, lưu trữ, devtools,
+      vision, pdf và kiểm thử được bật thêm bằng --caps.'
+- layout: features
+  title: Các mảnh ghép
+  items:
+  - emoji: 🧩
+    title: MCP client
+    text: Ứng dụng AI của bạn (VS Code, Cursor, Claude Desktop...), nơi khai báo máy chủ và nơi agent
+      gọi công cụ.
+  - emoji: ⚙️
+    title: Máy chủ Playwright MCP
+    text: Tiến trình chạy bằng npx @playwright/mcp@latest, nhận lời gọi công cụ và điều khiển trình duyệt.
+  - emoji: 🔌
+    title: Trình duyệt do Playwright mở
+    text: Chromium, Firefox, WebKit hoặc kênh Chrome, Edge; chạy headless hoặc có cửa sổ.
+  - emoji: 📦
+    title: Accessibility snapshot
+    text: Cây cấu trúc của trang kèm tham chiếu phần tử; thứ agent đọc thay cho ảnh chụp.
+  - emoji: 🧠
+    title: Bộ công cụ (tools)
+    text: Nhóm cốt lõi (điều hướng, bấm, gõ, snapshot), quản lý tab và các nhóm bật bằng --caps.
+  - emoji: 📡
+    title: Hồ sơ và cấu hình
+    text: Tham số args, biến môi trường hoặc file JSON; hồ sơ lưu bền, isolated hoặc extension.
+- layout: checklist
+  title: Học được gì
+  tone: ok
+  items:
+  - 'Đưa cho mô hình dữ liệu có cấu trúc thay vì ảnh: ít mơ hồ hơn và không cần mô hình xem ảnh (README
+    gọi là áp dụng công cụ có tính xác định).'
+  - 'Chia khả năng thành nhóm bật thêm theo nhu cầu (`--caps`): nhóm cốt lõi có sẵn, các nhóm mạng, lưu
+    trữ, devtools bật riêng.'
+  - 'Một lõi, nhiều cách nối: stdio qua `npx`, HTTP qua `--port`, Docker, hoặc nhúng bằng `createConnection`:
+    README liệt kê cả bốn cách chạy.'
+  - 'Nói rõ giới hạn của mình: README phân biệt MCP với CLI kèm SKILLS và nhắc đây không phải ranh giới
+    bảo mật, giúp người dùng chọn đúng công cụ.'
+- layout: pains
+  title: Lưu ý
+  tone: accent
+  items:
+  - emoji: ⚠️
+    text: Không phải ranh giới bảo mật, README nói rõ.
+  - emoji: ⚠️
+    text: 'Tốn ngữ cảnh hơn CLI: README cho biết coding agent thường chuộng CLI kèm SKILLS vì tiết kiệm
+      token, không phải nạp schema công cụ và cây…'
+  - emoji: ⚠️
+    text: '`browser_run_code_unsafe` chạy JavaScript tùy ý trong tiến trình máy chủ Playwright và README
+      gọi là tương đương RCE; cân nhắc trước khi…'
+  - emoji: ⚠️
+    text: Hồ sơ lưu bền giữ đăng nhập trên đĩa và chỉ một trình duyệt dùng được một lúc. Bản Docker chỉ
+      hỗ trợ chromium headless.
+- layout: cta
+  emoji: 📌
+  title: Lưu lại để học dần
+  text: Mỗi tuần hai lần có một repo mới.
+  show_link: false
+platforms:
+  facebook:
+    caption: 'Để AI tự mở trình duyệt, bấm nút và điền form mà không cần ảnh chụp màn hình
+
+
+      Playwright MCP đưa cho agent cấu trúc của trang và một bộ công cụ có tên rõ ràng.
+
+      Bài hướng dẫn từng bước đi kèm chỉ cách khai báo máy chủ, chọn hồ sơ trình duyệt và bật thêm nhóm
+      công cụ.
+
+      Lưu ý: README nói đây không phải ranh giới bảo mật.
+
+
+      Nội dung do AI tóm tắt từ README và cấu trúc repo; hãy đọc repo gốc trước khi dùng.'
+    first_comment: 'Repo gốc: {link}'
+    hashtags:
+    - AI
+    - MCP
+    - Playwright

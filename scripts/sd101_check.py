@@ -13,13 +13,17 @@ The store, `system-design-101/vi/`, holds:
   progress.json                          what is written, what is next
   claims.jsonl                           which session is writing which lesson (scripts/sd101_claims.py)
   lessons/<id>/lesson.md, lesson.yaml    the lesson; lesson.yaml only points at its metadata
+  lessons/<id>/slides/                   optional: the slide deck's record, deck.yaml, and its exported PPTX and PNG
+                                         files (scripts/sd101_slides.py)
   lessons/<id>.md                        optional one-line pointer to lessons/<id>/lesson.md
   metadata/<id>.json                     the single record of a lesson's status and evidence
   diagrams/<id>-main.svg                 the lesson's figure, drawn for it
 
 What is checked, per lesson id:
-  - lessons/<id>/ holds exactly lesson.md and lesson.yaml; lesson.yaml has only id (the directory
-    name) and metadata_ref (../../metadata/<id>.json), so it cannot carry a second copy of the status
+  - lessons/<id>/ holds exactly lesson.md and lesson.yaml, and optionally a slides/ directory that
+    scripts/sd101_slides.py judges (the deck record, and the exports it says are there); lesson.yaml has
+    only id (the directory name) and metadata_ref (../../metadata/<id>.json), so it cannot carry a second
+    copy of the status
   - metadata/<id>.json parses (a key named twice is an error) and has the keys DECISIONS.md lists, no
     others; id equals the file name and is in the source map; title_vi equals the source map's;
     language is vi; content_status is draft | review | done, and done needs the technical review and
@@ -135,6 +139,7 @@ STATUS_WORD = re.compile(r"(?<![^\W_])(?:draft|review|done)(?![^\W_])", re.IGNOR
 SCHEME = re.compile(r"^[A-Za-z][A-Za-z0-9+.-]*:")
 SOURCE_IMAGE_HOST = "assets.bytebytego.com"
 LESSON_FILES = {"lesson.md", "lesson.yaml"}
+SLIDES_DIRECTORY = "slides"
 STORE_ENTRIES = {"README.md", "PROGRESS.md", "MIGRATION.md", "progress.json", "claims.jsonl", "diagrams", "lessons",
                  "metadata"}
 STORE_PAGES = ("README.md", "PROGRESS.md", "MIGRATION.md")
@@ -1375,6 +1380,22 @@ def check_progress(path: pathlib.Path, entries: dict[str, dict], written: list[s
     return [Problem("progress.json", reason) for reason in reasons]
 
 
+_SLIDES_MODULE: list = []
+
+
+def slides_problems(lesson_id: str, slides_dir: pathlib.Path) -> list[Problem]:
+    """lessons/<id>/slides/ is the slide deck's record and exports; the rules live in scripts/sd101_slides.py."""
+    if not _SLIDES_MODULE:
+        spec = importlib.util.spec_from_file_location("sd101_slides", pathlib.Path(__file__).with_name("sd101_slides.py"))
+        if spec is None or spec.loader is None:
+            return [Problem(lesson_id, "slides cannot be checked: scripts/sd101_slides.py cannot be loaded")]
+        module = importlib.util.module_from_spec(spec)
+        sys.modules.setdefault("sd101_slides", module)
+        spec.loader.exec_module(module)
+        _SLIDES_MODULE.append(module)
+    return [Problem(lesson_id, f"slides/{reason}") for reason in _SLIDES_MODULE[0].folder_problems(slides_dir, lesson_id)]
+
+
 def check_claims(path: pathlib.Path, entries: dict[str, dict], lesson_ids: set[str],
                  pin: tuple[str, str] | None, required: bool) -> list[Problem]:
     """claims.jsonl is the claim registry; the format and its rules live in scripts/sd101_claims.py."""
@@ -1443,9 +1464,12 @@ def check_store(store: pathlib.Path, source_map: pathlib.Path, pin_roster: bool 
         for path in sorted(lesson_dir.iterdir()):
             if path.is_symlink():
                 problems.append(Problem(lesson_id, f"{path.name} is a symbolic link; a lesson directory holds real files only"))
+            elif path.name == SLIDES_DIRECTORY and path.is_dir():
+                problems.extend(slides_problems(lesson_id, path))
             elif path.name not in LESSON_FILES:
                 problems.append(Problem(lesson_id, f"{path.name} is not allowed; a lesson directory holds only "
-                                                   "lesson.md and lesson.yaml (figures live in diagrams/)"))
+                                                   "lesson.md, lesson.yaml and an optional slides/ directory "
+                                                   "(figures live in diagrams/)"))
         for required in (markdown, pointer):
             if not required.is_file():
                 problems.append(Problem(lesson_id, f"{required.name} is missing"))

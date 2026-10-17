@@ -1282,6 +1282,26 @@ class LessonMarkdownRuleTests(StoreCase):
         (lesson_dir / "assets").mkdir()
         self.assertProblem("assets is not allowed")
 
+    def test_a_lesson_directory_may_also_hold_the_slides_that_sd101_slides_judges(self) -> None:
+        slides = self.write_lesson("sd-01-001") / "slides"
+        slides.mkdir()
+        self.assertProblem("slides/deck.yaml is missing")
+        (slides / "deck.yaml").write_text(
+            "id: sd-01-001\nstatus: done\nowner: claude/a\ndone_at: 2026-10-17T09:00:00Z\n"
+            "moda_canvas: cvs_5ZDSW8ECGA8AZBX5S8S7FF58M2\nmoda_url: https://moda.app/canvas/bf6e7887\n"
+            "slide_count: 10\nsize: 1920x1080\nexports: pending\n", encoding="utf-8")
+        self.assertEqual([], self.problems())
+        (slides / "01.png").write_bytes(b"x")
+        self.assertProblem("slides/01.png is not expected here")
+        (slides / "01.png").unlink()
+        (slides / "deck.yaml").write_text("id: sd-01-002\nstatus: doing\n", encoding="utf-8")
+        self.assertProblem("slides/deck.yaml: id must be sd-01-001")
+
+    def test_slides_must_be_a_directory_not_a_file_or_a_link(self) -> None:
+        lesson_dir = self.write_lesson("sd-01-001")
+        (lesson_dir / "slides").write_text("x", encoding="utf-8")
+        self.assertProblem("slides is not allowed")
+
     def test_diagrams_holds_only_the_figures_of_lesson_directories(self) -> None:
         diagrams = self.store / "diagrams"
         self.assertEqual([], self.problems())

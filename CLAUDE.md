@@ -300,6 +300,22 @@ Several sessions write lessons of `system-design-101/vi/` at the same time. The 
   session (no heartbeat for 72 h) is taken over with `claim --take-stale`.
 - Claiming reserves a lesson; it does not approve, review or publish it (`written` is not `content_status: done`).
 
+## System Design slides: claim before you build
+
+Every written lesson also becomes a Facebook slide deck built on Moda; `docs/sd101-slides.md` has the style, the
+files and the exports. Several sessions build decks at once and `claims.jsonl` knows nothing about decks, so
+`scripts/sd101_slides.py` holds those claims (one `lessons/<id>/slides/deck.yaml` per lesson).
+
+- **Before** building a deck: `python3 scripts/sd101_slides.py claim --next N --publish` (or `claim <id>... --publish`).
+  Never start a lesson the tool shows as `doing` or `done`; `status` lists what is free. `claim` and `verify` stop with
+  exit 2 when the remote cannot be read: fix that, do not guess.
+- **While working**: `touch --publish` now and then; `verify` must exit 0 before you push. If you lost a claim, stop on that
+  lesson and `release` it. A claim of a dead session (no heartbeat for 72 h) is taken over with `claim --take-stale`.
+- **When done**: `finish <id> --canvas <cvs_...> --url <editor link> --slides <n>`, and commit the lesson's `slides/` folder.
+- **The Moda watermark stays.** The free plan puts a `moda.app` badge on exported PNG and PPTX files and has no switch for
+  it; never remove it from a file. A deck is finished with `exports: pending`, and its files are added (`exported <id>`)
+  only once Moda exports them without the badge.
+
 ## Languages (Vietnamese / Japanese / English)
 
 - Content: three complete versions, as above.

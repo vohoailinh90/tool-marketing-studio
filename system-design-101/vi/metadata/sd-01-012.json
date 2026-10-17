@@ -126,6 +126,13 @@
       "claim_vi": "Số cổng không xác định giao thức đang nói trên nó: một máy chủ web chạy trên cổng 3306 trả lời curl bình thường.",
       "source": "https://github.com/python/cpython/blob/v3.13.0/Lib/http/server.py",
       "verified_by": "Chạy http.server của Python 3.13 (mã nguồn Lib/http/server.py v3.13.0) trên 127.0.0.1:3306 và curl 8.5.0 tới đó ngày 2026-10-16: nhận 200 và nội dung. Đây là thử nghiệm của người biên soạn, không có tài liệu riêng nói về điều này."
+    },
+    {
+      "id": "dns-roles-exposure",
+      "claim_vi": "Máy chủ DNS có thẩm quyền cho tên miền công khai phải nhận truy vấn từ Internet trên UDP và TCP cổng 53; resolver làm hộ người dùng thường chỉ nên phục vụ mạng của mình vì resolver mở hay bị lạm dụng; máy khách NTP chỉ cần đi ra, chỉ máy chủ giờ công cộng nhận truy vấn từ Internet.",
+      "source": "https://www.rfc-editor.org/rfc/rfc5358",
+      "section": "BCP 140",
+      "verified_by": "Thông lệ vận hành của người biên soạn, chưa đối chiếu: trang RFC không mở được từ máy biên soạn (RFC 5358, về việc ngăn resolver mở bị dùng khuếch đại tấn công, được ghi để người đọc tự kiểm). Gợi ý từ review: phân biệt máy chủ có thẩm quyền và resolver."
     }
   ],
   "design_notes_vi": "Năm khung dọc, mỗi khung một phép đo (cổng cộng giao thức, cổng đặc quyền, cổng tạm, TCP đóng so với UDP đóng, số cổng không nói ai nghe) thay cho sáu khung gom 18 cổng theo mục đích của bản trước. Sơ đồ tự thiết kế, không dùng ảnh nguồn.",

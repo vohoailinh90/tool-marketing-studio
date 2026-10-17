@@ -172,6 +172,16 @@ class SpecTests(unittest.TestCase):
         for fine in ("e\u0301", "x\u0301\u0323 and \u26a0\ufe0f", "Vie\u0323\u0302t"):
             self.assertEqual(self.problems_after(lambda d: d["sections"][2]["items"][0].update(text=fine)), [], fine)
 
+    def test_lengths_are_counted_on_the_text_as_it_is_drawn(self):
+        padded = "a" + " " * 18 + "b"                                     # 20 characters written, 3 drawn (a b)
+        self.assertTrue(any("is 3 characters" in p for p in self.problems_after(lambda d: d.update(desc=padded))))
+        self.assertTrue(any("is 3 characters" in p for p in self.problems_after(lambda d: d.update(desc="a\t\t\t\n\n\t\t\t\t\t\t\t\t\t\t\t\t\tb"))))
+        long_gap = "x" + " " * 80 + "y"                                    # 82 written, 3 drawn: inside the title limit
+        self.assertEqual(self.problems_after(lambda d: d.update(title=long_gap)), [])
+        self.assertEqual(scene.build(dict(load(), title=long_gap), svg.STYLE)["items"][0]["text"], "x y")
+        decomposed = "Vie\u0323\u0302t " * 8                                # 56 characters written, 48 drawn once composed
+        self.assertEqual(self.problems_after(lambda d: d.update(title=decomposed + "n" * 10)), [])
+
     def test_a_language_outside_the_three_is_refused(self):
         self.assertTrue(any("lang" in p for p in self.problems_after(lambda d: d.update(lang="fr"))))
 

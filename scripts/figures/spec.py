@@ -24,7 +24,7 @@ from pathlib import Path
 from mkt.check import has_url
 
 from . import icons
-from .text import combining, measurable
+from .text import combining, measurable, one_line
 
 ID = re.compile(r"[a-z0-9][a-z0-9-]{1,40}")
 KINDS = {
@@ -87,8 +87,9 @@ def _text(value, where: str, low: int, high: int, found: list[str]) -> None:
     if not isinstance(value, str) or not value.strip():
         found.append(f"{where} must be text")
         return
-    if len(value.strip()) < low or len(value.strip()) > high:
-        found.append(f"{where} is {len(value.strip())} characters, expected {low}-{high}")
+    shown = one_line(value)                                  # what is drawn: whitespace collapsed, composed form
+    if len(shown) < low or len(shown) > high:
+        found.append(f"{where} is {len(shown)} characters, expected {low}-{high}")
     if LINK.search(value) or has_url(value):             # has_url is the studio's rule for posts: bare domains and spaced schemes too
         found.append(f"{where} holds a link or a source-image host; a figure carries no address")
     if hidden(value):

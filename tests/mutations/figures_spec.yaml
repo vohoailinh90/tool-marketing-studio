@@ -82,3 +82,7 @@ mutations:
   find: '            base = not c.isspace()'
   replace: '            base = True'
   test: tests.test_figures.SpecTests.test_a_combining_mark_with_no_letter_before_it_is_refused
+- label: a length is counted on the text as written, not as drawn
+  find: '    shown = one_line(value)                                  # what is drawn: whitespace collapsed, composed form'
+  replace: '    shown = value.strip()                                    # what is drawn: whitespace collapsed, composed form'
+  test: tests.test_figures.SpecTests.test_lengths_are_counted_on_the_text_as_it_is_drawn

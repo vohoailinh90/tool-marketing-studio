@@ -10,3 +10,23 @@ mutations:
   find: "except Exception as exc:\n        raise Unavailable("
   replace: "except ZeroDivisionError as exc:\n        raise Unavailable("
   test: tests.test_figures.RobustnessTests.test_a_browser_that_does_not_start_is_reported_as_unavailable
+- label: a Playwright error after the browser started is not turned into a failure
+  find: "    except Error as exc:\n        first = "
+  replace: "    except ZeroDivisionError as exc:\n        first = "
+  test: tests.test_figures.RobustnessTests.test_a_playwright_error_after_the_browser_started_is_a_failure_not_a_traceback
+- label: any error of ours is blamed on the browser
+  find: "    except Error as exc:\n        first = "
+  replace: "    except Exception as exc:\n        first = "
+  test: tests.test_figures.RobustnessTests.test_a_playwright_error_after_the_browser_started_is_a_failure_not_a_traceback
+- label: a browser that cannot show the page is left running
+  find: "        with contextlib.suppress(Exception):\n            browser.close()\n        raise\n"
+  replace: "        raise\n"
+  test: tests.test_figures.RobustnessTests.test_a_playwright_error_after_the_browser_started_is_a_failure_not_a_traceback
+- label: the screenshot is taken outside the guard
+  find: "    with _drawing(), sync_playwright() as p:\n        browser, page = _page(p, markup, width, height, scale)"
+  replace: "    with sync_playwright() as p:\n        browser, page = _page(p, markup, width, height, scale)"
+  test: tests.test_figures.RobustnessTests.test_a_playwright_error_after_the_browser_started_is_a_failure_not_a_traceback
+- label: the text measure is taken outside the guard
+  find: "    with _drawing(), sync_playwright() as p:\n        browser, page = _page(p, markup, scene[\"w\"], scene[\"h\"])"
+  replace: "    with sync_playwright() as p:\n        browser, page = _page(p, markup, scene[\"w\"], scene[\"h\"])"
+  test: tests.test_figures.RobustnessTests.test_a_playwright_error_after_the_browser_started_is_a_failure_not_a_traceback

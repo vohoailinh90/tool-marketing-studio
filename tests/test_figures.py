@@ -931,12 +931,22 @@ class RobustnessTests(unittest.TestCase):
         return code, err.getvalue()
 
     def test_a_scale_that_would_draw_garbage_is_refused(self):
-        for bad in ("nan", "inf", "-2", "0", "0.1", "0.24", "1e9", "8.5", "abc"):
+        for bad in ("nan", "inf", "-2", "0", "0.1", "0.24", "1e9", "8.5", "abc", "1.234567", "1.01", "2.001"):
             code, err = self.run_cli("render", str(POLLING), "--format", "drawio", "--scale", bad)
             self.assertEqual(code, 2, bad)
             self.assertIn("--scale", err)
-        for good in ("0.25", "1.5", "8"):
+        for good in ("0.25", "0.3", "1.5", "7.95", "8"):
             self.assertEqual(self.run_cli("render", str(POLLING), "--format", "drawio", "--scale", good)[0], 0, good)
+
+    def test_every_scale_the_cli_accepts_is_read_back_exactly_from_every_editor_file(self):
+        """A scale with more digits than the page width keeps would be recovered as another number, and `check` would call a fresh file stale."""
+        small = load("small.json")
+        makers = {".drawio": drawio.diagram, ".excalidraw": excalidraw.board, "-moda.xml": moda.markup}
+        for step in range(5, 161):                                 # 0.25 to 8 in steps of 0.05
+            scale = cli.scale_argument(str(step / 20))
+            self.assertEqual(scale, step / 20)
+            for suffix, make in makers.items():
+                self.assertEqual(cli.stored_scale(suffix, make(small, scale)), scale, (suffix, scale))
 
     def test_a_file_that_cannot_be_written_is_a_sentence_not_a_traceback(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -968,6 +978,83 @@ class RobustnessTests(unittest.TestCase):
         with self.assertRaises(browser.Unavailable) as caught:
             browser._page(Playwright(), "<svg/>", 10, 10)
         self.assertEqual(str(caught.exception), "Executable doesn't exist at /nowhere")
+
+    def fake_playwright(self, fail: str | None):
+        """A Playwright whose browser starts and then fails at the step `fail` ('start', 'new_page', 'content', 'evaluate', 'screenshot'): the
+        function standing for `sync_playwright` and the list that gets an entry each time the browser is closed."""
+        from playwright.sync_api import Error, TimeoutError as PlaywrightTimeout
+        closed: list[bool] = []
+
+        class Page:
+            def set_content(self, html):
+                if fail == "content":
+                    raise Error("Page.set_content: Target crashed\nCall log:\n  - a long banner")
+
+            def evaluate(self, expression):
+                if fail == "evaluate":
+                    raise Error("Page.evaluate: Execution context was destroyed\nCall log:\n  - a long banner")
+                return []
+
+            def screenshot(self, path):
+                if fail == "screenshot":
+                    raise PlaywrightTimeout("Page.screenshot: Timeout 30000ms exceeded.\nCall log:\n  - a long banner")
+                if fail == "bug":
+                    raise RuntimeError("a bug in our code")
+
+        class Browser:
+            def new_page(self, **options):
+                if fail == "new_page":
+                    raise Error("Browser.new_page: Target page, context or browser has been closed")
+                return Page()
+
+            def close(self):
+                closed.append(True)
+
+        class Playwright:
+            class chromium:
+                launch = staticmethod(lambda: Browser())
+
+        class Started:
+            def __enter__(self):
+                if fail == "start":
+                    raise Error("the Playwright driver did not start\nCall log:\n  - a long banner")
+                return Playwright()
+
+            def __exit__(self, *exc):
+                return False
+        return (lambda: Started()), closed
+
+    def test_a_playwright_error_after_the_browser_started_is_a_failure_not_a_traceback(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            for fail in ("start", "new_page", "content", "screenshot"):
+                sync_playwright, closed = self.fake_playwright(fail)
+                with mock.patch.object(browser, "_playwright", return_value=sync_playwright):
+                    with self.assertRaises(browser.Failed, msg=fail) as caught:
+                        browser.png("<svg/>", Path(tmp) / "x.png", 10, 10)
+                self.assertNotIn("\n", str(caught.exception), fail)               # the first line of Playwright's banner, not all of it
+                self.assertEqual(len(closed), 0 if fail == "start" else 1, fail)  # a browser that started is never left running
+            sync_playwright, closed = self.fake_playwright("evaluate")
+            with mock.patch.object(browser, "_playwright", return_value=sync_playwright), self.assertRaises(browser.Failed):
+                browser.measure(load())
+            self.assertEqual(len(closed), 1)
+            sync_playwright, closed = self.fake_playwright("bug")
+            with mock.patch.object(browser, "_playwright", return_value=sync_playwright), self.assertRaises(RuntimeError) as caught:
+                browser.png("<svg/>", Path(tmp) / "x.png", 10, 10)
+            self.assertNotIsInstance(caught.exception, browser.Unavailable)           # a bug of ours is not blamed on the browser
+            self.assertEqual(len(closed), 1)
+
+    def test_a_browser_that_fails_while_drawing_exits_2_and_is_not_told_to_reinstall(self):
+        failed = browser.Failed("Page.screenshot: Timeout 30000ms exceeded.")
+        with tempfile.TemporaryDirectory() as tmp:
+            with mock.patch.object(browser, "png", side_effect=failed):
+                runs = [self.run_cli("preview", str(POLLING), "--out", str(Path(tmp) / "p.png")),
+                        self.run_cli("facebook", str(FIXTURES / "small.json"), "--out", str(Path(tmp) / "fb"))]
+            with mock.patch.object(browser, "measure", side_effect=failed):
+                runs.append(self.run_cli("check", "--browser", str(POLLING)))
+        for code, err in runs:
+            self.assertEqual(code, 2, err)
+            self.assertIn("Timeout 30000ms", err)
+            self.assertNotIn("playwright install chromium", err)
 
     def test_the_text_check_without_a_browser_says_so(self):
         with mock.patch.object(browser, "measure", side_effect=browser.Unavailable("no chromium")):
@@ -1048,7 +1135,7 @@ class RobustnessTests(unittest.TestCase):
             target = str(folder / "demo-polling.json")
             for suffix, make in makers.items():
                 beside = folder / f"demo-polling{suffix}"
-                for scale in (0.5, 1, 3, 8):
+                for scale in (0.5, 1, 1.25, 3, 7.95, 8):
                     beside.write_text(make(load(), scale), encoding="utf-8")
                     self.assertNotIn("render it again", self.run_cli("check", target)[1], (suffix, scale))
                 beside.write_text(make(load(), 3).replace("Trình duyệt", "Trinh duyet", 1), encoding="utf-8")

@@ -7,12 +7,17 @@ Playwright is imported here only, so every other module works without it.
 
 from __future__ import annotations
 
+import contextlib
 from pathlib import Path
 
 from . import scene as scenes, svg
 
 class Unavailable(RuntimeError):
     """Playwright or its Chromium cannot be used here; the message says why."""
+
+
+class Failed(Unavailable):
+    """Chromium started and then failed (a crash, a timeout): installing it again would not help."""
 
 
 def _playwright():
@@ -23,6 +28,17 @@ def _playwright():
     return sync_playwright
 
 
+@contextlib.contextmanager
+def _drawing():
+    """Playwright's own errors, whatever step raised them, are `Failed`: a sentence for the owner, not a traceback. Anything else is a bug and passes."""
+    from playwright.sync_api import Error
+    try:
+        yield
+    except Error as exc:
+        first = str(exc).strip().splitlines()
+        raise Failed(first[0] if first else type(exc).__name__) from exc
+
+
 SLACK = 0.5                           # px: a line may be this much wider than its box before it counts as overflowing
 
 
@@ -31,8 +47,13 @@ def _page(playwright, markup: str, width: int, height: int, scale: float = 1.0):
         browser = playwright.chromium.launch()
     except Exception as exc:
         raise Unavailable(str(exc).strip().splitlines()[0] if str(exc).strip() else "Chromium did not start") from exc
-    page = browser.new_page(viewport={"width": width, "height": height}, device_scale_factor=scale)
-    page.set_content('<!doctype html><html><body style="margin:0;background:#ffffff">' + markup + "</body></html>")
+    try:
+        page = browser.new_page(viewport={"width": width, "height": height}, device_scale_factor=scale)
+        page.set_content('<!doctype html><html><body style="margin:0;background:#ffffff">' + markup + "</body></html>")
+    except BaseException:                                       # a browser that started but cannot show the page is not left running
+        with contextlib.suppress(Exception):
+            browser.close()
+        raise
     return browser, page
 
 
@@ -47,7 +68,7 @@ def measure(spec: dict, st: scenes.Style | None = None) -> list[str]:
             boxes += [(item["w"], line) for line in item["lines"]]
         elif item["k"] == "badge":
             boxes.append((None, item["label"]))
-    with sync_playwright() as p:
+    with _drawing(), sync_playwright() as p:
         browser, page = _page(p, markup, scene["w"], scene["h"])
         try:
             widths = page.evaluate("[...document.querySelectorAll('svg text')].map(t => t.getComputedTextLength())")
@@ -62,7 +83,7 @@ def measure(spec: dict, st: scenes.Style | None = None) -> list[str]:
 def png(markup: str, path: Path, width: int, height: int, scale: float = 2.0) -> None:
     """The SVG (or any markup that fills `width` x `height`) as a PNG, `scale` device pixels per px."""
     sync_playwright = _playwright()
-    with sync_playwright() as p:
+    with _drawing(), sync_playwright() as p:
         browser, page = _page(p, markup, width, height, scale)
         try:
             page.screenshot(path=str(path))

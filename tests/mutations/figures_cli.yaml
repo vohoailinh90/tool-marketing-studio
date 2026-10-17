@@ -39,17 +39,29 @@ mutations:
   replace: '    except ZeroDivisionError as exc:                           # an unwritable'
   test: tests.test_figures.RobustnessTests.test_a_file_that_cannot_be_written_is_a_sentence_not_a_traceback
 - label: a bug while drawing the preview is reported as a missing browser
-  find: "    except browser.Unavailable as exc:                         # Playwright or Chromium missing: say how to get it\n        print(f\"cannot draw the preview"
-  replace: "    except Exception as exc:                                   # Playwright or Chromium missing: say how to get it\n        print(f\"cannot draw the preview"
+  find: "    except browser.Unavailable as exc:                         # Playwright or Chromium missing, or failed while drawing\n        return browser_unavailable(\"draw the preview\""
+  replace: "    except Exception as exc:                                   # Playwright or Chromium missing, or failed while drawing\n        return browser_unavailable(\"draw the preview\""
   test: tests.test_figures.RobustnessTests.test_only_a_missing_browser_gets_the_install_hint_and_a_real_bug_surfaces
 - label: a missing browser while exporting slides is not reported
-  find: "    except browser.Unavailable as exc:                         # Playwright or Chromium missing: say how to get it\n        print(f\"cannot draw the slides"
-  replace: "    except ZeroDivisionError as exc:                           # Playwright or Chromium missing: say how to get it\n        print(f\"cannot draw the slides"
+  find: "    except browser.Unavailable as exc:                         # Playwright or Chromium missing, or failed while drawing\n        return browser_unavailable(\"draw the slides\""
+  replace: "    except ZeroDivisionError as exc:                           # Playwright or Chromium missing, or failed while drawing\n        return browser_unavailable(\"draw the slides\""
   test: tests.test_figures.RobustnessTests.test_only_a_missing_browser_gets_the_install_hint_and_a_real_bug_surfaces
 - label: a missing browser in the text check is not reported
-  find: "            except browser.Unavailable as exc:\n                print(f\"cannot measure the text"
-  replace: "            except ZeroDivisionError as exc:\n                print(f\"cannot measure the text"
+  find: "            except browser.Unavailable as exc:\n                return browser_unavailable(\"measure the text\""
+  replace: "            except ZeroDivisionError as exc:\n                return browser_unavailable(\"measure the text\""
   test: tests.test_figures.RobustnessTests.test_the_text_check_without_a_browser_says_so
+- label: a browser that failed while drawing is told to reinstall Chromium
+  find: '    hint = "" if isinstance(exc, browser.Failed) else "; run: python -m playwright install chromium"'
+  replace: '    hint = "; run: python -m playwright install chromium"'
+  test: tests.test_figures.RobustnessTests.test_a_browser_that_fails_while_drawing_exits_2_and_is_not_told_to_reinstall
+- label: a missing browser is not told to install Chromium
+  find: '    hint = "" if isinstance(exc, browser.Failed) else "; run: python -m playwright install chromium"'
+  replace: '    hint = ""'
+  test: tests.test_figures.RobustnessTests.test_only_a_missing_browser_gets_the_install_hint_and_a_real_bug_surfaces
+- label: a scale with more digits than an editor file keeps is accepted
+  find: '    if abs(value * STEPS_PER_UNIT - steps) > 1e-9:'
+  replace: '    if False:'
+  test: tests.test_figures.RobustnessTests.test_a_scale_that_would_draw_garbage_is_refused
 - label: a tampered icon set does not stop a build
   find: "def build(paths: list[Path], out) -> int:\n    if broken_icons():"
   replace: "def build(paths: list[Path], out) -> int:\n    if False:"

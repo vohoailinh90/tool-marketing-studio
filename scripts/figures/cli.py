@@ -29,6 +29,7 @@ SPEC_DIR = STORE / "figures" / "vi"
 DIAGRAMS = STORE / "vi" / "diagrams"
 LESSONS = STORE / "vi" / "lessons"
 MIN_SCALE, MAX_SCALE = 0.25, 8.0
+STEPS_PER_UNIT = 20                   # a scale is a multiple of 1/20: its page width (320 x scale) and panel width (288 x scale) are then exact to 0.1 px, which is how an editor file keeps them
 EDITORS = {"drawio": (".drawio", drawio.diagram), "excalidraw": (".excalidraw", excalidraw.board), "moda": ("-moda.xml", moda.markup)}
 LESSON_ID = re.compile(r"sd-\d{2}-\d{3}")
 
@@ -101,14 +102,18 @@ def _shown(path: Path) -> Path:
 
 
 def scale_argument(text: str) -> float:
-    """A finite scale from MIN_SCALE to MAX_SCALE: anything else would draw garbage, text too small to see or a huge file."""
+    """A finite scale from MIN_SCALE to MAX_SCALE in steps of 0.05: anything else would draw garbage, text too small to see or a huge file,
+    or a size that `check` could not read back from the editor file it wrote (a scale that is not a multiple of 0.05 loses digits in it)."""
     try:
         value = float(text)
     except ValueError as exc:
         raise argparse.ArgumentTypeError(f"{text!r} is not a number") from exc
     if not math.isfinite(value) or not MIN_SCALE <= value <= MAX_SCALE:
         raise argparse.ArgumentTypeError(f"must be from {MIN_SCALE:g} to {MAX_SCALE:g}")
-    return value
+    steps = round(value * STEPS_PER_UNIT)
+    if abs(value * STEPS_PER_UNIT - steps) > 1e-9:
+        raise argparse.ArgumentTypeError("must be a multiple of 0.05")
+    return steps / STEPS_PER_UNIT
 
 
 def broken_icons() -> bool:
@@ -117,6 +122,13 @@ def broken_icons() -> bool:
     for problem in problems:
         print(f"icons: {problem}", file=sys.stderr)
     return bool(problems)
+
+
+def browser_unavailable(doing: str, exc: browser.Unavailable) -> int:
+    """Says why Chromium could not be used and returns the exit status 2. Only a browser that is missing is told how to install it."""
+    hint = "" if isinstance(exc, browser.Failed) else "; run: python -m playwright install chromium"
+    print(f"cannot {doing} ({exc}){hint}", file=sys.stderr)
+    return 2
 
 
 def stored_scale(suffix: str, text: str) -> float | None:
@@ -186,8 +198,7 @@ def check(paths: list[Path], measure_text: bool = False) -> int:
             try:
                 found.extend(f"{spec['id']}: {p}" for p in browser.measure(spec))
             except browser.Unavailable as exc:
-                print(f"cannot measure the text ({exc}); run: python -m playwright install chromium", file=sys.stderr)
-                return 2
+                return browser_unavailable("measure the text", exc)
     for line in found:
         print(line, file=sys.stderr)
     if not found:
@@ -230,9 +241,8 @@ def preview(path: Path, out: Path | None, scale: float) -> int:
     target.parent.mkdir(parents=True, exist_ok=True)
     try:
         browser.png(markup, target, 320, height, scale)
-    except browser.Unavailable as exc:                         # Playwright or Chromium missing: say how to get it
-        print(f"cannot draw the preview ({exc}); run: python -m playwright install chromium", file=sys.stderr)
-        return 2
+    except browser.Unavailable as exc:                         # Playwright or Chromium missing, or failed while drawing
+        return browser_unavailable("draw the preview", exc)
     print(f"wrote {target}")
     return 0
 
@@ -246,9 +256,8 @@ def to_facebook(path: Path, fmt: str, out: Path | None) -> int:
         return 1
     try:
         files, problems = facebook.export(loaded[0], out or ROOT / "build" / "figures" / "facebook", ROOT, fmt)
-    except browser.Unavailable as exc:                         # Playwright or Chromium missing: say how to get it
-        print(f"cannot draw the slides ({exc}); run: python -m playwright install chromium", file=sys.stderr)
-        return 2
+    except browser.Unavailable as exc:                         # Playwright or Chromium missing, or failed while drawing
+        return browser_unavailable("draw the slides", exc)
     for line in problems:
         print(line, file=sys.stderr)
     for file in files:

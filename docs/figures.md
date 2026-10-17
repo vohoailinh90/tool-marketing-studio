@@ -46,14 +46,17 @@ python3 -m scripts.figures preview SPEC               # a PNG in build/figures/ 
 python3 -m scripts.figures build [SPEC ...]           # write system-design-101/vi/diagrams/<id>-main.svg (the lesson must exist)
 python3 -m scripts.figures check [SPEC ...]           # specs valid, stored figures are exactly what the specs draw, store and phone rules, icons intact
 python3 -m scripts.figures check --browser            # ... and measure every line of text in Chromium
-python3 -m scripts.figures render SPEC --format drawio|excalidraw|moda|svg [--out FILE] [--scale 2]     # scale from 0.25 to 8
+python3 -m scripts.figures render SPEC --format drawio|excalidraw|moda|svg [--out FILE] [--scale 2]     # scale from 0.25 to 8 in steps of 0.05
 python3 -m scripts.figures facebook SPEC [--format portrait|square|landscape] [--out DIR]   # Facebook slides, see below
 ```
 
 `check` without a spec checks every spec in `system-design-101/figures/vi/` and runs in the test suite, so a figure that no longer
 matches its spec fails CI. An editor file kept next to a spec (`<id>.drawio`, `<id>.excalidraw`, `<id>-moda.xml`) must match too;
 the editor files are not committed by default. `check` reads the scale an editor file was drawn at from the file itself (page width, canvas
-width, panel width), so a file made with `--scale 1` is current as long as it is what the spec draws at that scale.
+width, panel width), so a file made with `--scale 1` is current as long as it is what the spec draws at that scale. A scale is a multiple of
+0.05 because the editor files keep sizes to a tenth of a pixel: a scale with more digits could not be read back from the file it made.
+A browser that starts and then fails (a crash, a timeout) makes `preview`, `facebook` and `check --browser` exit 2 with Playwright's first line; only a
+missing browser is told to install Chromium.
 
 ## Redoing a lesson
 

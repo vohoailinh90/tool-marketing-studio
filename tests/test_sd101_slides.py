@@ -5,6 +5,7 @@ from __future__ import annotations
 import contextlib
 import datetime
 import io
+import itertools
 import os
 import struct
 import tempfile
@@ -526,6 +527,32 @@ class LeaseTests(Sessions):
         self.assertEqual((["claude/b"], 2), (record["taken_from"], record["generation"]))
         self.assertEqual(0, self.run_in(a, "verify")[0])
         self.assertEqual(1, self.run_in(b, "claim", "sd-01-001")[0], "the lesson is a's again, not blocked")
+
+    def test_a_local_record_whose_precedence_differs_from_the_published_claim_is_refused(self) -> None:
+        a, b = self.session("a"), self.session("b")
+        self.at(hours=-2)
+        self.assertEqual(0, self.run_in(b, "claim", "sd-01-001", "--publish")[0])
+        self.at(hours=slides.LEASE_HOURS)  # b's claim expires and a takes it over
+        self.assertEqual(0, self.run_in(a, "claim", "sd-01-001", "--take-stale", "--publish")[0])
+        relative = "store/lessons/sd-01-001/slides/deck.yaml"
+        published = (a / relative).read_text(encoding="utf-8")
+        edits = {"an earlier claimed_at": {"claimed_at": "2026-10-16T00:00:00Z"},
+                 "another generation": {"generation": 5},
+                 "a takeover dropped": {"taken_from": None, "generation": None}}
+        for label, change in edits.items():
+            with self.subTest(label):
+                record = {**self.record(a, "sd-01-001"), **change}
+                (a / relative).write_text(slides.render({k: v for k, v in record.items() if v is not None}),
+                                          encoding="utf-8")
+                for command in (("verify",), ("touch", "--publish"),
+                                ("finish", "sd-01-001", "--canvas", CANVAS, "--url", URL, "--slides", "8", "--publish")):
+                    code, _, err = self.run_in(a, *command)
+                    self.assertEqual(1, code, command)
+                    self.assertIn("does not match your claim on origin/claude/a", err)
+                self.assertEqual(yaml.safe_load(published), yaml.safe_load(git(a, "show", f"origin/claude/a:{relative}")),
+                                 "nothing pushed")
+                (a / relative).write_text(published, encoding="utf-8")
+                self.assertEqual(0, self.run_in(a, "verify")[0])
 
     def test_touching_keeps_a_claim_alive(self) -> None:
         a, b = self.session("a"), self.session("b")
@@ -1212,6 +1239,35 @@ class FolderTests(unittest.TestCase):
                 path = self.dir / "01.png"
                 path.write_bytes(data)
                 self.assertEqual(reason, slides.png_damage(path))
+
+    def test_a_scanline_with_a_filter_type_that_does_not_exist_is_reported(self) -> None:
+        reason = "a scanline has a filter type that does not exist"
+        for interlace in (0, 1):
+            passes = slides.png_passes(5, 9, 24, interlace)
+            heads = [first + line * row for first, (row, lines) in
+                     zip(itertools.accumulate([0] + [row * lines for row, lines in passes]), passes)
+                     for line in range(lines)]
+            size = slides.png_scanlines(5, 9, 24, interlace)
+            for head in heads:
+                for kind in (1, 2, 3, 4, 5, 255):
+                    raw = bytearray(size)
+                    raw[head] = kind
+                    with self.subTest(interlace=interlace, head=head, kind=kind):
+                        path = self.dir / "01.png"
+                        path.write_bytes(png_of(bytes(raw), width=5, height=9, interlace=interlace))
+                        self.assertEqual(reason if kind > 4 else None, slides.png_damage(path))
+                        layout = slides.png_layout(passes)
+                        for cut in range(size + 1):  # however the inflater hands out the data
+                            found = (slides.png_bad_filter(bytes(raw[:cut]), 0, layout)
+                                     or slides.png_bad_filter(bytes(raw[cut:]), cut, layout))
+                            self.assertEqual(kind > 4, found, cut)
+            raw = bytearray(size)
+            for spot in range(size):
+                if spot not in heads:
+                    raw[spot] = 255  # a sample, not a filter byte
+            path = self.dir / "01.png"
+            path.write_bytes(png_of(bytes(raw), width=5, height=9, interlace=interlace))
+            self.assertIsNone(slides.png_damage(path), "only the first byte of a scanline names its filter")
 
     def test_a_header_describing_an_absurd_image_is_reported_not_raised(self) -> None:
         reason = "IHDR describes an image too large to be a slide"

@@ -342,3 +342,19 @@ mutations:
   find: "            if colour not in (2, 3, 6) or palette or images or not 0 < length <= 768 or length % 3:"
   replace: "            if False:"
   test: tests.test_sd101_slides.FolderTests.test_a_header_or_palette_that_no_decoder_accepts_is_reported
+- label: a local claim whose precedence differs from the published one is accepted
+  find: "            if holding.where == LOCAL and precedence(holding) != precedence(me):  # touch and finish push this copy"
+  replace: "            if False:  # touch and finish push this copy"
+  test: tests.test_sd101_slides.LeaseTests.test_a_local_record_whose_precedence_differs_from_the_published_claim_is_refused
+- label: the filter byte of a scanline is never read
+  find: "                    if png_bad_filter(out, produced - len(out), layout):"
+  replace: "                    if False:"
+  test: tests.test_sd101_slides.FolderTests.test_a_scanline_with_a_filter_type_that_does_not_exist_is_reported
+- label: filter type 5 is taken for one that exists
+  find: "max(out[head - start:stop - start:row]) > 4"
+  replace: "max(out[head - start:stop - start:row]) > 5"
+  test: tests.test_sd101_slides.FolderTests.test_a_scanline_with_a_filter_type_that_does_not_exist_is_reported
+- label: the first scanline of a piece is found by rounding down
+  find: "max(0, -(-(start - first) // row))"
+  replace: "max(0, (start - first) // row)"
+  test: tests.test_sd101_slides.FolderTests.test_a_scanline_with_a_filter_type_that_does_not_exist_is_reported

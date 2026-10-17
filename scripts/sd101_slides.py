@@ -228,21 +228,48 @@ def png_size(path: pathlib.Path) -> tuple[int, int] | None:
     return struct.unpack(">II", head[16:24])
 
 
-def png_scanlines(width: int, height: int, bits: int, interlace: int) -> int:
-    """How many bytes the scanlines of an image take once inflated: a filter byte and the samples of each line, of the
-    whole image or, interlaced, of each of the seven Adam7 passes (a pass the image is too small for has no lines)."""
-    total = 0
+def png_passes(width: int, height: int, bits: int, interlace: int) -> list[tuple[int, int]]:
+    """The bytes of one scanline (a filter byte and its samples) and the number of scanlines, of the whole image or,
+    interlaced, of each of the seven Adam7 passes in order (a pass the image is too small for has no lines)."""
+    passes = []
     for x0, y0, dx, dy in (ADAM7 if interlace else ((0, 0, 1, 1),)):
         across, down = len(range(x0, width, dx)), len(range(y0, height, dy))
         if across and down:
-            total += down * (1 + (across * bits + 7) // 8)
-    return total
+            passes.append((1 + (across * bits + 7) // 8, down))
+    return passes
+
+
+def png_scanlines(width: int, height: int, bits: int, interlace: int) -> int:
+    """How many bytes the scanlines of an image take once inflated."""
+    return sum(row * lines for row, lines in png_passes(width, height, bits, interlace))
+
+
+def png_layout(passes: list[tuple[int, int]]) -> list[tuple[int, int, int]]:
+    """Where each pass's scanlines sit in the inflated data: its first byte, the byte after its last, a scanline's size."""
+    layout, first = [], 0
+    for row, lines in passes:
+        layout.append((first, first + row * lines, row))
+        first += row * lines
+    return layout
+
+
+def png_bad_filter(out: bytes, start: int, layout: list[tuple[int, int, int]]) -> bool:
+    """Whether a piece of inflated image data that begins at offset start opens a scanline with a filter type other
+    than the five PNG has (0 none, 1 sub, 2 up, 3 average, 4 Paeth)."""
+    end = start + len(out)
+    for first, last, row in layout:
+        stop = min(end, last)
+        head = first + max(0, -(-(start - first) // row)) * row  # the first scanline of this pass that opens in the piece
+        if head < stop and max(out[head - start:stop - start:row]) > 4:
+            return True
+    return False
 
 
 def png_damage(path: pathlib.Path) -> str | None:
     """Why a file is not a whole PNG, or None: the signature, an IHDR first, every chunk's checksum, an image stream that
-    inflates to its end and to exactly what the header describes, and an IEND chunk closing the file with nothing after
-    it. The stream is inflated under that size, so a small file cannot expand into gigabytes."""
+    inflates to its end and to exactly what the header describes, every scanline opening with a filter type that exists,
+    and an IEND chunk closing the file with nothing after it. The stream is inflated under that size, so a small file
+    cannot expand into gigabytes."""
     try:
         data = path.read_bytes()
     except OSError as error:
@@ -250,7 +277,7 @@ def png_damage(path: pathlib.Path) -> str | None:
     if data[:8] != PNG_SIGNATURE:
         return "no PNG signature"
     position, first, finished, images, inflater = 8, True, False, 0, zlib.decompressobj()
-    produced, expected, colour, palette = 0, 0, 0, False
+    produced, expected, colour, palette, layout = 0, 0, 0, False, []
     while position < len(data):
         if finished:
             return "bytes after IEND"
@@ -269,9 +296,11 @@ def png_damage(path: pathlib.Path) -> str | None:
             if not (width and height and depth in PNG_DEPTHS.get(colour, ()) and compression == 0 and filtering == 0
                     and interlace in (0, 1)):
                 return "IHDR does not describe an image"
-            expected = png_scanlines(width, height, PNG_CHANNELS[colour] * depth, interlace)
+            passes = png_passes(width, height, PNG_CHANNELS[colour] * depth, interlace)
+            expected = sum(row * lines for row, lines in passes)
             if expected > MAX_PNG_BYTES:  # also keeps the size handed to the inflater inside a C ssize_t
                 return "IHDR describes an image too large to be a slide"
+            layout = png_layout(passes)
         first = False
         if kind == b"PLTE":  # one, of whole entries, before the image data, and never in a grey image
             if colour not in (2, 3, 6) or palette or images or not 0 < length <= 768 or length % 3:
@@ -288,6 +317,8 @@ def png_damage(path: pathlib.Path) -> str | None:
                     produced += len(out)
                     if produced > expected:
                         return "image data inflates to more than the header describes"
+                    if png_bad_filter(out, produced - len(out), layout):
+                        return "a scanline has a filter type that does not exist"
                     if not out and inflater.unconsumed_tail == piece:
                         break
                     piece = inflater.unconsumed_tail
@@ -529,6 +560,11 @@ def beats(first: Holding, second: Holding) -> bool:
     return (-first.generation, first.claimed_at or "", first.owner) < (-second.generation, second.claimed_at or "", second.owner)
 
 
+def precedence(holding: Holding) -> tuple[str | None, int, tuple[str, ...]]:
+    """What beats() reads of a claim, besides its owner."""
+    return holding.claimed_at, holding.generation, holding.taken_from
+
+
 def is_broken(holding: Holding) -> bool:
     """A record that cannot stand as a claim: unreadable, or a claim in progress that fails validation. It blocks its
     lesson wherever it is found (a finished deck that fails validation still holds the lesson as done)."""
@@ -590,6 +626,10 @@ def lost_reason(lesson_id: str, found: list[Holding], context: Context, moment: 
             if holding.problems:  # the published copy and the one in this tree: finish builds the deck's record from it
                 return (f"{lesson_id}: your record on {holding.where} cannot be used as a claim "
                         f"({'; '.join(holding.problems)}); fix it")
+            if holding.where == LOCAL and precedence(holding) != precedence(me):  # touch and finish push this copy
+                return (f"{lesson_id}: this tree's {RECORD} does not match your claim on {me.where} (claimed_at, "
+                        f"generation or taken_from differ); restore it with "
+                        f"`git checkout {me.where} -- {context.relative(lesson_id)}`")
             continue
         if is_broken(holding):
             return f"{lesson_id}: {holding.where} holds a record that cannot be read as a claim; fix it first"

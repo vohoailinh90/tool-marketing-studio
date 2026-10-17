@@ -194,6 +194,18 @@ class ClaimTests(Sessions):
         self.assertEqual(0, code)
         self.assertIn("invalid 1", out)
 
+    def test_an_unreadable_record_on_a_feature_branch_blocks_its_lesson(self) -> None:
+        x, b = self.session("x"), self.session("b")
+        folder = x / "store" / "lessons" / "sd-01-001" / "slides"
+        folder.mkdir()
+        (folder / "deck.yaml").write_text("<<<<<<< HEAD\nstatus: doing\n=======\nstatus: done\n>>>>>>> other\n", encoding="utf-8")
+        git(x, "add", "-A")
+        git(x, "commit", "--quiet", "-m", "conflict markers")
+        git(x, "push", "--quiet", "-u", "origin", "claude/x")
+        code, _, err = self.run_in(b, "claim", "sd-01-001")
+        self.assertEqual(1, code)
+        self.assertIn("cannot be read", err)
+
     def test_a_lesson_that_is_not_written_cannot_be_claimed(self) -> None:
         a = self.session("a")
         code, _, err = self.run_in(a, "claim", "sd-09-009")
@@ -298,6 +310,26 @@ class FinishTests(Sessions):
         self.assertNotIn("heartbeat_at", record)
         self.assertEqual([], slides.folder_problems(a / "store" / "lessons" / "sd-01-001" / "slides", "sd-01-001"))
 
+    def test_finish_reports_an_earlier_claim_that_was_pushed_while_it_published(self) -> None:
+        a, b = self.session("a"), self.session("b")
+        self.at(seconds=0)
+        self.run_in(b, "claim", "sd-01-001")  # b claimed first but has not pushed yet
+        self.at(seconds=5)
+        self.run_in(a, "claim", "sd-01-001", "--publish")
+        real = slides.publish
+
+        def racing(context, paths, message):
+            if context.me == "claude/a":  # b's push lands after a's check and before a's own push
+                git(b, "add", "-A")
+                git(b, "commit", "--quiet", "-m", "claim")
+                git(b, "push", "--quiet", "-u", "origin", "claude/b")
+            return real(context, paths, message)
+
+        with mock.patch.object(slides, "publish", racing):
+            code, _, err = self.finish(a, "sd-01-001", "--publish")
+        self.assertEqual(1, code)
+        self.assertIn("claude/b holds the earlier claim", err)
+
     def test_finish_refuses_a_deck_the_session_does_not_hold(self) -> None:
         a, b = self.session("a"), self.session("b")
         self.run_in(a, "claim", "sd-01-001", "--publish")
@@ -399,11 +431,11 @@ class FolderTests(unittest.TestCase):
 
     def write(self, **fields: object) -> None:
         record = {"id": "sd-01-001", "status": "done", "owner": "claude/a", "done_at": "2026-10-17T09:00:00Z",
-                  "moda_canvas": CANVAS, "moda_url": URL, "slide_count": 4, "size": "1920x1080", "exports": "pending"}
+                  "moda_canvas": CANVAS, "moda_url": URL, "slide_count": 8, "size": "1920x1080", "exports": "pending"}
         record.update(fields)
         (self.dir / "deck.yaml").write_text(slides.render(record), encoding="utf-8")
 
-    def exports(self, count: int = 4) -> None:
+    def exports(self, count: int = 8) -> None:
         import zipfile
 
         with zipfile.ZipFile(self.dir / "sd-01-001.pptx", "w") as archive:
@@ -427,10 +459,18 @@ class FolderTests(unittest.TestCase):
 
     def test_a_missing_slide_or_a_wrong_size_is_reported(self) -> None:
         self.write(exports="done")
-        self.exports(3)
-        self.assertEqual(["04.png is missing"], self.problems())
-        png(self.dir / "04.png", 800, 600)
-        self.assertEqual(["04.png is not a 1920x1080 PNG"], self.problems())
+        self.exports(7)
+        self.assertEqual(["08.png is missing"], self.problems())
+        png(self.dir / "08.png", 800, 600)
+        self.assertEqual(["08.png is not a 1920x1080 PNG"], self.problems())
+
+    def test_a_deck_has_between_eight_and_ten_slides(self) -> None:
+        for count, ok in ((7, False), (8, True), (10, True), (11, False)):
+            with self.subTest(slides=count):
+                self.write(slide_count=count)
+                self.assertEqual(ok, self.problems() == [], self.problems())
+        self.write(slide_count=7)
+        self.assertIn("deck.yaml: slide_count must be between 8 and 10", self.problems())
 
     def test_a_pptx_that_is_not_a_zip_is_reported(self) -> None:
         self.write(exports="done")

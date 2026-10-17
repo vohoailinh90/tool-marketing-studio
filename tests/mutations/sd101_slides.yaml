@@ -11,7 +11,7 @@ mutations:
   replace: "        names = []\n        for (name, lesson_id), text in read_remote"
   test: tests.test_sd101_slides.ClaimTests.test_a_published_claim_keeps_every_other_session_off_the_lesson
 - label: a record copied into another branch is counted as that branch's claim
-  find: "            elif holding.owner == name:"
+  find: "            elif holding.owner == name or holding.status == \"invalid\":"
   replace: "            elif True:"
   test: tests.test_sd101_slides.ClaimTests.test_a_copy_of_a_claim_inherited_by_another_branch_is_not_a_claim
 - label: the later of two claims wins instead of the earlier
@@ -82,3 +82,15 @@ mutations:
   find: "    if state == \"stale\" and not any(other.owner == context.me for other in found) and not take_stale:"
   replace: "    if state == \"stale\" and holding.owner != context.me and not take_stale:"
   test: tests.test_sd101_slides.LeaseTests.test_my_own_stale_claim_can_be_claimed_again_when_an_older_stale_claim_exists
+- label: an unreadable record on a feature branch is dropped because it names no owner
+  find: " or holding.status == \"invalid\":"
+  replace: ":"
+  test: tests.test_sd101_slides.ClaimTests.test_an_unreadable_record_on_a_feature_branch_blocks_its_lesson
+- label: a deck may have any number of slides from 4 to 12
+  find: "SLIDE_COUNTS = range(8, 11)"
+  replace: "SLIDE_COUNTS = range(4, 13)"
+  test: tests.test_sd101_slides.FolderTests.test_a_deck_has_between_eight_and_ten_slides
+- label: finish does not look for an earlier claim pushed while it published
+  find: "        if rivals:"
+  replace: "        if False:"
+  test: tests.test_sd101_slides.FinishTests.test_finish_reports_an_earlier_claim_that_was_pushed_while_it_published

@@ -59,7 +59,7 @@ LESSON_ID = re.compile(r"sd-\d{2}-\d{3}")
 CANVAS_ID = re.compile(r"cvs_[0-9A-Za-z]{20,}")
 SIZE = re.compile(r"[1-9]\d{2,4}x[1-9]\d{2,4}")
 MODA_URL = "https://moda.app/canvas/"
-SLIDE_COUNTS = range(4, 13)
+SLIDE_COUNTS = range(8, 11)  # docs/sd101-slides.md: 8 to 10 slides, one progress dot each
 LEASE_HOURS = 72
 CLOCK_SKEW_HOURS = 1
 PUSH_BACKOFF_SECONDS = (2, 4, 8, 16)
@@ -349,7 +349,7 @@ def gather(context: Context, ids: list[str]) -> tuple[dict[str, list[Holding]], 
                 if holding.status == "doing" and holding.owner in names and holding.owner != base:
                     continue  # a claim in progress belongs to its owner's branch, which says whether it still stands
                 holdings[lesson_id].append(holding)
-            elif holding.owner == name:
+            elif holding.owner == name or holding.status == "invalid":  # an unreadable record names no owner but blocks
                 holdings[lesson_id].append(holding)
             else:
                 warnings.append(f"{where}: {lesson_id} names another owner ({holding.owner or 'none'}); not a claim")
@@ -668,8 +668,17 @@ def cmd_finish(context: Context, args: argparse.Namespace) -> int:
     if args.publish:
         publish(context, [path.parent], f"Slides: finish {lesson_id}")
         remote = gather(context, [lesson_id])[0][lesson_id]
-        if not any(holding.status == "done" and holding.owner == context.me and holding.where != LOCAL for holding in remote):
+        mine = [holding for holding in remote
+                if holding.status == "done" and holding.owner == context.me and holding.where != LOCAL]
+        if not mine:
             print(f"{lesson_id}: the finished record is not on {context.remote}/{context.me}", file=sys.stderr)
+            return 1
+        moment = now()  # the finished record keeps its claim's time and generation, so it is judged as that claim
+        rivals = [holding for holding in remote if holding.status == "doing" and holding.owner != context.me
+                  and not is_stale(holding, moment) and beats(holding, mine[0])]
+        if rivals:
+            print(f"pushed, but {lesson_id} is finished here and {rivals[0].owner} holds the earlier claim; delete this "
+                  f"branch's slides/ for it, commit and push, so the lesson goes to {rivals[0].owner}", file=sys.stderr)
             return 1
     return 0
 

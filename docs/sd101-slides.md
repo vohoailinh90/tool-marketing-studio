@@ -1,6 +1,6 @@
 # System Design lessons: slide decks for Facebook
 
-Every written lesson of `system-design-101/vi/` becomes a deck of 8 to 10 slides, built on Moda in one fixed style and
+Every written lesson of `system-design-101/vi/` becomes a deck of 8 to 10 slides (the checker enforces it), built on Moda in one fixed style and
 exported as PNG files (to post on Facebook) and one PPTX. Several sessions build decks at once, so a lesson is
 **claimed before its deck is built**, with `scripts/sd101_slides.py`. `sd101_claims.py` only stops two sessions
 *writing* one lesson; it knows nothing about decks.
@@ -59,8 +59,8 @@ The sample is `sd-01-001`; read its canvas (`canvas_read` on the id in its `deck
   blue `#1F3FD1`, amber `#B45309`, teal `#0F766E`, red `#E8472B` (tints `#DDE3FA` `#F3DFB8` `#CFE8E2` `#F8D9D0`); on dark
   `#14161C` (cards `#1E212B`) with `#7C93FF` `#FFB454` `#3DD6A0` `#FF6A4D`. One colour per concept of the lesson, the same
   on every slide of the deck.
-- Footer on every slide but the cover: ten progress dots (current one red) and `System Design 101 · Bài NN · 03/10`, at the
-  bottom left. Keep the bottom right clear.
+- Footer on every slide but the cover: one progress dot per slide (the current one red) and `System Design 101 · Bài NN ·
+  03/10` (slide number and slide count), at the bottom left. Keep the bottom right clear.
 - Slides: 1 cover (dark, the lesson title, its hook question, one line per main concept), 2 situation and goal, 3 to 7 one
   slide per concept with a diagram, then the choice or summary, a check question with its answer, the deep dive, and a last
   dark slide with the terms (the lesson's `## Từ viết tắt`) and its sources. Vary layouts (sequence diagram, flow, cards,

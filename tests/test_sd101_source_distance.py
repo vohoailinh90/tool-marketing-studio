@@ -7,7 +7,9 @@ import io
 import json
 import pathlib
 import tempfile
+import unicodedata
 import unittest
+from unittest import mock
 
 from scripts import sd101_source_distance as distance_tool
 
@@ -69,6 +71,12 @@ class TextTests(unittest.TestCase):
         self.assertNotIn("with", tokens)                      # stop word
         self.assertIn("hyphen", tokens)                       # compound words are split
         self.assertNotIn("dữ", tokens)
+
+    def test_a_vietnamese_word_is_dropped_whole_not_cut_into_ascii_fragments(self) -> None:
+        text = "chuyển nghiệm nguyên Postgres khuyến"
+        self.assertEqual(distance_tool.signal_tokens(text), ["postgres"])
+        # the same text with the marks as separate combining characters (NFD) must give the same answer
+        self.assertEqual(distance_tool.signal_tokens(unicodedata.normalize("NFD", text)), ["postgres"])
 
     def test_words_shorter_than_the_minimum_are_not_signals(self) -> None:
         self.assertEqual(distance_tool.signal_tokens("api tcp udp http"), ["http"])
@@ -174,6 +182,21 @@ class FetchTests(unittest.TestCase):
             distance_tool.fetch_source(snapshot, self.cache, offline=True)
         self.assertFalse(cached.exists())
 
+    def test_a_pinned_id_that_is_not_a_git_object_id_is_refused_before_it_becomes_a_file_name(self) -> None:
+        snapshot = snapshot_for(SOURCE.encode())
+        for bad in ("../../escape", "A" * 40, "abc", 7):
+            with self.assertRaises(ValueError):
+                distance_tool.fetch_source({**snapshot, "blob_sha": bad}, self.cache, offline=True)
+        self.assertEqual(list(self.cache.iterdir()), [])
+
+    def test_a_snapshot_that_cannot_become_a_download_address_is_refused_without_a_request(self) -> None:
+        snapshot = snapshot_for(SOURCE.encode())
+        for key, bad in (("repository", "owner/../other"), ("repository", "https://evil.example/x"), ("commit_sha", "main"),
+                         ("path", "data/../../secret.md"), ("path", "../x.md"), ("path", "")):
+            with self.subTest(key=key, value=bad), self.assertRaises(ValueError), \
+                    mock.patch.object(distance_tool.urllib.request, "urlopen", side_effect=AssertionError("a request was made")):
+                distance_tool.fetch_source({**snapshot, key: bad}, self.cache, offline=False)
+
     def test_offline_without_a_cache_entry_raises(self) -> None:
         with self.assertRaises(FileNotFoundError):
             distance_tool.fetch_source(snapshot_for(SOURCE.encode()), self.cache, offline=True)
@@ -214,6 +237,13 @@ class SurveyTests(unittest.TestCase):
         with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
             code = distance_tool.main(["--store", str(self.store), "--cache-dir", str(self.cache), "--offline"])
         self.assertEqual(code, 2)
+
+    def test_a_metadata_file_that_is_not_json_is_reported_not_raised(self) -> None:
+        (self.store / "metadata" / "sd-01-002.json").write_text("{not json", encoding="utf-8")
+        rows, problems = distance_tool.survey(self.store, self.cache, offline=True)
+        self.assertEqual([row["id"] for row in rows], ["sd-01-001"])
+        self.assertEqual(len(problems), 1)
+        self.assertIn("sd-01-002", problems[0])
 
     def test_a_cache_inside_the_repository_is_refused(self) -> None:
         with contextlib.redirect_stderr(io.StringIO()), self.assertRaises(SystemExit) as raised:

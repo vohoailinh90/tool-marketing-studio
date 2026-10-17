@@ -54,3 +54,23 @@ mutations:
   find: 'for key in ("evidence", "scope"))'
   replace: 'for key in ("evidence",))'
   test: tests.test_sd101_source_distance.MetadataTests.test_the_scope_of_the_claims_step_counts_as_a_record
+- label: a word with a combining mark is cut into ASCII fragments (no Unicode normalisation)
+  find: 'unicodedata.normalize("NFC", text)'
+  replace: 'text'
+  test: tests.test_sd101_source_distance.TextTests.test_a_vietnamese_word_is_dropped_whole_not_cut_into_ascii_fragments
+- label: a word with marks is accepted as a signal because only its ASCII fragment was checked
+  find: "piece.isalpha() and piece.isascii() and "
+  replace: "piece.isalpha() and "
+  test: tests.test_sd101_source_distance.TextTests.test_a_vietnamese_word_is_dropped_whole_not_cut_into_ascii_fragments
+- label: a pinned id that is not a git object id becomes a cache file name
+  find: "    if not (isinstance(pinned, str) and HEX40.fullmatch(pinned)):"
+  replace: "    if False:"
+  test: tests.test_sd101_source_distance.FetchTests.test_a_pinned_id_that_is_not_a_git_object_id_is_refused_before_it_becomes_a_file_name
+- label: a snapshot that is not a plain repository, commit and path is turned into a download address
+  find: "            if not (isinstance(snapshot[key], str) and pattern.fullmatch(snapshot[key])):"
+  replace: "            if False:"
+  test: tests.test_sd101_source_distance.FetchTests.test_a_snapshot_that_cannot_become_a_download_address_is_refused_without_a_request
+- label: a metadata file that is not JSON crashes the survey
+  find: "except (OSError, ValueError, KeyError, TypeError, AttributeError, urllib.error.URLError) as error:"
+  replace: "except (OSError, KeyError, TypeError, AttributeError, urllib.error.URLError) as error:"
+  test: tests.test_sd101_source_distance.SurveyTests.test_a_metadata_file_that_is_not_json_is_reported_not_raised

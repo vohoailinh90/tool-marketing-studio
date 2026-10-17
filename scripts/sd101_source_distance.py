@@ -41,6 +41,7 @@ import json
 import pathlib
 import re
 import sys
+import unicodedata
 import urllib.error
 import urllib.request
 from collections.abc import Sequence
@@ -49,6 +50,9 @@ from urllib.parse import urlparse
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 DEFAULT_STORE = ROOT / "system-design-101" / "vi"
 RAW_URL = "https://raw.githubusercontent.com/{repository}/{commit_sha}/{path}"
+HEX40 = re.compile(r"[0-9a-f]{40}")
+REPOSITORY = re.compile(r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+")
+SOURCE_PATH = re.compile(r"(?!.*(?:^|/)\.\.?(?:/|$))[A-Za-z0-9_.\-/]+")   # no "." or ".." part
 
 # Sections of a lesson that are not its own prose: the glossary and the list of sources.
 SKIPPED_SECTIONS = ("Từ viết tắt", "Nguồn đối chiếu")
@@ -128,25 +132,23 @@ def lesson_units(markdown: str) -> int:
 def signal_tokens(text: str) -> list[str]:
     """Names, technical terms and numbers, lower-cased, in order of first appearance.
 
-    A word counts when it is ASCII letters only, at least MIN_WORD long and not a stop word, which drops
-    Vietnamese words (they carry marks) and common English ones; a number counts with its digits only."""
+    The text is split into whole Unicode words first, and a word counts only when all of it is ASCII letters, at least
+    MIN_WORD long and not a stop word. A Vietnamese word has a mark somewhere in it, so it is dropped whole instead of
+    leaving an ASCII fragment such as "chuy" from "chuyển". A number counts with its digits only."""
     seen: set[str] = set()
     ordered: list[str] = []
-    for match in re.finditer(r"[A-Za-z][A-Za-z0-9]*(?:[_-][A-Za-z0-9]+)*|\d[\d.,]*\d|\d", text):
+    for match in re.finditer(r"\d[\d.,]*\d|\w+(?:[_-]\w+)*", unicodedata.normalize("NFC", text)):
         token = match.group(0)
-        if token[0].isdigit():
+        if token[0].isdigit() and re.fullmatch(r"[\d.,]+", token):
             token = re.sub(r"\D", "", token)
-            if len(token) < 2:
-                continue
-        else:
-            for piece in re.split(r"[_-]", token.lower()):
-                if len(piece) >= MIN_WORD and piece.isalpha() and piece.isascii() and piece not in STOPWORDS and piece not in seen:
-                    seen.add(piece)
-                    ordered.append(piece)
+            if len(token) >= 2 and token not in seen:
+                seen.add(token)
+                ordered.append(token)
             continue
-        if token not in seen:
-            seen.add(token)
-            ordered.append(token)
+        for piece in re.split(r"[_-]", token.lower()):
+            if len(piece) >= MIN_WORD and piece.isalpha() and piece.isascii() and piece not in STOPWORDS and piece not in seen:
+                seen.add(piece)
+                ordered.append(piece)
     return ordered
 
 
@@ -221,12 +223,17 @@ def own_evidence(metadata: dict) -> bool:
 def fetch_source(snapshot: dict, cache_dir: pathlib.Path, offline: bool) -> str:
     """The pinned source body, from the cache or the network; its git blob SHA must equal the pinned one."""
     pinned = snapshot["blob_sha"]
+    if not (isinstance(pinned, str) and HEX40.fullmatch(pinned)):
+        raise ValueError(f"blob_sha {pinned!r} is not a 40-hex git object id")
     cached = cache_dir / f"{pinned}.md"
     if cached.is_file():
         data = cached.read_bytes()
     elif offline:
         raise FileNotFoundError(f"{pinned} is not in the cache and --offline was given")
     else:
+        for key, pattern in (("repository", REPOSITORY), ("commit_sha", HEX40), ("path", SOURCE_PATH)):
+            if not (isinstance(snapshot[key], str) and pattern.fullmatch(snapshot[key])):
+                raise ValueError(f"source_snapshot.{key} {snapshot[key]!r} cannot be turned into a download address")
         url = RAW_URL.format(**{key: snapshot[key] for key in ("repository", "commit_sha", "path")})
         with urllib.request.urlopen(url, timeout=30) as response:  # noqa: S310 - a fixed https host and pinned path
             data = response.read()
@@ -247,13 +254,14 @@ def survey(store: pathlib.Path, cache_dir: pathlib.Path, offline: bool) -> tuple
         meta_path = store / "metadata" / f"{lesson_id}.json"
         if not meta_path.is_file():
             continue
-        metadata = json.loads(meta_path.read_text(encoding="utf-8"))
         try:
+            metadata = json.loads(meta_path.read_text(encoding="utf-8"))
             source = fetch_source(metadata["source_snapshot"], cache_dir, offline)
-        except (OSError, ValueError, KeyError, urllib.error.URLError) as error:
+            numbers = distance(source, lesson.read_text(encoding="utf-8"))
+        except (OSError, ValueError, KeyError, TypeError, AttributeError, urllib.error.URLError) as error:
             problems.append(f"{lesson_id}: {type(error).__name__}: {error}")
             continue
-        row = {"id": lesson_id, "title_vi": metadata.get("title_vi"), **distance(source, lesson.read_text(encoding="utf-8"))}
+        row = {"id": lesson_id, "title_vi": metadata.get("title_vi"), **numbers}
         hosts = independent_hosts(metadata)
         row.update({"independent_hosts": len(hosts), "own_evidence": own_evidence(metadata)})
         rows.append(row)

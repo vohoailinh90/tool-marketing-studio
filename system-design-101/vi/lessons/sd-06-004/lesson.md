@@ -35,14 +35,14 @@ MDN liệt kê ba cái giá của việc dùng CDN của bên thứ ba: trang c�
 
 ## Nhìn hình trả lời
 
-Một ứng dụng có ba phần: ảnh sản phẩm, trang giỏ hàng của từng người, và một trò chơi chạy trên máy chủ rồi phát hình về. Phần nào máy chủ biên giúp nhiều nhất, phần nào cần điện toán biên, phần nào chỉ còn trông vào khoảng cách?
+Một ứng dụng có ba phần: ảnh sản phẩm, trang giỏ hàng của từng người, và một trò chơi chạy trên máy chủ rồi phát hình về. Với mỗi phần, máy chủ biên có giữ được một bản sao dùng chung không? Với phần không có bản sao, bạn cần đo gì trước khi chọn cách làm nó nhanh hơn?
 
 <details>
 <summary>Xem đáp án</summary>
 
 Ảnh sản phẩm: máy chủ biên, vì mọi người xem cùng một tệp; thử nghiệm cho thấy lượt có bản sao không phải về máy gốc.
-Giỏ hàng: khác nhau với từng người nên không có bản sao chung. Điện toán biên là một lựa chọn, nhưng chỉ đáng khi đo thấy thời gian nằm ở quãng đường và dữ liệu giỏ hàng cũng đặt được ở gần; nếu thời gian nằm ở truy vấn ở máy gốc thì sửa truy vấn trước.
-Trò chơi: mỗi khung hình dùng một lần nên bộ nhớ đệm không giúp được; đặt máy chủ gần người chơi và giữ mạng ổn định là một phần, phần còn lại là thời gian chạy game, nén và giải nén hình, nên đo cả chuỗi từ lúc bấm tới lúc thấy hình.
+Giỏ hàng: khác nhau với từng người nên không có bản sao chung. Đo xem thời gian nằm ở quãng đường hay ở truy vấn ở máy gốc: nếu ở truy vấn thì sửa truy vấn trước; điện toán biên là một lựa chọn, chỉ đáng khi thời gian nằm ở quãng đường và dữ liệu giỏ hàng cũng đặt được ở gần.
+Trò chơi: mỗi khung hình dùng một lần nên không có bản sao nào để giữ. Đo cả chuỗi từ lúc bấm tới lúc thấy hình: đường mạng, thời gian chạy game và vẽ, nén và giải nén hình; đặt máy chủ gần người chơi chỉ rút ngắn phần đường mạng.
 
 </details>
 

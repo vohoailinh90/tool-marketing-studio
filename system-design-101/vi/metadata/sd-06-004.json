@@ -100,7 +100,8 @@
     "Source presents the three technologies as jointly making experiences faster; the lesson contrasts what each brings closer and why caching does not help the last two.",
     "The lesson adds an nginx experiment and MDN's downsides of CDNs.",
     "Cloud gaming latency is described as the whole input-to-display chain (game simulation and rendering, video encoding, decoding and display, plus the network), not distance alone; caching cannot reuse per-player frames (author's general knowledge, no number given).",
-    "Edge computing is presented as one option, worth it only when the time is in the distance and the data the code needs is also near; a personalized page slowed by a central query is better fixed at the origin (author's reasoning)."
+    "Edge computing is presented as one option, worth it only when the time is in the distance and the data the code needs is also near; a personalized page slowed by a central query is better fixed at the origin (author's reasoning).",
+    "The check question asks only whether each part has a shared copy to cache and what to measure for the parts that do not, so it presumes neither edge computing for the cart nor distance alone for the game."
   ],
   "editorial_note_vi": "Bài mới viết tại repo này (gói L5), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
 }

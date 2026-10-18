@@ -1290,11 +1290,11 @@
         },
         {
           "id": "sd-04-036",
-          "title_vi": null,
+          "title_vi": "Nhập môn sharding: chia xong rồi, câu hỏi nào đổi?",
           "title_source": "A Crash Course on Database Sharding",
           "source_url": "https://bytebytego.com/guides/a-crash-course-in-database-sharding",
           "source_path": "data/guides/a-crash-course-in-database-sharding.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "a2efa987cb830b5b388502b5a3879db7f8546d51",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/a-crash-course-in-database-sharding.md"
         },

@@ -108,6 +108,12 @@
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-to-upload-a-large-file-to-s3.md",
       "section": "Body",
       "verified_by": "Source body read."
+    },
+    {
+      "claim_vi": "An object created by PUT, POST or Copy that is plaintext or encrypted with SSE-S3 has an ETag that is the MD5 digest of its data; with SSE-C or SSE-KMS the ETag is not an MD5 digest of the data; a multipart object's ETag is not an MD5 digest regardless of encryption. The guide does not say the multipart MD5-of-part-MD5s recipe holds for SSE-C or SSE-KMS, so the lesson limits it to plaintext and SSE-S3 objects.",
+      "source": "https://github.com/awsdocs/amazon-s3-userguide/blob/cc53dd6a44d3aa1d654e6d3705a0a7550f20fd2a/doc_source/checking-object-integrity.md",
+      "section": "Using Content-MD5 and the ETag to verify uploaded objects",
+      "verified_by": "Read from a clone of awsdocs/amazon-s3-userguide at commit cc53dd6a44d3aa1d654e6d3705a0a7550f20fd2a."
     }
   ],
   "design_notes_vi": "Một sơ đồ trình tự hai bên cho ba bước, một khung tính cỡ phần từ giới hạn 10.000 phần, một khung hai điều hay quên. Không dùng ảnh nguồn.",

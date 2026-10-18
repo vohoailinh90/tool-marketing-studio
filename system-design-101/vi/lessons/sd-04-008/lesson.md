@@ -1,7 +1,7 @@
 # Sáu mẫu quản lý dữ liệu: bản nào là gốc, bản nào là dẫn xuất
 
 **Cache-aside, materialized view, index table, CQRS, event sourcing và sharding giải sáu bài toán khác nhau.**
-Cách đọc nhanh nhất là hỏi mỗi mẫu làm gì với dữ liệu gốc. Cache, materialized view và index table thêm một bản dẫn xuất; CQRS dùng hai kho và event sourcing dựng projection để đọc cũng vậy. Với mọi bản dẫn xuất, câu hỏi là nó được làm mới khi nào và cũ được bao lâu. Sharding thì khác: nó không tạo bản sao nào mà chia chính bản gốc, nên câu hỏi của nó là chia theo khóa nào.
+Cách đọc nhanh nhất là hỏi mỗi mẫu làm gì với dữ liệu gốc. Cache, materialized view và index table thêm một bản dẫn xuất; CQRS khi tách thành hai kho, và event sourcing khi dựng projection để đọc, cũng vậy. Với mọi bản dẫn xuất, câu hỏi là nó được làm mới khi nào và cũ được bao lâu. Sharding thì khác: nó không tạo bản sao nào mà chia chính bản gốc, nên câu hỏi của nó là chia theo khóa nào.
 
 ![Ba khung. Khung một, ba mẫu đọc nhanh nhờ một bản dữ liệu thứ hai: cache-aside đọc cache trước, trượt thì đọc kho rồi nạp vào cache, cũ tới khi hết hạn hoặc bị xóa; materialized view lưu sẵn kết quả một truy vấn nặng và cũ tới lần làm mới, thử nghiệm thấy 70 khi bảng gốc đã là 100; index table là bảng phụ sắp theo khóa khác, phải cập nhật cùng bảng gốc. Khung hai, ba mẫu đổi cách lưu: CQRS tách mô hình ghi và đọc, ở hai kho thì mô hình đọc theo sau; event sourcing lấy chuỗi sự kiện làm bản gốc, view dựng từ đó có thể cũ; sharding chia chính bản gốc theo khóa shard, lo ngại là shard nóng. Khung ba, với mọi bản dẫn xuất: làm mới khi nào, cũ được bao lâu, ai sửa khi lệch.](../../diagrams/sd-04-008-main.svg)
 

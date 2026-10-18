@@ -38,7 +38,7 @@ Làm theo đúng mô tả ấy trên máy (không gọi S3) với một tệp ng
 | MD5 của cả tệp | `9cd7fe8ee2fb0c02de53bc4f59b9c0e4` |
 
 Hai giá trị khác nhau: muốn kiểm tệp tải về đúng thì không so ETag với MD5 của cả tệp. Cắt cùng tệp theo cỡ phần khác cũng ra ETag khác, vì giá trị phụ thuộc vào cách chia.
-Cách tính này là của bucket thường (general purpose) trong hướng dẫn S3 bản 2023. Với directory bucket, một loại bucket khác của S3, tài liệu API trong botocore (bản 2026) ghi ETag không phải MD5 của đối tượng và MD5 không được hỗ trợ, nên đừng viết công cụ kiểm tra dựa vào công thức trên; dùng các checksum mà S3 trả về thay vào đó.
+Cách tính này là của bucket thường (general purpose) trong hướng dẫn S3 bản 2023, và chỉ nên dựa vào nó khi đối tượng không mã hóa hoặc mã hóa phía máy chủ bằng khóa do S3 quản lý (`SSE-S3`). Cùng hướng dẫn đó ghi rằng đối tượng mã hóa bằng khóa do khách cung cấp (`SSE-C`) hoặc khóa trong dịch vụ quản lý khóa của Amazon (`SSE-KMS`) có ETag không phải MD5 của dữ liệu, và không nói công thức trên còn tái tạo được trong trường hợp đó; khi ấy, kiểm bằng checksum mà S3 trả về. Với directory bucket, một loại bucket khác của S3, tài liệu API trong botocore (bản 2026) ghi ETag không phải MD5 của đối tượng và MD5 không được hỗ trợ, nên đừng viết công cụ kiểm tra dựa vào công thức trên; dùng các checksum mà S3 trả về thay vào đó.
 
 ## Giới hạn cần nhớ
 

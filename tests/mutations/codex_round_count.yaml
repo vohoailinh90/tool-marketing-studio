@@ -185,7 +185,7 @@ mutations:
   replace: "STATE_LINE = re.compile(r\"\\s*<!-- .*? (\\{.*\\}) -->\\s*\")\n"
   test: tests.test_codex_round_count.StrictnessTests.test_a_state_line_that_is_not_the_one_codex_writes_counts
 - label: a state line whose payload is not a JSON object passes
-  find: "        return isinstance(json.loads(match.group(1)), dict)\n"
+  find: "        return isinstance(json.loads(match.group(1), parse_constant=reject_constant), dict)\n"
   replace: "        return True\n"
   test: tests.test_codex_round_count.StrictnessTests.test_a_state_line_that_is_not_the_one_codex_writes_counts
 - label: a state line nested deeper than the parser reads crashes the count

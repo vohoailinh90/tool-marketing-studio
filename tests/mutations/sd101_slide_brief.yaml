@@ -26,8 +26,8 @@ mutations:
   replace: '"title": line(parsed.title).__dict__,'
   test: tests.test_sd101_slide_brief.StructureTests.test_words_over_the_budget_are_flagged_but_titles_are_not
 - label: a link in the lesson keeps its address on the slide
-  find: 'text = LINK.sub(r"\1", text)'
-  replace: 'text = text'
+  find: 'ADDRESS.sub(ADDRESS_TOKEN, LINK.sub(r"\1", text))'
+  replace: 'ADDRESS.sub(ADDRESS_TOKEN, text)'
   test: tests.test_sd101_slide_brief.StructureTests.test_check_question_answer_deep_dive_terms_and_sources
 - label: an even deck puts two dark slides side by side at the end
   find: '        result[-2] = "cream"'

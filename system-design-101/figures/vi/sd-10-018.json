@@ -1,0 +1,59 @@
+{
+  "id": "sd-10-018",
+  "title": "Sáu thuật toán cân bằng tải",
+  "subtitle": "Bốn thuật toán tĩnh, hai thuật toán động.",
+  "desc": "Hai nhóm thẻ và một khung ghi nhớ. Thuật toán tĩnh: round robin gửi lần lượt, sticky round-robin giữ một khách ở cùng một dịch vụ, weighted round-robin chia theo trọng số, hash chọn theo IP hoặc URL. Thuật toán động: least connections chọn dịch vụ ít kết nối nhất, least response time chọn dịch vụ phản hồi nhanh nhất. Khung cuối nêu ba điều cần nhớ.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Thuật toán tĩnh",
+      "items": [
+        {
+          "name": "Round robin",
+          "role": "Gửi lần lượt tới từng dịch vụ.",
+          "icon": "repeat"
+        },
+        {
+          "name": "Sticky round-robin",
+          "role": "Khách đã tới dịch vụ A thì lần sau vẫn tới A.",
+          "icon": "handshake"
+        },
+        {
+          "name": "Weighted round-robin",
+          "role": "Trọng số cao nhận nhiều yêu cầu hơn.",
+          "icon": "scale"
+        },
+        {
+          "name": "Hash",
+          "role": "Băm IP hoặc URL để chọn dịch vụ.",
+          "icon": "hash"
+        }
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Thuật toán động",
+      "items": [
+        {
+          "name": "Least connections",
+          "role": "Gửi tới dịch vụ có ít kết nối đồng thời nhất.",
+          "icon": "network"
+        },
+        {
+          "name": "Least response time",
+          "role": "Gửi tới dịch vụ phản hồi nhanh nhất.",
+          "icon": "timer"
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Nhớ gì",
+      "items": [
+        "Tĩnh và động là cách gọi của nguồn.",
+        "Sticky giữ một khách ở một dịch vụ.",
+        "Nguồn không nói khi nào chọn thuật toán nào."
+      ]
+    }
+  ]
+}

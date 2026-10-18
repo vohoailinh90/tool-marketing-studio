@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="830" viewBox="0 0 320 830" role="img" aria-labelledby="title desc">
+<title id="title">Ba mức sao của thuật toán</title>
+<desc id="desc">Ba thẻ và một khung ghi nhớ. Năm sao: rất quan trọng, cố hiểu nó chạy thế nào và vì sao. Ba sao: quan trọng ở mức nào đó, có thể không cần biết chi tiết cài đặt. Một sao: nâng cao, nên biết với ứng viên cấp cao. Khung cuối nêu ba điều cần nhớ.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="830" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Ba mức sao của thuật</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">toán</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Cách tác giả xếp thuật toán cho</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">phỏng vấn.</text>
+<rect x="8" y="123" width="304" height="366" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Ba mức sao</text>
+<rect x="20" y="168" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="211.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 200.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15.914 4a1.5 1.5 0 00-2.474-1.561l-9 9A1.5 1.5 0 005.5 14h4.002a.5.5 0 01.471.666L8.086 20a1.5 1.5 0 002.475 1.56l9-9A1.5 1.5 0 0018.5 10h-3.997a.5.5 0 01-.472-.667z"/></g>
+<text x="78" y="194.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Năm sao</text>
+<text x="78" y="218.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Rất quan trọng. Cố hiểu nó</text>
+<text x="78" y="237.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chạy thế nào và vì sao.</text>
+<rect x="20" y="269" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="322.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 311.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></g>
+<text x="78" y="295.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Ba sao</text>
+<text x="78" y="319.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Quan trọng ở mức nào đó.</text>
+<text x="78" y="338.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Có thể không cần biết chi</text>
+<text x="78" y="358.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tiết cài đặt.</text>
+<rect x="20" y="390" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="433.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 422.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 18V5"/><path d="M15 13a4.17 4.17 0 0 1-3-4 4.17 4.17 0 0 1-3 4"/><path d="M17.598 6.5A3 3 0 1 0 12 5a3 3 0 1 0-5.598 1.5"/><path d="M17.997 5.125a4 4 0 0 1 2.526 5.77"/><path d="M18 18a4 4 0 0 0 2-7.464"/><path d="M19.967 17.483A4 4 0 1 1 12 18a4 4 0 1 1-7.967-.517"/><path d="M6 18a4 4 0 0 1-2-7.464"/><path d="M6.003 5.125a4 4 0 0 0-2.526 5.77"/></g>
+<text x="78" y="416.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Một sao</text>
+<text x="78" y="440.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nâng cao. Nên biết với ứng</text>
+<text x="78" y="459.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">viên cấp cao.</text>
+<rect x="8" y="501" width="304" height="321" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="529.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Nhớ gì</text>
+<rect x="20" y="546" width="280" height="102" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="569" r="11" fill="#16a34a"/>
+<polyline points="37.9,569.4 41.7,573.4 48.5,565" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="572.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Hiểu thuật toán được dùng</text>
+<text x="64" y="591.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thế nào trong hệ thống thật</text>
+<text x="64" y="611.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thường quan trọng hơn chi</text>
+<text x="64" y="630.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tiết cài đặt.</text>
+<rect x="20" y="656" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="679" r="11" fill="#16a34a"/>
+<polyline points="37.9,679.4 41.7,683.4 48.5,675" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="682.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Xếp hạng khách quan rất</text>
+<text x="64" y="701.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khó; tác giả mở đón góp ý.</text>
+<rect x="20" y="727" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="750" r="11" fill="#16a34a"/>
+<polyline points="37.9,750.4 41.7,754.4 48.5,746" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="753.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Danh sách thuật toán nằm</text>
+<text x="64" y="772.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trong ảnh nguồn, bài không</text>
+<text x="64" y="792.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dùng.</text>
+</g>
+</svg>

@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1609" viewBox="0 0 320 1609" role="img" aria-labelledby="title desc">
+<title id="title">Bảy mươi năm ngôn ngữ lập trình</title>
+<desc id="desc">Ba chuỗi bước theo thời gian. Các thế hệ đầu: thẻ đục lỗ, hợp ngữ, và từ 1957 ngôn ngữ hướng về con người như Fortran và LISP. Từ 1972 đến thập niên 1990: Smalltalk và C năm 1972; ngôn ngữ hướng đối tượng như Objective-C và C++ thập niên 1980; Python thập niên 1990; Java, JavaScript, PHP và Ruby năm 1995. Từ năm 2000: C# năm 2000; thập niên 2010 có D, Rust, Zig, Carbon, Go, Kotlin, Dart, TypeScript và Swift. Khung cuối nêu ba điều cần nhớ.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1609" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Bảy mươi năm ngôn ngữ</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">lập trình</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Các mốc theo lời bài nguồn.</text>
+<rect x="8" y="104" width="304" height="344" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="132.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Các thế hệ đầu</text>
+<rect x="20" y="149" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="175" r="14" fill="#1d4ed8"/>
+<text x="46" y="180.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="175.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Thế hệ 1</text>
+<text x="70" y="199.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Thẻ đục lỗ.</text>
+<rect x="20" y="239" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="265" r="14" fill="#1d4ed8"/>
+<text x="46" y="270.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="265.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Thế hệ 2</text>
+<text x="70" y="289.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Hợp ngữ, hướng về máy.</text>
+<polyline points="46,219 46,237" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="329" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="355" r="14" fill="#1d4ed8"/>
+<text x="46" y="360.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="355.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Thế hệ 3, từ 1957</text>
+<text x="70" y="379.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Hướng về con người;</text>
+<text x="70" y="398.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Fortran và LISP mở đường</text>
+<text x="70" y="418.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cho nhiều tính năng.</text>
+<polyline points="46,309 46,327" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="460" width="304" height="452" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="488.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Từ 1972 đến thập niên 1990</text>
+<rect x="20" y="505" width="280" height="68" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="531" r="14" fill="#0f766e"/>
+<text x="46" y="536.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="531.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">1972</text>
+<text x="70" y="555.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Smalltalk và C.</text>
+<rect x="20" y="595" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="621" r="14" fill="#0f766e"/>
+<text x="46" y="626.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="621.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Thập niên 1980</text>
+<text x="70" y="645.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Hướng đối tượng phổ biến:</text>
+<text x="70" y="664.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Objective-C, C++.</text>
+<polyline points="46,575 46,593" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="704" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="730" r="14" fill="#0f766e"/>
+<text x="46" y="735.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="730.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Thập niên 1990</text>
+<text x="70" y="754.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Máy tính cá nhân rẻ hơn;</text>
+<text x="70" y="773.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Python ra đời.</text>
+<polyline points="46,684 46,702" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="813" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="839" r="14" fill="#0f766e"/>
+<text x="46" y="844.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">4</text>
+<text x="70" y="839.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">1995</text>
+<text x="70" y="863.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Java, JavaScript, PHP và</text>
+<text x="70" y="882.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ruby.</text>
+<polyline points="46,793 46,811" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="924" width="304" height="383" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="952.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Từ năm 2000</text>
+<rect x="20" y="969" width="280" height="68" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="46" cy="995" r="14" fill="#b45309"/>
+<text x="46" y="1000.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="995.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">2000</text>
+<text x="70" y="1019.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Microsoft phát hành C#.</text>
+<rect x="20" y="1059" width="280" height="107" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="46" cy="1085" r="14" fill="#b45309"/>
+<text x="46" y="1090.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="1085.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">2010, cải tiến C++</text>
+<text x="70" y="1105.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">hoặc Java</text>
+<text x="70" y="1129.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">D, Rust, Zig, Carbon; Go,</text>
+<text x="70" y="1148.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Kotlin.</text>
+<polyline points="46,1039 46,1057" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="1188" width="280" height="107" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="46" cy="1214" r="14" fill="#b45309"/>
+<text x="46" y="1219.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="1214.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">2010, hướng khác</text>
+<text x="70" y="1238.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Dart cùng Flutter,</text>
+<text x="70" y="1257.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">TypeScript, Swift thay</text>
+<text x="70" y="1277.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Objective-C.</text>
+<polyline points="46,1168 46,1186" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="1319" width="304" height="282" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="1347.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Nhớ gì</text>
+<rect x="20" y="1364" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1387" r="11" fill="#16a34a"/>
+<polyline points="37.9,1387.4 41.7,1391.4 48.5,1383" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1390.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đây là các mốc theo lời</text>
+<text x="64" y="1409.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nguồn, không phải danh</text>
+<text x="64" y="1429.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">sách đầy đủ.</text>
+<rect x="20" y="1455" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1478" r="11" fill="#16a34a"/>
+<polyline points="37.9,1478.4 41.7,1482.4 48.5,1474" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1481.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nhiều ngôn ngữ mới ra đời</text>
+<text x="64" y="1500.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">để cải thiện C++ hoặc Java.</text>
+<rect x="20" y="1526" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1549" r="11" fill="#16a34a"/>
+<polyline points="37.9,1549.4 41.7,1553.4 48.5,1545" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1552.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chỉ mốc Python được đối</text>
+<text x="64" y="1571.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chiếu với tài liệu gốc.</text>
+</g>
+</svg>

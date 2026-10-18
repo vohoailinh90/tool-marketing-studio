@@ -1,0 +1,112 @@
+{
+  "id": "sd-10-017",
+  "title_vi": "Lịch sử ngắn của các ngôn ngữ lập trình",
+  "language": "vi",
+  "kind": "reference",
+  "content_status": "draft",
+  "source_ref": "sd-10-017",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/a-brief-history-og-programming-languages.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/a-brief-history-og-programming-languages.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "eb62dcd71e0eff391c7a137a1bcc8e589ae00daf",
+    "retrieved_body_sha256": "96b26f0e759a93193bb0b880fef958445b40f48b74ba2b93e380050e10eb4410",
+    "retrieved_body_bytes": 2090
+  },
+  "diagram": "../diagrams/sd-10-017-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-10-020",
+      "relation": "see-also",
+      "reason_vi": "Mỗi giai đoạn lịch sử gắn với những mô hình lập trình; bài kia kể tám mô hình."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "source_claims_listed_with_the_pinned_source; only the Python origin was read in a raw copy of the CPython documentation, every other date and statement is the source's word and the glosses are the author's general knowledge"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending",
+      "reason": "figure text measured in Chromium by scripts.figures check --browser (14 px at a 375 px screen); no whole-lesson render at 320, 375 and 430 px recorded"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Perforated cards were the first generation of programming languages; assembly languages, machine-oriented, the second; third-generation languages, human-oriented, have been around since 1957.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/a-brief-history-og-programming-languages.md",
+      "section": "Bullet 1",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Early languages like Fortran and LISP proposed garbage collection, recursion and exceptions, which still exist in modern languages.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/a-brief-history-og-programming-languages.md",
+      "section": "Bullet 2",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "In 1972 Smalltalk and C were born; Smalltalk greatly influenced scripting and client-side languages; C was developed for Unix programming.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/a-brief-history-og-programming-languages.md",
+      "section": "Bullet 3",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "In the 1980s object-oriented languages became popular because of their advantage in graphical user interfaces; Object-C and C++ are two famous ones.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/a-brief-history-og-programming-languages.md",
+      "section": "Bullet 4",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "In the 1990s PCs became cheaper and languages emphasized security and simplicity; Python was born then and gained popularity as easy to learn and extend; in 1995 Java, JavaScript, PHP and Ruby were born.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/a-brief-history-og-programming-languages.md",
+      "section": "Bullet 5",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "In 2000 Microsoft released C#, bundled with the .NET framework but carrying many advanced features.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/a-brief-history-og-programming-languages.md",
+      "section": "Bullet 6",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "In the 2010s languages were developed to improve C++ or Java: D, Rust, Zig and Carbon in the C++ family; Golang and Kotlin in the Java family; Flutter made Dart popular, TypeScript is fully compatible with JavaScript, Apple released Swift to replace Object-C.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/a-brief-history-og-programming-languages.md",
+      "section": "Bullet 7",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "CPython documentation: Python was created in the early 1990s by Guido van Rossum at Stichting Mathematisch Centrum in the Netherlands as a successor of a language called ABC.",
+      "source": "https://github.com/python/cpython/blob/b00a14018172652226bd6efb517af021bd03aa88/Doc/license.rst",
+      "section": "History of the software",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "The source spells \"Object-C\"; the common name Objective-C is the author's general knowledge. The source places Go in the \"Java family\", which the lesson does not endorse; the glosses of LISP, GUI, PC and PHP are the author's general knowledge.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/a-brief-history-og-programming-languages.md",
+      "section": "Limits and Từ viết tắt",
+      "verified_by": "Author's general knowledge; not checked against primary documentation."
+    }
+  ],
+  "design_notes_vi": "Ba chuỗi bước theo thời gian (các thế hệ đầu; 1972 đến thập niên 1990; từ năm 2000) và một khung ghi nhớ. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Source is seven bullets by decade; the lesson redraws them as three timelines and does not use the source image.",
+    "Source spells Object-C and places Go in the Java family; the lesson uses the common name Objective-C (general knowledge) and reports the Go grouping as the source's without endorsing it.",
+    "Only the Python origin is checked against the pinned CPython documentation; the other dates are the source's word."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích thêm là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
+}

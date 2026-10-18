@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1009" viewBox="0 0 320 1009" role="img" aria-labelledby="title desc">
+<title id="title">Bốn trụ cột hướng đối tượng</title>
+<desc id="desc">Hai nhóm thẻ và một khung ghi nhớ. Che bớt chi tiết: trừu tượng ẩn chi tiết cài đặt, ví dụ lớp Vehicle với phương thức stop trừu tượng; đóng gói gói dữ liệu và phương thức vào một lớp, ví dụ trường private cùng getter và setter. Dùng lại và thay đổi: kế thừa cho lớp con thừa hưởng từ lớp cha, ví dụ Car kế thừa Vehicle; đa hình cho cùng một phương thức chạy khác nhau theo đối tượng gọi nó. Khung cuối nêu ba điều cần nhớ.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1009" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Bốn trụ cột hướng đối</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">tượng</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Mỗi trụ cột kèm ví dụ của bài nguồn.</text>
+<rect x="8" y="104" width="304" height="323" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="132.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Che bớt chi tiết</text>
+<rect x="20" y="149" width="280" height="126" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="212" r="18" fill="#1d4ed8"/><g transform="translate(39.2 201.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></g>
+<text x="78" y="175.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Trừu tượng</text>
+<text x="78" y="199.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ẩn chi tiết cài đặt, chỉ cho</text>
+<text x="78" y="218.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thấy phần thiết yếu. Ví dụ:</text>
+<text x="78" y="238.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Vehicle có phương thức</text>
+<text x="78" y="257.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">stop trừu tượng.</text>
+<rect x="20" y="289" width="280" height="126" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="352" r="18" fill="#1d4ed8"/><g transform="translate(39.2 341.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="11" rx="2" ry="2" width="18" x="3" y="11"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></g>
+<text x="78" y="315.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Đóng gói</text>
+<text x="78" y="339.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Gói dữ liệu và phương thức</text>
+<text x="78" y="358.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">vào lớp, hạn chế truy cập</text>
+<text x="78" y="378.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trực tiếp. Ví dụ: trường</text>
+<text x="78" y="397.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">private cùng getter, setter.</text>
+<rect x="8" y="439" width="304" height="285" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="467.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Dùng lại và thay đổi</text>
+<rect x="20" y="484" width="280" height="107" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="537.5" r="18" fill="#0f766e"/><g transform="translate(39.2 526.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6a9 9 0 0 0-9 9V3"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/></g>
+<text x="78" y="510.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Kế thừa</text>
+<text x="78" y="534.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lớp con thừa hưởng từ lớp</text>
+<text x="78" y="553.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cha, dùng lại mã. Ví dụ:</text>
+<text x="78" y="573.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Car kế thừa Vehicle.</text>
+<rect x="20" y="605" width="280" height="107" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="658.5" r="18" fill="#0f766e"/><g transform="translate(39.2 647.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 14 4 4-4 4"/><path d="m18 2 4 4-4 4"/><path d="M2 18h1.973a4 4 0 0 0 3.3-1.7l5.454-8.6a4 4 0 0 1 3.3-1.7H22"/><path d="M2 6h1.972a4 4 0 0 1 3.6 2.2"/><path d="M22 18h-6.041a4 4 0 0 1-3.3-1.8l-.359-.45"/></g>
+<text x="78" y="631.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Đa hình</text>
+<text x="78" y="655.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cùng một phương thức</text>
+<text x="78" y="674.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chạy khác nhau theo đối</text>
+<text x="78" y="694.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tượng gọi nó.</text>
+<rect x="8" y="736" width="304" height="265" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="764.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Nhớ gì</text>
+<rect x="20" y="781" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="804" r="11" fill="#16a34a"/>
+<polyline points="37.9,804.4 41.7,808.4 48.5,800" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="807.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bốn trụ cột: trừu tượng,</text>
+<text x="64" y="826.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đóng gói, kế thừa, đa hình.</text>
+<rect x="20" y="852" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="875" r="11" fill="#16a34a"/>
+<polyline points="37.9,875.4 41.7,879.4 48.5,871" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="878.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đóng gói bằng quyền truy</text>
+<text x="64" y="897.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cập là cách của từng ngôn</text>
+<text x="64" y="917.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">ngữ.</text>
+<rect x="20" y="943" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="966" r="11" fill="#16a34a"/>
+<polyline points="37.9,966.4 41.7,970.4 48.5,962" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="969.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Kế thừa giúp dùng lại mã.</text>
+</g>
+</svg>

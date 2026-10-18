@@ -86,6 +86,11 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 
 ## Phát triển phần mềm
 
+17. [Lịch sử ngắn của các ngôn ngữ lập trình](lessons/sd-10-017/lesson.md)
+18. [Sáu thuật toán cân bằng tải](lessons/sd-10-018/lesson.md)
+19. [Bốn trụ cột của lập trình hướng đối tượng](lessons/sd-10-019/lesson.md)
+20. [Tám mô hình lập trình](lessons/sd-10-020/lesson.md)
+21. [Thuật toán nên biết cho phỏng vấn thiết kế hệ thống: ba mức sao](lessons/sd-10-021/lesson.md)
 23. [Sau thay đổi API: chọn bộ kiểm tra theo rủi ro](lessons/sd-10-023/lesson.md)
 
 ## DevOps và CI/CD

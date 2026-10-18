@@ -1,0 +1,14 @@
+{
+  "id": "sd-10-021",
+  "title": "Ba mức sao của thuật toán",
+  "subtitle": "Cách tác giả xếp thuật toán cho phỏng vấn.",
+  "desc": "Ba thẻ và một khung ghi nhớ. Năm sao: rất quan trọng, cố hiểu nó chạy thế nào và vì sao. Ba sao: quan trọng ở mức nào đó, có thể không cần biết chi tiết cài đặt. Một sao: nâng cao, nên biết với ứng viên cấp cao. Khung cuối nêu ba điều cần nhớ.",
+  "sections": [
+    {"kind": "parts", "heading": "Ba mức sao",
+     "items": [{"name": "Năm sao", "role": "Rất quan trọng. Cố hiểu nó chạy thế nào và vì sao.", "icon": "zap"},
+               {"name": "Ba sao", "role": "Quan trọng ở mức nào đó. Có thể không cần biết chi tiết cài đặt.", "icon": "gauge"},
+               {"name": "Một sao", "role": "Nâng cao. Nên biết với ứng viên cấp cao.", "icon": "brain"}]},
+    {"kind": "notes", "heading": "Nhớ gì",
+     "items": ["Hiểu thuật toán được dùng thế nào trong hệ thống thật thường quan trọng hơn chi tiết cài đặt.", "Xếp hạng khách quan rất khó; tác giả mở đón góp ý.", "Danh sách thuật toán nằm trong ảnh nguồn, bài không dùng."]}
+  ]
+}

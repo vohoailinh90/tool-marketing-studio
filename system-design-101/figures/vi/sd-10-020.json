@@ -1,0 +1,21 @@
+{
+  "id": "sd-10-020",
+  "title": "Tám mô hình lập trình",
+  "subtitle": "Xếp theo việc mô hình lo, theo cách bài sắp xếp.",
+  "desc": "Ba nhóm thẻ và một khung ghi nhớ. Cách mô tả chương trình: mệnh lệnh mô tả chuỗi bước đổi trạng thái; khai báo mô tả logic mà không nêu luồng điều khiển; hàm xem tính toán là tính giá trị hàm toán học. Cách tổ chức mã: hướng đối tượng xoay quanh đối tượng; hướng khía cạnh tách mối quan tâm cắt ngang; tổng quát viết mã không gắn với kiểu dữ liệu. Chạy nhiều việc và dữ liệu thay đổi: phản ứng xử lý luồng dữ liệu bất đồng bộ; đồng thời chạy nhiều tác vụ cùng lúc. Khung cuối nêu ba điều cần nhớ.",
+  "sections": [
+    {"kind": "parts", "heading": "Cách mô tả chương trình",
+     "items": [{"name": "Mệnh lệnh", "role": "Mô tả chuỗi bước làm đổi trạng thái chương trình.", "icon": "list-ordered"},
+               {"name": "Khai báo", "role": "Nêu logic và chức năng, không nêu luồng điều khiển.", "icon": "file-text"},
+               {"name": "Hàm (FP)", "role": "Tính toán là tính giá trị hàm toán học, ưu tiên dữ liệu bất biến.", "icon": "workflow"}]},
+    {"kind": "parts", "heading": "Cách tổ chức mã",
+     "items": [{"name": "Hướng đối tượng (OOP)", "role": "Xoay quanh đối tượng gói dữ liệu và hành vi.", "icon": "box"},
+               {"name": "Hướng khía cạnh (AOP)", "role": "Tách các mối quan tâm cắt ngang nhiều phần của hệ thống.", "icon": "layers"},
+               {"name": "Tổng quát", "role": "Viết mã dùng lại, không gắn với kiểu dữ liệu cụ thể.", "icon": "puzzle"}]},
+    {"kind": "parts", "heading": "Nhiều việc và dữ liệu thay đổi",
+     "items": [{"name": "Phản ứng", "role": "Luồng dữ liệu bất đồng bộ và lan truyền thay đổi.", "icon": "radio"},
+               {"name": "Đồng thời", "role": "Chạy nhiều tác vụ hoặc tiến trình cùng lúc.", "icon": "split"}]},
+    {"kind": "notes", "heading": "Nhớ gì",
+     "items": ["Tám mô hình, mỗi mô hình một cách nghĩ về chương trình.", "Một ngôn ngữ có thể hợp nhiều mô hình.", "Cách chia nhóm là của bài, không phải của nguồn."]}
+  ]
+}

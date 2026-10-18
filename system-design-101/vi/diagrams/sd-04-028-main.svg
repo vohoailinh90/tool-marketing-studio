@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1213" viewBox="0 0 320 1213" role="img" aria-labelledby="title desc">
+<title id="title">Cơ sở dữ liệu serverless: tách tính toán khỏi lưu trữ</title>
+<desc id="desc">Ba khung dọc. Khung một, ba mảnh nối nhau: ứng dụng gửi truy vấn; phần tính toán là tiến trình cơ sở dữ liệu không giữ dữ liệu, co giãn theo tải và có thể dừng hẳn; phần lưu trữ giữ dữ liệu và nhật ký ghi, sống độc lập với phần tính toán. Khung hai, Aurora Serverless v2 theo tài liệu API của AWS: dung lượng đo bằng ACU, chỉnh theo bước 0,5; tối đa 256 ACU với bản mới, 128 với bản cũ; tối thiểu 0 ACU khi bản đó hỗ trợ tự tạm dừng, nếu không thì 0,5; tạm dừng sau 300 giây rảnh theo mặc định, đặt được tới một ngày. Khung ba, thử ý tưởng trên một máy: dừng tiến trình A, chạy tiến trình B trên cùng thư mục dữ liệu; B thấy đủ 1.000.000 dòng; câu đầu tiên của B phải đọc cả 4.425 trang từ kho.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1213" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Cơ sở dữ liệu serverless:</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">tách tính toán khỏi lưu</text>
+<text x="16" y="82" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">trữ</text>
+<rect x="8" y="102" width="304" height="402" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="130.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Ba mảnh</text>
+<rect x="20" y="147" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="190.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 179.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="14" rx="2" width="20" x="2" y="3"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></g>
+<text x="78" y="173.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Ứng dụng</text>
+<text x="78" y="197.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Gửi truy vấn như với mọi</text>
+<text x="78" y="216.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cơ sở dữ liệu.</text>
+<rect x="20" y="266" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="319.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 308.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20v2"/><path d="M12 2v2"/><path d="M17 20v2"/><path d="M17 2v2"/><path d="M2 12h2"/><path d="M2 17h2"/><path d="M2 7h2"/><path d="M20 12h2"/><path d="M20 17h2"/><path d="M20 7h2"/><path d="M7 20v2"/><path d="M7 2v2"/><rect height="16" rx="2" width="16" x="4" y="4"/><rect height="8" rx="1" width="8" x="8" y="8"/></g>
+<text x="78" y="292.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Phần tính toán</text>
+<text x="78" y="316.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tiến trình không giữ dữ</text>
+<text x="78" y="335.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">liệu; co giãn theo tải, có</text>
+<text x="78" y="355.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thể dừng hẳn.</text>
+<rect x="20" y="405" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="448.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 437.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></g>
+<text x="78" y="431.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Phần lưu trữ</text>
+<text x="78" y="455.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Giữ dữ liệu và nhật ký ghi,</text>
+<text x="78" y="474.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">sống độc lập.</text>
+<polyline points="160,236 160,264" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="160,375 160,403" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="516" width="304" height="395" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="544.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Aurora Serverless v2, theo</text>
+<text x="20" y="566.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">tài liệu API</text>
+<rect x="20" y="583" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="606" r="11" fill="#16a34a"/>
+<polyline points="37.9,606.4 41.7,610.4 48.5,602" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="609.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Dung lượng đo bằng ACU,</text>
+<text x="64" y="628.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chỉnh theo bước 0,5.</text>
+<rect x="20" y="654" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="677" r="11" fill="#16a34a"/>
+<polyline points="37.9,677.4 41.7,681.4 48.5,673" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="680.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tối đa 256 ACU với bản mới,</text>
+<text x="64" y="699.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">128 với bản cũ.</text>
+<rect x="20" y="725" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="748" r="11" fill="#16a34a"/>
+<polyline points="37.9,748.4 41.7,752.4 48.5,744" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="751.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tối thiểu 0 ACU nếu bản đó</text>
+<text x="64" y="770.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tự tạm dừng được, không thì</text>
+<text x="64" y="790.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">0,5.</text>
+<rect x="20" y="816" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="839" r="11" fill="#16a34a"/>
+<polyline points="37.9,839.4 41.7,843.4 48.5,835" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="842.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tạm dừng sau 300 giây rảnh</text>
+<text x="64" y="861.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">(mặc định), đặt được tới 1</text>
+<text x="64" y="881.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">ngày.</text>
+<rect x="8" y="923" width="304" height="282" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="951.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Thử ý tưởng trên một máy</text>
+<rect x="20" y="968" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="991" r="11" fill="#16a34a"/>
+<polyline points="37.9,991.4 41.7,995.4 48.5,987" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="994.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Dừng tiến trình A, chạy tiến</text>
+<text x="64" y="1013.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trình B trên cùng thư mục dữ</text>
+<text x="64" y="1033.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">liệu.</text>
+<rect x="20" y="1059" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1082" r="11" fill="#16a34a"/>
+<polyline points="37.9,1082.4 41.7,1086.4 48.5,1078" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1085.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">B thấy đủ 1.000.000 dòng,</text>
+<text x="64" y="1104.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tổng giống hệt.</text>
+<rect x="20" y="1130" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1153" r="11" fill="#16a34a"/>
+<polyline points="37.9,1153.4 41.7,1157.4 48.5,1149" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1156.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Câu đầu tiên của B phải đọc</text>
+<text x="64" y="1175.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cả 4.425 trang từ kho.</text>
+</g>
+</svg>

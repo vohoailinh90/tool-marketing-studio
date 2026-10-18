@@ -1210,11 +1210,11 @@
         },
         {
           "id": "sd-04-028",
-          "title_vi": null,
+          "title_vi": "Cơ sở dữ liệu serverless: tách phần tính toán khỏi phần lưu trữ",
           "title_source": "What is Serverless DB?",
           "source_url": "https://bytebytego.com/guides/what-is-serverless-db",
           "source_path": "data/guides/what-is-serverless-db.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "8f39dc7cd7693e6df48d128885144e6effa71788",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-is-serverless-db.md"
         },

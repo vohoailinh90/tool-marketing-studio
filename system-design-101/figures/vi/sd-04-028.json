@@ -1,0 +1,28 @@
+{
+  "id": "sd-04-028",
+  "lang": "vi",
+  "title": "Cơ sở dữ liệu serverless: tách tính toán khỏi lưu trữ",
+  "desc": "Ba khung dọc. Khung một, ba mảnh nối nhau: ứng dụng gửi truy vấn; phần tính toán là tiến trình cơ sở dữ liệu không giữ dữ liệu, co giãn theo tải và có thể dừng hẳn; phần lưu trữ giữ dữ liệu và nhật ký ghi, sống độc lập với phần tính toán. Khung hai, Aurora Serverless v2 theo tài liệu API của AWS: dung lượng đo bằng ACU, chỉnh theo bước 0,5; tối đa 256 ACU với bản mới, 128 với bản cũ; tối thiểu 0 ACU khi bản đó hỗ trợ tự tạm dừng, nếu không thì 0,5; tạm dừng sau 300 giây rảnh theo mặc định, đặt được tới một ngày. Khung ba, thử ý tưởng trên một máy: dừng tiến trình A, chạy tiến trình B trên cùng thư mục dữ liệu; B thấy đủ 1.000.000 dòng; câu đầu tiên của B phải đọc cả 4.425 trang từ kho.",
+  "sections": [
+    {"kind": "parts", "heading": "Ba mảnh",
+     "items": [
+       {"name": "Ứng dụng", "role": "Gửi truy vấn như với mọi cơ sở dữ liệu.", "icon": "monitor"},
+       {"name": "Phần tính toán", "role": "Tiến trình không giữ dữ liệu; co giãn theo tải, có thể dừng hẳn.", "icon": "cpu"},
+       {"name": "Phần lưu trữ", "role": "Giữ dữ liệu và nhật ký ghi, sống độc lập.", "icon": "database"}
+     ],
+     "flow": [[0, 1], [1, 2]]},
+    {"kind": "notes", "heading": "Aurora Serverless v2, theo tài liệu API",
+     "items": [
+       "Dung lượng đo bằng ACU, chỉnh theo bước 0,5.",
+       "Tối đa 256 ACU với bản mới, 128 với bản cũ.",
+       "Tối thiểu 0 ACU nếu bản đó tự tạm dừng được, không thì 0,5.",
+       "Tạm dừng sau 300 giây rảnh (mặc định), đặt được tới 1 ngày."
+     ]},
+    {"kind": "notes", "heading": "Thử ý tưởng trên một máy",
+     "items": [
+       "Dừng tiến trình A, chạy tiến trình B trên cùng thư mục dữ liệu.",
+       "B thấy đủ 1.000.000 dòng, tổng giống hệt.",
+       "Câu đầu tiên của B phải đọc cả 4.425 trang từ kho."
+     ]}
+  ]
+}

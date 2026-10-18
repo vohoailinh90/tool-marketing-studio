@@ -78,7 +78,7 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 
 ## Cơ sở dữ liệu và lưu trữ
 
-Các bài từ sd-04-013 trở đi chưa có ở đây; số thứ tự dưới đây theo vị trí trong nguồn.
+Số thứ tự dưới đây theo vị trí trong nguồn.
 
 1. [Bản sao đọc: vì sao vừa ghi xong lại đọc không thấy](lessons/sd-04-001/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 2. [Khóa bi quan và khóa lạc quan: hai người cùng mua vé cuối](lessons/sd-04-002/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
@@ -92,6 +92,21 @@ Các bài từ sd-04-013 trở đi chưa có ở đây; số thứ tự dưới 
 10. [Bốn kiểu hàng đợi trong chương trình: FIFO, bộ đệm vòng, ưu tiên, deque](lessons/sd-04-010/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 11. [Cơ sở dữ liệu chuỗi thời gian: dữ liệu được gom theo series](lessons/sd-04-011/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 12. [Event sourcing khác thiết kế CRUD ở đâu: lưu trạng thái hay lưu chuyện đã xảy ra](lessons/sd-04-012/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+
+Các bài từ sd-04-013 đến sd-04-024 chưa có ở đây.
+
+25. [Bốn cách chia dữ liệu vào shard: thêm một shard thì bao nhiêu khóa phải dời?](lessons/sd-04-025/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+26. [Sáu mô hình dữ liệu: một cửa hàng nhỏ, sáu cách xếp](lessons/sd-04-026/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+27. [Một câu SQL đi qua những chặng nào? Thử từng chặng trên PostgreSQL](lessons/sd-04-027/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+28. [Cơ sở dữ liệu serverless: tách phần tính toán khỏi phần lưu trữ](lessons/sd-04-028/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+29. [PostgreSQL được yêu thích vì làm được nhiều việc: thử xem việc nào có sẵn](lessons/sd-04-029/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+30. [Mười cơ sở dữ liệu "mã nguồn mở": đọc giấy phép của từng cái](lessons/sd-04-030/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+31. [PostgreSQL "nuốt" cả thế giới cơ sở dữ liệu? Thử phần có sẵn, đếm phần cần cài thêm](lessons/sd-04-031/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+32. [Chọn cơ sở dữ liệu theo câu hỏi bạn sẽ hỏi: tám loại và hai phép đo](lessons/sd-04-032/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+33. [Cây chọn cơ sở dữ liệu: tự dựng cây của bạn, hỏi ràng buộc cứng trước](lessons/sd-04-033/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+34. [Tám cấu trúc dữ liệu sau chỉ mục: mỗi cái trả lời một kiểu câu hỏi](lessons/sd-04-034/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+35. [Bản sao chỉ đọc qua lớp trung gian: vừa đặt đơn mà không thấy đơn](lessons/sd-04-035/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+36. [Nhập môn sharding: chia xong rồi, câu hỏi nào đổi?](lessons/sd-04-036/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 
 ## Phỏng vấn kỹ thuật
 

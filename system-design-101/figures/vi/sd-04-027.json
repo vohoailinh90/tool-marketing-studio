@@ -1,0 +1,53 @@
+{
+  "id": "sd-04-027",
+  "lang": "vi",
+  "title": "Một câu SQL đi qua những chặng nào?",
+  "desc": "Khung một, bốn chặng trước khi đụng dữ liệu: kết nối, câu lệnh đến qua TCP hoặc qua socket Unix trên cùng máy; phân tích cú pháp, gõ sai từ khóa thì báo lỗi cú pháp; phân tích ngữ nghĩa, tra danh mục, mở và khóa bảng, báo lỗi nếu bảng hay cột không có; viết lại, truy vấn vào một view được thay bằng bảng gốc. Khung hai, hai chặng còn lại: lập kế hoạch, chọn quét cả bảng hay dùng chỉ mục theo ước tính chi phí; thực thi, đọc các trang dữ liệu qua bộ đệm chung. Khung ba, điều thấy được: lọc một khách dùng chỉ mục còn lọc 93 phần trăm số dòng thì quét cả bảng; lần đọc đầu phải nạp 1.082 trang, lần hai cả 1.082 trang đã có sẵn; câu select cũng khóa bảng ngay từ lúc phân tích ngữ nghĩa.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Bốn chặng trước khi đụng dữ liệu",
+      "items": [
+        {
+          "title": "Kết nối",
+          "text": "Câu lệnh đến qua TCP, hoặc qua socket Unix trên cùng máy."
+        },
+        {
+          "title": "Phân tích cú pháp",
+          "text": "Gõ sai từ khóa bị chặn ở đây: lỗi cú pháp."
+        },
+        {
+          "title": "Phân tích ngữ nghĩa",
+          "text": "Tra danh mục, mở và khóa bảng; không có bảng hay cột thì báo lỗi."
+        },
+        {
+          "title": "Viết lại",
+          "text": "Truy vấn vào view được thay bằng bảng gốc."
+        }
+      ]
+    },
+    {
+      "kind": "steps",
+      "heading": "Hai chặng còn lại",
+      "items": [
+        {
+          "title": "Lập kế hoạch",
+          "text": "Ước tính chi phí, chọn quét cả bảng hay dùng chỉ mục."
+        },
+        {
+          "title": "Thực thi",
+          "text": "Đọc trang dữ liệu qua bộ đệm chung, trả từng dòng."
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Thấy được trên PostgreSQL 16",
+      "items": [
+        "Lọc 1 khách: dùng chỉ mục. Lọc 93% số dòng: quét cả bảng.",
+        "Lần đọc đầu nạp 1.082 trang; lần hai cả 1.082 trang có sẵn.",
+        "Câu select cũng khóa bảng, ngay từ lúc phân tích ngữ nghĩa."
+      ]
+    }
+  ]
+}

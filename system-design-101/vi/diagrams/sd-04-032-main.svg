@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1007" viewBox="0 0 320 1007" role="img" aria-labelledby="title desc">
+<title id="title">Chọn cơ sở dữ liệu theo câu hỏi bạn sẽ hỏi</title>
+<desc id="desc">Khung một, câu hỏi nhỏ và ghi nhiều: giao dịch đúng từng đồng dùng cơ sở dữ liệu quan hệ cho OLTP; lấy theo khóa thật nhanh dùng kho khóa và giá trị; bản ghi dạng JSON, dùng kho tài liệu; quan hệ chằng chịt dùng cơ sở dữ liệu đồ thị. Khung hai, câu hỏi đặc thù: tổng hợp hàng triệu dòng dùng hệ OLAP lưu theo cột; tìm theo từ trong văn bản dùng tìm toàn văn; tìm thứ gần giống nhất dùng vector nhúng; gần một vị trí hay trong một vùng dùng dữ liệu không gian. Khung ba, đo trên một máy: tìm một mã trong 200.000 ghi chú, quét cả bảng mất 37 đến 49 mili giây, chỉ mục toàn văn 0,01 đến 0,02 mili giây; tổng theo cửa hàng trên 5 triệu dòng, SQLite mất 1,9 giây, DuckDB 31 đến 33 mili giây.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1007" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Chọn cơ sở dữ liệu theo</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">câu hỏi bạn sẽ hỏi</text>
+<rect x="8" y="78" width="304" height="333" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="106.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Câu hỏi nhỏ, ghi nhiều</text>
+<rect x="20" y="123" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="146" r="11" fill="#16a34a"/>
+<polyline points="37.9,146.4 41.7,150.4 48.5,142" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="149.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Giao dịch đúng từng đồng:</text>
+<text x="64" y="168.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">quan hệ, OLTP.</text>
+<rect x="20" y="194" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="217" r="11" fill="#16a34a"/>
+<polyline points="37.9,217.4 41.7,221.4 48.5,213" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="220.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lấy theo khóa, thật nhanh:</text>
+<text x="64" y="239.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">kho khóa–giá trị.</text>
+<rect x="20" y="265" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="288" r="11" fill="#16a34a"/>
+<polyline points="37.9,288.4 41.7,292.4 48.5,284" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="291.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bản ghi JSON, mỗi bản một</text>
+<text x="64" y="310.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">kiểu: kho tài liệu.</text>
+<rect x="20" y="336" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="359" r="11" fill="#16a34a"/>
+<polyline points="37.9,359.4 41.7,363.4 48.5,355" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="362.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Quan hệ chằng chịt: cơ sở</text>
+<text x="64" y="381.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dữ liệu đồ thị.</text>
+<rect x="8" y="423" width="304" height="333" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="451.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Câu hỏi đặc thù</text>
+<rect x="20" y="468" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="491" r="11" fill="#16a34a"/>
+<polyline points="37.9,491.4 41.7,495.4 48.5,487" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="494.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tổng hợp hàng triệu dòng:</text>
+<text x="64" y="513.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">OLAP, lưu theo cột.</text>
+<rect x="20" y="539" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="562" r="11" fill="#16a34a"/>
+<polyline points="37.9,562.4 41.7,566.4 48.5,558" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="565.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tìm theo từ trong văn bản:</text>
+<text x="64" y="584.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tìm toàn văn.</text>
+<rect x="20" y="610" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="633" r="11" fill="#16a34a"/>
+<polyline points="37.9,633.4 41.7,637.4 48.5,629" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="636.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tìm thứ gần giống nhất:</text>
+<text x="64" y="655.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">vector nhúng.</text>
+<rect x="20" y="681" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="704" r="11" fill="#16a34a"/>
+<polyline points="37.9,704.4 41.7,708.4 48.5,700" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="707.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Gần một vị trí, trong một</text>
+<text x="64" y="726.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">vùng: không gian.</text>
+<rect x="8" y="768" width="304" height="231" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="796.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Đo trên một máy</text>
+<rect x="20" y="813" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="836" r="11" fill="#16a34a"/>
+<polyline points="37.9,836.4 41.7,840.4 48.5,832" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="839.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tìm một mã trong 200.000</text>
+<text x="64" y="858.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">ghi chú: quét 37–49 ms, chỉ</text>
+<text x="64" y="878.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mục toàn văn 0,01–0,02 ms.</text>
+<rect x="20" y="904" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="927" r="11" fill="#16a34a"/>
+<polyline points="37.9,927.4 41.7,931.4 48.5,923" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="930.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tổng theo cửa hàng, 5 triệu</text>
+<text x="64" y="949.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dòng: SQLite 1,9 s, DuckDB</text>
+<text x="64" y="969.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">31–33 ms.</text>
+</g>
+</svg>

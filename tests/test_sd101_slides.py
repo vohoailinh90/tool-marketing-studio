@@ -219,6 +219,30 @@ class ClaimTests(Sessions):
         self.assertEqual(0, code)
         self.assertIn("invalid 1", out)
 
+    def test_a_record_whose_values_cannot_be_built_blocks_its_lesson_instead_of_stopping_the_tool(self) -> None:
+        texts = {"a month that does not exist": "claimed_at: 2026-13-01T00:00:00Z\n",
+                 "a day that does not exist": "claimed_at: 2026-02-30T00:00:00Z\n",
+                 "a time before year 1 in UTC": "claimed_at: 0001-01-01T00:00:00+05:00\n",
+                 "nesting too deep to read": "taken_from: " + "[" * 5000 + "]" * 5000 + "\n"}
+        for label, line in texts.items():
+            with self.subTest(label):
+                self.assertIsNone(slides.parse_record(f"id: sd-01-001\nstatus: doing\nowner: claude/x\n{line}"))
+        x, b = self.session("x"), self.session("b")
+        folder = x / "store" / "lessons" / "sd-01-001" / "slides"
+        folder.mkdir()
+        (folder / "deck.yaml").write_text("id: sd-01-001\nstatus: doing\nowner: claude/x\nclaimed_at: 2026-13-01T00:00:00Z\n"
+                                          "heartbeat_at: 2026-10-17T08:00:00Z\n", encoding="utf-8")
+        git(x, "add", "-A")
+        git(x, "commit", "--quiet", "-m", "a typo")
+        git(x, "push", "--quiet", "-u", "origin", "claude/x")
+        code, _, err = self.run_in(b, "claim", "sd-01-001")
+        self.assertEqual(1, code)
+        self.assertIn("cannot be read", err)
+        code, out, _ = self.run_in(b, "status")
+        self.assertEqual(0, code)
+        self.assertIn("invalid 1", out)
+        self.assertEqual(0, self.run_in(b, "claim", "sd-01-002")[0], "every other lesson can still be claimed")
+
     def test_offline_never_publishes_the_default_branch(self) -> None:
         before = git(self.seed, "rev-parse", "origin/main")
         code, _, err = self.run_in(self.seed, "--offline", "claim", "sd-01-001")

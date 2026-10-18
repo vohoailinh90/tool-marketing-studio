@@ -146,16 +146,19 @@ StrictLoader.add_constructor(yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG, _no
 
 
 def parse_record(text: str) -> dict | None:
+    """The record as a mapping, or None when it cannot be read. A record is read on every branch by every session, so
+    nothing in one may stop the tool: besides the loader's own YAMLError, building a value raises ValueError (a date
+    that does not exist), OverflowError (a time before year 1 in UTC) or RecursionError (nesting too deep)."""
     try:
         data = yaml.load(text, Loader=StrictLoader)  # noqa: S506 - StrictLoader is a SafeLoader
-    except yaml.YAMLError:
+        if not isinstance(data, dict):
+            return None
+        for key in ("claimed_at", "heartbeat_at", "done_at"):
+            if isinstance(data.get(key), datetime.datetime):  # YAML reads an unquoted 2026-10-17T09:00:00Z as a timestamp
+                moment = data[key] if data[key].tzinfo else data[key].replace(tzinfo=datetime.timezone.utc)
+                data[key] = stamp(moment)
+    except (yaml.YAMLError, ValueError, OverflowError, RecursionError):
         return None
-    if not isinstance(data, dict):
-        return None
-    for key in ("claimed_at", "heartbeat_at", "done_at"):
-        if isinstance(data.get(key), datetime.datetime):  # YAML reads an unquoted 2026-10-17T09:00:00Z as a timestamp
-            moment = data[key] if data[key].tzinfo else data[key].replace(tzinfo=datetime.timezone.utc)
-            data[key] = stamp(moment)
     return data
 
 

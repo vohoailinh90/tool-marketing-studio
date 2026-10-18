@@ -406,3 +406,7 @@ mutations:
   find: "        if finished:  # releasing would push the deletion over it and offer a built deck again"
   replace: "        if False:  # releasing would push the deletion over it and offer a built deck again"
   test: tests.test_sd101_slides.FinishTests.test_release_never_pushes_a_deletion_over_a_finished_record_on_the_remote
+- label: a value YAML cannot build stops the tool instead of making the record unreadable
+  find: "    except (yaml.YAMLError, ValueError, OverflowError, RecursionError):"
+  replace: "    except yaml.YAMLError:"
+  test: tests.test_sd101_slides.ClaimTests.test_a_record_whose_values_cannot_be_built_blocks_its_lesson_instead_of_stopping_the_tool

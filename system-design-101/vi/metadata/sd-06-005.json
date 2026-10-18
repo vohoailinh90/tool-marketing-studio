@@ -81,6 +81,12 @@
       "verified_by": "Read from a clone of redis/redis at tag 7.0.15; CONFIG GET save and appendonly on a server started without a config file returned the same values."
     },
     {
+      "claim_vi": "With appendfsync everysec, if the previous fsync is still in progress Redis delays the write(2) call up to two seconds, so the one second of loss that redis.conf mentions for a power outage is the usual case, not a bound.",
+      "source": "https://github.com/redis/docs/blob/3b030c7ef066c0bb7f88ddec02c784e49783b0f8/content/operate/oss_and_stack/management/optimization/latency.md",
+      "section": "Latency due to AOF and disk I/O",
+      "verified_by": "Read from a local clone of redis/docs at commit 3b030c7ef066c0bb7f88ddec02c784e49783b0f8, the head of its default branch when read on 2026-10-18 (a later change to that branch does not alter this URL)."
+    },
+    {
       "claim_vi": "Redis Pub/Sub has at-most-once delivery: a message the subscriber cannot handle is lost; Streams offer stronger guarantees.",
       "source": "https://github.com/redis/docs/blob/3b030c7ef066c0bb7f88ddec02c784e49783b0f8/content/develop/pubsub/_index.md",
       "section": "Delivery semantics",
@@ -104,7 +110,8 @@
     "Source lists DELETE as a basic command; Redis's command is DEL and DELETE is rejected (tested).",
     "Source lists JSON among Redis data structures; in Redis 7.0.15 JSON needs a module (tested).",
     "Source says Redis keeps fully durable storage; the lesson shows the default is periodic RDB snapshots that can lose recent writes.",
-    "Adopting companies and the module list are dropped: no source to check them."
+    "Adopting companies and the module list are dropped: no source to check them.",
+    "The one second of loss under everysec is presented as the usual case, not a bound: Redis can postpone the write up to two seconds when the disk is slow (Redis latency doc)."
   ],
   "editorial_note_vi": "Bài mới viết tại repo này (gói L5), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
 }

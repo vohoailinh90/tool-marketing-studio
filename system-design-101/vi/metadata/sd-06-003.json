@@ -117,7 +117,8 @@
     "Source says big keys have no impact on the main thread in EverySec and No modes; Redis's latency documentation and the lesson's measurement both show the write(2) on the main thread still blocks it.",
     "The lesson adds a measurement on Redis 7.0.15 and a way for the reader to repeat it.",
     "The figure shows the reply waiting for fsync only under always; under everysec and no the reply does not wait for the disk, and other clients wait on the main-thread write.",
-    "The figure and text add the everysec branch: while a background fsync is running the write is postponed up to 2 s, the reply goes out first and the late write blocks whichever clients are served then (Redis 7.0.15 source)."
+    "The figure and text add the everysec branch: while a background fsync is running the write is postponed up to 2 s, the reply goes out first and the late write blocks whichever clients are served then (Redis 7.0.15 source).",
+    "The modes panel says everysec usually loses about one second of data in a crash, more when the write is postponed."
   ],
   "editorial_note_vi": "Bài mới viết tại repo này (gói L5), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
 }

@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1068" viewBox="0 0 320 1068" role="img" aria-labelledby="title desc">
+<title id="title">Khóa trong cơ sở dữ liệu: ai chặn ai?</title>
+<desc id="desc">Bốn khung dọc, thử trên PostgreSQL 16 bằng hai phiên. Khung một, khóa trên một dòng: hai khóa chia sẻ cùng lúc được; khóa chia sẻ và khóa độc quyền thì bên sau phải chờ; đọc thường không bị khóa dòng chặn; khóa dòng 1 không chặn dòng 2. Khung hai, deadlock: A giữ dòng 1 rồi xin dòng 2, B giữ dòng 2 rồi xin dòng 1; PostgreSQL hủy một bên với lỗi deadlock detected và bên kia chạy tiếp. Khung ba, lệch ghi khi hai bác sĩ cùng xin nghỉ trực: ở mức repeatable read cả hai chốt được và không còn ai trực; ở mức serializable bên sau bị hủy và còn một người trực. Khung bốn, khóa bảng: đang đổi cấu trúc bảng mà chưa chốt thì cả câu đọc thường cũng phải chờ, vì khóa này xung đột với mọi khóa khác.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1068" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Khóa trong cơ sở dữ</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">liệu: ai chặn ai?</text>
+<rect x="8" y="78" width="304" height="333" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="106.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Khóa trên một dòng</text>
+<rect x="20" y="123" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="146" r="11" fill="#16a34a"/>
+<polyline points="37.9,146.4 41.7,150.4 48.5,142" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="149.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chia sẻ + chia sẻ: được cùng</text>
+<text x="64" y="168.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lúc.</text>
+<rect x="20" y="194" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="217" r="11" fill="#16a34a"/>
+<polyline points="37.9,217.4 41.7,221.4 48.5,213" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="220.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chia sẻ + độc quyền: bên</text>
+<text x="64" y="239.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">sau phải chờ.</text>
+<rect x="20" y="265" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="288" r="11" fill="#16a34a"/>
+<polyline points="37.9,288.4 41.7,292.4 48.5,284" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="291.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đọc thường không bị khóa</text>
+<text x="64" y="310.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dòng chặn.</text>
+<rect x="20" y="336" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="359" r="11" fill="#16a34a"/>
+<polyline points="37.9,359.4 41.7,363.4 48.5,355" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="362.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Khóa dòng 1 không chặn</text>
+<text x="64" y="381.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dòng 2.</text>
+<rect x="8" y="423" width="304" height="211" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="451.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Deadlock</text>
+<rect x="20" y="468" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="491" r="11" fill="#16a34a"/>
+<polyline points="37.9,491.4 41.7,495.4 48.5,487" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="494.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">A giữ dòng 1 xin dòng 2; B</text>
+<text x="64" y="513.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">giữ dòng 2 xin dòng 1.</text>
+<rect x="20" y="539" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="562" r="11" fill="#16a34a"/>
+<polyline points="37.9,562.4 41.7,566.4 48.5,558" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="565.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">PostgreSQL hủy một bên</text>
+<text x="64" y="584.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">(deadlock detected), bên kia</text>
+<text x="64" y="604.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chạy tiếp.</text>
+<rect x="8" y="646" width="304" height="191" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="674.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Hai bác sĩ cùng xin nghỉ trực</text>
+<rect x="20" y="691" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="714" r="11" fill="#16a34a"/>
+<polyline points="37.9,714.4 41.7,718.4 48.5,710" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="717.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Repeatable read: cả hai chốt</text>
+<text x="64" y="736.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">được, còn 0 người trực.</text>
+<rect x="20" y="762" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="785" r="11" fill="#16a34a"/>
+<polyline points="37.9,785.4 41.7,789.4 48.5,781" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="788.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Serializable: bên sau bị hủy,</text>
+<text x="64" y="807.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">còn 1 người trực.</text>
+<rect x="8" y="849" width="304" height="211" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="877.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Khóa bảng</text>
+<rect x="20" y="894" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="917" r="11" fill="#16a34a"/>
+<polyline points="37.9,917.4 41.7,921.4 48.5,913" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="920.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đang đổi cấu trúc bảng,</text>
+<text x="64" y="939.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chưa chốt: đọc thường cũng</text>
+<text x="64" y="959.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">phải chờ.</text>
+<rect x="20" y="985" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1008" r="11" fill="#16a34a"/>
+<polyline points="37.9,1008.4 41.7,1012.4 48.5,1004" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1011.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Khóa này xung đột với mọi</text>
+<text x="64" y="1030.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khóa khác trên bảng.</text>
+</g>
+</svg>

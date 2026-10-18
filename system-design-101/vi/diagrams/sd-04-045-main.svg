@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="992" viewBox="0 0 320 992" role="img" aria-labelledby="title desc">
+<title id="title">Kafka dùng vào việc gì, và thử bắt thay đổi dữ liệu</title>
+<desc id="desc">Ba khung dọc. Khung một, năm việc của nguồn đặt cạnh danh sách việc của chính Kafka: xử lý nhật ký ứng với gom nhật ký; luồng dữ liệu cho gợi ý ứng với xử lý luồng; theo dõi và cảnh báo ứng với số đo vận hành; bắt thay đổi dữ liệu và chuyển hệ thống không có trong danh sách của Kafka. Khung hai, thử bắt thay đổi dữ liệu bằng PostgreSQL: mỗi lần thêm, sửa, xóa đã chốt thành một bản ghi theo đúng thứ tự, gói theo giao dịch; xem trước không lấy đi, lấy đi rồi thì không còn. Khung ba, người đọc không đọc thì nhật ký phải chờ: thêm 200.000 dòng mà chưa đọc, PostgreSQL giữ 26 MB nhật ký cho người đọc đó; đọc xong thì không còn giữ gì.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="992" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Kafka dùng vào việc gì,</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">và thử bắt thay đổi dữ</text>
+<text x="16" y="82" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">liệu</text>
+<rect x="8" y="102" width="304" height="358" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="130.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Năm việc của nguồn, so với</text>
+<text x="20" y="152.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">danh sách của Kafka</text>
+<rect x="20" y="169" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="192" r="11" fill="#16a34a"/>
+<polyline points="37.9,192.4 41.7,196.4 48.5,188" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="195.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Xử lý nhật ký: gom nhật ký.</text>
+<rect x="20" y="223" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="246" r="11" fill="#16a34a"/>
+<polyline points="37.9,246.4 41.7,250.4 48.5,242" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="249.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Luồng dữ liệu cho gợi ý: xử</text>
+<text x="64" y="268.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lý luồng.</text>
+<rect x="20" y="294" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="317" r="11" fill="#16a34a"/>
+<polyline points="37.9,317.4 41.7,321.4 48.5,313" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="320.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Theo dõi và cảnh báo: số đo</text>
+<text x="64" y="339.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">vận hành.</text>
+<rect x="20" y="365" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="388" r="11" fill="#16a34a"/>
+<polyline points="37.9,388.4 41.7,392.4 48.5,384" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="391.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bắt thay đổi dữ liệu, chuyển</text>
+<text x="64" y="410.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hệ thống: không có trong</text>
+<text x="64" y="430.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">danh sách.</text>
+<rect x="8" y="472" width="304" height="304" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="500.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Thử bắt thay đổi dữ liệu</text>
+<text x="20" y="522.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">trên PostgreSQL</text>
+<rect x="20" y="539" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="562" r="11" fill="#16a34a"/>
+<polyline points="37.9,562.4 41.7,566.4 48.5,558" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="565.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mỗi lần thêm, sửa, xóa đã</text>
+<text x="64" y="584.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chốt thành một bản ghi,</text>
+<text x="64" y="604.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đúng thứ tự.</text>
+<rect x="20" y="630" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="653" r="11" fill="#16a34a"/>
+<polyline points="37.9,653.4 41.7,657.4 48.5,649" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="656.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Các bản ghi được gói theo</text>
+<text x="64" y="675.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">giao dịch.</text>
+<rect x="20" y="701" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="724" r="11" fill="#16a34a"/>
+<polyline points="37.9,724.4 41.7,728.4 48.5,720" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="727.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Xem trước không lấy đi; lấy</text>
+<text x="64" y="746.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đi rồi thì không còn.</text>
+<rect x="8" y="788" width="304" height="196" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="816.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Người đọc chưa đọc thì nhật</text>
+<text x="20" y="838.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">ký phải chờ</text>
+<rect x="20" y="855" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="878" r="11" fill="#16a34a"/>
+<polyline points="37.9,878.4 41.7,882.4 48.5,874" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="881.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Thêm 200.000 dòng chưa</text>
+<text x="64" y="900.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đọc: giữ 26 MB nhật ký.</text>
+<rect x="20" y="926" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="949" r="11" fill="#16a34a"/>
+<polyline points="37.9,949.4 41.7,953.4 48.5,945" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="952.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đọc xong: không còn giữ gì.</text>
+</g>
+</svg>

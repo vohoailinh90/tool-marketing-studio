@@ -1,0 +1,26 @@
+{
+  "id": "sd-04-039",
+  "lang": "vi",
+  "title": "Băm nhất quán: vì sao mỗi máy cần nhiều điểm",
+  "desc": "Ba khung dọc. Khung một, ba bước tìm máy cho một khóa: băm mỗi máy thành một hoặc nhiều điểm trên vòng số; băm khóa bằng cùng hàm băm; đi theo chiều vòng, khóa thuộc điểm máy gặp đầu tiên. Khung hai, mười máy và 200.000 khóa: một điểm mỗi máy thì máy nhiều nhất giữ 44.980 khóa còn máy ít nhất 1.959; 100 điểm mỗi máy thì từ 18.397 đến 22.186; 1.000 điểm thì từ 18.883 đến 21.128. Khung ba, máy s3 hỏng thì khóa của nó đi đâu: một điểm mỗi máy thì cả 6.889 khóa đổ lên đúng một máy; 100 điểm thì chia cho chín máy, máy nhận nhiều nhất thêm 4.085; còn chia dư từ mười xuống chín máy thì 180.046 khóa đổi chỗ, 90 phần trăm.",
+  "sections": [
+    {"kind": "steps", "heading": "Tìm máy cho một khóa",
+     "items": [
+       {"title": "Băm máy lên vòng", "text": "Mỗi máy thành một hoặc nhiều điểm trên vòng số."},
+       {"title": "Băm khóa lên vòng", "text": "Dùng cùng hàm băm cho khóa."},
+       {"title": "Đi theo chiều vòng", "text": "Khóa thuộc điểm máy gặp đầu tiên."}
+     ]},
+    {"kind": "notes", "heading": "10 máy, 200.000 khóa: độ lệch",
+     "items": [
+       "1 điểm mỗi máy: nhiều nhất 44.980 khóa, ít nhất 1.959.",
+       "100 điểm: từ 18.397 đến 22.186.",
+       "1.000 điểm: từ 18.883 đến 21.128."
+     ]},
+    {"kind": "notes", "heading": "Máy s3 hỏng: khóa của nó đi đâu",
+     "items": [
+       "1 điểm: cả 6.889 khóa đổ lên đúng 1 máy.",
+       "100 điểm: chia cho 9 máy, máy nhận nhiều nhất thêm 4.085.",
+       "Chia dư từ 10 xuống 9 máy: 180.046 khóa đổi chỗ, 90%."
+     ]}
+  ]
+}

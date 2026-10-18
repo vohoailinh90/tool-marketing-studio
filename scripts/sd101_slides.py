@@ -675,6 +675,9 @@ def lost_reason(lesson_id: str, found: list[Holding], context: Context, moment: 
             return f"{lesson_id}: already built by {holding.owner}"
         if not is_stale(holding, moment) and beats(holding, me):
             return f"{lesson_id}: lost to {holding.owner}"
+        if is_stale(me, moment) and beats(holding, me):  # renewing would revive the weaker of two quiet claims
+            return (f"{lesson_id}: {holding.owner} holds the stronger claim; take the lesson over on purpose with "
+                    f"`claim {lesson_id} --take-stale`")
     if is_stale(me, moment):
         return f"{lesson_id}: your published heartbeat ({me.heartbeat_at}) has expired; run touch --publish"
     return None

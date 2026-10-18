@@ -8,6 +8,7 @@ Câu hỏi hay gặp là: chọn chế độ `everysec` hay `no` thì khóa lớ
 ## Từ viết tắt
 
 - **AOF** (Append Only File) — tệp chỉ ghi thêm: nhật ký mà Redis nối từng lệnh ghi vào cuối, để khi khởi động lại thì đọc lại và dựng lại dữ liệu.
+- **RDB** (Redis DataBase) — tệp ảnh chụp toàn bộ dữ liệu của Redis tại một thời điểm; từ bản 7.0 nó cũng là dạng mặc định của tệp nền trong AOF.
 - **MiB** (Mebibyte) — mebibyte: đơn vị dung lượng bằng 1.048.576 byte (2 mũ 20), gần bằng một triệu byte.
 
 ## Đọc hình

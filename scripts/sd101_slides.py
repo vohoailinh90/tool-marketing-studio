@@ -431,6 +431,9 @@ def folder_problems(slides_dir: pathlib.Path, lesson_id: str) -> list[str]:
                 problems.append(f"{name} is not a PowerPoint file: {damage}")
             elif exports == "done" and pptx_badged(path):  # files recorded done are the ones that may go to Facebook
                 problems.append(f"{name} carries the moda.app badge: record it with `exported {lesson_id} --badged`")
+            elif exports == "badged" and not pptx_badged(path):  # a badge-free file belongs in done, with its PNG files
+                problems.append(f"{name} does not carry the moda.app badge: add its PNG files and record it with "
+                                f"`exported {lesson_id}`")
     return problems
 
 

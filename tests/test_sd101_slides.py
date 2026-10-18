@@ -1194,6 +1194,12 @@ class FolderTests(unittest.TestCase):
         (self.dir / "sd-01-001.pptx").write_bytes(b"not a zip")
         self.assertEqual(["sd-01-001.pptx is not a PowerPoint file: not a ZIP archive"], self.problems())
 
+    def test_a_badge_free_pptx_is_never_recorded_as_badged(self) -> None:
+        self.write(exports="badged")
+        pptx(self.dir / "sd-01-001.pptx")
+        self.assertEqual(["sd-01-001.pptx does not carry the moda.app badge: add its PNG files and record it with "
+                          "`exported sd-01-001`"], self.problems())
+
     def test_pending_exports_hold_no_pptx(self) -> None:
         self.write()
         pptx(self.dir / "sd-01-001.pptx", badged=True)

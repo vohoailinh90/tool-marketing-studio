@@ -62,9 +62,9 @@ Re-exporting does not change the slides, so it needs no claim.
 The owner decided on 2026-10-18 that a deck's PPTX may also go into the repository while the plan is free, badge and all:
 `export` the deck as PPTX, save it as `<id>.pptx` and run `exported <id> --badged --publish`, which records
 `exports: badged` (the PPTX alone, no PNG files). The badge is not removed here either, and a badged file never goes to
-Facebook. The check refuses to record a PPTX that still carries the badge as `done` (it looks for the picture Moda names
-`moda-export-watermark` on its slides); once the plan exports without the badge, replace the file, add the PNG files and
-run `exported <id> --publish`.
+Facebook. The check refuses to record a PPTX that still carries the badge as `done`, and one without it as `badged` (it looks for
+the picture Moda names `moda-export-watermark` on its slides); once the plan exports without the badge, replace the file,
+add the PNG files and run `exported <id> --publish`.
 
 ## The style (the approved sample is sd-01-001)
 

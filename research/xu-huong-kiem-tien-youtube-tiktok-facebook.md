@@ -212,7 +212,7 @@ Ghi chú: khán giả Mỹ có giá trị gấp khoảng 3–5 lần khán giả
 | YouTube video dài (giải trí) | 1.000 × 1–8 USD | 1.000–8.000 USD |
 | YouTube video dài, khán giả Việt Nam | 1.000 × 0,22 USD | khoảng 220 USD |
 | YouTube Shorts | 1.000 × 0,04–0,10 USD | 40–100 USD |
-| TikTok Creator Rewards (8 nước) | 400.000–700.000 lượt đủ điều kiện × 0,40–1,00 USD / 1.000 | 160–700 USD (chưa tính Additional Reward) |
+| TikTok Creator Rewards (8 nước) | 1.000.000 lượt **đủ điều kiện** × 0,40–1,00 USD / 1.000 | 400–1.000 USD (chưa tính Additional Reward). TikTok định nghĩa lượt đủ điều kiện bằng các loại trừ, không công bố tỷ lệ so với tổng lượt xem; nếu chỉ một phần số lượt qua được thì kết quả thấp hơn |
 | Facebook Reels | 1.000 × 0,02–0,20 USD | 20–200 USD (trường hợp đặc biệt 1.000–5.000 USD) |
 
 ### 4.5 Thu nhập ngoài nền tảng

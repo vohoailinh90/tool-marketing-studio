@@ -544,7 +544,7 @@ class LeaseTests(Sessions):
                 record = {**self.record(a, "sd-01-001"), **change}
                 (a / relative).write_text(slides.render({k: v for k, v in record.items() if v is not None}),
                                           encoding="utf-8")
-                for command in (("verify",), ("touch", "--publish"),
+                for command in (("verify",), ("touch", "--publish"), ("claim", "sd-01-001", "--publish"),
                                 ("finish", "sd-01-001", "--canvas", CANVAS, "--url", URL, "--slides", "8", "--publish")):
                     code, _, err = self.run_in(a, *command)
                     self.assertEqual(1, code, command)
@@ -553,6 +553,13 @@ class LeaseTests(Sessions):
                                  "nothing pushed")
                 (a / relative).write_text(published, encoding="utf-8")
                 self.assertEqual(0, self.run_in(a, "verify")[0])
+        self.at(hours=2 * slides.LEASE_HOURS + 1)  # a's claim has expired too: an edited copy is still not a new claim
+        record = {**self.record(a, "sd-01-001"), "claimed_at": "2026-10-16T00:00:00Z"}
+        (a / relative).write_text(slides.render(record), encoding="utf-8")
+        code, _, err = self.run_in(a, "touch", "--publish")
+        self.assertEqual(1, code)
+        self.assertIn("does not match your claim on origin/claude/a", err)
+        self.assertEqual(yaml.safe_load(published), yaml.safe_load(git(a, "show", f"origin/claude/a:{relative}")))
 
     def test_touching_keeps_a_claim_alive(self) -> None:
         a, b = self.session("a"), self.session("b")
@@ -932,6 +939,28 @@ class FinishTests(Sessions):
         self.assertNotIn("10.png", git(a, "ls-tree", "-r", "--name-only", "origin/claude/a"))
         self.assertEqual(0, self.run_in(a, "exported", "sd-01-001", "--publish")[0], "once the index is free it publishes")
         self.assertIn("10.png", git(a, "ls-tree", "-r", "--name-only", "origin/claude/a"))
+
+    def test_a_finished_record_whose_precedence_differs_from_the_published_one_is_refused(self) -> None:
+        a = self.session("a")
+        self.assertEqual(0, self.run_in(a, "claim", "sd-01-001", "sd-01-002", "--publish")[0])
+        self.assertEqual(0, self.finish(a, "sd-01-001", "--publish")[0])  # its done record is on the remote
+        self.assertEqual(0, self.finish(a, "sd-01-002")[0])  # done only here; the remote still holds the claim
+        for lesson_id, commands in (("sd-01-001", (("verify", "sd-01-001"), ("exported", "sd-01-001", "--publish"))),
+                                    ("sd-01-002", (("exported", "sd-01-002", "--publish"),))):
+            relative = f"store/lessons/{lesson_id}/slides/deck.yaml"
+            published = git(a, "show", f"origin/claude/a:{relative}")
+            kept = (a / relative).read_text(encoding="utf-8")
+            for label, change in (("an earlier claimed_at", {"claimed_at": "2026-10-16T00:00:00Z"}),
+                                  ("a takeover added", {"taken_from": ["claude/zz"], "generation": 1})):
+                with self.subTest(lesson_id=lesson_id, change=label):
+                    (a / relative).write_text(slides.render({**self.record(a, lesson_id), **change}), encoding="utf-8")
+                    for command in commands:
+                        code, _, err = self.run_in(a, *command)
+                        self.assertEqual(1, code, command)
+                        self.assertIn("does not match your claim on origin/claude/a", err)
+                    self.assertEqual(published, git(a, "show", f"origin/claude/a:{relative}"), "nothing pushed")
+                    (a / relative).write_text(kept, encoding="utf-8")
+        self.assertEqual(0, self.run_in(a, "verify", "sd-01-001")[0], "the restored record verifies again")
 
     def test_release_gives_a_claim_back_but_never_a_finished_deck(self) -> None:
         a, b = self.session("a"), self.session("b")

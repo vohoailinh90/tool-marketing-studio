@@ -576,6 +576,26 @@ def precedence(holding: Holding) -> tuple[str | None, int, tuple[str, ...]]:
     return holding.claimed_at, holding.generation, holding.taken_from
 
 
+def tree_mismatch(lesson_id: str, found: list[Holding], context: Context) -> str | None:
+    """Why this tree's record of mine may not go out over my published one, or None (also when either is missing).
+    claim, touch, finish and exported all push this tree's copy, and a finished record keeps its claim's precedence, so
+    the copy here must carry the precedence of my record on the remote, in progress or finished."""
+    mine = [holding for holding in found if holding.owner == context.me and holding.status in ("doing", "done")]
+    local = [holding for holding in mine if holding.where == LOCAL]
+    published = [holding for holding in mine if holding.where != LOCAL]
+    if not local or not published:
+        return None
+    own = [holding for holding in published if holding.where == f"{context.remote}/{context.me}"]
+    me = own[0] if own else max(published, key=lambda holding: holding.heartbeat_at or "")
+    if precedence(local[0]) == precedence(me):
+        return None
+    if me.status == "doing" and is_stale(me, now()) and local[0].status == "doing" \
+            and (local[0].claimed_at or "") > (me.heartbeat_at or ""):
+        return None  # a new claim over my own expired one, not pushed yet: once it is, it is judged as a claim of its own
+    return (f"{lesson_id}: this tree's {RECORD} does not match your claim on {me.where} (claimed_at, generation or "
+            f"taken_from differ); restore it with `git checkout {me.where} -- {context.relative(lesson_id)}`")
+
+
 def is_broken(holding: Holding) -> bool:
     """A record that cannot stand as a claim: unreadable, or a claim in progress that fails validation. It blocks its
     lesson wherever it is found (a finished deck that fails validation still holds the lesson as done)."""
@@ -617,6 +637,8 @@ def refusal(lesson_id: str, found: list[Holding], context: Context, moment: date
                                     for other in found):  # claiming would push what this tree holds in its place
         return (f"{lesson_id}: your claim is on {holding.where} but this tree's {RECORD} is missing or not yours; "
                 f"restore it with `git checkout {holding.where} -- {context.relative(lesson_id)}`")
+    if state == "doing" and (mismatch := tree_mismatch(lesson_id, found, context)):  # claim pushes this tree's copy
+        return mismatch
     if state == "stale" and not any(other.owner == context.me for other in found) and not take_stale:
         return (f"{lesson_id}: claimed by {holding.owner}, whose heartbeat ({holding.heartbeat_at}) is older than "
                 f"{LEASE_HOURS} hours; take it over on purpose with --take-stale")
@@ -637,10 +659,8 @@ def lost_reason(lesson_id: str, found: list[Holding], context: Context, moment: 
             if holding.problems:  # the published copy and the one in this tree: finish builds the deck's record from it
                 return (f"{lesson_id}: your record on {holding.where} cannot be used as a claim "
                         f"({'; '.join(holding.problems)}); fix it")
-            if holding.where == LOCAL and precedence(holding) != precedence(me):  # touch and finish push this copy
-                return (f"{lesson_id}: this tree's {RECORD} does not match your claim on {me.where} (claimed_at, "
-                        f"generation or taken_from differ); restore it with "
-                        f"`git checkout {me.where} -- {context.relative(lesson_id)}`")
+            if holding.where == LOCAL and (mismatch := tree_mismatch(lesson_id, found, context)):  # touch, finish
+                return mismatch
             continue
         if is_broken(holding):
             return f"{lesson_id}: {holding.where} holds a record that cannot be read as a claim; fix it first"
@@ -905,6 +925,9 @@ def finished_problem(context: Context, lesson_id: str, remote: list[Holding] | N
     if damaged:  # on the remote or in this tree, about to be pushed
         return (f"{lesson_id}: your finished record on {damaged[0].where} cannot be used "
                 f"({'; '.join(damaged[0].problems)}); fix it")
+    mismatch = tree_mismatch(lesson_id, remote, context)  # the copy here is what verify vouches for and exported pushes
+    if mismatch:
+        return mismatch
     moment = now()  # the finished record keeps its claim's time and generation, so it is judged as that claim
     rivals = [holding for holding in remote if holding.status in ("doing", "done") and holding.owner != context.me
               and not is_stale(holding, moment) and beats(holding, mine[0])]
@@ -964,7 +987,12 @@ def cmd_exported(context: Context, args: argparse.Namespace) -> int:
     if args.publish and mine:
         # `finish` without --publish leaves a done record only here: it goes out with these exports, so the claim it
         # finishes must still stand on the remote, as `finish --publish` insists
-        remote = [holding for holding in gather(context, [args.id])[0][args.id] if holding.where != LOCAL]
+        found = gather(context, [args.id])[0][args.id]
+        mismatch = tree_mismatch(args.id, found, context)  # this tree's record is what goes out with the exports
+        if mismatch:
+            print(mismatch, file=sys.stderr)
+            return 1
+        remote = [holding for holding in found if holding.where != LOCAL]
         if not any(holding.status == "done" and holding.owner == context.me for holding in remote):
             reason = lost_reason(args.id, remote, context, now())
             if reason:

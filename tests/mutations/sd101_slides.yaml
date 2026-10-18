@@ -343,8 +343,8 @@ mutations:
   replace: "            if False:"
   test: tests.test_sd101_slides.FolderTests.test_a_header_or_palette_that_no_decoder_accepts_is_reported
 - label: a local claim whose precedence differs from the published one is accepted
-  find: "            if holding.where == LOCAL and precedence(holding) != precedence(me):  # touch and finish push this copy"
-  replace: "            if False:  # touch and finish push this copy"
+  find: "            if holding.where == LOCAL and (mismatch := tree_mismatch(lesson_id, found, context)):  # touch, finish"
+  replace: "            if False:  # touch, finish"
   test: tests.test_sd101_slides.LeaseTests.test_a_local_record_whose_precedence_differs_from_the_published_claim_is_refused
 - label: the filter byte of a scanline is never read
   find: "                    if png_bad_filter(out, produced - len(out), layout):"
@@ -378,3 +378,23 @@ mutations:
   find: "        if kind == b\"IEND\" and length:"
   replace: "        if False:"
   test: tests.test_sd101_slides.FolderTests.test_a_chunk_layout_that_no_decoder_accepts_is_reported
+- label: claim pushes this tree's copy of my claim whatever its precedence
+  find: "    if state == \"doing\" and (mismatch := tree_mismatch(lesson_id, found, context)):  # claim pushes this tree's copy"
+  replace: "    if False:  # claim pushes this tree's copy"
+  test: tests.test_sd101_slides.LeaseTests.test_a_local_record_whose_precedence_differs_from_the_published_claim_is_refused
+- label: verify vouches for a finished record whose precedence differs from the published one
+  find: "    mismatch = tree_mismatch(lesson_id, remote, context)  # the copy here is what verify vouches for and exported pushes"
+  replace: "    mismatch = None"
+  test: tests.test_sd101_slides.FinishTests.test_a_finished_record_whose_precedence_differs_from_the_published_one_is_refused
+- label: exported pushes a finished record whose precedence differs from the published one
+  find: "        mismatch = tree_mismatch(args.id, found, context)  # this tree's record is what goes out with the exports"
+  replace: "        mismatch = None"
+  test: tests.test_sd101_slides.FinishTests.test_a_finished_record_whose_precedence_differs_from_the_published_one_is_refused
+- label: an edited copy of an expired claim passes as a new claim
+  find: "            and (local[0].claimed_at or \"\") > (me.heartbeat_at or \"\"):"
+  replace: "            and True:"
+  test: tests.test_sd101_slides.LeaseTests.test_a_local_record_whose_precedence_differs_from_the_published_claim_is_refused
+- label: a new claim over my own expired one is refused as an edited copy
+  find: "    if me.status == \"doing\" and is_stale(me, now()) and local[0].status == \"doing\" \\"
+  replace: "    if False and local[0].status == \"doing\" \\"
+  test: tests.test_sd101_slides.LeaseTests.test_two_sessions_that_reclaim_each_others_expired_claims_at_once_still_have_one_winner

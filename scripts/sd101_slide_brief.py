@@ -198,6 +198,23 @@ def group_sizes(count: int, slots: int) -> list[int]:
     return [base + (1 if index < extra else 0) for index in range(slots)]
 
 
+def number_or_none(value: str | None) -> float | None:
+    try:
+        return float(str(value).rstrip("px"))
+    except ValueError:
+        return None
+
+
+def wraps(last: tuple, line: tuple) -> bool:
+    """Is `line` the next line of the heading whose last line is `last`? Each is (font size, x, y). A wrapped heading
+    keeps its size and left edge and sits one line below; a group heading above the first card, or a badge number
+    beside a heading, differs in size or position. Without positions the lines are taken to belong together."""
+    (last_size, last_x, last_y), (size, x, y) = last, line
+    if None in (last_x, last_y, x, y):
+        return True
+    return size == last_size and abs(x - last_x) < 1 and 0 < y - last_y <= size * 2
+
+
 def figure_cards(svg: pathlib.Path) -> list[tuple[str, str, bool]]:
     """The text cards of a lesson's figure: a bold heading (it may wrap over lines) followed by its plain lines.
 
@@ -208,7 +225,7 @@ def figure_cards(svg: pathlib.Path) -> list[tuple[str, str, bool]]:
         root = ET.parse(svg).getroot()
     except (OSError, ET.ParseError):
         return []
-    items: list[tuple[bool, float, str]] = []
+    items: list[tuple[bool, float, str, tuple]] = []
     for element in root.iter():
         if element.tag.rsplit("}", 1)[-1] != "text":
             continue
@@ -221,27 +238,29 @@ def figure_cards(svg: pathlib.Path) -> list[tuple[str, str, bool]]:
         except ValueError:
             number = 0.0
         if text:
-            items.append((weight in BOLD_WEIGHTS, number, text))
-    bold_sizes = {size for bold, size, _ in items if bold}
+            items.append((weight in BOLD_WEIGHTS, number, text, (number, number_or_none(element.get("x")),
+                                                                  number_or_none(element.get("y")))))
+    bold_sizes = {size for bold, size, _, _ in items if bold}
     title_size = max(bold_sizes) if len(bold_sizes) > 1 else None
     # Weight alone cannot tell a card's heading from a bold line inside the card (a callout). When the headings are
     # numbered, only a numbered bold line opens a card; any other bold line is a line of the card it is in.
-    numbered = sum(1 for bold, _, text in items if bold and ORDINAL.match(text)) >= CONCEPT_SLIDES.start
+    numbered = sum(1 for bold, _, text, _ in items if bold and ORDINAL.match(text)) >= CONCEPT_SLIDES.start
     cards: list[list] = []
     seen_card = title_size is None
-    for bold, size, text in items:
+    for bold, size, text, geometry in items:
         if not seen_card:
             seen_card = bold and size < title_size
             if not seen_card:
                 continue
         opens = bold and (not numbered or bool(ORDINAL.match(text)))
-        if bold and cards and not cards[-1][1] and not (numbered and opens):
+        if bold and cards and not cards[-1][1] and not (numbered and opens) and wraps(cards[-1][2], geometry):
             cards[-1][0].append(text)  # a heading wrapped over lines
+            cards[-1][2] = geometry
         elif opens:
-            cards.append([[text], []])
+            cards.append([[text], [], geometry])
         elif cards:
             cards[-1][1].append(text)
-    return [(" ".join(heading).rstrip(":. "), " ".join(body), False) for heading, body in cards if body]
+    return [(" ".join(heading).rstrip(":. "), " ".join(body), False) for heading, body, _ in cards if body]
 
 
 def concept_source(parsed: Parsed, figure: str | None, svg: pathlib.Path) -> tuple[str, list[tuple[str, str, bool]], list[str]]:
@@ -277,7 +296,12 @@ def terms(text: str | None) -> list[dict]:
 
 
 def sources(text: str | None) -> list[str]:
-    return [clean(raw.split("](", 1)[0].lstrip("[")) for raw in blocks(text or "")[1] if raw.startswith("[")]
+    """The name of every source the section lists: each link label of each bullet (a bullet may hold several)."""
+    names: list[str] = []
+    for raw in blocks(text or "")[1]:
+        labels = [clean(label) for label in LINK.findall(raw)]
+        names += [label for label in labels if label]
+    return names
 
 
 def backgrounds(count: int) -> list[str]:

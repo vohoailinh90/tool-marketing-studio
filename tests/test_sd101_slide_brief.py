@@ -207,6 +207,28 @@ class StructureTests(unittest.TestCase):
         self.assertEqual(["1 · Thẻ thứ nhất", "2 · Thẻ hai", "3 · Thẻ ba"], [c["label"] for c in concepts])
         self.assertEqual("Dòng một dòng hai Chọn theo dữ liệu", concepts[0]["line"]["text"])
 
+    def test_every_link_of_a_source_bullet_is_a_source_not_only_the_first(self):
+        text = lesson_text(figure_section(3)).replace(
+            "- [Tài liệu thứ hai](https://example.org/two): đối chiếu.",
+            "- Tiền tố: [Tài liệu hai](https://example.org/two) và [Tài liệu ba](https://example.org/three).")
+        result, _ = self.build(text)
+        self.assertEqual(["RFC 3022", "Tài liệu hai", "Tài liệu ba"], result.slides[-1]["material"]["sources"])
+
+    def test_a_group_heading_above_the_first_card_is_not_glued_to_the_card_heading(self):
+        svg = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+<text x="16" y="30" font-size="20" font-weight="bold">TIÊU ĐỀ HÌNH</text>
+<text x="16" y="58" font-size="16" font-weight="normal">Phụ đề của hình</text>
+<text x="20" y="100" font-size="17" font-weight="bold">Nhóm bốn cách</text><text x="20" y="122" font-size="17" font-weight="bold">chọn một khóa</text>
+<text x="78" y="160" font-size="16" font-weight="bold">Chia theo dải</text>
+<text x="78" y="190" font-size="16" font-weight="normal">Dòng của thẻ</text>
+<text x="78" y="260" font-size="16" font-weight="bold">Băm</text><text x="78" y="284" font-size="16" font-weight="bold">chia dư</text>
+<text x="78" y="314" font-size="16" font-weight="normal">Dòng của thẻ hai</text>
+</svg>"""
+        result, _ = self.build(lesson_text(""), svg)
+        concepts = [c for slide in result.slides if "concepts" in slide["material"] for c in slide["material"]["concepts"]]
+        # the group heading has no lines of its own; a heading wrapped over two lines is still one heading
+        self.assertEqual(["Chia theo dải", "Băm chia dư"], [c["label"] for c in concepts])
+
     def test_figure_cards_without_numbers_still_open_a_card_at_every_bold_heading(self):
         svg = SVG.replace("1 · ", "").replace("2 · ", "").replace("3 · ", "")
         result, _ = self.build(lesson_text(""), svg)
@@ -279,6 +301,15 @@ class RealLessonTests(unittest.TestCase):
         result = brief.build(STORE, "sd-01-012")
         situation = sum(item["words"] for item in result.slides[1]["material"]["lines"])
         self.assertLess(situation, 100)
+
+    def test_group_headings_and_multi_link_source_bullets_of_real_lessons(self):
+        shard = brief.build(STORE, "sd-04-025")
+        labels = [c["label"] for slide in shard.slides if "concepts" in slide["material"]
+                  for c in slide["material"]["concepts"]]
+        self.assertEqual("Chia theo dải", labels[0])
+        sources = brief.build(STORE, "sd-01-021").slides[-1]["material"]["sources"]
+        self.assertIn("RFC 6750 — Bearer Token", sources)
+        self.assertGreaterEqual(len(brief.build(STORE, "sd-13-025").slides[-1]["material"]["sources"]), 6)
 
     def test_the_markdown_and_json_forms_agree_on_the_slide_count(self):
         result = brief.build(STORE, "sd-01-005")

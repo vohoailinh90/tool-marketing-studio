@@ -84,19 +84,16 @@ Số đo, một lần trên máy biên soạn: cùng payload, dấu ký dài 32 
 
 Về `alg: none`: OWASP nói một số thư viện từng nhận nó theo mặc định, khiến kẻ tấn công tự làm token giả; OWASP cho rằng nay thư viện đã sửa, nhưng vẫn dặn bảo đảm bên kiểm không nhận. Với PyJWT 2.14.0, token `alg: none` bị từ chối khi `algorithms=["HS256"]`, cả khi viết `None` hay `NONE`; gọi `decode` mà không truyền `algorithms` báo `DecodeError`; khi danh sách chỉ có `none` thì kiểm vẫn báo `InvalidSignatureError`.
 
-Về nhầm lẫn thuật toán: OWASP mô tả việc kẻ tấn công ký token bằng `HS256` với khóa công khai của bên phát hành làm bí mật HMAC, rồi hy vọng thư viện dùng khóa công khai ấy như bí mật. Biện pháp OWASP nêu là cố định thuật toán chấp nhận và không trộn thuật toán bí mật chung với thuật toán cặp khóa; tài liệu PyJWT dặn như vậy. Thử: token `HS256` ký tay bằng văn bản `PEM` của khóa công khai làm bí mật bị từ chối với `algorithms=["RS256"]` (`InvalidAlgorithmError`); với danh sách trộn `["RS256", "HS256"]`, PyJWT báo `InvalidKeyError` vì không cho dùng khóa bất đối xứng làm bí mật HMAC (OWASP ghi đây là biện pháp giảm nhẹ của bản PyJWT gần đây). Thư viện khác có thể khác, nên đừng dựa vào đó.
+Về nhầm lẫn thuật toán: OWASP mô tả việc kẻ tấn công ký token bằng `HS256` với khóa công khai của bên phát hành làm bí mật, hy vọng thư viện dùng khóa ấy như bí mật HMAC; biện pháp là cố định thuật toán chấp nhận và không trộn hai họ thuật toán. Thử: token `HS256` ký tay bằng văn bản `PEM` của khóa công khai bị từ chối với `algorithms=["RS256"]` (`InvalidAlgorithmError`); với danh sách trộn `["RS256", "HS256"]`, PyJWT báo `InvalidKeyError` vì không cho dùng khóa bất đối xứng làm bí mật HMAC (OWASP ghi đây là biện pháp giảm nhẹ của bản PyJWT gần đây). Thư viện khác có thể khác, nên đừng dựa vào đó.
 
-Về khóa: OWASP yêu cầu bí mật `HS256` do bộ sinh ngẫu nhiên an toàn tạo ra, không phải mật khẩu, dài ít nhất 256 bit, và mỗi cặp bên phát hành và bên nhận một bí mật riêng, vì dùng chung một bí mật cho nhiều bên nhận thì một bên nhận có thể giả mạo bên phát hành. Thử khóa HMAC 5 byte thì PyJWT 2.14.0 phát `InsecureKeyLengthWarning`. Bảng thuật toán khóa công khai của OWASP xếp `ES256`, `PS256` và `EdDSA` là nên dùng, còn `RS256` là không khuyến nghị; vì thế bài lấy `ES256` làm ví dụ chính và chỉ thử `RS256` thêm.
+Về khóa: OWASP yêu cầu bí mật `HS256` do bộ sinh ngẫu nhiên an toàn tạo, không phải mật khẩu, dài ít nhất 256 bit, và riêng cho từng cặp bên phát hành và bên nhận. Khóa HMAC 5 byte làm PyJWT 2.14.0 phát `InsecureKeyLengthWarning`. Bảng của OWASP xếp `ES256`, `PS256` và `EdDSA` là nên dùng, còn `RS256` là không khuyến nghị; vì thế bài lấy `ES256` làm ví dụ chính và chỉ thử `RS256` thêm.
 
 Điều đã chỉnh so với bài nguồn:
 
-- Bài nguồn gọi JWT là cách truyền thông tin "an toàn" và nói signature là thứ làm nó "bảo mật". Dấu ký bảo vệ tính nguyên vẹn, không giữ kín; payload chỉ được viết lại bằng base64url nên ai cũng đọc được.
-- Bài nguồn nói signature tạo từ header, payload, "khóa bí mật" và thuật toán. Mô tả ấy chỉ khớp cách ký bằng bí mật chung; với cặp khóa là khóa riêng ký.
-- Bài nguồn nói bí mật phải chia sẻ giữa bên ký và bên kiểm nhưng không nói hệ quả: bên kiểm cũng ký được.
-- Bài nguồn nói header "chỉ định thuật toán" mà không nói bên kiểm không được tin `alg` ấy; bài này thêm việc cố định danh sách thuật toán, `alg: none` và nhầm lẫn thuật toán.
-- Bài nguồn không nhắc việc kiểm `exp`, `aud`, `iss`; bài này thêm.
-- Bài nguồn chia claim thành "registered, public, private"; bài này không kiểm được cách chia ấy (không đọc được đặc tả chính thức) và chỉ dùng các tên đã đăng ký mà PyJWT và OWASP nêu.
-- Tiêu đề bài nguồn gắn JWT với xác thực không giữ trạng thái; bài này không đánh giá điều đó.
+- Bài nguồn gọi JWT là cách truyền thông tin "an toàn" và nói signature làm nó "bảo mật". Dấu ký bảo vệ tính nguyên vẹn, không giữ kín; payload chỉ được viết lại bằng base64url nên ai cũng đọc được.
+- Bài nguồn tả signature tạo từ "khóa bí mật" và nói bí mật phải chia sẻ cho bên kiểm, nhưng không nói hệ quả: bên kiểm cũng ký được. Mô tả ấy chỉ khớp cách ký bằng bí mật chung; với cặp khóa là khóa riêng ký.
+- Bài nguồn nói header "chỉ định thuật toán" và không nhắc việc kiểm `exp`, `aud`, `iss`. Bài này thêm: bên kiểm cố định danh sách thuật toán, từ chối `alg: none`, kiểm cả claim.
+- Bài nguồn chia claim thành "registered, public, private"; bài này không kiểm được cách chia ấy (không đọc được đặc tả chính thức) và chỉ dùng các tên đã đăng ký mà PyJWT và OWASP nêu. Tiêu đề bài nguồn gắn JWT với xác thực không giữ trạng thái; bài này không đánh giá điều đó.
 - Bài không dùng ảnh của bài nguồn.
 
 </details>

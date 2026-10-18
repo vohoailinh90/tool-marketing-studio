@@ -1,0 +1,198 @@
+{
+  "id": "sd-14-017",
+  "title_vi": "HTTPS và bắt tay TLS: dựng kênh mã hóa thế nào?",
+  "language": "vi",
+  "kind": "flow",
+  "content_status": "review",
+  "source_ref": "sd-14-017",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/https-ssl-handshake-and-data-encryption-explained-to-kids.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/https-ssl-handshake-and-data-encryption-explained-to-kids.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches provider tree OID. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "e1ec9adbef4917c7433a0cfea0c4ea824a403d20",
+    "retrieved_body_sha256": "5d37efe08eba1bdd210e5ffbe4b76f3d78b59370f49a1a77743b28347bac99e1",
+    "retrieved_body_bytes": 1173
+  },
+  "diagram": "../diagrams/sd-14-017-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-14-014",
+      "relation": "builds-on",
+      "reason_vi": "Chứng chỉ gắn khóa công khai với một tên; bài này chỉ cho thấy chứng chỉ xuất hiện ở đâu trong bắt tay."
+    },
+    {
+      "lesson_id": "sd-14-015",
+      "relation": "uses",
+      "reason_vi": "Máy chủ chứng minh nó giữ khóa riêng bằng một chữ ký ở bước CertificateVerify."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "evidence": "Source read (four teaser lines; image not used). MDN Transport Layer Security page and glossary entries (tls, https, ssl, cipher_suite, symmetric-key_cryptography) read at mdn/content commit a1aa79c09717761fc72c20bac94bb9c430ed487a; OpenSSL ossl-guide-tls-introduction and the s_client, s_server and req manual sources read at openssl/openssl commit 6d76833d61fad07a171219d9cb1444bc37f88b8f. Handshake order, negotiated protocol, cipher and key exchange group, which bytes are visible, one-bit tampering, certificate check failures and key-log secrets were observed with openssl 3.0.13 on 127.0.0.1 with a throw-away certificate and a small recording relay (one or a few runs per configuration; server killed afterwards). RFC and IETF pages were not reachable and were not read; the key-exchange property, IP visibility and the certificate-for-fraudulent-site point are general knowledge."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "The source body is four teaser lines: HTTPS protects data from eavesdroppers and breaches and encryption plus digital certificates make an 'impregnable shield'; the SSL handshake is the cryptographic exchange of keys and negotiation; data travels through an encrypted 'tunnel'; and a side remark about HTML and why it is called hyper text. Its explanatory image was not used.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/https-ssl-handshake-and-data-encryption-explained-to-kids.md",
+      "section": "Whole guide",
+      "verified_by": "Source body read; hash, size and Git blob id of the retrieved body match the values in source_snapshot."
+    },
+    {
+      "claim_vi": "MDN: TLS secures a connection in three ways, encryption, integrity (an attacker cannot secretly modify data in transit) and authentication (on the web servers usually authenticate themselves to clients, clients usually do not); HTTPS is HTTP over TLS.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/web/security/defenses/transport_layer_security/index.md",
+      "section": "Đọc hình, khung 1",
+      "verified_by": "Read from the file at the pinned mdn/content commit (fetched from raw.githubusercontent.com)."
+    },
+    {
+      "claim_vi": "MDN: the handshake sets security parameters: the two sides agree on the TLS version and the cipher suite, optionally authenticate each other (server authentication is fundamental on the web), and agree on a secret key; after the handshake they use the secret key to encrypt and decrypt all messages including HTTP headers and bodies.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/web/security/defenses/transport_layer_security/index.md",
+      "section": "Đọc hình, khung 2 và 3",
+      "verified_by": "Read from the file at the pinned mdn/content commit."
+    },
+    {
+      "claim_vi": "MDN glossary: TLS was formerly known as SSL; SSL was the old standard and has been superseded by TLS; HTTPS is an encrypted version of HTTP that uses TLS to encrypt all communication between client and server.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/tls/index.md",
+      "section": "Đọc hình, khung 1",
+      "verified_by": "Read the glossary entries tls, ssl and https at the pinned mdn/content commit."
+    },
+    {
+      "claim_vi": "MDN glossary: symmetric-key cryptography uses the same key for encryption and decryption and is highly efficient so it can encrypt large amounts of data; a cipher suite is a combination of key exchange algorithm, authentication method, bulk encryption cipher and message authentication code which client and server must agree on before communicating securely.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/symmetric-key_cryptography/index.md",
+      "section": "Đọc hình, khung 2 và 3",
+      "verified_by": "Read the glossary entries symmetric-key_cryptography and cipher_suite at the pinned mdn/content commit."
+    },
+    {
+      "claim_vi": "OpenSSL guide: TLS 1.3 and TLS 1.2 are the most commonly deployed versions; TLS 1.0 and 1.1 are formally deprecated; TLS acts as a security layer over a lower-level transport, typically TCP; OpenSSL names contain SSL for historical reasons.",
+      "source": "https://github.com/openssl/openssl/blob/6d76833d61fad07a171219d9cb1444bc37f88b8f/doc/man7/ossl-guide-tls-introduction.pod",
+      "section": "Đọc hình, khung 1; Xem sâu hơn",
+      "verified_by": "Read from the file at the pinned openssl/openssl commit."
+    },
+    {
+      "claim_vi": "OpenSSL guide: the client sends ClientHello and the server answers ServerHello; the handshake is complete once an endpoint has sent and received a Finished message; in TLS 1.3 the server always sends its Finished before the client.",
+      "source": "https://github.com/openssl/openssl/blob/6d76833d61fad07a171219d9cb1444bc37f88b8f/doc/man7/ossl-guide-tls-introduction.pod",
+      "section": "Đọc hình, khung 2 và 3",
+      "verified_by": "Read from the file at the pinned openssl/openssl commit."
+    },
+    {
+      "claim_vi": "OpenSSL guide: the server sends a certificate containing its DNS name and public key and proves it knows the matching private key by signing a message; a certificate authority verifies the information in the certificate; the client must check that the name in the certificate matches the name it connected to; s_client is a testing tool that continues after a verification error.",
+      "source": "https://github.com/openssl/openssl/blob/6d76833d61fad07a171219d9cb1444bc37f88b8f/doc/man7/ossl-guide-tls-introduction.pod",
+      "section": "Đọc hình, khung 2 và 3; Giới hạn cần nhớ",
+      "verified_by": "Read from the file at the pinned openssl/openssl commit. Certificates and signatures themselves are taught in sd-14-014 and sd-14-015."
+    },
+    {
+      "claim_vi": "openssl-s_client manual: -servername sets the SNI extension in the ClientHello; -msg shows protocol messages and -trace a verbose trace; -verify_return_error turns on server certificate verification and returns errors instead of continuing (typically aborting the handshake); -keylogfile appends TLS secrets to a file. openssl-s_server manual: -www answers with a status page. openssl-req manual: -x509 outputs a self-signed test certificate.",
+      "source": "https://github.com/openssl/openssl/blob/6d76833d61fad07a171219d9cb1444bc37f88b8f/doc/man1/openssl-s_client.pod.in",
+      "section": "Xem sâu hơn: cách chạy",
+      "verified_by": "Read the s_client, s_server and req manual sources at the pinned openssl/openssl commit; the -tls1_2/-tls1_3 version options come from a template in the s_client file and were exercised by running them."
+    },
+    {
+      "claim_vi": "Observed TLS 1.3 handshake (TLSv1.3, TLS_AES_256_GCM_SHA384, key exchange group x25519, ECDSA P-256 certificate): the client sent ClientHello with server_name localhost, a supported_groups list and a key_share for x25519; the server sent ServerHello (key_share x25519), a 1-byte ChangeCipherSpec record, and four records of outer type ApplicationData that s_client printed as EncryptedExtensions, Certificate, CertificateVerify and Finished; the client sent ChangeCipherSpec, Finished and then the 35-byte HTTP request record; the server then sent two 250-byte records printed as NewSessionTicket, a 4348-byte response record and an encrypted close alert.",
+      "source": "https://github.com/openssl/openssl/blob/6d76833d61fad07a171219d9cb1444bc37f88b8f/doc/man1/openssl-s_client.pod.in",
+      "section": "Đọc hình, khung 2 và 3; Xem sâu hơn",
+      "verified_by": "No external page reports this output; Observed by running openssl 3.0.13 (s_server and s_client on 127.0.0.1 with a throw-away self-signed certificate) and a small Python relay that recorded the bytes; one or a few runs per configuration on the authoring machine; the server was killed afterwards. Commands: s_client -tls1_3 -trace (and -msg), plus the relay's record log."
+    },
+    {
+      "claim_vi": "Observed TLS 1.2 handshake (TLSv1.2, ECDHE-ECDSA-AES256-GCM-SHA384, ephemeral key x25519): ClientHello; ServerHello, Certificate, ServerKeyExchange (key exchange value with signature) and ServerHelloDone; ClientKeyExchange, ChangeCipherSpec, Finished; NewSessionTicket, ChangeCipherSpec, Finished; then application data. The 413-byte certificate and the string localhost appeared in clear in the server's bytes. The Finished records have outer type Handshake and a length of 40 bytes; that they are encrypted is an inference from their position after ChangeCipherSpec, not a decryption.",
+      "source": "https://github.com/openssl/openssl/blob/6d76833d61fad07a171219d9cb1444bc37f88b8f/doc/man1/openssl-s_client.pod.in",
+      "section": "Xem sâu hơn",
+      "verified_by": "No external page reports this output; Observed by running openssl 3.0.13 (s_server and s_client on 127.0.0.1 with a throw-away self-signed certificate) and a small Python relay that recorded the bytes; one or a few runs per configuration on the authoring machine; the server was killed afterwards. Commands: s_client -tls1_2 -trace, plus the relay's record log and a byte search."
+    },
+    {
+      "claim_vi": "Inferred from the order of messages in the two runs: in TLS 1.3 the client sends its HTTP request after one reply flight from the server, in TLS 1.2 after two.",
+      "source": "https://github.com/openssl/openssl/blob/6d76833d61fad07a171219d9cb1444bc37f88b8f/doc/man7/ossl-guide-tls-introduction.pod",
+      "section": "Xem sâu hơn",
+      "verified_by": "Counted from the recorded message order of the runs; not timed."
+    },
+    {
+      "claim_vi": "Observed on the recorded bytes: with plain HTTP (a Python http.server behind the relay) the request line GET / HTTP/1.0, the response status and the response text appeared in clear; with TLS 1.3 and TLS 1.2 the request line, the response status and the response text were not found in the recorded bytes; in TLS 1.3 the certificate (413 bytes) was not found while in TLS 1.2 it was; the string localhost was found in the bytes the client sent in both TLS versions (the server name in the ClientHello); the record headers show each record's length (e.g. 4348 bytes for the response in TLS 1.3).",
+      "source": "https://github.com/openssl/openssl/blob/6d76833d61fad07a171219d9cb1444bc37f88b8f/doc/man1/openssl-s_client.pod.in",
+      "section": "Đọc hình, khung 1 và 3; Giới hạn cần nhớ",
+      "verified_by": "No external page reports this output; Observed by running openssl 3.0.13 (s_server and s_client on 127.0.0.1 with a throw-away self-signed certificate) and a small Python relay that recorded the bytes; one or a few runs per configuration on the authoring machine; the server was killed afterwards. A Python script searched the recorded client-to-server and server-to-client bytes for fixed strings and for the certificate bytes."
+    },
+    {
+      "claim_vi": "Observed integrity: changing one bit of the last byte of the server's response record on the wire made s_client report 'decryption failed or bad record mac' (TLS 1.3 and TLS 1.2) and print no response page; with plain HTTP the same one-bit change was accepted and the client printed 'iello' instead of 'hello'.",
+      "source": "https://github.com/openssl/openssl/blob/6d76833d61fad07a171219d9cb1444bc37f88b8f/doc/man1/openssl-s_client.pod.in",
+      "section": "Đọc hình, khung 1; Nhìn hình trả lời",
+      "verified_by": "No external page reports this output; Observed by running openssl 3.0.13 (s_server and s_client on 127.0.0.1 with a throw-away self-signed certificate) and a small Python relay that recorded the bytes; one or a few runs per configuration on the authoring machine; the server was killed afterwards. The relay changed one bit before forwarding."
+    },
+    {
+      "claim_vi": "Observed certificate checks: s_client -verify_return_error without a trusted CA printed 'self-signed certificate' and aborted (exit code 1); with -CAfile set to the throw-away certificate but -verify_hostname set to another name it printed 'hostname mismatch' and aborted; without -verify_return_error and without -CAfile it printed the self-signed error but still connected, received the page, and the request line was not found on the wire (the channel was still encrypted without trusting the certificate). Without a version option s_client and s_server negotiated TLS 1.3.",
+      "source": "https://github.com/openssl/openssl/blob/6d76833d61fad07a171219d9cb1444bc37f88b8f/doc/man1/openssl-s_client.pod.in",
+      "section": "Đọc hình, khung 2 và 3; Xem sâu hơn",
+      "verified_by": "No external page reports this output; Observed by running openssl 3.0.13 (s_server and s_client on 127.0.0.1 with a throw-away self-signed certificate) and a small Python relay that recorded the bytes; one or a few runs per configuration on the authoring machine; the server was killed afterwards."
+    },
+    {
+      "claim_vi": "Observed with -keylogfile: the five TLS 1.3 secrets and the one TLS 1.2 secret written to the key log (48 bytes each) did not appear in the recorded wire bytes of that connection, and none was identical between two connections to the same server.",
+      "source": "https://github.com/openssl/openssl/blob/6d76833d61fad07a171219d9cb1444bc37f88b8f/doc/man1/openssl-s_client.pod.in",
+      "section": "Đọc hình, khung 2 và 3; Xem sâu hơn",
+      "verified_by": "No external page reports this output; Observed by running openssl 3.0.13 (s_server and s_client on 127.0.0.1 with a throw-away self-signed certificate) and a small Python relay that recorded the bytes; one or a few runs per configuration on the authoring machine; the server was killed afterwards. A Python script compared the key log values with the recorded bytes."
+    },
+    {
+      "claim_vi": "The s_client summary line of a TLS 1.3 connection still begins with 'SSL handshake has read'.",
+      "source": "https://github.com/openssl/openssl/blob/6d76833d61fad07a171219d9cb1444bc37f88b8f/doc/man1/openssl-s_client.pod.in",
+      "section": "Đọc hình, khung 1",
+      "verified_by": "Observed in the s_client output of the TLS 1.3 run. Observed by running openssl 3.0.13 (s_server and s_client on 127.0.0.1 with a throw-away self-signed certificate) and a small Python relay that recorded the bytes; one or a few runs per configuration on the authoring machine; the server was killed afterwards."
+    },
+    {
+      "claim_vi": "Each side combines the other's public key share with its own secret part to compute the same shared secret, and an eavesdropper who has only the two public shares cannot recompute it (property of the key exchange; not proved in the lesson).",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/web/security/defenses/transport_layer_security/index.md",
+      "section": "Đọc hình, khung 2 và 3",
+      "verified_by": "Author's general knowledge; not checked against a source or an experiment here. Only the observation that the secrets do not appear on the wire was checked (see the key log claim)."
+    },
+    {
+      "claim_vi": "The server's IP address cannot be hidden because packets need a destination address; a fraudulent site with its own domain can usually still obtain a certificate for that domain; what a server does with data after decrypting it is outside HTTPS.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/web/security/defenses/transport_layer_security/index.md",
+      "section": "Giới hạn cần nhớ",
+      "verified_by": "Author's general knowledge; not checked against a source or an experiment here."
+    },
+    {
+      "claim_vi": "In TLS 1.3 the cipher suite name (TLS_AES_256_GCM_SHA384) covers the data encryption and hash only, while the key exchange group and signature algorithms are separate extensions (supported_groups, signature_algorithms were printed in the ClientHello); in TLS 1.2 the name includes the key exchange and authentication parts (ECDHE-ECDSA-...).",
+      "source": "https://github.com/openssl/openssl/blob/6d76833d61fad07a171219d9cb1444bc37f88b8f/doc/man1/openssl-s_client.pod.in",
+      "section": "Xem sâu hơn",
+      "verified_by": "The names and the extensions were observed in the -trace output; Observed by running openssl 3.0.13 (s_server and s_client on 127.0.0.1 with a throw-away self-signed certificate) and a small Python relay that recorded the bytes; one or a few runs per configuration on the authoring machine; the server was killed afterwards. Reading AES-256-GCM as the data encryption and SHA384 as the hash is the author's general knowledge."
+    },
+    {
+      "claim_vi": "HTML describes the structure of a web page and is unrelated to encryption.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/https-ssl-handshake-and-data-encryption-explained-to-kids.md",
+      "section": "Xem sâu hơn: điều đã chỉnh so với bài nguồn",
+      "verified_by": "Author's general knowledge; not checked against a source or an experiment here."
+    },
+    {
+      "claim_vi": "Not examined: Encrypted Client Hello and other newer TLS features, HSTS, certificate revocation, session resumption and early data, server configuration, performance and the exact cost of a handshake.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/https-ssl-handshake-and-data-encryption-explained-to-kids.md",
+      "section": "Phạm vi",
+      "verified_by": "Not examined."
+    }
+  ],
+  "design_notes_vi": "Bốn khung xếp dọc: ba thứ HTTPS thêm vào, hai khung trình tự cho bắt tay TLS 1.3 rút gọn (tách đôi để vừa một slide), và một khung nhớ các giới hạn. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "The source body is only four teaser lines with the explanation in an image; the lesson writes its own explanation and does not use the image.",
+    "The source calls the exchange an 'SSL handshake'; the lesson calls it a TLS handshake because SSL is the old name and TLS 1.3 or 1.2 is what runs (the tools still print 'SSL').",
+    "The source says HTTPS safeguards data from 'eavesdroppers and breaches' and that encryption and certificates form an 'impregnable shield'; the lesson says HTTPS protects data in transit only, the server still sees the data, and the server name and record lengths stay visible.",
+    "The source presents digital certificates next to encryption as what creates the shield; the run showed encryption still works when the certificate is not trusted, so the lesson says the key exchange gives the encryption and the certificate is for knowing who the server is.",
+    "The source speaks of an encrypted 'tunnel'; the lesson says the TLS records travel on the same TCP connection (OpenSSL guide: a security layer over a lower-level transport) and not in a separate channel.",
+    "The source's aside on HTML and why it is called hyper text has no bearing on encryption; the lesson says so in one sentence in the deep-dive section."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

@@ -393,16 +393,19 @@ def folder_problems(slides_dir: pathlib.Path, lesson_id: str) -> list[str]:
     problems += [f"{RECORD}: {problem}" for problem in found]
     if found:
         return problems
-    exported = record["status"] == "done" and record["exports"] == "done"
+    finished = record["status"] == "done"
+    exported = finished and record["exports"] == "done"
     want = {RECORD}
     if exported:
         want |= {f"{lesson_id}.pptx", *(f"{number:02d}.png" for number in range(1, record["slide_count"] + 1))}
+    elif finished and f"{lesson_id}.pptx" in names:
+        want.add(f"{lesson_id}.pptx")  # a PPTX exported with the Moda badge: kept as a preview while the real exports are pending
     for name in names:
         if name not in want:
             problems.append(f"{name} is not expected here" + ("" if exported else " (exports are not recorded as done)"))
     for name in sorted(want - set(names)):
         problems.append(f"{name} is missing")
-    if exported:
+    if want - {RECORD}:
         width, height = (int(part) for part in record["size"].split("x"))
         for name in sorted(want & set(names)):
             path = slides_dir / name

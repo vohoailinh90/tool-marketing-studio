@@ -36,11 +36,14 @@ is the check to run after pushing a finished folder by hand.
 
 ```
 lessons/<id>/slides/deck.yaml      status doing: the claim. status done: moda_canvas, moda_url, slide_count, size, exports
-lessons/<id>/slides/<id>.pptx      only when exports: done
+lessons/<id>/slides/<id>.pptx      when exports: done; before that, only as a preview of a finished deck, with the badge
 lessons/<id>/slides/01.png ..      only when exports: done, one 1920x1080 PNG per slide
 ```
 
-`exports: pending` means the deck exists on Moda and is editable there, but its files are not in the repository yet.
+`exports: pending` means the deck exists on Moda and is editable there, but its final files are not in the repository yet.
+A finished deck may still hold `<id>.pptx` while its exports are pending: the owner decided on 2026-10-18 that a PPTX
+exported on the free plan, badge included, may be kept as a preview. The check opens it like any PPTX; the PNG files stay
+out until `exported` records the exports as done, and the badge-free exports replace the preview then.
 
 ### Exports and the Moda watermark
 

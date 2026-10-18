@@ -324,7 +324,9 @@ files and the exports. Several sessions build decks at once and `claims.jsonl` k
   remote any other way (a plain `git push`), run `verify` afterwards: it checks finished decks too.
 - **The Moda watermark stays.** The free plan puts a `moda.app` badge on exported PNG and PPTX files and has no switch for
   it; never remove it from a file. A deck is finished with `exports: pending`, and its files are added (`exported <id>`)
-  only once Moda exports them without the badge.
+  only once Moda exports them without the badge. The one exception, decided by the owner on 2026-10-18: a PPTX exported
+  with the badge may be committed as `<id>.pptx` while `exports` is still `pending` (a preview for the owner; the badge
+  stays, and nothing in it goes to Facebook).
 
 ## Languages (Vietnamese / Japanese / English)
 

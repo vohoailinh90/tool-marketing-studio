@@ -106,6 +106,12 @@
       "source": "https://github.com/redis/redis/blob/f35f36a265403c07b119830aa4bb3b7d71653ec9/redis.conf",
       "section": "Experiment run on 2026-10-18",
       "verified_by": "Own measurement on one machine over loopback; the URL is the configuration of the version measured. Not a general figure."
+    },
+    {
+      "claim_vi": "Pipelining saves the round-trip time of each command and also the cost of read() and write() syscalls for socket I/O; even on loopback the RTT adds up.",
+      "source": "https://github.com/redis/docs/blob/3b030c7ef066c0bb7f88ddec02c784e49783b0f8/content/develop/using-commands/pipelining.md",
+      "section": "Request/Response protocols and RTT; It's not just a matter of RTT",
+      "verified_by": "Read; matches the experiment's jump from about 66 to about 593 thousand SET per second with 16 commands per round trip."
     }
   ],
   "design_notes_vi": "Ba thẻ lý do có biểu tượng, ba ghi chú đo. Không ghi con số so bộ nhớ với đĩa vì chưa đo. Vẽ bằng scripts/figures.",

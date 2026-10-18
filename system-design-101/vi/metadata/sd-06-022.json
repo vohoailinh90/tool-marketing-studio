@@ -102,6 +102,15 @@
       "source": "https://github.com/elastic/elasticsearch/blob/48acba663b09e70b115dd879329141506c377890/docs/reference/elasticsearch/index-settings/history-retention.md",
       "section": "History retention",
       "verified_by": "Read; right after the force merge the experiment still counted 1 deleted document. Why it was kept at that moment was not traced."
+    },
+    {
+      "claim_vi": "In most cases the same analyzer should be used at index and search time; the term query should not be used on text fields because their values are analyzed.",
+      "sources": [
+        "https://github.com/elastic/docs-content/blob/55f05da44f1e68caf6b83d60715f6a41bcdaa2d3/manage-data/data-store/text-analysis/index-search-analysis.md",
+        "https://github.com/elastic/elasticsearch/blob/48acba663b09e70b115dd879329141506c377890/docs/reference/query-languages/query-dsl/query-dsl-term-query.md"
+      ],
+      "section": "Index and search analysis; Avoid using the term query for text fields",
+      "verified_by": "Read from partial clones."
     }
   ],
   "design_notes_vi": "Bốn bước đánh số theo đường đi của tài liệu, bốn ghi chú kết quả thử. Không đặt tên tệp .tim, .tip vào chữ của hình. Vẽ bằng scripts/figures.",

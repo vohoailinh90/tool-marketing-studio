@@ -47,11 +47,11 @@ mutations:
   replace: "    if False:"
   test: tests.test_sd101_slides.FolderTests.test_a_record_for_another_lesson_or_with_a_stray_key_is_reported
 - label: the size of an exported PNG is not checked
-  find: "                elif png_size(path) != (width, height):"
-  replace: "                elif False:"
+  find: "            elif png_size(path) != (width, height):"
+  replace: "            elif False:"
   test: tests.test_sd101_slides.FolderTests.test_a_missing_slide_or_a_wrong_size_is_reported
 - label: exports not recorded as done may sit in the folder
-  find: "            problems.append(f\"{name} is not expected here\" + (\"\" if exported else \" (exports are not recorded as done)\"))"
+  find: "            problems.append(f\"{name} is not expected here{unexpected}\")"
   replace: "            pass"
   test: tests.test_sd101_slides.FolderTests.test_pending_exports_leave_only_the_record
 - label: a timestamp YAML turned into a datetime is not read back as text
@@ -414,3 +414,35 @@ mutations:
   find: "        if is_stale(me, moment) and beats(holding, me):  # renewing would revive the weaker of two quiet claims"
   replace: "        if False:  # renewing would revive the weaker of two quiet claims"
   test: tests.test_sd101_slides.LeaseTests.test_an_expired_claim_that_a_quiet_stronger_claim_beats_is_not_renewed
+- label: a badged export is not expected to hold its PPTX
+  find: "    if exports in (\"badged\", \"done\"):\n        want.add(f\"{lesson_id}.pptx\")"
+  replace: "    if exports == \"done\":\n        want.add(f\"{lesson_id}.pptx\")"
+  test: tests.test_sd101_slides.FolderTests.test_a_badged_export_is_the_pptx_alone
+- label: a badged export may also hold PNG files
+  find: "    if exports == \"done\":\n        want |= {f\"{number:02d}.png\""
+  replace: "    if exports in (\"badged\", \"done\"):\n        want |= {f\"{number:02d}.png\""
+  test: tests.test_sd101_slides.FolderTests.test_a_badged_export_is_the_pptx_alone
+- label: a pptx with the moda.app badge is recorded as done
+  find: "            elif exports == \"done\" and badged:  # files recorded done are the ones that may go to Facebook"
+  replace: "            elif False:"
+  test: tests.test_sd101_slides.FolderTests.test_a_pptx_with_the_moda_badge_is_never_recorded_as_done
+- label: every pptx is taken for one with the moda.app badge
+  find: "        return sum(MODA_BADGE in archive.read(name) for name in slides), len(slides)"
+  replace: "        return len(slides), len(slides)"
+  test: tests.test_sd101_slides.FolderTests.test_complete_exports_pass
+- label: exported --badged records done
+  find: "    record[\"exports\"] = \"badged\" if args.badged else \"done\""
+  replace: "    record[\"exports\"] = \"done\""
+  test: tests.test_sd101_slides.FinishTests.test_exported_badged_records_a_pptx_with_the_moda_badge_alone_but_never_as_done
+- label: a badge-free pptx is recorded as badged
+  find: "            elif exports == \"badged\" and not badged:  # a badge-free file belongs in done, with its PNG files"
+  replace: "            elif False:  # a badge-free file belongs in done, with its PNG files"
+  test: tests.test_sd101_slides.FolderTests.test_a_badge_free_pptx_is_never_recorded_as_badged
+- label: a pptx whose badge was removed from some slides is recorded as badged
+  find: "            elif exports == \"badged\" and badged < total:  # the badge is never removed, not even from one slide"
+  replace: "            elif False:  # the badge is never removed, not even from one slide"
+  test: tests.test_sd101_slides.FolderTests.test_a_pptx_whose_badge_was_removed_from_some_slides_is_never_recorded_as_badged
+- label: a pptx short of the deck's slides is recorded
+  find: "            if total != record[\"slide_count\"]:  # a file short of slides is not the deck, badge or no badge"
+  replace: "            if False:  # a file short of slides is not the deck, badge or no badge"
+  test: tests.test_sd101_slides.FolderTests.test_a_pptx_short_of_the_deck_s_slides_is_never_recorded

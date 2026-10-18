@@ -201,7 +201,7 @@ Nhãn dùng trong bài:
 | Facebook Reels | 0,02–0,20 USD (một số nguồn nêu 1–3 USD) | Thấp |
 | YouTube, khán giả Việt Nam | RPM khoảng 0,22 USD, CPM khoảng 1,14 USD (Dynamoi, dữ liệu đến 14/7/2026) | Thấp |
 
-Ghi chú: khán giả Mỹ có giá trị gấp khoảng 3–5 lần khán giả Đông Nam Á (một nguồn). Shorts trả khoảng 3–14% so với video dài trên cùng 1.000 lượt xem (AIR).
+Ghi chú: khán giả Mỹ có giá trị gấp khoảng 3–5 lần khán giả Đông Nam Á (một nguồn). Shorts trả khoảng 3–14% so với video dài trên cùng 1.000 lượt xem (AIR). Ba hàng RPM video dài theo ngách (giải trí, công nghệ/giáo dục, tài chính/B2B/pháp lý) là ước tính của bên thứ ba mà mình chưa gắn được tên nguồn cụ thể cho từng khoảng (xem lưu ý cuối Phụ lục B); đọc chúng như thứ tự độ lớn, không phải số đo.
 
 ### 4.4 Minh họa: 1 triệu lượt xem được bao nhiêu?
 
@@ -249,7 +249,7 @@ Có hai câu hỏi khác nhau, nên tách ra:
 
 ### 5.1 Kết luận ngắn
 
-1. **Không nền tảng nào công bố "do AI tạo" hay "đăng bằng API" là tín hiệu làm giảm xếp hạng.**
+1. **Mình không thấy nền tảng nào công bố "do AI tạo" hay "đăng bằng API" là tín hiệu làm giảm xếp hạng.**
    - **TikTok:** "bật cài đặt nội dung AI **không ảnh hưởng phân phối** miễn là video không vi phạm Community Guidelines". [Chính thức]
    - **YouTube:** khai báo nhãn AI "không giới hạn khán giả và không ảnh hưởng quyền kiếm tiền". [Chính thức]
    - **Meta:** nhãn "AI info" chỉ cung cấp ngữ cảnh; từ 7/2024 không gỡ nội dung chỉ vì vi phạm chính sách video bị thao túng, trừ khi vi phạm quy định khác. [Chính thức, bài 4/2024]
@@ -369,8 +369,8 @@ Không có quy định cấm "đăng bằng API" nói chung. Các quy định ch
 
 ## 6. Kết luận và gợi ý hành động
 
-1. **Đừng chạy theo "thuật toán"**: giữ chân người xem trong vài giây đầu và tạo lý do để chia sẻ. Nội dung lặp, đăng lại, sản xuất hàng loạt bị siết trên cả ba nền tảng, dù do AI hay do người làm.
-2. **YouTube là con đường bật kiếm tiền dễ dự đoán nhất** và cũng là nền tảng duy nhất trong ba nơi mở cho creator ở Việt Nam một cách chính thức. Ngưỡng sẽ tăng gấp đôi cho người mới từ 1/2/2027.
+1. **Đừng chạy theo "thuật toán"**: giữ chân người xem trong vài giây đầu và tạo lý do để chia sẻ (kinh nghiệm của người làm nội dung, không phải điều nền tảng công bố). Nội dung lặp, đăng lại, sản xuất hàng loạt bị siết trên cả ba nền tảng, dù do AI hay do người làm.
+2. **YouTube là con đường bật kiếm tiền dễ dự đoán nhất** và là nền tảng duy nhất trong ba nơi mà tài liệu chính thức mình đọc xác nhận là mở cho Việt Nam (danh sách nước YPP). Với Facebook, tài liệu không nêu danh sách nước, chỉ nói theo lời mời. Ngưỡng sẽ tăng gấp đôi cho người mới từ 1/2/2027.
 3. **TikTok:** Creator Rewards chưa mở cho Việt Nam. Hướng kiếm tiền khác (Shop, LIVE, brand deal) cần kiểm chứng riêng.
 4. **Facebook:** Content Monetization hiện theo lời mời; hãy bày tỏ quan tâm trong dashboard và theo dõi màn hình Support.
 5. **AI và tự động hóa** được phép, nhưng phải có giá trị riêng ở từng video, khai báo đúng, và tôn trọng mục đích sử dụng của API (TikTok đặc biệt nghiêm).

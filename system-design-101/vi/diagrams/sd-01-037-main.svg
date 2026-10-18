@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="620" viewBox="0 0 320 620" role="img" aria-labelledby="title desc"><title id="title">Ba cách tổ chức truyền dữ liệu</title><desc id="desc">So sánh phạm vi một kết nối. HTTP/1.1 phản hồi tuần tự; HTTP/2 ghép luồng trên TCP; HTTP/3 dùng QUIC trên UDP với giao dữ liệu riêng theo luồng. Không là bảng tốc độ.</desc><rect width="320" height="620" fill="#f8fafc"/><g font-family="Arial, sans-serif" font-size="16" fill="#0f172a"><text x="16" y="30" font-size="20" font-weight="bold">Chờ nhau ở đâu?</text>
+<rect x="12" y="50" width="296" height="150" rx="12" fill="#dbeafe"/><text x="24" y="82" font-size="18" font-weight="bold">HTTP/1.1 · TCP</text>
+<text x="24" y="125">Phản hồi theo thứ tự</text>
+<text x="24" y="158">Pipelining vẫn phải xếp hàng</text>
+<rect x="12" y="220" width="296" height="150" rx="12" fill="#e0e7ff"/><text x="24" y="252" font-size="18" font-weight="bold">HTTP/2 · TCP</text>
+<text x="24" y="295">Nhiều luồng xen kẽ</text>
+<text x="24" y="328">Mất gói: có thể cùng chờ</text>
+<rect x="12" y="390" width="296" height="150" rx="12" fill="#dcfce7"/><text x="24" y="422" font-size="18" font-weight="bold">HTTP/3 · QUIC / UDP</text>
+<text x="24" y="465">Tách giao dữ liệu theo luồng</text>
+<text x="24" y="498">Từng luồng vẫn có thể chờ</text>
+<text x="16" y="585">Minh họa trong một kết nối.</text><text x="16" y="610">Không phải bảng xếp tốc độ.</text></g></svg>

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="630" viewBox="0 0 320 630" role="img" aria-labelledby="title desc">
+<title id="title">Ba tình huống dùng API Gateway</title>
+<desc id="desc">Ba khung xếp dọc: kết nối đối tác, cung cấp API như sản phẩm, nối nhiều nền tảng. Portal và gateway có vai khác nhau; gateway không tự tạo marketplace hay sự tương thích.</desc>
+<rect width="320" height="630" fill="#f8fafc"/>
+<g font-family="Arial, sans-serif" font-size="16" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">MỘT CỬA API</text>
+<text x="16" y="57">Ba bài toán khác nhau</text>
+<rect x="16" y="80" width="288" height="135" rx="12" fill="#dbeafe" stroke="#cbd5e1"/>
+<text x="28" y="108" font-weight="bold">1 · Kết nối đối tác</text>
+<text x="28" y="137">Hãng vận chuyển → Gateway</text>
+<text x="28" y="164">→ API đơn hàng</text>
+<text x="28" y="191">Dịch vụ vẫn kiểm quyền từng đơn.</text>
+<rect x="16" y="235" width="288" height="135" rx="12" fill="#dcfce7" stroke="#cbd5e1"/>
+<text x="28" y="263" font-weight="bold">2 · API như sản phẩm</text>
+<text x="28" y="292">Portal: tìm hiểu, đăng ký</text>
+<text x="28" y="319">Gateway: xử lý lời gọi</text>
+<text x="28" y="346">Cần thêm quy trình thương mại.</text>
+<rect x="16" y="390" width="288" height="135" rx="12" fill="#fef3c7" stroke="#cbd5e1"/>
+<text x="28" y="418" font-weight="bold">3 · Nối nhiều nền tảng</text>
+<text x="28" y="447">Web / di động → Gateway</text>
+<text x="28" y="474">→ Dịch vụ cũ / mới</text>
+<text x="28" y="501">Hợp đồng vẫn cần thiết kế.</text>
+<text x="16" y="575">Portal giúp bắt đầu dùng API.</text>
+<text x="16" y="602">Gateway xử lý lời gọi lúc chạy.</text>
+</g></svg>

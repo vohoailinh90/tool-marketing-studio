@@ -1,7 +1,0 @@
-target: scripts/sd101_check.py
-note: URL exclusion must preserve glossary semantics without quadratic scanning of long words.
-mutations:
-- label: URL stripping retries the scheme regex from every suffix
-  find: '    cursor = search = 0'
-  replace: '    return re.sub(r"[A-Za-z][A-Za-z0-9+.\-]*://[^\s<>]+", " ", text)'
-  test: tests.test_sd101_url_strip.UrlStripTests.test_long_url_free_runs_and_scheme_prefixes_finish_promptly

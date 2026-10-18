@@ -1,0 +1,172 @@
+{
+  "id": "sd-14-028",
+  "title_vi": "Cookie là gì? Tấm thẻ khách quen và điều nó không phải",
+  "language": "vi",
+  "kind": "concept",
+  "content_status": "review",
+  "source_ref": "sd-14-028",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/what-is-a-cookie.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-is-a-cookie.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Retrieved body hashed as a Git blob with git hash-object: the OID equals blob_sha. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "23d04ebd798943a4a6dbe1229d5e5461948212c1",
+    "retrieved_body_sha256": "a23b22bf6694c2fba8b06f58e2afe9c89059d9e07b34df7f805e7dee1d0c1842",
+    "retrieved_body_bytes": 1076
+  },
+  "diagram": "../diagrams/sd-14-028-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-14-008",
+      "relation": "builds-on",
+      "reason_vi": "Cookie và session phía máy chủ khác nhau ở chỗ dữ liệu nằm ở đâu."
+    },
+    {
+      "lesson_id": "sd-14-009",
+      "relation": "builds-on",
+      "reason_vi": "Các thuộc tính của cookie quyết định khi nào và tới đâu nó được gửi."
+    },
+    {
+      "lesson_id": "sd-14-010",
+      "relation": "compare-with",
+      "reason_vi": "Token tự mang thông tin có cùng đánh đổi với cookie mang dữ liệu."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "evidence": "Source body read and its sha256, size and Git blob id matched. MDN (Using HTTP cookies, Cookie header, Set-Cookie header) at mdn/content commit a1aa79c09717761fc72c20bac94bb9c430ed487a, the OWASP Session Management Cheat Sheet at commit 1c3144a85e9aa1b50bef773683405fcc626ce6e1 and the CPython docs for http.cookiejar, secrets and hmac at commit cdf010b10c673e1ec4faaf3f8f9be39237986880 were fetched from raw.githubusercontent.com (cookiejar, secrets and hmac pages read in the parts the lesson cites). A local script run twice with Python 3.13.16 (http.server on 127.0.0.1, random port above 20000, urllib with http.cookiejar, throw-away secrets) produced the behaviours described; it is a Python client, not a browser, and nothing was tested in a browser. The RFC cookie specification was not reachable and was not read."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "The source tells a coffee-shop story (Bob, a preference card) and says a cookie acts as that card: after login the server issues a cookie with a small amount of data, the cookie is stored on the client side, and the next request carries it so the server knows identity and preferences immediately without looking into the database.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-is-a-cookie.md",
+      "section": "Whole guide",
+      "verified_by": "Source body read; its sha256 (a23b22bf...) and size (1076 bytes) match the values given, and git hash-object gives the blob_sha 23d04ebd..."
+    },
+    {
+      "claim_vi": "MDN: a cookie is a small piece of data a server sends to the browser; the browser may store it and send it back to the same server with later requests; when a new request is made the browser usually sends the previously stored cookies for the current domain in the Cookie header.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/web/http/guides/cookies/index.md",
+      "section": "Đọc hình 1 và 2",
+      "verified_by": "Read the page fetched from raw.githubusercontent.com at the pinned commit. Experiment: scratchpad script exp.py (Python 3.13.16, http.server on 127.0.0.1 at a random port above 20000, urllib with http.cookiejar), run twice; the output below was identical in both runs except for random values. After one Set-Cookie for theme=dark, three further requests (two to /page, one to /other) each reached the server with the raw header Cookie: theme=dark, with no client code attaching it."
+    },
+    {
+      "claim_vi": "MDN: the Cookie request header carries name=value pairs only; it does not include the cookies' attributes, so the server cannot determine their paths or domains from the header alone.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/web/http/reference/headers/cookie/index.md",
+      "section": "Đọc hình 3",
+      "verified_by": "Read at the pinned commit. Experiment: the server sent 'theme=dark; Path=/; Max-Age=3600; HttpOnly; SameSite=Lax' and every later request carried only 'theme=dark'. That the server cannot read the expiry from the request follows from this (author's inference)."
+    },
+    {
+      "claim_vi": "MDN: if Domain is omitted the cookie is returned only to the host that sent it (a host-only cookie).",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/web/http/reference/headers/set-cookie/index.md",
+      "section": "Đọc hình 2",
+      "verified_by": "Read at the pinned commit. Experiment with http.cookiejar: the same local server reached through the name localhost instead of 127.0.0.1 received no Cookie header. This is the behaviour of the Python library, not of a browser."
+    },
+    {
+      "claim_vi": "MDN: when information is stored in cookies, by default all cookie values are visible to, and can be changed by, the end user; depending on the application, use an opaque identifier that the server looks up rather than storing sensitive information directly in cookies.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/web/http/guides/cookies/index.md",
+      "section": "Đọc hình 4, Giới hạn cần nhớ",
+      "verified_by": "Read at the pinned commit. Experiment: a client sending theme=hotpink was answered theme=hotpink (0 table lookups); a client sending user=admin to the endpoint that trusts a user cookie was answered user=admin. Edited with a Python client, not a browser."
+    },
+    {
+      "claim_vi": "MDN: you cannot change cookie values by sending an updated Cookie header directly when initiating a request through fetch() or XMLHttpRequest; a browser's JavaScript can set cookies through Document.cookie unless HttpOnly is used.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/web/http/guides/cookies/index.md",
+      "section": "Xem sâu hơn",
+      "verified_by": "Read at the pinned commit. Not tested in a browser."
+    },
+    {
+      "claim_vi": "MDN: cookies are mainly used for session management, personalization (for example display language and UI theme) and tracking; a cookie is usually at most 4 KB, cookies are sent with every request, and modern storage APIs are recommended for client-side data storage.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/web/http/guides/cookies/index.md",
+      "section": "Xem sâu hơn",
+      "verified_by": "Read at the pinned commit. Not tested."
+    },
+    {
+      "claim_vi": "MDN lists the attributes a server can set in Set-Cookie: Domain and Path (where the cookie is sent), Expires and Max-Age (lifetime), Secure, HttpOnly and SameSite; cookie prefixes such as __Host- only give their guarantee in browsers that support them.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/web/http/reference/headers/set-cookie/index.md",
+      "section": "Xem sâu hơn",
+      "verified_by": "Read at the pinned commit. Not tested in a browser; the attribute behaviours are the subject of lesson sd-14-009."
+    },
+    {
+      "claim_vi": "OWASP: once an authenticated session is established, the session ID (or token) is temporarily equivalent to the strongest authentication method the application used; disclosure, capture, prediction, brute force or fixation of the ID leads to session hijacking, where an attacker can fully impersonate the victim.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/1c3144a85e9aa1b50bef773683405fcc626ce6e1/cheatsheets/Session_Management_Cheat_Sheet.md",
+      "section": "Giới hạn cần nhớ",
+      "verified_by": "Read the cheat sheet fetched from raw.githubusercontent.com at the pinned commit. Experiment: the real sid value copied into a different client with no cookie jar was answered user=alice."
+    },
+    {
+      "claim_vi": "OWASP: the session ID value must be meaningless and must never include sensitive information or PII; the meaning and the data associated with the ID must be stored on the server side.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/1c3144a85e9aa1b50bef773683405fcc626ce6e1/cheatsheets/Session_Management_Cheat_Sheet.md",
+      "section": "Giới hạn cần nhớ",
+      "verified_by": "Read at the pinned commit. Not tested."
+    },
+    {
+      "claim_vi": "OWASP: a web application should never accept a session ID it never generated; in that case it should offer a new valid ID and treat the event as suspicious activity.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/1c3144a85e9aa1b50bef773683405fcc626ce6e1/cheatsheets/Session_Management_Cheat_Sheet.md",
+      "section": "Xem sâu hơn",
+      "verified_by": "Read at the pinned commit. Experiment: a random 22-character id, and the real id with its last character changed, each got user=anonymous from the test server; the test server does not issue a new ID or raise an alert."
+    },
+    {
+      "claim_vi": "OWASP: session cookies should set Secure and HttpOnly, set SameSite explicitly to Strict (preferred) or Lax, and use the __Host- prefix (example: Set-Cookie: __Host-SessionID=<value>; Secure; HttpOnly; SameSite=Strict; Path=/).",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/1c3144a85e9aa1b50bef773683405fcc626ce6e1/cheatsheets/Session_Management_Cheat_Sheet.md",
+      "section": "Giới hạn cần nhớ, Xem sâu hơn",
+      "verified_by": "Read at the pinned commit. Not tested."
+    },
+    {
+      "claim_vi": "Python documentation: http.cookiejar provides automatic handling of cookies set by a server's response and returned in later requests; CookieJar.extract_cookies stores cookies from a response and CookieJar.add_cookie_header adds the correct Cookie header to a request.",
+      "source": "https://github.com/python/cpython/blob/cdf010b10c673e1ec4faaf3f8f9be39237986880/Doc/library/http.cookiejar.rst",
+      "section": "Đọc hình",
+      "verified_by": "Read the module introduction and the CookieJar method descriptions at the pinned commit. Experiment: scratchpad script exp.py (Python 3.13.16, http.server on 127.0.0.1 at a random port above 20000, urllib with http.cookiejar), run twice; the output below was identical in both runs except for random values."
+    },
+    {
+      "claim_vi": "Python documentation: secrets.token_urlsafe(nbytes) returns a random URL-safe text string with nbytes random bytes; hmac.compare_digest compares two digests in a way meant to resist timing analysis.",
+      "source": "https://github.com/python/cpython/blob/cdf010b10c673e1ec4faaf3f8f9be39237986880/Doc/library/secrets.rst",
+      "section": "Xem sâu hơn",
+      "verified_by": "Read the token_urlsafe description in secrets.rst and the compare_digest entry in hmac.rst (https://github.com/python/cpython/blob/cdf010b10c673e1ec4faaf3f8f9be39237986880/Doc/library/hmac.rst) at the pinned commit. Experiment: token_urlsafe(16) gave a 22-character string in both runs."
+    },
+    {
+      "claim_vi": "In the test server, a cookie holding the data itself (theme=dark) needed 0 lookups of the session table; a cookie holding a random session id needed 1 lookup per request; a cookie holding user=alice plus a 64-character keyed code needed 0 lookups, the edit alice to admin was rejected, an unchanged copy was accepted by another client, and the old cookie was rejected after the server's key was replaced.",
+      "source": "https://github.com/python/cpython/blob/cdf010b10c673e1ec4faaf3f8f9be39237986880/Doc/library/http.cookiejar.rst",
+      "section": "Đọc hình 4",
+      "verified_by": "Experiment: scratchpad script exp.py (Python 3.13.16, http.server on 127.0.0.1 at a random port above 20000, urllib with http.cookiejar), run twice; the output below was identical in both runs except for random values. The counts are of the test server's own dict lookups (author's instrumented counter); the code is hmac with SHA-256 over the name, 64 hexadecimal characters. One measurement on the authoring machine; the server is a toy (in-memory table, no expiry)."
+    },
+    {
+      "claim_vi": "After the test server deleted a session, the same sid cookie got user=anonymous.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/1c3144a85e9aa1b50bef773683405fcc626ce6e1/cheatsheets/Session_Management_Cheat_Sheet.md",
+      "section": "Đọc hình 4",
+      "verified_by": "Experiment: scratchpad script exp.py (Python 3.13.16, http.server on 127.0.0.1 at a random port above 20000, urllib with http.cookiejar), run twice; the output below was identical in both runs except for random values. General reasoning that server-side data can be revoked by deleting it is the author's; OWASP page read for the session-ID model only."
+    },
+    {
+      "claim_vi": "A signed cookie that carries its own data cannot be revoked per cookie without extra server state (copies stay valid until expiry or key change).",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/1c3144a85e9aa1b50bef773683405fcc626ce6e1/cheatsheets/Session_Management_Cheat_Sheet.md",
+      "section": "Nhìn hình trả lời",
+      "verified_by": "Author's inference from the experiment (an unchanged copy was accepted by another client; only replacing the key rejected it); not checked against a source and not tested beyond that."
+    }
+  ],
+  "design_notes_vi": "Ba nhóm xếp dọc: các bước cookie đi lại, ba kiểu cookie so sánh theo ai giữ dữ liệu và ai sửa được, và ba điều cookie không phải. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "The source says the server knows identity and preferences immediately without looking into the database; the lesson says this holds only when the cookie carries the data itself (which a user can edit), whereas a cookie carrying a session identifier needs a lookup, and a cookie carrying data plus a keyed code needs none but stays readable and replayable.",
+    "The source presents the cookie as handed over once like a card and shown by the customer; the lesson shows that the browser attaches the cookie automatically to every matching request, and that only name and value come back, never the attributes.",
+    "The source ties cookies to logging in and to identity; the lesson notes that MDN lists session management, personalization and tracking, and that a cookie alone does not prove identity because whoever holds the right value is accepted.",
+    "The source does not say that the stored value can be read and changed by the user or that sensitive data should not be kept in it; the lesson says so, citing MDN and OWASP, and shows a forged user cookie being believed.",
+    "The lesson does not use the source image or its host; the coffee-shop story is kept only as a hook and its limits are stated."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

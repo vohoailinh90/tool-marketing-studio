@@ -1,0 +1,40 @@
+{
+  "id": "sd-14-027",
+  "lang": "vi",
+  "title": "Ba bài toán của VPN",
+  "subtitle": "Cùng một đường hầm, khác danh sách địa chỉ đi vào hầm",
+  "desc": "Hai khung xếp dọc. Khung trên có ba thẻ, mỗi thẻ là một bài toán. Truy cập từ xa: một máy lẻ vào mạng riêng, chỉ dải của mạng riêng vào hầm. Nối hai mạng: hai cổng, mỗi cổng khai dải của cả hai đầu. VPN riêng tư cá nhân: mọi gói của máy vào hầm tới một máy chủ trung gian. Khung dưới có bốn câu hỏi để chọn, về đầu bên kia, địa chỉ vào hầm, tầng của hầm và quyền sau khi vào mạng.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Ba bài toán",
+      "items": [
+        {
+          "name": "Truy cập từ xa",
+          "role": "Một máy lẻ vào mạng riêng. Chỉ dải của mạng riêng đi vào hầm.",
+          "icon": "user"
+        },
+        {
+          "name": "Nối hai mạng",
+          "role": "Hai cổng nối hai mạng. Mỗi cổng khai dải của cả hai đầu.",
+          "icon": "network"
+        },
+        {
+          "name": "VPN riêng tư cá nhân",
+          "role": "Mọi gói của máy vào hầm, tới một máy chủ trung gian.",
+          "icon": "globe"
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Bốn câu hỏi để chọn",
+      "items": [
+        "Ai nối với ai: máy với mạng, mạng với mạng, hay máy với máy chủ trung gian?",
+        "Địa chỉ nào vào hầm: một dải riêng, hay mọi địa chỉ?",
+        "Hầm ở tầng nào: tun chở gói IP, tap chở khung Ethernet.",
+        "Vào được mạng chưa có nghĩa là được dùng mọi thứ trong mạng."
+      ]
+    }
+  ]
+}

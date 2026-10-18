@@ -1,0 +1,218 @@
+{
+  "id": "sd-14-027",
+  "title_vi": "Các loại VPN: mỗi loại giải bài toán nào?",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "review",
+  "source_ref": "sd-14-027",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/types-of-vpns.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/types-of-vpns.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches provider tree OID. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "efba4173435a8c7effc876eb09080e4dd001910c",
+    "retrieved_body_sha256": "6eb61c9388b65f5554f0a73e4e81a2ace80ada220843193bc5fb7814468c7486",
+    "retrieved_body_bytes": 394
+  },
+  "diagram": "../diagrams/sd-14-027-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-14-013",
+      "relation": "uses",
+      "reason_vi": "Kill switch của wg-quick là một luật tường lửa; bài kia nói cách viết luật."
+    },
+    {
+      "lesson_id": "sd-14-014",
+      "relation": "uses",
+      "reason_vi": "Mỗi đầu của hầm chứng minh danh tính bằng chứng chỉ hoặc khóa."
+    },
+    {
+      "lesson_id": "sd-14-007",
+      "relation": "compare-with",
+      "reason_vi": "Tường lửa quyết định gói nào qua; VPN quyết định gói nào vào hầm."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "evidence": "Source body read (one sentence plus an image; the image was not opened). Read at pinned commits through raw.githubusercontent.com: OpenVPN man-section files and sample server.conf (1b0bd8c), wireguard-tools man pages wg.8 and wg-quick.8 (a998407), Linux tuntap.rst and the WireGuard driver files allowedips.c, device.c and receive.c (32c52ec), strongSwan README.md (f9cd483), MDN Proxy servers and tunneling (a1aa79c), OWASP Zero Trust Architecture Cheat Sheet (1c3144a). Ran three Python 3.13 scripts using only the standard library: a parser of the sample configs, a kernel routing experiment with tun and tap devices inside a private network namespace (unshare -n), and a longest-prefix routing model (ipaddress). There is no wg or openvpn binary and the kernel has no WireGuard, so no VPN was run and the WireGuard driver code was read, not executed. The MDN glossary has no VPN or tunneling page at that commit; wireguard.com, docs.strongswan.org and the RFC site were not reachable and were not read."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "The source guide body is one sentence plus an image (the content of the guide is in the image): it says VPNs are more complex than people think. The lesson does not use the image and does not repeat the sentence.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/types-of-vpns.md",
+      "section": "Whole lesson",
+      "verified_by": "Read the retrieved body (394 bytes, sha256 recorded above); the image was not opened."
+    },
+    {
+      "claim_vi": "MDN: tunneling transmits private network data and protocol information through a public network by encapsulating the data.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/web/http/guides/proxy_servers_and_tunneling/index.md",
+      "section": "Đọc hình",
+      "verified_by": "Read the file at the pinned commit (raw.githubusercontent.com)."
+    },
+    {
+      "claim_vi": "wg(8): AllowedIPs is a comma-separated list of IP addresses with CIDR masks from which incoming traffic for the peer is allowed and to which outgoing traffic for the peer is directed; 0.0.0.0/0 matches all IPv4 addresses.",
+      "source": "https://github.com/WireGuard/wireguard-tools/blob/a998407747005ea7e4e0258d96f105c97241e1d3/src/man/wg.8",
+      "section": "Đọc hình; Nhìn hình trả lời",
+      "verified_by": "Read the file at the pinned commit (raw.githubusercontent.com)."
+    },
+    {
+      "claim_vi": "wg-quick(8): it infers all routes from the peers' allowed IPs and adds them to the system routing table; if one of them is the default route (0.0.0.0/0 or ::/0) it uses ip-rule to override the default gateway.",
+      "source": "https://github.com/WireGuard/wireguard-tools/blob/a998407747005ea7e4e0258d96f105c97241e1d3/src/man/wg-quick.8",
+      "section": "Nhìn hình trả lời",
+      "verified_by": "Read the file at the pinned commit (raw.githubusercontent.com)."
+    },
+    {
+      "claim_vi": "wg-quick(8) examples: a client of a VPN gateway for 'tunneling all traffic' with AllowedIPs = 0.0.0.0/0 and a DNS line; a server example with three peers (the second has AllowedIPs 10.192.122.4/32, 192.168.0.0/16); a policy-routing example that sends TCP port 22 traffic through the tunnel with Table and ip rule; and a 'kill-switch' built with an iptables rule to prevent unencrypted packets leaving through non-WireGuard interfaces.",
+      "source": "https://github.com/WireGuard/wireguard-tools/blob/a998407747005ea7e4e0258d96f105c97241e1d3/src/man/wg-quick.8",
+      "section": "Đọc hình; Giới hạn cần nhớ; Xem sâu hơn",
+      "verified_by": "Read the file at the pinned commit (raw.githubusercontent.com). Observed: a Python 3.13 script (standard library only) parsed the sample files at the pinned commit; it printed the numbers and values stated."
+    },
+    {
+      "claim_vi": "Linux WireGuard driver, transmit path: the peer for an outgoing packet is chosen by looking up the packet's destination address (wg_allowedips_lookup_dst); when no peer matches, the driver logs 'No peer has allowed IPs matching' and takes an error path (the lesson says only that no peer matches). The driver rejects packets that are not IP.",
+      "source": "https://github.com/torvalds/linux/blob/32c52ec87d6245ee2d12ed5dd509e40062939b50/drivers/net/wireguard/device.c",
+      "section": "Đọc hình; Xem sâu hơn",
+      "verified_by": "Read device.c at the pinned Linux commit. The code was read, not executed (no WireGuard module on the authoring machine)."
+    },
+    {
+      "claim_vi": "Linux WireGuard driver, receive path: the source address of the decrypted packet is looked up in the same table (wg_allowedips_lookup_src) and, if the result is not the peer that sent the packet, the packet is counted as an error and not delivered ('Packet has unallowed src IP'); a packet that is neither IPv4 nor IPv6 is also rejected.",
+      "source": "https://github.com/torvalds/linux/blob/32c52ec87d6245ee2d12ed5dd509e40062939b50/drivers/net/wireguard/receive.c",
+      "section": "Xem sâu hơn",
+      "verified_by": "Read receive.c at the pinned Linux commit. The code was read, not executed."
+    },
+    {
+      "claim_vi": "Linux WireGuard driver, allowedips.c: the table is a trie walked from the root; find_node remembers the last node that carries a peer while the node's prefix still matches the key, so deeper nodes (longer prefixes) win. This is the basis of the 'longest prefix wins' model and of 'nhân Linux tìm bằng cây (trie)'.",
+      "source": "https://github.com/torvalds/linux/blob/32c52ec87d6245ee2d12ed5dd509e40062939b50/drivers/net/wireguard/allowedips.c",
+      "section": "Xem sâu hơn",
+      "verified_by": "Read allowedips.c (prefix_matches, find_node, lookup) at the pinned Linux commit. The code was read, not executed; the longest-prefix reading is the author's interpretation of find_node."
+    },
+    {
+      "claim_vi": "Linux tuntap documentation: a TUN/TAP device lets a user-space program read and write IP packets (tun) or Ethernet frames (tap), depending on the flags given.",
+      "source": "https://github.com/torvalds/linux/blob/32c52ec87d6245ee2d12ed5dd509e40062939b50/Documentation/networking/tuntap.rst",
+      "section": "Đọc hình (Hầm ở tầng nào)",
+      "verified_by": "Read the file at the pinned commit (raw.githubusercontent.com). Also observed with tun_experiment.py (see the kernel-routing claim): reading a tun device returned the IP packet that was sent (first byte 0x45); the first read of a tap device was a 42-byte Ethernet frame."
+    },
+    {
+      "claim_vi": "OpenVPN --dev: tun devices encapsulate IPv4 or IPv6 (layer 3) and tap devices encapsulate Ethernet 802.3 (layer 2); tun is the default; tun must be used on both ends or tap on both ends.",
+      "source": "https://github.com/OpenVPN/openvpn/blob/1b0bd8c6f60df96356e956b9982550902a622c5a/doc/man-sections/vpn-network-options.rst",
+      "section": "Đọc hình (Hầm ở tầng nào)",
+      "verified_by": "Read the file at the pinned commit (raw.githubusercontent.com)."
+    },
+    {
+      "claim_vi": "OpenVPN --redirect-gateway: it redirects all outgoing IP traffic over the VPN in three steps: (1) a static route for the --remote address via the old default gateway so that (3) does not loop, (2) delete the default gateway route, (3) make the VPN endpoint the new default gateway. The def1 flag overrides the default gateway with 0.0.0.0/1 and 128.0.0.0/1 without wiping out the original one. The block-local flag blocks access to the local LAN while the tunnel is active (by routing it into the tunnel) to protect against TunnelCrack-type attacks.",
+      "source": "https://github.com/OpenVPN/openvpn/blob/1b0bd8c6f60df96356e956b9982550902a622c5a/doc/man-sections/vpn-network-options.rst",
+      "section": "Nhìn hình trả lời; Giới hạn cần nhớ; Xem sâu hơn",
+      "verified_by": "Read the file at the pinned commit (raw.githubusercontent.com)."
+    },
+    {
+      "claim_vi": "OpenVPN --iroute: a client's subnet needs two routes, --route to move packets from the kernel to OpenVPN and --iroute to route them to the specific client.",
+      "source": "https://github.com/OpenVPN/openvpn/blob/1b0bd8c6f60df96356e956b9982550902a622c5a/doc/man-sections/server-options.rst",
+      "section": "Đọc hình",
+      "verified_by": "Read the file at the pinned commit (raw.githubusercontent.com)."
+    },
+    {
+      "claim_vi": "OpenVPN sample server.conf: one server and many clients (server 10.8.0.0 255.255.255.0), each client and the server with its own certificate and key; push \"route 192.168.10.0 255.255.255.0\" is the example of letting clients reach private subnets behind the server; the commented redirect-gateway line is described as making all IP traffic such as web browsing and DNS lookups go through the VPN.",
+      "source": "https://github.com/OpenVPN/openvpn/blob/1b0bd8c6f60df96356e956b9982550902a622c5a/sample/sample-config-files/server.conf",
+      "section": "Đọc hình",
+      "verified_by": "Read the file at the pinned commit (raw.githubusercontent.com). Observed: a Python 3.13 script (standard library only) parsed the sample files at the pinned commit; it printed the numbers and values stated."
+    },
+    {
+      "claim_vi": "OpenVPN sample server.conf contains 14 active directives and 26 commented-out option lines (those starting with a semicolon), among them redirect-gateway and client-config-dir.",
+      "source": "https://github.com/OpenVPN/openvpn/blob/1b0bd8c6f60df96356e956b9982550902a622c5a/sample/sample-config-files/server.conf",
+      "section": "Xem sâu hơn",
+      "verified_by": "Observed: a Python 3.13 script (standard library only) parsed the sample files at the pinned commit; it printed the numbers and values stated."
+    },
+    {
+      "claim_vi": "strongSwan is described as an open-source IPsec-based VPN solution; its README has Site-to-Site, Host-to-Host and Roadwarrior cases.",
+      "source": "https://github.com/strongswan/strongswan/blob/f9cd483cd97182def563e17b86e4fbd3a90c03d2/README.md",
+      "section": "Đọc hình",
+      "verified_by": "Read the file at the pinned commit (raw.githubusercontent.com)."
+    },
+    {
+      "claim_vi": "strongSwan README, Roadwarrior case: a gateway serves an arbitrary number of remote VPN clients usually having dynamic IP addresses; the gateway's configuration has local_ts = 10.1.0.0/16 and no remote_addrs, and the client is called a roadwarrior. The README also writes local_ts = 10.1.0.0/16 for the roadwarrior client; the lesson does not rely on that line because swanctl.conf documentation was not reachable.",
+      "source": "https://github.com/strongswan/strongswan/blob/f9cd483cd97182def563e17b86e4fbd3a90c03d2/README.md",
+      "section": "Đọc hình; Xem sâu hơn",
+      "verified_by": "Read the file at the pinned commit (raw.githubusercontent.com). Observed: a Python 3.13 script (standard library only) parsed the sample files at the pinned commit; it printed the numbers and values stated."
+    },
+    {
+      "claim_vi": "strongSwan README, Site-to-Site case: two gateways connect 10.1.0.0/16 and 10.2.0.0/16; only the two gateways are configured and each declares local_ts and remote_ts (10.1.0.0/16 and 10.2.0.0/16 mirrored).",
+      "source": "https://github.com/strongswan/strongswan/blob/f9cd483cd97182def563e17b86e4fbd3a90c03d2/README.md",
+      "section": "Đọc hình",
+      "verified_by": "Read the file at the pinned commit (raw.githubusercontent.com). Observed: a Python 3.13 script (standard library only) parsed the sample files at the pinned commit; it printed the numbers and values stated."
+    },
+    {
+      "claim_vi": "Each end of a tunnel authenticates itself: certificates and private keys in the OpenVPN sample server.conf and in the strongSwan README (auth = pubkey), a public key per peer in WireGuard (PublicKey in wg(8)). How these mechanisms work is the subject of sd-14-014.",
+      "source": "https://github.com/WireGuard/wireguard-tools/blob/a998407747005ea7e4e0258d96f105c97241e1d3/src/man/wg.8",
+      "section": "Đọc hình (Hầm ở tầng nào)",
+      "verified_by": "Read wg.8, the OpenVPN sample server.conf and the strongSwan README at the pinned commits; the certificate mechanisms themselves were not examined here."
+    },
+    {
+      "claim_vi": "OWASP Zero Trust cheat sheet: prefer access to specific resources over broad network access, restrict and monitor remaining VPN access, and a VPN connection alone must not authorize access to other resources.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/1c3144a85e9aa1b50bef773683405fcc626ce6e1/cheatsheets/Zero_Trust_Architecture_Cheat_Sheet.md",
+      "section": "Giới hạn cần nhớ",
+      "verified_by": "Read the file at the pinned commit (raw.githubusercontent.com)."
+    },
+    {
+      "claim_vi": "Environment: the authoring machine has no wg or openvpn binary, its kernel has CONFIG_WIREGUARD unset and CONFIG_TUN=y, and /dev/net/tun exists. So no VPN and no WireGuard device was run; the kernel experiment below uses tun and tap devices only.",
+      "source": "https://github.com/torvalds/linux/blob/32c52ec87d6245ee2d12ed5dd509e40062939b50/Documentation/networking/tuntap.rst",
+      "section": "Xem sâu hơn",
+      "verified_by": "Observed on the authoring machine: which wg openvpn printed nothing; zcat /proc/config.gz showed '# CONFIG_WIREGUARD is not set' and 'CONFIG_TUN=y'; ls -l /dev/net/tun showed the device node."
+    },
+    {
+      "claim_vi": "Kernel experiment: inside a private network namespace (unshare -n) a Python script (standard library only) opened tun devices tunA ('tunnel') and tunB ('normal path'), added routes with ioctl, sent one packet to each destination and checked which device could read it. Split case (0.0.0.0/0 on tunB, 10.1.0.0/16 on tunA): 10.1.5.9 reached tunA, 203.0.113.10 reached tunB. OpenVPN def1 case (0.0.0.0/0 on tunB, 0.0.0.0/1 and 128.0.0.0/1 on tunA, 198.51.100.7/32 on tunB): 10.20.30.40 and 203.0.113.10 reached tunA, 198.51.100.7 reached tunB, and with the /32 route removed 198.51.100.7 reached tunA. Overlap case (10.1.0.0/16 on tunA, 10.1.5.0/24 on tunB): 10.1.5.9 reached tunB, 10.1.6.9 reached tunA. With only the connected route of tunA, a destination outside it made the send fail with ENETUNREACH. A tap device 10.28.0.1/24 first yielded a 42-byte broadcast Ethernet frame, EtherType 0x0806, read as an ARP request from 10.28.0.1 asking for 10.28.0.7. The devices vanish when the script exits; no VPN program ran.",
+      "source": "https://github.com/OpenVPN/openvpn/blob/1b0bd8c6f60df96356e956b9982550902a622c5a/doc/man-sections/vpn-network-options.rst",
+      "section": "Xem sâu hơn",
+      "verified_by": "Observed: tun_experiment.py under Python 3.13 and unshare -n on the authoring machine (one run, output kept in the scratchpad). The behaviour of redirect-gateway def1 is described by the pinned OpenVPN document; no OpenVPN process was run. The reading of the 42-byte frame as an ARP request is from decoding its bytes plus the author's general knowledge of the frame format."
+    },
+    {
+      "claim_vi": "Model (ipaddress, longest prefix wins): it gave the same results as the kernel experiment for the split, def1 (with and without the /32 route), overlap and no-route cases (the last printed as NO ROUTE). For the three-peer example of the wg-quick man page it printed: 192.168.5.5 goes to peer 2; 203.0.113.10 matches no peer; after adding a peer with 10.192.0.0/16, 10.192.122.3 still goes to peer 1 (/32 is more specific). In the receive direction a packet with source 10.192.122.3 from peer 2 is rejected and from peer 1 accepted; this follows the receive.c code that was read, not an executed driver. The model needs strict=False because the man page example writes 10.192.124.1/24.",
+      "source": "https://github.com/WireGuard/wireguard-tools/blob/a998407747005ea7e4e0258d96f105c97241e1d3/src/man/wg-quick.8",
+      "section": "Xem sâu hơn",
+      "verified_by": "Observed: route_model.py under Python 3.13 (standard library) printed these results; the WireGuard part is a model of documented and read behaviour, not run, because the kernel has no WireGuard."
+    },
+    {
+      "claim_vi": "General knowledge, not checked against a source: people use a full tunnel to hide their address from the destination or to avoid public Wi-Fi; a personal VPN protects only the path to the VPN server and its operator can see traffic that is not otherwise encrypted; the guideline that a more specific route wins over a general one is the standard IP routing rule (the kernel experiment above agrees with it for the cases tested).",
+      "source": "https://github.com/WireGuard/wireguard-tools/blob/a998407747005ea7e4e0258d96f105c97241e1d3/src/man/wg-quick.8",
+      "section": "Đọc hình; Giới hạn cần nhớ",
+      "verified_by": "Author's general knowledge; not checked against a document. The closest document read is the wg-quick man page example of tunneling all traffic."
+    },
+    {
+      "claim_vi": "General knowledge: IPsec is a family of protocols used for VPNs. The three-way classification (remote access, site-to-site, personal privacy VPN), the name 'VPN riêng tư cá nhân' and the 'which addresses enter the tunnel' view are the author's framing; the strongSwan README names its cases Site-to-Site, Host-to-Host and Roadwarrior.",
+      "source": "https://github.com/strongswan/strongswan/blob/f9cd483cd97182def563e17b86e4fbd3a90c03d2/README.md",
+      "section": "Whole lesson",
+      "verified_by": "Author's general knowledge and framing; not checked against a classification in any document read. IPsec RFCs and docs.strongswan.org were not reachable."
+    },
+    {
+      "claim_vi": "Not examined: other VPN protocols (for example the ones not named in the documents read), browser-based VPNs, commercial VPN services and their provider claims, performance or speed, and the alternatives to VPN that the OWASP cheat sheet mentions.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/1c3144a85e9aa1b50bef773683405fcc626ce6e1/cheatsheets/Zero_Trust_Architecture_Cheat_Sheet.md",
+      "section": "Xem sâu hơn",
+      "verified_by": "Not examined."
+    }
+  ],
+  "design_notes_vi": "Một hình hai khung: ba thẻ cho ba bài toán (truy cập từ xa, nối hai mạng, VPN riêng tư cá nhân) và bốn câu hỏi để chọn. Ý chính của hình là cùng một đường hầm, khác danh sách địa chỉ đi vào hầm; không dùng ảnh nguồn.",
+  "source_deviations": [
+    "The source guide is an image with one sentence (the content is in the image, which was not used); the lesson replaces it with independently sourced content: a classification by the problem each kind of VPN solves, built from OpenVPN, WireGuard and strongSwan documentation and sample configurations, Linux kernel files, MDN and OWASP.",
+    "The source sentence says VPNs are complex; it contains nothing checkable, so the lesson does not confirm or correct it.",
+    "The lesson names a third use, the personal privacy VPN, that the sources read describe only by mechanism (a full tunnel); the name and the three-way split are the author's framing, and the lesson labels the purposes of that use as general knowledge."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

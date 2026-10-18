@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="898" viewBox="0 0 320 898" role="img" aria-labelledby="title desc">
+<title id="title">Ba bài toán của VPN</title>
+<desc id="desc">Hai khung xếp dọc. Khung trên có ba thẻ, mỗi thẻ là một bài toán. Truy cập từ xa: một máy lẻ vào mạng riêng, chỉ dải của mạng riêng vào hầm. Nối hai mạng: hai cổng, mỗi cổng khai dải của cả hai đầu. VPN riêng tư cá nhân: mọi gói của máy vào hầm tới một máy chủ trung gian. Khung dưới có bốn câu hỏi để chọn, về đầu bên kia, địa chỉ vào hầm, tầng của hầm và quyền sau khi vào mạng.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="898" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Ba bài toán của VPN</text>
+<text x="16" y="60.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Cùng một đường hầm, khác danh</text>
+<text x="16" y="79.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">sách địa chỉ đi vào hầm</text>
+<rect x="8" y="99" width="304" height="406" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="127.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Ba bài toán</text>
+<rect x="20" y="144" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="197.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 186.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></g>
+<text x="78" y="170.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Truy cập từ xa</text>
+<text x="78" y="194.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Một máy lẻ vào mạng</text>
+<text x="78" y="213.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">riêng. Chỉ dải của mạng</text>
+<text x="78" y="233.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">riêng đi vào hầm.</text>
+<rect x="20" y="265" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="318.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 307.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="6" rx="1" width="6" x="16" y="16"/><rect height="6" rx="1" width="6" x="2" y="16"/><rect height="6" rx="1" width="6" x="9" y="2"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"/><path d="M12 12V8"/></g>
+<text x="78" y="291.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Nối hai mạng</text>
+<text x="78" y="315.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Hai cổng nối hai mạng. Mỗi</text>
+<text x="78" y="334.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cổng khai dải của cả hai</text>
+<text x="78" y="354.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đầu.</text>
+<rect x="20" y="386" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="439.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 428.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></g>
+<text x="78" y="412.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">VPN riêng tư cá nhân</text>
+<text x="78" y="436.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mọi gói của máy vào hầm,</text>
+<text x="78" y="455.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tới một máy chủ trung</text>
+<text x="78" y="475.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">gian.</text>
+<rect x="8" y="517" width="304" height="373" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="545.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Bốn câu hỏi để chọn</text>
+<rect x="20" y="562" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="585" r="11" fill="#16a34a"/>
+<polyline points="37.9,585.4 41.7,589.4 48.5,581" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="588.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ai nối với ai: máy với mạng,</text>
+<text x="64" y="607.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mạng với mạng, hay máy với</text>
+<text x="64" y="627.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">máy chủ trung gian?</text>
+<rect x="20" y="653" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="676" r="11" fill="#16a34a"/>
+<polyline points="37.9,676.4 41.7,680.4 48.5,672" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="679.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Địa chỉ nào vào hầm: một</text>
+<text x="64" y="698.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dải riêng, hay mọi địa chỉ?</text>
+<rect x="20" y="724" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="747" r="11" fill="#16a34a"/>
+<polyline points="37.9,747.4 41.7,751.4 48.5,743" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="750.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Hầm ở tầng nào: tun chở gói</text>
+<text x="64" y="769.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">IP, tap chở khung Ethernet.</text>
+<rect x="20" y="795" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="818" r="11" fill="#16a34a"/>
+<polyline points="37.9,818.4 41.7,822.4 48.5,814" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="821.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Vào được mạng chưa có</text>
+<text x="64" y="840.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nghĩa là được dùng mọi thứ</text>
+<text x="64" y="860.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trong mạng.</text>
+</g>
+</svg>

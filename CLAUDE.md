@@ -288,8 +288,8 @@ What the loop does not change:
   standard image. The slides are written to `build/figures/facebook/` (gitignored) and uploaded by the owner; a session never uploads.
   The one exception, decided by the owner on 2026-10-17: a lesson's **slide deck** (`docs/sd101-slides.md`: built on Moda, 1920x1080,
   8 to 10 slides, claimed with `scripts/sd101_slides.py`) is its own Facebook product, not a figure. Only the PNG files that `exported`
-  records, exported without the `moda.app` badge (which is never removed), go to Facebook, and the owner uploads them; a
-  badged PPTX (`exports: badged`) never does.
+  records go to Facebook, and the owner uploads them: exported without the `moda.app` badge (which is never removed) or, since
+  2026-10-18, with it when the deck is recorded `exports: badged` (the owner accepts the badge on them); a badged PPTX never does.
 
 ## System Design lessons: claim before you write
 
@@ -324,9 +324,9 @@ files and the exports. Several sessions build decks at once and `claims.jsonl` k
   `slides/` folder. `--publish` pushes the finished record and checks the claim again afterwards; if the record reaches the
   remote any other way (a plain `git push`), run `verify` afterwards: it checks finished decks too.
 - **The Moda watermark stays.** The free plan puts a `moda.app` badge on exported PNG and PPTX files and has no switch for
-  it; never remove it from a file. A deck is finished with `exports: pending`. Its PPTX may be added as the free plan
-  exports it, badge and all (`exported <id> --badged`, owner decision 2026-10-18; a reference copy, not for Facebook), and
-  its PNG and PPTX files are added as done (`exported <id>`) only once Moda exports them without the badge.
+  it; never remove it from a file. A deck is finished with `exports: pending`. Its PPTX, and its PNG files (all or none), may be
+  added as the free plan exports them, badge and all (`exported <id> --badged`, owner decision 2026-10-18; the PPTX is a
+  reference copy, not for Facebook), and its files are added as done (`exported <id>`) only once Moda exports them without the badge.
 
 ## Languages (Vietnamese / Japanese / English)
 

@@ -252,27 +252,27 @@
 
 {"id": "sd-04-036", "status": "written", "title": "A Crash Course on Database Sharding", "owner": "claude/sd101-l4-sd04", "session": "cse_01LEo5tpnoS94vRQdTcVBRhs", "done_at": "2026-10-18T14:29:22Z", "pr": 143}
 
-{"id": "sd-04-037", "status": "doing", "title": "IBM MQ -> RabbitMQ -> Kafka -> Pulsar: Message Queue Evolution", "owner": "claude/sd101-l4-sd04", "session": "cse_01LEo5tpnoS94vRQdTcVBRhs", "claimed_at": "2026-10-18T13:35:37Z", "heartbeat_at": "2026-10-18T15:01:59Z"}
+{"id": "sd-04-037", "status": "written", "title": "IBM MQ -> RabbitMQ -> Kafka -> Pulsar: Message Queue Evolution", "owner": "claude/sd101-l4-sd04", "session": "cse_01LEo5tpnoS94vRQdTcVBRhs", "done_at": "2026-10-18T15:40:03Z", "pr": 147}
 
-{"id": "sd-04-038", "status": "doing", "title": "CAP Theorem: One of the Most Misunderstood Terms", "owner": "claude/sd101-l4-sd04", "session": "cse_01LEo5tpnoS94vRQdTcVBRhs", "claimed_at": "2026-10-18T13:35:37Z", "heartbeat_at": "2026-10-18T15:01:59Z"}
+{"id": "sd-04-038", "status": "written", "title": "CAP Theorem: One of the Most Misunderstood Terms", "owner": "claude/sd101-l4-sd04", "session": "cse_01LEo5tpnoS94vRQdTcVBRhs", "done_at": "2026-10-18T15:40:03Z", "pr": 147}
 
-{"id": "sd-04-039", "status": "doing", "title": "Consistent Hashing Explained", "owner": "claude/sd101-l4-sd04", "session": "cse_01LEo5tpnoS94vRQdTcVBRhs", "claimed_at": "2026-10-18T13:35:37Z", "heartbeat_at": "2026-10-18T15:01:59Z"}
+{"id": "sd-04-039", "status": "written", "title": "Consistent Hashing Explained", "owner": "claude/sd101-l4-sd04", "session": "cse_01LEo5tpnoS94vRQdTcVBRhs", "done_at": "2026-10-18T15:40:03Z", "pr": 147}
 
-{"id": "sd-04-040", "status": "doing", "title": "Types of Databases", "owner": "claude/sd101-l4-sd04", "session": "cse_01LEo5tpnoS94vRQdTcVBRhs", "claimed_at": "2026-10-18T13:35:37Z", "heartbeat_at": "2026-10-18T15:01:59Z"}
+{"id": "sd-04-040", "status": "written", "title": "Types of Databases", "owner": "claude/sd101-l4-sd04", "session": "cse_01LEo5tpnoS94vRQdTcVBRhs", "done_at": "2026-10-18T15:40:03Z", "pr": 147}
 
-{"id": "sd-04-041", "status": "doing", "title": "Key Concepts to Understand Database Sharding", "owner": "claude/sd101-l4-sd04", "session": "cse_01LEo5tpnoS94vRQdTcVBRhs", "claimed_at": "2026-10-18T13:35:37Z", "heartbeat_at": "2026-10-18T15:01:59Z"}
+{"id": "sd-04-041", "status": "written", "title": "Key Concepts to Understand Database Sharding", "owner": "claude/sd101-l4-sd04", "session": "cse_01LEo5tpnoS94vRQdTcVBRhs", "done_at": "2026-10-18T15:40:03Z", "pr": 147}
 
-{"id": "sd-04-042", "status": "doing", "title": "Database Locks Explained", "owner": "claude/sd101-l4-sd04", "session": "cse_01LEo5tpnoS94vRQdTcVBRhs", "claimed_at": "2026-10-18T13:35:37Z", "heartbeat_at": "2026-10-18T15:01:59Z"}
+{"id": "sd-04-042", "status": "written", "title": "Database Locks Explained", "owner": "claude/sd101-l4-sd04", "session": "cse_01LEo5tpnoS94vRQdTcVBRhs", "done_at": "2026-10-18T15:40:03Z", "pr": 147}
 
-{"id": "sd-04-043", "status": "doing", "title": "A Cheatsheet on Database Performance", "owner": "claude/sd101-l4-sd04", "session": "cse_01LEo5tpnoS94vRQdTcVBRhs", "claimed_at": "2026-10-18T13:35:37Z", "heartbeat_at": "2026-10-18T15:01:59Z"}
+{"id": "sd-04-043", "status": "written", "title": "A Cheatsheet on Database Performance", "owner": "claude/sd101-l4-sd04", "session": "cse_01LEo5tpnoS94vRQdTcVBRhs", "done_at": "2026-10-18T15:40:03Z", "pr": 147}
 
-{"id": "sd-04-044", "status": "doing", "title": "What does ACID mean?", "owner": "claude/sd101-l4-sd04", "session": "cse_01LEo5tpnoS94vRQdTcVBRhs", "claimed_at": "2026-10-18T13:35:37Z", "heartbeat_at": "2026-10-18T15:01:59Z"}
+{"id": "sd-04-044", "status": "written", "title": "What does ACID mean?", "owner": "claude/sd101-l4-sd04", "session": "cse_01LEo5tpnoS94vRQdTcVBRhs", "done_at": "2026-10-18T15:40:03Z", "pr": 147}
 
-{"id": "sd-04-045", "status": "doing", "title": "Top 5 Kafka Use Cases", "owner": "claude/sd101-l4-sd04", "session": "cse_01LEo5tpnoS94vRQdTcVBRhs", "claimed_at": "2026-10-18T13:35:37Z", "heartbeat_at": "2026-10-18T15:01:59Z"}
+{"id": "sd-04-045", "status": "written", "title": "Top 5 Kafka Use Cases", "owner": "claude/sd101-l4-sd04", "session": "cse_01LEo5tpnoS94vRQdTcVBRhs", "done_at": "2026-10-18T15:40:03Z", "pr": 147}
 
-{"id": "sd-04-046", "status": "doing", "title": "Types of Memory and Storage", "owner": "claude/sd101-l4-sd04", "session": "cse_01LEo5tpnoS94vRQdTcVBRhs", "claimed_at": "2026-10-18T13:35:37Z", "heartbeat_at": "2026-10-18T15:01:59Z"}
+{"id": "sd-04-046", "status": "written", "title": "Types of Memory and Storage", "owner": "claude/sd101-l4-sd04", "session": "cse_01LEo5tpnoS94vRQdTcVBRhs", "done_at": "2026-10-18T15:40:03Z", "pr": 147}
 
-{"id": "sd-04-047", "status": "doing", "title": "7 Must-Know Strategies to Scale Your Database", "owner": "claude/sd101-l4-sd04", "session": "cse_01LEo5tpnoS94vRQdTcVBRhs", "claimed_at": "2026-10-18T13:35:37Z", "heartbeat_at": "2026-10-18T15:01:59Z"}
+{"id": "sd-04-047", "status": "written", "title": "7 Must-Know Strategies to Scale Your Database", "owner": "claude/sd101-l4-sd04", "session": "cse_01LEo5tpnoS94vRQdTcVBRhs", "done_at": "2026-10-18T15:40:03Z", "pr": 147}
 
 {"id": "sd-05-001", "status": "written", "title": "How do SQL Joins Work?"}
 
@@ -284,21 +284,21 @@
 
 {"id": "sd-05-005", "status": "written", "title": "Recommended Materials for Technical Interviews"}
 
-{"id": "sd-06-001", "status": "todo", "title": "What is ELK Stack and Why is it Popular?"}
+{"id": "sd-06-001", "status": "written", "title": "What is ELK Stack and Why is it Popular?", "owner": "claude/sd101-l5-sd06-a", "session": "cse_01QC2P9XPYeWsGxRVrjUDVWx", "done_at": "2026-10-18T14:16:57Z", "pr": 141}
 
-{"id": "sd-06-002", "status": "todo", "title": "Why are Content Delivery Networks (CDN) so Popular?"}
+{"id": "sd-06-002", "status": "written", "title": "Why are Content Delivery Networks (CDN) so Popular?", "owner": "claude/sd101-l5-sd06-a", "session": "cse_01QC2P9XPYeWsGxRVrjUDVWx", "done_at": "2026-10-18T14:16:57Z", "pr": 141}
 
-{"id": "sd-06-003", "status": "todo", "title": "How Big Keys Impact Redis Persistence"}
+{"id": "sd-06-003", "status": "written", "title": "How Big Keys Impact Redis Persistence", "owner": "claude/sd101-l5-sd06-a", "session": "cse_01QC2P9XPYeWsGxRVrjUDVWx", "done_at": "2026-10-18T14:16:57Z", "pr": 141}
 
-{"id": "sd-06-004", "status": "todo", "title": "A Beginner's Guide to CDN"}
+{"id": "sd-06-004", "status": "written", "title": "A Beginner's Guide to CDN", "owner": "claude/sd101-l5-sd06-a", "session": "cse_01QC2P9XPYeWsGxRVrjUDVWx", "done_at": "2026-10-18T14:16:57Z", "pr": 141}
 
-{"id": "sd-06-005", "status": "todo", "title": "The Ultimate Redis 101"}
+{"id": "sd-06-005", "status": "written", "title": "The Ultimate Redis 101", "owner": "claude/sd101-l5-sd06-a", "session": "cse_01QC2P9XPYeWsGxRVrjUDVWx", "done_at": "2026-10-18T14:16:57Z", "pr": 141}
 
-{"id": "sd-06-006", "status": "todo", "title": "Cache Systems Every Developer Should Know"}
+{"id": "sd-06-006", "status": "written", "title": "Cache Systems Every Developer Should Know", "owner": "claude/sd101-l5-sd06-a", "session": "cse_01QC2P9XPYeWsGxRVrjUDVWx", "done_at": "2026-10-18T14:16:57Z", "pr": 141}
 
-{"id": "sd-06-007", "status": "todo", "title": "Top 5 Strategies to Reduce Latency"}
+{"id": "sd-06-007", "status": "written", "title": "Top 5 Strategies to Reduce Latency", "owner": "claude/sd101-l5-sd06-a", "session": "cse_01QC2P9XPYeWsGxRVrjUDVWx", "done_at": "2026-10-18T14:16:57Z", "pr": 141}
 
-{"id": "sd-06-008", "status": "todo", "title": "Top 5 Caching Strategies"}
+{"id": "sd-06-008", "status": "written", "title": "Top 5 Caching Strategies", "owner": "claude/sd101-l5-sd06-a", "session": "cse_01QC2P9XPYeWsGxRVrjUDVWx", "done_at": "2026-10-18T14:16:57Z", "pr": 141}
 
 {"id": "sd-06-009", "status": "written", "title": "Things to Consider When Using Cache", "owner": "claude/sd101-l5-sd06-b", "session": "cse_01QC2P9XPYeWsGxRVrjUDVWx", "done_at": "2026-10-18T14:46:40Z", "pr": 145}
 
@@ -430,45 +430,45 @@
 
 {"id": "sd-08-024", "status": "todo", "title": "Top 5 Software Architectural Patterns"}
 
-{"id": "sd-09-001", "status": "todo", "title": "Git Commands Cheat Sheet"}
+{"id": "sd-09-001", "status": "written", "title": "Git Commands Cheat Sheet", "owner": "claude/quirky-einstein-gnqo32", "session": "cse_01FQbmBtAY2ZrAkM6JRxdpXd", "done_at": "2026-10-18T20:28:38Z", "pr": 150}
 
-{"id": "sd-09-002", "status": "todo", "title": "How does Git Work?"}
+{"id": "sd-09-002", "status": "written", "title": "How does Git Work?", "owner": "claude/quirky-einstein-gnqo32", "session": "cse_01FQbmBtAY2ZrAkM6JRxdpXd", "done_at": "2026-10-18T20:28:38Z", "pr": 150}
 
-{"id": "sd-09-003", "status": "todo", "title": "JSON Crack: Visualize JSON Files"}
+{"id": "sd-09-003", "status": "written", "title": "JSON Crack: Visualize JSON Files", "owner": "claude/quirky-einstein-gnqo32", "session": "cse_01FQbmBtAY2ZrAkM6JRxdpXd", "done_at": "2026-10-18T20:28:38Z", "pr": 150}
 
-{"id": "sd-09-004", "status": "todo", "title": "Git vs GitHub"}
+{"id": "sd-09-004", "status": "written", "title": "Git vs GitHub", "owner": "claude/quirky-einstein-gnqo32", "session": "cse_01FQbmBtAY2ZrAkM6JRxdpXd", "done_at": "2026-10-18T20:28:38Z", "pr": 150}
 
-{"id": "sd-09-005", "status": "todo", "title": "Git Merge vs. Git Rebase"}
+{"id": "sd-09-005", "status": "written", "title": "Git Merge vs. Git Rebase", "owner": "claude/quirky-einstein-gnqo32", "session": "cse_01FQbmBtAY2ZrAkM6JRxdpXd", "done_at": "2026-10-18T20:28:38Z", "pr": 150}
 
-{"id": "sd-09-006", "status": "todo", "title": "30 Useful AI Apps That Can Help You in 2025"}
+{"id": "sd-09-006", "status": "written", "title": "30 Useful AI Apps That Can Help You in 2025", "owner": "claude/quirky-einstein-gnqo32", "session": "cse_01FQbmBtAY2ZrAkM6JRxdpXd", "done_at": "2026-10-18T20:28:38Z", "pr": 150}
 
-{"id": "sd-09-007", "status": "todo", "title": "Diagram as Code"}
+{"id": "sd-09-007", "status": "written", "title": "Diagram as Code", "owner": "claude/quirky-einstein-gnqo32", "session": "cse_01FQbmBtAY2ZrAkM6JRxdpXd", "done_at": "2026-10-18T20:28:38Z", "pr": 150}
 
-{"id": "sd-09-008", "status": "todo", "title": "Top 9 Causes of 100% CPU Usage"}
+{"id": "sd-09-008", "status": "written", "title": "Top 9 Causes of 100% CPU Usage", "owner": "claude/quirky-einstein-gnqo32", "session": "cse_01FQbmBtAY2ZrAkM6JRxdpXd", "done_at": "2026-10-18T20:28:38Z", "pr": 150}
 
-{"id": "sd-09-009", "status": "todo", "title": "Top 6 Tools to Turn Code into Beautiful Diagrams"}
+{"id": "sd-09-009", "status": "written", "title": "Top 6 Tools to Turn Code into Beautiful Diagrams", "owner": "claude/quirky-einstein-gnqo32", "session": "cse_01FQbmBtAY2ZrAkM6JRxdpXd", "done_at": "2026-10-18T20:28:38Z", "pr": 150}
 
-{"id": "sd-09-010", "status": "todo", "title": "Tools for Shipping Code to Production"}
+{"id": "sd-09-010", "status": "written", "title": "Tools for Shipping Code to Production", "owner": "claude/quirky-einstein-gnqo32", "session": "cse_01FQbmBtAY2ZrAkM6JRxdpXd", "done_at": "2026-10-18T20:28:38Z", "pr": 150}
 
-{"id": "sd-09-011", "status": "todo", "title": "Making Sense of Search Engine Optimization"}
+{"id": "sd-09-011", "status": "written", "title": "Making Sense of Search Engine Optimization", "owner": "claude/quirky-einstein-gnqo32", "session": "cse_01FQbmBtAY2ZrAkM6JRxdpXd", "done_at": "2026-10-18T20:28:38Z", "pr": 150}
 
-{"id": "sd-09-012", "status": "todo", "title": "Most Used Linux Commands Map"}
+{"id": "sd-09-012", "status": "written", "title": "Most Used Linux Commands Map", "owner": "claude/quirky-einstein-gnqo32", "session": "cse_01FQbmBtAY2ZrAkM6JRxdpXd", "done_at": "2026-10-18T20:28:38Z", "pr": 150}
 
-{"id": "sd-09-013", "status": "todo", "title": "Linux File Permissions Illustrated"}
+{"id": "sd-09-013", "status": "written", "title": "Linux File Permissions Illustrated", "owner": "claude/quirky-einstein-gnqo32", "session": "cse_01FQbmBtAY2ZrAkM6JRxdpXd", "done_at": "2026-10-18T20:28:38Z", "pr": 150}
 
-{"id": "sd-09-014", "status": "todo", "title": "5 Important Components of Linux"}
+{"id": "sd-09-014", "status": "written", "title": "5 Important Components of Linux", "owner": "claude/quirky-einstein-gnqo32", "session": "cse_01FQbmBtAY2ZrAkM6JRxdpXd", "done_at": "2026-10-18T20:28:38Z", "pr": 150}
 
-{"id": "sd-09-015", "status": "todo", "title": "15 Open-Source Projects That Changed the World"}
+{"id": "sd-09-015", "status": "written", "title": "15 Open-Source Projects That Changed the World", "owner": "claude/quirky-einstein-gnqo32", "session": "cse_01FQbmBtAY2ZrAkM6JRxdpXd", "done_at": "2026-10-18T20:28:38Z", "pr": 150}
 
-{"id": "sd-09-016", "status": "todo", "title": "20 Popular Open Source Projects Started by Big Companies"}
+{"id": "sd-09-016", "status": "written", "title": "20 Popular Open Source Projects Started by Big Companies", "owner": "claude/quirky-einstein-gnqo32", "session": "cse_01FQbmBtAY2ZrAkM6JRxdpXd", "done_at": "2026-10-18T20:28:38Z", "pr": 150}
 
-{"id": "sd-09-017", "status": "todo", "title": "Linux File System Explained"}
+{"id": "sd-09-017", "status": "written", "title": "Linux File System Explained", "owner": "claude/quirky-einstein-gnqo32", "session": "cse_01FQbmBtAY2ZrAkM6JRxdpXd", "done_at": "2026-10-18T20:28:38Z", "pr": 150}
 
-{"id": "sd-09-018", "status": "todo", "title": "Life is Short, Use Dev Tools"}
+{"id": "sd-09-018", "status": "written", "title": "Life is Short, Use Dev Tools", "owner": "claude/quirky-einstein-gnqo32", "session": "cse_01FQbmBtAY2ZrAkM6JRxdpXd", "done_at": "2026-10-18T20:28:38Z", "pr": 150}
 
-{"id": "sd-09-019", "status": "todo", "title": "How Git Works"}
+{"id": "sd-09-019", "status": "written", "title": "How Git Works", "owner": "claude/quirky-einstein-gnqo32", "session": "cse_01FQbmBtAY2ZrAkM6JRxdpXd", "done_at": "2026-10-18T20:28:38Z", "pr": 150}
 
-{"id": "sd-09-020", "status": "todo", "title": "How do Companies Ship Code to Production?"}
+{"id": "sd-09-020", "status": "written", "title": "How do Companies Ship Code to Production?", "owner": "claude/quirky-einstein-gnqo32", "session": "cse_01FQbmBtAY2ZrAkM6JRxdpXd", "done_at": "2026-10-18T20:28:38Z", "pr": 150}
 
 {"id": "sd-10-001", "status": "todo", "title": "Top 6 Most Commonly Used Server Types"}
 

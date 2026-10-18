@@ -1,0 +1,26 @@
+{
+  "id": "sd-04-046",
+  "lang": "vi",
+  "title": "Bộ nhớ và lưu trữ: đo khoảng cách giữa các tầng",
+  "desc": "Ba khung dọc. Khung một, các loại theo nguồn: RAM là bộ nhớ làm việc, mất khi tắt máy, còn ROM giữ nội dung khi tắt và chứa firmware như BIOS; SRAM nhanh và đắt, làm bộ đệm trong CPU, còn DRAM rẻ hơn, làm bộ nhớ chính, DDR4 và DDR5 là các thế hệ của nó; HDD, SSD, USB và thẻ SD là nơi lưu lâu dài. Khung hai, đo một lần đọc trên máy biên soạn: vùng 16 KiB 1,8 nano giây; vùng 1 MiB khoảng 8 nano giây; vùng 4 đến 16 MiB 26 đến 53 nano giây; vùng từ 64 MiB trở lên 135 đến 217 nano giây. Khung ba, đọc ngẫu nhiên một khối 4 KiB từ đĩa ảo, bỏ qua bộ đệm của hệ điều hành: 31 đến 37 micro giây, gấp khoảng 150 lần một lần đọc bộ nhớ chính.",
+  "sections": [
+    {"kind": "notes", "heading": "Các loại, theo nguồn",
+     "items": [
+       "RAM: bộ nhớ làm việc, mất khi tắt máy. ROM: giữ khi tắt, chứa firmware như BIOS.",
+       "SRAM: nhanh, đắt, làm bộ đệm trong CPU. DRAM: rẻ hơn, làm bộ nhớ chính (DDR4, DDR5).",
+       "Lưu lâu dài: HDD, SSD, USB, thẻ SD."
+     ]},
+    {"kind": "notes", "heading": "Đo một lần đọc bộ nhớ",
+     "items": [
+       "Vùng 16 KiB: 1,8 ns.",
+       "Vùng 1 MiB: khoảng 8 ns.",
+       "Vùng 4 đến 16 MiB: 26 đến 53 ns.",
+       "Vùng từ 64 MiB trở lên: 135 đến 217 ns."
+     ]},
+    {"kind": "notes", "heading": "Đo một lần đọc đĩa",
+     "items": [
+       "Khối 4 KiB ngẫu nhiên, bỏ qua bộ đệm: 31 đến 37 µs.",
+       "Gấp khoảng 150 lần một lần đọc bộ nhớ chính."
+     ]}
+  ]
+}

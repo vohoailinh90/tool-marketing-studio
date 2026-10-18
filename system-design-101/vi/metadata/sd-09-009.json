@@ -1,0 +1,75 @@
+{
+  "id": "sd-09-009",
+  "title_vi": "Sáu lựa chọn để dựng sơ đồ từ văn bản",
+  "language": "vi",
+  "kind": "explanation",
+  "content_status": "draft",
+  "source_ref": "sd-09-009",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/top-6-tools-to-turn-code-into-beautiful-diagrams.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-6-tools-to-turn-code-into-beautiful-diagrams.md",
+    "blob_sha": "bf138f33df6bb985e9e2ce6aec48f5bd1a9e2c5a",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "81ae2e978d12cfc738df9b2b7d422cf69294276f8a357473e7a30dd78ed8664d",
+    "retrieved_body_bytes": 621
+  },
+  "diagram": "../diagrams/sd-09-009-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "Đã đọc thân bài nguồn, đối chiếu danh mục và liệt kê tài liệu sơ cấp. Một số trang trả HTTP 403; chưa xác minh toàn bộ claim nên giữ pending."
+    },
+    "technical_review": {
+      "status": "pending"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 14.73,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Re-checked after the Từ viết tắt section was added (first checked 2026-10-13 on the old draft branch). Chromium (Playwright) rendered the complete lesson with every details block open at 320/375/430px from a local Markdown render with GitHub-like styles: no horizontal overflow at any width, every SVG text box inside the viewBox, min effective diagram text 14.73px at 320 and 17.54px at 375. Not GitHub itself, not a real phone, not learner testing."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Diagrams dùng Python, còn Go Diagrams dùng Go để khai báo kiến trúc. Mermaid hỗ trợ nhiều loại sơ đồ với cú pháp văn bản và được GitHub hỗ trợ trong các ngữ cảnh Markdown. PlantUML phù hợp khi bạn cần các sơ đồ UML hoặc sequence. Markmap biến cấu trúc Markdown thành mind map. ASCII diagrams biểu diễn bằng ký tự và không phải một sản phẩm duy nhất.\n\nThử một hình nhỏ trước: ba thành phần, hai liên kết và một chú thích. Kiểm tra renderer nơi tài liệu sẽ được đọc, font tiếng Việt và khả năng xem trên điện thoại. Một công cụ có nhiều loại node vẫn có thể làm hình đơn giản trở nên quá rộng.",
+      "sources": [
+        "https://mermaid.js.org/intro/",
+        "https://plantuml.com/",
+        "https://markmap.js.org/",
+        "https://diagrams.mingrammer.com/",
+        "https://github.com/blushft/go-diagrams"
+      ]
+    },
+    {
+      "claim_vi": "Các công cụ khai báo sơ đồ không mặc nhiên phân tích source code để tìm kiến trúc. Khả năng xuất file và hỗ trợ cú pháp phụ thuộc công cụ, phiên bản và nơi hiển thị.",
+      "sources": [
+        "https://mermaid.js.org/intro/",
+        "https://plantuml.com/",
+        "https://markmap.js.org/",
+        "https://diagrams.mingrammer.com/",
+        "https://github.com/blushft/go-diagrams"
+      ]
+    }
+  ],
+  "design_notes_vi": "Thẻ dọc tự thiết kế từ ví dụ mới; mũi tên biểu diễn thứ tự đọc. Không sử dụng ảnh nguồn.",
+  "editorial_note_vi": "Đợt Công cụ và năng suất theo yêu cầu người dùng 2026-10-13. Chưa review kỹ thuật độc lập hoặc thử người học; không tự merge/phát hành."
+}

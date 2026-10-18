@@ -1,0 +1,69 @@
+{
+  "id": "sd-09-003",
+  "title_vi": "Đọc JSON lồng nhau bằng sơ đồ",
+  "language": "vi",
+  "kind": "explanation",
+  "content_status": "draft",
+  "source_ref": "sd-09-003",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/json-files.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/json-files.md",
+    "blob_sha": "e2e53ecbd3168a098705234cf84fdf3fe9b59de7",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "405d207fabe5a77a7951084c459cafdf962e3adb677440b93f28467f386ba509",
+    "retrieved_body_bytes": 548
+  },
+  "diagram": "../diagrams/sd-09-003-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "Đã đọc thân bài nguồn, đối chiếu danh mục và liệt kê tài liệu sơ cấp. Một số trang trả HTTP 403; chưa xác minh toàn bộ claim nên giữ pending."
+    },
+    "technical_review": {
+      "status": "pending"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 14.73,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Re-checked after the Từ viết tắt section was added (first checked 2026-10-13 on the old draft branch). Chromium (Playwright) rendered the complete lesson with every details block open at 320/375/430px from a local Markdown render with GitHub-like styles: no horizontal overflow at any width, every SVG text box inside the viewBox, min effective diagram text 14.73px at 320 and 17.54px at 375. Not GitHub itself, not a real phone, not learner testing."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Với dữ liệu `{\"order\":{\"items\":[{\"qty\":2}]}}`, đường tới số lượng là `order.items[0].qty`. Object dùng tên khóa; array dùng vị trí, bắt đầu từ 0. Một nhánh mở rộng trên đồ thị giúp lần theo đúng cấp khi dữ liệu dài.\n\nBạn có thể thử công cụ bằng dữ liệu giả, tìm một trường rồi đối chiếu đường dẫn với JSON gốc. Khi thiếu trường, cần phân biệt khóa không tồn tại, giá trị `null` và array rỗng. Ba trường hợp này thường dẫn đến cách xử lý khác nhau trong chương trình.",
+      "sources": [
+        "https://www.rfc-editor.org/rfc/rfc8259",
+        "https://github.com/AykutSarac/jsoncrack.com"
+      ]
+    },
+    {
+      "claim_vi": "Sơ đồ cấu trúc không chứng minh dữ liệu đáp ứng schema hoặc quy tắc nghiệp vụ. Chưa kiểm chứng chế độ lưu trữ/xử lý dữ liệu của dịch vụ hiện hành; chỉ dùng dữ liệu giả khi thực hành.",
+      "sources": [
+        "https://www.rfc-editor.org/rfc/rfc8259",
+        "https://github.com/AykutSarac/jsoncrack.com"
+      ]
+    }
+  ],
+  "design_notes_vi": "Thẻ dọc tự thiết kế từ ví dụ mới; mũi tên biểu diễn thứ tự đọc. Không sử dụng ảnh nguồn.",
+  "editorial_note_vi": "Đợt Công cụ và năng suất theo yêu cầu người dùng 2026-10-13. Chưa review kỹ thuật độc lập hoặc thử người học; không tự merge/phát hành."
+}

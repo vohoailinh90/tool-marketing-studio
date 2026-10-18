@@ -1,0 +1,69 @@
+{
+  "id": "sd-09-002",
+  "title_vi": "Quy trình làm việc với Git",
+  "language": "vi",
+  "kind": "explanation",
+  "content_status": "draft",
+  "source_ref": "sd-09-002",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/git-workflow.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/git-workflow.md",
+    "blob_sha": "e22db1cfbaecd2747c1b883a4ea6f20eb775c509",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "81f89009f1c520becc71181e8ff26b7ec643805f38da512e33b149757a1e9342",
+    "retrieved_body_bytes": 599
+  },
+  "diagram": "../diagrams/sd-09-002-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "Đã đọc thân bài nguồn, đối chiếu danh mục và liệt kê tài liệu sơ cấp. Một số trang trả HTTP 403; chưa xác minh toàn bộ claim nên giữ pending."
+    },
+    "technical_review": {
+      "status": "pending"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 14.73,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium: complete lesson with details open at 320/375/430px; SVG text bounding boxes within viewBox; min effective text 14.73px at 320 and 17.54px at 375. Screenshots captured locally; no learner testing or live GitHub preview. Đã xem contact sheet 20 bài ở 320px; chưa kiểm tra trên GitHub hoặc điện thoại thật."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Ví dụ Lan sửa thông báo lỗi trên nhánh riêng. Lan kiểm tra ứng dụng, chọn thay đổi và commit với lời giải thích. Minh vẫn có thể làm việc trên máy khác mà không chờ Lan hoàn thành.\n\nSau `git fetch`, Lan thấy nhánh chung có commit mới của Minh. Lan chọn merge hoặc rebase theo quy ước nhóm, xử lý xung đột nếu có và chạy kiểm tra lại. Khi push nhánh, Lan mở pull request để người khác xem diff. Pull request là tính năng của nền tảng cộng tác; Git tự nó quản lý commit, nhánh và việc tích hợp lịch sử.",
+      "sources": [
+        "https://git-scm.com/book/en/v2/Getting-Started-What-is-Git%3F",
+        "https://git-scm.com/docs/git-pull"
+      ]
+    },
+    {
+      "claim_vi": "Fetch không tự ghép thay đổi vào nhánh đang làm. Pull gồm fetch rồi tích hợp theo tùy chọn và cấu hình; không nên hiểu pull luôn là merge.",
+      "sources": [
+        "https://git-scm.com/book/en/v2/Getting-Started-What-is-Git%3F",
+        "https://git-scm.com/docs/git-pull"
+      ]
+    }
+  ],
+  "design_notes_vi": "Thẻ dọc tự thiết kế từ ví dụ mới; mũi tên biểu diễn thứ tự đọc. Không sử dụng ảnh nguồn.",
+  "editorial_note_vi": "Đợt Công cụ và năng suất theo yêu cầu người dùng 2026-10-13. Chưa review kỹ thuật độc lập hoặc thử người học; không tự merge/phát hành."
+}

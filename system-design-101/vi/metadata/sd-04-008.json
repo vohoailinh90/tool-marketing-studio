@@ -1,6 +1,6 @@
 {
   "id": "sd-04-008",
-  "title_vi": "Sáu mẫu quản lý dữ liệu và cái giá chung của chúng",
+  "title_vi": "Sáu mẫu quản lý dữ liệu: bản nào là gốc, bản nào là dẫn xuất",
   "language": "vi",
   "kind": "comparison",
   "content_status": "draft",
@@ -99,6 +99,12 @@
       "verified_by": "Read from a partial clone of MicrosoftDocs/architecture-center at commit 8e2c239344ee753a88856800b4210a3e27ac1036."
     },
     {
+      "claim_vi": "Hash-based sharding reduces hotspots, shards that receive a disproportionate share of load; virtual shards reduce the impact of rebalancing; range sharding needs split and merge operations to rebalance.",
+      "source": "https://github.com/MicrosoftDocs/architecture-center/blob/8e2c239344ee753a88856800b4210a3e27ac1036/docs/patterns/sharding.md",
+      "section": "Sharding strategies; Advantages and considerations",
+      "verified_by": "Read from a partial clone of MicrosoftDocs/architecture-center at commit 8e2c239344ee753a88856800b4210a3e27ac1036 after a review finding on PR #144."
+    },
+    {
       "claim_vi": "An effective shard key is immutable, has high cardinality, distributes data and load evenly and aligns with dominant query patterns so most requests resolve against a single shard.",
       "source": "https://github.com/MicrosoftDocs/architecture-center/blob/8e2c239344ee753a88856800b4210a3e27ac1036/docs/patterns/sharding.md",
       "section": "Sharding strategies",
@@ -117,9 +123,9 @@
       "verified_by": "Source body read."
     }
   ],
-  "design_notes_vi": "Hai nhóm ba mẫu (thêm bản dẫn xuất, đổi cách lưu) và ba câu hỏi chung về độ cũ; một số đo từ thử nghiệm materialized view. Không dùng ảnh nguồn.",
+  "design_notes_vi": "Hai nhóm ba mẫu (thêm bản dẫn xuất, đổi cách lưu), câu hỏi về độ cũ chỉ áp cho bản dẫn xuất, sharding có lo ngại riêng; một số đo từ thử nghiệm materialized view. Không dùng ảnh nguồn.",
   "source_deviations": [
-    "The source gives one descriptive paragraph per pattern; the lesson groups the patterns by what they do to the data and asks one common staleness question, with considerations taken from the Azure pattern pages.",
+    "The source gives one descriptive paragraph per pattern; the lesson sorts them by whether they add a derived copy or split the original, asks the staleness question only of derived copies (CQRS with separate stores, event-sourcing projections included) and gives sharding its own concerns, from the Azure pattern pages.",
     "The lesson adds a measured stale materialized view on PostgreSQL."
   ],
   "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."

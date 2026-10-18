@@ -1,9 +1,9 @@
 {
   "id": "sd-04-008",
   "lang": "vi",
-  "title": "Sáu mẫu quản lý dữ liệu, một câu hỏi chung",
-  "subtitle": "Mẫu nào cũng tạo thêm một bản dữ liệu hoặc chia dữ liệu ra: bản đó cũ được bao lâu?",
-  "desc": "Ba khung. Khung một, ba mẫu giúp đọc nhanh nhờ một bản dữ liệu thứ hai: cache-aside đọc cache trước, trượt thì đọc kho rồi nạp vào cache, cũ tới khi hết hạn hoặc bị xóa; materialized view lưu sẵn kết quả một truy vấn nặng và cũ tới lần làm mới, thử nghiệm thấy 70 khi bảng gốc đã là 100; index table là bảng phụ sắp theo khóa khác, phải cập nhật cùng bảng gốc. Khung hai, ba mẫu đổi cách lưu: CQRS tách mô hình ghi và mô hình đọc, mô hình đọc theo sau; event sourcing lưu chuỗi sự kiện và tính lại trạng thái; sharding chia dữ liệu ra nhiều máy theo khóa shard, khóa tốt giữ truy vấn chính trong một shard. Khung ba hỏi: làm mới khi nào, cũ được bao lâu, ai sửa khi lệch.",
+  "title": "Sáu mẫu quản lý dữ liệu: gốc hay dẫn xuất",
+  "subtitle": "Năm mẫu có thể tạo bản dẫn xuất; sharding chia chính bản gốc.",
+  "desc": "Ba khung. Khung một, ba mẫu đọc nhanh nhờ một bản dữ liệu thứ hai: cache-aside đọc cache trước, trượt thì đọc kho rồi nạp vào cache, cũ tới khi hết hạn hoặc bị xóa; materialized view lưu sẵn kết quả một truy vấn nặng và cũ tới lần làm mới, thử nghiệm thấy 70 khi bảng gốc đã là 100; index table là bảng phụ sắp theo khóa khác, phải cập nhật cùng bảng gốc. Khung hai, ba mẫu đổi cách lưu: CQRS tách mô hình ghi và đọc, ở hai kho thì mô hình đọc theo sau; event sourcing lấy chuỗi sự kiện làm bản gốc, view dựng từ đó có thể cũ; sharding chia chính bản gốc theo khóa shard, lo ngại là shard nóng. Khung ba, với mọi bản dẫn xuất: làm mới khi nào, cũ được bao lâu, ai sửa khi lệch.",
   "sections": [
     {
       "kind": "parts",
@@ -33,17 +33,17 @@
       "items": [
         {
           "name": "CQRS",
-          "role": "Tách mô hình ghi và mô hình đọc; mô hình đọc theo sau mô hình ghi.",
+          "role": "Tách mô hình ghi và đọc; ở hai kho thì mô hình đọc theo sau.",
           "icon": "split"
         },
         {
           "name": "Event sourcing",
-          "role": "Lưu chuỗi sự kiện thay cho trạng thái; trạng thái tính lại từ sự kiện.",
+          "role": "Chuỗi sự kiện là bản gốc; view dựng từ sự kiện có thể cũ.",
           "icon": "history"
         },
         {
           "name": "Sharding",
-          "role": "Chia dữ liệu ra nhiều máy theo khóa shard; khóa tốt giữ truy vấn chính trong một shard.",
+          "role": "Chia chính bản gốc theo khóa shard; lo ngại là shard nóng.",
           "icon": "boxes"
         }
       ],
@@ -51,7 +51,7 @@
     },
     {
       "kind": "notes",
-      "heading": "Hỏi trước khi dùng",
+      "heading": "Với mọi bản dẫn xuất, hỏi",
       "items": [
         "Bản dữ liệu thứ hai được làm mới khi nào?",
         "Người dùng chịu được dữ liệu cũ bao lâu?",

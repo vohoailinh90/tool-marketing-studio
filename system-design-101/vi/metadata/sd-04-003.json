@@ -59,6 +59,12 @@
       "verified_by": "Read from a clone of awsdocs/amazon-s3-userguide at commit cc53dd6a44d3aa1d654e6d3705a0a7550f20fd2a, the parent of the 2023 commit that deleted the content."
     },
     {
+      "claim_vi": "Part numbers need not be consecutive, except with additional checksums: then the part numbers must be consecutive, and completing with non-consecutive numbers returns HTTP 500 Internal Server Error.",
+      "source": "https://github.com/awsdocs/amazon-s3-userguide/blob/cc53dd6a44d3aa1d654e6d3705a0a7550f20fd2a/doc_source/mpuoverview.md",
+      "section": "Multipart upload process; Checksums with multipart upload operations",
+      "verified_by": "Read from a clone of awsdocs/amazon-s3-userguide at commit cc53dd6a44d3aa1d654e6d3705a0a7550f20fd2a after a review finding on PR #144."
+    },
+    {
       "claim_vi": "An initiated multipart upload does not expire; S3 stores and charges for uploaded parts until the upload is completed or stopped, and recommends a lifecycle rule with AbortIncompleteMultipartUpload.",
       "sources": [
         "https://github.com/awsdocs/amazon-s3-userguide/blob/cc53dd6a44d3aa1d654e6d3705a0a7550f20fd2a/doc_source/mpuoverview.md",

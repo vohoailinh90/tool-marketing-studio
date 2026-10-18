@@ -1,9 +1,9 @@
-# Sáu mẫu quản lý dữ liệu và cái giá chung của chúng
+# Sáu mẫu quản lý dữ liệu: bản nào là gốc, bản nào là dẫn xuất
 
 **Cache-aside, materialized view, index table, CQRS, event sourcing và sharding giải sáu bài toán khác nhau.**
-Nhưng năm mẫu đầu đều tạo thêm một bản dữ liệu dẫn xuất từ bản gốc, còn sharding chia bản gốc ra nhiều máy. Vì thế câu hỏi chung cho cả sáu là: bản dẫn xuất được làm mới khi nào, và cũ được bao lâu.
+Cách đọc nhanh nhất là hỏi mỗi mẫu làm gì với dữ liệu gốc. Cache, materialized view và index table thêm một bản dẫn xuất; CQRS dùng hai kho và event sourcing dựng projection để đọc cũng vậy. Với mọi bản dẫn xuất, câu hỏi là nó được làm mới khi nào và cũ được bao lâu. Sharding thì khác: nó không tạo bản sao nào mà chia chính bản gốc, nên câu hỏi của nó là chia theo khóa nào.
 
-![Ba khung. Khung một, ba mẫu giúp đọc nhanh nhờ một bản dữ liệu thứ hai: cache-aside đọc cache trước, trượt thì đọc kho rồi nạp vào cache, cũ tới khi hết hạn hoặc bị xóa; materialized view lưu sẵn kết quả một truy vấn nặng và cũ tới lần làm mới, thử nghiệm thấy 70 khi bảng gốc đã là 100; index table là bảng phụ sắp theo khóa khác, phải cập nhật cùng bảng gốc. Khung hai, ba mẫu đổi cách lưu: CQRS tách mô hình ghi và mô hình đọc, mô hình đọc theo sau; event sourcing lưu chuỗi sự kiện và tính lại trạng thái; sharding chia dữ liệu ra nhiều máy theo khóa shard, khóa tốt giữ truy vấn chính trong một shard. Khung ba hỏi: làm mới khi nào, cũ được bao lâu, ai sửa khi lệch.](../../diagrams/sd-04-008-main.svg)
+![Ba khung. Khung một, ba mẫu đọc nhanh nhờ một bản dữ liệu thứ hai: cache-aside đọc cache trước, trượt thì đọc kho rồi nạp vào cache, cũ tới khi hết hạn hoặc bị xóa; materialized view lưu sẵn kết quả một truy vấn nặng và cũ tới lần làm mới, thử nghiệm thấy 70 khi bảng gốc đã là 100; index table là bảng phụ sắp theo khóa khác, phải cập nhật cùng bảng gốc. Khung hai, ba mẫu đổi cách lưu: CQRS tách mô hình ghi và đọc, ở hai kho thì mô hình đọc theo sau; event sourcing lấy chuỗi sự kiện làm bản gốc, view dựng từ đó có thể cũ; sharding chia chính bản gốc theo khóa shard, lo ngại là shard nóng. Khung ba, với mọi bản dẫn xuất: làm mới khi nào, cũ được bao lâu, ai sửa khi lệch.](../../diagrams/sd-04-008-main.svg)
 
 ## Từ viết tắt
 
@@ -20,9 +20,9 @@ Nhưng năm mẫu đầu đều tạo thêm một bản dữ liệu dẫn xuất
 
 **Khung 2 · Đổi cách lưu.**
 
-- **CQRS:** mô hình ghi lo kiểm tra nghiệp vụ, mô hình đọc trả dữ liệu dựng sẵn cho màn hình. Khi hai mô hình ở hai kho, mô hình đọc theo sau mô hình ghi.
-- **Event sourcing:** không ghi đè trạng thái mà nối sự kiện vào một kho chỉ ghi thêm; trạng thái hiện tại có được bằng cách phát lại sự kiện. Phát lại tốn kém nên thường đi kèm materialized view.
-- **Sharding:** chia dữ liệu ra nhiều kho theo khóa shard. Theo Azure Architecture Center, khóa tốt không đổi theo thời gian, có nhiều giá trị khác nhau, chia đều tải, và khớp với truy vấn chính để phần lớn yêu cầu chỉ chạm một shard.
+- **CQRS:** mô hình ghi lo kiểm tra nghiệp vụ, mô hình đọc trả dữ liệu dựng sẵn cho màn hình. Hai mô hình có thể dùng chung một kho; chỉ khi chúng ở hai kho thì mô hình đọc mới là bản dẫn xuất và theo sau mô hình ghi.
+- **Event sourcing:** không ghi đè trạng thái mà nối sự kiện vào một kho chỉ ghi thêm; chuỗi sự kiện là bản gốc, trạng thái hiện tại có được bằng cách phát lại. Phát lại tốn kém nên thường đi kèm materialized view, và chính view đó mới là bản dẫn xuất có thể cũ.
+- **Sharding:** chia chính bản gốc ra nhiều kho theo khóa shard, không tạo bản dẫn xuất. Theo Azure Architecture Center, khóa tốt không đổi theo thời gian, có nhiều giá trị khác nhau, chia đều tải, và khớp với truy vấn chính để phần lớn yêu cầu chỉ chạm một shard. Lo ngại của nó là shard nóng (một shard gánh phần tải lớn bất thường) và việc dời dữ liệu khi cân bằng lại.
 
 ## Thử nghiệm: materialized view cũ tới lần làm mới
 

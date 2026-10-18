@@ -18,7 +18,7 @@ Tải nhiều phần (multipart upload) cắt tệp thành các phần gửi ri�
 ## Đọc hình
 
 **Khung 1 · Ba bước.** Bắt đầu một lượt tải để nhận upload ID; gửi từng phần kèm số phần (từ 1 tới 10.000) và giữ lại ETag kho trả về cho mỗi phần; gửi lệnh hoàn tất kèm danh sách số phần và ETag.
-Các phần gửi theo thứ tự nào cũng được, số phần không cần liên tiếp; gửi lại một số phần đã có thì phần mới đè lên phần cũ.
+Các phần gửi theo thứ tự nào cũng được; gửi lại một số phần đã có thì phần mới đè lên phần cũ. Hướng dẫn S3 cho phép số phần không liên tiếp, trừ khi lượt tải dùng checksum bổ sung: khi đó số phần phải liên tiếp, không thì lệnh hoàn tất báo lỗi. Đánh số 1, 2, 3… cho mọi lượt tải là cách an toàn.
 Khi hoàn tất, S3 nối các phần theo số phần tăng dần, và các phần riêng lẻ không còn nữa. Hướng dẫn S3 dặn tự ghi lại số phần và ETag thay vì dựa vào lệnh liệt kê phần để lập danh sách hoàn tất.
 
 **Khung 2 · Cỡ phần.** Lệnh hoàn tất bị từ chối với lỗi `EntityTooSmall` nếu một phần không phải phần cuối nhỏ hơn 5 MB.

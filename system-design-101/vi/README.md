@@ -87,7 +87,7 @@ Các bài từ sd-04-013 trở đi chưa có ở đây; số thứ tự dưới 
 5. [Avro: đổi lược đồ mà dữ liệu cũ vẫn đọc được](lessons/sd-04-005/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 6. [Kafka nhập môn: theo bảy đơn hàng đi qua một cụm ba máy](lessons/sd-04-006/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 7. [Mức cô lập giao dịch: mỗi mức chặn được hiện tượng nào](lessons/sd-04-007/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
-8. [Sáu mẫu quản lý dữ liệu và cái giá chung của chúng](lessons/sd-04-008/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+8. [Sáu mẫu quản lý dữ liệu: bản nào là gốc, bản nào là dẫn xuất](lessons/sd-04-008/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 9. [Vì sao Kafka nhanh: ghi nối tiếp, gom lô, gửi thẳng từ page cache](lessons/sd-04-009/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 10. [Bốn kiểu hàng đợi trong chương trình: FIFO, bộ đệm vòng, ưu tiên, deque](lessons/sd-04-010/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 11. [Cơ sở dữ liệu chuỗi thời gian: dữ liệu được gom theo series](lessons/sd-04-011/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.

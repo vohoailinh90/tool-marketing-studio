@@ -29,7 +29,7 @@ Nhãn dùng trong bài:
 
 1. **Không có công thức "lên xu hướng" do nền tảng công bố.** Trang chính thức của YouTube và TikTok mà mình đọc mô tả việc chọn video cho từng người xem. Mô hình "thử với nhóm nhỏ rồi mở rộng nếu phản hồi tốt" là cách bên thứ ba và người làm nội dung mô tả, không phải điều nền tảng công bố. [Chính thức cho phần không có công thức; Cao cho mô hình nhóm nhỏ]
 2. **YouTube đã gỡ trang Trending** (có hiệu lực khoảng 21/7/2025). "Lên xu hướng" nay là được đề xuất. [Chính thức, qua lịch sử sửa đổi API]
-3. **YouTube bật kiếm tiền:** quảng cáo và Premium (YPP đầy đủ) hiện cần 1.000 subscriber + 4.000 giờ xem hoặc 10 triệu lượt xem Shorts/90 ngày. **Từ 1/2/2027, người mới cần 8.000 giờ hoặc 20 triệu lượt xem Shorts.** Cấp sớm (fan funding, Creator Partnerships, Shopping) chỉ cần 500 subscriber + 3.000 giờ hoặc 3 triệu lượt xem Shorts/90 ngày và không đổi sau 1/2/2027. Kênh đã trong YPP không bị ảnh hưởng tư cách, nhưng muốn nhận tiền từ Shorts phải giữ 10 triệu lượt xem Shorts/90 ngày. [Chính thức]
+3. **YouTube bật kiếm tiền:** quảng cáo và Premium (YPP đầy đủ) hiện cần 1.000 subscriber + 4.000 giờ xem hoặc 10 triệu lượt xem Shorts/90 ngày. **Từ 1/2/2027, người mới cần 8.000 giờ hoặc 20 triệu lượt xem Shorts.** Cấp sớm (fan funding, Creator Partnerships, Shopping) cần 500 subscriber + 3 video công khai hợp lệ trong 90 ngày gần nhất + 3.000 giờ hoặc 3 triệu lượt xem Shorts/90 ngày, và không đổi sau 1/2/2027. Kênh đã trong YPP không bị ảnh hưởng tư cách, nhưng muốn nhận tiền từ Shorts phải giữ 10 triệu lượt xem Shorts/90 ngày. [Chính thức]
 4. **TikTok Creator Rewards** (10.000 follower, 100.000 lượt xem/30 ngày, video gốc trên 1 phút) **hiện chỉ mở cho Mỹ, Anh, Đức, Nhật, Hàn, Pháp, Mexico, Brazil. Việt Nam không có trong danh sách.** [Chính thức]
 5. **Facebook Content Monetization hiện chỉ theo lời mời**, Meta không công bố ngưỡng số liệu. [Chính thức]
 6. **Tiền trên 1.000 lượt xem (RPM)** chênh nhau hàng chục lần: YouTube video dài vài USD, Shorts từ vài cent đến khoảng 0,20 USD, TikTok khoảng 0,4–1 USD (chỉ áp dụng ở 8 nước có chương trình), Facebook Reels thường 0,02–0,20 USD. Không nền tảng nào công bố RPM. [Vừa]
@@ -104,7 +104,7 @@ Nhãn dùng trong bài:
 | Cấp | Điều kiện | Mở khóa |
 |---|---|---|
 | Đầy đủ (YPP) | 1.000 subscriber + 4.000 giờ xem đủ điều kiện/12 tháng, **hoặc** 1.000 subscriber + 10 triệu lượt xem Shorts đủ điều kiện/90 ngày | Chia sẻ doanh thu quảng cáo + Premium |
-| Sớm | 500 subscriber + 3.000 giờ xem/12 tháng hoặc 3 triệu lượt xem Shorts/90 ngày | Fan funding, Creator Partnerships, Shopping |
+| Sớm | 500 subscriber + **3 video công khai hợp lệ trong 90 ngày gần nhất** + 3.000 giờ xem/12 tháng, **hoặc** 500 subscriber + 3 video công khai hợp lệ trong 90 ngày + 3 triệu lượt xem Shorts/90 ngày | Fan funding, Creator Partnerships, Shopping |
 
 - "Giờ xem đủ điều kiện" chỉ tính từ video dài công khai; **giờ xem từ Shorts feed không tính** vào 4.000 giờ. Video riêng tư, không công khai, đã xóa, quảng cáo trả tiền không tính.
 - "Lượt xem Shorts đủ điều kiện" là lượt xem từ Shorts công khai hiển thị trong Shorts feed; bài ảnh không tính.
@@ -115,7 +115,7 @@ Nhãn dùng trong bài:
 
 - **Người mới vào YPP:** 1.000 subscriber + **8.000 giờ xem/365 ngày** hoặc **20 triệu lượt xem Shorts/90 ngày**.
 - **Kênh đã trong YPP:** tư cách **không bị ảnh hưởng**. Để nhận tiền hằng tháng từ **Shorts Creator Pool**, phải duy trì **10 triệu lượt xem Shorts đủ điều kiện trong 90 ngày gần nhất** (tính trong 90 ngày kết thúc ngày 15 của tháng trước tháng tính tiền). Nếu hụt, **không bị loại khỏi YPP**, không ảnh hưởng thu nhập khác (kể cả video dài).
-- **Cấp sớm không đổi:** 500 subscriber + 3.000 giờ hoặc 3 triệu lượt xem Shorts.
+- **Cấp sớm không đổi:** 500 subscriber + 3 video công khai hợp lệ trong 90 ngày + 3.000 giờ hoặc 3 triệu lượt xem Shorts.
 - **"Kênh còn hoạt động"** (mới): thỏa một trong ba: 1.000 giờ xem/365 ngày; 1 triệu lượt xem Shorts/90 ngày; hoặc đăng **2 video dài hoặc 5 Shorts mỗi 90 ngày**. Kênh tụt dưới mức có thêm 90 ngày để khôi phục.
 - **Hạn chót chấp nhận điều khoản mới trong YouTube Studio: 31/1/2027.** Không ký thì không bị loại khỏi YPP nhưng **ngừng nhận tiền** từ module chưa ký từ 1/2/2027; ký lại sau thì nhận lại.
 - **Tiền thưởng mới:** Premium Lite mở ra mọi nước có Premium, creator chia sẻ một quỹ bằng **60% doanh thu thuê bao ròng** (Premium Lite) và **30%** (Premium thường); **45%** trực tiếp cho **Targeted Shorts Ads** (quảng cáo nhắm đến 5 kênh trở xuống); chương trình thưởng Shopping, tín dụng sản xuất brand deal, tăng thu nhập khi tham gia xu hướng văn hóa.
@@ -157,8 +157,8 @@ Nhãn dùng trong bài:
 
 | | Mốc vào chương trình kiếm tiền chính (quảng cáo) | Độ chắc chắn | Cách xác nhận |
 |---|---|---|---|
-| YouTube (đến 31/1/2027) | YPP đầy đủ: 1.000 sub + 4.000 giờ hoặc 10 triệu Shorts/90 ngày. Cấp sớm (fan funding, Creator Partnerships, Shopping): 500 sub + 3.000 giờ hoặc 3 triệu Shorts/90 ngày | Chính thức | YouTube Studio → Earn |
-| YouTube (từ 1/2/2027) | YPP đầy đủ cho người mới: 1.000 sub + 8.000 giờ hoặc 20 triệu Shorts/90 ngày. Cấp sớm không đổi (500 sub + 3.000 giờ hoặc 3 triệu Shorts/90 ngày) | Chính thức | Trang "Changes to the YPP" |
+| YouTube (đến 31/1/2027) | YPP đầy đủ: 1.000 sub + 4.000 giờ hoặc 10 triệu Shorts/90 ngày. Cấp sớm (fan funding, Creator Partnerships, Shopping): 500 sub + 3 video công khai/90 ngày + 3.000 giờ hoặc 3 triệu Shorts/90 ngày | Chính thức | YouTube Studio → Earn |
+| YouTube (từ 1/2/2027) | YPP đầy đủ cho người mới: 1.000 sub + 8.000 giờ hoặc 20 triệu Shorts/90 ngày. Cấp sớm không đổi (500 sub + 3 video công khai/90 ngày + 3.000 giờ hoặc 3 triệu Shorts/90 ngày) | Chính thức | Trang "Changes to the YPP" |
 | TikTok | 10.000 follower + 100.000 lượt xem/30 ngày + video >1 phút; **chỉ 8 nước, không có Việt Nam** | Chính thức | TikTok Studio |
 | Facebook | Chỉ theo lời mời; không có ngưỡng công khai | Chính thức | Professional Dashboard → Monetization |
 
@@ -382,7 +382,7 @@ Không có quy định cấm "đăng bằng API" nói chung. Các quy định ch
 
 **Đã xác minh từ nguồn chính thức:**
 - Mốc YPP 1/2/2027 và cách áp dụng cho kênh hiện có.
-- Cấp sớm 500 subscriber.
+- Cấp sớm 500 subscriber, kèm điều kiện 3 video công khai hợp lệ trong 90 ngày (trang "expanded YouTube Partner Program").
 - Thanh toán Shorts tính theo "engaged views".
 - Ngày gỡ Trending (khoảng 21/7/2025).
 - **Creator Rewards không mở cho Việt Nam; YPP của YouTube có mở cho Việt Nam.**
@@ -410,6 +410,7 @@ Không có quy định cấm "đăng bằng API" nói chung. Các quy định ch
 
 **YouTube**
 - YPP overview & eligibility: https://support.google.com/youtube/answer/72851
+- Expanded YPP (cấp sớm 500 subscriber): https://support.google.com/youtube/answer/13429240
 - Changes to the YouTube Partner Program (1/2/2027): https://support.google.com/youtube/answer/12843009
 - YPP availability (danh sách nước): https://support.google.com/youtube/answer/7101720
 - YouTube Shorts monetization policies: https://support.google.com/youtube/answer/12504220

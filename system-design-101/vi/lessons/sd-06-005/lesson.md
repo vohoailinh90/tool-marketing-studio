@@ -34,7 +34,7 @@ Mọi lệnh dưới đây chạy ngày 2026-10-18 bằng `redis-cli` với Redi
 
 **5 · Pub/sub không giữ tin.** `PUBLISH news hello` khi chưa ai đăng ký trả 0 (không ai nhận). Mở một client chạy `SUBSCRIBE news` rồi gửi lại thì lệnh trả 1 và client kia nhận được. Tài liệu của Redis gọi đây là giao nhận *nhiều nhất một lần*: người nghe bị ngắt kết nối thì tin đó mất hẳn. Cần giữ tin thì dùng Redis Streams.
 
-**6 · Lưu xuống đĩa: mặc định là ảnh chụp.** Khởi động không kèm tệp cấu hình, `CONFIG GET save` trả `3600 1 300 100 60 10000` và `CONFIG GET appendonly` trả `no`. Theo chú thích trong `redis.conf`, nghĩa là chụp ảnh RDB sau một giờ nếu có ít nhất 1 thay đổi, sau 5 phút nếu có 100, sau 60 giây nếu có 10.000. Máy sập giữa hai lần chụp thì mất các lần ghi kể từ ảnh cuối. Khoảng đó tùy lượng ghi: nhiều ghi thì ảnh được chụp mỗi phút, còn hệ thống ít ghi, không bao giờ đạt 100 thay đổi trong 5 phút, có thể chờ gần một giờ tới mốc `3600 1`, tức có thể mất gần một giờ ghi. Muốn bền hơn thì bật AOF; với chế độ fsync mặc định là mỗi giây, tệp cấu hình ghi rằng khi mất điện có thể mất khoảng một giây ghi. Một giây là mức thường gặp, không phải giới hạn: tài liệu về độ trễ của Redis nói khi lần fsync trước chưa xong, Redis hoãn `write(2)` tới hai giây, nên mất điện lúc đĩa chậm có thể mất cả những lần ghi cũ hơn một giây đã được trả lời (bài về khóa lớn và AOF trong nhóm này nói kỹ hơn).
+**6 · Lưu xuống đĩa: mặc định là ảnh chụp.** Khởi động không kèm tệp cấu hình, `CONFIG GET save` trả `3600 1 300 100 60 10000` và `CONFIG GET appendonly` trả `no`. Theo chú thích trong `redis.conf`, nghĩa là chụp ảnh RDB sau một giờ nếu có ít nhất 1 thay đổi, sau 5 phút nếu có 100, sau 60 giây nếu có 10.000. Mã nguồn bản 7.0.15 cho thấy cả hai vế đều tính từ lần chụp trước: số thay đổi là cộng dồn kể từ ảnh cuối, không đếm riêng trong từng khoảng 5 phút. Máy sập giữa hai lần chụp thì mất các lần ghi kể từ ảnh cuối. Khoảng đó tùy lượng ghi: nhiều ghi thì ảnh được chụp mỗi phút; hệ thống ghi rất ít, dưới 100 thay đổi kể từ ảnh trước, có thể chờ gần một giờ tới mốc `3600 1`, tức có thể mất gần một giờ ghi. Muốn bền hơn thì bật AOF; với chế độ fsync mặc định là mỗi giây, tệp cấu hình ghi rằng khi mất điện có thể mất khoảng một giây ghi. Một giây là mức thường gặp, không phải giới hạn: tài liệu về độ trễ của Redis nói khi lần fsync trước chưa xong, Redis hoãn `write(2)` tới hai giây, nên mất điện lúc đĩa chậm có thể mất cả những lần ghi cũ hơn một giây đã được trả lời (bài về khóa lớn và AOF trong nhóm này nói kỹ hơn).
 
 ## Giới hạn cần nhớ
 
@@ -47,7 +47,7 @@ Bạn dùng Redis với cấu hình mặc định của bản 7.0.15 để giữ
 <details>
 <summary>Xem đáp án</summary>
 
-Không còn. Với `save 3600 1 300 100 60 10000`, 50 thay đổi trong 2 phút chưa chạm ngưỡng nào (100 thay đổi trong 5 phút, hay 10.000 trong 60 giây) nên chưa có ảnh mới; Redis khởi động lại từ ảnh cũ.
+Không còn. Với `save 3600 1 300 100 60 10000`, sau 2 phút và 50 thay đổi kể từ ảnh trước thì chưa mốc nào đủ: mốc 60 giây cần 10.000 thay đổi, mốc 5 phút và mốc một giờ chưa tới thời gian; nên chưa có ảnh mới, Redis khởi động lại từ ảnh cũ.
 Bật AOF (`appendonly yes`): với chế độ mặc định `everysec`, khi mất điện thường chỉ mất khoảng một giây ghi cuối; lúc đĩa chậm có thể mất hơn, vì Redis có thể hoãn việc ghi tới hai giây.
 
 </details>
@@ -65,6 +65,7 @@ Bài bỏ danh sách công ty dùng Redis và danh sách module vì không có n
 - [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/the-ultimate-redis-101.md): tám bước làm quen với Redis.
 - [Redis 7.0.15 — README, tại commit của bản phát hành](https://github.com/redis/redis/blob/f35f36a265403c07b119830aa4bb3b7d71653ec9/README.md): Redis là máy chủ cấu trúc dữ liệu, dữ liệu phục vụ từ bộ nhớ và được lưu xuống đĩa, mức bền chỉnh được.
 - [Redis 7.0.15 — tệp cấu hình mẫu, tại commit của bản phát hành](https://github.com/redis/redis/blob/f35f36a265403c07b119830aa4bb3b7d71653ec9/redis.conf): các mốc `save` mặc định; `appendonly no`; mức mất dữ liệu với AOF.
+- [Redis 7.0.15 — mã nguồn vòng chụp ảnh, tại commit của bản phát hành](https://github.com/redis/redis/blob/f35f36a265403c07b119830aa4bb3b7d71653ec9/src/server.c): `serverCron` chụp ảnh khi số thay đổi cộng dồn từ ảnh cuối (`server.dirty`) đạt ngưỡng và thời gian từ ảnh cuối vượt số giây của mốc.
 - [Redis — tài liệu về độ trễ, tại commit cố định](https://github.com/redis/docs/blob/3b030c7ef066c0bb7f88ddec02c784e49783b0f8/content/operate/oss_and_stack/management/optimization/latency.md): ở chế độ `everysec`, nếu lần fsync trước chưa xong thì Redis hoãn `write(2)` tới hai giây.
 - [Redis — tài liệu pub/sub, tại commit cố định](https://github.com/redis/docs/blob/3b030c7ef066c0bb7f88ddec02c784e49783b0f8/content/develop/pubsub/_index.md): giao nhận nhiều nhất một lần; cần giữ tin thì dùng Streams.
 

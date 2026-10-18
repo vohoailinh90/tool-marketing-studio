@@ -75,10 +75,16 @@
       "verified_by": "Read from a clone of redis/redis at tag 7.0.15 (commit f35f36a265403c07b119830aa4bb3b7d71653ec9)."
     },
     {
-      "claim_vi": "By default Redis 7.0.15 saves an RDB snapshot after 3600 s with at least 1 change, 300 s with 100, 60 s with 10000; appendonly is no, so a crash loses the writes since the last snapshot, which for a workload that never reaches 100 changes in 5 minutes can be close to an hour (the 3600 1 save point); with AOF and the default fsync policy a power outage can lose about one second of writes.",
+      "claim_vi": "By default Redis 7.0.15 saves an RDB snapshot after 3600 s with at least 1 change, 300 s with 100, 60 s with 10000; appendonly is no, so a crash loses the writes since the last snapshot, which for a workload with fewer than 100 changes since the last snapshot can be close to an hour (the 3600 1 save point); with AOF and the default fsync policy a power outage can lose about one second of writes.",
       "source": "https://github.com/redis/redis/blob/f35f36a265403c07b119830aa4bb3b7d71653ec9/redis.conf",
       "section": "SNAPSHOTTING; APPEND ONLY MODE",
       "verified_by": "Read from a clone of redis/redis at tag 7.0.15; CONFIG GET save and appendonly on a server started without a config file returned the same values."
+    },
+    {
+      "claim_vi": "serverCron starts a background save when server.dirty, the changes since the last successful save, reaches a save point's change count and the time since the last save exceeds its seconds; the count is cumulative, not per window.",
+      "source": "https://github.com/redis/redis/blob/f35f36a265403c07b119830aa4bb3b7d71653ec9/src/server.c",
+      "section": "serverCron (save points loop)",
+      "verified_by": "Read from a clone of redis/redis at tag 7.0.15 (commit f35f36a265403c07b119830aa4bb3b7d71653ec9)."
     },
     {
       "claim_vi": "With appendfsync everysec, if the previous fsync is still in progress Redis delays the write(2) call up to two seconds, so the one second of loss that redis.conf mentions for a power outage is the usual case, not a bound.",
@@ -111,7 +117,8 @@
     "Source lists JSON among Redis data structures; in Redis 7.0.15 JSON needs a module (tested).",
     "Source says Redis keeps fully durable storage; the lesson shows the default is periodic RDB snapshots that can lose recent writes.",
     "Adopting companies and the module list are dropped: no source to check them.",
-    "The one second of loss under everysec is presented as the usual case, not a bound: Redis can postpone the write up to two seconds when the disk is slow (Redis latency doc)."
+    "The one second of loss under everysec is presented as the usual case, not a bound: Redis can postpone the write up to two seconds when the disk is slow (Redis latency doc).",
+    "Save points are explained as cumulative changes since the last snapshot plus time since it (Redis 7.0.15 serverCron), not changes within each window."
   ],
   "editorial_note_vi": "Bài mới viết tại repo này (gói L5), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
 }

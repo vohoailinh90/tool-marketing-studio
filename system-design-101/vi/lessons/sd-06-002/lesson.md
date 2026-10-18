@@ -1,7 +1,7 @@
 # CDN phổ biến vì đâu, và máy chủ biên lưu những gì
 
-**CDN đặt nhiều máy chủ biên ở gần người dùng; mỗi máy giữ bản sao nội dung để khỏi phải hỏi máy chủ gốc ở xa. Nhưng máy biên không tự quyết lưu gì: máy gốc dặn qua header của từng câu trả lời.**
-Nắm được lời dặn đó, bạn biết vì sao một trang nhanh hẳn lên sau khi có CDN, và vì sao trang khác thì không.
+**CDN đặt nhiều máy chủ biên ở gần người dùng; mỗi máy giữ bản sao nội dung để khỏi phải hỏi máy chủ gốc ở xa. Máy biên lưu gì là kết quả của hai thứ: lời dặn máy gốc gửi qua header của từng câu trả lời, trong đó có những điều cấm phải theo, và cấu hình cùng mặc định của chính CDN.**
+Nắm được hai thứ đó, bạn biết vì sao một trang nhanh hẳn lên sau khi có CDN, và vì sao trang khác thì không.
 
 ![Hai khung. Khung một, trình tự giữa người dùng, máy chủ biên và máy chủ gốc: người dùng xin logo; máy biên chưa có bản sao nên hỏi máy gốc; máy gốc trả logo kèm lời dặn lưu 60 giây; máy biên cất bản sao rồi trả; lần sau máy biên trả ngay từ bản sao. Khung hai, bốn mảnh ghép: DNS chỉ người dùng tới máy biên ở gần; máy biên giữ bản sao, hết hạn hay thiếu thì hỏi lại gốc; máy gốc giữ bản chính và dặn được lưu bao lâu; phần điều khiển cấu hình và xóa bản sao trên các máy biên.](../../diagrams/sd-06-002-main.svg)
 
@@ -16,7 +16,7 @@ Nắm được lời dặn đó, bạn biết vì sao một trang nhanh hẳn l�
 
 ## Đọc hình
 
-**Một lượt hỏi.** Người dùng xin một tệp, máy biên xem mình có bản sao còn hạn không. Có thì trả ngay. Không có thì hỏi máy gốc, cất một bản theo lời dặn rồi trả. Hết hạn thì hỏi lại. Lợi ích nằm ở hai chỗ: người dùng đi quãng đường ngắn hơn, và máy gốc chỉ phải trả lời một lần cho rất nhiều người.
+**Một lượt hỏi.** Người dùng xin một tệp, máy biên xem mình có bản sao còn hạn không. Có thì trả ngay. Không có thì hỏi máy gốc, cất một bản nếu lời dặn và cấu hình của CDN cho phép, rồi trả. Hết hạn thì hỏi lại. Lợi ích nằm ở hai chỗ: người dùng đi quãng đường ngắn hơn, và máy gốc chỉ phải trả lời một lần cho rất nhiều người.
 
 **Các mảnh ghép.** DNS chỉ người dùng tới một máy biên gần. Máy gốc giữ bản chính. Phần điều khiển (control plane) cấu hình các máy biên và xóa bản sao khi cần; tài liệu MDN ghi rằng với bộ nhớ đệm do mình vận hành như CDN, bản đã lưu có thể bị xóa bất cứ lúc nào qua bảng điều khiển hay lời gọi, điều mà bản thân chuẩn HTTP không quy định.
 

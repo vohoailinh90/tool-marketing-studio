@@ -127,7 +127,8 @@
   "source_deviations": [
     "Source's market-size forecast is dropped: no source to check it.",
     "Source's request-routing section (GSLB, anycast DNS, IXPs) is not explained: no standard document on them was read.",
-    "The lesson adds what decides whether an edge may store a response (RFC 9111 directives) and an nginx experiment."
+    "The lesson adds what decides whether an edge may store a response (RFC 9111 directives) and an nginx experiment.",
+    "The lead says what an edge stores combines the origin's headers (whose prohibitions are binding) with the CDN's own configuration and defaults, since RFC 9111 section 2 makes caching optional."
   ],
   "editorial_note_vi": "Bài mới viết tại repo này (gói L5), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
 }

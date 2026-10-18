@@ -1,0 +1,109 @@
+{
+  "id": "sd-04-001",
+  "title_vi": "Bản sao đọc: vì sao vừa ghi xong lại đọc không thấy",
+  "language": "vi",
+  "kind": "flow",
+  "content_status": "draft",
+  "source_ref": "sd-04-001",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/read-replica-pattern.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/read-replica-pattern.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a partial clone of the source repository; git hash-object of the retrieved body matches the source-map blob. No source-image bytes used.",
+    "blob_sha": "246b80be338c831d938eba22999312ad66108ce8",
+    "retrieved_body_sha256": "f22f53d2f9e863e283aabf776957c1e868f44825a236491c6e14a09c641b5cea",
+    "retrieved_body_bytes": 1876
+  },
+  "diagram": "../diagrams/sd-04-001-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-04-035",
+      "relation": "extends",
+      "reason_vi": "Bài cùng chủ đề trong nhóm, đi vào cách dựng mô hình bản sao đọc."
+    },
+    {
+      "lesson_id": "sd-04-019",
+      "relation": "related",
+      "reason_vi": "Độ trễ sao chép là một dạng nhất quán sau cùng."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "evidence": "PostgreSQL 16 config.sgml (recovery_min_apply_delay, synchronous_commit) and high-availability.sgml (hot standby, synchronous standby planning, LSN monitoring) and the PostgreSQL 19 high-availability.sgml read-your-writes section were read from a partial clone of postgres/postgres; the lag and remote_apply measurements come from the author's own run on PostgreSQL 16.15 (two clusters on one machine) on 2026-10-18."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright) rendered lesson.md (markdown-it, tables enabled, every <details> open, a 16 px page gutter) at each width: the page never scrolled sideways and the figure was scaled to the column; the smallest SVG font-size times that scale is the recorded minimum at 320 px. `python3 -m scripts.figures check --browser` measured every line of the figure in Chromium inside its box. Not GitHub, not a real phone and not learner testing."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "recovery_min_apply_delay makes a standby replay each transaction commit only when its clock is at least the given delay past the commit time on the primary; only commit records are delayed.",
+      "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/config.sgml",
+      "section": "recovery_min_apply_delay",
+      "verified_by": "Read from a partial clone of postgres/postgres at REL_16_STABLE commit 8e928803020e5b5694cde58e4851fce64ef9d520."
+    },
+    {
+      "claim_vi": "With synchronous standbys configured, synchronous_commit=on waits until the standby has received and flushed the commit record; remote_apply waits until it has also applied it so it is visible to queries on the standby, which causes much larger commit delays.",
+      "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/config.sgml",
+      "section": "synchronous_commit",
+      "verified_by": "Read from a partial clone of postgres/postgres at REL_16_STABLE commit 8e928803020e5b5694cde58e4851fce64ef9d520."
+    },
+    {
+      "claim_vi": "Hot standby connections are strictly read-only; commits that wait for synchronous standbys may never complete if one of them crashes, unless several potential synchronous standbys are named; lag can be monitored by comparing pg_current_wal_lsn with sent_lsn of pg_stat_replication and pg_last_wal_receive_lsn with pg_last_wal_replay_lsn.",
+      "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/high-availability.sgml",
+      "section": "Planning for High Availability; Hot Standby User's Overview; monitoring",
+      "verified_by": "Read from a partial clone of postgres/postgres at REL_16_STABLE commit 8e928803020e5b5694cde58e4851fce64ef9d520."
+    },
+    {
+      "claim_vi": "PostgreSQL 19 documents read-your-writes consistency: after the write commits, take pg_current_wal_insert_lsn() on the primary and run WAIT FOR LSN on the standby before reading; the REL_16_STABLE docs have neither the section nor the command.",
+      "source": "https://github.com/postgres/postgres/blob/10a0dcfc25fba51b2e0d3bbcb11584ecfb70f848/doc/src/sgml/high-availability.sgml",
+      "section": "Read-Your-Writes Consistency",
+      "verified_by": "Read from a partial clone of postgres/postgres at REL_19_STABLE commit 10a0dcfc25fba51b2e0d3bbcb11584ecfb70f848; doc/src/sgml/ref/wait.sgml exists there and not at the REL_16_STABLE commit."
+    },
+    {
+      "claim_vi": "Measured on PostgreSQL 16.15 with recovery_min_apply_delay=3s: right after commit the primary's insert LSN was 0/3027DD0 while the standby had replayed to 0/3027DA8 and returned 0 rows; polling until the replay LSN reached it took 2.9 s, then 1 row. With the standby synchronous, synchronous_commit=on returned in 0.0 s with the row not yet visible on the standby; remote_apply took 3.0 s and the row was visible right after. INSERT on the standby failed with 'cannot execute INSERT in a read-only transaction'.",
+      "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/config.sgml",
+      "section": "Author's experiment",
+      "verified_by": "Author's own run on 2026-10-18 (pg_basebackup -R, streaming replication, two clusters on one machine); not repeated on other hardware."
+    },
+    {
+      "claim_vi": "Read replica pattern: writes go to the primary and reads to replicas; replication lag can hide a just-written order; mitigations are routing latency-sensitive or read-after-write reads to the primary, or checking whether the replica has caught up.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/read-replica-pattern.md",
+      "section": "Body",
+      "verified_by": "Source body read."
+    }
+  ],
+  "design_notes_vi": "Ba khung: đường đi của ghi và đọc, trình tự đọc ngay sau khi ghi lấy từ thử nghiệm, và ba cách sửa. Không dùng ảnh nguồn; ví dụ đơn hàng là của thử nghiệm riêng.",
+  "source_deviations": [
+    "The source describes the check that a replica has caught up in general terms; the lesson makes it concrete with PostgreSQL LSN functions and measures it.",
+    "The lesson adds synchronous_commit=remote_apply as a third option with its cost, and notes (as the author's reasoning) that reads spread over two replicas can go backwards."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

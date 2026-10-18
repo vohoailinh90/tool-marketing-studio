@@ -940,7 +940,7 @@
       "lessons": [
         {
           "id": "sd-04-001",
-          "title_vi": null,
+          "title_vi": "Bản sao đọc: vì sao vừa ghi xong lại đọc không thấy",
           "title_source": "Read Replica Pattern",
           "source_url": "https://bytebytego.com/guides/read-replica-pattern",
           "source_path": "data/guides/read-replica-pattern.md",
@@ -950,7 +950,7 @@
         },
         {
           "id": "sd-04-002",
-          "title_vi": null,
+          "title_vi": "Khóa bi quan và khóa lạc quan: hai người cùng mua vé cuối",
           "title_source": "Pessimistic vs Optimistic Locking",
           "source_url": "https://bytebytego.com/guides/pessimistic-vs-optimistic-locking",
           "source_path": "data/guides/pessimistic-vs-optimistic-locking.md",
@@ -960,7 +960,7 @@
         },
         {
           "id": "sd-04-003",
-          "title_vi": null,
+          "title_vi": "Tải tệp lớn lên S3: chia phần, chọn cỡ phần, dọn phần bỏ dở",
           "title_source": "How to Upload a Large File to S3",
           "source_url": "https://bytebytego.com/guides/how-to-upload-a-large-file-to-s3",
           "source_path": "data/guides/how-to-upload-a-large-file-to-s3.md",

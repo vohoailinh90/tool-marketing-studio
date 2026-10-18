@@ -1,0 +1,31 @@
+{
+  "id": "sd-04-002",
+  "lang": "vi",
+  "title": "Khóa bi quan và khóa lạc quan",
+  "subtitle": "Hai người cùng mua vé cuối cùng. Kết quả đo trên PostgreSQL 16.",
+  "desc": "Bốn khung. Khung một, không khóa: A và B cùng đọc thấy còn 1 vé, cùng ghi còn 0, nên một vé bán cho hai người. Khung hai, khóa bi quan: A khóa hàng khi đọc và giữ khóa tới lúc commit; lệnh khóa của B phải chờ 1 giây; sau đó B đọc thấy còn 0 và từ chối bán. Khung ba, khóa lạc quan: cả hai đọc được còn 1 vé, phiên bản 1; mỗi người ghi kèm điều kiện phiên bản vẫn là 1; người ghi trước sửa được 1 dòng, người ghi sau sửa 0 dòng nên biết có xung đột, đọc lại rồi thử lại. Khung bốn: khi nào chọn cách nào.",
+  "sections": [
+    {"kind": "sequence", "heading": "Không khóa: một vé bán hai lần",
+     "actors": [{"name": "Người A", "icon": "user"}, {"name": "Kho vé", "icon": "database"}, {"name": "Người B", "icon": "user"}],
+     "messages": [
+       {"from": 0, "to": 1, "text": "A đọc: còn 1 vé"},
+       {"from": 2, "to": 1, "text": "B đọc: còn 1 vé"},
+       {"from": 0, "to": 1, "text": "A ghi: còn 0, bán cho A"},
+       {"from": 2, "to": 1, "text": "B ghi: còn 0, bán cho B"}]},
+    {"kind": "steps", "heading": "Khóa bi quan: giữ hàng rồi mới quyết",
+     "items": [
+       {"title": "A khóa hàng khi đọc", "text": "A đọc thấy còn 1 vé; khóa giữ tới khi A commit."},
+       {"title": "B phải chờ", "text": "Lệnh khóa của B đứng yên 1 giây, đúng lúc A còn giữ khóa."},
+       {"title": "B đọc giá trị mới", "text": "A commit xong, B thấy còn 0 vé và từ chối bán."}]},
+    {"kind": "steps", "heading": "Khóa lạc quan: kiểm phiên bản lúc ghi",
+     "items": [
+       {"title": "Cả hai đọc, không khóa", "text": "A và B cùng thấy còn 1 vé, phiên bản 1."},
+       {"title": "Ghi kèm điều kiện", "text": "Chỉ sửa nếu phiên bản vẫn là 1, rồi tăng phiên bản lên 2."},
+       {"title": "Người sau sửa 0 dòng", "text": "Ứng dụng biết có xung đột: đọc lại, thấy hết vé, không bán."}]},
+    {"kind": "notes", "heading": "Chọn cách nào",
+     "items": [
+       "Xung đột thường xảy ra, làm lại tốn kém: khóa bi quan.",
+       "Xung đột hiếm, không muốn ai phải chờ: khóa lạc quan, kèm vòng thử lại.",
+       "Khóa bi quan: giữ khóa thật ngắn và khóa theo cùng một thứ tự."]}
+  ]
+}

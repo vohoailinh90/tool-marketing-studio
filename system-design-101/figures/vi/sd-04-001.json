@@ -1,0 +1,106 @@
+{
+  "id": "sd-04-001",
+  "lang": "vi",
+  "title": "Bản sao đọc và độ trễ sao chép",
+  "subtitle": "Ghi vào bản chính, đọc từ bản sao. Ở đây bản sao cố ý trễ 3 giây.",
+  "desc": "Ba khung. Khung một: ứng dụng gửi mọi lệnh ghi tới bản chính; bản chính chuyển nhật ký WAL cho bản sao; ứng dụng đọc từ bản sao. Khung hai, theo thử nghiệm trên PostgreSQL 16 với bản sao cố ý trễ 3 giây: ứng dụng ghi đơn hàng và lấy vị trí WAL sau commit; đọc ngay ở bản sao được 0 dòng; chờ tới khi bản sao phát lại tới vị trí đó, khoảng 2,9 giây, thì đọc được 1 dòng. Khung ba: ba cách để đọc thấy dữ liệu mình vừa ghi: đọc từ bản chính, chờ bản sao đuổi kịp vị trí WAL, hoặc cho commit chờ bản sao phát lại xong.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Đường đi của lệnh ghi và lệnh đọc",
+      "items": [
+        {
+          "name": "Ứng dụng",
+          "role": "Gửi lệnh ghi tới bản chính, gửi lệnh đọc tới bản sao.",
+          "icon": "server"
+        },
+        {
+          "name": "Bản chính",
+          "role": "Nhận mọi lệnh ghi, ghi nhật ký WAL rồi chuyển nhật ký đó đi.",
+          "icon": "database"
+        },
+        {
+          "name": "Bản sao",
+          "role": "Nhận WAL, phát lại theo thứ tự, chỉ cho đọc.",
+          "icon": "share-2"
+        }
+      ],
+      "flow": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "kind": "sequence",
+      "heading": "Đọc ngay sau khi ghi",
+      "actors": [
+        {
+          "name": "Ứng dụng",
+          "icon": "server"
+        },
+        {
+          "name": "Bản chính",
+          "icon": "database"
+        },
+        {
+          "name": "Bản sao",
+          "icon": "share-2"
+        }
+      ],
+      "messages": [
+        {
+          "from": 0,
+          "to": 1,
+          "text": "Ghi đơn hàng 1"
+        },
+        {
+          "from": 1,
+          "to": 0,
+          "text": "Xong, kèm vị trí WAL",
+          "reply": true
+        },
+        {
+          "from": 0,
+          "to": 2,
+          "text": "Đọc đơn hàng ngay"
+        },
+        {
+          "from": 2,
+          "to": 0,
+          "text": "0 dòng: chưa phát lại tới đó",
+          "reply": true
+        },
+        {
+          "from": 0,
+          "to": 2,
+          "text": "Chờ phát lại tới vị trí WAL"
+        },
+        {
+          "from": 2,
+          "to": 0,
+          "text": "1 dòng, sau 2,9 giây",
+          "reply": true
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Đọc thấy dữ liệu mình vừa ghi",
+      "items": [
+        "Lệnh đọc ngay sau lệnh ghi thì gửi tới bản chính.",
+        "Nhớ vị trí WAL của lệnh ghi; chỉ đọc bản sao khi nó đã phát lại tới đó.",
+        "Cho commit chờ bản sao phát lại xong: đọc ở bản sao luôn thấy, nhưng lệnh ghi chậm hơn."
+      ]
+    }
+  ]
+}

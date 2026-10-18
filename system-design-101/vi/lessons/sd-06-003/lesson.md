@@ -20,7 +20,7 @@ Tài liệu về độ trễ của Redis nói AOF dùng hai lời gọi hệ th�
 - `everysec` (mặc định): một luồng nền fsync mỗi giây. Nếu lần fsync trước chưa xong, Redis hoãn `write(2)` tối đa hai giây rồi vẫn ghi, và lúc đó luồng chính có thể bị chặn.
 - `no`: không gọi fsync, để hệ điều hành tự quyết; theo tài liệu persistence, Linux thường đẩy xuống đĩa khoảng 30 giây một lần. Nguồn trễ còn lại là `write(2)`.
 
-Điểm chung dễ bị bỏ qua: **ở cả ba chế độ, `write(2)` chạy trên luồng chính.** AOF ghi lại *lệnh* đã nhận, nên kích thước bản ghi đi theo lệnh chứ không theo khóa: ghi đè cả một chuỗi 5 MiB là chép 5 MiB vào tệp nhật ký, còn một lệnh `HSET` thêm một trường nhỏ vào một hash rất lớn chỉ chép thêm vài chục byte. Khóa lớn vẫn có cái giá khác khi Redis viết lại AOF: tài liệu persistence ghi rằng tệp mới được dựng từ tập lệnh tối thiểu để tạo lại dữ liệu hiện có, tức cả khóa lớn được viết lại.
+Điểm chung dễ bị bỏ qua: **ở cả ba chế độ, `write(2)` chạy trên luồng chính.** AOF ghi lại *lệnh* đã nhận, nên kích thước bản ghi đi theo lệnh chứ không theo khóa: ghi đè cả một chuỗi 5 MiB là chép 5 MiB vào tệp nhật ký, còn một lệnh `HSET` thêm một trường nhỏ vào một hash rất lớn chỉ chép thêm vài chục byte. Khóa lớn vẫn có cái giá khác khi Redis viết lại AOF: từ Redis 7.0, tài liệu persistence mô tả AOF gồm một tệp nền chứa ảnh chụp dữ liệu lúc viết lại, cộng các tệp ghi thêm. Trong bản 7.0.15, tệp nền mặc định ở dạng RDB (`aof-use-rdb-preamble yes` trong `redis.conf`; tắt đi thì nó ở dạng tập lệnh AOF). Dạng nào thì cả khóa lớn cũng được chép lại vào tệp nền.
 
 ## Đo thử
 

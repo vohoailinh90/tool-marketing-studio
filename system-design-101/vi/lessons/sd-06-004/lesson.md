@@ -1,6 +1,6 @@
 # CDN cho người mới: máy chủ biên, điện toán biên và chơi game trên mây
 
-**Ba thứ cùng mang chữ "biên" nhưng giải ba bài toán khác nhau: máy chủ biên mang *bản sao* tới gần người dùng, điện toán biên mang *phép tính* tới gần, còn chơi game trên mây thì không có gì để lưu sẵn, chỉ còn khoảng cách và đường mạng.**
+**Ba thứ cùng mang chữ "biên" nhưng giải ba bài toán khác nhau: máy chủ biên mang *bản sao* tới gần người dùng, điện toán biên mang *phép tính* tới gần, còn chơi game trên mây thì không có gì để lưu sẵn: bộ nhớ đệm không giúp được, phải đo cả chuỗi từ lúc bấm nút tới lúc thấy hình.**
 Phân biệt được ba thứ này, bạn biết CDN giúp được phần nào của một ứng dụng và phần nào thì không.
 
 ![Hai khung. Khung một, ba nghĩa của chữ biên. Máy chủ biên giữ bản sao nội dung ở gần người dùng; trong thử nghiệm với máy gốc chậm 200 mili giây, lượt có bản sao trả trong chưa tới 1 mili giây, lượt phải về gốc mất khoảng 200 mili giây. Điện toán biên chạy mã ở gần người dùng, cho phần không lưu sẵn được như trang riêng của từng người. Chơi game trên mây: máy chủ chạy game và gửi về từng khung hình, không có gì để lưu sẵn. Khung hai, cái giá: thêm một bên thứ ba có thể hỏng hay bị chặn; thêm một chỗ có thể bị tấn công để phát nội dung độc; trình duyệt không dùng chung bản đã tải giữa các trang web khác nhau.](../../diagrams/sd-06-004-main.svg)
@@ -18,7 +18,7 @@ Phân biệt được ba thứ này, bạn biết CDN giúp được phần nào
 
 **Điện toán biên: mang phép tính tới gần.** Có những câu trả lời khác nhau với từng người (trang chào "Xin chào An", giỏ hàng, kết quả lọc theo vị trí). Không có bản sao chung nào để giữ. Một lựa chọn là *chạy mã* ở gần người dùng thay vì chỉ cất tệp: đó là ý tưởng của điện toán biên. Nó chỉ giúp khi đo thấy thời gian nằm ở quãng đường, và khi dữ liệu mà mã cần cũng nằm gần; nếu mã ở biên vẫn phải hỏi một cơ sở dữ liệu ở trung tâm, nó vẫn phải đi chặng đường dài đó, có khi còn thêm một chặng. Khi thời gian nằm ở truy vấn trung tâm thì sửa ở đó (chỉ mục chẳng hạn), hoặc để trình duyệt giữ bản riêng của người dùng, thường có ích hơn.
 
-**Chơi game trên mây: không có gì để lưu.** Máy chủ chạy trò chơi, vẽ từng khung hình rồi gửi về như một luồng video; mỗi lần bấm nút phải đi lên máy chủ rồi mới nhận về khung hình mới. Mỗi khung hình chỉ dùng một lần cho một người, nên bộ nhớ đệm không giúp được. Điều duy nhất còn lại là đặt máy chủ đủ gần và đường mạng đủ ổn.
+**Chơi game trên mây: không có gì để lưu.** Máy chủ chạy trò chơi, vẽ từng khung hình rồi gửi về như một luồng video; mỗi lần bấm nút phải đi lên máy chủ rồi mới nhận về khung hình mới. Mỗi khung hình chỉ dùng một lần cho một người, nên bộ nhớ đệm không giúp được. Thời gian từ lúc bấm tới lúc thấy hình không chỉ là đường mạng: còn có thời gian máy chủ chạy game và vẽ khung hình, nén khung hình thành video, rồi máy người chơi giải nén và hiện ra. Máy chủ ở gần và mạng ổn là cần, nhưng phải đo cả chuỗi đó mới biết khúc nào chậm.
 
 ## Thử nghiệm: bản sao giúp được gì, và không giúp được gì
 
@@ -42,7 +42,7 @@ Một ứng dụng có ba phần: ảnh sản phẩm, trang giỏ hàng của t�
 
 Ảnh sản phẩm: máy chủ biên, vì mọi người xem cùng một tệp; thử nghiệm cho thấy lượt có bản sao không phải về máy gốc.
 Giỏ hàng: khác nhau với từng người nên không có bản sao chung. Điện toán biên là một lựa chọn, nhưng chỉ đáng khi đo thấy thời gian nằm ở quãng đường và dữ liệu giỏ hàng cũng đặt được ở gần; nếu thời gian nằm ở truy vấn ở máy gốc thì sửa truy vấn trước.
-Trò chơi: mỗi khung hình dùng một lần, chỉ còn đặt máy chủ gần người chơi và giữ đường mạng ổn định.
+Trò chơi: mỗi khung hình dùng một lần nên bộ nhớ đệm không giúp được; đặt máy chủ gần người chơi và giữ mạng ổn định là một phần, phần còn lại là thời gian chạy game, nén và giải nén hình, nên đo cả chuỗi từ lúc bấm tới lúc thấy hình.
 
 </details>
 

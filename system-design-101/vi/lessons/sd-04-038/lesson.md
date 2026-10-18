@@ -81,6 +81,6 @@ Kết quả: với `''`, lệnh ghi trả về ngay, bản chính 1, bản sao 0
 
 - [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/cap-theorem-one-of-the-most-misunderstood-terms.md): định nghĩa C, A, P; ba lưu ý về cách hiểu "hai trong ba"; câu trích bài "CAP Twelve Years Later" và PACELC.
 - [PostgreSQL 16 — High Availability, Load Balancing, and Replication](https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/high-availability.sgml), tại commit cố định của nhánh `REL_16_STABLE`: sao chép đồng bộ, lệnh ghi có thể không bao giờ xong nếu bản sao đồng bộ hỏng. Đọc từ bản clone của kho.
-- [PostgreSQL 16 — `src/backend/replication/syncrep.c`](https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/src/backend/replication/syncrep.c), cùng commit: lời giải thích vì sao hủy lúc chờ sao chép chỉ cho ra cảnh báo. Đọc từ bản clone của kho.
+- [PostgreSQL 16 — mã nguồn `syncrep.c`, thư mục sao chép của máy chủ](https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/src/backend/replication/syncrep.c), cùng commit: lời giải thích vì sao hủy lúc chờ sao chép chỉ cho ra cảnh báo. Đọc từ bản clone của kho.
 
 Phép thử chạy trên PostgreSQL 16.15, Python 3.13.16 và psycopg 3.3.6 ngày 2026-10-18 trên máy biên soạn. Bài viết và hình được thiết kế độc lập, không dùng ảnh nguồn.

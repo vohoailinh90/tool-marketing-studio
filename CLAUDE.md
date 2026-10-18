@@ -323,6 +323,9 @@ files and the exports. Several sessions build decks at once and `claims.jsonl` k
 - **When done**: `finish <id> --canvas <cvs_...> --url <editor link> --slides <n> --publish` and commit the rest of the lesson's
   `slides/` folder. `--publish` pushes the finished record and checks the claim again afterwards; if the record reaches the
   remote any other way (a plain `git push`), run `verify` afterwards: it checks finished decks too.
+- **Starting or resuming decks** (Claude Code or Codex): `docs/sd101-slides-handoff.md` is the order of work, and
+  `python3 scripts/sd101_slide_brief.py <id>` cuts a lesson into slide roles, names the canvas and fixes the colour of each concept
+  (the lesson's own lines only; condensing them and drawing the slides is the session's job).
 - **The Moda watermark stays.** The free plan puts a `moda.app` badge on exported PNG and PPTX files and has no switch for
   it; never remove it from a file. A deck is finished with `exports: pending`. Its PPTX, and its PNG files (all or none), may be
   added as the free plan exports them, badge and all (`exported <id> --badged`, owner decision 2026-10-18; the PPTX is a

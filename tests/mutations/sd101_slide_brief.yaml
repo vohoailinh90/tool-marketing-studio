@@ -1,0 +1,39 @@
+target: scripts/sd101_slide_brief.py
+note: The brief is what a session builds a deck from, so a wrong grouping, a lost concept, a typed address or a missing budget flag reaches all 120 decks. Each entry switches one rule off and names the test that must notice.
+mutations:
+- label: concepts beyond the slide count are grouped from the end instead of the front
+  find: 'base + (1 if index < extra else 0)'
+  replace: 'base + (1 if index >= slots - extra else 0)'
+  test: tests.test_sd101_slide_brief.StructureTests.test_more_concepts_than_slides_are_grouped_in_order_without_loss
+- label: one slide is made per concept however many there are, past the 8 to 10 range
+  find: 'slots = min(max(len(raw_concepts), CONCEPT_SLIDES.start), CONCEPT_SLIDES.stop - 1)'
+  replace: 'slots = len(raw_concepts)'
+  test: tests.test_sd101_slide_brief.StructureTests.test_more_concepts_than_slides_are_grouped_in_order_without_loss
+- label: lessons that keep their concepts in the figure get none
+  find: '    cards = figure_cards(svg)'
+  replace: '    cards = []'
+  test: tests.test_sd101_slide_brief.StructureTests.test_lessons_without_a_figure_section_fall_back_to_the_figure_cards
+- label: the figure's own title and subtitle are read as a concept card
+  find: 'seen_card = bold and size < title_size'
+  replace: 'seen_card = True'
+  test: tests.test_sd101_slide_brief.StructureTests.test_lessons_without_a_figure_section_fall_back_to_the_figure_cards
+- label: a line over the word budget is not flagged
+  find: 'return Line(text, words, budget and words > WORD_BUDGET)'
+  replace: 'return Line(text, words, False)'
+  test: tests.test_sd101_slide_brief.StructureTests.test_words_over_the_budget_are_flagged_but_titles_are_not
+- label: the cover title is held to the bullet budget
+  find: '"title": line(parsed.title, budget=False).__dict__,'
+  replace: '"title": line(parsed.title).__dict__,'
+  test: tests.test_sd101_slide_brief.StructureTests.test_words_over_the_budget_are_flagged_but_titles_are_not
+- label: a link in the lesson keeps its address on the slide
+  find: 'text = LINK.sub(r"\1", text)'
+  replace: 'text = text'
+  test: tests.test_sd101_slide_brief.StructureTests.test_check_question_answer_deep_dive_terms_and_sources
+- label: an even deck puts two dark slides side by side at the end
+  find: '        result[-2] = "cream"'
+  replace: '        pass'
+  test: tests.test_sd101_slide_brief.StructureTests.test_backgrounds_bracket_the_deck_in_dark_and_repeat_at_most_once
+- label: the cover loses the check question that can serve as its hook question
+  find: '**({"question_candidate": line(question[0]).__dict__} if question else {}),'
+  replace: ''
+  test: tests.test_sd101_slide_brief.StructureTests.test_the_cover_offers_the_check_question_as_the_hook_question

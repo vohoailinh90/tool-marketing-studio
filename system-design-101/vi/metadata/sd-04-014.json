@@ -1,0 +1,102 @@
+{
+  "id": "sd-04-014",
+  "title_vi": "Nhiều nhất một lần, ít nhất một lần, đúng một lần: quyết định nằm ở chỗ lưu vị trí",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "draft",
+  "source_ref": "sd-04-014",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/delivery-semantics.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/delivery-semantics.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a partial clone of the source repository; git hash-object of the retrieved body matches the source-map blob. No source-image bytes used.",
+    "blob_sha": "daef1398a2c81e6e15c2d5be2944624da4d9e739",
+    "retrieved_body_sha256": "0ba3d3dc9e96f95e1035a6c7382bd70d8f3c1805664e4f07884a6ad9a166ff16",
+    "retrieved_body_bytes": 2054
+  },
+  "diagram": "../diagrams/sd-04-014-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-04-004",
+      "relation": "prerequisite",
+      "reason_vi": "Ba cách một hệ thống tin nhắn giao tin."
+    },
+    {
+      "lesson_id": "sd-04-016",
+      "relation": "extends",
+      "reason_vi": "Kafka có thể mất tin ở bên gửi, broker hay bên nhận."
+    },
+    {
+      "lesson_id": "sd-04-006",
+      "relation": "prerequisite",
+      "reason_vi": "Offset và nhóm đọc của Kafka."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "evidence": "The Message Delivery Semantics section of the Kafka design page was read from a partial clone of apache/kafka; the four consumer orderings were measured by the author, who ran them on Kafka 4.4.0 (three brokers on one machine) with PostgreSQL 16.15 and confluent-kafka 2.16.0 on 2026-10-18."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright) rendered lesson.md (markdown-it, tables enabled, every <details> open, a 16 px page gutter) at each width: the page never scrolled sideways and the figure was scaled to the column; the smallest SVG font-size times that scale is the recorded minimum at 320 px. `python3 -m scripts.figures check --browser` measured every line of the figure in Chromium inside its box. Not GitHub, not a real phone and not learner testing."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Kafka defines at most once, at least once and exactly once; the problem splits into the durability of publishing and the guarantees of consuming; since 0.11.0.0 the producer has an idempotent option (producer ID plus sequence numbers) and transactions across partitions.",
+      "source": "https://github.com/apache/kafka/blob/65566690ca1ddb584388c1026e2ff6673e9c6f19/docs/design/design.md",
+      "section": "Message Delivery Semantics",
+      "verified_by": "Read from a partial clone of apache/kafka at commit 65566690ca1ddb584388c1026e2ff6673e9c6f19."
+    },
+    {
+      "claim_vi": "A consumer that saves its position before processing gives at-most-once on failure; one that processes before saving gives at-least-once; for external systems the simpler alternative to two-phase commit is storing the offset in the same place as the output; exactly-once within Kafka uses the transactional producer and read_committed consumers, other destinations need their cooperation; Kafka guarantees at-least-once by default; many systems' exactly-once claims do not hold under failures.",
+      "source": "https://github.com/apache/kafka/blob/65566690ca1ddb584388c1026e2ff6673e9c6f19/docs/design/design.md",
+      "section": "Message Delivery Semantics",
+      "verified_by": "Read from a partial clone of apache/kafka at commit 65566690ca1ddb584388c1026e2ff6673e9c6f19."
+    },
+    {
+      "claim_vi": "Measured with 10 payments and a consumer that stops at payment 6, then a second run in the same group: commit-then-process left 9 ledger rows (payment 6 missing); process-then-commit left 11 rows (payment 6 twice); process with a not-exists check left 10; writing the ledger row and the next offset in one PostgreSQL transaction and seeking to the stored offset left 10.",
+      "source": "https://github.com/apache/kafka/blob/65566690ca1ddb584388c1026e2ff6673e9c6f19/docs/design/design.md",
+      "section": "Author's experiment",
+      "verified_by": "The author ran and measured this on 2026-10-18; auto-commit was off and the stop happened without saving anything further."
+    },
+    {
+      "claim_vi": "At-most once suits monitoring metrics; at-least once suits cases where duplicates are acceptable or can be removed with a unique key; exactly once is hardest and suits financial use cases when duplicates are unacceptable and downstream lacks idempotency.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/delivery-semantics.md",
+      "section": "Body",
+      "verified_by": "Source body read."
+    }
+  ],
+  "design_notes_vi": "Hai thứ tự lưu vị trí và hai cách được kết quả đúng một lần, mỗi thẻ ghi số dòng của sổ sau thử nghiệm; ba lời khuyên chọn theo dữ liệu. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "The source attaches each semantic to a class of applications; the lesson shows the mechanism (the order of saving the position and processing) and measures all four variants.",
+    "The lesson adds Kafka's idempotent producer and the limit that exactly-once to external systems needs the application's cooperation."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

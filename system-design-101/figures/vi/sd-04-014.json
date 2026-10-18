@@ -1,0 +1,52 @@
+{
+  "id": "sd-04-014",
+  "lang": "vi",
+  "title": "Nhiều nhất, ít nhất hay đúng một lần",
+  "subtitle": "10 khoản thanh toán qua Kafka vào một sổ trên PostgreSQL; bên nhận chết ở khoản thứ 6.",
+  "desc": "Ba khung. Khung một, thứ tự lưu vị trí đọc: lưu vị trí trước rồi xử lý thì bên nhận chết sau khi lưu làm khoản 6 bị bỏ qua, sổ còn 9 dòng, nhiều nhất một lần; xử lý trước rồi lưu vị trí thì chết trước khi lưu làm khoản 6 được giao lại, sổ 11 dòng, ít nhất một lần. Khung hai, hai cách được kết quả như đúng một lần: xử lý rồi bỏ bản trùng theo mã thanh toán, sổ 10 dòng; lưu vị trí cùng giao dịch với kết quả, chết trước commit thì cả hai cùng mất và làm lại từ khoản 6, sổ 10 dòng. Khung ba: số đo giám sát chịu mất vài điểm thì nhiều nhất một lần; có khóa để bỏ trùng thì ít nhất một lần là đủ; tiền mà đích không tự bỏ trùng thì lưu vị trí cùng kết quả hoặc dùng giao dịch của Kafka.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Lưu vị trí đọc trước hay sau",
+      "items": [
+        {
+          "name": "Lưu vị trí, rồi xử lý",
+          "role": "Chết sau khi lưu: khoản 6 bị bỏ qua, sổ 9 dòng. Nhiều nhất một lần.",
+          "icon": "triangle-alert"
+        },
+        {
+          "name": "Xử lý, rồi lưu vị trí",
+          "role": "Chết trước khi lưu: khoản 6 giao lại, sổ 11 dòng. Ít nhất một lần.",
+          "icon": "repeat"
+        }
+      ],
+      "flow": []
+    },
+    {
+      "kind": "parts",
+      "heading": "Hai cách được kết quả đúng một lần",
+      "items": [
+        {
+          "name": "Xử lý rồi bỏ bản trùng",
+          "role": "Lần ghi thứ hai của cùng mã thanh toán bị bỏ: sổ 10 dòng.",
+          "icon": "hash"
+        },
+        {
+          "name": "Vị trí và kết quả cùng giao dịch",
+          "role": "Chết trước commit thì cả hai cùng mất, làm lại từ khoản 6: sổ 10 dòng.",
+          "icon": "lock"
+        }
+      ],
+      "flow": []
+    },
+    {
+      "kind": "notes",
+      "heading": "Chọn theo dữ liệu",
+      "items": [
+        "Số đo giám sát, mất vài điểm không sao: nhiều nhất một lần.",
+        "Có khóa để bỏ trùng: ít nhất một lần là đủ.",
+        "Tiền mà đích không tự bỏ trùng: lưu vị trí cùng kết quả, hoặc giao dịch của Kafka."
+      ]
+    }
+  ]
+}

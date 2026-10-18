@@ -1,0 +1,56 @@
+{
+  "id": "sd-06-026",
+  "lang": "vi",
+  "title": "Năm chiến lược bộ đệm: ai đọc, ai ghi, mất gì",
+  "subtitle": "Hai cách đọc, ba cách ghi; thường dùng kết hợp.",
+  "desc": "Ba phần. Đọc: cache-aside, ứng dụng hỏi bộ đệm, hụt thì tự đọc cơ sở dữ liệu rồi ghi vào bộ đệm; read-through, bộ đệm có bộ nạp tự đọc cơ sở dữ liệu khi hụt. Ghi: write-through ghi cả hai cùng lúc, người gọi chờ cả hai; write-behind ghi bộ đệm rồi xếp hàng ghi cơ sở dữ liệu sau, nhanh nhưng có thể mất; write-around chỉ ghi cơ sở dữ liệu, bộ đệm giữ bản cũ tới khi hết hạn. Thử với Redis và SQLite: 100 lần đọc theo cache-aside chỉ đọc cơ sở dữ liệu 1 lần; người đọc chậm ghi bản cũ vào bộ đệm sau khi đã xóa, bộ đệm 100, cơ sở dữ liệu 120; write-through chờ 1,8 mili giây mỗi lần ghi, write-behind 0,4; bộ đệm sập trước khi đẩy thì write-behind mất cả 100 lần ghi.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Đọc",
+      "items": [
+        {
+          "name": "Cache-aside",
+          "role": "Ứng dụng hỏi bộ đệm; hụt thì tự đọc cơ sở dữ liệu rồi ghi vào bộ đệm.",
+          "icon": "search"
+        },
+        {
+          "name": "Read-through",
+          "role": "Bộ đệm có bộ nạp; hụt thì chính nó đọc cơ sở dữ liệu.",
+          "icon": "download"
+        }
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Ghi",
+      "items": [
+        {
+          "name": "Write-through",
+          "role": "Ghi cơ sở dữ liệu và bộ đệm cùng lúc; người gọi chờ cả hai.",
+          "icon": "database"
+        },
+        {
+          "name": "Write-behind",
+          "role": "Ghi bộ đệm, xếp hàng ghi cơ sở dữ liệu sau; nhanh, có thể mất.",
+          "icon": "inbox"
+        },
+        {
+          "name": "Write-around",
+          "role": "Chỉ ghi cơ sở dữ liệu; bộ đệm giữ bản cũ tới khi hết hạn.",
+          "icon": "split"
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Thử với Redis và SQLite",
+      "items": [
+        "Cache-aside, 100 lần đọc: cơ sở dữ liệu bị đọc 1 lần.",
+        "Người đọc chậm ghi bản cũ sau khi xóa: bộ đệm 100, cơ sở dữ liệu 120.",
+        "Write-through chờ 1,8 ms mỗi lần ghi; write-behind 0,4 ms.",
+        "Write-behind, bộ đệm sập trước khi đẩy: mất cả 100 lần ghi."
+      ]
+    }
+  ]
+}

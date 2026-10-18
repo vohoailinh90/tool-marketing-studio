@@ -1694,11 +1694,11 @@
         },
         {
           "id": "sd-06-023",
-          "title_vi": null,
+          "title_vi": "CDN (mạng phân phối nội dung) là gì?",
           "title_source": "What is CDN (Content Delivery Network)?",
           "source_url": "https://bytebytego.com/guides/what-is-cdn-content-delivery-network",
           "source_path": "data/guides/what-is-cdn-content-delivery-network.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "c9d68b4fe404e0ca3104f0c810ad6a1899142881",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-is-cdn-content-delivery-network.md"
         },
@@ -1714,21 +1714,21 @@
         },
         {
           "id": "sd-06-025",
-          "title_vi": null,
+          "title_vi": "Những con số độ trễ nào bạn nên biết?",
           "title_source": "Which Latency Numbers Should You Know?",
           "source_url": "https://bytebytego.com/guides/which-latency-numbers-should-you-know",
           "source_path": "data/guides/which-latency-numbers-should-you-know.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "4efa155e134e6b117877f03d57454f2ba895c087",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/which-latency-numbers-should-you-know.md"
         },
         {
           "id": "sd-06-026",
-          "title_vi": null,
+          "title_vi": "Các chiến lược bộ đệm hàng đầu",
           "title_source": "Top Caching Strategies",
           "source_url": "https://bytebytego.com/guides/what-are-the-top-caching-strategies",
           "source_path": "data/guides/what-are-the-top-caching-strategies.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "1f4f54655cd4e84b1dac9fab67c6aea2bcd89dfb",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-are-the-top-caching-strategies.md"
         },

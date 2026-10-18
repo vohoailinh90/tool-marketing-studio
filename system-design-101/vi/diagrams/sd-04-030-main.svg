@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="320" height="955" viewBox="0 0 320 955" role="img" aria-labelledby="title desc">
 <title id="title">Mười cơ sở dữ liệu nổi tiếng: giấy phép nói gì?</title>
-<desc id="desc">Theo tệp giấy phép ở nhánh chính của từng dự án, đọc ngày 18/10/2026. Khung một, giấy phép được OSI duyệt theo danh sách SPDX: MySQL và MariaDB dùng GPL phiên bản 2; Neo4j dùng GPL phiên bản 3; PostgreSQL dùng giấy phép PostgreSQL; Cassandra dùng Apache 2.0; Redis 8 cho chọn một trong ba giấy phép, trong đó có AGPL phiên bản 3. Khung hai, không phải giấy phép mã nguồn mở: MongoDB dùng SSPL, SPDX ghi không được OSI duyệt; Couchbase dùng BSL 1.1, chuyển sang Apache 2.0 từ ngày 1 tháng 3 năm 2029; CockroachDB cần khóa giấy phép để chạy thật. Khung ba, hai trường hợp riêng: SQLite thuộc phạm vi công cộng, không cần giấy phép; Redis 7.2 trở về trước dùng BSD 3 điều khoản.</desc>
+<desc id="desc">Theo tệp giấy phép ở nhánh chính của từng dự án, đọc ngày 18/10/2026. Khung một, giấy phép được OSI duyệt: MySQL và MariaDB dùng GPL phiên bản 2; Neo4j dùng GPL phiên bản 3; PostgreSQL dùng giấy phép PostgreSQL; Cassandra dùng Apache 2.0; Redis 8 cho chọn một trong ba giấy phép, trong đó có AGPL phiên bản 3. Khung hai, không phải giấy phép mã nguồn mở: MongoDB dùng SSPL, không được OSI duyệt; Couchbase dùng BSL 1.1, chuyển sang Apache 2.0 từ ngày 1 tháng 3 năm 2029; CockroachDB cần khóa giấy phép để chạy thật. Khung ba, hai trường hợp riêng: SQLite thuộc phạm vi công cộng, không cần giấy phép; Redis 7.2 trở về trước dùng BSD 3 điều khoản.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="955" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
@@ -37,8 +37,8 @@
 <rect x="20" y="527" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
 <circle cx="43" cy="550" r="11" fill="#16a34a"/>
 <polyline points="37.9,550.4 41.7,554.4 48.5,546" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="553.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">MongoDB: SSPL, SPDX ghi</text>
-<text x="64" y="572.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">không được OSI duyệt.</text>
+<text x="64" y="553.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">MongoDB: SSPL, không được</text>
+<text x="64" y="572.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">OSI duyệt.</text>
 <rect x="20" y="598" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
 <circle cx="43" cy="621" r="11" fill="#16a34a"/>
 <polyline points="37.9,621.4 41.7,625.4 48.5,617" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>

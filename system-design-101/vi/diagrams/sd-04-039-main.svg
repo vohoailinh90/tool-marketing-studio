@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1060" viewBox="0 0 320 1060" role="img" aria-labelledby="title desc">
+<title id="title">Băm nhất quán: vì sao mỗi máy cần nhiều điểm</title>
+<desc id="desc">Ba khung dọc. Khung một, ba bước tìm máy cho một khóa: băm mỗi máy thành một hoặc nhiều điểm trên vòng số; băm khóa bằng cùng hàm băm; đi theo chiều vòng, khóa thuộc điểm máy gặp đầu tiên. Khung hai, mười máy và 200.000 khóa: một điểm mỗi máy thì máy nhiều nhất giữ 44.980 khóa còn máy ít nhất 1.959; 100 điểm mỗi máy thì từ 18.397 đến 22.186; 1.000 điểm thì từ 18.883 đến 21.128. Khung ba, máy s3 hỏng thì khóa của nó đi đâu: một điểm mỗi máy thì cả 6.889 khóa đổ lên đúng một máy; 100 điểm thì chia cho chín máy, máy nhận nhiều nhất thêm 4.085; còn chia dư từ mười xuống chín máy thì 180.046 khóa đổi chỗ, 90 phần trăm.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1060" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Băm nhất quán: vì sao</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">mỗi máy cần nhiều điểm</text>
+<rect x="8" y="78" width="304" height="362" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="106.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Tìm máy cho một khóa</text>
+<rect x="20" y="123" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="149" r="14" fill="#1d4ed8"/>
+<text x="46" y="154.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="149.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Băm máy lên vòng</text>
+<text x="70" y="173.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mỗi máy thành một hoặc</text>
+<text x="70" y="192.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhiều điểm trên vòng số.</text>
+<rect x="20" y="232" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="258" r="14" fill="#1d4ed8"/>
+<text x="46" y="263.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="258.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Băm khóa lên vòng</text>
+<text x="70" y="282.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Dùng cùng hàm băm cho</text>
+<text x="70" y="301.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khóa.</text>
+<polyline points="46,212 46,230" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="341" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="367" r="14" fill="#1d4ed8"/>
+<text x="46" y="372.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="367.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Đi theo chiều vòng</text>
+<text x="70" y="391.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Khóa thuộc điểm máy gặp</text>
+<text x="70" y="410.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đầu tiên.</text>
+<polyline points="46,321 46,339" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="452" width="304" height="284" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="480.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">10 máy, 200.000 khóa: độ</text>
+<text x="20" y="502.3" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">lệch</text>
+<rect x="20" y="519" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="542" r="11" fill="#16a34a"/>
+<polyline points="37.9,542.4 41.7,546.4 48.5,538" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="545.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">1 điểm mỗi máy: nhiều nhất</text>
+<text x="64" y="564.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">44.980 khóa, ít nhất 1.959.</text>
+<rect x="20" y="590" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="613" r="11" fill="#16a34a"/>
+<polyline points="37.9,613.4 41.7,617.4 48.5,609" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="616.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">100 điểm: từ 18.397 đến</text>
+<text x="64" y="635.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">22.186.</text>
+<rect x="20" y="661" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="684" r="11" fill="#16a34a"/>
+<polyline points="37.9,684.4 41.7,688.4 48.5,680" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="687.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">1.000 điểm: từ 18.883 đến</text>
+<text x="64" y="706.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">21.128.</text>
+<rect x="8" y="748" width="304" height="304" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="776.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Máy s3 hỏng: khóa của nó đi</text>
+<text x="20" y="798.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">đâu</text>
+<rect x="20" y="815" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="838" r="11" fill="#16a34a"/>
+<polyline points="37.9,838.4 41.7,842.4 48.5,834" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="841.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">1 điểm: cả 6.889 khóa đổ lên</text>
+<text x="64" y="860.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đúng 1 máy.</text>
+<rect x="20" y="886" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="909" r="11" fill="#16a34a"/>
+<polyline points="37.9,909.4 41.7,913.4 48.5,905" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="912.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">100 điểm: chia cho 9 máy,</text>
+<text x="64" y="931.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">máy nhận nhiều nhất thêm</text>
+<text x="64" y="951.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">4.085.</text>
+<rect x="20" y="977" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1000" r="11" fill="#16a34a"/>
+<polyline points="37.9,1000.4 41.7,1004.4 48.5,996" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1003.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chia dư từ 10 xuống 9 máy:</text>
+<text x="64" y="1022.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">180.046 khóa đổi chỗ, 90%.</text>
+</g>
+</svg>

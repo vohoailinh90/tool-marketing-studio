@@ -2,7 +2,7 @@
   "id": "sd-06-011",
   "title": "Memcached và Redis, thử cạnh nhau",
   "subtitle": "memcached 1.6.24 và Redis 7.0.15, cấu hình mặc định.",
-  "desc": "Ba khung. Giống nhau: cả hai giữ dữ liệu trong bộ nhớ và đọc ghi theo khóa; cả hai có thể đẩy khóa cũ ra khi đầy, memcached làm sẵn còn Redis phải đặt giới hạn và chính sách. Khác nhau đã thử: memcached chỉ lưu chuỗi, Redis có thêm hash, list, set, sorted set và bitmap; giá trị 2 MiB bị memcached từ chối vì mặc định tối đa 1 MiB, Redis nhận; khởi động lại thì memcached mất hết, Redis đọc lại ảnh chụp đã lưu, trong thử nghiệm là sau lệnh lưu chạy trước đó; memcached chạy 4 luồng xử lý, Redis xử lý lệnh trên một luồng chính. Bitmap của Redis: một triệu người dùng mỗi người một bit và 300 nghìn người đăng nhập: dữ liệu 125 nghìn byte, Redis báo dùng khoảng 164 nghìn byte.",
+  "desc": "Ba khung. Giống nhau: cả hai giữ dữ liệu trong bộ nhớ và đọc ghi theo khóa; cả hai có thể đẩy khóa cũ ra khi đầy, memcached làm sẵn còn Redis phải đặt giới hạn và chính sách. Khác nhau đã thử: memcached coi giá trị là khối byte bất kỳ, không có cấu trúc dữ liệu, Redis có hash, list, set, sorted set và bitmap; giá trị 2 MiB bị memcached từ chối vì mặc định tối đa 1 MiB, Redis nhận; khởi động lại thì memcached mất hết, Redis đọc lại ảnh chụp đã lưu, thử nghiệm có lưu trước; memcached chạy 4 luồng xử lý, Redis xử lý lệnh trên một luồng chính. Bitmap của Redis: một triệu người dùng mỗi người một bit và 300 nghìn người đăng nhập: dữ liệu 125 nghìn byte, Redis báo dùng khoảng 164 nghìn byte.",
   "sections": [
     {
       "kind": "notes",
@@ -16,7 +16,7 @@
       "kind": "notes",
       "heading": "Khác nhau, đã thử",
       "items": [
-        "memcached chỉ lưu chuỗi; Redis có thêm hash, list, set, sorted set, bitmap.",
+        "memcached coi giá trị là khối byte, không có cấu trúc dữ liệu; Redis có hash, list, set, sorted set, bitmap.",
         "Giá trị 2 MiB: memcached từ chối (mặc định tối đa 1 MiB); Redis nhận.",
         "Khởi động lại: memcached mất hết; Redis đọc lại ảnh chụp đã lưu (thử: lưu ảnh trước).",
         "memcached chạy 4 luồng xử lý; Redis xử lý lệnh trên một luồng chính."

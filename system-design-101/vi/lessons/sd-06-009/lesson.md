@@ -30,7 +30,7 @@ Ngày 2026-10-18, trên một máy, bài chạy Redis 7.0.15 với chính sách 
 | 8 MB | 88% | 549 | 6.805 |
 | 16 MB | 88% | 0 | 7.298 |
 
-Từ 8 MB lên 16 MB không trúng thêm: không còn khóa nào bị đẩy ra, phần trượt còn lại là lần đầu tiên mỗi khóa được hỏi, và không bộ nhớ đệm nào tránh được lượt đó. Với truy cập **đều** trên 10.000 khóa, 4 MB chỉ trúng 29%: bộ nhớ đệm giúp nhiều khi truy cập lệch, ít khi truy cập rải đều.
+Từ 8 MB lên 16 MB không trúng thêm: không còn khóa nào bị đẩy ra, phần trượt còn lại là lần đầu tiên mỗi khóa được hỏi. Trong phép thử, bộ nhớ đệm bắt đầu rỗng và chỉ nạp khi trượt, nên thêm bộ nhớ không tránh được lượt đó; nạp sẵn trước khi có lưu lượng (như ở trên) thì tránh được, và khi ấy bộ nhớ lớn hơn giữ được nhiều khóa nạp sẵn hơn. Với truy cập **đều** trên 10.000 khóa, 4 MB chỉ trúng 29%: bộ nhớ đệm giúp nhiều khi truy cập lệch, ít khi truy cập rải đều.
 
 Thử thêm chính sách `noeviction` ở 4 MB: tỷ lệ trúng trông vẫn tốt (80%), nhưng 8.981 lệnh ghi bị từ chối với lỗi OOM. Nhìn mỗi tỷ lệ trúng thì không thấy lỗi này; phải đo cả lệnh bị từ chối.
 

@@ -97,7 +97,8 @@
   "source_deviations": [
     "Source lists five groups without explanation; the lesson keeps three questions and adds a measurement showing diminishing returns of more memory and the hidden write errors of noeviction.",
     "Caching techniques and eviction algorithms are left to their own lessons in the group.",
-    "The check question reads evicted_keys only after the policy: under noeviction (or volatile-* with no expiring keys) it stays 0 while writes are rejected, and as a cumulative counter its change over an interval matters, not its raw value."
+    "The check question reads evicted_keys only after the policy: under noeviction (or volatile-* with no expiring keys) it stays 0 while writes are rejected, and as a cumulative counter its change over an interval matters, not its raw value.",
+    "The remaining first-request misses are unavoidable only for the experiment's empty, lazily filled cache; the lesson notes that seeding before traffic avoids them."
   ],
   "editorial_note_vi": "Bài mới viết tại repo này (gói L5), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
 }

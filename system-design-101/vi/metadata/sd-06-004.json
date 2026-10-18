@@ -98,7 +98,8 @@
   "design_notes_vi": "Ba thẻ cạnh nhau cho ba nghĩa của chữ biên, không có mũi tên vì chúng không nối tiếp nhau; một khung cái giá lấy từ MDN.",
   "source_deviations": [
     "Source presents the three technologies as jointly making experiences faster; the lesson contrasts what each brings closer and why caching does not help the last two.",
-    "The lesson adds an nginx experiment and MDN's downsides of CDNs."
+    "The lesson adds an nginx experiment and MDN's downsides of CDNs.",
+    "Edge computing is presented as one option, worth it only when the time is in the distance and the data the code needs is also near; a personalized page slowed by a central query is better fixed at the origin (author's reasoning)."
   ],
   "editorial_note_vi": "Bài mới viết tại repo này (gói L5), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
 }

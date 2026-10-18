@@ -16,7 +16,7 @@ Phân biệt được ba thứ này, bạn biết CDN giúp được phần nào
 
 **Máy chủ biên: mang bản sao tới gần.** MDN định nghĩa CDN là một nhóm máy chủ ở nhiều nơi, giữ bản sao dữ liệu để phục vụ người dùng từ máy gần nhất, và ghi rằng khoảng cách địa lý ảnh hưởng tới độ trễ. Bản sao chỉ có ích khi nhiều người cần *cùng một* nội dung: ảnh, tệp CSS, tệp JavaScript, video đã quay sẵn.
 
-**Điện toán biên: mang phép tính tới gần.** Có những câu trả lời khác nhau với từng người (trang chào "Xin chào An", giỏ hàng, kết quả lọc theo vị trí). Không có bản sao chung nào để giữ, nên muốn nhanh thì phải *chạy mã* ở gần người dùng thay vì chỉ cất tệp. Đó là ý tưởng của điện toán biên. Cái khó đi kèm: mã chạy ở nhiều nơi thì dữ liệu nó cần cũng phải ở gần, hoặc nó vẫn phải hỏi về trung tâm.
+**Điện toán biên: mang phép tính tới gần.** Có những câu trả lời khác nhau với từng người (trang chào "Xin chào An", giỏ hàng, kết quả lọc theo vị trí). Không có bản sao chung nào để giữ. Một lựa chọn là *chạy mã* ở gần người dùng thay vì chỉ cất tệp: đó là ý tưởng của điện toán biên. Nó chỉ giúp khi đo thấy thời gian nằm ở quãng đường, và khi dữ liệu mà mã cần cũng nằm gần; nếu mã ở biên vẫn phải hỏi một cơ sở dữ liệu ở trung tâm, nó vẫn phải đi chặng đường dài đó, có khi còn thêm một chặng. Khi thời gian nằm ở truy vấn trung tâm thì sửa ở đó (chỉ mục chẳng hạn), hoặc để trình duyệt giữ bản riêng của người dùng, thường có ích hơn.
 
 **Chơi game trên mây: không có gì để lưu.** Máy chủ chạy trò chơi, vẽ từng khung hình rồi gửi về như một luồng video; mỗi lần bấm nút phải đi lên máy chủ rồi mới nhận về khung hình mới. Mỗi khung hình chỉ dùng một lần cho một người, nên bộ nhớ đệm không giúp được. Điều duy nhất còn lại là đặt máy chủ đủ gần và đường mạng đủ ổn.
 
@@ -41,7 +41,7 @@ Một ứng dụng có ba phần: ảnh sản phẩm, trang giỏ hàng của t�
 <summary>Xem đáp án</summary>
 
 Ảnh sản phẩm: máy chủ biên, vì mọi người xem cùng một tệp; thử nghiệm cho thấy lượt có bản sao không phải về máy gốc.
-Giỏ hàng: khác nhau với từng người nên không có bản sao chung; muốn nhanh hơn thì chạy mã ở gần (điện toán biên), kèm câu hỏi dữ liệu giỏ hàng nằm ở đâu.
+Giỏ hàng: khác nhau với từng người nên không có bản sao chung. Điện toán biên là một lựa chọn, nhưng chỉ đáng khi đo thấy thời gian nằm ở quãng đường và dữ liệu giỏ hàng cũng đặt được ở gần; nếu thời gian nằm ở truy vấn ở máy gốc thì sửa truy vấn trước.
 Trò chơi: mỗi khung hình dùng một lần, chỉ còn đặt máy chủ gần người chơi và giữ đường mạng ổn định.
 
 </details>

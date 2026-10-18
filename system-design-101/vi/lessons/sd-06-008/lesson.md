@@ -2,7 +2,7 @@
 
 **Có bộ nhớ đệm là có hai bản của cùng một dữ liệu: bản trong bộ nhớ đệm và bản trong cơ sở dữ liệu. Năm chiến lược quen thuộc (hai cho chiều đọc, ba cho chiều ghi) là năm cách giữ hai bản ấy khớp nhau, và mỗi cách lệch theo một kiểu riêng.**
 
-![Ba khung. Khung một, hai cách đọc: cache-aside, ứng dụng hỏi bộ nhớ đệm, thiếu thì đọc cơ sở dữ liệu rồi tự cất vào; read-through, bộ nhớ đệm tự đi lấy khi thiếu. Khung hai, ba cách ghi: write-through ghi cả hai trong cùng một thao tác; write-around chỉ ghi cơ sở dữ liệu rồi xóa bản trong bộ nhớ đệm; write-back chỉ ghi bộ nhớ đệm, chép xuống cơ sở dữ liệu sau. Khung ba, kết quả thử với Redis và SQLite: sửa cơ sở dữ liệu mà không xóa bản đệm thì đọc ra giá cũ cho tới khi hết hạn; một lượt đọc chậm có thể cất lại giá cũ ngay sau lượt xóa; write-back mất lần ghi chưa chép khi bộ nhớ đệm sập.](../../diagrams/sd-06-008-main.svg)
+![Ba khung. Khung một, hai cách đọc: cache-aside, ứng dụng hỏi bộ nhớ đệm, thiếu thì đọc cơ sở dữ liệu rồi tự cất vào; read-through, bộ nhớ đệm tự đi lấy khi thiếu. Khung hai, ba cách ghi: write-through ghi cả hai rồi mới báo xong, nhưng một lần ghi lỗi giữa chừng vẫn để lại bản cũ; write-around chỉ ghi cơ sở dữ liệu rồi xóa bản trong bộ nhớ đệm; write-back chỉ ghi bộ nhớ đệm, chép xuống cơ sở dữ liệu sau. Khung ba, kết quả thử với Redis và SQLite: sửa cơ sở dữ liệu mà không xóa bản đệm thì đọc ra giá cũ cho tới khi hết hạn; một lượt đọc chậm có thể cất lại giá cũ ngay sau lượt xóa; write-back mất lần ghi chưa chép khi bộ nhớ đệm sập.](../../diagrams/sd-06-008-main.svg)
 
 ## Từ viết tắt
 
@@ -15,7 +15,7 @@
 
 **Ba cách ghi.**
 
-- *Write-through*: ghi cơ sở dữ liệu và bộ nhớ đệm trong cùng một thao tác, chỉ báo xong khi cả hai đều xong. Đọc ngay sau khi ghi là thấy giá mới; đổi lại, mỗi lần ghi chậm hơn.
+- *Write-through*: ghi cơ sở dữ liệu và bộ nhớ đệm trong cùng một thao tác, chỉ báo xong khi cả hai đều xong. Khi cả hai lần ghi thành công, đọc ngay sau đó là thấy giá mới; đổi lại, mỗi lần ghi chậm hơn. Nhưng cơ sở dữ liệu và bộ nhớ đệm là hai hệ thống riêng, nên hai lần ghi không nguyên tử: nếu ghi cơ sở dữ liệu xong mà ghi bộ nhớ đệm lỗi, thao tác báo lỗi nhưng bản cũ vẫn nằm trong bộ nhớ đệm và người đọc vẫn thấy giá cũ. Khi gặp lỗi giữa chừng như vậy, cần xóa khóa đó khỏi bộ nhớ đệm (hoặc dựa vào hạn sống) để lần đọc sau nạp lại.
 - *Write-around*: chỉ ghi cơ sở dữ liệu, rồi xóa bản trong bộ nhớ đệm (Microsoft gọi là "invalidate on write"); lần đọc sau sẽ nạp lại. Hay đi cặp với cache-aside.
 - *Write-back* (còn gọi write-behind): chỉ ghi bộ nhớ đệm, rồi chép xuống cơ sở dữ liệu sau. Ghi rất nhanh, nhưng trong lúc chưa chép, dữ liệu chỉ nằm ở bộ nhớ đệm.
 

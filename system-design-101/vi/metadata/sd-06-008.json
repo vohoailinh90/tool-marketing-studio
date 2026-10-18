@@ -101,7 +101,8 @@
   ],
   "design_notes_vi": "Ba khung ghi chú: hai cách đọc, ba cách ghi, và ba kết quả thử nghiệm cho thấy mỗi cách lệch thế nào. Không vẽ mũi tên vì năm cách là lựa chọn, không phải các bước nối tiếp.",
   "source_deviations": [
-    "Source only lists the five strategies; the lesson adds definitions from Microsoft's architecture guidance and an experiment showing stale reads, a race and write-back data loss."
+    "Source only lists the five strategies; the lesson adds definitions from Microsoft's architecture guidance and an experiment showing stale reads, a race and write-back data loss.",
+    "Write-through freshness is scoped to writes where both updates succeed: the database and the cache are separate systems, so a failed cache write after a successful database write leaves a stale entry unless the key is invalidated (author's reasoning, consistent with Microsoft's note that write-through returns only after both updates succeed)."
   ],
   "editorial_note_vi": "Bài mới viết tại repo này (gói L5), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
 }

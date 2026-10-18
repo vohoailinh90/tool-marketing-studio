@@ -95,7 +95,7 @@ Về khóa: OWASP yêu cầu bí mật `HS256` do bộ sinh ngẫu nhiên an to�
 - Bài nguồn nói bí mật phải chia sẻ giữa bên ký và bên kiểm nhưng không nói hệ quả: bên kiểm cũng ký được.
 - Bài nguồn nói header "chỉ định thuật toán" mà không nói bên kiểm không được tin `alg` ấy; bài này thêm việc cố định danh sách thuật toán, `alg: none` và nhầm lẫn thuật toán.
 - Bài nguồn không nhắc việc kiểm `exp`, `aud`, `iss`; bài này thêm.
-- Bài nguồn chia claim thành "registered, public, private"; bài này không kiểm được cách chia ấy (không đọc được RFC) và chỉ dùng các tên đã đăng ký mà PyJWT và OWASP nêu.
+- Bài nguồn chia claim thành "registered, public, private"; bài này không kiểm được cách chia ấy (không đọc được đặc tả chính thức) và chỉ dùng các tên đã đăng ký mà PyJWT và OWASP nêu.
 - Tiêu đề bài nguồn gắn JWT với xác thực không giữ trạng thái; bài này không đánh giá điều đó.
 - Bài không dùng ảnh của bài nguồn.
 
@@ -108,4 +108,4 @@ Về khóa: OWASP yêu cầu bí mật `HS256` do bộ sinh ngẫu nhiên an to�
 - [PyJWT — usage](https://github.com/jpadilla/pyjwt/blob/c6fe464b356ff4b1ebc9ba62172d331a40aa27df/docs/usage.rst) và [PyJWT — algorithms](https://github.com/jpadilla/pyjwt/blob/c6fe464b356ff4b1ebc9ba62172d331a40aa27df/docs/algorithms.rst), tại commit của bản 2.14.0: các claim đã đăng ký, danh sách `algorithms`, đọc không kiểm dấu ký, độ dài khóa tối thiểu. Đọc qua tệp thô của kho.
 - [MDN — Base64](https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/base64/index.md): biến thể base64 an toàn cho địa chỉ web. Đọc từ bản clone của kho.
 
-Đã đọc nguồn ngày 2026-10-18. Các số đo (độ dài dấu ký và token) là một lần đo trên máy biên soạn với PyJWT 2.14.0 và `cryptography` 50.0.1. RFC và các trang của IETF không đọc được nên không được trích dẫn. Cách chia ba khung, các lần thử và cách ghép các nguồn là của người biên soạn. Bài viết và hình được thiết kế độc lập.
+Đã đọc nguồn ngày 2026-10-18. Các số đo (độ dài dấu ký và token) là một lần đo trên máy biên soạn với PyJWT 2.14.0 và `cryptography` 50.0.1. Các văn bản đặc tả chính thức của JWT không truy cập được nên không được trích dẫn. Cách chia ba khung, các lần thử và cách ghép các nguồn là của người biên soạn. Bài viết và hình được thiết kế độc lập.

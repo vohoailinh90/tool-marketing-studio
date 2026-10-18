@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1780" viewBox="0 0 320 1780" role="img" aria-labelledby="title desc">
+<title id="title">HTTPS: HTTP đặt trong kênh TLS</title>
+<desc id="desc">Bốn khung xếp dọc. Khung một: HTTPS thêm ba thứ cho HTTP, gồm giữ kín nội dung, phát hiện nội dung bị sửa trên đường và xác thực máy chủ bằng chứng chỉ. Khung hai và ba: bắt tay TLS 1.3 rút gọn giữa trình duyệt và máy chủ. Trình duyệt gửi ClientHello, máy chủ trả ServerHello, rồi từ đây mọi thứ được mã hóa: chứng chỉ và CertificateVerify của máy chủ, hai thông điệp Finished, rồi yêu cầu và phản hồi HTTP mã hóa bằng khóa phiên. Khung bốn, giới hạn của HTTPS: tên máy chủ vẫn nằm trong ClientHello, chứng chỉ không làm một trang trở nên đáng tin, máy chủ vẫn đọc được mọi thứ bạn gửi và độ dài từng gói dữ liệu vẫn lộ.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1780" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">HTTPS: HTTP đặt trong</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">kênh TLS</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">HTTPS thêm gì, bắt tay dựng kênh ra</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">sao, và giới hạn của nó.</text>
+<rect x="8" y="123" width="304" height="408" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">1 · HTTPS thêm ba thứ cho</text>
+<text x="20" y="173.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">HTTP</text>
+<rect x="20" y="190" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="233.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 222.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="11" rx="2" ry="2" width="18" x="3" y="11"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></g>
+<text x="78" y="216.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Giữ kín</text>
+<text x="78" y="240.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Người nghe lén chỉ thấy dữ</text>
+<text x="78" y="259.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">liệu đã mã hóa.</text>
+<rect x="20" y="291" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="344.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 333.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></g>
+<text x="78" y="317.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Toàn vẹn</text>
+<text x="78" y="341.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Sửa dữ liệu trên đường thì</text>
+<text x="78" y="360.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bên nhận phát hiện và</text>
+<text x="78" y="380.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">ngắt.</text>
+<rect x="20" y="412" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="465.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 454.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4"/><path d="M14 13.12c0 2.38 0 6.38-1 8.88"/><path d="M17.29 21.02c.12-.6.43-2.3.5-3.02"/><path d="M2 12a10 10 0 0 1 18-6"/><path d="M2 16h.01"/><path d="M21.8 16c.2-2 .131-5.354 0-6"/><path d="M5 19.5C5.5 18 6 15 6 12a6 6 0 0 1 .34-2"/><path d="M8.65 22c.21-.66.45-1.32.57-2"/><path d="M9 6.8a6 6 0 0 1 9 5.2v2"/></g>
+<text x="78" y="438.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Xác thực máy chủ</text>
+<text x="78" y="462.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chứng chỉ và chữ ký cho</text>
+<text x="78" y="481.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">biết máy chủ giữ khóa</text>
+<text x="78" y="501.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">riêng của tên đó.</text>
+<rect x="8" y="543" width="304" height="437" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="571.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">2 · Bắt tay (1): thống nhất,</text>
+<text x="20" y="593.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">chứng minh</text>
+<rect x="20" y="610" width="96" height="86" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="68" cy="632" r="14" fill="#0f766e"/><g transform="translate(59.6 623.6) scale(0.7)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="14" rx="2" width="20" x="2" y="3"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></g>
+<text x="68" y="663.9" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">Trình</text>
+<text x="68" y="682.6" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">duyệt</text>
+<rect x="204" y="610" width="96" height="86" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="252" cy="632" r="14" fill="#0f766e"/><g transform="translate(243.6 623.6) scale(0.7)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="8" rx="2" ry="2" width="20" x="2" y="2"/><rect height="8" rx="2" ry="2" width="20" x="2" y="14"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></g>
+<text x="252" y="663.9" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">Máy chủ</text>
+<polyline points="68,696 68,968" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
+<polyline points="252,696 252,968" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
+<text x="160" y="724.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">ClientHello: bộ mã,</text>
+<text x="160" y="743.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">nửa khóa, tên máy</text>
+<text x="160" y="763.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">chủ</text>
+<polyline points="69,777 249,777" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="160" y="805.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">ServerHello: bộ mã đã</text>
+<text x="160" y="824.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">chọn, nửa khóa</text>
+<polyline points="251,838 71,838" fill="none" stroke="#334155" stroke-width="1.8" stroke-dasharray="5 4" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="160" y="866.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Từ đây mã hóa: chứng</text>
+<text x="160" y="885.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">chỉ của máy chủ</text>
+<polyline points="251,899 71,899" fill="none" stroke="#334155" stroke-width="1.8" stroke-dasharray="5 4" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="160" y="927.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">CertificateVerify: ký</text>
+<text x="160" y="946.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">bằng khóa riêng</text>
+<polyline points="251,960 71,960" fill="none" stroke="#334155" stroke-width="1.8" stroke-dasharray="5 4" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="992" width="304" height="395" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="1020.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">3 · Bắt tay (2), rồi dữ liệu</text>
+<rect x="20" y="1037" width="96" height="86" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="68" cy="1059" r="14" fill="#b45309"/><g transform="translate(59.6 1050.6) scale(0.7)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="14" rx="2" width="20" x="2" y="3"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></g>
+<text x="68" y="1090.9" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">Trình</text>
+<text x="68" y="1109.6" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">duyệt</text>
+<rect x="204" y="1037" width="96" height="86" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="252" cy="1059" r="14" fill="#b45309"/><g transform="translate(243.6 1050.6) scale(0.7)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="8" rx="2" ry="2" width="20" x="2" y="2"/><rect height="8" rx="2" ry="2" width="20" x="2" y="14"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></g>
+<text x="252" y="1090.9" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">Máy chủ</text>
+<polyline points="68,1123 68,1375" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
+<polyline points="252,1123 252,1375" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
+<text x="160" y="1151.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Finished: máy chủ</text>
+<text x="160" y="1170.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">xong</text>
+<polyline points="251,1184 71,1184" fill="none" stroke="#334155" stroke-width="1.8" stroke-dasharray="5 4" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="160" y="1212.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Finished: trình duyệt</text>
+<text x="160" y="1231.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">xong</text>
+<polyline points="69,1245 249,1245" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="160" y="1273.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Yêu cầu HTTP, mã</text>
+<text x="160" y="1292.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">hóa bằng khóa phiên</text>
+<polyline points="69,1306 249,1306" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="160" y="1334.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Phản hồi HTTP, mã</text>
+<text x="160" y="1353.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">hóa bằng khóa phiên</text>
+<polyline points="251,1367 71,1367" fill="none" stroke="#334155" stroke-width="1.8" stroke-dasharray="5 4" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="1399" width="304" height="373" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="1427.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">4 · Nhớ: giới hạn của HTTPS</text>
+<rect x="20" y="1444" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1467" r="11" fill="#16a34a"/>
+<polyline points="37.9,1467.4 41.7,1471.4 48.5,1463" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1470.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tên máy chủ vẫn nằm sẵn</text>
+<text x="64" y="1489.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trong ClientHello, ai nghe lén</text>
+<text x="64" y="1509.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cũng thấy.</text>
+<rect x="20" y="1535" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1558" r="11" fill="#16a34a"/>
+<polyline points="37.9,1558.4 41.7,1562.4 48.5,1554" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1561.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chứng chỉ chỉ gắn khóa với</text>
+<text x="64" y="1580.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tên: nó không bảo đảm</text>
+<text x="64" y="1600.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trang đáng tin.</text>
+<rect x="20" y="1626" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1649" r="11" fill="#16a34a"/>
+<polyline points="37.9,1649.4 41.7,1653.4 48.5,1645" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1652.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Máy chủ vẫn giải mã và đọc</text>
+<text x="64" y="1671.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">được mọi thứ bạn gửi.</text>
+<rect x="20" y="1697" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1720" r="11" fill="#16a34a"/>
+<polyline points="37.9,1720.4 41.7,1724.4 48.5,1716" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1723.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Độ dài từng gói dữ liệu vẫn</text>
+<text x="64" y="1742.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lộ.</text>
+</g>
+</svg>

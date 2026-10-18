@@ -1,0 +1,174 @@
+{
+  "id": "sd-14-020",
+  "title_vi": "JWT: ba phần và hai cách ký",
+  "language": "vi",
+  "kind": "concept",
+  "content_status": "review",
+  "source_ref": "sd-14-020",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/jwt-101-key-to-stateless-authentication.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/jwt-101-key-to-stateless-authentication.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches provider tree OID. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "1d17742017e37e4954c2c085aa91308e1826a805",
+    "retrieved_body_sha256": "c04d37670d07fb595369deb7941a7eca66b23e63eb245ed84f932343d6d8d4b6",
+    "retrieved_body_bytes": 1572
+  },
+  "diagram": "../diagrams/sd-14-020-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-14-015",
+      "relation": "builds-on",
+      "reason_vi": "Ý tưởng chữ ký số: ký bằng khóa riêng, kiểm bằng khóa công khai."
+    },
+    {
+      "lesson_id": "sd-14-010",
+      "relation": "see_also",
+      "reason_vi": "Token, cookie và session: nhận ra người dùng; bài này không so sánh chúng."
+    },
+    {
+      "lesson_id": "sd-14-002",
+      "relation": "see_also",
+      "reason_vi": "Base64url là mã hóa ký tự, không phải mã hóa bí mật."
+    },
+    {
+      "lesson_id": "sd-14-014",
+      "relation": "see_also",
+      "reason_vi": "Khóa công khai phải đúng là của bên phát hành: chứng chỉ và tin cậy khóa."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "evidence": "Source read; OWASP JSON Web Token Cheat Sheet and MDN Base64 glossary page read from local clones at pinned commits; PyJWT usage.rst and algorithms.rst read at the commit of tag 2.14.0; signing, decoding, tampering, alg none, algorithm mismatch and claim validation run with PyJWT 2.14.0, cryptography 50.0.1 and Python 3.13.16 using throw-away HS256, RS256 and ES256 keys and no network; JWT, JWS and JWE specifications and other IETF pages were not reachable and were not read; JWE, revocation, other libraries and other PyJWT versions were not run."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "The source describes a JWT as an open standard for securely transmitting information between two parties, widely used for authentication and authorization; says a JWT has three components (header naming the signing algorithms in JSON, payload of claims and user data with registered, public and private claims, and a signature that 'makes the JWT secure', made from the encoded header, encoded payload, secret key and algorithm); and lists two signing ways: symmetric (one secret key shared by the signing server and the verifying system) and asymmetric (a private key signs, a public key verifies and can be distributed to anyone).",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/jwt-101-key-to-stateless-authentication.md",
+      "section": "Whole guide",
+      "verified_by": "Source body read."
+    },
+    {
+      "claim_vi": "A signed JWT has the structure base64url(json(header)).base64url(json(claims)).base64url(signature). The header holds information such as the token type and the cryptographic algorithms; the claims are a list of statements, usually about the subject; the signature is either a public-key digital signature or a MAC using a shared secret, and protects both the protected headers and the claims. A signed JWT does not provide confidentiality: the payload is only base64url encoded.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/3e2db6bf3f5f0c807aef8a8fc84e395acce0292c/cheatsheets/JSON_Web_Token_Cheat_Sheet.md",
+      "section": "Token Structure; Signed JWTs are not confidential",
+      "verified_by": "Read from a local clone of the repository at the pinned commit (file JSON_Web_Token_Cheat_Sheet.md; the Java-specific cheat sheet name given in the task does not exist at that commit)."
+    },
+    {
+      "claim_vi": "The URL and filename safe Base64 variant omits the padding and replaces + and / with - and _. Observed: the sample HS256 token (143 characters, parts of 36, 62 and 43 characters) contains no '=' and its signature part contains '_'.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/base64/index.md",
+      "section": "URL and filename safe Base64",
+      "verified_by": "MDN text read from a local clone at the pinned commit; token properties observed by executing a script on the authoring machine (PyJWT 2.14.0). The RFC that MDN cites for the variant was not reachable and was not read."
+    },
+    {
+      "claim_vi": "PyJWT supports the registered claim names exp, nbf, iss, aud, iat, sub and jti, and its documentation describes the use of each as OPTIONAL; by default jwt.encode adds the 'typ' header; the expiration time is verified automatically by jwt.decode and raises ExpiredSignatureError when it is in the past.",
+      "source": "https://github.com/jpadilla/pyjwt/blob/c6fe464b356ff4b1ebc9ba62172d331a40aa27df/docs/usage.rst",
+      "section": "Registered Claim Names; Specifying Additional Headers",
+      "verified_by": "Read from the repository at the commit of tag 2.14.0 (usage.rst)."
+    },
+    {
+      "claim_vi": "Observed: a token built by hand with hmac, hashlib and base64url (compact JSON with separators (',', ':'), header {'alg':'HS256','typ':'JWT'}, payload {'sub':'alice','role':'user','iat':1700000000}, 32-byte secret) was identical to the string returned by jwt.encode(claims, secret, algorithm='HS256') and decoded with jwt.decode.",
+      "source": "https://github.com/jpadilla/pyjwt/blob/c6fe464b356ff4b1ebc9ba62172d331a40aa27df/docs/algorithms.rst",
+      "section": "HS256 - HMAC using SHA-256",
+      "verified_by": "No external page reports this output; observed by executing a script on the authoring machine (Python 3.13.16, PyJWT 2.14.0, cryptography 50.0.1, throw-away keys, no network). The algorithms list (HS256 = HMAC using SHA-256) was read in algorithms.rst at the pinned commit."
+    },
+    {
+      "claim_vi": "Observed: header and payload were decoded without any key using base64url decoding, jwt.get_unverified_header (returned {'alg': 'HS256', 'typ': 'JWT'}) and jwt.decode(token, options={'verify_signature': False}). PyJWT's documentation says this is generally ill-advised because without the signature the integrity or authenticity of the claimset cannot be trusted.",
+      "source": "https://github.com/jpadilla/pyjwt/blob/c6fe464b356ff4b1ebc9ba62172d331a40aa27df/docs/usage.rst",
+      "section": "Reading the Claimset without Validation; Reading Headers without Validation",
+      "verified_by": "No external page reports this output; observed by executing a script on the authoring machine (Python 3.13.16, PyJWT 2.14.0, cryptography 50.0.1, throw-away keys, no network). The documentation passage was read at the pinned commit."
+    },
+    {
+      "claim_vi": "Observed: changing one character of the 143-character token (payload, 'alice' became 'alic!') made jwt.decode raise InvalidSignatureError while the altered payload was still readable without a key; changing the role to 'admin' with the old signature also raised InvalidSignatureError; re-serialising the same JSON with spaces and keeping the old signature raised InvalidSignatureError, so the signature covers the text of header.payload and not the meaning of the JSON.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/3e2db6bf3f5f0c807aef8a8fc84e395acce0292c/cheatsheets/JSON_Web_Token_Cheat_Sheet.md",
+      "section": "Token Structure (signature protects header and claims)",
+      "verified_by": "No external page reports this output; observed by executing a script on the authoring machine (Python 3.13.16, PyJWT 2.14.0, cryptography 50.0.1, throw-away keys, no network)."
+    },
+    {
+      "claim_vi": "OWASP says a signed JWT provides integrity and authenticity but not confidentiality, so anyone who obtains the token can read every claim; claims are exposed in application logs, browser storage, referrer headers and to intermediaries that terminate TLS; omitting privacy-sensitive information is the simplest way to limit privacy issues; JWE is the way to get confidentiality and is out of scope of that cheat sheet.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/3e2db6bf3f5f0c807aef8a8fc84e395acce0292c/cheatsheets/JSON_Web_Token_Cheat_Sheet.md",
+      "section": "Token Confidentiality and JWE",
+      "verified_by": "Read from a local clone of the repository at the pinned commit. JWE itself was not examined or run."
+    },
+    {
+      "claim_vi": "With a MAC (HS256) the same shared secret signs and verifies. Observed: any holder of the secret can mint a token with role 'admin' that jwt.decode accepts. OWASP says one secret must be used per (issuer, audience) pair because a reused secret lets one audience forge tokens, that the secret must come from a cryptographically secure generator, must not be a password, and must be at least as large as the hash output (256 bits for HS256). Observed: a 5-byte HMAC key made PyJWT 2.14.0 emit InsecureKeyLengthWarning (minimum 32 bytes for HS256 per its documentation).",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/3e2db6bf3f5f0c807aef8a8fc84e395acce0292c/cheatsheets/JSON_Web_Token_Cheat_Sheet.md",
+      "section": "Public-key Signatures vs. MAC; MAC",
+      "verified_by": "No external page reports this output; observed by executing a script on the authoring machine (Python 3.13.16, PyJWT 2.14.0, cryptography 50.0.1, throw-away keys, no network). The OWASP and PyJWT algorithms.rst passages were read at the pinned commits."
+    },
+    {
+      "claim_vi": "Observed with an EC P-256 key pair (ES256) and a 2048-bit RSA key pair (RS256): tokens signed with the private key were verified with only the public key; verifying with the public key of another pair raised InvalidSignatureError; the RSA and EC public key objects of cryptography have no sign method (AttributeError when used to sign). Signature sizes were 32 bytes (HS256), 64 bytes (ES256) and 256 bytes (RS256), and the same payload gave tokens of 143, 186 and 442 characters (one measurement). OWASP says that with digital signatures the audience needs only public information and that one issuer can reuse the same public key for many audiences.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/3e2db6bf3f5f0c807aef8a8fc84e395acce0292c/cheatsheets/JSON_Web_Token_Cheat_Sheet.md",
+      "section": "Public-key Signatures vs. MAC; Public-key Signatures",
+      "verified_by": "No external page reports this output; observed by executing a script on the authoring machine (Python 3.13.16, PyJWT 2.14.0, cryptography 50.0.1, throw-away keys, no network)."
+    },
+    {
+      "claim_vi": "OWASP's table of public-key signature schemes lists EdDSA (limited support), ECDSA (ES256, ES384, ES512) and RSASSA-PSS (PS256, PS384, PS512) as Recommended and RSASSA-PKCS1-v1_5 (RS256, RS384, RS512) as Not recommended. PyJWT's list says ES256 is ECDSA using SHA-256 and RS256 is RSASSA-PKCS1-v1_5 using SHA-256.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/3e2db6bf3f5f0c807aef8a8fc84e395acce0292c/cheatsheets/JSON_Web_Token_Cheat_Sheet.md",
+      "section": "Public-key Signatures (table)",
+      "verified_by": "Read from a local clone of the repository at the pinned commit; the PyJWT algorithm list was read in algorithms.rst at its pinned commit."
+    },
+    {
+      "claim_vi": "PyJWT's documentation says that jwt.decode takes an algorithms list and rejects a token whose alg is not in it with InvalidAlgorithmError, that the list must not be computed from the token's alg or other attacker-influenced data (hard-code it or configure it where the key is configured), and that symmetric and asymmetric algorithms (HS* and RS*) must not be mixed. Observed with PyJWT 2.14.0: a hand-built token with alg 'none' (empty signature) raised InvalidAlgorithmError when algorithms=['HS256'] (also for 'None', 'NONE', 'nOnE'); decode without algorithms raised DecodeError; with algorithms=['none'] it raised InvalidSignatureError; an HS256 token verified with algorithms=['RS256'], and an RS256 token verified with algorithms=['HS256'] or ['ES256'], raised InvalidAlgorithmError.",
+      "source": "https://github.com/jpadilla/pyjwt/blob/c6fe464b356ff4b1ebc9ba62172d331a40aa27df/docs/algorithms.rst",
+      "section": "Specifying an Algorithm",
+      "verified_by": "No external page reports this output; observed by executing a script on the authoring machine (Python 3.13.16, PyJWT 2.14.0, cryptography 50.0.1, throw-away keys, no network). The documentation warning was read at the pinned commit. Other libraries and other PyJWT versions were not tested."
+    },
+    {
+      "claim_vi": "OWASP says some JWT libraries used to accept unsecured JWTs (alg none) by default, letting an attacker forge tokens, that this should now be fixed in libraries, and that a parser must not accept alg none; and describes key type (algorithm) confusion, where an implementation uses a public key as a MAC secret so an attacker can forge an HS-signed token with the issuer's public key; mitigation: hard-code accepted algorithms and do not mix public-key and MAC algorithms. It notes recent PyJWT versions detect a MAC key that looks like a public key (PEM or SSH format). Observed with PyJWT 2.14.0: jwt.encode with the public key PEM as an HS256 secret raised InvalidKeyError; a hand-built HS256 token signed with that PEM text raised InvalidAlgorithmError when algorithms=['RS256'] and InvalidKeyError when algorithms=['RS256','HS256'].",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/3e2db6bf3f5f0c807aef8a8fc84e395acce0292c/cheatsheets/JSON_Web_Token_Cheat_Sheet.md",
+      "section": "Unsecured JWTs; Key type confusion",
+      "verified_by": "No external page reports this output; observed by executing a script on the authoring machine (Python 3.13.16, PyJWT 2.14.0, cryptography 50.0.1, throw-away keys, no network). The OWASP text was read at the pinned commit."
+    },
+    {
+      "claim_vi": "Observed with PyJWT 2.14.0: a token with exp in the past raised ExpiredSignatureError; nbf in the future raised ImmatureSignatureError; a token with aud checked against a different audience raised InvalidAudienceError (and also when no audience argument was given); a token without exp was accepted by default and options={'require': ['exp']} raised MissingRequiredClaimError. OWASP says that in PyJWT the issuer and audience arguments perform the validation and shows options={'require': [...]}.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/3e2db6bf3f5f0c807aef8a8fc84e395acce0292c/cheatsheets/JSON_Web_Token_Cheat_Sheet.md",
+      "section": "Issuer and audience confusion; Claims",
+      "verified_by": "No external page reports this output; observed by executing a script on the authoring machine (Python 3.13.16, PyJWT 2.14.0, cryptography 50.0.1, throw-away keys, no network). The OWASP passage and the PyJWT 'Requiring Presence of Claims' and claim sections were read at the pinned commits."
+    },
+    {
+      "claim_vi": "The expansions of the abbreviations JSON, HMAC and SHA in the glossary, and the plain-words explanations of base64url as 'a way of writing data as text', are the author's general knowledge, partly matching the OWASP and MDN pages above; the JWE expansion appears in the OWASP cheat sheet.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/3e2db6bf3f5f0c807aef8a8fc84e395acce0292c/cheatsheets/JSON_Web_Token_Cheat_Sheet.md",
+      "section": "Introduction; Token Confidentiality and JWE",
+      "verified_by": "Author's general knowledge; not checked against the specifications, which were not reachable."
+    },
+    {
+      "claim_vi": "Not examined: the JWT, JWS and JWE specifications and the JWT best-practices document (not reachable, not cited); the source's 'registered, public, private' division of claims; JWE; token revocation and denylists; comparison with server-side sessions (another lesson); other JWT libraries and other PyJWT versions; the key-confusion attack against a vulnerable implementation.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/jwt-101-key-to-stateless-authentication.md",
+      "section": "Whole guide",
+      "verified_by": "Not examined."
+    }
+  ],
+  "design_notes_vi": "Ba khung xếp dọc: ba phần của token nối bằng mũi tên, hai cách ký, và bốn việc bên kiểm phải tự quyết. Không dùng ảnh nguồn; bài đi theo các lần thử với PyJWT thay vì chép lại bài nguồn.",
+  "source_deviations": [
+    "The source calls a JWT a way of 'securely' transmitting information and says the signature is what makes it 'secure'; the lesson says a signed JWT gives integrity and authenticity but no confidentiality, and that the payload is readable by anyone (OWASP; observed by decoding without a key).",
+    "The source says the signature is created from the encoded header, encoded payload, 'secret key' and algorithm; that fits only signing with a shared secret, and the lesson says a private key signs when a key pair is used.",
+    "The source says the shared key must go to the system that verifies but not what follows; the lesson states that every verifier of an HS256 token can also forge tokens (observed, and OWASP on shared secrets).",
+    "The source says the header specifies the signing algorithm but not that a verifier must not trust it; the lesson adds that the verifier fixes the accepted algorithms, refuses alg none and avoids mixing HS* and RS* (PyJWT documentation, OWASP, observed).",
+    "The source does not mention validating exp, aud or iss; the lesson adds that a valid signature is not enough and shows the PyJWT errors, including that a token without exp is accepted unless it is required.",
+    "The source divides claims into registered, public and private; the lesson could not check that division (specifications not reachable) and uses only the registered names that the PyJWT documentation and OWASP name.",
+    "The source's title ties JWT to stateless authentication; the lesson does not evaluate that and does not compare JWTs with sessions.",
+    "The source does not say that RS256 is not recommended by OWASP's current table while ES256, PS256 and EdDSA are; the lesson reports that and uses ES256 as the main example."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

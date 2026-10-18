@@ -1,0 +1,198 @@
+{
+  "id": "sd-14-016",
+  "title_vi": "Quản lý dữ liệu nhạy cảm trong hệ thống",
+  "language": "vi",
+  "kind": "reference",
+  "content_status": "review",
+  "source_ref": "sd-14-016",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/how-do-we-manage-sensitive-data-in-a-system.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-we-manage-sensitive-data-in-a-system.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches provider tree OID. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "6bac6975085fc1f980894f89eca8fe46162fb441",
+    "retrieved_body_sha256": "222270f57abd5b862e97ad662701623557425daef03a553f018e6031c670ff74",
+    "retrieved_body_bytes": 2797
+  },
+  "diagram": "../diagrams/sd-14-016-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-14-002",
+      "relation": "uses",
+      "reason_vi": "Tokenization thay dữ liệu nhạy cảm bằng token và giữ dữ liệu thật ở kho riêng."
+    },
+    {
+      "lesson_id": "sd-14-003",
+      "relation": "uses",
+      "reason_vi": "Mật khẩu được băm chậm có salt, không mã hóa."
+    },
+    {
+      "lesson_id": "sd-14-004",
+      "relation": "builds-on",
+      "reason_vi": "Quyền tối thiểu và RBAC nằm trong các mô hình phân quyền."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "evidence": "Source read; OWASP Cheat Sheet Series (Cryptographic Storage, Key Management, Transport Layer Security, Logging, Authorization, Database Security, Secrets Management) read from downloads at commit 3e2db6bf3f5f0c807aef8a8fc84e395acce0292c; pyca/cryptography aead and keywrap docs at 6179e1c39ed0019cf27168420eff6b3ab1840ef9; HashiCorp Vault Seal/Unseal page at web-unified-docs 34b3a09cad9357b99d52cbb50ff8034e5108a9b7; CPython ssl docs at b00a14018172652226bd6efb517af021bd03aa88; AES-GCM, AES-CTR, key wrap, three-share split, SHA-256 enumeration and local TLS handshake behaviour observed with Python 3.13.16, cryptography 50.0.1 and OpenSSL 3.0.13; EU law (GDPR), NIST and RFC documents were not reachable and were not read."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "The source lists five groups of guidance: what sensitive data is (personal, health, intellectual property, financial, education and legal data) with a mention of GDPR and fines; encryption and key management (transmit with SSL, no plain-text passwords, split a key among three roles that must all take part); data desensitization (said to be the same as anonymization and sanitization) with a claim that algorithms like GCM store cipher data and keys separately; minimal permissions with RBAC; and data lifecycle management (developers get permissions during development and lose them after go-live).",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-we-manage-sensitive-data-in-a-system.md",
+      "section": "Whole guide",
+      "verified_by": "Source body read in full (2797 bytes)."
+    },
+    {
+      "claim_vi": "OWASP: SSL versions 2 and 3 have serious cryptographic weaknesses and should no longer be used; TLS 1.0 was effectively SSL 3.1; the terms SSL, SSL/TLS and TLS are often used interchangeably; web applications should default to TLS 1.3, may support TLS 1.2 for compatibility, must disable TLS 1.0 and 1.1 and always disable SSLv2 and SSLv3.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/3e2db6bf3f5f0c807aef8a8fc84e395acce0292c/cheatsheets/Transport_Layer_Security_Cheat_Sheet.md",
+      "section": "Đọc hình 1; Xem sâu hơn: TLS thay SSL",
+      "verified_by": "Read the cheat sheet from a download of the repository at the pinned commit."
+    },
+    {
+      "claim_vi": "OWASP: design starts from a threat model (who the data is protected against); encryption can be done at application, database, filesystem or hardware level and which is appropriate depends on the threat model; hardware-level encryption protects against physical theft of the server but not against remote compromise; the best protection for sensitive information is not to store it.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/3e2db6bf3f5f0c807aef8a8fc84e395acce0292c/cheatsheets/Cryptographic_Storage_Cheat_Sheet.md",
+      "section": "Đọc hình (mở đầu); Giới hạn cần nhớ",
+      "verified_by": "Read the cheat sheet from a download at the pinned commit."
+    },
+    {
+      "claim_vi": "OWASP: applications should be designed to stay secure even if cryptographic controls fail, with strong access control; passwords should not be stored with reversible encryption.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/3e2db6bf3f5f0c807aef8a8fc84e395acce0292c/cheatsheets/Cryptographic_Storage_Cheat_Sheet.md",
+      "section": "Giới hạn cần nhớ; Đọc hình 2",
+      "verified_by": "Read the cheat sheet from a download at the pinned commit."
+    },
+    {
+      "claim_vi": "OWASP: symmetric encryption should use AES with a key of at least 128 bits (ideally 256) and a secure mode; authenticated modes should always be used where available, GCM and CCM being the most common and first preference; authenticated modes give integrity and authenticity as well as confidentiality, while CTR and CBC need separate authentication.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/3e2db6bf3f5f0c807aef8a8fc84e395acce0292c/cheatsheets/Cryptographic_Storage_Cheat_Sheet.md",
+      "section": "Đọc hình 2",
+      "verified_by": "Read the cheat sheet from a download at the pinned commit."
+    },
+    {
+      "claim_vi": "OWASP: encryption keys should where possible be stored separately from the encrypted data so that an attacker with access to only one (for example through SQL injection) cannot get both; keys can be encrypted by a key encryption key (KEK) while a data encryption key (DEK) encrypts the data, the KEK stored on another system, the encrypted DEK possibly stored with the data; where KEK and DEK cannot be stored separately the approach has limited value; keys must not be hard-coded or checked into version control; operating-system, framework or cloud secure storage (HSM, key vaults, secrets services) should be used where available.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/3e2db6bf3f5f0c807aef8a8fc84e395acce0292c/cheatsheets/Cryptographic_Storage_Cheat_Sheet.md",
+      "section": "Đọc hình 2; Nhìn hình trả lời",
+      "verified_by": "Read the cheat sheet from a download at the pinned commit."
+    },
+    {
+      "claim_vi": "OWASP: key rotation criteria include suspected compromise, a cryptoperiod elapsing, mode usage limits and a significant change in algorithm security; to retire a KEK, re-wrap the stored DEKs under the replacement KEK before destroying the old one, which leaves the DEKs unchanged, while replacing a DEK requires re-encrypting that data.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/3e2db6bf3f5f0c807aef8a8fc84e395acce0292c/cheatsheets/Key_Management_Cheat_Sheet.md",
+      "section": "Đọc hình 5; Xem sâu hơn: Hai tầng khóa",
+      "verified_by": "Read the cheat sheet from a download at the pinned commit; the Cryptographic Storage cheat sheet (same commit) gives the matching rotation criteria."
+    },
+    {
+      "claim_vi": "OWASP: least privilege applies to keys and secrets; it is preferred that no humans can view keys, and at minimum the key management system should account for all individuals who can view plaintext keys; data encrypted with lost keys can never be recovered, so a secure key backup capability is needed. The cheat sheet mentions splitting a key only for memory 'burn-in' and does not describe a three-role split-knowledge scheme.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/3e2db6bf3f5f0c807aef8a8fc84e395acce0292c/cheatsheets/Key_Management_Cheat_Sheet.md",
+      "section": "Đọc hình 4",
+      "verified_by": "Read the cheat sheet from a download at the pinned commit and searched it (and the Cryptographic Storage, Secrets Management, Authorization and Database Security cheat sheets) for split, dual, quorum, Shamir and separation-of-duties wording: none describes the source's three-role scheme."
+    },
+    {
+      "claim_vi": "OWASP Logging: access tokens, passwords, session identifiers, encryption keys, connection strings, payment card data, health and government identifiers should not be recorded directly but removed, masked, sanitized, hashed or encrypted; personal data de-identification techniques such as deletion, scrambling or pseudonymization may be used where identity is not required; log data, debug logs and backups must not be destroyed before the required retention period and not kept beyond it, and legal, regulatory and contractual obligations may affect those periods.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/3e2db6bf3f5f0c807aef8a8fc84e395acce0292c/cheatsheets/Logging_Cheat_Sheet.md",
+      "section": "Đọc hình (mở đầu), 3 và 5",
+      "verified_by": "Read the cheat sheet from a download at the pinned commit. It lists the techniques as separate options; it does not define anonymization or pseudonymization."
+    },
+    {
+      "claim_vi": "OWASP Authorization: least privilege means assigning only the minimum privileges needed; deny by default; RBAC associates permissions with roles that users are assigned; permissions should be reviewed periodically for privilege creep; it is easier to grant additional permissions than to take away ones users already had.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/3e2db6bf3f5f0c807aef8a8fc84e395acce0292c/cheatsheets/Authorization_Cheat_Sheet.md",
+      "section": "Đọc hình 4 và 5",
+      "verified_by": "Read the cheat sheet from a download at the pinned commit."
+    },
+    {
+      "claim_vi": "OWASP Database Security: development, UAT and production should use separate databases and accounts; accounts should be reviewed regularly; passwords should be changed when staff leave or compromise is suspected.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/3e2db6bf3f5f0c807aef8a8fc84e395acce0292c/cheatsheets/Database_Security_Cheat_Sheet.md",
+      "section": "Đọc hình 5",
+      "verified_by": "Read the cheat sheet from a download at the pinned commit."
+    },
+    {
+      "claim_vi": "OWASP Secrets Management: secrets follow a lifecycle of creation, rotation, revocation and expiration; engineers should not have access to all secrets and least privilege applies.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/3e2db6bf3f5f0c807aef8a8fc84e395acce0292c/cheatsheets/Secrets_Management_Cheat_Sheet.md",
+      "section": "Đọc hình 4 và 5",
+      "verified_by": "Read the cheat sheet from a download at the pinned commit."
+    },
+    {
+      "claim_vi": "HashiCorp Vault documentation: by default the unseal key is split into shares with Shamir's Secret Sharing and a threshold of shares reconstructs it; in the initialization description (about recovery keys) the number of shares and the threshold are separate parameters.",
+      "source": "https://github.com/hashicorp/web-unified-docs/blob/34b3a09cad9357b99d52cbb50ff8034e5108a9b7/content/vault/v1.21.x/content/docs/concepts/seal.mdx",
+      "section": "Đọc hình 4",
+      "verified_by": "Read the page from a download of the documentation repository at the pinned commit (version 1.21.x folder)."
+    },
+    {
+      "claim_vi": "pyca/cryptography documents AES-GCM as AES in Galois Counter Mode inside authenticated encryption (confidentiality and integrity); the key is an input that must be kept secret, a nonce must never be reused with a key, decrypt raises InvalidTag when the ciphertext, key, nonce or associated data is wrong. Observed: 24 bytes encrypted to 40 bytes (24 plus a 16-byte tag), the key bytes were not in the nonce plus ciphertext output, decryption worked with the key read from a separate file, flipping one bit at each of the 40 positions raised InvalidTag every time (40 of 40), and a wrong key, wrong nonce or wrong associated data raised InvalidTag. The library documentation does not say that GCM stores keys and data separately.",
+      "source": "https://github.com/pyca/cryptography/blob/6179e1c39ed0019cf27168420eff6b3ab1840ef9/docs/hazmat/primitives/aead.rst",
+      "section": "Đọc hình 2; Xem sâu hơn: GCM không phải chỗ cất khóa",
+      "verified_by": "Observed by executing a script on the authoring machine (Python 3.13.16, cryptography 50.0.1, OpenSSL 3.0.13, throw-away keys, localhost only); no external page reports this output."
+    },
+    {
+      "claim_vi": "Observed with AES-CTR (unauthenticated): flipping the last bit of the ciphertext decrypted without any error to a plaintext with exactly one changed byte (final digit 8 became 9), unlike AES-GCM.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/3e2db6bf3f5f0c807aef8a8fc84e395acce0292c/cheatsheets/Cryptographic_Storage_Cheat_Sheet.md",
+      "section": "Xem sâu hơn: GCM không phải chỗ cất khóa",
+      "verified_by": "Observed by executing a script on the authoring machine (Python 3.13.16, cryptography 50.0.1, OpenSSL 3.0.13, throw-away keys, localhost only); no external page reports this output."
+    },
+    {
+      "claim_vi": "pyca/cryptography documents aes_key_wrap and aes_key_unwrap (AES key wrap, InvalidUnwrap on failure). Observed: a 32-byte DEK encrypted data with AES-GCM; the KEK wrapped it to 40 bytes; the stored record (nonce, ciphertext, wrapped DEK) did not contain the raw DEK; the KEK unwrapped it and decrypted the data; a random KEK raised InvalidUnwrap; after re-wrapping under a new KEK the ciphertext bytes were identical, the old KEK no longer unwrapped and the new KEK decrypted.",
+      "source": "https://github.com/pyca/cryptography/blob/6179e1c39ed0019cf27168420eff6b3ab1840ef9/docs/hazmat/primitives/keywrap.rst",
+      "section": "Xem sâu hơn: Hai tầng khóa",
+      "verified_by": "Observed by executing a script on the authoring machine (Python 3.13.16, cryptography 50.0.1, OpenSSL 3.0.13, throw-away keys, localhost only); no external page reports this output."
+    },
+    {
+      "claim_vi": "Observed: a 256-bit key split into three shares (two random, the third the key xor the other two) opened the AES-GCM data only with all three shares; each of the three single shares and each of the three pairs raised InvalidTag; with one share lost the remaining two could not open it. This is a toy to observe the all-shares-required property, not a recommended implementation.",
+      "source": "https://github.com/hashicorp/web-unified-docs/blob/34b3a09cad9357b99d52cbb50ff8034e5108a9b7/content/vault/v1.21.x/content/docs/concepts/seal.mdx",
+      "section": "Đọc hình 4; Xem sâu hơn: Chia khóa ba phần",
+      "verified_by": "Observed by executing a script on the authoring machine (Python 3.13.16, cryptography 50.0.1, OpenSSL 3.0.13, throw-away keys, localhost only); no external page reports this output."
+    },
+    {
+      "claim_vi": "Observed: SHA-256 of a made-up 7-digit code was recovered by trying candidates from 0000000 upward after 4,829,176 tries in 2.8 s on one thread; against an HMAC-SHA-256 value, plain SHA-256 of all 10,000,000 candidates did not match (5.7 s) while enumeration with the key found it (9.5 s). One measurement on the authoring machine, only to show that hashing a short guessable value does not hide it.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/3e2db6bf3f5f0c807aef8a8fc84e395acce0292c/cheatsheets/Logging_Cheat_Sheet.md",
+      "section": "Xem sâu hơn: Băm một mã ngắn",
+      "verified_by": "Observed by executing a script on the authoring machine (Python 3.13.16, cryptography 50.0.1, OpenSSL 3.0.13, throw-away keys, localhost only); no external page reports this output."
+    },
+    {
+      "claim_vi": "Observed with Python's ssl module against a local TLS server with a throw-away self-signed certificate: the default client negotiated TLS 1.3 (TLS_AES_256_GCM_SHA384); a client limited to TLS 1.2 connected; a client limited to at most TLS 1.1 or SSL 3 failed with 'no protocols available'. The CPython documentation says create_default_context excludes SSL 3.0 (widely considered completely broken) and that since 3.10 every TLSVersion member except TLS 1.2 and 1.3 is deprecated. This reflects this machine's configuration only.",
+      "source": "https://github.com/python/cpython/blob/b00a14018172652226bd6efb517af021bd03aa88/Doc/library/ssl.rst",
+      "section": "Xem sâu hơn: TLS thay SSL",
+      "verified_by": "Observed by executing a script on the authoring machine (Python 3.13.16, cryptography 50.0.1, OpenSSL 3.0.13, throw-away keys, localhost only); no external page reports this output."
+    },
+    {
+      "claim_vi": "That an inventory of sensitive data and where it lives is the first step, and that the same masking principles apply to exports for analysis and to test environments, is the author's general knowledge; the OWASP sheets above give lists of what to keep out of logs and a threat-model starting point but do not state those two points.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/3e2db6bf3f5f0c807aef8a8fc84e395acce0292c/cheatsheets/Logging_Cheat_Sheet.md",
+      "section": "Đọc hình (mở đầu) và 3",
+      "verified_by": "Author's general knowledge; not checked against a source that states it."
+    },
+    {
+      "claim_vi": "Not examined: the text of the EU GDPR or any other law, fines, and legal definitions of anonymisation and pseudonymisation (legal and standards sites were not reachable); the source's three role names (password applicant, password manager, auditor) were not found in any independent source read; NIST and RFC documents cited inside the OWASP sheets were not read.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-we-manage-sensitive-data-in-a-system.md",
+      "section": "Giới hạn cần nhớ",
+      "verified_by": "Not examined. EU law, NIST and RFC sites were unreachable from the authoring environment (only raw.githubusercontent.com could be read)."
+    }
+  ],
+  "design_notes_vi": "Hình chia dữ liệu lọt ra thành năm đường (đường truyền, kho lưu, bản sao, người và dịch vụ, thời gian) trong hai khung thẻ, kèm một khung ghi nhớ; chọn cách chia theo đường lộ thay vì theo đề mục của bài nguồn. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "The source says data transmission must be encrypted using SSL; the lesson says TLS, explains SSL as the old name and cites OWASP on which versions to enable and disable.",
+    "The source describes splitting a key among three roles (applicant, manager, auditor) that must all take part as the way to store keys; the lesson presents it as one split-knowledge design, notes that no OWASP sheet read describes this role set, contrasts it with Vault's threshold scheme, and shows that requiring all shares makes a lost share fatal.",
+    "The source says algorithms like GCM store cipher data and keys separately; GCM is an authenticated encryption mode (it detects tampering) and separating keys from data is a key-management decision, as the OWASP Cryptographic Storage cheat sheet and the pyca/cryptography docs show.",
+    "The source treats data desensitization, anonymization and sanitization as one thing; the lesson reports that OWASP lists removal, masking, sanitizing, hashing, encryption, scrambling and pseudonymization as separate options, does not define them legally, and shows that hashing a short guessable value hides nothing.",
+    "The source says non-compliance with GDPR can bring hefty fines and sanctions; the lesson does not repeat this because no legal source could be read.",
+    "The source does not mention minimizing what is stored, logs and other copies, key rotation or the secrets lifecycle; the lesson adds these from OWASP.",
+    "The lesson does not use the source image or its image host."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

@@ -3,35 +3,109 @@
   "lang": "vi",
   "title": "HTTPS: HTTP đặt trong kênh TLS",
   "subtitle": "HTTPS thêm gì, bắt tay dựng kênh ra sao, và giới hạn của nó.",
-  "desc": "Ba khung xếp dọc. Khung một: HTTPS thêm ba thứ cho HTTP, gồm giữ kín nội dung, phát hiện nội dung bị sửa trên đường và xác thực máy chủ bằng chứng chỉ. Khung hai: bắt tay TLS 1.3 rút gọn giữa trình duyệt và máy chủ. Trình duyệt gửi ClientHello, máy chủ trả ServerHello, rồi từ đây mọi thứ được mã hóa: chứng chỉ, CertificateVerify, Finished của máy chủ, Finished của trình duyệt, rồi yêu cầu và phản hồi HTTP mã hóa bằng khóa phiên. Khung ba, giới hạn của HTTPS: tên máy chủ vẫn nằm trong ClientHello, chứng chỉ không làm một trang trở nên đáng tin, máy chủ vẫn đọc được mọi thứ bạn gửi và độ dài từng gói dữ liệu vẫn lộ.",
+  "desc": "Bốn khung xếp dọc. Khung một: HTTPS thêm ba thứ cho HTTP, gồm giữ kín nội dung, phát hiện nội dung bị sửa trên đường và xác thực máy chủ bằng chứng chỉ. Khung hai và ba: bắt tay TLS 1.3 rút gọn giữa trình duyệt và máy chủ. Trình duyệt gửi ClientHello, máy chủ trả ServerHello, rồi từ đây mọi thứ được mã hóa: chứng chỉ và CertificateVerify của máy chủ, hai thông điệp Finished, rồi yêu cầu và phản hồi HTTP mã hóa bằng khóa phiên. Khung bốn, giới hạn của HTTPS: tên máy chủ vẫn nằm trong ClientHello, chứng chỉ không làm một trang trở nên đáng tin, máy chủ vẫn đọc được mọi thứ bạn gửi và độ dài từng gói dữ liệu vẫn lộ.",
   "sections": [
     {
       "kind": "parts",
       "heading": "1 · HTTPS thêm ba thứ cho HTTP",
       "items": [
-        {"name": "Giữ kín", "role": "Người nghe lén chỉ thấy dữ liệu đã mã hóa.", "icon": "lock"},
-        {"name": "Toàn vẹn", "role": "Sửa dữ liệu trên đường thì bên nhận phát hiện và ngắt.", "icon": "shield-check"},
-        {"name": "Xác thực máy chủ", "role": "Chứng chỉ và chữ ký cho biết máy chủ giữ khóa riêng của tên đó.", "icon": "fingerprint-pattern"}
+        {
+          "name": "Giữ kín",
+          "role": "Người nghe lén chỉ thấy dữ liệu đã mã hóa.",
+          "icon": "lock"
+        },
+        {
+          "name": "Toàn vẹn",
+          "role": "Sửa dữ liệu trên đường thì bên nhận phát hiện và ngắt.",
+          "icon": "shield-check"
+        },
+        {
+          "name": "Xác thực máy chủ",
+          "role": "Chứng chỉ và chữ ký cho biết máy chủ giữ khóa riêng của tên đó.",
+          "icon": "fingerprint-pattern"
+        }
       ]
     },
     {
       "kind": "sequence",
-      "heading": "2 · Bắt tay TLS 1.3, rút gọn",
-      "actors": [{"name": "Trình duyệt", "icon": "monitor"}, {"name": "Máy chủ", "icon": "server"}],
+      "heading": "2 · Bắt tay (1): thống nhất, chứng minh",
+      "actors": [
+        {
+          "name": "Trình duyệt",
+          "icon": "monitor"
+        },
+        {
+          "name": "Máy chủ",
+          "icon": "server"
+        }
+      ],
       "messages": [
-        {"from": 0, "to": 1, "text": "ClientHello: bộ mã, nửa khóa, tên máy chủ"},
-        {"from": 1, "to": 0, "text": "ServerHello: bộ mã đã chọn, nửa khóa", "reply": true},
-        {"from": 1, "to": 0, "text": "Từ đây mã hóa: chứng chỉ của máy chủ", "reply": true},
-        {"from": 1, "to": 0, "text": "CertificateVerify: ký bằng khóa riêng", "reply": true},
-        {"from": 1, "to": 0, "text": "Finished: máy chủ xong", "reply": true},
-        {"from": 0, "to": 1, "text": "Finished: trình duyệt xong"},
-        {"from": 0, "to": 1, "text": "Yêu cầu HTTP, mã hóa bằng khóa phiên"},
-        {"from": 1, "to": 0, "text": "Phản hồi HTTP, mã hóa bằng khóa phiên", "reply": true}
+        {
+          "from": 0,
+          "to": 1,
+          "text": "ClientHello: bộ mã, nửa khóa, tên máy chủ"
+        },
+        {
+          "from": 1,
+          "to": 0,
+          "text": "ServerHello: bộ mã đã chọn, nửa khóa",
+          "reply": true
+        },
+        {
+          "from": 1,
+          "to": 0,
+          "text": "Từ đây mã hóa: chứng chỉ của máy chủ",
+          "reply": true
+        },
+        {
+          "from": 1,
+          "to": 0,
+          "text": "CertificateVerify: ký bằng khóa riêng",
+          "reply": true
+        }
+      ]
+    },
+    {
+      "kind": "sequence",
+      "heading": "3 · Bắt tay (2), rồi dữ liệu",
+      "actors": [
+        {
+          "name": "Trình duyệt",
+          "icon": "monitor"
+        },
+        {
+          "name": "Máy chủ",
+          "icon": "server"
+        }
+      ],
+      "messages": [
+        {
+          "from": 1,
+          "to": 0,
+          "text": "Finished: máy chủ xong",
+          "reply": true
+        },
+        {
+          "from": 0,
+          "to": 1,
+          "text": "Finished: trình duyệt xong"
+        },
+        {
+          "from": 0,
+          "to": 1,
+          "text": "Yêu cầu HTTP, mã hóa bằng khóa phiên"
+        },
+        {
+          "from": 1,
+          "to": 0,
+          "text": "Phản hồi HTTP, mã hóa bằng khóa phiên",
+          "reply": true
+        }
       ]
     },
     {
       "kind": "notes",
-      "heading": "3 · Nhớ: giới hạn của HTTPS",
+      "heading": "4 · Nhớ: giới hạn của HTTPS",
       "items": [
         "Tên máy chủ vẫn nằm sẵn trong ClientHello, ai nghe lén cũng thấy.",
         "Chứng chỉ chỉ gắn khóa với tên: nó không bảo đảm trang đáng tin.",

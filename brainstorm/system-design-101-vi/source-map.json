@@ -1160,11 +1160,11 @@
         },
         {
           "id": "sd-04-023",
-          "title_vi": null,
+          "title_vi": "Các tầng bộ nhớ, đo trên một máy: thanh ghi, bộ đệm, bộ nhớ chính, đĩa, mạng",
           "title_source": "Types of Memory",
           "source_url": "https://bytebytego.com/guides/types-of-memory",
           "source_path": "data/guides/types-of-memory.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "e34db46a5a4684732ddd7ffc2cd17e5cf0f25a1e",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/types-of-memory.md"
         },

@@ -1,0 +1,18 @@
+{
+  "id": "sd-10-005",
+  "title": "Cây Java Collection",
+  "subtitle": "Một gốc, ba nhánh chính.",
+  "desc": "Ba nhóm thẻ. Phần gốc: Iterable cho phép duyệt từng phần tử và Collection kế thừa nó. Ba nhánh chính của Collection: List, Set, Queue, mỗi nhánh có ví dụ lớp cài đặt. Khung cuối nhắc rằng Map nằm ngoài cây Collection.",
+  "sections": [
+    {"kind": "parts", "heading": "Phần gốc",
+     "items": [{"name": "Iterable", "role": "Cho phép duyệt từng phần tử, kể cả bằng vòng lặp for nâng cao.", "icon": "repeat"},
+               {"name": "Collection", "role": "Thao tác cơ bản: thêm, xóa, hỏi phần tử.", "icon": "boxes"}],
+     "flow": [[0, 1]]},
+    {"kind": "parts", "heading": "Ba nhánh chính của Collection",
+     "items": [{"name": "List", "role": "Có thứ tự theo vị trí, cho phép trùng. Ví dụ: ArrayList, LinkedList.", "icon": "list-ordered"},
+               {"name": "Set", "role": "Không chứa phần tử trùng. Ví dụ: HashSet, TreeSet.", "icon": "shuffle"},
+               {"name": "Queue", "role": "Giữ phần tử chờ xử lý. Ví dụ: PriorityQueue, ArrayDeque.", "icon": "inbox"}]},
+    {"kind": "notes", "heading": "Nhớ gì",
+     "items": ["Map nằm ngoài cây Collection.", "Đọc tài liệu của lớp cụ thể, không chỉ tên interface.", "Hình là bản rút gọn của cây thật."]}
+  ]
+}

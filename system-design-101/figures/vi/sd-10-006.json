@@ -1,0 +1,18 @@
+{
+  "id": "sd-10-006",
+  "title": "Mã C, C++, Rust chạy trong trình duyệt",
+  "subtitle": "WASM đứng giữa mã gốc và trang web.",
+  "desc": "Ba nhóm thẻ. Đường đi của mã gồm bốn bước: viết hoặc dùng sẵn mã C, C++ hay Rust; biên dịch ra mô-đun WASM; trình duyệt tải mô-đun cùng JavaScript; JavaScript gọi hàm trong mô-đun. Trước và sau: trước đây chỉ JavaScript, nay dùng lại được thư viện mã gốc. Khung cuối nêu ba giới hạn.",
+  "sections": [
+    {"kind": "steps", "heading": "Đường đi của mã",
+     "items": [{"title": "Có sẵn mã gốc", "text": "Viết hoặc dùng lại mã C, C++ hay Rust."},
+               {"title": "Biên dịch ra WASM", "text": "Trình biên dịch tạo mô-đun WASM, không viết tay."},
+               {"title": "Trình duyệt tải về", "text": "Mô-đun được tải cùng JavaScript."},
+               {"title": "JavaScript gọi hàm", "text": "Mô-đun chạy gần tốc độ mã gốc."}]},
+    {"kind": "parts", "heading": "Trước và sau",
+     "items": [{"name": "Chỉ có JavaScript", "role": "Việc nặng gặp vấn đề hiệu năng.", "icon": "code"},
+               {"name": "Có WASM", "role": "Dùng lại thư viện C, C++, Rust có sẵn, ví dụ mã hóa video.", "icon": "package"}]},
+    {"kind": "notes", "heading": "Giới hạn cần nhớ",
+     "items": ["WASM không tự gọi DOM: phải qua JavaScript.", "Ý về đám mây và biên là nhận định của nguồn.", "WASM bổ sung cho JavaScript, không thay thế."]}
+  ]
+}

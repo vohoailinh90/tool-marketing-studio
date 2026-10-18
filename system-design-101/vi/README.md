@@ -57,6 +57,15 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 4. [Làm tốt phỏng vấn thiết kế hệ thống: bảy bước](lessons/sd-05-004/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 5. [Ôn phỏng vấn kỹ thuật: từ danh sách tài liệu đến kế hoạch luyện](lessons/sd-05-005/lesson.md) — viết lại ngày 2026-10-16 để làm sâu (đọc và đếm trực tiếp ba tài liệu công khai); chờ review kỹ thuật.
 
+## Phát triển phần mềm
+
+1. [Sáu loại máy chủ thường gặp](lessons/sd-10-001/lesson.md)
+2. [Dọn rác bộ nhớ hoạt động thế nào?](lessons/sd-10-002/lesson.md)
+3. [Bản đồ kỹ năng của lập trình viên full-stack](lessons/sd-10-003/lesson.md)
+4. [Ngôn ngữ lập trình nào "xanh" nhất?](lessons/sd-10-004/lesson.md)
+5. [Cây phân cấp Java Collection](lessons/sd-10-005/lesson.md)
+6. [Chạy C, C++ và Rust trong trình duyệt bằng WebAssembly](lessons/sd-10-006/lesson.md)
+
 ## DevOps và CI/CD
 
 1. [Tắt êm một API trên Kubernetes: năm chỗ làm rớt request](lessons/sd-13-001/lesson.md)

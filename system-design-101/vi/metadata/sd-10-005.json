@@ -1,0 +1,100 @@
+{
+  "id": "sd-10-005",
+  "title_vi": "Cây phân cấp Java Collection",
+  "language": "vi",
+  "kind": "reference",
+  "content_status": "draft",
+  "source_ref": "sd-10-005",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/java-collection-hierarchy.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/java-collection-hierarchy.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "fff58062008be888e8869cc93f779183532b5eac",
+    "retrieved_body_sha256": "69629a33971963bbafed7d230b97cf6ce363a5ff26df10b25f57a5336f260748",
+    "retrieved_body_bytes": 1748
+  },
+  "diagram": "../diagrams/sd-10-005-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-10-016",
+      "relation": "see-also",
+      "reason_vi": "Các cấu trúc dữ liệu thường dùng mà Java Collections Framework cài đặt thành các lớp cụ thể."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "evidence": "The source statements were read from the pinned source body; the extra statements (inheritance of Collection, List, Set, Queue, Map and the named classes, and the class comments on ordering and duplicates) were read in raw copies of the OpenJDK java.util sources at the pinned commit. Interface names only; no behaviour was run."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending",
+      "reason": "figure text measured in Chromium by scripts.figures check --browser (14 px at a 375 px screen); no whole-lesson render at 320, 375 and 430 px recorded"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "The Java Collections Framework is built on interfaces that define basic operations for lists, sets and maps; each data structure is implemented by several concrete classes.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/java-collection-hierarchy.md",
+      "section": "Body text",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "The Collection interface supports basic operations such as adding, removing and querying elements, and extends Iterable so it can be iterated with the enhanced for-loop or iterators.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/java-collection-hierarchy.md",
+      "section": "Body text",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Collection has three main subinterfaces: List, Set and Queue.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/java-collection-hierarchy.md",
+      "section": "Body text",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Collection extends Iterable; List (through SequencedCollection), Set and Queue extend Collection; Map does not extend Collection.",
+      "source": "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/Collection.java",
+      "section": "Declarations",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "List is an ordered collection that typically allows duplicate elements; Set contains no duplicate elements; Queue is designed for holding elements prior to processing and typically, but not necessarily, orders them first-in-first-out.",
+      "source": "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/List.java",
+      "section": "Class comments",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "ArrayList and LinkedList implement List; HashSet and TreeSet implement Set (TreeSet via NavigableSet); PriorityQueue extends AbstractQueue and ArrayDeque implements Deque, which extends Queue.",
+      "source": "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/ArrayList.java",
+      "section": "Declarations",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "Implementing Iterable allows an object to be the target of the enhanced for statement.",
+      "source": "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/Iterable.java",
+      "section": "Class comment",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    }
+  ],
+  "design_notes_vi": "Hình gồm phần gốc (Iterable, Collection), ba nhánh chính kèm ví dụ lớp cài đặt, và nhắc Map nằm ngoài cây. Bỏ các tầng trung gian như SequencedCollection để thấy ba nhánh của nguồn. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Source text names no concrete classes (they appear only in its image); the lesson adds ArrayList, LinkedList, HashSet, TreeSet, PriorityQueue and ArrayDeque, checked against the OpenJDK sources.",
+    "Source does not say that Map is outside the Collection tree; the lesson adds it from the OpenJDK Map declaration."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích thêm là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
+}

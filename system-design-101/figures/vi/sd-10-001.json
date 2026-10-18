@@ -1,0 +1,18 @@
+{
+  "id": "sd-10-001",
+  "title": "Sáu loại máy chủ, sáu việc",
+  "subtitle": "Mỗi loại làm một việc trên đường đi của yêu cầu.",
+  "desc": "Sáu loại máy chủ chia hai nhóm. Nhóm đưa nội dung tới người dùng: máy chủ web, máy chủ gốc, máy chủ proxy. Nhóm dịch vụ nền của mạng: máy chủ DNS, máy chủ thư, máy chủ FTP. Khung cuối nhắc rằng đây là sáu vai trò, không phải sáu loại máy.",
+  "sections": [
+    {"kind": "parts", "heading": "Đưa nội dung tới người dùng",
+     "items": [{"name": "Máy chủ web", "role": "Giữ trang web và gửi nội dung tới máy khách qua Internet.", "icon": "server"},
+               {"name": "Máy chủ gốc", "role": "Giữ nội dung gốc, để lưu nhớ tạm và phát tới các máy chủ biên.", "icon": "hard-drive"},
+               {"name": "Máy chủ proxy", "role": "Đứng giữa máy khách và máy chủ khác: thêm bảo mật, tăng hiệu năng, ẩn danh.", "icon": "shield"}]},
+    {"kind": "parts", "heading": "Dịch vụ nền của mạng",
+     "items": [{"name": "Máy chủ DNS", "role": "Dịch tên miền thành địa chỉ IP để người dùng gõ tên dễ nhớ.", "icon": "search"},
+               {"name": "Máy chủ thư", "role": "Gửi, nhận và chuyển tiếp thư điện tử giữa các mạng.", "icon": "mail"},
+               {"name": "Máy chủ FTP", "role": "Truyền tệp giữa máy khách và máy chủ qua mạng.", "icon": "folder"}]},
+    {"kind": "notes", "heading": "Nhớ gì",
+     "items": ["Đây là sáu vai trò, không phải sáu loại máy.", "Một máy có thể giữ nhiều vai trò cùng lúc.", "Danh sách chỉ gồm các loại thường gặp."]}
+  ]
+}

@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1153" viewBox="0 0 320 1153" role="img" aria-labelledby="title desc">
+<title id="title">Mã C, C++, Rust chạy trong trình duyệt</title>
+<desc id="desc">Ba nhóm thẻ. Đường đi của mã gồm bốn bước: viết hoặc dùng sẵn mã C, C++ hay Rust; biên dịch ra mô-đun WASM; trình duyệt tải mô-đun cùng JavaScript; JavaScript gọi hàm trong mô-đun. Trước và sau: trước đây chỉ JavaScript, nay dùng lại được thư viện mã gốc. Khung cuối nêu ba giới hạn.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1153" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Mã C, C++, Rust chạy</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">trong trình duyệt</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">WASM đứng giữa mã gốc và trang</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">web.</text>
+<rect x="8" y="123" width="304" height="471" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Đường đi của mã</text>
+<rect x="20" y="168" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="194" r="14" fill="#1d4ed8"/>
+<text x="46" y="199.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="194.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Có sẵn mã gốc</text>
+<text x="70" y="218.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Viết hoặc dùng lại mã C,</text>
+<text x="70" y="237.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">C++ hay Rust.</text>
+<rect x="20" y="277" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="303" r="14" fill="#1d4ed8"/>
+<text x="46" y="308.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="303.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Biên dịch ra WASM</text>
+<text x="70" y="327.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Trình biên dịch tạo mô-đun</text>
+<text x="70" y="346.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">WASM, không viết tay.</text>
+<polyline points="46,257 46,275" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="386" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="412" r="14" fill="#1d4ed8"/>
+<text x="46" y="417.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="412.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Trình duyệt tải về</text>
+<text x="70" y="436.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mô-đun được tải cùng</text>
+<text x="70" y="455.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">JavaScript.</text>
+<polyline points="46,366 46,384" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="495" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="521" r="14" fill="#1d4ed8"/>
+<text x="46" y="526.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">4</text>
+<text x="70" y="521.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">JavaScript gọi hàm</text>
+<text x="70" y="545.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mô-đun chạy gần tốc độ mã</text>
+<text x="70" y="564.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">gốc.</text>
+<polyline points="46,475 46,493" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="606" width="304" height="265" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="634.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Trước và sau</text>
+<rect x="20" y="651" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="694.5" r="18" fill="#0f766e"/><g transform="translate(39.2 683.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></g>
+<text x="78" y="677.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Chỉ có JavaScript</text>
+<text x="78" y="701.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Việc nặng gặp vấn đề hiệu</text>
+<text x="78" y="720.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">năng.</text>
+<rect x="20" y="752" width="280" height="107" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="805.5" r="18" fill="#0f766e"/><g transform="translate(39.2 794.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"/><path d="M12 22V12"/><polyline points="3.29 7 12 12 20.71 7"/><path d="m7.5 4.27 9 5.15"/></g>
+<text x="78" y="778.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Có WASM</text>
+<text x="78" y="802.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Dùng lại thư viện C, C++,</text>
+<text x="78" y="821.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Rust có sẵn, ví dụ mã hóa</text>
+<text x="78" y="841.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">video.</text>
+<rect x="8" y="883" width="304" height="262" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="911.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Giới hạn cần nhớ</text>
+<rect x="20" y="928" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="951" r="11" fill="#16a34a"/>
+<polyline points="37.9,951.4 41.7,955.4 48.5,947" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="954.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">WASM không tự gọi DOM:</text>
+<text x="64" y="973.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">phải qua JavaScript.</text>
+<rect x="20" y="999" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1022" r="11" fill="#16a34a"/>
+<polyline points="37.9,1022.4 41.7,1026.4 48.5,1018" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1025.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ý về đám mây và biên là</text>
+<text x="64" y="1044.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhận định của nguồn.</text>
+<rect x="20" y="1070" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1093" r="11" fill="#16a34a"/>
+<polyline points="37.9,1093.4 41.7,1097.4 48.5,1089" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1096.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">WASM bổ sung cho</text>
+<text x="64" y="1115.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">JavaScript, không thay thế.</text>
+</g>
+</svg>

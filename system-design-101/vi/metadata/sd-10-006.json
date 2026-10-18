@@ -1,0 +1,88 @@
+{
+  "id": "sd-10-006",
+  "title_vi": "Chạy C, C++ và Rust trong trình duyệt bằng WebAssembly",
+  "language": "vi",
+  "kind": "flow",
+  "content_status": "draft",
+  "source_ref": "sd-10-006",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/is-it-possible-to-run-c-c++-or-rust-on-a-web-browser.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/is-it-possible-to-run-c-c++-or-rust-on-a-web-browser.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "eb2cb255577b9e1270efb7b0753ca327986ec831",
+    "retrieved_body_sha256": "16295ce9f0378e5e3ca7ef68f19d48cc9095a75efd80c28c850194175a313e2f",
+    "retrieved_body_bytes": 1158
+  },
+  "diagram": "../diagrams/sd-10-006-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "source_claims_listed_with_the_pinned_source; the author's general-knowledge glosses are not checked against primary documentation"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending",
+      "reason": "figure text measured in Chromium by scripts.figures check --browser (14 px at a 375 px screen); no whole-lesson render at 320, 375 and 430 px recorded"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Traditionally only JavaScript could be used in the browser, and its performance cannot compare with native code such as C/C++ because it is interpreted (the source wording).",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/is-it-possible-to-run-c-c++-or-rust-on-a-web-browser.md",
+      "section": "Body text",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "With WASM, existing native libraries written in C/C++/Rust can run in the browser with near-native performance; for example a C++ video encoding/decoding library.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/is-it-possible-to-run-c-c++-or-rust-on-a-web-browser.md",
+      "section": "Body text",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "This opens possibilities for cloud computing and edge computing: serverless applications with fewer resources and instant startup time (the source claim).",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/is-it-possible-to-run-c-c++-or-rust-on-a-web-browser.md",
+      "section": "Body text",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "WebAssembly is a compilation target for languages like C/C++ and Rust, brings near-native performance and is designed to complement and run alongside JavaScript.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/webassembly/index.md",
+      "section": "Overview",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "WebAssembly is not primarily written by hand; a compiler outputs Wasm; JavaScript loads modules and calls their exports; Wasm cannot currently access the DOM directly and can only call JavaScript.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/webassembly/guides/concepts/index.md",
+      "section": "Concepts and C/C++ compilation",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "MDN says JavaScript meets performance problems on intensive use cases such as 3D games, virtual and augmented reality, computer vision and image or video editing.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/webassembly/guides/concepts/index.md",
+      "section": "Concepts",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    }
+  ],
+  "design_notes_vi": "Hình gồm đường đi của mã bốn bước, thẻ trước và sau, và ba giới hạn. Ý về serverless và khởi động tức thì chỉ nêu như nhận định của nguồn. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Source explains the JavaScript performance gap by saying it is interpreted; the lesson keeps this as the source wording and uses MDN wording (intensive use cases) in its own text.",
+    "Source does not mention the compile step, JavaScript loading the module, or that Wasm cannot access the DOM directly; the lesson adds them from MDN.",
+    "The serverless and edge computing claims are the source's and were not checked."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích thêm là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
+}

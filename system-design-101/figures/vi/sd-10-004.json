@@ -1,0 +1,16 @@
+{
+  "id": "sd-10-004",
+  "title": "Đo năng lượng của ngôn ngữ",
+  "subtitle": "Đọc cách làm trước khi đọc kết quả.",
+  "desc": "Ba nhóm thẻ. Cách làm của nghiên cứu gồm ba bước: chọn mười bài toán chuẩn, viết mỗi bài bằng từng ngôn ngữ, đo thời gian chạy, bộ nhớ và năng lượng. Điều tóm tắt nêu gồm ba ý. Đọc thận trọng gồm ba ý.",
+  "sections": [
+    {"kind": "steps", "heading": "Cách làm của nghiên cứu",
+     "items": [{"title": "Chọn bài toán", "text": "Mười bài toán chuẩn (benchmark)."},
+               {"title": "Viết bằng mỗi ngôn ngữ", "text": "Cùng một bài, nhiều ngôn ngữ."},
+               {"title": "Đo ba thứ", "text": "Thời gian chạy, bộ nhớ, năng lượng."}]},
+    {"kind": "notes", "heading": "Điều tóm tắt nêu",
+     "items": ["Ngôn ngữ chậm hơn có thể tốn ít năng lượng hơn, và ngược lại.", "Mức dùng bộ nhớ ảnh hưởng tới năng lượng.", "Kết quả giúp kỹ sư chọn ngôn ngữ."]},
+    {"kind": "notes", "heading": "Đọc thận trọng",
+     "items": ["Mười bài toán chuẩn không phải ứng dụng của bạn.", "Bài nguồn tự nói cách nhìn này có thể gây tranh cãi.", "Nguồn ghi hai số ngôn ngữ khác nhau: kiểm bản gốc."]}
+  ]
+}

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="740" viewBox="0 0 320 740" role="img" aria-labelledby="title desc"><title id="title">SOAP, REST, GraphQL và RPC: bốn góc nhìn giao tiếp</title><desc id="desc">Bốn khái niệm khác cấp độ; ví dụ đọc tên sách và giữ sách. Không xếp hạng tốc độ, không vẽ dòng thời gian thay thế.</desc><rect width="320" height="740" fill="#f8fafc"/><g font-family="Arial, sans-serif" font-size="16" fill="#0f172a"><text x="16" y="32" font-size="20" font-weight="bold">NHÌN VÀO ĐIỀU GÌ?</text>
+<rect x="12" y="55" width="296" height="138" rx="12" fill="#dbeafe"/><text x="22" y="84" font-weight="bold">SOAP · khung thông điệp</text>
+<text x="22" y="122">Envelope chứa Body</text>
+<rect x="12" y="210" width="296" height="138" rx="12" fill="#dcfce7"/><text x="22" y="239" font-weight="bold">REST · phong cách kiến trúc</text>
+<text x="22" y="277">Tài nguyên và biểu diễn</text>
+<text x="22" y="306">Giao diện thống nhất</text>
+<rect x="12" y="365" width="296" height="138" rx="12" fill="#fef3c7"/><text x="22" y="394" font-weight="bold">GraphQL · truy vấn dữ liệu</text>
+<text x="22" y="432">Chọn trường theo schema</text>
+<rect x="12" y="520" width="296" height="138" rx="12" fill="#fce7f3"/><text x="22" y="549" font-weight="bold">RPC · gọi thao tác từ xa</text>
+<text x="22" y="587">giuSach(42) → kết quả</text>
+<text x="16" y="705">Không phải bốn đời thay thế nhau.</text></g></svg>

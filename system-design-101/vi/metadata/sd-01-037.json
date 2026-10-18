@@ -1,0 +1,72 @@
+{
+  "id": "sd-01-037",
+  "title_vi": "HTTP/1.1, HTTP/2, HTTP/3: dữ liệu chờ nhau ở đâu?",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "draft",
+  "source_ref": "sd-01-037",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/http1-http2-http3.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/http1-http2-http3.md",
+    "blob_sha": "ffa9adcf029fa16a3cc9de2497555ebb67e1546c",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "9af46a80a281ff6129efc1432a267b950d396b3650abb3c9082c241ac325f2a5",
+    "retrieved_body_bytes": 1146
+  },
+  "diagram": "../diagrams/sd-01-037-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-16"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-16",
+      "evidence": "Đọc RFC9112§9.3.2–9.4, RFC9113§1, RFC9114§1–3 (reliable per-stream và UDP blocking), Chromium QUIC hiện hành và bài2013 cho tên lịch sử. Không benchmark thật."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "new lesson awaiting current-head review"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-16",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "evidence": "Chromium cục bộ toàn bài/details mở320/375/430px không tràn ngang/chữ SVG ngoài hình, cỡ nhỏ nhất14.4/16/16px. Đã xem ảnh320px; chưa kiểm tra GitHub/thiết bị thật/người học."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "HTTP/1.1 pipelining có phản hồi theo thứ tự, có thể dùng nhiều kết nối.",
+      "source": "https://www.rfc-editor.org/rfc/rfc9112.html#section-9.3.2"
+    },
+    {
+      "claim_vi": "HTTP/2 ghép khung nhiều luồng nhưng không giải quyết chặn đầu hàng TCP.",
+      "source": "https://www.rfc-editor.org/rfc/rfc9113.html#section-1"
+    },
+    {
+      "claim_vi": "HTTP/3 dùng QUIC trên UDP, giao tin cậy đúng thứ tự từng luồng; một luồng mất gói không bắt luồng khác chờ ở tầng truyền tải, UDP bị chặn có thể làm kết nối thất bại.",
+      "source": "https://www.rfc-editor.org/rfc/rfc9114.html#section-1"
+    }
+  ],
+  "design_notes_vi": "Ba thẻ so sánh phạm vi một kết nối, không timeline hoặc xếp hạng hiệu năng; ví dụ thư viện nguyên bản.",
+  "editorial_note_vi": "Nháp giáo dục, chưa đo hiệu năng hoặc triển khai ba phiên bản thật.",
+  "source_deviations": [
+    "Phạm vi HTTP/1.1 rõ ràng, pipelining không bỏ thứ tự phản hồi.",
+    "Không lấy năm thử nghiệm làm năm công bố chuẩn, không đồng nhất QUIC ban đầu với chuẩn hiện hành.",
+    "HTTP/3 tránh chặn giao dữ liệu giữa các luồng ở tầng truyền tải, không tránh mọi độ trễ hoặc bảo đảm nhanh hơn."
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "id": "sd-04-009",
+  "title_vi": "Vì sao Kafka nhanh: ghi nối tiếp, gom lô, gửi thẳng từ page cache",
+  "language": "vi",
+  "kind": "flow",
+  "content_status": "draft",
+  "source_ref": "sd-04-009",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/why-is-kafka-fast.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/why-is-kafka-fast.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a partial clone of the source repository; git hash-object of the retrieved body matches the source-map blob. No source-image bytes used.",
+    "blob_sha": "a0f105a32e5269a9742ae14015fee206f20b1816",
+    "retrieved_body_sha256": "3422364677cccf4226cdeeff43b774a2b44e76e31f7028a6b15e49fb57ccd3ba",
+    "retrieved_body_bytes": 1672
+  },
+  "diagram": "../diagrams/sd-04-009-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-04-006",
+      "relation": "prerequisite",
+      "reason_vi": "Topic, partition và nhật ký của Kafka."
+    },
+    {
+      "lesson_id": "sd-04-020",
+      "relation": "related",
+      "reason_vi": "Ghi nối tiếp cũng là ý tưởng của LSM-tree."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "evidence": "The Persistence and Efficiency sections of the Kafka design page were read from a partial clone of apache/kafka and the producer parameters from librdkafka CONFIGURATION.md; the batching numbers and the sendfile count come from the author's run on Kafka 4.4.0 (three brokers on one machine, confluent-kafka 2.16.0, strace on the leader broker) on 2026-10-18."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright) rendered lesson.md (markdown-it, tables enabled, every <details> open, a 16 px page gutter) at each width: the page never scrolled sideways and the figure was scaled to the column; the smallest SVG font-size times that scale is the recorded minimum at 320 px. `python3 -m scripts.figures check --browser` measured every line of the figure in Chromium inside its box. Not GitHub, not a real phone and not learner testing."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Kafka relies on the filesystem and the OS pagecache rather than an in-process cache; linear reads and writes are optimised by read-ahead and write-behind; a log of appended files gives O(1) operations instead of B-tree seeks.",
+      "source": "https://github.com/apache/kafka/blob/65566690ca1ddb584388c1026e2ff6673e9c6f19/docs/design/design.md",
+      "section": "Persistence: Don't fear the filesystem; Constant Time Suffices",
+      "verified_by": "Read from a partial clone of apache/kafka at commit 65566690ca1ddb584388c1026e2ff6673e9c6f19."
+    },
+    {
+      "claim_vi": "After disk patterns, the two inefficiencies are too many small I/O operations and excessive byte copying; the protocol groups messages into message sets; a shared binary format lets the broker use sendfile, avoiding the four-copy, two-syscall path so only the final copy to the NIC buffer remains; batches can be compressed end to end and stay compressed on disk and in transit.",
+      "source": "https://github.com/apache/kafka/blob/65566690ca1ddb584388c1026e2ff6673e9c6f19/docs/design/design.md",
+      "section": "Efficiency; End-to-end Batch Compression",
+      "verified_by": "Read from a partial clone of apache/kafka at commit 65566690ca1ddb584388c1026e2ff6673e9c6f19."
+    },
+    {
+      "claim_vi": "TLS/SSL libraries run in user space, so sendfile is not used when SSL is enabled.",
+      "source": "https://github.com/apache/kafka/blob/65566690ca1ddb584388c1026e2ff6673e9c6f19/docs/design/design.md",
+      "section": "Efficiency",
+      "verified_by": "Read from a partial clone of apache/kafka at commit 65566690ca1ddb584388c1026e2ff6673e9c6f19."
+    },
+    {
+      "claim_vi": "librdkafka's linger.ms (alias of queue.buffering.max.ms, default 5) delays sending to build larger batches; batch.num.messages caps messages per MessageSet.",
+      "source": "https://github.com/confluentinc/librdkafka/blob/8c03f75a31ca61d08b2cc2ddc5b233b80d14bdad/CONFIGURATION.md",
+      "section": "linger.ms; batch.num.messages",
+      "verified_by": "Read from a partial clone of confluentinc/librdkafka at commit 8c03f75a31ca61d08b2cc2ddc5b233b80d14bdad."
+    },
+    {
+      "claim_vi": "Measured once on Kafka 4.4.0: 50,000 messages of 100 bytes with batch.num.messages=1 took 8.30 s and 50,000 Produce requests; with linger.ms=5 they took 0.07 s and 11 requests; while one consumer read 100,000 messages (a 14.0 MB log segment) strace on the leader broker counted 68 sendfile calls returning 15.6 MB in total.",
+      "source": "https://github.com/apache/kafka/blob/65566690ca1ddb584388c1026e2ff6673e9c6f19/docs/design/design.md",
+      "section": "Author's experiment",
+      "verified_by": "Author's own run on 2026-10-18; request counts from librdkafka statistics; one machine, so network round trips are near zero."
+    },
+    {
+      "claim_vi": "Two design choices make Kafka fast: sequential I/O and zero copy; without zero copy data goes disk, OS cache, application, socket buffer, network card; with zero copy the OS cache sends data to the network card via sendfile().",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/why-is-kafka-fast.md",
+      "section": "Body",
+      "verified_by": "Source body read."
+    }
+  ],
+  "design_notes_vi": "Ba quyết định thiết kế, bốn lần chép của đường thường theo tài liệu Kafka, và số đo thật. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "The source gives two reasons; the lesson adds batching and batch compression from the Kafka design document and measures batching.",
+    "The lesson adds that Kafka does not use sendfile with SSL/TLS, which the source omits."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

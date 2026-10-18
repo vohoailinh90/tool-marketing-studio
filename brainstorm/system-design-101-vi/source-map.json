@@ -1340,11 +1340,11 @@
         },
         {
           "id": "sd-04-041",
-          "title_vi": null,
+          "title_vi": "Các khái niệm của sharding: chia bảng trên một máy trước khi chia ra nhiều máy",
           "title_source": "Key Concepts to Understand Database Sharding",
           "source_url": "https://bytebytego.com/guides/key-concepts-to-understand-database-sharding",
           "source_path": "data/guides/key-concepts-to-understand-database-sharding.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "15a9c8746a22b20f1689a07e1e4cadc549f7dffd",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/key-concepts-to-understand-database-sharding.md"
         },

@@ -486,6 +486,8 @@ class StrictnessTests(unittest.TestCase):
                             ("another version", STATE.replace("state:v1", "state:v2")),
                             ("not JSON", "<!-- codex-review-state:v1 {not json} -->"),
                             ("not an object", "<!-- codex-review-state:v1 [1, 2] -->"),
+                            ("NaN is not JSON", '<!-- codex-review-state:v1 {"status": NaN} -->'),
+                            ("Infinity is not JSON", '<!-- codex-review-state:v1 {"status": -Infinity} -->'),
                             ("no closing", STATE.replace(" -->", ""))):
             with self.subTest(label):
                 body = SUMMARY.replace("<!-- codex-pull-request-review-summary -->\n",
@@ -493,6 +495,14 @@ class StrictnessTests(unittest.TestCase):
                 self.assertNotEqual(body, SUMMARY)
                 code, out = self.run([comment(2, BOT, body, at(1))])
                 self.assertIn("round 1: gh:2 -- UNRECOGNIZED", out)
+
+    def test_a_state_line_nested_deeper_than_the_parser_reads_counts_instead_of_crashing(self):
+        deep = '<!-- codex-review-state:v1 {"a":' + "[" * 200000 + "]" * 200000 + "} -->"
+        body = SUMMARY.replace("<!-- codex-pull-request-review-summary -->\n",
+                               "<!-- codex-pull-request-review-summary -->\n" + deep + "\n", 1)
+        self.assertNotEqual(body, SUMMARY)
+        code, out = self.run([comment(2, BOT, body, at(1))])
+        self.assertIn("round 1: gh:2 -- UNRECOGNIZED", out)
 
     def test_two_state_lines_count(self):
         body = STATE_SUMMARY.replace(STATE + "\n", STATE + "\n" + STATE + "\n", 1)

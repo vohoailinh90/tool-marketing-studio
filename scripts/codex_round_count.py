@@ -174,7 +174,7 @@ SUMMARY_LINE = re.compile(r"\s*(?:" + re.escape(SUMMARY_MARKER) + r"|## Codex Re
 # JSON object (<!-- codex-review-state:v1 {"code_review":{...},"security_review":{...}} -->).
 STATE_LINE = re.compile(r"\s*<!-- codex-review-state:v1 (\{.*\}) -->\s*")
 INLINE_KEYS = ("path", "diff_hunk", "pull_request_review_id")
-AFTER ={"review_after": "review", "comment_after": "comment", "inline_after": "inline"}  # the second pass
+AFTER = {"review_after": "review", "comment_after": "comment", "inline_after": "inline"}  # the second pass
 LISTS = {"review": "reviews", "comment": "issue comments", "inline": "review comments"}
 
 # A review request: review, review for ..., or security review. Other mentions start a task (a FIX, say,
@@ -299,14 +299,19 @@ def classify_bot(role: str, body: str) -> str:
     return "unknown"
 
 
+def reject_constant(name: str):
+    """json.loads reads NaN and Infinity; they are not JSON, so a payload holding one is not a state line."""
+    raise ValueError(f"{name} is not JSON")
+
+
 def is_state_line(line: str) -> bool:
     """The summary comment's hidden status line: one HTML comment holding a JSON object, nothing else."""
     match = STATE_LINE.fullmatch(line)
     if not match:
         return False
     try:
-        return isinstance(json.loads(match.group(1)), dict)
-    except ValueError:
+        return isinstance(json.loads(match.group(1), parse_constant=reject_constant), dict)
+    except (ValueError, RecursionError):  # a payload nested deeper than the parser reads is a post to count, not a crash
         return False
 
 

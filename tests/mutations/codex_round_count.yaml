@@ -188,6 +188,14 @@ mutations:
   find: "        return isinstance(json.loads(match.group(1)), dict)\n"
   replace: "        return True\n"
   test: tests.test_codex_round_count.StrictnessTests.test_a_state_line_that_is_not_the_one_codex_writes_counts
+- label: a state line nested deeper than the parser reads crashes the count
+  find: "    except (ValueError, RecursionError):  # a payload nested deeper than the parser reads is a post to count, not a crash\n"
+  replace: "    except ValueError:\n"
+  test: tests.test_codex_round_count.StrictnessTests.test_a_state_line_nested_deeper_than_the_parser_reads_counts_instead_of_crashing
+- label: NaN and Infinity pass for JSON in a state line
+  find: "json.loads(match.group(1), parse_constant=reject_constant)"
+  replace: "json.loads(match.group(1))"
+  test: tests.test_codex_round_count.StrictnessTests.test_a_state_line_that_is_not_the_one_codex_writes_counts
 - label: a summary may hold any number of state lines
   find: "    return sum(is_state_line(line) for line in lines) <= 1 and all(\n"
   replace: "    return all(\n"

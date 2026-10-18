@@ -423,7 +423,7 @@ mutations:
   replace: "    if exports in (\"badged\", \"done\"):\n        want |= {f\"{number:02d}.png\""
   test: tests.test_sd101_slides.FolderTests.test_a_badged_export_is_the_pptx_alone
 - label: a pptx with the moda.app badge is recorded as done
-  find: "            elif exports == \"done\" and pptx_badges(path)[0]:"
+  find: "            elif exports == \"done\" and badged:  # files recorded done are the ones that may go to Facebook"
   replace: "            elif False:"
   test: tests.test_sd101_slides.FolderTests.test_a_pptx_with_the_moda_badge_is_never_recorded_as_done
 - label: every pptx is taken for one with the moda.app badge
@@ -435,10 +435,14 @@ mutations:
   replace: "    record[\"exports\"] = \"done\""
   test: tests.test_sd101_slides.FinishTests.test_exported_badged_records_a_pptx_with_the_moda_badge_alone_but_never_as_done
 - label: a badge-free pptx is recorded as badged
-  find: "                if not badged:  # a badge-free file belongs in done, with its PNG files"
-  replace: "                if False:  # a badge-free file belongs in done, with its PNG files"
+  find: "            elif exports == \"badged\" and not badged:  # a badge-free file belongs in done, with its PNG files"
+  replace: "            elif False:  # a badge-free file belongs in done, with its PNG files"
   test: tests.test_sd101_slides.FolderTests.test_a_badge_free_pptx_is_never_recorded_as_badged
 - label: a pptx whose badge was removed from some slides is recorded as badged
-  find: "                elif badged < total:  # the badge is never removed, not even from one slide"
-  replace: "                elif False:  # the badge is never removed, not even from one slide"
+  find: "            elif exports == \"badged\" and badged < total:  # the badge is never removed, not even from one slide"
+  replace: "            elif False:  # the badge is never removed, not even from one slide"
   test: tests.test_sd101_slides.FolderTests.test_a_pptx_whose_badge_was_removed_from_some_slides_is_never_recorded_as_badged
+- label: a pptx short of the deck's slides is recorded
+  find: "            if total != record[\"slide_count\"]:  # a file short of slides is not the deck, badge or no badge"
+  replace: "            if False:  # a file short of slides is not the deck, badge or no badge"
+  test: tests.test_sd101_slides.FolderTests.test_a_pptx_short_of_the_deck_s_slides_is_never_recorded

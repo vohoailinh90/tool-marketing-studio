@@ -431,16 +431,19 @@ def folder_problems(slides_dir: pathlib.Path, lesson_id: str) -> list[str]:
             damage = pptx_damage(path)
             if damage:
                 problems.append(f"{name} is not a PowerPoint file: {damage}")
-            elif exports == "done" and pptx_badges(path)[0]:  # files recorded done are the ones that may go to Facebook
+                continue
+            badged, total = pptx_badges(path)
+            if total != record["slide_count"]:  # a file short of slides is not the deck, badge or no badge
+                problems.append(f"{name} holds {total} slides, the deck {record['slide_count']}: export the whole deck "
+                                "from Moda again")
+            elif exports == "done" and badged:  # files recorded done are the ones that may go to Facebook
                 problems.append(f"{name} carries the moda.app badge: record it with `exported {lesson_id} --badged`")
-            elif exports == "badged":
-                badged, total = pptx_badges(path)
-                if not badged:  # a badge-free file belongs in done, with its PNG files
-                    problems.append(f"{name} does not carry the moda.app badge: add its PNG files and record it with "
-                                    f"`exported {lesson_id}`")
-                elif badged < total:  # the badge is never removed, not even from one slide
-                    problems.append(f"{name} carries the moda.app badge on {badged} of {total} slides: the badge is "
-                                    "never removed, so export the deck from Moda again")
+            elif exports == "badged" and not badged:  # a badge-free file belongs in done, with its PNG files
+                problems.append(f"{name} does not carry the moda.app badge: add its PNG files and record it with "
+                                f"`exported {lesson_id}`")
+            elif exports == "badged" and badged < total:  # the badge is never removed, not even from one slide
+                problems.append(f"{name} carries the moda.app badge on {badged} of {total} slides: the badge is never "
+                                "removed, so export the deck from Moda again")
     return problems
 
 

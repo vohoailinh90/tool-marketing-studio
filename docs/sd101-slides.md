@@ -55,8 +55,8 @@ finished deck: `export` each page as PNG (`pixel_ratio` 1) and the whole deck as
 (the host `assets-cdn.moda.app` must be in the environment's allowed domains), save them as above
 (`<id>.pptx`, `01.png` to `NN.png`) and run `exported <id> --publish`, which checks the files and records `exports: done`.
 The check opens every file: a PNG must be whole (every chunk's checksum, an image stream that inflates to its end, an
-`IEND` chunk and nothing after it) and exactly 1920x1080; a PPTX must be a ZIP archive that reads through and holds
-`[Content_Types].xml` and `ppt/presentation.xml`.
+`IEND` chunk and nothing after it) and exactly 1920x1080; a PPTX must be a ZIP archive that reads through, holds
+`[Content_Types].xml` and `ppt/presentation.xml`, and has as many slides as `slide_count` (badged or not).
 Re-exporting does not change the slides, so it needs no claim.
 
 The owner decided on 2026-10-18 that a deck's PPTX may also go into the repository while the plan is free, badge and all:

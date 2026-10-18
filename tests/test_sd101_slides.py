@@ -55,7 +55,7 @@ def png(path: Path, width: int = 1920, height: int = 1080) -> None:
     path.write_bytes(png_bytes(width, height))
 
 
-def pptx(path: Path, parts: tuple[str, ...] = slides.PPTX_PARTS, badged: bool = False, count: int = 1,
+def pptx(path: Path, parts: tuple[str, ...] = slides.PPTX_PARTS, badged: bool = False, count: int = 8,
          stripped: int = 0) -> None:
     """A minimal presentation of `count` slides; `badged` puts the picture Moda's free plan adds, named as Moda does, on
     every slide but the last `stripped` ones."""
@@ -824,7 +824,7 @@ class FinishTests(Sessions):
         self.assertEqual(1, code)
         self.assertIn("sd-01-001.pptx is missing", err)
         self.assertEqual("pending", self.record(a, "sd-01-001")["exports"])
-        pptx(folder / "sd-01-001.pptx")
+        pptx(folder / "sd-01-001.pptx", count=10)
         for number in range(1, 11):
             png(folder / f"{number:02d}.png")
         code, _, err = self.run_in(a, "exported", "sd-01-001", "--publish")
@@ -840,7 +840,7 @@ class FinishTests(Sessions):
         code, _, err = self.run_in(a, "exported", "sd-01-001", "--badged")
         self.assertEqual(1, code)
         self.assertIn("sd-01-001.pptx is missing", err)
-        pptx(folder / "sd-01-001.pptx", badged=True)
+        pptx(folder / "sd-01-001.pptx", badged=True, count=10)
         for number in range(1, 11):
             png(folder / f"{number:02d}.png")
         code, _, err = self.run_in(a, "exported", "sd-01-001")
@@ -868,7 +868,7 @@ class FinishTests(Sessions):
 
     def exports_in(self, clone: Path) -> Path:
         folder = clone / "store" / "lessons" / "sd-01-001" / "slides"
-        pptx(folder / "sd-01-001.pptx")
+        pptx(folder / "sd-01-001.pptx", count=10)
         for number in range(1, 11):
             png(folder / f"{number:02d}.png")
         return folder
@@ -1020,7 +1020,7 @@ class FinishTests(Sessions):
         self.run_in(a, "claim", "sd-01-001", "--publish")
         self.finish(a, "sd-01-001")
         folder = a / "store" / "lessons" / "sd-01-001" / "slides"
-        pptx(folder / "sd-01-001.pptx")
+        pptx(folder / "sd-01-001.pptx", count=10)
         for number in range(1, 11):
             png(folder / f"{number:02d}.png")
         lock = Path(git(a, "rev-parse", "--absolute-git-dir")) / "index.lock"
@@ -1201,11 +1201,23 @@ class FolderTests(unittest.TestCase):
 
     def test_a_pptx_whose_badge_was_removed_from_some_slides_is_never_recorded_as_badged(self) -> None:
         self.write(exports="badged")
-        pptx(self.dir / "sd-01-001.pptx", badged=True, count=10, stripped=1)
-        self.assertEqual(["sd-01-001.pptx carries the moda.app badge on 9 of 10 slides: the badge is never removed, so "
+        pptx(self.dir / "sd-01-001.pptx", badged=True, stripped=1)
+        self.assertEqual(["sd-01-001.pptx carries the moda.app badge on 7 of 8 slides: the badge is never removed, so "
                           "export the deck from Moda again"], self.problems())
-        pptx(self.dir / "sd-01-001.pptx", badged=True, count=10)
+        pptx(self.dir / "sd-01-001.pptx", badged=True)
         self.assertEqual([], self.problems())
+
+    def test_a_pptx_short_of_the_deck_s_slides_is_never_recorded(self) -> None:
+        for exports, badged in (("badged", True), ("done", False)):
+            with self.subTest(exports=exports):
+                self.write(exports=exports)
+                if exports == "done":
+                    self.exports()
+                pptx(self.dir / "sd-01-001.pptx", badged=badged, count=1)
+                self.assertEqual(["sd-01-001.pptx holds 1 slides, the deck 8: export the whole deck from Moda again"],
+                                 self.problems())
+                pptx(self.dir / "sd-01-001.pptx", badged=badged)
+                self.assertEqual([], self.problems())
 
     def test_a_badge_free_pptx_is_never_recorded_as_badged(self) -> None:
         self.write(exports="badged")

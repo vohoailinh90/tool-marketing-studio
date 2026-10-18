@@ -51,6 +51,8 @@ ORDINAL = re.compile(r"^\d+\s*[·.:)]")
 # "1. **Label.** text": an entry of a Markdown ordered list is a bullet like "- text" is.
 ORDERED = re.compile(r"^\d+[.)]\s+")
 TABLE_ROW = re.compile(r"^\|")
+# *emphasis*: the stars hug the words, so "2 * 3 * 4" is left alone
+EMPHASIS = re.compile(r"\*(?=\S)([^*\n]+?)(?<=\S)\*")
 SOURCE_NAME_WORDS = 12  # a source bullet without a link is named by its text up to the first colon, at most this long
 # The `##` sections that hold what the summary slide needs: the lesson's limits, myths and how to choose. Other sections
 # are the lesson's body (a catalogue, an experiment) and are not summary material.
@@ -124,10 +126,10 @@ class Parsed:
 
 
 def clean(text: str) -> str:
-    """Plain text of a Markdown fragment: links keep their label, a typed address becomes `[address]`, emphasis and code marks
-    go, spaces collapse."""
+    """Plain text of a Markdown fragment: links keep their label, a typed address becomes `[address]`, bold, italic and code
+    marks go, spaces collapse."""
     text = ADDRESS.sub(ADDRESS_TOKEN, LINK.sub(r"\1", text))
-    text = text.replace("**", "").replace("`", "")
+    text = EMPHASIS.sub(r"\1", text.replace("**", "")).replace("`", "")
     return re.sub(r"\s+", " ", text).strip()
 
 
@@ -467,16 +469,21 @@ def build(store: pathlib.Path, lesson_id: str) -> Brief:
                  parsed.alt, source, colours, deck, warnings)
 
 
+def escape_markup(text: str) -> str:
+    """Lesson text with a tag-shaped `<p class="note">` in it is shown as text by a Markdown reader, not read as a tag."""
+    return text.replace("<", "\\<")
+
+
 def render(brief: Brief) -> str:
     def show(item: dict) -> str:
         flag = f"  [{item['words']} words: cut to {WORD_BUDGET} or fewer]" if item["over_budget"] else ""
-        return f"{item['text']}{flag}"
+        return f"{escape_markup(item['text'])}{flag}"
 
     out = [f"# Deck brief: {brief.lesson}", "",
            f"- Canvas name: `{brief.canvas_name}`",
            f"- Slides: {brief.slide_count} (the checker allows {SLIDE_COUNTS.start} to {SLIDE_COUNTS.stop - 1}); "
            f"canvas 1920x1080, category `slides`, no brand kit",
-           f"- Figure of the lesson (use it to plan the diagrams): {brief.figure_alt or '(none)'}",
+           f"- Figure of the lesson (use it to plan the diagrams): {escape_markup(brief.figure_alt) or '(none)'}",
            f"- Concepts are taken from: {brief.concept_source}",
            *([f"- The figure's own line breaks are lost in the card text below; open `diagrams/{brief.lesson}-main.svg` "
               "to read the sentences as they are"] if "figure" in brief.concept_source else []),
@@ -506,9 +513,10 @@ def render(brief: Brief) -> str:
                     out += [f"  - {show(item)}" for item in sec["lines"]]
             elif key == "terms":
                 out.append(f"- terms ({len(value)}): " + "; ".join(
-                    f"{t['abbreviation']} = {t['short_meaning']}" for t in value) if value else "- terms: (none)")
+                    f"{t['abbreviation']} = {escape_markup(t['short_meaning'])}" for t in value) if value else "- terms: (none)")
             elif key == "sources":
-                out.append("- sources, by name and never as an address: " + "; ".join(value) if value else "- sources: (none)")
+                out.append("- sources, by name and never as an address: " + escape_markup("; ".join(value))
+                           if value else "- sources: (none)")
             else:
                 out.append(f"- {key}:")
                 out += [f"  - {show(item)}" for item in value]

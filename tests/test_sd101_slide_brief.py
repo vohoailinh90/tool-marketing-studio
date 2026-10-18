@@ -2,6 +2,7 @@
 import dataclasses
 import json
 import pathlib
+import re
 import subprocess
 import sys
 import tempfile
@@ -75,6 +76,18 @@ SVG = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
 <text x="30" y="330" font-size="16" font-weight="bold">3 · Thẻ ba</text>
 <text x="30" y="360" font-size="16" font-weight="normal"><tspan>Có</tspan><tspan> tspan</tspan></text>
 </svg>"""
+
+
+def strings(value):
+    """Every string inside nested dicts and lists."""
+    if isinstance(value, dict):
+        for item in value.values():
+            yield from strings(item)
+    elif isinstance(value, list):
+        for item in value:
+            yield from strings(item)
+    elif isinstance(value, str):
+        yield value
 
 
 class Store:
@@ -206,6 +219,18 @@ class StructureTests(unittest.TestCase):
         concepts = [c for slide in result.slides if "concepts" in slide["material"] for c in slide["material"]["concepts"]]
         self.assertEqual(["1 · Thẻ thứ nhất", "2 · Thẻ hai", "3 · Thẻ ba"], [c["label"] for c in concepts])
         self.assertEqual("Dòng một dòng hai Chọn theo dữ liệu", concepts[0]["line"]["text"])
+
+    def test_italic_marks_go_but_a_sum_with_stars_stays(self):
+        self.assertEqual("dùng load balancer và 2 * 3 * 4", brief.clean("dùng *load balancer* và 2 * 3 * 4"))
+        self.assertEqual("đậm và nghiêng", brief.clean("**đậm** và *nghiêng*"))
+
+    def test_a_tag_shaped_word_is_plain_text_in_the_json_and_escaped_in_the_markdown(self):
+        text = lesson_text(figure_section(3)).replace("nội dung của ý 1 trong bài.", 'thẻ `<p class="note">` trong trang.')
+        result, _ = self.build(text)
+        self.assertEqual('thẻ <p class="note"> trong trang.', result.slides[2]["material"]["concepts"][0]["line"]["text"])
+        markdown = brief.render(result)
+        self.assertIn('thẻ \\<p class="note"> trong trang.', markdown)
+        self.assertNotIn('thẻ <p class="note">', markdown)
 
     def test_code_blocks_and_tables_are_left_out_of_the_slide_lines_and_the_session_is_told(self):
         text = lesson_text(figure_section(3)).replace(
@@ -358,6 +383,16 @@ class RealLessonTests(unittest.TestCase):
                 self.assertTrue(result.slides[-1]["material"]["sources"])
                 self.assertTrue(result.canvas_name.endswith(f"({lesson_id})"))
                 self.assertEqual(brief.build(STORE, lesson_id), result)  # computed, so the same twice
+
+    def test_no_written_lesson_leaves_italic_marks_or_an_unescaped_tag_in_its_brief(self):
+        italic = re.compile(r"\*(?=\S)[^*\n]+?(?<=\S)\*")
+        tag = re.compile(r"(?<!\\)<[A-Za-z/!]")
+        for path in sorted((STORE / "lessons").glob("sd-*/lesson.md")):
+            with self.subTest(lesson=path.parent.name):
+                result = brief.build(STORE, path.parent.name)
+                for text in strings(dataclasses.asdict(result)):  # one string at a time: a lone * in code is no italic
+                    self.assertIsNone(italic.search(text), text)
+                self.assertIsNone(tag.search(brief.render(result)))
 
     def test_no_written_lesson_puts_a_typed_address_in_its_brief(self):
         ids = sorted(path.parent.name for path in (STORE / "lessons").glob("sd-*/lesson.md"))

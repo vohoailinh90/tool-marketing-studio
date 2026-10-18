@@ -97,3 +97,11 @@ mutations:
   find: '        if in_fence or TABLE_ROW.match(stripped):'
   replace: '        if False:'
   test: tests.test_sd101_slide_brief.StructureTests.test_code_blocks_and_tables_are_left_out_of_the_slide_lines_and_the_session_is_told
+- label: italic marks stay in the slide text
+  find: '    text = EMPHASIS.sub(r"\1", text.replace("**", "")).replace("`", "")'
+  replace: '    text = text.replace("**", "").replace("`", "")'
+  test: tests.test_sd101_slide_brief.StructureTests.test_italic_marks_go_but_a_sum_with_stars_stays
+- label: a tag-shaped word is shown to a Markdown reader as a tag
+  find: '    return text.replace("<", "\\<")'
+  replace: '    return text'
+  test: tests.test_sd101_slide_brief.StructureTests.test_a_tag_shaped_word_is_plain_text_in_the_json_and_escaped_in_the_markdown

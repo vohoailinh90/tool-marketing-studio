@@ -1,0 +1,107 @@
+{
+  "id": "sd-06-008",
+  "title_vi": "Năm chiến lược giữ bộ nhớ đệm khớp với cơ sở dữ liệu",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "draft",
+  "source_ref": "sd-06-008",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/top-5-caching-strategies.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-5-caching-strategies.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a git fetch of the pinned commit and hashed as a Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "180d44a1d92ec9dc8f1445cf3f74be2d89175092",
+    "retrieved_body_sha256": "85fbec2b5eb6fbd1aaeda10a1b540dec40d4b11d13d988ea02f4a447cc64a065",
+    "retrieved_body_bytes": 886
+  },
+  "diagram": "../diagrams/sd-06-008-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-06-006",
+      "relation": "context",
+      "reason_vi": "Các tầng bộ nhớ đệm: nơi các chiến lược này được áp dụng."
+    },
+    {
+      "lesson_id": "sd-06-009",
+      "relation": "next",
+      "reason_vi": "Những điều cần cân nhắc khi dùng bộ nhớ đệm."
+    },
+    {
+      "lesson_id": "sd-06-026",
+      "relation": "see_also",
+      "reason_vi": "Một bài khác của nguồn cũng về các chiến lược bộ nhớ đệm."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "evidence": "Microsoft's Cache-Aside pattern and caching guidance read from a local clone of MicrosoftDocs/architecture-center; cache-aside, invalidation, a read/write race, write-through and write-back loss shown with Redis 7.0.15 and SQLite."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright) rendered the full lesson (Markdown to HTML, optional sections open, 16 px side gutters) at each width: no horizontal overflow of the page or of any table; figure drawn by scripts/figures (viewBox width 320, smallest font 15 px) shown at 13.5 px effective at 320 px and 15 px at 375 px; every SVG text box inside the viewBox. python3 -m scripts.figures check --browser passed. Not learner testing and not GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Cache-aside: the application reads the cache, on a miss reads the data store, adds the item to the cache and returns it; on update it writes the data store and invalidates the cache entry. Many caching systems provide read-through and write-through or write-behind; cache-aside emulates read-through when they do not.",
+      "source": "https://github.com/MicrosoftDocs/architecture-center/blob/8e2c239344ee753a88856800b4210a3e27ac1036/docs/patterns/cache-aside-content.md",
+      "section": "Solution",
+      "verified_by": "Read from a local clone of MicrosoftDocs/architecture-center at commit 8e2c239344ee753a88856800b4210a3e27ac1036, the head of its default branch when read on 2026-10-18 (a later change to that branch does not alter this URL)."
+    },
+    {
+      "claim_vi": "Cache-aside does not guarantee consistency: an external process can change the data store at any time; between a write and the next read a reader can briefly see stale data; write-through updates both in one operation so readers see the new value.",
+      "source": "https://github.com/MicrosoftDocs/architecture-center/blob/8e2c239344ee753a88856800b4210a3e27ac1036/docs/patterns/cache-aside-content.md",
+      "section": "Problems and considerations",
+      "verified_by": "Read from a local clone of MicrosoftDocs/architecture-center at commit 8e2c239344ee753a88856800b4210a3e27ac1036, the head of its default branch when read on 2026-10-18 (a later change to that branch does not alter this URL)."
+    },
+    {
+      "claim_vi": "Two write approaches: invalidate on write, or write-through returning only after both updates succeed; treat the cache as a transient store that could disappear and do not keep valuable data only there.",
+      "source": "https://github.com/MicrosoftDocs/architecture-center/blob/8e2c239344ee753a88856800b4210a3e27ac1036/docs/best-practices/caching.md",
+      "section": "Keep the cache consistent on writes; Considerations for using caching",
+      "verified_by": "Read from a local clone of MicrosoftDocs/architecture-center at commit 8e2c239344ee753a88856800b4210a3e27ac1036, the head of its default branch when read on 2026-10-18 (a later change to that branch does not alter this URL)."
+    },
+    {
+      "claim_vi": "With SQLite and Redis 7.0.15 (60 s TTL): a DB update without invalidation returned the old price from the cache with 60 s left; after DEL the next read got the new price; a deliberately ordered race left the DB at 150 and the cache at 120 for 60 s; write-through left both at 170; write-back lost the 210 write when Redis was shut down before the copy, leaving the DB at 200.",
+      "source": "https://github.com/MicrosoftDocs/architecture-center/blob/8e2c239344ee753a88856800b4210a3e27ac1036/docs/patterns/cache-aside-content.md",
+      "section": "Experiment",
+      "verified_by": "Experiment run by the author on 2026-10-18 on one virtual machine: Python 3.13.16 with sqlite3 in memory and a raw RESP client to Redis 7.0.15 started without persistence; the write-back flusher is the author's own loop, not a Redis feature."
+    },
+    {
+      "claim_vi": "Read strategies cache-aside and read-through; write strategies write-around, write-back and write-through; often combined, such as write-around with cache-aside.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-5-caching-strategies.md",
+      "section": "Whole guide",
+      "verified_by": "Source body read at the pinned commit."
+    }
+  ],
+  "design_notes_vi": "Ba khung ghi chú: hai cách đọc, ba cách ghi, và ba kết quả thử nghiệm cho thấy mỗi cách lệch thế nào. Không vẽ mũi tên vì năm cách là lựa chọn, không phải các bước nối tiếp.",
+  "source_deviations": [
+    "Source only lists the five strategies; the lesson adds definitions from Microsoft's architecture guidance and an experiment showing stale reads, a race and write-back data loss."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này (gói L5), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

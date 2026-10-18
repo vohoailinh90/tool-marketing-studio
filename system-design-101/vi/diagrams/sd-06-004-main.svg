@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="885" viewBox="0 0 320 885" role="img" aria-labelledby="title desc">
+<title id="title">Ba nghĩa của chữ biên</title>
+<desc id="desc">Hai khung. Khung một, ba nghĩa của chữ biên. Máy chủ biên giữ bản sao nội dung ở gần người dùng; trong thử nghiệm với máy gốc chậm 200 mili giây, lượt có bản sao trả trong chưa tới 1 mili giây, lượt phải về gốc mất khoảng 200 mili giây. Điện toán biên chạy mã ở gần người dùng, cho phần không lưu sẵn được như trang riêng của từng người. Chơi game trên mây: máy chủ chạy game và gửi về từng khung hình, không có gì để lưu sẵn. Khung hai, cái giá: thêm một bên thứ ba có thể hỏng hay bị chặn; thêm một chỗ có thể bị tấn công để phát nội dung độc; trình duyệt không dùng chung bản đã tải giữa các trang web khác nhau.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="885" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Ba nghĩa của chữ biên</text>
+<text x="16" y="60.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Máy chủ biên, điện toán biên và chơi</text>
+<text x="16" y="79.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">game trên mây giải ba bài toán khác</text>
+<text x="16" y="99.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">nhau.</text>
+<rect x="8" y="119" width="304" height="444" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="147.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Ba nghĩa</text>
+<rect x="20" y="164" width="280" height="126" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="227" r="18" fill="#1d4ed8"/><g transform="translate(39.2 216.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="8" rx="2" ry="2" width="20" x="2" y="2"/><rect height="8" rx="2" ry="2" width="20" x="2" y="14"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></g>
+<text x="78" y="190.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Máy chủ biên</text>
+<text x="78" y="214.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Giữ bản sao ở gần. Đo thử:</text>
+<text x="78" y="233.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">có bản sao thì dưới 1 ms,</text>
+<text x="78" y="253.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">phải về gốc thì khoảng 200</text>
+<text x="78" y="272.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">ms.</text>
+<rect x="20" y="304" width="280" height="126" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="367" r="18" fill="#1d4ed8"/><g transform="translate(39.2 356.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20v2"/><path d="M12 2v2"/><path d="M17 20v2"/><path d="M17 2v2"/><path d="M2 12h2"/><path d="M2 17h2"/><path d="M2 7h2"/><path d="M20 12h2"/><path d="M20 17h2"/><path d="M20 7h2"/><path d="M7 20v2"/><path d="M7 2v2"/><rect height="16" rx="2" width="16" x="4" y="4"/><rect height="8" rx="1" width="8" x="8" y="8"/></g>
+<text x="78" y="330.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Điện toán biên</text>
+<text x="78" y="354.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chạy mã ở gần, cho phần</text>
+<text x="78" y="373.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">không lưu sẵn được như</text>
+<text x="78" y="393.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trang riêng của từng</text>
+<text x="78" y="412.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">người.</text>
+<rect x="20" y="444" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="497.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 486.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"/><rect height="12" rx="2" width="14" x="2" y="6"/></g>
+<text x="78" y="470.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Game trên mây</text>
+<text x="78" y="494.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Máy chủ chạy game, gửi</text>
+<text x="78" y="513.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">về từng khung hình. Không</text>
+<text x="78" y="533.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">có gì để lưu sẵn.</text>
+<rect x="8" y="575" width="304" height="302" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="603.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Cái giá</text>
+<rect x="20" y="620" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="643" r="11" fill="#16a34a"/>
+<polyline points="37.9,643.4 41.7,647.4 48.5,639" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="646.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Thêm một bên thứ ba: họ</text>
+<text x="64" y="665.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hỏng hay bị chặn thì trang</text>
+<text x="64" y="685.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">của bạn hỏng theo.</text>
+<rect x="20" y="711" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="734" r="11" fill="#16a34a"/>
+<polyline points="37.9,734.4 41.7,738.4 48.5,730" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="737.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Thêm một chỗ có thể bị tấn</text>
+<text x="64" y="756.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">công để phát nội dung độc.</text>
+<rect x="20" y="782" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="805" r="11" fill="#16a34a"/>
+<polyline points="37.9,805.4 41.7,809.4 48.5,801" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="808.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Trình duyệt không dùng</text>
+<text x="64" y="827.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chung bản đã tải giữa các</text>
+<text x="64" y="847.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trang web khác nhau.</text>
+</g>
+</svg>

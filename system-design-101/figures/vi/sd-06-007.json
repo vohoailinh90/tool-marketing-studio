@@ -1,0 +1,50 @@
+{
+  "id": "sd-06-007",
+  "title": "Giảm độ trễ: đo trước, chọn sau",
+  "subtitle": "Mỗi cách cắt một khúc khác của thời gian chờ.",
+  "desc": "Ba khung. Khung một, bốn bước: đo xem thời gian nằm ở đâu; chọn cách đánh vào đúng khúc đó; đo lại; ghi cái giá phải trả. Khung hai, sáu cách: chỉ mục cắt thời gian tìm trong cơ sở dữ liệu, thử nghiệm thấy truy vấn từ khoảng 11 đến 13 mili giây còn 1 đến 2 mili giây; bộ nhớ đệm bỏ qua việc tính lại; cân bằng tải bớt hàng chờ ở một máy; CDN rút ngắn quãng đường; bất đồng bộ cho người dùng khỏi chờ việc chậm; nén làm gói nhỏ lại, một tệp JSON lặp nhiều còn khoảng 8 phần trăm. Khung ba, cái giá: chỉ mục làm việc ghi chậm hơn khoảng ba lần trong thử nghiệm; bộ nhớ đệm có thể trả dữ liệu cũ; nén tốn thời gian máy và không làm dữ liệu ngẫu nhiên nhỏ đi.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Cách làm",
+      "items": [
+        {
+          "title": "Đo",
+          "text": "Thời gian nằm ở khúc nào?"
+        },
+        {
+          "title": "Chọn",
+          "text": "Cách đánh vào đúng khúc đó."
+        },
+        {
+          "title": "Đo lại",
+          "text": "Cùng phép đo, so trước và sau."
+        },
+        {
+          "title": "Ghi cái giá",
+          "text": "Mỗi cách đổi lấy một thứ khác."
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Sáu cách, mỗi cách một khúc",
+      "items": [
+        "Chỉ mục: tìm trong cơ sở dữ liệu. Thử: 11 đến 13 ms còn 1 đến 2 ms.",
+        "Bộ nhớ đệm: khỏi tính lại. Cân bằng tải: bớt hàng chờ ở một máy.",
+        "CDN: rút ngắn quãng đường tới người dùng.",
+        "Bất đồng bộ: trả lời ngay, việc chậm làm sau.",
+        "Nén: gói nhỏ lại. Thử: JSON lặp nhiều còn khoảng 8%."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Cái giá",
+      "items": [
+        "Chỉ mục: ghi chậm hơn khoảng ba lần trong thử nghiệm.",
+        "Bộ nhớ đệm: có thể trả dữ liệu cũ.",
+        "Nén: tốn thời gian máy; dữ liệu ngẫu nhiên không nhỏ đi."
+      ]
+    }
+  ]
+}

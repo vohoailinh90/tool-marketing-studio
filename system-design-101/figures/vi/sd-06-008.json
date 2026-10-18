@@ -1,0 +1,22 @@
+{
+  "id": "sd-06-008",
+  "title": "Năm cách giữ bộ nhớ đệm khớp với cơ sở dữ liệu",
+  "subtitle": "Hai cách đọc, ba cách ghi; mỗi cách sai theo một kiểu riêng.",
+  "desc": "Ba khung. Khung một, hai cách đọc: cache-aside, ứng dụng hỏi bộ nhớ đệm, thiếu thì đọc cơ sở dữ liệu rồi tự cất vào; read-through, bộ nhớ đệm tự đi lấy khi thiếu. Khung hai, ba cách ghi: write-through ghi cả hai trong cùng một thao tác; write-around chỉ ghi cơ sở dữ liệu rồi xóa bản trong bộ nhớ đệm; write-back chỉ ghi bộ nhớ đệm, chép xuống cơ sở dữ liệu sau. Khung ba, kết quả thử với Redis và SQLite: sửa cơ sở dữ liệu mà không xóa bản đệm thì đọc ra giá cũ cho tới khi hết hạn; một lượt đọc chậm có thể cất lại giá cũ ngay sau lượt xóa; write-back mất lần ghi chưa chép khi bộ nhớ đệm sập.",
+  "sections": [
+    {"kind": "notes", "heading": "Hai cách đọc",
+     "items": [
+       "Cache-aside: ứng dụng hỏi bộ đệm, thiếu thì đọc cơ sở dữ liệu rồi tự cất vào.",
+       "Read-through: bộ đệm tự đi lấy khi thiếu; ứng dụng chỉ nói chuyện với bộ đệm."]},
+    {"kind": "notes", "heading": "Ba cách ghi",
+     "items": [
+       "Write-through: ghi cả hai trong cùng một thao tác; đọc ngay thấy giá mới.",
+       "Write-around: chỉ ghi cơ sở dữ liệu, rồi xóa bản trong bộ đệm.",
+       "Write-back: chỉ ghi bộ đệm, chép xuống cơ sở dữ liệu sau."]},
+    {"kind": "notes", "heading": "Thử với Redis và SQLite",
+     "items": [
+       "Sửa cơ sở dữ liệu mà quên xóa bản đệm: đọc ra giá cũ tới khi hết hạn.",
+       "Lượt đọc chậm cất lại giá cũ ngay sau lượt xóa: lại cũ thêm một hạn nữa.",
+       "Write-back: bộ đệm sập trước khi chép thì lần ghi đó mất."]}
+  ]
+}

@@ -1,0 +1,121 @@
+{
+  "id": "sd-06-002",
+  "title_vi": "CDN phổ biến vì đâu, và máy chủ biên lưu những gì",
+  "language": "vi",
+  "kind": "flow",
+  "content_status": "draft",
+  "source_ref": "sd-06-002",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/why-are-content-delivery-networks-cdn-so-popular.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/why-are-content-delivery-networks-cdn-so-popular.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a git fetch of the pinned commit and hashed as a Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "cd9f39fdf1edbff93a5b43c92027d3eeb13289a3",
+    "retrieved_body_sha256": "a0921e24cb229e30e323b35d755dd2c5ef9047c75ba12e843fbb2d3e2b799a37",
+    "retrieved_body_bytes": 2202
+  },
+  "diagram": "../diagrams/sd-06-002-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-06-004",
+      "relation": "see_also",
+      "reason_vi": "Bài CDN cho người mới đặt máy chủ biên cạnh điện toán biên và chơi game trên mây."
+    },
+    {
+      "lesson_id": "sd-06-006",
+      "relation": "context",
+      "reason_vi": "CDN là một trong các tầng bộ nhớ đệm từ trình duyệt tới cơ sở dữ liệu."
+    },
+    {
+      "lesson_id": "sd-06-023",
+      "relation": "see_also",
+      "reason_vi": "Một bài khác của nguồn cũng giải thích CDN."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "evidence": "RFC 9111 (XML of the httpwg site) and MDN's CDN glossary entry and HTTP caching guide were read from local clones; nginx 1.24.0 was run as a caching reverse proxy in front of a Python origin."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright) rendered the full lesson (Markdown to HTML, optional sections open, 16 px side gutters) at each width: no horizontal overflow of the page or of any table; figure drawn by scripts/figures (viewBox width 320, smallest font 15 px) shown at 13.5 px effective at 320 px and 15 px at 375 px; every SVG text box inside the viewBox. python3 -m scripts.figures check --browser passed. Not learner testing and not GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "A shared cache stores responses for reuse by more than one user, usually as part of an intermediary; a private cache is dedicated to a single user, often in a user agent.",
+      "source": "https://github.com/httpwg/httpwg.github.io/blob/03f35d852e7b64668ab08fda1a8076d6d44d17ae/specs/rfc9111.xml",
+      "section": "1. Introduction",
+      "verified_by": "Read from a local clone of httpwg/httpwg.github.io at commit 03f35d852e7b64668ab08fda1a8076d6d44d17ae, the head of its default branch when read on 2026-10-18 (a later change to that branch does not alter this URL)."
+    },
+    {
+      "claim_vi": "The unqualified private response directive means a shared cache MUST NOT store the response; no-store applies to private and shared caches; s-maxage overrides max-age and Expires for a shared cache.",
+      "source": "https://github.com/httpwg/httpwg.github.io/blob/03f35d852e7b64668ab08fda1a8076d6d44d17ae/specs/rfc9111.xml",
+      "section": "5.2.2.5, 5.2.2.7, 5.2.2.10",
+      "verified_by": "Read from a local clone of httpwg/httpwg.github.io at commit 03f35d852e7b64668ab08fda1a8076d6d44d17ae, the head of its default branch when read on 2026-10-18 (a later change to that branch does not alter this URL)."
+    },
+    {
+      "claim_vi": "A cache MAY assign a heuristic expiration time when no explicit one is given; it is not required to.",
+      "source": "https://github.com/httpwg/httpwg.github.io/blob/03f35d852e7b64668ab08fda1a8076d6d44d17ae/specs/rfc9111.xml",
+      "section": "4.2.2 Calculating Heuristic Freshness",
+      "verified_by": "Read from a local clone of httpwg/httpwg.github.io at commit 03f35d852e7b64668ab08fda1a8076d6d44d17ae, the head of its default branch when read on 2026-10-18 (a later change to that branch does not alter this URL)."
+    },
+    {
+      "claim_vi": "With nginx 1.24.0 proxy_cache and no other cache settings, each path requested three times: public, max-age=60 gave MISS, HIT, HIT (origin hit once); max-age=60, s-maxage=2 gave MISS, HIT, HIT and EXPIRED after 3 s (origin hit twice); private, no-store, a public response with Set-Cookie, and a response with no Cache-Control were never stored (origin hit three times each).",
+      "source": "https://github.com/httpwg/httpwg.github.io/blob/03f35d852e7b64668ab08fda1a8076d6d44d17ae/specs/rfc9111.xml",
+      "section": "Experiment",
+      "verified_by": "Experiment run by the author on 2026-10-18 on one virtual machine: Python http.server origin on 127.0.0.1 and nginx 1.24.0 (Ubuntu package) with proxy_cache_path and add_header X-Cache-Status $upstream_cache_status; requests sent with curl, origin request counts read from the origin."
+    },
+    {
+      "claim_vi": "MDN lists CDN benefits (less load on own servers, servers nearer users, preconfigured caching) and downsides: a third-party dependency that can fail or be blocked, an extra attack vector, and possibly worse performance because of extra DNS lookups and connections and no cross-origin cache sharing in modern browsers.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/cdn/index.md",
+      "section": "Glossary entry",
+      "verified_by": "Read from a local clone of mdn/content at commit a1aa79c09717761fc72c20bac94bb9c430ed487a, the head of its default branch when read on 2026-10-18 (a later change to that branch does not alter this URL)."
+    },
+    {
+      "claim_vi": "With a managed cache such as a CDN, stored responses can be deleted at any time through dashboards or API calls, which the HTTP caching specification itself does not define.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/web/http/guides/caching/index.md",
+      "section": "Managed caches",
+      "verified_by": "Read from a local clone of mdn/content at commit a1aa79c09717761fc72c20bac94bb9c430ed487a, the head of its default branch when read on 2026-10-18 (a later change to that branch does not alter this URL)."
+    },
+    {
+      "claim_vi": "CDN request flow (edge checks its cache, forwards to origin on a miss, stores a copy), components (origin, edge servers, DNS, control plane) and request routing (GSLB, anycast DNS, IXPs).",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/why-are-content-delivery-networks-cdn-so-popular.md",
+      "section": "CDN Request Flow; The Architecture of CDN; CDN Request Routing",
+      "verified_by": "Source body read at the pinned commit."
+    }
+  ],
+  "design_notes_vi": "Một sơ đồ trình tự cho lượt hỏi (bỏ lượt hết hạn để vừa slide; lượt đó nằm trong thẻ máy biên) và bốn thẻ mảnh ghép. Bảng kết quả thử nghiệm nằm trong bài, không trong hình.",
+  "source_deviations": [
+    "Source's market-size forecast is dropped: no source to check it.",
+    "Source's request-routing section (GSLB, anycast DNS, IXPs) is not explained: no standard document on them was read.",
+    "The lesson adds what decides whether an edge may store a response (RFC 9111 directives) and an nginx experiment."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này (gói L5), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

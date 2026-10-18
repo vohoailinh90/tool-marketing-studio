@@ -57,6 +57,19 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 4. [Làm tốt phỏng vấn thiết kế hệ thống: bảy bước](lessons/sd-05-004/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 5. [Ôn phỏng vấn kỹ thuật: từ danh sách tài liệu đến kế hoạch luyện](lessons/sd-05-005/lesson.md) — viết lại ngày 2026-10-16 để làm sâu (đọc và đếm trực tiếp ba tài liệu công khai); chờ review kỹ thuật.
 
+## Bộ nhớ đệm và hiệu năng
+
+Các bài chưa viết của nhóm này không có trong danh sách; số thứ tự là vị trí của bài trong nhóm.
+
+1. [ELK Stack: thu thập, xử lý, lưu và xem log](lessons/sd-06-001/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
+2. [CDN phổ biến vì đâu, và máy chủ biên lưu những gì](lessons/sd-06-002/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
+3. [Khóa lớn ảnh hưởng thế nào tới việc lưu AOF của Redis](lessons/sd-06-003/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
+4. [CDN cho người mới: máy chủ biên, điện toán biên và chơi game trên mây](lessons/sd-06-004/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
+5. [Redis 101: chạy thử từng điều cơ bản](lessons/sd-06-005/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
+6. [Các tầng bộ nhớ đệm, từ trình duyệt tới cơ sở dữ liệu](lessons/sd-06-006/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
+7. [Các cách giảm độ trễ hay dùng, và vì sao phải đo trước](lessons/sd-06-007/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
+8. [Năm chiến lược giữ bộ nhớ đệm khớp với cơ sở dữ liệu](lessons/sd-06-008/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
+
 ## DevOps và CI/CD
 
 1. [Tắt êm một API trên Kubernetes: năm chỗ làm rớt request](lessons/sd-13-001/lesson.md)
@@ -153,7 +166,7 @@ và hình đạt; không coi đọc nguồn là mọi claim đã đúng, không 
 ## Các nhóm còn lại theo thứ tự nguồn
 
 Tình huống thực tế (đã viết một phần) → Cơ sở dữ liệu và lưu trữ →
-Bộ nhớ đệm và hiệu năng → Thanh toán và công nghệ tài chính → Kiến trúc phần mềm →
+Bộ nhớ đệm và hiệu năng (đã viết một phần) → Thanh toán và công nghệ tài chính → Kiến trúc phần mềm →
 Công cụ và năng suất → Phát triển phần mềm → Đám mây và hệ thống phân tán →
 Hệ thống hoạt động thế nào? → Bảo mật (đã viết một phần).
 

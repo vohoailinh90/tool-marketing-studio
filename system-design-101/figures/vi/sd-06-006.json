@@ -1,0 +1,75 @@
+{
+  "id": "sd-06-006",
+  "title": "Bộ nhớ đệm ở khắp nơi",
+  "subtitle": "Mỗi tầng giữ một bản sao, và mỗi bản sao có thể đã cũ.",
+  "desc": "Ba khung. Phía người dùng: trình duyệt giữ câu trả lời riêng cho một người; CDN giữ bản sao dùng chung ở gần người dùng; proxy ngược có thể trả lời thay máy chủ. Phía máy chủ: dịch vụ giữ dữ liệu trong bộ nhớ của chính nó; Redis là bộ đệm dùng chung giữa nhiều dịch vụ; Kafka giữ nhật ký theo thời hạn để người đọc chậm đuổi kịp; chỉ mục tìm kiếm là bản sao sắp xếp lại để tìm theo chữ. Bên trong cơ sở dữ liệu: vùng đệm giữ các trang vừa đọc, lần đầu đọc ngoài, lần sau trúng vùng đệm; materialized view lưu sẵn kết quả và chỉ đúng tới lần làm mới gần nhất. Câu hỏi cho mọi tầng: bản sao được phép cũ bao lâu?",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Phía người dùng",
+      "items": [
+        {
+          "name": "Trình duyệt",
+          "role": "Bộ đệm riêng của một người, theo lời dặn trong header.",
+          "icon": "globe"
+        },
+        {
+          "name": "CDN",
+          "role": "Bản sao dùng chung, đặt gần người dùng.",
+          "icon": "network"
+        },
+        {
+          "name": "Proxy ngược",
+          "role": "Có thể trả lời thay máy chủ phía sau.",
+          "icon": "scale"
+        }
+      ],
+      "flow": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ]
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Phía máy chủ",
+      "items": [
+        {
+          "name": "Dịch vụ",
+          "role": "Bộ nhớ của chính tiến trình: nhanh nhất, nhưng mỗi máy giữ một bản riêng.",
+          "icon": "server"
+        },
+        {
+          "name": "Redis",
+          "role": "Bộ đệm dùng chung giữa nhiều dịch vụ.",
+          "icon": "zap"
+        },
+        {
+          "name": "Kafka",
+          "role": "Giữ nhật ký theo thời hạn; người đọc chậm vẫn đuổi kịp.",
+          "icon": "inbox"
+        },
+        {
+          "name": "Chỉ mục tìm kiếm",
+          "role": "Bản sao sắp xếp lại để tìm theo chữ.",
+          "icon": "search"
+        }
+      ],
+      "flow": []
+    },
+    {
+      "kind": "notes",
+      "heading": "Bên trong cơ sở dữ liệu",
+      "items": [
+        "Vùng đệm giữ các trang vừa đọc: lần đầu đọc ngoài, lần sau trúng vùng đệm.",
+        "Materialized view lưu sẵn kết quả, chỉ đúng tới lần làm mới gần nhất.",
+        "Câu hỏi cho mọi tầng: bản sao này được phép cũ bao lâu?"
+      ]
+    }
+  ]
+}

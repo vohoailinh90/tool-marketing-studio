@@ -1,0 +1,49 @@
+{
+  "id": "sd-06-003",
+  "title": "Khóa lớn và AOF của Redis: ai phải chờ?",
+  "subtitle": "Khung một là đường đi của một lệnh ghi; khung hai và ba là số đo.",
+  "desc": "Ba khung. Khung một, bốn bước của một lệnh ghi khi bật AOF: Redis đổi dữ liệu trong bộ nhớ; luồng chính gọi write để chép bản ghi vào bộ đệm của hệ điều hành; fsync đẩy xuống đĩa, ở always thì luồng chính làm trước khi trả lời, ở everysec thì luồng nền làm mỗi giây, ở no thì hệ điều hành tự quyết; rồi Redis trả lời. Khung hai, ba chế độ: always an toàn và chậm nhất; everysec là mặc định, có thể mất khoảng một giây dữ liệu; no để hệ điều hành quyết. Khung ba, đo với giá trị 5 MiB trên một máy ảo: tắt AOF, lệnh ghi mất khoảng 6 mili giây; bật AOF ở cả ba chế độ, riêng bước write trên luồng chính mất hàng chục mili giây; chỉ always có thêm fsync; client khác chờ theo.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Một lệnh ghi khi bật AOF",
+      "items": [
+        {
+          "title": "Đổi dữ liệu",
+          "text": "Cập nhật giá trị trong bộ nhớ."
+        },
+        {
+          "title": "write",
+          "text": "Luồng chính chép bản ghi vào bộ đệm hệ điều hành."
+        },
+        {
+          "title": "fsync",
+          "text": "Đẩy xuống đĩa: luồng chính, luồng nền hay hệ điều hành, tùy chế độ."
+        },
+        {
+          "title": "Trả lời",
+          "text": "Client khác chờ suốt lúc đó."
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Ba chế độ fsync",
+      "items": [
+        "always: an toàn nhất, chậm nhất.",
+        "everysec: mặc định; có thể mất khoảng một giây dữ liệu.",
+        "no: hệ điều hành quyết khi nào ghi xuống đĩa."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Đo trên một máy ảo, giá trị 5 MiB",
+      "items": [
+        "Tắt AOF: một lệnh ghi mất khoảng 6 mili giây.",
+        "Bật AOF, cả ba chế độ: riêng bước write trên luồng chính mất hàng chục mili giây.",
+        "Chỉ always có thêm fsync trên luồng chính.",
+        "Client khác chờ theo: chế độ fsync không cứu được khóa lớn."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "id": "sd-06-007",
+  "title_vi": "Các cách giảm độ trễ hay dùng, và vì sao phải đo trước",
+  "language": "vi",
+  "kind": "reference",
+  "content_status": "draft",
+  "source_ref": "sd-06-007",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/top-5-strategies-to-reduce-latency.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-5-strategies-to-reduce-latency.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a git fetch of the pinned commit and hashed as a Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "f71fabebfa9a036df71aa6c34dd20215ae653f68",
+    "retrieved_body_sha256": "96200fa32ab0eeb826363ab655809df3d470299487045257c4ca0e228e28b405",
+    "retrieved_body_bytes": 833
+  },
+  "diagram": "../diagrams/sd-06-007-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-06-025",
+      "relation": "see_also",
+      "reason_vi": "Các con số độ trễ nên biết giúp ước khúc nào dài trước khi đo."
+    },
+    {
+      "lesson_id": "sd-06-028",
+      "relation": "see_also",
+      "reason_vi": "Năm cách cải thiện hiệu năng API trùng nhiều cách với bài này."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "evidence": "PostgreSQL's index chapter and RFC 9110 read from local clones; index and compression measured on PostgreSQL 16.15 and Python 3.13.16 gzip."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright) rendered the full lesson (Markdown to HTML, optional sections open, 16 px side gutters) at each width: no horizontal overflow of the page or of any table; figure drawn by scripts/figures (viewBox width 320, smallest font 15 px) shown at 13.5 px effective at 320 px and 15 px at 375 px; every SVG text box inside the viewBox. python3 -m scripts.figures check --browser passed. Not learner testing and not GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "An index lets the database find and retrieve specific rows much faster, but indexes add overhead to the database system as a whole and should be used sensibly.",
+      "source": "https://github.com/postgres/postgres/blob/45fc51fcbf4534ea2f6f85e36f8155dbd5ba9851/doc/src/sgml/indices.sgml",
+      "section": "Indexes (chapter introduction)",
+      "verified_by": "Read from a local clone of postgres/postgres at commit 45fc51fcbf4534ea2f6f85e36f8155dbd5ba9851, the head of its default branch when read on 2026-10-18 (a later change to that branch does not alter this URL)."
+    },
+    {
+      "claim_vi": "Content codings allow a representation to be compressed without losing information; gzip is a registered content coding.",
+      "source": "https://github.com/httpwg/httpwg.github.io/blob/03f35d852e7b64668ab08fda1a8076d6d44d17ae/specs/rfc9110.xml",
+      "section": "8.4.1 Content Codings",
+      "verified_by": "Read from a local clone of httpwg/httpwg.github.io at commit 03f35d852e7b64668ab08fda1a8076d6d44d17ae, the head of its default branch when read on 2026-10-18 (a later change to that branch does not alter this URL)."
+    },
+    {
+      "claim_vi": "On PostgreSQL 16.15, counting one customer's orders in a 200,000-row table took 11-13 ms with a Seq Scan and 1.3-2.1 ms after an index (Bitmap Index Scan), same result 2001; creating the index took about 105 ms; inserting 200,000 rows took 0.43-0.59 s without an index and 1.4-1.7 s with an index on a random text column (three runs).",
+      "source": "https://github.com/postgres/postgres/blob/45fc51fcbf4534ea2f6f85e36f8155dbd5ba9851/doc/src/sgml/indices.sgml",
+      "section": "Experiment",
+      "verified_by": "Experiment run by the author on 2026-10-18 on one virtual machine: PostgreSQL 16.15 throwaway cluster, psql timing."
+    },
+    {
+      "claim_vi": "A 208,881-byte repetitive JSON array compressed with gzip level 6 to 17,720 bytes (8.5%) in about 1.5 ms and decompressed in 0.24 ms; level 9 gave 17,336 bytes in about 4.5 ms; random bytes of the same size grew to 208,964 bytes.",
+      "source": "https://github.com/httpwg/httpwg.github.io/blob/03f35d852e7b64668ab08fda1a8076d6d44d17ae/specs/rfc9110.xml",
+      "section": "Experiment",
+      "verified_by": "Experiment run by the author on 2026-10-18 on one virtual machine: Python 3.13.16 gzip module, mean of 20 runs."
+    },
+    {
+      "claim_vi": "Strategies to reduce latency: database indexing, caching, load balancing, CDN, async processing, data compression.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-5-strategies-to-reduce-latency.md",
+      "section": "Whole guide",
+      "verified_by": "Source body read at the pinned commit."
+    }
+  ],
+  "design_notes_vi": "Một khung bốn bước đo-chọn-đo lại-ghi giá, một khung sáu cách kèm khúc mỗi cách cắt, một khung cái giá. Gộp bộ nhớ đệm và cân bằng tải vào một thẻ để vừa slide.",
+  "source_deviations": [
+    "Source opens with a figure on revenue lost to latency; it is dropped for lack of a source to check it.",
+    "Source's title says five strategies but lists six; the lesson keeps six and links each to the part of latency it cuts.",
+    "The lesson adds measurements of indexing and compression and the cost of each."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này (gói L5), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

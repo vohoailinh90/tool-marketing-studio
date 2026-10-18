@@ -76,6 +76,23 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 7. [Tổng quan về đường ống dữ liệu](lessons/sd-03-007/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 8. [ChatGPT hoạt động thế nào?](lessons/sd-03-008/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 
+## Cơ sở dữ liệu và lưu trữ
+
+Các bài từ sd-04-001 đến sd-04-024 chưa có ở đây; số thứ tự dưới đây theo vị trí trong nguồn.
+
+25. [Bốn cách chia dữ liệu vào shard: thêm một shard thì bao nhiêu khóa phải dời?](lessons/sd-04-025/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+26. [Sáu mô hình dữ liệu: một cửa hàng nhỏ, sáu cách xếp](lessons/sd-04-026/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+27. [Một câu SQL đi qua những chặng nào? Thử từng chặng trên PostgreSQL](lessons/sd-04-027/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+28. [Cơ sở dữ liệu serverless: tách phần tính toán khỏi phần lưu trữ](lessons/sd-04-028/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+29. [PostgreSQL được yêu thích vì làm được nhiều việc: thử xem việc nào có sẵn](lessons/sd-04-029/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+30. [Mười cơ sở dữ liệu "mã nguồn mở": đọc giấy phép của từng cái](lessons/sd-04-030/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+31. [PostgreSQL "nuốt" cả thế giới cơ sở dữ liệu? Thử phần có sẵn, đếm phần cần cài thêm](lessons/sd-04-031/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+32. [Chọn cơ sở dữ liệu theo câu hỏi bạn sẽ hỏi: tám loại và hai phép đo](lessons/sd-04-032/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+33. [Cây chọn cơ sở dữ liệu: tự dựng cây của bạn, hỏi ràng buộc cứng trước](lessons/sd-04-033/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+34. [Tám cấu trúc dữ liệu sau chỉ mục: mỗi cái trả lời một kiểu câu hỏi](lessons/sd-04-034/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+35. [Bản sao chỉ đọc qua lớp trung gian: vừa đặt đơn mà không thấy đơn](lessons/sd-04-035/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+36. [Nhập môn sharding: chia xong rồi, câu hỏi nào đổi?](lessons/sd-04-036/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+
 ## Phỏng vấn kỹ thuật
 
 1. [Các kiểu SQL JOIN hoạt động thế nào?](lessons/sd-05-001/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
@@ -184,7 +201,7 @@ và hình đạt; không coi đọc nguồn là mọi claim đã đúng, không 
 ## Các nhóm còn lại theo thứ tự nguồn
 
 API và phát triển web (còn sd-01-050) → Tình huống thực tế (đã viết một phần) →
-Cơ sở dữ liệu và lưu trữ → Bộ nhớ đệm và hiệu năng → Thanh toán và công nghệ tài chính →
+Cơ sở dữ liệu và lưu trữ (đã viết một phần) → Bộ nhớ đệm và hiệu năng → Thanh toán và công nghệ tài chính →
 Kiến trúc phần mềm → Công cụ và năng suất → Phát triển phần mềm (đã viết một phần) →
 Đám mây và hệ thống phân tán → Hệ thống hoạt động thế nào? → Bảo mật (đã viết một phần).
 

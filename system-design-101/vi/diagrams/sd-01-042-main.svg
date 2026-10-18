@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="800" viewBox="0 0 320 800" role="img" aria-labelledby="title desc">
+<title id="title">Một cửa, chọn đúng dịch vụ</title><desc id="desc">Ứng dụng qua gateway. Nhánh books tới danh mục, nhánh loans tới mượn trả. Các nhánh là lựa chọn cho yêu cầu khác nhau; dịch vụ vẫn xử lý quyền và nghiệp vụ.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="none" stroke="#334155"/></marker></defs>
+<rect width="320" height="800" fill="#f8fafc"/>
+<g font-family="Arial, sans-serif" font-size="16" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">Một cửa, chọn đúng dịch vụ</text>
+<rect x="44" y="54" width="264" height="62" rx="10" fill="#e2e8f0"/><text x="66" y="92">Ứng dụng thư viện</text>
+<path d="M176 116 V154" fill="none" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="44" y="164" width="264" height="182" rx="12" fill="#dbeafe"/>
+<text x="60" y="198" font-size="18" font-weight="bold">API gateway</text>
+<text x="60" y="234">Chọn đích theo quy tắc</text><text x="60" y="269">Áp chính sách đã cấu hình</text><text x="60" y="304">Không tự có mọi chức năng</text>
+<path d="M44 322 H22 V644 H42 M22 444 H42" fill="none" stroke="#334155" stroke-width="2"/>
+<path d="M32 444 H42" fill="none" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/><path d="M32 644 H42" fill="none" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="48" y="390" width="260" height="144" rx="12" fill="#dcfce7"/>
+<text x="64" y="424" font-size="18" font-weight="bold">/books → Danh mục</text><text x="64" y="464">Tìm và đọc thông tin sách</text><text x="64" y="500">Một đích cho nhánh books</text>
+<rect x="48" y="584" width="260" height="144" rx="12" fill="#fef3c7"/>
+<text x="64" y="618" font-size="18" font-weight="bold">/loans → Mượn trả</text><text x="64" y="658">Quyền trên phiếu cụ thể</text><text x="64" y="694">Quy tắc nghiệp vụ</text>
+<text x="16" y="772">Hai nhánh chọn, không đi lần lượt.</text>
+</g></svg>

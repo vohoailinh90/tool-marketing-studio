@@ -1,0 +1,75 @@
+{
+  "id": "sd-04-021",
+  "lang": "vi",
+  "title": "Sáu loại cơ sở dữ liệu, sáu câu tóm tắt",
+  "subtitle": "Câu nào giữ được, câu nào cần sửa, đối chiếu với hướng dẫn mô hình dữ liệu của Azure.",
+  "desc": "Ba khung. Khung một, ba câu giữ được: cơ sở dữ liệu quan hệ làm được gần như mọi việc nhưng mở rộng ngang phải chia shard; kho trong bộ nhớ nhanh và có trần bộ nhớ; kho chuỗi thời gian ghi nối tiếp theo thời gian, coi chừng số series. Khung hai, ba câu cần sửa: đồ thị mạnh ở quan hệ nhiều tầng, nút và cạnh vẫn có thuộc tính; kho tài liệu chứa tài liệu JSON vẫn được sửa, dữ liệu lớn không đổi là việc của kho đối tượng; kho cột rộng mạnh ở ghi nhiều và dữ liệu thưa, phân tích lớn là loại khác. Khung ba, Redis với trần 8 MiB, 20.000 giá trị 1.000 byte: noeviction ghi được 6.732 khóa rồi báo lỗi; allkeys-lru ghi đủ nhưng xóa 13.291 khóa cũ; mặc định không đặt trần; RDB và AOF lưu xuống đĩa.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Ba câu giữ được",
+      "items": [
+        {
+          "name": "Quan hệ",
+          "role": "Gần như việc gì cũng làm được; mở rộng ngang thì phải chia shard.",
+          "icon": "database"
+        },
+        {
+          "name": "Trong bộ nhớ",
+          "role": "Nhanh, và có trần: chạm trần thì báo lỗi hoặc xóa bớt.",
+          "icon": "zap"
+        },
+        {
+          "name": "Chuỗi thời gian",
+          "role": "Ghi nối tiếp theo thời gian; coi chừng số series.",
+          "icon": "clock"
+        }
+      ],
+      "flow": []
+    },
+    {
+      "kind": "parts",
+      "heading": "Ba câu cần sửa",
+      "items": [
+        {
+          "name": "Đồ thị",
+          "role": "Mạnh ở quan hệ nhiều tầng; nút và cạnh vẫn có thuộc tính.",
+          "icon": "share-2"
+        },
+        {
+          "name": "Tài liệu",
+          "role": "Tài liệu JSON vẫn được sửa; dữ liệu lớn, không đổi là kho đối tượng.",
+          "icon": "file-text"
+        },
+        {
+          "name": "Cột rộng",
+          "role": "Mạnh ở ghi nhiều, dữ liệu thưa; phân tích lớn là loại khác.",
+          "icon": "layers"
+        }
+      ],
+      "flow": []
+    },
+    {
+      "kind": "steps",
+      "heading": "Thử: Redis chạm trần 8 MiB",
+      "items": [
+        {
+          "title": "noeviction",
+          "text": "Ghi được 6.732 khóa rồi báo lỗi hết bộ nhớ; khóa cũ còn nguyên."
+        },
+        {
+          "title": "allkeys-lru",
+          "text": "Ghi đủ 20.000 lần; 13.291 khóa cũ bị xóa, còn 6.709."
+        },
+        {
+          "title": "Mặc định",
+          "text": "Trên máy 64 bit, Redis không đặt trần cho dữ liệu."
+        },
+        {
+          "title": "Tắt máy không mất hết",
+          "text": "RDB chụp dữ liệu định kỳ, AOF ghi lại từng lệnh ghi."
+        }
+      ]
+    }
+  ]
+}

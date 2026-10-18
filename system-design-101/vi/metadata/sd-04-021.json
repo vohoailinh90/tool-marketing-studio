@@ -1,0 +1,105 @@
+{
+  "id": "sd-04-021",
+  "title_vi": "Sáu loại cơ sở dữ liệu, sáu câu tóm tắt: câu nào giữ được, câu nào cần sửa",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "draft",
+  "source_ref": "sd-04-021",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/how-do-you-decide-which-type-of-database-to-use.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-you-decide-which-type-of-database-to-use.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a partial clone of the source repository; git hash-object of the retrieved body matches the source-map blob. No source-image bytes used.",
+    "blob_sha": "a319073fb2adf8556993ff6477adfa1f1353554b",
+    "retrieved_body_sha256": "eedbf7435e4bdf0684a04d7470e5dcb3de6479519a14b5b015c0df9f5d6c13b1",
+    "retrieved_body_bytes": 1164
+  },
+  "diagram": "../diagrams/sd-04-021-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-04-011",
+      "relation": "related",
+      "reason_vi": "Cơ sở dữ liệu chuỗi thời gian và bẫy số series."
+    },
+    {
+      "lesson_id": "sd-04-018",
+      "relation": "related",
+      "reason_vi": "Kho đối tượng là nơi cho dữ liệu lớn, ít khi đổi."
+    },
+    {
+      "lesson_id": "sd-04-032",
+      "relation": "extends",
+      "reason_vi": "Chọn cơ sở dữ liệu theo câu hỏi ứng dụng sẽ hỏi."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "evidence": "The Azure Architecture Center page Understand data models and the Redis eviction and persistence pages were read from clones of MicrosoftDocs/architecture-center and redis/docs at pinned commits; the memory-limit results were measured by the author, who ran them on Redis 7.0.15 with redis-py 8.1.0 on 2026-10-18."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright) rendered lesson.md (markdown-it, tables enabled, every <details> open, a 16 px page gutter) at each width: the page never scrolled sideways and the figure was scaled to the column; the smallest SVG font-size times that scale is the recorded minimum at 320 px. `python3 -m scripts.figures check --browser` measured every line of the figure in Chromium inside its box. Not GitHub, not a real phone and not learner testing."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Relational stores give multi-row transactional consistency, joins and constraints, and horizontal scale generally requires sharding or partitioning; document stores hold semi-structured JSON with per-document schema flexibility, typical datum size small to medium, and large denormalized documents create partial update contention; column-family stores suit wide, sparse, write-heavy data and need up-front row key design, while massive historical analytical scans go to analytics or OLAP stores; graph stores hold nodes and edges that both carry properties and suit variable-depth traversals; time-series stores are append-oriented with time-window queries and tag cardinality concerns; object stores hold large binaries whose metadata rarely changes; one service may offer several models.",
+      "source": "https://github.com/MicrosoftDocs/architecture-center/blob/8e2c239344ee753a88856800b4210a3e27ac1036/docs/data-guide/technology-choices/understand-data-store-models.md",
+      "section": "Model sections; Comparative characteristics; Choose among models; When to re-evaluate",
+      "verified_by": "Read from a clone of MicrosoftDocs/architecture-center at commit 8e2c239344ee753a88856800b4210a3e27ac1036."
+    },
+    {
+      "claim_vi": "maxmemory limits memory for the dataset and 0 (no limit) is the default on 64-bit systems; noeviction returns an error on writes when the limit is reached; allkeys-lru evicts the least recently used keys; Redis persists with RDB snapshots, an AOF log of every write, both, or none.",
+      "sources": [
+        "https://github.com/redis/docs/blob/3b030c7ef066c0bb7f88ddec02c784e49783b0f8/content/develop/reference/eviction/index.md",
+        "https://github.com/redis/docs/blob/3b030c7ef066c0bb7f88ddec02c784e49783b0f8/content/operate/oss_and_stack/management/persistence.md"
+      ],
+      "section": "Key eviction; Redis persistence",
+      "verified_by": "Read from a clone of redis/docs at commit 3b030c7ef066c0bb7f88ddec02c784e49783b0f8."
+    },
+    {
+      "claim_vi": "Measured: with maxmemory 8 MiB and 20,000 values of 1,000 bytes, noeviction accepted 6,732 writes, refused the next with 'OOM command not allowed when used memory > maxmemory' and kept the first key; allkeys-lru accepted all 20,000 writes, kept 6,709 keys, evicted 13,291 and lost the first key.",
+      "source": "https://github.com/redis/docs/blob/3b030c7ef066c0bb7f88ddec02c784e49783b0f8/content/develop/reference/eviction/index.md",
+      "section": "Author's experiment",
+      "verified_by": "The author ran and measured this on 2026-10-18 on Redis 7.0.15."
+    },
+    {
+      "claim_vi": "Six database types in one sentence each: relational solves almost anything; in-memory stores are fast with limited data size; time-series stores manage time-stamped data; graph databases suit complex relationships between unstructured objects; document stores are good for large immutable data; wide column stores serve big data, analytics and reporting with denormalized data; the list of databases includes S3 and Ceph.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-you-decide-which-type-of-database-to-use.md",
+      "section": "Body",
+      "verified_by": "Source body read."
+    }
+  ],
+  "design_notes_vi": "Hai nhóm ba thẻ (câu giữ được, câu cần sửa) và bốn bước thử Redis chạm trần bộ nhớ. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "The source says document stores are good for large immutable data; the lesson follows the Azure guide (small to medium documents that are updated) and assigns large immutable data to object stores.",
+    "The source calls graph objects unstructured and puts analytics under wide column stores; the lesson notes that nodes and edges carry properties and that the Azure guide puts large analytical scans in a separate analytics model."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

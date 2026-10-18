@@ -1,0 +1,72 @@
+{
+  "id": "sd-01-039",
+  "title_vi": "Phân trang: vị trí, khóa tiếp tục và cursor",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "draft",
+  "source_ref": "sd-01-039",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/how-do-we-perform-pagination-in-api-design.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-we-perform-pagination-in-api-design.md",
+    "blob_sha": "3806b02792a7b40aa17dde4950f79e52fc9b2783",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "605b66de7a125dd31873b1cfc2deab7f529a55cf7c36050d395ae6b4f75a2779",
+    "retrieved_body_bytes": 2722
+  },
+  "diagram": "../diagrams/sd-01-039-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-16"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-16",
+      "evidence": "Đọc PostgreSQL§7.6, GitLab keyset cursor/distinct-order/performance, Google AIP158 guidance/opacity. Ví dụ danh sách tự đặt, không benchmark hoặc truy vấn cơ sở dữ liệu thật. Kiểm tra số học danh sách: sau chèn100, offset3→103,104,105; sau khóa103→104,105,106, không phải truy vấn cơ sở dữ liệu."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "new lesson awaiting current-head review"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-16",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "evidence": "Chromium cục bộ toàn bài/details mở320/375/430px không tràn ngang/chữ SVG ngoài hình, cỡ nhỏ nhất14.4/16/16px. Đã xem ảnh320px; chưa kiểm tra GitHub/thiết bị thật/người học."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Offset cần thứ tự xác định và có chi phí xử lý các mục bỏ qua.",
+      "source": "https://www.postgresql.org/docs/18/queries-limit.html"
+    },
+    {
+      "claim_vi": "Keyset cần thứ tự phân biệt, hiệu năng tùy chỉ mục; không tự hỗ trợ nhảy số trang.",
+      "source": "https://docs.gitlab.com/development/database/keyset_pagination/"
+    },
+    {
+      "claim_vi": "Google yêu cầu token opaque, không thay phân quyền; trang rỗng chưa chắc kết thúc nếu còn next token.",
+      "source": "https://google.aip.dev/158"
+    }
+  ],
+  "design_notes_vi": "Ba thẻ tách vị trí/khóa/token; minh họa tự đặt103bịlặp sau khi chèn100, không trace ảnh nguồn.",
+  "editorial_note_vi": "Nháp giáo dục, chưa chạy truy vấn hoặc benchmark thật.",
+  "source_deviations": [
+    "Cursor không đồng nghĩa duy nhất với keyset hoặc hiệu năng tốt.",
+    "Timestamp một mình có thể trùng, không bảo đảm không bỏ sót.",
+    "Sáu tên trong nguồn có thể phối hợp; phân biệt giao diện token với cách truy vấn và nhất quán dữ liệu."
+  ]
+}

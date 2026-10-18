@@ -44,59 +44,59 @@
 
 {"id": "sd-01-022", "status": "written", "title": "API Gateway 101", "owner": "claude/sweet-darwin-qnva4b", "done_at": "2026-10-15T15:42:38Z"}
 
-{"id": "sd-01-023", "status": "todo", "title": "Top 3 API Gateway Use Cases"}
+{"id": "sd-01-023", "status": "written", "title": "Top 3 API Gateway Use Cases", "owner": "codex/sd01-045-api-testing", "done_at": "2026-10-16T07:19:14Z", "adopted_from": ["codex/sd01-044-api-security"]}
 
-{"id": "sd-01-024", "status": "todo", "title": "What do version numbers mean?"}
+{"id": "sd-01-024", "status": "written", "title": "What do version numbers mean?", "owner": "codex/sd01-045-api-testing", "done_at": "2026-10-16T07:19:14Z", "adopted_from": ["codex/sd01-044-api-security"]}
 
-{"id": "sd-01-025", "status": "todo", "title": "Do you know all the components of a URL?"}
+{"id": "sd-01-025", "status": "written", "title": "Do you know all the components of a URL?", "owner": "codex/sd01-045-api-testing", "done_at": "2026-10-16T07:19:14Z", "adopted_from": ["codex/sd01-044-api-security"]}
 
-{"id": "sd-01-026", "status": "todo", "title": "Unicast vs Broadcast vs Multicast vs Anycast"}
+{"id": "sd-01-026", "status": "written", "title": "Unicast vs Broadcast vs Multicast vs Anycast", "owner": "codex/sd01-045-api-testing", "done_at": "2026-10-16T07:19:14Z", "adopted_from": ["codex/sd01-044-api-security"]}
 
-{"id": "sd-01-027", "status": "todo", "title": "10 Essential Components of a Production Web Application"}
+{"id": "sd-01-027", "status": "written", "title": "10 Essential Components of a Production Web Application", "owner": "codex/sd01-045-api-testing", "done_at": "2026-10-16T07:19:14Z", "adopted_from": ["codex/sd01-044-api-security"]}
 
-{"id": "sd-01-028", "status": "todo", "title": "URL, URI, URN - Differences Explained"}
+{"id": "sd-01-028", "status": "written", "title": "URL, URI, URN - Differences Explained", "owner": "codex/sd01-045-api-testing", "done_at": "2026-10-16T07:19:14Z", "adopted_from": ["codex/sd01-044-api-security"]}
 
-{"id": "sd-01-029", "status": "todo", "title": "API vs SDK"}
+{"id": "sd-01-029", "status": "written", "title": "API vs SDK", "owner": "codex/sd01-045-api-testing", "done_at": "2026-10-16T07:19:14Z", "adopted_from": ["codex/sd01-044-api-security"]}
 
-{"id": "sd-01-030", "status": "todo", "title": "A Cheatsheet to Build Secure APIs"}
+{"id": "sd-01-030", "status": "written", "title": "A Cheatsheet to Build Secure APIs", "owner": "codex/sd01-045-api-testing", "done_at": "2026-10-16T07:19:14Z", "adopted_from": ["codex/sd01-044-api-security"]}
 
-{"id": "sd-01-031", "status": "todo", "title": "HTTP Status Codes You Should Know"}
+{"id": "sd-01-031", "status": "written", "title": "HTTP Status Codes You Should Know", "owner": "codex/sd01-045-api-testing", "done_at": "2026-10-16T07:19:14Z", "adopted_from": ["codex/sd01-044-api-security"]}
 
-{"id": "sd-01-032", "status": "todo", "title": "SOAP vs REST vs GraphQL vs RPC"}
+{"id": "sd-01-032", "status": "written", "title": "SOAP vs REST vs GraphQL vs RPC", "owner": "codex/sd01-045-api-testing", "done_at": "2026-10-16T07:19:14Z", "adopted_from": ["codex/sd01-044-api-security"]}
 
-{"id": "sd-01-033", "status": "todo", "title": "A Cheatsheet on Comparing API Architectural Styles"}
+{"id": "sd-01-033", "status": "written", "title": "A Cheatsheet on Comparing API Architectural Styles", "owner": "codex/sd01-045-api-testing", "done_at": "2026-10-16T07:19:14Z", "adopted_from": ["codex/sd01-044-api-security"]}
 
-{"id": "sd-01-034", "status": "todo", "title": "Top 9 HTTP Request Methods"}
+{"id": "sd-01-034", "status": "written", "title": "Top 9 HTTP Request Methods", "owner": "codex/sd01-045-api-testing", "done_at": "2026-10-16T07:19:14Z", "adopted_from": ["codex/sd01-044-api-security"]}
 
-{"id": "sd-01-035", "status": "todo", "title": "What is a Load Balancer?"}
+{"id": "sd-01-035", "status": "written", "title": "What is a Load Balancer?", "owner": "codex/sd01-045-api-testing", "done_at": "2026-10-16T07:19:14Z", "adopted_from": ["codex/sd01-044-api-security"]}
 
-{"id": "sd-01-036", "status": "todo", "title": "Proxy vs Reverse Proxy"}
+{"id": "sd-01-036", "status": "written", "title": "Proxy vs Reverse Proxy", "owner": "codex/sd01-045-api-testing", "done_at": "2026-10-16T07:19:14Z", "adopted_from": ["codex/sd01-044-api-security"]}
 
-{"id": "sd-01-037", "status": "todo", "title": "HTTP/1 -> HTTP/2 -> HTTP/3"}
+{"id": "sd-01-037", "status": "written", "title": "HTTP/1 -> HTTP/2 -> HTTP/3", "owner": "codex/sd01-045-api-testing", "done_at": "2026-10-16T07:19:14Z", "adopted_from": ["codex/sd01-044-api-security"]}
 
-{"id": "sd-01-038", "status": "todo", "title": "Polling vs Webhooks"}
+{"id": "sd-01-038", "status": "written", "title": "Polling vs Webhooks", "owner": "codex/sd01-045-api-testing", "done_at": "2026-10-16T07:19:14Z", "adopted_from": ["codex/sd01-044-api-security"]}
 
-{"id": "sd-01-039", "status": "todo", "title": "How do we Perform Pagination in API Design?"}
+{"id": "sd-01-039", "status": "written", "title": "How do we Perform Pagination in API Design?", "owner": "codex/sd01-045-api-testing", "done_at": "2026-10-16T07:19:14Z", "adopted_from": ["codex/sd01-044-api-security"]}
 
-{"id": "sd-01-040", "status": "todo", "title": "How to Design Effective and Safe APIs"}
+{"id": "sd-01-040", "status": "written", "title": "How to Design Effective and Safe APIs", "owner": "codex/sd01-045-api-testing", "done_at": "2026-10-16T07:19:14Z", "adopted_from": ["codex/sd01-044-api-security"]}
 
-{"id": "sd-01-041", "status": "todo", "title": "How to Design Secure Web API Access"}
+{"id": "sd-01-041", "status": "written", "title": "How to Design Secure Web API Access", "owner": "codex/sd01-045-api-testing", "done_at": "2026-10-16T07:19:14Z", "adopted_from": ["codex/sd01-044-api-security"]}
 
-{"id": "sd-01-042", "status": "todo", "title": "What Does an API Gateway Do?"}
+{"id": "sd-01-042", "status": "written", "title": "What Does an API Gateway Do?", "owner": "codex/sd01-045-api-testing", "done_at": "2026-10-16T07:19:14Z", "adopted_from": ["codex/sd01-044-api-security"]}
 
-{"id": "sd-01-043", "status": "todo", "title": "What is gRPC?"}
+{"id": "sd-01-043", "status": "written", "title": "What is gRPC?", "owner": "codex/sd01-045-api-testing", "done_at": "2026-10-16T07:19:14Z", "adopted_from": ["codex/sd01-044-api-security"]}
 
-{"id": "sd-01-044", "status": "todo", "title": "Top 12 Tips for API Security"}
+{"id": "sd-01-044", "status": "written", "title": "Top 12 Tips for API Security", "owner": "codex/sd01-045-api-testing", "done_at": "2026-10-16T07:22:49Z", "adopted_from": ["codex/sd01-044-api-security"]}
 
-{"id": "sd-01-045", "status": "todo", "title": "Explaining 9 Types of API Testing"}
+{"id": "sd-01-045", "status": "written", "title": "Explaining 9 Types of API Testing", "owner": "codex/sd01-045-api-testing", "done_at": "2026-10-16T08:02:02Z"}
 
-{"id": "sd-01-046", "status": "todo", "title": "REST API vs. GraphQL"}
+{"id": "sd-01-046", "status": "written", "title": "REST API vs. GraphQL", "owner": "codex/sd01-046-rest-graphql", "done_at": "2026-10-16T08:44:37Z"}
 
-{"id": "sd-01-047", "status": "todo", "title": "What is GraphQL?"}
+{"id": "sd-01-047", "status": "written", "title": "What is GraphQL?", "owner": "codex/sd01-047-graphql-execution", "done_at": "2026-10-16T09:10:32Z"}
 
-{"id": "sd-01-048", "status": "todo", "title": "REST API Cheatsheet"}
+{"id": "sd-01-048", "status": "written", "title": "REST API Cheatsheet", "owner": "codex/sd01-048-rest-checklist", "done_at": "2026-10-16T10:48:53Z"}
 
-{"id": "sd-01-049", "status": "todo", "title": "The Ultimate API Learning Roadmap"}
+{"id": "sd-01-049", "status": "written", "title": "The Ultimate API Learning Roadmap", "owner": "codex/sd01-049-api-learning", "done_at": "2026-10-16T11:02:15Z"}
 
 {"id": "sd-01-050", "status": "todo", "title": "The Evolving Landscape of API Protocols in 2023"}
 
@@ -514,7 +514,7 @@
 
 {"id": "sd-10-022", "status": "todo", "title": "Imperative vs Functional vs Object-oriented Programming"}
 
-{"id": "sd-10-023", "status": "todo", "title": "Explaining 9 Types of API Testing"}
+{"id": "sd-10-023", "status": "written", "title": "Explaining 9 Types of API Testing", "owner": "codex/sd01-045-api-testing", "done_at": "2026-10-16T08:02:02Z"}
 
 {"id": "sd-10-024", "status": "todo", "title": "The 9 Algorithms That Dominate Our World"}
 

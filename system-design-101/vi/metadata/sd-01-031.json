@@ -1,0 +1,72 @@
+{
+  "id": "sd-01-031",
+  "title_vi": "Mã phản hồi HTTP: đọc nhóm trước, đọc nghĩa sau",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "draft",
+  "source_ref": "sd-01-031",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/http-status-code-you-should-know.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/http-status-code-you-should-know.md",
+    "blob_sha": "965b2161782b277d799b4f6b9df92f994094aaaa",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "841012271cd71a3c727ff1139ef7d67f2314fbc1b80597656ad494684e7b638e",
+    "retrieved_body_bytes": 583
+  },
+  "diagram": "../diagrams/sd-01-031-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-01-003",
+      "relation": "see_also",
+      "reason_vi": "Một số mã ít gặp và ngữ cảnh sử dụng."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-15"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-15",
+      "evidence": "Đọc RFC9110§15/15.2/15.3.3 và MDN status sections3xx/304. Ví dụ tạo báo cáo tự thiết kế, chưa gọi dịch vụ thật."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "new lesson awaiting current-head review"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-15",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "evidence": "Chromium cục bộ toàn bài/details mở320/375/430: không overflow/chữ SVG ngoài viewBox; min14.4/16/16px; đã xem screenshot320. Chưa GitHub/device/user testing."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Chữ số đầu phân năm nhóm;1xx tạm thời,202 chưa hoàn tất và không hứa kết quả cuối.",
+      "source": "https://www.rfc-editor.org/rfc/rfc9110.html#section-15"
+    },
+    {
+      "claim_vi": "304 liên quan bản lưu đệm, không phải yêu cầu chuyển sang địa chỉ khác.",
+      "source": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status"
+    }
+  ],
+  "design_notes_vi": "Năm thẻ dọc phân nhóm và ngoại lệ202/304, không mũi tên tuần tự; hình mới.",
+  "editorial_note_vi": "Nháp giáo dục chỉ tiếng Việt, không danh mục đầy đủ mọi mã.",
+  "source_deviations": [
+    "Thêm202 chưa hoàn tất và304 không phải chuyển tới địa chỉ khác, dựa trên tài liệu chuẩn; không dựa trên ảnh nguồn."
+  ]
+}

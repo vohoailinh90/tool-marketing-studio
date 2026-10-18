@@ -1,0 +1,11 @@
+target: system-design-101/vi/diagrams/sd-01-001-main.svg
+note: a figure must declare its own size on the root element, equal to its viewBox.
+mutations:
+- label: the root declares a viewBox but no width or height
+  find: ' width="320" height="1300" viewBox='
+  replace: ' viewBox='
+  test: tests.test_sd101_figure_size.FigureSizeTests.test_every_figure_root_declares_width_and_height
+- label: the declared height differs from the viewBox height
+  find: 'height="1300" viewBox="0 0 320 1300"'
+  replace: 'height="1301" viewBox="0 0 320 1300"'
+  test: tests.test_sd101_figure_size.FigureSizeTests.test_declared_size_matches_the_viewbox

@@ -38,7 +38,7 @@
     "claims": {
       "status": "checked",
       "checked_on": "2026-10-18",
-      "evidence": "READMEs of Beats, Filebeat, Logstash, Elasticsearch (plus its build-tools-internal/version.properties) and Kibana, and the Kafka design document, were read from local clones. ELK itself was not run."
+      "evidence": "READMEs of Beats, Filebeat, Logstash, Elasticsearch (plus its build-tools-internal/version.properties) and Kibana, the Kafka design document, Logstash's memory and persistent queue docs and the Logstash Kafka input docs were read from local clones. ELK itself was not run."
     },
     "technical_review": {
       "status": "pending",
@@ -103,6 +103,18 @@
       "verified_by": "Read from a local clone of apache/kafka at commit 65566690ca1ddb584388c1026e2ff6673e9c6f19, the head of its default branch when read on 2026-10-18 (a later change to that branch does not alter this URL)."
     },
     {
+      "claim_vi": "By default Logstash buffers events in in-memory bounded queues, whose contents are lost when Logstash or its host is terminated abnormally. Persistent queues (queue.type: persisted) are disabled by default; they protect against loss on abnormal termination, but data may still be lost if an abnormal shutdown occurs before the checkpoint file has been committed.",
+      "source": "https://github.com/elastic/logstash/blob/39a297ed817a6618cc1144a8307f6622a7f369c9/docs/reference/memory-queue.md",
+      "section": "Memory queue; persistent-queues.md: Limitations of persistent queues, Configuring persistent queues",
+      "verified_by": "Read from a local clone of elastic/logstash at commit 39a297ed817a6618cc1144a8307f6622a7f369c9, the head of its default branch when read on 2026-10-18 (a later change to that branch does not alter this URL)."
+    },
+    {
+      "claim_vi": "The Logstash Kafka input's enable_auto_commit defaults to true: it periodically commits to Kafka the offsets of messages already returned by the consumer, and the committed offset is where consumption resumes when the process fails (auto_commit_interval_ms default 5000).",
+      "source": "https://github.com/logstash-plugins/logstash-integration-kafka/blob/45f52efc8714ba5db57832b40e1f178274166e80/docs/input-kafka.asciidoc",
+      "section": "enable_auto_commit; auto_commit_interval_ms",
+      "verified_by": "Read from a local clone of logstash-plugins/logstash-integration-kafka at commit 45f52efc8714ba5db57832b40e1f178274166e80, the head of its default branch when read on 2026-10-18 (a later change to that branch does not alter this URL)."
+    },
+    {
       "claim_vi": "ELK is Elasticsearch, Logstash and Kibana; Beats was developed later as lightweight agents; four-step workflow Beats, Logstash, Elasticsearch, Kibana, with an optional Kafka queue.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-is-elk-stack-and-why-is-it-so-popular-for-log-management.md",
       "section": "ELK Stack Workflow",
@@ -113,6 +125,7 @@
   "source_deviations": [
     "Source draws Beats to Logstash as fixed; the lesson adds, from the Beats README, that Beats can send directly to Elasticsearch and Logstash is optional.",
     "Source says Kafka decouples producers and consumers; the lesson explains why from Kafka's design document (pull model, retention).",
+    "Kafka's retention is scoped to records Logstash has not read: with the default auto-commit and in-memory queue, an abnormal Logstash termination loses the in-flight records; the persistent queue (off by default) reduces that (Logstash docs).",
     "Source's claim that ELK is popular for a reasonable price is dropped: no source to check it."
   ],
   "editorial_note_vi": "Bài mới viết tại repo này (gói L5), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."

@@ -19,7 +19,8 @@ Tên gọi chỉ có ba chữ cái vì Beats, bên thu thập, ra đời sau. Hi
 
 **4 · Kibana hiển thị.** Kibana là giao diện để truy vấn, phân tích và vẽ biểu đồ trên dữ liệu đã nằm trong Elasticsearch. Đây là chỗ người trực sự cố nhìn vào.
 
-**Khi log đổ về quá nhiều.** Filebeat gửi được tới Elasticsearch, Logstash, Kafka, Redis hoặc một tệp. Đặt Kafka ở giữa thì Beats chỉ việc ghi vào Kafka, còn Logstash tự *kéo* log về theo sức của nó. Tài liệu thiết kế của Kafka giải thích lợi ích của mô hình kéo: bên đọc chậm hơn bên ghi thì chỉ tụt lại phía sau rồi đuổi kịp, không bị dồn tới ngợp. Kafka giữ log theo thời hạn hoặc dung lượng đã cấu hình, nên một đợt Logstash chậm hay khởi động lại không làm mất log, miễn là nó quay lại trước khi hết hạn giữ.
+**Khi log đổ về quá nhiều.** Filebeat gửi được tới Elasticsearch, Logstash, Kafka, Redis hoặc một tệp. Đặt Kafka ở giữa thì Beats chỉ việc ghi vào Kafka, còn Logstash tự *kéo* log về theo sức của nó. Tài liệu thiết kế của Kafka giải thích lợi ích của mô hình kéo: bên đọc chậm hơn bên ghi thì chỉ tụt lại phía sau rồi đuổi kịp, không bị dồn tới ngợp. Kafka giữ log theo thời hạn hoặc dung lượng đã cấu hình, nên khi Logstash chậm hay dừng một lúc, phần log nó *chưa đọc* vẫn nằm chờ trong Kafka, miễn là nó quay lại trước khi hết hạn giữ.
+Kafka không giữ hộ phần Logstash đã lấy về. Theo mặc định, Logstash định kỳ báo cho Kafka vị trí đã đọc (offset) của các bản ghi vừa lấy về, còn bản ghi đang xử lý thì nằm trong một hàng đợi trong bộ nhớ, và tài liệu của Logstash ghi rằng hàng đợi đó mất sạch khi Logstash bị tắt đột ngột. Khi Logstash chạy lại, Kafka gửi tiếp từ vị trí đã báo, nên các bản ghi mất trong bộ nhớ không được gửi lại. Muốn Logstash sập mà ít mất log hơn, phải bật hàng đợi lưu xuống đĩa (`queue.type: persisted`, mặc định tắt); ngay cả khi đó, tài liệu vẫn nói có thể mất phần chưa kịp ghi điểm lưu (checkpoint) nếu tắt đột ngột.
 
 ## Giới hạn cần nhớ
 
@@ -34,7 +35,7 @@ Bạn có ba máy chủ web, mỗi máy ghi log ra tệp, và chỉ cần tìm l
 <summary>Xem đáp án</summary>
 
 Tối thiểu: Filebeat trên từng máy gửi thẳng tới Elasticsearch, xem bằng Kibana; chưa cần Logstash nếu không phải biến đổi gì nhiều.
-Thêm Kafka khi phía sau có lúc không theo kịp lượng log (đợt cao điểm, Logstash hay Elasticsearch bảo trì) mà bạn không muốn mất log trong lúc đó: Kafka giữ lại theo hạn đã đặt để bên đọc đuổi kịp sau.
+Thêm Kafka khi phía sau có lúc không theo kịp lượng log (đợt cao điểm, Logstash hay Elasticsearch bảo trì) mà bạn không muốn mất log trong lúc đó: Kafka giữ lại phần chưa đọc theo hạn đã đặt để bên đọc đuổi kịp sau. Nếu cả lúc Logstash sập cũng phải hạn chế mất log, bật thêm hàng đợi lưu xuống đĩa của Logstash.
 
 </details>
 
@@ -56,5 +57,8 @@ Bài không chạy thử ELK; mọi mô tả về các thành phần lấy từ 
 - [Elastic — README của Elasticsearch, tại commit cố định](https://github.com/elastic/elasticsearch/blob/9df53afd7c6054b65e753349ef347cf3e7ba11d1/README.asciidoc): bộ máy tìm kiếm và phân tích phân tán, dùng cho log; [tệp phiên bản phụ thuộc](https://github.com/elastic/elasticsearch/blob/9df53afd7c6054b65e753349ef347cf3e7ba11d1/build-tools-internal/version.properties) ghi Lucene.
 - [Elastic — README của Kibana, tại commit cố định](https://github.com/elastic/kibana/blob/7c296350df94ecd3bd5493ce82a2a6295281f256/README.md): giao diện truy vấn, phân tích và vẽ dữ liệu trong Elasticsearch.
 - [Apache Kafka — tài liệu thiết kế, tại commit cố định](https://github.com/apache/kafka/blob/65566690ca1ddb584388c1026e2ff6673e9c6f19/docs/design/design.md): mô hình kéo cho bên đọc tụt lại rồi đuổi kịp; giữ log theo thời gian hoặc dung lượng.
+- [Elastic — tài liệu hàng đợi trong bộ nhớ của Logstash, tại commit cố định](https://github.com/elastic/logstash/blob/39a297ed817a6618cc1144a8307f6622a7f369c9/docs/reference/memory-queue.md): mặc định dùng hàng đợi trong bộ nhớ, mất nội dung khi bị tắt đột ngột.
+- [Elastic — tài liệu hàng đợi lưu xuống đĩa của Logstash, tại commit cố định](https://github.com/elastic/logstash/blob/39a297ed817a6618cc1144a8307f6622a7f369c9/docs/reference/persistent-queues.md): `queue.type: persisted`, mặc định tắt; vẫn có thể mất dữ liệu nếu tắt đột ngột trước khi ghi điểm lưu.
+- [Logstash — tài liệu đầu vào Kafka, tại commit cố định](https://github.com/logstash-plugins/logstash-integration-kafka/blob/45f52efc8714ba5db57832b40e1f178274166e80/docs/input-kafka.asciidoc): `enable_auto_commit` mặc định bật, định kỳ báo vị trí của các bản ghi đã lấy về; vị trí đã báo là chỗ đọc tiếp khi tiến trình hỏng.
 
 Đã đọc nguồn ngày 2026-10-18 từ bản clone của từng kho. Bài viết và hình được thiết kế độc lập.

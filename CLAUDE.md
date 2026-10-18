@@ -288,7 +288,8 @@ What the loop does not change:
   standard image. The slides are written to `build/figures/facebook/` (gitignored) and uploaded by the owner; a session never uploads.
   The one exception, decided by the owner on 2026-10-17: a lesson's **slide deck** (`docs/sd101-slides.md`: built on Moda, 1920x1080,
   8 to 10 slides, claimed with `scripts/sd101_slides.py`) is its own Facebook product, not a figure. Only the PNG files that `exported`
-  records, exported without the `moda.app` badge (which is never removed), go to Facebook, and the owner uploads them.
+  records go to Facebook, and the owner uploads them. Since 2026-10-18 the owner accepts these exports with the `moda.app` badge of the
+  Moda free plan on them; the badge is never removed from a file.
 
 ## System Design lessons: claim before you write
 
@@ -322,9 +323,10 @@ files and the exports. Several sessions build decks at once and `claims.jsonl` k
 - **When done**: `finish <id> --canvas <cvs_...> --url <editor link> --slides <n> --publish` and commit the rest of the lesson's
   `slides/` folder. `--publish` pushes the finished record and checks the claim again afterwards; if the record reaches the
   remote any other way (a plain `git push`), run `verify` afterwards: it checks finished decks too.
-- **The Moda watermark stays.** The free plan puts a `moda.app` badge on exported PNG and PPTX files and has no switch for
-  it; never remove it from a file. A deck is finished with `exports: pending`, and its files are added (`exported <id>`)
-  only once Moda exports them without the badge.
+- **The Moda badge stays, and exports go in with it.** The free plan puts a `moda.app` badge on exported PNG and PPTX files and
+  has no switch for it; never remove it from a file (not from the PPTX, not by cropping or painting over a PNG). Since
+  2026-10-18 the owner accepts exports that carry it: after `finish`, export the deck (the PPTX and one PNG per slide), add the
+  files and run `exported <id> --publish` as usual. `exports: pending` only means that a deck's files have not been exported yet.
 
 ## Languages (Vietnamese / Japanese / English)
 

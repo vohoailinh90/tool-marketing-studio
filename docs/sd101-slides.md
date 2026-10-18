@@ -42,15 +42,16 @@ lessons/<id>/slides/01.png ..      only when exports: done, one 1920x1080 PNG pe
 
 `exports: pending` means the deck exists on Moda and is editable there, but its files are not in the repository yet.
 
-### Exports and the Moda watermark
+### Exports and the Moda badge
 
 Moda's free plan puts a `moda.app` badge on every PNG and PPTX it exports. Moda's own answer is that this is a plan
 limit with no setting or export option to switch off. **Do not remove it** (not from the PPTX, not by cropping or painting
-over the PNG): that is getting around the plan's limit. The deck on Moda carries no badge, so building decks is not blocked;
-a deck is finished with `exports: pending`. Once the owner's plan exports without the badge, any session can export a
-finished deck: `export` each page as PNG (`pixel_ratio` 1) and the whole deck as PPTX, download the links with `curl`
-(the host `assets-cdn.moda.app` must be in the environment's allowed domains), save them as above
-(`<id>.pptx`, `01.png` to `NN.png`) and run `exported <id> --publish`, which checks the files and records `exports: done`.
+over the PNG): that is getting around the plan's limit. The deck on Moda carries no badge, so building decks is not blocked,
+and a deck is first finished with `exports: pending`. Since 2026-10-18 the owner accepts exports that carry the badge, so
+any session exports a finished deck as normal: `export` each page as PNG (`pixel_ratio` 1) and the whole deck as PPTX,
+download the links with `curl` (the host `assets-cdn.moda.app` must be in the environment's allowed domains), save them as
+above (`<id>.pptx`, `01.png` to `NN.png`) and run `exported <id> --publish`, which checks the files and records `exports: done`.
+The check cannot tell whether a badge is there and does not need to: the files are added as Moda exported them.
 The check opens every file: a PNG must be whole (every chunk's checksum, an image stream that inflates to its end, an
 `IEND` chunk and nothing after it) and exactly 1920x1080; a PPTX must be a ZIP archive that reads through and holds
 `[Content_Types].xml` and `ppt/presentation.xml`.

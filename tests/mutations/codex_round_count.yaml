@@ -176,6 +176,26 @@ mutations:
   find: "        return \"summary\" if is_plain_summary(body) else \"unknown\"\n"
   replace: "        return \"summary\"\n"
   test: tests.test_codex_round_count.StrictnessTests.test_a_summary_holding_more_than_its_table_counts
+- label: the summary comment's hidden state line makes it an unrecognized post
+  find: "        SUMMARY_LINE.fullmatch(line) or is_state_line(line) for line in lines)\n"
+  replace: "        SUMMARY_LINE.fullmatch(line) for line in lines)\n"
+  test: tests.test_codex_round_count.RealShapeTests.test_the_summary_with_its_state_line_is_not_a_round
+- label: any HTML comment passes for the summary's state line
+  find: "STATE_LINE = re.compile(r\"\\s*<!-- codex-review-state:v1 (\\{.*\\}) -->\\s*\")\n"
+  replace: "STATE_LINE = re.compile(r\"\\s*<!-- .*? (\\{.*\\}) -->\\s*\")\n"
+  test: tests.test_codex_round_count.StrictnessTests.test_a_state_line_that_is_not_the_one_codex_writes_counts
+- label: a state line whose payload is not a JSON object passes
+  find: "        return isinstance(json.loads(match.group(1)), dict)\n"
+  replace: "        return True\n"
+  test: tests.test_codex_round_count.StrictnessTests.test_a_state_line_that_is_not_the_one_codex_writes_counts
+- label: a summary may hold any number of state lines
+  find: "    return sum(is_state_line(line) for line in lines) <= 1 and all(\n"
+  replace: "    return all(\n"
+  test: tests.test_codex_round_count.StrictnessTests.test_two_state_lines_count
+- label: a state line may share its line with other text
+  find: "    match = STATE_LINE.fullmatch(line)\n"
+  replace: "    match = STATE_LINE.match(line)\n"
+  test: tests.test_codex_round_count.StrictnessTests.test_a_state_line_with_text_around_it_counts
 - label: another bot posting what Codex posts is taken for a person
   find: "        if is_bot(item, login) and (CODEX_SIGNATURE.search(body) or RESULT.search(body)):\n"
   replace: "        if False:\n"

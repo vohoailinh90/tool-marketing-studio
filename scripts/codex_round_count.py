@@ -30,7 +30,9 @@ What does not count:
     <!-- codex-pull-request-review-summary --> and, its About footer set
     aside, has only lines that are blank, the marker, "## Codex Review
     Summary", "This comment shows the latest Codex review activity on this
-    pull request." or a table row (starting with "|") -- anything more counts;
+    pull request.", a table row (starting with "|") or one state line
+    (<!-- codex-review-state:v1 {...} -->, its payload a JSON object) --
+    anything more counts;
   - a usage-limit message or an error or setup notice: a short post (at most
     SHORT_NOTICE characters, the About block aside) recognized by how it
     opens, and carrying no result marker -- never by a phrase somewhere inside
@@ -168,8 +170,11 @@ CODEX_SIGNATURE = re.compile(re.escape(SUMMARY_MARKER) + r"|<summary>[^<]*About 
 # the heading, and the status table. Anything else in it may be a result.
 SUMMARY_LINE = re.compile(r"\s*(?:" + re.escape(SUMMARY_MARKER) + r"|## Codex Review Summary"
                           r"|This comment shows the latest Codex review activity on this pull request\.|\|.*)?\s*")
+# The status line Codex added under the marker of its summary comment: one hidden HTML comment holding a
+# JSON object (<!-- codex-review-state:v1 {"code_review":{...},"security_review":{...}} -->).
+STATE_LINE = re.compile(r"\s*<!-- codex-review-state:v1 (\{.*\}) -->\s*")
 INLINE_KEYS = ("path", "diff_hunk", "pull_request_review_id")
-AFTER = {"review_after": "review", "comment_after": "comment", "inline_after": "inline"}  # the second pass
+AFTER ={"review_after": "review", "comment_after": "comment", "inline_after": "inline"}  # the second pass
 LISTS = {"review": "reviews", "comment": "issue comments", "inline": "review comments"}
 
 # A review request: review, review for ..., or security review. Other mentions start a task (a FIX, say,
@@ -294,9 +299,22 @@ def classify_bot(role: str, body: str) -> str:
     return "unknown"
 
 
+def is_state_line(line: str) -> bool:
+    """The summary comment's hidden status line: one HTML comment holding a JSON object, nothing else."""
+    match = STATE_LINE.fullmatch(line)
+    if not match:
+        return False
+    try:
+        return isinstance(json.loads(match.group(1)), dict)
+    except ValueError:
+        return False
+
+
 def is_plain_summary(body: str) -> bool:
-    """The summary comment holding nothing but its heading, status table and About footer."""
-    return all(SUMMARY_LINE.fullmatch(line) for line in ABOUT_BLOCK.sub("", body).splitlines())
+    """The summary comment holding nothing but its heading, status table, at most one state line and About footer."""
+    lines = ABOUT_BLOCK.sub("", body).splitlines()
+    return sum(is_state_line(line) for line in lines) <= 1 and all(
+        SUMMARY_LINE.fullmatch(line) or is_state_line(line) for line in lines)
 
 
 def is_bot(item: dict, login: str) -> bool:

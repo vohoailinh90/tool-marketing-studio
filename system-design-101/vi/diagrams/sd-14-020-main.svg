@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1255" viewBox="0 0 320 1255" role="img" aria-labelledby="title desc">
+<title id="title">JWT: ba phần và hai cách ký</title>
+<desc id="desc">Ba khung xếp dọc. Khung một, ba phần nối bằng dấu chấm: header ghi thuật toán ký (alg) và loại token (typ); payload chứa các claim như sub, aud, exp; signature là dấu ký tính trên header và payload. Header và payload ai cũng đọc được. Khung hai, hai cách ký: dùng một bí mật chung thì ai kiểm được cũng ký được; dùng cặp khóa thì khóa riêng ký, khóa công khai kiểm. Khung ba, bên kiểm phải tự chốt danh sách thuật toán, từ chối alg là none, kiểm tiếp exp, aud, iss, và không để bí mật trong payload.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1255" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">JWT: ba phần và hai</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">cách ký</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Một token là ba đoạn chữ nối bằng</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">dấu chấm.</text>
+<rect x="8" y="123" width="304" height="442" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Ba phần nối bằng dấu chấm</text>
+<rect x="20" y="168" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="221.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 210.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"/><circle cx="12" cy="12" r="3"/></g>
+<text x="78" y="194.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Header</text>
+<text x="78" y="218.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cho biết thuật toán ký</text>
+<text x="78" y="237.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">(alg) và loại token (typ). Ai</text>
+<text x="78" y="257.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cũng đọc được.</text>
+<rect x="20" y="307" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="360.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 349.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></g>
+<text x="78" y="333.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Payload</text>
+<text x="78" y="357.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Các claim: sub là ai, aud</text>
+<text x="78" y="376.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">gửi cho ai, exp hết hạn khi</text>
+<text x="78" y="396.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nào. Ai cũng đọc được.</text>
+<rect x="20" y="446" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="499.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 488.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4"/><path d="M14 13.12c0 2.38 0 6.38-1 8.88"/><path d="M17.29 21.02c.12-.6.43-2.3.5-3.02"/><path d="M2 12a10 10 0 0 1 18-6"/><path d="M2 16h.01"/><path d="M21.8 16c.2-2 .131-5.354 0-6"/><path d="M5 19.5C5.5 18 6 15 6 12a6 6 0 0 1 .34-2"/><path d="M8.65 22c.21-.66.45-1.32.57-2"/><path d="M9 6.8a6 6 0 0 1 9 5.2v2"/></g>
+<text x="78" y="472.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Signature</text>
+<text x="78" y="496.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Dấu ký tính trên header và</text>
+<text x="78" y="515.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">payload. Đổi một ký tự là</text>
+<text x="78" y="535.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">kiểm thất bại.</text>
+<polyline points="160,277 160,305" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="160,416 160,444" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="577" width="304" height="285" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="605.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Hai cách ký</text>
+<rect x="20" y="622" width="280" height="107" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="675.5" r="18" fill="#0f766e"/><g transform="translate(39.2 664.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"/><circle cx="16.5" cy="7.5" fill="#FFFFFF" r=".5"/></g>
+<text x="78" y="648.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Một bí mật chung</text>
+<text x="78" y="672.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cùng một khóa để ký và</text>
+<text x="78" y="691.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">để kiểm. Ai kiểm được thì</text>
+<text x="78" y="711.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cũng ký được.</text>
+<rect x="20" y="743" width="280" height="107" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="796.5" r="18" fill="#0f766e"/><g transform="translate(39.2 785.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="16" r="1"/><rect height="12" rx="2" width="18" x="3" y="10"/><path d="M7 10V7a5 5 0 0 1 10 0v3"/></g>
+<text x="78" y="769.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Cặp khóa</text>
+<text x="78" y="793.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Khóa riêng để ký, khóa</text>
+<text x="78" y="812.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">công khai để kiểm. Nhiều</text>
+<text x="78" y="832.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bên kiểm, một bên ký.</text>
+<rect x="8" y="874" width="304" height="373" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="902.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Bên kiểm phải tự quyết</text>
+<rect x="20" y="919" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="942" r="11" fill="#16a34a"/>
+<polyline points="37.9,942.4 41.7,946.4 48.5,938" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="945.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tự chốt danh sách thuật</text>
+<text x="64" y="964.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">toán nhận, không lấy từ chữ</text>
+<text x="64" y="984.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">alg trong token.</text>
+<rect x="20" y="1010" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1033" r="11" fill="#16a34a"/>
+<polyline points="37.9,1033.4 41.7,1037.4 48.5,1029" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1036.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Từ chối token có alg là none</text>
+<text x="64" y="1055.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">(không có dấu ký).</text>
+<rect x="20" y="1081" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1104" r="11" fill="#16a34a"/>
+<polyline points="37.9,1104.4 41.7,1108.4 48.5,1100" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1107.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Sau dấu ký, kiểm tiếp exp,</text>
+<text x="64" y="1126.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">aud, iss.</text>
+<rect x="20" y="1152" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1175" r="11" fill="#16a34a"/>
+<polyline points="37.9,1175.4 41.7,1179.4 48.5,1171" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1178.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Payload chỉ được ký, không</text>
+<text x="64" y="1197.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">được mã hóa: đừng để bí</text>
+<text x="64" y="1217.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mật trong đó.</text>
+</g>
+</svg>

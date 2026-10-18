@@ -1,0 +1,179 @@
+{
+  "id": "sd-14-018",
+  "title_vi": "Mã hóa đối xứng và bất đối xứng",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "review",
+  "source_ref": "sd-14-018",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/symmetric-encryption-vs-asymmetric-encryption.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/symmetric-encryption-vs-asymmetric-encryption.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches provider tree OID. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "4d37e83569b7c1e7a5572d17c6ad436de1e7c82e",
+    "retrieved_body_sha256": "af372a51c23b4310ec7e84ac1f7f3f2533b89271eedcb91d9563311eb584c055",
+    "retrieved_body_bytes": 1579
+  },
+  "diagram": "../diagrams/sd-14-018-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-14-002",
+      "relation": "builds-on",
+      "reason_vi": "Phân biệt mã hóa với mã hóa ký tự và token hóa."
+    },
+    {
+      "lesson_id": "sd-14-015",
+      "relation": "compare-with",
+      "reason_vi": "Chữ ký số dùng vai trò của hai khóa ngược với mã hóa."
+    },
+    {
+      "lesson_id": "sd-14-014",
+      "relation": "uses",
+      "reason_vi": "Chứng chỉ gắn khóa công khai với một tên, để biết khóa công khai nào là của ai."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "evidence": "Source read; MDN glossary entries, pyca/cryptography documentation and OWASP cheat sheets fetched as raw files at pinned commits and read; AES-256-GCM, RSA-2048 OAEP (limit, timing, hybrid wrapping) and key arithmetic observed with cryptography 50.0.1 using throw-away keys in one run; a TLS 1.3 handshake observed once between a local openssl s_server and s_client (OpenSSL 3.0.13, throw-away certificate, 127.0.0.1); the TLS and OAEP specifications and standards-body documents were not reachable and were not read."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "The source contrasts symmetric encryption (one key for both directions; faster; suited to bulk data such as large volumes of personal data; key management is hard because sender and receiver share the key) with asymmetric encryption (a public key freely distributed and used to encrypt, a private key kept secret and used to decrypt; described as more secure than symmetric because the private key is never shared; slower because of key generation and maths computations), and says HTTPS uses asymmetric encryption to exchange session keys during the TLS handshake and then symmetric encryption.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/symmetric-encryption-vs-asymmetric-encryption.md",
+      "section": "Whole guide",
+      "verified_by": "Source body read."
+    },
+    {
+      "claim_vi": "MDN says symmetric-key algorithms use the same key for encryption and decryption, should be secure when used properly and are highly efficient so they can encrypt large amounts of data; most are block ciphers used with a mode, and AES is a cipher while CTR, CBC and GCM are modes.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/symmetric-key_cryptography/index.md",
+      "section": "Đọc hình; Xem sâu hơn",
+      "verified_by": "Raw file fetched at the pinned mdn/content commit and read in full."
+    },
+    {
+      "claim_vi": "MDN says public-key cryptography uses key pairs with one key private and one public; for signatures the private key signs and the public key verifies; for encryption the public key encrypts and the private key decrypts; public-key encryption is typically much slower than symmetric, the size of the messages it can encrypt is proportional to the key size, and it is common to encrypt messages with a symmetric algorithm and then encrypt the symmetric key with a public-key system.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/public-key_cryptography/index.md",
+      "section": "Đọc hình; Xem sâu hơn",
+      "verified_by": "Raw file fetched at the pinned mdn/content commit and read in full. The Key and Encryption glossary entries at the same commit were also read; the Encryption entry says how hard decryption is without the key depends on the algorithm chosen."
+    },
+    {
+      "claim_vi": "The cryptography library documents RSA encryption as done with the public key and decryption with the private key, names OAEP as the recommended padding for encryption (PKCS1v15 only for legacy protocols), calls 2048 or 4096 bits reasonable key sizes for new RSA keys, and its asymmetric overview says messages signed with a private key are verified with the public key and that encryption works with the public key and decryption with the private key.",
+      "source": "https://github.com/pyca/cryptography/blob/6179e1c39ed0019cf27168420eff6b3ab1840ef9/docs/hazmat/primitives/asymmetric/rsa.rst",
+      "section": "Đọc hình; Xem sâu hơn",
+      "verified_by": "Raw files rsa.rst and asymmetric/index.rst fetched at the pinned pyca/cryptography commit (repository HEAD at the time, possibly newer than the 50.0.1 that was run) and read."
+    },
+    {
+      "claim_vi": "The cryptography library documents AESGCM as taking a 128, 192 or 256-bit key, returning the ciphertext with a 16-byte tag appended, and warns that reusing a nonce with a given key compromises the security of any message with that nonce and key pair.",
+      "source": "https://github.com/pyca/cryptography/blob/6179e1c39ed0019cf27168420eff6b3ab1840ef9/docs/hazmat/primitives/aead.rst",
+      "section": "Đọc hình; Xem sâu hơn",
+      "verified_by": "Raw file fetched at the pinned pyca/cryptography commit and the AESGCM section read."
+    },
+    {
+      "claim_vi": "OWASP recommends AES with a key of at least 128 bits (ideally 256) in a secure, preferably authenticated mode such as GCM or CCM; RSA keys of at least 2048 bits if RSA must be used; RSAES-OAEP for RSA encryption; for public-key encryption a maintained library implementing an established hybrid scheme such as HPKE; describes X25519 as a key-agreement primitive that does not encrypt stored data by itself; and notes that RSA and elliptic-curve cryptography are not post-quantum secure.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/3e2db6bf3f5f0c807aef8a8fc84e395acce0292c/cheatsheets/Cryptographic_Storage_Cheat_Sheet.md",
+      "section": "Giới hạn cần nhớ; Xem sâu hơn",
+      "verified_by": "Raw file fetched at the pinned OWASP/CheatSheetSeries commit and the Algorithms, Cipher Modes and Random Padding sections read."
+    },
+    {
+      "claim_vi": "OWASP's TLS cheat sheet says to use the standard AEAD suites (AES-GCM or ChaCha20-Poly1305) for TLS 1.3 and to disable RSA key transport suites (TLS_RSA_*) and static Diffie-Hellman suites because they do not provide forward secrecy.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/3e2db6bf3f5f0c807aef8a8fc84e395acce0292c/cheatsheets/Transport_Layer_Security_Cheat_Sheet.md",
+      "section": "Xem sâu hơn",
+      "verified_by": "Raw file fetched at the pinned OWASP/CheatSheetSeries commit and the Only Support Strong Ciphers section read. The TLS specifications themselves were not reachable and were not read."
+    },
+    {
+      "claim_vi": "Observed with AES-256-GCM: a 22-byte message gave a 38-byte ciphertext (message plus 16-byte tag) that did not contain the plaintext and decrypted correctly; changing one byte of the ciphertext, for both the short message and a 1 MiB buffer, or using another key, made decryption raise InvalidTag; for 1 MiB the ciphertext was 1 MiB plus 16 bytes and round-tripped.",
+      "source": "https://github.com/pyca/cryptography/blob/6179e1c39ed0019cf27168420eff6b3ab1840ef9/docs/hazmat/primitives/aead.rst",
+      "section": "Đọc hình",
+      "verified_by": "No external page reports this output; observed by executing the code on the authoring machine (cryptography 50.0.1, throw-away keys, one run; script and output kept in the authoring scratchpad)."
+    },
+    {
+      "claim_vi": "Measured once: AES-256-GCM took about 0.00067 s to encrypt and 0.00061 s to decrypt 1 MiB of random bytes on the authoring machine.",
+      "source": "https://github.com/pyca/cryptography/blob/6179e1c39ed0019cf27168420eff6b3ab1840ef9/docs/hazmat/primitives/aead.rst",
+      "section": "Đọc hình",
+      "verified_by": "No external page reports this output; observed by executing the code on the authoring machine (cryptography 50.0.1, throw-away keys, one run; script and output kept in the authoring scratchpad). A single measurement, not a benchmark."
+    },
+    {
+      "claim_vi": "Observed with RSA-2048 and OAEP (MGF1 and hash SHA-256): the key is 256 bytes and the digest 32 bytes, so the computed limit 256 - 2*32 - 2 = 190 bytes; encrypting 190 bytes succeeded (256-byte ciphertext, decrypted correctly) and 191 bytes raised ValueError ('Encryption failed'). That the limit is key size minus twice the digest size minus 2 is the author's general knowledge; the specification was not reachable and not read, and the experiment confirms the number for this configuration only.",
+      "source": "https://github.com/pyca/cryptography/blob/6179e1c39ed0019cf27168420eff6b3ab1840ef9/docs/hazmat/primitives/asymmetric/rsa.rst",
+      "section": "Đọc hình",
+      "verified_by": "No external page reports this output; observed by executing the code on the authoring machine (cryptography 50.0.1, throw-away keys, one run; script and output kept in the authoring scratchpad)."
+    },
+    {
+      "claim_vi": "Observed: with OAEP, encrypting the same two-byte message twice gave two different ciphertexts that both decrypted correctly; the RSA public key object has an encrypt method and no decrypt method; a different private key failed to decrypt with ValueError ('Decryption failed').",
+      "source": "https://github.com/pyca/cryptography/blob/6179e1c39ed0019cf27168420eff6b3ab1840ef9/docs/hazmat/primitives/asymmetric/rsa.rst",
+      "section": "Đọc hình",
+      "verified_by": "No external page reports this output; observed by executing the code on the authoring machine (cryptography 50.0.1, throw-away keys, one run; script and output kept in the authoring scratchpad)."
+    },
+    {
+      "claim_vi": "Measured once: encrypting 1 MiB with RSA-2048 OAEP in 190-byte chunks (5519 chunks, 1,412,864 bytes of ciphertext) took about 0.144 s and decrypting it about 2.03 s, which is about 216 and 3,300 times the AES-256-GCM times of the same run; the chunks round-tripped. Presented in the lesson only as one measurement.",
+      "source": "https://github.com/pyca/cryptography/blob/6179e1c39ed0019cf27168420eff6b3ab1840ef9/docs/hazmat/primitives/asymmetric/rsa.rst",
+      "section": "Đọc hình; Nhìn hình trả lời",
+      "verified_by": "No external page reports this output; observed by executing the code on the authoring machine (cryptography 50.0.1, throw-away keys, one run; script and output kept in the authoring scratchpad)."
+    },
+    {
+      "claim_vi": "Observed hybrid scheme: a random AES-256 key wrapped with RSA-OAEP gave 256 bytes; with a 12-byte nonce and the 1 MiB + 16-byte AES-GCM ciphertext the total was 1,048,860 bytes (1 MiB + 284); unwrapping with the private key and decrypting recovered the 1 MiB exactly. Wrapping the same AES key with another party's public key let that party recover the key.",
+      "source": "https://github.com/pyca/cryptography/blob/6179e1c39ed0019cf27168420eff6b3ab1840ef9/docs/hazmat/primitives/asymmetric/rsa.rst",
+      "section": "Đọc hình; Giới hạn cần nhớ; Nhìn hình trả lời",
+      "verified_by": "No external page reports this output; observed by executing the code on the authoring machine (cryptography 50.0.1, throw-away keys, one run; script and output kept in the authoring scratchpad)."
+    },
+    {
+      "claim_vi": "Arithmetic: pairwise shared keys for n people number n(n-1)/2 (n=10: 45; n=100: 4,950; n=1000: 499,500), against n key pairs.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/symmetric-key_cryptography/index.md",
+      "section": "Đọc hình",
+      "verified_by": "Computed with a script (n*(n-1)//2) and printed for n = 2, 5, 10, 100, 1000; the counting argument itself is the author's general knowledge, not taken from the sources."
+    },
+    {
+      "claim_vi": "Observed with a local openssl s_server (OpenSSL 3.0.13, 127.0.0.1, random high port, throw-away self-signed RSA-2048 certificate) and openssl s_client -tls1_3: the client printed 'Server Temp Key: X25519, 253 bits', 'Peer signature type: RSA-PSS', 'Peer signing digest: SHA256', 'New, TLSv1.3, Cipher is TLS_AES_256_GCM_SHA384' and 'Server public key is 2048 bit'. The reading in the lesson (the session key is agreed by an ephemeral X25519 exchange, the certificate's RSA key signs, data is protected with AES-256-GCM) is the author's interpretation of that output; it describes one local connection with OpenSSL defaults, not what any website or browser does.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/3e2db6bf3f5f0c807aef8a8fc84e395acce0292c/cheatsheets/Transport_Layer_Security_Cheat_Sheet.md",
+      "section": "Xem sâu hơn",
+      "verified_by": "Output of the run, kept in the authoring scratchpad. The TLS 1.3 specification was not reachable and was not read. An earlier attempt hit a different process already listening on the first port tried and was discarded; the reported run used its own free port and its own certificate."
+    },
+    {
+      "claim_vi": "That RSA and key sizes in bits are not comparable across algorithm families is the author's reading of OWASP giving separate minimums (AES 128 bits, RSA 2048 bits); no equivalence table was read (the standards bodies' documents were not reachable).",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/3e2db6bf3f5f0c807aef8a8fc84e395acce0292c/cheatsheets/Cryptographic_Storage_Cheat_Sheet.md",
+      "section": "Giới hạn cần nhớ",
+      "verified_by": "Author's reading of the OWASP text; not checked against a key-strength comparison."
+    },
+    {
+      "claim_vi": "Key generation being a one-off cost while the measured cost recurs per chunk is observed in the timings; that the cost comes from arithmetic on very large integers is the author's general knowledge.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/public-key_cryptography/index.md",
+      "section": "Xem sâu hơn",
+      "verified_by": "Author's general knowledge; not checked against a source."
+    },
+    {
+      "claim_vi": "Legal, regulatory and compliance choices of algorithms, key storage and rotation, forward secrecy mechanics, post-quantum migration and the TLS protocol specifications were not examined here.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/symmetric-encryption-vs-asymmetric-encryption.md",
+      "section": "Whole guide",
+      "verified_by": "Not examined."
+    }
+  ],
+  "design_notes_vi": "Ba khung xếp dọc: hai thẻ so sánh hai loại khóa, bốn bước ghép chúng bằng cách gói khóa, và các ghi nhớ cuối. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "The source says asymmetric encryption is more secure than symmetric because the private key is never shared; the lesson says the two solve different problems (sharing a secret versus speed and message size), that strength depends on algorithm, key size and use, and that not sharing the private key shifts the burden to knowing whose public key one holds.",
+    "The source says the public key encrypts and the private key decrypts without qualification; the lesson says that is the encryption direction only and that for signatures the private key signs and the public key verifies.",
+    "The source attributes the slowness of asymmetric encryption to key generation and complex maths; the lesson shows the cost recurs per operation and that RSA-2048 OAEP accepts at most 190 bytes per call, so bulk data goes through a symmetric cipher.",
+    "The source says HTTPS uses asymmetric encryption to exchange session keys; one observed TLS 1.3 connection agreed the key with an ephemeral X25519 exchange (not an encrypted key), used the certificate's RSA key to sign, and protected data with AES-256-GCM, and the lesson says this is one local observation, not a claim about every site.",
+    "The source does not say that symmetric AES-GCM detects tampering or that a public key must be genuine; the lesson shows both (InvalidTag on a changed byte; a key wrapped to the wrong public key is readable by its owner).",
+    "The source gives no numbers; the lesson adds the pairwise-key count n(n-1)/2 and one-run measurements, labelled as such."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

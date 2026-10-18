@@ -1180,21 +1180,21 @@
         },
         {
           "id": "sd-04-025",
-          "title_vi": null,
+          "title_vi": "Bốn cách chia dữ liệu vào shard: thêm một shard thì bao nhiêu khóa phải dời?",
           "title_source": "Top 4 Data Sharding Algorithms Explained",
           "source_url": "https://bytebytego.com/guides/top-4-data-sharding-algorithms-explained",
           "source_path": "data/guides/top-4-data-sharding-algorithms-explained.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "d91b057c846be30a871e8ab2995032b8b5c29d1d",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-4-data-sharding-algorithms-explained.md"
         },
         {
           "id": "sd-04-026",
-          "title_vi": null,
+          "title_vi": "Sáu mô hình dữ liệu: một cửa hàng nhỏ, sáu cách xếp",
           "title_source": "Top 6 Database Models",
           "source_url": "https://bytebytego.com/guides/top-6-database-models",
           "source_path": "data/guides/top-6-database-models.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "8e652e244e80fe5a4f88d410a12dfcfd4bd0c2c4",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-6-database-models.md"
         },

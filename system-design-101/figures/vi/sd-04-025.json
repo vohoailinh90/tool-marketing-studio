@@ -1,0 +1,52 @@
+{
+  "id": "sd-04-025",
+  "lang": "vi",
+  "title": "Thêm shard thứ năm: bao nhiêu khóa phải dời?",
+  "desc": "Ba khung dọc. Khung một, bốn cách chọn shard cho một khóa: chia theo dải, mỗi shard giữ một khoảng id liền nhau; băm chia dư, shard là giá trị băm của id chia lấy dư cho số shard; băm nhất quán, khóa thuộc shard đứng kế tiếp nó trên vòng băm; ô ảo, khóa rơi vào 1.024 ô cố định và một bảng tra ghi ô nào thuộc shard nào. Khung hai, số khóa phải dời khi thêm shard: theo dải 12.500 nhưng các shard lệch nhau; băm chia dư 79.651, gần 80 phần trăm; băm nhất quán với 100 điểm mỗi shard 20.670; ô ảo 204 ô, 19.993 khóa. Khung ba, hai cái bẫy: id tăng dần dồn mọi id mới vào shard cuối khi chia theo dải; vòng băm chỉ một điểm mỗi shard thì shard lớn gấp hơn ba lần shard nhỏ.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Bốn cách chọn shard cho một khóa",
+      "items": [
+        {
+          "name": "Chia theo dải",
+          "role": "Mỗi shard giữ một dải id liền nhau.",
+          "icon": "list-ordered"
+        },
+        {
+          "name": "Băm chia dư",
+          "role": "Băm id rồi chia lấy dư cho số shard.",
+          "icon": "hash"
+        },
+        {
+          "name": "Băm nhất quán",
+          "role": "Khóa về shard kế tiếp trên vòng băm.",
+          "icon": "refresh-cw"
+        },
+        {
+          "name": "Ô ảo",
+          "role": "Băm vào 1.024 ô; bảng tra ô thuộc shard nào.",
+          "icon": "boxes"
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Thêm shard: số khóa dời trên 100.000",
+      "items": [
+        "Theo dải: 12.500 (12,5%), nhưng shard lệch 12.500 với 25.000.",
+        "Băm chia dư: 79.651 (gần 80%), gần như chuyển cả kho.",
+        "Băm nhất quán, 100 điểm mỗi shard: 20.670 (21%).",
+        "Ô ảo: 204 ô, 19.993 khóa (20%); năm shard gần bằng nhau."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Hai cái bẫy",
+      "items": [
+        "Id tăng dần: chia theo dải dồn mọi id mới vào shard cuối.",
+        "Vòng băm chỉ 1 điểm mỗi shard: shard lớn gấp hơn 3 lần shard nhỏ."
+      ]
+    }
+  ]
+}

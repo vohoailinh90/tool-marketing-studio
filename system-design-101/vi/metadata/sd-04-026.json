@@ -1,0 +1,86 @@
+{
+  "id": "sd-04-026",
+  "title_vi": "Sáu mô hình dữ liệu: một cửa hàng nhỏ, sáu cách xếp",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "draft",
+  "source_ref": "sd-04-026",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/top-6-database-models.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-6-database-models.md",
+    "blob_sha": "8e652e244e80fe5a4f88d410a12dfcfd4bd0c2c4",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a local clone at the pinned commit and hashed as a Git blob; the computed OID matches the tree OID and the source map. No source-image bytes used.",
+    "retrieved_body_sha256": "e6465a799aae0bdb3e0bbaacc48510a9904c245c7aed04d250f7a29ecf468571",
+    "retrieved_body_bytes": 3088
+  },
+  "diagram": "../diagrams/sd-04-026-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "scope": "Dựng một cửa hàng nhỏ (2 khách, 3 sản phẩm, 4 món) bằng SQLite 3.45.1 trong Python 3.13.16 theo bảng phẳng, quan hệ, sao và bông tuyết; giả lập phân cấp và mạng bằng cấu trúc Python. KHÔNG kiểm: hệ quản trị phân cấp hay mạng thật, tốc độ trên dữ liệu lớn, năm 1970 của Codd (ghi theo nguồn, chưa mở bài báo gốc)."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "not_yet_reviewed"
+    },
+    "mobile": {
+      "status": "pending"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "id": "six-models-source",
+      "claim_vi": "Nguồn nêu sáu mô hình: phẳng, phân cấp, quan hệ (E. F. Codd đưa ra năm 1970), sao, bông tuyết và mạng; sao và bông tuyết dùng cho kho dữ liệu phân tích.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-6-database-models.md",
+      "section": "Whole guide",
+      "verified_by": "Đọc thân nguồn ghim ngày 2026-10-18; năm 1970 chỉ ghi theo nguồn."
+    },
+    {
+      "id": "flat-anomaly",
+      "claim_vi": "Trong bảng phẳng thử nghiệm, thành phố của khách An được ghi ở 3 dòng; sửa sót một dòng làm truy vấn trả về hai thành phố cho An.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-6-database-models.md",
+      "section": "Flat Model (phép thử của người biên soạn)",
+      "verified_by": "Chạy đoạn mã in trong bài ngày 2026-10-18: [(3,)] rồi [('Đà Nẵng',), ('Huế',)]."
+    },
+    {
+      "id": "tree-vs-pointer",
+      "claim_vi": "Để biết ai mua ấm trà, cây phân cấp giả lập phải đọc cả 4 món; cấu trúc mạng giả lập đi từ sản phẩm theo con trỏ chỉ đọc 2 món.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-6-database-models.md",
+      "section": "Hierarchical Model; Network Model (phép thử của người biên soạn)",
+      "verified_by": "Chạy đoạn mã in trong bài ngày 2026-10-18. Là cấu trúc Python giả lập, không phải hệ quản trị phân cấp hay mạng thật."
+    },
+    {
+      "id": "star-vs-snowflake",
+      "claim_vi": "Hỏi số món theo ngành: bảng chiều kiểu sao cần 1 phép nối và lưu chữ Gia dụng ở 3 dòng; kiểu bông tuyết cần 3 phép nối và lưu 1 lần; cả hai trả (Gia dụng, 8).",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-6-database-models.md",
+      "section": "Star Schema; Snowflake Model (phép thử của người biên soạn)",
+      "verified_by": "Chạy đoạn mã in trong bài ngày 2026-10-18 bằng SQLite 3.45.1."
+    },
+    {
+      "id": "two-layers",
+      "claim_vi": "Sao và bông tuyết là cách xếp bảng quan hệ, chạy trên hệ quan hệ, chứ không phải một loại hệ quản trị riêng.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-6-database-models.md",
+      "section": "Star Schema; Snowflake Model",
+      "verified_by": "Lập luận của người biên soạn, thấy trong phép thử: cả hai được tạo bằng create table của SQLite. Nguồn liệt kê sáu tên ngang hàng."
+    }
+  ],
+  "design_notes_vi": "Ba khung: bốn cách hệ quản trị nhìn dữ liệu, hai cách xếp bảng để phân tích, kết quả đo trên bốn món hàng. Chia sáu tên thành hai tầng là cách trình bày của bài. Sơ đồ dựng bằng scripts/figures, không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Nguồn liệt kê sáu mô hình ngang hàng; bài tách chúng thành hai tầng (cách hệ quản trị nhìn dữ liệu; cách xếp bảng quan hệ cho phân tích).",
+    "Thay cho mô tả từng mô hình, bài dựng cùng một cửa hàng theo từng cách và đo số lần một sự việc bị lưu, số bản ghi phải đọc và số phép nối."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này, bản nháp chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

@@ -1,0 +1,97 @@
+{
+  "id": "sd-06-010",
+  "title_vi": "Các chính sách đẩy khóa ra khỏi bộ nhớ đệm",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "draft",
+  "source_ref": "sd-06-010",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/most-popular-cache-eviction.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/most-popular-cache-eviction.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a git fetch of the pinned commit and hashed as a Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "4340ed144d591b0288b298d046d64bb2127a3617",
+    "retrieved_body_sha256": "81f4f1aaabe94d988554e77409638253a88922f326b7abc9cb551ef870c43d86",
+    "retrieved_body_bytes": 2575
+  },
+  "diagram": "../diagrams/sd-06-010-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-06-014",
+      "relation": "see_also",
+      "reason_vi": "Tám chiến lược đẩy khóa ra và các tùy chọn có thật trong Redis."
+    },
+    {
+      "lesson_id": "sd-06-009",
+      "relation": "context",
+      "reason_vi": "Tỷ lệ trúng là số đo để so các chính sách."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "evidence": "Redis eviction doc and memcached's new_lru.txt read from local clones; six policies simulated in Python on three traces."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright) rendered the full lesson (Markdown to HTML, optional sections open, 16 px side gutters) at each width: no horizontal overflow of the page or of any table; figure drawn by scripts/figures (viewBox width 320, smallest font 15 px) shown at 13.5 px effective at 320 px and 15 px at 375 px; every SVG text box inside the viewBox. python3 -m scripts.figures check --browser passed. Not learner testing and not GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Use allkeys-random when keys are accessed with roughly equal frequency, for example data read in a repeating cycle; Redis LRU is an approximation that samples keys; LFU is approximated with a probabilistic counter and a decay period so it adapts to changes in the access pattern.",
+      "source": "https://github.com/redis/docs/blob/3b030c7ef066c0bb7f88ddec02c784e49783b0f8/content/develop/reference/eviction/index.md",
+      "section": "Eviction policies; Approximated LRU algorithm; LFU eviction",
+      "verified_by": "Read from a local clone of redis/docs at commit 3b030c7ef066c0bb7f88ddec02c784e49783b0f8, the head of its default branch when read on 2026-10-18 (a later change to that branch does not alter this URL)."
+    },
+    {
+      "claim_vi": "memcached's newer LRU splits into HOT, WARM and COLD; its primary goal is to better protect active items from scanning.",
+      "source": "https://github.com/memcached/memcached/blob/1b3b8555734f9b7b8d979924c7f8d6cf82194ba8/doc/new_lru.txt",
+      "section": "Whole file",
+      "verified_by": "Read from a clone of memcached/memcached at tag 1.6.24 (commit 1b3b8555734f9b7b8d979924c7f8d6cf82194ba8), the version that was run."
+    },
+    {
+      "claim_vi": "Simulation, cache of 100 items, 100,000 accesses, hit ratios LRU/LFU/FIFO/random/MRU/SLRU: Zipf over 1,000 keys 57.9/65.5/52.4/52.3/12.6/65.5%; loop over 120 keys 0/0/0/68.5/83.1/0%; 70% to 50 hot keys and 30% one-off keys 64.4/70.0/52.3/52.6/1.3/70.0% (70% is the maximum).",
+      "source": "https://github.com/redis/docs/blob/3b030c7ef066c0bb7f88ddec02c784e49783b0f8/content/develop/reference/eviction/index.md",
+      "section": "Simulation",
+      "verified_by": "Experiment run by the author on 2026-10-18 on one KVM virtual machine (4 vCPU): exact implementations in Python 3.13 (LFU ties broken by insertion order, SLRU with 80% protected, seeded random), Zipf distribution with exponent 1."
+    },
+    {
+      "claim_vi": "Five eviction strategies: TTL, LRU, LFU, MRU (useful for scans and OS buffer caches), SLRU (probationary and protected segments).",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/most-popular-cache-eviction.md",
+      "section": "Whole guide",
+      "verified_by": "Source body read at the pinned commit."
+    }
+  ],
+  "design_notes_vi": "Một khung định nghĩa và ba khung kết quả, mỗi khung một kiểu truy cập, để thấy không chính sách nào thắng mọi nơi.",
+  "source_deviations": [
+    "Source says the best strategy depends on context; the lesson shows that with a simulation and checks two of its conclusions against Redis and memcached documentation.",
+    "The simulation covers six policies (LRU, LFU, MRU, SLRU, plus FIFO and random for comparison); TTL is explained but not simulated, since it does not choose a key when the cache is full."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này (gói L5), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

@@ -7,6 +7,7 @@
 ## Từ viết tắt
 
 - **SQL** (Structured Query Language) — ngôn ngữ truy vấn có cấu trúc: ngôn ngữ chuẩn để hỏi và ghi dữ liệu trong cơ sở dữ liệu quan hệ; PostgreSQL là một hệ dùng nó.
+- **CPU** (Central Processing Unit) — bộ xử lý trung tâm: phần chip chạy lệnh của máy, một trong những thứ phân vùng trên một máy không chia ra được.
 
 ## Đọc hình
 

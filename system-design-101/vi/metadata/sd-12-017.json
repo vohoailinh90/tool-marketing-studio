@@ -41,7 +41,7 @@
     },
     "mobile": {
       "status": "checked",
-      "checked_on": "2026-10-13",
+      "checked_on": "2026-10-18",
       "widths_px": [
         320,
         375,
@@ -51,7 +51,7 @@
       "whole_lesson_no_horizontal_overflow": true,
       "text_outside_viewbox": false,
       "optional_sections_checked_open": true,
-      "evidence": "Chromium headless: markdown-it render of lesson.md with every <details> open, in iframes of 320, 375 and 430 px; documentElement.scrollWidth did not exceed clientWidth; every SVG <text> bounding box lies inside the viewBox; effective diagram text is 16px x scale (13.65px at 320 with a 15px classic scrollbar, 16px at 375 and 430); a contact-sheet screenshot of the figure was inspected visually. The measuring script is a throwaway one and is not committed to the repository, so the measurement cannot yet be re-run from the repo. Not learner testing; not checked on GitHub or a real phone."
+      "evidence": "Re-checked after the Từ viết tắt section was added (first checked 2026-10-13 on the old draft branch). Chromium (Playwright) rendered the complete lesson with every details block open at 320/375/430px from a local Markdown render with GitHub-like styles (16px page padding): no horizontal overflow at any width, every SVG text box inside the viewBox, min effective diagram text 14.40px at 320 and 16.00px at 375 in this render; the earlier, more conservative 13.65px stays in minimum_diagram_text_px. Not GitHub itself, not a real phone, not learner testing."
     },
     "user_testing": {
       "status": "not_performed"

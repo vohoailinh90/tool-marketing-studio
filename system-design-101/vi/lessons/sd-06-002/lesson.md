@@ -43,7 +43,7 @@ Phần RFC 9111 bắt buộc là phần *cấm*: bộ nhớ đệm dùng chung k
 
 ## Giới hạn cần nhớ
 
-CDN chỉ giúp được phần nội dung mà máy gốc cho phép lưu. Với trang `private` hay trang kèm cookie riêng của từng người, máy biên không lưu, nên mọi yêu cầu đi tới CDN đều được chuyển về máy gốc; riêng `private` vẫn cho trình duyệt giữ bản của chính người đó, nên không phải lần truy cập nào cũng tạo ra một yêu cầu. Với `no-store` thì không nơi nào được lưu. MDN còn nêu ba cái giá: thêm một bên thứ ba có thể hỏng hoặc bị chặn, thêm một chỗ có thể bị tấn công, và có lúc CDN của bên thứ ba còn làm trang chậm đi vì trình duyệt phải mở thêm kết nối tới một tên miền khác.
+CDN chỉ giúp được phần nội dung mà máy gốc cho phép lưu. Với trang `private`, máy biên không được lưu, nên mọi yêu cầu đi tới CDN đều được chuyển về máy gốc; `private` vẫn cho trình duyệt giữ bản của chính người đó, nên không phải lần truy cập nào cũng tạo ra một yêu cầu. Với `no-store` thì không nơi nào được lưu. **Đừng trông vào cookie để chặn việc lưu**: RFC 9111 (mục 7.3) lưu ý `Set-Cookie` không ngăn bộ nhớ đệm lưu câu trả lời. nginx mặc định không lưu những câu trả lời đó, nhưng một CDN khác hoàn toàn có thể lưu, rồi trả trang riêng của người này cho người khác. Trang riêng của từng người phải tự ghi `Cache-Control: private` hoặc `no-store`. MDN còn nêu ba cái giá: thêm một bên thứ ba có thể hỏng hoặc bị chặn, thêm một chỗ có thể bị tấn công, và có lúc CDN của bên thứ ba còn làm trang chậm đi vì trình duyệt phải mở thêm kết nối tới một tên miền khác.
 
 ## Nhìn hình trả lời
 
@@ -69,7 +69,7 @@ Hành vi của nginx với `Set-Cookie` và với câu trả lời không ghi h�
 ## Nguồn đối chiếu
 
 - [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/why-are-content-delivery-networks-cdn-so-popular.md): luồng hỏi qua máy biên, các thành phần, cách định tuyến.
-- [IETF HTTP Working Group — RFC 9111, bản XML tại commit cố định](https://github.com/httpwg/httpwg.github.io/blob/03f35d852e7b64668ab08fda1a8076d6d44d17ae/specs/rfc9111.xml): bộ nhớ đệm dùng chung và riêng (mục 1); điều kiện được lưu (mục 3); chỉ thị `no-store`, `private`, `s-maxage` (mục 5.2.2).
+- [IETF HTTP Working Group — RFC 9111, bản XML tại commit cố định](https://github.com/httpwg/httpwg.github.io/blob/03f35d852e7b64668ab08fda1a8076d6d44d17ae/specs/rfc9111.xml): bộ nhớ đệm dùng chung và riêng (mục 1); điều kiện được lưu (mục 3); chỉ thị `no-store`, `private`, `s-maxage` (mục 5.2.2); bộ nhớ đệm là tính năng tùy chọn (mục 2); `Set-Cookie` không ngăn việc lưu (mục 7.3).
 - [MDN — mục từ CDN, tại commit cố định](https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/cdn/index.md): lợi ích và ba cái giá của CDN.
 - [MDN — hướng dẫn HTTP caching, tại commit cố định](https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/web/http/guides/caching/index.md): bộ nhớ đệm do mình vận hành (CDN) xóa được bản đã lưu qua bảng điều khiển hay lời gọi.
 

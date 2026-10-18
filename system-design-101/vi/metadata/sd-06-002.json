@@ -87,6 +87,12 @@
       "verified_by": "Read from a local clone of httpwg/httpwg.github.io at commit 03f35d852e7b64668ab08fda1a8076d6d44d17ae, the head of its default branch when read on 2026-10-18 (a later change to that branch does not alter this URL)."
     },
     {
+      "claim_vi": "The Set-Cookie response header field does not inhibit caching; servers that wish to control caching of such responses are encouraged to emit appropriate Cache-Control header fields.",
+      "source": "https://github.com/httpwg/httpwg.github.io/blob/03f35d852e7b64668ab08fda1a8076d6d44d17ae/specs/rfc9111.xml",
+      "section": "7.3 Caching of Sensitive Information",
+      "verified_by": "Read from a local clone of httpwg/httpwg.github.io at commit 03f35d852e7b64668ab08fda1a8076d6d44d17ae, the head of its default branch when read on 2026-10-18 (a later change to that branch does not alter this URL)."
+    },
+    {
       "claim_vi": "A cache MAY assign a heuristic expiration time when no explicit one is given; it is not required to.",
       "source": "https://github.com/httpwg/httpwg.github.io/blob/03f35d852e7b64668ab08fda1a8076d6d44d17ae/specs/rfc9111.xml",
       "section": "4.2.2 Calculating Heuristic Freshness",

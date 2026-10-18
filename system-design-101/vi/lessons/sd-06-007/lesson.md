@@ -1,8 +1,8 @@
 # Các cách giảm độ trễ hay dùng, và vì sao phải đo trước
 
-**Độ trễ là thời gian người dùng chờ từ lúc hỏi tới lúc có câu trả lời. Thời gian đó cộng từ nhiều khúc: tìm dữ liệu, tính toán, xếp hàng chờ máy rảnh, truyền qua mạng. Mỗi cách giảm độ trễ chỉ cắt một khúc, nên phải đo xem khúc nào dài trước khi chọn cách.**
+**Độ trễ là thời gian người dùng chờ từ lúc hỏi tới lúc có câu trả lời. Thời gian đó cộng từ nhiều khúc: tìm dữ liệu, tính toán, xếp hàng chờ máy rảnh, truyền qua mạng. Mỗi cách giảm độ trễ chỉ cắt được những khúc nhất định, nên phải đo xem khúc nào dài trước khi chọn cách.**
 
-![Ba khung. Khung một, bốn bước: đo xem thời gian nằm ở đâu; chọn cách đánh vào đúng khúc đó; đo lại; ghi cái giá phải trả. Khung hai, sáu cách: chỉ mục cắt thời gian tìm trong cơ sở dữ liệu, thử nghiệm thấy truy vấn từ khoảng 11 đến 13 mili giây còn 1 đến 2 mili giây; bộ nhớ đệm bỏ qua việc tính lại; cân bằng tải bớt hàng chờ ở một máy; CDN rút ngắn quãng đường; bất đồng bộ cho người dùng khỏi chờ việc chậm; nén làm gói nhỏ lại, một tệp JSON lặp nhiều còn khoảng 8 phần trăm. Khung ba, cái giá: chỉ mục làm việc ghi chậm hơn khoảng ba lần trong thử nghiệm; bộ nhớ đệm có thể trả dữ liệu cũ; nén tốn thời gian máy và không làm dữ liệu ngẫu nhiên nhỏ đi.](../../diagrams/sd-06-007-main.svg)
+![Ba khung. Khung một, bốn bước: đo xem thời gian nằm ở đâu; chọn cách đánh vào đúng khúc đó; đo lại; ghi cái giá phải trả. Khung hai, sáu cách: chỉ mục cắt thời gian tìm trong cơ sở dữ liệu, thử nghiệm thấy truy vấn từ khoảng 11 đến 13 mili giây còn 1 đến 2 mili giây; bộ nhớ đệm bỏ qua việc tính lại; cân bằng tải bớt hàng chờ ở một máy; CDN rút ngắn quãng đường và, khi trúng bản sao, khỏi hỏi máy gốc; bất đồng bộ cho người dùng khỏi chờ việc chậm; nén làm gói nhỏ lại, một tệp JSON lặp nhiều còn khoảng 8 phần trăm. Khung ba, cái giá: chỉ mục làm việc ghi chậm hơn khoảng ba lần trong thử nghiệm; bộ nhớ đệm có thể trả dữ liệu cũ; nén tốn thời gian máy và không làm dữ liệu ngẫu nhiên nhỏ đi.](../../diagrams/sd-06-007-main.svg)
 
 ## Từ viết tắt
 
@@ -21,7 +21,7 @@ Sáu cách quen thuộc, mỗi cách nhắm một khúc:
 1. **Chỉ mục (index)** cắt thời gian *tìm* trong cơ sở dữ liệu. Tài liệu PostgreSQL ghi chỉ mục giúp tìm các dòng cần thiết nhanh hơn nhiều, nhưng thêm gánh nặng cho cả hệ thống, nên phải dùng có cân nhắc.
 2. **Bộ nhớ đệm** cắt thời gian *tính lại hoặc đọc lại*, bằng cách trả lời từ bản sao.
 3. **Cân bằng tải** cắt thời gian *xếp hàng*: chia yêu cầu cho nhiều máy để không máy nào bị dồn.
-4. **CDN** cắt thời gian *truyền*: đặt bản sao gần người dùng.
+4. **CDN** cắt thời gian *truyền*: đặt bản sao gần người dùng. Khi câu trả lời được phép lưu và trúng bản sao, CDN còn bỏ qua luôn mọi việc của máy gốc (tìm dữ liệu, tính toán); với câu trả lời riêng của từng người thì không có bản sao để trúng.
 5. **Xử lý bất đồng bộ** cắt thời gian *chờ việc chậm*: trả lời ngay, còn việc như gửi thư hay tạo báo cáo thì đưa vào hàng đợi làm sau.
 6. **Nén** cắt thời gian *truyền dữ liệu lớn*: RFC 9110 định nghĩa content coding, như `gzip`, để nén nội dung mà không mất thông tin.
 
@@ -40,12 +40,12 @@ Mỗi cách đều đổi lấy một thứ: chỉ mục làm việc ghi chậm 
 
 ## Nhìn hình trả lời
 
-Một trang danh sách đơn hàng mất 2 giây. Đo cho thấy truy vấn cơ sở dữ liệu chiếm 1,8 giây, phần truyền qua mạng chỉ 50 ms. Bật nén và thêm CDN có giúp nhiều không? Nên thử gì trước?
+Một trang danh sách đơn hàng của từng khách (trả `Cache-Control: private`, nên CDN không được lưu) mất 2 giây. Đo cho thấy truy vấn cơ sở dữ liệu chiếm 1,8 giây, phần truyền qua mạng chỉ 50 ms. Bật nén và thêm CDN có giúp nhiều không? Nên thử gì trước?
 
 <details>
 <summary>Xem đáp án</summary>
 
-Giúp rất ít: nén và CDN chỉ cắt khúc truyền, mà khúc đó chỉ 50 ms trong 2 giây.
+Giúp rất ít: trang này riêng của từng khách nên CDN không có bản sao để trúng, nén và CDN chỉ còn cắt khúc truyền, mà khúc đó chỉ 50 ms trong 2 giây. (Nếu trang được phép lưu chung thì khác: một lượt trúng CDN bỏ qua cả truy vấn 1,8 giây.)
 Nên xem kế hoạch của truy vấn (`EXPLAIN`): nếu nó quét cả bảng, một chỉ mục đúng cột lọc có thể cắt phần lớn 1,8 giây, như thử nghiệm ở trên. Sau đó đo lại, và nhớ đo cả tốc độ ghi vì chỉ mục làm việc ghi chậm đi.
 
 </details>

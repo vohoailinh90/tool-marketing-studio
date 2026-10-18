@@ -98,7 +98,8 @@
   "source_deviations": [
     "Source opens with a figure on revenue lost to latency; it is dropped for lack of a source to check it.",
     "Source's title says five strategies but lists six; the lesson keeps six and links each to the part of latency it cuts.",
-    "The lesson adds measurements of indexing and compression and the cost of each."
+    "The lesson adds measurements of indexing and compression and the cost of each.",
+    "A CDN hit on a cacheable response skips the origin's work too, not only the network; the check question is set on a per-user (private) page so that only the network part is left for the CDN."
   ],
   "editorial_note_vi": "Bài mới viết tại repo này (gói L5), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
 }

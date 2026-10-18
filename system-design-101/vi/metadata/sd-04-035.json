@@ -1,0 +1,89 @@
+{
+  "id": "sd-04-035",
+  "title_vi": "Bản sao chỉ đọc qua lớp trung gian: vừa đặt đơn mà không thấy đơn",
+  "language": "vi",
+  "kind": "flow",
+  "content_status": "draft",
+  "source_ref": "sd-04-035",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/how-to-implement-read-replica-pattern.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-to-implement-read-replica-pattern.md",
+    "blob_sha": "bc9522eeb83dcffe75d4c082e37adde531383a2c",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a local clone at the pinned commit and hashed as a Git blob; the computed OID matches the tree OID and the source map. No source-image bytes used.",
+    "retrieved_body_sha256": "bf1470e11d891de0a27572f8bedf733519c393e516cfe0ca5c7cc1bb1e4a661f",
+    "retrieved_body_bytes": 2149
+  },
+  "diagram": "../diagrams/sd-04-035-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "scope": "Dựng bản chính và một bản sao PostgreSQL 16.15 (pg_basebackup, nhận WAL không đồng bộ) trên một máy; chạy lớp định tuyến Python với psycopg 3.3.6: bản sao từ chối ghi, đọc cũ khi tạm dừng áp dụng WAL, dính bản chính 5 giây, đo đọc ngay sau khi ghi 50 lần (hai lần chạy), remote_apply với bản sao đồng bộ. Đọc high-availability.sgml và config.sgml (REL_16_STABLE). KHÔNG kiểm: phần mềm trung gian thật (ProxySQL, MySQL Router...), giao thức MySQL, bản sao ở máy hay vùng khác."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "not_yet_reviewed"
+    },
+    "mobile": {
+      "status": "pending"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "id": "source-middleware",
+      "claim_vi": "Nguồn nêu hai cách hiện thực mẫu bản sao chỉ đọc (logic định tuyến trong mã ứng dụng, hoặc lớp trung gian), lớp trung gian dùng giao thức mạng của MySQL; ưu điểm: mã ứng dụng gọn, tương thích, dễ chuyển cơ sở dữ liệu; nhược điểm: hệ phức tạp hơn, cần chạy dự phòng tránh điểm hỏng duy nhất, thêm độ trễ mạng.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-to-implement-read-replica-pattern.md",
+      "section": "Whole guide",
+      "verified_by": "Đọc thân nguồn ghim ngày 2026-10-18."
+    },
+    {
+      "id": "standby-readonly-eventual",
+      "claim_vi": "Kết nối tới bản sao của PostgreSQL chỉ đọc; dữ liệu trên bản sao đến sau, nên cùng câu hỏi gửi gần như cùng lúc tới hai máy có thể cho kết quả khác nhau: bản sao nhất quán sau cùng.",
+      "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/high-availability.sgml",
+      "section": "Hot Standby: User's Overview",
+      "verified_by": "Đọc tệp tại commit 8e928803020e5b5694cde58e4851fce64ef9d520 ngày 2026-10-18; chạy thử: insert trên bản sao báo cannot execute INSERT in a read-only transaction."
+    },
+    {
+      "id": "stale-read-paused",
+      "claim_vi": "Khi tạm dừng áp dụng WAL trên bản sao, lớp định tuyến đưa câu đọc của Alice tới bản sao và nhận 0 đơn; lớp dính bản chính 5 giây sau khi ghi trả 2 đơn.",
+      "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/high-availability.sgml",
+      "section": "Phép thử của người biên soạn",
+      "verified_by": "Chạy đoạn mã in trong bài hai lần ngày 2026-10-18, cả hai lần cho ('bản sao', [(0,)]) và ('bản chính', [(2,)])."
+    },
+    {
+      "id": "read-after-write",
+      "claim_vi": "Không tạm dừng, trên cùng một máy, bản sao thấy dòng mới sau trung vị 0,40 và 0,46 mili giây (lớn nhất 5,31 và 1,86); đọc ngay một lần sau khi ghi chỉ thấy dòng ở 5 và 2 trên 50 lần.",
+      "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/high-availability.sgml",
+      "section": "Phép thử của người biên soạn",
+      "verified_by": "Chạy hai lần ngày 2026-10-18; số đo của hai tiến trình trên một máy."
+    },
+    {
+      "id": "remote-apply",
+      "claim_vi": "Với bản sao đồng bộ và synchronous_commit = remote_apply, lệnh ghi chờ tới khi bản sao áp dụng xong; đọc ngay thấy 50 trên 50 lần. Tài liệu nói điều này cho cân bằng tải với nhất quán nhân quả, và lệnh ghi có thể không bao giờ xong nếu bản sao đồng bộ sập; synchronous_commit đặt được cho từng giao dịch.",
+      "sources": [
+        "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/high-availability.sgml",
+        "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/config.sgml"
+      ],
+      "section": "Synchronous Replication; synchronous_commit",
+      "verified_by": "Đọc hai tệp và chạy ngày 2026-10-18 với synchronous_standby_names = '*'; đặt lại về không đồng bộ sau phép thử."
+    }
+  ],
+  "design_notes_vi": "Ba khung: bốn mảnh nối nhau (lớp trung gian tới bản chính và bản sao), trình tự Alice đặt đơn rồi đọc ở bản sao, kết quả đo. Sơ đồ dựng bằng scripts/figures, không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Nguồn liệt kê ưu nhược của lớp trung gian nhưng không nói tới việc đọc dữ liệu cũ ngay sau khi ghi; bài lấy đó làm trọng tâm, đo bằng phép thử và nêu hai cách sửa.",
+    "Nguồn dùng MySQL; phép thử dùng PostgreSQL vì có sẵn trên máy biên soạn."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này, bản nháp chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

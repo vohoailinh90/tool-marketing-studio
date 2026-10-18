@@ -1280,11 +1280,11 @@
         },
         {
           "id": "sd-04-035",
-          "title_vi": null,
+          "title_vi": "Bản sao chỉ đọc qua lớp trung gian: vừa đặt đơn mà không thấy đơn",
           "title_source": "How to Implement Read Replica Pattern",
           "source_url": "https://bytebytego.com/guides/how-to-implement-read-replica-pattern",
           "source_path": "data/guides/how-to-implement-read-replica-pattern.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "bc9522eeb83dcffe75d4c082e37adde531383a2c",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-to-implement-read-replica-pattern.md"
         },

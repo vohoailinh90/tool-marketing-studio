@@ -1,0 +1,128 @@
+{
+  "id": "sd-04-027",
+  "title_vi": "Một câu SQL đi qua những chặng nào? Thử từng chặng trên PostgreSQL",
+  "language": "vi",
+  "kind": "flow",
+  "content_status": "draft",
+  "source_ref": "sd-04-027",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/how-is-a-sql-statement-executed-in-the-database.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-is-a-sql-statement-executed-in-the-database.md",
+    "blob_sha": "f52d62a4c07a923e2f00a7dd15bb192b93ce9741",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a local clone at the pinned commit and hashed as a Git blob; the computed OID matches the tree OID and the source map. No source-image bytes used.",
+    "retrieved_body_sha256": "c6e4d4c1ad9d61a3c12ac1419b356287602cf1bff32b3f23ef9407187291ac98",
+    "retrieved_body_bytes": 1820
+  },
+  "diagram": "../diagrams/sd-04-027-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-15-010",
+      "relation": "related",
+      "reason_vi": "Bài đó nói thứ tự logic của các mệnh đề trong một câu SQL; bài này nói các chặng mà máy chủ xử lý câu đó."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "scope": "Đọc hai chương arch-dev.sgml và mvcc.sgml của tài liệu PostgreSQL 16 (nhánh REL_16_STABLE, commit cố định); chạy PostgreSQL 16.15 trên một cụm cục bộ: lỗi cú pháp, lỗi ngữ nghĩa, view được viết lại, kế hoạch theo độ chọn lọc, đọc và trúng bộ đệm sau khi khởi động lại, pg_locks khi select và update, mã giao dịch, kết nối qua socket Unix và localhost, select chờ khóa của drop table. KHÔNG kiểm: MySQL, SQL Server, SQLite và cách chúng chia chặng; mã nguồn C của PostgreSQL."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "not_yet_reviewed"
+    },
+    "mobile": {
+      "status": "pending"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "id": "eight-steps-source",
+      "claim_vi": "Nguồn mô tả tám bước: tầng vận chuyển, bộ phân tích lệnh, bộ tối ưu, bộ thực thi, phương thức truy cập, bộ quản lý bộ đệm (câu chỉ đọc), bộ quản lý giao dịch (update/insert), bộ quản lý khóa; và lưu ý mỗi hệ có kiến trúc khác nhau.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-is-a-sql-statement-executed-in-the-database.md",
+      "section": "Whole guide",
+      "verified_by": "Đọc thân nguồn ghim ngày 2026-10-18."
+    },
+    {
+      "id": "path-of-query",
+      "claim_vi": "Tài liệu PostgreSQL nêu đường đi của truy vấn: kết nối, giai đoạn phân tích (cú pháp rồi biến đổi ngữ nghĩa), hệ viết lại (dùng để hiện thực view), bộ lập kế hoạch chọn đường đi rẻ nhất (ví dụ quét tuần tự hay dùng chỉ mục), bộ thực thi.",
+      "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/arch-dev.sgml",
+      "section": "The Path of a Query",
+      "verified_by": "Đọc bản clone nông của postgres/postgres nhánh REL_16_STABLE tại commit 8e928803020e5b5694cde58e4851fce64ef9d520 ngày 2026-10-18."
+    },
+    {
+      "id": "why-split-parser",
+      "claim_vi": "Phân tích cú pháp không tra danh mục hệ thống; việc tra danh mục chỉ làm được trong một giao dịch, nên lệnh điều khiển giao dịch như BEGIN, ROLLBACK được nhận ra chỉ bằng ngữ pháp.",
+      "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/arch-dev.sgml",
+      "section": "Transformation Process",
+      "verified_by": "Đọc cùng tệp ngày 2026-10-18."
+    },
+    {
+      "id": "errors-by-stage",
+      "claim_vi": "Trên PostgreSQL 16.15, selec * from orders báo syntax error at or near \"selec\"; select * from don_hang báo relation \"don_hang\" does not exist; select tong from orders báo column \"tong\" does not exist.",
+      "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/arch-dev.sgml",
+      "section": "The Parser Stage",
+      "verified_by": "Chạy trên cụm cục bộ ngày 2026-10-18."
+    },
+    {
+      "id": "view-rewrite",
+      "claim_vi": "Kế hoạch của một truy vấn vào view big_orders chỉ nhắc bảng orders, với điều kiện của view gộp vào điều kiện của truy vấn.",
+      "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/arch-dev.sgml",
+      "section": "The Path of a Query (rewrite system, views)",
+      "verified_by": "Chạy explain ngày 2026-10-18: Recheck Cond: ((customer = 'kh42'::text) AND (amount > 90)) trên orders."
+    },
+    {
+      "id": "plan-by-selectivity",
+      "claim_vi": "Với chỉ mục trên amount và bảng 200.000 dòng, amount = 5 (2.000 dòng ước tính) dùng Bitmap Index Scan, còn amount < 90 (185.573 dòng thật) dùng Seq Scan.",
+      "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/arch-dev.sgml",
+      "section": "Planner/Optimizer",
+      "verified_by": "Chạy explain và count ngày 2026-10-18 sau analyze."
+    },
+    {
+      "id": "buffers-read-hit",
+      "claim_vi": "Sau khi khởi động lại máy chủ, explain (analyze, buffers) của count(*) trên bảng 1.082 trang báo shared read=1082 lần đầu và shared hit=1082 lần hai.",
+      "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/arch-dev.sgml",
+      "section": "Executor (storage system)",
+      "verified_by": "Chạy ngày 2026-10-18; relpages của bảng là 1082. Số trang là của bảng thử; read có thể vẫn đến từ bộ đệm của hệ điều hành."
+    },
+    {
+      "id": "select-locks",
+      "claim_vi": "SELECT giữ AccessShareLock trên bảng (và các chỉ mục khi lập kế hoạch), chỉ xung đột với ACCESS EXCLUSIVE; UPDATE thêm RowExclusiveLock; chỉ sau UPDATE giao dịch mới có mã giao dịch thật.",
+      "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/mvcc.sgml",
+      "section": "Table-Level Locks",
+      "verified_by": "Đọc mvcc.sgml (ACCESS SHARE) và chạy ngày 2026-10-18: pg_locks trong giao dịch; pg_current_xact_id_if_assigned() rỗng sau select, khác rỗng sau update."
+    },
+    {
+      "id": "select-waits-at-analysis",
+      "claim_vi": "Một SELECT gửi khi phiên khác đang drop table chưa chốt phải chờ; với lock_timeout 1 giây, lỗi canceling statement due to lock timeout chỉ vào tên bảng trong mệnh đề from, tức lúc mở bảng ở chặng phân tích.",
+      "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/mvcc.sgml",
+      "section": "Table-Level Locks",
+      "verified_by": "Chạy hai phiên ngày 2026-10-18 trên cụm cục bộ. Việc khóa được xin khi mở bảng ở chặng phân tích là suy ra từ vị trí con trỏ lỗi, không đọc mã C."
+    },
+    {
+      "id": "unix-socket",
+      "claim_vi": "Kết nối psql không chỉ định máy chủ dùng socket Unix: inet_server_addr() trả rỗng; kết nối tới localhost trả 127.0.0.1.",
+      "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/arch-dev.sgml",
+      "section": "How Connections Are Established",
+      "verified_by": "Chạy ngày 2026-10-18."
+    }
+  ],
+  "design_notes_vi": "Ba khung: bốn chặng trước khi đụng dữ liệu, hai chặng còn lại, điều thấy được trên PostgreSQL 16. Tên chặng theo tài liệu PostgreSQL thay cho tám bước của nguồn. Sơ đồ dựng bằng scripts/figures, không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Bài theo các chặng của tài liệu PostgreSQL (thêm chặng viết lại cho view, tách cú pháp khỏi ngữ nghĩa) thay cho tám bước chung của nguồn, và kiểm từng chặng bằng phép thử.",
+    "Nguồn nói câu chỉ đọc đi tới bộ quản lý bộ đệm, còn update/insert đi tới bộ quản lý giao dịch; trên PostgreSQL câu nào cũng chạy trong giao dịch và cũng khóa bảng, khác biệt thấy được là chỉ câu ghi mới xin mã giao dịch thật.",
+    "Nguồn lấy TCP làm ví dụ tầng vận chuyển; bài thêm rằng trên cùng máy psql mặc định dùng socket Unix."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này, bản nháp chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

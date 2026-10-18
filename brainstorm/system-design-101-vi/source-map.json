@@ -1200,11 +1200,11 @@
         },
         {
           "id": "sd-04-027",
-          "title_vi": null,
+          "title_vi": "Một câu SQL đi qua những chặng nào? Thử từng chặng trên PostgreSQL",
           "title_source": "SQL Statement Execution in Database",
           "source_url": "https://bytebytego.com/guides/how-is-a-sql-statement-executed-in-the-database",
           "source_path": "data/guides/how-is-a-sql-statement-executed-in-the-database.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "f52d62a4c07a923e2f00a7dd15bb192b93ce9741",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-is-a-sql-statement-executed-in-the-database.md"
         },

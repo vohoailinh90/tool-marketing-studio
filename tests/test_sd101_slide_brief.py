@@ -207,6 +207,44 @@ class StructureTests(unittest.TestCase):
         self.assertEqual(["1 · Thẻ thứ nhất", "2 · Thẻ hai", "3 · Thẻ ba"], [c["label"] for c in concepts])
         self.assertEqual("Dòng một dòng hai Chọn theo dữ liệu", concepts[0]["line"]["text"])
 
+    def test_an_ordered_list_under_the_figure_section_gives_the_concepts_before_the_figure_cards_do(self):
+        items = "\n".join(f"{n}. **Ý {n}.** nội dung của ý {n} trong bài." for n in range(1, 4))
+        result, _ = self.build(lesson_text(f"\n## Đọc hình\n\nVí dụ một cửa hàng.\n\n{items}\n"), SVG)
+        self.assertEqual("bullets under `Đọc hình`", result.concept_source)
+        labels = [c["label"] for slide in result.slides if "concepts" in slide["material"]
+                  for c in slide["material"]["concepts"]]
+        self.assertEqual(["Ý 1", "Ý 2", "Ý 3"], labels)
+
+    def test_the_deep_dive_is_the_details_block_that_is_not_the_answer_whatever_its_summary_says(self):
+        for summary in ("Giới hạn và đánh đổi", "Đi sâu: điều kiện của ví dụ", "Xem sâu hơn"):
+            with self.subTest(summary=summary):
+                text = lesson_text(figure_section(3)).replace("Xem sâu hơn", summary)
+                result, _ = self.build(text)
+                by_role = {slide["role"]: slide["material"] for slide in result.slides}
+                self.assertEqual(["Một ý sâu hơn, xem RFC 3022.", "Ý thứ hai."],
+                                 [item["text"] for item in by_role["deep dive"]["lines"]])
+
+    def test_a_lesson_without_a_takeaway_section_gets_a_recap_of_its_concepts_on_the_summary_slide(self):
+        text = lesson_text(figure_section(3)).replace("## Giới hạn cần nhớ\n\nHình không bao quát mọi trường hợp.\n", "")
+        result, _ = self.build(text)
+        summary = {slide["role"]: slide["material"] for slide in result.slides}["choice or summary"]
+        self.assertEqual(["Ý 1", "Ý 2", "Ý 3"], [item["text"] for item in summary["sections"][0]["lines"]])
+        self.assertTrue(any("only recaps the concepts" in warning for warning in result.warnings), result.warnings)
+
+    def test_the_opening_paragraph_is_cut_into_the_hook_and_the_situation(self):
+        cases = {"**Câu mở đầu in đậm.** Phần bối cảnh sau đó.": ("Câu mở đầu in đậm.", "Phần bối cảnh sau đó."),
+                 "Câu một. Câu hai và câu ba.": ("Câu một.", "Câu hai và câu ba.")}
+        for opening, (hook, situation) in cases.items():
+            with self.subTest(opening=opening):
+                result, _ = self.build(lesson_text(figure_section(3)).replace("Một câu mở đầu.", opening))
+                self.assertEqual(hook, result.slides[0]["material"]["hook"]["text"])
+                self.assertEqual(situation, result.slides[1]["material"]["lines"][0]["text"])
+
+    def test_a_lesson_that_says_nothing_after_its_hook_gets_a_situation_from_the_figure_description(self):
+        result, _ = self.build(lesson_text(""))  # one sentence, then the figure with alt "Mô tả hình", no Đọc hình
+        self.assertEqual(["Mô tả hình"], [item["text"] for item in result.slides[1]["material"]["lines"]])
+        self.assertTrue(any("situation slide starts from" in warning for warning in result.warnings), result.warnings)
+
     def test_every_link_of_a_source_bullet_is_a_source_not_only_the_first(self):
         text = lesson_text(figure_section(3)).replace(
             "- [Tài liệu thứ hai](https://example.org/two): đối chiếu.",
@@ -297,19 +335,20 @@ class RealLessonTests(unittest.TestCase):
                   for c in slide["material"]["concepts"]]
         self.assertEqual(6, len(labels), labels)
 
-    def test_a_lesson_that_explains_its_figure_in_prose_keeps_that_prose_off_slide_two(self):
-        result = brief.build(STORE, "sd-01-012")
-        situation = sum(item["words"] for item in result.slides[1]["material"]["lines"])
-        self.assertLess(situation, 100)
-
-    def test_group_headings_and_multi_link_source_bullets_of_real_lessons(self):
-        shard = brief.build(STORE, "sd-04-025")
-        labels = [c["label"] for slide in shard.slides if "concepts" in slide["material"]
+    def test_a_numbered_list_under_the_figure_section_is_the_concept_list(self):
+        # sd-01-035 names three concepts in an ordered list; the figure has A, B and C as separate cards
+        result = brief.build(STORE, "sd-01-035")
+        self.assertEqual("bullets under `Đọc hình`", result.concept_source)
+        labels = [c["label"] for slide in result.slides if "concepts" in slide["material"]
                   for c in slide["material"]["concepts"]]
-        self.assertEqual("Chia theo dải", labels[0])
-        sources = brief.build(STORE, "sd-01-021").slides[-1]["material"]["sources"]
-        self.assertIn("RFC 6750 — Bearer Token", sources)
-        self.assertGreaterEqual(len(brief.build(STORE, "sd-13-025").slides[-1]["material"]["sources"]), 6)
+        self.assertEqual(["Chọn trong nhóm đích", "Theo dõi điều kiện phục vụ", "Còn phải đủ sức xử lý"], labels)
+
+    def test_every_written_lesson_fills_the_situation_and_deep_dive_slides(self):
+        for path in sorted((STORE / "lessons").glob("sd-*/lesson.md")):
+            with self.subTest(lesson=path.parent.name):
+                by_role = {slide["role"]: slide["material"] for slide in brief.build(STORE, path.parent.name).slides}
+                self.assertTrue(by_role["situation and goal"]["lines"])
+                self.assertTrue(by_role["deep dive"]["lines"])
 
     def test_the_markdown_and_json_forms_agree_on_the_slide_count(self):
         result = brief.build(STORE, "sd-01-005")

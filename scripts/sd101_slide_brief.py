@@ -48,6 +48,9 @@ ADDRESS = re.compile(r"(?<![A-Za-z0-9+.\-])[A-Za-z][A-Za-z0-9+.\-]*://[^\s<>]+")
 ADDRESS_TOKEN = "[address]"
 # "1 · Simple", "2. Tổ chức": the mark of a figure card's heading, as against a bold line inside a card.
 ORDINAL = re.compile(r"^\d+\s*[·.:)]")
+# "1. **Label.** text": an entry of a Markdown ordered list is a bullet like "- text" is.
+ORDERED = re.compile(r"^\d+[.)]\s+")
+SENTENCE_END = re.compile(r"(?<=[.!?])\s+")
 LEAD = re.compile(r"^\*\*(.+?)\*\*\s*(.*)$", re.S)
 BOLD_LEAD = re.compile(r"^\*\*.+?\*\*")
 BOLD_WEIGHTS = {"bold", "600", "700", "800", "900"}
@@ -58,7 +61,6 @@ FIGURE_SECTION = "Đọc hình"
 QUESTION_SECTION = "Nhìn hình"  # "Nhìn hình thử trả lời" and "Nhìn hình trả lời"
 SOURCES_SECTION = "Nguồn đối chiếu"
 ANSWER_SUMMARY = "đáp án"
-DEEP_SUMMARY = "sâu hơn"
 
 
 class BriefError(Exception):
@@ -113,6 +115,7 @@ class Parsed:
     alt: str
     sections: dict
     details: list
+    opening: tuple = ("", "")  # (hook, rest): the first paragraph cut at its bold lead, or at its first sentence
 
 
 def clean(text: str) -> str:
@@ -149,10 +152,10 @@ def blocks(text: str) -> tuple[list[str], list[str], str]:
         elif image:
             flush()
             alt = alt or image.group(1)
-        elif stripped.startswith("- "):
+        elif stripped.startswith("- ") or ORDERED.match(stripped):
             flush()
             in_bullet = True
-            current.append(stripped[2:])
+            current.append(ORDERED.sub("", stripped) if ORDERED.match(stripped) else stripped[2:])
         elif raw.startswith(" ") and in_bullet and current:
             current.append(stripped)
         else:
@@ -162,6 +165,15 @@ def blocks(text: str) -> tuple[list[str], list[str], str]:
             current.append(stripped)
     flush()
     return paragraphs, bullets, alt
+
+
+def split_opening(paragraph: str) -> tuple[str, str]:
+    """The opening paragraph of a lesson is its hook (the bold first sentence) and the situation that follows it."""
+    lead = LEAD.match(paragraph.strip())
+    if lead and clean(lead.group(1)):
+        return clean(lead.group(1)), clean(lead.group(2))
+    sentences = SENTENCE_END.split(clean(paragraph), maxsplit=1)
+    return sentences[0], (sentences[1] if len(sentences) > 1 else "")
 
 
 def parse(text: str) -> Parsed:
@@ -177,7 +189,8 @@ def parse(text: str) -> Parsed:
     for part in parts[1:]:
         name, _, rest = part.partition("\n")
         sections[clean(name)] = rest
-    return Parsed(clean(head.group(1)), [clean(p) for p in paragraphs], bullets, clean(alt), sections, details)
+    return Parsed(clean(head.group(1)), [clean(p) for p in paragraphs], bullets, clean(alt), sections, details,
+                  split_opening(paragraphs[0]) if paragraphs else ("", ""))
 
 
 def section(parsed: Parsed, prefix: str) -> str | None:
@@ -346,13 +359,19 @@ def build(store: pathlib.Path, lesson_id: str) -> Brief:
         cursor += size
 
     count = FIXED_SLIDES + slots
-    hook = parsed.intro[0] if parsed.intro else ""
+    hook, opening_rest = parsed.opening
     if not hook:
         warnings.append("the lesson has no opening line for the cover's hook")
     from_cards = source.startswith("text cards")
     # When the concepts come from the figure's cards, the prose under `Đọc hình` is those same concepts explained: it is
     # not a situation line, and dumping it on slide 2 would repeat the concept slides.
-    situation = [text for text in parsed.intro[1:] + ([] if from_cards else figure_plain) if text != ADDRESS_TOKEN]
+    situation = [text for text in ([opening_rest] if opening_rest else []) + parsed.intro[1:]
+                 + ([] if from_cards else figure_plain) if text and text != ADDRESS_TOKEN]
+    if not situation and parsed.alt:
+        # nothing follows the hook: the description of the figure (at most three sentences) is the situation
+        situation = SENTENCE_END.split(parsed.alt)[:3]
+        warnings.append("the lesson says nothing after its opening line, so the situation slide starts from the "
+                        "figure's description")
     if from_cards and figure_plain:
         warnings.append(f"the {sum(len(text.split()) for text in figure_plain)} words of prose under `{FIGURE_SECTION}` "
                         "explain the figure's cards and are left off the situation slide; read them in lesson.md")
@@ -360,14 +379,17 @@ def build(store: pathlib.Path, lesson_id: str) -> Brief:
     question_section = section(parsed, QUESTION_SECTION)
     question = [clean(p) for p in blocks(question_section or "")[0]]
     answer = next((body for summary, body in parsed.details if ANSWER_SUMMARY in summary.lower()), "")
-    deep = next((body for summary, body in parsed.details if DEEP_SUMMARY in summary.lower()), "")
+    deep = next((body for summary, body in parsed.details if ANSWER_SUMMARY not in summary.lower()), "")
     if not question or not answer:
         warnings.append("the lesson lacks a check question or its answer")
     known = (GLOSSARY_SECTION, FIGURE_SECTION, QUESTION_SECTION, SOURCES_SECTION)
     takeaways = [(name, [clean(p) for p in blocks(rest)[0]] + [clean(b) for b in blocks(rest)[1]])
                  for name, rest in parsed.sections.items() if not name.startswith(known)]
     if not takeaways:
-        warnings.append("the lesson has no limits/takeaway section: build the summary slide from its figure and opening line")
+        # no `##` section of limits or takeaways: the summary recaps the lesson's own concept labels
+        takeaways = [("recap of the concepts", [c.label for group in concept_slides for c in group])]
+        warnings.append("the lesson has no limits/takeaway section: the summary slide only recaps the concepts; add what "
+                        "the lesson says about limits from its figure and opening line")
     glossary = terms(section(parsed, GLOSSARY_SECTION))
     names = sources(section(parsed, SOURCES_SECTION))
     if not names:

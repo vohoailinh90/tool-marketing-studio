@@ -61,3 +61,23 @@ mutations:
   find: '    return size == last_size and abs(x - last_x) < 1 and 0 < y - last_y <= size * 2'
   replace: '    return True'
   test: tests.test_sd101_slide_brief.StructureTests.test_a_group_heading_above_the_first_card_is_not_glued_to_the_card_heading
+- label: an entry of a numbered list is not a bullet
+  find: 'elif stripped.startswith("- ") or ORDERED.match(stripped):'
+  replace: 'elif stripped.startswith("- "):'
+  test: tests.test_sd101_slide_brief.StructureTests.test_an_ordered_list_under_the_figure_section_gives_the_concepts_before_the_figure_cards_do
+- label: the deep dive is found only by the words "sâu hơn" in its summary
+  find: 'if ANSWER_SUMMARY not in summary.lower()), "")'
+  replace: 'if "sâu hơn" in summary.lower()), "")'
+  test: tests.test_sd101_slide_brief.StructureTests.test_the_deep_dive_is_the_details_block_that_is_not_the_answer_whatever_its_summary_says
+- label: the whole opening paragraph is the hook and nothing is left for the situation
+  find: 'split_opening(paragraphs[0]) if paragraphs else ("", ""))'
+  replace: '(clean(paragraphs[0]), "") if paragraphs else ("", ""))'
+  test: tests.test_sd101_slide_brief.StructureTests.test_the_opening_paragraph_is_cut_into_the_hook_and_the_situation
+- label: a lesson with nothing after its hook leaves the situation slide empty
+  find: '    if not situation and parsed.alt:'
+  replace: '    if False:'
+  test: tests.test_sd101_slide_brief.StructureTests.test_a_lesson_that_says_nothing_after_its_hook_gets_a_situation_from_the_figure_description
+- label: a lesson with no takeaway section leaves the summary slide empty
+  find: '        takeaways = [("recap of the concepts", [c.label for group in concept_slides for c in group])]'
+  replace: '        pass'
+  test: tests.test_sd101_slide_brief.StructureTests.test_a_lesson_without_a_takeaway_section_gets_a_recap_of_its_concepts_on_the_summary_slide

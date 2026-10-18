@@ -1,0 +1,91 @@
+{
+  "id": "sd-04-022",
+  "title_vi": "Bảng tra cơ sở dữ liệu trên đám mây: đọc một dòng thế nào cho đúng",
+  "language": "vi",
+  "kind": "reference",
+  "content_status": "draft",
+  "source_ref": "sd-04-022",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/cloud-database-cheat-sheet.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/cloud-database-cheat-sheet.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a partial clone of the source repository; git hash-object of the retrieved body matches the source-map blob. No source-image bytes used.",
+    "blob_sha": "9e7160c83deb2fbcf37f4167f65c1f99a5bd39ee",
+    "retrieved_body_sha256": "b46bf1597ff2aa189da5ad6393b4b3c0e7dc72ee3791a72d99405dabfd957cd0",
+    "retrieved_body_bytes": 1028
+  },
+  "diagram": "../diagrams/sd-04-022-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-04-021",
+      "relation": "prerequisite",
+      "reason_vi": "Các loại cơ sở dữ liệu mà bảng tra dùng làm dòng."
+    },
+    {
+      "lesson_id": "sd-04-028",
+      "relation": "related",
+      "reason_vi": "Cơ sở dữ liệu serverless trên đám mây."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "evidence": "The Azure Architecture Center pages Database services on Azure and AWS (ms.date 2026-10-05) and Google Cloud to Azure services comparison (ms.date 2026-04-08) were read from a clone of MicrosoftDocs/architecture-center at a pinned commit; AWS and Google documentation was not reachable from the authoring environment, and no experiment was run because cloud services were not available."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright) rendered lesson.md (markdown-it, tables enabled, every <details> open, a 16 px page gutter) at each width: the page never scrolled sideways and the figure was scaled to the column; the smallest SVG font-size times that scale is the recorded minimum at 320 px. `python3 -m scripts.figures check --browser` measured every line of the figure in Chromium inside its box. Not GitHub, not a real phone and not learner testing."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Amazon RDS maps to Azure SQL Database, Azure Database for MySQL and Azure Database for PostgreSQL (select by engine first); Aurora Serverless maps to Azure SQL Database serverless with different scaling and billing models; DynamoDB maps to Azure Cosmos DB for NoSQL, both partitioned by key with different consistency, indexing, query, transaction, capacity and pricing models; Amazon DocumentDB maps to Azure DocumentDB or Cosmos DB for MongoDB; Amazon Keyspaces maps to Cosmos DB for Apache Cassandra or Managed Instance for Apache Cassandra; Neptune supports property graph and RDF while Cosmos DB for Gremlin supports property graph only; ElastiCache maps to Azure Managed Redis; Amazon MemoryDB is a durable primary database with no direct Azure equivalent, and Azure Managed Redis should not be the authoritative store; a compatible API does not guarantee feature or operational parity.",
+      "source": "https://github.com/MicrosoftDocs/architecture-center/blob/8e2c239344ee753a88856800b4210a3e27ac1036/docs/aws-professional/databases.md",
+      "section": "Amazon RDS and Azure relational database services; Non-relational database services; Service comparison",
+      "verified_by": "Read from a clone of MicrosoftDocs/architecture-center at commit 8e2c239344ee753a88856800b4210a3e27ac1036."
+    },
+    {
+      "claim_vi": "Cloud SQL maps to the Azure SQL family and Azure Database for MySQL and PostgreSQL; Cloud Spanner, in the row horizontally scalable relational database, maps to Azure Cosmos DB for NoSQL and to Azure Database for PostgreSQL with elastic clusters; Cloud Memorystore maps to Azure Managed Redis.",
+      "source": "https://github.com/MicrosoftDocs/architecture-center/blob/8e2c239344ee753a88856800b4210a3e27ac1036/docs/gcp-professional/services.md",
+      "section": "Data platform: Database",
+      "verified_by": "Read from a clone of MicrosoftDocs/architecture-center at commit 8e2c239344ee753a88856800b4210a3e27ac1036."
+    },
+    {
+      "claim_vi": "A cheat sheet of cloud database services with open-source or third-party options; Google has limited documentation for database use cases, so some entries may not be accurate.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/cloud-database-cheat-sheet.md",
+      "section": "Body",
+      "verified_by": "Source body read."
+    }
+  ],
+  "design_notes_vi": "Ba khung dòng tra (quan hệ; tài liệu, khóa–giá trị, cột rộng; đồ thị và bộ nhớ đệm) và một khung bốn điều bảng tra không nói. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "The source is an image table that the lesson does not reuse; the table is rebuilt from two Azure Architecture Center comparison pages and limited to the rows they contain.",
+    "The lesson adds the caveats those pages attach to each row: API compatibility is not parity, MemoryDB has no direct equivalent, graph scope differs, and Spanner is mapped across models."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

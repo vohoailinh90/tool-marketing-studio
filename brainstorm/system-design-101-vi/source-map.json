@@ -954,7 +954,7 @@
           "title_source": "Pessimistic vs Optimistic Locking",
           "source_url": "https://bytebytego.com/guides/pessimistic-vs-optimistic-locking",
           "source_path": "data/guides/pessimistic-vs-optimistic-locking.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "7a5c4a5cabdb97f749c334785105ebf43b134203",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/pessimistic-vs-optimistic-locking.md"
         },
@@ -964,7 +964,7 @@
           "title_source": "How to Upload a Large File to S3",
           "source_url": "https://bytebytego.com/guides/how-to-upload-a-large-file-to-s3",
           "source_path": "data/guides/how-to-upload-a-large-file-to-s3.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "08ea66ef70d90828a042b2fab60e0517d68bd961",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-to-upload-a-large-file-to-s3.md"
         },
@@ -974,7 +974,7 @@
           "title_source": "Types of Message Queues",
           "source_url": "https://bytebytego.com/guides/types-of-message-queue",
           "source_path": "data/guides/types-of-message-queue.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "2e3e91fd0e98c67bfc6c59d8839b973f955d43d4",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/types-of-message-queue.md"
         },
@@ -984,7 +984,7 @@
           "title_source": "Smooth Data Migration with Avro",
           "source_url": "https://bytebytego.com/guides/smooth-data-migration-with-avro",
           "source_path": "data/guides/smooth-data-migration-with-avro.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "6c3a746b7118f0bf3a4ffb12abe562e6110ca7cd",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/smooth-data-migration-with-avro.md"
         },
@@ -994,7 +994,7 @@
           "title_source": "The Ultimate Kafka 101 You Cannot Miss",
           "source_url": "https://bytebytego.com/guides/the-ultimate-kafka-101-you-cannot-miss",
           "source_path": "data/guides/the-ultimate-kafka-101-you-cannot-miss.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "28c76b2255bd0853004baae309db8d0d430c6a68",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/the-ultimate-kafka-101-you-cannot-miss.md"
         },
@@ -1004,7 +1004,7 @@
           "title_source": "Database Isolation Levels",
           "source_url": "https://bytebytego.com/guides/what-are-database-isolation-levels",
           "source_path": "data/guides/what-are-database-isolation-levels.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "ad1867bb395274eadee9340d2a3f9dcc2ab08fc3",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-are-database-isolation-levels.md"
         },
@@ -1014,7 +1014,7 @@
           "title_source": "Top 6 Data Management Patterns",
           "source_url": "https://bytebytego.com/guides/how-do-we-manage-data",
           "source_path": "data/guides/how-do-we-manage-data.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "7044ce4497f9eee2f7cb7f2a46167f5cb9054213",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-we-manage-data.md"
         },
@@ -1024,7 +1024,7 @@
           "title_source": "Why is Kafka Fast?",
           "source_url": "https://bytebytego.com/guides/why-is-kafka-fast",
           "source_path": "data/guides/why-is-kafka-fast.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "a0f105a32e5269a9742ae14015fee206f20b1816",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/why-is-kafka-fast.md"
         },
@@ -1034,7 +1034,7 @@
           "title_source": "Explaining the 4 Most Commonly Used Types of Queues",
           "source_url": "https://bytebytego.com/guides/explaining-the-4-most-commonly-used-types-of-queues-in-a-single-diagram",
           "source_path": "data/guides/explaining-the-4-most-commonly-used-types-of-queues-in-a-single-diagram.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "9f5fab2f04e00c58b7be6463ebfe4116880018dc",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/explaining-the-4-most-commonly-used-types-of-queues-in-a-single-diagram.md"
         },
@@ -1044,7 +1044,7 @@
           "title_source": "Time Series DB (TSDB) in 20 Lines",
           "source_url": "https://bytebytego.com/guides/time-series-db-tsdb-in-20-lines",
           "source_path": "data/guides/time-series-db-tsdb-in-20-lines.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "6454a3ffa9d30e553ae803566cb7be4fb8fc2f3e",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/time-series-db-tsdb-in-20-lines.md"
         },
@@ -1054,7 +1054,7 @@
           "title_source": "Differences in Event Sourcing System Design",
           "source_url": "https://bytebytego.com/guides/differences-in-event-sourcing-system-design",
           "source_path": "data/guides/differences-in-event-sourcing-system-design.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "5855e41a9fe5c17c47f78806bcaf60f8bdfef014",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/differences-in-event-sourcing-system-design.md"
         },

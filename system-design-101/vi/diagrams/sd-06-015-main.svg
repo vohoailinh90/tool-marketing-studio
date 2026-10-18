@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1003" viewBox="0 0 320 1003" role="img" aria-labelledby="title desc">
+<title id="title">Bộ nhớ đệm hỏng theo bốn kiểu</title>
+<desc id="desc">Ba khung. Khung một, bốn kiểu hỏng: nhiều khóa hết hạn cùng lúc làm yêu cầu dồn về cơ sở dữ liệu; khóa không tồn tại thì lần nào cũng xuyên qua; một khóa nóng hết hạn làm hàng loạt yêu cầu cùng nạp lại; bộ đệm sập thì mọi yêu cầu đổ về cơ sở dữ liệu. Khung hai, thử khóa nóng hết hạn với 50 yêu cầu cùng lúc: không bảo vệ thì 50 lần hỏi cơ sở dữ liệu; giành khóa trong Redis thì 1 hoặc 2 lần; giành khóa rồi đọc lại bộ đệm thì 1 lần trong cả 10 lần thử. Khung ba, hạn sống lệch nhau: 10 nghìn khóa cùng hạn sống hết hạn trong cùng một phút; cộng thêm 0 đến 10 phút ngẫu nhiên thì rải ra 11 phút, phút đông nhất 1.042 khóa.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1003" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Bộ nhớ đệm hỏng theo</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">bốn kiểu</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Kiểu nào cũng kết thúc bằng việc</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">dồn tải về cơ sở dữ liệu.</text>
+<rect x="8" y="123" width="304" height="353" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Bốn kiểu hỏng</text>
+<rect x="20" y="168" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="191" r="11" fill="#16a34a"/>
+<polyline points="37.9,191.4 41.7,195.4 48.5,187" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="194.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nhiều khóa hết hạn cùng</text>
+<text x="64" y="213.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lúc: dồn về cơ sở dữ liệu.</text>
+<rect x="20" y="239" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="262" r="11" fill="#16a34a"/>
+<polyline points="37.9,262.4 41.7,266.4 48.5,258" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="265.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Khóa không tồn tại: lần nào</text>
+<text x="64" y="284.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cũng xuyên qua.</text>
+<rect x="20" y="310" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="333" r="11" fill="#16a34a"/>
+<polyline points="37.9,333.4 41.7,337.4 48.5,329" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="336.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Một khóa nóng hết hạn:</text>
+<text x="64" y="355.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hàng loạt yêu cầu cùng nạp</text>
+<text x="64" y="375.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lại.</text>
+<rect x="20" y="401" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="424" r="11" fill="#16a34a"/>
+<polyline points="37.9,424.4 41.7,428.4 48.5,420" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="427.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bộ đệm sập: mọi yêu cầu đổ</text>
+<text x="64" y="446.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">về cơ sở dữ liệu.</text>
+<rect x="8" y="488" width="304" height="284" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="516.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Thử: khóa nóng hết hạn, 50</text>
+<text x="20" y="538.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">yêu cầu</text>
+<rect x="20" y="555" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="578" r="11" fill="#16a34a"/>
+<polyline points="37.9,578.4 41.7,582.4 48.5,574" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="581.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Không bảo vệ: 50 lần hỏi cơ</text>
+<text x="64" y="600.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">sở dữ liệu.</text>
+<rect x="20" y="626" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="649" r="11" fill="#16a34a"/>
+<polyline points="37.9,649.4 41.7,653.4 48.5,645" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="652.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Giành khóa trong Redis: 1</text>
+<text x="64" y="671.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hoặc 2 lần.</text>
+<rect x="20" y="697" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="720" r="11" fill="#16a34a"/>
+<polyline points="37.9,720.4 41.7,724.4 48.5,716" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="723.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Giành khóa rồi đọc lại bộ</text>
+<text x="64" y="742.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đệm: 1 lần, cả 10 lần thử.</text>
+<rect x="8" y="784" width="304" height="211" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="812.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Hạn sống lệch nhau</text>
+<rect x="20" y="829" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="852" r="11" fill="#16a34a"/>
+<polyline points="37.9,852.4 41.7,856.4 48.5,848" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="855.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">10 nghìn khóa cùng hạn: hết</text>
+<text x="64" y="874.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hạn trong cùng một phút.</text>
+<rect x="20" y="900" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="923" r="11" fill="#16a34a"/>
+<polyline points="37.9,923.4 41.7,927.4 48.5,919" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="926.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cộng thêm 0 đến 10 phút</text>
+<text x="64" y="945.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">ngẫu nhiên: rải ra 11 phút,</text>
+<text x="64" y="965.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đông nhất 1.042 khóa.</text>
+</g>
+</svg>

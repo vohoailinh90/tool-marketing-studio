@@ -1,0 +1,22 @@
+{
+  "id": "sd-06-011",
+  "title": "Memcached và Redis, thử cạnh nhau",
+  "subtitle": "memcached 1.6.24 và Redis 7.0.15, cấu hình mặc định.",
+  "desc": "Ba khung. Khung một, giống nhau: cả hai giữ dữ liệu trong bộ nhớ và đọc ghi theo khóa; đầy thì đẩy khóa cũ ra. Khung hai, khác nhau đã thử: memcached chỉ lưu chuỗi, Redis có thêm hash, list, set, sorted set và bitmap; giá trị 2 MiB bị memcached từ chối vì mặc định tối đa 1 MiB, Redis nhận; khởi động lại thì memcached mất hết, Redis đọc lại ảnh chụp; memcached chạy 4 luồng xử lý, Redis xử lý lệnh trên một luồng chính. Khung ba, bitmap của Redis: một triệu người dùng mỗi người một bit, đánh dấu 300 nghìn người đăng nhập, chiếm 125 nghìn byte.",
+  "sections": [
+    {"kind": "notes", "heading": "Giống nhau",
+     "items": [
+       "Giữ dữ liệu trong bộ nhớ, đọc ghi theo khóa.",
+       "Đầy thì đẩy khóa cũ ra."]},
+    {"kind": "notes", "heading": "Khác nhau, đã thử",
+     "items": [
+       "memcached chỉ lưu chuỗi; Redis có thêm hash, list, set, sorted set, bitmap.",
+       "Giá trị 2 MiB: memcached từ chối (mặc định tối đa 1 MiB); Redis nhận.",
+       "Khởi động lại: memcached mất hết; Redis đọc lại ảnh chụp.",
+       "memcached chạy 4 luồng xử lý; Redis xử lý lệnh trên một luồng chính."]},
+    {"kind": "notes", "heading": "Bitmap của Redis",
+     "items": [
+       "Một triệu người dùng, mỗi người một bit.",
+       "Đánh dấu 300 nghìn người đăng nhập: chiếm 125 nghìn byte."]}
+  ]
+}

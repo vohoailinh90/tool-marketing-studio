@@ -1,0 +1,97 @@
+{
+  "id": "sd-06-012",
+  "title_vi": "Sàn chứng khoán độ trễ thấp: làm ít hơn trên đường găng",
+  "language": "vi",
+  "kind": "flow",
+  "content_status": "draft",
+  "source_ref": "sd-06-012",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/low-latency-stock-exchange.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/low-latency-stock-exchange.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a git fetch of the pinned commit and hashed as a Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "ed3d229031f367e2426ebb879bfa772ce2833dd2",
+    "retrieved_body_sha256": "b1b7ebbea927792dfa28cfbe1067b180d0361b01cf04a1a3174529c4752323d3",
+    "retrieved_body_bytes": 1493
+  },
+  "diagram": "../diagrams/sd-06-012-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-06-007",
+      "relation": "see_also",
+      "reason_vi": "Các cách giảm độ trễ hay dùng, với nguyên tắc đo trước."
+    },
+    {
+      "lesson_id": "sd-06-021",
+      "relation": "see_also",
+      "reason_vi": "Redis cũng chọn xử lý lệnh trên một luồng chính."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "evidence": "The Disruptor technical paper read from a local clone; its lock-cost experiment and a thread hand-off test rewritten in C and run on one machine."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright) rendered the full lesson (Markdown to HTML, optional sections open, 16 px side gutters) at each width: no horizontal overflow of the page or of any table; figure drawn by scripts/figures (viewBox width 320, smallest font 15 px) shown at 13.5 px effective at 320 px and 15 px at 375 px; every SVG text box inside the viewBox. python3 -m scripts.figures check --browser passed. Not learner testing and not GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Locks are expensive when contended because the OS arbitrates with a context switch and cached data can be lost; incrementing a counter 500 million times in Java took 300 ms single-threaded, 10,000 ms with a lock, 224,000 ms with two threads and a lock, 5,700 ms single-threaded with CAS; the ideal is a single thread owning all writes to a resource.",
+      "source": "https://github.com/LMAX-Exchange/disruptor/blob/c871ca49826a6be7ada6957f6fbafcfecf7b1f87/src/docs/asciidoc/en/disruptor.adoc",
+      "section": "The Cost of Locks; The Costs of CAS",
+      "verified_by": "Read from a local clone of LMAX-Exchange/disruptor at commit c871ca49826a6be7ada6957f6fbafcfecf7b1f87, the head of its default branch when read on 2026-10-18 (a later change to that branch does not alter this URL)."
+    },
+    {
+      "claim_vi": "C, gcc 13.3 -O2, 500 million increments of a volatile counter: single thread 1.25 s; with an uncontended mutex 3.6-4.8 s; two threads with a mutex about 40 s; a single-thread CAS loop 6.2 s, slower than the uncontended mutex here.",
+      "source": "https://github.com/LMAX-Exchange/disruptor/blob/c871ca49826a6be7ada6957f6fbafcfecf7b1f87/src/docs/asciidoc/en/disruptor.adoc",
+      "section": "Experiment",
+      "verified_by": "Experiment run by the author on 2026-10-18 on one KVM virtual machine (4 vCPU): Intel Xeon 2.1 GHz under KVM; two runs."
+    },
+    {
+      "claim_vi": "Round trip of one message between two threads pinned to two cores, 200,000 times: busy spin median 240-258 ns (p99 321-360 ns); mutex and condition variable median about 25.8 us (p99 about 60 us); on the same core median 4.5-6.2 us.",
+      "source": "https://github.com/LMAX-Exchange/disruptor/blob/c871ca49826a6be7ada6957f6fbafcfecf7b1f87/src/docs/asciidoc/en/disruptor.adoc",
+      "section": "Experiment",
+      "verified_by": "Experiment run by the author on 2026-10-18 on one KVM virtual machine (4 vCPU): C with pthread_setaffinity_np; two runs."
+    },
+    {
+      "claim_vi": "Do less on the critical path: fewer tasks, less time per task, fewer network hops, less disk; critical path from the order manager through risk checks and matching back out; single server, shared memory event bus, single-threaded components pinned to CPUs with no context switch and no locks.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/low-latency-stock-exchange.md",
+      "section": "Whole guide",
+      "verified_by": "Source body read at the pinned commit."
+    }
+  ],
+  "design_notes_vi": "Bốn bước của đường găng, bốn cách làm ít hơn, và số đo về khóa và chuyển tin giữa luồng.",
+  "source_deviations": [
+    "The lesson adds why locks are costly from the Disruptor paper and repeats two measurements; it reports that a CAS loop was slower than an uncontended mutex on this machine, unlike the paper.",
+    "Source's claim of microsecond latency for a modern exchange is not repeated; no real exchange was measured."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này (gói L5), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

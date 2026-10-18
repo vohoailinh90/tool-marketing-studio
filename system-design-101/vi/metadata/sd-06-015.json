@@ -70,7 +70,7 @@
       "verified_by": "Read from a local clone of mdn/content at commit a1aa79c09717761fc72c20bac94bb9c430ed487a, the head of its default branch when read on 2026-10-18 (a later change to that branch does not alter this URL)."
     },
     {
-      "claim_vi": "SET with NX only sets a key that does not exist and PX sets an expiry in milliseconds; SET resource NX EX max-lock-time is a simple lock, improved by a random token and deleting only when the value matches; the Redlock algorithm is preferred for better guarantees.",
+      "claim_vi": "SET with NX only sets a key that does not exist and PX sets an expiry in milliseconds; SET resource NX EX max-lock-time is a simple lock, improved by a random token and deleting only when the value matches, done atomically by a Lua script that compares and deletes inside Redis; the Redlock algorithm is preferred for better guarantees. (The author's test released the lock with GET then DEL, which is not atomic; the lesson says so.)",
       "source": "https://github.com/redis/docs/blob/3b030c7ef066c0bb7f88ddec02c784e49783b0f8/content/commands/set.md",
       "section": "Options; Patterns",
       "verified_by": "Read from a local clone of redis/docs at commit 3b030c7ef066c0bb7f88ddec02c784e49783b0f8, the head of its default branch when read on 2026-10-18 (a later change to that branch does not alter this URL)."

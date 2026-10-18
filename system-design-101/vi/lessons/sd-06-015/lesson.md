@@ -28,7 +28,7 @@ Ngày 2026-10-18, trên một máy, với Redis 7.0.15. "Cơ sở dữ liệu" l
 | Giành khóa bằng `SET lock:hot <mã ngẫu nhiên> NX PX 2000`; ai giành được thì nạp | 1 ở 6 lần, 2 ở 4 lần | 211–403 ms |
 | Như trên, nhưng giành được khóa thì đọc lại bộ nhớ đệm trước khi nạp | 1 ở cả 10 lần | 213–216 ms |
 
-Cách thứ hai đôi khi nạp hai lần: một yêu cầu thấy thiếu ngay trước khi giá trị được cất, rồi giành được khóa ngay sau khi người nạp đầu tiên đã nhả nó. Đọc lại bộ nhớ đệm sau khi giành khóa chặn được trường hợp đó. Tài liệu lệnh `SET` của Redis mô tả đúng mẫu khóa này (`NX` để chỉ đặt khi chưa có, kèm hạn để khóa tự nhả), khuyên đặt một mã ngẫu nhiên làm giá trị và chỉ xóa khóa khi giá trị còn khớp, và nói thuật toán Redlock cho bảo đảm tốt hơn khi cần.
+Cách thứ hai đôi khi nạp hai lần: một yêu cầu thấy thiếu ngay trước khi giá trị được cất, rồi giành được khóa ngay sau khi người nạp đầu tiên đã nhả nó. Đọc lại bộ nhớ đệm sau khi giành khóa chặn được trường hợp đó. Tài liệu lệnh `SET` của Redis mô tả đúng mẫu khóa này (`NX` để chỉ đặt khi chưa có, kèm hạn để khóa tự nhả), khuyên đặt một mã ngẫu nhiên làm giá trị và chỉ xóa khóa khi giá trị còn khớp, và nói thuật toán Redlock cho bảo đảm tốt hơn khi cần. Việc so rồi xóa phải là **một thao tác nguyên tử**: tài liệu đưa một đoạn script Lua chạy cả hai bước trong Redis. Nếu đọc khóa bằng `GET` rồi mới gửi `DEL`, khóa có thể vừa hết hạn và một yêu cầu khác đã giành được nó giữa hai lệnh, và ta xóa mất khóa của người đó. Chương trình thử ở trên dùng `GET` rồi `DEL` cho đơn giản; đừng làm vậy trong mã thật.
 
 ## Thử: hạn sống lệch nhau
 

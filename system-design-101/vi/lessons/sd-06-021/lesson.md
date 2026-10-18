@@ -39,7 +39,7 @@ Nghi một lệnh chậm chạy trên luồng duy nhất: mọi lệnh khác ph�
 <summary>Xem sâu hơn: "đơn luồng" chính xác đến đâu</summary>
 
 - Redis là "phần lớn đơn luồng": từ 2.4 đã có luồng phụ cho vài việc đĩa chậm, từ 4.0 có xóa đối tượng ở nền (`UNLINK`). Việc chạy lệnh vẫn nằm trên một luồng.
-- Từ 6.0 có thể giao việc đọc và ghi socket cho các luồng I/O phụ (`io-threads`, mặc định 1, tức là tắt). `redis.conf` khuyên chỉ bật khi máy có từ 4 nhân và Redis thật sự thiếu CPU.
+- Từ 6.0 có thể giao việc đọc và ghi socket cho các luồng phụ chuyên đọc ghi mạng (`io-threads`, mặc định 1, tức là tắt). `redis.conf` khuyên chỉ bật khi máy có từ 4 nhân và Redis thật sự thiếu CPU.
 - Vòng lặp sự kiện chọn cơ chế dồn kênh tốt nhất hệ điều hành có: `evport`, rồi `epoll`, rồi `kqueue`, cuối cùng là `select`.
 - Bài nguồn so tốc độ bộ nhớ với ổ đĩa bằng một con số cố định; bài này không lặp lại con số đó vì chưa đo. Bài về các con số độ trễ cùng nhóm bàn chuyện này.
 

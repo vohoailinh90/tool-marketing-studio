@@ -2,8 +2,8 @@
   "id": "sd-06-018",
   "lang": "vi",
   "title": "Redis lớn dần: mỗi bước vá một giới hạn",
-  "subtitle": "Bước sau giữ những gì bước trước có.",
-  "desc": "Hai phần. Phần một, bốn bước: lưu xuống đĩa bằng RDB và AOF vì khởi động lại là mất hết; nhân bản sang bản sao chỉ đọc, chép bất đồng bộ, vì một máy chết là ngừng phục vụ; Sentinel theo dõi và bỏ phiếu nâng bản sao lên làm chủ vì đổi chủ bằng tay chậm; cluster chia 16384 khe cho nhiều chủ vì dữ liệu vượt một máy. Phần hai, kết quả thử trên Redis 7.0.15: tắt bản sao thì chủ vẫn trả lời thành công nhưng lệnh chờ báo 0 bản sao nhận; tắt chủ thì ba Sentinel nâng bản sao lên sau 3,3 giây; gửi khóa tới nhầm nút thì nhận lỗi chỉ sang nút đúng; ghi hai khóa ở hai khe khác nhau trong một lệnh bị từ chối, còn hai khóa cùng thẻ băm thì được.",
+  "subtitle": "Cluster tự đổi chủ, không dùng kèm Sentinel.",
+  "desc": "Hai phần. Phần một, bốn bước: lưu xuống đĩa bằng RDB và AOF vì khởi động lại là mất hết; nhân bản sang bản sao chỉ đọc, chép bất đồng bộ, vì một máy chết là ngừng phục vụ; Sentinel theo dõi và bỏ phiếu nâng bản sao lên làm chủ vì đổi chủ bằng tay chậm; cluster chia 16384 khe cho nhiều chủ vì dữ liệu vượt một máy, và tự đổi chủ nên không dùng kèm Sentinel. Phần hai, kết quả thử trên Redis 7.0.15: tắt bản sao thì chủ vẫn trả lời thành công nhưng lệnh chờ báo 0 bản sao nhận; tắt chủ thì ba Sentinel nâng bản sao lên sau 3,3 giây; gửi khóa tới nhầm nút thì nhận lỗi chỉ sang nút đúng; ghi hai khóa ở hai khe khác nhau trong một lệnh bị từ chối, còn hai khóa cùng thẻ băm thì được.",
   "sections": [
     {
       "kind": "steps",

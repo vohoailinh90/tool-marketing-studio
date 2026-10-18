@@ -418,10 +418,14 @@ mutations:
   find: "    if exports in (\"badged\", \"done\"):\n        want.add(f\"{lesson_id}.pptx\")"
   replace: "    if exports == \"done\":\n        want.add(f\"{lesson_id}.pptx\")"
   test: tests.test_sd101_slides.FolderTests.test_a_badged_export_is_the_pptx_alone
-- label: a badged export may also hold PNG files
-  find: "    if exports == \"done\":\n        want |= {f\"{number:02d}.png\""
-  replace: "    if exports in (\"badged\", \"done\"):\n        want |= {f\"{number:02d}.png\""
-  test: tests.test_sd101_slides.FolderTests.test_a_badged_export_is_the_pptx_alone
+- label: a badged export may not hold PNG files
+  find: "    if exports == \"done\" or (exports == \"badged\" and pngs & set(names)):  # a badged PNG set is whole or absent"
+  replace: "    if exports == \"done\":  # a badged PNG set is whole or absent"
+  test: tests.test_sd101_slides.FolderTests.test_a_badged_export_holds_all_the_png_files_of_its_deck_or_none
+- label: a badged export with one PNG file need not hold the rest
+  find: "        want |= pngs\n    unexpected = "
+  replace: "        want |= pngs & set(names)\n    unexpected = "
+  test: tests.test_sd101_slides.FolderTests.test_a_badged_export_holds_all_the_png_files_of_its_deck_or_none
 - label: a pptx with the moda.app badge is recorded as done
   find: "            elif exports == \"done\" and badged:  # files recorded done are the ones that may go to Facebook"
   replace: "            elif False:"

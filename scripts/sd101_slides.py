@@ -8,9 +8,9 @@ the same file and never conflict at merge:
   status doing   a session is building the deck (owner = its branch, claimed_at, heartbeat_at; generation and
                  taken_from after a takeover)
   status done    the deck exists on Moda (moda_canvas, moda_url, slide_count, size) and `exports` says whether its
-                 PNG and PPTX files are in the folder as well (`done`), only its PPTX exported with the moda.app
-                 badge (`badged`, not for Facebook), or none yet (`pending`); `layouts`, the deck's layout table
-                 (docs/sd101-slides.md, *Variety between decks*), is checked by `finish` and kept in the record
+                 PNG and PPTX files are in the folder as well (`done`), its PPTX (with all its PNG files, or none)
+                 exported with the moda.app badge (`badged`), or none yet (`pending`); `layouts`, the deck's layout
+                 table (docs/sd101-slides.md, *Variety between decks*), is checked by `finish` and kept in the record
 
 Visibility follows sd101_claims.py: every command fetches all branches of the remote. On the default branch every
 record counts; on any other branch only the records whose owner is that branch (a copy inherited by merging is not a
@@ -24,7 +24,7 @@ heartbeat is older than the lease is stale and is taken over on purpose with `cl
   python3 scripts/sd101_slides.py finish sd-01-002 --canvas cvs_... --url https://moda.app/canvas/... --slides 10 \\
       --layouts one-highlighted-sentence,flow,... --first-concept 3     # one layout kind per slide, in order
   python3 scripts/sd101_slides.py exported sd-01-002 --publish      # its PPTX and PNG files are now in slides/
-  python3 scripts/sd101_slides.py exported sd-01-002 --badged --publish   # only its PPTX, moda.app badge and all
+  python3 scripts/sd101_slides.py exported sd-01-002 --badged --publish   # its PPTX (and PNG files), moda.app badge and all
   python3 scripts/sd101_slides.py release sd-01-003 --publish       # give a lesson back
 
 There is no compare-and-swap on a git remote: two sessions that read before either pushed can both claim a lesson.
@@ -469,9 +469,10 @@ def folder_problems(slides_dir: pathlib.Path, lesson_id: str) -> list[str]:
     want = {RECORD}
     if exports in ("badged", "done"):
         want.add(f"{lesson_id}.pptx")
-    if exports == "done":
-        want |= {f"{number:02d}.png" for number in range(1, record["slide_count"] + 1)}
-    unexpected = {"done": "", "badged": " (a badged export is the PPTX alone)"}.get(
+    pngs = {f"{number:02d}.png" for number in range(1, record["slide_count"] + 1)}
+    if exports == "done" or (exports == "badged" and pngs & set(names)):  # a badged PNG set is whole or absent
+        want |= pngs
+    unexpected = {"done": "", "badged": " (a badged export is the PPTX, with all its PNG files or none)"}.get(
         exports, " (exports are not recorded as done)")
     for name in names:
         if name not in want:
@@ -1084,7 +1085,7 @@ def cmd_finish(context: Context, args: argparse.Namespace) -> int:
 
 def cmd_exported(context: Context, args: argparse.Namespace) -> int:
     """A finished deck whose PPTX and PNG files were added to its folder: record that exports are done; with --badged,
-    one whose PPTX alone was added as Moda's free plan exports it, badge and all."""
+    one whose PPTX (and PNG files, all or none) were added as Moda's free plan exports them, badge and all."""
     path = context.writable_record(args.id)
     previous = path.read_text(encoding="utf-8") if path.is_file() else ""
     record = parse_record(previous) if previous else None
@@ -1116,7 +1117,9 @@ def cmd_exported(context: Context, args: argparse.Namespace) -> int:
         return 1
     print(f"exports of {args.id} are {record['exports']}")
     if args.publish:
-        publish(context, [path.parent], f"Slides: {'badged PPTX' if args.badged else 'exports'} of {args.id}")
+        kind = "exports" if not args.badged else "badged PPTX" + (" and PNG files" if any(
+            entry.suffix == ".png" for entry in path.parent.iterdir()) else "")
+        publish(context, [path.parent], f"Slides: {kind} of {args.id}")
         problem = finished_problem(context, args.id) if mine else None
         if problem:
             print(problem, file=sys.stderr)
@@ -1201,8 +1204,8 @@ def build_parser() -> argparse.ArgumentParser:
     finish.add_argument("--url", required=True, help="the Moda editor link, https://moda.app/canvas/...")
     finish.add_argument("--slides", type=int, required=True)
     finish.add_argument("--exports", choices=EXPORTS, default="pending",
-                        help="done only when <id>.pptx and 01.png.. are in slides/, badged when <id>.pptx alone is, "
-                        "exported with the moda.app badge")
+                        help="done only when <id>.pptx and 01.png.. are in slides/, badged when <id>.pptx (with all "
+                        "its PNG files, or none) is there, exported with the moda.app badge")
     finish.add_argument("--layouts", required=True, metavar="KIND,KIND,...",
                         help="the layout kind of every slide, in order, from: " + ", ".join(LAYOUT_KINDS))
     finish.add_argument("--first-concept", type=int, required=True, metavar="N",
@@ -1213,10 +1216,10 @@ def build_parser() -> argparse.ArgumentParser:
     finish.add_argument("--publish", action="store_true")
     finish.set_defaults(run=cmd_finish)
     exported = commands.add_parser("exported", help="record that a finished deck's PPTX and PNG files are in its folder "
-                                   "(with --badged: its PPTX alone, moda.app badge and all)")
+                                   "(with --badged: its PPTX, and its PNG files, moda.app badge and all)")
     exported.add_argument("id", metavar="sd-XX-NNN")
     exported.add_argument("--badged", action="store_true",
-                          help="only <id>.pptx is there, exported with the moda.app badge (not for Facebook)")
+                          help="<id>.pptx (and 01.png.., all or none) is there, exported with the moda.app badge")
     exported.add_argument("--publish", action="store_true")
     exported.set_defaults(run=cmd_exported)
     release = commands.add_parser("release", help="give back lessons you will not build")

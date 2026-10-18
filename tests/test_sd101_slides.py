@@ -948,9 +948,6 @@ class FinishTests(Sessions):
         code, _, err = self.run_in(a, "exported", "sd-01-001")
         self.assertEqual(1, code, "files with the badge are never recorded as done")
         self.assertIn("sd-01-001.pptx carries the moda.app badge", err)
-        code, _, err = self.run_in(a, "exported", "sd-01-001", "--badged")
-        self.assertEqual(1, code, "a badged export is the PPTX alone")
-        self.assertIn("01.png is not expected here (a badged export is the PPTX alone)", err)
         self.assertEqual("pending", self.record(a, "sd-01-001")["exports"])
         for number in range(1, 11):
             (folder / f"{number:02d}.png").unlink()
@@ -960,6 +957,29 @@ class FinishTests(Sessions):
         self.assertEqual("badged", self.record(a, "sd-01-001")["exports"])
         self.assertIn("sd-01-001.pptx", git(a, "ls-tree", "-r", "--name-only", "origin/claude/a"))
         self.assertEqual("Slides: badged PPTX of sd-01-001", git(a, "log", "-1", "--format=%s", "origin/claude/a"))
+
+    def test_exported_badged_records_the_png_files_of_the_deck_with_its_pptx(self) -> None:
+        a = self.session("a")
+        self.run_in(a, "claim", "sd-01-001", "--publish")
+        self.finish(a, "sd-01-001")
+        folder = a / "store" / "lessons" / "sd-01-001" / "slides"
+        pptx(folder / "sd-01-001.pptx", badged=True, count=10)
+        for number in range(1, 10):
+            png(folder / f"{number:02d}.png")
+        code, _, err = self.run_in(a, "exported", "sd-01-001", "--badged")
+        self.assertEqual(1, code, "a badged export holds all the PNG files of its deck or none")
+        self.assertIn("10.png is missing", err)
+        self.assertEqual("pending", self.record(a, "sd-01-001")["exports"])
+        png(folder / "10.png")
+        code, out, err = self.run_in(a, "exported", "sd-01-001", "--badged", "--publish")
+        self.assertEqual(0, code, err)
+        self.assertIn("exports of sd-01-001 are badged", out)
+        self.assertEqual("badged", self.record(a, "sd-01-001")["exports"])
+        files = git(a, "ls-tree", "-r", "--name-only", "origin/claude/a")
+        self.assertIn("10.png", files)
+        self.assertIn("sd-01-001.pptx", files)
+        self.assertEqual("Slides: badged PPTX and PNG files of sd-01-001",
+                         git(a, "log", "-1", "--format=%s", "origin/claude/a"))
 
     def test_exported_refuses_a_deck_that_is_not_finished(self) -> None:
         a = self.session("a")
@@ -1456,11 +1476,24 @@ class FolderTests(unittest.TestCase):
         self.assertEqual(["sd-01-001.pptx is missing"], self.problems())
         pptx(self.dir / "sd-01-001.pptx", badged=True)
         self.assertEqual([], self.problems())
-        png(self.dir / "01.png")
-        self.assertEqual(["01.png is not expected here (a badged export is the PPTX alone)"], self.problems())
-        (self.dir / "01.png").unlink()
         (self.dir / "sd-01-001.pptx").write_bytes(b"not a zip")
         self.assertEqual(["sd-01-001.pptx is not a PowerPoint file: not a ZIP archive"], self.problems())
+
+    def test_a_badged_export_holds_all_the_png_files_of_its_deck_or_none(self) -> None:
+        self.write(exports="badged")
+        pptx(self.dir / "sd-01-001.pptx", badged=True)
+        png(self.dir / "01.png")
+        self.assertEqual([f"{number:02d}.png is missing" for number in range(2, 9)], self.problems(),
+                         "one PNG file makes the set the deck's, so the rest are due")
+        for number in range(2, 9):
+            png(self.dir / f"{number:02d}.png")
+        self.assertEqual([], self.problems())
+        png(self.dir / "09.png")
+        self.assertEqual(["09.png is not expected here (a badged export is the PPTX, with all its PNG files or none)"],
+                         self.problems())
+        (self.dir / "09.png").unlink()
+        png(self.dir / "08.png", 800, 600)
+        self.assertEqual(["08.png is not a 1920x1080 PNG"], self.problems(), "its PNG files are opened like any other")
 
     def test_a_pptx_whose_badge_was_removed_from_some_slides_is_never_recorded_as_badged(self) -> None:
         self.write(exports="badged")

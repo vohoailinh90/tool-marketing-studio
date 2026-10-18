@@ -243,6 +243,17 @@ class StructureTests(unittest.TestCase):
         self.assertIn("RFC 3022; " + long_name + "  [17 words: cut to 10 or fewer]", markdown)
         self.assertNotIn("RFC 3022  [", markdown)
 
+    def test_a_concept_label_over_the_word_budget_is_flagged_like_any_other_line(self):
+        long_label = " ".join(f"từ{n}" for n in range(1, 14))
+        text = lesson_text(figure_section(3)).replace("**Ý 2:**", f"**{long_label}:**")
+        result, _ = self.build(text)
+        concepts = [c for slide in result.slides if "concepts" in slide["material"] for c in slide["material"]["concepts"]]
+        self.assertEqual([(2, False), (13, True), (2, False)],
+                         [(c["label_words"], c["label_over_budget"]) for c in concepts])
+        markdown = brief.render(result)
+        self.assertIn(f"- concept `{long_label}` [label of 13 words: cut to 10 or fewer]: ", markdown)
+        self.assertNotIn("`Ý 1` [label", markdown)
+
     def test_paragraphs_and_bullets_of_one_block_keep_the_order_the_lesson_writes_them(self):
         mixed = "Đoạn mở đầu nêu phạm vi.\n\n- Ý thứ nhất.\n- Ý thứ hai.\n\nĐoạn kết nêu giới hạn."
         expected = ["Đoạn mở đầu nêu phạm vi.", "Ý thứ nhất.", "Ý thứ hai.", "Đoạn kết nêu giới hạn."]
@@ -459,6 +470,14 @@ class RealLessonTests(unittest.TestCase):
                 for source in brief.build(STORE, lesson_id).slides[-1]["material"]["sources"]:
                     self.assertEqual(len(source["text"].split()), source["words"])
                     self.assertEqual(source["words"] > brief.WORD_BUDGET, source["over_budget"])
+
+    def test_every_concept_label_of_every_written_lesson_is_sized_against_the_budget(self):
+        for lesson_id in sorted(path.parent.name for path in (STORE / "lessons").glob("sd-*/lesson.md")):
+            with self.subTest(lesson=lesson_id):
+                for slide in brief.build(STORE, lesson_id).slides:
+                    for concept in slide["material"].get("concepts", []):
+                        self.assertEqual(len(concept["label"].split()), concept["label_words"])
+                        self.assertEqual(concept["label_words"] > brief.WORD_BUDGET, concept["label_over_budget"])
 
     def test_no_written_lesson_leaves_italic_marks_or_an_unescaped_tag_in_its_brief(self):
         italic = re.compile(r"\*(?=\S)[^*\n]+?(?<=\S)\*")

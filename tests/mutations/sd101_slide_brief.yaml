@@ -149,3 +149,11 @@ mutations:
   find: '        if row and cards and (cards[-1][3] or not cards[-1][1]):'
   replace: '        if row and cards:'
   test: tests.test_sd101_slide_brief.StructureTests.test_the_rows_of_a_table_in_the_figure_belong_to_the_heading_above_them
+- label: a concept label is not sized against the word budget
+  find: '"label_words": line(c.label).words, "label_over_budget": line(c.label).over_budget,'
+  replace: '"label_words": line(c.label).words, "label_over_budget": False,'
+  test: tests.test_sd101_slide_brief.StructureTests.test_a_concept_label_over_the_word_budget_is_flagged_like_any_other_line
+- label: the Markdown brief shows an overlong concept label without its flag
+  find: '        flag = (f" [label of {concept[''label_words'']} words: cut to {WORD_BUDGET} or fewer]"'
+  replace: '        flag = (f"" and f" [label of {concept[''label_words'']} words: cut to {WORD_BUDGET} or fewer]"'
+  test: tests.test_sd101_slide_brief.StructureTests.test_a_concept_label_over_the_word_budget_is_flagged_like_any_other_line

@@ -472,6 +472,7 @@ def build(store: pathlib.Path, lesson_id: str) -> Brief:
                             footer.format(number, position, count), {
                                 "colour": CONCEPT_COLOURS[index][0],
                                 "concepts": [{"label": c.label, "label_derived": c.label_derived,
+                                              "label_words": line(c.label).words, "label_over_budget": line(c.label).over_budget,
                                               "line": line(c.text).__dict__} for c in group]}))
     position = 3 + slots
     slides.append(Slide(position, "choice or summary", backdrops[position - 1], layouts[position - 1],
@@ -535,7 +536,9 @@ def render(brief: Brief) -> str:
             elif key == "concepts":
                 for concept in value:
                     mark = " (label made from the first words: choose a better one)" if concept["label_derived"] else ""
-                    out.append(f"- concept `{concept['label']}`{mark}: {show(concept['line'])}")
+                    flag = (f" [label of {concept['label_words']} words: cut to {WORD_BUDGET} or fewer]"
+                            if concept["label_over_budget"] else "")
+                    out.append(f"- concept `{concept['label']}`{flag}{mark}: {show(concept['line'])}")
             elif key == "sections":
                 for sec in value:
                     out.append(f"- section `{sec['name']}`:")

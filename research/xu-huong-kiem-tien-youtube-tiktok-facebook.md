@@ -169,7 +169,8 @@ Nhãn dùng trong bài:
 ### 4.1 Hai khái niệm cần phân biệt
 
 - **CPM**: số tiền nhà quảng cáo trả cho 1.000 lượt hiển thị. Creator **không** nhận số này.
-- **RPM**: số tiền creator **thực nhận** trên 1.000 lượt xem. Nhiều nguồn cho rằng RPM khoảng 40–55% CPM.
+- **RPM**: số tiền creator **thực nhận** trên 1.000 lượt xem. Mẫu số là mọi lượt xem (kể cả lượt không có quảng cáo), tiền đã qua bước chia sẻ doanh thu và có thể gồm cả nguồn ngoài quảng cáo như membership hay fan funding.
+- **RPM không phải một tỷ lệ cố định của CPM.** CPM tính trên 1.000 lượt hiển thị quảng cáo, trước khi chia sẻ doanh thu. Vì hai mẫu số khác nhau, không đổi CPM quảng cáo ra thu nhập bằng một hệ số chung. Ví dụ ở 4.3: khán giả Việt Nam có RPM khoảng 0,22 USD và CPM khoảng 1,14 USD, tức RPM chỉ bằng khoảng 19% CPM. [Thấp]
 
 ### 4.2 Tiền nền tảng trả trực tiếp
 

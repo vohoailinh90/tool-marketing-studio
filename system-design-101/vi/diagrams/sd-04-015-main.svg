@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1233" viewBox="0 0 320 1233" role="img" aria-labelledby="title desc">
+<title id="title">Thu thay đổi dữ liệu từ nhật ký</title>
+<desc id="desc">Ba khung. Khung một là bốn bước của một thay đổi: ứng dụng sửa bảng customers như bình thường; PostgreSQL ghi thay đổi vào nhật ký WAL; công cụ CDC đọc WAL qua một replication slot và giải mã thành sự kiện thêm, sửa, xóa; sự kiện được đẩy sang Kafka rồi tới kho phân tích hay cache. Khung hai so hai cách lấy thay đổi: thăm dò cột updated_at thấy dòng 1 bị sửa và dòng 3 mới thêm nhưng không thấy dòng 2 đã bị xóa; đọc WAL qua slot thấy đủ sửa dòng 1, xóa dòng 2, thêm dòng 3 theo thứ tự commit. Khung ba: slot không ai đọc giữ lại WAL, 61 MB sau một triệu dòng thêm; đọc xong và checkpoint thì chỉ còn 6.712 byte; muốn có giá trị cũ khi sửa thì đặt replica identity full cho bảng.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1233" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Thu thay đổi dữ liệu từ</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">nhật ký</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Thử trên PostgreSQL 16 với một</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">replication slot.</text>
+<rect x="8" y="123" width="304" height="471" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Đường đi của một thay đổi</text>
+<rect x="20" y="168" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="194" r="14" fill="#1d4ed8"/>
+<text x="46" y="199.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="194.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Ứng dụng sửa bảng</text>
+<text x="70" y="218.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Thêm, sửa, xóa như bình</text>
+<text x="70" y="237.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thường.</text>
+<rect x="20" y="277" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="303" r="14" fill="#1d4ed8"/>
+<text x="46" y="308.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="303.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Thay đổi vào WAL</text>
+<text x="70" y="327.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">PostgreSQL ghi nhật ký</text>
+<text x="70" y="346.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trước.</text>
+<polyline points="46,257 46,275" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="386" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="412" r="14" fill="#1d4ed8"/>
+<text x="46" y="417.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="412.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Đọc qua slot</text>
+<text x="70" y="436.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Công cụ CDC giải mã WAL</text>
+<text x="70" y="455.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thành sự kiện.</text>
+<polyline points="46,366 46,384" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="495" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="521" r="14" fill="#1d4ed8"/>
+<text x="46" y="526.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">4</text>
+<text x="70" y="521.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Đẩy sang nơi khác</text>
+<text x="70" y="545.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Vào Kafka, rồi tới kho phân</text>
+<text x="70" y="564.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tích, cache.</text>
+<polyline points="46,475 46,493" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="606" width="304" height="305" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="634.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Thăm dò hay đọc nhật ký</text>
+<rect x="20" y="651" width="280" height="127" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="714.5" r="18" fill="#0f766e"/><g transform="translate(39.2 703.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></g>
+<text x="78" y="677.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Thăm dò cột</text>
+<text x="78" y="697.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">updated_at</text>
+<text x="78" y="721.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Thấy dòng 1 bị sửa, dòng 3</text>
+<text x="78" y="740.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mới; không thấy dòng 2 đã</text>
+<text x="78" y="760.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bị xóa.</text>
+<rect x="20" y="792" width="280" height="107" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="845.5" r="18" fill="#0f766e"/><g transform="translate(39.2 834.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></g>
+<text x="78" y="818.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Đọc WAL qua slot</text>
+<text x="78" y="842.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Thấy đủ: sửa dòng 1, xóa</text>
+<text x="78" y="861.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dòng 2, thêm dòng 3, theo</text>
+<text x="78" y="881.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thứ tự commit.</text>
+<rect x="8" y="923" width="304" height="302" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="951.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Cần nhớ</text>
+<rect x="20" y="968" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="991" r="11" fill="#16a34a"/>
+<polyline points="37.9,991.4 41.7,995.4 48.5,987" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="994.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Slot không ai đọc giữ lại</text>
+<text x="64" y="1013.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">WAL: 61 MB sau một triệu</text>
+<text x="64" y="1033.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dòng thêm.</text>
+<rect x="20" y="1059" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1082" r="11" fill="#16a34a"/>
+<polyline points="37.9,1082.4 41.7,1086.4 48.5,1078" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1085.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đọc xong và checkpoint: chỉ</text>
+<text x="64" y="1104.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">còn 6.712 byte.</text>
+<rect x="20" y="1130" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1153" r="11" fill="#16a34a"/>
+<polyline points="37.9,1153.4 41.7,1157.4 48.5,1149" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1156.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Muốn có giá trị cũ khi sửa:</text>
+<text x="64" y="1175.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đặt replica identity full cho</text>
+<text x="64" y="1195.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bảng.</text>
+</g>
+</svg>

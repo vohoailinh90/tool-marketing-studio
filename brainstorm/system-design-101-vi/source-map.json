@@ -1060,31 +1060,31 @@
         },
         {
           "id": "sd-04-013",
-          "title_vi": null,
+          "title_vi": "Mã xóa: chịu mất khối mà không phải nhân ba dữ liệu",
           "title_source": "Erasure Coding",
           "source_url": "https://bytebytego.com/guides/erasure-coding",
           "source_path": "data/guides/erasure-coding.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "ecb49c4b2910516ff6939de002e38626e418e255",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/erasure-coding.md"
         },
         {
           "id": "sd-04-014",
-          "title_vi": null,
+          "title_vi": "Nhiều nhất một lần, ít nhất một lần, đúng một lần: quyết định nằm ở chỗ lưu vị trí",
           "title_source": "Delivery Semantics",
           "source_url": "https://bytebytego.com/guides/delivery-semantics",
           "source_path": "data/guides/delivery-semantics.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "daef1398a2c81e6e15c2d5be2944624da4d9e739",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/delivery-semantics.md"
         },
         {
           "id": "sd-04-015",
-          "title_vi": null,
+          "title_vi": "Thu thay đổi dữ liệu (CDC): đọc nhật ký thay vì hỏi bảng",
           "title_source": "Change Data Capture: Key to Leverage Real-time Data",
           "source_url": "https://bytebytego.com/guides/change-data-capture-key-to-leverage-real-time-data",
           "source_path": "data/guides/change-data-capture-key-to-leverage-real-time-data.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "9eaec49bb113f99c3886899b2cbcad6fde082faa",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/change-data-capture-key-to-leverage-real-time-data.md"
         },

@@ -13,7 +13,8 @@ python3 scripts/sd101_slides.py claim --next 3 --publish     # or: claim sd-01-0
 python3 scripts/sd101_slides.py verify                       # exit 0 = every claim of mine is still mine and pushed
 # ... build the decks on Moda; every few hours and before each push:
 python3 scripts/sd101_slides.py touch --publish
-python3 scripts/sd101_slides.py finish sd-01-002 --canvas cvs_... --url https://moda.app/canvas/... --slides 10 --publish
+python3 scripts/sd101_slides.py finish sd-01-002 --canvas cvs_... --url https://moda.app/canvas/... --slides 10 \
+    --layouts one-highlighted-sentence,flow,... --first-concept 3 --publish   # the layout table, see below
 python3 scripts/sd101_slides.py exported sd-01-002 --publish # its PPTX and PNG files are now in slides/
 python3 scripts/sd101_slides.py exported sd-01-002 --badged --publish  # only its PPTX, moda.app badge and all
 python3 scripts/sd101_slides.py release sd-01-003 --publish  # give back a lesson you will not build
@@ -36,7 +37,7 @@ is the check to run after pushing a finished folder by hand.
 ## What a lesson folder holds
 
 ```
-lessons/<id>/slides/deck.yaml      status doing: the claim. status done: moda_canvas, moda_url, slide_count, size, exports
+lessons/<id>/slides/deck.yaml      status doing: the claim. status done: moda_canvas, moda_url, slide_count, size, exports, layouts
 lessons/<id>/slides/<id>.pptx      only when exports: badged (with the moda.app badge) or done (without it)
 lessons/<id>/slides/01.png ..      only when exports: done, one 1920x1080 PNG per slide
 ```
@@ -111,7 +112,8 @@ and sources slide last. Everything else differs from deck to deck; `sd-01-001` i
   layers and connection diagram, `timeline` toward timeline, `howto` toward numbered rows.
 - **Signature layout.** The slide for the lesson's first concept takes the kind at position (n mod 12) in the list above,
   counted from 0 in the order the list gives them (n as under *Accent rotation*), or, when the content cannot be shown that
-  way (a one big number slide needs a number the lesson states), the next kind in the list, wrapping round, that it can. Two
+  way (a one big number slide needs a number the lesson states), the next kind in the list, wrapping round, that it can; each
+  kind passed over is named with its reason in `finish --cannot` (below). Two
   decks whose n differ mod 12 and that both use their own position start their concepts differently; a fallback can land on
   the kind another position holds, and nothing here claims otherwise. What the rule guarantees is that a session picks the
   layout from its own lesson id and never looks at another deck to choose.
@@ -123,8 +125,17 @@ and sources slide last. Everything else differs from deck to deck; `sd-01-001` i
 - **Light and dark.** Follow the content, not a strict alternation: never more than three slides in a row on the same
   background.
 - **Moda's own help** (`load_skill`, `template_search`) may suggest layouts; the tokens above stay.
-- **Layout table.** Before `finish`, write `slide number, layout kind` for the whole deck, check the layout rules (five
-  kinds, no adjacent repeat, the signature layout) against it, and put the table in the report to the owner. The tool does not
-  check the table; the owner reads it in the report.
+- **Layout table.** `finish` takes it and checks it: `--layouts` is the kind of every slide, in order, one per slide, spelled
+  as in the list above with hyphens (`sequence-diagram`, `flow`, `two-column-comparison`, `2x2-matrix`, `lookup-table`,
+  `card-grid`, `numbered-rows`, `connection-diagram`, `layers`, `timeline`, `one-big-number`, `one-highlighted-sentence`;
+  spaces and capitals are read the same); `--first-concept N` is the number of the slide of the lesson's first concept, from 2 to
+  one before the last; `--cannot KIND=REASON`, once for each kind, only when the signature layout fell back, names every kind
+  passed over and why the content cannot be shown that way (`--cannot "one big number=the lesson states no number"`). `finish`
+  refuses a table with a kind outside the list, a number of kinds that is not the slide count, fewer than five different
+  kinds, the same kind on two adjacent slides, or a first concept that is not on its signature kind (or on a later one with
+  exactly the passed-over kinds named), and says which rule. A table that passes is kept as `layouts` in `deck.yaml`
+  (`slides`, `first_concept`, and `cannot` after a fallback), and every later read of the record checks it again. The light and
+  dark rhythm, the accent rotation and the visual idea are not in the table and no tool checks them. Put the table in the
+  report to the owner as well. A deck finished before the table existed has none and stays valid.
 
 Binary exports add about 1.5 MB per lesson; the repository grows by that much for each finished export set.

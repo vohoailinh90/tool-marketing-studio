@@ -325,7 +325,7 @@ files and the exports. Several sessions build decks at once and `claims.jsonl` k
   remote any other way (a plain `git push`), run `verify` afterwards: it checks finished decks too.
 - **Variety.** The decks share the brand (fonts, neutrals, footer, size, 8 to 10 slides) but not their layouts:
   `docs/sd101-slides.md` (*Variety between decks*) sets the layout kinds, the signature layout, the accent rotation and the
-  layout table. A deck
+  layout table, which `finish` takes (`--layouts`, `--first-concept`, `--cannot`) and checks. A deck
   that repeats the sample's layouts slide for slide is not finished.
 - **The Moda watermark stays.** The free plan puts a `moda.app` badge on exported PNG and PPTX files and has no switch for
   it; never remove it from a file. A deck is finished with `exports: pending`. Its PPTX may be added as the free plan

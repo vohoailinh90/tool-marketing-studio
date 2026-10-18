@@ -2,7 +2,7 @@
   "id": "sd-06-012",
   "title": "Sàn chứng khoán độ trễ thấp: làm ít hơn trên đường găng",
   "subtitle": "Đường găng là chuỗi việc một lệnh bắt buộc đi qua.",
-  "desc": "Ba khung. Khung một, đường găng của một lệnh: nhận lệnh; kiểm tra rủi ro bắt buộc; khớp lệnh; gửi kết quả. Khung hai, làm ít hơn trên đường găng: việc không bắt buộc như ghi báo cáo chuyển ra ngoài; các thành phần đặt chung một máy để bớt chặng mạng; không ghi đĩa trên đường găng; mỗi việc chính do một luồng giữ, không khóa, không đổi ngữ cảnh. Khung ba, đo trên một máy: tăng một bộ đếm 500 triệu lần mất 1,25 giây, có khóa mất 3,6 đến 4,8 giây, hai luồng tranh khóa mất 40 giây; chuyển một tin qua lại giữa hai luồng bằng vòng chờ bận mất khoảng 250 nano giây, bằng khóa và biến điều kiện mất khoảng 26 micro giây.",
+  "desc": "Ba khung. Khung một, đường găng của một lệnh: nhận lệnh; kiểm tra rủi ro bắt buộc; khớp lệnh; gửi kết quả. Khung hai, làm ít hơn trên đường găng: việc không bắt buộc như ghi báo cáo chuyển ra ngoài; các thành phần đặt chung một máy để bớt chặng mạng; không ghi đĩa trên đường găng; mỗi việc chính do một luồng giữ nên không phải tranh khóa, còn ghim vào một lõi chỉ giữ luồng khỏi bị chuyển lõi. Khung ba, đo trên một máy: tăng một bộ đếm 500 triệu lần mất 1,25 giây, có khóa mất 3,6 đến 4,8 giây, hai luồng tranh khóa mất 40 giây; chuyển một tin qua lại giữa hai luồng bằng vòng chờ bận mất khoảng 250 nano giây, bằng khóa và biến điều kiện mất khoảng 26 micro giây.",
   "sections": [
     {
       "kind": "steps",
@@ -33,7 +33,7 @@
         "Việc không bắt buộc, như báo cáo, chuyển ra ngoài đường găng.",
         "Các thành phần chung một máy: bớt chặng mạng.",
         "Không ghi đĩa trên đường găng.",
-        "Mỗi việc chính một luồng: không khóa, không đổi ngữ cảnh."
+        "Mỗi việc chính một luồng: không tranh khóa. Ghim lõi chỉ giữ luồng khỏi bị chuyển lõi."
       ]
     },
     {

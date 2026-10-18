@@ -96,7 +96,8 @@
   ],
   "design_notes_vi": "Ba khung ghi chú: giống nhau, khác nhau đã thử, và ví dụ bitmap. Bảng so sánh đầy đủ nằm trong bài.",
   "source_deviations": [
-    "Source shows a comparison diagram and four Redis use cases; the lesson checks each difference by running both servers and measures the bitmap example. No speed comparison is made."
+    "Source shows a comparison diagram and four Redis use cases; the lesson checks each difference by running both servers and measures the bitmap example. No speed comparison is made.",
+    "The restart row ran SAVE before restarting Redis; the lesson says so and notes that with default periodic snapshots a key just written may not survive a crash."
   ],
   "editorial_note_vi": "Bài mới viết tại repo này (gói L5), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
 }

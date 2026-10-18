@@ -3,7 +3,7 @@
 **Muốn một lệnh mua bán đi qua sàn thật nhanh, nguyên tắc là làm ít hơn trên đường găng: chuỗi việc mà lệnh bắt buộc phải đi qua. Bớt việc, bớt chặng mạng, không đụng đĩa, và để mỗi việc chính do một luồng giữ, không phải tranh khóa với luồng khác.**
 Ý cuối nghe lạ nhất, nên bài này đo thử nó: khóa và việc chuyển tin giữa các luồng tốn bao nhiêu.
 
-![Ba khung. Khung một, đường găng của một lệnh: nhận lệnh; kiểm tra rủi ro bắt buộc; khớp lệnh; gửi kết quả. Khung hai, làm ít hơn trên đường găng: việc không bắt buộc như ghi báo cáo chuyển ra ngoài; các thành phần đặt chung một máy để bớt chặng mạng; không ghi đĩa trên đường găng; mỗi việc chính do một luồng giữ, không khóa, không đổi ngữ cảnh. Khung ba, đo trên một máy: tăng một bộ đếm 500 triệu lần mất 1,25 giây, có khóa mất 3,6 đến 4,8 giây, hai luồng tranh khóa mất 40 giây; chuyển một tin qua lại giữa hai luồng bằng vòng chờ bận mất khoảng 250 nano giây, bằng khóa và biến điều kiện mất khoảng 26 micro giây.](../../diagrams/sd-06-012-main.svg)
+![Ba khung. Khung một, đường găng của một lệnh: nhận lệnh; kiểm tra rủi ro bắt buộc; khớp lệnh; gửi kết quả. Khung hai, làm ít hơn trên đường găng: việc không bắt buộc như ghi báo cáo chuyển ra ngoài; các thành phần đặt chung một máy để bớt chặng mạng; không ghi đĩa trên đường găng; mỗi việc chính do một luồng giữ nên không phải tranh khóa, còn ghim vào một lõi chỉ giữ luồng khỏi bị chuyển lõi. Khung ba, đo trên một máy: tăng một bộ đếm 500 triệu lần mất 1,25 giây, có khóa mất 3,6 đến 4,8 giây, hai luồng tranh khóa mất 40 giây; chuyển một tin qua lại giữa hai luồng bằng vòng chờ bận mất khoảng 250 nano giây, bằng khóa và biến điều kiện mất khoảng 26 micro giây.](../../diagrams/sd-06-012-main.svg)
 
 ## Từ viết tắt
 
@@ -14,7 +14,7 @@
 
 **Đường găng.** Với một sàn khớp lệnh, đường găng bắt đầu khi lệnh vào bộ quản lý lệnh, đi qua các bước kiểm tra rủi ro bắt buộc, được khớp với lệnh đối ứng, và kết thúc khi kết quả đi ra. Việc gì không bắt buộc (ghi báo cáo, thống kê, lưu trữ lâu dài) thì làm ở chỗ khác, để không cộng vào thời gian chờ của lệnh.
 
-**Bốn cách làm ít hơn.** Ít việc hơn trên đường găng; mỗi việc nhanh hơn; ít chặng mạng hơn (bài nguồn đặt mọi thành phần chung một máy lớn, trao đổi qua bộ nhớ dùng chung); không đụng đĩa. Bài nguồn còn cho các thành phần chính chạy một luồng, mỗi luồng ghim vào một CPU, để không có đổi ngữ cảnh và không có khóa.
+**Bốn cách làm ít hơn.** Ít việc hơn trên đường găng; mỗi việc nhanh hơn; ít chặng mạng hơn (bài nguồn đặt mọi thành phần chung một máy lớn, trao đổi qua bộ nhớ dùng chung); không đụng đĩa. Bài nguồn còn cho các thành phần chính chạy một luồng, mỗi luồng ghim vào một CPU, và nói như vậy là không có đổi ngữ cảnh, không có khóa. Nên tách hai ý đó ra. Một luồng sở hữu dữ liệu thì không phải tranh khóa, nên tránh được việc luồng phải ngủ chờ rồi được đánh thức. Còn ghim vào một CPU chỉ giữ luồng không bị chuyển sang lõi khác: bộ lập lịch, ngắt phần cứng và tiến trình khác vẫn có thể chen vào lõi đó, trừ khi lõi được dành riêng cho luồng ấy (điều mà máy ảo thử nghiệm không làm).
 
 **Vì sao khóa đắt.** Bài kỹ thuật về Disruptor (thư viện do nhóm kỹ sư của một sàn giao dịch viết) giải thích: khi nhiều luồng tranh một khóa, hệ điều hành phải phân xử bằng cách đổi ngữ cảnh, tạm dừng luồng đang chờ; trong lúc đó bộ nhớ đệm của CPU có thể mất dữ liệu đang dùng. Họ đo một vòng tăng bộ đếm 500 triệu lần bằng Java: 300 ms với một luồng, 10.000 ms khi thêm khóa, 224.000 ms khi hai luồng tranh khóa. Kết luận của họ: lý tưởng là chỉ một luồng sở hữu mọi lần ghi vào một tài nguyên.
 

@@ -52,7 +52,7 @@ LFU thắng ở cả ba kiểu trong phép thử này. LRU của Redis không v�
 
 ## Giới hạn cần nhớ
 
-Kết quả là của một tập dữ liệu giả lập trên một máy, một phiên bản Redis. Bộ đệm hai tầng nhanh nhất nhưng mỗi tiến trình giữ một bản riêng, nên các bản có thể lệch nhau và lệch với Redis; cần hạn sống ngắn cho tầng trong tiến trình. Chọn chính sách theo kiểu truy cập thật và kiểm lại bằng `INFO` (tỷ lệ trúng, `evicted_keys`, lệnh bị từ chối).
+Kết quả là của một tập dữ liệu giả lập trên một máy, một phiên bản Redis. Bộ đệm hai tầng có thể giảm độ trễ cho những lượt trúng ngay tầng trong tiến trình, nhưng bài không đo điều đó; khi tầng đó ít trúng, mỗi lượt đọc lại phải hỏi thêm một tầng. Thêm nữa, mỗi tiến trình giữ một bản riêng, nên các bản có thể lệch nhau và lệch với Redis; cần hạn sống ngắn cho tầng trong tiến trình. Chọn chính sách theo kiểu truy cập thật và kiểm lại bằng `INFO` (tỷ lệ trúng, `evicted_keys`, lệnh bị từ chối).
 
 ## Nhìn hình trả lời
 

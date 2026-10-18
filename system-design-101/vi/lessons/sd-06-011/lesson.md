@@ -3,7 +3,7 @@
 **Cả memcached và Redis đều giữ dữ liệu trong bộ nhớ và đọc ghi theo khóa. Khác biệt nằm ở chỗ memcached chỉ là bộ nhớ đệm khóa và chuỗi, còn Redis là máy chủ cấu trúc dữ liệu có thể lưu xuống đĩa.**
 README của Redis tự mô tả nó như "một memcached phức tạp hơn", với thao tác trên list, set và các cấu trúc có thứ tự thay vì chỉ đặt và lấy. Bài này chạy hai phần mềm cạnh nhau để thấy khác biệt đó cụ thể.
 
-![Ba khung. Khung một, giống nhau: cả hai giữ dữ liệu trong bộ nhớ và đọc ghi theo khóa; đầy thì đẩy khóa cũ ra. Khung hai, khác nhau đã thử: memcached chỉ lưu chuỗi, Redis có thêm hash, list, set, sorted set và bitmap; giá trị 2 MiB bị memcached từ chối vì mặc định tối đa 1 MiB, Redis nhận; khởi động lại thì memcached mất hết, Redis đọc lại ảnh chụp; memcached chạy 4 luồng xử lý, Redis xử lý lệnh trên một luồng chính. Khung ba, bitmap của Redis: một triệu người dùng mỗi người một bit, đánh dấu 300 nghìn người đăng nhập, chiếm 125 nghìn byte.](../../diagrams/sd-06-011-main.svg)
+![Ba khung. Khung một, giống nhau: cả hai giữ dữ liệu trong bộ nhớ và đọc ghi theo khóa; đầy thì đẩy khóa cũ ra. Khung hai, khác nhau đã thử: memcached chỉ lưu chuỗi, Redis có thêm hash, list, set, sorted set và bitmap; giá trị 2 MiB bị memcached từ chối vì mặc định tối đa 1 MiB, Redis nhận; khởi động lại thì memcached mất hết, Redis đọc lại ảnh chụp đã lưu, trong thử nghiệm là sau lệnh lưu chạy trước đó; memcached chạy 4 luồng xử lý, Redis xử lý lệnh trên một luồng chính. Khung ba, bitmap của Redis: một triệu người dùng mỗi người một bit, đánh dấu 300 nghìn người đăng nhập, chiếm 125 nghìn byte.](../../diagrams/sd-06-011-main.svg)
 
 ## Từ viết tắt
 
@@ -21,7 +21,7 @@ Ngày 2026-10-18, trên một máy, với memcached 1.6.24 và Redis 7.0.15, c�
 | Tăng một bộ đếm (`incr` trên giá trị "1") | được, ra 2 | được (`INCR`) |
 | Một lệnh kiểu hash (`hset`) | `ERROR`: không có lệnh này | được (`HSET`) |
 | Giá trị 2 MiB | `SERVER_ERROR object too large for cache` (giới hạn mặc định 1 MiB, `item_size_max` 1048576) | được |
-| Khởi động lại máy chủ | khóa mất hết | đọc lại tệp RDB, khóa còn |
+| Khởi động lại máy chủ (Redis: chạy `SAVE` trước) | khóa mất hết | đọc lại tệp RDB vừa lưu, khóa còn |
 | Số luồng xử lý | 4 (mặc định của `-t`) | một luồng chính xử lý lệnh |
 
 **Cả hai đều đẩy khóa ra khi đầy.** Cho memcached giới hạn 2 MB rồi ghi 5.000 giá trị 1.000 byte: cả 5.000 lần ghi đều thành công, 3.230 khóa cũ bị đẩy ra, còn lại 1.770. Bật cờ `-M` (tắt đẩy ra): chỉ 1.770 lần ghi thành công, 3.230 lần còn lại báo `SERVER_ERROR out of memory storing object`. Redis có lựa chọn tương tự qua `maxmemory-policy`.
@@ -31,7 +31,7 @@ Ngày 2026-10-18, trên một máy, với memcached 1.6.24 và Redis 7.0.15, c�
 ## Chọn cái nào
 
 - Chỉ cần bộ nhớ đệm chuỗi đơn giản, giá trị nhỏ, mất khi khởi động lại cũng không sao: memcached đủ, và nó chạy nhiều luồng ngay từ mặc định.
-- Cần cấu trúc dữ liệu (đếm theo trường, xếp hạng, tập không trùng, bitmap), giá trị lớn hơn 1 MiB, hoặc giữ dữ liệu qua khởi động lại: Redis.
+- Cần cấu trúc dữ liệu (đếm theo trường, xếp hạng, tập không trùng, bitmap), giá trị lớn hơn 1 MiB, hoặc giữ dữ liệu qua khởi động lại: Redis. Riêng việc giữ dữ liệu phải được cấu hình và hiểu rõ: thử nghiệm ở trên chạy `SAVE` trước khi khởi động lại; với cấu hình mặc định, Redis chỉ chụp ảnh theo chu kỳ, nên khóa vừa ghi chưa chắc có trong ảnh nếu máy sập.
 
 ## Giới hạn cần nhớ
 

@@ -91,7 +91,8 @@
   "design_notes_vi": "Bốn bước của đường găng, bốn cách làm ít hơn, và số đo về khóa và chuyển tin giữa luồng.",
   "source_deviations": [
     "The lesson adds why locks are costly from the Disruptor paper and repeats two measurements; it reports that a CAS loop was slower than an uncontended mutex on this machine, unlike the paper.",
-    "Source's claim of microsecond latency for a modern exchange is not repeated; no real exchange was measured."
+    "Source's claim of microsecond latency for a modern exchange is not repeated; no real exchange was measured.",
+    "Source says pinning single-threaded components to CPUs gives no context switch; the lesson separates the two: single ownership avoids lock hand-offs, while affinity only prevents migration and the scheduler, interrupts and other work can still preempt the thread unless the core is dedicated (author's general knowledge)."
   ],
   "editorial_note_vi": "Bài mới viết tại repo này (gói L5), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
 }

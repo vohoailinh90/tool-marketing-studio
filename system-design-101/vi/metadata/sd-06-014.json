@@ -96,7 +96,8 @@
   ],
   "design_notes_vi": "Ba khung ghi chú: tám tên đối chiếu với Redis, kết quả thử, và hai bẫy cấu hình. Bảng đối chiếu đầy đủ nằm trong bài.",
   "source_deviations": [
-    "Source describes eight abstract strategies; the lesson maps each to Redis's maxmemory-policy (or notes that Redis lacks it) and tests them on a real server, including two configurations that make writes fail."
+    "Source describes eight abstract strategies; the lesson maps each to Redis's maxmemory-policy (or notes that Redis lacks it) and tests them on a real server, including two configurations that make writes fail.",
+    "Two-tiered caching is described as able to cut latency for hits in the local tier, not as fastest: the lesson did not measure it, and a local tier with few hits adds a lookup to every read."
   ],
   "editorial_note_vi": "Bài mới viết tại repo này (gói L5), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
 }

@@ -204,29 +204,29 @@
 
 {"id": "sd-04-012", "status": "written", "title": "Differences in Event Sourcing System Design", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "done_at": "2026-10-18T14:31:17Z", "pr": 144}
 
-{"id": "sd-04-013", "status": "doing", "title": "Erasure Coding", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "claimed_at": "2026-10-18T13:32:21Z", "heartbeat_at": "2026-10-18T14:31:36Z"}
+{"id": "sd-04-013", "status": "doing", "title": "Erasure Coding", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "claimed_at": "2026-10-18T13:32:21Z", "heartbeat_at": "2026-10-18T15:11:51Z"}
 
-{"id": "sd-04-014", "status": "doing", "title": "Delivery Semantics", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "claimed_at": "2026-10-18T13:32:21Z", "heartbeat_at": "2026-10-18T14:31:36Z"}
+{"id": "sd-04-014", "status": "doing", "title": "Delivery Semantics", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "claimed_at": "2026-10-18T13:32:21Z", "heartbeat_at": "2026-10-18T15:11:51Z"}
 
-{"id": "sd-04-015", "status": "doing", "title": "Change Data Capture: Key to Leverage Real-time Data", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "claimed_at": "2026-10-18T13:32:21Z", "heartbeat_at": "2026-10-18T14:31:36Z"}
+{"id": "sd-04-015", "status": "doing", "title": "Change Data Capture: Key to Leverage Real-time Data", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "claimed_at": "2026-10-18T13:32:21Z", "heartbeat_at": "2026-10-18T15:11:51Z"}
 
-{"id": "sd-04-016", "status": "doing", "title": "Can Kafka Lose Messages?", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "claimed_at": "2026-10-18T13:32:21Z", "heartbeat_at": "2026-10-18T14:31:36Z"}
+{"id": "sd-04-016", "status": "doing", "title": "Can Kafka Lose Messages?", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "claimed_at": "2026-10-18T13:32:21Z", "heartbeat_at": "2026-10-18T15:11:51Z"}
 
-{"id": "sd-04-017", "status": "doing", "title": "Storage Systems Overview", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "claimed_at": "2026-10-18T13:32:21Z", "heartbeat_at": "2026-10-18T14:31:36Z"}
+{"id": "sd-04-017", "status": "doing", "title": "Storage Systems Overview", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "claimed_at": "2026-10-18T13:32:21Z", "heartbeat_at": "2026-10-18T15:11:51Z"}
 
-{"id": "sd-04-018", "status": "doing", "title": "Explain the Top 6 Use Cases of Object Stores", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "claimed_at": "2026-10-18T13:32:21Z", "heartbeat_at": "2026-10-18T14:31:36Z"}
+{"id": "sd-04-018", "status": "doing", "title": "Explain the Top 6 Use Cases of Object Stores", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "claimed_at": "2026-10-18T13:32:21Z", "heartbeat_at": "2026-10-18T15:11:51Z"}
 
-{"id": "sd-04-019", "status": "doing", "title": "Top Eventual Consistency Patterns You Must Know", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "claimed_at": "2026-10-18T13:32:21Z", "heartbeat_at": "2026-10-18T14:31:36Z"}
+{"id": "sd-04-019", "status": "doing", "title": "Top Eventual Consistency Patterns You Must Know", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "claimed_at": "2026-10-18T13:32:21Z", "heartbeat_at": "2026-10-18T15:11:51Z"}
 
-{"id": "sd-04-020", "status": "doing", "title": "B-Tree vs. LSM-Tree", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "claimed_at": "2026-10-18T13:32:21Z", "heartbeat_at": "2026-10-18T14:31:36Z"}
+{"id": "sd-04-020", "status": "doing", "title": "B-Tree vs. LSM-Tree", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "claimed_at": "2026-10-18T13:32:21Z", "heartbeat_at": "2026-10-18T15:11:51Z"}
 
-{"id": "sd-04-021", "status": "doing", "title": "How to Decide Which Type of Database to Use", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "claimed_at": "2026-10-18T13:32:21Z", "heartbeat_at": "2026-10-18T14:31:36Z"}
+{"id": "sd-04-021", "status": "doing", "title": "How to Decide Which Type of Database to Use", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "claimed_at": "2026-10-18T13:32:21Z", "heartbeat_at": "2026-10-18T15:11:51Z"}
 
-{"id": "sd-04-022", "status": "doing", "title": "Cloud Database Cheat Sheet", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "claimed_at": "2026-10-18T13:32:21Z", "heartbeat_at": "2026-10-18T14:31:36Z"}
+{"id": "sd-04-022", "status": "doing", "title": "Cloud Database Cheat Sheet", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "claimed_at": "2026-10-18T13:32:21Z", "heartbeat_at": "2026-10-18T15:11:51Z"}
 
-{"id": "sd-04-023", "status": "doing", "title": "Types of Memory", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "claimed_at": "2026-10-18T13:32:21Z", "heartbeat_at": "2026-10-18T14:31:36Z"}
+{"id": "sd-04-023", "status": "doing", "title": "Types of Memory", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "claimed_at": "2026-10-18T13:32:21Z", "heartbeat_at": "2026-10-18T15:11:51Z"}
 
-{"id": "sd-04-024", "status": "doing", "title": "Understanding Database Types", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "claimed_at": "2026-10-18T13:32:21Z", "heartbeat_at": "2026-10-18T14:31:36Z"}
+{"id": "sd-04-024", "status": "doing", "title": "Understanding Database Types", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "claimed_at": "2026-10-18T13:32:21Z", "heartbeat_at": "2026-10-18T15:11:51Z"}
 
 {"id": "sd-04-025", "status": "todo", "title": "Top 4 Data Sharding Algorithms Explained"}
 

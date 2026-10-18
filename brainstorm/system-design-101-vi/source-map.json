@@ -3998,51 +3998,51 @@
         },
         {
           "id": "sd-14-031",
-          "title_vi": null,
+          "title_vi": "SSO hoạt động thế nào? Phiên toàn cục và vé xác nhận",
           "title_source": "What is SSO (Single Sign-On)?",
           "source_url": "https://bytebytego.com/guides/v1what-is-sso-single-sign-on",
           "source_path": "data/guides/v1what-is-sso-single-sign-on.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "f2f48416f2f1535bd9fa68cc6716773d33e44b5a",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/v1what-is-sso-single-sign-on.md"
         },
         {
           "id": "sd-14-032",
-          "title_vi": null,
+          "title_vi": "HTTPS thương lượng thế nào? Bộ mã, phiên bản và khóa đối xứng",
           "title_source": "How does HTTPS work?",
           "source_url": "https://bytebytego.com/guides/how-does-https-work",
           "source_path": "data/guides/how-does-https-work.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "cd9cda613eebba9d6fc83cab1c39090bb11365d8",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-https-work.md"
         },
         {
           "id": "sd-14-033",
-          "title_vi": null,
+          "title_vi": "Sáu cách nhận ra người dùng: session, token, JWT, SSO, OAuth2 và mã QR",
           "title_source": "Session, Cookie, JWT, Token, SSO, and OAuth 2.0 Explained",
           "source_url": "https://bytebytego.com/guides/session-cookie-jwt-token-sso-and-oauth-2",
           "source_path": "data/guides/session-cookie-jwt-token-sso-and-oauth-2.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "097058c889507f55e0072c59279e1b6cd4f53617",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/session-cookie-jwt-token-sso-and-oauth-2.md"
         },
         {
           "id": "sd-14-034",
-          "title_vi": null,
+          "title_vi": "JWT cho người mới: chiếc hộp trong suốt có dấu niêm phong",
           "title_source": "Explaining JSON Web Token (JWT) to a 10 Year Old Kid",
           "source_url": "https://bytebytego.com/guides/explaining-json-web-token-jwt-to-a-10-year-old-kid",
           "source_path": "data/guides/explaining-json-web-token-jwt-to-a-10-year-old-kid.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "2e9fa9ac65a9880876d89abf54fab00287937c8c",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/explaining-json-web-token-jwt-to-a-10-year-old-kid.md"
         },
         {
           "id": "sd-14-035",
-          "title_vi": null,
+          "title_vi": "OAuth 2.0 bằng lời đơn giản: token làm được gì và không làm được gì",
           "title_source": "OAuth 2.0 Explained With Simple Terms",
           "source_url": "https://bytebytego.com/guides/oauth-2-explained-with-siple-terms",
           "source_path": "data/guides/oauth-2-explained-with-siple-terms.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "6596c86d06e6a1a3b3f1a9bc1a118d6e9188984e",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/oauth-2-explained-with-siple-terms.md"
         }

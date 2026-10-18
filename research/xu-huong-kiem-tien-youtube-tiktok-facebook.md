@@ -198,7 +198,7 @@ Nhãn dùng trong bài:
 | YouTube video dài, giải trí | 1–8 USD | Vừa |
 | YouTube video dài, công nghệ/giáo dục | 4–15 USD | Vừa |
 | YouTube video dài, tài chính/B2B/pháp lý | 10–30+ USD | Vừa |
-| YouTube Shorts | Khoảng dùng để tính: 0,04–0,20 USD. Nguồn: AIR (274 kênh, trung vị cả năm) nêu 0,02–1,48 USD tùy ngách, và theo bản đọc sau thì đa số ngách quanh 0,07–0,20 USD (mình chưa đọc lại được trang AIR để xác nhận); Unilink nêu 0,04–0,10 USD, Argil 0,04–0,08 USD | Vừa |
+| YouTube Shorts | Khoảng dùng để tính: 0,04–0,20 USD. Nguồn: AIR (274 kênh, trung vị cả năm) nêu 0,02–1,48 USD tùy ngách, và theo bản đọc sau thì đa số ngách quanh 0,07–0,20 USD (mình chưa đọc lại được trang AIR để xác nhận); Unilink nêu 0,04–0,10 USD, Argil 0,04–0,08 USD (hai trang này xem ở Phụ lục B; mình chỉ có số liệu từ bản tóm tắt kết quả tìm kiếm, chưa mở lại được trang gốc) | Vừa |
 | TikTok Creator Rewards (8 nước) | 0,40–1,00 USD (trên lượt xem đủ điều kiện) | Vừa |
 | Facebook Reels | 0,02–0,20 USD (một số nguồn nêu 1–3 USD) | Thấp |
 | YouTube, khán giả Việt Nam | RPM khoảng 0,18–0,22 USD, CPM khoảng 1,14 USD. Dynamoi: RPM 0,22 USD và CPM 1,14 USD ở bản dữ liệu đến 14/7/2026; bản đọc sau nêu RPM 0,18 USD đến 14/10/2026 (mình chưa đọc lại được trang để xác nhận, và chưa có CPM của bản này) | Thấp |
@@ -470,7 +470,8 @@ Không có quy định cấm "đăng bằng API" nói chung. Các quy định ch
 - Net Influencer: https://www.netinfluencer.com/youtube-raises-bar-for-new-creators-to-join-partner-program-tightens-shorts-payout-threshold/
 - AIR (RPM Shorts, 274 kênh): https://air.io/en/air-data-findings/youtube-shorts-rpm-vs-long-form-how-much-do-shorts-earn-in-2026
 - vidIQ (ngách): https://www.vidiq.com/blog/post/most-profitable-youtube-niches
-- Argil: https://www.argil.ai/blog/how-much-do-youtubers-make
+- Argil (RPM Shorts 0,04–0,08 USD, đọc qua bản tóm tắt tìm kiếm): https://www.argil.ai/blog/how-much-do-youtubers-make
+- Unilink (RPM Shorts 0,04–0,10 USD, đọc qua bản tóm tắt tìm kiếm): https://www.unilink.us/blog/how-much-does-youtube-pay-per-1000-views
 - Dynamoi (RPM Việt Nam): https://dynamoi.com/data/youtube-adsense-rpm/vn
 - Exchange4media (100 tỷ USD): https://www.exchange4media.com/industry-briefing-news/mrbeast-highlights-scale-of-creator-economy-with-youtubes-100-billion-payout-figure-151292.html
 - Social Samosa (gỡ Trending): https://www.socialsamosa.com/news-2/youtube-trending-page-expands-hype-launches-charts-based-discovery-9500921
@@ -503,6 +504,8 @@ Không có quy định cấm "đăng bằng API" nói chung. Các quy định ch
 - Later: https://later.com/blog/2026-creator-income-diversified-monetization/
 
 **Nguồn đã bị tài liệu chính thức thay thế (không dùng làm căn cứ):** các blog nêu "API YouTube chưa audit bị khóa riêng tư" và "chi phí upload 1.600 đơn vị" (Ayrshare, Phyllo); blog nêu Creator Rewards "có ở Việt Nam" (Rentracks Việt Nam, Toptal, ShortSync); blog nêu ngưỡng Facebook Content Monetization (10.000 follower/600.000 phút).
+
+*Lưu ý về bốn trang RPM của bên thứ ba (AIR, Dynamoi, Unilink, Argil): máy chủ của chúng bị chặn khi mình kiểm lại, nên chưa mở lại được từ phiên viết báo cáo. Số liệu của Unilink và Argil chỉ có từ bản tóm tắt kết quả tìm kiếm. Cần mở trực tiếp các trang này trước khi xuất bản.*
 
 *Lưu ý: hai trường hợp chưa gắn được tên nguồn: (1) nguồn RPM video dài theo ngách (giải trí 1–8 USD, công nghệ/giáo dục 4–15 USD, tài chính/B2B/pháp lý 10–30+ USD); (2) nguồn các khảo sát #paid chưa rõ định nghĩa tỷ lệ. Cần truy lại trước khi xuất bản.*
 

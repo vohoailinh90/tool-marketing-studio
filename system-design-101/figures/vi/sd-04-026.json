@@ -1,0 +1,61 @@
+{
+  "id": "sd-04-026",
+  "lang": "vi",
+  "title": "Một cửa hàng nhỏ, sáu cách xếp dữ liệu",
+  "desc": "Ba khung dọc. Khung một, bốn cách hệ quản trị nhìn dữ liệu: bảng phẳng, một bảng duy nhất; phân cấp, khách dẫn tới đơn dẫn tới món, mỗi bản ghi một cha; mạng, một món có hai cha là đơn và sản phẩm; quan hệ, mỗi sự việc lưu một lần nối bằng khóa. Khung hai, hai cách xếp bảng quan hệ để phân tích: sao, bảng bán hàng ở giữa và mỗi chiều một bảng; bông tuyết, chiều sản phẩm tách thành sản phẩm, danh mục, ngành. Khung ba, kết quả đo trên bốn món hàng: bảng phẳng sửa sót một dòng làm khách An ở hai thành phố; phân cấp phải đọc cả 4 món để biết ai mua ấm trà; mạng theo con trỏ chỉ đọc 2 món; hỏi theo ngành, sao cần 1 phép nối và lưu chữ Gia dụng 3 lần, bông tuyết cần 3 phép nối và lưu 1 lần.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Bốn cách hệ quản trị nhìn dữ liệu",
+      "items": [
+        {
+          "name": "Bảng phẳng",
+          "role": "Một bảng; thông tin khách lặp ở mọi dòng.",
+          "icon": "file-text"
+        },
+        {
+          "name": "Phân cấp",
+          "role": "Khách → đơn → món, mỗi bản ghi một cha.",
+          "icon": "folder"
+        },
+        {
+          "name": "Mạng",
+          "role": "Món có hai cha: đơn và sản phẩm.",
+          "icon": "network"
+        },
+        {
+          "name": "Quan hệ",
+          "role": "Mỗi sự việc lưu một lần, nối bằng khóa.",
+          "icon": "database"
+        }
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Hai cách xếp bảng để phân tích",
+      "items": [
+        {
+          "name": "Sao",
+          "role": "Bảng bán hàng ở giữa, mỗi chiều một bảng.",
+          "icon": "chart-column"
+        },
+        {
+          "name": "Bông tuyết",
+          "role": "Chiều tách ra: sản phẩm → danh mục → ngành.",
+          "icon": "split"
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Đo trên bốn món hàng",
+      "items": [
+        "Phẳng: sửa sót một dòng, khách An ở hai thành phố.",
+        "Phân cấp: hỏi ai mua ấm trà phải đọc cả 4 món.",
+        "Mạng: theo con trỏ từ sản phẩm, chỉ đọc 2 món.",
+        "Theo ngành: sao 1 phép nối, bông tuyết 3 phép nối.",
+        "Chữ Gia dụng: sao lưu 3 lần, bông tuyết lưu 1 lần."
+      ]
+    }
+  ]
+}

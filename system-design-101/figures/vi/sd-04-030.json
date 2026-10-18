@@ -1,0 +1,36 @@
+{
+  "id": "sd-04-030",
+  "lang": "vi",
+  "title": "Mười cơ sở dữ liệu nổi tiếng: giấy phép nói gì?",
+  "desc": "Theo tệp giấy phép ở nhánh chính của từng dự án, đọc ngày 18/10/2026. Khung một, giấy phép được OSI duyệt: MySQL và MariaDB dùng GPL phiên bản 2; Neo4j dùng GPL phiên bản 3; PostgreSQL dùng giấy phép PostgreSQL; Cassandra dùng Apache 2.0; Redis 8 cho chọn một trong ba giấy phép, trong đó có AGPL phiên bản 3. Khung hai, không phải giấy phép mã nguồn mở: MongoDB dùng SSPL, không được OSI duyệt; Couchbase dùng BSL 1.1, chuyển sang Apache 2.0 từ ngày 1 tháng 3 năm 2029; CockroachDB cần khóa giấy phép để chạy thật. Khung ba, hai trường hợp riêng: SQLite thuộc phạm vi công cộng, không cần giấy phép; Redis 7.2 trở về trước dùng BSD 3 điều khoản.",
+  "sections": [
+    {
+      "kind": "notes",
+      "heading": "Giấy phép được OSI duyệt",
+      "items": [
+        "MySQL, MariaDB: GPL phiên bản 2.",
+        "Neo4j: GPL phiên bản 3.",
+        "PostgreSQL: giấy phép PostgreSQL.",
+        "Cassandra: Apache 2.0.",
+        "Redis 8: chọn một trong ba, có AGPL phiên bản 3."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Không phải giấy phép mã nguồn mở",
+      "items": [
+        "MongoDB: SSPL, không được OSI duyệt.",
+        "Couchbase: BSL 1.1, thành Apache 2.0 từ 1/3/2029.",
+        "CockroachDB: cần khóa giấy phép để chạy thật."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Hai trường hợp riêng",
+      "items": [
+        "SQLite: phạm vi công cộng, không cần giấy phép.",
+        "Redis 7.2 trở về trước: BSD 3 điều khoản."
+      ]
+    }
+  ]
+}

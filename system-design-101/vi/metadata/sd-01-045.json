@@ -1,0 +1,86 @@
+{
+  "id": "sd-01-045",
+  "title_vi": "Kiểm thử API: chọn câu hỏi trước tên gọi",
+  "language": "vi",
+  "kind": "concept",
+  "content_status": "draft",
+  "source_ref": "sd-01-045",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/explaining-9-types-of-api-testing.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/explaining-9-types-of-api-testing.md",
+    "blob_sha": "dfb763005e5240e76e7309efb8df1dd4f750f486",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "2957b6c269b5ff6b236114ab6617bdc7ddc9e6b1b449129c448edc041fb8592a",
+    "retrieved_body_bytes": 1657
+  },
+  "diagram": "../diagrams/sd-01-045-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-10-023",
+      "reason_vi": "Cùng nguồn, hai phạm vi: chọn góc nhìn và thiết kế bộ ca sau thay đổi.",
+      "relation": "same_source_different_scope"
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-16"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-16",
+      "evidence": "Đọc giáo trình nền tảng §1.3/2.2.2–3; Microsoft integration introduction; Playwright introduction/UI pre/postconditions; Grafana test-types goals/limits; hướng dẫn fuzz generators/vectors. Ví dụ chỉ là kế hoạch, chưa chạy dịch vụ."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "new lesson awaiting current-head review"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-16",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "evidence": "Chromium cục bộ toàn bài/details mở320/375/430px không tràn ngang/chữ SVG ngoài hình, cỡ nhỏ nhất14.4/16/16px. Đã xem ảnh320px; chưa kiểm tra GitHub/thiết bị thật/người học."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Chức năng đối chiếu yêu cầu; xác nhận bản sửa khác mục tiêu hồi quy; đạt các ca đã chọn không chứng minh hết lỗi.",
+      "source": "https://istqb.org/wp-content/uploads/2024/11/ISTQB_CTFL_Syllabus_v4.0.1.pdf"
+    },
+    {
+      "claim_vi": "Tích hợp kiểm tra các thành phần phối hợp, không nhất thiết toàn hệ thống.",
+      "source": "https://learn.microsoft.com/en-us/aspnet/core/test/integration-tests?view=aspnetcore-10.0"
+    },
+    {
+      "claim_vi": "Có thể gọi trực tiếp API hoặc phối hợp quan sát giao diện và trạng thái máy chủ.",
+      "source": "https://playwright.dev/docs/api-testing"
+    },
+    {
+      "claim_vi": "Kiểu tải nhằm mục tiêu khác nhau; kết quả và tên gọi phụ thuộc bối cảnh.",
+      "source": "https://grafana.com/docs/k6/latest/testing-guides/test-types/"
+    },
+    {
+      "claim_vi": "Fuzz sinh các biến thể đầu vào để tìm lỗi triển khai, không chỉ tìm crash.",
+      "source": "https://owasp.org/www-community/Fuzzing"
+    }
+  ],
+  "design_notes_vi": "Ba thẻ tự thiết kế; hai vị trí chung nguồn giữ nội dung và sơ đồ riêng theo phạm vi API và phát triển phần mềm.",
+  "editorial_note_vi": "Nháp giáo dục, chưa chạy bộ kiểm thử dịch vụ.",
+  "source_deviations": [
+    "Không chín bước bắt buộc hoặc các loại loại trừ nhau.",
+    "Không bảo đảm thử hết mọi mối đe dọa hay suy năng lực cố định từ một lần đo.",
+    "Tích hợp không bắt buộc toàn tuyến; kiểm tra nhanh không chỉ sau phát triển."
+  ]
+}

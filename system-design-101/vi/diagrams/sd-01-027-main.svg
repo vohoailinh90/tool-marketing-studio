@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="940" viewBox="0 0 320 940" role="img" aria-labelledby="title desc"><title id="title">Các vai trò trong một ứng dụng web vận hành thật</title><desc id="desc">Năm vùng trách nhiệm nhóm mười chủ đề của ứng dụng web; không phải chuỗi request hoặc mười máy chủ bắt buộc.</desc><rect width="320" height="940" fill="#f8fafc"/><g font-family="Arial, sans-serif" font-size="16" fill="#0f172a"><text x="16" y="30" font-size="20" font-weight="bold">BẢN ĐỒ CÔNG VIỆC</text>
+<rect x="12" y="50" width="296" height="154" rx="12" fill="#dbeafe"/><text x="22" y="78" font-weight="bold">Đường tương tác</text>
+<text x="22" y="111">2 · Trình duyệt + DNS</text>
+<text x="22" y="141">3 · Cân bằng tải / reverse proxy</text>
+<rect x="12" y="220" width="296" height="154" rx="12" fill="#dcfce7"/><text x="22" y="248" font-weight="bold">Phục vụ nội dung</text>
+<text x="22" y="281">4 · CDN: nội dung có thể cache</text>
+<text x="22" y="311">5 · App ↔ dịch vụ qua API</text>
+<rect x="12" y="390" width="296" height="154" rx="12" fill="#fef3c7"/><text x="22" y="418" font-weight="bold">Dữ liệu và tra cứu</text>
+<text x="22" y="451">6 · Cơ sở dữ liệu + cache</text>
+<text x="22" y="481">8 · Tìm kiếm toàn văn</text>
+<rect x="12" y="560" width="296" height="154" rx="12" fill="#ede9fe"/><text x="22" y="588" font-weight="bold">Việc nền</text>
+<text x="22" y="621">7 · Queue → worker</text>
+<text x="22" y="651">Ví dụ: xuất báo cáo dài</text>
+<rect x="12" y="730" width="296" height="154" rx="12" fill="#ffe4e6"/><text x="22" y="758" font-weight="bold">Đưa lên và vận hành</text>
+<text x="22" y="791">1 · Pipeline CI/CD</text>
+<text x="22" y="821">9 · Quan sát: dữ liệu chẩn đoán</text>
+<text x="22" y="851">10 · Cảnh báo → người phụ trách</text>
+<text x="16" y="925">Vai trò ≠ máy chủ bắt buộc.</text></g></svg>

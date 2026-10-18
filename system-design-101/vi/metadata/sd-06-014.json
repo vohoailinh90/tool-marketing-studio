@@ -1,0 +1,103 @@
+{
+  "id": "sd-06-014",
+  "title_vi": "Tám chiến lược đẩy khóa ra, và Redis thật sự có những gì",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "draft",
+  "source_ref": "sd-06-014",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/top-8-cache-eviction-strategies.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-8-cache-eviction-strategies.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a git fetch of the pinned commit and hashed as a Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "ea95ea943ee0a87242833d32f96ae77c65cfc7f7",
+    "retrieved_body_sha256": "d26bc6bedd0b5d0e7676dba54279ed19b247b9233eb1e6d731ffb5cbe6403585",
+    "retrieved_body_bytes": 1976
+  },
+  "diagram": "../diagrams/sd-06-014-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-06-010",
+      "relation": "see_also",
+      "reason_vi": "Mô phỏng các chính sách đẩy khóa ra trên ba kiểu truy cập."
+    },
+    {
+      "lesson_id": "sd-06-011",
+      "relation": "see_also",
+      "reason_vi": "memcached dùng LRU chia vùng thay cho các chính sách của Redis."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "evidence": "Redis eviction doc, memcached new_lru.txt and Microsoft's caching guidance read from local clones; eviction policies tested on Redis 7.0.15."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright) rendered the full lesson (Markdown to HTML, optional sections open, 16 px side gutters) at each width: no horizontal overflow of the page or of any table; figure drawn by scripts/figures (viewBox width 320, smallest font 15 px) shown at 13.5 px effective at 320 px and 15 px at 375 px; every SVG text box inside the viewBox. python3 -m scripts.figures check --browser passed. Not learner testing and not GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "maxmemory-policy values include noeviction (writes error when full), allkeys-lru, allkeys-lfu, allkeys-random, volatile-lru, volatile-lfu, volatile-random and volatile-ttl; volatile policies behave like noeviction if no keys have an expiration; LRU and LFU are approximated and maxmemory-samples tunes LRU; consider two separate instances when one Redis serves both cache and persistent keys.",
+      "source": "https://github.com/redis/docs/blob/3b030c7ef066c0bb7f88ddec02c784e49783b0f8/content/develop/reference/eviction/index.md",
+      "section": "Eviction policies; Approximated LRU algorithm; LFU eviction",
+      "verified_by": "Read from a local clone of redis/docs at commit 3b030c7ef066c0bb7f88ddec02c784e49783b0f8, the head of its default branch when read on 2026-10-18 (a later change to that branch does not alter this URL)."
+    },
+    {
+      "claim_vi": "memcached splits its LRU into HOT, WARM and COLD to protect active items from scanning.",
+      "source": "https://github.com/memcached/memcached/blob/1b3b8555734f9b7b8d979924c7f8d6cf82194ba8/doc/new_lru.txt",
+      "section": "Whole file",
+      "verified_by": "Read from a clone of memcached/memcached at tag 1.6.24 (commit 1b3b8555734f9b7b8d979924c7f8d6cf82194ba8), the version that was run."
+    },
+    {
+      "claim_vi": "A private cache is held locally by each application instance and a shared cache is a common source for many; local copies held by different instances can become inconsistent.",
+      "source": "https://github.com/MicrosoftDocs/architecture-center/blob/8e2c239344ee753a88856800b4210a3e27ac1036/docs/best-practices/caching.md",
+      "section": "Private caching; Shared caching",
+      "verified_by": "Read from a local clone of MicrosoftDocs/architecture-center at commit 8e2c239344ee753a88856800b4210a3e27ac1036, the head of its default branch when read on 2026-10-18 (a later change to that branch does not alter this URL)."
+    },
+    {
+      "claim_vi": "Redis 7.0.15, maxmemory 4mb (about 2,950 keys of 1000 bytes), 60,000 reads, hit ratios lru/lfu/random: Zipf 78.8/81.2/77.4%; 70% to 1,500 hot keys plus one-off keys 55.1/67.3/51.0%; loop over 6,000 keys 16.8/31.2/19.7%; lru with maxmemory-samples 10 on Zipf 78.8%; noeviction 8,981 OOM errors; volatile-lru with no expiring keys the same 8,981 errors; volatile-ttl with TTL 600 hit 76.7% and 11,172 evictions.",
+      "source": "https://github.com/redis/docs/blob/3b030c7ef066c0bb7f88ddec02c784e49783b0f8/content/develop/reference/eviction/index.md",
+      "section": "Experiment",
+      "verified_by": "Experiment run by the author on 2026-10-18 on one KVM virtual machine (4 vCPU): raw RESP client in Python, Zipf distribution with exponent 1."
+    },
+    {
+      "claim_vi": "Eight strategies: LRU, MRU, SLRU, LFU, FIFO, TTL, two-tiered caching, random replacement.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-8-cache-eviction-strategies.md",
+      "section": "Whole guide",
+      "verified_by": "Source body read at the pinned commit."
+    }
+  ],
+  "design_notes_vi": "Ba khung ghi chú: tám tên đối chiếu với Redis, kết quả thử, và hai bẫy cấu hình. Bảng đối chiếu đầy đủ nằm trong bài.",
+  "source_deviations": [
+    "Source describes eight abstract strategies; the lesson maps each to Redis's maxmemory-policy (or notes that Redis lacks it) and tests them on a real server, including two configurations that make writes fail.",
+    "Two-tiered caching is described as able to cut latency for hits in the local tier, not as fastest: the lesson did not measure it, and a local tier with few hits adds a lookup to every read."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này (gói L5), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

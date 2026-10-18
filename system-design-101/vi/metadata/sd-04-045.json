@@ -1,0 +1,85 @@
+{
+  "id": "sd-04-045",
+  "title_vi": "Kafka dùng vào việc gì? Đối chiếu năm việc với danh sách của Kafka, và thử bắt thay đổi dữ liệu",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "draft",
+  "source_ref": "sd-04-045",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/top-5-kafka-use-cases.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-5-kafka-use-cases.md",
+    "blob_sha": "7575ba256df962a1362171bfe3019c66bdbb042b",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a local clone at the pinned commit and hashed as a Git blob; the computed OID matches the tree OID and the source map. No source-image bytes used.",
+    "retrieved_body_sha256": "5542df7025ce63c9ba6264e1af311ec8c1148daf284c333a84ec4f8df3cc4704",
+    "retrieved_body_bytes": 742
+  },
+  "diagram": "../diagrams/sd-04-045-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-04-037",
+      "relation": "related",
+      "reason_vi": "Bài đó giải thích vì sao nhật ký kiểu Kafka giữ tin lại sau khi đọc, khác hàng đợi."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "scope": "Đọc trang Use cases của Kafka tại commit cố định; chạy CDC bằng logical decoding (test_decoding) trên PostgreSQL 16.15 với wal_level logical: peek và get, lượng nhật ký khe đọc giữ khi chưa đọc 200.000 dòng; đọc logicaldecoding.sgml (REL_16_STABLE). KHÔNG kiểm: Kafka chạy thật, Kafka Connect, công cụ CDC thật, việc chuyển hệ thống."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "not_yet_reviewed"
+    },
+    "mobile": {
+      "status": "pending"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "id": "source-five",
+      "claim_vi": "Nguồn: Kafka ban đầu làm để xử lý nhật ký khối lượng lớn, giữ tin tới khi hết hạn và cho người đọc tự kéo tin theo nhịp riêng; năm việc hay dùng là xử lý và phân tích nhật ký, luồng dữ liệu cho gợi ý, theo dõi và cảnh báo hệ thống, CDC, chuyển hệ thống.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-5-kafka-use-cases.md",
+      "section": "Whole guide",
+      "verified_by": "Đọc thân nguồn ghim ngày 2026-10-18."
+    },
+    {
+      "id": "kafka-uses",
+      "claim_vi": "Trang Use cases của Kafka kể bảy việc: nhắn tin, theo dõi hoạt động trang web (việc ban đầu), số đo, gom nhật ký, xử lý luồng (ví dụ đường ống gợi ý bài báo), event sourcing, nhật ký chốt; không có mục riêng cho CDC hay chuyển hệ thống.",
+      "source": "https://github.com/apache/kafka/blob/cc8baadc9f0363f2bdfe68a2f1cd8dbe4372d282/docs/getting-started/uses.md",
+      "section": "Use cases",
+      "verified_by": "Đọc bản clone nông của apache/kafka ngày 2026-10-18."
+    },
+    {
+      "id": "cdc-test",
+      "claim_vi": "Với logical decoding và test_decoding: thêm đơn 1, một giao dịch sửa đơn 1 và thêm đơn 2, xóa đơn 2 cho ra 10 dòng (ba cặp BEGIN/COMMIT bao bốn thay đổi theo thứ tự chốt); peek giữ nguyên, get lấy đi; thêm 200.000 dòng chưa đọc làm khe giữ 26 MB nhật ký, đọc xong còn 0.",
+      "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/logicaldecoding.sgml",
+      "section": "Logical Decoding Examples (phép thử của người biên soạn)",
+      "verified_by": "Chạy đoạn mã in trong bài hai lần ngày 2026-10-18 cho cùng kết quả."
+    },
+    {
+      "id": "slot-retention",
+      "claim_vi": "Tài liệu PostgreSQL: khe sao chép tồn tại qua sự cố, không biết trạng thái người đọc, và vẫn ngăn xóa tài nguyên cần thiết kể cả khi không có kết nối nào dùng nó.",
+      "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/logicaldecoding.sgml",
+      "section": "Replication Slots",
+      "verified_by": "Đọc bản clone nông nhánh REL_16_STABLE ngày 2026-10-18."
+    }
+  ],
+  "design_notes_vi": "Ba khung: năm việc của nguồn đặt cạnh danh sách của Kafka, phép thử CDC, lượng nhật ký khe đọc giữ khi người đọc chưa đọc. Sơ đồ dựng bằng scripts/figures, không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Nguồn chỉ liệt kê năm việc; bài đối chiếu với trang Use cases của Kafka và chỉ ra hai việc không có trong đó.",
+    "Bài thử CDC bằng logical decoding của PostgreSQL để thấy luồng thay đổi trông thế nào, và thêm cảnh báo về khe đọc bị bỏ quên."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này, bản nháp chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

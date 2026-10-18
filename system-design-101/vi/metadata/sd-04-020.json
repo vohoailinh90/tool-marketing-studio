@@ -1,0 +1,110 @@
+{
+  "id": "sd-04-020",
+  "title_vi": "B-tree và LSM-tree: trả giá lúc ghi hay lúc gộp",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "draft",
+  "source_ref": "sd-04-020",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/b-tree-vs.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/b-tree-vs.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a partial clone of the source repository; git hash-object of the retrieved body matches the source-map blob. No source-image bytes used.",
+    "blob_sha": "479812584386c3fa2fcc138088b3c3861373f347",
+    "retrieved_body_sha256": "56a25d48f6443b0a85d41f68cec546efbe6db43ebde01baef6af442b6668f707",
+    "retrieved_body_bytes": 1132
+  },
+  "diagram": "../diagrams/sd-04-020-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-04-009",
+      "relation": "related",
+      "reason_vi": "Ghi nối tiếp và gom lô cũng là lý do Kafka nhanh."
+    },
+    {
+      "lesson_id": "sd-04-011",
+      "relation": "related",
+      "reason_vi": "Cơ sở dữ liệu chuỗi thời gian dùng bộ máy lưu trữ kiểu LSM."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "evidence": "SQLite's btreeInt.h and wal.c (3.45.1), LevelDB's doc/impl.md and RocksDB's options.h, advanced_options.h and filter_policy.h (9.8.4) were read from partial clones of sqlite/sqlite, google/leveldb and facebook/rocksdb at pinned commits; the load times, bytes written and lookup times were measured by the author, who ran one million random keys into SQLite 3.45.1 and RocksDB 9.8.4 (rocksdict 0.3.29) on 2026-10-18."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright) rendered lesson.md (markdown-it, tables enabled, every <details> open, a 16 px page gutter) at each width: the page never scrolled sideways and the figure was scaled to the column; the smallest SVG font-size times that scale is the recorded minimum at 320 px. `python3 -m scripts.figures check --browser` measured every line of the figure in Chromium inside its box. Not GitHub, not a real phone and not learner testing."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Each B-tree page holds N entries and N+1 pointers to subpages; finding a key reads O(log M) pages; a WAL frame is a 24-byte header followed by a full page, and checkpoints copy WAL content back into the database file.",
+      "sources": [
+        "https://github.com/sqlite/sqlite/blob/189e44dfecdc7868bb860dfb5d98eab371318c37/src/btreeInt.h",
+        "https://github.com/sqlite/sqlite/blob/189e44dfecdc7868bb860dfb5d98eab371318c37/src/wal.c"
+      ],
+      "section": "File header comments",
+      "verified_by": "Read from a partial clone of sqlite/sqlite at tag version-3.45.1 (commit 189e44dfecdc7868bb860dfb5d98eab371318c37)."
+    },
+    {
+      "claim_vi": "Updates are appended to a log and kept in a memtable; a full memtable becomes a sorted table in level-0; level-0 files may overlap, files in other levels do not; when a level exceeds its size, a file is merged with the overlapping files of the next level using only bulk reads and writes.",
+      "source": "https://github.com/google/leveldb/blob/bb74ef739973a70ca9f0d90788a1da89b788c0ad/doc/impl.md",
+      "section": "Log files; Sorted tables",
+      "verified_by": "Read from a partial clone of google/leveldb at commit bb74ef739973a70ca9f0d90788a1da89b788c0ad."
+    },
+    {
+      "claim_vi": "RocksDB 9.8.4 defaults: write_buffer_size 64 MB, max_bytes_for_level_base 256 MB, level0_file_num_compaction_trigger 4, level0_slowdown_writes_trigger 20, level0_stop_writes_trigger 36, level_compaction_dynamic_level_bytes true (from an empty DB the last level is the base level); a Bloom filter of about 10 bits per key gives about 1% false positives.",
+      "sources": [
+        "https://github.com/facebook/rocksdb/blob/44e95d8af5d7ec503b3f1d5754c3379ab6c29a9d/include/rocksdb/options.h",
+        "https://github.com/facebook/rocksdb/blob/44e95d8af5d7ec503b3f1d5754c3379ab6c29a9d/include/rocksdb/advanced_options.h",
+        "https://github.com/facebook/rocksdb/blob/44e95d8af5d7ec503b3f1d5754c3379ab6c29a9d/include/rocksdb/filter_policy.h"
+      ],
+      "section": "Option comments",
+      "verified_by": "Read from a partial clone of facebook/rocksdb at tag v9.8.4 (commit 44e95d8af5d7ec503b3f1d5754c3379ab6c29a9d)."
+    },
+    {
+      "claim_vi": "Measured with 1,000,000 random 16-byte keys and 100-byte values (116 MB), no fsync, bytes written counted as the process's wchar: SQLite WITHOUT ROWID in WAL mode committing every 1,000 rows wrote 12,481 MB (107.6x) with a 2 MiB cache and 12,169 MB (104.9x) with 256 MiB; one transaction with 256 MiB wrote 281 MB (2.4x) in 6.3 s; RocksDB with a 4 MiB memtable and 16 MiB level base wrote 621 MB (5.4x) in 3.7 s; 100,000 missing-key lookups took 0.07 s with a 10-bit Bloom filter and 0.74 s without; a 300,000-key run with default RocksDB options produced one level-0 file and no compaction.",
+      "source": "https://github.com/facebook/rocksdb/blob/44e95d8af5d7ec503b3f1d5754c3379ab6c29a9d/include/rocksdb/options.h",
+      "section": "Author's experiment",
+      "verified_by": "The author ran and measured this on 2026-10-18 on one machine; hit lookups were dominated by Python overhead and are not compared."
+    },
+    {
+      "claim_vi": "B-tree is the most widely used index structure in relational databases and stores data in pages; LSM-trees are used by Cassandra, LevelDB and RocksDB, persist sorted string tables and compact level 0 into level 1; B-tree enables faster reads, LSM-tree faster writes.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/b-tree-vs.md",
+      "section": "Body",
+      "verified_by": "Source body read."
+    }
+  ],
+  "design_notes_vi": "Hai thẻ cấu trúc, bốn bước thử với số byte đã ghi đo thật, bốn ghi chú chọn theo việc. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "The source states that B-tree reads are faster and LSM-tree writes are faster; the lesson measures that B-tree write cost depends on how many pages each commit touches (2.4x in one transaction, over 100x committing every 1,000 rows) and does not claim a read result, because the data was cached.",
+    "The source says level 0 is merged into level 1; the lesson notes that RocksDB's default dynamic level sizing makes the last level the base level, as the experiment showed."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

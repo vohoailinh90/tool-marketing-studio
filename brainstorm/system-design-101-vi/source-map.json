@@ -1130,11 +1130,11 @@
         },
         {
           "id": "sd-04-020",
-          "title_vi": null,
+          "title_vi": "B-tree và LSM-tree: trả giá lúc ghi hay lúc gộp",
           "title_source": "B-Tree vs. LSM-Tree",
           "source_url": "https://bytebytego.com/guides/b-tree-vs",
           "source_path": "data/guides/b-tree-vs.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "479812584386c3fa2fcc138088b3c3861373f347",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/b-tree-vs.md"
         },

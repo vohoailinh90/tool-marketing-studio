@@ -430,15 +430,54 @@ class StructureTests(unittest.TestCase):
         result, _ = self.build(lesson_text(figure_section(3)))
         self.assertEqual("Máy nào nhận phản hồi?", result.slides[0]["material"]["question_candidate"]["text"])
 
-    def test_backgrounds_bracket_the_deck_in_dark_and_repeat_at_most_once(self):
+    def test_backgrounds_bracket_the_deck_in_dark_and_leave_the_middle_to_the_content(self):
         for count in brief.SLIDE_COUNTS:
             with self.subTest(count=count):
                 sequence = brief.backgrounds(count)
                 self.assertEqual(count, len(sequence))
                 self.assertEqual(("dark", "dark"), (sequence[0], sequence[-1]))
-                repeated = [index for index, (a, b) in enumerate(zip(sequence, sequence[1:])) if a == b]
-                # An odd deck alternates throughout; an even one repeats once, on the slide before the closing one.
-                self.assertEqual([] if count % 2 else [count - 3], repeated)
+                # docs/sd101-slides.md (*Light and dark*): no strict alternation, so the brief names no backdrop in between.
+                self.assertEqual({brief.FOLLOW_CONTENT}, set(sequence[1:-1]))
+
+    def test_the_brief_states_the_light_and_dark_rule_instead_of_a_backdrop_for_every_slide(self):
+        result, _ = self.build(lesson_text(figure_section(3)))
+        text = brief.render(result)
+        self.assertNotIn("background cream", text)
+        self.assertIn("never more than three in a row on the same background", text)
+
+    def test_the_first_concept_colour_rotates_with_the_lesson_number(self):
+        # docs/sd101-slides.md (*Accent rotation*): the k-th concept of lesson n takes accent (n + k) mod 4, from blue, amber, teal, red.
+        names = ("blue", "amber", "teal", "red")
+        for lesson_id, number in (("sd-01-001", 1), ("sd-01-002", 2), ("sd-01-003", 3), ("sd-01-004", 4), ("sd-05-005", 5),
+                                  ("sd-13-001", 1)):
+            with self.subTest(lesson=lesson_id):
+                store = Store(lesson_text(figure_section(4)), lesson_id=lesson_id)
+                self.addCleanup(store.tmp.cleanup)
+                result = store.build()
+                expected = [names[(number + k) % 4] for k in range(4)]
+                self.assertEqual(expected, [c["name"] for c in result.colours])
+                self.assertEqual(expected, [slide["material"]["colour"] for slide in result.slides[2:6]])
+                self.assertEqual(expected, [concept.get("colour") or slide["material"]["colour"]
+                                            for slide in result.slides[2:6] for concept in slide["material"]["concepts"]])
+
+    def test_the_first_concept_slide_takes_the_signature_layout_of_its_lesson_number(self):
+        for number in range(1, 26):
+            lesson_id = f"sd-01-{number:03d}"
+            with self.subTest(lesson=lesson_id):
+                store = Store(lesson_text(figure_section(3)), lesson_id=lesson_id)
+                self.addCleanup(store.tmp.cleanup)
+                result = store.build()
+                expected = brief.LAYOUT_KINDS[number % 12]
+                self.assertEqual(expected, result.signature_layout)
+                self.assertEqual(expected, result.slides[2]["layout"])
+                self.assertEqual({brief.FREE_LAYOUT}, {slide["layout"] for index, slide in enumerate(result.slides) if index != 2})
+                self.assertIn(f"takes `{expected}`", brief.render(result))
+
+    def test_the_brief_asks_for_the_layout_table_finish_takes(self):
+        result, _ = self.build(lesson_text(figure_section(3)))
+        text = brief.render(result)
+        for option in ("--layouts", "--first-concept 3", "--cannot"):
+            self.assertIn(option, text)
 
     def test_footer_numbers_each_slide_but_the_cover(self):
         result, _ = self.build(lesson_text(figure_section(3)))
@@ -449,6 +488,19 @@ class StructureTests(unittest.TestCase):
 class RealLessonTests(unittest.TestCase):
     def test_the_slide_range_is_the_one_the_deck_registry_enforces(self):
         self.assertEqual(sd101_slides.SLIDE_COUNTS, brief.SLIDE_COUNTS)
+
+    def test_the_layout_kinds_are_the_ones_finish_checks_the_table_against(self):
+        self.assertEqual(sd101_slides.LAYOUT_KINDS, brief.LAYOUT_KINDS)
+        self.assertEqual(sd101_slides.MIN_LAYOUT_KINDS, brief.MIN_LAYOUT_KINDS)
+
+    def test_the_signature_layout_of_every_written_lesson_is_the_one_finish_requires(self):
+        for lesson_id in sorted(path.parent.name for path in (STORE / "lessons").glob("sd-*/lesson.md")):
+            with self.subTest(lesson=lesson_id):
+                result = brief.build(STORE, lesson_id)
+                others = [kind for kind in brief.LAYOUT_KINDS if kind != result.signature_layout]
+                kinds = others[:2] + [result.signature_layout] + others[2:result.slide_count - 1]
+                table = {"slides": kinds, "first_concept": brief.FIRST_CONCEPT_SLIDE}
+                self.assertEqual([], sd101_slides.layout_problems(table, lesson_id, result.slide_count))
 
     def test_every_written_lesson_yields_a_deck_inside_the_range_with_its_concepts(self):
         ids = sorted(path.parent.name for path in (STORE / "lessons").glob("sd-*/lesson.md"))

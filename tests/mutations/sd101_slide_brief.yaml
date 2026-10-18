@@ -29,10 +29,30 @@ mutations:
   find: 'ADDRESS.sub(ADDRESS_TOKEN, LINK.sub(r"\1", text))'
   replace: 'ADDRESS.sub(ADDRESS_TOKEN, text)'
   test: tests.test_sd101_slide_brief.StructureTests.test_check_question_answer_deep_dive_terms_and_sources
-- label: an even deck puts two dark slides side by side at the end
-  find: '        result[-2] = "cream"'
-  replace: '        pass'
-  test: tests.test_sd101_slide_brief.StructureTests.test_backgrounds_bracket_the_deck_in_dark_and_repeat_at_most_once
+- label: the closing slide is no longer dark
+  find: '    return ["dark"] + [FOLLOW_CONTENT] * (count - 2) + ["dark"]'
+  replace: '    return ["dark"] + [FOLLOW_CONTENT] * (count - 2) + [FOLLOW_CONTENT]'
+  test: tests.test_sd101_slide_brief.StructureTests.test_backgrounds_bracket_the_deck_in_dark_and_leave_the_middle_to_the_content
+- label: the brief names a backdrop for every middle slide again
+  find: '    return ["dark"] + [FOLLOW_CONTENT] * (count - 2) + ["dark"]'
+  replace: '    return ["dark"] + ["cream" if index % 2 == 0 else "dark" for index in range(count - 2)] + ["dark"]'
+  test: tests.test_sd101_slide_brief.StructureTests.test_the_brief_states_the_light_and_dark_rule_instead_of_a_backdrop_for_every_slide
+- label: every lesson starts its concept colours on blue
+  find: '    return CONCEPT_COLOURS[(number + concept) % len(CONCEPT_COLOURS)]'
+  replace: '    return CONCEPT_COLOURS[concept % len(CONCEPT_COLOURS)]'
+  test: tests.test_sd101_slide_brief.StructureTests.test_the_first_concept_colour_rotates_with_the_lesson_number
+- label: the signature layout ignores the lesson number
+  find: '    return LAYOUT_KINDS[number % len(LAYOUT_KINDS)]'
+  replace: '    return LAYOUT_KINDS[0]'
+  test: tests.test_sd101_slide_brief.StructureTests.test_the_first_concept_slide_takes_the_signature_layout_of_its_lesson_number
+- label: the signature layout is put on the second concept slide
+  find: '    layouts[FIRST_CONCEPT_SLIDE - 1] = signature'
+  replace: '    layouts[FIRST_CONCEPT_SLIDE] = signature'
+  test: tests.test_sd101_slide_brief.StructureTests.test_the_first_concept_slide_takes_the_signature_layout_of_its_lesson_number
+- label: the brief's copy of the layout kinds drifts from the one finish checks
+  find: '                "numbered-rows", "connection-diagram", "layers", "timeline", "one-big-number", "one-highlighted-sentence")'
+  replace: '                "numbered-rows", "connection-diagram", "layers", "timeline", "one-big-number", "one-highlighted-quote")'
+  test: tests.test_sd101_slide_brief.RealLessonTests.test_the_layout_kinds_are_the_ones_finish_checks_the_table_against
 - label: the cover loses the check question that can serve as its hook question
   find: '**({"question_candidate": line(question[0]).__dict__} if question else {}),'
   replace: ''

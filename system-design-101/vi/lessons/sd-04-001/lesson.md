@@ -3,7 +3,7 @@
 **Mô hình bản sao đọc (read replica) dồn mọi lệnh ghi vào một máy cơ sở dữ liệu chính và chia lệnh đọc cho các bản sao.**
 Bản chính đỡ tải đọc, nhưng bản sao luôn đi sau bản chính một khoảng: đọc ở bản sao ngay sau khi ghi có thể chưa thấy dữ liệu vừa ghi.
 
-![Ba khung. Khung một: ứng dụng gửi mọi lệnh ghi tới bản chính; bản chính chuyển nhật ký WAL cho bản sao; ứng dụng đọc từ bản sao. Khung hai, theo thử nghiệm trên PostgreSQL 16 với bản sao cố ý trễ 3 giây: ứng dụng ghi đơn hàng và lấy vị trí WAL sau commit; đọc ngay ở bản sao được 0 dòng; chờ tới khi bản sao phát lại tới vị trí đó, khoảng 2,9 giây, thì đọc được 1 dòng. Khung ba: ba cách để đọc thấy dữ liệu mình vừa ghi: đọc từ bản chính, chờ bản sao đuổi kịp vị trí WAL, hoặc cho commit chờ bản sao phát lại xong.](../../diagrams/sd-04-001-main.svg)
+![Ba khung. Khung một: ứng dụng gửi mọi lệnh ghi tới bản chính; bản chính chuyển nhật ký WAL cho bản sao; ứng dụng đọc từ bản sao. Khung hai, theo thử nghiệm trên PostgreSQL 16 với bản sao cố ý trễ 3 giây: ứng dụng ghi đơn hàng và lấy vị trí WAL sau commit; đọc ngay ở bản sao được 0 dòng; chờ tới khi bản sao phát lại tới vị trí đó, khoảng 2,9 giây, thì đọc được 1 dòng. Khung ba: ba cách để đọc thấy dữ liệu mình vừa ghi: đọc từ bản chính, chờ bản sao đuổi kịp vị trí WAL, hoặc cho commit chờ bản sao đồng bộ phát lại xong.](../../diagrams/sd-04-001-main.svg)
 
 ## Từ viết tắt
 
@@ -41,7 +41,7 @@ Với `synchronous_commit = remote_apply`, commit mất 3,0 giây và bản sao 
 
 - **Đọc ở bản chính:** chỉ nên dành cho lệnh đọc ngay sau lệnh ghi của chính người đó. Dồn quá nhiều lệnh đọc về bản chính thì mất luôn lý do dùng bản sao.
 - **Chờ bản sao đuổi kịp LSN:** ứng dụng phải mang LSN theo phiên của người dùng. Bản PostgreSQL 16 không có lệnh chờ sẵn, nên phải hỏi lại như trong thử nghiệm; tài liệu PostgreSQL 19 thêm lệnh `WAIT FOR LSN` chạy trên bản sao để chờ việc đó.
-- **`remote_apply`:** mọi commit chờ bản sao phát lại, nên mọi lệnh ghi chậm theo bản sao chậm nhất. Tài liệu PostgreSQL còn cảnh báo commit có thể không bao giờ xong nếu một bản sao đồng bộ bị sập, trừ khi khai thêm bản sao dự phòng.
+- **`remote_apply`:** commit nào dùng mức này phải chờ các bản sao đồng bộ phát lại xong, và chỉ các bản sao đồng bộ đó mới chắc chắn đã thấy thay đổi; bản sao bất đồng bộ khác vẫn có thể đi sau. Tham số đặt được cho từng giao dịch (`SET LOCAL synchronous_commit`), nên có thể chỉ dùng cho lệnh ghi cần đọc ngay; đặt cho cả hệ thống thì mọi lệnh ghi chậm theo bản sao đồng bộ phải chờ. Tài liệu PostgreSQL còn cảnh báo commit có thể không bao giờ xong nếu một bản sao đồng bộ bị sập, trừ khi khai thêm bản sao dự phòng.
 
 ## Nhìn hình trả lời
 
@@ -53,7 +53,7 @@ Chỗ nào trong hình gây ra chuyện này, và cách nào sửa được mà 
 
 Lệnh đọc khi tải lại trang đến bản sao trước khi bản sao phát lại tới thay đổi vừa ghi (khung 2).
 Hai cách đầu ở khung 3 chỉ tác động tới người vừa ghi: gửi lệnh đọc của người đó về bản chính trong một lúc, hoặc nhớ LSN sau commit và chỉ đọc bản sao đã phát lại tới đó.
-Cách thứ ba (`remote_apply`) cũng sửa được nhưng bắt mọi commit của mọi người chờ bản sao, nên không thỏa điều kiện của câu hỏi.
+Cách thứ ba (`remote_apply`) chỉ thỏa điều kiện nếu đặt riêng cho giao dịch đổi ảnh (`SET LOCAL synchronous_commit = remote_apply`) và trang được đọc từ một bản sao đồng bộ; đặt cho cả hệ thống thì mọi lệnh ghi của mọi người đều phải chờ.
 
 </details>
 

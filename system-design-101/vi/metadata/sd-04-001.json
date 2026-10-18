@@ -76,6 +76,12 @@
       "verified_by": "Read from a partial clone of postgres/postgres at REL_16_STABLE commit 8e928803020e5b5694cde58e4851fce64ef9d520."
     },
     {
+      "claim_vi": "synchronous_commit can be changed at any time and the setting in effect when a transaction commits decides its behaviour, so some transactions can commit synchronously and others not, e.g. with SET LOCAL inside one transaction.",
+      "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/config.sgml",
+      "section": "synchronous_commit",
+      "verified_by": "Read from a partial clone of postgres/postgres at REL_16_STABLE commit 8e928803020e5b5694cde58e4851fce64ef9d520."
+    },
+    {
       "claim_vi": "Hot standby connections are strictly read-only; commits that wait for synchronous standbys may never complete if one of them crashes, unless several potential synchronous standbys are named; lag can be monitored by comparing pg_current_wal_lsn with sent_lsn of pg_stat_replication and pg_last_wal_receive_lsn with pg_last_wal_replay_lsn.",
       "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/high-availability.sgml",
       "section": "Planning for High Availability; Hot Standby User's Overview; monitoring",

@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="320" height="1421" viewBox="0 0 320 1421" role="img" aria-labelledby="title desc">
 <title id="title">Bản sao đọc và độ trễ sao chép</title>
-<desc id="desc">Ba khung. Khung một: ứng dụng gửi mọi lệnh ghi tới bản chính; bản chính chuyển nhật ký WAL cho bản sao; ứng dụng đọc từ bản sao. Khung hai, theo thử nghiệm trên PostgreSQL 16 với bản sao cố ý trễ 3 giây: ứng dụng ghi đơn hàng và lấy vị trí WAL sau commit; đọc ngay ở bản sao được 0 dòng; chờ tới khi bản sao phát lại tới vị trí đó, khoảng 2,9 giây, thì đọc được 1 dòng. Khung ba: ba cách để đọc thấy dữ liệu mình vừa ghi: đọc từ bản chính, chờ bản sao đuổi kịp vị trí WAL, hoặc cho commit chờ bản sao phát lại xong.</desc>
+<desc id="desc">Ba khung. Khung một: ứng dụng gửi mọi lệnh ghi tới bản chính; bản chính chuyển nhật ký WAL cho bản sao; ứng dụng đọc từ bản sao. Khung hai, theo thử nghiệm trên PostgreSQL 16 với bản sao cố ý trễ 3 giây: ứng dụng ghi đơn hàng và lấy vị trí WAL sau commit; đọc ngay ở bản sao được 0 dòng; chờ tới khi bản sao phát lại tới vị trí đó, khoảng 2,9 giây, thì đọc được 1 dòng. Khung ba: ba cách để đọc thấy dữ liệu mình vừa ghi: đọc từ bản chính, chờ bản sao đuổi kịp vị trí WAL, hoặc cho commit chờ bản sao đồng bộ phát lại xong.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="1421" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
@@ -81,8 +81,8 @@
 <circle cx="43" cy="1322" r="11" fill="#16a34a"/>
 <polyline points="37.9,1322.4 41.7,1326.4 48.5,1318" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
 <text x="64" y="1325.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cho commit chờ bản sao</text>
-<text x="64" y="1344.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">phát lại xong: đọc ở bản sao</text>
-<text x="64" y="1364.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">luôn thấy, nhưng lệnh ghi</text>
-<text x="64" y="1383.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chậm hơn.</text>
+<text x="64" y="1344.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đồng bộ phát lại xong: đọc ở</text>
+<text x="64" y="1364.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bản sao đó thấy ngay,</text>
+<text x="64" y="1383.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhưng lệnh ghi chậm hơn.</text>
 </g>
 </svg>

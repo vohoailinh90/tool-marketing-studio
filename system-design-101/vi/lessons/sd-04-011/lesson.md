@@ -19,7 +19,7 @@ Bên trong, InfluxDB không lưu theo dòng mà gom các giá trị cùng nguồ
 Tag được đánh chỉ mục, field thì không: lọc theo một giá trị field buộc InfluxDB quét mọi giá trị của field đó.
 
 **Khung 2 · Series.** Series là tập điểm có chung measurement, tag set và tên field. Một ngày đo thời tiết mỗi 10 giây ở hai địa điểm, mỗi lần hai đại lượng, cho 17.280 điểm nhưng chỉ 4 series; mỗi series có 8.640 cặp thời điểm và giá trị.
-Bộ máy lưu trữ của InfluxDB ghi trước vào WAL và một bộ đệm trong bộ nhớ, sau đó chuyển thành tệp TSM chứa dữ liệu series đã sắp xếp, nén theo cột.
+Bộ máy lưu trữ TSM của InfluxDB 1.x ghi trước vào WAL và một bộ đệm trong bộ nhớ, sau đó chuyển thành tệp TSM chứa dữ liệu series đã sắp xếp, nén theo cột.
 
 ## Thử nghiệm: vì sao gom theo series lại nén tốt
 

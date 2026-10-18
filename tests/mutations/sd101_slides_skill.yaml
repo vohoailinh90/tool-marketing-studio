@@ -1,0 +1,12 @@
+# Mutation manifest — see scripts/mutation_check.py
+#
+# The slide skill is the other place a session meets the `finish` command. This drops the layout options from it and requires the
+# test that reads the skill to notice.
+
+target: .claude/skills/sd101-slides/SKILL.md
+note: A session started by the skill must get a finish command that `finish` accepts.
+mutations:
+- label: the skill's finish command loses the layout table
+  find: "--slides N --layouts KINDS --first-concept N --publish"
+  replace: "--slides N --publish"
+  test: tests.test_sd101_slides.FinishDocsTests.test_the_slide_skill_names_every_required_option_of_finish

@@ -23,8 +23,11 @@ python3 scripts/sd101_slide_brief.py sd-01-027              # the lesson cut int
 ```
 
 1. **Read the brief.** It copies the lesson's own lines onto the slide roles of the style (six fixed ones and two to four concept slides), names the canvas, fixes the slide
-   count (8 to 10), gives each concept its colour (the same on every slide of the deck) and flags everything still over 10 words: lines, concept
-   labels, terms and source names. Paragraphs and bullets keep the order the lesson writes them.
+   count (8 to 10), gives each concept its colour (the same on every slide of the deck; the rotation of `docs/sd101-slides.md`, *Accent
+   rotation*, which starts from the lesson number), names the signature layout of the first concept's slide (slide 3) and flags everything still over
+   10 words: lines, concept labels, terms and source names. Paragraphs and bullets keep the order the lesson writes them. The other slides'
+   layout kinds are yours to choose from the twelve of the layout table, and the backdrop of the slides between the dark cover and the dark closing
+   slide follows the content (*Variety between decks*).
    Its `Concepts are taken from` line says where the lesson keeps its concepts: bullets or bold-label paragraphs under
    `## Đọc hình`, bullets before the first section, or the text cards of the figure (`diagrams/<id>-main.svg`) for lessons that keep
    them only there (the rows of a table in the figure are folded into the card of their heading). For those, the figure's line breaks are lost in the brief: open the SVG to read the sentences, and the prose
@@ -38,7 +41,8 @@ python3 scripts/sd101_slide_brief.py sd-01-027              # the lesson cut int
    uses; for these decks the answer is already fixed (*no kit*, `docs/sd101-slides.md`) and `brand_list` returned no kit on
    2026-10-18, so do not ask the owner again. The tool schemas are authoritative for parameter names.
 3. **Look at a finished deck first.** `canvas_search` for `System Design 101` lists them; `canvas_read` (with `summary=true`, then
-   one `page`) and `canvas_screenshot` show the real markup. Do not copy a slide, copy the system: colours, fonts, footer, spacing.
+   one `page`) and `canvas_screenshot` show the real markup. Do not copy a slide, copy the system: colours, fonts, footer, spacing; the
+   layouts are not part of it, each deck gets its own (*Variety between decks*).
 4. **Create the canvas** with the name from the brief, 1920x1080, category `slides`, no brand kit, one page per slide
    (`canvas_create`; further pages are added inside a `canvas_edit` program). Send the editor link as soon as it exists.
 5. **Write the copy, then draw one slide per `canvas_apply_markup`.** Condense each brief line to at most 10 words, at most 3
@@ -49,9 +53,14 @@ python3 scripts/sd101_slide_brief.py sd-01-027              # the lesson cut int
 
 ```bash
 python3 scripts/sd101_slides.py touch --publish             # while you work; a heartbeat older than 72 h is stale
-python3 scripts/sd101_slides.py finish sd-01-027 --canvas cvs_... --url https://moda.app/canvas/... --slides 10 --publish
+python3 scripts/sd101_slides.py finish sd-01-027 --canvas cvs_... --url https://moda.app/canvas/... --slides 10 \
+    --layouts KIND,KIND,... --first-concept 3 --publish     # the layout table: one kind per slide, in order
 python3 scripts/sd101_check.py                              # CI runs it on the folder
 ```
+
+   `--layouts` lists the layout kind of every slide in order and `--first-concept` is the slide of the lesson's first concept (slide 3 in
+   a brief); add `--cannot KIND=REASON` only when the signature layout fell back. `docs/sd101-slides.md` (*Layout table*) has the rules
+   `finish` checks and the twelve kind names.
 
    A deck is finished with `exports: pending`. **Its PPTX file then goes into the repository** (owner decision 2026-10-18, a reference
    copy that is never posted): `export` the whole deck as PPTX (`export(canvas_ref, format="pptx")` returns a short-lived download

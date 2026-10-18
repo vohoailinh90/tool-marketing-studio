@@ -15,6 +15,7 @@ python3 scripts/sd101_slides.py verify                       # exit 0 = every cl
 python3 scripts/sd101_slides.py touch --publish
 python3 scripts/sd101_slides.py finish sd-01-002 --canvas cvs_... --url https://moda.app/canvas/... --slides 10 --publish
 python3 scripts/sd101_slides.py exported sd-01-002 --publish # its PPTX and PNG files are now in slides/
+python3 scripts/sd101_slides.py exported sd-01-002 --badged --publish  # only its PPTX, moda.app badge and all
 python3 scripts/sd101_slides.py release sd-01-003 --publish  # give back a lesson you will not build
 ```
 
@@ -36,11 +37,13 @@ is the check to run after pushing a finished folder by hand.
 
 ```
 lessons/<id>/slides/deck.yaml      status doing: the claim. status done: moda_canvas, moda_url, slide_count, size, exports
-lessons/<id>/slides/<id>.pptx      only when exports: done
+lessons/<id>/slides/<id>.pptx      only when exports: badged (with the moda.app badge) or done (without it)
 lessons/<id>/slides/01.png ..      only when exports: done, one 1920x1080 PNG per slide
 ```
 
 `exports: pending` means the deck exists on Moda and is editable there, but its files are not in the repository yet.
+`exports: badged` means its PPTX is there as Moda's free plan exports it, badge and all: a reference copy to open and
+present, never a file for Facebook.
 
 ### Exports and the Moda watermark
 
@@ -55,6 +58,13 @@ The check opens every file: a PNG must be whole (every chunk's checksum, an imag
 `IEND` chunk and nothing after it) and exactly 1920x1080; a PPTX must be a ZIP archive that reads through and holds
 `[Content_Types].xml` and `ppt/presentation.xml`.
 Re-exporting does not change the slides, so it needs no claim.
+
+The owner decided on 2026-10-18 that a deck's PPTX may also go into the repository while the plan is free, badge and all:
+`export` the deck as PPTX, save it as `<id>.pptx` and run `exported <id> --badged --publish`, which records
+`exports: badged` (the PPTX alone, no PNG files). The badge is not removed here either, and a badged file never goes to
+Facebook. The check refuses to record a PPTX that still carries the badge as `done` (it looks for the picture Moda names
+`moda-export-watermark` on its slides); once the plan exports without the badge, replace the file, add the PNG files and
+run `exported <id> --publish`.
 
 ## The style (the approved sample is sd-01-001)
 

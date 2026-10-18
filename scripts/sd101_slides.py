@@ -8,7 +8,8 @@ the same file and never conflict at merge:
   status doing   a session is building the deck (owner = its branch, claimed_at, heartbeat_at; generation and
                  taken_from after a takeover)
   status done    the deck exists on Moda (moda_canvas, moda_url, slide_count, size) and `exports` says whether its
-                 PNG and PPTX files are in the folder as well (`done`) or not yet (`pending`)
+                 PNG and PPTX files are in the folder as well (`done`), only its PPTX exported with the moda.app
+                 badge (`badged`, not for Facebook), or none yet (`pending`)
 
 Visibility follows sd101_claims.py: every command fetches all branches of the remote. On the default branch every
 record counts; on any other branch only the records whose owner is that branch (a copy inherited by merging is not a
@@ -21,6 +22,7 @@ heartbeat is older than the lease is stale and is taken over on purpose with `cl
   python3 scripts/sd101_slides.py touch --publish                   # renew the heartbeat while you work
   python3 scripts/sd101_slides.py finish sd-01-002 --canvas cvs_... --url https://moda.app/canvas/... --slides 10
   python3 scripts/sd101_slides.py exported sd-01-002 --publish      # its PPTX and PNG files are now in slides/
+  python3 scripts/sd101_slides.py exported sd-01-002 --badged --publish   # only its PPTX, moda.app badge and all
   python3 scripts/sd101_slides.py release sd-01-003 --publish       # give a lesson back
 
 There is no compare-and-swap on a git remote: two sessions that read before either pushed can both claim a lesson.
@@ -49,7 +51,7 @@ DEFAULT_STORE = ROOT / "system-design-101" / "vi"
 SLIDES_DIR = "slides"
 RECORD = "deck.yaml"
 STATUSES = ("doing", "done")
-EXPORTS = ("pending", "done")
+EXPORTS = ("pending", "badged", "done")
 KEY_ORDER = ("id", "status", "owner", "session", "taken_from", "generation", "claimed_at", "heartbeat_at", "done_at",
              "moda_canvas", "moda_url", "slide_count", "size", "exports")
 DOING_KEYS = {"id", "status", "owner", "session", "taken_from", "generation", "claimed_at", "heartbeat_at"}
@@ -66,6 +68,7 @@ CLOCK_SKEW_HOURS = 1
 PUSH_BACKOFF_SECONDS = (2, 4, 8, 16)
 PNG_SIGNATURE = b"\x89PNG\r\n\x1a\n"
 PPTX_PARTS = ("[Content_Types].xml", "ppt/presentation.xml")  # what any PowerPoint file holds
+MODA_BADGE = b"moda-export-watermark"  # the name of the picture Moda's free plan puts on every slide it exports
 PNG_CHANNELS = {0: 1, 2: 3, 3: 1, 4: 2, 6: 4}  # samples per pixel by colour type
 PNG_DEPTHS = {0: (1, 2, 4, 8, 16), 2: (8, 16), 3: (1, 2, 4, 8), 4: (8, 16), 6: (8, 16)}  # the bit depths each type allows
 ADAM7 = ((0, 0, 8, 8), (4, 0, 8, 8), (0, 4, 4, 8), (2, 0, 4, 4), (0, 2, 2, 4), (1, 0, 2, 2), (0, 1, 1, 2))  # x0, y0, dx, dy
@@ -371,6 +374,13 @@ def pptx_damage(path: pathlib.Path) -> str | None:
     return f"{', '.join(missing)} missing" if missing else None
 
 
+def pptx_badged(path: pathlib.Path) -> bool:
+    """Whether a whole PowerPoint file still carries the badge Moda's free plan adds to every slide it exports."""
+    with zipfile.ZipFile(path) as archive:
+        return any(MODA_BADGE in archive.read(name) for name in archive.namelist()
+                   if name.startswith("ppt/slides/") and name.endswith(".xml"))
+
+
 def folder_problems(slides_dir: pathlib.Path, lesson_id: str) -> list[str]:
     """What is wrong with a lesson's slides/ folder: the record, and the exports the record promises."""
     problems: list[str] = []
@@ -393,29 +403,34 @@ def folder_problems(slides_dir: pathlib.Path, lesson_id: str) -> list[str]:
     problems += [f"{RECORD}: {problem}" for problem in found]
     if found:
         return problems
-    exported = record["status"] == "done" and record["exports"] == "done"
+    exports = record["exports"] if record["status"] == "done" else "pending"
     want = {RECORD}
-    if exported:
-        want |= {f"{lesson_id}.pptx", *(f"{number:02d}.png" for number in range(1, record["slide_count"] + 1))}
+    if exports in ("badged", "done"):
+        want.add(f"{lesson_id}.pptx")
+    if exports == "done":
+        want |= {f"{number:02d}.png" for number in range(1, record["slide_count"] + 1)}
+    unexpected = {"done": "", "badged": " (a badged export is the PPTX alone)"}.get(
+        exports, " (exports are not recorded as done)")
     for name in names:
         if name not in want:
-            problems.append(f"{name} is not expected here" + ("" if exported else " (exports are not recorded as done)"))
+            problems.append(f"{name} is not expected here{unexpected}")
     for name in sorted(want - set(names)):
         problems.append(f"{name} is missing")
-    if exported:
-        width, height = (int(part) for part in record["size"].split("x"))
-        for name in sorted(want & set(names)):
-            path = slides_dir / name
-            if name.endswith(".png"):
-                damage = png_damage(path)
-                if damage:
-                    problems.append(f"{name} is not a whole PNG: {damage}")
-                elif png_size(path) != (width, height):
-                    problems.append(f"{name} is not a {width}x{height} PNG")
-            if name.endswith(".pptx"):
-                damage = pptx_damage(path)
-                if damage:
-                    problems.append(f"{name} is not a PowerPoint file: {damage}")
+    for name in sorted(want & set(names)):
+        path = slides_dir / name
+        if name.endswith(".png"):
+            width, height = (int(part) for part in record["size"].split("x"))  # PNG files belong to finished decks only
+            damage = png_damage(path)
+            if damage:
+                problems.append(f"{name} is not a whole PNG: {damage}")
+            elif png_size(path) != (width, height):
+                problems.append(f"{name} is not a {width}x{height} PNG")
+        if name.endswith(".pptx"):
+            damage = pptx_damage(path)
+            if damage:
+                problems.append(f"{name} is not a PowerPoint file: {damage}")
+            elif exports == "done" and pptx_badged(path):  # files recorded done are the ones that may go to Facebook
+                problems.append(f"{name} carries the moda.app badge: record it with `exported {lesson_id} --badged`")
     return problems
 
 
@@ -986,7 +1001,8 @@ def cmd_finish(context: Context, args: argparse.Namespace) -> int:
 
 
 def cmd_exported(context: Context, args: argparse.Namespace) -> int:
-    """A finished deck whose PPTX and PNG files were added to its folder: record that exports are done."""
+    """A finished deck whose PPTX and PNG files were added to its folder: record that exports are done; with --badged,
+    one whose PPTX alone was added as Moda's free plan exports it, badge and all."""
     path = context.writable_record(args.id)
     previous = path.read_text(encoding="utf-8") if path.is_file() else ""
     record = parse_record(previous) if previous else None
@@ -1009,16 +1025,16 @@ def cmd_exported(context: Context, args: argparse.Namespace) -> int:
                 print(f"{reason}; the finished record of this deck is not on {context.remote}/{context.me} yet, so it "
                       "cannot go out with the exports", file=sys.stderr)
                 return 1
-    record["exports"] = "done"
+    record["exports"] = "badged" if args.badged else "done"
     path.write_text(render(record), encoding="utf-8")
     found = folder_problems(path.parent, args.id)
     if found:
         path.write_text(previous, encoding="utf-8")
         print("\n".join(f"{args.id}: {problem}" for problem in found), file=sys.stderr)
         return 1
-    print(f"exports of {args.id} are done")
+    print(f"exports of {args.id} are {record['exports']}")
     if args.publish:
-        publish(context, [path.parent], f"Slides: exports of {args.id}")
+        publish(context, [path.parent], f"Slides: {'badged PPTX' if args.badged else 'exports'} of {args.id}")
         problem = finished_problem(context, args.id) if mine else None
         if problem:
             print(problem, file=sys.stderr)
@@ -1103,11 +1119,14 @@ def build_parser() -> argparse.ArgumentParser:
     finish.add_argument("--url", required=True, help="the Moda editor link, https://moda.app/canvas/...")
     finish.add_argument("--slides", type=int, required=True)
     finish.add_argument("--exports", choices=EXPORTS, default="pending",
-                        help="done only when <id>.pptx and 01.png.. are in slides/")
+                        help="done only when <id>.pptx and 01.png.. are in slides/, badged when <id>.pptx alone is, "
+                        "exported with the moda.app badge")
     finish.add_argument("--publish", action="store_true")
     finish.set_defaults(run=cmd_finish)
     exported = commands.add_parser("exported", help="record that a finished deck's PPTX and PNG files are in its folder")
     exported.add_argument("id", metavar="sd-XX-NNN")
+    exported.add_argument("--badged", action="store_true",
+                          help="only <id>.pptx is there, exported with the moda.app badge (not for Facebook)")
     exported.add_argument("--publish", action="store_true")
     exported.set_defaults(run=cmd_exported)
     release = commands.add_parser("release", help="give back lessons you will not build")

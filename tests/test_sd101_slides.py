@@ -55,12 +55,15 @@ def png(path: Path, width: int = 1920, height: int = 1080) -> None:
     path.write_bytes(png_bytes(width, height))
 
 
-def pptx(path: Path, parts: tuple[str, ...] = slides.PPTX_PARTS) -> None:
+def pptx(path: Path, parts: tuple[str, ...] = slides.PPTX_PARTS, badged: bool = False) -> None:
+    """A minimal presentation with one slide; `badged` puts the picture Moda's free plan adds on it, named as Moda does."""
     import zipfile
 
     with zipfile.ZipFile(path, "w") as archive:
         for part in parts:
             archive.writestr(part, "<x/>")
+        badge = '<p:pic><p:nvPicPr><p:cNvPr id="32" name="Moda image moda-export-watermark-1"/></p:nvPicPr></p:pic>'
+        archive.writestr("ppt/slides/slide1.xml", f"<p:sld>{badge if badged else ''}</p:sld>")
 
 
 class Sessions(unittest.TestCase):
@@ -824,6 +827,33 @@ class FinishTests(Sessions):
         self.assertEqual("done", self.record(a, "sd-01-001")["exports"])
         self.assertIn("10.png", git(a, "ls-tree", "-r", "--name-only", "origin/claude/a"))
 
+    def test_exported_badged_records_a_pptx_with_the_moda_badge_alone_but_never_as_done(self) -> None:
+        a = self.session("a")
+        self.run_in(a, "claim", "sd-01-001", "--publish")
+        self.finish(a, "sd-01-001")
+        folder = a / "store" / "lessons" / "sd-01-001" / "slides"
+        code, _, err = self.run_in(a, "exported", "sd-01-001", "--badged")
+        self.assertEqual(1, code)
+        self.assertIn("sd-01-001.pptx is missing", err)
+        pptx(folder / "sd-01-001.pptx", badged=True)
+        for number in range(1, 11):
+            png(folder / f"{number:02d}.png")
+        code, _, err = self.run_in(a, "exported", "sd-01-001")
+        self.assertEqual(1, code, "files with the badge are never recorded as done")
+        self.assertIn("sd-01-001.pptx carries the moda.app badge", err)
+        code, _, err = self.run_in(a, "exported", "sd-01-001", "--badged")
+        self.assertEqual(1, code, "a badged export is the PPTX alone")
+        self.assertIn("01.png is not expected here (a badged export is the PPTX alone)", err)
+        self.assertEqual("pending", self.record(a, "sd-01-001")["exports"])
+        for number in range(1, 11):
+            (folder / f"{number:02d}.png").unlink()
+        code, out, err = self.run_in(a, "exported", "sd-01-001", "--badged", "--publish")
+        self.assertEqual(0, code, err)
+        self.assertIn("exports of sd-01-001 are badged", out)
+        self.assertEqual("badged", self.record(a, "sd-01-001")["exports"])
+        self.assertIn("sd-01-001.pptx", git(a, "ls-tree", "-r", "--name-only", "origin/claude/a"))
+        self.assertEqual("Slides: badged PPTX of sd-01-001", git(a, "log", "-1", "--format=%s", "origin/claude/a"))
+
     def test_exported_refuses_a_deck_that_is_not_finished(self) -> None:
         a = self.session("a")
         self.run_in(a, "claim", "sd-01-001", "--publish")
@@ -1145,6 +1175,29 @@ class FolderTests(unittest.TestCase):
         self.write(exports="done")
         self.exports()
         self.assertEqual([], self.problems())
+
+    def test_a_pptx_with_the_moda_badge_is_never_recorded_as_done(self) -> None:
+        self.write(exports="done")
+        self.exports()
+        pptx(self.dir / "sd-01-001.pptx", badged=True)
+        self.assertEqual(["sd-01-001.pptx carries the moda.app badge: record it with `exported sd-01-001 --badged`"],
+                         self.problems())
+
+    def test_a_badged_export_is_the_pptx_alone(self) -> None:
+        self.write(exports="badged")
+        self.assertEqual(["sd-01-001.pptx is missing"], self.problems())
+        pptx(self.dir / "sd-01-001.pptx", badged=True)
+        self.assertEqual([], self.problems())
+        png(self.dir / "01.png")
+        self.assertEqual(["01.png is not expected here (a badged export is the PPTX alone)"], self.problems())
+        (self.dir / "01.png").unlink()
+        (self.dir / "sd-01-001.pptx").write_bytes(b"not a zip")
+        self.assertEqual(["sd-01-001.pptx is not a PowerPoint file: not a ZIP archive"], self.problems())
+
+    def test_pending_exports_hold_no_pptx(self) -> None:
+        self.write()
+        pptx(self.dir / "sd-01-001.pptx", badged=True)
+        self.assertEqual(["sd-01-001.pptx is not expected here (exports are not recorded as done)"], self.problems())
 
     def test_a_missing_slide_or_a_wrong_size_is_reported(self) -> None:
         self.write(exports="done")

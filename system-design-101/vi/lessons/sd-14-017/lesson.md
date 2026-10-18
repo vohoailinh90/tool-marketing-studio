@@ -4,7 +4,7 @@
 Cả ba được dựng trong một bước “bắt tay” ngay đầu kết nối. HTTPS không làm một trang web trở nên đáng tin.
 Bài này đi qua bắt tay TLS ở mức nhìn được: những thông điệp nào, theo thứ tự nào, thứ nào đi nguyên văn trên đường và thứ nào đã mã hóa. Bài dựa vào tài liệu của MDN và OpenSSL, cùng một lần chạy thử cục bộ: một máy chủ và một máy khách `openssl` trên 127.0.0.1, có một chương trình nhỏ ghi lại các byte đi qua. Chứng chỉ và chữ ký không được dạy lại ở đây, xem [bài sd-14-014](../sd-14-014/lesson.md) và [bài sd-14-015](../sd-14-015/lesson.md). Bài cũng không bàn cách cấu hình máy chủ hay các tính năng TLS mới hơn.
 
-![Ba khung xếp dọc. Khung một: HTTPS thêm ba thứ cho HTTP, gồm giữ kín nội dung, phát hiện nội dung bị sửa trên đường và xác thực máy chủ bằng chứng chỉ. Khung hai: bắt tay TLS 1.3 rút gọn giữa trình duyệt và máy chủ. Trình duyệt gửi ClientHello, máy chủ trả ServerHello, rồi từ đây mọi thứ được mã hóa: chứng chỉ, CertificateVerify, Finished của máy chủ, Finished của trình duyệt, rồi yêu cầu và phản hồi HTTP mã hóa bằng khóa phiên. Khung ba, giới hạn của HTTPS: tên máy chủ vẫn nằm trong ClientHello, chứng chỉ không làm một trang trở nên đáng tin, máy chủ vẫn đọc được mọi thứ bạn gửi và độ dài từng gói dữ liệu vẫn lộ.](../../diagrams/sd-14-017-main.svg)
+![Bốn khung xếp dọc. Khung một: HTTPS thêm ba thứ cho HTTP, gồm giữ kín nội dung, phát hiện nội dung bị sửa trên đường và xác thực máy chủ bằng chứng chỉ. Khung hai và ba: bắt tay TLS 1.3 rút gọn giữa trình duyệt và máy chủ. Trình duyệt gửi ClientHello, máy chủ trả ServerHello, rồi từ đây mọi thứ được mã hóa: chứng chỉ và CertificateVerify của máy chủ, hai thông điệp Finished, rồi yêu cầu và phản hồi HTTP mã hóa bằng khóa phiên. Khung bốn, giới hạn của HTTPS: tên máy chủ vẫn nằm trong ClientHello, chứng chỉ không làm một trang trở nên đáng tin, máy chủ vẫn đọc được mọi thứ bạn gửi và độ dài từng gói dữ liệu vẫn lộ.](../../diagrams/sd-14-017-main.svg)
 
 ## Từ viết tắt
 
@@ -25,7 +25,7 @@ Các số liệu dưới đây là một lần chạy trên máy biên soạn: `
 **Khung 1 · HTTPS thêm gì.** Theo MDN, TLS giữ an toàn cho kết nối theo ba cách: mã hóa (người ngoài không đọc được dữ liệu đang đi), toàn vẹn (không ai sửa lén được mà không bị phát hiện) và xác thực (một bên chứng minh mình là ai; trên web thường chỉ máy chủ chứng minh với trình duyệt). HTTPS là HTTP chạy trên TLS, nên dòng yêu cầu và phản hồi HTTP không đổi, chỉ được đặt vào các bản ghi mã hóa. Thử: khi dòng `GET / HTTP/1.0` đi qua HTTP thường, nó nằm nguyên văn trong các byte ghi được; qua TLS, nó và phản hồi đều không tìm thấy. Đổi một bit của một bản ghi trên đường thì TLS ngắt với lỗi `decryption failed or bad record mac`, còn HTTP thường nhận chữ đã bị đổi (`hello` thành `iello`) mà không biết gì.
 SSL hay TLS? SSL là tên các phiên bản đầu; MDN nói TLS là tên mới và SSL đã được thay thế. Theo tài liệu OpenSSL, TLS 1.3 và TLS 1.2 là hai phiên bản phổ biến nhất, còn TLS 1.0 và 1.1 đã bị chính thức coi là lỗi thời. Hình vẽ TLS 1.3. Thói quen tên cũ vẫn còn: dòng tổng kết của chính `openssl` cho một kết nối TLS 1.3 vẫn mở đầu bằng `SSL handshake has read`.
 
-**Khung 2 · Bắt tay.**
+**Khung 2 và 3 · Bắt tay.**
 
 **ClientHello.** Trình duyệt mở đầu và gửi nguyên văn: các bộ mã (cipher suite, tức tổ hợp thuật toán hai bên có thể dùng) nó hỗ trợ, tên máy chủ muốn nối (SNI), và một “nửa khóa” (key share) cho nhóm trao đổi khóa `x25519`.
 
@@ -51,7 +51,7 @@ HTTPS bảo vệ đoạn đường giữa trình duyệt và máy chủ, không 
 
 ## Nhìn hình trả lời
 
-Bạn mở một trang HTTPS ở quán cà phê, còn người ngồi cạnh ghi lại mọi gói tin trên mạng Wi-Fi. Theo khung 2 và khung 3 của hình, họ đọc được gì, không đọc được gì, và họ sửa lén một gói thì sao?
+Bạn mở một trang HTTPS ở quán cà phê, còn người ngồi cạnh ghi lại mọi gói tin trên mạng Wi-Fi. Theo các khung bắt tay (2 và 3) và khung giới hạn (4) của hình, họ đọc được gì, không đọc được gì, và họ sửa lén một gói thì sao?
 
 <details>
 <summary>Xem đáp án</summary>

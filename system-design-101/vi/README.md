@@ -113,6 +113,13 @@ Các bài chưa viết của nhóm này không có trong danh sách; số thứ 
 6. [Các tầng bộ nhớ đệm, từ trình duyệt tới cơ sở dữ liệu](lessons/sd-06-006/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
 7. [Các cách giảm độ trễ hay dùng, và vì sao phải đo trước](lessons/sd-06-007/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
 8. [Năm chiến lược giữ bộ nhớ đệm khớp với cơ sở dữ liệu](lessons/sd-06-008/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
+9. [Những điều cần cân nhắc khi dùng bộ nhớ đệm](lessons/sd-06-009/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
+10. [Các chính sách đẩy khóa ra khỏi bộ nhớ đệm](lessons/sd-06-010/lesson.md) — bài mới viết tại repo này (có mô phỏng riêng); chờ review kỹ thuật.
+11. [Memcached và Redis khác nhau thế nào](lessons/sd-06-011/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
+12. [Sàn chứng khoán độ trễ thấp: làm ít hơn trên đường găng](lessons/sd-06-012/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
+13. [Truy vấn khóa không tồn tại: khi bộ nhớ đệm bị xuyên qua](lessons/sd-06-013/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
+14. [Tám chiến lược đẩy khóa ra, và Redis thật sự có những gì](lessons/sd-06-014/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
+15. [Bộ nhớ đệm hỏng theo những kiểu nào](lessons/sd-06-015/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
 
 ## Phát triển phần mềm
 

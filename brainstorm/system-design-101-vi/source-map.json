@@ -1350,11 +1350,11 @@
         },
         {
           "id": "sd-04-042",
-          "title_vi": null,
+          "title_vi": "Khóa trong cơ sở dữ liệu: thử từng loại trên PostgreSQL bằng hai phiên",
           "title_source": "Database Locks Explained",
           "source_url": "https://bytebytego.com/guides/what-are-the-differences-among-database-locks",
           "source_path": "data/guides/what-are-the-differences-among-database-locks.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "7760057dbe5e8407501be3b95484b08c566d03b7",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-are-the-differences-among-database-locks.md"
         },

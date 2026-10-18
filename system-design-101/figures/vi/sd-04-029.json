@@ -1,0 +1,25 @@
+{
+  "id": "sd-04-029",
+  "lang": "vi",
+  "title": "Bảy việc của PostgreSQL: việc nào có sẵn?",
+  "desc": "Ba khung dọc, kết quả thử trên một bản cài PostgreSQL 16. Khung một, có sẵn trong bản cài: giao dịch thêm, đọc, sửa, xóa là lõi của PostgreSQL; postgres_fdw đi kèm bản cài, nối một bảng ở cơ sở dữ liệu khác như bảng thường. Khung hai, phân tích chạy được nhưng dữ liệu lưu theo dòng: cộng một cột trên 500.000 dòng đọc cả 7.744 trang, đọc cả bảy cột cũng 7.744 trang. Khung ba, cần tiện ích của bên thứ ba, không có trong bản cài: PostGIS cho dữ liệu bản đồ, TimescaleDB cho chuỗi thời gian, Citus để chia bảng ra nhiều máy, và PipelineDB không ra bản mới sau 1.0.0, chỉ hỗ trợ PostgreSQL 10 và 11.",
+  "sections": [
+    {"kind": "notes", "heading": "Có sẵn trong bản cài",
+     "items": [
+       "Giao dịch thêm, đọc, sửa, xóa: lõi của PostgreSQL.",
+       "postgres_fdw đi kèm bản cài: nối bảng ở cơ sở dữ liệu khác như bảng thường."
+     ]},
+    {"kind": "notes", "heading": "Phân tích được, nhưng lưu theo dòng",
+     "items": [
+       "Cộng một cột trên 500.000 dòng: đọc cả 7.744 trang.",
+       "Đọc cả bảy cột: vẫn 7.744 trang."
+     ]},
+    {"kind": "notes", "heading": "Cần tiện ích bên thứ ba",
+     "items": [
+       "PostGIS cho dữ liệu bản đồ.",
+       "TimescaleDB cho chuỗi thời gian.",
+       "Citus để chia bảng ra nhiều máy.",
+       "PipelineDB: không ra bản mới sau 1.0.0, chỉ hỗ trợ PostgreSQL 10 và 11."
+     ]}
+  ]
+}

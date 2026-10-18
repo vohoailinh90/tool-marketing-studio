@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1265" viewBox="0 0 320 1265" role="img" aria-labelledby="title desc">
+<title id="title">Tám cấu trúc sau chỉ mục, mỗi cái một kiểu câu hỏi</title>
+<desc id="desc">Bốn khung dọc. Một, trong bộ nhớ: skiplist, danh sách nhiều tầng giữ thứ tự, dùng cho tập có thứ tự của Redis; bảng băm tìm đúng một khóa, không trả lời theo khoảng. Hai, trên đĩa: B-tree tìm đúng khóa lẫn theo khoảng; SSTable là tệp đã sắp xếp, ghi một lần không sửa; LSM gom lượt ghi trong bộ nhớ rồi xả ra SSTable, ghi nhanh nhưng phải gộp tệp ở nền. Ba, câu hỏi đặc thù: chỉ mục đảo đi từ một từ tới các tài liệu chứa nó; cây hậu tố tìm chuỗi con, PostgreSQL dùng bộ ba ký tự cho việc này; R-tree tìm điểm gần nhất, PostgreSQL dùng GiST. Bốn, đã thử: chỉ mục băm phục vụ phép bằng, phép between vẫn quét cả bảng; B-tree phục vụ cả hai; tập có thứ tự 128 phần tử là listpack, 129 là skiplist.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1265" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Tám cấu trúc sau chỉ</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">mục, mỗi cái một kiểu</text>
+<text x="16" y="82" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">câu hỏi</text>
+<rect x="8" y="102" width="304" height="231" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="130.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Trong bộ nhớ</text>
+<rect x="20" y="147" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="170" r="11" fill="#16a34a"/>
+<polyline points="37.9,170.4 41.7,174.4 48.5,166" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="173.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Skiplist: danh sách nhiều</text>
+<text x="64" y="192.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tầng, giữ thứ tự; tập có thứ</text>
+<text x="64" y="212.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tự của Redis.</text>
+<rect x="20" y="238" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="261" r="11" fill="#16a34a"/>
+<polyline points="37.9,261.4 41.7,265.4 48.5,257" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="264.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bảng băm: tìm đúng một</text>
+<text x="64" y="283.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khóa, không trả lời theo</text>
+<text x="64" y="303.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khoảng.</text>
+<rect x="8" y="345" width="304" height="282" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="373.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Trên đĩa</text>
+<rect x="20" y="390" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="413" r="11" fill="#16a34a"/>
+<polyline points="37.9,413.4 41.7,417.4 48.5,409" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="416.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">B-tree: cây cân bằng, tìm</text>
+<text x="64" y="435.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đúng khóa lẫn theo khoảng.</text>
+<rect x="20" y="461" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="484" r="11" fill="#16a34a"/>
+<polyline points="37.9,484.4 41.7,488.4 48.5,480" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="487.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">SSTable: tệp đã sắp xếp, ghi</text>
+<text x="64" y="506.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">một lần không sửa.</text>
+<rect x="20" y="532" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="555" r="11" fill="#16a34a"/>
+<polyline points="37.9,555.4 41.7,559.4 48.5,551" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="558.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">LSM: gom ghi trong bộ nhớ,</text>
+<text x="64" y="577.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">xả ra SSTable; ghi nhanh,</text>
+<text x="64" y="597.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">phải gộp nền.</text>
+<rect x="8" y="639" width="304" height="302" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="667.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Câu hỏi đặc thù</text>
+<rect x="20" y="684" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="707" r="11" fill="#16a34a"/>
+<polyline points="37.9,707.4 41.7,711.4 48.5,703" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="710.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chỉ mục đảo: từ một từ tới</text>
+<text x="64" y="729.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">các tài liệu chứa nó.</text>
+<rect x="20" y="755" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="778" r="11" fill="#16a34a"/>
+<polyline points="37.9,778.4 41.7,782.4 48.5,774" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="781.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cây hậu tố: tìm chuỗi con;</text>
+<text x="64" y="800.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">PostgreSQL dùng bộ ba ký</text>
+<text x="64" y="820.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tự.</text>
+<rect x="20" y="846" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="869" r="11" fill="#16a34a"/>
+<polyline points="37.9,869.4 41.7,873.4 48.5,865" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="872.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">R-tree: gần nhất, trong</text>
+<text x="64" y="891.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">vùng; PostgreSQL dùng</text>
+<text x="64" y="911.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">GiST.</text>
+<rect x="8" y="953" width="304" height="304" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="981.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Đã thử trên PostgreSQL 16</text>
+<text x="20" y="1003.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">và Redis 7.0</text>
+<rect x="20" y="1020" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1043" r="11" fill="#16a34a"/>
+<polyline points="37.9,1043.4 41.7,1047.4 48.5,1039" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1046.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chỉ mục băm: phép = dùng</text>
+<text x="64" y="1065.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">được, between vẫn quét cả</text>
+<text x="64" y="1085.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bảng.</text>
+<rect x="20" y="1111" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1134" r="11" fill="#16a34a"/>
+<polyline points="37.9,1134.4 41.7,1138.4 48.5,1130" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1137.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">B-tree: cả = lẫn between</text>
+<text x="64" y="1156.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đều dùng chỉ mục.</text>
+<rect x="20" y="1182" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1205" r="11" fill="#16a34a"/>
+<polyline points="37.9,1205.4 41.7,1209.4 48.5,1201" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1208.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tập có thứ tự 128 phần tử:</text>
+<text x="64" y="1227.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">listpack; 129: skiplist.</text>
+</g>
+</svg>

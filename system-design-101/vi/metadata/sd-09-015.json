@@ -1,0 +1,73 @@
+{
+  "id": "sd-09-015",
+  "title_vi": "Các dự án nguồn mở qua một đường đi ứng dụng",
+  "language": "vi",
+  "kind": "explanation",
+  "content_status": "draft",
+  "source_ref": "sd-09-015",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/15-open-source-projects-that-changed-the-world.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/15-open-source-projects-that-changed-the-world.md",
+    "blob_sha": "f3e68967e299923706cd2c6edf1ca18b393d27d1",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "2f51077403b67c57056b67d3ea454378175049c1de1c337fb20c50165a20c65c",
+    "retrieved_body_bytes": 2480
+  },
+  "diagram": "../diagrams/sd-09-015-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "Đã đọc thân bài nguồn, đối chiếu danh mục và liệt kê tài liệu sơ cấp. Một số trang trả HTTP 403; chưa xác minh toàn bộ claim nên giữ pending."
+    },
+    "technical_review": {
+      "status": "pending"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 14.73,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium: complete lesson with details open at 320/375/430px; SVG text bounding boxes within viewBox; min effective text 14.73px at 320 and 17.54px at 375. Screenshots captured locally; no learner testing or live GitHub preview. Đã xem contact sheet 20 bài ở 320px; chưa kiểm tra trên GitHub hoặc điện thoại thật."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Trong một hệ thống giả định, React dựng giao diện, Node.js chạy phần server và Apache HTTP Server phục vụ hoặc chuyển tiếp HTTP. PostgreSQL lưu dữ liệu quan hệ; Redis có thể phục vụ cache; Elasticsearch hỗ trợ tìm kiếm. Git theo dõi thay đổi, VS Code hỗ trợ soạn thảo và Jupyter Notebook kết hợp code với ghi chú, kết quả.\n\nKafka trao đổi luồng sự kiện, Apache Spark xử lý dữ liệu và TensorFlow hỗ trợ xây mô hình học máy. Docker đóng gói/chạy container; Kubernetes điều phối workload; Linux cung cấp nền tảng hệ điều hành. Đó là đủ 15 tên trong danh mục, nhưng không có nghĩa một ứng dụng cần dùng tất cả.",
+      "sources": [
+        "https://opensource.org/osd",
+        "https://www.postgresql.org/docs/current/intro-whatis.html",
+        "https://kubernetes.io/docs/concepts/",
+        "https://redis.io/legal/licenses/"
+      ]
+    },
+    {
+      "claim_vi": "Giấy phép phụ thuộc dự án, thành phần và phiên bản. Redis, Elasticsearch, bản phân phối VS Code và Docker Desktop cần xem điều khoản cụ thể; không suy mọi thứ mang tên dự án đều cùng một giấy phép.",
+      "sources": [
+        "https://opensource.org/osd",
+        "https://www.postgresql.org/docs/current/intro-whatis.html",
+        "https://kubernetes.io/docs/concepts/",
+        "https://redis.io/legal/licenses/"
+      ]
+    }
+  ],
+  "design_notes_vi": "Thẻ dọc tự thiết kế từ ví dụ mới; mũi tên biểu diễn thứ tự đọc. Không sử dụng ảnh nguồn.",
+  "editorial_note_vi": "Đợt Công cụ và năng suất theo yêu cầu người dùng 2026-10-13. Chưa review kỹ thuật độc lập hoặc thử người học; không tự merge/phát hành."
+}

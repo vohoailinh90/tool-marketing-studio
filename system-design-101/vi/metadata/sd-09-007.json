@@ -1,0 +1,69 @@
+{
+  "id": "sd-09-007",
+  "title_vi": "Viết sơ đồ bằng mã",
+  "language": "vi",
+  "kind": "explanation",
+  "content_status": "draft",
+  "source_ref": "sd-09-007",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/diagram-as-code.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/diagram-as-code.md",
+    "blob_sha": "cedee97e071ae50bde2ec1da5b8558d41e406ea1",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "5f8a9dfd54b6a25f1f6b0e67912150503069c63b6069835638d126cbe8404490",
+    "retrieved_body_bytes": 888
+  },
+  "diagram": "../diagrams/sd-09-007-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "Đã đọc thân bài nguồn, đối chiếu danh mục và liệt kê tài liệu sơ cấp. Một số trang trả HTTP 403; chưa xác minh toàn bộ claim nên giữ pending."
+    },
+    "technical_review": {
+      "status": "pending"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 14.73,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium: complete lesson with details open at 320/375/430px; SVG text bounding boxes within viewBox; min effective text 14.73px at 320 and 17.54px at 375. Screenshots captured locally; no learner testing or live GitHub preview. Đã xem contact sheet 20 bài ở 320px; chưa kiểm tra trên GitHub hoặc điện thoại thật."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Thư viện Diagrams cho phép khai báo các node và liên kết trong Python, rồi dùng Graphviz để dựng hình. Ví dụ bạn mô tả client gọi API, API truy cập database. Đây là mô hình do người viết lựa chọn, không mặc nhiên là kết quả đọc toàn bộ code ứng dụng.\n\nTrong pull request thay đổi kiến trúc, sửa cả phần mô tả sơ đồ. Người review xem diff văn bản để biết thành phần nào được thêm hoặc bỏ, rồi xem hình để hiểu quan hệ. Ghim phiên bản renderer giúp giảm khác biệt bố cục giữa các máy khi cùng dựng một mô tả.",
+      "sources": [
+        "https://diagrams.mingrammer.com/docs/getting-started/installation",
+        "https://graphviz.org/documentation/"
+      ]
+    },
+    {
+      "claim_vi": "Tự động dựng hình không bảo đảm sơ đồ phản ánh hệ thống thật. Cần có người chịu trách nhiệm cập nhật mô tả.",
+      "sources": [
+        "https://diagrams.mingrammer.com/docs/getting-started/installation",
+        "https://graphviz.org/documentation/"
+      ]
+    }
+  ],
+  "design_notes_vi": "Thẻ dọc tự thiết kế từ ví dụ mới; mũi tên biểu diễn thứ tự đọc. Không sử dụng ảnh nguồn.",
+  "editorial_note_vi": "Đợt Công cụ và năng suất theo yêu cầu người dùng 2026-10-13. Chưa review kỹ thuật độc lập hoặc thử người học; không tự merge/phát hành."
+}

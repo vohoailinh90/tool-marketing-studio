@@ -50,6 +50,11 @@ ADDRESS_TOKEN = "[address]"
 ORDINAL = re.compile(r"^\d+\s*[·.:)]")
 # "1. **Label.** text": an entry of a Markdown ordered list is a bullet like "- text" is.
 ORDERED = re.compile(r"^\d+[.)]\s+")
+TABLE_ROW = re.compile(r"^\|")
+SOURCE_NAME_WORDS = 12  # a source bullet without a link is named by its text up to the first colon, at most this long
+# The `##` sections that hold what the summary slide needs: the lesson's limits, myths and how to choose. Other sections
+# are the lesson's body (a catalogue, an experiment) and are not summary material.
+TAKEAWAY_PREFIXES = ("Giới hạn", "Ngộ nhận", "Chọn", "Ba câu hỏi")
 SENTENCE_END = re.compile(r"(?<=[.!?])\s+")
 LEAD = re.compile(r"^\*\*(.+?)\*\*\s*(.*)$", re.S)
 BOLD_LEAD = re.compile(r"^\*\*.+?\*\*")
@@ -144,8 +149,16 @@ def blocks(text: str) -> tuple[list[str], list[str], str]:
             (bullets if in_bullet else paragraphs).append(" ".join(current))
             current.clear()
 
+    in_fence = False
     for raw in text.splitlines():
         stripped = raw.strip()
+        if stripped.startswith("```"):
+            flush()
+            in_fence = not in_fence
+            continue
+        if in_fence or TABLE_ROW.match(stripped):  # code and tables are not slide text; has_skipped_markup() tells the session
+            flush()
+            continue
         image = IMAGE.match(stripped)
         if not stripped:
             flush()
@@ -165,6 +178,11 @@ def blocks(text: str) -> tuple[list[str], list[str], str]:
             current.append(stripped)
     flush()
     return paragraphs, bullets, alt
+
+
+def has_skipped_markup(text: str) -> bool:
+    """Does the fragment hold a code block or a table, which blocks() leaves out of the slide lines?"""
+    return any(line.strip().startswith("```") or TABLE_ROW.match(line.strip()) for line in text.splitlines())
 
 
 def split_opening(paragraph: str) -> tuple[str, str]:
@@ -312,8 +330,12 @@ def sources(text: str | None) -> list[str]:
     """The name of every source the section lists: each link label of each bullet (a bullet may hold several)."""
     names: list[str] = []
     for raw in blocks(text or "")[1]:
-        labels = [clean(label) for label in LINK.findall(raw)]
-        names += [label for label in labels if label]
+        labels = [label for label in (clean(label) for label in LINK.findall(raw)) if label]
+        if not labels:  # a source named in words only: its text up to the first colon, when that is short enough
+            head = clean(raw).split(":", 1)[0].strip()
+            words = head.split()
+            labels = [" ".join(words[:SOURCE_NAME_WORDS]) + (" …" if len(words) > SOURCE_NAME_WORDS else "")] if words else []
+        names += labels
     return names
 
 
@@ -384,12 +406,21 @@ def build(store: pathlib.Path, lesson_id: str) -> Brief:
         warnings.append("the lesson lacks a check question or its answer")
     known = (GLOSSARY_SECTION, FIGURE_SECTION, QUESTION_SECTION, SOURCES_SECTION)
     takeaways = [(name, [clean(p) for p in blocks(rest)[0]] + [clean(b) for b in blocks(rest)[1]])
-                 for name, rest in parsed.sections.items() if not name.startswith(known)]
+                 for name, rest in parsed.sections.items() if name.startswith(TAKEAWAY_PREFIXES)]
+    body_sections = [name for name in parsed.sections if not name.startswith(known + TAKEAWAY_PREFIXES)]
+    if body_sections:
+        warnings.append("sections of the lesson's body are not on the summary slide (read them in lesson.md): "
+                        + "; ".join(body_sections))
     if not takeaways:
         # no `##` section of limits or takeaways: the summary recaps the lesson's own concept labels
         takeaways = [("recap of the concepts", [c.label for group in concept_slides for c in group])]
         warnings.append("the lesson has no limits/takeaway section: the summary slide only recaps the concepts; add what "
                         "the lesson says about limits from its figure and opening line")
+    fed = [figure or "", question_section or "", answer, deep] + [
+        rest for name, rest in parsed.sections.items() if name.startswith(TAKEAWAY_PREFIXES)]
+    if any(has_skipped_markup(text) for text in fed):
+        warnings.append("a code block or table in the lesson is left out of the slide lines (read it in lesson.md and "
+                        "draw it as a diagram if the slide needs it)")
     glossary = terms(section(parsed, GLOSSARY_SECTION))
     names = sources(section(parsed, SOURCES_SECTION))
     if not names:
@@ -403,7 +434,7 @@ def build(store: pathlib.Path, lesson_id: str) -> Brief:
         **({"question_candidate": line(question[0]).__dict__} if question else {}),
         "one_line_per_concept": [line(" / ".join(c.label for c in group)).__dict__ for group in concept_slides]})]
     slides.append(Slide(2, "situation and goal", backdrops[1], layouts[1], footer.format(number, 2, count), {
-        "lines": [line(text).__dict__ for text in situation], "figure_alt": parsed.alt}))
+        "lines": [line(text).__dict__ for text in situation]}))
     for index, group in enumerate(concept_slides):
         position = 3 + index
         slides.append(Slide(position, f"concept {index + 1} of {slots}", backdrops[position - 1], layouts[position - 1],

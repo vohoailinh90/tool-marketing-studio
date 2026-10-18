@@ -29,6 +29,9 @@ python3 scripts/sd101_slide_brief.py sd-01-027              # the lesson cut int
    them only there. For those, the figure's line breaks are lost in the brief: open the SVG to read the sentences, and the prose
    under `Đọc hình` (left off slide 2 because it explains those same cards, a WARNING says how long it is) is in `lesson.md`.
    A typed address in the lesson shows as `[address]`: draw such an example as its parts (scheme, host, path ...), never as one address.
+   The brief leaves out what is not slide text and says so in a WARNING: a code block or table, and the sections of the lesson's body
+   (a catalogue, an experiment) that are not its limits or choice sections; read them in `lesson.md`. The figure description in the
+   header is for planning the diagrams, not copy.
 2. **Start Moda.** `moda_bootstrap`, then `load_skill("moda-core")` once, then `load_skill("moda-deck")` and the skills it names (`markup`,
    `deck-design`, `design-quality` and the one for working without a brand kit). Moda asks you to ask which brand kit a new design
    uses; for these decks the answer is already fixed (*no kit*, `docs/sd101-slides.md`) and `brand_list` returned no kit on

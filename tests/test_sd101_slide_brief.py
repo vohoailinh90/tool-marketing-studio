@@ -207,6 +207,45 @@ class StructureTests(unittest.TestCase):
         self.assertEqual(["1 · Thẻ thứ nhất", "2 · Thẻ hai", "3 · Thẻ ba"], [c["label"] for c in concepts])
         self.assertEqual("Dòng một dòng hai Chọn theo dữ liệu", concepts[0]["line"]["text"])
 
+    def test_code_blocks_and_tables_are_left_out_of_the_slide_lines_and_the_session_is_told(self):
+        text = lesson_text(figure_section(3)).replace(
+            "- Ý thứ hai.", "- Ý thứ hai.\n\n```python\nimport socket\nprint('x')\n```\n\n| Cột | Giá trị |\n|---|---|\n| a | 1 |")
+        result, _ = self.build(text)
+        every = json.dumps(result.slides, ensure_ascii=False)
+        for leaked in ("import socket", "print('x')", "| Cột", "|---|"):
+            self.assertNotIn(leaked, every)
+        deep = {slide["role"]: slide["material"] for slide in result.slides}["deep dive"]["lines"]
+        self.assertEqual(["Một ý sâu hơn, xem RFC 3022.", "Ý thứ hai."], [item["text"] for item in deep])
+        self.assertTrue(any("code block or table" in warning for warning in result.warnings), result.warnings)
+
+    def test_a_lesson_without_code_or_tables_gets_no_such_warning(self):
+        result, _ = self.build(lesson_text(figure_section(3)))
+        self.assertFalse([w for w in result.warnings if "code block or table" in w], result.warnings)
+
+    def test_the_figure_description_is_guidance_in_the_header_not_slide_material(self):
+        result, _ = self.build(lesson_text(figure_section(3)))
+        self.assertEqual("Mô tả hình", result.figure_alt)
+        self.assertNotIn("figure_alt", result.slides[1]["material"])
+        self.assertIn("Mô tả hình", brief.render(result))
+
+    def test_a_source_bullet_without_a_link_is_named_by_its_text_up_to_the_first_colon(self):
+        long_name = " ".join(f"từ{n}" for n in range(1, 20))
+        text = lesson_text(figure_section(3)).replace(
+            "- [Tài liệu thứ hai](https://example.org/two): đối chiếu.",
+            f"- Phép thử trên một máy: kết quả của một lần chạy.\n- {long_name}.")
+        result, _ = self.build(text)
+        names = result.slides[-1]["material"]["sources"]
+        self.assertEqual(["RFC 3022", "Phép thử trên một máy", " ".join(f"từ{n}" for n in range(1, 13)) + " …"], names)
+
+    def test_only_the_limits_and_choice_sections_feed_the_summary_slide(self):
+        text = lesson_text(figure_section(3)).replace(
+            "## Giới hạn cần nhớ", "## Một danh mục dài của bài\n\nNội dung rất dài của thân bài.\n\n## Giới hạn cần nhớ")
+        result, _ = self.build(text)
+        summary = {slide["role"]: slide["material"] for slide in result.slides}["choice or summary"]
+        self.assertEqual(["Giới hạn cần nhớ"], [section["name"] for section in summary["sections"]])
+        self.assertNotIn("Nội dung rất dài", json.dumps(result.slides, ensure_ascii=False))
+        self.assertTrue(any("Một danh mục dài của bài" in warning for warning in result.warnings), result.warnings)
+
     def test_an_ordered_list_under_the_figure_section_gives_the_concepts_before_the_figure_cards_do(self):
         items = "\n".join(f"{n}. **Ý {n}.** nội dung của ý {n} trong bài." for n in range(1, 4))
         result, _ = self.build(lesson_text(f"\n## Đọc hình\n\nVí dụ một cửa hàng.\n\n{items}\n"), SVG)

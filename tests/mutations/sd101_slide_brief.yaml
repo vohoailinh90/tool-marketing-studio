@@ -81,3 +81,19 @@ mutations:
   find: '        takeaways = [("recap of the concepts", [c.label for group in concept_slides for c in group])]'
   replace: '        pass'
   test: tests.test_sd101_slide_brief.StructureTests.test_a_lesson_without_a_takeaway_section_gets_a_recap_of_its_concepts_on_the_summary_slide
+- label: the figure description is copied into the situation slide as if it were slide copy
+  find: '"lines": [line(text).__dict__ for text in situation]}))'
+  replace: '"lines": [line(text).__dict__ for text in situation], "figure_alt": parsed.alt}))'
+  test: tests.test_sd101_slide_brief.StructureTests.test_the_figure_description_is_guidance_in_the_header_not_slide_material
+- label: a source bullet without a link is dropped from the sources slide
+  find: '        if not labels:  # a source named in words only'
+  replace: '        if False:  # a source named in words only'
+  test: tests.test_sd101_slide_brief.StructureTests.test_a_source_bullet_without_a_link_is_named_by_its_text_up_to_the_first_colon
+- label: every unrecognised section of the lesson body feeds the summary slide
+  find: 'for name, rest in parsed.sections.items() if name.startswith(TAKEAWAY_PREFIXES)]'
+  replace: 'for name, rest in parsed.sections.items() if not name.startswith(known)]'
+  test: tests.test_sd101_slide_brief.StructureTests.test_only_the_limits_and_choice_sections_feed_the_summary_slide
+- label: the lines of a fenced code block are read as slide text
+  find: '        if in_fence or TABLE_ROW.match(stripped):'
+  replace: '        if False:'
+  test: tests.test_sd101_slide_brief.StructureTests.test_code_blocks_and_tables_are_left_out_of_the_slide_lines_and_the_session_is_told

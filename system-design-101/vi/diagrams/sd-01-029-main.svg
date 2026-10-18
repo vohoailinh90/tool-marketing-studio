@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="620" viewBox="0 0 320 620" role="img" aria-labelledby="title desc"><title id="title">API và SDK: giao diện gọi và bộ công cụ</title><desc id="desc">Ví dụ thư viện: tự tạo yêu cầu hoặc dùng thư viện trong SDK đều có thể gọi cùng API dịch vụ. SDK còn có thể chứa công cụ khác.</desc><rect width="320" height="620" fill="#f8fafc"/><g font-family="Arial, sans-serif" font-size="16" fill="#0f172a"><text x="16" y="32" font-size="20" font-weight="bold">ĐẶT CHỖ MỘT CUỐN SÁCH</text>
+<rect x="12" y="55" width="296" height="150" rx="12" fill="#dbeafe"/><text x="22" y="84" font-weight="bold">API · giao diện gọi</text>
+<text x="22" y="122">Đặt chỗ sách: gửi gì?</text>
+<text x="22" y="154">Nhận kết quả ra sao?</text>
+<rect x="12" y="225" width="296" height="150" rx="12" fill="#dcfce7"/><text x="22" y="254" font-weight="bold">SDK · bộ hỗ trợ viết mã</text>
+<text x="22" y="292">Thư viện + tài liệu + ví dụ</text>
+<text x="22" y="324">datChoSach(42) · minh họa</text>
+<rect x="12" y="395" width="296" height="150" rx="12" fill="#fef3c7"/><text x="22" y="424" font-weight="bold">Ứng dụng → cùng dịch vụ</text>
+<text x="22" y="462">Tự tạo yêu cầu → API</text>
+<text x="22" y="494">hoặc dùng thư viện SDK → API</text>
+<text x="16" y="595">SDK không thay thế API dịch vụ.</text></g></svg>

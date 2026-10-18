@@ -1,0 +1,75 @@
+{
+  "id": "sd-01-026",
+  "title_vi": "Unicast, broadcast, multicast và anycast",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "draft",
+  "source_ref": "sd-01-026",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/unicast-vs-broadcast-vs-multicast-vs-anycast.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/unicast-vs-broadcast-vs-multicast-vs-anycast.md",
+    "blob_sha": "7b1649e92b4a69eb090c8e74a21fddcdacf62c33",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "f371cceec8cd6ebefe55ca42b3308fcef727ea95a7ff38a9c6f1a4eafd1a1929",
+    "retrieved_body_bytes": 1579
+  },
+  "diagram": "../diagrams/sd-01-026-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-15"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-15",
+      "evidence": "Đọc RFC4291§2–2.1, RFC919§4/§7, RFC1112§2 và RFC4786§3.1–3.2/§4.1. Hình chỉ đích dự kiến, không chứng minh giao nhận hoặc đo hiệu năng."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "Glossary added and main7397e5c integrated; prior-head review does not validate this combination."
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-15",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "evidence": "Chromium cục bộ toàn bài với glossary mới, details mở320/375/430px; không tràn ngang/không chữ SVG ngoài viewBox, min14.4/16/16px. Đã xem năm screenshot320px cho023–027. Chưa GitHub/device/user testing."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Unicast tới một giao diện; multicast tới tập giao diện; anycast tới một giao diện trong tập. IPv6 không có địa chỉ broadcast.",
+      "source": "https://www.rfc-editor.org/rfc/rfc4291.html#section-2"
+    },
+    {
+      "claim_vi": "Ví dụ IPv4 broadcast cục bộ hướng tới mọi host trong phạm vi; limited broadcast không được chuyển tiếp.",
+      "source": "https://www.rfc-editor.org/rfc/rfc919.html"
+    },
+    {
+      "claim_vi": "Multicast sử dụng nhóm và cần multicast router cho chuyển tiếp liên mạng; không cần unicast riêng từ nguồn tới từng thành viên.",
+      "source": "https://www.rfc-editor.org/rfc/rfc1112.html#section-2"
+    },
+    {
+      "claim_vi": "Anycast do định tuyến chọn một vị trí dịch vụ; không bảo đảm nhanh nhất hoặc chia tải đều; ổn định đường đi cần so với thời gian giao dịch.",
+      "source": "https://www.rfc-editor.org/rfc/rfc4786.html"
+    }
+  ],
+  "design_notes_vi": "Bốn thẻ dọc A/B/C/D nguyên bản; tập đích tô đậm khác anycast chọn một, broadcast giới hạn cục bộ.",
+  "editorial_note_vi": "Draft; phân biệt địa chỉ đích với bảo đảm giao nhận, không dùng ảnh nguồn hoặc phép ví von của nguồn.",
+  "source_deviations": [
+    "Nguồn mô tả anycast là gửi tới một thiết bị hoặc một nhóm; bài giới hạn mỗi gói tới một đích trong tập có cùng địa chỉ dịch vụ theo RFC4291/RFC4786.",
+    "Không dùng ví dụ giao thức của nguồn để gán độc quyền một kiểu truyền cho cả HTTP/DHCP/NTP hoặc mọi hội nghị video."
+  ]
+}

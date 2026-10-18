@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="850" viewBox="0 0 320 850" role="img" aria-labelledby="title desc"><title id="title">Biện pháp chặn rủi ro nào?</title><desc id="desc">Bốn câu hỏi về quyền tài liệu, dữ liệu đầu vào, chi phí xử lý và thông tin lỗi; không phải pipeline hoặc checklist đầy đủ.</desc><rect width="320" height="850" fill="#f8fafc"/><g font-family="Arial, sans-serif" font-size="16" fill="#0f172a"><text x="16" y="32" font-size="20" font-weight="bold">Biện pháp chặn rủi ro nào?</text>
+<rect x="12" y="60" width="296" height="160" rx="12" fill="#dbeafe"/><text x="24" y="95" font-size="18" font-weight="bold">Đọc tài liệu người khác?</text>
+<text x="24" y="140">Xét người gọi + hành động</text>
+<text x="24" y="174">Kiểm tra quyền trên tài liệu</text>
+<rect x="12" y="240" width="296" height="160" rx="12" fill="#dcfce7"/><text x="24" y="275" font-size="18" font-weight="bold">Dữ liệu sai hoặc quá lớn?</text>
+<text x="24" y="320">Kiểu · độ dài · phạm vi</text>
+<text x="24" y="354">Giới hạn kích thước đầu vào</text>
+<rect x="12" y="420" width="296" height="160" rx="12" fill="#fef3c7"/><text x="24" y="455" font-size="18" font-weight="bold">Một lượt quá tốn công?</text>
+<text x="24" y="500">Số mục · thời gian xử lý</text>
+<text x="24" y="534">Giới hạn cả tần suất</text>
+<rect x="12" y="600" width="296" height="160" rx="12" fill="#fce7f3"/><text x="24" y="635" font-size="18" font-weight="bold">Lỗi lộ chi tiết nội bộ?</text>
+<text x="24" y="680">Thông báo vừa đủ cho client</text>
+<text x="24" y="714">Không gửi dấu vết thực thi</text>
+<text x="16" y="818">Không lớp nào thay mọi lớp khác.</text></g></svg>

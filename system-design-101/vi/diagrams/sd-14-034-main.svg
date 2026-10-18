@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1216" viewBox="0 0 320 1216" role="img" aria-labelledby="title desc">
+<title id="title">JWT đã ký: hộp trong suốt có dấu niêm phong</title>
+<desc id="desc">Ba khung dọc. Khung một, JWT đã ký gồm ba phần nối bằng dấu chấm: nhãn ghi cách niêm phong, nội dung viết bằng JSON, và dấu niêm phong tính từ nhãn, nội dung và một bí mật; nhãn và nội dung ai cũng đọc được. Khung hai, người nhận tách ba phần, tự tính lại dấu từ bí mật mình giữ rồi so hai dấu: khớp thì chưa bị sửa, lệch thì bỏ hộp. Khung ba, ba điều cần nhớ: nhãn và nội dung ai cũng đọc được; dấu chỉ cho biết hộp có bị sửa hay không; ai giữ bí mật dùng chung cũng niêm phong được hộp mới.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1216" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">JWT đã ký: hộp trong</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">suốt có dấu niêm phong</text>
+<rect x="8" y="78" width="304" height="442" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="106.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Ba phần nối bằng dấu chấm</text>
+<rect x="20" y="123" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="176.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 165.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></g>
+<text x="78" y="149.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Nhãn (header)</text>
+<text x="78" y="173.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ghi cách niêm phong, ví</text>
+<text x="78" y="192.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dụ thuật toán. Ai cũng đọc</text>
+<text x="78" y="212.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">được.</text>
+<rect x="20" y="262" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="315.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 304.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></g>
+<text x="78" y="288.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Nội dung (payload)</text>
+<text x="78" y="312.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Thông tin cần gửi, viết</text>
+<text x="78" y="331.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bằng JSON. Ai cũng đọc</text>
+<text x="78" y="351.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">được.</text>
+<rect x="20" y="401" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="454.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 443.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></g>
+<text x="78" y="427.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Dấu niêm phong</text>
+<text x="78" y="451.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tính từ nhãn, nội dung và</text>
+<text x="78" y="470.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">một bí mật. Không giấu gì</text>
+<text x="78" y="490.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cả.</text>
+<polyline points="160,232 160,260" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="160,371 160,399" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="532" width="304" height="362" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="560.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Người nhận kiểm hộp</text>
+<rect x="20" y="577" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="603" r="14" fill="#0f766e"/>
+<text x="46" y="608.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="603.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Tách ba phần</text>
+<text x="70" y="627.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cắt chuỗi ở hai dấu chấm:</text>
+<text x="70" y="646.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhãn, nội dung, dấu.</text>
+<rect x="20" y="686" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="712" r="14" fill="#0f766e"/>
+<text x="46" y="717.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="712.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Tự tính lại dấu</text>
+<text x="70" y="736.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Dùng nhãn và nội dung vừa</text>
+<text x="70" y="755.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhận cùng bí mật mình giữ.</text>
+<polyline points="46,666 46,684" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="795" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="821" r="14" fill="#0f766e"/>
+<text x="46" y="826.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="821.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">So hai dấu</text>
+<text x="70" y="845.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Khớp: chưa bị sửa. Lệch dù</text>
+<text x="70" y="864.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">một ký tự: bỏ hộp.</text>
+<polyline points="46,775 46,793" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="906" width="304" height="302" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="934.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Ba điều cần nhớ</text>
+<rect x="20" y="951" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="974" r="11" fill="#16a34a"/>
+<polyline points="37.9,974.4 41.7,978.4 48.5,970" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="977.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ai nhặt được hộp cũng đọc</text>
+<text x="64" y="996.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">được nhãn và nội dung.</text>
+<rect x="20" y="1022" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1045" r="11" fill="#16a34a"/>
+<polyline points="37.9,1045.4 41.7,1049.4 48.5,1041" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1048.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Dấu chỉ cho biết hộp có bị</text>
+<text x="64" y="1067.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">sửa sau khi niêm phong hay</text>
+<text x="64" y="1087.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">không.</text>
+<rect x="20" y="1113" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1136" r="11" fill="#16a34a"/>
+<polyline points="37.9,1136.4 41.7,1140.4 48.5,1132" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1139.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bí mật dùng chung: ai giữ bí</text>
+<text x="64" y="1158.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mật ấy cũng niêm phong</text>
+<text x="64" y="1178.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">được hộp mới.</text>
+</g>
+</svg>

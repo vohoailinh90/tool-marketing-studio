@@ -1,0 +1,137 @@
+{
+  "id": "sd-14-034",
+  "title_vi": "JWT cho người mới: chiếc hộp trong suốt có dấu niêm phong",
+  "language": "vi",
+  "kind": "concept",
+  "content_status": "review",
+  "source_ref": "sd-14-034",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/explaining-json-web-token-jwt-to-a-10-year-old-kid.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/explaining-json-web-token-jwt-to-a-10-year-old-kid.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches provider tree OID. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "2e9fa9ac65a9880876d89abf54fab00287937c8c",
+    "retrieved_body_sha256": "1f70720dade283ce0a95588a7ebe9617b6a8c3cf98c7cd8ee2997e377416ee47",
+    "retrieved_body_bytes": 1575
+  },
+  "diagram": "../diagrams/sd-14-034-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-14-002",
+      "relation": "builds-on",
+      "reason_vi": "Base64url là mã hóa ký tự, không phải mã hóa bảo mật."
+    },
+    {
+      "lesson_id": "sd-14-010",
+      "relation": "compare-with",
+      "reason_vi": "Dùng JWT để nhận ra người dùng so với session và token ngẫu nhiên."
+    },
+    {
+      "lesson_id": "sd-14-015",
+      "relation": "builds-on",
+      "reason_vi": "Chữ ký số bằng cặp khóa là cách để chỉ người giữ khóa riêng niêm phong được."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "evidence": "Source read. OWASP JSON Web Token Cheat Sheet (OWASP/CheatSheetSeries commit 1c3144a85e9aa1b50bef773683405fcc626ce6e1) and PyJWT docs/usage.rst (jpadilla/pyjwt commit 16231abfd1d8eab4953e8779b3017b859c88565e) fetched from raw.githubusercontent.com at those commits and read. A signed HS256 token was built by hand with Python 3.13.16 hmac/hashlib/base64 and a random throw-away secret, and cross-checked with the installed PyJWT 2.14.0 (identical string, accepted, tampering rejected); the lesson script was run three times with the same four True/False results. RFC and IETF pages were not reachable and were not read; the OWASP sheet's own statements are what the lesson relies on."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "The source explains a JWT to a child as a special box with a header (label saying the type of box and how it is secured, in JSON), a payload (the message, such as name and age, in JSON) and a signature (a special seal only the sender can create, made with a secret code like a password, so nobody can tamper with the contents without the sender knowing), and says the server can easily read the header and payload.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/explaining-json-web-token-jwt-to-a-10-year-old-kid.md",
+      "section": "Whole guide",
+      "verified_by": "Source body read."
+    },
+    {
+      "claim_vi": "A signed JWT has the structure base64url(json(header)).base64url(json(claims)).base64url(signature): three parts joined by dots; the signature protects both the protected header and the claims and is either a public-key digital signature or a MAC with a shared secret, depending on the alg header; JWTs can also be encrypted (JWE), which the cheat sheet treats separately.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/1c3144a85e9aa1b50bef773683405fcc626ce6e1/cheatsheets/JSON_Web_Token_Cheat_Sheet.md",
+      "section": "Introduction; Token Structure; Token Confidentiality and JWE",
+      "verified_by": "Read from the file fetched at the pinned commit (sha256 a604ef0656402d012870a28e16f8492b2160f7bd084f378855fd55b6e2dac030)."
+    },
+    {
+      "claim_vi": "A signed JWT provides integrity and authenticity but not confidentiality: the payload is only base64url encoded, so anyone who obtains the token can read every claim, and claims stay exposed in application logs, browser storage, referrer headers and to intermediaries that terminate TLS. With a MAC (HS*), a valid signature only proves the token was produced by some holder of the shared secret.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/1c3144a85e9aa1b50bef773683405fcc626ce6e1/cheatsheets/JSON_Web_Token_Cheat_Sheet.md",
+      "section": "Signed JWTs are not confidential",
+      "verified_by": "Read from the file fetched at the pinned commit."
+    },
+    {
+      "claim_vi": "OWASP's HMAC secret rules: do not use a password as the secret; generate it with a local cryptographically secure generator; it must be at least the size of the output (256 bits for HS256); use a different secret for each (issuer, audience) pair because reusing one secret across audiences lets one audience forge a token. With digital signatures the issuer signs with a private key and the audience verifies with the public key.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/1c3144a85e9aa1b50bef773683405fcc626ce6e1/cheatsheets/JSON_Web_Token_Cheat_Sheet.md",
+      "section": "Public-key Signatures vs. MAC; MAC",
+      "verified_by": "Read from the file fetched at the pinned commit."
+    },
+    {
+      "claim_vi": "PyJWT's documentation shows HS256 encoding and decoding with a shared key, and warns that reading a claimset with verify_signature False is generally ill-advised because without the signature the integrity or authenticity of the claimset cannot be trusted.",
+      "source": "https://github.com/jpadilla/pyjwt/blob/16231abfd1d8eab4953e8779b3017b859c88565e/docs/usage.rst",
+      "section": "Encoding & Decoding Tokens with HS256; Reading the Claimset without Validation",
+      "verified_by": "Read from the file fetched at the pinned commit (sha256 815ead3fbfd79f068a9bb744e0aa1de6df5b03dabca077085d970428fb364d2c). The docs are from the repository HEAD at fetch time, not necessarily the installed 2.14.0."
+    },
+    {
+      "claim_vi": "Observed: a token built by hand from the header {\"alg\":\"HS256\",\"typ\":\"JWT\"}, the payload {\"name\":\"Minh\",\"level\":1} (compact JSON, base64url without padding) and the HMAC with SHA-256 of 'header.payload' under a random 32-byte secret has three dot-separated parts and starts with eyJ; PyJWT 2.14.0 decodes it successfully and jwt.encode with the same payload and secret returns the identical string; the header and payload are read back with base64 alone, no key.",
+      "source": "https://github.com/jpadilla/pyjwt/blob/16231abfd1d8eab4953e8779b3017b859c88565e/docs/usage.rst",
+      "section": "Encoding & Decoding Tokens with HS256",
+      "verified_by": "No external page reports this output; observed by running hop.py (Python 3.13.16, PyJWT 2.14.0) on the authoring machine: hand-made token verifies True, PyJWT.encode equals it True, PyJWT.decode returns {'name': 'Minh', 'level': 1}, decoded header {\"alg\":\"HS256\",\"typ\":\"JWT\"}, 3 parts."
+    },
+    {
+      "claim_vi": "Observed: changing one character of the decoded payload text (\"level\":1 to \"level\":9) and keeping the old seal makes the hand-written check return False and PyJWT.decode raise InvalidSignatureError; changing one character of the header (JWT to JWS) also makes the check fail, so the seal covers the header as well as the payload.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/1c3144a85e9aa1b50bef773683405fcc626ce6e1/cheatsheets/JSON_Web_Token_Cheat_Sheet.md",
+      "section": "Token Structure",
+      "verified_by": "No external page reports this output; observed by running hop.py: payload changed by 1 character -> check False and InvalidSignatureError; header changed -> check False. The statement that the signature protects the header and claims is also in the OWASP sheet."
+    },
+    {
+      "claim_vi": "Observed: a new token {\"name\":\"Minh\",\"level\":9} sealed with the same secret verifies (hand-written check True, PyJWT.decode returns it), and the verifier gets no information about who sealed it; the same payload sealed with a different random secret fails the check.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/1c3144a85e9aa1b50bef773683405fcc626ce6e1/cheatsheets/JSON_Web_Token_Cheat_Sheet.md",
+      "section": "Public-key Signatures vs. MAC",
+      "verified_by": "No external page reports this output; observed by running hop.py and the lesson script three times: results True, False, True, False each time (the token strings differ per run because the secret is random)."
+    },
+    {
+      "claim_vi": "Base64url is an encoding that anyone can reverse without a key, not encryption; and the opening {\" of the header encodes to the start eyJ of a JWT.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/1c3144a85e9aa1b50bef773683405fcc626ce6e1/cheatsheets/JSON_Web_Token_Cheat_Sheet.md",
+      "section": "Signed JWTs are not confidential",
+      "verified_by": "The OWASP sheet says the payload is only base64url encoded, not encrypted; the eyJ prefix was observed in the hop.py output (token began eyJhbGciOiJIUzI1NiIs). Why {\" maps to eyJ is the author's general knowledge of base64."
+    },
+    {
+      "claim_vi": "HS256 is HMAC with a 256-bit hash function (SHA-256).",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/1c3144a85e9aa1b50bef773683405fcc626ce6e1/cheatsheets/JSON_Web_Token_Cheat_Sheet.md",
+      "section": "MAC; Example",
+      "verified_by": "The OWASP sheet computes the example signature as HMACSHA256 and lists HS256 as HMAC with SHA-2; the observation that hashlib.sha256 under hmac reproduces PyJWT's HS256 output comes from hop.py."
+    },
+    {
+      "claim_vi": "Not covered by the lesson and not examined: encrypted JWT (JWE) structure, expiry and audience validation, the receiver choosing the algorithm (alg none, key confusion), revocation, and key pairs.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/1c3144a85e9aa1b50bef773683405fcc626ce6e1/cheatsheets/JSON_Web_Token_Cheat_Sheet.md",
+      "section": "Threats on JWTs; JWT revocation; Token Confidentiality and JWE",
+      "verified_by": "Not examined; the lesson names them as skipped and points to the OWASP sheet."
+    }
+  ],
+  "design_notes_vi": "Ba khung dọc: ba phần của hộp nối bằng mũi tên, ba bước người nhận kiểm, ba điều cần nhớ. Hình ảnh chiếc hộp được dựng lại cho đúng: trong suốt, có dấu, và dấu không nói ai niêm phong. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "The source says a JWT has three parts without qualification; the lesson says that structure belongs to the signed form only and that an encrypted JWT (JWE) is built differently.",
+    "The source's 'box' suggests the contents are hidden; the lesson says the payload of a signed JWT is only base64url encoded and readable by anyone, and that the seal shows tampering but hides nothing.",
+    "The source says the seal is made with a secret 'like a password' that only the sender can use; the lesson says OWASP advises against a password as the secret, and that with a shared secret every holder can create valid seals, whereas only the private-key holder can with a key pair.",
+    "The source says the server reads the header and payload to know who you are; the lesson says the content should be trusted only after the seal has been checked, as the PyJWT docs warn.",
+    "The source says tampering cannot happen without the sender knowing; the lesson says it is the receiver that detects it, by recomputing the seal, and only if it does so.",
+    "The source does not mention that header and payload are joined into one dotted text string with base64url, nor that the seal covers the header too; the lesson does."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1652" viewBox="0 0 320 1652" role="img" aria-labelledby="title desc">
+<title id="title">SSO: hai loại phiên, một vé</title>
+<desc id="desc">Ba khung. Một: lần đầu ở ứng dụng A, trình duyệt mở trang, A chuyển sang máy chủ định danh, người dùng nhập mật khẩu ở đó, máy chủ định danh đặt cookie phiên toàn cục và cấp vé, A kiểm vé qua kênh sau rồi đặt cookie phiên cục bộ. Hai: lần sau ở ứng dụng B, trình duyệt mang cookie phiên toàn cục nên vé được cấp ngay, không hỏi mật khẩu. Ba, đo trên một máy: vé dùng một lần; đăng xuất ở A thì mở lại A là vào luôn; đăng xuất ở máy chủ định danh không xóa phiên cục bộ.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1652" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">SSO: hai loại phiên, một</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">vé</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Phiên cục bộ và phiên toàn cục.</text>
+<rect x="8" y="104" width="304" height="506" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="132.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Lần đầu, ở ứng dụng A</text>
+<rect x="20" y="149" width="84" height="86" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="62" cy="171" r="14" fill="#1d4ed8"/><g transform="translate(53.6 162.6) scale(0.7)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></g>
+<text x="62" y="202.9" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">Trình</text>
+<text x="62" y="221.6" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">duyệt</text>
+<rect x="118" y="149" width="84" height="86" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="160" cy="171" r="14" fill="#1d4ed8"/><g transform="translate(151.6 162.6) scale(0.7)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="8" rx="2" ry="2" width="20" x="2" y="2"/><rect height="8" rx="2" ry="2" width="20" x="2" y="14"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></g>
+<text x="160" y="202.9" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">Ứng</text>
+<text x="160" y="221.6" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">dụng A</text>
+<rect x="216" y="149" width="84" height="86" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="258" cy="171" r="14" fill="#1d4ed8"/><g transform="translate(249.6 162.6) scale(0.7)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"/><circle cx="16.5" cy="7.5" fill="#FFFFFF" r=".5"/></g>
+<text x="258" y="202.9" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">Định</text>
+<text x="258" y="221.6" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">danh</text>
+<polyline points="62,235 62,598" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
+<polyline points="160,235 160,598" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
+<polyline points="258,235 258,598" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
+<text x="111" y="263.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Mở trang</text>
+<polyline points="63,277 157,277" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="111" y="305.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Chuyển</text>
+<polyline points="159,319 65,319" fill="none" stroke="#334155" stroke-width="1.8" stroke-dasharray="5 4" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="160" y="347.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Mật khẩu</text>
+<polyline points="63,361 255,361" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="160" y="389.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Cookie + vé</text>
+<polyline points="257,403 65,403" fill="none" stroke="#334155" stroke-width="1.8" stroke-dasharray="5 4" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="111" y="431.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Gửi vé</text>
+<polyline points="63,445 157,445" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="209" y="473.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Kiểm vé</text>
+<polyline points="161,487 255,487" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="209" y="515.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Hợp lệ</text>
+<polyline points="257,529 163,529" fill="none" stroke="#334155" stroke-width="1.8" stroke-dasharray="5 4" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="111" y="557.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Phiên cục</text>
+<text x="111" y="576.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">bộ</text>
+<polyline points="159,590 65,590" fill="none" stroke="#334155" stroke-width="1.8" stroke-dasharray="5 4" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="622" width="304" height="506" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="650.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Lần sau, ở ứng dụng B</text>
+<rect x="20" y="667" width="84" height="86" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="62" cy="689" r="14" fill="#0f766e"/><g transform="translate(53.6 680.6) scale(0.7)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></g>
+<text x="62" y="720.9" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">Trình</text>
+<text x="62" y="739.6" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">duyệt</text>
+<rect x="118" y="667" width="84" height="86" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="160" cy="689" r="14" fill="#0f766e"/><g transform="translate(151.6 680.6) scale(0.7)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="8" rx="2" ry="2" width="20" x="2" y="2"/><rect height="8" rx="2" ry="2" width="20" x="2" y="14"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></g>
+<text x="160" y="720.9" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">Ứng</text>
+<text x="160" y="739.6" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">dụng B</text>
+<rect x="216" y="667" width="84" height="86" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="258" cy="689" r="14" fill="#0f766e"/><g transform="translate(249.6 680.6) scale(0.7)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"/><circle cx="16.5" cy="7.5" fill="#FFFFFF" r=".5"/></g>
+<text x="258" y="720.9" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">Định</text>
+<text x="258" y="739.6" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">danh</text>
+<polyline points="62,753 62,1116" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
+<polyline points="160,753 160,1116" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
+<polyline points="258,753 258,1116" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
+<text x="111" y="781.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Mở trang</text>
+<polyline points="63,795 157,795" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="111" y="823.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Chuyển</text>
+<polyline points="159,837 65,837" fill="none" stroke="#334155" stroke-width="1.8" stroke-dasharray="5 4" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="160" y="865.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Cookie phiên</text>
+<polyline points="63,879 255,879" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="160" y="907.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Cấp vé ngay</text>
+<polyline points="257,921 65,921" fill="none" stroke="#334155" stroke-width="1.8" stroke-dasharray="5 4" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="111" y="949.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Gửi vé</text>
+<polyline points="63,963 157,963" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="209" y="991.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Kiểm vé</text>
+<polyline points="161,1005 255,1005" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="209" y="1033.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Hợp lệ</text>
+<polyline points="257,1047 163,1047" fill="none" stroke="#334155" stroke-width="1.8" stroke-dasharray="5 4" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="111" y="1075.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Phiên cục</text>
+<text x="111" y="1094.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">bộ</text>
+<polyline points="159,1108 65,1108" fill="none" stroke="#334155" stroke-width="1.8" stroke-dasharray="5 4" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="1140" width="304" height="504" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="1168.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Đo được trên một máy</text>
+<rect x="20" y="1185" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1208" r="11" fill="#16a34a"/>
+<polyline points="37.9,1208.4 41.7,1212.4 48.5,1204" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1211.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Hai ứng dụng, một lần nhập</text>
+<text x="64" y="1230.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mật khẩu; mật khẩu chỉ tới</text>
+<text x="64" y="1250.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">máy chủ định danh.</text>
+<rect x="20" y="1276" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1299" r="11" fill="#16a34a"/>
+<polyline points="37.9,1299.4 41.7,1303.4 48.5,1295" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1302.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Vé dùng được một lần, đúng</text>
+<text x="64" y="1321.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">một ứng dụng, hết hạn</text>
+<text x="64" y="1341.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhanh.</text>
+<rect x="20" y="1367" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1390" r="11" fill="#16a34a"/>
+<polyline points="37.9,1390.4 41.7,1394.4 48.5,1386" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1393.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đăng xuất ở A: mở lại A là</text>
+<text x="64" y="1412.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">vào luôn, vì phiên toàn cục</text>
+<text x="64" y="1432.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">còn.</text>
+<rect x="20" y="1458" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1481" r="11" fill="#16a34a"/>
+<polyline points="37.9,1481.4 41.7,1485.4 48.5,1477" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1484.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đăng xuất ở máy chủ định</text>
+<text x="64" y="1503.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">danh: A và B vẫn giữ phiên</text>
+<text x="64" y="1523.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cục bộ.</text>
+<rect x="20" y="1549" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1572" r="11" fill="#16a34a"/>
+<polyline points="37.9,1572.4 41.7,1576.4 48.5,1568" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1575.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Muốn hết cả hai, máy chủ</text>
+<text x="64" y="1594.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">định danh phải báo từng ứng</text>
+<text x="64" y="1614.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dụng.</text>
+</g>
+</svg>

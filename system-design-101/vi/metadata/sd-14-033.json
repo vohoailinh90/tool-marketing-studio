@@ -1,0 +1,199 @@
+{
+  "id": "sd-14-033",
+  "title_vi": "Sáu cách nhận ra người dùng: session, token, JWT, SSO, OAuth2 và mã QR",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "review",
+  "source_ref": "sd-14-033",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/session-cookie-jwt-token-sso-and-oauth-2.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/session-cookie-jwt-token-sso-and-oauth-2.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches provider tree OID. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "097058c889507f55e0072c59279e1b6cd4f53617",
+    "retrieved_body_sha256": "2376bdabe86e5221f69cb19f07bd2ce6c7f8e97db61c6bd6396f68d8b59f1ea2",
+    "retrieved_body_bytes": 1470
+  },
+  "diagram": "../diagrams/sd-14-033-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-14-008",
+      "relation": "builds-on",
+      "reason_vi": "Cookie và session phía máy chủ."
+    },
+    {
+      "lesson_id": "sd-14-010",
+      "relation": "builds-on",
+      "reason_vi": "Token ngẫu nhiên và JWT, ai giữ trạng thái."
+    },
+    {
+      "lesson_id": "sd-14-011",
+      "relation": "compare-with",
+      "reason_vi": "SSO và OAuth: đăng nhập khác ủy quyền."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "evidence": "Source read. OWASP Cheat Sheet Series (Session Management, JSON Web Token, Authentication, Cross-Site Request Forgery Prevention, Multifactor Authentication) read from a shallow clone at commit ae965343cb82e6b8f42aff1ccee57c4fa0f171c2, which was also searched for QR-login material; OWASP QRLJacking page (OWASP/www-community commit ce2814653f497a7a9ebadce39ce7f84bb3c603e4, also the QRLJacking README at defd5e3ebf6de72356bcc5cea476760c00273193 and its wiki at 25b457e41efcc9493d0266646bd48848a6dd3dc1) and the MDN cookies guide (commit 19370346042efad9e179fbf1f55deeeadee98c40) read; segno 1.6.6 source and the PyJWT usage page read. A toy QR login (Python 3.13.16 standard library, segno 1.6.6, PyJWT 2.14.0) was run on localhost on 2026-10-18; its numbers are one run on the authoring machine. RFCs and protocol specifications were not reachable and were not read; no real QR-login service was examined; OWASP's mitigations were not tested."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "The source lists six ways to manage identity at login: Session (server stores identity, browser gets a session ID cookie; 'cookies don't work well across devices'), Token (identity encoded in a token; 'no server session storage; but tokens need encryption/decryption'), JWT (standard identity tokens with digital signatures, no server session), SSO (central authentication service), OAuth2 ('limited access to your data on one site by another site, without giving away passwords') and QR code (a random token in a QR code; scanning logs you in without typing a password).",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/session-cookie-jwt-token-sso-and-oauth-2.md",
+      "section": "Whole guide",
+      "verified_by": "Source body read."
+    },
+    {
+      "claim_vi": "A session works by the server answering a sign-in with a cookie that holds a session ID, which the browser sends back and the server checks; the browser stores cookies and sends them back to the same server.",
+      "source": "https://github.com/mdn/content/blob/19370346042efad9e179fbf1f55deeeadee98c40/files/en-us/web/http/guides/cookies/index.md",
+      "section": "Đọc hình, khung 1",
+      "verified_by": "Read from a clone of the repository at the pinned commit (the introduction and the basic sign-in example of the cookies guide). That a random token has the same state model as a session (the server looks the value up) is the author's general knowledge and the content of lesson sd-14-010."
+    },
+    {
+      "claim_vi": "A signed JWT carries its data and a signature, and the verifier needs only the key: the payload could be read without any key and verification with another key or after editing the payload (role changed to admin) raised InvalidSignatureError; a random token holds nothing to decrypt and is checked by look-up.",
+      "source": "https://github.com/jpadilla/pyjwt/blob/f97b3273d3db3ed7266ae009784d65f1877dba66/docs/usage.rst",
+      "section": "Đọc hình, khung 1; Xem sâu hơn, điều đã chỉnh",
+      "verified_by": "PyJWT usage page read at the pinned commit (reading the claim set without validation). Behaviour observed in section 7 of the experiment script with PyJWT 2.14.0 and HS256. No external page reports this output; observed by executing the experiment script qr_login_exp.py (Python 3.13.16 standard library toy server on a random localhost port, segno 1.6.6, PyJWT 2.14.0) on the authoring machine on 2026-10-18; the script and its output are in the session scratchpad, not in the repository."
+    },
+    {
+      "claim_vi": "OWASP states that JWTs are used for the ID token of the identity layer on top of OAuth and that an OAuth 2 access token can be a JWT; that signed JWT gives authenticity and a JWT can also be encrypted for confidentiality; that a signed JWT is not confidential because its payload is only base64url encoded.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/ae965343cb82e6b8f42aff1ccee57c4fa0f171c2/cheatsheets/JSON_Web_Token_Cheat_Sheet.md",
+      "section": "Introduction; Token Confidentiality and JWE",
+      "verified_by": "Read from a shallow clone of the repository at the pinned commit."
+    },
+    {
+      "claim_vi": "OWASP states that JWT is often suggested for stateless user sessions but this is frowned upon, that such sessions need a way to invalidate them, for example a deny list, and that with a deny list sessions are no longer completely stateless.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/ae965343cb82e6b8f42aff1ccee57c4fa0f171c2/cheatsheets/JSON_Web_Token_Cheat_Sheet.md",
+      "section": "Considerations about using JWTs, Not using JWTs",
+      "verified_by": "Read from a shallow clone of the repository at the pinned commit."
+    },
+    {
+      "claim_vi": "OWASP states that OAuth is an authorization framework for delegated access to APIs, that OpenID Connect is an identity layer on top of OAuth, and to use OpenID Connect for authentication and SSO and OAuth for authorization; so OAuth2 is not a way to recognise the user by itself.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/ae965343cb82e6b8f42aff1ccee57c4fa0f171c2/cheatsheets/Authentication_Cheat_Sheet.md",
+      "section": "Use of authentication protocols that require no password",
+      "verified_by": "Read from a shallow clone of the repository at the pinned commit. The lesson does not name OpenID Connect and links lesson sd-14-011 for it."
+    },
+    {
+      "claim_vi": "SSO as one central login service that holds the login session while the applications receive the authentication result is the author's general knowledge; OWASP's QRLJacking page describes SSO as one account that lets a user authenticate to multiple services.",
+      "source": "https://github.com/OWASP/www-community/blob/ce2814653f497a7a9ebadce39ce7f84bb3c603e4/pages/attacks/Qrljacking.md",
+      "section": "Đọc hình, khung 2",
+      "verified_by": "Author's general knowledge for the 'central service holds the session' wording; the QRLJacking page was read at the pinned commit for the one-account description; not checked against a protocol specification."
+    },
+    {
+      "claim_vi": "A miniature QR login worked in four steps: the browser asked for a one-time random token (the server recorded it as pending), the browser polled, a phone with its own logged-in session posted the token, and the next poll gave the browser a new session while the token became used. Before the confirmation the poll only answered pending and the browser had no session.",
+      "source": "https://github.com/OWASP/www-community/blob/ce2814653f497a7a9ebadce39ce7f84bb3c603e4/pages/attacks/Qrljacking.md",
+      "section": "Đọc hình, khung 3",
+      "verified_by": "No external page reports this output; observed by executing the experiment script qr_login_exp.py (Python 3.13.16 standard library toy server on a random localhost port, segno 1.6.6, PyJWT 2.14.0) on the authoring machine on 2026-10-18; the script and its output are in the session scratchpad, not in the repository. Sections 2 of the output. The polling is the toy server's choice; real services may differ (not examined)."
+    },
+    {
+      "claim_vi": "The OWASP QRLJacking page describes the QR login model as a user scanning a QR code generated by the service with a client app on a trusted device such as a smartphone, which transmits the code to an identity provider that validates it.",
+      "source": "https://github.com/OWASP/www-community/blob/ce2814653f497a7a9ebadce39ce7f84bb3c603e4/pages/attacks/Qrljacking.md",
+      "section": "Đọc hình, khung 3",
+      "verified_by": "Read at the pinned commit (the 'Login With QR codes, a feature or a bug?' part)."
+    },
+    {
+      "claim_vi": "With segno 1.6.6 a 30-character payload (a prefix plus the 22-character token) made a version 2 QR code of 25 x 25 modules without border at error level L, byte mode; two different tokens gave the same size.",
+      "source": "https://github.com/heuer/segno/blob/9b67a3f2914be966c35dd8f00bef19d01b9ec68e/segno/__init__.py",
+      "section": "Xem sâu hơn, máy chủ đồ chơi",
+      "verified_by": "segno source read at the tag commit (symbol_size). No external page reports this output; observed by executing the experiment script qr_login_exp.py (Python 3.13.16 standard library toy server on a random localhost port, segno 1.6.6, PyJWT 2.14.0) on the authoring machine on 2026-10-18; the script and its output are in the session scratchpad, not in the repository. Section 1 of the output."
+    },
+    {
+      "claim_vi": "Token alone logs nobody in (toy server): repeated polls without confirmation gave pending only, the token used as a session cookie got 401 on the user-info path, and a confirmation from a phone that is not logged in or with a made-up session got 401 and left the token pending.",
+      "source": "https://github.com/OWASP/www-community/blob/ce2814653f497a7a9ebadce39ce7f84bb3c603e4/pages/attacks/Qrljacking.md",
+      "section": "Xem sâu hơn, điều 1",
+      "verified_by": "No external page reports this output; observed by executing the experiment script qr_login_exp.py (Python 3.13.16 standard library toy server on a random localhost port, segno 1.6.6, PyJWT 2.14.0) on the authoring machine on 2026-10-18; the script and its output are in the session scratchpad, not in the repository. Section 3 of the output. This is a property of this toy."
+    },
+    {
+      "claim_vi": "Single use (toy server): after the first successful poll a second poll of the same token got 410 and no session, confirming it again got 409, and 20 simultaneous polls of one confirmed token handed out exactly 1 session.",
+      "source": "https://github.com/OWASP/www-community/blob/ce2814653f497a7a9ebadce39ce7f84bb3c603e4/pages/attacks/Qrljacking.md",
+      "section": "Xem sâu hơn, điều 2",
+      "verified_by": "No external page reports this output; observed by executing the experiment script qr_login_exp.py (Python 3.13.16 standard library toy server on a random localhost port, segno 1.6.6, PyJWT 2.14.0) on the authoring machine on 2026-10-18; the script and its output are in the session scratchpad, not in the repository. Section 4 of the output. The single-use property of a real service was not examined."
+    },
+    {
+      "claim_vi": "In the toy server the poll carries only the token, so a client that knows the token and polls first got the session of the confirming phone (Alice) and the real browser polling second got 410; whether real services bind the poll to the browser that asked for the token was not found in the sources read.",
+      "source": "https://github.com/OWASP/www-community/blob/ce2814653f497a7a9ebadce39ce7f84bb3c603e4/pages/attacks/Qrljacking.md",
+      "section": "Xem sâu hơn, điều 2",
+      "verified_by": "No external page reports this output; observed by executing the experiment script qr_login_exp.py (Python 3.13.16 standard library toy server on a random localhost port, segno 1.6.6, PyJWT 2.14.0) on the authoring machine on 2026-10-18; the script and its output are in the session scratchpad, not in the repository. Section 4 of the output (first-poll test)."
+    },
+    {
+      "claim_vi": "Expiry (toy server, 1 second set for the test): a confirmation after the time got 410 expired; a token confirmed in time but polled after the time also got 410 and the browser had no session (a choice of the toy). The OWASP QRLJacking page says a well implemented QR login process should have an expiration interval for the QR codes.",
+      "source": "https://github.com/OWASP/www-community/blob/ce2814653f497a7a9ebadce39ce7f84bb3c603e4/pages/attacks/Qrljacking.md",
+      "section": "Xem sâu hơn, điều 3",
+      "verified_by": "Page read at the pinned commit (requirements part). No external page reports this output; observed by executing the experiment script qr_login_exp.py (Python 3.13.16 standard library toy server on a random localhost port, segno 1.6.6, PyJWT 2.14.0) on the authoring machine on 2026-10-18; the script and its output are in the session scratchpad, not in the repository. Section 5 of the output."
+    },
+    {
+      "claim_vi": "Confirmation by the wrong phone (toy server, assuming the attacker knows the token shown on the victim's browser; how is not tested): the attacker's phone confirmed the victim browser's token and the victim browser then was logged in as the attacker; in the mirror case the victim's phone confirmed a token shown on the attacker's browser and the attacker's browser was logged in as the victim. The server logged both confirms in the same form (phone user, token prefix, address, user agent); all addresses were 127.0.0.1, so the run cannot show whether address checks would help.",
+      "source": "https://github.com/OWASP/www-community/blob/ce2814653f497a7a9ebadce39ce7f84bb3c603e4/pages/attacks/Qrljacking.md",
+      "section": "Giới hạn cần nhớ; Nhìn hình trả lời; Xem sâu hơn, điều 4",
+      "verified_by": "No external page reports this output; observed by executing the experiment script qr_login_exp.py (Python 3.13.16 standard library toy server on a random localhost port, segno 1.6.6, PyJWT 2.14.0) on the authoring machine on 2026-10-18; the script and its output are in the session scratchpad, not in the repository. Section 6 of the output."
+    },
+    {
+      "claim_vi": "OWASP's QRLJacking page names the mirror case QRLJacking (the victim scans the attacker's QR code, which results in session hijacking), says the top recommendation is to stop using Login with QR code except when necessary, and lists four mitigations: session confirmation (a confirmation message or notification showing characteristic information about the session), IP restrictions, location-based restrictions and sound-based authentication. It also quotes a patent abstract of a design in which the QR code encodes a server address and the mobile device sends a device ID.",
+      "source": "https://github.com/OWASP/www-community/blob/ce2814653f497a7a9ebadce39ce7f84bb3c603e4/pages/attacks/Qrljacking.md",
+      "section": "Giới hạn cần nhớ; Xem sâu hơn, OWASP nói gì; điều đã chỉnh",
+      "verified_by": "Read at the pinned commit; the README of OWASP/QRLJacking at commit defd5e3ebf6de72356bcc5cea476760c00273193 and the project wiki at commit 25b457e41efcc9493d0266646bd48848a6dd3dc1 were also read and say the same. The mitigations were not implemented or tested here."
+    },
+    {
+      "claim_vi": "No page of the OWASP Cheat Sheet Series about QR-code login exists at the pinned commit: a case-insensitive search of every Markdown file in the clone for QR code, QRL, QR login, device flow and similar terms found QR only in the Multifactor Authentication cheat sheet, where the user scans a QR code that provides the initial seed of a TOTP authenticator app.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/ae965343cb82e6b8f42aff1ccee57c4fa0f171c2/cheatsheets/Multifactor_Authentication_Cheat_Sheet.md",
+      "section": "Xem sâu hơn, OWASP nói gì",
+      "verified_by": "Searched a shallow clone of OWASP/CheatSheetSeries at the pinned commit with grep; the one hit was read."
+    },
+    {
+      "claim_vi": "OWASP's CSRF cheat sheet describes login CSRF (the attacker makes the victim's browser authenticate as the attacker's own account; the victim then enters card details there) and says it can be mitigated by pre-sessions (sessions before authentication) with tokens in the login form, or custom request headers in AJAX requests. It is written for login forms, not QR login, and was not tested against the QR flow.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/ae965343cb82e6b8f42aff1ccee57c4fa0f171c2/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.md",
+      "section": "Xem sâu hơn, OWASP nói gì",
+      "verified_by": "Read from a shallow clone of the repository at the pinned commit (the section on CSRF vulnerabilities in login forms)."
+    },
+    {
+      "claim_vi": "OWASP's Session Management cheat sheet says the session ID must be renewed after any privilege level change, most commonly at authentication; in the toy the session value handed to the browser differed from the QR token.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/ae965343cb82e6b8f42aff1ccee57c4fa0f171c2/cheatsheets/Session_Management_Cheat_Sheet.md",
+      "section": "Xem sâu hơn, điều 5",
+      "verified_by": "Cheat sheet read from a shallow clone at the pinned commit. No external page reports this output; observed by executing the experiment script qr_login_exp.py (Python 3.13.16 standard library toy server on a random localhost port, segno 1.6.6, PyJWT 2.14.0) on the authoring machine on 2026-10-18; the script and its output are in the session scratchpad, not in the repository. Section 2 of the output."
+    },
+    {
+      "claim_vi": "Each device has its own session: with the same user logged in on two clients, the two session values differed, a client with no cookie got 401, and logging out on one client left the other logged in. A token kept in an app also lives on one device, so the source's 'cookies don't work well across devices' is not a difference between cookie and token.",
+      "source": "https://github.com/mdn/content/blob/19370346042efad9e179fbf1f55deeeadee98c40/files/en-us/web/http/guides/cookies/index.md",
+      "section": "Xem sâu hơn, điều đã chỉnh",
+      "verified_by": "MDN guide read at the pinned commit (the browser stores cookies and sends them back to the same server). No external page reports this output; observed by executing the experiment script qr_login_exp.py (Python 3.13.16 standard library toy server on a random localhost port, segno 1.6.6, PyJWT 2.14.0) on the authoring machine on 2026-10-18; the script and its output are in the session scratchpad, not in the repository. Section 0 of the output. The second half is the author's reasoning."
+    },
+    {
+      "claim_vi": "Not examined: real QR-login services, how an attacker would learn a token, the effectiveness of OWASP's mitigations, camera scanning (simulated), RFCs and protocol specifications (not reachable), other ways a QR login can be built.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/session-cookie-jwt-token-sso-and-oauth-2.md",
+      "section": "Whole lesson",
+      "verified_by": "Not examined."
+    }
+  ],
+  "design_notes_vi": "Hai khung thẻ (nhớ người đã đăng nhập, nhờ bên khác làm chứng) trả lời hai câu hỏi cho mỗi cách, một khung trình tự cho đăng nhập bằng mã QR và một khung ghi nhớ hai điều về mã QR. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "The source says cookies don't work well across devices; the lesson shows each device logs in and holds its own session, and that a token kept in an app is also per device, so this is not a cookie-versus-token difference.",
+    "The source says tokens need no server session storage; the lesson says that holds only for self-contained tokens such as a signed JWT, while a random token is looked up on the server.",
+    "The source says tokens need encryption/decryption; the lesson says a random token needs look-up only, a signed JWT needs signing and verifying and its payload is readable without a key, and encryption is a separate option (JWE).",
+    "The source says a JWT needs no server session; the lesson adds OWASP's caveat that invalidating a session needs a deny list, after which it is no longer stateless.",
+    "The source lists OAuth2 among the ways to manage identity at login; the lesson says OAuth is delegated authorization and recognising the user needs an authentication layer on top of it.",
+    "The source says scanning the QR code logs you in; the lesson adds that the phone must already be logged in and confirms the token with its own session while the browser waits and then receives a new session.",
+    "The source says the QR code encodes a random token; the lesson says that is one design, and the OWASP page quotes another in which the QR code holds a server address and the phone sends a device ID.",
+    "The source does not mention that the server cannot tell whether the phone's owner meant to log in the browser showing the code; the lesson shows this in both directions (attacker's phone, attacker's QR code) and reports what OWASP says about it."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

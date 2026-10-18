@@ -97,7 +97,9 @@ Nhãn dùng trong bài:
 
 ### 3.1 YouTube [Chính thức]
 
-**Điều kiện cần cho mọi cấp:** theo chính sách kiếm tiền; ở quốc gia/vùng được hỗ trợ; không có Community Guidelines strike đang hiệu lực; bật xác minh 2 bước; có quyền "advanced features"; có một tài khoản AdSense for YouTube.
+**Điều kiện cần cho YPP đầy đủ** (trang "YPP overview & eligibility"): theo chính sách kiếm tiền; ở quốc gia/vùng được hỗ trợ; không có Community Guidelines strike đang hiệu lực; bật xác minh 2 bước; có quyền "advanced features"; có một tài khoản AdSense for YouTube.
+
+**Điều kiện cần cho cấp sớm** (trang "Overview of the expanded YouTube Partner Program"): theo chính sách kiếm tiền; kênh ở một trong các quốc gia/vùng của **danh sách riêng** của chương trình mở rộng (danh sách này **có Việt Nam**); bật xác minh 2 bước; có một tài khoản AdSense for YouTube. Trang này không nhắc điều kiện strike hay "advanced features". YouTube nói sẽ gửi email khi đã "triển khai chương trình mở rộng" cho kênh và kênh đã đạt ngưỡng (nút "Get notified" ở YouTube Studio → Earn), nên chưa chắc mọi kênh đạt ngưỡng đều nộp được ngay.
 
 **Đến hết 31/1/2027**
 
@@ -114,9 +116,9 @@ Nhãn dùng trong bài:
 **Từ 1/2/2027** (trang "Changes to the YouTube Partner Program")
 
 - **Người mới vào YPP:** 1.000 subscriber + **8.000 giờ xem/365 ngày** hoặc **20 triệu lượt xem Shorts/90 ngày**.
-- **Kênh đã trong YPP:** tư cách **không bị ảnh hưởng**. Để nhận tiền hằng tháng từ **Shorts Creator Pool**, phải duy trì **10 triệu lượt xem Shorts đủ điều kiện trong 90 ngày gần nhất** (tính trong 90 ngày kết thúc ngày 15 của tháng trước tháng tính tiền). Nếu hụt, **không bị loại khỏi YPP**, không ảnh hưởng thu nhập khác (kể cả video dài).
+- **Kênh đã trong YPP:** tư cách **không bị ảnh hưởng**. Để nhận tiền hằng tháng từ **Shorts Creator Pool** (và phần doanh thu Premium trong Shorts feed, theo trang "YouTube Shorts monetization policies"), phải duy trì **10 triệu lượt xem Shorts đủ điều kiện trong 90 ngày gần nhất** (tính trong 90 ngày kết thúc ngày 15 của tháng trước tháng tính tiền). Nếu hụt, **không bị loại khỏi YPP**, không ảnh hưởng thu nhập khác (kể cả video dài).
 - **Cấp sớm không đổi:** 500 subscriber + 3 video công khai hợp lệ trong 90 ngày + 3.000 giờ hoặc 3 triệu lượt xem Shorts.
-- **"Kênh còn hoạt động"** (mới): thỏa một trong ba: 1.000 giờ xem/365 ngày; 1 triệu lượt xem Shorts/90 ngày; hoặc đăng **2 video dài hoặc 5 Shorts mỗi 90 ngày**. Kênh tụt dưới mức có thêm 90 ngày để khôi phục.
+- **"Kênh còn hoạt động"** (mới): thỏa một trong ba: 1.000 giờ xem/365 ngày; 1 triệu lượt xem Shorts/90 ngày; hoặc đăng **2 video dài hoặc 5 Shorts mỗi 90 ngày**. Kênh tụt dưới mức có thêm 90 ngày để khôi phục, và để khôi phục phải đạt 1.000 giờ xem/365 ngày hoặc 1 triệu lượt xem Shorts/90 ngày (cách đăng bài không tính để khôi phục).
 - **Hạn chót chấp nhận điều khoản mới trong YouTube Studio: 31/1/2027.** Không ký thì không bị loại khỏi YPP nhưng **ngừng nhận tiền** từ module chưa ký từ 1/2/2027; ký lại sau thì nhận lại.
 - **Tiền thưởng mới:** Premium Lite mở ra mọi nước có Premium, creator chia sẻ một quỹ bằng **60% doanh thu thuê bao ròng** (Premium Lite) và **30%** (Premium thường); **45%** trực tiếp cho **Targeted Shorts Ads** (quảng cáo nhắm đến 5 kênh trở xuống); chương trình thưởng Shopping, tín dụng sản xuất brand deal, tăng thu nhập khi tham gia xu hướng văn hóa.
 

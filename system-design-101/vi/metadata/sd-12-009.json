@@ -1,0 +1,80 @@
+{
+  "id": "sd-12-009",
+  "title_vi": "Thiết kế soạn thảo cộng tác kiểu Google Docs",
+  "language": "vi",
+  "kind": "architecture",
+  "content_status": "draft",
+  "source_ref": "sd-12-009",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/how-to-design-google-docs.md",
+    "blob_sha": "2337abfbf2e4a04f4b0832121c44353bdfff02f0",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-to-design-google-docs.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "e10aad7146015b79e1a9a6151989fa818691ec6304e1d2609b75ef854464199f",
+    "retrieved_body_bytes": 1128
+  },
+  "diagram": "../diagrams/sd-12-009-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "official_sources_not_reachable_from_authoring_environment"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "not_yet_reviewed"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.65,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium headless: markdown-it render of lesson.md with every <details> open, in iframes of 320, 375 and 430 px; documentElement.scrollWidth did not exceed clientWidth; every SVG <text> bounding box lies inside the viewBox; effective diagram text is 16px x scale (13.65px at 320 with a 15px classic scrollbar, 16px at 375 and 430); a contact-sheet screenshot of the figure was inspected visually. The measuring script is a throwaway one and is not committed to the repository, so the measurement cannot yet be re-run from the repo. Not learner testing; not checked on GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "OT biến đổi thao tác đồng thời để các bản sao hội tụ về cùng một trạng thái.",
+      "sources": [
+        "https://en.wikipedia.org/wiki/Operational_transformation"
+      ]
+    },
+    {
+      "claim_vi": "CRDT dựa trên trạng thái hội tụ khi gộp trạng thái theo thứ tự bất kỳ; CRDT dựa trên thao tác cần giao các thao tác phụ thuộc nhau theo quan hệ nhân quả, chỉ các thao tác đồng thời mới phải giao hoán.",
+      "sources": [
+        "https://inria.hal.science/inria-00555588",
+        "https://perso.lip6.fr/Marc.Shapiro/papers/CRDTs_SSS-2011.pdf"
+      ]
+    },
+    {
+      "claim_vi": "Đồng bộ vi sai gửi phần khác biệt giữa bản sao và bản chung.",
+      "sources": [
+        "https://neil.fraser.name/writing/sync/"
+      ]
+    }
+  ],
+  "source_deviations": [
+    "Nguồn nói chung về CRDT; bài nói rõ CRDT dựa trên trạng thái gộp theo thứ tự bất kỳ, còn CRDT dựa trên thao tác cần giao các thao tác phụ thuộc nhau theo quan hệ nhân quả.",
+    "Nguồn nói Google Docs dùng OT theo Wikipedia; bài chỉ nói OT là thuật toán phổ biến, không khẳng định chi tiết nội bộ của Google.",
+    "Ví dụ cat/ats do bài tự thêm để làm rõ việc biến đổi vị trí."
+  ],
+  "design_notes_vi": "Hình là ví dụ năm thẻ về một cặp thao tác đồng thời, không phải sơ đồ thành phần; luồng thành phần được viết trong phần đọc hình.",
+  "editorial_note_vi": "Bản nháp độc lập viết từ kiến thức kỹ thuật chung; đọc bài nguồn nhưng chưa mở tài liệu chính thức nên các claim chưa được kiểm chứng. Chưa review kỹ thuật, chưa user testing, chưa phê duyệt phát hành."
+}

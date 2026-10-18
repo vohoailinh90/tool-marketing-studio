@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 626" width="320" height="626" role="img" aria-labelledby="title desc">
+<title id="title">Sáu khía cạnh của quốc tế hóa</title>
+<desc id="desc">Sáu thẻ: ngôn ngữ, bố cục, múi giờ, tiền tệ, định dạng và pháp lý-kế toán, mỗi thẻ nêu một nguyên tắc ngắn.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="626" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="21" font-weight="bold">QUỐC TẾ HÓA</text>
+<rect x="16" y="46" width="288" height="92" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="29" y="75" font-size="16" font-weight="bold">Ngôn ngữ</text>
+<text x="29" y="99" font-size="16" font-weight="normal">Chữ ngoài mã nguồn, câu trọn</text>
+<text x="29" y="123" font-size="16" font-weight="normal">vẹn</text>
+<rect x="16" y="150" width="288" height="68" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="29" y="179" font-size="16" font-weight="bold">Bố cục</text>
+<text x="29" y="203" font-size="16" font-weight="normal">Chừa chỗ cho chữ dài</text>
+<rect x="16" y="230" width="288" height="92" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="29" y="259" font-size="16" font-weight="bold">Múi giờ</text>
+<text x="29" y="283" font-size="16" font-weight="normal">Đã xảy ra: lưu UTC. Hẹn tương</text>
+<text x="29" y="307" font-size="16" font-weight="normal">lai: kèm tên múi giờ</text>
+<rect x="16" y="334" width="288" height="68" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="29" y="363" font-size="16" font-weight="bold">Tiền tệ</text>
+<text x="29" y="387" font-size="16" font-weight="normal">Tiền hiển thị ≠ tiền thanh toán</text>
+<rect x="16" y="414" width="288" height="68" rx="12" fill="#e2e8f0" stroke="#94a3b8"/>
+<text x="29" y="443" font-size="16" font-weight="bold">Định dạng</text>
+<text x="29" y="467" font-size="16" font-weight="normal">Số, ngày, địa chỉ theo vùng</text>
+<rect x="16" y="494" width="288" height="68" rx="12" fill="#ffe4e6" stroke="#94a3b8"/>
+<text x="29" y="523" font-size="16" font-weight="bold">Pháp lý và kế toán</text>
+<text x="29" y="547" font-size="16" font-weight="normal">Quy định riêng từng nước</text>
+<text x="16" y="590" font-size="16" font-weight="normal">Tách phần đổi theo vùng khỏi logic</text>
+<text x="16" y="614" font-size="16" font-weight="normal">chung.</text>
+</g></svg>

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 544" width="320" height="544" role="img" aria-labelledby="title desc">
+<title id="title">Bốn thành phần của nền tảng thử nghiệm</title>
+<desc id="desc">Định nghĩa và quản lý thử nghiệm; triển khai gán người dùng vào nhóm và trả tham số; ghi nhận sự kiện; phân tích so sánh các nhóm.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="544" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="21" font-weight="bold">NỀN TẢNG</text>
+<text x="16" y="54" font-size="21" font-weight="bold">THỬ NGHIỆM A/B</text>
+<rect x="16" y="70" width="288" height="92" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="29" y="99" font-size="16" font-weight="bold">1 · Định nghĩa, quản lý</text>
+<text x="29" y="123" font-size="16" font-weight="normal">Giao diện tạo thử nghiệm; lưu</text>
+<text x="29" y="147" font-size="16" font-weight="normal">cấu hình</text>
+<line x1="160" y1="163" x2="160" y2="189" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="192" width="288" height="92" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="29" y="221" font-size="16" font-weight="bold">2 · Triển khai</text>
+<text x="29" y="245" font-size="16" font-weight="normal">Gán nhóm, trả tham số theo</text>
+<text x="29" y="269" font-size="16" font-weight="normal">nhóm</text>
+<line x1="160" y1="285" x2="160" y2="311" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="314" width="288" height="68" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="29" y="343" font-size="16" font-weight="bold">3 · Ghi nhận</text>
+<text x="29" y="367" font-size="16" font-weight="normal">Ai thấy gì, làm gì sau đó</text>
+<line x1="160" y1="383" x2="160" y2="409" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="412" width="288" height="68" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="29" y="441" font-size="16" font-weight="bold">4 · Phân tích</text>
+<text x="29" y="465" font-size="16" font-weight="normal">So nhóm, ước lượng khác biệt</text>
+<text x="16" y="508" font-size="16" font-weight="normal">Gán nhóm phải ổn định: cùng</text>
+<text x="16" y="532" font-size="16" font-weight="normal">người, cùng nhóm.</text>
+</g></svg>

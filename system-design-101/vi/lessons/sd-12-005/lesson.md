@@ -1,0 +1,42 @@
+# Quadtree: chia bản đồ để tìm nơi gần bạn
+
+**Muốn tìm quán cà phê gần bạn, đừng đo khoảng cách tới mọi quán.** Chia bản đồ thành các ô, rồi bắt đầu từ ô của bạn và mở rộng dần ra các ô xung quanh.
+
+![Một hình vuông là bản đồ, chia làm bốn phần. Phần phía trên bên phải đông địa điểm nên được chia tiếp, và ô nhỏ chứa vị trí của bạn được tô vàng. Các phần thưa chỉ có ô lớn. Bên dưới là ba thẻ: ô nào còn quá nhiều địa điểm thì chia thành bốn (có giới hạn độ sâu), tìm bằng cách đi từ gốc xuống ô lá chứa bạn, thiếu kết quả thì mở rộng sang ô xung quanh (cách gần đúng). Chú thích: trong thiết kế này, quadtree nằm trong bộ nhớ máy chủ.](../../diagrams/sd-12-005-main.svg)
+
+## Đọc hình
+
+Bản đồ được chia đệ quy thành **4 ô**. Ô nào còn quá nhiều địa điểm (ví dụ hơn một ngưỡng như 100) thì chia tiếp thành 4 ô nhỏ hơn; ô nào đủ ít thì dừng và thành **ô lá**. Cần thêm giới hạn độ sâu (hoặc kích thước ô tối thiểu): nhiều địa điểm trùng cùng một tọa độ thì chia mãi vẫn không tách được, nên ô lá ở giới hạn đó giữ một danh sách địa điểm vượt ngưỡng. Nơi đông, như một phố ẩm thực, sinh ra ô nhỏ và sâu; nơi thưa, như vùng đồi núi, chỉ có ô lớn.
+
+**Tìm gần bạn:** đi từ gốc xuống, mỗi bước chọn ô chứa vị trí của bạn, cho tới ô lá. Nếu ô lá chưa đủ số kết quả cần, mở rộng sang các ô xung quanh. Đây là cách gần đúng, thường đủ cho danh sách “quanh đây”; muốn chính xác thì xem phần cuối bài.
+
+## Giới hạn cần nhớ
+
+Trong thiết kế này, quadtree là cấu trúc **trong bộ nhớ**: mỗi máy chủ dịch vụ vị trí tự dựng và giữ một bản, không phải nơi lưu trữ dữ liệu. Đó là một cách triển khai chứ không phải tính chất của quadtree, vì quadtree cũng có thể được lưu bền hoặc làm cấu trúc nền cho dữ liệu địa lý trên đĩa. Dựng cây từ dữ liệu lớn tốn thời gian và trong lúc đó máy chủ chưa nên nhận lưu lượng, nên khi phát hành phiên bản mới hãy cập nhật lần lượt từng nhóm máy chủ để phần còn lại vẫn phục vụ được.
+
+## Nhìn hình trả lời
+
+Một phố ẩm thực đông quán và một vùng đồi vắng nhà: nơi nào thường có ô lá nhỏ và nằm sâu hơn trong cây?
+
+<details>
+<summary>Xem đáp án</summary>
+
+Phố ẩm thực: nhiều địa điểm khiến ô bị chia nhỏ nhiều lần. Vùng đồi vắng nhà gần như chỉ có ô lớn.
+
+</details>
+
+<details>
+<summary>Xem sâu hơn: tìm chính xác, geohash và cập nhật</summary>
+
+- **Gần đúng và chính xác:** mở rộng sang ô kề chỉ cho kết quả gần đúng. Ô lá có kích thước khác nhau, nên một điểm gần hơn vẫn có thể nằm ở ô chưa xét, và xếp theo khoảng cách chỉ sắp thứ tự các ứng viên đã lấy. Muốn danh sách gần nhất chính xác, duyệt các ô theo khoảng cách tối thiểu từ điểm truy vấn tới ô (dùng hàng đợi ưu tiên) và chỉ dừng khi không ô nào chưa xét có thể chứa điểm gần hơn kết quả hiện có.
+- **Quadtree và geohash:** cả hai chia vùng thành 4 theo từng mức. Geohash dùng lưới cố định nên dễ lưu và tìm trong cơ sở dữ liệu; quadtree chia thích nghi theo mật độ. Trong thiết kế ở bài này nó được dựng trong bộ nhớ, nhưng quadtree cũng có thể được lưu bền. Xem bài [Dịch vụ tìm địa điểm lân cận](../sd-12-017/lesson.md).
+- **Cập nhật:** thêm hoặc xóa địa điểm có thể sửa cây tại chỗ hoặc dựng lại định kỳ; đó là đánh đổi giữa độ mới và độ phức tạp.
+
+</details>
+
+## Nguồn đối chiếu
+
+- [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/quadtree.md): quadtree cho dịch vụ dựa trên vị trí; ngưỡng ví dụ và việc triển khai cuốn chiếu.
+- [Wikipedia — Quadtree](https://en.wikipedia.org/wiki/Quadtree): định nghĩa và các biến thể.
+
+Đã đọc bài nguồn ngày 2026-10-13. Các tài liệu chính thức ở trên là nơi review kỹ thuật cần đối chiếu: trong đợt viết này chúng chưa được mở, nên các tuyên bố kỹ thuật chưa được xem là đã kiểm chứng. Bài viết và hình được thiết kế độc lập, không dùng ảnh nguồn. Trạng thái và giới hạn kiểm chứng lưu trong [metadata JSON](../../metadata/sd-12-005.json).

@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 790" width="320" height="790" role="img" aria-labelledby="title desc">
+<title id="title">Đường đi của một lệnh tại sàn</title>
+<desc id="desc">Khách đặt lệnh qua môi giới, tới cổng khách hàng, quản lý lệnh kiểm tra rủi ro và vốn (đơn giản hóa), động cơ khớp lệnh sinh hai bản ghi khớp, kết quả trả về khách.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="790" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="21" font-weight="bold">MỘT LỆNH TẠI SÀN</text>
+<rect x="16" y="46" width="288" height="68" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="29" y="75" font-size="16" font-weight="bold">1 · Khách đặt lệnh</text>
+<text x="29" y="99" font-size="16" font-weight="normal">Ứng dụng của môi giới</text>
+<line x1="160" y1="115" x2="160" y2="141" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="144" width="288" height="44" rx="12" fill="#e2e8f0" stroke="#94a3b8"/>
+<text x="29" y="173" font-size="16" font-weight="bold">2 · Môi giới gửi tới sàn</text>
+<line x1="160" y1="189" x2="160" y2="215" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="218" width="288" height="92" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="29" y="247" font-size="16" font-weight="bold">3 · Cổng khách hàng</text>
+<text x="29" y="271" font-size="16" font-weight="normal">Hợp lệ, giới hạn tần suất, xác</text>
+<text x="29" y="295" font-size="16" font-weight="normal">thực</text>
+<line x1="160" y1="311" x2="160" y2="337" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="340" width="288" height="68" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="29" y="369" font-size="16" font-weight="bold">4 · Quản lý lệnh</text>
+<text x="29" y="393" font-size="16" font-weight="normal">Kiểm tra rủi ro theo quy tắc</text>
+<line x1="160" y1="409" x2="160" y2="435" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="438" width="288" height="68" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="29" y="467" font-size="16" font-weight="bold">5 · Kiểm tra vốn</text>
+<text x="29" y="491" font-size="16" font-weight="normal">Đơn giản hóa: số dư trong ví</text>
+<line x1="160" y1="507" x2="160" y2="533" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="536" width="288" height="92" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="29" y="565" font-size="16" font-weight="bold">6 · Động cơ khớp lệnh</text>
+<text x="29" y="589" font-size="16" font-weight="normal">Mua khớp bán, sinh hai bản ghi</text>
+<text x="29" y="613" font-size="16" font-weight="normal">khớp</text>
+<line x1="160" y1="629" x2="160" y2="655" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="658" width="288" height="68" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="29" y="687" font-size="16" font-weight="bold">7 · Kết quả về khách</text>
+<text x="29" y="711" font-size="16" font-weight="normal">Đi ngược qua các thành phần</text>
+<text x="16" y="754" font-size="16" font-weight="normal">Lệnh và kết quả được đánh số để</text>
+<text x="16" y="778" font-size="16" font-weight="normal">phát lại ra cùng kết quả.</text>
+</g></svg>

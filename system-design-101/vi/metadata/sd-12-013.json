@@ -1,0 +1,85 @@
+{
+  "id": "sd-12-013",
+  "title_vi": "Thiết kế ứng dụng chat 1–1",
+  "language": "vi",
+  "kind": "architecture",
+  "content_status": "draft",
+  "source_ref": "sd-12-013",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/how-do-we-design-a-chat-application-like-whatsapp-facebook-messenger-or-discord.md",
+    "blob_sha": "9456b313d004e3cb7e41a0cd18d14d9453e005ad",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-we-design-a-chat-application-like-whatsapp-facebook-messenger-or-discord.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "af0def777437b8adab31681f5bdf91ad86ce5ab746f979fab7a42342452b9a8a",
+    "retrieved_body_bytes": 1411
+  },
+  "diagram": "../diagrams/sd-12-013-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-12-006",
+      "relation": "compares",
+      "reason_vi": "Cùng bài toán chat nhưng dùng Redis pub/sub."
+    },
+    {
+      "lesson_id": "sd-12-015",
+      "relation": "continues",
+      "reason_vi": "Nhánh người nhận ngoại tuyến dùng thông báo đẩy."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "official_sources_not_reachable_from_authoring_environment"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "not_yet_reviewed"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.65,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium headless: markdown-it render of lesson.md with every <details> open, in iframes of 320, 375 and 430 px; documentElement.scrollWidth did not exceed clientWidth; every SVG <text> bounding box lies inside the viewBox; effective diagram text is 16px x scale (13.65px at 320 with a 15px classic scrollbar, 16px at 375 and 430); a contact-sheet screenshot of the figure was inspected visually. The measuring script is a throwaway one and is not committed to the repository, so the measurement cannot yet be re-run from the repo. Not learner testing; not checked on GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Sau bắt tay, WebSocket cho hai phía gửi dữ liệu độc lập trên cùng một kết nối bền vững.",
+      "sources": [
+        "https://www.rfc-editor.org/rfc/rfc6455.html"
+      ]
+    },
+    {
+      "claim_vi": "Để việc lưu tin và việc đưa tin vào hàng đợi không bị tách đôi, có thể ghi tin cùng một bản ghi outbox trong một giao dịch rồi để một bộ phận khác chuyển bản ghi đó vào hàng đợi.",
+      "sources": [
+        "https://microservices.io/patterns/data/transactional-outbox.html"
+      ]
+    }
+  ],
+  "source_deviations": [
+    "Nguồn không nói gì về trường hợp dịch vụ dừng giữa bước lưu và bước đưa vào hàng đợi; bài thêm cách xử lý (outbox, nhật ký bền làm hàng đợi, bộ quét gửi lại).",
+    "Bài thêm xác nhận đã nhận, loại trùng và đa thiết bị; nguồn mô tả bản đơn giản hóa cho chat 1–1.",
+    "Đây là thiết kế minh họa, không phải kiến trúc thật của WhatsApp, Messenger hay Discord dù tiêu đề nguồn nhắc tới.",
+    "Nguồn chỉ nói ID duy nhất để sắp thứ tự; bài nói rõ ID còn phải tăng dần trong từng cuộc trò chuyện, vì việc sắp thứ tự và tải bù theo “ID lớn hơn tin cuối” không dùng được với ID chỉ duy nhất (như UUID)."
+  ],
+  "design_notes_vi": "Bảy thẻ dọc; hai thẻ cuối là hai nhánh (trực tuyến / ngoại tuyến) viết tách để không dựa vào màu.",
+  "editorial_note_vi": "Bản nháp độc lập viết từ kiến thức kỹ thuật chung; đọc bài nguồn nhưng chưa mở tài liệu chính thức nên các claim chưa được kiểm chứng. Chưa review kỹ thuật, chưa user testing, chưa phê duyệt phát hành."
+}

@@ -1,0 +1,86 @@
+{
+  "id": "sd-12-018",
+  "title_vi": "Công cụ tìm kiếm hoạt động thế nào?",
+  "language": "vi",
+  "kind": "process",
+  "content_status": "draft",
+  "source_ref": "sd-12-018",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/how-do-search-engines-work.md",
+    "blob_sha": "7342179cf9cca0e463a20934fb711bc4ef969d69",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-search-engines-work.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "cd04d99921ed769d6045e93f2d3ae725e80db153d9a75f940c57d81c2388e63b",
+    "retrieved_body_bytes": 1827
+  },
+  "diagram": "../diagrams/sd-12-018-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "official_sources_not_reachable_from_authoring_environment"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "not_yet_reviewed"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.65,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium headless: markdown-it render of lesson.md with every <details> open, in iframes of 320, 375 and 430 px; documentElement.scrollWidth did not exceed clientWidth; every SVG <text> bounding box lies inside the viewBox; effective diagram text is 16px x scale (13.65px at 320 with a 15px classic scrollbar, 16px at 375 and 430); a contact-sheet screenshot of the figure was inspected visually. The measuring script is a throwaway one and is not committed to the repository, so the measurement cannot yet be re-run from the repo. Not learner testing; not checked on GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Công cụ tìm kiếm bò web từ các trang đã biết theo các liên kết, lập chỉ mục nội dung rồi xếp hạng kết quả cho truy vấn.",
+      "sources": [
+        "https://developers.google.com/search/docs/fundamentals/how-search-works"
+      ]
+    },
+    {
+      "claim_vi": "Robots.txt điều khiển việc bò, không phải cơ chế loại trang khỏi kết quả tìm kiếm.",
+      "sources": [
+        "https://www.rfc-editor.org/rfc/rfc9309.html",
+        "https://developers.google.com/search/docs/fundamentals/how-search-works"
+      ]
+    },
+    {
+      "claim_vi": "Chỉ mục đảo ánh xạ mỗi từ tới danh sách tài liệu chứa từ đó.",
+      "sources": [
+        "https://nlp.stanford.edu/IR-book/"
+      ]
+    },
+    {
+      "claim_vi": "noindex chỉ có tác dụng khi công cụ bò được trang để đọc chỉ thị; trang bị robots.txt chặn có thể vẫn xuất hiện trong kết quả.",
+      "sources": [
+        "https://developers.google.com/search/docs/crawling-indexing/block-indexing"
+      ]
+    }
+  ],
+  "source_deviations": [
+    "Bài thêm ví dụ chỉ mục đảo, phân biệt bò–lập chỉ mục–xếp hạng và lưu ý về robots.txt; nguồn chỉ mô tả ba giai đoạn ở mức tổng quan.",
+    "Bài không khẳng định công thức xếp hạng của công cụ cụ thể nào.",
+    "Bài nói rõ noindex cần cho phép bò; nguồn không nhắc tới robots.txt hay noindex."
+  ],
+  "design_notes_vi": "Bảy thẻ dọc gom thành ba giai đoạn bằng tiền tố bước; chú thích cuối tách ba trạng thái bò, lập chỉ mục, xếp hạng.",
+  "editorial_note_vi": "Bản nháp độc lập viết từ kiến thức kỹ thuật chung; đọc bài nguồn nhưng chưa mở tài liệu chính thức nên các claim chưa được kiểm chứng. Chưa review kỹ thuật, chưa user testing, chưa phê duyệt phát hành."
+}

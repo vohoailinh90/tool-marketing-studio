@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 620" width="320" height="620" role="img" aria-labelledby="title desc">
+<title id="title">Geohash chia bản đồ thành ô có mã</title>
+<desc id="desc">Bản đồ vuông chia bốn phần mang mã 01, 11, 00, 10. Phần 01 được chia tiếp thành bốn ô 0101, 0111, 0100, 0110 cùng tiền tố 01. Dịch vụ doanh nghiệp quản lý địa điểm; dịch vụ vị trí tra theo tiền tố.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="620" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="21" font-weight="bold">GEOHASH</text>
+<g transform="translate(16,46)"><rect x="0" y="0" width="288" height="288" fill="#ffffff" stroke="#475569" stroke-width="2"/><line x1="144" y1="0" x2="144" y2="288" stroke="#475569" stroke-width="2"/><line x1="0" y1="144" x2="288" y2="144" stroke="#475569" stroke-width="2"/><rect x="0" y="0" width="144" height="144" fill="#fef3c7"/><line x1="72" y1="0" x2="72" y2="144" stroke="#475569" stroke-width="1.5"/><line x1="0" y1="72" x2="144" y2="72" stroke="#475569" stroke-width="1.5"/><text x="216" y="80" font-size="16" font-weight="bold" text-anchor="middle">11</text><text x="72" y="224" font-size="16" font-weight="bold" text-anchor="middle">00</text><text x="216" y="224" font-size="16" font-weight="bold" text-anchor="middle">10</text><text x="36" y="40" font-size="16" font-weight="bold" text-anchor="middle">0101</text><text x="108" y="40" font-size="16" font-weight="bold" text-anchor="middle">0111</text><text x="36" y="112" font-size="16" font-weight="bold" text-anchor="middle">0100</text><text x="108" y="112" font-size="16" font-weight="bold" text-anchor="middle">0110</text><rect x="2" y="300" width="14" height="14" fill="#fef3c7" stroke="#475569"/><text x="22" y="313" font-size="16">tiền tố 01 gồm cả bốn ô</text><text x="0" y="338" font-size="16">mã = bit kinh độ, bit vĩ độ, xen kẽ</text></g>
+<rect x="16" y="408" width="288" height="68" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="29" y="437" font-size="16" font-weight="bold">Dịch vụ doanh nghiệp</text>
+<text x="29" y="461" font-size="16" font-weight="normal">Thêm, sửa, xóa, xem địa điểm</text>
+<rect x="16" y="488" width="288" height="68" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="29" y="517" font-size="16" font-weight="bold">Dịch vụ vị trí (LBS)</text>
+<text x="29" y="541" font-size="16" font-weight="normal">Tọa độ + bán kính → tra tiền tố</text>
+<text x="16" y="584" font-size="16" font-weight="normal">Điểm gần nhau có thể rơi vào hai ô</text>
+<text x="16" y="608" font-size="16" font-weight="normal">khác tiền tố.</text>
+</g></svg>

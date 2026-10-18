@@ -1,0 +1,79 @@
+{
+  "id": "sd-12-016",
+  "title_vi": "Điều gì xảy ra khi tải tệp lên kho đối tượng kiểu S3?",
+  "language": "vi",
+  "kind": "architecture",
+  "content_status": "draft",
+  "source_ref": "sd-12-016",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/what-happens-when-you-upload-a-file-to-amazon-s3.md",
+    "blob_sha": "5fabaa3d863a896f2fe7934a714940ac290d134d",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-happens-when-you-upload-a-file-to-amazon-s3.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "ef983988bfce772ca9c39d7571a803e403caa8a5de4efc307031b88d08caad9a",
+    "retrieved_body_bytes": 2495
+  },
+  "diagram": "../diagrams/sd-12-016-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "official_sources_not_reachable_from_authoring_environment"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "not_yet_reviewed"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.65,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium headless: markdown-it render of lesson.md with every <details> open, in iframes of 320, 375 and 430 px; documentElement.scrollWidth did not exceed clientWidth; every SVG <text> bounding box lies inside the viewBox; effective diagram text is 16px x scale (13.65px at 320 with a 15px classic scrollbar, 16px at 375 and 430); a contact-sheet screenshot of the figure was inspected visually. The measuring script is a throwaway one and is not committed to the repository, so the measurement cannot yet be re-run from the repo. Not learner testing; not checked on GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Trong S3, đối tượng nằm trong thùng, gồm dữ liệu và siêu dữ liệu; tên thùng là duy nhất.",
+      "sources": [
+        "https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html"
+      ]
+    },
+    {
+      "claim_vi": "S3 hỗ trợ tải lên nhiều phần cho tệp lớn.",
+      "sources": [
+        "https://docs.aws.amazon.com/AmazonS3/latest/userguide/mpuoverview.html"
+      ]
+    },
+    {
+      "claim_vi": "Ở S3 thật, đổi siêu dữ liệu của đối tượng cần sao chép hoặc ghi đè đối tượng; thẻ gắn (tag) có thao tác riêng.",
+      "sources": [
+        "https://docs.aws.amazon.com/AmazonS3/latest/userguide/copy-object.html"
+      ]
+    }
+  ],
+  "source_deviations": [
+    "Nguồn dùng một thiết kế hệ lưu trữ kiểu S3; bài nói rõ đây không phải kiến trúc nội bộ thật của S3.",
+    "Bài thêm tình huống lỗi giữa hai kho, tải lên nhiều phần và dữ liệu mồ côi.",
+    "Trong mô hình thiết kế của nguồn siêu dữ liệu sửa được; bài nói rõ S3 thật cần sao chép đối tượng để đổi siêu dữ liệu."
+  ],
+  "design_notes_vi": "Sáu thẻ dọc tách hai pha (tạo thùng, tải đối tượng); chú thích cuối nhắc dữ liệu và siêu dữ liệu ở hai nơi.",
+  "editorial_note_vi": "Bản nháp độc lập viết từ kiến thức kỹ thuật chung; đọc bài nguồn nhưng chưa mở tài liệu chính thức nên các claim chưa được kiểm chứng. Chưa review kỹ thuật, chưa user testing, chưa phê duyệt phát hành."
+}

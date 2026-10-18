@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 790" width="320" height="790" role="img" aria-labelledby="title desc">
+<title id="title">Bò web, lập chỉ mục và trả kết quả</title>
+<desc id="desc">Bò web đi từ trang hạt giống, tải trang và lấy liên kết mới. Phân tích trang và lập chỉ mục đảo. Khi có truy vấn: phân tích, truy xuất từ chỉ mục, xếp hạng, trả kết quả.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="790" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="21" font-weight="bold">TÌM KIẾM HOẠT</text>
+<text x="16" y="54" font-size="21" font-weight="bold">ĐỘNG THẾ NÀO</text>
+<rect x="16" y="70" width="288" height="68" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="29" y="99" font-size="16" font-weight="bold">Bò · 1 · Từ trang hạt giống</text>
+<text x="29" y="123" font-size="16" font-weight="normal">Danh sách trang đã biết</text>
+<line x1="160" y1="139" x2="160" y2="165" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="168" width="288" height="92" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="29" y="197" font-size="16" font-weight="bold">Bò · 2 · Tải trang, lấy liên</text>
+<text x="29" y="221" font-size="16" font-weight="bold">kết</text>
+<text x="29" y="245" font-size="16" font-weight="normal">Địa chỉ mới vào hàng đợi</text>
+<line x1="160" y1="261" x2="160" y2="287" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="290" width="288" height="68" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="29" y="319" font-size="16" font-weight="bold">Lập chỉ mục · 3</text>
+<text x="29" y="343" font-size="16" font-weight="normal">Phân tích trang, lập chỉ mục đảo</text>
+<line x1="160" y1="359" x2="160" y2="385" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="388" width="288" height="68" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="29" y="417" font-size="16" font-weight="bold">Truy vấn · 4 · Phân tích</text>
+<text x="29" y="441" font-size="16" font-weight="normal">Từ khóa, đồng nghĩa, ý định</text>
+<line x1="160" y1="457" x2="160" y2="483" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="486" width="288" height="68" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="29" y="515" font-size="16" font-weight="bold">Truy vấn · 5 · Truy xuất</text>
+<text x="29" y="539" font-size="16" font-weight="normal">Lấy trang khớp từ chỉ mục</text>
+<line x1="160" y1="555" x2="160" y2="581" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="584" width="288" height="92" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="29" y="613" font-size="16" font-weight="bold">Truy vấn · 6 · Xếp hạng</text>
+<text x="29" y="637" font-size="16" font-weight="normal">Theo mức liên quan và tín hiệu</text>
+<text x="29" y="661" font-size="16" font-weight="normal">khác</text>
+<line x1="160" y1="677" x2="160" y2="703" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="706" width="288" height="44" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="29" y="735" font-size="16" font-weight="bold">Truy vấn · 7 · Trả kết quả</text>
+<text x="16" y="778" font-size="16" font-weight="normal">Bò ≠ lập chỉ mục ≠ xếp cao.</text>
+</g></svg>

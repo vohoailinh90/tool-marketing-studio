@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 692" width="320" height="692" role="img" aria-labelledby="title desc">
+<title id="title">Tạo thùng rồi tải một tệp lên</title>
+<desc id="desc">Client tạo thùng bằng PUT. API kiểm tra quyền bằng IAM và ghi mục thùng. Client PUT đối tượng; dữ liệu lưu ở kho dữ liệu và trả về mã; API ghi siêu dữ liệu gồm mã đối tượng, thùng và tên.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="692" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="21" font-weight="bold">TẢI TỆP LÊN</text>
+<text x="16" y="54" font-size="21" font-weight="bold">KHO ĐỐI TƯỢNG</text>
+<rect x="16" y="70" width="288" height="68" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="29" y="99" font-size="16" font-weight="bold">1 · PUT tạo thùng</text>
+<text x="29" y="123" font-size="16" font-weight="normal">Client → dịch vụ API</text>
+<line x1="160" y1="139" x2="160" y2="165" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="168" width="288" height="68" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="29" y="197" font-size="16" font-weight="bold">2 · Kiểm tra quyền</text>
+<text x="29" y="221" font-size="16" font-weight="normal">Dịch vụ định danh (IAM)</text>
+<line x1="160" y1="237" x2="160" y2="263" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="266" width="288" height="68" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="29" y="295" font-size="16" font-weight="bold">3 · Ghi mục thùng</text>
+<text x="29" y="319" font-size="16" font-weight="normal">Kho siêu dữ liệu</text>
+<line x1="160" y1="335" x2="160" y2="361" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="364" width="288" height="68" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="29" y="393" font-size="16" font-weight="bold">4 · PUT tạo đối tượng</text>
+<text x="29" y="417" font-size="16" font-weight="normal">Kiểm tra quyền như trước</text>
+<line x1="160" y1="433" x2="160" y2="459" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="462" width="288" height="68" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="29" y="491" font-size="16" font-weight="bold">5 · Lưu dữ liệu</text>
+<text x="29" y="515" font-size="16" font-weight="normal">Kho dữ liệu trả về mã đối tượng</text>
+<line x1="160" y1="531" x2="160" y2="557" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="560" width="288" height="68" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="29" y="589" font-size="16" font-weight="bold">6 · Ghi siêu dữ liệu</text>
+<text x="29" y="613" font-size="16" font-weight="normal">Mã đối tượng, thùng, tên</text>
+<text x="16" y="656" font-size="16" font-weight="normal">Dữ liệu ở một nơi, thông tin mô tả ở</text>
+<text x="16" y="680" font-size="16" font-weight="normal">nơi khác.</text>
+</g></svg>

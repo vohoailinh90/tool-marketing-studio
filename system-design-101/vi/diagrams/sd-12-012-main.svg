@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 674" width="320" height="674" role="img" aria-labelledby="title desc">
+<title id="title">Ba dịch vụ của một ứng dụng bản đồ</title>
+<desc id="desc">Dịch vụ vị trí nhận vị trí định kỳ. Hiển thị bản đồ dùng ô dựng sẵn theo mức phóng phát qua CDN. Dẫn đường: đổi địa chỉ thành tọa độ, tìm tuyến ứng viên, ước tính thời gian theo giao thông, xếp hạng.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="674" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="21" font-weight="bold">ỨNG DỤNG BẢN ĐỒ</text>
+<rect x="16" y="46" width="288" height="92" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="29" y="75" font-size="16" font-weight="bold">Dịch vụ vị trí</text>
+<text x="29" y="99" font-size="16" font-weight="normal">Nhận vị trí định kỳ; nuôi giao</text>
+<text x="29" y="123" font-size="16" font-weight="normal">thông</text>
+<rect x="16" y="150" width="288" height="92" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="29" y="179" font-size="16" font-weight="bold">Hiển thị bản đồ</text>
+<text x="29" y="203" font-size="16" font-weight="normal">Ô dựng sẵn theo mức phóng,</text>
+<text x="29" y="227" font-size="16" font-weight="normal">qua CDN</text>
+<rect x="16" y="254" width="288" height="68" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="29" y="283" font-size="16" font-weight="bold">Dẫn đường · 1</text>
+<text x="29" y="307" font-size="16" font-weight="normal">Địa chỉ → tọa độ (geocoding)</text>
+<rect x="16" y="334" width="288" height="68" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="29" y="363" font-size="16" font-weight="bold">Dẫn đường · 2</text>
+<text x="29" y="387" font-size="16" font-weight="normal">Tìm vài tuyến ứng viên</text>
+<rect x="16" y="414" width="288" height="92" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="29" y="443" font-size="16" font-weight="bold">Dẫn đường · 3</text>
+<text x="29" y="467" font-size="16" font-weight="normal">Ước tính thời gian theo giao</text>
+<text x="29" y="491" font-size="16" font-weight="normal">thông</text>
+<rect x="16" y="518" width="288" height="92" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="29" y="547" font-size="16" font-weight="bold">Dẫn đường · 4</text>
+<text x="29" y="571" font-size="16" font-weight="normal">Xếp hạng theo thời gian, tùy</text>
+<text x="29" y="595" font-size="16" font-weight="normal">chọn</text>
+<text x="16" y="638" font-size="16" font-weight="normal">Ba dịch vụ độc lập; dẫn đường gồm</text>
+<text x="16" y="662" font-size="16" font-weight="normal">các bước tuần tự.</text>
+</g></svg>

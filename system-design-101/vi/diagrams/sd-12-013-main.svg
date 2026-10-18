@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 912" width="320" height="912" role="img" aria-labelledby="title desc">
+<title id="title">Gửi tin nhắn 1–1</title>
+<desc id="desc">Alice nối WebSocket. Tin tới chat service A, được cấp ID duy nhất và tăng dần trong cuộc trò chuyện, lưu bền, vào hàng đợi đồng bộ (hai bước phải đi cùng nhau, ví dụ qua outbox). Hệ thống hỏi hiện diện của Bob: nếu trực tuyến thì qua chat service B và WebSocket, nếu không thì qua máy chủ thông báo đẩy.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="912" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="21" font-weight="bold">GỬI TIN 1–1</text>
+<rect x="16" y="46" width="288" height="92" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="29" y="75" font-size="16" font-weight="bold">0 · Alice đăng nhập</text>
+<text x="29" y="99" font-size="16" font-weight="normal">WebSocket; báo hiện diện cho</text>
+<text x="29" y="123" font-size="16" font-weight="normal">bạn bè</text>
+<line x1="160" y1="139" x2="160" y2="165" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="168" width="288" height="68" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="29" y="197" font-size="16" font-weight="bold">1 · Alice gửi tin cho Bob</text>
+<text x="29" y="221" font-size="16" font-weight="normal">Tới chat service A</text>
+<line x1="160" y1="237" x2="160" y2="263" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="266" width="288" height="92" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="29" y="295" font-size="16" font-weight="bold">2 · Cấp ID tăng dần</text>
+<text x="29" y="319" font-size="16" font-weight="normal">Duy nhất, tăng trong từng cuộc</text>
+<text x="29" y="343" font-size="16" font-weight="normal">trò chuyện</text>
+<line x1="160" y1="359" x2="160" y2="385" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="388" width="288" height="68" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="29" y="417" font-size="16" font-weight="bold">3 · Lưu bền</text>
+<text x="29" y="441" font-size="16" font-weight="normal">Kho tin nhắn</text>
+<line x1="160" y1="457" x2="160" y2="483" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="486" width="288" height="92" rx="12" fill="#e2e8f0" stroke="#94a3b8"/>
+<text x="29" y="515" font-size="16" font-weight="bold">4 · Hàng đợi đồng bộ</text>
+<text x="29" y="539" font-size="16" font-weight="normal">Cùng bước với lưu (outbox);</text>
+<text x="29" y="563" font-size="16" font-weight="normal">chuyển tin tới Bob</text>
+<line x1="160" y1="579" x2="160" y2="605" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="608" width="288" height="68" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="29" y="637" font-size="16" font-weight="bold">5 · Bob có trực tuyến không?</text>
+<text x="29" y="661" font-size="16" font-weight="normal">Hỏi dịch vụ hiện diện</text>
+<line x1="160" y1="677" x2="160" y2="703" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="706" width="288" height="68" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="29" y="735" font-size="16" font-weight="bold">6a · Có: chat service B</text>
+<text x="29" y="759" font-size="16" font-weight="normal">Đẩy qua WebSocket tới Bob</text>
+<line x1="160" y1="775" x2="160" y2="801" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="804" width="288" height="68" rx="12" fill="#ffe4e6" stroke="#94a3b8"/>
+<text x="29" y="833" font-size="16" font-weight="bold">6b · Không: thông báo đẩy</text>
+<text x="29" y="857" font-size="16" font-weight="normal">Máy chủ push báo tới thiết bị</text>
+<text x="16" y="900" font-size="16" font-weight="normal">Lưu trước, rồi mới phân phối.</text>
+</g></svg>

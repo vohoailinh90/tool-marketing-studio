@@ -159,6 +159,27 @@ Các bài chưa viết của nhóm này không có trong danh sách; số thứ 
 
 23. [Sau thay đổi API: chọn bộ kiểm tra theo rủi ro](lessons/sd-10-023/lesson.md)
 
+## Hệ thống hoạt động thế nào?
+
+1. [AirTag tìm đồ thất lạc bằng cách nào?](lessons/sd-12-001/lesson.md) — bản nháp; chờ review kỹ thuật.
+2. [Email được gửi đi như thế nào?](lessons/sd-12-002/lesson.md) — bản nháp; chờ review kỹ thuật.
+3. [Thiết kế dịch vụ thư điện tử kiểu Gmail](lessons/sd-12-003/lesson.md) — bản nháp; chờ review kỹ thuật.
+4. [Làm mờ biển số và khuôn mặt trong ảnh đường phố](lessons/sd-12-004/lesson.md) — bản nháp; chờ review kỹ thuật.
+5. [Quadtree: chia bản đồ để tìm nơi gần bạn](lessons/sd-12-005/lesson.md) — bản nháp; chờ review kỹ thuật.
+6. [Xây ứng dụng chat đơn giản với Redis](lessons/sd-12-006/lesson.md) — bản nháp; chờ review kỹ thuật.
+7. [Phát trực tiếp video hoạt động thế nào?](lessons/sd-12-007/lesson.md) — bản nháp; chờ review kỹ thuật.
+8. [Thiết kế hệ thống đa ngôn ngữ](lessons/sd-12-008/lesson.md) — bản nháp; chờ review kỹ thuật.
+9. [Thiết kế soạn thảo cộng tác kiểu Google Docs](lessons/sd-12-009/lesson.md) — bản nháp; chờ review kỹ thuật.
+10. [Hệ thống thanh toán: tiền đi qua những bước nào?](lessons/sd-12-010/lesson.md) — bản nháp; chờ review kỹ thuật.
+11. [Kiến trúc nền tảng thử nghiệm A/B](lessons/sd-12-011/lesson.md) — bản nháp; chờ review kỹ thuật.
+12. [Thiết kế dịch vụ bản đồ kiểu Google Maps](lessons/sd-12-012/lesson.md) — bản nháp; chờ review kỹ thuật.
+13. [Thiết kế ứng dụng chat 1–1](lessons/sd-12-013/lesson.md) — bản nháp; chờ review kỹ thuật.
+14. [Thiết kế sàn giao dịch chứng khoán](lessons/sd-12-014/lesson.md) — bản nháp; chờ review kỹ thuật.
+15. [Thông báo đẩy tới điện thoại hoạt động ra sao?](lessons/sd-12-015/lesson.md) — bản nháp; chờ review kỹ thuật.
+16. [Điều gì xảy ra khi tải tệp lên kho đối tượng kiểu S3?](lessons/sd-12-016/lesson.md) — bản nháp; chờ review kỹ thuật.
+17. [Dịch vụ tìm địa điểm lân cận](lessons/sd-12-017/lesson.md) — bản nháp; chờ review kỹ thuật.
+18. [Công cụ tìm kiếm hoạt động thế nào?](lessons/sd-12-018/lesson.md) — bản nháp; chờ review kỹ thuật.
+
 ## DevOps và CI/CD
 
 1. [Tắt êm một API trên Kubernetes: năm chỗ làm rớt request](lessons/sd-13-001/lesson.md)
@@ -257,7 +278,7 @@ và hình đạt; không coi đọc nguồn là mọi claim đã đúng, không 
 API và phát triển web (còn sd-01-050) → Tình huống thực tế (đã viết một phần) →
 Cơ sở dữ liệu và lưu trữ (đã viết một phần) → Bộ nhớ đệm và hiệu năng (đã viết một phần) → Thanh toán và công nghệ tài chính →
 Kiến trúc phần mềm → Phát triển phần mềm (đã viết một phần) →
-Đám mây và hệ thống phân tán → Hệ thống hoạt động thế nào? → Bảo mật (đã viết một phần).
+Đám mây và hệ thống phân tán → Bảo mật (đã viết một phần).
 
 Nhóm “Nền tảng máy tính” (cuối mục lục nguồn) được viết trước theo yêu cầu người dùng ngày 2026-10-13; nhóm “API và phát triển web” viết tiếp theo thứ tự source-map.
 

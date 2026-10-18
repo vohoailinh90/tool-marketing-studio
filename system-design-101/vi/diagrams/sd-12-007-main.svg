@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 814" width="320" height="814" role="img" aria-labelledby="title desc">
+<title id="title">Phát trực tiếp video</title>
+<desc id="desc">Quay hình, nén và mã hóa (hình bằng bộ mã hóa video, tiếng bằng bộ mã hóa âm thanh riêng), gửi lên máy chủ bằng giao thức đưa vào, tạo nhiều mức chất lượng, cắt thành đoạn ngắn, CDN đẩy tới máy chủ biên, trình phát tải đoạn phù hợp rồi phát. Có thể lưu các đoạn để xem lại.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#475569" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="814" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="30" font-size="21" font-weight="bold">PHÁT TRỰC TIẾP</text>
+<rect x="16" y="46" width="288" height="92" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="29" y="75" font-size="16" font-weight="bold">1 · Quay hình, thu tiếng</text>
+<text x="29" y="99" font-size="16" font-weight="normal">Camera và micro của người</text>
+<text x="29" y="123" font-size="16" font-weight="normal">phát</text>
+<line x1="160" y1="139" x2="160" y2="165" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="168" width="288" height="92" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="29" y="197" font-size="16" font-weight="bold">2 · Nén và mã hóa</text>
+<text x="29" y="221" font-size="16" font-weight="normal">Hình: ví dụ H.264. Tiếng: ví dụ</text>
+<text x="29" y="245" font-size="16" font-weight="normal">AAC</text>
+<line x1="160" y1="261" x2="160" y2="287" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="290" width="288" height="68" rx="12" fill="#fef3c7" stroke="#94a3b8"/>
+<text x="29" y="319" font-size="16" font-weight="bold">3 · Gửi lên máy chủ</text>
+<text x="29" y="343" font-size="16" font-weight="normal">Giao thức đưa vào, như RTMP</text>
+<line x1="160" y1="359" x2="160" y2="385" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="388" width="288" height="68" rx="12" fill="#ede9fe" stroke="#94a3b8"/>
+<text x="29" y="417" font-size="16" font-weight="bold">4 · Tạo nhiều mức chất lượng</text>
+<text x="29" y="441" font-size="16" font-weight="normal">Cùng nội dung, nhiều bitrate</text>
+<line x1="160" y1="457" x2="160" y2="483" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="486" width="288" height="68" rx="12" fill="#e2e8f0" stroke="#94a3b8"/>
+<text x="29" y="515" font-size="16" font-weight="bold">5 · Cắt thành đoạn ngắn</text>
+<text x="29" y="539" font-size="16" font-weight="normal">Mỗi đoạn vài giây</text>
+<line x1="160" y1="555" x2="160" y2="581" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="584" width="288" height="68" rx="12" fill="#dcfce7" stroke="#94a3b8"/>
+<text x="29" y="613" font-size="16" font-weight="bold">6 · CDN đẩy tới máy chủ biên</text>
+<text x="29" y="637" font-size="16" font-weight="normal">Người xem lấy từ nơi gần</text>
+<line x1="160" y1="653" x2="160" y2="679" stroke="#475569" stroke-width="1.8" marker-end="url(#arrow)"/>
+<rect x="16" y="682" width="288" height="68" rx="12" fill="#dbeafe" stroke="#94a3b8"/>
+<text x="29" y="711" font-size="16" font-weight="bold">7 · Trình phát chọn mức</text>
+<text x="29" y="735" font-size="16" font-weight="normal">Tải đoạn, giải mã, phát</text>
+<text x="16" y="778" font-size="16" font-weight="normal">Muốn xem lại: lưu các đoạn vào</text>
+<text x="16" y="802" font-size="16" font-weight="normal">kho.</text>
+</g></svg>

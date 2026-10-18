@@ -32,7 +32,7 @@ Nhãn dùng trong bài:
 3. **YouTube bật kiếm tiền:** hiện 1.000 subscriber + 4.000 giờ xem hoặc 10 triệu lượt xem Shorts/90 ngày. **Từ 1/2/2027, người mới cần 8.000 giờ hoặc 20 triệu lượt xem Shorts.** Kênh đã trong YPP không bị ảnh hưởng tư cách, nhưng muốn nhận tiền từ Shorts phải giữ 10 triệu lượt xem Shorts/90 ngày. [Chính thức]
 4. **TikTok Creator Rewards** (10.000 follower, 100.000 lượt xem/30 ngày, video gốc trên 1 phút) **hiện chỉ mở cho Mỹ, Anh, Đức, Nhật, Hàn, Pháp, Mexico, Brazil. Việt Nam không có trong danh sách.** [Chính thức]
 5. **Facebook Content Monetization hiện chỉ theo lời mời**, Meta không công bố ngưỡng số liệu. [Chính thức]
-6. **Tiền trên 1.000 lượt xem (RPM)** chênh nhau hàng chục lần: YouTube video dài vài USD, Shorts vài cent, TikTok khoảng 0,4–1 USD (chỉ áp dụng ở 8 nước có chương trình), Facebook Reels thường 0,02–0,20 USD. Không nền tảng nào công bố RPM. [Vừa]
+6. **Tiền trên 1.000 lượt xem (RPM)** chênh nhau hàng chục lần: YouTube video dài vài USD, Shorts từ vài cent đến khoảng 0,20 USD, TikTok khoảng 0,4–1 USD (chỉ áp dụng ở 8 nước có chương trình), Facebook Reels thường 0,02–0,20 USD. Không nền tảng nào công bố RPM. [Vừa]
 7. **Video tạo bằng AI không bị cấm, và không có nguồn chính thức nào nói video bị trừ điểm chỉ vì dùng AI.** TikTok nói bật nhãn AI không ảnh hưởng phân phối nếu không vi phạm quy định; YouTube nói nhãn AI không giới hạn khán giả hay quyền kiếm tiền. Rủi ro nằm ở nội dung **hàng loạt, lặp, thiếu giá trị riêng**, thiếu khai báo, và AI đóng vai chuyên gia về chủ đề nhạy cảm (không được kiếm tiền trên YouTube). [Chính thức]
 8. **Đăng bằng API không phải tín hiệu xếp hạng được công bố.** Khác biệt thực tế là **cổng truy cập và hạn mức**: TikTok khóa bài ở chế độ riêng tư nếu ứng dụng chưa audit, và **từ chối audit với công cụ chỉ đăng cho tài khoản của chính bạn**; YouTube mặc định 100 lượt upload/ngày/dự án. [Chính thức]
 9. **Thu nhập lớn thường không đến từ tiền nền tảng trả** mà từ brand deal, affiliate, sản phẩm. [Vừa]
@@ -170,7 +170,7 @@ Nhãn dùng trong bài:
 
 - **CPM**: số tiền nhà quảng cáo trả cho 1.000 lượt hiển thị. Creator **không** nhận số này.
 - **RPM**: số tiền creator **thực nhận** trên 1.000 lượt xem. Mẫu số là mọi lượt xem (kể cả lượt không có quảng cáo), tiền đã qua bước chia sẻ doanh thu và có thể gồm cả nguồn ngoài quảng cáo như membership hay fan funding.
-- **RPM không phải một tỷ lệ cố định của CPM.** CPM tính trên 1.000 lượt hiển thị quảng cáo, trước khi chia sẻ doanh thu. Vì hai mẫu số khác nhau, không đổi CPM quảng cáo ra thu nhập bằng một hệ số chung. Ví dụ ở 4.3: khán giả Việt Nam có RPM khoảng 0,22 USD và CPM khoảng 1,14 USD, tức RPM chỉ bằng khoảng 19% CPM. [Thấp]
+- **RPM không phải một tỷ lệ cố định của CPM.** CPM tính trên 1.000 lượt hiển thị quảng cáo, trước khi chia sẻ doanh thu. Vì hai mẫu số khác nhau, không đổi CPM quảng cáo ra thu nhập bằng một hệ số chung. Ví dụ ở 4.3: khán giả Việt Nam có RPM khoảng 0,22 USD và CPM khoảng 1,14 USD (số Dynamoi đến 14/7/2026), tức RPM chỉ bằng khoảng 19% CPM. [Thấp]
 
 ### 4.2 Tiền nền tảng trả trực tiếp
 
@@ -196,10 +196,10 @@ Nhãn dùng trong bài:
 | YouTube video dài, giải trí | 1–8 USD | Vừa |
 | YouTube video dài, công nghệ/giáo dục | 4–15 USD | Vừa |
 | YouTube video dài, tài chính/B2B/pháp lý | 10–30+ USD | Vừa |
-| YouTube Shorts | 0,02–1,48 USD theo ngách (AIR, 274 kênh); đa số 0,04–0,10 USD | Vừa |
+| YouTube Shorts | Khoảng dùng để tính: 0,04–0,20 USD. Nguồn: AIR (274 kênh, trung vị cả năm) nêu 0,02–1,48 USD tùy ngách, và theo bản đọc sau thì đa số ngách quanh 0,07–0,20 USD (mình chưa đọc lại được trang AIR để xác nhận); Unilink nêu 0,04–0,10 USD, Argil 0,04–0,08 USD | Vừa |
 | TikTok Creator Rewards (8 nước) | 0,40–1,00 USD (trên lượt xem đủ điều kiện) | Vừa |
 | Facebook Reels | 0,02–0,20 USD (một số nguồn nêu 1–3 USD) | Thấp |
-| YouTube, khán giả Việt Nam | RPM khoảng 0,22 USD, CPM khoảng 1,14 USD (Dynamoi, dữ liệu đến 14/7/2026) | Thấp |
+| YouTube, khán giả Việt Nam | RPM khoảng 0,18–0,22 USD, CPM khoảng 1,14 USD. Dynamoi: RPM 0,22 USD và CPM 1,14 USD ở bản dữ liệu đến 14/7/2026; bản đọc sau nêu RPM 0,18 USD đến 14/10/2026 (mình chưa đọc lại được trang để xác nhận, và chưa có CPM của bản này) | Thấp |
 
 Ghi chú: khán giả Mỹ có giá trị gấp khoảng 3–5 lần khán giả Đông Nam Á (một nguồn). Shorts trả khoảng 3–14% so với video dài trên cùng 1.000 lượt xem (AIR). Ba hàng RPM video dài theo ngách (giải trí, công nghệ/giáo dục, tài chính/B2B/pháp lý) là ước tính của bên thứ ba mà mình chưa gắn được tên nguồn cụ thể cho từng khoảng (xem lưu ý cuối Phụ lục B); đọc chúng như thứ tự độ lớn, không phải số đo.
 
@@ -210,8 +210,8 @@ Ghi chú: khán giả Mỹ có giá trị gấp khoảng 3–5 lần khán giả
 | Nền tảng | Cách tính | Kết quả ước tính |
 |---|---|---|
 | YouTube video dài (giải trí) | 1.000 × 1–8 USD | 1.000–8.000 USD |
-| YouTube video dài, khán giả Việt Nam | 1.000 × 0,22 USD | khoảng 220 USD |
-| YouTube Shorts | 1.000 × 0,04–0,10 USD | 40–100 USD |
+| YouTube video dài, khán giả Việt Nam | 1.000 × 0,18–0,22 USD | khoảng 180–220 USD |
+| YouTube Shorts | 1.000 × 0,04–0,20 USD | 40–200 USD |
 | TikTok Creator Rewards (8 nước) | 1.000.000 lượt **đủ điều kiện** × 0,40–1,00 USD / 1.000 | 400–1.000 USD (chưa tính Additional Reward). TikTok định nghĩa lượt đủ điều kiện bằng các loại trừ, không công bố tỷ lệ so với tổng lượt xem; nếu chỉ một phần số lượt qua được thì kết quả thấp hơn |
 | Facebook Reels | 1.000 × 0,02–0,20 USD | 20–200 USD (trường hợp đặc biệt 1.000–5.000 USD) |
 
@@ -266,7 +266,7 @@ Có hai câu hỏi khác nhau, nên tách ra:
 | | YouTube | TikTok | Facebook |
 |---|---|---|---|
 | Có cấm AI không | Không. "AI là công cụ để thể hiện, không thay thế" (CEO, 1/2026) | Không; cấm AIGC giả mạo nguồn uy tín/sự kiện khủng hoảng, giả mạo người của công chúng trong một số bối cảnh, dùng hình ảnh người dưới 18 hoặc người tư nhân không có phép | Không; Meta chủ trương gắn nhãn và giữ nội dung trừ khi vi phạm chính sách khác |
-| Phải khai báo | **Có**, khi nội dung **chân thực** và tạo/sửa đáng kể bằng AI (người thật nói/làm điều chưa từng; sửa cảnh quay thật; cảnh chân thực chưa từng xảy ra; nhạc là trọng tâm) | **Có**, với mọi AIGC chứa hình ảnh, âm thanh, video **chân thực**; chưa gắn nhãn có thể bị gỡ, hạn chế hoặc TikTok tự gắn nhãn | "AI info" gắn khi phát hiện chỉ báo chuẩn ngành (C2PA/IPTC) hoặc khi người đăng tự khai |
+| Phải khai báo | **Có**, khi nội dung **chân thực** và tạo/sửa đáng kể bằng AI (người thật nói/làm điều chưa từng; sửa cảnh quay thật; cảnh chân thực chưa từng xảy ra; nhạc do AI tạo: danh sách điều kiện của trang ghi "nhạc là trọng tâm của video", nhưng danh sách ví dụ ghi "AI generated music" không kèm điều kiện, nên khai báo cả nhạc nền) | **Có**, với mọi AIGC chứa hình ảnh, âm thanh, video **chân thực**; chưa gắn nhãn có thể bị gỡ, hạn chế hoặc TikTok tự gắn nhãn | "AI info" gắn khi phát hiện chỉ báo chuẩn ngành (C2PA/IPTC) hoặc khi người đăng tự khai |
 | Không phải khai báo | Nội dung **không chân thực**, chỉnh sửa nhỏ; AI cho **dàn ý, kịch bản, thumbnail, tiêu đề, phụ đề; nhân bản giọng của chính mình để lồng tiếng** | (nhãn tập trung vào nội dung chân thực) | — |
 | Tự gắn nhãn | Có: công cụ AI của YouTube, metadata C2PA, hệ thống nội bộ. Nhãn từ C2PA/công cụ YouTube/duyệt thủ công **không gỡ được** | Có: hiệu ứng AI của TikTok, **Content Credentials (C2PA)**. Đã gắn thì **không gỡ được** | Có |
 | Ảnh hưởng phân phối | Nhãn **không** giới hạn khán giả; nhưng YouTube giảm lan truyền **nội dung AI chất lượng thấp, lặp** bằng hệ thống chống spam/clickbait | Nhãn **không** ảnh hưởng phân phối nếu không vi phạm. Có thanh trượt "giảm nội dung AI" trong Manage Topics (thử nghiệm cuối 2025) [Vừa]. FYF loại nội dung dùng lại/chất lượng thấp | Nội dung không gốc bị giảm ưu tiên (xem 2.4); Meta không nêu AI là yếu tố riêng |
@@ -348,7 +348,7 @@ Không có quy định cấm "đăng bằng API" nói chung. Các quy định ch
 *(Đây là suy luận từ các chính sách ở trên, không phải lời khuyên của nền tảng.)*
 
 1. **Giá trị riêng trên từng video**: kịch bản, góc nhìn, dữ liệu, giọng nói mang tính cá nhân. Các ví dụ vi phạm đều là **mẫu lặp** (cùng nhạc, cùng kiểu hình ảnh, cùng khuôn kịch bản). Trên Facebook, người xuất hiện trực tiếp và đưa ra điều mới là yếu tố Meta nêu rõ.
-2. **Khai báo AI đúng chỗ**: dùng `containsSyntheticMedia` (YouTube) và `is_aigc` (TikTok) khi nội dung chân thực; không xóa metadata C2PA, vì nhãn tự động từ C2PA không gỡ được.
+2. **Khai báo AI đúng chỗ**: dùng `containsSyntheticMedia` (YouTube) và `is_aigc` (TikTok) khi nội dung chân thực (kể cả nhạc do AI tạo trên YouTube); không xóa metadata C2PA, vì nhãn tự động từ C2PA không gỡ được.
 3. **Tránh chủ đề nhạy cảm do "chuyên gia AI" trình bày** (sức khỏe, pháp lý, tài chính, chính trị) nếu muốn kiếm tiền trên YouTube.
 4. **Giữ nhịp đăng hợp lý.** YouTube cho phép "vài biến thể" nhưng cấm "làm ngập". Từ 2027, kênh chỉ cần 2 video dài hoặc 5 Shorts mỗi 90 ngày để được coi là hoạt động.
 5. **Chọn đường đăng phù hợp với từng nền tảng:**

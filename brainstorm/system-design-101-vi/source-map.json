@@ -1240,11 +1240,11 @@
         },
         {
           "id": "sd-04-031",
-          "title_vi": null,
+          "title_vi": "PostgreSQL \"nuốt\" cả thế giới cơ sở dữ liệu? Thử phần có sẵn, đếm phần cần cài thêm",
           "title_source": "Is PostgreSQL Eating the Database World?",
           "source_url": "https://bytebytego.com/guides/is-postgresql-eating-the-database-world",
           "source_path": "data/guides/is-postgresql-eating-the-database-world.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "4c19df78eac2ad049765220d2f80d33a009fd1d9",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/is-postgresql-eating-the-database-world.md"
         },

@@ -395,11 +395,14 @@ def folder_problems(slides_dir: pathlib.Path, lesson_id: str) -> list[str]:
         return problems
     finished = record["status"] == "done"
     exported = finished and record["exports"] == "done"
+    # a PPTX exported with the Moda badge, kept while the real exports are pending: under its own name, so that it can
+    # never stand in for <id>.pptx, and `exported` refuses until it is gone
+    preview = f"{lesson_id}-preview.pptx"
     want = {RECORD}
     if exported:
         want |= {f"{lesson_id}.pptx", *(f"{number:02d}.png" for number in range(1, record["slide_count"] + 1))}
-    elif finished and f"{lesson_id}.pptx" in names:
-        want.add(f"{lesson_id}.pptx")  # a PPTX exported with the Moda badge: kept as a preview while the real exports are pending
+    elif finished and preview in names:
+        want.add(preview)
     for name in names:
         if name not in want:
             problems.append(f"{name} is not expected here" + ("" if exported else " (exports are not recorded as done)"))

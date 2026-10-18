@@ -1141,24 +1141,41 @@ class FolderTests(unittest.TestCase):
         (self.dir / "01.png").write_bytes(b"x")
         self.assertTrue(any("01.png is not expected" in problem for problem in self.problems()))
 
-    def test_a_finished_deck_may_keep_a_pptx_while_its_exports_are_pending(self) -> None:
+    def test_a_finished_deck_may_keep_a_preview_pptx_while_its_exports_are_pending(self) -> None:
         self.write()
-        pptx(self.dir / "sd-01-001.pptx")
+        pptx(self.dir / "sd-01-001-preview.pptx")
         self.assertEqual([], self.problems())
         png(self.dir / "01.png")  # the PNG files are only for exports recorded as done
         self.assertEqual(["01.png is not expected here (exports are not recorded as done)"], self.problems())
 
-    def test_a_pptx_kept_while_exports_are_pending_must_be_a_whole_powerpoint_file(self) -> None:
+    def test_a_pptx_under_the_final_name_needs_exports_recorded_as_done(self) -> None:
         self.write()
-        (self.dir / "sd-01-001.pptx").write_bytes(b"not a zip")
-        self.assertEqual(["sd-01-001.pptx is not a PowerPoint file: not a ZIP archive"], self.problems())
+        pptx(self.dir / "sd-01-001.pptx")
+        self.assertEqual(["sd-01-001.pptx is not expected here (exports are not recorded as done)"], self.problems())
 
-    def test_a_claim_that_is_not_finished_holds_no_pptx(self) -> None:
+    def test_a_preview_kept_while_exports_are_pending_must_be_a_whole_powerpoint_file(self) -> None:
+        self.write()
+        (self.dir / "sd-01-001-preview.pptx").write_bytes(b"not a zip")
+        self.assertEqual(["sd-01-001-preview.pptx is not a PowerPoint file: not a ZIP archive"], self.problems())
+
+    def test_a_claim_that_is_not_finished_holds_no_preview(self) -> None:
         (self.dir / "deck.yaml").write_text(slides.render({
             "id": "sd-01-001", "status": "doing", "owner": "claude/a",
             "claimed_at": "2026-10-17T08:00:00Z", "heartbeat_at": "2026-10-17T08:00:00Z"}), encoding="utf-8")
+        pptx(self.dir / "sd-01-001-preview.pptx")
+        self.assertEqual(["sd-01-001-preview.pptx is not expected here (exports are not recorded as done)"],
+                         self.problems())
+
+    def test_a_preview_cannot_stand_in_for_the_final_pptx_and_must_go_when_exports_are_done(self) -> None:
+        self.write(exports="done")
+        pptx(self.dir / "sd-01-001-preview.pptx")
+        for number in range(1, 9):
+            png(self.dir / f"{number:02d}.png")
+        self.assertEqual(["sd-01-001-preview.pptx is not expected here", "sd-01-001.pptx is missing"], self.problems())
         pptx(self.dir / "sd-01-001.pptx")
-        self.assertEqual(["sd-01-001.pptx is not expected here (exports are not recorded as done)"], self.problems())
+        self.assertEqual(["sd-01-001-preview.pptx is not expected here"], self.problems())
+        (self.dir / "sd-01-001-preview.pptx").unlink()
+        self.assertEqual([], self.problems())
 
     def test_complete_exports_pass(self) -> None:
         self.write(exports="done")

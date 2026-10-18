@@ -54,14 +54,18 @@ mutations:
   find: "            problems.append(f\"{name} is not expected here\" + (\"\" if exported else \" (exports are not recorded as done)\"))"
   replace: "            pass"
   test: tests.test_sd101_slides.FolderTests.test_pending_exports_leave_only_the_record
-- label: a claim that is not finished may hold a pptx
-  find: "    elif finished and f\"{lesson_id}.pptx\" in names:"
-  replace: "    elif f\"{lesson_id}.pptx\" in names:"
-  test: tests.test_sd101_slides.FolderTests.test_a_claim_that_is_not_finished_holds_no_pptx
-- label: a pptx kept while exports are pending is not opened
+- label: a claim that is not finished may hold a preview pptx
+  find: "    elif finished and preview in names:"
+  replace: "    elif preview in names:"
+  test: tests.test_sd101_slides.FolderTests.test_a_claim_that_is_not_finished_holds_no_preview
+- label: a preview pptx kept while exports are pending is not opened
   find: "    if want - {RECORD}:"
   replace: "    if exported:"
-  test: tests.test_sd101_slides.FolderTests.test_a_pptx_kept_while_exports_are_pending_must_be_a_whole_powerpoint_file
+  test: tests.test_sd101_slides.FolderTests.test_a_preview_kept_while_exports_are_pending_must_be_a_whole_powerpoint_file
+- label: a preview pptx can be kept under the final name
+  find: "    preview = f\"{lesson_id}-preview.pptx\""
+  replace: "    preview = f\"{lesson_id}.pptx\""
+  test: tests.test_sd101_slides.FolderTests.test_a_pptx_under_the_final_name_needs_exports_recorded_as_done
 - label: a timestamp YAML turned into a datetime is not read back as text
   find: "        if isinstance(data.get(key), datetime.datetime):  # YAML reads"
   replace: "        if False:  # YAML reads"

@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="894" viewBox="0 0 320 894" role="img" aria-labelledby="title desc">
+<title id="title">Bảy việc của PostgreSQL: việc nào có sẵn?</title>
+<desc id="desc">Ba khung dọc, kết quả thử trên một bản cài PostgreSQL 16. Khung một, có sẵn trong bản cài: giao dịch thêm, đọc, sửa, xóa là lõi của PostgreSQL; postgres_fdw đi kèm bản cài, nối một bảng ở cơ sở dữ liệu khác như bảng thường. Khung hai, phân tích chạy được nhưng dữ liệu lưu theo dòng: cộng một cột trên 500.000 dòng đọc cả 7.744 trang, đọc cả bảy cột cũng 7.744 trang. Khung ba, cần tiện ích của bên thứ ba, không có trong bản cài: PostGIS cho dữ liệu bản đồ, TimescaleDB cho chuỗi thời gian, Citus để chia bảng ra nhiều máy, và PipelineDB không ra bản mới sau 1.0.0, chỉ hỗ trợ PostgreSQL 10 và 11.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="894" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Bảy việc của</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">PostgreSQL: việc nào có</text>
+<text x="16" y="82" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">sẵn?</text>
+<rect x="8" y="102" width="304" height="211" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="130.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Có sẵn trong bản cài</text>
+<rect x="20" y="147" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="170" r="11" fill="#16a34a"/>
+<polyline points="37.9,170.4 41.7,174.4 48.5,166" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="173.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Giao dịch thêm, đọc, sửa,</text>
+<text x="64" y="192.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">xóa: lõi của PostgreSQL.</text>
+<rect x="20" y="218" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="241" r="11" fill="#16a34a"/>
+<polyline points="37.9,241.4 41.7,245.4 48.5,237" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="244.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">postgres_fdw đi kèm bản</text>
+<text x="64" y="263.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cài: nối bảng ở cơ sở dữ liệu</text>
+<text x="64" y="283.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khác như bảng thường.</text>
+<rect x="8" y="325" width="304" height="213" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="353.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Phân tích được, nhưng lưu</text>
+<text x="20" y="375.3" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">theo dòng</text>
+<rect x="20" y="392" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="415" r="11" fill="#16a34a"/>
+<polyline points="37.9,415.4 41.7,419.4 48.5,411" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="418.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cộng một cột trên 500.000</text>
+<text x="64" y="437.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dòng: đọc cả 7.744 trang.</text>
+<rect x="20" y="463" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="486" r="11" fill="#16a34a"/>
+<polyline points="37.9,486.4 41.7,490.4 48.5,482" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="489.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đọc cả bảy cột: vẫn 7.744</text>
+<text x="64" y="508.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trang.</text>
+<rect x="8" y="550" width="304" height="336" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="578.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Cần tiện ích bên thứ ba</text>
+<rect x="20" y="595" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="618" r="11" fill="#16a34a"/>
+<polyline points="37.9,618.4 41.7,622.4 48.5,614" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="621.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">PostGIS cho dữ liệu bản đồ.</text>
+<rect x="20" y="649" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="672" r="11" fill="#16a34a"/>
+<polyline points="37.9,672.4 41.7,676.4 48.5,668" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="675.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">TimescaleDB cho chuỗi thời</text>
+<text x="64" y="694.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">gian.</text>
+<rect x="20" y="720" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="743" r="11" fill="#16a34a"/>
+<polyline points="37.9,743.4 41.7,747.4 48.5,739" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="746.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Citus để chia bảng ra nhiều</text>
+<text x="64" y="765.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">máy.</text>
+<rect x="20" y="791" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="814" r="11" fill="#16a34a"/>
+<polyline points="37.9,814.4 41.7,818.4 48.5,810" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="817.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">PipelineDB: không ra bản</text>
+<text x="64" y="836.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mới sau 1.0.0, chỉ hỗ trợ</text>
+<text x="64" y="856.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">PostgreSQL 10 và 11.</text>
+</g>
+</svg>

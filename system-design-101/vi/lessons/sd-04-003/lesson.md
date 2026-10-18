@@ -21,7 +21,7 @@ Tải nhiều phần (multipart upload) cắt tệp thành các phần gửi ri�
 Các phần gửi theo thứ tự nào cũng được; gửi lại một số phần đã có thì phần mới đè lên phần cũ. Hướng dẫn S3 cho phép số phần không liên tiếp, trừ khi lượt tải dùng checksum bổ sung: khi đó số phần phải liên tiếp, không thì lệnh hoàn tất báo lỗi. Đánh số 1, 2, 3… cho mọi lượt tải là cách an toàn.
 Khi hoàn tất, S3 nối các phần theo số phần tăng dần, và các phần riêng lẻ không còn nữa. Hướng dẫn S3 dặn tự ghi lại số phần và ETag thay vì dựa vào lệnh liệt kê phần để lập danh sách hoàn tất.
 
-**Khung 2 · Cỡ phần.** Lệnh hoàn tất bị từ chối với lỗi `EntityTooSmall` nếu một phần không phải phần cuối nhỏ hơn 5 MB.
+**Khung 2 · Cỡ phần.** Lệnh hoàn tất bị từ chối với lỗi `EntityTooSmall` nếu một phần không phải phần cuối quá nhỏ. Tài liệu API ghi mức tối thiểu là "5 MB", còn bảng giới hạn trong hướng dẫn S3 ghi 5 MiB, tức 5.242.880 byte; hãy lấy con số lớn hơn, vì 5 MB hiểu là 5.000.000 byte thì vẫn thiếu.
 Giới hạn 10.000 phần mới là thứ buộc người ta chọn cỡ phần: tệp 100 GiB cắt phần 5 MiB ra 20.480 phần, nên phần phải từ 10,24 MiB trở lên. Hướng dẫn S3 bản 2023 cũng ghi một phần lớn nhất 5 GiB.
 
 **Khung 3 · Hai điều hay quên.** Mục “Giới hạn cần nhớ” nói kỹ hơn.

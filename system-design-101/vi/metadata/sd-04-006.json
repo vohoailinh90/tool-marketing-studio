@@ -97,6 +97,12 @@
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/the-ultimate-kafka-101-you-cannot-miss.md",
       "section": "Body",
       "verified_by": "Source body read."
+    },
+    {
+      "claim_vi": "When the partition count of a topic increases, the default partitioner's hash(key) % number_of_partitions mapping changes, so messages with the same key may go to different partitions after the expansion, affecting ordering for existing keys; Kafka does not redistribute existing data.",
+      "source": "https://github.com/apache/kafka/blob/65566690ca1ddb584388c1026e2ff6673e9c6f19/docs/operations/basic-kafka-operations.md",
+      "section": "Modifying topics: Key Distribution Changes",
+      "verified_by": "Read from a partial clone of apache/kafka at commit 65566690ca1ddb584388c1026e2ff6673e9c6f19."
     }
   ],
   "design_notes_vi": "Bốn bước của một sự kiện, hai nhóm đọc với phân công partition thật từ thử nghiệm, ba điều nên nhớ. Không dùng ảnh nguồn.",

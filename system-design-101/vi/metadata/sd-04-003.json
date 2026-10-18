@@ -80,13 +80,13 @@
       "verified_by": "Read from a clone of awsdocs/amazon-s3-userguide at commit cc53dd6a44d3aa1d654e6d3705a0a7550f20fd2a."
     },
     {
-      "claim_vi": "CompleteMultipartUpload fails with EntityTooSmall when a part other than the last is under 5 MB; one must complete or abort to stop being charged for parts.",
+      "claim_vi": "CompleteMultipartUpload fails with EntityTooSmall when a part other than the last is too small; the API reference states the minimum as 5 MB while the 2023 guide's limits table states 5 MiB (5,242,880 bytes), so the lesson tells readers to use 5 MiB; one must complete or abort to stop being charged for parts.",
       "source": "https://github.com/boto/botocore/blob/4de93abe62cc263980414f7a66be5226bd541b77/botocore/data/s3/2006-03-01/service-2.json",
       "section": "CompleteMultipartUpload, UploadPart, CreateMultipartUpload documentation",
       "verified_by": "Read from a partial clone of boto/botocore at commit 4de93abe62cc263980414f7a66be5226bd541b77."
     },
     {
-      "claim_vi": "The ETag of a multipart object is not an MD5 digest of the object regardless of encryption; it is the MD5 of the concatenated part MD5 digests followed by a dash and the number of parts.",
+      "claim_vi": "The ETag of a multipart object is not an MD5 digest of the object regardless of encryption. For general purpose buckets with plaintext or SSE-S3 objects, the 2023 guide describes it as the MD5 of the concatenated part MD5 digests followed by a dash and the number of parts; directory buckets and SSE-C or SSE-KMS objects are covered by the separate claims below.",
       "source": "https://github.com/awsdocs/amazon-s3-userguide/blob/cc53dd6a44d3aa1d654e6d3705a0a7550f20fd2a/doc_source/checking-object-integrity.md",
       "section": "Using Content-MD5 and the ETag; multipart uploads",
       "verified_by": "Read from a clone of awsdocs/amazon-s3-userguide at commit cc53dd6a44d3aa1d654e6d3705a0a7550f20fd2a."

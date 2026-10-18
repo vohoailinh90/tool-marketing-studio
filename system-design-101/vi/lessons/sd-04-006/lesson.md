@@ -25,7 +25,7 @@ Partition 1 không nhận đơn nào. Mỗi partition có một broker làm lead
 
 **Sự kiện.** Tài liệu Kafka gọi một bản ghi là sự kiện (event, cũng gọi là record hay message): có khóa, giá trị, thời điểm và có thể kèm header.
 
-**Topic và partition.** Sự kiện được xếp vào topic, và mỗi topic chia thành nhiều partition nằm trên các broker khác nhau. Sự kiện cùng khóa được ghi vào cùng partition, và Kafka bảo đảm bên đọc một partition đọc đúng thứ tự đã ghi. Vị trí của sự kiện trong partition là offset.
+**Topic và partition.** Sự kiện được xếp vào topic, và mỗi topic chia thành nhiều partition nằm trên các broker khác nhau. Sự kiện cùng khóa được ghi vào cùng partition, chừng nào số partition của topic không đổi, và Kafka bảo đảm bên đọc một partition đọc đúng thứ tự đã ghi. Vị trí của sự kiện trong partition là offset.
 
 **Bản sao.** Mỗi partition có một leader và các follower; mọi lệnh ghi đi vào leader. Tài liệu Kafka nói hệ số sao chép 3 là thiết lập thường gặp khi chạy thật.
 
@@ -33,7 +33,7 @@ Partition 1 không nhận đơn nào. Mỗi partition có một broker làm lead
 
 ## Giới hạn cần nhớ
 
-- **Thứ tự chỉ có trong một partition.** Muốn các đơn của một khách luôn theo thứ tự thì đặt khóa là mã khách; hai khách khác nhau thì không có thứ tự chung.
+- **Thứ tự chỉ có trong một partition.** Muốn các đơn của một khách luôn theo thứ tự thì đặt khóa là mã khách; hai khách khác nhau thì không có thứ tự chung. Điều kiện đi kèm: không tăng số partition của topic. Tài liệu vận hành của Kafka cảnh báo khi tăng số partition, cách chia theo băm khóa đổi theo, nên tin mới của cùng một khóa có thể sang partition khác và mất thứ tự với tin cũ; Kafka không tự chia lại dữ liệu đã có.
 - **Khóa quyết định độ đều.** Ba khóa chia vào ba partition không bảo đảm mỗi partition một khóa: ở đây hai khóa rơi vào cùng partition 2, partition 1 bỏ không, và thành viên giữ partition 2 phải làm 5 trên 7 đơn.
 - **Thêm thành viên không vượt quá số partition.** Vì mỗi partition chỉ thuộc một thành viên của nhóm, nhóm có nhiều thành viên hơn số partition thì có thành viên ngồi không.
 
@@ -64,6 +64,7 @@ Theo tài liệu cấu hình của librdkafka (thư viện C mà confluent-kafka
 - [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/the-ultimate-kafka-101-you-cannot-miss.md): tám bước làm quen Kafka.
 - [Apache Kafka — Introduction, tại commit cố định](https://github.com/apache/kafka/blob/65566690ca1ddb584388c1026e2ff6673e9c6f19/docs/getting-started/introduction.md): sự kiện có khóa, giá trị, thời điểm và header; topic, partition, cùng khóa cùng partition, thứ tự trong partition; không xóa sau khi đọc; hệ số sao chép 3 thường gặp. Đọc từ bản clone của kho.
 - [librdkafka — CONFIGURATION.md, tại commit cố định](https://github.com/confluentinc/librdkafka/blob/8c03f75a31ca61d08b2cc2ddc5b233b80d14bdad/CONFIGURATION.md): tham số `partitioner`, mặc định `consistent_random` (CRC32 của khóa), `murmur2_random` tương đương producer Java. Đọc từ bản clone của kho.
+- [Apache Kafka — Basic Kafka Operations, tại commit cố định](https://github.com/apache/kafka/blob/65566690ca1ddb584388c1026e2ff6673e9c6f19/docs/operations/basic-kafka-operations.md): tăng số partition làm cùng một khóa có thể sang partition khác, ảnh hưởng thứ tự; dữ liệu cũ không được chia lại.
 - [Apache Kafka — Design, tại commit cố định](https://github.com/apache/kafka/blob/65566690ca1ddb584388c1026e2ff6673e9c6f19/docs/design/design.md): mỗi partition do đúng một thành viên của mỗi nhóm đọc; mỗi partition một leader, mọi lệnh ghi vào leader.
 
 Đã đọc nguồn và chạy thử nghiệm ngày 2026-10-18 trên Kafka 4.4.0 (bản tải từ trang phát hành của Apache, đã so mã SHA-512), ba broker trên một máy, thư viện confluent-kafka 2.16.0.

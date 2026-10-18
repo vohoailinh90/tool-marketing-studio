@@ -37,7 +37,7 @@ Các con số dưới đây đo trên một máy với PostgreSQL 16 và Python 
 
 ## Giới hạn cần nhớ
 
-Phân trang theo khóa nhanh nhưng không nhảy thẳng tới "trang 37" được, và cần một thứ tự ổn định theo cột có chỉ mục. Nén tốn thời gian xử lý và gần như vô ích với phản hồi nhỏ hay dữ liệu đã nén. Log qua hàng đợi có thể mất đúng những dòng cần nhất khi tiến trình sập. Bể kết nối cần giới hạn kích thước, vì mỗi kết nối chiếm tài nguyên ở máy chủ cơ sở dữ liệu. Thử nghiệm chạy trên một máy, không có độ trễ mạng thật, nên khoảng cách thật giữa các con số còn lớn hơn khi cơ sở dữ liệu ở máy khác.
+Phân trang theo khóa nhanh nhưng không nhảy thẳng tới "trang 37" được, và cần một thứ tự ổn định theo cột có chỉ mục. Nén tốn thời gian xử lý (nén cả bảng mất 332 ms trong thử nghiệm), và tài liệu web của Mozilla khuyên không nén lại những tệp đã nén sẵn như ảnh, âm thanh, video. Log qua hàng đợi có thể mất đúng những dòng cần nhất khi tiến trình sập. Bể kết nối cần giới hạn kích thước, vì mỗi kết nối chiếm tài nguyên ở máy chủ cơ sở dữ liệu. Thử nghiệm chạy trên một máy, không có độ trễ mạng thật; khi cơ sở dữ liệu ở máy khác, mỗi lần mở kết nối mới còn tốn thêm các lượt đi về qua mạng.
 
 ## Nhìn hình trả lời
 
@@ -55,7 +55,7 @@ Vì mỗi trang sâu, máy chủ vẫn phải đọc qua mọi dòng bị bỏ q
 
 - Bài nguồn nói phân trang "truyền" kết quả lớn về máy khách; ở đây chỉ bàn phân trang theo trang và theo khóa, vì đó là điều đo được.
 - Thư viện chuẩn của Python mô tả `QueueHandler` trong mục "Dealing with handlers that block" của logging cookbook: dùng khi trình ghi log có thể làm chậm luồng đang xử lý.
-- Thử nghiệm dùng xác thực `trust` cho đơn giản; khi có xác thực bằng mật khẩu và mã hóa TLS, mở kết nối mới còn tốn hơn.
+- Thử nghiệm dùng xác thực `trust` cho đơn giản; khi có xác thực bằng mật khẩu và mã hóa TLS, mở kết nối mới thường còn tốn hơn.
 - Tìm chỗ chậm trước khi sửa: đo thời gian từng bước của một yêu cầu (truy vấn, mở kết nối, ghi log, tuần tự hóa JSON), rồi sửa bước lớn nhất.
 
 </details>
@@ -63,9 +63,9 @@ Vì mỗi trang sâu, máy chủ vẫn phải đọc qua mọi dòng bị bỏ q
 ## Nguồn đối chiếu
 
 - [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-5-common-ways-to-improve-api-performance.md): năm cách tăng tốc API.
-- [PostgreSQL 16 — `queries.sgml`, tại commit cố định của nhánh REL_16_STABLE](https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/queries.sgml): mục `LIMIT` và `OFFSET`, các dòng bị bỏ qua vẫn phải được tính.
+- [PostgreSQL 16 — `queries.sgml`, tại commit cố định của nhánh `REL_16_STABLE`](https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/queries.sgml): mục `LIMIT` và `OFFSET`, các dòng bị bỏ qua vẫn phải được tính.
 - [psycopg — Connection pools, tại commit cố định](https://github.com/psycopg/psycopg/blob/99356800e90aa0e7b604f652d714ef0f33422b47/docs/advanced/pool.rst): thời gian mở kết nối mới, giữ kết nối mở giảm độ trễ.
 - [Python 3.13 — Logging Cookbook, tại commit cố định](https://github.com/python/cpython/blob/24d048d3601c2f1d41fa357897c1c91bb0a0bc13/Doc/howto/logging-cookbook.rst): mục "Dealing with handlers that block", `QueueHandler` và `QueueListener`.
-- [MDN — Compression in HTTP, tại commit cố định](https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/web/http/guides/compression/index.md): nén phản hồi văn bản.
+- [Mozilla — Compression in HTTP, tại commit cố định](https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/web/http/guides/compression/index.md): nén phản hồi văn bản, không nén lại tệp đã nén sẵn.
 
 Thử nghiệm chạy ngày 2026-10-18: PostgreSQL 16.15 (gói Ubuntu) trên cùng máy, psycopg 3.3.6, Python 3.13, gzip mức 6; ghi log mỗi dòng có `fsync` để mô phỏng log được ép xuống đĩa. Bài viết và hình được thiết kế độc lập, không dùng ảnh nguồn.

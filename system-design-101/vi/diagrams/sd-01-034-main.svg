@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="700" viewBox="0 0 320 700" role="img" aria-labelledby="title desc"><title id="title">Chín phương thức HTTP: yêu cầu làm việc gì?</title><desc id="desc">Chín phương thức được nhóm để tra cứu, không phải trình tự xử lý hoặc danh mục đầy đủ. Tên phương thức là từ khóa.</desc><rect width="320" height="700" fill="#f8fafc"/><g font-family="Arial, sans-serif" font-size="16" fill="#0f172a"><text x="16" y="32" font-size="20" font-weight="bold">MUỐN ĐÍCH LÀM VIỆC GÌ?</text>
+<rect x="12" y="55" width="296" height="175" rx="12" fill="#dbeafe"/><text x="22" y="84" font-weight="bold">ĐỌC VÀ HỎI</text>
+<text x="22" y="122">GET · lấy biểu diễn</text>
+<text x="22" y="153">HEAD · không thân phản hồi</text>
+<text x="22" y="184">OPTIONS · hỏi khả năng</text>
+<rect x="12" y="250" width="296" height="175" rx="12" fill="#dcfce7"/><text x="22" y="279" font-weight="bold">GỬI VÀ THAY ĐỔI</text>
+<text x="22" y="317">POST · xử lý theo tài nguyên</text>
+<text x="22" y="348">PUT · tạo / thay trạng thái</text>
+<text x="22" y="379">PATCH · chỉ dẫn thay đổi</text>
+<rect x="12" y="445" width="296" height="175" rx="12" fill="#fef3c7"/><text x="22" y="474" font-weight="bold">GỠ, NỐI VÀ CHẨN ĐOÁN</text>
+<text x="22" y="512">DELETE · gỡ liên kết đích</text>
+<text x="22" y="543">CONNECT · tạo đường hầm</text>
+<text x="22" y="574">TRACE · phản chiếu thông điệp</text>
+<text x="16" y="670">Lặp hiệu ứng ≠ phản hồi giống nhau.</text></g></svg>

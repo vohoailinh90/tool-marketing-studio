@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="740" viewBox="0 0 320 740" role="img" aria-labelledby="title desc"><title id="title">Hợp đồng cho phiếu mượn</title><desc id="desc">Ba câu hỏi thiết kế: yêu cầu có nghĩa gì, ai có quyền trên phiếu, và giới hạn được áp dụng ra sao. Không phải ba bước xử lý bắt buộc.</desc><rect width="320" height="740" fill="#f8fafc"/><g font-family="Arial, sans-serif" font-size="16" fill="#0f172a"><text x="16" y="30" font-size="20" font-weight="bold">Hợp đồng cho phiếu mượn</text><text x="16" y="60">Đường dẫn chỉ là một phần.</text>
+<rect x="12" y="83" width="296" height="180" rx="12" fill="#dbeafe"/><text x="24" y="115" font-size="18" font-weight="bold">Yêu cầu có nghĩa gì?</text>
+<text x="24" y="156">POST /loans → tạo phiếu</text>
+<text x="24" y="188">GET /loans/42 → đọc phiếu</text>
+<text x="24" y="220">Dữ liệu vào · kết quả · lỗi</text>
+<rect x="12" y="283" width="296" height="180" rx="12" fill="#dcfce7"/><text x="24" y="315" font-size="18" font-weight="bold">Ai được làm gì?</text>
+<text x="24" y="356">Người gọi + hành động</text>
+<text x="24" y="388">Kiểm tra quyền trên phiếu 42</text>
+<text x="24" y="420">Biết số phiếu chưa đủ</text>
+<rect x="12" y="483" width="296" height="180" rx="12" fill="#fef3c7"/><text x="24" y="515" font-size="18" font-weight="bold">Dùng tới mức nào?</text>
+<text x="24" y="556">Giới hạn áp dụng cho ai?</text>
+<text x="24" y="588">Vượt thì phản hồi thế nào?</text>
+<text x="24" y="620">Số lượt ≠ chi phí xử lý</text>
+<text x="16" y="716">Ba câu hỏi, không phải đủ mọi lớp.</text></g></svg>

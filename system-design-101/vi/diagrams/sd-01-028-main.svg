@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="660" viewBox="0 0 320 660" role="img" aria-labelledby="title desc"><title id="title">URI, URL và URN: định danh, vị trí và tên</title><desc id="desc">URI là khái niệm chung. Hai ví dụ minh họa URL địa chỉ web và URN tên trong namespace example; không vẽ hai tập loại trừ nhau.</desc><rect width="320" height="660" fill="#f8fafc"/><g font-family="Arial, sans-serif" font-size="16" fill="#0f172a"><text x="16" y="32" font-size="20" font-weight="bold">ĐỊNH DANH MỘT CUỐN SÁCH</text>
+<rect x="12" y="55" width="296" height="160" rx="12" fill="#dbeafe"/><text x="22" y="84" font-weight="bold">URI · định danh chung</text>
+<text x="22" y="118">URL và URN đều là URI.</text>
+<text x="22" y="147">Không chỉ dành cho trang web.</text>
+<rect x="12" y="235" width="296" height="160" rx="12" fill="#dcfce7"/><text x="22" y="264" font-weight="bold">URL · cách truy cập</text>
+<text x="22" y="298">https://shelf.example/books/42</text>
+<text x="22" y="327">Có cơ chế truy cập và vị trí.</text>
+<rect x="12" y="415" width="296" height="160" rx="12" fill="#fef3c7"/><text x="22" y="444" font-weight="bold">URN · tên theo namespace</text>
+<text x="22" y="478">urn:example:book-42</text>
+<text x="22" y="507">example: chỉ để minh họa.</text>
+<text x="22" y="536">Phân giải cần hệ thống phù hợp.</text>
+<text x="16" y="630">Tên và định vị có thể cùng vai.</text></g></svg>

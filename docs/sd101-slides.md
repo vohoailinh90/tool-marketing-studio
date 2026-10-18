@@ -101,8 +101,10 @@ and sources slide last. Everything else differs from deck to deck; `sd-01-001` i
   layers and connection diagram, `timeline` toward timeline, `howto` toward numbered rows.
 - **Signature layout.** The slide for the lesson's first concept takes the kind at position (n mod 12) in the list above,
   counted from 0 in the order the list gives them (n as under *Accent rotation*), or, when the content cannot be shown that
-  way (a one big number slide needs a number the lesson states), the next kind in the list, wrapping round, that it can. So
-  two decks whose n differ mod 12 do not start their concepts the same way, and no earlier deck is a template to copy.
+  way (a one big number slide needs a number the lesson states), the next kind in the list, wrapping round, that it can. Two
+  decks whose n differ mod 12 and that both use their own position start their concepts differently; a fallback can land on
+  the kind another position holds, and nothing here claims otherwise. What the rule guarantees is that a session picks the
+  layout from its own lesson id and never looks at another deck to choose.
 - **Accent rotation.** The four accents are, counted from 0: blue, amber, teal, red. With n the number at the end of the
   lesson id (`sd-01-004` gives 4), the k-th concept of the lesson (k counted from 0) takes the accent numbered (n + k) mod 4.
   A concept keeps its colour on every slide of the deck. Lessons with consecutive ids in one group therefore open with

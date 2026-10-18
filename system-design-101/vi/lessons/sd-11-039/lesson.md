@@ -13,8 +13,8 @@ Bắt đầu bằng bảng yêu cầu: traffic từ internet hay nội bộ, pro
 ## Từ viết tắt
 
 - **AWS** (Amazon Web Services) — dịch vụ điện toán đám mây của Amazon; trên AWS, ALB và NLB là các tên thường gặp.
-- **ALB** (Application Load Balancer) — bộ cân bằng tải tầng ứng dụng của Amazon: hiểu được nội dung yêu cầu web nên chia tải theo đường dẫn hoặc tên miền; ALB là bộ cân bằng tải tầng ứng dụng, hợp với định tuyến theo đường dẫn hoặc tên miền.
-- **NLB** (Network Load Balancer) — bộ cân bằng tải tầng mạng của Amazon: chia các kết nối theo giao thức truyền tải; NLB là bộ cân bằng tải tầng mạng, hợp với phân phối kết nối ở layer 4.
+- **ALB** (Application Load Balancer) — bộ cân bằng tải tầng ứng dụng của Amazon: hiểu được nội dung yêu cầu web nên chia tải theo đường dẫn hoặc tên miền.
+- **NLB** (Network Load Balancer) — bộ cân bằng tải tầng mạng của Amazon: chia các kết nối theo giao thức truyền tải.
 - **API** (Application Programming Interface) — giao diện lập trình ứng dụng: cách để một chương trình yêu cầu dữ liệu hoặc chức năng của chương trình khác; ví dụ trong bài: website có hai nhóm API là /images và /checkout, cần định tuyến theo path.
 - **DB** (DataBase) — cơ sở dữ liệu: nơi lưu dữ liệu có tổ chức để ghi và tìm lại; load balancer không sửa được DB quá tải.
 - **HTTP** (HyperText Transfer Protocol) — giao thức truyền siêu văn bản: quy ước để trình duyệt gửi yêu cầu và máy chủ gửi trả lời; load balancer xử lý HTTP ở layer 7 để định tuyến theo path hoặc host.

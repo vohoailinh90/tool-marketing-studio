@@ -15,7 +15,7 @@ Một môi trường mới cần khởi tạo trước khi chạy. Môi trườn
 ## Từ viết tắt
 
 - **AWS** (Amazon Web Services) — dịch vụ điện toán đám mây của Amazon; bài nói Lambda là dịch vụ chạy hàm của AWS: bạn quản lý mã, quyền và cấu hình, còn AWS quản lý hạ tầng thực thi.
-- **API** (Application Programming Interface) — giao diện lập trình ứng dụng: cách để một chương trình yêu cầu dữ liệu hoặc chức năng của chương trình khác; trong ví dụ của bài, API nhận yêu cầu xử lý ảnh và báo thành công ngay, còn ảnh được tạo sau.
+- **API** (Application Programming Interface) — giao diện lập trình ứng dụng: cách để một chương trình yêu cầu dữ liệu hoặc chức năng của chương trình khác; trong ví dụ của bài, API nhận yêu cầu xử lý ảnh và báo thành công ngay, nhưng điều đó chưa chứng minh ảnh đã được tạo.
 - **IAM** (Identity and Access Management) — quản lý danh tính và quyền truy cập: cho biết ai là ai và được làm gì với tài nguyên; bạn quản lý quyền IAM của hàm, còn AWS lo hạ tầng thực thi.
 - **RAM** (Random Access Memory) — bộ nhớ truy cập ngẫu nhiên: bộ nhớ làm việc của máy, đọc ghi nhanh nhưng mất sạch khi tắt điện; dữ liệu trong RAM hoặc thư mục tạm chỉ là tối ưu phụ; trạng thái nghiệp vụ phải nằm ở nơi lưu bền.
 - **SQS** (Simple Queue Service) — dịch vụ hàng đợi thông điệp của Amazon: nơi bên gửi đặt thông điệp để bên nhận lấy ra xử lý sau; việc lấy dữ liệu từ SQS qua event source mapping là một đường vào khác của hàm.

@@ -13,15 +13,15 @@ Sau ánh xạ, kiểm API, identity, network, Region, quota, SLA và chi phí. V
 ## Từ viết tắt
 
 - **AWS** (Amazon Web Services) — dịch vụ điện toán đám mây của Amazon; bài so sánh AWS, Azure và Google Cloud theo vai trò.
-- **GCP** (Google Cloud Platform) — nền tảng đám mây của Google; GCP là cách gọi nền tảng đám mây của Google trong hình.
+- **GCP** (Google Cloud Platform) — nền tảng đám mây của Google.
 - **VM** (Virtual Machine) — máy ảo: máy tính giả lập chạy bằng phần mềm trên một máy thật; vai trò VM có EC2, Azure Virtual Machines và Compute Engine.
 - **EC** (Elastic Compute) — điện toán co giãn: phần chữ cái đầu của EC2, dịch vụ máy ảo của Amazon (tên đầy đủ Elastic Compute Cloud, hai chữ C thành số 2); EC2 là sản phẩm VM của AWS.
 - **EKS** (Elastic Kubernetes Service) — dịch vụ Kubernetes được quản lý của Amazon: chạy và điều phối container; trong hình, nhóm Kubernetes có EKS.
 - **AKS** (Azure Kubernetes Service) — dịch vụ Kubernetes được quản lý của Azure: chạy và điều phối container, nhà cung cấp lo phần điều khiển cụm; trong hình, nhóm Kubernetes có AKS.
 - **GKE** (Google Kubernetes Engine) — dịch vụ Kubernetes được quản lý của Google: chạy và điều phối container; trong hình, nhóm Kubernetes có GKE.
 - **RDS** (Relational Database Service) — dịch vụ cơ sở dữ liệu quan hệ do Amazon vận hành hộ: nhà cung cấp lo máy chủ và sao lưu; RDS là sản phẩm cơ sở dữ liệu quan hệ của AWS trong hình.
-- **SQL** (Structured Query Language) — ngôn ngữ truy vấn có cấu trúc: ngôn ngữ chuẩn để hỏi và ghi dữ liệu trong cơ sở dữ liệu quan hệ; trong hình, Cloud SQL và Azure SQL Database là cơ sở dữ liệu quan hệ.
-- **DB** (DataBase) — cơ sở dữ liệu: nơi lưu dữ liệu có tổ chức để ghi và tìm lại; trong hình, DB quan hệ trên Azure và AWS cùng GCP khác tên sản phẩm.
+- **SQL** (Structured Query Language) — ngôn ngữ truy vấn có cấu trúc: ngôn ngữ chuẩn để hỏi và ghi dữ liệu trong cơ sở dữ liệu quan hệ; trong hình, SQL có trong tên Cloud SQL và Azure SQL Database.
+- **DB** (DataBase) — cơ sở dữ liệu: nơi lưu dữ liệu có tổ chức để ghi và tìm lại; trong hình, DB quan hệ có tên sản phẩm khác nhau trên AWS, GCP và Azure.
 - **API** (Application Programming Interface) — giao diện lập trình ứng dụng: cách để một chương trình yêu cầu dữ liệu hoặc chức năng của chương trình khác; ánh xạ vai trò xong phải kiểm API, quyền và giới hạn.
 - **IAM** (Identity and Access Management) — quản lý danh tính và quyền truy cập: cho biết ai là ai và được làm gì với tài nguyên; dù dùng chung engine, backup, HA và IAM vẫn khác nhau.
 - **HA** (High Availability) — tính sẵn sàng cao: thiết kế để dịch vụ vẫn chạy khi một phần của hệ thống lỗi; backup, HA và IAM vẫn khác nhau giữa các nhà cung cấp.

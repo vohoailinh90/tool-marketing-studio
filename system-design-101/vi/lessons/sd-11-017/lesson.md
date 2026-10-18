@@ -12,8 +12,8 @@ Cuối cùng cần metrics, log và trace để biết việc nào lỗi ở đ�
 
 ## Từ viết tắt
 
-- **DNS** (Domain Name System) — hệ thống tên miền: "danh bạ" của Internet, đổi tên miền thành địa chỉ mạng để biết tìm dịch vụ ở đâu; DNS giúp tìm địa chỉ của website.
-- **CDN** (Content Delivery Network) — mạng phân phối nội dung: nhiều máy chủ đặt ở nhiều nơi, lưu bản sao nội dung và phát cho người dùng từ máy gần họ; CDN đưa nội dung tới gần người đọc.
+- **DNS** (Domain Name System) — hệ thống tên miền: "danh bạ" của Internet, đổi tên miền thành địa chỉ mạng để biết tìm dịch vụ ở đâu; trong ví dụ một website lưu ảnh, DNS là một trong các vai trò cần có.
+- **CDN** (Content Delivery Network) — mạng phân phối nội dung: nhiều máy chủ đặt ở nhiều nơi, lưu bản sao nội dung và phát cho người dùng từ máy gần họ.
 - **DB** (DataBase) — cơ sở dữ liệu: nơi lưu dữ liệu có tổ chức để ghi và tìm lại; ứng dụng đọc dữ liệu có cấu trúc trong DB, còn file ảnh đặt ở object storage.
 
 ## Nhìn hình thử trả lời

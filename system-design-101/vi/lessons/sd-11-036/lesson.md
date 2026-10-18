@@ -16,7 +16,7 @@ Container chuẩn hóa gói ứng dụng và dependency, còn orchestration qu�
 - **DB** (DataBase) — cơ sở dữ liệu: nơi lưu dữ liệu có tổ chức để ghi và tìm lại; managed DB là một ví dụ về trách nhiệm được chuyển sang nền tảng.
 - **IaaS** (Infrastructure as a Service) — hạ tầng như một dịch vụ: thuê máy, mạng và lưu trữ; đội vẫn tự quản hệ điều hành và ứng dụng; với máy ảo thuê qua IaaS, nhà cung cấp lo hạ tầng vật lý.
 - **OS** (Operating System) — hệ điều hành: phần mềm nền quản lý máy và chạy các chương trình khác; đội vẫn quản lý OS và ứng dụng khi dùng IaaS.
-- **PaaS** (Platform as a Service) — nền tảng như một dịch vụ: nhà cung cấp lo runtime và triển khai, đội chỉ lo ứng dụng; PaaS chuyển thêm việc runtime và triển khai cho nền tảng.
+- **PaaS** (Platform as a Service) — nền tảng như một dịch vụ: nhà cung cấp lo runtime và triển khai, đội chỉ lo ứng dụng.
 
 ## Nhìn hình thử trả lời
 

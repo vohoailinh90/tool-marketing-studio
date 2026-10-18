@@ -14,8 +14,8 @@ Chọn redundancy ở các miền lỗi phù hợp, health check phản ánh rea
 
 - **AZ** (Availability Zone) — vùng sẵn sàng: một cụm trung tâm dữ liệu tách biệt trong cùng một Region, để lỗi ở nơi này ít lan sang nơi khác; ví dụ trong bài: hai server khác AZ cùng dùng một secret sai sau deploy, nên khác AZ chưa cứu được.
 - **DB** (DataBase) — cơ sở dữ liệu: nơi lưu dữ liệu có tổ chức để ghi và tìm lại; nếu cả hai server cùng phụ thuộc một DB không dự phòng, đường đặt hàng vẫn có điểm lỗi đơn.
-- **HA** (High Availability) — tính sẵn sàng cao: thiết kế để dịch vụ vẫn chạy khi một phần của hệ thống lỗi; HA giữ phục vụ trước một số lỗi.
-- **DR** (Disaster Recovery) — khôi phục sau thảm họa: kế hoạch và công cụ đưa hệ thống chạy lại khi cả một vùng gặp sự cố lớn; DR phục hồi sau thảm họa.
+- **HA** (High Availability) — tính sẵn sàng cao: thiết kế để dịch vụ vẫn chạy khi một phần của hệ thống lỗi.
+- **DR** (Disaster Recovery) — khôi phục sau thảm họa: kế hoạch và công cụ đưa hệ thống chạy lại khi cả một vùng gặp sự cố lớn.
 - **EC** (Elastic Compute) — điện toán co giãn: phần chữ cái đầu của EC2, dịch vụ máy ảo của Amazon (tên đầy đủ Elastic Compute Cloud, hai chữ C thành số 2); bài dặn không gán xác suất availability giả định cho EC2.
 - **SLO** (Service Level Objective) — mục tiêu mức dịch vụ: con số cam kết về độ tin cậy, như tỉ lệ yêu cầu thành công trong một khoảng thời gian; trong hình, SLO cùng cửa sổ đo định nghĩa thành công.
 

@@ -14,8 +14,8 @@ Càng duy trì nhiều năng lực dự phòng, chi phí thường càng cao và
 
 - **AZ** (Availability Zone) — vùng sẵn sàng: một cụm trung tâm dữ liệu tách biệt trong cùng một Region, để lỗi ở nơi này ít lan sang nơi khác; bài tách lỗi một máy, lỗi một AZ và lỗi cả vùng, vì mức dự phòng tương ứng khác nhau.
 - **DNS** (Domain Name System) — hệ thống tên miền: "danh bạ" của Internet, đổi tên miền thành địa chỉ mạng để biết tìm dịch vụ ở đâu; lần diễn tập khôi phục gồm dữ liệu, secrets, DNS, cấu hình và kiểm tra nghiệp vụ.
-- **RTO** (Recovery Time Objective) — mục tiêu thời gian khôi phục: được ngừng tối đa bao lâu trước khi chạy lại; bài hỏi hệ thống được ngừng bao lâu.
-- **RPO** (Recovery Point Objective) — mục tiêu điểm khôi phục: được mất tối đa bao nhiêu dữ liệu gần nhất, tính theo thời gian; bài hỏi hệ thống được mất bao nhiêu dữ liệu gần nhất.
+- **RTO** (Recovery Time Objective) — mục tiêu thời gian khôi phục: được ngừng tối đa bao lâu trước khi chạy lại.
+- **RPO** (Recovery Point Objective) — mục tiêu điểm khôi phục: được mất tối đa bao nhiêu dữ liệu gần nhất, tính theo thời gian.
 
 ## Nhìn hình thử trả lời
 

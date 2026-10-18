@@ -14,16 +14,16 @@ Với bán vé, CAP giúp hỏi hành vi khi các vùng không liên lạc; SOLI
 
 ## Từ viết tắt
 
-- **CAP** (Consistency, Availability, Partition) — nhất quán, sẵn sàng, chịu phân vùng: định lý nói khi mạng bị chia cắt, hệ phân tán không giữ được cả nhất quán lẫn sẵn sàng; bài giải thích CAP, BASE, SOLID và KISS nói về điều gì.
-- **BASE** (Basically Available, Soft state, Eventual consistency) — sẵn sàng ở mức cơ bản, trạng thái mềm, nhất quán sau cùng: cách nhìn của nhiều hệ phân tán khi chấp nhận dữ liệu chưa khớp ngay giữa các bản sao; BASE là một cách nhìn khi chấp nhận dữ liệu chưa khớp ngay giữa các bản sao.
-- **SOLID** (Single responsibility, Open-closed, Liskov substitution, Interface segregation, Dependency inversion) — năm nguyên tắc thiết kế hướng đối tượng: một lý do thay đổi cho mỗi thành phần, mở cho mở rộng nhưng đóng với sửa đổi, kiểu con thay được kiểu cha, giao diện nhỏ gọn, phụ thuộc vào trừu tượng; SOLID là tập nguyên tắc thiết kế, không phải một luật.
-- **KISS** (Keep It Simple, Stupid) — giữ cho đơn giản: nguyên tắc nên chọn thiết kế đơn giản nhất đáp ứng được yêu cầu; KISS nhắc chọn thiết kế đơn giản.
+- **CAP** (Consistency, Availability, Partition) — nhất quán, sẵn sàng, chịu phân vùng: định lý nói khi mạng bị chia cắt, hệ phân tán không giữ được cả nhất quán lẫn sẵn sàng; trong bài, chữ C ở đây là linearizability.
+- **BASE** (Basically Available, Soft state, Eventual consistency) — sẵn sàng ở mức cơ bản, trạng thái mềm, nhất quán sau cùng: cách nhìn của nhiều hệ phân tán khi chấp nhận dữ liệu chưa khớp ngay giữa các bản sao.
+- **SOLID** (Single responsibility, Open-closed, Liskov substitution, Interface segregation, Dependency inversion) — năm nguyên tắc thiết kế hướng đối tượng: một lý do thay đổi cho mỗi thành phần, mở cho mở rộng nhưng đóng với sửa đổi, kiểu con thay được kiểu cha, giao diện nhỏ gọn, phụ thuộc vào trừu tượng; bài dùng SOLID để tổ chức mã kiểm tra đặt vé.
+- **KISS** (Keep It Simple, Stupid) — giữ cho đơn giản: nguyên tắc nên chọn thiết kế đơn giản nhất đáp ứng được yêu cầu.
 - **ACID** (Atomicity, Consistency, Isolation, Durability) — bốn tính chất của một giao dịch đáng tin: làm trọn hoặc không làm, giữ dữ liệu hợp lệ, các giao dịch không lẫn vào nhau, đã ghi thì không mất; bài nói NoSQL không có luật rằng mọi hệ đều bỏ ACID.
 - **NoSQL** (Not only SQL) — tên chung cho các cơ sở dữ liệu không theo mô hình bảng quan hệ, như kho tài liệu hay kho khóa–giá trị; nhãn NoSQL không đủ để phân loại cả sản phẩm DB.
 - **SQL** (Structured Query Language) — ngôn ngữ truy vấn có cấu trúc: ngôn ngữ chuẩn để hỏi và ghi dữ liệu trong cơ sở dữ liệu quan hệ; chữ SQL nằm trong tên NoSQL.
 - **DB** (DataBase) — cơ sở dữ liệu: nơi lưu dữ liệu có tổ chức để ghi và tìm lại; đừng phân loại cả sản phẩm DB bằng một nhãn viết tắt.
-- **SRP** (Single Responsibility Principle) — nguyên tắc một trách nhiệm: một thành phần chỉ nên có một lý do để thay đổi; SRP liên quan một lý do thay đổi.
-- **LSP** (Liskov Substitution Principle) — nguyên tắc thay thế Liskov: kiểu con phải dùng được ở nơi kiểu cha mà không phá hợp đồng hành vi; LSP liên quan giữ hợp đồng hành vi khi thay kiểu.
+- **SRP** (Single Responsibility Principle) — nguyên tắc một trách nhiệm: một thành phần chỉ nên có một lý do để thay đổi.
+- **LSP** (Liskov Substitution Principle) — nguyên tắc thay thế Liskov: kiểu con phải dùng được ở nơi kiểu cha mà không phá hợp đồng hành vi.
 - **SLO** (Service Level Objective) — mục tiêu mức dịch vụ: con số cam kết về độ tin cậy, như tỉ lệ yêu cầu thành công trong một khoảng thời gian; bài nói availability trong CAP khác tỷ lệ uptime hay SLO thông thường.
 
 ## Nhìn hình thử trả lời

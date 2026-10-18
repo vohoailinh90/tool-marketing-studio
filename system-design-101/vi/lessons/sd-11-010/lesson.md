@@ -15,7 +15,7 @@ Một số hệ thống dùng leap smear: phân bổ điều chỉnh nhỏ trong
 - **API** (Application Programming Interface) — giao diện lập trình ứng dụng: cách để một chương trình yêu cầu dữ liệu hoặc chức năng của chương trình khác; bài dặn dùng API monotonic cho khoảng thời gian, theo bảo đảm của nền tảng.
 - **UTC** (Coordinated Universal Time) — giờ phối hợp quốc tế: mốc giờ chung không phụ thuộc múi giờ; UTC đôi khi thêm giây nhuận để giữ gần thời gian quay của Trái Đất.
 - **GPS** (Global Positioning System) — hệ thống định vị toàn cầu bằng vệ tinh; giờ GPS là một thang thời gian riêng, không đồng nhất với UTC.
-- **TAI** (Temps Atomique International) — thời gian nguyên tử quốc tế: thang giờ đếm đều theo đồng hồ nguyên tử, không có giây nhuận; TAI là một thang thời gian khác, không có giây nhuận.
+- **TAI** (Temps Atomique International) — thời gian nguyên tử quốc tế: thang giờ đếm đều theo đồng hồ nguyên tử, không có giây nhuận; bài dặn không coi TAI, giờ GPS và UTC là cùng một thang thời gian.
 
 ## Nhìn hình thử trả lời
 

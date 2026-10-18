@@ -13,7 +13,7 @@ Với thao tác tạo, client gửi idempotency key. Server gắn key với nộ
 ## Từ viết tắt
 
 - **API** (Application Programming Interface) — giao diện lập trình ứng dụng: cách để một chương trình yêu cầu dữ liệu hoặc chức năng của chương trình khác; một trong sáu nơi cần xử lý thao tác lặp an toàn: gọi API lặp với cùng một khóa phải dùng kết quả đã ghi.
-- **DB** (DataBase) — cơ sở dữ liệu: nơi lưu dữ liệu có tổ chức để ghi và tìm lại; nơi thứ hai là thao tác ghi vào DB.
+- **DB** (DataBase) — cơ sở dữ liệu: nơi lưu dữ liệu có tổ chức để ghi và tìm lại; một trong sáu nơi đó là thao tác ghi vào DB.
 
 ## Nhìn hình thử trả lời
 

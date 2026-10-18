@@ -13,7 +13,7 @@ Server nên trả mã lỗi và thông điệp có thể hành động, kèm req
 ## Từ viết tắt
 
 - **UI** (User Interface) — giao diện người dùng: phần người dùng nhìn thấy và thao tác; trong hình, UI giữ input của người dùng khi gặp lỗi.
-- **ID** (IDentifier) — mã định danh: chuỗi hoặc số dùng để phân biệt một đối tượng với các đối tượng khác; trong hình, request ID giúp thử lại an toàn.
+- **ID** (IDentifier) — mã định danh: chuỗi hoặc số dùng để phân biệt một đối tượng với các đối tượng khác; server nên trả kèm request ID để tra log.
 
 ## Nhìn hình thử trả lời
 

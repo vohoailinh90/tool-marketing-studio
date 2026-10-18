@@ -12,8 +12,8 @@ Tái sử dụng execution environment có thể giảm phần khởi tạo. Fir
 
 ## Từ viết tắt
 
-- **API** (Application Programming Interface) — giao diện lập trình ứng dụng: cách để một chương trình yêu cầu dữ liệu hoặc chức năng của chương trình khác; bài khuyên xem cả timeout của API và độ trễ DB, không chỉ thời gian handler.
-- **DB** (DataBase) — cơ sở dữ liệu: nơi lưu dữ liệu có tổ chức để ghi và tìm lại; một Lambda đã ấm vẫn chậm nếu hệ thống phía sau quá tải.
+- **API** (Application Programming Interface) — giao diện lập trình ứng dụng: cách để một chương trình yêu cầu dữ liệu hoặc chức năng của chương trình khác; bài khuyên xem cả timeout của API, không chỉ thời gian handler.
+- **DB** (DataBase) — cơ sở dữ liệu: nơi lưu dữ liệu có tổ chức để ghi và tìm lại; bài khuyên đo cả độ trễ DB; một Lambda đã ấm vẫn chậm nếu hệ thống phía sau quá tải.
 - **PC** (Provisioned Concurrency) — đồng thời được cấp sẵn: tính năng của Lambda giữ sẵn một số môi trường thực thi đã khởi tạo; trong hình, PC cùng SnapStart là cách giảm khởi tạo bằng tái dùng môi trường.
 
 ## Nhìn hình thử trả lời

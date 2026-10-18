@@ -15,8 +15,8 @@ Ghi giả định chưa kiểm chứng cùng người chịu trách nhiệm và 
 ## Từ viết tắt
 
 - **LB** (Load Balancer) — bộ cân bằng tải: máy hoặc phần mềm chia lưu lượng cho nhiều bản sao của cùng một dịch vụ; ví dụ trong bài: bản thiết kế có LB, cache và DB nhưng chưa nói cách rollback migration.
-- **DB** (DataBase) — cơ sở dữ liệu: nơi lưu dữ liệu có tổ chức để ghi và tìm lại; một trong mười lăm câu hỏi: khi DB lỗi, thao tác nào còn dùng được?.
-- **UX** (User Experience) — trải nghiệm người dùng: cảm nhận của người dùng khi dùng sản phẩm từ đầu đến cuối; một câu hỏi về UX: nếu hết thời gian chờ, người dùng có biết lịch đã đặt hay chưa?.
+- **DB** (DataBase) — cơ sở dữ liệu: nơi lưu dữ liệu có tổ chức để ghi và tìm lại; một trong mười lăm câu hỏi của bài hỏi khi DB lỗi thì thao tác nào còn dùng được.
+- **UX** (User Experience) — trải nghiệm người dùng: cảm nhận của người dùng khi dùng sản phẩm từ đầu đến cuối; một trong mười lăm câu hỏi của bài hỏi khi hết thời gian chờ thì người dùng có biết lịch đã đặt hay chưa.
 
 ## Nhìn hình thử trả lời
 

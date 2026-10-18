@@ -13,9 +13,9 @@ Mỗi lượt học nên trả lời: dịch vụ giữ gì, ai có quyền gọ
 ## Từ viết tắt
 
 - **AWS** (Amazon Web Services) — dịch vụ điện toán đám mây của Amazon; bài học AWS qua một ứng dụng lưu ảnh nhỏ thay vì học tên hàng trăm dịch vụ.
-- **IAM** (Identity and Access Management) — quản lý danh tính và quyền truy cập: cho biết ai là ai và được làm gì với tài nguyên; bắt đầu với IAM để hiểu danh tính và quyền.
-- **VPC** (Virtual Private Cloud) — đám mây riêng ảo: mạng riêng bạn tự chia trong cloud, gồm các subnet, bảng định tuyến và nhóm bảo mật; VPC để hiểu kết nối.
-- **EC** (Elastic Compute) — điện toán co giãn: phần chữ cái đầu của EC2, dịch vụ máy ảo của Amazon (tên đầy đủ Elastic Compute Cloud, hai chữ C thành số 2); chọn EC2 hoặc Lambda cho compute.
+- **IAM** (Identity and Access Management) — quản lý danh tính và quyền truy cập: cho biết ai là ai và được làm gì với tài nguyên; bài khuyên bắt đầu với IAM, rồi mới tới đường mạng và compute.
+- **VPC** (Virtual Private Cloud) — đám mây riêng ảo: mạng riêng bạn tự chia trong cloud, gồm các subnet, bảng định tuyến và nhóm bảo mật; bài khuyên dùng VPC để hiểu kết nối.
+- **EC** (Elastic Compute) — điện toán co giãn: phần chữ cái đầu của EC2, dịch vụ máy ảo của Amazon (tên đầy đủ Elastic Compute Cloud, hai chữ C thành số 2); bài khuyên chọn EC2 hoặc Lambda cho compute.
 - **RDS** (Relational Database Service) — dịch vụ cơ sở dữ liệu quan hệ do Amazon vận hành hộ: nhà cung cấp lo máy chủ và sao lưu; RDS hoặc DynamoDB giữ metadata theo kiểu truy vấn.
 - **DB** (DataBase) — cơ sở dữ liệu: nơi lưu dữ liệu có tổ chức để ghi và tìm lại; ưu tiên IAM, đường mạng, compute, storage, DB và quan sát phù hợp với ứng dụng.
 - **LB** (Load Balancer) — bộ cân bằng tải: máy hoặc phần mềm chia lưu lượng cho nhiều bản sao của cùng một dịch vụ; trong hình, LB cùng API Gateway nằm ở nhóm dữ liệu và phục vụ.

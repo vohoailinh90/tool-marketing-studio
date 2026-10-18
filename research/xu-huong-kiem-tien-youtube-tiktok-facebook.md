@@ -34,7 +34,7 @@ Nhãn dùng trong bài:
 5. **Facebook Content Monetization hiện chỉ theo lời mời**, Meta không công bố ngưỡng số liệu. [Chính thức]
 6. **Tiền trên 1.000 lượt xem (RPM)** chênh nhau hàng chục lần: YouTube video dài vài USD, Shorts từ vài cent đến khoảng 0,20 USD, TikTok khoảng 0,4–1 USD (chỉ áp dụng ở 8 nước có chương trình), Facebook Reels thường 0,02–0,20 USD. Không nền tảng nào công bố RPM. [Vừa]
 7. **Video tạo bằng AI không bị cấm, và không có nguồn chính thức nào nói video bị trừ điểm chỉ vì dùng AI.** TikTok nói bật nhãn AI không ảnh hưởng phân phối nếu không vi phạm quy định; YouTube nói nhãn AI không giới hạn khán giả hay quyền kiếm tiền. Rủi ro nằm ở nội dung **hàng loạt, lặp, thiếu giá trị riêng**, thiếu khai báo, và AI đóng vai chuyên gia về chủ đề nhạy cảm (không được kiếm tiền trên YouTube). [Chính thức]
-8. **Đăng bằng API không phải tín hiệu xếp hạng được công bố.** Khác biệt thực tế là **cổng truy cập và hạn mức**: TikTok khóa bài ở chế độ riêng tư nếu ứng dụng chưa audit, và **từ chối audit với công cụ chỉ đăng cho tài khoản của chính bạn**; YouTube mặc định 100 lượt upload/ngày/dự án. [Chính thức]
+8. **Đăng bằng API không phải tín hiệu xếp hạng được công bố.** Khác biệt thực tế là **cổng truy cập và hạn mức**: TikTok khóa bài ở chế độ riêng tư nếu ứng dụng chưa audit (chủ tài khoản vẫn có thể đổi từng bài sang công khai bằng tay), và **loại công cụ chỉ đăng cho tài khoản của chính bạn khỏi mục đích sử dụng được chấp nhận để audit**; YouTube mặc định 100 lượt upload/ngày/dự án. [Chính thức]
 9. **Thu nhập lớn thường không đến từ tiền nền tảng trả** mà từ brand deal, affiliate, sản phẩm. [Vừa]
 
 ---
@@ -315,12 +315,13 @@ Không có quy định cấm "đăng bằng API" nói chung. Các quy định ch
 
 **TikTok Content Posting API**
 - **Direct Post (đăng thẳng):** ứng dụng chưa audit **chỉ đăng được ở chế độ riêng tư (SELF_ONLY)**; tối đa **5 người dùng/24 giờ** và các tài khoản đó phải để riêng tư khi đăng. Lỗi `unaudited_client_can_only_post_to_private_accounts`. [Chính thức]
+  - **Cách làm bài công khai sau đó (bằng tay):** Content Sharing Guidelines nêu rằng chủ tài khoản trước hết đổi chế độ tài khoản sang công khai, rồi đổi quyền riêng tư của **từng bài** từ riêng tư sang "Everyone". Cách này tốn công theo số bài, nên chỉ hợp khi đăng ít. [Chính thức]
 - **Mục đích sử dụng được chấp nhận (điều kiện để audit):**
   - API phải "giúp các creator **thật** đăng **nội dung gốc**".
   - **Không chấp nhận:** ứng dụng sao chép nội dung tùy ý từ nền tảng khác sang TikTok.
   - **Không chấp nhận:** "**công cụ tiện ích giúp tải nội dung lên tài khoản mà bạn hoặc nhóm của bạn quản lý**".
   - Ứng dụng không được giới hạn ở bản thử nghiệm, phải dành cho đối tượng rộng, không phải nhóm nội bộ hay dùng riêng.
-  - Do đó **một công cụ tự viết chỉ để đăng cho tài khoản của chính bạn khó vượt audit**, và sẽ giữ ở chế độ riêng tư. [Chính thức]
+  - Do đó **một công cụ tự viết chỉ để đăng cho tài khoản của chính bạn khó vượt audit**, nên bài đăng qua API giữ ở chế độ riêng tư cho tới khi chủ tài khoản tự đổi từng bài sang công khai bằng tay (xem trên). [Chính thức]
 - **Yêu cầu giao diện:** người dùng phải tự chọn chế độ riêng tư (không có giá trị mặc định), đồng ý trước khi gửi video, được sửa tiêu đề; không được thêm watermark/logo/link quảng bá vào nội dung. [Chính thức]
 - **Giới hạn:** khoảng **15 bài/ngày/tài khoản creator** qua Direct Post (dùng chung mọi ứng dụng, mức thực tế khác nhau giữa creator); 6 yêu cầu/phút mỗi token; lỗi `spam_risk_too_many_posts` khi chạm trần. [Chính thức]
 - **Khai báo AI qua API:** tham số `is_aigc`; nếu bật, video gắn nhãn "Creator labeled as AI-generated". [Chính thức]
@@ -353,7 +354,7 @@ Không có quy định cấm "đăng bằng API" nói chung. Các quy định ch
 4. **Giữ nhịp đăng hợp lý.** YouTube cho phép "vài biến thể" nhưng cấm "làm ngập". Từ 2027, kênh chỉ cần 2 video dài hoặc 5 Shorts mỗi 90 ngày để được coi là hoạt động.
 5. **Chọn đường đăng phù hợp với từng nền tảng:**
    - **YouTube:** dùng API của chính bạn được; mặc định 100 upload/ngày; dự án chưa xác minh không bị khóa riêng tư theo trang tham chiếu hiện hành; xin tăng hạn mức bằng audit nếu cần.
-   - **TikTok:** nếu là công cụ cho tài khoản của chính bạn, đừng trông chờ Direct Post công khai. Dùng **Upload (hộp thư)** và bấm đăng thủ công, hoặc dùng **hẹn giờ và tải hàng loạt trên TikTok web** của chính TikTok.
+   - **TikTok:** nếu là công cụ cho tài khoản của chính bạn, Direct Post chưa audit sẽ đăng ở chế độ riêng tư. Tài liệu cho phép chủ tài khoản đổi tài khoản sang công khai rồi đổi từng bài sang "Everyone" bằng tay, nên chỉ hợp khi đăng ít bài. Hai cách khác: **Upload (hộp thư)** rồi bấm đăng thủ công, hoặc **hẹn giờ và tải hàng loạt trên TikTok web** của chính TikTok.
    - **Facebook:** Reels qua API chỉ đăng được lên Page, tối đa 30/24 giờ.
 6. **Không nhân bản nội dung** giữa nhiều tài khoản hoặc đăng video trùng lặp: Meta giảm phân phối bản sao, TikTok không đề xuất nội dung trùng, Meta xử lý mạng lưới nhiều tài khoản.
 7. **Theo dõi công cụ chẩn đoán**: Studio (Viewed vs swiped away), Professional Dashboard và màn hình Support của Facebook.
@@ -389,7 +390,7 @@ Không có quy định cấm "đăng bằng API" nói chung. Các quy định ch
 - Facebook Content Monetization chỉ theo lời mời; phạm vi Creator Fast Track; định nghĩa nội dung gốc của Meta (13/3/2026).
 - Hạn mức `videos.insert`: 100 lượt gọi/ngày, 1 đơn vị/lần; trường `containsSyntheticMedia` và `is_aigc`.
 - Video đăng bằng `videos.insert` từ dự án API chưa xác minh không bị giới hạn ở chế độ riêng tư (trang tham chiếu hiện hành); mục 28/7/2020 là lịch sử.
-- Quy tắc TikTok: ứng dụng chưa audit chỉ đăng riêng tư, và mục đích sử dụng loại trừ công cụ chỉ cho tài khoản của chính bạn.
+- Quy tắc TikTok: ứng dụng chưa audit chỉ đăng riêng tư (chủ tài khoản có thể đổi từng bài sang công khai bằng tay), và mục đích sử dụng loại trừ công cụ chỉ cho tài khoản của chính bạn.
 
 **Còn mở:**
 

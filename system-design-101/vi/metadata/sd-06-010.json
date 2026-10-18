@@ -90,7 +90,8 @@
   ],
   "design_notes_vi": "Một khung định nghĩa và ba khung kết quả, mỗi khung một kiểu truy cập, để thấy không chính sách nào thắng mọi nơi.",
   "source_deviations": [
-    "Source says the best strategy depends on context; the lesson shows that with a simulation and checks two of its conclusions against Redis and memcached documentation."
+    "Source says the best strategy depends on context; the lesson shows that with a simulation and checks two of its conclusions against Redis and memcached documentation.",
+    "The simulation covers six policies (LRU, LFU, MRU, SLRU, plus FIFO and random for comparison); TTL is explained but not simulated, since it does not choose a key when the cache is full."
   ],
   "editorial_note_vi": "Bài mới viết tại repo này (gói L5), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
 }

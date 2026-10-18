@@ -1,7 +1,7 @@
 # Các chính sách đẩy khóa ra khỏi bộ nhớ đệm
 
 **Bộ nhớ đệm đầy thì phải bỏ bớt một khóa để chỗ cho khóa mới. Chính sách đẩy khóa ra (eviction) quyết định bỏ khóa nào, và không có chính sách nào thắng ở mọi kiểu truy cập.**
-Bài này mô phỏng năm chính sách trên ba kiểu truy cập, để thấy mỗi chính sách hợp và hỏng ở đâu.
+Bài này giải thích năm chính sách của bài nguồn, rồi mô phỏng sáu chính sách (LRU, LFU, MRU, SLRU, cùng FIFO và chọn ngẫu nhiên để so sánh) trên ba kiểu truy cập, để thấy mỗi chính sách hợp và hỏng ở đâu. TTL không được mô phỏng vì nó không chọn khóa khi đầy.
 
 ![Bốn khung. Khung một, năm chính sách: TTL bỏ khóa hết hạn bất kể có dùng không; LRU bỏ khóa lâu nhất chưa dùng; LFU bỏ khóa ít được dùng nhất; MRU bỏ khóa vừa dùng xong; SLRU cho khóa mới vào vùng thử, dùng lại mới lên vùng được bảo vệ. Khung hai, mô phỏng truy cập lệch: LFU và SLRU trúng 65,5 phần trăm, LRU 57,9, FIFO và ngẫu nhiên khoảng 52, MRU 12,6. Khung ba, lặp vòng 120 khóa: LRU, LFU, FIFO và SLRU trúng 0, MRU 83, ngẫu nhiên 69. Khung bốn, nhóm khóa nóng lẫn khóa chỉ dùng một lần: LFU và SLRU 70 phần trăm, đúng mức tối đa; LRU 64; MRU gần 1.](../../diagrams/sd-06-010-main.svg)
 

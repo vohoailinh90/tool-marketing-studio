@@ -1,7 +1,7 @@
 {
   "id": "sd-06-010",
   "title": "Đầy rồi, bỏ khóa nào?",
-  "subtitle": "Năm chính sách, thử trên ba kiểu truy cập; bộ đệm chứa 100 khóa.",
+  "subtitle": "Mô phỏng sáu chính sách trên ba kiểu truy cập; bộ đệm chứa 100 khóa.",
   "desc": "Bốn khung. Khung một, năm chính sách: TTL bỏ khóa hết hạn bất kể có dùng không; LRU bỏ khóa lâu nhất chưa dùng; LFU bỏ khóa ít được dùng nhất; MRU bỏ khóa vừa dùng xong; SLRU cho khóa mới vào vùng thử, dùng lại mới lên vùng được bảo vệ. Khung hai, mô phỏng truy cập lệch: LFU và SLRU trúng 65,5 phần trăm, LRU 57,9, FIFO và ngẫu nhiên khoảng 52, MRU 12,6. Khung ba, lặp vòng 120 khóa: LRU, LFU, FIFO và SLRU trúng 0, MRU 83, ngẫu nhiên 69. Khung bốn, nhóm khóa nóng lẫn khóa chỉ dùng một lần: LFU và SLRU 70 phần trăm, đúng mức tối đa; LRU 64; MRU gần 1.",
   "sections": [
     {"kind": "notes", "heading": "Năm chính sách",

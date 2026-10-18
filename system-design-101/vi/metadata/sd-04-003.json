@@ -104,7 +104,7 @@
       "verified_by": "The author ran this Python computation on 2026-10-18 (hashlib); arithmetic from the documented limits."
     },
     {
-      "claim_vi": "Multipart upload: initiate, get uploadID, split the file (1.6 GB in 8 parts of 200 MB), upload parts and receive ETags, complete with uploadID, part numbers and ETags, and the store reassembles the object.",
+      "claim_vi": "The source states: Multipart upload: initiate, get uploadID, split the file (1.6 GB in 8 parts of 200 MB), upload parts and receive ETags, complete with uploadID, part numbers and ETags, and the store reassembles the object. The source also says a part's ETag is essentially the part's MD5; the lesson does not adopt that (see source_deviations).",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-to-upload-a-large-file-to-s3.md",
       "section": "Body",
       "verified_by": "Source body read."

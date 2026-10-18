@@ -91,7 +91,7 @@
       "verified_by": "The author ran and measured this on 2026-10-18; not repeated on other versions."
     },
     {
-      "claim_vi": "Pessimistic locking assumes conflicts and locks before changes; optimistic locking checks for conflicts at commit and rolls back; best practices include short locks, row-level granularity and retry logic.",
+      "claim_vi": "The source states: Pessimistic locking assumes conflicts and locks before changes; optimistic locking checks for conflicts at commit and rolls back; best practices include short locks, row-level granularity and retry logic. The lesson does not adopt the rollback wording: a version-checked UPDATE changes 0 rows and the application must notice it (see source_deviations).",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/pessimistic-vs-optimistic-locking.md",
       "section": "Body",
       "verified_by": "Source body read."

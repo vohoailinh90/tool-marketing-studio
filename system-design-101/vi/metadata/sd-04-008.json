@@ -117,7 +117,7 @@
       "verified_by": "Read from a partial clone of postgres/postgres at REL_16_STABLE commit 8e928803020e5b5694cde58e4851fce64ef9d520; the author ran the experiment and measured the view on 2026-10-18."
     },
     {
-      "claim_vi": "Six data management patterns: cache aside, materialized view, CQRS, event sourcing, index table, sharding.",
+      "claim_vi": "The source states: Six data management patterns: cache aside, materialized view, CQRS, event sourcing, index table, sharding.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-we-manage-data.md",
       "section": "Body",
       "verified_by": "Source body read."

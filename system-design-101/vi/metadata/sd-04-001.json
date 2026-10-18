@@ -100,7 +100,7 @@
       "verified_by": "The author ran and measured this on 2026-10-18 (pg_basebackup -R, streaming replication, two clusters on one machine); not repeated on other hardware."
     },
     {
-      "claim_vi": "Read replica pattern: writes go to the primary and reads to replicas; replication lag can hide a just-written order; mitigations are routing latency-sensitive or read-after-write reads to the primary, or checking whether the replica has caught up.",
+      "claim_vi": "The source states: Read replica pattern: writes go to the primary and reads to replicas; replication lag can hide a just-written order; mitigations are routing latency-sensitive or read-after-write reads to the primary, or checking whether the replica has caught up.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/read-replica-pattern.md",
       "section": "Body",
       "verified_by": "Source body read."

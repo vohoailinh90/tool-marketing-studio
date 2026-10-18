@@ -88,7 +88,7 @@
       "verified_by": "The author ran this Python computation on 2026-10-18 with seeded random data; zlib stands in for InfluxDB's type-specific encoders."
     },
     {
-      "claim_vi": "A TSDB looks like a relational table to users, but the weather table is stored in 4 TSMs in the format [Measurement, Tag, Field Name], which allows fast aggregation by time and tags; typical uses include market data, server metrics, APM, network and sensor data.",
+      "claim_vi": "The source states that a TSDB looks like a relational table to users but the weather table is stored in 4 TSMs in the format [Measurement, Tag, Field Name], allowing fast aggregation by time and tags, and lists market data, server metrics, APM, network and sensor data as uses. The lesson does not adopt the 4 TSMs wording: per the InfluxDB docs these are 4 series, and a TSM file holds many series (see source_deviations).",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/time-series-db-tsdb-in-20-lines.md",
       "section": "Body",
       "verified_by": "Source body read."

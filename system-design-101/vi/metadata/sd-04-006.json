@@ -93,7 +93,7 @@
       "verified_by": "The author ran and measured this on 2026-10-18; the Kafka 4.4.0 archive was checked against its published SHA-512."
     },
     {
-      "claim_vi": "Kafka 101 in eight steps: what Kafka is, messages, topics and partitions, advantages, producer, consumer, cluster and use cases.",
+      "claim_vi": "The source states: Kafka 101 in eight steps: what Kafka is, messages, topics and partitions, advantages, producer, consumer, cluster and use cases.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/the-ultimate-kafka-101-you-cannot-miss.md",
       "section": "Body",
       "verified_by": "Source body read."

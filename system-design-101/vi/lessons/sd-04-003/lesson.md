@@ -9,7 +9,7 @@ Tải nhiều phần (multipart upload) cắt tệp thành các phần gửi ri�
 
 - **ID** (IDentifier) — mã định danh: ở đây là upload ID, mã của một lượt tải nhiều phần mà mọi lệnh gửi phần, hoàn tất hay hủy đều phải mang theo.
 - **ETag** (Entity Tag) — thẻ thực thể: mã kho trả về sau mỗi phần (và sau cả đối tượng) để nhận diện đúng nội dung đã nhận.
-- **MD** (Message Digest) — tóm lược thông điệp: MD5 là một hàm băm cho ra chuỗi 128 bit từ dữ liệu bất kỳ; S3 dùng nó để tính ETag và kiểm dữ liệu không bị hỏng trên đường truyền.
+- **MD** (Message Digest) — tóm lược thông điệp: MD5 là một hàm băm cho ra chuỗi 128 bit từ dữ liệu bất kỳ. Ở bucket thường của S3, nó là ETag của đối tượng tải một lần không mã hóa hoặc mã hóa bằng `SSE-S3`, và là giá trị `Content-MD5` dùng để kiểm dữ liệu trên đường truyền; với đối tượng tải nhiều phần, mã hóa kiểu khác hay directory bucket thì không (xem các phần dưới).
 - **API** (Application Programming Interface) — giao diện lập trình ứng dụng: tập lệnh mà chương trình gọi để làm việc với S3, như lệnh bắt đầu, gửi phần và hoàn tất.
 - **MB** (MegaByte) — megabyte: đơn vị dung lượng cỡ một triệu byte; tài liệu API của S3 ghi giới hạn cỡ phần bằng đơn vị này.
 - **MiB** (Mebibyte) — mebibyte: đơn vị dung lượng bằng 1.048.576 byte (2 mũ 20).

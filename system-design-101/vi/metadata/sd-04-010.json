@@ -88,7 +88,7 @@
       "verified_by": "The author ran and measured these on 2026-10-18 on one machine."
     },
     {
-      "claim_vi": "Four queue types: simple FIFO, circular queue (ring buffer, with LMAX's low-latency ring buffer as an example), priority queue (heap), deque (supports FIFO and LIFO).",
+      "claim_vi": "The source states: Four queue types: simple FIFO, circular queue (ring buffer, with LMAX's low-latency ring buffer as an example), priority queue (heap), deque (supports FIFO and LIFO).",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/explaining-the-4-most-commonly-used-types-of-queues-in-a-single-diagram.md",
       "section": "Body",
       "verified_by": "Source body read."

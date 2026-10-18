@@ -92,7 +92,7 @@
       "verified_by": "The author ran and measured this on 2026-10-18."
     },
     {
-      "claim_vi": "Avro stores the schema with the data blocks in object container files, so exported files can be read and migrated to another store; the source says Avro dynamically generates schemas based on the columns and compares it with gRPC and Thrift.",
+      "claim_vi": "The source states: Avro stores the schema with the data blocks in object container files, so exported files can be read and migrated to another store; the source says Avro dynamically generates schemas based on the columns and compares it with gRPC and Thrift. The lesson does not adopt the schema-generation wording (see source_deviations).",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/smooth-data-migration-with-avro.md",
       "section": "Body",
       "verified_by": "Source body read."

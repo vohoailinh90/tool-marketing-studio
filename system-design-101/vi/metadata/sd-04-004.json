@@ -105,7 +105,7 @@
       "verified_by": "The author ran and measured this on 2026-10-18 with redis-py; one machine, persistence off."
     },
     {
-      "claim_vi": "Eight criteria for choosing a message queue: speed, scalability, reliability, durability, ease of use, ecosystem, integration, protocol support.",
+      "claim_vi": "The source states: Eight criteria for choosing a message queue: speed, scalability, reliability, durability, ease of use, ecosystem, integration, protocol support.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/types-of-message-queue.md",
       "section": "Body",
       "verified_by": "Source body read."

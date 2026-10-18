@@ -88,7 +88,7 @@
       "verified_by": "The author ran and measured this on 2026-10-18; not repeated on other systems."
     },
     {
-      "claim_vi": "Four isolation levels (Serializable, Repeatable Read, Read Committed, Read Uncommitted); isolation is guaranteed by MVCC, which the source names Multi-Version Consistency Control, and locks; an MVCC example with transaction_id and roll_pointer.",
+      "claim_vi": "The source states: Four isolation levels (Serializable, Repeatable Read, Read Committed, Read Uncommitted); isolation is guaranteed by MVCC, which the source names Multi-Version Consistency Control, and locks; an MVCC example with transaction_id and roll_pointer.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-are-database-isolation-levels.md",
       "section": "Body",
       "verified_by": "Source body read."

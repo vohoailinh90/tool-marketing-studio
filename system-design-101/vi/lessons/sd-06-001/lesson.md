@@ -1,7 +1,7 @@
 # ELK Stack: thu thập, xử lý, lưu và xem log
 
-**ELK là bốn sản phẩm ghép thành một đường ống cho log: một bên đọc log ở máy nguồn, một bên làm sạch, một bên lưu để tìm, một bên vẽ ra màn hình.**
-Tên gọi chỉ có ba chữ cái vì Beats, bên thu thập, ra đời sau. Hiểu mỗi chặng làm gì thì cũng biết chặng nào bỏ được và chặng nào nên thêm.
+**ELK là tên ghép của ba sản phẩm: Logstash làm sạch log, Elasticsearch lưu để tìm, Kibana vẽ ra màn hình. Thêm Beats, bên đọc log ngay ở máy nguồn, là đủ một đường ống cho log; README của Logstash gọi cả bốn là Elastic Stack.**
+Beats ra đời sau nên không có trong cái tên ELK. Hiểu mỗi chặng làm gì thì cũng biết chặng nào bỏ được và chặng nào nên thêm.
 
 ![Ba khung. Khung một, bốn bước: Beats thu thập log ngay trên máy nguồn; Logstash gom, tách trường và làm sạch; Elasticsearch đánh chỉ mục và lưu; Kibana cho tìm kiếm, vẽ biểu đồ và dashboard. Khung hai, khi lượng log lớn: Beats ghi vào Kafka, Kafka giữ log theo thời hạn hoặc dung lượng, Logstash tự kéo về theo sức của mình. Khung ba, nhớ gì: Beats có thể gửi thẳng tới Elasticsearch; mỗi chặng thêm vào là một hệ thống nữa phải vận hành; tìm được log nhanh không có nghĩa là đã biết vì sao lỗi.](../../diagrams/sd-06-001-main.svg)
 

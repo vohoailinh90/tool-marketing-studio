@@ -82,6 +82,12 @@
       "verified_by": "Read from a clone of redis/redis at tag 7.0.15 (commit f35f36a265403c07b119830aa4bb3b7d71653ec9)."
     },
     {
+      "claim_vi": "In Redis 7.0.15, flushAppendOnlyFile returns without writing while an everysec background fsync is in progress (for up to two seconds, then writes anyway), and beforeSleep then still sends pending replies; the buffered record is written in a later event-loop iteration. Under always, a write barrier keeps the reply until after the fsync.",
+      "source": "https://github.com/redis/redis/blob/f35f36a265403c07b119830aa4bb3b7d71653ec9/src/aof.c",
+      "section": "flushAppendOnlyFile; src/server.c beforeSleep; src/networking.c installClientWriteHandler",
+      "verified_by": "Read from a clone of redis/redis at tag 7.0.15 (commit f35f36a265403c07b119830aa4bb3b7d71653ec9)."
+    },
+    {
       "claim_vi": "With auto AOF rewrite off and 40 overwrites of 5 MiB values 50 ms apart (three runs per setting): AOF off, SET median about 6 ms and another client's PING p99 under 0.6 ms with no latency events; always, SET 34-36 ms, PING p99 29-32 ms, aof-write up to 31-69 ms and aof-fsync-always 9-19 ms; everysec, SET 27-34 ms, PING p99 22-29 ms, aof-write up to 29-60 ms; no, SET 28-31 ms, PING p99 22-26 ms, aof-write up to 30-46 ms. With one write every 0.5 s, aof-write still reached 28-31 ms in all three modes. A 5 MiB GET took about 3.5 ms.",
       "source": "https://github.com/redis/docs/blob/3b030c7ef066c0bb7f88ddec02c784e49783b0f8/content/operate/oss_and_stack/management/optimization/latency.md",
       "section": "Experiment",
@@ -110,7 +116,8 @@
   "source_deviations": [
     "Source says big keys have no impact on the main thread in EverySec and No modes; Redis's latency documentation and the lesson's measurement both show the write(2) on the main thread still blocks it.",
     "The lesson adds a measurement on Redis 7.0.15 and a way for the reader to repeat it.",
-    "The figure shows the reply waiting for fsync only under always; under everysec and no the reply does not wait for the disk, and other clients wait on the main-thread write."
+    "The figure shows the reply waiting for fsync only under always; under everysec and no the reply does not wait for the disk, and other clients wait on the main-thread write.",
+    "The figure and text add the everysec branch: while a background fsync is running the write is postponed up to 2 s, the reply goes out first and the late write blocks whichever clients are served then (Redis 7.0.15 source)."
   ],
   "editorial_note_vi": "Bài mới viết tại repo này (gói L5), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
 }

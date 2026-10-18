@@ -1,79 +1,87 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1234" viewBox="0 0 320 1234" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1366" viewBox="0 0 320 1366" role="img" aria-labelledby="title desc">
 <title id="title">Khóa lớn và AOF của Redis: ai phải chờ?</title>
-<desc id="desc">Ba khung. Khung một, ba bước của một lệnh ghi khi bật AOF: Redis đổi dữ liệu trong bộ nhớ; luồng chính gọi write để chép bản ghi vào bộ đệm của hệ điều hành, client khác chờ bước này; rồi trả lời, ở always thì luồng chính fsync xuống đĩa xong mới trả lời, ở everysec và no thì trả lời luôn, fsync do luồng nền mỗi giây hoặc do hệ điều hành. Khung hai, ba chế độ: always an toàn và chậm nhất; everysec là mặc định, có thể mất khoảng một giây dữ liệu; no để hệ điều hành quyết. Khung ba, đo với giá trị 5 MiB trên một máy ảo: tắt AOF, lệnh ghi mất khoảng 6 mili giây; bật AOF ở cả ba chế độ, riêng bước write trên luồng chính mất hàng chục mili giây; chỉ always có thêm fsync; client khác chờ theo.</desc>
+<desc id="desc">Ba khung. Khung một, đường thường của một lệnh ghi khi bật AOF: đổi dữ liệu trong bộ nhớ; luồng chính gọi write chép bản ghi vào bộ đệm hệ điều hành, client khác chờ bước này; rồi trả lời, always fsync xong mới trả lời, everysec và no trả lời luôn. Khung hai, ba chế độ: always an toàn, chậm nhất; everysec mặc định, có thể mất khoảng một giây dữ liệu, và khi luồng nền còn fsync thì hoãn write tới 2 giây, trả lời trước, lần write muộn chặn các client lúc đó; no để hệ điều hành quyết. Khung ba, đo với giá trị 5 MiB trên một máy ảo: tắt AOF, lệnh ghi khoảng 6 mili giây; bật AOF ở cả ba chế độ, bước write trên luồng chính mất hàng chục mili giây; chỉ always thêm fsync; client khác chờ theo.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="1234" fill="#f8fafc"/>
+<rect width="320" height="1366" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Khóa lớn và AOF của</text>
 <text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Redis: ai phải chờ?</text>
 <text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Khung một là đường đi của một lệnh</text>
 <text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">ghi; khung hai và ba là số đo.</text>
-<rect x="8" y="123" width="304" height="402" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
-<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Một lệnh ghi khi bật AOF</text>
-<rect x="20" y="168" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
-<circle cx="46" cy="194" r="14" fill="#1d4ed8"/>
-<text x="46" y="199.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
-<text x="70" y="194.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Đổi dữ liệu</text>
-<text x="70" y="218.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cập nhật giá trị trong bộ</text>
-<text x="70" y="237.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhớ.</text>
-<rect x="20" y="277" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
-<circle cx="46" cy="303" r="14" fill="#1d4ed8"/>
-<text x="46" y="308.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
-<text x="70" y="303.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">write</text>
-<text x="70" y="327.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Luồng chính chép bản ghi</text>
-<text x="70" y="346.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">vào bộ đệm hệ điều hành.</text>
-<text x="70" y="366.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Client khác chờ bước này.</text>
-<polyline points="46,257 46,275" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
-<rect x="20" y="406" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
-<circle cx="46" cy="432" r="14" fill="#1d4ed8"/>
-<text x="46" y="437.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
-<text x="70" y="432.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Trả lời</text>
-<text x="70" y="456.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">always: fsync xong mới trả</text>
-<text x="70" y="475.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lời. everysec, no: trả lời</text>
-<text x="70" y="495.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">luôn, không chờ đĩa.</text>
-<polyline points="46,386 46,404" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
-<rect x="8" y="537" width="304" height="282" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
-<text x="20" y="565.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Ba chế độ fsync</text>
-<rect x="20" y="582" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
-<circle cx="43" cy="605" r="11" fill="#16a34a"/>
-<polyline points="37.9,605.4 41.7,609.4 48.5,601" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="608.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">always: an toàn nhất, chậm</text>
-<text x="64" y="627.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhất.</text>
-<rect x="20" y="653" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
-<circle cx="43" cy="676" r="11" fill="#16a34a"/>
-<polyline points="37.9,676.4 41.7,680.4 48.5,672" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="679.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">everysec: mặc định; có thể</text>
-<text x="64" y="698.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mất khoảng một giây dữ</text>
-<text x="64" y="718.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">liệu.</text>
-<rect x="20" y="744" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
-<circle cx="43" cy="767" r="11" fill="#16a34a"/>
-<polyline points="37.9,767.4 41.7,771.4 48.5,763" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="770.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">no: hệ điều hành quyết khi</text>
-<text x="64" y="789.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nào ghi xuống đĩa.</text>
-<rect x="8" y="831" width="304" height="395" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
-<text x="20" y="859.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Đo trên một máy ảo, giá trị</text>
-<text x="20" y="881.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">5 MiB</text>
-<rect x="20" y="898" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
-<circle cx="43" cy="921" r="11" fill="#16a34a"/>
-<polyline points="37.9,921.4 41.7,925.4 48.5,917" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="924.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tắt AOF: một lệnh ghi mất</text>
-<text x="64" y="943.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khoảng 6 mili giây.</text>
-<rect x="20" y="969" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
-<circle cx="43" cy="992" r="11" fill="#16a34a"/>
-<polyline points="37.9,992.4 41.7,996.4 48.5,988" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="995.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bật AOF, cả ba chế độ: riêng</text>
-<text x="64" y="1014.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bước write trên luồng chính</text>
-<text x="64" y="1034.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mất hàng chục mili giây.</text>
-<rect x="20" y="1060" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
-<circle cx="43" cy="1083" r="11" fill="#16a34a"/>
-<polyline points="37.9,1083.4 41.7,1087.4 48.5,1079" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="1086.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chỉ always có thêm fsync</text>
-<text x="64" y="1105.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trên luồng chính.</text>
-<rect x="20" y="1131" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
-<circle cx="43" cy="1154" r="11" fill="#16a34a"/>
-<polyline points="37.9,1154.4 41.7,1158.4 48.5,1150" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="1157.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Client khác chờ theo: chế độ</text>
-<text x="64" y="1176.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">fsync không cứu được khóa</text>
-<text x="64" y="1196.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lớn.</text>
+<rect x="8" y="123" width="304" height="424" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Một lệnh ghi khi bật AOF,</text>
+<text x="20" y="173.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">đường thường</text>
+<rect x="20" y="190" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="216" r="14" fill="#1d4ed8"/>
+<text x="46" y="221.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="216.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Đổi dữ liệu</text>
+<text x="70" y="240.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cập nhật giá trị trong bộ</text>
+<text x="70" y="259.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhớ.</text>
+<rect x="20" y="299" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="325" r="14" fill="#1d4ed8"/>
+<text x="46" y="330.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="325.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">write</text>
+<text x="70" y="349.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Luồng chính chép bản ghi</text>
+<text x="70" y="368.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">vào bộ đệm hệ điều hành.</text>
+<text x="70" y="388.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Client khác chờ bước này.</text>
+<polyline points="46,279 46,297" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="428" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="454" r="14" fill="#1d4ed8"/>
+<text x="46" y="459.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="454.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Trả lời</text>
+<text x="70" y="478.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">always: fsync xong mới trả</text>
+<text x="70" y="497.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lời. everysec, no: trả lời</text>
+<text x="70" y="517.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">luôn, không chờ đĩa.</text>
+<polyline points="46,408 46,426" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="559" width="304" height="392" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="587.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Ba chế độ fsync</text>
+<rect x="20" y="604" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="627" r="11" fill="#16a34a"/>
+<polyline points="37.9,627.4 41.7,631.4 48.5,623" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="630.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">always: an toàn nhất, chậm</text>
+<text x="64" y="649.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhất.</text>
+<rect x="20" y="675" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="698" r="11" fill="#16a34a"/>
+<polyline points="37.9,698.4 41.7,702.4 48.5,694" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="701.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">everysec: mặc định; có thể</text>
+<text x="64" y="720.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mất khoảng một giây dữ</text>
+<text x="64" y="740.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">liệu.</text>
+<rect x="20" y="766" width="280" height="102" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="789" r="11" fill="#16a34a"/>
+<polyline points="37.9,789.4 41.7,793.4 48.5,785" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="792.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">everysec, khi luồng nền còn</text>
+<text x="64" y="811.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">fsync: hoãn write tới 2 giây,</text>
+<text x="64" y="831.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trả lời trước; lần write muộn</text>
+<text x="64" y="850.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chặn các client lúc đó.</text>
+<rect x="20" y="876" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="899" r="11" fill="#16a34a"/>
+<polyline points="37.9,899.4 41.7,903.4 48.5,895" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="902.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">no: hệ điều hành quyết khi</text>
+<text x="64" y="921.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nào ghi xuống đĩa.</text>
+<rect x="8" y="963" width="304" height="395" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="991.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Đo trên một máy ảo, giá trị</text>
+<text x="20" y="1013.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">5 MiB</text>
+<rect x="20" y="1030" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1053" r="11" fill="#16a34a"/>
+<polyline points="37.9,1053.4 41.7,1057.4 48.5,1049" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1056.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tắt AOF: một lệnh ghi mất</text>
+<text x="64" y="1075.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khoảng 6 mili giây.</text>
+<rect x="20" y="1101" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1124" r="11" fill="#16a34a"/>
+<polyline points="37.9,1124.4 41.7,1128.4 48.5,1120" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1127.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bật AOF, cả ba chế độ: riêng</text>
+<text x="64" y="1146.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bước write trên luồng chính</text>
+<text x="64" y="1166.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mất hàng chục mili giây.</text>
+<rect x="20" y="1192" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1215" r="11" fill="#16a34a"/>
+<polyline points="37.9,1215.4 41.7,1219.4 48.5,1211" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1218.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chỉ always có thêm fsync</text>
+<text x="64" y="1237.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trên luồng chính.</text>
+<rect x="20" y="1263" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1286" r="11" fill="#16a34a"/>
+<polyline points="37.9,1286.4 41.7,1290.4 48.5,1282" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1289.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Client khác chờ theo: chế độ</text>
+<text x="64" y="1308.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">fsync không cứu được khóa</text>
+<text x="64" y="1328.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lớn.</text>
 </g>
 </svg>

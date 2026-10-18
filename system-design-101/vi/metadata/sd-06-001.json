@@ -76,7 +76,7 @@
       "verified_by": "Read from a local clone of elastic/beats at commit 02d90c89c682160e7a336f121e0a54be480f438c, the head of its default branch when read on 2026-10-18 (a later change to that branch does not alter this URL)."
     },
     {
-      "claim_vi": "Logstash is a server-side data processing pipeline that ingests data from many sources simultaneously, transforms it and sends it to a stash, usually Elasticsearch.",
+      "claim_vi": "Logstash is part of the Elastic Stack along with Beats, Elasticsearch and Kibana; it is a server-side data processing pipeline that ingests data from many sources simultaneously, transforms it and sends it to a stash, usually Elasticsearch.",
       "source": "https://github.com/elastic/logstash/blob/39a297ed817a6618cc1144a8307f6622a7f369c9/README.md",
       "section": "Introduction",
       "verified_by": "Read from a local clone of elastic/logstash at commit 39a297ed817a6618cc1144a8307f6622a7f369c9, the head of its default branch when read on 2026-10-18 (a later change to that branch does not alter this URL)."
@@ -123,6 +123,7 @@
   ],
   "design_notes_vi": "Ba khung: bốn bước theo thứ tự dữ liệu đi, một khung riêng cho Kafka làm vùng đệm, và ba điều cần nhớ. Bỏ con số và lời khen về giá. Không dùng ảnh nguồn.",
   "source_deviations": [
+    "ELK names three products (Elasticsearch, Logstash, Kibana); the lead adds Beats as the later shipper and names the four together Elastic Stack, as the Logstash README does.",
     "Source draws Beats to Logstash as fixed; the lesson adds, from the Beats README, that Beats can send directly to Elasticsearch and Logstash is optional.",
     "Source says Kafka decouples producers and consumers; the lesson explains why from Kafka's design document (pull model, retention).",
     "Kafka retains records whether or not they were read, but with the default auto-commit and in-memory queue an abnormal Logstash termination makes the restarted consumer skip the in-flight records (still in Kafka until retention, recoverable only by rewinding the offset); the persistent queue (off by default) reduces that (Kafka design doc, Logstash docs).",

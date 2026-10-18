@@ -322,6 +322,10 @@ files and the exports. Several sessions build decks at once and `claims.jsonl` k
 - **When done**: `finish <id> --canvas <cvs_...> --url <editor link> --slides <n> --publish` and commit the rest of the lesson's
   `slides/` folder. `--publish` pushes the finished record and checks the claim again afterwards; if the record reaches the
   remote any other way (a plain `git push`), run `verify` afterwards: it checks finished decks too.
+- **Variety.** The decks share the brand (fonts, neutrals, footer, size, 8 to 10 slides) but not their layouts:
+  `docs/sd101-slides.md` (*Variety between decks*) sets the layout kinds, the signature layout, the accent rotation and the
+  layout table. A deck
+  that repeats the sample's layouts slide for slide is not finished.
 - **The Moda watermark stays.** The free plan puts a `moda.app` badge on exported PNG and PPTX files and has no switch for
   it; never remove it from a file. A deck is finished with `exports: pending`, and its files are added (`exported <id>`)
   only once Moda exports them without the badge. The one exception, decided by the owner on 2026-10-18: a PPTX exported

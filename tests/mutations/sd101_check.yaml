@@ -2269,7 +2269,3 @@ mutations:
   find: "    \"INCR\",  # a Redis command, set in capitals in a figure label where a code span is not possible\n"
   replace: ""
   test: tests.test_sd101_check.AbbreviationRuleTests.test_words_that_only_look_like_abbreviations_need_no_entry
-- label: Roman numerals are read as abbreviations
-  find: "    \"IV\", \"VIII\", \"IX\", \"XII\",  # Roman numerals: the factors of the Twelve-Factor App are numbered I to XII\n"
-  replace: ""
-  test: tests.test_sd101_check.AbbreviationRuleTests.test_words_that_only_look_like_abbreviations_need_no_entry

@@ -2228,8 +2228,8 @@ class AbbreviationRuleTests(StoreCase):
         self.assertEqual([], self.problems())  # KEY and NAME are the words key and name, not abbreviations
         self.lesson("Redis INCR cấp mã tăng dần.", glossary=None)  # a command name in a figure label cannot be a code span
         self.assertEqual([], self.problems())
-        self.lesson("Các yếu tố I–IV, V–VIII và IX–XII của Twelve-Factor App.", glossary=None)  # Roman numerals
-        self.assertEqual([], self.problems())
+        self.lesson("Mã IV đi kèm khóa và điểm trao đổi IX.", glossary=None)  # Roman-numeral lookalikes stay abbreviations
+        self.assertProblem("uses the abbreviation(s) IV, IX")
 
     def test_a_skipped_code_span_is_a_word_boundary(self) -> None:
         for text, expected in (("A`code`PI", {"PI"}), ("API`/users`TLS", {"API", "TLS"}), ("`GET`API", {"API"})):

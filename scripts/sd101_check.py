@@ -267,7 +267,6 @@ NOT_ACRONYMS = frozenset({
     "VS",  # versus: an ordinary word set in capitals
     "KEY", "NAME",  # ordinary words set in capitals inside a full form: DNS KEY, Canonical NAME
     "INCR",  # a Redis command, set in capitals in a figure label where a code span is not possible
-    "IV", "VIII", "IX", "XII",  # Roman numerals: the factors of the Twelve-Factor App are numbered I to XII
 })
 
 

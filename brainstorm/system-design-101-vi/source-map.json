@@ -1300,11 +1300,11 @@
         },
         {
           "id": "sd-04-037",
-          "title_vi": null,
+          "title_vi": "Từ hàng đợi tới nhật ký: IBM MQ, RabbitMQ, Kafka, Pulsar khác nhau ở chỗ tin có còn sau khi đọc",
           "title_source": "IBM MQ -> RabbitMQ -> Kafka -> Pulsar: Message Queue Evolution",
           "source_url": "https://bytebytego.com/guides/how-do-message-queue-architectures-evolve",
           "source_path": "data/guides/how-do-message-queue-architectures-evolve.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "3f029406f5ab35fbcfe1711dd2b96973cc1afdf7",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-message-queue-architectures-evolve.md"
         },

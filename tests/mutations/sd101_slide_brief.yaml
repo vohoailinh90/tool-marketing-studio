@@ -54,8 +54,8 @@ mutations:
   replace: '        opens = bold'
   test: tests.test_sd101_slide_brief.StructureTests.test_a_bold_line_inside_a_numbered_card_is_a_line_of_that_card_not_a_new_concept
 - label: only the first link of a source bullet is listed
-  find: 'labels = [clean(label) for label in LINK.findall(raw)]'
-  replace: 'labels = [clean(label) for label in LINK.findall(raw)[:1]]'
+  find: 'for label in (clean(label) for label in LINK.findall(raw)) if label]'
+  replace: 'for label in (clean(label) for label in LINK.findall(raw)[:1]) if label]'
   test: tests.test_sd101_slide_brief.StructureTests.test_every_link_of_a_source_bullet_is_a_source_not_only_the_first
 - label: any bold line right after a heading is read as its wrapped continuation
   find: '    return size == last_size and abs(x - last_x) < 1 and 0 < y - last_y <= size * 2'

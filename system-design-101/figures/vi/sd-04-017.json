@@ -1,0 +1,26 @@
+{
+  "id": "sd-04-017",
+  "lang": "vi",
+  "title": "Khối, tệp và đối tượng",
+  "subtitle": "Ba cách cho chương trình dùng chỗ lưu trữ, khác nhau ở thứ chương trình nhìn thấy.",
+  "desc": "Ba khung. Khung một là ba thẻ: lưu trữ khối là một dãy khối đánh số, máy chủ đọc ghi khối 2066 mà không biết đó là tệp gì; lưu trữ tệp ghép tên và thư mục với các khối, tệp /docs/note.txt là inode 13 nằm ở khối 2066; lưu trữ đối tượng là không gian phẳng, khóa photos/2017/a.jpg chỉ là một cái tên, thư mục chỉ là tiền tố, đọc ghi qua API. Khung hai là bốn bước thử: tạo một đĩa ảo 64 MiB định dạng ext4 với khối 4 KiB; ghi tệp /docs/note.txt dài 28 byte; hệ tệp cho biết tệp là inode 13, dữ liệu ở khối 2066; đọc thẳng khối 2066 ra đúng nội dung mà không cần tên. Khung ba: Ceph cho cả ba giao diện trên cùng một cụm: thiết bị khối, hệ tệp và kho đối tượng tương thích S3.",
+  "sections": [
+    {"kind": "parts", "heading": "Chương trình nhìn thấy gì",
+     "items": [
+       {"name": "Lưu trữ khối", "role": "Dãy khối đánh số: đọc ghi khối 2066 mà không biết đó là tệp gì.", "icon": "hard-drive"},
+       {"name": "Lưu trữ tệp", "role": "Tên, thư mục ghép với khối: /docs/note.txt là inode 13, ở khối 2066.", "icon": "folder"},
+       {"name": "Lưu trữ đối tượng", "role": "Không gian phẳng: photos/2017/a.jpg chỉ là khóa, thư mục là tiền tố.", "icon": "cloud"}],
+     "flow": []},
+    {"kind": "steps", "heading": "Thử: một tệp nằm ở khối nào",
+     "items": [
+       {"title": "Tạo đĩa ảo", "text": "Một tệp 64 MiB định dạng ext4, khối 4 KiB."},
+       {"title": "Ghi một tệp", "text": "/docs/note.txt, dài 28 byte."},
+       {"title": "Hỏi hệ tệp", "text": "Tệp là inode 13, dữ liệu ở khối 2066."},
+       {"title": "Đọc thẳng khối", "text": "Khối 2066 cho đúng nội dung, không cần tên."}]},
+    {"kind": "notes", "heading": "Một cụm Ceph, ba giao diện",
+     "items": [
+       "Thiết bị khối: chia khối ra khắp cụm, có ảnh chụp và bản nhân.",
+       "Hệ tệp: gắn vào máy bằng lệnh mount.",
+       "Kho đối tượng: giao diện tương thích S3."]}
+  ]
+}

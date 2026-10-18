@@ -88,6 +88,12 @@
       "verified_by": "Experiment run by the author on 2026-10-18 on one KVM virtual machine (4 vCPU): redis-cli against Redis 7.0.15 (Ubuntu package)."
     },
     {
+      "claim_vi": "Redis 7.0.15 started without a config file reports maxmemory 0 (no limit, the default on 64-bit systems per the eviction doc) and maxmemory-policy noeviction, so it evicts nothing until both a limit and a policy are set.",
+      "source": "https://github.com/redis/docs/blob/3b030c7ef066c0bb7f88ddec02c784e49783b0f8/content/develop/reference/eviction/index.md",
+      "section": "Using the maxmemory configuration directive",
+      "verified_by": "Read from a local clone of redis/docs at commit 3b030c7ef066c0bb7f88ddec02c784e49783b0f8, the head of its default branch when read on 2026-10-18 (a later change to that branch does not alter this URL). CONFIG GET maxmemory and maxmemory-policy run by the author on 2026-10-18."
+    },
+    {
       "claim_vi": "Redis data structures suit counting clicks and comments (hash), sorting and deduplicating users (zset), behaviour history (zset, hash) and large boolean data in small space (bitmap).",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/memcached-vs-redis.md",
       "section": "Whole guide",

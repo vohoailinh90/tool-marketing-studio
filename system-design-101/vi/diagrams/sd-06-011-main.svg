@@ -1,63 +1,67 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="320" height="972" viewBox="0 0 320 972" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1047" viewBox="0 0 320 1047" role="img" aria-labelledby="title desc">
 <title id="title">Memcached và Redis, thử cạnh nhau</title>
-<desc id="desc">Ba khung. Khung một, giống nhau: cả hai giữ dữ liệu trong bộ nhớ và đọc ghi theo khóa; đầy thì đẩy khóa cũ ra. Khung hai, khác nhau đã thử: memcached chỉ lưu chuỗi, Redis có thêm hash, list, set, sorted set và bitmap; giá trị 2 MiB bị memcached từ chối vì mặc định tối đa 1 MiB, Redis nhận; khởi động lại thì memcached mất hết, Redis đọc lại ảnh chụp đã lưu, trong thử nghiệm là sau lệnh lưu chạy trước đó; memcached chạy 4 luồng xử lý, Redis xử lý lệnh trên một luồng chính. Khung ba, bitmap của Redis: một triệu người dùng mỗi người một bit, đánh dấu 300 nghìn người đăng nhập, chiếm 125 nghìn byte.</desc>
+<desc id="desc">Ba khung. Giống nhau: cả hai giữ dữ liệu trong bộ nhớ và đọc ghi theo khóa; cả hai có thể đẩy khóa cũ ra khi đầy, memcached làm sẵn còn Redis phải đặt giới hạn và chính sách. Khác nhau đã thử: memcached chỉ lưu chuỗi, Redis có thêm hash, list, set, sorted set và bitmap; giá trị 2 MiB bị memcached từ chối vì mặc định tối đa 1 MiB, Redis nhận; khởi động lại thì memcached mất hết, Redis đọc lại ảnh chụp đã lưu, trong thử nghiệm là sau lệnh lưu chạy trước đó; memcached chạy 4 luồng xử lý, Redis xử lý lệnh trên một luồng chính. Bitmap của Redis: một triệu người dùng mỗi người một bit và 300 nghìn người đăng nhập: dữ liệu 125 nghìn byte, Redis báo dùng khoảng 164 nghìn byte.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="972" fill="#f8fafc"/>
+<rect width="320" height="1047" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Memcached và Redis,</text>
 <text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">thử cạnh nhau</text>
 <text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">memcached 1.6.24 và Redis 7.0.15,</text>
 <text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">cấu hình mặc định.</text>
-<rect x="8" y="123" width="304" height="174" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="8" y="123" width="304" height="230" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
 <text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Giống nhau</text>
 <rect x="20" y="168" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
 <circle cx="43" cy="191" r="11" fill="#16a34a"/>
 <polyline points="37.9,191.4 41.7,195.4 48.5,187" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
 <text x="64" y="194.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Giữ dữ liệu trong bộ nhớ, đọc</text>
 <text x="64" y="213.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">ghi theo khóa.</text>
-<rect x="20" y="239" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<rect x="20" y="239" width="280" height="102" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
 <circle cx="43" cy="262" r="11" fill="#16a34a"/>
 <polyline points="37.9,262.4 41.7,266.4 48.5,258" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="265.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đầy thì đẩy khóa cũ ra.</text>
-<rect x="8" y="309" width="304" height="432" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
-<text x="20" y="337.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Khác nhau, đã thử</text>
-<rect x="20" y="354" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
-<circle cx="43" cy="377" r="11" fill="#16a34a"/>
-<polyline points="37.9,377.4 41.7,381.4 48.5,373" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="380.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">memcached chỉ lưu chuỗi;</text>
-<text x="64" y="399.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Redis có thêm hash, list, set,</text>
-<text x="64" y="419.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">sorted set, bitmap.</text>
-<rect x="20" y="445" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
-<circle cx="43" cy="468" r="11" fill="#16a34a"/>
-<polyline points="37.9,468.4 41.7,472.4 48.5,464" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="471.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Giá trị 2 MiB: memcached từ</text>
-<text x="64" y="490.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chối (mặc định tối đa 1 MiB);</text>
-<text x="64" y="510.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Redis nhận.</text>
-<rect x="20" y="536" width="280" height="102" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
-<circle cx="43" cy="559" r="11" fill="#16a34a"/>
-<polyline points="37.9,559.4 41.7,563.4 48.5,555" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="562.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Khởi động lại: memcached</text>
-<text x="64" y="581.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mất hết; Redis đọc lại ảnh</text>
-<text x="64" y="601.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chụp đã lưu (thử: lưu ảnh</text>
-<text x="64" y="620.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trước).</text>
-<rect x="20" y="646" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
-<circle cx="43" cy="669" r="11" fill="#16a34a"/>
-<polyline points="37.9,669.4 41.7,673.4 48.5,665" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="672.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">memcached chạy 4 luồng xử</text>
-<text x="64" y="691.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lý; Redis xử lý lệnh trên một</text>
-<text x="64" y="711.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">luồng chính.</text>
-<rect x="8" y="753" width="304" height="211" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
-<text x="20" y="781.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Bitmap của Redis</text>
-<rect x="20" y="798" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
-<circle cx="43" cy="821" r="11" fill="#16a34a"/>
-<polyline points="37.9,821.4 41.7,825.4 48.5,817" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="824.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Một triệu người dùng, mỗi</text>
-<text x="64" y="843.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">người một bit.</text>
-<rect x="20" y="869" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
-<circle cx="43" cy="892" r="11" fill="#16a34a"/>
-<polyline points="37.9,892.4 41.7,896.4 48.5,888" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="895.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đánh dấu 300 nghìn người</text>
-<text x="64" y="914.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đăng nhập: chiếm 125 nghìn</text>
-<text x="64" y="934.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">byte.</text>
+<text x="64" y="265.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Có thể đẩy khóa cũ ra khi</text>
+<text x="64" y="284.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đầy: memcached làm sẵn,</text>
+<text x="64" y="304.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Redis phải đặt giới hạn và</text>
+<text x="64" y="323.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chính sách.</text>
+<rect x="8" y="365" width="304" height="432" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="393.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Khác nhau, đã thử</text>
+<rect x="20" y="410" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="433" r="11" fill="#16a34a"/>
+<polyline points="37.9,433.4 41.7,437.4 48.5,429" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="436.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">memcached chỉ lưu chuỗi;</text>
+<text x="64" y="455.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Redis có thêm hash, list, set,</text>
+<text x="64" y="475.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">sorted set, bitmap.</text>
+<rect x="20" y="501" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="524" r="11" fill="#16a34a"/>
+<polyline points="37.9,524.4 41.7,528.4 48.5,520" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="527.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Giá trị 2 MiB: memcached từ</text>
+<text x="64" y="546.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chối (mặc định tối đa 1 MiB);</text>
+<text x="64" y="566.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Redis nhận.</text>
+<rect x="20" y="592" width="280" height="102" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="615" r="11" fill="#16a34a"/>
+<polyline points="37.9,615.4 41.7,619.4 48.5,611" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="618.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Khởi động lại: memcached</text>
+<text x="64" y="637.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mất hết; Redis đọc lại ảnh</text>
+<text x="64" y="657.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chụp đã lưu (thử: lưu ảnh</text>
+<text x="64" y="676.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trước).</text>
+<rect x="20" y="702" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="725" r="11" fill="#16a34a"/>
+<polyline points="37.9,725.4 41.7,729.4 48.5,721" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="728.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">memcached chạy 4 luồng xử</text>
+<text x="64" y="747.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lý; Redis xử lý lệnh trên một</text>
+<text x="64" y="767.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">luồng chính.</text>
+<rect x="8" y="809" width="304" height="230" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="837.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Bitmap của Redis</text>
+<rect x="20" y="854" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="877" r="11" fill="#16a34a"/>
+<polyline points="37.9,877.4 41.7,881.4 48.5,873" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="880.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Một triệu người dùng, mỗi</text>
+<text x="64" y="899.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">người một bit.</text>
+<rect x="20" y="925" width="280" height="102" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="948" r="11" fill="#16a34a"/>
+<polyline points="37.9,948.4 41.7,952.4 48.5,944" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="951.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đánh dấu 300 nghìn người</text>
+<text x="64" y="970.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đăng nhập: 125 nghìn byte</text>
+<text x="64" y="990.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dữ liệu; Redis báo dùng</text>
+<text x="64" y="1009.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khoảng 164 nghìn byte.</text>
 </g>
 </svg>

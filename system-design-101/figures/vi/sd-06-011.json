@@ -2,14 +2,14 @@
   "id": "sd-06-011",
   "title": "Memcached và Redis, thử cạnh nhau",
   "subtitle": "memcached 1.6.24 và Redis 7.0.15, cấu hình mặc định.",
-  "desc": "Ba khung. Khung một, giống nhau: cả hai giữ dữ liệu trong bộ nhớ và đọc ghi theo khóa; đầy thì đẩy khóa cũ ra. Khung hai, khác nhau đã thử: memcached chỉ lưu chuỗi, Redis có thêm hash, list, set, sorted set và bitmap; giá trị 2 MiB bị memcached từ chối vì mặc định tối đa 1 MiB, Redis nhận; khởi động lại thì memcached mất hết, Redis đọc lại ảnh chụp đã lưu, trong thử nghiệm là sau lệnh lưu chạy trước đó; memcached chạy 4 luồng xử lý, Redis xử lý lệnh trên một luồng chính. Khung ba, bitmap của Redis: một triệu người dùng mỗi người một bit, đánh dấu 300 nghìn người đăng nhập, chiếm 125 nghìn byte.",
+  "desc": "Ba khung. Giống nhau: cả hai giữ dữ liệu trong bộ nhớ và đọc ghi theo khóa; cả hai có thể đẩy khóa cũ ra khi đầy, memcached làm sẵn còn Redis phải đặt giới hạn và chính sách. Khác nhau đã thử: memcached chỉ lưu chuỗi, Redis có thêm hash, list, set, sorted set và bitmap; giá trị 2 MiB bị memcached từ chối vì mặc định tối đa 1 MiB, Redis nhận; khởi động lại thì memcached mất hết, Redis đọc lại ảnh chụp đã lưu, trong thử nghiệm là sau lệnh lưu chạy trước đó; memcached chạy 4 luồng xử lý, Redis xử lý lệnh trên một luồng chính. Bitmap của Redis: một triệu người dùng mỗi người một bit và 300 nghìn người đăng nhập: dữ liệu 125 nghìn byte, Redis báo dùng khoảng 164 nghìn byte.",
   "sections": [
     {
       "kind": "notes",
       "heading": "Giống nhau",
       "items": [
         "Giữ dữ liệu trong bộ nhớ, đọc ghi theo khóa.",
-        "Đầy thì đẩy khóa cũ ra."
+        "Có thể đẩy khóa cũ ra khi đầy: memcached làm sẵn, Redis phải đặt giới hạn và chính sách."
       ]
     },
     {
@@ -27,7 +27,7 @@
       "heading": "Bitmap của Redis",
       "items": [
         "Một triệu người dùng, mỗi người một bit.",
-        "Đánh dấu 300 nghìn người đăng nhập: chiếm 125 nghìn byte."
+        "Đánh dấu 300 nghìn người đăng nhập: 125 nghìn byte dữ liệu; Redis báo dùng khoảng 164 nghìn byte."
       ]
     }
   ]

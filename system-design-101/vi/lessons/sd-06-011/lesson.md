@@ -3,7 +3,7 @@
 **Cả memcached và Redis đều giữ dữ liệu trong bộ nhớ và đọc ghi theo khóa. Khác biệt nằm ở chỗ memcached chỉ là bộ nhớ đệm khóa và chuỗi, còn Redis là máy chủ cấu trúc dữ liệu có thể lưu xuống đĩa.**
 README của Redis tự mô tả nó như "một memcached phức tạp hơn", với thao tác trên list, set và các cấu trúc có thứ tự thay vì chỉ đặt và lấy. Bài này chạy hai phần mềm cạnh nhau để thấy khác biệt đó cụ thể.
 
-![Ba khung. Khung một, giống nhau: cả hai giữ dữ liệu trong bộ nhớ và đọc ghi theo khóa; đầy thì đẩy khóa cũ ra. Khung hai, khác nhau đã thử: memcached chỉ lưu chuỗi, Redis có thêm hash, list, set, sorted set và bitmap; giá trị 2 MiB bị memcached từ chối vì mặc định tối đa 1 MiB, Redis nhận; khởi động lại thì memcached mất hết, Redis đọc lại ảnh chụp đã lưu, trong thử nghiệm là sau lệnh lưu chạy trước đó; memcached chạy 4 luồng xử lý, Redis xử lý lệnh trên một luồng chính. Khung ba, bitmap của Redis: một triệu người dùng mỗi người một bit, đánh dấu 300 nghìn người đăng nhập, chiếm 125 nghìn byte.](../../diagrams/sd-06-011-main.svg)
+![Ba khung. Giống nhau: cả hai giữ dữ liệu trong bộ nhớ và đọc ghi theo khóa; cả hai có thể đẩy khóa cũ ra khi đầy, memcached làm sẵn còn Redis phải đặt giới hạn và chính sách. Khác nhau đã thử: memcached chỉ lưu chuỗi, Redis có thêm hash, list, set, sorted set và bitmap; giá trị 2 MiB bị memcached từ chối vì mặc định tối đa 1 MiB, Redis nhận; khởi động lại thì memcached mất hết, Redis đọc lại ảnh chụp đã lưu, trong thử nghiệm là sau lệnh lưu chạy trước đó; memcached chạy 4 luồng xử lý, Redis xử lý lệnh trên một luồng chính. Bitmap của Redis: một triệu người dùng mỗi người một bit và 300 nghìn người đăng nhập: dữ liệu 125 nghìn byte, Redis báo dùng khoảng 164 nghìn byte.](../../diagrams/sd-06-011-main.svg)
 
 ## Từ viết tắt
 
@@ -24,7 +24,7 @@ Ngày 2026-10-18, trên một máy, với memcached 1.6.24 và Redis 7.0.15, c�
 | Khởi động lại máy chủ (Redis: chạy `SAVE` trước) | khóa mất hết | đọc lại tệp RDB vừa lưu, khóa còn |
 | Số luồng xử lý | 4 (mặc định của `-t`) | một luồng chính xử lý lệnh |
 
-**Cả hai đều đẩy khóa ra khi đầy.** Cho memcached giới hạn 2 MB rồi ghi 5.000 giá trị 1.000 byte: cả 5.000 lần ghi đều thành công, 3.230 khóa cũ bị đẩy ra, còn lại 1.770. Bật cờ `-M` (tắt đẩy ra): chỉ 1.770 lần ghi thành công, 3.230 lần còn lại báo `SERVER_ERROR out of memory storing object`. Redis có lựa chọn tương tự qua `maxmemory-policy`.
+**Đẩy khóa ra khi đầy: memcached làm sẵn, Redis phải cấu hình.** Cho memcached giới hạn 2 MB rồi ghi 5.000 giá trị 1.000 byte: cả 5.000 lần ghi đều thành công, 3.230 khóa cũ bị đẩy ra, còn lại 1.770. Bật cờ `-M` (tắt đẩy ra): chỉ 1.770 lần ghi thành công, 3.230 lần còn lại báo `SERVER_ERROR out of memory storing object`. Redis 7.0.15 khởi động không kèm tệp cấu hình thì `CONFIG GET maxmemory` trả 0 (không giới hạn, mặc định của hệ 64 bit theo tài liệu eviction) và `maxmemory-policy` là `noeviction`: nó không tự đẩy khóa nào ra. Muốn Redis làm như một bộ nhớ đệm, phải đặt cả `maxmemory` lẫn một chính sách như `allkeys-lru`.
 
 **Bitmap: một bit cho mỗi người dùng.** Bài nguồn gợi ý dùng bitmap của Redis để lưu trạng thái có hoặc không của rất nhiều người. Thử với 1 triệu mã người dùng, đánh dấu ngẫu nhiên 300.000 người đăng nhập bằng `SETBIT`: `BITCOUNT` trả 300.000, chuỗi dài 125.000 byte (1 triệu bit chia 8), và `MEMORY USAGE` báo 163.912 byte kể cả phần quản lý của Redis. memcached không có thao tác trên từng bit.
 

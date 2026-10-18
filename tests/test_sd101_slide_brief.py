@@ -220,6 +220,19 @@ class StructureTests(unittest.TestCase):
         self.assertEqual(["1 · Thẻ thứ nhất", "2 · Thẻ hai", "3 · Thẻ ba"], [c["label"] for c in concepts])
         self.assertEqual("Dòng một dòng hai Chọn theo dữ liệu", concepts[0]["line"]["text"])
 
+    def test_a_term_meaning_over_the_word_budget_is_flagged_like_any_other_line(self):
+        long_meaning = " ".join(["từ"] * 12)
+        text = lesson_text(figure_section(3)).replace(
+            "- **IP** (Internet Protocol) — giao thức Internet: quy ước đánh địa chỉ.",
+            f"- **IP** (Internet Protocol) — {long_meaning}.")
+        result, _ = self.build(text)
+        terms = {slide["role"]: slide["material"] for slide in result.slides}["terms and sources"]["terms"]
+        self.assertEqual([False, True], [term["over_budget"] for term in terms])
+        self.assertEqual(12, terms[1]["words"])
+        markdown = brief.render(result)
+        self.assertIn("IP = " + long_meaning + ".  [12 words: cut to 10 or fewer]", markdown)
+        self.assertNotIn("NAT = dịch địa chỉ mạng  [", markdown)
+
     def test_italic_marks_go_but_a_sum_with_stars_stays(self):
         self.assertEqual("dùng load balancer và 2 * 3 * 4", brief.clean("dùng *load balancer* và 2 * 3 * 4"))
         self.assertEqual("đậm và nghiêng", brief.clean("**đậm** và *nghiêng*"))

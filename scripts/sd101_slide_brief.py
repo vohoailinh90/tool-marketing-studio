@@ -323,8 +323,10 @@ def terms(text: str | None) -> list[dict]:
         match = TERM.match(raw.strip())
         if match:
             meaning = clean(match.group(3))
+            short = re.split(r"[:;]", meaning, maxsplit=1)[0].strip()
             result.append({"abbreviation": clean(match.group(1)), "spelled_out": clean(match.group(2)),
-                           "short_meaning": re.split(r"[:;]", meaning, maxsplit=1)[0].strip(), "meaning": meaning})
+                           "short_meaning": short, "words": len(short.split()), "over_budget": len(short.split()) > WORD_BUDGET,
+                           "meaning": meaning})
     return result
 
 
@@ -512,8 +514,9 @@ def render(brief: Brief) -> str:
                     out.append(f"- section `{sec['name']}`:")
                     out += [f"  - {show(item)}" for item in sec["lines"]]
             elif key == "terms":
-                out.append(f"- terms ({len(value)}): " + "; ".join(
-                    f"{t['abbreviation']} = {escape_markup(t['short_meaning'])}" for t in value) if value else "- terms: (none)")
+                out.append(f"- terms ({len(value)}):" if value else "- terms: (none)")
+                out += [f"  - {t['abbreviation']} = {show({'text': t['short_meaning'], 'words': t['words'], 'over_budget': t['over_budget']})}"
+                        for t in value]
             elif key == "sources":
                 out.append("- sources, by name and never as an address: " + escape_markup("; ".join(value))
                            if value else "- sources: (none)")

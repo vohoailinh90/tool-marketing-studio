@@ -105,3 +105,7 @@ mutations:
   find: '    return text.replace("<", "\\<")'
   replace: '    return text'
   test: tests.test_sd101_slide_brief.StructureTests.test_a_tag_shaped_word_is_plain_text_in_the_json_and_escaped_in_the_markdown
+- label: a long term meaning is not flagged against the word budget
+  find: '"short_meaning": short, "words": len(short.split()), "over_budget": len(short.split()) > WORD_BUDGET,'
+  replace: '"short_meaning": short, "words": len(short.split()), "over_budget": False,'
+  test: tests.test_sd101_slide_brief.StructureTests.test_a_term_meaning_over_the_word_budget_is_flagged_like_any_other_line

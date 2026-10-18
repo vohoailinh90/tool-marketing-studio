@@ -1,0 +1,19 @@
+{
+  "id": "sd-10-011",
+  "title": "Big endian và little endian",
+  "subtitle": "Cùng một số, hai cách xếp byte.",
+  "desc": "Bốn nhóm xếp dọc. Big endian với số 1023: byte lớn nhất 03 ở địa chỉ thấp nhất, byte nhỏ nhất ff ở địa chỉ kế tiếp. Little endian với số 1023: byte nhỏ nhất ff ở địa chỉ thấp nhất, byte lớn nhất 03 ở địa chỉ kế tiếp. Dùng ở đâu: little endian ở Intel x86; big endian ở PowerPC và Motorola 68k đời cũ, trong truyền thông mạng và lưu tệp. Khung cuối nêu ba điều cần nhớ.",
+  "sections": [
+    {"kind": "steps", "heading": "Big endian · số 1023",
+     "items": [{"title": "Địa chỉ thấp nhất", "text": "Byte lớn nhất: 03."},
+               {"title": "Địa chỉ kế tiếp", "text": "Byte nhỏ nhất: ff."}]},
+    {"kind": "steps", "heading": "Little endian · số 1023",
+     "items": [{"title": "Địa chỉ thấp nhất", "text": "Byte nhỏ nhất: ff."},
+               {"title": "Địa chỉ kế tiếp", "text": "Byte lớn nhất: 03."}]},
+    {"kind": "parts", "heading": "Dùng ở đâu",
+     "items": [{"name": "Little endian", "role": "Bộ xử lý Intel x86.", "icon": "cpu"},
+               {"name": "Big endian", "role": "PowerPC, Motorola 68k đời cũ; mạng và lưu tệp.", "icon": "network"}]},
+    {"kind": "notes", "heading": "Nhớ gì",
+     "items": ["Đây là thứ tự byte, không phải thứ tự bit.", "Khác kiểu thì phải đổi thứ tự khi truyền dữ liệu.", "Mạng dùng big endian."]}
+  ]
+}

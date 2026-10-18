@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1049" viewBox="0 0 320 1049" role="img" aria-labelledby="title desc">
+<title id="title">Big endian và little endian</title>
+<desc id="desc">Bốn nhóm xếp dọc. Big endian với số 1023: byte lớn nhất 03 ở địa chỉ thấp nhất, byte nhỏ nhất ff ở địa chỉ kế tiếp. Little endian với số 1023: byte nhỏ nhất ff ở địa chỉ thấp nhất, byte lớn nhất 03 ở địa chỉ kế tiếp. Dùng ở đâu: little endian ở Intel x86; big endian ở PowerPC và Motorola 68k đời cũ, trong truyền thông mạng và lưu tệp. Khung cuối nêu ba điều cần nhớ.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1049" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Big endian và little</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">endian</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Cùng một số, hai cách xếp byte.</text>
+<rect x="8" y="104" width="304" height="215" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="132.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Big endian · số 1023</text>
+<rect x="20" y="149" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="175" r="14" fill="#1d4ed8"/>
+<text x="46" y="180.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="175.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Địa chỉ thấp nhất</text>
+<text x="70" y="199.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Byte lớn nhất: 03.</text>
+<rect x="20" y="239" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="265" r="14" fill="#1d4ed8"/>
+<text x="46" y="270.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="265.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Địa chỉ kế tiếp</text>
+<text x="70" y="289.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Byte nhỏ nhất: ff.</text>
+<polyline points="46,219 46,237" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="331" width="304" height="215" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="359.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Little endian · số 1023</text>
+<rect x="20" y="376" width="280" height="68" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="402" r="14" fill="#0f766e"/>
+<text x="46" y="407.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="402.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Địa chỉ thấp nhất</text>
+<text x="70" y="426.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Byte nhỏ nhất: ff.</text>
+<rect x="20" y="466" width="280" height="68" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="492" r="14" fill="#0f766e"/>
+<text x="46" y="497.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="492.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Địa chỉ kế tiếp</text>
+<text x="70" y="516.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Byte lớn nhất: 03.</text>
+<polyline points="46,446 46,464" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="558" width="304" height="226" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="586.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Dùng ở đâu</text>
+<rect x="20" y="603" width="280" height="68" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="50" cy="637" r="18" fill="#b45309"/><g transform="translate(39.2 626.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20v2"/><path d="M12 2v2"/><path d="M17 20v2"/><path d="M17 2v2"/><path d="M2 12h2"/><path d="M2 17h2"/><path d="M2 7h2"/><path d="M20 12h2"/><path d="M20 17h2"/><path d="M20 7h2"/><path d="M7 20v2"/><path d="M7 2v2"/><rect height="16" rx="2" width="16" x="4" y="4"/><rect height="8" rx="1" width="8" x="8" y="8"/></g>
+<text x="78" y="629.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Little endian</text>
+<text x="78" y="653.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bộ xử lý Intel x86.</text>
+<rect x="20" y="685" width="280" height="87" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="50" cy="728.5" r="18" fill="#b45309"/><g transform="translate(39.2 717.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="6" rx="1" width="6" x="16" y="16"/><rect height="6" rx="1" width="6" x="2" y="16"/><rect height="6" rx="1" width="6" x="9" y="2"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"/><path d="M12 12V8"/></g>
+<text x="78" y="711.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Big endian</text>
+<text x="78" y="735.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">PowerPC, Motorola 68k đời</text>
+<text x="78" y="754.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cũ; mạng và lưu tệp.</text>
+<rect x="8" y="796" width="304" height="245" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="824.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Nhớ gì</text>
+<rect x="20" y="841" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="864" r="11" fill="#16a34a"/>
+<polyline points="37.9,864.4 41.7,868.4 48.5,860" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="867.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đây là thứ tự byte, không</text>
+<text x="64" y="886.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">phải thứ tự bit.</text>
+<rect x="20" y="912" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="935" r="11" fill="#16a34a"/>
+<polyline points="37.9,935.4 41.7,939.4 48.5,931" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="938.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Khác kiểu thì phải đổi thứ tự</text>
+<text x="64" y="957.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khi truyền dữ liệu.</text>
+<rect x="20" y="983" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1006" r="11" fill="#16a34a"/>
+<polyline points="37.9,1006.4 41.7,1010.4 48.5,1002" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1009.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mạng dùng big endian.</text>
+</g>
+</svg>

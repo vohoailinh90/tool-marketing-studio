@@ -1,0 +1,21 @@
+{
+  "id": "sd-10-007",
+  "title": "Tám lĩnh vực hay dùng C++",
+  "subtitle": "Xếp theo lý do nguồn nêu cho từng nơi.",
+  "desc": "Bốn nhóm thẻ. Điều khiển phần cứng và hệ thống: hệ thống nhúng, hệ điều hành, mạng. Cần hiệu năng cao: game, cơ sở dữ liệu, tính toán khoa học. Hai mục còn lại: trình duyệt web và ứng dụng tài chính, mục nguồn không mô tả. Khung cuối nhắc ba điều cần nhớ.",
+  "sections": [
+    {"kind": "parts", "heading": "Điều khiển phần cứng và hệ thống",
+     "items": [{"name": "Hệ thống nhúng", "role": "Hiệu quả và điều khiển chi tiết tài nguyên phần cứng.", "icon": "cpu"},
+               {"name": "Hệ điều hành", "role": "Kiểm soát rộng tài nguyên hệ thống và bộ nhớ.", "icon": "terminal"},
+               {"name": "Mạng", "role": "Thiết bị mạng và công cụ mô phỏng.", "icon": "network"}]},
+    {"kind": "parts", "heading": "Cần hiệu năng cao",
+     "items": [{"name": "Game", "role": "Nền tảng của ngành game nhờ hiệu năng và hiệu quả.", "icon": "zap"},
+               {"name": "Cơ sở dữ liệu", "role": "Quản lý bộ nhớ hiệu quả để truy vấn nhanh.", "icon": "database"},
+               {"name": "Tính toán khoa học", "role": "Hiệu năng cao và điều khiển chính xác tài nguyên.", "icon": "chart-column"}]},
+    {"kind": "parts", "heading": "Hai mục còn lại",
+     "items": [{"name": "Trình duyệt web", "role": "Dùng cho trình duyệt và thành phần như bộ máy dựng trang.", "icon": "globe"},
+               {"name": "Ứng dụng tài chính", "role": "Nguồn nêu tên mục này nhưng không mô tả.", "icon": "credit-card"}]},
+    {"kind": "notes", "heading": "Nhớ gì",
+     "items": ["Cách chia nhóm là của bài, không phải của nguồn.", "Nguồn không so sánh C++ với ngôn ngữ khác.", "Mục tài chính nguồn để trống."]}
+  ]
+}

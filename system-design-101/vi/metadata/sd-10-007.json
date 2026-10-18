@@ -1,0 +1,98 @@
+{
+  "id": "sd-10-007",
+  "title_vi": "Tám lĩnh vực hay dùng C++",
+  "language": "vi",
+  "kind": "reference",
+  "content_status": "draft",
+  "source_ref": "sd-10-007",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/top-8-c++-use-cases.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-8-c++-use-cases.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "0a4c31756b6adabb6b700d51fd37c14e6a3aa4d5",
+    "retrieved_body_sha256": "3699dd55b9496e4388b6d8c95dde98d261b1efbd7c0fcb84349d6034944386f8",
+    "retrieved_body_bytes": 1464
+  },
+  "diagram": "../diagrams/sd-10-007-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "source_claims_listed_with_the_pinned_source; the author's general-knowledge glosses are not checked against primary documentation"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending",
+      "reason": "figure text measured in Chromium by scripts.figures check --browser (14 px at a 375 px screen); no whole-lesson render at 320, 375 and 430 px recorded"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "C++ is a highly versatile programming language suitable for a wide range of applications; the source lists eight use cases.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-8-c++-use-cases.md",
+      "section": "Introduction",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Embedded systems: efficiency and fine control over hardware resources make C++ excellent.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-8-c++-use-cases.md",
+      "section": "Embedded Systems",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Game development: C++ is a staple due to performance and efficiency.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-8-c++-use-cases.md",
+      "section": "Game Development",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Operating systems: extensive control over system resources and memory, ideal for operating systems and low-level system utilities.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-8-c++-use-cases.md",
+      "section": "Operating Systems",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Databases: many high-performance database systems are implemented in C++ to manage memory efficiently and run queries fast.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-8-c++-use-cases.md",
+      "section": "Databases",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Financial Applications is a heading in the source with no text under it.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-8-c++-use-cases.md",
+      "section": "Financial Applications",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Web browsers and their components such as rendering engines; network devices and simulation tools; scientific computing needing high performance and precise control over computational resources.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-8-c++-use-cases.md",
+      "section": "Web Browsers, Networking, Scientific Computing",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Grouping the eight uses by the reason the source gives is the author's arrangement; the source does not compare C++ with other languages.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-8-c++-use-cases.md",
+      "section": "Design",
+      "verified_by": "Author's general knowledge; not checked against primary documentation."
+    }
+  ],
+  "design_notes_vi": "Tám mục chia thành hai nhóm theo lý do nguồn nêu, cộng một nhóm hai mục còn lại (trình duyệt web và ứng dụng tài chính). Mục tài chính được nói thẳng là nguồn để trống. Không có mũi tên vì nguồn không nói thứ tự. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Source lists eight uses in a flat order and leaves Financial Applications without a description; the lesson groups them by the reason the source gives and says the financial item is empty rather than inventing text for it."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích thêm là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
+}

@@ -120,7 +120,7 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 
 ## Bảo mật
 
-Các bài từ sd-14-016 trở đi chưa viết; số thứ tự dưới đây chỉ tính các bài đã viết.
+Các bài từ sd-14-026 trở đi chưa viết; số thứ tự dưới đây chỉ tính các bài đã viết.
 
 1. [DevSecOps là gì?](lessons/sd-14-001/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 2. [Encoding, encryption và tokenization](lessons/sd-14-002/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
@@ -137,6 +137,11 @@ Các bài từ sd-14-016 trở đi chưa viết; số thứ tự dưới đây c
 13. [Tường lửa: sáu cách viết một luật](lessons/sd-14-013/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 14. [Bốn cơ chế xác thực: khóa SSH, token OAuth, chứng chỉ và mật khẩu](lessons/sd-14-014/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 15. [Chữ ký số: ký bằng khóa riêng, kiểm bằng khóa công khai](lessons/sd-14-015/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+21. [HTTPS có an toàn không? Kẻ đứng giữa đọc được khi nào](lessons/sd-14-021/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+22. [An ninh mạng nhập môn: bộ ba CIA và phòng thủ cơ bản](lessons/sd-14-022/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+23. [Cookie, session, JWT và PASETO: chọn cách xác thực nào?](lessons/sd-14-023/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+24. [SSH hoạt động thế nào? Ba lớp của giao thức](lessons/sd-14-024/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+25. [VPN hoạt động thế nào? Đường hầm, mã hóa và điều nó không làm](lessons/sd-14-025/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 
 ## Nền tảng máy tính
 

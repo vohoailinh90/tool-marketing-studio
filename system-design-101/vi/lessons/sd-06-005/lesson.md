@@ -34,11 +34,11 @@ Mọi lệnh dưới đây chạy ngày 2026-10-18 bằng `redis-cli` với Redi
 
 **5 · Pub/sub không giữ tin.** `PUBLISH news hello` khi chưa ai đăng ký trả 0 (không ai nhận). Mở một client chạy `SUBSCRIBE news` rồi gửi lại thì lệnh trả 1 và client kia nhận được. Tài liệu của Redis gọi đây là giao nhận *nhiều nhất một lần*: người nghe bị ngắt kết nối thì tin đó mất hẳn. Cần giữ tin thì dùng Redis Streams.
 
-**6 · Lưu xuống đĩa: mặc định là ảnh chụp.** Khởi động không kèm tệp cấu hình, `CONFIG GET save` trả `3600 1 300 100 60 10000` và `CONFIG GET appendonly` trả `no`. Theo chú thích trong `redis.conf`, nghĩa là chụp ảnh RDB sau một giờ nếu có ít nhất 1 thay đổi, sau 5 phút nếu có 100, sau 60 giây nếu có 10.000. Máy sập giữa hai lần chụp thì mất các lần ghi kể từ ảnh cuối. Muốn bền hơn thì bật AOF; với chế độ fsync mặc định là mỗi giây, tệp cấu hình ghi rằng khi mất điện có thể mất khoảng một giây ghi.
+**6 · Lưu xuống đĩa: mặc định là ảnh chụp.** Khởi động không kèm tệp cấu hình, `CONFIG GET save` trả `3600 1 300 100 60 10000` và `CONFIG GET appendonly` trả `no`. Theo chú thích trong `redis.conf`, nghĩa là chụp ảnh RDB sau một giờ nếu có ít nhất 1 thay đổi, sau 5 phút nếu có 100, sau 60 giây nếu có 10.000. Máy sập giữa hai lần chụp thì mất các lần ghi kể từ ảnh cuối. Khoảng đó tùy lượng ghi: nhiều ghi thì ảnh được chụp mỗi phút, còn hệ thống ít ghi, không bao giờ đạt 100 thay đổi trong 5 phút, có thể chờ gần một giờ tới mốc `3600 1`, tức có thể mất gần một giờ ghi. Muốn bền hơn thì bật AOF; với chế độ fsync mặc định là mỗi giây, tệp cấu hình ghi rằng khi mất điện có thể mất khoảng một giây ghi.
 
 ## Giới hạn cần nhớ
 
-"Redis là cơ sở dữ liệu đầy đủ" chỉ đúng khi bạn cấu hình cho nó như vậy. Mặc định của bản đã thử chấp nhận mất vài phút dữ liệu khi sập, pub/sub không giữ tin, và mọi dữ liệu phải vừa bộ nhớ. Hãy chọn cấu hình lưu trữ theo việc bạn dùng Redis: làm bộ nhớ đệm thì mất dữ liệu chỉ là phải nạp lại, làm kho chính thì không.
+"Redis là cơ sở dữ liệu đầy đủ" chỉ đúng khi bạn cấu hình cho nó như vậy. Mặc định của bản đã thử chấp nhận mất các lần ghi kể từ ảnh chụp cuối khi sập, có thể tới gần một giờ với hệ thống ít ghi, pub/sub không giữ tin, và mọi dữ liệu phải vừa bộ nhớ. Hãy chọn cấu hình lưu trữ theo việc bạn dùng Redis: làm bộ nhớ đệm thì mất dữ liệu chỉ là phải nạp lại, làm kho chính thì không.
 
 ## Nhìn hình trả lời
 

@@ -75,7 +75,7 @@
       "verified_by": "Read from a clone of redis/redis at tag 7.0.15 (commit f35f36a265403c07b119830aa4bb3b7d71653ec9)."
     },
     {
-      "claim_vi": "By default Redis 7.0.15 saves an RDB snapshot after 3600 s with at least 1 change, 300 s with 100, 60 s with 10000; appendonly is no; with AOF and the default fsync policy a power outage can lose about one second of writes.",
+      "claim_vi": "By default Redis 7.0.15 saves an RDB snapshot after 3600 s with at least 1 change, 300 s with 100, 60 s with 10000; appendonly is no, so a crash loses the writes since the last snapshot, which for a workload that never reaches 100 changes in 5 minutes can be close to an hour (the 3600 1 save point); with AOF and the default fsync policy a power outage can lose about one second of writes.",
       "source": "https://github.com/redis/redis/blob/f35f36a265403c07b119830aa4bb3b7d71653ec9/redis.conf",
       "section": "SNAPSHOTTING; APPEND ONLY MODE",
       "verified_by": "Read from a clone of redis/redis at tag 7.0.15; CONFIG GET save and appendonly on a server started without a config file returned the same values."

@@ -606,7 +606,11 @@ def standing(holdings: list[Holding], moment: datetime.datetime) -> tuple[str, H
     """free | done | invalid (a record that cannot be read) | doing (the live winner) | stale (only stale claims)."""
     done = [holding for holding in holdings if holding.status == "done"]
     if done:
-        return "done", min(done, key=lambda holding: (holding.claimed_at or "", holding.owner))
+        winner = done[0]  # a finished record keeps its claim's precedence, so the claims' order decides between two
+        for holding in done[1:]:
+            if beats(holding, winner):
+                winner = holding
+        return "done", winner
     invalid = [holding for holding in holdings if is_broken(holding)]
     if invalid:
         return "invalid", invalid[0]
@@ -1017,8 +1021,12 @@ def cmd_exported(context: Context, args: argparse.Namespace) -> int:
 
 
 def cmd_release(context: Context, args: argparse.Namespace) -> int:
+    ids = list(dict.fromkeys(args.ids))
+    for lesson_id in ids:
+        context.writable_record(lesson_id)  # an id that is no lesson, or a symbolic link in the way, stops here
+    holdings, _ = gather(context, ids)  # this tree may hold an older copy than the one the remote has
     paths = []
-    for lesson_id in dict.fromkeys(args.ids):
+    for lesson_id in ids:
         path = context.writable_record(lesson_id)
         record = parse_record(path.read_text(encoding="utf-8")) if path.is_file() else None
         if not record or record.get("owner") != context.me:
@@ -1026,6 +1034,13 @@ def cmd_release(context: Context, args: argparse.Namespace) -> int:
             return 1
         if record.get("status") == "done":
             print(f"{lesson_id}: already finished; a finished deck is not released", file=sys.stderr)
+            return 1
+        finished = [holding for holding in holdings[lesson_id]
+                    if holding.owner == context.me and holding.status == "done" and holding.where != LOCAL]
+        if finished:  # releasing would push the deletion over it and offer a built deck again
+            print(f"{lesson_id}: your finished record is on {finished[0].where}; a finished deck is not released "
+                  f"(restore this tree's copy with `git checkout {finished[0].where} -- {context.relative(lesson_id)}`)",
+                  file=sys.stderr)
             return 1
         stray = sorted(other.name for other in path.parent.iterdir() if other.name != RECORD)
         if stray:

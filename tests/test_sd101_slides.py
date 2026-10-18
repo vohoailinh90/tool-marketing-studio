@@ -972,6 +972,46 @@ class FinishTests(Sessions):
         self.assertEqual(1, code)
         self.assertIn("already finished", err)
 
+    def test_release_never_pushes_a_deletion_over_a_finished_record_on_the_remote(self) -> None:
+        a = self.session("a")
+        self.assertEqual(0, self.run_in(a, "claim", "sd-01-001", "--publish")[0])
+        relative = "store/lessons/sd-01-001/slides/deck.yaml"
+        claim = (a / relative).read_text(encoding="utf-8")
+        self.assertEqual(0, self.finish(a, "sd-01-001", "--publish")[0])
+        finished = git(a, "show", f"origin/claude/a:{relative}")
+        (a / relative).write_text(claim, encoding="utf-8")  # a conflict resolution put the claim back
+        for extra in ((), ("--publish",)):
+            with self.subTest(extra=extra):
+                code, _, err = self.run_in(a, "release", "sd-01-001", *extra)
+                self.assertEqual(1, code)
+                self.assertIn("your finished record is on origin/claude/a; a finished deck is not released", err)
+                self.assertTrue((a / relative).is_file())
+                self.assertEqual(finished, git(a, "show", f"origin/claude/a:{relative}"), "the finished record stays")
+        code, _, err = self.run_in(self.session("b"), "claim", "sd-01-001")
+        self.assertEqual(1, code)
+        self.assertIn("already built by claude/a", err)
+
+    def test_of_two_finished_records_the_takeover_wins_as_it_does_for_claims(self) -> None:
+        old = {"id": "sd-01-001", "status": "done", "owner": "claude/a", "claimed_at": "2026-10-13T08:00:00Z",
+               "done_at": "2026-10-17T07:00:00Z", "moda_canvas": CANVAS, "moda_url": URL, "slide_count": 8,
+               "size": "1920x1080", "exports": "pending"}
+        taker = {**old, "owner": "claude/b", "claimed_at": "2026-10-16T09:00:00Z", "taken_from": ["claude/a"],
+                 "generation": 1}
+        for name, record in (("a", old), ("b", taker)):
+            clone = self.session(name)
+            folder = clone / "store" / "lessons" / "sd-01-001" / "slides"
+            folder.mkdir()
+            (folder / "deck.yaml").write_text(slides.render(record), encoding="utf-8")
+            git(clone, "add", "-A")
+            git(clone, "commit", "--quiet", "-m", "finished")
+            git(clone, "push", "--quiet", "-u", "origin", f"claude/{name}")
+        c = self.session("c")
+        code, _, err = self.run_in(c, "claim", "sd-01-001")
+        self.assertEqual(1, code)
+        self.assertIn("already built by claude/b", err)
+        holdings, _ = slides.gather(slides.Context(c, c / "store", "origin", "claude/c", False), ["sd-01-001"])
+        self.assertEqual("claude/b", slides.standing(holdings["sd-01-001"], self.clock)[1].owner)
+
     def test_release_refuses_to_leave_other_files_behind_in_slides(self) -> None:
         a = self.session("a")
         self.run_in(a, "claim", "sd-01-001", "--publish")

@@ -68,10 +68,13 @@
     },
     {
       "id": "stale-read-paused",
-      "claim_vi": "Khi tạm dừng áp dụng WAL trên bản sao, lớp định tuyến đưa câu đọc của Alice tới bản sao và nhận 0 đơn; lớp dính bản chính 5 giây sau khi ghi trả 2 đơn.",
-      "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/high-availability.sgml",
+      "claim_vi": "Sau khi chờ bản sao áp dụng tới lệnh truncate và chờ pg_get_wal_replay_pause_state() báo paused, lớp định tuyến đưa câu đọc của Alice tới bản sao và nhận 0 đơn; lớp dính bản chính 5 giây sau khi ghi trả 2 đơn.",
       "section": "Phép thử của người biên soạn",
-      "verified_by": "Chạy đoạn mã in trong bài hai lần ngày 2026-10-18, cả hai lần cho ('bản sao', [(0,)]) và ('bản chính', [(2,)])."
+      "verified_by": "Chạy đoạn mã in trong bài ba lần ngày 2026-10-18 (hai lần sau khi thêm hai vòng chờ), mỗi lần cho ('bản sao', [(0,)]) và ('bản chính', [(2,)]). Tài liệu func.sgml (REL_16_STABLE): yêu cầu dừng không có nghĩa là đã dừng ngay; phải xem pg_get_wal_replay_pause_state().",
+      "sources": [
+        "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/high-availability.sgml",
+        "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/func.sgml"
+      ]
     },
     {
       "id": "read-after-write",

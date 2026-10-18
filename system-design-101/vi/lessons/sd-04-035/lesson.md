@@ -14,7 +14,7 @@
 Phép thử chạy ngày 2026-10-18 trên PostgreSQL 16.15: bản chính và một bản sao tạo bằng `pg_basebackup`, nhận WAL theo kiểu không đồng bộ, cùng một máy. Lớp trung gian là một lớp Python vài chục dòng (phần "Xem sâu hơn"), không phải phần mềm trung gian thật.
 
 1. **Bốn mảnh.** Ứng dụng chỉ biết một chỗ để gửi câu lệnh. Lớp trung gian nhìn câu lệnh: `select` đi tới bản sao, còn lại tới bản chính. Bản sao từ chối ghi: `cannot execute INSERT in a read-only transaction`.
-2. **Alice đặt đơn rồi xem ngay.** Tài liệu PostgreSQL nói rõ dữ liệu trên bản sao đến sau, nên cùng một câu hỏi gửi gần như cùng lúc tới hai máy có thể cho hai kết quả; bản sao chỉ "nhất quán sau cùng". Để thấy rõ, bài tạm dừng việc áp dụng WAL trên bản sao (`pg_wal_replay_pause()`): Alice ghi một đơn, lớp định tuyến đưa câu đọc tới bản sao, và nó trả 0 đơn.
+2. **Alice đặt đơn rồi xem ngay.** Tài liệu PostgreSQL nói rõ dữ liệu trên bản sao đến sau, nên cùng một câu hỏi gửi gần như cùng lúc tới hai máy có thể cho hai kết quả; bản sao chỉ "nhất quán sau cùng". Để thấy rõ, bài tạm dừng việc áp dụng WAL trên bản sao (`pg_wal_replay_pause()`, rồi chờ tới khi `pg_get_wal_replay_pause_state()` báo `paused`, vì tài liệu nói một yêu cầu dừng chưa có nghĩa là đã dừng): Alice ghi một đơn, lớp định tuyến đưa câu đọc tới bản sao, và nó trả 0 đơn.
 3. **Không cần chờ lâu mới gặp.** Không tạm dừng gì, trên cùng một máy, bản sao thấy dòng mới sau trung vị dưới 0,5 mili giây. Vậy mà đọc ngay một lần sau khi ghi, 45 đến 48 trên 50 lần bản sao chưa có dòng đó (hai lần chạy).
 4. **Hai cách sửa.** Cách một nằm ở lớp trung gian: sau khi một người ghi, cho các câu đọc của chính người đó đi tới bản chính một lúc (ở đây 5 giây); Alice thấy đơn của mình. Cách hai nằm ở cơ sở dữ liệu: đặt bản sao là đồng bộ và `synchronous_commit = remote_apply`, lệnh ghi chỉ báo xong khi bản sao đã áp dụng; đọc ngay thấy 50 trên 50 lần.
 
@@ -59,8 +59,13 @@ class Router:
             self.last_write[user] = time.monotonic()
         return ("bản sao" if conn is replica else "bản chính"), rows
 
-primary.execute("truncate orders"); time.sleep(1)       # bắt đầu từ bảng trống, chờ bản sao nhận kịp
+primary.execute("truncate orders")                        # bắt đầu từ bảng trống
+lsn = primary.execute("select pg_current_wal_lsn()").fetchone()[0]
+while not replica.execute("select pg_last_wal_replay_lsn() >= %s::pg_lsn", (lsn,)).fetchone()[0]:
+    time.sleep(0.05)                                       # chờ bản sao áp dụng tới lệnh truncate
 replica.execute("select pg_wal_replay_pause()")           # giả lập bản sao chậm
+while replica.execute("select pg_get_wal_replay_pause_state()").fetchone()[0] != "paused":
+    time.sleep(0.05)                                       # yêu cầu dừng chưa phải đã dừng: chờ trạng thái paused
 for name, router in [("theo loại câu lệnh", Router()), ("dính 5 giây sau khi ghi", Router(sticky_seconds=5))]:
     router.run("alice", "insert into orders(customer, item) values (%s, %s)", "alice", name)
     print(name, router.run("alice", "select count(*) from orders where customer = %s", "alice"))
@@ -75,5 +80,6 @@ Kết quả: `theo loại câu lệnh ('bản sao', [(0,)])` rồi `dính 5 giâ
 
 - [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-to-implement-read-replica-pattern.md): hai cách định tuyến, lớp trung gian nói giao thức MySQL, ưu điểm (mã ứng dụng gọn, tương thích) và nhược điểm (thêm phức tạp, cần chạy dự phòng, thêm độ trễ mạng).
 - [PostgreSQL 16 — High Availability, Load Balancing, and Replication](https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/high-availability.sgml), tại commit cố định của nhánh `REL_16_STABLE`: bản sao chỉ đọc, nhất quán sau cùng; `remote_apply` cho cân bằng tải với nhất quán nhân quả; lệnh ghi có thể không bao giờ xong nếu bản sao đồng bộ sập. Đọc từ bản clone của kho.
+- [PostgreSQL 16 — System Administration Functions](https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/func.sgml), cùng commit: `pg_wal_replay_pause()` chỉ là yêu cầu dừng, trạng thái thật đọc ở `pg_get_wal_replay_pause_state()`. Đọc từ bản clone của kho.
 
 Phép thử chạy trên PostgreSQL 16.15, Python 3.13.16 và psycopg 3.3.6 ngày 2026-10-18 trên máy biên soạn. Bài viết và hình được thiết kế độc lập, không dùng ảnh nguồn.

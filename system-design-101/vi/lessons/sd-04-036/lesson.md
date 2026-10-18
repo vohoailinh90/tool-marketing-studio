@@ -29,7 +29,7 @@ Một ứng dụng nhắn tin chia bảng `messages` theo mã người gửi. C�
 <details>
 <summary>Xem đáp án</summary>
 
-Tin của An nằm ở shard của An, tin của Bình ở shard của Bình, nên câu hỏi thường chạm 2 shard, rồi phải gộp và sắp xếp lại theo thời gian để lấy 50 tin mới nhất (mỗi shard phải trả đủ 50 tin của mình, không phải 25).
+Tin của An nằm ở shard của An, tin của Bình ở shard của Bình. Câu hỏi chạm 1 shard nếu hai người tình cờ cùng shard, 2 shard nếu khác (với nhiều shard, khác là chuyện thường); khi chạm 2 thì phải gộp và sắp xếp lại theo thời gian để lấy 50 tin mới nhất (mỗi shard phải trả đủ 50 tin của mình, không phải 25).
 Chia theo mã cuộc trò chuyện thì mọi tin của một cuộc nằm chung một shard: câu hỏi hay chạy nhất chỉ chạm 1 shard. Đổi lại, "mọi tin An đã gửi" sẽ phải hỏi nhiều shard.
 
 </details>

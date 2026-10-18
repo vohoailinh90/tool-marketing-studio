@@ -29,7 +29,7 @@ Nhãn dùng trong bài:
 
 1. **Không có công thức "lên xu hướng" do nền tảng công bố.** Trang chính thức của YouTube và TikTok mà mình đọc mô tả việc chọn video cho từng người xem. Mô hình "thử với nhóm nhỏ rồi mở rộng nếu phản hồi tốt" là cách bên thứ ba và người làm nội dung mô tả, không phải điều nền tảng công bố. [Chính thức cho phần không có công thức; Cao cho mô hình nhóm nhỏ]
 2. **YouTube đã gỡ trang Trending** (có hiệu lực khoảng 21/7/2025). "Lên xu hướng" nay là được đề xuất. [Chính thức, qua lịch sử sửa đổi API]
-3. **YouTube bật kiếm tiền:** hiện 1.000 subscriber + 4.000 giờ xem hoặc 10 triệu lượt xem Shorts/90 ngày. **Từ 1/2/2027, người mới cần 8.000 giờ hoặc 20 triệu lượt xem Shorts.** Kênh đã trong YPP không bị ảnh hưởng tư cách, nhưng muốn nhận tiền từ Shorts phải giữ 10 triệu lượt xem Shorts/90 ngày. [Chính thức]
+3. **YouTube bật kiếm tiền:** quảng cáo và Premium (YPP đầy đủ) hiện cần 1.000 subscriber + 4.000 giờ xem hoặc 10 triệu lượt xem Shorts/90 ngày. **Từ 1/2/2027, người mới cần 8.000 giờ hoặc 20 triệu lượt xem Shorts.** Cấp sớm (fan funding, Creator Partnerships, Shopping) chỉ cần 500 subscriber + 3.000 giờ hoặc 3 triệu lượt xem Shorts/90 ngày và không đổi sau 1/2/2027. Kênh đã trong YPP không bị ảnh hưởng tư cách, nhưng muốn nhận tiền từ Shorts phải giữ 10 triệu lượt xem Shorts/90 ngày. [Chính thức]
 4. **TikTok Creator Rewards** (10.000 follower, 100.000 lượt xem/30 ngày, video gốc trên 1 phút) **hiện chỉ mở cho Mỹ, Anh, Đức, Nhật, Hàn, Pháp, Mexico, Brazil. Việt Nam không có trong danh sách.** [Chính thức]
 5. **Facebook Content Monetization hiện chỉ theo lời mời**, Meta không công bố ngưỡng số liệu. [Chính thức]
 6. **Tiền trên 1.000 lượt xem (RPM)** chênh nhau hàng chục lần: YouTube video dài vài USD, Shorts từ vài cent đến khoảng 0,20 USD, TikTok khoảng 0,4–1 USD (chỉ áp dụng ở 8 nước có chương trình), Facebook Reels thường 0,02–0,20 USD. Không nền tảng nào công bố RPM. [Vừa]
@@ -155,10 +155,10 @@ Nhãn dùng trong bài:
 
 ### 3.4 Bảng tóm tắt
 
-| | Mốc tối thiểu | Độ chắc chắn | Cách xác nhận |
+| | Mốc vào chương trình kiếm tiền chính (quảng cáo) | Độ chắc chắn | Cách xác nhận |
 |---|---|---|---|
-| YouTube (đến 31/1/2027) | 1.000 sub + 4.000 giờ hoặc 10 triệu Shorts/90 ngày | Chính thức | YouTube Studio → Earn |
-| YouTube (từ 1/2/2027) | Người mới: 8.000 giờ hoặc 20 triệu Shorts/90 ngày | Chính thức | Trang "Changes to the YPP" |
+| YouTube (đến 31/1/2027) | YPP đầy đủ: 1.000 sub + 4.000 giờ hoặc 10 triệu Shorts/90 ngày. Cấp sớm (fan funding, Creator Partnerships, Shopping): 500 sub + 3.000 giờ hoặc 3 triệu Shorts/90 ngày | Chính thức | YouTube Studio → Earn |
+| YouTube (từ 1/2/2027) | YPP đầy đủ cho người mới: 1.000 sub + 8.000 giờ hoặc 20 triệu Shorts/90 ngày. Cấp sớm không đổi (500 sub + 3.000 giờ hoặc 3 triệu Shorts/90 ngày) | Chính thức | Trang "Changes to the YPP" |
 | TikTok | 10.000 follower + 100.000 lượt xem/30 ngày + video >1 phút; **chỉ 8 nước, không có Việt Nam** | Chính thức | TikTok Studio |
 | Facebook | Chỉ theo lời mời; không có ngưỡng công khai | Chính thức | Professional Dashboard → Monetization |
 

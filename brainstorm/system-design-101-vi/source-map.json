@@ -1370,11 +1370,11 @@
         },
         {
           "id": "sd-04-044",
-          "title_vi": null,
+          "title_vi": "ACID là gì? Thử từng chữ trên PostgreSQL",
           "title_source": "What does ACID mean?",
           "source_url": "https://bytebytego.com/guides/what-does-acid-mean",
           "source_path": "data/guides/what-does-acid-mean.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "c3250b46aa7f4b7d962edcdde0dfe36230d7c069",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-does-acid-mean.md"
         },

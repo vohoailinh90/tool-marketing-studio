@@ -1,0 +1,90 @@
+{
+  "id": "sd-04-044",
+  "title_vi": "ACID là gì? Thử từng chữ trên PostgreSQL",
+  "language": "vi",
+  "kind": "concept",
+  "content_status": "draft",
+  "source_ref": "sd-04-044",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/what-does-acid-mean.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-does-acid-mean.md",
+    "blob_sha": "c3250b46aa7f4b7d962edcdde0dfe36230d7c069",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a local clone at the pinned commit and hashed as a Git blob; the computed OID matches the tree OID and the source map. No source-image bytes used.",
+    "retrieved_body_sha256": "0bf8fa28ca026e666173755af02c6bb6177110eac300fd8a26fe4b602e9112ea",
+    "retrieved_body_bytes": 1536
+  },
+  "diagram": "../diagrams/sd-04-044-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-04-038",
+      "relation": "related",
+      "reason_vi": "Chữ C của CAP khác chữ C của ACID; bài đó thử CAP bằng cách cắt mạng giữa hai máy."
+    },
+    {
+      "lesson_id": "sd-04-042",
+      "relation": "related",
+      "reason_vi": "Bài đó thử khóa và lệch ghi, những thứ quyết định mức cô lập."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "scope": "Chạy PostgreSQL 16.15 với psycopg 3.3.6: giao dịch chuyển tiền vi phạm check, đọc lại ở read committed và repeatable read, mất cập nhật ở hai mức; trên một cụm thử riêng, chốt 2.000 giao dịch rồi pg_ctl stop -m immediate, với synchronous_commit on và off (ba lần, cộng một lần kill -9). Đọc mvcc.sgml, wal.sgml, pg_ctl-ref.sgml của nhánh REL_16_STABLE. KHÔNG kiểm: mất điện thật, hệ khác, bền vững qua sao chép."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "not_yet_reviewed"
+    },
+    "mobile": {
+      "status": "pending"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "id": "source-acid",
+      "claim_vi": "Nguồn: nguyên tử là làm trọn hoặc hoàn tác; nhất quán là giữ các bất biến của cơ sở dữ liệu, khác nhất quán trong CAP; cô lập chặt nhất là tuần tự hóa, khó làm nên thường dùng mức lỏng hơn; bền vững là dữ liệu còn sau khi chốt dù hệ hỏng, trong hệ phân tán nghĩa là đã chép sang máy khác.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-does-acid-mean.md",
+      "section": "Whole guide",
+      "verified_by": "Đọc thân nguồn ghim ngày 2026-10-18."
+    },
+    {
+      "id": "atomic-check",
+      "claim_vi": "Giao dịch cộng 150 vào tài khoản 2 rồi trừ 150 từ tài khoản 1 (có 100, ràng buộc balance >= 0): lệnh trừ báo vi phạm accounts_balance_check, cả giao dịch hủy, hai tài khoản vẫn 100 và 100.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-does-acid-mean.md",
+      "section": "Atomicity; Consistency (phép thử của người biên soạn)",
+      "verified_by": "Chạy đoạn mã in trong bài hai lần ngày 2026-10-18."
+    },
+    {
+      "id": "isolation",
+      "claim_vi": "read committed: giao dịch A đọc 100, B sửa thành 50 và chốt, A đọc lại 50; repeatable read: A đọc lại vẫn 100. Mất cập nhật: A ghi 100-10, B ghi 100-20; read committed còn 80; repeatable read hủy B với could not serialize access due to concurrent update, còn 90.",
+      "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/mvcc.sgml",
+      "section": "Read Committed; Repeatable Read Isolation Level",
+      "verified_by": "Đọc mvcc.sgml (thông báo lỗi tuần tự hóa của repeatable read) và chạy hai lần ngày 2026-10-18."
+    },
+    {
+      "id": "durability",
+      "claim_vi": "Trên cụm thử, chốt 2.000 giao dịch rồi pg_ctl stop -m immediate: với synchronous_commit on còn đủ 2.000 dòng (ba lần); với off còn 1.928, 1.974 và 1.946 dòng; một lần kill -9 tiến trình máy chủ với off còn 1.929 dòng.",
+      "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/wal.sgml",
+      "section": "Asynchronous Commit",
+      "verified_by": "Chạy ngày 2026-10-18; tài liệu wal.sgml nói chốt không đồng bộ có thể mất các giao dịch gần nhất khi máy hỏng, pg_ctl-ref.sgml nói chế độ immediate dừng mà không tắt sạch, lần khởi động sau phải phục hồi."
+    }
+  ],
+  "design_notes_vi": "Bốn khung, mỗi chữ của ACID một khung, mỗi khung là kết quả thử. Sơ đồ dựng bằng scripts/figures, không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Nguồn định nghĩa bốn chữ bằng lời; bài thử từng chữ trên PostgreSQL, gồm cả lúc lời hứa không được giữ (mất cập nhật ở mức mặc định, mất giao dịch đã chốt khi tắt chốt đồng bộ).",
+    "Bài thêm rằng mức cô lập mặc định của PostgreSQL là read committed và mức chặt hơn đòi ứng dụng chạy lại giao dịch bị hủy."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này, bản nháp chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

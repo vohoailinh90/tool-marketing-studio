@@ -1,13 +1,13 @@
 {
   "id": "sd-14-020",
   "lang": "vi",
-  "title": "JWT: ba phần và hai cách ký",
-  "subtitle": "Một token là ba đoạn chữ nối bằng dấu chấm.",
-  "desc": "Ba khung xếp dọc. Khung một, ba phần nối bằng dấu chấm: header ghi thuật toán ký (alg) và loại token (typ); payload chứa các claim như sub, aud, exp; signature là dấu ký tính trên header và payload. Header và payload ai cũng đọc được. Khung hai, hai cách ký: dùng một bí mật chung thì ai kiểm được cũng ký được; dùng cặp khóa thì khóa riêng ký, khóa công khai kiểm. Khung ba, bên kiểm phải tự chốt danh sách thuật toán, từ chối alg là none, kiểm tiếp exp, aud, iss, và không để bí mật trong payload.",
+  "title": "JWT dạng ký: ba phần và hai cách ký",
+  "subtitle": "Một JWT dạng ký là ba đoạn chữ nối bằng dấu chấm.",
+  "desc": "Ba khung xếp dọc. Khung một, JWT dạng ký có ba phần nối bằng dấu chấm: header ghi thuật toán ký (alg) và loại token (typ); payload chứa các claim như sub, aud, exp; signature là dấu ký tính trên header và payload. Header và payload ai cũng đọc được. Khung hai, hai cách ký: dùng một bí mật chung thì ai kiểm được cũng ký được; dùng cặp khóa thì khóa riêng ký, khóa công khai kiểm. Khung ba, bên kiểm phải tự chốt danh sách thuật toán, từ chối alg là none, kiểm tiếp exp, aud, iss, và không để bí mật trong payload vì dạng ký không mã hóa payload.",
   "sections": [
     {
       "kind": "parts",
-      "heading": "Ba phần nối bằng dấu chấm",
+      "heading": "JWT dạng ký: ba phần nối bằng dấu chấm",
       "items": [
         {"name": "Header", "role": "Cho biết thuật toán ký (alg) và loại token (typ). Ai cũng đọc được.", "icon": "settings"},
         {"name": "Payload", "role": "Các claim: sub là ai, aud gửi cho ai, exp hết hạn khi nào. Ai cũng đọc được.", "icon": "file-text"},
@@ -30,7 +30,7 @@
         "Tự chốt danh sách thuật toán nhận, không lấy từ chữ alg trong token.",
         "Từ chối token có alg là none (không có dấu ký).",
         "Sau dấu ký, kiểm tiếp exp, aud, iss.",
-        "Payload chỉ được ký, không được mã hóa: đừng để bí mật trong đó."
+        "Payload của JWT dạng ký chỉ được ký, không mã hóa: đừng để bí mật trong đó."
       ]
     }
   ]

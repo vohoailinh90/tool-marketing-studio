@@ -1,27 +1,28 @@
 # JWT: ba phần và hai cách ký
 
-**Một JWT là một chuỗi chữ gồm ba phần nối bằng dấu chấm: header, payload và signature. Nó được ký chứ không được mã hóa: ai nhặt được token cũng đọc được payload, nhưng sửa một ký tự thì lúc kiểm dấu ký sẽ thất bại.**
-Bài này mổ một token ra từng phần bằng các lần chạy thử với PyJWT, rồi so hai cách ký (một bí mật chung và một cặp khóa) và chỉ ra những việc bên kiểm phải tự quyết. Ý tưởng chữ ký số nằm ở [bài sd-14-015](../sd-14-015/lesson.md). Bài này không so sánh JWT với session; phần nhận ra người dùng bằng token, cookie và session xem ở [bài sd-14-010](../sd-14-010/lesson.md).
+**Một JWT dạng ký là một chuỗi chữ gồm ba phần nối bằng dấu chấm: header, payload và signature. Dạng này chỉ ký chứ không mã hóa: ai nhặt được token cũng đọc được payload, nhưng sửa một ký tự thì lúc kiểm dấu ký sẽ thất bại.**
+Bài này nói về JWT dạng ký (JWS, JSON Web Signature, dạng gọn có ba phần); JWT mã hóa (JWE) có cấu trúc khác và payload được mã hóa, bài không bàn dạng đó. Bài mổ một token dạng ký ra từng phần bằng các lần chạy thử với PyJWT, rồi so hai cách ký (một bí mật chung và một cặp khóa) và chỉ ra những việc bên kiểm phải tự quyết. Ý tưởng chữ ký số nằm ở [bài sd-14-015](../sd-14-015/lesson.md). Bài này không so sánh JWT với session; phần nhận ra người dùng bằng token, cookie và session xem ở [bài sd-14-010](../sd-14-010/lesson.md).
 
-![Ba khung xếp dọc. Khung một, ba phần nối bằng dấu chấm: header ghi thuật toán ký (alg) và loại token (typ); payload chứa các claim như sub, aud, exp; signature là dấu ký tính trên header và payload. Header và payload ai cũng đọc được. Khung hai, hai cách ký: dùng một bí mật chung thì ai kiểm được cũng ký được; dùng cặp khóa thì khóa riêng ký, khóa công khai kiểm. Khung ba, bên kiểm phải tự chốt danh sách thuật toán, từ chối alg là none, kiểm tiếp exp, aud, iss, và không để bí mật trong payload.](../../diagrams/sd-14-020-main.svg)
+![Ba khung xếp dọc. Khung một, JWT dạng ký có ba phần nối bằng dấu chấm: header ghi thuật toán ký (alg) và loại token (typ); payload chứa các claim như sub, aud, exp; signature là dấu ký tính trên header và payload. Header và payload ai cũng đọc được. Khung hai, hai cách ký: dùng một bí mật chung thì ai kiểm được cũng ký được; dùng cặp khóa thì khóa riêng ký, khóa công khai kiểm. Khung ba, bên kiểm phải tự chốt danh sách thuật toán, từ chối alg là none, kiểm tiếp exp, aud, iss, và không để bí mật trong payload vì dạng ký không mã hóa payload.](../../diagrams/sd-14-020-main.svg)
 
 ## Từ viết tắt
 
-- **JWT** (JSON Web Token) — mã thông báo web dạng JSON: một chuỗi chữ gồm ba phần nối bằng dấu chấm, mang các thông tin (claim) về một chủ thể và có dấu ký để bên nhận kiểm.
+- **JWT** (JSON Web Token) — mã thông báo web dạng JSON: một chuỗi chữ mang các thông tin (claim) về một chủ thể; dạng ký gồm ba phần nối bằng dấu chấm và có dấu ký để bên nhận kiểm.
 - **JSON** (JavaScript Object Notation) — ký pháp đối tượng JavaScript: cách ghi dữ liệu thành văn bản gồm các cặp tên và giá trị, như `{"sub":"alice"}`.
 - **HMAC** (Hash-based Message Authentication Code) — mã xác thực thông điệp dựa trên hàm băm: tính ra từ thông điệp và một khóa bí mật, nên ai có cùng khóa thì tính lại và so khớp được.
 - **SHA** (Secure Hash Algorithm) — họ thuật toán băm: biến dữ liệu bất kỳ thành một chuỗi cố định; SHA-256 là một loại trong họ này.
 - **RSA** (Rivest-Shamir-Adleman) — tên một thuật toán mã hóa khóa công khai, đặt theo ba tác giả.
 - **ECDSA** (Elliptic Curve Digital Signature Algorithm) — thuật toán chữ ký số dùng đường cong elliptic: ký bằng khóa riêng, kiểm bằng khóa công khai.
-- **JWE** (JSON Web Encryption) — mã hóa web dạng JSON: dạng token khác trong họ JWT, ở đó payload được mã hóa nên người không có khóa giải mã thì không đọc được.
+- **JWS** (JSON Web Signature) — chữ ký web dạng JSON: dạng JWT được ký chứ không mã hóa, gồm header, payload và signature; đây là dạng bài này nói tới.
+- **JWE** (JSON Web Encryption) — mã hóa web dạng JSON: dạng JWT mã hóa, có cấu trúc khác dạng ký; payload được mã hóa nên người không có khóa giải mã thì không đọc được.
 - **OWASP** (Open Worldwide Application Security Project) — tổ chức cộng đồng chuyên về bảo mật ứng dụng, có các hướng dẫn mà bài dùng để đối chiếu.
 - **MDN** (Mozilla Developer Network) — tên cũ của MDN Web Docs, bộ tài liệu tra cứu công nghệ web do Mozilla và cộng đồng viết; bài dùng nó để đối chiếu.
 
 ## Đọc hình
 
-Các lần thử dùng Python 3.13, PyJWT 2.14.0 và `cryptography` 50.0.1 với khóa tạm, chạy cục bộ. Token mẫu mang payload `{"sub":"alice","role":"user","iat":1700000000}`.
+Các lần thử dùng Python 3.13, PyJWT 2.14.0 và `cryptography` 50.0.1 với khóa tạm, chạy cục bộ. Token mẫu là một JWT dạng ký, mang payload `{"sub":"alice","role":"user","iat":1700000000}`.
 
-**Khung 1 · Ba phần nối bằng dấu chấm.** Ở dạng gọn, JWT là `header.payload.signature`. Header và payload là văn bản JSON được viết lại bằng base64url: một cách ghi dữ liệu thành chữ chỉ gồm chữ cái, chữ số, `-` và `_`, không có dấu `=` đệm ở cuối (theo MDN). Token mẫu dài 143 ký tự và không có dấu `=`.
+**Khung 1 · JWT dạng ký: ba phần nối bằng dấu chấm.** Ở dạng gọn, JWT dạng ký là `header.payload.signature`. Header và payload là văn bản JSON được viết lại bằng base64url: một cách ghi dữ liệu thành chữ chỉ gồm chữ cái, chữ số, `-` và `_`, không có dấu `=` đệm ở cuối (theo MDN). Token mẫu dài 143 ký tự và không có dấu `=`.
 
 - Header, ở token mẫu là `{"alg":"HS256","typ":"JWT"}`: `alg` là thuật toán ký, `typ` là loại token.
 - Payload: các claim, tức những khẳng định về token và chủ thể của nó. Tài liệu PyJWT liệt kê các tên đã đăng ký: `iss` (bên phát hành), `sub` (chủ thể), `aud` (bên nhận), `exp` (hết hạn), `nbf` (chưa hợp lệ trước thời điểm này), `iat` (thời điểm phát hành), `jti` (mã riêng của token). Tài liệu ghi cả bảy là tùy chọn.
@@ -41,7 +42,7 @@ Dấu ký đúng cũng chưa đủ. Thử: `exp` đã qua thì `ExpiredSignature
 
 ## Giới hạn cần nhớ
 
-Ký không phải mã hóa. Dấu ký cho biết payload không bị sửa và (tùy cách ký) ai có thể đã tạo ra nó; nó không giấu payload. OWASP nhắc rằng ai có token cũng đọc được mọi claim, và claim lộ cả ở những chỗ ngoài đường truyền như nhật ký ứng dụng, bộ nhớ của trình duyệt hay tiêu đề referrer. Cách đơn giản nhất là đừng đưa thông tin nhạy cảm vào token. Muốn payload kín thì có JWE, một dạng khác nằm ngoài phạm vi bài này. Với bí mật chung, dấu ký hợp lệ cũng chỉ cho biết token do một người giữ bí mật ấy tạo ra, không cho biết là người nào (OWASP).
+Ký không phải mã hóa. Dấu ký của JWT dạng ký cho biết payload không bị sửa và (tùy cách ký) ai có thể đã tạo ra nó; nó không giấu payload. OWASP nhắc rằng ai có token dạng ký cũng đọc được mọi claim, và claim lộ cả ở những chỗ ngoài đường truyền như nhật ký ứng dụng, bộ nhớ của trình duyệt hay tiêu đề referrer. Cách đơn giản nhất là đừng đưa thông tin nhạy cảm vào token. Muốn payload kín thì dùng JWT mã hóa (JWE), một dạng khác có cấu trúc khác, nằm ngoài phạm vi bài này; khi cần cả xác thực lẫn bí mật, OWASP khuyên JWT lồng nhau: ký trước rồi mã hóa. Với bí mật chung, dấu ký hợp lệ cũng chỉ cho biết token do một người giữ bí mật ấy tạo ra, không cho biết là người nào (OWASP).
 
 ## Nhìn hình trả lời
 
@@ -90,6 +91,7 @@ Về khóa: OWASP yêu cầu bí mật `HS256` do bộ sinh ngẫu nhiên an to�
 
 Điều đã chỉnh so với bài nguồn:
 
+- Bài nguồn nói về JWT nói chung và chỉ tả ba thành phần của dạng ký, không nói rằng còn JWT mã hóa (JWE) với payload được mã hóa và cấu trúc khác. Bài này giới hạn trong dạng ký và nói rõ điều đó.
 - Bài nguồn gọi JWT là cách truyền thông tin "an toàn" và nói signature làm nó "bảo mật". Dấu ký bảo vệ tính nguyên vẹn, không giữ kín; payload chỉ được viết lại bằng base64url nên ai cũng đọc được.
 - Bài nguồn tả signature tạo từ "khóa bí mật" và nói bí mật phải chia sẻ cho bên kiểm, nhưng không nói hệ quả: bên kiểm cũng ký được. Mô tả ấy chỉ khớp cách ký bằng bí mật chung; với cặp khóa là khóa riêng ký.
 - Bài nguồn nói header "chỉ định thuật toán" và không nhắc việc kiểm `exp`, `aud`, `iss`. Bài này thêm: bên kiểm cố định danh sách thuật toán, từ chối `alg: none`, kiểm cả claim.
@@ -101,7 +103,7 @@ Về khóa: OWASP yêu cầu bí mật `HS256` do bộ sinh ngẫu nhiên an to�
 ## Nguồn đối chiếu
 
 - [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/jwt-101-key-to-stateless-authentication.md): ba thành phần và hai kiểu chữ ký.
-- [OWASP — JSON Web Token Cheat Sheet](https://github.com/OWASP/CheatSheetSeries/blob/3e2db6bf3f5f0c807aef8a8fc84e395acce0292c/cheatsheets/JSON_Web_Token_Cheat_Sheet.md): cấu trúc token, bí mật chung và cặp khóa, `alg: none`, nhầm lẫn thuật toán, `iss` và `aud`, JWT không giữ kín. Đọc từ bản clone của kho.
+- [OWASP — JSON Web Token Cheat Sheet](https://github.com/OWASP/CheatSheetSeries/blob/3e2db6bf3f5f0c807aef8a8fc84e395acce0292c/cheatsheets/JSON_Web_Token_Cheat_Sheet.md): cấu trúc token, bí mật chung và cặp khóa, `alg: none`, nhầm lẫn thuật toán, `iss` và `aud`, JWT dạng ký không giữ kín, vai trò của JWE. Đọc từ bản clone của kho.
 - [PyJWT — usage](https://github.com/jpadilla/pyjwt/blob/c6fe464b356ff4b1ebc9ba62172d331a40aa27df/docs/usage.rst) và [PyJWT — algorithms](https://github.com/jpadilla/pyjwt/blob/c6fe464b356ff4b1ebc9ba62172d331a40aa27df/docs/algorithms.rst), tại commit của bản 2.14.0: các claim đã đăng ký, danh sách `algorithms`, đọc không kiểm dấu ký, độ dài khóa tối thiểu. Đọc qua tệp thô của kho.
 - [MDN — Base64](https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/base64/index.md): biến thể base64 an toàn cho địa chỉ web. Đọc từ bản clone của kho.
 

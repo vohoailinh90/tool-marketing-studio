@@ -48,7 +48,7 @@
     "claims": {
       "status": "checked",
       "checked_on": "2026-10-18",
-      "evidence": "Source read; OWASP JSON Web Token Cheat Sheet and MDN Base64 glossary page read from local clones at pinned commits; PyJWT usage.rst and algorithms.rst read at the commit of tag 2.14.0; signing, decoding, tampering, alg none, algorithm mismatch and claim validation run with PyJWT 2.14.0, cryptography 50.0.1 and Python 3.13.16 using throw-away HS256, RS256 and ES256 keys and no network; JWT, JWS and JWE specifications and other IETF pages were not reachable and were not read; JWE, revocation, other libraries and other PyJWT versions were not run."
+      "evidence": "Source read; OWASP JSON Web Token Cheat Sheet and MDN Base64 glossary page read from local clones at pinned commits; PyJWT usage.rst and algorithms.rst read at the commit of tag 2.14.0; signing, decoding, tampering, alg none, algorithm mismatch and claim validation run with PyJWT 2.14.0, cryptography 50.0.1 and Python 3.13.16 using throw-away HS256, RS256 and ES256 keys and no network; JWT, JWS and JWE specifications and other IETF pages were not reachable and were not read; the lesson is scoped to the signed (JWS) form; the structure of an encrypted JWT (JWE) was taken only as far as the OWASP cheat sheet describes it and the number of parts of the compact JWE form is not stated; JWE, revocation, other libraries and other PyJWT versions were not run."
     },
     "technical_review": {
       "status": "pending",
@@ -80,10 +80,16 @@
       "verified_by": "Source body read."
     },
     {
-      "claim_vi": "A signed JWT has the structure base64url(json(header)).base64url(json(claims)).base64url(signature). The header holds information such as the token type and the cryptographic algorithms; the claims are a list of statements, usually about the subject; the signature is either a public-key digital signature or a MAC using a shared secret, and protects both the protected headers and the claims. A signed JWT does not provide confidentiality: the payload is only base64url encoded.",
+      "claim_vi": "OWASP says JWTs can provide authenticity of the claims (signed JWT) and/or confidentiality (encrypted JWT), and that a signed JWT is a JSON Web Signature (JWS). A signed JWT has the structure base64url(json(header)).base64url(json(claims)).base64url(signature). The header holds information such as the token type and the cryptographic algorithms; the claims are a list of statements, usually about the subject; the signature is either a public-key digital signature or a MAC using a shared secret, and protects both the protected headers and the claims. A signed JWT does not provide confidentiality: the payload is only base64url encoded. The lesson is scoped to this signed (JWS) compact form.",
       "source": "https://github.com/OWASP/CheatSheetSeries/blob/3e2db6bf3f5f0c807aef8a8fc84e395acce0292c/cheatsheets/JSON_Web_Token_Cheat_Sheet.md",
-      "section": "Token Structure; Signed JWTs are not confidential",
+      "section": "Introduction; Token Structure; Signed JWTs are not confidential",
       "verified_by": "Read from a local clone of the repository at the pinned commit (file JSON_Web_Token_Cheat_Sheet.md; the Java-specific cheat sheet name given in the task does not exist at that commit)."
+    },
+    {
+      "claim_vi": "The lesson is scoped to the signed JWT (JWS, compact form with three parts). An encrypted JWT (JWE) has a different structure and an encrypted payload, and is not covered. The OWASP cheat sheet read states that a JWT can be signed and/or encrypted, that a signed JWT is a JWS, that JWE encrypts the payload with an 'alg' and an 'enc' algorithm, and describes the nested JWT. That the structure of an encrypted JWT differs from the three-part signed form is the author's general knowledge; the number of dot-separated parts of the compact JWE form is not stated by any source that could be read (OWASP cheat sheet, PyJWT documentation) and so the lesson does not state it.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/3e2db6bf3f5f0c807aef8a8fc84e395acce0292c/cheatsheets/JSON_Web_Token_Cheat_Sheet.md",
+      "section": "Introduction; Token Structure; Using JWE",
+      "verified_by": "OWASP text read from a local clone at the pinned commit (searched for any statement of the number of JWE parts: none found). The difference in structure is the author's general knowledge; the specifications (JWS, JWE) were not reachable and were not read; no JWE token was built or run."
     },
     {
       "claim_vi": "The URL and filename safe Base64 variant omits the padding and replaces + and / with - and _. Observed: the sample HS256 token (143 characters, parts of 36, 62 and 43 characters) contains no '=' and its signature part contains '_'.",
@@ -116,7 +122,7 @@
       "verified_by": "No external page reports this output; observed by executing a script on the authoring machine (Python 3.13.16, PyJWT 2.14.0, cryptography 50.0.1, throw-away keys, no network)."
     },
     {
-      "claim_vi": "OWASP says a signed JWT provides integrity and authenticity but not confidentiality, so anyone who obtains the token can read every claim; claims are exposed in application logs, browser storage, referrer headers and to intermediaries that terminate TLS; omitting privacy-sensitive information is the simplest way to limit privacy issues; JWE is the way to get confidentiality and is out of scope of that cheat sheet.",
+      "claim_vi": "OWASP says a signed JWT provides integrity and authenticity but not confidentiality, so anyone who obtains the token can read every claim; claims are exposed in application logs, browser storage, referrer headers and to intermediaries that terminate TLS; omitting privacy-sensitive information is the simplest way to limit privacy issues; JWE (JSON Web Encryption) is the way to get confidentiality (it uses an 'alg' key-management algorithm and an 'enc' content-encryption algorithm to encrypt the payload) and is out of scope of that cheat sheet; when both authenticity and confidentiality are needed OWASP recommends a nested JWT: sign the claims first (JWS), then encrypt the result (JWE).",
       "source": "https://github.com/OWASP/CheatSheetSeries/blob/3e2db6bf3f5f0c807aef8a8fc84e395acce0292c/cheatsheets/JSON_Web_Token_Cheat_Sheet.md",
       "section": "Token Confidentiality and JWE",
       "verified_by": "Read from a local clone of the repository at the pinned commit. JWE itself was not examined or run."
@@ -158,20 +164,21 @@
       "verified_by": "No external page reports this output; observed by executing a script on the authoring machine (Python 3.13.16, PyJWT 2.14.0, cryptography 50.0.1, throw-away keys, no network). The OWASP passage and the PyJWT 'Requiring Presence of Claims' and claim sections were read at the pinned commits."
     },
     {
-      "claim_vi": "The expansions of the abbreviations JSON, HMAC and SHA in the glossary, and the plain-words explanations of base64url as 'a way of writing data as text', are the author's general knowledge, partly matching the OWASP and MDN pages above; the JWE expansion appears in the OWASP cheat sheet.",
+      "claim_vi": "The expansions of the abbreviations JSON, HMAC and SHA in the glossary, and the plain-words explanations of base64url as 'a way of writing data as text', are the author's general knowledge, partly matching the OWASP and MDN pages above; the JWS and JWE expansions appear in the OWASP cheat sheet.",
       "source": "https://github.com/OWASP/CheatSheetSeries/blob/3e2db6bf3f5f0c807aef8a8fc84e395acce0292c/cheatsheets/JSON_Web_Token_Cheat_Sheet.md",
       "section": "Introduction; Token Confidentiality and JWE",
       "verified_by": "Author's general knowledge; not checked against the specifications, which were not reachable."
     },
     {
-      "claim_vi": "Not examined: the JWT, JWS and JWE specifications and the JWT best-practices document (not reachable, not cited); the source's 'registered, public, private' division of claims; JWE; token revocation and denylists; comparison with server-side sessions (another lesson); other JWT libraries and other PyJWT versions; the key-confusion attack against a vulnerable implementation.",
+      "claim_vi": "Not examined: the JWT, JWS and JWE specifications and the JWT best-practices document (not reachable, not cited); the source's 'registered, public, private' division of claims; JWE (its structure, including the number of parts of the compact form, was not examined and is not stated); token revocation and denylists; comparison with server-side sessions (another lesson); other JWT libraries and other PyJWT versions; the key-confusion attack against a vulnerable implementation.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/jwt-101-key-to-stateless-authentication.md",
       "section": "Whole guide",
       "verified_by": "Not examined."
     }
   ],
-  "design_notes_vi": "Ba khung xếp dọc: ba phần của token nối bằng mũi tên, hai cách ký, và bốn việc bên kiểm phải tự quyết. Không dùng ảnh nguồn; bài đi theo các lần thử với PyJWT thay vì chép lại bài nguồn.",
+  "design_notes_vi": "Ba khung xếp dọc: ba phần của JWT dạng ký nối bằng mũi tên, hai cách ký, và bốn việc bên kiểm phải tự quyết. Không dùng ảnh nguồn; bài đi theo các lần thử với PyJWT thay vì chép lại bài nguồn.",
   "source_deviations": [
+    "The source describes 'a JWT' as having three components and does not say that a JWT can also be encrypted (JWE, with an encrypted payload and a different structure); the lesson scopes itself to the signed form (JWS) and says so in the lead, the scope paragraph, the glossary and the limits section (OWASP).",
     "The source calls a JWT a way of 'securely' transmitting information and says the signature is what makes it 'secure'; the lesson says a signed JWT gives integrity and authenticity but no confidentiality, and that the payload is readable by anyone (OWASP; observed by decoding without a key).",
     "The source says the signature is created from the encoded header, encoded payload, 'secret key' and algorithm; that fits only signing with a shared secret, and the lesson says a private key signs when a key pair is used.",
     "The source says the shared key must go to the system that verifies but not what follows; the lesson states that every verifier of an HS256 token can also forge tokens (observed, and OWASP on shared secrets).",

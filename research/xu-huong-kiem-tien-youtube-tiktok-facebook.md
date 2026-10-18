@@ -27,7 +27,7 @@ Nhãn dùng trong bài:
 
 ## 1. Tóm tắt (đọc trong 1 phút)
 
-1. **Không có công thức "lên xu hướng".** Cả ba nền tảng thử video với nhóm nhỏ rồi mở rộng nếu phản hồi tốt. [Chính thức cho YouTube và TikTok]
+1. **Không có công thức "lên xu hướng" do nền tảng công bố.** Trang chính thức của YouTube và TikTok mà mình đọc mô tả việc chọn video cho từng người xem. Mô hình "thử với nhóm nhỏ rồi mở rộng nếu phản hồi tốt" là cách bên thứ ba và người làm nội dung mô tả, không phải điều nền tảng công bố. [Chính thức cho phần không có công thức; Cao cho mô hình nhóm nhỏ]
 2. **YouTube đã gỡ trang Trending** (có hiệu lực khoảng 21/7/2025). "Lên xu hướng" nay là được đề xuất. [Chính thức, qua lịch sử sửa đổi API]
 3. **YouTube bật kiếm tiền:** hiện 1.000 subscriber + 4.000 giờ xem hoặc 10 triệu lượt xem Shorts/90 ngày. **Từ 1/2/2027, người mới cần 8.000 giờ hoặc 20 triệu lượt xem Shorts.** Kênh đã trong YPP không bị ảnh hưởng tư cách, nhưng muốn nhận tiền từ Shorts phải giữ 10 triệu lượt xem Shorts/90 ngày. [Chính thức]
 4. **TikTok Creator Rewards** (10.000 follower, 100.000 lượt xem/30 ngày, video gốc trên 1 phút) **hiện chỉ mở cho Mỹ, Anh, Đức, Nhật, Hàn, Pháp, Mexico, Brazil. Việt Nam không có trong danh sách.** [Chính thức]
@@ -43,7 +43,7 @@ Nhãn dùng trong bài:
 
 ### 2.1 Nguyên lý chung
 
-- Video được đẩy tới một nhóm nhỏ trước; phản hồi tốt thì mới mở rộng. [Cao]
+- Mô hình phổ biến: video được đẩy tới một nhóm nhỏ trước; phản hồi tốt thì mới mở rộng. Đây là cách các nguồn bên thứ ba và người làm nội dung mô tả. Trang chính thức của YouTube và TikTok mà mình đọc không nêu cơ chế thử theo nhóm, mà mô tả việc chọn video cho từng người xem khi họ dùng ứng dụng. [Cao: bên thứ ba, không phải công bố của nền tảng]
 - TikTok nói **số follower và việc video trước đó có hiệu quả không phải yếu tố trực tiếp** trong hệ thống đề xuất. [Chính thức, newsroom 2020, bài đã cũ]
 - Ngưỡng cụ thể ("hoàn thành 70%", "lượt xem giờ đầu") chỉ là kinh nghiệm người làm nội dung. [Thấp]
 

@@ -1,0 +1,27 @@
+{
+  "id": "sd-06-020",
+  "lang": "vi",
+  "title": "Mười cách dùng Redis, năm kiểu dữ liệu",
+  "subtitle": "Chọn kiểu dữ liệu trước, rồi mới chọn lệnh.",
+  "desc": "Ba phần. Phần một và hai, năm thẻ kiểu dữ liệu và các việc chúng làm: chuỗi cho bộ đệm, khóa phân tán, bộ đếm, giới hạn tần suất và sinh số tăng dần; bảng băm cho phiên đăng nhập và giỏ hàng; bitmap cho việc đếm người dùng quay lại; danh sách và stream cho hàng đợi; tập có thứ tự cho bảng xếp hạng. Phần ba, bốn điều thấy khi chạy thử: khóa cần mã riêng để không xóa nhầm khóa người khác; bộ đếm giới hạn tần suất cần thời gian hết hạn đặt cùng lúc; lấy việc khỏi danh sách rồi sập là mất việc; stream giữ tin chưa xác nhận để người khác nhận lại.",
+  "sections": [
+    {"kind": "parts", "heading": "Một giá trị, nhiều trường, nhiều bit",
+     "items": [
+       {"name": "Chuỗi", "role": "Bộ đệm, khóa phân tán, bộ đếm, giới hạn tần suất, sinh số tăng dần.", "icon": "box"},
+       {"name": "Bảng băm", "role": "Phiên đăng nhập, giỏ hàng: nhiều trường trong một khóa.", "icon": "file-text"},
+       {"name": "Bitmap", "role": "Mỗi người dùng một bit mỗi ngày; giao hai ngày để đếm người quay lại.", "icon": "chart-column"}
+     ]},
+    {"kind": "parts", "heading": "Hàng đợi và xếp hạng",
+     "items": [
+       {"name": "Danh sách, stream", "role": "Hàng đợi việc; stream giữ tin tới khi được xác nhận.", "icon": "inbox"},
+       {"name": "Tập có thứ tự", "role": "Bảng xếp hạng: mỗi phần tử một điểm, đọc theo thứ tự điểm.", "icon": "list-ordered"}
+     ]},
+    {"kind": "notes", "heading": "Chạy thử thấy gì",
+     "items": [
+       "Khóa: gắn mã riêng, chỉ xóa khi mã còn đúng của mình.",
+       "Giới hạn tần suất: tăng đếm và đặt hết hạn trong cùng một bước.",
+       "Lấy việc khỏi danh sách rồi sập: việc đó mất.",
+       "Stream: tin chưa xác nhận vẫn chờ, người khác nhận lại được."
+     ]}
+  ]
+}

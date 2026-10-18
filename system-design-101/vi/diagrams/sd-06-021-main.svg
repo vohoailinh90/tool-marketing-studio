@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="811" viewBox="0 0 320 811" role="img" aria-labelledby="title desc">
+<title id="title">Vì sao Redis nhanh, và khi nào nó chậm</title>
+<desc id="desc">Hai phần. Phần một, ba lý do Redis nhanh: dữ liệu nằm trong RAM nên đọc ghi không chờ đĩa; một vòng lặp sự kiện theo dõi mọi kết nối và chạy lần lượt từng lệnh; giá trị nhỏ được lưu ở dạng gọn liền một khối như listpack và intset. Phần hai, ba kết quả đo trên Redis 7.0.15: gửi 16 lệnh mỗi lượt thì số lệnh mỗi giây tăng khoảng 9 lần; lệnh quét 2 triệu khóa chạy 1,6 giây và một lệnh khác phải chờ gần hết thời gian đó; bảng băm 512 trường chiếm 6192 byte, 513 trường chiếm 28816 byte.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="811" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Vì sao Redis nhanh, và</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">khi nào nó chậm</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Ba lý do, và ba con số đo trên một</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">máy 4 nhân.</text>
+<rect x="8" y="123" width="304" height="366" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Ba lý do</text>
+<rect x="20" y="168" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="211.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 200.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15.914 4a1.5 1.5 0 00-2.474-1.561l-9 9A1.5 1.5 0 005.5 14h4.002a.5.5 0 01.471.666L8.086 20a1.5 1.5 0 002.475 1.56l9-9A1.5 1.5 0 0018.5 10h-3.997a.5.5 0 01-.472-.667z"/></g>
+<text x="78" y="194.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Dữ liệu trong RAM</text>
+<text x="78" y="218.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đọc ghi không chờ đĩa; đĩa</text>
+<text x="78" y="237.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chỉ để lưu bản sao.</text>
+<rect x="20" y="269" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="322.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 311.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m17 2 4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/></g>
+<text x="78" y="295.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Một luồng chạy lệnh</text>
+<text x="78" y="319.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Một vòng lặp sự kiện nghe</text>
+<text x="78" y="338.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mọi kết nối, chạy lần lượt</text>
+<text x="78" y="358.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">từng lệnh.</text>
+<rect x="20" y="390" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="433.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 422.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"/><path d="M12 22V12"/><polyline points="3.29 7 12 12 20.71 7"/><path d="m7.5 4.27 9 5.15"/></g>
+<text x="78" y="416.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Dạng lưu gọn</text>
+<text x="78" y="440.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Giá trị nhỏ nằm liền một</text>
+<text x="78" y="459.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khối: listpack, intset.</text>
+<rect x="8" y="501" width="304" height="302" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="529.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Đo trên máy thử</text>
+<rect x="20" y="546" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="569" r="11" fill="#16a34a"/>
+<polyline points="37.9,569.4 41.7,573.4 48.5,565" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="572.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Gửi 16 lệnh mỗi lượt: số lệnh</text>
+<text x="64" y="591.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mỗi giây tăng khoảng 9 lần.</text>
+<rect x="20" y="617" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="640" r="11" fill="#16a34a"/>
+<polyline points="37.9,640.4 41.7,644.4 48.5,636" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="643.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Quét 2 triệu khóa mất 1,6</text>
+<text x="64" y="662.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">giây; lệnh khác phải xếp</text>
+<text x="64" y="682.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hàng chờ.</text>
+<rect x="20" y="708" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="731" r="11" fill="#16a34a"/>
+<polyline points="37.9,731.4 41.7,735.4 48.5,727" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="734.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bảng băm 512 trường: 6192</text>
+<text x="64" y="753.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">byte. Thêm 1 trường: 28816</text>
+<text x="64" y="773.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">byte.</text>
+</g>
+</svg>

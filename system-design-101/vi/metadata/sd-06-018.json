@@ -1,0 +1,111 @@
+{
+  "id": "sd-06-018",
+  "title_vi": "Kiến trúc Redis đã phát triển thế nào?",
+  "language": "vi",
+  "kind": "timeline",
+  "content_status": "draft",
+  "source_ref": "sd-06-018",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/how-redis-architecture-evolve.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-redis-architecture-evolve.md",
+    "blob_sha": "cd08e0f12e799fa0ae5d5409553f7f970d8c79af",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Fetched the pinned commit from GitHub; git rev-parse of the path gives the source map's blob OID. Non-empty source body read; no source-image bytes used.",
+    "retrieved_body_sha256": "9daf956ad57a295c4314f6c595b47f7bdcb71d6e9fa7cf5cfb60a6c62c2e7be2",
+    "retrieved_body_bytes": 2278
+  },
+  "diagram": "../diagrams/sd-06-018-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-06-019",
+      "relation": "deep-dive",
+      "reason_vi": "Bước lưu xuống đĩa (RDB, AOF) được thử chi tiết trong bài này."
+    },
+    {
+      "lesson_id": "sd-06-021",
+      "relation": "compare-with",
+      "reason_vi": "Luồng I/O của Redis 6.0 và vì sao Redis vẫn chạy lệnh trên một luồng."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "evidence": "Statements were checked against the Redis Replication, Sentinel, Cluster specification and Persistence pages of redis/docs at commit 3b030c7ef066c0bb7f88ddec02c784e49783b0f8, and against redis.conf, sentinel.conf and 00-RELEASENOTES of the redis/redis tags 1.3.6, 2.6.0, 2.8.0, 3.0.0, 5.0.0 and 6.0.0, read from a partial clone. The experiment ran on 2026-10-18 with the Ubuntu redis-server 7.0.15 package, all processes on one machine."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Replication is asynchronous by default; the master does not wait for replicas; WAIT reports how many replicas acknowledged but does not make Redis strongly consistent; replicas are read-only by default.",
+      "source": "https://github.com/redis/docs/blob/3b030c7ef066c0bb7f88ddec02c784e49783b0f8/content/operate/oss_and_stack/management/replication.md",
+      "section": "Introduction; Read-only replica",
+      "verified_by": "Read; the experiment showed OK from the master and WAIT 1 500 returning 0 with the replica stopped, and READONLY when writing to the replica."
+    },
+    {
+      "claim_vi": "Sentinel does monitoring, notification, automatic failover and acts as configuration provider; quorum only detects failure, a failover needs a leader elected by the majority of Sentinels; acknowledged writes can be lost because replication is asynchronous; Sentinel 2 is stable since 2.8.",
+      "source": "https://github.com/redis/docs/blob/3b030c7ef066c0bb7f88ddec02c784e49783b0f8/content/operate/oss_and_stack/management/sentinel.md",
+      "section": "Sentinel capabilities; Configuring Sentinel; Fundamental things to know",
+      "verified_by": "Read; the experiment's Sentinel logs show +sdown, +odown with quorum, +elected-leader, +promoted-slave and +switch-master, and the replica became master after 3.3 s with down-after-milliseconds 2000."
+    },
+    {
+      "claim_vi": "Redis Cluster splits keys into 16384 hash slots, HASH_SLOT = CRC16(key) mod 16384, hash tags force keys into one slot, clients are redirected with MOVED and ASK, multi-key commands need keys in the same slot, and acknowledged writes can be lost in some windows.",
+      "source": "https://github.com/redis/docs/blob/3b030c7ef066c0bb7f88ddec02c784e49783b0f8/content/operate/oss_and_stack/reference/cluster-spec.md",
+      "section": "Key distribution model; Hash tags; Write safety",
+      "verified_by": "Read; the experiment showed slot ranges 0-5460/5461-10922/10923-16383, MOVED 6777 for user:2, CROSSSLOT for MSET across slots and the same slot 10778 for {user:1}:cart and {user:1}:orders."
+    },
+    {
+      "claim_vi": "Before 2.0 (tag 1.3.6, March 2010) redis.conf already had RDB save points, appendonly, appendfsync and slaveof; the docs say AOF became available in 1.1.",
+      "sources": [
+        "https://github.com/redis/redis/blob/7b7f987e9184645f64f766b7f8f7eb02a9a69552/redis.conf",
+        "https://github.com/redis/docs/blob/3b030c7ef066c0bb7f88ddec02c784e49783b0f8/content/operate/oss_and_stack/management/persistence.md"
+      ],
+      "section": "redis.conf at 1.3.6; Append-only file",
+      "verified_by": "Read the file at the tag; tag commit dated 2010-03-18."
+    },
+    {
+      "claim_vi": "2.6.0 (Oct 2012) ships sentinel.conf; 2.8.0 released 22 Nov 2013 with new Sentinel code and partial resynchronization of replicas.",
+      "sources": [
+        "https://github.com/redis/redis/blob/5eec376c2f56dbf617cc8bc19476fd5431cd664d/sentinel.conf",
+        "https://github.com/redis/redis/blob/4e6d34bd2ccd8998335baefb6be08e1704a839d2/00-RELEASENOTES"
+      ],
+      "section": "2.8.0 release notes, RC1 list",
+      "verified_by": "Read the files at the tags."
+    },
+    {
+      "claim_vi": "3.0.0 released 1 Apr 2015 with Redis Cluster and the WAIT command; 5.0.0 released 17 Oct 2018 with the stream data type; 6.0.0 GA released 30 Apr 2020 with optional threaded I/O for client socket reads and writes, disabled by default, Redis being mostly single threaded.",
+      "sources": [
+        "https://github.com/redis/redis/blob/1fab07e078f35e175b8b09db3955dd654ced82c2/00-RELEASENOTES",
+        "https://github.com/redis/redis/blob/882ca6962f4ca32683b0e8db831de1b425c27d3c/00-RELEASENOTES",
+        "https://github.com/redis/redis/blob/17dfd7cabbf7954f92b7a1243d4bb27fee5d4500/00-RELEASENOTES",
+        "https://github.com/redis/redis/blob/17dfd7cabbf7954f92b7a1243d4bb27fee5d4500/redis.conf"
+      ],
+      "section": "Release notes headers; redis.conf THREADED I/O",
+      "verified_by": "Read the files at the tags."
+    }
+  ],
+  "design_notes_vi": "Bốn bước đánh số, mỗi bước ghi giới hạn nó vá; bốn ghi chú kết quả thử. Tên lệnh không đưa vào chữ của hình (máy kiểm đọc chúng như từ viết tắt), nằm trong bài dưới dạng code. Vẽ bằng scripts/figures.",
+  "source_deviations": [
+    "Source dates persistence and replication to Redis 2.8 in 2013; redis.conf at tag 1.3.6 (March 2010) already has RDB save points, AOF and slaveof, and the docs date AOF to 1.1. The lesson keeps the order as a chain of limits, not as a timeline of first appearances.",
+    "Source dates streams to 2017 with Redis 5.0; the 5.0.0 release notes give 17 Oct 2018.",
+    "Source does not say that replication is asynchronous or that Sentinel and Cluster can lose acknowledged writes; the lesson adds both with an experiment.",
+    "Lesson adds an experiment (replica, three Sentinels, three-node cluster with MOVED, CROSSSLOT and hash tags)."
+  ],
+  "editorial_note_vi": "Bài viết độc lập, sơ đồ vẽ bằng bộ công cụ hình từ spec system-design-101/figures/vi/sd-06-018.json, không dùng ảnh nguồn. Tiêu đề hiển thị là dòng đầu của lesson.md; title_vi giữ bản dịch tiêu đề nguồn theo source-map. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
+}

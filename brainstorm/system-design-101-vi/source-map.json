@@ -1320,11 +1320,11 @@
         },
         {
           "id": "sd-04-039",
-          "title_vi": null,
+          "title_vi": "Băm nhất quán: vì sao mỗi máy cần nhiều điểm trên vòng",
           "title_source": "Consistent Hashing Explained",
           "source_url": "https://bytebytego.com/guides/consistent-hashing",
           "source_path": "data/guides/consistent-hashing.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "4e00758bbe3376c4db0993712c28a1177895f45d",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/consistent-hashing.md"
         },

@@ -23,10 +23,11 @@ python3 scripts/sd101_slide_brief.py sd-01-027              # the lesson cut int
 ```
 
 1. **Read the brief.** It copies the lesson's own lines onto the slide roles of the style (six fixed ones and two to four concept slides), names the canvas, fixes the slide
-   count (8 to 10), gives each concept its colour (the same on every slide of the deck) and flags every line still over 10 words.
+   count (8 to 10), gives each concept its colour (the same on every slide of the deck) and flags everything still over 10 words: lines, concept
+   labels, terms and source names. Paragraphs and bullets keep the order the lesson writes them.
    Its `Concepts are taken from` line says where the lesson keeps its concepts: bullets or bold-label paragraphs under
    `## Đọc hình`, bullets before the first section, or the text cards of the figure (`diagrams/<id>-main.svg`) for lessons that keep
-   them only there. For those, the figure's line breaks are lost in the brief: open the SVG to read the sentences, and the prose
+   them only there (the rows of a table in the figure are folded into the card of their heading). For those, the figure's line breaks are lost in the brief: open the SVG to read the sentences, and the prose
    under `Đọc hình` (left off slide 2 because it explains those same cards, a WARNING says how long it is) is in `lesson.md`.
    A typed address in the lesson shows as `[address]`: draw such an example as its parts (scheme, host, path ...), never as one address.
    The brief leaves out what is not slide text and says so in a WARNING: a code block or table, and the sections of the lesson's body

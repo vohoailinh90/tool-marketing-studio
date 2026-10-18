@@ -112,6 +112,12 @@
       "source": "https://github.com/redis/docs/blob/3b030c7ef066c0bb7f88ddec02c784e49783b0f8/content/develop/using-commands/pipelining.md",
       "section": "Request/Response protocols and RTT; It's not just a matter of RTT",
       "verified_by": "Read; matches the experiment's jump from about 66 to about 593 thousand SET per second with 16 commands per round trip."
+    },
+    {
+      "claim_vi": "With appendfsync always Redis performs an fsync before replying OK to each write (grouping commands where it can), which the documentation calls very slow; with everysec a long-running fsync can eventually make the delayed write(2) block and add latency. Holding the dataset in memory therefore does not mean writes never wait on disk.",
+      "source": "https://github.com/redis/docs/blob/3b030c7ef066c0bb7f88ddec02c784e49783b0f8/content/operate/oss_and_stack/management/optimization/latency.md",
+      "section": "Latency due to AOF and disk I/O",
+      "verified_by": "Read; not tested in this lesson (the persistence lesson sd-06-019 covers the write and fsync order)."
     }
   ],
   "design_notes_vi": "Ba thẻ lý do có biểu tượng, ba ghi chú đo. Không ghi con số so bộ nhớ với đĩa vì chưa đo. Vẽ bằng scripts/figures.",

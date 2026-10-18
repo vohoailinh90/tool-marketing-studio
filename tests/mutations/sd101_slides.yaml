@@ -522,3 +522,7 @@ mutations:
   find: "finished >= LAYOUTS_REQUIRED_FROM"
   replace: "finished > LAYOUTS_REQUIRED_FROM"
   test: tests.test_sd101_slides.LayoutTableTests.test_a_deck_finished_on_or_after_the_cutoff_must_carry_its_table
+- label: a required option of finish is renamed without the documents
+  find: "    finish.add_argument(\"--first-concept\", type=int, required=True, metavar=\"N\","
+  replace: "    finish.add_argument(\"--first-concept-slide\", type=int, required=True, metavar=\"N\","
+  test: tests.test_sd101_slides.FinishDocsTests.test_claude_md_names_every_required_option_of_finish

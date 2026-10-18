@@ -320,7 +320,9 @@ files and the exports. Several sessions build decks at once and `claims.jsonl` k
   exit 2 when the remote cannot be read: fix that, do not guess.
 - **While working**: `touch --publish` now and then; `verify` must exit 0 before you push. If you lost a claim, stop on that
   lesson and `release` it. A claim of a dead session (no heartbeat for 72 h) is taken over with `claim --take-stale`.
-- **When done**: `finish <id> --canvas <cvs_...> --url <editor link> --slides <n> --publish` and commit the rest of the lesson's
+- **When done**: `finish <id> --canvas <cvs_...> --url <editor link> --slides <n> --layouts <kind,kind,...> --first-concept <n>
+  [--cannot KIND=REASON] --publish` (`--layouts`: the layout kind of every slide in order; `--first-concept`: the slide of the lesson's first
+  concept; `--cannot`: only when its signature layout fell back; `docs/sd101-slides.md`, *Layout table*) and commit the rest of the lesson's
   `slides/` folder. `--publish` pushes the finished record and checks the claim again afterwards; if the record reaches the
   remote any other way (a plain `git push`), run `verify` afterwards: it checks finished decks too.
 - **Variety.** The decks share the brand (fonts, neutrals, footer, size, 8 to 10 slides) but not their layouts:

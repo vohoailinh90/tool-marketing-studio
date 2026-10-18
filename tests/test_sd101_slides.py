@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import argparse
 import contextlib
 import datetime
 import io
@@ -1279,6 +1280,35 @@ class FinishTests(Sessions):
                 self.assertEqual(2, code)
                 self.assertIn("is not a lesson id", err)
                 self.assertEqual(decoys["trophy"][1], decoys["trophy"][0].read_text(encoding="utf-8"))
+
+
+class FinishDocsTests(unittest.TestCase):
+    """The commands the instructions spell out must be the ones `finish` accepts: a session that copies them gets exit 2 otherwise."""
+
+    ROOT = Path(__file__).resolve().parents[1]
+
+    def required_options(self) -> list[str]:
+        parser = slides.build_parser()
+        commands = next(action for action in parser._actions if isinstance(action, argparse._SubParsersAction))
+        return sorted(action.option_strings[0] for action in commands.choices["finish"]._actions
+                      if action.required and action.option_strings)
+
+    def test_finish_has_the_options_the_documents_are_checked_against(self) -> None:
+        self.assertEqual(["--canvas", "--first-concept", "--layouts", "--slides", "--url"], self.required_options())
+
+    def test_claude_md_names_every_required_option_of_finish(self) -> None:
+        text = (self.ROOT / "CLAUDE.md").read_text(encoding="utf-8")
+        start = text.index("- **When done**: `finish <id>")
+        bullet = text[start:text.index("- **Variety.**", start)]
+        for option in self.required_options():
+            self.assertIn(option, bullet, f"CLAUDE.md's When done command lacks {option}")
+
+    def test_the_slides_guide_names_every_required_option_of_finish(self) -> None:
+        text = (self.ROOT / "docs" / "sd101-slides.md").read_text(encoding="utf-8")
+        start = text.index("scripts/sd101_slides.py finish sd-01-002")
+        example = text[start:text.index("scripts/sd101_slides.py exported", start)]
+        for option in self.required_options():
+            self.assertIn(option, example, f"docs/sd101-slides.md's finish example lacks {option}")
 
 
 class LayoutTableTests(unittest.TestCase):

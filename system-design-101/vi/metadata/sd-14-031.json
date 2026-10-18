@@ -55,7 +55,18 @@
       "reason": "awaiting_technical_review_in_destination_repository"
     },
     "mobile": {
-      "status": "pending"
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright) rendered lesson.md, converted with markdown-it-py, at each width with optional sections open; the figure scale was measured from the rendered image (smallest figure text as drawn, which occurs at 320 px) and every SVG text box was checked against the viewBox. Not learner testing and not GitHub or a real phone."
     },
     "user_testing": {
       "status": "not_performed"

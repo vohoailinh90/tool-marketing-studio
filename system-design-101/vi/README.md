@@ -137,7 +137,7 @@ Các bài từ sd-04-001 đến sd-04-024 chưa có ở đây; số thứ tự d
 
 ## Bảo mật
 
-Các bài từ sd-14-016 trở đi chưa viết; số thứ tự dưới đây chỉ tính các bài đã viết.
+Các bài từ sd-14-016 đến sd-14-030 do các đợt khác viết; số thứ tự dưới đây chỉ tính các bài đã viết trong đợt này.
 
 1. [DevSecOps là gì?](lessons/sd-14-001/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 2. [Encoding, encryption và tokenization](lessons/sd-14-002/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
@@ -154,6 +154,11 @@ Các bài từ sd-14-016 trở đi chưa viết; số thứ tự dưới đây c
 13. [Tường lửa: sáu cách viết một luật](lessons/sd-14-013/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 14. [Bốn cơ chế xác thực: khóa SSH, token OAuth, chứng chỉ và mật khẩu](lessons/sd-14-014/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 15. [Chữ ký số: ký bằng khóa riêng, kiểm bằng khóa công khai](lessons/sd-14-015/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+31. [SSO hoạt động thế nào? Phiên toàn cục và vé xác nhận](lessons/sd-14-031/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+32. [HTTPS thương lượng thế nào? Bộ mã, phiên bản và khóa đối xứng](lessons/sd-14-032/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+33. [Sáu cách nhận ra người dùng: session, token, JWT, SSO, OAuth2 và mã QR](lessons/sd-14-033/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+34. [JWT cho người mới: chiếc hộp trong suốt có dấu niêm phong](lessons/sd-14-034/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+35. [OAuth 2.0 bằng lời đơn giản: token làm được gì và không làm được gì](lessons/sd-14-035/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 
 ## Nền tảng máy tính
 

@@ -514,3 +514,11 @@ mutations:
   find: "\"moda_canvas\", \"moda_url\", \"slide_count\", \"size\", \"exports\", \"layouts\")"
   replace: "\"moda_canvas\", \"moda_url\", \"slide_count\", \"size\", \"exports\")"
   test: tests.test_sd101_slides.FinishTests.test_exported_keeps_the_layout_table_in_the_record
+- label: a deck finished after the cutoff may omit its layout table
+  find: "        if finished is not None and finished >= LAYOUTS_REQUIRED_FROM:\n"
+  replace: "        if False:\n"
+  test: tests.test_sd101_slides.LayoutTableTests.test_a_deck_finished_on_or_after_the_cutoff_must_carry_its_table
+- label: a deck finished at the very moment of the cutoff may omit its layout table
+  find: "finished >= LAYOUTS_REQUIRED_FROM"
+  replace: "finished > LAYOUTS_REQUIRED_FROM"
+  test: tests.test_sd101_slides.LayoutTableTests.test_a_deck_finished_on_or_after_the_cutoff_must_carry_its_table

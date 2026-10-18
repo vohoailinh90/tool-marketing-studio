@@ -70,6 +70,10 @@ SLIDE_COUNTS = range(8, 11)  # docs/sd101-slides.md: 8 to 10 slides, one progres
 LAYOUT_KINDS = ("sequence-diagram", "flow", "two-column-comparison", "2x2-matrix", "lookup-table", "card-grid",
                 "numbered-rows", "connection-diagram", "layers", "timeline", "one-big-number", "one-highlighted-sentence")
 MIN_LAYOUT_KINDS = 5  # a deck uses at least this many different kinds
+# A deck finished on or after this day must carry its layout table; one finished before it (by a tool that did not take
+# the table) is grandfathered. A checkout that predates the table finishes decks with no `layouts`: after this day the
+# record check says so instead of letting them through.
+LAYOUTS_REQUIRED_FROM = datetime.datetime(2026, 10, 20, tzinfo=datetime.timezone.utc)
 LAYOUT_KEYS = {"slides", "first_concept", "cannot"}
 LEASE_HOURS = 72
 CLOCK_SKEW_HOURS = 1
@@ -281,6 +285,11 @@ def record_problems(record: object, lesson_id: str) -> list[str]:
         problems.append(f"exports must be one of {', '.join(EXPORTS)}")
     if "layouts" in record:
         problems += layout_problems(record["layouts"], lesson_id, record.get("slide_count"))
+    else:
+        finished = parse_stamp(record.get("done_at"))
+        if finished is not None and finished >= LAYOUTS_REQUIRED_FROM:
+            problems.append(f"layouts is missing: a deck finished on or after {LAYOUTS_REQUIRED_FROM:%Y-%m-%d} records its "
+                            "layout table (`finish --layouts ... --first-concept N`; docs/sd101-slides.md, Layout table)")
     return problems
 
 

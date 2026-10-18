@@ -831,6 +831,17 @@ class FinishTests(Sessions):
         self.assertEqual(0, self.finish(a, "sd-01-001")[0])
         self.assertEqual({"slides": table_with("flow"), "first_concept": 3}, self.record(a, "sd-01-001")["layouts"])
 
+    def test_a_deck_finished_after_the_cutoff_passes_the_folder_check_because_finish_records_its_table(self) -> None:
+        a = self.session("a")
+        self.run_in(a, "claim", "sd-01-001", "--publish")
+        self.at(hours=24 * 5)  # 2026-10-22, after the day the table became required
+        self.assertEqual(0, self.run_in(a, "touch", "--publish")[0])  # the lease of the claim ran out meanwhile
+        self.assertEqual(0, self.finish(a, "sd-01-001")[0])
+        record = self.record(a, "sd-01-001")
+        self.assertGreaterEqual(record["done_at"], "2026-10-20T00:00:00Z")
+        self.assertIn("layouts", record)
+        self.assertEqual([], slides.folder_problems(a / "store" / "lessons" / "sd-01-001" / "slides", "sd-01-001"))
+
     def test_finish_refuses_a_table_that_breaks_a_rule_and_leaves_the_record_alone(self) -> None:
         a = self.session("a")
         self.run_in(a, "claim", "sd-01-001", "--publish")
@@ -1406,6 +1417,19 @@ class LayoutTableTests(unittest.TestCase):
                   "done_at": "2026-10-17T09:00:00Z", "moda_canvas": CANVAS, "moda_url": URL, "slide_count": 10,
                   "size": "1920x1080", "exports": "pending"}
         self.assertEqual([], slides.record_problems(record, "sd-01-001"))
+
+    def test_a_deck_finished_on_or_after_the_cutoff_must_carry_its_table(self) -> None:
+        record = {"id": "sd-01-004", "status": "done", "owner": "claude/a", "claimed_at": "2026-10-17T08:00:00Z",
+                  "moda_canvas": CANVAS, "moda_url": URL, "slide_count": 10, "size": "1920x1080", "exports": "pending"}
+        missing = ("layouts is missing: a deck finished on or after 2026-10-20 records its layout table "
+                   "(`finish --layouts ... --first-concept N`; docs/sd101-slides.md, Layout table)")
+        for done_at, expected in (("2026-10-19T23:59:59Z", []), ("2026-10-20T00:00:00Z", [missing]),
+                                  ("2026-10-20T00:00:01Z", [missing]), ("2027-01-01T00:00:00Z", [missing]),
+                                  ("2026-10-17T09:00:00Z", [])):
+            with self.subTest(done_at):
+                self.assertEqual(expected, slides.record_problems({**record, "done_at": done_at}, "sd-01-004"))
+        self.assertEqual([], slides.record_problems({**record, "done_at": "2026-10-21T00:00:00Z", "layouts": self.table()},
+                                                    "sd-01-004"))
 
     def test_the_layouts_of_a_record_are_checked_with_the_record(self) -> None:
         record = {"id": "sd-01-004", "status": "done", "owner": "claude/a", "claimed_at": "2026-10-17T08:00:00Z",

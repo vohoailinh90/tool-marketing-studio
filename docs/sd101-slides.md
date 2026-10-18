@@ -139,6 +139,16 @@ and sources slide last. Everything else differs from deck to deck; `sd-01-001` i
   exactly the passed-over kinds named), and says which rule. A table that passes is kept as `layouts` in `deck.yaml`
   (`slides`, `first_concept`, and `cannot` after a fallback), and every later read of the record checks it again. The light and
   dark rhythm, the accent rotation and the visual idea are not in the table and no tool checks them. Put the table in the
-  report to the owner as well. A deck finished before the table existed has none and stays valid.
+  report to the owner as well. A deck finished before 2026-10-20 has no table and stays valid; from that day on a record with
+  no `layouts` fails the folder check (`verify`, `sd101_check.py`, CI), so a checkout that predates the table cannot finish a
+  deck without one. Such a record is mended by adding the key to its `deck.yaml` by hand, in this shape, which the same check
+  then validates:
+
+  ```yaml
+  layouts:
+    slides: [one-highlighted-sentence, flow, lookup-table, ...]   # one kind per slide, in order
+    first_concept: 3
+    cannot: {one-big-number: the lesson states no number}        # only after a fallback
+  ```
 
 Binary exports add about 1.5 MB per lesson; the repository grows by that much for each finished export set.

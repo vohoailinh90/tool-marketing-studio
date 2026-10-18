@@ -16,7 +16,7 @@ mutations:
 - label: the figure's own title and subtitle are read as a concept card
   find: 'seen_card = bold and size < title_size'
   replace: 'seen_card = True'
-  test: tests.test_sd101_slide_brief.StructureTests.test_lessons_without_a_figure_section_fall_back_to_the_figure_cards
+  test: tests.test_sd101_slide_brief.StructureTests.test_figure_cards_without_numbers_still_open_a_card_at_every_bold_heading
 - label: a line over the word budget is not flagged
   find: 'return Line(text, words, budget and words > WORD_BUDGET)'
   replace: 'return Line(text, words, False)'

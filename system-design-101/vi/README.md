@@ -132,6 +132,29 @@ Các bài chưa viết của nhóm này không có trong danh sách; số thứ 
 14. [Tám chiến lược đẩy khóa ra, và Redis thật sự có những gì](lessons/sd-06-014/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
 15. [Bộ nhớ đệm hỏng theo những kiểu nào](lessons/sd-06-015/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
 
+## Công cụ và năng suất
+
+1. [Các lệnh Git theo việc cần làm](lessons/sd-09-001/lesson.md) — bản nháp; chờ review kỹ thuật.
+2. [Quy trình làm việc với Git](lessons/sd-09-002/lesson.md) — bản nháp; chờ review kỹ thuật.
+3. [Đọc JSON lồng nhau bằng sơ đồ](lessons/sd-09-003/lesson.md) — bản nháp; chờ review kỹ thuật.
+4. [Git và GitHub giải quyết việc gì?](lessons/sd-09-004/lesson.md) — bản nháp; chờ review kỹ thuật.
+5. [Merge và rebase: ghép lịch sử khác nhau](lessons/sd-09-005/lesson.md) — bản nháp; chờ review kỹ thuật.
+6. [Chọn ứng dụng AI theo đầu ra cần kiểm tra](lessons/sd-09-006/lesson.md) — bản nháp; chờ review kỹ thuật.
+7. [Viết sơ đồ bằng mã](lessons/sd-09-007/lesson.md) — bản nháp; chờ review kỹ thuật.
+8. [CPU 100%: bắt đầu từ bằng chứng](lessons/sd-09-008/lesson.md) — bản nháp; chờ review kỹ thuật.
+9. [Sáu lựa chọn để dựng sơ đồ từ văn bản](lessons/sd-09-009/lesson.md) — bản nháp; chờ review kỹ thuật.
+10. [Chọn công cụ đưa code tới production](lessons/sd-09-010/lesson.md) — bản nháp; chờ review kỹ thuật.
+11. [SEO: giúp công cụ tìm kiếm hiểu trang](lessons/sd-09-011/lesson.md) — bản nháp; chờ review kỹ thuật.
+12. [Tra lệnh Linux theo câu hỏi](lessons/sd-09-012/lesson.md) — bản nháp; chờ review kỹ thuật.
+13. [Quyền Linux: ai được làm gì?](lessons/sd-09-013/lesson.md) — bản nháp; chờ review kỹ thuật.
+14. [Năm góc nhìn để hiểu Linux](lessons/sd-09-014/lesson.md) — bản nháp; chờ review kỹ thuật.
+15. [Các dự án nguồn mở qua một đường đi ứng dụng](lessons/sd-09-015/lesson.md) — bản nháp; chờ review kỹ thuật.
+16. [Dự án được doanh nghiệp khởi xướng hoặc hỗ trợ](lessons/sd-09-016/lesson.md) — bản nháp; chờ review kỹ thuật.
+17. [Cây thư mục Linux và vai trò từng nơi](lessons/sd-09-017/lesson.md) — bản nháp; chờ review kỹ thuật.
+18. [Dùng dev tools để bỏ việc lặp lại](lessons/sd-09-018/lesson.md) — bản nháp; chờ review kỹ thuật.
+19. [Git lưu snapshot và nhánh như thế nào?](lessons/sd-09-019/lesson.md) — bản nháp; chờ review kỹ thuật.
+20. [Từ thay đổi code tới bản chạy production](lessons/sd-09-020/lesson.md) — bản nháp; chờ review kỹ thuật.
+
 ## Phát triển phần mềm
 
 23. [Sau thay đổi API: chọn bộ kiểm tra theo rủi ro](lessons/sd-10-023/lesson.md)
@@ -233,7 +256,7 @@ và hình đạt; không coi đọc nguồn là mọi claim đã đúng, không 
 
 API và phát triển web (còn sd-01-050) → Tình huống thực tế (đã viết một phần) →
 Cơ sở dữ liệu và lưu trữ (đã viết một phần) → Bộ nhớ đệm và hiệu năng (đã viết một phần) → Thanh toán và công nghệ tài chính →
-Kiến trúc phần mềm → Công cụ và năng suất → Phát triển phần mềm (đã viết một phần) →
+Kiến trúc phần mềm → Phát triển phần mềm (đã viết một phần) →
 Đám mây và hệ thống phân tán → Hệ thống hoạt động thế nào? → Bảo mật (đã viết một phần).
 
 Nhóm “Nền tảng máy tính” (cuối mục lục nguồn) được viết trước theo yêu cầu người dùng ngày 2026-10-13; nhóm “API và phát triển web” viết tiếp theo thứ tự source-map.

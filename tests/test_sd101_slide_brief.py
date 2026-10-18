@@ -250,6 +250,15 @@ class CommandLineTests(unittest.TestCase):
         self.addCleanup(store.tmp.cleanup)
         self.assertEqual(1, self.run_cli("sd-01-900", "--store", str(store.path)).returncode)
 
+    def test_a_lesson_that_is_not_utf8_exits_1_with_a_message_not_a_traceback(self):
+        store = Store("# title\n")
+        self.addCleanup(store.tmp.cleanup)
+        (store.path / "lessons" / store.lesson_id / "lesson.md").write_bytes(b"# title\n\xff\xfe broken\n")
+        result = self.run_cli("sd-01-900", "--store", str(store.path))
+        self.assertEqual(1, result.returncode)
+        self.assertIn("not valid UTF-8", result.stderr)
+        self.assertNotIn("Traceback", result.stderr)
+
 
 if __name__ == "__main__":
     unittest.main()

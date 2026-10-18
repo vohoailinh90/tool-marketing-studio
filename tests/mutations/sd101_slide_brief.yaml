@@ -37,3 +37,7 @@ mutations:
   find: '**({"question_candidate": line(question[0]).__dict__} if question else {}),'
   replace: ''
   test: tests.test_sd101_slide_brief.StructureTests.test_the_cover_offers_the_check_question_as_the_hook_question
+- label: a lesson that is not valid UTF-8 ends in a traceback instead of a message
+  find: '    except UnicodeDecodeError as error:'
+  replace: '    except KeyboardInterrupt as error:'
+  test: tests.test_sd101_slide_brief.CommandLineTests.test_a_lesson_that_is_not_utf8_exits_1_with_a_message_not_a_traceback

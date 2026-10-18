@@ -288,6 +288,8 @@ def build(store: pathlib.Path, lesson_id: str) -> Brief:
         parsed = parse(path.read_text(encoding="utf-8"))
     except OSError as error:
         raise BriefError(f"cannot read {path}: {error.strerror or error}") from error
+    except UnicodeDecodeError as error:
+        raise BriefError(f"cannot read {path}: not valid UTF-8 ({error.reason} at byte {error.start})") from error
     warnings: list[str] = []
     number = f"{int(match.group(2)):02d}"
     title = parsed.title  # the lesson's own H1, as README.md and the decks already built name it

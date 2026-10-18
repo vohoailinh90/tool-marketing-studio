@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="735" viewBox="0 0 320 735" role="img" aria-labelledby="title desc"><title id="title">Mã phản hồi HTTP: đọc nhóm trước, đọc nghĩa sau</title><desc id="desc">Năm nhóm mã HTTP. Ví dụ202 chưa hoàn tất và304 liên quan bản lưu; không phải năm bước tuần tự.</desc><rect width="320" height="735" fill="#f8fafc"/><g font-family="Arial, sans-serif" font-size="16" fill="#0f172a"><text x="16" y="32" font-size="20" font-weight="bold">ĐỌC MÃ PHẢN HỒI HTTP</text>
+<rect x="12" y="55" width="296" height="112" rx="12" fill="#dbeafe"/><text x="22" y="87" font-weight="bold">1xx · thông tin tạm thời</text><text x="22" y="131">Chưa phải phản hồi cuối.</text>
+<rect x="12" y="183" width="296" height="112" rx="12" fill="#dcfce7"/><text x="22" y="215" font-weight="bold">2xx · thành công</text><text x="22" y="259">202: nhận xử lý, chưa xong.</text>
+<rect x="12" y="311" width="296" height="112" rx="12" fill="#fef3c7"/><text x="22" y="343" font-weight="bold">3xx · chuyển hướng</text><text x="22" y="387">304: xác thực lại bản lưu.</text>
+<rect x="12" y="439" width="296" height="112" rx="12" fill="#fce7f3"/><text x="22" y="471" font-weight="bold">4xx · lỗi phía yêu cầu</text><text x="22" y="515">Đọc nghĩa của từng mã.</text>
+<rect x="12" y="567" width="296" height="112" rx="12" fill="#ede9fe"/><text x="22" y="599" font-weight="bold">5xx · lỗi phía máy chủ</text><text x="22" y="643">Không tự suy ra cách sửa.</text>
+<text x="16" y="720">Nhóm mã ≠ toàn bộ ngữ cảnh.</text></g></svg>

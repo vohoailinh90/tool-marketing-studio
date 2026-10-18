@@ -1,0 +1,68 @@
+{
+  "id": "sd-01-035",
+  "title_vi": "Bộ cân bằng tải: chọn đích cho mỗi yêu cầu",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "draft",
+  "source_ref": "sd-01-035",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/what-is-a-load-balancer.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-is-a-load-balancer.md",
+    "blob_sha": "98268f5cc7dfaa6040a2f1a5e58e0fd337479f97",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "2a0e64a50487753def0df9af0cb973343028db7f5c2087142a026855614c9733",
+    "retrieved_body_bytes": 1620
+  },
+  "diagram": "../diagrams/sd-01-035-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-15"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-15",
+      "evidence": "Đọc NGINX overview/proxy/choose-method/weights và Amazon target-health-checks (chu kỳ, ngưỡng, all-unhealthy fail-open). Không suy lợi ích thành bảo đảm; ví dụ thư viện tự thiết kế, chưa vận hành thật."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "new lesson awaiting current-head review"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-15",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "evidence": "Chromium cục bộ toàn bài/details mở 320/375/430px: không tràn ngang/chữ SVG ngoài hình, cỡ nhỏ nhất14.4/16/16px. Đã xem ảnh320px; chưa kiểm tra GitHub/thiết bị thật/người học."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Bộ cân bằng tải chọn đích theo quy tắc; luân phiên và ít kết nối là các lựa chọn, không bảo đảm công việc nặng nhẹ đều nhau.",
+      "source": "https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/"
+    },
+    {
+      "claim_vi": "Kiểm tra sức khỏe có chu kỳ/ngưỡng; Application Load Balancer có fail-open khi toàn bộ đích không khỏe.",
+      "source": "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/target-group-health-checks.html"
+    }
+  ],
+  "design_notes_vi": "Một hình nhánh A/C, B đã bị loại trong ví dụ; không vẽ dữ liệu nguồn hoặc hứa phục hồi tự động.",
+  "editorial_note_vi": "Nháp giáo dục, chưa thử triển khai hoặc hiệu năng thực tế.",
+  "source_deviations": [
+    "Lợi ích sẵn sàng/hiệu năng có điều kiện, không phải bảo đảm.",
+    "Phân biệt cách triển khai, khả năng định tuyến và phạm vi; không coi mọi mục là loại loại trừ nhau.",
+    "Hình có đích khỏe còn lại; không bỏ qua trường hợp toàn nhóm lỗi và độ trễ kiểm tra."
+  ]
+}

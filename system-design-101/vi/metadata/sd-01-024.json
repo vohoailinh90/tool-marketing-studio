@@ -1,0 +1,59 @@
+{
+  "id": "sd-01-024",
+  "title_vi": "Đọc số phiên bản theo SemVer",
+  "language": "vi",
+  "kind": "concept",
+  "content_status": "draft",
+  "source_ref": "sd-01-024",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/what-do-version-numbers-mean.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-do-version-numbers-mean.md",
+    "blob_sha": "0a598471f15722278ba9cd4e499b41a0312d12d1",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "0616100088c0f4c6b1c163e7781b41d63f1739d6ca62744ad1fed0ac0ca2460a",
+    "retrieved_body_bytes": 1562
+  },
+  "diagram": "../diagrams/sd-01-024-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-15"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-15",
+      "evidence": "Đọc SemVer 2.0.0 quy tắc 1–11: API công khai, ba số nguyên, tăng/reset, 0.y.z, prerelease/build và thứ tự số."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "Glossary added and main7397e5c integrated; prior-head review does not validate this combination."
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-15",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "evidence": "Chromium cục bộ toàn bài với glossary mới, details mở320/375/430px; không tràn ngang/không chữ SVG ngoài viewBox, min14.4/16/16px. Đã xem năm screenshot320px cho023–027. Chưa GitHub/device/user testing."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Đọc SemVer 2.0.0 quy tắc 1–11: API công khai, ba số nguyên, tăng/reset, 0.y.z, prerelease/build và thứ tự số.",
+      "source": "https://semver.org/spec/v2.0.0.html"
+    }
+  ],
+  "design_notes_vi": "Ba thẻ dọc nguyên bản; ví dụ tự đặt, không dùng hoặc trace hình nguồn.",
+  "editorial_note_vi": "Giới hạn phạm vi theo tài liệu chính thức; draft, chưa thử người học."
+}

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="650" viewBox="0 0 320 650" role="img" aria-labelledby="title desc">
+<title id="title">Chọn đích cho yêu cầu mới</title><desc id="desc">Yêu cầu tới bộ cân bằng tải. A và C còn trong nhóm đích; B đã bị loại trong ví dụ. Chỉ vẽ nhánh chuyển yêu cầu tới A và C.</desc>
+<defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155"/></marker></defs>
+<rect width="320" height="650" fill="#f8fafc"/>
+<g font-family="Arial, sans-serif" font-size="16" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">Chọn ai nhận việc?</text>
+<rect x="40" y="54" width="240" height="65" rx="12" fill="#dbeafe"/><text x="68" y="92">Yêu cầu tra cứu sách</text>
+<path d="M160,119 V151" fill="none" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="40" y="157" width="240" height="80" rx="12" fill="#e0e7ff"/><text x="65" y="188" font-weight="bold">Bộ cân bằng tải</text><text x="65" y="216">Chọn theo quy tắc</text>
+<path d="M160,237 V258 H24 V510" fill="none" stroke="#334155" stroke-width="2"/>
+<path d="M24,325 H59" fill="none" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M24,510 H59" fill="none" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="64" y="287" width="240" height="76" rx="12" fill="#dcfce7"/><text x="78" y="317" font-weight="bold">A · còn được chọn</text><text x="78" y="344">Bản sao ứng dụng</text>
+<rect x="64" y="380" width="240" height="76" rx="12" fill="#fee2e2"/><text x="78" y="410" font-weight="bold">B · đã bị loại</text><text x="78" y="437">Theo kiểm tra lỗi</text>
+<rect x="64" y="473" width="240" height="76" rx="12" fill="#dcfce7"/><text x="78" y="503" font-weight="bold">C · còn được chọn</text><text x="78" y="530">Bản sao ứng dụng</text>
+<text x="16" y="589">Chỉ minh họa yêu cầu mới.</text><text x="16" y="619">Chia yêu cầu ≠ chia đều việc.</text>
+</g></svg>

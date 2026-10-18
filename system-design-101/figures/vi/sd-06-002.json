@@ -1,0 +1,96 @@
+{
+  "id": "sd-06-002",
+  "title": "CDN: máy chủ biên lưu gì, khi nào hỏi gốc",
+  "subtitle": "Khung một là một lượt hỏi; khung hai là các mảnh ghép.",
+  "desc": "Hai khung. Khung một, trình tự giữa người dùng, máy chủ biên và máy chủ gốc: người dùng xin logo; máy biên chưa có bản sao nên hỏi máy gốc; máy gốc trả logo kèm lời dặn lưu 60 giây; máy biên cất bản sao rồi trả; lần sau máy biên trả ngay từ bản sao. Khung hai, bốn mảnh ghép: DNS chỉ người dùng tới máy biên ở gần; máy biên giữ bản sao, hết hạn hay thiếu thì hỏi lại gốc; máy gốc giữ bản chính và dặn được lưu bao lâu; phần điều khiển cấu hình và xóa bản sao trên các máy biên.",
+  "sections": [
+    {
+      "kind": "sequence",
+      "heading": "Một lượt hỏi qua máy biên",
+      "actors": [
+        {
+          "name": "Người dùng",
+          "icon": "smartphone"
+        },
+        {
+          "name": "Máy biên",
+          "icon": "server"
+        },
+        {
+          "name": "Máy gốc",
+          "icon": "database"
+        }
+      ],
+      "messages": [
+        {
+          "from": 0,
+          "to": 1,
+          "text": "Xin logo"
+        },
+        {
+          "from": 1,
+          "to": 2,
+          "text": "Chưa có: hỏi gốc"
+        },
+        {
+          "from": 2,
+          "to": 1,
+          "text": "Logo, lưu 60 giây",
+          "reply": true
+        },
+        {
+          "from": 1,
+          "to": 0,
+          "text": "Cất bản sao, trả",
+          "reply": true
+        },
+        {
+          "from": 1,
+          "to": 0,
+          "text": "Lần sau: trả từ bản sao",
+          "reply": true
+        }
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Các mảnh ghép",
+      "items": [
+        {
+          "name": "DNS",
+          "role": "Chỉ người dùng tới máy biên ở gần.",
+          "icon": "route"
+        },
+        {
+          "name": "Máy biên",
+          "role": "Giữ bản sao; hết hạn hay thiếu thì hỏi lại gốc.",
+          "icon": "server"
+        },
+        {
+          "name": "Máy gốc",
+          "role": "Giữ bản chính, dặn được lưu bao lâu.",
+          "icon": "database"
+        },
+        {
+          "name": "Điều khiển",
+          "role": "Cấu hình và xóa bản sao trên các máy biên.",
+          "icon": "settings"
+        }
+      ],
+      "flow": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          3,
+          1
+        ]
+      ]
+    }
+  ]
+}

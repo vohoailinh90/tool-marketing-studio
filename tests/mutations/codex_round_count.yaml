@@ -293,8 +293,8 @@ mutations:
   replace: "r\"|This comment shows.*|\\|.*)?\\s*\")"
   test: tests.test_codex_round_count.StrictnessTests.test_a_summary_with_another_heading_or_sentence_counts
 - label: a summary without its About footer is counted
-  find: "    return all(SUMMARY_LINE.fullmatch(line) for line in ABOUT_BLOCK.sub(\"\", body).splitlines())\n"
-  replace: "    return ABOUT_BLOCK.search(body) is not None and all(SUMMARY_LINE.fullmatch(line) for line in ABOUT_BLOCK.sub(\"\", body).splitlines())\n"
+  find: "    lines = ABOUT_BLOCK.sub(\"\", body).splitlines()\n"
+  replace: "    lines = ABOUT_BLOCK.sub(\"\", body).splitlines() if ABOUT_BLOCK.search(body) else [\"x\"]\n"
   test: tests.test_codex_round_count.StrictnessTests.test_a_summary_without_its_about_footer_is_still_a_summary
 - label: a --paginate --slurp list is not taken as complete
   find: "    if is_slurped(data):\n        return True"

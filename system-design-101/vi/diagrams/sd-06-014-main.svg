@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1072" viewBox="0 0 320 1072" role="img" aria-labelledby="title desc">
+<title id="title">Tám chiến lược bỏ khóa, trong Redis thật</title>
+<desc id="desc">Ba khung. Khung một: LRU, LFU và ngẫu nhiên có sẵn dưới dạng allkeys-lru, allkeys-lfu, allkeys-random, bản volatile chỉ chọn khóa có hạn sống; TTL tương ứng với volatile-ttl, bỏ khóa sắp hết hạn trước; FIFO, MRU và SLRU không có trong Redis, memcached thì dùng LRU chia ba vùng nóng, ấm, lạnh; hai tầng là bộ đệm trong tiến trình đứng trước Redis. Khung hai, thử trên Redis với 4 MB: truy cập lệch thì LFU trúng 81, LRU 79, ngẫu nhiên 77 phần trăm; khóa nóng lẫn khóa dùng một lần thì LFU 67, LRU 55; lặp vòng thì LFU 31, ngẫu nhiên 20, LRU 17. Khung ba, bẫy cấu hình: noeviction làm lệnh ghi báo lỗi khi đầy; volatile-lru mà không khóa nào có hạn sống thì y như noeviction.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1072" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Tám chiến lược bỏ khóa,</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">trong Redis thật</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Tên trong sách và tùy chọn mà Redis</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">7.0.15 thật sự có.</text>
+<rect x="8" y="123" width="304" height="444" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Tám tên và Redis</text>
+<rect x="20" y="168" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="191" r="11" fill="#16a34a"/>
+<polyline points="37.9,191.4 41.7,195.4 48.5,187" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="194.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">LRU, LFU, ngẫu nhiên:</text>
+<text x="64" y="213.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">allkeys-lru, allkeys-lfu,</text>
+<text x="64" y="233.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">allkeys-random.</text>
+<rect x="20" y="259" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="282" r="11" fill="#16a34a"/>
+<polyline points="37.9,282.4 41.7,286.4 48.5,278" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="285.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bản volatile chỉ chọn trong</text>
+<text x="64" y="304.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">các khóa có hạn sống.</text>
+<rect x="20" y="330" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="353" r="11" fill="#16a34a"/>
+<polyline points="37.9,353.4 41.7,357.4 48.5,349" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="356.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">TTL: volatile-ttl bỏ khóa sắp</text>
+<text x="64" y="375.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hết hạn trước.</text>
+<rect x="20" y="401" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="424" r="11" fill="#16a34a"/>
+<polyline points="37.9,424.4 41.7,428.4 48.5,420" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="427.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">FIFO, MRU, SLRU: Redis</text>
+<text x="64" y="446.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">không có; memcached chia</text>
+<text x="64" y="466.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">LRU làm ba vùng.</text>
+<rect x="20" y="492" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="515" r="11" fill="#16a34a"/>
+<polyline points="37.9,515.4 41.7,519.4 48.5,511" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="518.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Hai tầng: bộ đệm trong tiến</text>
+<text x="64" y="537.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trình đứng trước Redis.</text>
+<rect x="8" y="579" width="304" height="262" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="607.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Thử trên Redis, 4 MB</text>
+<rect x="20" y="624" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="647" r="11" fill="#16a34a"/>
+<polyline points="37.9,647.4 41.7,651.4 48.5,643" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="650.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Truy cập lệch: LFU 81%, LRU</text>
+<text x="64" y="669.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">79%, ngẫu nhiên 77%.</text>
+<rect x="20" y="695" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="718" r="11" fill="#16a34a"/>
+<polyline points="37.9,718.4 41.7,722.4 48.5,714" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="721.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nóng lẫn dùng một lần: LFU</text>
+<text x="64" y="740.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">67%, LRU 55%.</text>
+<rect x="20" y="766" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="789" r="11" fill="#16a34a"/>
+<polyline points="37.9,789.4 41.7,793.4 48.5,785" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="792.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lặp vòng: LFU 31%, ngẫu</text>
+<text x="64" y="811.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhiên 20%, LRU 17%.</text>
+<rect x="8" y="853" width="304" height="211" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="881.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Bẫy cấu hình</text>
+<rect x="20" y="898" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="921" r="11" fill="#16a34a"/>
+<polyline points="37.9,921.4 41.7,925.4 48.5,917" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="924.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">noeviction: đầy là lệnh ghi</text>
+<text x="64" y="943.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">báo lỗi.</text>
+<rect x="20" y="969" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="992" r="11" fill="#16a34a"/>
+<polyline points="37.9,992.4 41.7,996.4 48.5,988" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="995.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">volatile-lru mà không khóa</text>
+<text x="64" y="1014.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nào có hạn sống: y như</text>
+<text x="64" y="1034.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">noeviction.</text>
+</g>
+</svg>

@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1037" viewBox="0 0 320 1037" role="img" aria-labelledby="title desc">
+<title id="title">Trước khi thêm bộ nhớ đệm</title>
+<desc id="desc">Ba khung. Khung một, khi nào đáng dùng: dữ liệu được đọc nhiều hơn ghi; dữ liệu ít đổi hoặc được phép cũ một lúc; mất bộ nhớ đệm thì vẫn nạp lại được từ kho chính. Khung hai, đo gì: tỷ lệ trúng; số khóa bị đẩy ra; bộ nhớ đã dùng so với giới hạn; lệnh ghi bị từ chối khi đầy. Khung ba, thử trên Redis với truy cập lệch: 2 MB trúng 63 phần trăm, 4 MB trúng 79 phần trăm, 8 MB trúng 88 phần trăm, 16 MB vẫn 88 phần trăm vì phần trượt còn lại là lần nạp đầu tiên; truy cập đều, 4 MB chỉ trúng 29 phần trăm.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1037" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Trước khi thêm bộ nhớ</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">đệm</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Khi nào đáng dùng, đo gì, và bộ nhớ</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">nhiều hơn mua được gì.</text>
+<rect x="8" y="123" width="304" height="262" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Khi nào đáng dùng</text>
+<rect x="20" y="168" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="191" r="11" fill="#16a34a"/>
+<polyline points="37.9,191.4 41.7,195.4 48.5,187" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="194.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Dữ liệu được đọc nhiều hơn</text>
+<text x="64" y="213.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">ghi.</text>
+<rect x="20" y="239" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="262" r="11" fill="#16a34a"/>
+<polyline points="37.9,262.4 41.7,266.4 48.5,258" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="265.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Dữ liệu ít đổi, hoặc được</text>
+<text x="64" y="284.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">phép cũ một lúc.</text>
+<rect x="20" y="310" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="333" r="11" fill="#16a34a"/>
+<polyline points="37.9,333.4 41.7,337.4 48.5,329" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="336.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mất bộ đệm thì vẫn nạp lại</text>
+<text x="64" y="355.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">được từ kho chính.</text>
+<rect x="8" y="397" width="304" height="299" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="425.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Đo gì</text>
+<rect x="20" y="442" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="465" r="11" fill="#16a34a"/>
+<polyline points="37.9,465.4 41.7,469.4 48.5,461" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="468.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tỷ lệ trúng: số lần trúng chia</text>
+<text x="64" y="487.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cho tổng số lần đọc.</text>
+<rect x="20" y="513" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="536" r="11" fill="#16a34a"/>
+<polyline points="37.9,536.4 41.7,540.4 48.5,532" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="539.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Số khóa bị đẩy ra vì đầy.</text>
+<rect x="20" y="567" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="590" r="11" fill="#16a34a"/>
+<polyline points="37.9,590.4 41.7,594.4 48.5,586" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="593.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bộ nhớ đã dùng so với giới</text>
+<text x="64" y="612.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hạn.</text>
+<rect x="20" y="638" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="661" r="11" fill="#16a34a"/>
+<polyline points="37.9,661.4 41.7,665.4 48.5,657" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="664.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lệnh ghi bị từ chối khi đầy.</text>
+<rect x="8" y="708" width="304" height="321" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="736.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Thử: thêm bộ nhớ, trúng</text>
+<text x="20" y="758.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">thêm bao nhiêu</text>
+<rect x="20" y="775" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="798" r="11" fill="#16a34a"/>
+<polyline points="37.9,798.4 41.7,802.4 48.5,794" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="801.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">2 MB: trúng 63%.</text>
+<rect x="20" y="829" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="852" r="11" fill="#16a34a"/>
+<polyline points="37.9,852.4 41.7,856.4 48.5,848" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="855.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">4 MB: 79%. 8 MB: 88%.</text>
+<rect x="20" y="883" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="906" r="11" fill="#16a34a"/>
+<polyline points="37.9,906.4 41.7,910.4 48.5,902" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="909.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">16 MB: vẫn 88%; phần trượt</text>
+<text x="64" y="928.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">còn lại là lần nạp đầu.</text>
+<rect x="20" y="954" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="977" r="11" fill="#16a34a"/>
+<polyline points="37.9,977.4 41.7,981.4 48.5,973" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="980.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Truy cập đều thay vì lệch: 4</text>
+<text x="64" y="999.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">MB chỉ còn 29%.</text>
+</g>
+</svg>

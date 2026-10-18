@@ -38,6 +38,7 @@ spec; read `docs/figures.md` for the spec, the commands and what was checked. Th
 | A hand-drawn sketch to think with | `render --format excalidraw`, or the Excalidraw connector `create_view` | Sketch style does not belong in the store's figures. |
 | A designed infographic or social image | `render --format moda`, applied with Moda `canvas_create` + `canvas_apply_markup` | Free calls; image generation inside Moda is metered and not needed. Ask the owner about a brand kit before a new design. |
 | A lesson's image for Facebook | `scripts.figures facebook` | The standard slides: `docs/figures.md`, *Images for Facebook*. |
+| A lesson's slide deck for Facebook | Moda, claimed with `scripts/sd101_slides.py` | Its own product, not a figure: `docs/sd101-slides.md`. |
 | Campaign posts for Facebook | the studio's own renderer (`studio.py render`) | Not a figure of a lesson; see `tool-campaign`. |
 | Figma, Canva | only when the owner asks | They produce raster or proprietary files; the store accepts neither as a figure. |
 
@@ -51,5 +52,6 @@ them on. If one is missing, say so and use the SVG; do not add an `.mcp.json` en
 - No icon, caption or arrow label that is not in the spec. No source image is traced or embedded (`DECISIONS.md`, "Ảnh nguồn").
 - The toolkit refuses a figure whose text is too small for a phone; do not loosen `mobile.py` to make one pass: shorten the text.
 - Images for Facebook follow the standard in `docs/figures.md` (sizes, text 30 px or more, footer, no address, alt text); `check` fails a
-  figure that cannot be exported to it. A picture exported from Moda, Canva, Figma, draw.io or Excalidraw is not a standard image.
+  figure that cannot be exported to it. A picture exported from Moda, Canva, Figma, draw.io or Excalidraw is not a standard image of
+  a figure; a lesson's Moda slide deck is the one separate Facebook product (`docs/sd101-slides.md`).
 - A new Moda canvas made to try a figure is a test canvas: tell the owner so they can delete it.

@@ -74,8 +74,8 @@ missing browser is told to install Chromium.
 
 ## Images for Facebook: the standard
 
-A lesson figure is a 320 px column for a phone page. For Facebook it is exported as slides, and this is the one way a lesson image
-is made for upload: `python3 -m scripts.figures facebook SPEC` writes `build/figures/facebook/<id>/01.png ...` and `alt.txt`
+A lesson figure is a 320 px column for a phone page. For Facebook it is exported as slides, and this is the one way a lesson figure
+is made for upload (a lesson's Moda slide deck is a separate product: `docs/sd101-slides.md`): `python3 -m scripts.figures facebook SPEC` writes `build/figures/facebook/<id>/01.png ...` and `alt.txt`
 (`build/` is gitignored; the images are regenerated, never committed or edited; a new pack is drawn in a temporary folder of its own and replaces the
 previous one, as one folder, only when every slide was drawn and passed the checks below: a failed export leaves the old pack as it was, and two
 exports of one figure never leave a mix of the two). The standard is the studio's own

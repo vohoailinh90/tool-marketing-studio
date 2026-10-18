@@ -1,0 +1,1139 @@
+#!/usr/bin/env python3
+"""Claim the slide deck of a System Design lesson before building it, so two sessions never build the same one.
+
+`sd101_claims.py` stops two sessions writing one lesson; this stops two sessions turning one written lesson into slides.
+The record is one file per lesson, `lessons/<id>/slides/deck.yaml`, so sessions that take different lessons never touch
+the same file and never conflict at merge:
+
+  status doing   a session is building the deck (owner = its branch, claimed_at, heartbeat_at; generation and
+                 taken_from after a takeover)
+  status done    the deck exists on Moda (moda_canvas, moda_url, slide_count, size) and `exports` says whether its
+                 PNG and PPTX files are in the folder as well (`done`) or not yet (`pending`)
+
+Visibility follows sd101_claims.py: every command fetches all branches of the remote. On the default branch every
+record counts; on any other branch only the records whose owner is that branch (a copy inherited by merging is not a
+claim). A claim therefore protects nothing until it is pushed, which `--publish` does. A `doing` record whose
+heartbeat is older than the lease is stale and is taken over on purpose with `claim <id> --take-stale`.
+
+  python3 scripts/sd101_slides.py status                            # counts per group, next free lessons
+  python3 scripts/sd101_slides.py claim --next 3 --publish          # or: claim sd-01-002 sd-01-003 --publish
+  python3 scripts/sd101_slides.py verify                            # exit 0 = every claim of mine is still mine
+  python3 scripts/sd101_slides.py touch --publish                   # renew the heartbeat while you work
+  python3 scripts/sd101_slides.py finish sd-01-002 --canvas cvs_... --url https://moda.app/canvas/... --slides 10
+  python3 scripts/sd101_slides.py exported sd-01-002 --publish      # its PPTX and PNG files are now in slides/
+  python3 scripts/sd101_slides.py release sd-01-003 --publish       # give a lesson back
+
+There is no compare-and-swap on a git remote: two sessions that read before either pushed can both claim a lesson.
+The earlier claimed_at wins (then the smaller owner), and the loser's `verify`, `touch` and `finish` fail.
+"""
+
+from __future__ import annotations
+
+import argparse
+import datetime
+import importlib.util
+import os
+import pathlib
+import re
+import struct
+import sys
+import time
+import zipfile
+import zlib
+from dataclasses import dataclass
+
+import yaml
+
+ROOT = pathlib.Path(__file__).resolve().parents[1]
+DEFAULT_STORE = ROOT / "system-design-101" / "vi"
+SLIDES_DIR = "slides"
+RECORD = "deck.yaml"
+STATUSES = ("doing", "done")
+EXPORTS = ("pending", "done")
+KEY_ORDER = ("id", "status", "owner", "session", "taken_from", "generation", "claimed_at", "heartbeat_at", "done_at",
+             "moda_canvas", "moda_url", "slide_count", "size", "exports")
+DOING_KEYS = {"id", "status", "owner", "session", "taken_from", "generation", "claimed_at", "heartbeat_at"}
+DONE_KEYS = {"id", "status", "owner", "session", "taken_from", "generation", "claimed_at", "done_at", "moda_canvas",
+             "moda_url", "slide_count", "size", "exports"}
+STAMP = re.compile(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z")
+LESSON_ID = re.compile(r"sd-\d{2}-\d{3}")
+CANVAS_ID = re.compile(r"cvs_[0-9A-Za-z]{20,}")
+DECK_SIZE = "1920x1080"  # docs/sd101-slides.md: every canvas and exported PNG
+MODA_URL = "https://moda.app/canvas/"
+SLIDE_COUNTS = range(8, 11)  # docs/sd101-slides.md: 8 to 10 slides, one progress dot each
+LEASE_HOURS = 72
+CLOCK_SKEW_HOURS = 1
+PUSH_BACKOFF_SECONDS = (2, 4, 8, 16)
+PNG_SIGNATURE = b"\x89PNG\r\n\x1a\n"
+PPTX_PARTS = ("[Content_Types].xml", "ppt/presentation.xml")  # what any PowerPoint file holds
+PNG_CHANNELS = {0: 1, 2: 3, 3: 1, 4: 2, 6: 4}  # samples per pixel by colour type
+PNG_DEPTHS = {0: (1, 2, 4, 8, 16), 2: (8, 16), 3: (1, 2, 4, 8), 4: (8, 16), 6: (8, 16)}  # the bit depths each type allows
+ADAM7 = ((0, 0, 8, 8), (4, 0, 8, 8), (0, 4, 4, 8), (2, 0, 4, 4), (0, 2, 2, 4), (1, 0, 2, 2), (0, 1, 1, 2))  # x0, y0, dx, dy
+MAX_PPTX_BYTES = 512 * 1024 * 1024  # what a deck's parts may add up to once unpacked
+MAX_PNG_BYTES = 64 * 1024 * 1024  # what one slide's scanlines may add up to once inflated (1920x1080 at 16 bits is 17 MB)
+
+
+class SlidesError(Exception):
+    """The remote or git could not be read: nothing is decided on a guess (exit 2)."""
+
+
+def now() -> datetime.datetime:
+    return datetime.datetime.now(datetime.timezone.utc).replace(microsecond=0)
+
+
+def stamp(moment: datetime.datetime) -> str:
+    return moment.astimezone(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
+def parse_stamp(value: object) -> datetime.datetime | None:
+    if not isinstance(value, str) or not STAMP.fullmatch(value):
+        return None
+    try:
+        return datetime.datetime.strptime(value, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=datetime.timezone.utc)
+    except ValueError:
+        return None
+
+
+def claims_module():
+    """The git helpers of sd101_claims.py, loaded the way sd101_check.py loads it."""
+    module = sys.modules.get("sd101_claims")
+    if module is None:
+        spec = importlib.util.spec_from_file_location("sd101_claims", pathlib.Path(__file__).with_name("sd101_claims.py"))
+        if spec is None or spec.loader is None:
+            raise SlidesError("scripts/sd101_claims.py cannot be loaded")
+        module = importlib.util.module_from_spec(spec)
+        sys.modules["sd101_claims"] = module
+        spec.loader.exec_module(module)
+    return module
+
+
+def git(root: pathlib.Path, *args: str, check: bool = True, data: bytes | None = None):
+    try:
+        return claims_module().git(root, *args, check=check, data=data)
+    except claims_module().ClaimsError as error:
+        raise SlidesError(str(error)) from error
+
+
+def git_text(root: pathlib.Path, *args: str) -> str:
+    return git(root, *args).stdout.decode("utf-8", "replace").strip()
+
+
+# ----------------------------------------------------------------------------------------------- the record
+
+def render(record: dict) -> str:
+    ordered = {key: record[key] for key in KEY_ORDER if key in record}
+    return yaml.safe_dump(ordered, sort_keys=False, allow_unicode=True, default_flow_style=False)
+
+
+class StrictLoader(yaml.SafeLoader):
+    """safe_load keeps the last of a key named twice, which a merge conflict resolved by hand can leave behind."""
+
+
+def _no_duplicate_keys(loader: yaml.SafeLoader, node: yaml.MappingNode, deep: bool = False) -> dict:
+    seen: set = set()
+    for key_node, _ in node.value:
+        key = loader.construct_object(key_node, deep=deep)
+        try:
+            if key in seen:
+                raise yaml.constructor.ConstructorError(None, None, f"found the key {key!r} twice", key_node.start_mark)
+            seen.add(key)
+        except TypeError:  # an unhashable key: safe_load itself refuses it
+            pass
+    return yaml.SafeLoader.construct_mapping(loader, node, deep=deep)
+
+
+StrictLoader.add_constructor(yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG, _no_duplicate_keys)
+
+
+def parse_record(text: str) -> dict | None:
+    """The record as a mapping, or None when it cannot be read. A record is read on every branch by every session, so
+    nothing in one may stop the tool: besides the loader's own YAMLError, building a value raises ValueError (a date
+    that does not exist), OverflowError (a time before year 1 in UTC) or RecursionError (nesting too deep)."""
+    try:
+        data = yaml.load(text, Loader=StrictLoader)  # noqa: S506 - StrictLoader is a SafeLoader
+        if not isinstance(data, dict):
+            return None
+        for key in ("claimed_at", "heartbeat_at", "done_at"):
+            if isinstance(data.get(key), datetime.datetime):  # YAML reads an unquoted 2026-10-17T09:00:00Z as a timestamp
+                moment = data[key] if data[key].tzinfo else data[key].replace(tzinfo=datetime.timezone.utc)
+                data[key] = stamp(moment)
+    except (yaml.YAMLError, ValueError, OverflowError, RecursionError):
+        return None
+    return data
+
+
+def _text(value: object) -> bool:
+    return isinstance(value, str) and bool(value.strip())
+
+
+def _count(value: object) -> bool:
+    return isinstance(value, int) and not isinstance(value, bool) and value >= 1
+
+
+def record_problems(record: object, lesson_id: str) -> list[str]:
+    """What is wrong with one deck.yaml, in words; empty when it is well formed."""
+    if not isinstance(record, dict):
+        return ["is not a mapping"]
+    problems: list[str] = []
+    status = record.get("status")
+    if status not in STATUSES:
+        return [f"status must be one of {', '.join(STATUSES)}"]
+    allowed = DOING_KEYS if status == "doing" else DONE_KEYS
+    for key in record:
+        if key not in allowed:
+            problems.append(f"key {key!r} is not allowed on a {status} record")
+    if record.get("id") != lesson_id:
+        problems.append(f"id must be {lesson_id}")
+    if not _text(record.get("owner")):
+        problems.append("owner is missing")
+    if "session" in record and not _text(record["session"]):
+        problems.append("session must be text")
+    if "generation" in record and not _count(record["generation"]):
+        problems.append("generation must be a whole number of 1 or more")
+    if "taken_from" in record and not (isinstance(record["taken_from"], list) and record["taken_from"]
+                                       and all(_text(item) for item in record["taken_from"])):
+        problems.append("taken_from must be a list of owners")
+    elif ("taken_from" in record) != ("generation" in record):
+        problems.append("generation and taken_from come together: both after a takeover, neither otherwise")
+    elif "taken_from" in record and record.get("owner") in record["taken_from"]:
+        problems.append("taken_from must not name the owner itself")
+    if parse_stamp(record.get("claimed_at")) is None:  # a finished deck keeps its claim's time: it decides who was first
+        problems.append("claimed_at must look like 2026-10-17T11:00:00Z")
+    if status == "doing":
+        if parse_stamp(record.get("heartbeat_at")) is None:
+            problems.append("heartbeat_at must look like 2026-10-17T11:00:00Z")
+        return problems
+    if parse_stamp(record.get("done_at")) is None:
+        problems.append("done_at must look like 2026-10-17T11:00:00Z")
+    canvas = record.get("moda_canvas")
+    if not (isinstance(canvas, str) and CANVAS_ID.fullmatch(canvas)):
+        problems.append("moda_canvas must be the cvs_ id of the Moda canvas")
+    url = record.get("moda_url")
+    if not (isinstance(url, str) and url.startswith(MODA_URL) and len(url) > len(MODA_URL) and " " not in url):
+        problems.append(f"moda_url must start with {MODA_URL}")
+    if not (_count(record.get("slide_count")) and record["slide_count"] in SLIDE_COUNTS):
+        problems.append(f"slide_count must be between {SLIDE_COUNTS.start} and {SLIDE_COUNTS.stop - 1}")
+    if record.get("size") != DECK_SIZE:
+        problems.append(f"size must be {DECK_SIZE}")
+    if record.get("exports") not in EXPORTS:
+        problems.append(f"exports must be one of {', '.join(EXPORTS)}")
+    return problems
+
+
+def png_size(path: pathlib.Path) -> tuple[int, int] | None:
+    try:
+        with path.open("rb") as handle:
+            head = handle.read(24)
+    except OSError:
+        return None
+    if len(head) < 24 or head[:8] != PNG_SIGNATURE or head[12:16] != b"IHDR":
+        return None
+    return struct.unpack(">II", head[16:24])
+
+
+def png_passes(width: int, height: int, bits: int, interlace: int) -> list[tuple[int, int]]:
+    """The bytes of one scanline (a filter byte and its samples) and the number of scanlines, of the whole image or,
+    interlaced, of each of the seven Adam7 passes in order (a pass the image is too small for has no lines)."""
+    passes = []
+    for x0, y0, dx, dy in (ADAM7 if interlace else ((0, 0, 1, 1),)):
+        across, down = len(range(x0, width, dx)), len(range(y0, height, dy))
+        if across and down:
+            passes.append((1 + (across * bits + 7) // 8, down))
+    return passes
+
+
+def png_scanlines(width: int, height: int, bits: int, interlace: int) -> int:
+    """How many bytes the scanlines of an image take once inflated."""
+    return sum(row * lines for row, lines in png_passes(width, height, bits, interlace))
+
+
+def png_layout(passes: list[tuple[int, int]]) -> list[tuple[int, int, int]]:
+    """Where each pass's scanlines sit in the inflated data: its first byte, the byte after its last, a scanline's size."""
+    layout, first = [], 0
+    for row, lines in passes:
+        layout.append((first, first + row * lines, row))
+        first += row * lines
+    return layout
+
+
+def png_bad_filter(out: bytes, start: int, layout: list[tuple[int, int, int]]) -> bool:
+    """Whether a piece of inflated image data that begins at offset start opens a scanline with a filter type other
+    than the five PNG has (0 none, 1 sub, 2 up, 3 average, 4 Paeth)."""
+    end = start + len(out)
+    for first, last, row in layout:
+        stop = min(end, last)
+        head = first + max(0, -(-(start - first) // row)) * row  # the first scanline of this pass that opens in the piece
+        if head < stop and max(out[head - start:stop - start:row]) > 4:
+            return True
+    return False
+
+
+def png_damage(path: pathlib.Path) -> str | None:
+    """Why a file is not a whole PNG, or None: the signature, an IHDR first, every chunk's checksum, a chunk layout a
+    decoder accepts (four-letter types, one IHDR, no critical chunk it does not know, consecutive IDATs), an image stream that
+    inflates to its end and to exactly what the header describes, every scanline opening with a filter type that exists,
+    and an IEND chunk closing the file with nothing after it. The stream is inflated under that size, so a small file
+    cannot expand into gigabytes."""
+    try:
+        data = path.read_bytes()
+    except OSError as error:
+        return f"cannot be read: {error.strerror or error}"
+    if data[:8] != PNG_SIGNATURE:
+        return "no PNG signature"
+    position, first, finished, images, inflater = 8, True, False, 0, zlib.decompressobj()
+    produced, expected, colour, palette, layout, previous = 0, 0, 0, False, [], b""
+    while position < len(data):
+        if finished:
+            return "bytes after IEND"
+        if position + 12 > len(data):
+            return "cut off inside a chunk"
+        length, kind = struct.unpack(">I4s", data[position:position + 8])
+        end = position + 8 + length
+        if end + 4 > len(data):
+            return "cut off inside a chunk"
+        if zlib.crc32(data[position + 4:end]) != struct.unpack(">I", data[end:end + 4])[0]:
+            return f"checksum of {kind.decode('latin-1')} does not match"
+        if first and (kind != b"IHDR" or length != 13):
+            return "IHDR is not the first chunk"
+        if not kind.isalpha():  # bytes.isalpha() is ASCII letters only
+            return "a chunk type is not four letters"
+        if kind == b"IHDR" and not first:
+            return "IHDR appears more than once"
+        if not kind[0] & 0x20 and kind not in (b"IHDR", b"PLTE", b"IDAT", b"IEND"):  # a capital first letter: critical
+            return f"unknown critical chunk {kind.decode('ascii')}"
+        if kind == b"IDAT" and images and previous != b"IDAT":
+            return "image data is split by another chunk"
+        if kind == b"IEND" and length:
+            return "IEND chunk is not empty"
+        if first:
+            width, height, depth, colour, compression, filtering, interlace = struct.unpack(">IIBBBBB", data[position + 8:end])
+            if not (width and height and depth in PNG_DEPTHS.get(colour, ()) and compression == 0 and filtering == 0
+                    and interlace in (0, 1)):
+                return "IHDR does not describe an image"
+            passes = png_passes(width, height, PNG_CHANNELS[colour] * depth, interlace)
+            expected = sum(row * lines for row, lines in passes)
+            if expected > MAX_PNG_BYTES:  # also keeps the size handed to the inflater inside a C ssize_t
+                return "IHDR describes an image too large to be a slide"
+            layout = png_layout(passes)
+        first = False
+        if kind == b"PLTE":  # one, of whole entries, before the image data, and never in a grey image
+            if colour not in (2, 3, 6) or palette or images or not 0 < length <= 768 or length % 3:
+                return "PLTE chunk does not fit the image"
+            palette = True
+        if kind == b"IDAT":
+            if colour == 3 and not palette:
+                return "a palette image has no PLTE chunk before its image data"
+            images += 1
+            piece = data[position + 8:end]
+            try:
+                while piece:
+                    out = inflater.decompress(piece, expected + 1 - produced)
+                    produced += len(out)
+                    if produced > expected:
+                        return "image data inflates to more than the header describes"
+                    if png_bad_filter(out, produced - len(out), layout):
+                        return "a scanline has a filter type that does not exist"
+                    if not out and inflater.unconsumed_tail == piece:
+                        break
+                    piece = inflater.unconsumed_tail
+            except zlib.error:
+                return "image data is damaged"
+        finished, previous = kind == b"IEND", kind
+        position = end + 4
+    if not finished:
+        return "no IEND chunk"
+    if not images or not inflater.eof:
+        return "image data is missing or cut short"
+    if inflater.unused_data:
+        return "image data continues after the end of its stream"
+    if produced != expected:
+        return "image data is shorter than the header describes"
+    return None
+
+
+def pptx_damage(path: pathlib.Path) -> str | None:
+    """Why a file is not a PowerPoint presentation, or None: a ZIP archive that reads through and holds the parts every
+    presentation has."""
+    try:
+        with zipfile.ZipFile(path) as archive:
+            names = set(archive.namelist())
+            if sum(info.file_size for info in archive.infolist()) > MAX_PPTX_BYTES:
+                return f"its parts add up to more than {MAX_PPTX_BYTES >> 20} MB unpacked"
+            try:
+                damaged = archive.testzip()
+            except Exception:  # every codec has its own error for a part it cannot unpack: none of them is a crash here
+                return "a part cannot be read (unsupported compression, encryption or damaged data)"
+    except (zipfile.BadZipFile, OSError):
+        return "not a ZIP archive"
+    if damaged:
+        return f"{damaged} is damaged"
+    missing = [part for part in PPTX_PARTS if part not in names]
+    return f"{', '.join(missing)} missing" if missing else None
+
+
+def folder_problems(slides_dir: pathlib.Path, lesson_id: str) -> list[str]:
+    """What is wrong with a lesson's slides/ folder: the record, and the exports the record promises."""
+    problems: list[str] = []
+    if slides_dir.is_symlink() or not slides_dir.is_dir():
+        return ["slides is not a directory"]
+    names = sorted(path.name for path in slides_dir.iterdir())
+    for path in sorted(slides_dir.iterdir()):
+        if path.is_symlink() or not path.is_file():
+            problems.append(f"{path.name} is not a regular file")
+    record_file = slides_dir / RECORD
+    if not record_file.is_file():
+        return problems + [f"{RECORD} is missing"]
+    try:
+        record = parse_record(record_file.read_text(encoding="utf-8"))
+    except (OSError, UnicodeDecodeError):
+        record = None
+    if record is None:
+        return problems + [f"{RECORD} does not parse as a mapping"]
+    found = record_problems(record, lesson_id)
+    problems += [f"{RECORD}: {problem}" for problem in found]
+    if found:
+        return problems
+    exported = record["status"] == "done" and record["exports"] == "done"
+    want = {RECORD}
+    if exported:
+        want |= {f"{lesson_id}.pptx", *(f"{number:02d}.png" for number in range(1, record["slide_count"] + 1))}
+    for name in names:
+        if name not in want:
+            problems.append(f"{name} is not expected here" + ("" if exported else " (exports are not recorded as done)"))
+    for name in sorted(want - set(names)):
+        problems.append(f"{name} is missing")
+    if exported:
+        width, height = (int(part) for part in record["size"].split("x"))
+        for name in sorted(want & set(names)):
+            path = slides_dir / name
+            if name.endswith(".png"):
+                damage = png_damage(path)
+                if damage:
+                    problems.append(f"{name} is not a whole PNG: {damage}")
+                elif png_size(path) != (width, height):
+                    problems.append(f"{name} is not a {width}x{height} PNG")
+            if name.endswith(".pptx"):
+                damage = pptx_damage(path)
+                if damage:
+                    problems.append(f"{name} is not a PowerPoint file: {damage}")
+    return problems
+
+
+# --------------------------------------------------------------------------------------------- the world
+
+@dataclass(frozen=True)
+class Holding:
+    lesson_id: str
+    status: str
+    owner: str
+    claimed_at: str | None
+    heartbeat_at: str | None
+    generation: int
+    taken_from: tuple[str, ...]
+    where: str
+    problems: tuple[str, ...] = ()    # what is wrong with the record; status is "invalid" when it cannot be read at all
+
+
+LOCAL = "this working tree"
+
+
+@dataclass
+class Context:
+    root: pathlib.Path
+    store: pathlib.Path
+    remote: str
+    me: str | None
+    offline: bool
+
+    def record_path(self, lesson_id: str) -> pathlib.Path:
+        if not LESSON_ID.fullmatch(lesson_id):  # a `..` or an absolute path would reach a file outside lessons/
+            raise SlidesError(f"{lesson_id!r} is not a lesson id (sd-NN-NNN)")
+        return self.store / "lessons" / lesson_id / SLIDES_DIR / RECORD
+
+    def relative(self, lesson_id: str) -> str:
+        return pathlib.PurePosixPath(os.path.relpath(self.record_path(lesson_id), self.root)).as_posix()
+
+    def writable_record(self, lesson_id: str) -> pathlib.Path:
+        """The record's path, refused when a symbolic link sits anywhere between the store and the file: a write through
+        one would land outside this lesson's folder."""
+        path = self.record_path(lesson_id)
+        for part in (self.store / "lessons", self.store / "lessons" / lesson_id, path.parent, path):
+            if part.is_symlink():
+                raise SlidesError(f"{os.path.relpath(part, self.root)} is a symbolic link; replace it with a real "
+                                  f"{'file' if part == path else 'directory'} before using this tool")
+        return path
+
+    def written(self) -> list[str]:
+        lessons = self.store / "lessons"
+        found = [path.name for path in lessons.iterdir()
+                 if path.is_dir() and LESSON_ID.fullmatch(path.name) and (path / "lesson.md").is_file()] \
+            if lessons.is_dir() else []
+        return sorted(found)
+
+
+def _holding(lesson_id: str, record: dict | None, where: str) -> Holding:
+    """What a deck.yaml says, read leniently: a record that fails validation still holds its lesson (a bad `done`
+    must not offer the lesson again), and one that cannot be read at all is `invalid` and blocks it until fixed."""
+    if record is None:
+        return Holding(lesson_id, "invalid", "", None, None, 0, (), where, ("does not parse as a mapping",))
+    taken = record.get("taken_from") if isinstance(record.get("taken_from"), list) else []
+    return Holding(lesson_id, record["status"] if record.get("status") in STATUSES else "invalid",
+                   record["owner"] if _text(record.get("owner")) else "",
+                   record["claimed_at"] if isinstance(record.get("claimed_at"), str) else None,
+                   record["heartbeat_at"] if isinstance(record.get("heartbeat_at"), str) else None,
+                   record["generation"] if _count(record.get("generation")) else 0,
+                   tuple(item for item in taken if _text(item)), where, tuple(record_problems(record, lesson_id)))
+
+
+def remote_branches(context: Context) -> list[str]:
+    output = git_text(context.root, "for-each-ref", "--format=%(refname:lstrip=3)", f"refs/remotes/{context.remote}")
+    return [name for name in output.splitlines() if name and name != "HEAD"]
+
+
+def read_remote(context: Context, names: list[str], ids: list[str]) -> dict[tuple[str, str], str | None]:
+    """(branch, lesson id) -> deck.yaml text, for every pair that has one; None where something is there that cannot be
+    read as text (a directory or another object, bytes that are not UTF-8): a replaced byte could change an owner."""
+    pairs = [(name, lesson_id) for name in names for lesson_id in ids]
+    if not pairs:
+        return {}
+    request = "".join(f"refs/remotes/{context.remote}/{name}:{context.relative(lesson_id)}\n"
+                      for name, lesson_id in pairs).encode()
+    output = git(context.root, "cat-file", "--batch", data=request).stdout
+    found: dict[tuple[str, str], str | None] = {}
+    position = 0
+    try:
+        for pair in pairs:
+            end = output.index(b"\n", position)
+            fields = output[position:end].split(b" ")
+            position = end + 1
+            if len(fields) == 3:
+                size = int(fields[2])
+                found[pair] = None
+                if fields[1] == b"blob":
+                    try:
+                        found[pair] = output[position:position + size].decode("utf-8")
+                    except UnicodeDecodeError:
+                        pass
+                position += size + 1
+    except ValueError as error:
+        raise SlidesError(f"git cat-file printed something unexpected: {error}") from error
+    return found
+
+
+def gather(context: Context, ids: list[str]) -> tuple[dict[str, list[Holding]], list[str]]:
+    """Every holding of every lesson in ids as the remote and this tree show it, and the records it could not use."""
+    holdings: dict[str, list[Holding]] = {lesson_id: [] for lesson_id in ids}
+    warnings: list[str] = []
+    if not context.offline:
+        helpers = claims_module()
+        try:
+            helpers.fetch_remote(context.root, context.remote)
+            base = helpers.default_branch(context.root, context.remote)
+        except helpers.ClaimsError as error:
+            raise SlidesError(f"the remote could not be read ({error}); pass --offline to decide without it") from error
+        names = remote_branches(context)
+        for (name, lesson_id), text in read_remote(context, names, ids).items():
+            where = f"{context.remote}/{name}"
+            holding = _holding(lesson_id, parse_record(text) if text is not None else None, where)
+            if holding.problems:
+                warnings.append(f"{where}: {lesson_id}/{SLIDES_DIR}/{RECORD} {'; '.join(holding.problems)}")
+            if name == base:
+                if holding.status == "doing" and holding.owner in names and holding.owner != base and not holding.problems:
+                    continue  # a claim in progress belongs to its owner's branch, which says whether it still stands
+                holdings[lesson_id].append(holding)
+            elif holding.owner == name or holding.problems:  # a malformed record blocks, whoever it names
+                holdings[lesson_id].append(holding)
+            else:
+                warnings.append(f"{where}: {lesson_id} names another owner ({holding.owner or 'none'}); not a claim")
+    for lesson_id in ids:
+        path = context.record_path(lesson_id)
+        if path.is_file():
+            holding = _holding(lesson_id, parse_record(path.read_text(encoding="utf-8")), LOCAL)
+            # offline the checkout is all there is to read; a malformed record blocks wherever it is
+            if holding.owner == context.me or context.offline or holding.problems:
+                holdings[lesson_id].append(holding)
+    return holdings, warnings
+
+
+def is_stale(holding: Holding, moment: datetime.datetime) -> bool:
+    if holding.status != "doing":
+        return False
+    beat = parse_stamp(holding.heartbeat_at)
+    if beat is None or beat - moment > datetime.timedelta(hours=CLOCK_SKEW_HOURS):
+        return True
+    return moment - beat > datetime.timedelta(hours=LEASE_HOURS)
+
+
+def beats(first: Holding, second: Holding) -> bool:
+    """Whether first wins the lesson over second: a takeover over the claim it took, then the higher generation, the
+    earlier claim, the smaller owner. Two sessions that each took the other's expired claim at once are no takeover of
+    each other, so the same order decides between them: exactly one of beats(a, b) and beats(b, a) is true."""
+    first_took, second_took = second.owner in first.taken_from, first.owner in second.taken_from
+    if first_took != second_took:
+        return first_took
+    return (-first.generation, first.claimed_at or "", first.owner) < (-second.generation, second.claimed_at or "", second.owner)
+
+
+def precedence(holding: Holding) -> tuple[str | None, int, tuple[str, ...]]:
+    """What beats() reads of a claim, besides its owner."""
+    return holding.claimed_at, holding.generation, holding.taken_from
+
+
+def tree_mismatch(lesson_id: str, found: list[Holding], context: Context) -> str | None:
+    """Why this tree's record of mine may not go out over my published one, or None (also when either is missing).
+    claim, touch, finish and exported all push this tree's copy, and a finished record keeps its claim's precedence, so
+    the copy here must carry the precedence of my record on the remote, in progress or finished."""
+    mine = [holding for holding in found if holding.owner == context.me and holding.status in ("doing", "done")]
+    local = [holding for holding in mine if holding.where == LOCAL]
+    published = [holding for holding in mine if holding.where != LOCAL]
+    if not local or not published:
+        return None
+    own = [holding for holding in published if holding.where == f"{context.remote}/{context.me}"]
+    me = own[0] if own else max(published, key=lambda holding: holding.heartbeat_at or "")
+    if precedence(local[0]) == precedence(me):
+        return None
+    if me.status == "doing" and is_stale(me, now()) and local[0].status == "doing" \
+            and (local[0].claimed_at or "") > (me.heartbeat_at or ""):
+        return None  # a new claim over my own expired one, not pushed yet: once it is, it is judged as a claim of its own
+    return (f"{lesson_id}: this tree's {RECORD} does not match your claim on {me.where} (claimed_at, generation or "
+            f"taken_from differ); restore it with `git checkout {me.where} -- {context.relative(lesson_id)}`")
+
+
+def is_broken(holding: Holding) -> bool:
+    """A record that cannot stand as a claim: unreadable, or a claim in progress that fails validation. It blocks its
+    lesson wherever it is found (a finished deck that fails validation still holds the lesson as done)."""
+    return holding.status == "invalid" or (bool(holding.problems) and holding.status != "done")
+
+
+def standing(holdings: list[Holding], moment: datetime.datetime) -> tuple[str, Holding | None]:
+    """free | done | invalid (a record that cannot be read) | doing (the live winner) | stale (only stale claims)."""
+    done = [holding for holding in holdings if holding.status == "done"]
+    if done:
+        winner = done[0]  # a finished record keeps its claim's precedence, so the claims' order decides between two
+        for holding in done[1:]:
+            if beats(holding, winner):
+                winner = holding
+        return "done", winner
+    invalid = [holding for holding in holdings if is_broken(holding)]
+    if invalid:
+        return "invalid", invalid[0]
+    live = [holding for holding in holdings if holding.status == "doing" and not is_stale(holding, moment)]
+    if live:
+        winner = live[0]
+        for holding in live[1:]:
+            if beats(holding, winner):
+                winner = holding
+        return "doing", winner
+    stale = [holding for holding in holdings if holding.status == "doing"]
+    if stale:
+        return "stale", sorted(stale, key=lambda holding: (holding.claimed_at or "", holding.owner))[0]
+    return "free", None
+
+
+def refusal(lesson_id: str, found: list[Holding], context: Context, moment: datetime.datetime,
+            take_stale: bool) -> str | None:
+    state, holding = standing(found, moment)
+    if state == "done":
+        return f"{lesson_id}: already built by {holding.owner or 'an unknown owner'} ({holding.where})"
+    if state == "invalid":
+        return (f"{lesson_id}: {holding.where} holds a record that cannot be read as a claim "
+                f"({'; '.join(holding.problems)}); fix it first")
+    if state == "doing" and holding.owner != context.me:
+        return f"{lesson_id}: claimed by {holding.owner} (heartbeat {holding.heartbeat_at})"
+    if state == "doing" and not any(other.where == LOCAL and other.owner == context.me and other.status == "doing"
+                                    for other in found):  # claiming would push what this tree holds in its place
+        return (f"{lesson_id}: your claim is on {holding.where} but this tree's {RECORD} is missing or not yours; "
+                f"restore it with `git checkout {holding.where} -- {context.relative(lesson_id)}`")
+    if state == "doing" and (mismatch := tree_mismatch(lesson_id, found, context)):  # claim pushes this tree's copy
+        return mismatch
+    if state == "stale" and not any(other.owner == context.me for other in found) and not take_stale:
+        return (f"{lesson_id}: claimed by {holding.owner}, whose heartbeat ({holding.heartbeat_at}) is older than "
+                f"{LEASE_HOURS} hours; take it over on purpose with --take-stale")
+    return None
+
+
+def lost_reason(lesson_id: str, found: list[Holding], context: Context, moment: datetime.datetime) -> str | None:
+    """Why a claim of mine no longer holds, or None when it does."""
+    mine = [holding for holding in found if holding.owner == context.me and holding.status == "doing"]
+    if not mine:
+        return f"{lesson_id}: you hold no claim"
+    published = [holding for holding in mine if holding.where != LOCAL]
+    if not published:
+        return f"{lesson_id}: your claim is not on {context.remote}/{context.me}; run with --publish"
+    me = max(published, key=lambda holding: holding.heartbeat_at or "")
+    for holding in found:
+        if holding.owner == context.me and holding.status == "doing":
+            if holding.problems:  # the published copy and the one in this tree: finish builds the deck's record from it
+                return (f"{lesson_id}: your record on {holding.where} cannot be used as a claim "
+                        f"({'; '.join(holding.problems)}); fix it")
+            if holding.where == LOCAL and (mismatch := tree_mismatch(lesson_id, found, context)):  # touch, finish
+                return mismatch
+            continue
+        if is_broken(holding):
+            return f"{lesson_id}: {holding.where} holds a record that cannot be read as a claim; fix it first"
+        if holding.status == "done":
+            return f"{lesson_id}: already built by {holding.owner}"
+        if not is_stale(holding, moment) and beats(holding, me):
+            return f"{lesson_id}: lost to {holding.owner}"
+        if is_stale(me, moment) and beats(holding, me):  # renewing would revive the weaker of two quiet claims
+            return (f"{lesson_id}: {holding.owner} holds the stronger claim; take the lesson over on purpose with "
+                    f"`claim {lesson_id} --take-stale`")
+    if is_stale(me, moment):
+        return f"{lesson_id}: your published heartbeat ({me.heartbeat_at}) has expired; run touch --publish"
+    return None
+
+
+# -------------------------------------------------------------------------------------------- git helpers
+
+def current_branch(root: pathlib.Path) -> str | None:
+    return claims_module().current_branch(root)
+
+
+def require_branch(context: Context) -> str:
+    if not context.me:
+        raise SlidesError("HEAD is detached; work on a branch (or pass --owner)")
+    helpers = claims_module()
+    bases = {"main", "master"}  # refused even offline, where the remote cannot be asked which branch is its default
+    local = helpers.git(context.root, "symbolic-ref", "--short", "-q", f"refs/remotes/{context.remote}/HEAD", check=False)
+    if local.returncode == 0 and local.stdout.decode().strip().startswith(f"{context.remote}/"):
+        bases.add(local.stdout.decode().strip()[len(context.remote) + 1:])
+    if not context.offline:
+        try:
+            bases.add(helpers.default_branch(context.root, context.remote))
+        except helpers.ClaimsError as error:
+            raise SlidesError(f"the remote could not be read ({error}); pass --offline to decide without it") from error
+    if context.me in bases:
+        raise SlidesError(f"{context.me} is the default branch of {context.remote}; claims are pushed from a work branch")
+    return context.me
+
+
+def publish(context: Context, paths: list[pathlib.Path], message: str) -> None:
+    """Commit only these paths and push the work branch, never the default branch."""
+    branch = require_branch(context)
+    relative = [pathlib.PurePosixPath(os.path.relpath(path, context.root)).as_posix() for path in paths]
+    # a path that is neither on disk nor in the index (a claim that was never committed, then released) has nothing to
+    # stage; every other failure to stage stops here, before a push of the unchanged HEAD reports success
+    present = [item for item in relative
+               if (context.root / item).exists() or git_text(context.root, "ls-files", "--", item)]
+    if present:
+        added = git(context.root, "add", "-A", "--", *present, check=False)
+        if added.returncode != 0:
+            raise SlidesError(f"git add failed: {added.stderr.decode('utf-8', 'replace').strip()}")
+    if git(context.root, "diff", "--cached", "--quiet", "--", *relative, check=False).returncode != 0:
+        git(context.root, "commit", "--quiet", "--only", "-m", message, "--", *relative)
+    last = ""
+    for delay in (0, *PUSH_BACKOFF_SECONDS):
+        time.sleep(delay)
+        result = git(context.root, "push", "--quiet", "-u", context.remote, f"HEAD:refs/heads/{branch}", check=False)
+        if result.returncode == 0:
+            return
+        last = result.stderr.decode("utf-8", "replace").strip()
+        if "non-fast-forward" in last or "rejected" in last or "fetch first" in last:
+            break
+    raise SlidesError(f"git push failed: {last}")
+
+
+# ------------------------------------------------------------------------------------------------ commands
+
+def my_records(context: Context, statuses: tuple[str, ...] = ("doing",)) -> list[str]:
+    """The lessons whose deck.yaml in this tree is a record of mine with one of these statuses."""
+    mine = []
+    for lesson_id in context.written():
+        path = context.record_path(lesson_id)
+        record = parse_record(path.read_text(encoding="utf-8")) if path.is_file() else None
+        if record and record.get("owner") == context.me and record.get("status") in statuses:
+            mine.append(lesson_id)
+    return mine
+
+
+def free_lessons(context: Context, holdings: dict[str, list[Holding]], moment: datetime.datetime, group: str | None,
+                 count: int, take_stale: bool) -> list[str]:
+    chosen: list[str] = []
+    for lesson_id in sorted(holdings):
+        if group and not lesson_id.startswith(group):
+            continue
+        if len(chosen) >= count:
+            break
+        if refusal(lesson_id, holdings[lesson_id], context, moment, take_stale) is None \
+                and standing(holdings[lesson_id], moment)[0] != "doing":
+            chosen.append(lesson_id)
+    return chosen
+
+
+def cmd_status(context: Context, args: argparse.Namespace) -> int:
+    ids = context.written()
+    holdings, warnings = gather(context, ids)
+    moment = now()
+    table: dict[str, dict[str, int]] = {}
+    for lesson_id in ids:
+        state, _ = standing(holdings[lesson_id], moment)
+        table.setdefault(lesson_id[:5], {"free": 0, "doing": 0, "stale": 0, "done": 0, "invalid": 0})[state] += 1
+    totals = {key: sum(row[key] for row in table.values()) for key in ("free", "doing", "stale", "done", "invalid")}
+    print(f"Slide decks of {len(ids)} written lessons: done {totals['done']} | doing {totals['doing']} | "
+          f"stale {totals['stale']} | invalid {totals['invalid']} | free {totals['free']}")
+    print(f"{'group':<8}{'done':>6}{'doing':>7}{'stale':>7}{'invalid':>9}{'free':>6}")
+    for group, row in sorted(table.items()):
+        print(f"{group:<8}{row['done']:>6}{row['doing']:>7}{row['stale']:>7}{row['invalid']:>9}{row['free']:>6}")
+    for lesson_id in ids:
+        state, holding = standing(holdings[lesson_id], moment)
+        if state in ("doing", "stale", "invalid") and (args.all or holding.owner == context.me or state == "invalid"):
+            print(f"  {lesson_id} {state} by {holding.owner or 'unknown'} ({holding.where}), "
+                  f"heartbeat {holding.heartbeat_at}")
+    free = free_lessons(context, holdings, moment, None, 5, False)
+    print("Next free: " + (", ".join(free) if free else "none"))
+    for warning in warnings:
+        print(f"warning: {warning}", file=sys.stderr)
+    return 0
+
+
+def cmd_next(context: Context, args: argparse.Namespace) -> int:
+    holdings, _ = gather(context, context.written())
+    free = free_lessons(context, holdings, now(), args.group, args.count, False)
+    print(" ".join(free))
+    return 0 if free else 1
+
+
+def cmd_claim(context: Context, args: argparse.Namespace) -> int:
+    branch = require_branch(context)
+    written = context.written()
+    holdings, warnings = gather(context, written)
+    moment = now()
+    wanted = list(dict.fromkeys(args.ids))
+    unknown = [lesson_id for lesson_id in wanted if lesson_id not in written]
+    if unknown:
+        print(f"{', '.join(unknown)}: not a written lesson in this checkout (merge the default branch first?)",
+              file=sys.stderr)
+        return 1
+    if args.next:
+        extra = [lesson_id for lesson_id in free_lessons(context, holdings, moment, args.group, args.next + len(wanted),
+                                                         args.take_stale) if lesson_id not in wanted]
+        wanted += extra[:args.next]
+    if not wanted:
+        print("nothing free to claim", file=sys.stderr)
+        return 1
+    refused = [reason for lesson_id in wanted
+               if (reason := refusal(lesson_id, holdings[lesson_id], context, moment, args.take_stale))]
+    if refused:
+        print("\n".join(refused), file=sys.stderr)
+        return 1
+    for lesson_id in wanted:  # every destination is checked before the first one is written
+        context.writable_record(lesson_id)
+    before: dict[pathlib.Path, str | None] = {}
+    try:
+        write_claims(context, wanted, holdings, moment, branch, args, before)
+    except BaseException:
+        restore(before)  # a write that fails half way leaves no claim behind that later commands would treat as owned
+        raise
+    print(f"claimed {', '.join(wanted)} as {branch}")
+    for warning in warnings:
+        print(f"warning: {warning}", file=sys.stderr)
+    if args.publish:
+        publish(context, [context.record_path(lesson_id) for lesson_id in wanted], f"Slides: claim {', '.join(wanted)}")
+        return report(context, wanted)
+    return 0
+
+
+def restore(before: dict[pathlib.Path, str | None]) -> None:
+    """Put back what a claim command overwrote or created, as far as the disk lets it."""
+    for path, text in before.items():
+        try:
+            if text is None:
+                path.unlink(missing_ok=True)
+                if path.parent.is_dir() and not any(path.parent.iterdir()):
+                    path.parent.rmdir()
+            else:
+                path.write_text(text, encoding="utf-8")
+        except OSError:
+            pass
+
+
+def write_claims(context: Context, wanted: list[str], holdings: dict[str, list[Holding]], moment: datetime.datetime,
+                 branch: str, args: argparse.Namespace, before: dict[pathlib.Path, str | None]) -> None:
+    for lesson_id in wanted:
+        state, holding = standing(holdings[lesson_id], moment)
+        if state == "doing" and holding.owner == context.me:
+            continue  # already mine; --publish below pushes it if it is not on the remote yet
+        taken = sorted({item for other in holdings[lesson_id] if other.status == "doing" and other.owner != context.me
+                        for item in (other.owner, *other.taken_from) if item != context.me})  # I am never my own ancestor
+        generation = max([other.generation for other in holdings[lesson_id] if other.owner != context.me] + [0]) + 1 \
+            if taken else 0
+        record = {"id": lesson_id, "status": "doing", "owner": branch, "claimed_at": stamp(moment),
+                  "heartbeat_at": stamp(moment)}
+        if args.session:
+            record["session"] = args.session
+        if taken:
+            record.update(taken_from=taken, generation=generation)
+        path = context.writable_record(lesson_id)
+        before[path] = path.read_text(encoding="utf-8") if path.is_file() else None
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(render(record), encoding="utf-8")
+
+
+def report(context: Context, ids: list[str]) -> int:
+    holdings, _ = gather(context, ids)
+    moment = now()
+    finished = my_records(context, ("done",))  # a finished deck is verified like a claim: by the same remote state
+    problems = [reason for lesson_id in ids
+                if (reason := finished_problem(context, lesson_id, holdings[lesson_id]) if lesson_id in finished
+                    else lost_reason(lesson_id, holdings[lesson_id], context, moment))]
+    for reason in problems:
+        print(reason, file=sys.stderr)
+    if problems:
+        print("stop work on the lessons you lost and release them; do not push their decks", file=sys.stderr)
+        return 1
+    print("verified: " + ", ".join(ids))
+    return 0
+
+
+def named_or_mine(context: Context, ids: list[str], statuses: tuple[str, ...] = ("doing",)) -> list[str]:
+    mine = my_records(context, statuses)
+    chosen = list(dict.fromkeys(ids)) if ids else mine
+    stranger = [lesson_id for lesson_id in chosen if lesson_id not in mine]
+    if stranger:
+        raise SlidesError(f"{', '.join(stranger)}: not a claim of {context.me}")
+    if not chosen:
+        raise SlidesError("you hold no claim")
+    return chosen
+
+
+def cmd_verify(context: Context, args: argparse.Namespace) -> int:
+    return report(context, named_or_mine(context, args.ids, ("doing", "done")))
+
+
+def cmd_touch(context: Context, args: argparse.Namespace) -> int:
+    ids = named_or_mine(context, args.ids)
+    holdings, _ = gather(context, ids)
+    moment = now()
+    lost = [reason for lesson_id in ids if (reason := lost_reason(lesson_id, holdings[lesson_id], context, moment))
+            and "expired" not in reason]
+    if lost:
+        print("\n".join(lost), file=sys.stderr)
+        return 1
+    paths = []
+    for lesson_id in ids:
+        path = context.writable_record(lesson_id)
+        record = parse_record(path.read_text(encoding="utf-8")) or {}
+        record["heartbeat_at"] = stamp(moment)
+        path.write_text(render(record), encoding="utf-8")
+        paths.append(path)
+    print(f"renewed {', '.join(ids)}")
+    if args.publish:
+        publish(context, paths, f"Slides: renew {', '.join(ids)}")
+        return report(context, ids)
+    return 0
+
+
+def finished_problem(context: Context, lesson_id: str, remote: list[Holding] | None = None) -> str | None:
+    """After a finished record of mine was pushed: why that deck cannot stand, or None when the remote accepts it."""
+    if remote is None:
+        remote = gather(context, [lesson_id])[0][lesson_id]
+    mine = [holding for holding in remote
+            if holding.status == "done" and holding.owner == context.me and holding.where != LOCAL]
+    if not mine:
+        return f"{lesson_id}: the finished record is not on {context.remote}/{context.me}"
+    damaged = [holding for holding in remote if holding.status == "done" and holding.owner == context.me and holding.problems]
+    if damaged:  # on the remote or in this tree, about to be pushed
+        return (f"{lesson_id}: your finished record on {damaged[0].where} cannot be used "
+                f"({'; '.join(damaged[0].problems)}); fix it")
+    mismatch = tree_mismatch(lesson_id, remote, context)  # the copy here is what verify vouches for and exported pushes
+    if mismatch:
+        return mismatch
+    moment = now()  # the finished record keeps its claim's time and generation, so it is judged as that claim
+    rivals = [holding for holding in remote if holding.status in ("doing", "done") and holding.owner != context.me
+              and not is_stale(holding, moment) and beats(holding, mine[0])]
+    if rivals:
+        return (f"pushed, but {lesson_id} is finished here and {rivals[0].owner} holds the earlier claim; delete this "
+                f"branch's slides/ for it, commit and push, so the lesson goes to {rivals[0].owner}")
+    broken = [holding for holding in remote if is_broken(holding) and holding.owner != context.me]
+    if broken:
+        return (f"pushed, but {broken[0].where} now holds a record for {lesson_id} that cannot be read; fix it before "
+                "this deck is relied on")
+    return None
+
+
+def cmd_finish(context: Context, args: argparse.Namespace) -> int:
+    lesson_id = args.id
+    named_or_mine(context, [lesson_id])
+    holdings, _ = gather(context, [lesson_id])
+    reason = lost_reason(lesson_id, holdings[lesson_id], context, now())
+    if reason:  # an expired lease too: renew it (touch --publish) so nobody can take the claim while the deck goes out
+        print(reason, file=sys.stderr)
+        return 1
+    path = context.writable_record(lesson_id)
+    old = parse_record(path.read_text(encoding="utf-8")) or {}
+    record = {key: old[key] for key in ("id", "owner", "session", "taken_from", "generation", "claimed_at") if key in old}
+    record.update(status="done", done_at=stamp(now()), moda_canvas=args.canvas, moda_url=args.url,
+                  slide_count=args.slides, size=DECK_SIZE, exports=args.exports)
+    problems = record_problems(record, lesson_id)
+    if problems:
+        print("\n".join(f"{lesson_id}: {problem}" for problem in problems), file=sys.stderr)
+        return 1
+    previous = path.read_text(encoding="utf-8")
+    path.write_text(render(record), encoding="utf-8")
+    found = folder_problems(path.parent, lesson_id)
+    if found:
+        path.write_text(previous, encoding="utf-8")
+        print("\n".join(f"{lesson_id}: {problem}" for problem in found), file=sys.stderr)
+        return 1
+    print(f"finished {lesson_id}: {args.slides} slides, exports {args.exports}")
+    if args.publish:
+        publish(context, [path.parent], f"Slides: finish {lesson_id}")
+        problem = finished_problem(context, lesson_id)
+        if problem:
+            print(problem, file=sys.stderr)
+            return 1
+    return 0
+
+
+def cmd_exported(context: Context, args: argparse.Namespace) -> int:
+    """A finished deck whose PPTX and PNG files were added to its folder: record that exports are done."""
+    path = context.writable_record(args.id)
+    previous = path.read_text(encoding="utf-8") if path.is_file() else ""
+    record = parse_record(previous) if previous else None
+    if not record or record.get("status") != "done":
+        print(f"{args.id}: not a finished deck; finish it first", file=sys.stderr)
+        return 1
+    mine = record.get("owner") == context.me
+    if args.publish and mine:
+        # `finish` without --publish leaves a done record only here: it goes out with these exports, so the claim it
+        # finishes must still stand on the remote, as `finish --publish` insists
+        found = gather(context, [args.id])[0][args.id]
+        mismatch = tree_mismatch(args.id, found, context)  # this tree's record is what goes out with the exports
+        if mismatch:
+            print(mismatch, file=sys.stderr)
+            return 1
+        remote = [holding for holding in found if holding.where != LOCAL]
+        if not any(holding.status == "done" and holding.owner == context.me for holding in remote):
+            reason = lost_reason(args.id, remote, context, now())
+            if reason:
+                print(f"{reason}; the finished record of this deck is not on {context.remote}/{context.me} yet, so it "
+                      "cannot go out with the exports", file=sys.stderr)
+                return 1
+    record["exports"] = "done"
+    path.write_text(render(record), encoding="utf-8")
+    found = folder_problems(path.parent, args.id)
+    if found:
+        path.write_text(previous, encoding="utf-8")
+        print("\n".join(f"{args.id}: {problem}" for problem in found), file=sys.stderr)
+        return 1
+    print(f"exports of {args.id} are done")
+    if args.publish:
+        publish(context, [path.parent], f"Slides: exports of {args.id}")
+        problem = finished_problem(context, args.id) if mine else None
+        if problem:
+            print(problem, file=sys.stderr)
+            return 1
+    return 0
+
+
+def cmd_release(context: Context, args: argparse.Namespace) -> int:
+    ids = list(dict.fromkeys(args.ids))
+    for lesson_id in ids:
+        context.writable_record(lesson_id)  # an id that is no lesson, or a symbolic link in the way, stops here
+    holdings, _ = gather(context, ids)  # this tree may hold an older copy than the one the remote has
+    paths = []
+    for lesson_id in ids:
+        path = context.writable_record(lesson_id)
+        record = parse_record(path.read_text(encoding="utf-8")) if path.is_file() else None
+        if not record or record.get("owner") != context.me:
+            print(f"{lesson_id}: not a claim of {context.me}", file=sys.stderr)
+            return 1
+        if record.get("status") == "done":
+            print(f"{lesson_id}: already finished; a finished deck is not released", file=sys.stderr)
+            return 1
+        finished = [holding for holding in holdings[lesson_id]
+                    if holding.owner == context.me and holding.status == "done" and holding.where != LOCAL]
+        if finished:  # releasing would push the deletion over it and offer a built deck again
+            print(f"{lesson_id}: your finished record is on {finished[0].where}; a finished deck is not released "
+                  f"(restore this tree's copy with `git checkout {finished[0].where} -- {context.relative(lesson_id)}`)",
+                  file=sys.stderr)
+            return 1
+        stray = sorted(other.name for other in path.parent.iterdir() if other.name != RECORD)
+        if stray:
+            print(f"{lesson_id}: slides/ also holds {', '.join(stray)}; remove them first", file=sys.stderr)
+            return 1
+        paths.append(path)
+    for path in paths:
+        path.unlink()
+        if not any(path.parent.iterdir()):
+            path.parent.rmdir()
+    print(f"released {', '.join(path.parent.parent.name for path in paths)}")
+    if args.publish:
+        publish(context, [path.parent for path in paths],
+                f"Slides: release {', '.join(path.parent.parent.name for path in paths)}")
+    return 0
+
+
+# ----------------------------------------------------------------------------------------------- entry point
+
+def build_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(description=__doc__.split("\n\n")[0],
+                                     formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser.add_argument("--store", type=pathlib.Path, default=DEFAULT_STORE, help="the store (default: system-design-101/vi)")
+    parser.add_argument("--remote", default="origin")
+    parser.add_argument("--owner", help="override the owner, which is the current branch (tests, detached checkouts)")
+    parser.add_argument("--offline", action="store_true", help="decide without reading the remote (accepts the risk; "
+                        "not with --publish, which checks the remote afterwards)")
+    commands = parser.add_subparsers(dest="command", required=True)
+    status = commands.add_parser("status", help="counts per group and the next free lessons")
+    status.add_argument("--all", action="store_true", help="list every live claim, not only mine")
+    status.set_defaults(run=cmd_status)
+    following = commands.add_parser("next", help="print the next free lessons")
+    following.add_argument("--count", type=int, default=3)
+    following.add_argument("--group")
+    following.set_defaults(run=cmd_next)
+    claim = commands.add_parser("claim", help="claim lessons before building their decks")
+    claim.add_argument("ids", nargs="*", metavar="sd-XX-NNN")
+    claim.add_argument("--next", type=int, default=0, metavar="N", help="also claim the next N free lessons")
+    claim.add_argument("--group", help="with --next: only lessons of this group, e.g. sd-01")
+    claim.add_argument("--take-stale", action="store_true", help="take over a claim whose heartbeat expired")
+    claim.add_argument("--session", help="the session URL, recorded on the claim")
+    claim.add_argument("--publish", action="store_true", help="commit the records and push your work branch")
+    claim.set_defaults(run=cmd_claim)
+    verify = commands.add_parser("verify", help="exit 0 when every claim of mine is still mine and pushed")
+    verify.add_argument("ids", nargs="*", metavar="sd-XX-NNN")
+    verify.set_defaults(run=cmd_verify)
+    touch = commands.add_parser("touch", help="renew the heartbeat of my claims")
+    touch.add_argument("ids", nargs="*", metavar="sd-XX-NNN")
+    touch.add_argument("--publish", action="store_true")
+    touch.set_defaults(run=cmd_touch)
+    finish = commands.add_parser("finish", help="record a built deck")
+    finish.add_argument("id", metavar="sd-XX-NNN")
+    finish.add_argument("--canvas", required=True, help="the Moda canvas id, cvs_...")
+    finish.add_argument("--url", required=True, help="the Moda editor link, https://moda.app/canvas/...")
+    finish.add_argument("--slides", type=int, required=True)
+    finish.add_argument("--exports", choices=EXPORTS, default="pending",
+                        help="done only when <id>.pptx and 01.png.. are in slides/")
+    finish.add_argument("--publish", action="store_true")
+    finish.set_defaults(run=cmd_finish)
+    exported = commands.add_parser("exported", help="record that a finished deck's PPTX and PNG files are in its folder")
+    exported.add_argument("id", metavar="sd-XX-NNN")
+    exported.add_argument("--publish", action="store_true")
+    exported.set_defaults(run=cmd_exported)
+    release = commands.add_parser("release", help="give back lessons you will not build")
+    release.add_argument("ids", nargs="+", metavar="sd-XX-NNN")
+    release.add_argument("--publish", action="store_true")
+    release.set_defaults(run=cmd_release)
+    return parser
+
+
+def main(argv: list[str] | None = None) -> int:
+    args = build_parser().parse_args(argv)
+    store = args.store.resolve()
+    try:
+        if args.offline and getattr(args, "publish", False):  # decided before anything is written or pushed
+            raise SlidesError("--publish pushes the branch and then checks the claim against the remote, so it cannot be "
+                              "combined with --offline")
+        root = pathlib.Path(git_text(store, "rev-parse", "--show-toplevel"))
+        context = Context(root, store, args.remote, args.owner or current_branch(root), args.offline)
+        return args.run(context, args)
+    except SlidesError as error:
+        print(f"error: {error}", file=sys.stderr)
+        return 2
+    except (OSError, UnicodeDecodeError) as error:
+        print(f"error: {error}", file=sys.stderr)
+        return 2
+
+
+if __name__ == "__main__":
+    sys.exit(main())

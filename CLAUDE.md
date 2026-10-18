@@ -286,6 +286,9 @@ What the loop does not change:
   1080x1080, `mkt/page.py`), one section per slide, no body text under 30 px, the handle and `n/N` in the footer, no address on the image, the
   alt text from `alt.txt`. Never hand-edit a slide and never upload a picture exported from Moda, Canva, Figma, draw.io or Excalidraw as a
   standard image. The slides are written to `build/figures/facebook/` (gitignored) and uploaded by the owner; a session never uploads.
+  The one exception, decided by the owner on 2026-10-17: a lesson's **slide deck** (`docs/sd101-slides.md`: built on Moda, 1920x1080,
+  8 to 10 slides, claimed with `scripts/sd101_slides.py`) is its own Facebook product, not a figure. Only the PNG files that `exported`
+  records, exported without the `moda.app` badge (which is never removed), go to Facebook, and the owner uploads them.
 
 ## System Design lessons: claim before you write
 
@@ -304,6 +307,24 @@ Several sessions write lessons of `system-design-101/vi/` at the same time. The 
 - `claim` stops with exit 2 when the remote cannot be read; fix that, do not guess. A claim of a dead
   session (no heartbeat for 72 h) is taken over with `claim --take-stale`.
 - Claiming reserves a lesson; it does not approve, review or publish it (`written` is not `content_status: done`).
+
+## System Design slides: claim before you build
+
+Every written lesson also becomes a Facebook slide deck built on Moda; `docs/sd101-slides.md` has the style, the
+files and the exports. Several sessions build decks at once and `claims.jsonl` knows nothing about decks, so
+`scripts/sd101_slides.py` holds those claims (one `lessons/<id>/slides/deck.yaml` per lesson).
+
+- **Before** building a deck: `python3 scripts/sd101_slides.py claim --next N --publish` (or `claim <id>... --publish`).
+  Never start a lesson the tool shows as `doing` or `done`; `status` lists what is free. `claim` and `verify` stop with
+  exit 2 when the remote cannot be read: fix that, do not guess.
+- **While working**: `touch --publish` now and then; `verify` must exit 0 before you push. If you lost a claim, stop on that
+  lesson and `release` it. A claim of a dead session (no heartbeat for 72 h) is taken over with `claim --take-stale`.
+- **When done**: `finish <id> --canvas <cvs_...> --url <editor link> --slides <n> --publish` and commit the rest of the lesson's
+  `slides/` folder. `--publish` pushes the finished record and checks the claim again afterwards; if the record reaches the
+  remote any other way (a plain `git push`), run `verify` afterwards: it checks finished decks too.
+- **The Moda watermark stays.** The free plan puts a `moda.app` badge on exported PNG and PPTX files and has no switch for
+  it; never remove it from a file. A deck is finished with `exports: pending`, and its files are added (`exported <id>`)
+  only once Moda exports them without the badge.
 
 ## Languages (Vietnamese / Japanese / English)
 

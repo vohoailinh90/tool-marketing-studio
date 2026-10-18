@@ -410,3 +410,7 @@ mutations:
   find: "    except (yaml.YAMLError, ValueError, OverflowError, RecursionError):"
   replace: "    except yaml.YAMLError:"
   test: tests.test_sd101_slides.ClaimTests.test_a_record_whose_values_cannot_be_built_blocks_its_lesson_instead_of_stopping_the_tool
+- label: an expired claim is renewed although a quiet stronger claim beats it
+  find: "        if is_stale(me, moment) and beats(holding, me):  # renewing would revive the weaker of two quiet claims"
+  replace: "        if False:  # renewing would revive the weaker of two quiet claims"
+  test: tests.test_sd101_slides.LeaseTests.test_an_expired_claim_that_a_quiet_stronger_claim_beats_is_not_renewed

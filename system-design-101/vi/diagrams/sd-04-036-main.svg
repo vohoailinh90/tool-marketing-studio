@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="991" viewBox="0 0 320 991" role="img" aria-labelledby="title desc">
+<title id="title">Chia shard xong: câu hỏi nào đổi?</title>
+<desc id="desc">Ba khung dọc. Khung một, ba chỗ đặt logic chia shard: ứng dụng tự chọn shard cho từng câu lệnh; một lớp trung gian đứng giữa ứng dụng và các shard; hoặc chính cơ sở dữ liệu tự chia. Khung hai, đo trên 4 shard với 10.000 đơn, khóa shard là mã khách: hỏi đơn của một khách chỉ cần 1 shard; hỏi đơn có một sản phẩm phải hỏi cả 4 shard rồi gộp; một khách mua rất nhiều làm một shard giữ 3.994 đơn, gần gấp đôi các shard khác. Khung ba, hai cái bẫy: lấy trung bình của 4 giá trị trung bình được 43,74 trong khi trung bình đúng là 40,54; chuyển tiền giữa hai shard mà tiến trình chết giữa chừng thì tổng tiền hụt 30.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="991" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Chia shard xong: câu hỏi</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">nào đổi?</text>
+<rect x="8" y="78" width="304" height="346" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="106.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Ba chỗ đặt logic chia shard</text>
+<rect x="20" y="123" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="166.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 155.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></g>
+<text x="78" y="149.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Ứng dụng</text>
+<text x="78" y="173.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tự chọn shard cho từng</text>
+<text x="78" y="192.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">câu lệnh.</text>
+<rect x="20" y="224" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="267.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 256.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></g>
+<text x="78" y="250.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Lớp trung gian</text>
+<text x="78" y="274.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đứng giữa ứng dụng và</text>
+<text x="78" y="293.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">các shard.</text>
+<rect x="20" y="325" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="368.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 357.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></g>
+<text x="78" y="351.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Cơ sở dữ liệu</text>
+<text x="78" y="375.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tự chia, ứng dụng thấy</text>
+<text x="78" y="394.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">một bảng.</text>
+<rect x="8" y="436" width="304" height="304" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="464.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">4 shard, 10.000 đơn, khóa</text>
+<text x="20" y="486.3" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">shard là mã khách</text>
+<rect x="20" y="503" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="526" r="11" fill="#16a34a"/>
+<polyline points="37.9,526.4 41.7,530.4 48.5,522" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="529.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đơn của một khách: hỏi 1</text>
+<text x="64" y="548.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">shard.</text>
+<rect x="20" y="574" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="597" r="11" fill="#16a34a"/>
+<polyline points="37.9,597.4 41.7,601.4 48.5,593" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="600.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đơn có một sản phẩm: hỏi</text>
+<text x="64" y="619.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cả 4 shard rồi gộp.</text>
+<rect x="20" y="645" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="668" r="11" fill="#16a34a"/>
+<polyline points="37.9,668.4 41.7,672.4 48.5,664" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="671.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Một khách mua rất nhiều:</text>
+<text x="64" y="690.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">một shard giữ 3.994 đơn,</text>
+<text x="64" y="710.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">gần gấp đôi.</text>
+<rect x="8" y="752" width="304" height="231" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="780.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Hai cái bẫy</text>
+<rect x="20" y="797" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="820" r="11" fill="#16a34a"/>
+<polyline points="37.9,820.4 41.7,824.4 48.5,816" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="823.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Trung bình của 4 trung bình:</text>
+<text x="64" y="842.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">43,74. Trung bình đúng:</text>
+<text x="64" y="862.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">40,54.</text>
+<rect x="20" y="888" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="911" r="11" fill="#16a34a"/>
+<polyline points="37.9,911.4 41.7,915.4 48.5,907" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="914.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chuyển tiền giữa hai shard,</text>
+<text x="64" y="933.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chết giữa chừng: tổng tiền</text>
+<text x="64" y="953.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hụt 30.</text>
+</g>
+</svg>

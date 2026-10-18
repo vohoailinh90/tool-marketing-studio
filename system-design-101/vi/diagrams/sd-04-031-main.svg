@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1043" viewBox="0 0 320 1043" role="img" aria-labelledby="title desc">
+<title id="title">PostgreSQL làm thay hệ chuyên dụng tới đâu?</title>
+<desc id="desc">Ba khung dọc. Khung một, có sẵn trong PostgreSQL 16, đã thử: chuỗi thời gian, chỉ mục brin chỉ 24 kB trong khi chỉ mục B-tree 43 MB trên cùng 2 triệu dòng; tài liệu JSON, chỉ mục gin tìm 6.000 tài liệu có một nhãn; tìm toàn văn, tsvector với chỉ mục gin tìm ra 1 dòng trong 300.000; đồ thị đơn giản, with recursive đi hết cây cấp dưới. Khung hai, cần tiện ích ngoài: tìm vector cho học máy dùng pgvector; bản đồ dùng PostGIS; chia bảng ra nhiều máy dùng Citus. Khung ba, nói giao thức PostgreSQL chưa phải là PostgreSQL: CockroachDB nhận trình điều khiển của PostgreSQL nhưng là một hệ khác; giấy phép, cách lưu và tính năng do chính hệ đó quyết định.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1043" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">PostgreSQL làm thay hệ</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">chuyên dụng tới đâu?</text>
+<rect x="8" y="78" width="304" height="435" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="106.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Có sẵn, đã thử trên</text>
+<text x="20" y="128.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">PostgreSQL 16</text>
+<rect x="20" y="145" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="168" r="11" fill="#16a34a"/>
+<polyline points="37.9,168.4 41.7,172.4 48.5,164" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="171.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chuỗi thời gian: chỉ mục brin</text>
+<text x="64" y="190.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">24 kB, B-tree 43 MB, cùng 2</text>
+<text x="64" y="210.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">triệu dòng.</text>
+<rect x="20" y="236" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="259" r="11" fill="#16a34a"/>
+<polyline points="37.9,259.4 41.7,263.4 48.5,255" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="262.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tài liệu JSON: chỉ mục gin</text>
+<text x="64" y="281.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tìm 6.000 tài liệu có một</text>
+<text x="64" y="301.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhãn.</text>
+<rect x="20" y="327" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="350" r="11" fill="#16a34a"/>
+<polyline points="37.9,350.4 41.7,354.4 48.5,346" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="353.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tìm toàn văn: tsvector và</text>
+<text x="64" y="372.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">gin tìm 1 dòng trong</text>
+<text x="64" y="392.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">300.000.</text>
+<rect x="20" y="418" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="441" r="11" fill="#16a34a"/>
+<polyline points="37.9,441.4 41.7,445.4 48.5,437" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="444.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đồ thị đơn giản: with</text>
+<text x="64" y="463.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">recursive đi hết cây cấp</text>
+<text x="64" y="483.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dưới.</text>
+<rect x="8" y="525" width="304" height="245" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="553.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Cần tiện ích ngoài</text>
+<rect x="20" y="570" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="593" r="11" fill="#16a34a"/>
+<polyline points="37.9,593.4 41.7,597.4 48.5,589" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="596.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tìm vector cho học máy:</text>
+<text x="64" y="615.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">pgvector.</text>
+<rect x="20" y="641" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="664" r="11" fill="#16a34a"/>
+<polyline points="37.9,664.4 41.7,668.4 48.5,660" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="667.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bản đồ: PostGIS.</text>
+<rect x="20" y="695" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="718" r="11" fill="#16a34a"/>
+<polyline points="37.9,718.4 41.7,722.4 48.5,714" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="721.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chia bảng ra nhiều máy:</text>
+<text x="64" y="740.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Citus.</text>
+<rect x="8" y="782" width="304" height="253" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="810.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Nói giao thức PostgreSQL</text>
+<text x="20" y="832.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">chưa phải PostgreSQL</text>
+<rect x="20" y="849" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="872" r="11" fill="#16a34a"/>
+<polyline points="37.9,872.4 41.7,876.4 48.5,868" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="875.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">CockroachDB nhận trình</text>
+<text x="64" y="894.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">điều khiển PostgreSQL</text>
+<text x="64" y="914.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhưng là hệ khác.</text>
+<rect x="20" y="940" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="963" r="11" fill="#16a34a"/>
+<polyline points="37.9,963.4 41.7,967.4 48.5,959" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="966.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Giấy phép, cách lưu và tính</text>
+<text x="64" y="985.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">năng do chính hệ đó quyết</text>
+<text x="64" y="1005.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">định.</text>
+</g>
+</svg>

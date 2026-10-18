@@ -1,0 +1,109 @@
+{
+  "id": "sd-04-033",
+  "title_vi": "Cây chọn cơ sở dữ liệu: tự dựng cây của bạn, hỏi ràng buộc cứng trước",
+  "language": "vi",
+  "kind": "decision",
+  "content_status": "draft",
+  "source_ref": "sd-04-033",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/iqiyi-database-selection-trees.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/iqiyi-database-selection-trees.md",
+    "blob_sha": "62fbb9b79131afab1971f0f35a3cbff4637c9297",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a local clone at the pinned commit and hashed as a Git blob; the computed OID matches the tree OID and the source map. No source-image bytes used.",
+    "retrieved_body_sha256": "3268fd9264e2db860cc8ac9a1c44642e2b1802aed03b01e762731d73605cb9f0",
+    "retrieved_body_bytes": 1059
+  },
+  "diagram": "../diagrams/sd-04-033-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-04-032",
+      "relation": "related",
+      "reason_vi": "Bài đó chọn theo kiểu câu hỏi; cây ở bài này hỏi các ràng buộc cứng trước rồi mới tới kiểu câu hỏi."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "scope": "Đọc redis.conf của Redis và README của TiDB, TiKV, Hive, Impala tại commit cố định; chạy Redis 7.0.15 cục bộ: ghi 50 khóa, kill -9, khởi động lại, với cấu hình mặc định và với appendonly. KHÔNG kiểm: cây quyết định thật của iQIYI (nằm trong ảnh nguồn, không dùng), TokuDB, HiGraph, Couchbase, MongoDB, MySQL; con số 500 triệu người dùng chỉ ghi theo nguồn."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "not_yet_reviewed"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright 1.56): cả bài dựng từ Markdown thành HTML, mục tùy chọn mở, ở 320, 375 và 430 px; không cuộn ngang; chữ hình hiệu dụng nhỏ nhất 13,5 px ở 320 px và 15 px ở 375 px; không hộp chữ nào ra ngoài viewBox; python3 -m scripts.figures check --browser đạt. Không phải thử trên GitHub, trên điện thoại thật hay với người học."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "id": "source-iqiyi",
+      "claim_vi": "Nguồn nói iQIYI có hơn 500 triệu người dùng hoạt động mỗi tháng, dùng MySQL, Redis, TiDB, Couchbase, TokuDB, Hive, Impala, MongoDB, HiGraph, TiKV và chọn bằng các cây quyết định (nằm trong ảnh).",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/iqiyi-database-selection-trees.md",
+      "section": "Whole guide",
+      "verified_by": "Đọc thân nguồn ghim ngày 2026-10-18; ảnh nguồn không mở."
+    },
+    {
+      "id": "redis-defaults",
+      "claim_vi": "Mặc định Redis chụp dữ liệu xuống đĩa sau 3.600 giây nếu có ít nhất 1 thay đổi, sau 300 giây nếu có 100, sau 60 giây nếu có 10.000; appendonly mặc định là no; với appendfsync everysec có thể mất khoảng một giây ghi khi mất điện.",
+      "source": "https://github.com/redis/redis/blob/5e332cabd547d272783cf233a34c81dcb9ea44b3/redis.conf",
+      "section": "SNAPSHOTTING; APPEND ONLY MODE",
+      "verified_by": "Đọc bản clone nông tại commit 5e332cabd547d272783cf233a34c81dcb9ea44b3 ngày 2026-10-18; config get save trên Redis 7.0.15 cũng trả 3600 1 300 100 60 10000."
+    },
+    {
+      "id": "redis-crash-test",
+      "claim_vi": "Redis 7.0.15 với cấu hình mặc định: ghi 50 khóa, kill -9 sau khoảng 1,5 giây, khởi động lại còn 0 khóa; với appendonly yes và appendfsync everysec còn 50 khóa.",
+      "source": "https://github.com/redis/redis/blob/5e332cabd547d272783cf233a34c81dcb9ea44b3/redis.conf",
+      "section": "Phép thử của người biên soạn",
+      "verified_by": "Chạy ngày 2026-10-18 trên máy biên soạn, mỗi chế độ một thư mục trống, một lần."
+    },
+    {
+      "id": "tidb-tikv",
+      "claim_vi": "TiDB tự mô tả là cơ sở dữ liệu SQL phân tán, giao dịch ACID qua nhiều máy bằng cam kết hai pha, tương thích MySQL 8.0, có TiKV lưu theo dòng và TiFlash lưu theo cột cho HTAP; TiKV là kho khóa–giá trị phân tán có giao dịch ACID.",
+      "sources": [
+        "https://github.com/pingcap/tidb/blob/328460a9af032ec6b53823724f87837a6d2d5857/README.md",
+        "https://github.com/tikv/tikv/blob/67ffce0c137b7c171405a76df8bc8e9f04a19ce6/README.md"
+      ],
+      "section": "Key Features; README",
+      "verified_by": "Đọc bản clone nông của hai kho ngày 2026-10-18."
+    },
+    {
+      "id": "hive-impala",
+      "claim_vi": "Hive giúp đọc, ghi và quản lý tập dữ liệu lớn trên kho phân tán bằng SQL; Impala chạy câu SQL phân tán trên dữ liệu cỡ petabyte.",
+      "sources": [
+        "https://github.com/apache/hive/blob/170e8e5326e5bd9596daf675d0cc5910cb8d39bf/README.md",
+        "https://github.com/apache/impala/blob/1092b077a85ee5c22716a29262f50a3dad8fd219/README.md"
+      ],
+      "section": "README",
+      "verified_by": "Đọc bản clone nông của hai kho ngày 2026-10-18."
+    }
+  ],
+  "design_notes_vi": "Ba khung: ba câu hỏi ràng buộc theo thứ tự (bước đánh số), nhánh theo kiểu câu hỏi, phép thử Redis cho câu đầu. Cây là của người biên soạn, không chép cây trong ảnh nguồn. Sơ đồ dựng bằng scripts/figures, không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Cây quyết định của iQIYI chỉ có trong ảnh nguồn, bài không dùng; bài dựng cây riêng (ràng buộc cứng trước, kiểu câu hỏi sau) với các hệ trong danh sách của nguồn, mô tả mỗi hệ theo README của chính nó.",
+    "Bài thêm phép thử Redis cho câu hỏi 'dữ liệu mất được không', điều nguồn không bàn."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này, bản nháp chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

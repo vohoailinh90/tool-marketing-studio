@@ -1,0 +1,87 @@
+{
+  "id": "sd-06-028",
+  "title_vi": "5 cách phổ biến để cải thiện hiệu năng API",
+  "language": "vi",
+  "kind": "catalog",
+  "content_status": "draft",
+  "source_ref": "sd-06-028",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/top-5-common-ways-to-improve-api-performance.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-5-common-ways-to-improve-api-performance.md",
+    "blob_sha": "d593ecc5d791af229598dadcd95c8702dd39223b",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Fetched the pinned commit from GitHub; git rev-parse of the path gives the source map's blob OID. Non-empty source body read; no source-image bytes used.",
+    "retrieved_body_sha256": "ec6c34f1644d74967bdd0ee37a7bd2a94ab66d3339332c531f0a1d901ef3a298",
+    "retrieved_body_bytes": 1558
+  },
+  "diagram": "../diagrams/sd-06-028-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-06-026",
+      "relation": "deep-dive",
+      "reason_vi": "Bộ đệm dữ liệu, cách thứ ba trong năm cách, được bàn kỹ ở bài các chiến lược bộ đệm."
+    },
+    {
+      "lesson_id": "sd-06-025",
+      "relation": "compare-with",
+      "reason_vi": "Thang độ trễ giải thích vì sao mở kết nối và ghi đĩa đắt hơn đọc bộ nhớ."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "evidence": "Statements were checked against the PostgreSQL 16 documentation (doc/src/sgml/queries.sgml on REL_16_STABLE at 8e928803020e5b5694cde58e4851fce64ef9d520), the psycopg pool documentation (docs/advanced/pool.rst at 99356800e90aa0e7b604f652d714ef0f33422b47), the Python 3.13 logging cookbook (Doc/howto/logging-cookbook.rst at 24d048d3601c2f1d41fa357897c1c91bb0a0bc13) and MDN compression (mdn/content a1aa79c09717761fc72c20bac94bb9c430ed487a), read as raw files or from a partial clone. Numbers come from an experiment run on 2026-10-18 with PostgreSQL 16.15 (Ubuntu package) on the same machine over TCP, psycopg 3.3.6 and Python 3.13."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Rows skipped by OFFSET still have to be computed inside the server, so a large OFFSET might be inefficient.",
+      "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/queries.sgml",
+      "section": "LIMIT and OFFSET",
+      "verified_by": "Read; the experiment measured OFFSET 290000 LIMIT 50 at a median of 27.7 ms against 0.231 ms for WHERE id > 290000 LIMIT 50 (same rows), and EXPLAIN ANALYZE showed an index scan over 290050 rows for the OFFSET form."
+    },
+    {
+      "claim_vi": "The time to establish a new connection can be relatively long, so keeping connections open in a pool reduces latency.",
+      "source": "https://github.com/psycopg/psycopg/blob/99356800e90aa0e7b604f652d714ef0f33422b47/docs/advanced/pool.rst",
+      "section": "Connection pools",
+      "verified_by": "Read; measured a median of 3.88 ms for connect + SELECT 1 + close against 0.106 ms for SELECT 1 on a reused connection (trust authentication, no TLS). That a PostgreSQL connection involves a handshake, authentication and a server process is the author's general knowledge."
+    },
+    {
+      "claim_vi": "QueueHandler with QueueListener lets logging handlers that block do their work off the thread that logs.",
+      "source": "https://github.com/python/cpython/blob/24d048d3601c2f1d41fa357897c1c91bb0a0bc13/Doc/howto/logging-cookbook.rst",
+      "section": "Dealing with handlers that block",
+      "verified_by": "Read; the caller waited a median of 273 us per line with write + fsync and 9.4 us through the queue; a child process that queued 2000 lines and exited at once left 2 lines in the file."
+    },
+    {
+      "claim_vi": "Compression reduces transfer size for text such as JSON and is implemented by browsers and servers.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/web/http/guides/compression/index.md",
+      "section": "Compression in HTTP",
+      "verified_by": "Read; measured 25175741 bytes of JSON for 300000 rows compressed to 3295327 bytes by gzip level 6 in 332 ms, and a 50-row page of 4191 bytes to 580 bytes."
+    }
+  ],
+  "design_notes_vi": "Năm thẻ chia hai nhóm trả ít hơn và chờ ít hơn, mỗi thẻ ghi cái giá; bốn ghi chú đo thử. Không đưa chữ OFFSET viết hoa vào hình. Vẽ bằng scripts/figures.",
+  "source_deviations": [
+    "Source describes pagination as streaming large result sets; the lesson covers page-based and keyset pagination and measures the deep-page cost of OFFSET.",
+    "Source presents asynchronous logging only as a gain; the lesson adds, with an experiment, that queued lines are lost when the process dies.",
+    "Source lists the five techniques without costs; the lesson groups them by what they save (bytes or waiting) and states and measures the cost of each where it could."
+  ],
+  "editorial_note_vi": "Bài viết độc lập, sơ đồ vẽ bằng bộ công cụ hình từ spec system-design-101/figures/vi/sd-06-028.json, không dùng ảnh nguồn. Tiêu đề hiển thị là dòng đầu của lesson.md; title_vi giữ bản dịch tiêu đề nguồn theo source-map. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
+}

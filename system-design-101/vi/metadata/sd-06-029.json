@@ -1,0 +1,114 @@
+{
+  "id": "sd-06-029",
+  "title_vi": "Học về bộ đệm",
+  "language": "vi",
+  "kind": "reference",
+  "content_status": "draft",
+  "source_ref": "sd-06-029",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/learn-cache.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/learn-cache.md",
+    "blob_sha": "ddcaef7770d79b58ccb8190f8126634e6308d83a",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Fetched the pinned commit from GitHub; git rev-parse of the path gives the source map's blob OID. Non-empty source body read; no source-image bytes used.",
+    "retrieved_body_sha256": "3e3ce1f8866b5cccfbcaf5a1b92a710a3d89e54d10c7a80336cb646a52628e15",
+    "retrieved_body_bytes": 700
+  },
+  "diagram": "../diagrams/sd-06-029-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-06-026",
+      "relation": "deep-dive",
+      "reason_vi": "Câu hỏi đọc ghi thế nào được trả lời đầy đủ, có đo, ở bài các chiến lược bộ đệm."
+    },
+    {
+      "lesson_id": "sd-06-023",
+      "relation": "deep-dive",
+      "reason_vi": "CDN là một chỗ đặt bộ đệm dùng chung; bài CDN nói lợi ích và điều kiện của nó."
+    },
+    {
+      "lesson_id": "sd-06-025",
+      "relation": "context",
+      "reason_vi": "Thang độ trễ giải thích vì sao một bản sao ở gần nhanh hơn nơi gốc."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "evidence": "Statements were checked against the Microsoft Azure Architecture Center caching guidance (docs/best-practices/caching.md at MicrosoftDocs/architecture-center 8e2c239344ee753a88856800b4210a3e27ac1036, blob 88b3e34b997f2f2fecff60d8b7f960145c84bbbc), the MDN HTTP caching guide (mdn/content a1aa79c09717761fc72c20bac94bb9c430ed487a), the Redis key eviction page (redis/docs 3b030c7ef066c0bb7f88ddec02c784e49783b0f8, blob 4046af13e35ec800e694ce3010bd4b78edd55458), redis.conf at the 7.0.15 tag (f35f36a265403c07b119830aa4bb3b7d71653ec9) and the PostgreSQL 16 documentation (config.sgml blob 90cdb4d9d24ba9cd1817159a5400a6e5530b0716 and ref/explain.sgml blob 410490951b14b0e8f18600645292a5e4e9f72200 on REL_16_STABLE at 8e928803020e5b5694cde58e4851fce64ef9d520), read from partial clones or as raw files. Numbers come from experiments run on 2026-10-18 on one machine with Redis 7.0.15 (Ubuntu package, redis-py 8.1.0) and PostgreSQL 16.15 (Ubuntu package)."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Caching copies frequently accessed data to storage closer to the application; it helps most when data is read repeatedly and the original store is relatively static, slower than the cache, contended, or far away; the cache is a transient store that can disappear, so important data must stay in the original store; it can also hold results of costly computations.",
+      "source": "https://github.com/MicrosoftDocs/architecture-center/blob/8e2c239344ee753a88856800b4210a3e27ac1036/docs/best-practices/caching.md",
+      "section": "Caching guidance; Decide when to cache data; Determine how to cache data effectively",
+      "verified_by": "Read; not tested."
+    },
+    {
+      "claim_vi": "A private in-memory cache is fast but each application instance holds its own snapshot, so instances can answer differently; a shared cache gives all instances the same view and scales by adding servers, but is slower to reach and adds complexity; a local cache can sit in front of a shared cache, then the data store.",
+      "source": "https://github.com/MicrosoftDocs/architecture-center/blob/8e2c239344ee753a88856800b4210a3e27ac1036/docs/best-practices/caching.md",
+      "section": "Private caching; Shared caching; Implement high availability and scalability",
+      "verified_by": "Read; not tested."
+    },
+    {
+      "claim_vi": "A browser cache is a private cache tied to one client; proxies, reverse proxies and CDNs are shared caches between client and server; personalized content stored in a shared cache can leak to other users.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/web/http/guides/caching/index.md",
+      "section": "Types of caches",
+      "verified_by": "Read; not tested."
+    },
+    {
+      "claim_vi": "Expiration limits how long cached data can be stale (too short loses the benefit, too long risks staleness); a full cache evicts items, typically LRU; a service cannot force a client-side cache to drop an item, so changing the resource's URI forces a refresh; an application should fall back to the data store when a shared cache is unavailable, and the data store can be swamped while the cache recovers.",
+      "source": "https://github.com/MicrosoftDocs/architecture-center/blob/8e2c239344ee753a88856800b4210a3e27ac1036/docs/best-practices/caching.md",
+      "section": "Manage data expiration in a cache; Invalidate data in a client-side cache; Implement high availability and scalability",
+      "verified_by": "Read; not tested."
+    },
+    {
+      "claim_vi": "Redis evicts keys by the chosen maxmemory-policy when memory use exceeds maxmemory; noeviction returns errors for commands that add data while reads still work; allkeys-lru is a good default when a subset of keys is accessed far more often; allkeys-random suits uniform access; volatile policies act like noeviction without keys that have a TTL; maxmemory 0 (no limit) is the default on 64-bit systems; hit ratio comes from keyspace_hits and keyspace_misses.",
+      "source": "https://github.com/redis/docs/blob/3b030c7ef066c0bb7f88ddec02c784e49783b0f8/content/develop/reference/eviction/index.md",
+      "section": "Using the maxmemory configuration directive; Eviction policies; Using the INFO command",
+      "verified_by": "Read; experiment with maxmemory 4mb, 500 hot keys re-read every 50 writes and 20000 further 1000-byte writes: noeviction accepted 2908 writes then returned 'command not allowed when used memory > maxmemory', allkeys-lru accepted 20500 writes, evicted 17592 keys and kept 500/500 hot keys (100% hot hits), allkeys-random evicted 17593 keys and kept 2/500 hot keys (56608/200000 = 28.3% hot hits)."
+    },
+    {
+      "claim_vi": "redis.conf 7.0.15: the default maxmemory-policy is noeviction; LRU, LFU and minimal-TTL selection are approximated randomized algorithms; 1mb means 1024*1024 bytes.",
+      "source": "https://github.com/redis/redis/blob/f35f36a265403c07b119830aa4bb3b7d71653ec9/redis.conf",
+      "section": "Units; MEMORY MANAGEMENT",
+      "verified_by": "Read."
+    },
+    {
+      "claim_vi": "PostgreSQL shared_buffers is the memory the server uses for shared buffers, typically 128MB by default, and PostgreSQL also relies on the operating system cache; in EXPLAIN BUFFERS a hit means a read was avoided because the block was already in cache.",
+      "sources": [
+        "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/config.sgml",
+        "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/ref/explain.sgml"
+      ],
+      "section": "shared_buffers; EXPLAIN BUFFERS",
+      "verified_by": "Read; experiment: SHOW shared_buffers gave 128MB; after a restart, a count over a 200000-row table showed shared read=1870 on the first run and shared hit=1870 on the second."
+    }
+  ],
+  "design_notes_vi": "Hai nhóm bốn thẻ theo đúng tám câu hỏi của bài nguồn (hiểu bộ đệm; giữ bộ đệm đúng), cộng bốn ghi chú kết quả thử loại bỏ khóa. Chính sách Redis viết bằng lời thường trong hình, tên thật nằm trong bài. Vẽ bằng scripts/figures.",
+  "source_deviations": [
+    "Source is a list of topic headings with its content in an image, which is not used; the lesson answers each heading from the Microsoft caching guidance, MDN, the Redis eviction page and the PostgreSQL documentation.",
+    "Source's 'cache deployment' and 'distributed cache' headings are answered together as private versus shared caches, following the Microsoft guidance.",
+    "Lesson adds two experiments: Redis eviction policies under a 4 MB limit with a hot set, and PostgreSQL shared buffers turning reads into hits.",
+    "Caching challenges are kept short and tied to stale, lost and full copies; named failure patterns are left to a dedicated lesson."
+  ],
+  "editorial_note_vi": "Bài viết độc lập, sơ đồ vẽ bằng bộ công cụ hình từ spec system-design-101/figures/vi/sd-06-029.json, không dùng ảnh nguồn. Tiêu đề hiển thị là dòng đầu của lesson.md; title_vi giữ bản dịch tiêu đề nguồn theo source-map. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
+}

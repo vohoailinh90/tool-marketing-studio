@@ -19,7 +19,7 @@ Chính bài nguồn cũng ghi các con số của nó không chính xác, chỉ 
 
 **Đơn vị.** 1 ns (nano giây) là một phần tỷ giây; 1 µs (micro giây) bằng 1000 ns; 1 ms (mili giây) bằng 1000 µs. Mỗi bậc chậm hơn bậc trước một nghìn lần.
 
-**Thử nghiệm**, ngày 2026-10-18, trên một máy ảo Linux có 4 nhân Xeon 2,8 GHz, đĩa ảo:
+**Thử nghiệm**, ngày 2026-10-18, trên một máy ảo Linux có 4 nhân Xeon, đĩa ảo:
 
 - **Bộ nhớ:** một chương trình C đi theo chuỗi con trỏ xáo trộn, mỗi bước phải chờ bước trước. Vùng 16 KB (vừa bộ nhớ đệm L1): 1,5 ns mỗi lần đọc; 256 KB (vừa L2): 3,9 ns; 4 MB: khoảng 99 ns; 512 MB: khoảng 315 ns. Con số cuối cao hơn mức "100 ns cho RAM" của bài nguồn vì đọc ngẫu nhiên vùng lớn còn tốn thêm việc tra bảng trang, và máy ảo làm việc đó đắt hơn.
 - **Mạng trong cùng máy:** gửi 1 KB qua TCP trên giao diện nội bộ (loopback) rồi nhận lại: trung vị 58,5 µs (chương trình Python). Lệnh `GET` một giá trị 1 KB của Redis qua cùng đường: p50 63 µs.

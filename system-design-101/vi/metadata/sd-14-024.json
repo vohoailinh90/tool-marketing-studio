@@ -1,0 +1,198 @@
+{
+  "id": "sd-14-024",
+  "title_vi": "SSH hoạt động thế nào? Ba lớp của giao thức",
+  "language": "vi",
+  "kind": "concept",
+  "content_status": "review",
+  "source_ref": "sd-14-024",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/how-does-ssh-work.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-ssh-work.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches provider tree OID. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "abbeaba6411c891ad7fa37d7d500135e77427881",
+    "retrieved_body_sha256": "d6832a7a59a40bd8e44c033e7e5db54291f0f142c7639abf3ec89eedbd415a67",
+    "retrieved_body_bytes": 1162
+  },
+  "diagram": "../diagrams/sd-14-024-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-14-014",
+      "relation": "builds-on",
+      "reason_vi": "Khóa SSH như một cơ chế xác thực, và bài học mã hóa chưa chứng minh danh tính."
+    },
+    {
+      "lesson_id": "sd-14-015",
+      "relation": "uses",
+      "reason_vi": "Chữ ký số mà máy khách dùng để chứng minh giữ khóa riêng."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "evidence": "Source read. OpenSSH ssh.1, sshd.8, sshd_config.5, ssh_config.5 and PROTOCOL read at openssh-portable commit 26b1363c7cbf5d01c730f45fc0b4abc5686beaf7; asyncssh README, guide, API docs and the source files server.py, connection.py and auth.py read at the v2.24.1 commit 5dbdf18494589a6de7065f9fb89bd5d716f36a35. Behaviour observed by running asyncssh 2.24.1 (Python 3.13.16) as both server and client on 127.0.0.1 with random ports above 20000 and throw-away keys: negotiated algorithms, host key fingerprint and rejection of a wrong expected host key, wire contents and a one-bit tamper through a counting relay, public key and password authentication, and three channels over one TCP connection. ssh, sshd and ssh-keygen are not installed, so OpenSSH itself was not run. The RFCs (4251 to 4254) were not reachable and were not read; statements about the standards are general knowledge and labelled as such."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "The source says SSH (Secure Shell) is a network protocol for securely connecting to remote machines over an unsecured network, that it encrypts the connection and offers mechanisms for authentication and data transfer, that it has two versions (SSH-1 and SSH-2, SSH-2 standardized by the IETF) and three main layers: Transport Layer (encryption, integrity and data protection), Authentication Layer (verifies the identity of the client) and Connection Layer (multiplexes the encrypted and authenticated communication into multiple logical channels).",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-ssh-work.md",
+      "section": "Whole guide",
+      "verified_by": "Source body read; sha256 and git blob id of the retrieved body match the values pinned in the source snapshot."
+    },
+    {
+      "claim_vi": "ssh.1 describes the ssh client as a program for logging into a remote machine and executing commands on it, intended to provide secure encrypted communications between two untrusted hosts over an insecure network; X11 connections, arbitrary TCP ports and Unix-domain sockets can be forwarded over the secure channel.",
+      "source": "https://github.com/openssh/openssh-portable/blob/26b1363c7cbf5d01c730f45fc0b4abc5686beaf7/ssh.1",
+      "section": "DESCRIPTION",
+      "verified_by": "Read from the file fetched at the pinned commit."
+    },
+    {
+      "claim_vi": "sshd.8 (AUTHENTICATION) says the OpenSSH daemon supports SSH protocol 2 only; each host has a host-specific key used to identify the host; on connect the daemon sends its public host key and the client compares it with its own database; forward secrecy is provided through a Diffie-Hellman key agreement giving a shared session key; the rest of the session is encrypted with a symmetric cipher chosen by the client from those the server offers; session integrity is provided through a message authentication code (MAC). Then comes an authentication dialog (host-based, public key, challenge-response or password), then a dialog preparing the session (pseudo-tty, X11, TCP and agent forwarding over the secure channel), then a shell or command.",
+      "source": "https://github.com/openssh/openssh-portable/blob/26b1363c7cbf5d01c730f45fc0b4abc5686beaf7/sshd.8",
+      "section": "AUTHENTICATION",
+      "verified_by": "Read from the file fetched at the pinned commit. Forward secrecy and the Diffie-Hellman statement are the man page's claim about OpenSSH and were not tested here."
+    },
+    {
+      "claim_vi": "ssh.1 (AUTHENTICATION) says the OpenSSH client supports SSH protocol 2; the AUTHORS sections of ssh.1 and sshd.8 say Markus Friedl contributed support for SSH protocol versions 1.5 and 2.0. None of the documents read (ssh.1, sshd.8, sshd_config.5, ssh_config.5, PROTOCOL, the asyncssh README and documentation) states that SSH-1 is deprecated or obsolete, so the lesson does not say so. The asyncssh README describes the library as an implementation of the SSHv2 protocol.",
+      "source": "https://github.com/openssh/openssh-portable/blob/26b1363c7cbf5d01c730f45fc0b4abc5686beaf7/ssh.1",
+      "section": "AUTHENTICATION; AUTHORS",
+      "verified_by": "Read the files at the pinned commits and searched them for protocol version, deprecated and obsolete; the asyncssh README was read at v2.24.1."
+    },
+    {
+      "claim_vi": "The STANDARDS section of ssh.1 lists RFC 4251 'The Secure Shell (SSH) Protocol Architecture', RFC 4252 'The Secure Shell (SSH) Authentication Protocol', RFC 4253 'The Secure Shell (SSH) Transport Layer Protocol' and RFC 4254 'The Secure Shell (SSH) Connection Protocol' (T. Ylonen and C. Lonvick, January 2006). Only the titles were read; the RFC texts themselves were not reachable.",
+      "source": "https://github.com/openssh/openssh-portable/blob/26b1363c7cbf5d01c730f45fc0b4abc5686beaf7/ssh.1",
+      "section": "STANDARDS",
+      "verified_by": "Read the list in the file fetched at the pinned commit; RFC contents not read."
+    },
+    {
+      "claim_vi": "ssh.1 says that for password authentication the password is sent to the remote host for checking, and that since all communications are encrypted it cannot be seen by someone listening on the network; ssh keeps a known_hosts database, and if a host's identification changes it warns and disables password authentication to prevent server spoofing or man-in-the-middle attacks; on a first connection a fingerprint of the server's public key is presented to the user.",
+      "source": "https://github.com/openssh/openssh-portable/blob/26b1363c7cbf5d01c730f45fc0b4abc5686beaf7/ssh.1",
+      "section": "AUTHENTICATION; VERIFYING HOST KEYS",
+      "verified_by": "Read from the file fetched at the pinned commit; the warning behaviour of the real ssh client was not run (ssh is not installed)."
+    },
+    {
+      "claim_vi": "sshd_config.5: PasswordAuthentication and PubkeyAuthentication switch those methods on or off (both default yes); AuthenticationMethods lists the methods that must all succeed; MaxSessions is the maximum number of open shell, login or subsystem sessions per network connection, 'multiple sessions may be established by clients that support connection multiplexing', default 10, and 0 prevents sessions while still permitting forwarding.",
+      "source": "https://github.com/openssh/openssh-portable/blob/26b1363c7cbf5d01c730f45fc0b4abc5686beaf7/sshd_config.5",
+      "section": "PasswordAuthentication; PubkeyAuthentication; AuthenticationMethods; MaxSessions",
+      "verified_by": "Read from the file fetched at the pinned commit; not run against a real sshd."
+    },
+    {
+      "claim_vi": "ssh_config.5 says ControlMaster enables the sharing of multiple sessions over a single network connection.",
+      "source": "https://github.com/openssh/openssh-portable/blob/26b1363c7cbf5d01c730f45fc0b4abc5686beaf7/ssh_config.5",
+      "section": "ControlMaster",
+      "verified_by": "Read from the file fetched at the pinned commit; not run."
+    },
+    {
+      "claim_vi": "The OpenSSH PROTOCOL document describes the connection protocol through channel messages (SSH_MSG_CHANNEL_OPEN with sender channel, SSH_MSG_CHANNEL_DATA with recipient channel, channel types such as session, direct and forwarded streamlocal) and refers to RFC 4254 for it.",
+      "source": "https://github.com/openssh/openssh-portable/blob/26b1363c7cbf5d01c730f45fc0b4abc5686beaf7/PROTOCOL",
+      "section": "Connection protocol changes",
+      "verified_by": "Read from the file fetched at the pinned commit."
+    },
+    {
+      "claim_vi": "The asyncssh README describes an asynchronous client and server implementation of the SSHv2 protocol and lists shell, command and subsystem channels, direct and forwarded TCP/IP channels, local and remote TCP/IP port forwarding, and 'Multiple simultaneous sessions on a single SSH connection'.",
+      "source": "https://github.com/ronf/asyncssh/blob/5dbdf18494589a6de7065f9fb89bd5d716f36a35/README.rst",
+      "section": "Features",
+      "verified_by": "Read from the file fetched at the v2.24.1 commit."
+    },
+    {
+      "claim_vi": "The asyncssh guide says server host key checking can be disabled by setting known_hosts to None, but that is not recommended because it makes the connection vulnerable to a man-in-the-middle attack; by default the server key is checked against known_hosts.",
+      "source": "https://github.com/ronf/asyncssh/blob/5dbdf18494589a6de7065f9fb89bd5d716f36a35/docs/index.rst",
+      "section": "Simple client",
+      "verified_by": "Read from the file fetched at the v2.24.1 commit."
+    },
+    {
+      "claim_vi": "asyncssh server docstrings: public_key_auth_supported and password_auth_supported both default to False; validate_public_key says AsyncSSH verifies that the client possesses the corresponding private key before authentication succeeds; session_requested and connection_requested reject by default.",
+      "source": "https://github.com/ronf/asyncssh/blob/5dbdf18494589a6de7065f9fb89bd5d716f36a35/asyncssh/server.py",
+      "section": "SSHServer",
+      "verified_by": "Read the docstrings in the file fetched at the v2.24.1 commit."
+    },
+    {
+      "claim_vi": "asyncssh source: get_extra_info exposes send_cipher, send_mac, recv_cipher, recv_mac and compression names; when the chosen encryption algorithm does not need a separate MAC the library records the encryption algorithm name as the MAC algorithm; a failed integrity check raises MACError('MAC verification failed'); public key authentication handles a request without a signature (trying the key) and a request with a signature (verifying it) as two steps.",
+      "source": "https://github.com/ronf/asyncssh/blob/5dbdf18494589a6de7065f9fb89bd5d716f36a35/asyncssh/connection.py",
+      "section": "get_extra_info; key exchange; packet receive",
+      "verified_by": "Read connection.py and auth.py at the v2.24.1 commit; the behaviour was confirmed by the experiments below."
+    },
+    {
+      "claim_vi": "Observed (transport, negotiation): with default settings the library reported client and server version SSH-2.0-AsyncSSH_2.24.1, key exchange mlkem768x25519-sha256, cipher chacha20-poly1305@openssh.com in both directions, the same name in the MAC slot, and no compression. A client offering only aes256-ctr, hmac-sha2-256 and diffie-hellman-group14-sha256 got aes256-ctr with hmac-sha2-256. A client offering only aes256-ctr against a server offering only aes128-gcm@openssh.com got KeyExchangeFailed ('No matching encryption algorithm found') and the server's begin_auth was never called.",
+      "source": "https://github.com/ronf/asyncssh/blob/5dbdf18494589a6de7065f9fb89bd5d716f36a35/docs/api.rst",
+      "section": "Connection information; algorithm options",
+      "verified_by": "Observed by running a local experiment script (asyncssh 2.24.1, Python 3.13.16, server and client in one process on 127.0.0.1, random ports above 20000, throw-away Ed25519 keys); the script and its output are kept in the authoring scratchpad, not in the repository; numbers are one measurement on the authoring machine. Both ends are asyncssh, so the default algorithms say nothing about OpenSSH."
+    },
+    {
+      "claim_vi": "Observed (transport, host key): the server's host key was ssh-ed25519; the fingerprint printed by the library was 'SHA256:' followed by 43 characters and equalled the SHA-256 of the public key blob, base64 without padding, that the script computed itself. A client expecting a different host key got HostKeyNotVerifiable ('Host key is not trusted for host'); the server saw one TCP connection accepted, zero begin_auth calls and zero public-key checks, and the client log had no 'Beginning auth' line.",
+      "source": "https://github.com/ronf/asyncssh/blob/5dbdf18494589a6de7065f9fb89bd5d716f36a35/docs/api.rst",
+      "section": "known_hosts; get_server_host_key",
+      "verified_by": "Observed by running a local experiment script (asyncssh 2.24.1, Python 3.13.16, server and client in one process on 127.0.0.1, random ports above 20000, throw-away Ed25519 keys); the script and its output are kept in the authoring scratchpad, not in the repository; numbers are one measurement on the authoring machine."
+    },
+    {
+      "claim_vi": "Observed (transport, wire view): through a counting relay written in the script, both directions began with the plain text SSH-2.0-AsyncSSH_2.24.1; the algorithm name mlkem768x25519-sha256 appeared in the client-to-server bytes; the user name alice did not appear in either direction; a command carrying the string secret-line-93 was answered correctly yet the string appeared in neither direction (3757 bytes client to server, 4305 server to client in that run), while the same string sent through the same kind of relay over a plain TCP echo appeared in both directions.",
+      "source": "https://github.com/ronf/asyncssh/blob/5dbdf18494589a6de7065f9fb89bd5d716f36a35/docs/index.rst",
+      "section": "Simple client; running commands",
+      "verified_by": "Observed by running a local experiment script (asyncssh 2.24.1, Python 3.13.16, server and client in one process on 127.0.0.1, random ports above 20000, throw-away Ed25519 keys); the script and its output are kept in the authoring scratchpad, not in the repository; numbers are one measurement on the authoring machine."
+    },
+    {
+      "claim_vi": "Observed (transport, integrity): when the relay flipped one bit of one server-to-client chunk after login, the client's connection was lost with MACError ('MAC verification failed') as reported to SSHClient.connection_lost, and the pending command raised ChannelOpenError ('SSH connection closed').",
+      "source": "https://github.com/ronf/asyncssh/blob/5dbdf18494589a6de7065f9fb89bd5d716f36a35/asyncssh/connection.py",
+      "section": "packet receive",
+      "verified_by": "Observed by running a local experiment script (asyncssh 2.24.1, Python 3.13.16, server and client in one process on 127.0.0.1, random ports above 20000, throw-away Ed25519 keys); the script and its output are kept in the authoring scratchpad, not in the repository; numbers are one measurement on the authoring machine."
+    },
+    {
+      "claim_vi": "Observed (transport, identity): with known_hosts=None the client connected to the same server, received the server's real host key and still used chacha20-poly1305@openssh.com, so encryption ran without any host key check.",
+      "source": "https://github.com/ronf/asyncssh/blob/5dbdf18494589a6de7065f9fb89bd5d716f36a35/docs/index.rst",
+      "section": "Simple client",
+      "verified_by": "Observed by running a local experiment script (asyncssh 2.24.1, Python 3.13.16, server and client in one process on 127.0.0.1, random ports above 20000, throw-away Ed25519 keys); the script and its output are kept in the authoring scratchpad, not in the repository; numbers are one measurement on the authoring machine."
+    },
+    {
+      "claim_vi": "Observed (authentication): the server that supports only public keys offered ['publickey'] (client's get_server_auth_methods); the authorized key logged in as alice and the server's validate_public_key was called twice for it, with the library logging 'Trying public key auth' and then 'Verifying request'; another valid but unauthorized key got PermissionDenied after one validate_public_key call that returned False; a password sent to this server got PermissionDenied and validate_password was called zero times. A control server with password support offered ['keyboard-interactive', 'password'], accepted the same password (one validate_password call) and refused a wrong one. The user name is sent only after the key exchange (alice never appeared on the wire).",
+      "source": "https://github.com/ronf/asyncssh/blob/5dbdf18494589a6de7065f9fb89bd5d716f36a35/asyncssh/server.py",
+      "section": "begin_auth; public_key_auth_supported; validate_public_key; password_auth_supported",
+      "verified_by": "Observed by running a local experiment script (asyncssh 2.24.1, Python 3.13.16, server and client in one process on 127.0.0.1, random ports above 20000, throw-away Ed25519 keys); the script and its output are kept in the authoring scratchpad, not in the repository; numbers are one measurement on the authoring machine."
+    },
+    {
+      "claim_vi": "Observed (connection): over one authenticated connection through the relay the script opened a long-running command channel A, a second command channel B and a direct TCP/IP forwarding channel C to a local echo server; all three answered correctly and A was still open after B and C finished. The relay accepted 1 TCP connection, the SSH server accepted 1, the kernel table (/proc/net/tcp) showed 1 ESTABLISHED socket on the relay port and 1 on the SSH server port while A and C were open; the library log of the client connection had one key exchange, one 'Auth for user alice succeeded' and channels numbered 0, 1 and 2; the echo server saw 1 TCP connection, from the SSH server. Three separate connect() calls for three jobs produced 3 TCP connections at the relay.",
+      "source": "https://github.com/ronf/asyncssh/blob/5dbdf18494589a6de7065f9fb89bd5d716f36a35/README.rst",
+      "section": "Features: multiple simultaneous sessions on a single SSH connection",
+      "verified_by": "Observed by running a local experiment script (asyncssh 2.24.1, Python 3.13.16, server and client in one process on 127.0.0.1, random ports above 20000, throw-away Ed25519 keys); the script and its output are kept in the authoring scratchpad, not in the repository; numbers are one measurement on the authoring machine."
+    },
+    {
+      "claim_vi": "General knowledge, not checked against the RFCs: SSH-2 was standardized by the IETF and its layers are specified by RFC 4251 to 4254; that authentication runs on top of the transport layer and the connection layer on top of authentication is the protocol's design as the author understands it, and is consistent with the observed order (key exchange, then authentication, then channels) and with the user name never appearing on the wire.",
+      "source": "https://github.com/openssh/openssh-portable/blob/26b1363c7cbf5d01c730f45fc0b4abc5686beaf7/ssh.1",
+      "section": "STANDARDS",
+      "verified_by": "Author's general knowledge; not checked against RFC 4251 to 4254, which could not be read."
+    },
+    {
+      "claim_vi": "Not examined: a real OpenSSH client or server (ssh, sshd and ssh-keygen are not installed), the content of RFC 4251 to 4254, forward secrecy, compression, authentication methods other than public key and password, and OpenSSH's default algorithm choices.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-ssh-work.md",
+      "section": "Whole guide",
+      "verified_by": "Not examined."
+    }
+  ],
+  "design_notes_vi": "Bốn thẻ nối bằng mũi tên theo thứ tự chạy (kết nối TCP, truyền tải, xác thực, kết nối) và một khung ghi bốn điều quan sát khi chạy thử. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "The source calls the layers Transport Layer, Authentication Layer and Connection Layer; the list of standards in ssh.1 titles them Transport Layer Protocol, Authentication Protocol and Connection Protocol (RFC 4253, 4252, 4254), so only the first is named a layer there; the lesson says layer in plain Vietnamese and notes the titles, having read only the titles.",
+    "The source does not say that the server is identified too; the lesson adds that the transport layer is where the client checks the server's host key (sshd.8) and shows a wrong expected key being rejected before any authentication starts.",
+    "The source describes the transport layer as providing 'encryption, integrity, and data protection'; the lesson replaces the vague 'data protection' with what was observed (secret absent from the wire, a flipped bit detected) and notes forward secrecy only as sshd.8's claim about OpenSSH, not tested.",
+    "The source says SSH has two versions and SSH-2 was standardized by the IETF; the lesson states only what was read (the OpenSSH client and server man pages say protocol 2, asyncssh calls itself SSHv2, the man pages' author notes mention 1.5 and 2.0), does not call SSH-1 deprecated because no document read says so, and labels the IETF statement as general knowledge.",
+    "The source says the authentication layer ensures only authorized users can access the server; the lesson shows it as the step where the server checks a method it has enabled (public key in the test, password refused unless enabled), after the transport is encrypted.",
+    "The source says the connection layer multiplexes into multiple logical channels; the lesson confirms it by observation and adds that the channels share one TCP connection and one authentication, and that OpenSSH limits sessions per connection with MaxSessions (default 10 in the pinned man page)."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

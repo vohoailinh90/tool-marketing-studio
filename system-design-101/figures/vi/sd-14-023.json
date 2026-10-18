@@ -1,0 +1,56 @@
+{
+  "id": "sd-14-023",
+  "lang": "vi",
+  "title": "PASETO đổi gì so với JWT?",
+  "subtitle": "Bỏ việc chọn thuật toán; giữ nguyên bốn việc khó.",
+  "desc": "Ba nhóm xếp dọc. Nhóm một, ba cách xác thực: cookie với session giữ dữ liệu ở máy chủ nên xóa bản ghi là thu hồi được; JWT tự mang dữ liệu và có trường alg do người gửi viết nên người kiểm phải ghim thuật toán; PASETO không có trường alg, tiền tố phiên bản và mục đích chọn một bộ thuật toán cố định. Nhóm hai, hai loại PASETO v4: local che dữ liệu bằng khóa chung, public cho mọi người đọc dữ liệu và kiểm chữ ký bằng khóa công khai. Nhóm ba, việc bạn vẫn phải tự lo khi dùng PASETO: thu hồi và chống dùng lại, kiểm hạn dùng, giữ khóa và chọn chỗ cất token.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Ba cách, ba chỗ giữ trạng thái",
+      "items": [
+        {
+          "name": "Cookie và session",
+          "role": "Cookie chỉ mang mã. Dữ liệu ở máy chủ nên xóa bản ghi là thu hồi được.",
+          "icon": "database"
+        },
+        {
+          "name": "JWT",
+          "role": "Token tự mang dữ liệu. Header có trường alg do người gửi viết: người kiểm phải ghim thuật toán.",
+          "icon": "file-text"
+        },
+        {
+          "name": "PASETO",
+          "role": "Token tự mang dữ liệu. Không có trường alg: tiền tố phiên bản và mục đích chọn bộ thuật toán cố định.",
+          "icon": "lock"
+        }
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Hai loại PASETO v4",
+      "items": [
+        {
+          "name": "v4.local",
+          "role": "Mã hóa bằng khóa chung. Không có khóa thì không đọc được dữ liệu.",
+          "icon": "lock-keyhole"
+        },
+        {
+          "name": "v4.public",
+          "role": "Chữ ký. Ai cũng đọc được dữ liệu; khóa công khai kiểm xem có bị sửa không.",
+          "icon": "shield-check"
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Việc bạn vẫn phải tự lo",
+      "items": [
+        "Thu hồi và chống dùng lại: cần danh sách hoặc kho trạng thái.",
+        "Kiểm hạn dùng: tùy thư viện và cách gọi.",
+        "Giữ khóa: lộ khóa là giả được mọi token.",
+        "Chỗ cất token: lộ token là bị mượn quyền."
+      ]
+    }
+  ]
+}

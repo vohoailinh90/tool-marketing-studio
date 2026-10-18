@@ -1,0 +1,59 @@
+{
+  "id": "sd-14-025",
+  "lang": "vi",
+  "title": "VPN: ai thấy gì",
+  "subtitle": "Đường hầm chỉ che đoạn đầu.",
+  "desc": "Hình có hai phần. Phần một là bốn thẻ nối bằng mũi tên theo đường đi của một yêu cầu qua VPN. Thiết bị của bạn bọc tin vào đường hầm mã hóa. Người nghe, như Wi-Fi hay nhà mạng, chỉ thấy kết nối tới máy chủ VPN, kích thước và giờ gửi. Máy chủ VPN giải mã, thấy đích, và cả nội dung nếu trang không dùng HTTPS, rồi gửi tiếp bằng địa chỉ của nó. Trang web thấy địa chỉ máy chủ VPN nhưng vẫn thấy cookie hay tài khoản của bạn. Phần hai là bốn điều cần nhớ: đoạn sau máy chủ VPN chỉ được che nếu trang dùng HTTPS; phải tin máy chủ VPN; trang vẫn nhận ra bạn; tin đi ngoài đường hầm vẫn lộ địa chỉ thật.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Một yêu cầu đi qua VPN",
+      "items": [
+        {
+          "name": "Thiết bị của bạn",
+          "role": "Bọc tin vào đường hầm mã hóa.",
+          "icon": "monitor"
+        },
+        {
+          "name": "Người nghe",
+          "role": "Wi-Fi, nhà mạng: chỉ thấy kết nối tới máy chủ VPN, kích thước và giờ gửi.",
+          "icon": "eye"
+        },
+        {
+          "name": "Máy chủ VPN",
+          "role": "Giải mã, thấy đích, rồi gửi tiếp bằng địa chỉ của nó.",
+          "icon": "server"
+        },
+        {
+          "name": "Trang web",
+          "role": "Thấy địa chỉ máy chủ VPN, vẫn thấy cookie của bạn.",
+          "icon": "globe"
+        }
+      ],
+      "flow": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ]
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Điều cần nhớ",
+      "items": [
+        "Từ máy chủ VPN tới trang, tin chỉ được che nếu trang dùng HTTPS.",
+        "Máy chủ VPN thấy đích, và cả nội dung nếu trang không dùng HTTPS: bạn phải tin nó.",
+        "Cookie và tài khoản vẫn đi theo yêu cầu, nên trang vẫn nhận ra bạn.",
+        "Tin không được định tuyến vào đường hầm vẫn lộ địa chỉ thật."
+      ]
+    }
+  ]
+}

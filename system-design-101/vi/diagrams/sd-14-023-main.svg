@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1279" viewBox="0 0 320 1279" role="img" aria-labelledby="title desc">
+<title id="title">PASETO đổi gì so với JWT?</title>
+<desc id="desc">Ba nhóm xếp dọc. Nhóm một, ba cách xác thực: cookie với session giữ dữ liệu ở máy chủ nên xóa bản ghi là thu hồi được; JWT tự mang dữ liệu và có trường alg do người gửi viết nên người kiểm phải ghim thuật toán; PASETO không có trường alg, tiền tố phiên bản và mục đích chọn một bộ thuật toán cố định. Nhóm hai, hai loại PASETO v4: local che dữ liệu bằng khóa chung, public cho mọi người đọc dữ liệu và kiểm chữ ký bằng khóa công khai. Nhóm ba, việc bạn vẫn phải tự lo khi dùng PASETO: thu hồi và chống dùng lại, kiểm hạn dùng, giữ khóa và chọn chỗ cất token.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1279" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">PASETO đổi gì so với</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">JWT?</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Bỏ việc chọn thuật toán; giữ nguyên</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">bốn việc khó.</text>
+<rect x="8" y="123" width="304" height="486" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Ba cách, ba chỗ giữ trạng</text>
+<text x="20" y="173.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">thái</text>
+<rect x="20" y="190" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="243.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 232.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></g>
+<text x="78" y="216.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Cookie và session</text>
+<text x="78" y="240.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cookie chỉ mang mã. Dữ</text>
+<text x="78" y="259.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">liệu ở máy chủ nên xóa</text>
+<text x="78" y="279.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bản ghi là thu hồi được.</text>
+<rect x="20" y="311" width="280" height="126" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="374" r="18" fill="#1d4ed8"/><g transform="translate(39.2 363.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></g>
+<text x="78" y="337.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">JWT</text>
+<text x="78" y="361.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Token tự mang dữ liệu.</text>
+<text x="78" y="380.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Header có trường alg do</text>
+<text x="78" y="400.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">người gửi viết: người kiểm</text>
+<text x="78" y="419.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">phải ghim thuật toán.</text>
+<rect x="20" y="451" width="280" height="146" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="524" r="18" fill="#1d4ed8"/><g transform="translate(39.2 513.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="11" rx="2" ry="2" width="18" x="3" y="11"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></g>
+<text x="78" y="477.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">PASETO</text>
+<text x="78" y="501.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Token tự mang dữ liệu.</text>
+<text x="78" y="520.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Không có trường alg: tiền</text>
+<text x="78" y="540.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tố phiên bản và mục đích</text>
+<text x="78" y="559.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chọn bộ thuật toán cố</text>
+<text x="78" y="579.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">định.</text>
+<rect x="8" y="621" width="304" height="285" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="649.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Hai loại PASETO v4</text>
+<rect x="20" y="666" width="280" height="107" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="719.5" r="18" fill="#0f766e"/><g transform="translate(39.2 708.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="16" r="1"/><rect height="12" rx="2" width="18" x="3" y="10"/><path d="M7 10V7a5 5 0 0 1 10 0v3"/></g>
+<text x="78" y="692.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">v4.local</text>
+<text x="78" y="716.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mã hóa bằng khóa chung.</text>
+<text x="78" y="735.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Không có khóa thì không</text>
+<text x="78" y="755.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đọc được dữ liệu.</text>
+<rect x="20" y="787" width="280" height="107" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="840.5" r="18" fill="#0f766e"/><g transform="translate(39.2 829.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></g>
+<text x="78" y="813.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">v4.public</text>
+<text x="78" y="837.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chữ ký. Ai cũng đọc được</text>
+<text x="78" y="856.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dữ liệu; khóa công khai</text>
+<text x="78" y="876.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">kiểm xem có bị sửa không.</text>
+<rect x="8" y="918" width="304" height="353" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="946.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Việc bạn vẫn phải tự lo</text>
+<rect x="20" y="963" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="986" r="11" fill="#16a34a"/>
+<polyline points="37.9,986.4 41.7,990.4 48.5,982" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="989.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Thu hồi và chống dùng lại:</text>
+<text x="64" y="1008.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cần danh sách hoặc kho</text>
+<text x="64" y="1028.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trạng thái.</text>
+<rect x="20" y="1054" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1077" r="11" fill="#16a34a"/>
+<polyline points="37.9,1077.4 41.7,1081.4 48.5,1073" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1080.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Kiểm hạn dùng: tùy thư viện</text>
+<text x="64" y="1099.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">và cách gọi.</text>
+<rect x="20" y="1125" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1148" r="11" fill="#16a34a"/>
+<polyline points="37.9,1148.4 41.7,1152.4 48.5,1144" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1151.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Giữ khóa: lộ khóa là giả được</text>
+<text x="64" y="1170.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mọi token.</text>
+<rect x="20" y="1196" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1219" r="11" fill="#16a34a"/>
+<polyline points="37.9,1219.4 41.7,1223.4 48.5,1215" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1222.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chỗ cất token: lộ token là bị</text>
+<text x="64" y="1241.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mượn quyền.</text>
+</g>
+</svg>

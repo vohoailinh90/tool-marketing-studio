@@ -1,0 +1,167 @@
+{
+  "id": "sd-14-021",
+  "title_vi": "HTTPS có an toàn không? Kẻ đứng giữa đọc được khi nào",
+  "language": "vi",
+  "kind": "flow",
+  "content_status": "review",
+  "source_ref": "sd-14-021",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/is-https-safe.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/is-https-safe.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches provider tree OID. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "19a954b49cc87f791b1369b5e22d879cefe2afdd",
+    "retrieved_body_sha256": "be3ae6972723b89edb61df68111921ad7357b1fa4afa2d810a49426400e85eb0",
+    "retrieved_body_bytes": 1984
+  },
+  "diagram": "../diagrams/sd-14-021-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-14-014",
+      "relation": "builds-on",
+      "reason_vi": "Chứng chỉ gắn khóa công khai với một tên và do CA ký; mã hóa vẫn chạy khi không kiểm chứng chỉ."
+    },
+    {
+      "lesson_id": "sd-14-015",
+      "relation": "builds-on",
+      "reason_vi": "Chữ ký của CA trên chứng chỉ là một chữ ký số."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "evidence": "Source read. MDN (TLS guide, certificate authority glossary, MITM guide), OWASP Pinning and TLS cheat sheets, the CPython ssl documentation, the openssl s_client manual and the pyca/cryptography x509 tutorial were fetched from raw.githubusercontent.com at the pinned commits and read. The local relay model was run once on the authoring machine (Python 3.13.16, OpenSSL 3.0.13, cryptography 50.0.1) with throw-away RSA-2048 keys on 127.0.0.1 and random ports; no key material was printed. The experiment script is kept in the authoring scratchpad, not in the repository. The TLS specifications (RFC 8446 and others) and Fiddler itself were not reachable or not run."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "The source asks how tools like Fiddler can capture HTTPS traffic and describes a 'malicious intermediate' that the client's traffic is routed to, with the prerequisite that the intermediate's root certificate is in the client's trust store, in eight steps: two TCP connections, the intermediate presents an 'SSL certificate' to the client and validates the real server's certificate, the client encrypts a session key with the intermediate's public key, the intermediate decrypts it and re-encrypts it with the real server's public key, and the intermediate can then always decrypt the data.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/is-https-safe.md",
+      "section": "Whole guide",
+      "verified_by": "Source body read."
+    },
+    {
+      "claim_vi": "MDN: TLS provides encryption, integrity and authentication; HTTPS is the defence against a manipulator-in-the-middle attack; server authentication uses a digital certificate that binds the server's key to its domain name; SSL is the precursor of TLS; the handshake agrees the protocol version, the cipher suite (key agreement, authentication, encryption, message authentication) and a secret key.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/web/security/defenses/transport_layer_security/index.md",
+      "section": "Từ viết tắt; Giới hạn cần nhớ; Xem sâu hơn",
+      "verified_by": "Read from raw.githubusercontent.com at the pinned commit."
+    },
+    {
+      "claim_vi": "MDN: a certificate authority signs digital certificates and their public keys, asserting that the information is correct; browsers come preloaded with root certificates and check that a website certificate chains back to one of them.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/certificate_authority/index.md",
+      "section": "Đọc hình; Giới hạn cần nhớ",
+      "verified_by": "Read from raw.githubusercontent.com at the pinned commit."
+    },
+    {
+      "claim_vi": "MDN gives an attacker running a wireless access point in a public place, such as a cafe or an airport, as a common way to execute a manipulator-in-the-middle attack.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/web/security/attacks/mitm/index.md",
+      "section": "Giới hạn cần nhớ",
+      "verified_by": "Read from raw.githubusercontent.com at the pinned commit."
+    },
+    {
+      "claim_vi": "OWASP Pinning cheat sheet: certificate-based trust can be attacked in two ways, by getting a rogue certificate for the victim's site from a trusted CA, or by injecting a dangerous CA into the client's trust store (the sheet calls the problem very small thanks to years of CA and browser improvements); interception proxies used for egress filtering are called 'good' bad actors because both kinds break end-to-end security and cannot be told apart; there is almost no situation where pinning should be considered because the risk of outages almost always outweighs the security risk; do not pin if you do not control both the client and the server side.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/f9a631ec47a5fd134bb83b57ce690d7946360cea/cheatsheets/Pinning_Cheat_Sheet.md",
+      "section": "Giới hạn cần nhớ; Xem sâu hơn",
+      "verified_by": "Read from raw.githubusercontent.com at the pinned commit."
+    },
+    {
+      "claim_vi": "OWASP TLS cheat sheet: RSA key transport cipher suites (TLS_RSA_*) and static Diffie-Hellman suites do not provide forward secrecy and should be disabled; web applications should default to TLS 1.3; a TLS endpoint whose certificate the client accepts can read the application data sent to it.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/f9a631ec47a5fd134bb83b57ce690d7946360cea/cheatsheets/Transport_Layer_Security_Cheat_Sheet.md",
+      "section": "Xem sâu hơn",
+      "verified_by": "Read from raw.githubusercontent.com at the pinned commit (the Only Support Strong Ciphers and Client Certificates and Mutual TLS sections)."
+    },
+    {
+      "claim_vi": "CPython ssl documentation: SSLContext.load_verify_locations loads the CA certificates used to validate other peers' certificates; a PROTOCOL_TLS_CLIENT context requires a valid certificate chain and hostname; SSLCertVerificationError carries verify_code and verify_message; SSLContext.keylog_filename writes TLS keys to a keylog file in NSS format for debugging. The documentation file is the development branch; SSLSocket.group and server_sigalg are marked as new in 3.15 and were not used.",
+      "source": "https://github.com/python/cpython/blob/cdf010b10c673e1ec4faaf3f8f9be39237986880/Doc/library/ssl.rst",
+      "section": "Đọc hình",
+      "verified_by": "Read from raw.githubusercontent.com at the pinned commit; the calls used were executed on Python 3.13.16."
+    },
+    {
+      "claim_vi": "Observed: a client that trusts only the real CA and connects to the relay gets ssl.SSLCertVerificationError '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate' (verify_code 20); the relay sees the alert 'tlsv1 alert unknown ca', has read 0 plaintext requests, and the real server accepted 0 TCP connections (this relay opens its upstream connection only after the client handshake succeeded and the request was read).",
+      "source": "https://github.com/python/cpython/blob/cdf010b10c673e1ec4faaf3f8f9be39237986880/Doc/library/ssl.rst",
+      "section": "Đọc hình, mục 2",
+      "verified_by": "No external page reports this output; observed by running the local relay experiment on the authoring machine (final run, Python 3.13.16, OpenSSL 3.0.13, cryptography 50.0.1)."
+    },
+    {
+      "claim_vi": "Observed: a client that trusts both the real CA and the relay's CA connects to the relay over TLS 1.3 (TLS_AES_256_GCM_SHA384) with no TLS error, receives the same 200 response and body as when connecting directly, and the relay read the request line, a test header and the response body in plaintext; the leaf certificate the client saw had the relay CA as issuer instead of the real CA and a different certificate fingerprint.",
+      "source": "https://github.com/python/cpython/blob/cdf010b10c673e1ec4faaf3f8f9be39237986880/Doc/library/ssl.rst",
+      "section": "Đọc hình, mục 3",
+      "verified_by": "No external page reports this output; observed by running the local relay experiment on the authoring machine. All data were fake strings."
+    },
+    {
+      "claim_vi": "Observed with the Python key log (keylog_filename): in the run where the client trusted both CAs, the client-to-relay session logged 5 secret lines that were identical in the client's log and the relay's front log, the relay-to-real-server session logged 5 lines identical in the relay's back log and the real server's log, and the two sessions had no client_random and no secret in common. Only counts were printed. The aborted handshake of the first run logged fewer lines and was left out.",
+      "source": "https://github.com/python/cpython/blob/cdf010b10c673e1ec4faaf3f8f9be39237986880/Doc/library/ssl.rst",
+      "section": "Đọc hình, mục 1",
+      "verified_by": "No external page reports this output; observed by running the local relay experiment on the authoring machine."
+    },
+    {
+      "claim_vi": "Observed: with the real server limited to TLS 1.2 at most, the client reported TLSv1.3 (TLS_AES_256_GCM_SHA384) for its connection to the relay while the relay's connection to the real server was TLSv1.2 (ECDHE-RSA-AES256-GCM-SHA384), so the two connections negotiate independently.",
+      "source": "https://github.com/python/cpython/blob/cdf010b10c673e1ec4faaf3f8f9be39237986880/Doc/library/ssl.rst",
+      "section": "Đọc hình, mục 1",
+      "verified_by": "No external page reports this output; observed by running the local relay experiment on the authoring machine."
+    },
+    {
+      "claim_vi": "Observed: a certificate for the name demo.test signed by the relay's CA is rejected ('unable to get local issuer certificate') by a client that trusts only the real CA and accepted (HTTP 200) by a client that trusts both CAs when it asks for demo.test; the same certificate is rejected with 'Hostname mismatch, certificate is not valid for localhost' (verify_code 62) when a client trusting both CAs asks for localhost. That a CA key can sign any name, unless the CA certificate carries name constraints, is the author's general knowledge; name constraints were not tested and the X.509 specification was not read.",
+      "source": "https://github.com/pyca/cryptography/blob/6179e1c39ed0019cf27168420eff6b3ab1840ef9/docs/x509/tutorial.rst",
+      "section": "Giới hạn cần nhớ",
+      "verified_by": "No external page reports this output; observed by running the local relay experiment on the authoring machine. The throw-away CA and leaf certificates were built following the CertificateBuilder examples of the pyca/cryptography x509 tutorial (read at the pinned commit)."
+    },
+    {
+      "claim_vi": "Observed: a client that trusts both CAs but pins the public key of the real server accepts a direct connection and rejects the connection through the relay because the presented public key differs.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/f9a631ec47a5fd134bb83b57ce690d7946360cea/cheatsheets/Pinning_Cheat_Sheet.md",
+      "section": "Xem sâu hơn",
+      "verified_by": "No external page reports this output; observed by running the local relay experiment on the authoring machine (a hand-written comparison of the public key presented with the expected one, not a library pinning feature)."
+    },
+    {
+      "claim_vi": "Observed with openssl s_client against local test servers: a TLS 1.3 handshake printed 'Server Temp Key: X25519, 253 bits' and 'Peer signature type: RSA-PSS'; a TLS 1.2 handshake forced to the suite AES128-GCM-SHA256 printed neither line; a TLS 1.2 handshake with ECDHE-RSA-AES128-GCM-SHA256 printed both. Reading the first as an ephemeral key exchange plus a handshake signature made with the certificate's key, reading AES128-GCM-SHA256 as RSA key transport, and the statement that TLS 1.3 removed RSA key transport are the author's general knowledge; the openssl manual read does not explain these output lines and RFC 8446 was not reachable.",
+      "source": "https://github.com/openssl/openssl/blob/6d76833d61fad07a171219d9cb1444bc37f88b8f/doc/man1/openssl-s_client.pod.in",
+      "section": "Xem sâu hơn",
+      "verified_by": "Author's general knowledge for the interpretation; the printed lines were observed by running openssl s_client on the authoring machine. The manual was read only for the options used (-connect, -servername, -CAfile, -tls1_3)."
+    },
+    {
+      "claim_vi": "Forward secrecy means that a later leak of the server's private key does not allow decryption of previously recorded traffic.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/f9a631ec47a5fd134bb83b57ce690d7946360cea/cheatsheets/Transport_Layer_Security_Cheat_Sheet.md",
+      "section": "Xem sâu hơn",
+      "verified_by": "Author's general knowledge; not checked against the OWASP sheet or RFC 9325 (the sheet only says that the listed suites do not provide forward secrecy)."
+    },
+    {
+      "claim_vi": "Debugging tools such as Fiddler and corporate interception proxies rely on the same condition (the tool's root certificate in the client's trust store) and are used with the machine owner's consent. The source describes the Fiddler case and OWASP describes interception proxies in organizations that practise egress filtering; how Fiddler issues certificates and the consent part were not examined.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/f9a631ec47a5fd134bb83b57ce690d7946360cea/cheatsheets/Pinning_Cheat_Sheet.md",
+      "section": "Mở bài; Xem sâu hơn",
+      "verified_by": "Author's general knowledge for the consent part; not checked against any Fiddler documentation. Fiddler was not run."
+    },
+    {
+      "claim_vi": "Not examined: real browsers and operating-system trust stores, certificate revocation, Certificate Transparency, HSTS behaviour, name-constrained CAs, how routing of traffic to a proxy is done in practice, and what happens if the relay skips validation of the real server's certificate.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/is-https-safe.md",
+      "section": "Giới hạn cần nhớ",
+      "verified_by": "Not examined."
+    }
+  ],
+  "design_notes_vi": "Hai chuỗi trình tự (máy khách với relay, relay với máy chủ thật) cho thấy hai kết nối TLS tách rời, rồi hai thẻ so sánh kho chỉ có CA thật với kho có thêm CA của relay, và ba ghi chú. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "The source calls the intermediate 'malicious' and says the request is 'maliciously routed'; the lesson says that debugging tools and corporate proxies rely on the same condition with the owner's consent, that the difference is consent and not mechanism, and that routing traffic to the relay and getting the client to accept its certificate are two separate things.",
+    "The source gives the trust-store requirement as a one-line prerequisite before the eight steps; the lesson makes it the central condition and shows both branches (CA not trusted: the client aborts the handshake; CA trusted: the relay reads plaintext).",
+    "The source says 'SSL certificate'; the lesson uses certificate for TLS, since SSL is the old name of TLS.",
+    "The source's steps 5 and 6 (the client encrypts a session key with the intermediate's public key, the intermediate decrypts it and re-encrypts it with the real server's public key) describe RSA key transport; the lesson notes that OWASP says to disable TLS_RSA_* suites and shows that the TLS 1.3 handshake of the model used a temporary key and a signature by the certificate's key, so the relay is simply a separate TLS endpoint on each side rather than a decrypt-and-re-encrypt of a session key.",
+    "The source says the intermediate 'can always decrypt the data'; the lesson says it can only when the client accepts the intermediate's certificate, and shows that otherwise the client aborts before sending any request."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

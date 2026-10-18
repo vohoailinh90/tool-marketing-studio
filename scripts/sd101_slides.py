@@ -1123,7 +1123,8 @@ def build_parser() -> argparse.ArgumentParser:
                         "exported with the moda.app badge")
     finish.add_argument("--publish", action="store_true")
     finish.set_defaults(run=cmd_finish)
-    exported = commands.add_parser("exported", help="record that a finished deck's PPTX and PNG files are in its folder")
+    exported = commands.add_parser("exported", help="record that a finished deck's PPTX and PNG files are in its folder "
+                                   "(with --badged: its PPTX alone, moda.app badge and all)")
     exported.add_argument("id", metavar="sd-XX-NNN")
     exported.add_argument("--badged", action="store_true",
                           help="only <id>.pptx is there, exported with the moda.app badge (not for Facebook)")

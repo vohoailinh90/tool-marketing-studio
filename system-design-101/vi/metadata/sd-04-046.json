@@ -1,0 +1,78 @@
+{
+  "id": "sd-04-046",
+  "title_vi": "Các loại bộ nhớ và lưu trữ: đo khoảng cách giữa các tầng trên một máy",
+  "language": "vi",
+  "kind": "concept",
+  "content_status": "draft",
+  "source_ref": "sd-04-046",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/types-of-memory-and-storage.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/types-of-memory-and-storage.md",
+    "blob_sha": "021127eb521bbd62500d6c0c3ef8e935a40d0d75",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a local clone at the pinned commit and hashed as a Git blob; the computed OID matches the tree OID and the source map. No source-image bytes used.",
+    "retrieved_body_sha256": "a6789710315f41fce001d230c299aaa3612aaefdc38460b5dea71c2cc4a4b0cf",
+    "retrieved_body_bytes": 572
+  },
+  "diagram": "../diagrams/sd-04-046-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-04-027",
+      "relation": "related",
+      "reason_vi": "Bài đó cho thấy PostgreSQL đọc trang qua bộ đệm chung; khoảng cách đo ở bài này là lý do cần bộ đệm đó."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "scope": "Đo trên máy biên soạn (máy ảo Linux, 4 nhân Intel Xeon 2,1 GHz): độ trễ đọc phụ thuộc trong vùng nhớ 16 KiB đến 1 GiB bằng chương trình C đi theo chuỗi con trỏ xáo trộn (hai lần cho bốn cỡ, một lần cho bốn cỡ khác); đọc ngẫu nhiên 4 KiB bằng O_DIRECT trên tệp 1 GiB (hai lần); cỡ bộ đệm từ lscpu và sysfs. KHÔNG kiểm: ROM, BIOS, DDR4, DDR5, HDD, ổ USB, thẻ SD; phần giải nghĩa các loại là kiến thức chung của người biên soạn."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "not_yet_reviewed"
+    },
+    "mobile": {
+      "status": "pending"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "id": "source-names",
+      "claim_vi": "Nguồn chỉ điểm danh các mục: RAM và ROM, DDR4 và DDR5, firmware và BIOS, SRAM và DRAM, HDD, SSD, ổ USB, thẻ SD.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/types-of-memory-and-storage.md",
+      "section": "Whole guide",
+      "verified_by": "Đọc thân nguồn ghim ngày 2026-10-18."
+    },
+    {
+      "id": "memory-latency",
+      "claim_vi": "Trên máy biên soạn, một lần đọc phụ thuộc trong vùng 16 KiB mất 1,8 nano giây; 1 MiB 7,7 đến 8,8; 4 MiB 26,1; 16 MiB 52,6; 32 MiB 111,2; 64 MiB 134,5 đến 138,0; 128 MiB 138,2; 1 GiB 204,4 đến 216,5. Hệ thống báo bộ đệm tầng 1 48 KiB, tầng 2 2 MiB mỗi nhân, tầng 3 260 MiB dùng chung.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/types-of-memory-and-storage.md",
+      "section": "SRAM and DRAM (phép đo của người biên soạn)",
+      "verified_by": "Chạy chương trình C in trong bài ngày 2026-10-18, biên dịch gcc -O2; số đo của một máy ảo."
+    },
+    {
+      "id": "disk-latency",
+      "claim_vi": "Đọc ngẫu nhiên khối 4 KiB với O_DIRECT trên tệp 1 GiB của đĩa ảo mất 31,5 và 37,1 micro giây mỗi lần ở hai lần chạy.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/types-of-memory-and-storage.md",
+      "section": "HDD, SSD (phép đo của người biên soạn)",
+      "verified_by": "Chạy chương trình C in trong bài ngày 2026-10-18; loại ổ bên dưới đĩa ảo không biết."
+    }
+  ],
+  "design_notes_vi": "Ba khung: các loại theo nguồn kèm một dòng giải nghĩa, phép đo bộ nhớ theo cỡ vùng, phép đo đĩa. Sơ đồ dựng bằng scripts/figures, không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Nguồn chỉ là một danh sách tên; bài giải nghĩa từng cặp bằng kiến thức chung và đo khoảng cách giữa các tầng trên một máy.",
+    "Bài nói rõ các bậc đo được không khớp hẳn với cỡ bộ đệm hệ thống báo, và không đo được HDD hay các loại ổ cụ thể."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này, bản nháp chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

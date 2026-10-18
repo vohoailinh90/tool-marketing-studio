@@ -33,7 +33,7 @@
     },
     "mobile": {
       "status": "checked",
-      "checked_on": "2026-10-13",
+      "checked_on": "2026-10-18",
       "widths_px": [
         320,
         375,
@@ -43,7 +43,7 @@
       "whole_lesson_no_horizontal_overflow": true,
       "text_outside_viewbox": false,
       "optional_sections_checked_open": true,
-      "evidence": "Re-rendered revised five-card Lambda diagram and whole lesson in Chromium at 320/375/430px after finding 4255709360; all optional sections open; SVG getBBox inside viewBox and text measured. Static Markdown preview, not GitHub/device or learner testing."
+      "evidence": "Re-checked after the Từ viết tắt section was added (first checked 2026-10-13 on the old draft branch). Chromium (Playwright) rendered the complete lesson with every details block open at 320/375/430px from a local Markdown render with GitHub-like styles (16px page padding): no horizontal overflow at any width, every SVG text box inside the viewBox, min effective diagram text 14.40px at 320 and 17.15px at 375, the same as the earlier record. Not GitHub itself, not a real phone, not learner testing."
     },
     "user_testing": {
       "status": "not_performed"

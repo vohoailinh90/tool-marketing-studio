@@ -33,7 +33,7 @@
     },
     "mobile": {
       "status": "checked",
-      "checked_on": "2026-10-13",
+      "checked_on": "2026-10-18",
       "widths_px": [
         320,
         375,
@@ -43,7 +43,7 @@
       "whole_lesson_no_horizontal_overflow": true,
       "text_outside_viewbox": false,
       "optional_sections_checked_open": true,
-      "evidence": "Chromium 147 whole-lesson viewport checks across 49 lessons, all details open; SVG text getBBox inside viewBox and minimum effective text measured. Shared template screenshots at 320px sampled for visual inspection (sd-11-006, sd-11-015, sd-11-024, sd-11-043, sd-11-048). Local static Markdown preview; not a live GitHub/device check or learner testing."
+      "evidence": "Re-checked after the figure's factors were renumbered 1 to 12 (no glossary was needed) (first checked 2026-10-13 on the old draft branch). Chromium (Playwright) rendered the complete lesson with every details block open at 320/375/430px from a local Markdown render with GitHub-like styles (16px page padding): no horizontal overflow at any width, every SVG text box inside the viewBox, min effective diagram text 14.40px at 320 and 17.15px at 375, the same as the earlier record. Not GitHub itself, not a real phone, not learner testing."
     },
     "user_testing": {
       "status": "not_performed"

@@ -94,6 +94,12 @@
       "verified_by": "Experiment run by the author on 2026-10-18 on one virtual machine: same set-up, first runs with default auto-aof-rewrite settings and 100-byte SETs."
     },
     {
+      "claim_vi": "AOF logs the received write commands, and a rewrite produces a new file with the minimal set of operations needed to recreate the current data set. With AOF on and a 100,000-field hash (about 9 MB by MEMORY USAGE), one HSET of a small field grew the AOF by 52 bytes.",
+      "source": "https://github.com/redis/docs/blob/3b030c7ef066c0bb7f88ddec02c784e49783b0f8/content/operate/oss_and_stack/management/persistence.md",
+      "section": "Append-only file; Log rewriting; experiment",
+      "verified_by": "Read from a local clone of redis/docs at commit 3b030c7ef066c0bb7f88ddec02c784e49783b0f8, the head of its default branch when read on 2026-10-18 (a later change to that branch does not alter this URL). The HSET measurement was run by the author on 2026-10-18 on Redis 7.0.15 with auto AOF rewrite off."
+    },
+    {
       "claim_vi": "A big key is a key holding a lot of data; the three AOF modes are Always, EverySec and No; the source states that in EverySec and No modes big keys have no impact on the main thread.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-big-keys-impact-redis-persistence.md",
       "section": "How do we analyze the impact of big keys?",

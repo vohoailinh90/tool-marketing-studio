@@ -87,7 +87,7 @@
       "verified_by": "Read from a local clone of redis/docs at commit 3b030c7ef066c0bb7f88ddec02c784e49783b0f8, the head of its default branch when read on 2026-10-18 (a later change to that branch does not alter this URL)."
     },
     {
-      "claim_vi": "On Redis 7.0.15: INCR returned 1 then 2; TYPE gave string, hash, list, set, zset; SADD with a duplicate left 2 members; RPOP after LPUSH a b returned a; ZREVRANGE gave binh 30, chi 20; a key SET with EX 1 was gone after 1.2 s; DELETE returned ERR unknown command while DEL returned 1; JSON.SET was an unknown command and MODULE LIST was empty; PUBLISH returned 0 with no subscriber and 1 with one, which received the message.",
+      "claim_vi": "On Redis 7.0.15: INCR returned 1 then 2; TYPE gave string, hash, list, set, zset; SADD with a duplicate left 2 members; RPOP after LPUSH a b returned a; ZREVRANGE gave binh 30, chi 20; a key SET with EX 1 was gone after 1.2 s; after SET user:1:name An, DELETE returned ERR unknown command while DEL returned 1; JSON.SET was an unknown command and MODULE LIST was empty; PUBLISH returned 0 with no subscriber and 1 with one, which received the message.",
       "source": "https://github.com/redis/redis/blob/f35f36a265403c07b119830aa4bb3b7d71653ec9/README.md",
       "section": "Experiment",
       "verified_by": "Experiment run by the author on 2026-10-18 on one virtual machine: redis-cli against Redis 7.0.15 (Ubuntu package) with persistence disabled for the command tests."

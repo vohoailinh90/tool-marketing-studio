@@ -61,7 +61,7 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 
 Các bài chưa viết của nhóm này không có trong danh sách; số thứ tự là vị trí của bài trong nhóm.
 
-1. [ELK Stack: thu thập, xử lý, lưu và xem log](lessons/sd-06-001/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
+1. [ELK Stack: thu thập, xử lý, lưu và xem log](lessons/sd-06-001/lesson.md) — bài mới viết tại repo này (đối chiếu README của từng dự án, không chạy thử); chờ review kỹ thuật.
 2. [CDN phổ biến vì đâu, và máy chủ biên lưu những gì](lessons/sd-06-002/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
 3. [Khóa lớn ảnh hưởng thế nào tới việc lưu AOF của Redis](lessons/sd-06-003/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
 4. [CDN cho người mới: máy chủ biên, điện toán biên và chơi game trên mây](lessons/sd-06-004/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.

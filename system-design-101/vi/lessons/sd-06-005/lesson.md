@@ -28,7 +28,7 @@ Mọi lệnh dưới đây chạy ngày 2026-10-18 bằng `redis-cli` với Redi
 
 **2 · Khóa có hạn dùng.** `SET otp 1234 EX 1` đặt một mã sống 1 giây: `TTL otp` trả 1, sau 1,2 giây `GET otp` trả rỗng. Đây là cách Redis hay được dùng làm bộ nhớ đệm hoặc giữ phiên đăng nhập.
 
-**3 · Lệnh xóa là `DEL`.** Gõ `DELETE user:1:name` thì Redis báo `ERR unknown command 'DELETE'`; `DEL user:1:name` trả 1 (đã xóa một khóa).
+**3 · Lệnh xóa là `DEL`.** Đặt `SET user:1:name An` trước. Gõ `DELETE user:1:name` thì Redis báo `ERR unknown command 'DELETE'`; `DEL user:1:name` trả 1 (đã xóa một khóa).
 
 **4 · JSON chưa có sẵn trong bản này.** `JSON.SET doc $ '{"a":1}'` báo lệnh không tồn tại, và `MODULE LIST` rỗng: kiểu JSON đến từ một module phải cài thêm vào Redis 7.0.15.
 

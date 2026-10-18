@@ -1,6 +1,6 @@
 # Khóa lớn ảnh hưởng thế nào tới việc lưu AOF của Redis
 
-**Khi bật AOF, mỗi lệnh ghi của Redis được chép thêm vào một tệp nhật ký. Khóa càng lớn thì bản ghi càng lớn, và phần chép đó chạy trên chính luồng đang phục vụ mọi client.**
+**Khi bật AOF, mỗi lệnh ghi của Redis được chép thêm vào một tệp nhật ký. Lệnh nào mang theo cả một giá trị lớn (ví dụ ghi đè một chuỗi 5 MiB) thì bản ghi lớn đúng chừng ấy, và phần chép đó chạy trên chính luồng đang phục vụ mọi client.**
 Câu hỏi hay gặp là: chọn chế độ `everysec` hay `no` thì khóa lớn có còn làm Redis khựng lại không? Tài liệu của Redis và một phép đo nhỏ cho câu trả lời là *có*.
 
 ![Ba khung. Khung một, bốn bước của một lệnh ghi khi bật AOF: Redis đổi dữ liệu trong bộ nhớ; luồng chính gọi write để chép bản ghi vào bộ đệm của hệ điều hành; fsync đẩy xuống đĩa, ở always thì luồng chính làm trước khi trả lời, ở everysec thì luồng nền làm mỗi giây, ở no thì hệ điều hành tự quyết; rồi Redis trả lời. Khung hai, ba chế độ: always an toàn và chậm nhất; everysec là mặc định, có thể mất khoảng một giây dữ liệu; no để hệ điều hành quyết. Khung ba, đo với giá trị 5 MiB trên một máy ảo: tắt AOF, lệnh ghi mất khoảng 6 mili giây; bật AOF ở cả ba chế độ, riêng bước write trên luồng chính mất hàng chục mili giây; chỉ always có thêm fsync; client khác chờ theo.](../../diagrams/sd-06-003-main.svg)
@@ -20,7 +20,7 @@ Tài liệu về độ trễ của Redis nói AOF dùng hai lời gọi hệ th�
 - `everysec` (mặc định): một luồng nền fsync mỗi giây. Nếu lần fsync trước chưa xong, Redis hoãn `write(2)` tối đa hai giây rồi vẫn ghi, và lúc đó luồng chính có thể bị chặn.
 - `no`: không gọi fsync, để hệ điều hành tự quyết; theo tài liệu persistence, Linux thường đẩy xuống đĩa khoảng 30 giây một lần. Nguồn trễ còn lại là `write(2)`.
 
-Điểm chung dễ bị bỏ qua: **ở cả ba chế độ, `write(2)` chạy trên luồng chính.** Khóa 5 MiB nghĩa là mỗi lần ghi phải chép 5 MiB vào tệp nhật ký.
+Điểm chung dễ bị bỏ qua: **ở cả ba chế độ, `write(2)` chạy trên luồng chính.** AOF ghi lại *lệnh* đã nhận, nên kích thước bản ghi đi theo lệnh chứ không theo khóa: ghi đè cả một chuỗi 5 MiB là chép 5 MiB vào tệp nhật ký, còn một lệnh `HSET` thêm một trường nhỏ vào một hash rất lớn chỉ chép thêm vài chục byte. Khóa lớn vẫn có cái giá khác khi Redis viết lại AOF: tài liệu persistence ghi rằng tệp mới được dựng từ tập lệnh tối thiểu để tạo lại dữ liệu hiện có, tức cả khóa lớn được viết lại.
 
 ## Đo thử
 

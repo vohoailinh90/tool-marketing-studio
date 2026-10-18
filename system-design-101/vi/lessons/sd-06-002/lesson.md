@@ -52,8 +52,8 @@ Trang hồ sơ cá nhân của bạn trả `Cache-Control: private, max-age=300`
 <details>
 <summary>Xem đáp án</summary>
 
-Máy gốc không bớt tải: `private` cấm bộ nhớ đệm dùng chung như máy biên của CDN lưu câu trả lời, nên mỗi người, mỗi lần đều phải hỏi máy gốc (thử với nginx cho thấy đúng như vậy).
-Trình duyệt thì được lưu: `private` vẫn cho bộ nhớ đệm riêng của người đó giữ bản sao trong 300 giây.
+CDN không giúp máy gốc bớt tải cho trang này: `private` cấm bộ nhớ đệm dùng chung như máy biên lưu câu trả lời, nên mọi yêu cầu đi tới máy biên đều được chuyển tiếp về máy gốc (thử với nginx cho thấy đúng như vậy).
+Nhưng trình duyệt vẫn được lưu: `private` cho bộ nhớ đệm riêng của từng người giữ bản sao trong 300 giây, nên trong khoảng đó trình duyệt dùng lại bản của mình mà không gửi yêu cầu nào. Phần tải máy gốc được bớt là nhờ trình duyệt, không nhờ CDN.
 
 </details>
 

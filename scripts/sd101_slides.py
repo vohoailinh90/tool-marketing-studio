@@ -146,16 +146,19 @@ StrictLoader.add_constructor(yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG, _no
 
 
 def parse_record(text: str) -> dict | None:
+    """The record as a mapping, or None when it cannot be read. A record is read on every branch by every session, so
+    nothing in one may stop the tool: besides the loader's own YAMLError, building a value raises ValueError (a date
+    that does not exist), OverflowError (a time before year 1 in UTC) or RecursionError (nesting too deep)."""
     try:
         data = yaml.load(text, Loader=StrictLoader)  # noqa: S506 - StrictLoader is a SafeLoader
-    except yaml.YAMLError:
+        if not isinstance(data, dict):
+            return None
+        for key in ("claimed_at", "heartbeat_at", "done_at"):
+            if isinstance(data.get(key), datetime.datetime):  # YAML reads an unquoted 2026-10-17T09:00:00Z as a timestamp
+                moment = data[key] if data[key].tzinfo else data[key].replace(tzinfo=datetime.timezone.utc)
+                data[key] = stamp(moment)
+    except (yaml.YAMLError, ValueError, OverflowError, RecursionError):
         return None
-    if not isinstance(data, dict):
-        return None
-    for key in ("claimed_at", "heartbeat_at", "done_at"):
-        if isinstance(data.get(key), datetime.datetime):  # YAML reads an unquoted 2026-10-17T09:00:00Z as a timestamp
-            moment = data[key] if data[key].tzinfo else data[key].replace(tzinfo=datetime.timezone.utc)
-            data[key] = stamp(moment)
     return data
 
 
@@ -606,7 +609,11 @@ def standing(holdings: list[Holding], moment: datetime.datetime) -> tuple[str, H
     """free | done | invalid (a record that cannot be read) | doing (the live winner) | stale (only stale claims)."""
     done = [holding for holding in holdings if holding.status == "done"]
     if done:
-        return "done", min(done, key=lambda holding: (holding.claimed_at or "", holding.owner))
+        winner = done[0]  # a finished record keeps its claim's precedence, so the claims' order decides between two
+        for holding in done[1:]:
+            if beats(holding, winner):
+                winner = holding
+        return "done", winner
     invalid = [holding for holding in holdings if is_broken(holding)]
     if invalid:
         return "invalid", invalid[0]
@@ -668,6 +675,9 @@ def lost_reason(lesson_id: str, found: list[Holding], context: Context, moment: 
             return f"{lesson_id}: already built by {holding.owner}"
         if not is_stale(holding, moment) and beats(holding, me):
             return f"{lesson_id}: lost to {holding.owner}"
+        if is_stale(me, moment) and beats(holding, me):  # renewing would revive the weaker of two quiet claims
+            return (f"{lesson_id}: {holding.owner} holds the stronger claim; take the lesson over on purpose with "
+                    f"`claim {lesson_id} --take-stale`")
     if is_stale(me, moment):
         return f"{lesson_id}: your published heartbeat ({me.heartbeat_at}) has expired; run touch --publish"
     return None
@@ -1017,8 +1027,12 @@ def cmd_exported(context: Context, args: argparse.Namespace) -> int:
 
 
 def cmd_release(context: Context, args: argparse.Namespace) -> int:
+    ids = list(dict.fromkeys(args.ids))
+    for lesson_id in ids:
+        context.writable_record(lesson_id)  # an id that is no lesson, or a symbolic link in the way, stops here
+    holdings, _ = gather(context, ids)  # this tree may hold an older copy than the one the remote has
     paths = []
-    for lesson_id in dict.fromkeys(args.ids):
+    for lesson_id in ids:
         path = context.writable_record(lesson_id)
         record = parse_record(path.read_text(encoding="utf-8")) if path.is_file() else None
         if not record or record.get("owner") != context.me:
@@ -1026,6 +1040,13 @@ def cmd_release(context: Context, args: argparse.Namespace) -> int:
             return 1
         if record.get("status") == "done":
             print(f"{lesson_id}: already finished; a finished deck is not released", file=sys.stderr)
+            return 1
+        finished = [holding for holding in holdings[lesson_id]
+                    if holding.owner == context.me and holding.status == "done" and holding.where != LOCAL]
+        if finished:  # releasing would push the deletion over it and offer a built deck again
+            print(f"{lesson_id}: your finished record is on {finished[0].where}; a finished deck is not released "
+                  f"(restore this tree's copy with `git checkout {finished[0].where} -- {context.relative(lesson_id)}`)",
+                  file=sys.stderr)
             return 1
         stray = sorted(other.name for other in path.parent.iterdir() if other.name != RECORD)
         if stray:

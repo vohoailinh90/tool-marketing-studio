@@ -1,0 +1,22 @@
+{
+  "id": "sd-10-012",
+  "title": "Bộ lọc Bloom",
+  "subtitle": "Chắc chắn chưa có, hoặc có thể đã có.",
+  "desc": "Bốn nhóm xếp dọc. Ba cách kiểm tra một địa chỉ trang đã cào chưa: tập hợp nhanh nhưng tốn bộ nhớ, cơ sở dữ liệu chạy được nhưng tải rất cao, bộ lọc Bloom là cách được ưu tiên. Thêm một địa chỉ: đưa qua ba hàm băm A, B, C, đặt các bit tại ba vị trí, hai địa chỉ khác nhau có thể dùng chung một bit. Kiểm tra một địa chỉ: áp ba hàm băm đó; cả ba bit là 1 thì có thể đã có, có một bit là 0 thì chắc chắn chưa có. Khung cuối nêu ba điều cần nhớ.",
+  "sections": [
+    {"kind": "parts", "heading": "Ba cách kiểm tra trùng",
+     "items": [{"name": "Tập hợp (Set)", "role": "Nhanh nhưng không tiết kiệm bộ nhớ.", "icon": "list-checks"},
+               {"name": "Cơ sở dữ liệu", "role": "Chạy được nhưng tải lên cơ sở dữ liệu rất cao.", "icon": "database"},
+               {"name": "Bộ lọc Bloom", "role": "Cách được ưu tiên: cấu trúc xác suất, dãy bit.", "icon": "search"}]},
+    {"kind": "steps", "heading": "Thêm một địa chỉ",
+     "items": [{"title": "Ba hàm băm", "text": "Đưa địa chỉ qua hàm băm A, B và C."},
+               {"title": "Đặt bit", "text": "Đặt 1 tại ba vị trí kết quả."},
+               {"title": "Dùng chung bit", "text": "Hai địa chỉ khác nhau có thể cùng đặt một bit."}]},
+    {"kind": "steps", "heading": "Kiểm tra một địa chỉ",
+     "items": [{"title": "Cùng ba hàm băm", "text": "Áp A, B và C cho địa chỉ cần hỏi."},
+               {"title": "Cả ba bit là 1", "text": "Có thể đã có."},
+               {"title": "Có bit là 0", "text": "Chắc chắn chưa có."}]},
+    {"kind": "notes", "heading": "Nhớ gì",
+     "items": ["Có thể báo nhầm là đã có, không bao giờ báo nhầm là chưa có.", "Hàm băm cần phân bố đều và nhanh.", "Đây là cấu trúc xác suất, không phải danh sách địa chỉ."]}
+  ]
+}

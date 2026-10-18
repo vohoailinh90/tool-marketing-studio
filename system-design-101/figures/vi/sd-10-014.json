@@ -1,0 +1,21 @@
+{
+  "id": "sd-10-014",
+  "title": "Tám chuẩn lập trình viên nên biết",
+  "subtitle": "Xếp theo việc chuẩn lo, theo cách bài sắp xếp.",
+  "desc": "Ba nhóm thẻ và một khung ghi nhớ. Mạng và web: TCP/IP, HTTP, HTML và CSS. Dữ liệu và trao đổi: SQL, định dạng ngày giờ ISO 8601, OpenAPI. Truy cập và ngôn ngữ: OAuth, ECMAScript. Khung cuối nêu ba điều cần nhớ.",
+  "sections": [
+    {"kind": "parts", "heading": "Mạng và web",
+     "items": [{"name": "TCP/IP", "role": "Do IETF phát triển, nền của Internet.", "icon": "network"},
+               {"name": "HTTP", "role": "Do IETF phát triển, thiết yếu với người làm web.", "icon": "globe"},
+               {"name": "HTML và CSS", "role": "Trang hiển thị đồng nhất giữa các trình duyệt.", "icon": "monitor"}]},
+    {"kind": "parts", "heading": "Dữ liệu và trao đổi",
+     "items": [{"name": "SQL", "role": "Ngôn ngữ chuyên biệt để quản lý dữ liệu.", "icon": "database"},
+               {"name": "Ngày giờ ISO 8601", "role": "Một định dạng ngày giờ chung để trao đổi dữ liệu.", "icon": "clock"},
+               {"name": "OpenAPI", "role": "Định dạng chuẩn để mô tả và ghi tài liệu cho API.", "icon": "file-text"}]},
+    {"kind": "parts", "heading": "Truy cập và ngôn ngữ",
+     "items": [{"name": "OAuth", "role": "Cấp quyền truy cập hạn chế mà không lộ mật khẩu.", "icon": "key-round"},
+               {"name": "ECMAScript", "role": "Đặc tả ngôn ngữ kịch bản; JavaScript là ngôn ngữ nổi tiếng nhất.", "icon": "code"}]},
+    {"kind": "notes", "heading": "Nhớ gì",
+     "items": ["Tám chuẩn, mỗi chuẩn lo một việc riêng.", "Nguồn chỉ nêu việc chuẩn lo, không nêu chi tiết kỹ thuật.", "Cách chia nhóm là của bài, không phải của nguồn."]}
+  ]
+}

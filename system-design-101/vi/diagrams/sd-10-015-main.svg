@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1282" viewBox="0 0 320 1282" role="img" aria-labelledby="title desc">
+<title id="title">Ba cách một chương trình chạy</title>
+<desc id="desc">Ba nhóm xếp dọc. Ngôn ngữ biên dịch như C, C++, Go: trình biên dịch dịch mã nguồn thành mã máy, rồi CPU chạy mã máy trực tiếp. Ngôn ngữ bytecode như Java, C#: biên dịch thành bytecode, máy ảo chạy bytecode, đôi khi trình JIT dịch ra mã máy để chạy nhanh hơn. Ngôn ngữ thông dịch như Python, JavaScript, Ruby: không biên dịch trước, trình thông dịch chạy chương trình lúc chạy. Khung cuối nêu ba điều cần nhớ.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1282" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Ba cách một chương</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">trình chạy</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Biên dịch, bytecode, thông dịch.</text>
+<rect x="8" y="104" width="304" height="234" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="132.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Biên dịch · C, C++, Go</text>
+<rect x="20" y="149" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="175" r="14" fill="#1d4ed8"/>
+<text x="46" y="180.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="175.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Trình biên dịch</text>
+<text x="70" y="199.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Dịch mã nguồn thành mã</text>
+<text x="70" y="218.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">máy.</text>
+<rect x="20" y="258" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="284" r="14" fill="#1d4ed8"/>
+<text x="46" y="289.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="284.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">CPU</text>
+<text x="70" y="308.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chạy mã máy trực tiếp.</text>
+<polyline points="46,238 46,256" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="350" width="304" height="343" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="378.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Bytecode · Java, C#</text>
+<rect x="20" y="395" width="280" height="68" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="421" r="14" fill="#0f766e"/>
+<text x="46" y="426.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="421.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Biên dịch</text>
+<text x="70" y="445.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mã nguồn thành bytecode.</text>
+<rect x="20" y="485" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="511" r="14" fill="#0f766e"/>
+<text x="46" y="516.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="511.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Máy ảo (JVM)</text>
+<text x="70" y="535.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chạy chương trình từ</text>
+<text x="70" y="554.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bytecode.</text>
+<polyline points="46,465 46,483" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="594" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="620" r="14" fill="#0f766e"/>
+<text x="46" y="625.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="620.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">JIT, đôi khi</text>
+<text x="70" y="644.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Dịch ra mã máy để chạy</text>
+<text x="70" y="663.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhanh hơn.</text>
+<polyline points="46,574 46,592" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="705" width="304" height="275" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="733.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Thông dịch · Python,</text>
+<text x="20" y="755.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">JavaScript, Ruby</text>
+<rect x="20" y="772" width="280" height="87" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="46" cy="798" r="14" fill="#b45309"/>
+<text x="46" y="803.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="798.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Không biên dịch trước</text>
+<text x="70" y="822.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chương trình giữ nguyên</text>
+<text x="70" y="841.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dạng mã nguồn.</text>
+<rect x="20" y="881" width="280" height="87" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="46" cy="907" r="14" fill="#b45309"/>
+<text x="46" y="912.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="907.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Trình thông dịch</text>
+<text x="70" y="931.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chạy chương trình ngay lúc</text>
+<text x="70" y="950.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chạy.</text>
+<polyline points="46,861 46,879" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="992" width="304" height="282" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="1020.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Nhớ gì</text>
+<rect x="20" y="1037" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1060" r="11" fill="#16a34a"/>
+<polyline points="37.9,1060.4 41.7,1064.4 48.5,1056" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1063.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ba nhóm khác nhau ở chỗ</text>
+<text x="64" y="1082.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mã được dịch lúc nào.</text>
+<rect x="20" y="1108" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1131" r="11" fill="#16a34a"/>
+<polyline points="37.9,1131.4 41.7,1135.4 48.5,1127" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1134.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ngôn ngữ biên dịch nhìn</text>
+<text x="64" y="1153.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chung chạy nhanh hơn ngôn</text>
+<text x="64" y="1173.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">ngữ thông dịch.</text>
+<rect x="20" y="1199" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1222" r="11" fill="#16a34a"/>
+<polyline points="37.9,1222.4 41.7,1226.4 48.5,1218" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1225.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ranh giới giữa các nhóm có</text>
+<text x="64" y="1244.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chỗ mờ.</text>
+</g>
+</svg>

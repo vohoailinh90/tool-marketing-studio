@@ -1,0 +1,24 @@
+{
+  "id": "sd-10-016",
+  "title": "Cấu trúc dữ liệu dùng hằng ngày",
+  "subtitle": "Mỗi cấu trúc và việc nguồn gắn cho nó.",
+  "desc": "Ba nhóm thẻ và một khung ghi nhớ. Danh sách và thứ tự: danh sách giữ dòng tin, mảng cho phép toán số học, ngăn xếp cho hoàn tác và làm lại, hàng đợi cho lệnh in hoặc thao tác trong game. Tra cứu và sắp việc: bảng băm cho bộ nhớ đệm, đống cho lập lịch tác vụ, cây giữ tài liệu HTML hoặc quyết định của AI, cây hậu tố để tìm chuỗi trong tài liệu. Quan hệ, không gian và đồ họa: đồ thị cho quan hệ bạn bè hoặc tìm đường, R-tree tìm hàng xóm gần nhất, vertex buffer gửi dữ liệu tới GPU để vẽ. Khung cuối nêu ba điều cần nhớ.",
+  "sections": [
+    {"kind": "parts", "heading": "Danh sách và thứ tự",
+     "items": [{"name": "Danh sách (List)", "role": "Giữ dòng tin trên mạng xã hội.", "icon": "list-ordered"},
+               {"name": "Mảng (Array)", "role": "Phép toán số học.", "icon": "layers"},
+               {"name": "Ngăn xếp (Stack)", "role": "Hoàn tác và làm lại trong trình soạn văn bản.", "icon": "history"},
+               {"name": "Hàng đợi (Queue)", "role": "Lệnh in, hoặc thao tác người chơi trong game.", "icon": "inbox"}]},
+    {"kind": "parts", "heading": "Tra cứu và sắp việc",
+     "items": [{"name": "Bảng băm (Hash table)", "role": "Hệ thống bộ nhớ đệm.", "icon": "hash"},
+               {"name": "Đống (Heap)", "role": "Lập lịch tác vụ.", "icon": "timer"},
+               {"name": "Cây (Tree)", "role": "Giữ tài liệu HTML, hoặc quyết định của AI.", "icon": "git-branch"},
+               {"name": "Cây hậu tố (Suffix tree)", "role": "Tìm một chuỗi trong tài liệu.", "icon": "search"}]},
+    {"kind": "parts", "heading": "Quan hệ, không gian và đồ họa",
+     "items": [{"name": "Đồ thị (Graph)", "role": "Theo dõi quan hệ bạn bè, hoặc tìm đường.", "icon": "share-2"},
+               {"name": "R-tree", "role": "Tìm hàng xóm gần nhất.", "icon": "route"},
+               {"name": "Vertex buffer", "role": "Gửi dữ liệu tới GPU để vẽ.", "icon": "cpu"}]},
+    {"kind": "notes", "heading": "Nhớ gì",
+     "items": ["Mười một cấu trúc, mỗi cái gắn một việc quen thuộc.", "Tiêu đề nguồn nói mười, nhưng danh sách có mười một.", "Cách chia nhóm là của bài, không phải của nguồn."]}
+  ]
+}

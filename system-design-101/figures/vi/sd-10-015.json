@@ -1,0 +1,20 @@
+{
+  "id": "sd-10-015",
+  "title": "Ba cách một chương trình chạy",
+  "subtitle": "Biên dịch, bytecode, thông dịch.",
+  "desc": "Ba nhóm xếp dọc. Ngôn ngữ biên dịch như C, C++, Go: trình biên dịch dịch mã nguồn thành mã máy, rồi CPU chạy mã máy trực tiếp. Ngôn ngữ bytecode như Java, C#: biên dịch thành bytecode, máy ảo chạy bytecode, đôi khi trình JIT dịch ra mã máy để chạy nhanh hơn. Ngôn ngữ thông dịch như Python, JavaScript, Ruby: không biên dịch trước, trình thông dịch chạy chương trình lúc chạy. Khung cuối nêu ba điều cần nhớ.",
+  "sections": [
+    {"kind": "steps", "heading": "Biên dịch · C, C++, Go",
+     "items": [{"title": "Trình biên dịch", "text": "Dịch mã nguồn thành mã máy."},
+               {"title": "CPU", "text": "Chạy mã máy trực tiếp."}]},
+    {"kind": "steps", "heading": "Bytecode · Java, C#",
+     "items": [{"title": "Biên dịch", "text": "Mã nguồn thành bytecode."},
+               {"title": "Máy ảo (JVM)", "text": "Chạy chương trình từ bytecode."},
+               {"title": "JIT, đôi khi", "text": "Dịch ra mã máy để chạy nhanh hơn."}]},
+    {"kind": "steps", "heading": "Thông dịch · Python, JavaScript, Ruby",
+     "items": [{"title": "Không biên dịch trước", "text": "Chương trình giữ nguyên dạng mã nguồn."},
+               {"title": "Trình thông dịch", "text": "Chạy chương trình ngay lúc chạy."}]},
+    {"kind": "notes", "heading": "Nhớ gì",
+     "items": ["Ba nhóm khác nhau ở chỗ mã được dịch lúc nào.", "Ngôn ngữ biên dịch nhìn chung chạy nhanh hơn ngôn ngữ thông dịch.", "Ranh giới giữa các nhóm có chỗ mờ."]}
+  ]
+}

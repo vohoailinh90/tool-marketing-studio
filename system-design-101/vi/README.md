@@ -86,6 +86,11 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 
 ## Phát triển phần mềm
 
+12. [Bộ lọc Bloom: tránh cào trùng địa chỉ trang ở quy mô lớn](lessons/sd-10-012/lesson.md)
+13. [Mười cuốn sách cho người phát triển phần mềm](lessons/sd-10-013/lesson.md)
+14. [Tám chuẩn mọi lập trình viên nên biết](lessons/sd-10-014/lesson.md)
+15. [C++, Java và Python chạy như thế nào?](lessons/sd-10-015/lesson.md)
+16. [Mười một cấu trúc dữ liệu dùng hằng ngày](lessons/sd-10-016/lesson.md)
 23. [Sau thay đổi API: chọn bộ kiểm tra theo rủi ro](lessons/sd-10-023/lesson.md)
 
 ## DevOps và CI/CD

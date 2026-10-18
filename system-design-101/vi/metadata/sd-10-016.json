@@ -1,0 +1,100 @@
+{
+  "id": "sd-10-016",
+  "title_vi": "Mười một cấu trúc dữ liệu dùng hằng ngày",
+  "language": "vi",
+  "kind": "reference",
+  "content_status": "draft",
+  "source_ref": "sd-10-016",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/10-key-data-structures-we-use-every-day.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/10-key-data-structures-we-use-every-day.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "4407c102e2c74dab5cb995fe656cc7319da10fd9",
+    "retrieved_body_sha256": "e5672cbbb067655d1434a18dbc362af0bf7c9a4dd7f5fea00cd80bff8b77f151",
+    "retrieved_body_bytes": 1042
+  },
+  "diagram": "../diagrams/sd-10-016-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-10-010",
+      "relation": "see-also",
+      "reason_vi": "Hàng đợi là một trong các cấu trúc ở đây; bài kia so sánh hàng đợi chặn và không chặn."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "source_claims_listed_with_the_pinned_source; the Java statements were read in raw copies of the OpenJDK source at the pinned commit, but the glosses of the abbreviations are the author's general knowledge"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending",
+      "reason": "figure text measured in Chromium by scripts.figures check --browser (14 px at a 375 px screen); no whole-lesson render at 320, 375 and 430 px recorded"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "The source title says 10 key data structures but the list has 11: List, Stack, Queue, Hash Table, Array, Heap, Tree, Suffix Tree, Graph, R-Tree, Vertex Buffer.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/10-key-data-structures-we-use-every-day.md",
+      "section": "Title and list",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Use cases the source gives: List keeps Twitter feeds; Stack supports undo/redo of a word editor; Queue keeps printer jobs or sends user actions in a game; Hash Table for caching systems; Array for math operations; Heap for task scheduling; Tree keeps the HTML document or serves AI decisions; Suffix Tree searches strings in a document; Graph tracks friendship or path finding; R-Tree finds the nearest neighbor; Vertex Buffer sends data to the GPU for rendering.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/10-key-data-structures-we-use-every-day.md",
+      "section": "List",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Java Deque: a deque can be used as a LIFO stack and should be used in preference to the legacy Stack class.",
+      "source": "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/Deque.java",
+      "section": "Deque class comment",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "Java Queue: queues typically, but do not necessarily, order elements in FIFO manner.",
+      "source": "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/Queue.java",
+      "section": "Queue class comment",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "Java PriorityQueue is an unbounded priority queue based on a priority heap.",
+      "source": "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/PriorityQueue.java",
+      "section": "PriorityQueue class comment",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "Java HashSet implements Set, backed by a hash table (actually a HashMap instance).",
+      "source": "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/HashSet.java",
+      "section": "HashSet class comment",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "Grouping the eleven structures into three sets is the author's arrangement; the glosses in the abbreviations section are the author's general knowledge.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/10-key-data-structures-we-use-every-day.md",
+      "section": "Design and Từ viết tắt",
+      "verified_by": "Author's general knowledge; not checked against primary documentation."
+    }
+  ],
+  "design_notes_vi": "Ba nhóm thẻ theo họ hàng (danh sách và thứ tự; tra cứu và sắp việc; quan hệ, không gian và đồ họa) và một khung ghi nhớ. Cách chia nhóm là của bài. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Source title says 10 structures but lists 11; the lesson says so and follows the list.",
+    "Source lists the structures in a flat order with one use each; the lesson groups them in three sets and says the grouping is the lesson's.",
+    "Java library examples are not in the source and come from the pinned OpenJDK source."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích thêm là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
+}

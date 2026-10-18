@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1386" viewBox="0 0 320 1386" role="img" aria-labelledby="title desc">
+<title id="title">Tám chuẩn lập trình viên nên biết</title>
+<desc id="desc">Ba nhóm thẻ và một khung ghi nhớ. Mạng và web: TCP/IP, HTTP, HTML và CSS. Dữ liệu và trao đổi: SQL, định dạng ngày giờ ISO 8601, OpenAPI. Truy cập và ngôn ngữ: OAuth, ECMAScript. Khung cuối nêu ba điều cần nhớ.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1386" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Tám chuẩn lập trình viên</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">nên biết</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Xếp theo việc chuẩn lo, theo cách</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">bài sắp xếp.</text>
+<rect x="8" y="123" width="304" height="346" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Mạng và web</text>
+<rect x="20" y="168" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="211.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 200.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="6" rx="1" width="6" x="16" y="16"/><rect height="6" rx="1" width="6" x="2" y="16"/><rect height="6" rx="1" width="6" x="9" y="2"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"/><path d="M12 12V8"/></g>
+<text x="78" y="194.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">TCP/IP</text>
+<text x="78" y="218.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Do IETF phát triển, nền của</text>
+<text x="78" y="237.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Internet.</text>
+<rect x="20" y="269" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="312.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 301.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></g>
+<text x="78" y="295.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">HTTP</text>
+<text x="78" y="319.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Do IETF phát triển, thiết</text>
+<text x="78" y="338.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">yếu với người làm web.</text>
+<rect x="20" y="370" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="413.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 402.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="14" rx="2" width="20" x="2" y="3"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></g>
+<text x="78" y="396.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">HTML và CSS</text>
+<text x="78" y="420.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Trang hiển thị đồng nhất</text>
+<text x="78" y="439.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">giữa các trình duyệt.</text>
+<rect x="8" y="481" width="304" height="346" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="509.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Dữ liệu và trao đổi</text>
+<rect x="20" y="526" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="569.5" r="18" fill="#0f766e"/><g transform="translate(39.2 558.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></g>
+<text x="78" y="552.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">SQL</text>
+<text x="78" y="576.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ngôn ngữ chuyên biệt để</text>
+<text x="78" y="595.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">quản lý dữ liệu.</text>
+<rect x="20" y="627" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="670.5" r="18" fill="#0f766e"/><g transform="translate(39.2 659.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></g>
+<text x="78" y="653.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Ngày giờ ISO 8601</text>
+<text x="78" y="677.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Một định dạng ngày giờ</text>
+<text x="78" y="696.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chung để trao đổi dữ liệu.</text>
+<rect x="20" y="728" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="771.5" r="18" fill="#0f766e"/><g transform="translate(39.2 760.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></g>
+<text x="78" y="754.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">OpenAPI</text>
+<text x="78" y="778.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Định dạng chuẩn để mô tả</text>
+<text x="78" y="797.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">và ghi tài liệu cho API.</text>
+<rect x="8" y="839" width="304" height="265" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="867.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Truy cập và ngôn ngữ</text>
+<rect x="20" y="884" width="280" height="87" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="50" cy="927.5" r="18" fill="#b45309"/><g transform="translate(39.2 916.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"/><circle cx="16.5" cy="7.5" fill="#FFFFFF" r=".5"/></g>
+<text x="78" y="910.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">OAuth</text>
+<text x="78" y="934.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cấp quyền truy cập hạn</text>
+<text x="78" y="953.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chế mà không lộ mật khẩu.</text>
+<rect x="20" y="985" width="280" height="107" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="50" cy="1038.5" r="18" fill="#b45309"/><g transform="translate(39.2 1027.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></g>
+<text x="78" y="1011.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">ECMAScript</text>
+<text x="78" y="1035.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đặc tả ngôn ngữ kịch bản;</text>
+<text x="78" y="1054.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">JavaScript là ngôn ngữ nổi</text>
+<text x="78" y="1074.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tiếng nhất.</text>
+<rect x="8" y="1116" width="304" height="262" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="1144.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Nhớ gì</text>
+<rect x="20" y="1161" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1184" r="11" fill="#16a34a"/>
+<polyline points="37.9,1184.4 41.7,1188.4 48.5,1180" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1187.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tám chuẩn, mỗi chuẩn lo</text>
+<text x="64" y="1206.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">một việc riêng.</text>
+<rect x="20" y="1232" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1255" r="11" fill="#16a34a"/>
+<polyline points="37.9,1255.4 41.7,1259.4 48.5,1251" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1258.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nguồn chỉ nêu việc chuẩn lo,</text>
+<text x="64" y="1277.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">không nêu chi tiết kỹ thuật.</text>
+<rect x="20" y="1303" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1326" r="11" fill="#16a34a"/>
+<polyline points="37.9,1326.4 41.7,1330.4 48.5,1322" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1329.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cách chia nhóm là của bài,</text>
+<text x="64" y="1348.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">không phải của nguồn.</text>
+</g>
+</svg>

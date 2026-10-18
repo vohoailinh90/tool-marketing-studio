@@ -1,0 +1,25 @@
+{
+  "id": "sd-10-013",
+  "title": "Mười cuốn sách, năm nhóm",
+  "subtitle": "Danh sách gợi ý của bài nguồn, giữ nguyên nhóm.",
+  "desc": "Năm nhóm xếp dọc, mỗi nhóm hai cuốn. Lời khuyên chung: The Pragmatic Programmer, Code Complete. Viết mã: Clean Code, Refactoring. Kiến trúc phần mềm: Designing Data-Intensive Applications, System Design Interview. Mẫu thiết kế: Design Patterns, Domain-Driven Design. Cấu trúc dữ liệu và thuật toán: Introduction to Algorithms, Cracking the Coding Interview. Khung cuối nêu ba điều cần nhớ.",
+  "sections": [
+    {"kind": "parts", "heading": "Lời khuyên chung",
+     "items": [{"name": "The Pragmatic Programmer", "role": "Andrew Hunt và David Thomas.", "icon": "book-open"},
+               {"name": "Code Complete", "role": "Steve McConnell: từ thiết kế, viết mã tới kiểm thử và bảo trì.", "icon": "book-open"}]},
+    {"kind": "parts", "heading": "Viết mã",
+     "items": [{"name": "Clean Code", "role": "Robert C. Martin.", "icon": "book-open"},
+               {"name": "Refactoring", "role": "Martin Fowler.", "icon": "book-open"}]},
+    {"kind": "parts", "heading": "Kiến trúc phần mềm",
+     "items": [{"name": "Data-Intensive Applications", "role": "Tên đầy đủ: Designing Data-Intensive Applications. Martin Kleppmann.", "icon": "book-open"},
+               {"name": "System Design Interview", "role": "Sách của chính nhóm viết bài nguồn.", "icon": "book-open"}]},
+    {"kind": "parts", "heading": "Mẫu thiết kế",
+     "items": [{"name": "Design Patterns", "role": "Nguồn ghi tác giả là Eric Gamma và những người khác.", "icon": "book-open"},
+               {"name": "Domain-Driven Design", "role": "Eric Evans.", "icon": "book-open"}]},
+    {"kind": "parts", "heading": "Cấu trúc dữ liệu và thuật toán",
+     "items": [{"name": "Introduction to Algorithms", "role": "Cormen, Leiserson, Rivest và Stein.", "icon": "book-open"},
+               {"name": "Cracking the Coding Interview", "role": "Gayle Laakmann McDowell.", "icon": "book-open"}]},
+    {"kind": "notes", "heading": "Nhớ gì",
+     "items": ["Mười cuốn, năm nhóm, mỗi nhóm hai cuốn.", "Nguồn chỉ mô tả một cuốn: Code Complete.", "Đây là danh sách gợi ý, không có thứ tự đọc."]}
+  ]
+}

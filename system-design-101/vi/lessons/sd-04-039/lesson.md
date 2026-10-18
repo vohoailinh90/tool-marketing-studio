@@ -7,6 +7,7 @@
 ## Từ viết tắt
 
 - **CDN** (Content Delivery Network) — mạng phân phối nội dung: nhiều máy đặt gần người dùng để giữ bản sao của trang web và tệp; nguồn kể Akamai là một ví dụ dùng băm nhất quán.
+- **DB** (DataBase) — cơ sở dữ liệu: kho lưu dữ liệu có tổ chức để ghi và tìm lại nhanh; có trong tên Amazon DynamoDB.
 
 ## Đọc hình
 

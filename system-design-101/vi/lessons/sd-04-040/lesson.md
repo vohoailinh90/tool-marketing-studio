@@ -11,6 +11,7 @@
 - **SQL** (Structured Query Language) — ngôn ngữ truy vấn có cấu trúc: ngôn ngữ chuẩn để hỏi và ghi dữ liệu trong cơ sở dữ liệu quan hệ; SQLite và DuckDB đều nhận câu SQL.
 - **JSON** (JavaScript Object Notation) — ký hiệu đối tượng JavaScript: định dạng văn bản gồm các cặp tên và giá trị, dạng mà kho tài liệu thường lưu.
 - **MB** (MegaByte) — megabyte: đơn vị dung lượng cỡ một triệu byte.
+- **DB** (DataBase) — cơ sở dữ liệu: kho lưu dữ liệu có tổ chức để ghi và tìm lại nhanh; có trong tên DuckDB.
 
 ## Đọc hình
 

@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="320" height="1415" viewBox="0 0 320 1415" role="img" aria-labelledby="title desc">
 <title id="title">CDN đưa bạn tới máy biên gần nhất thế nào</title>
-<desc id="desc">Ba phần. Phần một, bốn bước tìm đường: trình duyệt hỏi tên miền qua bộ đệm DNS và máy phân giải; máy chủ DNS có thẩm quyền trả bí danh CNAME sang tên của CDN; DNS của CDN trả địa chỉ máy biên gần máy phân giải, hoặc CDN dùng một địa chỉ anycast cho mọi nơi; trình duyệt tải nội dung từ máy biên. Phần hai, ba thẻ nối nhau: máy biên, máy tầng vùng chỉ có khi bật bộ đệm nhiều tầng, máy gốc; hụt bộ đệm ở tầng dưới thì hỏi tầng trên. Phần ba, kết quả thử với nginx: lần đầu qua máy biên A cả hai tầng hụt và máy gốc nhận 1 yêu cầu; lần đầu qua máy biên B tầng vùng trúng và máy gốc không nhận thêm; trang giỏ hàng gắn private, no-store thì máy gốc nhận cả hai lần.</desc>
+<desc id="desc">Ba phần. Phần một, bốn bước tìm đường: trình duyệt hỏi tên miền qua bộ đệm DNS và máy phân giải; máy chủ DNS có thẩm quyền trỏ sang CDN, thường bằng bí danh CNAME; DNS của CDN trả địa chỉ máy biên gần máy phân giải, hoặc CDN dùng một địa chỉ anycast cho mọi nơi; trình duyệt tải nội dung từ máy biên. Phần hai, ba thẻ nối nhau: máy biên, máy tầng vùng chỉ có khi bật bộ đệm nhiều tầng, máy gốc; hụt bộ đệm ở tầng dưới thì hỏi tầng trên. Phần ba, kết quả thử với nginx: lần đầu qua máy biên A cả hai tầng hụt và máy gốc nhận 1 yêu cầu; lần đầu qua máy biên B tầng vùng trúng và máy gốc không nhận thêm; trang giỏ hàng gắn private, no-store thì máy gốc nhận cả hai lần.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="1415" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
@@ -19,8 +19,8 @@
 <circle cx="46" cy="284" r="14" fill="#1d4ed8"/>
 <text x="46" y="289.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
 <text x="70" y="284.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Tên miền trỏ sang CDN</text>
-<text x="70" y="308.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">DNS của trang trả một bí</text>
-<text x="70" y="327.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">danh CNAME.</text>
+<text x="70" y="308.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">DNS của trang trỏ sang</text>
+<text x="70" y="327.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">CDN, thường bằng CNAME.</text>
 <polyline points="46,238 46,256" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
 <rect x="20" y="367" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
 <circle cx="46" cy="393" r="14" fill="#1d4ed8"/>

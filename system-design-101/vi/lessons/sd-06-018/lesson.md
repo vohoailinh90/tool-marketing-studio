@@ -18,7 +18,7 @@ Học theo thứ tự "giới hạn nào, vá bằng gì" dễ nhớ hơn học 
 
 **3 · Sentinel.** Có bản sao rồi, ai nâng nó lên khi máy chủ chết? Sentinel là các tiến trình riêng làm bốn việc: theo dõi, báo động, tự chuyển đổi dự phòng, và cho máy khách biết địa chỉ máy chủ hiện tại. Đủ số Sentinel đồng ý (quorum) thì máy chủ bị coi là đã chết; muốn chuyển đổi thật, một Sentinel còn phải được đa số các Sentinel bầu làm người dẫn.
 
-**4 · Cluster.** Nhân bản chỉ thêm bản chép: mọi lệnh ghi vẫn dồn về một máy chủ, và dữ liệu vẫn phải vừa bộ nhớ một máy. Redis Cluster chia không gian khóa thành 16384 khe, khe của một khóa là `CRC16(key) mod 16384`, và mỗi máy chủ giữ một phần các khe (mỗi máy chủ có thể có bản sao riêng).
+**4 · Cluster.** Nhân bản chỉ thêm bản chép: mọi lệnh ghi vẫn dồn về một máy chủ, và dữ liệu vẫn phải vừa bộ nhớ một máy. Redis Cluster chia không gian khóa thành 16384 khe, khe của một khóa là `CRC16(key) mod 16384`, trừ khi khóa có thẻ băm: nếu tên khóa chứa một đoạn `{...}` không rỗng thì chỉ phần trong ngoặc được băm (vì vậy `{user:1}:cart` và `{user:1}:orders` rơi vào cùng khe), và mỗi máy chủ giữ một phần các khe (mỗi máy chủ có thể có bản sao riêng).
 
 **Thử nghiệm.** Tắt bản sao rồi ghi: máy chủ vẫn trả `OK`, còn `WAIT 1 500` trả 0. Ba Sentinel với quorum 2, ngưỡng 2 giây không trả lời: tắt máy chủ (`SHUTDOWN NOSAVE`) thì sau 3,3 giây bản sao thành máy chủ mới và vẫn còn khóa đã ghi. Cụm ba nút chia 0–5460, 5461–10922, 10923–16383; ghi `user:2` vào nút đầu thì nhận `MOVED 6777 127.0.0.1:7202`; `MSET user:1 a user:2 b` bị lỗi `CROSSSLOT`; `{user:1}:cart` và `{user:1}:orders` cùng khe 10778 nên `MSET` chạy được.
 

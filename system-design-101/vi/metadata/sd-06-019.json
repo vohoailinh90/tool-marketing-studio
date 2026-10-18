@@ -70,13 +70,14 @@
       "verified_by": "Read from a partial clone of redis/docs at that commit."
     },
     {
-      "claim_vi": "Redis must write the AOF buffer to the file before replying to clients; beforeSleep calls flushAppendOnlyFile before handleClientsWithPendingWritesUsingThreads; with everysec and a background fsync still running the write may be postponed for up to about two seconds.",
+      "claim_vi": "Normally the AOF buffer is written to the file in beforeSleep before replies are sent (flushAppendOnlyFile runs before handleClientsWithPendingWritesUsingThreads); with appendfsync everysec and a background fsync still running, the write may be postponed for up to about two seconds while replies still go out; only appendfsync always guarantees write and fsync before the reply.",
       "sources": [
         "https://github.com/redis/redis/blob/f35f36a265403c07b119830aa4bb3b7d71653ec9/src/aof.c",
-        "https://github.com/redis/redis/blob/f35f36a265403c07b119830aa4bb3b7d71653ec9/src/server.c"
+        "https://github.com/redis/redis/blob/f35f36a265403c07b119830aa4bb3b7d71653ec9/src/server.c",
+        "https://github.com/redis/docs/blob/3b030c7ef066c0bb7f88ddec02c784e49783b0f8/content/operate/oss_and_stack/management/optimization/latency.md"
       ],
       "section": "flushAppendOnlyFile, beforeSleep",
-      "verified_by": "Read the comments and code of the 7.0.15 tag."
+      "verified_by": "Read the 7.0.15 source: when postponed, flushAppendOnlyFile returns early and beforeSleep goes on to handleClientsWithPendingWritesUsingThreads; the latency page describes the delayed write(2)."
     },
     {
       "claim_vi": "appendfsync always fsyncs before sending replies (one write and one fsync per batch); everysec fsyncs every second in a background thread and may lose about one second of writes in a disaster; no leaves flushing to the operating system.",
@@ -121,7 +122,7 @@
   "design_notes_vi": "Ba phần: bốn bước của một lệnh ghi khi bật AOF, ba kết quả thử nghiệm sau kill -9, bốn điều cần nhớ. Vẽ bằng scripts/figures, không dùng ảnh nguồn.",
   "source_deviations": [
     "Source says persistence is not on the critical path and does not block writes; the lesson notes that fork() can pause Redis and that appendfsync always makes replies wait for fsync.",
-    "Source presents AOF write-after logging without saying when the file is written; the lesson adds, from the Redis source, that the buffer is written to the file before replies are sent, and separates write() from fsync.",
+    "Source presents AOF write-after logging without saying when the file is written; the lesson adds, from the Redis source, that the buffer is normally written before replies are sent, that everysec may postpone that write while replies go out, and separates write() from fsync.",
     "Lesson adds an experiment (kill -9 under three settings) and the multi-part AOF of Redis 7.0, which the source does not cover; it states that killing the process is not a power failure."
   ],
   "editorial_note_vi": "Bài viết độc lập, sơ đồ vẽ bằng bộ công cụ hình từ spec system-design-101/figures/vi/sd-06-019.json, không dùng ảnh nguồn. Tiêu đề hiển thị là dòng đầu của lesson.md; title_vi giữ bản dịch tiêu đề nguồn theo source-map. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."

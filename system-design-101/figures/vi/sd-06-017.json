@@ -3,7 +3,7 @@
   "lang": "vi",
   "title": "CDN đưa bạn tới máy biên gần nhất thế nào",
   "subtitle": "Tìm địa chỉ, rồi tìm nội dung.",
-  "desc": "Ba phần. Phần một, bốn bước tìm đường: trình duyệt hỏi tên miền qua bộ đệm DNS và máy phân giải; máy chủ DNS có thẩm quyền trả bí danh CNAME sang tên của CDN; DNS của CDN trả địa chỉ máy biên gần máy phân giải, hoặc CDN dùng một địa chỉ anycast cho mọi nơi; trình duyệt tải nội dung từ máy biên. Phần hai, ba thẻ nối nhau: máy biên, máy tầng vùng chỉ có khi bật bộ đệm nhiều tầng, máy gốc; hụt bộ đệm ở tầng dưới thì hỏi tầng trên. Phần ba, kết quả thử với nginx: lần đầu qua máy biên A cả hai tầng hụt và máy gốc nhận 1 yêu cầu; lần đầu qua máy biên B tầng vùng trúng và máy gốc không nhận thêm; trang giỏ hàng gắn private, no-store thì máy gốc nhận cả hai lần.",
+  "desc": "Ba phần. Phần một, bốn bước tìm đường: trình duyệt hỏi tên miền qua bộ đệm DNS và máy phân giải; máy chủ DNS có thẩm quyền trỏ sang CDN, thường bằng bí danh CNAME; DNS của CDN trả địa chỉ máy biên gần máy phân giải, hoặc CDN dùng một địa chỉ anycast cho mọi nơi; trình duyệt tải nội dung từ máy biên. Phần hai, ba thẻ nối nhau: máy biên, máy tầng vùng chỉ có khi bật bộ đệm nhiều tầng, máy gốc; hụt bộ đệm ở tầng dưới thì hỏi tầng trên. Phần ba, kết quả thử với nginx: lần đầu qua máy biên A cả hai tầng hụt và máy gốc nhận 1 yêu cầu; lần đầu qua máy biên B tầng vùng trúng và máy gốc không nhận thêm; trang giỏ hàng gắn private, no-store thì máy gốc nhận cả hai lần.",
   "sections": [
     {
       "kind": "steps",
@@ -15,7 +15,7 @@
         },
         {
           "title": "Tên miền trỏ sang CDN",
-          "text": "DNS của trang trả một bí danh CNAME."
+          "text": "DNS của trang trỏ sang CDN, thường bằng CNAME."
         },
         {
           "title": "Chọn máy biên",

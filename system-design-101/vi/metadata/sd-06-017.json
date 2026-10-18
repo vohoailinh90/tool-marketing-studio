@@ -92,6 +92,12 @@
       "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/web/http/guides/caching/index.md",
       "section": "Types of caches",
       "verified_by": "Read; in the experiment a response marked private, no-store was never stored at either tier and reached the origin twice."
+    },
+    {
+      "claim_vi": "CNAME flattening lets a CNAME be used at the zone apex while complying with DNS standards: Cloudflare resolves the target and returns the final IP address instead of a CNAME record.",
+      "source": "https://github.com/cloudflare/cloudflare-docs/blob/2ab084e257fef531e4e22a10c9a6feab7b3a4fce/src/content/docs/dns/cname-flattening/index.mdx",
+      "section": "CNAME flattening; How it works",
+      "verified_by": "Read from a partial clone; not tested."
     }
   ],
   "design_notes_vi": "Hai chặng: bốn bước tìm địa chỉ (có cả cách chọn bằng DNS và anycast), ba thẻ tầng bộ đệm nối bằng mũi tên, ba ghi chú kết quả thử. Vẽ bằng scripts/figures.",
@@ -99,7 +105,8 @@
     "Source says the CDN load balancer picks the edge from the user's IP address and ISP; the lesson notes that a DNS-based choice sees the resolver's address unless the resolver sends EDNS Client Subnet, and adds anycast as a second way, as Cloudflare documents it.",
     "Source names edge, regional and central servers before the origin; the lesson keeps two tiers and states, from the Cloudflare docs, that only the upper tier contacts the origin.",
     "Source says dynamic content is cached as edge computing results; the lesson does not cover edge computing and adds that Cache-Control from the origin decides what a shared cache may keep, tested with a private, no-store page.",
-    "The tiered path (edge, regional, origin) is presented as an optional configuration, as in the Cloudflare docs; without it an edge goes straight to the origin."
+    "The tiered path (edge, regional, origin) is presented as an optional configuration, as in the Cloudflare docs; without it an edge goes straight to the origin.",
+    "Source says the authoritative server has an alias to the CDN's name; the lesson presents CNAME as the common setup for a subdomain and notes that a zone apex cannot carry a plain CNAME, citing Cloudflare's CNAME flattening."
   ],
   "editorial_note_vi": "Bài viết độc lập, sơ đồ vẽ bằng bộ công cụ hình từ spec system-design-101/figures/vi/sd-06-017.json, không dùng ảnh nguồn. Tiêu đề hiển thị là dòng đầu của lesson.md; title_vi giữ bản dịch tiêu đề nguồn theo source-map. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
 }

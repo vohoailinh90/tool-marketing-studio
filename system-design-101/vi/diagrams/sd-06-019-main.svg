@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="320" height="1366" viewBox="0 0 320 1366" role="img" aria-labelledby="title desc">
 <title id="title">Redis giữ dữ liệu qua lần sập thế nào</title>
-<desc id="desc">Ba phần. Một: đường đi của một lệnh ghi khi bật AOF, gồm sửa dữ liệu trong RAM, nối lệnh vào bộ đệm AOF, ghi bộ đệm vào tệp trước khi trả lời, rồi fsync theo chính sách. Hai: kết quả thử nghiệm sau kill -9, không lưu còn 0 khóa, chỉ RDB với ảnh chụp lúc 1000 khóa còn 1000, AOF everysec còn đủ 1500. Ba: điều cần nhớ về RDB, AOF, khác biệt giữa giết tiến trình và mất điện, và cách bật cả hai.</desc>
+<desc id="desc">Ba phần. Một: đường đi của một lệnh ghi khi bật AOF, gồm sửa dữ liệu trong RAM, nối lệnh vào bộ đệm AOF, ghi bộ đệm vào tệp, thường trước khi trả lời, rồi fsync theo chính sách. Hai: kết quả thử nghiệm sau kill -9, không lưu còn 0 khóa, chỉ RDB với ảnh chụp lúc 1000 khóa còn 1000, AOF everysec còn đủ 1500. Ba: điều cần nhớ về RDB, AOF, khác biệt giữa giết tiến trình và mất điện, và cách bật cả hai.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="1366" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
@@ -27,8 +27,8 @@
 <circle cx="46" cy="412" r="14" fill="#1d4ed8"/>
 <text x="46" y="417.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
 <text x="70" y="412.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">write() vào tệp</text>
-<text x="70" y="436.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đưa bộ đệm vào tệp AOF rồi</text>
-<text x="70" y="455.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mới trả lời.</text>
+<text x="70" y="436.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Thường xong trước khi trả</text>
+<text x="70" y="455.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lời.</text>
 <polyline points="46,366 46,384" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
 <rect x="20" y="495" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
 <circle cx="46" cy="521" r="14" fill="#1d4ed8"/>

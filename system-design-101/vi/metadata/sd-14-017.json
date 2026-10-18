@@ -38,7 +38,7 @@
     "claims": {
       "status": "checked",
       "checked_on": "2026-10-18",
-      "evidence": "Source read (four teaser lines; image not used). MDN Transport Layer Security page and glossary entries (tls, https, ssl, cipher_suite, symmetric-key_cryptography) read at mdn/content commit a1aa79c09717761fc72c20bac94bb9c430ed487a; OpenSSL ossl-guide-tls-introduction and the s_client, s_server and req manual sources read at openssl/openssl commit 6d76833d61fad07a171219d9cb1444bc37f88b8f. Handshake order, negotiated protocol, cipher and key exchange group, which bytes are visible, one-bit tampering, certificate check failures and key-log secrets were observed with openssl 3.0.13 on 127.0.0.1 with a throw-away certificate and a small recording relay (one or a few runs per configuration; server killed afterwards). RFC and IETF pages were not reachable and were not read; the key-exchange property, IP visibility and the certificate-for-fraudulent-site point are general knowledge."
+      "evidence": "Source read (four teaser lines; image not used). MDN Transport Layer Security page and glossary entries (tls, https, ssl, cipher_suite, symmetric-key_cryptography) read at mdn/content commit a1aa79c09717761fc72c20bac94bb9c430ed487a; OpenSSL ossl-guide-tls-introduction and the s_client, s_server, req, SSL_CTX_set_options (middlebox compatibility option) and SSL_CTX_set_keylog_callback manual sources read at openssl/openssl commit 6d76833d61fad07a171219d9cb1444bc37f88b8f. Handshake order, negotiated protocol, cipher and key exchange group, which bytes are visible (including the unencrypted 1-byte ChangeCipherSpec records of TLS 1.3), one-bit tampering, certificate check failures and the key-log labels (five in TLS 1.3 with separate client and server traffic secrets, one master secret line in TLS 1.2) were observed with openssl 3.0.13 on 127.0.0.1 with a throw-away certificate and a small recording relay (one or a few runs per configuration; server killed afterwards). RFC and IETF pages were not reachable and were not read; the key-exchange property, per-direction key derivation, IP visibility and the certificate-for-fraudulent-site point are general knowledge."
     },
     "technical_review": {
       "status": "pending",
@@ -76,7 +76,7 @@
       "verified_by": "Read from the file at the pinned mdn/content commit (fetched from raw.githubusercontent.com)."
     },
     {
-      "claim_vi": "MDN: the handshake sets security parameters: the two sides agree on the TLS version and the cipher suite, optionally authenticate each other (server authentication is fundamental on the web), and agree on a secret key; after the handshake they use the secret key to encrypt and decrypt all messages including HTTP headers and bodies.",
+      "claim_vi": "MDN: the handshake sets security parameters: the two sides agree on the TLS version and the cipher suite, optionally authenticate each other (server authentication is fundamental on the web), and agree on a secret key; after the handshake they use the secret key to encrypt and decrypt all messages including HTTP headers and bodies. MDN speaks of agreeing on 'a secret key'; the lesson refines this to one symmetric key per direction (see the key-log claims; the derivation itself is general knowledge).",
       "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/web/security/defenses/transport_layer_security/index.md",
       "section": "Đọc hình, khung 2 và 3",
       "verified_by": "Read from the file at the pinned mdn/content commit."
@@ -118,7 +118,7 @@
       "verified_by": "Read the s_client, s_server and req manual sources at the pinned openssl/openssl commit; the -tls1_2/-tls1_3 version options come from a template in the s_client file and were exercised by running them."
     },
     {
-      "claim_vi": "Observed TLS 1.3 handshake (TLSv1.3, TLS_AES_256_GCM_SHA384, key exchange group x25519, ECDSA P-256 certificate): the client sent ClientHello with server_name localhost, a supported_groups list and a key_share for x25519; the server sent ServerHello (key_share x25519), a 1-byte ChangeCipherSpec record, and four records of outer type ApplicationData that s_client printed as EncryptedExtensions, Certificate, CertificateVerify and Finished; the client sent ChangeCipherSpec, Finished and then the 35-byte HTTP request record; the server then sent two 250-byte records printed as NewSessionTicket, a 4348-byte response record and an encrypted close alert.",
+      "claim_vi": "Observed TLS 1.3 handshake (TLSv1.3, TLS_AES_256_GCM_SHA384, key exchange group x25519, ECDSA P-256 certificate): the client sent ClientHello with server_name localhost, a supported_groups list and a key_share for x25519; the server sent ServerHello (key_share x25519), a 1-byte ChangeCipherSpec record (unencrypted, outer type ChangeCipherSpec, no handshake content), and four records of outer type ApplicationData that s_client printed as EncryptedExtensions, Certificate, CertificateVerify and Finished; the client sent its own 1-byte ChangeCipherSpec record, then Finished and then the 35-byte HTTP request record; the server then sent two 250-byte records printed as NewSessionTicket, a 4348-byte response record and an encrypted close alert.",
       "source": "https://github.com/openssl/openssl/blob/6d76833d61fad07a171219d9cb1444bc37f88b8f/doc/man1/openssl-s_client.pod.in",
       "section": "Đọc hình, khung 2 và 3; Xem sâu hơn",
       "verified_by": "No external page reports this output; Observed by running openssl 3.0.13 (s_server and s_client on 127.0.0.1 with a throw-away self-signed certificate) and a small Python relay that recorded the bytes; one or a few runs per configuration on the authoring machine; the server was killed afterwards. Commands: s_client -tls1_3 -trace (and -msg), plus the relay's record log."
@@ -160,16 +160,34 @@
       "verified_by": "No external page reports this output; Observed by running openssl 3.0.13 (s_server and s_client on 127.0.0.1 with a throw-away self-signed certificate) and a small Python relay that recorded the bytes; one or a few runs per configuration on the authoring machine; the server was killed afterwards. A Python script compared the key log values with the recorded bytes."
     },
     {
+      "claim_vi": "OpenSSL manual (SSL_OP_ENABLE_MIDDLEBOX_COMPAT): if set, dummy Change Cipher Spec messages are sent in TLSv1.3, which makes TLSv1.3 look more like TLSv1.2 so that middleboxes that do not understand TLSv1.3 will not drop the connection; received CCS messages are always ignored in TLSv1.3; the option is set by default and a future version may not set it by default.",
+      "source": "https://github.com/openssl/openssl/blob/6d76833d61fad07a171219d9cb1444bc37f88b8f/doc/man3/SSL_CTX_set_options.pod",
+      "section": "Đọc hình, khung 2 và 3 (ServerHello)",
+      "verified_by": "Read from the file at the pinned openssl/openssl commit. That tree is newer than the openssl 3.0.13 binary used for the runs, so the default is taken from the manual and only the presence of the dummy records was observed in the binary (see the TLS 1.3 handshake claim)."
+    },
+    {
+      "claim_vi": "Observed with -keylogfile and a random port above 20000: the TLS 1.3 key log had five lines, CLIENT_HANDSHAKE_TRAFFIC_SECRET, SERVER_HANDSHAKE_TRAFFIC_SECRET, CLIENT_TRAFFIC_SECRET_0, SERVER_TRAFFIC_SECRET_0 and EXPORTER_SECRET, each a 48-byte value, all five different from each other within the one connection (so the client and server traffic secrets differ). The TLS 1.2 key log had a single CLIENT_RANDOM line with a 48-byte secret that equalled the Master-Key printed by s_client in the same run. The TLS 1.2 log therefore shows one master secret and does not show any per-direction key.",
+      "source": "https://github.com/openssl/openssl/blob/6d76833d61fad07a171219d9cb1444bc37f88b8f/doc/man3/SSL_CTX_set_keylog_callback.pod",
+      "section": "Đọc hình, khung 2 và 3 (Dữ liệu); Xem sâu hơn",
+      "verified_by": "No external page reports this output; Observed by running openssl 3.0.13 (s_server and s_client on 127.0.0.1 with a throw-away self-signed certificate); one run per version on the authoring machine; server killed afterwards. A Python script compared the values within each key log and the TLS 1.2 log value with the Master-Key text printed by s_client. The keylog manual says only that the lines use the NSS SSLKEYLOGFILE format; the meaning of each label is read from its name, not from the manual."
+    },
+    {
+      "claim_vi": "In TLS the handshake derives separate symmetric keys for each direction (client-to-server and server-to-client) from the shared secret, in TLS 1.3 starting from the separate client and server traffic secrets; the sender encrypts and the receiver decrypts with the same key of that direction. This holds for TLS 1.2 as well, from its master secret.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/symmetric-key_cryptography/index.md",
+      "section": "Đọc hình, khung 2 và 3 (Dữ liệu)",
+      "verified_by": "Author's general knowledge; not checked against a source or an experiment here. Only the existence of separate client and server traffic secrets in the TLS 1.3 key log was observed; the individual encryption keys were not extracted, and for TLS 1.2 the log does not show per-direction keys. MDN's glossary entry confirms what a symmetric key is (same key for encryption and decryption)."
+    },
+    {
       "claim_vi": "The s_client summary line of a TLS 1.3 connection still begins with 'SSL handshake has read'.",
       "source": "https://github.com/openssl/openssl/blob/6d76833d61fad07a171219d9cb1444bc37f88b8f/doc/man1/openssl-s_client.pod.in",
       "section": "Đọc hình, khung 1",
       "verified_by": "Observed in the s_client output of the TLS 1.3 run. Observed by running openssl 3.0.13 (s_server and s_client on 127.0.0.1 with a throw-away self-signed certificate) and a small Python relay that recorded the bytes; one or a few runs per configuration on the authoring machine; the server was killed afterwards."
     },
     {
-      "claim_vi": "Each side combines the other's public key share with its own secret part to compute the same shared secret, and an eavesdropper who has only the two public shares cannot recompute it (property of the key exchange; not proved in the lesson).",
+      "claim_vi": "Each side combines the other's public key share with its own secret part to compute the same shared secret, and an eavesdropper who has only the two public shares cannot recompute it (property of the key exchange; not proved in the lesson). The lesson also says the data-encryption keys are derived from the shared secret, one per direction (client-to-server and server-to-client); that derivation is general knowledge.",
       "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/web/security/defenses/transport_layer_security/index.md",
       "section": "Đọc hình, khung 2 và 3",
-      "verified_by": "Author's general knowledge; not checked against a source or an experiment here. Only the observation that the secrets do not appear on the wire was checked (see the key log claim)."
+      "verified_by": "Author's general knowledge; not checked against a source or an experiment here. Only the observations in the key-log claims were checked: separate client and server traffic secrets in TLS 1.3, a single master secret in the TLS 1.2 log."
     },
     {
       "claim_vi": "The server's IP address cannot be hidden because packets need a destination address; a fraudulent site with its own domain can usually still obtain a certificate for that domain; what a server does with data after decrypting it is outside HTTPS.",
@@ -196,7 +214,7 @@
       "verified_by": "Not examined."
     }
   ],
-  "design_notes_vi": "Bốn khung xếp dọc: ba thứ HTTPS thêm vào, hai khung trình tự cho bắt tay TLS 1.3 rút gọn (tách đôi để vừa một slide), và một khung nhớ các giới hạn. Không dùng ảnh nguồn.",
+  "design_notes_vi": "Bốn khung xếp dọc: ba thứ HTTPS thêm vào, hai khung trình tự cho bắt tay TLS 1.3 rút gọn (tách đôi để vừa một slide; hình bỏ bản ghi ChangeCipherSpec 1 byte và ghi rõ từng thông điệp nào đã mã hóa, yêu cầu và phản hồi dùng khóa của từng chiều), và một khung nhớ các giới hạn. Không dùng ảnh nguồn.",
   "source_deviations": [
     "The source body is only four teaser lines with the explanation in an image; the lesson writes its own explanation and does not use the image.",
     "The source calls the exchange an 'SSL handshake'; the lesson calls it a TLS handshake because SSL is the old name and TLS 1.3 or 1.2 is what runs (the tools still print 'SSL').",

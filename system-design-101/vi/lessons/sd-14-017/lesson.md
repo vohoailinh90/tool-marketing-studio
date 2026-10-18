@@ -32,7 +32,7 @@ Bài này đi qua bắt tay TLS ở mức nhìn được: thông điệp nào, t
 
 **Finished.** Mỗi bên gửi một thông điệp `Finished`; theo tài liệu OpenSSL, bắt tay xong khi một bên đã gửi và đã nhận `Finished`.
 
-**Dữ liệu.** Từ bí mật chung, mỗi bên tính ra các khóa đối xứng để mã hóa dữ liệu, một khóa cho mỗi chiều: chiều từ trình duyệt tới máy chủ (yêu cầu HTTP) và chiều ngược lại (phản hồi HTTP). Bên gửi mã hóa bằng khóa của chiều đó, bên nhận giải mã bằng chính khóa ấy; “đối xứng” nghĩa là một khóa làm được cả hai việc, ở hai đầu. Khóa đối xứng hợp với lượng dữ liệu lớn vì chạy hiệu quả (MDN). Trong lần thử, nhật ký khóa của TLS 1.3 ghi hai bí mật khác nhau, một cho chiều từ máy khách và một cho chiều từ máy chủ; các khóa mã hóa cụ thể được tính ra từ chúng (hiểu biết chung, không thử).
+**Dữ liệu.** Từ bí mật chung, mỗi bên tính ra các khóa đối xứng để mã hóa dữ liệu, một khóa cho mỗi chiều: chiều từ trình duyệt tới máy chủ (yêu cầu HTTP) và chiều ngược lại (phản hồi HTTP). Bên gửi mã hóa bằng khóa của chiều đó, bên nhận giải mã bằng chính khóa ấy; “đối xứng” nghĩa là một khóa làm được cả hai việc, ở hai đầu. Khóa đối xứng hợp với lượng dữ liệu lớn vì chạy hiệu quả (MDN). Trong lần thử, nhật ký khóa của TLS 1.3 ghi hai bí mật khác nhau, một cho chiều từ máy khách và một cho chiều từ máy chủ. Việc các khóa mã hóa được tính ra từ chúng, mỗi chiều một khóa, là hiểu biết chung, không thử.
 
 ## Giới hạn cần nhớ
 

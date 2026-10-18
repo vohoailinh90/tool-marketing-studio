@@ -1,4 +1,5 @@
 """The deck brief copies what a lesson says onto the slide roles of docs/sd101-slides.md and invents nothing."""
+import dataclasses
 import json
 import pathlib
 import subprocess
@@ -168,6 +169,50 @@ class StructureTests(unittest.TestCase):
         result, _ = self.build(lesson_text(figure_section(3)))
         self.assertNotIn("http", json.dumps(result.slides, ensure_ascii=False))
 
+    def test_a_typed_address_is_hidden_wherever_it_is_typed_and_the_session_is_told(self):
+        address = "https://shop.example:8443/items/42?view=compact#details"
+        text = lesson_text(figure_section(3)).replace("nội dung của ý 1 trong bài.", f"mở {address} rồi đọc.") \
+            .replace("Mô tả hình", f"Địa chỉ {address} chia thành phần").replace("Máy nào nhận phản hồi?", f"Với {address}, máy nào?")
+        result, _ = self.build(text)
+        every = json.dumps([result.slides, result.figure_alt], ensure_ascii=False)
+        self.assertNotIn("://", every)
+        self.assertIn("mở [address] rồi đọc.", every)
+        self.assertTrue(any("types an address" in warning for warning in result.warnings), result.warnings)
+
+    def test_an_address_typed_in_the_figure_is_hidden_too(self):
+        svg = SVG.replace("Chỉ một dòng", "xem http://a.example/x")
+        result, _ = self.build(lesson_text(""), svg)
+        every = json.dumps(result.slides, ensure_ascii=False)
+        self.assertNotIn("://", every)
+        self.assertIn("xem [address]", every)
+
+    def test_a_lesson_without_a_typed_address_gets_no_address_warning(self):
+        result, _ = self.build(lesson_text(figure_section(3)))
+        self.assertFalse([w for w in result.warnings if "address" in w], result.warnings)
+
+    def test_the_prose_of_the_figure_section_stays_off_the_situation_slide_when_the_cards_are_the_concepts(self):
+        prose = "Đoạn giải thích dài của phần đọc hình, nói lại từng thẻ."
+        result, _ = self.build(lesson_text(f"\n## Đọc hình\n\n{prose}\n\nĐoạn thứ hai của phần đọc hình.\n"), SVG)
+        self.assertEqual("text cards of the figure (the lesson's SVG)", result.concept_source)
+        situation = [item["text"] for item in result.slides[1]["material"]["lines"]]
+        self.assertEqual([], [text for text in situation if "phần đọc hình" in text])
+        self.assertNotIn(prose, json.dumps(result.slides, ensure_ascii=False))
+        self.assertTrue(any("left off the situation slide" in warning for warning in result.warnings), result.warnings)
+
+    def test_a_bold_line_inside_a_numbered_card_is_a_line_of_that_card_not_a_new_concept(self):
+        callout = '<text x="30" y="200" font-size="16" font-weight="bold">Chọn theo dữ liệu</text>'
+        svg = SVG.replace('<text x="30" y="250"', callout + '\n<text x="30" y="250"')
+        result, _ = self.build(lesson_text(""), svg)
+        concepts = [c for slide in result.slides if "concepts" in slide["material"] for c in slide["material"]["concepts"]]
+        self.assertEqual(["1 · Thẻ thứ nhất", "2 · Thẻ hai", "3 · Thẻ ba"], [c["label"] for c in concepts])
+        self.assertEqual("Dòng một dòng hai Chọn theo dữ liệu", concepts[0]["line"]["text"])
+
+    def test_figure_cards_without_numbers_still_open_a_card_at_every_bold_heading(self):
+        svg = SVG.replace("1 · ", "").replace("2 · ", "").replace("3 · ", "")
+        result, _ = self.build(lesson_text(""), svg)
+        concepts = [c for slide in result.slides if "concepts" in slide["material"] for c in slide["material"]["concepts"]]
+        self.assertEqual(["Thẻ thứ nhất", "Thẻ hai", "Thẻ ba"], [c["label"] for c in concepts])
+
     def test_words_over_the_budget_are_flagged_but_titles_are_not(self):
         eleven = " ".join(["từ"] * 11)
         text = lesson_text(figure_section(3)).replace("# Tiêu đề thử", f"# {eleven}")
@@ -214,6 +259,26 @@ class RealLessonTests(unittest.TestCase):
                 self.assertTrue(result.slides[-1]["material"]["sources"])
                 self.assertTrue(result.canvas_name.endswith(f"({lesson_id})"))
                 self.assertEqual(brief.build(STORE, lesson_id), result)  # computed, so the same twice
+
+    def test_no_written_lesson_puts_a_typed_address_in_its_brief(self):
+        ids = sorted(path.parent.name for path in (STORE / "lessons").glob("sd-*/lesson.md"))
+        for lesson_id in ids:
+            with self.subTest(lesson=lesson_id):
+                result = brief.build(STORE, lesson_id)
+                self.assertNotIn("://", brief.render(result))
+                self.assertNotIn("://", json.dumps(dataclasses.asdict(result), ensure_ascii=False))
+
+    def test_lessons_whose_figure_has_bold_callouts_keep_the_concepts_the_lesson_names(self):
+        # sd-01-007 describes six DNS policies; its figure has a bold callout inside the latency card.
+        result = brief.build(STORE, "sd-01-007")
+        labels = [c["label"] for slide in result.slides if "concepts" in slide["material"]
+                  for c in slide["material"]["concepts"]]
+        self.assertEqual(6, len(labels), labels)
+
+    def test_a_lesson_that_explains_its_figure_in_prose_keeps_that_prose_off_slide_two(self):
+        result = brief.build(STORE, "sd-01-012")
+        situation = sum(item["words"] for item in result.slides[1]["material"]["lines"])
+        self.assertLess(situation, 100)
 
     def test_the_markdown_and_json_forms_agree_on_the_slide_count(self):
         result = brief.build(STORE, "sd-01-005")

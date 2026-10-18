@@ -42,6 +42,12 @@ LAYOUTS = ("flow", "cards", "numbered rows", "sequence diagram", "steps")  # rot
 DETAILS = re.compile(r"<details>\s*<summary>(.*?)</summary>(.*?)</details>", re.S)
 IMAGE = re.compile(r"^!\[(.*?)\]\((.*?)\)\s*$")
 LINK = re.compile(r"\[([^\]]+)\]\([^)]*\)")
+# A typed address (scheme://...) never goes on a slide. The lookbehind lets a match start only at the start of a word, so a
+# long word is scanned once and not once per suffix (the quadratic case scripts/sd101_check.py strip_urls was written for).
+ADDRESS = re.compile(r"(?<![A-Za-z0-9+.\-])[A-Za-z][A-Za-z0-9+.\-]*://[^\s<>]+")
+ADDRESS_TOKEN = "[address]"
+# "1 · Simple", "2. Tổ chức": the mark of a figure card's heading, as against a bold line inside a card.
+ORDINAL = re.compile(r"^\d+\s*[·.:)]")
 LEAD = re.compile(r"^\*\*(.+?)\*\*\s*(.*)$", re.S)
 BOLD_LEAD = re.compile(r"^\*\*.+?\*\*")
 BOLD_WEIGHTS = {"bold", "600", "700", "800", "900"}
@@ -110,8 +116,9 @@ class Parsed:
 
 
 def clean(text: str) -> str:
-    """Plain text of a Markdown fragment: links keep their label, emphasis and code marks go, spaces collapse."""
-    text = LINK.sub(r"\1", text)
+    """Plain text of a Markdown fragment: links keep their label, a typed address becomes `[address]`, emphasis and code marks
+    go, spaces collapse."""
+    text = ADDRESS.sub(ADDRESS_TOKEN, LINK.sub(r"\1", text))
     text = text.replace("**", "").replace("`", "")
     return re.sub(r"\s+", " ", text).strip()
 
@@ -170,7 +177,7 @@ def parse(text: str) -> Parsed:
     for part in parts[1:]:
         name, _, rest = part.partition("\n")
         sections[clean(name)] = rest
-    return Parsed(clean(head.group(1)), [clean(p) for p in paragraphs], bullets, alt, sections, details)
+    return Parsed(clean(head.group(1)), [clean(p) for p in paragraphs], bullets, clean(alt), sections, details)
 
 
 def section(parsed: Parsed, prefix: str) -> str | None:
@@ -205,7 +212,7 @@ def figure_cards(svg: pathlib.Path) -> list[tuple[str, str, bool]]:
     for element in root.iter():
         if element.tag.rsplit("}", 1)[-1] != "text":
             continue
-        text = " ".join("".join(element.itertext()).split())
+        text = ADDRESS.sub(ADDRESS_TOKEN, " ".join("".join(element.itertext()).split()))
         style = element.get("style", "")
         weight = element.get("font-weight") or (re.search(r"font-weight:\s*(\w+)", style) or [None, ""])[1]
         size = element.get("font-size") or (re.search(r"font-size:\s*([\d.]+)", style) or [None, "0"])[1]
@@ -217,6 +224,9 @@ def figure_cards(svg: pathlib.Path) -> list[tuple[str, str, bool]]:
             items.append((weight in BOLD_WEIGHTS, number, text))
     bold_sizes = {size for bold, size, _ in items if bold}
     title_size = max(bold_sizes) if len(bold_sizes) > 1 else None
+    # Weight alone cannot tell a card's heading from a bold line inside the card (a callout). When the headings are
+    # numbered, only a numbered bold line opens a card; any other bold line is a line of the card it is in.
+    numbered = sum(1 for bold, _, text in items if bold and ORDINAL.match(text)) >= CONCEPT_SLIDES.start
     cards: list[list] = []
     seen_card = title_size is None
     for bold, size, text in items:
@@ -224,11 +234,11 @@ def figure_cards(svg: pathlib.Path) -> list[tuple[str, str, bool]]:
             seen_card = bold and size < title_size
             if not seen_card:
                 continue
-        if bold:
-            if cards and not cards[-1][1]:
-                cards[-1][0].append(text)
-            else:
-                cards.append([[text], []])
+        opens = bold and (not numbered or bool(ORDINAL.match(text)))
+        if bold and cards and not cards[-1][1] and not (numbered and opens):
+            cards[-1][0].append(text)  # a heading wrapped over lines
+        elif opens:
+            cards.append([[text], []])
         elif cards:
             cards[-1][1].append(text)
     return [(" ".join(heading).rstrip(":. "), " ".join(body), False) for heading, body in cards if body]
@@ -315,7 +325,13 @@ def build(store: pathlib.Path, lesson_id: str) -> Brief:
     hook = parsed.intro[0] if parsed.intro else ""
     if not hook:
         warnings.append("the lesson has no opening line for the cover's hook")
-    situation = parsed.intro[1:] + figure_plain
+    from_cards = source.startswith("text cards")
+    # When the concepts come from the figure's cards, the prose under `Đọc hình` is those same concepts explained: it is
+    # not a situation line, and dumping it on slide 2 would repeat the concept slides.
+    situation = [text for text in parsed.intro[1:] + ([] if from_cards else figure_plain) if text != ADDRESS_TOKEN]
+    if from_cards and figure_plain:
+        warnings.append(f"the {sum(len(text.split()) for text in figure_plain)} words of prose under `{FIGURE_SECTION}` "
+                        "explain the figure's cards and are left off the situation slide; read them in lesson.md")
 
     question_section = section(parsed, QUESTION_SECTION)
     question = [clean(p) for p in blocks(question_section or "")[0]]
@@ -366,8 +382,12 @@ def build(store: pathlib.Path, lesson_id: str) -> Brief:
     slides.append(Slide(count, "terms and sources", backdrops[count - 1], "two columns",
                         footer.format(number, count, count), {
                             "terms": glossary, "sources": names}))
+    deck = [dataclasses.asdict(slide) for slide in slides]
+    if ADDRESS_TOKEN in json.dumps([deck, parsed.alt], ensure_ascii=False):
+        warnings.append(f"the lesson types an address; it shows as {ADDRESS_TOKEN} below. Draw such an example as its "
+                        "parts (scheme, host, path ...) or by a label, never as one typed address")
     return Brief(lesson_id, number, title, f"System Design 101 · Bài {number} · {title} ({lesson_id})", count,
-                 parsed.alt, source, colours, [dataclasses.asdict(slide) for slide in slides], warnings)
+                 parsed.alt, source, colours, deck, warnings)
 
 
 def render(brief: Brief) -> str:

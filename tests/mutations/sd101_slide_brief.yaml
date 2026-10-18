@@ -41,3 +41,15 @@ mutations:
   find: '    except UnicodeDecodeError as error:'
   replace: '    except KeyboardInterrupt as error:'
   test: tests.test_sd101_slide_brief.CommandLineTests.test_a_lesson_that_is_not_utf8_exits_1_with_a_message_not_a_traceback
+- label: a typed address in the lesson reaches the brief
+  find: '    text = ADDRESS.sub(ADDRESS_TOKEN, LINK.sub(r"\1", text))'
+  replace: '    text = LINK.sub(r"\1", text)'
+  test: tests.test_sd101_slide_brief.StructureTests.test_a_typed_address_is_hidden_wherever_it_is_typed_and_the_session_is_told
+- label: the prose that explains the figure's cards lands on the situation slide
+  find: '([] if from_cards else figure_plain)'
+  replace: 'figure_plain'
+  test: tests.test_sd101_slide_brief.StructureTests.test_the_prose_of_the_figure_section_stays_off_the_situation_slide_when_the_cards_are_the_concepts
+- label: a bold callout inside a numbered figure card opens a new concept
+  find: '        opens = bold and (not numbered or bool(ORDINAL.match(text)))'
+  replace: '        opens = bold'
+  test: tests.test_sd101_slide_brief.StructureTests.test_a_bold_line_inside_a_numbered_card_is_a_line_of_that_card_not_a_new_concept

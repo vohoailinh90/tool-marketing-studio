@@ -2,7 +2,7 @@
 
 **Tóm mỗi loại cơ sở dữ liệu trong một câu thì dễ nhớ, nhưng một câu sai sẽ đưa bạn tới sai công cụ.** Bài nguồn tóm sáu loại trong sáu câu. Bài này đặt từng câu cạnh hướng dẫn "Understand data models" của Azure Architecture Center, và thử câu về kho trong bộ nhớ trên Redis.
 
-![Ba khung. Khung một, ba câu giữ được: cơ sở dữ liệu quan hệ làm được gần như mọi việc nhưng mở rộng ngang phải chia shard; kho trong bộ nhớ nhanh và có trần bộ nhớ; kho chuỗi thời gian ghi nối tiếp theo thời gian, coi chừng số series. Khung hai, ba câu cần sửa: đồ thị mạnh ở quan hệ nhiều tầng, nút và cạnh vẫn có thuộc tính; kho tài liệu chứa tài liệu JSON vẫn được sửa, dữ liệu lớn không đổi là việc của kho đối tượng; kho cột rộng mạnh ở ghi nhiều và dữ liệu thưa, phân tích lớn là loại khác. Khung ba, Redis với trần 8 MiB, 20.000 giá trị 1.000 byte: noeviction ghi được 6.732 khóa rồi báo lỗi; allkeys-lru ghi đủ nhưng xóa 13.291 khóa cũ; mặc định không đặt trần; RDB và AOF lưu xuống đĩa.](../../diagrams/sd-04-021-main.svg)
+![Ba khung. Khung một, ba câu giữ được: cơ sở dữ liệu quan hệ làm được gần như mọi việc nhưng mở rộng ngang thường phải chia shard; kho trong bộ nhớ nhanh và có trần bộ nhớ; kho chuỗi thời gian ghi nối tiếp theo thời gian, coi chừng số series. Khung hai, ba câu cần sửa: đồ thị mạnh ở quan hệ nhiều tầng, nút và cạnh vẫn có thuộc tính; kho tài liệu chứa tài liệu JSON vẫn được sửa, dữ liệu lớn không đổi là việc của kho đối tượng; kho cột rộng mạnh ở ghi nhiều và dữ liệu thưa, phân tích lớn là loại khác. Khung ba, Redis trần 8 MiB, 20.000 giá trị 1.000 byte: noeviction ghi được 6.732 khóa rồi báo lỗi; allkeys-lru ghi đủ nhưng xóa 13.291 khóa cũ; mặc định không đặt trần; RDB và AOF lưu xuống đĩa.](../../diagrams/sd-04-021-main.svg)
 
 ## Từ viết tắt
 
@@ -23,7 +23,7 @@
 **Khung 2 · Ba câu cần sửa.**
 
 - **Đồ thị: "quan hệ phức tạp giữa các đối tượng phi cấu trúc".** Phần "quan hệ" đúng: hướng dẫn Azure nói đồ thị mạnh ở việc đi theo quan hệ với độ sâu thay đổi. Phần "phi cấu trúc" thì không: dữ liệu là nút và cạnh, và cả hai đều có thuộc tính như cột của bảng.
-- **Tài liệu: "tốt cho dữ liệu lớn, không đổi".** Đây là chỗ lệch nhất. Hướng dẫn Azure xếp kho tài liệu vào loại dữ liệu cỡ nhỏ đến vừa, hợp với ứng dụng làm việc với JSON có hình dạng thay đổi dần, như danh mục sản phẩm hay hồ sơ người dùng. Tài liệu được sửa thường xuyên: hướng dẫn còn cảnh báo tài liệu quá lớn thì các lần sửa từng phần tranh nhau. "Dữ liệu lớn, ít khi đổi" là mô tả của kho đối tượng.
+- **Tài liệu: "tốt cho dữ liệu lớn, không đổi".** Đây là chỗ lệch nhất. Hướng dẫn Azure xếp kho tài liệu vào loại dữ liệu cỡ nhỏ đến vừa, hợp với ứng dụng làm việc với JSON có hình dạng thay đổi dần, như danh mục sản phẩm hay hồ sơ người dùng. Tài liệu vẫn được sửa sau khi ghi: hướng dẫn còn cảnh báo tài liệu quá lớn thì các lần sửa từng phần tranh nhau. "Dữ liệu lớn, ít khi đổi" là mô tả của kho đối tượng.
 - **Cột rộng: "dùng cho dữ liệu lớn, phân tích, báo cáo".** Đúng một phần. Hướng dẫn Azure mô tả kho cột rộng là nơi ghi nhiều, dữ liệu thưa, như số liệu từ thiết bị, và phải thiết kế khóa dòng từ đầu. Còn quét lượng lớn dữ liệu lịch sử để tổng hợp thì nó xếp vào một loại riêng: kho phân tích.
 
 **Khung 3 · Thử: Redis chạm trần 8 MiB.** Đặt `maxmemory` là 8 MiB rồi ghi 20.000 giá trị, mỗi giá trị 1.000 byte, với hai chính sách:
@@ -49,7 +49,7 @@ Một nhóm định lưu ảnh và video người dùng tải lên (vài trăm M
 <details>
 <summary>Xem đáp án</summary>
 
-Tệp lớn, ghi một lần, không sửa là việc của kho đối tượng. Kho tài liệu hợp với phần mô tả của mỗi tệp: tên, người tải, thẻ, trạng thái duyệt; đó là dữ liệu nhỏ, có cấu trúc thay đổi dần và được sửa thường xuyên.
+Tệp lớn, ghi một lần, không sửa là việc của kho đối tượng. Kho tài liệu hợp với phần mô tả của mỗi tệp: tên, người tải, thẻ, trạng thái duyệt; đó là dữ liệu nhỏ, có cấu trúc thay đổi dần và được sửa khi, chẳng hạn, trạng thái duyệt đổi.
 Đây là cách chia của người biên soạn theo bảng so sánh trong hướng dẫn Azure.
 
 </details>

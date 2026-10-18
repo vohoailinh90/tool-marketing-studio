@@ -3,7 +3,7 @@
   "lang": "vi",
   "title": "Nhiều nhất, ít nhất hay đúng một lần",
   "subtitle": "10 khoản thanh toán qua Kafka vào một sổ trên PostgreSQL; bên nhận chết ở khoản thứ 6.",
-  "desc": "Ba khung. Khung một, thứ tự lưu vị trí đọc: lưu vị trí trước rồi xử lý thì bên nhận chết sau khi lưu làm khoản 6 bị bỏ qua, sổ còn 9 dòng, nhiều nhất một lần; xử lý trước rồi lưu vị trí thì chết trước khi lưu làm khoản 6 được giao lại, sổ 11 dòng, ít nhất một lần. Khung hai, hai cách được kết quả như đúng một lần: xử lý rồi bỏ bản trùng theo mã thanh toán, sổ 10 dòng; lưu vị trí cùng giao dịch với kết quả, chết trước commit thì cả hai cùng mất và làm lại từ khoản 6, sổ 10 dòng. Khung ba: số đo giám sát chịu mất vài điểm thì nhiều nhất một lần; có khóa để bỏ trùng thì ít nhất một lần là đủ; tiền mà đích không tự bỏ trùng thì lưu vị trí cùng kết quả hoặc dùng giao dịch của Kafka.",
+  "desc": "Ba khung. Khung một, thứ tự lưu vị trí đọc: lưu vị trí trước rồi xử lý thì bên nhận chết sau khi lưu làm khoản 6 bị bỏ qua, sổ còn 9 dòng, nhiều nhất một lần; xử lý trước rồi lưu vị trí thì chết trước khi lưu làm khoản 6 được giao lại, sổ 11 dòng, ít nhất một lần. Khung hai, hai cách cho kết quả như đúng một lần: xử lý rồi bỏ bản trùng theo mã thanh toán, sổ 10 dòng; lưu vị trí cùng giao dịch với kết quả, chết trước commit thì cả hai cùng mất và làm lại từ khoản 6, sổ 10 dòng. Khung ba: số đo giám sát chịu mất vài điểm thì nhiều nhất một lần; có khóa để bỏ trùng thì ít nhất một lần là đủ; với tiền, lưu vị trí cùng giao dịch với kết quả; đích là topic Kafka thì dùng giao dịch của Kafka.",
   "sections": [
     {
       "kind": "parts",
@@ -45,7 +45,7 @@
       "items": [
         "Số đo giám sát, mất vài điểm không sao: nhiều nhất một lần.",
         "Có khóa để bỏ trùng: ít nhất một lần là đủ.",
-        "Tiền mà đích không tự bỏ trùng: lưu vị trí cùng kết quả, hoặc giao dịch của Kafka."
+        "Tiền: lưu vị trí cùng giao dịch với kết quả; đích là topic Kafka thì dùng giao dịch của Kafka."
       ]
     }
   ]

@@ -3,14 +3,14 @@
 **Muốn kho phân tích, cache hay chỉ mục tìm kiếm theo kịp một bảng đang đổi liên tục, cách dễ nghĩ là cứ vài phút hỏi bảng "có gì mới".**
 Thu thay đổi dữ liệu dựa trên nhật ký đi đường khác: đọc chính nhật ký mà cơ sở dữ liệu đã ghi cho mọi thay đổi, nên thấy cả những thứ một câu truy vấn không thấy, như một dòng đã bị xóa.
 
-![Ba khung. Khung một là bốn bước của một thay đổi: ứng dụng sửa bảng customers như bình thường; PostgreSQL ghi thay đổi vào nhật ký WAL; công cụ CDC đọc WAL qua một replication slot và giải mã thành sự kiện thêm, sửa, xóa; sự kiện được đẩy sang Kafka rồi tới kho phân tích hay cache. Khung hai so hai cách lấy thay đổi: thăm dò cột updated_at thấy dòng 1 bị sửa và dòng 3 mới thêm nhưng không thấy dòng 2 đã bị xóa; đọc WAL qua slot thấy đủ sửa dòng 1, xóa dòng 2, thêm dòng 3 theo thứ tự commit. Khung ba: slot không ai đọc giữ lại WAL, 61 MB sau một triệu dòng thêm; đọc xong và checkpoint thì chỉ còn 6.712 byte; muốn có giá trị cũ khi sửa thì đặt replica identity full cho bảng.](../../diagrams/sd-04-015-main.svg)
+![Ba khung. Khung một là bốn bước của một thay đổi: ứng dụng sửa bảng customers như bình thường; PostgreSQL ghi thay đổi vào nhật ký WAL; công cụ CDC đọc WAL qua một replication slot và giải mã thành sự kiện thêm, sửa, xóa; sự kiện được đẩy sang Kafka rồi tới kho phân tích hay cache. Khung hai so hai cách lấy thay đổi: thăm dò cột updated_at thấy dòng 1 bị sửa và dòng 3 mới thêm nhưng không thấy dòng 2 đã bị xóa; đọc WAL qua slot thấy đủ sửa dòng 1, xóa dòng 2, thêm dòng 3 theo thứ tự commit. Khung ba: slot không ai đọc giữ lại WAL, 61 MiB sau một triệu dòng thêm; đọc xong và checkpoint thì chỉ còn 6.712 byte; muốn có giá trị cũ khi sửa thì đặt replica identity full cho bảng.](../../diagrams/sd-04-015-main.svg)
 
 ## Từ viết tắt
 
 - **CDC** (Change Data Capture) — thu thay đổi dữ liệu: bắt mọi lần thêm, sửa, xóa trong một cơ sở dữ liệu và chuyển chúng thành sự kiện cho hệ thống khác dùng.
 - **WAL** (Write-Ahead Log) — nhật ký ghi trước: PostgreSQL ghi mọi thay đổi vào đây trước khi sửa dữ liệu; công cụ CDC đọc chính nhật ký này.
 - **SQL** (Structured Query Language) — ngôn ngữ truy vấn có cấu trúc của cơ sở dữ liệu quan hệ; nằm trong tên PostgreSQL và MySQL.
-- **MB** (MegaByte) — megabyte: đơn vị dung lượng cỡ một triệu byte; ở đây là lượng WAL bị giữ lại.
+- **MiB** (Mebibyte) — mebibyte: 1.048.576 byte; ở đây là lượng WAL bị giữ lại (PostgreSQL in cỡ theo lũy thừa của 2).
 
 ## Đọc hình
 
@@ -31,7 +31,7 @@ Tài liệu Debezium nêu đúng những điểm này làm lợi thế của CDC
 
 ## Giới hạn cần nhớ
 
-Slot giữ lại mọi đoạn WAL mà người đọc chưa nhận, kể cả khi người đọc đang tắt. Trong thử nghiệm, sau một triệu dòng thêm mà không ai đọc slot, PostgreSQL giữ 61 MB WAL cho nó; đọc hết và chạy checkpoint thì còn 6.712 byte.
+Với mặc định `max_slot_wal_keep_size = -1`, slot giữ lại mọi đoạn WAL mà người đọc chưa nhận, kể cả khi người đọc đang tắt; đặt giới hạn này để một slot bị bỏ quên không làm đầy đĩa. Trong thử nghiệm, sau một triệu dòng thêm mà không ai đọc slot, PostgreSQL giữ 61 MiB WAL cho nó; đọc hết và chạy checkpoint thì còn 6.712 byte.
 Tài liệu PostgreSQL cảnh báo slot không biết gì về người đọc và vẫn ngăn dọn WAL lẫn dữ liệu danh mục hệ thống khi không có ai kết nối; trường hợp xấu có thể làm cơ sở dữ liệu tự dừng. Slot không dùng nữa phải được xóa, và slot đang dùng phải được giám sát.
 
 ## Nhìn hình trả lời
@@ -60,6 +60,7 @@ Thử nghiệm dùng plugin `test_decoding` vì nó in thay đổi thành chữ 
 - [Debezium — Features, tại commit cố định](https://github.com/debezium/debezium/blob/a058ebb7e267b4010ee0f37c68f3f9f0c01c31af/documentation/modules/ROOT/pages/features.adoc): lợi thế của CDC dựa trên nhật ký so với thăm dò. Đọc từ bản clone của kho.
 - [Debezium — PostgreSQL connector, tại commit cố định](https://github.com/debezium/debezium/blob/a058ebb7e267b4010ee0f37c68f3f9f0c01c31af/documentation/modules/ROOT/pages/connectors/postgresql.adoc): ảnh chụp nhất quán ban đầu, `pgoutput`, replication slot giữ WAL khi connector dừng, `REPLICA IDENTITY FULL`.
 - [PostgreSQL 16 — Logical Decoding, tại commit cố định](https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/logicaldecoding.sgml): replication slot ngăn dọn WAL và dữ liệu danh mục khi không ai kết nối; slot không cần nữa thì xóa. Đọc từ bản clone, nhánh `REL_16_STABLE`.
+- [PostgreSQL 16 — `max_slot_wal_keep_size`, tại commit cố định](https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/config.sgml): mặc định -1, slot có thể giữ WAL không giới hạn.
 
 Đã đọc nguồn và chạy thử nghiệm ngày 2026-10-18 trên PostgreSQL 16.15 (`wal_level = logical`, plugin `test_decoding`); không chạy Debezium.
 Bài viết và hình được thiết kế độc lập.

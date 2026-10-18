@@ -84,7 +84,7 @@
       "verified_by": "Read from a clone of awsdocs/amazon-s3-userguide at commit cc53dd6a44d3aa1d654e6d3705a0a7550f20fd2a."
     },
     {
-      "claim_vi": "S3 Object Lock stores objects in a write-once-read-many model and prevents deletion or overwrite for a fixed time or indefinitely, to meet regulations requiring WORM storage or as another layer of protection; in compliance mode no user, the root user included, can overwrite or delete a protected version; in governance mode users with s3:BypassGovernanceRetention can; creating a bucket with Object Lock enables versioning automatically.",
+      "claim_vi": "S3 Object Lock stores objects in a write-once-read-many model and prevents deletion or overwrite for a fixed time or indefinitely, to meet regulations requiring WORM storage or as another layer of protection; in compliance mode no user, the root user included, can overwrite or delete a protected version; in governance mode users with s3:BypassGovernanceRetention can; creating a bucket with Object Lock enables versioning automatically; turning on Object Lock does not by itself protect objects: a default retention mode and period applies only to new objects placed in the bucket after it is configured.",
       "sources": [
         "https://github.com/awsdocs/amazon-s3-userguide/blob/cc53dd6a44d3aa1d654e6d3705a0a7550f20fd2a/doc_source/object-lock.md",
         "https://github.com/awsdocs/amazon-s3-userguide/blob/cc53dd6a44d3aa1d654e6d3705a0a7550f20fd2a/doc_source/object-lock-overview.md"
@@ -114,7 +114,7 @@
       "verified_by": "Read from a clone of awsdocs/amazon-s3-userguide at commit cc53dd6a44d3aa1d654e6d3705a0a7550f20fd2a."
     },
     {
-      "claim_vi": "Six use cases of object stores: data archiving, unstructured data storage, cloud-native storage, data lake (efficient reads and writes help ETL), IoT data, backup and recovery.",
+      "claim_vi": "The source states: Six use cases of object stores: data archiving, unstructured data storage, cloud-native storage, data lake (efficient reads and writes help ETL), IoT data, backup and recovery.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/explain-the-top-6-use-cases-of-object-stores.md",
       "section": "Body",
       "verified_by": "Source body read."

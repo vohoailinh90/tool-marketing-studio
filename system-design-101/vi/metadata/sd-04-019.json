@@ -102,7 +102,7 @@
       "verified_by": "The author ran and measured this on 2026-10-18 on one machine, both databases in one PostgreSQL 16.15 server."
     },
     {
-      "claim_vi": "Four eventual consistency patterns: event-based, background sync (slower because the job runs on a schedule), saga-based (a sequence of local transactions for long-lived transactions) and CQRS-based (separate read and write databases).",
+      "claim_vi": "The source states: Four eventual consistency patterns: event-based, background sync (slower because the job runs on a schedule), saga-based (a sequence of local transactions for long-lived transactions) and CQRS-based (separate read and write databases).",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-eventual-consistency-patterns-you-must-know.md",
       "section": "Body",
       "verified_by": "Source body read."

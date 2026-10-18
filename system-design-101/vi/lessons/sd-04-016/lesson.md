@@ -7,12 +7,12 @@ Tài liệu Kafka nói rõ: một tin đã *commit* thì không mất miễn cò
 
 ## Từ viết tắt
 
-- **ISR** (In-Sync Replicas) — tập bản sao đồng bộ: các bản sao của một partition đang theo kịp leader; chỉ chúng được chọn làm leader mới.
+- **ISR** (In-Sync Replicas) — tập bản sao đồng bộ: các bản sao của một partition đang theo kịp leader; Kafka ưu tiên chọn leader mới trong tập này.
 - **ELR** (Eligible Leader Replicas) — tập bản sao đủ tư cách làm leader: các bản sao đã rời ISR nhưng Kafka biết chắc chúng có mọi tin đã commit, nên vẫn được chọn làm leader.
 
 ## Đọc hình
 
-**Tin "đã commit".** Theo tài liệu thiết kế của Kafka, một tin chỉ được coi là commit khi mọi bản sao trong ISR đã nhận nó. Bên gửi chọn chờ 0, 1 hay mọi bản sao xác nhận (`acks=0`, `1`, `all`). `min.insync.replicas` buộc partition từ chối ghi khi ISR nhỏ hơn số đó, nhưng chỉ có tác dụng với bên gửi dùng `acks=all`.
+**Tin "đã commit".** Theo tài liệu thiết kế của Kafka, một tin chỉ được coi là commit khi mọi bản sao trong ISR đã nhận nó và ISR có không ít hơn `min.insync.replicas` bản sao (hoặc số bản sao của partition, nếu số này nhỏ hơn). Bên gửi chọn chờ 0, 1 hay mọi bản sao xác nhận (`acks=0`, `1`, `all`). `min.insync.replicas` buộc partition từ chối ghi khi ISR nhỏ hơn số đó, nhưng chỉ có tác dụng với bên gửi dùng `acks=all`.
 
 **Thử nghiệm (khung 1).** Cụm Kafka 4.4.0: một controller và ba broker; topic `orders` một partition, ba bản sao trên broker 1, 2, 3, leader là broker 1, `min.insync.replicas=2`.
 

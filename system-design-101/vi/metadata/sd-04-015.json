@@ -87,13 +87,19 @@
       "verified_by": "Read from a partial clone of postgres/postgres at REL_16_STABLE commit 8e928803020e5b5694cde58e4851fce64ef9d520."
     },
     {
-      "claim_vi": "Measured on PostgreSQL 16.15: after updating row 1, deleting row 2 and inserting row 3, a query on updated_at returned rows 1 and 3 only, while the test_decoding slot returned the UPDATE, DELETE and INSERT; with REPLICA IDENTITY FULL the update carried old-key values; an unread slot held 61 MB of WAL after one million inserts and 6712 bytes after reading and a checkpoint.",
+      "claim_vi": "If max_slot_wal_keep_size is -1 (the default), replication slots may retain an unlimited amount of WAL files; otherwise a slot that falls behind by more than that size may lose the WAL it needs.",
+      "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/config.sgml",
+      "section": "max_slot_wal_keep_size",
+      "verified_by": "Read from a partial clone of postgres/postgres at commit 8e928803020e5b5694cde58e4851fce64ef9d520."
+    },
+    {
+      "claim_vi": "Measured on PostgreSQL 16.15: after updating row 1, deleting row 2 and inserting row 3, a query on updated_at returned rows 1 and 3 only, while the test_decoding slot returned the UPDATE, DELETE and INSERT; with REPLICA IDENTITY FULL the update carried old-key values; an unread slot held 61 MiB (pg_size_pretty, powers of 2) of WAL after one million inserts and 6712 bytes after reading and a checkpoint.",
       "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/logicaldecoding.sgml",
       "section": "Author's experiment",
       "verified_by": "The author ran and measured this on 2026-10-18 with wal_level=logical."
     },
     {
-      "claim_vi": "CDC identifies and captures changes from database transaction logs through a source connector, transforms them, publishes them to a message queue and a sink connector updates targets; Debezium with Kafka Connect is a popular solution; the source opens with an unsourced 90% statistic.",
+      "claim_vi": "The source states: CDC identifies and captures changes from database transaction logs through a source connector, transforms them, publishes them to a message queue and a sink connector updates targets; Debezium with Kafka Connect is a popular solution; the source opens with an unsourced 90% statistic.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/change-data-capture-key-to-leverage-real-time-data.md",
       "section": "Body",
       "verified_by": "Source body read."

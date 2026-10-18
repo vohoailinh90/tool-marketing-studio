@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="320" height="1458" viewBox="0 0 320 1458" role="img" aria-labelledby="title desc">
 <title id="title">Sáu loại cơ sở dữ liệu, sáu câu tóm tắt</title>
-<desc id="desc">Ba khung. Khung một, ba câu giữ được: cơ sở dữ liệu quan hệ làm được gần như mọi việc nhưng mở rộng ngang phải chia shard; kho trong bộ nhớ nhanh và có trần bộ nhớ; kho chuỗi thời gian ghi nối tiếp theo thời gian, coi chừng số series. Khung hai, ba câu cần sửa: đồ thị mạnh ở quan hệ nhiều tầng, nút và cạnh vẫn có thuộc tính; kho tài liệu chứa tài liệu JSON vẫn được sửa, dữ liệu lớn không đổi là việc của kho đối tượng; kho cột rộng mạnh ở ghi nhiều và dữ liệu thưa, phân tích lớn là loại khác. Khung ba, Redis với trần 8 MiB, 20.000 giá trị 1.000 byte: noeviction ghi được 6.732 khóa rồi báo lỗi; allkeys-lru ghi đủ nhưng xóa 13.291 khóa cũ; mặc định không đặt trần; RDB và AOF lưu xuống đĩa.</desc>
+<desc id="desc">Ba khung. Khung một, ba câu giữ được: cơ sở dữ liệu quan hệ làm được gần như mọi việc nhưng mở rộng ngang thường phải chia shard; kho trong bộ nhớ nhanh và có trần bộ nhớ; kho chuỗi thời gian ghi nối tiếp theo thời gian, coi chừng số series. Khung hai, ba câu cần sửa: đồ thị mạnh ở quan hệ nhiều tầng, nút và cạnh vẫn có thuộc tính; kho tài liệu chứa tài liệu JSON vẫn được sửa, dữ liệu lớn không đổi là việc của kho đối tượng; kho cột rộng mạnh ở ghi nhiều và dữ liệu thưa, phân tích lớn là loại khác. Khung ba, Redis trần 8 MiB, 20.000 giá trị 1.000 byte: noeviction ghi được 6.732 khóa rồi báo lỗi; allkeys-lru ghi đủ nhưng xóa 13.291 khóa cũ; mặc định không đặt trần; RDB và AOF lưu xuống đĩa.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="1458" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
@@ -15,8 +15,8 @@
 <circle cx="50" cy="241.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 230.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></g>
 <text x="78" y="214.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Quan hệ</text>
 <text x="78" y="238.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Gần như việc gì cũng làm</text>
-<text x="78" y="257.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">được; mở rộng ngang thì</text>
-<text x="78" y="277.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">phải chia shard.</text>
+<text x="78" y="257.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">được; mở rộng ngang</text>
+<text x="78" y="277.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thường phải chia shard.</text>
 <rect x="20" y="309" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
 <circle cx="50" cy="362.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 351.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15.914 4a1.5 1.5 0 00-2.474-1.561l-9 9A1.5 1.5 0 005.5 14h4.002a.5.5 0 01.471.666L8.086 20a1.5 1.5 0 002.475 1.56l9-9A1.5 1.5 0 0018.5 10h-3.997a.5.5 0 01-.472-.667z"/></g>
 <text x="78" y="335.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Trong bộ nhớ</text>

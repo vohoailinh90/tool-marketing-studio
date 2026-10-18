@@ -3,7 +3,7 @@
 **Bảng "các loại bộ nhớ" nào cũng nói tầng dưới chậm hơn tầng trên. Điều đáng nhớ là chậm hơn bao nhiêu lần, và con số đó chỉ có được khi đo.**
 Bài này đo một lần đọc ở từng tầng trên chính máy dùng để biên soạn, từ một phép cộng trong bộ xử lý tới một yêu cầu qua mạng.
 
-![Ba khung, số đo trên máy biên soạn. Khung một, trong bộ xử lý và bộ nhớ: một phép cộng trên thanh ghi 0,4 ns; đọc ngẫu nhiên trong 16 KiB, vừa bộ đệm L1, 1,6 ns; trong 256 KiB, vừa bộ đệm L2, 4,6 ns; trong 8 MiB đến 1 GiB, ra bộ nhớ chính, 142 đến 381 ns. Khung hai, ra ngoài: đọc ngẫu nhiên 4 KiB từ ổ đĩa ảo trung bình 72 µs; một yêu cầu HTTPS tới GitHub khoảng 60 ms, chưa kể 0,2 s mở kết nối. Khung ba, đọc con số: một lần đọc đĩa bằng gần 200 lần đọc bộ nhớ chính; một yêu cầu qua mạng bằng hơn 100.000 lần; máy báo bộ đệm L3 33 MiB nhưng từ 4 MiB đã mất khoảng 150 ns; dùng trang lớn 2 MiB, đọc trong 1 GiB còn 259 ns.](../../diagrams/sd-04-023-main.svg)
+![Ba khung, số đo trên máy biên soạn. Khung một, trong bộ xử lý và bộ nhớ: một phép cộng trên thanh ghi 0,4 ns; đọc ngẫu nhiên trong 16 KiB, vừa bộ đệm L1, 1,5 ns; trong 256 KiB, vừa bộ đệm L2, 4,4 ns; từ 4 MiB trở lên khoảng 150 ns, gần bằng bộ nhớ chính; trong 1 GiB 326 ns. Khung hai, ra ngoài: đọc ngẫu nhiên 4 KiB từ ổ đĩa ảo trung bình 72 µs; một yêu cầu HTTPS tới GitHub khoảng 60 ms, chưa kể việc mở kết nối. Khung ba, đọc con số: một lần đọc đĩa bằng khoảng 200 lần đọc bộ nhớ chính; một yêu cầu qua mạng bằng hơn 100.000 lần; máy báo bộ đệm L3 33 MiB nhưng từ 4 MiB đã mất khoảng 150 ns; dùng trang lớn 2 MiB, đọc trong 1 GiB còn 225 ns.](../../diagrams/sd-04-023-main.svg)
 
 ## Từ viết tắt
 
@@ -24,25 +24,25 @@ Bài này đo một lần đọc ở từng tầng trên chính máy dùng để
 
 | Vùng nhớ đi qua | Một lần đọc |
 |---|---|
-| 16 KiB (vừa L1) | 1,6 ns |
-| 256 KiB (vừa L2) | 4,6 đến 4,7 ns |
+| 16 KiB (vừa L1) | 1,5 đến 1,7 ns |
+| 256 KiB (vừa L2) | 4,4 đến 5,0 ns |
 | 1 MiB | 15 đến 17 ns |
 | 4 MiB | 145 đến 152 ns |
 | 64 MiB | 165 đến 180 ns |
-| 1 GiB | 381 ns |
+| 1 GiB | 326 đến 409 ns |
 
 Một phép cộng mà phép sau phải chờ kết quả phép trước mất 0,4 ns: đó là tốc độ của dữ liệu đã nằm sẵn trong thanh ghi.
 
 **Khung 2 · Ra ngoài: đĩa và mạng.**
 
 - **Ổ đĩa ảo.** 3.000 lần đọc 4 KiB ở vị trí ngẫu nhiên trong một tệp 2 GiB, mở với `O_DIRECT` để đi thẳng xuống ổ, không qua bộ nhớ đệm của hệ điều hành: trung bình 72 µs một lần, lần chậm nhất 2,1 ms. Nhân báo ổ này là loại quay (tệp `queue/rotational` bằng 1), nhưng đây là ổ ảo của máy ảo; từ bên trong, không biết được ổ thật bên dưới là SSD hay HDD.
-- **Qua mạng.** Mười yêu cầu HTTPS tới GitHub qua proxy của môi trường: sau khi bắt tay mã hóa xong, chờ byte đầu tiên mất khoảng 60 ms (trung vị); tính cả việc mở kết nối thì mỗi yêu cầu khoảng 0,25 s.
+- **Qua mạng.** Mười yêu cầu HTTPS tới GitHub qua proxy của môi trường: sau khi bắt tay mã hóa xong, chờ byte đầu tiên mất khoảng 60 ms (trung vị); tính cả việc mở kết nối thì mỗi yêu cầu mất trung vị 0,27 s.
 
 **Khung 3 · Đọc con số.**
 
-- Một lần đọc đĩa ngẫu nhiên (72 µs) bằng gần 200 lần đọc bộ nhớ chính (381 ns). Một yêu cầu qua mạng (60 ms) bằng hơn 100.000 lần.
+- Một lần đọc đĩa ngẫu nhiên (72 µs) bằng khoảng 200 lần đọc bộ nhớ chính (326 đến 409 ns). Một yêu cầu qua mạng (60 ms) bằng hơn 100.000 lần.
 - Máy báo có L3 33 MiB, nhưng từ 4 MiB trở lên mỗi lần đọc đã mất khoảng 150 ns, gần bằng đọc bộ nhớ chính. Thử nghiệm không thấy bậc L3; máy ảo dùng chung bộ xử lý với máy khác, và bài không xác định được nguyên nhân chắc chắn.
-- Đi qua 1 GiB tốn hơn đi qua 64 MiB một phần vì dịch địa chỉ. Tài liệu của nhân Linux về trang lớn trong suốt giải thích: dùng trang 2 MiB thì mỗi mục TLB phủ được nhiều bộ nhớ hơn nên ít lần trượt TLB hơn, và mỗi lần trượt cũng xử lý nhanh hơn, nhất là trên máy ảo. Khi xin trang lớn cho vùng 1 GiB, một lần đọc còn 259 ns thay vì 381 ns.
+- Đi qua 1 GiB tốn hơn đi qua 64 MiB một phần vì dịch địa chỉ. Tài liệu của nhân Linux về trang lớn trong suốt giải thích: dùng trang 2 MiB thì mỗi mục TLB phủ được nhiều bộ nhớ hơn nên ít lần trượt TLB hơn, và mỗi lần trượt cũng xử lý nhanh hơn, nhất là trên máy ảo. Trong một cặp lần chạy liền nhau, xin trang lớn cho vùng 1 GiB làm một lần đọc còn 225 ns thay vì 326 ns.
 
 ## Giới hạn cần nhớ
 

@@ -87,7 +87,7 @@
       "verified_by": "The author ran and measured this on 2026-10-18; auto-commit was off and the stop happened without saving anything further."
     },
     {
-      "claim_vi": "At-most once suits monitoring metrics; at-least once suits cases where duplicates are acceptable or can be removed with a unique key; exactly once is hardest and suits financial use cases when duplicates are unacceptable and downstream lacks idempotency.",
+      "claim_vi": "The source states: At-most once suits monitoring metrics; at-least once suits cases where duplicates are acceptable or can be removed with a unique key; exactly once is hardest and suits financial use cases when duplicates are unacceptable and downstream lacks idempotency.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/delivery-semantics.md",
       "section": "Body",
       "verified_by": "Source body read."

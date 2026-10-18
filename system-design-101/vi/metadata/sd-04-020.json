@@ -89,13 +89,13 @@
       "verified_by": "Read from a partial clone of facebook/rocksdb at tag v9.8.4 (commit 44e95d8af5d7ec503b3f1d5754c3379ab6c29a9d)."
     },
     {
-      "claim_vi": "Measured with 1,000,000 random 16-byte keys and 100-byte values (116 MB), no fsync, bytes written counted as the process's wchar: SQLite WITHOUT ROWID in WAL mode committing every 1,000 rows wrote 12,481 MB (107.6x) with a 2 MiB cache and 12,169 MB (104.9x) with 256 MiB; one transaction with 256 MiB wrote 281 MB (2.4x) in 6.3 s; RocksDB with a 4 MiB memtable and 16 MiB level base wrote 621 MB (5.4x) in 3.7 s; 100,000 missing-key lookups took 0.07 s with a 10-bit Bloom filter and 0.74 s without; a 300,000-key run with default RocksDB options produced one level-0 file and no compaction.",
+      "claim_vi": "Measured with 1,000,000 random 16-byte keys and 100-byte values (116 MB), no fsync, bytes written counted as the process's wchar: SQLite WITHOUT ROWID in WAL mode committing every 1,000 rows wrote 12,481 MB (107.6x) with a 2 MiB cache and 12,169 MB (104.9x) with 256 MiB; one transaction with a 256 MiB cache, large enough for every page of the 140 MB file, wrote 281 MB (2.4x) in 6.3 s (a large transaction with a small cache was not measured); RocksDB with a 4 MiB memtable and 16 MiB level base, in write batches of 1,000, wrote 621 MB (5.4x) in 3.7 s; 100,000 missing-key lookups took 0.07 s with a 10-bit Bloom filter and 0.74 s without; a 300,000-key run with default RocksDB options produced one level-0 file and no compaction.",
       "source": "https://github.com/facebook/rocksdb/blob/44e95d8af5d7ec503b3f1d5754c3379ab6c29a9d/include/rocksdb/options.h",
       "section": "Author's experiment",
       "verified_by": "The author ran and measured this on 2026-10-18 on one machine; hit lookups were dominated by Python overhead and are not compared."
     },
     {
-      "claim_vi": "B-tree is the most widely used index structure in relational databases and stores data in pages; LSM-trees are used by Cassandra, LevelDB and RocksDB, persist sorted string tables and compact level 0 into level 1; B-tree enables faster reads, LSM-tree faster writes.",
+      "claim_vi": "The source states: B-tree is the most widely used index structure in relational databases and stores data in pages; LSM-trees are used by Cassandra, LevelDB and RocksDB, persist sorted string tables and compact level 0 into level 1; B-tree enables faster reads, LSM-tree faster writes. The lesson does not adopt the read/write ranking as stated (see source_deviations).",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/b-tree-vs.md",
       "section": "Body",
       "verified_by": "Source body read."

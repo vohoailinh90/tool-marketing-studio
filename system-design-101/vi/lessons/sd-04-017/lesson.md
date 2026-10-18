@@ -1,7 +1,7 @@
 # Lưu trữ khối, tệp và đối tượng: khác nhau ở thứ chương trình nhìn thấy
 
 **Ba kiểu lưu trữ có thể nằm trên cùng loại ổ đĩa; khác nhau là chương trình được đưa cho cái gì để đọc ghi.**
-Với lưu trữ khối, chương trình thấy một dãy khối đánh số. Với lưu trữ tệp, nó thấy tên và thư mục. Với lưu trữ đối tượng, nó thấy từng đối tượng có khóa, đọc ghi trọn qua một giao diện lập trình.
+Với lưu trữ khối, chương trình thấy một dãy khối đánh số. Với lưu trữ tệp, nó thấy tên và thư mục. Với lưu trữ đối tượng, nó thấy từng đối tượng có khóa, ghi trọn từng đối tượng qua một giao diện lập trình (khi đọc thì lấy được cả đối tượng hoặc một khoảng byte).
 
 ![Ba khung. Khung một là ba thẻ: lưu trữ khối là một dãy khối đánh số, máy chủ đọc ghi khối 2066 mà không biết đó là tệp gì; lưu trữ tệp ghép tên và thư mục với các khối, tệp /docs/note.txt là inode 13 nằm ở khối 2066; lưu trữ đối tượng là không gian phẳng, khóa photos/2017/a.jpg chỉ là một cái tên, thư mục chỉ là tiền tố, đọc ghi qua API. Khung hai là bốn bước thử: tạo một đĩa ảo 64 MiB định dạng ext4 với khối 4 KiB; ghi tệp /docs/note.txt dài 28 byte; hệ tệp cho biết tệp là inode 13, dữ liệu ở khối 2066; đọc thẳng khối 2066 ra đúng nội dung mà không cần tên. Khung ba: Ceph cho cả ba giao diện trên cùng một cụm: thiết bị khối, hệ tệp và kho đối tượng tương thích S3.](../../diagrams/sd-04-017-main.svg)
 
@@ -35,7 +35,7 @@ Ceph cho thấy ba kiểu là ba *giao diện*: trên cùng một cụm lưu tr�
 
 ## Giới hạn cần nhớ
 
-Chọn kiểu nào là chọn những thao tác có sẵn. Thiết bị khối thường chỉ một máy gắn vào dùng; bài nguồn nói nó thuộc trọn một máy chủ, không phải tài nguyên dùng chung. Hệ tệp cho nhiều máy dùng chung tên và thư mục. Kho đối tượng không có thư mục thật, nên "đổi tên một thư mục" nghĩa là chép rồi xóa từng đối tượng mang tiền tố đó; hướng dẫn S3 ghi rõ thư mục trên bảng điều khiển không đổi tên được.
+Chọn kiểu nào là chọn những thao tác có sẵn. Thiết bị khối thường chỉ một máy gắn vào dùng; bài nguồn nói nó thuộc trọn một máy chủ, không phải tài nguyên dùng chung. Hệ tệp cho nhiều máy dùng chung tên và thư mục. Kho đối tượng không có thư mục thật, nên với bucket thường của S3 (theo hướng dẫn bản 2023), "đổi tên một thư mục" nghĩa là chép rồi xóa từng đối tượng mang tiền tố đó; hướng dẫn S3 ghi rõ thư mục trên bảng điều khiển không đổi tên được.
 
 ## Nhìn hình trả lời
 
@@ -62,6 +62,7 @@ Thử nghiệm dùng một tệp làm đĩa ảo nên không đo tốc độ; th
 - [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/storage-systems-overview.md): ba loại lưu trữ khối, tệp, đối tượng.
 - [Amazon S3 User Guide — Creating object key names, bản 2023](https://github.com/awsdocs/amazon-s3-userguide/blob/cc53dd6a44d3aa1d654e6d3705a0a7550f20fd2a/doc_source/object-keys.md): mô hình dữ liệu phẳng, phân cấp suy ra từ tiền tố và dấu phân cách. Đọc từ bản clone của kho.
 - [Amazon S3 User Guide — Organizing objects using folders, bản 2023](https://github.com/awsdocs/amazon-s3-userguide/blob/cc53dd6a44d3aa1d654e6d3705a0a7550f20fd2a/doc_source/using-folders.md): thư mục là tiền tố của khóa, không đổi tên được.
+- [Amazon S3 User Guide — Downloading an object, bản 2023](https://github.com/awsdocs/amazon-s3-userguide/blob/cc53dd6a44d3aa1d654e6d3705a0a7550f20fd2a/doc_source/download-objects.md): đọc một khoảng byte thay vì cả đối tượng.
 - [Ceph — Ceph Clients, tại commit cố định](https://github.com/ceph/ceph/blob/c0b32d47115c516baef9eb0111b4dc1c21c91ff4/doc/architecture/ceph-clients.rst): thiết bị khối, kho đối tượng tương thích S3, hệ tệp trên cùng một cụm. Đọc từ bản clone của kho.
 
 Đã đọc nguồn và chạy thử nghiệm ngày 2026-10-18 với e2fsprogs 1.47.0 (`mkfs.ext4`, `debugfs`) trên một tệp đĩa ảo.

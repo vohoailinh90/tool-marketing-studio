@@ -3,7 +3,7 @@
   "lang": "vi",
   "title": "B-tree và LSM-tree: trả giá lúc ghi hay lúc gộp",
   "subtitle": "Một triệu khóa ngẫu nhiên vào SQLite và RocksDB trên cùng một máy.",
-  "desc": "Ba khung. Khung một, hai cách giữ khóa có thứ tự: B-tree là cây các trang 4 KiB, sửa một dòng là ghi lại cả trang chứa nó; LSM-tree ghi vào nhật ký và bộ nhớ, đầy thì đổ ra tệp đã sắp xếp rồi gộp dần xuống tầng dưới. Khung hai, thử với một triệu khóa ngẫu nhiên, 116 MB dữ liệu: B-tree commit mỗi 1.000 dòng ghi ra 12,2 GB, gấp 105 lần; B-tree một giao dịch với bộ đệm 256 MiB ghi 281 MB, gấp 2,4 lần; LSM-tree ghi 621 MB, gấp 5,4 lần; tìm 100.000 khóa không có mất 0,07 s với bộ lọc Bloom, 0,74 s khi tắt. Khung ba, chọn theo việc: ghi nhiều và rải rác hợp LSM-tree; B-tree ghi ít khi gom nhiều thay đổi; LSM-tree cần bộ lọc Bloom và việc gộp chạy nền.",
+  "desc": "Ba khung. Khung một, hai cách giữ khóa có thứ tự: B-tree là cây các trang 4 KiB, sửa một dòng là ghi lại cả trang chứa nó; LSM-tree ghi vào nhật ký và bộ nhớ, đầy thì đổ ra tệp đã sắp xếp rồi gộp dần xuống tầng dưới. Khung hai, thử với một triệu khóa ngẫu nhiên, 116 MB dữ liệu: B-tree commit mỗi 1.000 dòng với bộ đệm 256 MiB ghi ra 12,2 GB, gấp 105 lần; B-tree một giao dịch với bộ đệm 256 MiB ghi 281 MB, gấp 2,4 lần; LSM-tree ghi 621 MB, gấp 5,4 lần; tìm 100.000 khóa không có mất 0,07 s với bộ lọc Bloom, 0,74 s khi tắt. Khung ba, chọn theo việc: ghi nhiều và rải rác hợp LSM-tree; B-tree ghi ít khi gom nhiều thay đổi và bộ đệm đủ lớn; LSM-tree cần bộ lọc Bloom và việc gộp chạy nền.",
   "sections": [
     {
       "kind": "parts",
@@ -27,12 +27,12 @@
       "heading": "Thử: một triệu khóa, 116 MB",
       "items": [
         {
-          "title": "B-tree, commit mỗi 1.000 dòng",
+          "title": "B-tree, commit mỗi 1.000 dòng, đệm 256 MiB",
           "text": "Ghi ra 12,2 GB, gấp 105 lần dữ liệu."
         },
         {
           "title": "B-tree, một giao dịch",
-          "text": "Bộ đệm 256 MiB: ghi 281 MB, gấp 2,4 lần."
+          "text": "Đệm 256 MiB chứa đủ mọi trang: ghi 281 MB, gấp 2,4 lần."
         },
         {
           "title": "LSM-tree",
@@ -49,7 +49,7 @@
       "heading": "Chọn theo việc",
       "items": [
         "Ghi nhiều, khóa ngẫu nhiên, mỗi lần một ít: LSM-tree gom thay đổi rồi ghi tuần tự.",
-        "B-tree ghi ít hơn hẳn khi một giao dịch chứa nhiều thay đổi.",
+        "B-tree ghi ít hơn hẳn khi một giao dịch chứa nhiều thay đổi và bộ đệm đủ lớn.",
         "LSM-tree cần bộ lọc Bloom và việc gộp chạy nền; gộp không kịp thì việc ghi bị làm chậm.",
         "Tìm một khóa trong B-tree đi qua vài trang, từ gốc xuống lá."
       ]

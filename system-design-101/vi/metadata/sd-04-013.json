@@ -64,7 +64,7 @@
   },
   "claims": [
     {
-      "claim_vi": "Erasure coding splits data into data chunks (K) and coding chunks (M); M is the number of OSDs that can be missing without data loss; the overhead factor is (k+m)/k, 1.5 for 4+2 against 3.0 for three replicas; it is not a free lunch, with a significant performance trade-off especially on HDDs and during recovery; 4+2 or 6+3 are suggested, m=1 strongly discouraged; most deployments need at least k+m failure domains and benefit from k+m+1; pools recover while at least K shards remain.",
+      "claim_vi": "Erasure coding splits data into data chunks (K) and coding chunks (M); M is the number of OSDs that can be missing without data loss; the overhead factor is (k+m)/k, 1.5 for 4+2 against 3.0 for three replicas; it is not a free lunch, with a significant performance trade-off especially on HDDs and during recovery; 4+2 or 6+3 are suggested, m=1 strongly discouraged; most deployments need at least k+m failure domains and benefit from k+m+1; pools recover while at least K shards remain; the default erasure-coded pool profile is k=2 m=2, and when unsure which profile to use Ceph suggests 4+2 or 6+3; in Octopus and later releases pools can recover while at least K shards remain.",
       "source": "https://github.com/ceph/ceph/blob/c0b32d47115c516baef9eb0111b4dc1c21c91ff4/doc/rados/operations/erasure-code.rst",
       "section": "Introduction; Erasure-coded pool overhead; recovery; glossary",
       "verified_by": "Read from a partial clone of ceph/ceph at commit c0b32d47115c516baef9eb0111b4dc1c21c91ff4."
@@ -82,7 +82,7 @@
       "verified_by": "The author ran and measured this on 2026-10-18; speed was not measured."
     },
     {
-      "claim_vi": "Erasure coding with 4+2 chunks data and computes parities; storage overhead 50% against 200% for 3-copy replication; citing Backblaze, 11 nines versus 6 nines durability at a 0.81% annual node failure rate.",
+      "claim_vi": "The source states: Erasure coding with 4+2 chunks data and computes parities; storage overhead 50% against 200% for 3-copy replication; citing Backblaze, 11 nines versus 6 nines durability at a 0.81% annual node failure rate.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/erasure-coding.md",
       "section": "Body",
       "verified_by": "Source body read."

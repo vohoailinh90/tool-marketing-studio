@@ -54,7 +54,7 @@ Một trang hồ sơ cho người dùng đổi tên rồi tải lại trang ngay
 <details>
 <summary>Xem đáp án</summary>
 
-Có thể thấy: trong thử nghiệm, đọc ngay sau khi ghi ra bản cũ 194 trên 200 lần dù trễ chỉ vài mili giây.
+Có thể, nếu lần đọc tới trước khi bản đọc kịp cập nhật. Trong thử nghiệm, lần đọc gửi ngay sau lệnh ghi (chưa tới 1 ms sau) ra bản cũ 194 trên 200 lần; bản đọc trễ trung vị 2,3 ms, lâu nhất 23,8 ms. Một lần tải lại trang thường đến muộn hơn thế, nhưng khi bản đọc bị chậm (mạng, tải nặng) thì người dùng vẫn có thể gặp.
 Một cách sửa là đọc từ kho ghi cho chính người vừa ghi trong một khoảng ngắn (chỉ cho trang của họ), còn mọi người khác vẫn đọc từ kho đọc. Đây là suy luận của người biên soạn từ số đo, không phải một mẫu được nêu trong tài liệu đã dẫn.
 
 </details>

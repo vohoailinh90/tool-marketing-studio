@@ -1,6 +1,6 @@
 # Sáu cách dùng kho đối tượng, và tính năng nào làm cho mỗi cách chạy được
 
-**"Dùng kho đối tượng để lưu trữ dài hạn" hay "để làm hồ dữ liệu" chỉ đúng khi bạn bật đúng tính năng cho việc đó.**
+**"Dùng kho đối tượng để lưu trữ dài hạn" hay "để làm hồ dữ liệu" chỉ đúng khi kho có đúng tính năng cho việc đó, và bạn bật nó nếu nó không chạy sẵn.**
 Bài này đặt sáu cách dùng quen thuộc cạnh tính năng gánh chúng, lấy Amazon S3 làm ví dụ, kèm cái giá phải tính trước.
 
 ![Ba khung. Khung một, giữ lâu và an toàn: lưu trữ dài hạn nhờ quy tắc vòng đời chuyển đối tượng sang lớp rẻ hơn theo tuổi; sao lưu và phục hồi nhờ versioning giữ mọi phiên bản, xóa chỉ thêm dấu xóa nên lấy lại được; không cho sửa xóa nhờ Object Lock, ghi một lần đọc nhiều lần. Khung hai, kho chung cho nhiều chương trình: ảnh, video, tài liệu lớn tải theo nhiều phần và ghi cả đối tượng một lần; hồ dữ liệu dựa vào việc ghi xong là đọc và liệt kê thấy ngay; dữ liệu từ thiết bị dùng thông báo sự kiện báo có đối tượng mới, giao ít nhất một lần. Khung ba, cái giá: mỗi phiên bản là một đối tượng đầy đủ bị tính đủ tiền; chuyển lớp lưu trữ tốn phí; thông báo có thể đến hai lần.](../../diagrams/sd-04-018-main.svg)
@@ -37,7 +37,7 @@ Một công ty lưu bản sao lưu cơ sở dữ liệu hằng đêm lên kho đ
 <details>
 <summary>Xem đáp án</summary>
 
-Object Lock ở chế độ compliance: trong thời hạn giữ, không người dùng nào xóa hay ghi đè được phiên bản đã khóa, kể cả tài khoản gốc. Chế độ governance yếu hơn: người có quyền vượt khóa vẫn xóa được, nên nếu khóa truy cập bị lộ có quyền đó thì bản sao lưu vẫn mất.
+Object Lock ở chế độ compliance, với thời hạn giữ mặc định đặt cho bucket trước khi các bản sao lưu được ghi (bật Object Lock thôi chưa tự khóa đối tượng nào): trong thời hạn giữ, không người dùng nào xóa hay ghi đè được phiên bản đã khóa, kể cả tài khoản gốc. Chế độ governance yếu hơn: người có quyền vượt khóa vẫn xóa được, nên nếu khóa truy cập bị lộ có quyền đó thì bản sao lưu vẫn mất.
 Versioning giúp lấy lại khi lệnh xóa thường chỉ chèn dấu xóa, nhưng lệnh xóa kèm mã phiên bản thì xóa hẳn phiên bản đó; nó chống được xóa nhầm, chưa chống được người cố ý xóa.
 
 </details>

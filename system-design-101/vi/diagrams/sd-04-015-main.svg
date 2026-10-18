@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="320" height="1233" viewBox="0 0 320 1233" role="img" aria-labelledby="title desc">
 <title id="title">Thu thay đổi dữ liệu từ nhật ký</title>
-<desc id="desc">Ba khung. Khung một là bốn bước của một thay đổi: ứng dụng sửa bảng customers như bình thường; PostgreSQL ghi thay đổi vào nhật ký WAL; công cụ CDC đọc WAL qua một replication slot và giải mã thành sự kiện thêm, sửa, xóa; sự kiện được đẩy sang Kafka rồi tới kho phân tích hay cache. Khung hai so hai cách lấy thay đổi: thăm dò cột updated_at thấy dòng 1 bị sửa và dòng 3 mới thêm nhưng không thấy dòng 2 đã bị xóa; đọc WAL qua slot thấy đủ sửa dòng 1, xóa dòng 2, thêm dòng 3 theo thứ tự commit. Khung ba: slot không ai đọc giữ lại WAL, 61 MB sau một triệu dòng thêm; đọc xong và checkpoint thì chỉ còn 6.712 byte; muốn có giá trị cũ khi sửa thì đặt replica identity full cho bảng.</desc>
+<desc id="desc">Ba khung. Khung một là bốn bước của một thay đổi: ứng dụng sửa bảng customers như bình thường; PostgreSQL ghi thay đổi vào nhật ký WAL; công cụ CDC đọc WAL qua một replication slot và giải mã thành sự kiện thêm, sửa, xóa; sự kiện được đẩy sang Kafka rồi tới kho phân tích hay cache. Khung hai so hai cách lấy thay đổi: thăm dò cột updated_at thấy dòng 1 bị sửa và dòng 3 mới thêm nhưng không thấy dòng 2 đã bị xóa; đọc WAL qua slot thấy đủ sửa dòng 1, xóa dòng 2, thêm dòng 3 theo thứ tự commit. Khung ba: slot không ai đọc giữ lại WAL, 61 MiB sau một triệu dòng thêm; đọc xong và checkpoint thì chỉ còn 6.712 byte; muốn có giá trị cũ khi sửa thì đặt replica identity full cho bảng.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="1233" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
@@ -58,7 +58,7 @@
 <circle cx="43" cy="991" r="11" fill="#16a34a"/>
 <polyline points="37.9,991.4 41.7,995.4 48.5,987" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
 <text x="64" y="994.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Slot không ai đọc giữ lại</text>
-<text x="64" y="1013.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">WAL: 61 MB sau một triệu</text>
+<text x="64" y="1013.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">WAL: 61 MiB sau một triệu</text>
 <text x="64" y="1033.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dòng thêm.</text>
 <rect x="20" y="1059" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
 <circle cx="43" cy="1082" r="11" fill="#16a34a"/>

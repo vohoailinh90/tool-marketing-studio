@@ -69,12 +69,18 @@
   },
   "claims": [
     {
-      "claim_vi": "The Amazon S3 data model is a flat structure with no hierarchy of sub-buckets or subfolders; hierarchy is inferred from key name prefixes and delimiters; the console shows photos/2017/example.jpg as folder photos containing folder 2017; console folders cannot be renamed.",
+      "claim_vi": "The Amazon S3 data model is a flat structure with no hierarchy of sub-buckets or subfolders; hierarchy is inferred from key name prefixes and delimiters; the console shows photos/2017/example.jpg as folder photos containing folder 2017; console folders cannot be renamed (2023 guide, general purpose buckets).",
       "sources": [
         "https://github.com/awsdocs/amazon-s3-userguide/blob/cc53dd6a44d3aa1d654e6d3705a0a7550f20fd2a/doc_source/object-keys.md",
         "https://github.com/awsdocs/amazon-s3-userguide/blob/cc53dd6a44d3aa1d654e6d3705a0a7550f20fd2a/doc_source/using-folders.md"
       ],
       "section": "Creating object key names; Organizing objects in the Amazon S3 console by using folders",
+      "verified_by": "Read from a clone of awsdocs/amazon-s3-userguide at commit cc53dd6a44d3aa1d654e6d3705a0a7550f20fd2a."
+    },
+    {
+      "claim_vi": "Instead of reading the entire object, a GET can read only a portion of the object data by specifying a byte range.",
+      "source": "https://github.com/awsdocs/amazon-s3-userguide/blob/cc53dd6a44d3aa1d654e6d3705a0a7550f20fd2a/doc_source/download-objects.md",
+      "section": "Downloading an object",
       "verified_by": "Read from a clone of awsdocs/amazon-s3-userguide at commit cc53dd6a44d3aa1d654e6d3705a0a7550f20fd2a."
     },
     {
@@ -90,7 +96,7 @@
       "verified_by": "The author ran and measured this on 2026-10-18 without mounting the image; speed was not measured."
     },
     {
-      "claim_vi": "Three storage categories: block storage presents raw blocks and is owned by a single server, file storage is built on block storage with a directory hierarchy shared over SMB/NFS, object storage stores objects in a flat structure accessed by a RESTful API; examples listed include 'Google block storage'.",
+      "claim_vi": "The source states: Three storage categories: block storage presents raw blocks and is owned by a single server, file storage is built on block storage with a directory hierarchy shared over SMB/NFS, object storage stores objects in a flat structure accessed by a RESTful API; examples listed include 'Google block storage'. The lesson does not adopt 'Google block storage' as an object store (see source_deviations).",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/storage-systems-overview.md",
       "section": "Body",
       "verified_by": "Source body read."

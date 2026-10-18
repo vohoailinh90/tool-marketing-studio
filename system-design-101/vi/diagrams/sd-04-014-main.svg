@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="320" height="1108" viewBox="0 0 320 1108" role="img" aria-labelledby="title desc">
 <title id="title">Nhiều nhất, ít nhất hay đúng một lần</title>
-<desc id="desc">Ba khung. Khung một, thứ tự lưu vị trí đọc: lưu vị trí trước rồi xử lý thì bên nhận chết sau khi lưu làm khoản 6 bị bỏ qua, sổ còn 9 dòng, nhiều nhất một lần; xử lý trước rồi lưu vị trí thì chết trước khi lưu làm khoản 6 được giao lại, sổ 11 dòng, ít nhất một lần. Khung hai, hai cách được kết quả như đúng một lần: xử lý rồi bỏ bản trùng theo mã thanh toán, sổ 10 dòng; lưu vị trí cùng giao dịch với kết quả, chết trước commit thì cả hai cùng mất và làm lại từ khoản 6, sổ 10 dòng. Khung ba: số đo giám sát chịu mất vài điểm thì nhiều nhất một lần; có khóa để bỏ trùng thì ít nhất một lần là đủ; tiền mà đích không tự bỏ trùng thì lưu vị trí cùng kết quả hoặc dùng giao dịch của Kafka.</desc>
+<desc id="desc">Ba khung. Khung một, thứ tự lưu vị trí đọc: lưu vị trí trước rồi xử lý thì bên nhận chết sau khi lưu làm khoản 6 bị bỏ qua, sổ còn 9 dòng, nhiều nhất một lần; xử lý trước rồi lưu vị trí thì chết trước khi lưu làm khoản 6 được giao lại, sổ 11 dòng, ít nhất một lần. Khung hai, hai cách cho kết quả như đúng một lần: xử lý rồi bỏ bản trùng theo mã thanh toán, sổ 10 dòng; lưu vị trí cùng giao dịch với kết quả, chết trước commit thì cả hai cùng mất và làm lại từ khoản 6, sổ 10 dòng. Khung ba: số đo giám sát chịu mất vài điểm thì nhiều nhất một lần; có khóa để bỏ trùng thì ít nhất một lần là đủ; với tiền, lưu vị trí cùng giao dịch với kết quả; đích là topic Kafka thì dùng giao dịch của Kafka.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="1108" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
@@ -55,9 +55,9 @@
 <rect x="20" y="986" width="280" height="102" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
 <circle cx="43" cy="1009" r="11" fill="#16a34a"/>
 <polyline points="37.9,1009.4 41.7,1013.4 48.5,1005" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="1012.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tiền mà đích không tự bỏ</text>
-<text x="64" y="1031.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trùng: lưu vị trí cùng kết</text>
-<text x="64" y="1051.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">quả, hoặc giao dịch của</text>
+<text x="64" y="1012.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tiền: lưu vị trí cùng giao dịch</text>
+<text x="64" y="1031.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">với kết quả; đích là topic</text>
+<text x="64" y="1051.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Kafka thì dùng giao dịch của</text>
 <text x="64" y="1070.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Kafka.</text>
 </g>
 </svg>

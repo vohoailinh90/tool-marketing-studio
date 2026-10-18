@@ -79,13 +79,13 @@
       "verified_by": "Read from a partial clone of torvalds/linux at tag v6.18 (commit 7d0a66e4bb9081d75c82ec4957c50034cb0ea449)."
     },
     {
-      "claim_vi": "Measured on a 4-vCPU VM (sysfs: L1d 32 KiB, L2 1 MiB, L3 33 MiB, 64-byte lines): a dependent add 0.4 ns; one dependent read in a random cycle over 16 KiB 1.6 ns, 256 KiB 4.6-4.7 ns, 1 MiB 15-17 ns, 4 MiB 145-152 ns, 64 MiB 165-180 ns, 1 GiB 381 ns (259 ns with MADV_HUGEPAGE); 3,000 random 4 KiB O_DIRECT reads of a 2 GiB file averaged 72 us, worst 2.1 ms, on a disk the kernel reports as rotational; ten HTTPS requests to GitHub through the environment's proxy took a median of about 60 ms from TLS completion to first byte and about 0.25 s each including connection setup.",
+      "claim_vi": "Measured on a 4-vCPU VM (sysfs: L1d 32 KiB, L2 1 MiB, L3 33 MiB, 64-byte lines), across saved runs: a dependent add 0.4 ns; one dependent read in a random cycle over 16 KiB 1.5-1.7 ns, 256 KiB 4.4-5.0 ns, 1 MiB 15-17 ns, 4 MiB 145-152 ns, 64 MiB 165-180 ns, 1 GiB 326-409 ns; in one back-to-back pair, 1 GiB took 326 ns with 4 KiB pages and 225 ns with MADV_HUGEPAGE; 3,000 random 4 KiB O_DIRECT reads of a 2 GiB file averaged 72 us, worst 2.1 ms, on a disk the kernel reports as rotational; ten HTTPS requests to GitHub through the environment's proxy took a median of about 60 ms from TLS completion to first byte and a median of 0.27 s each including connection setup.",
       "source": "https://github.com/torvalds/linux/blob/7d0a66e4bb9081d75c82ec4957c50034cb0ea449/Documentation/ABI/testing/sysfs-devices-system-cpu",
       "section": "Author's experiment",
-      "verified_by": "The author ran and measured this on 2026-10-18; runs varied by about ten percent."
+      "verified_by": "The author ran and measured this on 2026-10-18; outputs saved per run (memlat.out, memlat2.out, memlat2_huge.out, sweep.out, curl.out); runs varied by up to about a quarter at 1 GiB."
     },
     {
-      "claim_vi": "Memory types vary by speed, size and function: registers inside the CPU, caches close to the CPU, main memory (RAM), SSDs, HDDs and remote secondary storage for backup and archiving.",
+      "claim_vi": "The source states: Memory types vary by speed, size and function: registers inside the CPU, caches close to the CPU, main memory (RAM), SSDs, HDDs and remote secondary storage for backup and archiving.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/types-of-memory.md",
       "section": "Body",
       "verified_by": "Source body read."

@@ -64,7 +64,7 @@
   },
   "claims": [
     {
-      "claim_vi": "A message is committed only when all in-sync replicas have it; with f+1 replicas Kafka tolerates f failures without losing committed messages; Kafka does not require fsync on every write and a rejoining replica must fully re-sync; unclean leader election is disabled by default since 0.11.0.0 and can be enabled with unclean.leader.election.enable; producers choose acks 0, 1 or all; min.insync.replicas only takes effect with acks=all and makes the partition reject writes below that ISR size.",
+      "claim_vi": "A message is committed only when all in-sync replicas have it and the ISR is no smaller than min(min.insync.replicas, replica count); with f+1 replicas Kafka tolerates f failures without losing committed messages; Kafka does not require fsync on every write and a rejoining replica must fully re-sync; unclean leader election is disabled by default since 0.11.0.0 and can be enabled with unclean.leader.election.enable; producers choose acks 0, 1 or all; min.insync.replicas only takes effect with acks=all and makes the partition reject writes below that ISR size.",
       "source": "https://github.com/apache/kafka/blob/65566690ca1ddb584388c1026e2ff6673e9c6f19/docs/design/design.md",
       "section": "Replicated Logs; Unclean leader election; Availability and Durability Guarantees",
       "verified_by": "Read from a partial clone of apache/kafka at commit 65566690ca1ddb584388c1026e2ff6673e9c6f19."
@@ -82,7 +82,7 @@
       "verified_by": "The author ran and measured this on 2026-10-18; unclean leader election was left at its default."
     },
     {
-      "claim_vi": "Kafka can lose messages: the producer needs proper acks and retries; brokers flush asynchronously so an instance down before the flush loses messages, and replicas must be configured; consumer auto-commit can acknowledge records before processing; combine synchronous and asynchronous commits.",
+      "claim_vi": "The source states: Kafka can lose messages: the producer needs proper acks and retries; brokers flush asynchronously so an instance down before the flush loses messages, and replicas must be configured; consumer auto-commit can acknowledge records before processing; combine synchronous and asynchronous commits. The lesson does not adopt the flush wording: per the Kafka design document durability comes from replication (see source_deviations).",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/can-kafka-lose-messages.md",
       "section": "Body",
       "verified_by": "Source body read."

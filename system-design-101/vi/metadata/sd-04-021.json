@@ -90,7 +90,7 @@
       "verified_by": "The author ran and measured this on 2026-10-18 on Redis 7.0.15."
     },
     {
-      "claim_vi": "Six database types in one sentence each: relational solves almost anything; in-memory stores are fast with limited data size; time-series stores manage time-stamped data; graph databases suit complex relationships between unstructured objects; document stores are good for large immutable data; wide column stores serve big data, analytics and reporting with denormalized data; the list of databases includes S3 and Ceph.",
+      "claim_vi": "The source states: Six database types in one sentence each: relational solves almost anything; in-memory stores are fast with limited data size; time-series stores manage time-stamped data; graph databases suit complex relationships between unstructured objects; document stores are good for large immutable data; wide column stores serve big data, analytics and reporting with denormalized data; the list of databases includes S3 and Ceph. The lesson corrects the graph, document and wide column sentences (see source_deviations).",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-you-decide-which-type-of-database-to-use.md",
       "section": "Body",
       "verified_by": "Source body read."

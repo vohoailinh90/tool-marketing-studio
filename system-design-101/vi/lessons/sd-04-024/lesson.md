@@ -19,7 +19,7 @@ Bài này đặt ba câu hỏi về lời hứa, rồi thử hai câu trên Post
 - **Lược đồ.** Cơ sở dữ liệu quan hệ kiểm lược đồ khi ghi (schema on write). Kho tài liệu và kho khóa–giá trị để chương trình đọc tự hiểu dữ liệu (schema on read).
 - **Mở rộng.** Muốn mở rộng ngang, cơ sở dữ liệu quan hệ thường phải chia shard hoặc chia partition; hướng dẫn ghi kho khóa–giá trị có điểm mạnh là mở rộng tuyến tính.
 
-**Khung 2 · Thử: chuyển 100 từ a sang b, bước hai hỏng.** Tài khoản a có 500, b có 0. Bước một trừ 100 của a; bước hai cộng 100 vào b nhưng hỏng (giá trị không phải số).
+**Khung 2 · Thử: chuyển 100 từ a sang b, bước hai hỏng.** Bước một trừ 100 của a (a có 500); bước hai cộng 100 vào b nhưng hỏng. Với PostgreSQL, b có 0 và số tiền ở bước hai được truyền là chữ "một trăm". Với Redis, b đang giữ chuỗi "không phải số", nên lệnh cộng 100 vào b hỏng khi `EXEC` chạy.
 
 | | PostgreSQL 16, một giao dịch | Redis 7, gói lệnh `MULTI` … `EXEC` |
 |---|---|---|

@@ -3,7 +3,7 @@
   "lang": "vi",
   "title": "Thu thay đổi dữ liệu từ nhật ký",
   "subtitle": "Thử trên PostgreSQL 16 với một replication slot.",
-  "desc": "Ba khung. Khung một là bốn bước của một thay đổi: ứng dụng sửa bảng customers như bình thường; PostgreSQL ghi thay đổi vào nhật ký WAL; công cụ CDC đọc WAL qua một replication slot và giải mã thành sự kiện thêm, sửa, xóa; sự kiện được đẩy sang Kafka rồi tới kho phân tích hay cache. Khung hai so hai cách lấy thay đổi: thăm dò cột updated_at thấy dòng 1 bị sửa và dòng 3 mới thêm nhưng không thấy dòng 2 đã bị xóa; đọc WAL qua slot thấy đủ sửa dòng 1, xóa dòng 2, thêm dòng 3 theo thứ tự commit. Khung ba: slot không ai đọc giữ lại WAL, 61 MB sau một triệu dòng thêm; đọc xong và checkpoint thì chỉ còn 6.712 byte; muốn có giá trị cũ khi sửa thì đặt replica identity full cho bảng.",
+  "desc": "Ba khung. Khung một là bốn bước của một thay đổi: ứng dụng sửa bảng customers như bình thường; PostgreSQL ghi thay đổi vào nhật ký WAL; công cụ CDC đọc WAL qua một replication slot và giải mã thành sự kiện thêm, sửa, xóa; sự kiện được đẩy sang Kafka rồi tới kho phân tích hay cache. Khung hai so hai cách lấy thay đổi: thăm dò cột updated_at thấy dòng 1 bị sửa và dòng 3 mới thêm nhưng không thấy dòng 2 đã bị xóa; đọc WAL qua slot thấy đủ sửa dòng 1, xóa dòng 2, thêm dòng 3 theo thứ tự commit. Khung ba: slot không ai đọc giữ lại WAL, 61 MiB sau một triệu dòng thêm; đọc xong và checkpoint thì chỉ còn 6.712 byte; muốn có giá trị cũ khi sửa thì đặt replica identity full cho bảng.",
   "sections": [
     {
       "kind": "steps",
@@ -48,7 +48,7 @@
       "kind": "notes",
       "heading": "Cần nhớ",
       "items": [
-        "Slot không ai đọc giữ lại WAL: 61 MB sau một triệu dòng thêm.",
+        "Slot không ai đọc giữ lại WAL: 61 MiB sau một triệu dòng thêm.",
         "Đọc xong và checkpoint: chỉ còn 6.712 byte.",
         "Muốn có giá trị cũ khi sửa: đặt replica identity full cho bảng."
       ]

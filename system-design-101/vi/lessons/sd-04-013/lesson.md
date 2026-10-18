@@ -31,7 +31,7 @@ Bốn khối đầu giống hệt dữ liệu gốc nên khi không mất gì th
 
 ## Giới hạn cần nhớ
 
-Tài liệu Ceph dặn đừng coi mã xóa là bữa trưa miễn phí: hiệu năng giảm rõ, nhất là với ổ cứng quay và khi cụm đang phục hồi. Phục hồi một khối phải đọc các khối còn lại, dựng lại rồi ghi khối mới. Ceph khuyên mặc định 4 + 2 hoặc 6 + 3, và rất không nên dùng m = 1 cho dữ liệu thật vì khi đang bảo trì một nơi thì không còn gì dự phòng.
+Tài liệu Ceph dặn đừng coi mã xóa là bữa trưa miễn phí: hiệu năng giảm rõ, nhất là với ổ cứng quay và khi cụm đang phục hồi. Phục hồi một khối phải đọc các khối còn lại, dựng lại rồi ghi khối mới. Khi chưa chắc chọn bộ nào, Ceph khuyên 4 + 2 hoặc 6 + 3 (bộ mặc định của Ceph là 2 + 2), và rất không nên dùng m = 1 cho dữ liệu thật vì khi đang bảo trì một nơi thì không còn gì dự phòng.
 
 ## Nhìn hình trả lời
 
@@ -56,7 +56,7 @@ Bài nguồn dẫn tính toán của Backblaze rằng mã xóa đạt độ bề
 ## Nguồn đối chiếu
 
 - [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/erasure-coding.md): mã xóa 4 + 2, chi phí chỗ so với ba bản sao.
-- [Ceph — Erasure code, tại commit cố định](https://github.com/ceph/ceph/blob/c0b32d47115c516baef9eb0111b4dc1c21c91ff4/doc/rados/operations/erasure-code.rst): khối dữ liệu và khối mã, hệ số (k + m) / k, 1,5 so với 3,0, cái giá về hiệu năng, khuyên 4 + 2 hoặc 6 + 3, tránh m = 1, cần k + m nơi hỏng độc lập, phục hồi khi còn ít nhất k khối. Đọc từ bản clone của kho.
+- [Ceph — Erasure code, tại commit cố định](https://github.com/ceph/ceph/blob/c0b32d47115c516baef9eb0111b4dc1c21c91ff4/doc/rados/operations/erasure-code.rst): khối dữ liệu và khối mã, hệ số (k + m) / k, 1,5 so với 3,0, cái giá về hiệu năng, khuyên 4 + 2 hoặc 6 + 3 khi chưa chắc, bộ mặc định 2 + 2, tránh m = 1, cần k + m nơi hỏng độc lập, từ bản Octopus phục hồi khi còn ít nhất k khối. Đọc từ bản clone của kho.
 - [zfec — README, tại commit cố định](https://github.com/tahoe-lafs/zfec/blob/1fede6c166592c98da7f102539f94daf99db4756/README.rst): thư viện mã xóa dựa trên thư viện fec của Luigi Rizzo, giải mã cần k khối. Đọc từ bản clone của kho.
 
 Đã đọc nguồn và chạy thử nghiệm ngày 2026-10-18 bằng zfec 1.6.0.0 trên Python 3.13; không đo tốc độ.

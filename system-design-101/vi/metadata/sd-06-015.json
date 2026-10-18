@@ -38,7 +38,7 @@
     "claims": {
       "status": "checked",
       "checked_on": "2026-10-18",
-      "evidence": "MDN's caching guide, Redis's SET command page and Microsoft's Circuit Breaker pattern read from local clones; a hot-key stampede and TTL jitter tested on Redis 7.0.15."
+      "evidence": "MDN's caching guide, Redis's SET command page and distributed locks page, and Microsoft's Circuit Breaker pattern read from local clones; a hot-key stampede and TTL jitter tested on Redis 7.0.15."
     },
     "technical_review": {
       "status": "pending",
@@ -76,9 +76,15 @@
       "verified_by": "Read from a local clone of redis/docs at commit 3b030c7ef066c0bb7f88ddec02c784e49783b0f8, the head of its default branch when read on 2026-10-18 (a later change to that branch does not alter this URL)."
     },
     {
-      "claim_vi": "Circuit Breaker: temporarily block access to a remote service after failures reach a threshold instead of retrying, letting it recover and improving stability.",
+      "claim_vi": "The lock validity time is the key's time to live: both the auto-release time and the time the holder has to finish before another client may acquire the lock; mutual exclusion holds only while the holder finishes within it. A holder may extend the lock with a Lua script that extends the key's TTL, but should not assume a lock is retained as long as its process is alive.",
+      "source": "https://github.com/redis/docs/blob/3b030c7ef066c0bb7f88ddec02c784e49783b0f8/content/develop/clients/patterns/distributed-locks.md",
+      "section": "Correct Implementation with a Single Instance; Is the Algorithm Asynchronous?; Making the algorithm more reliable: Extending the lock; Disclaimer about consistency",
+      "verified_by": "Read from a local clone of redis/docs at commit 3b030c7ef066c0bb7f88ddec02c784e49783b0f8, the head of its default branch when read on 2026-10-18 (a later change to that branch does not alter this URL)."
+    },
+    {
+      "claim_vi": "Circuit Breaker: temporarily block access to a remote service after failures reach a threshold instead of retrying, letting it recover and improving stability. The example places it in front of the database: when it trips, requests are short-circuited and return default or cached responses, protecting the application from further overload.",
       "source": "https://github.com/MicrosoftDocs/architecture-center/blob/8e2c239344ee753a88856800b4210a3e27ac1036/docs/patterns/circuit-breaker.md",
-      "section": "Introduction",
+      "section": "Introduction; Example",
       "verified_by": "Read from a local clone of MicrosoftDocs/architecture-center at commit 8e2c239344ee753a88856800b4210a3e27ac1036, the head of its default branch when read on 2026-10-18 (a later change to that branch does not alter this URL)."
     },
     {
@@ -97,7 +103,8 @@
   "design_notes_vi": "Ba khung ghi chú: bốn kiểu hỏng, thử khóa nóng hết hạn, và hạn sống lệch nhau. Kiểu khóa không tồn tại chỉ nhắc qua vì có bài riêng.",
   "source_deviations": [
     "Source's figure that hot keys take 80% of queries is dropped: no source.",
-    "Source describes a circuit breaker as stopping services from visiting both the cache and the database; the lesson uses Microsoft's pattern definition instead.",
+    "Source describes a circuit breaker as stopping services from visiting both the cache and the database; the lesson uses Microsoft's pattern definition and keeps the point that only blocking or limiting database calls protects the database (a breaker around the failed cache alone does not).",
+    "The limits section adds that the lock's expiry bounds the load: a load longer than PX 2000 lets a second request take the lock, so the lease must outlast the load or be extended, and a holder that lost it must stop acting as the only loader (Redis distributed locks page).",
     "The lesson adds a stampede experiment that finds a gap in the simple lock (two loads) and the re-read that closes it."
   ],
   "editorial_note_vi": "Bài mới viết tại repo này (gói L5), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."

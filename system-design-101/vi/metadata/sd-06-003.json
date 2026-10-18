@@ -109,7 +109,8 @@
   "design_notes_vi": "Bốn bước của một lệnh ghi để thấy write và fsync là hai bước khác nhau, ba chế độ, và số đo. Bảng số đo đặt trong bài; hình chỉ nói hướng.",
   "source_deviations": [
     "Source says big keys have no impact on the main thread in EverySec and No modes; Redis's latency documentation and the lesson's measurement both show the write(2) on the main thread still blocks it.",
-    "The lesson adds a measurement on Redis 7.0.15 and a way for the reader to repeat it."
+    "The lesson adds a measurement on Redis 7.0.15 and a way for the reader to repeat it.",
+    "The figure shows the reply waiting for fsync only under always; under everysec and no the reply does not wait for the disk, and other clients wait on the main-thread write."
   ],
   "editorial_note_vi": "Bài mới viết tại repo này (gói L5), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
 }

@@ -1,0 +1,25 @@
+{
+  "id": "sd-10-022",
+  "title": "Mệnh lệnh, hàm, hướng đối tượng",
+  "subtitle": "Ba mô hình lập trình chính, mỗi mô hình bốn ý.",
+  "desc": "Ba nhóm thẻ, mỗi nhóm bốn thẻ, và một khung ghi nhớ. Mệnh lệnh: đổi trạng thái bằng chuỗi lệnh, dùng vòng lặp và câu lệnh điều kiện, nhấn mạnh dữ liệu thay đổi được và các bước tường minh, ví dụ C và Python. Hàm: hàm thuần không tác dụng phụ, bất biến, hàm bậc cao và đệ quy, ví dụ Haskell, Lisp, Scala. Hướng đối tượng: mô hình thực thể thành đối tượng, kế thừa đóng gói đa hình, dùng lớp đối tượng và giao diện, ví dụ Java, C++, Python, Ruby. Khung cuối nêu ba điều cần nhớ.",
+  "sections": [
+    {"kind": "parts", "heading": "Mệnh lệnh",
+     "items": [{"name": "Chuỗi lệnh", "role": "Đổi trạng thái chương trình qua một chuỗi lệnh.", "icon": "list-ordered"},
+               {"name": "Cấu trúc điều khiển", "role": "Vòng lặp và câu lệnh điều kiện lo luồng chạy.", "icon": "git-branch"},
+               {"name": "Dữ liệu thay đổi được", "role": "Nhấn mạnh dữ liệu khả biến và các bước tường minh.", "icon": "refresh-cw"},
+               {"name": "Ví dụ", "role": "C, Python và hầu hết ngôn ngữ thủ tục.", "icon": "code"}]},
+    {"kind": "parts", "heading": "Hàm",
+     "items": [{"name": "Hàm thuần", "role": "Tính toán không có tác dụng phụ.", "icon": "circle-check"},
+               {"name": "Bất biến", "role": "Tránh trạng thái thay đổi được.", "icon": "lock"},
+               {"name": "Công cụ", "role": "Hàm bậc cao, đệ quy và lập trình khai báo.", "icon": "workflow"},
+               {"name": "Ví dụ", "role": "Haskell, Lisp, Scala; tính năng hàm trong JavaScript.", "icon": "code"}]},
+    {"kind": "parts", "heading": "Hướng đối tượng",
+     "items": [{"name": "Mô hình hóa", "role": "Thực thể thực tế thành đối tượng chứa dữ liệu và phương thức.", "icon": "box"},
+               {"name": "Ba ý", "role": "Kế thừa, đóng gói và đa hình.", "icon": "layers"},
+               {"name": "Cách dựng mã", "role": "Dùng lớp, đối tượng và giao diện.", "icon": "boxes"},
+               {"name": "Ví dụ", "role": "Java, C++, Python và Ruby.", "icon": "code"}]},
+    {"kind": "notes", "heading": "Nhớ gì",
+     "items": ["Ba mô hình khác nhau ở chỗ nhìn chương trình là gì.", "Một ngôn ngữ có thể xuất hiện ở nhiều mô hình.", "Danh sách ngôn ngữ chỉ là ví dụ của nguồn."]}
+  ]
+}

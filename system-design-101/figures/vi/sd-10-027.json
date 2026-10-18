@@ -1,0 +1,85 @@
+{
+  "id": "sd-10-027",
+  "title": "Mười một bước lên lập trình viên cấp cao",
+  "subtitle": "Lộ trình theo ý tác giả nguồn, giữ nguyên số thứ tự.",
+  "desc": "Bốn chuỗi bước, mười một bước. Cách làm việc: 1 công cụ cộng tác, 2 ngôn ngữ lập trình, 3 phát triển API. Vận hành và dữ liệu: 4 máy chủ web và lưu trữ, 5 xác thực và kiểm thử, 6 cơ sở dữ liệu. Tự động hóa và nền tảng: 7 CI/CD, 8 cấu trúc dữ liệu và thuật toán. Tầm nhìn: 9 thiết kế hệ thống, 10 mẫu thiết kế, 11 công cụ AI. Khung cuối nêu ba điều cần nhớ.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Cách làm việc",
+      "items": [
+        {
+          "title": "1 · Công cụ cộng tác",
+          "text": "Phát triển phần mềm là hoạt động xã hội: Jira, Confluence, Slack, MS Teams, Zoom."
+        },
+        {
+          "title": "2 · Ngôn ngữ lập trình",
+          "text": "Chọn và thành thạo một hai ngôn ngữ: Java, Python, JavaScript, C#, Go."
+        },
+        {
+          "title": "3 · Phát triển API",
+          "text": "REST, GraphQL và gRPC."
+        }
+      ]
+    },
+    {
+      "kind": "steps",
+      "heading": "Vận hành và dữ liệu",
+      "items": [
+        {
+          "title": "4 · Máy chủ web và lưu trữ",
+          "text": "Máy chủ web và đám mây: AWS, Azure, GCP, Kubernetes."
+        },
+        {
+          "title": "5 · Xác thực và kiểm thử",
+          "text": "JWT, OAuth2; TDD, kiểm thử đầu cuối, kiểm thử hiệu năng."
+        },
+        {
+          "title": "6 · Cơ sở dữ liệu",
+          "text": "Quan hệ: Postgres, MySQL, SQLite. Phi quan hệ: MongoDB, Cassandra, Redis."
+        }
+      ]
+    },
+    {
+      "kind": "steps",
+      "heading": "Tự động hóa và nền tảng",
+      "items": [
+        {
+          "title": "7 · CI/CD",
+          "text": "GitHub Actions, Jenkins hoặc CircleCI."
+        },
+        {
+          "title": "8 · Cấu trúc dữ liệu và thuật toán",
+          "text": "Big O, sắp xếp, cây, đồ thị."
+        }
+      ]
+    },
+    {
+      "kind": "steps",
+      "heading": "Tầm nhìn",
+      "items": [
+        {
+          "title": "9 · Thiết kế hệ thống",
+          "text": "Mạng, bộ nhớ đệm, CDN, microservice, nhắn tin, cân bằng tải, nhân bản, hệ phân tán."
+        },
+        {
+          "title": "10 · Mẫu thiết kế",
+          "text": "Dependency injection, factory, proxy, observer, facade."
+        },
+        {
+          "title": "11 · Công cụ AI",
+          "text": "GitHub Copilot, ChatGPT, Langchain, prompt engineering."
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Nhớ gì",
+      "items": [
+        "Đây là lộ trình theo ý tác giả, không phải chuẩn nghề.",
+        "Tên công cụ chỉ là ví dụ của nguồn.",
+        "Nguồn không nói thế nào là cấp cao."
+      ]
+    }
+  ]
+}

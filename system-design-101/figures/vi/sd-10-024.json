@@ -1,0 +1,22 @@
+{
+  "id": "sd-10-024",
+  "title": "Chín thuật toán dùng hằng ngày",
+  "subtitle": "Tên theo nguồn, mô tả ngắn theo tài liệu thư viện.",
+  "desc": "Ba nhóm thẻ và một khung ghi nhớ. Xếp, tìm đường và xếp hạng: sắp xếp, thuật toán Dijkstra, phân tích liên kết. Mật mã, số và nén: RSA, phân tích thừa số nguyên, mã Huffman, họ băm SHA. Học máy: Transformer, mạng nơ-ron tích chập. Khung cuối nêu ba điều cần nhớ.",
+  "sections": [
+    {"kind": "parts", "heading": "Xếp, tìm đường và xếp hạng",
+     "items": [{"name": "Sắp xếp", "role": "Xếp phần tử theo thứ tự; Python dùng Timsort, Java dùng Dual-Pivot Quicksort cho mảng số.", "icon": "list-ordered"},
+               {"name": "Thuật toán Dijkstra", "role": "Tìm đường đi có trọng số ngắn nhất giữa hai nút của đồ thị.", "icon": "route"},
+               {"name": "Phân tích liên kết", "role": "Xếp hạng nút theo liên kết đến; PageRank xếp hạng trang web.", "icon": "share-2"}]},
+    {"kind": "parts", "heading": "Mật mã, số và nén",
+     "items": [{"name": "RSA", "role": "Java có tham số để sinh một cặp khóa RSA.", "icon": "key-round"},
+               {"name": "Phân tích thừa số nguyên", "role": "Tìm các thừa số nguyên tố của một số nguyên.", "icon": "hash"},
+               {"name": "Mã Huffman", "role": "Nguồn chỉ nêu tên; bài không đối chiếu.", "icon": "package"},
+               {"name": "Họ băm SHA", "role": "Python hỗ trợ SHA-256, SHA-512 và dòng SHA-3.", "icon": "fingerprint-pattern"}]},
+    {"kind": "parts", "heading": "Học máy",
+     "items": [{"name": "Transformer", "role": "PyTorch có lớp theo bài báo Attention Is All You Need.", "icon": "brain"},
+               {"name": "Mạng nơ-ron tích chập", "role": "PyTorch có lớp Conv2d áp phép tích chập 2D.", "icon": "layers"}]},
+    {"kind": "notes", "heading": "Nhớ gì",
+     "items": ["Nguồn nêu chín tên, không mô tả từng cái bằng chữ.", "Nơi dùng của từng thuật toán nằm trong ảnh nguồn, bài không dùng.", "Cách chia nhóm là của bài, không phải của nguồn."]}
+  ]
+}

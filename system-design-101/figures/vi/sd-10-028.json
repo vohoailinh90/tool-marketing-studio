@@ -1,0 +1,85 @@
+{
+  "id": "sd-10-028",
+  "title": "Mười nguyên tắc viết mã tốt",
+  "subtitle": "Theo thứ tự của bài nguồn.",
+  "desc": "Ba nhóm thẻ và một khung ghi nhớ. Đọc được và bền: 1 theo quy ước viết mã, 2 tài liệu và chú thích, 3 vững vàng, 4 nguyên tắc SOLID. Dễ kiểm thử và dễ đổi: 5 dễ kiểm thử, 6 trừu tượng, 7 mẫu thiết kế nhưng đừng thiết kế quá tay, 8 giảm phụ thuộc toàn cục. Giữ lâu dài: 9 tái cấu trúc liên tục, 10 bảo mật là ưu tiên hàng đầu. Khung cuối nêu ba điều cần nhớ.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Đọc được và bền",
+      "items": [
+        {
+          "name": "1 · Theo quy ước viết mã",
+          "role": "Theo chuẩn ngành (PEP 8, Google Java Style).",
+          "icon": "book-open"
+        },
+        {
+          "name": "2 · Tài liệu và chú thích",
+          "role": "Chú thích nói vì sao; ngắn gọn, luôn cập nhật.",
+          "icon": "file-text"
+        },
+        {
+          "name": "3 · Vững vàng",
+          "role": "Xử lý được tình huống bất ngờ mà không sập.",
+          "icon": "shield-check"
+        },
+        {
+          "name": "4 · Nguyên tắc SOLID",
+          "role": "Năm nguyên tắc cho mã dễ mở rộng, dễ bảo trì.",
+          "icon": "puzzle"
+        }
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Dễ kiểm thử và dễ đổi",
+      "items": [
+        {
+          "name": "5 · Dễ kiểm thử",
+          "role": "Giảm độ phức tạp từng thành phần; hỗ trợ kiểm thử tự động.",
+          "icon": "stethoscope"
+        },
+        {
+          "name": "6 · Trừu tượng",
+          "role": "Rút phần lõi, ẩn độ phức tạp; mức vừa phải.",
+          "icon": "layers"
+        },
+        {
+          "name": "7 · Mẫu thiết kế",
+          "role": "Giải bài toán quen thuộc, nhưng đừng thiết kế quá tay.",
+          "icon": "boxes"
+        },
+        {
+          "name": "8 · Bớt phụ thuộc toàn cục",
+          "role": "Dùng trạng thái cục bộ và truyền tham số; hàm không tác dụng phụ.",
+          "icon": "workflow"
+        }
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Giữ lâu dài",
+      "items": [
+        {
+          "name": "9 · Tái cấu trúc liên tục",
+          "role": "Sửa vấn đề sớm để giảm nợ kỹ thuật.",
+          "icon": "refresh-cw"
+        },
+        {
+          "name": "10 · Bảo mật là ưu tiên",
+          "role": "Tránh các lỗ hổng bảo mật phổ biến.",
+          "icon": "lock"
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Nhớ gì",
+      "items": [
+        "Mười nguyên tắc, mỗi nguyên tắc một ý chính.",
+        "Mẫu thiết kế và trừu tượng đều có mức vừa phải.",
+        "Cách chia nhóm là của bài, không phải của nguồn."
+      ]
+    }
+  ]
+}

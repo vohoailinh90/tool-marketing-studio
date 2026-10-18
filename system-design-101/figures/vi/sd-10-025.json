@@ -1,0 +1,18 @@
+{
+  "id": "sd-10-025",
+  "title": "Đồng thời và song song",
+  "subtitle": "Một bên là thiết kế, một bên là thực thi.",
+  "desc": "Hai nhóm thẻ và một khung ghi nhớ. Đồng thời (concurrency), nghĩa là dealing with nhiều việc cùng lúc: là chuyện thiết kế chương trình; các việc chạy chồng thời gian nhau, không nhất thiết cùng một khoảnh khắc, kể cả trên một lõi; hợp với việc chờ đợi như tệp, mạng, người dùng. Song song (parallelism), nghĩa là doing nhiều việc cùng lúc: là chuyện thực thi; chạy nhiều phép tính cùng lúc trên nhiều bộ xử lý hoặc lõi; hợp với việc nặng tính toán. Khung cuối nêu ba điều cần nhớ.",
+  "sections": [
+    {"kind": "parts", "heading": "Đồng thời · dealing with",
+     "items": [{"name": "Chuyện thiết kế", "role": "Cấu trúc chương trình để xử lý nhiều việc.", "icon": "workflow"},
+               {"name": "Chồng thời gian", "role": "Các việc chạy chồng lên nhau, không nhất thiết cùng lúc; một lõi vẫn làm được.", "icon": "refresh-cw"},
+               {"name": "Hợp với việc chờ", "role": "Chờ tệp, mạng, người dùng; độ trễ cao.", "icon": "clock"}]},
+    {"kind": "parts", "heading": "Song song · doing",
+     "items": [{"name": "Chuyện thực thi", "role": "Chạy nhiều phép tính cùng một lúc.", "icon": "zap"},
+               {"name": "Cần nhiều đơn vị xử lý", "role": "Nhiều bộ xử lý hoặc nhiều lõi.", "icon": "cpu"},
+               {"name": "Hợp với việc tính toán", "role": "Tính toán nặng, phân tích dữ liệu, xử lý ảnh.", "icon": "gauge"}]},
+    {"kind": "notes", "heading": "Nhớ gì",
+     "items": ["Đồng thời nói về thiết kế, song song nói về thực thi.", "Đồng thời không đòi hỏi nhiều lõi; song song thì có.", "Hai khái niệm khác nhau nhưng có thể đi cùng nhau."]}
+  ]
+}

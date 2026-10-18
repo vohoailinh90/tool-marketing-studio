@@ -1,0 +1,117 @@
+{
+  "id": "sd-10-024",
+  "title_vi": "Chín thuật toán dùng khắp đời sống số",
+  "language": "vi",
+  "kind": "reference",
+  "content_status": "draft",
+  "source_ref": "sd-10-024",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/the-9-algorithms-that-dominate-our-world.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/the-9-algorithms-that-dominate-our-world.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "40e6385a1a353dac41c804d9e120a0610652d53a",
+    "retrieved_body_sha256": "4c438ed328049dab8d9ed13f5cd76372c5231b67c00077bccf490f309c89f27c",
+    "retrieved_body_bytes": 843
+  },
+  "diagram": "../diagrams/sd-10-024-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-10-021",
+      "relation": "see-also",
+      "reason_vi": "Bài kia nói cách đọc thang sao của thuật toán nên biết cho phỏng vấn thiết kế hệ thống."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "source_claims_listed_with_the_pinned_source; the library statements were read in raw copies at the pinned commits, but Huffman coding has no primary document, the source only names the algorithms, and the glosses are the author's general knowledge"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending",
+      "reason": "figure text measured in Chromium by scripts.figures check --browser (14 px at a 375 px screen); no whole-lesson render at 320, 375 and 430 px recorded"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "The nine algorithms in the source are listed as headings only: Sorting, Dijkstra's Algorithm, Transformers, Link Analysis, RSA Algorithm, Integer Factorization, Convolutional Neural Networks, Huffman Coding, Secure Hash Algorithm; the intro says they are used in internet search engines, social networks, WiFi, cell phones and satellites.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/the-9-algorithms-that-dominate-our-world.md",
+      "section": "Whole body",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Python sorting HOWTO: sorts are guaranteed stable; the Timsort algorithm takes advantage of any ordering already present in a dataset.",
+      "source": "https://github.com/python/cpython/blob/b00a14018172652226bd6efb517af021bd03aa88/Doc/howto/sorting.rst",
+      "section": "Sorting HOWTO",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "JDK Arrays notes the sorting algorithm for primitive arrays is a Dual-Pivot Quicksort.",
+      "source": "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/Arrays.java",
+      "section": "Arrays.sort implementation notes",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "NetworkX dijkstra_path uses Dijkstra's Method to compute the shortest weighted path between two nodes in a graph.",
+      "source": "https://github.com/networkx/networkx/blob/abf2feda2252ee4e0d5a66964addf179225dfe76/networkx/algorithms/shortest_paths/weighted.py",
+      "section": "dijkstra_path",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "NetworkX pagerank (in link_analysis) computes a ranking of the nodes based on the structure of incoming links; it was originally designed to rank web pages.",
+      "source": "https://github.com/networkx/networkx/blob/abf2feda2252ee4e0d5a66964addf179225dfe76/networkx/algorithms/link_analysis/pagerank_alg.py",
+      "section": "pagerank",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "JDK RSAKeyGenParameterSpec specifies the set of parameters used to generate an RSA key pair.",
+      "source": "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/security/spec/RSAKeyGenParameterSpec.java",
+      "section": "Class comment",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "SymPy factorint(n) returns a dict of the prime factors of a positive integer n with their multiplicities.",
+      "source": "https://github.com/sympy/sympy/blob/50e68debd256f0ff52b1856bba54868e5499448e/sympy/ntheory/factor_.py",
+      "section": "factorint",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "Python hashlib offers a common interface to many hash algorithms including SHA-224, SHA-256, SHA-384, SHA-512 and the SHA-3 series.",
+      "source": "https://github.com/python/cpython/blob/b00a14018172652226bd6efb517af021bd03aa88/Doc/library/hashlib.rst",
+      "section": "hashlib introduction",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "PyTorch Transformer implements the original Transformer architecture of \"Attention Is All You Need\" as a reference implementation; PyTorch Conv2d applies a 2D convolution over an input signal of several input planes.",
+      "source": "https://github.com/pytorch/pytorch/blob/a0f92a5ebaafec79f18454ffab8d8a08c6255f76/torch/nn/modules/transformer.py",
+      "section": "Transformer and Conv2d class comments",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "Huffman coding has only its name in the source and no primary document was read; that Conv2d is a basic block of a CNN and the glosses of RSA, SHA, CNN and JDK are the author's general knowledge.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/the-9-algorithms-that-dominate-our-world.md",
+      "section": "Limits and Từ viết tắt",
+      "verified_by": "Author's general knowledge; not checked against primary documentation."
+    }
+  ],
+  "design_notes_vi": "Ba nhóm thẻ theo họ hàng (xếp, tìm đường và xếp hạng; mật mã, số và nén; học máy) và một khung ghi nhớ. Mỗi thẻ có một mô tả ngắn lấy từ tài liệu thư viện, riêng mã Huffman chỉ có tên. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Source body lists nine names with no text under them; the descriptions are in the source image, which the lesson does not use, so each short description comes from the pinned documentation of a software library.",
+    "Source gives one sentence on where the algorithms are used and does not map them to uses; the lesson says so and assigns none."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích thêm là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
+}

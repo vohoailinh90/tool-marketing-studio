@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1810" viewBox="0 0 320 1810" role="img" aria-labelledby="title desc">
+<title id="title">Mệnh lệnh, hàm, hướng đối tượng</title>
+<desc id="desc">Ba nhóm thẻ, mỗi nhóm bốn thẻ, và một khung ghi nhớ. Mệnh lệnh: đổi trạng thái bằng chuỗi lệnh, dùng vòng lặp và câu lệnh điều kiện, nhấn mạnh dữ liệu thay đổi được và các bước tường minh, ví dụ C và Python. Hàm: hàm thuần không tác dụng phụ, bất biến, hàm bậc cao và đệ quy, ví dụ Haskell, Lisp, Scala. Hướng đối tượng: mô hình thực thể thành đối tượng, kế thừa đóng gói đa hình, dùng lớp đối tượng và giao diện, ví dụ Java, C++, Python, Ruby. Khung cuối nêu ba điều cần nhớ.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1810" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Mệnh lệnh, hàm, hướng</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">đối tượng</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Ba mô hình lập trình chính, mỗi mô</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">hình bốn ý.</text>
+<rect x="8" y="123" width="304" height="467" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Mệnh lệnh</text>
+<rect x="20" y="168" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="211.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 200.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5h10"/><path d="M11 12h10"/><path d="M11 19h10"/><path d="M4 4h1v5"/><path d="M4 9h2"/><path d="M6.5 20H3.4c0-1 2.6-1.925 2.6-3.5a1.5 1.5 0 0 0-2.6-1.02"/></g>
+<text x="78" y="194.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Chuỗi lệnh</text>
+<text x="78" y="218.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đổi trạng thái chương trình</text>
+<text x="78" y="237.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">qua một chuỗi lệnh.</text>
+<rect x="20" y="269" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="312.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 301.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6a9 9 0 0 0-9 9V3"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/></g>
+<text x="78" y="295.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Cấu trúc điều khiển</text>
+<text x="78" y="319.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Vòng lặp và câu lệnh điều</text>
+<text x="78" y="338.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">kiện lo luồng chạy.</text>
+<rect x="20" y="370" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="423.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 412.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></g>
+<text x="78" y="396.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Dữ liệu thay đổi được</text>
+<text x="78" y="420.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nhấn mạnh dữ liệu khả</text>
+<text x="78" y="439.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">biến và các bước tường</text>
+<text x="78" y="459.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">minh.</text>
+<rect x="20" y="491" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="534.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 523.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></g>
+<text x="78" y="517.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Ví dụ</text>
+<text x="78" y="541.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">C, Python và hầu hết ngôn</text>
+<text x="78" y="560.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">ngữ thủ tục.</text>
+<rect x="8" y="602" width="304" height="447" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="630.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Hàm</text>
+<rect x="20" y="647" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="690.5" r="18" fill="#0f766e"/><g transform="translate(39.2 679.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m16 9-5.5 5.5L8 12"/></g>
+<text x="78" y="673.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Hàm thuần</text>
+<text x="78" y="697.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tính toán không có tác</text>
+<text x="78" y="716.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dụng phụ.</text>
+<rect x="20" y="748" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="791.5" r="18" fill="#0f766e"/><g transform="translate(39.2 780.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="11" rx="2" ry="2" width="18" x="3" y="11"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></g>
+<text x="78" y="774.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Bất biến</text>
+<text x="78" y="798.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tránh trạng thái thay đổi</text>
+<text x="78" y="817.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">được.</text>
+<rect x="20" y="849" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="892.5" r="18" fill="#0f766e"/><g transform="translate(39.2 881.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="8" rx="2" width="8" x="3" y="3"/><path d="M7 11v4a2 2 0 0 0 2 2h4"/><rect height="8" rx="2" width="8" x="13" y="13"/></g>
+<text x="78" y="875.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Công cụ</text>
+<text x="78" y="899.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Hàm bậc cao, đệ quy và</text>
+<text x="78" y="918.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lập trình khai báo.</text>
+<rect x="20" y="950" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="993.5" r="18" fill="#0f766e"/><g transform="translate(39.2 982.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></g>
+<text x="78" y="976.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Ví dụ</text>
+<text x="78" y="1000.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Haskell, Lisp, Scala; tính</text>
+<text x="78" y="1019.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">năng hàm trong JavaScript.</text>
+<rect x="8" y="1061" width="304" height="467" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="1089.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Hướng đối tượng</text>
+<rect x="20" y="1106" width="280" height="107" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="50" cy="1159.5" r="18" fill="#b45309"/><g transform="translate(39.2 1148.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></g>
+<text x="78" y="1132.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Mô hình hóa</text>
+<text x="78" y="1156.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Thực thể thực tế thành đối</text>
+<text x="78" y="1175.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tượng chứa dữ liệu và</text>
+<text x="78" y="1195.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">phương thức.</text>
+<rect x="20" y="1227" width="280" height="87" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="50" cy="1270.5" r="18" fill="#b45309"/><g transform="translate(39.2 1259.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"/><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17"/></g>
+<text x="78" y="1253.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Ba ý</text>
+<text x="78" y="1277.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Kế thừa, đóng gói và đa</text>
+<text x="78" y="1296.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hình.</text>
+<rect x="20" y="1328" width="280" height="87" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="50" cy="1371.5" r="18" fill="#b45309"/><g transform="translate(39.2 1360.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.97 12.92A2 2 0 0 0 2 14.63v3.24a2 2 0 0 0 .97 1.71l3 1.8a2 2 0 0 0 2.06 0L12 19v-5.5l-5-3-4.03 2.42Z"/><path d="m7 16.5-4.74-2.85"/><path d="m7 16.5 5-3"/><path d="M7 16.5v5.17"/><path d="M12 13.5V19l3.97 2.38a2 2 0 0 0 2.06 0l3-1.8a2 2 0 0 0 .97-1.71v-3.24a2 2 0 0 0-.97-1.71L17 10.5l-5 3Z"/><path d="m17 16.5-5-3"/><path d="m17 16.5 4.74-2.85"/><path d="M17 16.5v5.17"/><path d="M7.97 4.42A2 2 0 0 0 7 6.13v4.37l5 3 5-3V6.13a2 2 0 0 0-.97-1.71l-3-1.8a2 2 0 0 0-2.06 0l-3 1.8Z"/><path d="M12 8 7.26 5.15"/><path d="m12 8 4.74-2.85"/><path d="M12 13.5V8"/></g>
+<text x="78" y="1354.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Cách dựng mã</text>
+<text x="78" y="1378.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Dùng lớp, đối tượng và</text>
+<text x="78" y="1397.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">giao diện.</text>
+<rect x="20" y="1429" width="280" height="87" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="50" cy="1472.5" r="18" fill="#b45309"/><g transform="translate(39.2 1461.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></g>
+<text x="78" y="1455.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Ví dụ</text>
+<text x="78" y="1479.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Java, C++, Python và</text>
+<text x="78" y="1498.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ruby.</text>
+<rect x="8" y="1540" width="304" height="262" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="1568.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Nhớ gì</text>
+<rect x="20" y="1585" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1608" r="11" fill="#16a34a"/>
+<polyline points="37.9,1608.4 41.7,1612.4 48.5,1604" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1611.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ba mô hình khác nhau ở chỗ</text>
+<text x="64" y="1630.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhìn chương trình là gì.</text>
+<rect x="20" y="1656" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1679" r="11" fill="#16a34a"/>
+<polyline points="37.9,1679.4 41.7,1683.4 48.5,1675" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1682.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Một ngôn ngữ có thể xuất</text>
+<text x="64" y="1701.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hiện ở nhiều mô hình.</text>
+<rect x="20" y="1727" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1750" r="11" fill="#16a34a"/>
+<polyline points="37.9,1750.4 41.7,1754.4 48.5,1746" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1753.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Danh sách ngôn ngữ chỉ là ví</text>
+<text x="64" y="1772.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dụ của nguồn.</text>
+</g>
+</svg>

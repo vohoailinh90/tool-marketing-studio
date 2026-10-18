@@ -40,13 +40,13 @@ Tỷ lệ trúng phụ thuộc kiểu truy cập của chính hệ thống bạn
 
 ## Nhìn hình trả lời
 
-Bộ nhớ đệm của bạn trúng 70%. Đồng nghiệp đề nghị gấp đôi bộ nhớ. Bạn nên xem số nào trong `INFO` trước khi đồng ý, và số đó nói gì?
+Bộ nhớ đệm của bạn trúng 70%. Đồng nghiệp đề nghị gấp đôi bộ nhớ. Bạn nên xem những gì trong cấu hình và trong `INFO` trước khi đồng ý?
 
 <details>
 <summary>Xem đáp án</summary>
 
-Xem `evicted_keys`. Nếu nó cao, khóa đang bị đẩy ra trước khi kịp dùng lại, nên thêm bộ nhớ có thể giúp, như từ 2 MB lên 8 MB trong thử nghiệm.
-Nếu nó gần bằng 0, thêm bộ nhớ gần như không giúp (như từ 8 MB lên 16 MB): phần trượt đến từ lần nạp đầu hoặc từ khóa hết hạn; khi đó xem `expired_keys` và hạn sống của khóa.
+Trước hết xem chính sách (`maxmemory-policy`) và bộ nhớ đã dùng so với giới hạn. Với `noeviction`, hoặc một chính sách `volatile` khi không khóa nào có hạn, `evicted_keys` luôn bằng 0 dù bộ nhớ đã đầy; khi đó hãy xem số lệnh bị từ chối (phần `commandstats`), như 8.981 lệnh bị từ chối trong thử nghiệm ở trên: thêm bộ nhớ có thể giúp.
+Với chính sách có đẩy khóa ra, xem `evicted_keys` *tăng* bao nhiêu trong một khoảng thời gian tiêu biểu (số này cộng dồn từ lúc khởi động, nên con số lớn có thể chỉ là chuyện cũ). Nếu nó tăng nhanh, khóa đang bị đẩy ra trước khi kịp dùng lại, nên thêm bộ nhớ có thể giúp, như từ 2 MB lên 8 MB trong thử nghiệm. Nếu nó gần như không tăng, thêm bộ nhớ gần như không giúp (như từ 8 MB lên 16 MB): phần trượt đến từ lần nạp đầu hoặc từ khóa hết hạn; khi đó xem `expired_keys` và hạn sống của khóa.
 
 </details>
 

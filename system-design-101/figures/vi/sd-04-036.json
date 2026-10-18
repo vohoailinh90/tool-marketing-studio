@@ -1,0 +1,25 @@
+{
+  "id": "sd-04-036",
+  "lang": "vi",
+  "title": "Chia shard xong: câu hỏi nào đổi?",
+  "desc": "Ba khung dọc. Khung một, ba chỗ đặt logic chia shard: ứng dụng tự chọn shard cho từng câu lệnh; một lớp trung gian đứng giữa ứng dụng và các shard; hoặc chính cơ sở dữ liệu tự chia. Khung hai, đo trên 4 shard với 10.000 đơn, khóa shard là mã khách: hỏi đơn của một khách chỉ cần 1 shard; hỏi đơn có một sản phẩm phải hỏi cả 4 shard rồi gộp; một khách mua rất nhiều làm một shard giữ 3.994 đơn, gần gấp đôi các shard khác. Khung ba, hai cái bẫy: lấy trung bình của 4 giá trị trung bình được 43,74 trong khi trung bình đúng là 40,54; chuyển tiền giữa hai shard mà tiến trình chết giữa chừng thì tổng tiền hụt 30.",
+  "sections": [
+    {"kind": "parts", "heading": "Ba chỗ đặt logic chia shard",
+     "items": [
+       {"name": "Ứng dụng", "role": "Tự chọn shard cho từng câu lệnh.", "icon": "code"},
+       {"name": "Lớp trung gian", "role": "Đứng giữa ứng dụng và các shard.", "icon": "route"},
+       {"name": "Cơ sở dữ liệu", "role": "Tự chia, ứng dụng thấy một bảng.", "icon": "database"}
+     ]},
+    {"kind": "notes", "heading": "4 shard, 10.000 đơn, khóa shard là mã khách",
+     "items": [
+       "Đơn của một khách: hỏi 1 shard.",
+       "Đơn có một sản phẩm: hỏi cả 4 shard rồi gộp.",
+       "Một khách mua rất nhiều: một shard giữ 3.994 đơn, gần gấp đôi."
+     ]},
+    {"kind": "notes", "heading": "Hai cái bẫy",
+     "items": [
+       "Trung bình của 4 trung bình: 43,74. Trung bình đúng: 40,54.",
+       "Chuyển tiền giữa hai shard, chết giữa chừng: tổng tiền hụt 30."
+     ]}
+  ]
+}

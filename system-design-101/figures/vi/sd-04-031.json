@@ -1,0 +1,26 @@
+{
+  "id": "sd-04-031",
+  "lang": "vi",
+  "title": "PostgreSQL làm thay hệ chuyên dụng tới đâu?",
+  "desc": "Ba khung dọc. Khung một, có sẵn trong PostgreSQL 16, đã thử: chuỗi thời gian, chỉ mục brin chỉ 24 kB trong khi chỉ mục B-tree 43 MB trên cùng 2 triệu dòng; tài liệu JSON, chỉ mục gin tìm 6.000 tài liệu có một nhãn; tìm toàn văn, tsvector với chỉ mục gin tìm ra 1 dòng trong 300.000; đồ thị đơn giản, with recursive đi hết cây cấp dưới. Khung hai, cần tiện ích ngoài: tìm vector cho học máy dùng pgvector; bản đồ dùng PostGIS; chia bảng ra nhiều máy dùng Citus. Khung ba, nói giao thức PostgreSQL chưa phải là PostgreSQL: CockroachDB nhận trình điều khiển của PostgreSQL nhưng là một hệ khác; giấy phép, cách lưu và tính năng do chính hệ đó quyết định.",
+  "sections": [
+    {"kind": "notes", "heading": "Có sẵn, đã thử trên PostgreSQL 16",
+     "items": [
+       "Chuỗi thời gian: chỉ mục brin 24 kB, B-tree 43 MB, cùng 2 triệu dòng.",
+       "Tài liệu JSON: chỉ mục gin tìm 6.000 tài liệu có một nhãn.",
+       "Tìm toàn văn: tsvector và gin tìm 1 dòng trong 300.000.",
+       "Đồ thị đơn giản: with recursive đi hết cây cấp dưới."
+     ]},
+    {"kind": "notes", "heading": "Cần tiện ích ngoài",
+     "items": [
+       "Tìm vector cho học máy: pgvector.",
+       "Bản đồ: PostGIS.",
+       "Chia bảng ra nhiều máy: Citus."
+     ]},
+    {"kind": "notes", "heading": "Nói giao thức PostgreSQL chưa phải PostgreSQL",
+     "items": [
+       "CockroachDB nhận trình điều khiển PostgreSQL nhưng là hệ khác.",
+       "Giấy phép, cách lưu và tính năng do chính hệ đó quyết định."
+     ]}
+  ]
+}

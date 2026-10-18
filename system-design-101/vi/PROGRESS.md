@@ -160,3 +160,7 @@ Theo yêu cầu người dùng, đưa 28 bài đang nằm trên chồng 26 PR x�
 Bản sửa bộ kiểm tra `scripts/sd101_check.py` (hàm `strip_urls`, kèm test và manifest mutation) nằm trong cùng chồng PR nhưng không thuộc lần hòa nhập này: nó đổi mã nên CI phải chạy cả bước mutation, dài hơn nhiều so với một PR chỉ đụng kho bài học, và `main` thay đổi liên tục trong lúc chờ. Bản sửa đi bằng một PR riêng ngay sau; các bài hiện qua bộ kiểm tra của `main` như nó đang là.
 
 Bài vẫn là bản nháp: review kỹ thuật tích hợp và thử người học chưa làm. Ba nhánh `content/system-design-vi-devtools` (sd-09), `codex/cloud-distributed-systems-vi` (sd-11) và `claude/funny-archimedes-253vvb` (sd-12) vẫn chưa vào main và chưa có trong `claims.jsonl`.
+
+## Bản sửa `strip_urls` (2026-10-18)
+
+Bộ kiểm tra `scripts/sd101_check.py` bỏ địa chỉ gõ trong bài bằng hàm `strip_urls` thay cho biểu thức chính quy cũ, vốn thử lại từng hậu tố của một từ dài và chậm theo bình phương độ dài. Ý nghĩa không đổi: chỉ chuỗi `scheme://` mới là địa chỉ. Test `tests/test_sd101_url_strip.py` và manifest `tests/mutations/sd101_url_strip.yaml` giữ hành vi này. Không lesson nào đổi.

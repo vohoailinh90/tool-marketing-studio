@@ -320,9 +320,18 @@ files and the exports. Several sessions build decks at once and `claims.jsonl` k
   exit 2 when the remote cannot be read: fix that, do not guess.
 - **While working**: `touch --publish` now and then; `verify` must exit 0 before you push. If you lost a claim, stop on that
   lesson and `release` it. A claim of a dead session (no heartbeat for 72 h) is taken over with `claim --take-stale`.
-- **When done**: `finish <id> --canvas <cvs_...> --url <editor link> --slides <n> --publish` and commit the rest of the lesson's
+- **When done**: `finish <id> --canvas <cvs_...> --url <editor link> --slides <n> --layouts <kind,kind,...> --first-concept <n>
+  [--cannot KIND=REASON] --publish` (`--layouts`: the layout kind of every slide in order; `--first-concept`: the slide of the lesson's first
+  concept; `--cannot`: only when its signature layout fell back; `docs/sd101-slides.md`, *Layout table*) and commit the rest of the lesson's
   `slides/` folder. `--publish` pushes the finished record and checks the claim again afterwards; if the record reaches the
   remote any other way (a plain `git push`), run `verify` afterwards: it checks finished decks too.
+- **Variety.** The decks share the brand (fonts, neutrals, footer, size, 8 to 10 slides) but not their layouts:
+  `docs/sd101-slides.md` (*Variety between decks*) sets the layout kinds, the signature layout, the accent rotation and the
+  layout table, which `finish` takes (`--layouts`, `--first-concept`, `--cannot`) and checks. A deck
+  that repeats the sample's layouts slide for slide is not finished.
+- **Starting or resuming decks** (Claude Code or Codex): `docs/sd101-slides-handoff.md` is the order of work, and
+  `python3 scripts/sd101_slide_brief.py <id>` cuts a lesson into slide roles, names the canvas and fixes the colour of each concept
+  (the lesson's own lines only; condensing them and drawing the slides is the session's job).
 - **The Moda watermark stays.** The free plan puts a `moda.app` badge on exported PNG and PPTX files and has no switch for
   it; never remove it from a file. A deck is finished with `exports: pending`. Its PPTX, and its PNG files (all or none), may be
   added as the free plan exports them, badge and all (`exported <id> --badged`, owner decision 2026-10-18; the PPTX is a

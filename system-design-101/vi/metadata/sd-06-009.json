@@ -1,0 +1,104 @@
+{
+  "id": "sd-06-009",
+  "title_vi": "Những điều cần cân nhắc khi dùng bộ nhớ đệm",
+  "language": "vi",
+  "kind": "reference",
+  "content_status": "draft",
+  "source_ref": "sd-06-009",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/things-to-consider-when-using-cache.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/things-to-consider-when-using-cache.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a git fetch of the pinned commit and hashed as a Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "2a84c38dd5c49e4d979a4bd684e3825623cc6473",
+    "retrieved_body_sha256": "bf562ed5abb0cad03b74343dbc7ce52a9aac08e7a538a46154dd0df9fae5df9e",
+    "retrieved_body_bytes": 1312
+  },
+  "diagram": "../diagrams/sd-06-009-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-06-008",
+      "relation": "previous",
+      "reason_vi": "Năm chiến lược đọc ghi được bài nguồn liệt kê lại ở đây."
+    },
+    {
+      "lesson_id": "sd-06-010",
+      "relation": "next",
+      "reason_vi": "Các chính sách đẩy khóa ra khi bộ nhớ đệm đầy."
+    },
+    {
+      "lesson_id": "sd-06-015",
+      "relation": "see_also",
+      "reason_vi": "Khởi động nguội và nhiều khóa cùng hết hạn là các kiểu bộ nhớ đệm hỏng."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "evidence": "Microsoft's caching guidance and Redis's eviction doc read from local clones; hit ratio measured on Redis 7.0.15 against maxmemory size and policy."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright) rendered the full lesson (Markdown to HTML, optional sections open, 16 px side gutters) at each width: no horizontal overflow of the page or of any table; figure drawn by scripts/figures (viewBox width 320, smallest font 15 px) shown at 13.5 px effective at 320 px and 15 px at 375 px; every SVG text box inside the viewBox. python3 -m scripts.figures check --browser passed. Not learner testing and not GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Cache data that is read frequently but modified infrequently; caching is less useful for dynamic data; treat the cache as transient and keep important data in the persistent store; in highly scalable scenarios the cache can be seeded to reduce load on the data store at peak times.",
+      "source": "https://github.com/MicrosoftDocs/architecture-center/blob/8e2c239344ee753a88856800b4210a3e27ac1036/docs/best-practices/caching.md",
+      "section": "Decide when to cache data; Determine how to cache data effectively",
+      "verified_by": "Read from a local clone of MicrosoftDocs/architecture-center at commit 8e2c239344ee753a88856800b4210a3e27ac1036, the head of its default branch when read on 2026-10-18 (a later change to that branch does not alter this URL)."
+    },
+    {
+      "claim_vi": "INFO stats gives keyspace_hits and keyspace_misses (hit percentage = hits / (hits + misses) * 100), evicted_keys and expired_keys; commandstats reports commands rejected by the maxmemory limit.",
+      "source": "https://github.com/redis/docs/blob/3b030c7ef066c0bb7f88ddec02c784e49783b0f8/content/develop/reference/eviction/index.md",
+      "section": "Using the INFO command",
+      "verified_by": "Read from a local clone of redis/docs at commit 3b030c7ef066c0bb7f88ddec02c784e49783b0f8, the head of its default branch when read on 2026-10-18 (a later change to that branch does not alter this URL)."
+    },
+    {
+      "claim_vi": "Redis 7.0.15, allkeys-lru, 10,000 keys with Zipf access, 1000-byte values, 60,000 cache-aside reads: maxmemory 2mb hit 63% (21,024 evicted, 1,032 keys left), 4mb 79% (9,620; 2,951), 8mb 88% (549; 6,805), 16mb 88% (0; 7,298). Uniform access over 10,000 keys at 4mb: 29%. noeviction at 4mb: hit 80% with 8,981 SETs rejected with an OOM error.",
+      "source": "https://github.com/redis/docs/blob/3b030c7ef066c0bb7f88ddec02c784e49783b0f8/content/develop/reference/eviction/index.md",
+      "section": "Experiment",
+      "verified_by": "Experiment run by the author on 2026-10-18 on one KVM virtual machine (4 vCPU): raw RESP client in Python, Zipf distribution with exponent 1, hit ratio from INFO keyspace_hits/keyspace_misses."
+    },
+    {
+      "claim_vi": "Five groups to consider: suitable scenarios, caching techniques, eviction algorithms, key metrics, other issues (thundering herd on cold start, TTL).",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/things-to-consider-when-using-cache.md",
+      "section": "Whole guide",
+      "verified_by": "Source body read at the pinned commit."
+    }
+  ],
+  "design_notes_vi": "Ba khung ghi chú: khi nào đáng dùng, đo gì, và phép thử thêm bộ nhớ. Bảng số đo đầy đủ nằm trong bài.",
+  "source_deviations": [
+    "Source lists five groups without explanation; the lesson keeps three questions and adds a measurement showing diminishing returns of more memory and the hidden write errors of noeviction.",
+    "Caching techniques and eviction algorithms are left to their own lessons in the group.",
+    "The check question reads evicted_keys only after the policy: under noeviction (or volatile-* with no expiring keys) it stays 0 while writes are rejected, and as a cumulative counter its change over an interval matters, not its raw value.",
+    "The remaining first-request misses are unavoidable only for the experiment's empty, lazily filled cache; the lesson notes that seeding before traffic avoids them."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này (gói L5), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

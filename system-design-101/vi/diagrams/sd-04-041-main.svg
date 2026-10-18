@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="992" viewBox="0 0 320 992" role="img" aria-labelledby="title desc">
+<title id="title">Chia bảng trước khi chia máy</title>
+<desc id="desc">Ba khung dọc. Khung một, hai cách cắt một bảng: chia ngang, mỗi mảnh giữ một phần các dòng với đủ mọi cột; chia dọc, mỗi mảnh giữ một nhóm cột với đủ mọi dòng. Khung hai, ba cách chọn mảnh cho một dòng: theo dải, mỗi tháng một mảnh; theo khóa băm, băm mã khách rồi chia dư cho 3; theo danh bạ, một bảng tra ghi khách nào nằm ở mảnh nào. Khung ba, thử trên PostgreSQL 16: chia băm dư 3 cho ba mảnh 98.880, 100.500 và 100.620 dòng; hỏi một khách chỉ quét một trong ba mảnh; bỏ dữ liệu một tháng bằng cách xóa cả mảnh mất 2 đến 3 mili giây, còn xóa từng dòng mất 63 đến 236 mili giây; tách cột tiểu sử ra bảng riêng thì câu tìm theo số điện thoại đọc 768 trang thay vì 11.112.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="992" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Chia bảng trước khi chia</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">máy</text>
+<rect x="8" y="78" width="304" height="245" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="106.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Hai cách cắt một bảng</text>
+<rect x="20" y="123" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="166.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 155.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5"/><path d="M8 3H3v5"/><path d="M12 22v-8.3a4 4 0 0 0-1.172-2.872L3 3"/><path d="m15 9 6-6"/></g>
+<text x="78" y="149.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Chia ngang</text>
+<text x="78" y="173.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mỗi mảnh giữ một phần</text>
+<text x="78" y="192.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">các dòng, đủ mọi cột.</text>
+<rect x="20" y="224" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="267.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 256.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"/><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17"/></g>
+<text x="78" y="250.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Chia dọc</text>
+<text x="78" y="274.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mỗi mảnh giữ một nhóm</text>
+<text x="78" y="293.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cột, đủ mọi dòng.</text>
+<rect x="8" y="335" width="304" height="284" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="363.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Ba cách chọn mảnh cho một</text>
+<text x="20" y="385.3" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">dòng</text>
+<rect x="20" y="402" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="425" r="11" fill="#16a34a"/>
+<polyline points="37.9,425.4 41.7,429.4 48.5,421" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="428.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Theo dải: mỗi tháng một</text>
+<text x="64" y="447.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mảnh.</text>
+<rect x="20" y="473" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="496" r="11" fill="#16a34a"/>
+<polyline points="37.9,496.4 41.7,500.4 48.5,492" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="499.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Theo khóa băm: băm mã</text>
+<text x="64" y="518.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khách, chia dư cho 3.</text>
+<rect x="20" y="544" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="567" r="11" fill="#16a34a"/>
+<polyline points="37.9,567.4 41.7,571.4 48.5,563" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="570.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Theo danh bạ: bảng tra ghi</text>
+<text x="64" y="589.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khách nào ở mảnh nào.</text>
+<rect x="8" y="631" width="304" height="353" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="659.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Thử trên PostgreSQL 16</text>
+<rect x="20" y="676" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="699" r="11" fill="#16a34a"/>
+<polyline points="37.9,699.4 41.7,703.4 48.5,695" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="702.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Băm dư 3: ba mảnh 98.880,</text>
+<text x="64" y="721.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">100.500, 100.620 dòng.</text>
+<rect x="20" y="747" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="770" r="11" fill="#16a34a"/>
+<polyline points="37.9,770.4 41.7,774.4 48.5,766" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="773.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Hỏi một khách: chỉ quét 1</text>
+<text x="64" y="792.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trong 3 mảnh.</text>
+<rect x="20" y="818" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="841" r="11" fill="#16a34a"/>
+<polyline points="37.9,841.4 41.7,845.4 48.5,837" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="844.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bỏ một tháng: xóa cả mảnh</text>
+<text x="64" y="863.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">2 đến 3 ms, xóa từng dòng</text>
+<text x="64" y="883.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">63 đến 236 ms.</text>
+<rect x="20" y="909" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="932" r="11" fill="#16a34a"/>
+<polyline points="37.9,932.4 41.7,936.4 48.5,928" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="935.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tách cột tiểu sử ra: đọc 768</text>
+<text x="64" y="954.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trang thay vì 11.112.</text>
+</g>
+</svg>

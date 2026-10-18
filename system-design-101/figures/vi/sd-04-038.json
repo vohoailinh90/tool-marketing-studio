@@ -1,0 +1,42 @@
+{
+  "id": "sd-04-038",
+  "lang": "vi",
+  "title": "Định lý CAP: thử cắt mạng giữa hai máy",
+  "desc": "Khung một, ba chữ của CAP: C, nhất quán, mọi lượt đọc thấy cùng dữ liệu mới nhất; A, sẵn sàng, mọi yêu cầu tới máy còn sống đều được trả lời; P, chịu phân vùng, hệ vẫn chạy khi mạng giữa các máy bị cắt. Khung hai, sao chép không đồng bộ, cắt mạng rồi ghi ở bản chính: lệnh ghi xong ngay, bản sao vẫn trả lời nhưng thiếu dòng mới; nối lại thì đủ. Khung ba, sao chép đồng bộ: lệnh ghi treo, statement_timeout 3 giây không cắt được; hủy tay sau 10 giây chỉ ra cảnh báo, bản chính có dòng mới, bản sao vẫn trả lời mà thiếu nó, nên chưa phải chọn nhất quán. Khung bốn, không có phân vùng thì trả bằng độ trễ: mỗi lần ghi 0,40 mili giây khi không đồng bộ, 0,88 mili giây khi đồng bộ.",
+  "sections": [
+    {
+      "kind": "notes",
+      "heading": "Ba chữ của CAP",
+      "items": [
+        "C, nhất quán: mọi lượt đọc thấy cùng dữ liệu mới nhất.",
+        "A, sẵn sàng: mọi yêu cầu tới máy còn sống đều được trả lời.",
+        "P, chịu phân vùng: vẫn chạy khi mạng giữa các máy bị cắt."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Cắt mạng, sao chép không đồng bộ",
+      "items": [
+        "Lệnh ghi xong ngay; bản sao vẫn trả lời nhưng thiếu dòng mới.",
+        "Nối lại mạng: bản sao nhận đủ."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Cắt mạng, sao chép đồng bộ: chưa phải C",
+      "items": [
+        "Lệnh ghi treo; statement_timeout 3 giây không cắt được.",
+        "Hủy tay sau 10 giây: chỉ là cảnh báo, dòng đã ghi ở bản chính.",
+        "Bản sao vẫn trả lời câu đọc, thiếu dòng đó: hai máy nói khác nhau."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Không phân vùng: trả bằng độ trễ",
+      "items": [
+        "Không đồng bộ: 0,40 ms mỗi lần ghi.",
+        "Đồng bộ: 0,88 ms mỗi lần ghi, cùng một máy."
+      ]
+    }
+  ]
+}

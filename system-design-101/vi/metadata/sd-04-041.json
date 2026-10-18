@@ -1,0 +1,108 @@
+{
+  "id": "sd-04-041",
+  "title_vi": "Các khái niệm của sharding: chia bảng trên một máy trước khi chia ra nhiều máy",
+  "language": "vi",
+  "kind": "concept",
+  "content_status": "draft",
+  "source_ref": "sd-04-041",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/key-concepts-to-understand-database-sharding.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/key-concepts-to-understand-database-sharding.md",
+    "blob_sha": "15a9c8746a22b20f1689a07e1e4cadc549f7dffd",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a local clone at the pinned commit and hashed as a Git blob; the computed OID matches the tree OID and the source map. No source-image bytes used.",
+    "retrieved_body_sha256": "1dd57e7fecd938f0993b590a7eeb444de38220a0fa49c49028cd55913b05ceb3",
+    "retrieved_body_bytes": 1088
+  },
+  "diagram": "../diagrams/sd-04-041-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-04-025",
+      "relation": "related",
+      "reason_vi": "Bài đó đếm số khóa phải dời khi thêm shard; bài này dựng các cách chia trên một máy."
+    },
+    {
+      "lesson_id": "sd-04-036",
+      "relation": "related",
+      "reason_vi": "Bài đó bàn câu hỏi chạm nhiều shard, phép gộp và giao dịch qua shard."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "scope": "Chạy PostgreSQL 16.15 (hai lần, trên hai cơ sở dữ liệu mới): phân vùng băm dư 3, phân vùng theo tháng, delete so với drop một phân vùng, chia dọc cột tiểu sử; đọc ddl.sgml (Table Partitioning) của nhánh REL_16_STABLE. KHÔNG kiểm: chia theo danh bạ, phân vùng là bảng ngoài, sharding thật qua nhiều máy."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "not_yet_reviewed"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright 1.56): cả bài dựng từ Markdown thành HTML, mục tùy chọn mở, ở 320, 375 và 430 px; không cuộn ngang; chữ hình hiệu dụng nhỏ nhất 13,5 px ở 320 px và 15 px ở 375 px; không hộp chữ nào ra ngoài viewBox; python3 -m scripts.figures check --browser đạt. Không phải thử trên GitHub, trên điện thoại thật hay với người học."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "id": "source-concepts",
+      "claim_vi": "Nguồn giới thiệu chia dọc và chia ngang, cùng ba cách chia: theo dải, theo khóa (ví dụ chia dư cho 3), theo danh bạ.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/key-concepts-to-understand-database-sharding.md",
+      "section": "Whole guide",
+      "verified_by": "Đọc thân nguồn ghim ngày 2026-10-18."
+    },
+    {
+      "id": "pg-partitioning-docs",
+      "claim_vi": "Tài liệu PostgreSQL: phân vùng là chia một bảng lớn về mặt logic thành các mảnh vật lý nhỏ; phân vùng băm dùng modulus và remainder; cắt tỉa phân vùng là kỹ thuật tối ưu truy vấn; bỏ một phân vùng bằng DROP TABLE hay DETACH PARTITION nhanh hơn nhiều so với thao tác hàng loạt; phân vùng có thể là bảng ngoài nhưng người dùng phải tự bảo đảm dữ liệu khớp luật chia.",
+      "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/ddl.sgml",
+      "section": "Table Partitioning",
+      "verified_by": "Đọc bản clone nông nhánh REL_16_STABLE ngày 2026-10-18."
+    },
+    {
+      "id": "hash-pruning",
+      "claim_vi": "Chia băm mã khách dư 3 cho ba mảnh 98.880, 100.500 và 100.620 dòng; hỏi khách 42 chỉ quét orders_h0; hỏi theo số tiền quét cả ba.",
+      "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/ddl.sgml",
+      "section": "Phép thử của người biên soạn",
+      "verified_by": "Chạy hai lần ngày 2026-10-18 cho cùng số dòng và cùng kế hoạch."
+    },
+    {
+      "id": "range-drop",
+      "claim_vi": "Chia theo tháng: hỏi một tuần giữa tháng 8 chỉ quét mảnh tháng 8; delete 101.090 dòng của tháng 7 mất 63 và 236 mili giây ở hai lần chạy, drop mảnh tháng 8 mất 2,7 và 2,3 mili giây.",
+      "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/ddl.sgml",
+      "section": "Phép thử của người biên soạn",
+      "verified_by": "Chạy hai lần ngày 2026-10-18 trên một máy; thời gian dao động."
+    },
+    {
+      "id": "vertical",
+      "claim_vi": "Bảng người dùng 100.000 dòng có cột tiểu sử 800 ký tự: tìm theo số điện thoại đọc 11.112 trang; bảng đã tách cột tiểu sử ra đọc 768 trang; cùng 1.000 người.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/key-concepts-to-understand-database-sharding.md",
+      "section": "Vertical partitioning (phép thử của người biên soạn)",
+      "verified_by": "Chạy hai lần ngày 2026-10-18 với explain (analyze, buffers)."
+    }
+  ],
+  "design_notes_vi": "Ba khung: hai cách cắt một bảng, ba cách chọn mảnh, kết quả thử trên PostgreSQL. Sơ đồ dựng bằng scripts/figures, không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Nguồn chỉ có lời giới thiệu ngắn cho từng khái niệm (chi tiết nằm trong ảnh, không dùng); bài dựng từng cách chia bằng phân vùng của PostgreSQL và đo câu hỏi nào rẻ đi.",
+    "Bài thêm rằng phân vùng trên một máy chưa phải sharding: nó chia việc quét và việc dọn dữ liệu, không chia sức chịu tải."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này, bản nháp chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

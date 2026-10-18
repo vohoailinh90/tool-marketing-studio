@@ -92,6 +92,17 @@ Các bài từ sd-04-001 đến sd-04-024 chưa có ở đây; số thứ tự d
 34. [Tám cấu trúc dữ liệu sau chỉ mục: mỗi cái trả lời một kiểu câu hỏi](lessons/sd-04-034/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 35. [Bản sao chỉ đọc qua lớp trung gian: vừa đặt đơn mà không thấy đơn](lessons/sd-04-035/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 36. [Nhập môn sharding: chia xong rồi, câu hỏi nào đổi?](lessons/sd-04-036/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+37. [Từ hàng đợi tới nhật ký: IBM MQ, RabbitMQ, Kafka, Pulsar khác nhau ở chỗ tin có còn sau khi đọc](lessons/sd-04-037/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+38. [Định lý CAP: thử cắt mạng giữa hai máy PostgreSQL](lessons/sd-04-038/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+39. [Băm nhất quán: vì sao mỗi máy cần nhiều điểm trên vòng](lessons/sd-04-039/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+40. [Các loại cơ sở dữ liệu: bốn nhóm NoSQL và hai nghĩa của chữ "cột"](lessons/sd-04-040/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+41. [Các khái niệm của sharding: chia bảng trên một máy trước khi chia ra nhiều máy](lessons/sd-04-041/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+42. [Khóa trong cơ sở dữ liệu: thử từng loại trên PostgreSQL bằng hai phiên](lessons/sd-04-042/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+43. [Bảng tra hiệu năng cơ sở dữ liệu: đo ba mục trước khi tin cả mười](lessons/sd-04-043/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+44. [ACID là gì? Thử từng chữ trên PostgreSQL](lessons/sd-04-044/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+45. [Kafka dùng vào việc gì? Đối chiếu năm việc với danh sách của Kafka, và thử bắt thay đổi dữ liệu](lessons/sd-04-045/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+46. [Các loại bộ nhớ và lưu trữ: đo khoảng cách giữa các tầng trên một máy](lessons/sd-04-046/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+47. [Bảy cách mở rộng cơ sở dữ liệu: thử theo thứ tự rẻ trước, đắt sau](lessons/sd-04-047/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 
 ## Phỏng vấn kỹ thuật
 

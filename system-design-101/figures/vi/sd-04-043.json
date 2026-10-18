@@ -1,0 +1,43 @@
+{
+  "id": "sd-04-043",
+  "lang": "vi",
+  "title": "Hiệu năng cơ sở dữ liệu: đo ba mục",
+  "desc": "Bốn khung dọc. Khung một, mười mục của nguồn nhóm theo chỗ tác động: câu hỏi gồm chỉ mục, tối ưu truy vấn, chuẩn hóa hay phi chuẩn hóa; kết nối và bộ đệm gồm dùng lại kết nối và đệm kết quả; chia dữ liệu gồm phân vùng, shard và bản sao; máy và theo dõi gồm bộ nhớ, đĩa, CPU và đo thời gian trả lời. Khung hai, đo kết nối: mở kết nối mới cho mỗi câu mất 3,3 đến 4,1 mili giây, dùng lại một kết nối dưới 0,09 mili giây. Khung ba, chỉ mục làm chậm ghi, chèn 200.000 dòng: chỉ khóa chính 0,7 đến 0,9 giây, thêm 3 chỉ mục 1,3 đến 1,7 giây, thêm 6 chỉ mục 2,9 đến 4,2 giây. Khung bốn, chỉ lấy cột cần: select sao đọc 202 trang, chỉ hai cột có trong chỉ mục thì đọc 5 trang và không chạm bảng.",
+  "sections": [
+    {
+      "kind": "notes",
+      "heading": "Mười mục, nhóm theo chỗ tác động",
+      "items": [
+        "Câu hỏi: chỉ mục, tối ưu truy vấn, chuẩn hóa hay phi chuẩn hóa.",
+        "Kết nối và bộ đệm: dùng lại kết nối, đệm kết quả.",
+        "Chia dữ liệu: phân vùng, shard, bản sao.",
+        "Máy và theo dõi: bộ nhớ, đĩa, CPU; đo thời gian trả lời."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Đo 1: mở kết nối",
+      "items": [
+        "Kết nối mới cho mỗi câu: 3,3 đến 4,1 ms.",
+        "Dùng lại một kết nối: dưới 0,09 ms."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Đo 2: chèn 200.000 dòng",
+      "items": [
+        "Chỉ khóa chính: 0,7 đến 0,9 s.",
+        "Thêm 3 chỉ mục: 1,3 đến 1,7 s.",
+        "Thêm 6 chỉ mục: 2,9 đến 4,2 s."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Đo 3: chỉ lấy cột cần",
+      "items": [
+        "select *: đọc 202 trang.",
+        "Hai cột có sẵn trong chỉ mục: đọc 5 trang, không chạm bảng."
+      ]
+    }
+  ]
+}

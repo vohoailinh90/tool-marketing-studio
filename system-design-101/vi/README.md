@@ -57,6 +57,18 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 4. [Làm tốt phỏng vấn thiết kế hệ thống: bảy bước](lessons/sd-05-004/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 5. [Ôn phỏng vấn kỹ thuật: từ danh sách tài liệu đến kế hoạch luyện](lessons/sd-05-005/lesson.md) — viết lại ngày 2026-10-16 để làm sâu (đọc và đếm trực tiếp ba tài liệu công khai); chờ review kỹ thuật.
 
+## Bộ nhớ đệm và hiệu năng
+
+Số thứ tự theo ID của bài; bài chưa viết chưa có trong danh sách.
+
+16. [Elasticsearch hợp với việc gì: sáu cách dùng và cái mỗi cách dựa vào](lessons/sd-06-016/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+17. [CDN hoạt động thế nào: tìm máy biên, rồi hỏi dần lên máy gốc](lessons/sd-06-017/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+18. [Kiến trúc Redis lớn dần thế nào: mỗi bước vá một giới hạn](lessons/sd-06-018/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+19. [Redis giữ dữ liệu qua lần sập thế nào: RDB và AOF](lessons/sd-06-019/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+20. [Redis dùng vào việc gì: mười cách dùng, năm kiểu dữ liệu](lessons/sd-06-020/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+21. [Vì sao Redis nhanh, và khi nào nó chậm](lessons/sd-06-021/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+22. [Học Elasticsearch theo đường đi của một tài liệu](lessons/sd-06-022/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+
 ## DevOps và CI/CD
 
 1. [Tắt êm một API trên Kubernetes: năm chỗ làm rớt request](lessons/sd-13-001/lesson.md)
@@ -153,7 +165,7 @@ và hình đạt; không coi đọc nguồn là mọi claim đã đúng, không 
 ## Các nhóm còn lại theo thứ tự nguồn
 
 Tình huống thực tế (đã viết một phần) → Cơ sở dữ liệu và lưu trữ →
-Bộ nhớ đệm và hiệu năng → Thanh toán và công nghệ tài chính → Kiến trúc phần mềm →
+Bộ nhớ đệm và hiệu năng (đã viết một phần) → Thanh toán và công nghệ tài chính → Kiến trúc phần mềm →
 Công cụ và năng suất → Phát triển phần mềm → Đám mây và hệ thống phân tán →
 Hệ thống hoạt động thế nào? → Bảo mật (đã viết một phần).
 

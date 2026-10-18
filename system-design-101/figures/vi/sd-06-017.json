@@ -1,0 +1,71 @@
+{
+  "id": "sd-06-017",
+  "lang": "vi",
+  "title": "CDN đưa bạn tới máy biên gần nhất thế nào",
+  "subtitle": "Tìm địa chỉ, rồi tìm nội dung.",
+  "desc": "Ba phần. Phần một, bốn bước tìm đường: trình duyệt hỏi tên miền qua bộ đệm DNS và máy phân giải; máy chủ DNS có thẩm quyền trả bí danh CNAME sang tên của CDN; DNS của CDN trả địa chỉ máy biên gần máy phân giải, hoặc CDN dùng một địa chỉ anycast cho mọi nơi; trình duyệt tải nội dung từ máy biên. Phần hai, ba thẻ nối nhau: máy biên, máy tầng vùng, máy gốc; hụt bộ đệm ở tầng dưới thì hỏi tầng trên. Phần ba, kết quả thử với nginx: lần đầu qua máy biên A cả hai tầng hụt và máy gốc nhận 1 yêu cầu; lần đầu qua máy biên B tầng vùng trúng và máy gốc không nhận thêm; trang giỏ hàng gắn private, no-store thì máy gốc nhận cả hai lần.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Chặng 1: tìm địa chỉ",
+      "items": [
+        {
+          "title": "Hỏi tên miền",
+          "text": "Bộ đệm DNS của máy, rồi máy phân giải."
+        },
+        {
+          "title": "Tên miền trỏ sang CDN",
+          "text": "DNS của trang trả một bí danh CNAME."
+        },
+        {
+          "title": "Chọn máy biên",
+          "text": "DNS của CDN trả máy biên gần máy phân giải, hoặc địa chỉ anycast."
+        },
+        {
+          "title": "Tải từ máy biên",
+          "text": "Trình duyệt kết nối tới địa chỉ vừa nhận."
+        }
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Chặng 2: hụt thì hỏi tầng trên",
+      "items": [
+        {
+          "name": "Máy biên",
+          "role": "Gần người dùng; có sẵn thì trả ngay.",
+          "icon": "globe"
+        },
+        {
+          "name": "Máy tầng vùng",
+          "role": "Nhiều máy biên cùng hỏi một chỗ.",
+          "icon": "layers"
+        },
+        {
+          "name": "Máy gốc",
+          "role": "Nơi nội dung thật nằm; chỉ tầng trên hỏi tới.",
+          "icon": "server"
+        }
+      ],
+      "flow": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ]
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Thử với nginx: hai máy biên, một tầng vùng",
+      "items": [
+        "Lần đầu qua máy biên A: hai tầng hụt, máy gốc nhận 1 yêu cầu.",
+        "Lần đầu qua máy biên B: tầng vùng trúng, máy gốc không nhận thêm.",
+        "Giỏ hàng gắn private, no-store: máy gốc nhận cả hai lần."
+      ]
+    }
+  ]
+}

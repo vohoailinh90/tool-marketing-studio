@@ -1,0 +1,23 @@
+{
+  "id": "sd-06-022",
+  "lang": "vi",
+  "title": "Học Elasticsearch theo đường đi của một tài liệu",
+  "subtitle": "Bốn lớp, từ chữ tới cụm máy.",
+  "desc": "Hai phần. Phần một, bốn bước: bộ phân tích tách và chuẩn hóa chữ, ví dụ Áo Khoác thành áo và khoác; chỉ mục ngược cho mỗi từ trỏ tới tài liệu và vị trí chứa nó; mỗi lần làm mới ghi một segment mới và không sửa segment cũ, sau đó các segment được gộp dần; một shard là một chỉ mục Lucene, bản sao phải nằm trên nút khác. Phần hai, kết quả thử trên Elasticsearch 9.5.5: ba lần làm mới tạo ba segment; sửa một tài liệu thì bản cũ bị đánh dấu xóa và bản mới vào segment mới; gộp về một segment thì thấy tệp từ điển thuật ngữ và tệp chỉ mục của từ điển; một nút với một bản sao thì cụm báo vàng vì bản sao chưa có chỗ.",
+  "sections": [
+    {"kind": "steps", "heading": "Bốn lớp cần hiểu",
+     "items": [
+       {"title": "Bộ phân tích", "text": "Tách và chuẩn hóa: Áo Khoác thành áo, khoác."},
+       {"title": "Chỉ mục ngược", "text": "Mỗi từ trỏ tới tài liệu và vị trí chứa nó."},
+       {"title": "Segment", "text": "Làm mới là ghi segment mới, không sửa cũ; rồi gộp dần."},
+       {"title": "Shard, bản sao", "text": "Một shard là một chỉ mục Lucene; bản sao ở nút khác."}
+     ]},
+    {"kind": "notes", "heading": "Thử trên Elasticsearch 9.5.5",
+     "items": [
+       "Ba lần làm mới: ba segment, mỗi cái một tài liệu.",
+       "Sửa một tài liệu: bản cũ bị đánh dấu xóa, bản mới vào segment mới.",
+       "Gộp về một segment: thấy tệp từ điển thuật ngữ và tệp chỉ mục của nó.",
+       "Một nút, một bản sao: cụm báo vàng, bản sao chưa có chỗ."
+     ]}
+  ]
+}

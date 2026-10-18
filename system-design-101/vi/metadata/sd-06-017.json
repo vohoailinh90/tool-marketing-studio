@@ -1,0 +1,104 @@
+{
+  "id": "sd-06-017",
+  "title_vi": "CDN hoạt động thế nào?",
+  "language": "vi",
+  "kind": "flow",
+  "content_status": "draft",
+  "source_ref": "sd-06-017",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/how-does-cnd-work.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-cnd-work.md",
+    "blob_sha": "525753ef344324dde45d76a08ee99e3b0b75264d",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Fetched the pinned commit from GitHub; git rev-parse of the path gives the source map's blob OID. Non-empty source body read; no source-image bytes used.",
+    "retrieved_body_sha256": "069903d934452c0a76228de60c747060a46652b72ceb94d2d2db60c443ad17d7",
+    "retrieved_body_bytes": 3038
+  },
+  "diagram": "../diagrams/sd-06-017-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-06-023",
+      "relation": "compare-with",
+      "reason_vi": "CDN là gì và lợi ích của nó; bài này đi vào đường đi của một yêu cầu."
+    },
+    {
+      "lesson_id": "sd-06-026",
+      "relation": "compare-with",
+      "reason_vi": "Các chiến lược bộ đệm; CDN là bộ đệm đọc dùng chung."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "evidence": "Statements were checked against cloudflare/cloudflare-docs at commit 2ab084e257fef531e4e22a10c9a6feab7b3a4fce and mdn/content at commit a1aa79c09717761fc72c20bac94bb9c430ed487a, read from partial clones, and against an experiment run on 2026-10-18 with Ubuntu's nginx 1.24.0 (two edge caches, one regional cache) in front of a small Python origin that counted requests. The DNS stage was not reproduced."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright 1.56, headless) rendered lesson.md converted by markdown-it (CommonMark, tables, raw HTML) with a 16 px page gutter and every <details> open, at 320, 375 and 430 px: document scrollWidth equalled the viewport at each width. Smallest figure text from the SVG font sizes times the shown scale: 13.5 px at 320, 15.0 px at 375. python3 -m scripts.figures check --browser measured every figure line. Not GitHub's renderer, not a real phone, not learner testing."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "With a proxied record Cloudflare answers DNS queries with an anycast IP address instead of the origin address and reverse-proxies the traffic, caching content close to users.",
+      "source": "https://github.com/cloudflare/cloudflare-docs/blob/2ab084e257fef531e4e22a10c9a6feab7b3a4fce/src/content/docs/fundamentals/concepts/how-cloudflare-works.mdx",
+      "section": "How Cloudflare works; Cloudflare as a reverse proxy",
+      "verified_by": "Read from a partial clone; not tested."
+    },
+    {
+      "claim_vi": "Anycast announces the same IP address from data centers worldwide so each request is routed to a nearby data center.",
+      "source": "https://github.com/cloudflare/cloudflare-docs/blob/2ab084e257fef531e4e22a10c9a6feab7b3a4fce/src/content/docs/fundamentals/concepts/cloudflare-ip-addresses.mdx",
+      "section": "Introduction",
+      "verified_by": "Read from a partial clone; not tested."
+    },
+    {
+      "claim_vi": "Tiered Cache divides data centers into lower and upper tiers; a lower tier missing content asks an upper tier and only the upper tier asks the origin, reducing origin requests and connections.",
+      "source": "https://github.com/cloudflare/cloudflare-docs/blob/2ab084e257fef531e4e22a10c9a6feab7b3a4fce/src/content/docs/cache/how-to/tiered-cache.mdx",
+      "section": "Tiered Cache",
+      "verified_by": "Read; the nginx experiment showed edge B missing and the regional tier hitting, with the origin counting one request for the image."
+    },
+    {
+      "claim_vi": "The 1.1.1.1 resolver does not send EDNS Client Subnet, so authoritative servers do not receive client IP information from it.",
+      "source": "https://github.com/cloudflare/cloudflare-docs/blob/2ab084e257fef531e4e22a10c9a6feab7b3a4fce/src/content/docs/1.1.1.1/faq.mdx",
+      "section": "Does 1.1.1.1 send EDNS Client Subnet header?",
+      "verified_by": "Read from a partial clone."
+    },
+    {
+      "claim_vi": "There are private caches (browser) and shared caches; CDNs and reverse proxies are managed shared caches; private restricts storage to private caches; personalized content in a shared cache can leak to other users.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/web/http/guides/caching/index.md",
+      "section": "Types of caches",
+      "verified_by": "Read; in the experiment a response marked private, no-store was never stored at either tier and reached the origin twice."
+    }
+  ],
+  "design_notes_vi": "Hai chặng: bốn bước tìm địa chỉ (có cả cách chọn bằng DNS và anycast), ba thẻ tầng bộ đệm nối bằng mũi tên, ba ghi chú kết quả thử. Vẽ bằng scripts/figures.",
+  "source_deviations": [
+    "Source says the CDN load balancer picks the edge from the user's IP address and ISP; the lesson notes that a DNS-based choice sees the resolver's address unless the resolver sends EDNS Client Subnet, and adds anycast as a second way, as Cloudflare documents it.",
+    "Source names edge, regional and central servers before the origin; the lesson keeps two tiers and states, from the Cloudflare docs, that only the upper tier contacts the origin.",
+    "Source says dynamic content is cached as edge computing results; the lesson does not cover edge computing and adds that Cache-Control from the origin decides what a shared cache may keep, tested with a private, no-store page."
+  ],
+  "editorial_note_vi": "Bài viết độc lập, sơ đồ vẽ bằng bộ công cụ hình từ spec system-design-101/figures/vi/sd-06-017.json, không dùng ảnh nguồn. Tiêu đề hiển thị là dòng đầu của lesson.md; title_vi giữ bản dịch tiêu đề nguồn theo source-map. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
+}

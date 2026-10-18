@@ -1260,11 +1260,11 @@
         },
         {
           "id": "sd-04-033",
-          "title_vi": null,
+          "title_vi": "Cây chọn cơ sở dữ liệu: tự dựng cây của bạn, hỏi ràng buộc cứng trước",
           "title_source": "iQIYI Database Selection Trees",
           "source_url": "https://bytebytego.com/guides/iqiyi-database-selection-trees",
           "source_path": "data/guides/iqiyi-database-selection-trees.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "62fbb9b79131afab1971f0f35a3cbff4637c9297",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/iqiyi-database-selection-trees.md"
         },

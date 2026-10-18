@@ -3,7 +3,7 @@
   "lang": "vi",
   "title": "Redis giữ dữ liệu qua lần sập thế nào",
   "subtitle": "Thử: ghi 1500 khóa, kill -9, khởi động lại.",
-  "desc": "Ba phần. Một: đường đi của một lệnh ghi khi bật AOF, gồm sửa dữ liệu trong RAM, nối lệnh vào bộ đệm AOF, ghi bộ đệm vào tệp, thường trước khi trả lời, rồi fsync theo chính sách. Hai: kết quả thử nghiệm sau kill -9, không lưu còn 0 khóa, chỉ RDB với ảnh chụp lúc 1000 khóa còn 1000, AOF everysec còn đủ 1500. Ba: điều cần nhớ về RDB, AOF, khác biệt giữa giết tiến trình và mất điện, và tệp gốc của AOF ở dạng RDB.",
+  "desc": "Ba phần. Một: đường đi của một lệnh ghi khi bật AOF, gồm sửa dữ liệu trong RAM, nối lệnh vào bộ đệm AOF, ghi bộ đệm vào tệp, thường trước khi trả lời, rồi fsync theo chính sách. Hai: kết quả thử nghiệm sau kill -9, không lưu còn 0 khóa, chỉ RDB với ảnh chụp lúc 1000 khóa còn 1000, AOF everysec còn đủ 1500. Ba: điều cần nhớ về RDB, AOF, khác biệt giữa giết tiến trình và mất điện, và tệp gốc của AOF mặc định ở dạng RDB.",
   "sections": [
     {
       "kind": "steps",
@@ -55,7 +55,7 @@
         "RDB: tệp gọn, nạp nhanh, mất phần ghi sau ảnh chụp cuối.",
         "AOF: mất ít hơn, tệp lớn hơn, được viết lại cho gọn ở nền.",
         "kill -9 khác mất điện: fsync mới quyết định phần nào chắc chắn nằm trên đĩa.",
-        "Tệp gốc của AOF ở dạng RDB, kể cả khi tắt ảnh chụp RDB."
+        "Mặc định, tệp gốc của AOF ở dạng RDB, kể cả khi tắt ảnh chụp RDB."
       ]
     }
   ]

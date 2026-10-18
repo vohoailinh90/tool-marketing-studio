@@ -138,17 +138,16 @@ def line(text: str, budget: bool = True) -> Line:
     return Line(text, words, budget and words > WORD_BUDGET)
 
 
-def blocks(text: str) -> tuple[list[str], list[str], str]:
-    """(paragraphs, bullets, figure alt text) of a fragment. A bullet's wrapped lines belong to it."""
-    paragraphs: list[str] = []
-    bullets: list[str] = []
+def block_sequence(text: str) -> tuple[list[tuple[bool, str]], str]:
+    """([(is_bullet, text)] in the order the fragment writes them, figure alt text). A bullet's wrapped lines belong to it."""
+    sequence: list[tuple[bool, str]] = []
     alt = ""
     current: list[str] = []
     in_bullet = False
 
     def flush() -> None:
         if current:
-            (bullets if in_bullet else paragraphs).append(" ".join(current))
+            sequence.append((in_bullet, " ".join(current)))
             current.clear()
 
     in_fence = False
@@ -179,7 +178,19 @@ def blocks(text: str) -> tuple[list[str], list[str], str]:
             in_bullet = False
             current.append(stripped)
     flush()
-    return paragraphs, bullets, alt
+    return sequence, alt
+
+
+def blocks(text: str) -> tuple[list[str], list[str], str]:
+    """(paragraphs, bullets, figure alt text) of a fragment."""
+    sequence, alt = block_sequence(text)
+    return [item for bullet, item in sequence if not bullet], [item for bullet, item in sequence if bullet], alt
+
+
+def in_order(text: str) -> list[str]:
+    """Every paragraph and bullet of a fragment as plain text, in the order the lesson writes them: a caveat that opens
+    a block of bullets must stay ahead of them."""
+    return [clean(item) for _, item in block_sequence(text)[0]]
 
 
 def has_skipped_markup(text: str) -> bool:
@@ -248,6 +259,16 @@ def wraps(last: tuple, line: tuple) -> bool:
     return size == last_size and abs(x - last_x) < 1 and 0 < y - last_y <= size * 2
 
 
+def has_value_beside(items: list[tuple], index: int) -> bool:
+    """Does another text of the figure start to the right of item `index` on the same baseline? Items end with their
+    geometry (font size, x, y); without positions nothing is beside anything."""
+    _, x, y = items[index][-1]
+    if x is None or y is None:
+        return False
+    return any(other[-1][1] is not None and other[-1][2] is not None and abs(other[-1][2] - y) < 1 and other[-1][1] > x + 1
+               for position, other in enumerate(items) if position != index)
+
+
 def figure_cards(svg: pathlib.Path) -> list[tuple[str, str, bool]]:
     """The text cards of a lesson's figure: a bold heading (it may wrap over lines) followed by its plain lines.
 
@@ -278,22 +299,28 @@ def figure_cards(svg: pathlib.Path) -> list[tuple[str, str, bool]]:
     # Weight alone cannot tell a card's heading from a bold line inside the card (a callout). When the headings are
     # numbered, only a numbered bold line opens a card; any other bold line is a line of the card it is in.
     numbered = sum(1 for bold, _, text, _ in items if bold and ORDINAL.match(text)) >= CONCEPT_SLIDES.start
-    cards: list[list] = []
+    # A wrapped heading has nothing beside its next line. A bold label with its value on the same baseline is a row of
+    # a table, and the bold line above the rows is the table's heading: the rows belong to that heading's card.
+    cards: list[list] = []  # [heading lines, body lines, geometry of the last heading line, is a table]
     seen_card = title_size is None
-    for bold, size, text, geometry in items:
+    for index, (bold, size, text, geometry) in enumerate(items):
         if not seen_card:
             seen_card = bold and size < title_size
             if not seen_card:
                 continue
         opens = bold and (not numbered or bool(ORDINAL.match(text)))
-        if bold and cards and not cards[-1][1] and not (numbered and opens) and wraps(cards[-1][2], geometry):
+        row = opens and has_value_beside(items, index)
+        if row and cards and (cards[-1][3] or not cards[-1][1]):
+            cards[-1][1].append(text)
+            cards[-1][3] = True
+        elif bold and cards and not cards[-1][1] and not (numbered and opens) and wraps(cards[-1][2], geometry):
             cards[-1][0].append(text)  # a heading wrapped over lines
             cards[-1][2] = geometry
         elif opens:
-            cards.append([[text], [], geometry])
+            cards.append([[text], [], geometry, False])
         elif cards:
             cards[-1][1].append(text)
-    return [(" ".join(heading).rstrip(":. "), " ".join(body), False) for heading, body, _ in cards if body]
+    return [(" ".join(heading).rstrip(":. "), " ".join(body), False) for heading, body, _, _ in cards if body]
 
 
 def concept_source(parsed: Parsed, figure: str | None, svg: pathlib.Path) -> tuple[str, list[tuple[str, str, bool]], list[str]]:
@@ -330,8 +357,9 @@ def terms(text: str | None) -> list[dict]:
     return result
 
 
-def sources(text: str | None) -> list[str]:
-    """The name of every source the section lists: each link label of each bullet (a bullet may hold several)."""
+def sources(text: str | None) -> list[dict]:
+    """The name of every source the section lists: each link label of each bullet (a bullet may hold several), sized
+    against the word budget like any other slide line."""
     names: list[str] = []
     for raw in blocks(text or "")[1]:
         labels = [label for label in (clean(label) for label in LINK.findall(raw)) if label]
@@ -340,7 +368,7 @@ def sources(text: str | None) -> list[str]:
             words = head.split()
             labels = [" ".join(words[:SOURCE_NAME_WORDS]) + (" …" if len(words) > SOURCE_NAME_WORDS else "")] if words else []
         names += labels
-    return names
+    return [line(name).__dict__ for name in names]
 
 
 def backgrounds(count: int) -> list[str]:
@@ -403,14 +431,13 @@ def build(store: pathlib.Path, lesson_id: str) -> Brief:
                         "explain the figure's cards and are left off the situation slide; read them in lesson.md")
 
     question_section = section(parsed, QUESTION_SECTION)
-    question = [clean(p) for p in blocks(question_section or "")[0]]
+    question = in_order(question_section or "")
     answer = next((body for summary, body in parsed.details if ANSWER_SUMMARY in summary.lower()), "")
     deep = next((body for summary, body in parsed.details if ANSWER_SUMMARY not in summary.lower()), "")
     if not question or not answer:
         warnings.append("the lesson lacks a check question or its answer")
     known = (GLOSSARY_SECTION, FIGURE_SECTION, QUESTION_SECTION, SOURCES_SECTION)
-    takeaways = [(name, [clean(p) for p in blocks(rest)[0]] + [clean(b) for b in blocks(rest)[1]])
-                 for name, rest in parsed.sections.items() if name.startswith(TAKEAWAY_PREFIXES)]
+    takeaways = [(name, in_order(rest)) for name, rest in parsed.sections.items() if name.startswith(TAKEAWAY_PREFIXES)]
     body_sections = [name for name in parsed.sections if not name.startswith(known + TAKEAWAY_PREFIXES)]
     if body_sections:
         warnings.append("sections of the lesson's body are not on the summary slide (read them in lesson.md): "
@@ -455,11 +482,11 @@ def build(store: pathlib.Path, lesson_id: str) -> Brief:
     slides.append(Slide(position, "check question and answer", backdrops[position - 1], layouts[position - 1],
                         footer.format(number, position, count), {
                             "question": [line(text).__dict__ for text in question],
-                            "answer": [line(clean(text)).__dict__ for text in blocks(answer)[0] + blocks(answer)[1]]}))
+                            "answer": [line(text).__dict__ for text in in_order(answer)]}))
     position += 1
     slides.append(Slide(position, "deep dive", backdrops[position - 1], layouts[position - 1],
                         footer.format(number, position, count), {
-                            "lines": [line(clean(text)).__dict__ for text in blocks(deep)[1] + blocks(deep)[0]]}))
+                            "lines": [line(text).__dict__ for text in in_order(deep)]}))
     slides.append(Slide(count, "terms and sources", backdrops[count - 1], "two columns",
                         footer.format(number, count, count), {
                             "terms": glossary, "sources": names}))
@@ -518,7 +545,7 @@ def render(brief: Brief) -> str:
                 out += [f"  - {t['abbreviation']} = {show({'text': t['short_meaning'], 'words': t['words'], 'over_budget': t['over_budget']})}"
                         for t in value]
             elif key == "sources":
-                out.append("- sources, by name and never as an address: " + escape_markup("; ".join(value))
+                out.append("- sources, by name and never as an address: " + "; ".join(show(item) for item in value)
                            if value else "- sources: (none)")
             else:
                 out.append(f"- {key}:")

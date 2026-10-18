@@ -174,7 +174,7 @@ class StructureTests(unittest.TestCase):
         closing = by_role["terms and sources"]
         self.assertEqual(["NAT", "IP"], [t["abbreviation"] for t in closing["terms"]])
         self.assertEqual("dịch địa chỉ mạng", closing["terms"][0]["short_meaning"])
-        self.assertEqual(["RFC 3022", "Tài liệu thứ hai"], closing["sources"])
+        self.assertEqual(["RFC 3022", "Tài liệu thứ hai"], [source["text"] for source in closing["sources"]])
         self.assertEqual("Hình không bao quát mọi trường hợp.",
                          by_role["choice or summary"]["sections"][0]["lines"][0]["text"])
 
@@ -233,6 +233,35 @@ class StructureTests(unittest.TestCase):
         self.assertIn("IP = " + long_meaning + ".  [12 words: cut to 10 or fewer]", markdown)
         self.assertNotIn("NAT = dịch địa chỉ mạng  [", markdown)
 
+    def test_a_source_name_over_the_word_budget_is_flagged_like_any_other_line(self):
+        long_name = " ".join(f"từ{n}" for n in range(1, 18))
+        text = lesson_text(figure_section(3)).replace("[Tài liệu thứ hai]", f"[{long_name}]")
+        result, _ = self.build(text)
+        sources = result.slides[-1]["material"]["sources"]
+        self.assertEqual([(2, False), (17, True)], [(source["words"], source["over_budget"]) for source in sources])
+        markdown = brief.render(result)
+        self.assertIn("RFC 3022; " + long_name + "  [17 words: cut to 10 or fewer]", markdown)
+        self.assertNotIn("RFC 3022  [", markdown)
+
+    def test_paragraphs_and_bullets_of_one_block_keep_the_order_the_lesson_writes_them(self):
+        mixed = "Đoạn mở đầu nêu phạm vi.\n\n- Ý thứ nhất.\n- Ý thứ hai.\n\nĐoạn kết nêu giới hạn."
+        expected = ["Đoạn mở đầu nêu phạm vi.", "Ý thứ nhất.", "Ý thứ hai.", "Đoạn kết nêu giới hạn."]
+        base = lesson_text(figure_section(3))
+        cases = {
+            "deep dive": (base.replace("- Một ý sâu hơn, xem [RFC 3022](https://example.org/rfc3022).\n- Ý thứ hai.", mixed),
+                          lambda by_role: [i["text"] for i in by_role["deep dive"]["lines"]]),
+            "answer": (base.replace("\nMáy B.\n", "\n" + mixed + "\n"),
+                       lambda by_role: [i["text"] for i in by_role["check question and answer"]["answer"]]),
+            "question": (base.replace("Máy nào nhận phản hồi?", mixed),
+                         lambda by_role: [i["text"] for i in by_role["check question and answer"]["question"]]),
+            "takeaways": (base.replace("Hình không bao quát mọi trường hợp.", mixed),
+                          lambda by_role: [i["text"] for i in by_role["choice or summary"]["sections"][0]["lines"]]),
+        }
+        for slide, (text, pick) in cases.items():
+            with self.subTest(slide=slide):
+                result, _ = self.build(text)
+                self.assertEqual(expected, pick({s["role"]: s["material"] for s in result.slides}))
+
     def test_italic_marks_go_but_a_sum_with_stars_stays(self):
         self.assertEqual("dùng load balancer và 2 * 3 * 4", brief.clean("dùng *load balancer* và 2 * 3 * 4"))
         self.assertEqual("đậm và nghiêng", brief.clean("**đậm** và *nghiêng*"))
@@ -272,7 +301,7 @@ class StructureTests(unittest.TestCase):
             "- [Tài liệu thứ hai](https://example.org/two): đối chiếu.",
             f"- Phép thử trên một máy: kết quả của một lần chạy.\n- {long_name}.")
         result, _ = self.build(text)
-        names = result.slides[-1]["material"]["sources"]
+        names = [source["text"] for source in result.slides[-1]["material"]["sources"]]
         self.assertEqual(["RFC 3022", "Phép thử trên một máy", " ".join(f"từ{n}" for n in range(1, 13)) + " …"], names)
 
     def test_only_the_limits_and_choice_sections_feed_the_summary_slide(self):
@@ -327,7 +356,8 @@ class StructureTests(unittest.TestCase):
             "- [Tài liệu thứ hai](https://example.org/two): đối chiếu.",
             "- Tiền tố: [Tài liệu hai](https://example.org/two) và [Tài liệu ba](https://example.org/three).")
         result, _ = self.build(text)
-        self.assertEqual(["RFC 3022", "Tài liệu hai", "Tài liệu ba"], result.slides[-1]["material"]["sources"])
+        self.assertEqual(["RFC 3022", "Tài liệu hai", "Tài liệu ba"],
+                         [source["text"] for source in result.slides[-1]["material"]["sources"]])
 
     def test_a_group_heading_above_the_first_card_is_not_glued_to_the_card_heading(self):
         svg = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
@@ -343,6 +373,32 @@ class StructureTests(unittest.TestCase):
         concepts = [c for slide in result.slides if "concepts" in slide["material"] for c in slide["material"]["concepts"]]
         # the group heading has no lines of its own; a heading wrapped over two lines is still one heading
         self.assertEqual(["Chia theo dải", "Băm chia dư"], [c["label"] for c in concepts])
+
+    def test_the_rows_of_a_table_in_the_figure_belong_to_the_heading_above_them(self):
+        head = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+<text x="16" y="30" font-size="20" font-weight="bold">TIÊU ĐỀ HÌNH</text>
+<text x="16" y="58" font-size="16" font-weight="normal">Phụ đề của hình</text>
+"""
+        rows = """<text x="30" y="226" font-size="16" font-weight="bold">Bộ nhớ</text><text x="116" y="226" font-size="16">riêng</text>
+<text x="30" y="252" font-size="16" font-weight="bold">Lỗi</text><text x="116" y="252" font-size="16">cô lập</text>
+<text x="30" y="278" font-size="16" font-weight="bold">Chuyển</text><text x="116" y="278" font-size="16">nhẹ hơn</text>
+</svg>"""
+        card = """<text x="30" y="100" font-size="16" font-weight="bold">Thẻ một</text>
+<text x="30" y="130" font-size="16" font-weight="normal">Dòng của thẻ một</text>
+"""
+        group = """<text x="30" y="200" font-size="16" font-weight="bold">So sánh nhanh</text>
+"""
+
+        def labels(svg):
+            result, _ = self.build(lesson_text(""), svg)
+            return [(c["label"], c["line"]["text"]) for slide in result.slides if "concepts" in slide["material"]
+                    for c in slide["material"]["concepts"]]
+
+        # a bold label with its value on the same line is a row, not the next line of a wrapped group heading
+        self.assertEqual([("Thẻ một", "Dòng của thẻ một"), ("So sánh nhanh", "Bộ nhớ riêng Lỗi cô lập Chuyển nhẹ hơn")],
+                         labels(head + card + group + rows))
+        # rows with no heading above them are one card each
+        self.assertEqual([("Bộ nhớ", "riêng"), ("Lỗi", "cô lập"), ("Chuyển", "nhẹ hơn")], labels(head + rows))
 
     def test_figure_cards_without_numbers_still_open_a_card_at_every_bold_heading(self):
         svg = SVG.replace("1 · ", "").replace("2 · ", "").replace("3 · ", "")
@@ -396,6 +452,13 @@ class RealLessonTests(unittest.TestCase):
                 self.assertTrue(result.slides[-1]["material"]["sources"])
                 self.assertTrue(result.canvas_name.endswith(f"({lesson_id})"))
                 self.assertEqual(brief.build(STORE, lesson_id), result)  # computed, so the same twice
+
+    def test_every_source_of_every_written_lesson_is_sized_against_the_budget(self):
+        for lesson_id in sorted(path.parent.name for path in (STORE / "lessons").glob("sd-*/lesson.md")):
+            with self.subTest(lesson=lesson_id):
+                for source in brief.build(STORE, lesson_id).slides[-1]["material"]["sources"]:
+                    self.assertEqual(len(source["text"].split()), source["words"])
+                    self.assertEqual(source["words"] > brief.WORD_BUDGET, source["over_budget"])
 
     def test_no_written_lesson_leaves_italic_marks_or_an_unescaped_tag_in_its_brief(self):
         italic = re.compile(r"\*(?=\S)[^*\n]+?(?<=\S)\*")

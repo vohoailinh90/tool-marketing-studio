@@ -1,0 +1,92 @@
+{
+  "id": "sd-04-034",
+  "title_vi": "Tám cấu trúc dữ liệu sau chỉ mục: mỗi cái trả lời một kiểu câu hỏi",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "draft",
+  "source_ref": "sd-04-034",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/8-data-structures-that-power-your-databases.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/8-data-structures-that-power-your-databases.md",
+    "blob_sha": "2f83ea4abf38f9ec0269ce3f1ef20bd242bfc984",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a local clone at the pinned commit and hashed as a Git blob; the computed OID matches the tree OID and the source map. No source-image bytes used.",
+    "retrieved_body_sha256": "9c7fce14d8f9b4dd8d5ae5beed59c2f22b7776bf711b0b5ce7048eef9a825cc2",
+    "retrieved_body_bytes": 1378
+  },
+  "diagram": "../diagrams/sd-04-034-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "scope": "Chạy PostgreSQL 16.15 (chỉ mục btree, hash, gist, gin pg_trgm trên 200.000 dòng, enable_seqscan off) và Redis 7.0.15 (object encoding của tập có thứ tự 128 và 129 phần tử); đọc t_zset.c, redis.conf của Redis, storage-engine.adoc của Cassandra, hash.sgml, indices.sgml, pgtrgm.sgml của PostgreSQL 16 tại commit cố định. KHÔNG kiểm: tốc độ của từng chỉ mục, LSM thật (RocksDB, Cassandra), Lucene, cây hậu tố."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "not_yet_reviewed"
+    },
+    "mobile": {
+      "status": "pending"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "id": "source-eight",
+      "claim_vi": "Nguồn liệt kê tám cấu trúc: skiplist (Redis), chỉ mục băm, SSTable, cây LSM (skiplist cộng SSTable, ghi nhanh), B-tree, chỉ mục đảo (Lucene), cây hậu tố, R-tree; và nói danh sách không đầy đủ.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/8-data-structures-that-power-your-databases.md",
+      "section": "Whole guide",
+      "verified_by": "Đọc thân nguồn ghim ngày 2026-10-18."
+    },
+    {
+      "id": "redis-zset",
+      "claim_vi": "Tập có thứ tự của Redis dùng skiplist (theo thuật toán của William Pugh) cùng một bảng băm từ phần tử tới điểm; tập nhỏ hơn zset-max-listpack-entries 128 được lưu dạng listpack.",
+      "sources": [
+        "https://github.com/redis/redis/blob/5e332cabd547d272783cf233a34c81dcb9ea44b3/src/t_zset.c",
+        "https://github.com/redis/redis/blob/5e332cabd547d272783cf233a34c81dcb9ea44b3/redis.conf"
+      ],
+      "section": "t_zset.c chú thích đầu tệp; redis.conf zset-max-listpack-entries",
+      "verified_by": "Đọc bản clone nông ngày 2026-10-18; chạy Redis 7.0.15: object encoding là listpack với 128 phần tử, skiplist với 129."
+    },
+    {
+      "id": "cassandra-lsm",
+      "claim_vi": "Bộ máy lưu trữ của Cassandra dựa trên cây LSM: ghi vào commit log và memtable, xả ra SSTable bất biến đã sắp xếp; gộp tệp ở nền khiến mỗi dòng bị ghi lại nhiều lần.",
+      "source": "https://github.com/apache/cassandra/blob/95b178a141824a0414c4add9b5ab87eaa1ca13bf/doc/modules/cassandra/pages/architecture/storage-engine.adoc",
+      "section": "Storage Engine",
+      "verified_by": "Đọc bản clone nông tại commit 95b178a141824a0414c4add9b5ab87eaa1ca13bf ngày 2026-10-18."
+    },
+    {
+      "id": "hash-equality-only",
+      "claim_vi": "Chỉ mục băm của PostgreSQL chỉ phục vụ phép =; với enable_seqscan off, code = 4242 dùng chỉ mục băm còn code between 100 and 200 vẫn là Seq Scan; B-tree phục vụ cả hai.",
+      "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/hash.sgml",
+      "section": "Hash Indexes",
+      "verified_by": "Đọc hash.sgml ('Hash indexes support only the = operator') và chạy explain ngày 2026-10-18."
+    },
+    {
+      "id": "gist-trgm",
+      "claim_vi": "Chỉ mục GiST trên cột point phục vụ order by pos <-> point(...) limit 3; chỉ mục gin với gin_trgm_ops phục vụ like '%abc12%'.",
+      "sources": [
+        "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/indices.sgml",
+        "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/pgtrgm.sgml"
+      ],
+      "section": "Index Types (GiST nearest-neighbor); pg_trgm Index Support",
+      "verified_by": "Đọc hai tệp và chạy explain ngày 2026-10-18 với enable_seqscan off."
+    }
+  ],
+  "design_notes_vi": "Bốn khung: trong bộ nhớ, trên đĩa, câu hỏi đặc thù, kết quả đã thử. Bài nói rõ PostgreSQL không có cây hậu tố hay R-tree theo đúng tên. Sơ đồ dựng bằng scripts/figures, không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Nguồn liệt kê tám cấu trúc kèm một dòng mô tả; bài nhóm theo nơi lưu và kiểu câu hỏi, rồi kiểm bằng phép thử chỉ mục nào phục vụ được câu hỏi nào.",
+    "Bài thêm rằng tên cấu trúc trong sách không trùng tên trong hệ thật: PostgreSQL tìm chuỗi con bằng bộ ba ký tự (pg_trgm) thay cho cây hậu tố, và tìm gần nhất bằng GiST."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này, bản nháp chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

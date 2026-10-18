@@ -6,6 +6,7 @@
 
 ## Từ viết tắt
 
+- **SQL** (Structured Query Language) — ngôn ngữ truy vấn có cấu trúc: ngôn ngữ chuẩn để hỏi và ghi dữ liệu trong cơ sở dữ liệu quan hệ; PostgreSQL là một hệ cơ sở dữ liệu dùng nó, và Aurora có bản tương thích PostgreSQL.
 - **ACU** (Aurora Capacity Unit) — đơn vị dung lượng Aurora: đơn vị mà Aurora Serverless v2 dùng để đo và tính phần tính toán của một máy cơ sở dữ liệu.
 - **AWS** (Amazon Web Services) — dịch vụ đám mây của Amazon, nơi cung cấp Aurora.
 - **API** (Application Programming Interface) — giao diện lập trình ứng dụng: cách một chương trình gọi chức năng của dịch vụ; ở đây là mô tả các tham số cấu hình Aurora mà AWS công bố cho bộ công cụ lập trình.

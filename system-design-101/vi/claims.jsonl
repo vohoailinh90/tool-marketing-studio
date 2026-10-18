@@ -180,29 +180,29 @@
 
 {"id": "sd-03-008", "status": "written", "title": "How does ChatGPT work?"}
 
-{"id": "sd-04-001", "status": "doing", "title": "Read Replica Pattern", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "claimed_at": "2026-10-18T13:32:21Z", "heartbeat_at": "2026-10-18T14:01:43Z"}
+{"id": "sd-04-001", "status": "written", "title": "Read Replica Pattern", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "done_at": "2026-10-18T14:31:17Z", "pr": 144}
 
-{"id": "sd-04-002", "status": "doing", "title": "Pessimistic vs Optimistic Locking", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "claimed_at": "2026-10-18T13:32:21Z", "heartbeat_at": "2026-10-18T14:01:43Z"}
+{"id": "sd-04-002", "status": "written", "title": "Pessimistic vs Optimistic Locking", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "done_at": "2026-10-18T14:31:17Z", "pr": 144}
 
-{"id": "sd-04-003", "status": "doing", "title": "How to Upload a Large File to S3", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "claimed_at": "2026-10-18T13:32:21Z", "heartbeat_at": "2026-10-18T14:01:43Z"}
+{"id": "sd-04-003", "status": "written", "title": "How to Upload a Large File to S3", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "done_at": "2026-10-18T14:31:17Z", "pr": 144}
 
-{"id": "sd-04-004", "status": "doing", "title": "Types of Message Queues", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "claimed_at": "2026-10-18T13:32:21Z", "heartbeat_at": "2026-10-18T14:01:43Z"}
+{"id": "sd-04-004", "status": "written", "title": "Types of Message Queues", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "done_at": "2026-10-18T14:31:17Z", "pr": 144}
 
-{"id": "sd-04-005", "status": "doing", "title": "Smooth Data Migration with Avro", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "claimed_at": "2026-10-18T13:32:21Z", "heartbeat_at": "2026-10-18T14:01:43Z"}
+{"id": "sd-04-005", "status": "written", "title": "Smooth Data Migration with Avro", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "done_at": "2026-10-18T14:31:17Z", "pr": 144}
 
-{"id": "sd-04-006", "status": "doing", "title": "The Ultimate Kafka 101 You Cannot Miss", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "claimed_at": "2026-10-18T13:32:21Z", "heartbeat_at": "2026-10-18T14:01:43Z"}
+{"id": "sd-04-006", "status": "written", "title": "The Ultimate Kafka 101 You Cannot Miss", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "done_at": "2026-10-18T14:31:17Z", "pr": 144}
 
-{"id": "sd-04-007", "status": "doing", "title": "Database Isolation Levels", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "claimed_at": "2026-10-18T13:32:21Z", "heartbeat_at": "2026-10-18T14:01:43Z"}
+{"id": "sd-04-007", "status": "written", "title": "Database Isolation Levels", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "done_at": "2026-10-18T14:31:17Z", "pr": 144}
 
-{"id": "sd-04-008", "status": "doing", "title": "Top 6 Data Management Patterns", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "claimed_at": "2026-10-18T13:32:21Z", "heartbeat_at": "2026-10-18T14:01:43Z"}
+{"id": "sd-04-008", "status": "written", "title": "Top 6 Data Management Patterns", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "done_at": "2026-10-18T14:31:17Z", "pr": 144}
 
-{"id": "sd-04-009", "status": "doing", "title": "Why is Kafka Fast?", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "claimed_at": "2026-10-18T13:32:21Z", "heartbeat_at": "2026-10-18T14:01:43Z"}
+{"id": "sd-04-009", "status": "written", "title": "Why is Kafka Fast?", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "done_at": "2026-10-18T14:31:17Z", "pr": 144}
 
-{"id": "sd-04-010", "status": "doing", "title": "Explaining the 4 Most Commonly Used Types of Queues", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "claimed_at": "2026-10-18T13:32:21Z", "heartbeat_at": "2026-10-18T14:01:43Z"}
+{"id": "sd-04-010", "status": "written", "title": "Explaining the 4 Most Commonly Used Types of Queues", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "done_at": "2026-10-18T14:31:17Z", "pr": 144}
 
-{"id": "sd-04-011", "status": "doing", "title": "Time Series DB (TSDB) in 20 Lines", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "claimed_at": "2026-10-18T13:32:21Z", "heartbeat_at": "2026-10-18T14:01:43Z"}
+{"id": "sd-04-011", "status": "written", "title": "Time Series DB (TSDB) in 20 Lines", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "done_at": "2026-10-18T14:31:17Z", "pr": 144}
 
-{"id": "sd-04-012", "status": "doing", "title": "Differences in Event Sourcing System Design", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "claimed_at": "2026-10-18T13:32:21Z", "heartbeat_at": "2026-10-18T14:01:43Z"}
+{"id": "sd-04-012", "status": "written", "title": "Differences in Event Sourcing System Design", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "done_at": "2026-10-18T14:31:17Z", "pr": 144}
 
 {"id": "sd-04-013", "status": "doing", "title": "Erasure Coding", "owner": "claude/sd101-l3-sd04", "session": "cse_015iQYsfm7L2qVfVVdmsEoSM", "claimed_at": "2026-10-18T13:32:21Z", "heartbeat_at": "2026-10-18T14:01:43Z"}
 

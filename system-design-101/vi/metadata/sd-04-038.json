@@ -1,0 +1,97 @@
+{
+  "id": "sd-04-038",
+  "title_vi": "Định lý CAP: thử cắt mạng giữa hai máy PostgreSQL",
+  "language": "vi",
+  "kind": "concept",
+  "content_status": "draft",
+  "source_ref": "sd-04-038",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/cap-theorem-one-of-the-most-misunderstood-terms.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/cap-theorem-one-of-the-most-misunderstood-terms.md",
+    "blob_sha": "5a101f9377710093e7a7ed242972553fd9f3ab80",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a local clone at the pinned commit and hashed as a Git blob; the computed OID matches the tree OID and the source map. No source-image bytes used.",
+    "retrieved_body_sha256": "35dbce00905c287016678c10ea243bf139d6de7db20f7a826c38657988f6c17c",
+    "retrieved_body_bytes": 2206
+  },
+  "diagram": "../diagrams/sd-04-038-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-04-035",
+      "relation": "related",
+      "reason_vi": "Bài đó dùng cùng cặp bản chính và bản sao để xem việc đọc ngay sau khi ghi; bài này cắt mạng giữa hai máy."
+    },
+    {
+      "lesson_id": "sd-04-044",
+      "relation": "related",
+      "reason_vi": "Chữ nhất quán trong ACID khác chữ nhất quán trong CAP."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "scope": "Chạy PostgreSQL 16.15 (bản chính và một bản sao trên một máy) với psycopg 3.3.6: cắt đường sao chép bằng cách đổi primary_conninfo, ghi ở chế độ không đồng bộ và đồng bộ, hủy lệnh đang chờ, đo độ trễ ghi 200 dòng ở hai chế độ. Đọc high-availability.sgml và syncrep.c của nhánh REL_16_STABLE. KHÔNG kiểm: bài báo 'CAP Twelve Years Later' và PACELC (chỉ theo nguồn), hệ phân tán khác, phân vùng giữa các máy thật, chuyển bản chính khi lỗi."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "not_yet_reviewed"
+    },
+    "mobile": {
+      "status": "pending"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "id": "source-cap",
+      "claim_vi": "Nguồn định nghĩa nhất quán (mọi khách thấy cùng dữ liệu cùng lúc), sẵn sàng (mọi yêu cầu được trả lời dù vài máy hỏng), chịu phân vùng (vẫn chạy khi mạng bị chia); lưu ý cách nói hai trong ba dễ hiểu lầm, chọn cơ sở dữ liệu không chỉ dựa vào CAP, định lý nói về sẵn sàng và nhất quán trọn vẹn, và nhắc PACELC cho đánh đổi độ trễ khi không có phân vùng.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/cap-theorem-one-of-the-most-misunderstood-terms.md",
+      "section": "Whole guide",
+      "verified_by": "Đọc thân nguồn ghim ngày 2026-10-18."
+    },
+    {
+      "id": "async-partition",
+      "claim_vi": "Sao chép không đồng bộ, đường sao chép bị cắt: lệnh ghi ở bản chính xong ngay, bản sao vẫn trả lời nhưng không có dòng mới; nối lại thì bản sao nhận đủ.",
+      "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/high-availability.sgml",
+      "section": "Phép thử của người biên soạn",
+      "verified_by": "Chạy đoạn mã in trong bài ngày 2026-10-18 (và một bản trước đó cho cùng kết quả)."
+    },
+    {
+      "id": "sync-partition",
+      "claim_vi": "Sao chép đồng bộ, đường sao chép bị cắt: lệnh ghi chờ ở sự kiện SyncRep, statement_timeout 3 giây không cắt được; pg_cancel_backend sau 10 giây làm lệnh trả về với WARNING 'canceling wait for synchronous replication due to user request' và chi tiết giao dịch đã ghi ở bản chính nhưng có thể chưa sang bản sao; bản chính thấy dòng, bản sao không cho tới khi nối lại.",
+      "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/src/backend/replication/syncrep.c",
+      "section": "SyncRepWaitForLSN",
+      "verified_by": "Chạy hai lần ngày 2026-10-18 (một lần hủy tay sau 126,7 giây, một lần sau 10 giây); đọc chú thích trong syncrep.c giải thích vì sao chỉ có thể cảnh báo."
+    },
+    {
+      "id": "sync-may-never-complete",
+      "claim_vi": "Tài liệu PostgreSQL: lệnh ghi chờ bản sao đồng bộ có thể không bao giờ xong nếu một bản sao đồng bộ hỏng.",
+      "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/high-availability.sgml",
+      "section": "Planning for High Availability",
+      "verified_by": "Đọc bản clone nông nhánh REL_16_STABLE ngày 2026-10-18."
+    },
+    {
+      "id": "latency",
+      "claim_vi": "Không có phân vùng, trên cùng máy, ghi 200 dòng liên tiếp: trung bình 0,40 mili giây mỗi lần khi không đồng bộ, 0,88 mili giây khi đồng bộ với remote_apply.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/cap-theorem-one-of-the-most-misunderstood-terms.md",
+      "section": "PACELC (phép đo của người biên soạn)",
+      "verified_by": "Chạy một lần ngày 2026-10-18; số đo của hai tiến trình trên một máy."
+    }
+  ],
+  "design_notes_vi": "Bốn khung: ba chữ của CAP, cắt mạng khi không đồng bộ, cắt mạng khi đồng bộ, độ trễ khi không có phân vùng. Sơ đồ dựng bằng scripts/figures, không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Nguồn giải thích ba chữ và các hiểu lầm bằng lời; bài dựng một phân vùng thật giữa bản chính và bản sao PostgreSQL để thấy lựa chọn giữa sẵn sàng và nhất quán, và đo độ trễ khi không có phân vùng.",
+    "Bài thêm một chi tiết nguồn không có: hủy lệnh đang chờ bản sao đồng bộ không hoàn tác giao dịch, chỉ cho ra cảnh báo."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này, bản nháp chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

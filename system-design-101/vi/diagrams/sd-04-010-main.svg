@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="963" viewBox="0 0 320 963" role="img" aria-labelledby="title desc">
+<title id="title">Bốn kiểu hàng đợi trong một chương trình</title>
+<desc id="desc">Hai khung. Khung một là bốn thẻ. Hàng đợi FIFO: vào cuối, ra đầu; lấy hết 100.000 phần tử từ đầu một list Python mất khoảng 14 giây, từ đầu một deque mất 0,009 giây. Bộ đệm vòng: 8 ô cố định dùng xoay vòng; khi đầy, người ghi phải chờ người đọc. Hàng đợi ưu tiên: lấy ra phần tử ưu tiên nhất trước; Binh và Dung cùng mức 1 ra trước, rồi Chi, rồi An. Deque: thêm và lấy ở cả hai đầu; chỉ dùng một đầu thì thành ngăn xếp. Khung hai chọn theo câu hỏi: giữ đúng thứ tự đến thì FIFO; bộ nhớ cố định thì bộ đệm vòng; việc gấp đi trước thì hàng đợi ưu tiên; cần cả hai đầu thì deque.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="963" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Bốn kiểu hàng đợi trong</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">một chương trình</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Kết quả chạy thử bằng Python 3.13</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">trên một máy.</text>
+<rect x="8" y="123" width="304" height="487" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Bốn kiểu, bốn kết quả đo</text>
+<rect x="20" y="168" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="221.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 210.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5h10"/><path d="M11 12h10"/><path d="M11 19h10"/><path d="M4 4h1v5"/><path d="M4 9h2"/><path d="M6.5 20H3.4c0-1 2.6-1.925 2.6-3.5a1.5 1.5 0 0 0-2.6-1.02"/></g>
+<text x="78" y="194.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Hàng đợi FIFO</text>
+<text x="78" y="218.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Vào cuối, ra đầu. 100.000</text>
+<text x="78" y="237.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">phần tử: list khoảng 14</text>
+<text x="78" y="257.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">giây, deque 0,009 giây.</text>
+<rect x="20" y="289" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="342.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 331.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></g>
+<text x="78" y="315.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Bộ đệm vòng</text>
+<text x="78" y="339.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">8 ô cố định, dùng xoay</text>
+<text x="78" y="358.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">vòng; đầy thì người ghi chờ</text>
+<text x="78" y="378.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">người đọc.</text>
+<rect x="20" y="410" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="453.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 442.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></g>
+<text x="78" y="436.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Hàng đợi ưu tiên</text>
+<text x="78" y="460.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ưu tiên nhất ra trước: Binh,</text>
+<text x="78" y="479.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Dung (mức 1), rồi Chi, An.</text>
+<rect x="20" y="511" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="554.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 543.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3 4 7l4 4"/><path d="M4 7h16"/><path d="m16 21 4-4-4-4"/><path d="M20 17H4"/></g>
+<text x="78" y="537.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Deque</text>
+<text x="78" y="561.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Thêm, lấy ở cả hai đầu; chỉ</text>
+<text x="78" y="580.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dùng một đầu là ngăn xếp.</text>
+<rect x="8" y="622" width="304" height="333" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="650.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Chọn theo câu hỏi</text>
+<rect x="20" y="667" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="690" r="11" fill="#16a34a"/>
+<polyline points="37.9,690.4 41.7,694.4 48.5,686" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="693.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Phải giữ đúng thứ tự đến:</text>
+<text x="64" y="712.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">FIFO.</text>
+<rect x="20" y="738" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="761" r="11" fill="#16a34a"/>
+<polyline points="37.9,761.4 41.7,765.4 48.5,757" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="764.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bộ nhớ cố định, không cấp</text>
+<text x="64" y="783.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">phát thêm: bộ đệm vòng.</text>
+<rect x="20" y="809" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="832" r="11" fill="#16a34a"/>
+<polyline points="37.9,832.4 41.7,836.4 48.5,828" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="835.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Việc gấp phải đi trước: hàng</text>
+<text x="64" y="854.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đợi ưu tiên.</text>
+<rect x="20" y="880" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="903" r="11" fill="#16a34a"/>
+<polyline points="37.9,903.4 41.7,907.4 48.5,899" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="906.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cần thêm, lấy ở cả hai đầu:</text>
+<text x="64" y="925.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">deque.</text>
+</g>
+</svg>

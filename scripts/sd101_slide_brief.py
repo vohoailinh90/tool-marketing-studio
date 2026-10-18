@@ -417,7 +417,7 @@ def build(store: pathlib.Path, lesson_id: str) -> Brief:
         warnings.append("the lesson has no limits/takeaway section: the summary slide only recaps the concepts; add what "
                         "the lesson says about limits from its figure and opening line")
     fed = [figure or "", question_section or "", answer, deep] + [
-        rest for name, rest in parsed.sections.items() if name.startswith(TAKEAWAY_PREFIXES)]
+        parsed.sections[name] for name in parsed.sections if name.startswith(TAKEAWAY_PREFIXES)]
     if any(has_skipped_markup(text) for text in fed):
         warnings.append("a code block or table in the lesson is left out of the slide lines (read it in lesson.md and "
                         "draw it as a diagram if the slide needs it)")

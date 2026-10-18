@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1249" viewBox="0 0 320 1249" role="img" aria-labelledby="title desc">
+<title id="title">Thêm shard thứ năm: bao nhiêu khóa phải dời?</title>
+<desc id="desc">Ba khung dọc. Khung một, bốn cách chọn shard cho một khóa: chia theo dải, mỗi shard giữ một khoảng id liền nhau; băm chia dư, shard là giá trị băm của id chia lấy dư cho số shard; băm nhất quán, khóa thuộc shard đứng kế tiếp nó trên vòng băm; ô ảo, khóa rơi vào 1.024 ô cố định và một bảng tra ghi ô nào thuộc shard nào. Khung hai, số khóa phải dời khi thêm shard: theo dải 12.500 nhưng các shard lệch nhau; băm chia dư 79.651, gần 80 phần trăm; băm nhất quán với 100 điểm mỗi shard 20.670; ô ảo 204 ô, 19.993 khóa. Khung ba, hai cái bẫy: id tăng dần dồn mọi id mới vào shard cuối khi chia theo dải; vòng băm chỉ một điểm mỗi shard thì shard lớn gấp hơn ba lần shard nhỏ.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1249" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Thêm shard thứ năm:</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">bao nhiêu khóa phải</text>
+<text x="16" y="82" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">dời?</text>
+<rect x="8" y="102" width="304" height="469" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="130.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Bốn cách chọn shard cho</text>
+<text x="20" y="152.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">một khóa</text>
+<rect x="20" y="169" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="212.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 201.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5h10"/><path d="M11 12h10"/><path d="M11 19h10"/><path d="M4 4h1v5"/><path d="M4 9h2"/><path d="M6.5 20H3.4c0-1 2.6-1.925 2.6-3.5a1.5 1.5 0 0 0-2.6-1.02"/></g>
+<text x="78" y="195.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Chia theo dải</text>
+<text x="78" y="219.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mỗi shard giữ một dải id</text>
+<text x="78" y="238.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">liền nhau.</text>
+<rect x="20" y="270" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="313.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 302.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="9" y2="9"/><line x1="4" x2="20" y1="15" y2="15"/><line x1="10" x2="8" y1="3" y2="21"/><line x1="16" x2="14" y1="3" y2="21"/></g>
+<text x="78" y="296.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Băm chia dư</text>
+<text x="78" y="320.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Băm id rồi chia lấy dư cho</text>
+<text x="78" y="339.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">số shard.</text>
+<rect x="20" y="371" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="414.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 403.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></g>
+<text x="78" y="397.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Băm nhất quán</text>
+<text x="78" y="421.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Khóa về shard kế tiếp trên</text>
+<text x="78" y="440.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">vòng băm.</text>
+<rect x="20" y="472" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="515.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 504.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.97 12.92A2 2 0 0 0 2 14.63v3.24a2 2 0 0 0 .97 1.71l3 1.8a2 2 0 0 0 2.06 0L12 19v-5.5l-5-3-4.03 2.42Z"/><path d="m7 16.5-4.74-2.85"/><path d="m7 16.5 5-3"/><path d="M7 16.5v5.17"/><path d="M12 13.5V19l3.97 2.38a2 2 0 0 0 2.06 0l3-1.8a2 2 0 0 0 .97-1.71v-3.24a2 2 0 0 0-.97-1.71L17 10.5l-5 3Z"/><path d="m17 16.5-5-3"/><path d="m17 16.5 4.74-2.85"/><path d="M17 16.5v5.17"/><path d="M7.97 4.42A2 2 0 0 0 7 6.13v4.37l5 3 5-3V6.13a2 2 0 0 0-.97-1.71l-3-1.8a2 2 0 0 0-2.06 0l-3 1.8Z"/><path d="M12 8 7.26 5.15"/><path d="m12 8 4.74-2.85"/><path d="M12 13.5V8"/></g>
+<text x="78" y="498.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Ô ảo</text>
+<text x="78" y="522.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Băm vào 1.024 ô; bảng tra</text>
+<text x="78" y="541.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">ô thuộc shard nào.</text>
+<rect x="8" y="583" width="304" height="415" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="611.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Thêm shard: số khóa dời</text>
+<text x="20" y="633.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">trên 100.000</text>
+<rect x="20" y="650" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="673" r="11" fill="#16a34a"/>
+<polyline points="37.9,673.4 41.7,677.4 48.5,669" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="676.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Theo dải: 12.500 (12,5%),</text>
+<text x="64" y="695.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhưng shard lệch 12.500 với</text>
+<text x="64" y="715.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">25.000.</text>
+<rect x="20" y="741" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="764" r="11" fill="#16a34a"/>
+<polyline points="37.9,764.4 41.7,768.4 48.5,760" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="767.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Băm chia dư: 79.651 (gần</text>
+<text x="64" y="786.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">80%), gần như chuyển cả</text>
+<text x="64" y="806.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">kho.</text>
+<rect x="20" y="832" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="855" r="11" fill="#16a34a"/>
+<polyline points="37.9,855.4 41.7,859.4 48.5,851" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="858.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Băm nhất quán, 100 điểm</text>
+<text x="64" y="877.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mỗi shard: 20.670 (21%).</text>
+<rect x="20" y="903" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="926" r="11" fill="#16a34a"/>
+<polyline points="37.9,926.4 41.7,930.4 48.5,922" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="929.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ô ảo: 204 ô, 19.993 khóa</text>
+<text x="64" y="948.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">(20%); năm shard gần bằng</text>
+<text x="64" y="968.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhau.</text>
+<rect x="8" y="1010" width="304" height="231" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="1038.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Hai cái bẫy</text>
+<rect x="20" y="1055" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1078" r="11" fill="#16a34a"/>
+<polyline points="37.9,1078.4 41.7,1082.4 48.5,1074" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1081.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Id tăng dần: chia theo dải</text>
+<text x="64" y="1100.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dồn mọi id mới vào shard</text>
+<text x="64" y="1120.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cuối.</text>
+<rect x="20" y="1146" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1169" r="11" fill="#16a34a"/>
+<polyline points="37.9,1169.4 41.7,1173.4 48.5,1165" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1172.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Vòng băm chỉ 1 điểm mỗi</text>
+<text x="64" y="1191.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">shard: shard lớn gấp hơn 3</text>
+<text x="64" y="1211.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lần shard nhỏ.</text>
+</g>
+</svg>

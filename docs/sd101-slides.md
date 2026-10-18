@@ -73,10 +73,12 @@ decks* below). The rules:
 - Footer on every slide but the cover: one progress dot per slide (the current one red) and `System Design 101 · Bài NN ·
   03/10` (slide number and slide count), at the bottom left. Keep the bottom right clear.
 - Slides: the cover first (dark: the lesson title, its hook question, one line per main concept) and the terms and sources
-  last (dark: the lesson's `## Từ viết tắt` and its sources). Between them the lesson's own logic sets the order: the
-  situation and goal, one slide per concept with a diagram, the choice or summary, a check question with its answer, the deep
-  dive. Only what the lesson has: a lesson with no `## Nhìn hình thử trả lời` gets no question, a recap in its own sentences
-  instead. The layouts and the light and dark rhythm are set under *Variety between decks*.
+  last (dark: the lesson's `## Từ viết tắt` and its `## Nguồn đối chiếu`; a lesson with no `## Từ viết tắt` gets the terms it
+  explains itself). Between them the lesson's own logic sets the order: the situation and goal, one slide per concept with a
+  diagram, the choice or summary, a check question with its answer, the deep dive. The check question is the lesson's own,
+  from its `## Nhìn hình thử trả lời` or its `## Nhìn hình trả lời` section, whichever it has (both names exist); a lesson with
+  neither gets a recap in its own sentences instead. The layouts and the light and dark rhythm are set under *Variety
+  between decks*.
 - Content comes from the lesson and nothing else: no new number, claim or example. Vietnamese, with diacritics; no em
   dash; at most 10 words per bullet and 3 bullets per card. A slide is read in five seconds.
 - Build one slide per `canvas_apply_markup`, then `canvas_screenshot` every slide and look at it (text cut off, text
@@ -91,11 +93,12 @@ and sources slide last. Everything else differs from deck to deck; `sd-01-001` i
 - **Visual idea.** Each deck gets one idea taken from its lesson's own subject (a deck about NAT built around an address table,
   one about HTTP/2 around a single pipe that carries several streams). Say it in one line in the first message about the deck;
   there is no need to wait for an answer unless the owner replies.
-- **Layout kinds.** A slide is one of: sequence diagram, flow, two-column comparison, 2x2 matrix, lookup table, numbered rows,
-  one big number, one highlighted sentence, timeline, layers. A deck uses at least five different kinds and never the same
-  kind on two adjacent slides. The lesson's `kind` (in `system-design-101/vi/metadata/<id>.json`) says where to lean:
-  `flow` toward sequence diagrams and flows, `comparison` toward columns and matrices, `reference` toward tables and card
-  grids, `topology` toward layers and connection diagrams, `timeline` toward the timeline, `howto` toward numbered rows.
+- **Layout kinds.** A slide is exactly one of these twelve: sequence diagram, flow, two-column comparison, 2x2 matrix, lookup
+  table, card grid, numbered rows, connection diagram, layers, timeline, one big number, one highlighted sentence. A deck
+  uses at least five different kinds and never the same kind on two adjacent slides. The lesson's `kind` (in
+  `system-design-101/vi/metadata/<id>.json`) says where to lean, in these names: `flow` toward sequence diagram and flow,
+  `comparison` toward two-column comparison and 2x2 matrix, `reference` toward lookup table and card grid, `topology` toward
+  layers and connection diagram, `timeline` toward timeline, `howto` toward numbered rows.
 - **Accent rotation.** The four accents are, counted from 0: blue, amber, teal, red. With n the number at the end of the
   lesson id (`sd-01-004` gives 4), the k-th concept of the lesson (k counted from 0) takes the accent numbered (n + k) mod 4.
   A concept keeps its colour on every slide of the deck. Neighbouring lessons therefore open with different colours, and a

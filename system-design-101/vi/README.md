@@ -51,20 +51,20 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 
 ## Cơ sở dữ liệu và lưu trữ
 
-Các bài từ sd-04-013 trở đi chưa viết; số thứ tự dưới đây chỉ tính các bài đã viết.
+Các bài từ sd-04-013 trở đi chưa có ở đây; số thứ tự dưới đây theo vị trí trong nguồn.
 
-1. [Bản sao đọc: vì sao vừa ghi xong lại đọc không thấy](lessons/sd-04-001/lesson.md) — bản nháp mới viết (có thử nghiệm riêng); chờ review kỹ thuật.
-2. [Khóa bi quan và khóa lạc quan: hai người cùng mua vé cuối](lessons/sd-04-002/lesson.md) — bản nháp mới viết (có thử nghiệm riêng); chờ review kỹ thuật.
-3. [Tải tệp lớn lên S3: chia phần, chọn cỡ phần, dọn phần bỏ dở](lessons/sd-04-003/lesson.md) — bản nháp mới viết (có thử nghiệm riêng); chờ review kỹ thuật.
-4. [Chọn hệ thống tin nhắn: tin bị lấy đi, phát đi hay giữ lại](lessons/sd-04-004/lesson.md) — bản nháp mới viết (có thử nghiệm riêng); chờ review kỹ thuật.
-5. [Avro: đổi lược đồ mà dữ liệu cũ vẫn đọc được](lessons/sd-04-005/lesson.md) — bản nháp mới viết (có thử nghiệm riêng); chờ review kỹ thuật.
-6. [Kafka nhập môn: theo bảy đơn hàng đi qua một cụm ba máy](lessons/sd-04-006/lesson.md) — bản nháp mới viết (có thử nghiệm riêng); chờ review kỹ thuật.
-7. [Mức cô lập giao dịch: mỗi mức chặn được hiện tượng nào](lessons/sd-04-007/lesson.md) — bản nháp mới viết (có thử nghiệm riêng); chờ review kỹ thuật.
-8. [Sáu mẫu quản lý dữ liệu và cái giá chung của chúng](lessons/sd-04-008/lesson.md) — bản nháp mới viết (có thử nghiệm riêng); chờ review kỹ thuật.
-9. [Vì sao Kafka nhanh: ghi nối tiếp, gom lô, gửi thẳng từ page cache](lessons/sd-04-009/lesson.md) — bản nháp mới viết (có thử nghiệm riêng); chờ review kỹ thuật.
-10. [Bốn kiểu hàng đợi trong chương trình: FIFO, bộ đệm vòng, ưu tiên, deque](lessons/sd-04-010/lesson.md) — bản nháp mới viết (có thử nghiệm riêng); chờ review kỹ thuật.
-11. [Cơ sở dữ liệu chuỗi thời gian: dữ liệu được gom theo series](lessons/sd-04-011/lesson.md) — bản nháp mới viết (có thử nghiệm riêng); chờ review kỹ thuật.
-12. [Event sourcing khác thiết kế CRUD ở đâu: lưu trạng thái hay lưu chuyện đã xảy ra](lessons/sd-04-012/lesson.md) — bản nháp mới viết (có thử nghiệm riêng); chờ review kỹ thuật.
+1. [Bản sao đọc: vì sao vừa ghi xong lại đọc không thấy](lessons/sd-04-001/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+2. [Khóa bi quan và khóa lạc quan: hai người cùng mua vé cuối](lessons/sd-04-002/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+3. [Tải tệp lớn lên S3: chia phần, chọn cỡ phần, dọn phần bỏ dở](lessons/sd-04-003/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+4. [Chọn hệ thống tin nhắn: tin bị lấy đi, phát đi hay giữ lại](lessons/sd-04-004/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+5. [Avro: đổi lược đồ mà dữ liệu cũ vẫn đọc được](lessons/sd-04-005/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+6. [Kafka nhập môn: theo bảy đơn hàng đi qua một cụm ba máy](lessons/sd-04-006/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+7. [Mức cô lập giao dịch: mỗi mức chặn được hiện tượng nào](lessons/sd-04-007/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+8. [Sáu mẫu quản lý dữ liệu và cái giá chung của chúng](lessons/sd-04-008/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+9. [Vì sao Kafka nhanh: ghi nối tiếp, gom lô, gửi thẳng từ page cache](lessons/sd-04-009/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+10. [Bốn kiểu hàng đợi trong chương trình: FIFO, bộ đệm vòng, ưu tiên, deque](lessons/sd-04-010/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+11. [Cơ sở dữ liệu chuỗi thời gian: dữ liệu được gom theo series](lessons/sd-04-011/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+12. [Event sourcing khác thiết kế CRUD ở đâu: lưu trạng thái hay lưu chuyện đã xảy ra](lessons/sd-04-012/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 
 ## Phỏng vấn kỹ thuật
 

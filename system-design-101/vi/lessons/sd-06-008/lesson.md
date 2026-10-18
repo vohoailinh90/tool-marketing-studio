@@ -33,7 +33,7 @@ Ngày 2026-10-18, bài viết một chương trình nhỏ bằng Python: giá s�
 ## Giới hạn cần nhớ
 
 Không chiến lược nào giữ hai bản khớp tuyệt đối. Mẫu Cache-Aside của Microsoft ghi rõ nó không bảo đảm nhất quán: một tiến trình khác sửa cơ sở dữ liệu thì bộ nhớ đệm không biết, và ngay sau khi ghi, người đọc có thể gặp bản cũ trong chốc lát. Hướng dẫn của Microsoft cũng khuyên coi bộ nhớ đệm là kho tạm có thể mất bất cứ lúc nào, đừng để dữ liệu quý chỉ nằm ở đó, đúng điều bước 6 cho thấy với write-back.
-Hạn sống (TTL) giới hạn tuổi của *từng* bản đệm, không giới hạn tổng thời gian dữ liệu sai: một lượt nạp chậm có thể cất lại giá cũ sau khi khóa vừa bị xóa hay vừa hết hạn, và bản cũ đó bắt đầu một hạn mới, như bước 4 cho thấy; nhiều lượt nạp chậm có thể kéo dài thêm nữa. Muốn chặn hẳn việc cất lại giá cũ thì phải có thêm cơ chế khác, như gắn số phiên bản cho giá trị hoặc chỉ cho một lượt được nạp lại.
+Hạn sống (TTL) giới hạn tuổi của *từng* bản đệm, không giới hạn tổng thời gian dữ liệu sai: một lượt nạp chậm có thể cất lại giá cũ sau khi khóa vừa bị xóa hay vừa hết hạn, và bản cũ đó bắt đầu một hạn mới, như bước 4 cho thấy; nhiều lượt nạp chậm có thể kéo dài thêm nữa. Muốn chặn hẳn việc cất lại giá cũ thì lượt nạp phải phối hợp với lượt ghi, chẳng hạn gắn số phiên bản cho giá trị và chỉ cất vào bộ nhớ đệm khi phiên bản đó vẫn là mới nhất. Chỉ cho một lượt nạp chạy mỗi lúc thì không đủ: ở bước 4 cũng chỉ có một lượt nạp, và nó vẫn cất giá cũ sau lượt ghi.
 
 ## Nhìn hình trả lời
 

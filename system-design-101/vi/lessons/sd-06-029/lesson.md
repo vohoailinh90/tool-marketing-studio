@@ -29,7 +29,7 @@ Bài này là bản đồ: mỗi câu hỏi được trả lời ngắn và ch�
 
 **5 · Đầy thì bỏ gì.** Bộ đệm có giới hạn bộ nhớ; khi đầy, *chính sách loại bỏ* quyết định khóa nào phải đi. Redis có `noeviction` (không bỏ gì, báo lỗi với lệnh cần thêm bộ nhớ, lệnh chỉ đọc vẫn chạy), `allkeys-lru` (bỏ khóa lâu nhất chưa dùng), `allkeys-random` (bỏ ngẫu nhiên), các biến thể `volatile-...` chỉ bỏ khóa có hạn dùng, và vài cách khác. Tài liệu Redis khuyên `allkeys-lru` làm lựa chọn mặc định khi một phần nhỏ dữ liệu được dùng nhiều hơn hẳn phần còn lại; cách chọn khóa của Redis là xấp xỉ, không chính xác tuyệt đối. Lưu ý: bản Redis đã thử mặc định không giới hạn bộ nhớ và dùng `noeviction`, nên muốn nó làm bộ đệm thì phải đặt cả `maxmemory` lẫn chính sách.
 
-**6 · Gốc đổi thì sao.** Có hai cách chính. Đặt thời gian hết hạn (TTL) để bản sao cũ chỉ sống tới một lúc nào đó: quá ngắn thì bộ đệm ít tác dụng, quá dài thì dữ liệu cũ lâu. Hoặc xóa mục trong bộ đệm ngay khi ghi vào nơi gốc, để lần đọc sau nạp lại. Bộ đệm ở trình duyệt thì máy chủ không xóa từ xa được; cách quen dùng là đổi địa chỉ của tệp mỗi khi nội dung đổi (ví dụ thêm số phiên bản vào tên tệp), vì trình duyệt dùng địa chỉ làm khóa.
+**6 · Gốc đổi thì sao.** Có hai cách chính. Đặt thời gian hết hạn (TTL) để bản sao cũ chỉ sống tới một lúc nào đó: quá ngắn thì bộ đệm ít tác dụng, quá dài thì dữ liệu cũ lâu. Hoặc xóa mục trong bộ đệm ngay khi ghi vào nơi gốc, để lần đọc sau nạp lại. Bộ đệm ở trình duyệt thì máy chủ không trực tiếp buộc trình duyệt xóa được; cách quen dùng là đổi địa chỉ của tệp mỗi khi nội dung đổi (ví dụ thêm số phiên bản vào tên tệp), vì trình duyệt dùng địa chỉ làm khóa.
 
 **7 · Đọc ghi thế nào.** Ai nạp bộ đệm khi thiếu, và khi ghi thì dữ liệu đi vào bộ đệm, nơi gốc hay cả hai, theo thứ tự nào: đó là các chiến lược cache-aside, read-through, write-through, write-behind, write-around, so sánh và đo trong bài [Các chiến lược bộ đệm hàng đầu](../sd-06-026/lesson.md).
 
@@ -45,7 +45,7 @@ Bài này là bản đồ: mỗi câu hỏi được trả lời ngắn và ch�
 | `allkeys-lru` | 20 500 (17 592 khóa bị loại bỏ) | 500/500 | 100% |
 | `allkeys-random` | 20 500 (17 593 khóa bị loại bỏ) | 2/500 | 28,3% |
 
-Với `noeviction`, khóa nóng vẫn còn nhưng ứng dụng không ghi thêm được gì: bộ đệm đầy biến thành lỗi ở phía ứng dụng. Với `allkeys-lru`, khóa vừa được đọc không bị chọn, nên cả 500 khóa nóng sống sót. Với `allkeys-random`, khóa nóng bị bỏ ngẫu nhiên như mọi khóa khác.
+Với `noeviction`, khóa nóng vẫn còn nhưng ứng dụng không ghi thêm được gì: bộ đệm đầy biến thành lỗi ở phía ứng dụng. Với `allkeys-lru`, khóa vừa được đọc hầu như không bị chọn (Redis chọn theo cách xấp xỉ), và trong lần thử cả 500 khóa nóng sống sót. Với `allkeys-random`, khóa nóng bị bỏ ngẫu nhiên như mọi khóa khác.
 
 **PostgreSQL 16, `shared_buffers` mặc định 128 MB.** Tạo bảng 200 000 dòng, khởi động lại PostgreSQL để vùng đệm trống, rồi chạy cùng một truy vấn hai lần với `EXPLAIN (ANALYZE, BUFFERS)`: lần đầu `shared read=1870`, lần sau `shared hit=1870`. Cả 1870 khối được tìm thấy trong bộ đệm ở lần thứ hai; "read" ở lần đầu là PostgreSQL phải xin khối từ hệ điều hành, chưa chắc là đọc đĩa thật.
 

@@ -38,7 +38,7 @@
     "claims": {
       "status": "checked",
       "checked_on": "2026-10-18",
-      "scope": "Chạy PostgreSQL 16.15 (bản chính và một bản sao trên một máy) với psycopg 3.3.6: cắt đường sao chép bằng cách đổi primary_conninfo, ghi ở chế độ không đồng bộ và đồng bộ, hủy lệnh đang chờ, đo độ trễ ghi 200 dòng ở hai chế độ. Đọc high-availability.sgml và syncrep.c của nhánh REL_16_STABLE. KHÔNG kiểm: bài báo 'CAP Twelve Years Later' và PACELC (chỉ theo nguồn), hệ phân tán khác, phân vùng giữa các máy thật, chuyển bản chính khi lỗi."
+      "scope": "Chạy PostgreSQL 16.15 (bản chính và một bản sao trên một máy) với psycopg 3.3.6: cắt đường sao chép bằng cách đổi primary_conninfo, ghi ở chế độ không đồng bộ và đồng bộ, xem một phiên khác trên bản chính và bản sao thấy gì lúc lệnh ghi đang chờ và sau khi hủy, hủy lệnh đang chờ, đo độ trễ ghi 200 dòng ở hai chế độ. Đọc high-availability.sgml và syncrep.c của nhánh REL_16_STABLE. KHÔNG kiểm: bài báo 'CAP Twelve Years Later' và PACELC (chỉ theo nguồn), hệ phân tán khác, phân vùng giữa các máy thật, chuyển bản chính khi lỗi."
     },
     "technical_review": {
       "status": "pending",
@@ -79,10 +79,17 @@
     },
     {
       "id": "sync-partition",
-      "claim_vi": "Sao chép đồng bộ, đường sao chép bị cắt: lệnh ghi chờ ở sự kiện SyncRep, statement_timeout 3 giây không cắt được; pg_cancel_backend sau 10 giây làm lệnh trả về với WARNING 'canceling wait for synchronous replication due to user request' và chi tiết giao dịch đã ghi ở bản chính nhưng có thể chưa sang bản sao; bản chính thấy dòng, bản sao không cho tới khi nối lại.",
+      "claim_vi": "Sao chép đồng bộ, đường sao chép bị cắt: lệnh ghi chờ ở sự kiện SyncRep, statement_timeout 3 giây không cắt được; trong lúc chờ, một phiên khác trên bản chính và bản sao đều chưa thấy dòng mới; pg_cancel_backend sau 10 giây làm lệnh trả về với WARNING 'canceling wait for synchronous replication due to user request' và chi tiết giao dịch đã ghi ở bản chính nhưng có thể chưa sang bản sao; sau đó phiên khác trên bản chính thấy dòng, bản sao vẫn trả lời câu đọc mà không có nó cho tới khi nối lại.",
       "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/src/backend/replication/syncrep.c",
       "section": "SyncRepWaitForLSN",
-      "verified_by": "Chạy hai lần ngày 2026-10-18 (một lần hủy tay sau 126,7 giây, một lần sau 10 giây); đọc chú thích trong syncrep.c giải thích vì sao chỉ có thể cảnh báo."
+      "verified_by": "Chạy ngày 2026-10-18 (một lần hủy tay sau 126,7 giây, một lần sau 10 giây; đoạn mã in trong bài, có thêm phép xem ở giây thứ 2, chạy lại hai lần cho cùng kết quả); đọc chú thích trong syncrep.c giải thích vì sao chỉ có thể cảnh báo."
+    },
+    {
+      "id": "standby-eventual",
+      "claim_vi": "Tài liệu PostgreSQL: dữ liệu tới bản sao sau một khoảng trễ, nên cùng một câu hỏi chạy gần như cùng lúc ở bản chính và bản sao có thể cho kết quả khác nhau; dữ liệu ở bản sao được gọi là nhất quán dần (eventually consistent) với bản chính.",
+      "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/high-availability.sgml",
+      "section": "Hot Standby — User's Overview",
+      "verified_by": "Đọc bản clone nông nhánh REL_16_STABLE ngày 2026-10-18."
     },
     {
       "id": "sync-may-never-complete",
@@ -101,7 +108,7 @@
   ],
   "design_notes_vi": "Bốn khung: ba chữ của CAP, cắt mạng khi không đồng bộ, cắt mạng khi đồng bộ, độ trễ khi không có phân vùng. Sơ đồ dựng bằng scripts/figures, không dùng ảnh nguồn.",
   "source_deviations": [
-    "Nguồn giải thích ba chữ và các hiểu lầm bằng lời; bài dựng một phân vùng thật giữa bản chính và bản sao PostgreSQL để thấy lựa chọn giữa sẵn sàng và nhất quán, và đo độ trễ khi không có phân vùng.",
+    "Nguồn giải thích ba chữ và các hiểu lầm bằng lời; bài dựng một phân vùng thật giữa bản chính và bản sao PostgreSQL: sao chép không đồng bộ chọn sẵn sàng, còn sao chép đồng bộ chỉ làm lệnh ghi chờ, chưa đủ để gọi là chọn nhất quán vì bản sao vẫn trả lời bằng dữ liệu cũ; bài cũng đo độ trễ khi không có phân vùng.",
     "Bài thêm một chi tiết nguồn không có: hủy lệnh đang chờ bản sao đồng bộ không hoàn tác giao dịch, chỉ cho ra cảnh báo."
   ],
   "editorial_note_vi": "Bài mới viết tại repo này, bản nháp chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."

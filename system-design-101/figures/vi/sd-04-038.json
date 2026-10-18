@@ -2,7 +2,7 @@
   "id": "sd-04-038",
   "lang": "vi",
   "title": "Định lý CAP: thử cắt mạng giữa hai máy",
-  "desc": "Khung một, ba chữ của CAP: C, nhất quán, mọi lượt đọc thấy cùng dữ liệu mới nhất; A, sẵn sàng, mọi yêu cầu tới máy còn sống đều được trả lời; P, chịu phân vùng, hệ vẫn chạy khi mạng giữa các máy bị cắt. Khung hai, PostgreSQL sao chép không đồng bộ, cắt đường sao chép rồi ghi ở bản chính: lệnh ghi xong ngay, bản sao vẫn trả lời nhưng thiếu dòng mới; nối lại mạng thì bản sao nhận đủ. Khung ba, sao chép đồng bộ: lệnh ghi treo, statement_timeout 3 giây không cắt được; hủy tay sau 10 giây chỉ ra một cảnh báo, dòng đã ghi ở bản chính nhưng bản sao chưa có. Khung bốn, khi không có phân vùng, cái giá là độ trễ: mỗi lần ghi 0,40 mili giây khi không đồng bộ và 0,88 mili giây khi đồng bộ.",
+  "desc": "Khung một, ba chữ của CAP: C, nhất quán, mọi lượt đọc thấy cùng dữ liệu mới nhất; A, sẵn sàng, mọi yêu cầu tới máy còn sống đều được trả lời; P, chịu phân vùng, hệ vẫn chạy khi mạng giữa các máy bị cắt. Khung hai, sao chép không đồng bộ, cắt mạng rồi ghi ở bản chính: lệnh ghi xong ngay, bản sao vẫn trả lời nhưng thiếu dòng mới; nối lại thì đủ. Khung ba, sao chép đồng bộ: lệnh ghi treo, statement_timeout 3 giây không cắt được; hủy tay sau 10 giây chỉ ra cảnh báo, bản chính có dòng mới, bản sao vẫn trả lời mà thiếu nó, nên chưa phải chọn nhất quán. Khung bốn, không có phân vùng thì trả bằng độ trễ: mỗi lần ghi 0,40 mili giây khi không đồng bộ, 0,88 mili giây khi đồng bộ.",
   "sections": [
     {
       "kind": "notes",
@@ -23,10 +23,11 @@
     },
     {
       "kind": "notes",
-      "heading": "Cắt mạng, sao chép đồng bộ",
+      "heading": "Cắt mạng, sao chép đồng bộ: chưa phải C",
       "items": [
         "Lệnh ghi treo; statement_timeout 3 giây không cắt được.",
-        "Hủy tay sau 10 giây: chỉ là cảnh báo, dòng đã ghi ở bản chính."
+        "Hủy tay sau 10 giây: chỉ là cảnh báo, dòng đã ghi ở bản chính.",
+        "Bản sao vẫn trả lời câu đọc, thiếu dòng đó: hai máy nói khác nhau."
       ]
     },
     {

@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1101" viewBox="0 0 320 1101" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1214" viewBox="0 0 320 1214" role="img" aria-labelledby="title desc">
 <title id="title">Định lý CAP: thử cắt mạng giữa hai máy</title>
-<desc id="desc">Khung một, ba chữ của CAP: C, nhất quán, mọi lượt đọc thấy cùng dữ liệu mới nhất; A, sẵn sàng, mọi yêu cầu tới máy còn sống đều được trả lời; P, chịu phân vùng, hệ vẫn chạy khi mạng giữa các máy bị cắt. Khung hai, PostgreSQL sao chép không đồng bộ, cắt đường sao chép rồi ghi ở bản chính: lệnh ghi xong ngay, bản sao vẫn trả lời nhưng thiếu dòng mới; nối lại mạng thì bản sao nhận đủ. Khung ba, sao chép đồng bộ: lệnh ghi treo, statement_timeout 3 giây không cắt được; hủy tay sau 10 giây chỉ ra một cảnh báo, dòng đã ghi ở bản chính nhưng bản sao chưa có. Khung bốn, khi không có phân vùng, cái giá là độ trễ: mỗi lần ghi 0,40 mili giây khi không đồng bộ và 0,88 mili giây khi đồng bộ.</desc>
+<desc id="desc">Khung một, ba chữ của CAP: C, nhất quán, mọi lượt đọc thấy cùng dữ liệu mới nhất; A, sẵn sàng, mọi yêu cầu tới máy còn sống đều được trả lời; P, chịu phân vùng, hệ vẫn chạy khi mạng giữa các máy bị cắt. Khung hai, sao chép không đồng bộ, cắt mạng rồi ghi ở bản chính: lệnh ghi xong ngay, bản sao vẫn trả lời nhưng thiếu dòng mới; nối lại thì đủ. Khung ba, sao chép đồng bộ: lệnh ghi treo, statement_timeout 3 giây không cắt được; hủy tay sau 10 giây chỉ ra cảnh báo, bản chính có dòng mới, bản sao vẫn trả lời mà thiếu nó, nên chưa phải chọn nhất quán. Khung bốn, không có phân vùng thì trả bằng độ trễ: mỗi lần ghi 0,40 mili giây khi không đồng bộ, 0,88 mili giây khi đồng bộ.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="1101" fill="#f8fafc"/>
+<rect width="320" height="1214" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Định lý CAP: thử cắt</text>
 <text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">mạng giữa hai máy</text>
@@ -39,32 +39,39 @@
 <polyline points="37.9,573.4 41.7,577.4 48.5,569" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
 <text x="64" y="576.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nối lại mạng: bản sao nhận</text>
 <text x="64" y="595.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đủ.</text>
-<rect x="8" y="637" width="304" height="231" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
-<text x="20" y="665.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Cắt mạng, sao chép đồng bộ</text>
-<rect x="20" y="682" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
-<circle cx="43" cy="705" r="11" fill="#16a34a"/>
-<polyline points="37.9,705.4 41.7,709.4 48.5,701" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="708.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lệnh ghi treo;</text>
-<text x="64" y="727.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">statement_timeout 3 giây</text>
-<text x="64" y="747.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">không cắt được.</text>
-<rect x="20" y="773" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
-<circle cx="43" cy="796" r="11" fill="#16a34a"/>
-<polyline points="37.9,796.4 41.7,800.4 48.5,792" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="799.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Hủy tay sau 10 giây: chỉ là</text>
-<text x="64" y="818.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cảnh báo, dòng đã ghi ở bản</text>
-<text x="64" y="838.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chính.</text>
-<rect x="8" y="880" width="304" height="213" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
-<text x="20" y="908.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Không phân vùng: trả bằng</text>
-<text x="20" y="930.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">độ trễ</text>
-<rect x="20" y="947" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
-<circle cx="43" cy="970" r="11" fill="#16a34a"/>
-<polyline points="37.9,970.4 41.7,974.4 48.5,966" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="973.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Không đồng bộ: 0,40 ms mỗi</text>
-<text x="64" y="992.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lần ghi.</text>
-<rect x="20" y="1018" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
-<circle cx="43" cy="1041" r="11" fill="#16a34a"/>
-<polyline points="37.9,1041.4 41.7,1045.4 48.5,1037" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="1044.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đồng bộ: 0,88 ms mỗi lần</text>
-<text x="64" y="1063.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">ghi, cùng một máy.</text>
+<rect x="8" y="637" width="304" height="344" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="665.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Cắt mạng, sao chép đồng</text>
+<text x="20" y="687.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">bộ: chưa phải C</text>
+<rect x="20" y="704" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="727" r="11" fill="#16a34a"/>
+<polyline points="37.9,727.4 41.7,731.4 48.5,723" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="730.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lệnh ghi treo;</text>
+<text x="64" y="749.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">statement_timeout 3 giây</text>
+<text x="64" y="769.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">không cắt được.</text>
+<rect x="20" y="795" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="818" r="11" fill="#16a34a"/>
+<polyline points="37.9,818.4 41.7,822.4 48.5,814" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="821.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Hủy tay sau 10 giây: chỉ là</text>
+<text x="64" y="840.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cảnh báo, dòng đã ghi ở bản</text>
+<text x="64" y="860.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chính.</text>
+<rect x="20" y="886" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="909" r="11" fill="#16a34a"/>
+<polyline points="37.9,909.4 41.7,913.4 48.5,905" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="912.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bản sao vẫn trả lời câu đọc,</text>
+<text x="64" y="931.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thiếu dòng đó: hai máy nói</text>
+<text x="64" y="951.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khác nhau.</text>
+<rect x="8" y="993" width="304" height="213" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="1021.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Không phân vùng: trả bằng</text>
+<text x="20" y="1043.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">độ trễ</text>
+<rect x="20" y="1060" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1083" r="11" fill="#16a34a"/>
+<polyline points="37.9,1083.4 41.7,1087.4 48.5,1079" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1086.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Không đồng bộ: 0,40 ms mỗi</text>
+<text x="64" y="1105.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lần ghi.</text>
+<rect x="20" y="1131" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1154" r="11" fill="#16a34a"/>
+<polyline points="37.9,1154.4 41.7,1158.4 48.5,1150" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1157.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đồng bộ: 0,88 ms mỗi lần</text>
+<text x="64" y="1176.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">ghi, cùng một máy.</text>
 </g>
 </svg>

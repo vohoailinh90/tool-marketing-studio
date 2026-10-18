@@ -1,0 +1,71 @@
+{
+  "id": "sd-09-019",
+  "title_vi": "Git lưu snapshot và nhánh như thế nào?",
+  "language": "vi",
+  "kind": "explanation",
+  "content_status": "draft",
+  "source_ref": "sd-09-019",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/how-does-git-work.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-git-work.md",
+    "blob_sha": "737f2ed45dcb47fac25a4b55b4dd0713609ba047",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "12086cdd15e7bd2dfce30744180077df668151d4794fd0c27cffc12a5e6907b9",
+    "retrieved_body_bytes": 1032
+  },
+  "diagram": "../diagrams/sd-09-019-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "Đã đọc thân bài nguồn, đối chiếu danh mục và liệt kê tài liệu sơ cấp. Một số trang trả HTTP 403; chưa xác minh toàn bộ claim nên giữ pending."
+    },
+    "technical_review": {
+      "status": "pending"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 14.73,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Re-checked after the Từ viết tắt section was added (first checked 2026-10-13 on the old draft branch). Chromium (Playwright) rendered the complete lesson with every details block open at 320/375/430px from a local Markdown render with GitHub-like styles: no horizontal overflow at any width, every SVG text box inside the viewBox, min effective diagram text 14.73px at 320 and 17.54px at 375. Not GitHub itself, not a real phone, not learner testing."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Blob chứa nội dung file; tree liên hệ tên và mode với các đối tượng con. Commit tham chiếu tree và metadata như tác giả, thông điệp, parent. Khi hai commit dùng cùng nội dung, Git có thể dùng lại đối tượng thay vì sao chép mọi byte một lần nữa.\n\nWorking tree là các file để bạn chỉnh sửa. Index chọn nội dung cho commit tiếp theo. `git add` cập nhật index; `git commit` tạo commit từ index rồi thường cập nhật nhánh hiện tại. `git push` trao đổi đối tượng và cập nhật ref phía remote theo quyền/quy tắc của remote. Các thao tác không chỉ là “chuyển file giữa bốn hộp”.",
+      "sources": [
+        "https://git-scm.com/book/en/v2/Git-Internals-Git-Objects",
+        "https://git-scm.com/book/en/v2/Git-Internals-Git-References",
+        "https://git-scm.com/docs/hash-function-transition"
+      ]
+    },
+    {
+      "claim_vi": "HEAD không luôn trỏ tên nhánh: detached HEAD trỏ trực tiếp commit. ID đối tượng dựa trên hash; đừng suy mọi kho mãi mãi dùng SHA-1.",
+      "sources": [
+        "https://git-scm.com/book/en/v2/Git-Internals-Git-Objects",
+        "https://git-scm.com/book/en/v2/Git-Internals-Git-References",
+        "https://git-scm.com/docs/hash-function-transition"
+      ]
+    }
+  ],
+  "design_notes_vi": "Thẻ dọc tự thiết kế từ ví dụ mới; mũi tên biểu diễn thứ tự đọc. Không sử dụng ảnh nguồn.",
+  "editorial_note_vi": "Đợt Công cụ và năng suất theo yêu cầu người dùng 2026-10-13. Chưa review kỹ thuật độc lập hoặc thử người học; không tự merge/phát hành."
+}

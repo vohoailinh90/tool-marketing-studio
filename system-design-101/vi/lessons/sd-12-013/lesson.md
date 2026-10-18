@@ -4,6 +4,10 @@
 
 ![Bảy thẻ dọc: Alice đăng nhập và nối WebSocket, dịch vụ hiện diện đánh dấu cô trực tuyến và báo bạn bè; Alice gửi tin cho Bob tới chat service A; dịch vụ đánh số cấp cho tin một ID duy nhất và tăng dần trong cuộc trò chuyện; tin được lưu bền; tin đi vào hàng đợi đồng bộ, hai bước này phải đi cùng nhau (ví dụ qua bản ghi outbox) để tin không mất khi dịch vụ dừng giữa chừng; hệ thống hỏi dịch vụ hiện diện xem Bob có trực tuyến không; nếu có thì chuyển tới chat service B và đẩy qua WebSocket, nếu không thì chuyển cho máy chủ thông báo đẩy tới thiết bị của Bob. Chú thích: lưu trước, rồi mới phân phối.](../../diagrams/sd-12-013-main.svg)
 
+## Từ viết tắt
+
+- **ID** (IDentifier) — mã định danh: chuỗi hoặc số dùng để phân biệt một đối tượng với các đối tượng khác; trong bài, mỗi tin được cấp một ID duy nhất và tăng dần trong cuộc trò chuyện để sắp thứ tự.
+
 ## Đọc hình
 
 **Đăng nhập.** Alice nối **WebSocket** tới máy chủ. Dịch vụ hiện diện ghi nhận cô đang trực tuyến và báo cho bạn bè.

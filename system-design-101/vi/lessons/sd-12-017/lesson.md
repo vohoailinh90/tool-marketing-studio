@@ -4,6 +4,10 @@
 
 ![Hình vuông là bản đồ thế giới, chia bốn phần mang mã 01, 11, 00, 10. Phần 01 được tô vàng và chia tiếp thành bốn ô 0101, 0111, 0100, 0110, tất cả bắt đầu bằng tiền tố 01. Bên dưới là hai thẻ: dịch vụ doanh nghiệp quản lý thông tin địa điểm; dịch vụ dựa trên vị trí trả về địa điểm gần theo bán kính bằng cách tra tiền tố của mã ô. Chú thích: điểm gần nhau có thể rơi vào hai ô có tiền tố khác nhau.](../../diagrams/sd-12-017-main.svg)
 
+## Từ viết tắt
+
+- **LBS** (Location-Based Services) — dịch vụ dựa trên vị trí: dịch vụ nhận một tọa độ cùng bán kính rồi trả về các địa điểm gần đó.
+
 ## Đọc hình
 
 **Hai dịch vụ.** **Dịch vụ doanh nghiệp** thêm, sửa, xóa và hiển thị thông tin địa điểm. **Dịch vụ dựa trên vị trí** (LBS) nhận một tọa độ cùng bán kính rồi trả về các địa điểm gần đó.

@@ -4,6 +4,13 @@
 
 ![Sáu thẻ dọc cho sáu khía cạnh: ngôn ngữ, với chữ nằm ngoài mã nguồn và dùng câu hoàn chỉnh; bố cục, chừa chỗ cho chữ dài và xuống dòng; múi giờ, lưu thời điểm đã xảy ra theo UTC còn lịch hẹn tương lai thì lưu kèm tên múi giờ; tiền tệ, tiền hiển thị khác tiền thanh toán; định dạng số, ngày, địa chỉ theo vùng; pháp lý và kế toán theo từng nước.](../../diagrams/sd-12-008-main.svg)
 
+## Từ viết tắt
+
+- **UTC** (Coordinated Universal Time) — giờ phối hợp quốc tế: mốc giờ chung không phụ thuộc múi giờ; bài lưu thời điểm đã xảy ra theo UTC rồi chỉ đổi sang giờ địa phương khi hiển thị.
+- **ISO** (International Organization for Standardization) — tổ chức tiêu chuẩn hóa quốc tế; bài dùng mã tiền tệ theo tiêu chuẩn ISO 4217.
+- **CLDR** (Common Locale Data Repository) — kho dữ liệu vùng và ngôn ngữ chung: dữ liệu định dạng số, ngày, số nhiều và tên vùng để khỏi tự viết cho từng nước.
+- **ICU** (International Components for Unicode) — bộ thành phần quốc tế hóa cho Unicode: bộ thư viện xử lý ngôn ngữ; bài nhắc ICU MessageFormat cho câu có tham số và số nhiều.
+
 ## Đọc hình
 
 **Ngôn ngữ.** Chữ giao diện nằm trong kho riêng, truy cập theo khóa, không viết thẳng vào mã. Không ghép câu từ nhiều mảnh: thứ tự từ và dạng số ít, số nhiều đổi theo ngôn ngữ, nên dùng câu hoàn chỉnh có tham số. Chữ trong ảnh không dịch được, hãy tách chữ ra khỏi ảnh.

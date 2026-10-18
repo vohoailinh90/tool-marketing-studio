@@ -4,6 +4,11 @@
 
 ![Một ví dụ năm thẻ: văn bản gốc cat; Alice chèn s ở vị trí 3 và thấy cats; Bob đồng thời xóa c ở vị trí 0 và thấy at; thao tác chèn của Alice được biến đổi thành chèn s ở vị trí 2 vì c đã bị xóa; mọi máy cùng thấy ats. Chú thích: hệ thống gửi thao tác, không gửi cả tài liệu.](../../diagrams/sd-12-009-main.svg)
 
+## Từ viết tắt
+
+- **OT** (Operational Transformation) — biến đổi thao tác: cách đồng bộ khi nhiều người cùng sửa bằng việc biến đổi vị trí của thao tác theo các thao tác đến trước; mọi cặp loại thao tác đều cần quy tắc biến đổi đúng.
+- **CRDT** (Conflict-free Replicated Data Type) — kiểu dữ liệu nhân bản không xung đột: kiểu dữ liệu được thiết kế để các bản sao hội tụ mà không cần biến đổi thao tác; hợp với làm việc ngoại tuyến.
+
 ## Đọc hình
 
 **Luồng chung.** Máy khách gửi **thao tác** (chèn, xóa kèm vị trí) qua WebSocket; máy chủ xếp thao tác vào hàng đợi, một dịch vụ xử lý sắp thứ tự và biến đổi chúng bằng thuật toán cộng tác, rồi lưu ba loại dữ liệu: thông tin tệp, nội dung và nhật ký thao tác. Thao tác đã xử lý được phát tới các máy còn lại.

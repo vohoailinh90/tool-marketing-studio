@@ -4,6 +4,10 @@
 
 ![Sáu thẻ dọc: người mua bấm Mua và tạo sự kiện thanh toán; dịch vụ thanh toán ghi sự kiện và tách thành các lệnh thanh toán; bộ thực thi lưu lệnh rồi gọi nhà cung cấp thanh toán PSP; ví người bán được cập nhật và sổ cái ghi thêm bản ghi mới trong cùng một giao dịch; mỗi đêm đối soát với tệp quyết toán của PSP hoặc ngân hàng. Chú thích: mỗi bước lưu dấu vết, đối soát bắt chỗ lệch.](../../diagrams/sd-12-010-main.svg)
 
+## Từ viết tắt
+
+- **PSP** (Payment Service Provider) — nhà cung cấp dịch vụ thanh toán: bên mà bộ thực thi gọi để trừ thẻ và nhận tệp quyết toán dùng cho đối soát.
+
 ## Đọc hình
 
 **1–2.** Bấm “Mua” tạo một **sự kiện thanh toán** gửi tới dịch vụ thanh toán, nơi lưu nó lại. Một giỏ hàng có thể gồm nhiều người bán, nên sự kiện được tách thành nhiều **lệnh thanh toán**, mỗi lệnh một người bán.

@@ -4,6 +4,10 @@
 
 ![Bảy thẻ dọc: Bob mở ứng dụng và nối WebSocket tới máy chủ chat; máy chủ tải danh sách thành viên và lịch sử từ Redis; máy chủ publish thông báo có người vào lên kênh member_add; Bob gửi tin cho Alice; máy chủ lưu tin vào sorted set với điểm là thời gian; máy chủ publish tin lên kênh messages trong cùng một giao dịch với lệnh lưu đó; máy chủ của Alice đã subscribe nên đẩy tin tới Alice qua WebSocket. Chú thích: pub/sub lo tin đang bay, sorted set lo tin đã qua.](../../diagrams/sd-12-006-main.svg)
 
+## Từ viết tắt
+
+- **ID** (IDentifier) — mã định danh: chuỗi hoặc số dùng để phân biệt một đối tượng với các đối tượng khác; bài nhắc Redis Streams lưu tin theo thứ tự có ID và cho đọc lại từ một điểm.
+
 ## Đọc hình
 
 **Vào phòng (1–3).** Ứng dụng nối WebSocket tới máy chủ chat. Máy chủ lấy từ Redis danh sách thành viên và lịch sử rồi gửi cho Bob, đồng thời **publish** lên kênh `member_add` để người khác thấy Bob vào.

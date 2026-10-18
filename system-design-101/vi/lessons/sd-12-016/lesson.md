@@ -4,6 +4,12 @@
 
 ![Sáu thẻ dọc: client tạo thùng bằng yêu cầu HTTP PUT tới dịch vụ API; dịch vụ API hỏi dịch vụ định danh và quyền xem có quyền ghi không; dịch vụ lưu mục thùng vào kho siêu dữ liệu; client gửi PUT tạo đối tượng; dữ liệu của đối tượng được lưu ở kho dữ liệu và trả về một mã đối tượng; dịch vụ API ghi vào kho siêu dữ liệu mã đối tượng, thùng chứa và tên. Chú thích: dữ liệu nằm ở một nơi, thông tin mô tả nằm ở nơi khác.](../../diagrams/sd-12-016-main.svg)
 
+## Từ viết tắt
+
+- **API** (Application Programming Interface) — giao diện lập trình ứng dụng: cách để một chương trình yêu cầu dữ liệu hoặc chức năng của chương trình khác; trong bài, client gửi PUT tới dịch vụ API để tạo thùng và tải đối tượng lên.
+- **HTTP** (HyperText Transfer Protocol) — giao thức truyền siêu văn bản: quy ước để trình duyệt gửi yêu cầu và máy chủ gửi trả lời; yêu cầu tạo thùng là một yêu cầu HTTP PUT.
+- **IAM** (Identity and Access Management) — quản lý danh tính và quyền truy cập: dịch vụ cho biết người dùng là ai và có quyền ghi hay không; dịch vụ API hỏi IAM trước khi tạo thùng.
+
 ## Đọc hình
 
 **Thuật ngữ.** **Thùng** (bucket) là vật chứa có tên duy nhất, tạo trước khi tải lên. **Đối tượng** (object) gồm **dữ liệu** (dãy byte bất kỳ) và **siêu dữ liệu** (các cặp tên–giá trị mô tả nó). Thùng chỉ có siêu dữ liệu.

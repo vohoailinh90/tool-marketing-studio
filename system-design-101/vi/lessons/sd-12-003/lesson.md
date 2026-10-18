@@ -4,6 +4,14 @@
 
 ![Sáu thẻ dọc: Alice nộp thư cho máy chủ Outlook; máy chủ Outlook tra MX; thư chuyển bằng SMTP sang máy chủ Gmail; máy chủ Gmail kiểm tra nguồn gửi và lọc spam; thư được lưu cùng chỉ mục và nhãn; Bob mở ứng dụng và đồng bộ thư. Chú thích: đây là ví dụ thiết kế, không phải kiến trúc nội bộ thật.](../../diagrams/sd-12-003-main.svg)
 
+## Từ viết tắt
+
+- **DNS** (Domain Name System) — hệ thống tên miền: "danh bạ" của Internet, đổi tên miền thành địa chỉ mạng của máy chủ; trong bài, máy chủ Outlook tra bản ghi MX của tên miền Gmail để biết thư phải gửi tới đâu.
+- **SMTP** (Simple Mail Transfer Protocol) — giao thức truyền thư đơn giản: dùng để gửi thư và chuyển thư giữa các máy chủ thư; Outlook và Gmail trao đổi thư với nhau bằng SMTP.
+- **MX** (Mail eXchange) — bản ghi trao đổi thư: loại bản ghi DNS chỉ máy chủ nhận thư của một tên miền; máy chủ Outlook tra MX để biết thư của Alice phải gửi tới đâu.
+- **IMAP** (Internet Message Access Protocol) — giao thức truy cập thư Internet: cho người dùng đọc thư ngay trên máy chủ thư, nhiều thiết bị cùng thấy một hộp thư; ứng dụng của Bob lấy thư mới qua IMAP, POP hoặc giao diện riêng của nhà cung cấp.
+- **POP** (Post Office Protocol) — giao thức bưu điện: cho người dùng tải thư về máy; POP3 là phiên bản 3 của giao thức này; một lựa chọn để ứng dụng của Bob lấy thư.
+
 ## Đọc hình
 
 Đường đi cơ bản của thư đã có ở bài [Email được gửi đi như thế nào?](../sd-12-002/lesson.md). Ở đây ta nhìn vào bước 4–6, nơi máy chủ nhận phải quyết định.

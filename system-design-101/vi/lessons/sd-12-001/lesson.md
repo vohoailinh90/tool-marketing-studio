@@ -4,6 +4,12 @@
 
 ![Năm thẻ dọc: AirTag phát tín hiệu Bluetooth kèm khóa công khai đổi theo thời gian; thiết bị Apple ở gần nhận tín hiệu; thiết bị đó mã hóa vị trí của chính nó bằng khóa công khai rồi gửi lên máy chủ Apple; máy chủ giữ bản mã mà không có khóa để mở; chủ AirTag giải mã bằng khóa riêng trên thiết bị của mình và xem nơi AirTag được thấy gần nhất.](../../diagrams/sd-12-001-main.svg)
 
+## Từ viết tắt
+
+- **GPS** (Global Positioning System) — hệ thống định vị toàn cầu bằng vệ tinh; AirTag không có GPS, nên không tự biết vị trí của mình.
+- **SIM** (Subscriber Identity Module) — thẻ SIM: chip nhận diện thuê bao để thiết bị dùng mạng di động; AirTag không có SIM, nên không tự báo vị trí qua mạng di động.
+- **UWB** (Ultra WideBand) — băng siêu rộng: công nghệ vô tuyến dò khoảng cách chính xác trên một số iPhone; bài nhắc nó như phần nằm ngoài hình.
+
 ## Đọc hình
 
 **1. AirTag phát tín hiệu.** Nó phát Bluetooth Low Energy định kỳ. Nội dung mang một khóa công khai thay đổi theo thời gian, nên người ngoài khó nhận ra cùng một chiếc AirTag qua nhiều lần.

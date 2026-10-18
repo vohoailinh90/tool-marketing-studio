@@ -4,6 +4,13 @@
 
 ![Sáu thẻ dọc: ứng dụng đăng ký với FCM và nhận registration token; ứng dụng gửi token cho máy chủ riêng, máy chủ lưu kèm thời gian; máy chủ ứng dụng gửi tin kèm token qua Admin SDK hoặc HTTP; FCM nhận và xếp hàng, giữ tin nếu thiết bị ngoại tuyến; FCM chuyển qua kênh của nền tảng như Android, APNs của iOS hoặc web; thiết bị hiển thị thông báo. Chú thích: token là địa chỉ của một bản cài ứng dụng, không phải của người dùng.](../../diagrams/sd-12-015-main.svg)
 
+## Từ viết tắt
+
+- **FCM** (Firebase Cloud Messaging) — dịch vụ nhắn tin đám mây của Firebase: nhận tin từ máy chủ ứng dụng, xếp hàng rồi chuyển tới thiết bị.
+- **APN** (Apple Push Notification) — thông báo đẩy của Apple: bài nhắc APNs, kênh của iOS mà FCM chuyển tin qua, bên cạnh kênh của Android và web.
+- **SDK** (Software Development Kit) — bộ công cụ phát triển phần mềm: thư viện và công cụ để gọi một dịch vụ; bài nói máy chủ ứng dụng gửi tin qua Admin SDK hoặc HTTP.
+- **HTTP** (HyperText Transfer Protocol) — giao thức truyền siêu văn bản: quy ước để trình duyệt gửi yêu cầu và máy chủ gửi trả lời; máy chủ ứng dụng có thể gửi tin tới FCM bằng HTTP.
+
 ## Đọc hình
 
 **1–2. Đăng ký.** Lần đầu chạy, ứng dụng đăng ký với FCM bằng thông tin cấu hình của dự án và nhận về một **registration token** đại diện cho bản cài này. Ứng dụng gửi token cho **máy chủ của mình**, nơi lưu nó (kèm thời gian cập nhật để sau này dọn token cũ).

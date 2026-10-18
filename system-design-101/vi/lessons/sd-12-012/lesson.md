@@ -4,6 +4,10 @@
 
 ![Sáu thẻ dọc: dịch vụ vị trí nhận vị trí gửi lên định kỳ để cập nhật giao thông và đường; hiển thị bản đồ bằng các ô dựng sẵn theo mức phóng, phát qua CDN; dẫn đường gồm bốn bước tuần tự: đổi địa chỉ thành tọa độ, tìm vài tuyến ứng viên, ước tính thời gian theo giao thông, xếp hạng tuyến. Chú thích: ba dịch vụ độc lập, dẫn đường gọi nhiều bước tuần tự.](../../diagrams/sd-12-012-main.svg)
 
+## Từ viết tắt
+
+- **CDN** (Content Delivery Network) — mạng phân phối nội dung: nhiều máy chủ đặt ở nhiều nơi, lưu bản sao nội dung và phát cho người dùng từ máy gần họ; trong bài, các ô bản đồ dựng sẵn là tệp tĩnh ít đổi nên rất hợp để phát qua CDN.
+
 ## Đọc hình
 
 **Dịch vụ vị trí.** Máy khách gửi vị trí lên định kỳ. Dữ liệu này giúp phát hiện đường mới hoặc đã đóng, cải thiện độ chính xác của bản đồ và làm đầu vào cho giao thông.

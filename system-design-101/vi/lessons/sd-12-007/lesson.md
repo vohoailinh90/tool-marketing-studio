@@ -4,6 +4,16 @@
 
 ![Bảy thẻ dọc: quay hình và thu âm thanh; nén và mã hóa, hình bằng bộ mã hóa video như H.264 còn tiếng bằng bộ mã hóa âm thanh như AAC; gửi lên máy chủ bằng giao thức đưa vào như RTMP; tạo nhiều mức chất lượng cho cùng nội dung; cắt thành các đoạn dài vài giây; CDN đẩy đoạn tới máy chủ biên gần người xem; trình phát tải đoạn, chọn mức phù hợp, giải mã và phát. Chú thích: muốn xem lại thì lưu các đoạn vào kho.](../../diagrams/sd-12-007-main.svg)
 
+## Từ viết tắt
+
+- **AAC** (Advanced Audio Coding) — mã hóa âm thanh nâng cao: một bộ mã hóa âm thanh; trong bài, hình được nén riêng bằng bộ mã hóa video như H.264 còn tiếng bằng bộ mã hóa âm thanh như AAC.
+- **RTMP** (Real-Time Messaging Protocol) — giao thức nhắn tin thời gian thực: có gốc từ thời Flash; ngày nay thường còn dùng để đưa luồng từ phần mềm của người phát lên máy chủ, ít khi dùng để phát cho người xem.
+- **HLS** (HTTP Live Streaming) — phát trực tiếp qua HTTP: cách phát theo từng đoạn do Apple đề xuất, hỗ trợ bitrate thích ứng; thiết bị Apple hỗ trợ sẵn.
+- **DASH** (Dynamic Adaptive Streaming over HTTP) — phát thích ứng động qua HTTP: cách phát theo từng đoạn, hỗ trợ bitrate thích ứng; khả năng phát phụ thuộc trình phát và thiết bị.
+- **MPEG** (Moving Picture Experts Group) — nhóm chuyên gia về ảnh động: nhóm đặt ra nhiều chuẩn nén hình và tiếng; MPEG-DASH là chuẩn DASH do nhóm này công bố.
+- **HTTP** (HyperText Transfer Protocol) — giao thức truyền siêu văn bản: quy ước để trình duyệt gửi yêu cầu và máy chủ gửi trả lời; trình phát tải từng đoạn video qua HTTP, và HLS với DASH đều phát theo đoạn qua HTTP.
+- **CDN** (Content Delivery Network) — mạng phân phối nội dung: nhiều máy chủ đặt ở nhiều nơi, lưu bản sao nội dung và phát cho người dùng từ máy gần họ; trong bài, CDN đẩy các đoạn tới máy chủ biên gần người xem.
+
 ## Đọc hình
 
 **1–3. Từ máy người phát lên máy chủ.** Hình được nén bằng bộ mã hóa video như H.264, còn tiếng được mã hóa riêng bằng bộ mã hóa âm thanh như AAC (H.264 chỉ lo phần hình); nén như vậy làm dung lượng nhỏ đi nhiều. Hai luồng được ghép chung rồi gửi lên máy chủ bằng một giao thức đưa vào như RTMP.

@@ -4,6 +4,21 @@
 
 ![Năm thẻ dọc: người gửi soạn thư và nộp cho máy chủ của mình; máy chủ gửi hỏi DNS bản ghi MX của tên miền người nhận, và nếu không có MX thì dùng địa chỉ A hoặc AAAA của chính tên miền; thư được chuyển bằng SMTP giữa các máy chủ; máy chủ nhận lưu thư vào hộp thư; người nhận đọc thư bằng IMAP hoặc POP3. Chú thích: SMTP đẩy thư đi, IMAP và POP3 chỉ để đọc thư đã nằm sẵn.](../../diagrams/sd-12-002-main.svg)
 
+## Từ viết tắt
+
+- **MUA** (Mail User Agent) — ứng dụng thư của người dùng, như Outlook hay Thunderbird: nơi soạn thư, gửi đi và đọc thư.
+- **MTA** (Mail Transfer Agent) — máy chủ chuyển thư: nhận thư và chuyển tiếp tới máy chủ khác bằng SMTP.
+- **MDA** (Mail Delivery Agent) — thành phần đặt thư vào hộp thư của người nhận.
+- **SMTP** (Simple Mail Transfer Protocol) — giao thức truyền thư đơn giản: dùng để gửi thư và chuyển thư giữa các máy chủ thư; trong bài, SMTP đẩy thư đi còn IMAP và POP chỉ để đọc thư đã nằm sẵn.
+- **IMAP** (Internet Message Access Protocol) — giao thức truy cập thư Internet: cho người dùng đọc thư ngay trên máy chủ thư, nhiều thiết bị cùng thấy một hộp thư; người nhận có thể đọc thư bằng IMAP, POP hoặc webmail.
+- **POP** (Post Office Protocol) — giao thức bưu điện: cho người dùng tải thư về máy; POP3 là phiên bản 3 của giao thức này; một cách khác để người nhận đọc thư.
+- **DNS** (Domain Name System) — hệ thống tên miền: "danh bạ" của Internet, đổi tên miền như example.com thành địa chỉ mạng của máy chủ để biết gửi tới đâu; máy chủ gửi tra DNS để tìm bản ghi MX của tên miền người nhận.
+- **MX** (Mail eXchange) — bản ghi trao đổi thư: loại bản ghi DNS chỉ máy chủ nhận thư của một tên miền; máy chủ gửi dùng nó để biết thư phải gửi tới đâu.
+- **AAAA** (Quad A) — bản ghi AAAA, đọc là "quad A": loại bản ghi DNS trả về địa chỉ mạng thế hệ mới của một tên; bài dùng nó, cùng bản ghi A, khi tên miền không có bản ghi MX.
+- **SPF** (Sender Policy Framework) — khung chính sách người gửi: cho biết máy nào được gửi thư thay mặt một tên miền.
+- **DKIM** (DomainKeys Identified Mail) — thư được định danh bằng khóa miền: chữ ký số gắn trên thư để máy nhận kiểm tra thư có đúng từ tên miền gửi không.
+- **DMARC** (Domain-based Message Authentication, Reporting and Conformance) — chính sách xử lý thư khi kiểm tra SPF và DKIM không khớp với tên miền hiển thị; bài xếp ba thứ này vào lớp bảo vệ thêm, không nằm trong đường đi cơ bản.
+
 ## Đọc hình
 
 **MUA** (mail user agent) là ứng dụng bạn dùng, như Outlook hay Thunderbird. **MTA** (mail transfer agent) là máy chủ chuyển thư bằng **SMTP**. **MDA** (mail delivery agent) đặt thư vào hộp thư của người nhận.

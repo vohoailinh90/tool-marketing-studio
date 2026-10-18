@@ -10,6 +10,8 @@
 - **ACID** (Atomicity, Consistency, Isolation, Durability) — bốn tính chất của một giao dịch đáng tin: làm trọn hoặc không làm, giữ dữ liệu hợp lệ, các giao dịch không lẫn vào nhau, đã ghi thì không mất.
 - **HTAP** (Hybrid Transactional/Analytical Processing) — xử lý lai giao dịch và phân tích: một hệ chạy được cả hai loại việc trên cùng dữ liệu.
 - **NoSQL** (Not only SQL) — tên chung cho các cơ sở dữ liệu không theo mô hình bảng quan hệ, như kho tài liệu hay kho khóa–giá trị.
+- **DB** (DataBase) — cơ sở dữ liệu: kho lưu dữ liệu có tổ chức để ghi và tìm lại nhanh; có trong tên TiDB, MongoDB và TokuDB.
+- **KV** (Key-Value) — khóa–giá trị: kiểu lưu mỗi giá trị dưới một khóa và lấy lại bằng đúng khóa đó; có trong tên TiKV.
 
 ## Đọc hình
 
@@ -38,16 +40,22 @@ Nếu giỏ hàng gắn với giữ hàng trong kho hay giá đã hứa, thì m�
 <summary>Xem sâu hơn: lệnh của phép thử Redis</summary>
 
 ```bash
-redis-server --port 6391 --dir /tmp/a --daemonize yes          # cấu hình mặc định
-for i in $(seq 1 50); do redis-cli -p 6391 set k$i v$i > /dev/null; done
-redis-cli -p 6391 dbsize                                         # 50
-pid=$(redis-cli -p 6391 info server | grep process_id | cut -d: -f2 | tr -d '\r')
-sleep 1.5; kill -9 $pid
-redis-server --port 6391 --dir /tmp/a --daemonize yes
-redis-cli -p 6391 dbsize                                         # 0
+try() {                                   # $@: tùy chọn thêm cho redis-server, dùng ở cả hai lần khởi động
+  d=$(mktemp -d)                          # một thư mục trống mới cho mỗi lần thử
+  redis-server --port 6391 --dir "$d" --daemonize yes "$@"; sleep 0.5
+  for i in $(seq 1 50); do redis-cli -p 6391 set k$i v$i > /dev/null; done
+  echo "trước: $(redis-cli -p 6391 dbsize)"
+  pid=$(redis-cli -p 6391 info server | grep process_id | cut -d: -f2 | tr -d '\r')
+  sleep 1.5; kill -9 "$pid"; sleep 0.5
+  redis-server --port 6391 --dir "$d" --daemonize yes "$@"; sleep 0.5
+  echo "sau khi khởi động lại: $(redis-cli -p 6391 dbsize)"
+  redis-cli -p 6391 shutdown nosave > /dev/null
+}
+try                                               # cấu hình mặc định: trước 50, sau 0
+try --appendonly yes --appendfsync everysec       # có nhật ký ghi: trước 50, sau 50
 ```
 
-Lặp lại với `--appendonly yes --appendfsync everysec` ở cả hai lần khởi động (và một thư mục trống khác): lần cuối in 50. Đừng thử trên Redis đang chứa dữ liệu thật.
+Đừng thử trên cổng của một Redis đang chứa dữ liệu thật.
 
 </details>
 

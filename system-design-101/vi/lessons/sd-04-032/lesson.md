@@ -12,6 +12,7 @@
 - **FTS** (Full-Text Search) — tìm toàn văn: tìm theo từ trong văn bản bằng một chỉ mục ghi sẵn mỗi từ nằm ở đâu; FTS5 là bộ tìm toàn văn có sẵn trong SQLite.
 - **GB** (GigaByte) — gigabyte: đơn vị dung lượng cỡ một tỷ byte; ở đây nói lượng bộ nhớ đoạn mã cần.
 - **SQL** (Structured Query Language) — ngôn ngữ truy vấn có cấu trúc: ngôn ngữ chuẩn để hỏi dữ liệu; SQLite và DuckDB đều nhận câu SQL.
+- **DB** (DataBase) — cơ sở dữ liệu: kho lưu dữ liệu có tổ chức để ghi và tìm lại nhanh; có trong tên DuckDB.
 
 ## Đọc hình
 

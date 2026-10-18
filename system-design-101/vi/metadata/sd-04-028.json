@@ -82,7 +82,7 @@
     },
     {
       "id": "toy-separation",
-      "claim_vi": "Trên PostgreSQL 16.15, tiến trình A tạo bảng 1.000.000 dòng rồi dừng; tiến trình B (số tiến trình và cổng khác) chạy trên cùng thư mục dữ liệu thấy count 1.000.000 và sum 47.999.082; câu đầu tiên của B báo shared read=4425, khởi động mất khoảng 0,12 giây.",
+      "claim_vi": "Trên PostgreSQL 16.15, tiến trình A tạo bảng 1.000.000 dòng rồi dừng; tiến trình B (số tiến trình và cổng khác) chạy trên cùng thư mục dữ liệu thấy count 1.000.000 và sum 47.999.082; câu đầu tiên của B, một phép quét cả bảng, báo shared read=4425; sau một lần khởi động lại, câu tra một đơn theo khóa chính chỉ báo shared read=4 ở phần thực thi; khởi động mất khoảng 0,12 giây.",
       "source": "https://github.com/neondatabase/neon/blob/fa504217c61bbcaf5c512d75830564541f917f8f/README.md",
       "section": "Phép thử của người biên soạn (mô hình đồ chơi của ý tách tính toán khỏi lưu trữ)",
       "verified_by": "Chạy ngày 2026-10-18 trên máy biên soạn; thời gian khởi động là của một máy với đĩa cục bộ, không dùng làm số đo của dịch vụ nào."

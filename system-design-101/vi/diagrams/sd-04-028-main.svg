@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1213" viewBox="0 0 320 1213" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1233" viewBox="0 0 320 1233" role="img" aria-labelledby="title desc">
 <title id="title">Cơ sở dữ liệu serverless: tách tính toán khỏi lưu trữ</title>
-<desc id="desc">Ba khung dọc. Khung một, ba mảnh nối nhau: ứng dụng gửi truy vấn; phần tính toán là tiến trình cơ sở dữ liệu không giữ dữ liệu, co giãn theo tải và có thể dừng hẳn; phần lưu trữ giữ dữ liệu và nhật ký ghi, sống độc lập với phần tính toán. Khung hai, Aurora Serverless v2 theo tài liệu API của AWS: dung lượng đo bằng ACU, chỉnh theo bước 0,5; tối đa 256 ACU với bản mới, 128 với bản cũ; tối thiểu 0 ACU khi bản đó hỗ trợ tự tạm dừng, nếu không thì 0,5; tạm dừng sau 300 giây rảnh theo mặc định, đặt được tới một ngày. Khung ba, thử ý tưởng trên một máy: dừng tiến trình A, chạy tiến trình B trên cùng thư mục dữ liệu; B thấy đủ 1.000.000 dòng; câu đầu tiên của B phải đọc cả 4.425 trang từ kho.</desc>
+<desc id="desc">Khung một, ba mảnh nối nhau: ứng dụng gửi truy vấn; phần tính toán là tiến trình cơ sở dữ liệu không giữ dữ liệu, co giãn theo tải và có thể dừng hẳn; phần lưu trữ giữ dữ liệu và nhật ký ghi, sống độc lập. Khung hai, Aurora Serverless v2 theo tài liệu API của AWS: dung lượng đo bằng ACU, chỉnh theo bước 0,5; tối đa 256 ACU với bản mới, 128 với bản cũ; tối thiểu 0 ACU khi bản đó hỗ trợ tự tạm dừng, nếu không thì 0,5; tạm dừng sau 300 giây rảnh theo mặc định, tới một ngày. Khung ba, thử trên một máy: dừng tiến trình A, chạy tiến trình B trên cùng thư mục dữ liệu; B thấy đủ 1.000.000 dòng; bộ đệm của B trống, nên câu quét cả bảng đọc 4.425 trang từ kho, còn câu tra một khóa chỉ đọc 4 trang.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="1213" fill="#f8fafc"/>
+<rect width="320" height="1233" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Cơ sở dữ liệu serverless:</text>
 <text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">tách tính toán khỏi lưu</text>
@@ -52,7 +52,7 @@
 <text x="64" y="842.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tạm dừng sau 300 giây rảnh</text>
 <text x="64" y="861.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">(mặc định), đặt được tới 1</text>
 <text x="64" y="881.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">ngày.</text>
-<rect x="8" y="923" width="304" height="282" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="8" y="923" width="304" height="302" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
 <text x="20" y="951.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Thử ý tưởng trên một máy</text>
 <rect x="20" y="968" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
 <circle cx="43" cy="991" r="11" fill="#16a34a"/>
@@ -65,10 +65,11 @@
 <polyline points="37.9,1082.4 41.7,1086.4 48.5,1078" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
 <text x="64" y="1085.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">B thấy đủ 1.000.000 dòng,</text>
 <text x="64" y="1104.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tổng giống hệt.</text>
-<rect x="20" y="1130" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<rect x="20" y="1130" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
 <circle cx="43" cy="1153" r="11" fill="#16a34a"/>
 <polyline points="37.9,1153.4 41.7,1157.4 48.5,1149" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="1156.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Câu đầu tiên của B phải đọc</text>
-<text x="64" y="1175.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cả 4.425 trang từ kho.</text>
+<text x="64" y="1156.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bộ đệm của B trống: quét cả</text>
+<text x="64" y="1175.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bảng đọc 4.425 trang, tra</text>
+<text x="64" y="1195.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">một khóa đọc 4 trang.</text>
 </g>
 </svg>

@@ -13,6 +13,7 @@
 - **HTAP** (Hybrid Transactional/Analytical Processing) — xử lý lai giao dịch và phân tích: một hệ được thiết kế để chạy cả hai loại việc trên cùng dữ liệu.
 - **DB** (DataBase) — cơ sở dữ liệu: kho lưu dữ liệu có tổ chức để ghi và tìm lại nhanh; có trong tên TimescaleDB và PipelineDB, hai tiện ích của PostgreSQL.
 - **FDW** (Foreign Data Wrapper) — bộ bọc dữ liệu ngoài: cách PostgreSQL đọc một bảng nằm ở hệ khác như thể bảng của chính nó.
+- **GIS** (Geographic Information System) — hệ thống thông tin địa lý: phần mềm lưu và hỏi dữ liệu gắn với vị trí trên bản đồ; có trong tên PostGIS, tiện ích bản đồ của PostgreSQL.
 
 ## Đọc hình
 

@@ -9,6 +9,8 @@
 - **LSM** (Log-Structured Merge) — gộp theo kiểu nhật ký: cách lưu ghi mọi thay đổi nối tiếp vào bộ nhớ và tệp mới, rồi gộp các tệp ở nền, thay vì sửa tại chỗ.
 - **SQL** (Structured Query Language) — ngôn ngữ truy vấn có cấu trúc: ngôn ngữ chuẩn để hỏi và ghi dữ liệu trong cơ sở dữ liệu quan hệ; PostgreSQL là một hệ dùng nó.
 - **WAL** (Write-Ahead Log) — nhật ký ghi trước: thay đổi được ghi vào nhật ký trước khi vào cấu trúc chính, để khôi phục được khi máy tắt đột ngột; Cassandra gọi nó là commit log.
+- **SST** (Sorted String Table) — bảng chuỗi đã sắp xếp: tệp chứa các khóa đã sắp thứ tự, ghi một lần rồi không sửa; SSTable là tên của loại tệp này.
+- **DB** (DataBase) — cơ sở dữ liệu: kho lưu dữ liệu có tổ chức để ghi và tìm lại nhanh; có trong tên RocksDB.
 
 ## Đọc hình
 

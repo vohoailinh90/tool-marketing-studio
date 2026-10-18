@@ -9,6 +9,8 @@
 - **SQL** (Structured Query Language) — ngôn ngữ truy vấn có cấu trúc: ngôn ngữ chuẩn để hỏi và ghi dữ liệu trong cơ sở dữ liệu quan hệ; PostgreSQL là một hệ cơ sở dữ liệu dùng nó.
 - **JSON** (JavaScript Object Notation) — ký hiệu đối tượng JavaScript: định dạng văn bản gồm các cặp tên và giá trị; PostgreSQL lưu được nó trong cột kiểu `jsonb`.
 - **MB** (MegaByte) — megabyte: đơn vị dung lượng; PostgreSQL in kích thước theo bội của 1.024, nên 43 MB ở đây là 44.949.504 byte.
+- **DB** (DataBase) — cơ sở dữ liệu: kho lưu dữ liệu có tổ chức để ghi và tìm lại nhanh; có trong tên CockroachDB.
+- **GIS** (Geographic Information System) — hệ thống thông tin địa lý: phần mềm lưu và hỏi dữ liệu gắn với vị trí trên bản đồ; có trong tên PostGIS, tiện ích bản đồ của PostgreSQL.
 
 ## Đọc hình
 

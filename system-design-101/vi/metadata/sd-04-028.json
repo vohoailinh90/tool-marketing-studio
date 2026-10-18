@@ -1,0 +1,97 @@
+{
+  "id": "sd-04-028",
+  "title_vi": "Cơ sở dữ liệu serverless: tách phần tính toán khỏi phần lưu trữ",
+  "language": "vi",
+  "kind": "concept",
+  "content_status": "draft",
+  "source_ref": "sd-04-028",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/what-is-serverless-db.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-is-serverless-db.md",
+    "blob_sha": "8f39dc7cd7693e6df48d128885144e6effa71788",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a local clone at the pinned commit and hashed as a Git blob; the computed OID matches the tree OID and the source map. No source-image bytes used.",
+    "retrieved_body_sha256": "c34b4a295da6ae91a29de95a24f9d40e7715f4c093303fec54a5f14be2100342",
+    "retrieved_body_bytes": 1389
+  },
+  "diagram": "../diagrams/sd-04-028-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "scope": "Đọc mục ServerlessV2ScalingConfiguration và các mục liên quan trong mô hình API RDS của botocore, README của Neon, tại commit cố định; chạy phép thử hai tiến trình PostgreSQL 16.15 trên cùng thư mục dữ liệu. KHÔNG kiểm: tài liệu hướng dẫn Aurora trên trang AWS (không mở được), thời gian tiếp tục sau tạm dừng, bộ nhớ của một ACU, bảng giá, nhận định 'co giãn trong vài mili giây' của nguồn."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "not_yet_reviewed"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright 1.56): cả bài dựng từ Markdown thành HTML, mục tùy chọn mở, ở 320, 375 và 430 px; không cuộn ngang; chữ hình hiệu dụng nhỏ nhất 13,5 px ở 320 px và 15 px ở 375 px; không hộp chữ nào ra ngoài viewBox; python3 -m scripts.figures check --browser đạt. Không phải thử trên GitHub, trên điện thoại thật hay với người học."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "id": "source-aurora",
+      "claim_vi": "Nguồn giới thiệu Aurora Serverless: tự tăng giảm dung lượng theo nhu cầu, tự khởi động và tắt, tách tầng tính toán khỏi tầng lưu trữ để tính phí chính xác hơn, và có thể kết hợp máy cố định với máy serverless.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-is-serverless-db.md",
+      "section": "Key Features of Aurora Serverless",
+      "verified_by": "Đọc thân nguồn ghim ngày 2026-10-18."
+    },
+    {
+      "id": "acu-range",
+      "claim_vi": "Aurora Serverless v2: dung lượng tính bằng ACU, chỉnh theo bước 0,5; tối thiểu 0 với bản hỗ trợ tự tạm dừng, 0,5 với bản không hỗ trợ; tối đa 256 với bản mới, 128 với bản cũ.",
+      "source": "https://github.com/boto/botocore/blob/4de93abe62cc263980414f7a66be5226bd541b77/botocore/data/rds/2014-10-31/service-2.json",
+      "section": "ServerlessV2ScalingConfiguration: MinCapacity, MaxCapacity",
+      "verified_by": "Đọc bản clone nông của boto/botocore tại commit 4de93abe62cc263980414f7a66be5226bd541b77 (đầu nhánh mặc định khi đọc, 2026-10-18)."
+    },
+    {
+      "id": "auto-pause",
+      "claim_vi": "SecondsUntilAutoPause là số giây một máy Aurora Serverless v2 phải rảnh trước khi Aurora thử tạm dừng nó, từ 300 đến 86.400, mặc định 300; dung lượng tối thiểu 0 ACU nghĩa là bản đó hỗ trợ tự tạm dừng và tiếp tục.",
+      "source": "https://github.com/boto/botocore/blob/4de93abe62cc263980414f7a66be5226bd541b77/botocore/data/rds/2014-10-31/service-2.json",
+      "section": "ServerlessV2ScalingConfiguration: SecondsUntilAutoPause; ServerlessV2FeaturesSupport: MinCapacity",
+      "verified_by": "Đọc cùng tệp ngày 2026-10-18."
+    },
+    {
+      "id": "neon-architecture",
+      "claim_vi": "Neon tách lưu trữ khỏi tính toán; máy tính toán là PostgreSQL không trạng thái, đứng trên bộ máy lưu trữ gồm máy chủ trang và nhóm máy giữ WAL cho tới khi máy chủ trang xử lý xong.",
+      "source": "https://github.com/neondatabase/neon/blob/fa504217c61bbcaf5c512d75830564541f917f8f/README.md",
+      "section": "Architecture overview",
+      "verified_by": "Đọc bản clone nông của neondatabase/neon tại commit fa504217c61bbcaf5c512d75830564541f917f8f (đầu nhánh mặc định khi đọc, 2026-10-18)."
+    },
+    {
+      "id": "toy-separation",
+      "claim_vi": "Trên PostgreSQL 16.15, tiến trình A tạo bảng 1.000.000 dòng rồi dừng; tiến trình B (số tiến trình và cổng khác) chạy trên cùng thư mục dữ liệu thấy count 1.000.000 và sum 47.999.082; câu đầu tiên của B, một phép quét cả bảng, báo shared read=4425; sau một lần khởi động lại, câu tra một đơn theo khóa chính chỉ báo shared read=4 ở phần thực thi; khởi động mất khoảng 0,12 giây.",
+      "source": "https://github.com/neondatabase/neon/blob/fa504217c61bbcaf5c512d75830564541f917f8f/README.md",
+      "section": "Phép thử của người biên soạn (mô hình đồ chơi của ý tách tính toán khỏi lưu trữ)",
+      "verified_by": "Chạy ngày 2026-10-18 trên máy biên soạn; thời gian khởi động là của một máy với đĩa cục bộ, không dùng làm số đo của dịch vụ nào."
+    }
+  ],
+  "design_notes_vi": "Ba khung: ba mảnh (ứng dụng, phần tính toán, phần lưu trữ), tham số của Aurora Serverless v2 theo mô hình API, phép thử trên một máy. Không có con số nào về giá hay thời gian tiếp tục. Sơ đồ dựng bằng scripts/figures, không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Nguồn nói Aurora Serverless co giãn trong vài mili giây; bài không giữ con số đó vì chưa đọc được tài liệu chính thức nói vậy, và chỉ nêu các tham số đọc được từ mô hình API của AWS.",
+    "Bài thêm Neon làm ví dụ mã nguồn mở của cùng thiết kế, một phép thử đồ chơi (hai tiến trình trên một thư mục dữ liệu) và cái giá của việc dừng hẳn: yêu cầu đầu tiên sau tạm dừng chậm hơn."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này, bản nháp chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

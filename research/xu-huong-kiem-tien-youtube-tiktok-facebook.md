@@ -324,7 +324,13 @@ Không có quy định cấm "đăng bằng API" nói chung. Các quy định ch
   - **Không chấp nhận:** "**công cụ tiện ích giúp tải nội dung lên tài khoản mà bạn hoặc nhóm của bạn quản lý**".
   - Ứng dụng không được giới hạn ở bản thử nghiệm, phải dành cho đối tượng rộng, không phải nhóm nội bộ hay dùng riêng.
   - Do đó **một công cụ tự viết chỉ để đăng cho tài khoản của chính bạn khó vượt audit**, nên bài đăng qua API giữ ở chế độ riêng tư cho tới khi chủ tài khoản tự đổi từng bài sang công khai bằng tay (xem trên). [Chính thức]
-- **Yêu cầu giao diện:** người dùng phải tự chọn chế độ riêng tư (không có giá trị mặc định), đồng ý trước khi gửi video, được sửa tiêu đề; không được thêm watermark/logo/link quảng bá vào nội dung. [Chính thức]
+- **Yêu cầu giao diện** (mục "Required UX Implementation in Your App" của Content Sharing Guidelines): [Chính thức]
+  - Lấy thông tin creator mới nhất (`creator_info`) khi hiển thị trang đăng; hiện nickname của tài khoản sẽ nhận bài; dừng và báo thử lại sau khi API cho biết creator chưa đăng thêm được; kiểm tra độ dài video theo `max_video_post_duration_sec`.
+  - Cho người dùng nhập tiêu đề; **tự chọn** quyền riêng tư từ danh sách `privacy_level_options` (không có giá trị mặc định); tự bật các tùy chọn bình luận, Duet, Stitch (không chọn sẵn; tô xám tùy chọn mà creator đã tắt trong ứng dụng; bài ảnh chỉ có "Allow Comment").
+  - **Khai báo nội dung thương mại:** công tắc tắt mặc định. Khi bật, người dùng phải chọn ít nhất một trong "Your brand" (nhãn "Promotional content") và/hoặc "Branded content" (nhãn "Paid partnership"); nếu không chọn thì nút đăng bị vô hiệu. Nội dung "Branded content" không được để riêng tư: ứng dụng vô hiệu quyền "only me" hoặc tự chuyển sang công khai và báo cho người dùng.
+  - Câu đồng ý trước nút đăng: "Music Usage Confirmation"; chọn "Branded content" thì thêm "Branded Content Policy".
+  - Cho xem bản xem trước; chỉ gửi tệp sau khi người dùng đồng ý rõ ràng; báo rằng bài có thể mất vài phút mới hiện; theo dõi trạng thái bằng `publish/status/fetch` hoặc webhook.
+  - Không được thêm watermark, logo hay link quảng bá vào nội dung; tiêu đề và hashtag soạn sẵn phải cho người dùng sửa trước khi đăng.
 - **Giới hạn:** khoảng **15 bài/ngày/tài khoản creator** qua Direct Post (dùng chung mọi ứng dụng, mức thực tế khác nhau giữa creator); 6 yêu cầu/phút mỗi token; lỗi `spam_risk_too_many_posts` khi chạm trần. [Chính thức]
 - **Khai báo AI qua API:** tham số `is_aigc`; nếu bật, video gắn nhãn "Creator labeled as AI-generated". [Chính thức]
 - **Upload (hộp thư):** thay vì đăng thẳng, video được gửi vào hộp thư của creator; **creator phải bấm thông báo để chỉnh và hoàn tất đăng**; tối đa 5 video chờ duyệt trong 24 giờ. [Chính thức]

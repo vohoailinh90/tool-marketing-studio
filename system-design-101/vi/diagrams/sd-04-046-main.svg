@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="945" viewBox="0 0 320 945" role="img" aria-labelledby="title desc">
+<title id="title">Bộ nhớ và lưu trữ: đo khoảng cách giữa các tầng</title>
+<desc id="desc">Ba khung dọc. Khung một, các loại theo nguồn: RAM là bộ nhớ làm việc, mất khi tắt máy, còn ROM giữ nội dung khi tắt và chứa firmware như BIOS; SRAM nhanh và đắt, làm bộ đệm trong CPU, còn DRAM rẻ hơn, làm bộ nhớ chính, DDR4 và DDR5 là các thế hệ của nó; HDD, SSD, USB và thẻ SD là nơi lưu lâu dài. Khung hai, đo một lần đọc trên máy biên soạn: vùng 16 KiB 1,8 nano giây; vùng 1 MiB khoảng 8 nano giây; vùng 4 đến 16 MiB 26 đến 53 nano giây; vùng từ 64 MiB trở lên 135 đến 217 nano giây. Khung ba, đọc ngẫu nhiên một khối 4 KiB từ đĩa ảo, bỏ qua bộ đệm của hệ điều hành: 31 đến 37 micro giây, gấp khoảng 150 lần một lần đọc bộ nhớ chính.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="945" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Bộ nhớ và lưu trữ: đo</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">khoảng cách giữa các</text>
+<text x="16" y="82" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">tầng</text>
+<rect x="8" y="102" width="304" height="321" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="130.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Các loại, theo nguồn</text>
+<rect x="20" y="147" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="170" r="11" fill="#16a34a"/>
+<polyline points="37.9,170.4 41.7,174.4 48.5,166" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="173.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">RAM: bộ nhớ làm việc, mất</text>
+<text x="64" y="192.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khi tắt máy. ROM: giữ khi</text>
+<text x="64" y="212.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tắt, chứa firmware như BIOS.</text>
+<rect x="20" y="238" width="280" height="102" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="261" r="11" fill="#16a34a"/>
+<polyline points="37.9,261.4 41.7,265.4 48.5,257" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="264.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">SRAM: nhanh, đắt, làm bộ</text>
+<text x="64" y="283.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đệm trong CPU. DRAM: rẻ</text>
+<text x="64" y="303.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hơn, làm bộ nhớ chính</text>
+<text x="64" y="322.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">(DDR4, DDR5).</text>
+<rect x="20" y="348" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="371" r="11" fill="#16a34a"/>
+<polyline points="37.9,371.4 41.7,375.4 48.5,367" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="374.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lưu lâu dài: HDD, SSD, USB,</text>
+<text x="64" y="393.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thẻ SD.</text>
+<rect x="8" y="435" width="304" height="299" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="463.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Đo một lần đọc bộ nhớ</text>
+<rect x="20" y="480" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="503" r="11" fill="#16a34a"/>
+<polyline points="37.9,503.4 41.7,507.4 48.5,499" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="506.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Vùng 16 KiB: 1,8 ns.</text>
+<rect x="20" y="534" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="557" r="11" fill="#16a34a"/>
+<polyline points="37.9,557.4 41.7,561.4 48.5,553" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="560.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Vùng 1 MiB: khoảng 8 ns.</text>
+<rect x="20" y="588" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="611" r="11" fill="#16a34a"/>
+<polyline points="37.9,611.4 41.7,615.4 48.5,607" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="614.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Vùng 4 đến 16 MiB: 26 đến</text>
+<text x="64" y="633.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">53 ns.</text>
+<rect x="20" y="659" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="682" r="11" fill="#16a34a"/>
+<polyline points="37.9,682.4 41.7,686.4 48.5,678" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="685.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Vùng từ 64 MiB trở lên: 135</text>
+<text x="64" y="704.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đến 217 ns.</text>
+<rect x="8" y="746" width="304" height="191" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="774.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Đo một lần đọc đĩa</text>
+<rect x="20" y="791" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="814" r="11" fill="#16a34a"/>
+<polyline points="37.9,814.4 41.7,818.4 48.5,810" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="817.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Khối 4 KiB ngẫu nhiên, bỏ</text>
+<text x="64" y="836.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">qua bộ đệm: 31 đến 37 µs.</text>
+<rect x="20" y="862" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="885" r="11" fill="#16a34a"/>
+<polyline points="37.9,885.4 41.7,889.4 48.5,881" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="888.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Gấp khoảng 150 lần một lần</text>
+<text x="64" y="907.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đọc bộ nhớ chính.</text>
+</g>
+</svg>

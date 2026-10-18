@@ -1,0 +1,31 @@
+{
+  "id": "sd-04-040",
+  "lang": "vi",
+  "title": "Các loại cơ sở dữ liệu và hai nghĩa của chữ cột",
+  "desc": "Bốn khung dọc. Khung một, quan hệ và phân tích: cơ sở dữ liệu quan hệ dùng bảng, khóa và giao dịch; hệ phân tích OLAP tổng hợp rất nhiều dòng và thường lưu theo cột. Khung hai, bốn nhóm NoSQL: đồ thị cho quan hệ giữa các đối tượng; khóa và giá trị để lấy đúng một khóa thật nhanh; tài liệu cho bản ghi dạng JSON, mỗi bản một kiểu; và cột, chữ này có hai nghĩa. Khung ba, hai nghĩa của chữ cột: lưu theo cột, mỗi cột một chỗ, nén tốt, dùng cho phân tích; cột rộng như Cassandra, các dòng gom theo khóa phân vùng, mỗi dòng có nhiều cột. Khung bốn, đo một triệu dòng bán hàng: SQLite lưu theo dòng nặng 25,4 MB; DuckDB lưu theo cột nặng 2,1 MB; cột năm chỉ có một giá trị nên DuckDB lưu một hằng số.",
+  "sections": [
+    {"kind": "notes", "heading": "Quan hệ và phân tích",
+     "items": [
+       "Quan hệ: bảng, khóa, giao dịch.",
+       "Phân tích (OLAP): tổng hợp rất nhiều dòng, thường lưu theo cột."
+     ]},
+    {"kind": "notes", "heading": "Bốn nhóm NoSQL",
+     "items": [
+       "Đồ thị: quan hệ giữa các đối tượng.",
+       "Khóa–giá trị: lấy đúng một khóa thật nhanh.",
+       "Tài liệu: bản ghi dạng JSON, mỗi bản một kiểu.",
+       "Cột: chữ này có hai nghĩa."
+     ]},
+    {"kind": "notes", "heading": "Hai nghĩa của chữ cột",
+     "items": [
+       "Lưu theo cột: mỗi cột một chỗ, nén tốt, cho phân tích.",
+       "Cột rộng (Cassandra): dòng gom theo khóa phân vùng, mỗi dòng nhiều cột."
+     ]},
+    {"kind": "notes", "heading": "Đo: 1 triệu dòng bán hàng",
+     "items": [
+       "SQLite, lưu theo dòng: 25,4 MB.",
+       "DuckDB, lưu theo cột: 2,1 MB.",
+       "Cột năm chỉ một giá trị: DuckDB lưu một hằng số."
+     ]}
+  ]
+}

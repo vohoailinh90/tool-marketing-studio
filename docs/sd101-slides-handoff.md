@@ -26,7 +26,9 @@ python3 scripts/sd101_slide_brief.py sd-01-027              # the lesson cut int
    count (8 to 10), gives each concept its colour (the same on every slide of the deck) and flags every line still over 10 words.
    Its `Concepts are taken from` line says where the lesson keeps its concepts: bullets or bold-label paragraphs under
    `## Đọc hình`, bullets before the first section, or the text cards of the figure (`diagrams/<id>-main.svg`) for lessons that keep
-   them only there. For those, the figure's line breaks are lost in the brief: open the SVG to read the sentences.
+   them only there. For those, the figure's line breaks are lost in the brief: open the SVG to read the sentences, and the prose
+   under `Đọc hình` (left off slide 2 because it explains those same cards, a WARNING says how long it is) is in `lesson.md`.
+   A typed address in the lesson shows as `[address]`: draw such an example as its parts (scheme, host, path ...), never as one address.
 2. **Start Moda.** `moda_bootstrap`, then `load_skill("moda-core")` once, then `load_skill("moda-deck")` and the skills it names (`markup`,
    `deck-design`, `design-quality` and the one for working without a brand kit). Moda asks you to ask which brand kit a new design
    uses; for these decks the answer is already fixed (*no kit*, `docs/sd101-slides.md`) and `brand_list` returned no kit on

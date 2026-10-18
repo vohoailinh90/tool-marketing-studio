@@ -1,0 +1,115 @@
+{
+  "id": "sd-04-030",
+  "title_vi": "Mười cơ sở dữ liệu \"mã nguồn mở\": đọc giấy phép của từng cái",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "draft",
+  "source_ref": "sd-04-030",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/top-10-most-popular-open-source-databases.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-10-most-popular-open-source-databases.md",
+    "blob_sha": "05bf9f8e13c8e95ec1a3b8ad6cc7645aec93aecf",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a local clone at the pinned commit and hashed as a Git blob; the computed OID matches the tree OID and the source map. No source-image bytes used.",
+    "retrieved_body_sha256": "cefa68e728c4cef92709b015ef045504528f73cc84fd9db69aee3f5a79b748be",
+    "retrieved_body_bytes": 756
+  },
+  "diagram": "../diagrams/sd-04-030-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "scope": "Đọc tệp giấy phép ở đầu nhánh chính của mười dự án (bản clone nông, commit ghi trong bài) và cờ isOsiApproved trong danh sách SPDX 3.29.0. KHÔNG kiểm: giấy phép của từng bản phát hành, trang của OSI (không mở được), số liệu phổ biến của nguồn, bản Enterprise của Neo4j, các kho khác của Couchbase Server; không phải tư vấn pháp lý."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "not_yet_reviewed"
+    },
+    "mobile": {
+      "status": "pending"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "id": "source-list",
+      "claim_vi": "Nguồn liệt kê mười cơ sở dữ liệu mã nguồn mở phổ biến: MySQL, PostgreSQL, MariaDB, Apache Cassandra, Neo4j, SQLite, CockroachDB, Redis, MongoDB, Couchbase, dựa trên mức độ được dùng, ảnh hưởng và độ biết tới.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-10-most-popular-open-source-databases.md",
+      "section": "Whole guide",
+      "verified_by": "Đọc thân nguồn ghim ngày 2026-10-18."
+    },
+    {
+      "id": "gpl-group",
+      "claim_vi": "MySQL: GPL phiên bản 2 kèm quyền bổ sung; MariaDB: GPL phiên bản 2; Neo4j (kho mã): GPL phiên bản 3.",
+      "sources": [
+        "https://github.com/mysql/mysql-server/blob/3b99be40f8a31d9396cad10accfd3ba51647d613/LICENSE",
+        "https://github.com/MariaDB/server/blob/327437ade1d6dc6e4e57a6f1723b4abe4ac6c4b4/COPYING",
+        "https://github.com/neo4j/neo4j/blob/54a7dcf7c2501b31866199143364c5332da8936f/LICENSE.txt"
+      ],
+      "section": "LICENSE, COPYING, LICENSE.txt",
+      "verified_by": "Đọc phần đầu từng tệp từ bản clone nông ngày 2026-10-18."
+    },
+    {
+      "id": "permissive-group",
+      "claim_vi": "PostgreSQL dùng giấy phép riêng cho phép dùng, sao, sửa, phân phối miễn giữ lời ghi bản quyền; Cassandra dùng Apache 2.0; SQLite thuộc phạm vi công cộng.",
+      "sources": [
+        "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/COPYRIGHT",
+        "https://github.com/apache/cassandra/blob/95b178a141824a0414c4add9b5ab87eaa1ca13bf/LICENSE.txt",
+        "https://github.com/sqlite/sqlite/blob/43a48f77585a88940c727f33682151418f544059/LICENSE.md"
+      ],
+      "section": "COPYRIGHT, LICENSE.txt, LICENSE.md",
+      "verified_by": "Đọc từ bản clone nông ngày 2026-10-18 (PostgreSQL ở nhánh REL_16_STABLE)."
+    },
+    {
+      "id": "redis-tri",
+      "claim_vi": "Từ Redis 8, mã theo một trong ba giấy phép tùy chọn: RSALv2, SSPLv1 hoặc AGPLv3; Redis 7.2 trở về trước theo BSD 3 điều khoản.",
+      "source": "https://github.com/redis/redis/blob/5e332cabd547d272783cf233a34c81dcb9ea44b3/LICENSE.txt",
+      "section": "LICENSE.txt, đoạn mở đầu",
+      "verified_by": "Đọc từ bản clone nông ngày 2026-10-18."
+    },
+    {
+      "id": "mongodb-sspl",
+      "claim_vi": "MongoDB Community dùng SSPL phiên bản 1; điều 13 buộc ai cung cấp chương trình như dịch vụ cho bên thứ ba phải công bố mã nguồn của dịch vụ.",
+      "source": "https://github.com/mongodb/mongo/blob/9c35392dd534df818bfa6527ef3dcd94cce7630e/LICENSE-Community.txt",
+      "section": "13. Offering the Program as a Service",
+      "verified_by": "Đọc từ bản clone nông ngày 2026-10-18."
+    },
+    {
+      "id": "couchbase-bsl",
+      "claim_vi": "Kho kv_engine của Couchbase Server 8.0 có tệp BSL 1.1: được dùng thật nhưng không được gói vào sản phẩm hay dịch vụ thu phí (kể cả dịch vụ cơ sở dữ liệu); ngày chuyển 2029-03-01, giấy phép chuyển sang Apache 2.0.",
+      "source": "https://github.com/couchbase/kv_engine/blob/fc2d813286da971ce34eefc19fa6979f0d72df69/licenses/BSL-Couchbase.txt",
+      "section": "Additional Use Grant; Change Date; Change License",
+      "verified_by": "Đọc từ bản clone nông ngày 2026-10-18; LICENSE.txt của kho ghi mỗi tệp nêu giấy phép riêng và BSL là một trong số đó. Chỉ đọc kho kv_engine."
+    },
+    {
+      "id": "cockroach-license",
+      "claim_vi": "CockroachDB dùng CockroachDB Software License: không được chạy khi không có khóa giấy phép, trừ việc dùng hạn chế không cho sản xuất; phần mềm gửi dữ liệu đo về bên cấp phép.",
+      "source": "https://github.com/cockroachdb/cockroach/blob/d30c905fff79ef825adc96bcc647f1872a90f2ff/LICENSE",
+      "section": "Limitations and Obligations",
+      "verified_by": "Đọc từ bản clone nông ngày 2026-10-18."
+    },
+    {
+      "id": "spdx-osi",
+      "claim_vi": "Trong danh sách SPDX 3.29.0, GPL-2.0-only, GPL-3.0-only, AGPL-3.0-only, Apache-2.0, PostgreSQL và BSD-3-Clause có isOsiApproved true; SSPL-1.0 và BUSL-1.1 có false; không có mục cho RSAL hay giấy phép CockroachDB.",
+      "source": "https://github.com/spdx/license-list-data/blob/31ba1a50e5397e00a304dbadc76531740e89ee48/json/licenses.json",
+      "section": "json/licenses.json",
+      "verified_by": "Đọc tệp JSON bằng Python ngày 2026-10-18."
+    }
+  ],
+  "design_notes_vi": "Ba khung theo kết quả: giấy phép được OSI duyệt, không phải giấy phép mã nguồn mở, hai trường hợp riêng. Sơ đồ dựng bằng scripts/figures, không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Nguồn gọi cả mười là mã nguồn mở; theo tệp giấy phép hiện tại và cờ OSI của SPDX, MongoDB, Couchbase và CockroachDB không dùng giấy phép mã nguồn mở, còn Redis 8 chỉ là mã nguồn mở qua lựa chọn AGPL.",
+    "Bài bỏ thứ hạng phổ biến của nguồn (không có số liệu kèm theo) và chỉ xét giấy phép."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này, bản nháp chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="955" viewBox="0 0 320 955" role="img" aria-labelledby="title desc">
+<title id="title">Mười cơ sở dữ liệu nổi tiếng: giấy phép nói gì?</title>
+<desc id="desc">Theo tệp giấy phép ở nhánh chính của từng dự án, đọc ngày 18/10/2026. Khung một, giấy phép được OSI duyệt theo danh sách SPDX: MySQL và MariaDB dùng GPL phiên bản 2; Neo4j dùng GPL phiên bản 3; PostgreSQL dùng giấy phép PostgreSQL; Cassandra dùng Apache 2.0; Redis 8 cho chọn một trong ba giấy phép, trong đó có AGPL phiên bản 3. Khung hai, không phải giấy phép mã nguồn mở: MongoDB dùng SSPL, SPDX ghi không được OSI duyệt; Couchbase dùng BSL 1.1, chuyển sang Apache 2.0 từ ngày 1 tháng 3 năm 2029; CockroachDB cần khóa giấy phép để chạy thật. Khung ba, hai trường hợp riêng: SQLite thuộc phạm vi công cộng, không cần giấy phép; Redis 7.2 trở về trước dùng BSD 3 điều khoản.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="955" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Mười cơ sở dữ liệu nổi</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">tiếng: giấy phép nói gì?</text>
+<rect x="8" y="78" width="304" height="370" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="106.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Giấy phép được OSI duyệt</text>
+<rect x="20" y="123" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="146" r="11" fill="#16a34a"/>
+<polyline points="37.9,146.4 41.7,150.4 48.5,142" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="149.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">MySQL, MariaDB: GPL phiên</text>
+<text x="64" y="168.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bản 2.</text>
+<rect x="20" y="194" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="217" r="11" fill="#16a34a"/>
+<polyline points="37.9,217.4 41.7,221.4 48.5,213" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="220.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Neo4j: GPL phiên bản 3.</text>
+<rect x="20" y="248" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="271" r="11" fill="#16a34a"/>
+<polyline points="37.9,271.4 41.7,275.4 48.5,267" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="274.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">PostgreSQL: giấy phép</text>
+<text x="64" y="293.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">PostgreSQL.</text>
+<rect x="20" y="319" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="342" r="11" fill="#16a34a"/>
+<polyline points="37.9,342.4 41.7,346.4 48.5,338" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="345.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cassandra: Apache 2.0.</text>
+<rect x="20" y="373" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="396" r="11" fill="#16a34a"/>
+<polyline points="37.9,396.4 41.7,400.4 48.5,392" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="399.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Redis 8: chọn một trong ba,</text>
+<text x="64" y="418.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">có AGPL phiên bản 3.</text>
+<rect x="8" y="460" width="304" height="284" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="488.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Không phải giấy phép mã</text>
+<text x="20" y="510.3" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">nguồn mở</text>
+<rect x="20" y="527" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="550" r="11" fill="#16a34a"/>
+<polyline points="37.9,550.4 41.7,554.4 48.5,546" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="553.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">MongoDB: SSPL, SPDX ghi</text>
+<text x="64" y="572.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">không được OSI duyệt.</text>
+<rect x="20" y="598" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="621" r="11" fill="#16a34a"/>
+<polyline points="37.9,621.4 41.7,625.4 48.5,617" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="624.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Couchbase: BSL 1.1, thành</text>
+<text x="64" y="643.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Apache 2.0 từ 1/3/2029.</text>
+<rect x="20" y="669" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="692" r="11" fill="#16a34a"/>
+<polyline points="37.9,692.4 41.7,696.4 48.5,688" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="695.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">CockroachDB: cần khóa giấy</text>
+<text x="64" y="714.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">phép để chạy thật.</text>
+<rect x="8" y="756" width="304" height="191" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="784.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Hai trường hợp riêng</text>
+<rect x="20" y="801" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="824" r="11" fill="#16a34a"/>
+<polyline points="37.9,824.4 41.7,828.4 48.5,820" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="827.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">SQLite: phạm vi công cộng,</text>
+<text x="64" y="846.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">không cần giấy phép.</text>
+<rect x="20" y="872" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="895" r="11" fill="#16a34a"/>
+<polyline points="37.9,895.4 41.7,899.4 48.5,891" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="898.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Redis 7.2 trở về trước: BSD 3</text>
+<text x="64" y="917.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">điều khoản.</text>
+</g>
+</svg>

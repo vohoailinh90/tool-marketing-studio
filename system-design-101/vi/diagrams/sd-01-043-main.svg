@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="800" viewBox="0 0 320 800" role="img" aria-labelledby="title desc"><title id="title">Một lời gọi đơn gRPC</title><desc id="desc">Định nghĩa proto dùng sinh mã. Khi chạy, máy khách gọi stub, chuyển thông điệp qua mạng tới phương thức máy chủ; kết quả và trạng thái trở về máy khách.</desc><defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="none" stroke="#334155"/></marker></defs><rect width="320" height="800" fill="#f8fafc"/><g font-family="Arial, sans-serif" font-size="16" fill="#0f172a"><text x="16" y="30" font-size="20" font-weight="bold">Một lời gọi đơn gRPC</text><text x="16" y="62">.proto → sinh mã cho hai phía</text>
+<rect x="42" y="90" width="266" height="174" rx="12" fill="#dbeafe"/><text x="56" y="124" font-size="18" font-weight="bold">Máy khách · stub</text>
+<text x="56" y="166">Gọi FindBook(mã sách)</text>
+<text x="56" y="198">Đóng gói thông điệp</text>
+<path d="M175 264 V292" fill="none" stroke="#334155" stroke-width="2" marker-end="url(#a)"/>
+<rect x="42" y="300" width="266" height="174" rx="12" fill="#e2e8f0"/><text x="56" y="334" font-size="18" font-weight="bold">Qua mạng</text>
+<text x="56" y="376">Thông điệp theo hợp đồng</text>
+<text x="56" y="408">Truyền tải qua HTTP/2</text>
+<text x="56" y="440">Có độ trễ và khả năng lỗi</text>
+<path d="M175 474 V502" fill="none" stroke="#334155" stroke-width="2" marker-end="url(#a)"/>
+<rect x="42" y="510" width="266" height="174" rx="12" fill="#dcfce7"/><text x="56" y="544" font-size="18" font-weight="bold">Máy chủ · phương thức</text>
+<text x="56" y="586">Giải mã, chạy nghiệp vụ</text>
+<text x="56" y="618">Trả thông điệp + trạng thái</text>
+<path d="M42 660 H20 V180 H36" fill="none" stroke="#334155" stroke-width="2" marker-end="url(#a)"/><text x="16" y="730">Kết quả + trạng thái quay về.</text><text x="16" y="768">Gọi qua mạng ≠ gọi trong máy.</text></g></svg>

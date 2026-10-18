@@ -31,6 +31,33 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 20. [Các cách đưa GraphQL vào hệ thống](lessons/sd-01-020/lesson.md)
 21. [Bảng tra cứu thiết kế API](lessons/sd-01-021/lesson.md)
 22. [Nhập môn API Gateway](lessons/sd-01-022/lesson.md)
+23. [3 tình huống dùng API Gateway](lessons/sd-01-023/lesson.md)
+24. [Đọc số phiên bản theo SemVer](lessons/sd-01-024/lesson.md)
+25. [Tách các thành phần của URL](lessons/sd-01-025/lesson.md)
+26. [Unicast, broadcast, multicast và anycast](lessons/sd-01-026/lesson.md)
+27. [Các vai trò trong một ứng dụng web vận hành thật](lessons/sd-01-027/lesson.md)
+28. [URI, URL và URN: định danh, vị trí và tên](lessons/sd-01-028/lesson.md)
+29. [API và SDK: giao diện gọi và bộ công cụ](lessons/sd-01-029/lesson.md)
+30. [Bảo vệ API: kiểm tra nhiều lớp](lessons/sd-01-030/lesson.md)
+31. [Mã phản hồi HTTP: đọc nhóm trước, đọc nghĩa sau](lessons/sd-01-031/lesson.md)
+32. [SOAP, REST, GraphQL và RPC: bốn góc nhìn giao tiếp](lessons/sd-01-032/lesson.md)
+33. [So sánh sáu cách giao tiếp: bắt đầu từ nhu cầu](lessons/sd-01-033/lesson.md)
+34. [Chín phương thức HTTP: yêu cầu làm việc gì?](lessons/sd-01-034/lesson.md)
+35. [Bộ cân bằng tải: chọn đích cho mỗi yêu cầu](lessons/sd-01-035/lesson.md)
+36. [Forward proxy và reverse proxy: đại diện phía nào?](lessons/sd-01-036/lesson.md)
+37. [HTTP/1.1, HTTP/2, HTTP/3: dữ liệu chờ nhau ở đâu?](lessons/sd-01-037/lesson.md)
+38. [Polling và webhook: hỏi định kỳ hay nhận thông báo?](lessons/sd-01-038/lesson.md)
+39. [Phân trang: vị trí, khóa tiếp tục và cursor](lessons/sd-01-039/lesson.md)
+40. [Thiết kế API: hợp đồng trước đường dẫn](lessons/sd-01-040/lesson.md)
+41. [Bearer token và HMAC: gửi bằng chứng gì?](lessons/sd-01-041/lesson.md)
+42. [API gateway: chọn đích, áp chính sách](lessons/sd-01-042/lesson.md)
+43. [gRPC: gọi phương thức qua mạng](lessons/sd-01-043/lesson.md)
+44. [Bảo vệ API: bắt đầu từ rủi ro](lessons/sd-01-044/lesson.md)
+45. [Kiểm thử API: chọn câu hỏi trước tên gọi](lessons/sd-01-045/lesson.md)
+46. [REST API và GraphQL: ai chọn dữ liệu trả về?](lessons/sd-01-046/lesson.md)
+47. [GraphQL: từ schema đến dữ liệu và lỗi](lessons/sd-01-047/lesson.md)
+48. [Bảng kiểm REST: nhìn xa hơn đường dẫn](lessons/sd-01-048/lesson.md)
+49. [Học API bằng ba năng lực thực hành](lessons/sd-01-049/lesson.md)
 
 ## Tình huống thực tế
 
@@ -73,6 +100,10 @@ Các bài từ sd-04-001 đến sd-04-024 chưa có ở đây; số thứ tự d
 3. [Một URL biến thành yêu cầu HTTP thế nào?](lessons/sd-05-003/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 4. [Làm tốt phỏng vấn thiết kế hệ thống: bảy bước](lessons/sd-05-004/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 5. [Ôn phỏng vấn kỹ thuật: từ danh sách tài liệu đến kế hoạch luyện](lessons/sd-05-005/lesson.md) — viết lại ngày 2026-10-16 để làm sâu (đọc và đếm trực tiếp ba tài liệu công khai); chờ review kỹ thuật.
+
+## Phát triển phần mềm
+
+23. [Sau thay đổi API: chọn bộ kiểm tra theo rủi ro](lessons/sd-10-023/lesson.md)
 
 ## DevOps và CI/CD
 
@@ -169,10 +200,10 @@ và hình đạt; không coi đọc nguồn là mọi claim đã đúng, không 
 
 ## Các nhóm còn lại theo thứ tự nguồn
 
-Tình huống thực tế (đã viết một phần) → Cơ sở dữ liệu và lưu trữ (đã viết một phần) →
-Bộ nhớ đệm và hiệu năng → Thanh toán và công nghệ tài chính → Kiến trúc phần mềm →
-Công cụ và năng suất → Phát triển phần mềm → Đám mây và hệ thống phân tán →
-Hệ thống hoạt động thế nào? → Bảo mật (đã viết một phần).
+API và phát triển web (còn sd-01-050) → Tình huống thực tế (đã viết một phần) →
+Cơ sở dữ liệu và lưu trữ (đã viết một phần) → Bộ nhớ đệm và hiệu năng → Thanh toán và công nghệ tài chính →
+Kiến trúc phần mềm → Công cụ và năng suất → Phát triển phần mềm (đã viết một phần) →
+Đám mây và hệ thống phân tán → Hệ thống hoạt động thế nào? → Bảo mật (đã viết một phần).
 
 Nhóm “Nền tảng máy tính” (cuối mục lục nguồn) được viết trước theo yêu cầu người dùng ngày 2026-10-13; nhóm “API và phát triển web” viết tiếp theo thứ tự source-map.
 

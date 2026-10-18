@@ -1,0 +1,78 @@
+{
+  "id": "sd-01-049",
+  "title_vi": "Học API bằng ba năng lực thực hành",
+  "language": "vi",
+  "kind": "concept",
+  "content_status": "draft",
+  "source_ref": "sd-01-049",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/the-ultimate-api-learning-roadmap.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/the-ultimate-api-learning-roadmap.md",
+    "blob_sha": "578d2f7d519e4f9ee3a09119676a4653ba54ffb6",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "ee840f18c85130d329eb80eadab1e0156daafa0763155152aac8c5b611340705",
+    "retrieved_body_bytes": 1972
+  },
+  "diagram": "../diagrams/sd-01-049-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-01-045",
+      "reason_vi": "Chọn góc nhìn kiểm thử cho bài tập API.",
+      "relation": "related"
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-16"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-16",
+      "evidence": "Đọc OpenAPI3.1.1 introduction/Operation Object fields; OWASPAPI1 objectauthorization; RFC9110§9.2.2 idempotence/retryconditions. Ba năng lực là đề xuất biên tập, không chuẩn thứ tự học. Chưa chạy dịch vụ/thử lỗi/đo tải."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "new lesson awaiting current-head review"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-16",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "evidence": "Chromium cục bộ toàn bài/details mở320/375/430px không tràn ngang/chữ SVG ngoài hình, cỡ nhỏ nhất14.4/16/16px. Đã xem ảnh320px; chưa kiểm tra GitHub/thiết bị thật/người học."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "OpenAPI mô tả giao diện HTTP và thao tác gồm tham số, thân yêu cầu, phản hồi, khai báo bảo mật.",
+      "source": "https://spec.openapis.org/oas/v3.1.1.html#operation-object"
+    },
+    {
+      "claim_vi": "Đăng nhập không thay kiểm tra quyền thao tác trên từng đối tượng.",
+      "source": "https://owasp.org/API-Security/editions/2023/en/0xa1-broken-object-level-authorization/"
+    },
+    {
+      "claim_vi": "Lũy đẳng nói về tác động mong muốn; tự thử lại yêu cầu không lũy đẳng cần cơ sở về ngữ nghĩa hoặc biết chưa áp dụng.",
+      "source": "https://www.rfc-editor.org/rfc/rfc9110.html#section-9.2.2"
+    }
+  ],
+  "design_notes_vi": "Ba thẻ năng lực thực hành tự thiết kế, ví dụ đặt sân; không trace ảnh nguồn.",
+  "editorial_note_vi": "Nháp giáo dục; chưa triển khai dịch vụ, thử lỗi mạng, đo tải hoặc thử người học.",
+  "source_deviations": [
+    "Không biến danh sách nguồn thành thứ tự bắt buộc hay tiêu chuẩn thành thạo.",
+    "Không xem mọi tên công nghệ là cùng một cấp phân loại; không liệt kê khung triển khai như điều kiện bắt đầu.",
+    "Không tài liệu hay đăng nhập tự bảo đảm quyền; không thử lại vô hạn khi mất phản hồi."
+  ]
+}

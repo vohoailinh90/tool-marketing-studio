@@ -58,7 +58,9 @@ Re-exporting does not change the slides, so it needs no claim.
 
 ## The style (the approved sample is sd-01-001)
 
-The sample is `sd-01-001`; read its canvas (`canvas_read` on the id in its `deck.yaml`) for the exact markup. The rules:
+The sample is `sd-01-001`; read its canvas (`canvas_read` on the id in its `deck.yaml`) for the tokens (colours, fonts, sizes,
+footer), not for its layouts: a deck that repeats the sample's layouts slide for slide is not finished (see *Variety between
+decks* below). The rules:
 
 - Canvas `1920x1080`, category `slides`, **no brand kit** (the workspace has none; `skip_brand_kit=true`), vector only (no
   generated images). Name it `System Design 101 · Bài NN · <short title>` and send the editor link when it exists.
@@ -67,16 +69,41 @@ The sample is `sd-01-001`; read its canvas (`canvas_read` on the id in its `deck
 - Colours: cream `#F3EEE3`, ink `#14161C`, card `#E8E0CF`, diagram card `#FBF8F2` (stroke `#DDD5C1`), muted `#6B6A66`;
   blue `#1F3FD1`, amber `#B45309`, teal `#0F766E`, red `#E8472B` (tints `#DDE3FA` `#F3DFB8` `#CFE8E2` `#F8D9D0`); on dark
   `#14161C` (cards `#1E212B`) with `#7C93FF` `#FFB454` `#3DD6A0` `#FF6A4D`. One colour per concept of the lesson, the same
-  on every slide of the deck.
+  on every slide of the deck; which colour a concept gets follows the rotation under *Variety between decks*.
 - Footer on every slide but the cover: one progress dot per slide (the current one red) and `System Design 101 · Bài NN ·
   03/10` (slide number and slide count), at the bottom left. Keep the bottom right clear.
-- Slides: 1 cover (dark, the lesson title, its hook question, one line per main concept), 2 situation and goal, 3 to 7 one
-  slide per concept with a diagram, then the choice or summary, a check question with its answer, the deep dive, and a last
-  dark slide with the terms (the lesson's `## Từ viết tắt`) and its sources. Vary layouts (sequence diagram, flow, cards,
-  numbered rows, steps); alternate cream and dark.
+- Slides: the cover first (dark: the lesson title, its hook question, one line per main concept) and the terms and sources
+  last (dark: the lesson's `## Từ viết tắt` and its sources). Between them the lesson's own logic sets the order: the
+  situation and goal, one slide per concept with a diagram, the choice or summary, a check question with its answer, the deep
+  dive. Only what the lesson has: a lesson with no `## Nhìn hình thử trả lời` gets no question, a recap in its own sentences
+  instead. The layouts and the light and dark rhythm are set under *Variety between decks*.
 - Content comes from the lesson and nothing else: no new number, claim or example. Vietnamese, with diacritics; no em
   dash; at most 10 words per bullet and 3 bullets per card. A slide is read in five seconds.
 - Build one slide per `canvas_apply_markup`, then `canvas_screenshot` every slide and look at it (text cut off, text
   shrunk by the auto-fit, arrows off centre) before `finish`.
+
+### Variety between decks
+
+The decks of one series are recognisable as one brand and still do not look alike. The brand is fixed: the fonts, the neutrals
+(cream, ink, card), the footer, the size floor, the `1920x1080` canvas, 8 to 10 slides, the dark cover first and the dark terms
+and sources slide last. Everything else differs from deck to deck; `sd-01-001` is one example of it, not the template.
+
+- **Visual idea.** Each deck gets one idea taken from its lesson's own subject (a deck about NAT built around an address table,
+  one about HTTP/2 around a single pipe that carries several streams). Say it in one line in the first message about the deck;
+  there is no need to wait for an answer unless the owner replies.
+- **Layout kinds.** A slide is one of: sequence diagram, flow, two-column comparison, 2x2 matrix, lookup table, numbered rows,
+  one big number, one highlighted sentence, timeline, layers. A deck uses at least five different kinds and never the same
+  kind on two adjacent slides. The lesson's `kind` (in `system-design-101/vi/metadata/<id>.json`) says where to lean:
+  `flow` toward sequence diagrams and flows, `comparison` toward columns and matrices, `reference` toward tables and card
+  grids, `topology` toward layers and connection diagrams, `timeline` toward the timeline, `howto` toward numbered rows.
+- **Accent rotation.** The four accents are, counted from 0: blue, amber, teal, red. With n the number at the end of the
+  lesson id (`sd-01-004` gives 4), the k-th concept of the lesson (k counted from 0) takes the accent numbered (n + k) mod 4.
+  A concept keeps its colour on every slide of the deck. Neighbouring lessons therefore open with different colours, and a
+  session never needs to look at another deck to choose.
+- **Light and dark.** Follow the content, not a strict alternation: never more than three slides in a row on the same
+  background.
+- **Moda's own help** (`load_skill`, `template_search`) may suggest layouts; the tokens above stay.
+- **Layout table.** Before `finish`, write `slide number, layout kind` for the whole deck, check the two layout rules against
+  it, and put the table in the report to the owner.
 
 Binary exports add about 1.5 MB per lesson; the repository grows by that much for each finished export set.

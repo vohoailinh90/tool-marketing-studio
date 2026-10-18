@@ -45,7 +45,18 @@
       "reason": "awaiting_technical_review_in_destination_repository"
     },
     "mobile": {
-      "status": "pending"
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright 1.56, headless) rendered lesson.md converted by markdown-it (CommonMark, tables, raw HTML) with a 16 px page gutter and every <details> open, at 320, 375 and 430 px: document scrollWidth equalled the viewport at each width. Smallest figure text from the SVG font sizes times the shown scale: 13.5 px at 320, 15.0 px at 375. python3 -m scripts.figures check --browser measured every figure line. Not GitHub's renderer, not a real phone, not learner testing."
     },
     "user_testing": {
       "status": "not_performed"

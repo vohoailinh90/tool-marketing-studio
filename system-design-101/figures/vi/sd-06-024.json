@@ -1,0 +1,32 @@
+{
+  "id": "sd-06-024",
+  "lang": "vi",
+  "title": "Tám cách làm trang tải nhanh: gửi ít, gửi sau, gửi trước",
+  "subtitle": "Mỗi cách trả lời một câu: byte nào, lúc nào.",
+  "desc": "Bốn phần. Gửi ít hơn: nén tệp trước khi gửi bằng gzip hay brotli; bỏ mã chết khi đóng gói. Gửi sau: tách mã và nạp động phần chỉ cần khi người dùng bấm; chỉ vẽ và tải phần đang nhìn thấy. Gửi trước, đúng thứ tự: ưu tiên tài nguyên quan trọng và phần đầu màn hình; tải trước thứ trang này sắp cần; tìm nạp trước thứ trang sau có thể cần. Đo thử: gói giao diện của kho này 499 KB, gzip còn 156 KB, brotli còn 133 KB; bỏ hai hàm không dùng thì gói từ 189 KB còn 60 KB; tách phần soạn thảo thì tệp đầu còn 313 byte; trang 40 ảnh bật tải lười thì lúc tải trang chỉ tải 11 ảnh.",
+  "sections": [
+    {"kind": "parts", "heading": "Gửi ít hơn",
+     "items": [
+       {"name": "Nén", "role": "gzip, brotli: nén tệp văn bản trước khi gửi.", "icon": "package"},
+       {"name": "Bỏ mã chết", "role": "Khi đóng gói, bỏ những hàm không ai gọi tới.", "icon": "code"}
+     ]},
+    {"kind": "parts", "heading": "Gửi sau",
+     "items": [
+       {"name": "Tách mã, nạp động", "role": "Phần chỉ cần khi bấm thì tải lúc bấm.", "icon": "split"},
+       {"name": "Chỉ phần nhìn thấy", "role": "Vẽ và tải phần trong màn hình; phần dưới để sau.", "icon": "eye"}
+     ]},
+    {"kind": "parts", "heading": "Gửi trước, đúng thứ tự",
+     "items": [
+       {"name": "Ưu tiên", "role": "Tài nguyên quan trọng và phần đầu màn hình đi trước.", "icon": "list-ordered"},
+       {"name": "Tải trước", "role": "Báo sớm thứ trang này sắp cần.", "icon": "download"},
+       {"name": "Tìm nạp trước", "role": "Lấy sẵn thứ trang sau có thể cần, mức ưu tiên thấp.", "icon": "clock"}
+     ]},
+    {"kind": "notes", "heading": "Đo thử",
+     "items": [
+       "Gói giao diện của kho này 499 KB: gzip 156 KB, brotli 133 KB.",
+       "Bỏ hai hàm không dùng: gói từ 189 KB còn 60 KB.",
+       "Tách phần soạn thảo: tệp đầu còn 313 byte.",
+       "Trang 40 ảnh, bật tải lười: lúc tải trang chỉ 11 ảnh."
+     ]}
+  ]
+}

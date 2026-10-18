@@ -98,6 +98,12 @@
       "source": "https://github.com/cloudflare/cloudflare-docs/blob/2ab084e257fef531e4e22a10c9a6feab7b3a4fce/src/content/docs/dns/cname-flattening/index.mdx",
       "section": "CNAME flattening; How it works",
       "verified_by": "Read from a partial clone; not tested."
+    },
+    {
+      "claim_vi": "Cloudflare respects the origin's cache headers unless an Edge Cache TTL cache rule overrides them, caches by file extension rather than MIME type, and does not cache HTML or JSON by default; cache rules can make it cache more.",
+      "source": "https://github.com/cloudflare/cloudflare-docs/blob/2ab084e257fef531e4e22a10c9a6feab7b3a4fce/src/content/docs/cache/concepts/default-cache-behavior.mdx",
+      "section": "Default cache behavior; Default cached file extensions",
+      "verified_by": "Read (blob 6f8b34617f093aae95a0c8cd2371faaa3dc27268); not tested with Cloudflare, the experiment used nginx."
     }
   ],
   "design_notes_vi": "Hai chặng: bốn bước tìm địa chỉ (có cả cách chọn bằng DNS và anycast), ba thẻ tầng bộ đệm nối bằng mũi tên, ba ghi chú kết quả thử. Vẽ bằng scripts/figures.",

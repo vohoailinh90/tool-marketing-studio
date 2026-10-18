@@ -39,11 +39,11 @@ Ngày 2026-10-18, bài dựng một máy gốc nhỏ bằng Python và đặt ng
 | `public, max-age=60` kèm `Set-Cookie` | `MISS` cả ba | 3 lần |
 | Không có `Cache-Control` | `MISS` cả ba | 3 lần |
 
-Bốn dòng đầu đúng như RFC 9111 đòi hỏi. Hai dòng cuối là hành vi đã thấy của nginx với cấu hình mặc định, không phải luật của RFC: nó không lưu câu trả lời có `Set-Cookie`, và không tự đặt hạn cho câu trả lời không ghi hạn (RFC 9111 cho phép bộ nhớ đệm tự ước một hạn trong vài trường hợp, nhưng không bắt buộc). Mỗi CDN có mặc định riêng; hãy đọc tài liệu của dịch vụ bạn dùng.
+Phần RFC 9111 bắt buộc là phần *cấm*: bộ nhớ đệm dùng chung không được lưu câu trả lời `private`, không bộ nhớ đệm nào được lưu `no-store`, và nếu đã lưu thì `s-maxage` thắng `max-age`, nên dòng thứ hai hết hạn sau 2 giây. Còn việc *có lưu hay không* thì tùy bộ nhớ đệm: mục 2 của RFC 9111 ghi bộ nhớ đệm là tính năng hoàn toàn tùy chọn của HTTP, nên việc nginx lưu và trả `HIT` ở hai dòng đầu là lựa chọn của nginx, được phép chứ không bắt buộc. Hai dòng cuối cũng là hành vi đã thấy của nginx với cấu hình mặc định: nó không lưu câu trả lời có `Set-Cookie`, và không tự đặt hạn cho câu trả lời không ghi hạn (RFC 9111 cho phép bộ nhớ đệm tự ước một hạn trong vài trường hợp, nhưng không bắt buộc). Mỗi CDN có mặc định riêng; hãy đọc tài liệu của dịch vụ bạn dùng.
 
 ## Giới hạn cần nhớ
 
-CDN chỉ giúp được phần nội dung mà máy gốc cho phép lưu. Trang có `private`, `no-store` hay cookie riêng của từng người vẫn đi về máy gốc mỗi lần. MDN còn nêu ba cái giá: thêm một bên thứ ba có thể hỏng hoặc bị chặn, thêm một chỗ có thể bị tấn công, và có lúc CDN của bên thứ ba còn làm trang chậm đi vì trình duyệt phải mở thêm kết nối tới một tên miền khác.
+CDN chỉ giúp được phần nội dung mà máy gốc cho phép lưu. Với trang `private` hay trang kèm cookie riêng của từng người, máy biên không lưu, nên mọi yêu cầu đi tới CDN đều được chuyển về máy gốc; riêng `private` vẫn cho trình duyệt giữ bản của chính người đó, nên không phải lần truy cập nào cũng tạo ra một yêu cầu. Với `no-store` thì không nơi nào được lưu. MDN còn nêu ba cái giá: thêm một bên thứ ba có thể hỏng hoặc bị chặn, thêm một chỗ có thể bị tấn công, và có lúc CDN của bên thứ ba còn làm trang chậm đi vì trình duyệt phải mở thêm kết nối tới một tên miền khác.
 
 ## Nhìn hình trả lời
 

@@ -1,8 +1,8 @@
 {
   "id": "sd-06-006",
   "title": "Bộ nhớ đệm ở khắp nơi",
-  "subtitle": "Mỗi tầng giữ một bản sao, và mỗi bản sao có thể đã cũ.",
-  "desc": "Ba khung. Phía người dùng: trình duyệt giữ câu trả lời riêng cho một người; CDN giữ bản sao dùng chung ở gần người dùng; proxy ngược có thể trả lời thay máy chủ. Phía máy chủ: dịch vụ giữ dữ liệu trong bộ nhớ của chính nó; Redis là bộ đệm dùng chung giữa nhiều dịch vụ; Kafka giữ nhật ký theo thời hạn để người đọc chậm đuổi kịp; chỉ mục tìm kiếm là bản sao sắp xếp lại để tìm theo chữ. Bên trong cơ sở dữ liệu: vùng đệm giữ các trang vừa đọc, lần đầu đọc ngoài, lần sau trúng vùng đệm; materialized view lưu sẵn kết quả và chỉ đúng tới lần làm mới gần nhất. Câu hỏi cho mọi tầng: bản sao được phép cũ bao lâu?",
+  "subtitle": "Mỗi tầng trả lời từ một bản sao; bản sao giữ riêng thì có thể đã cũ.",
+  "desc": "Ba khung. Phía người dùng: trình duyệt giữ câu trả lời riêng cho một người; CDN giữ bản sao dùng chung ở gần người dùng; proxy ngược có thể trả lời thay máy chủ. Phía máy chủ: dịch vụ giữ dữ liệu trong bộ nhớ của chính nó; Redis là bộ đệm dùng chung giữa nhiều dịch vụ; Kafka giữ nhật ký theo thời hạn để người đọc chậm đuổi kịp; chỉ mục tìm kiếm là bản sao sắp xếp lại để tìm theo chữ. Bên trong cơ sở dữ liệu: vùng đệm giữ các trang vừa đọc, lần đầu đọc ngoài, lần sau trúng vùng đệm, và vì mọi lần ghi sửa thẳng vào đó nên nó không cũ; materialized view lưu sẵn kết quả và chỉ đúng tới lần làm mới gần nhất. Câu hỏi cho mọi bản sao giữ riêng: được phép cũ bao lâu?",
   "sections": [
     {
       "kind": "parts",
@@ -66,9 +66,9 @@
       "kind": "notes",
       "heading": "Bên trong cơ sở dữ liệu",
       "items": [
-        "Vùng đệm giữ các trang vừa đọc: lần đầu đọc ngoài, lần sau trúng vùng đệm.",
+        "Vùng đệm giữ các trang vừa đọc: lần đầu đọc ngoài, lần sau trúng. Ghi sửa thẳng vào đó nên không cũ.",
         "Materialized view lưu sẵn kết quả, chỉ đúng tới lần làm mới gần nhất.",
-        "Câu hỏi cho mọi tầng: bản sao này được phép cũ bao lâu?"
+        "Hỏi mọi bản sao giữ riêng: được phép cũ bao lâu?"
       ]
     }
   ]

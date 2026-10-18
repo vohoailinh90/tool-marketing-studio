@@ -87,6 +87,12 @@
       "verified_by": "Read from a local clone of postgres/postgres at commit 45fc51fcbf4534ea2f6f85e36f8155dbd5ba9851, the head of its default branch when read on 2026-10-18 (a later change to that branch does not alter this URL)."
     },
     {
+      "claim_vi": "A separate background writer process issues writes of dirty (new or modified) shared buffers, so a page in shared buffers can be newer than the disk; writes change the buffer itself, which is therefore not a stale copy needing refresh.",
+      "source": "https://github.com/postgres/postgres/blob/45fc51fcbf4534ea2f6f85e36f8155dbd5ba9851/doc/src/sgml/config.sgml",
+      "section": "Background Writer",
+      "verified_by": "Read from a local clone of postgres/postgres at commit 45fc51fcbf4534ea2f6f85e36f8155dbd5ba9851, the head of its default branch when read on 2026-10-18 (a later change to that branch does not alter this URL). The second half (writes modify the buffer page itself) is the author's reading of how a buffer pool works, not a quoted sentence."
+    },
+    {
       "claim_vi": "A materialized view persists query results in table-like form; reading it is often much faster but the data is not always current; it is refreshed with REFRESH MATERIALIZED VIEW.",
       "source": "https://github.com/postgres/postgres/blob/45fc51fcbf4534ea2f6f85e36f8155dbd5ba9851/doc/src/sgml/rules.sgml",
       "section": "Materialized Views",

@@ -1,8 +1,8 @@
 # Các tầng bộ nhớ đệm, từ trình duyệt tới cơ sở dữ liệu
 
-**Dữ liệu được giữ bản sao ở rất nhiều tầng, từ trình duyệt của người dùng tới bên trong cơ sở dữ liệu. Mỗi tầng làm một việc nhanh hơn bằng cách trả lời từ bản sao, và tầng nào cũng đặt ra cùng một câu hỏi: bản sao này được phép cũ bao lâu?**
+**Dữ liệu được giữ bản sao ở rất nhiều tầng, từ trình duyệt của người dùng tới bên trong cơ sở dữ liệu. Mỗi tầng làm một việc nhanh hơn bằng cách trả lời từ bản sao. Với tầng nào giữ bản sao riêng, tách khỏi dữ liệu gốc, câu hỏi luôn là: bản sao này được phép cũ bao lâu?**
 
-![Ba khung. Phía người dùng: trình duyệt giữ câu trả lời riêng cho một người; CDN giữ bản sao dùng chung ở gần người dùng; proxy ngược có thể trả lời thay máy chủ. Phía máy chủ: dịch vụ giữ dữ liệu trong bộ nhớ của chính nó; Redis là bộ đệm dùng chung giữa nhiều dịch vụ; Kafka giữ nhật ký theo thời hạn để người đọc chậm đuổi kịp; chỉ mục tìm kiếm là bản sao sắp xếp lại để tìm theo chữ. Bên trong cơ sở dữ liệu: vùng đệm giữ các trang vừa đọc, lần đầu đọc ngoài, lần sau trúng vùng đệm; materialized view lưu sẵn kết quả và chỉ đúng tới lần làm mới gần nhất. Câu hỏi cho mọi tầng: bản sao được phép cũ bao lâu?](../../diagrams/sd-06-006-main.svg)
+![Ba khung. Phía người dùng: trình duyệt giữ câu trả lời riêng cho một người; CDN giữ bản sao dùng chung ở gần người dùng; proxy ngược có thể trả lời thay máy chủ. Phía máy chủ: dịch vụ giữ dữ liệu trong bộ nhớ của chính nó; Redis là bộ đệm dùng chung giữa nhiều dịch vụ; Kafka giữ nhật ký theo thời hạn để người đọc chậm đuổi kịp; chỉ mục tìm kiếm là bản sao sắp xếp lại để tìm theo chữ. Bên trong cơ sở dữ liệu: vùng đệm giữ các trang vừa đọc, lần đầu đọc ngoài, lần sau trúng vùng đệm, và vì mọi lần ghi sửa thẳng vào đó nên nó không cũ; materialized view lưu sẵn kết quả và chỉ đúng tới lần làm mới gần nhất. Câu hỏi cho mọi bản sao giữ riêng: được phép cũ bao lâu?](../../diagrams/sd-06-006-main.svg)
 
 ## Từ viết tắt
 
@@ -19,7 +19,7 @@
 
 **Phía máy chủ.** Dịch vụ có thể giữ dữ liệu ngay trong bộ nhớ của tiến trình: nhanh nhất, nhưng mỗi máy chạy dịch vụ giữ một bản riêng, nên các bản có thể lệch nhau. Một bộ đệm dùng chung như Redis cho mọi máy cùng thấy một bản. Kafka thì khác: theo tài liệu thiết kế của nó, Kafka giữ nhật ký theo thời hạn hoặc dung lượng và để người đọc tự kéo dữ liệu về, nên người đọc chậm tụt lại rồi đuổi kịp; bản thân Kafka dựa vào bộ nhớ đệm tệp của hệ điều hành (OS) thay vì tự giữ một bộ đệm riêng trong bộ nhớ. Chỉ mục tìm kiếm như Elasticsearch là một bản sao của dữ liệu được sắp xếp lại để tìm theo chữ.
 
-**Bên trong cơ sở dữ liệu.** PostgreSQL có vùng đệm dùng chung (`shared_buffers`, mặc định thường là 128 MB theo tài liệu) giữ các trang dữ liệu vừa đọc. Materialized view lưu sẵn kết quả của một truy vấn; tài liệu PostgreSQL ghi nó đọc nhanh hơn nhiều nhưng dữ liệu "không phải lúc nào cũng mới", và được làm mới bằng `REFRESH MATERIALIZED VIEW`.
+**Bên trong cơ sở dữ liệu.** PostgreSQL có vùng đệm dùng chung (`shared_buffers`, mặc định thường là 128 MB theo tài liệu) giữ các trang dữ liệu vừa đọc. Vùng đệm này không phải một bản sao có thể cũ: mọi lần ghi sửa thẳng trang trong vùng đệm, rồi một tiến trình nền (background writer) ghi các trang "bẩn", tức mới hoặc đã sửa, xuống đĩa sau; trang trong vùng đệm có thể mới hơn đĩa chứ không cũ hơn. Materialized view lưu sẵn kết quả của một truy vấn; tài liệu PostgreSQL ghi nó đọc nhanh hơn nhiều nhưng dữ liệu "không phải lúc nào cũng mới", và được làm mới bằng `REFRESH MATERIALIZED VIEW`.
 
 ## Thử với PostgreSQL
 
@@ -31,7 +31,7 @@ Ngày 2026-10-18, bài chạy PostgreSQL 16.15 trên một máy, với bảng `o
 
 ## Giới hạn cần nhớ
 
-Thêm một tầng đệm là thêm một bản sao có thể cũ, và thêm một chỗ phải trả lời câu hỏi "làm sao xóa hay làm mới nó". Khi dữ liệu thay đổi, mỗi tầng chỉ đúng tới lúc nó được làm mới: hết hạn `max-age` ở trình duyệt, xóa khóa ở Redis, `REFRESH` ở materialized view. Đừng thêm tầng nếu không biết tầng đó cũ tối đa bao lâu.
+Thêm một tầng giữ bản sao riêng (bộ nhớ đệm HTTP, Redis, chỉ mục tìm kiếm, materialized view) là thêm một bản sao có thể cũ, và thêm một chỗ phải trả lời câu hỏi "làm sao xóa hay làm mới nó". Khi dữ liệu thay đổi, mỗi tầng như vậy chỉ đúng tới lúc nó được làm mới: hết hạn `max-age` ở trình duyệt, xóa khóa ở Redis, `REFRESH` ở materialized view. Đừng thêm một tầng như thế nếu không biết nó cũ tối đa bao lâu. Vùng đệm của PostgreSQL không thuộc nhóm này: nó là chỗ dữ liệu được sửa, không phải bản sao cần làm mới.
 
 ## Nhìn hình trả lời
 

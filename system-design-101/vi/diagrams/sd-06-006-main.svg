@@ -1,12 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1361" viewBox="0 0 320 1361" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1360" viewBox="0 0 320 1360" role="img" aria-labelledby="title desc">
 <title id="title">Bộ nhớ đệm ở khắp nơi</title>
-<desc id="desc">Ba khung. Phía người dùng: trình duyệt giữ câu trả lời riêng cho một người; CDN giữ bản sao dùng chung ở gần người dùng; proxy ngược có thể trả lời thay máy chủ. Phía máy chủ: dịch vụ giữ dữ liệu trong bộ nhớ của chính nó; Redis là bộ đệm dùng chung giữa nhiều dịch vụ; Kafka giữ nhật ký theo thời hạn để người đọc chậm đuổi kịp; chỉ mục tìm kiếm là bản sao sắp xếp lại để tìm theo chữ. Bên trong cơ sở dữ liệu: vùng đệm giữ các trang vừa đọc, lần đầu đọc ngoài, lần sau trúng vùng đệm; materialized view lưu sẵn kết quả và chỉ đúng tới lần làm mới gần nhất. Câu hỏi cho mọi tầng: bản sao được phép cũ bao lâu?</desc>
+<desc id="desc">Ba khung. Phía người dùng: trình duyệt giữ câu trả lời riêng cho một người; CDN giữ bản sao dùng chung ở gần người dùng; proxy ngược có thể trả lời thay máy chủ. Phía máy chủ: dịch vụ giữ dữ liệu trong bộ nhớ của chính nó; Redis là bộ đệm dùng chung giữa nhiều dịch vụ; Kafka giữ nhật ký theo thời hạn để người đọc chậm đuổi kịp; chỉ mục tìm kiếm là bản sao sắp xếp lại để tìm theo chữ. Bên trong cơ sở dữ liệu: vùng đệm giữ các trang vừa đọc, lần đầu đọc ngoài, lần sau trúng vùng đệm, và vì mọi lần ghi sửa thẳng vào đó nên nó không cũ; materialized view lưu sẵn kết quả và chỉ đúng tới lần làm mới gần nhất. Câu hỏi cho mọi bản sao giữ riêng: được phép cũ bao lâu?</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="1361" fill="#f8fafc"/>
+<rect width="320" height="1360" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Bộ nhớ đệm ở khắp nơi</text>
-<text x="16" y="60.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Mỗi tầng giữ một bản sao, và mỗi</text>
-<text x="16" y="79.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">bản sao có thể đã cũ.</text>
+<text x="16" y="60.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Mỗi tầng trả lời từ một bản sao; bản</text>
+<text x="16" y="79.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">sao giữ riêng thì có thể đã cũ.</text>
 <rect x="8" y="99" width="304" height="402" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
 <text x="20" y="127.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Phía người dùng</text>
 <rect x="20" y="144" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
@@ -52,25 +52,25 @@
 <text x="78" y="946.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Chỉ mục tìm kiếm</text>
 <text x="78" y="970.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bản sao sắp xếp lại để tìm</text>
 <text x="78" y="989.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">theo chữ.</text>
-<rect x="8" y="1031" width="304" height="322" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="8" y="1031" width="304" height="321" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
 <text x="20" y="1059.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Bên trong cơ sở dữ liệu</text>
-<rect x="20" y="1076" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<rect x="20" y="1076" width="280" height="102" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
 <circle cx="43" cy="1099" r="11" fill="#16a34a"/>
 <polyline points="37.9,1099.4 41.7,1103.4 48.5,1095" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
 <text x="64" y="1102.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Vùng đệm giữ các trang vừa</text>
 <text x="64" y="1121.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đọc: lần đầu đọc ngoài, lần</text>
-<text x="64" y="1141.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">sau trúng vùng đệm.</text>
-<rect x="20" y="1167" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
-<circle cx="43" cy="1190" r="11" fill="#16a34a"/>
-<polyline points="37.9,1190.4 41.7,1194.4 48.5,1186" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="1193.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Materialized view lưu sẵn kết</text>
-<text x="64" y="1212.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">quả, chỉ đúng tới lần làm</text>
-<text x="64" y="1232.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mới gần nhất.</text>
-<rect x="20" y="1258" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
-<circle cx="43" cy="1281" r="11" fill="#16a34a"/>
-<polyline points="37.9,1281.4 41.7,1285.4 48.5,1277" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="1284.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Câu hỏi cho mọi tầng: bản</text>
-<text x="64" y="1303.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">sao này được phép cũ bao</text>
-<text x="64" y="1323.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lâu?</text>
+<text x="64" y="1141.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">sau trúng. Ghi sửa thẳng vào</text>
+<text x="64" y="1160.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đó nên không cũ.</text>
+<rect x="20" y="1186" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1209" r="11" fill="#16a34a"/>
+<polyline points="37.9,1209.4 41.7,1213.4 48.5,1205" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1212.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Materialized view lưu sẵn kết</text>
+<text x="64" y="1231.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">quả, chỉ đúng tới lần làm</text>
+<text x="64" y="1251.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mới gần nhất.</text>
+<rect x="20" y="1277" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1300" r="11" fill="#16a34a"/>
+<polyline points="37.9,1300.4 41.7,1304.4 48.5,1296" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1303.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Hỏi mọi bản sao giữ riêng:</text>
+<text x="64" y="1322.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">được phép cũ bao lâu?</text>
 </g>
 </svg>

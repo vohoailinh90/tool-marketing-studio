@@ -78,7 +78,7 @@
       "claim_vi": "Measured on PostgreSQL 16.15: after placed, paid, refunded and cancelled, the CRUD row held cancelled, 500, 10:21; the event table held four events; replaying to 10:05 gave paid with 500 paid, to 10:30 cancelled with 0; a second insert of sequence 5 failed with 'duplicate key value violates unique constraint'.",
       "source": "https://github.com/MicrosoftDocs/architecture-center/blob/8e2c239344ee753a88856800b4210a3e27ac1036/docs/patterns/event-sourcing.md",
       "section": "Author's experiment",
-      "verified_by": "Author's own run on 2026-10-18 with two minimal tables, not a dedicated event store."
+      "verified_by": "The author ran and measured this on 2026-10-18 with two minimal tables, not a dedicated event store."
     },
     {
       "claim_vi": "The source compares a CRUD design with an event sourcing design for an e-commerce system that places and pays for orders, and says event sourcing is used to design a system with determinism.",

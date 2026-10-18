@@ -90,7 +90,7 @@
       "claim_vi": "Measured on Kafka 4.4.0 with three brokers, topic orders with 3 partitions and replication factor 3: leaders were brokers 2, 3, 1 for partitions 0, 1, 2; keys an and binh went to partition 2 (offsets 0 to 4), chi to partition 0 (offsets 0, 1), partition 1 got nothing; group billing with two members was assigned [0,1] and [2] and read 2 and 5 events; group email with one member was assigned all three and read 7.",
       "source": "https://github.com/apache/kafka/blob/65566690ca1ddb584388c1026e2ff6673e9c6f19/docs/getting-started/introduction.md",
       "section": "Author's experiment",
-      "verified_by": "Author's own run on 2026-10-18; the Kafka 4.4.0 archive was checked against its published SHA-512."
+      "verified_by": "The author ran and measured this on 2026-10-18; the Kafka 4.4.0 archive was checked against its published SHA-512."
     },
     {
       "claim_vi": "Kafka 101 in eight steps: what Kafka is, messages, topics and partitions, advantages, producer, consumer, cluster and use cases.",

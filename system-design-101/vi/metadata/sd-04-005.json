@@ -89,7 +89,7 @@
       "claim_vi": "Measured with avro 1.12.2 for Python: a two-record file written with schema v1 (244 bytes, starts with Obj and 1) reads without a reader schema; reader v2 (reordered, id long, phone dropped, email with default) reads with email empty; v3 (email without default) fails with 'No default value for field email'; v4 (id as string) fails with 'Schemas do not match'.",
       "source": "https://github.com/apache/avro/blob/3a207fa6e87c535b95eafca4cf5a6ef524d77df2/doc/content/en/docs/++version++/Specification/_index.md",
       "section": "Author's experiment",
-      "verified_by": "Author's own run on 2026-10-18."
+      "verified_by": "The author ran and measured this on 2026-10-18."
     },
     {
       "claim_vi": "Avro stores the schema with the data blocks in object container files, so exported files can be read and migrated to another store; the source says Avro dynamically generates schemas based on the columns and compares it with gRPC and Thrift.",

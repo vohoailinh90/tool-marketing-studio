@@ -85,7 +85,7 @@
       "claim_vi": "Computed on one simulated day (a point every 10 s at two locations, temperature and humidity): 17,280 points form 4 series; as line-protocol text 1,240,743 bytes and 70,217 after zlib; as per-series delta-encoded columns 552,960 bytes and 14,064 after zlib; a unique reading id as a tag would give 34,560 series.",
       "source": "https://github.com/influxdata/docs-v2/blob/3c30e2b5ddcfd1320a745eafee6fb9afccb7e97c/content/influxdb/v1/concepts/key_concepts.md",
       "section": "Author's computation",
-      "verified_by": "Author's own Python run on 2026-10-18 with seeded random data; zlib stands in for InfluxDB's type-specific encoders."
+      "verified_by": "The author ran this Python computation on 2026-10-18 with seeded random data; zlib stands in for InfluxDB's type-specific encoders."
     },
     {
       "claim_vi": "A TSDB looks like a relational table to users, but the weather table is stored in 4 TSMs in the format [Measurement, Tag, Field Name], which allows fast aggregation by time and tags; typical uses include market data, server metrics, APM, network and sensor data.",

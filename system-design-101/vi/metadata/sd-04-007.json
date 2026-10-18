@@ -85,7 +85,7 @@
       "claim_vi": "Measured on PostgreSQL 16.15: at Read Uncommitted and Read Committed T1 read 100 while T2's update to 200 was uncommitted and 200 after it committed, and a row count went 1 then 2; at Repeatable Read and Serializable T1 kept reading 100 and 1 row. In the on-call write-skew test both transactions committed at Repeatable Read leaving 0 on duty; at Serializable the second failed with 'could not serialize access due to read/write dependencies among transactions' leaving 1.",
       "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/mvcc.sgml",
       "section": "Author's experiment",
-      "verified_by": "Author's own run on 2026-10-18; not repeated on other systems."
+      "verified_by": "The author ran and measured this on 2026-10-18; not repeated on other systems."
     },
     {
       "claim_vi": "Four isolation levels (Serializable, Repeatable Read, Read Committed, Read Uncommitted); isolation is guaranteed by MVCC, which the source names Multi-Version Consistency Control, and locks; an MVCC example with transaction_id and roll_pointer.",

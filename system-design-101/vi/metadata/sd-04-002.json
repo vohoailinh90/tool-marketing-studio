@@ -88,7 +88,7 @@
       "claim_vi": "Measured on PostgreSQL 16.15 with one ticket left: without locking both buyers sold; with SELECT FOR UPDATE the second buyer waited 1.0 s (the first held the lock for 1 s) and then saw 0 and refused; with a version column one UPDATE changed 1 row and the other 0 rows (final version 2); FOR UPDATE NOWAIT failed at once with 'could not obtain lock on row in relation'; under REPEATABLE READ the second writer got 'could not serialize access due to concurrent update'.",
       "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/mvcc.sgml",
       "section": "Author's experiment",
-      "verified_by": "Author's own run on 2026-10-18; not repeated on other versions."
+      "verified_by": "The author ran and measured this on 2026-10-18; not repeated on other versions."
     },
     {
       "claim_vi": "Pessimistic locking assumes conflicts and locks before changes; optimistic locking checks for conflicts at commit and rolls back; best practices include short locks, row-level granularity and retry logic.",

@@ -108,7 +108,7 @@
       "claim_vi": "PostgreSQL materialized views persist results in table-like form; access is often much faster but the data is not always current. Measured on PostgreSQL 16.15: the view showed 70 for 2026-10-18 after the table total became 100, and 100 after REFRESH MATERIALIZED VIEW.",
       "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/rules.sgml",
       "section": "Materialized Views; author's experiment",
-      "verified_by": "Read from a partial clone of postgres/postgres at REL_16_STABLE commit 8e928803020e5b5694cde58e4851fce64ef9d520; experiment run by the author on 2026-10-18."
+      "verified_by": "Read from a partial clone of postgres/postgres at REL_16_STABLE commit 8e928803020e5b5694cde58e4851fce64ef9d520; the author ran the experiment and measured the view on 2026-10-18."
     },
     {
       "claim_vi": "Six data management patterns: cache aside, materialized view, CQRS, event sourcing, index table, sharding.",

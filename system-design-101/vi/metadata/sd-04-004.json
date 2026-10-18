@@ -102,7 +102,7 @@
       "claim_vi": "Measured on Redis 7.0.15: list worker 1 got m1 and m2, worker 2 got m3, a late worker got nothing; PUBLISH returned 1 then 2 receivers and the late subscriber only got m2; a stream read fully by group billing and by group email created later at 0, length still 3, three pending for billing before XACK.",
       "source": "https://github.com/redis/docs/blob/3b030c7ef066c0bb7f88ddec02c784e49783b0f8/content/develop/data-types/streams/_index.md",
       "section": "Author's experiment",
-      "verified_by": "Author's own run on 2026-10-18 with redis-py; one machine, persistence off."
+      "verified_by": "The author ran and measured this on 2026-10-18 with redis-py; one machine, persistence off."
     },
     {
       "claim_vi": "Eight criteria for choosing a message queue: speed, scalability, reliability, durability, ease of use, ecosystem, integration, protocol support.",

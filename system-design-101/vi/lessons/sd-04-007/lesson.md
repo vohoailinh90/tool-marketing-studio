@@ -57,7 +57,7 @@ Repeatable Read cho cả giao dịch một ảnh chụp nên tổng và chi ti�
 <details>
 <summary>Xem sâu hơn: điều chỉnh so với bài nguồn</summary>
 
-Bài nguồn gọi MVCC là "Multi-Version Consistency Control"; tài liệu PostgreSQL gọi là Multiversion Concurrency Control. Bài nguồn minh họa MVCC bằng hai cột ẩn `transaction_id` và `roll_pointer`; bài này không kiểm cơ chế đó mà quan sát kết quả trên PostgreSQL.
+Bài nguồn gọi MVCC là "Multi-Version Consistency Control"; tài liệu PostgreSQL gọi là Multiversion Concurrency Control. Bài nguồn minh họa MVCC bằng hai cột ẩn của mỗi hàng (mã giao dịch và con trỏ tới phiên bản cũ); bài này không kiểm cơ chế đó mà quan sát kết quả trên PostgreSQL.
 Bài nguồn cũng định nghĩa Serializable là "các giao dịch được bảo đảm chạy tuần tự". Thử nghiệm cho thấy cách PostgreSQL làm: các giao dịch vẫn chạy song song, và hệ hủy một giao dịch khi phát hiện kết quả không thể có nếu chạy lần lượt.
 
 </details>

@@ -89,7 +89,7 @@
       "claim_vi": "Computed locally for a seeded random 21 MiB file in 5 MiB parts (5,5,5,5,1): object ETag 4f79d0f27854976ba9c74084e2ea3aee-5 versus whole-file MD5 9cd7fe8ee2fb0c02de53bc4f59b9c0e4; 100 GiB in 5 MiB parts is 20,480 parts, so parts must be at least 10.24 MiB to stay within 10,000.",
       "source": "https://github.com/awsdocs/amazon-s3-userguide/blob/cc53dd6a44d3aa1d654e6d3705a0a7550f20fd2a/doc_source/checking-object-integrity.md",
       "section": "Author's computation",
-      "verified_by": "Author's own Python run on 2026-10-18 (hashlib); arithmetic from the documented limits."
+      "verified_by": "The author ran this Python computation on 2026-10-18 (hashlib); arithmetic from the documented limits."
     },
     {
       "claim_vi": "Multipart upload: initiate, get uploadID, split the file (1.6 GB in 8 parts of 200 MB), upload parts and receive ETags, complete with uploadID, part numbers and ETags, and the store reassembles the object.",

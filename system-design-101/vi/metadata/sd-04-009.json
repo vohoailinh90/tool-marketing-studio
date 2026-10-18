@@ -91,7 +91,7 @@
       "claim_vi": "Measured once on Kafka 4.4.0: 50,000 messages of 100 bytes with batch.num.messages=1 took 8.30 s and 50,000 Produce requests; with linger.ms=5 they took 0.07 s and 11 requests; while one consumer read 100,000 messages (a 14.0 MB log segment) strace on the leader broker counted 68 sendfile calls returning 15.6 MB in total.",
       "source": "https://github.com/apache/kafka/blob/65566690ca1ddb584388c1026e2ff6673e9c6f19/docs/design/design.md",
       "section": "Author's experiment",
-      "verified_by": "Author's own run on 2026-10-18; request counts from librdkafka statistics; one machine, so network round trips are near zero."
+      "verified_by": "The author ran and measured this on 2026-10-18; request counts from librdkafka statistics; one machine, so network round trips are near zero."
     },
     {
       "claim_vi": "Two design choices make Kafka fast: sequential I/O and zero copy; without zero copy data goes disk, OS cache, application, socket buffer, network card; with zero copy the OS cache sends data to the network card via sendfile().",

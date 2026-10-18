@@ -91,7 +91,7 @@
       "claim_vi": "Measured on PostgreSQL 16.15 with recovery_min_apply_delay=3s: right after commit the primary's insert LSN was 0/3027DD0 while the standby had replayed to 0/3027DA8 and returned 0 rows; polling until the replay LSN reached it took 2.9 s, then 1 row. With the standby synchronous, synchronous_commit=on returned in 0.0 s with the row not yet visible on the standby; remote_apply took 3.0 s and the row was visible right after. INSERT on the standby failed with 'cannot execute INSERT in a read-only transaction'.",
       "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/config.sgml",
       "section": "Author's experiment",
-      "verified_by": "Author's own run on 2026-10-18 (pg_basebackup -R, streaming replication, two clusters on one machine); not repeated on other hardware."
+      "verified_by": "The author ran and measured this on 2026-10-18 (pg_basebackup -R, streaming replication, two clusters on one machine); not repeated on other hardware."
     },
     {
       "claim_vi": "Read replica pattern: writes go to the primary and reads to replicas; replication lag can hide a just-written order; mitigations are routing latency-sensitive or read-after-write reads to the primary, or checking whether the replica has caught up.",

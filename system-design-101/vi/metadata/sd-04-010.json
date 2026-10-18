@@ -85,7 +85,7 @@
       "claim_vi": "Measured with Python 3.13: draining 100,000 items with list.pop(0) took 14.5 s and 14.0 s in two runs, with deque.popleft() 0.008 to 0.009 s; an 8-slot ring with an idle reader accepted 8 of e0..e9 and refused e8, then after 3 reads accepted three more with e10 in slot 2; deque(maxlen=3) after e0..e4 held e2, e3, e4; a heap of (severity, count, name) popped Binh, Dung, Chi, An.",
       "source": "https://github.com/python/cpython/blob/b00a14018172652226bd6efb517af021bd03aa88/Doc/library/collections.rst",
       "section": "Author's experiment",
-      "verified_by": "Author's own runs on 2026-10-18 on one machine."
+      "verified_by": "The author ran and measured these on 2026-10-18 on one machine."
     },
     {
       "claim_vi": "Four queue types: simple FIFO, circular queue (ring buffer, with LMAX's low-latency ring buffer as an example), priority queue (heap), deque (supports FIFO and LIFO).",

@@ -32,7 +32,7 @@ Phần thử nghiệm chạy trên Elasticsearch 9.5.5, một nút, giấy phép
 
 ## Giới hạn cần nhớ
 
-Elasticsearch tìm thấy cái nó đã được dạy để tách: chọn sai kiểu trường (tên sản phẩm là `keyword`, danh mục là `text`) thì tìm hoặc gộp nhóm hỏng, và không đổi được kiểu của một trường đã có: phải tạo chỉ mục mới với kiểu đúng rồi chép dữ liệu sang (reindex). Dữ liệu mới không hiện ngay. Số shard chính của một chỉ mục cố định từ lúc tạo. Học máy không có trong giấy phép miễn phí.
+Elasticsearch tìm thấy cái nó đã được dạy để tách: chọn sai kiểu trường (tên sản phẩm là `keyword`, danh mục là `text`) thì tìm hoặc gộp nhóm hỏng, và không đổi được kiểu của một trường đã có: phải tạo chỉ mục mới với kiểu đúng rồi chép dữ liệu sang (reindex). Dữ liệu mới không hiện ngay. Số shard chính của một chỉ mục cố định từ lúc tạo. Phát hiện bất thường bằng học máy cần gói đăng ký phù hợp hoặc bản dùng thử; thử nghiệm chỉ cho thấy giấy phép basic từ chối loại job này, không nói gì về các tính năng khác.
 
 ## Nhìn hình trả lời
 
@@ -52,7 +52,7 @@ Danh mục: kiểu `keyword` để gộp nhóm. Nếu một trường cần cả
 - Chỉ mục ngược trả lời "từ này ở tài liệu nào". Gộp nhóm cần chiều ngược lại: "tài liệu này có giá trị gì". Trường `keyword`, số, ngày lưu thêm dữ liệu theo cột trên đĩa (doc values) cho việc đó; trường `text` thì không, và việc dựng tạm trong bộ nhớ (fielddata) mặc định bị tắt.
 - Tài liệu Elastic xếp `text` cho nội dung người đọc (thân email, mô tả sản phẩm) và `keyword` cho nội dung có cấu trúc (email, tên máy, mã trạng thái, thẻ).
 - Data stream hợp với dữ liệu chuỗi thời gian; nếu bạn hay ghi lại cùng một mã tài liệu và muốn bản sau thắng, tài liệu khuyên dùng alias với chỉ mục ghi thay cho data stream.
-- Bài nguồn nhắc học máy "trong X-Pack"; tài liệu hiện nay gọi đây là tính năng học máy của Elastic Stack và yêu cầu gói đăng ký phù hợp hoặc bản dùng thử.
+- Bài nguồn nhắc học máy "trong X-Pack"; tài liệu hiện nay gọi đây là tính năng học máy của Elastic Stack, và trang hướng dẫn cài đặt học máy ghi yêu cầu gói đăng ký phù hợp hoặc bản dùng thử. Bài chỉ thử job phát hiện bất thường.
 
 </details>
 

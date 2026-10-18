@@ -98,7 +98,7 @@
       "verified_by": "Read; the experiment's first write to logs-checkout-default created backing index .ds-logs-checkout-default-2026.10.18-000001, and a PUT with an id was refused: only write ops with an op_type of create are allowed in data streams."
     },
     {
-      "claim_vi": "Machine learning needs an appropriate subscription level or the free trial.",
+      "claim_vi": "Machine learning setup needs an appropriate subscription level or the free trial; the experiment tested only an anomaly detection job.",
       "source": "https://github.com/elastic/docs-content/blob/55f05da44f1e68caf6b83d60715f6a41bcdaa2d3/explore-analyze/machine-learning/setting-up-machine-learning.md",
       "section": "Requirements",
       "verified_by": "Read; creating an anomaly detection job on the basic license returned 'current license is non-compliant for [ml]'."

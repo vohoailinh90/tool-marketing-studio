@@ -1,9 +1,9 @@
 # CDN hoạt động thế nào: tìm máy biên, rồi hỏi dần lên máy gốc
 
-**Một CDN làm hai việc nối nhau: đưa người dùng tới một máy biên ở gần (chặng tìm địa chỉ), rồi trả nội dung từ bộ đệm của máy biên; máy biên chưa có thì hỏi tầng trên, và chỉ tầng trên cùng mới hỏi máy gốc (chặng tìm nội dung).**
+**Một CDN làm hai việc nối nhau: đưa người dùng tới một máy biên ở gần (chặng tìm địa chỉ), rồi trả nội dung từ bộ đệm của máy biên; máy biên chưa có thì đi lấy từ máy gốc, hoặc, nếu CDN bật bộ đệm nhiều tầng, hỏi một tầng trên trước để chỉ tầng trên mới phải hỏi máy gốc (chặng tìm nội dung).**
 Ví dụ quen thuộc: cửa hàng đặt máy chủ ở châu Âu, khách ở châu Á tải ảnh sản phẩm từ một máy biên gần mình thay vì đi nửa vòng Trái Đất.
 
-![Ba phần. Phần một, chặng tìm địa chỉ, bốn bước: hỏi tên miền qua bộ đệm DNS của máy rồi máy phân giải; DNS của trang trả một bí danh CNAME trỏ sang CDN; DNS của CDN trả máy biên gần máy phân giải, hoặc một địa chỉ anycast; trình duyệt kết nối tới địa chỉ vừa nhận. Phần hai, chặng tìm nội dung, ba thẻ nối bằng mũi tên: máy biên gần người dùng, có sẵn thì trả ngay; máy tầng vùng, nhiều máy biên cùng hỏi một chỗ; máy gốc, nơi nội dung thật nằm, chỉ tầng trên hỏi tới. Phần ba, kết quả thử với nginx gồm hai máy biên và một tầng vùng: lần đầu qua máy biên A hai tầng hụt và máy gốc nhận 1 yêu cầu; lần đầu qua máy biên B tầng vùng trúng và máy gốc không nhận thêm; trang giỏ hàng gắn private, no-store thì máy gốc nhận cả hai lần.](../../diagrams/sd-06-017-main.svg)
+![Ba phần. Phần một, chặng tìm địa chỉ, bốn bước: hỏi tên miền qua bộ đệm DNS của máy rồi máy phân giải; DNS của trang trả một bí danh CNAME trỏ sang CDN; DNS của CDN trả máy biên gần máy phân giải, hoặc một địa chỉ anycast; trình duyệt kết nối tới địa chỉ vừa nhận. Phần hai, chặng tìm nội dung khi có nhiều tầng, ba thẻ nối bằng mũi tên: máy biên gần người dùng, có sẵn thì trả ngay, thiếu thì hỏi lên; máy tầng vùng, chỉ có khi bật bộ đệm nhiều tầng, nhiều máy biên hỏi chung; máy gốc, nơi nội dung thật nằm, có nhiều tầng thì chỉ tầng trên hỏi tới. Phần ba, kết quả thử với nginx gồm hai máy biên và một tầng vùng: lần đầu qua máy biên A hai tầng hụt và máy gốc nhận 1 yêu cầu; lần đầu qua máy biên B tầng vùng trúng và máy gốc không nhận thêm; trang giỏ hàng gắn private, no-store thì máy gốc nhận cả hai lần.](../../diagrams/sd-06-017-main.svg)
 
 ## Từ viết tắt
 
@@ -22,7 +22,7 @@ Ví dụ quen thuộc: cửa hàng đặt máy chủ ở châu Âu, khách ở c
 - **Chọn bằng DNS:** máy chủ DNS của CDN trả địa chỉ một máy biên phù hợp. Nó chỉ thấy địa chỉ của *máy phân giải*, không thấy địa chỉ người dùng, trừ khi máy phân giải gửi kèm một phần địa chỉ đó (EDNS Client Subnet). Tài liệu của 1.1.1.1 ghi rõ máy phân giải này không gửi.
 - **Anycast:** cùng một địa chỉ IP được nhiều trung tâm dữ liệu công bố; định tuyến Internet đưa mỗi yêu cầu tới một nơi ở gần. Tài liệu Cloudflare mô tả cách này: DNS trả địa chỉ anycast thay vì địa chỉ máy gốc.
 
-**Chặng 2: tìm nội dung.** Máy biên có bản còn hạn thì trả ngay. Không có thì hỏi tầng trên; tài liệu Cloudflare gọi đây là bộ đệm nhiều tầng, chỉ tầng trên mới được hỏi máy gốc, nên máy gốc nhận ít yêu cầu và ít kết nối hơn. Nội dung nào được giữ là do tiêu đề `Cache-Control` của máy gốc quyết định.
+**Chặng 2: tìm nội dung.** Máy biên có bản còn hạn thì trả ngay. Không có thì đi lấy từ máy gốc. Khi CDN bật bộ đệm nhiều tầng (Cloudflare gọi là Tiered Cache, một tùy chọn), máy biên hỏi một tầng trên trước, và chỉ tầng trên mới được hỏi máy gốc, nên máy gốc nhận ít yêu cầu và ít kết nối hơn. Hình và thử nghiệm dựng kiểu nhiều tầng này. Nội dung nào được giữ là do tiêu đề `Cache-Control` của máy gốc quyết định.
 
 **Thử nghiệm.** Một máy gốc viết bằng Python đếm yêu cầu, một nginx làm tầng vùng, hai nginx làm máy biên A và B, mỗi tầng ghi trạng thái bộ đệm vào một tiêu đề. Ảnh `/logo.png` gắn `public, max-age=60`: lần 1 qua A, cả hai tầng `MISS`; lần 2 qua A, máy biên `HIT`; lần đầu qua B, máy biên `MISS` nhưng tầng vùng `HIT`. Máy gốc chỉ nhận 1 yêu cầu cho ảnh. Trang `/cart` gắn `private, no-store`: hai lần đều `MISS` ở cả hai tầng, máy gốc nhận 2.
 

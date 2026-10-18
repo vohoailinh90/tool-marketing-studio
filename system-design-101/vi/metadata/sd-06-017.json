@@ -76,7 +76,7 @@
       "verified_by": "Read from a partial clone; not tested."
     },
     {
-      "claim_vi": "Tiered Cache divides data centers into lower and upper tiers; a lower tier missing content asks an upper tier and only the upper tier asks the origin, reducing origin requests and connections.",
+      "claim_vi": "Without Tiered Cache, an edge data center that misses must contact the origin; Tiered Cache, a configurable topology, divides data centers into lower and upper tiers so that a lower tier asks an upper tier and only the upper tier asks the origin, reducing origin requests and connections.",
       "source": "https://github.com/cloudflare/cloudflare-docs/blob/2ab084e257fef531e4e22a10c9a6feab7b3a4fce/src/content/docs/cache/how-to/tiered-cache.mdx",
       "section": "Tiered Cache",
       "verified_by": "Read; the nginx experiment showed edge B missing and the regional tier hitting, with the origin counting one request for the image."
@@ -98,7 +98,8 @@
   "source_deviations": [
     "Source says the CDN load balancer picks the edge from the user's IP address and ISP; the lesson notes that a DNS-based choice sees the resolver's address unless the resolver sends EDNS Client Subnet, and adds anycast as a second way, as Cloudflare documents it.",
     "Source names edge, regional and central servers before the origin; the lesson keeps two tiers and states, from the Cloudflare docs, that only the upper tier contacts the origin.",
-    "Source says dynamic content is cached as edge computing results; the lesson does not cover edge computing and adds that Cache-Control from the origin decides what a shared cache may keep, tested with a private, no-store page."
+    "Source says dynamic content is cached as edge computing results; the lesson does not cover edge computing and adds that Cache-Control from the origin decides what a shared cache may keep, tested with a private, no-store page.",
+    "The tiered path (edge, regional, origin) is presented as an optional configuration, as in the Cloudflare docs; without it an edge goes straight to the origin."
   ],
   "editorial_note_vi": "Bài viết độc lập, sơ đồ vẽ bằng bộ công cụ hình từ spec system-design-101/figures/vi/sd-06-017.json, không dùng ảnh nguồn. Tiêu đề hiển thị là dòng đầu của lesson.md; title_vi giữ bản dịch tiêu đề nguồn theo source-map. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
 }

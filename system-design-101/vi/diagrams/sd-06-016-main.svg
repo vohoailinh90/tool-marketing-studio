@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1364" viewBox="0 0 320 1364" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1384" viewBox="0 0 320 1384" role="img" aria-labelledby="title desc">
 <title id="title">Sáu cách dùng Elasticsearch, và cái mỗi cách dựa vào</title>
-<desc id="desc">Ba phần. Tìm và phân tích: tìm toàn văn dựa vào bộ phân tích và chỉ mục ngược; phân tích gần thời gian thực dựa vào gộp nhóm trên trường keyword, số, ngày, dữ liệu mới hiện sau lần làm mới; dữ liệu vị trí dựa vào trường geo_point. Nhật ký và an ninh: nhật ký dựa vào data stream chỉ ghi thêm, chia theo thời gian; học máy phát hiện bất thường cần gói trả phí hoặc bản dùng thử; SIEM là Elastic Security dựng trên Elasticsearch và Kibana. Thử trên Elasticsearch 9.5.5: gõ không dấu ra 0 kết quả; vừa ghi xong tìm ngay ra 0, sau lần làm mới ra 5; gộp nhóm trên trường văn bản bị từ chối; giấy phép basic không tạo được job phát hiện bất thường.</desc>
+<desc id="desc">Ba phần. Tìm và phân tích: tìm toàn văn dựa vào bộ phân tích và chỉ mục ngược; phân tích gần thời gian thực dựa vào gộp nhóm trên trường keyword, số, ngày, dữ liệu mới hiện sau lần làm mới; dữ liệu vị trí dựa vào trường geo_point. Nhật ký và an ninh: nhật ký dựa vào data stream chỉ ghi thêm, chia theo thời gian; học máy phát hiện bất thường cần gói trả phí hoặc bản dùng thử; SIEM là một phần của Elastic Security, dựng trên Elasticsearch và Kibana. Thử trên Elasticsearch 9.5.5: gõ không dấu ra 0 kết quả; vừa ghi, chưa tới lần làm mới, tìm ra 0, sau lần làm mới ra 5; gộp nhóm trên trường văn bản bị từ chối; giấy phép basic không tạo được job phát hiện bất thường.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="1364" fill="#f8fafc"/>
+<rect width="320" height="1384" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Sáu cách dùng</text>
 <text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Elasticsearch, và cái mỗi</text>
@@ -47,31 +47,32 @@
 <rect x="20" y="872" width="280" height="107" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
 <circle cx="50" cy="925.5" r="18" fill="#0f766e"/><g transform="translate(39.2 914.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></g>
 <text x="78" y="898.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">SIEM</text>
-<text x="78" y="922.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Elastic Security dựng trên</text>
-<text x="78" y="941.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Elasticsearch và Kibana để</text>
-<text x="78" y="961.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dò sự cố an ninh.</text>
-<rect x="8" y="1003" width="304" height="353" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="78" y="922.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Một phần của Elastic</text>
+<text x="78" y="941.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Security, dựng trên</text>
+<text x="78" y="961.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Elasticsearch và Kibana.</text>
+<rect x="8" y="1003" width="304" height="373" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
 <text x="20" y="1031.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Thử trên Elasticsearch 9.5.5</text>
 <rect x="20" y="1048" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
 <circle cx="43" cy="1071" r="11" fill="#16a34a"/>
 <polyline points="37.9,1071.4 41.7,1075.4 48.5,1067" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
 <text x="64" y="1074.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Gõ không dấu ao khoac: 0</text>
 <text x="64" y="1093.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">kết quả, cần bộ lọc bỏ dấu.</text>
-<rect x="20" y="1119" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<rect x="20" y="1119" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
 <circle cx="43" cy="1142" r="11" fill="#16a34a"/>
 <polyline points="37.9,1142.4 41.7,1146.4 48.5,1138" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="1145.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Vừa ghi xong tìm ngay: 0 kết</text>
-<text x="64" y="1164.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">quả. Sau lần làm mới: 5.</text>
-<rect x="20" y="1190" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
-<circle cx="43" cy="1213" r="11" fill="#16a34a"/>
-<polyline points="37.9,1213.4 41.7,1217.4 48.5,1209" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="1216.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Gộp nhóm trên trường văn</text>
-<text x="64" y="1235.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bản: bị từ chối.</text>
-<rect x="20" y="1261" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
-<circle cx="43" cy="1284" r="11" fill="#16a34a"/>
-<polyline points="37.9,1284.4 41.7,1288.4 48.5,1280" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="1287.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Giấy phép basic: không tạo</text>
-<text x="64" y="1306.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">được job phát hiện bất</text>
-<text x="64" y="1326.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thường.</text>
+<text x="64" y="1145.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Vừa ghi, chưa tới lần làm</text>
+<text x="64" y="1164.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mới: 0 kết quả. Sau làm mới:</text>
+<text x="64" y="1184.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">5.</text>
+<rect x="20" y="1210" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1233" r="11" fill="#16a34a"/>
+<polyline points="37.9,1233.4 41.7,1237.4 48.5,1229" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1236.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Gộp nhóm trên trường văn</text>
+<text x="64" y="1255.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bản: bị từ chối.</text>
+<rect x="20" y="1281" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1304" r="11" fill="#16a34a"/>
+<polyline points="37.9,1304.4 41.7,1308.4 48.5,1300" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1307.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Giấy phép basic: không tạo</text>
+<text x="64" y="1326.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">được job phát hiện bất</text>
+<text x="64" y="1346.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thường.</text>
 </g>
 </svg>

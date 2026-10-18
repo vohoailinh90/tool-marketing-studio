@@ -62,7 +62,7 @@
       "claim_vi": "Documents become searchable in near real time after a refresh; by default indices refresh every second, but only those that received a search in the last 30 seconds.",
       "source": "https://github.com/elastic/docs-content/blob/55f05da44f1e68caf6b83d60715f6a41bcdaa2d3/manage-data/data-store/near-real-time-search.md",
       "section": "Near real-time search",
-      "verified_by": "Read; the experiment counted 0 documents right after indexing and 5 after POST _refresh."
+      "verified_by": "Read; the experiment counted 0 documents right after indexing, before the first automatic refresh had run, and 5 after POST _refresh. The 0 depends on timing: refresh_interval was left at its default."
     },
     {
       "claim_vi": "text fields are analyzed into terms for full-text search and are not used for sorting and seldom for aggregations; fielddata is off by default; keyword suits structured content; a field can be both via multi-fields.",

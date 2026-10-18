@@ -92,7 +92,7 @@ Số thứ tự theo ID của bài; bài chưa viết chưa có trong danh sách
 17. [CDN hoạt động thế nào: tìm máy biên, rồi hỏi dần lên máy gốc](lessons/sd-06-017/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
 18. [Kiến trúc Redis lớn dần thế nào: mỗi bước vá một giới hạn](lessons/sd-06-018/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
 19. [Redis giữ dữ liệu qua lần sập thế nào: RDB và AOF](lessons/sd-06-019/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
-20. [Redis dùng vào việc gì: mười cách dùng, năm kiểu dữ liệu](lessons/sd-06-020/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+20. [Redis dùng vào việc gì: mười cách dùng, năm nhóm kiểu dữ liệu](lessons/sd-06-020/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
 21. [Vì sao Redis nhanh, và khi nào nó chậm](lessons/sd-06-021/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
 22. [Học Elasticsearch theo đường đi của một tài liệu](lessons/sd-06-022/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
 

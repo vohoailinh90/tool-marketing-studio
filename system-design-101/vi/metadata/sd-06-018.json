@@ -73,7 +73,7 @@
       "claim_vi": "Sentinel does monitoring, notification, automatic failover and acts as configuration provider; quorum only detects failure, a failover needs a leader elected by the majority of Sentinels; acknowledged writes can be lost because replication is asynchronous; Sentinel 2 is stable since 2.8.",
       "source": "https://github.com/redis/docs/blob/3b030c7ef066c0bb7f88ddec02c784e49783b0f8/content/operate/oss_and_stack/management/sentinel.md",
       "section": "Sentinel capabilities; Configuring Sentinel; Fundamental things to know",
-      "verified_by": "Read; the experiment's Sentinel logs show +sdown, +odown with quorum, +elected-leader, +promoted-slave and +switch-master, and after the master was stopped with SHUTDOWN NOSAVE the replica became master in 3.3 s with down-after-milliseconds 2000."
+      "verified_by": "Read; the experiment's Sentinel logs show +sdown, +odown with quorum, +elected-leader, +promoted-slave and +switch-master, and after the master process was crashed with DEBUG SEGFAULT the replica became master in 3.3 s (timed from the crash) with down-after-milliseconds 2000."
     },
     {
       "claim_vi": "Redis Cluster splits keys into 16384 hash slots, HASH_SLOT = CRC16(key) mod 16384 except that, when the key holds a non-empty {...} section, only the part between the first { and the following } is hashed (hash tags), clients are redirected with MOVED and ASK, multi-key commands need keys in the same slot, and acknowledged writes can be lost in some windows.",

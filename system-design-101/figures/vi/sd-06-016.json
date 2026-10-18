@@ -3,7 +3,7 @@
   "lang": "vi",
   "title": "Sáu cách dùng Elasticsearch, và cái mỗi cách dựa vào",
   "subtitle": "Mỗi thẻ: việc cần làm, rồi tính năng gánh việc đó.",
-  "desc": "Ba phần. Tìm và phân tích: tìm toàn văn dựa vào bộ phân tích và chỉ mục ngược; phân tích gần thời gian thực dựa vào gộp nhóm trên trường keyword, số, ngày, dữ liệu mới hiện sau lần làm mới; dữ liệu vị trí dựa vào trường geo_point. Nhật ký và an ninh: nhật ký dựa vào data stream chỉ ghi thêm, chia theo thời gian; học máy phát hiện bất thường cần gói trả phí hoặc bản dùng thử; SIEM là Elastic Security dựng trên Elasticsearch và Kibana. Thử trên Elasticsearch 9.5.5: gõ không dấu ra 0 kết quả; vừa ghi xong tìm ngay ra 0, sau lần làm mới ra 5; gộp nhóm trên trường văn bản bị từ chối; giấy phép basic không tạo được job phát hiện bất thường.",
+  "desc": "Ba phần. Tìm và phân tích: tìm toàn văn dựa vào bộ phân tích và chỉ mục ngược; phân tích gần thời gian thực dựa vào gộp nhóm trên trường keyword, số, ngày, dữ liệu mới hiện sau lần làm mới; dữ liệu vị trí dựa vào trường geo_point. Nhật ký và an ninh: nhật ký dựa vào data stream chỉ ghi thêm, chia theo thời gian; học máy phát hiện bất thường cần gói trả phí hoặc bản dùng thử; SIEM là một phần của Elastic Security, dựng trên Elasticsearch và Kibana. Thử trên Elasticsearch 9.5.5: gõ không dấu ra 0 kết quả; vừa ghi, chưa tới lần làm mới, tìm ra 0, sau lần làm mới ra 5; gộp nhóm trên trường văn bản bị từ chối; giấy phép basic không tạo được job phát hiện bất thường.",
   "sections": [
     {
       "kind": "parts",
@@ -42,7 +42,7 @@
         },
         {
           "name": "SIEM",
-          "role": "Elastic Security dựng trên Elasticsearch và Kibana để dò sự cố an ninh.",
+          "role": "Một phần của Elastic Security, dựng trên Elasticsearch và Kibana.",
           "icon": "shield"
         }
       ]
@@ -52,7 +52,7 @@
       "heading": "Thử trên Elasticsearch 9.5.5",
       "items": [
         "Gõ không dấu ao khoac: 0 kết quả, cần bộ lọc bỏ dấu.",
-        "Vừa ghi xong tìm ngay: 0 kết quả. Sau lần làm mới: 5.",
+        "Vừa ghi, chưa tới lần làm mới: 0 kết quả. Sau làm mới: 5.",
         "Gộp nhóm trên trường văn bản: bị từ chối.",
         "Giấy phép basic: không tạo được job phát hiện bất thường."
       ]

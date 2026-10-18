@@ -3,7 +3,7 @@
 **Elasticsearch là kho tài liệu chuyên tìm và phân tích. Sáu cách dùng quen thuộc của nó đều dựa vào vài tính năng cụ thể; biết tính năng nào gánh việc nào thì biết khi nào nên dùng và phải cấu hình gì.**
 Phần thử nghiệm chạy trên Elasticsearch 9.5.5, một nút, giấy phép basic (miễn phí).
 
-![Ba phần. Phần một, tìm và phân tích, ba thẻ: tìm kiếm toàn văn dựa vào bộ phân tích tách chữ thành từ và chỉ mục ngược; phân tích gần thời gian thực dựa vào gộp nhóm trên trường keyword, số, ngày, dữ liệu mới hiện sau lần làm mới; dữ liệu vị trí dựa vào trường geo_point, tìm trong bán kính và kết hợp với tìm chữ. Phần hai, nhật ký và an ninh, ba thẻ: nhật ký và sự kiện dựa vào data stream chỉ ghi thêm, chia chỉ mục theo thời gian, hỏi chung một tên; học máy phát hiện bất thường trên chuỗi thời gian, cần gói trả phí hoặc bản dùng thử; SIEM là Elastic Security dựng trên Elasticsearch và Kibana để dò sự cố an ninh. Phần ba, bốn kết quả thử trên Elasticsearch 9.5.5: gõ không dấu ao khoac ra 0 kết quả, cần bộ lọc bỏ dấu; vừa ghi xong tìm ngay ra 0, sau lần làm mới ra 5; gộp nhóm trên trường văn bản bị từ chối; giấy phép basic không tạo được job phát hiện bất thường.](../../diagrams/sd-06-016-main.svg)
+![Ba phần. Phần một, tìm và phân tích, ba thẻ: tìm kiếm toàn văn dựa vào bộ phân tích tách chữ thành từ và chỉ mục ngược; phân tích gần thời gian thực dựa vào gộp nhóm trên trường keyword, số, ngày, dữ liệu mới hiện sau lần làm mới; dữ liệu vị trí dựa vào trường geo_point, tìm trong bán kính và kết hợp với tìm chữ. Phần hai, nhật ký và an ninh, ba thẻ: nhật ký và sự kiện dựa vào data stream chỉ ghi thêm, chia chỉ mục theo thời gian, hỏi chung một tên; học máy phát hiện bất thường trên chuỗi thời gian, cần gói trả phí hoặc bản dùng thử; SIEM, một phần của Elastic Security, dựng trên Elasticsearch và Kibana để dò sự cố an ninh. Phần ba, bốn kết quả thử trên Elasticsearch 9.5.5: gõ không dấu ao khoac ra 0 kết quả, cần bộ lọc bỏ dấu; vừa ghi xong, chưa tới lần làm mới, tìm ra 0, sau lần làm mới ra 5; gộp nhóm trên trường văn bản bị từ chối; giấy phép basic không tạo được job phát hiện bất thường.](../../diagrams/sd-06-016-main.svg)
 
 ## Từ viết tắt
 
@@ -24,7 +24,7 @@ Phần thử nghiệm chạy trên Elasticsearch 9.5.5, một nút, giấy phép
 **Thử nghiệm.** Năm sản phẩm, tên kiểu `text`, danh mục kiểu `keyword`, cửa hàng kiểu `geo_point`.
 
 - Bộ phân tích chuẩn biến "Áo Khoác Gió" thành `áo`, `khoác`, `gió`. Tìm "áo khoác" ra hai áo khoác điểm 1,385 rồi áo thun 0,528 (chỉ khớp "áo"). Tìm "ao khoac" không dấu: 0 kết quả, vì dấu được giữ nguyên; thêm bộ lọc `asciifolding` thì ra `ao`, `khoac`, `gio`.
-- Đếm ngay sau khi ghi (chưa làm mới): 0. Sau `_refresh`: 5.
+- Đếm ngay sau khi ghi, lúc chưa tới lần làm mới tự động đầu tiên: 0. Sau `_refresh`: 5. Con số 0 phụ thuộc thời điểm: đếm muộn hơn một chút thì lần làm mới tự động có thể đã chạy.
 - Gộp theo danh mục: `ao` 3, `giay` 2. Gộp theo tên (`text`): lỗi "Fielddata is disabled".
 - Bán kính 5 km quanh một điểm ở Hà Nội: ba sản phẩm bán ở hai cửa hàng gần đó.
 - Ghi một dòng nhật ký vào `logs-checkout-default`: Elasticsearch tự tạo data stream với chỉ mục ẩn `.ds-logs-checkout-default-2026.10.18-000001`; ghi đè theo mã tài liệu thì bị từ chối, data stream chỉ nhận thêm mới.

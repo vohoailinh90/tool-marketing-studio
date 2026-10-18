@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="320" height="1366" viewBox="0 0 320 1366" role="img" aria-labelledby="title desc">
 <title id="title">Redis giữ dữ liệu qua lần sập thế nào</title>
-<desc id="desc">Ba phần. Một: đường đi của một lệnh ghi khi bật AOF, gồm sửa dữ liệu trong RAM, nối lệnh vào bộ đệm AOF, ghi bộ đệm vào tệp, thường trước khi trả lời, rồi fsync theo chính sách. Hai: kết quả thử nghiệm sau kill -9, không lưu còn 0 khóa, chỉ RDB với ảnh chụp lúc 1000 khóa còn 1000, AOF everysec còn đủ 1500. Ba: điều cần nhớ về RDB, AOF, khác biệt giữa giết tiến trình và mất điện, và cách bật cả hai.</desc>
+<desc id="desc">Ba phần. Một: đường đi của một lệnh ghi khi bật AOF, gồm sửa dữ liệu trong RAM, nối lệnh vào bộ đệm AOF, ghi bộ đệm vào tệp, thường trước khi trả lời, rồi fsync theo chính sách. Hai: kết quả thử nghiệm sau kill -9, không lưu còn 0 khóa, chỉ RDB với ảnh chụp lúc 1000 khóa còn 1000, AOF everysec còn đủ 1500. Ba: điều cần nhớ về RDB, AOF, khác biệt giữa giết tiến trình và mất điện, và tệp gốc của AOF ở dạng RDB.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="1366" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
@@ -76,8 +76,8 @@
 <rect x="20" y="1263" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
 <circle cx="43" cy="1286" r="11" fill="#16a34a"/>
 <polyline points="37.9,1286.4 41.7,1290.4 48.5,1282" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="1289.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bật cả hai: tệp gốc dạng</text>
-<text x="64" y="1308.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">RDB, các lệnh sau đó nối</text>
-<text x="64" y="1328.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dạng AOF.</text>
+<text x="64" y="1289.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tệp gốc của AOF ở dạng</text>
+<text x="64" y="1308.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">RDB, kể cả khi tắt ảnh chụp</text>
+<text x="64" y="1328.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">RDB.</text>
 </g>
 </svg>

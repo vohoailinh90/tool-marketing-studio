@@ -1,7 +1,7 @@
 {
   "id": "sd-06-020",
   "lang": "vi",
-  "title": "Mười cách dùng Redis, năm kiểu dữ liệu",
+  "title": "Mười cách dùng Redis, năm nhóm kiểu dữ liệu",
   "subtitle": "Chọn kiểu dữ liệu trước, rồi mới chọn lệnh.",
   "desc": "Ba phần. Phần một và hai, năm thẻ kiểu dữ liệu và các việc chúng làm: chuỗi cho bộ đệm, khóa phân tán, bộ đếm, giới hạn tần suất và sinh số tăng dần; bảng băm cho phiên đăng nhập và giỏ hàng; bitmap cho việc đếm người dùng quay lại; danh sách và stream cho hàng đợi; tập có thứ tự cho bảng xếp hạng. Phần ba, bốn điều thấy khi chạy thử: khóa cần mã riêng để không xóa nhầm khóa người khác; bộ đếm giới hạn tần suất cần thời gian hết hạn đặt cùng lúc; lấy việc khỏi danh sách rồi sập là mất việc; stream giữ tin chưa xác nhận để người khác nhận lại.",
   "sections": [

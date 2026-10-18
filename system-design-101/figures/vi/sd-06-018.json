@@ -3,7 +3,7 @@
   "lang": "vi",
   "title": "Redis lớn dần: mỗi bước vá một giới hạn",
   "subtitle": "Cluster tự đổi chủ, không dùng kèm Sentinel.",
-  "desc": "Hai phần. Phần một, bốn bước: lưu xuống đĩa bằng RDB và AOF vì khởi động lại là mất hết; nhân bản sang bản sao chỉ đọc, chép bất đồng bộ, vì một máy chết là ngừng phục vụ; Sentinel theo dõi và bỏ phiếu nâng bản sao lên làm chủ vì đổi chủ bằng tay chậm; cluster chia 16384 khe cho nhiều chủ vì dữ liệu vượt một máy, và tự đổi chủ nên không dùng kèm Sentinel. Phần hai, kết quả thử trên Redis 7.0.15: tắt bản sao thì chủ vẫn trả lời thành công nhưng lệnh chờ báo 0 bản sao nhận; tắt chủ thì ba Sentinel nâng bản sao lên sau 3,3 giây; gửi khóa tới nhầm nút thì nhận lỗi chỉ sang nút đúng; ghi hai khóa ở hai khe khác nhau trong một lệnh bị từ chối, còn hai khóa cùng thẻ băm thì được.",
+  "desc": "Hai phần. Phần một, bốn bước: lưu xuống đĩa bằng RDB và AOF vì khởi động lại là mất hết; nhân bản sang bản sao chỉ đọc, chép bất đồng bộ, vì một máy chết là ngừng phục vụ; Sentinel theo dõi và bỏ phiếu nâng bản sao lên làm chủ vì đổi chủ bằng tay chậm; cluster chia 16384 khe cho nhiều chủ vì dữ liệu vượt một máy, và tự đổi chủ nên không dùng kèm Sentinel. Phần hai, kết quả thử trên Redis 7.0.15: tắt bản sao thì chủ vẫn trả lời thành công nhưng lệnh chờ báo 0 bản sao nhận; chủ sập thì ba Sentinel nâng bản sao lên sau 3,3 giây; gửi khóa tới nhầm nút thì nhận lỗi chỉ sang nút đúng; ghi hai khóa ở hai khe khác nhau trong một lệnh bị từ chối, còn hai khóa cùng thẻ băm thì được.",
   "sections": [
     {
       "kind": "steps",
@@ -32,7 +32,7 @@
       "heading": "Thử trên Redis 7.0.15",
       "items": [
         "Tắt bản sao: chủ vẫn trả lời thành công, lệnh chờ báo 0 bản sao nhận.",
-        "Tắt chủ: ba Sentinel nâng bản sao lên làm chủ sau 3,3 giây.",
+        "Chủ sập: ba Sentinel nâng bản sao lên làm chủ sau 3,3 giây.",
         "Gửi khóa tới nhầm nút: lỗi trả về chỉ sang nút giữ khe đó.",
         "Một lệnh ghi hai khóa ở hai khe: bị từ chối. Cùng thẻ băm: được."
       ]

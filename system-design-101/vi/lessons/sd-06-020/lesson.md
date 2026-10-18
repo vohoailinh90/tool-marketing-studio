@@ -1,7 +1,7 @@
-# Redis dùng vào việc gì: mười cách dùng, năm kiểu dữ liệu
+# Redis dùng vào việc gì: mười cách dùng, năm nhóm kiểu dữ liệu
 
 **Redis không chỉ là bộ nhớ đệm. Nó có nhiều kiểu dữ liệu, và mỗi cách dùng quen thuộc thực chất là chọn đúng kiểu dữ liệu rồi dùng các lệnh nguyên tử của nó.**
-Bài xếp mười cách dùng hay gặp vào năm kiểu dữ liệu, rồi chạy thử để thấy chỗ mỗi cách dễ sai.
+Bài xếp mười cách dùng hay gặp vào năm nhóm kiểu dữ liệu (bitmap thực ra là chuỗi đọc theo bit; danh sách và stream chung một nhóm), rồi chạy thử để thấy chỗ mỗi cách dễ sai.
 
 ![Ba phần. Phần một, ba thẻ: chuỗi dùng cho bộ đệm, khóa phân tán, bộ đếm, giới hạn tần suất và sinh số tăng dần; bảng băm dùng cho phiên đăng nhập và giỏ hàng, nhiều trường trong một khóa; bitmap cho mỗi người dùng một bit mỗi ngày, giao hai ngày để đếm người quay lại. Phần hai, hai thẻ: danh sách và stream làm hàng đợi việc, stream giữ tin tới khi được xác nhận; tập có thứ tự làm bảng xếp hạng, mỗi phần tử một điểm. Phần ba, bốn điều thấy khi chạy thử: khóa phải gắn mã riêng và chỉ xóa khi mã còn đúng của mình; giới hạn tần suất phải tăng đếm và đặt hết hạn trong cùng một bước; lấy việc khỏi danh sách rồi sập thì việc đó mất; stream để tin chưa xác nhận chờ cho người khác nhận lại.](../../diagrams/sd-06-020-main.svg)
 

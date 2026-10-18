@@ -3,7 +3,7 @@
 **Redis giữ toàn bộ dữ liệu trong bộ nhớ. Muốn dữ liệu còn sau khi tiến trình chết, phải bật một cách ghi xuống đĩa: chụp ảnh định kỳ (RDB) hoặc ghi lại từng lệnh (AOF).**
 Hai cách khác nhau ở chỗ mất bao nhiêu khi sập và khởi động lại nhanh hay chậm. Bài này thử cả hai trên Redis 7.0.15.
 
-![Ba phần xếp dọc. Phần một, bốn bước của một lệnh ghi khi bật AOF: sửa dữ liệu trong RAM, nối lệnh vào bộ đệm AOF, gọi write() đưa bộ đệm vào tệp, thường xong trước khi trả lời, fsync theo chính sách (everysec mỗi giây ở nền, always trước khi trả lời). Phần hai, kết quả thử ghi 1500 khóa rồi kill -9: không lưu còn 0 khóa; chỉ RDB với ảnh chụp lúc có 1000 khóa còn 1000, mất 500; AOF everysec còn đủ 1500. Phần ba, bốn điều cần nhớ: RDB gọn và nạp nhanh nhưng mất phần ghi sau ảnh chụp cuối; AOF mất ít hơn nhưng tệp lớn hơn và được viết lại ở nền; kill -9 khác mất điện vì fsync mới quyết định phần nào chắc chắn nằm trên đĩa; bật cả hai thì tệp gốc dạng RDB, các lệnh sau nối dạng AOF.](../../diagrams/sd-06-019-main.svg)
+![Ba phần xếp dọc. Phần một, bốn bước của một lệnh ghi khi bật AOF: sửa dữ liệu trong RAM, nối lệnh vào bộ đệm AOF, gọi write() đưa bộ đệm vào tệp, thường xong trước khi trả lời, fsync theo chính sách (everysec mỗi giây ở nền, always trước khi trả lời). Phần hai, kết quả thử ghi 1500 khóa rồi kill -9: không lưu còn 0 khóa; chỉ RDB với ảnh chụp lúc có 1000 khóa còn 1000, mất 500; AOF everysec còn đủ 1500. Phần ba, bốn điều cần nhớ: RDB gọn và nạp nhanh nhưng mất phần ghi sau ảnh chụp cuối; AOF mất ít hơn nhưng tệp lớn hơn và được viết lại ở nền; kill -9 khác mất điện vì fsync mới quyết định phần nào chắc chắn nằm trên đĩa; tệp gốc của AOF ở dạng RDB, các lệnh sau nối dạng AOF, kể cả khi tắt ảnh chụp RDB.](../../diagrams/sd-06-019-main.svg)
 
 ## Từ viết tắt
 
@@ -25,7 +25,7 @@ Hai cách khác nhau ở chỗ mất bao nhiêu khi sập và khởi động l�
 
 ## Giới hạn cần nhớ
 
-`kill -9` chỉ giết tiến trình; phần đã `write()` vẫn nằm trong bộ đệm của hệ điều hành nên không mất (trong lần thử, đĩa rảnh nên không có lần ghi nào bị hoãn). Mất điện hay sập cả máy mới là lúc `fsync` quyết định: với `everysec`, tài liệu Redis nói có thể mất khoảng một giây ghi cuối. Lần thử trên không giả lập mất điện.
+`kill -9` chỉ giết tiến trình; phần đã `write()` vẫn nằm trong bộ đệm của hệ điều hành nên không mất (trong lần thử, đĩa rảnh nên không có lần ghi nào bị hoãn). Mất điện hay sập cả máy mới là lúc `fsync` quyết định: với `everysec`, tài liệu Redis nói có thể mất khoảng một giây ghi cuối; nếu lúc đó Redis đang hoãn `write()` vì lần `fsync` nền trước chưa xong thì có thể mất nhiều hơn. Lần thử trên không giả lập mất điện.
 
 Câu "lưu xuống đĩa không chặn việc ghi" cũng không đúng tuyệt đối: `fork()` với dữ liệu lớn có thể làm Redis ngừng phục vụ từ vài mili giây tới cả giây, và `always` bắt mỗi đợt trả lời chờ `fsync`.
 
@@ -37,17 +37,17 @@ Bạn dùng Redis làm bộ nhớ đệm trước một cơ sở dữ liệu ch�
 <summary>Xem đáp án</summary>
 
 Redis làm bộ nhớ đệm: RDB là đủ, thậm chí không lưu cũng được, vì dữ liệu đệm dựng lại được từ cơ sở dữ liệu chính; RDB cho tệp gọn để sao lưu và khởi động lại nhanh hơn AOF khi dữ liệu lớn.
-Redis giữ giỏ hàng: bật AOF để chỉ mất tối đa khoảng một giây khi sập máy, và giữ cả RDB. Tài liệu Redis khuyên dùng cả hai khi rất cần an toàn dữ liệu, và không khuyến khích chỉ dùng AOF vì ảnh chụp RDB tiện cho sao lưu và khởi động lại.
+Redis giữ giỏ hàng: bật AOF với `everysec` để thường chỉ mất khoảng một giây ghi cuối khi sập máy (có thể hơn nếu `fsync` nền chậm làm Redis hoãn ghi, xem phần giới hạn), và giữ cả RDB. Tài liệu Redis khuyên dùng cả hai khi rất cần an toàn dữ liệu, và không khuyến khích chỉ dùng AOF vì ảnh chụp RDB tiện cho sao lưu và khởi động lại.
 
 </details>
 
 <details>
-<summary>Xem sâu hơn: bật cả hai thì tệp trông thế nào</summary>
+<summary>Xem sâu hơn: tệp AOF trông thế nào, và bật cả hai nghĩa là gì</summary>
 
-- Từ Redis 7.0, AOF chia thành một tệp gốc và các tệp tăng, có tệp kê khai (manifest) theo dõi. Trong lần thử, thư mục `appendonlydir` có `appendonly.aof.1.base.rdb`, `appendonly.aof.1.incr.aof` và `appendonly.aof.manifest`; tệp tăng chứa lệnh ở đúng dạng giao thức Redis (`SELECT 0`, rồi `SET k1 v1`...).
-- Khi viết lại AOF bằng `BGREWRITEAOF`, với `aof-use-rdb-preamble yes` (mặc định), tệp gốc mới ở dạng RDB: tệp `appendonly.aof.2.base.rdb` mở đầu bằng chữ `REDIS`, các lệnh ghi sau đó nối vào `appendonly.aof.2.incr.aof`. Đây là cách "ảnh chụp làm nền, nhật ký ghi phần sau" mà bài nguồn gọi là kết hợp.
+- Từ Redis 7.0, AOF chia thành một tệp gốc và các tệp tăng, có tệp kê khai (manifest) theo dõi. Trong lần thử chỉ bật AOF (ảnh chụp RDB tắt bằng `save ""`), thư mục `appendonlydir` có `appendonly.aof.1.base.rdb`, `appendonly.aof.1.incr.aof` và `appendonly.aof.manifest`; tệp tăng chứa lệnh ở đúng dạng giao thức Redis (`SELECT 0`, rồi `SET k1 v1`...).
+- Khi viết lại AOF bằng `BGREWRITEAOF`, với `aof-use-rdb-preamble yes` (mặc định), tệp gốc mới ở dạng RDB dù ảnh chụp RDB đang tắt: tệp `appendonly.aof.2.base.rdb` mở đầu bằng chữ `REDIS`, các lệnh ghi sau đó nối vào `appendonly.aof.2.incr.aof`. Đây là cách "ảnh chụp làm nền, nhật ký ghi phần sau" mà bài nguồn gọi là kết hợp; nó là cách AOF tự lưu, không có nghĩa là ảnh chụp RDB định kỳ đang bật.
 - Viết lại AOF để làm gì: tăng một bộ đếm 100 lần thì nhật ký có 100 lệnh nhưng chỉ cần một để dựng lại. Redis viết lại ở nền, cũng bằng `fork()`.
-- Có cả AOF lẫn RDB khi khởi động thì Redis nạp từ AOF, vì nó đầy đủ hơn.
+- Bật cả hai nghĩa là ngoài AOF còn có ảnh chụp RDB riêng theo lịch `save` (tệp `dump.rdb`), tiện để sao lưu. Có cả AOF lẫn RDB khi khởi động thì Redis nạp từ AOF, vì nó đầy đủ hơn.
 - Lệnh cuối trong AOF bị ghi dở (đầy đĩa, sập giữa chừng): mặc định (`aof-load-truncated yes`) Redis vẫn nạp và bỏ lệnh dở dang.
 - Với `everysec`, khi `fsync` nền chưa xong, mã nguồn cho phép hoãn lần `write()` tiếp theo tối đa khoảng hai giây trước khi ghi bất chấp.
 - RDB mặc định trong `redis.conf` của 7.0: lưu sau 3600 giây nếu có ít nhất 1 thay đổi, sau 300 giây nếu có 100, sau 60 giây nếu có 10000. AOF mặc định tắt (`appendonly no`).

@@ -1,11 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="320" height="1221" viewBox="0 0 320 1221" role="img" aria-labelledby="title desc">
-<title id="title">Mười cách dùng Redis, năm kiểu dữ liệu</title>
+<title id="title">Mười cách dùng Redis, năm nhóm kiểu dữ liệu</title>
 <desc id="desc">Ba phần. Phần một và hai, năm thẻ kiểu dữ liệu và các việc chúng làm: chuỗi cho bộ đệm, khóa phân tán, bộ đếm, giới hạn tần suất và sinh số tăng dần; bảng băm cho phiên đăng nhập và giỏ hàng; bitmap cho việc đếm người dùng quay lại; danh sách và stream cho hàng đợi; tập có thứ tự cho bảng xếp hạng. Phần ba, bốn điều thấy khi chạy thử: khóa cần mã riêng để không xóa nhầm khóa người khác; bộ đếm giới hạn tần suất cần thời gian hết hạn đặt cùng lúc; lấy việc khỏi danh sách rồi sập là mất việc; stream giữ tin chưa xác nhận để người khác nhận lại.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="1221" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Mười cách dùng Redis,</text>
-<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">năm kiểu dữ liệu</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">năm nhóm kiểu dữ liệu</text>
 <text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Chọn kiểu dữ liệu trước, rồi mới chọn</text>
 <text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">lệnh.</text>
 <rect x="8" y="123" width="304" height="428" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>

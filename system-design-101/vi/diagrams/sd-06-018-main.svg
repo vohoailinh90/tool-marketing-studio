@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="320" height="1027" viewBox="0 0 320 1027" role="img" aria-labelledby="title desc">
 <title id="title">Redis lớn dần: mỗi bước vá một giới hạn</title>
-<desc id="desc">Hai phần. Phần một, bốn bước: lưu xuống đĩa bằng RDB và AOF vì khởi động lại là mất hết; nhân bản sang bản sao chỉ đọc, chép bất đồng bộ, vì một máy chết là ngừng phục vụ; Sentinel theo dõi và bỏ phiếu nâng bản sao lên làm chủ vì đổi chủ bằng tay chậm; cluster chia 16384 khe cho nhiều chủ vì dữ liệu vượt một máy, và tự đổi chủ nên không dùng kèm Sentinel. Phần hai, kết quả thử trên Redis 7.0.15: tắt bản sao thì chủ vẫn trả lời thành công nhưng lệnh chờ báo 0 bản sao nhận; tắt chủ thì ba Sentinel nâng bản sao lên sau 3,3 giây; gửi khóa tới nhầm nút thì nhận lỗi chỉ sang nút đúng; ghi hai khóa ở hai khe khác nhau trong một lệnh bị từ chối, còn hai khóa cùng thẻ băm thì được.</desc>
+<desc id="desc">Hai phần. Phần một, bốn bước: lưu xuống đĩa bằng RDB và AOF vì khởi động lại là mất hết; nhân bản sang bản sao chỉ đọc, chép bất đồng bộ, vì một máy chết là ngừng phục vụ; Sentinel theo dõi và bỏ phiếu nâng bản sao lên làm chủ vì đổi chủ bằng tay chậm; cluster chia 16384 khe cho nhiều chủ vì dữ liệu vượt một máy, và tự đổi chủ nên không dùng kèm Sentinel. Phần hai, kết quả thử trên Redis 7.0.15: tắt bản sao thì chủ vẫn trả lời thành công nhưng lệnh chờ báo 0 bản sao nhận; chủ sập thì ba Sentinel nâng bản sao lên sau 3,3 giây; gửi khóa tới nhầm nút thì nhận lỗi chỉ sang nút đúng; ghi hai khóa ở hai khe khác nhau trong một lệnh bị từ chối, còn hai khóa cùng thẻ băm thì được.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="1027" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
@@ -48,7 +48,7 @@
 <rect x="20" y="742" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
 <circle cx="43" cy="765" r="11" fill="#16a34a"/>
 <polyline points="37.9,765.4 41.7,769.4 48.5,761" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="768.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tắt chủ: ba Sentinel nâng</text>
+<text x="64" y="768.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chủ sập: ba Sentinel nâng</text>
 <text x="64" y="787.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bản sao lên làm chủ sau 3,3</text>
 <text x="64" y="807.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">giây.</text>
 <rect x="20" y="833" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>

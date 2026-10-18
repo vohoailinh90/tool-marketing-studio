@@ -80,7 +80,7 @@
       "verified_by": "Read the 7.0.15 source: when postponed, flushAppendOnlyFile returns early and beforeSleep goes on to handleClientsWithPendingWritesUsingThreads; the latency page describes the delayed write(2)."
     },
     {
-      "claim_vi": "appendfsync always fsyncs before sending replies (one write and one fsync per batch); everysec fsyncs every second in a background thread and may lose about one second of writes in a disaster; no leaves flushing to the operating system.",
+      "claim_vi": "appendfsync always fsyncs before sending replies (one write and one fsync per batch); everysec fsyncs every second in a background thread and may lose about one second of writes in a disaster (more if a write(2) was being postponed behind a slow background fsync, per the latency page); no leaves flushing to the operating system.",
       "source": "https://github.com/redis/docs/blob/3b030c7ef066c0bb7f88ddec02c784e49783b0f8/content/operate/oss_and_stack/management/persistence.md",
       "section": "How durable is the append only file?",
       "verified_by": "Read from a partial clone of redis/docs at that commit."
@@ -98,7 +98,7 @@
       "verified_by": "Own experiment with the Ubuntu redis-server 7.0.15 package; the URL is the configuration file of that version whose settings were varied."
     },
     {
-      "claim_vi": "Since 7.0 the AOF is a base file plus incremental files tracked by a manifest; with aof-use-rdb-preamble yes the rewritten base is in RDB format; when both exist, Redis loads the AOF at startup; a truncated last command is discarded when aof-load-truncated is yes.",
+      "claim_vi": "Since 7.0 the AOF is a base file plus incremental files tracked by a manifest; with aof-use-rdb-preamble yes the rewritten base is in RDB format even when RDB snapshots are off (save \"\" in the experiment); enabling RDB as well adds separate snapshots (dump.rdb); when both exist, Redis loads the AOF at startup; a truncated last command is discarded when aof-load-truncated is yes.",
       "sources": [
         "https://github.com/redis/docs/blob/3b030c7ef066c0bb7f88ddec02c784e49783b0f8/content/operate/oss_and_stack/management/persistence.md",
         "https://github.com/redis/redis/blob/f35f36a265403c07b119830aa4bb3b7d71653ec9/redis.conf"

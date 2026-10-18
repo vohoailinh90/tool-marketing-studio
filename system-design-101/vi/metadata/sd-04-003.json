@@ -86,6 +86,12 @@
       "verified_by": "Read from a clone of awsdocs/amazon-s3-userguide at commit cc53dd6a44d3aa1d654e6d3705a0a7550f20fd2a."
     },
     {
+      "claim_vi": "For directory buckets, the ETag of an object isn't the MD5 digest of the object and MD5 is not supported; the documented MD5-of-part-MD5s recipe applies to general purpose buckets.",
+      "source": "https://github.com/boto/botocore/blob/4de93abe62cc263980414f7a66be5226bd541b77/botocore/data/s3/2006-03-01/service-2.json",
+      "section": "ETag shape documentation; UploadPart",
+      "verified_by": "Read from a partial clone of boto/botocore at commit 4de93abe62cc263980414f7a66be5226bd541b77 after a review finding on PR #144."
+    },
+    {
       "claim_vi": "Computed locally for a seeded random 21 MiB file in 5 MiB parts (5,5,5,5,1): object ETag 4f79d0f27854976ba9c74084e2ea3aee-5 versus whole-file MD5 9cd7fe8ee2fb0c02de53bc4f59b9c0e4; 100 GiB in 5 MiB parts is 20,480 parts, so parts must be at least 10.24 MiB to stay within 10,000.",
       "source": "https://github.com/awsdocs/amazon-s3-userguide/blob/cc53dd6a44d3aa1d654e6d3705a0a7550f20fd2a/doc_source/checking-object-integrity.md",
       "section": "Author's computation",
@@ -101,7 +107,8 @@
   "design_notes_vi": "Một sơ đồ trình tự hai bên cho ba bước, một khung tính cỡ phần từ giới hạn 10.000 phần, một khung hai điều hay quên. Không dùng ảnh nguồn.",
   "source_deviations": [
     "The source says a part's ETag is essentially the part's MD5; the lesson follows the S3 guide: whether an ETag is an MD5 depends on encryption, and a multipart object's ETag is never the MD5 of the data.",
-    "The lesson adds the 10,000-part limit as the constraint that sets part size, and the cost of incomplete uploads with the lifecycle rule that cleans them up."
+    "The lesson adds the 10,000-part limit as the constraint that sets part size, and the cost of incomplete uploads with the lifecycle rule that cleans them up.",
+    "The ETag recipe is scoped to general purpose buckets; directory buckets do not use MD5 ETags (botocore API model)."
   ],
   "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
 }

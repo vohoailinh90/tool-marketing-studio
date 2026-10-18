@@ -38,11 +38,12 @@ Làm theo đúng mô tả ấy trên máy (không gọi S3) với một tệp ng
 | MD5 của cả tệp | `9cd7fe8ee2fb0c02de53bc4f59b9c0e4` |
 
 Hai giá trị khác nhau: muốn kiểm tệp tải về đúng thì không so ETag với MD5 của cả tệp. Cắt cùng tệp theo cỡ phần khác cũng ra ETag khác, vì giá trị phụ thuộc vào cách chia.
+Cách tính này là của bucket thường (general purpose) trong hướng dẫn S3 bản 2023. Với directory bucket, một loại bucket khác của S3, tài liệu API trong botocore (bản 2026) ghi ETag không phải MD5 của đối tượng và MD5 không được hỗ trợ, nên đừng viết công cụ kiểm tra dựa vào công thức trên; dùng các checksum mà S3 trả về thay vào đó.
 
 ## Giới hạn cần nhớ
 
 - **Phần bỏ dở vẫn tốn tiền.** Một lượt tải đã bắt đầu không tự hết hạn; S3 giữ và tính tiền lưu các phần đã gửi cho tới khi lượt tải được hoàn tất hoặc hủy. Hướng dẫn S3 khuyên đặt quy tắc vòng đời `AbortIncompleteMultipartUpload` để tự hủy những lượt tải chưa xong sau một số ngày.
-- **ETag không phải MD5 của tệp.** Với đối tượng tải nhiều phần, ETag không bao giờ là MD5 của cả dữ liệu, dù mã hóa kiểu gì. Muốn kiểm toàn vẹn, gửi kèm `Content-MD5` cho từng phần hoặc dùng các thuật toán checksum bổ sung mà S3 hỗ trợ.
+- **ETag không phải MD5 của tệp.** Với đối tượng tải nhiều phần, ETag không bao giờ là MD5 của cả dữ liệu, dù mã hóa kiểu gì. Muốn kiểm toàn vẹn, dùng các thuật toán checksum bổ sung mà S3 hỗ trợ; `Content-MD5` cho từng phần chỉ dùng được với bucket thường, không với directory bucket.
 
 ## Nhìn hình trả lời
 
@@ -73,7 +74,7 @@ Hướng dẫn S3 dùng làm nguồn là bản 2023, lần cuối trước khi A
 - [Amazon S3 User Guide — multipart upload limits, bản 2023](https://github.com/awsdocs/amazon-s3-userguide/blob/cc53dd6a44d3aa1d654e6d3705a0a7550f20fd2a/doc_source/qfacts.md): phần từ 5 MiB tới 5 GiB, phần cuối không có cỡ tối thiểu, tối đa 10.000 phần.
 - [Amazon S3 User Guide — Checking object integrity, bản 2023](https://github.com/awsdocs/amazon-s3-userguide/blob/cc53dd6a44d3aa1d654e6d3705a0a7550f20fd2a/doc_source/checking-object-integrity.md): khi nào ETag là MD5, cách tính ETag của đối tượng tải nhiều phần.
 - [Amazon S3 User Guide — xóa lượt tải chưa xong bằng vòng đời, bản 2023](https://github.com/awsdocs/amazon-s3-userguide/blob/cc53dd6a44d3aa1d654e6d3705a0a7550f20fd2a/doc_source/mpu-abort-incomplete-mpu-lifecycle-config.md): quy tắc `AbortIncompleteMultipartUpload`.
-- [botocore — mô tả API của S3, tại commit cố định](https://github.com/boto/botocore/blob/4de93abe62cc263980414f7a66be5226bd541b77/botocore/data/s3/2006-03-01/service-2.json): lỗi `EntityTooSmall` (mỗi phần ít nhất 5 MB trừ phần cuối), phải hoàn tất hoặc hủy để thôi bị tính tiền các phần. Đọc từ bản clone của kho.
+- [botocore — mô tả API của S3, tại commit cố định](https://github.com/boto/botocore/blob/4de93abe62cc263980414f7a66be5226bd541b77/botocore/data/s3/2006-03-01/service-2.json): lỗi `EntityTooSmall` (mỗi phần ít nhất 5 MB trừ phần cuối), phải hoàn tất hoặc hủy để thôi bị tính tiền các phần, ETag của đối tượng trong directory bucket không phải MD5 và MD5 không được hỗ trợ ở đó. Đọc từ bản clone của kho.
 
 Đã đọc nguồn và chạy phép tính ngày 2026-10-18; phép tính ETag chạy trên máy theo mô tả của tài liệu, không gửi gì lên S3.
 Bài viết và hình được thiết kế độc lập.

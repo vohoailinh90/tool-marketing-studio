@@ -116,6 +116,14 @@ Các bài từ sd-04-001 đến sd-04-024 chưa có ở đây; số thứ tự d
 
 Các bài chưa viết của nhóm này không có trong danh sách; số thứ tự là vị trí của bài trong nhóm.
 
+1. [ELK Stack: thu thập, xử lý, lưu và xem log](lessons/sd-06-001/lesson.md) — bài mới viết tại repo này (đối chiếu README của từng dự án, không chạy thử); chờ review kỹ thuật.
+2. [CDN phổ biến vì đâu, và máy chủ biên lưu những gì](lessons/sd-06-002/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
+3. [Khóa lớn ảnh hưởng thế nào tới việc lưu AOF của Redis](lessons/sd-06-003/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
+4. [CDN cho người mới: máy chủ biên, điện toán biên và chơi game trên mây](lessons/sd-06-004/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
+5. [Redis 101: chạy thử từng điều cơ bản](lessons/sd-06-005/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
+6. [Các tầng bộ nhớ đệm, từ trình duyệt tới cơ sở dữ liệu](lessons/sd-06-006/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
+7. [Các cách giảm độ trễ hay dùng, và vì sao phải đo trước](lessons/sd-06-007/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
+8. [Năm chiến lược giữ bộ nhớ đệm khớp với cơ sở dữ liệu](lessons/sd-06-008/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
 9. [Những điều cần cân nhắc khi dùng bộ nhớ đệm](lessons/sd-06-009/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
 10. [Các chính sách đẩy khóa ra khỏi bộ nhớ đệm](lessons/sd-06-010/lesson.md) — bài mới viết tại repo này (có mô phỏng riêng); chờ review kỹ thuật.
 11. [Memcached và Redis khác nhau thế nào](lessons/sd-06-011/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.

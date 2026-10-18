@@ -1,0 +1,27 @@
+{
+  "id": "sd-06-005",
+  "title": "Redis 101: chạy thử rồi mới tin",
+  "subtitle": "Mỗi thẻ là một điều đã thử trên Redis 7.0.15.",
+  "desc": "Ba khung. Khung một, Redis là gì: một máy chủ giữ cấu trúc dữ liệu trong bộ nhớ, các chương trình gửi lệnh qua mạng để đọc và sửa chung một dữ liệu. Khung hai, năm kiểu dữ liệu đã thử: chuỗi dùng làm bộ đếm, hash giữ các trường của một đối tượng, list làm hàng đợi, set giữ phần tử không trùng, sorted set xếp hạng theo điểm. Khung ba, bốn điều dễ nhầm: lệnh xóa là DEL, gõ DELETE thì bị báo lệnh không tồn tại; JSON không có sẵn trong bản 7.0.15 mà cần module; mặc định Redis chỉ chụp ảnh dữ liệu theo chu kỳ nên có thể mất các lần ghi sau ảnh cuối; tin pub/sub gửi lúc không ai nghe thì mất.",
+  "sections": [
+    {"kind": "parts", "heading": "Redis là gì",
+     "items": [
+       {"name": "Chương trình", "role": "Gửi lệnh qua mạng, như đặt hay đọc một giá trị.", "icon": "code"},
+       {"name": "Máy chủ Redis", "role": "Giữ cấu trúc dữ liệu trong bộ nhớ, nhiều chương trình dùng chung.", "icon": "server"},
+       {"name": "Đĩa", "role": "Ảnh chụp định kỳ hoặc nhật ký ghi thêm, tùy cấu hình.", "icon": "hard-drive"}],
+     "flow": [[0, 1], [1, 2]]},
+    {"kind": "notes", "heading": "Năm kiểu dữ liệu đã thử",
+     "items": [
+       "Chuỗi: tăng một bộ đếm lượt xem.",
+       "Hash: các trường của một người dùng.",
+       "List: hàng đợi, đẩy vào một đầu, lấy ra đầu kia.",
+       "Set: thẻ không trùng nhau.",
+       "Sorted set: bảng xếp hạng theo điểm."]},
+    {"kind": "notes", "heading": "Bốn điều dễ nhầm",
+     "items": [
+       "Lệnh xóa là DEL; gõ DELETE thì Redis báo không có lệnh đó.",
+       "JSON không có sẵn trong bản 7.0.15: cần cài module.",
+       "Mặc định chỉ chụp ảnh theo chu kỳ: sập máy có thể mất các lần ghi sau ảnh cuối.",
+       "Tin pub/sub gửi lúc không ai nghe là mất."]}
+  ]
+}

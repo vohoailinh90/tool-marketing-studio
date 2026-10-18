@@ -6,7 +6,7 @@
   "sections": [
     {"kind": "parts", "heading": "Phần gốc",
      "items": [{"name": "Iterable", "role": "Cho phép duyệt từng phần tử, kể cả bằng vòng lặp for nâng cao.", "icon": "repeat"},
-               {"name": "Collection", "role": "Thao tác cơ bản: thêm, xóa, hỏi phần tử.", "icon": "boxes"}],
+               {"name": "Collection", "role": "Khai báo thêm, xóa, hỏi phần tử; thêm và xóa là tùy chọn.", "icon": "boxes"}],
      "flow": [[0, 1]]},
     {"kind": "parts", "heading": "Ba nhánh chính của Collection",
      "items": [{"name": "List", "role": "Có thứ tự theo vị trí, cho phép trùng. Ví dụ: ArrayList, LinkedList.", "icon": "list-ordered"},

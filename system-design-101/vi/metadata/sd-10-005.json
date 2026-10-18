@@ -33,7 +33,7 @@
     "claims": {
       "status": "checked",
       "checked_on": "2026-10-18",
-      "evidence": "The source statements were read from the pinned source body; the extra statements (inheritance of Collection, List, Set, Queue, Map and the named classes, and the class comments on ordering and duplicates) were read in raw copies of the OpenJDK java.util sources at the pinned commit. Interface names only; no behaviour was run."
+      "evidence": "The source statements were read from the pinned source body; the extra statements (inheritance of Collection, List, Set, Queue, Map and the named classes, and the class comments on ordering and duplicates) were read in raw copies of the OpenJDK java.util sources at the pinned commit. The documented optional-operations contract of Collection and the unmodifiable List.of behaviour were read in the same sources. Interface names and documentation only; no behaviour was run."
     },
     "technical_review": {
       "status": "pending",
@@ -70,31 +70,60 @@
       "claim_vi": "Collection extends Iterable; List (through SequencedCollection), Set and Queue extend Collection; Map does not extend Collection.",
       "source": "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/Collection.java",
       "section": "Declarations",
-      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it).",
+      "sources": [
+        "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/SequencedCollection.java",
+        "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/List.java",
+        "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/Set.java",
+        "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/Queue.java",
+        "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/Map.java"
+      ]
     },
     {
       "claim_vi": "List is an ordered collection that typically allows duplicate elements; Set contains no duplicate elements; Queue is designed for holding elements prior to processing and typically, but not necessarily, orders them first-in-first-out.",
       "source": "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/List.java",
       "section": "Class comments",
-      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it).",
+      "sources": [
+        "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/Set.java",
+        "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/Queue.java"
+      ]
     },
     {
       "claim_vi": "ArrayList and LinkedList implement List; HashSet and TreeSet implement Set (TreeSet via NavigableSet); PriorityQueue extends AbstractQueue and ArrayDeque implements Deque, which extends Queue.",
       "source": "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/ArrayList.java",
       "section": "Declarations",
-      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it).",
+      "sources": [
+        "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/LinkedList.java",
+        "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/HashSet.java",
+        "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/TreeSet.java",
+        "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/PriorityQueue.java",
+        "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/ArrayDeque.java",
+        "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/Deque.java"
+      ]
     },
     {
       "claim_vi": "Implementing Iterable allows an object to be the target of the enhanced for statement.",
       "source": "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/Iterable.java",
       "section": "Class comment",
       "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "In the OpenJDK documentation, the Collection methods that add or remove elements are optional operations: an implementation that does not support one throws UnsupportedOperationException; List.of returns an unmodifiable list whose mutator methods always throw UnsupportedOperationException.",
+      "source": "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/Collection.java",
+      "sources": [
+        "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/List.java"
+      ],
+      "section": "Optional operations and Unmodifiable Lists",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
     }
   ],
   "design_notes_vi": "Hình gồm phần gốc (Iterable, Collection), ba nhánh chính kèm ví dụ lớp cài đặt, và nhắc Map nằm ngoài cây. Bỏ các tầng trung gian như SequencedCollection để thấy ba nhánh của nguồn. Không dùng ảnh nguồn.",
   "source_deviations": [
     "Source text names no concrete classes (they appear only in its image); the lesson adds ArrayList, LinkedList, HashSet, TreeSet, PriorityQueue and ArrayDeque, checked against the OpenJDK sources.",
-    "Source does not say that Map is outside the Collection tree; the lesson adds it from the OpenJDK Map declaration."
+    "Source does not say that Map is outside the Collection tree; the lesson adds it from the OpenJDK Map declaration.",
+    "Source describes Collection as supporting adding and removing elements; the lesson adds, from the OpenJDK Collection and List documentation, that adding and removing are optional operations that unmodifiable collections reject with UnsupportedOperationException."
   ],
   "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích thêm là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
 }

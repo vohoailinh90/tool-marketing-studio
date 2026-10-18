@@ -6,7 +6,8 @@
 
 ## Từ viết tắt
 
-- **CAP** (Consistency, Availability, Partition tolerance) — nhất quán, sẵn sàng, chịu phân vùng: ba tính chất mà định lý CAP nói một hệ phân tán không giữ trọn cùng lúc khi mạng bị chia cắt.
+- **CAP** (Consistency, Availability, Partition) — nhất quán, sẵn sàng, phân vùng: chữ P viết tắt cho "chịu được phân vùng" (partition tolerance); định lý CAP nói một hệ phân tán không giữ trọn cả nhất quán lẫn sẵn sàng khi mạng bị chia cắt.
+- **ACID** (Atomicity, Consistency, Isolation, Durability) — bốn tính chất của một giao dịch đáng tin: làm trọn hoặc không làm, giữ dữ liệu hợp lệ, các giao dịch không lẫn vào nhau, đã ghi thì không mất.
 - **PACELC** (Partition, Availability, Consistency, Else, Latency, Consistency) — mở rộng của CAP: khi có phân vùng thì chọn giữa sẵn sàng và nhất quán; còn lại (else) thì chọn giữa độ trễ và nhất quán.
 - **SQL** (Structured Query Language) — ngôn ngữ truy vấn có cấu trúc: ngôn ngữ chuẩn để hỏi và ghi dữ liệu trong cơ sở dữ liệu quan hệ; PostgreSQL là một hệ dùng nó.
 - **WAL** (Write-Ahead Log) — nhật ký ghi trước: PostgreSQL ghi mọi thay đổi vào nhật ký này; bản sao nhận nhật ký từ bản chính để chép theo.

@@ -29,7 +29,7 @@ Nhãn dùng trong bài:
 
 1. **Không có công thức "lên xu hướng" do nền tảng công bố.** Trang chính thức của YouTube và TikTok mà mình đọc mô tả việc chọn video cho từng người xem. Mô hình "thử với nhóm nhỏ rồi mở rộng nếu phản hồi tốt" là cách bên thứ ba và người làm nội dung mô tả, không phải điều nền tảng công bố. [Chính thức cho phần không có công thức; Cao cho mô hình nhóm nhỏ]
 2. **YouTube đã gỡ trang Trending** (có hiệu lực khoảng 21/7/2025). "Lên xu hướng" nay là được đề xuất. [Chính thức, qua lịch sử sửa đổi API]
-3. **YouTube bật kiếm tiền:** quảng cáo và Premium (YPP đầy đủ) hiện cần 1.000 subscriber + 4.000 giờ xem hoặc 10 triệu lượt xem Shorts/90 ngày. **Từ 1/2/2027, người mới cần 8.000 giờ hoặc 20 triệu lượt xem Shorts.** Cấp sớm (fan funding, Creator Partnerships, Shopping) cần 500 subscriber + 3 video công khai hợp lệ trong 90 ngày gần nhất + 3.000 giờ hoặc 3 triệu lượt xem Shorts/90 ngày, và không đổi sau 1/2/2027. Kênh đã trong YPP không bị ảnh hưởng tư cách, nhưng muốn nhận tiền từ Shorts phải giữ 10 triệu lượt xem Shorts/90 ngày. [Chính thức]
+3. **YouTube bật kiếm tiền:** quảng cáo và Premium (YPP đầy đủ) hiện cần 1.000 subscriber + 4.000 giờ xem hoặc 10 triệu lượt xem Shorts/90 ngày. **Từ 1/2/2027, người mới cần 8.000 giờ hoặc 20 triệu lượt xem Shorts.** Cấp sớm (fan funding, Shopping; Creator Partnerships còn cần kênh ở một trong 24 nước của danh sách riêng, **không có Việt Nam**) cần 500 subscriber + 3 video công khai hợp lệ trong 90 ngày gần nhất + 3.000 giờ hoặc 3 triệu lượt xem Shorts/90 ngày, và không đổi sau 1/2/2027. Kênh đã trong YPP không bị ảnh hưởng tư cách, nhưng muốn nhận tiền từ Shorts phải giữ 10 triệu lượt xem Shorts/90 ngày. [Chính thức]
 4. **TikTok Creator Rewards** (10.000 follower, 100.000 lượt xem/30 ngày, video gốc trên 1 phút) **hiện chỉ mở cho Mỹ, Anh, Đức, Nhật, Hàn, Pháp, Mexico, Brazil. Việt Nam không có trong danh sách.** [Chính thức]
 5. **Facebook Content Monetization hiện chỉ theo lời mời**, Meta không công bố ngưỡng số liệu. [Chính thức]
 6. **Tiền trên 1.000 lượt xem (RPM)** chênh nhau hàng chục lần: YouTube video dài vài USD, Shorts từ vài cent đến khoảng 0,20 USD, TikTok khoảng 0,4–1 USD (chỉ áp dụng ở 8 nước có chương trình), Facebook Reels thường 0,02–0,20 USD. Không nền tảng nào công bố RPM. [Vừa]
@@ -106,12 +106,16 @@ Nhãn dùng trong bài:
 | Cấp | Điều kiện | Mở khóa |
 |---|---|---|
 | Đầy đủ (YPP) | 1.000 subscriber + 4.000 giờ xem đủ điều kiện/12 tháng, **hoặc** 1.000 subscriber + 10 triệu lượt xem Shorts đủ điều kiện/90 ngày | Chia sẻ doanh thu quảng cáo + Premium |
-| Sớm | 500 subscriber + **3 video công khai hợp lệ trong 90 ngày gần nhất** + 3.000 giờ xem/12 tháng, **hoặc** 500 subscriber + 3 video công khai hợp lệ trong 90 ngày + 3 triệu lượt xem Shorts/90 ngày | Fan funding, Creator Partnerships, Shopping |
+| Sớm | 500 subscriber + **3 video công khai hợp lệ trong 90 ngày gần nhất** + 3.000 giờ xem/12 tháng, **hoặc** 500 subscriber + 3 video công khai hợp lệ trong 90 ngày + 3 triệu lượt xem Shorts/90 ngày | Fan funding, Shopping; Creator Partnerships chỉ ở một số nước, **không có Việt Nam** (xem dưới) |
 
 - "Giờ xem đủ điều kiện" chỉ tính từ video dài công khai; **giờ xem từ Shorts feed không tính** vào 4.000 giờ. Video riêng tư, không công khai, đã xóa, quảng cáo trả tiền không tính.
 - "Lượt xem Shorts đủ điều kiện" là lượt xem từ Shorts công khai hiển thị trong Shorts feed; bài ảnh không tính.
 - Đạt ngưỡng chưa chắc được vào: kênh trải qua xét duyệt (tự động + người), **thường khoảng 1 tháng**. Bị từ chối: kháng nghị trong 21 ngày hoặc nộp lại sau 30 ngày (lần thứ hai trở đi: 90 ngày).
 - Kênh không đăng video hoặc bài trong 6 tháng có thể bị tắt kiếm tiền. Vi phạm chính sách kiếm tiền thì mất kiếm tiền bất kể số liệu.
+- **Mỗi tính năng của cấp sớm có điều kiện quốc gia riêng, không suy từ danh sách nước của chương trình mở rộng.** Mình đọc từng trang tính năng ngày 18/10/2026: [Chính thức]
+  - **Fan funding:** các trang "Channel memberships", "Super Chat & Super Stickers" và "Super Thanks" đều có Việt Nam trong danh sách nước.
+  - **Shopping:** kênh phải trong YPP và đạt ngưỡng subscriber của YPP. Riêng chương trình affiliate (gắn sản phẩm của thương hiệu khác) còn đòi kênh ở Mỹ, Hàn Quốc, Indonesia, Ấn Độ, Thái Lan, Việt Nam, Malaysia, Philippines, Singapore, Brazil, Đài Loan hoặc Nhật; Việt Nam có trong danh sách. Mình chưa đọc danh sách vùng nơi người xem mua được sản phẩm.
+  - **Creator Partnerships (tab brand deal trong YouTube Studio → Earn):** trang "Get started with YouTube Creator Partnerships" đòi từ 18 tuổi, đã trong YPP, kênh ở một trong các nước/vùng của danh sách riêng và không có Community Guidelines strike đang hiệu lực. Danh sách gồm Úc, Brazil, Canada, Pháp, Đức, Hồng Kông, Ấn Độ, Indonesia, Israel, Ý, Nhật, Mexico, Hà Lan, New Zealand, Philippines, Ả Rập Xê Út, Singapore, Hàn Quốc, Tây Ban Nha, Thụy Sĩ, Thổ Nhĩ Kỳ, UAE, Anh và Mỹ. **Không có Việt Nam.** Vì vậy kênh ở Việt Nam vào được cấp sớm vẫn chưa có tab này.
 
 **Từ 1/2/2027** (trang "Changes to the YouTube Partner Program")
 
@@ -161,7 +165,7 @@ Nhãn dùng trong bài:
 
 | | Mốc vào chương trình kiếm tiền chính (quảng cáo) | Độ chắc chắn | Cách xác nhận |
 |---|---|---|---|
-| YouTube (đến 31/1/2027) | YPP đầy đủ: 1.000 sub + 4.000 giờ hoặc 10 triệu Shorts/90 ngày. Cấp sớm (fan funding, Creator Partnerships, Shopping): 500 sub + 3 video công khai/90 ngày + 3.000 giờ hoặc 3 triệu Shorts/90 ngày | Chính thức | YouTube Studio → Earn |
+| YouTube (đến 31/1/2027) | YPP đầy đủ: 1.000 sub + 4.000 giờ hoặc 10 triệu Shorts/90 ngày. Cấp sớm (fan funding, Shopping; Creator Partnerships chỉ ở 24 nước, không có Việt Nam): 500 sub + 3 video công khai/90 ngày + 3.000 giờ hoặc 3 triệu Shorts/90 ngày | Chính thức | YouTube Studio → Earn |
 | YouTube (từ 1/2/2027) | YPP đầy đủ cho người mới: 1.000 sub + 8.000 giờ hoặc 20 triệu Shorts/90 ngày. Cấp sớm không đổi (500 sub + 3 video công khai/90 ngày + 3.000 giờ hoặc 3 triệu Shorts/90 ngày) | Chính thức | Trang "Changes to the YPP" |
 | TikTok | 10.000 follower + 100.000 lượt xem/30 ngày + video >1 phút; **chỉ 8 nước, không có Việt Nam** | Chính thức | TikTok Studio |
 | Facebook | Chỉ theo lời mời; không có ngưỡng công khai | Chính thức | Professional Dashboard → Monetization |
@@ -241,7 +245,7 @@ Kết luận an toàn: *tiền từ nền tảng chỉ là một phần*, brand 
 - **TikTok Creator Rewards chưa mở cho Việt Nam**, nên các con số RPM TikTok ở trên chưa áp dụng cho creator ở Việt Nam.
 - TikTok Shop Việt Nam: hoa hồng do **nhà bán đặt**, chưa có nguồn đáng tin về thu nhập điển hình. [Thấp]
 - Facebook: Content Monetization hiện theo lời mời; Creator Fast Track chỉ dành cho người cư trú ở Mỹ, Canada, Anh, Úc. [Chính thức]
-- YouTube: **Việt Nam có trong danh sách nước được đăng ký YPP** (trang "YouTube Partner Program availability"), nên điều kiện YPP áp dụng chung; chỉ là RPM thấp hơn. [Chính thức]
+- YouTube: **Việt Nam có trong danh sách nước được đăng ký YPP** (trang "YouTube Partner Program availability"), nên điều kiện YPP áp dụng chung; chỉ là RPM thấp hơn. Riêng tab Creator Partnerships (brand deal) có danh sách nước riêng **không có Việt Nam** (xem 3.1); memberships, Super Chat, Super Thanks và affiliate Shopping thì có Việt Nam. [Chính thức]
 
 ---
 
@@ -426,6 +430,11 @@ Không có quy định cấm "đăng bằng API" nói chung. Các quy định ch
 - Expanded YPP (cấp sớm 500 subscriber): https://support.google.com/youtube/answer/13429240
 - Changes to the YouTube Partner Program (1/2/2027): https://support.google.com/youtube/answer/12843009
 - YPP availability (danh sách nước): https://support.google.com/youtube/answer/7101720
+- Creator Partnerships (điều kiện và danh sách nước): https://support.google.com/youtube/answer/9385307
+- Shopping: https://support.google.com/youtube/answer/12257682
+- Channel memberships: https://support.google.com/youtube/answer/7636690
+- Super Chat & Super Stickers: https://support.google.com/youtube/answer/9277801
+- Super Thanks: https://support.google.com/youtube/answer/10879035
 - YouTube Shorts monetization policies: https://support.google.com/youtube/answer/12504220
 - YouTube channel monetization policies: https://support.google.com/youtube/answer/1311392
 - Disclosing use of GenAI content: https://support.google.com/youtube/answer/14328491

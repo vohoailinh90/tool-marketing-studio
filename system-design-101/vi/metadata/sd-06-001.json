@@ -97,9 +97,9 @@
       "verified_by": "Read from a local clone of elastic/kibana at commit 7c296350df94ecd3bd5493ce82a2a6295281f256, the head of its default branch when read on 2026-10-18 (a later change to that branch does not alter this URL)."
     },
     {
-      "claim_vi": "In Kafka's pull model a consumer slower than the producer simply falls behind and catches up when it can; log retention discards old data after a fixed period or size.",
+      "claim_vi": "In Kafka's pull model a consumer slower than the producer simply falls behind and catches up when it can; log retention discards old data after a fixed period or size; messages are retained for a period instead of being deleted as soon as they are consumed, and a consumer can rewind to an old offset and re-consume.",
       "source": "https://github.com/apache/kafka/blob/65566690ca1ddb584388c1026e2ff6673e9c6f19/docs/design/design.md",
-      "section": "The Consumer: Push vs. pull; Log Compaction (simple retention)",
+      "section": "Persistence (Constant Time Suffices); The Consumer: Push vs. pull, Consumer Position; Log Compaction (simple retention)",
       "verified_by": "Read from a local clone of apache/kafka at commit 65566690ca1ddb584388c1026e2ff6673e9c6f19, the head of its default branch when read on 2026-10-18 (a later change to that branch does not alter this URL)."
     },
     {
@@ -125,7 +125,7 @@
   "source_deviations": [
     "Source draws Beats to Logstash as fixed; the lesson adds, from the Beats README, that Beats can send directly to Elasticsearch and Logstash is optional.",
     "Source says Kafka decouples producers and consumers; the lesson explains why from Kafka's design document (pull model, retention).",
-    "Kafka's retention is scoped to records Logstash has not read: with the default auto-commit and in-memory queue, an abnormal Logstash termination loses the in-flight records; the persistent queue (off by default) reduces that (Logstash docs).",
+    "Kafka retains records whether or not they were read, but with the default auto-commit and in-memory queue an abnormal Logstash termination makes the restarted consumer skip the in-flight records (still in Kafka until retention, recoverable only by rewinding the offset); the persistent queue (off by default) reduces that (Kafka design doc, Logstash docs).",
     "Source's claim that ELK is popular for a reasonable price is dropped: no source to check it."
   ],
   "editorial_note_vi": "Bài mới viết tại repo này (gói L5), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."

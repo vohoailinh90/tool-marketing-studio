@@ -1,0 +1,46 @@
+{
+  "id": "sd-06-003",
+  "title": "Khóa lớn và AOF của Redis: ai phải chờ?",
+  "subtitle": "Khung một là đường đi của một lệnh ghi; khung hai và ba là số đo.",
+  "desc": "Ba khung. Khung một, đường thường của một lệnh ghi khi bật AOF: đổi dữ liệu trong bộ nhớ; luồng chính gọi write chép bản ghi vào bộ đệm hệ điều hành, client khác chờ bước này; rồi trả lời, always fsync xong mới trả lời, everysec và no trả lời luôn. Khung hai, ba chế độ: always an toàn, chậm nhất; everysec mặc định, thường mất khoảng một giây dữ liệu, và khi luồng nền còn fsync thì hoãn write tới 2 giây, trả lời trước, lần write muộn chặn các client lúc đó; no để hệ điều hành quyết. Khung ba, đo với giá trị 5 MiB trên một máy ảo: tắt AOF, lệnh ghi khoảng 6 mili giây; bật AOF ở cả ba chế độ, bước write trên luồng chính mất hàng chục mili giây; chỉ always thêm fsync; client khác chờ theo.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Một lệnh ghi khi bật AOF, đường thường",
+      "items": [
+        {
+          "title": "Đổi dữ liệu",
+          "text": "Cập nhật giá trị trong bộ nhớ."
+        },
+        {
+          "title": "write",
+          "text": "Luồng chính chép bản ghi vào bộ đệm hệ điều hành. Client khác chờ bước này."
+        },
+        {
+          "title": "Trả lời",
+          "text": "always: fsync xong mới trả lời. everysec, no: trả lời luôn, không chờ đĩa."
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Ba chế độ fsync",
+      "items": [
+        "always: an toàn nhất, chậm nhất.",
+        "everysec: mặc định; thường mất khoảng một giây dữ liệu khi sập, hơn nếu write bị hoãn.",
+        "everysec, khi luồng nền còn fsync: hoãn write tới 2 giây, trả lời trước; lần write muộn chặn các client lúc đó.",
+        "no: hệ điều hành quyết khi nào ghi xuống đĩa."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Đo trên một máy ảo, giá trị 5 MiB",
+      "items": [
+        "Tắt AOF: một lệnh ghi mất khoảng 6 mili giây.",
+        "Bật AOF, cả ba chế độ: riêng bước write trên luồng chính mất hàng chục mili giây.",
+        "Chỉ always có thêm fsync trên luồng chính.",
+        "Client khác chờ theo: chế độ fsync không cứu được khóa lớn."
+      ]
+    }
+  ]
+}

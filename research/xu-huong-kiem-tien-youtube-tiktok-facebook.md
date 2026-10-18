@@ -313,7 +313,8 @@ Không có quy định cấm "đăng bằng API" nói chung. Các quy định ch
 - **Dự án chưa xác minh (unverified):** quy tắc hiện hành là trang tham chiếu `videos.insert`, ghi *"Videos uploaded from unverified API projects are not restricted to private viewing mode"* (video đăng từ dự án API chưa xác minh không bị giới hạn ở chế độ riêng tư). Chỉ cần coi đây là quy tắc đang áp dụng. Mục lịch sử sửa đổi ngày 28/7/2020 (dự án tạo sau 28/7/2020 bị khóa riêng tư cho tới khi audit) là bối cảnh lịch sử: mình không thấy mục nào sau đó nhắc lại quy tắc ấy, và nhiều blog vẫn lặp quy tắc cũ. [Chính thức]
 - **Hạn mức:** từ 1/6/2026 hạn mức chia nhỏ; `videos.insert` có **bucket riêng**, mặc định **100 lượt gọi/ngày** mỗi dự án, mỗi lần tốn **1 đơn vị**. (Mục 4/12/2025 nói chi phí giảm từ ~1.600 xuống ~100 đơn vị, nay đã được thay thế bằng cơ chế mới.) Muốn nhiều hơn: hoàn tất **kiểm tra tuân thủ (compliance audit)** và gửi biểu mẫu Audit and Quota Extension. [Chính thức]
 - **Khai báo AI qua API:** có trường `status.containsSyntheticMedia` (thêm 30/10/2024) trong `videos.insert` và `videos.update`. [Chính thức]
-- Có `status.publishAt` để hẹn giờ đăng. [Chính thức]
+- **Hẹn giờ đăng (`status.publishAt`):** chỉ đặt được khi `status.privacyStatus` là `private` và video chưa từng được đăng công khai. Khi gọi `videos.update` để đặt hoặc đổi `publishAt`, phải đặt cả `privacyStatus` thành `private`, kể cả khi video đã private. Hẹn một giờ đã qua thì video được đăng ngay (giống chuyển `private` sang `public`). [Chính thức]
+- **Hai trường khai báo khác trong `status` và `paidProductPlacementDetails`:** `status.selfDeclaredMadeForKids` (chủ kênh khai video hướng đến trẻ em) và `paidProductPlacementDetails.hasPaidProductPlacement` (đặt `true` nếu nội dung có quảng cáo đặt sản phẩm trả tiền; mặc định `false`). [Chính thức]
 
 **TikTok Content Posting API**
 - **Direct Post (đăng thẳng):** ứng dụng chưa audit **chỉ đăng được ở chế độ riêng tư (SELF_ONLY)**; tối đa **5 người dùng/24 giờ** và các tài khoản đó phải để riêng tư khi đăng. Lỗi `unaudited_client_can_only_post_to_private_accounts`. [Chính thức]
@@ -340,7 +341,8 @@ Không có quy định cấm "đăng bằng API" nói chung. Các quy định ch
 - Chỉ đăng Reels lên **Page**, không lên trang cá nhân. [Chính thức]
 - Giới hạn **30 Reels đăng qua API / 24 giờ** (cửa sổ trượt); Meta khuyên ứng dụng tự áp dụng giới hạn này, nhất là khi cho người dùng hẹn giờ. [Chính thức]
 - Cần token Page cho người có quyền CREATE_CONTENT, cùng quyền `pages_show_list`, `pages_read_engagement`, `pages_manage_posts`.
-- Reel dài 3–90 giây, tối thiểu 540×960 px. [Chính thức]
+- Thông số video: dài 3–90 giây; tối thiểu 540×960 px (khuyến nghị 1080×1920); tỉ lệ 9:16 (API báo lỗi nếu ngoài khoảng từ 16:9 đến 9:16); 24–60 khung hình/giây; Reel đăng dạng story trên Page tối đa 60 giây. [Chính thức]
+- **Yêu cầu giao diện** (mục "Sharing Disclosure"): ứng dụng phải cho người dùng thấy cách Reels của họ được dùng trên Facebook và cho chọn đối tượng xem. Đăng lên Page mặc định là công khai nên chỉ nên có lựa chọn "Public". [Chính thức]
 - Tài liệu Reels Publishing mình đọc **không nêu tham số khai báo AI**. [Chính thức, theo những gì đọc được]
 
 **Có nguồn chính thức nào nói đăng bằng API làm giảm reach không?** Không tìm thấy ở cả ba nền tảng. Các nhà cung cấp công cụ hẹn giờ nói không ảnh hưởng, nhưng bằng chứng yếu. [Thấp]

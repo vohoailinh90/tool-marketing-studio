@@ -279,7 +279,8 @@ def folder_problems(slides_dir: pathlib.Path, lesson_id: str) -> list[str]:
         if name.endswith(".png"):
             note = " (the repository keeps a deck as its PPTX alone: no PNG files)"
         elif name == deck:
-            note = f" (record the export with `exported {lesson_id} --badged` once the deck is finished)"
+            note = (f" (once the deck is finished, record the export with `exported {lesson_id}`, adding --badged when the "
+                    "PPTX carries the moda.app badge)")
         else:
             note = ""
         problems.append(f"{name} is not expected here{note}")

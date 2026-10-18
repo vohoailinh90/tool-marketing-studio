@@ -1197,9 +1197,12 @@ class FolderTests(unittest.TestCase):
 
     def test_pending_exports_hold_no_pptx(self) -> None:
         self.write()
-        pptx(self.dir / "sd-01-001.pptx", badged=True)
-        self.assertEqual(["sd-01-001.pptx is not expected here (record the export with `exported sd-01-001 --badged` "
-                          "once the deck is finished)"], self.problems())
+        for badged in (True, False):  # the hint fits a PPTX with the badge and one without it
+            with self.subTest(badged=badged):
+                pptx(self.dir / "sd-01-001.pptx", badged=badged)
+                self.assertEqual(["sd-01-001.pptx is not expected here (once the deck is finished, record the export with "
+                                  "`exported sd-01-001`, adding --badged when the PPTX carries the moda.app badge)"],
+                                 self.problems())
 
     def test_a_missing_pptx_is_reported_for_every_recorded_export(self) -> None:
         for exports in ("badged", "done"):

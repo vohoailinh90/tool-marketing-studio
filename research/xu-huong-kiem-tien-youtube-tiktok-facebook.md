@@ -308,7 +308,7 @@ Không có quy định cấm "đăng bằng API" nói chung. Các quy định ch
 
 **YouTube Data API (`videos.insert`)**
 - **Chế độ hiển thị mặc định:** nếu không chỉ định `status.privacyStatus` thì mặc định **public**; một số upload có thể mặc định private theo cài đặt tài khoản creator. [Chính thức]
-- **Dự án chưa xác minh (unverified):** trang tham chiếu hiện hành ghi *"Videos uploaded from unverified API projects are not restricted to private viewing mode"*. Tuy nhiên **mục lịch sử sửa đổi ngày 28/7/2020 vẫn còn trong cùng bộ tài liệu**, nói ngược lại (dự án tạo sau 28/7/2020 bị khóa riêng tư cho tới khi audit), và nhiều blog vẫn lặp quy tắc cũ. **Hai đoạn trong tài liệu của Google mâu thuẫn nhau, chưa rõ quy tắc nào đang áp dụng.** Cách duy nhất chắc chắn: thử một video và kiểm tra chế độ hiển thị. [Chính thức, nhưng mâu thuẫn]
+- **Dự án chưa xác minh (unverified):** quy tắc hiện hành là trang tham chiếu `videos.insert`, ghi *"Videos uploaded from unverified API projects are not restricted to private viewing mode"* (video đăng từ dự án API chưa xác minh không bị giới hạn ở chế độ riêng tư). Chỉ cần coi đây là quy tắc đang áp dụng. Mục lịch sử sửa đổi ngày 28/7/2020 (dự án tạo sau 28/7/2020 bị khóa riêng tư cho tới khi audit) là bối cảnh lịch sử: mình không thấy mục nào sau đó nhắc lại quy tắc ấy, và nhiều blog vẫn lặp quy tắc cũ. [Chính thức]
 - **Hạn mức:** từ 1/6/2026 hạn mức chia nhỏ; `videos.insert` có **bucket riêng**, mặc định **100 lượt gọi/ngày** mỗi dự án, mỗi lần tốn **1 đơn vị**. (Mục 4/12/2025 nói chi phí giảm từ ~1.600 xuống ~100 đơn vị, nay đã được thay thế bằng cơ chế mới.) Muốn nhiều hơn: hoàn tất **kiểm tra tuân thủ (compliance audit)** và gửi biểu mẫu Audit and Quota Extension. [Chính thức]
 - **Khai báo AI qua API:** có trường `status.containsSyntheticMedia` (thêm 30/10/2024) trong `videos.insert` và `videos.update`. [Chính thức]
 - Có `status.publishAt` để hẹn giờ đăng. [Chính thức]
@@ -352,7 +352,7 @@ Không có quy định cấm "đăng bằng API" nói chung. Các quy định ch
 3. **Tránh chủ đề nhạy cảm do "chuyên gia AI" trình bày** (sức khỏe, pháp lý, tài chính, chính trị) nếu muốn kiếm tiền trên YouTube.
 4. **Giữ nhịp đăng hợp lý.** YouTube cho phép "vài biến thể" nhưng cấm "làm ngập". Từ 2027, kênh chỉ cần 2 video dài hoặc 5 Shorts mỗi 90 ngày để được coi là hoạt động.
 5. **Chọn đường đăng phù hợp với từng nền tảng:**
-   - **YouTube:** dùng API của chính bạn được; mặc định 100 upload/ngày; thử 1 video để biết có bị khóa riêng tư không; xin tăng hạn mức bằng audit nếu cần.
+   - **YouTube:** dùng API của chính bạn được; mặc định 100 upload/ngày; dự án chưa xác minh không bị khóa riêng tư theo trang tham chiếu hiện hành; xin tăng hạn mức bằng audit nếu cần.
    - **TikTok:** nếu là công cụ cho tài khoản của chính bạn, đừng trông chờ Direct Post công khai. Dùng **Upload (hộp thư)** và bấm đăng thủ công, hoặc dùng **hẹn giờ và tải hàng loạt trên TikTok web** của chính TikTok.
    - **Facebook:** Reels qua API chỉ đăng được lên Page, tối đa 30/24 giờ.
 6. **Không nhân bản nội dung** giữa nhiều tài khoản hoặc đăng video trùng lặp: Meta giảm phân phối bản sao, TikTok không đề xuất nội dung trùng, Meta xử lý mạng lưới nhiều tài khoản.
@@ -360,7 +360,6 @@ Không có quy định cấm "đăng bằng API" nói chung. Các quy định ch
 
 ### 5.8 Những điều còn mở
 
-- Quy tắc nào đang áp dụng cho API YouTube chưa verify (hai đoạn tài liệu mâu thuẫn): cần thử thực tế.
 - Quy tắc riêng của Meta về nội dung AI và kiếm tiền trên Facebook (trang chính thức mình đọc được không nêu).
 - Chính sách Creator Rewards của TikTok đối với video hoàn toàn bằng AI: trang không có điều khoản riêng, kết luận trong 5.2 là suy luận.
 - Hiệu quả thực tế của video AI so với video người làm trên cùng kênh.
@@ -389,18 +388,18 @@ Không có quy định cấm "đăng bằng API" nói chung. Các quy định ch
 - Điều kiện Creator Rewards và định nghĩa nội dung gốc.
 - Facebook Content Monetization chỉ theo lời mời; phạm vi Creator Fast Track; định nghĩa nội dung gốc của Meta (13/3/2026).
 - Hạn mức `videos.insert`: 100 lượt gọi/ngày, 1 đơn vị/lần; trường `containsSyntheticMedia` và `is_aigc`.
+- Video đăng bằng `videos.insert` từ dự án API chưa xác minh không bị giới hạn ở chế độ riêng tư (trang tham chiếu hiện hành); mục 28/7/2020 là lịch sử.
 - Quy tắc TikTok: ứng dụng chưa audit chỉ đăng riêng tư, và mục đích sử dụng loại trừ công cụ chỉ cho tài khoản của chính bạn.
 
 **Còn mở:**
 
 | # | Điểm cần xác minh | Vì sao | Cách xác minh |
 |---|---|---|---|
-| 1 | API YouTube chưa verify có bị khóa riêng tư không | Hai đoạn tài liệu của Google mâu thuẫn | Thử đăng một video qua API và xem chế độ hiển thị |
-| 2 | Creator Rewards có loại video hoàn toàn bằng AI không | Trang không có điều khoản riêng về AI | Điều khoản chương trình trong TikTok Studio (khi có quyền truy cập) |
-| 3 | Quy tắc riêng của Meta về nội dung AI và kiếm tiền trên Facebook | Chỉ có bài nhãn AI (4/2024), không có quy tắc kiếm tiền riêng cho AI | Trung tâm trợ giúp / chính sách kiếm tiền của Meta |
-| 4 | Hoa hồng và điều kiện TikTok Shop, LIVE tại Việt Nam | Chỉ có blog | Seller Center TikTok Shop Việt Nam; trang LIVE của TikTok |
-| 5 | RPM từng nền tảng | Không nền tảng nào công bố | Dữ liệu thực của kênh bạn |
-| 6 | Facebook Reels xếp hạng bằng khảo sát từ 14/1/2026 | Chỉ một nguồn blog | Bản tin / trang minh bạch của Meta |
+| 1 | Creator Rewards có loại video hoàn toàn bằng AI không | Trang không có điều khoản riêng về AI | Điều khoản chương trình trong TikTok Studio (khi có quyền truy cập) |
+| 2 | Quy tắc riêng của Meta về nội dung AI và kiếm tiền trên Facebook | Chỉ có bài nhãn AI (4/2024), không có quy tắc kiếm tiền riêng cho AI | Trung tâm trợ giúp / chính sách kiếm tiền của Meta |
+| 3 | Hoa hồng và điều kiện TikTok Shop, LIVE tại Việt Nam | Chỉ có blog | Seller Center TikTok Shop Việt Nam; trang LIVE của TikTok |
+| 4 | RPM từng nền tảng | Không nền tảng nào công bố | Dữ liệu thực của kênh bạn |
+| 5 | Facebook Reels xếp hạng bằng khảo sát từ 14/1/2026 | Chỉ một nguồn blog | Bản tin / trang minh bạch của Meta |
 
 ---
 

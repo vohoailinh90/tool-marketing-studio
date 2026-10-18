@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1291" viewBox="0 0 320 1291" role="img" aria-labelledby="title desc">
+<title id="title">Sáu cách dùng kho đối tượng</title>
+<desc id="desc">Ba khung. Khung một, giữ lâu và an toàn: lưu trữ dài hạn nhờ quy tắc vòng đời chuyển đối tượng sang lớp rẻ hơn theo tuổi; sao lưu và phục hồi nhờ versioning giữ mọi phiên bản, xóa chỉ thêm dấu xóa nên lấy lại được; không cho sửa xóa nhờ Object Lock, ghi một lần đọc nhiều lần. Khung hai, kho chung cho nhiều chương trình: ảnh, video, tài liệu lớn tải theo nhiều phần và ghi cả đối tượng một lần; hồ dữ liệu dựa vào việc ghi xong là đọc và liệt kê thấy ngay; dữ liệu từ thiết bị dùng thông báo sự kiện báo có đối tượng mới, giao ít nhất một lần. Khung ba, cái giá: mỗi phiên bản là một đối tượng đầy đủ bị tính đủ tiền; chuyển lớp lưu trữ tốn phí; thông báo có thể đến hai lần.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1291" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Sáu cách dùng kho đối</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">tượng</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Mỗi cách dựa vào một tính năng cụ</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">thể, ví dụ lấy từ hướng dẫn Amazon</text>
+<text x="16" y="123.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">S3.</text>
+<rect x="8" y="143" width="304" height="406" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="171.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Giữ lâu, giữ an toàn</text>
+<rect x="20" y="188" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="241.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 230.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></g>
+<text x="78" y="214.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Lưu trữ dài hạn</text>
+<text x="78" y="238.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Quy tắc vòng đời chuyển</text>
+<text x="78" y="257.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đối tượng sang lớp lưu trữ</text>
+<text x="78" y="277.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">rẻ hơn theo tuổi.</text>
+<rect x="20" y="309" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="362.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 351.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></g>
+<text x="78" y="335.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Sao lưu và phục hồi</text>
+<text x="78" y="359.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Versioning giữ mọi phiên</text>
+<text x="78" y="378.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bản; xóa chỉ thêm dấu xóa,</text>
+<text x="78" y="398.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lấy lại được.</text>
+<rect x="20" y="430" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="483.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 472.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="11" rx="2" ry="2" width="18" x="3" y="11"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></g>
+<text x="78" y="456.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Không cho sửa, xóa</text>
+<text x="78" y="480.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Object Lock: ghi một lần,</text>
+<text x="78" y="499.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đọc nhiều lần, trong thời</text>
+<text x="78" y="519.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hạn đặt trước.</text>
+<rect x="8" y="561" width="304" height="428" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="589.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Kho chung cho nhiều</text>
+<text x="20" y="611.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">chương trình</text>
+<rect x="20" y="628" width="280" height="107" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="681.5" r="18" fill="#0f766e"/><g transform="translate(39.2 670.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="18" rx="2" ry="2" width="18" x="3" y="3"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></g>
+<text x="78" y="654.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Ảnh, video, tài liệu</text>
+<text x="78" y="678.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tải tệp lớn theo nhiều</text>
+<text x="78" y="697.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">phần; ghi cả đối tượng,</text>
+<text x="78" y="717.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">không sửa giữa chừng.</text>
+<rect x="20" y="749" width="280" height="107" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="802.5" r="18" fill="#0f766e"/><g transform="translate(39.2 791.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></g>
+<text x="78" y="775.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Hồ dữ liệu</text>
+<text x="78" y="799.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ghi xong là đọc và liệt kê</text>
+<text x="78" y="818.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thấy ngay, nên nhiều bên</text>
+<text x="78" y="838.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đọc chung được.</text>
+<rect x="20" y="870" width="280" height="107" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="923.5" r="18" fill="#0f766e"/><g transform="translate(39.2 912.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h.01"/><path d="M2 8.82a15 15 0 0 1 20 0"/><path d="M5 12.859a10 10 0 0 1 14 0"/><path d="M8.5 16.429a5 5 0 0 1 7 0"/></g>
+<text x="78" y="896.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Dữ liệu từ thiết bị</text>
+<text x="78" y="920.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Thông báo sự kiện báo có</text>
+<text x="78" y="939.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đối tượng mới để xử lý;</text>
+<text x="78" y="959.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">giao ít nhất một lần.</text>
+<rect x="8" y="1001" width="304" height="282" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="1029.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Cái giá cần tính</text>
+<rect x="20" y="1046" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1069" r="11" fill="#16a34a"/>
+<polyline points="37.9,1069.4 41.7,1073.4 48.5,1065" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1072.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mỗi phiên bản là một đối</text>
+<text x="64" y="1091.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tượng đầy đủ, bị tính đủ tiền.</text>
+<rect x="20" y="1117" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1140" r="11" fill="#16a34a"/>
+<polyline points="37.9,1140.4 41.7,1144.4 48.5,1136" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1143.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chuyển lớp lưu trữ cũng tốn</text>
+<text x="64" y="1162.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">phí yêu cầu.</text>
+<rect x="20" y="1188" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1211" r="11" fill="#16a34a"/>
+<polyline points="37.9,1211.4 41.7,1215.4 48.5,1207" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1214.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Thông báo có thể đến hai</text>
+<text x="64" y="1233.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lần: bên xử lý phải chịu được</text>
+<text x="64" y="1253.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trùng.</text>
+</g>
+</svg>

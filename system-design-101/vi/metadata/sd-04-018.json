@@ -1,0 +1,129 @@
+{
+  "id": "sd-04-018",
+  "title_vi": "Sáu cách dùng kho đối tượng, và tính năng nào làm cho mỗi cách chạy được",
+  "language": "vi",
+  "kind": "reference",
+  "content_status": "draft",
+  "source_ref": "sd-04-018",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/explain-the-top-6-use-cases-of-object-stores.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/explain-the-top-6-use-cases-of-object-stores.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a partial clone of the source repository; git hash-object of the retrieved body matches the source-map blob. No source-image bytes used.",
+    "blob_sha": "c9bf577250b2635a228bc47a061f0f8f5ebf4e44",
+    "retrieved_body_sha256": "cbd314c0a29abbb8daed918725cb21fa2296e736ff7eef0b2ead525a4792d4e9",
+    "retrieved_body_bytes": 2682
+  },
+  "diagram": "../diagrams/sd-04-018-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-04-017",
+      "relation": "prerequisite",
+      "reason_vi": "Kho đối tượng khác lưu trữ khối và tệp ở chỗ nào."
+    },
+    {
+      "lesson_id": "sd-04-003",
+      "relation": "related",
+      "reason_vi": "Tải tệp lớn lên S3 theo nhiều phần."
+    },
+    {
+      "lesson_id": "sd-04-014",
+      "relation": "related",
+      "reason_vi": "Thông báo giao ít nhất một lần nên bên xử lý phải chịu được trùng."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "evidence": "The Amazon S3 User Guide pages on lifecycle management, versioning, deleting object versions, Object Lock and its modes, the data consistency model, event notifications, multipart upload and downloading objects (2023, last commit with content) were read from a clone of awsdocs/amazon-s3-userguide; no experiment was run because a real object store was not reachable from the authoring environment."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright) rendered lesson.md (markdown-it, tables enabled, every <details> open, a 16 px page gutter) at each width: the page never scrolled sideways and the figure was scaled to the column; the smallest SVG font-size times that scale is the recorded minimum at 320 px. `python3 -m scripts.figures check --browser` measured every line of the figure in Chromium inside its box. Not GitHub, not a real phone and not learner testing."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Lifecycle transition actions move objects to another storage class by age, for example to S3 Standard-IA 30 days after creation or to S3 Glacier Flexible Retrieval one year after creation; expiration actions delete them; lifecycle transition requests have costs.",
+      "source": "https://github.com/awsdocs/amazon-s3-userguide/blob/cc53dd6a44d3aa1d654e6d3705a0a7550f20fd2a/doc_source/object-lifecycle-mgmt.md",
+      "section": "Managing your storage lifecycle",
+      "verified_by": "Read from a clone of awsdocs/amazon-s3-userguide at commit cc53dd6a44d3aa1d654e6d3705a0a7550f20fd2a."
+    },
+    {
+      "claim_vi": "With versioning enabled a delete inserts a delete marker that becomes the current version and an overwrite creates a new version, so previous versions can be restored; versioning is disabled by default; each version is the entire object, so three versions are charged as three objects; DELETE with a version ID removes that version permanently.",
+      "sources": [
+        "https://github.com/awsdocs/amazon-s3-userguide/blob/cc53dd6a44d3aa1d654e6d3705a0a7550f20fd2a/doc_source/Versioning.md",
+        "https://github.com/awsdocs/amazon-s3-userguide/blob/cc53dd6a44d3aa1d654e6d3705a0a7550f20fd2a/doc_source/DeletingObjectVersions.md"
+      ],
+      "section": "Using versioning in S3 buckets; Deleting object versions",
+      "verified_by": "Read from a clone of awsdocs/amazon-s3-userguide at commit cc53dd6a44d3aa1d654e6d3705a0a7550f20fd2a."
+    },
+    {
+      "claim_vi": "S3 Object Lock stores objects in a write-once-read-many model and prevents deletion or overwrite for a fixed time or indefinitely, to meet regulations requiring WORM storage or as another layer of protection; in compliance mode no user, the root user included, can overwrite or delete a protected version; in governance mode users with s3:BypassGovernanceRetention can; creating a bucket with Object Lock enables versioning automatically.",
+      "sources": [
+        "https://github.com/awsdocs/amazon-s3-userguide/blob/cc53dd6a44d3aa1d654e6d3705a0a7550f20fd2a/doc_source/object-lock.md",
+        "https://github.com/awsdocs/amazon-s3-userguide/blob/cc53dd6a44d3aa1d654e6d3705a0a7550f20fd2a/doc_source/object-lock-overview.md"
+      ],
+      "section": "Using S3 Object Lock; How S3 Object Lock works",
+      "verified_by": "Read from a clone of awsdocs/amazon-s3-userguide at commit cc53dd6a44d3aa1d654e6d3705a0a7550f20fd2a."
+    },
+    {
+      "claim_vi": "S3 provides strong read-after-write consistency: a GET or LIST started after a successful PUT response returns the written data, and updates to a single key are atomic (old or new data, never partial); there are no atomic updates across keys.",
+      "source": "https://github.com/awsdocs/amazon-s3-userguide/blob/cc53dd6a44d3aa1d654e6d3705a0a7550f20fd2a/doc_source/Welcome.md",
+      "section": "Amazon S3 data consistency model",
+      "verified_by": "Read from a clone of awsdocs/amazon-s3-userguide at commit cc53dd6a44d3aa1d654e6d3705a0a7550f20fd2a."
+    },
+    {
+      "claim_vi": "S3 event notifications are designed to be delivered at least once, typically in seconds but sometimes in a minute or longer.",
+      "source": "https://github.com/awsdocs/amazon-s3-userguide/blob/cc53dd6a44d3aa1d654e6d3705a0a7550f20fd2a/doc_source/EventNotifications.md",
+      "section": "Amazon S3 Event Notifications",
+      "verified_by": "Read from a clone of awsdocs/amazon-s3-userguide at commit cc53dd6a44d3aa1d654e6d3705a0a7550f20fd2a."
+    },
+    {
+      "claim_vi": "Large objects are uploaded as parts and assembled; a read can request only a byte range of an object instead of the entire object.",
+      "sources": [
+        "https://github.com/awsdocs/amazon-s3-userguide/blob/cc53dd6a44d3aa1d654e6d3705a0a7550f20fd2a/doc_source/mpuoverview.md",
+        "https://github.com/awsdocs/amazon-s3-userguide/blob/cc53dd6a44d3aa1d654e6d3705a0a7550f20fd2a/doc_source/download-objects.md"
+      ],
+      "section": "Uploading and copying objects using multipart upload; Downloading an object",
+      "verified_by": "Read from a clone of awsdocs/amazon-s3-userguide at commit cc53dd6a44d3aa1d654e6d3705a0a7550f20fd2a."
+    },
+    {
+      "claim_vi": "Six use cases of object stores: data archiving, unstructured data storage, cloud-native storage, data lake (efficient reads and writes help ETL), IoT data, backup and recovery.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/explain-the-top-6-use-cases-of-object-stores.md",
+      "section": "Body",
+      "verified_by": "Source body read."
+    }
+  ],
+  "design_notes_vi": "Hai nhóm ba thẻ, mỗi thẻ là một cách dùng gắn với tính năng của S3 gánh nó, và một khung cái giá. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "The source lists six use cases; the lesson groups them in two (keep long and safe, shared store), folds cloud-native storage into the shared store and adds Object Lock, each tied to the S3 feature that makes it work.",
+    "The source credits 'efficient reads and writes' for data lake pipelines; the lesson grounds it in S3's strong read-after-write consistency and adds the costs of versioning, transitions and at-least-once notifications."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

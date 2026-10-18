@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 510" role="img" aria-labelledby="title desc">
+<title id="title">Hai cách chọn dữ liệu cho màn hình sách</title><desc id="desc">Hai ví dụ độc lập cùng lấy tên sách và tên tác giả. Máy chủ quyết định hợp đồng và quyền truy cập; không so tốc độ hay số lần đọc phía sau.</desc>
+<rect width="320" height="510" rx="16" fill="#f8fafc"/>
+<g font-family="Arial,sans-serif" fill="#0f172a">
+<text x="16" y="28" font-size="18">Cần: tên sách + tên tác giả</text>
+<rect x="12" y="46" width="296" height="188" rx="12" fill="#dbeafe"/>
+<text x="24" y="76" font-size="20">Ví dụ API tài nguyên</text>
+<text x="24" y="108" font-size="16">GET /books/7</text>
+<text x="24" y="134" font-size="16">?fields=title,author</text>
+<text x="24" y="169" font-size="16">Hợp đồng có chọn trường</text>
+<text x="24" y="199" font-size="16">author trả về tên tác giả</text>
+<rect x="12" y="248" width="296" height="194" rx="12" fill="#dcfce7"/>
+<text x="24" y="278" font-size="20">Ví dụ GraphQL</text>
+<text x="24" y="310" font-size="16">{ book(id: 7) {</text>
+<text x="40" y="338" font-size="16">title</text>
+<text x="40" y="366" font-size="16">author { name }</text>
+<text x="24" y="394" font-size="16">} }</text>
+<text x="24" y="422" font-size="16">Chọn trường trong schema</text>
+<text x="16" y="474" font-size="16">Cả hai: máy chủ giữ quyền</text>
+<text x="16" y="498" font-size="16">và giới hạn công việc</text>
+</g></svg>

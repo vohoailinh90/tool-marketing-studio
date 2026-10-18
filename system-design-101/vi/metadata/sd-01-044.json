@@ -1,0 +1,71 @@
+{
+  "id": "sd-01-044",
+  "title_vi": "Bảo vệ API: bắt đầu từ rủi ro",
+  "language": "vi",
+  "kind": "concept",
+  "content_status": "draft",
+  "source_ref": "sd-01-044",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/top-12-tips-for-api-security.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-12-tips-for-api-security.md",
+    "blob_sha": "307dda0a9398ff1a4f8fc87855c6c3fd9cafbd8d",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "b91b9023f497b6606a75dcbca2fee164d0d63e50ffb25b9a48657e978c741cac",
+    "retrieved_body_bytes": 629
+  },
+  "diagram": "../diagrams/sd-01-044-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-16"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-16",
+      "evidence": "Đọc REST Security HTTPS/access/API keys/input/error; API1 object authorization; API4 vulnerability/limits/scenario2/prevention. Chỉ đề xuất tình huống kiểm tra, chưa thử bảo mật thực tế."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "new lesson awaiting current-head review"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-16",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "evidence": "Chromium cục bộ toàn bài/details mở320/375/430px không tràn ngang/chữ SVG ngoài hình, cỡ nhỏ nhất14.4/16/16px. Đã xem ảnh320px; chưa kiểm tra GitHub/thiết bị thật/người học."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Bảo vệ đường truyền, kiểm tra đầu vào và tránh lộ chi tiết lỗi; khóa truy cập không đủ cho tài nguyên nhạy cảm.",
+      "source": "https://cheatsheetseries.owasp.org/cheatsheets/REST_Security_Cheat_Sheet.html"
+    },
+    {
+      "claim_vi": "Quyền phải gắn với người gọi, hành động và đối tượng cụ thể.",
+      "source": "https://owasp.org/API-Security/editions/2023/en/0xa1-broken-object-level-authorization/"
+    },
+    {
+      "claim_vi": "Cần giới hạn tài nguyên trong mỗi yêu cầu, không chỉ số lượt.",
+      "source": "https://owasp.org/API-Security/editions/2023/en/0xa4-unrestricted-resource-consumption/"
+    }
+  ],
+  "design_notes_vi": "Bốn câu hỏi rủi ro trong kho tài liệu, hình mới; không dịch danh sách12 tên hoặc trace ảnh nguồn.",
+  "editorial_note_vi": "Nháp giáo dục, chưa kiểm thử bảo mật dịch vụ.",
+  "source_deviations": [
+    "Body chỉ liệt kê12 tên; không dùng ảnh làm evidence hoặc áp tất cả tên thành cấu hình chung.",
+    "Tổ chức theo rủi ro, không hứa một biện pháp đủ bảo vệ mọi trường hợp."
+  ]
+}

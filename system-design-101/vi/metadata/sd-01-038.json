@@ -1,0 +1,72 @@
+{
+  "id": "sd-01-038",
+  "title_vi": "Polling và webhook: hỏi định kỳ hay nhận thông báo?",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "draft",
+  "source_ref": "sd-01-038",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/polling-vs-webhooks.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/polling-vs-webhooks.md",
+    "blob_sha": "7074f338fbcfa2c27e1f7bd365c2a761746b6853",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "fd1dc46c7bb7a5b774780ebbf40f110c91dca0c09a8b8ef80fe84a282db59cf9",
+    "retrieved_body_bytes": 1829
+  },
+  "diagram": "../diagrams/sd-01-038-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-16"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-16",
+      "evidence": "Đọc GitHub About webhooks/Choosing webhooks or REST API/Handling failed deliveries và Stripe automatic retries/event ordering/duplicate events/verify events. Không suy hợp đồng Stripe thành bảo đảm mọi nhà cung cấp. Ví dụ tự thiết kế, chưa thử giao nhận thật."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "new lesson awaiting current-head review"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-16",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "evidence": "Chromium cục bộ toàn bài/details mở320/375/430px không tràn ngang/chữ SVG ngoài hình, cỡ nhỏ nhất14.4/16/16px. Đã xem ảnh320px; chưa kiểm tra GitHub/thiết bị thật/người học."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Polling hỏi theo lần; webhook gửi tới nơi nhận theo sự kiện đã đăng ký, có thể phù hợp nhu cầu khác nhau.",
+      "source": "https://docs.github.com/en/webhooks/about-webhooks"
+    },
+    {
+      "claim_vi": "GitHub không tự giao lại webhook lỗi.",
+      "source": "https://docs.github.com/en/webhooks/using-webhooks/handling-failed-webhook-deliveries"
+    },
+    {
+      "claim_vi": "Stripe có thử lại riêng và có thể giao trùng/không đúng thứ tự; cần xác minh nguồn gửi.",
+      "source": "https://docs.stripe.com/webhooks"
+    }
+  ],
+  "design_notes_vi": "Hai thẻ mũi tên khác chiều bắt đầu trao đổi; ví dụ giao sách nguyên bản, không hứa tức thì.",
+  "editorial_note_vi": "Nháp giáo dục, chưa thử webhook thật hoặc tình huống lỗi giao nhận.",
+  "source_deviations": [
+    "Không coi polling luôn kém hiệu quả hoặc webhook giao tức thì.",
+    "Không mặc định webhook tự thử lại, đúng thứ tự hoặc đúng một lần; hợp đồng từng dịch vụ khác nhau.",
+    "Đối soát là lựa chọn thiết kế; polling trạng thái hiện tại không bảo đảm có lịch sử trung gian."
+  ]
+}

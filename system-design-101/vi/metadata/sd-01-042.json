@@ -1,0 +1,76 @@
+{
+  "id": "sd-01-042",
+  "title_vi": "API gateway: chọn đích, áp chính sách",
+  "language": "vi",
+  "kind": "flow",
+  "content_status": "draft",
+  "source_ref": "sd-01-042",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/what-does-api-gateway-do.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-does-api-gateway-do.md",
+    "blob_sha": "e96f8daaacaf2b18e4f83c09b144b527171b5e33",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "479f6c56d817dbcc6d94411594733ce06b43ce1db0843f1b4bec83c72d48aa57",
+    "retrieved_body_bytes": 1421
+  },
+  "diagram": "../diagrams/sd-01-042-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-16"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-16",
+      "evidence": "Đọc Microsoft Gateway Routing solution/issues; Azure API Management policies/configuration/error; Circuit Breaker solution/recovery; OWASP API1 object authorization. Chỉ mô tả thiết kế, chưa triển khai/đo tải/thử sự cố."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "new lesson awaiting current-head review"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-16",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "evidence": "Chromium cục bộ toàn bài/details mở320/375/430px không tràn ngang/chữ SVG ngoài hình, cỡ nhỏ nhất14.4/16/16px. Đã xem ảnh320px; chưa kiểm tra GitHub/thiết bị thật/người học."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Gateway định tuyến các yêu cầu tới dịch vụ khác nhau, có rủi ro nút nghẽn/điểm lỗi và cần xét truy cập backend.",
+      "source": "https://learn.microsoft.com/en-us/azure/architecture/patterns/gateway-routing"
+    },
+    {
+      "claim_vi": "Chính sách gateway được cấu hình theo yêu cầu/phản hồi/lỗi, không tự bật đầy đủ.",
+      "source": "https://learn.microsoft.com/en-us/azure/api-management/api-management-howto-policies"
+    },
+    {
+      "claim_vi": "Ngắt mạch hạn chế thao tác có khả năng lỗi, phục hồi nguyên nhân cần hoạt động khác.",
+      "source": "https://learn.microsoft.com/en-us/azure/architecture/patterns/circuit-breaker"
+    },
+    {
+      "claim_vi": "Xác thực chưa đủ quyền hành động trên đối tượng cụ thể.",
+      "source": "https://owasp.org/API-Security/editions/2023/en/0xa1-broken-object-level-authorization/"
+    }
+  ],
+  "design_notes_vi": "Ứng dụng/gateway và hai nhánh books/loans nguyên bản, không trace ảnh nguồn hoặc coi chuỗi nguồn là pipeline chung.",
+  "editorial_note_vi": "Nháp giáo dục, chưa dựng gateway hoặc thử tải/sự cố.",
+  "source_deviations": [
+    "Các chức năng tùy sản phẩm/cấu hình, không mười hai bước bắt buộc hoặc mọi request gọi identity provider.",
+    "Định tuyến khác nghiệp vụ; biến đổi không tự tương thích hợp đồng, circuit breaker không sửa nguyên nhân.",
+    "Không dùng ảnh hoặc triển khai bộ logging cụ thể nguồn đề xuất."
+  ]
+}

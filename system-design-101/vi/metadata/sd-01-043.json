@@ -1,0 +1,76 @@
+{
+  "id": "sd-01-043",
+  "title_vi": "gRPC: gọi phương thức qua mạng",
+  "language": "vi",
+  "kind": "flow",
+  "content_status": "draft",
+  "source_ref": "sd-01-043",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/what-is-grpc.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-is-grpc.md",
+    "blob_sha": "5cf07b5496aa8b4fab09c6d649de7c36dc1a3b17",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "73ffb6af8c998ef1e19edc4dc0c628c0d8e4c34797c038acaf7f8aba0e59ef83",
+    "retrieved_body_bytes": 1439
+  },
+  "diagram": "../diagrams/sd-01-043-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-16"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-16",
+      "evidence": "Đọc gRPC introduction overview/Protocol Buffers/code generation; core-concepts method types/stub/termination/cancellation; deadlines client/server; FAQ name/data formats/HTTP2. Không chạy dịch vụ hoặc benchmark."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "new lesson awaiting current-head review"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-16",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "evidence": "Chromium cục bộ toàn bài/details mở320/375/430px không tràn ngang/chữ SVG ngoài hình, cỡ nhỏ nhất14.4/16/16px. Đã xem ảnh320px; chưa kiểm tra GitHub/thiết bị thật/người học."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Định nghĩa dịch vụ và thông điệp bằng proto, sinh mã; Protocol Buffers mặc định.",
+      "source": "https://grpc.io/docs/what-is-grpc/introduction/"
+    },
+    {
+      "claim_vi": "Stub, xử lý máy chủ, bốn dạng gọi; hai phía có thể kết luận khác nhau, hủy không hoàn tác.",
+      "source": "https://grpc.io/docs/what-is-grpc/core-concepts/"
+    },
+    {
+      "claim_vi": "Cần hạn chót thực tế; ứng dụng máy chủ dừng công việc do nó sinh ra khi hủy.",
+      "source": "https://grpc.io/docs/guides/deadlines/"
+    },
+    {
+      "claim_vi": "Tên đệ quy gRPC, truyền tải HTTP/2 và hỗ trợ định dạng khác.",
+      "source": "https://grpc.io/docs/what-is-grpc/faq/"
+    }
+  ],
+  "design_notes_vi": "Ba khung lời gọi đơn qua stub/mạng/phương thức máy chủ; hình mới, không trace ảnh nguồn.",
+  "editorial_note_vi": "Nháp giáo dục, chưa sinh mã/chạy dịch vụ hoặc benchmark.",
+  "source_deviations": [
+    "Không giữ bảo đảm Protocol Buffers luôn nhỏ/nhanh hơn định dạng khác.",
+    "Có bốn dạng lời gọi; deadline không chứng minh máy chủ chưa xử lý, hủy không rollback.",
+    "Không dùng ảnh; .proto dùng sinh mã, không gửi tệp định nghĩa mỗi lần gọi."
+  ]
+}

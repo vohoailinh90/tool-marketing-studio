@@ -92,6 +92,17 @@ Các bài từ sd-04-001 đến sd-04-024 chưa có ở đây; số thứ tự d
 34. [Tám cấu trúc dữ liệu sau chỉ mục: mỗi cái trả lời một kiểu câu hỏi](lessons/sd-04-034/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 35. [Bản sao chỉ đọc qua lớp trung gian: vừa đặt đơn mà không thấy đơn](lessons/sd-04-035/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 36. [Nhập môn sharding: chia xong rồi, câu hỏi nào đổi?](lessons/sd-04-036/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+37. [Từ hàng đợi tới nhật ký: IBM MQ, RabbitMQ, Kafka, Pulsar khác nhau ở chỗ tin có còn sau khi đọc](lessons/sd-04-037/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+38. [Định lý CAP: thử cắt mạng giữa hai máy PostgreSQL](lessons/sd-04-038/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+39. [Băm nhất quán: vì sao mỗi máy cần nhiều điểm trên vòng](lessons/sd-04-039/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+40. [Các loại cơ sở dữ liệu: bốn nhóm NoSQL và hai nghĩa của chữ "cột"](lessons/sd-04-040/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+41. [Các khái niệm của sharding: chia bảng trên một máy trước khi chia ra nhiều máy](lessons/sd-04-041/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+42. [Khóa trong cơ sở dữ liệu: thử từng loại trên PostgreSQL bằng hai phiên](lessons/sd-04-042/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+43. [Bảng tra hiệu năng cơ sở dữ liệu: đo ba mục trước khi tin cả mười](lessons/sd-04-043/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+44. [ACID là gì? Thử từng chữ trên PostgreSQL](lessons/sd-04-044/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+45. [Kafka dùng vào việc gì? Đối chiếu năm việc với danh sách của Kafka, và thử bắt thay đổi dữ liệu](lessons/sd-04-045/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+46. [Các loại bộ nhớ và lưu trữ: đo khoảng cách giữa các tầng trên một máy](lessons/sd-04-046/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+47. [Bảy cách mở rộng cơ sở dữ liệu: thử theo thứ tự rẻ trước, đắt sau](lessons/sd-04-047/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 
 ## Phỏng vấn kỹ thuật
 
@@ -100,6 +111,49 @@ Các bài từ sd-04-001 đến sd-04-024 chưa có ở đây; số thứ tự d
 3. [Một URL biến thành yêu cầu HTTP thế nào?](lessons/sd-05-003/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 4. [Làm tốt phỏng vấn thiết kế hệ thống: bảy bước](lessons/sd-05-004/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 5. [Ôn phỏng vấn kỹ thuật: từ danh sách tài liệu đến kế hoạch luyện](lessons/sd-05-005/lesson.md) — viết lại ngày 2026-10-16 để làm sâu (đọc và đếm trực tiếp ba tài liệu công khai); chờ review kỹ thuật.
+
+## Bộ nhớ đệm và hiệu năng
+
+Các bài chưa viết của nhóm này không có trong danh sách; số thứ tự là vị trí của bài trong nhóm.
+
+1. [ELK Stack: thu thập, xử lý, lưu và xem log](lessons/sd-06-001/lesson.md) — bài mới viết tại repo này (đối chiếu README của từng dự án, không chạy thử); chờ review kỹ thuật.
+2. [CDN phổ biến vì đâu, và máy chủ biên lưu những gì](lessons/sd-06-002/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
+3. [Khóa lớn ảnh hưởng thế nào tới việc lưu AOF của Redis](lessons/sd-06-003/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
+4. [CDN cho người mới: máy chủ biên, điện toán biên và chơi game trên mây](lessons/sd-06-004/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
+5. [Redis 101: chạy thử từng điều cơ bản](lessons/sd-06-005/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
+6. [Các tầng bộ nhớ đệm, từ trình duyệt tới cơ sở dữ liệu](lessons/sd-06-006/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
+7. [Các cách giảm độ trễ hay dùng, và vì sao phải đo trước](lessons/sd-06-007/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
+8. [Năm chiến lược giữ bộ nhớ đệm khớp với cơ sở dữ liệu](lessons/sd-06-008/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
+9. [Những điều cần cân nhắc khi dùng bộ nhớ đệm](lessons/sd-06-009/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
+10. [Các chính sách đẩy khóa ra khỏi bộ nhớ đệm](lessons/sd-06-010/lesson.md) — bài mới viết tại repo này (có mô phỏng riêng); chờ review kỹ thuật.
+11. [Memcached và Redis khác nhau thế nào](lessons/sd-06-011/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
+12. [Sàn chứng khoán độ trễ thấp: làm ít hơn trên đường găng](lessons/sd-06-012/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
+13. [Truy vấn khóa không tồn tại: khi bộ nhớ đệm bị xuyên qua](lessons/sd-06-013/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
+14. [Tám chiến lược đẩy khóa ra, và Redis thật sự có những gì](lessons/sd-06-014/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
+15. [Bộ nhớ đệm hỏng theo những kiểu nào](lessons/sd-06-015/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
+
+## Công cụ và năng suất
+
+1. [Các lệnh Git theo việc cần làm](lessons/sd-09-001/lesson.md) — bản nháp; chờ review kỹ thuật.
+2. [Quy trình làm việc với Git](lessons/sd-09-002/lesson.md) — bản nháp; chờ review kỹ thuật.
+3. [Đọc JSON lồng nhau bằng sơ đồ](lessons/sd-09-003/lesson.md) — bản nháp; chờ review kỹ thuật.
+4. [Git và GitHub giải quyết việc gì?](lessons/sd-09-004/lesson.md) — bản nháp; chờ review kỹ thuật.
+5. [Merge và rebase: ghép lịch sử khác nhau](lessons/sd-09-005/lesson.md) — bản nháp; chờ review kỹ thuật.
+6. [Chọn ứng dụng AI theo đầu ra cần kiểm tra](lessons/sd-09-006/lesson.md) — bản nháp; chờ review kỹ thuật.
+7. [Viết sơ đồ bằng mã](lessons/sd-09-007/lesson.md) — bản nháp; chờ review kỹ thuật.
+8. [CPU 100%: bắt đầu từ bằng chứng](lessons/sd-09-008/lesson.md) — bản nháp; chờ review kỹ thuật.
+9. [Sáu lựa chọn để dựng sơ đồ từ văn bản](lessons/sd-09-009/lesson.md) — bản nháp; chờ review kỹ thuật.
+10. [Chọn công cụ đưa code tới production](lessons/sd-09-010/lesson.md) — bản nháp; chờ review kỹ thuật.
+11. [SEO: giúp công cụ tìm kiếm hiểu trang](lessons/sd-09-011/lesson.md) — bản nháp; chờ review kỹ thuật.
+12. [Tra lệnh Linux theo câu hỏi](lessons/sd-09-012/lesson.md) — bản nháp; chờ review kỹ thuật.
+13. [Quyền Linux: ai được làm gì?](lessons/sd-09-013/lesson.md) — bản nháp; chờ review kỹ thuật.
+14. [Năm góc nhìn để hiểu Linux](lessons/sd-09-014/lesson.md) — bản nháp; chờ review kỹ thuật.
+15. [Các dự án nguồn mở qua một đường đi ứng dụng](lessons/sd-09-015/lesson.md) — bản nháp; chờ review kỹ thuật.
+16. [Dự án được doanh nghiệp khởi xướng hoặc hỗ trợ](lessons/sd-09-016/lesson.md) — bản nháp; chờ review kỹ thuật.
+17. [Cây thư mục Linux và vai trò từng nơi](lessons/sd-09-017/lesson.md) — bản nháp; chờ review kỹ thuật.
+18. [Dùng dev tools để bỏ việc lặp lại](lessons/sd-09-018/lesson.md) — bản nháp; chờ review kỹ thuật.
+19. [Git lưu snapshot và nhánh như thế nào?](lessons/sd-09-019/lesson.md) — bản nháp; chờ review kỹ thuật.
+20. [Từ thay đổi code tới bản chạy production](lessons/sd-09-020/lesson.md) — bản nháp; chờ review kỹ thuật.
 
 ## Phát triển phần mềm
 
@@ -207,8 +261,8 @@ và hình đạt; không coi đọc nguồn là mọi claim đã đúng, không 
 ## Các nhóm còn lại theo thứ tự nguồn
 
 API và phát triển web (còn sd-01-050) → Tình huống thực tế (đã viết một phần) →
-Cơ sở dữ liệu và lưu trữ (đã viết một phần) → Bộ nhớ đệm và hiệu năng → Thanh toán và công nghệ tài chính →
-Kiến trúc phần mềm → Công cụ và năng suất → Phát triển phần mềm (đã viết một phần) →
+Cơ sở dữ liệu và lưu trữ (đã viết một phần) → Bộ nhớ đệm và hiệu năng (đã viết một phần) → Thanh toán và công nghệ tài chính →
+Kiến trúc phần mềm → Phát triển phần mềm (đã viết một phần) →
 Đám mây và hệ thống phân tán → Hệ thống hoạt động thế nào? → Bảo mật (đã viết một phần).
 
 Nhóm “Nền tảng máy tính” (cuối mục lục nguồn) được viết trước theo yêu cầu người dùng ngày 2026-10-13; nhóm “API và phát triển web” viết tiếp theo thứ tự source-map.

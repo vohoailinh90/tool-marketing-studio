@@ -1,0 +1,124 @@
+{
+  "id": "sd-06-003",
+  "title_vi": "Khóa lớn ảnh hưởng thế nào tới việc lưu AOF của Redis",
+  "language": "vi",
+  "kind": "flow",
+  "content_status": "draft",
+  "source_ref": "sd-06-003",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/how-do-big-keys-impact-redis-persistence.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-big-keys-impact-redis-persistence.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a git fetch of the pinned commit and hashed as a Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "aa36a2655ee23de73ff3d3b36fbf92856617058e",
+    "retrieved_body_sha256": "e2229efede168ef92c278c71c1754e7ff32ddf6204f07a7af9952b6ddf9456fe",
+    "retrieved_body_bytes": 1564
+  },
+  "diagram": "../diagrams/sd-06-003-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-06-005",
+      "relation": "context",
+      "reason_vi": "Redis 101 giới thiệu RDB, AOF và cấu hình lưu mặc định."
+    },
+    {
+      "lesson_id": "sd-06-021",
+      "relation": "see_also",
+      "reason_vi": "Vì sao Redis nhanh: luồng chính đơn là lý do một lệnh chậm làm mọi client chờ."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "evidence": "Redis latency and persistence docs (redis/docs) and redis.conf of 7.0.15 read from local clones; Redis 7.0.15 measured with a 5 MiB value in each appendfsync mode and with AOF off, using the built-in latency monitor and a separate PING process."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright) rendered the full lesson (Markdown to HTML, optional sections open, 16 px side gutters) at each width: no horizontal overflow of the page or of any table; figure drawn by scripts/figures (viewBox width 320, smallest font 15 px) shown at 13.5 px effective at 320 px and 15 px at 375 px; every SVG text box inside the viewBox. python3 -m scripts.figures check --browser passed. Not learner testing and not GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "AOF uses write(2) and fdatasync(2); both can cause latency. With appendfsync no the only source is write(2); with everysec the fsync runs in another thread and Redis delays write(2) up to two seconds if an fsync is in progress, then writes anyway, which can cause latency; with always an fsync is done before replying.",
+      "source": "https://github.com/redis/docs/blob/3b030c7ef066c0bb7f88ddec02c784e49783b0f8/content/operate/oss_and_stack/management/optimization/latency.md",
+      "section": "Latency due to AOF and disk I/O",
+      "verified_by": "Read from a local clone of redis/docs at commit 3b030c7ef066c0bb7f88ddec02c784e49783b0f8, the head of its default branch when read on 2026-10-18 (a later change to that branch does not alter this URL)."
+    },
+    {
+      "claim_vi": "appendfsync always is very slow and very safe; everysec is the default and may lose one second of data; no leaves flushing to the OS, normally every 30 seconds on Linux.",
+      "source": "https://github.com/redis/docs/blob/3b030c7ef066c0bb7f88ddec02c784e49783b0f8/content/operate/oss_and_stack/management/persistence.md",
+      "section": "How durable is the append only file?",
+      "verified_by": "Read from a local clone of redis/docs at commit 3b030c7ef066c0bb7f88ddec02c784e49783b0f8, the head of its default branch when read on 2026-10-18 (a later change to that branch does not alter this URL)."
+    },
+    {
+      "claim_vi": "redis.conf of 7.0.15 sets appendfsync everysec by default.",
+      "source": "https://github.com/redis/redis/blob/f35f36a265403c07b119830aa4bb3b7d71653ec9/redis.conf",
+      "section": "APPEND ONLY MODE",
+      "verified_by": "Read from a clone of redis/redis at tag 7.0.15 (commit f35f36a265403c07b119830aa4bb3b7d71653ec9)."
+    },
+    {
+      "claim_vi": "In Redis 7.0.15, flushAppendOnlyFile returns without writing while an everysec background fsync is in progress (for up to two seconds, then writes anyway), and beforeSleep then still sends pending replies; the buffered record is written in a later event-loop iteration. Under always, a write barrier keeps the reply until after the fsync.",
+      "source": "https://github.com/redis/redis/blob/f35f36a265403c07b119830aa4bb3b7d71653ec9/src/aof.c",
+      "section": "flushAppendOnlyFile; src/server.c beforeSleep; src/networking.c installClientWriteHandler",
+      "verified_by": "Read from a clone of redis/redis at tag 7.0.15 (commit f35f36a265403c07b119830aa4bb3b7d71653ec9)."
+    },
+    {
+      "claim_vi": "With auto AOF rewrite off and 40 overwrites of 5 MiB values 50 ms apart (three runs per setting): AOF off, SET median about 6 ms and another client's PING p99 under 0.6 ms with no latency events; always, SET 34-36 ms, PING p99 29-32 ms, aof-write up to 31-69 ms and aof-fsync-always 9-19 ms; everysec, SET 27-34 ms, PING p99 22-29 ms, aof-write up to 29-60 ms; no, SET 28-31 ms, PING p99 22-26 ms, aof-write up to 30-46 ms. With one write every 0.5 s, aof-write still reached 28-31 ms in all three modes. A 5 MiB GET took about 3.5 ms.",
+      "source": "https://github.com/redis/docs/blob/3b030c7ef066c0bb7f88ddec02c784e49783b0f8/content/operate/oss_and_stack/management/optimization/latency.md",
+      "section": "Experiment",
+      "verified_by": "Experiment run by the author on 2026-10-18 on one virtual machine: Redis 7.0.15 (Ubuntu package), ext4 on a virtual disk, raw RESP client in Python, latency-monitor-threshold 1, LATENCY LATEST and INFO commandstats read after each run; a separate Python process sent PING every millisecond. Numbers are from one machine."
+    },
+    {
+      "claim_vi": "With auto AOF rewrite left on, fork and aof-write-active-child events also appeared; switching from always to everysec made small SETs faster (median about 0.2-0.3 ms versus 0.04 ms).",
+      "source": "https://github.com/redis/docs/blob/3b030c7ef066c0bb7f88ddec02c784e49783b0f8/content/operate/oss_and_stack/management/optimization/latency.md",
+      "section": "Experiment",
+      "verified_by": "Experiment run by the author on 2026-10-18 on one virtual machine: same set-up, first runs with default auto-aof-rewrite settings and 100-byte SETs."
+    },
+    {
+      "claim_vi": "AOF logs the received write commands. Since Redis 7.0 the AOF is a base file (an RDB- or AOF-format snapshot taken at the rewrite) plus incremental files; redis.conf of 7.0.15 sets aof-use-rdb-preamble yes, so the base file is RDB by default (confirmed with CONFIG GET). With AOF on and a 100,000-field hash (about 9 MB by MEMORY USAGE), one HSET of a small field grew the AOF by 52 bytes.",
+      "source": "https://github.com/redis/docs/blob/3b030c7ef066c0bb7f88ddec02c784e49783b0f8/content/operate/oss_and_stack/management/persistence.md",
+      "section": "Append-only file; Log rewriting; experiment",
+      "verified_by": "Read from a local clone of redis/docs at commit 3b030c7ef066c0bb7f88ddec02c784e49783b0f8, the head of its default branch when read on 2026-10-18 (a later change to that branch does not alter this URL). The HSET measurement was run by the author on 2026-10-18 on Redis 7.0.15 with auto AOF rewrite off."
+    },
+    {
+      "claim_vi": "A big key is a key holding a lot of data; the three AOF modes are Always, EverySec and No; the source states that in EverySec and No modes big keys have no impact on the main thread.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-big-keys-impact-redis-persistence.md",
+      "section": "How do we analyze the impact of big keys?",
+      "verified_by": "Source body read at the pinned commit."
+    }
+  ],
+  "design_notes_vi": "Bốn bước của một lệnh ghi để thấy write và fsync là hai bước khác nhau, ba chế độ, và số đo. Bảng số đo đặt trong bài; hình chỉ nói hướng.",
+  "source_deviations": [
+    "Source says big keys have no impact on the main thread in EverySec and No modes; Redis's latency documentation and the lesson's measurement both show the write(2) on the main thread still blocks it.",
+    "The lesson adds a measurement on Redis 7.0.15 and a way for the reader to repeat it.",
+    "The figure shows the reply waiting for fsync only under always; under everysec and no the reply does not wait for the disk, and other clients wait on the main-thread write.",
+    "The figure and text add the everysec branch: while a background fsync is running the write is postponed up to 2 s, the reply goes out first and the late write blocks whichever clients are served then (Redis 7.0.15 source).",
+    "The modes panel says everysec usually loses about one second of data in a crash, more when the write is postponed."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này (gói L5), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

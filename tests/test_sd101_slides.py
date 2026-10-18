@@ -219,6 +219,30 @@ class ClaimTests(Sessions):
         self.assertEqual(0, code)
         self.assertIn("invalid 1", out)
 
+    def test_a_record_whose_values_cannot_be_built_blocks_its_lesson_instead_of_stopping_the_tool(self) -> None:
+        texts = {"a month that does not exist": "claimed_at: 2026-13-01T00:00:00Z\n",
+                 "a day that does not exist": "claimed_at: 2026-02-30T00:00:00Z\n",
+                 "a time before year 1 in UTC": "claimed_at: 0001-01-01T00:00:00+05:00\n",
+                 "nesting too deep to read": "taken_from: " + "[" * 5000 + "]" * 5000 + "\n"}
+        for label, line in texts.items():
+            with self.subTest(label):
+                self.assertIsNone(slides.parse_record(f"id: sd-01-001\nstatus: doing\nowner: claude/x\n{line}"))
+        x, b = self.session("x"), self.session("b")
+        folder = x / "store" / "lessons" / "sd-01-001" / "slides"
+        folder.mkdir()
+        (folder / "deck.yaml").write_text("id: sd-01-001\nstatus: doing\nowner: claude/x\nclaimed_at: 2026-13-01T00:00:00Z\n"
+                                          "heartbeat_at: 2026-10-17T08:00:00Z\n", encoding="utf-8")
+        git(x, "add", "-A")
+        git(x, "commit", "--quiet", "-m", "a typo")
+        git(x, "push", "--quiet", "-u", "origin", "claude/x")
+        code, _, err = self.run_in(b, "claim", "sd-01-001")
+        self.assertEqual(1, code)
+        self.assertIn("cannot be read", err)
+        code, out, _ = self.run_in(b, "status")
+        self.assertEqual(0, code)
+        self.assertIn("invalid 1", out)
+        self.assertEqual(0, self.run_in(b, "claim", "sd-01-002")[0], "every other lesson can still be claimed")
+
     def test_offline_never_publishes_the_default_branch(self) -> None:
         before = git(self.seed, "rev-parse", "origin/main")
         code, _, err = self.run_in(self.seed, "--offline", "claim", "sd-01-001")
@@ -560,6 +584,40 @@ class LeaseTests(Sessions):
         self.assertEqual(1, code)
         self.assertIn("does not match your claim on origin/claude/a", err)
         self.assertEqual(yaml.safe_load(published), yaml.safe_load(git(a, "show", f"origin/claude/a:{relative}")))
+
+    def test_an_expired_claim_that_a_quiet_stronger_claim_beats_is_not_renewed(self) -> None:
+        a, b = self.session("a"), self.session("b")
+        self.assertEqual(0, self.run_in(a, "claim", "sd-01-001", "--publish")[0])
+        self.at(hours=slides.LEASE_HOURS + 1)
+        self.assertEqual(0, self.run_in(b, "claim", "sd-01-001", "--take-stale", "--publish")[0])
+        self.at(hours=2 * slides.LEASE_HOURS + 3)  # b took a's claim over, and has gone quiet too
+        relative = "store/lessons/sd-01-001/slides/deck.yaml"
+        published = git(a, "show", f"origin/claude/a:{relative}")
+        code, _, err = self.run_in(a, "touch", "--publish")
+        self.assertEqual(1, code)
+        self.assertIn("claude/b holds the stronger claim; take the lesson over on purpose with "
+                      "`claim sd-01-001 --take-stale`", err)
+        self.assertEqual(published, git(a, "show", f"origin/claude/a:{relative}"), "the superseded claim is not renewed")
+        self.assertEqual(0, self.run_in(a, "claim", "sd-01-001", "--take-stale", "--publish")[0])
+        self.assertEqual((["claude/b"], 2), (self.record(a, "sd-01-001")["taken_from"],
+                                             self.record(a, "sd-01-001")["generation"]))
+        code, _, err = self.run_in(b, "touch", "--publish")
+        self.assertEqual(1, code)
+        self.assertIn("lost to claude/a", err)
+        self.assertEqual(0, self.run_in(a, "verify")[0], "one live claim, one winner")
+
+    def test_the_loser_of_a_race_does_not_come_back_by_renewing_after_both_went_quiet(self) -> None:
+        a, b = self.session("a"), self.session("b")
+        self.assertEqual(0, self.run_in(a, "claim", "sd-01-001")[0])
+        self.at(seconds=5)
+        self.assertEqual(0, self.run_in(b, "claim", "sd-01-001")[0])
+        self.run_in(b, "claim", "sd-01-001", "--publish")  # b pushes first but claimed later: it lost
+        self.run_in(a, "claim", "sd-01-001", "--publish")
+        self.at(hours=slides.LEASE_HOURS + 1)
+        code, _, err = self.run_in(b, "touch", "--publish")
+        self.assertEqual(1, code)
+        self.assertIn("claude/a holds the stronger claim", err)
+        self.assertEqual(0, self.run_in(a, "touch", "--publish")[0], "the winner renews its own expired claim")
 
     def test_touching_keeps_a_claim_alive(self) -> None:
         a, b = self.session("a"), self.session("b")
@@ -971,6 +1029,46 @@ class FinishTests(Sessions):
         code, _, err = self.run_in(a, "release", "sd-01-002")
         self.assertEqual(1, code)
         self.assertIn("already finished", err)
+
+    def test_release_never_pushes_a_deletion_over_a_finished_record_on_the_remote(self) -> None:
+        a = self.session("a")
+        self.assertEqual(0, self.run_in(a, "claim", "sd-01-001", "--publish")[0])
+        relative = "store/lessons/sd-01-001/slides/deck.yaml"
+        claim = (a / relative).read_text(encoding="utf-8")
+        self.assertEqual(0, self.finish(a, "sd-01-001", "--publish")[0])
+        finished = git(a, "show", f"origin/claude/a:{relative}")
+        (a / relative).write_text(claim, encoding="utf-8")  # a conflict resolution put the claim back
+        for extra in ((), ("--publish",)):
+            with self.subTest(extra=extra):
+                code, _, err = self.run_in(a, "release", "sd-01-001", *extra)
+                self.assertEqual(1, code)
+                self.assertIn("your finished record is on origin/claude/a; a finished deck is not released", err)
+                self.assertTrue((a / relative).is_file())
+                self.assertEqual(finished, git(a, "show", f"origin/claude/a:{relative}"), "the finished record stays")
+        code, _, err = self.run_in(self.session("b"), "claim", "sd-01-001")
+        self.assertEqual(1, code)
+        self.assertIn("already built by claude/a", err)
+
+    def test_of_two_finished_records_the_takeover_wins_as_it_does_for_claims(self) -> None:
+        old = {"id": "sd-01-001", "status": "done", "owner": "claude/a", "claimed_at": "2026-10-13T08:00:00Z",
+               "done_at": "2026-10-17T07:00:00Z", "moda_canvas": CANVAS, "moda_url": URL, "slide_count": 8,
+               "size": "1920x1080", "exports": "pending"}
+        taker = {**old, "owner": "claude/b", "claimed_at": "2026-10-16T09:00:00Z", "taken_from": ["claude/a"],
+                 "generation": 1}
+        for name, record in (("a", old), ("b", taker)):
+            clone = self.session(name)
+            folder = clone / "store" / "lessons" / "sd-01-001" / "slides"
+            folder.mkdir()
+            (folder / "deck.yaml").write_text(slides.render(record), encoding="utf-8")
+            git(clone, "add", "-A")
+            git(clone, "commit", "--quiet", "-m", "finished")
+            git(clone, "push", "--quiet", "-u", "origin", f"claude/{name}")
+        c = self.session("c")
+        code, _, err = self.run_in(c, "claim", "sd-01-001")
+        self.assertEqual(1, code)
+        self.assertIn("already built by claude/b", err)
+        holdings, _ = slides.gather(slides.Context(c, c / "store", "origin", "claude/c", False), ["sd-01-001"])
+        self.assertEqual("claude/b", slides.standing(holdings["sd-01-001"], self.clock)[1].owner)
 
     def test_release_refuses_to_leave_other_files_behind_in_slides(self) -> None:
         a = self.session("a")

@@ -1,11 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="320" height="1415" viewBox="0 0 320 1415" role="img" aria-labelledby="title desc">
-<title id="title">CDN đưa bạn tới máy biên gần nhất thế nào</title>
+<title id="title">CDN đưa bạn tới một máy biên ở gần thế nào</title>
 <desc id="desc">Ba phần. Phần một, bốn bước tìm đường: trình duyệt hỏi tên miền qua bộ đệm DNS và máy phân giải; máy chủ DNS có thẩm quyền trỏ sang CDN, thường bằng bí danh CNAME; DNS của CDN trả địa chỉ máy biên gần máy phân giải, hoặc CDN dùng một địa chỉ anycast cho mọi nơi; trình duyệt tải nội dung từ máy biên. Phần hai, ba thẻ nối nhau: máy biên, máy tầng vùng chỉ có khi bật bộ đệm nhiều tầng, máy gốc; hụt bộ đệm ở tầng dưới thì hỏi tầng trên. Phần ba, kết quả thử với nginx: lần đầu qua máy biên A cả hai tầng hụt và máy gốc nhận 1 yêu cầu; lần đầu qua máy biên B tầng vùng trúng và máy gốc không nhận thêm; trang giỏ hàng gắn private, no-store thì máy gốc nhận cả hai lần.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="1415" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
-<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">CDN đưa bạn tới máy</text>
-<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">biên gần nhất thế nào</text>
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">CDN đưa bạn tới một</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">máy biên ở gần thế nào</text>
 <text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Tìm địa chỉ, rồi tìm nội dung.</text>
 <rect x="8" y="104" width="304" height="491" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
 <text x="20" y="132.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Chặng 1: tìm địa chỉ</text>

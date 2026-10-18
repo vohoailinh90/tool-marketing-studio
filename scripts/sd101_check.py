@@ -222,7 +222,32 @@ GLOSSARY_BULLET = re.compile(r"^- \*\*(?P<abbreviation>(?=[A-Za-z0-9]*[A-Z])[A-Z
 MIN_MEANING_WORDS = 3
 # An address typed into the text is a link destination, not prose: https://example.com/API/TLS, wss://host/API and
 # git+ssh://host/TLS.git name no abbreviation. Any scheme counts; only "://" marks an address (a colon alone is prose).
-URL = re.compile(r"[A-Za-z][A-Za-z0-9+.\-]*://[^\s<>]+")
+SCHEME_LETTERS = frozenset("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz")
+SCHEME_CHARS = SCHEME_LETTERS | frozenset("0123456789+.-")
+
+
+def strip_urls(text: str) -> str:
+    """Keep the old scheme://address semantics without retrying every suffix of a long word."""
+    cursor = search = 0
+    pieces: list[str] = []
+    while (delimiter := text.find("://", search)) >= 0:
+        start = delimiter
+        while start > cursor and text[start - 1] in SCHEME_CHARS:
+            start -= 1
+        # A scheme starts with a letter; preserve any digits/punctuation before that letter.
+        while start < delimiter and text[start] not in SCHEME_LETTERS:
+            start += 1
+        end = delimiter + 3
+        if start == delimiter or end == len(text) or text[end].isspace() or text[end] in "<>":
+            search = end
+            continue
+        while end < len(text) and not text[end].isspace() and text[end] not in "<>":
+            end += 1
+        pieces.extend((text[cursor:start], " "))
+        cursor = search = end
+    pieces.append(text[cursor:])
+    return "".join(pieces)
+
 # Capital words that are not abbreviations: HTTP methods, SQL keywords, Dockerfile instructions, kubectl column titles,
 # log levels and a few file or status names. They need no
 # entry in the glossary. In lesson.md a `code span` is skipped too, so a new one can usually stay out of this list.
@@ -1026,7 +1051,7 @@ def html_text(html: str) -> str:
     parser = HtmlText()
     parser.feed(html)
     parser.close()
-    return URL.sub(" ", " ".join(parser.pieces))  # a typed address is no more prose in HTML than in Markdown
+    return strip_urls(" ".join(parser.pieces))  # a typed address is no more prose in HTML than in Markdown
 
 
 def abbreviations_in(text: str, capitals: bool = True) -> set[str]:
@@ -1085,7 +1110,7 @@ def figure_strings(path: pathlib.Path) -> tuple[list[str], list[str]]:
     headings: list[str] = []
     for element in root.iter():
         if local_name(element.tag) in ("title", "desc", "text"):
-            string = URL.sub(" ", " ".join(element.itertext()))  # <tspan>LLM</tspan><tspan>máy</tspan> is two words, not LLMmáy
+            string = strip_urls(" ".join(element.itertext()))  # <tspan>LLM</tspan><tspan>máy</tspan> is two words, not LLMmáy
             (prose if any(word.islower() and len(word) > 1 for word in re.findall(r"[^\W\d_]+", string)) else headings).append(string)
     return prose, headings
 
@@ -1131,9 +1156,9 @@ def lesson_prose(text: str) -> tuple[list[str], list[str], str | None, list[str]
                 elif in_autolink:
                     continue
                 elif child.type == "text":
-                    pieces.append(URL.sub(" ", child.content))
+                    pieces.append(strip_urls(child.content))
                 elif child.type == "image":
-                    pieces.append(" " + URL.sub(" ", child.content) + " ")
+                    pieces.append(" " + strip_urls(child.content) + " ")
                 elif child.type in ("softbreak", "hardbreak"):
                     pieces.append(" ")  # a wrapped line must not glue its last word to the next line's first
                 elif child.type == "code_inline":

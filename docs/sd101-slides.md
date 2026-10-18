@@ -5,6 +5,9 @@ exported as PNG files (to post on Facebook) and one PPTX. Several sessions build
 **claimed before its deck is built**, with `scripts/sd101_slides.py`. `sd101_claims.py` only stops two sessions
 *writing* one lesson; it knows nothing about decks.
 
+For the order of work of a whole session (Moda setup, the brief of a lesson, resuming a half-built deck, prompts to start Claude Code
+or Codex with) read `docs/sd101-slides-handoff.md`.
+
 ## The rule for a session
 
 ```bash

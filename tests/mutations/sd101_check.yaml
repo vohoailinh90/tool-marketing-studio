@@ -1779,40 +1779,41 @@ mutations:
   replace: ""
   test: tests.test_sd101_check.AbbreviationRuleTests.test_a_wrapped_line_does_not_glue_an_abbreviation_to_the_next_word
 - label: an image glues its alt text to the words beside it
-  find: "                    pieces.append(\" \" + URL.sub(\" \", child.content) + \" \")\n                elif child.type in"
-  replace: "                    pieces.append(URL.sub(\" \", child.content))\n                elif child.type in"
+  find: "                    pieces.append(\" \" + strip_urls(child.content) + \" \")\n                elif child.type in"
+  replace: "                    pieces.append(strip_urls(child.content))\n                elif child.type in"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_a_wrapped_line_does_not_glue_an_abbreviation_to_the_next_word
 - label: the displayed address of an autolink is read as prose
   find: "                elif in_autolink:\n                    continue\n"
   replace: ""
   test: tests.test_sd101_check.AbbreviationRuleTests.test_an_address_is_not_prose_but_the_label_of_a_link_is
 - label: an address typed into the text is read as prose
-  find: "                    pieces.append(URL.sub(\" \", child.content))"
+  find: "                    pieces.append(strip_urls(child.content))"
   replace: "                    pieces.append(child.content)"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_an_address_is_not_prose_but_the_label_of_a_link_is
 - label: an address typed into HTML is read as prose
-  find: "return URL.sub(\" \", \" \".join(parser.pieces))"
+  find: "return strip_urls(\" \".join(parser.pieces))"
   replace: "return \" \".join(parser.pieces)"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_an_address_is_not_prose_in_html_an_image_or_a_figure_either
 - label: an address in the alt text of a Markdown image is read as prose
-  find: "\" \" + URL.sub(\" \", child.content) + \" \""
+  find: "\" \" + strip_urls(child.content) + \" \""
   replace: "\" \" + child.content + \" \""
   test: tests.test_sd101_check.AbbreviationRuleTests.test_an_address_is_not_prose_in_html_an_image_or_a_figure_either
 - label: an address in the text of a figure is read as prose
-  find: "string = URL.sub(\" \", \" \".join(element.itertext()))"
+  find: "string = strip_urls(\" \".join(element.itertext()))"
   replace: "string = \" \".join(element.itertext())"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_an_address_is_not_prose_in_html_an_image_or_a_figure_either
 - label: the scheme of an address is matched in lower case only
-  find: "[A-Za-z][A-Za-z0-9+.\\-]*://[^\\s<>]+"
-  replace: "[a-z][a-z0-9+.\\-]*://[^\\s<>]+"
+  find: SCHEME_LETTERS = frozenset("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz")
+  replace: SCHEME_LETTERS = frozenset("abcdefghijklmnopqrstuvwxyz")
   test: tests.test_sd101_check.AbbreviationRuleTests.test_an_address_is_not_prose_but_the_label_of_a_link_is
 - label: only an http, https or ftp address is no prose (wss://example.com/API/TLS)
-  find: "[A-Za-z][A-Za-z0-9+.\\-]*://[^\\s<>]+"
-  replace: "(?:[Hh][Tt][Tt][Pp][Ss]?|[Ff][Tt][Pp])://[^\\s<>]+"
+  find: '    cursor = search = 0'
+  replace: '    return re.sub(r"(?:[Hh][Tt][Tt][Pp][Ss]?|[Ff][Tt][Pp])://[^\s<>]+",
+    " ", text)'
   test: tests.test_sd101_check.AbbreviationRuleTests.test_an_address_of_any_scheme_is_not_prose
 - label: a colon alone makes an address (Note:LLM)
-  find: "[A-Za-z][A-Za-z0-9+.\\-]*://[^\\s<>]+"
-  replace: "[A-Za-z][A-Za-z0-9+.\\-]*:(?://)?[^\\s<>]+"
+  find: text.find("://", search)
+  replace: text.find(":", search)
   test: tests.test_sd101_check.AbbreviationRuleTests.test_an_address_of_any_scheme_is_not_prose
 - label: a word with no vowel in a capitals-only label is not read (JWT, DNS)
   find: " or not set(name) & VOWELS"

@@ -329,6 +329,9 @@ files and the exports. Several sessions build decks at once and `claims.jsonl` k
   `docs/sd101-slides.md` (*Variety between decks*) sets the layout kinds, the signature layout, the accent rotation and the
   layout table, which `finish` takes (`--layouts`, `--first-concept`, `--cannot`) and checks. A deck
   that repeats the sample's layouts slide for slide is not finished.
+- **Starting or resuming decks** (Claude Code or Codex): `docs/sd101-slides-handoff.md` is the order of work, and
+  `python3 scripts/sd101_slide_brief.py <id>` cuts a lesson into slide roles, names the canvas and fixes the colour of each concept
+  (the lesson's own lines only; condensing them and drawing the slides is the session's job).
 - **The Moda watermark stays.** The free plan puts a `moda.app` badge on exported PNG and PPTX files and has no switch for
   it; never remove it from a file. A deck is finished with `exports: pending`. Its PPTX, and its PNG files (all or none), may be
   added as the free plan exports them, badge and all (`exported <id> --badged`, owner decision 2026-10-18; the PPTX is a

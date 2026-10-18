@@ -1,0 +1,103 @@
+{
+  "id": "sd-04-035",
+  "lang": "vi",
+  "title": "Bản sao chỉ đọc: vừa đặt đơn mà không thấy đơn",
+  "desc": "Khung một, bốn mảnh: ứng dụng gửi mọi câu lệnh tới một địa chỉ và không biết có mấy máy; lớp trung gian đưa câu ghi tới bản chính, câu đọc tới bản sao; bản chính nhận mọi lượt ghi và gửi nhật ký sang bản sao; bản sao chỉ đọc và áp dụng nhật ký chậm hơn một chút. Khung hai, trình tự: Alice đặt đơn, bản chính trả lời đã lưu; Alice xem đơn của mình, câu đọc đi tới bản sao, bản sao trả 0 đơn vì chưa nhận kịp. Khung ba, đo trên một máy: bản sao chậm trung vị dưới nửa mili giây, nhưng đọc ngay sau khi ghi thì 45 đến 48 trên 50 lần không thấy; cho người vừa ghi đọc ở bản chính trong 5 giây thì Alice thấy đơn; bật remote_apply thì thấy ngay 50 trên 50, đổi lại mỗi lần ghi phải chờ bản sao.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Bốn mảnh",
+      "items": [
+        {
+          "name": "Ứng dụng",
+          "role": "Gửi mọi câu lệnh tới một địa chỉ; không biết có mấy máy.",
+          "icon": "monitor"
+        },
+        {
+          "name": "Lớp trung gian",
+          "role": "Câu ghi tới bản chính, câu đọc tới bản sao.",
+          "icon": "route"
+        },
+        {
+          "name": "Bản chính",
+          "role": "Nhận mọi lượt ghi, gửi nhật ký sang bản sao.",
+          "icon": "database"
+        },
+        {
+          "name": "Bản sao",
+          "role": "Chỉ đọc; áp dụng nhật ký chậm hơn một chút.",
+          "icon": "share-2"
+        }
+      ],
+      "flow": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          1,
+          3
+        ]
+      ]
+    },
+    {
+      "kind": "sequence",
+      "heading": "Alice đặt đơn rồi xem ngay",
+      "actors": [
+        {
+          "name": "Alice",
+          "icon": "user"
+        },
+        {
+          "name": "Bản chính",
+          "icon": "database"
+        },
+        {
+          "name": "Bản sao",
+          "icon": "share-2"
+        }
+      ],
+      "messages": [
+        {
+          "from": 0,
+          "to": 1,
+          "text": "Đặt đơn (ghi)"
+        },
+        {
+          "from": 1,
+          "to": 0,
+          "text": "Đã lưu",
+          "reply": true
+        },
+        {
+          "from": 0,
+          "to": 2,
+          "text": "Xem đơn của tôi (đọc)"
+        },
+        {
+          "from": 2,
+          "to": 0,
+          "text": "0 đơn: chưa nhận kịp",
+          "reply": true
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Đo trên một máy",
+      "items": [
+        "Bản sao chậm dưới 0,5 ms, nhưng đọc ngay sau khi ghi: 45 đến 48 trên 50 lần không thấy.",
+        "Người vừa ghi đọc ở bản chính trong 5 giây: Alice thấy đơn.",
+        "Bật remote_apply: thấy ngay 50/50, đổi lại mỗi lần ghi chờ bản sao."
+      ]
+    }
+  ]
+}

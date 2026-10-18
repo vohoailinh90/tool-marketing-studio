@@ -1,0 +1,104 @@
+{
+  "id": "sd-04-029",
+  "title_vi": "PostgreSQL được yêu thích vì làm được nhiều việc: thử xem việc nào có sẵn",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "draft",
+  "source_ref": "sd-04-029",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/why-is-postgresql-voted-as-the-most-loved-database-by-stackoverflow-2022-developer-survey.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/why-is-postgresql-voted-as-the-most-loved-database-by-stackoverflow-2022-developer-survey.md",
+    "blob_sha": "23570385273b91b7c8746282fe376b8d1ef40451",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a local clone at the pinned commit and hashed as a Git blob; the computed OID matches the tree OID and the source map. No source-image bytes used.",
+    "retrieved_body_sha256": "0846b1fc9e1cf1e54edc7504f426a9e14194b758084052cd683efe4cd8026c2a",
+    "retrieved_body_bytes": 1755
+  },
+  "diagram": "../diagrams/sd-04-029-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-04-031",
+      "relation": "related",
+      "reason_vi": "Bài đó nhìn vào cơ chế tiện ích và các hệ chỉ nói giao thức của PostgreSQL; bài này kiểm bảy việc mà nguồn liệt kê."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "scope": "Chạy PostgreSQL 16.15 (gói Ubuntu): đếm pg_available_extensions, postgres_fdw qua hai cơ sở dữ liệu, số trang đọc khi cộng một cột và bảy cột; đọc postgres-fdw.sgml, contrib.sgml, storage.sgml của nhánh REL_16_STABLE và README của PipelineDB tại commit cố định. KHÔNG kiểm: số liệu gốc của khảo sát Stack Overflow 2022, PostGIS, TimescaleDB, Citus (không cài), danh sách tiện ích của các dịch vụ đám mây."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "not_yet_reviewed"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright 1.56): cả bài dựng từ Markdown thành HTML, mục tùy chọn mở, ở 320, 375 và 430 px; không cuộn ngang; chữ hình hiệu dụng nhỏ nhất 13,5 px ở 320 px và 15 px ở 375 px; không hộp chữ nào ra ngoài viewBox; python3 -m scripts.figures check --browser đạt. Không phải thử trên GitHub, trên điện thoại thật hay với người học."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "id": "source-seven-uses",
+      "claim_vi": "Nguồn nêu PostgreSQL được bình chọn yêu thích nhất trong khảo sát nhà phát triển 2022 của Stack Overflow và kể bảy việc: OLTP, OLAP (nói PostgreSQL dựa trên kiến trúc HTAP), FDW, dòng chảy với PipelineDB, bản đồ với PostGIS, chuỗi thời gian với Timescale, bảng phân tán với Citus.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/why-is-postgresql-voted-as-the-most-loved-database-by-stackoverflow-2022-developer-survey.md",
+      "section": "Whole guide",
+      "verified_by": "Đọc thân nguồn ghim ngày 2026-10-18; kết quả khảo sát chỉ ghi theo nguồn."
+    },
+    {
+      "id": "fdw-works",
+      "claim_vi": "postgres_fdw là module trong contrib, đọc dữ liệu ở máy PostgreSQL khác; sau create extension, một câu join nối bảng cục bộ với bảng ở cơ sở dữ liệu khác và kế hoạch ghi Foreign Scan.",
+      "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/postgres-fdw.sgml",
+      "section": "postgres_fdw",
+      "verified_by": "Đọc tệp tại commit 8e928803020e5b5694cde58e4851fce64ef9d520 (REL_16_STABLE) và contrib.sgml; chạy ngày 2026-10-18: join trả 3 sản phẩm, explain có 'Foreign Scan on products p'."
+    },
+    {
+      "id": "row-store",
+      "claim_vi": "Bảng thường của PostgreSQL lưu theo dòng: mỗi mục trên trang là một dòng, dòng không vắt qua nhiều trang; cộng một cột hay bảy cột của bảng 500.000 dòng đều chạm 7.744 trang.",
+      "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/storage.sgml",
+      "section": "Database Page Layout; TOAST",
+      "verified_by": "Đọc storage.sgml ngày 2026-10-18; chạy explain (analyze, buffers): hit=2080 read=5664 và hit=2176 read=5568, relpages 7744."
+    },
+    {
+      "id": "extensions-available",
+      "claim_vi": "Bản cài PostgreSQL 16.15 của Ubuntu có 47 tiện ích dùng được, gồm postgres_fdw, không gồm postgis, timescaledb, citus.",
+      "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/contrib.sgml",
+      "section": "Additional Supplied Modules and Extensions",
+      "verified_by": "Chạy select count(*) from pg_available_extensions và lọc theo tên ngày 2026-10-18 trên máy biên soạn."
+    },
+    {
+      "id": "pipelinedb-stopped",
+      "claim_vi": "README của PipelineDB ghi nhóm phát triển đã về Confluent, không có bản mới sau 1.0.0 (chỉ sửa lỗi nghiêm trọng), hỗ trợ PostgreSQL 10 và 11; commit cuối ngày 2019-05-01.",
+      "source": "https://github.com/pipelinedb/pipelinedb/blob/5cc6ef58ab5b1c84bb7b4e932f99bf5c347f46d8/README.md",
+      "section": "README",
+      "verified_by": "Đọc bản clone nông của pipelinedb/pipelinedb tại commit 5cc6ef58ab5b1c84bb7b4e932f99bf5c347f46d8 ngày 2026-10-18; ngày commit đọc bằng git log."
+    }
+  ],
+  "design_notes_vi": "Ba khung theo ba loại: có sẵn, chạy được nhưng lưu theo dòng, cần tiện ích bên thứ ba. Sơ đồ dựng bằng scripts/figures, không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Nguồn nói PostgreSQL dựa trên kiến trúc HTAP; bài cho thấy bảng thường lưu theo dòng (tài liệu và phép đếm trang), nên phân tích chạy được nhưng không theo kiểu một hệ HTAP.",
+    "Nguồn kể PipelineDB như một lựa chọn cho dữ liệu dòng chảy; README của dự án ghi đã ngừng ra bản mới sau 1.0.0.",
+    "Bài chia bảy việc thành ba loại theo phép thử trên bản cài, điều nguồn không phân biệt."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này, bản nháp chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

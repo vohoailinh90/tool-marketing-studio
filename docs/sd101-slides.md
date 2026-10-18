@@ -99,14 +99,20 @@ and sources slide last. Everything else differs from deck to deck; `sd-01-001` i
   `system-design-101/vi/metadata/<id>.json`) says where to lean, in these names: `flow` toward sequence diagram and flow,
   `comparison` toward two-column comparison and 2x2 matrix, `reference` toward lookup table and card grid, `topology` toward
   layers and connection diagram, `timeline` toward timeline, `howto` toward numbered rows.
+- **Signature layout.** The slide for the lesson's first concept takes the kind at position (n mod 12) in the list above,
+  counted from 0 in the order the list gives them (n as under *Accent rotation*), or, when the content cannot be shown that
+  way (a one big number slide needs a number the lesson states), the next kind in the list, wrapping round, that it can. So
+  two decks whose n differ mod 12 do not start their concepts the same way, and no earlier deck is a template to copy.
 - **Accent rotation.** The four accents are, counted from 0: blue, amber, teal, red. With n the number at the end of the
   lesson id (`sd-01-004` gives 4), the k-th concept of the lesson (k counted from 0) takes the accent numbered (n + k) mod 4.
-  A concept keeps its colour on every slide of the deck. Neighbouring lessons therefore open with different colours, and a
-  session never needs to look at another deck to choose.
+  A concept keeps its colour on every slide of the deck. Lessons with consecutive ids in one group therefore open with
+  different colours; across a group boundary (`sd-05-005` and `sd-13-001`, say) they can coincide, and nothing here claims
+  otherwise. A session never needs to look at another deck to choose.
 - **Light and dark.** Follow the content, not a strict alternation: never more than three slides in a row on the same
   background.
 - **Moda's own help** (`load_skill`, `template_search`) may suggest layouts; the tokens above stay.
-- **Layout table.** Before `finish`, write `slide number, layout kind` for the whole deck, check the two layout rules against
-  it, and put the table in the report to the owner.
+- **Layout table.** Before `finish`, write `slide number, layout kind` for the whole deck, check the layout rules (five
+  kinds, no adjacent repeat, the signature layout) against it, and put the table in the report to the owner. The tool does not
+  check the table; the owner reads it in the report.
 
 Binary exports add about 1.5 MB per lesson; the repository grows by that much for each finished export set.

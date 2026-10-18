@@ -9,6 +9,8 @@
 - **OLTP** (OnLine Transaction Processing) — xử lý giao dịch trực tuyến: nhiều thao tác nhỏ trên ít dòng và phải đúng tuyệt đối, như trừ tiền một tài khoản.
 - **OLAP** (OnLine Analytical Processing) — xử lý phân tích trực tuyến: câu hỏi tổng hợp trên rất nhiều dòng, như doanh thu theo cửa hàng.
 - **JSON** (JavaScript Object Notation) — ký hiệu đối tượng JavaScript: định dạng văn bản gồm các cặp tên và giá trị, hay dùng cho bản ghi mỗi cái một kiểu.
+- **FTS** (Full-Text Search) — tìm toàn văn: tìm theo từ trong văn bản bằng một chỉ mục ghi sẵn mỗi từ nằm ở đâu; FTS5 là bộ tìm toàn văn có sẵn trong SQLite.
+- **GB** (GigaByte) — gigabyte: đơn vị dung lượng cỡ một tỷ byte; ở đây nói lượng bộ nhớ đoạn mã cần.
 - **SQL** (Structured Query Language) — ngôn ngữ truy vấn có cấu trúc: ngôn ngữ chuẩn để hỏi dữ liệu; SQLite và DuckDB đều nhận câu SQL.
 
 ## Đọc hình

@@ -1,0 +1,77 @@
+{
+  "id": "sd-11-001",
+  "title_vi": "AWS Lambda hoạt động phía sau lời gọi hàm",
+  "language": "vi",
+  "kind": "explainer",
+  "content_status": "draft",
+  "source_ref": "sd-11-001",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/how-does-aws-lambda-work-behind-the-scenes.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-aws-lambda-work-behind-the-scenes.md",
+    "blob_sha": "8758bee83052c3e9bf75691e27ae7b451c3ee71d",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "5d84f30a789351b03965a8a079b068fe0ca51c02960856e1f7d467515960e4e5",
+    "retrieved_body_bytes": 2044
+  },
+  "diagram": "../diagrams/sd-11-001-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13",
+      "evidence": "Pinned Markdown body retrieved and Git blob identity matched. Source images not inspected."
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "Primary references identified; complete claim-by-claim technical verification pending."
+    },
+    "technical_review": {
+      "status": "pending"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 14.4,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Re-rendered revised five-card Lambda diagram and whole lesson in Chromium at 320/375/430px after finding 4255709360; all optional sections open; SVG getBBox inside viewBox and text measured. Static Markdown preview, not GitHub/device or learner testing."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Không dựa vào việc Lambda luôn tái sử dụng môi trường. Chi tiết dịch vụ nội bộ có thể thay đổi; hình mô tả vòng đời công khai, không khẳng định mọi runtime có cùng đường thực thi.",
+      "sources": [
+        "https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtime-environment.html",
+        "https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html",
+        "https://firecracker-microvm.github.io/"
+      ]
+    },
+    {
+      "claim_vi": "Lambda không mặc định lưu kết quả nghiệp vụ; đồng bộ trả handler response, bất đồng bộ không trả response đó cho bên gọi.",
+      "sources": [
+        "https://docs.aws.amazon.com/lambda/latest/dg/invocation-sync.html",
+        "https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html",
+        "https://docs.aws.amazon.com/lambda/latest/dg/invocation-async-retain-records.html"
+      ]
+    }
+  ],
+  "design_notes_vi": "Sơ đồ thẻ so sánh dọc tự thiết kế, chữ 18 px ở viewBox 360 px; có title/desc và alt text. Không dùng ảnh nguồn.",
+  "editorial_note_vi": "Bản thảo viết độc lập theo nhóm người dùng giao ngày 2026-10-13. Chờ review kỹ thuật; chưa user testing hoặc phê duyệt phát hành.",
+  "source_deviations": [
+    "Giữ chủ đề và ID để đối chiếu; giải thích bằng ví dụ tự biên soạn và tài liệu kỹ thuật, không dịch thân bài nguồn.",
+    "Giới hạn cần đối chiếu khi review: Không dựa vào việc Lambda luôn tái sử dụng môi trường. Chi tiết dịch vụ nội bộ có thể thay đổi; hình mô tả vòng đời công khai, không khẳng định mọi runtime có cùng đường thực thi.",
+    "Finding 4255709360: hình và alt text phân biệt kết quả đồng bộ/bất đồng bộ; ghi kho bền là việc ứng dụng khi cần."
+  ]
+}

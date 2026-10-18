@@ -1,0 +1,68 @@
+{
+  "id": "sd-11-025",
+  "title_vi": "Quản lý cấu hình từ hạ tầng tới ứng dụng",
+  "language": "vi",
+  "kind": "explainer",
+  "content_status": "draft",
+  "source_ref": "sd-11-025",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/how-do-we-manage-configurations-in-a-system.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-we-manage-configurations-in-a-system.md",
+    "blob_sha": "7b777ad5d11f210bf1b61cab0d02c693e8a0e43f",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "1fa302e74a0bf13dd4c0bf006797c4839cd2f8c012b95e82d8754f81cd657c44",
+    "retrieved_body_bytes": 1769
+  },
+  "diagram": "../diagrams/sd-11-025-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13",
+      "evidence": "Pinned Markdown body retrieved and Git blob identity matched. Source images not inspected."
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "Primary references identified; complete claim-by-claim technical verification pending."
+    },
+    "technical_review": {
+      "status": "pending"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 14.4,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium 147 whole-lesson viewport checks across 49 lessons, all details open; SVG text getBBox inside viewBox and minimum effective text measured. Shared template screenshots at 320px sampled for visual inspection (sd-11-006, sd-11-015, sd-11-024, sd-11-043, sd-11-048). Local static Markdown preview; not a live GitHub/device check or learner testing."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Configuration management cũng có thể khai báo và tự động hóa. Không chia đơn giản “cấu hình là thủ công, IaC là tự động”; ranh giới công cụ có phần giao nhau.",
+      "sources": [
+        "https://developer.hashicorp.com/terraform/intro",
+        "https://docs.ansible.com/ansible/latest/index.html",
+        "https://12factor.net/config"
+      ]
+    }
+  ],
+  "design_notes_vi": "Sơ đồ thẻ so sánh dọc tự thiết kế, chữ 18 px ở viewBox 360 px; có title/desc và alt text. Không dùng ảnh nguồn.",
+  "editorial_note_vi": "Bản thảo viết độc lập theo nhóm người dùng giao ngày 2026-10-13. Chờ review kỹ thuật; chưa user testing hoặc phê duyệt phát hành.",
+  "source_deviations": [
+    "Giữ chủ đề và ID để đối chiếu; giải thích bằng ví dụ tự biên soạn và tài liệu kỹ thuật, không dịch thân bài nguồn.",
+    "Giới hạn cần đối chiếu khi review: Configuration management cũng có thể khai báo và tự động hóa. Không chia đơn giản “cấu hình là thủ công, IaC là tự động”; ranh giới công cụ có phần giao nhau."
+  ]
+}

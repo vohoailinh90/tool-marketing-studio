@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="420" viewBox="0 0 360 420" role="img" aria-labelledby="title desc">
+<title id="title">Thiết kế bộ sinh ID kiểu Snowflake</title>
+<desc id="desc">64 bit minh họa: 0 | thời gian 41 bit: node 10 bit | sequence 12 bit; Mỗi node: Node ID riêng, sequence riêng: Xử lý hết sequence; Tình huống lỗi: Đồng hồ quay lùi • restart: Giữ điều kiện không lặp. Các khung là ý chính để đối chiếu, không nhất thiết là các bước tuần tự.</desc>
+<rect width="360" height="420" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, sans-serif" fill="#0f172a">
+<text x="20" y="28" font-size="18" font-weight="bold">sd-11-022 · Nhìn hình trước</text>
+<rect x="12" y="48" width="336" height="102" rx="12" fill="#e0f2fe" stroke="#64748b"/>
+<text x="24" y="75" font-size="18" font-weight="bold">64 bit minh họa</text>
+<text x="24" y="104" font-size="18">0 | thời gian 41 bit</text>
+<text x="24" y="130" font-size="18">node 10 bit | sequence 12 bit</text>
+<rect x="12" y="162" width="336" height="102" rx="12" fill="#dcfce7" stroke="#64748b"/>
+<text x="24" y="189" font-size="18" font-weight="bold">Mỗi node</text>
+<text x="24" y="218" font-size="18">Node ID riêng, sequence riêng</text>
+<text x="24" y="244" font-size="18">Xử lý hết sequence</text>
+<rect x="12" y="276" width="336" height="102" rx="12" fill="#fef3c7" stroke="#64748b"/>
+<text x="24" y="303" font-size="18" font-weight="bold">Tình huống lỗi</text>
+<text x="24" y="332" font-size="18">Đồng hồ quay lùi • restart</text>
+<text x="24" y="358" font-size="18">Giữ điều kiện không lặp</text>
+</g>
+</svg>

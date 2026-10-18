@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="420" viewBox="0 0 360 420" role="img" aria-labelledby="title desc">
+<title id="title">Chọn load balancer cloud theo đường request</title>
+<desc id="desc">L4: TCP/UDP theo sản phẩm: Đặc tính kết nối và IP; L7: HTTP host/path/header: TLS termination khi cấu hình; So sản phẩm: Protocol • scope • health: Timeout • draining • giá. Các khung là ý chính để đối chiếu, không nhất thiết là các bước tuần tự.</desc>
+<rect width="360" height="420" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, sans-serif" fill="#0f172a">
+<text x="20" y="28" font-size="18" font-weight="bold">sd-11-039 · Nhìn hình trước</text>
+<rect x="12" y="48" width="336" height="102" rx="12" fill="#e0f2fe" stroke="#64748b"/>
+<text x="24" y="75" font-size="18" font-weight="bold">L4</text>
+<text x="24" y="104" font-size="18">TCP/UDP theo sản phẩm</text>
+<text x="24" y="130" font-size="18">Đặc tính kết nối và IP</text>
+<rect x="12" y="162" width="336" height="102" rx="12" fill="#dcfce7" stroke="#64748b"/>
+<text x="24" y="189" font-size="18" font-weight="bold">L7</text>
+<text x="24" y="218" font-size="18">HTTP host/path/header</text>
+<text x="24" y="244" font-size="18">TLS termination khi cấu hình</text>
+<rect x="12" y="276" width="336" height="102" rx="12" fill="#fef3c7" stroke="#64748b"/>
+<text x="24" y="303" font-size="18" font-weight="bold">So sản phẩm</text>
+<text x="24" y="332" font-size="18">Protocol • scope • health</text>
+<text x="24" y="358" font-size="18">Timeout • draining • giá</text>
+</g>
+</svg>

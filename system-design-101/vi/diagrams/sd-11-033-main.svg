@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="420" viewBox="0 0 360 420" role="img" aria-labelledby="title desc">
+<title id="title">Học AWS bằng một ứng dụng nhỏ</title>
+<desc id="desc">Nền tảng: IAM + VPC: EC2 hoặc Lambda; Dữ liệu và phục vụ: S3 • RDS/DynamoDB: LB/API Gateway • DNS/CDN; Vận hành: SQS + worker khi cần: CloudWatch • CloudTrail. Các khung là ý chính để đối chiếu, không nhất thiết là các bước tuần tự.</desc>
+<rect width="360" height="420" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, sans-serif" fill="#0f172a">
+<text x="20" y="28" font-size="18" font-weight="bold">sd-11-033 · Nhìn hình trước</text>
+<rect x="12" y="48" width="336" height="102" rx="12" fill="#e0f2fe" stroke="#64748b"/>
+<text x="24" y="75" font-size="18" font-weight="bold">Nền tảng</text>
+<text x="24" y="104" font-size="18">IAM + VPC</text>
+<text x="24" y="130" font-size="18">EC2 hoặc Lambda</text>
+<rect x="12" y="162" width="336" height="102" rx="12" fill="#dcfce7" stroke="#64748b"/>
+<text x="24" y="189" font-size="18" font-weight="bold">Dữ liệu và phục vụ</text>
+<text x="24" y="218" font-size="18">S3 • RDS/DynamoDB</text>
+<text x="24" y="244" font-size="18">LB/API Gateway • DNS/CDN</text>
+<rect x="12" y="276" width="336" height="102" rx="12" fill="#fef3c7" stroke="#64748b"/>
+<text x="24" y="303" font-size="18" font-weight="bold">Vận hành</text>
+<text x="24" y="332" font-size="18">SQS + worker khi cần</text>
+<text x="24" y="358" font-size="18">CloudWatch • CloudTrail</text>
+</g>
+</svg>

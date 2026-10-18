@@ -1,0 +1,67 @@
+{
+  "id": "sd-11-005",
+  "title_vi": "Chia bảng theo cột hay theo hàng?",
+  "language": "vi",
+  "kind": "explainer",
+  "content_status": "draft",
+  "source_ref": "sd-11-005",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/vertical-partitioning-vs-horizontal-partitioning.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/vertical-partitioning-vs-horizontal-partitioning.md",
+    "blob_sha": "f5ac2b6cdf2742415e7ace320014a0b881e06f55",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "df953b19e7c3f6f5dbb866afa49d9fd38d9d6cd43101ae99fe06db6f75861823",
+    "retrieved_body_bytes": 2263
+  },
+  "diagram": "../diagrams/sd-11-005-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13",
+      "evidence": "Pinned Markdown body retrieved and Git blob identity matched. Source images not inspected."
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "Primary references identified; complete claim-by-claim technical verification pending."
+    },
+    "technical_review": {
+      "status": "pending"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 14.4,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium 147 whole-lesson viewport checks across 49 lessons, all details open; SVG text getBBox inside viewBox and minimum effective text measured. Shared template screenshots at 320px sampled for visual inspection (sd-11-006, sd-11-015, sd-11-024, sd-11-043, sd-11-048). Local static Markdown preview; not a live GitHub/device check or learner testing."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Partitioning trong cùng một DB không đồng nghĩa sharding qua nhiều máy. Chia nhỏ cũng không tự làm mọi truy vấn nhanh hơn.",
+      "sources": [
+        "https://learn.microsoft.com/en-us/azure/architecture/patterns/sharding",
+        "https://www.postgresql.org/docs/current/ddl-partitioning.html"
+      ]
+    }
+  ],
+  "design_notes_vi": "Sơ đồ thẻ so sánh dọc tự thiết kế, chữ 18 px ở viewBox 360 px; có title/desc và alt text. Không dùng ảnh nguồn.",
+  "editorial_note_vi": "Bản thảo viết độc lập theo nhóm người dùng giao ngày 2026-10-13. Chờ review kỹ thuật; chưa user testing hoặc phê duyệt phát hành.",
+  "source_deviations": [
+    "Giữ chủ đề và ID để đối chiếu; giải thích bằng ví dụ tự biên soạn và tài liệu kỹ thuật, không dịch thân bài nguồn.",
+    "Giới hạn cần đối chiếu khi review: Partitioning trong cùng một DB không đồng nghĩa sharding qua nhiều máy. Chia nhỏ cũng không tự làm mọi truy vấn nhanh hơn."
+  ]
+}

@@ -159,6 +159,58 @@ Các bài chưa viết của nhóm này không có trong danh sách; số thứ 
 
 23. [Sau thay đổi API: chọn bộ kiểm tra theo rủi ro](lessons/sd-10-023/lesson.md)
 
+## Đám mây và hệ thống phân tán
+
+1. [AWS Lambda hoạt động phía sau lời gọi hàm](lessons/sd-11-001/lesson.md) — bản nháp; chờ review kỹ thuật.
+2. [Tám cách mở rộng hệ thống theo điểm nghẽn](lessons/sd-11-002/lesson.md) — bản nháp; chờ review kỹ thuật.
+3. [Ba mục tiêu cần phân biệt khi thiết kế hệ thống](lessons/sd-11-003/lesson.md) — bản nháp; chờ review kỹ thuật.
+4. [Bốn chiến lược khôi phục sau thảm họa](lessons/sd-11-004/lesson.md) — bản nháp; chờ review kỹ thuật.
+5. [Chia bảng theo cột hay theo hàng?](lessons/sd-11-005/lesson.md) — bản nháp; chờ review kỹ thuật.
+6. [Chín mẫu tổ chức luồng dữ liệu và giao tiếp](lessons/sd-11-006/lesson.md) — bản nháp; chờ review kỹ thuật.
+7. [Sáu nơi cần xử lý thao tác lặp an toàn](lessons/sd-11-007/lesson.md) — bản nháp; chờ review kỹ thuật.
+8. [Năm đánh đổi thường gặp trong thiết kế](lessons/sd-11-008/lesson.md) — bản nháp; chờ review kỹ thuật.
+9. [Phát hiện node có thể đã hỏng bằng heartbeat](lessons/sd-11-009/lesson.md) — bản nháp; chờ review kỹ thuật.
+10. [Leap second và cách dùng đồng hồ an toàn](lessons/sd-11-010/lesson.md) — bản nháp; chờ review kỹ thuật.
+11. [Bốn trụ cột chất lượng hệ thống](lessons/sd-11-011/lesson.md) — bản nháp; chờ review kỹ thuật.
+12. [Điều gì làm Lambda phản hồi nhanh hơn?](lessons/sd-11-012/lesson.md) — bản nháp; chờ review kỹ thuật.
+13. [Mở rộng website cho hàng triệu người dùng](lessons/sd-11-013/lesson.md) — bản nháp; chờ review kỹ thuật.
+14. [Tám mẫu hạn chế sự cố lan rộng](lessons/sd-11-014/lesson.md) — bản nháp; chờ review kỹ thuật.
+15. [Hai mươi lăm bài nghiên cứu để đọc có mục tiêu](lessons/sd-11-015/lesson.md) — bản nháp; chờ review kỹ thuật.
+16. [Nhập môn khả năng mở rộng kiến trúc](lessons/sd-11-016/lesson.md) — bản nháp; chờ review kỹ thuật.
+17. [Các khối xây dựng của hệ thống](lessons/sd-11-017/lesson.md) — bản nháp; chờ review kỹ thuật.
+18. [Monorepo hay nhiều repo nhỏ?](lessons/sd-11-018/lesson.md) — bản nháp; chờ review kỹ thuật.
+19. [Xử lý lỗi web request mà không làm quá tải thêm](lessons/sd-11-019/lesson.md) — bản nháp; chờ review kỹ thuật.
+20. [Checklist thiết kế chịu lỗi](lessons/sd-11-020/lesson.md) — bản nháp; chờ review kỹ thuật.
+21. [Mạng AWS điển hình: chọn đường kết nối đúng](lessons/sd-11-021/lesson.md) — bản nháp; chờ review kỹ thuật.
+22. [Thiết kế bộ sinh ID kiểu Snowflake](lessons/sd-11-022/lesson.md) — bản nháp; chờ review kỹ thuật.
+23. [Brazil: bài học về build tái lập và dependency](lessons/sd-11-023/lesson.md) — bản nháp; chờ review kỹ thuật.
+24. [Bản đồ công cụ Infrastructure as Code](lessons/sd-11-024/lesson.md) — bản nháp; chờ review kỹ thuật.
+25. [Quản lý cấu hình từ hạ tầng tới ứng dụng](lessons/sd-11-025/lesson.md) — bản nháp; chờ review kỹ thuật.
+26. [Đưa Event Sourcing vào một hệ thống](lessons/sd-11-026/lesson.md) — bản nháp; chờ review kỹ thuật.
+27. [12-Factor App: ứng dụng dễ triển khai và vận hành](lessons/sd-11-027/lesson.md) — bản nháp; chờ review kỹ thuật.
+28. [So sánh năm cách sinh ID](lessons/sd-11-028/lesson.md) — bản nháp; chờ review kỹ thuật.
+29. [Retry: chọn khoảng chờ và ngân sách](lessons/sd-11-029/lesson.md) — bản nháp; chờ review kỹ thuật.
+30. [Giám sát cloud từ tín hiệu tới hành động](lessons/sd-11-030/lesson.md) — bản nháp; chờ review kỹ thuật.
+31. [Distributed lock: khóa chưa đủ nếu chủ cũ vẫn ghi](lessons/sd-11-031/lesson.md) — bản nháp; chờ review kỹ thuật.
+32. [Sáu mẫu messaging trên cloud](lessons/sd-11-032/lesson.md) — bản nháp; chờ review kỹ thuật.
+33. [Học AWS bằng một ứng dụng nhỏ](lessons/sd-11-033/lesson.md) — bản nháp; chờ review kỹ thuật.
+34. [Chuyển hệ thống sang cloud native từng bước](lessons/sd-11-034/lesson.md) — bản nháp; chờ review kỹ thuật.
+35. [Chi phí cloud dễ bị bỏ sót](lessons/sd-11-035/lesson.md) — bản nháp; chờ review kỹ thuật.
+36. [Cloud tiến hóa: phần trách nhiệm được chuyển đi](lessons/sd-11-036/lesson.md) — bản nháp; chờ review kỹ thuật.
+37. [Giảm chi phí cloud mà vẫn giữ mục tiêu dịch vụ](lessons/sd-11-037/lesson.md) — bản nháp; chờ review kỹ thuật.
+38. [Bảy mẫu thường dùng trong hệ thống phân tán](lessons/sd-11-038/lesson.md) — bản nháp; chờ review kỹ thuật.
+39. [Chọn load balancer cloud theo đường request](lessons/sd-11-039/lesson.md) — bản nháp; chờ review kỹ thuật.
+40. [AWS mở rộng dịch vụ theo lớp năng lực](lessons/sd-11-040/lesson.md) — bản nháp; chờ review kỹ thuật.
+41. [Bảng tra Azure theo nhu cầu ứng dụng](lessons/sd-11-041/lesson.md) — bản nháp; chờ review kỹ thuật.
+42. [Mười lăm câu hỏi kiểm lại bản thiết kế](lessons/sd-11-042/lesson.md) — bản nháp; chờ review kỹ thuật.
+43. [CAP, BASE, SOLID và KISS nói về điều gì?](lessons/sd-11-043/lesson.md) — bản nháp; chờ review kỹ thuật.
+44. [Blueprint: trình bày một thiết kế có lý do](lessons/sd-11-044/lesson.md) — bản nháp; chờ review kỹ thuật.
+45. [Thiết kế high availability theo miền lỗi](lessons/sd-11-045/lesson.md) — bản nháp; chờ review kỹ thuật.
+46. [Cloud native là cách thiết kế và vận hành](lessons/sd-11-046/lesson.md) — bản nháp; chờ review kỹ thuật.
+47. [So sánh AWS, Azure và Google Cloud theo vai trò](lessons/sd-11-047/lesson.md) — bản nháp; chờ review kỹ thuật.
+48. [Pipeline dữ liệu lớn trên ba cloud](lessons/sd-11-048/lesson.md) — bản nháp; chờ review kỹ thuật.
+49. [Bảng tra dịch vụ AWS theo trách nhiệm](lessons/sd-11-049/lesson.md) — bản nháp; chờ review kỹ thuật.
+
 ## DevOps và CI/CD
 
 1. [Tắt êm một API trên Kubernetes: năm chỗ làm rớt request](lessons/sd-13-001/lesson.md)
@@ -257,7 +309,7 @@ và hình đạt; không coi đọc nguồn là mọi claim đã đúng, không 
 API và phát triển web (còn sd-01-050) → Tình huống thực tế (đã viết một phần) →
 Cơ sở dữ liệu và lưu trữ (đã viết một phần) → Bộ nhớ đệm và hiệu năng (đã viết một phần) → Thanh toán và công nghệ tài chính →
 Kiến trúc phần mềm → Phát triển phần mềm (đã viết một phần) →
-Đám mây và hệ thống phân tán → Hệ thống hoạt động thế nào? → Bảo mật (đã viết một phần).
+Hệ thống hoạt động thế nào? → Bảo mật (đã viết một phần).
 
 Nhóm “Nền tảng máy tính” (cuối mục lục nguồn) được viết trước theo yêu cầu người dùng ngày 2026-10-13; nhóm “API và phát triển web” viết tiếp theo thứ tự source-map.
 

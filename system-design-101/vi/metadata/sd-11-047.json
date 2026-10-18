@@ -1,0 +1,68 @@
+{
+  "id": "sd-11-047",
+  "title_vi": "So sánh AWS, Azure và Google Cloud theo vai trò",
+  "language": "vi",
+  "kind": "explainer",
+  "content_status": "draft",
+  "source_ref": "sd-11-047",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/cloud-comparison-cheat-sheet.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/cloud-comparison-cheat-sheet.md",
+    "blob_sha": "54d5f449c8996d339f77d4150b5a6a61a7be436f",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "954c12fedc47f71946c32ce18544022a2a0ba5ab6dc67940a8cfb68e3949382c",
+    "retrieved_body_bytes": 637
+  },
+  "diagram": "../diagrams/sd-11-047-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13",
+      "evidence": "Pinned Markdown body retrieved and Git blob identity matched. Source images not inspected."
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "Primary references identified; complete claim-by-claim technical verification pending."
+    },
+    "technical_review": {
+      "status": "pending"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 14.4,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Re-rendered revised five-card service comparison with concrete Azure product names in Chromium at 320/375/430px after finding 4255795496; all details open, SVG getBBox inside viewBox and effective text measured. Static Markdown preview, not GitHub/device or learner testing."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Cùng vai trò không có nghĩa tương đương tính năng hay thay trực tiếp không sửa mã. Tên, gói và hỗ trợ của dịch vụ thay đổi theo thời gian.",
+      "sources": [
+        "https://cloud.google.com/docs/get-started/aws-azure-gcp-service-comparison",
+        "https://learn.microsoft.com/en-us/azure/architecture/aws-professional/services"
+      ]
+    }
+  ],
+  "design_notes_vi": "Sơ đồ thẻ so sánh dọc tự thiết kế, chữ 18 px ở viewBox 360 px; có title/desc và alt text. Không dùng ảnh nguồn.",
+  "editorial_note_vi": "Bản thảo viết độc lập theo nhóm người dùng giao ngày 2026-10-13. Chờ review kỹ thuật; chưa user testing hoặc phê duyệt phát hành.",
+  "source_deviations": [
+    "Giữ chủ đề và ID để đối chiếu; giải thích bằng ví dụ tự biên soạn và tài liệu kỹ thuật, không dịch thân bài nguồn.",
+    "Giới hạn cần đối chiếu khi review: Cùng vai trò không có nghĩa tương đương tính năng hay thay trực tiếp không sửa mã. Tên, gói và hỗ trợ của dịch vụ thay đổi theo thời gian.",
+    "Finding 4255795496: bỏ nhãn mơ hồ Azure DB; hình và alt text ghi cụ thể Azure SQL Database / Azure Database for PostgreSQL, nhóm lựa chọn theo vai trò và engine, không coi là sản phẩm tương đương hoàn toàn."
+  ]
+}

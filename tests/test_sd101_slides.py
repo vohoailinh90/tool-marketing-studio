@@ -585,6 +585,40 @@ class LeaseTests(Sessions):
         self.assertIn("does not match your claim on origin/claude/a", err)
         self.assertEqual(yaml.safe_load(published), yaml.safe_load(git(a, "show", f"origin/claude/a:{relative}")))
 
+    def test_an_expired_claim_that_a_quiet_stronger_claim_beats_is_not_renewed(self) -> None:
+        a, b = self.session("a"), self.session("b")
+        self.assertEqual(0, self.run_in(a, "claim", "sd-01-001", "--publish")[0])
+        self.at(hours=slides.LEASE_HOURS + 1)
+        self.assertEqual(0, self.run_in(b, "claim", "sd-01-001", "--take-stale", "--publish")[0])
+        self.at(hours=2 * slides.LEASE_HOURS + 3)  # b took a's claim over, and has gone quiet too
+        relative = "store/lessons/sd-01-001/slides/deck.yaml"
+        published = git(a, "show", f"origin/claude/a:{relative}")
+        code, _, err = self.run_in(a, "touch", "--publish")
+        self.assertEqual(1, code)
+        self.assertIn("claude/b holds the stronger claim; take the lesson over on purpose with "
+                      "`claim sd-01-001 --take-stale`", err)
+        self.assertEqual(published, git(a, "show", f"origin/claude/a:{relative}"), "the superseded claim is not renewed")
+        self.assertEqual(0, self.run_in(a, "claim", "sd-01-001", "--take-stale", "--publish")[0])
+        self.assertEqual((["claude/b"], 2), (self.record(a, "sd-01-001")["taken_from"],
+                                             self.record(a, "sd-01-001")["generation"]))
+        code, _, err = self.run_in(b, "touch", "--publish")
+        self.assertEqual(1, code)
+        self.assertIn("lost to claude/a", err)
+        self.assertEqual(0, self.run_in(a, "verify")[0], "one live claim, one winner")
+
+    def test_the_loser_of_a_race_does_not_come_back_by_renewing_after_both_went_quiet(self) -> None:
+        a, b = self.session("a"), self.session("b")
+        self.assertEqual(0, self.run_in(a, "claim", "sd-01-001")[0])
+        self.at(seconds=5)
+        self.assertEqual(0, self.run_in(b, "claim", "sd-01-001")[0])
+        self.run_in(b, "claim", "sd-01-001", "--publish")  # b pushes first but claimed later: it lost
+        self.run_in(a, "claim", "sd-01-001", "--publish")
+        self.at(hours=slides.LEASE_HOURS + 1)
+        code, _, err = self.run_in(b, "touch", "--publish")
+        self.assertEqual(1, code)
+        self.assertIn("claude/a holds the stronger claim", err)
+        self.assertEqual(0, self.run_in(a, "touch", "--publish")[0], "the winner renews its own expired claim")
+
     def test_touching_keeps_a_claim_alive(self) -> None:
         a, b = self.session("a"), self.session("b")
         self.run_in(a, "claim", "sd-01-001", "--publish")

@@ -15,6 +15,7 @@ The order of work for one session is `docs/sd101-slides-handoff.md`; the claims,
 3. `python3 scripts/sd101_slide_brief.py <id>` cuts the lesson into slide roles, names the canvas, fixes the slide count and the colour of
    each concept. It copies the lesson's lines; condensing them to 10 words and drawing the slide is your job. Add nothing the lesson
    does not say.
-4. Build one slide per `canvas_apply_markup`, look at every slide with `canvas_screenshot`, then `sd101_slides.py finish ... --publish`,
-   then export the deck as PPTX into the lesson's `slides/` folder and record it with `sd101_slides.py exported <id> --badged --publish`.
+4. Build one slide per `canvas_apply_markup`, look at every slide with `canvas_screenshot`, then
+   `sd101_slides.py finish <id> --canvas ... --url ... --slides N --layouts KINDS --first-concept N --publish` (the layout table of
+   `docs/sd101-slides.md`; the brief names the signature layout of slide 3), then export the deck as PPTX into the lesson's `slides/` folder and record it with `sd101_slides.py exported <id> --badged --publish`.
 5. Never remove the `moda.app` badge from an export, never publish or upload anything to Facebook.

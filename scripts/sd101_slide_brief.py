@@ -34,10 +34,18 @@ SLIDE_COUNTS = range(8, 11)
 FIXED_SLIDES = 6
 CONCEPT_SLIDES = range(SLIDE_COUNTS.start - FIXED_SLIDES, SLIDE_COUNTS.stop - FIXED_SLIDES)
 WORD_BUDGET = 10  # words per bullet
-# One colour per concept, the same on every slide of the deck: (name, on cream, on dark).
+# One colour per concept, the same on every slide of the deck: (name, on cream, on dark). The order is the one docs/sd101-slides.md
+# counts the accents in (*Accent rotation*): the k-th concept of lesson n takes the accent numbered (n + k) mod 4.
 CONCEPT_COLOURS = (("blue", "#1F3FD1", "#7C93FF"), ("amber", "#B45309", "#FFB454"),
                    ("teal", "#0F766E", "#3DD6A0"), ("red", "#E8472B", "#FF6A4D"))
-LAYOUTS = ("flow", "cards", "numbered rows", "sequence diagram", "steps")  # rotated so neighbours differ
+# The twelve layout kinds of the layout table, in the order docs/sd101-slides.md (*Variety between decks*) lists them. This is a copy
+# of scripts/sd101_slides.py, which `finish` checks the table against; tests/test_sd101_slide_brief.py holds the two together.
+LAYOUT_KINDS = ("sequence-diagram", "flow", "two-column-comparison", "2x2-matrix", "lookup-table", "card-grid",
+                "numbered-rows", "connection-diagram", "layers", "timeline", "one-big-number", "one-highlighted-sentence")
+MIN_LAYOUT_KINDS = 5  # a deck uses at least this many different kinds
+FIRST_CONCEPT_SLIDE = 3  # the cover and the situation slide come first, so the first concept is always on slide 3
+FOLLOW_CONTENT = "follow the content"  # the backdrop of a slide between the dark cover and the dark closing slide
+FREE_LAYOUT = "your choice (see the layout table)"
 
 DETAILS = re.compile(r"<details>\s*<summary>(.*?)</summary>(.*?)</details>", re.S)
 IMAGE = re.compile(r"^!\[(.*?)\]\((.*?)\)\s*$")
@@ -110,6 +118,7 @@ class Brief:
     figure_alt: str
     concept_source: str
     colours: list
+    signature_layout: str
     slides: list
     warnings: list
 
@@ -371,13 +380,20 @@ def sources(text: str | None) -> list[dict]:
     return [line(name).__dict__ for name in names]
 
 
+def accent(number: int, concept: int) -> tuple[str, str, str]:
+    """The accent of the concept-th concept (from 0) of lesson number `number`: (n + k) mod 4, as docs/sd101-slides.md counts them."""
+    return CONCEPT_COLOURS[(number + concept) % len(CONCEPT_COLOURS)]
+
+
+def signature_layout(number: int) -> str:
+    """The layout kind the slide of the lesson's first concept takes: position (n mod 12) of the list, counted from 0."""
+    return LAYOUT_KINDS[number % len(LAYOUT_KINDS)]
+
+
 def backgrounds(count: int) -> list[str]:
-    """Cover and closing are dark and the middle alternates from cream. An odd count alternates all the way; an even
-    count has to repeat one background once, which is put just before the closing slide."""
-    result = ["dark"] + ["cream" if index % 2 == 0 else "dark" for index in range(count - 2)] + ["dark"]
-    if count > 2 and result[-2] == "dark":
-        result[-2] = "cream"
-    return result
+    """The cover and the closing terms slide are dark; the slides between them follow the content (docs/sd101-slides.md,
+    *Light and dark*), so the brief names no backdrop for them: a strict alternation is what that rule removes."""
+    return ["dark"] + [FOLLOW_CONTENT] * (count - 2) + ["dark"]
 
 
 def build(store: pathlib.Path, lesson_id: str) -> Brief:
@@ -402,13 +418,14 @@ def build(store: pathlib.Path, lesson_id: str) -> Brief:
                         f"{CONCEPT_SLIDES.start} concept slides, so split the figure's description by hand")
     slots = min(max(len(raw_concepts), CONCEPT_SLIDES.start), CONCEPT_SLIDES.stop - 1)
     sizes = group_sizes(len(raw_concepts), slots)
+    lesson_number = int(match.group(2))
     colours = [{"concept_slide": index + 1, "name": name, "on_cream": cream, "on_dark": dark}
-               for index, (name, cream, dark) in enumerate(CONCEPT_COLOURS[:slots])]
+               for index, (name, cream, dark) in enumerate(accent(lesson_number, index) for index in range(slots))]
 
     concept_slides: list[list[Concept]] = []
     cursor = 0
     for index, size in enumerate(sizes):
-        concept_slides.append([Concept(label, text, derived, CONCEPT_COLOURS[index][0])
+        concept_slides.append([Concept(label, text, derived, accent(lesson_number, index)[0])
                                for label, text, derived in raw_concepts[cursor:cursor + size]])
         cursor += size
 
@@ -459,8 +476,10 @@ def build(store: pathlib.Path, lesson_id: str) -> Brief:
 
     footer = "System Design 101 · Bài {} · {:02d}/{:02d}"
     backdrops = backgrounds(count)
-    layouts = [LAYOUTS[(int(match.group(2)) + offset) % len(LAYOUTS)] for offset in range(count)]
-    slides = [Slide(1, "cover", backdrops[0], "concept hub", "(no footer on the cover)", {
+    signature = signature_layout(lesson_number)
+    layouts = [FREE_LAYOUT] * count
+    layouts[FIRST_CONCEPT_SLIDE - 1] = signature  # only the first concept's slide is fixed by the lesson id
+    slides = [Slide(1, "cover", backdrops[0], layouts[0], "(no footer on the cover)", {
         "title": line(parsed.title, budget=False).__dict__, "hook": line(hook).__dict__,
         **({"question_candidate": line(question[0]).__dict__} if question else {}),
         "one_line_per_concept": [line(" / ".join(c.label for c in group)).__dict__ for group in concept_slides]})]
@@ -470,7 +489,7 @@ def build(store: pathlib.Path, lesson_id: str) -> Brief:
         position = 3 + index
         slides.append(Slide(position, f"concept {index + 1} of {slots}", backdrops[position - 1], layouts[position - 1],
                             footer.format(number, position, count), {
-                                "colour": CONCEPT_COLOURS[index][0],
+                                "colour": accent(lesson_number, index)[0],
                                 "concepts": [{"label": c.label, "label_derived": c.label_derived,
                                               "label_words": line(c.label).words, "label_over_budget": line(c.label).over_budget,
                                               "line": line(c.text).__dict__} for c in group]}))
@@ -488,7 +507,7 @@ def build(store: pathlib.Path, lesson_id: str) -> Brief:
     slides.append(Slide(position, "deep dive", backdrops[position - 1], layouts[position - 1],
                         footer.format(number, position, count), {
                             "lines": [line(text).__dict__ for text in in_order(deep)]}))
-    slides.append(Slide(count, "terms and sources", backdrops[count - 1], "two columns",
+    slides.append(Slide(count, "terms and sources", backdrops[count - 1], layouts[count - 1],
                         footer.format(number, count, count), {
                             "terms": glossary, "sources": names}))
     deck = [dataclasses.asdict(slide) for slide in slides]
@@ -496,7 +515,7 @@ def build(store: pathlib.Path, lesson_id: str) -> Brief:
         warnings.append(f"the lesson types an address; it shows as {ADDRESS_TOKEN} below. Draw such an example as its "
                         "parts (scheme, host, path ...) or by a label, never as one typed address")
     return Brief(lesson_id, number, title, f"System Design 101 · Bài {number} · {title} ({lesson_id})", count,
-                 parsed.alt, source, colours, deck, warnings)
+                 parsed.alt, source, colours, signature, deck, warnings)
 
 
 def escape_markup(text: str) -> str:
@@ -517,16 +536,23 @@ def render(brief: Brief) -> str:
            f"- Concepts are taken from: {brief.concept_source}",
            *([f"- The figure's own line breaks are lost in the card text below; open `diagrams/{brief.lesson}-main.svg` "
               "to read the sentences as they are"] if "figure" in brief.concept_source else []),
-           "- Concept colours (same on every slide of the deck): " + ", ".join(
+           "- Concept colours (same on every slide of the deck; the lesson number sets where the rotation starts): " + ", ".join(
                f"concept slide {c['concept_slide']} {c['name']} {c['on_cream']} (on dark {c['on_dark']})"
                for c in brief.colours),
+           f"- Layout table: every slide is one of the {len(LAYOUT_KINDS)} kinds ({', '.join(LAYOUT_KINDS)}); a deck uses at least "
+           f"{MIN_LAYOUT_KINDS} different kinds and never the same kind on two adjacent slides. Slide {FIRST_CONCEPT_SLIDE}, the first "
+           f"concept's, takes `{brief.signature_layout}` (the signature layout of {brief.lesson}) or, when its content cannot be shown "
+           "that way, the next kind of the list that it can, wrapping round; `finish --cannot KIND=REASON` names each kind passed over. "
+           "Every other slide's kind is your choice.",
+           "- Light and dark: the cover and the terms and sources slide are dark; for the slides between them follow the content, "
+           "never more than three in a row on the same background (no strict alternation).",
            f"- Budget: at most {WORD_BUDGET} words per bullet and 3 bullets per card; every line below is copied from "
            "`lesson.md`, so condense it, never add to it."]
     for warning in brief.warnings:
         out.append(f"- WARNING: {warning}")
     for slide in brief.slides:
         out += ["", f"## Slide {slide['number']} of {brief.slide_count}: {slide['role']}",
-                f"background {slide['background']}, layout idea: {slide['layout']}, footer: {slide['footer']}"]
+                f"background {slide['background']}, layout kind: {slide['layout']}, footer: {slide['footer']}"]
         material = slide["material"]
         for key, value in material.items():
             if isinstance(value, dict) and "text" in value:
@@ -557,6 +583,8 @@ def render(brief: Brief) -> str:
             "- every line fits the budget and nothing was added to what the lesson says;",
             "- nothing on a slide is smaller than 22 px and the bottom right corner is clear;",
             "- every slide but the cover has its footer text and one progress dot per slide, the current one red;",
+            f"- the layout table is ready, one kind per slide, comma-separated: `finish --layouts KINDS --first-concept {FIRST_CONCEPT_SLIDE}` "
+            "(and `--cannot` after a fallback);",
             "- `canvas_screenshot` of every slide shows no cut-off or shrunk text.", ""]
     return "\n".join(out)
 

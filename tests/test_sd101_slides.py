@@ -1310,6 +1310,20 @@ class FinishDocsTests(unittest.TestCase):
         for option in self.required_options():
             self.assertIn(option, example, f"docs/sd101-slides.md's finish example lacks {option}")
 
+    def test_the_handoff_names_every_required_option_of_finish(self) -> None:
+        text = (self.ROOT / "docs" / "sd101-slides-handoff.md").read_text(encoding="utf-8")
+        start = text.index("scripts/sd101_slides.py finish sd-01-027")
+        example = text[start:text.index("scripts/sd101_check.py", start)]
+        for option in self.required_options():
+            self.assertIn(option, example, f"docs/sd101-slides-handoff.md's finish example lacks {option}")
+
+    def test_the_slide_skill_names_every_required_option_of_finish(self) -> None:
+        text = (self.ROOT / ".claude" / "skills" / "sd101-slides" / "SKILL.md").read_text(encoding="utf-8")
+        start = text.index("sd101_slides.py finish")
+        command = text[start:text.index("then export", start)]
+        for option in self.required_options():
+            self.assertIn(option, command, f"the sd101-slides skill's finish command lacks {option}")
+
 
 class LayoutTableTests(unittest.TestCase):
     """The layout table of docs/sd101-slides.md (*Variety between decks*), kept in the record by `finish`."""

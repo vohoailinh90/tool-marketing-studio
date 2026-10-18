@@ -287,9 +287,9 @@ What the loop does not change:
   alt text from `alt.txt`. Never hand-edit a slide and never upload a picture exported from Moda, Canva, Figma, draw.io or Excalidraw as a
   standard image. The slides are written to `build/figures/facebook/` (gitignored) and uploaded by the owner; a session never uploads.
   The one exception, decided by the owner on 2026-10-17: a lesson's **slide deck** (`docs/sd101-slides.md`: built on Moda, 1920x1080,
-  8 to 10 slides, claimed with `scripts/sd101_slides.py`) is its own Facebook product, not a figure. Only the PNG files that `exported`
-  records go to Facebook, and the owner uploads them: exported without the `moda.app` badge (which is never removed) or, since
-  2026-10-18, with it when the deck is recorded `exports: badged` (the owner accepts the badge on them); a badged PPTX never does.
+  8 to 10 slides, claimed with `scripts/sd101_slides.py`) is its own Facebook product, not a figure. The repository keeps a deck as its
+  PPTX alone, exported with the `moda.app` badge (which is never removed) and merged into `main` (owner decision 2026-10-18); no PNG
+  file of a deck is stored. What goes to Facebook from it is the owner's act, never a session's.
 
 ## System Design lessons: claim before you write
 
@@ -320,13 +320,15 @@ files and the exports. Several sessions build decks at once and `claims.jsonl` k
   exit 2 when the remote cannot be read: fix that, do not guess.
 - **While working**: `touch --publish` now and then; `verify` must exit 0 before you push. If you lost a claim, stop on that
   lesson and `release` it. A claim of a dead session (no heartbeat for 72 h) is taken over with `claim --take-stale`.
-- **When done**: `finish <id> --canvas <cvs_...> --url <editor link> --slides <n> --publish` and commit the rest of the lesson's
-  `slides/` folder. `--publish` pushes the finished record and checks the claim again afterwards; if the record reaches the
-  remote any other way (a plain `git push`), run `verify` afterwards: it checks finished decks too.
-- **The Moda watermark stays.** The free plan puts a `moda.app` badge on exported PNG and PPTX files and has no switch for
-  it; never remove it from a file. A deck is finished with `exports: pending`. Its PPTX, and its PNG files (all or none), may be
-  added as the free plan exports them, badge and all (`exported <id> --badged`, owner decision 2026-10-18; the PPTX is a
-  reference copy, not for Facebook), and its files are added as done (`exported <id>`) only once Moda exports them without the badge.
+- **When done**: `finish <id> --canvas <cvs_...> --url <editor link> --slides <n> --publish`, then export the deck as PPTX, save it as
+  `lessons/<id>/slides/<id>.pptx` and run `exported <id> --badged --publish`; commit the rest of the lesson's `slides/` folder.
+  `--publish` pushes the record and checks the claim again afterwards; if the record reaches the remote any other way (a plain
+  `git push`), run `verify` afterwards: it checks finished decks too. The PPTX must reach `main` (pull request, merge): a deck
+  recorded `exports: pending` is not complete.
+- **The Moda watermark stays.** The free plan puts a `moda.app` badge on every exported file and has no switch for it; never remove
+  it from a file. The PPTX is saved with the badge and merged into `main` (`exported <id> --badged`, owner decision 2026-10-18). Do
+  not store PNG files of a deck: the PPTX is the whole export, and `sd101_check.py` fails a `.png` in `slides/`. A PPTX exported
+  without the badge (`exported <id>`, `exports: done`) replaces it only once Moda exports that way.
 
 ## Languages (Vietnamese / Japanese / English)
 

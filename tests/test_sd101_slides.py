@@ -10,7 +10,6 @@ import os
 import struct
 import tempfile
 import unittest
-import zlib
 from pathlib import Path
 from unittest import mock
 
@@ -31,28 +30,6 @@ def git(cwd: Path, *args: str) -> str:
     if result.returncode != 0:
         raise AssertionError(f"git {' '.join(args)} failed: {result.stderr}")
     return result.stdout.strip()
-
-
-def chunk(kind: bytes, body: bytes) -> bytes:
-    return struct.pack(">I", len(body)) + kind + body + struct.pack(">I", zlib.crc32(kind + body))
-
-
-def png_bytes(width: int = 1920, height: int = 1080) -> bytes:
-    """A whole PNG: signature, IHDR, one IDAT with every scanline, IEND."""
-    header = struct.pack(">IIBBBBB", width, height, 8, 2, 0, 0, 0)
-    image = zlib.compress(b"\x00" * (height * (1 + 3 * width)))
-    return slides.PNG_SIGNATURE + chunk(b"IHDR", header) + chunk(b"IDAT", image) + chunk(b"IEND", b"")
-
-
-def png_of(raw: bytes, width: int = 16, height: int = 16, colour: int = 2, interlace: int = 0, tail: bytes = b"") -> bytes:
-    """A PNG whose single IDAT inflates to `raw`, whatever its header says about the size of the image."""
-    header = struct.pack(">IIBBBBB", width, height, 8, colour, 0, 0, interlace)
-    return (slides.PNG_SIGNATURE + chunk(b"IHDR", header) + chunk(b"IDAT", zlib.compress(raw) + tail)
-            + chunk(b"IEND", b""))
-
-
-def png(path: Path, width: int = 1920, height: int = 1080) -> None:
-    path.write_bytes(png_bytes(width, height))
 
 
 def pptx(path: Path, parts: tuple[str, ...] = slides.PPTX_PARTS, badged: bool = False, count: int = 8,
@@ -812,10 +789,9 @@ class FinishTests(Sessions):
         code, _, err = self.finish(a, "sd-01-001", "--exports", "done")
         self.assertEqual(1, code)
         self.assertIn("sd-01-001.pptx is missing", err)
-        self.assertIn("10.png is missing", err)
         self.assertEqual(before, self.record(a, "sd-01-001"))
 
-    def test_exported_records_complete_exports_and_refuses_incomplete_ones(self) -> None:
+    def test_exported_records_a_pptx_exported_without_the_badge_and_refuses_a_missing_one(self) -> None:
         a = self.session("a")
         self.run_in(a, "claim", "sd-01-001", "--publish")
         self.finish(a, "sd-01-001")
@@ -825,14 +801,13 @@ class FinishTests(Sessions):
         self.assertIn("sd-01-001.pptx is missing", err)
         self.assertEqual("pending", self.record(a, "sd-01-001")["exports"])
         pptx(folder / "sd-01-001.pptx", count=10)
-        for number in range(1, 11):
-            png(folder / f"{number:02d}.png")
         code, _, err = self.run_in(a, "exported", "sd-01-001", "--publish")
         self.assertEqual(0, code, err)
         self.assertEqual("done", self.record(a, "sd-01-001")["exports"])
-        self.assertIn("10.png", git(a, "ls-tree", "-r", "--name-only", "origin/claude/a"))
+        self.assertEqual("Slides: PPTX of sd-01-001", git(a, "log", "-1", "--format=%s", "origin/claude/a"))
+        self.assertIn("sd-01-001.pptx", git(a, "ls-tree", "-r", "--name-only", "origin/claude/a"))
 
-    def test_exported_badged_records_a_pptx_with_the_moda_badge_alone_but_never_as_done(self) -> None:
+    def test_exported_badged_records_the_pptx_with_the_moda_badge_but_never_as_done(self) -> None:
         a = self.session("a")
         self.run_in(a, "claim", "sd-01-001", "--publish")
         self.finish(a, "sd-01-001")
@@ -841,43 +816,16 @@ class FinishTests(Sessions):
         self.assertEqual(1, code)
         self.assertIn("sd-01-001.pptx is missing", err)
         pptx(folder / "sd-01-001.pptx", badged=True, count=10)
-        for number in range(1, 11):
-            png(folder / f"{number:02d}.png")
         code, _, err = self.run_in(a, "exported", "sd-01-001")
-        self.assertEqual(1, code, "files with the badge are never recorded as done")
+        self.assertEqual(1, code, "a file with the badge is never recorded as done")
         self.assertIn("sd-01-001.pptx carries the moda.app badge", err)
         self.assertEqual("pending", self.record(a, "sd-01-001")["exports"])
-        for number in range(1, 11):
-            (folder / f"{number:02d}.png").unlink()
         code, out, err = self.run_in(a, "exported", "sd-01-001", "--badged", "--publish")
         self.assertEqual(0, code, err)
         self.assertIn("exports of sd-01-001 are badged", out)
         self.assertEqual("badged", self.record(a, "sd-01-001")["exports"])
         self.assertIn("sd-01-001.pptx", git(a, "ls-tree", "-r", "--name-only", "origin/claude/a"))
         self.assertEqual("Slides: badged PPTX of sd-01-001", git(a, "log", "-1", "--format=%s", "origin/claude/a"))
-
-    def test_exported_badged_records_the_png_files_of_the_deck_with_its_pptx(self) -> None:
-        a = self.session("a")
-        self.run_in(a, "claim", "sd-01-001", "--publish")
-        self.finish(a, "sd-01-001")
-        folder = a / "store" / "lessons" / "sd-01-001" / "slides"
-        pptx(folder / "sd-01-001.pptx", badged=True, count=10)
-        for number in range(1, 10):
-            png(folder / f"{number:02d}.png")
-        code, _, err = self.run_in(a, "exported", "sd-01-001", "--badged")
-        self.assertEqual(1, code, "a badged export holds all the PNG files of its deck or none")
-        self.assertIn("10.png is missing", err)
-        self.assertEqual("pending", self.record(a, "sd-01-001")["exports"])
-        png(folder / "10.png")
-        code, out, err = self.run_in(a, "exported", "sd-01-001", "--badged", "--publish")
-        self.assertEqual(0, code, err)
-        self.assertIn("exports of sd-01-001 are badged", out)
-        self.assertEqual("badged", self.record(a, "sd-01-001")["exports"])
-        files = git(a, "ls-tree", "-r", "--name-only", "origin/claude/a")
-        self.assertIn("10.png", files)
-        self.assertIn("sd-01-001.pptx", files)
-        self.assertEqual("Slides: badged PPTX and PNG files of sd-01-001",
-                         git(a, "log", "-1", "--format=%s", "origin/claude/a"))
 
     def test_exported_refuses_a_deck_that_is_not_finished(self) -> None:
         a = self.session("a")
@@ -889,8 +837,6 @@ class FinishTests(Sessions):
     def exports_in(self, clone: Path) -> Path:
         folder = clone / "store" / "lessons" / "sd-01-001" / "slides"
         pptx(folder / "sd-01-001.pptx", count=10)
-        for number in range(1, 11):
-            png(folder / f"{number:02d}.png")
         return folder
 
     def test_finish_waits_for_a_renewal_when_the_lease_has_expired(self) -> None:
@@ -1041,17 +987,15 @@ class FinishTests(Sessions):
         self.finish(a, "sd-01-001")
         folder = a / "store" / "lessons" / "sd-01-001" / "slides"
         pptx(folder / "sd-01-001.pptx", count=10)
-        for number in range(1, 11):
-            png(folder / f"{number:02d}.png")
         lock = Path(git(a, "rev-parse", "--absolute-git-dir")) / "index.lock"
         lock.write_text("", encoding="utf-8")  # the index is busy: git add cannot stage anything
         code, _, err = self.run_in(a, "exported", "sd-01-001", "--publish")
         self.assertEqual(2, code)
         self.assertIn("git add failed", err)
         lock.unlink()
-        self.assertNotIn("10.png", git(a, "ls-tree", "-r", "--name-only", "origin/claude/a"))
+        self.assertNotIn("sd-01-001.pptx", git(a, "ls-tree", "-r", "--name-only", "origin/claude/a"))
         self.assertEqual(0, self.run_in(a, "exported", "sd-01-001", "--publish")[0], "once the index is free it publishes")
-        self.assertIn("10.png", git(a, "ls-tree", "-r", "--name-only", "origin/claude/a"))
+        self.assertIn("sd-01-001.pptx", git(a, "ls-tree", "-r", "--name-only", "origin/claude/a"))
 
     def test_a_finished_record_whose_precedence_differs_from_the_published_one_is_refused(self) -> None:
         a = self.session("a")
@@ -1182,10 +1126,8 @@ class FolderTests(unittest.TestCase):
         record.update(fields)
         (self.dir / "deck.yaml").write_text(slides.render(record), encoding="utf-8")
 
-    def exports(self, count: int = 8) -> None:
+    def exports(self) -> None:
         pptx(self.dir / "sd-01-001.pptx")
-        for number in range(1, count + 1):
-            png(self.dir / f"{number:02d}.png")
 
     def problems(self) -> list[str]:
         return slides.folder_problems(self.dir, "sd-01-001")
@@ -1193,17 +1135,28 @@ class FolderTests(unittest.TestCase):
     def test_pending_exports_leave_only_the_record(self) -> None:
         self.write()
         self.assertEqual([], self.problems())
-        (self.dir / "01.png").write_bytes(b"x")
-        self.assertTrue(any("01.png is not expected" in problem for problem in self.problems()))
+        (self.dir / "notes.txt").write_bytes(b"x")
+        self.assertEqual(["notes.txt is not expected here"], self.problems())
 
-    def test_complete_exports_pass(self) -> None:
+    def test_a_deck_is_its_pptx_alone_so_a_png_file_is_never_expected(self) -> None:
+        for exports, badged in (("pending", False), ("badged", True), ("done", False)):
+            with self.subTest(exports=exports):
+                self.write(exports=exports)
+                if exports != "pending":
+                    pptx(self.dir / "sd-01-001.pptx", badged=badged)
+                self.assertEqual([], self.problems())
+                (self.dir / "01.png").write_bytes(b"x")
+                self.assertEqual(["01.png is not expected here (the repository keeps a deck as its PPTX alone: no PNG "
+                                  "files)"], self.problems())
+                (self.dir / "01.png").unlink()
+
+    def test_a_pptx_exported_without_the_badge_passes_as_done(self) -> None:
         self.write(exports="done")
         self.exports()
         self.assertEqual([], self.problems())
 
     def test_a_pptx_with_the_moda_badge_is_never_recorded_as_done(self) -> None:
         self.write(exports="done")
-        self.exports()
         pptx(self.dir / "sd-01-001.pptx", badged=True)
         self.assertEqual(["sd-01-001.pptx carries the moda.app badge: record it with `exported sd-01-001 --badged`"],
                          self.problems())
@@ -1215,22 +1168,6 @@ class FolderTests(unittest.TestCase):
         self.assertEqual([], self.problems())
         (self.dir / "sd-01-001.pptx").write_bytes(b"not a zip")
         self.assertEqual(["sd-01-001.pptx is not a PowerPoint file: not a ZIP archive"], self.problems())
-
-    def test_a_badged_export_holds_all_the_png_files_of_its_deck_or_none(self) -> None:
-        self.write(exports="badged")
-        pptx(self.dir / "sd-01-001.pptx", badged=True)
-        png(self.dir / "01.png")
-        self.assertEqual([f"{number:02d}.png is missing" for number in range(2, 9)], self.problems(),
-                         "one PNG file makes the set the deck's, so the rest are due")
-        for number in range(2, 9):
-            png(self.dir / f"{number:02d}.png")
-        self.assertEqual([], self.problems())
-        png(self.dir / "09.png")
-        self.assertEqual(["09.png is not expected here (a badged export is the PPTX, with all its PNG files or none)"],
-                         self.problems())
-        (self.dir / "09.png").unlink()
-        png(self.dir / "08.png", 800, 600)
-        self.assertEqual(["08.png is not a 1920x1080 PNG"], self.problems(), "its PNG files are opened like any other")
 
     def test_a_pptx_whose_badge_was_removed_from_some_slides_is_never_recorded_as_badged(self) -> None:
         self.write(exports="badged")
@@ -1255,20 +1192,20 @@ class FolderTests(unittest.TestCase):
     def test_a_badge_free_pptx_is_never_recorded_as_badged(self) -> None:
         self.write(exports="badged")
         pptx(self.dir / "sd-01-001.pptx")
-        self.assertEqual(["sd-01-001.pptx does not carry the moda.app badge: add its PNG files and record it with "
-                          "`exported sd-01-001`"], self.problems())
+        self.assertEqual(["sd-01-001.pptx does not carry the moda.app badge: record it with `exported sd-01-001`"],
+                         self.problems())
 
     def test_pending_exports_hold_no_pptx(self) -> None:
         self.write()
         pptx(self.dir / "sd-01-001.pptx", badged=True)
-        self.assertEqual(["sd-01-001.pptx is not expected here (exports are not recorded as done)"], self.problems())
+        self.assertEqual(["sd-01-001.pptx is not expected here (record the export with `exported sd-01-001 --badged` "
+                          "once the deck is finished)"], self.problems())
 
-    def test_a_missing_slide_or_a_wrong_size_is_reported(self) -> None:
-        self.write(exports="done")
-        self.exports(7)
-        self.assertEqual(["08.png is missing"], self.problems())
-        png(self.dir / "08.png", 800, 600)
-        self.assertEqual(["08.png is not a 1920x1080 PNG"], self.problems())
+    def test_a_missing_pptx_is_reported_for_every_recorded_export(self) -> None:
+        for exports in ("badged", "done"):
+            with self.subTest(exports=exports):
+                self.write(exports=exports)
+                self.assertEqual(["sd-01-001.pptx is missing"], self.problems())
 
     def test_a_deck_has_the_documented_size(self) -> None:
         self.write(size="800x600")
@@ -1307,84 +1244,6 @@ class FolderTests(unittest.TestCase):
         data[data.index(b"<x/>")] ^= 0xFF  # the first member's stored bytes no longer match their checksum
         path.write_bytes(bytes(data))
         self.assertEqual(["sd-01-001.pptx is not a PowerPoint file: [Content_Types].xml is damaged"], self.problems())
-
-    def test_a_png_that_is_not_whole_is_reported(self) -> None:
-        self.write(exports="done")
-        self.exports()
-        whole = png_bytes()
-        end = chunk(b"IEND", b"")
-        header = slides.PNG_SIGNATURE + chunk(b"IHDR", whole[16:29])
-        flipped = bytearray(whole)
-        flipped[len(header) + 20] ^= 0xFF
-        cases = {
-            "only the signature and IHDR": (header, "no IEND chunk"),
-            "cut inside a chunk": (whole[:len(whole) // 2], "cut off inside a chunk"),
-            "no IEND": (whole[:-len(end)], "no IEND chunk"),
-            "bytes after IEND": (whole + b"\x00", "bytes after IEND"),
-            "a changed byte": (bytes(flipped), "checksum of IDAT does not match"),
-            "no image chunk": (header + end, "image data is missing or cut short"),
-            "an image stream that stops early": (header + chunk(b"IDAT", zlib.compress(b"\x00" * 99)[:-6]) + end,
-                                                 "image data is missing or cut short"),
-            "image data that is not a zlib stream": (header + chunk(b"IDAT", b"not a zlib stream") + end,
-                                                     "image data is damaged"),
-            "IHDR not first": (slides.PNG_SIGNATURE + end + whole[8:], "IHDR is not the first chunk"),
-            "not a PNG": (b"GIF89a" + whole[6:], "no PNG signature"),
-        }
-        for label, (data, reason) in cases.items():
-            with self.subTest(label):
-                (self.dir / "03.png").write_bytes(data)
-                self.assertEqual([f"03.png is not a whole PNG: {reason}"], self.problems())
-        png(self.dir / "03.png")
-        self.assertEqual([], self.problems())
-
-    def test_the_inflated_image_data_is_bounded_by_what_the_header_describes(self) -> None:
-        lines = 16 * (1 + 16 * 3)  # a 16x16 RGB image: a filter byte and 48 sample bytes per line
-        cases = {
-            "exactly the image": (png_of(b"\x00" * lines), None),
-            "far more than the image": (png_of(b"\x00" * 5_000_000),
-                                        "image data inflates to more than the header describes"),
-            "one line short": (png_of(b"\x00" * (lines - 49)), "image data is shorter than the header describes"),
-            "bytes after the stream": (png_of(b"\x00" * lines, tail=b"junk"),
-                                       "image data continues after the end of its stream"),
-            "a colour type that does not exist": (png_of(b"\x00" * lines, colour=5), "IHDR does not describe an image"),
-            "an interlaced image, exactly": (png_of(b"\x00" * 798, interlace=1), None),  # seven passes of 16x16 RGB
-            "an interlaced image one byte short": (png_of(b"\x00" * 797, interlace=1),
-                                                   "image data is shorter than the header describes"),
-            "an interlaced image one byte over": (png_of(b"\x00" * 799, interlace=1),
-                                                  "image data inflates to more than the header describes"),
-            "an interlaced image beyond its bound": (png_of(b"\x00" * 10_000, interlace=1),
-                                                     "image data inflates to more than the header describes"),
-            "an interlaced image with no scanlines": (png_of(b"", width=1920, height=1080, interlace=1),
-                                                      "image data is shorter than the header describes"),
-            "an interlace method that does not exist": (png_of(b"\x00" * lines, interlace=2),
-                                                        "IHDR does not describe an image"),
-        }
-        for label, (data, reason) in cases.items():
-            with self.subTest(label):
-                path = self.dir / "01.png"
-                path.write_bytes(data)
-                self.assertEqual(reason, slides.png_damage(path))
-
-    def test_the_scanlines_of_an_interlaced_image_are_counted_pass_by_pass(self) -> None:
-        # the published Adam7 pattern: the pass (1 to 7) every pixel of an 8x8 tile belongs to
-        pattern = ("16462646", "77777777", "56565656", "77777777", "34643464", "77777777", "56565656", "77777777")
-
-        def reference(width: int, height: int, bits: int) -> int:
-            lines: dict[str, dict[int, int]] = {}
-            for y in range(height):
-                for x in range(width):
-                    number = pattern[y % 8][x % 8]
-                    lines.setdefault(number, {}).setdefault(y, 0)
-                    lines[number][y] += 1
-            return sum(1 + (count * bits + 7) // 8 for rows in lines.values() for count in rows.values())
-
-        self.assertEqual(798, slides.png_scanlines(16, 16, 24, 1))
-        self.assertEqual(16 * 49, slides.png_scanlines(16, 16, 24, 0))
-        for width in (1, 2, 3, 5, 8, 9, 16, 17):
-            for height in (1, 2, 4, 5, 8, 9, 17):
-                for bits in (1, 2, 4, 8, 16, 24, 32, 64):
-                    with self.subTest(width=width, height=height, bits=bits):
-                        self.assertEqual(reference(width, height, bits), slides.png_scanlines(width, height, bits, 1))
 
     def test_a_pptx_with_a_part_that_cannot_be_unpacked_is_reported_not_raised(self) -> None:
         import zipfile
@@ -1426,133 +1285,6 @@ class FolderTests(unittest.TestCase):
                 (self.dir / "sd-01-001.pptx").write_bytes(patched(change, **options))
                 self.assertEqual(reason, slides.pptx_damage(self.dir / "sd-01-001.pptx"))
                 self.assertEqual([f"sd-01-001.pptx is not a PowerPoint file: {reason}"], self.problems())
-
-    def test_the_stream_is_never_inflated_past_its_bound_in_one_piece(self) -> None:
-        path = self.dir / "01.png"
-        path.write_bytes(png_of(b"\x00" * 20_000_000))
-        asked = []
-        real = zlib.decompressobj
-
-        class Spy:
-            def __init__(self) -> None:
-                self.inner = real()
-
-            def decompress(self, data: bytes, max_length: int = 0) -> bytes:
-                asked.append(max_length)
-                return self.inner.decompress(data, max_length)
-
-            def __getattr__(self, name: str):
-                return getattr(self.inner, name)
-
-        with mock.patch.object(zlib, "decompressobj", Spy):
-            self.assertEqual("image data inflates to more than the header describes", slides.png_damage(path))
-        self.assertTrue(asked)
-        self.assertTrue(all(0 < size <= 16 * 49 + 1 for size in asked), asked)
-
-    def test_a_header_or_palette_that_no_decoder_accepts_is_reported(self) -> None:
-        def image(colour: int, depth: int, compression: int = 0, filtering: int = 0, palette: bytes | None = None,
-                  palette_after: bool = False) -> bytes:
-            header = struct.pack(">IIBBBBB", 16, 16, depth, colour, compression, filtering, 0)
-            raw = b"\x00" * slides.png_scanlines(16, 16, slides.PNG_CHANNELS[colour] * depth, 0)  # exactly the scanlines
-            plte = chunk(b"PLTE", palette) if palette is not None else b""
-            data = chunk(b"IDAT", zlib.compress(raw))
-            return (slides.PNG_SIGNATURE + chunk(b"IHDR", header) + (data + plte if palette_after else plte + data)
-                    + chunk(b"IEND", b""))
-
-        header, plte = "IHDR does not describe an image", "PLTE chunk does not fit the image"
-        cases = {
-            "truecolour at 1 bit": (image(2, 1), header),
-            "truecolour with alpha at 4 bits": (image(6, 4), header),
-            "grey with alpha at 2 bits": (image(4, 2), header),
-            "a palette at 16 bits": (image(3, 16, palette=b"\x00" * 3), header),
-            "a compression method that does not exist": (image(2, 8, compression=1), header),
-            "a filter method that does not exist": (image(2, 8, filtering=1), header),
-            "a palette image without its palette": (image(3, 8), "a palette image has no PLTE chunk before its image data"),
-            "a palette in a grey image": (image(0, 8, palette=b"\x00" * 3), plte),
-            "a palette whose length is not whole entries": (image(3, 8, palette=b"\x00" * 4), plte),
-            "a palette of more than 256 entries": (image(3, 8, palette=b"\x00" * 771), plte),
-            "an empty palette": (image(3, 8, palette=b""), plte),
-            "a palette after the image data": (image(2, 8, palette=b"\x00" * 3, palette_after=True), plte),
-            "grey at 1 bit": (image(0, 1), None),
-            "a palette image at 8 bits": (image(3, 8, palette=b"\x00" * 768), None),
-            "truecolour with a suggested palette": (image(2, 8, palette=b"\x00" * 3), None),
-            "truecolour with alpha at 16 bits": (image(6, 16), None),
-        }
-        for label, (data, reason) in cases.items():
-            with self.subTest(label):
-                path = self.dir / "01.png"
-                path.write_bytes(data)
-                self.assertEqual(reason, slides.png_damage(path))
-
-    def test_a_chunk_layout_that_no_decoder_accepts_is_reported(self) -> None:
-        sig, end = slides.PNG_SIGNATURE, chunk(b"IEND", b"")
-        header = chunk(b"IHDR", struct.pack(">IIBBBBB", 16, 16, 8, 2, 0, 0, 0))
-        stream = zlib.compress(b"\x00" * slides.png_scanlines(16, 16, 24, 0))
-        idat, first, second = chunk(b"IDAT", stream), chunk(b"IDAT", stream[:9]), chunk(b"IDAT", stream[9:])
-        text = chunk(b"tEXt", b"a\x00b")
-        cases = {
-            "a chunk type that is not four letters": (sig + header + chunk(b"ID1T", b"") + idat + end,
-                                                      "a chunk type is not four letters"),
-            "a second IHDR": (sig + header + header + idat + end, "IHDR appears more than once"),
-            "a critical chunk no decoder knows": (sig + header + chunk(b"ABCD", b"") + idat + end,
-                                                  "unknown critical chunk ABCD"),
-            "image data split by another chunk": (sig + header + first + text + second + end,
-                                                  "image data is split by another chunk"),
-            "an IEND that is not empty": (sig + header + idat + chunk(b"IEND", b"x"), "IEND chunk is not empty"),
-            "an ancillary chunk nobody knows": (sig + header + chunk(b"abCd", b"x") + idat + end, None),
-            "image data in two chunks in a row": (sig + header + first + second + end, None),
-            "an ancillary chunk after the image data": (sig + header + idat + text + end, None),
-        }
-        for label, (data, reason) in cases.items():
-            with self.subTest(label):
-                path = self.dir / "01.png"
-                path.write_bytes(data)
-                self.assertEqual(reason, slides.png_damage(path))
-
-    def test_a_scanline_with_a_filter_type_that_does_not_exist_is_reported(self) -> None:
-        reason = "a scanline has a filter type that does not exist"
-        for interlace in (0, 1):
-            passes = slides.png_passes(5, 9, 24, interlace)
-            heads = [first + line * row for first, (row, lines) in
-                     zip(itertools.accumulate([0] + [row * lines for row, lines in passes]), passes)
-                     for line in range(lines)]
-            size = slides.png_scanlines(5, 9, 24, interlace)
-            for head in heads:
-                for kind in (1, 2, 3, 4, 5, 255):
-                    raw = bytearray(size)
-                    raw[head] = kind
-                    with self.subTest(interlace=interlace, head=head, kind=kind):
-                        path = self.dir / "01.png"
-                        path.write_bytes(png_of(bytes(raw), width=5, height=9, interlace=interlace))
-                        self.assertEqual(reason if kind > 4 else None, slides.png_damage(path))
-                        layout = slides.png_layout(passes)
-                        for cut in range(size + 1):  # however the inflater hands out the data
-                            found = (slides.png_bad_filter(bytes(raw[:cut]), 0, layout)
-                                     or slides.png_bad_filter(bytes(raw[cut:]), cut, layout))
-                            self.assertEqual(kind > 4, found, cut)
-            raw = bytearray(size)
-            for spot in range(size):
-                if spot not in heads:
-                    raw[spot] = 255  # a sample, not a filter byte
-            path = self.dir / "01.png"
-            path.write_bytes(png_of(bytes(raw), width=5, height=9, interlace=interlace))
-            self.assertIsNone(slides.png_damage(path), "only the first byte of a scanline names its filter")
-
-    def test_a_header_describing_an_absurd_image_is_reported_not_raised(self) -> None:
-        reason = "IHDR describes an image too large to be a slide"
-        self.write(exports="done")
-        self.exports()
-        for width, height, interlace in ((0xFFFFFFFF, 0xFFFFFFFF, 0), (0xFFFFFFFF, 0xFFFFFFFF, 1), (0x7FFFFFFF, 1, 0),
-                                         (20_000, 20_000, 0)):
-            with self.subTest(width=width, height=height, interlace=interlace):
-                header = struct.pack(">IIBBBBB", width, height, 16, 6, 0, 0, interlace)
-                data = (slides.PNG_SIGNATURE + chunk(b"IHDR", header) + chunk(b"IDAT", zlib.compress(b""))
-                        + chunk(b"IEND", b""))
-                (self.dir / "01.png").write_bytes(data)
-                self.assertEqual(reason, slides.png_damage(self.dir / "01.png"))
-                self.assertEqual([f"01.png is not a whole PNG: {reason}"], self.problems())
-        png(self.dir / "01.png")
-        self.assertEqual([], self.problems(), "a real slide is nowhere near the bound")
 
     def test_a_pptx_whose_parts_unpack_to_more_than_a_deck_can_hold_is_refused(self) -> None:
         import zipfile

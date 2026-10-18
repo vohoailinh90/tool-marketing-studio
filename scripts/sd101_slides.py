@@ -8,8 +8,9 @@ the same file and never conflict at merge:
   status doing   a session is building the deck (owner = its branch, claimed_at, heartbeat_at; generation and
                  taken_from after a takeover)
   status done    the deck exists on Moda (moda_canvas, moda_url, slide_count, size) and `exports` says whether its
-                 PNG and PPTX files are in the folder as well (`done`), its PPTX (with all its PNG files, or none)
-                 exported with the moda.app badge (`badged`), or none yet (`pending`)
+                 PPTX is in the folder as well: exported with the moda.app badge (`badged`, the usual state while
+                 Moda's plan is free), exported without it (`done`), or not yet (`pending`). The PPTX is the whole
+                 export: the repository keeps no PNG files of a deck
 
 Visibility follows sd101_claims.py: every command fetches all branches of the remote. On the default branch every
 record counts; on any other branch only the records whose owner is that branch (a copy inherited by merging is not a
@@ -21,8 +22,8 @@ heartbeat is older than the lease is stale and is taken over on purpose with `cl
   python3 scripts/sd101_slides.py verify                            # exit 0 = every claim of mine is still mine
   python3 scripts/sd101_slides.py touch --publish                   # renew the heartbeat while you work
   python3 scripts/sd101_slides.py finish sd-01-002 --canvas cvs_... --url https://moda.app/canvas/... --slides 10
-  python3 scripts/sd101_slides.py exported sd-01-002 --publish      # its PPTX and PNG files are now in slides/
-  python3 scripts/sd101_slides.py exported sd-01-002 --badged --publish   # its PPTX (and PNG files), moda.app badge and all
+  python3 scripts/sd101_slides.py exported sd-01-002 --badged --publish   # its PPTX is now in slides/, moda.app badge and all
+  python3 scripts/sd101_slides.py exported sd-01-002 --publish      # the same, for a PPTX exported without the badge
   python3 scripts/sd101_slides.py release sd-01-003 --publish       # give a lesson back
 
 There is no compare-and-swap on a git remote: two sessions that read before either pushed can both claim a lesson.
@@ -37,11 +38,9 @@ import importlib.util
 import os
 import pathlib
 import re
-import struct
 import sys
 import time
 import zipfile
-import zlib
 from dataclasses import dataclass
 
 import yaml
@@ -60,21 +59,16 @@ DONE_KEYS = {"id", "status", "owner", "session", "taken_from", "generation", "cl
 STAMP = re.compile(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z")
 LESSON_ID = re.compile(r"sd-\d{2}-\d{3}")
 CANVAS_ID = re.compile(r"cvs_[0-9A-Za-z]{20,}")
-DECK_SIZE = "1920x1080"  # docs/sd101-slides.md: every canvas and exported PNG
+DECK_SIZE = "1920x1080"  # docs/sd101-slides.md: every canvas
 MODA_URL = "https://moda.app/canvas/"
 SLIDE_COUNTS = range(8, 11)  # docs/sd101-slides.md: 8 to 10 slides, one progress dot each
 LEASE_HOURS = 72
 CLOCK_SKEW_HOURS = 1
 PUSH_BACKOFF_SECONDS = (2, 4, 8, 16)
-PNG_SIGNATURE = b"\x89PNG\r\n\x1a\n"
 PPTX_PARTS = ("[Content_Types].xml", "ppt/presentation.xml")  # what any PowerPoint file holds
 MODA_BADGE = b"moda-export-watermark"  # the name of the picture Moda's free plan puts on every slide it exports
 PPTX_SLIDE = re.compile(r"ppt/slides/slide\d+\.xml")  # one slide of a presentation (its relations live in _rels/)
-PNG_CHANNELS = {0: 1, 2: 3, 3: 1, 4: 2, 6: 4}  # samples per pixel by colour type
-PNG_DEPTHS = {0: (1, 2, 4, 8, 16), 2: (8, 16), 3: (1, 2, 4, 8), 4: (8, 16), 6: (8, 16)}  # the bit depths each type allows
-ADAM7 = ((0, 0, 8, 8), (4, 0, 8, 8), (0, 4, 4, 8), (2, 0, 4, 4), (0, 2, 2, 4), (1, 0, 2, 2), (0, 1, 1, 2))  # x0, y0, dx, dy
 MAX_PPTX_BYTES = 512 * 1024 * 1024  # what a deck's parts may add up to once unpacked
-MAX_PNG_BYTES = 64 * 1024 * 1024  # what one slide's scanlines may add up to once inflated (1920x1080 at 16 bits is 17 MB)
 
 
 class SlidesError(Exception):
@@ -224,137 +218,6 @@ def record_problems(record: object, lesson_id: str) -> list[str]:
     return problems
 
 
-def png_size(path: pathlib.Path) -> tuple[int, int] | None:
-    try:
-        with path.open("rb") as handle:
-            head = handle.read(24)
-    except OSError:
-        return None
-    if len(head) < 24 or head[:8] != PNG_SIGNATURE or head[12:16] != b"IHDR":
-        return None
-    return struct.unpack(">II", head[16:24])
-
-
-def png_passes(width: int, height: int, bits: int, interlace: int) -> list[tuple[int, int]]:
-    """The bytes of one scanline (a filter byte and its samples) and the number of scanlines, of the whole image or,
-    interlaced, of each of the seven Adam7 passes in order (a pass the image is too small for has no lines)."""
-    passes = []
-    for x0, y0, dx, dy in (ADAM7 if interlace else ((0, 0, 1, 1),)):
-        across, down = len(range(x0, width, dx)), len(range(y0, height, dy))
-        if across and down:
-            passes.append((1 + (across * bits + 7) // 8, down))
-    return passes
-
-
-def png_scanlines(width: int, height: int, bits: int, interlace: int) -> int:
-    """How many bytes the scanlines of an image take once inflated."""
-    return sum(row * lines for row, lines in png_passes(width, height, bits, interlace))
-
-
-def png_layout(passes: list[tuple[int, int]]) -> list[tuple[int, int, int]]:
-    """Where each pass's scanlines sit in the inflated data: its first byte, the byte after its last, a scanline's size."""
-    layout, first = [], 0
-    for row, lines in passes:
-        layout.append((first, first + row * lines, row))
-        first += row * lines
-    return layout
-
-
-def png_bad_filter(out: bytes, start: int, layout: list[tuple[int, int, int]]) -> bool:
-    """Whether a piece of inflated image data that begins at offset start opens a scanline with a filter type other
-    than the five PNG has (0 none, 1 sub, 2 up, 3 average, 4 Paeth)."""
-    end = start + len(out)
-    for first, last, row in layout:
-        stop = min(end, last)
-        head = first + max(0, -(-(start - first) // row)) * row  # the first scanline of this pass that opens in the piece
-        if head < stop and max(out[head - start:stop - start:row]) > 4:
-            return True
-    return False
-
-
-def png_damage(path: pathlib.Path) -> str | None:
-    """Why a file is not a whole PNG, or None: the signature, an IHDR first, every chunk's checksum, a chunk layout a
-    decoder accepts (four-letter types, one IHDR, no critical chunk it does not know, consecutive IDATs), an image stream that
-    inflates to its end and to exactly what the header describes, every scanline opening with a filter type that exists,
-    and an IEND chunk closing the file with nothing after it. The stream is inflated under that size, so a small file
-    cannot expand into gigabytes."""
-    try:
-        data = path.read_bytes()
-    except OSError as error:
-        return f"cannot be read: {error.strerror or error}"
-    if data[:8] != PNG_SIGNATURE:
-        return "no PNG signature"
-    position, first, finished, images, inflater = 8, True, False, 0, zlib.decompressobj()
-    produced, expected, colour, palette, layout, previous = 0, 0, 0, False, [], b""
-    while position < len(data):
-        if finished:
-            return "bytes after IEND"
-        if position + 12 > len(data):
-            return "cut off inside a chunk"
-        length, kind = struct.unpack(">I4s", data[position:position + 8])
-        end = position + 8 + length
-        if end + 4 > len(data):
-            return "cut off inside a chunk"
-        if zlib.crc32(data[position + 4:end]) != struct.unpack(">I", data[end:end + 4])[0]:
-            return f"checksum of {kind.decode('latin-1')} does not match"
-        if first and (kind != b"IHDR" or length != 13):
-            return "IHDR is not the first chunk"
-        if not kind.isalpha():  # bytes.isalpha() is ASCII letters only
-            return "a chunk type is not four letters"
-        if kind == b"IHDR" and not first:
-            return "IHDR appears more than once"
-        if not kind[0] & 0x20 and kind not in (b"IHDR", b"PLTE", b"IDAT", b"IEND"):  # a capital first letter: critical
-            return f"unknown critical chunk {kind.decode('ascii')}"
-        if kind == b"IDAT" and images and previous != b"IDAT":
-            return "image data is split by another chunk"
-        if kind == b"IEND" and length:
-            return "IEND chunk is not empty"
-        if first:
-            width, height, depth, colour, compression, filtering, interlace = struct.unpack(">IIBBBBB", data[position + 8:end])
-            if not (width and height and depth in PNG_DEPTHS.get(colour, ()) and compression == 0 and filtering == 0
-                    and interlace in (0, 1)):
-                return "IHDR does not describe an image"
-            passes = png_passes(width, height, PNG_CHANNELS[colour] * depth, interlace)
-            expected = sum(row * lines for row, lines in passes)
-            if expected > MAX_PNG_BYTES:  # also keeps the size handed to the inflater inside a C ssize_t
-                return "IHDR describes an image too large to be a slide"
-            layout = png_layout(passes)
-        first = False
-        if kind == b"PLTE":  # one, of whole entries, before the image data, and never in a grey image
-            if colour not in (2, 3, 6) or palette or images or not 0 < length <= 768 or length % 3:
-                return "PLTE chunk does not fit the image"
-            palette = True
-        if kind == b"IDAT":
-            if colour == 3 and not palette:
-                return "a palette image has no PLTE chunk before its image data"
-            images += 1
-            piece = data[position + 8:end]
-            try:
-                while piece:
-                    out = inflater.decompress(piece, expected + 1 - produced)
-                    produced += len(out)
-                    if produced > expected:
-                        return "image data inflates to more than the header describes"
-                    if png_bad_filter(out, produced - len(out), layout):
-                        return "a scanline has a filter type that does not exist"
-                    if not out and inflater.unconsumed_tail == piece:
-                        break
-                    piece = inflater.unconsumed_tail
-            except zlib.error:
-                return "image data is damaged"
-        finished, previous = kind == b"IEND", kind
-        position = end + 4
-    if not finished:
-        return "no IEND chunk"
-    if not images or not inflater.eof:
-        return "image data is missing or cut short"
-    if inflater.unused_data:
-        return "image data continues after the end of its stream"
-    if produced != expected:
-        return "image data is shorter than the header describes"
-    return None
-
-
 def pptx_damage(path: pathlib.Path) -> str | None:
     """Why a file is not a PowerPoint presentation, or None: a ZIP archive that reads through and holds the parts every
     presentation has."""
@@ -384,7 +247,7 @@ def pptx_badges(path: pathlib.Path) -> tuple[int, int]:
 
 
 def folder_problems(slides_dir: pathlib.Path, lesson_id: str) -> list[str]:
-    """What is wrong with a lesson's slides/ folder: the record, and the exports the record promises."""
+    """What is wrong with a lesson's slides/ folder: the record, and the PPTX the record promises (and nothing else)."""
     problems: list[str] = []
     if slides_dir.is_symlink() or not slides_dir.is_dir():
         return ["slides is not a directory"]
@@ -406,28 +269,24 @@ def folder_problems(slides_dir: pathlib.Path, lesson_id: str) -> list[str]:
     if found:
         return problems
     exports = record["exports"] if record["status"] == "done" else "pending"
+    deck = f"{lesson_id}.pptx"  # the whole of a deck's export: the repository keeps no PNG files of it
     want = {RECORD}
     if exports in ("badged", "done"):
-        want.add(f"{lesson_id}.pptx")
-    pngs = {f"{number:02d}.png" for number in range(1, record["slide_count"] + 1)}
-    if exports == "done" or (exports == "badged" and pngs & set(names)):  # a badged PNG set is whole or absent
-        want |= pngs
-    unexpected = {"done": "", "badged": " (a badged export is the PPTX, with all its PNG files or none)"}.get(
-        exports, " (exports are not recorded as done)")
+        want.add(deck)
     for name in names:
-        if name not in want:
-            problems.append(f"{name} is not expected here{unexpected}")
+        if name in want:
+            continue
+        if name.endswith(".png"):
+            note = " (the repository keeps a deck as its PPTX alone: no PNG files)"
+        elif name == deck:
+            note = f" (record the export with `exported {lesson_id} --badged` once the deck is finished)"
+        else:
+            note = ""
+        problems.append(f"{name} is not expected here{note}")
     for name in sorted(want - set(names)):
         problems.append(f"{name} is missing")
     for name in sorted(want & set(names)):
         path = slides_dir / name
-        if name.endswith(".png"):
-            width, height = (int(part) for part in record["size"].split("x"))  # PNG files belong to finished decks only
-            damage = png_damage(path)
-            if damage:
-                problems.append(f"{name} is not a whole PNG: {damage}")
-            elif png_size(path) != (width, height):
-                problems.append(f"{name} is not a {width}x{height} PNG")
         if name.endswith(".pptx"):
             damage = pptx_damage(path)
             if damage:
@@ -437,11 +296,10 @@ def folder_problems(slides_dir: pathlib.Path, lesson_id: str) -> list[str]:
             if total != record["slide_count"]:  # a file short of slides is not the deck, badge or no badge
                 problems.append(f"{name} holds {total} slides, the deck {record['slide_count']}: export the whole deck "
                                 "from Moda again")
-            elif exports == "done" and badged:  # files recorded done are the ones that may go to Facebook
+            elif exports == "done" and badged:  # done is the export without the badge
                 problems.append(f"{name} carries the moda.app badge: record it with `exported {lesson_id} --badged`")
-            elif exports == "badged" and not badged:  # a badge-free file belongs in done, with its PNG files
-                problems.append(f"{name} does not carry the moda.app badge: add its PNG files and record it with "
-                                f"`exported {lesson_id}`")
+            elif exports == "badged" and not badged:  # a badge-free file belongs in done
+                problems.append(f"{name} does not carry the moda.app badge: record it with `exported {lesson_id}`")
             elif exports == "badged" and badged < total:  # the badge is never removed, not even from one slide
                 problems.append(f"{name} carries the moda.app badge on {badged} of {total} slides: the badge is never "
                                 "removed, so export the deck from Moda again")
@@ -1015,8 +873,8 @@ def cmd_finish(context: Context, args: argparse.Namespace) -> int:
 
 
 def cmd_exported(context: Context, args: argparse.Namespace) -> int:
-    """A finished deck whose PPTX and PNG files were added to its folder: record that exports are done; with --badged,
-    one whose PPTX (and PNG files, all or none) were added as Moda's free plan exports them, badge and all."""
+    """A finished deck whose PPTX was added to its folder: record that it is exported; with --badged, one exported as
+    Moda's free plan does, badge and all."""
     path = context.writable_record(args.id)
     previous = path.read_text(encoding="utf-8") if path.is_file() else ""
     record = parse_record(previous) if previous else None
@@ -1048,9 +906,7 @@ def cmd_exported(context: Context, args: argparse.Namespace) -> int:
         return 1
     print(f"exports of {args.id} are {record['exports']}")
     if args.publish:
-        kind = "exports" if not args.badged else "badged PPTX" + (" and PNG files" if any(
-            entry.suffix == ".png" for entry in path.parent.iterdir()) else "")
-        publish(context, [path.parent], f"Slides: {kind} of {args.id}")
+        publish(context, [path.parent], f"Slides: {'badged ' if args.badged else ''}PPTX of {args.id}")
         problem = finished_problem(context, args.id) if mine else None
         if problem:
             print(problem, file=sys.stderr)
@@ -1135,15 +991,15 @@ def build_parser() -> argparse.ArgumentParser:
     finish.add_argument("--url", required=True, help="the Moda editor link, https://moda.app/canvas/...")
     finish.add_argument("--slides", type=int, required=True)
     finish.add_argument("--exports", choices=EXPORTS, default="pending",
-                        help="done only when <id>.pptx and 01.png.. are in slides/, badged when <id>.pptx (with all "
-                        "its PNG files, or none) is there, exported with the moda.app badge")
+                        help="badged when <id>.pptx is in slides/, exported with the moda.app badge; done when it was "
+                        "exported without the badge")
     finish.add_argument("--publish", action="store_true")
     finish.set_defaults(run=cmd_finish)
-    exported = commands.add_parser("exported", help="record that a finished deck's PPTX and PNG files are in its folder "
-                                   "(with --badged: its PPTX, and its PNG files, moda.app badge and all)")
+    exported = commands.add_parser("exported", help="record that a finished deck's PPTX is in its folder "
+                                   "(with --badged: exported with the moda.app badge)")
     exported.add_argument("id", metavar="sd-XX-NNN")
     exported.add_argument("--badged", action="store_true",
-                          help="<id>.pptx (and 01.png.., all or none) is there, exported with the moda.app badge")
+                          help="<id>.pptx is there, exported with the moda.app badge")
     exported.add_argument("--publish", action="store_true")
     exported.set_defaults(run=cmd_exported)
     release = commands.add_parser("release", help="give back lessons you will not build")

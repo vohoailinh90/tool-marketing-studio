@@ -13,15 +13,15 @@ The store, `system-design-101/vi/`, holds:
   progress.json                          what is written, what is next
   claims.jsonl                           which session is writing which lesson (scripts/sd101_claims.py)
   lessons/<id>/lesson.md, lesson.yaml    the lesson; lesson.yaml only points at its metadata
-  lessons/<id>/slides/                   optional: the slide deck's record, deck.yaml, and its exported PPTX and PNG
-                                         files (scripts/sd101_slides.py)
+  lessons/<id>/slides/                   optional: the slide deck's record, deck.yaml, and its exported PPTX
+                                         (scripts/sd101_slides.py)
   lessons/<id>.md                        optional one-line pointer to lessons/<id>/lesson.md
   metadata/<id>.json                     the single record of a lesson's status and evidence
   diagrams/<id>-main.svg                 the lesson's figure, drawn for it
 
 What is checked, per lesson id:
   - lessons/<id>/ holds exactly lesson.md and lesson.yaml, and optionally a slides/ directory that
-    scripts/sd101_slides.py judges (the deck record, and the exports it says are there); lesson.yaml has
+    scripts/sd101_slides.py judges (the deck record, and the PPTX it says is there); lesson.yaml has
     only id (the directory name) and metadata_ref (../../metadata/<id>.json), so it cannot carry a second
     copy of the status
   - metadata/<id>.json parses (a key named twice is an error) and has the keys DECISIONS.md lists, no

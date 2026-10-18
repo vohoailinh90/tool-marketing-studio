@@ -1,7 +1,8 @@
 # System Design lessons: slide decks for Facebook
 
 Every written lesson of `system-design-101/vi/` becomes a deck of 8 to 10 slides (the checker enforces it), built on Moda in one fixed style and
-exported as PNG files (to post on Facebook) and one PPTX. Several sessions build decks at once, so a lesson is
+saved in the repository as one PPTX, **moda.app badge and all**, which is merged into `main` (owner decision 2026-10-18). The repository keeps
+no PNG files of a deck. Several sessions build decks at once, so a lesson is
 **claimed before its deck is built**, with `scripts/sd101_slides.py`. `sd101_claims.py` only stops two sessions
 *writing* one lesson; it knows nothing about decks.
 
@@ -14,8 +15,8 @@ python3 scripts/sd101_slides.py verify                       # exit 0 = every cl
 # ... build the decks on Moda; every few hours and before each push:
 python3 scripts/sd101_slides.py touch --publish
 python3 scripts/sd101_slides.py finish sd-01-002 --canvas cvs_... --url https://moda.app/canvas/... --slides 10 --publish
-python3 scripts/sd101_slides.py exported sd-01-002 --publish # its PPTX and PNG files are now in slides/
-python3 scripts/sd101_slides.py exported sd-01-002 --badged --publish  # its PPTX (and PNG files), moda.app badge and all
+python3 scripts/sd101_slides.py exported sd-01-002 --badged --publish  # its PPTX is now in slides/, moda.app badge and all
+python3 scripts/sd101_slides.py exported sd-01-002 --publish           # the same for a PPTX exported without the badge
 python3 scripts/sd101_slides.py release sd-01-003 --publish  # give back a lesson you will not build
 ```
 
@@ -37,37 +38,34 @@ is the check to run after pushing a finished folder by hand.
 
 ```
 lessons/<id>/slides/deck.yaml      status doing: the claim. status done: moda_canvas, moda_url, slide_count, size, exports
-lessons/<id>/slides/<id>.pptx      only when exports: badged (with the moda.app badge) or done (without it)
-lessons/<id>/slides/01.png ..      when exports: done, or badged with all of them: one 1920x1080 PNG per slide
+lessons/<id>/slides/<id>.pptx      the whole deck, when exports: badged (with the moda.app badge) or done (without it)
 ```
 
-`exports: pending` means the deck exists on Moda and is editable there, but its files are not in the repository yet.
-`exports: badged` means its PPTX is there as Moda's free plan exports it, badge and all, and so are its PNG files when
-they were added (all of them or none): the PPTX is a reference copy to open and present, never a file for Facebook; the
-PNG files carry the badge the owner accepts on them, and the owner uploads them like any other deck's.
+Nothing else: a `.png` file in `slides/` fails `sd101_check.py`, because the PPTX is the whole export.
+
+`exports: pending` means the deck exists on Moda and is editable there, but its PPTX is not in the repository yet: the
+deck is not complete. `exports: badged` means its PPTX is there as Moda's free plan exports it, badge and all: this is how a
+deck is finished while the plan is free, and the PPTX must reach `main` (commit it with the record, open the pull request,
+merge it). `exports: done` means the PPTX was exported without the badge.
 
 ### Exports and the Moda watermark
 
-Moda's free plan puts a `moda.app` badge on every PNG and PPTX it exports. Moda's own answer is that this is a plan
-limit with no setting or export option to switch off. **Do not remove it** (not from the PPTX, not by cropping or painting
-over the PNG): that is getting around the plan's limit. The deck on Moda carries no badge, so building decks is not blocked;
-a deck is finished with `exports: pending`. Once the owner's plan exports without the badge, any session can export a
-finished deck: `export` each page as PNG (`pixel_ratio` 1) and the whole deck as PPTX, download the links with `curl`
-(the host `assets-cdn.moda.app` must be in the environment's allowed domains), save them as above
-(`<id>.pptx`, `01.png` to `NN.png`) and run `exported <id> --publish`, which checks the files and records `exports: done`.
-The check opens every file: a PNG must be whole (every chunk's checksum, an image stream that inflates to its end, an
-`IEND` chunk and nothing after it) and exactly 1920x1080; a PPTX must be a ZIP archive that reads through, holds
-`[Content_Types].xml` and `ppt/presentation.xml`, and has as many slides as `slide_count` (badged or not).
-Re-exporting does not change the slides, so it needs no claim.
+Moda's free plan puts a `moda.app` badge on every PPTX it exports. Moda's own answer is that this is a plan limit with no
+setting or export option to switch off. **Do not remove it** (not from the PPTX, not by cropping or painting over a
+slide): that is getting around the plan's limit. The deck on Moda carries no badge, so building decks is not blocked.
 
-The owner decided on 2026-10-18 that a deck's files may also go into the repository while the plan is free, badge and
-all: `export` the deck as PPTX (and each page as PNG, `pixel_ratio` 1, for the files the owner uploads), save them as
-above and run `exported <id> --badged --publish`, which records `exports: badged` (the PPTX, with all its PNG files or
-none). The badge is not removed here either, and a badged PPTX never goes to Facebook. The check refuses to record a PPTX
-that still carries the badge on any slide as `done`, and one that lacks it on any slide as `badged` (it looks for the
-picture Moda names `moda-export-watermark` on every slide); the badge cannot be told on a PNG, so the PNG files of a
-badged export are only checked as whole 1920x1080 images. Once the plan exports without the badge, replace the files,
-add the PNG files and run `exported <id> --publish`.
+The owner decided on 2026-10-18 that the PPTX, badge and all, is what the repository keeps of a deck, and that it is
+merged into `main`; PNG files are not stored. To finish a deck: `export` the whole deck as PPTX, download the link with
+`curl` (the host `assets-cdn.moda.app` must be in the environment's allowed domains), save it as
+`lessons/<id>/slides/<id>.pptx` and run `exported <id> --badged --publish`, which checks the file and records
+`exports: badged`. The check opens the PPTX: a ZIP archive that reads through, holds `[Content_Types].xml` and
+`ppt/presentation.xml`, has as many slides as `slide_count`, and carries the picture Moda names `moda-export-watermark`
+on every slide. It refuses a PPTX that still carries the badge on any slide as `done`, and one that lacks it on any slide
+as `badged`.
+
+Once the plan exports without the badge, replace the PPTX and run `exported <id> --publish`, which records `exports: done`.
+Re-exporting does not change the slides, so it needs no claim. A deck recorded `pending` has no PPTX in the repository
+yet: export it and record it the same way.
 
 ## The style (the approved sample is sd-01-001)
 
@@ -92,4 +90,4 @@ The sample is `sd-01-001`; read its canvas (`canvas_read` on the id in its `deck
 - Build one slide per `canvas_apply_markup`, then `canvas_screenshot` every slide and look at it (text cut off, text
   shrunk by the auto-fit, arrows off centre) before `finish`.
 
-Binary exports add about 1.5 MB per lesson; the repository grows by that much for each finished export set.
+A PPTX adds a few hundred KB per lesson; the repository grows by that much for each finished deck.

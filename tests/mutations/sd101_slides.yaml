@@ -423,18 +423,22 @@ mutations:
   replace: "    if exports in (\"badged\", \"done\"):\n        want |= {f\"{number:02d}.png\""
   test: tests.test_sd101_slides.FolderTests.test_a_badged_export_is_the_pptx_alone
 - label: a pptx with the moda.app badge is recorded as done
-  find: "            elif exports == \"done\" and pptx_badged(path):"
+  find: "            elif exports == \"done\" and pptx_badges(path)[0]:"
   replace: "            elif False:"
   test: tests.test_sd101_slides.FolderTests.test_a_pptx_with_the_moda_badge_is_never_recorded_as_done
 - label: every pptx is taken for one with the moda.app badge
-  find: "        return any(MODA_BADGE in archive.read(name) for name in archive.namelist()"
-  replace: "        return True or any(MODA_BADGE in archive.read(name) for name in archive.namelist()"
+  find: "        return sum(MODA_BADGE in archive.read(name) for name in slides), len(slides)"
+  replace: "        return len(slides), len(slides)"
   test: tests.test_sd101_slides.FolderTests.test_complete_exports_pass
 - label: exported --badged records done
   find: "    record[\"exports\"] = \"badged\" if args.badged else \"done\""
   replace: "    record[\"exports\"] = \"done\""
   test: tests.test_sd101_slides.FinishTests.test_exported_badged_records_a_pptx_with_the_moda_badge_alone_but_never_as_done
 - label: a badge-free pptx is recorded as badged
-  find: "            elif exports == \"badged\" and not pptx_badged(path):"
-  replace: "            elif False:"
+  find: "                if not badged:  # a badge-free file belongs in done, with its PNG files"
+  replace: "                if False:  # a badge-free file belongs in done, with its PNG files"
   test: tests.test_sd101_slides.FolderTests.test_a_badge_free_pptx_is_never_recorded_as_badged
+- label: a pptx whose badge was removed from some slides is recorded as badged
+  find: "                elif badged < total:  # the badge is never removed, not even from one slide"
+  replace: "                elif False:  # the badge is never removed, not even from one slide"
+  test: tests.test_sd101_slides.FolderTests.test_a_pptx_whose_badge_was_removed_from_some_slides_is_never_recorded_as_badged

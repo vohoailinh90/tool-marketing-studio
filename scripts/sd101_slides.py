@@ -69,6 +69,7 @@ PUSH_BACKOFF_SECONDS = (2, 4, 8, 16)
 PNG_SIGNATURE = b"\x89PNG\r\n\x1a\n"
 PPTX_PARTS = ("[Content_Types].xml", "ppt/presentation.xml")  # what any PowerPoint file holds
 MODA_BADGE = b"moda-export-watermark"  # the name of the picture Moda's free plan puts on every slide it exports
+PPTX_SLIDE = re.compile(r"ppt/slides/slide\d+\.xml")  # one slide of a presentation (its relations live in _rels/)
 PNG_CHANNELS = {0: 1, 2: 3, 3: 1, 4: 2, 6: 4}  # samples per pixel by colour type
 PNG_DEPTHS = {0: (1, 2, 4, 8, 16), 2: (8, 16), 3: (1, 2, 4, 8), 4: (8, 16), 6: (8, 16)}  # the bit depths each type allows
 ADAM7 = ((0, 0, 8, 8), (4, 0, 8, 8), (0, 4, 4, 8), (2, 0, 4, 4), (0, 2, 2, 4), (1, 0, 2, 2), (0, 1, 1, 2))  # x0, y0, dx, dy
@@ -374,11 +375,12 @@ def pptx_damage(path: pathlib.Path) -> str | None:
     return f"{', '.join(missing)} missing" if missing else None
 
 
-def pptx_badged(path: pathlib.Path) -> bool:
-    """Whether a whole PowerPoint file still carries the badge Moda's free plan adds to every slide it exports."""
+def pptx_badges(path: pathlib.Path) -> tuple[int, int]:
+    """How many slides of a whole PowerPoint file carry the badge Moda's free plan adds to every slide it exports, and
+    how many slides the file has."""
     with zipfile.ZipFile(path) as archive:
-        return any(MODA_BADGE in archive.read(name) for name in archive.namelist()
-                   if name.startswith("ppt/slides/") and name.endswith(".xml"))
+        slides = [name for name in archive.namelist() if PPTX_SLIDE.fullmatch(name)]
+        return sum(MODA_BADGE in archive.read(name) for name in slides), len(slides)
 
 
 def folder_problems(slides_dir: pathlib.Path, lesson_id: str) -> list[str]:
@@ -429,11 +431,16 @@ def folder_problems(slides_dir: pathlib.Path, lesson_id: str) -> list[str]:
             damage = pptx_damage(path)
             if damage:
                 problems.append(f"{name} is not a PowerPoint file: {damage}")
-            elif exports == "done" and pptx_badged(path):  # files recorded done are the ones that may go to Facebook
+            elif exports == "done" and pptx_badges(path)[0]:  # files recorded done are the ones that may go to Facebook
                 problems.append(f"{name} carries the moda.app badge: record it with `exported {lesson_id} --badged`")
-            elif exports == "badged" and not pptx_badged(path):  # a badge-free file belongs in done, with its PNG files
-                problems.append(f"{name} does not carry the moda.app badge: add its PNG files and record it with "
-                                f"`exported {lesson_id}`")
+            elif exports == "badged":
+                badged, total = pptx_badges(path)
+                if not badged:  # a badge-free file belongs in done, with its PNG files
+                    problems.append(f"{name} does not carry the moda.app badge: add its PNG files and record it with "
+                                    f"`exported {lesson_id}`")
+                elif badged < total:  # the badge is never removed, not even from one slide
+                    problems.append(f"{name} carries the moda.app badge on {badged} of {total} slides: the badge is "
+                                    "never removed, so export the deck from Moda again")
     return problems
 
 

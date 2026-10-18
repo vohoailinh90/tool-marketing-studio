@@ -55,15 +55,20 @@ def png(path: Path, width: int = 1920, height: int = 1080) -> None:
     path.write_bytes(png_bytes(width, height))
 
 
-def pptx(path: Path, parts: tuple[str, ...] = slides.PPTX_PARTS, badged: bool = False) -> None:
-    """A minimal presentation with one slide; `badged` puts the picture Moda's free plan adds on it, named as Moda does."""
+def pptx(path: Path, parts: tuple[str, ...] = slides.PPTX_PARTS, badged: bool = False, count: int = 1,
+         stripped: int = 0) -> None:
+    """A minimal presentation of `count` slides; `badged` puts the picture Moda's free plan adds, named as Moda does, on
+    every slide but the last `stripped` ones."""
     import zipfile
 
     with zipfile.ZipFile(path, "w") as archive:
         for part in parts:
             archive.writestr(part, "<x/>")
         badge = '<p:pic><p:nvPicPr><p:cNvPr id="32" name="Moda image moda-export-watermark-1"/></p:nvPicPr></p:pic>'
-        archive.writestr("ppt/slides/slide1.xml", f"<p:sld>{badge if badged else ''}</p:sld>")
+        for number in range(1, count + 1):
+            on = badged and number <= count - stripped
+            archive.writestr(f"ppt/slides/slide{number}.xml", f"<p:sld>{badge if on else ''}</p:sld>")
+            archive.writestr(f"ppt/slides/_rels/slide{number}.xml.rels", "<Relationships/>")
 
 
 class Sessions(unittest.TestCase):
@@ -1193,6 +1198,14 @@ class FolderTests(unittest.TestCase):
         (self.dir / "01.png").unlink()
         (self.dir / "sd-01-001.pptx").write_bytes(b"not a zip")
         self.assertEqual(["sd-01-001.pptx is not a PowerPoint file: not a ZIP archive"], self.problems())
+
+    def test_a_pptx_whose_badge_was_removed_from_some_slides_is_never_recorded_as_badged(self) -> None:
+        self.write(exports="badged")
+        pptx(self.dir / "sd-01-001.pptx", badged=True, count=10, stripped=1)
+        self.assertEqual(["sd-01-001.pptx carries the moda.app badge on 9 of 10 slides: the badge is never removed, so "
+                          "export the deck from Moda again"], self.problems())
+        pptx(self.dir / "sd-01-001.pptx", badged=True, count=10)
+        self.assertEqual([], self.problems())
 
     def test_a_badge_free_pptx_is_never_recorded_as_badged(self) -> None:
         self.write(exports="badged")

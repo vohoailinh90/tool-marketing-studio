@@ -1090,11 +1090,11 @@
         },
         {
           "id": "sd-04-016",
-          "title_vi": null,
+          "title_vi": "Kafka có làm mất tin không? Có, ở ba chỗ, và đây là cách thấy tận mắt",
           "title_source": "Can Kafka Lose Messages?",
           "source_url": "https://bytebytego.com/guides/can-kafka-lose-messages",
           "source_path": "data/guides/can-kafka-lose-messages.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "ecd210e8a64e8c28b349408c756d70cf615c9146",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/can-kafka-lose-messages.md"
         },

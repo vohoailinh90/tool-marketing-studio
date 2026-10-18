@@ -1,0 +1,72 @@
+{
+  "id": "sd-04-016",
+  "lang": "vi",
+  "title": "Kafka có làm mất tin không?",
+  "subtitle": "3 bản sao; chỉ nhận ghi khi còn ít nhất 2 bản đồng bộ.",
+  "desc": "Ba khung. Khung một, bốn bước thử: đủ ba broker, gửi 100 tin chờ mọi bản đồng bộ, 100 tin được xác nhận; dừng broker 2 và 3, gửi 100 tin chờ mọi bản thì không tin nào được nhận vì broker báo thiếu bản sao; gửi 100 tin chỉ chờ leader thì được xác nhận nhưng bên đọc không thấy; giết leader, cho broker 2 và 3 trở lại, broker 3 làm leader và 100 tin chỉ chờ leader biến mất. Khung hai, ba chỗ có thể mất tin: bên gửi chỉ chờ leader hoặc không thử lại; broker cho bản sao không đồng bộ làm leader; bên nhận lưu vị trí trước khi xử lý xong. Khung ba, cấu hình giữ tin: chờ mọi bản đồng bộ và bật idempotence; ba bản sao, tối thiểu hai bản đồng bộ; tắt unclean leader election; lưu vị trí sau khi xử lý.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Thử nghiệm",
+      "items": [
+        {
+          "title": "Đủ ba broker",
+          "text": "Chờ mọi bản đồng bộ: 100 tin được xác nhận."
+        },
+        {
+          "title": "Dừng broker 2 và 3",
+          "text": "Chờ mọi bản: 0 tin; broker báo thiếu bản sao."
+        },
+        {
+          "title": "Chỉ chờ leader",
+          "text": "100 tin được xác nhận, bên đọc không thấy."
+        },
+        {
+          "title": "Leader chết, 2 và 3 về",
+          "text": "Broker 3 làm leader; 100 tin đó biến mất."
+        }
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Ba chỗ có thể mất tin",
+      "items": [
+        {
+          "name": "Bên gửi",
+          "role": "Chỉ chờ leader, hoặc không thử lại khi gửi lỗi.",
+          "icon": "send"
+        },
+        {
+          "name": "Broker",
+          "role": "Cho bản sao không đồng bộ lên làm leader.",
+          "icon": "server"
+        },
+        {
+          "name": "Bên nhận",
+          "role": "Lưu vị trí đọc trước khi xử lý xong.",
+          "icon": "inbox"
+        }
+      ],
+      "flow": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ]
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Cấu hình giữ tin",
+      "items": [
+        "Bên gửi chờ mọi bản đồng bộ và bật idempotence.",
+        "Ba bản sao, tối thiểu hai bản đồng bộ.",
+        "Để tắt unclean leader election (mặc định).",
+        "Bên nhận lưu vị trí sau khi xử lý."
+      ]
+    }
+  ]
+}

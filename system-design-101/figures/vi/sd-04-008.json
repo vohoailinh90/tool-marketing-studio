@@ -1,0 +1,62 @@
+{
+  "id": "sd-04-008",
+  "lang": "vi",
+  "title": "Sáu mẫu quản lý dữ liệu, một câu hỏi chung",
+  "subtitle": "Mẫu nào cũng tạo thêm một bản dữ liệu hoặc chia dữ liệu ra: bản đó cũ được bao lâu?",
+  "desc": "Ba khung. Khung một, ba mẫu giúp đọc nhanh nhờ một bản dữ liệu thứ hai: cache-aside đọc cache trước, trượt thì đọc kho rồi nạp vào cache, cũ tới khi hết hạn hoặc bị xóa; materialized view lưu sẵn kết quả một truy vấn nặng và cũ tới lần làm mới, thử nghiệm thấy 70 khi bảng gốc đã là 100; index table là bảng phụ sắp theo khóa khác, phải cập nhật cùng bảng gốc. Khung hai, ba mẫu đổi cách lưu: CQRS tách mô hình ghi và mô hình đọc, mô hình đọc theo sau; event sourcing lưu chuỗi sự kiện và tính lại trạng thái; sharding chia dữ liệu ra nhiều máy theo khóa shard, khóa tốt giữ truy vấn chính trong một shard. Khung ba hỏi: làm mới khi nào, cũ được bao lâu, ai sửa khi lệch.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Đọc nhanh nhờ một bản dữ liệu thứ hai",
+      "items": [
+        {
+          "name": "Cache-aside",
+          "role": "Đọc cache trước; trượt thì đọc kho rồi nạp vào cache. Cũ tới khi hết hạn hoặc bị xóa.",
+          "icon": "zap"
+        },
+        {
+          "name": "Materialized view",
+          "role": "Lưu sẵn kết quả truy vấn nặng. Cũ tới lần làm mới: thấy 70, bảng gốc đã 100.",
+          "icon": "layers"
+        },
+        {
+          "name": "Index table",
+          "role": "Bảng phụ sắp theo khóa khác để tra nhanh; phải cập nhật cùng bảng gốc.",
+          "icon": "search"
+        }
+      ],
+      "flow": []
+    },
+    {
+      "kind": "parts",
+      "heading": "Đổi cách lưu dữ liệu",
+      "items": [
+        {
+          "name": "CQRS",
+          "role": "Tách mô hình ghi và mô hình đọc; mô hình đọc theo sau mô hình ghi.",
+          "icon": "split"
+        },
+        {
+          "name": "Event sourcing",
+          "role": "Lưu chuỗi sự kiện thay cho trạng thái; trạng thái tính lại từ sự kiện.",
+          "icon": "history"
+        },
+        {
+          "name": "Sharding",
+          "role": "Chia dữ liệu ra nhiều máy theo khóa shard; khóa tốt giữ truy vấn chính trong một shard.",
+          "icon": "boxes"
+        }
+      ],
+      "flow": []
+    },
+    {
+      "kind": "notes",
+      "heading": "Hỏi trước khi dùng",
+      "items": [
+        "Bản dữ liệu thứ hai được làm mới khi nào?",
+        "Người dùng chịu được dữ liệu cũ bao lâu?",
+        "Bản sao lệch với bản gốc thì ai phát hiện, ai sửa?"
+      ]
+    }
+  ]
+}

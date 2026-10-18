@@ -1,0 +1,68 @@
+{
+  "id": "sd-01-036",
+  "title_vi": "Forward proxy và reverse proxy: đại diện phía nào?",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "draft",
+  "source_ref": "sd-01-036",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/proxy-vs-reverse-proxy.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/proxy-vs-reverse-proxy.md",
+    "blob_sha": "f25a285655e694ccfc403a6173ac4d77b47d3076",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "e1f31d16852fdfb3ba2debe56e8d12a2a79c2c5b973149d939566bc83302bd80",
+    "retrieved_body_bytes": 967
+  },
+  "diagram": "../diagrams/sd-01-036-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-15"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-15",
+      "evidence": "Đọc Apache mod_proxy summary/Forward Proxies and Reverse Proxies/Controlling Access và MDN forward/reverse/forwarding-client-information. Hai ví dụ tự thiết kế, chưa chạy proxy thật."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "new lesson awaiting current-head review"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-15",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "evidence": "Chromium cục bộ toàn bài/details mở320/375/430px không tràn ngang/chữ SVG ngoài hình, cỡ nhỏ nhất14.4/16/16px. Đã xem ảnh320px; chưa kiểm tra GitHub/thiết bị thật/người học."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Forward phục vụ phía khách, reverse xuất hiện như website và chuyển tới máy chủ được cấu hình; tính năng bổ sung phải được cấu hình.",
+      "source": "https://httpd.apache.org/docs/2.4/mod/mod_proxy.html#forwardreverse"
+    },
+    {
+      "claim_vi": "Proxy có thể chuyển tiếp thông tin máy khách nên không tự bảo đảm ẩn danh.",
+      "source": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Proxy_servers_and_tunneling"
+    }
+  ],
+  "design_notes_vi": "Hai thẻ cùng chiều yêu cầu, phân biệt phía được đại diện; ví dụ cơ quan/thư viện nguyên bản.",
+  "editorial_note_vi": "Nháp giáo dục, chưa chạy proxy thật hoặc kiểm thử bảo mật.",
+  "source_deviations": [
+    "Không coi bảo vệ/ẩn danh/hiệu năng là bảo đảm mặc định.",
+    "Reverse là vai trò phía máy chủ, không đảo chiều yêu cầu.",
+    "Cache/cân bằng tải cần cấu hình; không dùng hướng dẫn vượt hạn chế truy cập."
+  ]
+}

@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="835" viewBox="0 0 320 835" role="img" aria-labelledby="title desc">
+<title id="title">Khởi động chậm ở đâu?</title>
+<desc id="desc">Bốn bước và một khung ghi nhớ. Bước một, systemd-analyze time: chia thời gian khởi động, ví dụ 2,584 giây nhân, 19,176 giây initrd, 47,847 giây không gian người dùng, tổng 1 phút 9,608 giây. Bước hai, systemd-analyze blame: xếp các đơn vị theo thời gian khởi tạo, pmlogger đứng đầu với 32,875 giây. Bước ba, systemd-analyze critical-chain: chuỗi chặn multi-user target, trong đó wait-online tốn 20,905 giây và pmlogger không có mặt. Bước bốn, journalctl -b: nhật ký lần khởi động này, thêm -p err hoặc -k để lọc. Khung cuối nêu ba điều cần nhớ.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="835" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Khởi động chậm ở đâu?</text>
+<text x="16" y="60.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Bốn lệnh của systemd, đọc trên ví dụ</text>
+<text x="16" y="79.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">của tài liệu.</text>
+<rect x="8" y="99" width="304" height="471" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="127.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Bốn lệnh, bốn câu hỏi</text>
+<rect x="20" y="144" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="170" r="14" fill="#1d4ed8"/>
+<text x="46" y="175.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="170.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">1 · analyze time</text>
+<text x="70" y="194.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nhân 2,584 giây, initrd</text>
+<text x="70" y="213.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">19,176, dịch vụ 47,847.</text>
+<rect x="20" y="253" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="279" r="14" fill="#1d4ed8"/>
+<text x="46" y="284.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="279.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">2 · analyze blame</text>
+<text x="70" y="303.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">pmlogger 32,875 giây đứng</text>
+<text x="70" y="322.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đầu.</text>
+<polyline points="46,233 46,251" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="362" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="388" r="14" fill="#1d4ed8"/>
+<text x="46" y="393.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="388.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">3 · critical-chain</text>
+<text x="70" y="412.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">wait-online 20,905 giây</text>
+<text x="70" y="431.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nằm trên chuỗi.</text>
+<polyline points="46,342 46,360" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="471" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="497" r="14" fill="#1d4ed8"/>
+<text x="46" y="502.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">4</text>
+<text x="70" y="497.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">4 · journalctl -b</text>
+<text x="70" y="521.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đọc nhật ký lần này; thêm</text>
+<text x="70" y="540.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">-p err hoặc -k.</text>
+<polyline points="46,451 46,469" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="582" width="304" height="245" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="610.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Nhớ gì</text>
+<rect x="20" y="627" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="650" r="11" fill="#16a34a"/>
+<polyline points="37.9,650.4 41.7,654.4 48.5,646" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="653.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đầu danh sách blame chưa</text>
+<text x="64" y="672.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chắc nằm trên chuỗi.</text>
+<rect x="20" y="698" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="721" r="11" fill="#16a34a"/>
+<polyline points="37.9,721.4 41.7,725.4 48.5,717" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="724.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Các số là ví dụ của tài liệu.</text>
+<rect x="20" y="752" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="775" r="11" fill="#16a34a"/>
+<polyline points="37.9,775.4 41.7,779.4 48.5,771" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="778.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Container không chạy được</text>
+<text x="64" y="797.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">blame.</text>
+</g>
+</svg>

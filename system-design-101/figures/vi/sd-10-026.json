@@ -1,0 +1,40 @@
+{
+  "id": "sd-10-026",
+  "lang": "vi",
+  "title": "Khởi động chậm ở đâu?",
+  "subtitle": "Bốn lệnh của systemd, đọc trên ví dụ của tài liệu.",
+  "desc": "Bốn bước và một khung ghi nhớ. Bước một, systemd-analyze time: chia thời gian khởi động, ví dụ 2,584 giây nhân, 19,176 giây initrd, 47,847 giây không gian người dùng, tổng 1 phút 9,608 giây. Bước hai, systemd-analyze blame: xếp các đơn vị theo thời gian khởi tạo, pmlogger đứng đầu với 32,875 giây. Bước ba, systemd-analyze critical-chain: chuỗi chặn multi-user target, trong đó wait-online tốn 20,905 giây và pmlogger không có mặt. Bước bốn, journalctl -b: nhật ký lần khởi động này, thêm -p err hoặc -k để lọc. Khung cuối nêu ba điều cần nhớ.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Bốn lệnh, bốn câu hỏi",
+      "items": [
+        {
+          "title": "1 · analyze time",
+          "text": "Nhân 2,584 giây, initrd 19,176, dịch vụ 47,847."
+        },
+        {
+          "title": "2 · analyze blame",
+          "text": "pmlogger 32,875 giây đứng đầu."
+        },
+        {
+          "title": "3 · critical-chain",
+          "text": "wait-online 20,905 giây nằm trên chuỗi."
+        },
+        {
+          "title": "4 · journalctl -b",
+          "text": "Đọc nhật ký lần này; thêm -p err hoặc -k."
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Nhớ gì",
+      "items": [
+        "Đầu danh sách blame chưa chắc nằm trên chuỗi.",
+        "Các số là ví dụ của tài liệu.",
+        "Container không chạy được blame."
+      ]
+    }
+  ]
+}

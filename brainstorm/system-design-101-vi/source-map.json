@@ -2691,14 +2691,14 @@
         },
         {
           "id": "sd-10-026",
-          "title_vi": null,
+          "title_vi": "Linux khởi động chậm ở đâu? Đo và đọc bằng systemd-analyze và journalctl",
           "title_source": "Linux Boot Process Explained",
           "source_url": "https://bytebytego.com/guides/linux-boot-process-explained",
           "source_path": "data/guides/linux-boot-process-explained.md",
           "same_source_as": [
             "sd-08-020"
           ],
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "afd3a88fd8f9a085cbf052c550ea662b95af4b5f",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/linux-boot-process-explained.md"
         },

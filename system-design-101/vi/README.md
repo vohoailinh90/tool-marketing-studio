@@ -90,6 +90,7 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 23. [Sau thay đổi API: chọn bộ kiểm tra theo rủi ro](lessons/sd-10-023/lesson.md)
 24. [Chín thuật toán dùng khắp đời sống số](lessons/sd-10-024/lesson.md)
 25. [Đồng thời và song song: khác nhau ở đâu?](lessons/sd-10-025/lesson.md)
+26. [Linux khởi động chậm ở đâu? Đo và đọc bằng systemd-analyze và journalctl](lessons/sd-10-026/lesson.md)
 27. [Mười một bước từ lập trình viên mới vào nghề tới cấp cao](lessons/sd-10-027/lesson.md)
 28. [Mười nguyên tắc viết mã tốt để nâng chất lượng mã](lessons/sd-10-028/lesson.md)
 

@@ -1,0 +1,22 @@
+id: sd-06-019
+status: done
+owner: claude/sd101-decks-w21-sd06
+claimed_at: '2026-10-19T20:20:20Z'
+done_at: '2026-10-19T20:34:01Z'
+moda_canvas: cvs_0Q7RTEBVDZ9RFB6Q500MNPBTFM
+moda_url: https://moda.app/canvas/173e34e5-edbf-4e1e-b35c-a0052b65e9f4
+slide_count: 9
+size: 1920x1080
+exports: badged
+layouts:
+  slides:
+  - card-grid
+  - two-column-comparison
+  - connection-diagram
+  - one-big-number
+  - flow
+  - numbered-rows
+  - 2x2-matrix
+  - layers
+  - lookup-table
+  first_concept: 3

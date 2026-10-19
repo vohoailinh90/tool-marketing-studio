@@ -1,0 +1,25 @@
+id: sd-09-010
+status: done
+owner: claude/sd101-decks-w4-2
+claimed_at: '2026-10-19T00:42:36Z'
+done_at: '2026-10-19T00:47:41Z'
+moda_canvas: cvs_2BFAZ7RWE09PKA03R7DPFGF2HB
+moda_url: https://moda.app/canvas/4b7abe7c-71c0-4da6-a00f-076d9f078a2b
+slide_count: 10
+size: 1920x1080
+exports: badged
+layouts:
+  slides:
+  - flow
+  - two-column-comparison
+  - one-highlighted-sentence
+  - card-grid
+  - layers
+  - timeline
+  - one-highlighted-sentence
+  - flow
+  - numbered-rows
+  - lookup-table
+  first_concept: 3
+  cannot:
+    one-big-number: the lesson states no number for this concept

@@ -12,7 +12,8 @@ Tên mười một bước lấy từ bài nguồn (và thứ tự theo nguồn)
 - **gRPC** (gRPC Remote Procedure Calls) — khung gọi thủ tục từ xa mã nguồn mở: bên gọi gọi một phương thức của dịch vụ ở máy khác như gọi hàm tại chỗ.
 - **QL** (Query Language) — ngôn ngữ truy vấn: chữ QL trong tên GraphQL, một cách làm API mà bài chỉ nhắc tên.
 - **OAuth** (Open AUTHorization) — chuẩn ủy quyền mở: cho một ứng dụng được làm một số việc thay bạn mà không biết mật khẩu của bạn.
-- **OpenID** (Open IDentity) — danh tính mở: tên của lớp xác thực đặt trên OAuth2 để biết người đăng nhập là ai; bài chỉ nhắc tên.
+- **OpenID** (Open IDentity) — danh tính mở: tên một họ chuẩn về danh tính; bài chỉ dùng nó trong tên OpenID Connect.
+- **OIDC** (OpenID Connect) — kết nối OpenID: lớp xác thực đặt trên OAuth2 để biết người đăng nhập là ai (không phải giao thức OpenID Authentication 2.0 cũ); bài chỉ nhắc tên.
 - **PKCE** (Proof Key for Code Exchange) — cơ chế chứng minh khóa khi đổi mã: cách chống việc kẻ xấu chặn mã ủy quyền rồi đem đổi lấy quyền truy cập.
 - **JWT** (JSON Web Token) — token web: định dạng mang các thông tin xác nhận (claim), thường được ký để kiểm tra; ứng dụng phải yêu cầu và kiểm tra đúng lớp bảo vệ mong đợi trước khi tin token; bài chỉ nhắc tên.
 - **JSON** (JavaScript Object Notation) — ký hiệu đối tượng JavaScript: định dạng văn bản mô tả dữ liệu bằng các cặp tên và giá trị.
@@ -32,7 +33,7 @@ Tên mười một bước lấy từ bài nguồn (và thứ tự theo nguồn)
 
 **Vận hành và dữ liệu.**
 4. Máy chủ web và lưu trữ. Dịch vụ phải chạy ở đâu đó liên tục. Tài liệu Kubernetes nói nó là nền tảng quản lý các khối công việc đóng gói trong container; nếu một container hỏng thì container khác phải chạy lên, và Kubernetes lo việc mở rộng và chuyển khi lỗi.
-5. Xác thực và kiểm thử. Người mượn phải đăng nhập; OAuth2 chỉ lo ủy quyền, còn việc xác định danh tính cần lớp xác thực như OpenID Connect chạy trên nó. Bảng kiểm tra OAuth2 của OWASP nói PKCE là kỹ thuật chống tấn công chặn mã ủy quyền ở các ứng dụng công khai. Phần kiểm thử: viết kiểm thử trước khi viết mã (TDD) hoặc ngay sau; tài liệu `unittest` nói nó hỗ trợ kiểm thử tự động. JWT thường là dạng token mà các luồng đó trao đi, kiến thức chung của người biên soạn.
+5. Xác thực và kiểm thử. Người mượn phải đăng nhập; OAuth2 chỉ lo ủy quyền, còn việc xác định danh tính cần lớp xác thực như OpenID Connect (OIDC) chạy trên nó. Bảng kiểm tra OAuth2 của OWASP nói PKCE là kỹ thuật chống tấn công chặn mã ủy quyền ở các ứng dụng công khai. Phần kiểm thử: viết kiểm thử trước khi viết mã (TDD) hoặc ngay sau; tài liệu `unittest` nói nó hỗ trợ kiểm thử tự động. JWT thường là dạng token mà các luồng đó trao đi, kiến thức chung của người biên soạn.
 6. Cơ sở dữ liệu. Phiếu mượn phải sống lâu hơn chương trình. Tài liệu Python nói SQLite là thư viện cơ sở dữ liệu nhẹ lưu trên đĩa, không cần tiến trình máy chủ riêng, và có thể dùng để làm thử rồi chuyển sang hệ lớn hơn như PostgreSQL. Tài liệu Redis nói Redis dùng được như cơ sở dữ liệu, bộ nhớ đệm, bộ phát luồng sự kiện hay bộ môi giới thông điệp.
 
 **Tự động hóa và nền tảng.**

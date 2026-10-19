@@ -46,12 +46,12 @@ Bài không chép tấm hình nguồn, và phần văn bản nguồn không nêu
 
 ## Nhìn hình trả lời
 
-Một nhóm nhỏ muốn đặt cả mười máy chủ vào một mạng mà ai cũng vào được cho nhanh. Trong các dịch vụ trên, hai dịch vụ nào nên học trước để làm việc này an toàn?
+Một nhóm nhỏ muốn đặt cả mười máy chủ vào một mạng mà ai cũng kết nối được cho nhanh. Dịch vụ nào trong bài giúp đóng lại việc này, và dịch vụ nào quyết định ai được sửa các thiết lập đó?
 
 <details>
 <summary>Xem đáp án</summary>
 
-Hai dịch vụ nền tảng là mạng (VPC) và định danh (IAM): VPC để quyết định máy nào nằm trong mạng riêng, máy nào ra ngoài; IAM để quyết định ai và dịch vụ nào được làm gì. Cách đặt "ai cũng vào được" trái với cả hai.
+VPC: mạng riêng cùng các công cụ của nó (nhóm bảo mật, danh sách kiểm soát truy cập mạng, bảng định tuyến, việc có gán địa chỉ công khai hay không) quyết định lưu lượng nào được tới máy chủ nào. IAM không lọc lưu lượng mạng; nó quyết định ai và dịch vụ nào được thao tác trên tài nguyên AWS, ví dụ ai được mở cổng hay sửa nhóm bảo mật. Hai việc khác nhau nên cần cả hai.
 Đây là suy luận của người biên soạn.
 
 </details>

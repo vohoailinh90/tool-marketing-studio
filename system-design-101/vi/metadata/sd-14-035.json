@@ -192,6 +192,12 @@
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/oauth-2-explained-with-siple-terms.md",
       "section": "Whole guide",
       "verified_by": "Not examined."
+    },
+    {
+      "claim_vi": "authlib 1.9.1 source (authlib/oidc/core/claims.py, IDToken.validate_auth_time): auth_time is the time the end-user authentication occurred; when a max_age request is made, or when auth_time is requested as an Essential Claim, the claim is required, so a missing auth_time raises MissingClaimError('auth_time') when the max_age parameter is given. The lesson therefore says an ID token tells who the user is but does not by itself show a recent login (the provider may reuse an existing login session), and that checking freshness takes a max_age request and an auth_time check; this part was read in the source and not run. The sd-14-035 lesson's bearer-token statement (whoever holds the token string can use it) is scoped to bearer tokens, the kind the experiment issues; sender-constrained tokens are mentioned in the lesson and not tested.",
+      "source": "https://github.com/authlib/authlib/blob/8a308fc39c378c1090608903a09318a4267f418a/authlib/oidc/core/claims.py",
+      "section": "Token không nói ai; Đây là token loại bearer",
+      "verified_by": "Read authlib/oidc/core/claims.py at the pinned commit (validate_auth_time docstring and code); not run. The OpenID Connect specification text was not reachable."
     }
   ],
   "design_notes_vi": "Hai khung: bốn câu hỏi API hỏi một access token (chữ ký, hạn, audience, scope) và ba việc token không làm được (chứng minh đăng nhập, cho biết ai đang cầm, tự nâng quyền). Không dùng ảnh nguồn.",

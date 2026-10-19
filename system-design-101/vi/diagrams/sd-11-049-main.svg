@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="758" viewBox="0 0 320 758" role="img" aria-labelledby="title desc">
+<title id="title">Bản đồ dịch vụ AWS</title>
+<desc id="desc">Ba khung. Khung một, bài nguồn: một ảnh hướng dẫn các dịch vụ AWS, ảnh không được đọc. Khung hai, chín trang của Microsoft chứa 194 dòng ghép dịch vụ: trang giới thiệu gom 63 dòng, tính toán 27, mạng 24, phân tích 23, lưu trữ 17, cơ sở dữ liệu 13, danh tính 13, trí tuệ nhân tạo và học máy 9, nhắn tin 5. Khung ba, điều cần nhớ: có 183 tên dịch vụ AWS khác nhau, 17 tên nằm ở hai trang, và đây là cách chia của Microsoft chứ không phải của AWS.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="758" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Bản đồ dịch vụ AWS</text>
+<text x="16" y="60.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Một phần ba nằm ở trang dịch vụ</text>
+<text x="16" y="79.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">khác.</text>
+<rect x="8" y="99" width="304" height="191" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="127.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Bài nguồn</text>
+<rect x="20" y="144" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="167" r="11" fill="#16a34a"/>
+<polyline points="37.9,167.4 41.7,171.4 48.5,163" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="170.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Một ảnh hướng dẫn các dịch</text>
+<text x="64" y="189.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">vụ AWS.</text>
+<rect x="20" y="215" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="238" r="11" fill="#16a34a"/>
+<polyline points="37.9,238.4 41.7,242.4 48.5,234" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="241.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ảnh không được đọc trong</text>
+<text x="64" y="260.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bài này.</text>
+<rect x="8" y="302" width="304" height="245" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="330.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Chín trang của Microsoft</text>
+<rect x="20" y="347" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="370" r="11" fill="#16a34a"/>
+<polyline points="37.9,370.4 41.7,374.4 48.5,366" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="373.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">194 dòng ghép dịch vụ.</text>
+<rect x="20" y="401" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="424" r="11" fill="#16a34a"/>
+<polyline points="37.9,424.4 41.7,428.4 48.5,420" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="427.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Trang giới thiệu gom 63</text>
+<text x="64" y="446.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dòng.</text>
+<rect x="20" y="472" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="495" r="11" fill="#16a34a"/>
+<polyline points="37.9,495.4 41.7,499.4 48.5,491" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="498.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tính toán 27, mạng 24, phân</text>
+<text x="64" y="517.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tích 23.</text>
+<rect x="8" y="559" width="304" height="191" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="587.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Điều cần nhớ</text>
+<rect x="20" y="604" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="627" r="11" fill="#16a34a"/>
+<polyline points="37.9,627.4 41.7,631.4 48.5,623" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="630.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">183 tên AWS khác nhau; 17</text>
+<text x="64" y="649.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tên ở hai trang.</text>
+<rect x="20" y="675" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="698" r="11" fill="#16a34a"/>
+<polyline points="37.9,698.4 41.7,702.4 48.5,694" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="701.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đây là cách chia của</text>
+<text x="64" y="720.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Microsoft.</text>
+</g>
+</svg>

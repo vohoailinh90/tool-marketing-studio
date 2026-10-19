@@ -43,7 +43,7 @@ Một người dùng tắt email và chỉ muốn nhận thông báo trong ứng
 <summary>Xem sâu hơn: vì sao đặt hàng đợi giữa xử lý và các kênh</summary>
 
 - Mỗi kênh có tốc độ riêng: email có thể chậm, thông báo trong ứng dụng thì nhanh. Hàng đợi giữ việc cho kênh chậm mà không làm nghẽn kênh nhanh.
-- Một kênh ngoài (nhà mạng SMS chẳng hạn) gặp sự cố thì thông báo nằm chờ trong hàng đợi thay vì mất.
+- Một kênh ngoài (nhà mạng SMS chẳng hạn) gặp sự cố thì thông báo có thể nằm chờ thay vì mất, nhưng chỉ khi hàng đợi lưu bền, chỉ xóa tin sau khi kênh gửi xong và có thử lại; bài nguồn không nói hệ thống có những điều này.
 - Có thể thêm máy cho riêng kênh đang đông.
 
 Đây là nhận xét chung của người biên soạn, không phải từ bài nguồn.

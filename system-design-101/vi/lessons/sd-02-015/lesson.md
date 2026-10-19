@@ -32,14 +32,14 @@ Bạn cần lưu số tiền mỗi khách trả hằng tháng, và tuyệt đố
 <details>
 <summary>Xem đáp án</summary>
 
-Ở cơ sở dữ liệu quan hệ MySQL, nơi bài nguồn nói Netflix để giao dịch thanh toán, gói đăng ký, thuế và doanh thu. Cơ sở dữ liệu quan hệ có giao dịch (transaction), giúp một lần ghi tiền hoặc thành công trọn vẹn hoặc không xảy ra.
+Ở cơ sở dữ liệu quan hệ MySQL, nơi bài nguồn nói Netflix để giao dịch thanh toán, gói đăng ký, thuế và doanh thu. Cơ sở dữ liệu quan hệ có giao dịch (transaction), giúp một lần ghi tiền hoặc thành công trọn vẹn hoặc không xảy ra. Nhưng giao dịch chưa chống được ghi đôi: nếu một yêu cầu thanh toán bị gửi lại sau khi hết thời gian chờ, hai giao dịch riêng vẫn có thể cùng thành công. Muốn không ghi đôi, cần thêm khóa chống trùng (idempotency key) hoặc ràng buộc duy nhất trên mã thanh toán; phần này là kiến thức chung của người biên soạn.
 
 </details>
 
 <details>
 <summary>Xem sâu hơn: mỗi loại trả lời tốt câu hỏi gì</summary>
 
-- Quan hệ: "ghi số tiền này cho đúng, một lần".
+- Quan hệ: "ghi số tiền này trọn vẹn, hoặc không ghi gì" (chống ghi trùng thì cần thêm khóa chống trùng).
 - Cột rộng: "ghi rất nhiều, đọc theo khóa, ở nhiều máy".
 - Khóa–giá trị trong bộ nhớ: "trả lời thật nhanh khi đã biết khóa".
 - Cột: "cộng, đếm trên hàng triệu dòng".

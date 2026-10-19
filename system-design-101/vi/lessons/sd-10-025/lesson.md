@@ -1,7 +1,7 @@
 # Đồng thời và song song: khác nhau ở đâu?
 
 **Cùng một máy bốn lõi, bốn việc chờ và bốn việc tính toán chạy theo ba cách. Số đo cho thấy khi nào chỉ cần đồng thời, khi nào phải có song song.**
-Bài tự chạy một thí nghiệm nhỏ bằng Python rồi đọc kết quả cùng tài liệu của Go và Python; số đo là của một lần thử trên một máy, không phải con số chung.
+Bài tự chạy một thí nghiệm nhỏ bằng Python rồi đọc kết quả cùng tài liệu của Go và Python; số đo là của hai lần chạy trên một máy, không phải con số chung.
 
 ![Hai nhóm thẻ số đo và một khung ghi nhớ. Bốn việc chờ, mỗi việc 0,5 giây: lần lượt hết 2,00 giây; đồng thời bằng asyncio hết 0,50 giây; đồng thời bằng bốn luồng hết 0,50 giây. Bốn việc tính toán: lần lượt hết khoảng 0,6 giây; bốn luồng khoảng 0,7 giây; bốn tiến trình khoảng 0,2 đến 0,3 giây. Khung cuối nêu ba điều cần nhớ.](../../diagrams/sd-10-025-main.svg)
 

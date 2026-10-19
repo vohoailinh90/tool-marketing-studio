@@ -11,6 +11,12 @@ Bài tự viết ba đoạn mã Python cho cùng bài toán, chạy cả ba đ�
 
 ## Đọc hình
 
+Cả ba cách dưới đây dùng chung một đầu vào, các số nguyên từ 1 đến 6; đoạn này phải chạy trước mỗi ví dụ để có `numbers`:
+
+```python
+numbers = [1, 2, 3, 4, 5, 6]
+```
+
 **Mệnh lệnh (imperative).** Chương trình là danh sách lệnh bảo máy làm gì, theo thứ tự.
 
 ```python

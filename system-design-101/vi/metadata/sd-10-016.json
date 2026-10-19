@@ -32,7 +32,7 @@
     },
     "claims": {
       "status": "pending",
-      "reason": "source_claims_listed_with_the_pinned_source; the Java statements were read in raw copies of the OpenJDK source at the pinned commit, but the glosses of the abbreviations are the author's general knowledge"
+      "reason": "source_claims_listed_with_the_pinned_source; the Java statements were read in raw copies of the OpenJDK source and the MDN statements in raw copies of the MDN pages, all at the pinned commits and recorded in the claims below; the suffix tree, graph and R-tree examples are only the source's words and were not checked, and the glosses of the abbreviations are the author's general knowledge"
     },
     "technical_review": {
       "status": "pending",

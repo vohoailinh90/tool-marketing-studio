@@ -1,23 +1,23 @@
 {
   "id": "sd-10-017",
   "title": "Bảy mươi năm ngôn ngữ lập trình",
-  "subtitle": "Các mốc theo lời bài nguồn.",
-  "desc": "Ba chuỗi bước theo thời gian. Các thế hệ đầu: thẻ đục lỗ, hợp ngữ, và từ 1957 ngôn ngữ hướng về con người như Fortran và LISP. Từ 1972 đến thập niên 1990: Smalltalk và C năm 1972; ngôn ngữ hướng đối tượng như Objective-C và C++ thập niên 1980; Python thập niên 1990; Java, JavaScript, PHP và Ruby năm 1995. Từ năm 2000: C# năm 2000; thập niên 2010 có D, Rust, Zig, Carbon, Go, Kotlin, Dart, TypeScript và Swift. Khung cuối nêu ba điều cần nhớ.",
+  "subtitle": "Các mốc của bài nguồn, mỗi ngôn ngữ tả bằng tài liệu của chính nó.",
+  "desc": "Ba chuỗi bước theo thời gian. Các thế hệ đầu: thẻ đục lỗ; hợp ngữ hướng về máy; từ 1957 ngôn ngữ hướng về con người như Fortran và LISP. Từ 1972 đến thập niên 1990: Smalltalk và C năm 1972; ngôn ngữ hướng đối tượng như Objective-C và C++ thập niên 1980; Python đầu thập niên 1990, kế nhiệm một ngôn ngữ cũ; JavaScript vào trình duyệt Netscape tháng 9 năm 1995, cùng năm Java, PHP và Ruby theo bài nguồn. Từ năm 2000: C# năm 2000; các ngôn ngữ thập niên 2010 như Rust, Go, Carbon, Kotlin, Swift, TypeScript và Dart, mỗi ngôn ngữ tự nêu một mục tiêu riêng. Khung cuối nêu ba điều cần nhớ.",
   "sections": [
     {"kind": "steps", "heading": "Các thế hệ đầu",
      "items": [{"title": "Thế hệ 1", "text": "Thẻ đục lỗ."},
                {"title": "Thế hệ 2", "text": "Hợp ngữ, hướng về máy."},
-               {"title": "Thế hệ 3, từ 1957", "text": "Hướng về con người; Fortran và LISP mở đường cho nhiều tính năng."}]},
+               {"title": "Thế hệ 3, từ 1957", "text": "Hướng về con người: Fortran, LISP."}]},
     {"kind": "steps", "heading": "Từ 1972 đến thập niên 1990",
-     "items": [{"title": "1972", "text": "Smalltalk và C."},
-               {"title": "Thập niên 1980", "text": "Hướng đối tượng phổ biến: Objective-C, C++."},
-               {"title": "Thập niên 1990", "text": "Máy tính cá nhân rẻ hơn; Python ra đời."},
-               {"title": "1995", "text": "Java, JavaScript, PHP và Ruby."}]},
+     "items": [{"title": "1972", "text": "Smalltalk và C, theo bài nguồn."},
+               {"title": "Thập niên 1980", "text": "Hướng đối tượng: Objective-C, C++."},
+               {"title": "Đầu thập niên 1990", "text": "Python, kế nhiệm một ngôn ngữ cũ."},
+               {"title": "Tháng 9 năm 1995", "text": "JavaScript vào Netscape; Java, PHP, Ruby cùng năm."}]},
     {"kind": "steps", "heading": "Từ năm 2000",
-     "items": [{"title": "2000", "text": "Microsoft phát hành C#."},
-               {"title": "2010, cải tiến C++ hoặc Java", "text": "D, Rust, Zig, Carbon; Go, Kotlin."},
-               {"title": "2010, hướng khác", "text": "Dart cùng Flutter, TypeScript, Swift thay Objective-C."}]},
+     "items": [{"title": "2000", "text": "C#, do nhóm thiết kế riêng."},
+               {"title": "Thập niên 2010", "text": "Rust, Go, Carbon, Kotlin: mỗi cái một mục tiêu."},
+               {"title": "Cũng thập niên 2010", "text": "TypeScript trên JavaScript; Swift; Dart."}]},
     {"kind": "notes", "heading": "Nhớ gì",
-     "items": ["Đây là các mốc theo lời nguồn, không phải danh sách đầy đủ.", "Nhiều ngôn ngữ mới ra đời để cải thiện C++ hoặc Java.", "Chỉ mốc Python được đối chiếu với tài liệu gốc."]}
+     "items": ["Mốc thời gian là của bài nguồn, trừ Python và JavaScript.", "Mỗi ngôn ngữ nhắm một mục tiêu do chính nó nêu.", "Không phải danh sách đầy đủ."]}
   ]
 }

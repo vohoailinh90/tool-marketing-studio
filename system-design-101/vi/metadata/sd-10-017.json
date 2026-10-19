@@ -32,7 +32,7 @@
     },
     "claims": {
       "status": "pending",
-      "reason": "source_claims_listed_with_the_pinned_source; only the Python origin was read in a raw copy of the CPython documentation, every other date and statement is the source's word and the glosses are the author's general knowledge"
+      "reason": "source_claims_listed_with_the_pinned_source; the language descriptions were read in raw copies of the pinned CPython, MDN, PHP, Ruby, C#, Rust, Go, Kotlin, Carbon, TypeScript, Swift, Dart and D project documentation and are recorded in the claims below; the timeline dates and the order of the languages are the source's word, not independently verified, and the glosses are the author's general knowledge"
     },
     "technical_review": {
       "status": "pending",

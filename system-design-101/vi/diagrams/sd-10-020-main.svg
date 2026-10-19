@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="320" height="1404" viewBox="0 0 320 1404" role="img" aria-labelledby="title desc">
 <title id="title">Tám mô hình lập trình</title>
-<desc id="desc">Ba nhóm thẻ và một khung ghi nhớ. Cách mô tả chương trình: mệnh lệnh là danh sách lệnh bảo máy làm gì; khai báo nêu bài toán và để cài đặt tự chọn cách giải; hàm chia việc thành các hàm nhận vào rồi trả ra. Cách tổ chức mã: hướng đối tượng xoay quanh đối tượng có trạng thái và phương thức; hướng khía cạnh tách mối quan tâm cắt ngang nhiều kiểu; tổng quát dùng kiểu như một tham số. Nhiều việc và dữ liệu thay đổi: phản ứng là luồng bất đồng bộ có điều tiết lưu lượng; đồng thời chia chương trình thành các phần chạy độc lập. Khung cuối nêu ba điều cần nhớ.</desc>
+<desc id="desc">Ba nhóm thẻ và một khung ghi nhớ. Cách mô tả chương trình: mệnh lệnh là danh sách lệnh bảo máy làm gì; khai báo nêu bài toán và để cài đặt tự chọn cách giải; hàm chia việc thành các hàm nhận vào rồi trả ra. Cách tổ chức mã: hướng đối tượng xoay quanh đối tượng có trạng thái và phương thức; hướng khía cạnh tách mối quan tâm cắt ngang nhiều kiểu; tổng quát dùng kiểu như một tham số. Nhiều việc và dữ liệu thay đổi: phản ứng là phản ứng với dữ liệu đến theo thời gian, ví dụ Reactive Streams; đồng thời chia chương trình thành các phần chạy độc lập. Khung cuối nêu ba điều cần nhớ.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="1404" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
@@ -49,8 +49,8 @@
 <rect x="20" y="922" width="280" height="87" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
 <circle cx="50" cy="965.5" r="18" fill="#b45309"/><g transform="translate(39.2 954.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16.247 7.761a6 6 0 0 1 0 8.478"/><path d="M19.075 4.933a10 10 0 0 1 0 14.134"/><path d="M4.925 19.067a10 10 0 0 1 0-14.134"/><path d="M7.753 16.239a6 6 0 0 1 0-8.478"/><circle cx="12" cy="12" r="2"/></g>
 <text x="78" y="948.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Phản ứng</text>
-<text x="78" y="972.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Luồng bất đồng bộ, có điều</text>
-<text x="78" y="991.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tiết lưu lượng.</text>
+<text x="78" y="972.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Phản ứng với dữ liệu đến,</text>
+<text x="78" y="991.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">ví dụ Reactive Streams.</text>
 <rect x="20" y="1023" width="280" height="87" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
 <circle cx="50" cy="1066.5" r="18" fill="#b45309"/><g transform="translate(39.2 1055.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5"/><path d="M8 3H3v5"/><path d="M12 22v-8.3a4 4 0 0 0-1.172-2.872L3 3"/><path d="m15 9 6-6"/></g>
 <text x="78" y="1049.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Đồng thời</text>

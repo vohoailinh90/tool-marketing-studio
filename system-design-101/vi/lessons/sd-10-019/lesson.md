@@ -21,7 +21,7 @@ Ví dụ chung: một lớp `Shape` (hình) có hàm `area` (diện tích); `Cir
 
 **Đa hình (polymorphism).** MDN định nghĩa đa hình là đưa ra một giao diện cho nhiều kiểu dữ liệu. Với hướng đối tượng, mỗi lớp chịu trách nhiệm về mã và dữ liệu của chính nó, nên mỗi lớp có hàm riêng và hàm đó chạy đúng với từng đối tượng được gọi. Trong ví dụ, gọi `area` trên `Circle` hay trên `Square` đều được, và mỗi hình tính theo cách của nó.
 
-**Trừu tượng trong Python.** Python có mô-đun `abc` để định nghĩa lớp cơ sở trừu tượng, tức lớp chỉ nêu giao diện chung để lớp con cài đặt.
+**Trừu tượng trong Python.** Python có mô-đun `abc` để định nghĩa lớp cơ sở trừu tượng, tức lớp đánh dấu những thao tác bắt buộc và không cho tạo đối tượng từ nó cho tới khi lớp con cài đặt đủ các thao tác đó; lớp ấy vẫn có thể chứa cả phương thức đã cài sẵn.
 
 ## Giới hạn cần nhớ
 

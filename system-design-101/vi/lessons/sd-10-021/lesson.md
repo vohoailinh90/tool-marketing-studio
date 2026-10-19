@@ -19,7 +19,7 @@ Danh sách thuật toán của nguồn nằm trong ảnh mà bài không dùng, 
 
 ## Giới hạn cần nhớ
 
-Phần chữ của nguồn không nêu tên thuật toán nào và không cho biết thuật toán nào được mấy sao; danh sách chỉ có trong ảnh nguồn, mà bài không dùng. Vì thế bài không dạy một thuật toán nào và không nên bị đọc như một danh sách cần học. Ba ví dụ là lựa chọn của bài, không gán sao, và không có nghĩa nguồn xếp chúng ở mức nào.
+Phần chữ của nguồn không nêu tên thuật toán nào và không cho biết thuật toán nào được mấy sao; danh sách chỉ có trong ảnh nguồn, mà bài không dùng. Vì thế bài không chép danh sách của ảnh, không gán sao cho thuật toán nào và không nên bị đọc như một danh sách cần học. Ba ví dụ là lựa chọn của bài, không gán sao, và không có nghĩa nguồn xếp chúng ở mức nào.
 Thang sao không được đối chiếu với yêu cầu thật của buổi phỏng vấn nào, và nguồn không giải thích "cấp cao" nghĩa là bao nhiêu năm kinh nghiệm. Các tài liệu của Cassandra và etcd-io/raft là bản đã ghim ở mục nguồn; bài không nói hệ thống ấy hiện làm gì.
 
 ## Nhìn hình trả lời

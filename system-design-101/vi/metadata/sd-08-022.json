@@ -1,0 +1,86 @@
+{
+  "id": "sd-08-022",
+  "title_vi": "Bản đồ kiến thức của kiến trúc sư: tám vùng, năm mươi cái tên, và \"biết\" một cái tên nghĩa là gì",
+  "language": "vi",
+  "kind": "reference",
+  "content_status": "draft",
+  "source_ref": "sd-08-022",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/the-ultimate-software-architect-knowledge-map.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/the-ultimate-software-architect-knowledge-map.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a git fetch of the pinned commit and hashed as a Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "57644609e91e0b4e80f9a6967214951f1019f1e5",
+    "retrieved_body_sha256": "9fa612da4e24b6d609d089eede9c8ea01978f6db09efe26d048918a7d224ba6d",
+    "retrieved_body_bytes": 2042
+  },
+  "diagram": "../diagrams/sd-08-022-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-19"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-19",
+      "evidence": "Eight areas and their named items from the source body at the pinned commit (text only, no image bytes); the count of about 50 names is a hand count (a phrase such as 'SQL and NoSQL databases' counts once); style coverage checked by grepping local clones of MicrosoftDocs/architecture-center at 8e2c239; the atomicity and JWT behaviours measured by a Python 3.13.16 program with SQLite 3.45.1 in memory and PyJWT 2.14.0 on 2026-10-19; sqlite3 transaction control read from the CPython documentation at 7dbc797. RFC 7519 and RFC 7515 could not be fetched and were not read; the rejection of alg none comes from PyJWT itself. Only two of about 50 names were tried."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-19",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Figure drawn by scripts/figures (viewBox width 320, smallest font 15 px, shown at 13.5 px at 320 px); python3 -m scripts.figures check --browser passed; the lesson (Markdown to HTML, optional sections open, 16 px side gutters) rendered in Chromium at 320, 375 and 430 px with no horizontal overflow of the page, any table or any code block. Not learner testing and not GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Source: eight areas, each with named items - a programming language (master 1-2 such as Java, Python, Golang, JavaScript), tools (GitHub, Jenkins, Jira, ELK, Sonar), design principles (OOPS, Clean Code, TDD, DDD, CAP Theorem, MVC Pattern, ACID, GOF), architectural principles (Microservices, Publish-Subscribe, Layered, Event-Driven, Client-Server, Hexagonal), platform knowledge (containers, orchestration, cloud, serverless, CDN, API Gateways, Distributed Systems, CI/CD), data analytics (SQL and NoSQL databases, streaming with Kafka, object storage, data migration, OLAP), networking and security (DNS, TCP, TLS, HTTPS, Encryption, JWT, OAuth, Credential Management), supporting skills (decision-making, technology knowledge, stakeholder management, communication, estimation, leadership); the guide ends by asking what else to add. Hand count: 4, 5, 8, 6, 8, 5, 8, 6 names, about 50 in all.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/the-ultimate-software-architect-knowledge-map.md",
+      "section": "Whole guide",
+      "verified_by": "Source body read at the pinned commit; counts made by the author."
+    },
+    {
+      "claim_vi": "Microsoft architecture-center has pages for n-tier, microservices and event-driven styles and a Publisher-Subscriber pattern page; no markdown file in the clone contains 'hexagonal' or 'ports and adapters'; client-server appears only in a few example scenarios, not in a page of its own.",
+      "source": "https://github.com/MicrosoftDocs/architecture-center/blob/8e2c239344ee753a88856800b4210a3e27ac1036/docs/guide/architecture-styles/index.md",
+      "section": "Quick tour of the styles",
+      "verified_by": "Local clone at 8e2c239; grep over docs/**/*.md on 2026-10-19."
+    },
+    {
+      "claim_vi": "Experiment (atomicity): an account with 100 and one with 0; transferring 150 with the credit step first and the debit step violating a non-negative balance check. Statements run on their own: total 100 becomes 250 (balances 100 and 150). Inside begin and rollback: total stays 100 (balances 100 and 0).",
+      "source": "https://github.com/python/cpython/blob/7dbc797/Doc/library/sqlite3.rst",
+      "section": "Connection.autocommit; transaction control",
+      "verified_by": "Program run by the author on 2026-10-19 with SQLite 3.45.1 in memory; the CPython documentation says in autocommit mode commit and rollback have no effect, so the program opens the transaction with SQL."
+    },
+    {
+      "claim_vi": "Experiment (JWT): a token signed by hand with HS256 equals PyJWT 2.14.0's token byte for byte for the same key and payload; the payload decodes with base64url without the key; changing role from reader to admin with the old signature raises InvalidSignatureError; a token with alg none is rejected with InvalidAlgorithmError when HS256 is required; an expired token raises ExpiredSignatureError.",
+      "source": "https://pypi.org/project/PyJWT/",
+      "section": "Experiment",
+      "verified_by": "Program run by the author on 2026-10-19; the RFC texts were not available and were not read."
+    }
+  ],
+  "design_notes_vi": "Ba khung: bản đồ có bao nhiêu tên, hai tên được thử, giới hạn.",
+  "source_deviations": [
+    "The source is a map picture with a list of eight areas; the lesson keeps the eight areas and their order, adds a count, a coverage check against Microsoft's style pages and two runnable tests of two names.",
+    "The map's image was not used; the ranking and depth of knowledge are not in the source and the lesson does not invent them."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này (gói W8), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

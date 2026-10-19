@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="989" viewBox="0 0 320 989" role="img" aria-labelledby="title desc">
+<title id="title">Bản đồ kiến trúc sư: tám vùng, năm mươi cái tên</title>
+<desc id="desc">Ba khung. Khung một, bản đồ của nguồn có tám vùng và khoảng năm mươi cái tên: ngôn ngữ 4, công cụ 5, nguyên tắc thiết kế 8, kiến trúc 6, nền tảng 8, dữ liệu 5, mạng và bảo mật 8, kỹ năng hỗ trợ 6; bản đồ chỉ gọi tên, không nói học cái nào trước. Khung hai, hai cái tên được thử: chuyển tiền hỏng giữa chừng làm tổng tiền từ 100 thành 250 nếu mỗi lệnh chạy riêng, và vẫn là 100 nếu nằm trong một giao dịch; thẻ JWT đọc được nội dung không cần khóa nhưng sửa nội dung thì chữ ký không còn khớp. Khung ba, mới thử hai trong năm mươi cái tên, số đếm là đếm tay.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="989" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Bản đồ kiến trúc sư: tám</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">vùng, năm mươi cái tên</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Biết một cái tên là làm được một</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">phép thử; thử hai cái tên.</text>
+<rect x="8" y="123" width="304" height="302" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Tám vùng, cỡ năm mươi tên</text>
+<rect x="20" y="168" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="191" r="11" fill="#16a34a"/>
+<polyline points="37.9,191.4 41.7,195.4 48.5,187" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="194.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ngôn ngữ 4, công cụ 5,</text>
+<text x="64" y="213.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nguyên tắc thiết kế 8, kiến</text>
+<text x="64" y="233.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trúc 6.</text>
+<rect x="20" y="259" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="282" r="11" fill="#16a34a"/>
+<polyline points="37.9,282.4 41.7,286.4 48.5,278" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="285.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nền tảng 8, dữ liệu 5, mạng</text>
+<text x="64" y="304.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">và bảo mật 8, kỹ năng hỗ trợ</text>
+<text x="64" y="324.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">6.</text>
+<rect x="20" y="350" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="373" r="11" fill="#16a34a"/>
+<polyline points="37.9,373.4 41.7,377.4 48.5,369" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="376.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bản đồ chỉ gọi tên; không</text>
+<text x="64" y="395.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nói học cái nào trước.</text>
+<rect x="8" y="437" width="304" height="341" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="465.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Hai tên, hai phép thử</text>
+<rect x="20" y="482" width="280" height="102" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="505" r="11" fill="#16a34a"/>
+<polyline points="37.9,505.4 41.7,509.4 48.5,501" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="508.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chuyển tiền hỏng giữa</text>
+<text x="64" y="527.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chừng: từng lệnh riêng, tổng</text>
+<text x="64" y="547.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">100 thành 250; một giao</text>
+<text x="64" y="566.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dịch, vẫn 100.</text>
+<rect x="20" y="592" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="615" r="11" fill="#16a34a"/>
+<polyline points="37.9,615.4 41.7,619.4 48.5,611" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="618.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">JWT: ai cũng đọc được nội</text>
+<text x="64" y="637.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dung; sửa thì chữ ký không</text>
+<text x="64" y="657.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khớp.</text>
+<rect x="20" y="683" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="706" r="11" fill="#16a34a"/>
+<polyline points="37.9,706.4 41.7,710.4 48.5,702" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="709.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Thẻ tự nhận không cần chữ</text>
+<text x="64" y="728.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">ký bị từ chối khi bắt buộc</text>
+<text x="64" y="748.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thuật toán.</text>
+<rect x="8" y="790" width="304" height="191" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="818.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Giới hạn</text>
+<rect x="20" y="835" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="858" r="11" fill="#16a34a"/>
+<polyline points="37.9,858.4 41.7,862.4 48.5,854" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="861.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Số đếm là đếm tay trên</text>
+<text x="64" y="880.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">phần chữ của bài nguồn.</text>
+<rect x="20" y="906" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="929" r="11" fill="#16a34a"/>
+<polyline points="37.9,929.4 41.7,933.4 48.5,925" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="932.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mới thử hai trong năm mươi</text>
+<text x="64" y="951.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cái tên.</text>
+</g>
+</svg>

@@ -132,6 +132,13 @@ Các bài chưa viết của nhóm này không có trong danh sách; số thứ 
 14. [Tám chiến lược đẩy khóa ra, và Redis thật sự có những gì](lessons/sd-06-014/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
 15. [Bộ nhớ đệm hỏng theo những kiểu nào](lessons/sd-06-015/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
 
+## Kiến trúc phần mềm
+
+Các bài chưa viết của nhóm này không có trong danh sách; số thứ tự là vị trí của bài trong nhóm.
+
+21. [MVC, MVP, MVVM, VIPER: cùng một nút bấm, bốn cách chia việc, và luật nằm ở đâu](lessons/sd-08-021/lesson.md) — bốn mẫu chia khung nhìn và mô hình, đối chiếu Apple và Microsoft, một màn hình viết bốn lần
+22. [Bản đồ kiến thức của kiến trúc sư: tám vùng, năm mươi cái tên, và "biết" một cái tên nghĩa là gì](lessons/sd-08-022/lesson.md) — tám vùng của nguồn, đếm tên, hai cái tên thành hai phép thử (giao dịch, thẻ JWT)
+
 ## Công cụ và năng suất
 
 1. [Các lệnh Git theo việc cần làm](lessons/sd-09-001/lesson.md) — bản nháp; chờ review kỹ thuật.

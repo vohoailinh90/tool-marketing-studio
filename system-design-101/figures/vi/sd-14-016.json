@@ -1,0 +1,56 @@
+{
+  "id": "sd-14-016",
+  "lang": "vi",
+  "title": "Năm đường dữ liệu có thể lọt ra",
+  "subtitle": "Bắt đầu từ danh sách dữ liệu nhạy cảm và chỗ nó nằm. Mỗi lớp chặn một đường.",
+  "desc": "Ba khung xếp dọc, dưới tiêu đề năm đường dữ liệu có thể lọt ra; bắt đầu từ danh sách dữ liệu nhạy cảm và chỗ nó nằm. Khung 1: trên đường truyền dùng TLS, không dùng SSL 2 và 3; trong kho lưu mã hóa AES-GCM và để khóa riêng khỏi dữ liệu; trong các bản sao (log, bản xuất, môi trường thử) bỏ, che hoặc thay dữ liệu trước khi chép. Khung 2: qua người và dịch vụ thì quyền tối thiểu theo vai trò (RBAC) và ghi lại ai xem; theo thời gian thì thu hồi quyền, xoay khóa, xóa khi hết hạn lưu. Khung 3, cần nhớ: mã hóa chỉ giữ được khi khóa nằm riêng; băm một mã ngắn không làm nó ẩn; chia khóa cho nhiều người là một thiết kế, không phải luật chung; bài không đọc luật nào.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "1 · Kênh, kho và bản sao",
+      "items": [
+        {
+          "name": "Trên đường truyền",
+          "role": "Dùng TLS, không dùng SSL 2 và 3.",
+          "icon": "truck"
+        },
+        {
+          "name": "Trong kho lưu",
+          "role": "Mã hóa AES-GCM, khóa để riêng khỏi dữ liệu.",
+          "icon": "database"
+        },
+        {
+          "name": "Trong các bản sao",
+          "role": "Log, bản xuất, môi trường thử: bỏ, che hoặc thay trước khi chép.",
+          "icon": "file-text"
+        }
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "2 · Quyền và thời gian",
+      "items": [
+        {
+          "name": "Qua người và dịch vụ",
+          "role": "Quyền tối thiểu theo vai trò (RBAC), ghi lại ai xem.",
+          "icon": "users"
+        },
+        {
+          "name": "Theo thời gian",
+          "role": "Thu hồi quyền khi xong việc, xoay khóa, xóa khi hết hạn lưu.",
+          "icon": "clock"
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "3 · Cần nhớ",
+      "items": [
+        "Mã hóa chỉ giữ được khi khóa nằm riêng khỏi dữ liệu.",
+        "Băm một mã ngắn không làm nó ẩn: thử hết là ra.",
+        "Chia khóa cho nhiều người là một thiết kế, không phải luật chung.",
+        "Luật mỗi nơi một khác; bài này không đọc luật nào."
+      ]
+    }
+  ]
+}

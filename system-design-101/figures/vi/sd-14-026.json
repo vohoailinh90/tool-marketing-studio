@@ -1,0 +1,37 @@
+{
+  "id": "sd-14-026",
+  "lang": "vi",
+  "title": "TOTP: hai bên cùng tính ra mã",
+  "subtitle": "Bí mật chung và giờ hiện tại cho ra mã sáu số.",
+  "desc": "Hai khung các bước và một khung ghi nhớ. Cài đặt một lần: máy chủ tạo bí mật ngẫu nhiên; mã QR mang bí mật, tên tài khoản và nơi cấp; điện thoại quét và lưu. Mỗi lần đăng nhập: điện thoại tính mã sáu chữ số bằng HMAC của bí mật và số bước giờ; bạn gõ mã cùng mật khẩu; máy chủ tính lại và so khớp. Cần nhớ: chỉ có một triệu mã nên phải giới hạn số lần thử; lộ bí mật là lộ mã; trang giả chuyển mã được; mã dùng lại được nếu máy chủ không nhớ.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Cài đặt, làm một lần",
+      "items": [
+        {"title": "Máy chủ tạo bí mật", "text": "Một chuỗi ngẫu nhiên, máy chủ giữ lại."},
+        {"title": "Hiện mã QR", "text": "Trong mã có bí mật, tên tài khoản và nơi cấp."},
+        {"title": "Điện thoại quét và lưu", "text": "Từ đây tính mã được cả khi không có mạng."}
+      ]
+    },
+    {
+      "kind": "steps",
+      "heading": "Mỗi lần đăng nhập",
+      "items": [
+        {"title": "Điện thoại tính mã", "text": "HMAC của bí mật và số bước giờ, lấy sáu chữ số."},
+        {"title": "Bạn gõ mã", "text": "Cùng mật khẩu. Mã đổi sau mỗi 30 giây."},
+        {"title": "Máy chủ tính lại", "text": "Cùng bí mật, đồng hồ của máy chủ. Khớp thì cho vào."}
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Điều cần nhớ",
+      "items": [
+        "Chỉ có một triệu mã: máy chủ phải giới hạn số lần thử.",
+        "Ai có bí mật đều tính ra đúng mã.",
+        "Trang giả có thể chuyển mã đi ngay trong 30 giây.",
+        "Máy chủ không nhớ bước đã dùng thì mã dùng lại được."
+      ]
+    }
+  ]
+}

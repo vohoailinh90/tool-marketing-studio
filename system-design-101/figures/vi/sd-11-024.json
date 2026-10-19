@@ -1,11 +1,11 @@
 {
   "title": "Hạ tầng bằng mã",
-  "subtitle": "Bốn bậc, và vì sao khai báo hơn từng bước.",
-  "desc": "Hai khung. Khung một, bốn bậc nối nhau của việc cấp hạ tầng bằng mã: container, điều phối container, hạ tầng bằng mã, GitOps. Khung hai, thử nghiệm: chạy một kịch bản kiểu từng bước hai lần tạo 6 máy thay vì 3, còn khai báo trạng thái mong muốn chạy lần hai thay đổi 0 máy; giảm từ 3 xuống 2 chỉ xóa 1 máy.",
+  "subtitle": "Bốn lớp, và vì sao khai báo hơn từng bước.",
+  "desc": "Hai khung. Khung một, bốn lớp bổ trợ nhau của việc cấp hạ tầng bằng mã: container, điều phối container, hạ tầng bằng mã, GitOps. Khung hai, thử nghiệm: chạy một kịch bản kiểu từng bước hai lần tạo 6 máy thay vì 3, còn khai báo trạng thái mong muốn chạy lần hai thay đổi 0 máy; giảm từ 3 xuống 2 chỉ xóa 1 máy.",
   "sections": [
     {
       "kind": "parts",
-      "heading": "Bốn bậc",
+      "heading": "Bốn lớp",
       "items": [
         {
           "name": "Container",

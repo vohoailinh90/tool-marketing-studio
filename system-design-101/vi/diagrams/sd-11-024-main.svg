@@ -1,14 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="320" height="902" viewBox="0 0 320 902" role="img" aria-labelledby="title desc">
 <title id="title">Hạ tầng bằng mã</title>
-<desc id="desc">Hai khung. Khung một, bốn bậc nối nhau của việc cấp hạ tầng bằng mã: container, điều phối container, hạ tầng bằng mã, GitOps. Khung hai, thử nghiệm: chạy một kịch bản kiểu từng bước hai lần tạo 6 máy thay vì 3, còn khai báo trạng thái mong muốn chạy lần hai thay đổi 0 máy; giảm từ 3 xuống 2 chỉ xóa 1 máy.</desc>
+<desc id="desc">Hai khung. Khung một, bốn lớp bổ trợ nhau của việc cấp hạ tầng bằng mã: container, điều phối container, hạ tầng bằng mã, GitOps. Khung hai, thử nghiệm: chạy một kịch bản kiểu từng bước hai lần tạo 6 máy thay vì 3, còn khai báo trạng thái mong muốn chạy lần hai thay đổi 0 máy; giảm từ 3 xuống 2 chỉ xóa 1 máy.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="902" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Hạ tầng bằng mã</text>
-<text x="16" y="60.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Bốn bậc, và vì sao khai báo hơn từng</text>
+<text x="16" y="60.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Bốn lớp, và vì sao khai báo hơn từng</text>
 <text x="16" y="79.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">bước.</text>
 <rect x="8" y="99" width="304" height="501" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
-<text x="20" y="127.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Bốn bậc</text>
+<text x="20" y="127.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Bốn lớp</text>
 <rect x="20" y="144" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
 <circle cx="50" cy="187.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 176.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 7.7c0-.6-.4-1.2-.8-1.5l-6.3-3.9a1.72 1.72 0 0 0-1.7 0l-10.3 6c-.5.2-.9.8-.9 1.4v6.6c0 .5.4 1.2.8 1.5l6.3 3.9a1.72 1.72 0 0 0 1.7 0l10.3-6c.5-.3.9-1 .9-1.5Z"/><path d="M10 21.9V14L2.1 9.1"/><path d="m10 14 11.9-6.9"/><path d="M14 19.8v-8.1"/><path d="M18 17.5V9.4"/></g>
 <text x="78" y="170.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Container</text>

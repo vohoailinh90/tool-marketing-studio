@@ -2,7 +2,7 @@
 
 **Quản lý cấu hình giữ cho những thứ đã được cấp ở đúng trạng thái; hạ tầng bằng mã (IaC) cấp chúng ra từ một bản khai báo. Hai cách này chồng lên nhau nhiều hơn tên gọi gợi ý, và việc cần nhớ là cái gì được coi là sự thật: những lệnh đã chạy, hay một tệp mô tả trạng thái mong muốn.** Bài này so hai cách rồi thử một việc cả hai đều phải làm: phát hiện và sửa khi ai đó đã đổi tay một thứ.
 
-![Ba khung. Khung một, quản lý cấu hình truyền thống: duy trì trạng thái các mục đã cấp, thiết lập ban đầu thường làm tay, thay đổi bằng lệnh từng bước. Khung hai, hạ tầng bằng mã: tự động cấp phát, thường khai báo trạng thái mong muốn, tệp được quản lý phiên bản. Khung ba, bốn bước khi hạ tầng bị sửa tay: so sánh mong muốn với thực tế, liệt kê thay đổi, áp dụng, chạy lại không còn thay đổi.](../../diagrams/sd-11-025-main.svg)
+![Ba khung. Khung một, quản lý cấu hình truyền thống: duy trì trạng thái các mục đã cấp, công cụ như Puppet, Chef, Ansible vẫn khai báo và tự động được. Khung hai, hạ tầng bằng mã: tự động cấp phát, thường khai báo trạng thái mong muốn, tệp được quản lý phiên bản. Khung ba, bốn bước khi hạ tầng bị sửa tay: so sánh mong muốn với thực tế, liệt kê thay đổi, áp dụng, chạy lại không còn thay đổi.](../../diagrams/sd-11-025-main.svg)
 
 ## Từ viết tắt
 
@@ -10,7 +10,7 @@
 
 ## Đọc hình
 
-**Quản lý cấu hình truyền thống.** Hướng vào việc duy trì trạng thái mong muốn của các mục cấu hình (máy chủ, thiết bị mạng, ứng dụng) sau khi chúng đã được cấp. Hình ảnh quen thuộc: người vận hành thiết lập ban đầu bằng tay, rồi các thay đổi sau đó đi qua chuỗi lệnh từng bước.
+**Quản lý cấu hình truyền thống.** Hướng vào việc duy trì trạng thái mong muốn của các mục cấu hình (máy chủ, thiết bị mạng, ứng dụng) sau khi chúng đã được cấp. Các công cụ như Puppet, Chef hay Ansible cũng có thể tự động, khai báo trạng thái mong muốn, chạy lặp lại không đổi kết quả và lưu trong kho mã; điểm khác nằm ở phạm vi: chúng tập trung vào cấu hình máy và phần mềm đã có, còn việc cấp máy, mạng thường nằm ngoài. Cách làm tay hoặc chuỗi lệnh từng bước là kiểu quản trị thủ công chứ không phải đặc điểm của quản lý cấu hình.
 
 **Hạ tầng bằng mã.** Coi việc dựng và đổi hạ tầng là việc của phát triển phần mềm: một bản khai báo trong tệp, thường theo kiểu mô tả trạng thái mong muốn, nằm trong kho mã để lưu phiên bản và duyệt. Công cụ lo phần cấp phát và biến thực tế thành đúng như khai báo.
 

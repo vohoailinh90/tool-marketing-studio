@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="320" height="1173" viewBox="0 0 320 1173" role="img" aria-labelledby="title desc">
 <title id="title">Quản lý cấu hình và hạ tầng bằng mã</title>
-<desc id="desc">Ba khung. Khung một, quản lý cấu hình truyền thống: duy trì trạng thái các mục đã cấp, thiết lập ban đầu thường làm tay, thay đổi bằng lệnh từng bước. Khung hai, hạ tầng bằng mã: tự động cấp phát, thường khai báo trạng thái mong muốn, tệp được quản lý phiên bản. Khung ba, bốn bước khi hạ tầng bị sửa tay: so sánh mong muốn với thực tế, liệt kê thay đổi, áp dụng, chạy lại không còn thay đổi.</desc>
+<desc id="desc">Ba khung. Khung một, quản lý cấu hình truyền thống: duy trì trạng thái các mục đã cấp, công cụ như Puppet, Chef, Ansible vẫn khai báo và tự động được. Khung hai, hạ tầng bằng mã: tự động cấp phát, thường khai báo trạng thái mong muốn, tệp được quản lý phiên bản. Khung ba, bốn bước khi hạ tầng bị sửa tay: so sánh mong muốn với thực tế, liệt kê thay đổi, áp dụng, chạy lại không còn thay đổi.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="1173" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
@@ -20,13 +20,13 @@
 <rect x="20" y="281" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
 <circle cx="43" cy="304" r="11" fill="#16a34a"/>
 <polyline points="37.9,304.4 41.7,308.4 48.5,300" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="307.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Thiết lập ban đầu thường</text>
-<text x="64" y="326.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">làm tay.</text>
+<text x="64" y="307.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Puppet, Chef, Ansible cũng</text>
+<text x="64" y="326.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khai báo được.</text>
 <rect x="20" y="352" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
 <circle cx="43" cy="375" r="11" fill="#16a34a"/>
 <polyline points="37.9,375.4 41.7,379.4 48.5,371" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="378.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Thay đổi bằng các lệnh từng</text>
-<text x="64" y="397.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bước.</text>
+<text x="64" y="378.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Phạm vi: cấu hình máy và</text>
+<text x="64" y="397.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">phần mềm có sẵn.</text>
 <rect x="8" y="439" width="304" height="262" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
 <text x="20" y="467.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Hạ tầng bằng mã</text>
 <rect x="20" y="484" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>

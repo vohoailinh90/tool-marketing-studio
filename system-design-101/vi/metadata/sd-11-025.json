@@ -63,6 +63,7 @@
   "design_notes_vi": "Hai khung ghi chú đối xứng và một khung bốn bước cho việc phát hiện lệch.",
   "source_deviations": [
     "The source files Chef and Puppet under IaC; the lesson notes that many references file them under configuration management and that the boundary is blurry.",
+    "The lesson does not present configuration management as manual or imperative: tools such as Puppet, Chef and Ansible are automated, declarative and idempotent, and the lesson distinguishes the two by scope (configuring existing machines and software versus provisioning resources).",
     "The lesson adds a drift-detection experiment, which the source does not contain."
   ],
   "editorial_note_vi": "Bài mới viết tại repo này (gói W17), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."

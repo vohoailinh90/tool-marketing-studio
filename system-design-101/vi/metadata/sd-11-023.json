@@ -48,13 +48,13 @@
       "verified_by": "Source body read at the pinned commit."
     },
     {
-      "claim_vi": "Public build tools also pin the exact versions of all dependencies, direct and indirect, in lock files (npm package-lock.json, Go module checksum files, Cargo.lock) so that a rebuild reads a recorded list.",
+      "claim_vi": "Public build tools also pin the exact versions of dependencies, direct and indirect, in lock files (npm package-lock.json, Cargo.lock); in Go the required versions are in go.mod and go.sum only records hashes for integrity, so it is not a lock file.",
       "source": "https://go.dev/ref/mod",
       "section": "Dependency resolution",
       "verified_by": "Kiến thức chung của người biên soạn, chưa đối chiếu lại với trang này trong phiên viết (không mở được trang từ môi trường)."
     },
     {
-      "claim_vi": "Toy resolver: package A requires B<2; B has 1.0 and 1.1 on day 1. Floating (latest) resolution gives A 1.0 + B 1.1 on day 1 and A 1.0 + B 2.0 (violating the constraint) on day 2 after B 2.0 is published; resolution from a snapshot taken on day 1 gives A 1.0 + B 1.1 on both days.",
+      "claim_vi": "Toy resolver: package A requires B>=1.0 (open constraint); B has 1.0 and 1.1 on day 1. Floating (latest) resolution gives A 1.0 + B 1.1 on day 1 and A 1.0 + B 2.0 on day 2 after B 2.0 is published with a changed call signature, which A cannot build against; resolution from a snapshot taken on day 1 gives A 1.0 + B 1.1 on both days. With an upper bound B<2 the resolver would keep 1.1.",
       "source": "https://docs.npmjs.com/cli/configuring-npm/package-lock-json",
       "section": "Experiment",
       "verified_by": "Run by the author on 2026-10-19 with a small Python program; a two-package toy model."

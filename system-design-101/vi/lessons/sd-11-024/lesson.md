@@ -1,8 +1,8 @@
-# Hạ tầng bằng mã: bốn bậc, và vì sao khai báo hơn từng bước
+# Hạ tầng bằng mã: bốn lớp, và vì sao khai báo hơn từng bước
 
-**Cấp máy, mạng, cơ sở dữ liệu bằng tay thì chậm và khó lặp lại; viết chúng thành mã thì cấp lại được, kiểm tra được, sửa được.** Có bốn bậc nối nhau, từ đóng gói ứng dụng tới quản lý hạ tầng qua Git. Bài này đi qua bốn bậc, rồi thử một ý nằm sau chúng: vì sao "mô tả trạng thái mong muốn" an toàn hơn "ghi lại các bước đã làm".
+**Cấp máy, mạng, cơ sở dữ liệu bằng tay thì chậm và khó lặp lại; viết chúng thành mã thì cấp lại được, kiểm tra được, sửa được.** Có bốn lớp bổ trợ nhau, từ đóng gói ứng dụng tới quản lý hạ tầng qua Git. Chúng không phải bốn nấc phải đi lần lượt: dùng hạ tầng bằng mã không cần container, và GitOps cũng áp được cho cấu hình ứng dụng chứ không chỉ cho hạ tầng. Bài này đi qua bốn lớp, rồi thử một ý nằm sau chúng: vì sao "mô tả trạng thái mong muốn" an toàn hơn "ghi lại các bước đã làm".
 
-![Hai khung. Khung một, bốn bậc nối nhau của việc cấp hạ tầng bằng mã: container, điều phối container, hạ tầng bằng mã, GitOps. Khung hai, thử nghiệm: chạy một kịch bản kiểu từng bước hai lần tạo 6 máy thay vì 3, còn khai báo trạng thái mong muốn chạy lần hai thay đổi 0 máy; giảm từ 3 xuống 2 chỉ xóa 1 máy.](../../diagrams/sd-11-024-main.svg)
+![Hai khung. Khung một, bốn lớp bổ trợ nhau của việc cấp hạ tầng bằng mã: container, điều phối container, hạ tầng bằng mã, GitOps. Khung hai, thử nghiệm: chạy một kịch bản kiểu từng bước hai lần tạo 6 máy thay vì 3, còn khai báo trạng thái mong muốn chạy lần hai thay đổi 0 máy; giảm từ 3 xuống 2 chỉ xóa 1 máy.](../../diagrams/sd-11-024-main.svg)
 
 ## Từ viết tắt
 
@@ -12,9 +12,9 @@
 
 ## Đọc hình
 
-**Container.** Đóng gói ứng dụng cùng phụ thuộc của nó thành một đơn vị chạy giống nhau ở mọi nơi; Docker là công cụ phổ biến nhất. Điểm của bậc này: cách triển khai ứng dụng đã thành mã (một tệp mô tả cách dựng).
+**Container.** Đóng gói ứng dụng cùng phụ thuộc của nó thành một đơn vị chạy giống nhau ở mọi nơi; Docker là công cụ phổ biến nhất. Điểm của lớp này: cách triển khai ứng dụng đã thành mã (một tệp mô tả cách dựng).
 
-**Điều phối container.** Một ứng dụng thật có nhiều container; cần công cụ quyết định chạy cái nào ở đâu, thay cái hỏng, tăng giảm số lượng. Kubernetes là công cụ phổ biến nhất của bậc này.
+**Điều phối container.** Một ứng dụng thật có nhiều container; cần công cụ quyết định chạy cái nào ở đâu, thay cái hỏng, tăng giảm số lượng. Kubernetes là công cụ phổ biến nhất của lớp này.
 
 **IaC.** Cấp phát và cấu hình hạ tầng cũng viết thành tệp để lưu phiên bản, kiểm tra và dùng lại. Terraform và CloudFormation (của AWS) khai báo hạ tầng cần có; Ansible nghiêng về cấu hình máy hơn là cấp máy.
 
@@ -37,12 +37,12 @@ Mô hình chỉ đếm máy, không có phụ thuộc giữa tài nguyên, lỗi
 
 ## Nhìn hình trả lời
 
-Một đội đang mở máy bằng tay trên bảng điều khiển của nhà cung cấp đám mây, và mỗi lần dựng môi trường kiểm thử mất nửa ngày. Bậc nào trong hình giải quyết đúng nỗi đau này?
+Một đội đang mở máy bằng tay trên bảng điều khiển của nhà cung cấp đám mây, và mỗi lần dựng môi trường kiểm thử mất nửa ngày. Lớp nào trong hình giải quyết đúng nỗi đau này?
 
 <details>
 <summary>Xem đáp án</summary>
 
-Bậc IaC: khai báo môi trường kiểm thử thành tệp, dựng lại bằng một lệnh, và xóa khi xong. Container giúp đóng gói ứng dụng nhưng không tự cấp máy; điều phối giúp chạy nhiều container nhưng cũng cần hạ tầng bên dưới; GitOps là bậc đưa thay đổi hạ tầng qua quy trình duyệt, có ích sau khi đã có IaC.
+Lớp IaC: khai báo môi trường kiểm thử thành tệp, dựng lại bằng một lệnh, và xóa khi xong. Container giúp đóng gói ứng dụng nhưng không tự cấp máy; điều phối giúp chạy nhiều container nhưng cũng cần hạ tầng bên dưới; GitOps là lớp đưa thay đổi hạ tầng qua quy trình duyệt; nó đi tốt cùng IaC nhưng không bắt buộc đứng sau IaC.
 Đây là suy luận của người biên soạn.
 
 </details>
@@ -50,7 +50,7 @@ Bậc IaC: khai báo môi trường kiểm thử thành tệp, dựng lại bằ
 <details>
 <summary>Xem sâu hơn: điều đã sắp xếp lại so với bài nguồn</summary>
 
-Bài nguồn kể bốn chiến lược trong một đoạn ngắn và đặt tên các công cụ. Bài này giữ bốn bậc và tên công cụ, rồi tách ý "khai báo" ra thử riêng. Mô tả các công cụ là kiến thức chung của người biên soạn, chưa đối chiếu lại với tài liệu của từng công cụ.
+Bài nguồn kể bốn chiến lược trong một đoạn ngắn và đặt tên các công cụ. Bài này giữ bốn lớp và tên công cụ, rồi tách ý "khai báo" ra thử riêng. Mô tả các công cụ là kiến thức chung của người biên soạn, chưa đối chiếu lại với tài liệu của từng công cụ.
 
 </details>
 

@@ -14,22 +14,22 @@
 
 **Bộ phiên bản là gì.** Là tập các phiên bản gói đã chốt, như một "không gian riêng" của dịch vụ: khi thêm một phụ thuộc mới, nó cũng phải được đưa vào không gian riêng đó. Bài nguồn nói thêm một bộ mặc định tên "live" là không gian chung nơi ai cũng đưa lên phiên bản nào tùy ý. Hai tên gọi và cách vận hành chi tiết đó là mô tả của nguồn; Brazil là công cụ nội bộ của Amazon và bài chưa tìm được tài liệu công khai nào để đối chiếu.
 
-**Ý tưởng chung ngoài Amazon.** Chốt phiên bản chính xác của mọi phụ thuộc, kể cả phụ thuộc gián tiếp, là thứ nhiều công cụ công khai làm theo cách của chúng: tệp khóa của npm, tệp tổng kiểm của Go, tệp khóa của Cargo, tệp khóa của Bazel. Điểm chung: dựng lại đọc danh sách đã chốt thay vì tự chọn lại.
+**Ý tưởng chung ngoài Amazon.** Chốt phiên bản chính xác của mọi phụ thuộc, kể cả phụ thuộc gián tiếp, là thứ nhiều công cụ công khai làm theo cách của chúng: tệp khóa của npm, tệp khóa của Cargo; với Go thì phiên bản yêu cầu nằm trong `go.mod`, còn `go.sum` chỉ ghi mã băm để kiểm tra các gói tải về không bị đổi; Bazel có cách riêng. Điểm chung: dựng lại đọc danh sách đã chốt thay vì tự chọn lại.
 
 ## Thử: "bản mới nhất" so với bộ đã chụp
 
-Ngày 2026-10-19, một chương trình Python nhỏ, không có mạng. Gói A cần gói B với ràng buộc "bản nhỏ hơn 2". Ngày thứ nhất B có bản 1.0 và 1.1. Hai cách dựng:
+Ngày 2026-10-19, một chương trình Python nhỏ, không có mạng. Gói A cần gói B với ràng buộc mở "từ bản 1.0 trở lên" (không chặn trên). Ngày thứ nhất B có bản 1.0 và 1.1. Ngày thứ hai B ra bản 2.0 đổi cách gọi hàm mà A đang dùng. Hai cách dựng:
 
 | Ngày | Dựng theo bản mới nhất | Dựng theo bộ đã chụp ở ngày 1 |
 |---|---|---|
 | Ngày 1 | A 1.0 + B 1.1, tương thích | A 1.0 + B 1.1, tương thích |
-| Ngày 2, sau khi B ra 2.0 | A 1.0 + B 2.0, **vi phạm ràng buộc** | A 1.0 + B 1.1, tương thích |
+| Ngày 2, sau khi B ra 2.0 | A 1.0 + B 2.0, hợp ràng buộc nhưng **A không dựng được** vì B đổi cách gọi | A 1.0 + B 1.1, tương thích |
 
 Mã của A không đổi một dòng giữa hai ngày; chỉ có "bản mới nhất" đổi, và với nó, dựng lại hôm sau cho ra thứ khác hôm trước. Bộ đã chụp thì không phụ thuộc việc ai đó đưa bản mới lên.
 
 ## Giới hạn cần nhớ
 
-Mô hình chỉ có hai gói và một ràng buộc, nên không nói gì về xung đột phiên bản phức tạp (hai gói cần hai phiên bản chính khác nhau của một gói thứ ba) hay quy mô một công ty. Chốt phiên bản cũng có cái giá riêng: bộ đã chụp không tự nhận bản vá bảo mật, nên cần một việc có chủ ý là cập nhật nó định kỳ. Mọi điều về Brazil lấy từ bài nguồn và chưa đối chiếu được.
+Nếu A khai báo chặn trên (ví dụ "nhỏ hơn 2") thì bộ giải sẽ giữ B 1.1; thử nghiệm cố ý dùng ràng buộc mở vì đó là tình huống hay gặp. Mô hình chỉ có hai gói và một ràng buộc, nên không nói gì về xung đột phiên bản phức tạp (hai gói cần hai phiên bản chính khác nhau của một gói thứ ba) hay quy mô một công ty. Chốt phiên bản cũng có cái giá riêng: bộ đã chụp không tự nhận bản vá bảo mật, nên cần một việc có chủ ý là cập nhật nó định kỳ. Mọi điều về Brazil lấy từ bài nguồn và chưa đối chiếu được.
 
 ## Nhìn hình trả lời
 

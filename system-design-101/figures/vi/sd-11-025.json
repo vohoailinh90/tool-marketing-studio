@@ -1,15 +1,15 @@
 {
   "title": "Quản lý cấu hình và hạ tầng bằng mã",
   "subtitle": "Giữ trạng thái, hay khai báo trạng thái.",
-  "desc": "Ba khung. Khung một, quản lý cấu hình truyền thống: duy trì trạng thái các mục đã cấp, thiết lập ban đầu thường làm tay, thay đổi bằng lệnh từng bước. Khung hai, hạ tầng bằng mã: tự động cấp phát, thường khai báo trạng thái mong muốn, tệp được quản lý phiên bản. Khung ba, bốn bước khi hạ tầng bị sửa tay: so sánh mong muốn với thực tế, liệt kê thay đổi, áp dụng, chạy lại không còn thay đổi.",
+  "desc": "Ba khung. Khung một, quản lý cấu hình truyền thống: duy trì trạng thái các mục đã cấp, công cụ như Puppet, Chef, Ansible vẫn khai báo và tự động được. Khung hai, hạ tầng bằng mã: tự động cấp phát, thường khai báo trạng thái mong muốn, tệp được quản lý phiên bản. Khung ba, bốn bước khi hạ tầng bị sửa tay: so sánh mong muốn với thực tế, liệt kê thay đổi, áp dụng, chạy lại không còn thay đổi.",
   "sections": [
     {
       "kind": "notes",
       "heading": "Quản lý cấu hình truyền thống",
       "items": [
         "Giữ trạng thái của các mục đã cấp: máy, mạng, ứng dụng.",
-        "Thiết lập ban đầu thường làm tay.",
-        "Thay đổi bằng các lệnh từng bước."
+        "Puppet, Chef, Ansible cũng khai báo được.",
+        "Phạm vi: cấu hình máy và phần mềm có sẵn."
       ]
     },
     {

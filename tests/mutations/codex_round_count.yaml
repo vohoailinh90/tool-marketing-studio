@@ -176,6 +176,34 @@ mutations:
   find: "        return \"summary\" if is_plain_summary(body) else \"unknown\"\n"
   replace: "        return \"summary\"\n"
   test: tests.test_codex_round_count.StrictnessTests.test_a_summary_holding_more_than_its_table_counts
+- label: the summary comment's hidden state line makes it an unrecognized post
+  find: "        SUMMARY_LINE.fullmatch(line) or is_state_line(line) for line in lines)\n"
+  replace: "        SUMMARY_LINE.fullmatch(line) for line in lines)\n"
+  test: tests.test_codex_round_count.RealShapeTests.test_the_summary_with_its_state_line_is_not_a_round
+- label: any HTML comment passes for the summary's state line
+  find: "STATE_LINE = re.compile(r\"\\s*<!-- codex-review-state:v1 (\\{.*\\}) -->\\s*\")\n"
+  replace: "STATE_LINE = re.compile(r\"\\s*<!-- .*? (\\{.*\\}) -->\\s*\")\n"
+  test: tests.test_codex_round_count.StrictnessTests.test_a_state_line_that_is_not_the_one_codex_writes_counts
+- label: a state line whose payload is not a JSON object passes
+  find: "        return isinstance(json.loads(match.group(1), parse_constant=reject_constant), dict)\n"
+  replace: "        return True\n"
+  test: tests.test_codex_round_count.StrictnessTests.test_a_state_line_that_is_not_the_one_codex_writes_counts
+- label: a state line nested deeper than the parser reads crashes the count
+  find: "    except (ValueError, RecursionError):  # a payload nested deeper than the parser reads is a post to count, not a crash\n"
+  replace: "    except ValueError:\n"
+  test: tests.test_codex_round_count.StrictnessTests.test_a_state_line_nested_deeper_than_the_parser_reads_counts_instead_of_crashing
+- label: NaN and Infinity pass for JSON in a state line
+  find: "json.loads(match.group(1), parse_constant=reject_constant)"
+  replace: "json.loads(match.group(1))"
+  test: tests.test_codex_round_count.StrictnessTests.test_a_state_line_that_is_not_the_one_codex_writes_counts
+- label: a summary may hold any number of state lines
+  find: "    return sum(is_state_line(line) for line in lines) <= 1 and all(\n"
+  replace: "    return all(\n"
+  test: tests.test_codex_round_count.StrictnessTests.test_two_state_lines_count
+- label: a state line may share its line with other text
+  find: "    match = STATE_LINE.fullmatch(line)\n"
+  replace: "    match = STATE_LINE.match(line)\n"
+  test: tests.test_codex_round_count.StrictnessTests.test_a_state_line_with_text_around_it_counts
 - label: another bot posting what Codex posts is taken for a person
   find: "        if is_bot(item, login) and (CODEX_SIGNATURE.search(body) or RESULT.search(body)):\n"
   replace: "        if False:\n"
@@ -273,8 +301,8 @@ mutations:
   replace: "r\"|This comment shows.*|\\|.*)?\\s*\")"
   test: tests.test_codex_round_count.StrictnessTests.test_a_summary_with_another_heading_or_sentence_counts
 - label: a summary without its About footer is counted
-  find: "    return all(SUMMARY_LINE.fullmatch(line) for line in ABOUT_BLOCK.sub(\"\", body).splitlines())\n"
-  replace: "    return ABOUT_BLOCK.search(body) is not None and all(SUMMARY_LINE.fullmatch(line) for line in ABOUT_BLOCK.sub(\"\", body).splitlines())\n"
+  find: "    lines = ABOUT_BLOCK.sub(\"\", body).splitlines()\n"
+  replace: "    lines = ABOUT_BLOCK.sub(\"\", body).splitlines() if ABOUT_BLOCK.search(body) else [\"x\"]\n"
   test: tests.test_codex_round_count.StrictnessTests.test_a_summary_without_its_about_footer_is_still_a_summary
 - label: a --paginate --slurp list is not taken as complete
   find: "    if is_slurped(data):\n        return True"

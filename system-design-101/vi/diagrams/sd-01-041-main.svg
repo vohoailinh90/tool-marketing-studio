@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="750" viewBox="0 0 320 750" role="img" aria-labelledby="title desc"><title id="title">Gửi bằng chứng gì?</title><desc id="desc">Bearer trình token, HMAC gửi mã xác thực tính theo thông điệp bằng khóa chung. Không thay kiểm tra quyền hoặc bảo vệ đường truyền.</desc><rect width="320" height="750" fill="#f8fafc"/><g font-family="Arial, sans-serif" font-size="16" fill="#0f172a"><text x="16" y="32" font-size="20" font-weight="bold">Gửi bằng chứng gì?</text>
+<rect x="12" y="60" width="296" height="280" rx="12" fill="#dbeafe"/><text x="24" y="95" font-size="18" font-weight="bold">Bearer · trình token</text>
+<text x="24" y="140">Được cấp token trước</text>
+<text x="24" y="176">Gửi yêu cầu + token</text>
+<text x="24" y="212">Máy chủ kiểm tra token</text>
+<text x="24" y="248">và quyền trên tài nguyên</text>
+<text x="24" y="284">Giữ kín token</text>
+<rect x="12" y="360" width="296" height="280" rx="12" fill="#dcfce7"/><text x="24" y="395" font-size="18" font-weight="bold">HMAC · mã theo thông điệp</text>
+<text x="24" y="440">Hai bên giữ khóa chung</text>
+<text x="24" y="476">Gửi thông điệp + mã</text>
+<text x="24" y="512">Bên nhận tính lại để so</text>
+<text x="24" y="548">Khóa bí mật không gửi kèm</text>
+<text x="24" y="584">Cần chống phát lại riêng</text>
+<text x="16" y="690">Cả hai: bảo vệ đường truyền,</text><text x="16" y="720">kiểm tra quyền trên tài nguyên.</text></g></svg>

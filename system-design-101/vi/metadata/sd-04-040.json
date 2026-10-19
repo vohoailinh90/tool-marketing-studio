@@ -1,0 +1,97 @@
+{
+  "id": "sd-04-040",
+  "title_vi": "Các loại cơ sở dữ liệu: bốn nhóm NoSQL và hai nghĩa của chữ \"cột\"",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "draft",
+  "source_ref": "sd-04-040",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/types-of-databases.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/types-of-databases.md",
+    "blob_sha": "69860e7ed6bdd8f134f678acead975a6ea85ff31",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a local clone at the pinned commit and hashed as a Git blob; the computed OID matches the tree OID and the source map. No source-image bytes used.",
+    "retrieved_body_sha256": "5b01665d405463c91feb8ea620164ed78e7f1bfb9d7b35656764d728c88a2f03",
+    "retrieved_body_bytes": 1614
+  },
+  "diagram": "../diagrams/sd-04-040-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-04-026",
+      "relation": "related",
+      "reason_vi": "Bài đó so các mô hình dữ liệu trên cùng một cửa hàng nhỏ; bài này chia loại hệ và tách hai nghĩa của chữ cột."
+    },
+    {
+      "lesson_id": "sd-04-032",
+      "relation": "related",
+      "reason_vi": "Bài đó đo tốc độ tổng hợp của hệ lưu theo cột; bài này đo kích thước và cách nén."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "scope": "Lưu cùng một triệu dòng vào SQLite 3.45.1 và DuckDB 1.5.6, đo kích thước tệp và đọc pragma_storage_info; đọc overview.adoc và ddl.adoc của Cassandra tại commit cố định. KHÔNG kiểm: Cassandra chạy thật, tài liệu DuckDB (không mở được), các hệ đồ thị, khóa–giá trị và tài liệu."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "not_yet_reviewed"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright 1.56): cả bài dựng từ Markdown thành HTML, mục tùy chọn mở, ở 320, 375 và 430 px; không cuộn ngang; chữ hình hiệu dụng nhỏ nhất 13,5 px ở 320 px và 15 px ở 375 px; không hộp chữ nào ra ngoài viewBox; python3 -m scripts.figures check --browser đạt. Không phải thử trên GitHub, trên điện thoại thật hay với người học."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "id": "source-types",
+      "claim_vi": "Nguồn chia: cơ sở dữ liệu quan hệ, OLAP, và NoSQL gồm đồ thị, khóa–giá trị, tài liệu (dạng giống JSON) và cột.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/types-of-databases.md",
+      "section": "Whole guide",
+      "verified_by": "Đọc thân nguồn ghim ngày 2026-10-18."
+    },
+    {
+      "id": "cassandra-wide-column",
+      "claim_vi": "Tài liệu Cassandra: một cơ sở dữ liệu NoSQL phân tán, mô hình lưu trữ cột rộng chia phân vùng với ngữ nghĩa nhất quán sau cùng; khóa chính gồm khóa phân vùng và các cột gom nhóm.",
+      "sources": [
+        "https://github.com/apache/cassandra/blob/95b178a141824a0414c4add9b5ab87eaa1ca13bf/doc/modules/cassandra/pages/architecture/overview.adoc",
+        "https://github.com/apache/cassandra/blob/95b178a141824a0414c4add9b5ab87eaa1ca13bf/doc/modules/cassandra/pages/developing/cql/ddl.adoc"
+      ],
+      "section": "Overview; The PRIMARY KEY",
+      "verified_by": "Đọc bản clone nông tại commit 95b178a141824a0414c4add9b5ab87eaa1ca13bf ngày 2026-10-18."
+    },
+    {
+      "id": "size-and-compression",
+      "claim_vi": "Một triệu dòng (mã, thành phố trong 5 tên, cửa hàng, năm cố định, số lượng): tệp SQLite 25,4 MB, tệp DuckDB 2,1 MB, cùng tổng số lượng; DuckDB nén thành phố bằng Dictionary, các cột số bằng BitPacking, cột năm bằng Constant.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/types-of-databases.md",
+      "section": "Column DB (phép thử của người biên soạn)",
+      "verified_by": "Chạy đoạn mã in trong bài hai lần ngày 2026-10-18 cho cùng kết quả."
+    }
+  ],
+  "design_notes_vi": "Bốn khung: quan hệ và phân tích, bốn nhóm NoSQL, hai nghĩa của chữ cột, phép đo kích thước. Sơ đồ dựng bằng scripts/figures, không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Nguồn gộp 'cơ sở dữ liệu cột' thành một nhóm NoSQL; bài tách hai nghĩa (lưu theo cột cho phân tích, cột rộng như Cassandra) và dẫn tài liệu Cassandra.",
+    "Bài thêm phép đo kích thước và cách nén khi lưu theo cột, điều nguồn không có."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này, bản nháp chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1121" viewBox="0 0 320 1121" role="img" aria-labelledby="title desc">
+<title id="title">Từ hàng đợi tới nhật ký: tin còn lại sau khi đọc</title>
+<desc id="desc">Ba khung dọc. Khung một, bốn chặng: IBM MQ, hàng đợi tin nhắn ra đời năm 1993 theo nguồn; RabbitMQ, người gửi đưa tin vào một exchange và exchange chuyển tin tới hàng đợi theo kiểu direct, topic hay fanout; Kafka, nhật ký sự kiện, tin không bị xóa khi đọc mà được giữ theo thời hạn; Pulsar, có cả kiểu chủ đề lẫn kiểu hàng đợi và nhớ vị trí đọc của từng người nhận. Khung hai, thử hàng đợi bằng danh sách của Redis 7.0: sáu tin, hai người nhận chia nhau ba và ba; người nhận đến sau không còn tin nào. Khung ba, thử nhật ký bằng stream của Redis: hai người trong nhóm kho chia nhau ba và ba; nhóm thống kê đọc đủ sáu tin; một nhóm tạo sau vẫn đọc được cả sáu tin cũ.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1121" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Từ hàng đợi tới nhật ký:</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">tin còn lại sau khi đọc</text>
+<rect x="8" y="78" width="304" height="531" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="106.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Bốn chặng</text>
+<rect x="20" y="123" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="149" r="14" fill="#1d4ed8"/>
+<text x="46" y="154.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="149.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">IBM MQ</text>
+<text x="70" y="173.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Hàng đợi tin nhắn, ra đời</text>
+<text x="70" y="192.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">năm 1993 theo nguồn.</text>
+<rect x="20" y="232" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="258" r="14" fill="#1d4ed8"/>
+<text x="46" y="263.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="258.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">RabbitMQ</text>
+<text x="70" y="282.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tin vào exchange, được</text>
+<text x="70" y="301.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chuyển tới hàng đợi theo</text>
+<text x="70" y="321.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">kiểu direct, topic, fanout.</text>
+<polyline points="46,212 46,230" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="361" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="387" r="14" fill="#1d4ed8"/>
+<text x="46" y="392.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="387.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Kafka</text>
+<text x="70" y="411.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nhật ký sự kiện: đọc xong</text>
+<text x="70" y="430.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tin vẫn còn, giữ theo thời</text>
+<text x="70" y="450.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hạn.</text>
+<polyline points="46,341 46,359" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="490" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="516" r="14" fill="#1d4ed8"/>
+<text x="46" y="521.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">4</text>
+<text x="70" y="516.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Pulsar</text>
+<text x="70" y="540.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cả kiểu chủ đề lẫn hàng</text>
+<text x="70" y="559.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đợi; nhớ vị trí đọc của từng</text>
+<text x="70" y="579.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">người nhận.</text>
+<polyline points="46,470 46,488" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="621" width="304" height="213" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="649.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Thử hàng đợi (danh sách</text>
+<text x="20" y="671.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">của Redis)</text>
+<rect x="20" y="688" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="711" r="11" fill="#16a34a"/>
+<polyline points="37.9,711.4 41.7,715.4 48.5,707" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="714.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">6 tin, hai người nhận chia</text>
+<text x="64" y="733.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhau 3 và 3.</text>
+<rect x="20" y="759" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="782" r="11" fill="#16a34a"/>
+<polyline points="37.9,782.4 41.7,786.4 48.5,778" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="785.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Người nhận đến sau: không</text>
+<text x="64" y="804.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">còn tin nào.</text>
+<rect x="8" y="846" width="304" height="267" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="874.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Thử nhật ký (stream của</text>
+<text x="20" y="896.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Redis)</text>
+<rect x="20" y="913" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="936" r="11" fill="#16a34a"/>
+<polyline points="37.9,936.4 41.7,940.4 48.5,932" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="939.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Hai người trong nhóm kho</text>
+<text x="64" y="958.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chia nhau 3 và 3.</text>
+<rect x="20" y="984" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1007" r="11" fill="#16a34a"/>
+<polyline points="37.9,1007.4 41.7,1011.4 48.5,1003" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1010.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nhóm thống kê đọc đủ 6 tin.</text>
+<rect x="20" y="1038" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1061" r="11" fill="#16a34a"/>
+<polyline points="37.9,1061.4 41.7,1065.4 48.5,1057" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1064.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nhóm tạo sau vẫn đọc được</text>
+<text x="64" y="1083.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cả 6 tin cũ.</text>
+</g>
+</svg>

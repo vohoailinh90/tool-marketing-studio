@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1250" viewBox="0 0 320 1250" role="img" aria-labelledby="title desc">
+<title id="title">Một cửa hàng nhỏ, sáu cách xếp dữ liệu</title>
+<desc id="desc">Ba khung dọc. Khung một, bốn cách hệ quản trị nhìn dữ liệu: bảng phẳng, một bảng duy nhất; phân cấp, khách dẫn tới đơn dẫn tới món, mỗi bản ghi một cha; mạng, một món có hai cha là đơn và sản phẩm; quan hệ, mỗi sự việc lưu một lần nối bằng khóa. Khung hai, hai cách xếp bảng quan hệ để phân tích: sao, bảng bán hàng ở giữa và mỗi chiều một bảng; bông tuyết, chiều sản phẩm tách thành sản phẩm, danh mục, ngành. Khung ba, kết quả đo trên bốn món hàng: bảng phẳng sửa sót một dòng làm khách An ở hai thành phố; phân cấp phải đọc cả 4 món để biết ai mua ấm trà; mạng theo con trỏ chỉ đọc 2 món; hỏi theo ngành, sao cần 1 phép nối và lưu chữ Gia dụng 3 lần, bông tuyết cần 3 phép nối và lưu 1 lần.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1250" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Một cửa hàng nhỏ, sáu</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">cách xếp dữ liệu</text>
+<rect x="8" y="78" width="304" height="469" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="106.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Bốn cách hệ quản trị nhìn</text>
+<text x="20" y="128.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">dữ liệu</text>
+<rect x="20" y="145" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="188.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 177.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></g>
+<text x="78" y="171.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Bảng phẳng</text>
+<text x="78" y="195.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Một bảng; thông tin khách</text>
+<text x="78" y="214.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lặp ở mọi dòng.</text>
+<rect x="20" y="246" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="289.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 278.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></g>
+<text x="78" y="272.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Phân cấp</text>
+<text x="78" y="296.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Khách → đơn → món, mỗi</text>
+<text x="78" y="315.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bản ghi một cha.</text>
+<rect x="20" y="347" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="390.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 379.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="6" rx="1" width="6" x="16" y="16"/><rect height="6" rx="1" width="6" x="2" y="16"/><rect height="6" rx="1" width="6" x="9" y="2"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"/><path d="M12 12V8"/></g>
+<text x="78" y="373.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Mạng</text>
+<text x="78" y="397.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Món có hai cha: đơn và sản</text>
+<text x="78" y="416.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">phẩm.</text>
+<rect x="20" y="448" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="491.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 480.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></g>
+<text x="78" y="474.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Quan hệ</text>
+<text x="78" y="498.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mỗi sự việc lưu một lần,</text>
+<text x="78" y="517.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nối bằng khóa.</text>
+<rect x="8" y="559" width="304" height="267" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="587.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Hai cách xếp bảng để phân</text>
+<text x="20" y="609.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">tích</text>
+<rect x="20" y="626" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="669.5" r="18" fill="#0f766e"/><g transform="translate(39.2 658.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></g>
+<text x="78" y="652.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Sao</text>
+<text x="78" y="676.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bảng bán hàng ở giữa, mỗi</text>
+<text x="78" y="695.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chiều một bảng.</text>
+<rect x="20" y="727" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="770.5" r="18" fill="#0f766e"/><g transform="translate(39.2 759.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5"/><path d="M8 3H3v5"/><path d="M12 22v-8.3a4 4 0 0 0-1.172-2.872L3 3"/><path d="m15 9 6-6"/></g>
+<text x="78" y="753.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Bông tuyết</text>
+<text x="78" y="777.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chiều tách ra: sản phẩm →</text>
+<text x="78" y="796.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">danh mục → ngành.</text>
+<rect x="8" y="838" width="304" height="404" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="866.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Đo trên bốn món hàng</text>
+<rect x="20" y="883" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="906" r="11" fill="#16a34a"/>
+<polyline points="37.9,906.4 41.7,910.4 48.5,902" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="909.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Phẳng: sửa sót một dòng,</text>
+<text x="64" y="928.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khách An ở hai thành phố.</text>
+<rect x="20" y="954" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="977" r="11" fill="#16a34a"/>
+<polyline points="37.9,977.4 41.7,981.4 48.5,973" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="980.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Phân cấp: hỏi ai mua ấm trà</text>
+<text x="64" y="999.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">phải đọc cả 4 món.</text>
+<rect x="20" y="1025" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1048" r="11" fill="#16a34a"/>
+<polyline points="37.9,1048.4 41.7,1052.4 48.5,1044" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1051.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mạng: theo con trỏ từ sản</text>
+<text x="64" y="1070.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">phẩm, chỉ đọc 2 món.</text>
+<rect x="20" y="1096" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1119" r="11" fill="#16a34a"/>
+<polyline points="37.9,1119.4 41.7,1123.4 48.5,1115" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1122.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Theo ngành: sao 1 phép nối,</text>
+<text x="64" y="1141.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bông tuyết 3 phép nối.</text>
+<rect x="20" y="1167" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1190" r="11" fill="#16a34a"/>
+<polyline points="37.9,1190.4 41.7,1194.4 48.5,1186" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1193.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chữ Gia dụng: sao lưu 3 lần,</text>
+<text x="64" y="1212.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bông tuyết lưu 1 lần.</text>
+</g>
+</svg>

@@ -1,0 +1,43 @@
+{
+  "id": "sd-04-033",
+  "lang": "vi",
+  "title": "Dựng cây chọn cơ sở dữ liệu: ràng buộc cứng trước",
+  "desc": "Ba khung dọc. Khung một, ba câu hỏi về ràng buộc, theo thứ tự: dữ liệu mất được không, mất được như bộ đệm hay phiên thì Redis trong bộ nhớ, không thì hỏi tiếp; có cần giao dịch nhiều dòng không, có thì cơ sở dữ liệu quan hệ, không thì chọn theo kiểu câu hỏi; dữ liệu có vừa một máy không, vừa thì MySQL, không thì SQL phân tán như TiDB chạy trên TiKV. Khung hai, không cần giao dịch thì theo kiểu câu hỏi: tổng hợp trên kho rất lớn dùng Hive hoặc Impala; bản ghi dạng tài liệu dùng Couchbase hoặc MongoDB; quan hệ giữa các đối tượng dùng cơ sở dữ liệu đồ thị. Khung ba, thử câu một với Redis 7.0: cấu hình mặc định, ghi 50 khóa rồi tắt đột ngột thì còn 0 khóa; bật nhật ký ghi thì còn đủ 50.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Ba câu hỏi về ràng buộc",
+      "items": [
+        {
+          "title": "Mất được không?",
+          "text": "Mất được (bộ đệm, phiên): Redis trong bộ nhớ. Không: hỏi tiếp."
+        },
+        {
+          "title": "Cần giao dịch nhiều dòng?",
+          "text": "Có: cơ sở dữ liệu quan hệ. Không: chọn theo kiểu câu hỏi."
+        },
+        {
+          "title": "Vừa một máy không?",
+          "text": "Vừa: MySQL. Không vừa: SQL phân tán như TiDB, chạy trên TiKV."
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Không cần giao dịch: theo kiểu câu hỏi",
+      "items": [
+        "Tổng hợp trên kho dữ liệu rất lớn: Hive, Impala.",
+        "Bản ghi linh hoạt dạng tài liệu: Couchbase, MongoDB.",
+        "Quan hệ giữa các đối tượng: cơ sở dữ liệu đồ thị."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Thử câu 1 với Redis 7.0",
+      "items": [
+        "Cấu hình mặc định: ghi 50 khóa, tắt đột ngột, còn 0 khóa.",
+        "Bật nhật ký ghi: còn đủ 50 khóa."
+      ]
+    }
+  ]
+}

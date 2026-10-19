@@ -1,0 +1,26 @@
+{
+  "id": "sd-04-045",
+  "lang": "vi",
+  "title": "Kafka dùng vào việc gì, và thử bắt thay đổi dữ liệu",
+  "desc": "Ba khung dọc. Khung một, năm việc của nguồn đặt cạnh danh sách việc của chính Kafka: xử lý nhật ký ứng với gom nhật ký; luồng dữ liệu cho gợi ý ứng với xử lý luồng; theo dõi và cảnh báo ứng với số đo vận hành; bắt thay đổi dữ liệu và chuyển hệ thống không có trong danh sách của Kafka. Khung hai, thử bắt thay đổi dữ liệu bằng PostgreSQL: mỗi lần thêm, sửa, xóa đã chốt thành một bản ghi theo đúng thứ tự, gói theo giao dịch; xem trước không lấy đi, lấy đi rồi thì không còn. Khung ba, người đọc không đọc thì nhật ký phải chờ: thêm 200.000 dòng mà chưa đọc, PostgreSQL giữ 26 MB nhật ký cho người đọc đó; đọc xong thì không còn giữ gì.",
+  "sections": [
+    {"kind": "notes", "heading": "Năm việc của nguồn, so với danh sách của Kafka",
+     "items": [
+       "Xử lý nhật ký: gom nhật ký.",
+       "Luồng dữ liệu cho gợi ý: xử lý luồng.",
+       "Theo dõi và cảnh báo: số đo vận hành.",
+       "Bắt thay đổi dữ liệu, chuyển hệ thống: không có trong danh sách."
+     ]},
+    {"kind": "notes", "heading": "Thử bắt thay đổi dữ liệu trên PostgreSQL",
+     "items": [
+       "Mỗi lần thêm, sửa, xóa đã chốt thành một bản ghi, đúng thứ tự.",
+       "Các bản ghi được gói theo giao dịch.",
+       "Xem trước không lấy đi; lấy đi rồi thì không còn."
+     ]},
+    {"kind": "notes", "heading": "Người đọc chưa đọc thì nhật ký phải chờ",
+     "items": [
+       "Thêm 200.000 dòng chưa đọc: giữ 26 MB nhật ký.",
+       "Đọc xong: không còn giữ gì."
+     ]}
+  ]
+}

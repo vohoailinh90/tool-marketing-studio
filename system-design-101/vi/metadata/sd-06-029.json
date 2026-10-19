@@ -33,6 +33,21 @@
       "lesson_id": "sd-06-025",
       "relation": "context",
       "reason_vi": "Thang độ trễ giải thích vì sao một bản sao ở gần nhanh hơn nơi gốc."
+    },
+    {
+      "lesson_id": "sd-06-015",
+      "relation": "deep-dive",
+      "reason_vi": "Các kiểu hỏng của bộ đệm có tên riêng được kể ở bài này."
+    },
+    {
+      "lesson_id": "sd-06-010",
+      "relation": "deep-dive",
+      "reason_vi": "Các chính sách loại bỏ khóa được bàn kỹ ở đây."
+    },
+    {
+      "lesson_id": "sd-06-006",
+      "relation": "deep-dive",
+      "reason_vi": "Đi qua từng tầng bộ đệm, từ trình duyệt tới cơ sở dữ liệu."
     }
   ],
   "verification": {
@@ -119,7 +134,7 @@
     "Source is a list of topic headings with its content in an image, which is not used; the lesson answers each heading from the Microsoft caching guidance, MDN, the Redis eviction page and the PostgreSQL documentation.",
     "Source's 'cache deployment' and 'distributed cache' headings are answered together as private versus shared caches, following the Microsoft guidance.",
     "Lesson adds two experiments: Redis eviction policies under a 4 MB limit with a hot set, and PostgreSQL shared buffers turning reads into hits.",
-    "Caching challenges are kept short and tied to stale, lost and full copies; named failure patterns are left to a dedicated lesson."
+    "Caching challenges are kept short and tied to stale, lost and full copies; named failure patterns are left to sd-06-015, which the lesson links."
   ],
   "editorial_note_vi": "Bài viết độc lập, sơ đồ vẽ bằng bộ công cụ hình từ spec system-design-101/figures/vi/sd-06-029.json, không dùng ảnh nguồn. Tiêu đề hiển thị là dòng đầu của lesson.md; title_vi giữ bản dịch tiêu đề nguồn theo source-map. Chưa có review kỹ thuật; chưa user testing hoặc phê duyệt phát hành."
 }

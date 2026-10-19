@@ -15,7 +15,7 @@ Phần thử nghiệm dùng Redis làm bộ đệm và SQLite làm cơ sở dữ
 
 **Ghi.** *Write-through*: bộ đệm (hoặc mã ứng dụng) ghi vào cơ sở dữ liệu và cập nhật bộ đệm trong cùng một thao tác, người gọi chờ cả hai xong. *Write-behind* (còn gọi là write-back): ghi vào bộ đệm, còn việc ghi cơ sở dữ liệu được xếp hàng làm sau, nên người gọi đi tiếp sớm hơn nhưng cơ sở dữ liệu cập nhật trễ. *Write-around*: chỉ ghi cơ sở dữ liệu; bộ đệm được nạp lại khi có người đọc. Cách hay dùng với cache-aside là ghi cơ sở dữ liệu rồi *xóa* khóa trong bộ đệm.
 
-**Kết hợp.** Tài liệu Ehcache gọi read-through cùng write-through hoặc write-behind là dùng bộ đệm như thể nó là nơi lưu chính: mã ứng dụng gọn hơn, và bộ đệm có thể chặn cảnh nhiều yêu cầu cùng lúc đổ vào cơ sở dữ liệu cho một khóa vừa hết hạn.
+**Kết hợp.** Tài liệu Ehcache gọi read-through cùng write-through hoặc write-behind là dùng bộ đệm như thể nó là nơi lưu chính: mã ứng dụng gọn hơn, và bộ đệm có thể chặn cảnh nhiều yêu cầu cùng lúc đổ vào cơ sở dữ liệu cho một khóa vừa hết hạn. Bài [Năm chiến lược giữ bộ nhớ đệm khớp với cơ sở dữ liệu](../sd-06-008/lesson.md) nhìn cùng câu hỏi từ phía giữ bộ đệm và cơ sở dữ liệu khớp nhau.
 
 **Thử nghiệm.**
 

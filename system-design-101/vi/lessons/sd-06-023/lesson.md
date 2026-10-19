@@ -1,7 +1,7 @@
 # CDN là gì: bốn lợi ích, và điều kiện để có từng cái
 
 **CDN là mạng các máy chủ đặt ở nhiều nơi (máy biên), giữ bản sao nội dung để người dùng tải từ chỗ gần mình thay vì từ máy gốc. Người ta thường kể bốn lợi ích: nhanh hơn, giảm tải máy gốc, chống tấn công làm sập dịch vụ, và vẫn phục vụ khi máy gốc gặp sự cố. Lợi ích nào cũng có điều kiện đi kèm.**
-Bài thử hai lợi ích đo được trên một máy (giảm tải máy gốc, phục vụ khi máy gốc tắt) bằng nginx; hai lợi ích còn lại dựa vào tài liệu.
+Bài thử hai lợi ích đo được trên một máy (giảm tải máy gốc, phục vụ khi máy gốc tắt) bằng nginx; hai lợi ích còn lại dựa vào tài liệu. Đường đi của một yêu cầu qua CDN được kể ở bài [CDN hoạt động thế nào](../sd-06-017/lesson.md).
 
 ![Hai phần. Phần một, bốn thẻ lợi ích và điều kiện: giảm độ trễ vì máy biên ở gần, chỉ với nội dung đã có sẵn; giảm tải máy gốc vì nhiều người dùng chung một bản đã giữ; chống từ chối dịch vụ vì mạng lớn hứng lưu lượng, phải giấu máy gốc; tăng tính sẵn sàng vì máy gốc sập vẫn trả bản cũ, nếu bật sẵn. Phần hai, kết quả thử với nginx và một ảnh 200 KB: 100 lần tải thẳng máy gốc thì máy gốc gửi 20 MB; 100 lần qua máy biên thì máy gốc gửi 200 KB, một lần; máy gốc tắt và bản đã hết hạn thì máy biên trả lỗi 502; bật dùng bản cũ khi lỗi thì máy biên trả 200 với bản cũ.](../../diagrams/sd-06-023-main.svg)
 

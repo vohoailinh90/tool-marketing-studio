@@ -182,6 +182,13 @@ Các bài chưa viết của nhóm này không có trong danh sách; số thứ 
 20. [Redis dùng vào việc gì: mười cách dùng, năm nhóm kiểu dữ liệu](lessons/sd-06-020/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
 21. [Vì sao Redis nhanh, và khi nào nó chậm](lessons/sd-06-021/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
 22. [Học Elasticsearch theo đường đi của một tài liệu](lessons/sd-06-022/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+23. [CDN là gì: bốn lợi ích, và điều kiện để có từng cái](lessons/sd-06-023/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+24. [Tối ưu hiệu năng giao diện: gửi ít, gửi sau, gửi trước](lessons/sd-06-024/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+25. [Các con số độ trễ nên biết: nhớ bậc, rồi tự đo](lessons/sd-06-025/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+26. [Năm chiến lược bộ đệm: ai đọc, ai ghi, và mất gì](lessons/sd-06-026/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+27. [Chín chỉ số hiệu năng web: mỗi chỉ số trả lời một câu hỏi](lessons/sd-06-027/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+28. [Năm cách làm API nhanh hơn, và cái giá của mỗi cách](lessons/sd-06-028/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+29. [Học bộ đệm qua tám câu hỏi: bản sao có thể cũ, có thể đầy, có thể mất](lessons/sd-06-029/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
 
 ## Thanh toán và công nghệ tài chính
 
@@ -469,7 +476,7 @@ và hình đạt; không coi đọc nguồn là mọi claim đã đúng, không 
 ## Các nhóm còn lại theo thứ tự nguồn
 
 Tình huống thực tế (còn sd-02-030) → Cơ sở dữ liệu và lưu trữ (còn sd-04-013 đến sd-04-024) →
-Bộ nhớ đệm và hiệu năng (còn sd-06-023 đến sd-06-029) → Đám mây và hệ thống phân tán (đã viết một phần).
+Đám mây và hệ thống phân tán (đã viết một phần).
 
 Nhóm “Nền tảng máy tính” (cuối mục lục nguồn) được viết trước theo yêu cầu người dùng ngày 2026-10-13; nhóm “API và phát triển web” viết tiếp theo thứ tự source-map.
 

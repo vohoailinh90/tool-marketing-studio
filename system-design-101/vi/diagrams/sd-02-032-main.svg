@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="320" height="940" viewBox="0 0 320 940" role="img" aria-labelledby="title desc">
 <title id="title">Netflix xếp thành tám mảng</title>
-<desc id="desc">Ba nhóm thẻ. Gần người xem: di động viết bằng Swift và Kotlin, web dùng React; GraphQL giữa giao diện và máy chủ; dịch vụ phía sau dùng Zuul, Eureka, Spring Boot. Lưu dữ liệu: cơ sở dữ liệu EVCache, Cassandra, CockroachDB; video trên S3 và Open Connect. Đứng ngoài lần xem: truyền tin bằng Kafka và Flink; xử lý dữ liệu bằng Flink, Spark, Tableau, Redshift; phát hành bằng Jenkins, Spinnaker, Chaos Monkey.</desc>
+<desc id="desc">Ba nhóm thẻ. Ứng dụng và dịch vụ: di động viết bằng Swift và Kotlin, web dùng React; GraphQL giữa giao diện và máy chủ; dịch vụ phía sau dùng Zuul, Eureka, Spring Boot. Lưu dữ liệu: cơ sở dữ liệu EVCache, Cassandra, CockroachDB; video trên S3 và Open Connect. Dữ liệu và phát hành: truyền tin bằng Kafka và Flink; xử lý dữ liệu bằng Flink, Spark, Tableau, Redshift; phát hành bằng Jenkins, Spinnaker, Chaos Monkey.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="940" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
@@ -8,7 +8,7 @@
 <text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">mảng</text>
 <text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Từ ứng dụng tới phát hành.</text>
 <rect x="8" y="104" width="304" height="289" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
-<text x="20" y="132.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Gần người xem</text>
+<text x="20" y="132.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Ứng dụng và dịch vụ</text>
 <rect x="20" y="149" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
 <circle cx="50" cy="183" r="18" fill="#1d4ed8"/><g transform="translate(39.2 172.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="20" rx="2" ry="2" width="14" x="5" y="2"/><path d="M12 18h.01"/></g>
 <text x="78" y="175.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Di động và web</text>
@@ -33,7 +33,7 @@
 <text x="78" y="577.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Lưu video</text>
 <text x="78" y="601.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">S3 và Open Connect.</text>
 <rect x="8" y="643" width="304" height="289" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
-<text x="20" y="671.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Đứng ngoài lần xem</text>
+<text x="20" y="671.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Dữ liệu và phát hành</text>
 <rect x="20" y="688" width="280" height="68" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
 <circle cx="50" cy="722" r="18" fill="#b45309"/><g transform="translate(39.2 711.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></g>
 <text x="78" y="714.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Truyền tin</text>

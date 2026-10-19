@@ -2,11 +2,11 @@
   "id": "sd-02-032",
   "title": "Netflix xếp thành tám mảng",
   "subtitle": "Từ ứng dụng tới phát hành.",
-  "desc": "Ba nhóm thẻ. Gần người xem: di động viết bằng Swift và Kotlin, web dùng React; GraphQL giữa giao diện và máy chủ; dịch vụ phía sau dùng Zuul, Eureka, Spring Boot. Lưu dữ liệu: cơ sở dữ liệu EVCache, Cassandra, CockroachDB; video trên S3 và Open Connect. Đứng ngoài lần xem: truyền tin bằng Kafka và Flink; xử lý dữ liệu bằng Flink, Spark, Tableau, Redshift; phát hành bằng Jenkins, Spinnaker, Chaos Monkey.",
+  "desc": "Ba nhóm thẻ. Ứng dụng và dịch vụ: di động viết bằng Swift và Kotlin, web dùng React; GraphQL giữa giao diện và máy chủ; dịch vụ phía sau dùng Zuul, Eureka, Spring Boot. Lưu dữ liệu: cơ sở dữ liệu EVCache, Cassandra, CockroachDB; video trên S3 và Open Connect. Dữ liệu và phát hành: truyền tin bằng Kafka và Flink; xử lý dữ liệu bằng Flink, Spark, Tableau, Redshift; phát hành bằng Jenkins, Spinnaker, Chaos Monkey.",
   "sections": [
     {
       "kind": "parts",
-      "heading": "Gần người xem",
+      "heading": "Ứng dụng và dịch vụ",
       "items": [
         {
           "name": "Di động và web",
@@ -43,7 +43,7 @@
     },
     {
       "kind": "parts",
-      "heading": "Đứng ngoài lần xem",
+      "heading": "Dữ liệu và phát hành",
       "items": [
         {
           "name": "Truyền tin",

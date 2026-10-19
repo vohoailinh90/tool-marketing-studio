@@ -1,9 +1,9 @@
 # Ngăn xếp công nghệ của Netflix
 
 **Bài nguồn tổng hợp ngăn xếp công nghệ của Netflix thành tám mảng: di động và web, giao tiếp giữa giao diện và máy chủ, dịch vụ phía sau, cơ sở dữ liệu, truyền tin, lưu video, xử lý dữ liệu, và tích hợp và chuyển giao liên tục.**
-Bài này chia tám mảng thành ba nhóm: nhóm nằm gần lần bấm xem phim, nhóm lưu dữ liệu, và nhóm dữ liệu cùng phát hành đứng ngoài lần xem đó. Bài nguồn không mô tả đường đi thật của một yêu cầu, nên đây là cách chia nhóm, không phải thứ tự yêu cầu đi qua.
+Bài này gom tám mảng thành ba nhóm theo loại việc: ứng dụng và dịch vụ, nơi lưu dữ liệu, và dữ liệu cùng phát hành. Bài nguồn không nói mảng nào phục vụ một lần xem phim, cũng không mô tả yêu cầu đi qua các công cụ theo thứ tự nào, nên đây chỉ là cách gom nhóm.
 
-![Ba nhóm thẻ. Gần người xem: ứng dụng di động viết bằng Swift và Kotlin, web dùng React; giao diện nói chuyện với máy chủ bằng GraphQL; dịch vụ phía sau dùng Zuul, Eureka và Spring Boot. Lưu dữ liệu: cơ sở dữ liệu EVCache, Cassandra và CockroachDB; video lưu trên S3 và Open Connect. Đứng ngoài lần xem: truyền tin bằng Kafka và Flink; xử lý dữ liệu bằng Flink, Spark, Tableau và Redshift; phát hành bằng Jenkins, Gradle, Spinnaker và Chaos Monkey.](../../diagrams/sd-02-032-main.svg)
+![Ba nhóm thẻ. Ứng dụng và dịch vụ: ứng dụng di động viết bằng Swift và Kotlin, web dùng React; giao diện nói chuyện với máy chủ bằng GraphQL; dịch vụ phía sau dùng Zuul, Eureka và Spring Boot. Lưu dữ liệu: cơ sở dữ liệu EVCache, Cassandra và CockroachDB; video lưu trên S3 và Open Connect. Dữ liệu và phát hành: truyền tin bằng Kafka và Flink; xử lý dữ liệu bằng Flink, Spark, Tableau và Redshift; phát hành bằng Jenkins, Gradle, Spinnaker và Chaos Monkey.](../../diagrams/sd-02-032-main.svg)
 
 ## Từ viết tắt
 
@@ -17,7 +17,7 @@ Bài này chia tám mảng thành ba nhóm: nhóm nằm gần lần bấm xem ph
 
 Bài nguồn nói nó tổng hợp từ nhiều bài blog kỹ thuật và dự án mã nguồn mở của Netflix, và mời người đọc báo lỗi nếu có chỗ sai.
 
-**Gần lần bấm xem.**
+**Ứng dụng, dịch vụ và nơi lưu.**
 - **Di động và web:** ứng dụng di động gốc viết bằng Swift và Kotlin; ứng dụng web dùng React.
 - **Giao tiếp giao diện và máy chủ:** GraphQL.
 - **Dịch vụ phía sau:** Zuul, Eureka, khung Spring Boot và các công nghệ khác.
@@ -36,12 +36,12 @@ Bài nguồn chỉ nêu tên công cụ, không nói mỗi công cụ làm gì �
 
 ## Nhìn hình thử trả lời
 
-Một người bấm xem một bộ phim trên ứng dụng Netflix ở điện thoại. Theo cách bài nguồn chia mảng, những mảng nào nằm gần lần bấm xem đó, mảng nào không tham gia trả lời ngay, và bài nguồn có cho biết yêu cầu đi qua các công cụ theo thứ tự nào không?
+Một người bấm xem một bộ phim trên ứng dụng Netflix ở điện thoại. Bài nguồn chia công cụ của Netflix thành những mảng nào, và nó có cho biết lần bấm xem đó dùng tới mảng nào, theo thứ tự nào không?
 
 <details>
 <summary>Xem đáp án</summary>
 
-Gần lần bấm xem là các mảng: ứng dụng (Swift hoặc Kotlin), giao tiếp giữa giao diện và máy chủ (GraphQL), dịch vụ phía sau (như Zuul, Eureka), cơ sở dữ liệu (như EVCache, Cassandra) và nơi lưu video (S3, Open Connect). Truyền tin, xử lý dữ liệu và phần phát hành không tham gia trả lời ngay: chúng phân tích dữ liệu sau, hoặc đưa mã mới vào trước. Bài nguồn không nói yêu cầu đi qua các công cụ theo thứ tự nào, nên không thể đọc danh sách này như một đường đi.
+Tám mảng: di động và web (Swift, Kotlin; React), giao tiếp giữa giao diện và máy chủ (GraphQL), dịch vụ phía sau (Zuul, Eureka, Spring Boot), cơ sở dữ liệu (EVCache, Cassandra, CockroachDB), truyền tin (Kafka, Flink), lưu video (S3, Open Connect), xử lý dữ liệu (Flink, Spark, Tableau, Redshift) và tích hợp, chuyển giao liên tục. Bài nguồn chỉ nêu tên công cụ theo mảng; nó không nói lần bấm xem dùng tới mảng nào hay đi qua các công cụ theo thứ tự nào, nên không thể đọc danh sách này như một đường đi. Muốn biết phải đọc tài liệu kỹ thuật của chính Netflix.
 
 </details>
 

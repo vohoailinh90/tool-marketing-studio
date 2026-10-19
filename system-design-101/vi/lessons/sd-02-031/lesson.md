@@ -16,7 +16,7 @@ Bài này đọc ba thế hệ đó theo điều đã đổi quanh cổng: số 
 2. **Thế hệ hai: một cổng ôm hết.** Uber theo kiến trúc microservice từ rất sớm. Theo nguồn, tới năm 2019 các sản phẩm của Uber chạy trên hơn 2.200 microservice, hệ quả của quyết định đó.
 3. **Thế hệ ba: tự phục vụ, phi tập trung, chia tầng.** Từ đầu năm 2018, Uber có những mảng kinh doanh hoàn toàn mới và nhiều ứng dụng mới: vận tải hàng hóa (Freight), ATG, Elevate, giao đồ tạp hóa và hơn nữa. Mục tiêu mới dẫn tới thế hệ thứ ba.
 
-Thứ đổi qua ba thế hệ là ai làm cổng: ban đầu cổng là một dịch vụ, rồi một cổng chung cho mọi thứ, rồi một lớp mà nhiều đội tự thêm phần của mình.
+Thứ đổi qua ba thế hệ là ai làm cổng: ban đầu cổng là một dịch vụ, rồi một cổng chung cho mọi thứ, rồi một lớp tự phục vụ và phi tập trung. Bài nguồn không nói cụ thể các đội làm gì trên lớp đó.
 
 ## Giới hạn cần nhớ
 
@@ -29,7 +29,7 @@ Uber mở thêm mảng giao đồ tạp hóa, cần vài API mới cho ứng d�
 <details>
 <summary>Xem đáp án</summary>
 
-Với một cổng ôm hết, mọi API mới đều phải đi qua cổng chung, nên đội làm mảng mới phải chờ hoặc phối hợp với đội giữ cổng. Thế hệ ba theo hướng tự phục vụ và phi tập trung: đội của mảng mới tự thêm phần của mình vào lớp cổng.
+Với một cổng ôm hết, mọi API mới đều phải đi qua cổng chung, nên đội làm mảng mới phải chờ hoặc phối hợp với đội giữ cổng. Theo bài nguồn, thế hệ ba theo hướng tự phục vụ và phi tập trung, nên đội làm mảng mới không còn phải xếp hàng chờ một đội giữ cổng chung. Bài nguồn không nói chi tiết đội đó làm gì trên cổng, nên đừng hiểu là mỗi đội viết mã riêng vào cổng.
 
 </details>
 

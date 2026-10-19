@@ -1,7 +1,7 @@
 {
   "id": "sd-02-031",
   "title": "Cổng API của Uber qua ba thế hệ",
-  "subtitle": "Từ hai dịch vụ tới một lớp nhiều đội cùng làm.",
+  "subtitle": "Từ hai dịch vụ tới một lớp tự phục vụ.",
   "desc": "Ba bước. Thế hệ một, năm 2014: dịch vụ điều phối và dịch vụ API. Thế hệ hai: một cổng ôm hết, hơn 2.200 microservice năm 2019. Thế hệ ba, từ đầu năm 2018: tự phục vụ, phi tập trung, chia tầng, vì có nhiều mảng kinh doanh mới. Khung cuối nêu ba điều cần nhớ.",
   "sections": [
     {

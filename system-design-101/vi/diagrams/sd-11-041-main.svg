@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1110" viewBox="0 0 320 1110" role="img" aria-labelledby="title desc">
+<title id="title">Azure theo mảng việc</title>
+<desc id="desc">Bốn khung. Khung một, mảng nền: tài khoản và đăng ký, điện toán, lưu trữ, cơ sở dữ liệu. Khung hai, thêm bốn mảng: mạng, phân tích, trí tuệ nhân tạo và học máy, nhắn tin. Khung ba, ba mảng còn lại: khu vực và vùng, quản lý tài nguyên, danh tính nhiều đám mây. Khung bốn, đếm trong kho đặc tả: 266 nhà cung cấp tài nguyên, 317 thư mục cấp một, nhiều tên là việc nền như tính tiền và quyền.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1110" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Azure theo mảng việc</text>
+<text x="16" y="60.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Mười một mảng và một phép đếm.</text>
+<rect x="8" y="80" width="304" height="265" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="108.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Bốn mảng nền</text>
+<rect x="20" y="125" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="148" r="11" fill="#16a34a"/>
+<polyline points="37.9,148.4 41.7,152.4 48.5,144" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="151.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tài khoản và đăng ký.</text>
+<rect x="20" y="179" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="202" r="11" fill="#16a34a"/>
+<polyline points="37.9,202.4 41.7,206.4 48.5,198" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="205.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Điện toán.</text>
+<rect x="20" y="233" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="256" r="11" fill="#16a34a"/>
+<polyline points="37.9,256.4 41.7,260.4 48.5,252" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="259.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lưu trữ.</text>
+<rect x="20" y="287" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="310" r="11" fill="#16a34a"/>
+<polyline points="37.9,310.4 41.7,314.4 48.5,306" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="313.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cơ sở dữ liệu.</text>
+<rect x="8" y="357" width="304" height="265" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="385.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Bốn mảng tiếp</text>
+<rect x="20" y="402" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="425" r="11" fill="#16a34a"/>
+<polyline points="37.9,425.4 41.7,429.4 48.5,421" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="428.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mạng.</text>
+<rect x="20" y="456" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="479" r="11" fill="#16a34a"/>
+<polyline points="37.9,479.4 41.7,483.4 48.5,475" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="482.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Phân tích.</text>
+<rect x="20" y="510" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="533" r="11" fill="#16a34a"/>
+<polyline points="37.9,533.4 41.7,537.4 48.5,529" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="536.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Trí tuệ nhân tạo và học máy.</text>
+<rect x="20" y="564" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="587" r="11" fill="#16a34a"/>
+<polyline points="37.9,587.4 41.7,591.4 48.5,583" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="590.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nhắn tin.</text>
+<rect x="8" y="634" width="304" height="211" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="662.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Ba mảng còn lại</text>
+<rect x="20" y="679" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="702" r="11" fill="#16a34a"/>
+<polyline points="37.9,702.4 41.7,706.4 48.5,698" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="705.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Khu vực và vùng.</text>
+<rect x="20" y="733" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="756" r="11" fill="#16a34a"/>
+<polyline points="37.9,756.4 41.7,760.4 48.5,752" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="759.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Quản lý tài nguyên.</text>
+<rect x="20" y="787" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="810" r="11" fill="#16a34a"/>
+<polyline points="37.9,810.4 41.7,814.4 48.5,806" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="813.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Danh tính nhiều đám mây.</text>
+<rect x="8" y="857" width="304" height="245" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="885.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Đếm kho đặc tả</text>
+<rect x="20" y="902" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="925" r="11" fill="#16a34a"/>
+<polyline points="37.9,925.4 41.7,929.4 48.5,921" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="928.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">266 nhà cung cấp tài</text>
+<text x="64" y="947.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nguyên.</text>
+<rect x="20" y="973" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="996" r="11" fill="#16a34a"/>
+<polyline points="37.9,996.4 41.7,1000.4 48.5,992" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="999.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">317 thư mục cấp một.</text>
+<rect x="20" y="1027" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1050" r="11" fill="#16a34a"/>
+<polyline points="37.9,1050.4 41.7,1054.4 48.5,1046" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1053.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nhiều tên là việc nền: tính</text>
+<text x="64" y="1072.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tiền, quyền.</text>
+</g>
+</svg>

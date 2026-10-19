@@ -59,7 +59,7 @@ Chương trình Python 3 (chỉ dùng thư viện chuẩn) đã in mọi con s�
 ```python
 import random, itertools
 rnd=random.Random(3)
-# Alice sends 20 messages to Bob via two chat servers; delivery is at-least-once with reordering
+# Alice sends 5 messages to Bob via two chat servers; delivery is at-least-once with reordering
 msgs=[(i,f"m{i}") for i in range(1,6)]
 def network(msgs,dup=0.2,swap=0.3):
     out=[]

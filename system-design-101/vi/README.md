@@ -228,7 +228,7 @@ Các bài chưa viết của nhóm này không có trong danh sách; số thứ 
 
 34. [Chuyển hệ thống sang cloud native: sáu mảng việc cần phủ](lessons/sd-11-034/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 35. [Chi phí ẩn của đám mây: nhóm theo cách hóa đơn đếm](lessons/sd-11-035/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
-36. [Hai thập kỷ đám mây: mỗi cột mốc nhấc phần tự lo lên một bậc](lessons/sd-11-036/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+36. [Hai thập kỷ đám mây: mỗi cột mốc đổi đường ranh giữa phần tự lo và phần thuê](lessons/sd-11-036/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 37. [Giảm chi phí đám mây: bốn đòn bẩy và thứ tự dùng chúng](lessons/sd-11-037/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 38. [Bảy mẫu hệ thống phân tán hay gặp: mỗi mẫu trả lời một vấn đề](lessons/sd-11-038/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 

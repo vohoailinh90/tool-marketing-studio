@@ -1,6 +1,6 @@
-# Hai thập kỷ đám mây: mỗi cột mốc nhấc phần "tự lo" lên một bậc
+# Hai thập kỷ đám mây: mỗi cột mốc đổi đường ranh giữa phần tự lo và phần thuê
 
-**Từ năm 2001 đến 2015, mỗi cột mốc của đám mây không thêm một công nghệ chồng lên nhau, mà dời đường ranh giữa phần bạn tự lo và phần nhà cung cấp lo: máy vật lý, rồi máy ảo, rồi nền tảng, rồi gói ứng dụng, rồi cả cách vận hành.**
+**Từ năm 2001 đến 2015, các cột mốc của đám mây không chỉ thêm công nghệ mà còn đổi đường ranh giữa phần bạn tự lo và phần nhà cung cấp lo. Đa số dời nó về phía nhà cung cấp (máy ảo, nền tảng), nhưng OpenStack và Cloud Foundry cho bạn tự dựng cùng kiểu dịch vụ trên máy của mình, còn Docker đổi cách đóng gói chứ không chuyển việc vận hành cho ai.**
 Bài đọc bảy cột mốc ở bài nguồn theo đường ranh đó, và kiểm bốn trong bảy năm bằng kho mã và tài liệu công khai.
 
 ![Hai khung. Khung một, bốn cột mốc đầu nối nhau: năm 2001 VMware đưa ảo hóa bằng hypervisor; năm 2006 AWS cho thuê hạ tầng như một dịch vụ; năm 2009 Heroku đưa nền tảng như một dịch vụ; năm 2010 OpenStack là hạ tầng mã nguồn mở. Khung hai, ba cột mốc sau: năm 2011 Cloud Foundry là nền tảng mã nguồn mở; năm 2013 Docker đưa container; năm 2015 CNCF lập ra để giữ cloud native.](../../diagrams/sd-11-036-main.svg)

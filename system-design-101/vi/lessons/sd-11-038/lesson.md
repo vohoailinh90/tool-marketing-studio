@@ -29,12 +29,12 @@ Circuit Breaker có ba trạng thái. Đóng: yêu cầu đi qua và bộ đếm
 
 ## Thử: mô phỏng Circuit Breaker
 
-Ngày 2026-10-19, người biên soạn viết một mô phỏng với thời gian ảo. Một ứng dụng gọi một dịch vụ mỗi giây, 100 lần; dịch vụ hỏng từ giây 20 đến hết giây 59. Một lần gọi tới dịch vụ đang hỏng chờ hết thời hạn 2 giây rồi mới lỗi. Bộ ngắt: mở sau 5 lỗi liên tiếp, giữ mở 10 giây, rồi nửa mở với một yêu cầu thử.
+Ngày 2026-10-19, người biên soạn viết một mô phỏng với thời gian ảo. Một ứng dụng gọi một dịch vụ mỗi giây, 100 lần; dịch vụ hỏng từ giây 20 đến hết giây 59. Một lần gọi tới dịch vụ đang hỏng chờ hết thời hạn 2 giây rồi mới lỗi, và bộ ngắt chỉ biết về lỗi khi lần gọi đó kết thúc; các lần gọi vẫn được phát mỗi giây, không chờ nhau. Bộ ngắt: mở sau 5 lỗi liên tiếp, giữ mở 10 giây, rồi nửa mở với một yêu cầu thử.
 
 - **Không có bộ ngắt.** Cả 100 lần đều đi tới dịch vụ; 40 lần lỗi, mỗi lần chờ 2 giây: tổng 80 giây chờ.
-- **Có bộ ngắt.** Bộ ngắt mở ở giây 24 sau 5 lỗi đầu. Chỉ 64 lần tới dịch vụ, trong đó 8 lần lỗi (5 lần đầu và ba lần thử lại lúc nửa mở ở các giây 34, 44, 54); 36 lần thất bại tức thì. Tổng chờ: 16 giây. Giây 64 lần thử nửa mở thành công và bộ ngắt đóng lại.
+- **Có bộ ngắt.** Các lần gọi ở giây 20 đến 25 đều đã đi vào dịch vụ trước khi bộ ngắt biết gì: lỗi thứ năm (lần gọi giây 24) chỉ trả về ở giây 26, lúc đó bộ ngắt mới mở. Nó mở lại hai lần vì hai lần thử nửa mở (giây 36 và 48) đều lỗi; lần thử giây 60 thành công và bộ ngắt đóng lại. Kết quả: 68 lần tới dịch vụ, trong đó 8 lần lỗi (sáu lần đầu và hai lần thử) và 32 lần thất bại tức thì. Tổng chờ: 16 giây.
 
-Phép thử chỉ cho thấy hình dạng của lợi ích; con số phụ thuộc hoàn toàn vào các tham số ở trên (ngưỡng 5, mở 10 giây, thời hạn 2 giây) mà người biên soạn chọn. Nó cũng không mô phỏng tải đồng thời hay nhiều ứng dụng cùng gọi.
+Phép thử chỉ cho thấy hình dạng của lợi ích; con số phụ thuộc hoàn toàn vào các tham số ở trên (ngưỡng 5, mở 10 giây, thời hạn 2 giây) mà người biên soạn chọn. Nó chỉ có một ứng dụng gọi đều đặn mỗi giây, không mô phỏng nhiều ứng dụng hay tải thay đổi.
 
 ## Giới hạn cần nhớ
 

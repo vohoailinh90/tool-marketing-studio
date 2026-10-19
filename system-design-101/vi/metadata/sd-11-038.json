@@ -27,7 +27,7 @@
     "claims": {
       "status": "checked",
       "checked_on": "2026-10-19",
-      "evidence": "Vấn đề, giải pháp và ba trạng thái của Circuit Breaker đối chiếu với các trang mẫu thiết kế trong kho MicrosoftDocs/architecture-center (nhánh chính, đọc ngày 2026-10-19, không ghim). Mô phỏng Circuit Breaker (thời gian ảo, 100 lần gọi, hỏng giây 20-59, hạn 2 giây, ngưỡng 5, mở 10 giây) là chương trình của người biên soạn, chạy ngày 2026-10-19: 80 giây chờ không có bộ ngắt, 16 giây có bộ ngắt, 64 lần tới dịch vụ, 36 lần thất bại tức thì. Cột 'cái giá' là tóm tắt của người biên soạn."
+      "evidence": "Vấn đề, giải pháp và ba trạng thái của Circuit Breaker đối chiếu với các trang mẫu thiết kế trong kho MicrosoftDocs/architecture-center (nhánh chính, đọc ngày 2026-10-19, không ghim). Mô phỏng Circuit Breaker (thời gian ảo, 100 lần gọi, hỏng giây 20-59, hạn 2 giây, ngưỡng 5, mở 10 giây) là chương trình của người biên soạn, chạy ngày 2026-10-19: 80 giây chờ không có bộ ngắt, 16 giây có bộ ngắt, 68 lần tới dịch vụ, 32 lần thất bại tức thì (mô phỏng theo sự kiện: bộ ngắt chỉ biết lỗi khi lần gọi kết thúc). Cột 'cái giá' là tóm tắt của người biên soạn."
     },
     "technical_review": {
       "status": "pending",
@@ -61,13 +61,37 @@
       "verified_by": "Tệp đọc ngày 2026-10-19."
     },
     {
-      "claim_vi": "Ambassador, CQRS, Leader Election, Publisher-Subscriber và Sharding giải các vấn đề nêu trong bảng của bài.",
-      "source": "https://github.com/MicrosoftDocs/architecture-center/blob/main/docs/patterns/sharding.md",
-      "section": "Context and problem của từng trang",
-      "verified_by": "Các trang đọc ngày 2026-10-19; cột cái giá là tóm tắt của người biên soạn."
+      "claim_vi": "Ambassador giải vấn đề nêu ở hàng của nó trong bảng của bài.",
+      "source": "https://github.com/MicrosoftDocs/architecture-center/blob/main/docs/patterns/ambassador.md",
+      "section": "Context and problem",
+      "verified_by": "Trang đọc ngày 2026-10-19; cột cái giá là tóm tắt của người biên soạn."
     },
     {
-      "claim_vi": "Mô phỏng: không có bộ ngắt 40 lần lỗi x 2 giây = 80 giây; có bộ ngắt mở ở giây 24, 64 lần tới dịch vụ trong đó 8 lỗi, 36 lần thất bại tức thì, 16 giây chờ.",
+      "claim_vi": "CQRS giải vấn đề nêu ở hàng của nó trong bảng của bài.",
+      "source": "https://github.com/MicrosoftDocs/architecture-center/blob/main/docs/patterns/cqrs.md",
+      "section": "Context and problem",
+      "verified_by": "Trang đọc ngày 2026-10-19; cột cái giá là tóm tắt của người biên soạn."
+    },
+    {
+      "claim_vi": "Leader Election giải vấn đề nêu ở hàng của nó trong bảng của bài.",
+      "source": "https://github.com/MicrosoftDocs/architecture-center/blob/main/docs/patterns/leader-election-content.md",
+      "section": "Context and problem",
+      "verified_by": "Trang đọc ngày 2026-10-19; cột cái giá là tóm tắt của người biên soạn."
+    },
+    {
+      "claim_vi": "Publisher-Subscriber giải vấn đề nêu ở hàng của nó trong bảng của bài.",
+      "source": "https://github.com/MicrosoftDocs/architecture-center/blob/main/docs/patterns/publisher-subscriber.md",
+      "section": "Context and problem",
+      "verified_by": "Trang đọc ngày 2026-10-19; cột cái giá là tóm tắt của người biên soạn."
+    },
+    {
+      "claim_vi": "Sharding giải vấn đề nêu ở hàng của nó trong bảng của bài.",
+      "source": "https://github.com/MicrosoftDocs/architecture-center/blob/main/docs/patterns/sharding.md",
+      "section": "Context and problem",
+      "verified_by": "Trang đọc ngày 2026-10-19; cột cái giá là tóm tắt của người biên soạn."
+    },
+    {
+      "claim_vi": "Mô phỏng theo sự kiện: không có bộ ngắt 40 lần lỗi x 2 giây = 80 giây; có bộ ngắt mở ở giây 26 (lỗi thứ năm trả về sau 2 giây), 68 lần tới dịch vụ trong đó 8 lỗi, 32 lần thất bại tức thì, 16 giây chờ.",
       "source": "https://github.com/MicrosoftDocs/architecture-center/blob/main/docs/patterns/circuit-breaker.md",
       "section": "Mô phỏng",
       "verified_by": "Chương trình của người biên soạn chạy ngày 2026-10-19; kết quả phụ thuộc vào tham số đã chọn."

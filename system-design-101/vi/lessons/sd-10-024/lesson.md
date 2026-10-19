@@ -1,6 +1,6 @@
 # Chín thuật toán dùng khắp đời sống số
 
-**Chín cái tên, bảy phép thử nhỏ và hai ví dụ chỉ đọc tài liệu. Bảy thuật toán thử được bằng vài dòng Python chạy tại chỗ; hai thuật toán học máy (Transformer, mạng nơ-ron tích chập) bài chỉ đọc tài liệu của PyTorch.**
+**Chín cái tên, bảy phép thử nhỏ và hai ví dụ chỉ đọc tài liệu. Bài đã chạy bảy phép thử bằng vài dòng Python tại chỗ; với hai thuật toán học máy (Transformer, mạng nơ-ron tích chập) bài chỉ đọc tài liệu của PyTorch và không chạy.**
 Bảy phép thử nhỏ dưới đây do bài tự chạy; hai ví dụ về PyTorch (Transformer và Conv2d) chỉ được đọc từ tài liệu, không chạy. Tài liệu của Python, Java, NetworkX, SymPy, PyTorch và zlib dùng để đối chiếu điều mỗi thuật toán làm.
 
 ![Ba nhóm thẻ và một khung ghi nhớ. Xếp, tìm đường và xếp hạng: sắp xếp giữ nguyên thứ tự các bản ghi cùng khóa; thuật toán Dijkstra tìm đường A tới D dài 4 thay vì 5; phân tích liên kết cho nút c điểm cao nhất, nút không ai trỏ tới điểm thấp nhất. Mật mã, số và nén: RSA mã hóa 65 thành 2790 rồi giải lại ra 65; phân tích thừa số nguyên tách 3233 thành 53 và 61; mã Huffman nén abracadabra từ 88 bit xuống 23 bit; SHA-256 của abc luôn cho một chuỗi 64 ký tự thập lục phân. Học máy: Transformer và mạng nơ-ron tích chập có lớp tương ứng trong PyTorch. Khung cuối nêu ba điều cần nhớ.](../../diagrams/sd-10-024-main.svg)

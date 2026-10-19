@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1736" viewBox="0 0 320 1736" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1755" viewBox="0 0 320 1755" role="img" aria-labelledby="title desc">
 <title id="title">Bảy mươi năm ngôn ngữ lập trình</title>
 <desc id="desc">Ba chuỗi bước theo thời gian. Các thế hệ đầu: thẻ đục lỗ; hợp ngữ hướng về máy; từ 1957 ngôn ngữ hướng về con người như Fortran và LISP. Từ 1972 đến thập niên 1990: Smalltalk và C năm 1972; ngôn ngữ hướng đối tượng như Objective-C và C++ thập niên 1980; Python đầu thập niên 1990, kế nhiệm một ngôn ngữ cũ; JavaScript vào trình duyệt Netscape tháng 9 năm 1995, cùng năm Java, PHP và Ruby theo bài nguồn. Từ năm 2000: C# năm 2000; các ngôn ngữ thập niên 2010 như Rust, Go, Carbon, Kotlin, Swift, TypeScript và Dart, mỗi ngôn ngữ tự nêu một mục tiêu riêng; mốc thập niên 2010 là của nguồn và lệch với Go năm 2009 và Carbon năm 2022. Khung cuối nêu ba điều cần nhớ.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="1736" fill="#f8fafc"/>
+<rect width="320" height="1755" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Bảy mươi năm ngôn ngữ</text>
 <text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">lập trình</text>
@@ -86,24 +86,25 @@
 <text x="70" y="1365.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Go ra mắt năm 2009;</text>
 <text x="70" y="1384.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Carbon công bố năm 2022.</text>
 <polyline points="46,1295 46,1313" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
-<rect x="8" y="1426" width="304" height="302" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="8" y="1426" width="304" height="321" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
 <text x="20" y="1454.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Nhớ gì</text>
-<rect x="20" y="1471" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<rect x="20" y="1471" width="280" height="102" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
 <circle cx="43" cy="1494" r="11" fill="#16a34a"/>
 <polyline points="37.9,1494.4 41.7,1498.4 48.5,1490" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="1497.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mốc thời gian là của bài</text>
-<text x="64" y="1516.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nguồn, trừ Python và</text>
-<text x="64" y="1536.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">JavaScript.</text>
-<rect x="20" y="1562" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
-<circle cx="43" cy="1585" r="11" fill="#16a34a"/>
-<polyline points="37.9,1585.4 41.7,1589.4 48.5,1581" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="1588.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ngôn ngữ đã đọc tài liệu nêu</text>
-<text x="64" y="1607.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mục tiêu riêng; Fortran, LISP,</text>
-<text x="64" y="1627.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Java theo nguồn.</text>
-<rect x="20" y="1653" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
-<circle cx="43" cy="1676" r="11" fill="#16a34a"/>
-<polyline points="37.9,1676.4 41.7,1680.4 48.5,1672" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="1679.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Không phải danh sách đầy</text>
-<text x="64" y="1698.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đủ.</text>
+<text x="64" y="1497.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mốc là của nguồn, trừ</text>
+<text x="64" y="1516.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Python, JavaScript và Carbon</text>
+<text x="64" y="1536.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">(2022); Go 2009 chưa kiểm</text>
+<text x="64" y="1555.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tra.</text>
+<rect x="20" y="1581" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1604" r="11" fill="#16a34a"/>
+<polyline points="37.9,1604.4 41.7,1608.4 48.5,1600" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1607.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ngôn ngữ đã đọc tài liệu nêu</text>
+<text x="64" y="1626.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mục tiêu riêng; Fortran, LISP,</text>
+<text x="64" y="1646.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Java theo nguồn.</text>
+<rect x="20" y="1672" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1695" r="11" fill="#16a34a"/>
+<polyline points="37.9,1695.4 41.7,1699.4 48.5,1691" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1698.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Không phải danh sách đầy</text>
+<text x="64" y="1717.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đủ.</text>
 </g>
 </svg>

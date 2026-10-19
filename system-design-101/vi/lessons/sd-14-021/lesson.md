@@ -25,7 +25,7 @@ Thử nghiệm dùng Python 3.13.16 (mô-đun `ssl`, OpenSSL 3.0.13) và `crypto
 
 **2 · Kho chỉ có CA thật.** Máy khách nối tới relay và nhận lỗi `SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate`. Chứng chỉ của relay do một CA không có trong kho ký, nên không dựng được chuỗi tin cậy tới một CA đã biết. (Chứng chỉ là một khóa công khai cùng tên do CA ký: xem [bài sd-14-014](../sd-14-014/lesson.md) về chứng chỉ và [bài sd-14-015](../sd-14-015/lesson.md) về chữ ký số.) Relay nhận cảnh báo `tlsv1 alert unknown ca` và đọc được 0 yêu cầu; máy chủ thật nhận 0 kết nối (relay này chỉ nối ngược sau khi bắt tay với máy khách xong). Dẫn được lưu lượng về relay vẫn chưa đủ.
 
-**3 · Kho có thêm CA của relay.** Bắt tay xong qua TLS 1.3, máy khách nhận trả lời 200 giống hệt khi nối thẳng và không có lỗi nào từ TLS. Relay đọc được dòng yêu cầu, một tiêu đề thử và nội dung trả lời. Máy khách chỉ có thể thấy khác ở người ký chứng chỉ (CA của relay thay vì CA thật) và dấu vân tay chứng chỉ.
+**3 · Kho có thêm CA của relay.** Bắt tay xong qua TLS 1.3, máy khách nhận trả lời 200 giống hệt khi nối thẳng và không có lỗi nào từ TLS. Relay đọc được dòng yêu cầu, một tiêu đề thử và nội dung trả lời. Trong lần chạy, máy khách so sánh thấy khác ở người ký chứng chỉ (CA của relay thay vì CA thật) và dấu vân tay chứng chỉ; khóa công khai trong chứng chỉ cũng khác (phép thử ghim khóa ở phần xem sâu hơn), và hai chặng có thể thương lượng khác nhau, như phiên bản TLS của hai chặng ở mục 1. Đây là những gì lần chạy này so sánh, không phải danh sách đầy đủ.
 
 ## Giới hạn cần nhớ
 

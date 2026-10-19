@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="920" viewBox="0 0 320 920" role="img" aria-labelledby="title desc">
+<title id="title">Năm cách sinh mã định danh</title>
+<desc id="desc">Hai khung. Khung một, năm cách sinh mã định danh duy nhất, mỗi cách một thẻ: UUID sinh ngẫu nhiên ở từng máy, Snowflake ghép thời gian, máy và số thứ tự, cột tự tăng của cơ sở dữ liệu, đoạn mã lấy theo lô từ cơ sở dữ liệu, bộ đếm trong Redis. Khung hai, thử nghiệm: chèn 20000 mã vào một chỉ mục có thứ tự; mã UUID ngẫu nhiên rơi trung bình trước khoảng 5000 mã đã có, mã tự tăng luôn rơi cuối, mã ghép thời gian gần cuối.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="920" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Năm cách sinh mã định</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">danh</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Mỗi cách trả giá một kiểu.</text>
+<rect x="8" y="104" width="304" height="472" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="132.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Năm cách</text>
+<rect x="20" y="149" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="192.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 181.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4"/><path d="M14 13.12c0 2.38 0 6.38-1 8.88"/><path d="M17.29 21.02c.12-.6.43-2.3.5-3.02"/><path d="M2 12a10 10 0 0 1 18-6"/><path d="M2 16h.01"/><path d="M21.8 16c.2-2 .131-5.354 0-6"/><path d="M5 19.5C5.5 18 6 15 6 12a6 6 0 0 1 .34-2"/><path d="M8.65 22c.21-.66.45-1.32.57-2"/><path d="M9 6.8a6 6 0 0 1 9 5.2v2"/></g>
+<text x="78" y="175.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">UUID</text>
+<text x="78" y="199.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">128 bit ngẫu nhiên, tự</text>
+<text x="78" y="218.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">sinh.</text>
+<rect x="20" y="250" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="284" r="18" fill="#1d4ed8"/><g transform="translate(39.2 273.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></g>
+<text x="78" y="276.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Snowflake</text>
+<text x="78" y="300.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Thời gian, máy, số thứ tự.</text>
+<rect x="20" y="332" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="366" r="18" fill="#1d4ed8"/><g transform="translate(39.2 355.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></g>
+<text x="78" y="358.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Cột tự tăng</text>
+<text x="78" y="382.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cơ sở dữ liệu đếm 1, 2, 3.</text>
+<rect x="20" y="414" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="448" r="18" fill="#1d4ed8"/><g transform="translate(39.2 437.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.97 12.92A2 2 0 0 0 2 14.63v3.24a2 2 0 0 0 .97 1.71l3 1.8a2 2 0 0 0 2.06 0L12 19v-5.5l-5-3-4.03 2.42Z"/><path d="m7 16.5-4.74-2.85"/><path d="m7 16.5 5-3"/><path d="M7 16.5v5.17"/><path d="M12 13.5V19l3.97 2.38a2 2 0 0 0 2.06 0l3-1.8a2 2 0 0 0 .97-1.71v-3.24a2 2 0 0 0-.97-1.71L17 10.5l-5 3Z"/><path d="m17 16.5-5-3"/><path d="m17 16.5 4.74-2.85"/><path d="M17 16.5v5.17"/><path d="M7.97 4.42A2 2 0 0 0 7 6.13v4.37l5 3 5-3V6.13a2 2 0 0 0-.97-1.71l-3-1.8a2 2 0 0 0-2.06 0l-3 1.8Z"/><path d="M12 8 7.26 5.15"/><path d="m12 8 4.74-2.85"/><path d="M12 13.5V8"/></g>
+<text x="78" y="440.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Đoạn mã</text>
+<text x="78" y="464.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lấy một lô, phát dần.</text>
+<rect x="20" y="496" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="530" r="18" fill="#1d4ed8"/><g transform="translate(39.2 519.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15.914 4a1.5 1.5 0 00-2.474-1.561l-9 9A1.5 1.5 0 005.5 14h4.002a.5.5 0 01.471.666L8.086 20a1.5 1.5 0 002.475 1.56l9-9A1.5 1.5 0 0018.5 10h-3.997a.5.5 0 01-.472-.667z"/></g>
+<text x="78" y="522.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Redis</text>
+<text x="78" y="546.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bộ đếm trong bộ nhớ.</text>
+<rect x="8" y="588" width="304" height="324" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="616.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Thử chèn 20000 mã vào chỉ</text>
+<text x="20" y="638.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">mục</text>
+<rect x="20" y="655" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="678" r="11" fill="#16a34a"/>
+<polyline points="37.9,678.4 41.7,682.4 48.5,674" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="681.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">UUID ngẫu nhiên: mã mới rơi</text>
+<text x="64" y="700.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trước trung bình 5005 mã đã</text>
+<text x="64" y="720.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">có.</text>
+<rect x="20" y="746" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="769" r="11" fill="#16a34a"/>
+<polyline points="37.9,769.4 41.7,773.4 48.5,765" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="772.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cột tự tăng: luôn rơi cuối, 0</text>
+<text x="64" y="791.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mã đứng sau.</text>
+<rect x="20" y="817" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="840" r="11" fill="#16a34a"/>
+<polyline points="37.9,840.4 41.7,844.4 48.5,836" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="843.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ghép thời gian, hai máy:</text>
+<text x="64" y="862.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trung bình 0,25 mã đứng</text>
+<text x="64" y="882.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">sau.</text>
+</g>
+</svg>

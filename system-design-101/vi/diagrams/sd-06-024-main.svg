@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1400" viewBox="0 0 320 1400" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1420" viewBox="0 0 320 1420" role="img" aria-labelledby="title desc">
 <title id="title">Tám cách làm trang tải nhanh: gửi ít, gửi sau, gửi trước</title>
-<desc id="desc">Bốn phần. Gửi ít hơn: nén tệp trước khi gửi bằng gzip hay brotli; bỏ mã chết khi đóng gói. Gửi sau: tách mã và nạp động phần chỉ cần khi người dùng bấm; chỉ vẽ và tải phần đang nhìn thấy. Gửi trước, đúng thứ tự: ưu tiên tài nguyên quan trọng và phần đầu màn hình; tải trước thứ trang này sắp cần; tìm nạp trước thứ trang sau có thể cần. Đo thử: gói giao diện của kho này 499 KB, gzip còn 156 KB, brotli còn 133 KB; bỏ hai hàm không dùng thì gói từ 189 KB còn 60 KB; tách phần soạn thảo thì tệp đầu còn 313 byte; trang 40 ảnh bật tải lười thì lúc tải trang chỉ tải 11 ảnh.</desc>
+<desc id="desc">Bốn phần. Gửi ít hơn: nén tệp trước khi gửi bằng gzip hay brotli; bỏ mã chết khi đóng gói. Gửi sau: tách mã và nạp động phần chỉ cần khi người dùng bấm; chỉ vẽ và tải phần đang nhìn thấy. Gửi trước, đúng thứ tự: ưu tiên tài nguyên quan trọng và phần đầu màn hình; tải trước thứ trang này sắp cần; tìm nạp trước thứ trang sau có thể cần. Đo thử: gói giao diện của kho này 499 KB, gzip còn 156 KB, brotli còn 133 KB; bỏ hai hàm không dùng thì gói từ 189 KB còn 60 KB; tách phần soạn thảo thì tệp đầu còn 313 byte; trang 40 ảnh bật tải lười, màn hình 375 × 800, thì lúc tải trang chỉ tải 11 ảnh.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="1400" fill="#f8fafc"/>
+<rect width="320" height="1420" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Tám cách làm trang tải</text>
 <text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">nhanh: gửi ít, gửi sau,</text>
@@ -51,7 +51,7 @@
 <text x="78" y="954.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Tìm nạp trước</text>
 <text x="78" y="978.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lấy sẵn thứ trang sau có</text>
 <text x="78" y="997.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thể cần, mức ưu tiên thấp.</text>
-<rect x="8" y="1039" width="304" height="353" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="8" y="1039" width="304" height="373" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
 <text x="20" y="1067.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Đo thử</text>
 <rect x="20" y="1084" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
 <circle cx="43" cy="1107" r="11" fill="#16a34a"/>
@@ -69,10 +69,11 @@
 <polyline points="37.9,1269.4 41.7,1273.4 48.5,1265" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
 <text x="64" y="1272.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tách phần soạn thảo: tệp</text>
 <text x="64" y="1291.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đầu còn 313 byte.</text>
-<rect x="20" y="1317" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<rect x="20" y="1317" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
 <circle cx="43" cy="1340" r="11" fill="#16a34a"/>
 <polyline points="37.9,1340.4 41.7,1344.4 48.5,1336" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="1343.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Trang 40 ảnh, bật tải lười:</text>
-<text x="64" y="1362.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lúc tải trang chỉ 11 ảnh.</text>
+<text x="64" y="1343.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Trang 40 ảnh, tải lười, màn</text>
+<text x="64" y="1362.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hình 375 × 800: lúc tải chỉ</text>
+<text x="64" y="1382.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">11 ảnh.</text>
 </g>
 </svg>

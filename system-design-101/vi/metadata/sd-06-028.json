@@ -67,7 +67,7 @@
       "claim_vi": "Rows skipped by OFFSET still have to be computed inside the server, so a large OFFSET might be inefficient.",
       "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/queries.sgml",
       "section": "LIMIT and OFFSET",
-      "verified_by": "Read; the experiment measured OFFSET 290000 LIMIT 50 at a median of 27.7 ms against 0.231 ms for WHERE id > 290000 LIMIT 50 (same rows), and EXPLAIN ANALYZE showed an index scan over 290050 rows for the OFFSET form."
+      "verified_by": "Read; the experiment measured OFFSET 290000 LIMIT 50 at a median of 27.7 ms against 0.231 ms for WHERE id > 290000 LIMIT 50 (same rows), and EXPLAIN ANALYZE showed an index scan over 290050 rows for the OFFSET form. Rerun on 2026-10-19 with the full plan saved (exp/028/explain.txt): Index Scan actual rows=290050 for OFFSET, rows=50 for keyset."
     },
     {
       "claim_vi": "The time to establish a new connection can be relatively long, so keeping connections open in a pool reduces latency.",
@@ -79,7 +79,7 @@
       "claim_vi": "QueueHandler with QueueListener lets logging handlers that block do their work off the thread that logs.",
       "source": "https://github.com/python/cpython/blob/24d048d3601c2f1d41fa357897c1c91bb0a0bc13/Doc/howto/logging-cookbook.rst",
       "section": "Dealing with handlers that block",
-      "verified_by": "Read; the caller waited a median of 273 us per line with write + fsync and 9.4 us through the queue; a child process that queued 2000 lines and exited at once left 2 lines in the file."
+      "verified_by": "Read; the caller waited a median of 273 us per line with write + fsync and 9.4 us through the queue; a child process that queued 2000 lines and was killed with os._exit (no listener.stop()) left 2 lines in the file, a timing-dependent number; with stop() the queue drained (500 of 500)."
     },
     {
       "claim_vi": "Compression reduces transfer size for text such as JSON and is implemented by browsers and servers.",

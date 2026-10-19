@@ -88,7 +88,7 @@
       "claim_vi": "Lazy loading identifies non-critical resources and loads them only when needed, shortening the critical rendering path; loading=lazy defers off-screen images.",
       "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/web/performance/guides/lazy_loading/index.md",
       "section": "Lazy loading",
-      "verified_by": "Read; in Chromium on a 375x800 viewport, a 40-image page loaded all 40 images (about 2017 KB) by the load event without lazy loading and 11 (about 555 KB) with it."
+      "verified_by": "Read; in Chromium on a 375x800 viewport, a 40-image page loaded all 40 images (about 2017 KB) by the load event without lazy loading and 11 (about 555 KB) with it. Rerun on 2026-10-19 recording image indices (exp/024/lazy_idx.txt): 0-10 by load, then 29-39 after one wheel scroll to the end; 11-28 never requested."
     },
     {
       "claim_vi": "rel=preload declares resources the page will need soon so they are fetched early with higher priority, without executing them; rel=prefetch hints resources likely needed for future navigations, fetched at low priority and kept in the HTTP cache; fetchpriority signals that a resource matters more or less than the browser would infer.",

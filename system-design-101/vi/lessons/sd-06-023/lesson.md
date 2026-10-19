@@ -45,7 +45,7 @@ Trang chủ là nội dung dùng chung, được máy biên giữ; nếu máy bi
 
 - `max-age` là thời gian sống cho mọi bộ đệm; `s-maxage` chỉ cho bộ đệm dùng chung như CDN và được ưu tiên hơn `max-age` ở đó. Trình duyệt bỏ qua `s-maxage`.
 - `stale-while-revalidate` cho phép trả bản cũ trong lúc đi lấy bản mới; `stale-if-error` cho phép trả bản cũ khi máy gốc lỗi. Tài liệu Cloudflare ghi khi bật Always Online thì hai chỉ thị này bị bỏ qua.
-- Trong thử nghiệm, nginx dùng `proxy_cache_use_stale` để quyết định khi nào trả bản cũ (lỗi kết nối, hết thời gian chờ, mã 502, 503, 504...), độc lập với tiêu đề của máy gốc.
+- Trong thử nghiệm, nginx dùng `proxy_cache_use_stale` để quyết định khi nào trả bản cũ (lỗi kết nối, hết thời gian chờ, mã 502, 503, 504...). Chỉ thị này được ưu tiên hơn, nhưng từ bản 1.11.10 nginx cũng đọc `stale-while-revalidate` và `stale-if-error` trong tiêu đề `Cache-Control` của máy gốc; máy gốc trong thử nghiệm không gửi hai giá trị này.
 
 </details>
 

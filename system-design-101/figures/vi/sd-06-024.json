@@ -3,7 +3,7 @@
   "lang": "vi",
   "title": "Tám cách làm trang tải nhanh: gửi ít, gửi sau, gửi trước",
   "subtitle": "Mỗi cách trả lời một câu: byte nào, lúc nào.",
-  "desc": "Bốn phần. Gửi ít hơn: nén tệp trước khi gửi bằng gzip hay brotli; bỏ mã chết khi đóng gói. Gửi sau: tách mã và nạp động phần chỉ cần khi người dùng bấm; chỉ vẽ và tải phần đang nhìn thấy. Gửi trước, đúng thứ tự: ưu tiên tài nguyên quan trọng và phần đầu màn hình; tải trước thứ trang này sắp cần; tìm nạp trước thứ trang sau có thể cần. Đo thử: gói giao diện của kho này 499 KB, gzip còn 156 KB, brotli còn 133 KB; bỏ hai hàm không dùng thì gói từ 189 KB còn 60 KB; tách phần soạn thảo thì tệp đầu còn 313 byte; trang 40 ảnh bật tải lười thì lúc tải trang chỉ tải 11 ảnh.",
+  "desc": "Bốn phần. Gửi ít hơn: nén tệp trước khi gửi bằng gzip hay brotli; bỏ mã chết khi đóng gói. Gửi sau: tách mã và nạp động phần chỉ cần khi người dùng bấm; chỉ vẽ và tải phần đang nhìn thấy. Gửi trước, đúng thứ tự: ưu tiên tài nguyên quan trọng và phần đầu màn hình; tải trước thứ trang này sắp cần; tìm nạp trước thứ trang sau có thể cần. Đo thử: gói giao diện của kho này 499 KB, gzip còn 156 KB, brotli còn 133 KB; bỏ hai hàm không dùng thì gói từ 189 KB còn 60 KB; tách phần soạn thảo thì tệp đầu còn 313 byte; trang 40 ảnh bật tải lười, màn hình 375 × 800, thì lúc tải trang chỉ tải 11 ảnh.",
   "sections": [
     {"kind": "parts", "heading": "Gửi ít hơn",
      "items": [
@@ -26,7 +26,7 @@
        "Gói giao diện của kho này 499 KB: gzip 156 KB, brotli 133 KB.",
        "Bỏ hai hàm không dùng: gói từ 189 KB còn 60 KB.",
        "Tách phần soạn thảo: tệp đầu còn 313 byte.",
-       "Trang 40 ảnh, bật tải lười: lúc tải trang chỉ 11 ảnh."
+       "Trang 40 ảnh, tải lười, màn hình 375 × 800: lúc tải chỉ 11 ảnh."
      ]}
   ]
 }

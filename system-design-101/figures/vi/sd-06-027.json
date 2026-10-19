@@ -3,7 +3,7 @@
   "lang": "vi",
   "title": "Chín chỉ số hiệu năng web, xếp theo câu hỏi",
   "subtitle": "Mỗi chỉ số trả lời một câu; chọn câu bạn cần hỏi.",
-  "desc": "Ba phần. Phần một, ba nhóm chỉ số: máy chủ và mạng gồm TTFB, thời gian chờ byte đầu tiên, và RTT, một lượt đi về; trang nặng cỡ nào gồm số yêu cầu, tổng dung lượng và số tài nguyên chặn hiển thị; người dùng thấy gì và khi nào gồm DOMContentLoaded, FCP, phần đầu màn hình và thời gian tải. Phần hai, thử trong Chromium với một tệp CSS trả chậm 800 mili giây: chặn hiển thị thì FCP 940 mili giây, không chặn thì 132; TTFB như nhau 104 mili giây; DOMContentLoaded khoảng 120 mili giây ở cả hai, trước khi trang hiện chữ; sự kiện load khoảng 920 mili giây ở cả hai. Phần ba, bộ Core Web Vitals hiện nay: LCP tốt khi không quá 2,5 giây, INP tốt khi không quá 200 mili giây, CLS tốt khi không quá 0,1.",
+  "desc": "Ba phần. Phần một, ba nhóm chỉ số: máy chủ và mạng gồm TTFB, thời gian chờ byte đầu tiên, và RTT, một lượt đi về; trang nặng cỡ nào gồm số yêu cầu, tổng dung lượng và số tài nguyên chặn hiển thị; người dùng thấy gì và khi nào gồm DOMContentLoaded, FCP, phần đầu màn hình và thời gian tải. Phần hai, thử trong Chromium với một tệp CSS trả chậm 800 mili giây: chặn hiển thị thì FCP 940 mili giây, không chặn thì 132; TTFB như nhau 104 mili giây; DOMContentLoaded khoảng 120 mili giây ở cả hai, trang không có script; sự kiện load khoảng 920 mili giây ở cả hai. Phần ba, bộ Core Web Vitals hiện nay: LCP tốt khi không quá 2,5 giây, INP tốt khi không quá 200 mili giây, CLS tốt khi không quá 0,1.",
   "sections": [
     {
       "kind": "parts",
@@ -32,7 +32,7 @@
       "items": [
         "Chặn hiển thị: FCP 940 ms. Không chặn: FCP 132 ms.",
         "TTFB như nhau, 104 ms: việc chặn xảy ra sau byte đầu.",
-        "DOMContentLoaded khoảng 120 ms ở cả hai, trước khi hiện chữ.",
+        "DOMContentLoaded khoảng 120 ms ở cả hai (trang không có script).",
         "Sự kiện load khoảng 920 ms ở cả hai trang."
       ]
     },

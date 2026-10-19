@@ -83,7 +83,7 @@
       "claim_vi": "Write-through: the cache's writer stores the value in the system of record while updating the cache, the caller waiting; write-behind queues the write for later, letting the caller move on faster at the cost of lag before the system of record is updated.",
       "source": "https://github.com/ehcache/ehcache3/blob/efea774551dcfdcfe54ec105dcfbfd70a42d8b6b/docs/src/docs/asciidoc/user/caching-patterns.adoc",
       "section": "Write-through; Write-behind",
-      "verified_by": "Read; the experiment measured a median of about 1776 us per write-through write and about 382 us per write-behind write, and lost all 100 queued writes when the non-persistent Redis was killed before the flush."
+      "verified_by": "Read; the experiment measured a median of about 1776 us per write-through write and about 382 us per write-behind write, and lost all 100 queued writes when the non-persistent Redis was killed before the flush. The loss applies to a queue kept only in the memory of a cache without persistence (Redis run with save \"\" and appendonly no)."
     },
     {
       "claim_vi": "Cache-as-SoR combines read-through with write-through or write-behind; it keeps application code simpler and lets the cache solve the thundering-herd problem.",

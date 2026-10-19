@@ -88,7 +88,7 @@
       "verified_by": "Read; Chromium reported blocking for the stylesheet on the first page and non-blocking on the second."
     },
     {
-      "claim_vi": "DOMContentLoaded fires when the HTML has been parsed and deferred scripts have run; it does not wait for stylesheets, images or async scripts; load marks a fully loaded page.",
+      "claim_vi": "DOMContentLoaded fires when the HTML has been parsed and deferred scripts have run; it does not wait for stylesheets, images or async scripts; load marks a fully loaded page. Deferred scripts and ordinary scripts placed after a stylesheet wait for it, so DOMContentLoaded then waits too; the test pages had no script.",
       "sources": [
         "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/web/api/document/domcontentloaded_event/index.md",
         "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/page_load_time/index.md"

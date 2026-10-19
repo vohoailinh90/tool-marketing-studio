@@ -3,7 +3,7 @@
 **Mỗi chiến lược bộ đệm trả lời hai câu: khi đọc mà bộ đệm không có, ai đi lấy từ cơ sở dữ liệu; và khi ghi, dữ liệu đi vào bộ đệm, cơ sở dữ liệu, hay cả hai, theo thứ tự nào. Câu trả lời quyết định bạn đánh đổi tốc độ lấy gì: dữ liệu cũ, thời gian chờ, hay nguy cơ mất dữ liệu.**
 Phần thử nghiệm dùng Redis làm bộ đệm và SQLite làm cơ sở dữ liệu gốc.
 
-![Ba phần. Phần một, đọc: cache-aside, ứng dụng hỏi bộ đệm, hụt thì tự đọc cơ sở dữ liệu rồi ghi vào bộ đệm; read-through, bộ đệm có bộ nạp, hụt thì chính nó đọc cơ sở dữ liệu. Phần hai, ghi: write-through ghi cơ sở dữ liệu và bộ đệm cùng lúc, người gọi chờ cả hai; write-behind ghi bộ đệm rồi xếp hàng ghi cơ sở dữ liệu sau, nhanh nhưng có thể mất; write-around chỉ ghi cơ sở dữ liệu, bộ đệm giữ bản cũ tới khi hết hạn. Phần ba, kết quả thử với Redis và SQLite: 100 lần đọc theo cache-aside chỉ đọc cơ sở dữ liệu 1 lần; người đọc chậm ghi bản cũ vào bộ đệm sau khi đã xóa, bộ đệm 100 trong khi cơ sở dữ liệu 120; write-through chờ 1,8 ms mỗi lần ghi, write-behind 0,4 ms; bộ đệm sập trước khi đẩy thì write-behind mất cả 100 lần ghi.](../../diagrams/sd-06-026-main.svg)
+![Ba phần. Phần một, đọc: cache-aside, ứng dụng hỏi bộ đệm, hụt thì tự đọc cơ sở dữ liệu rồi ghi vào bộ đệm; read-through, bộ đệm có bộ nạp, hụt thì chính nó đọc cơ sở dữ liệu. Phần hai, ghi: write-through ghi cơ sở dữ liệu và bộ đệm cùng lúc, người gọi chờ cả hai; write-behind ghi bộ đệm rồi xếp hàng ghi cơ sở dữ liệu sau, nhanh nhưng có thể mất; write-around chỉ ghi cơ sở dữ liệu, bộ đệm giữ bản cũ tới khi hết hạn. Phần ba, kết quả thử với Redis và SQLite: 100 lần đọc theo cache-aside chỉ đọc cơ sở dữ liệu 1 lần; người đọc chậm ghi bản cũ vào bộ đệm sau khi đã xóa, bộ đệm 100 trong khi cơ sở dữ liệu 120; write-through chờ 1,8 ms mỗi lần ghi vì phải ép xuống đĩa, write-behind 0,4 ms; bộ đệm không lưu đĩa sập trước khi đẩy thì write-behind mất cả 100 lần ghi.](../../diagrams/sd-06-026-main.svg)
 
 ## Từ viết tắt
 
@@ -27,7 +27,7 @@ Phần thử nghiệm dùng Redis làm bộ đệm và SQLite làm cơ sở dữ
 
 ## Giới hạn cần nhớ
 
-Không chiến lược nào giữ bộ đệm và cơ sở dữ liệu luôn khớp. Tài liệu kiến trúc của Microsoft nói rõ cache-aside không bảo đảm nhất quán: giữa lúc ghi và lần đọc sau, người đọc có thể thấy dữ liệu cũ, và một tiến trình khác sửa thẳng cơ sở dữ liệu thì bộ đệm không biết. Thời gian hết hạn là lưới an toàn cuối cùng. Write-behind nhanh nhất cho người ghi nhưng đặt dữ liệu chưa ghi vào tay bộ đệm: bộ đệm sập là mất.
+Không chiến lược nào giữ bộ đệm và cơ sở dữ liệu luôn khớp. Tài liệu kiến trúc của Microsoft nói rõ cache-aside không bảo đảm nhất quán: giữa lúc ghi và lần đọc sau, người đọc có thể thấy dữ liệu cũ, và một tiến trình khác sửa thẳng cơ sở dữ liệu thì bộ đệm không biết. Thời gian hết hạn là lưới an toàn cuối cùng. Write-behind nhanh nhất cho người ghi nhưng đặt dữ liệu chưa ghi vào tay bộ đệm: nếu hàng đợi chỉ nằm trong bộ nhớ của bộ đệm (như trong thử nghiệm, Redis không bật lưu xuống đĩa), bộ đệm sập là mất.
 
 ## Nhìn hình trả lời
 
@@ -37,7 +37,7 @@ Một trang thương mại điện tử dùng bộ đệm cho trang chi tiết s
 <summary>Xem đáp án</summary>
 
 Giá: cache-aside, khi đổi giá thì ghi cơ sở dữ liệu rồi xóa khóa, kèm thời gian hết hạn ngắn (vài giây) để chặn trường hợp người đọc chậm ghi lại giá cũ như trong thử nghiệm. Write-through cũng được nếu muốn người đọc thấy giá mới ngay sau lần ghi.
-Đơn hàng: không nên dùng write-behind với một bộ đệm có thể mất dữ liệu; thử nghiệm cho thấy bộ đệm sập là mất cả hàng đợi. Đơn hàng phải được ghi bền vào cơ sở dữ liệu (hoặc một hàng đợi có lưu bền) trước khi báo cho khách là đã đặt xong.
+Đơn hàng: không nên dùng write-behind với một bộ đệm có thể mất dữ liệu; thử nghiệm cho thấy bộ đệm không lưu xuống đĩa mà sập là mất cả hàng đợi. Đơn hàng phải được ghi bền vào cơ sở dữ liệu (hoặc một hàng đợi có lưu bền) trước khi báo cho khách là đã đặt xong.
 
 </details>
 

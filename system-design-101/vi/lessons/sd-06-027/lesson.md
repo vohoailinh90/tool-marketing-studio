@@ -3,7 +3,7 @@
 **Các chỉ số hiệu năng web không thay thế nhau được: mỗi chỉ số trả lời một câu hỏi khác nhau. TTFB hỏi máy chủ và mạng phản hồi nhanh không; số yêu cầu và dung lượng hỏi trang nặng cỡ nào; FCP hỏi bao giờ người dùng thấy thứ đầu tiên. Đo nhầm câu hỏi thì sửa nhầm chỗ.**
 Thử nghiệm dưới đây đo hai trang giống hệt nhau trong Chromium, chỉ khác cách nạp một tệp CSS.
 
-![Ba phần. Phần một, ba nhóm câu hỏi, mỗi nhóm một thẻ: máy chủ và mạng, gồm TTFB là thời gian chờ byte đầu tiên và RTT là một lượt đi về; trang nặng cỡ nào, gồm số yêu cầu, tổng dung lượng và số tài nguyên chặn hiển thị; người dùng thấy gì và khi nào, gồm DOMContentLoaded, FCP, phần đầu màn hình và thời gian tải. Phần hai, thử với một tệp CSS trả chậm 800 ms: chặn hiển thị thì FCP 940 ms, không chặn thì 132 ms; TTFB như nhau 104 ms vì việc chặn xảy ra sau byte đầu; DOMContentLoaded khoảng 120 ms ở cả hai, trước khi trang hiện chữ; sự kiện load khoảng 920 ms ở cả hai trang. Phần ba, Core Web Vitals hiện nay: LCP, phần tử lớn nhất hiện ra, tốt khi không quá 2,5 giây; INP, phản hồi khi bấm hay gõ, tốt khi không quá 200 ms; CLS, độ xô lệch bố cục, tốt khi không quá 0,1.](../../diagrams/sd-06-027-main.svg)
+![Ba phần. Phần một, ba nhóm câu hỏi, mỗi nhóm một thẻ: máy chủ và mạng, gồm TTFB là thời gian chờ byte đầu tiên và RTT là một lượt đi về; trang nặng cỡ nào, gồm số yêu cầu, tổng dung lượng và số tài nguyên chặn hiển thị; người dùng thấy gì và khi nào, gồm DOMContentLoaded, FCP, phần đầu màn hình và thời gian tải. Phần hai, thử với một tệp CSS trả chậm 800 ms: chặn hiển thị thì FCP 940 ms, không chặn thì 132 ms; TTFB như nhau 104 ms vì việc chặn xảy ra sau byte đầu; DOMContentLoaded khoảng 120 ms ở cả hai (trang thử không có script), trước khi trang hiện chữ; sự kiện load khoảng 920 ms ở cả hai trang. Phần ba, Core Web Vitals hiện nay: LCP, phần tử lớn nhất hiện ra, tốt khi không quá 2,5 giây; INP, phản hồi khi bấm hay gõ, tốt khi không quá 200 ms; CLS, độ xô lệch bố cục, tốt khi không quá 0,1.](../../diagrams/sd-06-027-main.svg)
 
 ## Từ viết tắt
 
@@ -28,7 +28,7 @@ Thử nghiệm dưới đây đo hai trang giống hệt nhau trong Chromium, ch
 
 **Trang nặng cỡ nào.** Số yêu cầu, tổng dung lượng và số tài nguyên *chặn hiển thị*: theo MDN, nguyên nhân hay gặp nhất là CSS và JavaScript nạp từ đầu, vì trình duyệt chờ chúng rồi mới vẽ.
 
-**Người dùng thấy gì, khi nào.** `DOMContentLoaded` bắn khi HTML đã phân tích xong và các script hoãn (`defer`) đã chạy; nó không chờ CSS hay ảnh. FCP là lúc vẽ nội dung đầu tiên. "Phần đầu màn hình" là phần thấy được khi chưa cuộn. Thời gian tải là tới sự kiện `load`, khi trang và mọi tài nguyên đã về.
+**Người dùng thấy gì, khi nào.** `DOMContentLoaded` bắn khi HTML đã phân tích xong và các script hoãn (`defer`) đã chạy; tự nó không chờ CSS hay ảnh, nhưng script `defer` và script thường đặt sau CSS phải chờ CSS tải xong, nên khi có các script đó thì sự kiện này cũng chờ theo. FCP là lúc vẽ nội dung đầu tiên. "Phần đầu màn hình" là phần thấy được khi chưa cuộn. Thời gian tải là tới sự kiện `load`, khi trang và mọi tài nguyên đã về.
 
 **Thử nghiệm** (Chromium 141 qua Playwright, máy chủ Python cục bộ trả HTML sau 100 ms và tệp CSS sau 800 ms; trung vị 5 lần):
 
@@ -63,7 +63,7 @@ Xem FCP (và LCP), vì đó là chỉ số đo lúc người dùng thấy nội 
 - Thư viện `web-vitals` liệt kê Core Web Vitals hiện tại là CLS, INP và LCP, và đo chúng trên người dùng thật theo cùng cách Chrome đo.
 - Ngưỡng "tốt" trong mã của thư viện: LCP tới 2 500 ms, INP tới 200 ms, CLS tới 0,1; "kém" từ trên 4 000 ms, 500 ms và 0,25. Thư viện cũng có ngưỡng cho FCP (1 800 ms) và TTFB (800 ms), hai chỉ số dùng để chẩn đoán.
 - Bài nguồn có chín chỉ số và chưa nhắc tới Core Web Vitals; bài này giữ chín chỉ số làm khung và thêm ba chỉ số đó.
-- Cách nạp CSS không chặn trong thử nghiệm là đặt `media="print"` rồi đổi sang `all` khi tệp đã về; nó chỉ hợp với CSS không cần cho lần vẽ đầu, nếu không trang sẽ nhảy bố cục (tăng CLS).
+- Cách nạp CSS không chặn trong thử nghiệm là đặt `media="print"` rồi đổi sang `all` khi tệp đã về; nó chỉ hợp với CSS không cần cho lần vẽ đầu, nếu không trang có thể nhảy bố cục (làm tăng CLS).
 
 </details>
 

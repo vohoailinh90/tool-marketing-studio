@@ -88,7 +88,7 @@
       "verified_by": "Read from a partial clone."
     },
     {
-      "claim_vi": "proxy_cache_use_stale decides in which cases (error, timeout, http_502 and others) nginx may serve a stale cached response.",
+      "claim_vi": "proxy_cache_use_stale decides in which cases (error, timeout, http_502 and others) nginx may serve a stale cached response. The directive takes priority; since 1.11.10 nginx also honours stale-while-revalidate and stale-if-error from the origin Cache-Control header (not sent by the experiment origin).",
       "source": "https://github.com/nginx/nginx.org/blob/0ebe7b53ff30e8c4fbf348881b4c8bcec3cf27cb/xml/en/docs/http/ngx_http_proxy_module.xml",
       "section": "proxy_cache_use_stale",
       "verified_by": "Read; in the experiment, with the origin stopped and the copy expired, the plain edge answered 502 Bad Gateway (EXPIRED) and the edge with proxy_cache_use_stale error timeout answered 200 (STALE)."

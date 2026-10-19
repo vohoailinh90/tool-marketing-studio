@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="320" height="1186" viewBox="0 0 320 1186" role="img" aria-labelledby="title desc">
 <title id="title">Năm cách làm API nhanh hơn, và cái giá của mỗi cách</title>
-<desc id="desc">Ba phần. Trả ít hơn: phân trang, trả từng trang nhỏ và đi theo khóa khi trang sâu; nén phản hồi văn bản lớn bằng gzip hay brotli, tốn thêm thời gian xử lý. Chờ ít hơn: ghi log qua hàng đợi để luồng khác ghi xuống đĩa, sập thì mất phần chưa ghi; bộ đệm dữ liệu, đọc bản đã giữ thay vì hỏi cơ sở dữ liệu; tái dùng kết nối tới cơ sở dữ liệu thay vì mở mới mỗi lần. Đo với PostgreSQL 16 và Python: kết nối mới mỗi truy vấn 3,9 mili giây, tái dùng 0,1; trang sâu bằng cách bỏ qua 290 000 dòng 27,7 mili giây, theo khóa 0,23; cả 300 000 dòng là 25 MB JSON, một trang 50 dòng 4,2 KB, nén còn 580 byte; log qua hàng đợi 9 micro giây mỗi dòng thay vì 273, nhưng tiến trình chết thì mất 1998 trên 2000 dòng.</desc>
+<desc id="desc">Ba phần. Trả ít hơn: phân trang, trả từng trang nhỏ và đi theo khóa khi trang sâu; nén phản hồi văn bản lớn bằng gzip hay brotli, tốn thêm thời gian xử lý. Chờ ít hơn: ghi log qua hàng đợi để luồng khác ghi xuống đĩa, sập thì mất phần chưa ghi; bộ đệm dữ liệu, đọc bản đã giữ thay vì hỏi cơ sở dữ liệu; tái dùng kết nối tới cơ sở dữ liệu thay vì mở mới mỗi lần. Đo với PostgreSQL 16 và Python: kết nối mới mỗi truy vấn 3,9 mili giây, tái dùng 0,1; trang sâu bằng cách bỏ qua 290 000 dòng 27,7 mili giây, theo khóa 0,23; cả 300 000 dòng là 25 MB JSON, một trang 50 dòng 4,2 KB, nén còn 580 byte; log qua hàng đợi 9 micro giây mỗi dòng thay vì 273, nhưng bị giết đột ngột thì mất 1998 trên 2000 dòng.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="1186" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
@@ -62,7 +62,7 @@
 <circle cx="43" cy="1106" r="11" fill="#16a34a"/>
 <polyline points="37.9,1106.4 41.7,1110.4 48.5,1102" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
 <text x="64" y="1109.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Log qua hàng đợi: 9 µs thay</text>
-<text x="64" y="1128.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">vì 273 µs; chết ngay thì mất</text>
-<text x="64" y="1148.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">1998 trên 2000 dòng.</text>
+<text x="64" y="1128.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">vì 273 µs; bị giết đột ngột thì</text>
+<text x="64" y="1148.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mất 1998 trên 2000 dòng.</text>
 </g>
 </svg>

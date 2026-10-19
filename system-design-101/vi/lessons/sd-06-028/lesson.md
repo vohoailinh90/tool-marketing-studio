@@ -3,7 +3,7 @@
 **Một lời gọi API chậm thường vì hai lý do: nó trả quá nhiều dữ liệu, hoặc nó đứng chờ một việc chậm (mở kết nối, ghi đĩa, hỏi cơ sở dữ liệu). Năm cách quen thuộc chia đúng theo hai lý do đó: phân trang và nén để trả ít hơn; ghi log qua hàng đợi, bộ đệm và tái dùng kết nối để chờ ít hơn. Cách nào cũng đổi một thứ lấy một thứ.**
 Các con số dưới đây đo trên một máy với PostgreSQL 16 và Python 3.13.
 
-![Ba phần. Trả ít hơn, hai thẻ: phân trang, trả từng trang nhỏ, trang sâu thì đi theo khóa; nén phản hồi, gzip và brotli cho văn bản lớn, tốn thêm thời gian xử lý. Chờ ít hơn, ba thẻ: ghi log qua hàng đợi để luồng khác ghi xuống đĩa, sập thì mất phần chưa ghi; bộ đệm dữ liệu, đọc bản đã giữ thay vì hỏi cơ sở dữ liệu; tái dùng kết nối, giữ sẵn kết nối thay vì mở mới mỗi lần. Đo với PostgreSQL 16 và Python: kết nối mới mỗi truy vấn 3,9 ms, tái dùng 0,1 ms; trang sâu bỏ qua 290 000 dòng 27,7 ms, theo khóa 0,23 ms; cả 300 000 dòng là 25 MB JSON, một trang 4,2 KB, nén còn 580 byte; log qua hàng đợi 9 µs mỗi dòng thay vì 273 µs, nhưng chết ngay thì mất 1998 trên 2000 dòng.](../../diagrams/sd-06-028-main.svg)
+![Ba phần. Trả ít hơn, hai thẻ: phân trang, trả từng trang nhỏ, trang sâu thì đi theo khóa; nén phản hồi, gzip và brotli cho văn bản lớn, tốn thêm thời gian xử lý. Chờ ít hơn, ba thẻ: ghi log qua hàng đợi để luồng khác ghi xuống đĩa, sập thì mất phần chưa ghi; bộ đệm dữ liệu, đọc bản đã giữ thay vì hỏi cơ sở dữ liệu; tái dùng kết nối, giữ sẵn kết nối thay vì mở mới mỗi lần. Đo với PostgreSQL 16 và Python: kết nối mới mỗi truy vấn 3,9 ms, tái dùng 0,1 ms; trang sâu bỏ qua 290 000 dòng 27,7 ms, theo khóa 0,23 ms; cả 300 000 dòng là 25 MB JSON, một trang 4,2 KB, nén còn 580 byte; log qua hàng đợi 9 µs mỗi dòng thay vì 273 µs, nhưng tiến trình bị giết đột ngột thì mất 1998 trên 2000 dòng.](../../diagrams/sd-06-028-main.svg)
 
 ## Từ viết tắt
 
@@ -28,12 +28,12 @@ Các con số dưới đây đo trên một máy với PostgreSQL 16 và Python 
 
 **Tái dùng kết nối.** Mở một kết nối tới cơ sở dữ liệu tốn bắt tay mạng, xác thực, dựng tiến trình phục vụ. Một bể kết nối (connection pool) giữ sẵn vài kết nối và cho mượn; tài liệu psycopg nói thời gian mở kết nối mới có thể khá dài nên giữ kết nối mở giảm độ trễ.
 
-**Đo thử.** Bảng 300 000 đơn hàng trong PostgreSQL 16, truy cập qua TCP trên cùng máy bằng psycopg 3.3, trung vị nhiều lần chạy:
+**Đo thử.** Bảng 300 000 đơn hàng trong PostgreSQL 16, truy cập qua TCP trên cùng máy bằng psycopg 3.3; thời gian là trung vị nhiều lần chạy, trừ truy vấn cả bảng và lần nén cả bảng chỉ chạy một lần:
 
 - Mở kết nối mới cho mỗi truy vấn `SELECT 1`: 3,88 ms. Dùng lại một kết nối: 0,106 ms.
-- Trang 50 dòng sau 290 000 dòng: `OFFSET 290000` 27,7 ms; theo khóa (`WHERE id > 290000`) 0,231 ms, cùng 50 dòng. `EXPLAIN ANALYZE` cho thấy cách `OFFSET` quét chỉ mục qua 290 050 dòng.
+- Trang 50 dòng sau 290 000 dòng: `OFFSET 290000` 27,7 ms; theo khóa (`WHERE id > 290000`) 0,231 ms, cùng 50 dòng. `EXPLAIN ANALYZE` cho thấy cách `OFFSET` quét chỉ mục qua 290 050 dòng, còn cách theo khóa chỉ 50 dòng.
 - Trả cả bảng: 25 175 741 byte JSON, gzip còn 3 295 327 byte nhưng nén mất 332 ms. Một trang 50 dòng: 4 191 byte, gzip còn 580 byte.
-- Ghi log (mỗi dòng ghi rồi `fsync`): người gọi chờ 273 µs mỗi dòng. Qua hàng đợi: 9,4 µs. Một tiến trình đẩy 2000 dòng qua hàng đợi rồi thoát ngay: tệp log chỉ có 2 dòng.
+- Ghi log (mỗi dòng ghi rồi `fsync`): người gọi chờ 273 µs mỗi dòng. Qua hàng đợi: 9,4 µs. Một tiến trình đẩy 2000 dòng qua hàng đợi rồi bị giết đột ngột (`os._exit`, không gọi `listener.stop()`): tệp log chỉ có 2 dòng. Con số này phụ thuộc tốc độ của luồng ghi; khi tắt êm và gọi `stop()`, hàng đợi được xả hết (500 trên 500 dòng trong lần thử).
 
 ## Giới hạn cần nhớ
 
@@ -46,7 +46,7 @@ Một API `GET /orders?page=N` trả 50 đơn mỗi trang bằng `OFFSET (N-1)*5
 <details>
 <summary>Xem đáp án</summary>
 
-Vì mỗi trang sâu, máy chủ vẫn phải đọc qua mọi dòng bị bỏ qua: trong thử nghiệm, trang sau 290 000 dòng mất 27,7 ms so với vài phần mười mili giây khi đi theo khóa, và chi phí tăng theo số trang. Sửa: cho API trả kèm khóa của dòng cuối (ví dụ `next_after=290050`) và trang sau hỏi `WHERE id > :khóa ORDER BY id LIMIT 50`. Công cụ đồng bộ chỉ cần đi tuần tự nên không cần nhảy tới số trang bất kỳ.
+Vì mỗi trang sâu, máy chủ vẫn phải đọc qua mọi dòng bị bỏ qua: trong thử nghiệm, trang sau 290 000 dòng mất 27,7 ms so với vài phần mười mili giây khi đi theo khóa, và theo tài liệu PostgreSQL, chi phí tăng theo số dòng bị bỏ qua (thử nghiệm chỉ đo một độ sâu). Sửa: cho API trả kèm khóa của dòng cuối (ví dụ `next_after=290050`) và trang sau hỏi `WHERE id > :khóa ORDER BY id LIMIT 50`. Công cụ đồng bộ chỉ cần đi tuần tự nên không cần nhảy tới số trang bất kỳ.
 
 </details>
 

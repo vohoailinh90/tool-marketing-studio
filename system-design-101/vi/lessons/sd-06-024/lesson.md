@@ -3,7 +3,7 @@
 **Tám mẹo tăng tốc giao diện web dễ nhớ hơn khi xếp theo ba câu hỏi: có gửi ít byte hơn được không (nén, bỏ mã chết), có để phần chưa cần lại sau được không (tách mã, nạp động, chỉ vẽ phần đang thấy), và phần cần ngay có được gửi trước, đúng thứ tự không (ưu tiên, tải trước, tìm nạp trước).**
 Bài đo bốn mẹo trên mã thật: gói giao diện của chính kho này, một ví dụ đóng gói bằng esbuild, và một trang nhiều ảnh trong Chromium.
 
-![Bốn phần. Gửi ít hơn, hai thẻ: nén, gzip và brotli nén tệp văn bản trước khi gửi; bỏ mã chết, khi đóng gói bỏ những hàm không ai gọi tới. Gửi sau, hai thẻ: tách mã và nạp động, phần chỉ cần khi bấm thì tải lúc bấm; chỉ phần nhìn thấy, vẽ và tải phần trong màn hình, phần dưới để sau. Gửi trước và đúng thứ tự, ba thẻ: ưu tiên, tài nguyên quan trọng và phần đầu màn hình đi trước; tải trước, báo sớm thứ trang này sắp cần; tìm nạp trước, lấy sẵn thứ trang sau có thể cần với mức ưu tiên thấp. Đo thử: gói giao diện của kho này 499 KB, gzip còn 156 KB, brotli còn 133 KB; bỏ hai hàm không dùng thì gói từ 189 KB còn 60 KB; tách phần soạn thảo thì tệp đầu còn 313 byte; trang 40 ảnh bật tải lười thì lúc tải trang chỉ tải 11 ảnh.](../../diagrams/sd-06-024-main.svg)
+![Bốn phần. Gửi ít hơn, hai thẻ: nén, gzip và brotli nén tệp văn bản trước khi gửi; bỏ mã chết, khi đóng gói bỏ những hàm không ai gọi tới. Gửi sau, hai thẻ: tách mã và nạp động, phần chỉ cần khi bấm thì tải lúc bấm; chỉ phần nhìn thấy, vẽ và tải phần trong màn hình, phần dưới để sau. Gửi trước và đúng thứ tự, ba thẻ: ưu tiên, tài nguyên quan trọng và phần đầu màn hình đi trước; tải trước, báo sớm thứ trang này sắp cần; tìm nạp trước, lấy sẵn thứ trang sau có thể cần với mức ưu tiên thấp. Đo thử: gói giao diện của kho này 499 KB, gzip còn 156 KB, brotli còn 133 KB; bỏ hai hàm không dùng thì gói từ 189 KB còn 60 KB; tách phần soạn thảo thì tệp đầu còn 313 byte; trang 40 ảnh bật tải lười, màn hình 375 × 800, thì lúc tải trang chỉ tải 11 ảnh.](../../diagrams/sd-06-024-main.svg)
 
 ## Từ viết tắt
 
@@ -26,7 +26,7 @@ Bài đo bốn mẹo trên mã thật: gói giao diện của chính kho này, m
 - **Nén:** gói JavaScript đã dựng của giao diện trong kho này (`web/dist`) nặng 498 691 byte; gzip mức 9 còn 155 855 byte, brotli mức 11 còn 133 404 byte. Tệp CSS 36 954 byte còn 7 343 và 6 414 byte.
 - **Bỏ mã chết:** một ứng dụng nhỏ chỉ dùng một trong ba hàm của một thư viện tự viết, hai hàm kia mỗi hàm mang một bảng dữ liệu lớn. esbuild 0.25.10 tắt tree shaking: 189 400 byte; bật: 59 822 byte.
 - **Tách mã:** cùng ứng dụng, phần soạn thảo được gọi bằng `import()` khi bấm nút. Không tách: một tệp 59 822 byte. Tách (`--splitting`): tệp đầu 313 byte, phần soạn thảo nằm riêng 58 995 byte và chỉ được tải khi bấm.
-- **Tải lười:** trang 40 ảnh (mỗi ảnh khoảng 50 KB) trên màn hình 375 × 800 trong Chromium. Không bật: tới sự kiện `load` đã tải đủ 40 ảnh (khoảng 2 017 KB). Bật `loading="lazy"`: chỉ 11 ảnh (khoảng 555 KB); một lần cuộn nhảy thẳng xuống cuối trang thì tổng cộng có 22 ảnh: 11 ảnh đầu cộng các ảnh quanh chỗ dừng; ảnh ở giữa bị nhảy qua nên không được tải.
+- **Tải lười:** trang 40 ảnh (mỗi ảnh khoảng 50 KB) trên màn hình 375 × 800 trong Chromium. Không bật: tới sự kiện `load` đã tải đủ 40 ảnh (khoảng 2 017 KB). Bật `loading="lazy"`: chỉ 11 ảnh (khoảng 555 KB); một lần cuộn nhảy thẳng xuống cuối trang thì tổng cộng có 22 ảnh: ảnh số 0 đến 10 và 29 đến 39; 18 ảnh ở giữa (11 đến 28) bị nhảy qua nên không được tải. Số ảnh tải sớm phụ thuộc kích thước màn hình và khoảng cách tải trước của trình duyệt.
 
 ## Giới hạn cần nhớ
 

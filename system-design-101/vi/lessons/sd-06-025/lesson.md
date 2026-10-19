@@ -24,7 +24,7 @@ Chính bài nguồn cũng ghi các con số của nó không chính xác, chỉ 
 - **Bộ nhớ:** một chương trình C đi theo chuỗi con trỏ xáo trộn, mỗi bước phải chờ bước trước. Vùng 16 KB (vừa bộ nhớ đệm L1): 1,5 ns mỗi lần đọc; 256 KB (vừa L2): 3,9 ns; 4 MB: khoảng 99 ns; 512 MB: khoảng 315 ns. Con số cuối cao hơn mức "100 ns cho RAM" của bài nguồn; một lý do có thể là đọc ngẫu nhiên vùng lớn còn tốn thêm việc tra bảng trang, và trên máy ảo việc đó đắt hơn (bài không đo riêng phần này).
 - **Mạng trong cùng máy:** gửi 1 KB qua TCP trên giao diện nội bộ (loopback) rồi nhận lại: trung vị 58,5 µs (chương trình Python). Lệnh `GET` một giá trị 1 KB của Redis qua cùng đường: p50 63 µs.
 - **Đĩa:** đọc ngẫu nhiên 4 KB, bỏ qua bộ đệm của hệ điều hành (`O_DIRECT`): trung vị 60 µs. Ghi 4 KB rồi `fsync` để chắc dữ liệu đã xuống đĩa: trung vị 443 µs.
-- **Ghi bền vào cơ sở dữ liệu:** SQLite, `synchronous=FULL`, mỗi lần một `INSERT` rồi `COMMIT`: trung vị 1,31 ms. Theo dõi bằng `strace`, một lần commit gọi `fdatasync` bốn lần, nên nó tốn cỡ vài lần bậc "ghi rồi ép xuống đĩa" ở trên.
+- **Ghi bền vào cơ sở dữ liệu:** SQLite, `synchronous=FULL`, chế độ nhật ký mặc định `journal_mode=DELETE`, mỗi lần một `INSERT` rồi `COMMIT`: trung vị 1,31 ms. Theo dõi bằng `strace`, một lần commit gọi `fdatasync` bốn lần, nên nó tốn cỡ vài lần bậc "ghi rồi ép xuống đĩa" ở trên.
 
 ## Giới hạn cần nhớ
 

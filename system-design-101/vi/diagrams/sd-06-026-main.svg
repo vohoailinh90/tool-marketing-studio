@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="320" height="1219" viewBox="0 0 320 1219" role="img" aria-labelledby="title desc">
 <title id="title">Năm chiến lược bộ đệm: ai đọc, ai ghi, mất gì</title>
-<desc id="desc">Ba phần. Đọc: cache-aside, ứng dụng hỏi bộ đệm, hụt thì tự đọc cơ sở dữ liệu rồi ghi vào bộ đệm; read-through, bộ đệm có bộ nạp tự đọc cơ sở dữ liệu khi hụt. Ghi: write-through ghi cả hai cùng lúc, người gọi chờ cả hai; write-behind ghi bộ đệm rồi xếp hàng ghi cơ sở dữ liệu sau, nhanh nhưng có thể mất; write-around chỉ ghi cơ sở dữ liệu, bộ đệm giữ bản cũ tới khi hết hạn. Thử với Redis và SQLite: 100 lần đọc theo cache-aside chỉ đọc cơ sở dữ liệu 1 lần; người đọc chậm ghi bản cũ vào bộ đệm sau khi đã xóa, bộ đệm 100, cơ sở dữ liệu 120; write-through chờ 1,8 mili giây mỗi lần ghi, write-behind 0,4; bộ đệm không lưu đĩa sập trước khi đẩy thì write-behind mất cả 100 lần ghi.</desc>
+<desc id="desc">Ba phần. Đọc: cache-aside, ứng dụng hỏi bộ đệm, hụt thì tự đọc cơ sở dữ liệu rồi ghi vào bộ đệm; read-through, bộ đệm có bộ nạp tự đọc cơ sở dữ liệu khi hụt. Ghi: write-through ghi cả hai cùng lúc, người gọi chờ cả hai; write-behind ghi bộ đệm rồi xếp hàng ghi cơ sở dữ liệu sau, nhanh nhưng có thể mất; write-around chỉ ghi cơ sở dữ liệu rồi xóa khóa cũ, quên xóa thì bộ đệm giữ bản cũ. Thử với Redis và SQLite: 100 lần đọc theo cache-aside chỉ đọc cơ sở dữ liệu 1 lần; người đọc chậm ghi bản cũ vào bộ đệm sau khi đã xóa, bộ đệm 100, cơ sở dữ liệu 120; write-through chờ 1,8 mili giây mỗi lần ghi, write-behind 0,4; bộ đệm không lưu đĩa sập trước khi đẩy thì write-behind mất cả 100 lần ghi.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="1219" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
@@ -38,9 +38,9 @@
 <rect x="20" y="687" width="280" height="107" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
 <circle cx="50" cy="740.5" r="18" fill="#0f766e"/><g transform="translate(39.2 729.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5"/><path d="M8 3H3v5"/><path d="M12 22v-8.3a4 4 0 0 0-1.172-2.872L3 3"/><path d="m15 9 6-6"/></g>
 <text x="78" y="713.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Write-around</text>
-<text x="78" y="737.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chỉ ghi cơ sở dữ liệu; bộ</text>
-<text x="78" y="756.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đệm giữ bản cũ tới khi hết</text>
-<text x="78" y="776.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hạn.</text>
+<text x="78" y="737.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chỉ ghi cơ sở dữ liệu rồi</text>
+<text x="78" y="756.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">xóa khóa cũ; quên xóa thì</text>
+<text x="78" y="776.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bộ đệm giữ bản cũ.</text>
 <rect x="8" y="818" width="304" height="393" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
 <text x="20" y="846.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Thử với Redis và SQLite</text>
 <rect x="20" y="863" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>

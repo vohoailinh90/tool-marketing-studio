@@ -98,10 +98,16 @@
       "verified_by": "Read; the experiment reproduced, step by step, a slow reader putting the old value 100 back after the writer set 120 and deleted the key, leaving the cache at 100 for its 300 s TTL."
     },
     {
-      "claim_vi": "Write-around writes only the data store, so a cached copy stays old until it expires or is removed.",
+      "claim_vi": "Write-around writes only the data store and then removes the cached entry (invalidate on write), so the next read reloads it; if the removal is skipped, a cached copy stays old until it expires.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-are-the-top-caching-strategies.md",
       "section": "Write data to the system",
-      "verified_by": "Source names the strategy only; behaviour shown in the experiment (database 130, cache still 120)."
+      "verified_by": "Source names the strategy only; the invalidate-on-write step is from the Microsoft caching guidance; the experiment shows the stale copy when the removal is skipped (database 130, cache still 120)."
+    },
+    {
+      "claim_vi": "Invalidate on write removes the affected cache entry after writing the data store; a TTL bounds the age of each cached copy, not the total time data can be stale, because a delayed fill can store an old value with a fresh TTL; optimistic concurrency checks whether data changed since it was retrieved before updating.",
+      "source": "https://github.com/MicrosoftDocs/architecture-center/blob/8e2c239344ee753a88856800b4210a3e27ac1036/docs/best-practices/caching.md",
+      "section": "Keep the cache consistent on writes; Manage concurrency in a cache",
+      "verified_by": "Read; the delayed-fill ordering was reproduced step by step in the experiment (cache 100 with a new 300 s TTL after the database became 120)."
     }
   ],
   "design_notes_vi": "Hai thẻ đọc, ba thẻ ghi, bốn ghi chú kết quả thử. Giữ tên tiếng Anh của từng chiến lược vì đó là tên người học sẽ gặp; bài giải nghĩa bằng tiếng Việt. Vẽ bằng scripts/figures.",

@@ -500,7 +500,7 @@ và hình đạt; không coi đọc nguồn là mọi claim đã đúng, không 
 
 ## Các nhóm còn lại theo thứ tự nguồn
 
-Tình huống thực tế (còn sd-02-030) → Cơ sở dữ liệu và lưu trữ (còn sd-04-013 đến sd-04-024).
+Tình huống thực tế (còn sd-02-030, nguồn chỉ có hình, chờ chủ repo quyết định).
 
 Nhóm “Nền tảng máy tính” (cuối mục lục nguồn) được viết trước theo yêu cầu người dùng ngày 2026-10-13; nhóm “API và phát triển web” viết tiếp theo thứ tự source-map.
 

@@ -17,7 +17,7 @@ Bài đọc từng mẫu như câu trả lời cho một vấn đề, rồi ch�
 |---|---|---|
 | Ambassador | Ứng dụng cần theo dõi, định tuyến, bảo mật, chống lỗi khi gọi ra ngoài mà không sửa được mã của nó | Thêm một tiến trình chạy cạnh ứng dụng để quản |
 | Circuit Breaker | Dịch vụ bị gọi đang hỏng lâu; cứ thử lại chỉ chờ vô ích và lan lỗi | Phải chọn ngưỡng lỗi và thời gian mở sao cho hợp |
-| CQRS | Đọc và ghi cùng một mô hình thì khó tối ưu cả hai, dễ tranh chấp khóa | Hai mô hình, và phải đồng bộ giữa chúng |
+| CQRS | Đọc và ghi cùng một mô hình thì khó tối ưu cả hai, dễ tranh chấp khóa | Tách mô hình đọc và mô hình ghi; chỉ khi chúng nằm ở hai kho dữ liệu riêng mới phải đồng bộ và chấp nhận nhất quán muộn |
 | Event Sourcing | Chỉ giữ trạng thái hiện tại thì mất lịch sử và ghi đè nhau khi tải cao | Phức tạp: đổi cách lưu, xử lý song song, đổi lược đồ, truy vấn trạng thái |
 | Leader Election | Nhiều bản cùng chạy một việc thì giẫm lên nhau hoặc tranh tài nguyên chung | Cần cách chọn và thay người điều phối khi nó chết |
 | Publisher/Subscriber | Bên gửi không nên biết từng bên nhận, và mỗi bên nhận muốn một phần sự kiện | Gián tiếp hơn: khó thấy ai nhận gì |

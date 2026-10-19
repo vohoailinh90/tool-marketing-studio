@@ -64,6 +64,11 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 1. [Figma mở rộng Postgres: ba bậc thang](lessons/sd-02-001/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
 2. [API của các API: nối ứng dụng bằng trigger và action](lessons/sd-02-002/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
 3. [Pinterest cắt thời gian clone bằng một dòng refspec](lessons/sd-02-003/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+8. [Uber giao phần mềm: chặng nào tự làm, chặng nào dùng sẵn](lessons/sd-02-008/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+9. [Stack Overflow: chín máy chủ web và một khối nguyên](lessons/sd-02-009/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+10. [Twitter 1.0: năm tầng, mười ba cái tên](lessons/sd-02-010/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+11. [Dòng "For You" của Twitter: từ 500 triệu tweet xuống một trang](lessons/sd-02-011/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+12. [YouTube và VCU: con chip riêng cho việc chuyển mã video](lessons/sd-02-012/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
 
 ## AI và học máy
 

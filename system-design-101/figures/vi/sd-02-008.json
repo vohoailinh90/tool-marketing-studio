@@ -1,0 +1,20 @@
+{
+  "id": "sd-02-008",
+  "title": "Uber giao phần mềm qua những chặng nào?",
+  "subtitle": "Mỗi chặng một công cụ, nhiều cái Uber tự làm.",
+  "desc": "Hai khung bước nối nhau. Khung một, từ ý tưởng tới mã: lên kế hoạch bằng Jira; viết dịch vụ bằng Spring Boot, cấu hình phát hành nhanh bằng Flipr; giữ mã sạch bằng NullAway chặn lỗi con trỏ null và Piranha dọn cờ tính năng cũ; một kho mã chung, build bằng Bazel. Khung hai, từ mã tới người dùng: kiểm thử trong môi trường ngắn hạn và phát lại lưu lượng thật; uBuild đóng gói vào container, chạy trên Buildkite; triển khai bằng Spinnaker của Netflix; giám sát bằng uMetric trên Cassandra. Khung ba nêu ba điều cần nhớ.",
+  "sections": [
+    {"kind": "steps", "heading": "Từ ý tưởng tới mã",
+     "items": [{"title": "Lên kế hoạch", "text": "Quản lý dự án bằng Jira."},
+               {"title": "Viết dịch vụ", "text": "Spring Boot; Flipr để phát hành cấu hình nhanh."},
+               {"title": "Giữ mã sạch", "text": "NullAway chặn lỗi null; Piranha dọn cờ tính năng cũ."},
+               {"title": "Một kho mã chung", "text": "Monorepo, build bằng Bazel ở quy mô lớn."}]},
+    {"kind": "steps", "heading": "Từ mã tới người dùng",
+     "items": [{"title": "Kiểm thử", "text": "Môi trường ngắn hạn; phát lại lưu lượng thật để thử tải."},
+               {"title": "Đóng gói", "text": "uBuild đóng vào container, chạy trên Buildkite."},
+               {"title": "Triển khai", "text": "Spinnaker, công cụ của Netflix."},
+               {"title": "Giám sát", "text": "Nền tảng uMetric dựng trên Cassandra."}]},
+    {"kind": "notes", "heading": "Nhớ gì",
+     "items": ["Mỗi chặng giao phần mềm có một công cụ riêng.", "Uber tự làm nhiều công cụ ở chặng giữ mã sạch và kiểm thử.", "Danh sách là ảnh chụp một thời điểm, không phải bộ nên chép."]}
+  ]
+}

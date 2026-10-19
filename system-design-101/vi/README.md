@@ -219,6 +219,11 @@ Các bài chưa viết của nhóm này không có trong danh sách; số thứ 
 13. [Chín thành phần của một ứng dụng dịch vụ nhỏ chạy thật, và cái giá của từng thành phần](lessons/sd-08-013/lesson.md) — bài mới viết tại repo này (có phép đo riêng); chờ review kỹ thuật.
 14. [Chín việc khi xây dịch vụ nhỏ: thiết kế cho lỗi, thử ba lớp bảo vệ trên một dịch vụ giả](lessons/sd-08-014/lesson.md) — bài mới viết tại repo này (có phép đo riêng); chờ review kỹ thuật.
 15. [Tám khái niệm của thiết kế hướng miền: bảy có chỗ đối chiếu, một kiểm bằng mã](lessons/sd-08-015/lesson.md) — bài mới viết tại repo này (có phép thử riêng); chờ review kỹ thuật.
+16. [Tám vấn đề thường gặp khi hệ thống lớn lên, và cái giá của từng cách giải](lessons/sd-08-016/lesson.md) — bài mới viết tại repo này (có phép đo riêng); chờ review kỹ thuật.
+17. [Sáu mẫu kiến trúc phần mềm: mỗi mẫu một lợi, một hại, và một phép đo](lessons/sd-08-017/lesson.md) — bài mới viết tại repo này (có phép đo riêng); chờ review kỹ thuật.
+18. [Phát hành ứng dụng di động: bảy bước của nguồn, điều tài liệu của hai cửa hàng xác nhận, và một mô hình phát hành theo pha](lessons/sd-08-018/lesson.md) — bài mới viết tại repo này (có mô hình tính riêng); chờ review kỹ thuật.
+19. [Chương trình chạy thế nào: tám bước của nguồn và những gì xem được trên Linux](lessons/sd-08-019/lesson.md) — bài mới viết tại repo này (có phép đo riêng); chờ review kỹ thuật.
+20. [Khởi động Linux: tám bước của nguồn, điều tài liệu thêm vào, và một lần đọc tĩnh các tệp đơn vị systemd](lessons/sd-08-020/lesson.md) — bài mới viết tại repo này (có phép đọc riêng); chờ review kỹ thuật.
 
 ## Công cụ và năng suất
 

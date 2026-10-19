@@ -1,0 +1,104 @@
+{
+  "id": "sd-08-019",
+  "title_vi": "Chương trình chạy thế nào: tám bước của nguồn và những gì xem được trên Linux",
+  "language": "vi",
+  "kind": "reference",
+  "content_status": "draft",
+  "source_ref": "sd-08-019",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/how-do-computer-programs-run.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-computer-programs-run.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a git fetch of the pinned commit and hashed as a Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "7cb901177e597fa1bcda5e35c0939e60fabb98e6",
+    "retrieved_body_sha256": "052cb8cdd2cae38c6fb09669f12d32da3e08a95cf5b600af73b73bceed7cbd19",
+    "retrieved_body_bytes": 1899
+  },
+  "diagram": "../diagrams/sd-08-019-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-19"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-19",
+      "evidence": "Eight steps from the source body; execve(2), ld.so(8), _exit(2) and exit(3) read from a local clone of man-pages at ae6b221; measurements by strace 6, gcc 13.3 programs, Python 3.13.16, Node 22 and the machine's Java on a 4-vCPU Linux virtual machine on 2026-10-19 (three runs of the timing program). The source is written with Windows terms (DLL, .NET); only Linux was measured, and GUI launch, network cleanup and disk-level loading are not measured."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-19",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Figure drawn by scripts/figures (viewBox width 320, smallest font 15 px, shown at 13.5 px at 320 px); python3 -m scripts.figures check --browser passed; the lesson (Markdown to HTML, optional sections open, 16 px side gutters) rendered in Chromium at 320, 375 and 430 px with no horizontal overflow of the page, any table or any code block. Not learner testing and not GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Source: eight steps - user double-clicks (GUI), the OS retrieves the executable through the file system and loads it into memory, shared libraries such as DLLs are resolved, the OS allocates memory, the runtime (JVM, .NET) is initialized, main is called, the CPU executes instructions stored in memory (Von Neumann), the program cleans up on termination (closing file descriptors, freeing network resources, returning memory).",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-computer-programs-run.md",
+      "section": "Whole guide",
+      "verified_by": "Source body read at the pinned commit."
+    },
+    {
+      "claim_vi": "execve(2): replaces the program run by the calling process with a new program, with newly initialized stack, heap, and (initialized and uninitialized) data segments; ld.so(8): finds and loads the shared objects needed by a program and by default defers function symbol resolution until first reference (LD_BIND_NOW resolves at startup); _exit(2): any open file descriptors belonging to the process are closed; exit(3): flushes and closes standard I/O streams.",
+      "source": "https://github.com/mkerrisk/man-pages/blob/ae6b221882ce71ba82fcdbe02419a225111502f0/man2/execve.2",
+      "section": "execve(2); ld.so(8); _exit(2); exit(3)",
+      "verified_by": "Read from a local clone of man-pages at commit ae6b221882ce71ba82fcdbe02419a225111502f0."
+    },
+    {
+      "claim_vi": "strace of a C program printing hello: 35 system calls linked dynamically (execve, brk, mmap, openat of /etc/ld.so.cache and libc.so.6, several mmap with different protections, arch_prctl, mprotect, write, exit_group) and 17 linked statically; minor page faults 61-62 versus 31-33; start-to-exit time measured from a parent 1.10-1.40 ms versus 1.03-1.16 ms (500 runs each, three program runs).",
+      "source": "https://github.com/mkerrisk/man-pages/blob/ae6b221882ce71ba82fcdbe02419a225111502f0/man2/execve.2",
+      "section": "Experiment",
+      "verified_by": "Programs run by the author on 2026-10-19."
+    },
+    {
+      "claim_vi": "Lazy memory: mapping a 1 GiB file raises VmSize from 2,700 to 1,051,276 KiB but VmRSS only from 1,416 to 1,796 KiB; one byte read raises it to 1,856 KiB; reading one byte per 4 KiB over the first half raises it to 526,084 KiB.",
+      "source": "https://github.com/mkerrisk/man-pages/blob/ae6b221882ce71ba82fcdbe02419a225111502f0/man2/mmap.2",
+      "section": "Experiment",
+      "verified_by": "Program run by the author on 2026-10-19."
+    },
+    {
+      "claim_vi": "Runtime startup (empty program, start to exit measured from a parent): C 1.1-1.4 ms, Python -c pass 16.7-21.4 ms with 838-840 minor page faults, Python -S -E 10.2-12.5 ms, Node 22 -e 0 25.1-27.5 ms, Java hello 41.4-45.0 ms (three runs, medians).",
+      "source": "https://docs.python.org/3.13/using/cmdline.html",
+      "section": "Experiment",
+      "verified_by": "Program run by the author on 2026-10-19."
+    },
+    {
+      "claim_vi": "Code is data in memory: reading the first 8 bytes of a C function as data gives f3 0f 1e fa 55 48 89 e5 from a mapping with r-xp permissions, next to rw-p data, [heap] and [stack] in /proc/self/maps.",
+      "source": "https://github.com/mkerrisk/man-pages/blob/ae6b221882ce71ba82fcdbe02419a225111502f0/man5/proc.5",
+      "section": "Experiment",
+      "verified_by": "Program run by the author on 2026-10-19."
+    },
+    {
+      "claim_vi": "Exit cleanup: a program that opens a file 500 times and exits without close shows 502 openat and 2 close in strace, and /proc/sys/fs/file-nr is 127 before and after 200 runs; printing without a newline then _exit(0) to a pipe prints nothing, with exit(0) prints the text.",
+      "source": "https://github.com/mkerrisk/man-pages/blob/ae6b221882ce71ba82fcdbe02419a225111502f0/man2/_exit.2",
+      "section": "Experiment",
+      "verified_by": "Programs run by the author on 2026-10-19."
+    }
+  ],
+  "design_notes_vi": "Ba khung: tám bước, đo trên Linux, chưa đo.",
+  "source_deviations": [
+    "The source is a picture with eight short paragraphs in Windows terms; the lesson keeps the eight steps in order and adds what could be seen on Linux.",
+    "Windows, DLL and .NET behaviour, GUI launch and network cleanup are not measured."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này (gói W8), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

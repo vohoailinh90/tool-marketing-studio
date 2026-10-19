@@ -3228,51 +3228,51 @@
       "lessons": [
         {
           "id": "sd-12-001",
-          "title_vi": null,
+          "title_vi": "AirTag: tìm đồ nhờ điện thoại của người lạ đi ngang",
           "title_source": "How do AirTags work?",
           "source_url": "https://bytebytego.com/guides/how-do-airtags-work",
           "source_path": "data/guides/how-do-airtags-work.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "ecf50a67a55346fc38d4b5d2b4d275f9d05a6377",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-airtags-work.md"
         },
         {
           "id": "sd-12-002",
-          "title_vi": null,
+          "title_vi": "Thư điện tử đi từ người gửi tới người nhận: bốn vai và hai nhóm giao thức",
           "title_source": "How is Email Delivered?",
           "source_url": "https://bytebytego.com/guides/how-is-email-delivered",
           "source_path": "data/guides/how-is-email-delivered.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "1a7b300cdba069f9197ddb121091ff0480229de2",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-is-email-delivered.md"
         },
         {
           "id": "sd-12-003",
-          "title_vi": null,
+          "title_vi": "Alice gửi thư cho Bob: đường đi qua máy chủ Outlook và Gmail",
           "title_source": "Design Gmail",
           "source_url": "https://bytebytego.com/guides/design-gmail",
           "source_path": "data/guides/design-gmail.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "13f66d906826a75ba7d12880c8e41f5f414bc56a",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/design-gmail.md"
         },
         {
           "id": "sd-12-004",
-          "title_vi": null,
+          "title_vi": "Làm mờ biển số và khuôn mặt trên ảnh đường phố: ba đường ống",
           "title_source": "How Google/Apple Maps Blur License Plates and Faces",
           "source_url": "https://bytebytego.com/guides/how-do-googleapple-maps-blur-license-plates-and-human-faces-on-street-view",
           "source_path": "data/guides/how-do-googleapple-maps-blur-license-plates-and-human-faces-on-street-view.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "c6c687e47039312e5a5f298fa30545326061847f",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-googleapple-maps-blur-license-plates-and-human-faces-on-street-view.md"
         },
         {
           "id": "sd-12-005",
-          "title_vi": null,
+          "title_vi": "Quadtree: chia bản đồ thành bốn ô để tìm quán gần bạn",
           "title_source": "Quadtree",
           "source_url": "https://bytebytego.com/guides/quadtree",
           "source_path": "data/guides/quadtree.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "765b5d5e904ed0df504815158d2ce842fee4f025",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/quadtree.md"
         },

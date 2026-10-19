@@ -222,6 +222,15 @@ Các bài chưa viết của nhóm này không có trong danh sách; số thứ 
 
 23. [Sau thay đổi API: chọn bộ kiểm tra theo rủi ro](lessons/sd-10-023/lesson.md)
 
+## Hệ thống hoạt động thế nào?
+
+Các bài chưa viết của nhóm này không có trong danh sách; số thứ tự là vị trí của bài trong nhóm.
+1. [AirTag: tìm đồ nhờ điện thoại của người lạ đi ngang](lessons/sd-12-001/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+2. [Thư điện tử đi từ người gửi tới người nhận: bốn vai và hai nhóm giao thức](lessons/sd-12-002/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+3. [Alice gửi thư cho Bob: đường đi qua máy chủ Outlook và Gmail](lessons/sd-12-003/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+4. [Làm mờ biển số và khuôn mặt trên ảnh đường phố: ba đường ống](lessons/sd-12-004/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+5. [Quadtree: chia bản đồ thành bốn ô để tìm quán gần bạn](lessons/sd-12-005/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
+
 ## DevOps và CI/CD
 
 1. [Tắt êm một API trên Kubernetes: năm chỗ làm rớt request](lessons/sd-13-001/lesson.md)

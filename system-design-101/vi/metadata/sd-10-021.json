@@ -33,7 +33,7 @@
     "claims": {
       "status": "checked",
       "checked_on": "2026-10-18",
-      "evidence": "Every statement in the lesson is the text of the pinned source body; the lesson adds no outside claim. The source image holds the algorithm list and was not used."
+      "evidence": "The statements about the star scale come from the pinned source body. The three added examples (Bloom filter and consistent hashing in Cassandra, Raft in etcd-io/raft) were checked against those projects' documentation at the pinned commits recorded in the claims below. The source image holds the algorithm list and was not used."
     },
     "technical_review": {
       "status": "pending",

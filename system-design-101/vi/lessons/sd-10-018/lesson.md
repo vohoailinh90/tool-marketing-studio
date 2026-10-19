@@ -43,7 +43,7 @@ Ba máy chủ có trọng số 5, 1 và 1. Cứ 7 yêu cầu liên tiếp thì m
 <summary>Xem đáp án</summary>
 
 Theo ví dụ trong tài liệu nginx (weighted round-robin): máy đầu nhận 5, hai máy còn lại mỗi máy nhận 1.
-Nhiều khách có thể bị chuyển sang máy khác vì kết quả băm thay đổi theo số máy; nginx có tham số `consistent` của chỉ thị `hash` để chỉ một số ít khóa phải chuyển.
+Nhiều khách có thể bị chuyển sang máy khác vì kết quả băm thay đổi theo số máy; `ip_hash` không có tham số nào để giảm điều đó; nginx có tham số `consistent` của chỉ thị `hash`, nên phải đổi sang `hash` (ví dụ `hash $remote_addr consistent;`) thì mới chỉ một số ít khóa phải chuyển.
 
 </details>
 

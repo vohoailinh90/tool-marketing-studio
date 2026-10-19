@@ -54,5 +54,7 @@ Secret chat: không, vì máy chủ chỉ chuyển tiếp dữ liệu đã mã h
 
 - [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/is-telegram-secure.md): định nghĩa chat an toàn, cách Telegram lưu chat thường và giới hạn của secret chat.
 
-Đã đọc nguồn ngày 2026-10-19. Tài liệu chính thức của Telegram chưa được mở để đối chiếu.
+- [Telegram — FAQ, mục "Do you process data requests?"](https://telegram.org/faq#q-do-you-process-data-requests): dữ liệu của chat thường được lưu ở nhiều trung tâm dữ liệu, chìa khóa giải mã được chia thành nhiều phần và không cất cùng dữ liệu. Trang này không mở trực tiếp được lúc biên soạn; ý trên được đối chiếu qua bản dẫn lại của [Belkasoft](https://belkasoft.com/how-to-investigate-telegram-crime).
+
+Đã đọc nguồn ngày 2026-10-19. Ngoài mục FAQ trên, tài liệu chính thức của Telegram chưa được mở để đối chiếu.
 Bài viết và hình được thiết kế độc lập.

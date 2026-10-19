@@ -72,7 +72,7 @@
       "verified_by": "Source body read at the pinned commit."
     },
     {
-      "claim_vi": "Direct payment: Alice enters Bob's UPI address and the amount (INR 100); her payment app verifies and forwards the request to NPCI via a bank; NPCI asks Bob's bank to resolve the details, deducts the amount from Alice's bank account, instructs Bob's bank to add it, and on success notifies the payment apps through the acquiring banks.",
+      "claim_vi": "Direct payment: Alice enters Bob's UPI address and the amount (INR 100); her payment app verifies and forwards the request to NPCI via a bank; NPCI asks Bob's bank to resolve the details, deducts the amount from Alice's bank account, instructs Bob's bank to add it, and on success notifies the payment apps through the acquiring banks. The source's 'NPCI deducts' is read as NPCI sending the debit request to Alice's bank, which posts the entry; the customer ledgers are the banks'.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/unified-payments-interface-upi-in-india.md",
       "section": "Direct payment",
       "verified_by": "Source body read at the pinned commit."
@@ -84,11 +84,11 @@
       "verified_by": "Editorial choice; the source names real banks and an app."
     }
   ],
-  "design_notes_vi": "Khung một là bốn bước chuẩn bị của người nhận; khung hai là lược đồ ba bên cho một lần chuyển, trong đó NPCI đứng giữa. Ngân hàng của Alice không vẽ riêng: bước trừ tiền ở đó có trong phần chữ.",
+  "design_notes_vi": "Khung một là bốn bước chuẩn bị của người nhận; khung hai là lược đồ ba bên cho một lần chuyển: NPCI, ngân hàng của Alice và ngân hàng của Bob. Bước ứng dụng của Alice gửi yêu cầu và bước báo thành công có trong phần chữ, không vẽ riêng.",
   "source_deviations": [
     "The source names real banks and apps (an app, two acquiring banks and two issuing banks); the lesson names them by role.",
     "The source writes \"UPI ID\"; the lesson says \"địa chỉ UPI\" (the address is a virtual payment address) and drops the INR code for \"rupee\".",
-    "The figure leaves out the deduction at Alice's bank to keep three parties; the text below it keeps that step."
+    "The figure draws NPCI with both banks (Alice's bank debits, Bob's bank credits, each confirming to NPCI) and leaves the app's request and the success notice to the text."
   ],
   "editorial_note_vi": "Bài mới viết tại repo này (gói W7), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
 }

@@ -1,5 +1,22 @@
 id: sd-12-015
-status: doing
+status: done
 owner: claude/sd101-lessons-w19-3
 claimed_at: '2026-10-19T15:19:59Z'
-heartbeat_at: '2026-10-19T15:19:59Z'
+done_at: '2026-10-19T15:32:01Z'
+moda_canvas: cvs_3TPEKC7VWN9HYA93QR12Q48HB9
+moda_url: https://moda.app/canvas/7ab3a6c3-ef95-4c7c-a48e-f808ae444569
+slide_count: 9
+size: 1920x1080
+exports: pending
+layouts:
+  slides:
+  - connection-diagram
+  - one-highlighted-sentence
+  - 2x2-matrix
+  - flow
+  - lookup-table
+  - one-big-number
+  - card-grid
+  - numbered-rows
+  - lookup-table
+  first_concept: 3

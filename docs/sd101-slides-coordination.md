@@ -22,7 +22,7 @@ take or give back a range.
 | | lessons |
 |---|---|
 | Source map | 404 positions; 178 lessons written (`progress.json`), 226 not written yet (no deck possible before the lesson) |
-| Decks done | 158; every one has a badged PPTX on some branch except sd-14-001..008 and sd-06-009 |
+| Decks done | 158; every one has a badged PPTX on some branch except sd-14-001..008 |
 | Decks being built (`doing`) | 20 (below) |
 | Decks nobody has claimed | 0: every written lesson is claimed or done |
 

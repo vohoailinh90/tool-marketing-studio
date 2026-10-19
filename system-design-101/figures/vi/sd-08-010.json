@@ -1,0 +1,36 @@
+{
+  "id": "sd-08-010",
+  "title": "Tám khái niệm hướng đối tượng, thử trong Python",
+  "subtitle": "Khái niệm nào ngôn ngữ ép, khái niệm nào chỉ là quy ước.",
+  "desc": "Ba khung. Khung một, tám khái niệm: lớp, đối tượng, đóng gói, trừu tượng, kế thừa, đa hình, thành phần và giao diện. Khung hai, thử trong Python 3.13: biến đóng gói gạch dưới vẫn gán được từ ngoài, tên hai gạch dưới chỉ bị đổi tên và vẫn đọc được, lớp trừu tượng không tạo được đối tượng, vịt gõ không cần kế thừa mà vẫn dùng chung mã. Khung ba, đo thời gian: gọi phương thức cách 1, 5 hay 20 tầng kế thừa đều khoảng 24 đến 26 nano giây, và gọi đa hình trên 100 đối tượng mất 3,8 đến 4,0 micro giây so với 7,8 đến 8,2 micro giây khi tự rẽ nhánh bằng kiểm tra kiểu.",
+  "sections": [
+    {
+      "kind": "notes",
+      "heading": "Tám khái niệm",
+      "items": [
+        "Lớp, đối tượng: khuôn và vật dựng từ khuôn.",
+        "Đóng gói, trừu tượng: giấu chi tiết, chỉ lộ cách dùng.",
+        "Kế thừa, đa hình, thành phần, giao diện: cách dùng chung và ghép mã."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Thử trong Python 3.13",
+      "items": [
+        "Gạch dưới chỉ là quy ước: vẫn gán từ ngoài được.",
+        "Hai gạch dưới: chỉ đổi tên, vẫn đọc được.",
+        "Lớp trừu tượng không tạo được đối tượng.",
+        "Vịt gõ: không kế thừa vẫn dùng chung mã."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Đo thời gian",
+      "items": [
+        "Gọi phương thức qua 1, 5, 20 tầng: khoảng 24 đến 26 nano giây.",
+        "Đa hình, 100 đối tượng: 3,8 đến 4,0 micro giây.",
+        "Tự rẽ nhánh bằng kiểm tra kiểu: 7,8 đến 8,2 micro giây."
+      ]
+    }
+  ]
+}

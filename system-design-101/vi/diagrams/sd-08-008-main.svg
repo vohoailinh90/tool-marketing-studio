@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1115" viewBox="0 0 320 1115" role="img" aria-labelledby="title desc">
+<title id="title">Năm mẫu thiết kế, tìm trong mã thật</title>
+<desc id="desc">Ba khung. Khung một, năm mẫu và chỗ gặp trong thư viện chuẩn Python: nhà máy là cách thay hàm tạo bản ghi nhật ký; người xây là bộ dựng cây thẻ lồng nhau từng bước; nguyên mẫu là việc sao chép đối tượng có móc riêng; đơn thể duy nhất là bộ ghi nhật ký gốc; chuỗi trách nhiệm là bộ ghi nhật ký đi ngược lên cha. Khung hai, thử với ba bộ ghi lồng nhau: lỗi đi qua ba bộ xử lý theo thứ tự, thông tin chỉ qua hai, và dừng lan lên thì chỉ còn hai bộ đầu. Khung ba, đếm tên trong thư viện chuẩn: 16 tên có chữ Factory, 11 chữ Builder, 1 chữ Singleton nhưng không thuộc mẫu, 0 chữ Prototype.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1115" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Năm mẫu thiết kế, tìm</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">trong mã thật</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Mẫu hiện diện nhiều hơn là mang</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">tên.</text>
+<rect x="8" y="123" width="304" height="426" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Năm mẫu, chỗ gặp trong</text>
+<text x="20" y="173.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Python</text>
+<rect x="20" y="190" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="213" r="11" fill="#16a34a"/>
+<polyline points="37.9,213.4 41.7,217.4 48.5,209" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="216.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nhà máy: thay cách tạo bản</text>
+<text x="64" y="235.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">ghi nhật ký.</text>
+<rect x="20" y="261" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="284" r="11" fill="#16a34a"/>
+<polyline points="37.9,284.4 41.7,288.4 48.5,280" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="287.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Người xây: dựng cây thẻ</text>
+<text x="64" y="306.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lồng nhau từng bước.</text>
+<rect x="20" y="332" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="355" r="11" fill="#16a34a"/>
+<polyline points="37.9,355.4 41.7,359.4 48.5,351" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="358.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nguyên mẫu: sao chép đối</text>
+<text x="64" y="377.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tượng có móc riêng.</text>
+<rect x="20" y="403" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="426" r="11" fill="#16a34a"/>
+<polyline points="37.9,426.4 41.7,430.4 48.5,422" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="429.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đơn thể duy nhất: bộ ghi</text>
+<text x="64" y="448.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhật ký gốc.</text>
+<rect x="20" y="474" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="497" r="11" fill="#16a34a"/>
+<polyline points="37.9,497.4 41.7,501.4 48.5,493" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="500.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chuỗi trách nhiệm: bộ ghi</text>
+<text x="64" y="519.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhật ký đi ngược lên cha.</text>
+<rect x="8" y="561" width="304" height="284" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="589.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Thử: ba bộ ghi nhật ký lồng</text>
+<text x="20" y="611.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">nhau</text>
+<rect x="20" y="628" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="651" r="11" fill="#16a34a"/>
+<polyline points="37.9,651.4 41.7,655.4 48.5,647" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="654.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lỗi: ba bộ xử lý, từ con lên</text>
+<text x="64" y="673.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">gốc.</text>
+<rect x="20" y="699" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="722" r="11" fill="#16a34a"/>
+<polyline points="37.9,722.4 41.7,726.4 48.5,718" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="725.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Thông tin: chỉ hai, vì bộ con</text>
+<text x="64" y="744.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chỉ nhận lỗi.</text>
+<rect x="20" y="770" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="793" r="11" fill="#16a34a"/>
+<polyline points="37.9,793.4 41.7,797.4 48.5,789" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="796.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tắt lan lên ở bộ giữa: lỗi</text>
+<text x="64" y="815.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dừng sau hai bộ.</text>
+<rect x="8" y="857" width="304" height="250" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="885.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Đếm tên trong thư viện</text>
+<text x="20" y="907.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">chuẩn</text>
+<rect x="20" y="924" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="947" r="11" fill="#16a34a"/>
+<polyline points="37.9,947.4 41.7,951.4 48.5,943" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="950.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Factory: 16 tên.</text>
+<rect x="20" y="978" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1001" r="11" fill="#16a34a"/>
+<polyline points="37.9,1001.4 41.7,1005.4 48.5,997" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1004.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Builder: 11 tên.</text>
+<rect x="20" y="1032" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1055" r="11" fill="#16a34a"/>
+<polyline points="37.9,1055.4 41.7,1059.4 48.5,1051" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1058.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Prototype: 0 tên, Singleton:</text>
+<text x="64" y="1077.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">1 tên không thuộc mẫu.</text>
+</g>
+</svg>

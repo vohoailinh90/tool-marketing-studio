@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="964" viewBox="0 0 320 964" role="img" aria-labelledby="title desc">
+<title id="title">Bảy thuật ngữ của thiết kế hướng miền</title>
+<desc id="desc">Ba khung. Khung một, bảy thuật ngữ chia ba nhóm: cấu tạo gồm thực thể, đối tượng giá trị, khối nhất quán; vòng đời gồm kho lưu và nhà máy; hành vi gồm dịch vụ miền và sự kiện miền. Khung hai, thử trong mã: hai đối tượng giá trị cùng nội dung thì bằng nhau và không sửa được, hai thực thể cùng mã định danh thì là một dù thuộc tính khác, luật huỷ nằm trong thực thể. Khung ba, tám luồng cập nhật 2.400 lần: một khối nhất quán chung gây từ 44 đến 67 lần xung đột khi việc nhẹ và từ 8.618 đến 8.778 lần khi việc nặng, còn mỗi giao hàng một khối thì 0 lần.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="964" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Bảy thuật ngữ của thiết</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">kế hướng miền</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Và cái giá của một khối dữ liệu đặt</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">quá lớn.</text>
+<rect x="8" y="123" width="304" height="245" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Bảy thuật ngữ, ba nhóm</text>
+<rect x="20" y="168" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="191" r="11" fill="#16a34a"/>
+<polyline points="37.9,191.4 41.7,195.4 48.5,187" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="194.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cấu tạo: thực thể, đối tượng</text>
+<text x="64" y="213.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">giá trị, khối nhất quán.</text>
+<rect x="20" y="239" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="262" r="11" fill="#16a34a"/>
+<polyline points="37.9,262.4 41.7,266.4 48.5,258" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="265.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Vòng đời: kho lưu, nhà máy.</text>
+<rect x="20" y="293" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="316" r="11" fill="#16a34a"/>
+<polyline points="37.9,316.4 41.7,320.4 48.5,312" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="319.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Hành vi: dịch vụ miền, sự</text>
+<text x="64" y="338.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">kiện miền.</text>
+<rect x="8" y="380" width="304" height="302" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="408.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Thử trong mã</text>
+<rect x="20" y="425" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="448" r="11" fill="#16a34a"/>
+<polyline points="37.9,448.4 41.7,452.4 48.5,444" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="451.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đối tượng giá trị: cùng nội</text>
+<text x="64" y="470.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dung thì bằng nhau, không</text>
+<text x="64" y="490.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">sửa được.</text>
+<rect x="20" y="516" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="539" r="11" fill="#16a34a"/>
+<polyline points="37.9,539.4 41.7,543.4 48.5,535" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="542.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Thực thể: cùng mã định</text>
+<text x="64" y="561.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">danh là một, dù thuộc tính</text>
+<text x="64" y="581.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khác.</text>
+<rect x="20" y="607" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="630" r="11" fill="#16a34a"/>
+<polyline points="37.9,630.4 41.7,634.4 48.5,626" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="633.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Luật huỷ giao hàng nằm</text>
+<text x="64" y="652.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trong thực thể.</text>
+<rect x="8" y="694" width="304" height="262" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="722.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Khối quá lớn thì xung đột</text>
+<rect x="20" y="739" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="762" r="11" fill="#16a34a"/>
+<polyline points="37.9,762.4 41.7,766.4 48.5,758" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="765.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Một khối chung: 44 đến 67</text>
+<text x="64" y="784.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">xung đột khi việc nhẹ.</text>
+<rect x="20" y="810" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="833" r="11" fill="#16a34a"/>
+<polyline points="37.9,833.4 41.7,837.4 48.5,829" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="836.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cũng khối đó, việc nặng:</text>
+<text x="64" y="855.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">8.618 đến 8.778 xung đột.</text>
+<rect x="20" y="881" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="904" r="11" fill="#16a34a"/>
+<polyline points="37.9,904.4 41.7,908.4 48.5,900" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="907.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mỗi giao hàng một khối: 0</text>
+<text x="64" y="926.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">xung đột.</text>
+</g>
+</svg>

@@ -1,0 +1,133 @@
+{
+  "id": "sd-06-001",
+  "title_vi": "ELK Stack: thu thập, xử lý, lưu và xem log",
+  "language": "vi",
+  "kind": "flow",
+  "content_status": "draft",
+  "source_ref": "sd-06-001",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/what-is-elk-stack-and-why-is-it-so-popular-for-log-management.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-is-elk-stack-and-why-is-it-so-popular-for-log-management.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a git fetch of the pinned commit and hashed as a Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "b434f0bf444faa7892375721a01888a0a066f512",
+    "retrieved_body_sha256": "c5eba5fe3885dcac0f9ce7f7df45502b15b42b7ddaac7d1e73e54e6ac08e02ec",
+    "retrieved_body_bytes": 1834
+  },
+  "diagram": "../diagrams/sd-06-001-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-06-006",
+      "relation": "see_also",
+      "reason_vi": "Chỉ mục tìm kiếm như Elasticsearch là một tầng bản sao trong bài các tầng bộ nhớ đệm."
+    },
+    {
+      "lesson_id": "sd-06-022",
+      "relation": "next",
+      "reason_vi": "Bài học Elasticsearch đi sâu vào thành phần lưu và tìm của ELK."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "evidence": "READMEs of Beats, Filebeat, Logstash, Elasticsearch (plus its build-tools-internal/version.properties) and Kibana, the Kafka design document, Logstash's memory and persistent queue docs and the Logstash Kafka input docs were read from local clones. ELK itself was not run."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright) rendered the full lesson (Markdown to HTML, optional sections open, 16 px side gutters) at each width: no horizontal overflow of the page or of any table; figure drawn by scripts/figures (viewBox width 320, smallest font 15 px) shown at 13.5 px effective at 320 px and 15 px at 375 px; every SVG text box inside the viewBox. python3 -m scripts.figures check --browser passed. Not learner testing and not GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Beats are lightweight data shippers installed on servers; they send operational data to Elasticsearch either directly or via Logstash. Filebeat tails and ships log files, Packetbeat sniffs network packets, Winlogbeat ships Windows Event logs.",
+      "source": "https://github.com/elastic/beats/blob/02d90c89c682160e7a336f121e0a54be480f438c/README.md",
+      "section": "README introduction and table of Beats",
+      "verified_by": "Read from a local clone of elastic/beats at commit 02d90c89c682160e7a336f121e0a54be480f438c, the head of its default branch when read on 2026-10-18 (a later change to that branch does not alter this URL)."
+    },
+    {
+      "claim_vi": "Filebeat sends events to Elasticsearch, Logstash, Kafka, Redis, or a file.",
+      "source": "https://github.com/elastic/beats/blob/02d90c89c682160e7a336f121e0a54be480f438c/filebeat/README.md",
+      "section": "Introduction",
+      "verified_by": "Read from a local clone of elastic/beats at commit 02d90c89c682160e7a336f121e0a54be480f438c, the head of its default branch when read on 2026-10-18 (a later change to that branch does not alter this URL)."
+    },
+    {
+      "claim_vi": "Logstash is part of the Elastic Stack along with Beats, Elasticsearch and Kibana; it is a server-side data processing pipeline that ingests data from many sources simultaneously, transforms it and sends it to a stash, usually Elasticsearch.",
+      "source": "https://github.com/elastic/logstash/blob/39a297ed817a6618cc1144a8307f6622a7f369c9/README.md",
+      "section": "Introduction",
+      "verified_by": "Read from a local clone of elastic/logstash at commit 39a297ed817a6618cc1144a8307f6622a7f369c9, the head of its default branch when read on 2026-10-18 (a later change to that branch does not alter this URL)."
+    },
+    {
+      "claim_vi": "Elasticsearch is a distributed search and analytics engine whose use cases include logs; its build declares a Lucene dependency (lucene = 10.5.2 for elasticsearch = 9.6.0).",
+      "sources": [
+        "https://github.com/elastic/elasticsearch/blob/9df53afd7c6054b65e753349ef347cf3e7ba11d1/README.asciidoc",
+        "https://github.com/elastic/elasticsearch/blob/9df53afd7c6054b65e753349ef347cf3e7ba11d1/build-tools-internal/version.properties"
+      ],
+      "section": "README introduction; version.properties",
+      "verified_by": "Read from a local clone of elastic/elasticsearch at commit 9df53afd7c6054b65e753349ef347cf3e7ba11d1, the head of its default branch when read on 2026-10-18 (a later change to that branch does not alter this URL)."
+    },
+    {
+      "claim_vi": "Kibana is the interface to query, analyze, visualize and manage data stored in Elasticsearch.",
+      "source": "https://github.com/elastic/kibana/blob/7c296350df94ecd3bd5493ce82a2a6295281f256/README.md",
+      "section": "Introduction",
+      "verified_by": "Read from a local clone of elastic/kibana at commit 7c296350df94ecd3bd5493ce82a2a6295281f256, the head of its default branch when read on 2026-10-18 (a later change to that branch does not alter this URL)."
+    },
+    {
+      "claim_vi": "In Kafka's pull model a consumer slower than the producer simply falls behind and catches up when it can; log retention discards old data after a fixed period or size; messages are retained for a period instead of being deleted as soon as they are consumed, and a consumer can rewind to an old offset and re-consume.",
+      "source": "https://github.com/apache/kafka/blob/65566690ca1ddb584388c1026e2ff6673e9c6f19/docs/design/design.md",
+      "section": "Persistence (Constant Time Suffices); The Consumer: Push vs. pull, Consumer Position; Log Compaction (simple retention)",
+      "verified_by": "Read from a local clone of apache/kafka at commit 65566690ca1ddb584388c1026e2ff6673e9c6f19, the head of its default branch when read on 2026-10-18 (a later change to that branch does not alter this URL)."
+    },
+    {
+      "claim_vi": "By default Logstash buffers events in in-memory bounded queues, whose contents are lost when Logstash or its host is terminated abnormally. Persistent queues (queue.type: persisted) are disabled by default; they protect against loss on abnormal termination, but data may still be lost if an abnormal shutdown occurs before the checkpoint file has been committed.",
+      "source": "https://github.com/elastic/logstash/blob/39a297ed817a6618cc1144a8307f6622a7f369c9/docs/reference/memory-queue.md",
+      "section": "Memory queue; persistent-queues.md: Limitations of persistent queues, Configuring persistent queues",
+      "verified_by": "Read from a local clone of elastic/logstash at commit 39a297ed817a6618cc1144a8307f6622a7f369c9, the head of its default branch when read on 2026-10-18 (a later change to that branch does not alter this URL)."
+    },
+    {
+      "claim_vi": "The Logstash Kafka input's enable_auto_commit defaults to true: it periodically commits to Kafka the offsets of messages already returned by the consumer, and the committed offset is where consumption resumes when the process fails (auto_commit_interval_ms default 5000).",
+      "source": "https://github.com/logstash-plugins/logstash-integration-kafka/blob/45f52efc8714ba5db57832b40e1f178274166e80/docs/input-kafka.asciidoc",
+      "section": "enable_auto_commit; auto_commit_interval_ms",
+      "verified_by": "Read from a local clone of logstash-plugins/logstash-integration-kafka at commit 45f52efc8714ba5db57832b40e1f178274166e80, the head of its default branch when read on 2026-10-18 (a later change to that branch does not alter this URL)."
+    },
+    {
+      "claim_vi": "ELK is Elasticsearch, Logstash and Kibana; Beats was developed later as lightweight agents; four-step workflow Beats, Logstash, Elasticsearch, Kibana, with an optional Kafka queue.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-is-elk-stack-and-why-is-it-so-popular-for-log-management.md",
+      "section": "ELK Stack Workflow",
+      "verified_by": "Source body read at the pinned commit."
+    }
+  ],
+  "design_notes_vi": "Ba khung: bốn bước theo thứ tự dữ liệu đi, một khung riêng cho Kafka làm vùng đệm, và ba điều cần nhớ. Bỏ con số và lời khen về giá. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "ELK names three products (Elasticsearch, Logstash, Kibana); the lead adds Beats as the later shipper and names the four together Elastic Stack, as the Logstash README does.",
+    "Source draws Beats to Logstash as fixed; the lesson adds, from the Beats README, that Beats can send directly to Elasticsearch and Logstash is optional.",
+    "Source says Kafka decouples producers and consumers; the lesson explains why from Kafka's design document (pull model, retention).",
+    "Kafka retains records whether or not they were read, but with the default auto-commit and in-memory queue an abnormal Logstash termination makes the restarted consumer skip the in-flight records (still in Kafka until retention, recoverable only by rewinding the offset); the persistent queue (off by default) reduces that (Kafka design doc, Logstash docs).",
+    "Source's claim that ELK is popular for a reasonable price is dropped: no source to check it."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này (gói L5), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

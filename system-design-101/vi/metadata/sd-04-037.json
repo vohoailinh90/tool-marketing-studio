@@ -1,0 +1,114 @@
+{
+  "id": "sd-04-037",
+  "title_vi": "Từ hàng đợi tới nhật ký: IBM MQ, RabbitMQ, Kafka, Pulsar khác nhau ở chỗ tin có còn sau khi đọc",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "draft",
+  "source_ref": "sd-04-037",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/how-do-message-queue-architectures-evolve.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-message-queue-architectures-evolve.md",
+    "blob_sha": "3f029406f5ab35fbcfe1711dd2b96973cc1afdf7",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a local clone at the pinned commit and hashed as a Git blob; the computed OID matches the tree OID and the source map. No source-image bytes used.",
+    "retrieved_body_sha256": "c4513bafed16bb617689354ead2e18c4c3bb596f15d8fb32c99ee66f8f4488c4",
+    "retrieved_body_bytes": 2238
+  },
+  "diagram": "../diagrams/sd-04-037-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-04-045",
+      "relation": "related",
+      "reason_vi": "Bài đó xem các việc thường dùng Kafka; bài này giải thích vì sao nhật ký giữ tin lại khác hàng đợi."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "scope": "Đọc tài liệu RabbitMQ (exchanges, streams), Kafka (introduction), README của Pulsar và tài liệu Redis Streams tại commit cố định; chạy Redis 7.0.15 với redis-py 8.1.0 (danh sách làm hàng đợi, stream với ba nhóm người nhận). KHÔNG kiểm: IBM MQ, RabbitMQ, Kafka, Pulsar thật; các mốc năm và doanh thu của IBM MQ (chỉ giữ năm 1993 theo nguồn); hai tầng và lưu trữ phân tầng của Pulsar (chỉ theo nguồn)."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "not_yet_reviewed"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright 1.56): cả bài dựng từ Markdown thành HTML, mục tùy chọn mở, ở 320, 375 và 430 px; không cuộn ngang; chữ hình hiệu dụng nhỏ nhất 13,5 px ở 320 px và 15 px ở 375 px; không hộp chữ nào ra ngoài viewBox; python3 -m scripts.figures check --browser đạt. Không phải thử trên GitHub, trên điện thoại thật hay với người học."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "id": "source-four-stages",
+      "claim_vi": "Nguồn kể bốn chặng: IBM MQ (ra đời 1993, tên đầu MQSeries, dùng nhiều trong tài chính), RabbitMQ (exchange kiểu direct, topic, fanout), Kafka (LinkedIn mở mã năm 2011, nhật ký sự kiện), Pulsar (Yahoo phát triển, hai tầng phục vụ và lưu trữ, lưu trữ phân tầng).",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-message-queue-architectures-evolve.md",
+      "section": "Whole guide",
+      "verified_by": "Đọc thân nguồn ghim ngày 2026-10-18."
+    },
+    {
+      "id": "rabbitmq-exchanges",
+      "claim_vi": "RabbitMQ có các kiểu exchange fanout (gửi bản sao cho mọi hàng đợi gắn vào, bỏ qua khóa), topic (khớp mẫu khóa định tuyến), direct (khớp đúng khóa); mọi loại hàng đợi của nó tiêu thụ có xóa, còn stream là nhật ký chỉ ghi nối đọc lại được tới khi hết hạn.",
+      "sources": [
+        "https://github.com/rabbitmq/rabbitmq-website/blob/7c2c1490f144bc62be5e3c8c0306d9742882196c/docs/exchanges.md",
+        "https://github.com/rabbitmq/rabbitmq-website/blob/7c2c1490f144bc62be5e3c8c0306d9742882196c/docs/streams.md"
+      ],
+      "section": "Exchange Types; Streams",
+      "verified_by": "Đọc bản clone nông của rabbitmq/rabbitmq-website ngày 2026-10-18."
+    },
+    {
+      "id": "kafka-retention",
+      "claim_vi": "Tài liệu Kafka: khác hệ nhắn tin truyền thống, sự kiện trong chủ đề không bị xóa sau khi đọc, đọc được bao nhiêu lần cũng được; thời hạn giữ đặt theo từng chủ đề.",
+      "source": "https://github.com/apache/kafka/blob/cc8baadc9f0363f2bdfe68a2f1cd8dbe4372d282/docs/getting-started/introduction.md",
+      "section": "Main Concepts and Terminology",
+      "verified_by": "Đọc bản clone nông của apache/kafka ngày 2026-10-18 (dòng 81)."
+    },
+    {
+      "id": "pulsar-readme",
+      "claim_vi": "README của Pulsar nêu có cả kiểu chủ đề lẫn kiểu hàng đợi và hệ thống giữ vị trí con trỏ của người nhận.",
+      "source": "https://github.com/apache/pulsar/blob/c9a95df05883e112151bda20c70b2b33d9067454/README.md",
+      "section": "Main features",
+      "verified_by": "Đọc bản clone nông của apache/pulsar ngày 2026-10-18."
+    },
+    {
+      "id": "redis-streams",
+      "claim_vi": "Tài liệu Redis mô tả stream là cấu trúc như nhật ký chỉ ghi nối, có nhóm người nhận, và nói đó về cơ bản là điều Kafka làm với nhóm người nhận.",
+      "source": "https://github.com/redis/docs/blob/3b030c7ef066c0bb7f88ddec02c784e49783b0f8/content/develop/data-types/streams/_index.md",
+      "section": "Redis Streams; Consumer groups",
+      "verified_by": "Đọc bản clone nông của redis/docs ngày 2026-10-18."
+    },
+    {
+      "id": "queue-vs-log-test",
+      "claim_vi": "Với Redis 7.0.15: danh sách 6 tin, hai người nhận lấy 3 và 3, người thứ ba nhận None; stream 6 tin, nhóm kho chia 3 và 3, nhóm thống kê đọc đủ 6, nhóm tạo sau đọc đủ 6, stream vẫn còn 6 tin.",
+      "source": "https://github.com/redis/docs/blob/3b030c7ef066c0bb7f88ddec02c784e49783b0f8/content/develop/data-types/streams/_index.md",
+      "section": "Phép thử của người biên soạn",
+      "verified_by": "Chạy đoạn mã in trong bài ngày 2026-10-18."
+    }
+  ],
+  "design_notes_vi": "Ba khung: bốn chặng (bước đánh số), phép thử hàng đợi, phép thử nhật ký. Không đưa doanh thu IBM MQ vào hình. Sơ đồ dựng bằng scripts/figures, không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Nguồn kể bốn sản phẩm theo thời gian; bài lấy một điểm khác biệt làm trục (tin có còn sau khi đọc không) và kiểm bằng phép thử trên Redis.",
+    "Bài không giữ con số doanh thu năm 2020 của IBM MQ và các mốc đổi tên, vì chưa đối chiếu được.",
+    "Bài thêm rằng lịch sử không đi một đường thẳng: RabbitMQ và Redis đều đã có stream kiểu nhật ký."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này, bản nháp chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

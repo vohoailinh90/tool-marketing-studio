@@ -1,0 +1,37 @@
+{
+  "id": "sd-06-009",
+  "title": "Trước khi thêm bộ nhớ đệm",
+  "subtitle": "Khi nào đáng dùng, đo gì, và bộ nhớ nhiều hơn mua được gì.",
+  "desc": "Ba khung. Khung một, khi nào đáng dùng: dữ liệu được đọc nhiều hơn ghi; dữ liệu ít đổi hoặc được phép cũ một lúc; mất bộ nhớ đệm thì vẫn nạp lại được từ kho chính. Khung hai, đo gì: tỷ lệ trúng; số khóa bị đẩy ra; bộ nhớ đã dùng so với giới hạn; lệnh ghi bị từ chối khi đầy. Khung ba, thử trên Redis với truy cập lệch: 2 MB trúng 63 phần trăm, 4 MB trúng 79 phần trăm, 8 MB trúng 88 phần trăm, 16 MB vẫn 88 phần trăm vì phần trượt còn lại là lần nạp đầu tiên; truy cập đều, 4 MB chỉ trúng 29 phần trăm.",
+  "sections": [
+    {
+      "kind": "notes",
+      "heading": "Khi nào đáng dùng",
+      "items": [
+        "Dữ liệu được đọc nhiều hơn ghi.",
+        "Dữ liệu ít đổi, hoặc được phép cũ một lúc.",
+        "Mất bộ đệm thì vẫn nạp lại được từ kho chính."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Đo gì",
+      "items": [
+        "Tỷ lệ trúng: số lần trúng chia cho tổng số lần đọc.",
+        "Số khóa bị đẩy ra vì đầy.",
+        "Bộ nhớ đã dùng so với giới hạn.",
+        "Lệnh ghi bị từ chối khi đầy."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Thử: thêm bộ nhớ, trúng thêm bao nhiêu",
+      "items": [
+        "2 MB: trúng 63%.",
+        "4 MB: 79%. 8 MB: 88%.",
+        "16 MB: vẫn 88%; phần trượt còn lại là lần nạp đầu.",
+        "Truy cập đều thay vì lệch: 4 MB chỉ còn 29%."
+      ]
+    }
+  ]
+}

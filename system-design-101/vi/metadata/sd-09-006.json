@@ -1,0 +1,73 @@
+{
+  "id": "sd-09-006",
+  "title_vi": "Chọn ứng dụng AI theo đầu ra cần kiểm tra",
+  "language": "vi",
+  "kind": "explanation",
+  "content_status": "draft",
+  "source_ref": "sd-09-006",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/30-useful-ai-apps-that-can-help-you-in-2025.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/30-useful-ai-apps-that-can-help-you-in-2025.md",
+    "blob_sha": "ed915b3b90fe19788bd159c14e3ba44f8d429d3f",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "f97abfa399e2ed5d5ff089ff663a5038108446909c892b7555ddcea9d32a8164",
+    "retrieved_body_bytes": 1410
+  },
+  "diagram": "../diagrams/sd-09-006-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "Đã đọc thân bài nguồn, đối chiếu danh mục và liệt kê tài liệu sơ cấp. Một số trang trả HTTP 403; chưa xác minh toàn bộ claim nên giữ pending."
+    },
+    "technical_review": {
+      "status": "pending"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 14.73,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Re-checked after the Từ viết tắt section was added (first checked 2026-10-13 on the old draft branch). Chromium (Playwright) rendered the complete lesson with every details block open at 320/375/430px from a local Markdown render with GitHub-like styles: no horizontal overflow at any width, every SVG text box inside the viewBox, min effective diagram text 14.73px at 320 and 17.54px at 375. Not GitHub itself, not a real phone, not learner testing."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Với trợ lý viết code, hãy đo xem bản sửa có vượt qua kiểm tra và dễ review không. Với công cụ ghi chú, hãy so tóm tắt với nội dung gốc. Với công cụ tạo hình hoặc giọng nói, hãy kiểm tra quyền sử dụng đầu ra và yêu cầu của nơi bạn định dùng.\n\nTên ứng dụng không tự chứng minh độ chính xác. Hãy bắt đầu bằng một nhiệm vụ nhỏ có đáp án hoặc tiêu chí kiểm tra. Ghi cả thời gian sửa lỗi và kiểm chứng, không chỉ thời gian tạo bản nháp. Quy trình này dùng được ngay cả khi danh sách sản phẩm thay đổi.",
+      "sources": [
+        "https://www.nist.gov/itl/ai-risk-management-framework"
+      ]
+    },
+    {
+      "claim_vi": "Các tên dưới đây ghi nhận danh mục lịch sử của nguồn, không phải xác nhận tính năng, giá, quyền riêng tư hoặc khả năng cung cấp vào tháng 10/2026.",
+      "sources": [
+        "https://www.nist.gov/itl/ai-risk-management-framework"
+      ]
+    }
+  ],
+  "design_notes_vi": "Thẻ dọc tự thiết kế từ ví dụ mới; mũi tên biểu diễn thứ tự đọc. Không sử dụng ảnh nguồn.",
+  "editorial_note_vi": "Đợt Công cụ và năng suất theo yêu cầu người dùng 2026-10-13. Chưa review kỹ thuật độc lập hoặc thử người học; không tự merge/phát hành.",
+  "source_only_trivia": [
+    {
+      "note_vi": "Danh mục tên trong snapshot chỉ được kiểm đếm; tính năng, quan hệ doanh nghiệp và tình trạng hiện hành chưa được xác minh toàn bộ.",
+      "status": "not_verified_current"
+    }
+  ]
+}

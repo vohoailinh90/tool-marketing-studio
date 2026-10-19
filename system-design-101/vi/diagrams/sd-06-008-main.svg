@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1073" viewBox="0 0 320 1073" role="img" aria-labelledby="title desc">
+<title id="title">Năm cách giữ bộ nhớ đệm khớp với cơ sở dữ liệu</title>
+<desc id="desc">Ba khung. Khung một, hai cách đọc: cache-aside, ứng dụng hỏi bộ nhớ đệm, thiếu thì đọc cơ sở dữ liệu rồi tự cất vào; read-through, bộ nhớ đệm tự đi lấy khi thiếu. Khung hai, ba cách ghi: write-through ghi cả hai rồi mới báo xong, nhưng một lần ghi lỗi giữa chừng vẫn để lại bản cũ; write-around chỉ ghi cơ sở dữ liệu rồi xóa bản trong bộ nhớ đệm; write-back chỉ ghi bộ nhớ đệm, chép xuống cơ sở dữ liệu sau. Khung ba, kết quả thử với Redis và SQLite: sửa cơ sở dữ liệu mà không xóa bản đệm thì đọc ra giá cũ cho tới khi hết hạn; một lượt đọc chậm có thể cất lại giá cũ ngay sau lượt xóa; write-back mất lần ghi chưa chép khi bộ nhớ đệm sập.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1073" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Năm cách giữ bộ nhớ</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">đệm khớp với cơ sở dữ</text>
+<text x="16" y="82" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">liệu</text>
+<text x="16" y="108.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Hai cách đọc, ba cách ghi; mỗi cách</text>
+<text x="16" y="127.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">sai theo một kiểu riêng.</text>
+<rect x="8" y="147" width="304" height="231" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="175.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Hai cách đọc</text>
+<rect x="20" y="192" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="215" r="11" fill="#16a34a"/>
+<polyline points="37.9,215.4 41.7,219.4 48.5,211" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="218.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cache-aside: ứng dụng hỏi</text>
+<text x="64" y="237.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bộ đệm, thiếu thì đọc cơ sở</text>
+<text x="64" y="257.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dữ liệu rồi tự cất vào.</text>
+<rect x="20" y="283" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="306" r="11" fill="#16a34a"/>
+<polyline points="37.9,306.4 41.7,310.4 48.5,302" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="309.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Read-through: bộ đệm tự đi</text>
+<text x="64" y="328.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lấy khi thiếu; ứng dụng chỉ</text>
+<text x="64" y="348.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nói chuyện với bộ đệm.</text>
+<rect x="8" y="390" width="304" height="341" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="418.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Ba cách ghi</text>
+<rect x="20" y="435" width="280" height="102" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="458" r="11" fill="#16a34a"/>
+<polyline points="37.9,458.4 41.7,462.4 48.5,454" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="461.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Write-through: ghi cả hai rồi</text>
+<text x="64" y="480.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mới báo xong; cả hai thành</text>
+<text x="64" y="500.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">công thì đọc ngay thấy giá</text>
+<text x="64" y="519.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mới.</text>
+<rect x="20" y="545" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="568" r="11" fill="#16a34a"/>
+<polyline points="37.9,568.4 41.7,572.4 48.5,564" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="571.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Write-around: chỉ ghi cơ sở</text>
+<text x="64" y="590.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dữ liệu, rồi xóa bản trong bộ</text>
+<text x="64" y="610.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đệm.</text>
+<rect x="20" y="636" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="659" r="11" fill="#16a34a"/>
+<polyline points="37.9,659.4 41.7,663.4 48.5,655" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="662.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Write-back: chỉ ghi bộ đệm,</text>
+<text x="64" y="681.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chép xuống cơ sở dữ liệu</text>
+<text x="64" y="701.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">sau.</text>
+<rect x="8" y="743" width="304" height="322" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="771.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Thử với Redis và SQLite</text>
+<rect x="20" y="788" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="811" r="11" fill="#16a34a"/>
+<polyline points="37.9,811.4 41.7,815.4 48.5,807" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="814.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Sửa cơ sở dữ liệu mà quên</text>
+<text x="64" y="833.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">xóa bản đệm: đọc ra giá cũ</text>
+<text x="64" y="853.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tới khi hết hạn.</text>
+<rect x="20" y="879" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="902" r="11" fill="#16a34a"/>
+<polyline points="37.9,902.4 41.7,906.4 48.5,898" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="905.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lượt đọc chậm cất lại giá cũ</text>
+<text x="64" y="924.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">ngay sau lượt xóa: lại cũ</text>
+<text x="64" y="944.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thêm một hạn nữa.</text>
+<rect x="20" y="970" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="993" r="11" fill="#16a34a"/>
+<polyline points="37.9,993.4 41.7,997.4 48.5,989" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="996.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Write-back: bộ đệm sập</text>
+<text x="64" y="1015.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trước khi chép thì lần ghi đó</text>
+<text x="64" y="1035.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mất.</text>
+</g>
+</svg>

@@ -20,7 +20,7 @@
         },
         {
           "name": "Khóa chống trùng",
-          "role": "Mã sắp theo thời gian, không ngẫu nhiên.",
+          "role": "Đầu là thời gian, sau là phần ngẫu nhiên.",
           "icon": "key-round"
         }
       ]

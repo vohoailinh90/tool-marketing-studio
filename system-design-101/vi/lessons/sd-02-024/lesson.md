@@ -20,7 +20,7 @@ Bài này xếp mười nguyên tắc theo thời điểm chúng có tác dụng
 **Khi gọi dịch vụ khác.**
 1. Hạ thời gian chờ để hỏng sớm. Mặc định là 60 giây; theo kinh nghiệm của Shopify, đọc 5 giây và ghi 1 giây là mức ổn.
 2. Lắp cầu dao (circuit breaker). Shopify viết Semian bằng Ruby để bảo vệ các lời gọi qua `Net::HTTP`, MySQL, Redis và gRPC.
-3. Dùng khóa chống trùng (idempotency key), và dùng `ULID` cho khóa này thay vì UUID phiên bản 4 ngẫu nhiên. `ULID` (Universally Unique Lexicographically Sortable Identifier) là mã định danh duy nhất sắp được theo thứ tự: phần đầu là thời gian tính đến mili giây, nên mã tạo ở mili giây sau đứng sau. Hai mã tạo trong cùng một mili giây chỉ chắc đúng thứ tự khi thư viện tạo mã theo kiểu tăng dần (monotonic).
+3. Dùng khóa chống trùng (idempotency key), và dùng `ULID` cho khóa này thay vì UUID phiên bản 4 ngẫu nhiên. `ULID` (Universally Unique Lexicographically Sortable Identifier) là mã định danh duy nhất sắp được theo thứ tự: phần đầu là thời gian tính đến mili giây, phần sau là các bit ngẫu nhiên; nhờ phần đầu, mã tạo ở mili giây sau đứng sau. Hai mã tạo trong cùng một mili giây chỉ chắc đúng thứ tự khi thư viện tạo mã theo kiểu tăng dần (monotonic).
 
 **Để nhìn thấy và chuẩn bị.**
 4. Quản lý sức chứa. Ví dụ của nguồn: 50 yêu cầu trong hàng đợi, mỗi yêu cầu mất trung bình 100 mili giây, thì thông lượng là 500 yêu cầu mỗi giây. Phép tính này chỉ đúng khi cả 50 yêu cầu được xử lý cùng lúc; nếu chỉ một nơi xử lý lần lượt từng yêu cầu thì chỉ được 10 yêu cầu mỗi giây. Nguồn không nói giả định này, người biên soạn thêm vào.

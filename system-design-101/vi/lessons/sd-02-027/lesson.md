@@ -11,7 +11,7 @@ Bài này đọc tám mảng theo đường đi của một yêu cầu đặt xe
 - **VIPER** (View, Interactor, Presenter, Entity, Router) — một kiến trúc ứng dụng di động chia màn hình thành năm vai trò; theo nguồn, RIB dựa trên nó.
 - **MVC** (Model, View, Controller) — kiến trúc chia ứng dụng thành dữ liệu, giao diện và phần điều khiển; kiến trúc quen thuộc mà Uber không chọn.
 - **gRPC** (gRPC Remote Procedure Calls) — tên viết tắt đệ quy của một hệ thống gọi hàm từ xa, tức gọi một hàm chạy trên máy khác như gọi hàm trên máy mình.
-- **QUIC** (Quick UDP Internet Connections) — một giao thức truyền dữ liệu chạy trên UDP, chở nhiều luồng dữ liệu trong một kết nối: mất một gói tin chỉ làm chậm luồng chứa gói đó, không chặn các luồng khác. Nó không hứa lúc nào cũng nhanh hơn, và có mạng chặn hẳn UDP.
+- **QUIC** (Quick UDP Internet Connections) — tên khai triển lịch sử, từ thời giao thức còn là bản của Google; chuẩn hiện nay coi QUIC là một cái tên, không phải chữ viết tắt. Đây là giao thức truyền dữ liệu chạy trên UDP, chở nhiều luồng dữ liệu trong một kết nối: mất một gói tin chỉ làm chậm luồng chứa gói đó, không chặn các luồng khác. Nó không hứa lúc nào cũng nhanh hơn, và có mạng chặn hẳn UDP.
 - **UDP** (User Datagram Protocol) — giao thức gửi gói tin không cần bắt tay trước.
 - **API** (Application Programming Interface) — giao diện lập trình ứng dụng: cách các dịch vụ gọi nhau.
 - **SQL** (Structured Query Language) — ngôn ngữ truy vấn có cấu trúc; chữ SQL trong tên MySQL và PostgreSQL.

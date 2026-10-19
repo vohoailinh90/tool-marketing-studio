@@ -22,8 +22,8 @@
 <rect x="20" y="351" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
 <circle cx="50" cy="394.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 383.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"/><circle cx="16.5" cy="7.5" fill="#FFFFFF" r=".5"/></g>
 <text x="78" y="377.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Khóa chống trùng</text>
-<text x="78" y="401.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mã sắp theo thời gian,</text>
-<text x="78" y="420.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">không ngẫu nhiên.</text>
+<text x="78" y="401.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đầu là thời gian, sau là</text>
+<text x="78" y="420.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">phần ngẫu nhiên.</text>
 <rect x="8" y="462" width="304" height="433" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
 <text x="20" y="490.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Nhìn thấy và chuẩn bị</text>
 <rect x="20" y="507" width="280" height="68" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>

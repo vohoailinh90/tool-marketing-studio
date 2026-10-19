@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1263" viewBox="0 0 320 1263" role="img" aria-labelledby="title desc">
+<title id="title">Telegram có an toàn không?</title>
+<desc id="desc">Hai nhóm thẻ so sánh. Chat thường và chat nhóm: tin mã hóa trên đường tới máy chủ, máy chủ lưu tin đã mã hóa chia nhỏ ở nhiều nước, chìa khóa cũng chia nhỏ ở nhiều nước. Secret chat: mã hóa đầu cuối, chỉ máy gửi và máy nhận giải mã được, không hỗ trợ nhóm, chỉ trên thiết bị di động. Khung cuối nêu ba điều cần nhớ.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1263" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Telegram có an toàn</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">không?</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Còn tùy loại chat: ai giữ được chìa</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">khóa giải mã?</text>
+<rect x="8" y="123" width="304" height="402" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Chat thường và chat nhóm</text>
+<rect x="20" y="168" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="211.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 200.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="20" rx="2" ry="2" width="14" x="5" y="2"/><path d="M12 18h.01"/></g>
+<text x="78" y="194.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Máy người gửi</text>
+<text x="78" y="218.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mã hóa tin trên đường tới</text>
+<text x="78" y="237.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">máy chủ.</text>
+<rect x="20" y="287" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="340.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 329.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="8" rx="2" ry="2" width="20" x="2" y="2"/><rect height="8" rx="2" ry="2" width="20" x="2" y="14"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></g>
+<text x="78" y="313.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Máy chủ Telegram</text>
+<text x="78" y="337.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Giải mã được; lưu tin đã</text>
+<text x="78" y="356.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mã hóa, chia nhỏ ở nhiều</text>
+<text x="78" y="376.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nước.</text>
+<rect x="20" y="426" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="469.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 458.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"/><circle cx="16.5" cy="7.5" fill="#FFFFFF" r=".5"/></g>
+<text x="78" y="452.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Chìa khóa giải mã</text>
+<text x="78" y="476.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cũng chia nhỏ, cất ở nhiều</text>
+<text x="78" y="495.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nước khác nhau.</text>
+<polyline points="160,257 160,285" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="160,396 160,424" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="537" width="304" height="404" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="565.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Secret chat: mã hóa đầu</text>
+<text x="20" y="587.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">cuối</text>
+<rect x="20" y="604" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="647.5" r="18" fill="#0f766e"/><g transform="translate(39.2 636.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="20" rx="2" ry="2" width="14" x="5" y="2"/><path d="M12 18h.01"/></g>
+<text x="78" y="630.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Máy người gửi</text>
+<text x="78" y="654.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mã hóa bằng chìa khóa chỉ</text>
+<text x="78" y="673.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hai máy biết.</text>
+<rect x="20" y="723" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="766.5" r="18" fill="#0f766e"/><g transform="translate(39.2 755.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="11" rx="2" ry="2" width="18" x="3" y="11"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></g>
+<text x="78" y="749.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Máy chủ chuyển tiếp</text>
+<text x="78" y="773.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chỉ thấy dữ liệu đã mã</text>
+<text x="78" y="792.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hóa, không đọc được.</text>
+<rect x="20" y="842" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="885.5" r="18" fill="#0f766e"/><g transform="translate(39.2 874.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="20" rx="2" ry="2" width="14" x="5" y="2"/><path d="M12 18h.01"/></g>
+<text x="78" y="868.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Máy người nhận</text>
+<text x="78" y="892.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nơi duy nhất giải mã được</text>
+<text x="78" y="911.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tin.</text>
+<polyline points="160,693 160,721" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="160,812 160,840" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="953" width="304" height="302" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="981.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Nhớ gì</text>
+<rect x="20" y="998" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1021" r="11" fill="#16a34a"/>
+<polyline points="37.9,1021.4 41.7,1025.4 48.5,1017" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1024.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">An toàn nghĩa là ai đọc được</text>
+<text x="64" y="1043.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tin, không chỉ có mã hóa.</text>
+<rect x="20" y="1069" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1092" r="11" fill="#16a34a"/>
+<polyline points="37.9,1092.4 41.7,1096.4 48.5,1088" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1095.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chia nhỏ dữ liệu làm việc tấn</text>
+<text x="64" y="1114.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">công khó hơn, không phải</text>
+<text x="64" y="1134.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">không thể.</text>
+<rect x="20" y="1160" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1183" r="11" fill="#16a34a"/>
+<polyline points="37.9,1183.4 41.7,1187.4 48.5,1179" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1186.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Secret chat không có nhóm,</text>
+<text x="64" y="1205.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">theo nguồn chỉ có trên di</text>
+<text x="64" y="1225.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">động.</text>
+</g>
+</svg>

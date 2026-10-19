@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1066" viewBox="0 0 320 1066" role="img" aria-labelledby="title desc">
+<title id="title">Bảng tính làm phần backend</title>
+<desc id="desc">Ba khung. Khung một: cách Levels fyi chạy lúc đầu, người dùng gửi qua Google Forms, dữ liệu vào Google Sheets, hàm serverless đọc bảng tính và trả dữ liệu cho trang web. Khung hai: ba điều cách này cho, là ra mắt nhanh, không phải vận hành máy chủ, tập trung vào sản phẩm. Khung ba: ba dấu hiệu nên chuyển sang backend thật.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1066" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Bảng tính làm phần</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">backend</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Bắt đầu đơn giản, đổi khi giới hạn</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">thật sự tới.</text>
+<rect x="8" y="123" width="304" height="404" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Lúc đầu: không có backend</text>
+<text x="20" y="173.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">riêng</text>
+<rect x="20" y="190" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="233.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 222.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></g>
+<text x="78" y="216.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Google Forms</text>
+<text x="78" y="240.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nhận số liệu từ người</text>
+<text x="78" y="259.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dùng.</text>
+<rect x="20" y="309" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="352.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 341.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></g>
+<text x="78" y="335.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Google Sheets</text>
+<text x="78" y="359.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bảng tính làm cơ sở dữ</text>
+<text x="78" y="378.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">liệu.</text>
+<rect x="20" y="428" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="471.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 460.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></g>
+<text x="78" y="454.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Hàm serverless</text>
+<text x="78" y="478.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đọc bảng tính, trả dữ liệu</text>
+<text x="78" y="497.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cho trang web.</text>
+<polyline points="160,279 160,307" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="160,398 160,426" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="539" width="304" height="245" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="567.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Cách này cho gì</text>
+<rect x="20" y="584" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="607" r="11" fill="#16a34a"/>
+<polyline points="37.9,607.4 41.7,611.4 48.5,603" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="610.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ra mắt nhanh, thử ý tưởng</text>
+<text x="64" y="629.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">sớm.</text>
+<rect x="20" y="655" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="678" r="11" fill="#16a34a"/>
+<polyline points="37.9,678.4 41.7,682.4 48.5,674" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="681.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Không phải dựng và vận</text>
+<text x="64" y="700.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hành máy chủ cơ sở dữ liệu.</text>
+<rect x="20" y="726" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="749" r="11" fill="#16a34a"/>
+<polyline points="37.9,749.4 41.7,753.4 48.5,745" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="752.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Thời gian dồn vào sản phẩm.</text>
+<rect x="8" y="796" width="304" height="262" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="824.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Khi nào nên đổi</text>
+<rect x="20" y="841" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="864" r="11" fill="#16a34a"/>
+<polyline points="37.9,864.4 41.7,868.4 48.5,860" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="867.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cần ràng buộc dữ liệu hay</text>
+<text x="64" y="886.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">giao dịch thật.</text>
+<rect x="20" y="912" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="935" r="11" fill="#16a34a"/>
+<polyline points="37.9,935.4 41.7,939.4 48.5,931" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="938.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chạm hạn mức gọi hoặc kích</text>
+<text x="64" y="957.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thước bảng tính.</text>
+<rect x="20" y="983" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1006" r="11" fill="#16a34a"/>
+<polyline points="37.9,1006.4 41.7,1010.4 48.5,1002" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1009.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Truy vấn mới khó viết trên</text>
+<text x="64" y="1028.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bảng tính.</text>
+</g>
+</svg>

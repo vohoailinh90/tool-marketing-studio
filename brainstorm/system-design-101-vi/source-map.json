@@ -506,11 +506,11 @@
         },
         {
           "id": "sd-01-050",
-          "title_vi": null,
+          "title_vi": "Sáu giao thức API: chọn theo kiểu hội thoại",
           "title_source": "The Evolving Landscape of API Protocols in 2023",
           "source_url": "https://bytebytego.com/guides/the-evolving-landscape-of-api-protocols-in-2023",
           "source_path": "data/guides/the-evolving-landscape-of-api-protocols-in-2023.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "12f5a34b14d4595e3fac0a57387e13952b11f31b",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/the-evolving-landscape-of-api-protocols-in-2023.md"
         }
@@ -553,41 +553,41 @@
         },
         {
           "id": "sd-02-004",
-          "title_vi": null,
+          "title_vi": "Telegram có an toàn không? Còn tùy ai giữ chìa khóa",
           "title_source": "Is Telegram Secure?",
           "source_url": "https://bytebytego.com/guides/is-telegram-secure",
           "source_path": "data/guides/is-telegram-secure.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "6599b75301e666b72eaddd0dc715c27982a7a14e",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/is-telegram-secure.md"
         },
         {
           "id": "sd-02-005",
-          "title_vi": null,
+          "title_vi": "SapFix của Meta: máy đề xuất bản sửa, người quyết định",
           "title_source": "Fixing Bugs Automatically at Meta Scale",
           "source_url": "https://bytebytego.com/guides/fixing-bugs-automatically-at-meta-scale",
           "source_path": "data/guides/fixing-bugs-automatically-at-meta-scale.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "1c93c47f0a670e947a2fd42d0cdb1ee424a0b7a1",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/fixing-bugs-automatically-at-meta-scale.md"
         },
         {
           "id": "sd-02-006",
-          "title_vi": null,
+          "title_vi": "Levels.fyi: bảng tính làm backend cho hàng triệu người dùng",
           "title_source": "How Levelsfyi Scaled to Millions of Users with Google Sheets",
           "source_url": "https://bytebytego.com/guides/how-levelsfyi-scaled-to-millions-of-users-with-google-sheets",
           "source_path": "data/guides/how-levelsfyi-scaled-to-millions-of-users-with-google-sheets.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "1c4dde8dc1b28373a7b2d8c44bb7e06c979de92e",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-levelsfyi-scaled-to-millions-of-users-with-google-sheets.md"
         },
         {
           "id": "sd-02-007",
-          "title_vi": null,
+          "title_vi": "McDonald's: chuẩn hóa sự kiện trước, mở rộng sau",
           "title_source": "McDonald’s Event-Driven Architecture",
           "source_url": "https://bytebytego.com/guides/mcdonald's-event-driven-architecture",
           "source_path": "data/guides/mcdonald's-event-driven-architecture.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "01c92e9f68eeb53998f1de7d797b85f6183330da",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/mcdonald's-event-driven-architecture.md"
         },

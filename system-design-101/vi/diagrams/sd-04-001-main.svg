@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1421" viewBox="0 0 320 1421" role="img" aria-labelledby="title desc">
+<title id="title">Bản sao đọc và độ trễ sao chép</title>
+<desc id="desc">Ba khung. Khung một: ứng dụng gửi mọi lệnh ghi tới bản chính; bản chính chuyển nhật ký WAL cho bản sao; ứng dụng đọc từ bản sao. Khung hai, theo thử nghiệm trên PostgreSQL 16 với bản sao cố ý trễ 3 giây: ứng dụng ghi đơn hàng và lấy vị trí WAL sau commit; đọc ngay ở bản sao được 0 dòng; chờ tới khi bản sao phát lại tới vị trí đó, khoảng 2,9 giây, thì đọc được 1 dòng. Khung ba: ba cách để đọc thấy dữ liệu mình vừa ghi: đọc từ bản chính, chờ bản sao đuổi kịp vị trí WAL, hoặc cho commit chờ bản sao đồng bộ phát lại xong.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1421" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Bản sao đọc và độ trễ</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">sao chép</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Ghi vào bản chính, đọc từ bản sao. Ở</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">đây bản sao cố ý trễ 3 giây.</text>
+<rect x="8" y="123" width="304" height="444" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Đường đi của lệnh ghi và</text>
+<text x="20" y="173.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">lệnh đọc</text>
+<rect x="20" y="190" width="266" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="243.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 232.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="8" rx="2" ry="2" width="20" x="2" y="2"/><rect height="8" rx="2" ry="2" width="20" x="2" y="14"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></g>
+<text x="78" y="216.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Ứng dụng</text>
+<text x="78" y="240.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Gửi lệnh ghi tới bản</text>
+<text x="78" y="259.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chính, gửi lệnh đọc tới</text>
+<text x="78" y="279.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bản sao.</text>
+<rect x="20" y="329" width="266" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="382.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 371.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></g>
+<text x="78" y="355.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Bản chính</text>
+<text x="78" y="379.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nhận mọi lệnh ghi, ghi</text>
+<text x="78" y="398.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhật ký WAL rồi chuyển</text>
+<text x="78" y="418.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhật ký đó đi.</text>
+<rect x="20" y="468" width="266" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="511.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 500.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></g>
+<text x="78" y="494.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Bản sao</text>
+<text x="78" y="518.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nhận WAL, phát lại theo</text>
+<text x="78" y="537.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thứ tự, chỉ cho đọc.</text>
+<polyline points="153,299 153,327" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="153,438 153,466" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="286,243.5 296,243.5 296,511.5 288,511.5" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="579" width="304" height="479" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="607.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Đọc ngay sau khi ghi</text>
+<rect x="20" y="624" width="84" height="86" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="62" cy="646" r="14" fill="#0f766e"/><g transform="translate(53.6 637.6) scale(0.7)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="8" rx="2" ry="2" width="20" x="2" y="2"/><rect height="8" rx="2" ry="2" width="20" x="2" y="14"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></g>
+<text x="62" y="677.9" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">Ứng</text>
+<text x="62" y="696.6" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">dụng</text>
+<rect x="118" y="624" width="84" height="86" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="160" cy="646" r="14" fill="#0f766e"/><g transform="translate(151.6 637.6) scale(0.7)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></g>
+<text x="160" y="677.9" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">Bản</text>
+<text x="160" y="696.6" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">chính</text>
+<rect x="216" y="624" width="84" height="86" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="258" cy="646" r="14" fill="#0f766e"/><g transform="translate(249.6 637.6) scale(0.7)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></g>
+<text x="258" y="677.9" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">Bản sao</text>
+<polyline points="62,710 62,1046" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
+<polyline points="160,710 160,1046" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
+<polyline points="258,710 258,1046" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
+<text x="111" y="738.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Ghi đơn</text>
+<text x="111" y="757.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">hàng 1</text>
+<polyline points="63,771 157,771" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="111" y="799.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Xong, kèm</text>
+<text x="111" y="818.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">vị trí WAL</text>
+<polyline points="159,832 65,832" fill="none" stroke="#334155" stroke-width="1.8" stroke-dasharray="5 4" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="160" y="860.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Đọc đơn hàng ngay</text>
+<polyline points="63,874 255,874" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="160" y="902.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">0 dòng: chưa phát lại</text>
+<text x="160" y="921.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">tới đó</text>
+<polyline points="257,935 65,935" fill="none" stroke="#334155" stroke-width="1.8" stroke-dasharray="5 4" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="160" y="963.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Chờ phát lại tới vị trí</text>
+<text x="160" y="982.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">WAL</text>
+<polyline points="63,996 255,996" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="160" y="1024.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">1 dòng, sau 2,9 giây</text>
+<polyline points="257,1038 65,1038" fill="none" stroke="#334155" stroke-width="1.8" stroke-dasharray="5 4" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="1070" width="304" height="343" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="1098.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Đọc thấy dữ liệu mình vừa</text>
+<text x="20" y="1120.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">ghi</text>
+<rect x="20" y="1137" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1160" r="11" fill="#16a34a"/>
+<polyline points="37.9,1160.4 41.7,1164.4 48.5,1156" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1163.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lệnh đọc ngay sau lệnh ghi</text>
+<text x="64" y="1182.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thì gửi tới bản chính.</text>
+<rect x="20" y="1208" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1231" r="11" fill="#16a34a"/>
+<polyline points="37.9,1231.4 41.7,1235.4 48.5,1227" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1234.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nhớ vị trí WAL của lệnh ghi;</text>
+<text x="64" y="1253.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chỉ đọc bản sao khi nó đã</text>
+<text x="64" y="1273.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">phát lại tới đó.</text>
+<rect x="20" y="1299" width="280" height="102" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1322" r="11" fill="#16a34a"/>
+<polyline points="37.9,1322.4 41.7,1326.4 48.5,1318" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1325.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cho commit chờ bản sao</text>
+<text x="64" y="1344.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đồng bộ phát lại xong: đọc ở</text>
+<text x="64" y="1364.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bản sao đó thấy ngay,</text>
+<text x="64" y="1383.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhưng lệnh ghi chậm hơn.</text>
+</g>
+</svg>

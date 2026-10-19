@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1345" viewBox="0 0 320 1345" role="img" aria-labelledby="title desc">
+<title id="title">Một đơn hàng, hai cách lưu</title>
+<desc id="desc">Ba khung. Khung một, thiết kế CRUD: một hàng của đơn hàng bị ghi đè qua các bước đặt hàng, thanh toán, hoàn tiền và hủy; cuối cùng hàng ghi cancelled, số tiền 500, cập nhật lúc 10:21, không còn dấu vết đơn từng được trả tiền. Khung hai, event sourcing: bốn sự kiện được nối vào luồng của đơn, OrderPlaced lúc 10:00, OrderPaid lúc 10:03, PaymentRefunded lúc 10:20, OrderCancelled lúc 10:21; không sự kiện nào bị sửa. Khung ba, điều đo được: phát lại tới 10:05 thì đơn ở trạng thái paid, đã trả 500; phát lại tới 10:30 thì cancelled, còn 0; hai bên cùng nối sự kiện số 5 thì bên sau bị khóa chính chặn.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1345" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Một đơn hàng, hai cách</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">lưu</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Ghi đè trạng thái, hay nối thêm sự</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">kiện. Thử trên PostgreSQL 16.</text>
+<rect x="8" y="123" width="304" height="453" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">CRUD: một hàng bị ghi đè</text>
+<rect x="20" y="168" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="194" r="14" fill="#1d4ed8"/>
+<text x="46" y="199.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="194.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Đặt hàng, 10:00</text>
+<text x="70" y="218.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Thêm hàng: placed, 500.</text>
+<rect x="20" y="258" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="284" r="14" fill="#1d4ed8"/>
+<text x="46" y="289.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="284.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Thanh toán, 10:03</text>
+<text x="70" y="308.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Sửa hàng thành paid.</text>
+<polyline points="46,238 46,256" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="348" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="374" r="14" fill="#1d4ed8"/>
+<text x="46" y="379.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="374.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Hoàn tiền rồi hủy</text>
+<text x="70" y="398.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Sửa thành refunded, rồi</text>
+<text x="70" y="417.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cancelled lúc 10:21.</text>
+<polyline points="46,328 46,346" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="457" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="483" r="14" fill="#1d4ed8"/>
+<text x="46" y="488.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">4</text>
+<text x="70" y="483.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Còn lại</text>
+<text x="70" y="507.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cancelled, 500, 10:21:</text>
+<text x="70" y="526.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">không biết đơn từng được</text>
+<text x="70" y="546.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trả tiền.</text>
+<polyline points="46,437 46,455" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="588" width="304" height="455" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="616.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Event sourcing: nối thêm sự</text>
+<text x="20" y="638.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">kiện</text>
+<rect x="20" y="655" width="280" height="68" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="681" r="14" fill="#0f766e"/>
+<text x="46" y="686.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="681.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">OrderPlaced</text>
+<text x="70" y="705.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">10:00, số tiền 500.</text>
+<rect x="20" y="745" width="280" height="68" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="771" r="14" fill="#0f766e"/>
+<text x="46" y="776.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="771.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">OrderPaid</text>
+<text x="70" y="795.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">10:03, đã trả 500.</text>
+<polyline points="46,725 46,743" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="835" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="861" r="14" fill="#0f766e"/>
+<text x="46" y="866.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="861.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">PaymentRefunded</text>
+<text x="70" y="885.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">10:20, sự kiện bù trừ thay vì</text>
+<text x="70" y="904.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">xóa lần trả.</text>
+<polyline points="46,815 46,833" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="944" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="970" r="14" fill="#0f766e"/>
+<text x="46" y="975.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">4</text>
+<text x="70" y="970.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">OrderCancelled</text>
+<text x="70" y="994.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">10:21; bốn sự kiện đều còn</text>
+<text x="70" y="1013.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nguyên.</text>
+<polyline points="46,924 46,942" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="1055" width="304" height="282" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="1083.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Đo được</text>
+<rect x="20" y="1100" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1123" r="11" fill="#16a34a"/>
+<polyline points="37.9,1123.4 41.7,1127.4 48.5,1119" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1126.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Phát lại tới 10:05: paid, đã</text>
+<text x="64" y="1145.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trả 500.</text>
+<rect x="20" y="1171" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1194" r="11" fill="#16a34a"/>
+<polyline points="37.9,1194.4 41.7,1198.4 48.5,1190" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1197.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Phát lại tới 10:30: cancelled,</text>
+<text x="64" y="1216.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">còn 0.</text>
+<rect x="20" y="1242" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1265" r="11" fill="#16a34a"/>
+<polyline points="37.9,1265.4 41.7,1269.4 48.5,1261" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1268.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Hai bên cùng nối sự kiện số</text>
+<text x="64" y="1287.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">5: bên sau bị khóa chính</text>
+<text x="64" y="1307.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chặn.</text>
+</g>
+</svg>

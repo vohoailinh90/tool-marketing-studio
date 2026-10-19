@@ -1,0 +1,46 @@
+{
+  "id": "sd-04-010",
+  "lang": "vi",
+  "title": "Bốn kiểu hàng đợi trong một chương trình",
+  "subtitle": "Kết quả chạy thử bằng Python 3.13 trên một máy.",
+  "desc": "Hai khung. Khung một là bốn thẻ. Hàng đợi FIFO: vào cuối, ra đầu; lấy hết 100.000 phần tử từ đầu một list Python mất khoảng 14 giây, từ đầu một deque mất 0,009 giây. Bộ đệm vòng: 8 ô cố định dùng xoay vòng; khi đầy, người ghi phải chờ người đọc. Hàng đợi ưu tiên: lấy ra phần tử ưu tiên nhất trước; Binh và Dung cùng mức 1 ra trước, rồi Chi, rồi An. Deque: thêm và lấy ở cả hai đầu; chỉ dùng một đầu thì thành ngăn xếp. Khung hai chọn theo câu hỏi: giữ đúng thứ tự đến thì FIFO; bộ nhớ cố định thì bộ đệm vòng; việc gấp đi trước thì hàng đợi ưu tiên; cần cả hai đầu thì deque.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Bốn kiểu, bốn kết quả đo",
+      "items": [
+        {
+          "name": "Hàng đợi FIFO",
+          "role": "Vào cuối, ra đầu. 100.000 phần tử: list khoảng 14 giây, deque 0,009 giây.",
+          "icon": "list-ordered"
+        },
+        {
+          "name": "Bộ đệm vòng",
+          "role": "8 ô cố định, dùng xoay vòng; đầy thì người ghi chờ người đọc.",
+          "icon": "refresh-cw"
+        },
+        {
+          "name": "Hàng đợi ưu tiên",
+          "role": "Ưu tiên nhất ra trước: Binh, Dung (mức 1), rồi Chi, An.",
+          "icon": "gauge"
+        },
+        {
+          "name": "Deque",
+          "role": "Thêm, lấy ở cả hai đầu; chỉ dùng một đầu là ngăn xếp.",
+          "icon": "arrow-left-right"
+        }
+      ],
+      "flow": []
+    },
+    {
+      "kind": "notes",
+      "heading": "Chọn theo câu hỏi",
+      "items": [
+        "Phải giữ đúng thứ tự đến: FIFO.",
+        "Bộ nhớ cố định, không cấp phát thêm: bộ đệm vòng.",
+        "Việc gấp phải đi trước: hàng đợi ưu tiên.",
+        "Cần thêm, lấy ở cả hai đầu: deque."
+      ]
+    }
+  ]
+}

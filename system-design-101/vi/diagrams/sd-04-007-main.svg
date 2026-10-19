@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1334" viewBox="0 0 320 1334" role="img" aria-labelledby="title desc">
+<title id="title">Mức cô lập: mỗi mức chặn được gì</title>
+<desc id="desc">Ba khung. Khung một: bốn thẻ, mỗi mức cô lập một thẻ, ghi điều T1 thấy. Read Uncommitted chạy như Read Committed: không thấy thay đổi chưa commit, vẫn 100. Read Committed, mức mặc định: lần đọc sau thấy 200 vừa được commit, đếm lại thấy thêm dòng mới. Repeatable Read: cả giao dịch thấy một ảnh chụp, vẫn 100 và vẫn 1 dòng. Serializable: như Repeatable Read và còn chặn lệch ghi. Khung hai là ví dụ lệch ghi: hai bác sĩ cùng thấy 2 người đang trực, mỗi người tắt ca của mình; ở Repeatable Read cả hai commit và còn 0 người trực, ở Serializable một giao dịch bị hủy và còn 1 người. Khung ba: mức cao hơn có thể hủy giao dịch nên phải thử lại; cùng tên mức nhưng mỗi hệ có thể làm khác.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1334" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Mức cô lập: mỗi mức</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">chặn được gì</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Đo trên PostgreSQL 16: T1 đọc số dư</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">100, T2 sửa thành 200 rồi commit.</text>
+<rect x="8" y="123" width="304" height="467" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">T1 thấy gì ở từng mức</text>
+<rect x="20" y="168" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="211.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 200.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></g>
+<text x="78" y="194.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Read Uncommitted</text>
+<text x="78" y="218.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ở PostgreSQL chạy như</text>
+<text x="78" y="237.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Read Committed: vẫn 100.</text>
+<rect x="20" y="269" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="322.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 311.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></g>
+<text x="78" y="295.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Read Committed</text>
+<text x="78" y="319.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mức mặc định. Lần đọc sau</text>
+<text x="78" y="338.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thấy 200; đếm lại thấy</text>
+<text x="78" y="358.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dòng mới.</text>
+<rect x="20" y="390" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="433.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 422.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></g>
+<text x="78" y="416.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Repeatable Read</text>
+<text x="78" y="440.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Một ảnh chụp cho cả giao</text>
+<text x="78" y="459.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dịch: vẫn 100, vẫn 1 dòng.</text>
+<rect x="20" y="491" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="534.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 523.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></g>
+<text x="78" y="517.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Serializable</text>
+<text x="78" y="541.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Như Repeatable Read,</text>
+<text x="78" y="560.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chặn thêm lệch ghi.</text>
+<rect x="8" y="602" width="304" height="443" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="630.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Lệch ghi: hai bác sĩ cùng xin</text>
+<text x="20" y="652.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">nghỉ</text>
+<rect x="20" y="669" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="695" r="14" fill="#0f766e"/>
+<text x="46" y="700.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="695.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Cả hai cùng đọc</text>
+<text x="70" y="719.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">An và Bình đều thấy đang</text>
+<text x="70" y="738.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">có 2 người trực.</text>
+<rect x="20" y="778" width="280" height="107" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="804" r="14" fill="#0f766e"/>
+<text x="46" y="809.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="804.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Mỗi người tắt ca mình</text>
+<text x="70" y="828.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Hai giao dịch sửa hai dòng</text>
+<text x="70" y="847.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khác nhau, không chặn</text>
+<text x="70" y="867.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhau.</text>
+<polyline points="46,758 46,776" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="907" width="280" height="126" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="933" r="14" fill="#0f766e"/>
+<text x="46" y="938.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="933.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Kết quả</text>
+<text x="70" y="957.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Repeatable Read: cả hai</text>
+<text x="70" y="976.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">commit, còn 0 người trực.</text>
+<text x="70" y="996.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Serializable: Bình bị hủy,</text>
+<text x="70" y="1015.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">còn 1.</text>
+<polyline points="46,887 46,905" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="1057" width="304" height="269" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="1085.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Khi chọn mức</text>
+<rect x="20" y="1102" width="280" height="102" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1125" r="11" fill="#16a34a"/>
+<polyline points="37.9,1125.4 41.7,1129.4 48.5,1121" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1128.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mức cao hơn chặn nhiều</text>
+<text x="64" y="1147.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hiện tượng hơn, nhưng có</text>
+<text x="64" y="1167.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thể hủy giao dịch: ứng dụng</text>
+<text x="64" y="1186.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">phải thử lại.</text>
+<rect x="20" y="1212" width="280" height="102" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1235" r="11" fill="#16a34a"/>
+<polyline points="37.9,1235.4 41.7,1239.4 48.5,1231" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1238.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cùng một tên mức, mỗi hệ</text>
+<text x="64" y="1257.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">quản trị có thể làm khác:</text>
+<text x="64" y="1277.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đọc tài liệu của hệ mình</text>
+<text x="64" y="1296.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dùng.</text>
+</g>
+</svg>

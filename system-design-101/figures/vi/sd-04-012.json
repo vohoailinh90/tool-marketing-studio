@@ -1,0 +1,62 @@
+{
+  "id": "sd-04-012",
+  "lang": "vi",
+  "title": "Một đơn hàng, hai cách lưu",
+  "subtitle": "Ghi đè trạng thái, hay nối thêm sự kiện. Thử trên PostgreSQL 16.",
+  "desc": "Ba khung. Khung một, thiết kế CRUD: một hàng của đơn hàng bị ghi đè qua các bước đặt hàng, thanh toán, hoàn tiền và hủy; cuối cùng hàng ghi cancelled, số tiền 500, cập nhật lúc 10:21, không còn dấu vết đơn từng được trả tiền. Khung hai, event sourcing: bốn sự kiện được nối vào luồng của đơn, OrderPlaced lúc 10:00, OrderPaid lúc 10:03, PaymentRefunded lúc 10:20, OrderCancelled lúc 10:21; không sự kiện nào bị sửa. Khung ba, điều đo được: phát lại tới 10:05 thì đơn ở trạng thái paid, đã trả 500; phát lại tới 10:30 thì cancelled, còn 0; hai bên cùng nối sự kiện số 5 thì bên sau bị khóa chính chặn.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "CRUD: một hàng bị ghi đè",
+      "items": [
+        {
+          "title": "Đặt hàng, 10:00",
+          "text": "Thêm hàng: placed, 500."
+        },
+        {
+          "title": "Thanh toán, 10:03",
+          "text": "Sửa hàng thành paid."
+        },
+        {
+          "title": "Hoàn tiền rồi hủy",
+          "text": "Sửa thành refunded, rồi cancelled lúc 10:21."
+        },
+        {
+          "title": "Còn lại",
+          "text": "cancelled, 500, 10:21: không biết đơn từng được trả tiền."
+        }
+      ]
+    },
+    {
+      "kind": "steps",
+      "heading": "Event sourcing: nối thêm sự kiện",
+      "items": [
+        {
+          "title": "OrderPlaced",
+          "text": "10:00, số tiền 500."
+        },
+        {
+          "title": "OrderPaid",
+          "text": "10:03, đã trả 500."
+        },
+        {
+          "title": "PaymentRefunded",
+          "text": "10:20, sự kiện bù trừ thay vì xóa lần trả."
+        },
+        {
+          "title": "OrderCancelled",
+          "text": "10:21; bốn sự kiện đều còn nguyên."
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Đo được",
+      "items": [
+        "Phát lại tới 10:05: paid, đã trả 500.",
+        "Phát lại tới 10:30: cancelled, còn 0.",
+        "Hai bên cùng nối sự kiện số 5: bên sau bị khóa chính chặn."
+      ]
+    }
+  ]
+}

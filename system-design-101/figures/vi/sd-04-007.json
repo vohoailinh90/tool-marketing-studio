@@ -1,0 +1,62 @@
+{
+  "id": "sd-04-007",
+  "lang": "vi",
+  "title": "Mức cô lập: mỗi mức chặn được gì",
+  "subtitle": "Đo trên PostgreSQL 16: T1 đọc số dư 100, T2 sửa thành 200 rồi commit.",
+  "desc": "Ba khung. Khung một: bốn thẻ, mỗi mức cô lập một thẻ, ghi điều T1 thấy. Read Uncommitted chạy như Read Committed: không thấy thay đổi chưa commit, vẫn 100. Read Committed, mức mặc định: lần đọc sau thấy 200 vừa được commit, đếm lại thấy thêm dòng mới. Repeatable Read: cả giao dịch thấy một ảnh chụp, vẫn 100 và vẫn 1 dòng. Serializable: như Repeatable Read và còn chặn lệch ghi. Khung hai là ví dụ lệch ghi: hai bác sĩ cùng thấy 2 người đang trực, mỗi người tắt ca của mình; ở Repeatable Read cả hai commit và còn 0 người trực, ở Serializable một giao dịch bị hủy và còn 1 người. Khung ba: mức cao hơn có thể hủy giao dịch nên phải thử lại; cùng tên mức nhưng mỗi hệ có thể làm khác.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "T1 thấy gì ở từng mức",
+      "items": [
+        {
+          "name": "Read Uncommitted",
+          "role": "Ở PostgreSQL chạy như Read Committed: vẫn 100.",
+          "icon": "eye"
+        },
+        {
+          "name": "Read Committed",
+          "role": "Mức mặc định. Lần đọc sau thấy 200; đếm lại thấy dòng mới.",
+          "icon": "eye"
+        },
+        {
+          "name": "Repeatable Read",
+          "role": "Một ảnh chụp cho cả giao dịch: vẫn 100, vẫn 1 dòng.",
+          "icon": "eye"
+        },
+        {
+          "name": "Serializable",
+          "role": "Như Repeatable Read, chặn thêm lệch ghi.",
+          "icon": "shield-check"
+        }
+      ],
+      "flow": []
+    },
+    {
+      "kind": "steps",
+      "heading": "Lệch ghi: hai bác sĩ cùng xin nghỉ",
+      "items": [
+        {
+          "title": "Cả hai cùng đọc",
+          "text": "An và Bình đều thấy đang có 2 người trực."
+        },
+        {
+          "title": "Mỗi người tắt ca mình",
+          "text": "Hai giao dịch sửa hai dòng khác nhau, không chặn nhau."
+        },
+        {
+          "title": "Kết quả",
+          "text": "Repeatable Read: cả hai commit, còn 0 người trực. Serializable: Bình bị hủy, còn 1."
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Khi chọn mức",
+      "items": [
+        "Mức cao hơn chặn nhiều hiện tượng hơn, nhưng có thể hủy giao dịch: ứng dụng phải thử lại.",
+        "Cùng một tên mức, mỗi hệ quản trị có thể làm khác: đọc tài liệu của hệ mình dùng."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "id": "sd-04-002",
+  "title_vi": "Khóa bi quan và khóa lạc quan: hai người cùng mua vé cuối",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "draft",
+  "source_ref": "sd-04-002",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/pessimistic-vs-optimistic-locking.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/pessimistic-vs-optimistic-locking.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a partial clone of the source repository; git hash-object of the retrieved body matches the source-map blob. No source-image bytes used.",
+    "blob_sha": "7a5c4a5cabdb97f749c334785105ebf43b134203",
+    "retrieved_body_sha256": "4fdb6641d0385757301cafe15ab7e75b28af333c6a3e48b137716883403b3aac",
+    "retrieved_body_bytes": 1449
+  },
+  "diagram": "../diagrams/sd-04-002-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-04-007",
+      "relation": "related",
+      "reason_vi": "Mức cô lập REPEATABLE READ cũng chặn mất cập nhật, như dòng cuối của thử nghiệm."
+    },
+    {
+      "lesson_id": "sd-04-042",
+      "relation": "extends",
+      "reason_vi": "Bài về các loại khóa của cơ sở dữ liệu đi sâu hơn vào khóa hàng và khóa bảng."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "evidence": "PostgreSQL 16 ref/select.sgml (The Locking Clause) and mvcc.sgml (row-level locks, Repeatable Read update conflicts, deadlocks) were read from a partial clone of postgres/postgres; the three-way ticket experiment, NOWAIT and Repeatable Read results come from the author's own run on PostgreSQL 16.15 on 2026-10-18 (psycopg 3, two connections)."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright) rendered lesson.md (markdown-it, tables enabled, every <details> open, a 16 px page gutter) at each width: the page never scrolled sideways and the figure was scaled to the column; the smallest SVG font-size times that scale is the recorded minimum at 320 px. `python3 -m scripts.figures check --browser` measured every line of the figure in Chromium inside its box. Not GitHub, not a real phone and not learner testing."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "FOR UPDATE locks the selected rows as though for update, so other transactions that try to update, delete or lock them block until the current transaction ends; NOWAIT reports an error instead of waiting and SKIP LOCKED skips rows that cannot be locked.",
+      "sources": [
+        "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/ref/select.sgml",
+        "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/mvcc.sgml"
+      ],
+      "section": "The Locking Clause; Row-Level Locks",
+      "verified_by": "Read from a partial clone of postgres/postgres at REL_16_STABLE commit 8e928803020e5b5694cde58e4851fce64ef9d520."
+    },
+    {
+      "claim_vi": "A Repeatable Read transaction that tries to update a row changed by a transaction committed after it began fails with 'could not serialize access due to concurrent update', and the application should retry the whole transaction.",
+      "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/mvcc.sgml",
+      "section": "Repeatable Read Isolation Level",
+      "verified_by": "Read from a partial clone of postgres/postgres at REL_16_STABLE commit 8e928803020e5b5694cde58e4851fce64ef9d520."
+    },
+    {
+      "claim_vi": "PostgreSQL detects deadlocks and aborts one of the transactions; the best defence is to acquire locks on multiple objects in a consistent order.",
+      "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/mvcc.sgml",
+      "section": "Deadlocks",
+      "verified_by": "Read from a partial clone of postgres/postgres at REL_16_STABLE commit 8e928803020e5b5694cde58e4851fce64ef9d520."
+    },
+    {
+      "claim_vi": "Measured on PostgreSQL 16.15 with one ticket left: without locking both buyers sold; with SELECT FOR UPDATE the second buyer waited 1.0 s (the first held the lock for 1 s) and then saw 0 and refused; with a version column one UPDATE changed 1 row and the other 0 rows (final version 2); FOR UPDATE NOWAIT failed at once with 'could not obtain lock on row in relation'; under REPEATABLE READ the second writer got 'could not serialize access due to concurrent update'.",
+      "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/mvcc.sgml",
+      "section": "Author's experiment",
+      "verified_by": "The author ran and measured this on 2026-10-18; not repeated on other versions."
+    },
+    {
+      "claim_vi": "The source states: Pessimistic locking assumes conflicts and locks before changes; optimistic locking checks for conflicts at commit and rolls back; best practices include short locks, row-level granularity and retry logic. The lesson does not adopt the rollback wording: a version-checked UPDATE changes 0 rows and the application must notice it (see source_deviations).",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/pessimistic-vs-optimistic-locking.md",
+      "section": "Body",
+      "verified_by": "Source body read."
+    }
+  ],
+  "design_notes_vi": "Một khung lỗi mất cập nhật, hai khung cho hai cách khóa với cùng ví dụ vé cuối, một khung chọn cách. Số trong hình lấy từ thử nghiệm riêng.",
+  "source_deviations": [
+    "The source says optimistic locking rolls the operation back on conflict; the lesson shows that a version-checked UPDATE simply changes 0 rows and the application must notice it.",
+    "The source ranks pessimistic locking as better for data integrity; the lesson shows that both correct methods sell one ticket and differ in waiting versus retrying."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

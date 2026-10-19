@@ -1,0 +1,95 @@
+{
+  "id": "sd-04-012",
+  "title_vi": "Event sourcing khác thiết kế CRUD ở đâu: lưu trạng thái hay lưu chuyện đã xảy ra",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "draft",
+  "source_ref": "sd-04-012",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/differences-in-event-sourcing-system-design.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/differences-in-event-sourcing-system-design.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a partial clone of the source repository; git hash-object of the retrieved body matches the source-map blob. No source-image bytes used.",
+    "blob_sha": "5855e41a9fe5c17c47f78806bcaf60f8bdfef014",
+    "retrieved_body_sha256": "435f5ce5d80eaf4b714a2fe9dd19ac306ac9f6c18c3e67ffee4c9f5fe1e7d8df",
+    "retrieved_body_bytes": 929
+  },
+  "diagram": "../diagrams/sd-04-012-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-04-008",
+      "relation": "related",
+      "reason_vi": "Event sourcing là một trong sáu mẫu quản lý dữ liệu."
+    },
+    {
+      "lesson_id": "sd-04-002",
+      "relation": "related",
+      "reason_vi": "Khóa chính trên số thứ tự sự kiện là một dạng khóa lạc quan."
+    },
+    {
+      "lesson_id": "sd-04-015",
+      "relation": "related",
+      "reason_vi": "Thu thay đổi dữ liệu biến thay đổi của bảng CRUD thành luồng sự kiện."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "evidence": "The Azure Architecture Center Event Sourcing pattern page was read from a partial clone of MicrosoftDocs/architecture-center; the CRUD row, replayed states and duplicate-sequence rejection come from the author's run on PostgreSQL 16.15 on 2026-10-18."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright) rendered lesson.md (markdown-it, tables enabled, every <details> open, a 16 px page gutter) at each width: the page never scrolled sideways and the figure was scaled to the column; the smallest SVG font-size times that scale is the recorded minimum at 320 px. `python3 -m scripts.figures check --browser` measured every line of the figure in Chromium inside its box. Not GitHub, not a real phone and not learner testing."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Event sourcing records each event in an append-only store and derives current state by replaying the entity's event stream; the only way to undo a change is a compensating event; materialized views and projections are eventually consistent; events need versioning; snapshots reduce replay cost; it is a complex pattern costly to migrate to or from and not suited to systems that need real-time consistent views or teams new to event-driven design.",
+      "source": "https://github.com/MicrosoftDocs/architecture-center/blob/8e2c239344ee753a88856800b4210a3e27ac1036/docs/patterns/event-sourcing.md",
+      "section": "Solution; Problems and considerations; When to use this pattern",
+      "verified_by": "Read from a partial clone of MicrosoftDocs/architecture-center at commit 8e2c239344ee753a88856800b4210a3e27ac1036."
+    },
+    {
+      "claim_vi": "Measured on PostgreSQL 16.15: after placed, paid, refunded and cancelled, the CRUD row held cancelled, 500, 10:21; the event table held four events; replaying to 10:05 gave paid with 500 paid, to 10:30 cancelled with 0; a second insert of sequence 5 failed with 'duplicate key value violates unique constraint'.",
+      "source": "https://github.com/MicrosoftDocs/architecture-center/blob/8e2c239344ee753a88856800b4210a3e27ac1036/docs/patterns/event-sourcing.md",
+      "section": "Author's experiment",
+      "verified_by": "The author ran and measured this on 2026-10-18 with two minimal tables, not a dedicated event store."
+    },
+    {
+      "claim_vi": "The source compares a CRUD design with an event sourcing design for an e-commerce system that places and pays for orders, and says event sourcing is used to design a system with determinism.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/differences-in-event-sourcing-system-design.md",
+      "section": "Body",
+      "verified_by": "Source body read; it is three short paragraphs and the comparison itself is in the source image, which was not opened."
+    }
+  ],
+  "design_notes_vi": "Hai luồng bốn bước cho cùng một đơn hàng, một theo CRUD, một theo event sourcing, và ba điều đo được. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "The source body is three short paragraphs and puts the comparison in its image; the lesson's example, experiment and limits are its own, based on the Azure pattern page."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

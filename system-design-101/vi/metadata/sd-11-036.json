@@ -55,7 +55,13 @@
       "verified_by": "Tệp đọc từ nhánh chính ngày 2026-10-19."
     },
     {
-      "claim_vi": "Kho cloudfoundry/vcap có commit đầu tiên ngày 2011-04-11; kho moby/moby có commit đầu tiên ngày 2013-01-18 và thẻ v0.1.0 ngày 2013-03-23.",
+      "claim_vi": "Kho cloudfoundry/vcap có commit đầu tiên ngày 2011-04-11.",
+      "source": "https://github.com/cloudfoundry/vcap",
+      "section": "Lịch sử git",
+      "verified_by": "git log trên bản clone ngày 2026-10-19."
+    },
+    {
+      "claim_vi": "Kho moby/moby có commit đầu tiên ngày 2013-01-18 và thẻ v0.1.0 ngày 2013-03-23.",
       "source": "https://github.com/moby/moby",
       "section": "Lịch sử git",
       "verified_by": "git log trên bản clone ngày 2026-10-19."

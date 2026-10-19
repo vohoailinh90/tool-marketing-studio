@@ -25,7 +25,7 @@ Bài nguồn liệt kê tám khoản và lấy AWS làm ví dụ, nói rằng c�
 | Dữ liệu đi ra | Data Transfer Costs | Đưa dữ liệu vào thường rẻ hoặc miễn phí, kéo ra mới đắt |
 | Ngưỡng miễn phí | Free Tier Ambiguity | Có nhiều loại miễn phí, dịch vụ ngoài ngưỡng bị tính, vượt ngưỡng thì giá theo bảng thường |
 
-Phần "Vì sao tiền vẫn chạy" được đối chiếu với tài liệu của AWS ở mục dưới; riêng khoản dữ liệu đi ra, ngưỡng miễn phí và tiền theo lời gọi chỉ theo bài nguồn.
+Phần "Vì sao tiền vẫn chạy" được đối chiếu với tài liệu của AWS ở mục dưới; riêng khoản dữ liệu đi ra, ngưỡng miễn phí, tiền theo lời gọi và bộ cân bằng tải (`Load Balancers`) chỉ theo bài nguồn.
 
 ## Thử: đọc tài liệu AWS để kiểm từng khoản
 
@@ -40,7 +40,7 @@ Một chỗ không khớp: bài nguồn nói AWS cho tối đa năm địa chỉ
 
 ## Giới hạn cần nhớ
 
-Bài không đưa một đơn giá nào, vì đơn giá đổi theo vùng và theo thời gian, và người biên soạn không đọc được trang giá hiện hành để đối chiếu. Ba khoản (dữ liệu đi ra, tiền theo lời gọi `S3`, ngưỡng miễn phí) chỉ theo bài nguồn. Cách nhóm theo "cái được đếm" là của người biên soạn để dễ tìm, không phải phân loại chính thức của AWS. Nguồn nói tương tự với nhà cung cấp khác, nhưng bài chưa đọc tài liệu của họ.
+Bài không đưa một đơn giá nào, vì đơn giá đổi theo vùng và theo thời gian, và người biên soạn không đọc được trang giá hiện hành để đối chiếu. Bốn khoản (dữ liệu đi ra, tiền theo lời gọi `S3`, ngưỡng miễn phí, bộ cân bằng tải) chỉ theo bài nguồn. Cách nhóm theo "cái được đếm" là của người biên soạn để dễ tìm, không phải phân loại chính thức của AWS. Nguồn nói tương tự với nhà cung cấp khác, nhưng bài chưa đọc tài liệu của họ.
 
 ## Nhìn hình trả lời
 
@@ -56,15 +56,17 @@ Cả hai thuộc nhóm "theo GB mỗi tháng". Ổ đĩa có thể còn ở tr�
 <details>
 <summary>Xem sâu hơn: điều đã sắp xếp lại so với bài nguồn</summary>
 
-Bài nguồn là một hình và danh sách tám khoản theo thứ tự của hình. Bài này giữ tám tên khoản nhưng sắp theo cách hóa đơn đếm, bỏ hình của nguồn, và đối chiếu năm khoản với tài liệu AWS. Bài thêm chỗ không khớp về số địa chỉ miễn phí mà nguồn không nhắc.
+Bài nguồn là một hình và danh sách tám khoản theo thứ tự của hình. Bài này giữ tám tên khoản nhưng sắp theo cách hóa đơn đếm, bỏ hình của nguồn, và đối chiếu bốn khoản với tài liệu AWS. Bài thêm chỗ không khớp về số địa chỉ miễn phí mà nguồn không nhắc.
 
 </details>
 
 ## Nguồn đối chiếu
 
-- [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/hidden-costs-of-the-cloud.md): tên tám khoản chi ẩn và ba khoản chỉ theo nguồn. Cách xếp theo cái được đếm và các nhận xét là của người biên soạn.
+- [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/hidden-costs-of-the-cloud.md): tên tám khoản chi ẩn và bốn khoản chỉ theo nguồn. Cách xếp theo cái được đếm và các nhận xét là của người biên soạn.
 - [AWS — tài liệu `S3` về tải lên nhiều phần (kho lưu trữ, commit 838da1b)](https://github.com/awsdocs/amazon-s3-userguide/blob/838da1b4daaf051faf6e33388f1068a955a301e8/doc_source/mpuoverview.md): phần dở dang vẫn bị tính tiền.
-- [AWS — tài liệu EC2 về bản chụp EBS, xóa ổ đĩa và Elastic IP (kho lưu trữ, commit 8a9cb02)](https://github.com/awsdocs/amazon-ec2-user-guide/blob/8a9cb02eb5a0145740adff6099c144aa7f594053/doc_source/EBSSnapshots.md): cách tính bản chụp, trạng thái ổ, và địa chỉ IP nhàn rỗi.
+- [AWS — tài liệu EC2 về bản chụp EBS (kho lưu trữ, commit 8a9cb02)](https://github.com/awsdocs/amazon-ec2-user-guide/blob/8a9cb02eb5a0145740adff6099c144aa7f594053/doc_source/EBSSnapshots.md): cách tính bản chụp.
+- [AWS — tài liệu EC2 về xóa ổ đĩa EBS (kho lưu trữ, commit 8a9cb02)](https://github.com/awsdocs/amazon-ec2-user-guide/blob/8a9cb02eb5a0145740adff6099c144aa7f594053/doc_source/ebs-deleting-volume.md): trạng thái ổ đĩa và việc chụp trước khi xóa.
+- [AWS — tài liệu EC2 về Elastic IP (kho lưu trữ, commit 8a9cb02)](https://github.com/awsdocs/amazon-ec2-user-guide/blob/8a9cb02eb5a0145740adff6099c144aa7f594053/doc_source/elastic-ip-addresses-eip.md): địa chỉ IP nhàn rỗi.
 
 Đã đọc nguồn ngày 2026-10-19. Hai kho tài liệu AWS đã ngừng cập nhật, nên chưa đối chiếu với bảng giá hiện hành.
 Bài viết và hình được thiết kế độc lập.

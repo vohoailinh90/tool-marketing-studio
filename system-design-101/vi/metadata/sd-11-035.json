@@ -27,7 +27,7 @@
     "claims": {
       "status": "checked",
       "checked_on": "2026-10-19",
-      "evidence": "Năm khoản (phần tải lên dở, bản chụp EBS, ổ EBS, địa chỉ Elastic IP) đối chiếu với các trang tài liệu AWS trong hai kho lưu trữ awsdocs/amazon-s3-userguide (commit 838da1b) và awsdocs/amazon-ec2-user-guide (commit 8a9cb02); hai kho đã ngừng cập nhật nên có thể cũ hơn bảng giá hiện hành. Dữ liệu đi ra, tiền theo lời gọi S3 và ngưỡng miễn phí chỉ theo bài nguồn; không đọc được trang giá của AWS (tên miền bị chặn trong môi trường biên soạn). Không ghi đơn giá."
+      "evidence": "Bốn khoản (phần tải lên dở, bản chụp EBS, ổ EBS, địa chỉ Elastic IP) đối chiếu với các trang tài liệu AWS trong hai kho lưu trữ awsdocs/amazon-s3-userguide (commit 838da1b) và awsdocs/amazon-ec2-user-guide (commit 8a9cb02); hai kho đã ngừng cập nhật nên có thể cũ hơn bảng giá hiện hành. Dữ liệu đi ra, tiền theo lời gọi S3, ngưỡng miễn phí và bộ cân bằng tải chỉ theo bài nguồn; không đọc được trang giá của AWS (tên miền bị chặn trong môi trường biên soạn). Không ghi đơn giá."
     },
     "technical_review": {
       "status": "pending",

@@ -92,7 +92,7 @@
       "verified_by": "Read from a copy of the OWASP CheatSheetSeries file fetched at commit f9a631ec47a5fd134bb83b57ce690d7946360cea (the head of master when read)."
     },
     {
-      "claim_vi": "With several servers the session store has to be shared between them, and the server keeps and looks up that store (the scaling cost of server-side sessions).",
+      "claim_vi": "With several servers the session store is usually shared between them, or each server keeps its own store and the load balancer routes the user back to the server holding that session (session affinity); either way the server keeps and looks up the store (the scaling cost of server-side sessions).",
       "source": "https://github.com/OWASP/CheatSheetSeries/blob/f9a631ec47a5fd134bb83b57ce690d7946360cea/cheatsheets/Session_Management_Cheat_Sheet.md",
       "section": "Server-Side Session Token Storage",
       "verified_by": "Author's general knowledge; not checked against the cited page, which only says the session meaning is kept server side and the store must be protected. Not measured."

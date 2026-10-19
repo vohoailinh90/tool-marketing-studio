@@ -39,7 +39,7 @@ Màn hình trang phim cần tên phim, hãng sản xuất và danh sách diễn 
 <summary>Xem sâu hơn: vì sao không để máy khách gọi thẳng</summary>
 
 - Mỗi yêu cầu đi qua mạng di động tốn thời gian; một màn hình cần nhiều yêu cầu thì chậm hơn.
-- Máy khách biết tên từng dịch vụ thì đổi hay tách dịch vụ phía sau sẽ làm hỏng ứng dụng cũ đã cài.
+- Máy khách gọi thẳng từng dịch vụ thì khi phía sau đổi địa chỉ hay đổi cách trả lời mà ứng dụng cũ đang dựa vào, ứng dụng cũ đã cài sẽ hỏng; đổi tên hay tách dịch vụ mà vẫn giữ nguyên địa chỉ và cách trả lời cũ thì không sao, nhưng phải giữ được điều đó.
 - Cổng liên hợp để mỗi đội giữ phần dữ liệu của mình, rồi ghép lại thành một chỗ cho máy khách gọi.
 
 Đây là kiến thức chung của người biên soạn, không phải từ bài nguồn.

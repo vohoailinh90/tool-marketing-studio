@@ -14,7 +14,7 @@ Bài tự chạy một thí nghiệm nhỏ bằng Python rồi đọc kết qu�
 
 **Bốn việc chờ.** Mỗi việc chỉ chờ nửa giây, như khi đợi một máy chủ khác trả lời. Làm lần lượt thì hết 2,00 giây vì phải chờ nối đuôi nhau. Cho cả bốn việc cùng đang chờ thì hết 0,50 giây, dù bằng asyncio (chạy trong một luồng, nên không cần nhiều lõi) hay bằng bốn luồng. Đây là đồng thời: nhiều việc cùng tiến triển trong những khoảng thời gian chồng nhau, và thời gian chờ của việc này được dùng cho việc kia.
 
-**Bốn việc tính toán.** Mỗi việc là một vòng lặp cộng ba triệu số, không có gì để chờ. Lần lượt hết khoảng 0,6 giây. Bốn luồng không nhanh hơn, còn chậm hơn một chút, khoảng 0,7 giây. Bốn tiến trình thì hết khoảng 0,2 đến 0,3 giây, vì mỗi tiến trình dùng một lõi riêng. Đây là song song: nhiều phép tính chạy đúng cùng một lúc trên nhiều lõi.
+**Bốn việc tính toán.** Mỗi việc là một vòng lặp cộng ba triệu số, không có gì để chờ. Lần lượt hết khoảng 0,6 giây. Bốn luồng không nhanh hơn, còn chậm hơn một chút, khoảng 0,7 giây. Bốn tiến trình thì hết khoảng 0,2 đến 0,3 giây, vì các tiến trình là những trình thông dịch riêng, và hệ điều hành xếp lịch cho chúng chạy trên nhiều lõi cùng lúc (không có chuyện mỗi tiến trình được gắn một lõi cố định). Đây là song song: nhiều phép tính chạy đúng cùng một lúc trên nhiều lõi.
 
 **Vì sao luồng không giúp việc tính toán.** Tài liệu `threading` của Python nói: trong CPython, do GIL, một thời điểm chỉ một luồng chạy mã Python. Muốn dùng nhiều lõi thì nên dùng `multiprocessing` hoặc `ProcessPoolExecutor`; còn luồng vẫn phù hợp khi chạy nhiều việc bị chặn bởi chờ vào ra. Cũng tài liệu đó ghi từ Python 3.13 có bản "free-threaded" tắt được GIL; thí nghiệm ở đây chạy trên bản có GIL.
 
@@ -32,7 +32,7 @@ Một chương trình gọi hai mươi dịch vụ ngoài, mỗi lần gọi ch�
 <summary>Xem đáp án</summary>
 
 Chương trình gọi dịch vụ hợp với đồng thời (asyncio hoặc luồng): thời gian chờ chồng nhau, như bốn việc chờ từ 2,00 giây xuống 0,50 giây.
-Chương trình nén ảnh hợp với song song (nhiều tiến trình, mỗi tiến trình một lõi). Bốn luồng không giúp vì trong CPython có GIL, một thời điểm chỉ một luồng chạy mã Python, nên bốn việc tính toán vẫn chạy nối đuôi nhau.
+Chương trình nén ảnh hợp với song song (nhiều tiến trình để hệ điều hành xếp lên nhiều lõi). Bốn luồng không giúp vì trong CPython có GIL, một thời điểm chỉ một luồng chạy mã Python, nên bốn việc tính toán vẫn chạy nối đuôi nhau.
 
 </details>
 

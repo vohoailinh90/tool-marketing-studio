@@ -147,7 +147,7 @@
   "design_notes_vi": "Ba chuỗi bước theo thời gian (các thế hệ đầu; 1972 đến thập niên 1990; từ năm 2000) và một khung ghi nhớ. Mốc theo bài nguồn; mỗi ngôn ngữ được tả bằng tài liệu của chính nó. Không dùng ảnh nguồn.",
   "source_deviations": [
     "Source is seven bullets by decade; the lesson keeps the milestones and language names, redraws them as three timelines and does not use the source image.",
-    "Source spells Object-C and places Go in the Java family and D, Rust, Zig and Carbon in the C++ family; the lesson uses Objective-C (general knowledge) and describes each language with its own README instead of the source's families.",
+    "Source spells Object-C and places Go in the Java family and D, Rust, Zig and Carbon in the C++ family; the lesson uses Objective-C (general knowledge) and describes the languages whose project documentation was read with their own README instead of the source's families; the others (for example Fortran, LISP, Java, Zig) are only the source's words or unchecked.",
     "Only the Python and JavaScript origins are checked against documentation; the other dates are the source's word.",
     "The lesson does not reproduce the source's sentences about popularity, simplicity and security or about Flutter and .NET."
   ],

@@ -1,7 +1,7 @@
 # Lịch sử ngắn của các ngôn ngữ lập trình
 
 **Trong khoảng bảy mươi năm, ngôn ngữ lập trình đi từ thẻ đục lỗ và hợp ngữ tới các ngôn ngữ bậc cao; mỗi giai đoạn để lại những tính năng và thói quen vẫn còn dùng ngày nay.**
-Bài giữ các mốc thời gian và tên ngôn ngữ của bài nguồn, rồi tả mỗi ngôn ngữ bằng lời của chính dự án hay tài liệu của nó; mốc nào chưa đối chiếu được thì nói rõ.
+Bài giữ các mốc thời gian và tên ngôn ngữ của bài nguồn, rồi tả bằng lời của chính dự án hay tài liệu của nó những ngôn ngữ mà bài đã đọc được tài liệu; ngôn ngữ nào chỉ lặp lại lời nguồn (như Fortran, LISP, Java) hoặc chưa đối chiếu được (như Zig), và mốc nào chưa đối chiếu được, thì bài nói rõ.
 
 ![Ba chuỗi bước theo thời gian. Các thế hệ đầu: thẻ đục lỗ; hợp ngữ hướng về máy; từ 1957 ngôn ngữ hướng về con người như Fortran và LISP. Từ 1972 đến thập niên 1990: Smalltalk và C năm 1972; ngôn ngữ hướng đối tượng như Objective-C và C++ thập niên 1980; Python đầu thập niên 1990, kế nhiệm một ngôn ngữ cũ; JavaScript vào trình duyệt Netscape tháng 9 năm 1995, cùng năm Java, PHP và Ruby theo bài nguồn. Từ năm 2000: C# năm 2000; các ngôn ngữ thập niên 2010 như Rust, Go, Carbon, Kotlin, Swift, TypeScript và Dart, mỗi ngôn ngữ tự nêu một mục tiêu riêng. Khung cuối nêu ba điều cần nhớ.](../../diagrams/sd-10-017-main.svg)
 

@@ -115,7 +115,7 @@
   ],
   "design_notes_vi": "Ba nhóm thẻ (cách mô tả chương trình; cách tổ chức mã; nhiều việc và dữ liệu thay đổi) và một khung ghi nhớ; cách chia nhóm là của bài. Lời trong thẻ viết từ tài liệu gốc. Không dùng ảnh nguồn.",
   "source_deviations": [
-    "Source is eight short paragraphs with a definition and example languages each; the lesson keeps the eight names, groups them into three sets and explains each paradigm from the Python, MDN, Spring, AspectJ, Reactive Streams, JDK and Go documentation without reusing the source's sentences or its language lists.",
+    "Source is eight short paragraphs with a definition and example languages each; the lesson keeps the eight names, groups them into three sets and explains the paradigms from the Python, MDN, Spring, AspectJ, Reactive Streams, JDK and Go documentation without reusing the source's sentences or its language lists.",
     "The Python HOWTO says procedural where the source says imperative; the lesson notes it reads them as close, which is the author's interpretation."
   ],
   "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích thêm là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."

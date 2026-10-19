@@ -9,13 +9,13 @@ Bài này không dạy lại cookie, session và token: xem [bài sd-14-008](../
 ## Từ viết tắt
 
 - **PASETO** (Platform-Agnostic SEcurity TOkens) — token bảo mật không phụ thuộc nền tảng: định dạng token tự mang dữ liệu, trong đó phiên bản và mục đích của token chọn sẵn bộ thuật toán.
-- **JWT** (JSON Web Token) — token web JSON: định dạng token tự mang dữ liệu và chữ ký, có phần header do người gửi viết, trong đó trường `alg` nêu thuật toán.
+- **JWT** (JSON Web Token) — token web JSON: định dạng token tự mang dữ liệu (loại ký mà bài thử có kèm chữ ký), có phần header do người gửi viết, trong đó trường `alg` nêu thuật toán.
 - **JSON** (JavaScript Object Notation) — ký hiệu đối tượng JavaScript: định dạng văn bản gồm các cặp tên và giá trị; JWT dùng nó cho header và payload, PASETO dùng nó cho dữ liệu.
 - **OWASP** (Open Worldwide Application Security Project) — tổ chức cộng đồng chuyên về bảo mật ứng dụng, có các hướng dẫn mà bài dùng để đối chiếu.
 
 ## Đọc hình
 
-**Cookie và session.** Cookie chỉ mang một mã; ý nghĩa của mã nằm trong kho session ở máy chủ (OWASP). Máy chủ giữ dữ liệu nên muốn thu hồi chỉ cần xóa bản ghi. Cái giá là phải giữ kho đó, và khi có nhiều máy chủ thì chúng phải dùng chung kho (hiểu biết chung của người biên soạn, bài không đo). OWASP còn khuyên cân nhắc session thông thường thay cho JWT làm session, vì danh sách thu hồi làm session không còn "không trạng thái".
+**Cookie và session.** Cookie chỉ mang một mã; ý nghĩa của mã nằm trong kho session ở máy chủ (OWASP). Máy chủ giữ dữ liệu nên muốn thu hồi chỉ cần xóa bản ghi. Cái giá là phải giữ kho đó, và khi có nhiều máy chủ thì thường dùng chung một kho, hoặc mỗi máy chủ giữ kho riêng và bộ cân bằng tải đưa người dùng về đúng máy chủ đã giữ session của họ (hiểu biết chung của người biên soạn, bài không đo). OWASP còn khuyên cân nhắc session thông thường thay cho JWT làm session, vì danh sách thu hồi làm session không còn "không trạng thái".
 
 **JWT.** Header và payload của JWT ký (loại bài thử; JWT mã hóa thì payload không đọc được nếu thiếu khóa, bài không thử) chỉ là base64url: không cần khóa vẫn đọc ra `{"alg":"HS256","typ":"JWT"}` và thông tin người dùng. Header do người gửi viết, nên `alg` là lời người gửi tự khai; người kiểm phải tự khai danh sách thuật toán mình chấp nhận. PyJWT 2.14.0 buộc điều đó: gọi `decode` mà quên `algorithms` thì báo lỗi. Token `alg: none` bị từ chối trong cả bốn cách khai tôi thử, kể cả khi tự ghi `none` vào danh sách. Token `HS256` ký bằng khóa công khai của hệ `RS256` cũng bị từ chối, với cả hai cách viết khóa tôi thử. Vậy JWT dùng đúng, trên thư viện đã vá, không dính các lỗi nhầm thuật toán này. OWASP nói lỗi `none` nay đã được sửa, nhưng vẫn nêu lỗi nhầm loại khóa ở những thư viện cụ thể (có PyJWT ở bản cũ): an toàn nằm ở thư viện và cách cấu hình, không nằm ở định dạng.
 

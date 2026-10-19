@@ -139,6 +139,8 @@ Các bài chưa viết của nhóm này không có trong danh sách; số thứ 
 6. [Lớp trung gian cơ sở dữ liệu: một cửa chung và ba cái giá](lessons/sd-08-006/lesson.md) — bài mới viết tại repo này (có phép đo riêng); chờ review kỹ thuật.
 7. [Chín việc làm khi phát triển dịch vụ nhỏ: việc nào có chỗ đối chiếu](lessons/sd-08-007/lesson.md) — bài mới viết tại repo này (có phép đo riêng); chờ review kỹ thuật.
 8. [Năm mẫu thiết kế đầu tiên, tìm trong thư viện chuẩn của Python](lessons/sd-08-008/lesson.md) — bài mới viết tại repo này (có phép thử riêng); chờ review kỹ thuật.
+9. [Bảy thuật ngữ của thiết kế hướng miền, và cái giá của một khối dữ liệu quá lớn](lessons/sd-08-009/lesson.md) — bài mới viết tại repo này (có phép đo riêng); chờ review kỹ thuật.
+10. [Tám khái niệm lập trình hướng đối tượng, thử từng cái trong Python](lessons/sd-08-010/lesson.md) — bài mới viết tại repo này (có phép đo riêng); chờ review kỹ thuật.
 
 ## Công cụ và năng suất
 

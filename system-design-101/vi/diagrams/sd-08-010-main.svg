@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1076" viewBox="0 0 320 1076" role="img" aria-labelledby="title desc">
+<title id="title">Tám khái niệm hướng đối tượng, thử trong Python</title>
+<desc id="desc">Ba khung. Khung một, tám khái niệm: lớp, đối tượng, đóng gói, trừu tượng, kế thừa, đa hình, thành phần và giao diện. Khung hai, thử trong Python 3.13: biến đóng gói gạch dưới vẫn gán được từ ngoài, tên hai gạch dưới chỉ bị đổi tên và vẫn đọc được, lớp trừu tượng không tạo được đối tượng, vịt gõ không cần kế thừa mà vẫn dùng chung mã. Khung ba, đo thời gian: gọi phương thức cách 1, 5 hay 20 tầng kế thừa đều khoảng 24 đến 26 nano giây, và gọi đa hình trên 100 đối tượng mất 3,8 đến 4,0 micro giây so với 7,8 đến 8,2 micro giây khi tự rẽ nhánh bằng kiểm tra kiểu.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1076" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Tám khái niệm hướng</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">đối tượng, thử trong</text>
+<text x="16" y="82" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Python</text>
+<text x="16" y="108.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Khái niệm nào ngôn ngữ ép, khái</text>
+<text x="16" y="127.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">niệm nào chỉ là quy ước.</text>
+<rect x="8" y="147" width="304" height="282" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="175.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Tám khái niệm</text>
+<rect x="20" y="192" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="215" r="11" fill="#16a34a"/>
+<polyline points="37.9,215.4 41.7,219.4 48.5,211" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="218.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lớp, đối tượng: khuôn và vật</text>
+<text x="64" y="237.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dựng từ khuôn.</text>
+<rect x="20" y="263" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="286" r="11" fill="#16a34a"/>
+<polyline points="37.9,286.4 41.7,290.4 48.5,282" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="289.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đóng gói, trừu tượng: giấu</text>
+<text x="64" y="308.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chi tiết, chỉ lộ cách dùng.</text>
+<rect x="20" y="334" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="357" r="11" fill="#16a34a"/>
+<polyline points="37.9,357.4 41.7,361.4 48.5,353" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="360.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Kế thừa, đa hình, thành</text>
+<text x="64" y="379.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">phần, giao diện: cách dùng</text>
+<text x="64" y="399.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chung và ghép mã.</text>
+<rect x="8" y="441" width="304" height="333" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="469.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Thử trong Python 3.13</text>
+<rect x="20" y="486" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="509" r="11" fill="#16a34a"/>
+<polyline points="37.9,509.4 41.7,513.4 48.5,505" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="512.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Gạch dưới chỉ là quy ước:</text>
+<text x="64" y="531.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">vẫn gán từ ngoài được.</text>
+<rect x="20" y="557" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="580" r="11" fill="#16a34a"/>
+<polyline points="37.9,580.4 41.7,584.4 48.5,576" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="583.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Hai gạch dưới: chỉ đổi tên,</text>
+<text x="64" y="602.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">vẫn đọc được.</text>
+<rect x="20" y="628" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="651" r="11" fill="#16a34a"/>
+<polyline points="37.9,651.4 41.7,655.4 48.5,647" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="654.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lớp trừu tượng không tạo</text>
+<text x="64" y="673.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">được đối tượng.</text>
+<rect x="20" y="699" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="722" r="11" fill="#16a34a"/>
+<polyline points="37.9,722.4 41.7,726.4 48.5,718" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="725.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Vịt gõ: không kế thừa vẫn</text>
+<text x="64" y="744.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dùng chung mã.</text>
+<rect x="8" y="786" width="304" height="282" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="814.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Đo thời gian</text>
+<rect x="20" y="831" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="854" r="11" fill="#16a34a"/>
+<polyline points="37.9,854.4 41.7,858.4 48.5,850" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="857.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Gọi phương thức qua 1, 5, 20</text>
+<text x="64" y="876.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tầng: khoảng 24 đến 26</text>
+<text x="64" y="896.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nano giây.</text>
+<rect x="20" y="922" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="945" r="11" fill="#16a34a"/>
+<polyline points="37.9,945.4 41.7,949.4 48.5,941" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="948.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đa hình, 100 đối tượng: 3,8</text>
+<text x="64" y="967.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đến 4,0 micro giây.</text>
+<rect x="20" y="993" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1016" r="11" fill="#16a34a"/>
+<polyline points="37.9,1016.4 41.7,1020.4 48.5,1012" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1019.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tự rẽ nhánh bằng kiểm tra</text>
+<text x="64" y="1038.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">kiểu: 7,8 đến 8,2 micro giây.</text>
+</g>
+</svg>

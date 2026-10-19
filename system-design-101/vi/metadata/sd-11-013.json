@@ -62,7 +62,7 @@
   ],
   "design_notes_vi": "Hai khung ba bước: nút thắt ứng dụng và dữ liệu.",
   "source_deviations": [
-    "The source uses 'vertical partition' to mean a bigger server; the lesson keeps that sense and notes that another lesson uses it for splitting columns.",
+    "The source calls a bigger server 'vertical partition'; the lesson names it vertical scaling (the usual term) and notes the source's wording, since other lessons use vertical partitioning for splitting columns.",
     "Adds a cache-hit-ratio calculation and a replica-lag note."
   ],
   "editorial_note_vi": "Bài mới viết tại repo này (gói W16), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."

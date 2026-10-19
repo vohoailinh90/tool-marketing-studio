@@ -22,7 +22,7 @@ Sáu bước giữ theo thứ tự của bài nguồn; ví dụ phụ và phép 
 
 **Bước 4. Tách đọc và ghi.** Khi cơ sở dữ liệu thành nút thắt, những truy vấn đọc thường xuyên được chuyển sang các bản sao chỉ đọc; chỉ ghi mới vào bản chính. Nhờ đó khả năng đọc tăng nhiều. Lưu ý: bản sao có thể chậm hơn bản chính một chút.
 
-**Bước 5. Ba lựa chọn khi một cơ sở dữ liệu không đủ cho cả bảng sản phẩm lẫn bảng người dùng.** *Chia theo chiều dọc* ở bài nguồn là tăng sức mạnh một máy (thêm CPU, RAM) và có giới hạn cứng. *Chia theo chiều ngang* là thêm máy cơ sở dữ liệu. *Thêm tầng bộ nhớ đệm* để giảm lượt đọc.
+**Bước 5. Ba lựa chọn khi một cơ sở dữ liệu không đủ cho cả bảng sản phẩm lẫn bảng người dùng.** *Tăng cấu hình một máy (vertical scaling, thêm CPU, RAM)* có giới hạn cứng; bài nguồn gọi cách này là "vertical partition", nhưng thuật ngữ thường dùng cho việc này là vertical scaling. *Chia dữ liệu theo chiều ngang (horizontal partition)* là thêm máy cơ sở dữ liệu, mỗi máy giữ một phần dữ liệu. *Thêm tầng bộ nhớ đệm* để giảm lượt đọc.
 
 **Ví dụ tính về bộ nhớ đệm.** Giả sử 1 000 lượt đọc mỗi giây và bộ đệm trả lời được 90% (tỷ lệ trúng 90%). Cơ sở dữ liệu chỉ nhận 100 lượt mỗi giây, ít hơn mười lần. Nếu tỷ lệ trúng lên 95% thì chỉ còn 50 lượt, ít hơn hai mươi lần. Tăng vài điểm phần trăm tỷ lệ trúng có thể giảm tải cho cơ sở dữ liệu rất nhiều, nhưng chỉ cho việc đọc.
 
@@ -30,7 +30,7 @@ Sáu bước giữ theo thứ tự của bài nguồn; ví dụ phụ và phép 
 
 ## Giới hạn cần nhớ
 
-"Chia theo chiều dọc" ở bước 5 được bài nguồn dùng theo nghĩa tăng cấu hình máy; ở bài khác trong bộ này nó nghĩa là cắt cột của bảng, nên đọc kỹ ngữ cảnh. Không phải trang nào cũng đi đủ sáu bước theo đúng thứ tự: nhiều trang dùng bộ nhớ đệm sớm hơn, và nhiều trang nhỏ không bao giờ cần vi dịch vụ, thứ mang thêm chi phí vận hành. Bài chưa đối chiếu được tài liệu chính thức nào trong phiên viết, và các con số trong ví dụ là số học thuần túy, không phải đo thật.
+Bài nguồn gọi việc tăng cấu hình máy ở bước 5 là "vertical partition"; bài này dùng tên vertical scaling cho nó, vì "chia theo chiều dọc" ở các bài khác của bộ này nghĩa là cắt cột của bảng. Không phải trang nào cũng đi đủ sáu bước theo đúng thứ tự: nhiều trang dùng bộ nhớ đệm sớm hơn, và nhiều trang nhỏ không bao giờ cần vi dịch vụ, thứ mang thêm chi phí vận hành. Bài chưa đối chiếu được tài liệu chính thức nào trong phiên viết, và các con số trong ví dụ là số học thuần túy, không phải đo thật.
 
 ## Nhìn hình trả lời
 

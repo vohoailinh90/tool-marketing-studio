@@ -3,7 +3,7 @@
 **"Có mã hóa" chưa đủ để gọi là an toàn; câu hỏi thật là ai có thể giải mã tin nhắn.** Bài nguồn so sánh hai loại chat của Telegram: chat thường và chat nhóm không mã hóa đầu cuối, còn "secret chat" thì có.
 Bài này đọc hai loại đó theo cùng một câu hỏi: ngoài người gửi và người nhận, còn ai đọc được tin?
 
-![Hai nhóm thẻ so sánh. Chat thường và chat nhóm: máy người gửi mã hóa tin trên đường tới máy chủ; máy chủ Telegram giải mã được và lưu tin đã mã hóa, chia nhỏ ở nhiều nước; chìa khóa giải mã cũng chia nhỏ ở nhiều nước. Secret chat: máy người gửi mã hóa bằng chìa khóa chỉ hai máy biết; máy chủ chỉ chuyển tiếp dữ liệu đã mã hóa; chỉ hai máy ở hai đầu cuộc chat giải mã được. Khung cuối: ba điều cần nhớ.](../../diagrams/sd-02-004-main.svg)
+![Hai nhóm thẻ so sánh. Chat thường và chat nhóm: máy người gửi mã hóa tin trên đường tới máy chủ; máy chủ Telegram giải mã được và lưu tin đã mã hóa ở nhiều trung tâm dữ liệu; chìa khóa giải mã được chia thành nhiều phần cất ở nhiều nơi. Secret chat: máy người gửi mã hóa bằng chìa khóa chỉ hai máy biết; máy chủ chỉ chuyển tiếp dữ liệu đã mã hóa; chỉ hai máy ở hai đầu cuộc chat giải mã được. Khung cuối: ba điều cần nhớ.](../../diagrams/sd-02-004-main.svg)
 
 ## Từ viết tắt
 
@@ -14,10 +14,12 @@ Bài này đọc hai loại đó theo cùng một câu hỏi: ngoài người g�
 **Định nghĩa trước.** Theo bài nguồn, một cuộc chat "an toàn" thường nghĩa là tin được mã hóa ở phía người gửi và chỉ giải mã được ở hai đầu cuộc chat, tức là E2EE. Vì chat có hai chiều, cả hai máy đều giữ chìa khóa và đều giải mã được tin mình nhận.
 
 **Chat thường và chat nhóm.** Đây là hai loại chat mặc định, và theo nguồn chúng không mã hóa đầu cuối. Bài nguồn diễn giải điều này là bên thứ ba có thể chặn và đọc tin; nói chính xác hơn, tin vẫn được mã hóa giữa máy khách và máy chủ, nên kẻ nghe lén trên mạng không đọc được, nhưng phía máy chủ của Telegram giải mã được. Rủi ro vì vậy nằm ở việc tin Telegram và cách họ giữ chìa khóa. Cách Telegram bảo vệ chúng, theo nguồn:
-- Tin đã mã hóa được lưu trên máy chủ Telegram, chia thành nhiều mảnh, cất ở các nước khác nhau.
-- Chìa khóa giải mã cũng được chia nhỏ và cất ở nhiều nước.
+- Tin đã mã hóa được lưu trên máy chủ Telegram, ở nhiều trung tâm dữ liệu.
+- Chìa khóa giải mã được chia thành nhiều phần và cất ở nhiều nơi khác nhau.
 
-Kẻ tấn công vì vậy phải lấy được mọi mảnh tin và mọi mảnh chìa khóa. Nguồn nói việc đó có thể làm được nhưng cực kỳ khó.
+Bài nguồn nói cả tin cũng bị chia thành nhiều mảnh; tài liệu của Telegram chỉ nói chìa khóa giải mã được chia phần, còn dữ liệu chat thì được lưu ở nhiều trung tâm dữ liệu.
+
+Kẻ tấn công lấy được dữ liệu ở một trung tâm dữ liệu vẫn chưa đọc được tin, vì còn phải gom đủ các phần của chìa khóa cất ở nơi khác. Nguồn nói việc đó có thể làm được nhưng cực kỳ khó; cách cất chìa khóa này là mô tả của chính Telegram.
 
 **Secret chat.** Chọn "secret chat" thì tin được mã hóa đầu cuối. Secret chat là một cuộc chat một-một riêng, mở thêm bên cạnh chat một-một thường với cùng người đó. Theo nguồn, cái giá là: không dùng được cho chat nhóm, không thay cho chat một-một thường, và chỉ bật được trên thiết bị di động.
 
@@ -33,7 +35,7 @@ Một người lấy được toàn bộ dữ liệu của một máy chủ Tele
 <details>
 <summary>Xem đáp án</summary>
 
-Chat thường: chưa, vì theo nguồn tin và chìa khóa đều bị chia nhỏ ra nhiều nước, nên họ còn phải lấy các mảnh ở nơi khác. Khó, nhưng không phải không thể.
+Chat thường: chưa, vì chìa khóa giải mã được chia thành nhiều phần cất ở nơi khác, nên họ còn phải lấy các phần đó. Khó, nhưng không phải không thể.
 Secret chat: không, vì máy chủ chỉ chuyển tiếp dữ liệu đã mã hóa và không có chìa khóa; chìa khóa chỉ nằm trên hai máy của người gửi và người nhận.
 
 </details>

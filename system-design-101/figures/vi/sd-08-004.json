@@ -1,0 +1,80 @@
+{
+  "id": "sd-08-004",
+  "title": "Prime Video gộp về một khối",
+  "subtitle": "Chi phí nằm ở chỗ dữ liệu và lệnh đi qua ranh giới giữa các thành phần.",
+  "desc": "Ba khung. Khung một, trước khi đổi: bộ chuyển đổi phương tiện, kho đối tượng lưu dữ liệu trung gian, bộ dò lỗi tải dữ liệu về, rồi thông báo thời gian thực, do một quy trình điều phối trả tiền theo từng lần chuyển trạng thái. Khung hai, sau khi đổi: bộ chuyển đổi và bộ dò lỗi chạy chung một tiến trình, rồi thông báo; dữ liệu giữa hai bước không phải đi qua mạng. Khung ba, thử trên một máy: chuyển 16 mebibyte sang tiến trình khác mất 7 đến 12 ms, chuyển 1 mebibyte mất khoảng 0,4 đến 1,2 ms, còn trao một tham chiếu trong cùng tiến trình gần như bằng 0.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Trước: các bước chạy rời nhau",
+      "items": [
+        {
+          "name": "Bộ chuyển đổi",
+          "role": "Chạy riêng một bước.",
+          "icon": "cpu"
+        },
+        {
+          "name": "Kho đối tượng",
+          "role": "Giữ dữ liệu trung gian.",
+          "icon": "database"
+        },
+        {
+          "name": "Bộ dò lỗi",
+          "role": "Tải dữ liệu về rồi dò.",
+          "icon": "search"
+        },
+        {
+          "name": "Thông báo",
+          "role": "Báo lỗi theo thời gian thực.",
+          "icon": "bell"
+        }
+      ],
+      "flow": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ]
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Sau: gộp hai bước đầu",
+      "items": [
+        {
+          "name": "Một tiến trình",
+          "role": "Bộ chuyển đổi và bộ dò lỗi chung nhau.",
+          "icon": "server"
+        },
+        {
+          "name": "Thông báo",
+          "role": "Báo lỗi theo thời gian thực.",
+          "icon": "bell"
+        }
+      ],
+      "flow": [
+        [
+          0,
+          1
+        ]
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Thử: chuyển dữ liệu giữa hai bước",
+      "items": [
+        "Trao tham chiếu trong một tiến trình: gần như 0 ms.",
+        "1 mebibyte sang tiến trình khác: 0,4 đến 1,2 ms.",
+        "16 mebibyte sang tiến trình khác: 7 đến 12 ms.",
+        "Chưa có mạng thật, chưa có phí theo lượt gọi."
+      ]
+    }
+  ]
+}

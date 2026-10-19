@@ -1981,7 +1981,7 @@
       "lessons": [
         {
           "id": "sd-08-001",
-          "title_vi": null,
+          "title_vi": "Giao tiếp giữa các tiến trình trên Linux",
           "title_source": "Inter-Process Communication on Linux",
           "source_url": "https://bytebytego.com/guides/how-do-processes-talk-to-each-other-on-linux",
           "source_path": "data/guides/how-do-processes-talk-to-each-other-on-linux.md",
@@ -1991,41 +1991,41 @@
         },
         {
           "id": "sd-08-002",
-          "title_vi": null,
+          "title_vi": "Điều phối hay tự phối hợp: các dịch vụ làm việc với nhau thế nào",
           "title_source": "Orchestration vs. Choreography in Microservices",
           "source_url": "https://bytebytego.com/guides/orchestration-vs-choreography-microservices",
           "source_path": "data/guides/orchestration-vs-choreography-microservices.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "7d7306ebc36c9a3ec450913cce2df90498362406",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/orchestration-vs-choreography-microservices.md"
         },
         {
           "id": "sd-08-003",
-          "title_vi": null,
+          "title_vi": "Đọc một sơ đồ lớp UML",
           "title_source": "UML Class Diagrams Cheatsheet",
           "source_url": "https://bytebytego.com/guides/a-cheatsheet-for-uml-class-diagrams",
           "source_path": "data/guides/a-cheatsheet-for-uml-class-diagrams.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "f7f3920ed4d0a927809e6ee046fd05a3af1fbf2e",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/a-cheatsheet-for-uml-class-diagrams.md"
         },
         {
           "id": "sd-08-004",
-          "title_vi": null,
+          "title_vi": "Prime Video gộp về một khối: khi ranh giới giữa các thành phần quá đắt",
           "title_source": "Amazon Prime Video Monitoring Service",
           "source_url": "https://bytebytego.com/guides/amazon-prime-video-monitoring-service",
           "source_path": "data/guides/amazon-prime-video-monitoring-service.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "05ea194bd0725030f4b1b3a58ff43c79854383f2",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/amazon-prime-video-monitoring-service.md"
         },
         {
           "id": "sd-08-005",
-          "title_vi": null,
+          "title_vi": "Dịch vụ nhỏ không phải đũa thần: khi nào một khối hợp hơn",
           "title_source": "Is Microservice Architecture the Silver Bullet?",
           "source_url": "https://bytebytego.com/guides/is-microservice-architecture-the-silver-bullet",
           "source_path": "data/guides/is-microservice-architecture-the-silver-bullet.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "2ba5d2a1f8d10ef79f19aaf309a97ba94de4e5b9",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/is-microservice-architecture-the-silver-bullet.md"
         },

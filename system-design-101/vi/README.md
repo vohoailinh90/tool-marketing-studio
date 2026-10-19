@@ -132,6 +132,16 @@ Các bài chưa viết của nhóm này không có trong danh sách; số thứ 
 14. [Tám chiến lược đẩy khóa ra, và Redis thật sự có những gì](lessons/sd-06-014/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
 15. [Bộ nhớ đệm hỏng theo những kiểu nào](lessons/sd-06-015/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
 
+## Kiến trúc phần mềm
+
+Các bài chưa viết của nhóm này không có trong danh sách; số thứ tự là vị trí của bài trong nhóm.
+
+1. [Giao tiếp giữa các tiến trình trên Linux](lessons/sd-08-001/lesson.md) — bài mới viết tại repo này (có phép đo riêng); chờ review kỹ thuật.
+2. [Điều phối hay tự phối hợp: các dịch vụ làm việc với nhau thế nào](lessons/sd-08-002/lesson.md) — bài mới viết tại repo này (có mô phỏng đếm riêng); chờ review kỹ thuật.
+3. [Đọc một sơ đồ lớp UML](lessons/sd-08-003/lesson.md) — bài mới viết tại repo này (có phép quét mã riêng); chờ review kỹ thuật.
+4. [Prime Video gộp về một khối: khi ranh giới giữa các thành phần quá đắt](lessons/sd-08-004/lesson.md) — bài mới viết tại repo này (có phép đo riêng); chờ review kỹ thuật.
+5. [Dịch vụ nhỏ không phải đũa thần: khi nào một khối hợp hơn](lessons/sd-08-005/lesson.md) — bài mới viết tại repo này (có phép đo riêng); chờ review kỹ thuật.
+
 ## Công cụ và năng suất
 
 1. [Các lệnh Git theo việc cần làm](lessons/sd-09-001/lesson.md) — bản nháp; chờ review kỹ thuật.
@@ -256,7 +266,7 @@ và hình đạt; không coi đọc nguồn là mọi claim đã đúng, không 
 
 API và phát triển web (còn sd-01-050) → Tình huống thực tế (đã viết một phần) →
 Cơ sở dữ liệu và lưu trữ (đã viết một phần) → Bộ nhớ đệm và hiệu năng (đã viết một phần) → Thanh toán và công nghệ tài chính →
-Kiến trúc phần mềm → Phát triển phần mềm (đã viết một phần) →
+Kiến trúc phần mềm (đã viết một phần) → Phát triển phần mềm (đã viết một phần) →
 Đám mây và hệ thống phân tán → Hệ thống hoạt động thế nào? → Bảo mật (đã viết một phần).
 
 Nhóm “Nền tảng máy tính” (cuối mục lục nguồn) được viết trước theo yêu cầu người dùng ngày 2026-10-13; nhóm “API và phát triển web” viết tiếp theo thứ tự source-map.

@@ -1,0 +1,29 @@
+{
+  "id": "sd-08-001",
+  "title": "Năm cách tiến trình nói chuyện trên Linux",
+  "subtitle": "Cách nào cũng nhờ nhân hệ điều hành; cái đắt là đánh thức bên kia.",
+  "desc": "Hai khung. Khung một, năm cách: ống dẫn là dòng byte một chiều; hàng đợi thông điệp giữ từng thông điệp có độ ưu tiên; tín hiệu chỉ báo một sự kiện, không mang dữ liệu; semaphore là một con số để chờ và báo; bộ nhớ chia sẻ là vùng nhớ cả hai cùng thấy. Khung hai, thử 100.000 vòng đi về một byte giữa hai tiến trình: hai tiến trình ở hai lõi mất khoảng 23 đến 33 micro giây mỗi vòng với ống dẫn, socket, hàng đợi, semaphore và tín hiệu; bộ nhớ chia sẻ mà bên kia liên tục nhìn vào một cờ chỉ mất 0,4 micro giây. Khi hai tiến trình chung một lõi thì mọi cách chỉ mất 1,5 đến 5,6 micro giây.",
+  "sections": [
+    {
+      "kind": "notes",
+      "heading": "Năm cách",
+      "items": [
+        "Ống dẫn: dòng byte một chiều.",
+        "Hàng đợi thông điệp: từng thông điệp, có độ ưu tiên.",
+        "Tín hiệu: chỉ báo sự kiện, không mang dữ liệu.",
+        "Semaphore: một con số để chờ và báo.",
+        "Bộ nhớ chia sẻ: vùng nhớ cả hai cùng thấy."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Thử: 100.000 vòng đi về, hai lõi",
+      "items": [
+        "Ống dẫn, hàng đợi, semaphore, tín hiệu: 23 đến 27 µs mỗi vòng.",
+        "Socket Unix: 26 đến 33 µs mỗi vòng.",
+        "Bộ nhớ chia sẻ, nhìn cờ liên tục: 0,4 µs mỗi vòng.",
+        "Cùng một lõi: 1,5 đến 5,6 µs, cách nào cũng vậy."
+      ]
+    }
+  ]
+}

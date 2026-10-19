@@ -1,0 +1,40 @@
+{
+  "id": "sd-08-002",
+  "title": "Điều phối hay tự phối hợp?",
+  "subtitle": "Cùng một đơn hàng, hai cách cho các dịch vụ làm việc với nhau.",
+  "desc": "Ba khung. Khung một, điều phối: bộ điều phối ra lệnh trả tiền cho dịch vụ thanh toán và nhận kết quả, ra lệnh giữ hàng cho kho; kho báo thất bại thì bộ điều phối ra lệnh hoàn tiền cho thanh toán. Khung hai, tự phối hợp: dịch vụ thanh toán đăng sự kiện đã trả tiền lên kênh sự kiện, kho nhận sự kiện đó; kho đăng sự kiện giữ hàng thất bại, thanh toán nhận sự kiện này và tự hoàn tiền. Khung ba, thử mô phỏng chuỗi bốn bước: hỏng ở bước ba thì tự phối hợp tốn 5 thông điệp và điều phối tốn 10; thêm một bước kiểm tra gian lận thì tự phối hợp phải sửa 2 dịch vụ cũ, điều phối sửa 0 dịch vụ cũ.",
+  "sections": [
+    {
+      "kind": "sequence",
+      "heading": "Điều phối: một bên cầm lái",
+      "actors": [{"name": "Điều phối", "icon": "workflow"}, {"name": "Thanh toán", "icon": "credit-card"}, {"name": "Kho", "icon": "boxes"}],
+      "messages": [
+        {"from": 0, "to": 1, "text": "Trả tiền đơn 7"},
+        {"from": 1, "to": 0, "text": "Xong", "reply": true},
+        {"from": 0, "to": 2, "text": "Giữ hàng đơn 7"},
+        {"from": 2, "to": 0, "text": "Hết hàng", "reply": true},
+        {"from": 0, "to": 1, "text": "Hoàn tiền đơn 7"}
+      ]
+    },
+    {
+      "kind": "sequence",
+      "heading": "Tự phối hợp: qua sự kiện",
+      "actors": [{"name": "Thanh toán", "icon": "credit-card"}, {"name": "Kênh sự kiện", "icon": "radio"}, {"name": "Kho", "icon": "boxes"}],
+      "messages": [
+        {"from": 0, "to": 1, "text": "Đã trả tiền đơn 7"},
+        {"from": 1, "to": 2, "text": "Đã trả tiền đơn 7"},
+        {"from": 2, "to": 1, "text": "Giữ hàng thất bại"},
+        {"from": 1, "to": 0, "text": "Giữ hàng thất bại"}
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Thử mô phỏng chuỗi bốn bước",
+      "items": [
+        "Hỏng ở bước ba: tự phối hợp 5 thông điệp, điều phối 10.",
+        "Thêm một bước kiểm tra gian lận: tự phối hợp sửa 2 dịch vụ cũ.",
+        "Cũng việc đó: điều phối sửa 0 dịch vụ cũ, chỉ sửa bộ điều phối."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="922" viewBox="0 0 320 922" role="img" aria-labelledby="title desc">
+<title id="title">Năm cách tiến trình nói chuyện trên Linux</title>
+<desc id="desc">Hai khung. Khung một, năm cách: ống dẫn là dòng byte một chiều; hàng đợi thông điệp giữ từng thông điệp có độ ưu tiên; tín hiệu chỉ báo một sự kiện, không mang dữ liệu; semaphore là một con số để chờ và báo; bộ nhớ chia sẻ là vùng nhớ cả hai cùng thấy. Khung hai, thử 100.000 vòng đi về một byte giữa hai tiến trình: hai tiến trình ở hai lõi mất khoảng 23 đến 33 micro giây mỗi vòng với ống dẫn, socket, hàng đợi, semaphore và tín hiệu; bộ nhớ chia sẻ mà bên kia liên tục nhìn vào một cờ chỉ mất 0,4 micro giây. Khi hai tiến trình chung một lõi thì mọi cách chỉ mất 1,5 đến 5,6 micro giây.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="922" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Năm cách tiến trình nói</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">chuyện trên Linux</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Cách nào cũng nhờ nhân hệ điều</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">hành; cái đắt là đánh thức bên kia.</text>
+<rect x="8" y="123" width="304" height="404" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Năm cách</text>
+<rect x="20" y="168" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="191" r="11" fill="#16a34a"/>
+<polyline points="37.9,191.4 41.7,195.4 48.5,187" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="194.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ống dẫn: dòng byte một</text>
+<text x="64" y="213.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chiều.</text>
+<rect x="20" y="239" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="262" r="11" fill="#16a34a"/>
+<polyline points="37.9,262.4 41.7,266.4 48.5,258" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="265.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Hàng đợi thông điệp: từng</text>
+<text x="64" y="284.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thông điệp, có độ ưu tiên.</text>
+<rect x="20" y="310" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="333" r="11" fill="#16a34a"/>
+<polyline points="37.9,333.4 41.7,337.4 48.5,329" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="336.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tín hiệu: chỉ báo sự kiện,</text>
+<text x="64" y="355.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">không mang dữ liệu.</text>
+<rect x="20" y="381" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="404" r="11" fill="#16a34a"/>
+<polyline points="37.9,404.4 41.7,408.4 48.5,400" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="407.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Semaphore: một con số để</text>
+<text x="64" y="426.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chờ và báo.</text>
+<rect x="20" y="452" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="475" r="11" fill="#16a34a"/>
+<polyline points="37.9,475.4 41.7,479.4 48.5,471" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="478.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bộ nhớ chia sẻ: vùng nhớ cả</text>
+<text x="64" y="497.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hai cùng thấy.</text>
+<rect x="8" y="539" width="304" height="375" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="567.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Thử: 100.000 vòng đi về, hai</text>
+<text x="20" y="589.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">lõi</text>
+<rect x="20" y="606" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="629" r="11" fill="#16a34a"/>
+<polyline points="37.9,629.4 41.7,633.4 48.5,625" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="632.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ống dẫn, hàng đợi,</text>
+<text x="64" y="651.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">semaphore, tín hiệu: 23 đến</text>
+<text x="64" y="671.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">27 µs mỗi vòng.</text>
+<rect x="20" y="697" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="720" r="11" fill="#16a34a"/>
+<polyline points="37.9,720.4 41.7,724.4 48.5,716" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="723.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Socket Unix: 26 đến 33 µs</text>
+<text x="64" y="742.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mỗi vòng.</text>
+<rect x="20" y="768" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="791" r="11" fill="#16a34a"/>
+<polyline points="37.9,791.4 41.7,795.4 48.5,787" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="794.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bộ nhớ chia sẻ, nhìn cờ liên</text>
+<text x="64" y="813.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tục: 0,4 µs mỗi vòng.</text>
+<rect x="20" y="839" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="862" r="11" fill="#16a34a"/>
+<polyline points="37.9,862.4 41.7,866.4 48.5,858" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="865.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cùng một lõi: 1,5 đến 5,6 µs,</text>
+<text x="64" y="884.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cách nào cũng vậy.</text>
+</g>
+</svg>

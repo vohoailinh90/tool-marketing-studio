@@ -1,5 +1,23 @@
 id: sd-13-011
-status: doing
+status: done
 owner: claude/sd13-slides-0219
 claimed_at: '2026-10-19T00:37:06Z'
-heartbeat_at: '2026-10-19T00:48:30Z'
+done_at: '2026-10-19T00:48:34Z'
+moda_canvas: cvs_5SQTXAZ23S8MCSX8KYC3H4KPRZ
+moda_url: https://moda.app/canvas/b9bebaaf-8879-4519-9ea2-7e60e249db1f
+slide_count: 10
+size: 1920x1080
+exports: pending
+layouts:
+  slides:
+  - card-grid
+  - two-column-comparison
+  - one-highlighted-sentence
+  - flow
+  - lookup-table
+  - connection-diagram
+  - numbered-rows
+  - two-column-comparison
+  - lookup-table
+  - card-grid
+  first_concept: 3

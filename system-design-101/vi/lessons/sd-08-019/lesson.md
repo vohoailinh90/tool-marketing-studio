@@ -51,7 +51,7 @@ Trong 35 lời gọi của kiểu động có phần việc của trình nạp: 
 | sau khi đọc một byte | không đổi | 1.856 KiB |
 | sau khi đọc một byte mỗi 4 KiB, nửa đầu tệp | không đổi | 526.084 KiB |
 
-Cấp một gibibyte địa chỉ chỉ làm bộ nhớ thật tăng 380 KiB; mỗi trang chỉ thành bộ nhớ thật khi chương trình chạm tới nó (đọc một byte kéo thêm khoảng 60 KiB). Đây là điều phía sau câu "hệ điều hành cấp bộ nhớ" của nguồn: cấp địa chỉ rẻ, cấp bộ nhớ thật theo từng trang khi dùng.
+Cấp một gibibyte địa chỉ chỉ làm bộ nhớ thật tăng 380 KiB; bộ nhớ thật chỉ được nạp quanh vùng chương trình chạm tới, theo nhu cầu (đọc một byte kéo thêm khoảng 60 KiB, vì nhân đọc trước và nạp luôn các trang lân cận, nên không đúng từng trang một). Đây là điều phía sau câu "hệ điều hành cấp bộ nhớ" của nguồn: cấp địa chỉ rẻ, cấp bộ nhớ thật dần theo vùng được dùng.
 
 **Môi trường chạy.** Thời gian từ lúc tiến trình cha khởi động tới lúc con thoát, với chương trình không làm gì:
 

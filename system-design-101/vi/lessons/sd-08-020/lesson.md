@@ -57,7 +57,7 @@ Một người bạn nói "Linux bật lên thì BIOS chạy GRUB, GRUB chạy s
 <details>
 <summary>Xem đáp án</summary>
 
-Bị bỏ qua là nhân và, thường là, `initramfs`: bộ nạp nạp nhân và hình ảnh initramfs vào bộ nhớ, nhân giải nó thành một hệ thống tệp trong bộ nhớ, và chính nó có nhiệm vụ tìm và gắn hệ thống tệp gốc rồi mới trao quyền cho systemd (`bootup(7)`). Nếu không tìm thấy hệ thống tệp gốc thì lỗi nằm ở đoạn giữa bộ nạp và systemd, tức là trong nhân và initramfs, trước khi tiến trình số 1 của hệ thống thật chạy; không phải ở bước chạy dịch vụ.
+Bị bỏ qua là nhân và, thường là, `initramfs`: bộ nạp nạp nhân và hình ảnh initramfs vào bộ nhớ, nhân giải nó thành một hệ thống tệp trong bộ nhớ rồi chạy `/init` của nó làm tiến trình số 1; chính `/init` này tìm và gắn hệ thống tệp gốc, chuyển sang đó rồi mới chạy systemd (`bootup(7)`). Nếu không tìm thấy hệ thống tệp gốc thì lỗi nằm ở đoạn giữa bộ nạp và systemd, tức là trong nhân và `/init` của initramfs, trước khi systemd chạy; không phải ở bước chạy dịch vụ.
 
 </details>
 

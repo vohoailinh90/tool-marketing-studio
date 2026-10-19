@@ -230,7 +230,7 @@ Các bài chưa viết của nhóm này không có trong danh sách; số thứ 
 12. [Vì sao AWS Lambda phản hồi nhanh: bốn trụ cột](lessons/sd-11-012/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 13. [Từ một máy chủ tới hàng triệu người dùng: sáu bước mở rộng một trang web](lessons/sd-11-013/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 14. [Tám mẫu thiết kế giữ cho một lỗi nhỏ không thành sự cố lớn](lessons/sd-11-014/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
-15. [Hai mươi lăm bài báo kinh điển về hệ thống phân tán, xếp theo vấn đề chúng giải](lessons/sd-11-015/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+15. [Hai mươi lăm bài báo đã định hình ngành máy tính, xếp theo vấn đề chúng giải](lessons/sd-11-015/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 
 ## DevOps và CI/CD
 

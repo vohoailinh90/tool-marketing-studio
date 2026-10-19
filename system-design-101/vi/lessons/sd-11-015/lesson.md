@@ -1,6 +1,6 @@
-# Hai mươi lăm bài báo kinh điển về hệ thống phân tán, xếp theo vấn đề chúng giải
+# Hai mươi lăm bài báo đã định hình ngành máy tính, xếp theo vấn đề chúng giải
 
-**Hai mươi lăm bài báo này không nên đọc theo danh sách. Đọc theo vấn đề: bạn đang lưu dữ liệu, xử lý dữ liệu, giữ cho hệ thống nhìn thấy được, hay cần nền tảng lý thuyết?**
+**Đây là một danh sách đọc hỗn hợp: phần lớn là bài về hệ thống phân tán và cơ sở dữ liệu, kèm vài bài ngoài nhóm đó. Hai mươi lăm bài này không nên đọc theo danh sách. Đọc theo vấn đề: bạn đang lưu dữ liệu, xử lý dữ liệu, giữ cho hệ thống nhìn thấy được, hay cần nền tảng lý thuyết?**
 Chọn đúng nhóm trước, rồi mới chọn bài, bạn tránh việc mở một bài báo dài mà không biết nó trả lời câu hỏi nào của mình.
 
 ![Hai khung. Khung một, dữ liệu và xử lý: chín bài về lưu trữ và cơ sở dữ liệu, năm bài về xử lý và điều phối. Khung hai, còn lại: bốn bài về bộ nhớ đệm, quan sát và phân quyền, năm bài về nền tảng lý thuyết và công cụ, hai bài về ứng dụng cụ thể.](../../diagrams/sd-11-015-main.svg)

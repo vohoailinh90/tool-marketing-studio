@@ -7,7 +7,7 @@ exports of finished decks, which have no claim of their own. Read it before you 
 range whose session is marked ended.
 
 Coordinator: `claude/system-design-ppt-coordination-o93528` (session `session_01EEyBDZ6v19PCc7JPGubEEn`). Board written
-2026-10-19 00:45 UTC, updated 06:30 UTC. The same board is posted as a GitHub issue titled *SD101 slides: coordination board*; comment there to
+2026-10-19 00:45 UTC, updated 06:45 UTC. The same board is posted as a GitHub issue titled *SD101 slides: coordination board*; comment there to
 take or give back a range.
 
 ## Process every session follows (owner decision 2026-10-19)
@@ -17,14 +17,10 @@ take or give back a range.
 - The session does all the work itself: no subagent reviews of slides; it checks each slide with `canvas_screenshot` and the
   repository's scripts.
 
-## State at 2026-10-19 06:30 UTC (from every remote branch)
+## Live state
 
-| | lessons |
-|---|---|
-| Source map | 404 positions; 178 lessons written (`progress.json`), 226 not written yet (no deck possible before the lesson) |
-| Decks done | 158; every one has a badged PPTX on some branch except sd-14-001..008 |
-| Decks being built (`doing`) | 20 (below) |
-| Decks nobody has claimed | 0: every written lesson is claimed or done |
+This board does not keep counts: they change with every push. `python3 scripts/sd101_slides.py status --all` (after
+`git fetch origin && git merge origin/main`) gives the live numbers per group and every `doing` claim with its branch.
 
 A deck counts as exported when its record says `exports: badged` (or `done`) on **any** branch, `main` first: a builder's
 branch can still carry an older `pending` record of a deck whose PPTX is already on `main`. Never export a deck again
@@ -33,16 +29,17 @@ that has one.
 ## Ranges
 
 The owner allows **at most two account-A sessions working at once** (decision 2026-10-19). The coordinator resumes the
-sessions below one after another; none of them claims a new lesson.
+sessions below one after another. Each finishes the claims it holds; a session is given a new lesson only through this
+board.
 
-| Holds (`doing`) | Session | Order |
+| Holds (`doing`) at 06:45 UTC | Session | Order |
 |---|---|---|
-| sd-06-009..011 | `session_01XSxLqDPHaDeZhrxWwesxJf` (`claude/sd101-slides-sd06`) | running |
-| sd-09-017..019 | `session_01MXmeiiiaXLzfKLWZzK9sru` (`claude/sd101-slides-sd-09`) | running |
-| sd-13-020 | `session_01EhxTYrCJpuk4mcqCLwPdds` (`claude/sd13-slides-0219`) | next |
+| sd-13-020, then sd-06-010..011 (free, released by the sd-06 session) | `session_01EhxTYrCJpuk4mcqCLwPdds` (`claude/sd13-slides-0219`) | next |
 | sd-01-038..040 | `session_01ARzV9v8j9Ux8mYa9UcKRzC` (`claude/sd101-slides-sd01-0210`) | then |
 | sd-04-041..043 | `session_013D8efqJ38789pjA4WvcwwT` (`claude/sd101-slides-sd04`) | then |
 | sd-14-009..015 | `claude/trusting-gauss-foyunq` (heartbeat 2026-10-18 07:11 UTC; stale after 72 h, then `claim --take-stale`) | not ours |
+
+The sd-06 and sd-09 sessions have finished building and only drive their pull requests to merge.
 
 ### PPTX exports still missing
 
@@ -56,4 +53,4 @@ account instead of building a second canvas.
 
 ## Not covered yet
 
-The 226 unwritten lessons. Writing them follows `docs/sd101-claims.md` and is not part of this board until the owner asks.
+The lessons not written yet (`progress.json` lists the written ones). Writing them follows `docs/sd101-claims.md` and is not part of this board until the owner asks.

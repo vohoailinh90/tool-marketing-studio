@@ -1,6 +1,6 @@
 # Cookie, session, JWT và PASETO: chọn cách xác thực nào?
 
-**PASETO bỏ đi một thứ của JWT: người gửi token không còn được tự chọn thuật toán. Nó không bỏ những việc khó của mọi token tự mang dữ liệu: thu hồi trước hạn, kiểm hạn dùng, giữ khóa bí mật và chọn chỗ cất token.** Vì vậy, chọn cách xác thực nào nên bắt đầu từ câu hỏi "tôi có cần thu hồi ngay không?", chứ không phải từ tên định dạng.
+**PASETO bỏ đi một thứ của JWT: trường `alg` tùy ý trong header. Người phát hành vẫn chọn tiền tố phiên bản và mục đích, mỗi tiền tố gắn với một bộ thuật toán cố định, và người kiểm chỉ nhận những tiền tố khớp loại khóa của mình. Nó không bỏ những việc khó của mọi token tự mang dữ liệu: thu hồi trước hạn, kiểm hạn dùng, giữ khóa bí mật và chọn chỗ cất token.** Vì vậy, chọn cách xác thực nào nên bắt đầu từ câu hỏi "tôi có cần thu hồi ngay không?", chứ không phải từ tên định dạng.
 
 Bài này không dạy lại cookie, session và token: xem [bài sd-14-008](../sd-14-008/lesson.md), [bài sd-14-009](../sd-14-009/lesson.md) và [bài sd-14-010](../sd-14-010/lesson.md); ủy quyền và đăng nhập một lần ở [bài sd-14-011](../sd-14-011/lesson.md). Bài chỉ hỏi PASETO đổi gì so với JWT và không đổi gì, qua các lần chạy thử cục bộ với `pyseto` 1.10.0 và PyJWT 2.14.0, dùng khóa tạm.
 

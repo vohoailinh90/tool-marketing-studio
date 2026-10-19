@@ -258,9 +258,10 @@ Các bài chưa viết của nhóm này không có trong danh sách; số thứ 
 18. [Dùng dev tools để bỏ việc lặp lại](lessons/sd-09-018/lesson.md) — bản nháp; chờ review kỹ thuật.
 19. [Git lưu snapshot và nhánh như thế nào?](lessons/sd-09-019/lesson.md) — bản nháp; chờ review kỹ thuật.
 20. [Từ thay đổi code tới bản chạy production](lessons/sd-09-020/lesson.md) — bản nháp; chờ review kỹ thuật.
-Số thứ tự theo ID của bài; bài chưa viết chưa có trong danh sách.
 
 ## Phát triển phần mềm
+
+Số thứ tự theo ID của bài; bài chưa viết chưa có trong danh sách.
 
 1. [Sáu loại máy chủ thường gặp](lessons/sd-10-001/lesson.md)
 2. [Dọn rác bộ nhớ hoạt động thế nào?](lessons/sd-10-002/lesson.md)

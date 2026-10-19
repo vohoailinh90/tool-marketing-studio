@@ -74,7 +74,7 @@
   "design_notes_vi": "Ba khung: chín thành phần, năm cái giá đo được, bốn thành phần chưa đo.",
   "source_deviations": [
     "The source is a diagram with one short paragraph and product names per component; the lesson keeps the nine components, drops the product names, adds a cost column (inference) and five measurements.",
-    "Four components are labelled as not measured."
+    "Three components (gateway, service layer, data store) are labelled as not measured; six components are covered by the five measurements (metrics and logs share one)."
   ],
   "editorial_note_vi": "Bài mới viết tại repo này (gói W8), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
 }

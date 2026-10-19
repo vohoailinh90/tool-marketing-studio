@@ -231,11 +231,6 @@ Các bài chưa viết của nhóm này không có trong danh sách; số thứ 
 18. [Phát hành ứng dụng di động: bảy bước của nguồn, điều tài liệu của hai cửa hàng xác nhận, và một mô hình phát hành theo pha](lessons/sd-08-018/lesson.md) — bài mới viết tại repo này (có mô hình tính riêng); chờ review kỹ thuật.
 19. [Chương trình chạy thế nào: tám bước của nguồn và những gì xem được trên Linux](lessons/sd-08-019/lesson.md) — bài mới viết tại repo này (có phép đo riêng); chờ review kỹ thuật.
 20. [Khởi động Linux: tám bước của nguồn, điều tài liệu thêm vào, và một lần đọc tĩnh các tệp đơn vị systemd](lessons/sd-08-020/lesson.md) — bài mới viết tại repo này (có phép đọc riêng); chờ review kỹ thuật.
-
-## Kiến trúc phần mềm
-
-Các bài chưa viết của nhóm này không có trong danh sách; số thứ tự là vị trí của bài trong nhóm.
-
 21. [MVC, MVP, MVVM, VIPER: cùng một nút bấm, bốn cách chia việc, và luật nằm ở đâu](lessons/sd-08-021/lesson.md) — bốn mẫu chia khung nhìn và mô hình, đối chiếu Apple và Microsoft, một màn hình viết bốn lần
 22. [Bản đồ kiến thức của kiến trúc sư: tám vùng, năm mươi cái tên, và "biết" một cái tên nghĩa là gì](lessons/sd-08-022/lesson.md) — tám vùng của nguồn, đếm tên, hai cái tên thành hai phép thử (giao dịch, thẻ JWT)
 23. [Kiến trúc dịch vụ nhỏ điển hình: bảy bộ phận, và mỗi bộ phận thêm một cái giá](lessons/sd-08-023/lesson.md) — bảy bộ phận của nguồn, đối chiếu tài liệu Microsoft, năm phép đo trên một máy
@@ -295,18 +290,13 @@ Số thứ tự theo ID của bài; bài chưa viết chưa có trong danh sách
 
 Các bài chưa viết của nhóm này không có trong danh sách; số thứ tự là vị trí của bài trong nhóm.
 
-16. [Khả năng mở rộng của kiến trúc: ba nút thắt, ba nguyên tắc, bốn kỹ thuật](lessons/sd-11-016/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
-17. [Các khối nền để dựng hệ thống phân tán, chia theo sáu nhóm](lessons/sd-11-017/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
-
-## Đám mây và hệ thống phân tán
-
-Các bài chưa viết của nhóm này không có trong danh sách; số thứ tự là vị trí của bài trong nhóm.
-
 1. [AWS Lambda: mỗi lần gọi hàm chạy trong một máy ảo siêu nhẹ](lessons/sd-11-001/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 2. [Tám chiến lược mở rộng: mỗi cách gỡ một nút thắt khác nhau](lessons/sd-11-002/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 3. [Bảng tra thiết kế hệ thống: sẵn sàng cao, thông lượng cao, mở rộng cao](lessons/sd-11-003/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 4. [Khôi phục thảm họa trên đám mây: bốn mức, mỗi mức đổi tiền lấy thời gian](lessons/sd-11-004/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 5. [Chia theo cột và chia theo hàng: hai cách cắt dữ liệu khác hẳn nhau](lessons/sd-11-005/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+16. [Khả năng mở rộng của kiến trúc: ba nút thắt, ba nguyên tắc, bốn kỹ thuật](lessons/sd-11-016/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+17. [Các khối nền để dựng hệ thống phân tán, chia theo sáu nhóm](lessons/sd-11-017/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 
 ## DevOps và CI/CD
 

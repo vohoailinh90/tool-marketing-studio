@@ -38,7 +38,8 @@ Phần này là lập luận của người biên soạn, dựa trên vai trò t
 
 | Mảng | Nếu ngừng chạy | Người xem thấy khi nào |
 |---|---|---|
-| Ứng dụng, GraphQL, Zuul, Eureka | Yêu cầu từ ứng dụng không tới được dịch vụ | Ngay lập tức |
+| Ứng dụng, GraphQL, Zuul | Yêu cầu từ ứng dụng không tới được dịch vụ | Ngay lập tức |
+| Eureka | Dịch vụ vẫn gọi nhau theo danh sách địa chỉ đã lưu sẵn; danh sách chỉ không được cập nhật | Thường không thấy ngay; thấy dần nếu kéo dài, khi máy mới bật lên mà không ai tìm thấy |
 | Open Connect | Video không còn máy gần để lấy | Ngay, hoặc phim chậm và mờ hơn |
 | EVCache | Đọc phải đi thẳng xuống cơ sở dữ liệu | Có thể chỉ thấy chậm hơn, nếu cơ sở dữ liệu chịu nổi |
 | Kafka, Flink | Sự kiện xem phim chưa được xử lý | Sau vài giờ, ví dụ gợi ý phim cũ đi |
@@ -49,7 +50,7 @@ Phần này là lập luận của người biên soạn, dựa trên vai trò t
 - Các mảng không cần cùng một mức sẵn sàng. Mảng ở dòng đầu phải chạy liên tục; mảng ở dòng cuối dừng một ngày thì người xem cũng không biết. Đó là một lý do để không dồn mọi việc vào một công cụ: công cụ nào gánh việc ở dòng đầu thì phải được chăm như dòng đầu.
 - Ba cơ sở dữ liệu là ba câu trả lời khác nhau cho cùng câu hỏi. Theo hiểu biết chung, EVCache là bộ nhớ đệm, dữ liệu mất được thì nạp lại; Cassandra chia dữ liệu ra rất nhiều máy để ghi nhiều và vẫn chạy khi vài máy hỏng; CockroachDB giữ dữ liệu nhất quán giữa các máy, hợp với dữ liệu không được sai. Một cơ sở dữ liệu duy nhất phải chọn một trong ba ưu tiên đó cho mọi loại dữ liệu.
 - Bộ nhớ đệm có hai mặt. EVCache làm đọc nhanh, nhưng nếu cơ sở dữ liệu phía sau chỉ chịu được lượng đọc khi có bộ nhớ đệm, mất bộ nhớ đệm sẽ kéo cơ sở dữ liệu sập theo, và dòng "chỉ thấy chậm hơn" thành "thấy ngay".
-- Chaos Monkey là phép thử này làm thật: tắt máy chủ đang chạy để xem bảng trên có đúng không, thay vì đoán.
+- Chaos Monkey làm thật một phần nhỏ của phép thử này: nó tắt từng máy chủ (máy ảo hay container) đang chạy để xem ứng dụng có chịu được việc mất một máy không. Nó không tắt cả một công cụ như GraphQL hay Kafka, nên không kiểm chứng được cả bảng trên; các dòng của bảng vẫn là suy luận.
 
 ## Giới hạn cần nhớ
 

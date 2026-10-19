@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1187" viewBox="0 0 320 1187" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1207" viewBox="0 0 320 1207" role="img" aria-labelledby="title desc">
 <title id="title">Token OAuth: API kiểm gì, token không nói gì</title>
-<desc id="desc">Ba khung dọc. Khung một, bốn phép thử của thí nghiệm trên một access token JWT: chữ ký đúng; còn hạn exp, quá hạn thì trả 401; audience, cấp cho API khác thì trả 401; scope, thiếu quyền thì trả 403. Khung hai, danh sách này chưa đủ cho mọi token: bộ kiểm JWT còn kiểm bên phát hành và loại token, còn token chuỗi mờ thì API hỏi máy chủ ủy quyền. Khung ba, token không làm được ba việc: chứng minh đăng nhập, vì ID token của OpenID Connect cho biết người dùng là ai nhưng độ mới của lần đăng nhập còn cần max_age và auth_time; cho biết ai đang cầm, vì với token bearer ai có chuỗi cũng dùng được; tự nâng quyền, vì sửa nội dung là hỏng chữ ký.</desc>
+<desc id="desc">Ba khung dọc. Khung một, bốn phép thử của thí nghiệm trên một access token JWT: chữ ký đúng; còn hạn exp, quá hạn thì trả 401; audience, cấp cho API khác thì trả 401; scope, thiếu quyền thì trả 403. Khung hai, danh sách này chưa đủ cho mọi token: bộ kiểm JWT còn kiểm bên phát hành và loại token khi header có typ, còn token chuỗi mờ thì API hỏi máy chủ ủy quyền. Khung ba, token không làm được ba việc: chứng minh đăng nhập, vì ID token của OpenID Connect cho biết người dùng là ai nhưng độ mới của lần đăng nhập còn cần max_age và auth_time; cho biết ai đang cầm, vì với token bearer ai có chuỗi cũng dùng được; tự nâng quyền, vì sửa nội dung là hỏng chữ ký.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="1187" fill="#f8fafc"/>
+<rect width="320" height="1207" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Token OAuth: API kiểm</text>
 <text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">gì, token không nói gì</text>
@@ -36,36 +36,37 @@
 <text x="70" y="529.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Thiếu quyền cần cho việc</text>
 <text x="70" y="548.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">này thì trả 403.</text>
 <polyline points="46,459 46,477" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
-<rect x="8" y="590" width="304" height="211" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="8" y="590" width="304" height="231" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
 <text x="20" y="618.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Chưa phải danh sách đầy đủ</text>
-<rect x="20" y="635" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<rect x="20" y="635" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
 <circle cx="43" cy="658" r="11" fill="#16a34a"/>
 <polyline points="37.9,658.4 41.7,662.4 48.5,654" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
 <text x="64" y="661.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Token JWT còn phải kiểm</text>
-<text x="64" y="680.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bên phát hành và loại token.</text>
-<rect x="20" y="706" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
-<circle cx="43" cy="729" r="11" fill="#16a34a"/>
-<polyline points="37.9,729.4 41.7,733.4 48.5,725" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="732.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Token chuỗi mờ không có</text>
-<text x="64" y="751.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chữ ký: API hỏi máy chủ ủy</text>
-<text x="64" y="771.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">quyền.</text>
-<rect x="8" y="813" width="304" height="366" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
-<text x="20" y="841.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Token không làm được</text>
-<rect x="20" y="858" width="280" height="107" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
-<circle cx="50" cy="911.5" r="18" fill="#b45309"/><g transform="translate(39.2 900.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></g>
-<text x="78" y="884.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Chứng minh đăng</text>
-<text x="78" y="904.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">nhập</text>
-<text x="78" y="928.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Không. ID token cho biết</text>
-<text x="78" y="947.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">ai; độ mới cần auth_time.</text>
-<rect x="20" y="979" width="280" height="87" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
-<circle cx="50" cy="1022.5" r="18" fill="#b45309"/><g transform="translate(39.2 1011.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></g>
-<text x="78" y="1005.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Biết ai đang cầm</text>
-<text x="78" y="1029.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Không. Token bearer: ai có</text>
-<text x="78" y="1048.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chuỗi cũng dùng được.</text>
-<rect x="20" y="1080" width="280" height="87" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
-<circle cx="50" cy="1123.5" r="18" fill="#b45309"/><g transform="translate(39.2 1112.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></g>
-<text x="78" y="1106.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Tự nâng quyền</text>
-<text x="78" y="1130.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Không. Sửa nội dung thì</text>
-<text x="78" y="1149.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hỏng chữ ký.</text>
+<text x="64" y="680.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bên phát hành, và loại token</text>
+<text x="64" y="700.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nếu header có typ.</text>
+<rect x="20" y="726" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="749" r="11" fill="#16a34a"/>
+<polyline points="37.9,749.4 41.7,753.4 48.5,745" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="752.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Token chuỗi mờ không có</text>
+<text x="64" y="771.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chữ ký: API hỏi máy chủ ủy</text>
+<text x="64" y="791.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">quyền.</text>
+<rect x="8" y="833" width="304" height="366" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="861.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Token không làm được</text>
+<rect x="20" y="878" width="280" height="107" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="50" cy="931.5" r="18" fill="#b45309"/><g transform="translate(39.2 920.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></g>
+<text x="78" y="904.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Chứng minh đăng</text>
+<text x="78" y="924.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">nhập</text>
+<text x="78" y="948.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Không. ID token cho biết</text>
+<text x="78" y="967.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">ai; độ mới cần auth_time.</text>
+<rect x="20" y="999" width="280" height="87" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="50" cy="1042.5" r="18" fill="#b45309"/><g transform="translate(39.2 1031.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></g>
+<text x="78" y="1025.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Biết ai đang cầm</text>
+<text x="78" y="1049.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Không. Token bearer: ai có</text>
+<text x="78" y="1068.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chuỗi cũng dùng được.</text>
+<rect x="20" y="1100" width="280" height="87" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="50" cy="1143.5" r="18" fill="#b45309"/><g transform="translate(39.2 1132.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></g>
+<text x="78" y="1126.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Tự nâng quyền</text>
+<text x="78" y="1150.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Không. Sửa nội dung thì</text>
+<text x="78" y="1169.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hỏng chữ ký.</text>
 </g>
 </svg>

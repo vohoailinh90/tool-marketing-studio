@@ -31,10 +31,12 @@ Ba việc cuối nghiêng về lời khuyên của bài nguồn hơn là điều
 
 Ngày 2026-10-19, trên một máy ảo 4 lõi: ba bản chạy của cùng một dịch vụ web viết bằng thư viện chuẩn của Python, một kho Redis 7.0.15, và 301 người dùng. Mỗi người đăng nhập một lần rồi gửi thêm năm yêu cầu; các yêu cầu được phân cho ba bản theo vòng tròn (không có phiên dính). Hai kiểu dịch vụ: giữ phiên trong bộ nhớ của từng bản, hoặc ghi phiên vào Redis (kho chung). Đo ba lượt.
 
-| Kiểu | Yêu cầu có phiên hợp lệ | Thời gian một yêu cầu (trung vị) | Một bản biến mất, người dùng không còn phiên |
+| Kiểu | Yêu cầu có phiên hợp lệ | Thời gian một yêu cầu (trung vị) | Một bản biến mất: yêu cầu đầu của mỗi người bị từ chối |
 |---|---|---|---|
-| Phiên trong bộ nhớ từng bản | 301 trên 1.505 (20,0%) | 238 đến 330 µs | 200 trên 301 |
+| Phiên trong bộ nhớ từng bản | 301 trên 1.505 (20,0%) | 238 đến 330 µs | 200 trên 301 (100 phiên mất thật, 100 người bị chuyển nhầm bản) |
 | Phiên ở kho chung | 1.505 trên 1.505 (100%) | 344 đến 396 µs | 0 trên 301 |
+
+Về con số 200: bản biến mất giữ phiên của 100 người, nên phiên bị hủy thật là 100. Sau đó mỗi người được chuyển vòng tròn tới hai bản còn lại, và 100 người khác tuy phiên vẫn còn trên một bản sống nhưng yêu cầu đầu của họ rơi vào bản không giữ nó, nên 200 trên 301 yêu cầu đầu bị từ chối. Cả hai con số cùng đúng; chúng đo hai việc khác nhau.
 
 Số 20% không ngẫu nhiên: với 301 người và vòng tròn ba bản, mỗi người rơi đúng vào bản đã nhớ phiên của mình trong một trên năm vòng. Kết luận: khi có nhiều bản chạy mà không có phiên dính, dịch vụ giữ phiên trong bộ nhớ gần như luôn hỏng, và mất một bản làm mất phiên của người đang ở bản đó. Giữ ở kho chung chữa được cả hai, nhưng mỗi yêu cầu thêm một lượt gọi kho: trung vị tăng khoảng 65 đến 150 µs trong ba lượt đo.
 

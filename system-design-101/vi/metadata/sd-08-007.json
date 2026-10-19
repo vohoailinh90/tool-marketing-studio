@@ -65,7 +65,7 @@
       "verified_by": "Read from a local clone of heroku/12factor at commit 1385d2c80bac38c25647651f6f5ec769561828dc."
     },
     {
-      "claim_vi": "Three web server instances behind client-side round robin, 301 users with one login and five further requests each: with sessions in each instance's memory 301 of 1,505 requests (20.0 %) had a valid session, median 238-330 us, and after one instance was shut down 200 of 301 users had no session; with sessions in Redis 1,505 of 1,505 (100 %), median 344-396 us, 0 of 301 lost.",
+      "claim_vi": "Three web server instances behind client-side round robin, 301 users with one login and five further requests each: with sessions in each instance's memory 301 of 1,505 requests (20.0 %) had a valid session, median 238-330 us, and after one instance was shut down 100 sessions were destroyed (those logged in on it) and 200 of 301 first requests were refused (the other 100 users still had a session on a surviving instance but were routed to one that did not hold it); with sessions in Redis 1,505 of 1,505 (100 %), median 344-396 us, 0 of 301 lost.",
       "source": "https://github.com/heroku/12factor/blob/1385d2c80bac38c25647651f6f5ec769561828dc/content/en/processes.md",
       "section": "Experiment",
       "verified_by": "Experiment run by the author on 2026-10-19 (three runs; 20.0 % follows from 301 users, 3 instances and round robin)."

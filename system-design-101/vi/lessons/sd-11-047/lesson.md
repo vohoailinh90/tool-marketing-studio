@@ -29,6 +29,43 @@ Số tên lớn hơn số dòng vì một ô có thể nêu nhiều dịch vụ 
 
 Ví dụ cụ thể: trang AWS ghép `Amazon Kinesis Data Streams` với `Azure Event Hubs`, và `Amazon MQ` với `Azure Service Bus`; trang Google Cloud ghép `Cloud Pub/Sub` với cả `Azure Service Bus` lẫn `Azure Event Hubs`. Đi qua Azure, ta được gợi ý "Kinesis Data Streams và Pub/Sub cùng được Microsoft đặt gần Event Hubs", nhưng đó là hai phép ghép riêng lẻ qua một bên thứ ba, không phải Microsoft nói hai dịch vụ kia tương đương nhau.
 
+<details>
+<summary>Xem chương trình đếm</summary>
+
+Chạy `python3 azcount.py` sau khi sửa hằng `BASE` trỏ tới thư mục `docs/` của bản clone commit `8e2c239`; mã nằm trọn ở đây vì bài không thêm tệp mã vào kho. Kết quả in ra: `aws pairs 194 distinct azure 203`, `gcp pairs 140 distinct azure 146`, `both 58`.
+
+```python
+import re,glob,collections,sys,os
+BASE='/tmp/claude-0/ac/repo/docs/'
+def azure_names(path, provider_hdr):
+    L=open(path,encoding='utf-8').read().split('\n')
+    names=collections.Counter(); pairs=0; i=0
+    while i<len(L):
+        if L[i].startswith('|') and i+1<len(L) and re.match(r'^\|[\s:\-|]+\|?$',L[i+1]):
+            head=[c.strip().lower() for c in L[i].strip().strip('|').split('|')]
+            ai=[k for k,h in enumerate(head) if h.startswith('azure service')]
+            pi=[k for k,h in enumerate(head) if h.startswith(provider_hdr)]
+            j=i+2
+            while j<len(L) and L[j].startswith('|'):
+                if ai and pi:
+                    cells=[c.strip() for c in L[j].strip().strip('|').split('|')]
+                    if len(cells)>max(ai[0],pi[0]) and cells[pi[0]]:
+                        pairs+=1
+                        for txt in re.findall(r'\[([^\]]+)\]\([^)]*\)',cells[ai[0]]): names[txt.strip().lower()]+=1
+                j+=1
+            i=j; continue
+        i+=1
+    return names,pairs
+aws=collections.Counter(); ap=0
+for f in sorted(glob.glob(BASE+'aws-professional/*.md')):
+    n,p=azure_names(f,'aws'); aws.update(n); ap+=p
+gcp,gp=azure_names(BASE+'gcp-professional/services.md','google cloud')
+print('aws pairs',ap,'distinct azure',len(aws)); print('gcp pairs',gp,'distinct azure',len(gcp))
+both=sorted(set(aws)&set(gcp)); print('both',len(both)); print(both[:80])
+```
+
+</details>
+
 ## Giới hạn cần nhớ
 
 Chương trình bỏ các bảng không có cột "Azure service" hoặc không có cột của nhà cung cấp kia (bảng chỉ có hai cột, bảng kiến trúc), nên các con số là phép đếm theo cách đọc này chứ không phải con số chính thức của Microsoft. Ghép dịch vụ do Microsoft viết, từ góc nhìn của Microsoft; AWS và Google Cloud có thể mô tả khác. Việc hai dịch vụ cùng ghép với một dịch vụ Azure không làm chúng tương đương nhau. Nội dung ảnh của bài nguồn không được đối chiếu.

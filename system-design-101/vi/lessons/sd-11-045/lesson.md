@@ -11,7 +11,7 @@ Phép tính trong bài chỉ dùng số học đơn giản và một chương tr
 
 ## Đọc hình
 
-**Sẵn sàng nghĩa là gì.** Bài nguồn dùng nghĩa của định lý CAP: mọi nút còn chạy đều trả lời được yêu cầu trong một thời gian hợp lý, không lỗi, không hết thời gian chờ. Nguồn nhấn mạnh sẵn sàng chỉ bảo đảm có câu trả lời, không bảo đảm đó là dữ liệu mới nhất. Mục tiêu "bốn chín" là chạy 99,99% thời gian; theo nguồn, đó là chỉ được ngừng khoảng 52,5 phút mỗi năm. Tính lại: một năm 365 ngày có 525.600 phút, 0,01% của số đó là 52,56 phút, nên nguồn đã làm tròn xuống một chút.
+**Sẵn sàng nghĩa là gì.** Bài nguồn dùng nghĩa của định lý CAP: mọi nút còn chạy đều trả lời được yêu cầu trong một thời gian hợp lý, không lỗi, không hết thời gian chờ. Nguồn nhấn mạnh sẵn sàng chỉ bảo đảm có câu trả lời, không bảo đảm đó là dữ liệu mới nhất. Đây là hai tính chất khác nhau: "sẵn sàng" theo CAP là mọi yêu cầu đều nhận được câu trả lời khi mạng bị chia cắt, còn "bốn chín" đo tỷ lệ thời gian hệ thống chạy trong một khoảng thời gian; các phép tính và mô phỏng bên dưới chỉ đo cái sau, không đo sẵn sàng theo CAP. Mục tiêu "bốn chín" là chạy 99,99% thời gian; theo nguồn, đó là chỉ được ngừng khoảng 52,5 phút mỗi năm. Tính lại: một năm 365 ngày có 525.600 phút, 0,01% của số đó là 52,56 phút, nên nguồn đã làm tròn xuống một chút.
 
 **Ba kiểu hai nút.** Nguồn đi từ một nút "Product Inventory" (kho hàng) lên hai nút:
 
@@ -39,6 +39,63 @@ Nguồn kết thêm một ví dụ: nếu mỗi nút triển khai trên `EC2` v�
 | Chính và dự phòng, chuyển bằng tay mất 120 phút | 90,9% |
 
 Hai điều rút ra, đều chỉ đúng trong mô hình này. Một: tốc độ chuyển nút quan trọng ngang việc có nút thứ hai; chuyển mất hai giờ gần như xóa hết lợi ích của nút dự phòng. Hai: khi một phần số lần hỏng là chung (cùng nguồn điện, cùng cấu hình), tỷ lệ tụt từ 99,0% xuống 98,2%, nghĩa là ngừng nhiều hơn khoảng 1,8 lần so với phép tính 99%. Với mục tiêu bốn chín (52,56 phút mỗi năm), một lần chuyển bằng tay mất 30 phút đã dùng hơn một nửa quỹ thời gian, nên chỉ chịu được chưa đến hai lần như vậy.
+
+<details>
+<summary>Xem chương trình mô phỏng và kết quả</summary>
+
+Chạy `python3 ha.py`; mã nằm trọn ở đây vì bài không thêm tệp mã vào kho. Hạt giống cố định nên kết quả lặp lại.
+
+```python
+# Virtual-time availability experiment, 1 step = 1 minute, 10 years, fixed seed.
+import random
+MIN=10*525600
+PF=1/540; PR=1/60   # per-minute failure and repair probability -> single-node availability 0.9
+def run(mode, cc=0.0, delay=30, seed=7):
+    r=random.Random(seed)
+    up=[True,True]; up_minutes=0
+    active=0; wait=0
+    for t in range(MIN):
+        # failures / repairs
+        common = r.random() < PF*cc
+        for k in (0,1):
+            if up[k]:
+                if r.random()<PF*(1-cc) or common: up[k]=False
+            else:
+                if r.random()<PR: up[k]=True
+        if mode=='single':
+            ok=up[0]
+        elif mode=='active-active':
+            ok=up[0] or up[1]
+        elif mode=='primary-backup':
+            if up[active]:
+                wait=0; ok=True
+            else:
+                ok=False
+                if up[1-active]:
+                    wait+=1
+                    if wait>=delay: active=1-active; wait=0; ok=True
+        up_minutes+= 1 if ok else 0
+    return up_minutes/MIN
+for mode in ('single','active-active','primary-backup'):
+    print(mode, 'independent', round(run(mode),4), 'with 20% common-cause', round(run(mode,cc=0.2),4))
+print('analytic indep two nodes', 1-0.1**2, '4 nines minutes/year', 525600*0.0001)
+for d in (5,30,120):
+    print('backup delay',d, round(run('primary-backup',delay=d),4))
+```
+
+Kết quả chương trình in ra:
+
+```text
+single independent 0.9003 with 20% common-cause 0.8995
+active-active independent 0.9903 with 20% common-cause 0.982
+primary-backup independent 0.9521 with 20% common-cause 0.9478
+analytic indep two nodes 0.99 4 nines minutes/year 52.56
+backup delay 5 0.9838
+backup delay 30 0.9521
+backup delay 120 0.9093
+```
+
+</details>
 
 ## Giới hạn cần nhớ
 

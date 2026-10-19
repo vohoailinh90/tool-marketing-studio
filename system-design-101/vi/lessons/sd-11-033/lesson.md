@@ -46,12 +46,12 @@ Bài không chép tấm hình nguồn, và phần văn bản nguồn không nêu
 
 ## Nhìn hình trả lời
 
-Một nhóm nhỏ muốn đặt cả mười máy chủ vào một mạng mà ai cũng vào được cho nhanh. Trong các nhóm trên, hai nhóm nào nên học trước để làm việc này an toàn?
+Một nhóm nhỏ muốn đặt cả mười máy chủ vào một mạng mà ai cũng vào được cho nhanh. Trong các dịch vụ trên, hai dịch vụ nào nên học trước để làm việc này an toàn?
 
 <details>
 <summary>Xem đáp án</summary>
 
-Mạng (VPC) và định danh (IAM): VPC để quyết định máy nào nằm trong mạng riêng, máy nào ra ngoài; IAM để quyết định ai và dịch vụ nào được làm gì. Cách đặt "ai cũng vào được" trái với cả hai.
+Hai dịch vụ nền tảng là mạng (VPC) và định danh (IAM): VPC để quyết định máy nào nằm trong mạng riêng, máy nào ra ngoài; IAM để quyết định ai và dịch vụ nào được làm gì. Cách đặt "ai cũng vào được" trái với cả hai.
 Đây là suy luận của người biên soạn.
 
 </details>

@@ -56,7 +56,8 @@
       "items": [
         "Lưu ảnh: S3.",
         "Đổi cỡ ảnh khi tải lên: Lambda.",
-        "Tài khoản và quyền: IAM.",
+        "Tài khoản người dùng: RDS.",
+        "Quyền đọc kho ảnh: IAM.",
         "Báo người theo dõi: SNS.",
         "Biết khi nào hỏng: CloudWatch."
       ]

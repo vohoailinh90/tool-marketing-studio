@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1166" viewBox="0 0 320 1166" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1220" viewBox="0 0 320 1220" role="img" aria-labelledby="title desc">
 <title id="title">Học AWS từ đâu</title>
 <desc id="desc">Hai khung dịch vụ AWS và một khung bài tập. Khung một, nền tảng: máy chủ ảo cho thuê, S3 lưu đối tượng, VPC là mạng riêng, IAM quản lý ai được làm gì. Khung hai, dữ liệu và nhắn tin: RDS cho cơ sở dữ liệu quan hệ, DynamoDB cho khóa và giá trị, SQS và SNS cho hàng đợi và thông báo. Khung ba, bài tập ứng dụng chia sẻ ảnh: mỗi nhu cầu gắn với một dịch vụ.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="1166" fill="#f8fafc"/>
+<rect width="320" height="1220" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Học AWS từ đâu</text>
 <text x="16" y="60.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Bản đồ nhóm dịch vụ cho người mới.</text>
@@ -39,7 +39,7 @@
 <circle cx="50" cy="725" r="18" fill="#0f766e"/><g transform="translate(39.2 714.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></g>
 <text x="78" y="717.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">SQS, SNS</text>
 <text x="78" y="741.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Hàng đợi và thông báo.</text>
-<rect x="8" y="783" width="304" height="375" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="8" y="783" width="304" height="429" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
 <text x="20" y="811.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Bài tập: ứng dụng chia sẻ</text>
 <text x="20" y="833.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">ảnh</text>
 <rect x="20" y="850" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
@@ -54,15 +54,19 @@
 <rect x="20" y="975" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
 <circle cx="43" cy="998" r="11" fill="#16a34a"/>
 <polyline points="37.9,998.4 41.7,1002.4 48.5,994" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="1001.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tài khoản và quyền: IAM.</text>
+<text x="64" y="1001.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tài khoản người dùng: RDS.</text>
 <rect x="20" y="1029" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
 <circle cx="43" cy="1052" r="11" fill="#16a34a"/>
 <polyline points="37.9,1052.4 41.7,1056.4 48.5,1048" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="1055.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Báo người theo dõi: SNS.</text>
-<rect x="20" y="1083" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<text x="64" y="1055.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Quyền đọc kho ảnh: IAM.</text>
+<rect x="20" y="1083" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
 <circle cx="43" cy="1106" r="11" fill="#16a34a"/>
 <polyline points="37.9,1106.4 41.7,1110.4 48.5,1102" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="1109.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Biết khi nào hỏng:</text>
-<text x="64" y="1128.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">CloudWatch.</text>
+<text x="64" y="1109.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Báo người theo dõi: SNS.</text>
+<rect x="20" y="1137" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1160" r="11" fill="#16a34a"/>
+<polyline points="37.9,1160.4 41.7,1164.4 48.5,1156" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1163.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Biết khi nào hỏng:</text>
+<text x="64" y="1182.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">CloudWatch.</text>
 </g>
 </svg>

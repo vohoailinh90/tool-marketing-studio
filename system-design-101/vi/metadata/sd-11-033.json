@@ -49,7 +49,7 @@
     },
     {
       "claim_vi": "EC2 rents virtual servers, S3 stores objects, VPC is a private network, IAM controls identities and permissions, RDS runs managed relational databases, DynamoDB stores key-value data, SQS is a queue, SNS fans out notifications, Lambda runs code on events, CloudWatch collects metrics and logs and sets alarms, CloudFormation describes infrastructure as code.",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-are-the-most-important-aws-services-to-learn.md",
+      "source": "https://docs.aws.amazon.com/",
       "section": "Đọc hình; Bài tập",
       "verified_by": "Author's general knowledge; AWS documentation was not opened in this session. The services listed are not read from the source image."
     }

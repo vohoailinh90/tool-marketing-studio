@@ -42,57 +42,45 @@
   },
   "claims": [
     {
-      "claim_vi": "C++ is a highly versatile programming language suitable for a wide range of applications; the source lists eight use cases.",
+      "claim_vi": "The source names eight use cases of C++: embedded systems, game development, operating systems, databases, financial applications, web browsers, networking and scientific computing. Only the names are reused; the lesson explains each area in its own words.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-8-c++-use-cases.md",
+      "section": "Top 8 C++ use cases",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "C++ Core Guidelines: the rules are meant to follow the zero-overhead principle, 'what you don't use, you don't pay for', or 'when you use an abstraction mechanism appropriately, you get at least as good performance as if you had handcoded using lower-level language constructs'.",
+      "source": "https://github.com/isocpp/CppCoreGuidelines/blob/33bcd015997f0d8e0fa0202eb66254a16f59ad8f/CppCoreGuidelines.md",
       "section": "Introduction",
-      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
     },
     {
-      "claim_vi": "Embedded systems: efficiency and fine control over hardware resources make C++ excellent.",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-8-c++-use-cases.md",
-      "section": "Embedded Systems",
-      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+      "claim_vi": "C++ Core Guidelines: hard-real-time programmers typically can't use free store (dynamic memory) freely and will be restricted in their choice of libraries.",
+      "source": "https://github.com/isocpp/CppCoreGuidelines/blob/33bcd015997f0d8e0fa0202eb66254a16f59ad8f/CppCoreGuidelines.md",
+      "section": "Introduction",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
     },
     {
-      "claim_vi": "Game development: C++ is a staple due to performance and efficiency.",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-8-c++-use-cases.md",
-      "section": "Game Development",
-      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+      "claim_vi": "C++ Core Guidelines: large parts of the standard library rely on dynamic allocation; the containers, but not the algorithms, are unsuitable for some hard-real-time and embedded applications, and the Guidelines suggest a standard-library-style container implemented using a pool allocator.",
+      "source": "https://github.com/isocpp/CppCoreGuidelines/blob/33bcd015997f0d8e0fa0202eb66254a16f59ad8f/CppCoreGuidelines.md",
+      "section": "Per: Performance (exception note)",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
     },
     {
-      "claim_vi": "Operating systems: extensive control over system resources and memory, ideal for operating systems and low-level system utilities.",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-8-c++-use-cases.md",
-      "section": "Operating Systems",
-      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+      "claim_vi": "C++ Core Guidelines: volatile is used to refer to objects that are shared with non-C++ code or hardware that does not follow the C++ memory model.",
+      "source": "https://github.com/isocpp/CppCoreGuidelines/blob/33bcd015997f0d8e0fa0202eb66254a16f59ad8f/CppCoreGuidelines.md",
+      "section": "CP: Concurrency (volatile)",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
     },
     {
-      "claim_vi": "Databases: many high-performance database systems are implemented in C++ to manage memory efficiently and run queries fast.",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-8-c++-use-cases.md",
-      "section": "Databases",
-      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
-    },
-    {
-      "claim_vi": "Financial Applications is a heading in the source with no text under it.",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-8-c++-use-cases.md",
-      "section": "Financial Applications",
-      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
-    },
-    {
-      "claim_vi": "Web browsers and their components such as rendering engines; network devices and simulation tools; scientific computing needing high performance and precise control over computational resources.",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-8-c++-use-cases.md",
-      "section": "Web Browsers, Networking, Scientific Computing",
-      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
-    },
-    {
-      "claim_vi": "Grouping the eight uses by the reason the source gives is the author's arrangement; the source does not compare C++ with other languages.",
+      "claim_vi": "The explanation of what each area demands (operating systems working with hardware, networking latency, game frame budgets, database memory layout, scientific computing, browsers on a user's machine, the diversity of financial software) and the grouping into three sets are the author's general knowledge.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-8-c++-use-cases.md",
       "section": "Design",
       "verified_by": "Author's general knowledge; not checked against primary documentation."
     }
   ],
-  "design_notes_vi": "Tám mục chia thành hai nhóm theo lý do nguồn nêu, cộng một nhóm hai mục còn lại (trình duyệt web và ứng dụng tài chính). Mục tài chính được nói thẳng là nguồn để trống. Không có mũi tên vì nguồn không nói thứ tự. Không dùng ảnh nguồn.",
+  "design_notes_vi": "Tám lĩnh vực chia ba nhóm theo điều mỗi lĩnh vực đòi hỏi: gần phần cứng, cần chạy nhanh và hai lĩnh vực còn lại. Không có mũi tên vì nguồn không nói thứ tự. Không dùng ảnh nguồn.",
   "source_deviations": [
-    "Source lists eight uses in a flat order and leaves Financial Applications without a description; the lesson groups them by the reason the source gives and says the financial item is empty rather than inventing text for it."
+    "Source lists eight uses in a flat order with one sentence each and leaves Financial Applications without a description; the lesson keeps only the eight names, groups them by what each area demands of a language, and writes its own explanation (C++ Core Guidelines for three statements; general knowledge for the rest) instead of translating the source sentences."
   ],
-  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích thêm là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích dựa vào C++ Core Guidelines ở ba chỗ đã nêu và kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn khác. Chưa user testing hoặc phê duyệt phát hành."
 }

@@ -35,7 +35,7 @@ Ngày 2026-10-19, người biên soạn viết một mô phỏng thời gian ả
 <details>
 <summary>Xem chương trình mô phỏng và kết quả</summary>
 
-Chạy `python3 cap.py`; mã nằm trọn ở đây vì bài không thêm tệp mã vào kho. Chương trình không dùng số ngẫu nhiên nên kết quả luôn như nhau.
+Lưu mã dưới đây vào một tệp tên `cap.py` (ví dụ dán vào tệp rồi lưu), sau đó chạy `python3 cap.py`; mã nằm trọn ở đây vì bài không thêm tệp mã vào kho. Chương trình không dùng số ngẫu nhiên nên kết quả luôn như nhau.
 
 ```python
 # Two replicas A and B. Partition during t in [3,7). The client writes x=1 at t=4 (to A) and retries every step if refused.

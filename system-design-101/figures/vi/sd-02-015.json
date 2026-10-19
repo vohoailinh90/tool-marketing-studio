@@ -1,0 +1,59 @@
+{
+  "id": "sd-02-015",
+  "title": "Netflix dùng những cơ sở dữ liệu nào?",
+  "subtitle": "Sáu loại, mỗi loại một việc.",
+  "desc": "Hai khung thẻ. Khung một, dữ liệu nghiệp vụ: quan hệ MySQL cho thanh toán và CockroachDB cho nhiều vùng; cột rộng Cassandra cho gần như mọi thứ; khóa–giá trị EVCache trên Memcached làm bộ đệm. Khung hai, phân tích và tệp: cột Redshift và Druid cho phân tích; chuỗi thời gian Atlas cho số đo; kho đối tượng S3 cho ảnh, video và nhật ký. Khung ba nêu ba điều cần nhớ.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Dữ liệu nghiệp vụ",
+      "items": [
+        {
+          "name": "Quan hệ",
+          "role": "MySQL cho tiền; CockroachDB cho nhiều vùng.",
+          "icon": "credit-card"
+        },
+        {
+          "name": "Cột rộng",
+          "role": "Cassandra: phim, người dùng, lịch sử xem.",
+          "icon": "database"
+        },
+        {
+          "name": "Khóa–giá trị",
+          "role": "EVCache trên Memcached làm bộ đệm.",
+          "icon": "key-round"
+        }
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Phân tích, số đo và tệp",
+      "items": [
+        {
+          "name": "Cột",
+          "role": "Redshift và Druid cho phân tích.",
+          "icon": "chart-column"
+        },
+        {
+          "name": "Chuỗi thời gian",
+          "role": "Atlas lưu và gộp số đo.",
+          "icon": "activity"
+        },
+        {
+          "name": "Kho đối tượng",
+          "role": "S3 cho ảnh, video, nhật ký.",
+          "icon": "hard-drive"
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Nhớ gì",
+      "items": [
+        "Chọn cơ sở dữ liệu theo loại dữ liệu.",
+        "Tiền cần giao dịch và khóa chống trùng.",
+        "Danh sách không cho biết dữ liệu chảy ra sao."
+      ]
+    }
+  ]
+}

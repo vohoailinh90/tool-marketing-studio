@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1735" viewBox="0 0 320 1735" role="img" aria-labelledby="title desc">
+<title id="title">Khóa bi quan và khóa lạc quan</title>
+<desc id="desc">Bốn khung. Khung một, không khóa: A và B cùng đọc thấy còn 1 vé, cùng ghi còn 0, nên một vé bán cho hai người. Khung hai, khóa bi quan: A khóa hàng khi đọc và giữ khóa tới lúc commit; lệnh khóa của B phải chờ 1 giây; sau đó B đọc thấy còn 0 và từ chối bán. Khung ba, khóa lạc quan: cả hai đọc được còn 1 vé, phiên bản 1; mỗi người ghi kèm điều kiện phiên bản vẫn là 1; người ghi trước sửa được 1 dòng, người ghi sau sửa 0 dòng nên biết có xung đột, đọc lại rồi thử lại. Khung bốn: khi nào chọn cách nào.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1735" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Khóa bi quan và khóa</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">lạc quan</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Hai người cùng mua vé cuối cùng.</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Kết quả đo trên PostgreSQL 16.</text>
+<rect x="8" y="123" width="304" height="438" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Không khóa: một vé bán hai</text>
+<text x="20" y="173.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">lần</text>
+<rect x="20" y="190" width="84" height="67" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="62" cy="212" r="14" fill="#1d4ed8"/><g transform="translate(53.6 203.6) scale(0.7)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></g>
+<text x="62" y="243.9" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">Người A</text>
+<rect x="118" y="190" width="84" height="67" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="160" cy="212" r="14" fill="#1d4ed8"/><g transform="translate(151.6 203.6) scale(0.7)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></g>
+<text x="160" y="243.9" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">Kho vé</text>
+<rect x="216" y="190" width="84" height="67" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="258" cy="212" r="14" fill="#1d4ed8"/><g transform="translate(249.6 203.6) scale(0.7)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></g>
+<text x="258" y="243.9" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">Người B</text>
+<polyline points="62,257 62,549" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
+<polyline points="160,257 160,549" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
+<polyline points="258,257 258,549" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
+<text x="111" y="285.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">A đọc: còn</text>
+<text x="111" y="304.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">1 vé</text>
+<polyline points="63,318 157,318" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="209" y="346.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">B đọc: còn</text>
+<text x="209" y="365.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">1 vé</text>
+<polyline points="257,379 163,379" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="111" y="407.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">A ghi: còn</text>
+<text x="111" y="426.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">0, bán cho</text>
+<text x="111" y="446.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">A</text>
+<polyline points="63,460 157,460" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="209" y="488.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">B ghi: còn</text>
+<text x="209" y="507.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">0, bán cho</text>
+<text x="209" y="527.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">B</text>
+<polyline points="257,541 163,541" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="573" width="304" height="404" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="601.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Khóa bi quan: giữ hàng rồi</text>
+<text x="20" y="623.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">mới quyết</text>
+<rect x="20" y="640" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="666" r="14" fill="#0f766e"/>
+<text x="46" y="671.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="666.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">A khóa hàng khi đọc</text>
+<text x="70" y="690.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">A đọc thấy còn 1 vé; khóa</text>
+<text x="70" y="709.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">giữ tới khi A commit.</text>
+<rect x="20" y="749" width="280" height="107" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="775" r="14" fill="#0f766e"/>
+<text x="46" y="780.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="775.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">B phải chờ</text>
+<text x="70" y="799.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lệnh khóa của B đứng yên</text>
+<text x="70" y="818.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">1 giây, đúng lúc A còn giữ</text>
+<text x="70" y="838.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khóa.</text>
+<polyline points="46,729 46,747" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="878" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="904" r="14" fill="#0f766e"/>
+<text x="46" y="909.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="904.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">B đọc giá trị mới</text>
+<text x="70" y="928.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">A commit xong, B thấy còn</text>
+<text x="70" y="947.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">0 vé và từ chối bán.</text>
+<polyline points="46,858 46,876" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="989" width="304" height="424" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="1017.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Khóa lạc quan: kiểm phiên</text>
+<text x="20" y="1039.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">bản lúc ghi</text>
+<rect x="20" y="1056" width="280" height="87" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="46" cy="1082" r="14" fill="#b45309"/>
+<text x="46" y="1087.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="1082.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Cả hai đọc, không khóa</text>
+<text x="70" y="1106.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">A và B cùng thấy còn 1 vé,</text>
+<text x="70" y="1125.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">phiên bản 1.</text>
+<rect x="20" y="1165" width="280" height="107" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="46" cy="1191" r="14" fill="#b45309"/>
+<text x="46" y="1196.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="1191.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Ghi kèm điều kiện</text>
+<text x="70" y="1215.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chỉ sửa nếu phiên bản vẫn</text>
+<text x="70" y="1234.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">là 1, rồi tăng phiên bản lên</text>
+<text x="70" y="1254.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">2.</text>
+<polyline points="46,1145 46,1163" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="1294" width="280" height="107" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="46" cy="1320" r="14" fill="#b45309"/>
+<text x="46" y="1325.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="1320.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Người sau sửa 0 dòng</text>
+<text x="70" y="1344.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ứng dụng biết có xung đột:</text>
+<text x="70" y="1363.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đọc lại, thấy hết vé, không</text>
+<text x="70" y="1383.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bán.</text>
+<polyline points="46,1274 46,1292" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="1425" width="304" height="302" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="1453.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Chọn cách nào</text>
+<rect x="20" y="1470" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1493" r="11" fill="#16a34a"/>
+<polyline points="37.9,1493.4 41.7,1497.4 48.5,1489" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1496.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Xung đột thường xảy ra, làm</text>
+<text x="64" y="1515.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lại tốn kém: khóa bi quan.</text>
+<rect x="20" y="1541" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1564" r="11" fill="#16a34a"/>
+<polyline points="37.9,1564.4 41.7,1568.4 48.5,1560" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1567.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Xung đột hiếm, không muốn</text>
+<text x="64" y="1586.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">ai phải chờ: khóa lạc quan,</text>
+<text x="64" y="1606.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">kèm vòng thử lại.</text>
+<rect x="20" y="1632" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1655" r="11" fill="#16a34a"/>
+<polyline points="37.9,1655.4 41.7,1659.4 48.5,1651" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1658.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Khóa bi quan: giữ khóa thật</text>
+<text x="64" y="1677.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">ngắn và khóa theo cùng một</text>
+<text x="64" y="1697.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thứ tự.</text>
+</g>
+</svg>

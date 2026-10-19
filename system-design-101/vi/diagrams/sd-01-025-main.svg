@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="630" viewBox="0 0 320 630" role="img" aria-labelledby="title desc"><title id="title">Tách các thành phần của URL</title><desc id="desc">Ba thẻ dọc với ví dụ độc lập do bài thiết kế.</desc><rect width="320" height="630" fill="#f8fafc"/><g font-family="Arial, sans-serif" font-size="16" fill="#0f172a">
+<text x="16" y="32" font-size="20" font-weight="bold">ĐỌC MỘT URL HTTPS</text>
+<rect x="12" y="65" width="296" height="150" rx="12" fill="#dbeafe"/>
+<text x="22" y="94" font-weight="bold">Scheme và host</text>
+<text x="22" y="124">https://shop.example</text>
+<text x="22" y="154">Scheme: https · Host: shop.example</text>
+<rect x="12" y="235" width="296" height="150" rx="12" fill="#dcfce7"/>
+<text x="22" y="264" font-weight="bold">Cổng và đường dẫn</text>
+<text x="22" y="294">:8443/items/42</text>
+<text x="22" y="324">Port: 8443 · Path: /items/42</text>
+<rect x="12" y="405" width="296" height="150" rx="12" fill="#fef3c7"/>
+<text x="22" y="434" font-weight="bold">Query và fragment</text>
+<text x="22" y="464">?view=compact#details</text>
+<text x="22" y="494">Query: view=compact</text>
+<text x="22" y="524">Fragment: details</text>
+<text x="16" y="610">Fragment ở phía client.</text></g></svg>

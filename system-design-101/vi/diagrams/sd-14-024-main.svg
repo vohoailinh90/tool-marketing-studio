@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1072" viewBox="0 0 320 1072" role="img" aria-labelledby="title desc">
+<title id="title">Ba lớp của SSH</title>
+<desc id="desc">Bốn thẻ xếp dọc, nối bằng mũi tên. Kết nối TCP: một ổ cắm mạng giữa hai máy. Một, lớp truyền tải: trao khóa, mã hóa, kiểm khóa máy chủ. Hai, lớp xác thực: máy chủ kiểm người dùng, trong đường đã mã hóa. Ba, lớp kết nối: chia thành nhiều kênh: lệnh, chuyển tiếp cổng. Khung cuối ghi bốn điều quan sát khi chạy thử: trong byte bắt được có chữ phiên bản và tên thuật toán, không có lệnh hay tên người dùng, nhưng kích thước vẫn đếm được; khóa máy chủ lạ làm máy khách ngắt trước khi xác thực; khóa lạ hoặc mật khẩu khi máy chủ không bật bị từ chối ở lớp xác thực; ba kênh cùng lúc vẫn là một kết nối TCP và một lần xác thực.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1072" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Ba lớp của SSH</text>
+<text x="16" y="60.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Đọc từ trên xuống, theo thứ tự chạy</text>
+<text x="16" y="79.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">thật.</text>
+<rect x="8" y="99" width="304" height="501" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="127.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Mỗi lớp chạy trên lớp trước</text>
+<rect x="20" y="144" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="187.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 176.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="6" rx="1" width="6" x="16" y="16"/><rect height="6" rx="1" width="6" x="2" y="16"/><rect height="6" rx="1" width="6" x="9" y="2"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"/><path d="M12 12V8"/></g>
+<text x="78" y="170.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Kết nối TCP</text>
+<text x="78" y="194.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Một ổ cắm mạng giữa hai</text>
+<text x="78" y="213.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">máy.</text>
+<rect x="20" y="263" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="306.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 295.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="11" rx="2" ry="2" width="18" x="3" y="11"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></g>
+<text x="78" y="289.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">1 · Truyền tải</text>
+<text x="78" y="313.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Trao khóa, mã hóa, kiểm</text>
+<text x="78" y="332.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khóa máy chủ.</text>
+<rect x="20" y="382" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="425.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 414.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"/><circle cx="16.5" cy="7.5" fill="#FFFFFF" r=".5"/></g>
+<text x="78" y="408.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">2 · Xác thực</text>
+<text x="78" y="432.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Máy chủ kiểm người dùng,</text>
+<text x="78" y="451.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trong đường đã mã hóa.</text>
+<rect x="20" y="501" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="544.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 533.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5"/><path d="M8 3H3v5"/><path d="M12 22v-8.3a4 4 0 0 0-1.172-2.872L3 3"/><path d="m15 9 6-6"/></g>
+<text x="78" y="527.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">3 · Kết nối</text>
+<text x="78" y="551.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chia thành nhiều kênh:</text>
+<text x="78" y="570.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lệnh, chuyển tiếp cổng.</text>
+<polyline points="160,233 160,261" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="160,352 160,380" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="160,471 160,499" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="612" width="304" height="452" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="640.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Quan sát khi chạy thử</text>
+<rect x="20" y="657" width="280" height="122" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="680" r="11" fill="#16a34a"/>
+<polyline points="37.9,680.4 41.7,684.4 48.5,676" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="683.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Trong byte bắt được có chữ</text>
+<text x="64" y="702.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">phiên bản và tên thuật toán,</text>
+<text x="64" y="722.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">không có lệnh hay tên người</text>
+<text x="64" y="741.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dùng; kích thước vẫn đếm</text>
+<text x="64" y="761.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">được.</text>
+<rect x="20" y="787" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="810" r="11" fill="#16a34a"/>
+<polyline points="37.9,810.4 41.7,814.4 48.5,806" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="813.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Khóa máy chủ lạ: máy khách</text>
+<text x="64" y="832.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">ngắt trước khi xác thực bắt</text>
+<text x="64" y="852.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đầu.</text>
+<rect x="20" y="878" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="901" r="11" fill="#16a34a"/>
+<polyline points="37.9,901.4 41.7,905.4 48.5,897" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="904.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Khóa lạ, hoặc mật khẩu khi</text>
+<text x="64" y="923.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">máy chủ không bật: bị từ</text>
+<text x="64" y="943.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chối ở lớp xác thực.</text>
+<rect x="20" y="969" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="992" r="11" fill="#16a34a"/>
+<polyline points="37.9,992.4 41.7,996.4 48.5,988" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="995.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ba kênh cùng lúc: vẫn một</text>
+<text x="64" y="1014.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">kết nối TCP và một lần xác</text>
+<text x="64" y="1034.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thực.</text>
+</g>
+</svg>

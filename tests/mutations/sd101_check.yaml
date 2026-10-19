@@ -1779,40 +1779,41 @@ mutations:
   replace: ""
   test: tests.test_sd101_check.AbbreviationRuleTests.test_a_wrapped_line_does_not_glue_an_abbreviation_to_the_next_word
 - label: an image glues its alt text to the words beside it
-  find: "                    pieces.append(\" \" + URL.sub(\" \", child.content) + \" \")\n                elif child.type in"
-  replace: "                    pieces.append(URL.sub(\" \", child.content))\n                elif child.type in"
+  find: "                    pieces.append(\" \" + strip_urls(child.content) + \" \")\n                elif child.type in"
+  replace: "                    pieces.append(strip_urls(child.content))\n                elif child.type in"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_a_wrapped_line_does_not_glue_an_abbreviation_to_the_next_word
 - label: the displayed address of an autolink is read as prose
   find: "                elif in_autolink:\n                    continue\n"
   replace: ""
   test: tests.test_sd101_check.AbbreviationRuleTests.test_an_address_is_not_prose_but_the_label_of_a_link_is
 - label: an address typed into the text is read as prose
-  find: "                    pieces.append(URL.sub(\" \", child.content))"
+  find: "                    pieces.append(strip_urls(child.content))"
   replace: "                    pieces.append(child.content)"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_an_address_is_not_prose_but_the_label_of_a_link_is
 - label: an address typed into HTML is read as prose
-  find: "return URL.sub(\" \", \" \".join(parser.pieces))"
+  find: "return strip_urls(\" \".join(parser.pieces))"
   replace: "return \" \".join(parser.pieces)"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_an_address_is_not_prose_in_html_an_image_or_a_figure_either
 - label: an address in the alt text of a Markdown image is read as prose
-  find: "\" \" + URL.sub(\" \", child.content) + \" \""
+  find: "\" \" + strip_urls(child.content) + \" \""
   replace: "\" \" + child.content + \" \""
   test: tests.test_sd101_check.AbbreviationRuleTests.test_an_address_is_not_prose_in_html_an_image_or_a_figure_either
 - label: an address in the text of a figure is read as prose
-  find: "string = URL.sub(\" \", \" \".join(element.itertext()))"
+  find: "string = strip_urls(\" \".join(element.itertext()))"
   replace: "string = \" \".join(element.itertext())"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_an_address_is_not_prose_in_html_an_image_or_a_figure_either
 - label: the scheme of an address is matched in lower case only
-  find: "[A-Za-z][A-Za-z0-9+.\\-]*://[^\\s<>]+"
-  replace: "[a-z][a-z0-9+.\\-]*://[^\\s<>]+"
+  find: SCHEME_LETTERS = frozenset("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz")
+  replace: SCHEME_LETTERS = frozenset("abcdefghijklmnopqrstuvwxyz")
   test: tests.test_sd101_check.AbbreviationRuleTests.test_an_address_is_not_prose_but_the_label_of_a_link_is
 - label: only an http, https or ftp address is no prose (wss://example.com/API/TLS)
-  find: "[A-Za-z][A-Za-z0-9+.\\-]*://[^\\s<>]+"
-  replace: "(?:[Hh][Tt][Tt][Pp][Ss]?|[Ff][Tt][Pp])://[^\\s<>]+"
+  find: '    cursor = search = 0'
+  replace: '    return re.sub(r"(?:[Hh][Tt][Tt][Pp][Ss]?|[Ff][Tt][Pp])://[^\s<>]+",
+    " ", text)'
   test: tests.test_sd101_check.AbbreviationRuleTests.test_an_address_of_any_scheme_is_not_prose
 - label: a colon alone makes an address (Note:LLM)
-  find: "[A-Za-z][A-Za-z0-9+.\\-]*://[^\\s<>]+"
-  replace: "[A-Za-z][A-Za-z0-9+.\\-]*:(?://)?[^\\s<>]+"
+  find: text.find("://", search)
+  replace: text.find(":", search)
   test: tests.test_sd101_check.AbbreviationRuleTests.test_an_address_of_any_scheme_is_not_prose
 - label: a word with no vowel in a capitals-only label is not read (JWT, DNS)
   find: " or not set(name) & VOWELS"
@@ -2097,7 +2098,7 @@ mutations:
   replace: "*UNIT_SYMBOLS)"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_the_forms_an_abbreviation_takes
 - label: a name with its own full form is held to the initials rule
-  find: "IRREGULAR_FORMS = {\"HPACK\": \"Header Compression for HTTP/2\", \"AAAA\": \"Quad A\", \"EDNS\": \"Extension Mechanisms for DNS\",\n                   \"ISO\": \"International Organization for Standardization\", \"MX\": \"Mail eXchange\", \"CoAP\": \"Constrained Application Protocol\",\n                   \"RRset\": \"Resource Record set\", \"SLSA\": \"Supply-chain Levels for Software Artifacts\",\n                   \"W3C\": \"World Wide Web Consortium\", \"SELinux\": \"Security-Enhanced Linux\", \"WebAuthn\": \"Web Authentication\",\n                   \"OpenID\": \"Open IDentity\", \"DevOps\": \"Development and Operations\",\n                   \"DevSecOps\": \"Development, Security and Operations\", \"GitOps\": \"Git Operations\", \"NoOps\": \"No Operations\",\n                   \"UTC\": \"Coordinated Universal Time\", \"EdDSA\": \"Edwards-curve Digital Signature Algorithm\",\n                   \"NetBIOS\": \"Network Basic Input/Output System\", \"ETag\": \"Entity Tag\"}"
+  find: "IRREGULAR_FORMS = {\"HPACK\": \"Header Compression for HTTP/2\", \"AAAA\": \"Quad A\", \"EDNS\": \"Extension Mechanisms for DNS\",\n                   \"ISO\": \"International Organization for Standardization\", \"MX\": \"Mail eXchange\", \"CoAP\": \"Constrained Application Protocol\",\n                   \"RRset\": \"Resource Record set\", \"SLSA\": \"Supply-chain Levels for Software Artifacts\",\n                   \"W3C\": \"World Wide Web Consortium\", \"SELinux\": \"Security-Enhanced Linux\", \"WebAuthn\": \"Web Authentication\",\n                   \"OpenID\": \"Open IDentity\", \"DevOps\": \"Development and Operations\",\n                   \"DevSecOps\": \"Development, Security and Operations\", \"GitOps\": \"Git Operations\", \"NoOps\": \"No Operations\",\n                   \"UTC\": \"Coordinated Universal Time\", \"EdDSA\": \"Edwards-curve Digital Signature Algorithm\",\n                   \"NetBIOS\": \"Network Basic Input/Output System\", \"ETag\": \"Entity Tag\",\n                   # The official name has a word the initials skip, or a hyphen, or lists several principles:\n                   \"DASH\": \"Dynamic Adaptive Streaming over HTTP\", \"CRDT\": \"Conflict-free Replicated Data Type\",\n                   \"BASE\": \"Basically Available, Soft state, Eventual consistency\", \"UX\": \"User Experience\",\n                   \"SOLID\": \"Single responsibility, Open-closed, Liskov substitution, Interface segregation, Dependency inversion\"}"
   replace: "IRREGULAR_FORMS = {}"
   test: tests.test_sd101_check.AbbreviationRuleTests.test_a_unit_symbol_is_explained_by_the_name_of_the_unit
 - label: AAAA is not explained by the name it stands for
@@ -2153,16 +2154,16 @@ mutations:
   replace: ""
   test: tests.test_sd101_check.AbbreviationRuleTests.test_a_name_that_carries_an_abbreviation_is_read_as_that_abbreviation
 - label: ETag is not explained by the name it stands for
-  find: "\"NetBIOS\": \"Network Basic Input/Output System\", \"ETag\": \"Entity Tag\"}"
-  replace: "\"NetBIOS\": \"Network Basic Input/Output System\"}"
+  find: ", \"ETag\": \"Entity Tag\","
+  replace: ","
   test: tests.test_sd101_check.AbbreviationRuleTests.test_a_unit_symbol_is_explained_by_the_name_of_the_unit
 - label: UTC is not explained by the name it stands for
   find: "\"UTC\": \"Coordinated Universal Time\", "
   replace: ""
   test: tests.test_sd101_check.AbbreviationRuleTests.test_a_unit_symbol_is_explained_by_the_name_of_the_unit
 - label: EdDSA and NetBIOS are not explained by the names they stand for
-  find: ", \"EdDSA\": \"Edwards-curve Digital Signature Algorithm\",\n                   \"NetBIOS\": \"Network Basic Input/Output System\", \"ETag\": \"Entity Tag\"}"
-  replace: "}"
+  find: ", \"EdDSA\": \"Edwards-curve Digital Signature Algorithm\",\n                   \"NetBIOS\": \"Network Basic Input/Output System\", \"ETag\": \"Entity Tag\","
+  replace: ","
   test: tests.test_sd101_check.AbbreviationRuleTests.test_a_unit_symbol_is_explained_by_the_name_of_the_unit
 - label: EdDSA and NetBIOS are not recognised as abbreviations
   find: "\"EdDSA\", \"NetBIOS\",\n                    \"IoT\", \"CoAP\", \"DoH\", \"DoT\", \"RRset\",\n                    *UNIT_SYMBOLS)"
@@ -2244,3 +2245,27 @@ mutations:
   find: label_only = {name for name in labels - used - mixed if set(name) & VOWELS}
   replace: label_only = {name for name in labels - used - mixed}
   test: tests.test_sd101_check.AbbreviationRuleTests.test_a_plain_word_in_a_capitals_only_label_is_not_taken_for_what_another_lesson_explains
+- label: DASH is not explained by the name it stands for
+  find: "\"DASH\": \"Dynamic Adaptive Streaming over HTTP\", "
+  replace: ""
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_unit_symbol_is_explained_by_the_name_of_the_unit
+- label: CRDT is not explained by the name it stands for
+  find: "\"CRDT\": \"Conflict-free Replicated Data Type\",\n"
+  replace: "\n"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_unit_symbol_is_explained_by_the_name_of_the_unit
+- label: BASE is not explained by the name it stands for
+  find: "\"BASE\": \"Basically Available, Soft state, Eventual consistency\", "
+  replace: ""
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_unit_symbol_is_explained_by_the_name_of_the_unit
+- label: UX is not explained by the name it stands for
+  find: "\"UX\": \"User Experience\",\n"
+  replace: "\n"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_unit_symbol_is_explained_by_the_name_of_the_unit
+- label: SOLID is not explained by the names of its principles
+  find: ",\n                   \"SOLID\": \"Single responsibility, Open-closed, Liskov substitution, Interface segregation, Dependency inversion\"}"
+  replace: "}"
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_a_unit_symbol_is_explained_by_the_name_of_the_unit
+- label: the Redis command INCR is read as an abbreviation
+  find: "    \"INCR\",  # a Redis command, set in capitals in a figure label where a code span is not possible\n"
+  replace: ""
+  test: tests.test_sd101_check.AbbreviationRuleTests.test_words_that_only_look_like_abbreviations_need_no_entry

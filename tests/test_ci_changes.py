@@ -52,6 +52,137 @@ class MutationNeededTests(unittest.TestCase):
             self.assertIn("could not be read", reason)
 
 
+MANIFEST = """target: {target}
+mutations:
+- label: x
+  find: 'x'
+  replace: 'y'
+  test: tests.test_tool.ToolTests.test_x
+"""
+
+
+class SelectedManifestsTests(unittest.TestCase):
+    def test_the_real_manifests_are_chosen_by_target_entry_file_test_module_and_themselves(self):
+        cases = {"scripts/ci_changes.py": "tests/mutations/ci_changes.yaml",
+                 "tests/test_ci_changes.py": "tests/mutations/ci_changes.yaml",
+                 "tests/mutations/sd101_claims.yaml": "tests/mutations/sd101_claims.yaml",
+                 "docs/sd101-slides-handoff.md": "tests/mutations/sd101_handoff_doc.yaml"}
+        for changed, manifest in cases.items():
+            with self.subTest(changed):
+                self.assertIn(manifest, ci_changes.selected_manifests([changed], ROOT))
+
+    def test_a_manifest_is_chosen_by_the_file_one_of_its_entries_mutates(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            folder = Path(tmp)
+            write(folder, "tests/mutations/tool.yaml", MANIFEST.format(target="scripts/tool.py")
+                  + "- label: y\n  file: docs/tool.md\n  find: 'a'\n  replace: 'b'\n  test: tests.test_tool.ToolTests.test_y\n")
+            write(folder, "docs/tool.md", "a\n")
+            write(folder, "docs/other.md", "a\n")
+            self.assertEqual(["tests/mutations/tool.yaml"], ci_changes.selected_manifests(["docs/tool.md"], folder))
+            self.assertEqual([], ci_changes.selected_manifests(["docs/other.md"], folder))
+
+    def test_a_module_the_named_tests_import_directly_or_through_others_chooses_the_manifest(self):
+        self.assertIn("tests/mutations/ci_changes.yaml", ci_changes.selected_manifests(["mkt/model.py"], ROOT))
+        with tempfile.TemporaryDirectory() as tmp:
+            folder = Path(tmp)
+            write(folder, "tests/mutations/tool.yaml", MANIFEST.format(target="scripts/tool.py"))
+            write(folder, "tests/test_tool.py", "from pkg.helper import h\nimport bare\n")
+            write(folder, "pkg/__init__.py", "")
+            write(folder, "pkg/helper.py", "from . import deep\n")
+            write(folder, "pkg/deep.py", "x = 1\n")
+            write(folder, "scripts/bare.py", "x = 1\n")  # a test that puts scripts/ on sys.path imports it by bare name
+            write(folder, "pkg/unused.py", "x = 1\n")
+            for changed in ("pkg/helper.py", "pkg/deep.py", "pkg/__init__.py", "scripts/bare.py"):
+                with self.subTest(changed):
+                    self.assertEqual(["tests/mutations/tool.yaml"], ci_changes.selected_manifests([changed], folder))
+            self.assertEqual([], ci_changes.selected_manifests(["pkg/unused.py"], folder))
+            write(folder, "pkg/deep.py", "def broken(:\n")
+            self.assertIsNone(ci_changes.selected_manifests(["pkg/unused.py"], folder))
+
+    def test_a_module_loaded_by_path_chooses_the_manifest_of_the_tests_that_reach_it(self):
+        self.assertIn("tests/mutations/sd101_slides.yaml", ci_changes.selected_manifests(["scripts/sd101_claims.py"], ROOT))
+        with tempfile.TemporaryDirectory() as tmp:
+            folder = Path(tmp)
+            write(folder, "tests/mutations/tool.yaml", MANIFEST.format(target="scripts/tool.py"))
+            write(folder, "tests/test_tool.py", "from scripts import loader\n")
+            write(folder, "scripts/__init__.py", "")
+            write(folder, "scripts/loader.py", "import importlib.util, pathlib\n"
+                  "a = importlib.util.spec_from_file_location('near', pathlib.Path(__file__).with_name('near.py'))\n"
+                  "b = importlib.util.spec_from_file_location('far', ROOT / 'scripts' / 'hooks' / 'far.py')\n")
+            write(folder, "scripts/near.py", "x = 1\n")
+            write(folder, "scripts/hooks/far.py", "x = 1\n")
+            write(folder, "scripts/unused.py", "x = 1\n")
+            for changed in ("scripts/near.py", "scripts/hooks/far.py"):
+                with self.subTest(changed):
+                    self.assertEqual(["tests/mutations/tool.yaml"], ci_changes.selected_manifests([changed], folder))
+            self.assertEqual([], ci_changes.selected_manifests(["scripts/unused.py"], folder))
+            write(folder, "scripts/loader.py", "import importlib.util\nm = importlib.util.spec_from_file_location('x', PATH)\n")
+            self.assertIsNone(ci_changes.selected_manifests(["scripts/unused.py"], folder))
+
+    def test_an_unrelated_change_chooses_no_manifest(self):
+        self.assertEqual([], ci_changes.selected_manifests(["docs/facebook-page.md"], ROOT))
+
+    def test_a_shared_file_runs_every_manifest(self):
+        for path in ("scripts/mutation_check.py", ".github/workflows/ci.yml", "requirements-dev.txt", "requirements.txt"):
+            with self.subTest(path):
+                self.assertTrue((ROOT / path).is_file(), "a present file, so only RUN_ALL can decide")
+                self.assertIsNone(ci_changes.selected_manifests(["docs/facebook-page.md", path], ROOT))
+
+    def test_a_shared_test_file_no_manifest_names_runs_every_manifest(self):
+        for path in ("tests/support.py", "tests/fixtures/sample.json", "tests/web/office_ui_check.mts"):
+            with self.subTest(path):
+                self.assertIsNone(ci_changes.selected_manifests([path], ROOT))
+        self.assertEqual(["tests/mutations/ci_changes.yaml"], ci_changes.selected_manifests(["tests/test_ci_changes.py"], ROOT))
+
+    def test_a_test_module_other_tests_import_helpers_from_runs_every_manifest(self):
+        self.assertIsNone(ci_changes.selected_manifests(["tests/test_render.py"], ROOT))  # tests/test_diagram.py imports it
+        with tempfile.TemporaryDirectory() as tmp:
+            folder = Path(tmp)
+            write(folder, "tests/mutations/tool.yaml", MANIFEST.format(target="scripts/tool.py"))
+            write(folder, "tests/test_helpers_here.py", "def helper():\n    return 1\n")
+            write(folder, "tests/test_alone.py", "x = 1\n")
+            self.assertEqual([], ci_changes.selected_manifests(["tests/test_helpers_here.py"], folder))
+            for importer in ("from tests.test_helpers_here import helper\n", "import tests.test_helpers_here\n",
+                             "from tests import test_alone, test_helpers_here\n",
+                             "from tests import (\n    test_alone,\n    test_helpers_here,\n)\n",
+                             "import os, tests.test_helpers_here as helpers\n",
+                             "from .test_helpers_here import helper\n", "from . import test_helpers_here\n"):
+                with self.subTest(importer):
+                    write(folder, "tests/test_user.py", importer)
+                    self.assertIsNone(ci_changes.selected_manifests(["tests/test_helpers_here.py"], folder))
+
+    def test_a_deleted_or_renamed_file_runs_every_manifest(self):
+        self.assertIsNone(ci_changes.selected_manifests(["tests/test_gone_since_this_change.py"], ROOT))
+        self.assertIsNone(ci_changes.selected_manifests(["scripts/gone_since_this_change.py"], ROOT))
+        self.assertEqual([], ci_changes.selected_manifests(["system-design-101/vi/gone.md"], ROOT))
+
+    def test_an_import_of_a_different_module_with_a_shared_prefix_is_not_an_import(self):
+        for source in ("import tests.test_helpers_here_too\n", "from tests.test_helpers_here_too import x\n",
+                       "from tests import test_helpers_here_too\n", "from .test_helpers_here_too import x\n"):
+            with self.subTest(source):
+                self.assertFalse(ci_changes.imports_module(source, "tests/test_user.py", "tests.test_helpers_here"))
+
+    def test_a_test_file_that_does_not_parse_counts_as_importing(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            folder = Path(tmp)
+            write(folder, "tests/mutations/tool.yaml", MANIFEST.format(target="scripts/tool.py"))
+            write(folder, "tests/test_helpers_here.py", "x = 1\n")
+            write(folder, "tests/test_broken.py", "def broken(:\n")
+            self.assertIsNone(ci_changes.selected_manifests(["tests/test_helpers_here.py"], folder))
+
+    def test_manifests_that_cannot_be_read_run_every_manifest(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            folder = Path(tmp)
+            write(folder, "scripts/tool.py", "x = 1\n")  # present, so only the missing manifests can decide
+            self.assertIsNone(ci_changes.selected_manifests(["scripts/tool.py"], folder))
+            write(folder, "tests/mutations/broken.yaml", "target: [unclosed\n")
+            self.assertIsNone(ci_changes.selected_manifests(["scripts/tool.py"], folder))
+            for wrong in ("target: []\n", "target: x\nmutations:\n- file: []\n", "target: x\nmutations:\n- test: {a: 1}\n"):
+                with self.subTest(wrong):
+                    write(folder, "tests/mutations/broken.yaml", wrong)
+                    self.assertIsNone(ci_changes.selected_manifests(["scripts/tool.py"], folder))
+
+
 def git(folder: Path, *args: str) -> str:
     return subprocess.run(["git", "-c", "user.name=t", "-c", "user.email=t@example.com", "-c", "commit.gpgsign=false", *args],
                           cwd=folder, capture_output=True, text=True, check=True).stdout.strip()
@@ -124,25 +255,56 @@ class MainTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             folder, base = self.repository(tmp, STORE)
             code, written = self.run_main(folder, GITHUB_EVENT_NAME="pull_request", PR_BASE_SHA=base)
-            self.assertEqual((0, "mutation=false\n"), (code, written))
+            self.assertEqual((0, "mutation=false\nmanifests=all\n"), (code, written))
 
     def test_a_pull_request_that_changes_code_writes_true(self):
         with tempfile.TemporaryDirectory() as tmp:
-            folder, base = self.repository(tmp, "scripts/other.py")
+            folder, base = self.repository(tmp, "scripts/other.py")  # no manifests to read in this repository: all run
             code, written = self.run_main(folder, GITHUB_EVENT_NAME="pull_request", PR_BASE_SHA=base)
-            self.assertEqual((0, "mutation=true\n"), (code, written))
+            self.assertEqual((0, "mutation=true\nmanifests=all\n"), (code, written))
+
+    def test_a_pull_request_runs_only_the_manifests_that_name_a_changed_file(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            folder = Path(tmp)
+            git(folder, "init", "-q")
+            write(folder, "scripts/tool.py", "x = 1\n")
+            write(folder, "scripts/other.py", "y = 1\n")
+            write(folder, "tests/mutations/tool.yaml", MANIFEST.format(target="scripts/tool.py"))
+            write(folder, "tests/mutations/other.yaml", MANIFEST.format(target="scripts/other.py"))
+            git(folder, "add", "-A")
+            git(folder, "commit", "-q", "-m", "base")
+            base = git(folder, "rev-parse", "HEAD")
+            write(folder, "scripts/tool.py", "x = 2\n")
+            git(folder, "commit", "-qam", "change")
+            code, written = self.run_main(folder, GITHUB_EVENT_NAME="pull_request", PR_BASE_SHA=base)
+            self.assertEqual((0, "mutation=true\nmanifests=tests/mutations/tool.yaml\n"), (code, written))
+
+    def test_a_pull_request_no_manifest_names_skips_the_check(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            folder = Path(tmp)
+            git(folder, "init", "-q")
+            write(folder, "scripts/tool.py", "x = 1\n")
+            write(folder, "tests/mutations/tool.yaml", MANIFEST.format(target="scripts/tool.py"))
+            git(folder, "add", "-A")
+            git(folder, "commit", "-q", "-m", "base")
+            base = git(folder, "rev-parse", "HEAD")
+            write(folder, "docs/note.md", "n\n")
+            git(folder, "add", "-A")
+            git(folder, "commit", "-q", "-m", "docs")
+            code, written = self.run_main(folder, GITHUB_EVENT_NAME="pull_request", PR_BASE_SHA=base)
+            self.assertEqual((0, "mutation=false\nmanifests=all\n"), (code, written))
 
     def test_a_push_writes_true_even_for_store_files(self):
         with tempfile.TemporaryDirectory() as tmp:
             folder, base = self.repository(tmp, STORE)
             code, written = self.run_main(folder, GITHUB_EVENT_NAME="push", PR_BASE_SHA=base)
-            self.assertEqual((0, "mutation=true\n"), (code, written))
+            self.assertEqual((0, "mutation=true\nmanifests=all\n"), (code, written))
 
     def test_an_unreadable_base_writes_true_and_does_not_fail(self):
         with tempfile.TemporaryDirectory() as tmp:
             folder, _ = self.repository(tmp, STORE)
             code, written = self.run_main(folder, GITHUB_EVENT_NAME="pull_request", PR_BASE_SHA="0" * 40)
-            self.assertEqual((0, "mutation=true\n"), (code, written))
+            self.assertEqual((0, "mutation=true\nmanifests=all\n"), (code, written))
 
     def test_an_unwritable_output_file_still_exits_zero(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -163,18 +325,36 @@ class WorkflowUsesItTests(unittest.TestCase):
     def test_the_decision_runs_before_the_mutation_check_with_the_base_of_the_pull_request(self):
         steps = self.engine()
         decide = next(index for index, step in enumerate(steps) if step.get("id") == "changes")
-        mutation = next(index for index, step in enumerate(steps) if "mutation_check.py --all" in step.get("run", ""))
+        mutation = next(index for index, step in enumerate(steps) if "mutation_check.py" in step.get("run", ""))
         self.assertLess(decide, mutation)
         self.assertEqual("python scripts/ci_changes.py", steps[decide]["run"])
         self.assertEqual("${{ github.event.pull_request.base.sha }}", steps[decide]["env"]["PR_BASE_SHA"])
 
+    def mutation_step(self) -> dict:
+        return next(step for step in self.engine() if "mutation_check.py" in step.get("run", ""))
+
     def test_the_mutation_check_skips_only_when_the_decision_says_false(self):
-        mutation = next(step for step in self.engine() if "mutation_check.py --all" in step.get("run", ""))
-        self.assertEqual("steps.changes.outputs.mutation != 'false'", mutation["if"])
+        self.assertEqual("steps.changes.outputs.mutation != 'false'", self.mutation_step()["if"])
 
     def test_the_mutation_check_runs_on_several_tree_copies_unless_the_variable_says_otherwise(self):
-        mutation = next(step for step in self.engine() if "mutation_check.py --all" in step.get("run", ""))
-        self.assertEqual("python scripts/mutation_check.py --all --jobs ${{ vars.MUTATION_JOBS || '2' }}", mutation["run"])
+        self.assertIn("python scripts/mutation_check.py \"$@\" --jobs ${{ vars.MUTATION_JOBS || '2' }}",
+                      self.mutation_step()["run"])
+
+    def run_step(self, manifests: str | None) -> list[str]:
+        """The arguments the step's shell passes to the checker for a given `manifests` output."""
+        script = self.mutation_step()["run"].replace("python scripts/mutation_check.py", "printf '%s\\n'")
+        script = script.replace("${{ vars.MUTATION_JOBS || '2' }}", "2")
+        environ = {"PATH": "/usr/bin:/bin"} | ({} if manifests is None else {"MANIFESTS": manifests})
+        result = subprocess.run(["bash", "-c", script], env=environ, capture_output=True, text=True, check=True)
+        return result.stdout.split()
+
+    def test_the_step_runs_the_chosen_manifests_or_all_of_them(self):
+        self.assertEqual("${{ steps.changes.outputs.manifests }}", self.mutation_step()["env"]["MANIFESTS"])
+        self.assertEqual(["tests/mutations/a.yaml", "tests/mutations/b.yaml", "--jobs", "2"],
+                         self.run_step("tests/mutations/a.yaml tests/mutations/b.yaml"))
+        for manifests in ("all", "", None):
+            with self.subTest(manifests):
+                self.assertEqual(["--all", "--jobs", "2"], self.run_step(manifests))
 
 
 if __name__ == "__main__":

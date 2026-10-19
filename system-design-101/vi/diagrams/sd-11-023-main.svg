@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="917" viewBox="0 0 320 917" role="img" aria-labelledby="title desc">
+<title id="title">Bộ phiên bản: dựng lại cho ra đúng kết quả cũ</title>
+<desc id="desc">Hai khung. Khung một, bốn bước dựng một gói phần mềm: khai báo phụ thuộc, chọn một bộ phiên bản, dựng cục bộ hoặc từ xa, ra sản phẩm có phiên bản. Khung hai, thử nghiệm nhỏ: dựng theo phiên bản mới nhất thì sau khi thư viện B ra bản 2.0 kết quả dựng đổi và hỏng; dựng theo bộ phiên bản đã chụp thì kết quả giữ nguyên.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="917" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Bộ phiên bản: dựng lại</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">cho ra đúng kết quả cũ</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Đóng băng phụ thuộc.</text>
+<rect x="8" y="104" width="304" height="491" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="132.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Từ khai báo tới sản phẩm</text>
+<rect x="20" y="149" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="175" r="14" fill="#1d4ed8"/>
+<text x="46" y="180.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="175.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Khai báo phụ thuộc</text>
+<text x="70" y="199.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Gói cần những gói nào, ràng</text>
+<text x="70" y="218.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">buộc phiên bản ra sao.</text>
+<rect x="20" y="258" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="284" r="14" fill="#1d4ed8"/>
+<text x="46" y="289.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="284.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Chọn bộ phiên bản</text>
+<text x="70" y="308.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Một danh sách phiên bản đã</text>
+<text x="70" y="327.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chốt, dùng riêng cho dịch</text>
+<text x="70" y="347.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">vụ.</text>
+<polyline points="46,238 46,256" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="387" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="413" r="14" fill="#1d4ed8"/>
+<text x="46" y="418.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="413.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Dựng</text>
+<text x="70" y="437.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cục bộ hoặc ở dịch vụ dựng</text>
+<text x="70" y="456.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">từ xa, từ cùng một bộ.</text>
+<polyline points="46,367 46,385" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="496" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="522" r="14" fill="#1d4ed8"/>
+<text x="46" y="527.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">4</text>
+<text x="70" y="522.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Sản phẩm có phiên bản</text>
+<text x="70" y="546.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mỗi lần dựng được chụp lại</text>
+<text x="70" y="565.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">và đánh phiên bản.</text>
+<polyline points="46,476 46,494" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="607" width="304" height="302" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="635.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Thử nghiệm nhỏ</text>
+<rect x="20" y="652" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="675" r="11" fill="#16a34a"/>
+<polyline points="37.9,675.4 41.7,679.4 48.5,671" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="678.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Dựng theo bản mới nhất:</text>
+<text x="64" y="697.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hôm sau thư viện B ra 2.0,</text>
+<text x="64" y="717.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">kết quả đổi và hỏng.</text>
+<rect x="20" y="743" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="766" r="11" fill="#16a34a"/>
+<polyline points="37.9,766.4 41.7,770.4 48.5,762" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="769.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Dựng theo bộ phiên bản đã</text>
+<text x="64" y="788.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chụp: kết quả hôm sau vẫn</text>
+<text x="64" y="808.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">như hôm trước.</text>
+<rect x="20" y="834" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="857" r="11" fill="#16a34a"/>
+<polyline points="37.9,857.4 41.7,861.4 48.5,853" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="860.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cái giá: phải chủ động cập</text>
+<text x="64" y="879.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhật bộ phiên bản.</text>
+</g>
+</svg>

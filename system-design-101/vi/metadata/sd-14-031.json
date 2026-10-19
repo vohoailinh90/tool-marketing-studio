@@ -1,0 +1,202 @@
+{
+  "id": "sd-14-031",
+  "title_vi": "SSO hoạt động thế nào? Phiên toàn cục và vé xác nhận",
+  "language": "vi",
+  "kind": "flow",
+  "content_status": "review",
+  "source_ref": "sd-14-031",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/v1what-is-sso-single-sign-on.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/v1what-is-sso-single-sign-on.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches provider tree OID. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "f2f48416f2f1535bd9fa68cc6716773d33e44b5a",
+    "retrieved_body_sha256": "ca3cce3a4e02482f7fe1b04b2c57766f57664a1750016707e3e83d7d55c832b3",
+    "retrieved_body_bytes": 2191
+  },
+  "diagram": "../diagrams/sd-14-031-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-14-011",
+      "relation": "compare-with",
+      "reason_vi": "SSO khác OAuth: bài này đi vào cơ chế hai phiên và vé."
+    },
+    {
+      "lesson_id": "sd-14-010",
+      "relation": "builds-on",
+      "reason_vi": "Token, cookie và session nói chung."
+    },
+    {
+      "lesson_id": "sd-14-008",
+      "relation": "builds-on",
+      "reason_vi": "Cookie và session khác nhau thế nào."
+    },
+    {
+      "lesson_id": "sd-14-009",
+      "relation": "builds-on",
+      "reason_vi": "Thuộc tính cookie như Domain và Secure."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "evidence": "Source read. MDN (mdn/content a1aa79c), OWASP CheatSheetSeries (1c3144a) and Apereo CAS documentation (af471c2) read from raw.githubusercontent.com at those pinned commits. Behaviour observed with a throw-away miniature SSO (Python 3.13.16 standard-library servers, Playwright 1.56.0, Chromium 141.0.7390.37, random ports, plain unencrypted transport), two complete runs with the same outcomes; the lab script is in the authoring scratchpad, not in the repository. The SAML and OpenID Connect specifications and RFC documents were not read (not reachable)."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright) rendered lesson.md, converted with markdown-it-py, at each width with optional sections open; the figure scale was measured from the rendered image (smallest figure text as drawn, which occurs at 320 px) and every SVG text box was checked against the viewBox. Not learner testing and not GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "The source tells a fourteen-step story: a user visits an email service (Gmail), which finds the user not logged in and redirects to the SSO authentication server; the user logs in there; the server creates a global session and a token; the email service validates the token with the server, which 'registers the system' and answers valid; the user then goes to a second Google-owned site (YouTube), which asks for authentication; the server finds the user already logged in and returns the token at once; the second site validates the token and returns the resource. It calls SSO an authentication scheme that lets a user log in to different systems 'using a single ID'.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/v1what-is-sso-single-sign-on.md",
+      "section": "Whole guide",
+      "verified_by": "Source body read (2191 bytes; blob and SHA-256 recomputed and equal to the values in source_snapshot)."
+    },
+    {
+      "claim_vi": "Two kinds of session exist in the miniature SSO: a session at the identity server (the lesson calls it the global session) and a separate local session at each application; after the first login the identity server sets its own cookie, issues a ticket and redirects to the application, which validates the ticket by a direct server-to-server call to the identity server and then creates its own local session and cookie. The validation call carried no browser cookie.",
+      "source": "https://github.com/apereo/cas/blob/af471c26a4316661e4f82d2c0f5e3824b60ee7ee/docs/cas-server-documentation/protocol/CAS-Protocol.md",
+      "section": "Key concepts; webflow",
+      "verified_by": "Observed in the lab: first visit to application A produced, in order, a redirect to the identity server, a login form, a POST of the credentials to the identity server only, a redirect to A with a ticket parameter plus Set-Cookie of the identity server's own cookie, a validate call from A to the identity server with no cookie, and a redirect from A with Set-Cookie of A's own cookie. Observed by running the author's throw-away lab (Python 3.13.16 standard-library servers on 127.0.0.1 at random ports, Playwright 1.56.0, Chromium 141.0.7390.37, plain unencrypted transport, one identity server, two applications; two complete runs gave the same outcomes); the script lives in the authoring scratchpad, not in the repository. The miniature follows the shape of the CAS description but is not a CAS implementation."
+    },
+    {
+      "claim_vi": "The password was sent only to the identity server: the credentials POST appeared only in the identity server's log, and the application's callback request carried only the ticket.",
+      "source": "https://github.com/apereo/cas/blob/af471c26a4316661e4f82d2c0f5e3824b60ee7ee/docs/cas-server-documentation/protocol/CAS-Protocol-Specification.md",
+      "section": "2.2.4 response",
+      "verified_by": "Observed in the request log of the lab. Observed by running the author's throw-away lab (Python 3.13.16 standard-library servers on 127.0.0.1 at random ports, Playwright 1.56.0, Chromium 141.0.7390.37, plain unencrypted transport, one identity server, two applications; two complete runs gave the same outcomes); the script lives in the authoring scratchpad, not in the repository."
+    },
+    {
+      "claim_vi": "After the local session exists, further visits to the application are served from it: three further visits to A produced three requests in total and none reached the identity server.",
+      "source": "https://github.com/apereo/cas/blob/af471c26a4316661e4f82d2c0f5e3824b60ee7ee/docs/cas-server-documentation/protocol/CAS-Protocol-Specification.md",
+      "section": "Section 3 (tickets and cookies)",
+      "verified_by": "Observed in the lab (count of logged requests per server). Observed by running the author's throw-away lab (Python 3.13.16 standard-library servers on 127.0.0.1 at random ports, Playwright 1.56.0, Chromium 141.0.7390.37, plain unencrypted transport, one identity server, two applications; two complete runs gave the same outcomes); the script lives in the authoring scratchpad, not in the repository."
+    },
+    {
+      "claim_vi": "On the first visit to application B the identity server received its own cookie from the browser, issued a ticket at once without showing the login form, B validated it and created its own local session. Over both applications the login form was shown once and the password was entered once.",
+      "source": "https://github.com/apereo/cas/blob/af471c26a4316661e4f82d2c0f5e3824b60ee7ee/docs/cas-server-documentation/protocol/CAS-Protocol.md",
+      "section": "Webflow",
+      "verified_by": "Observed in the lab (counters: login forms shown 1, password logins 1 after the visits to A and B). Observed by running the author's throw-away lab (Python 3.13.16 standard-library servers on 127.0.0.1 at random ports, Playwright 1.56.0, Chromium 141.0.7390.37, plain unencrypted transport, one identity server, two applications; two complete runs gave the same outcomes); the script lives in the authoring scratchpad, not in the repository."
+    },
+    {
+      "claim_vi": "Cookies are tied to the host that set them: the browser held three cookies (identity server, A, B), none with a Domain attribute; A and B both used the cookie name sid with different values and did not overwrite each other; the logs showed A and B receiving only their own sid and the identity server receiving only its own cookie. MDN states that a cookie without Domain is returned only to the host that sent it, that with Domain it also goes to subdomains, and that a server can set Domain only to its own domain or a parent domain.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/web/http/reference/headers/set-cookie/index.md",
+      "section": "Domain",
+      "verified_by": "MDN text read at the pinned commit; the host separation was observed in the lab's cookie jar dump (Playwright context cookies) and request logs. Observed by running the author's throw-away lab (Python 3.13.16 standard-library servers on 127.0.0.1 at random ports, Playwright 1.56.0, Chromium 141.0.7390.37, plain unencrypted transport, one identity server, two applications; two complete runs gave the same outcomes); the script lives in the authoring scratchpad, not in the repository."
+    },
+    {
+      "claim_vi": "A port is not a cookie boundary in Chromium: with one host name and two ports, a cookie set by the first port (no Domain, Path=/) was sent to the second port, and when the second port set a cookie of the same name the first port then received the second's value.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/web/http/reference/headers/set-cookie/index.md",
+      "section": "Domain",
+      "verified_by": "Observed in Chromium 141.0.7390.37 with two throw-away servers on one host name; no source read states this, so it is the author's observation only. Observed by running the author's throw-away lab (Python 3.13.16 standard-library servers on 127.0.0.1 at random ports, Playwright 1.56.0, Chromium 141.0.7390.37, plain unencrypted transport, one identity server, two applications; two complete runs gave the same outcomes); the script lives in the authoring scratchpad, not in the repository."
+    },
+    {
+      "claim_vi": "MDN warns that an application on a subdomain can set a cookie with the Domain attribute that is then available on all other subdomains, and that this can be abused in a session fixation attack.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/web/http/guides/cookies/index.md",
+      "section": "Define the lifetime / Cookie security",
+      "verified_by": "MDN text read at the pinned commit."
+    },
+    {
+      "claim_vi": "Ticket properties observed in the lab: a ticket already used was rejected on replay; a fresh ticket validated once and was rejected the second time; a ticket issued for A was rejected when presented for B (and was then also unusable for A, because a validation attempt consumes it); a ticket validated 1.5 s after issue was rejected when the lifetime was set to 1 s; a redirect address that was not registered was refused with status 400 although the browser held a valid identity-server session.",
+      "source": "https://github.com/apereo/cas/blob/af471c26a4316661e4f82d2c0f5e3824b60ee7ee/docs/cas-server-documentation/protocol/CAS-Protocol-Specification.md",
+      "section": "3.1.1 service ticket properties",
+      "verified_by": "Observed in the lab through direct calls to the validate endpoint and a browser request to the login endpoint. Observed by running the author's throw-away lab (Python 3.13.16 standard-library servers on 127.0.0.1 at random ports, Playwright 1.56.0, Chromium 141.0.7390.37, plain unencrypted transport, one identity server, two applications; two complete runs gave the same outcomes); the script lives in the authoring scratchpad, not in the repository."
+    },
+    {
+      "claim_vi": "The CAS specification says a service ticket is valid only for the service identifier given at login, is valid for one validation attempt only (invalidated whether or not validation succeeded), should expire in a reasonable time with no more than five minutes recommended, and must contain enough secure random data not to be guessable; in non-open mode a service address that is not registered must be denied, and filtering service addresses to known applications is strongly recommended.",
+      "source": "https://github.com/apereo/cas/blob/af471c26a4316661e4f82d2c0f5e3824b60ee7ee/docs/cas-server-documentation/protocol/CAS-Protocol-Specification.md",
+      "section": "3.1.1; 2.2.1",
+      "verified_by": "Specification text read at the pinned commit of the Apereo CAS documentation."
+    },
+    {
+      "claim_vi": "OWASP recommends comparing the parsed scheme, host and effective port of a redirect target against an explicit allowlist when external destinations are required.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/1c3144a85e9aa1b50bef773683405fcc626ce6e1/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.md",
+      "section": "Preventing Unvalidated Redirects and Forwards",
+      "verified_by": "Cheat sheet text read at the pinned commit."
+    },
+    {
+      "claim_vi": "Logout observed in the lab: logging out at A removed only A's local session, and a new visit to A was served after a silent ticket exchange (global session still present) with a new local session id and no password prompt, while B kept its session; logging out at the identity server (single logout off) ended the global session but A and B were still served by their old local sessions; with single logout on, the identity server called each application that had received a ticket in that session and a later visit to A and B showed the login form.",
+      "source": "https://github.com/apereo/cas/blob/af471c26a4316661e4f82d2c0f5e3824b60ee7ee/docs/cas-server-documentation/protocol/CAS-Protocol-Specification.md",
+      "section": "2.3 /logout; 2.3.3 Single Logout",
+      "verified_by": "Observed in the lab (event logs of steps 4a, 4b and 4c). Observed by running the author's throw-away lab (Python 3.13.16 standard-library servers on 127.0.0.1 at random ports, Playwright 1.56.0, Chromium 141.0.7390.37, plain unencrypted transport, one identity server, two applications; two complete runs gave the same outcomes); the script lives in the authoring scratchpad, not in the repository. The lab's single-logout call is a simplified form-encoded POST, not the XML document of the specification."
+    },
+    {
+      "claim_vi": "The CAS specification says the server MAY support single logout, in which case it MUST send an HTTP POST to all service addresses provided during the session when the ticket-granting ticket is expired by the user, that clients that do not support the request must ignore it, and that the server SHALL ignore errors on these POST requests ('fire and forget').",
+      "source": "https://github.com/apereo/cas/blob/af471c26a4316661e4f82d2c0f5e3824b60ee7ee/docs/cas-server-documentation/protocol/CAS-Protocol-Specification.md",
+      "section": "2.3.3 Single Logout",
+      "verified_by": "Specification text read at the pinned commit. The lesson's further remark that an application which does not receive the notice may keep its session is the author's inference from the ignore-errors rule, not observed."
+    },
+    {
+      "claim_vi": "OWASP says expiration timeouts are mandatory for every session and describes idle and absolute timeouts; local sessions in the lab never expire, which is a property of the lab only.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/1c3144a85e9aa1b50bef773683405fcc626ce6e1/cheatsheets/Session_Management_Cheat_Sheet.md",
+      "section": "Automatic Session Expiration",
+      "verified_by": "Cheat sheet text read at the pinned commit; the lab behaviour is by its code."
+    },
+    {
+      "claim_vi": "The Apereo CAS documentation describes CAS as a ticket-based protocol in which the TGT (Ticket Granting Ticket), stored in the TGC cookie, represents an SSO session, and the ST (Service Ticket), transmitted as a GET parameter in URLs, stands for the access granted by the server to the application for a specific user; the specification calls its cookie the ticket-granting cookie and the session the single sign-on session.",
+      "source": "https://github.com/apereo/cas/blob/af471c26a4316661e4f82d2c0f5e3824b60ee7ee/docs/cas-server-documentation/protocol/CAS-Protocol.md",
+      "section": "CAS Protocol: key concepts",
+      "verified_by": "Documentation text read at the pinned commit (the specification text at CAS-Protocol-Specification.md, sections 2.1 and 3.6, read as well)."
+    },
+    {
+      "claim_vi": "OWASP's SAML cheat sheet states that the Web Browser SAML/SSO Profile with Redirect/POST bindings is one of the most common SSO implementations.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/1c3144a85e9aa1b50bef773683405fcc626ce6e1/cheatsheets/SAML_Security_Cheat_Sheet.md",
+      "section": "Introduction",
+      "verified_by": "Cheat sheet text read at the pinned commit; the SAML specification itself was not opened."
+    },
+    {
+      "claim_vi": "Deviations from the source: the source's 'single ID', 'token', 'global session' and 'registers the system' wordings are corrected as listed in source_deviations; the lesson says the source omits the local session and logout. In the lab and in the CAS text read there is no registration step during ticket validation: the server looks up the ticket, compares the service, checks expiry and marks it used; registration of allowed applications happens beforehand.",
+      "source": "https://github.com/apereo/cas/blob/af471c26a4316661e4f82d2c0f5e3824b60ee7ee/docs/cas-server-documentation/protocol/CAS-Protocol-Specification.md",
+      "section": "2.4 /validate; 2.5 /serviceValidate",
+      "verified_by": "Author's analysis of the source text against the lab and the specification text read; the lab's identity server also records which applications received tickets in each session, to support single logout."
+    },
+    {
+      "claim_vi": "Not examined: the SAML and OpenID Connect specifications, RFC documents (the sites were not reachable), how any real company implements SSO (the source's Gmail and YouTube example is the source's), SameSite behaviour of cookies in redirects, Secure cookies and encrypted transport, other browsers, and any security review of the lab.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/v1what-is-sso-single-sign-on.md",
+      "section": "Whole guide",
+      "verified_by": "Not examined."
+    },
+    {
+      "claim_vi": "The lesson defines SSO in general terms (log in once in one place and use many applications) and states that the one-time ticket redeemed over a back channel is the mechanism of the CAS-style model built and run in this lesson, not of every SSO protocol. That other protocols (SAML is named as one example) can return the login result by a different flow is general knowledge; the lesson does not run or describe them.",
+      "source": "https://github.com/apereo/cas/blob/af471c26a4316661e4f82d2c0f5e3824b60ee7ee/docs/cas-server-documentation/protocol/CAS-Protocol.md",
+      "section": "Phần mở đầu",
+      "verified_by": "The ticket flow in the lesson was observed in the lab (one identity server, two applications, Chromium) and matches the CAS protocol text read at the pinned commit. The statement that other protocols use other flows is the author's general knowledge, not checked in this session; no OpenID Connect or SAML text was read."
+    }
+  ],
+  "design_notes_vi": "Hai trình tự cùng ba nhân vật (trình duyệt, ứng dụng, máy chủ định danh), lần đầu ở A rồi lần sau ở B, và một khung ghi chú những gì đã đo, kể cả đăng xuất. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "The source calls SSO an authentication scheme that lets a user log in to different systems 'using a single ID'; the lesson says there is one place that checks the credentials and each application receives a ticket, never the password.",
+    "The source calls the one-time item a 'token'; the lesson calls it a ticket and says it differs from the tokens that accompany every request (it is exchanged for a session and then spent), as the CAS specification's service ticket does.",
+    "The source says 'global session'; the lesson keeps the name as the identity server's own session, not one that all applications read, and notes that the CAS documentation calls it the single sign-on session.",
+    "The source says the authentication server 'registers' the application when validating the token; the lesson says neither the lab nor the CAS text read has such a step during validation (the server looks up, compares the service, checks expiry and consumes the ticket), and that registration of allowed applications happens beforehand.",
+    "The source says the application validates the token and returns the resource; the lesson adds the step the source omits, that the application creates its own local session and cookie, so later visits do not contact the identity server.",
+    "The source does not mention logout; the lesson shows that logout at one application, at the identity server without single logout, and with single logout behave differently.",
+    "The source uses Gmail and YouTube as the example; the lesson does not assert how Google or any other company implements sign-in."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="795" viewBox="0 0 320 795" role="img" aria-labelledby="title desc">
+<title id="title">Giây nhuận</title>
+<desc id="desc">Hai khung. Khung một, vì sao có giây nhuận và nó gây lỗi gì: Trái Đất quay không đều so với đồng hồ nguyên tử, người ta chèn thêm một giây, phần mềm thấy giây thứ sáu mươi, các mốc thời gian có thể lặp hoặc lùi. Khung hai, ba cách đối phó: chèn đúng giây nhuận, làm mịn thành những lát nhỏ, hoặc bỏ giây nhuận.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="795" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Giây nhuận</text>
+<text x="16" y="60.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Một phút 61 giây, và lỗi nó gây ra.</text>
+<rect x="8" y="80" width="304" height="433" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="108.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Từ giây thừa tới lỗi</text>
+<rect x="20" y="125" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="151" r="14" fill="#1d4ed8"/>
+<text x="46" y="156.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="151.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Quay không đều</text>
+<text x="70" y="175.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Trái Đất lệch dần so với</text>
+<text x="70" y="194.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đồng hồ nguyên tử.</text>
+<rect x="20" y="234" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="260" r="14" fill="#1d4ed8"/>
+<text x="46" y="265.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="260.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Chèn một giây</text>
+<text x="70" y="284.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Sau 23:59:59 có 23:59:60.</text>
+<polyline points="46,214 46,232" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="324" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="350" r="14" fill="#1d4ed8"/>
+<text x="46" y="355.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="350.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Phần mềm vấp</text>
+<text x="70" y="374.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Giả định phút có đúng 60</text>
+<text x="70" y="393.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">giây.</text>
+<polyline points="46,304 46,322" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="433" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="459" r="14" fill="#1d4ed8"/>
+<text x="46" y="464.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">4</text>
+<text x="70" y="459.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Mốc lặp hoặc lùi</text>
+<text x="70" y="483.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Thứ tự sự kiện có thể sai.</text>
+<polyline points="46,413 46,431" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="525" width="304" height="262" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="553.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Ba cách đối phó</text>
+<rect x="20" y="570" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="593" r="11" fill="#16a34a"/>
+<polyline points="37.9,593.4 41.7,597.4 48.5,589" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="596.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chèn đúng: đúng chuẩn,</text>
+<text x="64" y="615.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhưng dễ vỡ phần mềm.</text>
+<rect x="20" y="641" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="664" r="11" fill="#16a34a"/>
+<polyline points="37.9,664.4 41.7,668.4 48.5,660" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="667.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Làm mịn: chia giây thừa</text>
+<text x="64" y="686.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thành lát nhỏ.</text>
+<rect x="20" y="712" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="735" r="11" fill="#16a34a"/>
+<polyline points="37.9,735.4 41.7,739.4 48.5,731" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="738.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bỏ: hết giây thừa, giờ lệch</text>
+<text x="64" y="757.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dần khỏi Mặt Trời.</text>
+</g>
+</svg>

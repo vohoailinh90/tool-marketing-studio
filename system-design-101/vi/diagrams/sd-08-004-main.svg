@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1201" viewBox="0 0 320 1201" role="img" aria-labelledby="title desc">
+<title id="title">Prime Video gộp về một khối</title>
+<desc id="desc">Ba khung. Khung một, trước khi đổi: bộ chuyển đổi phương tiện, kho đối tượng lưu dữ liệu trung gian, bộ dò lỗi tải dữ liệu về, rồi thông báo thời gian thực, do một quy trình điều phối trả tiền theo từng lần chuyển trạng thái. Khung hai, sau khi đổi: bộ chuyển đổi và bộ dò lỗi chạy chung một tiến trình, rồi thông báo; dữ liệu giữa hai bước không phải đi qua mạng. Khung ba, thử trên một máy: chuyển 16 mebibyte sang tiến trình khác mất 7 đến 12 ms, chuyển 1 mebibyte mất khoảng 0,4 đến 1,2 ms, còn trao một tham chiếu trong cùng tiến trình gần như bằng 0.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1201" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Prime Video gộp về một</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">khối</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Chi phí nằm ở chỗ dữ liệu và lệnh đi</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">qua ranh giới giữa các thành phần.</text>
+<rect x="8" y="123" width="304" height="447" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Trước: các bước chạy rời</text>
+<text x="20" y="173.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">nhau</text>
+<rect x="20" y="190" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="224" r="18" fill="#1d4ed8"/><g transform="translate(39.2 213.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20v2"/><path d="M12 2v2"/><path d="M17 20v2"/><path d="M17 2v2"/><path d="M2 12h2"/><path d="M2 17h2"/><path d="M2 7h2"/><path d="M20 12h2"/><path d="M20 17h2"/><path d="M20 7h2"/><path d="M7 20v2"/><path d="M7 2v2"/><rect height="16" rx="2" width="16" x="4" y="4"/><rect height="8" rx="1" width="8" x="8" y="8"/></g>
+<text x="78" y="216.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Bộ chuyển đổi</text>
+<text x="78" y="240.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chạy riêng một bước.</text>
+<rect x="20" y="290" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="324" r="18" fill="#1d4ed8"/><g transform="translate(39.2 313.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></g>
+<text x="78" y="316.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Kho đối tượng</text>
+<text x="78" y="340.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Giữ dữ liệu trung gian.</text>
+<rect x="20" y="390" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="424" r="18" fill="#1d4ed8"/><g transform="translate(39.2 413.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></g>
+<text x="78" y="416.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Bộ dò lỗi</text>
+<text x="78" y="440.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tải dữ liệu về rồi dò.</text>
+<rect x="20" y="490" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="524" r="18" fill="#1d4ed8"/><g transform="translate(39.2 513.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.268 21a2 2 0 0 0 3.464 0"/><path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"/></g>
+<text x="78" y="516.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Thông báo</text>
+<text x="78" y="540.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Báo lỗi theo thời gian thực.</text>
+<polyline points="160,260 160,288" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="160,360 160,388" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="160,460 160,488" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="582" width="304" height="244" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="610.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Sau: gộp hai bước đầu</text>
+<rect x="20" y="627" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="670.5" r="18" fill="#0f766e"/><g transform="translate(39.2 659.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="8" rx="2" ry="2" width="20" x="2" y="2"/><rect height="8" rx="2" ry="2" width="20" x="2" y="14"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></g>
+<text x="78" y="653.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Một tiến trình</text>
+<text x="78" y="677.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bộ chuyển đổi và bộ dò lỗi</text>
+<text x="78" y="696.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chung nhau.</text>
+<rect x="20" y="746" width="280" height="68" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="780" r="18" fill="#0f766e"/><g transform="translate(39.2 769.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.268 21a2 2 0 0 0 3.464 0"/><path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"/></g>
+<text x="78" y="772.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Thông báo</text>
+<text x="78" y="796.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Báo lỗi theo thời gian thực.</text>
+<polyline points="160,716 160,744" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="838" width="304" height="355" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="866.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Thử: chuyển dữ liệu giữa hai</text>
+<text x="20" y="888.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">bước</text>
+<rect x="20" y="905" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="928" r="11" fill="#16a34a"/>
+<polyline points="37.9,928.4 41.7,932.4 48.5,924" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="931.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Trao tham chiếu trong một</text>
+<text x="64" y="950.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tiến trình: gần như 0 ms.</text>
+<rect x="20" y="976" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="999" r="11" fill="#16a34a"/>
+<polyline points="37.9,999.4 41.7,1003.4 48.5,995" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1002.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">1 mebibyte sang tiến trình</text>
+<text x="64" y="1021.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khác: 0,4 đến 1,2 ms.</text>
+<rect x="20" y="1047" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1070" r="11" fill="#16a34a"/>
+<polyline points="37.9,1070.4 41.7,1074.4 48.5,1066" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1073.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">16 mebibyte sang tiến trình</text>
+<text x="64" y="1092.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khác: 7 đến 12 ms.</text>
+<rect x="20" y="1118" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1141" r="11" fill="#16a34a"/>
+<polyline points="37.9,1141.4 41.7,1145.4 48.5,1137" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1144.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chưa có mạng thật, chưa có</text>
+<text x="64" y="1163.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">phí theo lượt gọi.</text>
+</g>
+</svg>

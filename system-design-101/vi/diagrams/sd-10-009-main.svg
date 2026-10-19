@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1359" viewBox="0 0 320 1359" role="img" aria-labelledby="title desc">
+<title id="title">Một tin nhắn đi qua hai máy</title>
+<desc id="desc">Hai nhóm bốn bước và một khung ghi nhớ. Máy gửi: ứng dụng gửi tin, tin vào bộ đệm gửi trong nhân, ngăn xếp mạng bọc tiêu đề TCP, IP, MAC rồi qdisc xếp hàng cho tin ra, card mạng lấy tin từ bộ đệm vòng và đưa lên Internet. Máy nhận: card mạng báo CPU bằng ngắt, phần việc nhận chạy ở ngắt mềm hoặc ksoftirqd, nhân bóc từng lớp, dữ liệu được chép sang ứng dụng.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1359" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Một tin nhắn đi qua hai</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">máy</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Nhân Linux ở mỗi đầu xếp hàng, bọc</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">hoặc bóc từng lớp.</text>
+<rect x="8" y="123" width="304" height="471" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Máy gửi</text>
+<rect x="20" y="168" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="194" r="14" fill="#1d4ed8"/>
+<text x="46" y="199.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="194.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Ứng dụng gửi tin</text>
+<text x="70" y="218.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tin chat xuất phát từ không</text>
+<text x="70" y="237.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">gian người dùng.</text>
+<rect x="20" y="277" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="303" r="14" fill="#1d4ed8"/>
+<text x="46" y="308.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="303.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Bộ đệm gửi</text>
+<text x="70" y="327.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tin sang không gian nhân</text>
+<text x="70" y="346.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">và vào bộ đệm gửi.</text>
+<polyline points="46,257 46,275" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="386" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="412" r="14" fill="#1d4ed8"/>
+<text x="46" y="417.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="412.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Ngăn xếp mạng</text>
+<text x="70" y="436.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bọc tiêu đề TCP, IP, MAC;</text>
+<text x="70" y="455.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">qdisc xếp hàng cho tin ra.</text>
+<polyline points="46,366 46,384" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="495" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="521" r="14" fill="#1d4ed8"/>
+<text x="46" y="526.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">4</text>
+<text x="70" y="521.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Card mạng (NIC)</text>
+<text x="70" y="545.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lấy tin từ bộ đệm vòng, rồi</text>
+<text x="70" y="564.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đưa lên Internet.</text>
+<polyline points="46,475 46,493" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="606" width="304" height="471" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="634.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Máy nhận</text>
+<rect x="20" y="651" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="677" r="14" fill="#0f766e"/>
+<text x="46" y="682.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="677.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">NIC nhận tin</text>
+<text x="70" y="701.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Gói vào bộ đệm vòng; NIC</text>
+<text x="70" y="720.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">báo CPU bằng ngắt.</text>
+<rect x="20" y="760" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="786" r="14" fill="#0f766e"/>
+<text x="46" y="791.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="786.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Ngắt mềm</text>
+<text x="70" y="810.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Phần việc nhận chạy ở ngắt</text>
+<text x="70" y="829.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mềm hoặc ksoftirqd.</text>
+<polyline points="46,740 46,758" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="869" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="895" r="14" fill="#0f766e"/>
+<text x="46" y="900.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="895.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Mở từng lớp</text>
+<text x="70" y="919.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lớp liên kết dữ liệu, lớp</text>
+<text x="70" y="938.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mạng, lớp giao vận.</text>
+<polyline points="46,849 46,867" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="978" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="1004" r="14" fill="#0f766e"/>
+<text x="46" y="1009.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">4</text>
+<text x="70" y="1004.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Tới ứng dụng</text>
+<text x="70" y="1028.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Dữ liệu được chép sang</text>
+<text x="70" y="1047.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">không gian người dùng.</text>
+<polyline points="46,958 46,976" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="1089" width="304" height="262" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="1117.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Nhớ gì</text>
+<rect x="20" y="1134" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1157" r="11" fill="#16a34a"/>
+<polyline points="37.9,1157.4 41.7,1161.4 48.5,1153" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1160.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mỗi chặng thêm hoặc bóc</text>
+<text x="64" y="1179.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">một lớp.</text>
+<rect x="20" y="1205" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1228" r="11" fill="#16a34a"/>
+<polyline points="37.9,1228.4 41.7,1232.4 48.5,1224" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1231.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Giữa hai máy là nhiều router</text>
+<text x="64" y="1250.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">và switch.</text>
+<rect x="20" y="1276" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1299" r="11" fill="#16a34a"/>
+<polyline points="37.9,1299.4 41.7,1303.4 48.5,1295" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1302.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tên qdisc và ksoftirqd là của</text>
+<text x="64" y="1321.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhân Linux.</text>
+</g>
+</svg>

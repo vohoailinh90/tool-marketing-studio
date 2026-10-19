@@ -1,0 +1,80 @@
+{
+  "id": "sd-10-022",
+  "title": "Mệnh lệnh, hàm, hướng đối tượng",
+  "subtitle": "Cùng bài toán, ba cách viết; kết quả đều là 56.",
+  "desc": "Ba nhóm thẻ và một khung ghi nhớ. Mệnh lệnh: một biến total bắt đầu bằng 0; vòng lặp đi qua từng số; câu lệnh điều kiện chọn số chẵn rồi cộng bình phương vào total. Hàm: hàm is_even trả đúng hoặc sai; hàm square trả bình phương; sum, map và filter nối các hàm đó, không đổi biến nào. Hướng đối tượng: một đối tượng giữ total bên trong; phương thức add nhận từng số và tự cập nhật; mã gọi add lặp lại rồi đọc total. Khung cuối nêu ba điều cần nhớ.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Mệnh lệnh",
+      "items": [
+        {
+          "name": "Biến total",
+          "role": "Bắt đầu bằng 0, đổi sau mỗi vòng.",
+          "icon": "refresh-cw"
+        },
+        {
+          "name": "Vòng lặp",
+          "role": "Đi qua từng số trong danh sách.",
+          "icon": "list-ordered"
+        },
+        {
+          "name": "Điều kiện",
+          "role": "Chọn số chẵn, cộng bình phương vào total.",
+          "icon": "git-branch"
+        }
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Hàm",
+      "items": [
+        {
+          "name": "is_even",
+          "role": "Nhận một số, trả đúng hoặc sai.",
+          "icon": "circle-check"
+        },
+        {
+          "name": "square",
+          "role": "Nhận một số, trả bình phương.",
+          "icon": "circle-check"
+        },
+        {
+          "name": "sum, map, filter",
+          "role": "Nối các hàm trên, không đổi biến nào.",
+          "icon": "workflow"
+        }
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Hướng đối tượng",
+      "items": [
+        {
+          "name": "Đối tượng",
+          "role": "Giữ total ở bên trong.",
+          "icon": "box"
+        },
+        {
+          "name": "Phương thức add",
+          "role": "Nhận từng số và tự cập nhật total.",
+          "icon": "code"
+        },
+        {
+          "name": "Mã bên ngoài",
+          "role": "Gọi add lặp lại rồi đọc total.",
+          "icon": "arrow-left-right"
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Nhớ gì",
+      "items": [
+        "Cùng một kết quả, ba cách viết.",
+        "Khác nhau ở chỗ trạng thái sống.",
+        "Một ngôn ngữ làm được nhiều mô hình."
+      ]
+    }
+  ]
+}

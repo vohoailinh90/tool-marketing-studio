@@ -1,0 +1,62 @@
+{
+  "id": "sd-04-006",
+  "lang": "vi",
+  "title": "Kafka qua bảy đơn hàng",
+  "subtitle": "Topic orders: 3 partition, mỗi partition 3 bản sao, Kafka 4.4 trên ba broker.",
+  "desc": "Ba khung. Khung một, bốn bước của một sự kiện: producer gửi sự kiện có khóa, giá trị và thời điểm, khóa là tên khách; cùng khóa luôn vào cùng partition, an và binh vào partition 2, chi vào partition 0; sự kiện được nối vào cuối partition và nhận offset tăng dần; mỗi partition có một leader nhận ghi và hai bản sao ở hai broker kia. Khung hai, hai nhóm đọc: nhóm billing có hai thành viên, một được giao partition 0 và 1 và đọc 2 sự kiện, một được giao partition 2 và đọc 5 sự kiện; nhóm email có một thành viên được giao cả ba partition và đọc đủ 7. Khung ba: thứ tự chỉ giữ trong một partition; mỗi partition chỉ giao cho một thành viên của mỗi nhóm; ít khóa thì dễ lệch, partition 1 trống.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Đường đi của một sự kiện",
+      "items": [
+        {
+          "title": "Producer gửi sự kiện",
+          "text": "Khóa, giá trị, thời điểm; khóa ở đây là tên khách."
+        },
+        {
+          "title": "Chọn partition",
+          "text": "Cùng khóa, cùng partition: an, binh vào 2; chi vào 0."
+        },
+        {
+          "title": "Nối vào cuối",
+          "text": "Offset tăng dần 0, 1, 2: đọc đúng thứ tự đã ghi."
+        },
+        {
+          "title": "Sao sang broker khác",
+          "text": "Leader nhận ghi; hai bản sao ở hai broker còn lại."
+        }
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Hai nhóm đọc cùng một topic",
+      "items": [
+        {
+          "name": "billing, thành viên 0",
+          "role": "Được giao partition 0 và 1, đọc 2 sự kiện.",
+          "icon": "user"
+        },
+        {
+          "name": "billing, thành viên 1",
+          "role": "Được giao partition 2, đọc 5 sự kiện.",
+          "icon": "user"
+        },
+        {
+          "name": "email, một thành viên",
+          "role": "Được giao cả ba partition, đọc đủ 7 sự kiện.",
+          "icon": "user"
+        }
+      ],
+      "flow": []
+    },
+    {
+      "kind": "notes",
+      "heading": "Điều nên nhớ",
+      "items": [
+        "Thứ tự chỉ được giữ trong một partition, không giữ giữa các partition.",
+        "Mỗi partition chỉ giao cho một thành viên của mỗi nhóm tại một thời điểm.",
+        "Ít khóa thì dễ lệch: partition 1 không nhận sự kiện nào."
+      ]
+    }
+  ]
+}

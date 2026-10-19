@@ -1,0 +1,23 @@
+id: sd-04-043
+status: done
+owner: claude/sd101-slides-sd04
+claimed_at: '2026-10-19T00:57:07Z'
+done_at: '2026-10-19T12:40:03Z'
+moda_canvas: cvs_1N7FD49H2T9W2TM7742S3TS9C3
+moda_url: https://moda.app/canvas/353bda44-c45a-4f05-aa1c-e41647aca583
+slide_count: 10
+size: 1920x1080
+exports: badged
+layouts:
+  slides:
+  - layers
+  - one-big-number
+  - connection-diagram
+  - two-column-comparison
+  - lookup-table
+  - one-big-number
+  - numbered-rows
+  - flow
+  - card-grid
+  - lookup-table
+  first_concept: 3

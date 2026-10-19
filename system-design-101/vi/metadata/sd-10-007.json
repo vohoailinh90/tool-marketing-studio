@@ -1,0 +1,86 @@
+{
+  "id": "sd-10-007",
+  "title_vi": "Tám lĩnh vực hay dùng C++",
+  "language": "vi",
+  "kind": "reference",
+  "content_status": "draft",
+  "source_ref": "sd-10-007",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/top-8-c++-use-cases.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-8-c++-use-cases.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "0a4c31756b6adabb6b700d51fd37c14e6a3aa4d5",
+    "retrieved_body_sha256": "3699dd55b9496e4388b6d8c95dde98d261b1efbd7c0fcb84349d6034944386f8",
+    "retrieved_body_bytes": 1464
+  },
+  "diagram": "../diagrams/sd-10-007-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "source_claims_listed_with_the_pinned_source; the author's general-knowledge glosses are not checked against primary documentation"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending",
+      "reason": "figure text measured in Chromium by scripts.figures check --browser (14 px at a 375 px screen); no whole-lesson render at 320, 375 and 430 px recorded"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "The source names eight use cases of C++: embedded systems, game development, operating systems, databases, financial applications, web browsers, networking and scientific computing. Only the names are reused; the lesson explains each area in its own words.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-8-c++-use-cases.md",
+      "section": "Top 8 C++ use cases",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "C++ Core Guidelines: the rules are meant to follow the zero-overhead principle, 'what you don't use, you don't pay for', or 'when you use an abstraction mechanism appropriately, you get at least as good performance as if you had handcoded using lower-level language constructs'.",
+      "source": "https://github.com/isocpp/CppCoreGuidelines/blob/33bcd015997f0d8e0fa0202eb66254a16f59ad8f/CppCoreGuidelines.md",
+      "section": "Introduction",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "C++ Core Guidelines: hard-real-time programmers typically can't use free store (dynamic memory) freely and will be restricted in their choice of libraries.",
+      "source": "https://github.com/isocpp/CppCoreGuidelines/blob/33bcd015997f0d8e0fa0202eb66254a16f59ad8f/CppCoreGuidelines.md",
+      "section": "Introduction",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "C++ Core Guidelines: large parts of the standard library rely on dynamic allocation; the containers, but not the algorithms, are unsuitable for some hard-real-time and embedded applications, and the Guidelines suggest a standard-library-style container implemented using a pool allocator.",
+      "source": "https://github.com/isocpp/CppCoreGuidelines/blob/33bcd015997f0d8e0fa0202eb66254a16f59ad8f/CppCoreGuidelines.md",
+      "section": "Per: Performance (exception note)",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "C++ Core Guidelines: volatile is used to refer to objects that are shared with non-C++ code or hardware that does not follow the C++ memory model.",
+      "source": "https://github.com/isocpp/CppCoreGuidelines/blob/33bcd015997f0d8e0fa0202eb66254a16f59ad8f/CppCoreGuidelines.md",
+      "section": "CP: Concurrency (volatile)",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "The explanation of what each area demands (operating systems working with hardware, networking latency, game frame budgets, database memory layout, scientific computing, browsers on a user's machine, the diversity of financial software) and the grouping into three sets are the author's general knowledge.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-8-c++-use-cases.md",
+      "section": "Design",
+      "verified_by": "Author's general knowledge; not checked against primary documentation."
+    }
+  ],
+  "design_notes_vi": "Tám lĩnh vực chia ba nhóm theo điều mỗi lĩnh vực đòi hỏi: gần phần cứng, cần chạy nhanh và hai lĩnh vực còn lại. Không có mũi tên vì nguồn không nói thứ tự. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Source lists eight uses in a flat order with one sentence each and leaves Financial Applications without a description; the lesson keeps only the eight names, groups them by what each area demands of a language, and writes its own explanation (C++ Core Guidelines for three statements; general knowledge for the rest) instead of translating the source sentences."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích dựa vào C++ Core Guidelines ở ba chỗ đã nêu và kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn khác. Chưa user testing hoặc phê duyệt phát hành."
+}

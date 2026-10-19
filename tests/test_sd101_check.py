@@ -190,7 +190,7 @@ class SourceMapPinTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             altered = Path(tmp) / "source-map.json"
             altered.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
-            problems = check.check_store(check.DEFAULT_STORE, altered, pin_roster=pin_roster)
+            _, _, problems = check.load_source_map(altered, pin_roster)  # every "source map" problem comes from here
         return [str(problem) for problem in problems if str(problem).startswith("source map")]
 
     def test_the_unaltered_source_map_has_no_problem(self) -> None:
@@ -1915,6 +1915,17 @@ class AbbreviationRuleTests(StoreCase):
         self.assertTrue(check.spells("NetBIOS", "Network Basic Input/Output System"))
         self.assertFalse(check.spells("NetBIOS", "Network Input/Output System"))
         self.assertTrue(check.spells("ETag", "Entity Tag"))
+        self.assertTrue(check.spells("DASH", "Dynamic Adaptive Streaming over HTTP"))  # "over" is not a filler word
+        self.assertFalse(check.spells("DASH", "Dynamic Adaptive Streaming"))
+        self.assertTrue(check.spells("CRDT", "Conflict-free Replicated Data Type"))  # the hyphen would add an F
+        self.assertFalse(check.spells("CRDT", "Replicated Data Type"))
+        self.assertTrue(check.spells("BASE", "Basically Available, Soft state, Eventual consistency"))
+        self.assertFalse(check.spells("BASE", "Basically Available, Eventual consistency"))
+        self.assertTrue(check.spells("UX", "User Experience"))
+        self.assertFalse(check.spells("UX", "User Interface"))
+        self.assertTrue(check.spells("SOLID", "Single responsibility, Open-closed, Liskov substitution, "
+                                              "Interface segregation, Dependency inversion"))
+        self.assertFalse(check.spells("SOLID", "Single responsibility, Open-closed"))
         self.assertTrue(check.spells("AAAA", "Quad A"))
         self.assertTrue(check.spells("EDNS", "Extension Mechanisms for DNS"))
         self.assertTrue(check.spells("ISO", "International Organization for Standardization"))
@@ -2215,6 +2226,10 @@ class AbbreviationRuleTests(StoreCase):
             "- **DNSKEY** (DNS KEY) — bản ghi khóa DNS: chứa khóa công khai dùng để kiểm chữ ký.\n"
             "- **CNAME** (Canonical NAME) — bản ghi tên chính tắc: biến một tên thành bí danh của tên khác.\n"))
         self.assertEqual([], self.problems())  # KEY and NAME are the words key and name, not abbreviations
+        self.lesson("Redis INCR cấp mã tăng dần.", glossary=None)  # a command name in a figure label cannot be a code span
+        self.assertEqual([], self.problems())
+        self.lesson("Mã IV đi kèm khóa và điểm trao đổi IX.", glossary=None)  # Roman-numeral lookalikes stay abbreviations
+        self.assertProblem("uses the abbreviation(s) IV, IX")
 
     def test_a_skipped_code_span_is_a_word_boundary(self) -> None:
         for text, expected in (("A`code`PI", {"PI"}), ("API`/users`TLS", {"API", "TLS"}), ("`GET`API", {"API"})):

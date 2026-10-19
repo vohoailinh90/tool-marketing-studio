@@ -1,0 +1,21 @@
+{
+  "id": "sd-10-014",
+  "title": "Tám chuẩn lập trình viên nên biết",
+  "subtitle": "Xếp theo việc chuẩn lo, theo cách bài sắp xếp.",
+  "desc": "Ba nhóm thẻ và một khung ghi nhớ. Mạng và web: TCP/IP, HTTP, HTML và CSS. Dữ liệu và trao đổi: SQL, định dạng ngày giờ ISO 8601, OpenAPI. Truy cập và ngôn ngữ: OAuth, ECMAScript. Khung cuối nêu ba điều cần nhớ.",
+  "sections": [
+    {"kind": "parts", "heading": "Mạng và web",
+     "items": [{"name": "TCP/IP", "role": "Giao thức đưa dữ liệu giữa hai máy.", "icon": "network"},
+               {"name": "HTTP", "role": "Giao thức để trình duyệt hỏi, máy chủ trả lời.", "icon": "globe"},
+               {"name": "HTML và CSS", "role": "HTML nêu cấu trúc trang, CSS nêu hình thức.", "icon": "monitor"}]},
+    {"kind": "parts", "heading": "Dữ liệu và trao đổi",
+     "items": [{"name": "SQL", "role": "Ngôn ngữ truy vấn và cập nhật dữ liệu dạng bảng.", "icon": "database"},
+               {"name": "Ngày giờ ISO 8601", "role": "Một cách ghi ngày giờ chung giữa các hệ thống.", "icon": "clock"},
+               {"name": "OpenAPI", "role": "Mô tả API chạy trên HTTP, không gắn với ngôn ngữ nào.", "icon": "file-text"}]},
+    {"kind": "parts", "heading": "Truy cập và ngôn ngữ",
+     "items": [{"name": "OAuth", "role": "Cấp quyền hạn chế bằng mã truy cập, không đưa mật khẩu.", "icon": "key-round"},
+               {"name": "ECMAScript", "role": "Đặc tả mà ngôn ngữ JavaScript dựa vào.", "icon": "code"}]},
+    {"kind": "notes", "heading": "Nhớ gì",
+     "items": ["Tám chuẩn, mỗi chuẩn lo một việc riêng.", "Mỗi chuẩn một câu: nó lo việc gì.", "Cách chia nhóm là của bài."]}
+  ]
+}

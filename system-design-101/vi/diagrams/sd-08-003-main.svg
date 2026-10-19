@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1128" viewBox="0 0 320 1128" role="img" aria-labelledby="title desc">
+<title id="title">Đọc một sơ đồ lớp</title>
+<desc id="desc">Ba khung. Khung một, một lớp là hộp ba ngăn: tên lớp, thuộc tính, phương thức; dấu cộng, trừ, thăng, ngã trước tên chỉ quyền truy cập. Khung hai, năm kiểu đường nối: kết hợp, tập hợp, hợp thành, kế thừa, hiện thực. Khung ba, quét thư viện chuẩn Python: 288 lớp có 214 đường kế thừa nhưng chỉ 12 chỗ lớp tự tạo một đối tượng của lớp khác; mã cho thấy ai tạo ra đối tượng chứ không cho thấy ai làm nó mất đi, nên chỉ nhìn mã không phân biệt được tập hợp với hợp thành.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1128" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Đọc một sơ đồ lớp</text>
+<text x="16" y="60.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Hộp ba ngăn, năm kiểu đường nối,</text>
+<text x="16" y="79.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">và chuyện mã không kể hết.</text>
+<rect x="8" y="99" width="304" height="343" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="127.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Một lớp là hộp ba ngăn</text>
+<rect x="20" y="144" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="170" r="14" fill="#1d4ed8"/>
+<text x="46" y="175.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="170.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Tên lớp</text>
+<text x="70" y="194.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chữ in đậm ở ngăn trên</text>
+<text x="70" y="213.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cùng.</text>
+<rect x="20" y="253" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="279" r="14" fill="#1d4ed8"/>
+<text x="46" y="284.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="279.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Thuộc tính</text>
+<text x="70" y="303.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Dữ liệu của lớp, ví dụ: giá.</text>
+<polyline points="46,233 46,251" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="343" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="369" r="14" fill="#1d4ed8"/>
+<text x="46" y="374.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="369.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Phương thức</text>
+<text x="70" y="393.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Việc lớp làm được, ví dụ:</text>
+<text x="70" y="412.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tinhThue().</text>
+<polyline points="46,323 46,341" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="454" width="304" height="387" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="482.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Năm kiểu đường nối</text>
+<rect x="20" y="499" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="522" r="11" fill="#16a34a"/>
+<polyline points="37.9,522.4 41.7,526.4 48.5,518" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="525.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Kết hợp: biết và dùng lâu</text>
+<text x="64" y="544.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dài.</text>
+<rect x="20" y="570" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="593" r="11" fill="#16a34a"/>
+<polyline points="37.9,593.4 41.7,597.4 48.5,589" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="596.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tập hợp: có các phần, phần</text>
+<text x="64" y="615.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">sống riêng được.</text>
+<rect x="20" y="641" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="664" r="11" fill="#16a34a"/>
+<polyline points="37.9,664.4 41.7,668.4 48.5,660" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="667.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Hợp thành: có các phần,</text>
+<text x="64" y="686.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">phần mất theo.</text>
+<rect x="20" y="712" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="735" r="11" fill="#16a34a"/>
+<polyline points="37.9,735.4 41.7,739.4 48.5,731" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="738.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Kế thừa: là một loại của.</text>
+<rect x="20" y="766" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="789" r="11" fill="#16a34a"/>
+<polyline points="37.9,789.4 41.7,793.4 48.5,785" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="792.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Hiện thực: thực hiện một</text>
+<text x="64" y="811.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">giao diện.</text>
+<rect x="8" y="853" width="304" height="267" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="881.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Thử: quét thư viện chuẩn</text>
+<text x="20" y="903.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Python</text>
+<rect x="20" y="920" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="943" r="11" fill="#16a34a"/>
+<polyline points="37.9,943.4 41.7,947.4 48.5,939" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="946.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">288 lớp, 214 đường kế thừa.</text>
+<rect x="20" y="974" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="997" r="11" fill="#16a34a"/>
+<polyline points="37.9,997.4 41.7,1001.4 48.5,993" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1000.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chỉ 12 chỗ lớp tự tạo đối</text>
+<text x="64" y="1019.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tượng lớp khác.</text>
+<rect x="20" y="1045" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1068" r="11" fill="#16a34a"/>
+<polyline points="37.9,1068.4 41.7,1072.4 48.5,1064" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1071.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mã cho thấy ai tạo, không</text>
+<text x="64" y="1090.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cho thấy ai làm mất.</text>
+</g>
+</svg>

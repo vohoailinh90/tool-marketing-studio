@@ -1,0 +1,69 @@
+{
+  "id": "sd-12-004",
+  "title": "Làm mờ biển số và khuôn mặt",
+  "subtitle": "Làm một lần, ngoại tuyến, chỉ phát ảnh đã mờ.",
+  "desc": "Ba khung. Khung một, ba đường ống nối nhau: đường ống dữ liệu chuẩn bị dữ liệu huấn luyện và huấn luyện mô hình, đường ống làm mờ tìm vật nhạy cảm trong ảnh rồi làm mờ, đường ống phục vụ trả ảnh đã mờ cho người xem. Khung hai, bốn bước của đường ống làm mờ: tiền xử lý ảnh, tìm khung bao quanh vật nhạy cảm, làm mờ vùng trong khung, lưu ảnh đã mờ vào kho đối tượng. Khung ba, hai kiểu lỗi: bỏ sót thì lộ, làm mờ nhầm thì mất chi tiết.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Ba đường ống",
+      "items": [
+        {
+          "name": "Dữ liệu",
+          "role": "Ảnh có khung, huấn luyện mô hình.",
+          "icon": "database"
+        },
+        {
+          "name": "Làm mờ",
+          "role": "Tìm vật nhạy cảm, làm mờ.",
+          "icon": "eye"
+        },
+        {
+          "name": "Phục vụ",
+          "role": "Trả ảnh đã mờ cho người xem.",
+          "icon": "globe"
+        }
+      ],
+      "flow": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ]
+      ]
+    },
+    {
+      "kind": "steps",
+      "heading": "Đường ống làm mờ",
+      "items": [
+        {
+          "title": "Tiền xử lý",
+          "text": "Chuẩn hóa ảnh đường phố."
+        },
+        {
+          "title": "Tìm khung",
+          "text": "Khoanh biển số và khuôn mặt."
+        },
+        {
+          "title": "Làm mờ",
+          "text": "Làm mờ vùng trong khung."
+        },
+        {
+          "title": "Lưu ảnh mờ",
+          "text": "Ghi vào kho đối tượng."
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Hai kiểu lỗi",
+      "items": [
+        "Bỏ sót: biển số hay khuôn mặt vẫn rõ, lộ thông tin.",
+        "Mờ nhầm: mất chi tiết ảnh nhưng không lộ gì."
+      ]
+    }
+  ]
+}

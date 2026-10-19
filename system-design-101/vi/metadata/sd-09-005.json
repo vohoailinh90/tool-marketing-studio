@@ -1,0 +1,69 @@
+{
+  "id": "sd-09-005",
+  "title_vi": "Merge và rebase: ghép lịch sử khác nhau",
+  "language": "vi",
+  "kind": "explanation",
+  "content_status": "draft",
+  "source_ref": "sd-09-005",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/git-merge-vs-git-rebate.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/git-merge-vs-git-rebate.md",
+    "blob_sha": "ae20ed3ccc6edab98a934a0881839e5efd0dda33",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "0e448c79b6fc053babf71819b16ae8bf0c45774f4dbfc880ff62c9e3406555fd",
+    "retrieved_body_bytes": 1299
+  },
+  "diagram": "../diagrams/sd-09-005-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "Đã đọc thân bài nguồn, đối chiếu danh mục và liệt kê tài liệu sơ cấp. Một số trang trả HTTP 403; chưa xác minh toàn bộ claim nên giữ pending."
+    },
+    "technical_review": {
+      "status": "pending"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 14.73,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Re-checked after the Từ viết tắt section was added (first checked 2026-10-13 on the old draft branch). Chromium (Playwright) rendered the complete lesson with every details block open at 320/375/430px from a local Markdown render with GitHub-like styles: no horizontal overflow at any width, every SVG text box inside the viewBox, min effective diagram text 14.73px at 320 and 17.54px at 375. Not GitHub itself, not a real phone, not learner testing."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Merge trong tình huống đã phân nhánh tạo commit M nối hai lịch sử. Các commit cũ vẫn giữ ID; con trỏ của nhánh nhận merge di chuyển tới kết quả. Khi nhánh nhận chỉ cần đi tiến tới commit đã có, Git có thể fast-forward và không tạo merge commit.\n\nRebase phát lại thay đổi của F trên nền B, thường tạo F′ với parent mới và ID mới. Lịch sử nhìn thẳng hơn, nhưng người đã dựa trên F cần biết lịch sử đã thay đổi. Cả merge và rebase đều có thể gặp xung đột; hình đang giả định giải quyết thành công.",
+      "sources": [
+        "https://git-scm.com/docs/git-merge",
+        "https://git-scm.com/docs/git-rebase"
+      ]
+    },
+    {
+      "claim_vi": "Tránh rebase lịch sử người khác đã sử dụng nếu chưa thống nhất cách phối hợp. Rebase không phải cách an toàn mặc định để sửa nhánh chung.",
+      "sources": [
+        "https://git-scm.com/docs/git-merge",
+        "https://git-scm.com/docs/git-rebase"
+      ]
+    }
+  ],
+  "design_notes_vi": "Thẻ dọc tự thiết kế từ ví dụ mới; mũi tên biểu diễn thứ tự đọc. Không sử dụng ảnh nguồn.",
+  "editorial_note_vi": "Đợt Công cụ và năng suất theo yêu cầu người dùng 2026-10-13. Chưa review kỹ thuật độc lập hoặc thử người học; không tự merge/phát hành."
+}

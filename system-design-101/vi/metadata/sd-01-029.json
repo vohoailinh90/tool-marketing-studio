@@ -1,0 +1,78 @@
+{
+  "id": "sd-01-029",
+  "title_vi": "API và SDK: giao diện gọi và bộ công cụ",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "draft",
+  "source_ref": "sd-01-029",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/api-vs-sdk.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/api-vs-sdk.md",
+    "blob_sha": "8189347ed06bb008dae7ee2f6f8c9a69c4173b1f",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "b19eac432ce4507863b4f4eb0fd90c17b65a035fcc34fa59f5082bab4343b649",
+    "retrieved_body_bytes": 1511
+  },
+  "diagram": "../diagrams/sd-01-029-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-01-024",
+      "relation": "see_also",
+      "reason_vi": "Phân biệt thay đổi phiên bản và khả năng tương thích của giao diện."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-15"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-15",
+      "evidence": "Đọc MDN API, Amazon Web Services SDK sections definition/components/choosing, JavaScript SDK welcome sections overview/Node.js/browser. Không đo hiệu năng hoặc chạy SDK thật; ví dụ datChoSach tự đặt."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "new lesson awaiting current-head review"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-15",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "evidence": "Chromium cục bộ toàn bài/details mở320/375/430: không overflow/chữ SVG ngoài viewBox; min14.4/16/16px; đã xem screenshot320. Chưa GitHub/device/user testing."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "API cung cấp thao tác và quy tắc tương tác cho phần mềm; không chỉ địa chỉ mạng.",
+      "source": "https://developer.mozilla.org/en-US/docs/Glossary/API"
+    },
+    {
+      "claim_vi": "SDK tập hợp thư viện, tài liệu, ví dụ hoặc công cụ cho nền tảng; cần kiểm tương thích, giấy phép và hỗ trợ.",
+      "source": "https://aws.amazon.com/what-is/sdk/"
+    },
+    {
+      "claim_vi": "Một SDK có thể cung cấp API ngôn ngữ lập trình để dùng dịch vụ; cách dùng có thể khác giữa môi trường chạy.",
+      "source": "https://docs.aws.amazon.com/sdk-for-javascript/v3/developer-guide/welcome.html"
+    }
+  ],
+  "design_notes_vi": "Ba thẻ dọc giao diện/bộ công cụ/hai cách tích hợp cùng dịch vụ; hình và ví dụ độc lập.",
+  "editorial_note_vi": "Bản nháp tiếng Việt, không phải hướng dẫn cài SDK thực.",
+  "source_deviations": [
+    "Không thu hẹp mọi API thành endpoint mạng.",
+    "Không lặp bảo đảm SDK tự có tương thích và hiệu năng tối ưu; cần kiểm môi trường, phiên bản và hỗ trợ.",
+    "Ví dụ thư viện tự thiết kế chỉ minh họa SDK có thư viện gọi dịch vụ, không đại diện mọi SDK."
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "id": "sd-02-004",
+  "title": "Telegram có an toàn không?",
+  "subtitle": "Còn tùy loại chat: ai giữ được chìa khóa giải mã?",
+  "desc": "Hai nhóm thẻ so sánh. Chat thường và chat nhóm: tin mã hóa trên đường tới máy chủ, máy chủ lưu tin đã mã hóa ở nhiều trung tâm dữ liệu, chìa khóa giải mã được chia thành nhiều phần cất ở nhiều nơi. Secret chat: mã hóa đầu cuối, chỉ máy gửi và máy nhận giải mã được, không hỗ trợ nhóm, chỉ trên thiết bị di động. Khung cuối nêu ba điều cần nhớ.",
+  "sections": [
+    {"kind": "parts", "heading": "Chat thường và chat nhóm",
+     "items": [{"name": "Máy người gửi", "role": "Mã hóa tin trên đường tới máy chủ.", "icon": "smartphone"},
+               {"name": "Máy chủ Telegram", "role": "Giải mã được; lưu tin ở nhiều trung tâm dữ liệu.", "icon": "server"},
+               {"name": "Chìa khóa giải mã", "role": "Chia thành nhiều phần, cất ở nhiều nơi.", "icon": "key-round"}],
+     "flow": [[0, 1], [1, 2]]},
+    {"kind": "parts", "heading": "Secret chat: mã hóa đầu cuối",
+     "items": [{"name": "Máy người gửi", "role": "Mã hóa bằng chìa khóa chỉ hai máy biết.", "icon": "smartphone"},
+               {"name": "Máy chủ chuyển tiếp", "role": "Chỉ thấy dữ liệu đã mã hóa, không đọc được.", "icon": "lock"},
+               {"name": "Máy người nhận", "role": "Cùng máy người gửi: hai nơi duy nhất giải mã được.", "icon": "smartphone"}],
+     "flow": [[0, 1], [1, 2]]},
+    {"kind": "notes", "heading": "Nhớ gì",
+     "items": ["An toàn nghĩa là ai đọc được tin, không chỉ có mã hóa.", "Chia nhỏ dữ liệu làm việc tấn công khó hơn, không phải không thể.", "Secret chat không có nhóm, theo nguồn chỉ có trên di động."]}
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "id": "sd-08-004",
+  "title_vi": "Prime Video gộp về một khối: khi ranh giới giữa các thành phần quá đắt",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "draft",
+  "source_ref": "sd-08-004",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/amazon-prime-video-monitoring-service.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/amazon-prime-video-monitoring-service.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a git fetch of the pinned commit and hashed as a Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "05ea194bd0725030f4b1b3a58ff43c79854383f2",
+    "retrieved_body_sha256": "2fe7e5730d60288a54707982b4b1ebb9312429a1193242b1ecd7b4423db3260b",
+    "retrieved_body_bytes": 2769
+  },
+  "diagram": "../diagrams/sd-08-004-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-08-005",
+      "relation": "see_also",
+      "reason_vi": "Bài kế tiếp nói khi nào kiến trúc dịch vụ nhỏ không phù hợp: ranh giới giữa các thành phần có giá."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-19"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-19",
+      "evidence": "The Step Functions Standard versus Express page of the archived AWS developer guide (2022 snapshot) read from a local clone; the hand-off measurements run on a KVM guest with Python. Amazon's own post about the Prime Video change was not available, so the 90 % figure and the two quotations are taken from the source guide and not checked independently."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-19",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Figure drawn by scripts/figures (viewBox width 320, smallest font 15 px, shown at 13.5 px at 320 px); python3 -m scripts.figures check --browser passed; the lesson (Markdown to HTML, optional sections open, 16 px side gutters) rendered in Chromium at 320, 375 and 430 px with no horizontal overflow of the page, any table or any code block. Not learner testing and not GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Step Functions Standard Workflows are priced per state transition, counted each time a step in an execution completes; Express Workflows are priced by the number of executions, their duration and memory consumption (2022 snapshot of the archived guide).",
+      "source": "https://github.com/awsdocs/aws-step-functions-developer-guide/blob/fafab31876853bf715144cc1cd2445f3f4246d73/doc_source/concepts-standard-vs-express.md",
+      "section": "Pricing row of the comparison table",
+      "verified_by": "Read from a local clone of awsdocs/aws-step-functions-developer-guide at commit fafab31876853bf715144cc1cd2445f3f4246d73, the last commit that still held the doc_source directory before the repository was archived (2023)."
+    },
+    {
+      "claim_vi": "Median time to move a block from one stage to the next, 15 trials, three runs, one KVM guest with Python: passing a reference 0.0 ms; one copy in a process 0.0-0.1 ms (1 MiB) and 1.3-2.0 ms (16 MiB); loopback TCP to another process 0.4-0.5 and 7.4-9.4 ms; file in /dev/shm read by another process 0.7-0.8 and 10.4-12.1 ms; file on disk 0.9-1.2 and 7.3-10.1 ms.",
+      "source": "https://github.com/awsdocs/aws-step-functions-developer-guide/blob/fafab31876853bf715144cc1cd2445f3f4246d73/doc_source/concepts-standard-vs-express.md",
+      "section": "Experiment",
+      "verified_by": "Experiment run by the author on 2026-10-19 on one KVM virtual machine (4 vCPU), Python 3.13, os.fork and a socket pair or loopback TCP; time.perf_counter."
+    },
+    {
+      "claim_vi": "Prime Video's monitoring service moved from Lambda and Step Functions with intermediate data in S3 to a monolith where the media converter and defect detector share a process, reporting 90 % cost saving; the quotations of Werner Vogels and Adrian Cockcroft.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/amazon-prime-video-monitoring-service.md",
+      "section": "Whole guide",
+      "verified_by": "Source body read at the pinned commit; the 90 % figure, the description of the old architecture and the quotations are not checked against Amazon's own post."
+    }
+  ],
+  "design_notes_vi": "Hai khung bộ phận (trước và sau) và một khung ghi chú kết quả đo. Tên dịch vụ của Amazon được viết bằng chữ thường để không cần mục viết tắt trong hình.",
+  "source_deviations": [
+    "Source presents the 90 % saving as the headline; the lesson reports it as the source's claim, unchecked, and centres the lesson on the cost of crossing a component boundary, adding a hand-off measurement.",
+    "Pricing of Step Functions comes from an archived 2022 snapshot of the guide, not the current pricing page."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này (gói W8), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

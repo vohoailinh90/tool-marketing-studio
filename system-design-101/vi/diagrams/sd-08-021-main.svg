@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1135" viewBox="0 0 320 1135" role="img" aria-labelledby="title desc">
+<title id="title">MVC, MVP, MVVM, VIPER: bốn cách chia một nút bấm</title>
+<desc id="desc">Ba khung. Khung một, bốn mẫu chia việc giữa khung nhìn và mô hình: MVC, bộ điều khiển nối khung nhìn với mô hình; MVP, bộ trình bày giữ luật và khung nhìn chỉ hiện; MVVM, mô hình khung nhìn giữ luật và khung nhìn chỉ buộc vào; VIPER, thêm bộ tương tác, thực thể và bộ điều hướng. Khung hai, thử trên một nút bấm: mẫu giữa biết hai trường của khung nhìn ở MVC, một hàm ở MVP và VIPER, không gì ở MVVM; thử luật nút Trừ, MVVM không cần khung nhìn giả; thêm nút Đặt lại sửa 8 đến 11 dòng ở cả bốn mẫu. Khung ba, đồ chơi nhỏ, MVP và VIPER chưa có tài liệu độc lập để đối chiếu.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1135" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">MVC, MVP, MVVM,</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">VIPER: bốn cách chia</text>
+<text x="16" y="82" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">một nút bấm</text>
+<text x="16" y="108.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Mẫu giữa là chỗ giữ luật; thử xem</text>
+<text x="16" y="127.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">mỗi mẫu cần gì để thử luật đó.</text>
+<rect x="8" y="147" width="304" height="353" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="175.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Bốn mẫu, cùng một việc</text>
+<rect x="20" y="192" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="215" r="11" fill="#16a34a"/>
+<polyline points="37.9,215.4 41.7,219.4 48.5,211" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="218.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">MVC: bộ điều khiển đứng</text>
+<text x="64" y="237.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">giữa khung nhìn và mô hình.</text>
+<rect x="20" y="263" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="286" r="11" fill="#16a34a"/>
+<polyline points="37.9,286.4 41.7,290.4 48.5,282" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="289.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">MVP: bộ trình bày giữ luật;</text>
+<text x="64" y="308.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khung nhìn chỉ hiện.</text>
+<rect x="20" y="334" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="357" r="11" fill="#16a34a"/>
+<polyline points="37.9,357.4 41.7,361.4 48.5,353" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="360.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">MVVM: mô hình khung nhìn</text>
+<text x="64" y="379.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">giữ luật; khung nhìn chỉ buộc</text>
+<text x="64" y="399.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">vào.</text>
+<rect x="20" y="425" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="448" r="11" fill="#16a34a"/>
+<polyline points="37.9,448.4 41.7,452.4 48.5,444" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="451.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">VIPER: thêm bộ tương tác,</text>
+<text x="64" y="470.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thực thể và bộ điều hướng.</text>
+<rect x="8" y="512" width="304" height="392" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="540.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Thử trên một nút bấm</text>
+<rect x="20" y="557" width="280" height="102" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="580" r="11" fill="#16a34a"/>
+<polyline points="37.9,580.4 41.7,584.4 48.5,576" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="583.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mẫu giữa biết về khung nhìn:</text>
+<text x="64" y="602.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">MVC hai trường, MVP và</text>
+<text x="64" y="622.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">VIPER một hàm, MVVM</text>
+<text x="64" y="641.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">không gì.</text>
+<rect x="20" y="667" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="690" r="11" fill="#16a34a"/>
+<polyline points="37.9,690.4 41.7,694.4 48.5,686" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="693.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Thử luật nút Trừ: MVVM</text>
+<text x="64" y="712.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">không cần khung nhìn giả,</text>
+<text x="64" y="732.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">ba mẫu kia cần.</text>
+<rect x="20" y="758" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="781" r="11" fill="#16a34a"/>
+<polyline points="37.9,781.4 41.7,785.4 48.5,777" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="784.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Thêm nút Đặt lại: sửa 8 đến</text>
+<text x="64" y="803.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">11 dòng ở cả bốn mẫu.</text>
+<rect x="20" y="829" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="852" r="11" fill="#16a34a"/>
+<polyline points="37.9,852.4 41.7,856.4 48.5,848" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="855.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">VIPER 5 lớp; ba mẫu kia 3</text>
+<text x="64" y="874.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lớp.</text>
+<rect x="8" y="916" width="304" height="211" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="944.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Giới hạn</text>
+<rect x="20" y="961" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="984" r="11" fill="#16a34a"/>
+<polyline points="37.9,984.4 41.7,988.4 48.5,980" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="987.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đồ chơi 18 đến 27 dòng,</text>
+<text x="64" y="1006.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">không nói gì về ứng dụng</text>
+<text x="64" y="1026.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lớn.</text>
+<rect x="20" y="1052" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1075" r="11" fill="#16a34a"/>
+<polyline points="37.9,1075.4 41.7,1079.4 48.5,1071" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1078.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">MVP và VIPER: chưa có tài</text>
+<text x="64" y="1097.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">liệu độc lập để đối chiếu.</text>
+</g>
+</svg>

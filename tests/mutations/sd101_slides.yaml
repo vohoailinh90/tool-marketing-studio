@@ -450,3 +450,87 @@ mutations:
   find: "            if total != record[\"slide_count\"]:  # a file short of slides is not the deck, badge or no badge"
   replace: "            if False:  # a file short of slides is not the deck, badge or no badge"
   test: tests.test_sd101_slides.FolderTests.test_a_pptx_short_of_the_deck_s_slides_is_never_recorded
+- label: a kind outside the twelve passes
+  find: "    unknown = sorted({kind for kind in kinds if kind not in LAYOUT_KINDS})\n"
+  replace: "    unknown = []\n"
+  test: tests.test_sd101_slides.LayoutTableTests.test_every_kind_is_one_of_the_twelve
+- label: a key the layout table does not know passes
+  find: "    problems = [f\"layouts: key {key!r} is not allowed\" for key in layouts if key not in LAYOUT_KEYS]\n"
+  replace: "    problems = []\n"
+  test: tests.test_sd101_slides.LayoutTableTests.test_a_key_the_record_does_not_know_is_refused
+- label: a table with more or fewer kinds than slides passes
+  find: "    if len(kinds) != total:\n"
+  replace: "    if False:\n"
+  test: tests.test_sd101_slides.LayoutTableTests.test_the_table_holds_one_kind_per_slide
+- label: a deck of fewer than five kinds passes
+  find: "    if len(set(kinds)) < MIN_LAYOUT_KINDS:\n"
+  replace: "    if False:\n"
+  test: tests.test_sd101_slides.LayoutTableTests.test_a_deck_uses_at_least_five_kinds
+- label: the same kind on two adjacent slides passes
+  find: "               if before == after]\n"
+  replace: "               if False]\n"
+  test: tests.test_sd101_slides.LayoutTableTests.test_no_two_adjacent_slides_share_a_kind
+- label: the cover or the terms slide is taken for the first concept
+  find: "    if not (_count(first) and 2 <= first <= total - 1):\n"
+  replace: "    if not _count(first):\n"
+  test: tests.test_sd101_slides.LayoutTableTests.test_the_first_concept_is_neither_the_cover_nor_the_terms_slide
+- label: the signature kind does not depend on the lesson
+  find: "    start = int(lesson_id[-3:]) % len(LAYOUT_KINDS)\n"
+  replace: "    start = 0\n"
+  test: tests.test_sd101_slides.LayoutTableTests.test_the_first_concept_takes_the_signature_kind_of_its_lesson
+- label: a lesson id that is no lesson crashes the signature check
+  find: " or not LESSON_ID.fullmatch(lesson_id):"
+  replace: ":"
+  test: tests.test_sd101_slides.LayoutTableTests.test_a_lesson_id_that_is_no_lesson_skips_the_signature_check_instead_of_failing
+- label: the first concept may take any kind
+  find: "    if sorted(cannot) != sorted(passed):"
+  replace: "    if False:"
+  test: tests.test_sd101_slides.LayoutTableTests.test_a_kind_the_content_cannot_show_is_passed_over_with_its_reason
+- label: the fallback does not wrap round the list
+  find: "    passed = [LAYOUT_KINDS[(start + step) % len(LAYOUT_KINDS)] for step in range((chosen - start) % len(LAYOUT_KINDS))]\n"
+  replace: "    passed = [LAYOUT_KINDS[start + step] for step in range(max(chosen - start, 0))]\n"
+  test: tests.test_sd101_slides.LayoutTableTests.test_a_fallback_may_pass_over_several_kinds_and_wrap_round
+- label: a fallback needs no reason in words
+  find: "isinstance(kind, str) and _text(why)"
+  replace: "isinstance(kind, str)"
+  test: tests.test_sd101_slides.LayoutTableTests.test_a_reason_is_text
+- label: the layout table of a record is not checked with the record
+  find: "    if \"layouts\" in record:\n"
+  replace: "    if False:\n"
+  test: tests.test_sd101_slides.LayoutTableTests.test_the_layouts_of_a_record_are_checked_with_the_record
+- label: finish does not keep the layout table in the record
+  find: "slide_count=args.slides, size=DECK_SIZE, exports=args.exports, layouts=layouts)"
+  replace: "slide_count=args.slides, size=DECK_SIZE, exports=args.exports)"
+  test: tests.test_sd101_slides.FinishTests.test_finish_keeps_the_layout_table_in_the_record
+- label: kinds are read exactly as typed
+  find: "    return re.sub(r\"[\\s_]+\", \"-\", text.strip().lower())\n"
+  replace: "    return text\n"
+  test: tests.test_sd101_slides.FinishTests.test_finish_reads_the_kinds_as_the_docs_spell_them
+- label: a cannot without a reason or naming a kind twice is accepted
+  find: "        if not equals or kind_name(kind) in cannot:\n"
+  replace: "        if False:\n"
+  test: tests.test_sd101_slides.FinishTests.test_finish_refuses_a_cannot_that_is_no_kind_and_reason_or_names_a_kind_twice
+- label: exported drops the layout table from the record
+  find: "\"moda_canvas\", \"moda_url\", \"slide_count\", \"size\", \"exports\", \"layouts\")"
+  replace: "\"moda_canvas\", \"moda_url\", \"slide_count\", \"size\", \"exports\")"
+  test: tests.test_sd101_slides.FinishTests.test_exported_keeps_the_layout_table_in_the_record
+- label: a deck finished after the cutoff may omit its layout table
+  find: "        if finished is not None and finished >= LAYOUTS_REQUIRED_FROM:\n"
+  replace: "        if False:\n"
+  test: tests.test_sd101_slides.LayoutTableTests.test_a_deck_finished_on_or_after_the_cutoff_must_carry_its_table
+- label: a deck finished at the very moment of the cutoff may omit its layout table
+  find: "finished >= LAYOUTS_REQUIRED_FROM"
+  replace: "finished > LAYOUTS_REQUIRED_FROM"
+  test: tests.test_sd101_slides.LayoutTableTests.test_a_deck_finished_on_or_after_the_cutoff_must_carry_its_table
+- label: a required option of finish is renamed without the documents
+  find: "    finish.add_argument(\"--first-concept\", type=int, required=True, metavar=\"N\","
+  replace: "    finish.add_argument(\"--first-concept-slide\", type=int, required=True, metavar=\"N\","
+  test: tests.test_sd101_slides.FinishDocsTests.test_claude_md_names_every_required_option_of_finish
+- label: next offers a deck the assignment board reserves for another session
+  find: "        if (group and not lesson_id.startswith(group)) or lesson_id in reserved:"
+  replace: "        if group and not lesson_id.startswith(group):"
+  test: tests.test_sd101_slides.ClaimTests.test_next_skips_the_decks_the_board_reserves_but_a_claim_by_id_takes_them
+- label: next carries on past a board it cannot read whole and crashes instead of stopping with exit 2
+  find: "    except claims_module().ClaimsError as error:\n        raise SlidesError(str(error)) from error\n    chosen: list[str] = []"
+  replace: "    except SlidesError as error:\n        raise\n    chosen: list[str] = []"
+  test: tests.test_sd101_slides.ClaimTests.test_next_stops_on_a_board_it_cannot_read_whole

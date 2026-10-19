@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1357" viewBox="0 0 320 1357" role="img" aria-labelledby="title desc">
+<title id="title">Mã C, C++, Rust chạy trong trình duyệt</title>
+<desc id="desc">Ba nhóm thẻ. Từ mã nguồn đến trang web, bốn bước: viết bằng ngôn ngữ cấp cao như C, C++ hoặc Rust; trình biên dịch xuất tệp nhị phân WASM; trình duyệt biên dịch tệp đó thành một Module; JavaScript tạo Instance rồi gọi hàm xuất. Bốn khái niệm trong trình duyệt: Module, Memory, Table và Instance. Khung cuối nêu ba điều cần nhớ: WASM bổ sung cho JavaScript, không chạm DOM trực tiếp, và thường không viết tay.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1357" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Mã C, C++, Rust chạy</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">trong trình duyệt</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">WASM chạy cạnh JavaScript, không</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">thay nó.</text>
+<rect x="8" y="123" width="304" height="471" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Từ mã nguồn đến trang web</text>
+<rect x="20" y="168" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="194" r="14" fill="#1d4ed8"/>
+<text x="46" y="199.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="194.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Viết ngôn ngữ cấp cao</text>
+<text x="70" y="218.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">C, C++ hoặc Rust; không</text>
+<text x="70" y="237.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">viết WASM bằng tay.</text>
+<rect x="20" y="277" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="303" r="14" fill="#1d4ed8"/>
+<text x="46" y="308.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="303.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Biên dịch ra WASM</text>
+<text x="70" y="327.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Trình biên dịch xuất tệp nhị</text>
+<text x="70" y="346.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">phân WASM.</text>
+<polyline points="46,257 46,275" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="386" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="412" r="14" fill="#1d4ed8"/>
+<text x="46" y="417.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="412.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Trình duyệt biên dịch</text>
+<text x="70" y="436.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tệp nhị phân thành mã</text>
+<text x="70" y="455.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">máy: một Module.</text>
+<polyline points="46,366 46,384" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="495" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="521" r="14" fill="#1d4ed8"/>
+<text x="46" y="526.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">4</text>
+<text x="70" y="521.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">JavaScript gọi hàm</text>
+<text x="70" y="545.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tạo Instance rồi gọi các</text>
+<text x="70" y="564.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hàm nó mở ra.</text>
+<polyline points="46,475 46,493" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="606" width="304" height="469" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="634.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Bốn khái niệm trong trình</text>
+<text x="20" y="656.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">duyệt</text>
+<rect x="20" y="673" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="716.5" r="18" fill="#0f766e"/><g transform="translate(39.2 705.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"/><path d="M12 22V12"/><polyline points="3.29 7 12 12 20.71 7"/><path d="m7.5 4.27 9 5.15"/></g>
+<text x="78" y="699.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Module</text>
+<text x="78" y="723.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bản nhị phân đã biên dịch;</text>
+<text x="78" y="742.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">không giữ trạng thái.</text>
+<rect x="20" y="774" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="817.5" r="18" fill="#0f766e"/><g transform="translate(39.2 806.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></g>
+<text x="78" y="800.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Memory</text>
+<text x="78" y="824.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Vùng byte liền kề, có thể</text>
+<text x="78" y="843.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lớn dần.</text>
+<rect x="20" y="875" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="918.5" r="18" fill="#0f766e"/><g transform="translate(39.2 907.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5h10"/><path d="M11 12h10"/><path d="M11 19h10"/><path d="M4 4h1v5"/><path d="M4 9h2"/><path d="M6.5 20H3.4c0-1 2.6-1.925 2.6-3.5a1.5 1.5 0 0 0-2.6-1.02"/></g>
+<text x="78" y="901.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Table</text>
+<text x="78" y="925.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mảng tham chiếu, ví dụ tới</text>
+<text x="78" y="944.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hàm.</text>
+<rect x="20" y="976" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="1019.5" r="18" fill="#0f766e"/><g transform="translate(39.2 1008.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.97 12.92A2 2 0 0 0 2 14.63v3.24a2 2 0 0 0 .97 1.71l3 1.8a2 2 0 0 0 2.06 0L12 19v-5.5l-5-3-4.03 2.42Z"/><path d="m7 16.5-4.74-2.85"/><path d="m7 16.5 5-3"/><path d="M7 16.5v5.17"/><path d="M12 13.5V19l3.97 2.38a2 2 0 0 0 2.06 0l3-1.8a2 2 0 0 0 .97-1.71v-3.24a2 2 0 0 0-.97-1.71L17 10.5l-5 3Z"/><path d="m17 16.5-5-3"/><path d="m17 16.5 4.74-2.85"/><path d="M17 16.5v5.17"/><path d="M7.97 4.42A2 2 0 0 0 7 6.13v4.37l5 3 5-3V6.13a2 2 0 0 0-.97-1.71l-3-1.8a2 2 0 0 0-2.06 0l-3 1.8Z"/><path d="M12 8 7.26 5.15"/><path d="m12 8 4.74-2.85"/><path d="M12 13.5V8"/></g>
+<text x="78" y="1002.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Instance</text>
+<text x="78" y="1026.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Một Module cùng trạng</text>
+<text x="78" y="1045.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thái lúc chạy.</text>
+<rect x="8" y="1087" width="304" height="262" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="1115.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Giới hạn cần nhớ</text>
+<rect x="20" y="1132" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1155" r="11" fill="#16a34a"/>
+<polyline points="37.9,1155.4 41.7,1159.4 48.5,1151" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1158.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">WASM bổ sung cho</text>
+<text x="64" y="1177.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">JavaScript, không thay thế.</text>
+<rect x="20" y="1203" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1226" r="11" fill="#16a34a"/>
+<polyline points="37.9,1226.4 41.7,1230.4 48.5,1222" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1229.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">WASM không chạm DOM</text>
+<text x="64" y="1248.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trực tiếp: gọi qua JavaScript.</text>
+<rect x="20" y="1274" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1297" r="11" fill="#16a34a"/>
+<polyline points="37.9,1297.4 41.7,1301.4 48.5,1293" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1300.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tốc độ thật tùy việc; bài này</text>
+<text x="64" y="1319.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">không đo.</text>
+</g>
+</svg>

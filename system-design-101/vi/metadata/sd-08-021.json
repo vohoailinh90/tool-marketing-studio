@@ -1,0 +1,86 @@
+{
+  "id": "sd-08-021",
+  "title_vi": "MVC, MVP, MVVM, VIPER: cùng một nút bấm, bốn cách chia việc, và luật nằm ở đâu",
+  "language": "vi",
+  "kind": "reference",
+  "content_status": "draft",
+  "source_ref": "sd-08-021",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/mvc-mvp-mvvm-viper-patterns.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/mvc-mvp-mvvm-viper-patterns.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a git fetch of the pinned commit and hashed as a Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "634f337826cf2b08a318c8b30e59d36c45d331e7",
+    "retrieved_body_sha256": "89ae715a78daf3dfacd627cfd64ec7731d06664f3057d2f4ddce61c4154558c0",
+    "retrieved_body_bytes": 1238
+  },
+  "diagram": "../diagrams/sd-08-021-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-19"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-19",
+      "evidence": "Source body read at the pinned commit (five bullets); MVC statements read from Apple's Cocoa Core Competencies page (retired document, fetched 2026-10-19); MVVM statements read from the dotnet/docs MVVM page for .NET MAUI (main branch, fetched 2026-10-19); counts produced by a Python 3.13.16 program that writes the same counter screen four times (three runs, identical counts). MVP and VIPER have no independent reference read; the MVC variant in which the view observes the model was not tried. The programs are toys of 18 to 27 lines."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-19",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Figure drawn by scripts/figures (viewBox width 320, smallest font 15 px, shown at 13.5 px at 320 px); python3 -m scripts.figures check --browser passed; the lesson (Markdown to HTML, optional sections open, 16 px side gutters) rendered in Chromium at 320, 375 and 430 px with no horizontal overflow of the page, any table or any code block. Not learner testing and not GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Source: MVC is the oldest pattern, almost 50 years old; every pattern has a view for displaying content and receiving input; most have a model for business data; controller, presenter and view-model are translators between view and model ('entity' in VIPER); the translators can be complex to write so variants were proposed to make them more maintainable. The question also names MVVM-C but no bullet explains it.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/mvc-mvp-mvvm-viper-patterns.md",
+      "section": "Whole guide",
+      "verified_by": "Source body read at the pinned commit."
+    },
+    {
+      "claim_vi": "Apple (Cocoa Core Competencies, retired document): MVC assigns objects the roles model, view or controller; a controller is an intermediary between view objects and model objects; user actions in views go through a controller to the model; when a model changes, a controller communicates the new data to the views; model objects should ideally have no explicit connection to the views. The page notes it may not represent current best practice.",
+      "source": "https://developer.apple.com/library/archive/documentation/General/Conceptual/DevPedia-CocoaCore/MVC.html",
+      "section": "Model Objects, View Objects, Controller Objects",
+      "verified_by": "Page fetched on 2026-10-19 and read."
+    },
+    {
+      "claim_vi": "Microsoft (.NET MAUI MVVM guide): the view knows the view model and the view model knows the model, not the reverse; unit tests for the view model and the model can be written without the view; the view model should define whether a command is available and the view should bind to it instead of enabling or disabling UI elements in code-behind; view models should not reference view types.",
+      "source": "https://github.com/dotnet/docs/blob/main/docs/architecture/maui/mvvm.md",
+      "section": "Model-View-ViewModel; Connecting view models to views",
+      "verified_by": "File fetched from the main branch on 2026-10-19 and read."
+    },
+    {
+      "claim_vi": "Experiment: the same counter screen (plus, minus, text 'Count: n', minus enabled only when n > 0, n never below 0) written four times. Classes: MVC 3, MVP 3, MVVM 3, VIPER 5; lines 19, 18, 21, 27. What the middle class touches on the view: MVC two fields, MVP and VIPER one method, MVVM nothing. Objects built to test the minus rule: MVC model and controller, MVP model and presenter, MVVM model and view model, VIPER entity, interactor and presenter; all but MVVM need a fake view. Adding a Reset button changes 3 of 3 classes plus the builder in MVC, MVP, MVVM (8, 11, 8 lines added or removed) and 3 of 5 in VIPER (11 lines; the entity is unchanged). Click-to-text time 0.3 to 0.8 microseconds in all four, order changing between runs.",
+      "source": "https://github.com/dotnet/docs/blob/main/docs/architecture/maui/mvvm.md",
+      "section": "Experiment",
+      "verified_by": "Program run by the author on 2026-10-19; counts are deterministic and were identical in three runs."
+    }
+  ],
+  "design_notes_vi": "Ba khung: bốn mẫu chia việc ra sao, đếm trên một màn hình viết bốn lần, giới hạn của đồ chơi.",
+  "source_deviations": [
+    "The source is a picture with five short bullets and no examples; the lesson keeps the bullets, adds independent references for MVC and MVVM, and adds a small program written four times.",
+    "MVP and VIPER have no independent reference; MVVM-C is named in the source question but not explained, so the lesson does not cover it."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này (gói W8), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

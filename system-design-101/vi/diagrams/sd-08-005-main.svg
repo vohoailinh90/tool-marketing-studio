@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1240" viewBox="0 0 320 1240" role="img" aria-labelledby="title desc">
+<title id="title">Dịch vụ nhỏ không phải đũa thần</title>
+<desc id="desc">Ba khung. Khung một, ba đặc điểm khiến khối hợp hơn: rất nhạy độ trễ, giữ trạng thái trong bộ nhớ, cần định tuyến dính. Khung hai, thử đo một lời gọi: gọi hàm trong cùng tiến trình mất khoảng 0,05 đến 0,08 micro giây; socket Unix mất 26 đến 30 micro giây, TCP nội bộ 33 đến 37, HTTP 162 đến 169. Khung ba, trạng thái và định tuyến dính: cập nhật một số trong bộ nhớ mất khoảng 0,1 micro giây, trong cơ sở dữ liệu đặt trong bộ nhớ 27 đến 31 micro giây, trong cơ sở dữ liệu trên đĩa khoảng 790 đến 900 micro giây; nâng từ 4 lên 5 máy thì chia theo số dư làm 80 phần trăm người chơi phải đổi máy, còn vòng băm chỉ 20 phần trăm.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1240" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Dịch vụ nhỏ không phải</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">đũa thần</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Game thời gian thực và sàn giao dịch</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">độ trễ thấp cho thấy lý do.</text>
+<rect x="8" y="123" width="304" height="304" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Ba đặc điểm khiến khối hợp</text>
+<text x="20" y="173.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">hơn</text>
+<rect x="20" y="190" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="213" r="11" fill="#16a34a"/>
+<polyline points="37.9,213.4 41.7,217.4 48.5,209" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="216.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Rất nhạy độ trễ: mili giây</text>
+<text x="64" y="235.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hoặc micro giây.</text>
+<rect x="20" y="261" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="284" r="11" fill="#16a34a"/>
+<polyline points="37.9,284.4 41.7,288.4 48.5,280" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="287.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Trạng thái nằm trong bộ</text>
+<text x="64" y="306.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhớ, không trong cơ sở dữ</text>
+<text x="64" y="326.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">liệu.</text>
+<rect x="20" y="352" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="375" r="11" fill="#16a34a"/>
+<polyline points="37.9,375.4 41.7,379.4 48.5,371" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="378.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Một người chơi luôn về đúng</text>
+<text x="64" y="397.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">một máy: định tuyến dính.</text>
+<rect x="8" y="439" width="304" height="355" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="467.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Thử: một lời gọi tốn bao</text>
+<text x="20" y="489.3" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">nhiêu</text>
+<rect x="20" y="506" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="529" r="11" fill="#16a34a"/>
+<polyline points="37.9,529.4 41.7,533.4 48.5,525" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="532.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Gọi hàm trong một tiến</text>
+<text x="64" y="551.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trình: 0,05 đến 0,08 µs.</text>
+<rect x="20" y="577" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="600" r="11" fill="#16a34a"/>
+<polyline points="37.9,600.4 41.7,604.4 48.5,596" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="603.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Socket Unix, đi và về: 26</text>
+<text x="64" y="622.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đến 30 µs.</text>
+<rect x="20" y="648" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="671" r="11" fill="#16a34a"/>
+<polyline points="37.9,671.4 41.7,675.4 48.5,667" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="674.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">TCP nội bộ, đi và về: 33 đến</text>
+<text x="64" y="693.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">37 µs.</text>
+<rect x="20" y="719" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="742" r="11" fill="#16a34a"/>
+<polyline points="37.9,742.4 41.7,746.4 48.5,738" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="745.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">HTTP nội bộ, đi và về: 162</text>
+<text x="64" y="764.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đến 169 µs.</text>
+<rect x="8" y="806" width="304" height="426" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="834.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Thử: trạng thái và định</text>
+<text x="20" y="856.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">tuyến dính</text>
+<rect x="20" y="873" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="896" r="11" fill="#16a34a"/>
+<polyline points="37.9,896.4 41.7,900.4 48.5,892" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="899.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cập nhật trong bộ nhớ:</text>
+<text x="64" y="918.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khoảng 0,1 µs.</text>
+<rect x="20" y="944" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="967" r="11" fill="#16a34a"/>
+<polyline points="37.9,967.4 41.7,971.4 48.5,963" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="970.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cơ sở dữ liệu trong bộ nhớ:</text>
+<text x="64" y="989.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">27 đến 31 µs.</text>
+<rect x="20" y="1015" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1038" r="11" fill="#16a34a"/>
+<polyline points="37.9,1038.4 41.7,1042.4 48.5,1034" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1041.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cơ sở dữ liệu trên đĩa: 790</text>
+<text x="64" y="1060.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đến 900 µs.</text>
+<rect x="20" y="1086" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1109" r="11" fill="#16a34a"/>
+<polyline points="37.9,1109.4 41.7,1113.4 48.5,1105" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1112.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Từ 4 lên 5 máy, chia theo số</text>
+<text x="64" y="1131.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dư: 80% người chơi đổi máy.</text>
+<rect x="20" y="1157" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1180" r="11" fill="#16a34a"/>
+<polyline points="37.9,1180.4 41.7,1184.4 48.5,1176" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1183.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cùng việc đó với vòng băm:</text>
+<text x="64" y="1202.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">20% đổi máy.</text>
+</g>
+</svg>

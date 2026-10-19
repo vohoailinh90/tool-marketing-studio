@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="890" viewBox="0 0 320 890" role="img" aria-labelledby="title desc">
+<title id="title">Một lệnh đi qua sàn chứng khoán</title>
+<desc id="desc">Hai khung. Khung một, đường đi của một lệnh: khách đặt lệnh qua công ty môi giới, công ty gửi lệnh tới sàn, cổng khách hàng kiểm tra đầu vào, giới hạn tốc độ và xác thực, người quản lý lệnh kiểm tra rủi ro và số dư, bộ khớp lệnh khớp mua với bán và phát hai bản thực hiện, kết quả trả về cho khách. Khung hai, vì sao thứ tự quan trọng: lệnh và kết quả đều được đánh số thứ tự để phát lại ra đúng kết quả cũ.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="890" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Một lệnh đi qua sàn</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">chứng khoán</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Luồng giao dịch là đường găng; khớp</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">lệnh phải lặp lại được.</text>
+<rect x="8" y="123" width="304" height="485" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Đường đi của một lệnh</text>
+<rect x="20" y="168" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="194" r="14" fill="#1d4ed8"/>
+<text x="46" y="199.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="194.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Khách đặt lệnh</text>
+<text x="70" y="218.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Qua công ty môi giới.</text>
+<rect x="20" y="258" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="284" r="14" fill="#1d4ed8"/>
+<text x="46" y="289.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="284.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Cổng khách hàng</text>
+<text x="70" y="308.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Kiểm tra đầu vào, xác thực.</text>
+<polyline points="46,238 46,256" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="348" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="374" r="14" fill="#1d4ed8"/>
+<text x="46" y="379.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="374.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Quản lý lệnh</text>
+<text x="70" y="398.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Kiểm tra rủi ro và số dư.</text>
+<polyline points="46,328 46,346" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="438" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="464" r="14" fill="#1d4ed8"/>
+<text x="46" y="469.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">4</text>
+<text x="70" y="464.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Khớp lệnh</text>
+<text x="70" y="488.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Phát hai bản thực hiện.</text>
+<polyline points="46,418 46,436" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="528" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="554" r="14" fill="#1d4ed8"/>
+<text x="46" y="559.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">5</text>
+<text x="70" y="554.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Trả kết quả</text>
+<text x="70" y="578.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Về cho khách.</text>
+<polyline points="46,508 46,526" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="620" width="304" height="262" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="648.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Vì sao đánh số thứ tự</text>
+<rect x="20" y="665" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="688" r="11" fill="#16a34a"/>
+<polyline points="37.9,688.4 41.7,692.4 48.5,684" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="691.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Phát lại cùng dãy lệnh thì ra</text>
+<text x="64" y="710.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cùng kết quả.</text>
+<rect x="20" y="736" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="759" r="11" fill="#16a34a"/>
+<polyline points="37.9,759.4 41.7,763.4 48.5,755" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="762.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đổi chỗ hai lệnh có thể đổi</text>
+<text x="64" y="781.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">người được khớp.</text>
+<rect x="20" y="807" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="830" r="11" fill="#16a34a"/>
+<polyline points="37.9,830.4 41.7,834.4 48.5,826" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="833.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chỉ luồng giao dịch nằm trên</text>
+<text x="64" y="852.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đường găng.</text>
+</g>
+</svg>

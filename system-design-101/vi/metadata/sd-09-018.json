@@ -1,0 +1,71 @@
+{
+  "id": "sd-09-018",
+  "title_vi": "Dùng dev tools để bỏ việc lặp lại",
+  "language": "vi",
+  "kind": "explanation",
+  "content_status": "draft",
+  "source_ref": "sd-09-018",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/life-is-short-use-dev-tools.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/life-is-short-use-dev-tools.md",
+    "blob_sha": "63f31a0021beb8dd97c9fe6c3c380efe27d61541",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "a3c6cc1f7159a16c013272850a99811cbd7994f290dc84893438f03b31a90f26",
+    "retrieved_body_bytes": 1802
+  },
+  "diagram": "../diagrams/sd-09-018-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "Đã đọc thân bài nguồn, đối chiếu danh mục và liệt kê tài liệu sơ cấp. Một số trang trả HTTP 403; chưa xác minh toàn bộ claim nên giữ pending."
+    },
+    "technical_review": {
+      "status": "pending"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 14.73,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Re-checked after the Từ viết tắt section was added (first checked 2026-10-13 on the old draft branch). Chromium (Playwright) rendered the complete lesson with every details block open at 320/375/430px from a local Markdown render with GitHub-like styles: no horizontal overflow at any width, every SVG text box inside the viewBox, min effective diagram text 14.73px at 320 and 17.54px at 375. Not GitHub itself, not a real phone, not learner testing."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Editor như VS Code hoặc IntelliJ giúp điều hướng; debugger giúp dừng và xem trạng thái. Mermaid hoặc Excalidraw giúp giải thích ý tưởng. ESLint/Jest giải quyết các loại kiểm tra khác nhau; một bên phân tích code, một bên chạy test. Markdown hoặc công cụ ghi chú giúp giữ quyết định để không phải tìm lại.\n\nVới hosting, chọn nền tảng theo runtime, dữ liệu và cách vận hành. Với bảo mật, phân biệt trình quản lý mật khẩu, quét dependency và quan sát mạng; chúng không thay nhau. Với AI, đưa đầu ra qua cùng bước review và kiểm tra như thay đổi do người viết. Công cụ thiết kế hỗ trợ hình ảnh, không tự xác nhận hành vi sản phẩm.",
+      "sources": [
+        "https://code.visualstudio.com/docs/debugtest/debugging",
+        "https://eslint.org/docs/latest/use/core-concepts/",
+        "https://owasp.org/about/"
+      ]
+    },
+    {
+      "claim_vi": "Không phải mọi tên trong danh sách dev tools là một ứng dụng: OWASP là cộng đồng/tổ chức với nhiều tài liệu và dự án. Cài nhiều công cụ không tự làm code tốt hơn.",
+      "sources": [
+        "https://code.visualstudio.com/docs/debugtest/debugging",
+        "https://eslint.org/docs/latest/use/core-concepts/",
+        "https://owasp.org/about/"
+      ]
+    }
+  ],
+  "design_notes_vi": "Thẻ dọc tự thiết kế từ ví dụ mới; mũi tên biểu diễn thứ tự đọc. Không sử dụng ảnh nguồn.",
+  "editorial_note_vi": "Đợt Công cụ và năng suất theo yêu cầu người dùng 2026-10-13. Chưa review kỹ thuật độc lập hoặc thử người học; không tự merge/phát hành."
+}

@@ -1,0 +1,84 @@
+{
+  "id": "sd-01-046",
+  "title_vi": "REST API và GraphQL: ai chọn dữ liệu trả về?",
+  "language": "vi",
+  "kind": "concept",
+  "content_status": "draft",
+  "source_ref": "sd-01-046",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/rest-api-vs-graphql.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/rest-api-vs-graphql.md",
+    "blob_sha": "bd207f193c784b12bbc77a261c6705f273e75297",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "23d5a0a847fa5c34e672f70fc4e98a4bf3400a699e6a54ff40e716f4c4584d59",
+    "retrieved_body_bytes": 1691
+  },
+  "diagram": "../diagrams/sd-01-046-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-16"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-16",
+      "evidence": "Đọc Fielding§5.1.4–5; Microsoft API design kết hợp tài nguyên và lựa chọn trường; GraphQL queries fields/arguments, authorization business layer, security depth/breadth/cost, caching object identifiers. Hai hợp đồng minh họa, chưa chạy/benchmark."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "new lesson awaiting current-head review"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-16",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "evidence": "Chromium cục bộ toàn bài/details mở320/375/430px không tràn ngang/chữ SVG ngoài hình, cỡ nhỏ nhất14.4/16/16px. Đã xem ảnh320px; chưa kiểm tra GitHub/thiết bị thật/người học."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "REST có bốn ràng buộc giao diện thống nhất; cacheable không có nghĩa luôn mới.",
+      "source": "https://ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm"
+    },
+    {
+      "claim_vi": "API tài nguyên có thể kết hợp dữ liệu liên quan và hỗ trợ chọn trường, phải kiểm tra quyền trên trường.",
+      "source": "https://learn.microsoft.com/en-us/azure/architecture/best-practices/api-design"
+    },
+    {
+      "claim_vi": "GraphQL cho máy khách chọn các trường và quan hệ có trong schema.",
+      "source": "https://graphql.org/learn/queries/"
+    },
+    {
+      "claim_vi": "Quyền cần thực thi nhất quán ở logic nghiệp vụ.",
+      "source": "https://graphql.org/learn/authorization/"
+    },
+    {
+      "claim_vi": "Cần giới hạn độ sâu/độ rộng/danh sách và chi phí truy vấn khi phù hợp.",
+      "source": "https://graphql.org/learn/security/"
+    },
+    {
+      "claim_vi": "Định danh đối tượng hỗ trợ bộ nhớ đệm máy khách GraphQL.",
+      "source": "https://graphql.org/learn/caching/"
+    }
+  ],
+  "design_notes_vi": "Hai hợp đồng tự thiết kế cho cùng màn hình sách; không vẽ một bên nhiều request như tính chất bắt buộc, không trace ảnh nguồn.",
+  "editorial_note_vi": "Nháp giáo dục, chưa triển khai hai dịch vụ hoặc đo hiệu năng.",
+  "source_deviations": [
+    "Không đồng nhất phong cách REST với ngôn ngữ GraphQL hoặc HTTP với REST.",
+    "Không coi GraphQL tự tối ưu truy vấn/phân quyền hoặc luôn nhanh hơn; REST cũng có thể chọn trường/kết hợp dữ liệu.",
+    "Không coi bộ nhớ đệm tự có hoặc luôn mới; không hứa đẩy toàn bộ độ phức tạp sang client."
+  ]
+}

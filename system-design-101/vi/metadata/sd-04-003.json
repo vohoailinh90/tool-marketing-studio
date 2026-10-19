@@ -1,0 +1,126 @@
+{
+  "id": "sd-04-003",
+  "title_vi": "Tải tệp lớn lên S3: chia phần, chọn cỡ phần, dọn phần bỏ dở",
+  "language": "vi",
+  "kind": "flow",
+  "content_status": "draft",
+  "source_ref": "sd-04-003",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/how-to-upload-a-large-file-to-s3.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-to-upload-a-large-file-to-s3.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a partial clone of the source repository; git hash-object of the retrieved body matches the source-map blob. No source-image bytes used.",
+    "blob_sha": "08ea66ef70d90828a042b2fab60e0517d68bd961",
+    "retrieved_body_sha256": "981dbdb7794f35b4e41290edd8423dc4a6ce26f1a8fdc839f313de247ddac9a4",
+    "retrieved_body_bytes": 2072
+  },
+  "diagram": "../diagrams/sd-04-003-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-04-018",
+      "relation": "related",
+      "reason_vi": "Các trường hợp dùng kho đối tượng, nơi tệp lớn được tải lên."
+    },
+    {
+      "lesson_id": "sd-04-017",
+      "relation": "related",
+      "reason_vi": "Lưu trữ đối tượng so với lưu trữ khối và tệp."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "evidence": "The Amazon S3 User Guide pages on multipart upload, its limits, object integrity and aborting incomplete uploads were read at the last commit of awsdocs/amazon-s3-userguide that still held the content (2023); the S3 API model in boto/botocore at a 2026 commit was read for EntityTooSmall and the charging note. The ETag computation was run locally on 2026-10-18 following the documented algorithm; S3 itself was not called."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Multipart upload is three steps (initiate and get an upload ID, upload parts with part numbers 1 to 10,000 and keep each ETag, complete with the list of part numbers and ETags); parts can go in any order, a re-uploaded part number overwrites the earlier part, and on completion S3 concatenates parts in ascending part-number order and the parts no longer exist. The guide advises keeping your own list rather than using the list-parts result to complete.",
+      "source": "https://github.com/awsdocs/amazon-s3-userguide/blob/cc53dd6a44d3aa1d654e6d3705a0a7550f20fd2a/doc_source/mpuoverview.md",
+      "section": "Multipart upload process",
+      "verified_by": "Read from a clone of awsdocs/amazon-s3-userguide at commit cc53dd6a44d3aa1d654e6d3705a0a7550f20fd2a, the parent of the 2023 commit that deleted the content."
+    },
+    {
+      "claim_vi": "Part numbers need not be consecutive, except with additional checksums: then the part numbers must be consecutive, and completing with non-consecutive numbers returns HTTP 500 Internal Server Error.",
+      "source": "https://github.com/awsdocs/amazon-s3-userguide/blob/cc53dd6a44d3aa1d654e6d3705a0a7550f20fd2a/doc_source/mpuoverview.md",
+      "section": "Multipart upload process; Checksums with multipart upload operations",
+      "verified_by": "Read from a clone of awsdocs/amazon-s3-userguide at commit cc53dd6a44d3aa1d654e6d3705a0a7550f20fd2a after a review finding on PR #144."
+    },
+    {
+      "claim_vi": "An initiated multipart upload does not expire; S3 stores and charges for uploaded parts until the upload is completed or stopped, and recommends a lifecycle rule with AbortIncompleteMultipartUpload.",
+      "sources": [
+        "https://github.com/awsdocs/amazon-s3-userguide/blob/cc53dd6a44d3aa1d654e6d3705a0a7550f20fd2a/doc_source/mpuoverview.md",
+        "https://github.com/awsdocs/amazon-s3-userguide/blob/cc53dd6a44d3aa1d654e6d3705a0a7550f20fd2a/doc_source/mpu-abort-incomplete-mpu-lifecycle-config.md"
+      ],
+      "section": "Multipart upload and pricing; lifecycle configuration",
+      "verified_by": "Read from a clone of awsdocs/amazon-s3-userguide at commit cc53dd6a44d3aa1d654e6d3705a0a7550f20fd2a."
+    },
+    {
+      "claim_vi": "Limits in the 2023 guide: part size 5 MiB to 5 GiB with no minimum for the last part, at most 10,000 parts per upload.",
+      "source": "https://github.com/awsdocs/amazon-s3-userguide/blob/cc53dd6a44d3aa1d654e6d3705a0a7550f20fd2a/doc_source/qfacts.md",
+      "section": "Amazon S3 multipart upload limits",
+      "verified_by": "Read from a clone of awsdocs/amazon-s3-userguide at commit cc53dd6a44d3aa1d654e6d3705a0a7550f20fd2a."
+    },
+    {
+      "claim_vi": "CompleteMultipartUpload fails with EntityTooSmall when a part other than the last is too small; the API reference states the minimum as 5 MB while the 2023 guide's limits table states 5 MiB (5,242,880 bytes), so the lesson tells readers to use 5 MiB; one must complete or abort to stop being charged for parts.",
+      "source": "https://github.com/boto/botocore/blob/4de93abe62cc263980414f7a66be5226bd541b77/botocore/data/s3/2006-03-01/service-2.json",
+      "section": "CompleteMultipartUpload, UploadPart, CreateMultipartUpload documentation",
+      "verified_by": "Read from a partial clone of boto/botocore at commit 4de93abe62cc263980414f7a66be5226bd541b77."
+    },
+    {
+      "claim_vi": "The ETag of a multipart object is not an MD5 digest of the object regardless of encryption. For general purpose buckets with plaintext or SSE-S3 objects, the 2023 guide describes it as the MD5 of the concatenated part MD5 digests followed by a dash and the number of parts; directory buckets and SSE-C or SSE-KMS objects are covered by the separate claims below.",
+      "source": "https://github.com/awsdocs/amazon-s3-userguide/blob/cc53dd6a44d3aa1d654e6d3705a0a7550f20fd2a/doc_source/checking-object-integrity.md",
+      "section": "Using Content-MD5 and the ETag; multipart uploads",
+      "verified_by": "Read from a clone of awsdocs/amazon-s3-userguide at commit cc53dd6a44d3aa1d654e6d3705a0a7550f20fd2a."
+    },
+    {
+      "claim_vi": "For directory buckets, the ETag of an object isn't the MD5 digest of the object and MD5 is not supported; the documented MD5-of-part-MD5s recipe applies to general purpose buckets.",
+      "source": "https://github.com/boto/botocore/blob/4de93abe62cc263980414f7a66be5226bd541b77/botocore/data/s3/2006-03-01/service-2.json",
+      "section": "ETag shape documentation; UploadPart",
+      "verified_by": "Read from a partial clone of boto/botocore at commit 4de93abe62cc263980414f7a66be5226bd541b77 after a review finding on PR #144."
+    },
+    {
+      "claim_vi": "Computed locally for a seeded random 21 MiB file in 5 MiB parts (5,5,5,5,1): object ETag 4f79d0f27854976ba9c74084e2ea3aee-5 versus whole-file MD5 9cd7fe8ee2fb0c02de53bc4f59b9c0e4; 100 GiB in 5 MiB parts is 20,480 parts, so parts must be at least 10.24 MiB to stay within 10,000.",
+      "source": "https://github.com/awsdocs/amazon-s3-userguide/blob/cc53dd6a44d3aa1d654e6d3705a0a7550f20fd2a/doc_source/checking-object-integrity.md",
+      "section": "Author's computation",
+      "verified_by": "The author ran this Python computation on 2026-10-18 (hashlib); arithmetic from the documented limits."
+    },
+    {
+      "claim_vi": "The source states: Multipart upload: initiate, get uploadID, split the file (1.6 GB in 8 parts of 200 MB), upload parts and receive ETags, complete with uploadID, part numbers and ETags, and the store reassembles the object. The source also says a part's ETag is essentially the part's MD5; the lesson does not adopt that (see source_deviations).",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-to-upload-a-large-file-to-s3.md",
+      "section": "Body",
+      "verified_by": "Source body read."
+    },
+    {
+      "claim_vi": "An object created by PUT, POST or Copy that is plaintext or encrypted with SSE-S3 has an ETag that is the MD5 digest of its data; with SSE-C or SSE-KMS the ETag is not an MD5 digest of the data; a multipart object's ETag is not an MD5 digest regardless of encryption. The guide does not say the multipart MD5-of-part-MD5s recipe holds for SSE-C or SSE-KMS, so the lesson limits it to plaintext and SSE-S3 objects.",
+      "source": "https://github.com/awsdocs/amazon-s3-userguide/blob/cc53dd6a44d3aa1d654e6d3705a0a7550f20fd2a/doc_source/checking-object-integrity.md",
+      "section": "Using Content-MD5 and the ETag to verify uploaded objects",
+      "verified_by": "Read from a clone of awsdocs/amazon-s3-userguide at commit cc53dd6a44d3aa1d654e6d3705a0a7550f20fd2a."
+    }
+  ],
+  "design_notes_vi": "Một sơ đồ trình tự hai bên cho ba bước, một khung tính cỡ phần từ giới hạn 10.000 phần, một khung hai điều hay quên. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "The source says a part's ETag is essentially the part's MD5; the lesson follows the S3 guide: whether an ETag is an MD5 depends on encryption, and a multipart object's ETag is never the MD5 of the data.",
+    "The lesson adds the 10,000-part limit as the constraint that sets part size, and the cost of incomplete uploads with the lifecycle rule that cleans them up.",
+    "The ETag recipe is scoped to general purpose buckets; directory buckets do not use MD5 ETags (botocore API model)."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

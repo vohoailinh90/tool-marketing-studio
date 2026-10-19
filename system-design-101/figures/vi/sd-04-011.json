@@ -1,0 +1,63 @@
+{
+  "id": "sd-04-011",
+  "lang": "vi",
+  "title": "Cơ sở dữ liệu chuỗi thời gian nhìn từ bên trong",
+  "subtitle": "Theo mô hình dữ liệu của InfluxDB; số liệu từ một ngày đo thời tiết giả lập.",
+  "desc": "Ba khung. Khung một là bốn phần của một điểm dữ liệu: measurement weather; tag location, được đánh chỉ mục; field temperature và humidity, không được đánh chỉ mục; và thời điểm. Khung hai là ba bước từ điểm thành series: ghép measurement, tag set và tên field thành khóa series; hai địa điểm nhân hai field ra 4 series cho 17.280 điểm một ngày; mỗi series là một chuỗi cặp thời điểm và giá trị, lưu nén theo cột trong tệp TSM. Khung ba là số đo bằng zlib: dạng dòng văn bản nén còn 70.217 byte; theo series, lưu hiệu số giữa các giá trị liền nhau, nén còn 14.064 byte; nếu đưa mã đo duy nhất vào tag thì một ngày có 34.560 series.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Bốn phần của một điểm",
+      "items": [
+        {
+          "name": "Measurement",
+          "role": "weather: tên nhóm dữ liệu, như tên bảng.",
+          "icon": "folder"
+        },
+        {
+          "name": "Tag",
+          "role": "location: chuỗi mô tả nguồn đo, có chỉ mục.",
+          "icon": "search"
+        },
+        {
+          "name": "Field",
+          "role": "temperature, humidity: giá trị đo, không có chỉ mục.",
+          "icon": "chart-column"
+        },
+        {
+          "name": "Thời điểm",
+          "role": "Cùng với series, xác định đúng một điểm.",
+          "icon": "clock"
+        }
+      ],
+      "flow": []
+    },
+    {
+      "kind": "steps",
+      "heading": "Từ điểm thành series",
+      "items": [
+        {
+          "title": "Ghép khóa series",
+          "text": "Measurement, tag set và tên field: weather, hanoi, temperature."
+        },
+        {
+          "title": "Đếm series",
+          "text": "2 địa điểm nhân 2 field: 4 series cho 17.280 điểm một ngày."
+        },
+        {
+          "title": "Lưu theo cột",
+          "text": "Mỗi series là chuỗi thời điểm và giá trị, nén trong tệp TSM."
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Đo bằng zlib, một ngày dữ liệu",
+      "items": [
+        "Dạng dòng văn bản, nén: 70.217 byte.",
+        "Theo series, lưu hiệu số liền nhau, nén: 14.064 byte.",
+        "Đưa mã đo duy nhất vào tag: 34.560 series một ngày."
+      ]
+    }
+  ]
+}

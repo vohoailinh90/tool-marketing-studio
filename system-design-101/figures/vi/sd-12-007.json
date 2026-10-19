@@ -1,0 +1,36 @@
+{
+  "id": "sd-12-007",
+  "title": "Phát trực tiếp hoạt động thế nào",
+  "subtitle": "Cắt thành đoạn vài giây, đẩy ra ngay.",
+  "desc": "Ba khung. Khung một, từ máy quay tới máy chủ: thu hình và tiếng, mã hóa và nén, cắt thành đoạn ngắn, tạo nhiều mức bitrate. Khung hai, từ máy chủ tới người xem: đẩy ra máy chủ biên của CDN, máy của người xem giải mã và phát, lưu bản ghi để xem lại. Khung ba, ba giao thức thường gặp: RTMP đẩy từ phía người phát, HLS và DASH chia video thành đoạn tải qua HTTP.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Máy quay tới máy chủ",
+      "items": [
+        {"title": "Thu hình và tiếng", "text": "Camera và micro."},
+        {"title": "Mã hóa, nén", "text": "Dữ liệu nhỏ đi nhiều."},
+        {"title": "Cắt thành đoạn", "text": "Mỗi đoạn dài vài giây."},
+        {"title": "Nhiều mức bitrate", "text": "Cho mạng yếu và mạng khỏe."}
+      ]
+    },
+    {
+      "kind": "steps",
+      "heading": "Máy chủ tới người xem",
+      "items": [
+        {"title": "Đẩy ra CDN", "text": "Máy chủ biên ở gần người xem."},
+        {"title": "Giải mã và phát", "text": "Trình phát trên máy người xem."},
+        {"title": "Lưu để xem lại", "text": "Kho lưu các đoạn đã mã hóa."}
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Ba giao thức",
+      "items": [
+        "RTMP: đẩy từ phía người phát.",
+        "HLS: đoạn nhỏ qua HTTP.",
+        "DASH: chuẩn quốc tế, cũng chia đoạn."
+      ]
+    }
+  ]
+}

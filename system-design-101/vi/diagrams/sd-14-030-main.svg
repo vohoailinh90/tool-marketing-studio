@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1593" viewBox="0 0 320 1593" role="img" aria-labelledby="title desc">
+<title id="title">Bảy tầng, bảy kiểu đòn</title>
+<desc id="desc">Ba khung dọc. Phía chương trình: tầng 7 yêu cầu HTTP chậm, đỡ bằng tốc độ nhận tối thiểu; tầng 6 chuỗi định dạng, đỡ bằng chuỗi do lập trình viên viết; tầng 5 cố định mã phiên, đỡ bằng cấp mã mới. Phía đường truyền: tầng 4 ngập SYN, đỡ bằng SYN cookie; tầng 3 giả địa chỉ IP, đỡ bằng lọc ở router biên; tầng 2 ARP giả, đỡ bằng lọc gói ARP; tầng 1 cắt cáp hoặc nghe lén, đỡ bằng đường dự phòng và mã hóa. Khung ba: bốn ghi chú quy ước.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1593" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Bảy tầng, bảy kiểu đòn</text>
+<text x="16" y="60.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Mỗi tầng có một đòn tiêu biểu và</text>
+<text x="16" y="79.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">một cách đỡ. Cách chia tầng chỉ là</text>
+<text x="16" y="99.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">quy ước.</text>
+<rect x="8" y="119" width="304" height="483" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="147.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Phía chương trình</text>
+<rect x="20" y="164" width="280" height="146" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="237" r="18" fill="#1d4ed8"/><g transform="translate(39.2 226.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></g>
+<text x="78" y="190.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Tầng 7 · Ứng dụng</text>
+<text x="78" y="214.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đòn: gửi yêu cầu HTTP</text>
+<text x="78" y="233.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thật chậm để giữ hết kết</text>
+<text x="78" y="253.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nối. Đỡ: tốc độ nhận tối</text>
+<text x="78" y="272.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thiểu, thời hạn đọc yêu</text>
+<text x="78" y="292.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cầu.</text>
+<rect x="20" y="324" width="280" height="126" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="387" r="18" fill="#1d4ed8"/><g transform="translate(39.2 376.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></g>
+<text x="78" y="350.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Tầng 6 · Trình bày</text>
+<text x="78" y="374.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đòn: dữ liệu nhập bị hiểu</text>
+<text x="78" y="393.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">là lệnh định dạng. Đỡ:</text>
+<text x="78" y="413.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chuỗi định dạng luôn do</text>
+<text x="78" y="432.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lập trình viên viết.</text>
+<rect x="20" y="464" width="280" height="126" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="527" r="18" fill="#1d4ed8"/><g transform="translate(39.2 516.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"/><circle cx="16.5" cy="7.5" fill="#FFFFFF" r=".5"/></g>
+<text x="78" y="490.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Tầng 5 · Phiên</text>
+<text x="78" y="514.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đòn: ép nạn nhân dùng mã</text>
+<text x="78" y="533.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">phiên kẻ tấn công đã biết.</text>
+<text x="78" y="553.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đỡ: cấp mã phiên mới sau</text>
+<text x="78" y="572.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khi đăng nhập.</text>
+<rect x="8" y="614" width="304" height="527" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="642.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Phía đường truyền</text>
+<rect x="20" y="659" width="280" height="107" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="712.5" r="18" fill="#0f766e"/><g transform="translate(39.2 701.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3 4 7l4 4"/><path d="M4 7h16"/><path d="m16 21 4-4-4-4"/><path d="M20 17H4"/></g>
+<text x="78" y="685.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Tầng 4 · Giao vận</text>
+<text x="78" y="709.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đòn: gửi SYN rồi bỏ, làm</text>
+<text x="78" y="728.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đầy hàng chờ. Đỡ: SYN</text>
+<text x="78" y="748.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cookie, thời hạn chờ ngắn.</text>
+<rect x="20" y="780" width="280" height="107" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="833.5" r="18" fill="#0f766e"/><g transform="translate(39.2 822.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></g>
+<text x="78" y="806.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Tầng 3 · Mạng</text>
+<text x="78" y="830.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đòn: ghi bừa địa chỉ IP</text>
+<text x="78" y="849.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nguồn. Đỡ: router biên lọc</text>
+<text x="78" y="869.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">địa chỉ nguồn sai.</text>
+<rect x="20" y="901" width="280" height="127" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="964.5" r="18" fill="#0f766e"/><g transform="translate(39.2 953.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="6" rx="1" width="6" x="16" y="16"/><rect height="6" rx="1" width="6" x="2" y="16"/><rect height="6" rx="1" width="6" x="9" y="2"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"/><path d="M12 12V8"/></g>
+<text x="78" y="927.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Tầng 2 · Liên kết dữ</text>
+<text x="78" y="947.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">liệu</text>
+<text x="78" y="971.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đòn: ARP giả kéo gói tin về</text>
+<text x="78" y="990.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">kẻ tấn công. Đỡ: lọc gói</text>
+<text x="78" y="1010.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">ARP, bảng ARP cố định.</text>
+<rect x="20" y="1042" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="1085.5" r="18" fill="#0f766e"/><g transform="translate(39.2 1074.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-5"/><path d="M15 8V2"/><path d="M17 8a1 1 0 0 1 1 1v4a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1z"/><path d="M9 8V2"/></g>
+<text x="78" y="1068.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Tầng 1 · Vật lý</text>
+<text x="78" y="1092.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đòn: cắt cáp, nghe lén. Đỡ:</text>
+<text x="78" y="1111.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đường dự phòng, mã hóa.</text>
+<rect x="8" y="1153" width="304" height="432" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="1181.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Quy ước, không phải luật</text>
+<rect x="20" y="1198" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1221" r="11" fill="#16a34a"/>
+<polyline points="37.9,1221.4 41.7,1225.4 48.5,1217" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1224.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">DDoS không thuộc riêng</text>
+<text x="64" y="1243.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tầng nào: OWASP chia theo</text>
+<text x="64" y="1263.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thứ bị làm cạn.</text>
+<rect x="20" y="1289" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1312" r="11" fill="#16a34a"/>
+<polyline points="37.9,1312.4 41.7,1316.4 48.5,1308" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1315.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">MITM thường bắc qua nhiều</text>
+<text x="64" y="1334.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tầng; cách đỡ chính, TLS,</text>
+<text x="64" y="1354.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nằm trên TCP.</text>
+<rect x="20" y="1380" width="280" height="102" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1403" r="11" fill="#16a34a"/>
+<polyline points="37.9,1403.4 41.7,1407.4 48.5,1399" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1406.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Brute force là cách thử đoán,</text>
+<text x="64" y="1425.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">không phải một tầng: đoán</text>
+<text x="64" y="1445.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mật khẩu hay mã phiên đều</text>
+<text x="64" y="1464.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">có.</text>
+<rect x="20" y="1490" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1513" r="11" fill="#16a34a"/>
+<polyline points="37.9,1513.4 41.7,1517.4 48.5,1509" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1516.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">OSI là mô hình để học;</text>
+<text x="64" y="1535.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Internet thật chạy theo</text>
+<text x="64" y="1555.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">TCP/IP.</text>
+</g>
+</svg>

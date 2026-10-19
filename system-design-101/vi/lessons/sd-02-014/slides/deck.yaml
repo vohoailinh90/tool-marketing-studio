@@ -1,0 +1,23 @@
+id: sd-02-014
+status: done
+owner: claude/sd101-lessons-w6-3
+claimed_at: '2026-10-19T02:35:17Z'
+done_at: '2026-10-19T02:44:29Z'
+moda_canvas: cvs_3R085G8S6P9EYTF9FSS8HK2AKN
+moda_url: https://moda.app/canvas/78020b04-64d6-4bbd-a7a5-f9ca23312a75
+slide_count: 10
+size: 1920x1080
+exports: badged
+layouts:
+  slides:
+  - one-big-number
+  - one-highlighted-sentence
+  - two-column-comparison
+  - sequence-diagram
+  - flow
+  - connection-diagram
+  - numbered-rows
+  - one-highlighted-sentence
+  - card-grid
+  - lookup-table
+  first_concept: 3

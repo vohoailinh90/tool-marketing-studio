@@ -1,0 +1,105 @@
+{
+  "id": "sd-10-010",
+  "title_vi": "Hàng đợi chặn và hàng đợi không chặn",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "draft",
+  "source_ref": "sd-10-010",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/blocking-vs-non-blocking-queue.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/blocking-vs-non-blocking-queue.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "32d7c3224fe8a361eb5d868a186f89c45b4a0070",
+    "retrieved_body_sha256": "a007dfdb1656c522223f14d280cfe0261e361ccb44c132dac241d6ec29670be3",
+    "retrieved_body_bytes": 2303
+  },
+  "diagram": "../diagrams/sd-10-010-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-10-008",
+      "relation": "see-also",
+      "reason_vi": "Hàng đợi chặn làm bộ đệm trong mẫu Producer-Consumer."
+    },
+    {
+      "lesson_id": "sd-10-025",
+      "relation": "see-also",
+      "reason_vi": "Cạnh tranh giữa các luồng là chuyện đồng thời."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-19"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-19",
+      "evidence": "The concept names were read from the pinned source body. The explanations were read in raw copies of the OpenJDK sources at the pinned commit (BlockingQueue, LinkedBlockingQueue, ConcurrentLinkedQueue, AtomicInteger). The definitions of starvation and wait-free, and the glosses of CAS and JDK, are the author's general knowledge and are not checked against primary documentation."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending",
+      "reason": "figure text measured in Chromium by scripts.figures check --browser (14 px at a 375 px screen); no whole-lesson render at 320, 375 and 430 px recorded"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "The source names the concepts blocking, non-blocking, starvation-free and wait-free, the use of Compare and Swap to build a non-blocking queue, and two benefits. Only the names are reused.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/blocking-vs-non-blocking-queue.md",
+      "section": "Whole guide",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "JDK BlockingQueue: a Queue that additionally supports operations that wait for the queue to become non-empty when retrieving and for space when storing; operations that cannot be satisfied at once come in four forms: throw an exception, return a special value (null or false), block indefinitely (put, take) or block for a maximum time; the queuing methods achieve their effects atomically using internal locks or other forms of concurrency control.",
+      "source": "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/concurrent/BlockingQueue.java",
+      "section": "BlockingQueue",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "JDK LinkedBlockingQueue: a code comment says it is a variant of the two lock queue algorithm, with a putLock gating puts and a takeLock gating takes, both ReentrantLock.",
+      "source": "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/concurrent/LinkedBlockingQueue.java",
+      "section": "Implementation comment",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "JDK ConcurrentLinkedQueue: an unbounded thread-safe queue that employs an efficient non-blocking algorithm based on Michael and Scott; offer links a new node with compareAndSet after the last node, a comment marks the failure case as a lost CAS race after which the thread re-reads and retries, and offer never returns false because the queue is unbounded.",
+      "source": "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/concurrent/ConcurrentLinkedQueue.java",
+      "section": "Class comment and offer",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "JDK AtomicInteger.compareAndSet: atomically sets the value to newValue if the current value equals expectedValue and returns false if the actual value was not equal to the expected value.",
+      "source": "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/concurrent/atomic/AtomicInteger.java",
+      "section": "compareAndSet",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "The definitions of starvation (a thread cannot get access to a shared resource and cannot proceed) and wait-free (every operation finishes in a finite number of its own steps, regardless of the speed or progress of other threads), and the remark that the source's formula wait-free = non-blocking + starvation-free is not checked in the JDK documentation.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/blocking-vs-non-blocking-queue.md",
+      "section": "Terminology",
+      "verified_by": "Author's general knowledge; not checked against primary documentation."
+    },
+    {
+      "claim_vi": "The glosses of CAS and JDK in the abbreviations section.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/blocking-vs-non-blocking-queue.md",
+      "section": "Từ viết tắt",
+      "verified_by": "Author's general knowledge; not checked against primary documentation."
+    }
+  ],
+  "design_notes_vi": "Hai chuỗi tin cho hàng đợi chặn (lấy từ hàng trống rồi được giao) và không chặn (hai luồng thi CAS, luồng thua thử lại); hai tính chất; ba điều cần nhớ. Không dùng ảnh nguồn và không dùng ví dụ luồng A giữ khóa của nguồn.",
+  "source_deviations": [
+    "Source compares terms in prose and bullets and shows the CAS algorithm only in its image; the lesson keeps only the concept names and explains them from the JDK BlockingQueue, LinkedBlockingQueue, ConcurrentLinkedQueue and AtomicInteger sources instead of translating the source sentences.",
+    "Source says a non-blocking algorithm rejects a thread's access; the lesson describes what the ConcurrentLinkedQueue code does, a thread that loses a CAS re-reads and retries, and does not repeat the source's formula wait-free = non-blocking + starvation-free."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích dựa vào mã và tài liệu JDK ở commit cố định; định nghĩa bị bỏ đói, wait-free và giải nghĩa viết tắt là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
+}

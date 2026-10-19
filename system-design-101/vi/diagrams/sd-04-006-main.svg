@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1292" viewBox="0 0 320 1292" role="img" aria-labelledby="title desc">
+<title id="title">Kafka qua bảy đơn hàng</title>
+<desc id="desc">Ba khung. Khung một, bốn bước của một sự kiện: producer gửi sự kiện có khóa, giá trị và thời điểm, khóa là tên khách; cùng khóa luôn vào cùng partition, an và binh vào partition 2, chi vào partition 0; sự kiện được nối vào cuối partition và nhận offset tăng dần; mỗi partition có một leader nhận ghi và hai bản sao ở hai broker kia. Khung hai, hai nhóm đọc: nhóm billing có hai thành viên, một được giao partition 0 và 1 và đọc 2 sự kiện, một được giao partition 2 và đọc 5 sự kiện; nhóm email có một thành viên được giao cả ba partition và đọc đủ 7. Khung ba: thứ tự chỉ giữ trong một partition; mỗi partition chỉ giao cho một thành viên của mỗi nhóm; ít khóa thì dễ lệch, partition 1 trống.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1292" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Kafka qua bảy đơn hàng</text>
+<text x="16" y="60.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Topic orders: 3 partition, mỗi</text>
+<text x="16" y="79.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">partition 3 bản sao, Kafka 4.4 trên ba</text>
+<text x="16" y="99.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">broker.</text>
+<rect x="8" y="119" width="304" height="471" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="147.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Đường đi của một sự kiện</text>
+<rect x="20" y="164" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="190" r="14" fill="#1d4ed8"/>
+<text x="46" y="195.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="190.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Producer gửi sự kiện</text>
+<text x="70" y="214.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Khóa, giá trị, thời điểm;</text>
+<text x="70" y="233.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khóa ở đây là tên khách.</text>
+<rect x="20" y="273" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="299" r="14" fill="#1d4ed8"/>
+<text x="46" y="304.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="299.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Chọn partition</text>
+<text x="70" y="323.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cùng khóa, cùng partition:</text>
+<text x="70" y="342.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">an, binh vào 2; chi vào 0.</text>
+<polyline points="46,253 46,271" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="382" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="408" r="14" fill="#1d4ed8"/>
+<text x="46" y="413.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="408.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Nối vào cuối</text>
+<text x="70" y="432.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Offset tăng dần 0, 1, 2: đọc</text>
+<text x="70" y="451.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đúng thứ tự đã ghi.</text>
+<polyline points="46,362 46,380" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="491" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="517" r="14" fill="#1d4ed8"/>
+<text x="46" y="522.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">4</text>
+<text x="70" y="517.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Sao sang broker khác</text>
+<text x="70" y="541.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Leader nhận ghi; hai bản</text>
+<text x="70" y="560.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">sao ở hai broker còn lại.</text>
+<polyline points="46,471 46,489" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="602" width="304" height="368" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="630.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Hai nhóm đọc cùng một</text>
+<text x="20" y="652.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">topic</text>
+<rect x="20" y="669" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="712.5" r="18" fill="#0f766e"/><g transform="translate(39.2 701.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></g>
+<text x="78" y="695.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">billing, thành viên 0</text>
+<text x="78" y="719.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Được giao partition 0 và 1,</text>
+<text x="78" y="738.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đọc 2 sự kiện.</text>
+<rect x="20" y="770" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="813.5" r="18" fill="#0f766e"/><g transform="translate(39.2 802.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></g>
+<text x="78" y="796.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">billing, thành viên 1</text>
+<text x="78" y="820.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Được giao partition 2, đọc</text>
+<text x="78" y="839.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">5 sự kiện.</text>
+<rect x="20" y="871" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="914.5" r="18" fill="#0f766e"/><g transform="translate(39.2 903.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></g>
+<text x="78" y="897.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">email, một thành viên</text>
+<text x="78" y="921.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Được giao cả ba partition,</text>
+<text x="78" y="940.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đọc đủ 7 sự kiện.</text>
+<rect x="8" y="982" width="304" height="302" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="1010.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Điều nên nhớ</text>
+<rect x="20" y="1027" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1050" r="11" fill="#16a34a"/>
+<polyline points="37.9,1050.4 41.7,1054.4 48.5,1046" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1053.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Thứ tự chỉ được giữ trong</text>
+<text x="64" y="1072.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">một partition, không giữ giữa</text>
+<text x="64" y="1092.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">các partition.</text>
+<rect x="20" y="1118" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1141" r="11" fill="#16a34a"/>
+<polyline points="37.9,1141.4 41.7,1145.4 48.5,1137" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1144.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mỗi partition chỉ giao cho</text>
+<text x="64" y="1163.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">một thành viên của mỗi</text>
+<text x="64" y="1183.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhóm tại một thời điểm.</text>
+<rect x="20" y="1209" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1232" r="11" fill="#16a34a"/>
+<polyline points="37.9,1232.4 41.7,1236.4 48.5,1228" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1235.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ít khóa thì dễ lệch: partition</text>
+<text x="64" y="1254.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">1 không nhận sự kiện nào.</text>
+</g>
+</svg>

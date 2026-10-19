@@ -1,0 +1,26 @@
+{
+  "id": "sd-04-037",
+  "lang": "vi",
+  "title": "Từ hàng đợi tới nhật ký: tin còn lại sau khi đọc",
+  "desc": "Ba khung dọc. Khung một, bốn chặng: IBM MQ, hàng đợi tin nhắn ra đời năm 1993 theo nguồn; RabbitMQ, người gửi đưa tin vào một exchange và exchange chuyển tin tới hàng đợi theo kiểu direct, topic hay fanout; Kafka, nhật ký sự kiện, tin không bị xóa khi đọc mà được giữ theo thời hạn; Pulsar, có cả kiểu chủ đề lẫn kiểu hàng đợi và nhớ vị trí đọc của từng người nhận. Khung hai, thử hàng đợi bằng danh sách của Redis 7.0: sáu tin, hai người nhận chia nhau ba và ba; người nhận đến sau không còn tin nào. Khung ba, thử nhật ký bằng stream của Redis: hai người trong nhóm kho chia nhau ba và ba; nhóm thống kê đọc đủ sáu tin; một nhóm tạo sau vẫn đọc được cả sáu tin cũ.",
+  "sections": [
+    {"kind": "steps", "heading": "Bốn chặng",
+     "items": [
+       {"title": "IBM MQ", "text": "Hàng đợi tin nhắn, ra đời năm 1993 theo nguồn."},
+       {"title": "RabbitMQ", "text": "Tin vào exchange, được chuyển tới hàng đợi theo kiểu direct, topic, fanout."},
+       {"title": "Kafka", "text": "Nhật ký sự kiện: đọc xong tin vẫn còn, giữ theo thời hạn."},
+       {"title": "Pulsar", "text": "Cả kiểu chủ đề lẫn hàng đợi; nhớ vị trí đọc của từng người nhận."}
+     ]},
+    {"kind": "notes", "heading": "Thử hàng đợi (danh sách của Redis)",
+     "items": [
+       "6 tin, hai người nhận chia nhau 3 và 3.",
+       "Người nhận đến sau: không còn tin nào."
+     ]},
+    {"kind": "notes", "heading": "Thử nhật ký (stream của Redis)",
+     "items": [
+       "Hai người trong nhóm kho chia nhau 3 và 3.",
+       "Nhóm thống kê đọc đủ 6 tin.",
+       "Nhóm tạo sau vẫn đọc được cả 6 tin cũ."
+     ]}
+  ]
+}

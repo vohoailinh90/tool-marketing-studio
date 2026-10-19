@@ -1,0 +1,77 @@
+{
+  "id": "sd-01-041",
+  "title_vi": "Bearer token và HMAC: gửi bằng chứng gì?",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "draft",
+  "source_ref": "sd-01-041",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/how-to-design-secure-web-api-access-for-your-website.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-to-design-secure-web-api-access-for-your-website.md",
+    "blob_sha": "29a98ae116a5b79b349432305d6001109a8b9dd6",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "8e56ef43e26cfd5c48fc0e8f9d35ab4d6c60b33cf53c0df24f22946d72f1852c",
+    "retrieved_body_bytes": 2044
+  },
+  "diagram": "../diagrams/sd-01-041-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-16"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-16",
+      "evidence": "Đọc6750§1.2/2.1/3.1/5;2104§1–2;6749§2.1;9421§7.1.2/7.2.1–2. Phân biệt bên tạo mã với bên gửi lại, không public/private HMAC. Chưa triển khai hoặc security testing."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "new lesson awaiting current-head review"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-16",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "evidence": "Chromium cục bộ toàn bài/details mở320/375/430px không tràn ngang/chữ SVG ngoài hình, cỡ nhỏ nhất14.4/16/16px. Đã xem ảnh320px; chưa kiểm tra GitHub/thiết bị thật/người học."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Bearer không yêu cầu chứng minh khóa khác; cần bảo vệ token, xét tính hợp lệ và quyền.",
+      "source": "https://www.rfc-editor.org/rfc/rfc6750.html"
+    },
+    {
+      "claim_vi": "HMAC dùng khóa chung cho tính và xác minh mã thông điệp.",
+      "source": "https://www.rfc-editor.org/rfc/rfc2104.html"
+    },
+    {
+      "claim_vi": "Ứng dụng trong trình duyệt là máy khách công khai, không coi bí mật nhúng là khóa chỉ dịch vụ giữ.",
+      "source": "https://www.rfc-editor.org/rfc/rfc6749.html#section-2.1"
+    },
+    {
+      "claim_vi": "Mã thông điệp không mã hóa hoặc tự ngăn replay; cần coverage, nonce và kiểm tra thời gian theo giao thức.",
+      "source": "https://www.rfc-editor.org/rfc/rfc9421.html#section-7.2.2"
+    }
+  ],
+  "design_notes_vi": "Hai thẻ bằng chứng bearer/HMAC, không trace ảnh nguồn hoặc xếp hạng an toàn.",
+  "editorial_note_vi": "Nháp giáo dục, chưa triển khai xác thực hoặc thử tấn công.",
+  "source_deviations": [
+    "HMAC dùng khóa bí mật chung, không phải cặp public/private key.",
+    "Token chưa hết hạn chưa đủ quyền hoặc tính hợp lệ; bearer chỉ là một loại token.",
+    "Mã khớp không chứng minh người gửi lại hiện tại có khóa, không tự chống replay; không nhúng bí mật dịch vụ vào trình duyệt.",
+    "Không dùng ảnh nguồn hoặc đề xuất thuật toán cũ/luồng mật khẩu trong nguồn."
+  ]
+}

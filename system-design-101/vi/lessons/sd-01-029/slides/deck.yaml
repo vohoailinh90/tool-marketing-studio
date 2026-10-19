@@ -1,0 +1,22 @@
+id: sd-01-029
+status: done
+owner: claude/sd101-slides-sd01-0210
+claimed_at: '2026-10-19T00:42:11Z'
+done_at: '2026-10-19T00:49:18Z'
+moda_canvas: cvs_3PMS83TNYY8X9R1WDEE6RNDJVK
+moda_url: https://moda.app/canvas/76a6503d-57de-4753-80f1-ae71b156cb73
+slide_count: 9
+size: 1920x1080
+exports: badged
+layouts:
+  slides:
+  - connection-diagram
+  - one-highlighted-sentence
+  - card-grid
+  - layers
+  - two-column-comparison
+  - lookup-table
+  - one-highlighted-sentence
+  - numbered-rows
+  - card-grid
+  first_concept: 3

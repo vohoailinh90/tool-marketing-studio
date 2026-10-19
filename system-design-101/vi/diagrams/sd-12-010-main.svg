@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="783" viewBox="0 0 320 783" role="img" aria-labelledby="title desc">
+<title id="title">Ví, sổ cái, tệp quyết toán</title>
+<desc id="desc">Hai khung. Khung một, đường đi của một khoản thanh toán: dịch vụ thanh toán nhận lệnh, gọi nhà cung cấp thanh toán, cập nhật ví người bán, rồi ghi một dòng vào sổ cái. Khung hai, ba chỗ phải khớp: ví khớp với sổ cái, sổ cái khớp với tệp quyết toán mỗi đêm, và việc cập nhật ví cùng ghi sổ nên làm trong một giao dịch.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="783" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Ví, sổ cái, tệp quyết</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">toán</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Ba nơi giữ số tiền phải khớp nhau.</text>
+<rect x="8" y="104" width="304" height="414" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="132.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Một khoản thanh toán</text>
+<rect x="20" y="149" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="175" r="14" fill="#1d4ed8"/>
+<text x="46" y="180.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="175.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Nhận lệnh</text>
+<text x="70" y="199.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Dịch vụ thanh toán lưu sự</text>
+<text x="70" y="218.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">kiện.</text>
+<rect x="20" y="258" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="284" r="14" fill="#1d4ed8"/>
+<text x="46" y="289.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="284.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Gọi nhà cung cấp</text>
+<text x="70" y="308.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bộ thực thi gọi PSP.</text>
+<polyline points="46,238 46,256" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="348" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="374" r="14" fill="#1d4ed8"/>
+<text x="46" y="379.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="374.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Cập nhật ví</text>
+<text x="70" y="398.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ghi số tiền của người bán.</text>
+<polyline points="46,328 46,346" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="438" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="464" r="14" fill="#1d4ed8"/>
+<text x="46" y="469.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">4</text>
+<text x="70" y="464.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Ghi sổ cái</text>
+<text x="70" y="488.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Thêm một dòng mới.</text>
+<polyline points="46,418 46,436" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="530" width="304" height="245" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="558.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Ba chỗ phải khớp</text>
+<rect x="20" y="575" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="598" r="11" fill="#16a34a"/>
+<polyline points="37.9,598.4 41.7,602.4 48.5,594" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="601.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ví khớp với sổ cái.</text>
+<rect x="20" y="629" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="652" r="11" fill="#16a34a"/>
+<polyline points="37.9,652.4 41.7,656.4 48.5,648" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="655.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Sổ cái khớp với tệp quyết</text>
+<text x="64" y="674.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">toán mỗi đêm.</text>
+<rect x="20" y="700" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="723" r="11" fill="#16a34a"/>
+<polyline points="37.9,723.4 41.7,727.4 48.5,719" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="726.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cập nhật ví và ghi sổ nên</text>
+<text x="64" y="745.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">làm trong một giao dịch.</text>
+</g>
+</svg>

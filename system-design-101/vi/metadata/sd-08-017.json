@@ -1,0 +1,98 @@
+{
+  "id": "sd-08-017",
+  "title_vi": "Sáu mẫu kiến trúc phần mềm: mỗi mẫu một lợi, một hại, và một phép đo",
+  "language": "vi",
+  "kind": "reference",
+  "content_status": "draft",
+  "source_ref": "sd-08-017",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/6-software-architectural-patterns-you-must-know.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/6-software-architectural-patterns-you-must-know.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a git fetch of the pinned commit and hashed as a Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "48edd71ff9e49e036d2c9389616371ae57797e25",
+    "retrieved_body_sha256": "4dd18acb5ef477175252f7ae8c12a7da7f5f66ddc78388a16d540e5ea0e64bc0",
+    "retrieved_body_bytes": 2224
+  },
+  "diagram": "../diagrams/sd-08-017-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-19"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-19",
+      "evidence": "Six patterns and their pros and cons from the source body; n-tier, microservices and event-driven statements read from local clones of MicrosoftDocs/architecture-center at 8e2c239 and the plugin-discovery guide from pypa/packaging.python.org at d1ad4ad; six costs measured by a Python 3.13.16 program on a 4-vCPU virtual machine on 2026-10-19 (three runs). Client-server and hexagonal have no independent reference read and are cross-checked only against the source; the cost of building a hexagonal design is not measured."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-19",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Figure drawn by scripts/figures (viewBox width 320, smallest font 15 px, shown at 13.5 px at 320 px); python3 -m scripts.figures check --browser passed; the lesson (Markdown to HTML, optional sections open, 16 px side gutters) rendered in Chromium at 320, 375 and 430 px with no horizontal overflow of the page, any table or any code block. Not learner testing and not GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Source: six patterns - layered (distinct roles; quick to build; code can become unorganized without rules), microservices (smaller components; fault tolerant; scale individually; more complex), event-driven (services emit events others may or may not consume; loose coupling; testing is challenging), client-server (clients and servers over a network; real-time services; server can be a single point of failure), plugin-based (core plus independent plugins; good for IDEs; changing the core is difficult), hexagonal (abstraction layer protecting the core, ports and adapters; more development time and learning curve).",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/6-software-architectural-patterns-you-must-know.md",
+      "section": "Whole guide",
+      "verified_by": "Source body read at the pinned commit."
+    },
+    {
+      "claim_vi": "Microsoft N-tier: a higher layer can use a lower layer, not the reverse; tiers are physically separated and add network latency; a middle tier that only performs basic CRUD adds latency and complexity without meaningful value; testing and monitoring are harder through multiple tiers.",
+      "source": "https://github.com/MicrosoftDocs/architecture-center/blob/8e2c239344ee753a88856800b4210a3e27ac1036/docs/guide/architecture-styles/n-tier.md",
+      "section": "Introduction; Challenges",
+      "verified_by": "Read from a local clone of MicrosoftDocs/architecture-center at commit 8e2c239344ee753a88856800b4210a3e27ac1036."
+    },
+    {
+      "claim_vi": "Microsoft microservices: independent deployment, fault isolation, independent scaling; challenges include complexity, network congestion and latency, data integrity across services.",
+      "source": "https://github.com/MicrosoftDocs/architecture-center/blob/8e2c239344ee753a88856800b4210a3e27ac1036/docs/guide/architecture-styles/microservices.md",
+      "section": "Benefits; Challenges",
+      "verified_by": "Read from the same local clone."
+    },
+    {
+      "claim_vi": "Microsoft event-driven: producers are decoupled from consumers and do not know who listens; the style can be unsuitable where strong consistency is needed, because of eventual consistency, and asynchronous debugging is harder.",
+      "source": "https://github.com/MicrosoftDocs/architecture-center/blob/8e2c239344ee753a88856800b4210a3e27ac1036/docs/guide/architecture-styles/event-driven.md",
+      "section": "Introduction; When to use this architecture",
+      "verified_by": "Read from the same local clone."
+    },
+    {
+      "claim_vi": "Python packaging guide: three major approaches to automatic plugin discovery - naming convention, namespace packages, package metadata.",
+      "source": "https://github.com/pypa/packaging.python.org/blob/d1ad4ad3d6d6f3a3582e4c6b8a1b6f8284f4cb3b/source/guides/creating-and-discovering-plugins.rst",
+      "section": "Introduction",
+      "verified_by": "Read from a local clone of pypa/packaging.python.org at commit d1ad4ad3d6d6f3a3582e4c6b8a1b6f8284f4cb3b."
+    },
+    {
+      "claim_vi": "Measurements (three runs): forwarding layer adds 0.02-0.05 us per call; in-process call 0.08-0.11 us versus HTTP call 220-292 us on the same machine; synchronous publish adds about 0.02 us per subscriber (0 subscribers 0.13-0.23, 100 subscribers 2.4-2.8 us); queue-and-thread delivery median 51-59 us (p99 333-2220 us); single-threaded HTTP server with a 5 ms handler: 5.8 ms with 1 client, 22.3-22.7 with 4, 33.4-33.5 with 16, threaded 6.1, 6.1-6.4, 8.5-8.6 ms; discovering 100 plugin modules 9.0-10.9 ms and importing them 13.6-17.4 ms; changing the hook signature breaks 100 of 100 plugins (0 with a fallback); hexagonal core with memory adapter 0.20-0.23 us and with sqlite3 adapter (commit each) 890-960 us.",
+      "source": "https://docs.python.org/3.13/library/http.server.html",
+      "section": "Experiment",
+      "verified_by": "Program run by the author on 2026-10-19 (three runs); one machine, toy structures."
+    }
+  ],
+  "design_notes_vi": "Ba khung: sáu mẫu một lợi một hại, sáu phép đo, giới hạn.",
+  "source_deviations": [
+    "The source is a picture with six short paragraphs; the lesson keeps the six patterns in order, adds a cross-check column and one small measurement per pattern.",
+    "Client-server and hexagonal have no independent reference; the cost of designing a hexagonal system is not measured."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này (gói W8), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

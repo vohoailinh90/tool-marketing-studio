@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1048" viewBox="0 0 320 1048" role="img" aria-labelledby="title desc">
+<title id="title">ACID: thử từng chữ trên PostgreSQL</title>
+<desc id="desc">Bốn khung dọc. Khung A, nguyên tử: chuyển 150 khi tài khoản chỉ có 100, lệnh cộng đã chạy nhưng lệnh trừ lỗi, cả giao dịch bị hủy và hai tài khoản vẫn 100 và 100. Khung C, nhất quán: ràng buộc số dư không âm chặn lệnh trừ quá tay; nhất quán ở đây là giữ đúng luật của dữ liệu, khác chữ C của CAP. Khung I, cô lập: ở read committed đọc lại thấy 100 rồi 50; ở repeatable read đọc lại vẫn 100; rút 10 và rút 20 cùng lúc từ 100, read committed còn 80, mất một lượt rút; repeatable read hủy lượt sau, phải chạy lại. Khung D, bền vững: chốt 2.000 dòng rồi tắt máy chủ đột ngột, còn đủ 2.000; nếu tắt việc chờ ghi đĩa khi chốt thì chỉ còn từ 1.928 đến 1.974 dòng qua ba lần thử.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1048" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">ACID: thử từng chữ trên</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">PostgreSQL</text>
+<rect x="8" y="78" width="304" height="191" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="106.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">A, nguyên tử</text>
+<rect x="20" y="123" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="146" r="11" fill="#16a34a"/>
+<polyline points="37.9,146.4 41.7,150.4 48.5,142" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="149.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lệnh cộng đã chạy, lệnh trừ</text>
+<text x="64" y="168.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lỗi: cả giao dịch bị hủy.</text>
+<rect x="20" y="194" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="217" r="11" fill="#16a34a"/>
+<polyline points="37.9,217.4 41.7,221.4 48.5,213" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="220.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Hai tài khoản vẫn 100 và</text>
+<text x="64" y="239.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">100.</text>
+<rect x="8" y="281" width="304" height="191" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="309.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">C, nhất quán</text>
+<rect x="20" y="326" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="349" r="11" fill="#16a34a"/>
+<polyline points="37.9,349.4 41.7,353.4 48.5,345" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="352.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ràng buộc số dư không âm</text>
+<text x="64" y="371.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chặn lệnh trừ quá tay.</text>
+<rect x="20" y="397" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="420" r="11" fill="#16a34a"/>
+<polyline points="37.9,420.4 41.7,424.4 48.5,416" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="423.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Giữ đúng luật của dữ liệu;</text>
+<text x="64" y="442.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khác chữ C của CAP.</text>
+<rect x="8" y="484" width="304" height="353" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="512.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">I, cô lập</text>
+<rect x="20" y="529" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="552" r="11" fill="#16a34a"/>
+<polyline points="37.9,552.4 41.7,556.4 48.5,548" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="555.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Read committed: đọc lại</text>
+<text x="64" y="574.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thấy 100 rồi 50.</text>
+<rect x="20" y="600" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="623" r="11" fill="#16a34a"/>
+<polyline points="37.9,623.4 41.7,627.4 48.5,619" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="626.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Repeatable read: đọc lại vẫn</text>
+<text x="64" y="645.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">100.</text>
+<rect x="20" y="671" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="694" r="11" fill="#16a34a"/>
+<polyline points="37.9,694.4 41.7,698.4 48.5,690" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="697.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Rút 10 và 20 cùng lúc, read</text>
+<text x="64" y="716.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">committed: còn 80, mất một</text>
+<text x="64" y="736.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lượt.</text>
+<rect x="20" y="762" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="785" r="11" fill="#16a34a"/>
+<polyline points="37.9,785.4 41.7,789.4 48.5,781" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="788.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Repeatable read: lượt sau bị</text>
+<text x="64" y="807.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hủy, phải chạy lại.</text>
+<rect x="8" y="849" width="304" height="191" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="877.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">D, bền vững</text>
+<rect x="20" y="894" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="917" r="11" fill="#16a34a"/>
+<polyline points="37.9,917.4 41.7,921.4 48.5,913" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="920.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chốt 2.000 dòng rồi tắt đột</text>
+<text x="64" y="939.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">ngột: còn đủ 2.000.</text>
+<rect x="20" y="965" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="988" r="11" fill="#16a34a"/>
+<polyline points="37.9,988.4 41.7,992.4 48.5,984" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="991.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Không chờ ghi đĩa khi chốt:</text>
+<text x="64" y="1010.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">còn 1.928 đến 1.974.</text>
+</g>
+</svg>

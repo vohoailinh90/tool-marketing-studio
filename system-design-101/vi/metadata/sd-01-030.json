@@ -1,0 +1,82 @@
+{
+  "id": "sd-01-030",
+  "title_vi": "Bảo vệ API: kiểm tra nhiều lớp",
+  "language": "vi",
+  "kind": "checklist",
+  "content_status": "draft",
+  "source_ref": "sd-01-030",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/a-cheatsheet-to-build-secure-apis.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/a-cheatsheet-to-build-secure-apis.md",
+    "blob_sha": "456be8c1c8bb73c4429c48318823ede8c3d14273",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "33d32b8a096226bd2d98dd6ed496feb15a65106a63893652389ce1bd9b6cee03",
+    "retrieved_body_bytes": 1681
+  },
+  "diagram": "../diagrams/sd-01-030-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-01-021",
+      "relation": "see_also",
+      "reason_vi": "Cơ chế xác thực cần được hiểu đúng giới hạn."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-15"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-15",
+      "evidence": "Đọc OWASP REST sections HTTPS/access control/input validation, API1 object authorization, API4 scenario2, Logging data-to-exclude/protection/monitoring. Ví dụ thú cưng tự đặt; không chạy kiểm thử bảo mật hệ thống thật."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "new lesson awaiting current-head review"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-15",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "evidence": "Chromium cục bộ toàn bài/details mở320/375/430: không overflow/chữ SVG ngoài viewBox; min14.4/16/16px; đã xem screenshot320. Chưa GitHub/device/user testing."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "HTTPS bảo vệ truyền tải; kiểm đầu vào kiểu/phạm vi/kích thước và quyền truy cập cần ở máy chủ.",
+      "source": "https://cheatsheetseries.owasp.org/cheatsheets/REST_Security_Cheat_Sheet.html"
+    },
+    {
+      "claim_vi": "Kiểm quyền của bên gọi đối với thao tác và đối tượng được yêu cầu.",
+      "source": "https://owasp.org/API-Security/editions/2023/en/0xa1-broken-object-level-authorization/"
+    },
+    {
+      "claim_vi": "Giới hạn tần suất chưa đủ cho các yêu cầu tốn tài nguyên hoặc nhiều thao tác.",
+      "source": "https://owasp.org/API-Security/editions/2023/en/0xa4-unrestricted-resource-consumption/"
+    },
+    {
+      "claim_vi": "Không log nguyên bí mật; hạn chế truy cập log, lưu trữ phù hợp và có theo dõi/cảnh báo.",
+      "source": "https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html"
+    }
+  ],
+  "design_notes_vi": "Bốn thẻ câu hỏi và nhắc log; không vẽ pipeline thứ tự bắt buộc, không ảnh nguồn.",
+  "editorial_note_vi": "Nháp giáo dục, bảng kiểm không đầy đủ cho phê duyệt bảo mật hệ thống.",
+  "source_deviations": [
+    "Không lặp bảo đảm rate limiting ngăn mọi tấn công từ chối dịch vụ.",
+    "Không đưa JWT hoặc OAuth thành công thức xác thực/phân quyền cho mọi hệ thống.",
+    "Bổ sung kiểm quyền theo đối tượng, giới hạn chi phí từng yêu cầu và bảo vệ log."
+  ]
+}

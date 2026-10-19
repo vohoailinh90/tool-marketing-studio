@@ -1,0 +1,105 @@
+{
+  "id": "sd-07-018",
+  "title": "Quẹt thẻ tại cửa hàng",
+  "subtitle": "Xin phép khi quẹt, chốt và quyết toán vào cuối ngày.",
+  "desc": "Bốn khung. Khung một, xin phép (bước 1 đến 3): máy POS gửi giao dịch cho ngân hàng thu, ngân hàng thu gửi cho mạng thẻ. Khung hai, xin phép (bước 4): mạng thẻ gửi cho ngân hàng phát hành để duyệt; ngân hàng phát hành giữ một phần hạn mức của thẻ nếu duyệt, rồi báo duyệt hoặc từ chối về ngân hàng thu và máy POS. Khung ba, cuối ngày: cửa hàng bấm chốt, lô giao dịch đi tới ngân hàng thu rồi mạng thẻ, mạng thẻ bù trừ và gửi tệp cho ngân hàng phát hành, ngân hàng phát hành xác nhận và chuyển tiền cho ngân hàng thu, ngân hàng thu chuyển cho ngân hàng của cửa hàng. Khung bốn, vai của mạng thẻ.",
+  "sections": [
+    {
+      "kind": "sequence",
+      "heading": "1. Quẹt thẻ",
+      "actors": [
+        {
+          "name": "Máy POS",
+          "icon": "credit-card"
+        },
+        {
+          "name": "Ngân hàng thu",
+          "icon": "store"
+        },
+        {
+          "name": "Mạng thẻ",
+          "icon": "network"
+        }
+      ],
+      "messages": [
+        {
+          "from": 0,
+          "to": 1,
+          "text": "Giao dịch vừa quẹt"
+        },
+        {
+          "from": 1,
+          "to": 2,
+          "text": "Chuyển giao dịch"
+        }
+      ]
+    },
+    {
+      "kind": "sequence",
+      "heading": "2. Xin phép",
+      "actors": [
+        {
+          "name": "Mạng thẻ",
+          "icon": "network"
+        },
+        {
+          "name": "Ngân hàng phát hành",
+          "icon": "store"
+        },
+        {
+          "name": "Ngân hàng thu",
+          "icon": "store"
+        }
+      ],
+      "messages": [
+        {
+          "from": 0,
+          "to": 1,
+          "text": "Xin phê duyệt"
+        },
+        {
+          "from": 1,
+          "to": 0,
+          "text": "Duyệt: giữ hạn mức",
+          "reply": true
+        },
+        {
+          "from": 0,
+          "to": 2,
+          "text": "Báo duyệt hoặc từ chối"
+        }
+      ]
+    },
+    {
+      "kind": "steps",
+      "heading": "3. Cuối ngày: chốt và quyết toán",
+      "items": [
+        {
+          "title": "Cửa hàng bấm chốt",
+          "text": "Lô giao dịch đi tới ngân hàng thu, rồi tới mạng thẻ."
+        },
+        {
+          "title": "Mạng thẻ bù trừ",
+          "text": "Gửi tệp bù trừ cho các ngân hàng phát hành."
+        },
+        {
+          "title": "Ngân hàng phát hành",
+          "text": "Xác nhận tệp, chuyển tiền cho ngân hàng thu."
+        },
+        {
+          "title": "Ngân hàng thu",
+          "text": "Chuyển tiền cho ngân hàng của cửa hàng."
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Vì sao có mạng thẻ",
+      "items": [
+        "Không có nó, mỗi ngân hàng phải quyết toán với mọi ngân hàng khác.",
+        "Mạng thẻ lo việc nói chuyện với từng ngân hàng.",
+        "Đổi lại, mạng thẻ nhận phí dịch vụ."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "id": "sd-14-019",
+  "lang": "vi",
+  "title": "Session và JWT",
+  "subtitle": "Một quyết định: ai giữ quyền nói lần đăng nhập này còn hiệu lực.",
+  "desc": "Bốn khung xếp dọc. Một, hai nơi giữ quyền quyết định: session thì máy chủ giữ sổ và tra sổ mỗi yêu cầu; JWT thì thông tin nằm trong thẻ có chữ ký, máy chủ kiểm chữ ký và hạn. Hai, đăng xuất rồi: session xóa mục trong sổ nên mã cũ bị từ chối; JWT không có sổ để xóa nên bản sao của thẻ vẫn qua tới khi hết hạn. Ba, rút JWT sớm bằng sổ cấm, hạn ngắn hoặc đổi khóa ký, mỗi cách một giá. Bốn, JWT ký thông thường chỉ được ký chứ không bị che; khóa chung thì ai kiểm cũng ký được; nhiều dịch vụ dùng chung một khóa thì còn phải kiểm bên phát hành và bên nhận; OWASP khuyên cookie HttpOnly.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "1 · Hai nơi giữ quyền quyết định",
+      "items": [
+        {
+          "name": "Session: máy chủ giữ sổ",
+          "role": "Trình duyệt cầm một mã ngẫu nhiên. Mỗi yêu cầu, máy chủ tra sổ ra người dùng.",
+          "icon": "database"
+        },
+        {
+          "name": "JWT: thẻ có chữ ký",
+          "role": "Thông tin nằm sẵn trong thẻ. Máy chủ kiểm chữ ký và hạn, không tra sổ.",
+          "icon": "file-text"
+        }
+      ]
+    },
+    {
+      "kind": "steps",
+      "heading": "2 · Đăng xuất rồi, mã cũ còn dùng được không?",
+      "items": [
+        {
+          "title": "Session: xóa mục trong sổ",
+          "text": "Máy chủ tự xóa, không cần ai khác."
+        },
+        {
+          "title": "Mã cũ bị từ chối",
+          "text": "Tra sổ không thấy, y như mã chưa từng phát."
+        },
+        {
+          "title": "JWT: không có sổ để xóa",
+          "text": "Đăng xuất chỉ là trình duyệt quên thẻ."
+        },
+        {
+          "title": "Bản sao của thẻ vẫn qua",
+          "text": "Chữ ký còn đúng, nên được nhận tới khi hết hạn."
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "3 · Rút JWT sớm: ba cách, ba giá",
+      "items": [
+        "Sổ cấm: ghi mã định danh của thẻ bị rút. Giá: lại tra sổ mỗi yêu cầu.",
+        "Hạn ngắn: thẻ lộ chỉ dùng được một lúc. Giá: không rút được thẻ đang có.",
+        "Đổi khóa ký: mọi thẻ cũ hết hiệu lực. Giá: rút luôn thẻ của mọi người."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "4 · Cần nhớ về thẻ JWT",
+      "items": [
+        "JWT ký thông thường chỉ được ký, không bị che: ai cầm thẻ cũng đọc được nội dung.",
+        "Khóa chung: ai kiểm được cũng ký được. Cặp khóa: chỉ chủ khóa riêng ký được.",
+        "Nhiều dịch vụ dùng chung một khóa: kiểm cả bên phát hành (iss) và bên nhận (aud).",
+        "OWASP: đặt thẻ trong cookie HttpOnly, không để ở nơi script đọc được."
+      ]
+    }
+  ]
+}

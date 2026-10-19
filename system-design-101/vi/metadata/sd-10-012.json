@@ -1,0 +1,106 @@
+{
+  "id": "sd-10-012",
+  "title_vi": "Bộ lọc Bloom: tránh cào trùng địa chỉ trang ở quy mô lớn",
+  "language": "vi",
+  "kind": "flow",
+  "content_status": "draft",
+  "source_ref": "sd-10-012",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/how-to-avoid-crawling-duplicate-urls-at-google-scale.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-to-avoid-crawling-duplicate-urls-at-google-scale.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "fea2fb0143e97003d537a05d28514f7d40f70434",
+    "retrieved_body_sha256": "655a8c74c415ce458cd9cda9f3e8940195998de97a18a1b87d2037fea5b3026b",
+    "retrieved_body_bytes": 2004
+  },
+  "diagram": "../diagrams/sd-10-012-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-19"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "source_claims_listed_with_the_pinned_source; the Spark statements were read in raw copies at the pinned commit; the attribution of the Bloom filter to Burton Howard Bloom in 1970 is only the source's word, the observations about sets, databases and false positives for a crawler and the gloss of URL are the author's general knowledge, not checked"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending",
+      "reason": "figure text measured in Chromium by scripts.figures check --browser (14 px at a 375 px screen); no whole-lesson render at 320, 375 and 430 px recorded"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "The source compares three ways to check whether a URL was already crawled: a set, a database, and a Bloom filter, and prefers the Bloom filter; the lesson keeps the question and the three options.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-to-avoid-crawling-duplicate-urls-at-google-scale.md",
+      "section": "Whole body",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "The source says the Bloom filter was proposed by Burton Howard Bloom in 1970; the lesson reports it as the source's statement, not checked.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-to-avoid-crawling-duplicate-urls-at-google-scale.md",
+      "section": "Option 3",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Spark describes its Bloom filter as a space-efficient probabilistic data structure with one-sided error: a claim that an item is contained might be wrong, a claim that it is not contained is definitely true; the false positive probability is that mightContain returns true for an item never put in.",
+      "source": "https://github.com/apache/spark/blob/fc6371de008490d22ad635ab7b388eb48b9107db/common/sketch/src/main/java/org/apache/spark/util/sketch/BloomFilter.java",
+      "section": "class comment",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "In Spark the add path derives positions h1 + i * h2 for i = 1..numHashFunctions, makes them non-negative, takes them modulo the bit size and sets those bits; the test path returns false as soon as one bit is 0 and true only if all are set.",
+      "source": "https://github.com/apache/spark/blob/fc6371de008490d22ad635ab7b388eb48b9107db/common/sketch/src/main/java/org/apache/spark/util/sketch/BloomFilterImpl.java",
+      "section": "scatterHashAndSetAllBits, scatterHashAndGetAllBits",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "Spark's Bloom filter hashing uses a 32-bit Murmur3 hasher.",
+      "source": "https://github.com/apache/spark/blob/fc6371de008490d22ad635ab7b388eb48b9107db/common/sketch/src/main/java/org/apache/spark/util/sketch/Murmur3_x86_32.java",
+      "section": "class comment",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "Spark warns that putting significantly more elements than expected saturates the filter and sharply worsens its false positive probability.",
+      "source": "https://github.com/apache/spark/blob/fc6371de008490d22ad635ab7b388eb48b9107db/common/sketch/src/main/java/org/apache/spark/util/sketch/BloomFilter.java",
+      "section": "expected insertions",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "A set holds every address so memory grows with the number crawled; a database means one query per check; the source's wording about RedisBloom and InfluxDB hash functions is not reproduced.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-to-avoid-crawling-duplicate-urls-at-google-scale.md",
+      "section": "Đọc hình",
+      "verified_by": "Author's general knowledge; not checked against primary documentation."
+    },
+    {
+      "claim_vi": "The source gives no bit counts, number of hash functions or false-positive rate; a false positive for a crawler means an unseen address is skipped as if seen.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-to-avoid-crawling-duplicate-urls-at-google-scale.md",
+      "section": "Giới hạn cần nhớ",
+      "verified_by": "Author's general knowledge; not checked against primary documentation."
+    },
+    {
+      "claim_vi": "The gloss of URL in the abbreviations section.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-to-avoid-crawling-duplicate-urls-at-google-scale.md",
+      "section": "Từ viết tắt",
+      "verified_by": "Author's general knowledge; not checked against primary documentation."
+    }
+  ],
+  "design_notes_vi": "Ba cách, hai chuỗi ba bước (thêm và kiểm tra) và một khung ghi nhớ. Lời trong thẻ viết từ mã nguồn Spark và hiểu biết chung, không từ câu của nguồn. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Source has one image; the lesson redraws the three options and the add and test steps as cards and two step sequences and does not use the source image.",
+    "The source draws three independent hash functions A, B, C; the Spark source shows a real filter derives its positions from two hash values (h1 + i * h2). The lesson explains the filter from the Spark source and calls the three positions of the figure an illustration.",
+    "The lesson does not reproduce the source's sentences about the set, the database or the hash-function examples; it explains the options in its own words and the filter from the Spark sources."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích thêm là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
+}

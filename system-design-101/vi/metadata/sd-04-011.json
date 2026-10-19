@@ -1,0 +1,103 @@
+{
+  "id": "sd-04-011",
+  "title_vi": "Cơ sở dữ liệu chuỗi thời gian: dữ liệu được gom theo series",
+  "language": "vi",
+  "kind": "flow",
+  "content_status": "draft",
+  "source_ref": "sd-04-011",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/time-series-db-tsdb-in-20-lines.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/time-series-db-tsdb-in-20-lines.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a partial clone of the source repository; git hash-object of the retrieved body matches the source-map blob. No source-image bytes used.",
+    "blob_sha": "6454a3ffa9d30e553ae803566cb7be4fb8fc2f3e",
+    "retrieved_body_sha256": "7190aeda19c586264787916ac051e0d1321c223b47d6a7dbbcb5bf53323e3ca7",
+    "retrieved_body_bytes": 1161
+  },
+  "diagram": "../diagrams/sd-04-011-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-04-020",
+      "relation": "related",
+      "reason_vi": "Tệp TSM giống tệp của LSM-tree."
+    },
+    {
+      "lesson_id": "sd-04-021",
+      "relation": "related",
+      "reason_vi": "Khi nào chọn cơ sở dữ liệu chuỗi thời gian."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "evidence": "The InfluxDB 1.x key concepts, schema design and storage engine pages were read from a partial clone of influxdata/docs-v2; InfluxDB itself was not run. The compression comparison is the author's Python computation on simulated data (zlib, not InfluxDB's encoders) on 2026-10-18."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright) rendered lesson.md (markdown-it, tables enabled, every <details> open, a 16 px page gutter) at each width: the page never scrolled sideways and the figure was scaled to the column; the smallest SVG font-size times that scale is the recorded minimum at 320 px. `python3 -m scripts.figures check --browser` measured every line of the figure in Chromium inside its box. Not GitHub, not a real phone and not learner testing."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "A point has a measurement, tag set, field set and timestamp and is identified by its series and timestamp; a series is the collection of points sharing a measurement, tag set and field key; tags are indexed and fields are not, so filtering on a field value scans every value.",
+      "source": "https://github.com/influxdata/docs-v2/blob/3c30e2b5ddcfd1320a745eafee6fb9afccb7e97c/content/influxdb/v1/concepts/key_concepts.md",
+      "section": "Key concepts",
+      "verified_by": "Read from a partial clone of influxdata/docs-v2 at commit 3c30e2b5ddcfd1320a745eafee6fb9afccb7e97c."
+    },
+    {
+      "claim_vi": "Tags holding highly variable information (unique IDs, hashes, random strings) create many series; high series cardinality is a primary driver of high memory usage, so store such values in fields.",
+      "source": "https://github.com/influxdata/docs-v2/blob/3c30e2b5ddcfd1320a745eafee6fb9afccb7e97c/content/influxdb/v1/concepts/schema_and_data_layout.md",
+      "section": "Avoid too many series",
+      "verified_by": "Read from a partial clone of influxdata/docs-v2 at commit 3c30e2b5ddcfd1320a745eafee6fb9afccb7e97c."
+    },
+    {
+      "claim_vi": "The storage engine writes to a WAL and an in-memory cache, then snapshots to TSM files, which store sorted, compressed series data in a columnar format.",
+      "source": "https://github.com/influxdata/docs-v2/blob/3c30e2b5ddcfd1320a745eafee6fb9afccb7e97c/content/influxdb/v1/concepts/storage_engine.md",
+      "section": "The InfluxDB storage engine and the Time-Structured Merge Tree",
+      "verified_by": "Read from a partial clone of influxdata/docs-v2 at commit 3c30e2b5ddcfd1320a745eafee6fb9afccb7e97c."
+    },
+    {
+      "claim_vi": "Computed on one simulated day (a point every 10 s at two locations, temperature and humidity): 17,280 points form 4 series; as line-protocol text 1,240,743 bytes and 70,217 after zlib; as per-series delta-encoded columns 552,960 bytes and 14,064 after zlib; a unique reading id as a tag would give 34,560 series.",
+      "source": "https://github.com/influxdata/docs-v2/blob/3c30e2b5ddcfd1320a745eafee6fb9afccb7e97c/content/influxdb/v1/concepts/key_concepts.md",
+      "section": "Author's computation",
+      "verified_by": "The author ran this Python computation on 2026-10-18 with seeded random data; zlib stands in for InfluxDB's type-specific encoders."
+    },
+    {
+      "claim_vi": "The source states that a TSDB looks like a relational table to users but the weather table is stored in 4 TSMs in the format [Measurement, Tag, Field Name], allowing fast aggregation by time and tags, and lists market data, server metrics, APM, network and sensor data as uses. The lesson does not adopt the 4 TSMs wording: per the InfluxDB docs these are 4 series, and a TSM file holds many series (see source_deviations).",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/time-series-db-tsdb-in-20-lines.md",
+      "section": "Body",
+      "verified_by": "Source body read."
+    }
+  ],
+  "design_notes_vi": "Bốn phần của một điểm, ba bước thành series, ba số đo và tính. Không dùng ảnh nguồn; dữ liệu thời tiết là giả lập.",
+  "source_deviations": [
+    "The source says the table is stored in 4 TSMs; per the InfluxDB docs these are 4 series stored in TSM files, which hold many series each.",
+    "The lesson adds tag versus field indexing, the series-cardinality trap and a compression comparison; it drops the source's list of use cases."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

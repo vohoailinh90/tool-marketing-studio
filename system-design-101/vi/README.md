@@ -191,7 +191,7 @@ Các bài chưa viết của nhóm này không có trong danh sách; số thứ 
 
 ## Bảo mật
 
-Các bài từ sd-14-016 trở đi chưa viết; số thứ tự dưới đây chỉ tính các bài đã viết.
+Bài nào của nhóm này chưa có trong danh sách dưới đây là chưa viết hoặc đang ở một đợt khác chưa gộp; số thứ tự chỉ tính các bài có trong danh sách.
 
 1. [DevSecOps là gì?](lessons/sd-14-001/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 2. [Encoding, encryption và tokenization](lessons/sd-14-002/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
@@ -208,6 +208,16 @@ Các bài từ sd-14-016 trở đi chưa viết; số thứ tự dưới đây c
 13. [Tường lửa: sáu cách viết một luật](lessons/sd-14-013/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 14. [Bốn cơ chế xác thực: khóa SSH, token OAuth, chứng chỉ và mật khẩu](lessons/sd-14-014/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 15. [Chữ ký số: ký bằng khóa riêng, kiểm bằng khóa công khai](lessons/sd-14-015/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+16. [Quản lý dữ liệu nhạy cảm trong hệ thống](lessons/sd-14-016/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+17. [HTTPS và bắt tay TLS: dựng kênh mã hóa thế nào?](lessons/sd-14-017/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+18. [Mã hóa đối xứng và bất đối xứng](lessons/sd-14-018/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+19. [Session và JWT: hai cách nhớ người đã đăng nhập](lessons/sd-14-019/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+20. [JWT: ba phần và hai cách ký](lessons/sd-14-020/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+26. [Google Authenticator hoạt động thế nào? TOTP và mã sáu số](lessons/sd-14-026/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+27. [Các loại VPN: mỗi loại giải bài toán nào?](lessons/sd-14-027/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+28. [Cookie là gì? Tấm thẻ khách quen và điều nó không phải](lessons/sd-14-028/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+29. [Các luồng OAuth 2.0: chọn luồng nào cho ứng dụng nào?](lessons/sd-14-029/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+30. [Tấn công mạng theo bảy tầng OSI: tầng nào chịu đòn gì?](lessons/sd-14-030/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 
 ## Nền tảng máy tính
 

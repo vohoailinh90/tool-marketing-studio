@@ -1,0 +1,23 @@
+id: sd-13-022
+status: done
+owner: claude/sd101-decks-w5-3
+claimed_at: '2026-10-19T01:23:29Z'
+done_at: '2026-10-19T01:30:00Z'
+moda_canvas: cvs_55N3GAC83294DTX2752VM1YZGY
+moda_url: https://moda.app/canvas/a5a8e0a6-2062-491b-ae88-e516e81f7e1e
+slide_count: 10
+size: 1920x1080
+exports: badged
+layouts:
+  slides:
+  - numbered-rows
+  - 2x2-matrix
+  - one-big-number
+  - flow
+  - layers
+  - lookup-table
+  - card-grid
+  - two-column-comparison
+  - connection-diagram
+  - lookup-table
+  first_concept: 3

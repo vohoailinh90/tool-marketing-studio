@@ -1,0 +1,117 @@
+{
+  "id": "sd-14-017",
+  "lang": "vi",
+  "title": "HTTPS: HTTP đặt trong kênh TLS",
+  "subtitle": "HTTPS thêm gì, bắt tay dựng kênh ra sao, và giới hạn của nó.",
+  "desc": "Bốn khung xếp dọc. Khung một: HTTPS thêm ba thứ cho HTTP, gồm giữ kín nội dung, phát hiện nội dung bị sửa trên đường và xác thực máy chủ bằng chứng chỉ. Khung hai và ba: bắt tay TLS 1.3 rút gọn giữa trình duyệt và máy chủ. ClientHello và ServerHello đi nguyên văn; chứng chỉ, CertificateVerify và hai thông điệp Finished sau đó được mã hóa (hình bỏ qua bản ghi ChangeCipherSpec 1 byte, không chứa nội dung bắt tay). Rồi yêu cầu HTTP và phản hồi HTTP, mỗi chiều mã hóa bằng một khóa riêng. Khung bốn, giới hạn của HTTPS: tên máy chủ thường vẫn nằm trong ClientHello (trừ khi dùng ECH), chứng chỉ không làm một trang trở nên đáng tin, máy chủ vẫn đọc được mọi thứ bạn gửi và độ dài từng gói vẫn lộ.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "1 · HTTPS thêm ba thứ cho HTTP",
+      "items": [
+        {
+          "name": "Giữ kín",
+          "role": "Người nghe lén chỉ thấy dữ liệu đã mã hóa.",
+          "icon": "lock"
+        },
+        {
+          "name": "Toàn vẹn",
+          "role": "Sửa dữ liệu trên đường thì bên nhận phát hiện và ngắt.",
+          "icon": "shield-check"
+        },
+        {
+          "name": "Xác thực máy chủ",
+          "role": "Chứng chỉ và chữ ký cho biết máy chủ giữ khóa riêng của tên đó.",
+          "icon": "fingerprint-pattern"
+        }
+      ]
+    },
+    {
+      "kind": "sequence",
+      "heading": "2 · Bắt tay (1), rút gọn: thống nhất, chứng minh",
+      "actors": [
+        {
+          "name": "Trình duyệt",
+          "icon": "monitor"
+        },
+        {
+          "name": "Máy chủ",
+          "icon": "server"
+        }
+      ],
+      "messages": [
+        {
+          "from": 0,
+          "to": 1,
+          "text": "ClientHello: bộ mã, nửa khóa, tên máy chủ"
+        },
+        {
+          "from": 1,
+          "to": 0,
+          "text": "ServerHello: bộ mã đã chọn, nửa khóa",
+          "reply": true
+        },
+        {
+          "from": 1,
+          "to": 0,
+          "text": "Chứng chỉ của máy chủ (đã mã hóa)",
+          "reply": true
+        },
+        {
+          "from": 1,
+          "to": 0,
+          "text": "CertificateVerify: ký bằng khóa riêng, đã mã hóa",
+          "reply": true
+        }
+      ]
+    },
+    {
+      "kind": "sequence",
+      "heading": "3 · Bắt tay (2), rồi dữ liệu",
+      "actors": [
+        {
+          "name": "Trình duyệt",
+          "icon": "monitor"
+        },
+        {
+          "name": "Máy chủ",
+          "icon": "server"
+        }
+      ],
+      "messages": [
+        {
+          "from": 1,
+          "to": 0,
+          "text": "Finished: máy chủ xong (đã mã hóa)",
+          "reply": true
+        },
+        {
+          "from": 0,
+          "to": 1,
+          "text": "Finished: trình duyệt xong (đã mã hóa)"
+        },
+        {
+          "from": 0,
+          "to": 1,
+          "text": "Yêu cầu HTTP, mã hóa bằng khóa chiều đi"
+        },
+        {
+          "from": 1,
+          "to": 0,
+          "text": "Phản hồi HTTP, mã hóa bằng khóa chiều về",
+          "reply": true
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "4 · Nhớ: giới hạn của HTTPS",
+      "items": [
+        "Tên máy chủ thường vẫn nằm trong ClientHello, trừ khi dùng ECH.",
+        "Chứng chỉ chỉ gắn khóa với tên: nó không bảo đảm trang đáng tin.",
+        "Máy chủ vẫn giải mã và đọc được mọi thứ bạn gửi.",
+        "Độ dài từng gói dữ liệu vẫn lộ."
+      ]
+    }
+  ]
+}

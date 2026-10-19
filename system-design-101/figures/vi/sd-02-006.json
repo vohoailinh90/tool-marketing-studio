@@ -1,0 +1,53 @@
+{
+  "id": "sd-02-006",
+  "title": "Bảng tính làm phần backend",
+  "subtitle": "Bắt đầu đơn giản, đổi khi giới hạn thật sự tới.",
+  "desc": "Ba khung. Khung một: cách Levels fyi chạy lúc đầu, người dùng gửi qua Google Forms, dữ liệu vào Google Sheets, có dùng hàm serverless, nguồn không nói nó làm gì cho trang web. Khung hai: ba điều cách này cho, là ra mắt nhanh, không phải vận hành máy chủ, tập trung vào sản phẩm. Khung ba: ba dấu hiệu nên chuyển sang backend thật.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Lúc đầu: không có backend riêng",
+      "items": [
+        {
+          "name": "Google Forms",
+          "role": "Nhận số liệu từ người dùng.",
+          "icon": "file-text"
+        },
+        {
+          "name": "Google Sheets",
+          "role": "Bảng tính làm cơ sở dữ liệu.",
+          "icon": "database"
+        },
+        {
+          "name": "Hàm serverless",
+          "role": "Có dùng; nguồn không nói nó làm gì.",
+          "icon": "cloud"
+        }
+      ],
+      "flow": [
+        [
+          0,
+          1
+        ]
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Cách này cho gì",
+      "items": [
+        "Ra mắt nhanh, thử ý tưởng sớm.",
+        "Không phải dựng và vận hành máy chủ cơ sở dữ liệu.",
+        "Thời gian dồn vào sản phẩm."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Khi nào nên đổi",
+      "items": [
+        "Cần ràng buộc dữ liệu hay giao dịch thật.",
+        "Chạm hạn mức gọi hoặc kích thước bảng tính.",
+        "Truy vấn mới khó viết trên bảng tính."
+      ]
+    }
+  ]
+}

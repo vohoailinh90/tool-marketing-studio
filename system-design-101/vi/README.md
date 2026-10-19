@@ -58,12 +58,17 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 47. [GraphQL: từ schema đến dữ liệu và lỗi](lessons/sd-01-047/lesson.md)
 48. [Bảng kiểm REST: nhìn xa hơn đường dẫn](lessons/sd-01-048/lesson.md)
 49. [Học API bằng ba năng lực thực hành](lessons/sd-01-049/lesson.md)
+50. [Sáu giao thức API: chọn theo kiểu hội thoại](lessons/sd-01-050/lesson.md)
 
 ## Tình huống thực tế
 
 1. [Figma mở rộng Postgres: ba bậc thang](lessons/sd-02-001/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
 2. [API của các API: nối ứng dụng bằng trigger và action](lessons/sd-02-002/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
 3. [Pinterest cắt thời gian clone bằng một dòng refspec](lessons/sd-02-003/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+4. [Telegram có an toàn không? Còn tùy ai giữ chìa khóa](lessons/sd-02-004/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+5. [SapFix của Meta: máy đề xuất bản sửa, người quyết định](lessons/sd-02-005/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+6. [Levels.fyi: bảng tính làm backend cho hàng triệu người dùng](lessons/sd-02-006/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+7. [McDonald's: chuẩn hóa sự kiện trước, mở rộng sau](lessons/sd-02-007/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
 
 ## AI và học máy
 
@@ -264,7 +269,7 @@ và hình đạt; không coi đọc nguồn là mọi claim đã đúng, không 
 
 ## Các nhóm còn lại theo thứ tự nguồn
 
-API và phát triển web (còn sd-01-050) → Tình huống thực tế (đã viết một phần) →
+Tình huống thực tế (đã viết một phần) →
 Cơ sở dữ liệu và lưu trữ (đã viết một phần) → Bộ nhớ đệm và hiệu năng (đã viết một phần) → Thanh toán và công nghệ tài chính →
 Kiến trúc phần mềm → Phát triển phần mềm (đã viết một phần) →
 Đám mây và hệ thống phân tán → Hệ thống hoạt động thế nào? → Bảo mật (đã viết một phần).

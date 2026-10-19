@@ -23,7 +23,7 @@ Bảng dưới giữ nguyên bảy cột mốc của bài nguồn. Cột "phần
 | 2009 | Heroku: PaaS | Bạn không quản máy ảo và hệ điều hành nữa, chỉ đưa mã lên |
 | 2010 | OpenStack: IaaS mã nguồn mở | Cùng kiểu dịch vụ hạ tầng như 2006, nhưng tự dựng được trên máy của mình |
 | 2011 | Cloud Foundry: PaaS mã nguồn mở | Cùng kiểu nền tảng như 2009, cũng tự dựng được |
-| 2013 | Docker: container | Ứng dụng đóng gói cùng phần nó cần, chạy giống nhau ở máy nào |
+| 2013 | Docker: container | Ứng dụng đóng gói cùng phần nó cần, chạy nhất quán trên các máy chủ tương thích (cùng loại hệ điều hành lõi và kiến trúc bộ vi xử lý, hoặc có bản dựng đa nền tảng) |
 | 2015 | CNCF: cloud native | Cách vận hành (xếp lịch, quan sát, tự phục hồi) trở thành chuẩn chung có tổ chức giữ |
 
 Hai cặp (2006 với 2010, 2009 với 2011) cho thấy một mẫu: kiểu dịch vụ ra đời trước ở dạng thương mại, rồi có bản mã nguồn mở theo sau.

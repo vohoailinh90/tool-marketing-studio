@@ -19,9 +19,9 @@ Giữ nguyên tên sáu kỹ thuật của bài nguồn, xếp theo đòn bẩy 
 | Dùng ít hơn | Reduce Usage; Terminate Idle Resources; Right Sizing | Bớt cỡ và số lượng; xóa tài nguyên không ai dùng; chọn cỡ máy vừa với tải thật |
 | Dùng ngắn hơn | Shutdown Resources During Off-Peak Times | Tự động tắt phần không cần khi ít người dùng |
 | Trả rẻ hơn | Reserve to Reduce Rate | Cam kết để có đơn giá thấp hơn; mẹo thêm ở nguồn: máy dư (Spot) và loại lưu trữ rẻ hơn |
-| Chuyển ít dữ liệu hơn | Optimize Data Transfers | Nén dữ liệu, dùng CDN, đặt tài nguyên trong cùng vùng để dữ liệu ít phải đi xa |
+| Chuyển ít dữ liệu hơn | Optimize Data Transfers | Nén dữ liệu để gửi ít byte hơn; dùng CDN và đặt tài nguyên trong cùng vùng để đổi đường đi và mức phí truyền (không nhất thiết giảm số byte) |
 
-Ba đòn bẩy đầu nhân với nhau, nên chúng cộng hưởng. Đòn bẩy cuối là một khoản riêng, vì dữ liệu đi ra bị tính tiền theo lượng.
+Ba đòn bẩy đầu nhân với nhau, nên chúng cộng hưởng. Đòn bẩy cuối là một khoản riêng, vì dữ liệu đi ra bị tính tiền theo lượng; riêng CDN và đặt cùng vùng thì đổi đường đi và mức phí chứ không giảm số byte.
 
 ## Thử: tính một ví dụ
 

@@ -1,0 +1,22 @@
+id: sd-01-042
+status: done
+owner: claude/sd101-decks-w2-3
+claimed_at: '2026-10-19T01:15:08Z'
+done_at: '2026-10-19T01:22:36Z'
+moda_canvas: cvs_7M53EK9TZH888R7C62VPDXFE3G
+moda_url: https://moda.app/canvas/f428dd34-ebf1-4211-83b0-c2dd9bd7b870
+slide_count: 9
+size: 1920x1080
+exports: badged
+layouts:
+  slides:
+  - connection-diagram
+  - flow
+  - numbered-rows
+  - card-grid
+  - layers
+  - lookup-table
+  - one-highlighted-sentence
+  - numbered-rows
+  - card-grid
+  first_concept: 3

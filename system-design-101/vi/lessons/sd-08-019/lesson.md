@@ -80,7 +80,7 @@ Một chương trình C chỉ in một dòng, nhưng `strace` cho thấy 35 lờ
 <details>
 <summary>Xem đáp án</summary>
 
-Nằm ở bước "nạp thư viện chung": với bản động, trình nạp phải mở danh sách thư viện, mở `libc.so.6`, ánh xạ nó vào bộ nhớ và đổi quyền các vùng, trước khi tới `main`. Bản tĩnh đã chứa sẵn thư viện nên bỏ qua. Bản động vẫn là mặc định vì thư viện chung chỉ nằm một bản trên đĩa và trong bộ nhớ cho mọi chương trình dùng nó và được cập nhật riêng; cái giá mỗi lần khởi động chỉ cỡ 0,1 đến 0,3 ms trong phép đo ở đây.
+Nằm ở bước "nạp thư viện chung": với bản động, trình nạp phải mở danh sách thư viện, mở `libc.so.6`, ánh xạ nó vào bộ nhớ và đổi quyền các vùng, trước khi tới `main`. Bản tĩnh đã chứa sẵn thư viện nên bỏ qua. Bản động vẫn là mặc định vì thư viện chung chỉ nằm một bản trên đĩa, được cập nhật riêng, và các trang chỉ đọc của nó (như mã) có thể dùng chung trong bộ nhớ giữa các tiến trình (phần ghi được, phần sửa lúc nạp và trạng thái của trình nạp vẫn riêng cho từng tiến trình); cái giá mỗi lần khởi động chỉ cỡ 0,1 đến 0,3 ms trong phép đo ở đây.
 
 </details>
 

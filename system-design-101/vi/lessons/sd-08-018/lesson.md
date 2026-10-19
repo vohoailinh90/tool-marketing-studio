@@ -2,7 +2,7 @@
 
 **Bài nguồn tóm tắt hành trình đưa một ứng dụng lên iOS và Android thành bảy bước, mỗi bước vài gạch đầu dòng. Bài này giữ đủ bảy bước, đối chiếu những điểm kiểm được với tài liệu của Apple và của Android, nói rõ bước nào chưa đối chiếu được, và thêm một mô hình tính xem phát hành theo pha của Apple giới hạn được bao nhiêu thiệt hại khi bản mới có lỗi.**
 
-![Ba khung. Khung một, bảy bước phát hành ứng dụng di động của nguồn: đăng ký và phát triển, build và thử, QA, duyệt nội bộ, tối ưu trang cửa hàng, nộp lên cửa hàng, phát hành. Khung hai, điều tài liệu độc lập xác nhận: TestFlight cho tối đa 100 người thử nội bộ và 10.000 người thử ngoài, mỗi build thử được 90 ngày; Android khuyên thử bản phát hành trên ít nhất một điện thoại và một máy tính bảng; Apple cho phát hành theo pha trong 7 ngày, từ 1% đến 100%. Khung ba, mô hình phát hành theo pha: lỗi chạm 10% người dùng dừng được ở ngày 1 với 1% đã nhận; chạm 1% dừng ngày 2 với 2%; chạm 0,1% dừng ngày 5 với 20%; chạm 0,01% không dừng kịp, cả 100% nhận bản lỗi.](../../diagrams/sd-08-018-main.svg)
+![Ba khung. Khung một, bảy bước phát hành ứng dụng di động của nguồn: đăng ký và phát triển, build và thử, QA, duyệt nội bộ, tối ưu trang cửa hàng, nộp lên cửa hàng, phát hành. Khung hai, điều tài liệu độc lập xác nhận: TestFlight cho tối đa 100 người thử nội bộ và 10.000 người thử ngoài, mỗi build thử được 90 ngày; Android khuyên thử bản phát hành trên ít nhất một điện thoại và một máy tính bảng; Apple cho phát hành theo pha trong 7 ngày, từ 1% đến 100%. Khung ba, mô hình phát hành theo pha với số báo cáo kỳ vọng: lỗi chạm 10% người dùng dừng được ở ngày 1 với 1% đã nhận; chạm 1% dừng ngày 2 với 2%; chạm 0,1% dừng ngày 5 với 20%; chạm 0,01% không dừng kịp, cả 100% nhận bản lỗi.](../../diagrams/sd-08-018-main.svg)
 
 ## Từ viết tắt
 
@@ -30,7 +30,7 @@ Theo trang Apple về phát hành bản cập nhật theo pha, một phần ng�
 |---|---|---|---|---|---|---|---|
 | Tỷ lệ người dùng | 1% | 2% | 5% | 10% | 20% | 50% | 100% |
 
-Đây là **mô hình tính**, không phải phép đo trên cửa hàng thật. Giả sử 1.000.000 người dùng đủ điều kiện, mọi người được chọn đều cập nhật và dùng ứng dụng trong ngày; một lỗi làm sập ứng dụng của một tỷ lệ r người dùng; mỗi người bị sập được báo cáo với xác suất 0,5; và nhóm dừng phát hành vào ngày số báo cáo cộng dồn đạt 100. Ngày 2026-10-19, một đoạn chương trình Python ngắn tính ra:
+Đây là **mô hình tính**, không phải phép đo trên cửa hàng thật. Giả sử 1.000.000 người dùng đủ điều kiện, mọi người được chọn đều cập nhật và dùng ứng dụng trong ngày; một lỗi làm sập ứng dụng của một tỷ lệ r người dùng; mỗi người bị sập được báo cáo với xác suất 0,5, tính theo giá trị kỳ vọng (số người bị sập nhân 0,5, không mô phỏng ngẫu nhiên); và nhóm dừng phát hành vào ngày số báo cáo kỳ vọng cộng dồn đạt 100. Ngày 2026-10-19, một đoạn chương trình Python ngắn tính ra:
 
 | Lỗi làm sập tỷ lệ r người dùng | Phát hành theo pha: ngày dừng và số người đã nhận bản lỗi | Phát hành một lần cho mọi người |
 |---|---|---|
@@ -38,6 +38,8 @@ Theo trang Apple về phát hành bản cập nhật theo pha, một phần ng�
 | 1% | ngày 2, 20.000 người (2%) | 1.000.000 |
 | 0,1% | ngày 5, 200.000 người (20%) | 1.000.000 |
 | 0,01% | không bao giờ đạt 100 báo cáo trong 7 ngày: cả 1.000.000 người | 1.000.000 |
+
+Vì số báo cáo thật là ngẫu nhiên, mỗi ngày dừng ở bảng là ngày theo giá trị kỳ vọng. Ở hàng 1% và hàng 0,1%, kỳ vọng đúng bằng ngưỡng 100 (ngày 2 và ngày 5), nên trong thực tế ngày dừng có thể sớm hoặc muộn hơn một ngày; hàng 10% vượt ngưỡng rất xa nên chắc chắn dừng ngày 1.
 
 Hai điều đọc được. Một, với lỗi phổ biến, phát hành theo pha giảm thiệt hại từ 100 đến 50 lần: bạn dừng khi mới 1% hay 2% người dùng đã nhận. Hai, với lỗi hiếm, lịch cố định 7 ngày không kịp bắt: lỗi chạm một người trong mười nghìn sinh ra quá ít báo cáo để đạt ngưỡng, và đến ngày 7 mọi người đều có bản lỗi. Trang Apple nói cũng rõ rằng người dùng vẫn có thể tải bản mới thủ công bất cứ lúc nào trong lúc phát hành theo pha, nên con số "người đã nhận" là cận dưới.
 

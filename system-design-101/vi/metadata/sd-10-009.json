@@ -28,11 +28,12 @@
   "verification": {
     "source_body": {
       "status": "read",
-      "checked_on": "2026-10-18"
+      "checked_on": "2026-10-19"
     },
     "claims": {
-      "status": "pending",
-      "reason": "source_claims_listed_with_the_pinned_source; the author's general-knowledge glosses are not checked against primary documentation"
+      "status": "checked",
+      "checked_on": "2026-10-19",
+      "evidence": "The step names were read from the pinned source body. The explanations were read in raw copies of the Linux kernel source and documentation at the pinned commit (net/core/dev.c, net/sched/sch_generic.c, kernel/softirq.c, Documentation/networking/napi.rst and scaling.rst). Header wrapping, the path between machines, the network layers, the copy to user space and the abbreviation glosses are the author's general knowledge and are not checked against primary documentation."
     },
     "technical_review": {
       "status": "pending",
@@ -48,33 +49,39 @@
   },
   "claims": [
     {
-      "claim_vi": "A chat message goes from the sending application in user space to the send buffer in kernel space, is wrapped with a TCP header, an IP header and a MAC header, goes through qdisc for flow control and reaches the NIC via a ring buffer.",
+      "claim_vi": "The source names the stages of a chat message between two servers: user space, send buffer in kernel space, network stack with TCP, IP and MAC headers, qdisc, ring buffer, NIC, the internet via routers and switches, then on the receiving side NIC, ring buffer, hard interrupt, soft interrupt, ksoftirqd, the data link, network and transport layers, and the copy to user space. Only the stage names are reused.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-is-data-transmitted-between-applications.md",
-      "section": "Paragraph 2",
+      "section": "Paragraphs 2 to 4",
       "verified_by": "Source body read from the pinned commit; the statement is in the source text."
     },
     {
-      "claim_vi": "The NIC sends the data over the internet through routers and switches to the NIC of the receiving server.",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-is-data-transmitted-between-applications.md",
-      "section": "Paragraph 3",
-      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
-    },
-    {
-      "claim_vi": "The receiving NIC puts the data in the ring buffer and sends a hard interrupt to the CPU; the CPU sends a soft interrupt so ksoftirqd receives data from the ring buffer; the data is unwrapped through the data link, network and transport layers and copied to user space.",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-is-data-transmitted-between-applications.md",
-      "section": "Paragraph 4",
-      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
-    },
-    {
-      "claim_vi": "qdisc and ksoftirqd are Linux kernel names: the Linux kernel source has a per-CPU ksoftirqd task and qdisc code.",
-      "source": "https://github.com/torvalds/linux/blob/32c52ec87d6245ee2d12ed5dd509e40062939b50/kernel/softirq.c",
-      "section": "kernel/softirq.c and net/sched/sch_generic.c",
+      "claim_vi": "Linux __dev_queue_xmit comment: it queues a buffer for transmission to a network device, and the caller must have built the buffer (device and priority set) before calling it.",
+      "source": "https://github.com/torvalds/linux/blob/32c52ec87d6245ee2d12ed5dd509e40062939b50/net/core/dev.c",
+      "section": "__dev_queue_xmit()",
       "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
     },
     {
-      "claim_vi": "Linux NAPI documentation says NAPI processing usually happens in the software interrupt context.",
+      "claim_vi": "Linux sch_generic.c: the file holds the generic packet scheduler routines (qdisc); it contains a 3-band FIFO queue called pfifo_fast; a comment says the running seqcount guarantees only one CPU can process a qdisc at a time.",
+      "source": "https://github.com/torvalds/linux/blob/32c52ec87d6245ee2d12ed5dd509e40062939b50/net/sched/sch_generic.c",
+      "section": "pfifo_fast and qdisc_run comments",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "Linux scaling documentation: each receive queue has a separate interrupt that the NIC triggers to notify a CPU when new packets arrive on that queue; the documentation counts a card's receive queues as RX rings.",
+      "source": "https://github.com/torvalds/linux/blob/32c52ec87d6245ee2d12ed5dd509e40062939b50/Documentation/networking/scaling.rst",
+      "section": "RSS: Receive Side Scaling, RSS Configuration",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "Linux NAPI documentation: the device notifies the host through an interrupt and the host schedules a NAPI instance; processing usually happens in the software interrupt context, with an option for separate kernel threads; a poll processes at most budget receive packets; drivers keep interrupts masked after scheduling until polling finishes.",
       "source": "https://github.com/torvalds/linux/blob/32c52ec87d6245ee2d12ed5dd509e40062939b50/Documentation/networking/napi.rst",
-      "section": "napi.rst",
+      "section": "NAPI, Datapath API, Scheduling and IRQ masking",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "Linux softirq.c: ksoftirqd is a per-CPU kernel task; a software interrupt raised outside interrupt context wakes ksoftirqd, while inside an interrupt or softirq it runs once the interrupt or softirq returns.",
+      "source": "https://github.com/torvalds/linux/blob/32c52ec87d6245ee2d12ed5dd509e40062939b50/kernel/softirq.c",
+      "section": "ksoftirqd, raise_softirq_irqoff comment",
       "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
     },
     {
@@ -84,16 +91,17 @@
       "verified_by": "Author's general knowledge; not checked against primary documentation."
     },
     {
-      "claim_vi": "The glosses of TCP, IP, MAC, NIC and CPU in the abbreviations section.",
+      "claim_vi": "Header wrapping by the network stack, the path through routers and switches, the unwrapping through the data link, network and transport layers, the copy to user space and the glosses of TCP, IP, MAC, NIC, CPU and FIFO.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-is-data-transmitted-between-applications.md",
-      "section": "Từ viết tắt",
+      "section": "Design",
       "verified_by": "Author's general knowledge; not checked against primary documentation."
     }
   ],
-  "design_notes_vi": "Hai chuỗi bốn bước (máy gửi, máy nhận) và một khung ghi nhớ. Đoạn \"trên đường đi\" của nguồn được đưa vào khung ghi nhớ vì không có bước riêng. Không dùng ảnh nguồn.",
+  "design_notes_vi": "Hai chuỗi bốn bước (máy gửi, máy nhận) và một khung ghi nhớ. Chỉ giữ tên các chặng của nguồn; lời giải thích lấy từ nhân Linux. Đoạn \"trên đường đi\" được đưa vào khung ghi nhớ vì không có bước riêng. Không dùng ảnh nguồn.",
   "source_deviations": [
-    "Source is three connected paragraphs; the lesson splits them into two four-step sequences and puts the path between the machines in the closing notes.",
-    "Source does not say which operating system it describes; the lesson adds that qdisc and ksoftirqd are Linux kernel names, checked against the Linux source."
+    "Source is three connected paragraphs; the lesson keeps only the stage names, splits them into two four-step sequences and writes its own explanation of each step from the Linux net/core/dev.c, sch_generic.c, softirq.c, napi.rst and scaling.rst sources instead of translating the source sentences.",
+    "Source says the CPU sends a soft interrupt so that ksoftirqd receives data; the lesson says what the Linux code shows: the soft interrupt normally runs on return from the interrupt, and ksoftirqd runs it when it is raised outside interrupt context.",
+    "Source does not say which operating system it describes; the lesson reads it as a picture of Linux."
   ],
-  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích thêm là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích dựa vào mã và tài liệu của nhân Linux ở commit cố định; phần bọc tiêu đề, các lớp mạng và giải nghĩa viết tắt là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
 }

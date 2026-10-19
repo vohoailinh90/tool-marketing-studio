@@ -170,6 +170,11 @@ Các bài chưa viết của nhóm này không có trong danh sách; số thứ 
 3. [Lệnh cắt lỗ: giá kích hoạt không phải giá bán](lessons/sd-07-003/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 4. [Web 1.0, 2.0 và 3.0: ai giữ dữ liệu, ai kiếm tiền](lessons/sd-07-004/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 5. [SWIFT: tin nhắn thanh toán giữa các ngân hàng](lessons/sd-07-005/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+6. [Thanh toán bằng mã QR: bốn cách từ hai câu hỏi](lessons/sd-07-006/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+7. [Tài khoản nóng: khi mọi giao dịch cùng đổ vào một số dư](lessons/sd-07-007/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+8. [Đối soát thanh toán: ba nỗi đau và cách gỡ](lessons/sd-07-008/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+9. [UPI của Ấn Độ: đăng ký, liên kết tài khoản, chuyển tiền](lessons/sd-07-009/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+10. [Quét mã để trả tiền: hai quy trình, mười hai bước](lessons/sd-07-010/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 
 ## Công cụ và năng suất
 

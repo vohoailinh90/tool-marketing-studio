@@ -1,0 +1,77 @@
+{
+  "id": "sd-07-009",
+  "title": "UPI: từ đăng ký đến chuyển tiền",
+  "subtitle": "NPCI đứng giữa các ngân hàng.",
+  "desc": "Hai khung. Khung một, chuẩn bị: Bob cung cấp số điện thoại và xác minh bằng mật khẩu dùng một lần; đặt địa chỉ thanh toán ảo; ứng dụng tạo địa chỉ đó với ngân hàng thu; liên kết tài khoản ngân hàng qua NPCI và đặt mã PIN. Khung hai, chuyển tiền: Alice nhập địa chỉ của Bob và 100 rupee, ứng dụng của Alice gửi yêu cầu tới NPCI, NPCI nhờ ngân hàng của Bob tra chi tiết, trừ 100 ở tài khoản Alice, ra lệnh cộng 100 vào tài khoản Bob, rồi báo thành công cho các ứng dụng.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Chuẩn bị của Bob",
+      "items": [
+        {
+          "title": "Đăng ký",
+          "text": "Số điện thoại, xác minh bằng mật khẩu dùng một lần."
+        },
+        {
+          "title": "Đặt địa chỉ",
+          "text": "Địa chỉ thanh toán ảo, tạo với ngân hàng thu."
+        },
+        {
+          "title": "Liên kết",
+          "text": "Tài khoản ngân hàng, qua NPCI."
+        },
+        {
+          "title": "Đặt PIN",
+          "text": "Dùng cho xác thực hai yếu tố."
+        }
+      ]
+    },
+    {
+      "kind": "sequence",
+      "heading": "Alice trả Bob 100 rupee",
+      "actors": [
+        {
+          "name": "App Alice",
+          "icon": "smartphone"
+        },
+        {
+          "name": "NPCI",
+          "icon": "route"
+        },
+        {
+          "name": "Bank Bob",
+          "icon": "store"
+        }
+      ],
+      "messages": [
+        {
+          "from": 0,
+          "to": 1,
+          "text": "Địa chỉ của Bob, 100"
+        },
+        {
+          "from": 1,
+          "to": 2,
+          "text": "Tra chi tiết địa chỉ"
+        },
+        {
+          "from": 2,
+          "to": 1,
+          "text": "Chi tiết tài khoản",
+          "reply": true
+        },
+        {
+          "from": 1,
+          "to": 2,
+          "text": "Cộng 100 cho Bob"
+        },
+        {
+          "from": 1,
+          "to": 0,
+          "text": "Báo thành công",
+          "reply": true
+        }
+      ]
+    }
+  ]
+}

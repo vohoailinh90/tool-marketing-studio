@@ -31,12 +31,12 @@ Bài nguồn không nói Sparo làm thế nào để nhanh hơn, số liệu đo
 
 ## Nhìn hình thử trả lời
 
-Một kỹ sư chỉ sửa một thư viện nhỏ trong kho 200 nghìn tệp. Thao tác nào trong bảng làm họ mất thời gian nhất khi mới vào dự án, và thao tác nào họ chạy nhiều lần nhất mỗi ngày?
+Một kỹ sư chỉ sửa một thư viện nhỏ trong kho 200 nghìn tệp. Thao tác nào trong bảng làm họ mất thời gian nhất khi mới vào dự án? Trong ba lệnh dùng hằng ngày (`checkout`, `status`, `commit`), lệnh nào mỗi lần chạy được Sparo rút ngắn theo tỉ lệ nhiều nhất?
 
 <details>
 <summary>Xem đáp án</summary>
 
-Khi mới vào, `clone` tốn nhất (40 phút trước Sparo). Hằng ngày, họ chạy `status` và `commit` nhiều lần nhất, nên dù mỗi lần chỉ vài giây, tổng thời gian vẫn đáng kể; Sparo đưa `status` từ 7 giây xuống 1 giây.
+Khi mới vào, `clone` tốn nhất (40 phút trước Sparo). Trong ba lệnh hằng ngày, `status` được rút ngắn nhiều nhất theo tỉ lệ: từ 7 giây xuống 1 giây, nhanh gấp khoảng bảy lần; `checkout` nhanh gấp ba, `commit` chỉ bớt khoảng một phần tư. Bảng chỉ cho thời gian mỗi lần chạy, không cho biết mỗi lệnh được chạy bao nhiêu lần một ngày.
 
 </details>
 
@@ -45,7 +45,7 @@ Khi mới vào, `clone` tốn nhất (40 phút trước Sparo). Hằng ngày, h�
 
 - `clone` phải tải toàn bộ lịch sử và mọi tệp, dù người dùng chỉ cần một phần.
 - `status` phải kiểm tra từng tệp trong thư mục làm việc xem có đổi không; càng nhiều tệp thì càng lâu.
-- Cách giảm phổ biến là chỉ lấy về phần thư mục mình cần (sparse checkout) và không tải toàn bộ lịch sử. Tên Sparo gợi ý hướng này, nhưng bài nguồn không xác nhận.
+- Hai cách giảm phổ biến, độc lập với nhau: sparse checkout chỉ đưa vào thư mục làm việc phần thư mục mình cần; còn muốn tải ít lịch sử hơn thì dùng clone nông (`git clone --depth`) hoặc clone một phần (`git clone --filter`). Tên Sparo gợi ý hướng sparse checkout, nhưng bài nguồn không xác nhận.
 
 Đây là kiến thức chung của người biên soạn, không phải từ bài nguồn.
 

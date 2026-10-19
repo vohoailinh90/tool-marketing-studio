@@ -1,0 +1,36 @@
+{
+  "id": "sd-14-028",
+  "lang": "vi",
+  "title": "Cookie là gì, và không phải là gì",
+  "subtitle": "Mẩu chữ máy chủ nhờ trình duyệt giữ hộ, rồi nhận lại ở mỗi yêu cầu",
+  "desc": "Ba nhóm xếp dọc. Cookie đi lại: máy chủ gửi Set-Cookie, trình duyệt giữ hộ, mỗi yêu cầu sau trình duyệt tự gắn tên và giá trị vào tiêu đề Cookie, thuộc tính không gửi lại. Ba kiểu cookie: mang dữ liệu thì người dùng sửa được; mang mã ngẫu nhiên thì máy chủ tra bảng của mình; mang dữ liệu kèm mã xác thực thì sửa bị từ chối nhưng vẫn đọc và sao chép được. Ba điều cookie không phải: chương trình, két sắt, bằng chứng danh tính.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Cookie đi lại thế nào",
+      "items": [
+        {"title": "Máy chủ gửi Set-Cookie", "text": "Tên và giá trị, kèm vài thuộc tính dặn trình duyệt cách dùng."},
+        {"title": "Trình duyệt giữ hộ", "text": "Nó lưu cookie theo trang đã đặt ra nó, cho tới khi hết hạn hoặc bị xóa."},
+        {"title": "Mỗi yêu cầu sau tự mang theo", "text": "Chỉ tên và giá trị được gắn vào tiêu đề Cookie; thuộc tính không gửi lại."}
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Ba kiểu cookie, ba cách tin",
+      "items": [
+        {"name": "Mang dữ liệu", "role": "theme=dark: máy chủ đọc thẳng, không tra gì. Người dùng sửa được, máy chủ tin theo.", "icon": "file-text"},
+        {"name": "Mang mã ngẫu nhiên", "role": "sid=chuỗi ngẫu nhiên: máy chủ tra bảng của mình. Mã bừa thì không ra dữ liệu nào.", "icon": "key-round"},
+        {"name": "Mang dữ liệu kèm mã xác thực", "role": "Sửa là bị từ chối, nhưng vẫn đọc được, và bản sao nguyên vẹn vẫn dùng được.", "icon": "shield-check"}
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Ba điều cookie không phải",
+      "items": [
+        "Không phải chương trình: chỉ là chữ, không tự chạy gì.",
+        "Không phải két sắt: người dùng đọc và sửa được giá trị.",
+        "Không phải bằng chứng danh tính: ai cầm đúng mã thì được nhận là chủ."
+      ]
+    }
+  ]
+}

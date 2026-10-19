@@ -1,0 +1,98 @@
+{
+  "id": "sd-08-012",
+  "title_vi": "Mười đánh đổi thiết kế hệ thống: bốn cặp thử được bằng một đoạn chương trình nhỏ",
+  "language": "vi",
+  "kind": "reference",
+  "content_status": "draft",
+  "source_ref": "sd-08-012",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/10-system-design-tradeoffs-you-cannot-ignore.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/10-system-design-tradeoffs-you-cannot-ignore.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a git fetch of the pinned commit and hashed as a Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "b0a0384ee8c0d03213636fbb0515b51c0e6b53a3",
+    "retrieved_body_sha256": "719ba1c00f524c1df9685a0bc056f331193b0245eb7bb2e38496935856989188",
+    "retrieved_body_bytes": 2515
+  },
+  "diagram": "../diagrams/sd-08-012-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-19"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-19",
+      "evidence": "Four of the ten trade-offs measured by small Python 3.13.16 programs (sqlite3, asyncio, multiprocessing, a standard-library HTTP server) run on 2026-10-19, three runs each; Microsoft's scale-out and minimize-coordination design principles read from a local clone. The other six trade-offs are kept at the source's wording and labelled unmeasured."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-19",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Figure drawn by scripts/figures (viewBox width 320, smallest font 15 px, shown at 13.5 px at 320 px); python3 -m scripts.figures check --browser passed; the lesson (Markdown to HTML, optional sections open, 16 px side gutters) rendered in Chromium at 320, 375 and 430 px with no horizontal overflow of the page, any table or any code block. Not learner testing and not GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "sqlite3 in memory, 1,000 customers and 200,000 orders with an index on customer id: reading the 200 orders of one customer took 181-282 us with a join and 184-251 us on a flat table; renaming one customer took 3-4 us on the normalized schema (1 row) and 120-176 us on the flat table (200 rows); sizes 2,609,152 bytes (customer + orders) versus 6,754,304 bytes (flat).",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/10-system-design-tradeoffs-you-cannot-ignore.md",
+      "section": "4. Normalization vs Denormalization",
+      "verified_by": "Program run by the author on 2026-10-19 (three runs)."
+    },
+    {
+      "claim_vi": "asyncio: 50 waits of 20 ms took 1.010 s one after another and 0.022 s concurrently; 20,000 tiny CPU tasks took 0.0031-0.0034 s as plain calls and 0.118-0.165 s as asyncio tasks.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/10-system-design-tradeoffs-you-cannot-ignore.md",
+      "section": "10. Sync vs Async Processing",
+      "verified_by": "Program run by the author on 2026-10-19 (three runs)."
+    },
+    {
+      "claim_vi": "A CPU-bound job with a 0.05 s unsplittable part split over 1, 2 and 4 processes on a 4-core virtual machine took 0.42-0.47 s, 0.25-0.29 s and 0.19-0.21 s: speed-ups of 1.6-1.8x and 2.2-2.5x. Microsoft (Minimize coordination): coordination limits the benefits of horizontal scale, and embracing eventual consistency avoids the coordination that strong consistency needs across distributed data.",
+      "source": "https://github.com/MicrosoftDocs/architecture-center/blob/8e2c239344ee753a88856800b4210a3e27ac1036/docs/guide/design-principles/minimize-coordination-content.md",
+      "section": "Coordination limits the benefits of horizontal scale",
+      "verified_by": "Program run by the author on 2026-10-19; Microsoft page read from a local clone at commit 8e2c239344ee753a88856800b4210a3e27ac1036. Processes on one machine stand in for instances; no network."
+    },
+    {
+      "claim_vi": "Toy HTTP server: three REST calls returned 4,083 bytes in a median 758-814 us; one query asking for exactly the needed fields returned 354 bytes in 233-254 us (the toy server does less work for the query, so the time difference says nothing about a real GraphQL server).",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/10-system-design-tradeoffs-you-cannot-ignore.md",
+      "section": "7. REST vs GraphQL",
+      "verified_by": "Program run by the author on 2026-10-19 (three runs)."
+    },
+    {
+      "claim_vi": "Microsoft (Design to scale out): design applications to scale out by adding or removing instances and avoid instance stickiness, because session affinity limits the ability to scale out.",
+      "source": "https://github.com/MicrosoftDocs/architecture-center/blob/8e2c239344ee753a88856800b4210a3e27ac1036/docs/guide/design-principles/scale-out.md",
+      "section": "Design your application so that it can scale horizontally",
+      "verified_by": "Read from a local clone of MicrosoftDocs/architecture-center at commit 8e2c239344ee753a88856800b4210a3e27ac1036."
+    },
+    {
+      "claim_vi": "Source: ten trade-off pairs with one or two sentences each (vertical vs horizontal scaling, SQL vs NoSQL, batch vs stream, normalization vs denormalization, consistency vs availability, strong vs eventual consistency, REST vs GraphQL, stateful vs stateless, read-through vs write-through cache, sync vs async); no figures given.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/10-system-design-tradeoffs-you-cannot-ignore.md",
+      "section": "Whole guide",
+      "verified_by": "Source body read at the pinned commit."
+    }
+  ],
+  "design_notes_vi": "Ba khung: bốn cặp đo được, số đo, sáu cặp chưa đo.",
+  "source_deviations": [
+    "The source gives two sentences per pair and no numbers; the lesson summarises all ten, measures four and labels six as not measured.",
+    "The lesson adds experiments the source does not contain."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này (gói W8), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

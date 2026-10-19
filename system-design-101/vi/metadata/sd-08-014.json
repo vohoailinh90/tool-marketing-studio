@@ -1,0 +1,92 @@
+{
+  "id": "sd-08-014",
+  "title_vi": "Chín việc khi xây dịch vụ nhỏ: thiết kế cho lỗi, thử ba lớp bảo vệ trên một dịch vụ giả",
+  "language": "vi",
+  "kind": "reference",
+  "content_status": "draft",
+  "source_ref": "sd-08-014",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/9-best-practices-for-building-microservices.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/9-best-practices-for-building-microservices.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a git fetch of the pinned commit and hashed as a Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "98b9672b3a593ac0fb0aed2a7bd2667737a9f879",
+    "retrieved_body_sha256": "ab92c8f473208873c6f52afad5236bcc9bdcb54c3c0b5a6fbf1aa6abf88c3f4e",
+    "retrieved_body_bytes": 2360
+  },
+  "diagram": "../diagrams/sd-08-014-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-19"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-19",
+      "evidence": "Source's nine practices from the source body; Microsoft's Circuit Breaker and Retry pattern pages, the compute options page (service discovery) and the microservices page (private data store) read from local clones; timeout, retry and circuit-breaker behaviour measured with a Python 3.13.16 program against a standard-library HTTP server on 2026-10-19, three runs (the random part uses a fixed seed, so counts repeat). Six practices were neither cross-checked nor measured."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-19",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Figure drawn by scripts/figures (viewBox width 320, smallest font 15 px, shown at 13.5 px at 320 px); python3 -m scripts.figures check --browser passed; the lesson (Markdown to HTML, optional sections open, 16 px side gutters) rendered in Chromium at 320, 375 and 430 px with no horizontal overflow of the page, any table or any code block. Not learner testing and not GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Source: nine practices - design for failure, build small services, use lightweight protocols (REST, gRPC, message brokers), implement service discovery, data ownership per service, resiliency patterns (retry, caching, rate limiting), security at all levels, centralized logging, containerization.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/9-best-practices-for-building-microservices.md",
+      "section": "Whole guide",
+      "verified_by": "Source body read at the pinned commit."
+    },
+    {
+      "claim_vi": "Microsoft Circuit Breaker: an application should not continually retry an operation unlikely to succeed; a time-out can block concurrent requests until it expires, holding memory, threads and connections; set a shorter time-out but long enough for the operation to succeed most of the time.",
+      "source": "https://github.com/MicrosoftDocs/architecture-center/blob/8e2c239344ee753a88856800b4210a3e27ac1036/docs/patterns/circuit-breaker.md",
+      "section": "Context and problem; Solution",
+      "verified_by": "Read from a local clone of MicrosoftDocs/architecture-center at commit 8e2c239344ee753a88856800b4210a3e27ac1036."
+    },
+    {
+      "claim_vi": "Microsoft Retry: retry after a delay (incrementally or exponentially); consider whether the operation is idempotent because retries may run it twice; for some noncritical operations fail fast instead of retrying.",
+      "source": "https://github.com/MicrosoftDocs/architecture-center/blob/8e2c239344ee753a88856800b4210a3e27ac1036/docs/patterns/retry-content.md",
+      "section": "Solution; Issues and considerations",
+      "verified_by": "Read from the same local clone."
+    },
+    {
+      "claim_vi": "Measured against a stub HTTP server: dependency answering after 200 ms, 20 sequential calls - no time-out 20 of 20 in 4.03-4.04 s (20 server calls), 50 ms time-out 0 of 20 in 1.01 s (20 calls), time-out plus circuit breaker 0 of 20 in 0.25-0.33 s (5 calls); dependency failing 30% of calls, 2,000 requests - no retry 1,416 successes with 2,000 server calls, up to 3 attempts 1,936 successes with 2,792 server calls; dependency down, 500 requests - up to 3 attempts 1,500 server calls in 1.20-1.29 s, with a circuit breaker (opens after 5 failures) 5 calls in under 0.01 s.",
+      "source": "https://github.com/MicrosoftDocs/architecture-center/blob/8e2c239344ee753a88856800b4210a3e27ac1036/docs/patterns/circuit-breaker.md",
+      "section": "Experiment",
+      "verified_by": "Program run by the author on 2026-10-19 (three runs); loopback only, one caller, simple breaker without a half-open probe count."
+    },
+    {
+      "claim_vi": "Microsoft: each microservice owns its own data store; service discovery is a platform feature that some compute options provide (Kubernetes DNS, Container Apps) and others leave to the application.",
+      "source": "https://github.com/MicrosoftDocs/architecture-center/blob/8e2c239344ee753a88856800b4210a3e27ac1036/docs/microservices/design/compute-options.md",
+      "section": "Compute options comparison",
+      "verified_by": "Read from the same local clone (compute-options.md; the private data store statement is in docs/guide/architecture-styles/microservices.md)."
+    }
+  ],
+  "design_notes_vi": "Ba khung: chín việc và hai việc đo, dịch vụ chậm, lỗi 30 phần trăm và dịch vụ chết.",
+  "source_deviations": [
+    "The source is a diagram with a few sentences per practice; the lesson keeps the nine practices, adds a cross-check column and measures the resilience ones against a stub dependency.",
+    "Six practices are labelled as not cross-checked."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này (gói W8), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

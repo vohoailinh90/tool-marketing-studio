@@ -1,0 +1,35 @@
+{
+  "id": "sd-08-014",
+  "title": "Thiết kế cho lỗi: thử ba lớp bảo vệ",
+  "subtitle": "Chín việc của nguồn, hai việc đo được bằng một dịch vụ giả.",
+  "desc": "Ba khung. Khung một, chín việc của nguồn: thiết kế cho lỗi, dịch vụ nhỏ, giao thức nhẹ, khám phá dịch vụ, dữ liệu riêng, mẫu chịu lỗi, bảo mật mọi tầng, nhật ký tập trung và đóng gói container; bài này đo hai việc đầu liên quan đến lỗi. Khung hai, dịch vụ phụ thuộc trả lời sau 200 mili giây: 20 lần gọi không đặt hạn mất 4,04 giây, đặt hạn 50 mili giây mất 1,01 giây nhưng thất bại hết, thêm bộ ngắt mạch chỉ còn 0,25 đến 0,33 giây và 5 lần gọi tới dịch vụ. Khung ba, dịch vụ lỗi 30 phần trăm: thử lại tối đa ba lần nâng thành công từ 1.416 lên 1.936 trên 2.000 lần nhưng tăng tải lên 2.792 lần gọi; khi dịch vụ chết hẳn, ba lần thử gây 1.500 lần gọi còn bộ ngắt mạch chỉ 5.",
+  "sections": [
+    {
+      "kind": "notes",
+      "heading": "Chín việc, hai việc đo",
+      "items": [
+        "Thiết kế cho lỗi và mẫu chịu lỗi: đo trong bài.",
+        "Dịch vụ nhỏ, giao thức nhẹ, khám phá, dữ liệu riêng: không đo.",
+        "Bảo mật, nhật ký tập trung, container: không đo."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Dịch vụ chậm 200 ms, 20 lần gọi",
+      "items": [
+        "Không đặt hạn: 4,04 giây, thành công hết.",
+        "Đặt hạn 50 ms: 1,01 giây, thất bại hết.",
+        "Thêm bộ ngắt mạch: 0,25 đến 0,33 giây, chỉ 5 lần gọi."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Lỗi 30 phần trăm và dịch vụ chết",
+      "items": [
+        "Thử lại tối đa ba lần: 1.416 lên 1.936 thành công trên 2.000.",
+        "Cái giá: tải 2.000 lên 2.792 lần gọi.",
+        "Dịch vụ chết: ba lần thử gây 1.500 lần gọi, bộ ngắt mạch gây 5."
+      ]
+    }
+  ]
+}

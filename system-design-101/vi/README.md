@@ -132,6 +132,16 @@ Các bài chưa viết của nhóm này không có trong danh sách; số thứ 
 14. [Tám chiến lược đẩy khóa ra, và Redis thật sự có những gì](lessons/sd-06-014/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
 15. [Bộ nhớ đệm hỏng theo những kiểu nào](lessons/sd-06-015/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
 
+## Kiến trúc phần mềm
+
+Các bài chưa viết của nhóm này không có trong danh sách; số thứ tự là vị trí của bài trong nhóm.
+
+11. [Mười tám mẫu thiết kế của nguồn: mười bốn mẫu, tìm trong thư viện chuẩn của Python](lessons/sd-08-011/lesson.md) — bài mới viết tại repo này (có phép thử riêng); chờ review kỹ thuật.
+12. [Mười đánh đổi thiết kế hệ thống: bốn cặp thử được bằng một đoạn chương trình nhỏ](lessons/sd-08-012/lesson.md) — bài mới viết tại repo này (có phép đo riêng); chờ review kỹ thuật.
+13. [Chín thành phần của một ứng dụng dịch vụ nhỏ chạy thật, và cái giá của từng thành phần](lessons/sd-08-013/lesson.md) — bài mới viết tại repo này (có phép đo riêng); chờ review kỹ thuật.
+14. [Chín việc khi xây dịch vụ nhỏ: thiết kế cho lỗi, thử ba lớp bảo vệ trên một dịch vụ giả](lessons/sd-08-014/lesson.md) — bài mới viết tại repo này (có phép đo riêng); chờ review kỹ thuật.
+15. [Tám khái niệm của thiết kế hướng miền: bảy có chỗ đối chiếu, một kiểm bằng mã](lessons/sd-08-015/lesson.md) — bài mới viết tại repo này (có phép thử riêng); chờ review kỹ thuật.
+
 ## Công cụ và năng suất
 
 1. [Các lệnh Git theo việc cần làm](lessons/sd-09-001/lesson.md) — bản nháp; chờ review kỹ thuật.

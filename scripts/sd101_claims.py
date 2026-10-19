@@ -886,8 +886,11 @@ def reserved_on_board(root: pathlib.Path, remote: str, offline: bool, work: str)
         texts.append(local.read_text(encoding="utf-8"))
     if not offline:
         try:
-            base = f"refs/remotes/{remote}/{default_branch(root, remote, ask=False)}"
-            shown = git(root, "show", f"{base}:{BOARD}", check=False)
+            try:  # the branch the remote calls its default now: a cached origin/HEAD goes stale when it is renamed
+                branch = default_branch(root, remote)
+            except ClaimsError:
+                branch = default_branch(root, remote, ask=False)
+            shown = git(root, "show", f"refs/remotes/{remote}/{branch}:{BOARD}", check=False)
             if shown.returncode == 0:
                 texts.append(shown.stdout.decode("utf-8", "replace"))
         except ClaimsError:

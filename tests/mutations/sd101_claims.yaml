@@ -647,3 +647,7 @@ mutations:
   find: '        if not any(word in row.get("work", "").lower() for word in BOARD_WORK[work]):'
   replace: '        if False:'
   test: tests.test_sd101_claims.BoardTests.test_a_row_reserves_its_ranges_for_the_work_it_names_until_it_is_done
+- label: the board is read from the cached default branch, which goes stale when the remote renames it
+  find: "                branch = default_branch(root, remote)\n"
+  replace: "                branch = default_branch(root, remote, ask=False)\n"
+  test: tests.test_sd101_claims.BoardTests.test_the_board_is_read_from_the_branch_the_remote_calls_its_default_now

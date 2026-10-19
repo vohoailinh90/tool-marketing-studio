@@ -94,6 +94,26 @@ class BoardTests(unittest.TestCase):
         self.assertTrue(claims.board_reservations(text, "lesson"), "a board edit broke its tables: --next would skip nothing")
         self.assertTrue(claims.board_reservations(text, "deck"), "a board edit broke its tables: --next would skip nothing")
 
+    def test_the_board_is_read_from_the_branch_the_remote_calls_its_default_now(self) -> None:
+        asked: list[bool] = []
+
+        def default_branch(root, remote, ask=True):
+            asked.append(ask)
+            return "trunk" if ask else "main"
+
+        shown: list[str] = []
+
+        def fake_git(root, *args, check=True, data=None):
+            shown.append(args[-1])
+            return subprocess.CompletedProcess(args, 0, BOARD_TEXT.encode(), b"")
+
+        with tempfile.TemporaryDirectory() as tmp, mock.patch.object(claims, "default_branch", default_branch), \
+                mock.patch.object(claims, "git", fake_git):
+            reserved = claims.reserved_on_board(Path(tmp), "origin", False, "lesson")
+        self.assertEqual([True], asked)
+        self.assertEqual(["refs/remotes/origin/trunk:docs/sd101-assignments.md"], shown)
+        self.assertEqual({"sd-01-001", "sd-01-002"}, reserved)
+
     def test_a_board_that_is_not_there_reserves_nothing(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             self.assertEqual(set(), claims.reserved_on_board(Path(tmp), "origin", True, "lesson"))

@@ -15,7 +15,7 @@ Bài này đọc SapFix như một dây chuyền: phát hiện, đề xuất, ki
 
 **Đề xuất.** Khi thấy một crash do Diff gây ra, SapFix thử sinh bản sửa theo bốn kiểu: theo mẫu, đột biến, hoàn tác toàn bộ, hoàn tác một phần. Nó chạy kiểm thử trên từng bản build đã vá để xem bản nào chạy được, giống thử từng mảnh ghép.
 
-**Người quyết định.** SapFix chọn một bản vá ứng viên và gửi đi review qua Phabricator. Người duyệt chính là chính người đã viết thay đổi gây crash, vì họ hiểu ngữ cảnh nhất; vài kỹ sư khác cũng được theo dõi. Họ có thể nhận bản vá hoặc bỏ đi.
+**Người quyết định.** SapFix chọn một bản vá ứng viên và gửi đi review qua Phabricator. Người duyệt chính là người đã viết thay đổi gây crash, vì họ hiểu ngữ cảnh nhất; vài kỹ sư khác cũng được theo dõi. Họ có thể nhận bản vá hoặc bỏ đi.
 
 **Con số theo nguồn.** SapFix chạy trên sáu ứng dụng chính của Facebook, mỗi ứng dụng hàng chục triệu dòng mã. Trong đợt thử 90 ngày, nó sinh 165 bản vá cho 57 crash; thời gian trung vị từ lúc phát hiện lỗi tới lúc gửi bản sửa cho người duyệt là 69 phút.
 

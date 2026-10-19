@@ -1,0 +1,93 @@
+{
+  "id": "sd-02-031",
+  "title_vi": "Lớp API của Uber qua ba thế hệ",
+  "language": "vi",
+  "kind": "timeline",
+  "content_status": "draft",
+  "source_ref": "sd-02-031",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/evolution-of-uber's-api-layer.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/evolution-of-uber's-api-layer.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "08f8f4620e8d29e9c7b322ffb729351c10a211db",
+    "retrieved_body_sha256": "e3fe0df6042270d335c62038c744892b784dce8c82f279aca3bb78bbe5b9de4e",
+    "retrieved_body_bytes": 1121
+  },
+  "diagram": "../diagrams/sd-02-031-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-02-027",
+      "relation": "see_also",
+      "reason_vi": "Ngăn xếp công nghệ của Uber."
+    },
+    {
+      "lesson_id": "sd-02-028",
+      "relation": "see_also",
+      "reason_vi": "Netflix đi một đường tương tự với cổng API."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-19"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "source_claims_listed_with_the_pinned_source; the author's general-knowledge glosses are not checked against primary documentation"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending",
+      "reason": "figure text measured in Chromium by scripts.figures check --browser (14 px at a 375 px screen); no whole-lesson render at 320, 375 and 430 px recorded"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Uber's API gateway went through three main stages.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/evolution-of-uber's-api-layer.md",
+      "section": "Đọc hình",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "First gen (2014): dispatch connects riders with drivers; the API service stores long-term user and trip data.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/evolution-of-uber's-api-layer.md",
+      "section": "Đọc hình",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Second gen: an all-encompassing gateway; by 2019, 2,200+ microservices.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/evolution-of-uber's-api-layer.md",
+      "section": "Đọc hình",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Third gen: self-service, decentralized and layered, from early 2018 with new business lines (Freight, ATG, Elevate, groceries).",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/evolution-of-uber's-api-layer.md",
+      "section": "Đọc hình",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Why one shared gateway becomes a bottleneck.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/evolution-of-uber's-api-layer.md",
+      "section": "Xem sâu hơn",
+      "verified_by": "Author's general knowledge; not checked against primary documentation."
+    }
+  ],
+  "design_notes_vi": "Ba bước nối nhau và một khung nhớ gì. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "The source's dates are out of order (2019 for the second generation, early 2018 for the third); the lesson states both as given.",
+    "ATG is expanded from general knowledge; the source only names it.",
+    "Uber's own engineering post was not opened."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích thêm là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
+}

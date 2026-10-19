@@ -30,11 +30,11 @@ Ngày 2026-10-19, người biên soạn viết một mô phỏng bằng Python. 
 | Cách quản lý thẻ | Số thẻ đang lưu | Thẻ chết | Tỷ lệ thẻ chết |
 |---|---|---|---|
 | Không dọn | 132.002 | 53.455 | 40,5% |
-| Xóa thẻ chết sau 60 ngày im lặng | 82.314 | 4.014 | 4,9% |
+| Xóa thẻ chết sau 60 ngày im lặng | 82.391 | 3.844 | 4,7% |
 
-Nếu không dọn, cứ 5 lần gửi thì gần 2 lần gửi vào thẻ không còn ai nhận (tốn băng thông, và một số dịch vụ còn trả lỗi cho mỗi lần). Số thẻ còn sống trong hai cách gần như nhau (78.547 và 78.300), nên việc dọn không làm mất người nhận nào.
+Nếu không dọn, cứ 5 lần gửi thì gần 2 lần gửi vào thẻ không còn ai nhận (tốn băng thông, và một số dịch vụ còn trả lỗi cho mỗi lần). Cả hai cách chạy trên cùng một lịch sử cài lại và gỡ (cùng hạt giống ngẫu nhiên) nên số thẻ còn sống bằng nhau, 78.547. Nhưng đó là kết quả của cách mô phỏng: chương trình biết trước thẻ nào đã chết và chỉ xóa thẻ chết, nên không thể xóa nhầm thẻ còn sống. Hệ thống thật không biết trước điều đó, chỉ đoán từ lỗi trả về hoặc từ việc im lặng lâu; một máy tắt hai tháng rồi bật lại có thể bị xóa nhầm, nên ngưỡng 60 ngày là con số để cân nhắc, không phải bảo đảm.
 
-**Tin ngoại tuyến.** Máy mất mạng từ giờ 0 và trở lại sau 1, 6, 24 hoặc 72 giờ; một tin được gửi vào một lúc ngẫu nhiên trong thời gian máy ngoại tuyến, và tuổi của nó khi máy trở lại là khoảng cách từ lúc gửi tới lúc máy về. Với thời gian sống 4 giờ, tỷ lệ tin còn hiệu lực khi máy trở lại là 100%, 64,7%, 16,5% và 5,8%; với thời gian sống 28 ngày thì cả bốn mức đều 100%. Thời gian sống ngắn hợp với tin hết giá trị nhanh (mã xác thực một lần), dài hợp với tin quan trọng không hết hạn. Nếu mười lần cập nhật cùng một mục (ví dụ tỷ số trận đấu) xếp hàng khi máy ngoại tuyến, chỉ lần cuối cùng đáng giao: gộp theo khóa, mười tin còn một.
+**Tin ngoại tuyến.** Máy mất mạng từ giờ 0 và trở lại sau 1, 6, 24 hoặc 72 giờ; một tin được gửi vào một lúc ngẫu nhiên trong thời gian máy ngoại tuyến, và tuổi của nó khi máy trở lại là khoảng cách từ lúc gửi tới lúc máy về. Với thời gian sống 4 giờ, tỷ lệ tin còn hiệu lực khi máy trở lại là 100%, 63,9%, 17,8% và 5,3%; với thời gian sống 28 ngày thì cả bốn mức đều 100%. Thời gian sống ngắn hợp với tin hết giá trị nhanh (mã xác thực một lần), dài hợp với tin quan trọng không hết hạn. Nếu mười lần cập nhật cùng một mục (ví dụ tỷ số trận đấu) xếp hàng khi máy ngoại tuyến, chỉ lần cuối cùng đáng giao: gộp theo khóa, mười tin còn một.
 
 ## Giới hạn cần nhớ
 
@@ -65,11 +65,11 @@ Chương trình Python 3 (chỉ dùng thư viện chuẩn) đã in mọi con s�
 
 ```python
 import random
-rnd = random.Random(9)
 USERS = 100000
 
 def simulate(cleanup):
     # mỗi người một thẻ; mỗi tháng 3% cài lại (thẻ cũ chết, thẻ mới sinh ra), 2% gỡ ứng dụng (thẻ chết)
+    rnd = random.Random(9)                         # cùng hạt giống cho cả hai cách: cùng một lịch sử cài lại và gỡ
     tokens, dead, next_id = {}, set(), [0]
     def new_token():
         next_id[0] += 1
@@ -98,6 +98,7 @@ for cleanup in (False, True):
     total, dead_count = simulate(cleanup)
     print("dọn" if cleanup else "không dọn", "| thẻ đang lưu", total, "| thẻ chết", dead_count, "| %.1f%%" % (100 * dead_count / total))
 
+rnd = random.Random(9)
 def still_valid(offline_hours, ttl_hours, n=1000):
     ok = 0
     for _ in range(n):

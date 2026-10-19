@@ -48,13 +48,13 @@
       "verified_by": "Source body read at the pinned commit."
     },
     {
-      "claim_vi": "Own simulation, 2026-10-19, Python 3 with a fixed seed: 100,000 users, each month 3 percent reinstall (old token dead, new token issued) and 2 percent uninstall; after 12 months without cleanup 132,002 tokens were stored of which 53,455 (40.5 percent) dead; with deletion of dead tokens after 60 days of silence 82,314 were stored of which 4,014 (4.9 percent) dead; live tokens were 78,547 and 78,300.",
+      "claim_vi": "Own simulation, 2026-10-19, Python 3 with a fixed seed: 100,000 users, each month 3 percent reinstall (old token dead, new token issued) and 2 percent uninstall; after 12 months without cleanup 132,002 tokens were stored of which 53,455 (40.5 percent) dead; with deletion of dead tokens after 60 days of silence 82,391 were stored of which 3,844 (4.7 percent) dead; both policies ran on the same churn history (same seed), so live tokens were 78,547 in both, true by construction because the simulation only deletes tokens it knows are dead.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-are-notifications-pushed-to-our-phones-or-pcs.md",
       "section": "Thử nghiệm: thẻ chết tích tụ",
       "verified_by": "Script run in the session; parameters are the author's choice."
     },
     {
-      "claim_vi": "Own simulation: a message sent at a uniformly random time while the device was offline, with the device back online after 1, 6, 24 or 72 hours, was still within its lifetime on arrival in 100, 64.7, 16.5 and 5.8 percent of runs with a 4-hour lifetime and 100 percent with a 28-day lifetime; ten updates with one key collapse to the last one.",
+      "claim_vi": "Own simulation: a message sent at a uniformly random time while the device was offline, with the device back online after 1, 6, 24 or 72 hours, was still within its lifetime on arrival in 100, 63.9, 17.8 and 5.3 percent of runs with a 4-hour lifetime and 100 percent with a 28-day lifetime; ten updates with one key collapse to the last one.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-are-notifications-pushed-to-our-phones-or-pcs.md",
       "section": "Thử nghiệm: tin ngoại tuyến",
       "verified_by": "Script run in the session; parameters are the author's choice, not FCM defaults."

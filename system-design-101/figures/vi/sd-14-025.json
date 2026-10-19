@@ -3,7 +3,7 @@
   "lang": "vi",
   "title": "VPN: ai thấy gì",
   "subtitle": "Đường hầm chỉ che đoạn đầu.",
-  "desc": "Hình có hai phần. Phần một là bốn thẻ nối bằng mũi tên theo đường đi của một yêu cầu qua VPN. Thiết bị của bạn bọc tin vào đường hầm mã hóa. Người nghe, như Wi-Fi hay nhà mạng, chỉ thấy kết nối tới máy chủ VPN, kích thước và giờ gửi. Máy chủ VPN giải mã, thấy đích, và cả nội dung nếu trang không dùng HTTPS, rồi gửi tiếp bằng địa chỉ của nó. Trang web thấy địa chỉ máy chủ VPN nhưng vẫn thấy cookie hay tài khoản của bạn. Phần hai là bốn điều cần nhớ: đoạn sau máy chủ VPN chỉ được che nếu trang dùng HTTPS; phải tin máy chủ VPN; trang vẫn nhận ra bạn; tin đi ngoài đường hầm vẫn lộ địa chỉ thật.",
+  "desc": "Hình có hai phần. Phần một là bốn thẻ nối bằng mũi tên theo đường đi của một yêu cầu qua VPN. Thiết bị của bạn bọc tin vào đường hầm mã hóa. Người nghe, như Wi-Fi hay nhà mạng, chỉ thấy kết nối từ bạn tới máy chủ VPN, kích thước và giờ gửi. Máy chủ VPN giải mã, thấy đích, và cả nội dung nếu trang không dùng HTTPS, rồi gửi tiếp bằng địa chỉ của nó. Trang web thấy địa chỉ máy chủ VPN nhưng vẫn thấy cookie hay tài khoản của bạn. Phần hai là bốn điều cần nhớ: đoạn sau máy chủ VPN chỉ được che nếu trang dùng HTTPS; phải tin máy chủ VPN; trang vẫn nhận ra bạn; tin đi ngoài đường hầm vẫn lộ địa chỉ thật.",
   "sections": [
     {
       "kind": "parts",
@@ -16,7 +16,7 @@
         },
         {
           "name": "Người nghe",
-          "role": "Wi-Fi, nhà mạng: chỉ thấy kết nối tới máy chủ VPN, kích thước và giờ gửi.",
+          "role": "Wi-Fi, nhà mạng: chỉ thấy kết nối từ bạn tới máy chủ VPN, kích thước và giờ gửi.",
           "icon": "eye"
         },
         {

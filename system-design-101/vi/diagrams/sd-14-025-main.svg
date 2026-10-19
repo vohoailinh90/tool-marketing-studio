@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="320" height="1034" viewBox="0 0 320 1034" role="img" aria-labelledby="title desc">
 <title id="title">VPN: ai thấy gì</title>
-<desc id="desc">Hình có hai phần. Phần một là bốn thẻ nối bằng mũi tên theo đường đi của một yêu cầu qua VPN. Thiết bị của bạn bọc tin vào đường hầm mã hóa. Người nghe, như Wi-Fi hay nhà mạng, chỉ thấy kết nối tới máy chủ VPN, kích thước và giờ gửi. Máy chủ VPN giải mã, thấy đích, và cả nội dung nếu trang không dùng HTTPS, rồi gửi tiếp bằng địa chỉ của nó. Trang web thấy địa chỉ máy chủ VPN nhưng vẫn thấy cookie hay tài khoản của bạn. Phần hai là bốn điều cần nhớ: đoạn sau máy chủ VPN chỉ được che nếu trang dùng HTTPS; phải tin máy chủ VPN; trang vẫn nhận ra bạn; tin đi ngoài đường hầm vẫn lộ địa chỉ thật.</desc>
+<desc id="desc">Hình có hai phần. Phần một là bốn thẻ nối bằng mũi tên theo đường đi của một yêu cầu qua VPN. Thiết bị của bạn bọc tin vào đường hầm mã hóa. Người nghe, như Wi-Fi hay nhà mạng, chỉ thấy kết nối từ bạn tới máy chủ VPN, kích thước và giờ gửi. Máy chủ VPN giải mã, thấy đích, và cả nội dung nếu trang không dùng HTTPS, rồi gửi tiếp bằng địa chỉ của nó. Trang web thấy địa chỉ máy chủ VPN nhưng vẫn thấy cookie hay tài khoản của bạn. Phần hai là bốn điều cần nhớ: đoạn sau máy chủ VPN chỉ được che nếu trang dùng HTTPS; phải tin máy chủ VPN; trang vẫn nhận ra bạn; tin đi ngoài đường hầm vẫn lộ địa chỉ thật.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="1034" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
@@ -17,8 +17,8 @@
 <circle cx="50" cy="297.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 286.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></g>
 <text x="78" y="270.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Người nghe</text>
 <text x="78" y="294.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Wi-Fi, nhà mạng: chỉ thấy</text>
-<text x="78" y="313.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">kết nối tới máy chủ VPN,</text>
-<text x="78" y="333.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">kích thước và giờ gửi.</text>
+<text x="78" y="313.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">kết nối từ bạn tới máy chủ</text>
+<text x="78" y="333.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">VPN, kích thước và giờ gửi.</text>
 <rect x="20" y="383" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
 <circle cx="50" cy="426.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 415.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="8" rx="2" ry="2" width="20" x="2" y="2"/><rect height="8" rx="2" ry="2" width="20" x="2" y="14"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></g>
 <text x="78" y="409.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Máy chủ VPN</text>

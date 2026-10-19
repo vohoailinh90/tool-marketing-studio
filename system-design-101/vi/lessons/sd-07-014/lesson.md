@@ -16,7 +16,7 @@ Nguồn mở đầu bằng câu hỏi: các startup công nghệ tài chính tì
 
 **Chuẩn bị (bước 0 và 1).** Chủ thẻ mở tài khoản ở *ngân hàng phát hành* (issuing bank) và nhận thẻ ghi nợ hoặc thẻ tín dụng. Người bán đăng ký với một ISO hoặc MSP để bán tại cửa hàng. ISO hoặc MSP hợp tác với các *bộ xử lý thanh toán* (payment processor) để mở tài khoản người bán.
 
-**Bên thu (bước 2 đến 5): quá trình "acquiring".** *Cổng thanh toán* (payment gateway) nhận giao dịch mua và thu thập thông tin thanh toán, rồi chuyển cho một bộ xử lý thanh toán, bộ này dùng thông tin của khách để thu tiền. Bộ xử lý bên thu gửi giao dịch cho *mạng thẻ* (card network). Nó cũng sở hữu và vận hành tài khoản người bán trong lúc quyết toán, và việc quyết toán này không xảy ra theo thời gian thực.
+**Bên thu (bước 2 đến 5): quá trình "acquiring".** *Cổng thanh toán* (payment gateway) nhận giao dịch mua và thu thập thông tin thanh toán, rồi chuyển cho một bộ xử lý thanh toán, bộ này dùng thông tin của khách để thu tiền. Bộ xử lý bên thu gửi giao dịch cho *mạng thẻ* (card network). Theo nguồn, nó cũng sở hữu và vận hành tài khoản người bán trong lúc quyết toán, và việc quyết toán này không xảy ra theo thời gian thực. Giản lược: khi bộ xử lý và ngân hàng thu là hai đơn vị riêng, bộ xử lý định tuyến dữ liệu giao dịch còn ngân hàng thu (acquirer) quản lý tài khoản người bán và hỗ trợ quyết toán; một số nhà cung cấp gộp cả hai vai.
 
 **Bên phát hành (bước 6 đến 8): quá trình "issuing".** *Bộ xử lý bên phát hành* nói chuyện với mạng thẻ thay mặt ngân hàng phát hành. Nó xác nhận và vận hành tài khoản của khách.
 

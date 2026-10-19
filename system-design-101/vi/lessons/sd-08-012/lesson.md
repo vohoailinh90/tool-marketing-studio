@@ -2,7 +2,7 @@
 
 **Bài nguồn nói rằng ai không biết các đánh đổi thì chưa biết thiết kế hệ thống, và liệt kê mười cặp. Bài này giữ đủ mười cặp, nhưng chỉ nói thêm về bốn cặp mà một phép thử nhỏ trên một máy nói được điều gì đó (chuẩn hoá và phi chuẩn hoá, đồng bộ và bất đồng bộ, mở rộng dọc và ngang, REST và một truy vấn chọn trường); sáu cặp còn lại được giữ nguyên ý của nguồn và ghi rõ là chưa đo.**
 
-![Ba khung. Khung một, mười cặp đánh đổi của nguồn, trong đó bài này đo bốn cặp: chuẩn hoá với phi chuẩn hoá, đồng bộ với bất đồng bộ, mở rộng dọc với mở rộng ngang, và REST với một truy vấn chọn trường. Khung hai, kết quả: truy vấn đọc có nối bảng chậm tương đương bảng phẳng, nhưng đổi tên một khách phải sửa 200 hàng thay vì 1 và bảng phẳng to gấp khoảng 2,6 lần; 50 lần chờ 20 mili giây mất 1,01 giây nối đuôi và 0,022 giây khi chạy đồng thời, nhưng 20.000 việc nhỏ chậm hơn khoảng 35 đến 50 lần; gấp bốn số tiến trình chỉ nhanh 2,2 đến 2,5 lần; ba lời gọi REST là 4.083 byte còn một truy vấn là 354 byte. Khung ba, sáu cặp chưa đo.](../../diagrams/sd-08-012-main.svg)
+![Ba khung. Khung một, mười cặp đánh đổi của nguồn, trong đó bài này đo bốn cặp: chuẩn hoá với phi chuẩn hoá, đồng bộ với bất đồng bộ, mở rộng dọc với mở rộng ngang, và REST với một truy vấn chọn trường. Khung hai, kết quả: truy vấn đọc có nối bảng chậm tương đương bảng phẳng, nhưng đổi tên một khách phải sửa 200 hàng thay vì 1 và bảng phẳng to gấp khoảng 2,6 lần; 50 lần chờ 20 mili giây mất 1,01 giây nối đuôi và 0,022 giây khi chạy đồng thời, nhưng 20.000 việc nhỏ chậm hơn khoảng 35 đến 50 lần; chia việc cho gấp bốn số tiến trình trên một máy, một phép tương tự của mở rộng ngang, chỉ nhanh 2,2 đến 2,5 lần; ba lời gọi REST là 4.083 byte còn một truy vấn là 354 byte. Khung ba, sáu cặp chưa đo.](../../diagrams/sd-08-012-main.svg)
 
 ## Từ viết tắt
 
@@ -14,7 +14,7 @@
 
 | Cặp đánh đổi | Ý của bài nguồn | Trong bài này |
 |---|---|---|
-| Mở rộng dọc và ngang | Dọc là thêm tài nguyên cho một máy, ngang là thêm máy vào nhóm | đo: nhân số tiến trình lên 2 và 4 trên một máy 4 lõi |
+| Mở rộng dọc và ngang | Dọc là thêm tài nguyên cho một máy, ngang là thêm máy vào nhóm | chỉ đo một phép tương tự: chia việc cho 2 và 4 tiến trình trên một máy 4 lõi; chưa đo thêm máy |
 | Cơ sở dữ liệu quan hệ và NoSQL | Quan hệ xếp dữ liệu thành bảng hàng cột; NoSQL hợp khi cần lược đồ linh hoạt | chưa đo |
 | Xử lý theo lô và theo luồng | Lô gom dữ liệu rồi xử lý một lần (thanh toán hằng ngày); luồng xử lý ngay (phát hiện gian lận) | chưa đo |
 | Chuẩn hoá và phi chuẩn hoá | Chuẩn hoá tách bảng để mỗi thông tin chỉ lưu một chỗ; phi chuẩn hoá gộp bảng để truy vấn nhanh hơn | đo bằng `sqlite3` |
@@ -46,11 +46,11 @@ Ngày 2026-10-19, một máy ảo 4 lõi, Python 3.13.16, mỗi phép đo chạy
 | 50 lần chờ 20 mili giây | lần lượt 1,010 giây; chạy đồng thời 0,022 giây |
 | 20.000 việc nhỏ không chờ gì | gọi hàm trơn 0,0031 đến 0,0034 giây; làm thành việc `asyncio` 0,118 đến 0,165 giây (chậm khoảng 35 đến 50 lần) |
 
-**Mở rộng ngang** (một việc nặng tính toán, có 0,05 giây không chia được, chia cho 1, 2, 4 tiến trình trên một máy 4 lõi): thời gian 0,42 đến 0,47 giây, 0,25 đến 0,29 giây và 0,19 đến 0,21 giây, tức nhanh hơn 1,6 đến 1,8 lần với 2 tiến trình và 2,2 đến 2,5 lần với 4.
+**Chia việc cho nhiều tiến trình, một phép tương tự của mở rộng ngang** (một việc nặng tính toán, có 0,05 giây không chia được, chia cho 1, 2, 4 tiến trình trên một máy 4 lõi): thời gian 0,42 đến 0,47 giây, 0,25 đến 0,29 giây và 0,19 đến 0,21 giây, tức nhanh hơn 1,6 đến 1,8 lần với 2 tiến trình và 2,2 đến 2,5 lần với 4.
 
 **REST và một truy vấn chọn trường** (một máy chủ nhỏ viết bằng thư viện chuẩn, cùng dữ liệu một người dùng, các đơn và địa chỉ): ba lời gọi REST trả về tổng cộng 4.083 byte, trung vị 758 đến 814 micro giây; một truy vấn chỉ xin đúng các trường cần trả về 354 byte, trung vị 233 đến 254 micro giây.
 
-Bốn kết quả cho bốn bài học khác nhau. Một, phi chuẩn hoá không tự nhanh hơn khi đã có chỉ mục: cái nó đổi lấy là phải sửa nhiều chỗ khi dữ liệu đổi và dung lượng gấp khoảng 2,6 lần. Hai, bất đồng bộ thắng lớn khi phải chờ và thua khi việc quá nhỏ vì mỗi việc có chi phí quản lý riêng. Ba, thêm tiến trình không cho tốc độ gấp theo số lượng: phần không chia được và việc phối hợp ăn bớt lợi ích, đúng với lời khuyên của tài liệu Microsoft rằng phối hợp giới hạn lợi ích của mở rộng ngang. Bốn, cái nhận được từ truy vấn chọn trường ở đây là bớt byte và bớt lời gọi, chứ chi phí thiết kế mà nguồn nhắc thì phép thử không đo được.
+Bốn kết quả cho bốn bài học khác nhau. Một, phi chuẩn hoá không tự nhanh hơn khi đã có chỉ mục: cái nó đổi lấy là phải sửa nhiều chỗ khi dữ liệu đổi và dung lượng gấp khoảng 2,6 lần. Hai, bất đồng bộ thắng lớn khi phải chờ và thua khi việc quá nhỏ vì mỗi việc có chi phí quản lý riêng. Ba, thêm tiến trình không cho tốc độ gấp theo số lượng: phần không chia được và việc phối hợp ăn bớt lợi ích, đúng với lời khuyên của tài liệu Microsoft rằng phối hợp giới hạn lợi ích của mở rộng ngang. Lưu ý đây là song song hoá trên một máy, một phép tương tự: mở rộng ngang thật, qua nhiều máy được cấp riêng, chưa được đo. Bốn, cái nhận được từ truy vấn chọn trường ở đây là bớt byte và bớt lời gọi, chứ chi phí thiết kế mà nguồn nhắc thì phép thử không đo được.
 
 ## Giới hạn cần nhớ
 

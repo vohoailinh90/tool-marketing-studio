@@ -2,7 +2,7 @@
   "id": "sd-08-012",
   "title": "Mười đánh đổi, bốn đo được",
   "subtitle": "Đánh đổi nào thấy ngay bằng một phép thử nhỏ.",
-  "desc": "Ba khung. Khung một, mười cặp đánh đổi của nguồn, trong đó bài này đo bốn cặp: chuẩn hoá với phi chuẩn hoá, đồng bộ với bất đồng bộ, mở rộng dọc với mở rộng ngang, và REST với một truy vấn chọn trường. Khung hai, kết quả: truy vấn đọc có nối bảng chậm tương đương bảng phẳng, nhưng đổi tên một khách phải sửa 200 hàng thay vì 1 và bảng phẳng to gấp khoảng 2,6 lần; 50 lần chờ 20 mili giây mất 1,01 giây nối đuôi và 0,022 giây khi chạy đồng thời, nhưng 20.000 việc nhỏ chậm hơn khoảng 35 đến 50 lần; gấp bốn số tiến trình chỉ nhanh 2,2 đến 2,5 lần; ba lời gọi REST là 4.083 byte còn một truy vấn là 354 byte. Khung ba, sáu cặp chưa đo.",
+  "desc": "Ba khung. Khung một, mười cặp đánh đổi của nguồn, trong đó bài này đo bốn cặp: chuẩn hoá với phi chuẩn hoá, đồng bộ với bất đồng bộ, mở rộng dọc với mở rộng ngang, và REST với một truy vấn chọn trường. Khung hai, kết quả: truy vấn đọc có nối bảng chậm tương đương bảng phẳng, nhưng đổi tên một khách phải sửa 200 hàng thay vì 1 và bảng phẳng to gấp khoảng 2,6 lần; 50 lần chờ 20 mili giây mất 1,01 giây nối đuôi và 0,022 giây khi chạy đồng thời, nhưng 20.000 việc nhỏ chậm hơn khoảng 35 đến 50 lần; chia việc cho gấp bốn số tiến trình trên một máy, một phép tương tự của mở rộng ngang, chỉ nhanh 2,2 đến 2,5 lần; ba lời gọi REST là 4.083 byte còn một truy vấn là 354 byte. Khung ba, sáu cặp chưa đo.",
   "sections": [
     {
       "kind": "notes",
@@ -20,7 +20,7 @@
       "items": [
         "Nối bảng không chậm hơn, nhưng đổi tên phải sửa 200 hàng.",
         "Chờ đồng thời nhanh gấp 46; việc nhỏ chậm 35 đến 50 lần.",
-        "Gấp bốn tiến trình: nhanh 2,2 đến 2,5 lần.",
+        "Gấp bốn tiến trình trên một máy: nhanh 2,2 đến 2,5 lần (phép tương tự).",
         "REST ba lời gọi: 4.083 byte; một truy vấn: 354 byte."
       ]
     },

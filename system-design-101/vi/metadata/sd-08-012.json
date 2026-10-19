@@ -65,7 +65,7 @@
       "verified_by": "Program run by the author on 2026-10-19 (three runs)."
     },
     {
-      "claim_vi": "A CPU-bound job with a 0.05 s unsplittable part split over 1, 2 and 4 processes on a 4-core virtual machine took 0.42-0.47 s, 0.25-0.29 s and 0.19-0.21 s: speed-ups of 1.6-1.8x and 2.2-2.5x. Microsoft (Minimize coordination): coordination limits the benefits of horizontal scale, and embracing eventual consistency avoids the coordination that strong consistency needs across distributed data.",
+      "claim_vi": "A CPU-bound job with a 0.05 s unsplittable part split over 1, 2 and 4 processes on a 4-core virtual machine (local parallelism on one host, an analogy of horizontal scaling, not a measurement across separately provisioned instances) took 0.42-0.47 s, 0.25-0.29 s and 0.19-0.21 s: speed-ups of 1.6-1.8x and 2.2-2.5x. Microsoft (Minimize coordination): coordination limits the benefits of horizontal scale, and embracing eventual consistency avoids the coordination that strong consistency needs across distributed data.",
       "source": "https://github.com/MicrosoftDocs/architecture-center/blob/8e2c239344ee753a88856800b4210a3e27ac1036/docs/guide/design-principles/minimize-coordination-content.md",
       "section": "Coordination limits the benefits of horizontal scale",
       "verified_by": "Program run by the author on 2026-10-19; Microsoft page read from a local clone at commit 8e2c239344ee753a88856800b4210a3e27ac1036. Processes on one machine stand in for instances; no network."

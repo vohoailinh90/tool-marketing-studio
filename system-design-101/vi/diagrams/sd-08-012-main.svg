@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1089" viewBox="0 0 320 1089" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1109" viewBox="0 0 320 1109" role="img" aria-labelledby="title desc">
 <title id="title">Mười đánh đổi, bốn đo được</title>
-<desc id="desc">Ba khung. Khung một, mười cặp đánh đổi của nguồn, trong đó bài này đo bốn cặp: chuẩn hoá với phi chuẩn hoá, đồng bộ với bất đồng bộ, mở rộng dọc với mở rộng ngang, và REST với một truy vấn chọn trường. Khung hai, kết quả: truy vấn đọc có nối bảng chậm tương đương bảng phẳng, nhưng đổi tên một khách phải sửa 200 hàng thay vì 1 và bảng phẳng to gấp khoảng 2,6 lần; 50 lần chờ 20 mili giây mất 1,01 giây nối đuôi và 0,022 giây khi chạy đồng thời, nhưng 20.000 việc nhỏ chậm hơn khoảng 35 đến 50 lần; gấp bốn số tiến trình chỉ nhanh 2,2 đến 2,5 lần; ba lời gọi REST là 4.083 byte còn một truy vấn là 354 byte. Khung ba, sáu cặp chưa đo.</desc>
+<desc id="desc">Ba khung. Khung một, mười cặp đánh đổi của nguồn, trong đó bài này đo bốn cặp: chuẩn hoá với phi chuẩn hoá, đồng bộ với bất đồng bộ, mở rộng dọc với mở rộng ngang, và REST với một truy vấn chọn trường. Khung hai, kết quả: truy vấn đọc có nối bảng chậm tương đương bảng phẳng, nhưng đổi tên một khách phải sửa 200 hàng thay vì 1 và bảng phẳng to gấp khoảng 2,6 lần; 50 lần chờ 20 mili giây mất 1,01 giây nối đuôi và 0,022 giây khi chạy đồng thời, nhưng 20.000 việc nhỏ chậm hơn khoảng 35 đến 50 lần; chia việc cho gấp bốn số tiến trình trên một máy, một phép tương tự của mở rộng ngang, chỉ nhanh 2,2 đến 2,5 lần; ba lời gọi REST là 4.083 byte còn một truy vấn là 354 byte. Khung ba, sáu cặp chưa đo.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="1089" fill="#f8fafc"/>
+<rect width="320" height="1109" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Mười đánh đổi, bốn đo</text>
 <text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">được</text>
@@ -29,7 +29,7 @@
 <polyline points="37.9,387.4 41.7,391.4 48.5,383" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
 <text x="64" y="390.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">REST và một truy vấn chọn</text>
 <text x="64" y="409.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trường.</text>
-<rect x="8" y="451" width="304" height="373" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="8" y="451" width="304" height="393" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
 <text x="20" y="479.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Số đo</text>
 <rect x="20" y="496" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
 <circle cx="43" cy="519" r="11" fill="#16a34a"/>
@@ -43,31 +43,32 @@
 <text x="64" y="613.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chờ đồng thời nhanh gấp 46;</text>
 <text x="64" y="632.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">việc nhỏ chậm 35 đến 50</text>
 <text x="64" y="652.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lần.</text>
-<rect x="20" y="678" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<rect x="20" y="678" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
 <circle cx="43" cy="701" r="11" fill="#16a34a"/>
 <polyline points="37.9,701.4 41.7,705.4 48.5,697" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="704.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Gấp bốn tiến trình: nhanh</text>
-<text x="64" y="723.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">2,2 đến 2,5 lần.</text>
-<rect x="20" y="749" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
-<circle cx="43" cy="772" r="11" fill="#16a34a"/>
-<polyline points="37.9,772.4 41.7,776.4 48.5,768" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="775.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">REST ba lời gọi: 4.083 byte;</text>
-<text x="64" y="794.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">một truy vấn: 354 byte.</text>
-<rect x="8" y="836" width="304" height="245" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
-<text x="20" y="864.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Sáu cặp chưa đo</text>
-<rect x="20" y="881" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
-<circle cx="43" cy="904" r="11" fill="#16a34a"/>
-<polyline points="37.9,904.4 41.7,908.4 48.5,900" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="907.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">SQL với NoSQL, lô với luồng.</text>
-<rect x="20" y="935" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
-<circle cx="43" cy="958" r="11" fill="#16a34a"/>
-<polyline points="37.9,958.4 41.7,962.4 48.5,954" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="961.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nhất quán với sẵn sàng,</text>
-<text x="64" y="980.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mạnh với cuối cùng.</text>
-<rect x="20" y="1006" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
-<circle cx="43" cy="1029" r="11" fill="#16a34a"/>
-<polyline points="37.9,1029.4 41.7,1033.4 48.5,1025" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="1032.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Có trạng thái với không, đọc</text>
-<text x="64" y="1051.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">xuyên với ghi xuyên.</text>
+<text x="64" y="704.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Gấp bốn tiến trình trên một</text>
+<text x="64" y="723.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">máy: nhanh 2,2 đến 2,5 lần</text>
+<text x="64" y="743.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">(phép tương tự).</text>
+<rect x="20" y="769" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="792" r="11" fill="#16a34a"/>
+<polyline points="37.9,792.4 41.7,796.4 48.5,788" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="795.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">REST ba lời gọi: 4.083 byte;</text>
+<text x="64" y="814.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">một truy vấn: 354 byte.</text>
+<rect x="8" y="856" width="304" height="245" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="884.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Sáu cặp chưa đo</text>
+<rect x="20" y="901" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="924" r="11" fill="#16a34a"/>
+<polyline points="37.9,924.4 41.7,928.4 48.5,920" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="927.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">SQL với NoSQL, lô với luồng.</text>
+<rect x="20" y="955" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="978" r="11" fill="#16a34a"/>
+<polyline points="37.9,978.4 41.7,982.4 48.5,974" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="981.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nhất quán với sẵn sàng,</text>
+<text x="64" y="1000.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mạnh với cuối cùng.</text>
+<rect x="20" y="1026" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1049" r="11" fill="#16a34a"/>
+<polyline points="37.9,1049.4 41.7,1053.4 48.5,1045" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1052.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Có trạng thái với không, đọc</text>
+<text x="64" y="1071.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">xuyên với ghi xuyên.</text>
 </g>
 </svg>

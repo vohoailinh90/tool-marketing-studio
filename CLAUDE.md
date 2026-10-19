@@ -298,8 +298,8 @@ Several sessions write lessons of `system-design-101/vi/` at the same time. The 
 404 source-map positions is free (`todo`), being written (`doing`, owned by a branch) or handed over
 (`written`). Full protocol: `docs/sd101-claims.md`.
 
-- **First** read `docs/sd101-assignments.md`: a range reserved there for another session is not yours, even when the
-  registry shows it `todo`.
+- **First** read `docs/sd101-assignments.md`: a range reserved there for another session is not yours (`claim --next`
+  skips it; claim by id only inside a range reserved for you).
 - **Before** writing or editing a lesson body: `python3 scripts/sd101_claims.py claim --next N --publish`
   (or `claim <id>... --publish`). Never take `progress.json`'s `next_id`, and never start a lesson the
   registry shows as `doing` or `written` — it reads every remote branch, so another session's pushed claim is visible.
@@ -317,8 +317,8 @@ Every written lesson also becomes a Facebook slide deck built on Moda; `docs/sd1
 files and the exports. Several sessions build decks at once and `claims.jsonl` knows nothing about decks, so
 `scripts/sd101_slides.py` holds those claims (one `lessons/<id>/slides/deck.yaml` per lesson).
 
-- **First** read `docs/sd101-assignments.md`: a range reserved there for another session is not yours, even when `status`
-  shows it free.
+- **First** read `docs/sd101-assignments.md`: a range reserved there for another session is not yours (`claim --next`
+  skips it; claim by id only inside a range reserved for you).
 - **Before** building a deck: `python3 scripts/sd101_slides.py claim --next N --publish` (or `claim <id>... --publish`).
   Never start a lesson the tool shows as `doing` or `done`; `status` lists what is free. `claim` and `verify` stop with
   exit 2 when the remote cannot be read: fix that, do not guess.

@@ -63,6 +63,37 @@ def tarfile_without_extraction_filters():
         yield
 
 
+BOARD_TEXT = """# board
+
+| Range | Work | Session branch prefix | Status |
+|---|---|---|---|
+| sd-01-001..002 | lesson, figure, deck and PPTX | `claude/a` | assigned |
+| sd-01-005 | lesson | `claude/c` | done |
+| sd-02-001 | deck and PPTX | `claude/d` | assigned |
+"""
+
+
+class BoardTests(unittest.TestCase):
+    def test_a_row_reserves_its_ranges_for_the_work_it_names_until_it_is_done(self) -> None:
+        text = BOARD_TEXT + """
+| Range | Work | Branch or pull request |
+|---|---|---|
+| sd-04-001..003, sd-06-016 | lessons | #144 |
+| sd-14-009..sd-14-010 | decks | `claude/e` |
+"""
+        self.assertEqual({"sd-01-001", "sd-01-002", "sd-04-001", "sd-04-002", "sd-04-003", "sd-06-016"},
+                         claims.board_reservations(text, "lesson"))
+        self.assertEqual({"sd-01-001", "sd-01-002", "sd-02-001", "sd-14-009", "sd-14-010"},
+                         claims.board_reservations(text, "deck"))
+
+    def test_text_outside_the_tables_reserves_nothing(self) -> None:
+        self.assertEqual(set(), claims.board_reservations("The decks of sd-11-001..049 are not reserved.\n", "deck"))
+
+    def test_a_board_that_is_not_there_reserves_nothing(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            self.assertEqual(set(), claims.reserved_on_board(Path(tmp), "origin", True, "lesson"))
+
+
 class Sessions(unittest.TestCase):
     """A bare origin with main holding a fresh registry, and one clone per simulated session."""
 
@@ -1302,6 +1333,21 @@ class ClaimTests(Sessions):
         self.assertIn("your claim is not on origin/claude/b", err)
         self.assertEqual(0, self.run_in(b, "touch", "--publish")[0])
         self.assertEqual(0, self.run_in(b, "verify")[0])
+
+    def test_next_leaves_a_range_reserved_on_the_board_to_the_session_it_names(self) -> None:
+        a, b = self.session("a"), self.session("b")  # both cut before the board reached main: only the remote has it
+        seed = self.tmp / "seed"
+        (seed / "docs").mkdir()
+        (seed / claims.BOARD).write_text(BOARD_TEXT, encoding="utf-8")
+        git(seed, "add", "-A")
+        git(seed, "commit", "--quiet", "-m", "board")
+        git(seed, "push", "--quiet", "origin", "main")
+        self.assertEqual((0, "sd-01-003\nsd-01-004\n"), self.run_in(b, "next", "-n", "2")[:2])
+        code, out, err = self.run_in(b, "claim", "--next", "1")
+        self.assertEqual(0, code, err)
+        self.assertIn("claimed sd-01-003 as claude/b", out)
+        code, out, err = self.run_in(a, "claim", "sd-01-001", "sd-01-002")
+        self.assertEqual(0, code, err)  # the session the range is reserved for claims it by id
 
     def test_next_skips_what_is_taken_or_written(self) -> None:
         a, b = self.session("a"), self.session("b")

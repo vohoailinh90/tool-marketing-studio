@@ -21,6 +21,10 @@ command that decides something fetches all branches of the remote first and read
   any other branch B     only the entries whose owner is B (a copy inherited from main is not B's claim)
   this working tree      the entries it owns, and every written lesson
 
+`next`, `claim --next` and the next-free line of `status` also skip what the assignment board
+(`docs/sd101-assignments.md`, read here and on the remote's default branch) reserves for a session that claims
+its range five lessons at a time; that session takes its own range by id. `sd101_slides.py` does the same for decks.
+
 When the remote cannot be read, `claim` and `verify` stop (exit 2) instead of guessing; `--offline` says
 you accept that. A `doing` claim whose heartbeat is older than the header's `lease_hours` is stale: it no
 longer blocks anyone, but it is taken over only on purpose (`claim --take-stale`), and the taker's entry
@@ -842,9 +846,59 @@ def repartnered_upstream(context: Context) -> set[str]:
     return {lesson_id for lesson_id in both if set(then.partners.get(lesson_id, ())) != set(current.partners.get(lesson_id, ()))}
 
 
+BOARD = "docs/sd101-assignments.md"
+BOARD_RANGE = re.compile(r"\bsd-(\d\d)-(\d{3})(?:\.\.(?:sd-\1-)?(\d{3}))?")
+BOARD_WORK = {"lesson": ("lesson",), "deck": ("deck", "pptx")}
+
+
+def board_reservations(text: str, work: str) -> set[str]:
+    """The lesson ids the assignment board reserves for `work` (`lesson` or `deck`): every row of its tables whose Work
+    cell names that work and whose Status cell, in a table that has one, is not `done`. A range is `sd-NN-AAA..BBB`."""
+    reserved: set[str] = set()
+    header: list[str] | None = None
+    for line in text.splitlines():
+        if not line.lstrip().startswith("|"):
+            header = None
+            continue
+        cells = [cell.strip() for cell in line.strip().strip("|").split("|")]
+        if header is None:
+            header = [cell.lower() for cell in cells]
+            continue
+        if all(set(cell) <= set("-: ") for cell in cells):  # the |---|---| line under the header
+            continue
+        row = dict(zip(header, cells))
+        if row.get("status", "").lower() == "done":
+            continue
+        if not any(word in row.get("work", "").lower() for word in BOARD_WORK[work]):
+            continue
+        for match in BOARD_RANGE.finditer(row.get("range", "")):
+            group, first, last = match.group(1), int(match.group(2)), int(match.group(3) or match.group(2))
+            reserved.update(f"sd-{group}-{number:03d}" for number in range(first, last + 1))
+    return reserved
+
+
+def reserved_on_board(root: pathlib.Path, remote: str, offline: bool, work: str) -> set[str]:
+    """What the assignment board reserves, in this checkout and on the remote's default branch together: `--next` leaves
+    those ids to the sessions the board names, which claim them by id. A board that cannot be read reserves nothing."""
+    texts = []
+    local = root / BOARD
+    if local.is_file():
+        texts.append(local.read_text(encoding="utf-8"))
+    if not offline:
+        try:
+            base = f"refs/remotes/{remote}/{default_branch(root, remote, ask=False)}"
+            shown = git(root, "show", f"{base}:{BOARD}", check=False)
+            if shown.returncode == 0:
+                texts.append(shown.stdout.decode("utf-8", "replace"))
+        except ClaimsError:
+            pass
+    return set().union(*(board_reservations(text, work) for text in texts))
+
+
 def free_lessons(context: Context, found: dict[str, list[Holding]], lease: int, group: str | None, count: int,
                  take_stale: bool = False, allow_same_source: bool = False, exclude: tuple[str, ...] = ()) -> list[str]:
-    exclude = (*exclude, *removed_upstream(context), *repartnered_upstream(context))
+    exclude = (*exclude, *removed_upstream(context), *repartnered_upstream(context),
+               *reserved_on_board(context.root, context.remote, context.offline, "lesson"))
     chosen: list[str] = []
     for lesson_id, _ in context.source.lessons:
         if len(chosen) >= count:

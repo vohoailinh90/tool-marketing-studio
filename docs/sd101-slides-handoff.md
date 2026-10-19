@@ -13,7 +13,7 @@ for one session; the rules it leans on stay where they are: `docs/sd101-slides.m
 - **The repository current.** `git fetch origin && git merge origin/main`: a lesson is claimable only when its `lesson.md` is in your
   checkout. Then `pip install -r requirements-dev.txt` so `scripts/sd101_check.py` runs.
 - **The assignment board.** `docs/sd101-assignments.md` reserves whole ranges for sessions that claim five lessons at a time;
-  do not claim inside a range reserved there for another session, even when `status` shows it free.
+  `claim --next` skips those ranges, and you claim inside one by id only when it is reserved for you.
 - **Nothing to publish.** Building a deck is not posting it. You never upload to Facebook; the owner does.
 
 ## The loop for one lesson

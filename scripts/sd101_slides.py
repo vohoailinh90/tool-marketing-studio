@@ -846,9 +846,10 @@ def my_records(context: Context, statuses: tuple[str, ...] = ("doing",)) -> list
 
 def free_lessons(context: Context, holdings: dict[str, list[Holding]], moment: datetime.datetime, group: str | None,
                  count: int, take_stale: bool) -> list[str]:
+    reserved = claims_module().reserved_on_board(context.root, context.remote, context.offline, "deck")
     chosen: list[str] = []
     for lesson_id in sorted(holdings):
-        if group and not lesson_id.startswith(group):
+        if (group and not lesson_id.startswith(group)) or lesson_id in reserved:
             continue
         if len(chosen) >= count:
             break

@@ -631,3 +631,19 @@ mutations:
   find: 'if member.islnk() and not inside('
   replace: 'if False and not inside('
   test: tests.test_sd101_claims.ArchiveExtractionTests.test_what_would_leave_the_destination_or_make_a_device_is_refused
+- label: claim --next takes a lesson the assignment board reserves for another session
+  find: '               *reserved_on_board(context.root, context.remote, context.offline, "lesson"))'
+  replace: '               )'
+  test: tests.test_sd101_claims.ClaimTests.test_next_leaves_a_range_reserved_on_the_board_to_the_session_it_names
+- label: the board is read only from this checkout, never from the remote's default branch
+  find: "    if not offline:\n        try:\n            base = "
+  replace: "    if False:\n        try:\n            base = "
+  test: tests.test_sd101_claims.ClaimTests.test_next_leaves_a_range_reserved_on_the_board_to_the_session_it_names
+- label: a board row marked done still reserves its range
+  find: '        if row.get("status", "").lower() == "done":'
+  replace: '        if False:'
+  test: tests.test_sd101_claims.BoardTests.test_a_row_reserves_its_ranges_for_the_work_it_names_until_it_is_done
+- label: a board row reserves for work it does not name
+  find: '        if not any(word in row.get("work", "").lower() for word in BOARD_WORK[work]):'
+  replace: '        if False:'
+  test: tests.test_sd101_claims.BoardTests.test_a_row_reserves_its_ranges_for_the_work_it_names_until_it_is_done

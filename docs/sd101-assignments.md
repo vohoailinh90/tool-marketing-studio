@@ -5,18 +5,23 @@ Two Claude accounts (and Codex) work on `system-design-101/vi/` at the same time
 sessions below claim five lessons at a time. This page reserves whole ranges ahead of those claims, so that no one starts a lesson
 or a deck another session will reach in its next batch.
 
-**Before you claim a lesson or a deck, read the tables below.** A range listed here is reserved even when `claim` or `status` shows
-it free: do not write, build or claim inside it. Pick a range that is not listed, or ask the owner of the repository. The claim tools
-stay the authority on what is being worked on right now; this page only reserves what comes next.
+**Before you claim a lesson or a deck, read the tables below.** A range listed here is reserved for the session it names: do not
+write, build or claim inside it. Pick a range that is not listed, or ask the owner of the repository. The claim tools enforce it:
+`claim --next`, `next` and the *Next free* line of `status` skip every reserved id (`scripts/sd101_claims.py` for lessons, in rows
+whose Work names a lesson; `scripts/sd101_slides.py` for decks, in rows whose Work names a deck or a PPTX), and a row whose Status is
+`done` reserves nothing. The session a range is reserved for claims it by id (`claim <id>... --publish`). The claim tools stay the
+authority on what is being worked on right now; this page only reserves what comes next.
 
 - **Who updates it.** The coordinator session that dispatched the work (`claude/dazzling-curie-9vyfbo`) adds a row when it
   assigns a range and marks it done when the range is merged. Another account that takes a range adds its own row in the same way,
   through a pull request, before it starts.
 - **Expiry.** A reservation lapses when nothing in its range has been claimed, touched or merged for 72 hours since the date of its
-  row (the same lease the claim tools use). Then the range is free again; say so in the pull request that takes it.
+  row (the same lease the claim tools use). The tools keep skipping it until its row changes, so a session that takes a lapsed range
+  claims it by id and, in the same pull request, rewrites the row with its own branch.
 - **Snapshot.** Counted on 2026-10-19 from `main` and every remote branch, against source commit `b28380a` of
-  ByteByteGoHq/system-design-101 (which has not moved): 404 lessons; 31 with a deck and its PPTX on `main`; 127 on `main` without a
-  deck; 139 only on unmerged branches; 87 not written anywhere.
+  ByteByteGoHq/system-design-101 (which has not moved): 404 lessons. 178 are on `main`: 43 with a deck record (31 with their PPTX,
+  the 12 of sd-15 still without one) and 135 without (8 of them, sd-14-001..008, have a finished deck on an unmerged branch).
+  139 are only on unmerged branches and 87 are not written anywhere.
 
 ## Assigned (dispatched 2026-10-19)
 
@@ -49,5 +54,6 @@ stay the authority on what is being worked on right now; this page only reserves
 | sd-06-016..029 | lessons | #142, `claude/sd101-l6-sd06-b` |
 | sd-01-018..021 | decks | `claude/sd101-slides-batch-gaouoy` (claim lapses 2026-10-21 13:55 UTC) |
 
-The decks of the lessons in this last table are not reserved by anyone yet: once a lesson is on `main` and its owner is no longer
-building its deck, it can be assigned here.
+The decks of the rows whose Work is `lessons` alone (sd-11, sd-12, sd-04-001..024, sd-06-016..029) are not reserved by anyone yet:
+once such a lesson is on `main` and its owner is not building its deck, it can be assigned here. Every row that names decks keeps
+its decks reserved.

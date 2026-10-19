@@ -34,7 +34,7 @@ Bài nguồn dừng ở lý do rời đời thứ hai; nó không giải thích 
 <details>
 <summary>Xem đáp án</summary>
 
-Một cổng chung trả cùng một dạng dữ liệu cho mọi máy khách, nên hoặc tivi thiếu thứ nó cần, hoặc điện thoại phải nhận thừa dữ liệu. Ở đời hai, mỗi loại máy khách có một BFF riêng, chuẩn bị dữ liệu đúng như máy khách đó cần.
+Nếu cổng chung trả cùng một dạng dữ liệu cho mọi máy khách thì hoặc tivi thiếu thứ nó cần, hoặc điện thoại phải nhận thừa dữ liệu. Cổng chung cũng có thể cho từng loại máy khách chọn trường riêng; khi đó mỗi cách xử lý riêng cho tivi hay điện thoại lại dồn vào cùng một cổng, và các đội phải cùng sửa một chỗ. Ở đời hai, mỗi loại máy khách có một BFF riêng, chuẩn bị dữ liệu đúng như máy khách đó cần.
 
 </details>
 

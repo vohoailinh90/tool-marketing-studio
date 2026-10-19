@@ -1,5 +1,25 @@
 id: sd-04-003
-status: doing
+status: done
 owner: claude/sd101-decks-w21-sd04
 claimed_at: '2026-10-19T20:20:19Z'
-heartbeat_at: '2026-10-19T20:23:55Z'
+done_at: '2026-10-19T20:31:13Z'
+moda_canvas: cvs_00NA3B1W718HYAMRCXNDJN0397
+moda_url: https://moda.app/canvas/00aa86b0-f0e1-447c-aa61-9dab65500d27?source=agent
+slide_count: 9
+size: 1920x1080
+exports: pending
+layouts:
+  slides:
+  - card-grid
+  - one-highlighted-sentence
+  - lookup-table
+  - one-big-number
+  - timeline
+  - two-column-comparison
+  - numbered-rows
+  - layers
+  - card-grid
+  first_concept: 3
+  cannot:
+    2x2-matrix: the lesson's first concept is three ordered steps, not a 2x2 of two
+      axes

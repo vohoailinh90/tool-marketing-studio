@@ -3,7 +3,7 @@
 **Bốn từ viết tắt này thuộc hai thế giới khác nhau: CAP và BASE nói về dữ liệu trải trên nhiều máy, SOLID và KISS nói về cách viết và tổ chức mã. Điểm dễ hiểu sai nhất là CAP, vì mạng đứt là chuyện chắc chắn xảy ra, nên câu hỏi thật là "khi mạng đứt, bạn chọn trả lời hay chọn đúng".**
 Bài chạy một mô phỏng hai bản sao dữ liệu trong lúc mạng đứt để thấy lựa chọn đó cụ thể ra sao, rồi giải thích BASE, SOLID và KISS ngắn gọn.
 
-![Bốn khung. Khung một, CAP: khi mạng đứt phải chọn giữa trả lời đúng hoặc từ chối, và trả lời nhanh nhưng có thể cũ. Khung hai, mô phỏng hai bản sao khi mạng đứt: hệ thống ưu tiên đúng từ chối ba lượt đọc, hệ thống ưu tiên trả lời trả giá trị cũ ba lượt rồi hội tụ. Khung ba, BASE: sẵn sàng cơ bản, trạng thái mềm, nhất quán cuối cùng. Khung bốn, SOLID là năm nguyên tắc về mã; KISS là giữ cho đơn giản.](../../diagrams/sd-11-043-main.svg)
+![Bốn khung. Khung một, CAP: khi mạng đứt phải chọn giữa trả lời đúng hoặc từ chối, và trả lời bằng giá trị có thể cũ. Khung hai, mô phỏng hai bản sao khi mạng đứt: hệ thống ưu tiên đúng từ chối ba lượt đọc, hệ thống ưu tiên trả lời trả giá trị cũ ba lượt rồi hội tụ. Khung ba, BASE: sẵn sàng cơ bản, trạng thái mềm, nhất quán cuối cùng. Khung bốn, SOLID là năm nguyên tắc về mã; KISS là giữ cho đơn giản.](../../diagrams/sd-11-043-main.svg)
 
 ## Từ viết tắt
 

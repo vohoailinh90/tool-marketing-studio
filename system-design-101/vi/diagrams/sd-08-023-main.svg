@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="320" height="1092" viewBox="0 0 320 1092" role="img" aria-labelledby="title desc">
 <title id="title">Kiến trúc dịch vụ nhỏ: mỗi bộ phận một cái giá</title>
-<desc id="desc">Ba khung. Khung một, bảy bộ phận của kiến trúc dịch vụ nhỏ theo nguồn: bộ cân bằng tải, CDN và cổng API đứng trước các dịch vụ; nhà cấp danh tính xác thực; sổ đăng ký giúp cổng tìm dịch vụ; phần quản lý theo dõi; mỗi miền có cơ sở dữ liệu riêng. Khung hai, các phép đo trên một máy: qua cổng mất 0,9 mili giây thay vì 0,5; cổng gộp hai lời gọi thì 42 mili giây thay vì 82 khi mạng ngoài mất 40; hỏi sổ đăng ký mỗi lần 0,6 thay vì 0,24; kiểm chữ ký tại chỗ 2 micro giây, hỏi máy chủ khác 230; lấy 200 đơn kèm tên khách, một phép nối 0,2 mili giây, gọi từng đơn 50. Khung ba, cân bằng tải, CDN và quản lý chưa được đo.</desc>
+<desc id="desc">Ba khung. Khung một, bảy bộ phận của kiến trúc dịch vụ nhỏ theo nguồn: bộ cân bằng tải, CDN và cổng API đứng trước các dịch vụ; nhà cấp danh tính xác thực; sổ đăng ký giúp cổng tìm dịch vụ; phần quản lý theo dõi; mỗi miền có cơ sở dữ liệu riêng. Khung hai, các phép đo trên một máy: qua cổng mất 0,9 mili giây thay vì 0,5; cổng gộp hai lời gọi thì 42 mili giây thay vì 82 khi mạng ngoài mất 40; hỏi sổ đăng ký mỗi lần 0,6 thay vì 0,24; kiểm chữ ký tại chỗ 2 micro giây, hỏi máy chủ khác 230; lấy 200 đơn kèm tên khách, một phép nối 0,2 mili giây, gọi từng đơn 50. Khung ba, cân bằng tải, CDN và điều phối chưa được đo.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="1092" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
@@ -66,7 +66,7 @@
 <rect x="20" y="1009" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
 <circle cx="43" cy="1032" r="11" fill="#16a34a"/>
 <polyline points="37.9,1032.4 41.7,1036.4 48.5,1028" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="1035.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cân bằng tải, CDN và quản</text>
-<text x="64" y="1054.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lý chưa được đo.</text>
+<text x="64" y="1035.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cân bằng tải, CDN và điều</text>
+<text x="64" y="1054.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">phối chưa được đo.</text>
 </g>
 </svg>

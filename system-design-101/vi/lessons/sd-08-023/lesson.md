@@ -2,7 +2,7 @@
 
 **Bài nguồn vẽ một kiến trúc dịch vụ nhỏ "điển hình" và gọi tên bảy bộ phận: bộ cân bằng tải, CDN, cổng API, nhà cấp danh tính, sổ đăng ký và tìm dịch vụ, phần quản lý, và các dịch vụ với cơ sở dữ liệu riêng. Bài này giữ đủ bảy bộ phận theo thứ tự của nguồn, đối chiếu với tài liệu Microsoft về cổng API, dữ liệu và kiểu dịch vụ nhỏ, rồi dựng năm bộ phận ở mức đồ chơi trên một máy để đo cái giá mỗi bộ phận thêm vào một lời gọi.**
 
-![Ba khung. Khung một, bảy bộ phận của kiến trúc dịch vụ nhỏ theo nguồn: bộ cân bằng tải, CDN và cổng API đứng trước các dịch vụ; nhà cấp danh tính xác thực; sổ đăng ký giúp cổng tìm dịch vụ; phần quản lý theo dõi; mỗi miền có cơ sở dữ liệu riêng. Khung hai, các phép đo trên một máy: qua cổng mất 0,9 mili giây thay vì 0,5; cổng gộp hai lời gọi thì 42 mili giây thay vì 82 khi mạng ngoài mất 40; hỏi sổ đăng ký mỗi lần 0,6 thay vì 0,24; kiểm chữ ký tại chỗ 2 micro giây, hỏi máy chủ khác 230; lấy 200 đơn kèm tên khách, một phép nối 0,2 mili giây, gọi từng đơn 50. Khung ba, cân bằng tải, CDN và quản lý chưa được đo.](../../diagrams/sd-08-023-main.svg)
+![Ba khung. Khung một, bảy bộ phận của kiến trúc dịch vụ nhỏ theo nguồn: bộ cân bằng tải, CDN và cổng API đứng trước các dịch vụ; nhà cấp danh tính xác thực; sổ đăng ký giúp cổng tìm dịch vụ; phần quản lý theo dõi; mỗi miền có cơ sở dữ liệu riêng. Khung hai, các phép đo trên một máy: qua cổng mất 0,9 mili giây thay vì 0,5; cổng gộp hai lời gọi thì 42 mili giây thay vì 82 khi mạng ngoài mất 40; hỏi sổ đăng ký mỗi lần 0,6 thay vì 0,24; kiểm chữ ký tại chỗ 2 micro giây, hỏi máy chủ khác 230; lấy 200 đơn kèm tên khách, một phép nối 0,2 mili giây, gọi từng đơn 50. Khung ba, cân bằng tải, CDN và điều phối chưa được đo.](../../diagrams/sd-08-023-main.svg)
 
 ## Từ viết tắt
 

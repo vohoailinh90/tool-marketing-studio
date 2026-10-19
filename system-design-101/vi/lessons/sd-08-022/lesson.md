@@ -12,7 +12,7 @@
 - **ELK** (Elasticsearch Logstash Kibana) — ba công cụ đi cùng nhau để thu, tìm và xem nhật ký của hệ thống; bản đồ liệt kê nó ở vùng công cụ.
 - **HTTPS** (HyperText Transfer Protocol Secure) — giao thức truyền siêu văn bản an toàn: cách các trang web được gửi qua mạng sau khi đã mã hóa.
 - **MVC** (Model View Controller) — mô hình, khung nhìn, bộ điều khiển: một cách chia ứng dụng thành ba vai (chi tiết ở bài riêng của nhóm).
-- **NoSQL** (Not Only SQL) — không chỉ SQL: tên chung của các cơ sở dữ liệu không dùng bảng và ngôn ngữ truy vấn cổ điển.
+- **NoSQL** (Not Only SQL) — không chỉ SQL: tên chung của các cơ sở dữ liệu không theo mô hình bảng quan hệ cổ điển; nhiều loại vẫn có hàng và cột hoặc một ngôn ngữ truy vấn riêng.
 - **OAuth** (Open AUTHorization) — ủy quyền mở: cách cho một ứng dụng được phép truy cập dữ liệu của bạn ở nơi khác mà không đưa mật khẩu.
 - **OLAP** (OnLine Analytical Processing) — xử lý phân tích trực tuyến: các truy vấn tổng hợp trên nhiều dữ liệu, khác với xử lý giao dịch từng dòng.
 - **RFC** (Request For Comments) — yêu cầu góp ý: loạt tài liệu chuẩn của Internet; bài nhắc tới hai tài liệu về thẻ JWT mà người viết không đọc được.

@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1296" viewBox="0 0 320 1296" role="img" aria-labelledby="title desc">
+<title id="title">Netflix xếp thành tám lớp</title>
+<desc id="desc">Tám lớp từ trên xuống: ứng dụng (Swift, Kotlin, React), giao tiếp (GraphQL), dịch vụ phía sau (Zuul, Eureka, Spring Boot), cơ sở dữ liệu (EVCache, Cassandra, CockroachDB), truyền tin (Kafka, Flink), lưu video (S3, Open Connect), xử lý dữ liệu (Flink, Spark, Tableau, Redshift), phát hành (Jenkins, Spinnaker, Chaos Monkey, Atlas và nhiều công cụ khác). Khung cuối nêu ba điều cần nhớ.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1296" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Netflix xếp thành tám</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">lớp</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Từ ứng dụng trên máy người xem tới</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">công cụ phát hành.</text>
+<rect x="8" y="123" width="304" height="215" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Phía người xem</text>
+<rect x="20" y="168" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="194" r="14" fill="#1d4ed8"/>
+<text x="46" y="199.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="194.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Ứng dụng</text>
+<text x="70" y="218.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Swift, Kotlin, React.</text>
+<rect x="20" y="258" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="284" r="14" fill="#1d4ed8"/>
+<text x="46" y="289.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="284.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Giao tiếp</text>
+<text x="70" y="308.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">GraphQL.</text>
+<polyline points="46,238 46,256" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="350" width="304" height="324" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="378.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Phía Netflix</text>
+<rect x="20" y="395" width="280" height="68" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="421" r="14" fill="#0f766e"/>
+<text x="46" y="426.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="421.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Dịch vụ phía sau</text>
+<text x="70" y="445.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Zuul, Eureka, Spring Boot.</text>
+<rect x="20" y="485" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="511" r="14" fill="#0f766e"/>
+<text x="46" y="516.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="511.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Cơ sở dữ liệu</text>
+<text x="70" y="535.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">EVCache, Cassandra,</text>
+<text x="70" y="554.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">CockroachDB.</text>
+<polyline points="46,465 46,483" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="594" width="280" height="68" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="620" r="14" fill="#0f766e"/>
+<text x="46" y="625.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="620.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Lưu video</text>
+<text x="70" y="644.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">S3 và Open Connect.</text>
+<polyline points="46,574 46,592" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="686" width="304" height="328" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="714.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Đứng ngoài đường đi đó</text>
+<rect x="20" y="731" width="280" height="88" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="50" cy="775" r="18" fill="#b45309"/><g transform="translate(39.2 764.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></g>
+<text x="78" y="757.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Truyền tin, dòng dữ</text>
+<text x="78" y="777.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">liệu</text>
+<text x="78" y="801.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Kafka và Flink.</text>
+<rect x="20" y="833" width="280" height="87" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="50" cy="876.5" r="18" fill="#b45309"/><g transform="translate(39.2 865.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></g>
+<text x="78" y="859.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Xử lý dữ liệu</text>
+<text x="78" y="883.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Flink, Spark, Tableau,</text>
+<text x="78" y="902.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Redshift.</text>
+<rect x="20" y="934" width="280" height="68" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="50" cy="968" r="18" fill="#b45309"/><g transform="translate(39.2 957.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09"/><path d="M9 12a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.4 22.4 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 .05 5 .05"/></g>
+<text x="78" y="960.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Phát hành</text>
+<text x="78" y="984.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Jenkins, Spinnaker, Atlas...</text>
+<rect x="8" y="1026" width="304" height="262" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="1054.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Nhớ gì</text>
+<rect x="20" y="1071" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1094" r="11" fill="#16a34a"/>
+<polyline points="37.9,1094.4 41.7,1098.4 48.5,1090" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1097.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mỗi lớp có công nghệ riêng</text>
+<text x="64" y="1116.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hợp việc của nó.</text>
+<rect x="20" y="1142" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1165" r="11" fill="#16a34a"/>
+<polyline points="37.9,1165.4 41.7,1169.4 48.5,1161" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1168.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nguồn chỉ nêu tên, không</text>
+<text x="64" y="1187.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nói dùng thế nào.</text>
+<rect x="20" y="1213" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1236" r="11" fill="#16a34a"/>
+<polyline points="37.9,1236.4 41.7,1240.4 48.5,1232" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1239.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Danh sách là ảnh chụp tại</text>
+<text x="64" y="1258.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">một thời điểm.</text>
+</g>
+</svg>

@@ -79,6 +79,11 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 15. [Netflix dùng sáu loại cơ sở dữ liệu, mỗi loại một việc](lessons/sd-02-015/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
 16. [Airbnb: từ Monorail tới bốn tầng dịch vụ](lessons/sd-02-016/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
 17. [Netflix gửi thông báo đẩy: sự kiện, ưu tiên, rồi từng loại thiết bị](lessons/sd-02-017/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+18. [Kiến trúc tổng thể của Netflix qua tám lớp](lessons/sd-02-018/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+19. [Chuỗi CI/CD của Netflix: tám chặng của một thay đổi](lessons/sd-02-019/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+20. [TikTok và kho mã frontend 200 nghìn tệp](lessons/sd-02-020/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+21. [Netflix dùng Java thế nào qua ba đời kiến trúc](lessons/sd-02-021/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+22. [Kiến trúc microservice của Airbnb qua ba giai đoạn](lessons/sd-02-022/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
 
 ## AI và học máy
 

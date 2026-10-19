@@ -29,7 +29,7 @@ Nguồn dùng "tầng" để nói cách tổ chức mã bên trong một khối 
 
 ## Thử: một quy tắc chia tầng kiểm bằng mã
 
-Một quy tắc chia tầng đơn giản: mỗi tệp chỉ được nhập từ tầng của nó hoặc các tầng thấp hơn trong danh sách trình bày, ứng dụng, miền, hạ tầng. Việc đếm "tệp nào nhập tầng cao hơn" tính toán được, nên đáng giao cho một đoạn chương trình thay vì nhờ người đọc soát:
+Một quy tắc chia tầng đơn giản, kiểu cổ điển: mỗi tệp chỉ được nhập từ tầng của nó hoặc các tầng thấp hơn trong danh sách trình bày, ứng dụng, miền, hạ tầng. Đây là một xếp hạng một chiều; nhiều dự án thiết kế hướng miền thì ngược lại, giữ tầng miền độc lập (miền không nhập gì từ ngoài nó, còn hạ tầng được nhập miền để cài đặt các giao diện của miền), nên họ viết thẳng đồ thị nhập được phép thành một bảng thay vì một danh sách thứ tự. Việc đếm "tệp nào nhập tầng cao hơn" tính toán được, nên đáng giao cho một đoạn chương trình thay vì nhờ người đọc soát:
 
 Đoạn chương trình dài khoảng mười lăm dòng: duyệt mọi tệp `.py`, dùng `ast` đọc từng câu lệnh `import`, và báo mọi cặp (tệp, mô-đun) mà tầng được nhập cao hơn tầng của tệp. Ngày 2026-10-19, Python 3.13.16, trên dự án giả do một chương trình sinh ra:
 
@@ -43,7 +43,7 @@ Quy tắc kiểm tra được trong dưới một giây cho một vạn tệp, n
 
 ## Giới hạn cần nhớ
 
-Bài nguồn chỉ có một hai câu cho mỗi khái niệm nên cột "ý của nguồn" là tóm lược; phần đối chiếu lấy hai trang của Microsoft về DDD, chưa đối chiếu với cuốn sách của Eric Evans (không truy cập được lúc viết). Bài này đọc "chia tầng" theo mô tả ngắn của nguồn; nguồn có hình mà phần chữ không nêu hết. Dự án thử do chương trình sinh nên chỉ chứng tỏ bộ kiểm chạy đúng và nhanh, không nói gì về mã thật; danh sách bốn tầng dùng ở đây là một lựa chọn của người biên soạn, nguồn không quy định tầng nào.
+Bài nguồn chỉ có một hai câu cho mỗi khái niệm nên cột "ý của nguồn" là tóm lược; phần đối chiếu lấy hai trang của Microsoft về DDD, chưa đối chiếu với cuốn sách của Eric Evans (không truy cập được lúc viết). Bài này đọc "chia tầng" theo mô tả ngắn của nguồn; nguồn có hình mà phần chữ không nêu hết. Dự án thử do chương trình sinh nên chỉ chứng tỏ bộ kiểm chạy đúng và nhanh, không nói gì về mã thật; danh sách bốn tầng và thứ tự một chiều dùng ở đây là một lựa chọn của người biên soạn, nguồn không quy định tầng nào; thay bằng bảng đồ thị nhập được phép (như cách làm của miền độc lập ở trên) thì cùng đoạn chương trình vẫn dùng được, chỉ đổi điều kiện kiểm.
 
 ## Nhìn hình trả lời
 

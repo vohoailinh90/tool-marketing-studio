@@ -32,7 +32,7 @@
     },
     "claims": {
       "status": "pending",
-      "reason": "source_claims_listed_with_the_pinned_source; the language descriptions were read in raw copies of the pinned CPython, MDN, PHP, Ruby, C#, Rust, Go, Kotlin, Carbon, TypeScript, Swift, Dart and D project documentation and are recorded in the claims below; the timeline dates other than Python, JavaScript and Carbon 2022 and the order of the languages are the source's word, not independently verified, and the glosses are the author's general knowledge"
+      "reason": "source_claims_listed_with_the_pinned_source; the language descriptions were read in raw copies of the pinned CPython, MDN, PHP, Ruby, C#, Rust, Go, Kotlin, Carbon, TypeScript, Swift, Dart and D project documentation and are recorded in the claims below; the timeline dates other than Python, JavaScript and Carbon 2022, and other than Go 2009 (the author's general knowledge, not checked), and the order of the languages are the source's word, not independently verified, and the glosses are the author's general knowledge"
     },
     "technical_review": {
       "status": "pending",
@@ -148,7 +148,7 @@
   "source_deviations": [
     "Source is seven bullets by decade; the lesson keeps the milestones and language names, redraws them as three timelines and does not use the source image.",
     "Source spells Object-C and places Go in the Java family and D, Rust, Zig and Carbon in the C++ family; the lesson uses Objective-C (general knowledge) and describes the languages whose project documentation was read with their own README instead of the source's families; the others (for example Fortran, LISP, Java, Zig) are only the source's words or unchecked.",
-    "Only the Python and JavaScript origins and Carbon's 2022 announcement (from its README) are checked against documentation; the other dates are the source's word.",
+    "Only the Python and JavaScript origins and Carbon's 2022 announcement (from its README) are checked against documentation; Go 2009 is the author's general knowledge and not checked; the other dates are the source's word.",
     "The lesson keeps one source-only statement, that Dart is popular thanks to Flutter, attributed to the source and not checked against any documentation; it does not reproduce the source's sentences about popularity, simplicity and security or about .NET.",
     "The source files Go and Carbon under the 2010s; the lesson labels the decade as the source's grouping and notes that Carbon's README lists its announcement talks in 2022 (read at the pinned commit) and that Go launched in 2009 (author's general knowledge, not checked)."
   ],

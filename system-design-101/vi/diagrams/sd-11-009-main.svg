@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="648" viewBox="0 0 320 648" role="img" aria-labelledby="title desc">
+<title id="title">Sáu biến thể của nhịp tim</title>
+<desc id="desc">Hai khung. Khung một, ai chủ động: nút tự gửi nhịp, bên giám sát chủ động hỏi, hoặc nhịp kèm kiểm tra sức khỏe. Khung hai, làm cho đáng tin hơn: nhịp kèm mốc thời gian, nhịp có xác nhận, và nhiều nút cùng đồng ý trước khi kết luận.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="648" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Sáu biến thể của nhịp</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">tim</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Nghi một nút hỏng bằng cách nào.</text>
+<rect x="8" y="104" width="304" height="262" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="132.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Ai chủ động</text>
+<rect x="20" y="149" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="172" r="11" fill="#16a34a"/>
+<polyline points="37.9,172.4 41.7,176.4 48.5,168" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="175.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Push: nút tự gửi nhịp theo</text>
+<text x="64" y="194.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chu kỳ.</text>
+<rect x="20" y="220" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="243" r="11" fill="#16a34a"/>
+<polyline points="37.9,243.4 41.7,247.4 48.5,239" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="246.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Pull: bên giám sát chủ động</text>
+<text x="64" y="265.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hỏi.</text>
+<rect x="20" y="291" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="314" r="11" fill="#16a34a"/>
+<polyline points="37.9,314.4 41.7,318.4 48.5,310" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="317.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Health check: nhịp kèm kiểm</text>
+<text x="64" y="336.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tra việc làm được.</text>
+<rect x="8" y="378" width="304" height="262" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="406.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Làm cho đáng tin hơn</text>
+<rect x="20" y="423" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="446" r="11" fill="#16a34a"/>
+<polyline points="37.9,446.4 41.7,450.4 48.5,442" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="449.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mốc thời gian: thấy nhịp đến</text>
+<text x="64" y="468.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">muộn.</text>
+<rect x="20" y="494" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="517" r="11" fill="#16a34a"/>
+<polyline points="37.9,517.4 41.7,521.4 48.5,513" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="520.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Xác nhận: bên gửi biết nhịp</text>
+<text x="64" y="539.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đã tới.</text>
+<rect x="20" y="565" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="588" r="11" fill="#16a34a"/>
+<polyline points="37.9,588.4 41.7,592.4 48.5,584" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="591.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đa số: nhiều nút đồng ý rồi</text>
+<text x="64" y="610.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mới kết luận.</text>
+</g>
+</svg>

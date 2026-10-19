@@ -48,7 +48,7 @@
       "verified_by": "Source body read at the pinned commit; only names and order are used."
     },
     {
-      "claim_vi": "With up to 3 retries and failure probability 0.5 per try the mean attempts per request is 1.875; with total failure it is 4; three nested layers each retrying 3 times give 4x4x4 = 64.",
+      "claim_vi": "With up to 3 retries and failure probability 0.5 per try the mean attempts per request is 1.875; with total failure it is 4; a chain of four services (three calling steps) each retrying 3 times gives 4x4x4 = 64 calls at the last one (three services, two steps: 4x4 = 16).",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/resiliency-patterns.md",
       "section": "Calculation",
       "verified_by": "Pure arithmetic."

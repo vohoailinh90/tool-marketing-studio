@@ -23,7 +23,7 @@ Tên tám mẫu giữ theo bài nguồn; lời giải thích và phép tính là
 - **Back pressure (áp lực ngược).** Bên nhận chậm thì báo ngược cho bên gửi chậm lại, thay vì để hàng đợi phình vô hạn. Giới hạn: bên gửi phải biết nghe tín hiệu, và có thể phải bỏ hoặc trì hoãn việc.
 - **Let it crash (để nó sập).** Với lỗi không đoán trước, thà để thành phần dừng hẳn rồi một bộ giám sát dựng lại từ trạng thái sạch, còn hơn cố chạy tiếp ở trạng thái hỏng dở. Giới hạn: cần việc khởi động lại nhanh và không làm mất dữ liệu.
 
-**Phép tính: thử lại khuếch đại tải thế nào.** Gọi bên kia, nếu lỗi thì thử lại tối đa 3 lần. Khi bên kia lỗi một nửa số lần, số lần gọi trung bình cho mỗi yêu cầu là 1 + 0,5 + 0,25 + 0,125 = 1,875. Khi bên kia hỏng hẳn, mỗi yêu cầu thành 4 lần gọi. Nếu ba tầng dịch vụ nối nhau và tầng nào cũng thử lại 3 lần, thì khi tầng cuối hỏng hẳn, nó nhận tới 4 × 4 × 4 = 64 lần gọi cho mỗi yêu cầu ban đầu. Đó là lý do thử lại phải đi cùng ngắt mạch và giới hạn tổng số lần thử.
+**Phép tính: thử lại khuếch đại tải thế nào.** Gọi bên kia, nếu lỗi thì thử lại tối đa 3 lần. Khi bên kia lỗi một nửa số lần, số lần gọi trung bình cho mỗi yêu cầu là 1 + 0,5 + 0,25 + 0,125 = 1,875. Khi bên kia hỏng hẳn, mỗi yêu cầu thành 4 lần gọi. Nếu bốn dịch vụ nối nhau A → B → C → D (ba bước gọi) và mỗi bước đều thử lại 3 lần, thì khi D hỏng hẳn, nó nhận tới 4 × 4 × 4 = 64 lần gọi cho mỗi yêu cầu ban đầu (với ba dịch vụ, hai bước gọi, con số là 4 × 4 = 16). Đó là lý do thử lại phải đi cùng ngắt mạch và giới hạn tổng số lần thử.
 
 ## Giới hạn cần nhớ
 

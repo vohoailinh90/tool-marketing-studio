@@ -24,7 +24,7 @@ Tên bốn trụ giữ theo bài nguồn; phần giải thích là của ngườ
 
 **Trụ ba, máy ảo siêu nhẹ Firecracker.** Firecracker là bộ quản lý máy ảo nhẹ cho việc chạy hàm; theo bài nguồn nó dựa vào KVM của Linux để tạo ra các máy ảo siêu nhẹ, an toàn và khởi động nhanh. Chỗ tiết kiệm: vẫn cách ly được khách hàng khác nhau mà dựng nhanh hơn một máy ảo đầy đủ.
 
-**Trụ bốn, kho thành phần (Component Storage).** Lambda phải đưa mã hàm và dữ liệu đầu vào tới đúng nơi. Bài nguồn kể ba kỹ thuật. *Chunking*: cắt ảnh container thành các mẩu để lưu và chuyển hiệu quả hơn. *Convergent encryption*: mã hóa dữ liệu dùng chung bằng cách thêm dữ liệu vào mẩu trước khi tính mã băm, để mã băm bền hơn. *SnapStart*: khởi tạo sẵn môi trường để giảm độ trễ khởi động nguội. Chỗ tiết kiệm: ít dữ liệu phải chuyển và khởi tạo hơn mỗi lần.
+**Trụ bốn, kho thành phần (Component Storage).** Lambda phải đưa mã hàm và dữ liệu đầu vào tới đúng nơi. Bài nguồn kể ba kỹ thuật. *Chunking*: cắt ảnh container thành các mẩu để lưu và chuyển hiệu quả hơn. *Convergent encryption (mã hóa hội tụ)*: mã hóa mỗi mẩu theo cách do chính nội dung mẩu quyết định, nên hai mẩu giống hệt nhau cho ra hai bản mã giống hệt nhau; nhờ đó hệ thống nhận ra bản trùng và chỉ lưu một bản mà dữ liệu vẫn được mã hóa. Bài nguồn nói thêm là còn nối thêm dữ liệu vào mẩu trước khi tính mã băm để mã băm bền hơn. *SnapStart*: khởi tạo sẵn môi trường để giảm độ trễ khởi động nguội. Chỗ tiết kiệm: ít dữ liệu phải lưu, chuyển và khởi tạo hơn mỗi lần (mẩu trùng chỉ lưu một lần).
 
 ## Giới hạn cần nhớ
 

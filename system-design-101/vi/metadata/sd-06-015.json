@@ -1,0 +1,111 @@
+{
+  "id": "sd-06-015",
+  "title_vi": "Bộ nhớ đệm hỏng theo những kiểu nào",
+  "language": "vi",
+  "kind": "reference",
+  "content_status": "draft",
+  "source_ref": "sd-06-015",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/how-can-cache-systems-go-wrong.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-can-cache-systems-go-wrong.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a git fetch of the pinned commit and hashed as a Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "1725edaa06c37e858fbf38021d3d515dd16b84ba",
+    "retrieved_body_sha256": "0e1aed886e4a35d1b2c5ec9c64afe062faf65f72396b774f3c51804551f2011c",
+    "retrieved_body_bytes": 2040
+  },
+  "diagram": "../diagrams/sd-06-015-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-06-013",
+      "relation": "see_also",
+      "reason_vi": "Bài riêng về truy vấn khóa không tồn tại, cất giá trị rỗng và bộ lọc Bloom."
+    },
+    {
+      "lesson_id": "sd-06-009",
+      "relation": "see_also",
+      "reason_vi": "Khởi động nguội và hạn sống là các điều cần cân nhắc khi dùng bộ nhớ đệm."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "evidence": "MDN's caching guide, Redis's SET command page and distributed locks page, and Microsoft's Circuit Breaker pattern read from local clones; a hot-key stampede and TTL jitter tested on Redis 7.0.15."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright) rendered the full lesson (Markdown to HTML, optional sections open, 16 px side gutters) at each width: no horizontal overflow of the page or of any table; figure drawn by scripts/figures (viewBox width 320, smallest font 15 px) shown at 13.5 px effective at 320 px and 15 px at 375 px; every SVG text box inside the viewBox. python3 -m scripts.figures check --browser passed. Not learner testing and not GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Request collapse: when identical requests arrive at a shared cache at the same time, it forwards a single request to the origin and reuses the result for all clients.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/web/http/guides/caching/index.md",
+      "section": "Request collapse",
+      "verified_by": "Read from a local clone of mdn/content at commit a1aa79c09717761fc72c20bac94bb9c430ed487a, the head of its default branch when read on 2026-10-18 (a later change to that branch does not alter this URL)."
+    },
+    {
+      "claim_vi": "SET with NX only sets a key that does not exist and PX sets an expiry in milliseconds; SET resource NX EX max-lock-time is a simple lock, improved by a random token and deleting only when the value matches, done atomically by a Lua script that compares and deletes inside Redis; the Redlock algorithm is preferred for better guarantees. (The author's test released the lock with GET then DEL, which is not atomic; the lesson says so.)",
+      "source": "https://github.com/redis/docs/blob/3b030c7ef066c0bb7f88ddec02c784e49783b0f8/content/commands/set.md",
+      "section": "Options; Patterns",
+      "verified_by": "Read from a local clone of redis/docs at commit 3b030c7ef066c0bb7f88ddec02c784e49783b0f8, the head of its default branch when read on 2026-10-18 (a later change to that branch does not alter this URL)."
+    },
+    {
+      "claim_vi": "The lock validity time is the key's time to live: both the auto-release time and the time the holder has to finish before another client may acquire the lock; mutual exclusion holds only while the holder finishes within it. A holder may extend the lock with a Lua script that extends the key's TTL, but should not assume a lock is retained as long as its process is alive.",
+      "source": "https://github.com/redis/docs/blob/3b030c7ef066c0bb7f88ddec02c784e49783b0f8/content/develop/clients/patterns/distributed-locks.md",
+      "section": "Correct Implementation with a Single Instance; Is the Algorithm Asynchronous?; Making the algorithm more reliable: Extending the lock; Disclaimer about consistency",
+      "verified_by": "Read from a local clone of redis/docs at commit 3b030c7ef066c0bb7f88ddec02c784e49783b0f8, the head of its default branch when read on 2026-10-18 (a later change to that branch does not alter this URL)."
+    },
+    {
+      "claim_vi": "Circuit Breaker: temporarily block access to a remote service after failures reach a threshold instead of retrying, letting it recover and improving stability. The example places it in front of the database: when it trips, requests are short-circuited and return default or cached responses, protecting the application from further overload.",
+      "source": "https://github.com/MicrosoftDocs/architecture-center/blob/8e2c239344ee753a88856800b4210a3e27ac1036/docs/patterns/circuit-breaker.md",
+      "section": "Introduction; Example",
+      "verified_by": "Read from a local clone of MicrosoftDocs/architecture-center at commit 8e2c239344ee753a88856800b4210a3e27ac1036, the head of its default branch when read on 2026-10-18 (a later change to that branch does not alter this URL)."
+    },
+    {
+      "claim_vi": "Hot key just expired, 50 concurrent requests, database stub sleeping 200 ms, 10 trials each: no protection 50 DB calls every trial (slowest 205-210 ms); SET NX PX 2000 lock 1 call in 6 trials and 2 in 4 (slowest 211-403 ms); lock plus re-reading the cache after acquiring 1 call in all 10 (slowest 213-216 ms). 10,000 keys with TTL 3600 expire within one minute; with 0-599 s of random extra they spread over 11 minutes, at most 1,042 in one minute.",
+      "source": "https://github.com/redis/docs/blob/3b030c7ef066c0bb7f88ddec02c784e49783b0f8/content/commands/set.md",
+      "section": "Experiment",
+      "verified_by": "Experiment run by the author on 2026-10-18 on one KVM virtual machine (4 vCPU): Python threads with one raw RESP connection each against Redis 7.0.15; remaining TTLs read back with TTL."
+    },
+    {
+      "claim_vi": "Four ways caches go wrong: thunder herd (many keys expiring at once; random expiry, protect core data), cache penetration (null value, Bloom filter), cache breakdown (hot key expiring; the source says hot keys take 80% of queries and suggests no expiry), cache crash (circuit breaker, cache cluster).",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-can-cache-systems-go-wrong.md",
+      "section": "Whole guide",
+      "verified_by": "Source body read at the pinned commit."
+    }
+  ],
+  "design_notes_vi": "Ba khung ghi chú: bốn kiểu hỏng, thử khóa nóng hết hạn, và hạn sống lệch nhau. Kiểu khóa không tồn tại chỉ nhắc qua vì có bài riêng.",
+  "source_deviations": [
+    "Source's figure that hot keys take 80% of queries is dropped: no source.",
+    "Source describes a circuit breaker as stopping services from visiting both the cache and the database; the lesson uses Microsoft's pattern definition and keeps the point that only blocking or limiting database calls protects the database (a breaker around the failed cache alone does not).",
+    "The limits section adds that the lock's expiry bounds the load: a load longer than PX 2000 lets a second request take the lock, so the lease must outlast the load or be extended, and a holder that lost it must stop acting as the only loader (Redis distributed locks page).",
+    "The lesson adds a stampede experiment that finds a gap in the simple lock (two loads) and the re-read that closes it."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này (gói L5), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

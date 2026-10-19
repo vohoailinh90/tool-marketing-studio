@@ -1,0 +1,71 @@
+{
+  "id": "sd-09-012",
+  "title_vi": "Tra lệnh Linux theo câu hỏi",
+  "language": "vi",
+  "kind": "explanation",
+  "content_status": "draft",
+  "source_ref": "sd-09-012",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/most-used-linux-commands-map.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/most-used-linux-commands-map.md",
+    "blob_sha": "1245916b41c7144c233954cbb64eb73ef7c3edb9",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "2690ee71cd5030eed0dd2ade8ba868498fda2dec9131b6f1721fe06f766408bb",
+    "retrieved_body_bytes": 683
+  },
+  "diagram": "../diagrams/sd-09-012-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "Đã đọc thân bài nguồn, đối chiếu danh mục và liệt kê tài liệu sơ cấp. Một số trang trả HTTP 403; chưa xác minh toàn bộ claim nên giữ pending."
+    },
+    "technical_review": {
+      "status": "pending"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 14.73,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium: complete lesson with details open at 320/375/430px; SVG text bounding boxes within viewBox; min effective text 14.73px at 320 and 17.54px at 375. Screenshots captured locally; no learner testing or live GitHub preview. Đã xem contact sheet 20 bài ở 320px; chưa kiểm tra trên GitHub hoặc điện thoại thật."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "`pwd` in thư mục hiện tại; `ls -la` liệt kê cả file ẩn. Dùng `less` đọc file dài, `tail` xem cuối log và `rg` tìm chuỗi nếu ripgrep đã được cài. `ps` xem process, `top` quan sát mức sử dụng, `free` xem bộ nhớ và `df` xem dung lượng filesystem.\n\n`id` cho biết user và nhóm hiện tại. `ip address` xem địa chỉ mạng, `ss` xem socket. Quản lý package phụ thuộc bản phân phối: Debian/Ubuntu thường dùng apt, Fedora dùng dnf. Không sao chép một lệnh cài package mà chưa biết hệ điều hành và quyền đang dùng.",
+      "sources": [
+        "https://www.gnu.org/software/coreutils/manual/coreutils.html",
+        "https://man7.org/linux/man-pages/man8/ss.8.html",
+        "https://man7.org/linux/man-pages/man8/ip.8.html"
+      ]
+    },
+    {
+      "claim_vi": "Không phải mọi lệnh có sẵn trên mọi bản Linux. `sudo`, `rm`, `chmod`, trình quản lý package và lệnh dừng process có thể thay đổi máy; đọc tùy chọn trước khi dùng.",
+      "sources": [
+        "https://www.gnu.org/software/coreutils/manual/coreutils.html",
+        "https://man7.org/linux/man-pages/man8/ss.8.html",
+        "https://man7.org/linux/man-pages/man8/ip.8.html"
+      ]
+    }
+  ],
+  "design_notes_vi": "Thẻ dọc tự thiết kế từ ví dụ mới; mũi tên biểu diễn thứ tự đọc. Không sử dụng ảnh nguồn.",
+  "editorial_note_vi": "Đợt Công cụ và năng suất theo yêu cầu người dùng 2026-10-13. Chưa review kỹ thuật độc lập hoặc thử người học; không tự merge/phát hành."
+}

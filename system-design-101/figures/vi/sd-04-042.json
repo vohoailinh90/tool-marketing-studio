@@ -1,0 +1,30 @@
+{
+  "id": "sd-04-042",
+  "lang": "vi",
+  "title": "Khóa trong cơ sở dữ liệu: ai chặn ai?",
+  "desc": "Bốn khung dọc, thử trên PostgreSQL 16 bằng hai phiên. Khung một, khóa trên một dòng: hai khóa chia sẻ cùng lúc được; khóa chia sẻ và khóa độc quyền thì bên sau phải chờ; đọc thường không bị khóa dòng chặn; khóa dòng 1 không chặn dòng 2. Khung hai, deadlock: A giữ dòng 1 rồi xin dòng 2, B giữ dòng 2 rồi xin dòng 1; PostgreSQL hủy một bên với lỗi deadlock detected và bên kia chạy tiếp. Khung ba, lệch ghi khi hai bác sĩ cùng xin nghỉ trực: ở mức repeatable read cả hai chốt được và không còn ai trực; ở mức serializable bên sau bị hủy và còn một người trực. Khung bốn, khóa bảng: đang đổi cấu trúc bảng mà chưa chốt thì cả câu đọc thường cũng phải chờ, vì khóa này xung đột với mọi khóa khác.",
+  "sections": [
+    {"kind": "notes", "heading": "Khóa trên một dòng",
+     "items": [
+       "Chia sẻ + chia sẻ: được cùng lúc.",
+       "Chia sẻ + độc quyền: bên sau phải chờ.",
+       "Đọc thường không bị khóa dòng chặn.",
+       "Khóa dòng 1 không chặn dòng 2."
+     ]},
+    {"kind": "notes", "heading": "Deadlock",
+     "items": [
+       "A giữ dòng 1 xin dòng 2; B giữ dòng 2 xin dòng 1.",
+       "PostgreSQL hủy một bên (deadlock detected), bên kia chạy tiếp."
+     ]},
+    {"kind": "notes", "heading": "Hai bác sĩ cùng xin nghỉ trực",
+     "items": [
+       "Repeatable read: cả hai chốt được, còn 0 người trực.",
+       "Serializable: bên sau bị hủy, còn 1 người trực."
+     ]},
+    {"kind": "notes", "heading": "Khóa bảng",
+     "items": [
+       "Đang đổi cấu trúc bảng, chưa chốt: đọc thường cũng phải chờ.",
+       "Khóa này xung đột với mọi khóa khác trên bảng."
+     ]}
+  ]
+}

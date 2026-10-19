@@ -1,0 +1,36 @@
+{
+  "id": "sd-04-032",
+  "lang": "vi",
+  "title": "Chọn cơ sở dữ liệu theo câu hỏi bạn sẽ hỏi",
+  "desc": "Khung một, câu hỏi nhỏ và ghi nhiều: giao dịch đúng từng đồng dùng cơ sở dữ liệu quan hệ cho OLTP; lấy theo khóa thật nhanh dùng kho khóa và giá trị; bản ghi dạng JSON, dùng kho tài liệu; quan hệ chằng chịt dùng cơ sở dữ liệu đồ thị. Khung hai, câu hỏi đặc thù: tổng hợp hàng triệu dòng dùng hệ OLAP lưu theo cột; tìm theo từ trong văn bản dùng tìm toàn văn; tìm thứ gần giống nhất dùng vector nhúng; gần một vị trí hay trong một vùng dùng dữ liệu không gian. Khung ba, đo trên một máy: tìm một mã trong 200.000 ghi chú, quét cả bảng mất 37 đến 49 mili giây, chỉ mục toàn văn 0,01 đến 0,02 mili giây; tổng theo cửa hàng trên 5 triệu dòng, SQLite mất 1,9 giây, DuckDB 31 đến 33 mili giây.",
+  "sections": [
+    {
+      "kind": "notes",
+      "heading": "Câu hỏi nhỏ, ghi nhiều",
+      "items": [
+        "Giao dịch đúng từng đồng: quan hệ, OLTP.",
+        "Lấy theo khóa, thật nhanh: kho khóa–giá trị.",
+        "Bản ghi JSON, mỗi bản một kiểu: kho tài liệu.",
+        "Quan hệ chằng chịt: cơ sở dữ liệu đồ thị."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Câu hỏi đặc thù",
+      "items": [
+        "Tổng hợp hàng triệu dòng: OLAP, lưu theo cột.",
+        "Tìm theo từ trong văn bản: tìm toàn văn.",
+        "Tìm thứ gần giống nhất: vector nhúng.",
+        "Gần một vị trí, trong một vùng: không gian."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Đo trên một máy",
+      "items": [
+        "Tìm một mã trong 200.000 ghi chú: quét 37–49 ms, chỉ mục toàn văn 0,01–0,02 ms.",
+        "Tổng theo cửa hàng, 5 triệu dòng: SQLite 1,9 s, DuckDB 31–33 ms."
+      ]
+    }
+  ]
+}

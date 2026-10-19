@@ -1,0 +1,97 @@
+{
+  "id": "sd-06-013",
+  "title_vi": "Truy vấn khóa không tồn tại: khi bộ nhớ đệm bị xuyên qua",
+  "language": "vi",
+  "kind": "flow",
+  "content_status": "draft",
+  "source_ref": "sd-06-013",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/cache-miss-attack.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/cache-miss-attack.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a git fetch of the pinned commit and hashed as a Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "a8840897665e1507962853743aecb72f7248bc6f",
+    "retrieved_body_sha256": "3e7ffe48b9dd1f655f83e4a5762e0137749ee194bd1692e2554c37fe4bb63438",
+    "retrieved_body_bytes": 1503
+  },
+  "diagram": "../diagrams/sd-06-013-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-06-015",
+      "relation": "see_also",
+      "reason_vi": "Truy vấn khóa không tồn tại là một trong bốn kiểu bộ nhớ đệm hỏng."
+    },
+    {
+      "lesson_id": "sd-06-008",
+      "relation": "context",
+      "reason_vi": "Cache-aside là cách đọc mà kiểu tấn công này đi xuyên qua."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "evidence": "Redis's Bloom filter doc read from a local clone; null-value caching and a Bloom filter tested with Redis 7.0.15 and SQLite."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright) rendered the full lesson (Markdown to HTML, optional sections open, 16 px side gutters) at each width: no horizontal overflow of the page or of any table; figure drawn by scripts/figures (viewBox width 320, smallest font 15 px) shown at 13.5 px effective at 320 px and 15 px at 375 px; every SVG text box inside the viewBox. python3 -m scripts.figures check --browser passed. Not learner testing and not GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "A Bloom filter always has a chance of false positives; error rate and capacity set its size; bits per item = -ln(p)/ln(2)^2 and hash functions = ceil(-ln(p)/ln(2)), so 1% needs 7 hash functions and 9.585 bits per item and 0.1% needs 10 and 14.378; past its capacity the error rate grows (unless it scales).",
+      "source": "https://github.com/redis/docs/blob/3b030c7ef066c0bb7f88ddec02c784e49783b0f8/content/develop/data-types/probabilistic/bloom-filter.md",
+      "section": "Reserving Bloom filters; Total size of a Bloom filter",
+      "verified_by": "Read from a local clone of redis/docs at commit 3b030c7ef066c0bb7f88ddec02c784e49783b0f8, the head of its default branch when read on 2026-10-18 (a later change to that branch does not alter this URL)."
+    },
+    {
+      "claim_vi": "SQLite table of 100,000 products, Redis 7.0.15 cache-aside, 20,000 requests: different missing ids caused 20,000 DB calls with plain cache-aside and with null caching (which also left 20,000 empty keys); one missing id repeated caused 20,000 DB calls plain and 1 with null caching. A Bloom filter of the 100,000 real ids let through 174 of 20,000 fake ids (0.87%) at p=1% (958,506 bits, k=7) and 24 (0.12%) at p=0.1% (1,437,759 bits, k=10), rejecting no real id.",
+      "source": "https://github.com/redis/docs/blob/3b030c7ef066c0bb7f88ddec02c784e49783b0f8/content/develop/data-types/probabilistic/bloom-filter.md",
+      "section": "Experiment",
+      "verified_by": "Experiment run by the author on 2026-10-18 on one KVM virtual machine (4 vCPU): Python 3.13, sqlite3 in memory, raw RESP client, Bloom filter written by the author with SHA-256 double hashing."
+    },
+    {
+      "claim_vi": "A basic Bloom filter cannot remove items, and rate limiting is needed against requests for existing keys.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/cache-miss-attack.md",
+      "section": "Solutions",
+      "verified_by": "Author's general knowledge; not stated in the cited Redis page."
+    },
+    {
+      "claim_vi": "Cache miss attack: data neither in the database nor cached, every request hits the database; solutions: cache keys with null value and a short TTL, or a Bloom filter.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/cache-miss-attack.md",
+      "section": "Whole guide",
+      "verified_by": "Source body read at the pinned commit."
+    }
+  ],
+  "design_notes_vi": "Một sơ đồ trình tự cho thấy yêu cầu đi xuyên qua, rồi hai khung cho hai cách chữa với kết quả thử.",
+  "source_deviations": [
+    "Source presents null-value caching as a solution; the lesson shows it does not stop requests that use a new id each time and fills the cache with empty keys.",
+    "The lesson adds a Bloom filter measurement and the sizing formula from Redis's documentation."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này (gói L5), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

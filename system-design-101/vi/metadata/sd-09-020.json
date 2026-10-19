@@ -1,0 +1,71 @@
+{
+  "id": "sd-09-020",
+  "title_vi": "Từ thay đổi code tới bản chạy production",
+  "language": "vi",
+  "kind": "explanation",
+  "content_status": "draft",
+  "source_ref": "sd-09-020",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/how-do-companies-ship-code-to-production.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-companies-ship-code-to-production.md",
+    "blob_sha": "9fa6a1a7f735d129052238f6bbb1406ca724c76f",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "b788ddbf2950beaa3bc4c391fc6a1ce074b8e012878d5c40bb8f2297a880fc43",
+    "retrieved_body_bytes": 1618
+  },
+  "diagram": "../diagrams/sd-09-020-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "Đã đọc thân bài nguồn, đối chiếu danh mục và liệt kê tài liệu sơ cấp. Một số trang trả HTTP 403; chưa xác minh toàn bộ claim nên giữ pending."
+    },
+    "technical_review": {
+      "status": "pending"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 14.73,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Re-checked after the Từ viết tắt section was added (first checked 2026-10-13 on the old draft branch). Chromium (Playwright) rendered the complete lesson with every details block open at 320/375/430px from a local Markdown render with GitHub-like styles: no horizontal overflow at any width, every SVG text box inside the viewBox, min effective diagram text 14.73px at 320 and 17.54px at 375. Not GitHub itself, not a real phone, not learner testing."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Bắt đầu bằng tiêu chí chấp nhận, rồi viết code trên nhánh và review diff. CI chạy kiểm tra phù hợp, build artifact và lưu kèm phiên bản. Đưa cùng artifact qua các môi trường cần thiết giúp tránh tình huống thử một bản nhưng chạy bản khác.\n\nSau kiểm thử và chấp nhận, triển khai có thể theo đợt, canary hoặc lịch đã chọn. Theo dõi lỗi, độ trễ và hành vi nghiệp vụ; chuẩn bị cách dừng hoặc quay lại khi chỉ số xấu. Tín hiệu từ vận hành quay về yêu cầu/test để cải thiện vòng sau. Nhóm nhỏ có thể gộp vai trò; nhóm lớn cần phân trách nhiệm rõ.",
+      "sources": [
+        "https://dora.dev/capabilities/continuous-delivery/",
+        "https://www.jenkins.io/doc/book/pipeline/",
+        "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/"
+      ]
+    },
+    {
+      "claim_vi": "Sprint hai tuần, Jenkins, SonarQube, UAT riêng và một đội SRE không phải điều kiện bắt buộc cho mọi công ty. Rollback code không tự đảo migration hoặc tác dụng đã xảy ra.",
+      "sources": [
+        "https://dora.dev/capabilities/continuous-delivery/",
+        "https://www.jenkins.io/doc/book/pipeline/",
+        "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/"
+      ]
+    }
+  ],
+  "design_notes_vi": "Thẻ dọc tự thiết kế từ ví dụ mới; mũi tên biểu diễn thứ tự đọc. Không sử dụng ảnh nguồn.",
+  "editorial_note_vi": "Đợt Công cụ và năng suất theo yêu cầu người dùng 2026-10-13. Chưa review kỹ thuật độc lập hoặc thử người học; không tự merge/phát hành."
+}

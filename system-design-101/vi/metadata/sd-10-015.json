@@ -84,13 +84,19 @@
       "verified_by": "Author's general knowledge; not checked against primary documentation."
     },
     {
-      "claim_vi": "A Java class file holds bytecode; C# compiles to an intermediate code run on the .NET CLR, not on the JVM (general knowledge, not checked against Microsoft documentation); the glosses of CPU, JVM, CLR and AOT in the abbreviations section.",
+      "claim_vi": "Microsoft: the C# compiler translates source code to CIL plus metadata; before it runs CIL must be converted to CPU-specific native code, usually by the CLR JIT compiler when a method is first called, or by ahead-of-time compilation; so for C# this step is mandatory, not optional.",
+      "source": "https://github.com/dotnet/docs/blob/8d19c1df9f9ac62a68b8f1f7133f97530e1ff39d/docs/standard/managed-execution-process.md",
+      "section": "Compile to CIL, Compile CIL to native code",
+      "verified_by": "Read from a raw copy at the pinned commit."
+    },
+    {
+      "claim_vi": "A Java class file holds bytecode; the glosses of CPU, JVM, CLR, CIL and AOT in the abbreviations section.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-c++-java-python-work.md",
       "section": "Đọc hình, Từ viết tắt",
       "verified_by": "Author's general knowledge; not checked against primary documentation."
     }
   ],
-  "design_notes_vi": "Ba chuỗi bước cho ba nhóm và một khung ghi nhớ; trình JIT là bước tùy chọn trong nhóm bytecode. Lời trong thẻ viết từ tài liệu gốc, không từ câu của nguồn. Không dùng ảnh nguồn.",
+  "design_notes_vi": "Ba chuỗi bước cho ba nhóm và một khung ghi nhớ; trình JIT là bước tùy chọn với Java, còn C# có bước CIL sang mã máy bắt buộc. Lời trong thẻ viết từ tài liệu gốc, không từ câu của nguồn. Không dùng ảnh nguồn.",
   "source_deviations": [
     "Source states three clean categories and says compiled languages in general run faster than interpreted ones; the lesson keeps the three groups and examples, takes the speed remark from the Python glossary (interpreted programs generally run more slowly) and shows from the glossary and MDN that the boundaries are blurry.",
     "Source says the JIT compiler compiles \"the source code\" to machine code; MDN says JIT translates from an intermediate representation such as bytecode or from a higher-level language, which the lesson follows.",

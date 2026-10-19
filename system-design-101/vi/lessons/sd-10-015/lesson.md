@@ -3,7 +3,7 @@
 **Ba cách chạy một chương trình: biên dịch ra mã máy rồi bộ xử lý chạy thẳng; biên dịch ra bytecode rồi máy ảo chạy; hoặc để trình thông dịch chạy chương trình từ mã nguồn.**
 Bài giữ ba nhóm và các ngôn ngữ ví dụ của bài nguồn, rồi giải thích từng nhóm bằng tài liệu của Python, của OpenJDK (bộ phát triển Java) và của MDN, kèm chỗ ranh giới giữa các nhóm mờ đi.
 
-![Ba nhóm xếp dọc. Ngôn ngữ biên dịch như C, C++, Go, hai bước: biên dịch trước, chương trình thành mã máy trước khi chạy; bộ xử lý thực thi thẳng mã máy. Ngôn ngữ bytecode như Java, kèm C# theo bài nguồn, ba bước: biên dịch mã nguồn thành bytecode, dạng trung gian; máy ảo nạp và chạy bytecode, JVM với Java và CLR với C#; tùy chọn, trình JIT biến đoạn chạy nhiều thành mã máy lúc chạy. Ngôn ngữ thông dịch như Python, JavaScript, Ruby, hai bước: chạy thẳng mã nguồn, không tạo tệp chạy được riêng; trình thông dịch đọc và chạy chương trình khi cần. Khung cuối nêu ba điều cần nhớ.](../../diagrams/sd-10-015-main.svg)
+![Bốn nhóm xếp dọc. Biên dịch như C, C++, Go, hai bước: biên dịch trước thành mã máy; bộ xử lý thực thi thẳng. Bytecode như Java, ba bước: biên dịch thành bytecode; JVM nạp và chạy; tùy chọn, JIT biến đoạn chạy nhiều thành mã máy. C# theo bài nguồn cùng nhóm nhưng đi đường riêng, ba bước: biên dịch thành CIL; CLR nạp CIL; bắt buộc chuyển CIL sang mã máy trước khi chạy, thường bằng JIT hoặc biên dịch trước. Thông dịch như Python, JavaScript, Ruby, hai bước: chạy thẳng mã nguồn; trình thông dịch đọc và chạy khi cần. Khung cuối nêu ba điều cần nhớ.](../../diagrams/sd-10-015-main.svg)
 
 ## Từ viết tắt
 
@@ -11,6 +11,7 @@ Bài giữ ba nhóm và các ngôn ngữ ví dụ của bài nguồn, rồi gi�
 - **JVM** (Java Virtual Machine) — máy ảo Java: chương trình chạy bytecode của Java.
 - **JIT** (Just-In-Time) — biên dịch đúng lúc: dịch đoạn mã sang mã máy ngay trong lúc chương trình đang chạy, thay vì trước khi chạy.
 - **CLR** (Common Language Runtime) — môi trường chạy chung của `.NET`: thành phần chạy mã trung gian của chương trình C#.
+- **CIL** (Common Intermediate Language) — mã trung gian chung của `.NET`: dạng trình biên dịch C# tạo ra, độc lập với bộ xử lý, chưa phải mã máy.
 - **AOT** (Ahead-Of-Time) — biên dịch trước: dịch cả chương trình sang mã máy trước khi chạy; ngược với JIT.
 - **MDN** (Mozilla Developer Network) — tên cũ của MDN Web Docs, bộ tài liệu tra cứu công nghệ web do Mozilla và cộng đồng viết; bài dùng nó để đối chiếu.
 
@@ -18,7 +19,7 @@ Bài giữ ba nhóm và các ngôn ngữ ví dụ của bài nguồn, rồi gi�
 
 **Biên dịch (C, C++, Go).** Theo MDN, biên dịch là biến một chương trình viết bằng ngôn ngữ này thành các lệnh ở một dạng hoặc ngôn ngữ khác; chương trình làm việc đó là trình biên dịch. Thường thì đích là mã máy, tức mã chạy được. Phần lớn trình biên dịch làm theo kiểu biên dịch trước (AOT) hoặc kiểu đúng lúc (JIT); `gcc` là ví dụ quen thuộc của kiểu biên dịch trước, và người dùng gọi nó từ dòng lệnh hay từ môi trường phát triển. Mã máy sinh ra được bộ xử lý thực thi trực tiếp, không cần chương trình trung gian nào nữa.
 
-**Bytecode (Java, C#).** Với Java, tài liệu lệnh `java` của OpenJDK nói lệnh này chạy một ứng dụng bằng cách khởi động máy ảo Java (JVM), nạp lớp chính của ứng dụng rồi gọi phương thức `main()` của lớp đó. Thứ máy ảo nạp là tệp lớp, tức mã đã biên dịch ra một dạng trung gian chứ chưa phải mã máy của một máy cụ thể. MDN mô tả trình JIT là bước dịch dạng trung gian như bytecode của Java sang mã máy ngay lúc chương trình chạy: trình JIT theo dõi những đoạn được chạy nhiều ("điểm nóng") và chỉ biên dịch chúng khi lợi ích nhanh hơn lớn hơn chi phí biên dịch. C# được giữ trong nhóm này theo danh sách của bài nguồn. Theo hiểu biết chung của người biên soạn (chưa đối chiếu), C# biên dịch ra một dạng mã trung gian chạy trên môi trường chạy CLR của `.NET` chứ không qua JVM, nên bước "máy ảo" trong hình là JVM với Java và CLR với C#.
+**Bytecode (Java, C#).** Với Java, tài liệu lệnh `java` của OpenJDK nói lệnh này chạy một ứng dụng bằng cách khởi động máy ảo Java (JVM), nạp lớp chính của ứng dụng rồi gọi phương thức `main()` của lớp đó. Thứ máy ảo nạp là tệp lớp, tức mã đã biên dịch ra một dạng trung gian chứ chưa phải mã máy của một máy cụ thể. MDN mô tả trình JIT là bước dịch dạng trung gian như bytecode của Java sang mã máy ngay lúc chương trình chạy: trình JIT theo dõi những đoạn được chạy nhiều ("điểm nóng") và chỉ biên dịch chúng khi lợi ích nhanh hơn lớn hơn chi phí biên dịch. C# được giữ trong nhóm này theo danh sách của bài nguồn, nhưng không qua JVM. Theo tài liệu Microsoft về quy trình thực thi mã được quản lý, trình biên dịch C# dịch mã nguồn sang mã trung gian CIL (kèm siêu dữ liệu); trước khi chạy, CIL phải được chuyển sang mã máy riêng của bộ xử lý, thường bằng trình JIT của CLR khi phương thức được gọi lần đầu, hoặc bằng biên dịch trước (AOT). Khác với hình của Java, bước chuyển sang mã máy ở C# là bắt buộc, không phải tùy chọn.
 
 **Thông dịch (Python, JavaScript, Ruby).** Tài liệu của Python gọi Python là ngôn ngữ thông dịch, đối lập với ngôn ngữ biên dịch: có thể chạy thẳng tệp mã nguồn mà không phải tự tạo trước một tệp thực thi. Cách này thường rút ngắn vòng viết, chạy, sửa lỗi, đổi lại chương trình nhìn chung chạy chậm hơn. JavaScript trong trình duyệt là ví dụ cho thấy ranh giới có thể mờ: MDN nói các trình duyệt lớn đều có bộ máy JavaScript với trình JIT tích hợp để tăng tốc.
 
@@ -27,7 +28,7 @@ Bài giữ ba nhóm và các ngôn ngữ ví dụ của bài nguồn, rồi gi�
 ## Giới hạn cần nhớ
 
 Ba nhóm là cách chia của bài nguồn, một sự đơn giản hóa. Cách chạy là chuyện của từng bản cài đặt cụ thể chứ không phải của ngôn ngữ; bài chỉ nói điều tài liệu Python, OpenJDK và MDN nói và không so sánh các bản cài đặt.
-Bài không có số đo tốc độ, nên "chạy chậm hơn" chỉ là nhận định chung trong tài liệu Python. Tài liệu lệnh `java` mô tả cách khởi chạy và không bàn về JIT; phần JIT lấy từ MDN. Bài cũng không nói gì thêm về cách Ruby chạy, và phần về C# và CLR chưa được đối chiếu với tài liệu của Microsoft.
+Bài không có số đo tốc độ, nên "chạy chậm hơn" chỉ là nhận định chung trong tài liệu Python. Tài liệu lệnh `java` mô tả cách khởi chạy và không bàn về JIT; phần JIT lấy từ MDN. Bài cũng không nói gì thêm về cách Ruby chạy. Phần C# lấy từ tài liệu Microsoft nhưng bài không đi sâu vào các cách chuyển CIL sang mã máy.
 
 ## Nhìn hình trả lời
 
@@ -54,6 +55,7 @@ Bài nguồn có một ảnh và ba đoạn về ba nhóm, kèm ví dụ ngôn n
 - [Python — bảng thuật ngữ](https://github.com/python/cpython/blob/b00a14018172652226bd6efb517af021bd03aa88/Doc/glossary.rst): mục bytecode (tệp `.pyc`), mục interpreted và mục virtual machine. Đọc từ kho mã.
 - [OpenJDK — tài liệu lệnh java](https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/man/java.md): lệnh `java` khởi động JVM, nạp lớp chính, gọi `main()`. Đọc từ kho mã.
 - MDN: [Compile](https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/compile/index.md) và [Just-In-Time Compilation](https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/just_in_time_compilation/index.md): biên dịch trước và JIT, điểm nóng, trình duyệt. Đọc từ kho mã.
+- [Microsoft — quy trình thực thi mã được quản lý (.NET)](https://github.com/dotnet/docs/blob/8d19c1df9f9ac62a68b8f1f7133f97530e1ff39d/docs/standard/managed-execution-process.md): trình biên dịch dịch mã nguồn sang CIL; CIL phải được chuyển sang mã máy trước khi chạy, bằng JIT hoặc biên dịch trước. Đọc từ kho mã.
 
-Đã đọc nguồn ngày 2026-10-19. Việc tệp lớp mà JVM nạp chứa bytecode, chuyện C# chạy trên CLR và các câu giải nghĩa CPU, JVM, CLR và AOT trong mục từ viết tắt là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn.
+Đã đọc nguồn ngày 2026-10-19. Việc tệp lớp mà JVM nạp chứa bytecode và các câu giải nghĩa CPU, JVM, CLR và AOT trong mục từ viết tắt là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn.
 Bài viết và hình được thiết kế độc lập.

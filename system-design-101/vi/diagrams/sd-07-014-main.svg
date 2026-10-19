@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1133" viewBox="0 0 320 1133" role="img" aria-labelledby="title desc">
+<title id="title">Một giao dịch thẻ đi qua những ai</title>
+<desc id="desc">Ba khung. Khung một, chuẩn bị (bước 0 và 1): chủ thẻ mở tài khoản ở ngân hàng phát hành và nhận thẻ; người bán đăng ký với ISO hoặc MSP, đơn vị này hợp tác với bộ xử lý thanh toán để mở tài khoản người bán. Khung hai, bên thu (bước 2 đến 5): cổng thanh toán nhận giao dịch và thông tin thanh toán, chuyển cho bộ xử lý bên thu, bộ xử lý này gửi giao dịch cho mạng thẻ và giữ tài khoản người bán lúc quyết toán. Khung ba, bên phát hành (bước 6 đến 8): bộ xử lý bên phát hành nói chuyện với mạng thẻ thay ngân hàng phát hành, xác nhận và vận hành tài khoản của khách.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1133" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Một giao dịch thẻ đi qua</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">những ai</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Chuẩn bị, bên thu, bên phát hành.</text>
+<rect x="8" y="104" width="304" height="362" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="132.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Chuẩn bị (bước 0 và 1)</text>
+<rect x="20" y="149" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="175" r="14" fill="#1d4ed8"/>
+<text x="46" y="180.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="175.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Chủ thẻ</text>
+<text x="70" y="199.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mở tài khoản ở ngân hàng</text>
+<text x="70" y="218.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">phát hành, nhận thẻ.</text>
+<rect x="20" y="258" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="284" r="14" fill="#1d4ed8"/>
+<text x="46" y="289.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="284.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Người bán</text>
+<text x="70" y="308.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đăng ký với ISO hoặc MSP</text>
+<text x="70" y="327.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">để bán tại cửa hàng.</text>
+<polyline points="46,238 46,256" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="367" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="393" r="14" fill="#1d4ed8"/>
+<text x="46" y="398.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="393.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">ISO hoặc MSP</text>
+<text x="70" y="417.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Hợp tác với bộ xử lý để mở</text>
+<text x="70" y="436.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tài khoản người bán.</text>
+<polyline points="46,347 46,365" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="478" width="304" height="351" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="506.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Bên thu (bước 2 đến 5)</text>
+<rect x="20" y="523" width="84" height="105" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="62" cy="545" r="14" fill="#0f766e"/><g transform="translate(53.6 536.6) scale(0.7)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-5"/><path d="M15 8V2"/><path d="M17 8a1 1 0 0 1 1 1v4a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1z"/><path d="M9 8V2"/></g>
+<text x="62" y="576.9" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">Cổng</text>
+<text x="62" y="595.6" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">thanh</text>
+<text x="62" y="614.4" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">toán</text>
+<rect x="118" y="523" width="84" height="105" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="160" cy="545" r="14" fill="#0f766e"/><g transform="translate(151.6 536.6) scale(0.7)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="8" rx="2" ry="2" width="20" x="2" y="2"/><rect height="8" rx="2" ry="2" width="20" x="2" y="14"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></g>
+<text x="160" y="576.9" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">Bộ xử lý</text>
+<text x="160" y="595.6" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">bên thu</text>
+<rect x="216" y="523" width="84" height="105" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="258" cy="545" r="14" fill="#0f766e"/><g transform="translate(249.6 536.6) scale(0.7)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="6" rx="1" width="6" x="16" y="16"/><rect height="6" rx="1" width="6" x="2" y="16"/><rect height="6" rx="1" width="6" x="9" y="2"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"/><path d="M12 12V8"/></g>
+<text x="258" y="576.9" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">Mạng</text>
+<text x="258" y="595.6" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">thẻ</text>
+<polyline points="62,628 62,817" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
+<polyline points="160,628 160,817" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
+<polyline points="258,628 258,817" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
+<text x="111" y="656.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Giao dịch</text>
+<text x="111" y="675.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">và thông</text>
+<text x="111" y="695.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">tin thanh</text>
+<text x="111" y="714.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">toán</text>
+<polyline points="63,728 157,728" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="209" y="756.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Chuyển</text>
+<text x="209" y="775.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">giao dịch</text>
+<text x="209" y="795.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">đi</text>
+<polyline points="161,809 255,809" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="841" width="304" height="284" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="869.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Bên phát hành (bước 6 đến</text>
+<text x="20" y="891.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">8)</text>
+<rect x="20" y="908" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="931" r="11" fill="#16a34a"/>
+<polyline points="37.9,931.4 41.7,935.4 48.5,927" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="934.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bộ xử lý bên phát hành nói</text>
+<text x="64" y="953.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chuyện với mạng thẻ.</text>
+<rect x="20" y="979" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1002" r="11" fill="#16a34a"/>
+<polyline points="37.9,1002.4 41.7,1006.4 48.5,998" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1005.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nó làm việc đó thay mặt</text>
+<text x="64" y="1024.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">ngân hàng phát hành.</text>
+<rect x="20" y="1050" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1073" r="11" fill="#16a34a"/>
+<polyline points="37.9,1073.4 41.7,1077.4 48.5,1069" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1076.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nó xác nhận và vận hành tài</text>
+<text x="64" y="1095.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khoản của khách.</text>
+</g>
+</svg>

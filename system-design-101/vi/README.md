@@ -175,6 +175,11 @@ Các bài chưa viết của nhóm này không có trong danh sách; số thứ 
 8. [Đối soát thanh toán: ba nỗi đau và cách gỡ](lessons/sd-07-008/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 9. [UPI của Ấn Độ: đăng ký, liên kết tài khoản, chuyển tiền](lessons/sd-07-009/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 10. [Quét mã để trả tiền: hai quy trình, mười hai bước](lessons/sd-07-010/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+11. [Dòng tiền sau một đơn hàng: bù trừ và quyết toán](lessons/sd-07-011/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+12. [Hệ thống thanh toán: từ nút Mua tới sổ cái](lessons/sd-07-012/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+13. [Học về thanh toán: bản đồ bảy phần của ngành](lessons/sd-07-013/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+14. [Hệ sinh thái thanh toán qua một giao dịch thẻ](lessons/sd-07-014/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+15. [Thanh toán ngoại tệ: 100 đô la thành 88 euro](lessons/sd-07-015/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 
 ## Công cụ và năng suất
 

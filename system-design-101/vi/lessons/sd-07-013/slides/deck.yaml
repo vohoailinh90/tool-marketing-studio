@@ -1,0 +1,26 @@
+id: sd-07-013
+status: done
+owner: claude/sd101-lessons-w7-3
+claimed_at: '2026-10-19T03:39:13Z'
+done_at: '2026-10-19T03:45:48Z'
+moda_canvas: cvs_7MM3C3C25M953S7A3P0X4Q46ZN
+moda_url: https://moda.app/canvas/f4a0d836-08b4-4947-93a8-760749721bf5
+slide_count: 10
+size: 1920x1080
+exports: badged
+layouts:
+  slides:
+  - one-big-number
+  - card-grid
+  - two-column-comparison
+  - lookup-table
+  - card-grid
+  - one-highlighted-sentence
+  - numbered-rows
+  - 2x2-matrix
+  - lookup-table
+  - card-grid
+  first_concept: 3
+  cannot:
+    flow: the source gives no order or link between the seven parts, so an arrow would
+      claim one

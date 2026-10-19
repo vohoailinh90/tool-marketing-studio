@@ -2,7 +2,7 @@
 
 **Một trong những lỗi nghiêm trọng nhất của hệ thống thanh toán là thu tiền của khách hai lần. Vì vậy hệ thống phải đảm bảo mỗi lệnh thanh toán được thực hiện đúng một lần. Nguồn chia việc khó này thành hai việc dễ hơn: thực hiện ít nhất một lần và thực hiện nhiều nhất một lần.**
 
-![Ba khung. Khung một, đúng một lần gồm hai phần: ít nhất một lần được đảm bảo bằng việc thử lại, nhiều nhất một lần được đảm bảo bằng khóa chống trùng. Khung hai, thử lại: máy khách trả 10 đô la, ba lần đầu thất bại vì mạng yếu, lần thứ tư thành công. Khung ba, khóa chống trùng: một giá trị duy nhất do máy khách tạo, hết hạn sau một thời gian, thường là UUID, gửi kèm ở phần đầu của yêu cầu; gọi lại cùng khóa thì cho cùng kết quả.](../../diagrams/sd-07-016-main.svg)
+![Ba khung. Khung một, đúng một lần gồm hai phần: ít nhất một lần được đảm bảo bằng việc thử lại, nhiều nhất một lần được đảm bảo bằng khóa chống trùng. Khung hai, thử lại: máy khách trả 10 đô la, ba lần đầu thất bại vì mạng yếu, lần thứ tư thành công. Khung ba, khóa chống trùng: một giá trị duy nhất do máy khách tạo, hết hạn sau một thời gian, thường là UUID, gửi kèm ở phần đầu của yêu cầu; gọi lại cùng khóa thì cho cùng kết quả, với điều kiện khóa được giữ chỗ trọn vẹn và kết quả được lưu bền.](../../diagrams/sd-07-016-main.svg)
 
 ## Từ viết tắt
 

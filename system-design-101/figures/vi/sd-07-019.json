@@ -2,7 +2,7 @@
   "id": "sd-07-019",
   "title": "ACH trả lương theo lô",
   "subtitle": "Ví dụ của nguồn: gửi trước 19 giờ, tới 6 giờ sáng hôm sau.",
-  "desc": "Ba khung. Khung một, từ công ty tới ngân hàng gốc: công ty trả lương gửi các giao dịch lương cho bên xử lý thứ ba, bên này tạo tệp ACH và tải lên máy chủ SFTP của ngân hàng gốc ODFI trước giờ chốt 19 giờ. Khung hai, qua đêm: sau giờ làm việc, ODFI chuyển tệp cho nhà vận hành ACH để bù trừ và quyết toán, tệp được xử lý khoảng nửa đêm và có mặt ở ngân hàng nhận RDFI. Khung ba, sáng hôm sau: lúc 6 giờ sáng RDFI cập nhật tài khoản người nhận, ví dụ cộng 100 đô la. ACH xử lý theo lô, không theo thời gian thực; từ 2018 có tùy chọn ACH trong ngày.",
+  "desc": "Ba khung. Khung một, từ công ty tới ngân hàng gốc: công ty trả lương gửi các giao dịch lương cho bên xử lý thứ ba, bên này tạo tệp ACH và tải lên máy chủ SFTP của ngân hàng gốc ODFI trước giờ chốt 19 giờ. Khung hai, qua đêm: sau giờ làm việc, ODFI chuyển tệp cho nhà vận hành ACH để bù trừ và quyết toán, tệp được xử lý khoảng nửa đêm và có mặt ở ngân hàng nhận RDFI. Khung ba, sáng hôm sau: lúc 6 giờ sáng RDFI cập nhật tài khoản người nhận, ví dụ cộng 100 đô la. ACH xử lý theo lô, không theo thời gian thực; giờ trong hình là của ví dụ, lịch thật tùy ngân hàng gốc và ngày hiệu lực; ACH trong ngày triển khai từ 2016.",
   "sections": [
     {
       "kind": "sequence",
@@ -84,7 +84,7 @@
       "items": [
         "ACH xử lý theo lô, không theo thời gian thực.",
         "Trong ví dụ: gửi trước 19 giờ thì tới sáng hôm sau.",
-        "Có thể chọn ACH trong ngày (triển khai từ 2016)."
+        "Lịch thật tùy ngân hàng; có ACH trong ngày (từ 2016)."
       ]
     }
   ]

@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="320" height="1324" viewBox="0 0 320 1324" role="img" aria-labelledby="title desc">
 <title id="title">ACH trả lương theo lô</title>
-<desc id="desc">Ba khung. Khung một, từ công ty tới ngân hàng gốc: công ty trả lương gửi các giao dịch lương cho bên xử lý thứ ba, bên này tạo tệp ACH và tải lên máy chủ SFTP của ngân hàng gốc ODFI trước giờ chốt 19 giờ. Khung hai, qua đêm: sau giờ làm việc, ODFI chuyển tệp cho nhà vận hành ACH để bù trừ và quyết toán, tệp được xử lý khoảng nửa đêm và có mặt ở ngân hàng nhận RDFI. Khung ba, sáng hôm sau: lúc 6 giờ sáng RDFI cập nhật tài khoản người nhận, ví dụ cộng 100 đô la. ACH xử lý theo lô, không theo thời gian thực; từ 2018 có tùy chọn ACH trong ngày.</desc>
+<desc id="desc">Ba khung. Khung một, từ công ty tới ngân hàng gốc: công ty trả lương gửi các giao dịch lương cho bên xử lý thứ ba, bên này tạo tệp ACH và tải lên máy chủ SFTP của ngân hàng gốc ODFI trước giờ chốt 19 giờ. Khung hai, qua đêm: sau giờ làm việc, ODFI chuyển tệp cho nhà vận hành ACH để bù trừ và quyết toán, tệp được xử lý khoảng nửa đêm và có mặt ở ngân hàng nhận RDFI. Khung ba, sáng hôm sau: lúc 6 giờ sáng RDFI cập nhật tài khoản người nhận, ví dụ cộng 100 đô la. ACH xử lý theo lô, không theo thời gian thực; giờ trong hình là của ví dụ, lịch thật tùy ngân hàng gốc và ngày hiệu lực; ACH trong ngày triển khai từ 2016.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="1324" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
@@ -87,7 +87,7 @@
 <rect x="20" y="1241" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
 <circle cx="43" cy="1264" r="11" fill="#16a34a"/>
 <polyline points="37.9,1264.4 41.7,1268.4 48.5,1260" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="1267.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Có thể chọn ACH trong ngày</text>
-<text x="64" y="1286.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">(triển khai từ 2016).</text>
+<text x="64" y="1267.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lịch thật tùy ngân hàng; có</text>
+<text x="64" y="1286.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">ACH trong ngày (từ 2016).</text>
 </g>
 </svg>

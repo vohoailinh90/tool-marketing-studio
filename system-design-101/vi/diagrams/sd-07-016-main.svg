@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="320" height="950" viewBox="0 0 320 950" role="img" aria-labelledby="title desc">
 <title id="title">Một lệnh thanh toán, đúng một lần</title>
-<desc id="desc">Ba khung. Khung một, đúng một lần gồm hai phần: ít nhất một lần được đảm bảo bằng việc thử lại, nhiều nhất một lần được đảm bảo bằng khóa chống trùng. Khung hai, thử lại: máy khách trả 10 đô la, ba lần đầu thất bại vì mạng yếu, lần thứ tư thành công. Khung ba, khóa chống trùng: một giá trị duy nhất do máy khách tạo, hết hạn sau một thời gian, thường là UUID, gửi kèm ở phần đầu của yêu cầu; gọi lại cùng khóa thì cho cùng kết quả.</desc>
+<desc id="desc">Ba khung. Khung một, đúng một lần gồm hai phần: ít nhất một lần được đảm bảo bằng việc thử lại, nhiều nhất một lần được đảm bảo bằng khóa chống trùng. Khung hai, thử lại: máy khách trả 10 đô la, ba lần đầu thất bại vì mạng yếu, lần thứ tư thành công. Khung ba, khóa chống trùng: một giá trị duy nhất do máy khách tạo, hết hạn sau một thời gian, thường là UUID, gửi kèm ở phần đầu của yêu cầu; gọi lại cùng khóa thì cho cùng kết quả, với điều kiện khóa được giữ chỗ trọn vẹn và kết quả được lưu bền.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="950" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
@@ -17,8 +17,8 @@
 <rect x="20" y="250" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
 <circle cx="50" cy="293.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 282.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"/><circle cx="16.5" cy="7.5" fill="#FFFFFF" r=".5"/></g>
 <text x="78" y="276.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Nhiều nhất một lần</text>
-<text x="78" y="300.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đảm bảo bằng khóa chống</text>
-<text x="78" y="319.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trùng.</text>
+<text x="78" y="300.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Khóa chống trùng, giữ chỗ</text>
+<text x="78" y="319.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trọn vẹn.</text>
 <rect x="8" y="361" width="304" height="253" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
 <text x="20" y="389.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Thử lại: 10 đô la</text>
 <rect x="20" y="406" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
@@ -53,7 +53,7 @@
 <rect x="20" y="867" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
 <circle cx="43" cy="890" r="11" fill="#16a34a"/>
 <polyline points="37.9,890.4 41.7,894.4 48.5,886" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="893.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Gọi lại cùng khóa thì cho</text>
-<text x="64" y="912.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cùng kết quả.</text>
+<text x="64" y="893.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cùng khóa thì cùng kết quả,</text>
+<text x="64" y="912.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nếu kết quả được lưu bền.</text>
 </g>
 </svg>

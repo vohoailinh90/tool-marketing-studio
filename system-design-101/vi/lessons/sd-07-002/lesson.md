@@ -2,7 +2,7 @@
 
 **Ví ở ngân hàng là một tài khoản trong sổ riêng của từng ngân hàng, còn ví trên blockchain là một địa chỉ trên một sổ cái chung. Khác nhau ở chỗ ai giữ sổ, tiền thật sự chuyển khi nào, và bạn phải mở ví bao nhiêu lần.**
 
-![Ba khung. Khung một, ở ngân hàng: gửi tiền mở tài khoản riêng ở từng ngân hàng; chuyển khoản trừ và cộng ngay trong sổ nhưng tiền thật chuyển sau, khi hai ngân hàng đối chiếu cuối ngày; rút tiền trừ tài khoản và nhận tiền mặt. Khung hai, trên blockchain: tạo địa chỉ và giữ khóa riêng trong ví; chuyển bằng cách nhập địa chỉ người nhận và ký bằng khóa riêng; khi giao dịch được xác nhận, số dư hai địa chỉ đổi theo. Khung ba, điểm khác: một sổ cái chung thay cho nhiều sổ riêng, một địa chỉ thay cho nhiều tài khoản, xác nhận gần thời gian thực.](../../diagrams/sd-07-002-main.svg)
+![Ba khung. Khung một, ở ngân hàng: gửi tiền mở tài khoản riêng ở từng ngân hàng; chuyển khoản trừ và cộng ngay trong sổ, còn lúc tiền thật chuyển giữa hai ngân hàng thì tùy hệ thống chuyển tiền (nguồn lấy ví dụ đối chiếu cuối ngày); rút tiền trừ tài khoản và nhận tiền mặt. Khung hai, trên blockchain: tạo địa chỉ và giữ khóa riêng trong ví; chuyển bằng cách nhập địa chỉ người nhận và ký bằng khóa riêng; khi giao dịch được xác nhận, số dư hai địa chỉ đổi theo. Khung ba, điểm khác: một sổ cái chung thay cho nhiều sổ riêng, một địa chỉ thay cho nhiều tài khoản, xác nhận gần thời gian thực.](../../diagrams/sd-07-002-main.svg)
 
 ## Đọc hình
 

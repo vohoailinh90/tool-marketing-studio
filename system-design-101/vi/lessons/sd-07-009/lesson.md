@@ -3,7 +3,7 @@
 **UPI là hệ thống thanh toán tức thời của Ấn Độ: bạn dùng một "địa chỉ thanh toán" thay vì số tài khoản, và một tổ chức đứng giữa các ngân hàng tra địa chỉ đó ra tài khoản thật rồi điều tiền.**
 Nguồn nói nó chiếm 60% giao dịch bán lẻ số ở Ấn Độ (số của nguồn, chưa kiểm tra) và còn đang tăng.
 
-![Hai khung. Khung một, chuẩn bị: Bob cung cấp số điện thoại và xác minh bằng mật khẩu dùng một lần; đặt địa chỉ thanh toán ảo; ứng dụng tạo địa chỉ đó với ngân hàng thu; liên kết tài khoản ngân hàng qua NPCI và đặt mã PIN. Khung hai, chuyển tiền: Alice nhập địa chỉ của Bob và 100 rupee, ứng dụng của Alice gửi yêu cầu tới NPCI, NPCI nhờ ngân hàng của Bob tra chi tiết, trừ 100 ở tài khoản Alice, ra lệnh cộng 100 vào tài khoản Bob, rồi báo thành công cho các ứng dụng.](../../diagrams/sd-07-009-main.svg)
+![Hai khung. Khung một, chuẩn bị: Bob cung cấp số điện thoại và xác minh bằng mật khẩu dùng một lần; đặt địa chỉ thanh toán ảo; ứng dụng tạo địa chỉ đó với ngân hàng thu; liên kết tài khoản ngân hàng qua NPCI và đặt mã PIN. Khung hai, chuyển tiền sau khi ứng dụng của Alice gửi địa chỉ của Bob và 100 rupee tới NPCI: NPCI nhờ ngân hàng của Bob tra chi tiết; NPCI gửi yêu cầu trừ tới ngân hàng của Alice, ngân hàng đó trừ 100 rupee và báo lại; NPCI gửi yêu cầu cộng tới ngân hàng của Bob, ngân hàng đó cộng 100 rupee và báo lại; rồi NPCI báo thành công cho các ứng dụng.](../../diagrams/sd-07-009-main.svg)
 
 ## Từ viết tắt
 

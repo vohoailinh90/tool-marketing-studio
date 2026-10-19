@@ -34,7 +34,7 @@ Bài giữ tên tám chuẩn của bài nguồn, gom chúng thành ba nhóm theo
 - OpenAPI, còn gọi là OAS: theo README của dự án, đặc tả này định nghĩa một cách mô tả giao diện chuẩn, không phụ thuộc ngôn ngữ lập trình, cho các API chạy trên HTTP. Nhờ mô tả đó, cả người lẫn máy hiểu được dịch vụ làm được gì mà không cần xem mã nguồn hay tài liệu khác; README nêu thêm các việc có thể làm từ một bản mô tả, như dựng tài liệu tương tác và sinh mã.
 
 **Truy cập và ngôn ngữ.**
-- OAuth: bản nháp OAuth 2.1 giải thích đây là một lớp ủy quyền thêm vào mô hình khách–máy chủ. Thay vì đưa mật khẩu của chủ tài nguyên cho ứng dụng, ứng dụng xin một mã truy cập (access token), một thông tin xác nhận quyền hạn nhất định với thời hạn nhất định, do máy chủ ủy quyền cấp khi chủ tài nguyên đồng ý. Bản nháp liệt kê các rắc rối của cách cũ: ứng dụng phải giữ mật khẩu, và máy chủ buộc phải hỗ trợ đăng nhập bằng mật khẩu.
+- OAuth: bản nháp OAuth 2.1 giải thích đây là một lớp ủy quyền thêm vào mô hình khách–máy chủ. Thay vì đưa mật khẩu của chủ tài nguyên cho ứng dụng, ứng dụng xin một mã truy cập (access token), một thông tin xác nhận quyền hạn nhất định với thời hạn nhất định, do máy chủ ủy quyền cấp; khi người dùng ủy quyền cho ứng dụng thì việc cấp dựa trên sự đồng ý của chủ tài nguyên khi cần, còn các kiểu cấp quyền khác không nhất thiết có bước này. Bản nháp liệt kê các rắc rối của cách cũ: ứng dụng phải giữ mật khẩu, và máy chủ buộc phải hỗ trợ đăng nhập bằng mật khẩu.
 - ECMAScript: theo MDN, đây là đặc tả ngôn ngữ kịch bản mà JavaScript dựa trên, do Ecma International lo việc chuẩn hóa; văn bản đặc tả là ECMA-262 và kho mã của nó ghi đây là bản nháp hiện hành của "ECMAScript Language Specification".
 
 ## Giới hạn cần nhớ

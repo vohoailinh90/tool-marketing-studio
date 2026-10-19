@@ -26,7 +26,7 @@
     },
     "claims": {
       "status": "pending",
-      "reason": "source_claims_listed_with_the_pinned_source; OpenAPI, ECMAScript and HTML were read in raw copies at the pinned commits, but the IETF, SQL, OAuth and ISO 8601 statements are only the source's word and the glosses of the abbreviations are the author's general knowledge"
+      "reason": "source_claims_listed_with_the_pinned_source; OpenAPI, ECMAScript and HTML were read in raw copies at the pinned commits, and the SQL (MDN) and OAuth (OAuth 2.1 draft) statements were checked against pinned copies recorded in the claims below; only the ISO 8601 statement is the source's word, and the glosses of the abbreviations are the author's general knowledge"
     },
     "technical_review": {
       "status": "pending",
@@ -108,7 +108,7 @@
       "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
     },
     {
-      "claim_vi": "OAuth 2.1 draft: OAuth adds an authorization layer; instead of the resource owner's credentials, the client obtains an access token (scope and lifetime) issued by an authorization server with the resource owner's approval; the older model made applications store credentials and servers support password authentication. This is an Internet-Draft, not a published standard.",
+      "claim_vi": "OAuth 2.1 draft: OAuth adds an authorization layer; instead of the resource owner's credentials, the client obtains an access token (scope and lifetime) issued by an authorization server, with the resource owner's approval where a user delegates access (the lesson adds that other grant types need not involve this step); the older model made applications store credentials and servers support password authentication. This is an Internet-Draft, not a published standard.",
       "source": "https://github.com/oauth-wg/oauth-v2-1/blob/d04b368313c8835a930a2e55a68ef547312b7b32/draft-ietf-oauth-v2-1.md",
       "section": "Introduction",
       "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."

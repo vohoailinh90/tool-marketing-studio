@@ -42,7 +42,7 @@ Bạn gõ tên một website vào trình duyệt lần đầu, khi chưa có đ�
 <details>
 <summary>Xem đáp án</summary>
 
-Máy chủ DNS. Trình duyệt biết tên nhưng cần địa chỉ IP để gửi yêu cầu đi, nên khi chưa có sẵn địa chỉ thì phải hỏi DNS trước. Nếu địa chỉ đã được nhớ sẵn (bộ nhớ đệm) thì không phải hỏi lại, và khi đi qua proxy thì việc dịch tên có thể do proxy làm.
+Máy chủ DNS. Trình duyệt biết tên nhưng cần địa chỉ IP để gửi yêu cầu đi, nên khi chưa có sẵn địa chỉ thì phải hỏi DNS trước. Nếu địa chỉ đã được nhớ sẵn (bộ nhớ đệm DNS, mà MDN nói giúp giảm độ trễ của việc dịch tên) thì thường không phải hỏi lại, và khi đi qua proxy chuyển tiếp thì việc dịch tên có thể do proxy làm (MDN nói proxy chuyển tiếp lưu và chuyển tiếp các dịch vụ như DNS). Việc kết luận rằng câu trả lời "hỏi DNS trước" chỉ đúng khi chưa có bộ nhớ đệm và không qua proxy là suy luận của người biên soạn.
 Có địa chỉ rồi, yêu cầu tới máy chủ web, có thể qua một proxy đứng giữa. Nếu nội dung đã được phân phát tới máy chủ ở lớp phân phối, người dùng nhận từ máy chủ ở lớp phân phối thay vì từ máy chủ gốc.
 
 </details>

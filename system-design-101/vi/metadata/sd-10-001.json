@@ -114,16 +114,22 @@
       "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
     },
     {
-      "claim_vi": "An IP address is a network-layer address assigned to a network interface of a device; it is not necessarily a single decimal-number sequence and does not necessarily identify exactly one machine. The grouping of the six types into two sets, the statement that the six types are roles rather than machines, and the typical order of events for a page load are the author's general knowledge.",
+      "claim_vi": "An IP address is a network-layer address assigned to a network interface of a device; it is not necessarily a single decimal-number sequence and does not necessarily identify exactly one machine. The grouping of the six types into two sets, the statement that the six types are roles rather than machines, and the typical order of events for a page load are the author's general knowledge. The conclusion that the DNS-first answer describes only the path without a cached answer and without a proxy resolving the host name is the author's inference.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-6-most-commonly-used-server-types.md",
       "section": "Design",
       "verified_by": "Author's general knowledge; not checked against primary documentation."
     },
     {
-      "claim_vi": "A browser that already holds a usable cached DNS answer does not query a DNS server for the page load, and behind a forward proxy the proxy may resolve the host name; the DNS-first answer therefore describes the cache-miss, direct-resolution path.",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-6-most-commonly-used-server-types.md",
-      "section": "Nhìn hình trả lời",
-      "verified_by": "Author's general knowledge; not checked against primary documentation."
+      "claim_vi": "MDN: DNS caching can help reduce the latency of DNS resolution, which turns a domain name into an IP address before the browser can issue a request.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/web/performance/guides/dns-prefetch/index.md",
+      "section": "Why use dns-prefetch?",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "MDN: a forward proxy stores and forwards Internet services (like the DNS, or web pages) for a client or a group of clients.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/web/http/guides/proxy_servers_and_tunneling/index.md",
+      "section": "Forward proxies",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
     }
   ],
   "design_notes_vi": "Sáu thẻ chia hai nhóm: ba loại đưa nội dung tới người dùng và ba loại dịch vụ nền của mạng. Không có mũi tên vì nguồn không nói thứ tự giữa các loại. Không dùng ảnh nguồn.",

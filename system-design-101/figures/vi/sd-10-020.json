@@ -1,0 +1,75 @@
+{
+  "id": "sd-10-020",
+  "title": "Tám mô hình lập trình",
+  "subtitle": "Xếp theo việc mô hình lo; tả bằng tài liệu gốc, trừ định nghĩa phản ứng và cách đọc mệnh lệnh.",
+  "desc": "Ba nhóm thẻ và một khung ghi nhớ. Cách mô tả chương trình: mệnh lệnh là danh sách lệnh bảo máy làm gì; khai báo nêu bài toán và để cài đặt tự chọn cách giải; hàm chia việc thành các hàm mà lý tưởng chỉ nhận vào rồi trả ra. Cách tổ chức mã: hướng đối tượng xoay quanh đối tượng có trạng thái và phương thức; hướng khía cạnh tách mối quan tâm cắt ngang nhiều kiểu; tổng quát dùng kiểu như một tham số. Nhiều việc và dữ liệu thay đổi: phản ứng là phản ứng với dữ liệu đến theo thời gian, ví dụ Reactive Streams; đồng thời chia chương trình thành các phần chạy độc lập. Khung cuối nêu ba điều cần nhớ.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Cách mô tả chương trình",
+      "items": [
+        {
+          "name": "Mệnh lệnh",
+          "role": "Danh sách lệnh bảo máy làm gì.",
+          "icon": "list-ordered"
+        },
+        {
+          "name": "Khai báo",
+          "role": "Nêu bài toán; cài đặt tự chọn cách giải.",
+          "icon": "file-text"
+        },
+        {
+          "name": "Hàm (FP)",
+          "role": "Chia việc thành hàm; lý tưởng chỉ nhận vào, trả ra.",
+          "icon": "workflow"
+        }
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Cách tổ chức mã",
+      "items": [
+        {
+          "name": "Hướng đối tượng (OOP)",
+          "role": "Đối tượng có trạng thái và phương thức.",
+          "icon": "box"
+        },
+        {
+          "name": "Hướng khía cạnh (AOP)",
+          "role": "Tách mối quan tâm cắt ngang nhiều kiểu.",
+          "icon": "layers"
+        },
+        {
+          "name": "Tổng quát",
+          "role": "Mã dùng kiểu như một tham số.",
+          "icon": "puzzle"
+        }
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Nhiều việc và dữ liệu thay đổi",
+      "items": [
+        {
+          "name": "Phản ứng",
+          "role": "Phản ứng với dữ liệu đến, ví dụ Reactive Streams.",
+          "icon": "radio"
+        },
+        {
+          "name": "Đồng thời",
+          "role": "Chia chương trình thành phần chạy độc lập.",
+          "icon": "split"
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Nhớ gì",
+      "items": [
+        "Tám cách nghĩ, không loại trừ nhau.",
+        "Đồng thời không phải song song.",
+        "Một ngôn ngữ có thể pha nhiều mô hình."
+      ]
+    }
+  ]
+}

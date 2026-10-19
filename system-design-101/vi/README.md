@@ -208,6 +208,11 @@ Bài nào của nhóm này chưa có trong danh sách dưới đây là chưa vi
 13. [Tường lửa: sáu cách viết một luật](lessons/sd-14-013/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 14. [Bốn cơ chế xác thực: khóa SSH, token OAuth, chứng chỉ và mật khẩu](lessons/sd-14-014/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 15. [Chữ ký số: ký bằng khóa riêng, kiểm bằng khóa công khai](lessons/sd-14-015/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+26. [Google Authenticator hoạt động thế nào? TOTP và mã sáu số](lessons/sd-14-026/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+27. [Các loại VPN: mỗi loại giải bài toán nào?](lessons/sd-14-027/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+28. [Cookie là gì? Tấm thẻ khách quen và điều nó không phải](lessons/sd-14-028/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+29. [Các luồng OAuth 2.0: chọn luồng nào cho ứng dụng nào?](lessons/sd-14-029/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+30. [Tấn công mạng theo bảy tầng OSI: tầng nào chịu đòn gì?](lessons/sd-14-030/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 31. [SSO hoạt động thế nào? Phiên toàn cục và vé xác nhận](lessons/sd-14-031/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 32. [HTTPS thương lượng thế nào? Bộ mã, phiên bản và khóa đối xứng](lessons/sd-14-032/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 33. [Sáu cách nhận ra người dùng: session, token, JWT, SSO, OAuth2 và mã QR](lessons/sd-14-033/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.

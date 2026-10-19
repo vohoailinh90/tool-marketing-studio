@@ -1,0 +1,66 @@
+{
+  "id": "sd-14-030",
+  "lang": "vi",
+  "title": "Bảy tầng, bảy kiểu đòn",
+  "subtitle": "Mỗi tầng có một đòn tiêu biểu và một cách đỡ. Cách chia tầng chỉ là quy ước.",
+  "desc": "Ba khung dọc. Phía chương trình: tầng 7 yêu cầu HTTP chậm, đỡ bằng tốc độ nhận tối thiểu; tầng 6 chuỗi định dạng, đỡ bằng chuỗi do lập trình viên viết; tầng 5 cố định mã phiên, đỡ bằng cấp mã mới. Phía đường truyền: tầng 4 ngập SYN, đỡ bằng SYN cookie; tầng 3 giả địa chỉ IP, đỡ bằng lọc ở router biên; tầng 2 ARP giả, đỡ bằng lọc gói ARP; tầng 1 cắt cáp hoặc nghe lén, đỡ bằng đường dự phòng và mã hóa. Khung ba: bốn ghi chú quy ước.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Phía chương trình",
+      "items": [
+        {
+          "name": "Tầng 7 · Ứng dụng",
+          "role": "Đòn: gửi yêu cầu HTTP thật chậm để giữ hết kết nối. Đỡ: tốc độ nhận tối thiểu, thời hạn đọc yêu cầu.",
+          "icon": "globe"
+        },
+        {
+          "name": "Tầng 6 · Trình bày",
+          "role": "Đòn: dữ liệu nhập bị hiểu là lệnh định dạng. Đỡ: chuỗi định dạng luôn do lập trình viên viết.",
+          "icon": "code"
+        },
+        {
+          "name": "Tầng 5 · Phiên",
+          "role": "Đòn: ép nạn nhân dùng mã phiên kẻ tấn công đã biết. Đỡ: cấp mã phiên mới sau khi đăng nhập.",
+          "icon": "key-round"
+        }
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Phía đường truyền",
+      "items": [
+        {
+          "name": "Tầng 4 · Giao vận",
+          "role": "Đòn: gửi SYN rồi bỏ, làm đầy hàng chờ. Đỡ: SYN cookie, thời hạn chờ ngắn.",
+          "icon": "arrow-left-right"
+        },
+        {
+          "name": "Tầng 3 · Mạng",
+          "role": "Đòn: ghi bừa địa chỉ IP nguồn. Đỡ: router biên lọc địa chỉ nguồn sai.",
+          "icon": "route"
+        },
+        {
+          "name": "Tầng 2 · Liên kết dữ liệu",
+          "role": "Đòn: ARP giả kéo gói tin về kẻ tấn công. Đỡ: lọc gói ARP, bảng ARP cố định.",
+          "icon": "network"
+        },
+        {
+          "name": "Tầng 1 · Vật lý",
+          "role": "Đòn: cắt cáp, nghe lén. Đỡ: đường dự phòng, mã hóa.",
+          "icon": "plug"
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Quy ước, không phải luật",
+      "items": [
+        "DDoS không thuộc riêng tầng nào: OWASP chia theo thứ bị làm cạn.",
+        "MITM thường bắc qua nhiều tầng; cách đỡ chính, TLS, nằm trên TCP.",
+        "Brute force là cách thử đoán, không phải một tầng: đoán mật khẩu hay mã phiên đều có.",
+        "OSI là mô hình để học; Internet thật chạy theo TCP/IP."
+      ]
+    }
+  ]
+}

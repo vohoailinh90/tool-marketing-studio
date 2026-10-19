@@ -10,7 +10,7 @@ size: 1920x1080
 exports: badged
 layouts:
   slides:
-  - sequence-diagram
+  - card-grid
   - one-highlighted-sentence
   - flow
   - lookup-table

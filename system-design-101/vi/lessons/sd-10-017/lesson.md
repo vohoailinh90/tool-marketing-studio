@@ -37,7 +37,7 @@ Bài giữ các mốc thời gian và tên ngôn ngữ của bài nguồn, rồi
 
 ## Giới hạn cần nhớ
 
-Bài nguồn là một bản kể ngắn: không dẫn nguồn cho từng mốc và không cho tên người tạo ra ngôn ngữ nào (trừ khi nói Microsoft). Chỉ mốc của Python và JavaScript được đối chiếu với tài liệu gốc; mọi mốc khác (1957, 1972, thập niên 1980, năm 1995 của Java, PHP và Ruby, năm 2000 của C#, thập niên 2010) và các tên ngôn ngữ đầu tiên là lời của bài nguồn, bài chưa kiểm tra.
+Bài nguồn là một bản kể ngắn: không dẫn nguồn cho từng mốc và không cho tên người tạo ra ngôn ngữ nào (trừ khi nói Microsoft). Chỉ mốc của Python và JavaScript, cùng năm 2022 của Carbon (từ README của dự án), được đối chiếu với tài liệu gốc; mọi mốc khác (1957, 1972, thập niên 1980, năm 1995 của Java, PHP và Ruby, năm 2000 của C#, thập niên 2010) và các tên ngôn ngữ đầu tiên là lời của bài nguồn, bài chưa kiểm tra.
 README của một dự án nói dự án muốn gì chứ không chứng minh nó đạt được; bài chỉ trích điều mỗi dự án tự nêu, không so sánh các ngôn ngữ. Bài nguồn viết "Object-C"; theo hiểu biết chung của người biên soạn, tên thường gọi là Objective-C, và bài dùng tên đó.
 
 ## Nhìn hình trả lời

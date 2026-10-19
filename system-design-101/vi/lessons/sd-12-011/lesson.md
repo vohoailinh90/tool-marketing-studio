@@ -3,7 +3,7 @@
 **Nền tảng thử nghiệm A/B cho phép đưa hai phiên bản của cùng một tính năng tới hai nhóm người dùng, rồi so kết quả để biết phiên bản nào tốt hơn; nó gồm bốn phần, và phần dễ sai nhất là chia nhóm và đọc kết quả.**
 Bài này giải thích bốn phần, rồi chạy thử trên máy ba điều hay làm hỏng thử nghiệm: chia nhóm lệch, hai thử nghiệm chồng lên nhau, và nhìn kết quả giữa chừng.
 
-![Hai khung. Khung một, bốn phần của nền tảng thử nghiệm: định nghĩa và quản lý thử nghiệm, triển khai và chia nhóm, ghi nhận sự kiện, phân tích kết quả. Khung hai, ba chỗ dễ sai: chia nhóm phải ổn định và độc lập giữa các thử nghiệm, số người mỗi nhóm phải đúng tỷ lệ đã định, và không nhìn kết quả giữa chừng để dừng sớm.](../../diagrams/sd-12-011-main.svg)
+![Hai khung. Khung một, bốn phần của nền tảng thử nghiệm: định nghĩa và quản lý thử nghiệm, triển khai và chia nhóm, ghi nhận sự kiện, phân tích kết quả. Khung hai, ba chỗ dễ sai: chia nhóm phải ổn định và không tương quan giữa các thử nghiệm, số người mỗi nhóm phải đúng tỷ lệ đã định, và không nhìn kết quả giữa chừng để dừng sớm.](../../diagrams/sd-12-011-main.svg)
 
 ## Từ viết tắt
 
@@ -23,7 +23,7 @@ Bốn phần của nền tảng, theo thứ tự một thử nghiệm đi qua:
 
 Ngày 2026-10-19, người biên soạn viết một chương trình Python nhỏ (chỉ dùng thư viện chuẩn) và chạy ba thí nghiệm.
 
-**Một. Chia nhóm bằng băm.** Cách chia phổ biến là băm chuỗi `tên thử nghiệm + mã người dùng` rồi lấy phần dư, để cùng một người luôn vào cùng một nhóm mà không cần lưu gì. Với 100.000 người, hàm băm `sha256` chia thành 50.190 người nhóm A và 49.810 người nhóm B: gần 50/50, và người nào cũng ra cùng kết quả ở lần hỏi lại. Nếu hai thử nghiệm dùng chung một chuỗi băm thì hai thử nghiệm giống hệt nhau (ai ở A của thử nghiệm này cũng ở A của thử nghiệm kia). Khi mỗi thử nghiệm có tên riêng trong chuỗi băm, bốn tổ hợp A/B của hai thử nghiệm đều gần 25%, nên hai thử nghiệm không làm nhiễu nhau.
+**Một. Chia nhóm bằng băm.** Cách chia phổ biến là băm chuỗi `tên thử nghiệm + mã người dùng` rồi lấy phần dư, để cùng một người luôn vào cùng một nhóm mà không cần lưu gì. Với 100.000 người, hàm băm `sha256` chia thành 50.190 người nhóm A và 49.810 người nhóm B: gần 50/50, và người nào cũng ra cùng kết quả ở lần hỏi lại. Nếu hai thử nghiệm dùng chung một chuỗi băm thì hai thử nghiệm giống hệt nhau (ai ở A của thử nghiệm này cũng ở A của thử nghiệm kia). Khi mỗi thử nghiệm có tên riêng trong chuỗi băm, bốn tổ hợp A/B của hai thử nghiệm đều gần 25%, nên việc chia nhóm của hai thử nghiệm gần như không tương quan với nhau. Điều này chưa chứng minh hai tính năng không tác động lên nhau: chuyện đó cần phân tích riêng, hoặc xếp các thử nghiệm dễ tác động chéo vào những lớp loại trừ nhau, mỗi người chỉ ở một lớp.
 
 **Hai. Lệch tỷ lệ.** Nếu thiết kế là 50/50 mà quan sát được 50.400 và 49.600 trên 100.000 người, kiểm định chi bình phương cho p khoảng 0,011, đáng ngờ; với 50.000 và 48.500 thì p cỡ 0,000002, gần như chắc chắn có lỗi (ví dụ ứng dụng ở một nhóm hay bị sập trước khi ghi sự kiện). Kết quả của thử nghiệm đó không nên tin cho tới khi tìm ra lỗi. Ở mức 50.190 và 49.810 của thí nghiệm một, p khoảng 0,23, bình thường.
 

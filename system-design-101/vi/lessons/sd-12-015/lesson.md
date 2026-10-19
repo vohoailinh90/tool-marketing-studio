@@ -34,7 +34,7 @@ Ngày 2026-10-19, người biên soạn viết một mô phỏng bằng Python. 
 
 Nếu không dọn, cứ 5 lần gửi thì gần 2 lần gửi vào thẻ không còn ai nhận (tốn băng thông, và một số dịch vụ còn trả lỗi cho mỗi lần). Số thẻ còn sống trong hai cách gần như nhau (78.547 và 78.300), nên việc dọn không làm mất người nhận nào.
 
-**Tin ngoại tuyến.** Một tin được gửi vào một thời điểm ngẫu nhiên trong ngày đầu, và máy trở lại mạng sau 1, 6, 24 hoặc 72 giờ. Với thời gian sống 4 giờ, tỷ lệ tin còn hiệu lực khi máy trở lại là 100%, 92,5%, 16,5% và 0%; với thời gian sống 28 ngày thì cả bốn mức đều 100%. Thời gian sống ngắn hợp với tin hết giá trị nhanh (mã xác thực một lần), dài hợp với tin quan trọng không hết hạn. Nếu mười lần cập nhật cùng một mục (ví dụ tỷ số trận đấu) xếp hàng khi máy ngoại tuyến, chỉ lần cuối cùng đáng giao: gộp theo khóa, mười tin còn một.
+**Tin ngoại tuyến.** Máy mất mạng từ giờ 0 và trở lại sau 1, 6, 24 hoặc 72 giờ; một tin được gửi vào một lúc ngẫu nhiên trong thời gian máy ngoại tuyến, và tuổi của nó khi máy trở lại là khoảng cách từ lúc gửi tới lúc máy về. Với thời gian sống 4 giờ, tỷ lệ tin còn hiệu lực khi máy trở lại là 100%, 64,7%, 16,5% và 5,8%; với thời gian sống 28 ngày thì cả bốn mức đều 100%. Thời gian sống ngắn hợp với tin hết giá trị nhanh (mã xác thực một lần), dài hợp với tin quan trọng không hết hạn. Nếu mười lần cập nhật cùng một mục (ví dụ tỷ số trận đấu) xếp hàng khi máy ngoại tuyến, chỉ lần cuối cùng đáng giao: gộp theo khóa, mười tin còn một.
 
 ## Giới hạn cần nhớ
 
@@ -101,8 +101,8 @@ for cleanup in (False, True):
 def still_valid(offline_hours, ttl_hours, n=1000):
     ok = 0
     for _ in range(n):
-        sent = rnd.uniform(0, 24)                  # tin gửi vào một thời điểm ngẫu nhiên của ngày đầu
-        if offline_hours - sent <= ttl_hours:      # máy trở lại sau offline_hours giờ
+        sent = rnd.uniform(0, offline_hours)       # máy mất mạng từ giờ 0; tin gửi vào một lúc ngẫu nhiên trong lúc đó
+        if offline_hours - sent <= ttl_hours:      # tuổi của tin khi máy trở lại (giờ offline_hours) không quá hạn sống
             ok += 1
     return ok / n
 

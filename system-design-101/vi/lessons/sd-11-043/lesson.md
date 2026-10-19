@@ -3,7 +3,7 @@
 **Bốn từ viết tắt này thuộc hai thế giới khác nhau: CAP và BASE nói về dữ liệu trải trên nhiều máy, SOLID và KISS nói về cách viết và tổ chức mã. Điểm dễ hiểu sai nhất là CAP, vì mạng đứt là chuyện chắc chắn xảy ra, nên câu hỏi thật là "khi mạng đứt, bạn chọn trả lời hay chọn đúng".**
 Bài chạy một mô phỏng hai bản sao dữ liệu trong lúc mạng đứt để thấy lựa chọn đó cụ thể ra sao, rồi giải thích BASE, SOLID và KISS ngắn gọn.
 
-![Bốn khung. Khung một, CAP: khi mạng đứt phải chọn giữa trả lời đúng hoặc từ chối, và trả lời bằng giá trị có thể cũ. Khung hai, mô phỏng hai bản sao khi mạng đứt: hệ thống ưu tiên đúng từ chối ba lượt đọc, hệ thống ưu tiên trả lời trả giá trị cũ ba lượt rồi hội tụ. Khung ba, BASE: sẵn sàng cơ bản, trạng thái mềm, nhất quán cuối cùng. Khung bốn, SOLID là năm nguyên tắc về mã; KISS là giữ cho đơn giản.](../../diagrams/sd-11-043-main.svg)
+![Bốn khung. Khung một, CAP: khi mạng đứt phải chọn giữa từ chối khi không chắc, và trả lời thành công bằng giá trị có thể cũ. Khung hai, mô phỏng hai bản sao khi mạng đứt: hệ thống ưu tiên đúng từ chối ba lần ghi nhưng mọi lượt đọc đều đúng, hệ thống ưu tiên trả lời nhận lượt ghi nhưng ba lượt đọc trả giá trị cũ rồi hội tụ. Khung ba, BASE: sẵn sàng cơ bản, trạng thái mềm, nhất quán cuối cùng. Khung bốn, SOLID là năm nguyên tắc về mã; KISS là giữ cho đơn giản.](../../diagrams/sd-11-043-main.svg)
 
 ## Từ viết tắt
 
@@ -15,7 +15,7 @@ Bài chạy một mô phỏng hai bản sao dữ liệu trong lúc mạng đứt
 
 ## Đọc hình
 
-**CAP.** Bài nguồn phát biểu: một kho dữ liệu phân tán chỉ cung cấp được hai trong ba bảo đảm: nhất quán (mỗi lượt đọc nhận được lượt ghi gần nhất hoặc một lỗi), sẵn sàng (mỗi yêu cầu nhận được trả lời), và chịu được phân mảnh mạng (hệ thống vẫn chạy khi mạng lỗi). Nguồn cũng nhắc định lý này bị chỉ trích là quá hẹp, và đừng dùng nó để xếp cơ sở dữ liệu vào nhóm "ưu tiên nhất quán" hay "ưu tiên sẵn sàng"; vì lỗi mạng chắc chắn xảy ra trong hệ thống phân tán, hệ thống nào cũng phải đối phó với nó. Nguồn dẫn một bài của Martin Kleppmann về chuyện này; bài này không đọc được bài đó từ máy biên soạn nên chỉ nhắc lại như lời của nguồn.
+**CAP.** Bài nguồn phát biểu: một kho dữ liệu phân tán chỉ cung cấp được hai trong ba bảo đảm: nhất quán (mỗi lượt đọc nhận được lượt ghi gần nhất hoặc một lỗi), sẵn sàng (mỗi yêu cầu gửi tới một nút còn chạy nhận được một trả lời thành công, không phải lỗi hay từ chối), và chịu được phân mảnh mạng (hệ thống vẫn chạy khi mạng lỗi). Nguồn cũng nhắc định lý này bị chỉ trích là quá hẹp, và đừng dùng nó để xếp cơ sở dữ liệu vào nhóm "ưu tiên nhất quán" hay "ưu tiên sẵn sàng"; vì lỗi mạng chắc chắn xảy ra trong hệ thống phân tán, hệ thống nào cũng phải đối phó với nó. Nguồn dẫn một bài của Martin Kleppmann về chuyện này; bài này không đọc được bài đó từ máy biên soạn nên chỉ nhắc lại như lời của nguồn.
 
 **BASE.** Mô hình ACID của cơ sở dữ liệu quan hệ quá chặt với một số kho không quan hệ, nên nguyên tắc BASE nới ra: chọn sẵn sàng thay vì nhất quán, và trạng thái sẽ nhất quán sau một lúc.
 
@@ -27,10 +27,10 @@ Bài chạy một mô phỏng hai bản sao dữ liệu trong lúc mạng đứt
 
 Ngày 2026-10-19, người biên soạn viết một mô phỏng thời gian ảo: hai bản sao A và B của một giá trị `x` (ban đầu 0), mạng giữa hai bản đứt từ giây 3 đến hết giây 6. Máy khách ghi `x = 1` vào A từ giây 4 (thử lại mỗi giây nếu bị từ chối) và đọc `x` từ B mỗi giây từ giây 4 đến giây 9, sáu lượt đọc. Sau khi mạng nối lại, B được sao từ A.
 
-- **Ưu tiên nhất quán (từ chối khi không chắc).** Một lượt ghi cần cả hai bản, nên ba lần thử ghi đầu (giây 4, 5, 6) bị từ chối; ba lượt đọc trong lúc đứt cũng bị từ chối. Sau khi nối lại, lượt ghi qua được và cả ba lượt đọc còn lại trả giá trị mới nhất (1). Không có lượt đọc nào trả giá trị cũ, nhưng nửa số lượt đọc không có câu trả lời.
+- **Ưu tiên nhất quán (từ chối khi không chắc).** Một lượt ghi cần cả hai bản, nên ba lần thử ghi đầu (giây 4, 5, 6) bị từ chối. Vì chưa có giá trị mới nào được xác nhận, B vẫn trả đúng giá trị đã xác nhận (0) cho ba lượt đọc trong lúc đứt, nên không lượt đọc nào bị từ chối hay cũ. Sau khi nối lại, lượt ghi qua được ở giây 7 và ba lượt đọc còn lại trả 1. Cái mất là khả năng ghi: ba lần thử bị từ chối và lượt ghi chậm tới giây 7.
 - **Ưu tiên sẵn sàng (luôn trả lời).** Lượt ghi vào A thành công ngay ở giây 4. Ba lượt đọc từ B trong lúc đứt trả 0, giá trị cũ; B chưa nhận được thay đổi. Sau khi nối lại B được sao và ba lượt đọc còn lại trả 1. Không lượt đọc nào bị từ chối, nhưng nửa số lượt cho giá trị cũ.
 
-Đây là hình dạng của lựa chọn: lúc mạng đứt, một hệ thống đổi câu trả lời lỗi lấy tính đúng, hệ thống kia đổi tính đúng tạm thời lấy câu trả lời. Phần "sau khi nối lại, B hội tụ về giá trị mới" chính là ý "nhất quán cuối cùng" của BASE. Mô phỏng đơn giản hóa mạnh: chỉ hai bản, một giá trị, một lần đứt, sao chép tức thì khi nối lại; nó minh họa chứ không chứng minh định lý.
+Đây là hình dạng của lựa chọn: lúc mạng đứt, một hệ thống từ chối các lượt ghi để giữ tính đúng, hệ thống kia nhận lượt ghi và chấp nhận đọc giá trị cũ tạm thời. Phần "sau khi nối lại, B hội tụ về giá trị mới" chính là ý "nhất quán cuối cùng" của BASE. Mô phỏng đơn giản hóa mạnh: chỉ hai bản, một giá trị, một lần đứt, sao chép tức thì khi nối lại; nó minh họa chứ không chứng minh định lý.
 
 <details>
 <summary>Xem chương trình mô phỏng và kết quả</summary>
@@ -38,30 +38,29 @@ Ngày 2026-10-19, người biên soạn viết một mô phỏng thời gian ả
 Chạy `python3 cap.py`; mã nằm trọn ở đây vì bài không thêm tệp mã vào kho. Chương trình không dùng số ngẫu nhiên nên kết quả luôn như nhau.
 
 ```python
-# Two replicas A and B. Partition during t in [3,7). The client writes x=1 at t=4 (to A) and retries at t=7 if it was refused.
-# The client then reads x from B at t=4..9. Anti-entropy copies A to B after the partition heals.
+# Two replicas A and B. Partition during t in [3,7). The client writes x=1 at t=4 (to A) and retries every step if refused.
+# The client reads x from B at t=4..9. Anti-entropy copies A to B after the partition heals.
+# A read is "current" when it returns the latest committed value, "stale" otherwise.
 def run(mode):
-    A=B=0; wrote=False; refused_w=0; r={'refused':0,'stale':0,'latest':0}
+    A = B = 0; committed = 0; wrote = False; refused_writes = 0; reads = {'current': 0, 'stale': 0}
     for t in range(10):
-        part=3<=t<7
-        if not part: B=A                       # anti-entropy after heal
-        if not wrote and t>=4:
-            if mode=='CP' and part: refused_w+=1   # CP: a write needs both replicas
-            else: A=1; wrote=True
-            if not part: B=A
-        if 4<=t<=9:
-            if mode=='CP' and part: r['refused']+=1
-            elif B==1: r['latest']+=1
-            else: r['stale']+=1
-    return refused_w, r
-for m in ('CP','AP'): print(m, run(m))
+        part = 3 <= t < 7
+        if not part: B = A                          # anti-entropy after heal
+        if not wrote and t >= 4:
+            if mode == 'CP' and part: refused_writes += 1   # CP: a write needs both replicas
+            else: A = 1; committed = 1; wrote = True        # AP: A accepts the write alone
+            if not part: B = A
+        if 4 <= t <= 9:
+            reads['current' if B == committed else 'stale'] += 1
+    return refused_writes, reads
+for m in ('CP', 'AP'): print(m, run(m))
 ```
 
 Kết quả chương trình in ra:
 
 ```text
-CP (3, {'refused': 3, 'stale': 0, 'latest': 3})
-AP (0, {'refused': 0, 'stale': 3, 'latest': 3})
+CP (3, {'current': 6, 'stale': 0})
+AP (0, {'current': 3, 'stale': 3})
 ```
 
 </details>

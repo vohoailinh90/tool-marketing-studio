@@ -27,7 +27,7 @@
     "claims": {
       "status": "checked",
       "checked_on": "2026-10-19",
-      "evidence": "Mô phỏng hai bản sao (thời gian ảo, mạng đứt từ giây 3 đến hết giây 6, ghi x=1 vào A từ giây 4 và thử lại, đọc từ B giây 4-9, sao chép A sang B khi mạng nối lại) là chương trình của người biên soạn chạy ngày 2026-10-19: ưu tiên nhất quán từ chối 3 lần ghi và 3 lượt đọc, 3 lượt đọc sau trả giá trị mới nhất; ưu tiên sẵn sàng không từ chối lượt nào, 3 lượt đọc trả 0 rồi 3 lượt trả 1. Phát biểu CAP, BASE, SOLID, KISS, lời chỉ trích CAP và mốc 1960 của KISS chỉ theo bài nguồn; không đọc được bài báo gốc hay bài của Kleppmann."
+      "evidence": "Mô phỏng hai bản sao (thời gian ảo, mạng đứt từ giây 3 đến hết giây 6, ghi x=1 vào A từ giây 4 và thử lại, đọc từ B giây 4-9, sao chép A sang B khi mạng nối lại) là chương trình của người biên soạn chạy ngày 2026-10-19: ưu tiên nhất quán từ chối 3 lần ghi và cả 6 lượt đọc đều trả giá trị đã xác nhận mới nhất; ưu tiên sẵn sàng không từ chối lượt nào, 3 lượt đọc trả giá trị cũ 0 rồi 3 lượt trả 1. Phát biểu CAP, BASE, SOLID, KISS, lời chỉ trích CAP và mốc 1960 của KISS chỉ theo bài nguồn; không đọc được bài báo gốc hay bài của Kleppmann."
     },
     "technical_review": {
       "status": "pending",
@@ -49,7 +49,7 @@
       "verified_by": "Thân bài nguồn đã đọc tại commit ghim; các lời trong đó chưa kiểm với tài liệu gốc."
     },
     {
-      "claim_vi": "Mô phỏng: ưu tiên nhất quán có 3 lần ghi bị từ chối, 3 lượt đọc bị từ chối, 3 lượt đọc trả giá trị mới nhất; ưu tiên sẵn sàng có 0 lượt từ chối, 3 lượt đọc trả giá trị cũ và 3 lượt trả giá trị mới nhất.",
+      "claim_vi": "Mô phỏng: ưu tiên nhất quán có 3 lần ghi bị từ chối và 6 lượt đọc đều trả giá trị đã xác nhận mới nhất; ưu tiên sẵn sàng có 0 lượt từ chối, 3 lượt đọc trả giá trị cũ và 3 lượt trả giá trị mới nhất.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/cap-base-solid-kiss-what-do-these-acronyms-mean.md",
       "section": "Mô phỏng",
       "verified_by": "Chương trình của người biên soạn chạy ngày 2026-10-19; mô hình đơn giản hóa mạnh."

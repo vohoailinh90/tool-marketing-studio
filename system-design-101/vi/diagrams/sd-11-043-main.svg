@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="320" height="962" viewBox="0 0 320 962" role="img" aria-labelledby="title desc">
 <title id="title">CAP, BASE, SOLID, KISS</title>
-<desc id="desc">Bốn khung. Khung một, CAP: khi mạng đứt phải chọn giữa trả lời đúng hoặc từ chối, và trả lời bằng giá trị có thể cũ. Khung hai, mô phỏng hai bản sao khi mạng đứt: hệ thống ưu tiên đúng từ chối ba lượt đọc, hệ thống ưu tiên trả lời trả giá trị cũ ba lượt rồi hội tụ. Khung ba, BASE: sẵn sàng cơ bản, trạng thái mềm, nhất quán cuối cùng. Khung bốn, SOLID là năm nguyên tắc về mã; KISS là giữ cho đơn giản.</desc>
+<desc id="desc">Bốn khung. Khung một, CAP: khi mạng đứt phải chọn giữa từ chối khi không chắc, và trả lời thành công bằng giá trị có thể cũ. Khung hai, mô phỏng hai bản sao khi mạng đứt: hệ thống ưu tiên đúng từ chối ba lần ghi nhưng mọi lượt đọc đều đúng, hệ thống ưu tiên trả lời nhận lượt ghi nhưng ba lượt đọc trả giá trị cũ rồi hội tụ. Khung ba, BASE: sẵn sàng cơ bản, trạng thái mềm, nhất quán cuối cùng. Khung bốn, SOLID là năm nguyên tắc về mã; KISS là giữ cho đơn giản.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="962" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
@@ -23,13 +23,13 @@
 <rect x="20" y="328" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
 <circle cx="43" cy="351" r="11" fill="#16a34a"/>
 <polyline points="37.9,351.4 41.7,355.4 48.5,347" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="354.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ưu tiên đúng: từ chối 3 lượt</text>
-<text x="64" y="373.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đọc.</text>
+<text x="64" y="354.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ưu tiên đúng: từ chối 3 lần</text>
+<text x="64" y="373.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">ghi, đọc đều đúng.</text>
 <rect x="20" y="399" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
 <circle cx="43" cy="422" r="11" fill="#16a34a"/>
 <polyline points="37.9,422.4 41.7,426.4 48.5,418" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="425.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ưu tiên trả lời: 3 lượt đọc trả</text>
-<text x="64" y="444.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">giá trị cũ.</text>
+<text x="64" y="425.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ưu tiên trả lời: nhận ghi, 3</text>
+<text x="64" y="444.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lượt đọc trả giá trị cũ.</text>
 <rect x="20" y="470" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
 <circle cx="43" cy="493" r="11" fill="#16a34a"/>
 <polyline points="37.9,493.4 41.7,497.4 48.5,489" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>

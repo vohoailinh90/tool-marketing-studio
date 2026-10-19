@@ -44,7 +44,7 @@ Vì Alice chỉ đưa địa chỉ và số tiền, cô không cần biết số
 <details>
 <summary>Xem sâu hơn: điều đã sắp xếp lại so với bài nguồn</summary>
 
-Bài nguồn có ba phần: đăng ký, liên kết tài khoản, chuyển tiền trực tiếp. Bài này gộp hai phần đầu thành bốn bước chuẩn bị, và vẽ phần chuyển tiền thành lược đồ ba bên với NPCI ở giữa. Bước trừ tiền ở ngân hàng của Alice có trong phần chữ nhưng không vẽ riêng.
+Bài nguồn có ba phần: đăng ký, liên kết tài khoản, chuyển tiền trực tiếp. Bài này gộp hai phần đầu thành bốn bước chuẩn bị, và vẽ phần chuyển tiền thành lược đồ ba bên với NPCI ở giữa: NPCI, ngân hàng của Alice và ngân hàng của Bob. Bước ứng dụng của Alice gửi yêu cầu và bước báo thành công cho các ứng dụng có trong phần chữ nhưng không vẽ riêng.
 Bài đổi tên ngân hàng và ứng dụng theo vai và không dùng tên thật của nguồn.
 
 </details>

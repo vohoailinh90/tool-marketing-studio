@@ -30,7 +30,7 @@ Nhãn dùng trong bài:
 1. **Không có công thức "lên xu hướng" do nền tảng công bố.** Trang chính thức của YouTube và TikTok mà mình đọc mô tả việc chọn video cho từng người xem. Mô hình "thử với nhóm nhỏ rồi mở rộng nếu phản hồi tốt" là cách bên thứ ba và người làm nội dung mô tả, không phải điều nền tảng công bố. [Chính thức cho phần không có công thức; Cao cho mô hình nhóm nhỏ]
 2. **YouTube đã gỡ trang Trending** (có hiệu lực khoảng 21/7/2025). "Lên xu hướng" nay là được đề xuất. [Chính thức, qua lịch sử sửa đổi API]
 3. **YouTube bật kiếm tiền:** quảng cáo và Premium (YPP đầy đủ) hiện cần 1.000 subscriber + 4.000 giờ xem hoặc 10 triệu lượt xem Shorts/90 ngày. **Từ 1/2/2027, người mới vẫn cần 1.000 subscriber và thêm 8.000 giờ xem hoặc 20 triệu lượt xem Shorts.** Cấp sớm (fan funding, Shopping; Creator Partnerships còn cần kênh ở một trong 24 nước của danh sách riêng, **không có Việt Nam**) cần 500 subscriber + 3 video công khai hợp lệ trong 90 ngày gần nhất + 3.000 giờ hoặc 3 triệu lượt xem Shorts/90 ngày, và không đổi sau 1/2/2027. Kênh đã trong YPP không bị ảnh hưởng tư cách, nhưng muốn nhận tiền từ Shorts phải giữ 10 triệu lượt xem Shorts/90 ngày. [Chính thức]
-4. **TikTok Creator Rewards** (10.000 follower, 100.000 lượt xem/30 ngày, video gốc trên 1 phút) **hiện chỉ mở cho Mỹ, Anh, Đức, Nhật, Hàn, Pháp, Mexico, Brazil. Việt Nam không có trong danh sách.** [Chính thức]
+4. **TikTok Creator Rewards** (10.000 follower, 100.000 lượt xem/30 ngày, video gốc dài từ 1 phút) **hiện chỉ mở cho Mỹ, Anh, Đức, Nhật, Hàn, Pháp, Mexico, Brazil. Việt Nam không có trong danh sách.** [Chính thức]
 5. **Facebook Content Monetization hiện chỉ theo lời mời**, Meta không công bố ngưỡng số liệu. [Chính thức]
 6. **Tiền trên 1.000 lượt xem (RPM)** chênh nhau hàng chục lần: YouTube video dài vài USD, Shorts từ vài cent đến khoảng 0,20 USD, TikTok khoảng 0,4–1 USD (chỉ áp dụng ở 8 nước có chương trình), Facebook Reels thường 0,02–0,20 USD. Không nền tảng nào công bố RPM. [Vừa]
 7. **Video tạo bằng AI không bị cấm, và không có nguồn chính thức nào nói video bị trừ điểm chỉ vì dùng AI.** TikTok nói bật nhãn AI không ảnh hưởng phân phối nếu không vi phạm quy định; YouTube nói nhãn AI không giới hạn khán giả hay quyền kiếm tiền. Rủi ro nằm ở nội dung **hàng loạt, lặp, thiếu giá trị riêng**, thiếu khai báo, và AI đóng vai chuyên gia về chủ đề nhạy cảm (không được kiếm tiền trên YouTube). [Chính thức]
@@ -134,7 +134,8 @@ Nhãn dùng trong bài:
 - **Ở một trong các nước có chương trình: Mỹ, Anh, Đức, Nhật, Hàn, Pháp, Mexico, Brazil** (tài khoản phải đăng ký tại nước đó). **Việt Nam không có trong danh sách** ở cả bản tiếng Anh và tiếng Việt của trang.
 - Từ 18 tuổi (19 ở Hàn Quốc), tài khoản **cá nhân** (không phải Business), thông tin thật, trạng thái tốt.
 - **10.000 follower** và **100.000 lượt xem video trong 30 ngày gần nhất**.
-- Video **gốc, dài trên 1 phút**, đăng **sau khi** vào chương trình; mỗi video cần **1.000 lượt xem For You đủ điều kiện** mới bắt đầu tính tiền. Khuyến nghị 1080p trở lên.
+- Video **gốc, dài từ 1 phút**, đăng **sau khi** vào chương trình; mỗi video cần **1.000 lượt xem For You đủ điều kiện** mới bắt đầu tính tiền. Khuyến nghị 1080p trở lên.
+  - **Hai trang chính thức của TikTok ghi ngưỡng này khác nhau.** Trang trợ giúp (Help Center) ghi hai lần là video phải dài "ít nhất một phút" (*at least one minute long*), nên 60 giây vẫn đạt. Bài Creator Academy ghi "hơn 1 phút" (*over 1 minute long*), nên đúng 60 giây có thể không đạt. Mình chưa thấy trang nào nói rõ video đúng 60 giây có được tính hay không. **Suy luận của mình (độ tin cậy thấp):** để chắc, đặt video dài hơn 60 giây một chút, thay vì dừng đúng ở 60 giây. [Chính thức: hai trang, không khớp nhau]
 - Đăng ký: Profile → Menu → TikTok Studio → Creator Rewards Program; phản hồi khoảng 3 ngày.
 
 **Thế nào là "gốc" và "lượt xem đủ điều kiện"**
@@ -167,7 +168,7 @@ Nhãn dùng trong bài:
 |---|---|---|---|
 | YouTube (đến 31/1/2027) | YPP đầy đủ: 1.000 sub + 4.000 giờ hoặc 10 triệu Shorts/90 ngày. Cấp sớm (fan funding, Shopping; Creator Partnerships chỉ ở 24 nước, không có Việt Nam): 500 sub + 3 video công khai/90 ngày + 3.000 giờ hoặc 3 triệu Shorts/90 ngày | Chính thức | YouTube Studio → Earn |
 | YouTube (từ 1/2/2027) | YPP đầy đủ cho người mới: 1.000 sub + 8.000 giờ hoặc 20 triệu Shorts/90 ngày. Cấp sớm không đổi (500 sub + 3 video công khai/90 ngày + 3.000 giờ hoặc 3 triệu Shorts/90 ngày) | Chính thức | Trang "Changes to the YPP" |
-| TikTok | 10.000 follower + 100.000 lượt xem/30 ngày + video >1 phút; **chỉ 8 nước, không có Việt Nam** | Chính thức | TikTok Studio |
+| TikTok | 10.000 follower + 100.000 lượt xem/30 ngày + video dài từ 1 phút (hai trang TikTok ghi "ít nhất" và "hơn" 1 phút, xem 3.2); **chỉ 8 nước, không có Việt Nam** | Chính thức | TikTok Studio |
 | Facebook | Chỉ theo lời mời; không có ngưỡng công khai | Chính thức | Professional Dashboard → Monetization |
 
 ---

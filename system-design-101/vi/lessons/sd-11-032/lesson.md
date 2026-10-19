@@ -6,12 +6,12 @@
 
 ## Từ viết tắt
 
-- **HTTP** (HyperText Transfer Protocol) — giao thức truyền siêu văn bản: giao thức web; mã 202 của nó nghĩa là "đã nhận, đang xử lý".
+- **HTTP** (HyperText Transfer Protocol) — giao thức truyền siêu văn bản: giao thức web; mã 202 của nó nghĩa là "đã chấp nhận để xử lý nhưng chưa xong": máy chủ nhận yêu cầu, chưa hứa kết quả.
 - **API** (Application Programming Interface) — giao diện lập trình ứng dụng: cổng mà một chương trình mở ra để chương trình khác gọi.
 
 ## Đọc hình
 
-**Asynchronous Request-Reply (yêu cầu bất đồng bộ, trả lời sau).** Cho việc chạy lâu ở phía sau. Máy khách gọi API, việc dài bắt đầu chạy, và API trả ngay mã HTTP 202 (Accepted) để báo "đã nhận để xử lý". Phía trước và phía sau được tách ra, máy khách không phải giữ kết nối suốt thời gian xử lý.
+**Asynchronous Request-Reply (yêu cầu bất đồng bộ, trả lời sau).** Cho việc chạy lâu ở phía sau. Máy khách gọi API, việc dài được giao cho phía sau, và API trả ngay mã HTTP 202 (Accepted) để báo "đã chấp nhận để xử lý, chưa xong". Mã này không hứa việc đã bắt đầu hay sẽ thành công, nên máy khách cần một cách hỏi lại kết quả. Phía trước và phía sau được tách ra, máy khách không phải giữ kết nối suốt thời gian xử lý.
 
 **Publisher-Subscriber (đăng và đăng ký).** Tách người gửi khỏi người nhận, và không bắt người gửi chờ phản hồi. Người gửi đăng thông điệp lên kênh; những ai đăng ký sẽ nhận.
 

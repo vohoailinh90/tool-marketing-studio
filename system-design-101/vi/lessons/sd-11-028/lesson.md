@@ -45,7 +45,7 @@ Ngày 2026-10-19, một chương trình Python nhỏ, không có cơ sở dữ l
 
 Kích thước thật của chỉ mục và cơ sở dữ liệu nằm ngoài thử nghiệm; con số chỉ cho thấy xu hướng: mã ngẫu nhiên rải khắp chỉ mục, còn mã theo thời gian dồn về cuối.
 
-Hai phép tính nữa trong cùng chương trình. Với UUID ngẫu nhiên, xác suất trùng của một tỷ mã (công thức ngày sinh nhật) khoảng 9,4 phần mười tỷ tỷ, đủ nhỏ để bỏ qua nhưng không bằng không. Với đoạn mã lấy theo lô: 100000 mã cần 100000 lần gọi cơ sở dữ liệu nếu mỗi mã một lần, 1000 lần nếu lô 100, và 100 lần nếu lô 1000. Nhưng nếu máy cấp mã sập sau khi phát 2500 mã của lô 1000, lần khởi động lại xin lô mới và bỏ lại 500 mã chưa phát: mã vẫn duy nhất, chỉ có khoảng trống.
+Hai phép tính nữa trong cùng chương trình. Với UUID ngẫu nhiên, xác suất trùng của một tỷ mã (công thức ngày sinh nhật) khoảng 9,4 × 10⁻²⁰, tức cỡ một phần mười tỷ tỷ, đủ nhỏ để bỏ qua nhưng không bằng không. Với đoạn mã lấy theo lô: 100000 mã cần 100000 lần gọi cơ sở dữ liệu nếu mỗi mã một lần, 1000 lần nếu lô 100, và 100 lần nếu lô 1000. Nhưng nếu máy cấp mã sập sau khi phát 2500 mã của lô 1000, lần khởi động lại xin lô mới và bỏ lại 500 mã chưa phát: mã vẫn duy nhất, chỉ có khoảng trống.
 
 ## Giới hạn cần nhớ
 

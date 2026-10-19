@@ -312,6 +312,11 @@ Các bài chưa viết của nhóm này không có trong danh sách; số thứ 
 15. [Hai mươi lăm bài báo đã định hình ngành máy tính, xếp theo vấn đề chúng giải](lessons/sd-11-015/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 16. [Khả năng mở rộng của kiến trúc: ba nút thắt, ba nguyên tắc, bốn kỹ thuật](lessons/sd-11-016/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 17. [Các khối nền để dựng hệ thống phân tán, chia theo sáu nhóm](lessons/sd-11-017/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+23. [Bộ phiên bản: dựng lại hôm nay cũng ra đúng kết quả của hôm qua](lessons/sd-11-023/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+24. [Hạ tầng bằng mã: bốn lớp, và vì sao khai báo hơn từng bước](lessons/sd-11-024/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+25. [Quản lý cấu hình và hạ tầng bằng mã: hai cách nhìn một việc](lessons/sd-11-025/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+26. [Event sourcing: lưu sự kiện thay vì trạng thái](lessons/sd-11-026/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+27. [Ứng dụng mười hai yếu tố: mười hai quy tắc gom thành ba nhóm](lessons/sd-11-027/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 
 ## Hệ thống hoạt động thế nào?
 
@@ -451,6 +456,7 @@ Cơ sở dữ liệu và lưu trữ (đã viết một phần) → Bộ nhớ đ
 Kiến trúc phần mềm → Công cụ và năng suất → Phát triển phần mềm (đã viết một phần) →
 Kiến trúc phần mềm (đã viết một phần) → Phát triển phần mềm (đã viết một phần) →
 Đám mây và hệ thống phân tán → Hệ thống hoạt động thế nào? → Bảo mật (đã viết một phần).
+Đám mây và hệ thống phân tán (đã viết một phần) → Hệ thống hoạt động thế nào? → Bảo mật (đã viết một phần).
 
 Nhóm “Nền tảng máy tính” (cuối mục lục nguồn) được viết trước theo yêu cầu người dùng ngày 2026-10-13; nhóm “API và phát triển web” viết tiếp theo thứ tự source-map.
 

@@ -1,0 +1,92 @@
+id: 02-supervision
+status: draft
+format: portrait
+series: Radar GitHub · 2026-10-17-5
+link: 02-supervision
+slides:
+- layout: cover
+  emoji: 🧩
+  eyebrow: Radar GitHub · Giải pháp
+  title: 'Làm chủ Supervision: Bộ công cụ thị giác máy tính toàn diện'
+  subtitle: Supervision là thư viện Python mã nguồn mở cung cấp các khối xây dựng tái sử dụng cho ứng
+    dụng thị giác máy tính từ Roboflow.
+- layout: stat
+  eyebrow: Số liệu theo ngày quét
+  value: '51.222'
+  label: sao trên GitHub
+  caption: MIT · Python
+- layout: quote
+  text: Lập trình viên thị giác máy tính thường mất nhiều thời gian viết lại mã để vẽ bounding box, theo
+    dõi vật thể và chuyển đổi định dạng dữ liệu giữa các mô hình.
+  author: Vấn đề nó giải quyết
+- layout: flow
+  variant: after
+  title: Nó chạy thế nào
+  steps:
+  - text: 'Kết nối mô hình: Supervision cung cấp các đầu nối connectors tích hợp với nhiều thư viện như
+      Ultralytics, Transformers để trích xuất kết quả dự đoán.'
+  - text: 'Chuẩn hóa dữ liệu: Kết quả dự đoán được chuẩn hóa vào lớp dữ liệu sv.Detections, giúp tách
+      biệt hoàn toàn mô hình khỏi phần xử lý sau.'
+  - text: 'Trực quan hóa: Các module annotator sử dụng sv.Detections để vẽ nhãn, mặt nạ, và khung viền
+      lên hình ảnh một cách linh hoạt.'
+  - text: 'Quản lý tập dữ liệu: Cung cấp các tiện ích nạp, gộp, chia tách và chuyển đổi dữ liệu qua lại
+      giữa các định dạng COCO, YOLO và Pascal VOC.'
+- layout: features
+  title: Các mảnh ghép
+  items:
+  - emoji: 🧩
+    title: Model Connectors
+    text: Bộ kết nối chuẩn hóa dữ liệu đầu ra từ các framework mô hình khác nhau.
+  - emoji: ⚙️
+    title: sv.Detections
+    text: Cấu trúc dữ liệu trung tâm lưu trữ thông tin phát hiện, phân đoạn và phân loại.
+  - emoji: 🔌
+    title: Annotators
+    text: Tập hợp các công cụ vẽ và tùy biến trực quan hóa đối tượng trên ảnh hoặc video.
+  - emoji: 📦
+    title: DetectionDataset
+    text: Công cụ quản lý, tải, chia tách và chuyển đổi định dạng tập dữ liệu thị giác.
+- layout: checklist
+  title: Học được gì
+  tone: ok
+  items:
+  - Tách rời logic hiển thị hình ảnh khỏi framework mô hình học sâu cụ thể.
+  - Chuẩn hóa dữ liệu trung gian giúp dễ dàng hoán đổi mô hình dự đoán mà không sửa đổi ứng dụng.
+  - Tổ chức quy trình xử lý dữ liệu ảnh và tập dữ liệu thị giác máy tính một cách có cấu trúc.
+- layout: pains
+  title: Lưu ý
+  tone: accent
+  items:
+  - emoji: ⚠️
+    text: Yêu cầu môi trường chạy Python tối thiểu từ phiên bản 3.10 trở lên.
+  - emoji: ⚠️
+    text: Chỉ đóng vai trò là bộ công cụ hỗ trợ và trực quan hóa, không tự đảm nhận việc huấn luyện mô
+      hình.
+  - emoji: ⚠️
+    text: Một số mô hình cụ thể đòi hỏi cài đặt thêm gói phụ trợ như pillow hoặc rfdetr.
+- layout: cta
+  emoji: 📌
+  title: Lưu lại để học dần
+  text: Mỗi tuần hai lần có một repo mới.
+  show_link: false
+platforms:
+  facebook:
+    caption: 'Bộ công cụ tái sử dụng cho Computer Vision với Supervision từ Roboflow!
+
+      - Tự động chuẩn hóa đầu ra từ YOLO, Transformers và MMDetection
+
+      - Trực quan hóa kết quả phát hiện đối tượng dễ dàng với BoxAnnotator
+
+      - Quản lý và chuyển đổi định dạng tập dữ liệu COCO, YOLO, Pascal VOC
+
+      - Cài đặt nhanh chóng chỉ với một dòng lệnh pip
+
+
+      Nội dung do AI tóm tắt từ README và cấu trúc repo; hãy đọc repo gốc trước khi dùng.'
+    first_comment: 'Repo gốc: {link}'
+    hashtags:
+    - Supervision
+    - ComputerVision
+    - Roboflow
+    - Python
+    - AI

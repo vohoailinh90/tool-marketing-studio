@@ -1,0 +1,93 @@
+id: 01-chat-on-steroids
+status: draft
+format: portrait
+series: Radar GitHub · 2026-10-17-5
+link: 01-chat-on-steroids
+slides:
+- layout: cover
+  emoji: 🧩
+  eyebrow: Radar GitHub · Giải pháp
+  title: 'Chat On Steroids: Kết nối MCP và công cụ cục bộ cho ChatGPT'
+  subtitle: Không gian làm việc mã nguồn mở mang MCP cục bộ lên ChatGPT với tích hợp Chrome, chia việc
+    đa agent và duy trì phiên làm việc.
+- layout: stat
+  eyebrow: Số liệu theo ngày quét
+  value: '4.982'
+  label: sao trên GitHub
+  caption: MIT · TypeScript
+- layout: quote
+  text: ChatGPT trên web không thể thao tác trực tiếp với tệp tin trên máy, giữ terminal mở hay điều khiển
+    màn hình cục bộ. Người dùng cũng gặp khó khăn khi duy trì ngữ cảnh cho các dự án lập trình dài và
+    phức tạp.
+  author: Vấn đề nó giải quyết
+- layout: flow
+  variant: after
+  title: Nó chạy thế nào
+  steps:
+  - text: 'Cung cấp công cụ MCP cục bộ: CoS hoạt động như máy chủ MCP cục bộ, cho phép ChatGPT đọc sửa
+      tệp, mở terminal và tương tác desktop.'
+  - text: 'Đồng bộ qua extension: Tiện ích mở rộng trình duyệt kết nối với giao diện web của ChatGPT,
+      theo dõi và tự động hóa thao tác.'
+  - text: 'Điều phối đa worker: Chia nhỏ công việc độc lập cho các workers xử lý riêng biệt, sau đó tổng
+      hợp kết quả mà vẫn giữ ngữ cảnh.'
+  - text: 'Kiểm soát phiên dài: Goal theo dõi việc dở dang, Loop duy trì chỉ dẫn và Compact & Resume chuyển
+      phiên sang chat mới khi đầy.'
+- layout: features
+  title: Các mảnh ghép
+  items:
+  - emoji: 🧩
+    title: CoS Desktop App
+    text: Ứng dụng máy tính quản lý phân quyền, cấu hình thư mục và điều phối quy trình.
+  - emoji: ⚙️
+    title: Browser Extension
+    text: Tiện ích kết nối giao diện ChatGPT trên Chrome, Edge hoặc Brave với CoS.
+  - emoji: 🔌
+    title: Core MCP Server
+    text: Cung cấp khả năng truy cập tệp cục bộ, terminal và công cụ máy tính cho ChatGPT.
+  - emoji: 📦
+    title: Workers
+    text: Các agent con nhận tác vụ độc lập và lưu giữ ngữ cảnh riêng biệt.
+- layout: checklist
+  title: Học được gì
+  tone: ok
+  items:
+  - Cách mở rộng khả năng của mô hình AI web bằng giao thức Model Context Protocol (MCP).
+  - Kỹ thuật chia nhỏ tác vụ cho các worker độc lập mà vẫn bảo toàn ngữ cảnh làm việc.
+  - Giải pháp Compact & Resume để quản lý giới hạn ngữ cảnh trong các phiên làm việc dài.
+- layout: pains
+  title: Lưu ý
+  tone: accent
+  items:
+  - emoji: ⚠️
+    text: Bản beta độc lập, chưa được ký số trên Windows và chưa notarize trên macOS.
+  - emoji: ⚠️
+    text: Không giúp vượt qua hạn mức sử dụng (quota) hay giới hạn truy cập mô hình của OpenAI.
+  - emoji: ⚠️
+    text: Lệnh shell chạy với toàn bộ quyền của tài khoản người dùng hiện tại trên máy tính.
+- layout: cta
+  emoji: 📌
+  title: Lưu lại để học dần
+  text: Mỗi tuần hai lần có một repo mới.
+  show_link: false
+platforms:
+  facebook:
+    caption: 'Biến ChatGPT trên trình duyệt thành trợ lý lập trình cục bộ mạnh mẽ với MCP và đa agent.
+
+
+      CoS (Chat On Steroids) kết nối ChatGPT với máy tính của bạn.
+
+      Cho phép đọc sửa tệp, mở terminal và điều khiển desktop an toàn.
+
+      Phân chia công việc cho nhiều worker độc lập không lo mất ngữ cảnh.
+
+      Thiết lập nhanh chóng qua 7 bước hướng dẫn trực quan.
+
+
+      Nội dung do AI tóm tắt từ README và cấu trúc repo; hãy đọc repo gốc trước khi dùng.'
+    first_comment: 'Repo gốc: {link}'
+    hashtags:
+    - ChatGPT
+    - MCP
+    - OpenSource
+    - DevTools
+    - Automation

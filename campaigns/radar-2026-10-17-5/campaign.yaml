@@ -1,0 +1,15 @@
+tool: github-radar
+langs:
+- vi
+platforms:
+- facebook
+goal: 'Share what 3 popular free GitHub projects teach, scanned on 2026-10-17-5: one clear explanation
+  per project, so readers learn the idea and save the post.'
+links:
+  01-chat-on-steroids: https://github.com/totec448-spec/chat-on-steroids
+  02-supervision: https://github.com/roboflow/supervision
+  03-rea: https://github.com/morluto/rea
+utm:
+  medium: social
+  campaign: radar-2026-10-17-5
+schedule: []

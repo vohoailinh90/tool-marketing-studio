@@ -3,7 +3,7 @@
 **Full-stack nghĩa là làm được việc ở nhiều vùng của một ứng dụng, từ màn hình người dùng tới hạ tầng chạy ứng dụng; bảy vùng dưới đây là tấm bản đồ.**
 Bài nguồn chỉ nêu tên bảy vùng; bài này giữ đúng bảy vùng đó, xếp thành ba nhóm theo vị trí trong một ứng dụng, và tự giải thích từng vùng bằng lời của người biên soạn cùng vài tài liệu của MDN.
 
-![Ba nhóm thẻ xếp dọc. Phía người dùng: frontend là phần chạy trong trình duyệt với HTML, CSS và JavaScript; phát triển di động là ứng dụng cài trên điện thoại; thiết kế giao diện và trải nghiệm quyết định bố cục, luồng thao tác và độ dễ dùng. Phía máy chủ: backend là chương trình nhận yêu cầu, xử lý rồi trả lời; cơ sở dữ liệu lưu dữ liệu có tổ chức. Phía vận hành: điện toán đám mây là thuê máy và dịch vụ; hạ tầng và DevOps giữ ứng dụng chạy và đưa bản mới lên qua CI/CD. Khung cuối nêu ba điều cần nhớ.](../../diagrams/sd-10-003-main.svg)
+![Ba nhóm thẻ xếp dọc. Phía người dùng: frontend là phần chạy trong trình duyệt với HTML, CSS và JavaScript; phát triển di động là ứng dụng cài trên điện thoại; thiết kế giao diện và trải nghiệm quyết định bố cục, luồng thao tác và độ dễ dùng. Phía máy chủ: backend là chương trình nhận yêu cầu, xử lý rồi trả lời; cơ sở dữ liệu lưu dữ liệu có tổ chức. Phía vận hành: điện toán đám mây là dùng máy và dịch vụ theo nhu cầu, thường thuê của nhà cung cấp; hạ tầng và DevOps giữ ứng dụng chạy và đưa bản mới lên qua CI/CD. Khung cuối nêu ba điều cần nhớ.](../../diagrams/sd-10-003-main.svg)
 
 ## Từ viết tắt
 
@@ -29,7 +29,7 @@ Hình chia bảy vùng theo vị trí trong một ứng dụng; cả cách chia 
 - Cơ sở dữ liệu là nơi lưu dữ liệu bền vững. MDN định nghĩa nó là hệ thống lưu trữ gom dữ liệu có tổ chức, giúp việc tìm, sắp xếp và mở rộng dễ hơn.
 
 **Phía vận hành.**
-- Điện toán đám mây là thuê máy và dịch vụ từ một nhà cung cấp để chạy ứng dụng, thay vì tự mua và tự đặt máy (kiến thức chung của người biên soạn).
+- Điện toán đám mây là cách dùng máy, lưu trữ và dịch vụ theo nhu cầu, lấy từ một kho tài nguyên dùng chung và cấp phát nhanh. Thường là thuê từ một nhà cung cấp bên ngoài, nhưng một tổ chức cũng có thể tự dựng và tự vận hành đám mây riêng, kể cả đặt ngay trong cơ sở của mình (kiến thức chung của người biên soạn).
 - Hạ tầng và DevOps giữ cho ứng dụng chạy được và đưa bản mới lên chạy; CI/CD là đường ống tự động hóa việc kiểm tra rồi chuyển giao các thay đổi (kiến thức chung của người biên soạn).
 
 ## Giới hạn cần nhớ

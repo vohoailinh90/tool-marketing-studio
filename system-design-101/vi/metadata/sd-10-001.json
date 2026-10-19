@@ -96,7 +96,19 @@
       "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
     },
     {
-      "claim_vi": "The name 'origin server' for the holder of the original copy of the content, the grouping of the six types into two sets, the statement that the six types are roles rather than machines, and the typical order of events for a page load are the author's general knowledge.",
+      "claim_vi": "RFC 9110: the term origin server refers to a program that can originate authoritative responses for a given target resource; a gateway (reverse proxy) is an intermediary that acts as an origin server for the outbound connection; a proxy is a message-forwarding agent chosen by the client.",
+      "source": "https://github.com/httpwg/http-core/blob/bde37f634681bd5462568b73aa722af9c9a3ef5e/rfc9110.xml",
+      "section": "Origin Server; Intermediaries",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "An origin server may build a response at request time from application logic and data (a dynamic or personalised resource), so it does not necessarily hold a master copy; a CDN holds copies that can answer in its place (MDN, CDN page).",
+      "source": "https://github.com/httpwg/http-core/blob/bde37f634681bd5462568b73aa722af9c9a3ef5e/rfc9110.xml",
+      "section": "Origin Server",
+      "verified_by": "RFC 9110 defines the role by authoritative responses (read); the dynamic-resource example is the author's general knowledge."
+    },
+    {
+      "claim_vi": "An IP address is a network-layer address assigned to a network interface of a device; it is not necessarily a single decimal-number sequence and does not necessarily identify exactly one machine. The grouping of the six types into two sets, the statement that the six types are roles rather than machines, and the typical order of events for a page load are the author's general knowledge.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-6-most-commonly-used-server-types.md",
       "section": "Design",
       "verified_by": "Author's general knowledge; not checked against primary documentation."
@@ -110,7 +122,7 @@
   ],
   "design_notes_vi": "Sáu thẻ chia hai nhóm: ba loại đưa nội dung tới người dùng và ba loại dịch vụ nền của mạng. Không có mũi tên vì nguồn không nói thứ tự giữa các loại. Không dùng ảnh nguồn.",
   "source_deviations": [
-    "Source lists six server types in one flat order (web, mail, DNS, proxy, FTP, origin) with one sentence each; the lesson keeps only the six names, regroups them into two sets by position on the path of a request and writes its own explanation of each (MDN glossary pages for web server, proxy, CDN, DNS, SMTP, IMAP and FTP; general knowledge for the origin server) instead of translating the source sentences.",
+    "Source lists six server types in one flat order (web, mail, DNS, proxy, FTP, origin) with one sentence each; the lesson keeps only the six names, regroups them into two sets by position on the path of a request and writes its own explanation of each (MDN glossary pages for web server, proxy, CDN, DNS, SMTP, IMAP and FTP; RFC 9110 for the origin server) instead of translating the source sentences.",
     "The lesson qualifies the DNS-first answer as the cache-miss, direct-resolution path (author's general knowledge)."
   ],
   "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích dựa vào các trang từ điển thuật ngữ của MDN và kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."

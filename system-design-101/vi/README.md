@@ -298,6 +298,16 @@ Các bài chưa viết của nhóm này không có trong danh sách; số thứ 
 16. [Khả năng mở rộng của kiến trúc: ba nút thắt, ba nguyên tắc, bốn kỹ thuật](lessons/sd-11-016/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 17. [Các khối nền để dựng hệ thống phân tán, chia theo sáu nhóm](lessons/sd-11-017/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 
+## Đám mây và hệ thống phân tán
+
+Các bài chưa viết của nhóm này không có trong danh sách; số thứ tự là vị trí của bài trong nhóm.
+
+1. [AWS Lambda: mỗi lần gọi hàm chạy trong một máy ảo siêu nhẹ](lessons/sd-11-001/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+2. [Tám chiến lược mở rộng: mỗi cách gỡ một nút thắt khác nhau](lessons/sd-11-002/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+3. [Bảng tra thiết kế hệ thống: sẵn sàng cao, thông lượng cao, mở rộng cao](lessons/sd-11-003/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+4. [Khôi phục thảm họa trên đám mây: bốn mức, mỗi mức đổi tiền lấy thời gian](lessons/sd-11-004/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+5. [Chia theo cột và chia theo hàng: hai cách cắt dữ liệu khác hẳn nhau](lessons/sd-11-005/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+
 ## DevOps và CI/CD
 
 1. [Tắt êm một API trên Kubernetes: năm chỗ làm rớt request](lessons/sd-13-001/lesson.md)

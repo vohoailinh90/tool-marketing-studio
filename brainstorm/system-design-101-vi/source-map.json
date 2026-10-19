@@ -2731,7 +2731,7 @@
       "lessons": [
         {
           "id": "sd-11-001",
-          "title_vi": null,
+          "title_vi": "AWS Lambda: mỗi lần gọi hàm chạy trong một máy ảo siêu nhẹ",
           "title_source": "How AWS Lambda Works Behind the Scenes",
           "source_url": "https://bytebytego.com/guides/how-does-aws-lambda-work-behind-the-scenes",
           "source_path": "data/guides/how-does-aws-lambda-work-behind-the-scenes.md",
@@ -2741,41 +2741,41 @@
         },
         {
           "id": "sd-11-002",
-          "title_vi": null,
+          "title_vi": "Tám chiến lược mở rộng: mỗi cách gỡ một nút thắt khác nhau",
           "title_source": "8 Must-Know Scalability Strategies",
           "source_url": "https://bytebytego.com/guides/8-must-know-scalability-strategies",
           "source_path": "data/guides/8-must-know-scalability-strategies.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "9dd5b45d3a0eb9caf317299cf9215539b23c1781",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/8-must-know-scalability-strategies.md"
         },
         {
           "id": "sd-11-003",
-          "title_vi": null,
+          "title_vi": "Bảng tra thiết kế hệ thống: sẵn sàng cao, thông lượng cao, mở rộng cao",
           "title_source": "System Design Cheat Sheet",
           "source_url": "https://bytebytego.com/guides/system-design-cheat-sheet",
           "source_path": "data/guides/system-design-cheat-sheet.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "675f5eac92d5050ccd42516dfce06fa8980ef86b",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/system-design-cheat-sheet.md"
         },
         {
           "id": "sd-11-004",
-          "title_vi": null,
+          "title_vi": "Khôi phục thảm họa trên đám mây: bốn mức, mỗi mức đổi tiền lấy thời gian",
           "title_source": "Cloud Disaster Recovery Strategies",
           "source_url": "https://bytebytego.com/guides/cloud-disaster-recovery-strategies",
           "source_path": "data/guides/cloud-disaster-recovery-strategies.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "69be5677441c3923d4e90c40746daca28dbbb222",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/cloud-disaster-recovery-strategies.md"
         },
         {
           "id": "sd-11-005",
-          "title_vi": null,
+          "title_vi": "Chia theo cột và chia theo hàng: hai cách cắt dữ liệu khác hẳn nhau",
           "title_source": "Vertical vs Horizontal Partitioning",
           "source_url": "https://bytebytego.com/guides/vertical-partitioning-vs-horizontal-partitioning",
           "source_path": "data/guides/vertical-partitioning-vs-horizontal-partitioning.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "f5ac2b6cdf2742415e7ace320014a0b881e06f55",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/vertical-partitioning-vs-horizontal-partitioning.md"
         },

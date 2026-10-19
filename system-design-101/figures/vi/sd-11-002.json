@@ -1,0 +1,18 @@
+{
+  "id": "sd-11-002",
+  "title": "Tám chiến lược mở rộng",
+  "subtitle": "Mỗi cách gỡ một nút thắt khác nhau.",
+  "desc": "Hai khung, mỗi khung bốn ghi chú. Khung một, tầng ứng dụng: dịch vụ không giữ trạng thái, mở rộng theo chiều ngang, cân bằng tải, tự động co giãn. Khung hai, dữ liệu và công việc: bộ nhớ đệm, sao chép cơ sở dữ liệu, chia nhỏ cơ sở dữ liệu, xử lý bất đồng bộ. Mỗi ghi chú nói nó gỡ nút thắt nào.",
+  "sections": [
+    {"kind": "notes", "heading": "Tầng ứng dụng", "items": [
+      "Stateless: yêu cầu tới bản sao nào cũng được.",
+      "Ngang: thêm máy khi một máy không đủ.",
+      "Cân bằng tải: chia yêu cầu đều giữa các bản sao.",
+      "Tự co giãn: thêm bớt máy theo tải."]},
+    {"kind": "notes", "heading": "Dữ liệu và công việc", "items": [
+      "Đệm: đọc lặp lại từ nơi nhanh.",
+      "Sao chép: nhiều bản đọc, có dự phòng.",
+      "Chia nhỏ: ghi và dung lượng vượt một máy.",
+      "Bất đồng bộ: việc nặng vào hàng đợi."]}
+  ]
+}

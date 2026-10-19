@@ -1,0 +1,19 @@
+{
+  "id": "sd-11-003",
+  "title": "Ba mục tiêu của thiết kế hệ thống",
+  "subtitle": "Sẵn sàng, thông lượng, mở rộng.",
+  "desc": "Hai khung. Khung một, bốn kiểu để sẵn sàng cao: hot-hot, hot-warm, cụm một leader, cụm không leader; mỗi thẻ nói điều gì xảy ra khi một nút hỏng. Khung hai, thông lượng cao và mở rộng cao: mỗi mục ghi các kỹ thuật chính.",
+  "sections": [
+    {"kind": "parts", "heading": "Sẵn sàng cao", "items": [
+      {"name": "Hot-hot", "role": "Các bản cùng nhận yêu cầu; một bản hỏng thì bản kia gánh.", "icon": "boxes"},
+      {"name": "Hot-warm", "role": "Bản chờ lên thay, có khoảng chuyển.", "icon": "server"},
+      {"name": "Một leader", "role": "Leader hỏng thì bầu mới; ghi dừng lúc bầu.", "icon": "git-branch"},
+      {"name": "Không leader", "role": "Nút nào cũng nhận ghi; cần hòa giải.", "icon": "network"}
+    ]},
+    {"kind": "notes", "heading": "Thông lượng và mở rộng", "items": [
+      "Thông lượng: gom lô, song song, hàng đợi.",
+      "Thông lượng đo việc xong mỗi giây, không phải độ trễ.",
+      "Mở rộng: dịch vụ không giữ trạng thái.",
+      "Mở rộng: chia dữ liệu, thêm máy."]}
+  ]
+}

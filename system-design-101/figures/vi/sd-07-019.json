@@ -1,0 +1,91 @@
+{
+  "id": "sd-07-019",
+  "title": "ACH trả lương theo lô",
+  "subtitle": "Gửi trước 19 giờ, tới tài khoản người nhận vào 6 giờ sáng hôm sau.",
+  "desc": "Ba khung. Khung một, từ công ty tới ngân hàng gốc: công ty trả lương gửi các giao dịch lương cho bên xử lý thứ ba, bên này tạo tệp ACH và tải lên máy chủ SFTP của ngân hàng gốc ODFI trước giờ chốt 19 giờ. Khung hai, qua đêm: sau giờ làm việc, ODFI chuyển tệp cho nhà vận hành ACH để bù trừ và quyết toán, tệp được xử lý khoảng nửa đêm và có mặt ở ngân hàng nhận RDFI. Khung ba, sáng hôm sau: lúc 6 giờ sáng RDFI cập nhật tài khoản người nhận, ví dụ cộng 100 đô la. ACH xử lý theo lô, không theo thời gian thực; từ 2018 có tùy chọn ACH trong ngày.",
+  "sections": [
+    {
+      "kind": "sequence",
+      "heading": "1. Công ty tới ngân hàng gốc",
+      "actors": [
+        {
+          "name": "Công ty trả lương",
+          "icon": "users"
+        },
+        {
+          "name": "Bên xử lý thứ ba",
+          "icon": "server"
+        },
+        {
+          "name": "ODFI",
+          "icon": "store"
+        }
+      ],
+      "messages": [
+        {
+          "from": 0,
+          "to": 1,
+          "text": "Các giao dịch lương"
+        },
+        {
+          "from": 1,
+          "to": 2,
+          "text": "Tệp ACH, trước 19 giờ"
+        }
+      ]
+    },
+    {
+      "kind": "sequence",
+      "heading": "2. Qua đêm",
+      "actors": [
+        {
+          "name": "ODFI",
+          "icon": "store"
+        },
+        {
+          "name": "Nhà vận hành ACH",
+          "icon": "network"
+        },
+        {
+          "name": "RDFI",
+          "icon": "store"
+        }
+      ],
+      "messages": [
+        {
+          "from": 0,
+          "to": 1,
+          "text": "Chuyển tệp sau giờ làm việc"
+        },
+        {
+          "from": 1,
+          "to": 2,
+          "text": "Xử lý quanh nửa đêm, chuyển tệp"
+        }
+      ]
+    },
+    {
+      "kind": "steps",
+      "heading": "3. Sáng hôm sau",
+      "items": [
+        {
+          "title": "6 giờ sáng",
+          "text": "RDFI mở cửa làm việc."
+        },
+        {
+          "title": "Cập nhật tài khoản",
+          "text": "RDFI cộng 100 đô la cho người nhận."
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Điều cần nhớ",
+      "items": [
+        "ACH xử lý theo lô, không theo thời gian thực.",
+        "Gửi trước 19 giờ thì tới sáng hôm sau.",
+        "Từ 2018 có thể chọn ACH trong ngày."
+      ]
+    }
+  ]
+}

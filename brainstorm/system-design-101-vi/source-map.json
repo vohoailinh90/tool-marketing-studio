@@ -1924,51 +1924,51 @@
         },
         {
           "id": "sd-07-016",
-          "title_vi": null,
+          "title_vi": "Tránh trả tiền hai lần: thử lại và khóa chống trùng",
           "title_source": "How to Avoid Double Payment",
           "source_url": "https://bytebytego.com/guides/how-to-avoid-double-payment",
           "source_path": "data/guides/how-to-avoid-double-payment.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "ad010161a6ed06165817020a709d42f30faa928e",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-to-avoid-double-payment.md"
         },
         {
           "id": "sd-07-017",
-          "title_vi": null,
+          "title_vi": "Apple Pay và Google Pay: ai giữ thông tin thẻ",
           "title_source": "How do Apple Pay and Google Pay work?",
           "source_url": "https://bytebytego.com/guides/how-applegoogle-pay-works",
           "source_path": "data/guides/how-applegoogle-pay-works.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "6be0af3bcaf5adc2fe15eeb6b74e9151ea5713f3",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-applegoogle-pay-works.md"
         },
         {
           "id": "sd-07-018",
-          "title_vi": null,
+          "title_vi": "Quẹt thẻ tín dụng: Visa đứng ở đâu",
           "title_source": "How VISA Works When Swiping a Credit Card",
           "source_url": "https://bytebytego.com/guides/how-does-visa-work-when-we-swipe-a-credit-card-at-a-merchant's-shop",
           "source_path": "data/guides/how-does-visa-work-when-we-swipe-a-credit-card-at-a-merchant's-shop.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "a225295e3929b5e7b8b750107cee677b6e37f6aa",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-visa-work-when-we-swipe-a-credit-card-at-a-merchant's-shop.md"
         },
         {
           "id": "sd-07-019",
-          "title_vi": null,
+          "title_vi": "ACH: trả lương theo lô, tới sáng hôm sau",
           "title_source": "How ACH Payment Works",
           "source_url": "https://bytebytego.com/guides/how-does-ach-payment-work",
           "source_path": "data/guides/how-does-ach-payment-work.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "1fb5dfe105de89c6df42d70c29e663055d7110cb",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-ach-payment-work.md"
         },
         {
           "id": "sd-07-020",
-          "title_vi": null,
+          "title_vi": "Visa kiếm tiền thế nào: các khoản phí của một lần quẹt thẻ",
           "title_source": "How does Visa make money?",
           "source_url": "https://bytebytego.com/guides/how-does-visa-make-money",
           "source_path": "data/guides/how-does-visa-make-money.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "32d72b7befdf051559b9f7703d9c5170c4a4fd87",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-visa-make-money.md"
         }

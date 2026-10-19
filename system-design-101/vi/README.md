@@ -232,6 +232,15 @@ Các bài chưa viết của nhóm này không có trong danh sách; số thứ 
 18. [Dùng dev tools để bỏ việc lặp lại](lessons/sd-09-018/lesson.md) — bản nháp; chờ review kỹ thuật.
 19. [Git lưu snapshot và nhánh như thế nào?](lessons/sd-09-019/lesson.md) — bản nháp; chờ review kỹ thuật.
 20. [Từ thay đổi code tới bản chạy production](lessons/sd-09-020/lesson.md) — bản nháp; chờ review kỹ thuật.
+Số thứ tự theo ID của bài; bài chưa viết chưa có trong danh sách.
+
+16. [Elasticsearch hợp với việc gì: sáu cách dùng và cái mỗi cách dựa vào](lessons/sd-06-016/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+17. [CDN hoạt động thế nào: tìm máy biên, rồi hỏi dần lên máy gốc](lessons/sd-06-017/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+18. [Kiến trúc Redis lớn dần thế nào: mỗi bước vá một giới hạn](lessons/sd-06-018/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+19. [Redis giữ dữ liệu qua lần sập thế nào: RDB và AOF](lessons/sd-06-019/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+20. [Redis dùng vào việc gì: mười cách dùng, năm nhóm kiểu dữ liệu](lessons/sd-06-020/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+21. [Vì sao Redis nhanh, và khi nào nó chậm](lessons/sd-06-021/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+22. [Học Elasticsearch theo đường đi của một tài liệu](lessons/sd-06-022/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
 
 ## Phát triển phần mềm
 
@@ -345,6 +354,9 @@ và hình đạt; không coi đọc nguồn là mọi claim đã đúng, không 
 Tình huống thực tế (còn sd-02-030) →
 Cơ sở dữ liệu và lưu trữ (đã viết một phần) → Bộ nhớ đệm và hiệu năng (đã viết một phần) →
 Kiến trúc phần mềm (đã viết một phần) → Phát triển phần mềm (đã viết một phần) →
+API và phát triển web (còn sd-01-050) → Tình huống thực tế (đã viết một phần) →
+Cơ sở dữ liệu và lưu trữ (đã viết một phần) → Bộ nhớ đệm và hiệu năng (đã viết một phần) → Thanh toán và công nghệ tài chính →
+Kiến trúc phần mềm → Công cụ và năng suất → Phát triển phần mềm (đã viết một phần) →
 Đám mây và hệ thống phân tán → Hệ thống hoạt động thế nào? → Bảo mật (đã viết một phần).
 
 Nhóm “Nền tảng máy tính” (cuối mục lục nguồn) được viết trước theo yêu cầu người dùng ngày 2026-10-13; nhóm “API và phát triển web” viết tiếp theo thứ tự source-map.

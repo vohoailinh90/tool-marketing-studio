@@ -54,6 +54,56 @@ Mã nguồn của thử nghiệm không nằm trong kho; bảng ở trên chạy
 
 </details>
 
+<details>
+<summary>Xem chương trình thử nghiệm</summary>
+
+Chương trình Python 3 (chỉ dùng thư viện chuẩn) đã tạo ra mọi con số trong bảng thử nghiệm. Điểm đều là 1 triệu điểm ngẫu nhiên trong ô vuông đơn vị; điểm tụ là 20 cụm phân phối chuẩn có độ lệch 0,002, 0,005 hoặc 0,01; ô tách khi có hơn 100 điểm; bộ sinh số ngẫu nhiên dùng hạt giống 7. Lưu thành một tệp rồi chạy bằng `python3` sẽ in lại các dòng, trừ thời gian dựng vì thời gian đó thay đổi theo máy.
+
+```python
+import random, time, sys
+CAP=100
+class Node:
+    __slots__=("x0","y0","x1","y1","pts","kids","d")
+    def __init__(s,x0,y0,x1,y1,d): s.x0,s.y0,s.x1,s.y1,s.d=x0,y0,x1,y1,d; s.pts=[]; s.kids=None
+def build(pts,x0,y0,x1,y1,d=0):
+    n=Node(x0,y0,x1,y1,d)
+    if len(pts)<=CAP or d>=40: n.pts=pts; return n
+    mx,my=(x0+x1)/2,(y0+y1)/2
+    q=[[],[],[],[]]
+    for p in pts: q[(p[0]>=mx)+2*(p[1]>=my)].append(p)
+    n.kids=[build(q[0],x0,y0,mx,my,d+1),build(q[1],mx,y0,x1,my,d+1),build(q[2],x0,my,mx,y1,d+1),build(q[3],mx,my,x1,y1,d+1)]
+    return n
+def stats(n,acc):
+    if n.kids is None: acc.append((n.d,len(n.pts)))
+    else:
+        for k in n.kids: stats(k,acc)
+def leaf(n,x,y):
+    while n.kids:
+        mx,my=(n.x0+n.x1)/2,(n.y0+n.y1)/2
+        n=n.kids[(x>=mx)+2*(y>=my)]
+    return n
+def gen(kind,N,rnd):
+    if kind=="uniform": return [(rnd.random(),rnd.random()) for _ in range(N)]
+    # clustered: 20 "cities" gaussian, tight
+    cs=[(rnd.random(),rnd.random(),rnd.choice([0.002,0.005,0.01])) for _ in range(20)]
+    out=[]
+    while len(out)<N:
+        cx,cy,s=rnd.choice(cs); x,y=rnd.gauss(cx,s),rnd.gauss(cy,s)
+        if 0<=x<1 and 0<=y<1: out.append((x,y))
+    return out
+rnd=random.Random(7)
+for kind in ("uniform","clustered"):
+  for N in (10000,100000,1000000):
+    pts=gen(kind,N,rnd); t=time.time(); root=build(pts,0,0,1,1); bt=time.time()-t
+    acc=[]; stats(root,acc)
+    depths=[d for d,_ in acc]; sizes=[c for _,c in acc]
+    # queries at random data points: how many leaves hold <CAP (need neighbours)
+    qs=rnd.sample(pts,2000); small=sum(1 for x,y in qs if len(leaf(root,x,y).pts)<CAP)
+    print(f"{kind:9} N={N:8} build={bt:6.2f}s leaves={len(acc):6} maxdepth={max(depths):2} meandepth={sum(depths)/len(depths):4.1f} empty_leaves={sum(1 for s in sizes if s==0)} meanleaf={sum(sizes)/len(sizes):5.1f} queries_in_leaf_lt100={small/20:.1f}%")
+```
+
+</details>
+
 ## Nguồn đối chiếu
 
 - [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/quadtree.md): định nghĩa quadtree, ngưỡng 100 quán, cách tìm quán gần và chuyện cập nhật máy chủ.

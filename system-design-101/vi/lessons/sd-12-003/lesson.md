@@ -1,9 +1,9 @@
 # Alice gửi thư cho Bob: đường đi qua máy chủ Outlook và Gmail
 
-**Một lá thư từ Outlook sang Gmail đi qua đúng bốn việc: ứng dụng đưa thư cho máy chủ của mình, máy chủ này tra DNS để tìm máy chủ của Gmail, rồi chuyển thư sang, và Bob lấy thư ra khi mở Gmail.**
+**Một lá thư từ Outlook sang Gmail đi qua đúng bốn việc: ứng dụng đưa thư cho máy chủ của mình, máy chủ này tra DNS để tìm máy chủ của Gmail, rồi chuyển thư sang, và Bob lấy thư ra khi đọc thư của mình.**
 Theo từng bước với hai cái tên cụ thể, bạn thấy mỗi giao thức nằm ở chặng nào và ai chịu trách nhiệm với thư ở từng lúc.
 
-![Hai khung. Khung một, gửi thư: Alice dùng ứng dụng Outlook gửi thư tới máy chủ Outlook bằng SMTP; máy chủ Outlook chuyển thư tới máy chủ Gmail cũng bằng SMTP sau khi tra DNS; máy chủ Gmail trả lời đã nhận. Khung hai, nhận thư: Gmail lưu thư vào hộp thư của Bob, Bob đăng nhập, ứng dụng của Bob lấy thư về bằng IMAP hoặc POP3.](../../diagrams/sd-12-003-main.svg)
+![Hai khung. Khung một, gửi thư: Alice dùng ứng dụng Outlook gửi thư tới máy chủ Outlook bằng SMTP; máy chủ Outlook chuyển thư tới máy chủ Gmail cũng bằng SMTP sau khi tra DNS; máy chủ Gmail trả lời đã nhận. Khung hai, nhận thư: Gmail lưu thư vào hộp thư của Bob, Bob đăng nhập, nếu Bob dùng một ứng dụng thư riêng thì ứng dụng đó lấy thư về bằng IMAP hoặc POP3.](../../diagrams/sd-12-003-main.svg)
 
 ## Từ viết tắt
 
@@ -25,7 +25,7 @@ Theo từng bước với hai cái tên cụ thể, bạn thấy mỗi giao th�
 
 **Bước 3: Gmail lưu thư.** Máy chủ Gmail đặt thư vào hộp thư của Bob và chờ.
 
-**Bước 4: Bob lấy thư.** Khi Bob mở Gmail, ứng dụng của anh lấy thư mới về qua IMAP hoặc POP3.
+**Bước 4: Bob lấy thư.** Khi Bob đọc thư, thư từ hộp thư của anh về tới máy anh. Nếu Bob dùng một ứng dụng thư riêng được cấu hình cho Gmail, ứng dụng đó lấy thư mới về qua IMAP hoặc POP3; ứng dụng web của Gmail thì không nhất thiết dùng hai giao thức này (xem phần giới hạn).
 
 Trên đường đi, mỗi máy chủ thư nhận thư theo chuẩn SMTP phải thêm một dòng `Received:` vào đầu phần thông tin của thư (RFC 5321, mục 4.4). Nhờ vậy, mở "xem thư gốc" ra bạn đọc được từng chặng thư đã qua, theo thứ tự từ dưới lên.
 

@@ -3,7 +3,7 @@
 **Muốn ảnh đường phố không lộ biển số hay khuôn mặt, đừng làm mờ lúc người dùng xem: hãy làm một lần, ngoại tuyến, rồi chỉ phát ảnh đã mờ.**
 Việc đó chia thành ba đường ống: dạy máy nhận ra vật nhạy cảm, áp dụng máy đó lên ảnh để làm mờ, và phục vụ ảnh đã mờ cho người xem.
 
-![Hai khung. Khung một, ba đường ống nối nhau: đường ống dữ liệu chuẩn bị dữ liệu huấn luyện và huấn luyện mô hình, đường ống làm mờ tìm vật nhạy cảm trong ảnh rồi làm mờ, đường ống phục vụ trả ảnh đã mờ cho người xem. Khung hai, bốn bước của đường ống làm mờ: tiền xử lý ảnh, tìm khung bao quanh vật nhạy cảm, làm mờ vùng trong khung, lưu ảnh đã mờ vào kho đối tượng. Khung ba, hai kiểu lỗi: bỏ sót thì lộ, làm mờ nhầm thì mất chi tiết.](../../diagrams/sd-12-004-main.svg)
+![Ba khung. Khung một, ba đường ống nối nhau: đường ống dữ liệu chuẩn bị dữ liệu huấn luyện và huấn luyện mô hình, đường ống làm mờ tìm vật nhạy cảm trong ảnh rồi làm mờ, đường ống phục vụ trả ảnh đã mờ cho người xem. Khung hai, bốn bước của đường ống làm mờ: tiền xử lý ảnh, tìm khung bao quanh vật nhạy cảm, làm mờ vùng trong khung, lưu ảnh đã mờ vào kho đối tượng. Khung ba, hai kiểu lỗi: bỏ sót thì lộ, làm mờ nhầm thì mất chi tiết.](../../diagrams/sd-12-004-main.svg)
 
 ## Từ viết tắt
 

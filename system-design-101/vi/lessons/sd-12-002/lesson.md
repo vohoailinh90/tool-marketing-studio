@@ -3,7 +3,7 @@
 **Một lá thư điện tử không đi thẳng từ máy bạn tới máy người nhận: nó qua hai máy chủ thư, mỗi nơi giữ một vai riêng, và hai nhóm giao thức lo hai việc khác nhau, đẩy thư đi và lấy thư về.**
 Tách được bốn vai và hai việc đó, bạn đọc được hầu hết sơ đồ gửi thư và đoán được thư kẹt ở đâu khi có lỗi.
 
-![Hai khung. Khung một, bốn vai nối nhau: ứng dụng thư của người gửi, máy chủ thư của người gửi, máy chủ thư của người nhận, hộp thư của người nhận. Khung hai, ba điều cần nhớ: hai chặng giữa các máy chủ dùng SMTP còn chặng cuối dùng IMAP hoặc POP3; máy chủ gửi tìm máy chủ nhận nhờ bản ghi MX trong DNS; nếu máy chủ nhận chưa sẵn sàng thì thư xếp hàng và được thử lại.](../../diagrams/sd-12-002-main.svg)
+![Hai khung. Khung một, bốn vai nối nhau: ứng dụng thư của người gửi, máy chủ thư của người gửi, máy chủ thư của người nhận, chương trình giao thư bỏ thư vào hộp thư của người nhận. Khung hai, ba điều cần nhớ: hai chặng giữa các máy chủ dùng SMTP còn chặng cuối dùng IMAP hoặc POP3; máy chủ gửi tìm máy chủ nhận nhờ bản ghi MX trong DNS; nếu máy chủ nhận chưa sẵn sàng thì thư xếp hàng và được thử lại.](../../diagrams/sd-12-002-main.svg)
 
 ## Từ viết tắt
 

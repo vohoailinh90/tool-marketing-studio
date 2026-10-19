@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="320" height="826" viewBox="0 0 320 826" role="img" aria-labelledby="title desc">
 <title id="title">Thư điện tử đi thế nào</title>
-<desc id="desc">Hai khung. Khung một, bốn vai nối nhau: ứng dụng thư của người gửi, máy chủ thư của người gửi, máy chủ thư của người nhận, hộp thư của người nhận. Khung hai, ba điều cần nhớ: hai chặng giữa các máy chủ dùng SMTP còn chặng cuối dùng IMAP hoặc POP3; máy chủ gửi tìm máy chủ nhận nhờ bản ghi MX trong DNS; nếu máy chủ nhận chưa sẵn sàng thì thư xếp hàng và được thử lại.</desc>
+<desc id="desc">Hai khung. Khung một, bốn vai nối nhau: ứng dụng thư của người gửi, máy chủ thư của người gửi, máy chủ thư của người nhận, chương trình giao thư bỏ thư vào hộp thư của người nhận. Khung hai, ba điều cần nhớ: hai chặng giữa các máy chủ dùng SMTP còn chặng cuối dùng IMAP hoặc POP3; máy chủ gửi tìm máy chủ nhận nhờ bản ghi MX trong DNS; nếu máy chủ nhận chưa sẵn sàng thì thư xếp hàng và được thử lại.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="826" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
@@ -22,9 +22,9 @@
 <text x="78" y="375.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nhận thư từ máy chủ gửi.</text>
 <rect x="20" y="425" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
 <circle cx="50" cy="468.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 457.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect height="16" rx="2" width="20" x="2" y="4"/></g>
-<text x="78" y="451.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Hộp thư (MDA)</text>
-<text x="78" y="475.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Thư nằm đây chờ người</text>
-<text x="78" y="494.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhận.</text>
+<text x="78" y="451.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Giao thư (MDA)</text>
+<text x="78" y="475.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bỏ thư vào hộp thư của</text>
+<text x="78" y="494.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">người nhận.</text>
 <polyline points="160,195 160,223" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
 <polyline points="160,295 160,323" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
 <polyline points="160,395 160,423" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>

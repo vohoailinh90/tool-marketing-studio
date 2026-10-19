@@ -43,7 +43,7 @@ Khi mới vào, `clone` tốn nhất (40 phút trước Sparo). Trong ba lệnh 
 <details>
 <summary>Xem sâu hơn: vì sao kho lớn làm Git chậm</summary>
 
-- `clone` phải tải toàn bộ lịch sử và mọi tệp, dù người dùng chỉ cần một phần.
+- `clone` mặc định (không thêm tùy chọn nào) tải toàn bộ lịch sử và mọi tệp, dù người dùng chỉ cần một phần.
 - `status` phải kiểm tra từng tệp trong thư mục làm việc xem có đổi không; càng nhiều tệp thì càng lâu.
 - Hai cách giảm phổ biến, độc lập với nhau: sparse checkout chỉ đưa vào thư mục làm việc phần thư mục mình cần; còn muốn tải ít lịch sử hơn thì dùng clone nông (`git clone --depth`) hoặc clone một phần (`git clone --filter`). Tên Sparo gợi ý hướng sparse checkout, nhưng bài nguồn không xác nhận.
 

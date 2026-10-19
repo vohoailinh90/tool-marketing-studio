@@ -50,7 +50,7 @@ Một đội đưa ứng dụng lên một dịch vụ kiểu 2009 (nhận mã, 
 <details>
 <summary>Xem đáp án</summary>
 
-Đường ranh dời xuống: họ nhận lại việc quản máy ảo, hệ điều hành và việc xếp lịch các container, đổi lại có quyền kiểm soát môi trường chạy và chạy giống nhau ở mọi nơi. Mỗi bước trong bảng dời đường ranh lên (nhà cung cấp lo thêm) hoặc xuống (bạn nhận thêm quyền và việc); không có hướng nào luôn tốt hơn. Đây là suy luận của người biên soạn.
+Đường ranh dời xuống: họ nhận lại việc quản máy ảo, hệ điều hành và việc xếp lịch các container, đổi lại có quyền kiểm soát môi trường chạy và chạy nhất quán trên các máy chủ tương thích (cùng loại hệ điều hành lõi và kiến trúc bộ vi xử lý, hoặc có bản dựng đa nền tảng). Mỗi bước trong bảng dời đường ranh lên (nhà cung cấp lo thêm) hoặc xuống (bạn nhận thêm quyền và việc); không có hướng nào luôn tốt hơn. Đây là suy luận của người biên soạn.
 
 </details>
 

@@ -28,11 +28,11 @@ Ngày 2026-10-19, một chương trình Python nhỏ dựng đúng ba phần tr�
 | Đồng hồ giả bị chỉnh lùi 1 mili giây | bộ sinh từ chối và báo lỗi |
 | Mã UUID phiên bản 4 để so | 128 bit, không có thứ tự thời gian |
 
-Dòng thứ tư là điểm yếu quan trọng nhất: nếu bộ sinh cứ dùng đồng hồ thì sau một lần đồng hồ bị chỉnh lùi (thường do đồng bộ giờ), nó có thể sinh lại đúng những mã đã dùng. Bộ sinh trong thử nghiệm chọn từ chối; cách khác là chờ cho tới khi đồng hồ đuổi kịp.
+Dòng thứ tư là điểm yếu quan trọng nhất: nếu bộ sinh cứ dùng đồng hồ thì sau một lần đồng hồ bị chỉnh lùi (thường do đồng bộ giờ), nó có thể sinh lại đúng những mã đã dùng. Bộ sinh trong thử nghiệm chọn từ chối; cách khác là chờ cho tới khi đồng hồ đuổi kịp. Cách chống này chỉ đúng khi bộ sinh còn nhớ mốc thời gian lớn nhất nó đã dùng: mốc đó thường nằm trong bộ nhớ, nên sau một lần khởi động lại lúc đồng hồ vẫn chậm hơn mốc cũ, bộ sinh có thể phát lại đúng thời gian và số thứ tự cũ dưới cùng số hiệu máy. Muốn an toàn phải lưu mốc ra nơi bền, hoặc chờ qua mốc cũ khi khởi động, hoặc không cho số hiệu máy cũ dùng lại.
 
 ## Giới hạn cần nhớ
 
-Số hiệu máy phải được cấp không trùng; việc đó cần một nơi phối hợp (tệp cấu hình, dịch vụ đăng ký), và hai máy lỡ nhận cùng số hiệu sẽ sinh trùng mã. "Xấp xỉ theo thời gian" chỉ đúng chừng nào đồng hồ các máy không lệch nhiều: mã của máy có đồng hồ chậm sẽ nằm trước mã của máy nhanh dù sinh sau. Mã còn tiết lộ thời điểm tạo và nhịp tạo, điều có thể không mong muốn với dữ liệu nhạy cảm. Thử nghiệm không kiểm tra nhiều luồng chạy cùng một bộ sinh (cần khóa) và không đo thông lượng thật.
+Số hiệu máy phải được cấp không trùng; việc đó cần một nơi phối hợp (tệp cấu hình, dịch vụ đăng ký), và hai máy lỡ nhận cùng số hiệu sẽ sinh trùng mã. "Xấp xỉ theo thời gian" chỉ đúng chừng nào đồng hồ các máy không lệch nhiều: mã của máy có đồng hồ chậm sẽ nằm trước mã của máy nhanh dù sinh sau. Mã còn tiết lộ thời điểm tạo và nhịp tạo, điều có thể không mong muốn với dữ liệu nhạy cảm. Thử nghiệm chỉ mô phỏng đồng hồ lùi trong một lần chạy, không mô phỏng khởi động lại bộ sinh. Thử nghiệm không kiểm tra nhiều luồng chạy cùng một bộ sinh (cần khóa) và không đo thông lượng thật.
 
 Nếu bạn không cần đúng 64 bit hay thứ tự thời gian, một UUID phiên bản 4 không cần phối hợp gì; còn nếu cần thứ tự thời gian với 128 bit thì có các định dạng khác, chẳng hạn UUID phiên bản 7 gắn thời điểm ở phần đầu.
 

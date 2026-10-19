@@ -7,11 +7,11 @@ Nguồn kể quy trình qua ví dụ một công ty trả lương 100 đô la ch
 
 ## Từ viết tắt
 
-- **ACH** (Automatic Clearing House) — nhà bù trừ tự động: hệ thống xử lý các giao dịch bán lẻ của Hoa Kỳ, theo lô.
+- **ACH** (Automated Clearing House) — nhà bù trừ tự động: hệ thống xử lý các giao dịch bán lẻ của Hoa Kỳ, theo lô.
 - **ODFI** (Originating Depository Financial Institution) — tổ chức tài chính nhận tiền gửi khởi tạo: ngân hàng của bên khởi tạo, bên duy nhất được phép khởi tạo giao dịch ACH trực tiếp.
 - **RDFI** (Receiving Depository Financial Institution) — tổ chức tài chính nhận tiền gửi tiếp nhận: ngân hàng của người nhận, nơi tiền cuối cùng được cộng vào tài khoản.
 - **SFTP** (Secure File Transfer Protocol) — giao thức truyền tệp an toàn: kênh để tải tệp lên một máy chủ; ở đây là máy chủ do ODFI lập.
-- **EPN** (Electronic Payment Network) — mạng thanh toán điện tử: một trong hai nhà vận hành ACH, do một công ty tư nhân vận hành.
+- **EPN** (Electronic Payments Network) — mạng thanh toán điện tử: một trong hai nhà vận hành ACH, do một công ty tư nhân vận hành.
 
 ## Đọc hình
 
@@ -23,7 +23,7 @@ Nguồn kể quy trình qua ví dụ một công ty trả lương 100 đô la ch
 
 **3. Sáng hôm sau (bước 5).** RDFI thao tác trên tài khoản của người nhận theo chỉ dẫn trong tệp. Trong ví dụ, người nhận nhận 100 đô la từ bên khởi tạo. Việc này xảy ra khi RDFI mở cửa làm việc lúc 6 giờ sáng ngày hôm sau.
 
-ACH là hệ thống quyết toán ngày hôm sau: giao dịch gửi đi trước 19 giờ thì tới vào sáng hôm sau. Từ 2018, có thể chọn ACH trong ngày (Same Day ACH) để tiền được chuyển ngay trong ngày làm việc.
+ACH là hệ thống quyết toán ngày hôm sau: giao dịch gửi đi trước 19 giờ thì tới vào sáng hôm sau. Sau đó ACH trong ngày (Same Day ACH) được triển khai theo từng giai đoạn từ 2016 (nguồn nêu mốc 2018, là một giai đoạn sau) để tiền được chuyển ngay trong ngày làm việc.
 
 ## Giới hạn cần nhớ
 

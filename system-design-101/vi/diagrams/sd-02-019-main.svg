@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1302" viewBox="0 0 320 1302" role="img" aria-labelledby="title desc">
+<title id="title">Tám chặng của một thay đổi ở Netflix</title>
+<desc id="desc">Tám chặng nối nhau: lập kế hoạch (Jira, Confluence), viết mã (Java), build (Gradle), đóng gói (AMI), kiểm thử (công cụ hỗn loạn), triển khai (Spinnaker, canary), giám sát (Atlas, Kayenta), sự cố (PagerDuty). Khung cuối nêu ba điều cần nhớ.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1302" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Tám chặng của một thay</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">đổi ở Netflix</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Mỗi chặng một việc, một công cụ.</text>
+<rect x="8" y="104" width="304" height="433" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="132.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Từ việc cần làm tới AMI</text>
+<rect x="20" y="149" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="175" r="14" fill="#1d4ed8"/>
+<text x="46" y="180.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="175.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Lập kế hoạch</text>
+<text x="70" y="199.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Jira lên việc, Confluence viết</text>
+<text x="70" y="218.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tài liệu.</text>
+<rect x="20" y="258" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="284" r="14" fill="#1d4ed8"/>
+<text x="46" y="289.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="284.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Viết mã</text>
+<text x="70" y="308.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Java cho dịch vụ phía sau.</text>
+<polyline points="46,238 46,256" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="348" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="374" r="14" fill="#1d4ed8"/>
+<text x="46" y="379.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="374.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Build</text>
+<text x="70" y="398.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Gradle và plugin tự viết.</text>
+<polyline points="46,328 46,346" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="438" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="464" r="14" fill="#1d4ed8"/>
+<text x="46" y="469.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">4</text>
+<text x="70" y="464.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Đóng gói</text>
+<text x="70" y="488.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Gói và phụ thuộc vào một</text>
+<text x="70" y="507.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">AMI.</text>
+<polyline points="46,418 46,436" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="549" width="304" height="471" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="577.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Từ kiểm thử tới sự cố</text>
+<rect x="20" y="594" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="620" r="14" fill="#0f766e"/>
+<text x="46" y="625.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="620.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Kiểm thử</text>
+<text x="70" y="644.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Thử trên môi trường thật,</text>
+<text x="70" y="663.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">công cụ hỗn loạn.</text>
+<rect x="20" y="703" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="729" r="14" fill="#0f766e"/>
+<text x="46" y="734.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="729.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Triển khai</text>
+<text x="70" y="753.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Spinnaker, phát hành</text>
+<text x="70" y="772.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">canary.</text>
+<polyline points="46,683 46,701" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="812" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="838" r="14" fill="#0f766e"/>
+<text x="46" y="843.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="838.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Giám sát</text>
+<text x="70" y="862.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Số đo về Atlas, Kayenta tìm</text>
+<text x="70" y="881.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bất thường.</text>
+<polyline points="46,792 46,810" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="921" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="947" r="14" fill="#0f766e"/>
+<text x="46" y="952.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">4</text>
+<text x="70" y="947.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Sự cố</text>
+<text x="70" y="971.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chia theo ưu tiên, xử lý</text>
+<text x="70" y="990.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bằng PagerDuty.</text>
+<polyline points="46,901 46,919" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="1032" width="304" height="262" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="1060.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Nhớ gì</text>
+<rect x="20" y="1077" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1100" r="11" fill="#16a34a"/>
+<polyline points="37.9,1100.4 41.7,1104.4 48.5,1096" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1103.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mỗi bản phát hành là một</text>
+<text x="64" y="1122.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">AMI đóng sẵn.</text>
+<rect x="20" y="1148" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1171" r="11" fill="#16a34a"/>
+<polyline points="37.9,1171.4 41.7,1175.4 48.5,1167" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1174.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Canary chạy bản mới trên ít</text>
+<text x="64" y="1193.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">máy trước.</text>
+<rect x="20" y="1219" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1242" r="11" fill="#16a34a"/>
+<polyline points="37.9,1242.4 41.7,1246.4 48.5,1238" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1245.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Giám sát và sự cố tạo việc</text>
+<text x="64" y="1264.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mới cho kế hoạch.</text>
+</g>
+</svg>

@@ -1,0 +1,117 @@
+{
+  "id": "sd-02-019",
+  "title_vi": "Chuỗi CI/CD của Netflix: tám chặng của một thay đổi",
+  "language": "vi",
+  "kind": "flow",
+  "content_status": "draft",
+  "source_ref": "sd-02-019",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/netflix-tech-stack-cicd-pipeline.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/netflix-tech-stack-cicd-pipeline.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "e6c6e99414244e6b0db9da9208f5571f4b63a6cd",
+    "retrieved_body_sha256": "2c494dd43591ebbedf9e9d5d866fe4dee88a993609908d4df44c2f288fc3a797",
+    "retrieved_body_bytes": 1256
+  },
+  "diagram": "../diagrams/sd-02-019-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-13-012",
+      "relation": "see_also",
+      "reason_vi": "Cùng bài nguồn, đọc theo rủi ro thay vì theo chặng."
+    },
+    {
+      "lesson_id": "sd-02-018",
+      "relation": "see_also",
+      "reason_vi": "Kiến trúc tổng thể mà chuỗi này phát hành vào."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-19"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "source_claims_listed_with_the_pinned_source; the author's general-knowledge glosses are not checked against primary documentation"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending",
+      "reason": "figure text measured in Chromium by scripts.figures check --browser (14 px at a 375 px screen); no whole-lesson render at 320, 375 and 430 px recorded"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Planning uses JIRA and documentation uses Confluence.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/netflix-tech-stack-cicd-pipeline.md",
+      "section": "Đọc hình",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Java is the primary language for backend services; other languages serve other use cases.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/netflix-tech-stack-cicd-pipeline.md",
+      "section": "Đọc hình",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Builds mainly use Gradle, with Gradle plugins built for various use cases.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/netflix-tech-stack-cicd-pipeline.md",
+      "section": "Đọc hình",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Packages and dependencies are packed into an Amazon Machine Image (AMI) for release.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/netflix-tech-stack-cicd-pipeline.md",
+      "section": "Đọc hình",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Testing emphasises a production culture focused on building chaos tools.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/netflix-tech-stack-cicd-pipeline.md",
+      "section": "Đọc hình",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Deployment uses the self-built Spinnaker for canary rollouts.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/netflix-tech-stack-cicd-pipeline.md",
+      "section": "Đọc hình",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Monitoring metrics are centralised in Atlas and Kayenta detects anomalies.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/netflix-tech-stack-cicd-pipeline.md",
+      "section": "Đọc hình",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Incidents are dispatched by priority and handled with PagerDuty.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/netflix-tech-stack-cicd-pipeline.md",
+      "section": "Đọc hình",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "What each stage hands to the next, how canary and AMI make rollback easier, and the pipeline as a loop.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/netflix-tech-stack-cicd-pipeline.md",
+      "section": "Xem sâu hơn",
+      "verified_by": "Author's general knowledge; not checked against primary documentation."
+    }
+  ],
+  "design_notes_vi": "Hai dải bước, mỗi dải bốn chặng, và khung ba điều cần nhớ. Góc nhìn theo thứ tự chặng, khác sd-13-012 (theo rủi ro). Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Shares its source with sd-13-012; this lesson walks the stages in order instead of reading them as risks.",
+    "The hand-over of each stage and the rollback explanation are the author's.",
+    "Netflix's engineering posts were not opened."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích thêm là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
+}

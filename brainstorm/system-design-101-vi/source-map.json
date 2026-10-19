@@ -693,54 +693,54 @@
         },
         {
           "id": "sd-02-018",
-          "title_vi": null,
+          "title_vi": "Kiến trúc tổng thể của Netflix qua tám lớp",
           "title_source": "Netflix's Overall Architecture",
           "source_url": "https://bytebytego.com/guides/netflixs-overall-architecture",
           "source_path": "data/guides/netflixs-overall-architecture.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "ad57206a674b7b49e579df62eef56cc86ed0edf8",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/netflixs-overall-architecture.md"
         },
         {
           "id": "sd-02-019",
-          "title_vi": null,
+          "title_vi": "Chuỗi CI/CD của Netflix: tám chặng của một thay đổi",
           "title_source": "Netflix Tech Stack - CI/CD Pipeline",
           "source_url": "https://bytebytego.com/guides/netflix-tech-stack-cicd-pipeline",
           "source_path": "data/guides/netflix-tech-stack-cicd-pipeline.md",
           "same_source_as": [
             "sd-13-012"
           ],
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "e6c6e99414244e6b0db9da9208f5571f4b63a6cd",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/netflix-tech-stack-cicd-pipeline.md"
         },
         {
           "id": "sd-02-020",
-          "title_vi": null,
+          "title_vi": "TikTok và kho mã frontend 200 nghìn tệp",
           "title_source": "How TikTok Manages a 200K File Frontend MonoRepo",
           "source_url": "https://bytebytego.com/guides/how-tiktok-manages-a-200k-file-frontend-monorepo",
           "source_path": "data/guides/how-tiktok-manages-a-200k-file-frontend-monorepo.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "2efcd7179fed6b07e41ea2ffcc8d3312355199db",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-tiktok-manages-a-200k-file-frontend-monorepo.md"
         },
         {
           "id": "sd-02-021",
-          "title_vi": null,
+          "title_vi": "Netflix dùng Java thế nào qua ba đời kiến trúc",
           "title_source": "How Netflix Really Uses Java",
           "source_url": "https://bytebytego.com/guides/how-netflix-really-uses-java",
           "source_path": "data/guides/how-netflix-really-uses-java.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "e5fbb2dab81232e234bed8c882e716335b760368",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-netflix-really-uses-java.md"
         },
         {
           "id": "sd-02-022",
-          "title_vi": null,
+          "title_vi": "Kiến trúc microservice của Airbnb qua ba giai đoạn",
           "title_source": "Evolution of Airbnb’s Microservice Architecture",
           "source_url": "https://bytebytego.com/guides/evolution-of-airbnb's-microservice",
           "source_path": "data/guides/evolution-of-airbnb's-microservice.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "ad8af0a8a9767488ccdd4f6b90553b15ff9c251f",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/evolution-of-airbnb's-microservice.md"
         },

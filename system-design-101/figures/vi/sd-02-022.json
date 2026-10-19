@@ -1,0 +1,56 @@
+{
+  "id": "sd-02-022",
+  "title": "Airbnb qua ba giai đoạn",
+  "subtitle": "Mỗi bước giải một vấn đề và sinh vấn đề mới.",
+  "desc": "Ba bước. Khối nguyên 2008 đến 2017, Ruby on Rails: sở hữu mã rối, triển khai chậm. Microservice 2017 đến 2020: dịch vụ lấy dữ liệu, logic nghiệp vụ, quy trình ghi, gộp cho giao diện, mỗi dịch vụ một đội; vấn đề là hàng trăm dịch vụ khó quản lý. Micro kết hợp macroservice từ 2020: thống nhất API. Khung cuối nêu ba điều cần nhớ.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Ba giai đoạn",
+      "items": [
+        {
+          "title": "Khối nguyên, 2008–2017",
+          "text": "Một ứng dụng Ruby on Rails."
+        },
+        {
+          "title": "Microservice, 2017–2020",
+          "text": "Mỗi dịch vụ một đội sở hữu."
+        },
+        {
+          "title": "Micro + macro, từ 2020",
+          "text": "Tập trung thống nhất API."
+        }
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Vấn đề mỗi giai đoạn để lại",
+      "items": [
+        {
+          "name": "Khối nguyên",
+          "role": "Sở hữu mã rối, triển khai chậm.",
+          "icon": "box"
+        },
+        {
+          "name": "Microservice",
+          "role": "Hàng trăm dịch vụ khó quản lý.",
+          "icon": "boxes"
+        },
+        {
+          "name": "Micro + macro",
+          "role": "Nguồn chưa nói vấn đề mới.",
+          "icon": "layers"
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Nhớ gì",
+      "items": [
+        "Giải pháp của bước này là vấn đề của bước sau.",
+        "Microservice có bốn loại dịch vụ chính.",
+        "Nguồn không định nghĩa macroservice."
+      ]
+    }
+  ]
+}

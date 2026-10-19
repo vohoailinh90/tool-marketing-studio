@@ -33,7 +33,7 @@ Số dưới đây là ví dụ để thấy phép nhân, không phải số đo
 
 Còn thứ tự: tài liệu của AWS mô tả Reserved Instances và Savings Plans là cam kết dùng đều đặn trong 1 hoặc 3 năm (Savings Plans cam kết theo số tiền mỗi giờ, Reserved Instances theo cấu hình máy cụ thể). Từ đó người biên soạn suy ra: nếu cam kết mua theo mức dùng hiện tại rồi mới tắt bớt, phần cam kết thừa vẫn phải trả; vì vậy nên giảm trước, cam kết sau. Đây là suy luận, không phải câu của tài liệu.
 
-Máy dư (Spot) khác kiểu: tài liệu nói đó là công suất máy ảo chưa dùng của AWS với giá thấp hơn nhiều, đổi lại có thể bị thu hồi, với cảnh báo hai phút. Nên hợp với việc chịu được gián đoạn (chạy lô, xử lý có thể làm lại), không hợp với phần phải luôn có mặt.
+Máy dư (Spot) khác kiểu: tài liệu nói đó là công suất máy ảo chưa dùng của AWS với giá thấp hơn nhiều, đổi lại có thể bị thu hồi; thường có thông báo gián đoạn khoảng hai phút trước đó, nhưng thông báo không được bảo đảm (người rà soát nêu AWS ghi là nỗ lực tối đa) và với máy cấu hình ngủ đông thì việc ngủ đông bắt đầu ngay, nên đừng thiết kế việc dọn dẹp dựa hẳn vào hai phút đó. Nên hợp với việc chịu được gián đoạn (chạy lô, xử lý có thể làm lại), không hợp với phần phải luôn có mặt.
 
 ## Giới hạn cần nhớ
 
@@ -61,7 +61,7 @@ Bài nguồn là một hình và danh sách sáu kỹ thuật theo thứ tự h�
 
 - [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/cloud-cost-reduction-techniques.md): sáu kỹ thuật và mẹo thêm. Cách xếp theo đòn bẩy, ví dụ số và lập luận về thứ tự là của người biên soạn.
 - [AWS — các lựa chọn mua EC2 (kho lưu trữ, commit 8a9cb02)](https://github.com/awsdocs/amazon-ec2-user-guide/blob/8a9cb02eb5a0145740adff6099c144aa7f594053/doc_source/instance-purchasing-options.md): cam kết theo giờ hoặc theo cấu hình, 1 hoặc 3 năm; Spot là công suất chưa dùng.
-- [AWS — dùng máy Spot (kho lưu trữ, commit 8a9cb02)](https://github.com/awsdocs/amazon-ec2-user-guide/blob/8a9cb02eb5a0145740adff6099c144aa7f594053/doc_source/using-spot-instances.md): máy dư có thể bị thu hồi, cảnh báo hai phút; trang gián đoạn (`spot-interruptions.md`) cùng kho nói tương tự.
+- [AWS — dùng máy Spot (kho lưu trữ, commit 8a9cb02)](https://github.com/awsdocs/amazon-ec2-user-guide/blob/8a9cb02eb5a0145740adff6099c144aa7f594053/doc_source/using-spot-instances.md): máy dư có thể bị thu hồi, thường kèm thông báo khoảng hai phút (không bảo đảm); trang gián đoạn (`spot-interruptions.md`) cùng kho nói tương tự.
 
 Đã đọc nguồn ngày 2026-10-19. Phép tính là của người biên soạn; kho tài liệu AWS đã ngừng cập nhật nên chưa đối chiếu bảng giá hiện hành.
 Bài viết và hình được thiết kế độc lập.

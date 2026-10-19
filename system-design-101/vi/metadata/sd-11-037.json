@@ -55,7 +55,7 @@
       "verified_by": "Tệp đọc ngày 2026-10-19 ở commit 8a9cb02."
     },
     {
-      "claim_vi": "Máy Spot có thể bị EC2 thu hồi khi cần lại công suất, với cảnh báo hai phút.",
+      "claim_vi": "Máy Spot có thể bị EC2 thu hồi khi cần lại công suất, thường kèm thông báo gián đoạn khoảng hai phút; thông báo không được bảo đảm và máy cấu hình ngủ đông bắt đầu ngủ đông ngay (phần không bảo đảm do người rà soát nêu, chưa có trong bản tài liệu lưu trữ đã đọc).",
       "source": "https://github.com/awsdocs/amazon-ec2-user-guide/blob/8a9cb02eb5a0145740adff6099c144aa7f594053/doc_source/using-spot-instances.md",
       "section": "Spot Instance interruptions",
       "verified_by": "Tệp đọc ngày 2026-10-19 ở commit 8a9cb02; trang spot-interruptions.md cùng kho nói tương tự."

@@ -1,0 +1,87 @@
+id: 01-agent-orchestrator
+status: draft
+format: portrait
+series: Radar GitHub · 2026-10-17-2
+link: 01-agent-orchestrator
+slides:
+- layout: cover
+  emoji: 🧰
+  eyebrow: Radar GitHub · Phần mềm
+  title: Điều phối đội ngũ AI coding agent đa nhiệm
+  subtitle: Ứng dụng desktop điều phối và giám sát các coding agent từ khâu lập kế hoạch đến hợp nhất
+    mã nguồn.
+- layout: stat
+  eyebrow: Số liệu theo ngày quét
+  value: '13.260'
+  label: sao trên GitHub
+  caption: Apache-2.0 · Go
+- layout: quote
+  text: Khi chạy nhiều AI coding agent trên cùng một dự án, lập trình viên gặp khó khăn trong việc phân
+    chia công việc và cấp ngữ cảnh phù hợp. Việc nhiều tác vụ chạy song song dễ gây xung đột nhánh Git
+    và mất dấu trạng thái kiểm thử.
+  author: Vấn đề nó giải quyết
+- layout: flow
+  variant: after
+  title: Nó chạy thế nào
+  steps:
+  - text: 'Tạo worker session: Mỗi tác vụ được gán cho một worker gồm một coding agent, mô hình phù hợp
+      và một không gian làm việc cô lập.'
+  - text: 'Cô lập không gian Git: Mỗi worker chạy trên một nhánh và Git worktree riêng biệt, hoặc thư
+      mục độc lập không cần repo.'
+  - text: 'Giám sát qua daemon: Daemon chạy nền tự động theo dõi hoạt động của agent, thay đổi mã nguồn,
+      pull request và kết quả CI.'
+  - text: 'Phản hồi hai chiều: Người dùng gửi trực tiếp góp ý duyệt mã hoặc lỗi từ CI về đúng agent sở
+      hữu phần việc đó.'
+- layout: features
+  title: Các mảnh ghép
+  items:
+  - emoji: 🧩
+    title: Desktop App
+    text: Giao diện làm việc trung tâm cung cấp bảng Kanban, Chat và terminal UI
+  - emoji: ⚙️
+    title: Local Daemon
+    text: Tiến trình nền theo dõi hoạt động agent và trạng thái kiểm soát phiên bản
+  - emoji: 🔌
+    title: Coding Agent Workers
+    text: Các agent thực thi tác vụ trên worktree và nhánh Git riêng biệt
+- layout: checklist
+  title: Học được gì
+  tone: ok
+  items:
+  - Dùng Git worktree để cô lập hoàn toàn môi trường làm việc của từng AI agent
+  - Mô hình tiến trình daemon nền giúp tự động hóa việc theo dõi mã nguồn mà không cần gõ lệnh thủ công
+  - Quản lý vòng lặp phản hồi khép kín bằng cách trả thẳng lỗi CI vào phiên làm việc của agent
+- layout: pains
+  title: Lưu ý
+  tone: accent
+  items:
+  - emoji: ⚠️
+    text: Mỗi agent harness (Claude Code, Codex, v.v.) có mức độ hỗ trợ Worker, Chat và reviewer khác
+      nhau
+  - emoji: ⚠️
+    text: Cần cài đặt riêng CLI cho từng coding agent theo tài liệu hướng dẫn
+- layout: cta
+  emoji: 📌
+  title: Lưu lại để học dần
+  text: Mỗi tuần hai lần có một repo mới.
+  show_link: false
+platforms:
+  facebook:
+    caption: 'Điều phối đội ngũ AI coding agent mượt mà trên từng nhánh Git riêng biệt.
+
+
+      Không còn cảnh xung đột branch khi chạy nhiều AI cùng lúc.
+
+      Mỗi agent nhận một worktree, terminal và feedback loop riêng.
+
+      Theo dõi toàn bộ tiến độ, CI và review ngay trên bảng Kanban trực quan.
+
+
+      Nội dung do AI tóm tắt từ README và cấu trúc repo; hãy đọc repo gốc trước khi dùng.'
+    first_comment: 'Repo gốc: {link}'
+    hashtags:
+    - Orchestrator
+    - CodingAgents
+    - DevTools
+    - GitWorktree
+    - OpenSource

@@ -34,7 +34,7 @@ Dòng thứ tư là điểm yếu quan trọng nhất: nếu bộ sinh cứ dùn
 
 Số hiệu máy phải được cấp không trùng; việc đó cần một nơi phối hợp (tệp cấu hình, dịch vụ đăng ký), và hai máy lỡ nhận cùng số hiệu sẽ sinh trùng mã. "Xấp xỉ theo thời gian" chỉ đúng chừng nào đồng hồ các máy không lệch nhiều: mã của máy có đồng hồ chậm sẽ nằm trước mã của máy nhanh dù sinh sau. Mã còn tiết lộ thời điểm tạo và nhịp tạo, điều có thể không mong muốn với dữ liệu nhạy cảm. Thử nghiệm chỉ mô phỏng đồng hồ lùi trong một lần chạy, không mô phỏng khởi động lại bộ sinh. Thử nghiệm không kiểm tra nhiều luồng chạy cùng một bộ sinh (cần khóa) và không đo thông lượng thật.
 
-Nếu bạn không cần đúng 64 bit hay thứ tự thời gian, một UUID phiên bản 4 không cần phối hợp gì; còn nếu cần thứ tự thời gian với 128 bit thì có các định dạng khác, chẳng hạn UUID phiên bản 7 gắn thời điểm ở phần đầu.
+Nếu bạn không cần đúng 64 bit hay thứ tự thời gian, một UUID phiên bản 4 không cần phối hợp gì, nhưng tính duy nhất của nó chỉ là xác suất: hai máy sinh độc lập vẫn có thể trùng với xác suất rất nhỏ, nên nếu cần bảo đảm tuyệt đối thì vẫn phải có ràng buộc duy nhất ở nơi lưu và thử lại khi bị từ chối; còn nếu cần thứ tự thời gian với 128 bit thì có các định dạng khác, chẳng hạn UUID phiên bản 7 gắn thời điểm ở phần đầu.
 
 ## Nhìn hình trả lời
 

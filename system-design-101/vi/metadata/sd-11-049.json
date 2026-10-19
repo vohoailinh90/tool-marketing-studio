@@ -27,7 +27,7 @@
     "claims": {
       "status": "checked",
       "checked_on": "2026-10-19",
-      "evidence": "Trang Microsoft đọc từ kho MicrosoftDocs/architecture-center tại commit 8e2c239344ee753a88856800b4210a3e27ac1036 (clone ngày 2026-10-19), thư mục docs/aws-professional (12 tệp). Chương trình của người biên soạn đọc các bảng Markdown có cả cột 'AWS service' và cột 'Azure service': 194 dòng, chia theo trang là index 63, compute 27, networking 24, analytics 23, storage 17, databases 13, security-identity 13, data-ai 9, messaging 5 (tổng 194). Trong index, mười mục ### dưới Other services có 53 dòng: Management and governance 16, Web applications 7, DevOps and application monitoring 6, Internet of Things 6, Authentication and authorization 6, Security 5, Encryption 3, Firewalls 2, Marketplace 1, End-user computing 1 (tổng 53); mục ## Miscellaneous có thêm 10 dòng (53 + 10 = 63). Tên dịch vụ AWS lấy theo chữ của liên kết, không phân biệt hoa thường: 200 lượt nhắc, 183 tên khác nhau, 17 tên ở hai trang (14 trong 17 có một trang là index), 15 dòng nêu hơn một dịch vụ AWS. Hai câu của trang index ('Not every AWS service or Azure service is listed...' và 'The preceding list doesn't include all services.') đọc trực tiếp. Bài nguồn chỉ có ảnh và vài đoạn chữ; ảnh không được đọc."
+      "evidence": "Trang Microsoft đọc từ kho MicrosoftDocs/architecture-center tại commit 8e2c239344ee753a88856800b4210a3e27ac1036 (clone ngày 2026-10-19), thư mục docs/aws-professional (12 tệp). Chương trình của người biên soạn đọc các bảng Markdown có cả cột 'AWS service' và cột 'Azure service': 194 dòng, chia theo trang là index 63, compute 27, networking 24, analytics 23, storage 17, databases 13, security-identity 13, data-ai 9, messaging 5 (tổng 194). Trong index, mười mục ### dưới Other services có 53 dòng: Management and governance 16, Web applications 7, DevOps and application monitoring 6, Internet of Things 6, Authentication and authorization 6, Security 5, Encryption 3, Firewalls 2, Marketplace 1, End-user computing 1 (tổng 53); mục ## Miscellaneous có thêm 10 dòng (53 + 10 = 63). Tên dịch vụ AWS lấy theo chữ của liên kết, không phân biệt hoa thường: 214 lượt nhắc, 183 tên khác nhau, 17 tên ở hai trang (14 trong 17 có một trang là index), 15 dòng nêu hơn một dịch vụ AWS. Hai câu của trang index ('Not every AWS service or Azure service is listed...' và 'The preceding list doesn't include all services.') đọc trực tiếp. Bài nguồn chỉ có ảnh và vài đoạn chữ; ảnh không được đọc."
     },
     "technical_review": {
       "status": "pending",
@@ -61,7 +61,7 @@
       "verified_by": "Hai câu đọc trực tiếp từ tệp; số dòng theo mục do người biên soạn đếm ngày 2026-10-19."
     },
     {
-      "claim_vi": "Cột AWS nhắc 200 lượt tên dịch vụ, 183 tên khác nhau theo chữ của liên kết; 17 tên xuất hiện ở hai trang, ví dụ Amazon Lightsail ở compute.md và index.md, Amazon Kinesis Data Streams ở analytics.md và messaging.md.",
+      "claim_vi": "Cột AWS nhắc 214 lượt tên dịch vụ, 183 tên khác nhau theo chữ của liên kết; 17 tên xuất hiện ở hai trang, ví dụ Amazon Lightsail ở compute.md và index.md, Amazon Kinesis Data Streams ở analytics.md và messaging.md.",
       "source": "https://github.com/MicrosoftDocs/architecture-center/tree/8e2c239344ee753a88856800b4210a3e27ac1036/docs/aws-professional",
       "section": "Cột AWS service",
       "verified_by": "Phép đếm của người biên soạn ngày 2026-10-19; ô không có liên kết không được đếm tên."

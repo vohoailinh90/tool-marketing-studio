@@ -1,6 +1,6 @@
 # Bản đồ dịch vụ AWS: chín trang theo cách Microsoft chia, và trang "dịch vụ khác" chứa gần một phần ba
 
-**Bài nguồn giới thiệu một tờ hướng dẫn bằng hình để tìm đường trong rất nhiều dịch vụ AWS; nội dung nằm trong ảnh và bài này không đọc ảnh. Thay vào đó, bài hỏi một câu đếm được: khi Microsoft phải xếp các dịch vụ AWS vào những trang để người đến từ AWS tìm lại, họ chia thế nào? Trong 194 dòng ghép dịch vụ, 63 dòng nằm ở trang giới thiệu, nơi gom các dịch vụ không có trang riêng: gần một phần ba.**
+**Bài nguồn giới thiệu một tờ hướng dẫn bằng hình để tìm đường trong rất nhiều dịch vụ AWS; nội dung nằm trong ảnh và bài này không đọc ảnh. Thay vào đó, bài hỏi một câu đếm được: khi Microsoft phải xếp các dịch vụ AWS vào những trang để người đến từ AWS tìm lại, họ chia thế nào? Trong 194 dòng ghép dịch vụ, 63 dòng nằm ở các bảng "dịch vụ khác" của trang giới thiệu: gần một phần ba.**
 Đó là cách Microsoft chia, không phải cách AWS chia, và phép đếm không đo số dịch vụ của AWS.
 
 ![Ba khung. Khung một, bài nguồn: một ảnh hướng dẫn các dịch vụ AWS, ảnh không được đọc. Khung hai, chín trang của Microsoft chứa 194 dòng ghép dịch vụ: trang giới thiệu gom 63 dòng, tính toán 27, mạng 24, phân tích 23, lưu trữ 17, cơ sở dữ liệu 13, danh tính 13, trí tuệ nhân tạo và học máy 9, nhắn tin 5. Khung ba, điều cần nhớ: có 183 tên dịch vụ AWS khác nhau, 17 tên nằm ở hai trang, và đây là cách chia của Microsoft chứ không phải của AWS.](../../diagrams/sd-11-049-main.svg)
@@ -15,7 +15,7 @@
 
 **Chín trang của Microsoft.** Loạt bài "Azure for AWS professionals" có một trang giới thiệu và mười một trang theo mảng việc. Ba trang (tài khoản, vùng và khu, quản lý tài nguyên) kể về khái niệm, không có bảng ghép dịch vụ. Tám trang còn lại cộng với trang giới thiệu là chín trang có bảng, và chỉ chín trang này đóng góp dòng cho phép đếm.
 
-**Trang giới thiệu cũng là một "kho chứa".** Chính trang này viết "Not every AWS service or Azure service is listed", rồi ở mục sau: "The preceding list doesn't include all services." Những dịch vụ không có trang riêng được dồn xuống dưới tiêu đề `Other services` (53 dòng, mười mục) và mục `Miscellaneous` (10 dòng).
+**Trang giới thiệu cũng là một "kho chứa".** Chính trang này viết "Not every AWS service or Azure service is listed", rồi ở mục sau: "The preceding list doesn't include all services." Trang này gom các dịch vụ mà loạt bài không dành trang theo mảng riêng, dưới tiêu đề `Other services` (53 dòng, mười mục) và mục `Miscellaneous` (10 dòng).
 
 ## Thử: đếm dòng theo trang
 
@@ -36,9 +36,50 @@ Ngày 2026-10-19, người biên soạn viết một chương trình đọc các
 
 Bên trong 63 dòng của trang giới thiệu, mục lớn nhất là `Management and governance` (quản lý và quản trị) với 16 dòng, nhiều hơn cả trang cơ sở dữ liệu (13 dòng). Sau đó là `Miscellaneous` (10), `Web applications` (7), rồi ba mục 6 dòng: `DevOps and application monitoring`, `Internet of Things (IoT)` và `Authentication and authorization`. Bảo mật cũng bị rải ra: trang danh tính có 13 dòng, và bốn mục bảo mật của trang giới thiệu (`Authentication and authorization`, `Encryption`, `Firewalls`, `Security`) thêm 16 dòng.
 
-Về tên dịch vụ: lấy chữ của các liên kết trong cột AWS (không phân biệt hoa thường), có 200 lượt nhắc nhưng chỉ 183 tên khác nhau, vì 17 tên xuất hiện ở hai trang. Ví dụ `Amazon Lightsail` nằm ở trang tính toán và trong mục ứng dụng web của trang giới thiệu; `Amazon Kinesis Data Streams` nằm ở trang phân tích và trang nhắn tin. Mười bốn trong 17 trường hợp trùng có một trang là trang giới thiệu.
+Về tên dịch vụ: lấy chữ của các liên kết trong cột AWS (không phân biệt hoa thường), có 214 lượt nhắc nhưng chỉ 183 tên khác nhau: 17 tên xuất hiện ở hai trang, và vài tên lặp lại ngay trong một trang. Ví dụ `Amazon Lightsail` nằm ở trang tính toán và trong mục ứng dụng web của trang giới thiệu; `Amazon Kinesis Data Streams` nằm ở trang phân tích và trang nhắn tin. Mười bốn trong 17 trường hợp trùng có một trang là trang giới thiệu.
 
 Tự thử: chọn ba dịch vụ bạn biết, đoán trang nào sẽ chứa chúng, rồi tìm. `AWS CloudFormation` nằm ở trang giới thiệu, mục `DevOps and application monitoring`; `AWS Step Functions` nằm ở cả trang tính toán lẫn trang giới thiệu; `Amazon Lightsail` như trên.
+
+<details>
+<summary>Xem chương trình đếm và kết quả</summary>
+
+Chạy `python3 count.py <thư mục docs/aws-professional>` trên bản clone commit `8e2c239`; mã nằm trọn ở đây vì bài không thêm tệp mã vào kho.
+
+```python
+import re, glob, collections, sys
+root = sys.argv[1]  # .../docs/aws-professional
+rows = collections.Counter(); where = collections.defaultdict(set)
+mult = 0; mentions = 0; idx = collections.Counter()
+for f in sorted(glob.glob(root + "/*.md")):
+    page = f.split("/")[-1]; L = open(f, encoding="utf-8").read().split("\n"); sec = ""; i = 0
+    while i < len(L):
+        m = re.match(r"^(##+) (.*)", L[i])
+        if m: sec = m.group(2).strip()
+        if L[i].startswith("|") and i + 1 < len(L) and re.match(r"^\|[\s:\-|]+\|?$", L[i + 1]):
+            head = [c.strip().lower() for c in L[i].strip().strip("|").split("|")]
+            ai = [k for k, h in enumerate(head) if h.startswith("azure service")]
+            pi = [k for k, h in enumerate(head) if h.startswith("aws")]
+            j = i + 2
+            while j < len(L) and L[j].startswith("|"):
+                c = [x.strip() for x in L[j].strip().strip("|").split("|")]
+                if ai and pi and len(c) > max(ai[0], pi[0]) and c[pi[0]]:
+                    rows[page] += 1
+                    if page == "index.md": idx[sec] += 1
+                    names = [t.strip().lower() for t in re.findall(r"\[([^\]]+)\]\([^)]*\)", c[pi[0]])]
+                    mult += len(names) > 1; mentions += len(names)
+                    for t in names: where[t].add(page)
+                j += 1
+            i = j; continue
+        i += 1
+print("rows", sum(rows.values()), dict(rows))
+print("index sections", dict(idx))
+print("mentions", mentions, "distinct", len(where), "on two pages", sum(len(v) > 1 for v in where.values()),
+      "with index", sum(len(v) > 1 and "index.md" in v for v in where.values()), "multi-name rows", mult)
+```
+
+Kết quả: `rows 194`, `mentions 214 distinct 183 on two pages 17 with index 14 multi-name rows 15`, cùng số dòng theo trang và theo mục ở bảng trên.
+
+</details>
 
 ## Giới hạn cần nhớ
 
@@ -51,7 +92,7 @@ Bạn dựng bản đồ dịch vụ AWS cho đồng đội và chia thành chí
 <details>
 <summary>Xem đáp án</summary>
 
-Vì trong cách chia của Microsoft, 63 trên 194 dòng (32,5%) rơi vào nhóm gom những thứ không có trang riêng, nên một danh sách chỉ có chín chủ đề sẽ giấu mất gần một phần ba. Nhóm "khác" cần được chia mục nhỏ, như Microsoft chia trang giới thiệu thành mười một mục. Cũng cho phép một dịch vụ có hai nhà, vì 17 trong 183 tên xuất hiện ở hai trang. Đây là suy luận của người biên soạn từ một cách chia, không phải quy tắc chung.
+Vì trong cách chia của Microsoft, 63 trên 194 dòng (32,5%) nằm ở các bảng "dịch vụ khác" của trang giới thiệu (con số đo các dòng ở đó, không chứng minh dịch vụ nào thiếu trang theo mảng, vì 14 tên còn xuất hiện ở cả hai nơi), nên một danh sách chỉ có chín chủ đề sẽ giấu mất gần một phần ba. Nhóm "khác" cần được chia mục nhỏ, như Microsoft chia trang giới thiệu thành mười một mục. Cũng cho phép một dịch vụ có hai nhà, vì 17 trong 183 tên xuất hiện ở hai trang. Đây là suy luận của người biên soạn từ một cách chia, không phải quy tắc chung.
 
 </details>
 

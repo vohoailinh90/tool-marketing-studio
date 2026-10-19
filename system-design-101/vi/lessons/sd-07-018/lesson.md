@@ -16,7 +16,7 @@ Visa, Mastercard và American Express là các *mạng thẻ* (card network, cò
 
 **Luồng chốt và quyết toán (capture and settlement).** Cuối ngày, cửa hàng bấm "chốt" (capture) trên máy POS để lấy tiền. Các giao dịch được gửi cho ngân hàng thu theo lô, và ngân hàng thu gửi tệp lô cho mạng thẻ. Mạng thẻ bù trừ các giao dịch thu từ nhiều ngân hàng thu và gửi tệp bù trừ cho các ngân hàng phát hành. Các ngân hàng phát hành xác nhận tệp bù trừ đúng, rồi chuyển tiền cho các ngân hàng thu liên quan. Ngân hàng thu chuyển tiền cho ngân hàng của cửa hàng. Đây là cách nguồn vẽ; giản lược: trong thực tế mạng thẻ điều phối khâu quyết toán, tức là ghi có cho ngân hàng thu và ghi nợ tài khoản của ngân hàng phát hành qua hệ thống của mạng, nên tiền không đi thẳng từ ngân hàng phát hành sang ngân hàng thu.
 
-**Bù trừ là gì.** Là quá trình các giao dịch bù qua lại cho nhau được cộng trừ với nhau (netting), nên các khoản phải chuyển giữa các ngân hàng thu gọn thành số dư ròng. Mỗi giao dịch vẫn phải được xử lý và bù trừ; cái giảm đi là số khoản quyết toán thật sự phải chuyển. Mạng thẻ nhận gánh nặng làm việc với từng ngân hàng và nhận phí dịch vụ để đổi lại.
+**Bù trừ là gì.** Là quá trình các giao dịch bù qua lại cho nhau được cộng trừ với nhau (netting), nên mỗi bên tham gia, cả ngân hàng phát hành lẫn ngân hàng thu, chỉ còn một số dư ròng phải trả hoặc được nhận, và mạng thẻ điều phối việc quyết toán cho cả hai phía. Mỗi giao dịch vẫn phải được xử lý và bù trừ; cái giảm đi là số khoản quyết toán thật sự phải chuyển. Mạng thẻ nhận gánh nặng làm việc với từng ngân hàng và nhận phí dịch vụ để đổi lại.
 
 ## Giới hạn cần nhớ
 
@@ -31,7 +31,7 @@ Khi quẹt thẻ, tiền đã chuyển từ ngân hàng của khách sang cửa 
 <summary>Xem đáp án</summary>
 
 Chưa. Lúc quẹt chỉ có xin phép: ngân hàng phát hành chỉ giữ chỗ số tiền trong hạn mức của thẻ nếu duyệt, chưa chuyển tiền. Tiền chỉ được chuyển ở luồng chốt và quyết toán, bắt đầu từ lúc cửa hàng chốt cuối ngày (việc chuyển tiền có thể hoàn tất ở một ngày quyết toán sau đó), khi ngân hàng phát hành chuyển cho ngân hàng thu và ngân hàng thu chuyển cho ngân hàng của cửa hàng.
-Mạng thẻ ở giữa vì nếu không, mỗi ngân hàng phải quyết toán với mọi ngân hàng khác; mạng thẻ gom, bù trừ rồi gửi tệp, nên các khoản phải chuyển giữa các ngân hàng thu gọn thành số dư ròng (từng giao dịch vẫn được xử lý), và nó nhận phí dịch vụ vì gánh việc đó.
+Mạng thẻ ở giữa vì nếu không, mỗi ngân hàng phải quyết toán với mọi ngân hàng khác; mạng thẻ gom, bù trừ rồi gửi tệp, nên mỗi ngân hàng phát hành và mỗi ngân hàng thu chỉ còn một số dư ròng phải trả hoặc được nhận (từng giao dịch vẫn được xử lý), và nó nhận phí dịch vụ vì gánh việc đó.
 
 </details>
 

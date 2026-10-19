@@ -23,7 +23,7 @@ Nguồn kể quy trình qua ví dụ một công ty trả lương 100 đô la ch
 
 **3. Sáng hôm sau (bước 5).** RDFI thao tác trên tài khoản của người nhận theo chỉ dẫn trong tệp. Trong ví dụ, người nhận nhận 100 đô la từ bên khởi tạo. Việc này xảy ra khi RDFI mở cửa làm việc lúc 6 giờ sáng ngày hôm sau.
 
-ACH là hệ thống quyết toán ngày hôm sau: giao dịch gửi đi trước 19 giờ thì tới vào sáng hôm sau. Sau đó ACH trong ngày (Same Day ACH) được triển khai theo từng giai đoạn từ 2016 (nguồn nêu mốc 2018, là một giai đoạn sau) để tiền được chuyển ngay trong ngày làm việc.
+Nguồn gọi ACH là hệ thống quyết toán ngày hôm sau: trong ví dụ của nó, giao dịch gửi trước 19 giờ thì tới vào sáng hôm sau. Đó là lịch của ví dụ này, không phải lịch chung của ACH: lệnh thường được quyết toán vào ngày làm việc kế tiếp hoặc vào ngày hiệu lực ghi trên lệnh, tùy ngày nào muộn hơn, còn giờ chốt do từng ngân hàng gốc đặt. Sau đó ACH trong ngày (Same Day ACH) được triển khai theo từng giai đoạn từ 2016 (nguồn nêu mốc 2018, là một giai đoạn sau) để tiền được chuyển ngay trong ngày làm việc; nay mỗi ngày làm việc có nhiều đợt quyết toán trong ngày.
 
 ## Giới hạn cần nhớ
 

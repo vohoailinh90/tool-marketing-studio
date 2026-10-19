@@ -108,6 +108,12 @@
       "verified_by": "Read in the file fetched from raw.githubusercontent.com at the pinned commit."
     },
     {
+      "claim_vi": "OWASP: where one key speaks for more than one issuer or more than one recipient, a verifier that checks only the signature and the expiration accepts any token that key has signed, whatever iss and aud it carries; an application that issues and consumes its own token under a key used for nothing else may omit these claims. Mitigations: validate iss against what the deployment trusts and require the verifier's own identifier in aud. In PyJWT the issuer and audience arguments perform that validation. The lesson's experiments use one server that issues and verifies, so they check only the signature and exp.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/3e2db6bf3f5f0c807aef8a8fc84e395acce0292c/cheatsheets/JSON_Web_Token_Cheat_Sheet.md",
+      "section": "Issuer and audience confusion",
+      "verified_by": "Read in the file fetched from raw.githubusercontent.com at the pinned commit (the same file as the other OWASP claims); not run in this lesson's own experiments, the audience error is run in the sd-14-020 lesson."
+    },
+    {
       "claim_vi": "OWASP: on expiry or logout the application must invalidate the session on the server side, and deleting a cookie alone does not invalidate a stolen copy of the session ID; session identifiers need at least 64 bits of entropy and must come from a cryptographically secure random number generator.",
       "source": "https://github.com/OWASP/CheatSheetSeries/blob/3e2db6bf3f5f0c807aef8a8fc84e395acce0292c/cheatsheets/Session_Management_Cheat_Sheet.md",
       "section": "Session Expiration; Cookies; Session ID Entropy",

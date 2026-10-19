@@ -3,7 +3,7 @@
   "lang": "vi",
   "title": "Session và JWT",
   "subtitle": "Một quyết định: ai giữ quyền nói lần đăng nhập này còn hiệu lực.",
-  "desc": "Bốn khung xếp dọc. Một, hai nơi giữ quyền quyết định: session thì máy chủ giữ sổ và tra sổ mỗi yêu cầu; JWT thì thông tin nằm trong thẻ có chữ ký, máy chủ chỉ kiểm chữ ký và hạn. Hai, đăng xuất rồi: session xóa mục trong sổ nên mã cũ bị từ chối; JWT không có sổ để xóa nên bản sao của thẻ vẫn qua tới khi hết hạn. Ba, rút JWT sớm bằng sổ cấm, hạn ngắn hoặc đổi khóa ký, mỗi cách một giá. Bốn, thẻ chỉ được ký chứ không bị che; khóa chung thì ai kiểm cũng ký được; OWASP khuyên cookie HttpOnly.",
+  "desc": "Bốn khung xếp dọc. Một, hai nơi giữ quyền quyết định: session thì máy chủ giữ sổ và tra sổ mỗi yêu cầu; JWT thì thông tin nằm trong thẻ có chữ ký, máy chủ kiểm chữ ký và hạn. Hai, đăng xuất rồi: session xóa mục trong sổ nên mã cũ bị từ chối; JWT không có sổ để xóa nên bản sao của thẻ vẫn qua tới khi hết hạn. Ba, rút JWT sớm bằng sổ cấm, hạn ngắn hoặc đổi khóa ký, mỗi cách một giá. Bốn, JWT ký thông thường chỉ được ký chứ không bị che; khóa chung thì ai kiểm cũng ký được; nhiều dịch vụ dùng chung một khóa thì còn phải kiểm bên phát hành và bên nhận; OWASP khuyên cookie HttpOnly.",
   "sections": [
     {
       "kind": "parts",
@@ -16,7 +16,7 @@
         },
         {
           "name": "JWT: thẻ có chữ ký",
-          "role": "Thông tin nằm sẵn trong thẻ. Máy chủ chỉ kiểm chữ ký và hạn, không tra sổ.",
+          "role": "Thông tin nằm sẵn trong thẻ. Máy chủ kiểm chữ ký và hạn, không tra sổ.",
           "icon": "file-text"
         }
       ]
@@ -56,8 +56,9 @@
       "kind": "notes",
       "heading": "4 · Cần nhớ về thẻ JWT",
       "items": [
-        "Chỉ được ký, không bị che: ai cầm thẻ cũng đọc được nội dung.",
+        "JWT ký thông thường chỉ được ký, không bị che: ai cầm thẻ cũng đọc được nội dung.",
         "Khóa chung: ai kiểm được cũng ký được. Cặp khóa: chỉ chủ khóa riêng ký được.",
+        "Nhiều dịch vụ dùng chung một khóa: kiểm cả bên phát hành (iss) và bên nhận (aud).",
         "OWASP: đặt thẻ trong cookie HttpOnly, không để ở nơi script đọc được."
       ]
     }

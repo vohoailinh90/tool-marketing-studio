@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1708" viewBox="0 0 320 1708" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1837" viewBox="0 0 320 1837" role="img" aria-labelledby="title desc">
 <title id="title">Session và JWT</title>
-<desc id="desc">Bốn khung xếp dọc. Một, hai nơi giữ quyền quyết định: session thì máy chủ giữ sổ và tra sổ mỗi yêu cầu; JWT thì thông tin nằm trong thẻ có chữ ký, máy chủ chỉ kiểm chữ ký và hạn. Hai, đăng xuất rồi: session xóa mục trong sổ nên mã cũ bị từ chối; JWT không có sổ để xóa nên bản sao của thẻ vẫn qua tới khi hết hạn. Ba, rút JWT sớm bằng sổ cấm, hạn ngắn hoặc đổi khóa ký, mỗi cách một giá. Bốn, thẻ chỉ được ký chứ không bị che; khóa chung thì ai kiểm cũng ký được; OWASP khuyên cookie HttpOnly.</desc>
+<desc id="desc">Bốn khung xếp dọc. Một, hai nơi giữ quyền quyết định: session thì máy chủ giữ sổ và tra sổ mỗi yêu cầu; JWT thì thông tin nằm trong thẻ có chữ ký, máy chủ kiểm chữ ký và hạn. Hai, đăng xuất rồi: session xóa mục trong sổ nên mã cũ bị từ chối; JWT không có sổ để xóa nên bản sao của thẻ vẫn qua tới khi hết hạn. Ba, rút JWT sớm bằng sổ cấm, hạn ngắn hoặc đổi khóa ký, mỗi cách một giá. Bốn, JWT ký thông thường chỉ được ký chứ không bị che; khóa chung thì ai kiểm cũng ký được; nhiều dịch vụ dùng chung một khóa thì còn phải kiểm bên phát hành và bên nhận; OWASP khuyên cookie HttpOnly.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="1708" fill="#f8fafc"/>
+<rect width="320" height="1837" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Session và JWT</text>
 <text x="16" y="60.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Một quyết định: ai giữ quyền nói lần</text>
@@ -22,8 +22,8 @@
 <circle cx="50" cy="379.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 368.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></g>
 <text x="78" y="352.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">JWT: thẻ có chữ ký</text>
 <text x="78" y="376.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Thông tin nằm sẵn trong</text>
-<text x="78" y="395.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thẻ. Máy chủ chỉ kiểm chữ</text>
-<text x="78" y="415.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">ký và hạn, không tra sổ.</text>
+<text x="78" y="395.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thẻ. Máy chủ kiểm chữ ký</text>
+<text x="78" y="415.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">và hạn, không tra sổ.</text>
 <rect x="8" y="457" width="304" height="553" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
 <text x="20" y="485.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">2 · Đăng xuất rồi, mã cũ còn</text>
 <text x="20" y="507.3" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">dùng được không?</text>
@@ -78,25 +78,33 @@
 <text x="64" y="1297.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đổi khóa ký: mọi thẻ cũ hết</text>
 <text x="64" y="1316.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hiệu lực. Giá: rút luôn thẻ</text>
 <text x="64" y="1336.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">của mọi người.</text>
-<rect x="8" y="1378" width="304" height="322" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="8" y="1378" width="304" height="451" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
 <text x="20" y="1406.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">4 · Cần nhớ về thẻ JWT</text>
-<rect x="20" y="1423" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<rect x="20" y="1423" width="280" height="102" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
 <circle cx="43" cy="1446" r="11" fill="#16a34a"/>
 <polyline points="37.9,1446.4 41.7,1450.4 48.5,1442" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="1449.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chỉ được ký, không bị che: ai</text>
-<text x="64" y="1468.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cầm thẻ cũng đọc được nội</text>
-<text x="64" y="1488.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dung.</text>
-<rect x="20" y="1514" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
-<circle cx="43" cy="1537" r="11" fill="#16a34a"/>
-<polyline points="37.9,1537.4 41.7,1541.4 48.5,1533" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="1540.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Khóa chung: ai kiểm được</text>
-<text x="64" y="1559.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cũng ký được. Cặp khóa: chỉ</text>
-<text x="64" y="1579.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chủ khóa riêng ký được.</text>
-<rect x="20" y="1605" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
-<circle cx="43" cy="1628" r="11" fill="#16a34a"/>
-<polyline points="37.9,1628.4 41.7,1632.4 48.5,1624" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="1631.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">OWASP: đặt thẻ trong cookie</text>
-<text x="64" y="1650.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">HttpOnly, không để ở nơi</text>
-<text x="64" y="1670.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">script đọc được.</text>
+<text x="64" y="1449.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">JWT ký thông thường chỉ</text>
+<text x="64" y="1468.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">được ký, không bị che: ai</text>
+<text x="64" y="1488.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cầm thẻ cũng đọc được nội</text>
+<text x="64" y="1507.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dung.</text>
+<rect x="20" y="1533" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1556" r="11" fill="#16a34a"/>
+<polyline points="37.9,1556.4 41.7,1560.4 48.5,1552" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1559.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Khóa chung: ai kiểm được</text>
+<text x="64" y="1578.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cũng ký được. Cặp khóa: chỉ</text>
+<text x="64" y="1598.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chủ khóa riêng ký được.</text>
+<rect x="20" y="1624" width="280" height="102" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1647" r="11" fill="#16a34a"/>
+<polyline points="37.9,1647.4 41.7,1651.4 48.5,1643" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1650.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nhiều dịch vụ dùng chung</text>
+<text x="64" y="1669.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">một khóa: kiểm cả bên phát</text>
+<text x="64" y="1689.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hành (iss) và bên nhận</text>
+<text x="64" y="1708.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">(aud).</text>
+<rect x="20" y="1734" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1757" r="11" fill="#16a34a"/>
+<polyline points="37.9,1757.4 41.7,1761.4 48.5,1753" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1760.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">OWASP: đặt thẻ trong cookie</text>
+<text x="64" y="1779.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">HttpOnly, không để ở nơi</text>
+<text x="64" y="1799.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">script đọc được.</text>
 </g>
 </svg>

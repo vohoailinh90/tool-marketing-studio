@@ -10,6 +10,7 @@ Bài giữ tên tám mô hình của nguồn, gom chúng thành ba nhóm theo vi
 - **FP** (Functional Programming) — lập trình hàm: mô hình chia việc thành các hàm.
 - **OOP** (Object-Oriented Programming) — lập trình hướng đối tượng: mô hình xoay quanh các đối tượng gói dữ liệu và hành vi.
 - **AOP** (Aspect-Oriented Programming) — lập trình hướng khía cạnh: mô hình tách các mối quan tâm cắt ngang nhiều phần của hệ thống.
+- **ML** (Meta Language) — tên một họ ngôn ngữ lập trình hàm; bài chỉ nhắc nó như ví dụ của lối hàm, không đi sâu vào.
 - **JDK** (Java Development Kit) — bộ công cụ phát triển Java: gói gồm thư viện chuẩn và công cụ để viết, chạy chương trình Java; bài trích mã nguồn của nó để đối chiếu.
 - **SQL** (Structured Query Language) — ngôn ngữ truy vấn có cấu trúc: ngôn ngữ để hỏi và ghi dữ liệu; tài liệu Python lấy nó làm ví dụ về ngôn ngữ khai báo.
 - **MDN** (Mozilla Developer Network) — tên cũ của MDN Web Docs, bộ tài liệu tra cứu công nghệ web do Mozilla và cộng đồng viết; bài dùng nó để đối chiếu.
@@ -19,7 +20,7 @@ Bài giữ tên tám mô hình của nguồn, gom chúng thành ba nhóm theo vi
 **Cách mô tả chương trình.**
 - Mệnh lệnh (imperative): tài liệu lập trình hàm của Python gọi lối này là "thủ tục" (procedural): chương trình là một danh sách lệnh bảo máy làm gì với dữ liệu vào; C, Pascal và cả các shell của Unix là ngôn ngữ thủ tục. Bài hiểu "thủ tục" của Python gần với "mệnh lệnh" của nguồn, đó là cách đọc của người biên soạn.
 - Khai báo (declarative): theo tài liệu Python, người viết đưa ra một bản đặc tả mô tả bài toán cần giải, còn phần cài đặt của ngôn ngữ tự tìm cách tính hiệu quả. Ví dụ quen nhất là SQL: một câu truy vấn mô tả tập dữ liệu cần lấy, còn động cơ SQL quyết định quét bảng hay dùng chỉ mục, mệnh đề nào chạy trước.
-- Hàm (functional, FP): cũng theo tài liệu Python, lập trình hàm chia bài toán thành một tập hàm. Lý tưởng là hàm chỉ nhận đầu vào và trả đầu ra, không có trạng thái bên trong ảnh hưởng đến kết quả của một đầu vào đã cho. Lối này không khuyến khích hàm có tác dụng phụ; hàm không có tác dụng phụ nào gọi là hàm thuần túy. Các ngôn ngữ hàm nổi tiếng gồm họ `ML` và Haskell, còn chương trình Python viết theo lối hàm thường chỉ dựng giao diện trông như hàm và vẫn dùng tính năng không thuần túy ở bên trong.
+- Hàm (functional, FP): cũng theo tài liệu Python, lập trình hàm chia bài toán thành một tập hàm. Lý tưởng là hàm chỉ nhận đầu vào và trả đầu ra, không có trạng thái bên trong ảnh hưởng đến kết quả của một đầu vào đã cho. Lối này không khuyến khích hàm có tác dụng phụ; hàm không có tác dụng phụ nào gọi là hàm thuần túy. Các ngôn ngữ hàm nổi tiếng gồm họ ML và Haskell, còn chương trình Python viết theo lối hàm thường chỉ dựng giao diện trông như hàm và vẫn dùng tính năng không thuần túy ở bên trong.
 
 **Cách tổ chức mã.**
 - Hướng đối tượng (OOP): MDN mô tả đây là cách tiếp cận trong đó dữ liệu được đóng gói trong các đối tượng và người ta thao tác trên chính đối tượng, thay vì trên từng phần của nó. Tài liệu Python bổ sung rằng đối tượng có trạng thái bên trong và các phương thức để hỏi hoặc đổi trạng thái đó; Smalltalk và Java là ngôn ngữ hướng đối tượng, còn C++ và Python hỗ trợ nhưng không bắt buộc dùng. Bốn ý nền của mô hình này có trong bài riêng về bốn trụ cột.
@@ -65,5 +66,5 @@ Bài nguồn có một ảnh và tám đoạn, mỗi đoạn định nghĩa mộ
 - [Reactive Streams — README](https://github.com/reactive-streams/reactive-streams-jvm/blob/a625d3aba756e9842ad1291a5b73f5db280b6168/README.md), [OpenJDK — Flow](https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/concurrent/Flow.java) và [List](https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/List.java): luồng bất đồng bộ, nhà xuất bản và người đăng ký, tham số kiểu. Đọc từ kho mã.
 - [Go — Effective Go](https://github.com/golang/website/blob/d1edce5b8ec957935895f507f3253d6e02447a6c/_content/doc/effective_go.html): đồng thời khác song song. Đọc từ kho mã.
 
-Đã đọc nguồn ngày 2026-10-19. Cách hiểu chung về mô hình phản ứng và các câu giải nghĩa FP, OOP, AOP, SQL, JDK và MDN trong mục từ viết tắt là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn.
+Đã đọc nguồn ngày 2026-10-19. Cách hiểu chung về mô hình phản ứng và các câu giải nghĩa FP, OOP, AOP, ML, SQL, JDK và MDN trong mục từ viết tắt là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn.
 Bài viết và hình được thiết kế độc lập.

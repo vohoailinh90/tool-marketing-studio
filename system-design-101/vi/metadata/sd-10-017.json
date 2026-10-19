@@ -138,7 +138,7 @@
       "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
     },
     {
-      "claim_vi": "The source spells \"Object-C\" and groups languages into a \"C++ family\" and a \"Java family\"; the lesson uses Objective-C (general knowledge) and does not use the families. The glosses of LISP, GUI, PC and PHP in the abbreviations section (including that PHP is nowadays read as the recursive \"PHP: Hypertext Preprocessor\", not checked against the PHP manual here) are the author's general knowledge.",
+      "claim_vi": "The source spells \"Object-C\" and groups languages into a \"C++ family\" and a \"Java family\"; the lesson uses Objective-C (general knowledge) and does not use the families. The glosses of LISP, GUI, PC, PHP and MDN in the abbreviations section (including that PHP is nowadays read as the recursive \"PHP: Hypertext Preprocessor\", not checked against the PHP manual here) are the author's general knowledge.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/a-brief-history-og-programming-languages.md",
       "section": "Giới hạn cần nhớ",
       "verified_by": "Author's general knowledge; not checked against primary documentation."

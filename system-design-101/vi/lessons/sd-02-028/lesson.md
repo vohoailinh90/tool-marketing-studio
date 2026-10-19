@@ -8,7 +8,7 @@ Bài này đọc bốn giai đoạn đó theo một câu hỏi: mỗi bước s�
 ## Từ viết tắt
 
 - **API** (Application Programming Interface) — giao diện lập trình ứng dụng: cách ứng dụng gọi chức năng và lấy dữ liệu từ một dịch vụ.
-- **WAR** (Web Application Resource) — một tệp đóng gói cả ứng dụng web Java để triển khai một lần.
+- **WAR** (Web ARchive) — tệp lưu trữ web: một tệp đóng gói cả ứng dụng web Java để triển khai một lần.
 - **QL** (Query Language) — ngôn ngữ truy vấn: chữ QL trong tên GraphQL, cho biết đây là cách để ứng dụng mô tả dữ liệu mình muốn lấy.
 
 ## Đọc hình
@@ -18,7 +18,7 @@ Bài này đọc bốn giai đoạn đó theo một câu hỏi: mỗi bước s�
 3. **Lớp cổng gộp.** Một số việc cần dữ liệu từ nhiều dịch vụ. Ví dụ của nguồn: ứng dụng Netflix cần ba API (phim, sản xuất, diễn viên) để dựng giao diện; lớp cổng gộp lấy cả ba và trả về một lần.
 4. **Cổng liên hợp.** Số lập trình viên tăng và nghiệp vụ phức tạp hơn, nên phát triển lớp gộp ngày càng khó. GraphQL Federation cho Netflix dựng một cổng GraphQL duy nhất, lấy dữ liệu từ mọi API khác.
 
-Mỗi bước giữ lại phần đúng của bước trước: máy khách vẫn chỉ gọi một chỗ, nhưng chỗ đó do nhiều đội cùng làm thay vì một đội ôm hết.
+Giai đoạn hai là lúc máy khách gọi thẳng từng dịch vụ. Từ giai đoạn ba, máy khách lại chỉ gọi một chỗ là cổng; ở giai đoạn bốn, chỗ đó do nhiều đội cùng làm thay vì một đội ôm hết.
 
 ## Giới hạn cần nhớ
 

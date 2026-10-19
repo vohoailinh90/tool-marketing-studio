@@ -95,7 +95,7 @@
       "verified_by": "Author's general knowledge; not checked against primary documentation."
     }
   ],
-  "design_notes_vi": "Hai dải bước theo đường đi của một lần xem phim và một cột các mảng đứng ngoài. Không dùng ảnh nguồn.",
+  "design_notes_vi": "Ba nhóm thẻ theo cách chia mảng của bài nguồn: gần lần xem phim, lưu dữ liệu, đứng ngoài lần xem; không vẽ thành đường đi vì nguồn không mô tả đường đi. Không dùng ảnh nguồn.",
   "source_deviations": [
     "Names spelled as commonly written: ZUUL as Zuul, EV cache as EVCache, Fink as Flink, Altas as Atlas.",
     "Netflix's engineering posts were not opened."

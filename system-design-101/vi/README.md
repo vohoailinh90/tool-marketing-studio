@@ -317,6 +317,11 @@ Các bài chưa viết của nhóm này không có trong danh sách; số thứ 
 25. [Quản lý cấu hình và hạ tầng bằng mã: hai cách nhìn một việc](lessons/sd-11-025/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 26. [Event sourcing: lưu sự kiện thay vì trạng thái](lessons/sd-11-026/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 27. [Ứng dụng mười hai yếu tố: mười hai quy tắc gom thành ba nhóm](lessons/sd-11-027/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+39. [Chọn bộ cân bằng tải trên đám mây: bốn ô và hai kiểu kết nối](lessons/sd-11-039/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+40. [AWS từ vài dịch vụ đến hơn hai trăm: đếm trong mã nguồn SDK](lessons/sd-11-040/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+41. [Azure theo mảng việc: mười một mảng và 266 nhà cung cấp tài nguyên](lessons/sd-11-041/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+42. [Mười lăm khái niệm khi thiết kế hệ thống: chia theo việc, và đếm xem tài liệu ôn thi nói gì](lessons/sd-11-042/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+43. [CAP, BASE, SOLID, KISS: bốn từ viết tắt, và một thử nghiệm với CAP](lessons/sd-11-043/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 
 ## Hệ thống hoạt động thế nào?
 

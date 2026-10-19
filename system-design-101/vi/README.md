@@ -222,6 +222,15 @@ Các bài chưa viết của nhóm này không có trong danh sách; số thứ 
 
 23. [Sau thay đổi API: chọn bộ kiểm tra theo rủi ro](lessons/sd-10-023/lesson.md)
 
+## Hệ thống hoạt động thế nào?
+
+Các bài chưa viết của nhóm này không có trong danh sách; số thứ tự là vị trí của bài trong nhóm.
+6. [Ứng dụng chat đơn giản với Redis: kênh phát tin và tập có thứ tự](lessons/sd-12-006/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
+7. [Phát trực tiếp: video được cắt thành đoạn vài giây rồi đẩy ra ngay](lessons/sd-12-007/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
+8. [Quốc tế hóa một website bán hàng: năm mảng, và những chỗ máy làm giúp](lessons/sd-12-008/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
+9. [Soạn thảo chung theo thời gian thực: vì sao cần biến đổi thao tác](lessons/sd-12-009/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
+10. [Ví, sổ cái và tệp quyết toán: ba nơi giữ số tiền phải khớp nhau](lessons/sd-12-010/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng; cùng nguồn với sd-07-012 nhưng khác góc nhìn); chờ review kỹ thuật.
+
 ## DevOps và CI/CD
 
 1. [Tắt êm một API trên Kubernetes: năm chỗ làm rớt request](lessons/sd-13-001/lesson.md)

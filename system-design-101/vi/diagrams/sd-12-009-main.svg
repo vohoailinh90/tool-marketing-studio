@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="815" viewBox="0 0 320 815" role="img" aria-labelledby="title desc">
+<title id="title">Soạn thảo chung thời gian thực</title>
+<desc id="desc">Hai khung. Khung một, năm thành phần xử lý thao tác soạn thảo: máy chủ WebSocket nhận thao tác từ máy khách, hàng đợi thông điệp lưu các thao tác, máy chủ thao tác tệp lấy thao tác ra và biến đổi, kho lưu trữ giữ siêu dữ liệu, nội dung và thao tác. Khung hai, ba thuật toán hợp nhất: OT biến đổi thao tác, DS đồng bộ chênh lệch, CRDT dùng kiểu dữ liệu tự hợp nhất.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="815" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Soạn thảo chung thời</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">gian thực</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Hợp nhất các thao tác cùng lúc.</text>
+<rect x="8" y="104" width="304" height="463" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="132.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Các thành phần</text>
+<rect x="20" y="149" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="192.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 181.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h.01"/><path d="M2 8.82a15 15 0 0 1 20 0"/><path d="M5 12.859a10 10 0 0 1 14 0"/><path d="M8.5 16.429a5 5 0 0 1 7 0"/></g>
+<text x="78" y="175.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Máy chủ WebSocket</text>
+<text x="78" y="199.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nhận thao tác từ máy</text>
+<text x="78" y="218.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khách.</text>
+<rect x="20" y="268" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="302" r="18" fill="#1d4ed8"/><g transform="translate(39.2 291.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></g>
+<text x="78" y="294.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Hàng đợi thông điệp</text>
+<text x="78" y="318.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lưu các thao tác.</text>
+<rect x="20" y="368" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="402" r="18" fill="#1d4ed8"/><g transform="translate(39.2 391.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="8" rx="2" ry="2" width="20" x="2" y="2"/><rect height="8" rx="2" ry="2" width="20" x="2" y="14"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></g>
+<text x="78" y="394.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Máy chủ thao tác tệp</text>
+<text x="78" y="418.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Biến đổi thao tác.</text>
+<rect x="20" y="468" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="511.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 500.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></g>
+<text x="78" y="494.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Kho lưu trữ</text>
+<text x="78" y="518.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Siêu dữ liệu, nội dung,</text>
+<text x="78" y="537.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thao tác.</text>
+<polyline points="160,238 160,266" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="160,338 160,366" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="160,438 160,466" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="579" width="304" height="228" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="607.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Ba hướng hợp nhất</text>
+<rect x="20" y="624" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="647" r="11" fill="#16a34a"/>
+<polyline points="37.9,647.4 41.7,651.4 48.5,643" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="650.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">OT: biến đổi thao tác.</text>
+<rect x="20" y="678" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="701" r="11" fill="#16a34a"/>
+<polyline points="37.9,701.4 41.7,705.4 48.5,697" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="704.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">DS: đồng bộ chênh lệch.</text>
+<rect x="20" y="732" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="755" r="11" fill="#16a34a"/>
+<polyline points="37.9,755.4 41.7,759.4 48.5,751" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="758.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">CRDT: kiểu dữ liệu tự hợp</text>
+<text x="64" y="777.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhất.</text>
+</g>
+</svg>

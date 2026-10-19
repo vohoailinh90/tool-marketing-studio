@@ -3278,54 +3278,54 @@
         },
         {
           "id": "sd-12-006",
-          "title_vi": null,
+          "title_vi": "Ứng dụng chat đơn giản với Redis: kênh phát tin và tập có thứ tự",
           "title_source": "Build a Simple Chat Application with Redis",
           "source_url": "https://bytebytego.com/guides/build-a-simple-chat-application",
           "source_path": "data/guides/build-a-simple-chat-application.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "f459ac51e02c1629ff433880c02413dc4b65c7e9",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/build-a-simple-chat-application.md"
         },
         {
           "id": "sd-12-007",
-          "title_vi": null,
+          "title_vi": "Phát trực tiếp: video được cắt thành đoạn vài giây rồi đẩy ra ngay",
           "title_source": "Live Streaming Explained",
           "source_url": "https://bytebytego.com/guides/live-streaming-explained",
           "source_path": "data/guides/live-streaming-explained.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "711925f665b4818f6cd74a06bacfadfa1510090a",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/live-streaming-explained.md"
         },
         {
           "id": "sd-12-008",
-          "title_vi": null,
+          "title_vi": "Quốc tế hóa một website bán hàng: năm mảng, và những chỗ máy làm giúp",
           "title_source": "How to Design a System for Internationalization",
           "source_url": "https://bytebytego.com/guides/how-do-we-design-a-system-for-internationalization",
           "source_path": "data/guides/how-do-we-design-a-system-for-internationalization.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "043fdc78a1229ac9249bd0f817decf23b9a5ff30",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-we-design-a-system-for-internationalization.md"
         },
         {
           "id": "sd-12-009",
-          "title_vi": null,
+          "title_vi": "Soạn thảo chung theo thời gian thực: vì sao cần biến đổi thao tác",
           "title_source": "How to Design Google Docs",
           "source_url": "https://bytebytego.com/guides/how-to-design-google-docs",
           "source_path": "data/guides/how-to-design-google-docs.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "2337abfbf2e4a04f4b0832121c44353bdfff02f0",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-to-design-google-docs.md"
         },
         {
           "id": "sd-12-010",
-          "title_vi": null,
+          "title_vi": "Ví, sổ cái và tệp quyết toán: ba nơi giữ số tiền phải khớp nhau",
           "title_source": "Payment System",
           "source_url": "https://bytebytego.com/guides/payment-system",
           "source_path": "data/guides/payment-system.md",
           "same_source_as": [
             "sd-07-012"
           ],
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "d6c825db2def7f67751c8ca10cdc78acdc301da7",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/payment-system.md"
         },

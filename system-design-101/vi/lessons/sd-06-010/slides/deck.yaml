@@ -1,5 +1,25 @@
 id: sd-06-010
-status: doing
+status: done
 owner: claude/sd13-slides-0219
 claimed_at: '2026-10-19T06:45:22Z'
-heartbeat_at: '2026-10-19T06:45:22Z'
+done_at: '2026-10-19T06:47:13Z'
+moda_canvas: cvs_6CY0W9R47D9VZR4C23RKYYWCJS
+moda_url: https://moda.app/canvas/ccf0389c-10ed-4eff-8230-43c4fdee3259
+slide_count: 10
+size: 1920x1080
+exports: pending
+layouts:
+  slides:
+  - card-grid
+  - flow
+  - one-highlighted-sentence
+  - two-column-comparison
+  - timeline
+  - layers
+  - numbered-rows
+  - lookup-table
+  - 2x2-matrix
+  - card-grid
+  first_concept: 3
+  cannot:
+    one-big-number: the LRU concept is a bet, not a number

@@ -85,7 +85,7 @@
       "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
     },
     {
-      "claim_vi": "The list of algorithms and their star counts is only in the source image, which the lesson does not use; the lesson names no algorithm from it. The three examples are the lesson's own choice and carry no stars.",
+      "claim_vi": "The list of algorithms and their star counts is only in the source image, which the lesson does not use or copy. The lesson's three examples (Bloom filter, consistent hashing, Raft) share their names with algorithms in that image, but the choice of examples, the explanations and the project documentation behind them are the lesson's own, and it assigns no stars to any of them.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/algorithms-you-should-know-before-taking-system-design-interviews.md",
       "section": "Limits",
       "verified_by": "Author's general knowledge; not checked against primary documentation."

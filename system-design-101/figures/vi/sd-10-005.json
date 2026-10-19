@@ -1,18 +1,60 @@
 {
   "id": "sd-10-005",
   "title": "Cây Java Collection",
-  "subtitle": "Một gốc, ba nhánh chính.",
-  "desc": "Ba nhóm thẻ. Phần gốc: Iterable cho phép duyệt từng phần tử và Collection kế thừa nó. Ba nhánh chính của Collection: List, Set, Queue, mỗi nhánh có ví dụ lớp cài đặt. Khung cuối nhắc rằng Map nằm ngoài cây Collection.",
+  "subtitle": "Một gốc, ba hợp đồng.",
+  "desc": "Ba nhóm thẻ. Phần gốc: Iterable hứa duyệt lần lượt từng phần tử, Collection là hợp đồng chung cho một nhóm phần tử và kế thừa Iterable. Ba hợp đồng con: List cho phần tử một vị trí và đọc theo chỉ số, Set cấm hai phần tử bằng nhau theo equals, Queue giữ phần tử chờ xử lý với hai dạng cho mỗi thao tác; mỗi hợp đồng kèm ví dụ lớp cài đặt. Khung cuối nhắc rằng Map là hợp đồng riêng ngoài cây, thứ tự lấy ra do từng lớp quy định, và hình là bản rút gọn.",
   "sections": [
-    {"kind": "parts", "heading": "Phần gốc",
-     "items": [{"name": "Iterable", "role": "Cho phép duyệt từng phần tử, kể cả bằng vòng lặp for nâng cao.", "icon": "repeat"},
-               {"name": "Collection", "role": "Khai báo thêm, xóa, hỏi phần tử; thêm và xóa là tùy chọn.", "icon": "boxes"}],
-     "flow": [[0, 1]]},
-    {"kind": "parts", "heading": "Ba nhánh chính của Collection",
-     "items": [{"name": "List", "role": "Có thứ tự theo vị trí, thường cho phép trùng. Ví dụ: ArrayList, LinkedList.", "icon": "list-ordered"},
-               {"name": "Set", "role": "Không chứa phần tử trùng. Ví dụ: HashSet, TreeSet.", "icon": "shuffle"},
-               {"name": "Queue", "role": "Giữ phần tử chờ xử lý. Ví dụ: PriorityQueue, ArrayDeque.", "icon": "inbox"}]},
-    {"kind": "notes", "heading": "Nhớ gì",
-     "items": ["Map nằm ngoài cây Collection.", "Đọc tài liệu của lớp cụ thể, không chỉ tên interface.", "Hình là bản rút gọn của cây thật."]}
+    {
+      "kind": "parts",
+      "heading": "Phần gốc",
+      "items": [
+        {
+          "name": "Iterable",
+          "role": "Hứa đi qua từng phần tử, nên dùng được trong vòng lặp for nâng cao.",
+          "icon": "repeat"
+        },
+        {
+          "name": "Collection",
+          "role": "Hợp đồng chung cho một nhóm phần tử; JDK không cài đặt trực tiếp.",
+          "icon": "boxes"
+        }
+      ],
+      "flow": [
+        [
+          0,
+          1
+        ]
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Ba hợp đồng con của Collection",
+      "items": [
+        {
+          "name": "List",
+          "role": "Mỗi phần tử có vị trí, đọc theo chỉ số. Ví dụ: ArrayList, LinkedList.",
+          "icon": "list-ordered"
+        },
+        {
+          "name": "Set",
+          "role": "Không có hai phần tử bằng nhau theo equals. Ví dụ: HashSet, TreeSet.",
+          "icon": "shuffle"
+        },
+        {
+          "name": "Queue",
+          "role": "Giữ phần tử chờ xử lý; mỗi thao tác có hai dạng. Ví dụ: PriorityQueue, ArrayDeque.",
+          "icon": "inbox"
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Nhớ gì",
+      "items": [
+        "Map là hợp đồng riêng, nằm ngoài cây Collection.",
+        "Thứ tự lấy ra do từng lớp quy định: đọc tài liệu của lớp.",
+        "Hình là bản rút gọn của cây thật."
+      ]
+    }
   ]
 }

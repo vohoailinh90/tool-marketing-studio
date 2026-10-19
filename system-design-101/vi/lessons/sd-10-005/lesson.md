@@ -1,57 +1,64 @@
 # Cây phân cấp Java Collection
 
-**Các kiểu tập hợp trong Java cùng xuất phát từ interface `Collection`, rồi tách thành ba nhánh chính: List, Set và Queue.**
-Nắm cây này giúp chọn đúng cấu trúc dữ liệu cho từng bài toán thay vì dùng một kiểu cho mọi việc.
+**Đọc cây Collection như một bộ hợp đồng: mỗi interface hứa một điều khác nhau về vị trí, về trùng lặp và về thứ tự lấy phần tử ra.**
+Nắm ba lời hứa đó giúp chọn đúng kiểu trước khi nghĩ tới tên lớp cụ thể.
 
-![Ba nhóm thẻ xếp dọc. Phần gốc: Iterable cho phép duyệt từng phần tử, kể cả bằng vòng lặp for nâng cao, và Collection kế thừa nó, khai báo các thao tác cơ bản thêm, xóa và hỏi phần tử, trong đó thêm và xóa là thao tác tùy chọn. Ba nhánh chính của Collection: List có thứ tự theo vị trí và thường cho phép trùng, ví dụ ArrayList và LinkedList; Set không chứa phần tử trùng, ví dụ HashSet và TreeSet; Queue giữ phần tử chờ xử lý, ví dụ PriorityQueue và ArrayDeque. Khung cuối nhắc rằng Map nằm ngoài cây Collection.](../../diagrams/sd-10-005-main.svg)
+![Ba nhóm thẻ xếp dọc. Phần gốc: Iterable hứa duyệt lần lượt từng phần tử, nên dùng được trong vòng lặp for nâng cao, và Collection là hợp đồng chung cho một nhóm phần tử, kế thừa Iterable. Ba hợp đồng con của Collection: List cho phần tử một vị trí và đọc theo chỉ số, ví dụ ArrayList và LinkedList; Set cấm hai phần tử bằng nhau theo equals, ví dụ HashSet và TreeSet; Queue giữ phần tử chờ xử lý và mỗi thao tác có hai dạng, ví dụ PriorityQueue và ArrayDeque. Khung cuối nhắc rằng Map là hợp đồng riêng ngoài cây, thứ tự lấy ra do từng lớp quy định, và hình là bản rút gọn.](../../diagrams/sd-10-005-main.svg)
 
 ## Từ viết tắt
 
-- **JCF** (Java Collections Framework) — khung tập hợp của Java: bộ interface và lớp có sẵn để lưu và xử lý nhóm phần tử.
-- **JDK** (Java Development Kit) — bộ công cụ phát triển Java: gói gồm thư viện chuẩn và công cụ để viết, chạy chương trình Java.
+- **JDK** (Java Development Kit) — bộ công cụ phát triển Java: gói gồm thư viện chuẩn và công cụ để viết, chạy chương trình Java; thư viện tập hợp nằm trong gói này.
 
 ## Đọc hình
 
-**Gốc.** JCF dựng trên một tập interface, mỗi interface định nghĩa các thao tác cơ bản của một kiểu cấu trúc dữ liệu phổ biến như danh sách, tập hợp và ánh xạ. Mỗi cấu trúc có một số lớp cụ thể cài đặt nó, với tính năng riêng.
-`Collection` là interface gốc của các tập hợp: nó khai báo các thao tác cơ bản như thêm, xóa và hỏi phần tử. Với thêm và xóa, tài liệu của JDK gọi đó là thao tác tùy chọn (optional): một lớp không hỗ trợ thì ném `UnsupportedOperationException`, như các tập hợp không sửa được. Nó kế thừa `Iterable`, nên có thể duyệt từng phần tử bằng vòng lặp for nâng cao hoặc bằng iterator.
+**Gốc chung.** `Iterable` chỉ hứa một điều: có thể đi qua từng phần tử, nên đối tượng nào cài đặt nó thì dùng được trong vòng lặp `for` nâng cao. `Collection` đứng trên đó và là hợp đồng chung cho "một nhóm đối tượng". Tài liệu JDK nói thẳng rằng nhóm này có thể có hoặc không có phần tử trùng, có hoặc không có thứ tự. JDK cũng không có lớp nào cài đặt `Collection` trực tiếp, chỉ có cài đặt của các interface con cụ thể hơn như `Set` và `List`. Vì vậy `Collection` hay xuất hiện ở tham số hoặc kiểu trả về khi hàm chỉ cần "một nhóm phần tử nào đó" và không quan tâm hình dạng.
 
-**Ba nhánh.** `Collection` có ba interface con chính, mỗi interface có đặc điểm và cách dùng riêng:
-- `List`: có thứ tự theo vị trí và thường cho phép phần tử trùng. Lớp cài đặt thường gặp: `ArrayList`, `LinkedList`.
-- `Set`: không chứa phần tử trùng. Lớp cài đặt thường gặp: `HashSet`, `TreeSet`.
-- `Queue`: giữ phần tử chờ xử lý. Lớp cài đặt thường gặp: `PriorityQueue`, `ArrayDeque`.
+**Ba hợp đồng con.**
+- `List` hứa cho mỗi phần tử một vị trí. Người dùng quyết định chèn ở đâu và đọc lại bằng chỉ số tính từ 0. Tài liệu viết rằng danh sách thường cho phép phần tử trùng. Lớp hay gặp: `ArrayList`, `LinkedList`.
+- `Set` mô hình hóa tập hợp trong toán học: không có hai phần tử `e1`, `e2` nào mà `e1.equals(e2)` đúng. "Trùng" ở đây nghĩa là bằng nhau theo `equals`, không phải cùng một đối tượng. Lớp hay gặp: `HashSet`, `TreeSet`.
+- `Queue` hứa giữ phần tử trong lúc chờ được xử lý. Mỗi việc chèn, lấy ra và xem phần tử ở đầu đều có hai dạng: một dạng ném ngoại lệ khi không làm được, dạng kia trả giá trị đặc biệt (`false` hoặc `null`). Với việc chèn, dạng thứ hai sinh ra cho hàng đợi có giới hạn sức chứa, nơi "đầy" là chuyện bình thường. Lớp hay gặp: `PriorityQueue`, `ArrayDeque`.
 
-**Ngoài cây.** `Map` cũng thuộc JCF nhưng không kế thừa `Collection`; nó là một họ interface riêng.
+**Ngoài cây.** `Map` là hợp đồng riêng: ánh xạ khóa sang giá trị, mỗi khóa trỏ tới nhiều nhất một giá trị và không có khóa trùng. Nó không kế thừa `Collection`, nhưng cho nhìn nội dung của mình dưới ba dạng tập hợp: tập khóa, nhóm giá trị và tập cặp khóa–giá trị.
+
+**Từ hợp đồng đến lớp cụ thể.** Chọn xong interface mới đến chọn lớp, và tài liệu của từng lớp nói điều mà interface bỏ ngỏ:
+- `ArrayList` lưu bằng mảng co giãn, đọc theo chỉ số tốn thời gian hằng số. `LinkedList` là danh sách liên kết đôi, cài đặt cả `List` lẫn `Deque`; truy cập theo chỉ số phải đi từ đầu hoặc từ cuối tới vị trí cần.
+- `HashSet` dựa trên bảng băm, không đảm bảo thứ tự lặp và thứ tự đó có thể đổi theo thời gian. `TreeSet` giữ phần tử theo thứ tự tự nhiên hoặc theo `Comparator` đưa vào lúc tạo.
+- `PriorityQueue` không lấy theo thứ tự vào: phần tử ở đầu là phần tử nhỏ nhất theo thứ tự đã chọn. `ArrayDeque` là hàng đợi hai đầu bằng mảng co giãn; tài liệu nói nó nhiều khả năng nhanh hơn `LinkedList` khi dùng làm hàng đợi.
 
 ## Giới hạn cần nhớ
 
-`Queue` thường, nhưng không nhất thiết, lấy phần tử theo thứ tự vào trước ra trước; `PriorityQueue` lấy theo thứ tự ưu tiên. Vì vậy phải đọc tài liệu của lớp cụ thể chứ không chỉ nhìn tên interface. Tương tự, `List` chỉ thường cho phép phần tử trùng: tài liệu JDK để ngỏ việc một cài đặt từ chối phần tử trùng.
-Tương tự, thêm và xóa phần tử là thao tác tùy chọn của `Collection`: một tập hợp không sửa được, như kết quả của `List.of(...)`, sẽ ném `UnsupportedOperationException` khi bị thêm hoặc xóa.
-Hình là bản rút gọn. Trong mã nguồn của JDK hiện tại, `List` không kế thừa trực tiếp `Collection` mà qua một interface trung gian tên `SequencedCollection`, và các lớp cụ thể có thêm nhiều interface khác; hình bỏ những tầng đó để thấy ba nhánh chính của bài nguồn.
+- Thứ tự lấy ra do từng lớp quyết định. `Queue` thường, nhưng không nhất thiết, lấy theo thứ tự vào trước ra trước: `PriorityQueue` lấy theo ưu tiên, còn kiểu ngăn xếp lấy phần tử vào sau cùng trước. Tài liệu yêu cầu mỗi cài đặt phải nêu rõ thứ tự của mình, nên cần đọc tài liệu của lớp, không chỉ tên interface.
+- Đọc theo chỉ số trên một `List` không rõ cài đặt có thể tốn thời gian tỷ lệ với chỉ số. Nếu chỉ cần đi qua mọi phần tử thì nên lặp thay vì lấy từng chỉ số.
+- Với `Set`, đừng sửa một phần tử theo cách làm đổi kết quả `equals` khi nó đang nằm trong tập: tài liệu nói hành vi khi đó không được xác định.
+- Thêm và xóa là thao tác tùy chọn của `Collection`. Danh sách không sửa được, như kết quả của `List.of(...)`, ném `UnsupportedOperationException` khi bị thêm hoặc xóa.
+- Hình là bản rút gọn. Trong mã nguồn JDK này, `List` kế thừa `Collection` qua một interface trung gian tên `SequencedCollection`, và `Deque` nằm giữa `Queue` và `ArrayDeque`; hình bỏ những tầng đó để thấy ba hợp đồng chính.
 
 ## Nhìn hình trả lời
 
-Bạn cần lưu danh sách mã đơn hàng đã xử lý và không bao giờ muốn một mã xuất hiện hai lần. Bạn chọn nhánh nào của cây, và một kiểu dữ liệu tên `Map` có phải lựa chọn tự nhiên không?
+Một dịch vụ cần ba thứ: (1) danh sách mã khách đã xử lý, không mã nào xuất hiện hai lần; (2) các việc đang chờ, mỗi lần lấy ra việc gấp nhất; (3) bảng tra "mã khách → số lần đã xử lý". Mỗi thứ nên nằm ở nhánh nào của cây?
 
 <details>
 <summary>Xem đáp án</summary>
 
-Nhánh `Set`, vì nó không chứa phần tử trùng; `HashSet` là một lớp cài đặt thường gặp.
-`Map` lưu cặp khóa và giá trị chứ không phải một nhóm phần tử đơn, và nó nằm ngoài cây `Collection`; với bài toán chỉ cần biết một mã đã có hay chưa, `Set` khớp hơn.
+(1) Nhánh `Set`, vì hợp đồng của nó là không có hai phần tử bằng nhau theo `equals`; `HashSet` là lớp hay gặp.
+(2) Nhánh `Queue`, cụ thể `PriorityQueue`, vì đầu hàng là phần tử nhỏ nhất theo thứ tự ưu tiên chứ không phải phần tử vào trước.
+(3) `Map`, vì đây là quan hệ khóa trỏ tới giá trị, và `Map` nằm ngoài cây `Collection`.
 
 </details>
 
 <details>
 <summary>Xem sâu hơn: điều đã sắp xếp lại so với bài nguồn</summary>
 
-Bài nguồn chỉ có văn bản mô tả JCF và một ảnh cây phân cấp. Bài này không dùng ảnh; hình được vẽ lại từ các câu của nguồn.
-Tên các lớp cài đặt, quan hệ kế thừa của `Collection`, `List`, `Set`, `Queue`, `Map` và các lớp đã nêu được đối chiếu với mã nguồn của JDK tại commit cố định ở mục nguồn.
+Bài nguồn chỉ có vài câu mô tả khung tập hợp và một ảnh cây phân cấp; bài này không dùng ảnh và không theo cách trình bày đó. Từ bài nguồn chỉ giữ tên các interface và lớp.
+Lời giải thích viết lại từ phần chú thích của các tệp JDK ở commit cố định: `Collection` nói gì về trùng lặp, thứ tự và thao tác tùy chọn; `List` về vị trí và chỉ số; `Set` về `equals`; `Queue` về hai dạng thao tác; `Map` về khóa. Phần "Từ hợp đồng đến lớp cụ thể" lấy từ chú thích của chính các lớp `ArrayList`, `LinkedList`, `HashSet`, `TreeSet`, `PriorityQueue`, `ArrayDeque`.
 
 </details>
 
 ## Nguồn đối chiếu
 
-- [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/java-collection-hierarchy.md): JCF, interface `Collection`, ba interface con chính.
-- [OpenJDK — interface Collection](https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/Collection.java), [List](https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/List.java), [Set](https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/Set.java), [Queue](https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/Queue.java) và [Map](https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/Map.java): khai báo và mô tả. Đọc từ kho mã.
+- [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/java-collection-hierarchy.md): chỉ dùng để lấy tên các interface và lớp.
+- [OpenJDK — interface Collection](https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/Collection.java), [List](https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/List.java), [Set](https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/Set.java), [Queue](https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/Queue.java) và [Map](https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/Map.java): lời hứa của từng interface. Đọc từ kho mã.
+- [OpenJDK — ArrayList](https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/ArrayList.java), [LinkedList](https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/LinkedList.java), [HashSet](https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/HashSet.java), [TreeSet](https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/TreeSet.java), [PriorityQueue](https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/PriorityQueue.java) và [ArrayDeque](https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/ArrayDeque.java): đặc điểm của lớp cụ thể.
 
-Đã đọc nguồn ngày 2026-10-18. Các lớp cài đặt thường gặp được kiểm trên khai báo trong mã nguồn JDK; mô tả thứ tự và trùng lặp của `List`, `Set`, `Queue` lấy từ phần chú thích của chính các tệp đó.
+Đã đọc nguồn ngày 2026-10-19. Mọi mô tả hợp đồng và đặc điểm lớp lấy từ phần chú thích của các tệp JDK nêu trên; câu hỏi cuối bài là ví dụ tự đặt.
 Bài viết và hình được thiết kế độc lập.

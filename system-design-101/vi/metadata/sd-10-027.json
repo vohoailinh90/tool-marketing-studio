@@ -71,9 +71,27 @@
       "verified_by": "Read from the pinned commit."
     },
     {
-      "claim_vi": "unittest supports test automation; SQLite is a lightweight disk-based database needing no separate server process and can be used to prototype before porting to a larger database such as PostgreSQL; bisect keeps a list sorted without re-sorting after each insertion and can improve on linear searches for long lists; functools.lru_cache saves up to maxsize most recent calls and can save time when an expensive or I/O-bound function is called repeatedly with the same arguments.",
+      "claim_vi": "unittest supports test automation.",
+      "source": "https://github.com/python/cpython/blob/b00a14018172652226bd6efb517af021bd03aa88/Doc/library/unittest.rst",
+      "section": "unittest",
+      "verified_by": "Read from the pinned commit."
+    },
+    {
+      "claim_vi": "SQLite is a lightweight disk-based database needing no separate server process and can be used to prototype before porting to a larger database such as PostgreSQL.",
+      "source": "https://github.com/python/cpython/blob/b00a14018172652226bd6efb517af021bd03aa88/Doc/library/sqlite3.rst",
+      "section": "sqlite3",
+      "verified_by": "Read from the pinned commit."
+    },
+    {
+      "claim_vi": "bisect keeps a list sorted without re-sorting after each insertion and can improve on linear searches for long lists.",
       "source": "https://github.com/python/cpython/blob/b00a14018172652226bd6efb517af021bd03aa88/Doc/library/bisect.rst",
-      "section": "unittest, sqlite3, bisect and functools pages",
+      "section": "bisect",
+      "verified_by": "Read from the pinned commit."
+    },
+    {
+      "claim_vi": "functools.lru_cache saves up to maxsize most recent calls and can save time when an expensive or I/O-bound function is called repeatedly with the same arguments.",
+      "source": "https://github.com/python/cpython/blob/b00a14018172652226bd6efb517af021bd03aa88/Doc/library/functools.rst",
+      "section": "lru_cache",
       "verified_by": "Read from the pinned commit."
     },
     {
@@ -83,10 +101,16 @@
       "verified_by": "Read from the pinned commit."
     },
     {
-      "claim_vi": "GitHub Actions: workflows can build and test every pull request or deploy merged pull requests to production. GitHub Copilot best practices: Copilot is not designed to replace your expertise; always validate the code it suggests and use automated tests and tooling to check it.",
+      "claim_vi": "GitHub Actions: workflows can build and test every pull request or deploy merged pull requests to production.",
       "source": "https://github.com/github/docs/blob/dae83f7d28f3b8e10015bd6b6d8b72267cedceca/content/actions/get-started/understand-github-actions.md",
-      "section": "Overview; Copilot best practices",
-      "verified_by": "Read from the pinned commit; the Copilot page is under content/copilot/get-started/best-practices.md at the same commit."
+      "section": "Overview",
+      "verified_by": "Read from the pinned commit."
+    },
+    {
+      "claim_vi": "GitHub Copilot best practices: Copilot is not designed to replace your expertise; always validate the code it suggests and use automated tests and tooling to check it.",
+      "source": "https://github.com/github/docs/blob/dae83f7d28f3b8e10015bd6b6d8b72267cedceca/content/copilot/get-started/best-practices.md",
+      "section": "Copilot best practices",
+      "verified_by": "Read from the pinned commit."
     },
     {
       "claim_vi": "Measured by the author on 2026-10-19 (Python 3.13.16): bisect_left over one million sorted items with the target last calls __lt__ 20 times, against 1,000,000 elements visited by a linear scan.",

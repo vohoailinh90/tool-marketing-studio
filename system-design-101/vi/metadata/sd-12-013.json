@@ -1,0 +1,75 @@
+{
+  "id": "sd-12-013",
+  "title_vi": "Chat một-một: vì sao tin nhắn cần mã thứ tự và đường đi cho người ngoại tuyến",
+  "language": "vi",
+  "kind": "flow",
+  "content_status": "draft",
+  "source_ref": "sd-12-013",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/how-do-we-design-a-chat-application-like-whatsapp-facebook-messenger-or-discord.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-we-design-a-chat-application-like-whatsapp-facebook-messenger-or-discord.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from raw.githubusercontent.com at the pinned commit and hashed as a Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "9456b313d004e3cb7e41a0cd18d14d9453e005ad",
+    "retrieved_body_sha256": "af0def777437b8adab31681f5bdf91ad86ce5ab746f979fab7a42342452b9a8a",
+    "retrieved_body_bytes": 1411
+  },
+  "diagram": "../diagrams/sd-12-013-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-19"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "claims_rest_on_the_source_body_and_the_authors_general_knowledge_not_on_an_independent_reference"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending",
+      "reason": "figure drawn by scripts/figures and measured by python3 -m scripts.figures check --browser; no whole-lesson browser check at 320, 375 and 430 px was done for this lesson"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "The source describes a login flow (Alice opens a WebSocket to the server; the presence service updates her presence and notifies her friends) and a messaging flow: the message goes to chat service A, is sent to the sequencing service that generates a unique ID and persisted in the message store, then to the message sync queue; the sync service checks Bob's presence; online means chat service B and a WebSocket push, offline means the push server.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-we-design-a-chat-application-like-whatsapp-facebook-messenger-or-discord.md",
+      "section": "Whole body",
+      "verified_by": "Source body read at the pinned commit."
+    },
+    {
+      "claim_vi": "Own simulation, 2026-10-19, Python 3 with a fixed seed: 5 messages, each delivered twice with probability 0.2 and each adjacent pair swapped with probability 0.3; arrival-order display was wrong in 918 of 1,000 runs, dedupe by sequence ID and sort by sequence ID was wrong in 0 of 1,000.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-we-design-a-chat-application-like-whatsapp-facebook-messenger-or-discord.md",
+      "section": "Thử nghiệm: tin trùng và đảo thứ tự",
+      "verified_by": "Script run in the session; results copied from output."
+    },
+    {
+      "claim_vi": "Own simulation: a reply stamped 5 ms after the original but with server clocks differing uniformly by up to 50 ms came out earlier than the original in 4,435 of 10,000 trials.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-we-design-a-chat-application-like-whatsapp-facebook-messenger-or-discord.md",
+      "section": "Thử nghiệm: lệch đồng hồ",
+      "verified_by": "Script run in the session; results copied from output."
+    },
+    {
+      "claim_vi": "The statement that a single-source counter per conversation avoids both problems is the author's reasoning from the simulation; the source does not describe how the sequencing service works.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-we-design-a-chat-application-like-whatsapp-facebook-messenger-or-discord.md",
+      "section": "Explanation",
+      "verified_by": "Author's general knowledge, not checked against the primary document in this session (the egress proxy allows GitHub only)."
+    }
+  ],
+  "design_notes_vi": "Khung một là ba bước đăng nhập; khung hai là bốn bước gửi tin. Hai thử nghiệm nằm trong bài.",
+  "source_deviations": [
+    "The source's eight messaging steps are grouped into four; the lesson adds two simulations (duplicate and reordered delivery, clock skew).",
+    "How the sequencing service generates IDs is not in the source, so the conclusion about a single-source counter is labelled as the author's."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này (gói W19), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

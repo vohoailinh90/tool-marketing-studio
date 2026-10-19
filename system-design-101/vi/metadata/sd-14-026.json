@@ -1,0 +1,180 @@
+{
+  "id": "sd-14-026",
+  "title_vi": "Google Authenticator hoạt động thế nào? TOTP và mã sáu số",
+  "language": "vi",
+  "kind": "flow",
+  "content_status": "review",
+  "source_ref": "sd-14-026",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/how-does-google-authenticator-or-other-types-of-2-factor-authenticators-work.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-google-authenticator-or-other-types-of-2-factor-authenticators-work.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches provider tree OID. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "9283f996b1794a605e958f73fa7aa31f224452fe",
+    "retrieved_body_sha256": "2d4793c7bb4febe29e6e7ccb509a58ea586d2cd3ce491d4dc3a5ddfe4ff2a699",
+    "retrieved_body_bytes": 2717
+  },
+  "diagram": "../diagrams/sd-14-026-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-14-003",
+      "relation": "compare-with",
+      "reason_vi": "Mật khẩu được lưu bằng bản băm; bí mật TOTP phải được máy chủ giữ nguyên để tính lại mã."
+    },
+    {
+      "lesson_id": "sd-14-006",
+      "relation": "compare-with",
+      "reason_vi": "Passkey dùng khóa bất đối xứng và gắn với tên miền, nên không có bí mật chung và không bị trang giả chuyển mã."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "evidence": "Source read. Independent sources read at pinned commits: Google Authenticator key-URI wiki (wiki repo commit 8ba6e79), pyotp (commit cc15683: README, otp.py, hotp.py, totp.py, utils.py, test.py), google-authenticator-libpam (commit 288db94: README, man page, C sources), OWASP CheatSheetSeries (commit 1c3144a: Multifactor Authentication and Authentication cheat sheets). Experiments run on the authoring machine with pyotp 2.10.0 (PyPI, scratchpad virtual environment) and Python 3.13: hand-written HOTP/TOTP against pyotp, 30-second boundary, clock skew with the adjacent-step window, replay, exhaustive 1,000,000-guess enumeration, probability arithmetic and a 10,000-step simulation. The RFC texts (4226, 6238) and the real Google Authenticator app were not reachable or not examined; algorithm facts come from open-source code and the RFC example values from pyotp's own tests."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright) rendered lesson.md, converted with markdown-it-py, at each width with optional sections open; the figure scale was measured from the rendered image (smallest figure text as drawn, which occurs at 320 px) and every SVG text box was checked against the viewBox. Not learner testing and not GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "The source describes two stages: enabling two-step verification (the service generates a secret key and stores it; a URI of issuer, username and secret key is shown as a QR code; the authenticator scans it and stores the secret) and logging in (the authenticator generates a 6-digit TOTP every 30 seconds; the service reads the secret and generates a 6-digit password with the same algorithm; the two are compared). It then argues safety: the secret must travel over HTTPS and be stored encrypted, and 1 million combinations at 30 seconds means 30,000 guesses per second.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-google-authenticator-or-other-types-of-2-factor-authenticators-work.md",
+      "section": "Whole guide",
+      "verified_by": "Source body read in full (2717 bytes) at the pinned commit; hash values in source_snapshot."
+    },
+    {
+      "claim_vi": "The QR code carries a text in the form otpauth, type (totp or hotp), label (account name with an optional issuer prefix) and parameters: secret (required, Base32), issuer (strongly recommended), and optional algorithm (SHA1 default), digits (6 or 8, default 6) and period (default 30). The page says that currently the algorithm and period parameters are ignored by the Google Authenticator implementations (and digits on Android and Blackberry).",
+      "source": "https://github.com/google/google-authenticator/wiki/Key-Uri-Format",
+      "section": "Key URI Format",
+      "verified_by": "Page read from a local clone of the wiki repository (google-authenticator.wiki.git, commit 8ba6e79359344f57b2b0ebea2bfab4cdab2a6573). The 'ignored' notes are the wiki's own words at that commit and were not checked against the current apps."
+    },
+    {
+      "claim_vi": "pyotp computes a one-time code by HMAC (SHA-1 by default) of the Base32-decoded secret over an 8-byte big-endian counter, takes the low 4 bits of the last byte as an offset, reads 4 bytes at that offset, clears the top bit, takes the value modulo 10**digits and pads with zeros; HOTP uses a counter and TOTP uses the Unix time divided by the interval (default 30) as the counter.",
+      "source": "https://github.com/pyauth/pyotp/blob/cc156832fa9f3d5af7fb9e4e6b86b29dfc5b69f1/src/pyotp/otp.py",
+      "section": "generate_otp",
+      "verified_by": "otp.py, hotp.py and totp.py read at the pinned commit cc15683 (repository HEAD on the reading day). The experiments used the PyPI release 2.10.0, whose generate_otp is identical (the pinned HEAD differs in int_to_bytestring, HOTP provisioning_uri and an added verify_and_get_timecode, none used for the numbers)."
+    },
+    {
+      "claim_vi": "The Google Linux PAM module computes the same code in C: HMAC-SHA1 of the secret over the 8-byte counter, offset from the last nibble, top bit cleared, modulo 1,000,000; the default step is 30 seconds (1 to 60 allowed) and the setup tool generates a 160-bit secret.",
+      "source": "https://github.com/google/google-authenticator-libpam/blob/288db94951a9c93960a20cfd0d72359813ccc909/src/pam_google_authenticator.c",
+      "section": "compute_code, step_size",
+      "verified_by": "C source read from a local clone at commit 288db94951a9c93960a20cfd0d72359813ccc909 (compute_code and step_size in pam_google_authenticator.c; SECRET_BITS 160 in google-authenticator.c)."
+    },
+    {
+      "claim_vi": "A hand-written implementation (hmac and hashlib, about ten lines) gives the same codes as pyotp 2.10.0: for secret JBSWY3DPEHPK3PXP at Unix time 1700000000 (step 56666666, message 000000000360aa2a, offset 6, 31-bit integer 1802324550) the code is 324550; 2000 of 2000 random 160-bit throw-away secrets and random times agree; the 10 HOTP values and 6 TOTP (8-digit, SHA-1) values that pyotp's own test file labels as example values from the RFC are reproduced.",
+      "source": "https://github.com/pyauth/pyotp/blob/cc156832fa9f3d5af7fb9e4e6b86b29dfc5b69f1/test.py",
+      "section": "HOTPExampleValuesFromTheRFC; TOTPExampleValuesFromTheRFC",
+      "verified_by": "exp1_hand_vs_pyotp.py: Observed by running the author's script in a throw-away folder with pyotp 2.10.0 from PyPI (installed in a scratchpad virtual environment), Python 3.13, TZ=UTC; no external page reports this output; one run on the authoring machine. The RFC itself was not reachable; the 16 values come from pyotp's test.py at the pinned commit, which labels them as RFC values."
+    },
+    {
+      "claim_vi": "The code changes exactly at multiples of 30 seconds: at Unix time 1700000009 (step 56666666) the code is 324550, from 1700000010 to 1700000039 (step 56666667) it is 367665, at 1700000040 (step 56666668) it is 870960; over 300 consecutive seconds there are 10 distinct codes and every change happens where time mod 30 = 0.",
+      "source": "https://github.com/pyauth/pyotp/blob/cc156832fa9f3d5af7fb9e4e6b86b29dfc5b69f1/src/pyotp/totp.py",
+      "section": "TOTP.at, timecode",
+      "verified_by": "exp2_boundary_skew_replay_uri.py: Observed by running the author's script in a throw-away folder with pyotp 2.10.0 from PyPI (installed in a scratchpad virtual environment), Python 3.13, TZ=UTC; no external page reports this output; one run on the authoring machine."
+    },
+    {
+      "claim_vi": "Clock skew and the window: with the server 5 seconds into a step, a phone clock 25 seconds ahead gives the next step's code; pyotp verify with valid_window=0 rejects it and valid_window=1 (previous, current, next) accepts it. The Google Linux module accepts three codes by default (one before, the current and one after) and documents 17 codes as tolerating up to 4 minutes of skew.",
+      "source": "https://github.com/google/google-authenticator-libpam/blob/288db94951a9c93960a20cfd0d72359813ccc909/man/google-authenticator.1.md",
+      "section": "Time-based specific options: --window-size",
+      "verified_by": "Man page and window_size() in the C source read at the pinned commit; the pyotp behaviour observed by exp2_boundary_skew_replay_uri.py. Observed by running the author's script in a throw-away folder with pyotp 2.10.0 from PyPI (installed in a scratchpad virtual environment), Python 3.13, TZ=UTC; no external page reports this output; one run on the authoring machine."
+    },
+    {
+      "claim_vi": "A plain verify does not make a code single-use: pyotp.verify returned True twice for the same code in the same step; a server must remember the last used step (a five-line check written for the experiment rejected the second use). The pyotp README lists rejecting used codes as a server duty, and the Google module has an option to disallow reuse.",
+      "source": "https://github.com/pyauth/pyotp/blob/cc156832fa9f3d5af7fb9e4e6b86b29dfc5b69f1/README.rst",
+      "section": "Implementers checklist",
+      "verified_by": "README.rst and the man page (--disallow-reuse) read at the pinned commits; behaviour observed by exp2_boundary_skew_replay_uri.py. Observed by running the author's script in a throw-away folder with pyotp 2.10.0 from PyPI (installed in a scratchpad virtual environment), Python 3.13, TZ=UTC; no external page reports this output; one run on the authoring machine."
+    },
+    {
+      "claim_vi": "Exhaustive enumeration of all 1,000,000 six-digit guesses against pyotp 2.10.0 at one fixed time with a throw-away 160-bit secret: 1 guess is accepted with valid_window=0 and 3 guesses with valid_window=1. Local verify speed was about 95,000 checks per second (window 0) and 33,000 (window 1) on the authoring machine, one measurement, not a network figure.",
+      "source": "https://github.com/pyauth/pyotp/blob/cc156832fa9f3d5af7fb9e4e6b86b29dfc5b69f1/src/pyotp/totp.py",
+      "section": "TOTP.verify",
+      "verified_by": "exp3_guessing.py: Observed by running the author's script in a throw-away folder with pyotp 2.10.0 from PyPI (installed in a scratchpad virtual environment), Python 3.13, TZ=UTC; no external page reports this output; one run on the authoring machine."
+    },
+    {
+      "claim_vi": "Arithmetic: 10**6 / 30 = 33,333.3 guesses per second to try every code within one 30-second step (the source says 30,000); with w accepted codes the chance per guess is w/10**6, independent of earlier steps; with a limit of 3 attempts per 30 seconds (8,640 per day) and 3 accepted codes the chance of at least one hit is 2.56% per day, 54.05% in 30 days; with 1 accepted code 0.86% per day; a lockout after 10 wrong codes that never resets gives 0.0030% (w=3). A simulation of 10,000 consecutive steps with 3,000 distinct random guesses per step (100 guesses per second, no server limit) hit in 32 steps against an expected 30.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-google-authenticator-or-other-types-of-2-factor-authenticators-work.md",
+      "section": "Is this authentication mechanism safe?",
+      "verified_by": "Arithmetic and simulation in exp3_guessing.py (Python 3.13, fixed random seed). The assumptions (attacker already knows the password, guesses uniform, no lockout or reuse block) are the author's and are stated in the lesson. Observed by running the author's script in a throw-away folder with pyotp 2.10.0 from PyPI (installed in a scratchpad virtual environment), Python 3.13, TZ=UTC; no external page reports this output; one run on the authoring machine."
+    },
+    {
+      "claim_vi": "When rate limiting is enabled, the Google setup tool says it limits attackers to no more than 3 login attempts every 30 seconds (the default offered); the module accepts between 1 and 10 attempts per 15 to 600 seconds.",
+      "source": "https://github.com/google/google-authenticator-libpam/blob/288db94951a9c93960a20cfd0d72359813ccc909/src/google-authenticator.c",
+      "section": "google-authenticator.c, rate-limit prompt; man page --rate-limit",
+      "verified_by": "C source (RATE_LIMIT 3 30 and the prompt text) and man page read at the pinned commit. This is the tool's own default, not a recommendation from a standards body."
+    },
+    {
+      "claim_vi": "OWASP says OTP implementations should apply strict attempt limits and notes that a 6-digit code has about 1 million possibilities; it does not give a number of attempts. The Authentication cheat sheet describes account lockout through a threshold, an observation window and a lockout duration, with the failed-login counter tied to the account rather than the source address, and gives no threshold for TOTP codes.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/1c3144a85e9aa1b50bef773683405fcc626ce6e1/cheatsheets/Multifactor_Authentication_Cheat_Sheet.md",
+      "section": "One-Time Password (OTP) Handling and Storage; Authentication cheat sheet: Login Throttling, Account Lockout",
+      "verified_by": "Both cheat sheets read from raw files at commit 1c3144a85e9aa1b50bef773683405fcc626ce6e1 (Authentication: https://github.com/OWASP/CheatSheetSeries/blob/1c3144a85e9aa1b50bef773683405fcc626ce6e1/cheatsheets/Authentication_Cheat_Sheet.md)."
+    },
+    {
+      "claim_vi": "OWASP lists TOTP software tokens as susceptible to phishing (although short-lived), notes that authenticator apps are usually on mobile devices that are vulnerable to compromise, describes reverse-proxy phishing tools that relay traffic in real time, and recommends phishing-resistant authenticators that bind authentication to the legitimate origin (passkeys, WebAuthn).",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/1c3144a85e9aa1b50bef773683405fcc626ce6e1/cheatsheets/Multifactor_Authentication_Cheat_Sheet.md",
+      "section": "Software OTP Tokens; Real-Time Phishing Using Reverse Proxies",
+      "verified_by": "Read from the raw file at the pinned commit."
+    },
+    {
+      "claim_vi": "The pyotp README says OTPs use a shared secret stored on both the phone and the server, can be generated on a phone without internet connectivity, and gives a checklist (HTTPS, secrets in a controlled-access database, reject replayed codes by remembering the last authenticated timestamp, throttle brute force); it says U2F/WebAuthn use asymmetric cryptography to avoid a shared secret, which strengthens MFA against server-side attacks, and add protection against phishing. The OWASP Authentication cheat sheet says WebAuthn credentials form the foundation of passkeys.",
+      "source": "https://github.com/pyauth/pyotp/blob/cc156832fa9f3d5af7fb9e4e6b86b29dfc5b69f1/README.rst",
+      "section": "Quick overview; checklist",
+      "verified_by": "README.rst read at the pinned commit; the passkey remark from https://github.com/OWASP/CheatSheetSeries/blob/1c3144a85e9aa1b50bef773683405fcc626ce6e1/cheatsheets/Authentication_Cheat_Sheet.md read at commit 1c3144a."
+    },
+    {
+      "claim_vi": "The Google module requires the secrets file to be readable only by its owner (mode 0600 by default) instead of hashing it.",
+      "source": "https://github.com/google/google-authenticator-libpam/blob/288db94951a9c93960a20cfd0d72359813ccc909/README.md",
+      "section": "Module options: allowed_perm",
+      "verified_by": "README.md read at the pinned commit."
+    },
+    {
+      "claim_vi": "Unix time is the number of seconds since 1 January 1970; a QR code only encodes text and encrypts nothing; the server cannot keep only a hash of the shared secret because the HMAC needs the secret itself as its key.",
+      "source": "https://github.com/pyauth/pyotp/blob/cc156832fa9f3d5af7fb9e4e6b86b29dfc5b69f1/src/pyotp/otp.py",
+      "section": "generate_otp",
+      "verified_by": "Author's general knowledge for Unix time and QR encoding, not checked against a source; the last point follows from the algorithm read in otp.py (the secret is the HMAC key) and shown by the hand-written script, which needs the secret bytes."
+    },
+    {
+      "claim_vi": "Not examined: the RFC texts of HOTP and TOTP (not reachable), the current behaviour of the Google Authenticator app, backups and account recovery, push or message-based codes, and how Google or any specific service stores secrets.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-does-google-authenticator-or-other-types-of-2-factor-authenticators-work.md",
+      "section": "Whole guide",
+      "verified_by": "Not examined."
+    }
+  ],
+  "design_notes_vi": "Hình có hai khung các bước (cài đặt một lần, mỗi lần đăng nhập) và một khung ghi nhớ bốn điều TOTP không tự giải quyết. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "The source says the URI is composed of an issuer, a username and a secret key; the key-URI page also defines the type (totp or hotp), a Base32 secret, and optional algorithm, digits and period parameters, and notes that Google Authenticator currently ignores algorithm and period.",
+    "The source says the server generates the 6-digit password with the same algorithm and compares the two; the lesson names the algorithm (HMAC-SHA1 over the time step, then truncation) and says many servers also accept the previous and next step's code (the Google Linux module accepts three by default; pyotp accepts one unless valid_window is set).",
+    "The source says hackers need 30,000 guesses per second; the exact figure to try every code in one 30-second step is 10**6/30 = 33,333, and the 30-second deadline is not real because each new step is a fresh set of guesses, so the safety comes from limiting attempts.",
+    "The source says the password cannot be guessed ('No.'); the lesson says a 6-digit code has about 1 million possibilities and the safety depends on attempt limits and lockout that the source does not mention.",
+    "The source says the secret keys must be encrypted in the database and on the client; the lesson says the server needs the secret itself (not a hash), cites pyotp's advice of a controlled-access database and the Google module's owner-only file permissions, and does not claim a specific encryption practice because no source read discusses it.",
+    "The source does not mention code reuse inside one time step, real-time phishing relay or theft of the secret; the lesson adds them with pyotp, OWASP and experiment support.",
+    "The source describes the first-stage QR code as only enabling the scan; the lesson states that a QR code encrypts nothing and only carries the text."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

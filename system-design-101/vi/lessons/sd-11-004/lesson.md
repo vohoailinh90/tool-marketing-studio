@@ -22,7 +22,7 @@ Tên bốn mức giữ theo bài nguồn; lời giải thích là của người
 
 **Warm Standby (dự phòng ấm).** Ở vùng dự phòng chạy sẵn một bản thu nhỏ của toàn hệ thống, đủ để nhận tải khi cần sau khi được mở rộng. Khôi phục nhanh hơn đèn mồi, giá cao hơn vì chạy liên tục.
 
-**Hot Site / Multi-Site (hai vùng cùng chạy).** Hai vùng cùng phục vụ thật, mỗi vùng đủ sức gánh nếu vùng kia mất. Gần như không ngừng và gần như không mất dữ liệu, nhưng đắt nhất, và dữ liệu giữa hai vùng phải được giữ khớp.
+**Hot Site / Multi-Site (hai vùng cùng chạy).** Hai vùng cùng phục vụ thật, mỗi vùng đủ sức gánh nếu vùng kia mất. Gần như không ngừng. Lượng dữ liệu mất có thể rất nhỏ nhưng không tự động bằng không: sao chép bất đồng bộ giữa hai vùng vẫn có thể làm mất vài thao tác ghi gần nhất, và dữ liệu hỏng sẽ bị sao chép sang cả hai vùng nên vẫn cần bản sao lưu để khôi phục. Mức RPO đạt được tùy chính sách sao chép và sao lưu. Đây là mức đắt nhất, và dữ liệu giữa hai vùng phải được giữ khớp.
 
 ## Giới hạn cần nhớ
 

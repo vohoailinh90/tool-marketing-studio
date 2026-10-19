@@ -1,0 +1,28 @@
+{
+  "id": "sd-14-018",
+  "lang": "vi",
+  "title": "Hai loại khóa, hai bài toán",
+  "subtitle": "Thực tế hay ghép cả hai: khóa chung cho dữ liệu, cặp khóa để trao khóa.",
+  "desc": "Ba khung xếp dọc. Khung 1, hai loại khóa: đối xứng dùng một khóa chung để mã hóa và giải mã, nhanh, hợp với dữ liệu lớn, nhưng hai bên phải có chung khóa; bất đối xứng dùng cặp khóa, khóa công khai mã hóa và khóa riêng giải mã, chậm, và RSA-2048 mỗi lần mã hóa tối đa 190 byte. Khung 2, ghép lại bốn bước: người gửi tạo khóa AES ngẫu nhiên, mã hóa dữ liệu bằng AES-GCM, gói khóa AES bằng khóa công khai RSA của người nhận; người nhận mở gói bằng khóa riêng rồi giải mã dữ liệu. Khung 3, cần nhớ: không loại nào mặc định an toàn hơn, khóa công khai phải đúng của người nhận, ký số dùng vai ngược lại, một lần thử TLS 1.3 dùng X25519 và AES-256-GCM.",
+  "sections": [
+    {"kind": "parts", "heading": "1 · Hai loại khóa",
+     "items": [
+       {"name": "Đối xứng: một khóa chung", "role": "Cùng khóa mã hóa và giải mã. Nhanh, hợp với dữ liệu lớn. Hai bên phải có chung khóa.", "icon": "key-round"},
+       {"name": "Bất đối xứng: cặp khóa", "role": "Khóa công khai mã hóa, khóa riêng giải mã. Chậm; RSA-2048 mỗi lần mã hóa tối đa 190 byte.", "icon": "lock-keyhole"}
+     ]},
+    {"kind": "steps", "heading": "2 · Ghép lại: gói khóa",
+     "items": [
+       {"title": "Tạo khóa AES ngẫu nhiên", "text": "Một khóa chung, dùng một lần."},
+       {"title": "Mã hóa dữ liệu bằng AES-GCM", "text": "Nhanh, và phát hiện dữ liệu bị sửa."},
+       {"title": "Gói khóa AES bằng RSA", "text": "Dùng khóa công khai của người nhận."},
+       {"title": "Người nhận mở gói", "text": "Khóa riêng lấy lại khóa AES, rồi giải mã."}
+     ]},
+    {"kind": "notes", "heading": "3 · Cần nhớ",
+     "items": [
+       "Hai loại giải hai bài toán khác nhau; không loại nào mặc định an toàn hơn.",
+       "Khóa công khai không cần giữ kín, nhưng phải đúng là của người nhận.",
+       "Ký số dùng vai ngược lại: khóa riêng ký, khóa công khai kiểm.",
+       "Một lần thử TLS 1.3: X25519 trao đổi khóa, AES-256-GCM mã hóa dữ liệu."
+     ]}
+  ]
+}

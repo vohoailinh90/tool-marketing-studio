@@ -5,8 +5,8 @@
 safety-rail tests notice their own removal, which only a change to code, tests or CI can break. A pull
 request that touches nothing but the System Design store (lessons, figures, metadata, progress files and
 its source map) cannot, so it skips the step. Any other pull request runs only the manifests that name a
-file it changes: the manifest itself, its target, a `file:` of one of its entries, or the module of a test
-an entry names (owner decision 2026-10-19: the full run took about 90 minutes and every merge into main
+file it changes: the manifest itself, its target, a `file:` of one of its entries, the module of a test
+an entry names, or a repository module that test module imports, directly or through other repository modules (owner decision 2026-10-19: the full run took about 90 minutes and every merge into main
 restarted it on every open pull request). A change to the checker, the workflow, the dependencies, the
 shared test setup (RUN_ALL) or any other shared test file, or a deleted or renamed file, runs every manifest. Every push to main runs every manifest, so what a pull
 request leaves out is still checked once it lands. A change this script cannot read is treated as one
@@ -67,14 +67,72 @@ def test_module_file(test: str, root: pathlib.Path) -> str | None:
     return None
 
 
-def manifest_files(manifest: str, root: pathlib.Path) -> set[str]:
-    """Every file a manifest names: itself, its target, the `file:` of each entry and the module of each test."""
+def manifest_files(manifest: str, root: pathlib.Path, cache: dict[str, set[str]] | None = None) -> set[str]:
+    """Every file a manifest names: itself, its target, the `file:` of each entry, the module of each test, and every
+    repository module those test modules import (a helper they lean on can make a guarded branch redundant)."""
     data = yaml.safe_load((root / manifest).read_text(encoding="utf-8"))
     named = {manifest, data.get("target", "")}
+    tests = set()
     for entry in data.get("mutations") or []:
         named.add(entry.get("file", ""))
-        named.add(test_module_file(entry.get("test", ""), root) or "")
+        tests.add(test_module_file(entry.get("test", ""), root) or "")
+    tests.discard("")
+    named |= tests
+    for test in tests:
+        named |= local_dependencies(test, root, cache)
     return {name for name in named if name}
+
+
+def imported_names(source: str, file: str) -> set[str]:
+    """Every module name Python source at repo path `file` imports, relative imports resolved: `from a import b` gives
+    both `a` and `a.b`, since `b` may be a submodule."""
+    package = file[:-len(".py")].replace("/", ".").rsplit(".", 1)[0] if "/" in file else ""
+    names: set[str] = set()
+    for node in ast.walk(ast.parse(source, filename=file)):
+        if isinstance(node, ast.Import):
+            names.update(alias.name for alias in node.names)
+        elif isinstance(node, ast.ImportFrom):
+            origin = node.module or ""
+            if node.level:  # `from ..x import y` in a/b/c.py: one dot is a.b, each further dot one package up
+                parts = package.split(".") if package else []
+                above = parts[:len(parts) - node.level + 1] if node.level <= len(parts) + 1 else []
+                origin = ".".join(part for part in (".".join(above), origin) if part)
+            if origin:
+                names.add(origin)
+            names.update(f"{origin}.{alias.name}" if origin else alias.name for alias in node.names)
+    return names
+
+
+def module_files(module: str, root: pathlib.Path) -> set[str]:
+    """The repository files importing `module` runs: the module and each package above it. A bare name is also looked
+    up in scripts/, which some tests put on sys.path."""
+    found = set()
+    parts = module.split(".")
+    for base in ("", "scripts/"):
+        for end in range(1, len(parts) + 1):
+            stem = base + "/".join(parts[:end])
+            for candidate in (stem + ".py", stem + "/__init__.py"):
+                if (root / candidate).is_file():
+                    found.add(candidate)
+    return found
+
+
+def local_dependencies(file: str, root: pathlib.Path, cache: dict[str, set[str]] | None = None) -> set[str]:
+    """The repository Python files `file` imports, directly or through other repository files. A file that cannot be
+    read or parsed raises, so the caller runs every manifest. `cache` keeps the answers of one selection."""
+    if cache is not None and file in cache:
+        return cache[file]
+    seen: set[str] = set()
+    pending = [file]
+    while pending:
+        current = pending.pop()
+        for module in imported_names((root / current).read_text(encoding="utf-8"), current):
+            for dependency in module_files(module, root) - seen - {file}:
+                seen.add(dependency)
+                pending.append(dependency)
+    if cache is not None:
+        cache[file] = seen
+    return seen
 
 
 def imports_module(source: str, file: str, module: str) -> bool:
@@ -138,8 +196,9 @@ def selected_manifests(changed: list[str], root: pathlib.Path) -> list[str] | No
         if not names:
             return None
         wanted = set(changed)
-        return [name for name in names if manifest_files(name, root) & wanted]
-    except (OSError, ValueError, AttributeError, yaml.YAMLError):
+        cache: dict[str, set[str]] = {}
+        return [name for name in names if manifest_files(name, root, cache) & wanted]
+    except (OSError, ValueError, AttributeError, SyntaxError, yaml.YAMLError):
         return None
 
 

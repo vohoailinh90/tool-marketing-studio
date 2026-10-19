@@ -76,7 +76,7 @@ mutations:
   replace: "\n"
   test: tests.test_ci_changes.WorkflowUsesItTests.test_the_mutation_check_runs_on_several_tree_copies_unless_the_variable_says_otherwise
 - label: a pull request runs every manifest instead of the ones that name a changed file
-  find: "        return [name for name in names if manifest_files(name, root) & wanted]"
+  find: "        return [name for name in names if manifest_files(name, root, cache) & wanted]"
   replace: "        return names"
   test: tests.test_ci_changes.SelectedManifestsTests.test_an_unrelated_change_chooses_no_manifest
 - label: a change to the checker or the workflow runs only the manifests that name it
@@ -84,7 +84,7 @@ mutations:
   replace: "    if any(shared_test_file(path, root) for path in changed):"
   test: tests.test_ci_changes.SelectedManifestsTests.test_a_shared_file_runs_every_manifest
 - label: a manifest is not chosen by the module of a test it names
-  find: "        named.add(test_module_file(entry.get(\"test\", \"\"), root) or \"\")\n"
+  find: "    named |= tests\n"
   replace: ""
   test: tests.test_ci_changes.SelectedManifestsTests.test_the_real_manifests_are_chosen_by_target_entry_file_test_module_and_themselves
 - label: a manifest is not chosen by the file of one of its entries
@@ -140,3 +140,23 @@ mutations:
   find: "    except (OSError, UnicodeDecodeError, SyntaxError, ValueError):\n        return True\n"
   replace: "    except (OSError, UnicodeDecodeError, SyntaxError, ValueError):\n        return False\n"
   test: tests.test_ci_changes.SelectedManifestsTests.test_a_test_file_that_does_not_parse_counts_as_importing
+- label: a module the named tests import does not choose their manifest
+  find: "        named |= local_dependencies(test, root, cache)"
+  replace: "        pass"
+  test: tests.test_ci_changes.SelectedManifestsTests.test_a_module_the_named_tests_import_directly_or_through_others_chooses_the_manifest
+- label: only the modules a test imports directly count, not the ones they import in turn
+  find: "                pending.append(dependency)"
+  replace: "                    pass"
+  test: tests.test_ci_changes.SelectedManifestsTests.test_a_module_the_named_tests_import_directly_or_through_others_chooses_the_manifest
+- label: a bare import of a module in scripts/ is not followed
+  find: '    for base in ("", "scripts/"):'
+  replace: '    for base in ("",):'
+  test: tests.test_ci_changes.SelectedManifestsTests.test_a_module_the_named_tests_import_directly_or_through_others_chooses_the_manifest
+- label: a dependency that does not parse crashes the selection instead of running every manifest
+  find: "    except (OSError, ValueError, AttributeError, SyntaxError, yaml.YAMLError):"
+  replace: "    except (OSError, ValueError, AttributeError, yaml.YAMLError):"
+  test: tests.test_ci_changes.SelectedManifestsTests.test_a_module_the_named_tests_import_directly_or_through_others_chooses_the_manifest
+- label: a relative import in a module the named tests reach is not followed
+  find: "                above = parts[:len(parts) - node.level + 1] if node.level <= len(parts) + 1 else []"
+  replace: "                above = [\"__nowhere__\"]"
+  test: tests.test_ci_changes.SelectedManifestsTests.test_a_module_the_named_tests_import_directly_or_through_others_chooses_the_manifest

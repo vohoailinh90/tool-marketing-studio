@@ -81,6 +81,24 @@ class SelectedManifestsTests(unittest.TestCase):
             self.assertEqual(["tests/mutations/tool.yaml"], ci_changes.selected_manifests(["docs/tool.md"], folder))
             self.assertEqual([], ci_changes.selected_manifests(["docs/other.md"], folder))
 
+    def test_a_module_the_named_tests_import_directly_or_through_others_chooses_the_manifest(self):
+        self.assertIn("tests/mutations/ci_changes.yaml", ci_changes.selected_manifests(["mkt/model.py"], ROOT))
+        with tempfile.TemporaryDirectory() as tmp:
+            folder = Path(tmp)
+            write(folder, "tests/mutations/tool.yaml", MANIFEST.format(target="scripts/tool.py"))
+            write(folder, "tests/test_tool.py", "from pkg.helper import h\nimport bare\n")
+            write(folder, "pkg/__init__.py", "")
+            write(folder, "pkg/helper.py", "from . import deep\n")
+            write(folder, "pkg/deep.py", "x = 1\n")
+            write(folder, "scripts/bare.py", "x = 1\n")  # a test that puts scripts/ on sys.path imports it by bare name
+            write(folder, "pkg/unused.py", "x = 1\n")
+            for changed in ("pkg/helper.py", "pkg/deep.py", "pkg/__init__.py", "scripts/bare.py"):
+                with self.subTest(changed):
+                    self.assertEqual(["tests/mutations/tool.yaml"], ci_changes.selected_manifests([changed], folder))
+            self.assertEqual([], ci_changes.selected_manifests(["pkg/unused.py"], folder))
+            write(folder, "pkg/deep.py", "def broken(:\n")
+            self.assertIsNone(ci_changes.selected_manifests(["pkg/unused.py"], folder))
+
     def test_an_unrelated_change_chooses_no_manifest(self):
         self.assertEqual([], ci_changes.selected_manifests(["docs/facebook-page.md"], ROOT))
 

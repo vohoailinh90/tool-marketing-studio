@@ -11,7 +11,7 @@ Nắm ba lời hứa đó giúp chọn đúng kiểu trước khi nghĩ tới t�
 
 ## Đọc hình
 
-**Gốc chung.** `Iterable` chỉ hứa một điều: có thể đi qua từng phần tử, nên đối tượng nào cài đặt nó thì dùng được trong vòng lặp `for` nâng cao. `Collection` đứng trên đó và là hợp đồng chung cho "một nhóm đối tượng". Tài liệu JDK nói thẳng rằng nhóm này có thể có hoặc không có phần tử trùng, có hoặc không có thứ tự. JDK cũng không có lớp nào cài đặt `Collection` trực tiếp, chỉ có cài đặt của các interface con cụ thể hơn như `Set` và `List`. Vì vậy `Collection` hay xuất hiện ở tham số hoặc kiểu trả về khi hàm chỉ cần "một nhóm phần tử nào đó" và không quan tâm hình dạng.
+**Gốc chung.** `Iterable` chỉ hứa một điều: có thể đi qua từng phần tử, nên đối tượng nào cài đặt nó thì dùng được trong vòng lặp `for` nâng cao. `Collection` đứng trên đó và là hợp đồng chung cho "một nhóm đối tượng". Tài liệu JDK nói thẳng rằng nhóm này có thể có hoặc không có phần tử trùng, có hoặc không có thứ tự. Tài liệu cũng nói JDK không cung cấp cài đặt trực tiếp nào của `Collection`, chỉ cài đặt của các interface con cụ thể hơn như `Set` và `List`; ý này nói về các lớp cụ thể, vì lớp khung trừu tượng `AbstractCollection` vẫn khai báo cài đặt `Collection` để các lớp khác kế thừa. Vì vậy `Collection` hay xuất hiện ở tham số hoặc kiểu trả về khi hàm chỉ cần "một nhóm phần tử nào đó" và không quan tâm hình dạng.
 
 **Ba hợp đồng con.**
 - `List` hứa cho mỗi phần tử một vị trí. Người dùng quyết định chèn ở đâu và đọc lại bằng chỉ số tính từ 0. Tài liệu viết rằng danh sách thường cho phép phần tử trùng. Lớp hay gặp: `ArrayList`, `LinkedList`.

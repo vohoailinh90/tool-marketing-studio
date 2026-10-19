@@ -15,7 +15,7 @@
         },
         {
           "name": "Collection",
-          "role": "Hợp đồng chung cho một nhóm phần tử; JDK không cài đặt trực tiếp.",
+          "role": "Hợp đồng chung cho một nhóm phần tử; Không có lớp cụ thể cài đặt trực tiếp.",
           "icon": "boxes"
         }
       ],

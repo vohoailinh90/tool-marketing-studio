@@ -49,10 +49,13 @@
   },
   "claims": [
     {
-      "claim_vi": "Collection is the root interface of the collection hierarchy; some collections allow duplicate elements and others do not, some are ordered and others are not; the JDK provides no direct implementations of Collection, only of more specific subinterfaces such as Set and List.",
+      "claim_vi": "Collection is the root interface of the collection hierarchy; some collections allow duplicate elements and others do not, some are ordered and others are not; the JDK documentation says it provides no direct implementations of Collection, only of more specific subinterfaces such as Set and List; this refers to concrete classes, since the abstract skeletal class AbstractCollection is declared as implementing Collection.",
       "source": "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/Collection.java",
-      "section": "Class comment",
-      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+      "section": "Class comment; AbstractCollection declaration",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it).",
+      "sources": [
+        "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/AbstractCollection.java"
+      ]
     },
     {
       "claim_vi": "Collection extends Iterable; List (through SequencedCollection), Set and Queue extend Collection; Map does not extend Collection; Deque extends Queue.",

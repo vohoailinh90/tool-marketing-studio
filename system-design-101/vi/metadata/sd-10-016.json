@@ -28,7 +28,7 @@
   "verification": {
     "source_body": {
       "status": "read",
-      "checked_on": "2026-10-18"
+      "checked_on": "2026-10-19"
     },
     "claims": {
       "status": "pending",
@@ -48,53 +48,76 @@
   },
   "claims": [
     {
-      "claim_vi": "The source title says 10 key data structures but the list has 11: List, Stack, Queue, Hash Table, Array, Heap, Tree, Suffix Tree, Graph, R-Tree, Vertex Buffer.",
+      "claim_vi": "The source lists eleven structures (List, Stack, Queue, Hash Table, Array, Heap, Tree, Suffix Tree, Graph, R-Tree, Vertex Buffer) each with one example use, under a title that says ten; the lesson keeps the names and examples and counts eleven.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/10-key-data-structures-we-use-every-day.md",
-      "section": "Title and list",
+      "section": "Whole body",
       "verified_by": "Source body read from the pinned commit; the statement is in the source text."
     },
     {
-      "claim_vi": "Use cases the source gives: List keeps Twitter feeds; Stack supports undo/redo of a word editor; Queue keeps printer jobs or sends user actions in a game; Hash Table for caching systems; Array for math operations; Heap for task scheduling; Tree keeps the HTML document or serves AI decisions; Suffix Tree searches strings in a document; Graph tracks friendship or path finding; R-Tree finds the nearest neighbor; Vertex Buffer sends data to the GPU for rendering.",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/10-key-data-structures-we-use-every-day.md",
-      "section": "List",
-      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+      "claim_vi": "JDK List: an ordered collection with precise control over where each element is inserted, access by integer index; unlike sets, lists typically allow duplicates.",
+      "source": "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/List.java",
+      "section": "class comment",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
     },
     {
-      "claim_vi": "Java Deque: a deque can be used as a LIFO stack and should be used in preference to the legacy Stack class.",
+      "claim_vi": "MDN: an array is an ordered collection of data storing multiple values under one name, each item having a numeric index (zero-based in JavaScript).",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/array/index.md",
+      "section": "Array",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "JDK Deque: deques can be used as LIFO stacks, in preference to the legacy Stack class.",
       "source": "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/Deque.java",
-      "section": "Deque class comment",
+      "section": "class comment",
       "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
     },
     {
-      "claim_vi": "Java Queue: queues typically, but do not necessarily, order elements in FIFO manner.",
+      "claim_vi": "JDK Queue: a collection for holding elements prior to processing; queues typically, but not necessarily, order elements FIFO; priority queues and LIFO queues (stacks) are exceptions.",
       "source": "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/Queue.java",
-      "section": "Queue class comment",
+      "section": "class comment",
       "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
     },
     {
-      "claim_vi": "Java PriorityQueue is an unbounded priority queue based on a priority heap.",
-      "source": "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/PriorityQueue.java",
-      "section": "PriorityQueue class comment",
-      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
-    },
-    {
-      "claim_vi": "Java HashSet implements Set, backed by a hash table (actually a HashMap instance).",
+      "claim_vi": "JDK HashSet: backed by a hash table; constant-time basic operations assuming the hash function disperses elements properly.",
       "source": "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/HashSet.java",
-      "section": "HashSet class comment",
+      "section": "class comment",
       "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
     },
     {
-      "claim_vi": "Grouping the eleven structures into three sets is the author's arrangement; the glosses in the abbreviations section are the author's general knowledge.",
+      "claim_vi": "JDK PriorityQueue: a priority queue based on a priority heap; the head is the least element with respect to the ordering.",
+      "source": "https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/PriorityQueue.java",
+      "section": "class comment",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "MDN: the DOM represents an HTML or XML document as a tree of nodes, the DOM tree.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/dom/index.md",
+      "section": "DOM",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "MDN: a WebGLBuffer is an opaque buffer object storing data such as vertices or colors; the GPU specializes in drawing 2D and 3D graphics.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/web/api/webglbuffer/index.md",
+      "section": "WebGLBuffer and GPU",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
+    },
+    {
+      "claim_vi": "Suffix tree, graph and R-tree: only the source's example use is given; no primary documentation was read for them.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/10-key-data-structures-we-use-every-day.md",
-      "section": "Design and Từ viết tắt",
+      "section": "Đọc hình",
+      "verified_by": "Author's general knowledge; not checked against primary documentation."
+    },
+    {
+      "claim_vi": "The glosses in the abbreviations section.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/10-key-data-structures-we-use-every-day.md",
+      "section": "Từ viết tắt",
       "verified_by": "Author's general knowledge; not checked against primary documentation."
     }
   ],
-  "design_notes_vi": "Ba nhóm thẻ theo họ hàng (danh sách và thứ tự; tra cứu và sắp việc; quan hệ, không gian và đồ họa) và một khung ghi nhớ. Cách chia nhóm là của bài. Không dùng ảnh nguồn.",
+  "design_notes_vi": "Ba nhóm thẻ (danh sách và thứ tự; tra cứu và sắp việc; quan hệ, không gian và đồ họa) và một khung ghi nhớ; cách chia nhóm là của bài. Mỗi thẻ nói cấu trúc là gì từ tài liệu gốc kèm ví dụ của nguồn. Không dùng ảnh nguồn.",
   "source_deviations": [
-    "Source title says 10 structures but lists 11; the lesson says so and follows the list.",
-    "Source lists the structures in a flat order with one use each; the lesson groups them in three sets and says the grouping is the lesson's.",
-    "Java library examples are not in the source and come from the pinned OpenJDK source."
+    "Source title says ten data structures but the list has eleven; the lesson follows the list and says so.",
+    "The lesson keeps the source's names and example uses and explains what each structure is from the JDK sources and MDN pages, instead of following the source's sentences."
   ],
   "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích thêm là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
 }

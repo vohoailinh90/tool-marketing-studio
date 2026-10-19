@@ -12,7 +12,7 @@
     {"kind": "parts", "heading": "Secret chat: mã hóa đầu cuối",
      "items": [{"name": "Máy người gửi", "role": "Mã hóa bằng chìa khóa chỉ hai máy biết.", "icon": "smartphone"},
                {"name": "Máy chủ chuyển tiếp", "role": "Chỉ thấy dữ liệu đã mã hóa, không đọc được.", "icon": "lock"},
-               {"name": "Máy người nhận", "role": "Nơi duy nhất giải mã được tin.", "icon": "smartphone"}],
+               {"name": "Máy người nhận", "role": "Cùng máy người gửi: hai nơi duy nhất giải mã được.", "icon": "smartphone"}],
      "flow": [[0, 1], [1, 2]]},
     {"kind": "notes", "heading": "Nhớ gì",
      "items": ["An toàn nghĩa là ai đọc được tin, không chỉ có mã hóa.", "Chia nhỏ dữ liệu làm việc tấn công khó hơn, không phải không thể.", "Secret chat không có nhóm, theo nguồn chỉ có trên di động."]}

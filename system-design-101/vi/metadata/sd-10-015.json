@@ -84,7 +84,7 @@
       "verified_by": "Author's general knowledge; not checked against primary documentation."
     },
     {
-      "claim_vi": "A Java class file holds bytecode; the glosses of CPU, JVM and AOT in the abbreviations section.",
+      "claim_vi": "A Java class file holds bytecode; C# compiles to an intermediate code run on the .NET CLR, not on the JVM (general knowledge, not checked against Microsoft documentation); the glosses of CPU, JVM, CLR and AOT in the abbreviations section.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-c++-java-python-work.md",
       "section": "Đọc hình, Từ viết tắt",
       "verified_by": "Author's general knowledge; not checked against primary documentation."

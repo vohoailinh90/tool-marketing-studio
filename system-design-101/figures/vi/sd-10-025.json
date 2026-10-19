@@ -1,0 +1,59 @@
+{
+  "id": "sd-10-025",
+  "title": "Đồng thời và song song",
+  "subtitle": "Một thí nghiệm nhỏ trên máy bốn lõi.",
+  "desc": "Hai nhóm thẻ số đo và một khung ghi nhớ. Bốn việc chờ, mỗi việc 0,5 giây: lần lượt hết 2,00 giây; đồng thời bằng asyncio hết 0,50 giây; đồng thời bằng bốn luồng hết 0,50 giây. Bốn việc tính toán: lần lượt hết khoảng 0,6 giây; bốn luồng khoảng 0,7 giây; bốn tiến trình khoảng 0,2 đến 0,3 giây. Khung cuối nêu ba điều cần nhớ.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Bốn việc chờ, mỗi việc 0,5 giây",
+      "items": [
+        {
+          "name": "Lần lượt",
+          "role": "Hết 2,00 giây.",
+          "icon": "list-ordered"
+        },
+        {
+          "name": "Đồng thời, asyncio",
+          "role": "Hết 0,50 giây, trong một luồng.",
+          "icon": "workflow"
+        },
+        {
+          "name": "Đồng thời, bốn luồng",
+          "role": "Hết 0,50 giây.",
+          "icon": "workflow"
+        }
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Bốn việc tính toán",
+      "items": [
+        {
+          "name": "Lần lượt",
+          "role": "Khoảng 0,6 giây.",
+          "icon": "list-ordered"
+        },
+        {
+          "name": "Bốn luồng",
+          "role": "Khoảng 0,7 giây: mã Python thuần, GIL chỉ cho một luồng chạy.",
+          "icon": "lock"
+        },
+        {
+          "name": "Bốn tiến trình",
+          "role": "Khoảng 0,2 đến 0,3 giây: nhiều tiến trình trên nhiều lõi.",
+          "icon": "cpu"
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Nhớ gì",
+      "items": [
+        "Chờ thì đồng thời đủ, một lõi cũng được.",
+        "Tính toán nặng cần nhiều lõi: song song.",
+        "Số đo là của một máy, đọc tỉ lệ."
+      ]
+    }
+  ]
+}

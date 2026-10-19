@@ -283,7 +283,13 @@ Số thứ tự theo ID của bài; bài chưa viết chưa có trong danh sách
 14. [Tám chuẩn mọi lập trình viên nên biết](lessons/sd-10-014/lesson.md)
 15. [C++, Java và Python chạy như thế nào?](lessons/sd-10-015/lesson.md)
 16. [Mười một cấu trúc dữ liệu dùng hằng ngày](lessons/sd-10-016/lesson.md)
+22. [Mệnh lệnh, hàm và hướng đối tượng: ba mô hình lập trình chính](lessons/sd-10-022/lesson.md)
 23. [Sau thay đổi API: chọn bộ kiểm tra theo rủi ro](lessons/sd-10-023/lesson.md)
+24. [Chín thuật toán dùng khắp đời sống số](lessons/sd-10-024/lesson.md)
+25. [Đồng thời và song song: khác nhau ở đâu?](lessons/sd-10-025/lesson.md)
+26. [Linux khởi động chậm ở đâu? Đo và đọc bằng systemd-analyze và journalctl](lessons/sd-10-026/lesson.md)
+27. [Mười một bước từ lập trình viên mới vào nghề tới cấp cao](lessons/sd-10-027/lesson.md)
+28. [Mười nguyên tắc viết mã tốt để nâng chất lượng mã](lessons/sd-10-028/lesson.md)
 
 ## Đám mây và hệ thống phân tán
 

@@ -2648,11 +2648,11 @@
         },
         {
           "id": "sd-10-022",
-          "title_vi": null,
+          "title_vi": "Mệnh lệnh, hàm và hướng đối tượng: ba mô hình lập trình chính",
           "title_source": "Imperative vs Functional vs Object-oriented Programming",
           "source_url": "https://bytebytego.com/guides/imperative-vs-functional-vs-object-oriented-programming",
           "source_path": "data/guides/imperative-vs-functional-vs-object-oriented-programming.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "1e8e2fd6034073f643551a19450ff973b8dd6627",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/imperative-vs-functional-vs-object-oriented-programming.md"
         },
@@ -2671,54 +2671,54 @@
         },
         {
           "id": "sd-10-024",
-          "title_vi": null,
+          "title_vi": "Chín thuật toán dùng khắp đời sống số",
           "title_source": "The 9 Algorithms That Dominate Our World",
           "source_url": "https://bytebytego.com/guides/the-9-algorithms-that-dominate-our-world",
           "source_path": "data/guides/the-9-algorithms-that-dominate-our-world.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "40e6385a1a353dac41c804d9e120a0610652d53a",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/the-9-algorithms-that-dominate-our-world.md"
         },
         {
           "id": "sd-10-025",
-          "title_vi": null,
+          "title_vi": "Đồng thời và song song: khác nhau ở đâu?",
           "title_source": "Concurrency vs Parallelism",
           "source_url": "https://bytebytego.com/guides/concurrency-is-not-parallelism",
           "source_path": "data/guides/concurrency-is-not-parallelism.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "cb12aaa60ff8d46c780460b00811d057ae935fed",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/concurrency-is-not-parallelism.md"
         },
         {
           "id": "sd-10-026",
-          "title_vi": null,
+          "title_vi": "Linux khởi động chậm ở đâu? Đo và đọc bằng systemd-analyze và journalctl",
           "title_source": "Linux Boot Process Explained",
           "source_url": "https://bytebytego.com/guides/linux-boot-process-explained",
           "source_path": "data/guides/linux-boot-process-explained.md",
           "same_source_as": [
             "sd-08-020"
           ],
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "afd3a88fd8f9a085cbf052c550ea662b95af4b5f",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/linux-boot-process-explained.md"
         },
         {
           "id": "sd-10-027",
-          "title_vi": null,
+          "title_vi": "Mười một bước từ lập trình viên mới vào nghề tới cấp cao",
           "title_source": "11 Steps to Go From Junior to Senior Developer",
           "source_url": "https://bytebytego.com/guides/11-steps-to-go-from-junior-to-senior-developer",
           "source_path": "data/guides/11-steps-to-go-from-junior-to-senior-developer.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "50ec32bb699bbe1931f15d112f0f9d1c1c586259",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/11-steps-to-go-from-junior-to-senior-developer.md"
         },
         {
           "id": "sd-10-028",
-          "title_vi": null,
+          "title_vi": "Mười nguyên tắc viết mã tốt để nâng chất lượng mã",
           "title_source": "10 Good Coding Principles to Improve Code Quality",
           "source_url": "https://bytebytego.com/guides/10-good-coding-principles-to-improve-code-quality",
           "source_path": "data/guides/10-good-coding-principles-to-improve-code-quality.md",
-          "source_body_reviewed": false,
+          "source_body_reviewed": true,
           "source_blob_sha": "74ea3f372613479c6400fbe056e65a7aed3650ec",
           "source_snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/10-good-coding-principles-to-improve-code-quality.md"
         }

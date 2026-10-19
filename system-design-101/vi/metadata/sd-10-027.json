@@ -1,0 +1,129 @@
+{
+  "id": "sd-10-027",
+  "title_vi": "Mười một bước từ lập trình viên mới vào nghề tới cấp cao",
+  "language": "vi",
+  "kind": "reference",
+  "content_status": "draft",
+  "source_ref": "sd-10-027",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/11-steps-to-go-from-junior-to-senior-developer.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/11-steps-to-go-from-junior-to-senior-developer.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "50ec32bb699bbe1931f15d112f0f9d1c1c586259",
+    "retrieved_body_sha256": "f5b206d27a52ff7e91ab1fcf5c0e43ba8ef4fe05eefa1e19fb7d03a5a4076b03",
+    "retrieved_body_bytes": 2024
+  },
+  "diagram": "../diagrams/sd-10-027-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-10-003",
+      "relation": "see-also",
+      "reason_vi": "Bản đồ kỹ năng của lập trình viên full-stack, cùng chủ đề học nghề."
+    },
+    {
+      "lesson_id": "sd-10-021",
+      "relation": "see-also",
+      "reason_vi": "Bước 8 của bài này là cấu trúc dữ liệu và thuật toán; bài kia nói cách đọc thang sao của thuật toán cho phỏng vấn."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-19"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "each documentation page was read in a raw copy at a pinned commit (for the repositories read from the default branch, the commit was resolved on 2026-10-19 and the file hash compared); the bisect count was run by the author; REST, GraphQL, JWT, dependency injection and the ticket practice are the author's general knowledge"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending",
+      "reason": "figure text measured arithmetically by scripts.figures check; no whole-lesson render at 320, 375 and 430 px recorded"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "gRPC: a client calls a method on a server on another machine as if it were a local object; a service is defined with the methods callable remotely, their parameters and return types; the client has a stub with the same methods.",
+      "source": "https://github.com/grpc/grpc.io/blob/aeb4fafc3a135208450c066cafcc6fa522471ca1/content/en/docs/what-is-grpc/introduction.md",
+      "section": "Overview",
+      "verified_by": "Read from the pinned commit."
+    },
+    {
+      "claim_vi": "Kubernetes is a platform for managing containerized workloads; if a container goes down another needs to start; it takes care of scaling and failover and can load balance network traffic.",
+      "source": "https://github.com/kubernetes/website/blob/0b9277aa15af13c16f79d9c1d58acaf7c2d10298/content/en/docs/concepts/overview/_index.md",
+      "section": "Why you need Kubernetes",
+      "verified_by": "Read from the pinned commit."
+    },
+    {
+      "claim_vi": "OWASP OAuth2 cheat sheet: PKCE is the technique used to mitigate the authorization code interception attack on public clients using the Authorization Code Grant.",
+      "source": "https://github.com/OWASP/CheatSheetSeries/blob/d89285c7bfc3f24fa79881407c89a85bf6d17272/cheatsheets/OAuth2_Cheat_Sheet.md",
+      "section": "PKCE",
+      "verified_by": "Read from the pinned commit."
+    },
+    {
+      "claim_vi": "unittest supports test automation.",
+      "source": "https://github.com/python/cpython/blob/b00a14018172652226bd6efb517af021bd03aa88/Doc/library/unittest.rst",
+      "section": "unittest",
+      "verified_by": "Read from the pinned commit."
+    },
+    {
+      "claim_vi": "SQLite is a lightweight disk-based database needing no separate server process and can be used to prototype before porting to a larger database such as PostgreSQL.",
+      "source": "https://github.com/python/cpython/blob/b00a14018172652226bd6efb517af021bd03aa88/Doc/library/sqlite3.rst",
+      "section": "sqlite3",
+      "verified_by": "Read from the pinned commit."
+    },
+    {
+      "claim_vi": "bisect keeps a list sorted without re-sorting after each insertion and can improve on linear searches for long lists.",
+      "source": "https://github.com/python/cpython/blob/b00a14018172652226bd6efb517af021bd03aa88/Doc/library/bisect.rst",
+      "section": "bisect",
+      "verified_by": "Read from the pinned commit."
+    },
+    {
+      "claim_vi": "functools.lru_cache saves up to maxsize most recent calls and can save time when an expensive or I/O-bound function is called repeatedly with the same arguments.",
+      "source": "https://github.com/python/cpython/blob/b00a14018172652226bd6efb517af021bd03aa88/Doc/library/functools.rst",
+      "section": "lru_cache",
+      "verified_by": "Read from the pinned commit."
+    },
+    {
+      "claim_vi": "Redis can be used as a database, cache, streaming engine, message broker and more.",
+      "source": "https://github.com/redis/docs/blob/3b030c7ef066c0bb7f88ddec02c784e49783b0f8/content/develop/get-started/_index.md",
+      "section": "Quick starts",
+      "verified_by": "Read from the pinned commit."
+    },
+    {
+      "claim_vi": "GitHub Actions: workflows can build and test every pull request or deploy merged pull requests to production.",
+      "source": "https://github.com/github/docs/blob/dae83f7d28f3b8e10015bd6b6d8b72267cedceca/content/actions/get-started/understand-github-actions.md",
+      "section": "Overview",
+      "verified_by": "Read from the pinned commit."
+    },
+    {
+      "claim_vi": "GitHub Copilot best practices: Copilot is not designed to replace your expertise; always validate the code it suggests and use automated tests and tooling to check it.",
+      "source": "https://github.com/github/docs/blob/dae83f7d28f3b8e10015bd6b6d8b72267cedceca/content/copilot/get-started/best-practices.md",
+      "section": "Copilot best practices",
+      "verified_by": "Read from the pinned commit."
+    },
+    {
+      "claim_vi": "Measured by the author on 2026-10-19 (Python 3.13.16): bisect_left over one million sorted items with the target last calls __lt__ 20 times, against 1,000,000 elements visited by a linear scan.",
+      "source": "https://github.com/vohoailinh90/tool-marketing-studio",
+      "section": "Step 8",
+      "verified_by": "Run by the author with a counting __lt__."
+    }
+  ],
+  "design_notes_vi": "Bốn chuỗi bước đánh số theo mười một bước của nguồn, mỗi bước nêu một việc trong dịch vụ mượn sách, và một khung ghi nhớ. Cách chia nhóm là của bài. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "The source gives each step one or two sentences with example tools; the lesson keeps only the eleven step names and their order and shows each step as a concrete task in one small project, drawn from documentation that was read.",
+    "The source's example tool lists are not repeated; the tools named are those whose documentation was read, or are marked as the author's general knowledge.",
+    "The lesson says nothing about the order being required, the time per step or what counts as senior."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Ví dụ dịch vụ mượn sách là minh họa tự nghĩ ra, không phải dự án thật. Chưa user testing hoặc phê duyệt phát hành."
+}

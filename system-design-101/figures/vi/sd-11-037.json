@@ -1,0 +1,27 @@
+{
+  "id": "sd-11-037",
+  "title": "Bốn đòn bẩy giảm chi phí",
+  "subtitle": "Giảm trước, cam kết sau.",
+  "desc": "Hai khung. Khung một, bốn đòn bẩy: dùng ít hơn gồm giảm lượng dùng, tắt tài nguyên nhàn rỗi và chọn cỡ vừa; dùng ngắn hơn là tắt ngoài giờ cao điểm; trả rẻ hơn là cam kết dùng dài hạn hoặc dùng máy dư; chuyển ít dữ liệu hơn bằng nén, mạng phân phối nội dung và đặt tài nguyên cùng vùng. Khung hai, ví dụ số học: mười máy chạy suốt tuần là 1680 giờ máy; chạy mười giờ mỗi ngày làm việc là 500, còn khoảng 30 phần trăm; cam kết dùng đều trước khi giảm thì vẫn phải trả phần cam kết.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Bốn đòn bẩy",
+      "items": [
+        {"name": "Dùng ít hơn", "role": "Giảm, tắt thứ nhàn rỗi, chọn cỡ vừa.", "icon": "scale"},
+        {"name": "Dùng ngắn hơn", "role": "Tắt ngoài giờ cao điểm.", "icon": "clock"},
+        {"name": "Trả rẻ hơn", "role": "Cam kết dài hạn, máy dư.", "icon": "credit-card"},
+        {"name": "Chuyển ít dữ liệu", "role": "Nén, CDN, cùng vùng.", "icon": "send"}
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Ví dụ số học",
+      "items": [
+        "10 máy chạy suốt tuần: 1680 giờ máy.",
+        "Chạy 10 giờ mỗi ngày làm việc: 500, còn khoảng 30%.",
+        "Cam kết trước khi giảm: phần thừa vẫn phải trả."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1172" viewBox="0 0 320 1172" role="img" aria-labelledby="title desc">
+<title id="title">Bảy mẫu phân tán hay gặp</title>
+<desc id="desc">Ba khung. Khung một, giữ dịch vụ khỏe: Ambassador là bên trung gian đặt cạnh ứng dụng để gọi ra ngoài; Circuit Breaker ngừng gọi khi lỗi vượt ngưỡng; Leader Election chọn một bản làm người điều phối. Khung hai, dữ liệu và thông điệp: CQRS tách mô hình đọc và ghi; Event Sourcing lưu chuỗi sự kiện thay vì trạng thái hiện tại; Publisher/Subscriber phát sự kiện cho nhiều bên nhận; Sharding chia kho dữ liệu thành nhiều phần. Khung ba, thử Circuit Breaker: không có thì chờ 80 giây, có thì chờ 16 giây.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1172" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Bảy mẫu phân tán hay</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">gặp</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Mỗi mẫu trả lời một vấn đề.</text>
+<rect x="8" y="104" width="304" height="346" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="132.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Giữ dịch vụ khỏe</text>
+<rect x="20" y="149" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="192.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 181.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-5"/><path d="M15 8V2"/><path d="M17 8a1 1 0 0 1 1 1v4a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1z"/><path d="M9 8V2"/></g>
+<text x="78" y="175.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Ambassador</text>
+<text x="78" y="199.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bên trung gian cạnh ứng</text>
+<text x="78" y="218.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dụng gọi ra ngoài.</text>
+<rect x="20" y="250" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="293.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 282.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></g>
+<text x="78" y="276.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Circuit Breaker</text>
+<text x="78" y="300.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ngừng gọi khi lỗi vượt</text>
+<text x="78" y="319.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">ngưỡng.</text>
+<rect x="20" y="351" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="394.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 383.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><path d="M16 3.128a4 4 0 0 1 0 7.744"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><circle cx="9" cy="7" r="4"/></g>
+<text x="78" y="377.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Leader Election</text>
+<text x="78" y="401.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chọn một bản làm người</text>
+<text x="78" y="420.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">điều phối.</text>
+<rect x="8" y="462" width="304" height="428" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="490.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Dữ liệu và thông điệp</text>
+<rect x="20" y="507" width="280" height="68" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="541" r="18" fill="#0f766e"/><g transform="translate(39.2 530.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5"/><path d="M8 3H3v5"/><path d="M12 22v-8.3a4 4 0 0 0-1.172-2.872L3 3"/><path d="m15 9 6-6"/></g>
+<text x="78" y="533.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">CQRS</text>
+<text x="78" y="557.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tách mô hình đọc và ghi.</text>
+<rect x="20" y="589" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="632.5" r="18" fill="#0f766e"/><g transform="translate(39.2 621.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></g>
+<text x="78" y="615.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Event Sourcing</text>
+<text x="78" y="639.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lưu chuỗi sự kiện, không</text>
+<text x="78" y="658.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chỉ trạng thái.</text>
+<rect x="20" y="690" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="733.5" r="18" fill="#0f766e"/><g transform="translate(39.2 722.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16.247 7.761a6 6 0 0 1 0 8.478"/><path d="M19.075 4.933a10 10 0 0 1 0 14.134"/><path d="M4.925 19.067a10 10 0 0 1 0-14.134"/><path d="M7.753 16.239a6 6 0 0 1 0-8.478"/><circle cx="12" cy="12" r="2"/></g>
+<text x="78" y="716.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Publisher/Subscriber</text>
+<text x="78" y="740.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Phát sự kiện cho nhiều bên</text>
+<text x="78" y="759.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhận.</text>
+<rect x="20" y="791" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="834.5" r="18" fill="#0f766e"/><g transform="translate(39.2 823.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.97 12.92A2 2 0 0 0 2 14.63v3.24a2 2 0 0 0 .97 1.71l3 1.8a2 2 0 0 0 2.06 0L12 19v-5.5l-5-3-4.03 2.42Z"/><path d="m7 16.5-4.74-2.85"/><path d="m7 16.5 5-3"/><path d="M7 16.5v5.17"/><path d="M12 13.5V19l3.97 2.38a2 2 0 0 0 2.06 0l3-1.8a2 2 0 0 0 .97-1.71v-3.24a2 2 0 0 0-.97-1.71L17 10.5l-5 3Z"/><path d="m17 16.5-5-3"/><path d="m17 16.5 4.74-2.85"/><path d="M17 16.5v5.17"/><path d="M7.97 4.42A2 2 0 0 0 7 6.13v4.37l5 3 5-3V6.13a2 2 0 0 0-.97-1.71l-3-1.8a2 2 0 0 0-2.06 0l-3 1.8Z"/><path d="M12 8 7.26 5.15"/><path d="m12 8 4.74-2.85"/><path d="M12 13.5V8"/></g>
+<text x="78" y="817.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Sharding</text>
+<text x="78" y="841.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chia kho dữ liệu thành</text>
+<text x="78" y="860.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhiều phần.</text>
+<rect x="8" y="902" width="304" height="262" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="930.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Thử Circuit Breaker</text>
+<rect x="20" y="947" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="970" r="11" fill="#16a34a"/>
+<polyline points="37.9,970.4 41.7,974.4 48.5,966" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="973.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Dịch vụ hỏng 40 giây, mỗi</text>
+<text x="64" y="992.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lần gọi chờ 2 giây.</text>
+<rect x="20" y="1018" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1041" r="11" fill="#16a34a"/>
+<polyline points="37.9,1041.4 41.7,1045.4 48.5,1037" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1044.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Không có bộ ngắt: chờ tổng</text>
+<text x="64" y="1063.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">80 giây.</text>
+<rect x="20" y="1089" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1112" r="11" fill="#16a34a"/>
+<polyline points="37.9,1112.4 41.7,1116.4 48.5,1108" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1115.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Có bộ ngắt: 36 lần thất bại</text>
+<text x="64" y="1134.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tức thì, chờ 16 giây.</text>
+</g>
+</svg>

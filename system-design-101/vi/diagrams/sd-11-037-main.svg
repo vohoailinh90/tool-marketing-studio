@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="776" viewBox="0 0 320 776" role="img" aria-labelledby="title desc">
+<title id="title">Bốn đòn bẩy giảm chi phí</title>
+<desc id="desc">Hai khung. Khung một, bốn đòn bẩy: dùng ít hơn gồm giảm lượng dùng, tắt tài nguyên nhàn rỗi và chọn cỡ vừa; dùng ngắn hơn là tắt ngoài giờ cao điểm; trả rẻ hơn là cam kết dùng dài hạn hoặc dùng máy dư; chuyển ít dữ liệu hơn bằng nén, mạng phân phối nội dung và đặt tài nguyên cùng vùng. Khung hai, ví dụ số học: mười máy chạy suốt tuần là 1680 giờ máy; chạy mười giờ mỗi ngày làm việc là 500, còn khoảng 30 phần trăm; cam kết dùng đều trước khi giảm thì vẫn phải trả phần cam kết.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="776" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Bốn đòn bẩy giảm chi</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">phí</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Giảm trước, cam kết sau.</text>
+<rect x="8" y="104" width="304" height="390" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="132.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Bốn đòn bẩy</text>
+<rect x="20" y="149" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="192.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 181.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="m19 8 3 8a5 5 0 0 1-6 0zV7"/><path d="M3 7h1a17 17 0 0 0 8-2 17 17 0 0 0 8 2h1"/><path d="m5 8 3 8a5 5 0 0 1-6 0zV7"/><path d="M7 21h10"/></g>
+<text x="78" y="175.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Dùng ít hơn</text>
+<text x="78" y="199.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Giảm, tắt thứ nhàn rỗi,</text>
+<text x="78" y="218.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chọn cỡ vừa.</text>
+<rect x="20" y="250" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="284" r="18" fill="#1d4ed8"/><g transform="translate(39.2 273.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></g>
+<text x="78" y="276.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Dùng ngắn hơn</text>
+<text x="78" y="300.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tắt ngoài giờ cao điểm.</text>
+<rect x="20" y="332" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="366" r="18" fill="#1d4ed8"/><g transform="translate(39.2 355.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="14" rx="2" width="20" x="2" y="5"/><line x1="2" x2="22" y1="10" y2="10"/><path d="M6 14h2"/></g>
+<text x="78" y="358.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Trả rẻ hơn</text>
+<text x="78" y="382.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cam kết dài hạn, máy dư.</text>
+<rect x="20" y="414" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="448" r="18" fill="#1d4ed8"/><g transform="translate(39.2 437.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></g>
+<text x="78" y="440.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Chuyển ít dữ liệu</text>
+<text x="78" y="464.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nén, CDN, cùng vùng.</text>
+<rect x="8" y="506" width="304" height="262" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="534.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Ví dụ số học</text>
+<rect x="20" y="551" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="574" r="11" fill="#16a34a"/>
+<polyline points="37.9,574.4 41.7,578.4 48.5,570" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="577.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">10 máy chạy suốt tuần:</text>
+<text x="64" y="596.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">1680 giờ máy.</text>
+<rect x="20" y="622" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="645" r="11" fill="#16a34a"/>
+<polyline points="37.9,645.4 41.7,649.4 48.5,641" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="648.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chạy 10 giờ mỗi ngày làm</text>
+<text x="64" y="667.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">việc: 500, còn khoảng 30%.</text>
+<rect x="20" y="693" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="716" r="11" fill="#16a34a"/>
+<polyline points="37.9,716.4 41.7,720.4 48.5,712" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="719.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cam kết trước khi giảm:</text>
+<text x="64" y="738.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">phần thừa vẫn phải trả.</text>
+</g>
+</svg>

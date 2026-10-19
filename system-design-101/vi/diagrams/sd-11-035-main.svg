@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="814" viewBox="0 0 320 814" role="img" aria-labelledby="title desc">
+<title id="title">Chi phí ẩn theo cách hóa đơn đếm</title>
+<desc id="desc">Hai khung. Khung một, bốn cách hóa đơn đếm: theo giờ khi tài nguyên còn tồn tại, như bộ cân bằng tải và địa chỉ IP nhàn rỗi; theo dung lượng mỗi tháng, như ổ đĩa và bản chụp; theo số lời gọi, như Lấy và liệt kê đối tượng; theo phần dở dang và dữ liệu đi ra. Khung hai, ba việc dọn dẹp: trả địa chỉ IP không dùng, xóa ổ đĩa không gắn máy, đặt quy tắc hủy các phần tải lên dở.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="814" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Chi phí ẩn theo cách hóa</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">đơn đếm</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Tìm đúng đồng hồ vẫn đang quay.</text>
+<rect x="8" y="104" width="304" height="428" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="132.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Bốn cách hóa đơn đếm</text>
+<rect x="20" y="149" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="192.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 181.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="10" x2="14" y1="2" y2="2"/><line x1="12" x2="15" y1="14" y2="11"/><circle cx="12" cy="14" r="8"/></g>
+<text x="78" y="175.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Theo giờ</text>
+<text x="78" y="199.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bộ cân bằng tải, địa chỉ IP</text>
+<text x="78" y="218.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhàn rỗi.</text>
+<rect x="20" y="250" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="293.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 282.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 16h.01"/><path d="M2.212 11.577a2 2 0 0 0-.212.896V18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5.527a2 2 0 0 0-.212-.896L18.55 5.11A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/><path d="M21.946 12.013H2.054"/><path d="M6 16h.01"/></g>
+<text x="78" y="276.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Theo dung lượng</text>
+<text x="78" y="300.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ổ đĩa và bản chụp, mỗi</text>
+<text x="78" y="319.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tháng.</text>
+<rect x="20" y="351" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="385" r="18" fill="#1d4ed8"/><g transform="translate(39.2 374.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3 4 7l4 4"/><path d="M4 7h16"/><path d="m16 21 4-4-4-4"/><path d="M20 17H4"/></g>
+<text x="78" y="377.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Theo lời gọi</text>
+<text x="78" y="401.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lấy và liệt kê đối tượng.</text>
+<rect x="20" y="433" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="476.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 465.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m17 8-5-5-5 5"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/></g>
+<text x="78" y="459.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Dở dang, đi ra</text>
+<text x="78" y="483.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Phần tải dở, dữ liệu kéo ra</text>
+<text x="78" y="502.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">ngoài.</text>
+<rect x="8" y="544" width="304" height="262" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="572.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Ba việc dọn dẹp</text>
+<rect x="20" y="589" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="612" r="11" fill="#16a34a"/>
+<polyline points="37.9,612.4 41.7,616.4 48.5,608" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="615.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Trả địa chỉ IP đã gỡ: nó vẫn</text>
+<text x="64" y="634.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thuộc tài khoản.</text>
+<rect x="20" y="660" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="683" r="11" fill="#16a34a"/>
+<polyline points="37.9,683.4 41.7,687.4 48.5,679" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="686.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Xóa ổ không gắn máy, chụp</text>
+<text x="64" y="705.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">một bản trước nếu cần.</text>
+<rect x="20" y="731" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="754" r="11" fill="#16a34a"/>
+<polyline points="37.9,754.4 41.7,758.4 48.5,750" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="757.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đặt quy tắc tự hủy phần tải</text>
+<text x="64" y="776.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lên dở sau vài ngày.</text>
+</g>
+</svg>

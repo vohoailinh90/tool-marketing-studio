@@ -175,6 +175,13 @@ Các bài chưa viết của nhóm này không có trong danh sách; số thứ 
 13. [Truy vấn khóa không tồn tại: khi bộ nhớ đệm bị xuyên qua](lessons/sd-06-013/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
 14. [Tám chiến lược đẩy khóa ra, và Redis thật sự có những gì](lessons/sd-06-014/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
 15. [Bộ nhớ đệm hỏng theo những kiểu nào](lessons/sd-06-015/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
+16. [Elasticsearch hợp với việc gì: sáu cách dùng và cái mỗi cách dựa vào](lessons/sd-06-016/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+17. [CDN hoạt động thế nào: tìm máy biên, rồi hỏi dần lên máy gốc](lessons/sd-06-017/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+18. [Kiến trúc Redis lớn dần thế nào: mỗi bước vá một giới hạn](lessons/sd-06-018/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+19. [Redis giữ dữ liệu qua lần sập thế nào: RDB và AOF](lessons/sd-06-019/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+20. [Redis dùng vào việc gì: mười cách dùng, năm nhóm kiểu dữ liệu](lessons/sd-06-020/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+21. [Vì sao Redis nhanh, và khi nào nó chậm](lessons/sd-06-021/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+22. [Học Elasticsearch theo đường đi của một tài liệu](lessons/sd-06-022/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
 
 ## Thanh toán và công nghệ tài chính
 
@@ -204,16 +211,16 @@ Các bài chưa viết của nhóm này không có trong danh sách; số thứ 
 
 Các bài chưa viết của nhóm này không có trong danh sách; số thứ tự là vị trí của bài trong nhóm.
 
-6. [Lớp trung gian cơ sở dữ liệu: một cửa chung và ba cái giá](lessons/sd-08-006/lesson.md) — bài mới viết tại repo này (có phép đo riêng); chờ review kỹ thuật.
-7. [Chín việc làm khi phát triển dịch vụ nhỏ: việc nào có chỗ đối chiếu](lessons/sd-08-007/lesson.md) — bài mới viết tại repo này (có phép đo riêng); chờ review kỹ thuật.
-8. [Năm mẫu thiết kế đầu tiên, tìm trong thư viện chuẩn của Python](lessons/sd-08-008/lesson.md) — bài mới viết tại repo này (có phép thử riêng); chờ review kỹ thuật.
-9. [Bảy thuật ngữ của thiết kế hướng miền, và cái giá của một khối dữ liệu quá lớn](lessons/sd-08-009/lesson.md) — bài mới viết tại repo này (có phép đo riêng); chờ review kỹ thuật.
-10. [Tám khái niệm lập trình hướng đối tượng, thử từng cái trong Python](lessons/sd-08-010/lesson.md) — bài mới viết tại repo này (có phép đo riêng); chờ review kỹ thuật.
 1. [Giao tiếp giữa các tiến trình trên Linux](lessons/sd-08-001/lesson.md) — bài mới viết tại repo này (có phép đo riêng); chờ review kỹ thuật.
 2. [Điều phối hay tự phối hợp: các dịch vụ làm việc với nhau thế nào](lessons/sd-08-002/lesson.md) — bài mới viết tại repo này (có mô phỏng đếm riêng); chờ review kỹ thuật.
 3. [Đọc một sơ đồ lớp UML](lessons/sd-08-003/lesson.md) — bài mới viết tại repo này (có phép quét mã riêng); chờ review kỹ thuật.
 4. [Prime Video gộp về một khối: khi ranh giới giữa các thành phần quá đắt](lessons/sd-08-004/lesson.md) — bài mới viết tại repo này (có phép đo riêng); chờ review kỹ thuật.
 5. [Dịch vụ nhỏ không phải đũa thần: khi nào một khối hợp hơn](lessons/sd-08-005/lesson.md) — bài mới viết tại repo này (có phép đo riêng); chờ review kỹ thuật.
+6. [Lớp trung gian cơ sở dữ liệu: một cửa chung và ba cái giá](lessons/sd-08-006/lesson.md) — bài mới viết tại repo này (có phép đo riêng); chờ review kỹ thuật.
+7. [Chín việc làm khi phát triển dịch vụ nhỏ: việc nào có chỗ đối chiếu](lessons/sd-08-007/lesson.md) — bài mới viết tại repo này (có phép đo riêng); chờ review kỹ thuật.
+8. [Năm mẫu thiết kế đầu tiên, tìm trong thư viện chuẩn của Python](lessons/sd-08-008/lesson.md) — bài mới viết tại repo này (có phép thử riêng); chờ review kỹ thuật.
+9. [Bảy thuật ngữ của thiết kế hướng miền, và cái giá của một khối dữ liệu quá lớn](lessons/sd-08-009/lesson.md) — bài mới viết tại repo này (có phép đo riêng); chờ review kỹ thuật.
+10. [Tám khái niệm lập trình hướng đối tượng, thử từng cái trong Python](lessons/sd-08-010/lesson.md) — bài mới viết tại repo này (có phép đo riêng); chờ review kỹ thuật.
 11. [Mười tám mẫu thiết kế của nguồn: mười bốn mẫu, tìm trong thư viện chuẩn của Python](lessons/sd-08-011/lesson.md) — bài mới viết tại repo này (có phép thử riêng); chờ review kỹ thuật.
 12. [Mười đánh đổi thiết kế hệ thống: bốn cặp thử được bằng một đoạn chương trình nhỏ](lessons/sd-08-012/lesson.md) — bài mới viết tại repo này (có phép đo riêng); chờ review kỹ thuật.
 13. [Chín thành phần của một ứng dụng dịch vụ nhỏ chạy thật, và cái giá của từng thành phần](lessons/sd-08-013/lesson.md) — bài mới viết tại repo này (có phép đo riêng); chờ review kỹ thuật.
@@ -248,14 +255,6 @@ Các bài chưa viết của nhóm này không có trong danh sách; số thứ 
 19. [Git lưu snapshot và nhánh như thế nào?](lessons/sd-09-019/lesson.md) — bản nháp; chờ review kỹ thuật.
 20. [Từ thay đổi code tới bản chạy production](lessons/sd-09-020/lesson.md) — bản nháp; chờ review kỹ thuật.
 Số thứ tự theo ID của bài; bài chưa viết chưa có trong danh sách.
-
-16. [Elasticsearch hợp với việc gì: sáu cách dùng và cái mỗi cách dựa vào](lessons/sd-06-016/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
-17. [CDN hoạt động thế nào: tìm máy biên, rồi hỏi dần lên máy gốc](lessons/sd-06-017/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
-18. [Kiến trúc Redis lớn dần thế nào: mỗi bước vá một giới hạn](lessons/sd-06-018/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
-19. [Redis giữ dữ liệu qua lần sập thế nào: RDB và AOF](lessons/sd-06-019/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
-20. [Redis dùng vào việc gì: mười cách dùng, năm nhóm kiểu dữ liệu](lessons/sd-06-020/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
-21. [Vì sao Redis nhanh, và khi nào nó chậm](lessons/sd-06-021/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
-22. [Học Elasticsearch theo đường đi của một tài liệu](lessons/sd-06-022/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
 
 ## Phát triển phần mềm
 

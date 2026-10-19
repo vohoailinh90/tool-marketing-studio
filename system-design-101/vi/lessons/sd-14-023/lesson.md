@@ -1,10 +1,10 @@
 # Cookie, session, JWT và PASETO: chọn cách xác thực nào?
 
-**PASETO bỏ đi một thứ của JWT: người gửi token không còn được tự chọn thuật toán. Nó không bỏ những việc khó của mọi token tự mang dữ liệu: thu hồi trước hạn, kiểm hạn dùng, giữ khóa và chọn chỗ cất token.** Vì vậy, chọn cách xác thực nào nên bắt đầu từ câu hỏi "tôi có cần thu hồi ngay không?", chứ không phải từ tên định dạng.
+**PASETO bỏ đi một thứ của JWT: người gửi token không còn được tự chọn thuật toán. Nó không bỏ những việc khó của mọi token tự mang dữ liệu: thu hồi trước hạn, kiểm hạn dùng, giữ khóa bí mật và chọn chỗ cất token.** Vì vậy, chọn cách xác thực nào nên bắt đầu từ câu hỏi "tôi có cần thu hồi ngay không?", chứ không phải từ tên định dạng.
 
 Bài này không dạy lại cookie, session và token: xem [bài sd-14-008](../sd-14-008/lesson.md), [bài sd-14-009](../sd-14-009/lesson.md) và [bài sd-14-010](../sd-14-010/lesson.md); ủy quyền và đăng nhập một lần ở [bài sd-14-011](../sd-14-011/lesson.md). Bài chỉ hỏi PASETO đổi gì so với JWT và không đổi gì, qua các lần chạy thử cục bộ với `pyseto` 1.10.0 và PyJWT 2.14.0, dùng khóa tạm.
 
-![Ba nhóm xếp dọc. Nhóm một, ba cách xác thực: cookie với session giữ dữ liệu ở máy chủ nên xóa bản ghi là thu hồi được; JWT tự mang dữ liệu và có trường alg do người gửi viết nên người kiểm phải ghim thuật toán; PASETO không có trường alg, tiền tố phiên bản và mục đích chọn một bộ thuật toán cố định. Nhóm hai, hai loại PASETO v4: local che dữ liệu bằng khóa chung, public cho mọi người đọc dữ liệu và kiểm chữ ký bằng khóa công khai. Nhóm ba, việc bạn vẫn phải tự lo khi dùng PASETO: thu hồi và chống dùng lại, kiểm hạn dùng, giữ khóa và chọn chỗ cất token.](../../diagrams/sd-14-023-main.svg)
+![Ba nhóm xếp dọc. Nhóm một, ba cách xác thực: cookie với session giữ dữ liệu ở máy chủ nên xóa bản ghi là thu hồi được; JWT tự mang dữ liệu và có trường alg do người gửi viết nên người kiểm phải ghim thuật toán; PASETO không có trường alg, tiền tố phiên bản và mục đích chọn một bộ thuật toán cố định. Nhóm hai, hai loại PASETO v4: local che dữ liệu bằng khóa chung, public cho mọi người đọc dữ liệu và kiểm chữ ký bằng khóa công khai. Nhóm ba, việc bạn vẫn phải tự lo khi dùng PASETO: thu hồi và chống dùng lại, kiểm hạn dùng, giữ khóa bí mật và chọn chỗ cất token.](../../diagrams/sd-14-023-main.svg)
 
 ## Từ viết tắt
 

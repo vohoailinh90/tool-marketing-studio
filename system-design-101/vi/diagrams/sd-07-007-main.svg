@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="911" viewBox="0 0 320 911" role="img" aria-labelledby="title desc">
+<title id="title">Tài khoản nóng trong hệ thống thanh toán</title>
+<desc id="desc">Hai khung. Khung một, vấn đề: ngày khuyến mãi lớn, hàng loạt đơn cùng ghi vào số dư của một người bán; mỗi lần cập nhật phải khóa dòng, nên thông lượng thấp và thành điểm nghẽn. Khung hai, ba cách gỡ: giới hạn tốc độ, từ chối hoặc hẹn lại các yêu cầu thừa nhưng trải nghiệm kém; chia số dư thành nhiều tài khoản con để mỗi cập nhật chỉ khóa một tài khoản con; cập nhật số dư trên bộ nhớ đệm trước, ghi chi tiết xuống cơ sở dữ liệu sau một cách bất đồng bộ.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="911" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Tài khoản nóng trong hệ</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">thống thanh toán</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Một số dư, rất nhiều lệnh cùng lúc,</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">một khóa dòng.</text>
+<rect x="8" y="123" width="304" height="382" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Vì sao nghẽn</text>
+<rect x="20" y="168" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="194" r="14" fill="#1d4ed8"/>
+<text x="46" y="199.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="194.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Nhiều đơn cùng lúc</text>
+<text x="70" y="218.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ngày khuyến mãi lớn, đơn</text>
+<text x="70" y="237.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đổ về một người bán.</text>
+<rect x="20" y="277" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="303" r="14" fill="#1d4ed8"/>
+<text x="46" y="308.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="303.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Cùng một số dư</text>
+<text x="70" y="327.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mọi đơn đều cập nhật một</text>
+<text x="70" y="346.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dòng trong cơ sở dữ liệu.</text>
+<polyline points="46,257 46,275" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="386" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="412" r="14" fill="#1d4ed8"/>
+<text x="46" y="417.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="412.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Khóa dòng</text>
+<text x="70" y="436.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mỗi lần cập nhật khóa dòng,</text>
+<text x="70" y="455.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">các lệnh khác phải chờ.</text>
+<text x="70" y="475.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Thông lượng thấp.</text>
+<polyline points="46,366 46,384" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="517" width="304" height="386" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="545.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Ba cách gỡ</text>
+<rect x="20" y="562" width="280" height="107" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="615.5" r="18" fill="#0f766e"/><g transform="translate(39.2 604.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></g>
+<text x="78" y="588.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Giới hạn tốc độ</text>
+<text x="78" y="612.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Yêu cầu thừa bị từ chối</text>
+<text x="78" y="631.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hoặc hẹn lại. Trải nghiệm</text>
+<text x="78" y="651.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">có thể kém.</text>
+<rect x="20" y="683" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="726.5" r="18" fill="#0f766e"/><g transform="translate(39.2 715.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5"/><path d="M8 3H3v5"/><path d="M12 22v-8.3a4 4 0 0 0-1.172-2.872L3 3"/><path d="m15 9 6-6"/></g>
+<text x="78" y="709.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Chia tài khoản con</text>
+<text x="78" y="733.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mỗi cập nhật chỉ khóa một</text>
+<text x="78" y="752.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tài khoản con.</text>
+<rect x="20" y="784" width="280" height="107" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="837.5" r="18" fill="#0f766e"/><g transform="translate(39.2 826.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15.914 4a1.5 1.5 0 00-2.474-1.561l-9 9A1.5 1.5 0 005.5 14h4.002a.5.5 0 01.471.666L8.086 20a1.5 1.5 0 002.475 1.56l9-9A1.5 1.5 0 0018.5 10h-3.997a.5.5 0 01-.472-.667z"/></g>
+<text x="78" y="810.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Cập nhật bộ nhớ đệm</text>
+<text x="78" y="830.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">trước</text>
+<text x="78" y="854.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ghi cơ sở dữ liệu sau, bất</text>
+<text x="78" y="873.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đồng bộ.</text>
+</g>
+</svg>

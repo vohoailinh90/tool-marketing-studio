@@ -1,0 +1,26 @@
+{
+  "id": "sd-01-050",
+  "title": "Sáu giao thức API, ba kiểu hội thoại",
+  "subtitle": "Hỏi trước: ai mở lời, và kênh có giữ mở không?",
+  "desc": "Ba nhóm thẻ. Nhóm hỏi rồi đáp, máy khách mở lời: REST, SOAP, GraphQL và gRPC. Nhóm máy chủ gọi lại khi có sự kiện: Webhook. Nhóm kênh giữ mở cho cả hai chiều: WebSocket. Khung cuối nêu ba điều cần nhớ.",
+  "sections": [
+    {"kind": "parts", "heading": "Hỏi rồi đáp: máy khách mở lời",
+     "items": [{"name": "REST", "role": "Mỗi tài nguyên một địa chỉ, dùng phương thức HTTP.", "icon": "globe"},
+               {"name": "SOAP", "role": "Thông điệp có thẻ, theo khuôn chặt và hợp đồng.", "icon": "file-text"},
+               {"name": "GraphQL", "role": "Máy khách tự chọn trường dữ liệu cần lấy.", "icon": "search"},
+               {"name": "gRPC", "role": "Gọi hàm từ xa, thông điệp nhị phân trên HTTP/2.", "icon": "plug"}]},
+    {"kind": "sequence", "heading": "Gọi lại: Webhook",
+     "actors": [{"name": "Ứng dụng của bạn", "icon": "server"}, {"name": "Dịch vụ khác", "icon": "cloud"}],
+     "messages": [{"from": 0, "to": 1, "text": "Đăng ký: báo cho tôi khi có sự kiện"},
+                  {"from": 1, "to": 0, "text": "Có sự kiện: gửi tới địa chỉ đã đăng ký"},
+                  {"from": 0, "to": 1, "text": "Đã nhận", "reply": true}]},
+    {"kind": "sequence", "heading": "Kênh mở: WebSocket",
+     "actors": [{"name": "Trình duyệt", "icon": "monitor"}, {"name": "Máy chủ", "icon": "server"}],
+     "messages": [{"from": 0, "to": 1, "text": "Bắt tay để nâng cấp kết nối"},
+                  {"from": 1, "to": 0, "text": "Đồng ý", "reply": true},
+                  {"from": 1, "to": 0, "text": "Đẩy tin bất cứ lúc nào"},
+                  {"from": 0, "to": 1, "text": "Gửi tin bất cứ lúc nào"}]},
+    {"kind": "notes", "heading": "Nhớ gì",
+     "items": ["Ai mở lời quyết định kiểu tích hợp.", "Một hệ thống thường dùng vài giao thức cùng lúc.", "Chọn theo người gọi, không theo trào lưu."]}
+  ]
+}

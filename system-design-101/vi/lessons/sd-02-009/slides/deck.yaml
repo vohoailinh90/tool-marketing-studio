@@ -1,0 +1,27 @@
+id: sd-02-009
+status: done
+owner: claude/sd101-lessons-w6-2
+claimed_at: '2026-10-19T02:11:17Z'
+done_at: '2026-10-19T02:17:51Z'
+moda_canvas: cvs_17W4GAJRXQ9RJ9TYGJ2FXGFDC8
+moda_url: https://moda.app/canvas/27e120a9-63b7-4e24-9d7a-1213fb07b588
+slide_count: 10
+size: 1920x1080
+exports: badged
+layouts:
+  slides:
+  - card-grid
+  - flow
+  - one-highlighted-sentence
+  - connection-diagram
+  - two-column-comparison
+  - card-grid
+  - one-big-number
+  - numbered-rows
+  - card-grid
+  - lookup-table
+  first_concept: 3
+  cannot:
+    timeline: the source gives no dates or order in time
+    one-big-number: the first concept (microservices with their own databases) carries
+      no number

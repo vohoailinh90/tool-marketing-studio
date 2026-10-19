@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1056" viewBox="0 0 320 1056" role="img" aria-labelledby="title desc">
+<title id="title">UPI: từ đăng ký đến chuyển tiền</title>
+<desc id="desc">Hai khung. Khung một, chuẩn bị: Bob cung cấp số điện thoại và xác minh bằng mật khẩu dùng một lần; đặt địa chỉ thanh toán ảo; ứng dụng tạo địa chỉ đó với ngân hàng thu; liên kết tài khoản ngân hàng qua NPCI và đặt mã PIN. Khung hai, chuyển tiền sau khi ứng dụng của Alice gửi địa chỉ của Bob và 100 rupee tới NPCI: NPCI nhờ ngân hàng của Bob tra chi tiết; NPCI gửi yêu cầu trừ tới ngân hàng của Alice, ngân hàng đó trừ 100 rupee và báo lại; NPCI gửi yêu cầu cộng tới ngân hàng của Bob, ngân hàng đó cộng 100 rupee và báo lại; rồi NPCI báo thành công cho các ứng dụng.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1056" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">UPI: từ đăng ký đến</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">chuyển tiền</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">NPCI chuyển lệnh, ngân hàng ghi sổ.</text>
+<rect x="8" y="104" width="304" height="491" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="132.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Chuẩn bị của Bob</text>
+<rect x="20" y="149" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="175" r="14" fill="#1d4ed8"/>
+<text x="46" y="180.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="175.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Đăng ký</text>
+<text x="70" y="199.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Số điện thoại, xác minh</text>
+<text x="70" y="218.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bằng mật khẩu dùng một</text>
+<text x="70" y="238.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lần.</text>
+<rect x="20" y="278" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="304" r="14" fill="#1d4ed8"/>
+<text x="46" y="309.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="304.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Đặt địa chỉ</text>
+<text x="70" y="328.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Địa chỉ thanh toán ảo, tạo</text>
+<text x="70" y="347.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">với ngân hàng thu.</text>
+<polyline points="46,258 46,276" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="387" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="413" r="14" fill="#1d4ed8"/>
+<text x="46" y="418.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="413.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Liên kết</text>
+<text x="70" y="437.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tài khoản ngân hàng, qua</text>
+<text x="70" y="456.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">NPCI.</text>
+<polyline points="46,367 46,385" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="496" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="522" r="14" fill="#1d4ed8"/>
+<text x="46" y="527.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">4</text>
+<text x="70" y="522.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Đặt PIN</text>
+<text x="70" y="546.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Dùng cho xác thực hai yếu</text>
+<text x="70" y="565.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tố.</text>
+<polyline points="46,476 46,494" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="607" width="304" height="441" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="635.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Alice trả Bob 100 rupee</text>
+<rect x="20" y="652" width="84" height="86" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="62" cy="674" r="14" fill="#0f766e"/><g transform="translate(53.6 665.6) scale(0.7)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></g>
+<text x="62" y="705.9" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">NPCI</text>
+<rect x="118" y="652" width="84" height="86" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="160" cy="674" r="14" fill="#0f766e"/><g transform="translate(151.6 665.6) scale(0.7)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 21v-5a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v5"/><path d="M17.774 10.31a1.12 1.12 0 0 0-1.549 0 2.5 2.5 0 0 1-3.451 0 1.12 1.12 0 0 0-1.548 0 2.5 2.5 0 0 1-3.452 0 1.12 1.12 0 0 0-1.549 0 2.5 2.5 0 0 1-3.77-3.248l2.889-4.184A2 2 0 0 1 7 2h10a2 2 0 0 1 1.653.873l2.895 4.192a2.5 2.5 0 0 1-3.774 3.244"/><path d="M4 10.95V19a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8.05"/></g>
+<text x="160" y="705.9" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">Bank</text>
+<text x="160" y="724.6" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">Alice</text>
+<rect x="216" y="652" width="84" height="86" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="258" cy="674" r="14" fill="#0f766e"/><g transform="translate(249.6 665.6) scale(0.7)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 21v-5a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v5"/><path d="M17.774 10.31a1.12 1.12 0 0 0-1.549 0 2.5 2.5 0 0 1-3.451 0 1.12 1.12 0 0 0-1.548 0 2.5 2.5 0 0 1-3.452 0 1.12 1.12 0 0 0-1.549 0 2.5 2.5 0 0 1-3.77-3.248l2.889-4.184A2 2 0 0 1 7 2h10a2 2 0 0 1 1.653.873l2.895 4.192a2.5 2.5 0 0 1-3.774 3.244"/><path d="M4 10.95V19a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8.05"/></g>
+<text x="258" y="705.9" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">Bank</text>
+<text x="258" y="724.6" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">Bob</text>
+<polyline points="62,738 62,1036" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
+<polyline points="160,738 160,1036" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
+<polyline points="258,738 258,1036" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
+<text x="160" y="766.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Tra chi tiết địa chỉ</text>
+<polyline points="63,780 255,780" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="160" y="808.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Chi tiết tài khoản</text>
+<polyline points="257,822 65,822" fill="none" stroke="#334155" stroke-width="1.8" stroke-dasharray="5 4" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="111" y="850.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Yêu cầu</text>
+<text x="111" y="869.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">trừ 100</text>
+<polyline points="63,883 157,883" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="111" y="911.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Đã trừ 100</text>
+<text x="111" y="930.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">ở Alice</text>
+<polyline points="159,944 65,944" fill="none" stroke="#334155" stroke-width="1.8" stroke-dasharray="5 4" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="160" y="972.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Yêu cầu cộng 100</text>
+<polyline points="63,986 255,986" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="160" y="1014.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Đã cộng 100 cho Bob</text>
+<polyline points="257,1028 65,1028" fill="none" stroke="#334155" stroke-width="1.8" stroke-dasharray="5 4" stroke-linejoin="round" marker-end="url(#arrow)"/>
+</g>
+</svg>

@@ -1,0 +1,32 @@
+{
+  "id": "sd-07-013",
+  "title": "Bản đồ ngành thanh toán",
+  "subtitle": "Bảy phần, rồi các tài liệu để đọc tiếp.",
+  "desc": "Hai khung. Khung một, ngành thanh toán gồm bảy phần: cơ quan quản lý, ngân hàng trung ương, ngân hàng thương mại, các công ty thanh toán không phải ngân hàng, các hệ thống thanh toán, mạng bù trừ và hệ thống quyết toán. Khung hai, năm tài liệu để đọc tiếp: tài liệu về các hệ thống thanh toán ở Hoa Kỳ của GlenBrook, trang của Ngân hàng Thanh toán Quốc tế, tài liệu của PayPal, tài liệu của Stripe và tài liệu của SWIFT.",
+  "sections": [
+    {
+      "kind": "notes",
+      "heading": "Bảy phần của ngành thanh toán",
+      "items": [
+        "Cơ quan quản lý.",
+        "Ngân hàng trung ương.",
+        "Ngân hàng thương mại.",
+        "Các công ty thanh toán không phải ngân hàng.",
+        "Các hệ thống thanh toán.",
+        "Mạng bù trừ.",
+        "Hệ thống quyết toán."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Tài liệu để đọc tiếp",
+      "items": [
+        "Các hệ thống thanh toán ở Hoa Kỳ (GlenBrook).",
+        "Trang của Ngân hàng Thanh toán Quốc tế (BIS).",
+        "Tài liệu của PayPal.",
+        "Tài liệu của Stripe.",
+        "Tài liệu của SWIFT."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "id": "sd-08-006",
+  "title": "Một cửa chung cho mọi truy vấn",
+  "subtitle": "Lớp trung gian đỡ việc cho ứng dụng nhưng có giá.",
+  "desc": "Ba khung. Khung một, bốn mảnh: ứng dụng gửi truy vấn tới lớp trung gian; lớp trung gian đưa lệnh ghi tới máy chính và lệnh đọc tới máy phụ. Khung hai, thử đo trên Redis chạy một máy: thêm một lớp chuyển tiếp làm lượt đọc từ 36 đến 41 micro giây lên 75 đến 83; khi máy chính bận ghi liên tục, 16 đến 31 phần trăm lượt đọc đầu tiên trên máy phụ vẫn chưa thấy giá trị vừa ghi. Khung ba, hai quy tắc định tuyến theo đầu câu lệnh: trong 8 câu thử, 4 câu bị đưa sai chỗ, 2 câu trong đó đọc có khóa lại rơi vào máy phụ.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Bốn mảnh",
+      "items": [
+        {
+          "name": "Ứng dụng",
+          "role": "Chỉ biết một địa chỉ.",
+          "icon": "monitor"
+        },
+        {
+          "name": "Lớp trung gian",
+          "role": "Phân loại và chuyển câu lệnh.",
+          "icon": "route"
+        },
+        {
+          "name": "Máy chính",
+          "role": "Nhận mọi lệnh ghi.",
+          "icon": "database"
+        },
+        {
+          "name": "Máy phụ",
+          "role": "Nhận lệnh đọc.",
+          "icon": "boxes"
+        }
+      ],
+      "flow": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ]
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Thử đo trên Redis, một máy",
+      "items": [
+        "Đọc trực tiếp: 36 đến 41 µs. Qua lớp chuyển tiếp: 75 đến 83 µs.",
+        "Máy chính rảnh: gần như không đọc nhầm bản cũ.",
+        "Máy chính bận ghi: 16 đến 31% lượt đọc đầu chưa thấy giá trị mới."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Quy tắc theo đầu câu lệnh",
+      "items": [
+        "Hai quy tắc, tám câu thử: bốn câu đi sai chỗ.",
+        "Đọc có khóa kiểu mới rơi vào máy phụ: sai và nguy hiểm.",
+        "Câu có chú thích đứng đầu rơi vào máy chính: an toàn nhưng phí."
+      ]
+    }
+  ]
+}

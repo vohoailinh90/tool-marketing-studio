@@ -1,0 +1,20 @@
+{
+  "id": "sd-02-007",
+  "title": "Kiến trúc hướng sự kiện của McDonald's",
+  "subtitle": "Hai lớp: chuẩn hóa sự kiện và mở rộng xử lý.",
+  "desc": "Ba khung. Khung một: bốn thành phần chuẩn hóa sự kiện, gồm sổ đăng ký sự kiện giữ schema chuẩn, SDK riêng để xử lý sự kiện và lỗi, cổng sự kiện xác thực và phân quyền, tiện ích sửa sự kiện và giữ cụm khỏe. Khung hai: luồng mở rộng, bên phát chia sự kiện theo miền, mỗi miền một cụm MSK, cụm tự mở rộng theo chỉ số như CPU. Khung ba nêu ba điều cần nhớ.",
+  "sections": [
+    {"kind": "parts", "heading": "Chuẩn hóa sự kiện",
+     "items": [{"name": "Sổ đăng ký sự kiện", "role": "Định nghĩa schema chuẩn cho mọi sự kiện.", "icon": "book-open"},
+               {"name": "SDK riêng", "role": "Xử lý sự kiện và lỗi theo một cách chung.", "icon": "code"},
+               {"name": "Cổng sự kiện", "role": "Xác thực danh tính và phân quyền.", "icon": "shield-check"},
+               {"name": "Tiện ích và công cụ", "role": "Sửa sự kiện hỏng, giữ cụm khỏe, việc quản trị.", "icon": "wrench"}]},
+    {"kind": "parts", "heading": "Mở rộng trong một vùng",
+     "items": [{"name": "Bên phát sự kiện", "role": "Chia sự kiện theo miền nghiệp vụ.", "icon": "send"},
+               {"name": "Cụm MSK của từng miền", "role": "Mỗi miền được một cụm riêng xử lý.", "icon": "boxes"},
+               {"name": "Tự mở rộng", "role": "Theo chỉ số của cụm, như mức dùng CPU.", "icon": "gauge"}],
+     "flow": [[0, 1], [1, 2]]},
+    {"kind": "notes", "heading": "Nhớ gì",
+     "items": ["Schema chung giúp mọi đội hiểu cùng một sự kiện.", "Chia theo miền giữ sự cố của miền này khỏi miền khác.", "Kiến trúc theo vùng cho tính sẵn sàng toàn cầu."]}
+  ]
+}

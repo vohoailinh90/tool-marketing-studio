@@ -1,0 +1,39 @@
+{
+  "id": "sd-02-028",
+  "title": "API của Netflix qua bốn bước",
+  "subtitle": "Từ bước ba, máy khách chỉ gọi một chỗ; ai làm chỗ đó thì đổi.",
+  "desc": "Bốn bước. Khối nguyên: cả ứng dụng triển khai một khối, như một tệp Java WAR. Gọi thẳng: máy khách gọi từng microservice. Lớp cổng gộp: gom phim, sản xuất, diễn viên cho một màn hình. Cổng liên hợp: một cổng GraphQL lấy dữ liệu từ mọi API. Khung cuối nêu ba điều cần nhớ.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Bốn giai đoạn",
+      "items": [
+        {
+          "title": "Khối nguyên",
+          "text": "Cả ứng dụng triển khai một khối."
+        },
+        {
+          "title": "Gọi thẳng",
+          "text": "Máy khách gọi từng microservice."
+        },
+        {
+          "title": "Lớp cổng gộp",
+          "text": "Gom nhiều dịch vụ cho một màn hình."
+        },
+        {
+          "title": "Cổng liên hợp",
+          "text": "Một cổng GraphQL cho mọi dịch vụ."
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Nhớ gì",
+      "items": [
+        "Hàng trăm dịch vụ thì không nên lộ hết cho máy khách.",
+        "Cổng gộp giảm số lần máy khách phải gọi.",
+        "Cổng liên hợp ghép dữ liệu từ mọi API khác."
+      ]
+    }
+  ]
+}

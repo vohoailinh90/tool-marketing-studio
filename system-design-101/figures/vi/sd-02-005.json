@@ -1,0 +1,22 @@
+{
+  "id": "sd-02-005",
+  "title": "SapFix: máy đề xuất bản sửa, người quyết định",
+  "subtitle": "Từ một thay đổi gây lỗi tới bản vá chờ duyệt.",
+  "desc": "Ba khung. Khung một: bốn bước từ lúc lập trình viên gửi thay đổi, SapFix chạy ca kiểm thử, phát hiện crash và sinh bản sửa. Khung hai: bốn loại bản sửa là theo mẫu, đột biến, hoàn tác toàn bộ và hoàn tác một phần. Khung ba: kiểm thử bản vá, gửi người duyệt, người duyệt chấp nhận hoặc bỏ. Khung cuối nêu các con số của đợt thử.",
+  "sections": [
+    {"kind": "steps", "heading": "Phát hiện lỗi",
+     "items": [{"title": "Gửi thay đổi", "text": "Lập trình viên gửi Diff để review."},
+               {"title": "Chạy kiểm thử", "text": "SapFix chọn ca kiểm thử từ Sapienz và chạy trên Diff."},
+               {"title": "Thấy crash", "text": "Crash do chính Diff này gây ra."},
+               {"title": "Sinh bản sửa", "text": "Tạo vài bản vá ứng viên."}]},
+    {"kind": "notes", "heading": "Bốn loại bản sửa",
+     "items": ["Theo mẫu: áp một kiểu sửa đã biết.", "Đột biến: thử thay đổi nhỏ trên mã.", "Hoàn tác toàn bộ thay đổi gây lỗi.", "Hoàn tác một phần thay đổi đó."]},
+    {"kind": "steps", "heading": "Người quyết định",
+     "items": [{"title": "Thử bản vá", "text": "Chạy kiểm thử trên từng bản build đã vá."},
+               {"title": "Chọn một bản", "text": "Gửi một bản ứng viên đi review."},
+               {"title": "Người viết duyệt", "text": "Người gây ra crash hiểu ngữ cảnh nhất."},
+               {"title": "Nhận hoặc bỏ", "text": "Người viết thay đổi quyết định."}]},
+    {"kind": "notes", "heading": "Đợt thử 90 ngày, theo nguồn",
+     "items": ["165 bản vá cho 57 crash.", "Trung vị 69 phút từ lúc phát hiện tới lúc gửi duyệt.", "Chạy trên sáu ứng dụng lớn của Facebook."]}
+  ]
+}

@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1014" viewBox="0 0 320 1014" role="img" aria-labelledby="title desc">
+<title id="title">Twitter chọn dòng For You thế nào?</title>
+<desc id="desc">Hai khung bước. Khung một, thu hẹp: gom ứng viên, bắt đầu từ khoảng 500 triệu tweet; lọc chung, còn 1.500 ứng viên; chấm điểm và xếp hạng bằng mạng nơ-ron 48 triệu tham số, có cộng điểm cho Twitter Blue. Khung hai, hoàn thiện trang: lọc để đa dạng tác giả và nội dung; trộn với quảng cáo và gợi ý nên theo dõi ai. Khung ba nêu ba điều cần nhớ.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1014" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Twitter chọn dòng For</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">You thế nào?</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Năm chặng, khoảng 1,5 giây.</text>
+<rect x="8" y="104" width="304" height="363" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="132.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Thu hẹp</text>
+<rect x="20" y="149" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="175" r="14" fill="#1d4ed8"/>
+<text x="46" y="180.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="175.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Gom ứng viên</text>
+<text x="70" y="199.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bắt đầu từ khoảng 500 triệu</text>
+<text x="70" y="218.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tweet.</text>
+<rect x="20" y="258" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="284" r="14" fill="#1d4ed8"/>
+<text x="46" y="289.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="284.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Lọc chung</text>
+<text x="70" y="308.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Còn 1.500 ứng viên.</text>
+<polyline points="46,238 46,256" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="348" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="374" r="14" fill="#1d4ed8"/>
+<text x="46" y="379.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="374.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Chấm điểm, xếp hạng</text>
+<text x="70" y="398.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mạng nơ-ron 48 triệu tham</text>
+<text x="70" y="417.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">số; Twitter Blue được cộng</text>
+<text x="70" y="437.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">điểm.</text>
+<polyline points="46,328 46,346" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="479" width="304" height="253" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="507.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Hoàn thiện trang</text>
+<rect x="20" y="524" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="550" r="14" fill="#0f766e"/>
+<text x="46" y="555.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="550.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Lọc cho đa dạng</text>
+<text x="70" y="574.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đa dạng tác giả và nội</text>
+<text x="70" y="593.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dung.</text>
+<rect x="20" y="633" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="659" r="14" fill="#0f766e"/>
+<text x="46" y="664.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="659.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Trộn</text>
+<text x="70" y="683.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ghép quảng cáo và gợi ý</text>
+<text x="70" y="702.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nên theo dõi ai.</text>
+<polyline points="46,613 46,631" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="744" width="304" height="262" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="772.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Nhớ gì</text>
+<rect x="20" y="789" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="812" r="11" fill="#16a34a"/>
+<polyline points="37.9,812.4 41.7,816.4 48.5,808" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="815.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chặng rẻ đi trước, mô hình</text>
+<text x="64" y="834.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đắt chỉ chấm số ít.</text>
+<rect x="20" y="860" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="883" r="11" fill="#16a34a"/>
+<polyline points="37.9,883.4 41.7,887.4 48.5,879" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="886.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Xếp hạng chấm từng tweet,</text>
+<text x="64" y="905.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lọc sau nhìn cả trang.</text>
+<rect x="20" y="931" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="954" r="11" fill="#16a34a"/>
+<polyline points="37.9,954.4 41.7,958.4 48.5,950" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="957.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Số liệu đọc từ mã đã công bố</text>
+<text x="64" y="976.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tại một thời điểm.</text>
+</g>
+</svg>

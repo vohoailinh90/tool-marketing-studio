@@ -222,6 +222,14 @@ Các bài chưa viết của nhóm này không có trong danh sách; số thứ 
 
 23. [Sau thay đổi API: chọn bộ kiểm tra theo rủi ro](lessons/sd-10-023/lesson.md)
 
+## Hệ thống hoạt động thế nào?
+
+Các bài chưa viết của nhóm này không có trong danh sách; số thứ tự là vị trí của bài trong nhóm.
+
+16. [Tải một tệp lên kho đối tượng kiểu S3: dữ liệu và siêu dữ liệu ở hai nơi](lessons/sd-12-016/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
+17. [Tìm quán gần bạn bằng geohash: chia ô, so tiền tố, và chỗ nó sót](lessons/sd-12-017/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
+18. [Công cụ tìm kiếm hoạt động thế nào: thu thập, lập chỉ mục và phục vụ kết quả](lessons/sd-12-018/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
+
 ## DevOps và CI/CD
 
 1. [Tắt êm một API trên Kubernetes: năm chỗ làm rớt request](lessons/sd-13-001/lesson.md)

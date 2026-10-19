@@ -1,0 +1,27 @@
+{
+  "id": "sd-12-017",
+  "title": "Tìm quán gần bạn bằng geohash",
+  "subtitle": "Chia bản đồ thành ô, tìm theo tiền tố mã.",
+  "desc": "Hai khung. Khung một, cách tạo geohash: chia Trái Đất thành bốn ô theo đường xích đạo và kinh tuyến gốc, chia mỗi ô thành bốn ô nhỏ hơn, ghép bit kinh độ xen bit vĩ độ thành một mã, rồi tìm quán bằng cách so tiền tố mã. Khung hai, ba điều rút ra từ thử nghiệm: ô phải không nhỏ hơn bán kính tìm, chỉ xét một ô thì sót quán gần ranh giới, và ô ở nơi đông quán chứa rất nhiều quán.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Từ tọa độ tới mã",
+      "items": [
+        {"title": "Chia bốn", "text": "Theo xích đạo và kinh tuyến gốc."},
+        {"title": "Chia tiếp", "text": "Mỗi ô lại thành bốn ô nhỏ."},
+        {"title": "Ghép bit", "text": "Bit kinh độ xen bit vĩ độ."},
+        {"title": "Tìm", "text": "So tiền tố của mã."}
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Ba điều rút ra",
+      "items": [
+        "Ô phải không nhỏ hơn bán kính tìm.",
+        "Chỉ xét một ô thì sót quán gần ranh giới.",
+        "Ở nơi đông quán, một ô chứa rất nhiều quán."
+      ]
+    }
+  ]
+}

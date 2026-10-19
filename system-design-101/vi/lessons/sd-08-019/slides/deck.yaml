@@ -1,5 +1,22 @@
 id: sd-08-019
-status: doing
+status: done
 owner: claude/sd101-lessons-w8-4
 claimed_at: '2026-10-19T06:09:20Z'
-heartbeat_at: '2026-10-19T06:09:20Z'
+done_at: '2026-10-19T06:21:28Z'
+moda_canvas: cvs_51S9K6J31A9A18GXMVEXQYT1GE
+moda_url: https://moda.app/canvas/a1ca6669-0c2a-4a82-8876-9b776fed060e
+slide_count: 9
+size: 1920x1080
+exports: pending
+layouts:
+  slides:
+  - layers
+  - one-big-number
+  - connection-diagram
+  - lookup-table
+  - card-grid
+  - numbered-rows
+  - two-column-comparison
+  - one-highlighted-sentence
+  - lookup-table
+  first_concept: 3

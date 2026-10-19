@@ -42,7 +42,7 @@ Tên mười một bước lấy từ bài nguồn (và thứ tự theo nguồn)
 
 **Tầm nhìn.**
 9. Thiết kế hệ thống. Ngày hội mượn sách, nhiều người xem cùng một danh sách. Thêm bộ nhớ đệm: tài liệu `functools` nói `lru_cache` lưu tối đa `maxsize` lời gọi gần nhất và tiết kiệm thời gian khi một hàm tốn kém được gọi lặp lại với cùng đối số. Thêm cân bằng tải: tài liệu Kubernetes nói nó có thể phân phối lưu lượng mạng cho các bản chạy của dịch vụ để hệ thống ổn định.
-10. Mẫu thiết kế. Hàm tính phí đang cố định bảng giảm giá. Truyền bảng vào làm tham số (một dạng "dependency injection") để thử với bảng giả mà không sửa hàm: `late_fee(days_late, member_type, discounts=MEMBER_DISCOUNT)`. Đây là cách làm của người biên soạn.
+10. Mẫu thiết kế. Hàm tính phí đang cố định bảng giảm giá. Truyền bảng vào làm tham số (một dạng "dependency injection") để thử với bảng giả mà không đụng vào bảng thật. Cần đổi cả chữ ký lẫn thân hàm: chữ ký thành `late_fee(days_late, member_type="standard", discounts=MEMBER_DISCOUNT)` và dòng tra bảng thành `discounts.get(member_type, 1.0)` thay cho `MEMBER_DISCOUNT.get(member_type, 1.0)`; chỉ thêm tham số mà vẫn tra bảng toàn cục thì giá trị truyền vào bị bỏ qua. Đây là cách làm của người biên soạn.
 11. Công cụ AI. Một công cụ gợi ý mã cho ra đoạn mã nhìn hợp lý. Tài liệu hướng dẫn cách dùng Copilot của GitHub nói nó không thay chuyên môn của bạn, và nên luôn kiểm tra mã nó gợi ý, dùng kiểm thử tự động và công cụ để kiểm lại. Vậy hãy đọc gợi ý như mã của người lạ: hiểu nó, rồi chạy ba ca kiểm thử của bước 5.
 
 ## Giới hạn cần nhớ

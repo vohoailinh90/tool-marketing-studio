@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1311" viewBox="0 0 320 1311" role="img" aria-labelledby="title desc">
+<title id="title">ELK Stack: đường đi của một dòng log</title>
+<desc id="desc">Ba khung. Khung một, bốn bước: Beats thu thập log ngay trên máy nguồn; Logstash gom, tách trường và làm sạch; Elasticsearch đánh chỉ mục và lưu; Kibana cho tìm kiếm, vẽ biểu đồ và dashboard. Khung hai, khi lượng log lớn: Beats ghi vào Kafka, Kafka giữ log theo thời hạn hoặc dung lượng, Logstash tự kéo về theo sức của mình. Khung ba, nhớ gì: Beats có thể gửi thẳng tới Elasticsearch; mỗi chặng thêm vào là một hệ thống nữa phải vận hành; tìm được log nhanh không có nghĩa là đã biết vì sao lỗi.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1311" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">ELK Stack: đường đi của</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">một dòng log</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Đọc từ trên xuống: mỗi bước là một</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">sản phẩm.</text>
+<rect x="8" y="123" width="304" height="452" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Bốn bước</text>
+<rect x="20" y="168" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="194" r="14" fill="#1d4ed8"/>
+<text x="46" y="199.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="194.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Beats thu thập</text>
+<text x="70" y="218.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đọc log ngay trên máy</text>
+<text x="70" y="237.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nguồn.</text>
+<rect x="20" y="277" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="303" r="14" fill="#1d4ed8"/>
+<text x="46" y="308.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="303.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Logstash xử lý</text>
+<text x="70" y="327.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Gom, tách trường, làm</text>
+<text x="70" y="346.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">sạch.</text>
+<polyline points="46,257 46,275" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="386" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="412" r="14" fill="#1d4ed8"/>
+<text x="46" y="417.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="412.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Elasticsearch lưu</text>
+<text x="70" y="436.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đánh chỉ mục để tìm và lọc.</text>
+<polyline points="46,366 46,384" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="476" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="502" r="14" fill="#1d4ed8"/>
+<text x="46" y="507.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">4</text>
+<text x="70" y="502.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Kibana hiển thị</text>
+<text x="70" y="526.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tìm kiếm, biểu đồ,</text>
+<text x="70" y="545.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dashboard.</text>
+<polyline points="46,456 46,474" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="587" width="304" height="402" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="615.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Khi log đổ về quá nhiều</text>
+<rect x="20" y="632" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="675.5" r="18" fill="#0f766e"/><g transform="translate(39.2 664.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m17 8-5-5-5 5"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/></g>
+<text x="78" y="658.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Beats</text>
+<text x="78" y="682.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ghi log vào Kafka thay vì</text>
+<text x="78" y="701.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">gửi thẳng cho Logstash.</text>
+<rect x="20" y="751" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="794.5" r="18" fill="#0f766e"/><g transform="translate(39.2 783.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></g>
+<text x="78" y="777.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Kafka</text>
+<text x="78" y="801.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Giữ log theo thời hạn hoặc</text>
+<text x="78" y="820.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dung lượng đã đặt.</text>
+<rect x="20" y="870" width="280" height="107" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="923.5" r="18" fill="#0f766e"/><g transform="translate(39.2 912.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="8" rx="2" width="8" x="3" y="3"/><path d="M7 11v4a2 2 0 0 0 2 2h4"/><rect height="8" rx="2" width="8" x="13" y="13"/></g>
+<text x="78" y="896.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Logstash</text>
+<text x="78" y="920.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tự kéo log về theo sức của</text>
+<text x="78" y="939.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mình; chậm thì tụt lại rồi</text>
+<text x="78" y="959.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đuổi kịp.</text>
+<polyline points="160,721 160,749" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="160,840 160,868" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="1001" width="304" height="302" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="1029.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Nhớ gì</text>
+<rect x="20" y="1046" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1069" r="11" fill="#16a34a"/>
+<polyline points="37.9,1069.4 41.7,1073.4 48.5,1065" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1072.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Beats có thể gửi thẳng tới</text>
+<text x="64" y="1091.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Elasticsearch; Logstash</text>
+<text x="64" y="1111.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">không bắt buộc.</text>
+<rect x="20" y="1137" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1160" r="11" fill="#16a34a"/>
+<polyline points="37.9,1160.4 41.7,1164.4 48.5,1156" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1163.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mỗi chặng thêm vào là một</text>
+<text x="64" y="1182.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hệ thống nữa phải vận hành</text>
+<text x="64" y="1202.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">và theo dõi.</text>
+<rect x="20" y="1228" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1251" r="11" fill="#16a34a"/>
+<polyline points="37.9,1251.4 41.7,1255.4 48.5,1247" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1254.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tìm được log nhanh chưa có</text>
+<text x="64" y="1273.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nghĩa là đã biết vì sao lỗi.</text>
+</g>
+</svg>

@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1278" viewBox="0 0 320 1278" role="img" aria-labelledby="title desc">
+<title id="title">Đầy rồi, bỏ khóa nào?</title>
+<desc id="desc">Bốn khung. Khung một, năm chính sách: TTL bỏ khóa hết hạn bất kể có dùng không; LRU bỏ khóa lâu nhất chưa dùng; LFU bỏ khóa ít được dùng nhất; MRU bỏ khóa vừa dùng xong; SLRU cho khóa mới vào vùng thử, dùng lại mới lên vùng được bảo vệ. Khung hai, mô phỏng truy cập lệch: LFU và SLRU trúng 65,5 phần trăm, LRU 57,9, FIFO và ngẫu nhiên khoảng 52, MRU 12,6. Khung ba, lặp vòng 120 khóa: LRU, LFU, FIFO và SLRU trúng 0, MRU 83, ngẫu nhiên 69. Khung bốn, nhóm khóa nóng lẫn khóa chỉ dùng một lần: LFU và SLRU 70 phần trăm, đúng mức tối đa; LRU 64; MRU gần 1.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1278" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Đầy rồi, bỏ khóa nào?</text>
+<text x="16" y="60.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Mô phỏng sáu chính sách trên ba</text>
+<text x="16" y="79.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">kiểu truy cập; bộ đệm chứa 100</text>
+<text x="16" y="99.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">khóa.</text>
+<rect x="8" y="119" width="304" height="424" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="147.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Năm chính sách</text>
+<rect x="20" y="164" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="187" r="11" fill="#16a34a"/>
+<polyline points="37.9,187.4 41.7,191.4 48.5,183" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="190.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">TTL: hết hạn thì bỏ, bất kể</text>
+<text x="64" y="209.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">có đang dùng không.</text>
+<rect x="20" y="235" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="258" r="11" fill="#16a34a"/>
+<polyline points="37.9,258.4 41.7,262.4 48.5,254" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="261.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">LRU: bỏ khóa lâu nhất chưa</text>
+<text x="64" y="280.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">được dùng.</text>
+<rect x="20" y="306" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="329" r="11" fill="#16a34a"/>
+<polyline points="37.9,329.4 41.7,333.4 48.5,325" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="332.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">LFU: bỏ khóa ít được dùng</text>
+<text x="64" y="351.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhất.</text>
+<rect x="20" y="377" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="400" r="11" fill="#16a34a"/>
+<polyline points="37.9,400.4 41.7,404.4 48.5,396" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="403.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">MRU: bỏ khóa vừa được</text>
+<text x="64" y="422.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dùng xong.</text>
+<rect x="20" y="448" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="471" r="11" fill="#16a34a"/>
+<polyline points="37.9,471.4 41.7,475.4 48.5,467" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="474.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">SLRU: khóa mới vào vùng</text>
+<text x="64" y="493.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thử; dùng lại mới lên vùng</text>
+<text x="64" y="513.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bảo vệ.</text>
+<rect x="8" y="555" width="304" height="250" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="583.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Truy cập lệch, ít khóa rất</text>
+<text x="20" y="605.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">nóng</text>
+<rect x="20" y="622" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="645" r="11" fill="#16a34a"/>
+<polyline points="37.9,645.4 41.7,649.4 48.5,641" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="648.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">LFU, SLRU: trúng 65,5%.</text>
+<rect x="20" y="676" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="699" r="11" fill="#16a34a"/>
+<polyline points="37.9,699.4 41.7,703.4 48.5,695" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="702.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">LRU: 57,9%.</text>
+<rect x="20" y="730" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="753" r="11" fill="#16a34a"/>
+<polyline points="37.9,753.4 41.7,757.4 48.5,749" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="756.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">FIFO, ngẫu nhiên: khoảng</text>
+<text x="64" y="775.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">52%. MRU: 12,6%.</text>
+<rect x="8" y="817" width="304" height="174" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="845.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Lặp vòng 120 khóa</text>
+<rect x="20" y="862" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="885" r="11" fill="#16a34a"/>
+<polyline points="37.9,885.4 41.7,889.4 48.5,881" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="888.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">LRU, LFU, FIFO, SLRU: 0%.</text>
+<rect x="20" y="916" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="939" r="11" fill="#16a34a"/>
+<polyline points="37.9,939.4 41.7,943.4 48.5,935" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="942.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">MRU: 83%. Ngẫu nhiên:</text>
+<text x="64" y="961.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">69%.</text>
+<rect x="8" y="1003" width="304" height="267" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="1031.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Khóa nóng lẫn khóa dùng</text>
+<text x="20" y="1053.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">một lần</text>
+<rect x="20" y="1070" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1093" r="11" fill="#16a34a"/>
+<polyline points="37.9,1093.4 41.7,1097.4 48.5,1089" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1096.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">LFU, SLRU: 70%, đúng mức</text>
+<text x="64" y="1115.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tối đa.</text>
+<rect x="20" y="1141" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1164" r="11" fill="#16a34a"/>
+<polyline points="37.9,1164.4 41.7,1168.4 48.5,1160" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1167.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">LRU: 64%; khóa dùng một</text>
+<text x="64" y="1186.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lần đẩy khóa nóng ra.</text>
+<rect x="20" y="1212" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1235" r="11" fill="#16a34a"/>
+<polyline points="37.9,1235.4 41.7,1239.4 48.5,1231" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1238.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">MRU: gần 1%.</text>
+</g>
+</svg>

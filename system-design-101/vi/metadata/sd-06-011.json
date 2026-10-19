@@ -1,0 +1,116 @@
+{
+  "id": "sd-06-011",
+  "title_vi": "Memcached và Redis khác nhau thế nào",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "draft",
+  "source_ref": "sd-06-011",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/memcached-vs-redis.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/memcached-vs-redis.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a git fetch of the pinned commit and hashed as a Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "cedcae401071bdd243b72808ad940ef4cddf9ab4",
+    "retrieved_body_sha256": "9bfce9d8af39d2ad1ef6054c4667ab16a91707872c5687768babee17b0ef7804",
+    "retrieved_body_bytes": 919
+  },
+  "diagram": "../diagrams/sd-06-011-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-06-005",
+      "relation": "builds-on",
+      "reason_vi": "Redis 101 chạy thử các kiểu dữ liệu và cấu hình lưu của Redis."
+    },
+    {
+      "lesson_id": "sd-06-014",
+      "relation": "see_also",
+      "reason_vi": "Cách hai phần mềm chọn khóa để đẩy ra khi đầy."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "evidence": "Redis 7.0.15 and memcached 1.6.24 READMEs read; both servers run side by side with default settings."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright) rendered the full lesson (Markdown to HTML, optional sections open, 16 px side gutters) at each width: no horizontal overflow of the page or of any table; figure drawn by scripts/figures (viewBox width 320, smallest font 15 px) shown at 13.5 px effective at 320 px and 15 px at 375 px; every SVG text box inside the viewBox. python3 -m scripts.figures check --browser passed. Not learner testing and not GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Redis is a data structures server that stores data on disk, and can be thought of as a more complex memcached whose operations are not just SETs and GETs but work on lists, sets and ordered structures.",
+      "source": "https://github.com/redis/redis/blob/f35f36a265403c07b119830aa4bb3b7d71653ec9/README.md",
+      "section": "What is Redis?",
+      "verified_by": "Read from a clone of redis/redis at tag 7.0.15 (commit f35f36a265403c07b119830aa4bb3b7d71653ec9), the version that was run."
+    },
+    {
+      "claim_vi": "memcached is a high performance multithreaded event-based key/value cache store; it does non-blocking network I/O, but not disk.",
+      "source": "https://github.com/memcached/memcached/blob/1b3b8555734f9b7b8d979924c7f8d6cf82194ba8/README.md",
+      "section": "Introduction; Environment",
+      "verified_by": "Read from a clone of memcached/memcached at tag 1.6.24 (commit 1b3b8555734f9b7b8d979924c7f8d6cf82194ba8), the version that was run."
+    },
+    {
+      "claim_vi": "A memcached storage command's data block is a chunk of arbitrary 8-bit data; incr and decr treat the stored data as the decimal representation of a 64-bit unsigned integer.",
+      "source": "https://github.com/memcached/memcached/blob/1b3b8555734f9b7b8d979924c7f8d6cf82194ba8/doc/protocol.txt",
+      "section": "Storage commands; Increment/Decrement",
+      "verified_by": "Read from a clone of memcached/memcached at tag 1.6.24 (commit 1b3b8555734f9b7b8d979924c7f8d6cf82194ba8), the version that was run."
+    },
+    {
+      "claim_vi": "memcached 1.6.24 defaults: set/get of a string works; incr on '1' gives 2; 'hset' returns ERROR; a 2 MiB value gives SERVER_ERROR object too large for cache while 900 KiB is stored; item_size_max 1048576; 4 threads; 64 MiB memory limit; after a restart the key is gone. With -m 2, 5,000 sets of 1000 bytes all stored with 3,230 evictions; with -M, 1,770 stored and 3,230 SERVER_ERROR out of memory storing object.",
+      "source": "https://github.com/memcached/memcached/blob/1b3b8555734f9b7b8d979924c7f8d6cf82194ba8/README.md",
+      "section": "Experiment",
+      "verified_by": "Experiment run by the author on 2026-10-18 on one KVM virtual machine (4 vCPU): memcached 1.6.24 (Ubuntu package) driven over its text protocol from Python; stats and stats settings read."
+    },
+    {
+      "claim_vi": "Redis 7.0.15: a 2 MiB SET succeeds (proto-max-bulk-len 536870912); after SAVE and a restart the key is back; io-threads is 1. SETBIT on 300,000 of 1,000,000 ids: BITCOUNT 300000, STRLEN 125000, MEMORY USAGE 163912 bytes.",
+      "source": "https://github.com/redis/redis/blob/f35f36a265403c07b119830aa4bb3b7d71653ec9/README.md",
+      "section": "Experiment",
+      "verified_by": "Experiment run by the author on 2026-10-18 on one KVM virtual machine (4 vCPU): redis-cli against Redis 7.0.15 (Ubuntu package)."
+    },
+    {
+      "claim_vi": "Redis 7.0.15 started without a config file reports maxmemory 0 (no limit, the default on 64-bit systems per the eviction doc) and maxmemory-policy noeviction, so it evicts nothing until both a limit and a policy are set.",
+      "source": "https://github.com/redis/docs/blob/3b030c7ef066c0bb7f88ddec02c784e49783b0f8/content/develop/reference/eviction/index.md",
+      "section": "Using the maxmemory configuration directive",
+      "verified_by": "Read from a local clone of redis/docs at commit 3b030c7ef066c0bb7f88ddec02c784e49783b0f8, the head of its default branch when read on 2026-10-18 (a later change to that branch does not alter this URL). CONFIG GET maxmemory and maxmemory-policy run by the author on 2026-10-18."
+    },
+    {
+      "claim_vi": "Redis data structures suit counting clicks and comments (hash), sorting and deduplicating users (zset), behaviour history (zset, hash) and large boolean data in small space (bitmap).",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/memcached-vs-redis.md",
+      "section": "Whole guide",
+      "verified_by": "Source body read at the pinned commit."
+    }
+  ],
+  "design_notes_vi": "Ba khung ghi chú: giống nhau, khác nhau đã thử, và ví dụ bitmap. Bảng so sánh đầy đủ nằm trong bài.",
+  "source_deviations": [
+    "Source shows a comparison diagram and four Redis use cases; the lesson checks each difference by running both servers and measures the bitmap example. No speed comparison is made.",
+    "The restart row ran SAVE before restarting Redis; the lesson says so and notes that with default periodic snapshots a key just written may not survive a crash.",
+    "memcached values are described as opaque arbitrary bytes (memcached's protocol.txt), not as strings only; the difference from Redis is the lack of server-side data structures."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này (gói L5), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

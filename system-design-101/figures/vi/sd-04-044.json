@@ -1,0 +1,42 @@
+{
+  "id": "sd-04-044",
+  "lang": "vi",
+  "title": "ACID: thử từng chữ trên PostgreSQL",
+  "desc": "Bốn khung dọc. Khung A, nguyên tử: chuyển 150 khi tài khoản chỉ có 100, lệnh cộng đã chạy nhưng lệnh trừ lỗi, cả giao dịch bị hủy và hai tài khoản vẫn 100 và 100. Khung C, nhất quán: ràng buộc số dư không âm chặn lệnh trừ quá tay; nhất quán ở đây là giữ đúng luật của dữ liệu, khác chữ C của CAP. Khung I, cô lập: ở read committed đọc lại thấy 100 rồi 50; ở repeatable read đọc lại vẫn 100; rút 10 và rút 20 cùng lúc từ 100, read committed còn 80, mất một lượt rút; repeatable read hủy lượt sau, phải chạy lại. Khung D, bền vững: chốt 2.000 dòng rồi tắt máy chủ đột ngột, còn đủ 2.000; nếu tắt việc chờ ghi đĩa khi chốt thì chỉ còn từ 1.928 đến 1.974 dòng qua ba lần thử.",
+  "sections": [
+    {
+      "kind": "notes",
+      "heading": "A, nguyên tử",
+      "items": [
+        "Lệnh cộng đã chạy, lệnh trừ lỗi: cả giao dịch bị hủy.",
+        "Hai tài khoản vẫn 100 và 100."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "C, nhất quán",
+      "items": [
+        "Ràng buộc số dư không âm chặn lệnh trừ quá tay.",
+        "Giữ đúng luật của dữ liệu; khác chữ C của CAP."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "I, cô lập",
+      "items": [
+        "Read committed: đọc lại thấy 100 rồi 50.",
+        "Repeatable read: đọc lại vẫn 100.",
+        "Rút 10 và 20 cùng lúc, read committed: còn 80, mất một lượt.",
+        "Repeatable read: lượt sau bị hủy, phải chạy lại."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "D, bền vững",
+      "items": [
+        "Chốt 2.000 dòng rồi tắt đột ngột: còn đủ 2.000.",
+        "Không chờ ghi đĩa khi chốt: còn 1.928 đến 1.974."
+      ]
+    }
+  ]
+}

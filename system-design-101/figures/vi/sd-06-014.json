@@ -1,0 +1,36 @@
+{
+  "id": "sd-06-014",
+  "title": "Tám chiến lược bỏ khóa, trong Redis thật",
+  "subtitle": "Tên trong sách và tùy chọn mà Redis 7.0.15 thật sự có.",
+  "desc": "Ba khung. Khung một: LRU, LFU và ngẫu nhiên có sẵn dưới dạng allkeys-lru, allkeys-lfu, allkeys-random, bản volatile chỉ chọn khóa có hạn sống; TTL tương ứng với volatile-ttl, bỏ khóa sắp hết hạn trước; FIFO, MRU và SLRU không có trong Redis, memcached thì dùng LRU chia ba vùng nóng, ấm, lạnh; hai tầng là bộ đệm trong tiến trình đứng trước Redis. Khung hai, thử trên Redis với 4 MB: truy cập lệch thì LFU trúng 81, LRU 79, ngẫu nhiên 77 phần trăm; khóa nóng lẫn khóa dùng một lần thì LFU 67, LRU 55; lặp vòng thì LFU 31, ngẫu nhiên 20, LRU 17. Khung ba, bẫy cấu hình: noeviction làm lệnh ghi báo lỗi khi đầy; volatile-lru mà không khóa nào có hạn sống thì y như noeviction.",
+  "sections": [
+    {
+      "kind": "notes",
+      "heading": "Tám tên và Redis",
+      "items": [
+        "LRU, LFU, ngẫu nhiên: allkeys-lru, allkeys-lfu, allkeys-random.",
+        "Bản volatile chỉ chọn trong các khóa có hạn sống.",
+        "TTL: volatile-ttl bỏ khóa sắp hết hạn trước.",
+        "FIFO, MRU, SLRU: Redis không có; memcached chia LRU làm ba vùng.",
+        "Hai tầng: bộ đệm trong tiến trình đứng trước Redis."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Thử trên Redis, 4 MB",
+      "items": [
+        "Truy cập lệch: LFU 81%, LRU 79%, ngẫu nhiên 77%.",
+        "Nóng lẫn dùng một lần: LFU 67%, LRU 55%.",
+        "Lặp vòng: LFU 31%, ngẫu nhiên 20%, LRU 17%."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Bẫy cấu hình",
+      "items": [
+        "noeviction: đầy là lệnh ghi báo lỗi.",
+        "volatile-lru mà không khóa nào có hạn sống: y như noeviction."
+      ]
+    }
+  ]
+}

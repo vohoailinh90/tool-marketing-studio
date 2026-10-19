@@ -9,7 +9,8 @@ the same file and never conflict at merge:
                  taken_from after a takeover)
   status done    the deck exists on Moda (moda_canvas, moda_url, slide_count, size) and `exports` says whether its
                  PNG and PPTX files are in the folder as well (`done`), its PPTX (with all its PNG files, or none)
-                 exported with the moda.app badge (`badged`), or none yet (`pending`)
+                 exported with the moda.app badge (`badged`), or none yet (`pending`); `layouts`, the deck's layout
+                 table (docs/sd101-slides.md, *Variety between decks*), is checked by `finish` and kept in the record
 
 Visibility follows sd101_claims.py: every command fetches all branches of the remote. On the default branch every
 record counts; on any other branch only the records whose owner is that branch (a copy inherited by merging is not a
@@ -20,7 +21,8 @@ heartbeat is older than the lease is stale and is taken over on purpose with `cl
   python3 scripts/sd101_slides.py claim --next 3 --publish          # or: claim sd-01-002 sd-01-003 --publish
   python3 scripts/sd101_slides.py verify                            # exit 0 = every claim of mine is still mine
   python3 scripts/sd101_slides.py touch --publish                   # renew the heartbeat while you work
-  python3 scripts/sd101_slides.py finish sd-01-002 --canvas cvs_... --url https://moda.app/canvas/... --slides 10
+  python3 scripts/sd101_slides.py finish sd-01-002 --canvas cvs_... --url https://moda.app/canvas/... --slides 10 \\
+      --layouts one-highlighted-sentence,flow,... --first-concept 3     # one layout kind per slide, in order
   python3 scripts/sd101_slides.py exported sd-01-002 --publish      # its PPTX and PNG files are now in slides/
   python3 scripts/sd101_slides.py exported sd-01-002 --badged --publish   # its PPTX (and PNG files), moda.app badge and all
   python3 scripts/sd101_slides.py release sd-01-003 --publish       # give a lesson back
@@ -53,16 +55,26 @@ RECORD = "deck.yaml"
 STATUSES = ("doing", "done")
 EXPORTS = ("pending", "badged", "done")
 KEY_ORDER = ("id", "status", "owner", "session", "taken_from", "generation", "claimed_at", "heartbeat_at", "done_at",
-             "moda_canvas", "moda_url", "slide_count", "size", "exports")
+             "moda_canvas", "moda_url", "slide_count", "size", "exports", "layouts")
 DOING_KEYS = {"id", "status", "owner", "session", "taken_from", "generation", "claimed_at", "heartbeat_at"}
 DONE_KEYS = {"id", "status", "owner", "session", "taken_from", "generation", "claimed_at", "done_at", "moda_canvas",
-             "moda_url", "slide_count", "size", "exports"}
+             "moda_url", "slide_count", "size", "exports", "layouts"}  # layouts: decks finished before it existed have none
 STAMP = re.compile(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z")
 LESSON_ID = re.compile(r"sd-\d{2}-\d{3}")
 CANVAS_ID = re.compile(r"cvs_[0-9A-Za-z]{20,}")
 DECK_SIZE = "1920x1080"  # docs/sd101-slides.md: every canvas and exported PNG
 MODA_URL = "https://moda.app/canvas/"
 SLIDE_COUNTS = range(8, 11)  # docs/sd101-slides.md: 8 to 10 slides, one progress dot each
+# docs/sd101-slides.md, *Variety between decks*: the closed list of layout kinds, in the order that fixes the signature
+# layout (the first concept's slide takes the kind at position lesson number mod 12, counted from 0)
+LAYOUT_KINDS = ("sequence-diagram", "flow", "two-column-comparison", "2x2-matrix", "lookup-table", "card-grid",
+                "numbered-rows", "connection-diagram", "layers", "timeline", "one-big-number", "one-highlighted-sentence")
+MIN_LAYOUT_KINDS = 5  # a deck uses at least this many different kinds
+# A deck finished on or after this day must carry its layout table; one finished before it (by a tool that did not take
+# the table) is grandfathered. A checkout that predates the table finishes decks with no `layouts`: after this day the
+# record check says so instead of letting them through.
+LAYOUTS_REQUIRED_FROM = datetime.datetime(2026, 10, 20, tzinfo=datetime.timezone.utc)
+LAYOUT_KEYS = {"slides", "first_concept", "cannot"}
 LEASE_HOURS = 72
 CLOCK_SKEW_HOURS = 1
 PUSH_BACKOFF_SECONDS = (2, 4, 8, 16)
@@ -174,6 +186,56 @@ def _count(value: object) -> bool:
     return isinstance(value, int) and not isinstance(value, bool) and value >= 1
 
 
+def kind_name(text: str) -> str:
+    """A layout kind as the record spells it: `Two-column comparison` and `two_column_comparison` both read
+    `two-column-comparison`."""
+    return re.sub(r"[\s_]+", "-", text.strip().lower())
+
+
+def layout_problems(layouts: object, lesson_id: str, slide_count: object) -> list[str]:
+    """What is wrong with a deck's layout table (docs/sd101-slides.md, *Variety between decks*); empty when it holds.
+
+    The table is `slides` (one kind per slide, in order), `first_concept` (the number of the slide of the lesson's first
+    concept) and `cannot` (only after a fallback: each kind passed over, with why it could not show the content)."""
+    if not isinstance(layouts, dict):
+        return ["layouts must be a mapping with slides, first_concept and, after a fallback, cannot"]
+    problems = [f"layouts: key {key!r} is not allowed" for key in layouts if key not in LAYOUT_KEYS]
+    kinds = layouts.get("slides")
+    if not (isinstance(kinds, list) and all(isinstance(kind, str) for kind in kinds)):
+        return problems + ["layouts: slides must be the list of every slide's layout kind, in order"]
+    unknown = sorted({kind for kind in kinds if kind not in LAYOUT_KINDS})
+    if unknown:
+        problems.append(f"layouts: {', '.join(repr(kind) for kind in unknown)} is not one of the kinds "
+                        f"({', '.join(LAYOUT_KINDS)})")
+    total = slide_count if _count(slide_count) else len(kinds)
+    if len(kinds) != total:
+        problems.append(f"layouts: slides holds {len(kinds)} kinds for {total} slides; one kind per slide")
+    if len(set(kinds)) < MIN_LAYOUT_KINDS:
+        problems.append(f"layouts: {len(set(kinds))} different kinds; a deck uses at least {MIN_LAYOUT_KINDS}")
+    repeats = [f"{number} and {number + 1}" for number, (before, after) in enumerate(zip(kinds, kinds[1:]), start=1)
+               if before == after]
+    if repeats:
+        problems.append(f"layouts: the same kind on adjacent slides {', '.join(repeats)}")
+    first = layouts.get("first_concept")
+    if not (_count(first) and 2 <= first <= total - 1):
+        return problems + [f"layouts: first_concept must be the number of the first concept's slide, from 2 to {total - 1} "
+                           "(the cover and the terms and sources slide are not concepts)"]
+    cannot = layouts.get("cannot", {})
+    if not (isinstance(cannot, dict) and all(isinstance(kind, str) and _text(why) for kind, why in cannot.items())):
+        return problems + ["layouts: cannot must give, for each kind that could not show the content, the reason"]
+    if first > len(kinds) or kinds[first - 1] not in LAYOUT_KINDS or not LESSON_ID.fullmatch(lesson_id):
+        return problems
+    start = int(lesson_id[-3:]) % len(LAYOUT_KINDS)
+    chosen = LAYOUT_KINDS.index(kinds[first - 1])
+    passed = [LAYOUT_KINDS[(start + step) % len(LAYOUT_KINDS)] for step in range((chosen - start) % len(LAYOUT_KINDS))]
+    if sorted(cannot) != sorted(passed):  # the kinds before the chosen one, each with its reason, or the kind itself
+        problems.append(f"layouts: slide {first}, the first concept's, takes {LAYOUT_KINDS[start]} for {lesson_id} or, when "
+                        f"the content cannot be shown that way, the next kind that can show it; it is {kinds[first - 1]}, "
+                        f"so cannot must name {', '.join(passed) or 'no kind'} and names "
+                        f"{', '.join(sorted(cannot)) or 'no kind'}")
+    return problems
+
+
 def record_problems(record: object, lesson_id: str) -> list[str]:
     """What is wrong with one deck.yaml, in words; empty when it is well formed."""
     if not isinstance(record, dict):
@@ -221,6 +283,13 @@ def record_problems(record: object, lesson_id: str) -> list[str]:
         problems.append(f"size must be {DECK_SIZE}")
     if record.get("exports") not in EXPORTS:
         problems.append(f"exports must be one of {', '.join(EXPORTS)}")
+    if "layouts" in record:
+        problems += layout_problems(record["layouts"], lesson_id, record.get("slide_count"))
+    else:
+        finished = parse_stamp(record.get("done_at"))
+        if finished is not None and finished >= LAYOUTS_REQUIRED_FROM:
+            problems.append(f"layouts is missing: a deck finished on or after {LAYOUTS_REQUIRED_FROM:%Y-%m-%d} records its "
+                            "layout table (`finish --layouts ... --first-concept N`; docs/sd101-slides.md, Layout table)")
     return problems
 
 
@@ -988,11 +1057,20 @@ def cmd_finish(context: Context, args: argparse.Namespace) -> int:
     if reason:  # an expired lease too: renew it (touch --publish) so nobody can take the claim while the deck goes out
         print(reason, file=sys.stderr)
         return 1
+    layouts = {"slides": [kind_name(kind) for kind in args.layouts.split(",")], "first_concept": args.first_concept}
+    cannot: dict[str, str] = {}
+    for item in args.cannot:
+        kind, equals, why = item.partition("=")
+        if not equals or kind_name(kind) in cannot:
+            raise SlidesError(f"--cannot wants one KIND=REASON for each kind, not {item!r}")
+        cannot[kind_name(kind)] = why.strip()
+    if cannot:
+        layouts["cannot"] = cannot
     path = context.writable_record(lesson_id)
     old = parse_record(path.read_text(encoding="utf-8")) or {}
     record = {key: old[key] for key in ("id", "owner", "session", "taken_from", "generation", "claimed_at") if key in old}
     record.update(status="done", done_at=stamp(now()), moda_canvas=args.canvas, moda_url=args.url,
-                  slide_count=args.slides, size=DECK_SIZE, exports=args.exports)
+                  slide_count=args.slides, size=DECK_SIZE, exports=args.exports, layouts=layouts)
     problems = record_problems(record, lesson_id)
     if problems:
         print("\n".join(f"{lesson_id}: {problem}" for problem in problems), file=sys.stderr)
@@ -1137,6 +1215,13 @@ def build_parser() -> argparse.ArgumentParser:
     finish.add_argument("--exports", choices=EXPORTS, default="pending",
                         help="done only when <id>.pptx and 01.png.. are in slides/, badged when <id>.pptx (with all "
                         "its PNG files, or none) is there, exported with the moda.app badge")
+    finish.add_argument("--layouts", required=True, metavar="KIND,KIND,...",
+                        help="the layout kind of every slide, in order, from: " + ", ".join(LAYOUT_KINDS))
+    finish.add_argument("--first-concept", type=int, required=True, metavar="N",
+                        help="the number of the slide of the lesson's first concept (it takes the signature layout)")
+    finish.add_argument("--cannot", action="append", default=[], metavar="KIND=REASON",
+                        help="only when the signature layout fell back: each kind passed over, and why the content "
+                        "cannot be shown that way")
     finish.add_argument("--publish", action="store_true")
     finish.set_defaults(run=cmd_finish)
     exported = commands.add_parser("exported", help="record that a finished deck's PPTX and PNG files are in its folder "

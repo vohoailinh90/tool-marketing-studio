@@ -1,0 +1,96 @@
+{
+  "id": "sd-04-039",
+  "title_vi": "Băm nhất quán: vì sao mỗi máy cần nhiều điểm trên vòng",
+  "language": "vi",
+  "kind": "concept",
+  "content_status": "draft",
+  "source_ref": "sd-04-039",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/consistent-hashing.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/consistent-hashing.md",
+    "blob_sha": "4e00758bbe3376c4db0993712c28a1177895f45d",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a local clone at the pinned commit and hashed as a Git blob; the computed OID matches the tree OID and the source map. No source-image bytes used.",
+    "retrieved_body_sha256": "df7398647410fac4be80f1274796d977e9e6e293a148c220c6fb1aadfdf80839",
+    "retrieved_body_bytes": 2587
+  },
+  "diagram": "../diagrams/sd-04-039-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-04-025",
+      "relation": "related",
+      "reason_vi": "Bài đó đếm số khóa phải dời khi thêm máy với bốn cách chia; bài này đo độ đều theo số điểm mỗi máy và nơi khóa của máy hỏng đổ về."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "scope": "Mô phỏng Python 3.13.16 (10 máy, 200.000 khóa, sha256, 1/10/100/1.000 điểm mỗi máy, bỏ một máy) và so với chia dư từ 10 xuống 9 máy; đọc cassandra.yaml tại commit cố định. KHÔNG kiểm: DynamoDB, Discord, Akamai, bộ cân bằng tải của Google (chỉ theo nguồn), thuật toán chọn token của Cassandra, chuyển dữ liệu thật."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "not_yet_reviewed"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright 1.56): cả bài dựng từ Markdown thành HTML, mục tùy chọn mở, ở 320, 375 và 430 px; không cuộn ngang; chữ hình hiệu dụng nhỏ nhất 13,5 px ở 320 px và 15 px ở 375 px; không hộp chữ nào ra ngoài viewBox; python3 -m scripts.figures check --browser đạt. Không phải thử trên GitHub, trên điện thoại thật hay với người học."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "id": "source-consistent-hashing",
+      "claim_vi": "Nguồn: băm chia dư chạy tốt khi số máy cố định nhưng khi thêm hay bớt máy gây nhiều lần trượt và nhiều đối tượng phải dời; băm nhất quán đặt máy và khóa lên vòng bằng cùng hàm băm, khóa đi theo chiều kim đồng hồ tới máy đầu tiên; nêu DynamoDB, Cassandra, Discord, Akamai và bộ cân bằng tải mạng của Google là nơi dùng.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/consistent-hashing.md",
+      "section": "Whole guide",
+      "verified_by": "Đọc thân nguồn ghim ngày 2026-10-18."
+    },
+    {
+      "id": "balance-by-vnodes",
+      "claim_vi": "10 máy, 200.000 khóa: 1 điểm mỗi máy cho tải từ 1.959 đến 44.980 khóa; 10 điểm từ 8.977 đến 28.645; 100 điểm từ 18.397 đến 22.186; 1.000 điểm từ 18.883 đến 21.128.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/consistent-hashing.md",
+      "section": "Phép thử của người biên soạn",
+      "verified_by": "Chạy đoạn mã in trong bài ngày 2026-10-18; mã tất định."
+    },
+    {
+      "id": "failure-spill",
+      "claim_vi": "Bỏ máy s3: với 1 điểm mỗi máy, cả 6.889 khóa của nó sang đúng 1 máy; với 100 điểm, sang 9 máy, máy nhận nhiều nhất thêm 4.085; chia dư từ 10 xuống 9 máy dời 180.046 trên 200.000 khóa.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/consistent-hashing.md",
+      "section": "Phép thử của người biên soạn",
+      "verified_by": "Chạy đoạn mã in trong bài ngày 2026-10-18."
+    },
+    {
+      "id": "cassandra-tokens",
+      "claim_vi": "Tệp cấu hình mẫu của Cassandra đặt num_tokens: 16 và có tùy chọn tự chọn token để tối ưu tải được sao chép thay vì chọn ngẫu nhiên.",
+      "source": "https://github.com/apache/cassandra/blob/95b178a141824a0414c4add9b5ab87eaa1ca13bf/conf/cassandra.yaml",
+      "section": "num_tokens; allocate_tokens_for_local_replication_factor",
+      "verified_by": "Đọc bản clone nông tại commit 95b178a141824a0414c4add9b5ab87eaa1ca13bf ngày 2026-10-18."
+    }
+  ],
+  "design_notes_vi": "Ba khung: ba bước tìm máy cho một khóa, độ lệch theo số điểm, nơi khóa của máy hỏng đổ về. Bài tránh lặp phép đo thêm máy của sd-04-025. Sơ đồ dựng bằng scripts/figures, không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Nguồn giới thiệu băm nhất quán với một điểm mỗi máy; bài đo vì sao cần nhiều điểm (độ đều, khóa của máy hỏng chia cho mọi máy) và cái giá của nhiều điểm.",
+    "Danh sách nơi dùng được giữ theo nguồn; bài chỉ kiểm cấu hình token của Cassandra."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này, bản nháp chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

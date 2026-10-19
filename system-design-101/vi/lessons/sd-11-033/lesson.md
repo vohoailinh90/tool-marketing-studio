@@ -17,7 +17,7 @@
 
 **Điều nguồn nói.** AWS bắt đầu năm 2006 với những dịch vụ đơn giản như `S3` (kho lưu tệp) và `EC2` (máy chủ ảo), nay có hơn 200 dịch vụ phục vụ hàng trăm nghìn doanh nghiệp ở 190 quốc gia. Bài nguồn nói hình là điểm xuất phát và bảng tra nhanh: các dịch vụ nền tảng của điện toán đám mây, và các dịch vụ nâng cao cho nhu cầu riêng như kiến trúc không máy chủ, tự động hóa việc phát hành và vận hành, và học máy.
 
-**Nền tảng.** Bốn thứ mà hầu như mọi hệ thống trên AWS đều chạm tới. `EC2` cho thuê máy chủ ảo. `S3` lưu tệp dạng đối tượng. VPC là mạng riêng nơi các dịch vụ của bạn nằm. IAM quyết định danh tính nào được làm gì, và là nơi nên học sớm vì sai ở đây vừa gây lỗi vừa gây lỗ hổng bảo mật.
+**Nền tảng.** Bốn thứ mà hầu như mọi hệ thống trên AWS đều chạm tới. `EC2` cho thuê máy chủ ảo. `S3` lưu tệp dạng đối tượng. VPC là mạng riêng nơi các tài nguyên chạy trong nó nằm, như máy chủ ảo hay cơ sở dữ liệu quan hệ. Các dịch vụ theo vùng như `S3` hay DynamoDB không nằm trong VPC: chúng được truy cập từ VPC qua địa chỉ công khai hoặc qua điểm cuối. IAM quyết định danh tính nào được làm gì, và là nơi nên học sớm vì sai ở đây vừa gây lỗi vừa gây lỗ hổng bảo mật.
 
 **Dữ liệu và nhắn tin.** RDS là cơ sở dữ liệu quan hệ do AWS vận hành, hợp với dữ liệu có bảng và liên kết. DynamoDB lưu theo khóa và giá trị, hợp với truy cập đơn giản ở quy mô lớn. SQS là hàng đợi để tách bên gửi khỏi bên xử lý, SNS gửi một thông báo tới nhiều bên; hai thứ này cùng ý với các mẫu nhắn tin đã có một bài riêng.
 

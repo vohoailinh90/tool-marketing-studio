@@ -31,7 +31,7 @@ Ngày 2026-10-19, các chương trình Python nhỏ, không có hàng đợi th�
 
 **Hàng đợi ưu tiên có thể bỏ đói việc thấp.** Mỗi bước xử lý 1 việc; việc ưu tiên cao đến 1,34 việc mỗi bước trong 100 bước (134 việc), 10 việc thấp đến ở 10 bước đầu. Sau 100 bước đã xử lý 100 việc cao, 0 việc thấp, và 44 việc còn tồn. Hệ quả: hàng đợi ưu tiên cần thêm thứ gì đó (hạn mức cho việc cao, hay tăng ưu tiên theo thời gian chờ) khi tải cao có thể kéo dài.
 
-**Saga bù theo thứ tự ngược.** Ba bước: đặt chỗ, trừ tiền, giữ hàng. Giữ hàng hỏng. Các bước đã xong được bù theo thứ tự ngược: hoàn tiền rồi hủy chỗ. Mỗi bước phải có sẵn thao tác bù của nó.
+**Saga bù theo thứ tự ngược.** Ba bước: đặt chỗ, trừ tiền, giữ hàng. Giữ hàng hỏng. Các bước đã xong được bù theo thứ tự ngược: hoàn tiền rồi hủy chỗ. Các bước làm trước điểm không thể quay lại cần có sẵn thao tác bù của chúng; còn bước sau điểm đó (và mọi thao tác không hoàn tác được, như gửi thư) thì phải thử lại được và chạy lặp không đổi kết quả, vì không có gì để "hủy". Mô hình trên chỉ có loại thứ nhất.
 
 **Thẻ nhận hàng nhỏ hơn rất nhiều.** Một khối 5 megabyte so với tham chiếu 60 byte: nhỏ hơn khoảng 87000 lần. (Con số 60 byte là giả định của thử nghiệm; kích thước tham chiếu thật tùy kho.)
 
@@ -61,5 +61,7 @@ Bài nguồn tóm tắt sáu mẫu mỗi mẫu một vài câu. Bài này giữ 
 
 - [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-6-cloud-messaging-patterns.md): sáu mẫu nhắn tin. Mô phỏng và đáp án là của người biên soạn.
 - [Microsoft — Cloud design patterns](https://learn.microsoft.com/en-us/azure/architecture/patterns/): catalogue chứa các mẫu này (Asynchronous Request-Reply, Publisher/Subscriber, Claim-Check, Priority Queue, Saga, Competing Consumers). Chưa mở lại trong phiên viết; kiến thức chung của người biên soạn.
+
+- Chương trình tạo các con số của bài: `brainstorm/system-design-101-vi/experiments/sd-11-032.py` (chạy được, có kiểm tra đúng giá trị ghi trong bài).
 
 Đã đọc nguồn ngày 2026-10-19. Bài viết và hình được thiết kế độc lập.

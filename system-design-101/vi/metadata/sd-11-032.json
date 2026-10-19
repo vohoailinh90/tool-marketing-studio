@@ -51,7 +51,7 @@
       "claim_vi": "Toy runs: three consumers over 12 messages with 1 to 9 steps each complete in the order 0,1,3,2,5,6,8,7,4,9,11,10; a priority queue serving one item per tick against 134 high-priority arrivals in 100 ticks serves 0 of 10 low-priority items and leaves 44 queued; a three-step saga failing at step three compensates in reverse (refund, then cancel booking); a 5 megabyte payload against an assumed 60-byte reference is about 87000 times smaller.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-6-cloud-messaging-patterns.md",
       "section": "Experiment",
-      "verified_by": "Run by the author on 2026-10-19 with small Python programs; the 60-byte reference size is an assumption of the experiment."
+      "verified_by": "Run by the author on 2026-10-19 with small Python programs; the 60-byte reference size is an assumption of the experiment. Program: brainstorm/system-design-101-vi/experiments/sd-11-032.py (asserts the recorded values)."
     }
   ],
   "design_notes_vi": "Một khung sáu thẻ cho sáu mẫu và một khung ghi chú kết quả thử.",

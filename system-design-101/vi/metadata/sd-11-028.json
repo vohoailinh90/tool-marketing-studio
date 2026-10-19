@@ -51,13 +51,13 @@
       "claim_vi": "Toy run: 20000 inserts into a sorted list; random 128-bit values land before 5005.5 existing entries on average (19987 inserts not at the end); sequential values 0; time-ordered 64-bit values from two workers with random arrival inside the millisecond 0.25 (4998 inserts not at the end).",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/explaining-5-unique-id-generators-in-distributed-systems.md",
       "section": "Experiment",
-      "verified_by": "Run by the author on 2026-10-19 with a small Python program; counts only, no database benchmark."
+      "verified_by": "Run by the author on 2026-10-19 with a small Python program; counts only, no database benchmark. Program: brainstorm/system-design-101-vi/experiments/sd-11-028.py (asserts the recorded values)."
     },
     {
       "claim_vi": "Birthday estimate for one billion random version-4 UUIDs (122 random bits) is about 9.4e-20; a segment allocator with batch 1 / 100 / 1000 makes 100000 / 1000 / 100 database calls for 100000 ids; a crash after 2500 ids of a 1000-batch leaves a gap of 500.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/explaining-5-unique-id-generators-in-distributed-systems.md",
       "section": "Experiment",
-      "verified_by": "Computed by the author on 2026-10-19; RFC 4122 itself was not opened in this session."
+      "verified_by": "Computed by the author on 2026-10-19; RFC 4122 itself was not opened in this session. Program: brainstorm/system-design-101-vi/experiments/sd-11-028.py (asserts the recorded values)."
     }
   ],
   "design_notes_vi": "Một khung năm thẻ cho năm cách sinh mã và một khung ghi chú kết quả thử chèn.",

@@ -51,7 +51,7 @@
       "claim_vi": "Toy run: 1000 clients all fail at tick 0, the server accepts 100 requests per tick, 8 retries, base 2, cap 64. Without jitter (linear or exponential) 100 clients give up after 5400 requests, largest retry wave 900, finishing at tick 72 / 254; with additive jitter all 1000 succeed after 2560 requests, largest wave 326, finishing at tick 22 / 26; exponential full jitter 3128 requests, largest wave 574, tick 23.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-we-retry-on-failures.md",
       "section": "Experiment",
-      "verified_by": "Run by the author on 2026-10-19 with a small Python program (seed 1); counts of requests and ticks only."
+      "verified_by": "Run by the author on 2026-10-19 with a small Python program (seed 1); counts of requests and ticks only. Program: brainstorm/system-design-101-vi/experiments/sd-11-029.py (asserts the recorded values)."
     }
   ],
   "design_notes_vi": "Một khung bốn thẻ cho bốn cách chờ và một khung ghi chú kết quả mô phỏng.",

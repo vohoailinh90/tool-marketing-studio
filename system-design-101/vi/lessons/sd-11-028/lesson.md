@@ -76,4 +76,6 @@ Bài nguồn có năm đoạn ngắn, mỗi đoạn một cách. Bài này giữ
 - [RFC 4122 — A Universally Unique IDentifier (UUID) URN Namespace](https://www.rfc-editor.org/rfc/rfc4122): định nghĩa UUID. Chưa mở lại trong phiên viết (không mở được trang từ môi trường); phần về UUID bản 4 là kiến thức chung của người biên soạn.
 - [Redis — lệnh INCR](https://redis.io/docs/latest/commands/incr/): bộ đếm nguyên tử. Chưa mở lại trong phiên viết; kiến thức chung của người biên soạn.
 
+- Chương trình tạo các con số của bài: `brainstorm/system-design-101-vi/experiments/sd-11-028.py` (chạy được, có kiểm tra đúng giá trị ghi trong bài).
+
 Đã đọc nguồn ngày 2026-10-19. Bài viết và hình được thiết kế độc lập.

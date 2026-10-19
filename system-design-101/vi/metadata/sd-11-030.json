@@ -51,7 +51,7 @@
       "claim_vi": "Toy run: 1440 per-minute samples of a noisy metric (mean 50, sd 15) with two real incidents (mean 95) of 20 and 15 minutes, threshold 80. One sample over: 38 alerts, 32 false, both incidents caught with delay 2 and 0 minutes; three consecutive samples: 4 alerts, 0 false, delay 4 and 4; five consecutive: 3 alerts, 0 false, delay 6 and 6.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/cloud-monitoring-cheat-sheet.md",
       "section": "Experiment",
-      "verified_by": "Run by the author on 2026-10-19 with a small Python program (seed 3); synthetic data."
+      "verified_by": "Run by the author on 2026-10-19 with a small Python program (seed 3); synthetic data. Program: brainstorm/system-design-101-vi/experiments/sd-11-030.py (asserts the recorded values)."
     }
   ],
   "design_notes_vi": "Một khung năm bước theo đường đi của dữ liệu, một khung bốn ghi chú và một khung kết quả thử ngưỡng.",

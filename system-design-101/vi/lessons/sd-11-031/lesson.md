@@ -46,7 +46,7 @@ Hai máy cùng đến giờ chạy một báo cáo hằng ngày. Một máy lấ
 <details>
 <summary>Xem đáp án</summary>
 
-Khóa hết hạn khi báo cáo còn đang chạy nên máy kia lấy được khóa và chạy trùng, làm đúng điều khóa sinh ra để tránh. Cách đơn giản nhất: đặt TTL dài hơn thời gian chạy xấu nhất, hoặc để máy đang chạy gia hạn khóa định kỳ, hoặc làm cho kết quả của báo cáo ghi lại được hai lần mà không đổi (chạy trùng vô hại).
+Khóa hết hạn khi báo cáo còn đang chạy nên máy kia lấy được khóa và chạy trùng, làm đúng điều khóa sinh ra để tránh. Cách sửa đúng gốc là làm cho việc chạy trùng vô hại: kết quả báo cáo ghi lại được hai lần mà không đổi, hoặc nơi ghi từ chối lần ghi mang số thứ tự khóa cũ (fencing). Đặt TTL dài hơn thời gian chạy xấu nhất hay để máy đang chạy gia hạn khóa định kỳ chỉ giảm khả năng chồng lấn, không loại bỏ nó: một lần tạm dừng hay trễ mạng vẫn có thể dài hơn hạn dùng.
 Đây là suy luận của người biên soạn từ thử nghiệm.
 
 </details>
@@ -62,5 +62,7 @@ Bài nguồn có một câu định nghĩa và sáu tình huống, mỗi tình h
 
 - [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/why-do-we-need-to-use-a-distributed-lock.md): sáu tình huống dùng khóa phân tán. Thử nghiệm và đáp án là của người biên soạn.
 - [Martin Kleppmann — How to do distributed locking](https://martin.kleppmann.com/2016/02/08/how-to-do-distributed-locking.html): bàn về khóa có hạn và số thứ tự của khóa (fencing token). Chưa mở lại trong phiên viết (không mở được trang từ môi trường); kiến thức chung của người biên soạn.
+
+- Chương trình tạo các con số của bài: `brainstorm/system-design-101-vi/experiments/sd-11-031.py` (chạy được, có kiểm tra đúng giá trị ghi trong bài).
 
 Đã đọc nguồn ngày 2026-10-19. Bài viết và hình được thiết kế độc lập.

@@ -60,4 +60,6 @@ Bài nguồn mô tả bốn cách, mỗi cách có ưu điểm và nhược đi�
 - [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-we-retry-on-failures.md): bốn cách chờ và ưu nhược điểm. Mô phỏng, bảng và đáp án là của người biên soạn.
 - [AWS Architecture Blog — Exponential Backoff And Jitter](https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/): so sánh cách gấp đôi với các kiểu ngẫu nhiên. Chưa mở lại trong phiên viết (không mở được trang từ môi trường); kiến thức chung của người biên soạn.
 
+- Chương trình tạo các con số của bài: `brainstorm/system-design-101-vi/experiments/sd-11-029.py` (chạy được, có kiểm tra đúng giá trị ghi trong bài).
+
 Đã đọc nguồn ngày 2026-10-19. Bài viết và hình được thiết kế độc lập.

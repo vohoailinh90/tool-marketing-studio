@@ -56,4 +56,6 @@ Bài nguồn liệt kê chín khía cạnh với một câu mô tả mỗi khía
 - [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/cloud-monitoring-cheat-sheet.md): chín khía cạnh giám sát. Cách xếp, thử nghiệm và đáp án là của người biên soạn.
 - [Google SRE Book — Monitoring Distributed Systems](https://sre.google/sre-book/monitoring-distributed-systems/): bàn về cảnh báo và độ ồn. Chưa mở lại trong phiên viết (không mở được trang từ môi trường); kiến thức chung của người biên soạn.
 
+- Chương trình tạo các con số của bài: `brainstorm/system-design-101-vi/experiments/sd-11-030.py` (chạy được, có kiểm tra đúng giá trị ghi trong bài).
+
 Đã đọc nguồn ngày 2026-10-19. Bài viết và hình được thiết kế độc lập.

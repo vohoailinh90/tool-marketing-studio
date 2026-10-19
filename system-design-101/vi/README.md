@@ -132,6 +132,14 @@ Các bài chưa viết của nhóm này không có trong danh sách; số thứ 
 14. [Tám chiến lược đẩy khóa ra, và Redis thật sự có những gì](lessons/sd-06-014/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
 15. [Bộ nhớ đệm hỏng theo những kiểu nào](lessons/sd-06-015/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
 
+## Kiến trúc phần mềm
+
+Các bài chưa viết của nhóm này không có trong danh sách; số thứ tự là vị trí của bài trong nhóm.
+
+6. [Lớp trung gian cơ sở dữ liệu: một cửa chung và ba cái giá](lessons/sd-08-006/lesson.md) — bài mới viết tại repo này (có phép đo riêng); chờ review kỹ thuật.
+7. [Chín việc làm khi phát triển dịch vụ nhỏ: việc nào có chỗ đối chiếu](lessons/sd-08-007/lesson.md) — bài mới viết tại repo này (có phép đo riêng); chờ review kỹ thuật.
+8. [Năm mẫu thiết kế đầu tiên, tìm trong thư viện chuẩn của Python](lessons/sd-08-008/lesson.md) — bài mới viết tại repo này (có phép thử riêng); chờ review kỹ thuật.
+
 ## Công cụ và năng suất
 
 1. [Các lệnh Git theo việc cần làm](lessons/sd-09-001/lesson.md) — bản nháp; chờ review kỹ thuật.
@@ -256,7 +264,7 @@ và hình đạt; không coi đọc nguồn là mọi claim đã đúng, không 
 
 API và phát triển web (còn sd-01-050) → Tình huống thực tế (đã viết một phần) →
 Cơ sở dữ liệu và lưu trữ (đã viết một phần) → Bộ nhớ đệm và hiệu năng (đã viết một phần) → Thanh toán và công nghệ tài chính →
-Kiến trúc phần mềm → Phát triển phần mềm (đã viết một phần) →
+Kiến trúc phần mềm (đã viết một phần) → Phát triển phần mềm (đã viết một phần) →
 Đám mây và hệ thống phân tán → Hệ thống hoạt động thế nào? → Bảo mật (đã viết một phần).
 
 Nhóm “Nền tảng máy tính” (cuối mục lục nguồn) được viết trước theo yêu cầu người dùng ngày 2026-10-13; nhóm “API và phát triển web” viết tiếp theo thứ tự source-map.

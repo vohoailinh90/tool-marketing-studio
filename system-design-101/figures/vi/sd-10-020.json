@@ -2,7 +2,7 @@
   "id": "sd-10-020",
   "title": "Tám mô hình lập trình",
   "subtitle": "Xếp theo việc mô hình lo; tả bằng tài liệu gốc, trừ định nghĩa phản ứng và cách đọc mệnh lệnh.",
-  "desc": "Ba nhóm thẻ và một khung ghi nhớ. Cách mô tả chương trình: mệnh lệnh là danh sách lệnh bảo máy làm gì; khai báo nêu bài toán và để cài đặt tự chọn cách giải; hàm chia việc thành các hàm nhận vào rồi trả ra. Cách tổ chức mã: hướng đối tượng xoay quanh đối tượng có trạng thái và phương thức; hướng khía cạnh tách mối quan tâm cắt ngang nhiều kiểu; tổng quát dùng kiểu như một tham số. Nhiều việc và dữ liệu thay đổi: phản ứng là phản ứng với dữ liệu đến theo thời gian, ví dụ Reactive Streams; đồng thời chia chương trình thành các phần chạy độc lập. Khung cuối nêu ba điều cần nhớ.",
+  "desc": "Ba nhóm thẻ và một khung ghi nhớ. Cách mô tả chương trình: mệnh lệnh là danh sách lệnh bảo máy làm gì; khai báo nêu bài toán và để cài đặt tự chọn cách giải; hàm chia việc thành các hàm mà lý tưởng chỉ nhận vào rồi trả ra. Cách tổ chức mã: hướng đối tượng xoay quanh đối tượng có trạng thái và phương thức; hướng khía cạnh tách mối quan tâm cắt ngang nhiều kiểu; tổng quát dùng kiểu như một tham số. Nhiều việc và dữ liệu thay đổi: phản ứng là phản ứng với dữ liệu đến theo thời gian, ví dụ Reactive Streams; đồng thời chia chương trình thành các phần chạy độc lập. Khung cuối nêu ba điều cần nhớ.",
   "sections": [
     {
       "kind": "parts",
@@ -20,7 +20,7 @@
         },
         {
           "name": "Hàm (FP)",
-          "role": "Chia việc thành hàm: nhận vào, trả ra.",
+          "role": "Chia việc thành hàm; lý tưởng chỉ nhận vào, trả ra.",
           "icon": "workflow"
         }
       ]

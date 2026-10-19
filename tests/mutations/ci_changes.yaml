@@ -90,7 +90,7 @@ mutations:
 - label: a manifest is not chosen by the file of one of its entries
   find: "        named.add(entry.get(\"file\", \"\"))\n"
   replace: ""
-  test: tests.test_ci_changes.SelectedManifestsTests.test_the_real_manifests_are_chosen_by_target_entry_file_test_module_and_themselves
+  test: tests.test_ci_changes.SelectedManifestsTests.test_a_manifest_is_chosen_by_the_file_one_of_its_entries_mutates
 - label: manifests that cannot be read choose none instead of all
   find: "        if not names:\n            return None\n"
   replace: "        if not names:\n            return []\n"

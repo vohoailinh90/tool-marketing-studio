@@ -71,6 +71,14 @@ class SelectedManifestsTests(unittest.TestCase):
             with self.subTest(changed):
                 self.assertIn(manifest, ci_changes.selected_manifests([changed], ROOT))
 
+    def test_a_manifest_is_chosen_by_the_file_one_of_its_entries_mutates(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            folder = Path(tmp)
+            write(folder, "tests/mutations/tool.yaml", MANIFEST.format(target="scripts/tool.py")
+                  + "- label: y\n  file: docs/tool.md\n  find: 'a'\n  replace: 'b'\n  test: tests.test_tool.ToolTests.test_y\n")
+            self.assertEqual(["tests/mutations/tool.yaml"], ci_changes.selected_manifests(["docs/tool.md"], folder))
+            self.assertEqual([], ci_changes.selected_manifests(["docs/other.md"], folder))
+
     def test_an_unrelated_change_chooses_no_manifest(self):
         self.assertEqual([], ci_changes.selected_manifests(["docs/no-such-note.md"], ROOT))
 

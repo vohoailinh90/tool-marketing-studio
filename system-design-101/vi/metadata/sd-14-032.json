@@ -164,6 +164,12 @@
       "source": "https://github.com/openssl/openssl/blob/6d76833d61fad07a171219d9cb1444bc37f88b8f/doc/man1/openssl-s_client.pod.in",
       "section": "Khung 2 (Hai kết cục)",
       "verified_by": "Observed by running openssl 3.0.13 locally; the -keylogfile option is documented in the s_client manual page read at the pinned commit. The RFC text on key derivation was not reachable and was not read."
+    },
+    {
+      "claim_vi": "OpenSSL TLS introduction guide: strictly speaking there are situations where the client can start sending application data even earlier than the end of the handshake, using the TLSv1.3 \"early data\" capability (the guide skips it); openssl s_client manual (-early_data): the file is sent as early data to the server, which only works with resumed sessions that support early data and when the server accepts it. The lesson therefore scopes its statement that negotiation comes before the first encrypted HTTP byte to a full handshake and names early data on a resumed TLS 1.3 session as an exception it does not cover. That the early data is sent encrypted in the client's first flight is the author's general knowledge, not run.",
+      "source": "https://github.com/openssl/openssl/blob/6d76833d61fad07a171219d9cb1444bc37f88b8f/doc/man7/ossl-guide-tls-introduction.pod",
+      "section": "Phần mở đầu",
+      "verified_by": "Read the guide page and the s_client manual source (openssl-s_client.pod.in) at the pinned commit from raw.githubusercontent.com; early data was not run, and the RFC text was not reachable."
     }
   ],
   "design_notes_vi": "Ba khung xếp dọc: trình tự client đưa danh sách và máy chủ chọn, hai kết cục (có điểm chung hoặc cảnh báo), ba điều cần nhớ. Không dùng ảnh nguồn.",

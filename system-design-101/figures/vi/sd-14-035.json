@@ -3,7 +3,7 @@
   "lang": "vi",
   "title": "Token OAuth: API kiểm gì, token không nói gì",
   "subtitle": "Thử trên máy chủ ủy quyền thu nhỏ",
-  "desc": "Hai khung dọc. Khung một, bốn phép thử của thí nghiệm trên một access token JWT: chữ ký đúng; còn hạn exp, quá hạn thì trả 401; audience, cấp cho API khác thì trả 401; scope, thiếu quyền thì trả 403. Khung hai, danh sách này chưa đủ cho mọi token: bộ kiểm JWT còn kiểm bên phát hành và loại token, còn token chuỗi mờ thì API hỏi máy chủ ủy quyền. Khung ba, token không làm được ba việc: chứng minh đăng nhập, việc đó cần ID token của OpenID Connect; cho biết ai đang cầm, vì ai có chuỗi token cũng dùng được; tự nâng quyền, vì sửa nội dung là hỏng chữ ký.",
+  "desc": "Ba khung dọc. Khung một, bốn phép thử của thí nghiệm trên một access token JWT: chữ ký đúng; còn hạn exp, quá hạn thì trả 401; audience, cấp cho API khác thì trả 401; scope, thiếu quyền thì trả 403. Khung hai, danh sách này chưa đủ cho mọi token: bộ kiểm JWT còn kiểm bên phát hành và loại token, còn token chuỗi mờ thì API hỏi máy chủ ủy quyền. Khung ba, token không làm được ba việc: chứng minh đăng nhập, việc đó cần ID token của OpenID Connect; cho biết ai đang cầm, vì ai có chuỗi token cũng dùng được; tự nâng quyền, vì sửa nội dung là hỏng chữ ký.",
   "sections": [
     {
       "kind": "steps",

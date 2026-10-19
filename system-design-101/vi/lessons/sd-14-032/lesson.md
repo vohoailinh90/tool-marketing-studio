@@ -1,6 +1,6 @@
 # HTTPS thương lượng thế nào? Bộ mã, phiên bản và khóa đối xứng
 
-**Trước khi mã hóa một byte HTTP, hai bên phải thỏa thuận cách mã hóa: client đưa danh sách những gì nó hỗ trợ, máy chủ chọn từ danh sách đó, và nếu không có mục chung thì kết nối dừng ngay bằng một cảnh báo.** Chọn xong, hai bên cùng tính ra khóa đối xứng để mã hóa dữ liệu HTTP: từ một bí mật chung, mỗi chiều (client gửi, máy chủ gửi) có khóa riêng.
+**Với một cuộc bắt tay đầy đủ, trước khi mã hóa một byte HTTP, hai bên phải thỏa thuận cách mã hóa: client đưa danh sách những gì nó hỗ trợ, máy chủ chọn từ danh sách đó, và nếu không có mục chung thì kết nối dừng ngay bằng một cảnh báo.** Chọn xong, hai bên cùng tính ra khóa đối xứng để mã hóa dữ liệu HTTP: từ một bí mật chung, mỗi chiều (client gửi, máy chủ gửi) có khóa riêng. Ngoại lệ: khi nối lại một phiên TLS 1.3 và bật “dữ liệu sớm” (early data), client có thể gửi dữ liệu HTTP đã mã hóa ngay trong lượt đầu, trước khi máy chủ chốt xong thông số của kết nối hiện tại; bài không bàn trường hợp này (hiểu biết chung, chưa thử).
 
 Bài chỉ nói về bước thương lượng: phiên bản TLS, bộ mã, nhóm trao đổi khóa, thuật toán chữ ký. Việc máy chủ chứng minh danh tính nằm ở [bài sd-14-014](../sd-14-014/lesson.md) (chứng chỉ) và [bài sd-14-015](../sd-14-015/lesson.md) (chữ ký số). Kết quả trong bài là một lần chạy OpenSSL 3.0.13 trên máy người viết (cục bộ, chứng chỉ tự ký dùng một lần), không phải trình duyệt hay máy chủ thật.
 

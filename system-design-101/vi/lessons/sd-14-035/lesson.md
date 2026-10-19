@@ -3,7 +3,7 @@
 **Access token của OAuth 2.0 giống một tấm vé ghi sẵn (trong token, hoặc ở máy chủ ủy quyền): được làm việc gì (scope), dùng cho API nào (audience), đến lúc nào (exp). Nó cho ứng dụng gọi API mà không cần mật khẩu của bạn, nhưng tự nó không chứng minh bạn vừa đăng nhập, và ai cầm nó cũng dùng được.**
 Bài này nói về token đã có trong tay: máy chủ API kiểm gì, token không nói được gì. Đăng nhập khác ủy quyền thế nào xem [bài sd-14-011](../sd-14-011/lesson.md); cách xin được token không thuộc bài này.
 
-![Hai khung dọc. Khung một, bốn phép thử của thí nghiệm trên một access token JWT: chữ ký đúng; còn hạn exp, quá hạn thì trả 401; audience, cấp cho API khác thì trả 401; scope, thiếu quyền thì trả 403. Khung hai, danh sách này chưa đủ cho mọi token: bộ kiểm JWT còn kiểm bên phát hành và loại token, còn token chuỗi mờ thì API hỏi máy chủ ủy quyền. Khung ba, token không làm được ba việc: chứng minh đăng nhập, việc đó cần ID token của OpenID Connect; cho biết ai đang cầm, vì ai có chuỗi token cũng dùng được; tự nâng quyền, vì sửa nội dung là hỏng chữ ký.](../../diagrams/sd-14-035-main.svg)
+![Ba khung dọc. Khung một, bốn phép thử của thí nghiệm trên một access token JWT: chữ ký đúng; còn hạn exp, quá hạn thì trả 401; audience, cấp cho API khác thì trả 401; scope, thiếu quyền thì trả 403. Khung hai, danh sách này chưa đủ cho mọi token: bộ kiểm JWT còn kiểm bên phát hành và loại token, còn token chuỗi mờ thì API hỏi máy chủ ủy quyền. Khung ba, token không làm được ba việc: chứng minh đăng nhập, việc đó cần ID token của OpenID Connect; cho biết ai đang cầm, vì ai có chuỗi token cũng dùng được; tự nâng quyền, vì sửa nội dung là hỏng chữ ký.](../../diagrams/sd-14-035-main.svg)
 
 ## Từ viết tắt
 

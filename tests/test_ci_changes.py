@@ -85,9 +85,10 @@ class SelectedManifestsTests(unittest.TestCase):
         self.assertEqual([], ci_changes.selected_manifests(["docs/facebook-page.md"], ROOT))
 
     def test_a_shared_file_runs_every_manifest(self):
-        for path in ("scripts/mutation_check.py", ".github/workflows/ci.yml", "requirements-dev.txt", "tests/conftest.py"):
+        for path in ("scripts/mutation_check.py", ".github/workflows/ci.yml", "requirements-dev.txt", "requirements.txt"):
             with self.subTest(path):
-                self.assertIsNone(ci_changes.selected_manifests(["docs/x.md", path], ROOT))
+                self.assertTrue((ROOT / path).is_file(), "a present file, so only RUN_ALL can decide")
+                self.assertIsNone(ci_changes.selected_manifests(["docs/facebook-page.md", path], ROOT))
 
     def test_a_shared_test_file_no_manifest_names_runs_every_manifest(self):
         for path in ("tests/support.py", "tests/fixtures/sample.json", "tests/web/office_ui_check.mts"):

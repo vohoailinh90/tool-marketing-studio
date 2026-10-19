@@ -29,7 +29,7 @@
 - **VPC peering**: nối hai VPC để máy trong mỗi bên gọi nhau bằng địa chỉ riêng. Đây là quan hệ một-một và **không bắc cầu**: A nối B, B nối C không có nghĩa A gọi được C. Dải địa chỉ hai bên không được chồng nhau.
 - **Transit gateway**: một trạm trung chuyển, nối nhiều VPC và đường VPN vào cùng một chỗ; thêm VPC mới là thêm một kết nối vào trạm, thay vì nối với từng VPC cũ.
 - **Gateway endpoint**: lối riêng từ VPC tới một số dịch vụ AWS (hiện là S3 và DynamoDB), đi qua một dòng trong bảng định tuyến, không cần Internet gateway hay NAT.
-- **Interface endpoint** (dùng PrivateLink): đặt một lối vào mang địa chỉ IP riêng ngay trong subnet của bạn, trỏ tới một dịch vụ AWS, một VPC khác hay một dịch vụ của bên thứ ba (nhà cung cấp phần mềm dạng dịch vụ), không đi qua internet.
+- **Interface endpoint** (dùng PrivateLink): đặt một lối vào mang địa chỉ IP riêng ngay trong subnet của bạn, trỏ tới một dịch vụ AWS, hoặc tới một dịch vụ đã được đưa ra (endpoint service, đứng sau một bộ cân bằng tải) từ một VPC khác hay từ bên thứ ba (nhà cung cấp phần mềm dạng dịch vụ), không đi qua internet. Nó nối tới một dịch vụ cụ thể, không phải định tuyến cả VPC như peering.
 
 ## Tính thử: nối bao nhiêu VPC thì peering thành gánh nặng
 

@@ -18,9 +18,9 @@ Giả sử một thư viện nội bộ đổi chữ ký hàm, và ba dịch v�
 |---|---|---|
 | Số thay đổi phải viết và xét duyệt | 1 | 4 (thư viện, rồi A, B, C) |
 | Thứ tự bắt buộc | Không (cùng một commit) | Thư viện phát hành trước, các bên dùng nâng sau |
-| Có lúc hệ thống ở trạng thái lẫn lộn | Không | Có, đến khi A, B, C đều nâng xong |
+| Mã trong kho có lúc lẫn lộn phiên bản | Không | Có, đến khi A, B, C đều nâng xong |
 
-Đây là phép đếm theo lập luận, không phải đo ở một công ty thật. Nó cũng không nói "một kho tốt hơn": bảng chỉ ra rằng đổi chung là việc mà một kho làm rẻ hơn, còn việc mà nhiều kho làm rẻ hơn (để một đội đổi và phát hành mà không chờ ai) không nằm trong bảng.
+Bảng nói về mã trong kho, không về việc triển khai: nếu các dịch vụ triển khai riêng thì bản đang chạy vẫn có thể lệch nhau trong lúc triển khai, nên thay đổi chung vẫn cần tương thích ngược ở cả hai mô hình. Đây là phép đếm theo lập luận, không phải đo ở một công ty thật. Nó cũng không nói "một kho tốt hơn": bảng chỉ ra rằng đổi chung là việc mà một kho làm rẻ hơn, còn việc mà nhiều kho làm rẻ hơn (để một đội đổi và phát hành mà không chờ ai) không nằm trong bảng.
 
 ## Giới hạn cần nhớ
 

@@ -45,7 +45,7 @@
     },
     "mobile": {
       "status": "pending",
-      "reason": "figure drawn by scripts/figures and measured by python3 -m scripts.figures check --browser; no whole-lesson browser check at 320, 375 and 430 px was done for this lesson"
+      "reason": "figure drawn by scripts/figures; the non-browser python3 -m scripts.figures check passes, but the browser measurement (--browser) and a whole-lesson check at 320, 375 and 430 px were not run because the sandbox browser build is unavailable"
     },
     "user_testing": {
       "status": "not_performed"

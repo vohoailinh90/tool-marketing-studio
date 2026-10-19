@@ -50,6 +50,52 @@ Bài nguồn và bài về hệ thống thanh toán trong nhóm Thanh toán cùn
 
 </details>
 
+<details>
+<summary>Xem chương trình thử nghiệm</summary>
+
+Chương trình Python 3 (chỉ dùng thư viện chuẩn, SQLite trong bộ nhớ) đã in mọi con số của thử nghiệm ví, sổ cái và đối soát. Hạt giống ngẫu nhiên được đặt cố định trong chương trình nên chạy lại ra đúng các số đó.
+
+```python
+import sqlite3, random
+random.seed(11)
+N=1000; FAIL=0.05
+payments=[(i, random.choice(["s1","s2","s3"]), random.randint(100,9999)) for i in range(N)]  # amounts in cents
+def setup():
+    c=sqlite3.connect(":memory:"); c.isolation_level=None
+    c.executescript("create table wallet(seller text primary key, balance integer);create table ledger(id integer primary key, pid integer, account text, amount integer);")
+    c.executemany("insert into wallet values(?,0)",[("s1",),("s2",),("s3",)]); return c
+def run(atomic):
+    c=setup(); failed=0
+    for pid,sel,amt in payments:
+        fail = random.random()<FAIL
+        if atomic: c.execute("begin")
+        c.execute("update wallet set balance=balance+? where seller=?",(amt,sel))
+        if fail:                       # crash between wallet update and ledger append
+            failed+=1
+            if atomic: c.execute("rollback")
+            continue
+        c.execute("insert into ledger(pid,account,amount) values(?,?,?)",(pid,sel,amt))
+        if atomic: c.execute("commit")
+    w=dict(c.execute("select seller,balance from wallet")); l=dict(c.execute("select account,sum(amount) from ledger group by account"))
+    mism=sum(1 for s in w if w[s]!=l.get(s,0)); diff=sum(w[s]-l.get(s,0) for s in w)
+    return failed,w,l,mism,diff
+random.seed(11); f,w,l,m,d=run(False); print("A no transaction: failures",f,"| sellers mismatched",m,"| wallet minus ledger (cents)",d)
+random.seed(11); f,w,l,m,d=run(True); print("B one transaction: failures",f,"| sellers mismatched",m,"| wallet minus ledger (cents)",d)
+# reconciliation: PSP file vs our records
+random.seed(5)
+ours={pid:amt for pid,_,amt in payments}
+psp=dict(ours)
+missing=random.sample(list(psp),3); [psp.pop(k) for k in missing]
+changed=random.sample(list(psp),2); 
+for k in changed: psp[k]+=random.choice([-100,100])
+extra={N+1:500}; psp.update(extra)
+only_ours=sorted(set(ours)-set(psp)); only_psp=sorted(set(psp)-set(ours)); diff_amt=sorted(k for k in set(ours)&set(psp) if ours[k]!=psp[k])
+print("reconcile: ours",len(ours),"psp",len(psp),"| only ours",len(only_ours),"| only psp",len(only_psp),"| amount differs",len(diff_amt))
+print("net difference cents:", sum(psp.values())-sum(ours.values()))
+```
+
+</details>
+
 ## Nguồn đối chiếu
 
 - [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/payment-system.md): đường đi một khoản thanh toán và tệp quyết toán mỗi đêm. Hai thử nghiệm là của người biên soạn.

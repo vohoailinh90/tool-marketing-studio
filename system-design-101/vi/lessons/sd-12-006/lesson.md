@@ -50,6 +50,42 @@ Bài nguồn có hai giai đoạn, tám bước khởi tạo và ba bước gử
 
 </details>
 
+<details>
+<summary>Xem chương trình thử nghiệm</summary>
+
+Các lệnh dưới đây (bash, `redis-server`, `redis-cli` và Python 3) đã tạo ra mọi kết quả trong bảng thử nghiệm. Chạy trong một thư mục trống; Redis nghe ở cổng 6399 và được tắt ở cuối.
+
+```bash
+# Redis 7.0.15, một máy; cổng 6399 để không đụng Redis khác
+redis-server --port 6399 --save "" --appendonly no --daemonize yes >/dev/null; sleep 1
+R="redis-cli -p 6399"
+( timeout 4 $R subscribe messages > sub_early.txt & ) ; sleep 0.5   # người nghe vào trước
+$R publish messages "hello-1"; $R zadd chat:history 1 "Bob: hello-1" >/dev/null
+$R publish messages "hello-2"; $R zadd chat:history 2 "Bob: hello-2" >/dev/null
+sleep 0.5
+( timeout 2 $R subscribe messages > sub_late.txt & ) ; sleep 0.5    # người nghe vào sau hai tin
+$R publish messages "hello-3"; $R zadd chat:history 3 "Bob: hello-3" >/dev/null
+sleep 2.5
+echo "người nghe vào trước:"; tr '\n' ' ' < sub_early.txt; echo
+echo "người nghe vào sau:";   tr '\n' ' ' < sub_late.txt; echo
+echo "lịch sử:"; $R zrange chat:history 0 -1 | tr '\n' ' '; echo
+echo "publish khi không ai nghe:"; $R publish nobody "x"
+echo "cùng điểm, thứ tự chữ cái:"; $R zadd z 5 b 5 a >/dev/null; $R zrange z 0 -1 withscores | tr '\n' ' '; echo
+$R zadd h 1 "Bob: hi" >/dev/null; $R zadd h 2 "Bob: hi" >/dev/null     # cùng thành viên hai lần
+echo "số phần tử sau hai lần zadd cùng chuỗi:"; $R zcard h
+python3 - <<'PY'
+import socket,time
+s=socket.create_connection(("127.0.0.1",6399))
+def cmd(*a):
+    b=b"*%d\r\n"%len(a)+b"".join(b"$%d\r\n%s\r\n"%(len(x),x.encode()) for x in a)
+    s.sendall(b); time.sleep(0.2); return s.recv(4096).decode().replace("\r\n"," | ")
+print(cmd("SUBSCRIBE","c")); print(cmd("GET","k"))   # GET trên kết nối đã SUBSCRIBE
+PY
+$R shutdown nosave 2>/dev/null
+```
+
+</details>
+
 ## Nguồn đối chiếu
 
 - [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/build-a-simple-chat-application.md): hai giai đoạn khởi tạo kết nối và xử lý tin, các kênh `member_add` và `messages`, `ZADD`.

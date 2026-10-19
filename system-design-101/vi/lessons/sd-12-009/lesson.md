@@ -51,6 +51,45 @@ Bài nguồn liệt kê năm bước xử lý thao tác và gọi tên ba thuậ
 
 </details>
 
+<details>
+<summary>Xem chương trình thử nghiệm</summary>
+
+Chương trình Python 3 (chỉ dùng thư viện chuẩn) đã in mọi kết quả của thử nghiệm biến đổi thao tác, kể cả 10.000 cặp thao tác ngẫu nhiên.
+
+```python
+# Two clients edit "ABC" concurrently. Insert-only operational transformation demo.
+import itertools, random
+def apply(doc, op):  # op = (pos, text, site)
+    p,t,_=op; return doc[:p]+t+doc[p:]
+def transform(op, other):
+    """transform op against concurrent other (both defined on the same base): shift op if other inserted before it; tie broken by site id"""
+    p,t,s=op; q,u,r=other
+    if q<p or (q==p and r<s): return (p+len(u),t,s)
+    return op
+base="ABC"
+a=(1,"X","A")   # site A inserts X at 1
+b=(2,"Y","B")   # site B inserts Y at 2
+# naive: each replica applies own op then the other's op unchanged
+ra=apply(apply(base,a),b); rb=apply(apply(base,b),a)
+print("naive  A:",ra,"B:",rb,"converged" if ra==rb else "DIVERGED")
+ta=apply(apply(base,a),transform(b,a)); tb=apply(apply(base,b),transform(a,b))
+print("OT     A:",ta,"B:",tb,"converged" if ta==tb else "DIVERGED")
+# random test: many pairs
+random.seed(1)
+bad_naive=bad_ot=0; N=10000
+for _ in range(N):
+    L=random.randint(0,6); doc="".join(random.choice("abcdef") for _ in range(L))
+    o1=(random.randint(0,L),random.choice("XYZ"),"A"); o2=(random.randint(0,L),random.choice("UVW"),"B")
+    if apply(apply(doc,o1),o2)!=apply(apply(doc,o2),o1): bad_naive+=1
+    if apply(apply(doc,o1),transform(o2,o1))!=apply(apply(doc,o2),transform(o1,o2)): bad_ot+=1
+print(f"random concurrent insert pairs: {N}; naive diverged {bad_naive}; OT diverged {bad_ot}")
+# same position tie
+c=(1,"X","A"); d=(1,"Y","B")
+print("same pos naive", apply(apply(base,c),d), apply(apply(base,d),c), "| OT", apply(apply(base,c),transform(d,c)), apply(apply(base,d),transform(c,d)))
+```
+
+</details>
+
 ## Nguồn đối chiếu
 
 - [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-to-design-google-docs.md): năm thành phần, ba thuật toán OT, DS, CRDT, và nhận định về Google Docs.

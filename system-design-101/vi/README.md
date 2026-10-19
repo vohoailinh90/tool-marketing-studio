@@ -225,6 +225,7 @@ Các bài chưa viết của nhóm này không có trong danh sách; số thứ 
 ## Hệ thống hoạt động thế nào?
 
 Các bài chưa viết của nhóm này không có trong danh sách; số thứ tự là vị trí của bài trong nhóm.
+
 6. [Ứng dụng chat đơn giản với Redis: kênh phát tin và tập có thứ tự](lessons/sd-12-006/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
 7. [Phát trực tiếp: video được cắt thành đoạn vài giây rồi đẩy ra ngay](lessons/sd-12-007/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
 8. [Quốc tế hóa một website bán hàng: năm mảng, và những chỗ máy làm giúp](lessons/sd-12-008/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.

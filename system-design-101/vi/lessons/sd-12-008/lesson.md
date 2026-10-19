@@ -57,6 +57,45 @@ Bài nguồn có một hình và năm mảng, mỗi mảng vài dòng. Bài này
 
 </details>
 
+<details>
+<summary>Xem chương trình thử nghiệm</summary>
+
+Chương trình Python 3 (cần thêm gói `Babel`, bản 2.18.0 khi viết bài) đã in mọi con số về định dạng, dạng số nhiều và múi giờ trong bài.
+
+```python
+from babel import Locale
+from babel.numbers import format_decimal, format_currency
+from babel.dates import format_datetime, format_date
+from babel.plural import PluralRule
+from datetime import datetime, timezone
+from zoneinfo import ZoneInfo
+n=1234567.891
+for loc in ("en_US","vi_VN","ja_JP","de_DE"):
+    print(loc, "|", format_decimal(n,locale=loc), "|", format_currency(1234.5,"USD",locale=loc), "|", format_currency(1234.5,"VND",locale=loc), "|", format_currency(1234.5,"JPY",locale=loc))
+d=datetime(2026,3,8,15,30,tzinfo=timezone.utc)
+for loc in ("en_US","vi_VN","ja_JP","de_DE"):
+    print(loc, "date|", format_date(d,format="short",locale=loc), "|", format_date(d,format="long",locale=loc))
+# plural categories
+for loc in ("en","vi","ja","ru","ar"):
+    print(loc, Locale(loc).plural_form.tags)
+# concatenation vs whole sentence: word order
+# Same instant in 3 zones, around a DST change
+inst=datetime(2026,3,8,6,30,tzinfo=timezone.utc)  # US DST starts 2026-03-08 07:00 UTC for New_York (2am local)
+for z in ("UTC","Asia/Ho_Chi_Minh","America/New_York","Asia/Tokyo"):
+    print(z, inst.astimezone(ZoneInfo(z)).isoformat())
+a=datetime(2026,3,8,6,59,tzinfo=timezone.utc).astimezone(ZoneInfo("America/New_York"))
+b=datetime(2026,3,8,7,1,tzinfo=timezone.utc).astimezone(ZoneInfo("America/New_York"))
+print("NY before/after", a.isoformat(), b.isoformat(), "gap minutes UTC=2, local diff:", (b.replace(tzinfo=None)-a.replace(tzinfo=None)).total_seconds()/60)
+# Hanoi has no DST
+print([datetime(2026,m,1,12,tzinfo=timezone.utc).astimezone(ZoneInfo("Asia/Ho_Chi_Minh")).utcoffset() for m in (1,7)])
+print([datetime(2026,m,1,12,tzinfo=timezone.utc).astimezone(ZoneInfo("America/New_York")).utcoffset() for m in (1,7)])
+# Naive concatenation example
+for loc,tpl in (("en","{n} items in {c}"),("ja","{c}に{n}個の商品")):
+    print(loc, tpl.format(n=3,c="giỏ"))
+```
+
+</details>
+
 ## Nguồn đối chiếu
 
 - [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-we-design-a-system-for-internationalization.md): năm mảng Language, Layout, Time zone, Currency, Company entity and accounting.

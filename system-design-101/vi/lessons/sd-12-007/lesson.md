@@ -58,6 +58,34 @@ Bài nguồn có tám bước đánh số và một danh sách giao thức. Bài
 
 </details>
 
+<details>
+<summary>Xem chương trình thử nghiệm</summary>
+
+Các lệnh dưới đây (bash và `ffmpeg` 6.1.1 có `libx264`) đã tạo ra các con số về số đoạn và kích thước. Số đoạn và kích thước trung bình của đoạn 2 giây và 6 giây chạy lại ra đúng như trong bài. Kích thước ba bản bitrate có thể lệch vài nghìn byte giữa các lần chạy vì bộ mã hóa chạy nhiều luồng, nhưng thứ tự và tỷ lệ giữa ba bản không đổi. Chạy trong một thư mục trống.
+
+```bash
+# ffmpeg 6.1.1 với libx264; video thử nghiệm 640x360, 30 hình/giây, kèm âm thanh sin
+for seg in 2 6; do
+  ffmpeg -hide_banner -loglevel error -y -f lavfi -i testsrc2=size=640x360:rate=30 -f lavfi -i sine=frequency=440:sample_rate=44100 \
+    -t 36 -c:v libx264 -preset veryfast -b:v 800k -g $((30*seg)) -keyint_min $((30*seg)) -sc_threshold 0 -c:a aac -b:a 64k \
+    -f hls -hls_time $seg -hls_playlist_type vod -hls_segment_filename "s${seg}_%03d.ts" "p${seg}.m3u8"
+  echo "đoạn $seg giây: $(ls s${seg}_*.ts | wc -l) đoạn"
+  ls -l s${seg}_*.ts | awk '{s+=$5; n++} END{print "trung bình", s/n, "byte"}'
+done
+# thang bitrate: ba bản của cùng 12 giây video
+for br in 300 800 2000; do
+  ffmpeg -hide_banner -loglevel error -y -f lavfi -i testsrc2=size=640x360:rate=30 -t 12 -c:v libx264 -preset veryfast \
+    -b:v ${br}k -maxrate ${br}k -bufsize $((br*2))k -an -g 60 -keyint_min 60 -sc_threshold 0 \
+    -f hls -hls_time 2 -hls_playlist_type vod -hls_segment_filename "r${br}_%03d.ts" "r${br}.m3u8"
+  echo "bản ${br}k: $(cat r${br}_*.ts | wc -c) byte cho 12 giây"
+done
+# cùng nguồn xuất theo chuẩn có tệp mô tả (mpd) và các đoạn .m4s
+ffmpeg -hide_banner -loglevel error -y -f lavfi -i testsrc2=size=640x360:rate=30 -t 12 -c:v libx264 -preset veryfast \
+  -b:v 800k -g 60 -keyint_min 60 -sc_threshold 0 -an -f dash -seg_duration 2 dash.mpd
+```
+
+</details>
+
 ## Nguồn đối chiếu
 
 - [ByteByteGo — bài nguồn tại commit cố định](https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/live-streaming-explained.md): các bước từ thu hình tới phát, ba giao thức RTMP, HLS, DASH.

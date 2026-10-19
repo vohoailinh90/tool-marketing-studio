@@ -26,13 +26,13 @@ Số đo là của hai lần chạy trên một container bốn lõi với Pytho
 
 ## Nhìn hình trả lời
 
-Một chương trình gọi hai mươi dịch vụ ngoài, mỗi lần gọi chủ yếu là chờ. Một chương trình khác nén ảnh, việc nào cũng đốt hết một lõi. Mỗi chương trình hợp với cách nào trong hình, và vì sao bốn luồng không giúp chương trình thứ hai?
+Một chương trình gọi hai mươi dịch vụ ngoài, mỗi lần gọi chủ yếu là chờ. Một chương trình khác nén ảnh bằng mã Python thuần, việc nào cũng đốt hết một lõi. Mỗi chương trình hợp với cách nào trong hình, và vì sao bốn luồng không giúp chương trình thứ hai?
 
 <details>
 <summary>Xem đáp án</summary>
 
 Chương trình gọi dịch vụ hợp với đồng thời (asyncio hoặc luồng): thời gian chờ chồng nhau, như bốn việc chờ từ 2,00 giây xuống 0,50 giây.
-Chương trình nén ảnh hợp với song song (nhiều tiến trình để hệ điều hành xếp lên nhiều lõi). Bốn luồng không giúp vì trong CPython có GIL, một thời điểm chỉ một luồng chạy mã Python, nên bốn luồng chỉ thay phiên nhau chứ không chạy mã Python cùng lúc, và việc chuyển qua lại còn tốn thêm thời gian.
+Chương trình nén ảnh bằng mã Python thuần hợp với song song (nhiều tiến trình để hệ điều hành xếp lên nhiều lõi). Bốn luồng không giúp vì trong CPython có GIL, một thời điểm chỉ một luồng chạy mã Python, nên bốn luồng chỉ thay phiên nhau chứ không chạy mã Python cùng lúc, và việc chuyển qua lại còn tốn thêm thời gian. Nếu việc nén chạy trong mã gốc của một thư viện có nhả GIL thì luồng vẫn có thể giúp được; thí nghiệm của bài chỉ đo vòng lặp Python thuần.
 
 </details>
 

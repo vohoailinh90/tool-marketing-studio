@@ -33,7 +33,7 @@ Nguồn kết thêm một ví dụ: nếu mỗi nút triển khai trên `EC2` v�
 |---|---|
 | Một nút | 90,0% |
 | Hai nút cùng chạy, chuyển tức thì, hỏng độc lập | 99,0% |
-| Như trên, nhưng một phần năm số lần hỏng xảy ra ở cả hai nút cùng lúc | 98,2% |
+| Như trên, nhưng 20% khả năng hỏng của mỗi nút đến từ một sự cố chung làm cả hai nút hỏng cùng lúc | 98,2% |
 | Chính và dự phòng, chuyển bằng tay mất 5 phút | 98,4% |
 | Chính và dự phòng, chuyển bằng tay mất 30 phút | 95,2% |
 | Chính và dự phòng, chuyển bằng tay mất 120 phút | 90,9% |
@@ -99,7 +99,7 @@ backup delay 120 0.9093
 
 ## Giới hạn cần nhớ
 
-Mô phỏng chỉ có hai nút, hỏng và sửa theo xác suất cố định mỗi phút, một mức "hỏng chung" cố định 20% do người biên soạn chọn; hệ thống thật có nhiều tầng, sửa chữa không đều, và có những lỗi (cấu hình sai, quá tải) không theo mô hình ấy. Kiểu chính và phụ (primary-secondary) không được mô phỏng: lượt ghi vẫn chỉ đi qua nút chính nên tính sẵn sàng ghi giống kiểu chính và dự phòng, còn nút phụ chỉ thêm khả năng đọc. Ví dụ 52,56 phút dùng năm 365 ngày; năm 365,25 ngày cho 52,60 phút, nên con số của nguồn đúng với độ chính xác của một phép làm tròn.
+Mô phỏng chỉ có hai nút, hỏng và sửa theo xác suất cố định mỗi phút, một mức "hỏng chung" cố định do người biên soạn chọn (20% khả năng hỏng của mỗi nút đến từ sự cố chung, nên mỗi nút vẫn chạy khoảng 90%; đây không phải 20% số sự cố của cả hệ thống); hệ thống thật có nhiều tầng, sửa chữa không đều, và có những lỗi (cấu hình sai, quá tải) không theo mô hình ấy. Kiểu chính và phụ (primary-secondary) không được mô phỏng: lượt ghi vẫn chỉ đi qua nút chính nên tính sẵn sàng ghi giống kiểu chính và dự phòng, còn nút phụ chỉ thêm khả năng đọc. Ví dụ 52,56 phút dùng năm 365 ngày; năm 365,25 ngày cho 52,60 phút, nên con số của nguồn đúng với độ chính xác của một phép làm tròn.
 
 ## Nhìn hình trả lời
 

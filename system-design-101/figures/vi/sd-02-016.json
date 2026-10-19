@@ -1,0 +1,55 @@
+{
+  "id": "sd-02-016",
+  "title": "Airbnb đi từ khối nguyên tới bốn tầng dịch vụ",
+  "subtitle": "Monorail trước, kiến trúc hướng dịch vụ sau.",
+  "desc": "Một khung trước, một khung sau. Trước: Monorail, khối nguyên Ruby on Rails lo cả máy khách và máy chủ, gặp vấn đề khi tăng trưởng quá nhanh. Sau: cổng chuyển yêu cầu tới bốn tầng dịch vụ từ dưới lên: dịch vụ dữ liệu là lối vào đọc ghi dữ liệu; dữ liệu dẫn xuất áp logic cơ bản; tầng giữa giữ logic quan trọng; trình bày gộp dữ liệu cho giao diện. Khung ba nêu ba điều cần nhớ.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Trước: Monorail",
+      "items": [
+        {
+          "name": "Một khối nguyên",
+          "role": "Ruby on Rails, lo cả máy khách lẫn máy chủ.",
+          "icon": "box"
+        },
+        {
+          "name": "Tăng trưởng quá nhanh",
+          "role": "Khối nguyên bắt đầu gặp vấn đề.",
+          "icon": "triangle-alert"
+        }
+      ]
+    },
+    {
+      "kind": "steps",
+      "heading": "Sau: bốn tầng dịch vụ, từ dưới lên",
+      "items": [
+        {
+          "title": "Dịch vụ dữ liệu",
+          "text": "Lối vào cho mọi thao tác đọc ghi dữ liệu."
+        },
+        {
+          "title": "Dữ liệu dẫn xuất",
+          "text": "Đọc từ dịch vụ dữ liệu, áp logic cơ bản."
+        },
+        {
+          "title": "Tầng giữa",
+          "text": "Logic nghiệp vụ quan trọng."
+        },
+        {
+          "title": "Trình bày",
+          "text": "Gộp dữ liệu, áp logic cho giao diện."
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Nhớ gì",
+      "items": [
+        "Máy khách gửi yêu cầu tới một cổng.",
+        "Dữ liệu chỉ được đọc ghi qua dịch vụ dữ liệu.",
+        "Sau khi chuyển xong, Monorail bị bỏ hẳn."
+      ]
+    }
+  ]
+}

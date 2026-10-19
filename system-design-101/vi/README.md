@@ -74,6 +74,11 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 10. [Twitter 1.0: năm tầng, mười ba cái tên](lessons/sd-02-010/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
 11. [Dòng "For You" của Twitter: từ 500 triệu tweet xuống một trang](lessons/sd-02-011/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
 12. [YouTube và VCU: con chip riêng cho việc chuyển mã video](lessons/sd-02-012/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+13. [Hệ thống thông báo: một cổng vào, nhiều kênh ra](lessons/sd-02-013/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+14. [Netflix và EVCache: một bộ đệm, bốn cách dùng](lessons/sd-02-014/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+15. [Netflix dùng sáu loại cơ sở dữ liệu, mỗi loại một việc](lessons/sd-02-015/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+16. [Airbnb: từ Monorail tới bốn tầng dịch vụ](lessons/sd-02-016/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+17. [Netflix gửi thông báo đẩy: sự kiện, ưu tiên, rồi từng loại thiết bị](lessons/sd-02-017/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
 
 ## AI và học máy
 

@@ -18,7 +18,7 @@ Bài nguồn chỉ liệt kê sáu giao thức phổ biến năm 2023 và trỏ 
 
 **Hỏi rồi đáp.** Bốn giao thức đầu cùng một nhịp: máy khách gửi yêu cầu, máy chủ trả lời, xong. Chúng khác nhau ở hình dạng của yêu cầu:
 - REST: địa chỉ chỉ tài nguyên, phương thức `GET`, `POST`... nói việc cần làm.
-- SOAP: mọi yêu cầu là một thông điệp văn bản có thẻ, theo khuôn, kèm một bản mô tả dịch vụ.
+- SOAP: mọi yêu cầu là một thông điệp văn bản có thẻ, theo khuôn. Bản mô tả dịch vụ, nếu có, được công bố riêng như một hợp đồng; nó không đi kèm từng yêu cầu.
 - GraphQL: máy khách gửi một truy vấn nói rõ cần những trường nào, máy chủ trả đúng các trường đó.
 - gRPC: hai bên dùng chung định nghĩa hàm và kiểu dữ liệu; thông điệp được mã hóa nhị phân.
 

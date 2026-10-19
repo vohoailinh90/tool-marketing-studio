@@ -3,7 +3,7 @@
 **Hàng đợi chặn bắt luồng đứng đợi khi việc chưa làm được ngay; hàng đợi không chặn không bắt ai đợi mà để luồng thua một lượt thì thử lại. Khác biệt đó quyết định chuyện treo luồng và khóa chết.**
 Bài nguồn bắt đầu từ chính bộ từ vựng hay gây nhầm: chặn, không chặn, không bị bỏ đói, wait-free. Bài này giữ đúng các tên đó, rồi giải thích từng ý bằng mã nguồn và tài liệu của thư viện Java.
 
-![Bốn nhóm xếp dọc. Hàng đợi chặn, một chuỗi tin: luồng B lấy phần tử nhưng hàng đang trống nên phải đợi; luồng A thêm một phần tử; hàng đợi giao phần tử cho B. Hàng đợi không chặn, một chuỗi tin: luồng A gắn nút cuối bằng CAS; luồng B cùng lúc gắn nút bằng CAS; B thua CAS, đọc lại rồi thử tiếp. Hai tính chất: không bị bỏ đói nghĩa là luồng nào cũng có lúc được truy cập tài nguyên chia sẻ; wait-free nghĩa là mỗi luồng xong việc trong số bước hữu hạn. Khung cuối nêu ba điều cần nhớ về hàng đợi không chặn: không treo luồng, không có khóa nên không khóa chết, dựng bằng CAS.](../../diagrams/sd-10-010-main.svg)
+![Bốn nhóm xếp dọc. Hàng đợi chặn, một chuỗi tin: luồng B lấy phần tử nhưng hàng đang trống nên phải đợi; luồng A thêm một phần tử; hàng đợi giao phần tử cho B. Hàng đợi không chặn, một chuỗi tin: luồng A gắn nút cuối bằng CAS; luồng B cùng lúc gắn nút bằng CAS; B thua CAS, đọc lại rồi thử tiếp. Hai tính chất: không bị bỏ đói nghĩa là luồng nào cũng có lúc được truy cập tài nguyên chia sẻ; wait-free nghĩa là mỗi thao tác xong trong số bước hữu hạn, bất kể luồng khác. Khung cuối nêu ba điều cần nhớ về hàng đợi không chặn: không treo luồng, không có khóa nên không khóa chết, dựng bằng CAS.](../../diagrams/sd-10-010-main.svg)
 
 ## Từ viết tắt
 
@@ -20,7 +20,7 @@ Cả cách kể bằng hai chuỗi tin lẫn lời giải thích dưới đây l
 
 **Không chặn.** Lớp `ConcurrentLinkedQueue` ghi trong tài liệu là dùng một thuật toán không chặn hiệu quả, dựa trên bài báo của Michael và Scott. Mã của `offer` cho thấy cách làm: luồng đọc nút cuối, rồi dùng CAS (`compareAndSet`) để gắn nút mới vào sau nút đó. Nếu CAS thất bại vì luồng khác vừa gắn trước, chú thích trong mã ghi "lost CAS race", luồng đọc lại và lặp lại vòng thử. Không có luồng nào bị bắt đợi một khóa; hàm `offer` cũng không bao giờ trả `false` vì hàng không có giới hạn.
 
-**Hai tính chất.** Bị bỏ đói (starvation) là khi một luồng không giành được quyền truy cập tài nguyên chia sẻ nên không tiến lên được; không bị bỏ đói nghĩa là điều đó không xảy ra. Wait-free nghĩa là mỗi luồng xong việc trong số bước hữu hạn. Đây là các định nghĩa chung, không nằm trong tài liệu JDK, nên chúng là kiến thức chung của người biên soạn.
+**Hai tính chất.** Bị bỏ đói (starvation) là khi một luồng không giành được quyền truy cập tài nguyên chia sẻ nên không tiến lên được; không bị bỏ đói nghĩa là điều đó không xảy ra. Wait-free nghĩa là mỗi thao tác xong trong một số bước hữu hạn của chính luồng đó, bất kể các luồng khác chạy nhanh hay chậm, dừng hay tiến lên. Đây là các định nghĩa chung, không nằm trong tài liệu JDK, nên chúng là kiến thức chung của người biên soạn.
 
 **Gặp lại trong thư viện Java.** Cả hai loại đều có sẵn: `LinkedBlockingQueue` là hàng đợi chặn dùng hai khóa, còn `ConcurrentLinkedQueue` là hàng đợi không chặn dùng CAS.
 

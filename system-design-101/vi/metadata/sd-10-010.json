@@ -84,7 +84,7 @@
       "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
     },
     {
-      "claim_vi": "The definitions of starvation (a thread cannot get access to a shared resource and cannot proceed) and wait-free (every thread finishes in a finite number of steps), and the remark that the source's formula wait-free = non-blocking + starvation-free is not checked in the JDK documentation.",
+      "claim_vi": "The definitions of starvation (a thread cannot get access to a shared resource and cannot proceed) and wait-free (every operation finishes in a finite number of its own steps, regardless of the speed or progress of other threads), and the remark that the source's formula wait-free = non-blocking + starvation-free is not checked in the JDK documentation.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/blocking-vs-non-blocking-queue.md",
       "section": "Terminology",
       "verified_by": "Author's general knowledge; not checked against primary documentation."

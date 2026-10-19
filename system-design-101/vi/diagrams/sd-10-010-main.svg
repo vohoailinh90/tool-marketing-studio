@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1542" viewBox="0 0 320 1542" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1562" viewBox="0 0 320 1562" role="img" aria-labelledby="title desc">
 <title id="title">Hàng đợi chặn và không chặn</title>
 <desc id="desc">Bốn nhóm xếp dọc. Hàng đợi chặn: luồng B lấy phần tử nhưng hàng đang trống nên phải đợi, luồng A thêm phần tử thì B được giao nó. Hàng đợi không chặn: hai luồng cùng gắn nút vào cuối hàng bằng CAS, luồng thua đọc lại rồi thử tiếp. Hai tính chất: không bị bỏ đói và wait-free. Ba điều cần nhớ về hàng đợi không chặn: không treo luồng, không có khóa nên không khóa chết, dựng bằng CAS.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="1542" fill="#f8fafc"/>
+<rect width="320" height="1562" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Hàng đợi chặn và không</text>
 <text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">chặn</text>
@@ -65,7 +65,7 @@
 <text x="209" y="930.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">lại, thử</text>
 <text x="209" y="949.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">tiếp</text>
 <polyline points="161,963 255,963" fill="none" stroke="#334155" stroke-width="1.8" stroke-dasharray="5 4" stroke-linejoin="round" marker-end="url(#arrow)"/>
-<rect x="8" y="995" width="304" height="265" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="8" y="995" width="304" height="285" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
 <text x="20" y="1023.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Hai tính chất</text>
 <rect x="20" y="1040" width="280" height="107" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
 <circle cx="50" cy="1093.5" r="18" fill="#b45309"/><g transform="translate(39.2 1082.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m16 9-5.5 5.5L8 12"/></g>
@@ -73,27 +73,28 @@
 <text x="78" y="1090.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Luồng nào cũng có lúc</text>
 <text x="78" y="1109.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">được truy cập tài nguyên</text>
 <text x="78" y="1129.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chia sẻ.</text>
-<rect x="20" y="1161" width="280" height="87" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
-<circle cx="50" cy="1204.5" r="18" fill="#b45309"/><g transform="translate(39.2 1193.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></g>
+<rect x="20" y="1161" width="280" height="107" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="50" cy="1214.5" r="18" fill="#b45309"/><g transform="translate(39.2 1203.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></g>
 <text x="78" y="1187.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Wait-free</text>
-<text x="78" y="1211.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mỗi luồng xong việc trong</text>
-<text x="78" y="1230.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">số bước hữu hạn.</text>
-<rect x="8" y="1272" width="304" height="262" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
-<text x="20" y="1300.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Hàng đợi không chặn</text>
-<rect x="20" y="1317" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
-<circle cx="43" cy="1340" r="11" fill="#16a34a"/>
-<polyline points="37.9,1340.4 41.7,1344.4 48.5,1336" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="1343.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Không treo luồng: không ai</text>
-<text x="64" y="1362.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đợi một khóa.</text>
-<rect x="20" y="1388" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
-<circle cx="43" cy="1411" r="11" fill="#16a34a"/>
-<polyline points="37.9,1411.4 41.7,1415.4 48.5,1407" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="1414.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Không có khóa để giữ, nên</text>
-<text x="64" y="1433.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">không khóa chết.</text>
-<rect x="20" y="1459" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
-<circle cx="43" cy="1482" r="11" fill="#16a34a"/>
-<polyline points="37.9,1482.4 41.7,1486.4 48.5,1478" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="1485.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Dựng bằng CAS: ghi nếu giá</text>
-<text x="64" y="1504.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trị chưa đổi.</text>
+<text x="78" y="1211.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mỗi thao tác xong trong số</text>
+<text x="78" y="1230.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bước hữu hạn, bất kể</text>
+<text x="78" y="1250.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">luồng khác.</text>
+<rect x="8" y="1292" width="304" height="262" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="1320.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Hàng đợi không chặn</text>
+<rect x="20" y="1337" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1360" r="11" fill="#16a34a"/>
+<polyline points="37.9,1360.4 41.7,1364.4 48.5,1356" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1363.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Không treo luồng: không ai</text>
+<text x="64" y="1382.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đợi một khóa.</text>
+<rect x="20" y="1408" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1431" r="11" fill="#16a34a"/>
+<polyline points="37.9,1431.4 41.7,1435.4 48.5,1427" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1434.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Không có khóa để giữ, nên</text>
+<text x="64" y="1453.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">không khóa chết.</text>
+<rect x="20" y="1479" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1502" r="11" fill="#16a34a"/>
+<polyline points="37.9,1502.4 41.7,1506.4 48.5,1498" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1505.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Dựng bằng CAS: ghi nếu giá</text>
+<text x="64" y="1524.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trị chưa đổi.</text>
 </g>
 </svg>

@@ -17,7 +17,7 @@
                   {"from": 1, "to": 2, "text": "B thua CAS, đọc lại, thử tiếp", "reply": true}]},
     {"kind": "parts", "heading": "Hai tính chất",
      "items": [{"name": "Không bị bỏ đói", "role": "Luồng nào cũng có lúc được truy cập tài nguyên chia sẻ.", "icon": "circle-check"},
-               {"name": "Wait-free", "role": "Mỗi luồng xong việc trong số bước hữu hạn.", "icon": "gauge"}]},
+               {"name": "Wait-free", "role": "Mỗi thao tác xong trong số bước hữu hạn, bất kể luồng khác.", "icon": "gauge"}]},
     {"kind": "notes", "heading": "Hàng đợi không chặn",
      "items": ["Không treo luồng: không ai đợi một khóa.", "Không có khóa để giữ, nên không khóa chết.", "Dựng bằng CAS: ghi nếu giá trị chưa đổi."]}
   ]

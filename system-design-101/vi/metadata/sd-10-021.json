@@ -96,5 +96,5 @@
     "The source body text only explains the star scale and gives advice; the list of algorithms is in the source image, which the lesson does not use.",
     "The lesson adds three examples (Bloom filter and consistent hashing in Cassandra, Raft in etcd-io/raft) written from those projects' documentation to illustrate the source's advice; they are not in the source and carry no star rating."
   ],
-  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích thêm là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Ba ví dụ thêm (Bloom filter và consistent hashing trong Cassandra, Raft trong etcd-io/raft) đã được đối chiếu với tài liệu của các dự án ở commit đã ghim; chỉ các câu giải nghĩa từ viết tắt là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
 }

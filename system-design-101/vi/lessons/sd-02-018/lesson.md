@@ -10,6 +10,8 @@ Bài này đọc hình theo đường đi của một yêu cầu: từ ứng d�
 - **CI** (Continuous Integration) — tích hợp liên tục: mỗi thay đổi mã được tự động build và kiểm thử.
 - **CD** (Continuous Delivery) — chuyển giao liên tục: bản đã kiểm thử được tự động đưa tới bước phát hành.
 - **QL** (Query Language) — ngôn ngữ truy vấn: chữ QL trong tên GraphQL, cho biết đây là cách để ứng dụng mô tả dữ liệu mình muốn lấy.
+- **EV** (Ephemeral Volatile) — tạm thời, dễ mất: chữ EV trong tên EVCache, bộ nhớ đệm của Netflix; dữ liệu trong đó có thể mất và được nạp lại.
+- **DB** (DataBase) — cơ sở dữ liệu: kho lưu dữ liệu có tổ chức để ghi và tìm lại nhanh; có trong tên CockroachDB.
 
 ## Đọc hình
 

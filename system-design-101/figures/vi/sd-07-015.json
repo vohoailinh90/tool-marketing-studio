@@ -1,0 +1,75 @@
+{
+  "id": "sd-07-015",
+  "title": "Đổi 100 đô la thành 88 euro",
+  "subtitle": "PayPal đổi tiền qua ngân hàng ngoại hối, thị trường có ba tầng.",
+  "desc": "Ba khung. Khung một và hai, sáu bước: Bob gửi 100 đô la qua PayPal từ ngân hàng B; PayPal gửi 100 đô la tới tài khoản đô la của nó ở ngân hàng E, nơi đổi tiền; 100 đô la được bán vào quỹ tiền của ngân hàng E; quỹ trả 88 euro vào tài khoản euro của PayPal ở ngân hàng E; 88 euro về tài khoản euro của PayPal ở ngân hàng P2; PayPal trả 88 euro vào tài khoản euro của Alice ở ngân hàng A. Khung ba, thị trường ngoại hối có ba tầng: tầng bán lẻ, tầng bán buôn và các bên ở tầng trên cùng; khi quỹ cần thêm euro thì đi lên tầng trên.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Bước 1 đến 3: đô la đi",
+      "items": [
+        {
+          "title": "Bob gửi 100 đô la",
+          "text": "Qua PayPal, vào ngân hàng P1."
+        },
+        {
+          "title": "Sang ngân hàng E",
+          "text": "PayPal gửi 100 đô la tới ngân hàng E."
+        },
+        {
+          "title": "Bán đô la",
+          "text": "Bán vào quỹ tiền của ngân hàng E."
+        }
+      ]
+    },
+    {
+      "kind": "steps",
+      "heading": "Bước 4 đến 6: euro về",
+      "items": [
+        {
+          "title": "Nhận euro",
+          "text": "Quỹ trả 88 euro cho PayPal ở ngân hàng E."
+        },
+        {
+          "title": "Về ngân hàng P2",
+          "text": "88 euro vào tài khoản euro ở P2."
+        },
+        {
+          "title": "Trả Alice",
+          "text": "88 euro vào tài khoản của Alice."
+        }
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Thị trường ngoại hối có ba tầng",
+      "items": [
+        {
+          "name": "Tầng bán lẻ",
+          "role": "Có quỹ tiền; PayPal thường mua trước ngoại tệ.",
+          "icon": "store"
+        },
+        {
+          "name": "Tầng bán buôn",
+          "role": "Ngân hàng đầu tư, ngân hàng thương mại, nhà cung cấp ngoại hối.",
+          "icon": "boxes"
+        },
+        {
+          "name": "Tầng trên cùng",
+          "role": "Ngân hàng thương mại đa quốc gia giữ nhiều loại tiền.",
+          "icon": "globe"
+        }
+      ],
+      "flow": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ]
+      ]
+    }
+  ]
+}

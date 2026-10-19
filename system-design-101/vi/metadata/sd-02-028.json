@@ -1,0 +1,93 @@
+{
+  "id": "sd-02-028",
+  "title_vi": "API của Netflix qua bốn giai đoạn",
+  "language": "vi",
+  "kind": "timeline",
+  "content_status": "draft",
+  "source_ref": "sd-02-028",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/evolution-of-the-netflix-api-architecture.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/evolution-of-the-netflix-api-architecture.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "5e25858555ef20adfdfca6c1c853f417e89e14aa",
+    "retrieved_body_sha256": "43ff70e79f0ab607951dd7c1c80e6eee2c9a61358620bdad0eb7a6f95fcae212",
+    "retrieved_body_bytes": 1340
+  },
+  "diagram": "../diagrams/sd-02-028-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-02-021",
+      "relation": "see_also",
+      "reason_vi": "Cùng câu chuyện Netflix, đọc theo ba đời Java."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-19"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "source_claims_listed_with_the_pinned_source; the author's general-knowledge glosses are not checked against primary documentation"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending",
+      "reason": "figure text measured in Chromium by scripts.figures check --browser (14 px at a 375 px screen); no whole-lesson render at 320, 375 and 430 px recorded"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "The Netflix API architecture went through four main stages.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/evolution-of-the-netflix-api-architecture.md",
+      "section": "Đọc hình",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Monolith: packaged and deployed as one unit, such as a Java WAR file or a Rails app; most startups begin this way.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/evolution-of-the-netflix-api-architecture.md",
+      "section": "Đọc hình",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Direct access: client apps call microservices directly, which is not ideal with hundreds or thousands of them.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/evolution-of-the-netflix-api-architecture.md",
+      "section": "Đọc hình",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Gateway aggregation layer: combines several services (movie, production, talent) to render one screen.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/evolution-of-the-netflix-api-architecture.md",
+      "section": "Đọc hình",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Federated gateway: GraphQL federation gives one GraphQL gateway that fetches from all other APIs as developers and domain complexity grew.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/evolution-of-the-netflix-api-architecture.md",
+      "section": "Đọc hình",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Why clients should not call services directly, and what federation splits between teams.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/evolution-of-the-netflix-api-architecture.md",
+      "section": "Xem sâu hơn",
+      "verified_by": "Author's general knowledge; not checked against primary documentation."
+    }
+  ],
+  "design_notes_vi": "Bốn bước nối nhau và một khung nhớ gì. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "The source gives no dates for the stages.",
+    "Netflix's own engineering posts were not opened."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích thêm là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
+}

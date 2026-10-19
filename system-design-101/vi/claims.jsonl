@@ -98,7 +98,7 @@
 
 {"id": "sd-01-049", "status": "written", "title": "The Ultimate API Learning Roadmap", "owner": "codex/sd01-049-api-learning", "done_at": "2026-10-16T11:02:15Z"}
 
-{"id": "sd-01-050", "status": "todo", "title": "The Evolving Landscape of API Protocols in 2023"}
+{"id": "sd-01-050", "status": "written", "title": "The Evolving Landscape of API Protocols in 2023", "owner": "claude/sd101-lessons-w6-1", "session": "cse_01McBLtMnJbTnB94NeVs8a2V", "done_at": "2026-10-19T02:05:18Z", "pr": 174}
 
 {"id": "sd-02-001", "status": "written", "title": "100X Postgres Scaling at Figma", "owner": "claude/jolly-mccarthy-2uzq4r", "session": "cse_01EbYAEE9a75vTNtJYvDraXM", "done_at": "2026-10-16T10:44:54Z", "pr": 102}
 
@@ -106,63 +106,63 @@
 
 {"id": "sd-02-003", "status": "written", "title": "The one-line change that reduced clone times by 99% at Pinterest", "owner": "claude/jolly-mccarthy-2uzq4r", "session": "cse_01EbYAEE9a75vTNtJYvDraXM", "done_at": "2026-10-16T10:44:54Z", "pr": 102}
 
-{"id": "sd-02-004", "status": "todo", "title": "Is Telegram Secure?"}
+{"id": "sd-02-004", "status": "written", "title": "Is Telegram Secure?", "owner": "claude/sd101-lessons-w6-1", "session": "cse_01McBLtMnJbTnB94NeVs8a2V", "done_at": "2026-10-19T02:05:18Z", "pr": 174}
 
-{"id": "sd-02-005", "status": "todo", "title": "Fixing Bugs Automatically at Meta Scale"}
+{"id": "sd-02-005", "status": "written", "title": "Fixing Bugs Automatically at Meta Scale", "owner": "claude/sd101-lessons-w6-1", "session": "cse_01McBLtMnJbTnB94NeVs8a2V", "done_at": "2026-10-19T02:05:18Z", "pr": 174}
 
-{"id": "sd-02-006", "status": "todo", "title": "How Levelsfyi Scaled to Millions of Users with Google Sheets"}
+{"id": "sd-02-006", "status": "written", "title": "How Levelsfyi Scaled to Millions of Users with Google Sheets", "owner": "claude/sd101-lessons-w6-1", "session": "cse_01McBLtMnJbTnB94NeVs8a2V", "done_at": "2026-10-19T02:05:18Z", "pr": 174}
 
-{"id": "sd-02-007", "status": "todo", "title": "McDonald’s Event-Driven Architecture"}
+{"id": "sd-02-007", "status": "written", "title": "McDonald’s Event-Driven Architecture", "owner": "claude/sd101-lessons-w6-1", "session": "cse_01McBLtMnJbTnB94NeVs8a2V", "done_at": "2026-10-19T02:05:18Z", "pr": 174}
 
-{"id": "sd-02-008", "status": "todo", "title": "Uber Tech Stack - CI/CD"}
+{"id": "sd-02-008", "status": "written", "title": "Uber Tech Stack - CI/CD", "owner": "claude/sd101-lessons-w6-2", "session": "cse_01McBLtMnJbTnB94NeVs8a2V", "done_at": "2026-10-19T02:30:27Z", "pr": 176}
 
-{"id": "sd-02-009", "status": "todo", "title": "How to Design Stack Overflow"}
+{"id": "sd-02-009", "status": "written", "title": "How to Design Stack Overflow", "owner": "claude/sd101-lessons-w6-2", "session": "cse_01McBLtMnJbTnB94NeVs8a2V", "done_at": "2026-10-19T02:30:27Z", "pr": 176}
 
-{"id": "sd-02-010", "status": "todo", "title": "Twitter 1.0 Tech Stack"}
+{"id": "sd-02-010", "status": "written", "title": "Twitter 1.0 Tech Stack", "owner": "claude/sd101-lessons-w6-2", "session": "cse_01McBLtMnJbTnB94NeVs8a2V", "done_at": "2026-10-19T02:30:27Z", "pr": 176}
 
-{"id": "sd-02-011", "status": "todo", "title": "How does Twitter recommend “For You” Timeline in 1.5 seconds?"}
+{"id": "sd-02-011", "status": "written", "title": "How does Twitter recommend “For You” Timeline in 1.5 seconds?", "owner": "claude/sd101-lessons-w6-2", "session": "cse_01McBLtMnJbTnB94NeVs8a2V", "done_at": "2026-10-19T02:30:27Z", "pr": 176}
 
-{"id": "sd-02-012", "status": "todo", "title": "How YouTube Handles Massive Video Uploads"}
+{"id": "sd-02-012", "status": "written", "title": "How YouTube Handles Massive Video Uploads", "owner": "claude/sd101-lessons-w6-2", "session": "cse_01McBLtMnJbTnB94NeVs8a2V", "done_at": "2026-10-19T02:30:27Z", "pr": 176}
 
-{"id": "sd-02-013", "status": "todo", "title": "How Does a Typical Push Notification System Work?"}
+{"id": "sd-02-013", "status": "written", "title": "How Does a Typical Push Notification System Work?", "owner": "claude/sd101-lessons-w6-3", "session": "cse_01McBLtMnJbTnB94NeVs8a2V", "done_at": "2026-10-19T02:56:39Z", "pr": 180}
 
-{"id": "sd-02-014", "status": "todo", "title": "4 Ways Netflix Uses Caching"}
+{"id": "sd-02-014", "status": "written", "title": "4 Ways Netflix Uses Caching", "owner": "claude/sd101-lessons-w6-3", "session": "cse_01McBLtMnJbTnB94NeVs8a2V", "done_at": "2026-10-19T02:56:39Z", "pr": 180}
 
-{"id": "sd-02-015", "status": "todo", "title": "Netflix Tech Stack - Databases"}
+{"id": "sd-02-015", "status": "written", "title": "Netflix Tech Stack - Databases", "owner": "claude/sd101-lessons-w6-3", "session": "cse_01McBLtMnJbTnB94NeVs8a2V", "done_at": "2026-10-19T02:56:39Z", "pr": 180}
 
-{"id": "sd-02-016", "status": "todo", "title": "0 to 1.5 Billion Guests: Airbnb's Architectural Evolution"}
+{"id": "sd-02-016", "status": "written", "title": "0 to 1.5 Billion Guests: Airbnb's Architectural Evolution", "owner": "claude/sd101-lessons-w6-3", "session": "cse_01McBLtMnJbTnB94NeVs8a2V", "done_at": "2026-10-19T02:56:39Z", "pr": 180}
 
-{"id": "sd-02-017", "status": "todo", "title": "How Netflix Scales Push Messaging"}
+{"id": "sd-02-017", "status": "written", "title": "How Netflix Scales Push Messaging", "owner": "claude/sd101-lessons-w6-3", "session": "cse_01McBLtMnJbTnB94NeVs8a2V", "done_at": "2026-10-19T02:56:39Z", "pr": 180}
 
-{"id": "sd-02-018", "status": "todo", "title": "Netflix's Overall Architecture"}
+{"id": "sd-02-018", "status": "written", "title": "Netflix's Overall Architecture", "owner": "claude/sd101-lessons-w6-4", "session": "cse_01McBLtMnJbTnB94NeVs8a2V", "done_at": "2026-10-19T03:26:24Z", "pr": 182}
 
-{"id": "sd-02-019", "status": "todo", "title": "Netflix Tech Stack - CI/CD Pipeline"}
+{"id": "sd-02-019", "status": "written", "title": "Netflix Tech Stack - CI/CD Pipeline", "owner": "claude/sd101-lessons-w6-4", "session": "cse_01McBLtMnJbTnB94NeVs8a2V", "shared_source": true, "done_at": "2026-10-19T03:26:24Z", "pr": 182}
 
-{"id": "sd-02-020", "status": "todo", "title": "How TikTok Manages a 200K File Frontend MonoRepo"}
+{"id": "sd-02-020", "status": "written", "title": "How TikTok Manages a 200K File Frontend MonoRepo", "owner": "claude/sd101-lessons-w6-4", "session": "cse_01McBLtMnJbTnB94NeVs8a2V", "done_at": "2026-10-19T03:26:24Z", "pr": 182}
 
-{"id": "sd-02-021", "status": "todo", "title": "How Netflix Really Uses Java"}
+{"id": "sd-02-021", "status": "written", "title": "How Netflix Really Uses Java", "owner": "claude/sd101-lessons-w6-4", "session": "cse_01McBLtMnJbTnB94NeVs8a2V", "done_at": "2026-10-19T03:26:24Z", "pr": 182}
 
-{"id": "sd-02-022", "status": "todo", "title": "Evolution of Airbnb’s Microservice Architecture"}
+{"id": "sd-02-022", "status": "written", "title": "Evolution of Airbnb’s Microservice Architecture", "owner": "claude/sd101-lessons-w6-4", "session": "cse_01McBLtMnJbTnB94NeVs8a2V", "done_at": "2026-10-19T03:26:24Z", "pr": 182}
 
-{"id": "sd-02-023", "status": "todo", "title": "Reddit's Core Architecture"}
+{"id": "sd-02-023", "status": "written", "title": "Reddit's Core Architecture", "owner": "claude/sd101-lessons-w6-5", "session": "cse_01McBLtMnJbTnB94NeVs8a2V", "done_at": "2026-10-19T03:58:47Z", "pr": 185}
 
-{"id": "sd-02-024", "status": "todo", "title": "10 Principles for Building Resilient Payment Systems"}
+{"id": "sd-02-024", "status": "written", "title": "10 Principles for Building Resilient Payment Systems", "owner": "claude/sd101-lessons-w6-5", "session": "cse_01McBLtMnJbTnB94NeVs8a2V", "done_at": "2026-10-19T03:58:47Z", "pr": 185}
 
-{"id": "sd-02-025", "status": "todo", "title": "What is the Journey of a Slack Message?"}
+{"id": "sd-02-025", "status": "written", "title": "What is the Journey of a Slack Message?", "owner": "claude/sd101-lessons-w6-5", "session": "cse_01McBLtMnJbTnB94NeVs8a2V", "done_at": "2026-10-19T03:58:47Z", "pr": 185}
 
-{"id": "sd-02-026", "status": "todo", "title": "Top 9 Engineering Blogs"}
+{"id": "sd-02-026", "status": "written", "title": "Top 9 Engineering Blogs", "owner": "claude/sd101-lessons-w6-5", "session": "cse_01McBLtMnJbTnB94NeVs8a2V", "done_at": "2026-10-19T03:58:47Z", "pr": 185}
 
-{"id": "sd-02-027", "status": "todo", "title": "Uber Tech Stack"}
+{"id": "sd-02-027", "status": "written", "title": "Uber Tech Stack", "owner": "claude/sd101-lessons-w6-5", "session": "cse_01McBLtMnJbTnB94NeVs8a2V", "done_at": "2026-10-19T03:58:47Z", "pr": 185}
 
-{"id": "sd-02-028", "status": "todo", "title": "Evolution of the Netflix API Architecture"}
+{"id": "sd-02-028", "status": "written", "title": "Evolution of the Netflix API Architecture", "owner": "claude/sd101-lessons-w6-6", "session": "cse_01McBLtMnJbTnB94NeVs8a2V", "done_at": "2026-10-19T04:19:53Z", "pr": 186}
 
-{"id": "sd-02-029", "status": "todo", "title": "How Discord Stores Trillions of Messages"}
+{"id": "sd-02-029", "status": "written", "title": "How Discord Stores Trillions of Messages", "owner": "claude/sd101-lessons-w6-6", "session": "cse_01McBLtMnJbTnB94NeVs8a2V", "done_at": "2026-10-19T04:19:53Z", "pr": 186}
 
 {"id": "sd-02-030", "status": "todo", "title": "Twitter Architecture 2022 vs. 2012"}
 
-{"id": "sd-02-031", "status": "todo", "title": "Evolution of Uber's API Layer"}
+{"id": "sd-02-031", "status": "written", "title": "Evolution of Uber's API Layer", "owner": "claude/sd101-lessons-w6-6", "session": "cse_01McBLtMnJbTnB94NeVs8a2V", "done_at": "2026-10-19T04:19:53Z", "pr": 186}
 
-{"id": "sd-02-032", "status": "todo", "title": "Netflix's Tech Stack"}
+{"id": "sd-02-032", "status": "written", "title": "Netflix's Tech Stack", "owner": "claude/sd101-lessons-w6-6", "session": "cse_01McBLtMnJbTnB94NeVs8a2V", "done_at": "2026-10-19T04:19:53Z", "pr": 186}
 
 {"id": "sd-03-001", "status": "written", "title": "5 Functions to Merge Data with Pandas"}
 
@@ -342,45 +342,45 @@
 
 {"id": "sd-06-029", "status": "todo", "title": "Learn Cache"}
 
-{"id": "sd-07-001", "status": "todo", "title": "E-commerce Workflow"}
+{"id": "sd-07-001", "status": "written", "title": "E-commerce Workflow", "owner": "claude/sd101-lessons-w7-1", "session": "cse_01C1SaH6cnt22FTK5D8YYaoH", "done_at": "2026-10-19T02:55:05Z", "pr": 179}
 
-{"id": "sd-07-002", "status": "todo", "title": "Digital Wallets: Banks vs. Blockchain"}
+{"id": "sd-07-002", "status": "written", "title": "Digital Wallets: Banks vs. Blockchain", "owner": "claude/sd101-lessons-w7-1", "session": "cse_01C1SaH6cnt22FTK5D8YYaoH", "done_at": "2026-10-19T02:55:05Z", "pr": 179}
 
-{"id": "sd-07-003", "status": "todo", "title": "What is a Stop-Loss Order and How Does it Work?"}
+{"id": "sd-07-003", "status": "written", "title": "What is a Stop-Loss Order and How Does it Work?", "owner": "claude/sd101-lessons-w7-1", "session": "cse_01C1SaH6cnt22FTK5D8YYaoH", "done_at": "2026-10-19T02:55:05Z", "pr": 179}
 
-{"id": "sd-07-004", "status": "todo", "title": "What is Web 3.0? Why doesn't it have ads?"}
+{"id": "sd-07-004", "status": "written", "title": "What is Web 3.0? Why doesn't it have ads?", "owner": "claude/sd101-lessons-w7-1", "session": "cse_01C1SaH6cnt22FTK5D8YYaoH", "done_at": "2026-10-19T02:55:05Z", "pr": 179}
 
-{"id": "sd-07-005", "status": "todo", "title": "SWIFT Payment Messaging System"}
+{"id": "sd-07-005", "status": "written", "title": "SWIFT Payment Messaging System", "owner": "claude/sd101-lessons-w7-1", "session": "cse_01C1SaH6cnt22FTK5D8YYaoH", "done_at": "2026-10-19T02:55:05Z", "pr": 179}
 
-{"id": "sd-07-006", "status": "todo", "title": "4 Ways of QR Code Payment"}
+{"id": "sd-07-006", "status": "written", "title": "4 Ways of QR Code Payment", "owner": "claude/sd101-lessons-w7-2", "session": "cse_01C1SaH6cnt22FTK5D8YYaoH", "done_at": "2026-10-19T03:19:45Z", "pr": 181}
 
-{"id": "sd-07-007", "status": "todo", "title": "Handling Hotspot Accounts"}
+{"id": "sd-07-007", "status": "written", "title": "Handling Hotspot Accounts", "owner": "claude/sd101-lessons-w7-2", "session": "cse_01C1SaH6cnt22FTK5D8YYaoH", "done_at": "2026-10-19T03:19:45Z", "pr": 181}
 
-{"id": "sd-07-008", "status": "todo", "title": "Reconciliation in Payment"}
+{"id": "sd-07-008", "status": "written", "title": "Reconciliation in Payment", "owner": "claude/sd101-lessons-w7-2", "session": "cse_01C1SaH6cnt22FTK5D8YYaoH", "done_at": "2026-10-19T03:19:45Z", "pr": 181}
 
-{"id": "sd-07-009", "status": "todo", "title": "Unified Payments Interface (UPI)"}
+{"id": "sd-07-009", "status": "written", "title": "Unified Payments Interface (UPI)", "owner": "claude/sd101-lessons-w7-2", "session": "cse_01C1SaH6cnt22FTK5D8YYaoH", "done_at": "2026-10-19T03:19:45Z", "pr": 181}
 
-{"id": "sd-07-010", "status": "todo", "title": "How Scan to Pay Works"}
+{"id": "sd-07-010", "status": "written", "title": "How Scan to Pay Works", "owner": "claude/sd101-lessons-w7-2", "session": "cse_01C1SaH6cnt22FTK5D8YYaoH", "done_at": "2026-10-19T03:19:45Z", "pr": 181}
 
-{"id": "sd-07-011", "status": "todo", "title": "Money Movement"}
+{"id": "sd-07-011", "status": "written", "title": "Money Movement", "owner": "claude/sd101-lessons-w7-3", "session": "cse_01C1SaH6cnt22FTK5D8YYaoH", "done_at": "2026-10-19T03:38:56Z", "pr": 183}
 
-{"id": "sd-07-012", "status": "todo", "title": "Payment System"}
+{"id": "sd-07-012", "status": "written", "title": "Payment System", "owner": "claude/sd101-lessons-w7-3", "session": "cse_01C1SaH6cnt22FTK5D8YYaoH", "done_at": "2026-10-19T03:38:56Z", "pr": 183}
 
-{"id": "sd-07-013", "status": "todo", "title": "How to Learn Payments"}
+{"id": "sd-07-013", "status": "written", "title": "How to Learn Payments", "owner": "claude/sd101-lessons-w7-3", "session": "cse_01C1SaH6cnt22FTK5D8YYaoH", "done_at": "2026-10-19T03:38:56Z", "pr": 183}
 
-{"id": "sd-07-014", "status": "todo", "title": "The Payments Ecosystem"}
+{"id": "sd-07-014", "status": "written", "title": "The Payments Ecosystem", "owner": "claude/sd101-lessons-w7-3", "session": "cse_01C1SaH6cnt22FTK5D8YYaoH", "done_at": "2026-10-19T03:38:56Z", "pr": 183}
 
-{"id": "sd-07-015", "status": "todo", "title": "Foreign Exchange Payments"}
+{"id": "sd-07-015", "status": "written", "title": "Foreign Exchange Payments", "owner": "claude/sd101-lessons-w7-3", "session": "cse_01C1SaH6cnt22FTK5D8YYaoH", "done_at": "2026-10-19T03:38:56Z", "pr": 183}
 
-{"id": "sd-07-016", "status": "todo", "title": "How to Avoid Double Payment"}
+{"id": "sd-07-016", "status": "written", "title": "How to Avoid Double Payment", "owner": "claude/sd101-lessons-w7-4", "session": "cse_01C1SaH6cnt22FTK5D8YYaoH", "done_at": "2026-10-19T03:54:30Z", "pr": 184}
 
-{"id": "sd-07-017", "status": "todo", "title": "How do Apple Pay and Google Pay work?"}
+{"id": "sd-07-017", "status": "written", "title": "How do Apple Pay and Google Pay work?", "owner": "claude/sd101-lessons-w7-4", "session": "cse_01C1SaH6cnt22FTK5D8YYaoH", "done_at": "2026-10-19T03:54:30Z", "pr": 184}
 
-{"id": "sd-07-018", "status": "todo", "title": "How VISA Works When Swiping a Credit Card"}
+{"id": "sd-07-018", "status": "written", "title": "How VISA Works When Swiping a Credit Card", "owner": "claude/sd101-lessons-w7-4", "session": "cse_01C1SaH6cnt22FTK5D8YYaoH", "done_at": "2026-10-19T03:54:30Z", "pr": 184}
 
-{"id": "sd-07-019", "status": "todo", "title": "How ACH Payment Works"}
+{"id": "sd-07-019", "status": "written", "title": "How ACH Payment Works", "owner": "claude/sd101-lessons-w7-4", "session": "cse_01C1SaH6cnt22FTK5D8YYaoH", "done_at": "2026-10-19T03:54:30Z", "pr": 184}
 
-{"id": "sd-07-020", "status": "todo", "title": "How does Visa make money?"}
+{"id": "sd-07-020", "status": "written", "title": "How does Visa make money?", "owner": "claude/sd101-lessons-w7-4", "session": "cse_01C1SaH6cnt22FTK5D8YYaoH", "done_at": "2026-10-19T03:54:30Z", "pr": 184}
 
 {"id": "sd-08-001", "status": "todo", "title": "Inter-Process Communication on Linux"}
 
@@ -392,15 +392,15 @@
 
 {"id": "sd-08-005", "status": "todo", "title": "Is Microservice Architecture the Silver Bullet?"}
 
-{"id": "sd-08-006", "status": "todo", "title": "Database Middleware"}
+{"id": "sd-08-006", "status": "written", "title": "Database Middleware", "owner": "claude/sd101-lessons-w8-2", "session": "cse_01DkN7YTqFfdjb8A8J5ehSWS", "done_at": "2026-10-19T05:42:24Z", "pr": 190}
 
-{"id": "sd-08-007", "status": "todo", "title": "9 Best Practices for Developing Microservices"}
+{"id": "sd-08-007", "status": "written", "title": "9 Best Practices for Developing Microservices", "owner": "claude/sd101-lessons-w8-2", "session": "cse_01DkN7YTqFfdjb8A8J5ehSWS", "done_at": "2026-10-19T05:42:24Z", "pr": 190}
 
-{"id": "sd-08-008", "status": "todo", "title": "Design Patterns Cheat Sheet"}
+{"id": "sd-08-008", "status": "written", "title": "Design Patterns Cheat Sheet", "owner": "claude/sd101-lessons-w8-2", "session": "cse_01DkN7YTqFfdjb8A8J5ehSWS", "done_at": "2026-10-19T05:42:24Z", "pr": 190}
 
-{"id": "sd-08-009", "status": "todo", "title": "Key Terms in Domain-Driven Design"}
+{"id": "sd-08-009", "status": "written", "title": "Key Terms in Domain-Driven Design", "owner": "claude/sd101-lessons-w8-2", "session": "cse_01DkN7YTqFfdjb8A8J5ehSWS", "done_at": "2026-10-19T05:42:24Z", "pr": 190}
 
-{"id": "sd-08-010", "status": "todo", "title": "8 Key OOP Concepts Every Developer Should Know"}
+{"id": "sd-08-010", "status": "written", "title": "8 Key OOP Concepts Every Developer Should Know", "owner": "claude/sd101-lessons-w8-2", "session": "cse_01DkN7YTqFfdjb8A8J5ehSWS", "done_at": "2026-10-19T05:42:24Z", "pr": 190}
 
 {"id": "sd-08-011", "status": "todo", "title": "18 Key Design Patterns Every Developer Should Know"}
 
@@ -744,15 +744,15 @@
 
 {"id": "sd-14-015", "status": "written", "title": "How Digital Signatures Work"}
 
-{"id": "sd-14-016", "status": "todo", "title": "How do we manage sensitive data in a system?"}
+{"id": "sd-14-016", "status": "written", "title": "How do we manage sensitive data in a system?", "owner": "claude/sd101-sd14-lo19", "session": "cse_01WnjciXNJBLEd8jy3HrG49S", "done_at": "2026-10-18T14:34:07Z"}
 
-{"id": "sd-14-017", "status": "todo", "title": "HTTPS, SSL Handshake, and Data Encryption Explained"}
+{"id": "sd-14-017", "status": "written", "title": "HTTPS, SSL Handshake, and Data Encryption Explained", "owner": "claude/sd101-sd14-lo19", "session": "cse_01WnjciXNJBLEd8jy3HrG49S", "done_at": "2026-10-18T14:34:07Z"}
 
-{"id": "sd-14-018", "status": "todo", "title": "Symmetric vs Asymmetric Encryption"}
+{"id": "sd-14-018", "status": "written", "title": "Symmetric vs Asymmetric Encryption", "owner": "claude/sd101-sd14-lo19", "session": "cse_01WnjciXNJBLEd8jy3HrG49S", "done_at": "2026-10-18T14:34:07Z"}
 
-{"id": "sd-14-019", "status": "todo", "title": "Session-based Authentication vs. JWT"}
+{"id": "sd-14-019", "status": "written", "title": "Session-based Authentication vs. JWT", "owner": "claude/sd101-sd14-lo19", "session": "cse_01WnjciXNJBLEd8jy3HrG49S", "done_at": "2026-10-18T14:34:07Z"}
 
-{"id": "sd-14-020", "status": "todo", "title": "JWT 101: Key to Stateless Authentication"}
+{"id": "sd-14-020", "status": "written", "title": "JWT 101: Key to Stateless Authentication", "owner": "claude/sd101-sd14-lo19", "session": "cse_01WnjciXNJBLEd8jy3HrG49S", "done_at": "2026-10-18T14:34:07Z"}
 
 {"id": "sd-14-021", "status": "todo", "title": "Is HTTPS Safe?"}
 
@@ -764,15 +764,15 @@
 
 {"id": "sd-14-025", "status": "todo", "title": "How Does a VPN Work?"}
 
-{"id": "sd-14-026", "status": "todo", "title": "How Google Authenticator Works"}
+{"id": "sd-14-026", "status": "written", "title": "How Google Authenticator Works", "owner": "claude/sd101-sd14-lo21", "session": "cse_01WnjciXNJBLEd8jy3HrG49S", "done_at": "2026-10-18T15:26:34Z"}
 
-{"id": "sd-14-027", "status": "todo", "title": "Types of VPNs"}
+{"id": "sd-14-027", "status": "written", "title": "Types of VPNs", "owner": "claude/sd101-sd14-lo21", "session": "cse_01WnjciXNJBLEd8jy3HrG49S", "done_at": "2026-10-18T15:26:34Z"}
 
-{"id": "sd-14-028", "status": "todo", "title": "What is a Cookie?"}
+{"id": "sd-14-028", "status": "written", "title": "What is a Cookie?", "owner": "claude/sd101-sd14-lo21", "session": "cse_01WnjciXNJBLEd8jy3HrG49S", "done_at": "2026-10-18T15:26:34Z"}
 
-{"id": "sd-14-029", "status": "todo", "title": "OAuth 2.0 Flows"}
+{"id": "sd-14-029", "status": "written", "title": "OAuth 2.0 Flows", "owner": "claude/sd101-sd14-lo21", "session": "cse_01WnjciXNJBLEd8jy3HrG49S", "done_at": "2026-10-18T15:26:34Z"}
 
-{"id": "sd-14-030", "status": "todo", "title": "Top Network Security Cheatsheet"}
+{"id": "sd-14-030", "status": "written", "title": "Top Network Security Cheatsheet", "owner": "claude/sd101-sd14-lo21", "session": "cse_01WnjciXNJBLEd8jy3HrG49S", "done_at": "2026-10-18T15:26:34Z"}
 
 {"id": "sd-14-031", "status": "todo", "title": "What is SSO (Single Sign-On)?"}
 

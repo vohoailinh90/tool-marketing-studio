@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="945" viewBox="0 0 320 945" role="img" aria-labelledby="title desc">
+<title id="title">Uber xếp thành tám mảng</title>
+<desc id="desc">Hai dải bước và một cột. Phía người dùng: web dùng framework Fusion; di động dùng kiến trúc RIB, Swift và Java. Phía Uber: lưới dịch vụ Uber Gateway trên NGINX với gRPC và QUIC; dịch vụ dùng Flipr, H3, Spring Boot, uAct, Cadence; cơ sở dữ liệu DocStore trên MySQL, PostgreSQL, RocksDB. Đứng ngoài đường đi: dữ liệu lớn họ Hadoop, xử lý bằng Hive, Spark, Kafka, Flink; phát hành bằng monorepo, Spinnaker, M3.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="945" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Uber xếp thành tám</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">mảng</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Từ ứng dụng tới phát hành.</text>
+<rect x="8" y="104" width="304" height="215" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="132.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Phía người dùng</text>
+<rect x="20" y="149" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="175" r="14" fill="#1d4ed8"/>
+<text x="46" y="180.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="175.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Web</text>
+<text x="70" y="199.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Fusion, framework React.</text>
+<rect x="20" y="239" width="280" height="68" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="265" r="14" fill="#1d4ed8"/>
+<text x="46" y="270.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="265.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Di động</text>
+<text x="70" y="289.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Kiến trúc RIB; Swift, Java.</text>
+<polyline points="46,219 46,237" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="331" width="304" height="305" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="359.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Phía Uber</text>
+<rect x="20" y="376" width="280" height="68" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="402" r="14" fill="#0f766e"/>
+<text x="46" y="407.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="402.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Lưới dịch vụ</text>
+<text x="70" y="426.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Uber Gateway; gRPC, QUIC.</text>
+<rect x="20" y="466" width="280" height="68" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="492" r="14" fill="#0f766e"/>
+<text x="46" y="497.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="492.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Dịch vụ</text>
+<text x="70" y="516.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Flipr, H3, uAct, Cadence.</text>
+<polyline points="46,446 46,464" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="556" width="280" height="68" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="582" r="14" fill="#0f766e"/>
+<text x="46" y="587.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="582.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Cơ sở dữ liệu</text>
+<text x="70" y="606.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">DocStore trên MySQL.</text>
+<polyline points="46,536 46,554" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="648" width="304" height="289" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="676.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Đứng ngoài đường đi</text>
+<rect x="20" y="693" width="280" height="68" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="50" cy="727" r="18" fill="#b45309"/><g transform="translate(39.2 716.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></g>
+<text x="78" y="719.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Dữ liệu lớn</text>
+<text x="78" y="743.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Hadoop, Hudi, Pinot.</text>
+<rect x="20" y="775" width="280" height="68" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="50" cy="809" r="18" fill="#b45309"/><g transform="translate(39.2 798.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></g>
+<text x="78" y="801.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Xử lý dữ liệu</text>
+<text x="78" y="825.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Hive, Spark, Kafka, Flink.</text>
+<rect x="20" y="857" width="280" height="68" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="50" cy="891" r="18" fill="#b45309"/><g transform="translate(39.2 880.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09"/><path d="M9 12a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.4 22.4 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 .05 5 .05"/></g>
+<text x="78" y="883.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Phát hành</text>
+<text x="78" y="907.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Monorepo, Spinnaker, M3.</text>
+</g>
+</svg>

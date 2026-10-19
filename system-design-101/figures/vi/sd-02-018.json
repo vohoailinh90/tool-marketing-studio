@@ -1,0 +1,70 @@
+{
+  "id": "sd-02-018",
+  "title": "Netflix xếp thành tám lớp",
+  "subtitle": "Từ ứng dụng trên máy người xem tới công cụ phát hành.",
+  "desc": "Tám lớp từ trên xuống: ứng dụng (Swift, Kotlin, React), giao tiếp (GraphQL), dịch vụ phía sau (Zuul, Eureka, Spring Boot), cơ sở dữ liệu (EVCache, Cassandra, CockroachDB), truyền tin (Kafka, Flink), lưu video (S3, Open Connect), xử lý dữ liệu (Flink, Spark, Tableau, Redshift), phát hành (Jenkins, Spinnaker, Chaos Monkey, Atlas và nhiều công cụ khác). Khung cuối nêu ba điều cần nhớ.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Phía người xem",
+      "items": [
+        {
+          "title": "Ứng dụng",
+          "text": "Swift, Kotlin, React."
+        },
+        {
+          "title": "Giao tiếp",
+          "text": "GraphQL."
+        }
+      ]
+    },
+    {
+      "kind": "steps",
+      "heading": "Phía Netflix",
+      "items": [
+        {
+          "title": "Dịch vụ phía sau",
+          "text": "Zuul, Eureka, Spring Boot."
+        },
+        {
+          "title": "Cơ sở dữ liệu",
+          "text": "EVCache, Cassandra, CockroachDB."
+        },
+        {
+          "title": "Lưu video",
+          "text": "S3 và Open Connect."
+        }
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Đứng ngoài đường đi đó",
+      "items": [
+        {
+          "name": "Truyền tin, dòng dữ liệu",
+          "role": "Kafka và Flink.",
+          "icon": "send"
+        },
+        {
+          "name": "Xử lý dữ liệu",
+          "role": "Flink, Spark, Tableau, Redshift.",
+          "icon": "chart-column"
+        },
+        {
+          "name": "Phát hành",
+          "role": "Jenkins, Spinnaker, Atlas...",
+          "icon": "rocket"
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Nhớ gì",
+      "items": [
+        "Mỗi lớp có công nghệ riêng hợp việc của nó.",
+        "Nguồn chỉ nêu tên, không nói dùng thế nào.",
+        "Danh sách là ảnh chụp tại một thời điểm."
+      ]
+    }
+  ]
+}

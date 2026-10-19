@@ -1,0 +1,27 @@
+id: sd-04-046
+status: done
+owner: claude/sd101-decks-w3-3
+claimed_at: '2026-10-19T02:14:03Z'
+done_at: '2026-10-19T02:30:26Z'
+moda_canvas: cvs_6NE1K87FA08VVR8VM43WXJNSMS
+moda_url: https://moda.app/canvas/d5706683-bd40-46f7-846e-841f3b2ae699
+slide_count: 9
+size: 1920x1080
+exports: badged
+layouts:
+  slides:
+  - layers
+  - one-highlighted-sentence
+  - two-column-comparison
+  - lookup-table
+  - one-big-number
+  - numbered-rows
+  - flow
+  - 2x2-matrix
+  - card-grid
+  first_concept: 3
+  cannot:
+    one-big-number: the concept names pairs of memory types and states no number
+    one-highlighted-sentence: four pairs of names do not fit one sentence
+    sequence-diagram: the pairs have no order of messages
+    flow: the pairs are not steps of a process

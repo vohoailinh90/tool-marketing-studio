@@ -1,0 +1,23 @@
+id: sd-02-024
+status: done
+owner: claude/sd101-lessons-w6-5
+claimed_at: '2026-10-19T03:39:58Z'
+done_at: '2026-10-19T03:45:56Z'
+moda_canvas: cvs_1CT49EPV5R9FWTDZN6VT9Z0P7J
+moda_url: https://moda.app/canvas/2cd112eb-6cb8-4bf9-a6fe-a6de93f058f2
+slide_count: 10
+size: 1920x1080
+exports: badged
+layouts:
+  slides:
+  - 2x2-matrix
+  - one-big-number
+  - sequence-diagram
+  - two-column-comparison
+  - one-big-number
+  - numbered-rows
+  - card-grid
+  - lookup-table
+  - flow
+  - lookup-table
+  first_concept: 3

@@ -1,0 +1,99 @@
+{
+  "id": "sd-08-006",
+  "title_vi": "Lớp trung gian cơ sở dữ liệu: một cửa chung và ba cái giá",
+  "language": "vi",
+  "kind": "topology",
+  "content_status": "draft",
+  "source_ref": "sd-08-006",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/database-middleware.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/database-middleware.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a git fetch of the pinned commit and hashed as a Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "47a2ed029d9a66a4fde2bc8141aad09aed5d61b3",
+    "retrieved_body_sha256": "5c434fff72c0743f8d084966b5b11067260686f8e96b0a06333723a2a22fb418",
+    "retrieved_body_bytes": 2116
+  },
+  "diagram": "../diagrams/sd-08-006-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-04-035",
+      "relation": "see_also",
+      "reason_vi": "Bài đó đi sâu vào tình huống vừa ghi xong mà đọc từ bản sao không thấy, và cách chữa."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-19"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-19",
+      "evidence": "MaxScale's Readwritesplit page and ProxySQL's README read from local clones; Redis 7.0.15 primary and replica measured on a KVM guest with Python (3 runs); two ProxySQL README rules evaluated on 8 statements with Python re as a stand-in for ProxySQL's matcher."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-19",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Figure drawn by scripts/figures (viewBox width 320, smallest font 15 px, shown at 13.5 px at 320 px); python3 -m scripts.figures check --browser passed; the lesson (Markdown to HTML, optional sections open, 16 px side gutters) rendered in Chromium at 320, 375 and 430 px with no horizontal overflow of the page, any table or any code block. Not learner testing and not GitHub or a real phone."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "MaxScale readwritesplit spreads read queries across nodes while all writes go to a single node, for a primary-replica cluster; max_replication_lag keeps replicas that lag too much out of routing but does not guarantee that a write is visible on a replica; causal_reads gives that guarantee, and its fast modes route almost exclusively to the primary for mixed or write-heavy workloads.",
+      "source": "https://github.com/mariadb-corporation/MaxScale/blob/81d12aa52fe2666d208d6f3a106d8518e40798f1/Documentation/Routers/ReadWriteSplit.md",
+      "section": "Overview; max_replication_lag; causal_reads",
+      "verified_by": "Read from a local clone of mariadb-corporation/MaxScale at commit 81d12aa52fe2666d208d6f3a106d8518e40798f1."
+    },
+    {
+      "claim_vi": "ProxySQL README example: rule 1 matches ^SELECT .* FOR UPDATE$ with destination_hostgroup 0 and rule 2 matches ^SELECT with destination_hostgroup 1; the default hostgroup of the user is 0.",
+      "source": "https://github.com/sysown/proxysql/blob/9516441f7bd6fdb93f255f1881db19ca9ee56778/README.md",
+      "section": "Configuration file: mysql_query_rules",
+      "verified_by": "Read from a local clone of sysown/proxysql at commit 9516441f7bd6fdb93f255f1881db19ca9ee56778."
+    },
+    {
+      "claim_vi": "Redis 7.0.15 primary and replica on one KVM guest, asynchronous replication, three runs: GET direct median 36-41 us (p99 79-85 us); via a Python byte-forwarding proxy median 75-83 us (p99 170-210 us); write then immediate replica read with an idle primary: 0-2 stale of 20,000; with the primary receiving pipelined 1 KB writes: 481-940 of 3,000 first reads stale (16.0-31.3 %), time until visible median 79-226 us, p99 1.4-2.3 ms, max 2.6-10.6 ms.",
+      "source": "https://github.com/mariadb-corporation/MaxScale/blob/81d12aa52fe2666d208d6f3a106d8518e40798f1/Documentation/Routers/ReadWriteSplit.md",
+      "section": "Experiment",
+      "verified_by": "Experiment run by the author on 2026-10-19 (repl-diskless-sync-delay 0, replica confirmed synced before measuring; Python raw sockets, time.perf_counter)."
+    },
+    {
+      "claim_vi": "The two ProxySQL README patterns, evaluated case-insensitively with Python re, send FOR SHARE and LOCK IN SHARE MODE selects to the replica group (wrong: locking reads need the primary) and comment-prefixed and WITH-prefixed selects to the default primary group (safe but wasteful); 4 of 8 test statements are misrouted.",
+      "source": "https://github.com/sysown/proxysql/blob/9516441f7bd6fdb93f255f1881db19ca9ee56778/README.md",
+      "section": "Experiment",
+      "verified_by": "Run by the author on 2026-10-19 with Python re; the claim that locking reads belong on the primary is the author's general MySQL knowledge, not checked against MySQL documentation."
+    },
+    {
+      "claim_vi": "A database middleware proxies between application and databases, routes writes to the primary and reads to replicas using the MySQL network protocol; pros: simpler application code and compatibility; cons: complexity (high availability needed to avoid a single point of failure) and extra network latency.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/database-middleware.md",
+      "section": "Whole guide",
+      "verified_by": "Source body read at the pinned commit."
+    }
+  ],
+  "design_notes_vi": "Bốn mảnh (ứng dụng, lớp trung gian, máy chính, máy phụ), một khung số đo và một khung kết quả thử quy tắc. Chuyện đọc nhầm bản cũ giữ cho bài sd-04-035.",
+  "source_deviations": [
+    "The lesson adds a third cost the source does not mention: routing rules based on statement patterns can misroute (tested on 8 statements).",
+    "Replica staleness is measured on Redis as a stand-in for MySQL replication; the read-your-writes remedy is left to sd-04-035.",
+    "Single point of failure and high availability are the source's statements, not measured."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này (gói W8), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

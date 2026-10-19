@@ -58,12 +58,41 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 47. [GraphQL: từ schema đến dữ liệu và lỗi](lessons/sd-01-047/lesson.md)
 48. [Bảng kiểm REST: nhìn xa hơn đường dẫn](lessons/sd-01-048/lesson.md)
 49. [Học API bằng ba năng lực thực hành](lessons/sd-01-049/lesson.md)
+50. [Sáu giao thức API: chọn theo kiểu hội thoại](lessons/sd-01-050/lesson.md)
 
 ## Tình huống thực tế
 
 1. [Figma mở rộng Postgres: ba bậc thang](lessons/sd-02-001/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
 2. [API của các API: nối ứng dụng bằng trigger và action](lessons/sd-02-002/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
 3. [Pinterest cắt thời gian clone bằng một dòng refspec](lessons/sd-02-003/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+4. [Telegram có an toàn không? Còn tùy ai giữ chìa khóa](lessons/sd-02-004/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+5. [SapFix của Meta: máy đề xuất bản sửa, người quyết định](lessons/sd-02-005/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+6. [Levels.fyi: bảng tính làm backend cho hàng triệu người dùng](lessons/sd-02-006/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+7. [McDonald's: chuẩn hóa sự kiện trước, mở rộng sau](lessons/sd-02-007/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+8. [Uber giao phần mềm: chặng nào tự làm, chặng nào dùng sẵn](lessons/sd-02-008/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+9. [Stack Overflow: chín máy chủ web và một khối nguyên](lessons/sd-02-009/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+10. [Twitter 1.0: năm tầng, mười ba cái tên](lessons/sd-02-010/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+11. [Dòng "For You" của Twitter: từ 500 triệu tweet xuống một trang](lessons/sd-02-011/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+12. [YouTube và VCU: con chip riêng cho việc chuyển mã video](lessons/sd-02-012/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+13. [Hệ thống thông báo: một cổng vào, nhiều kênh ra](lessons/sd-02-013/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+14. [Netflix và EVCache: một bộ đệm, bốn cách dùng](lessons/sd-02-014/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+15. [Netflix dùng sáu loại cơ sở dữ liệu, mỗi loại một việc](lessons/sd-02-015/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+16. [Airbnb: từ Monorail tới bốn tầng dịch vụ](lessons/sd-02-016/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+17. [Netflix gửi thông báo đẩy: sự kiện, ưu tiên, rồi từng loại thiết bị](lessons/sd-02-017/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+18. [Kiến trúc tổng thể của Netflix qua tám lớp](lessons/sd-02-018/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+19. [Chuỗi CI/CD của Netflix: tám chặng của một thay đổi](lessons/sd-02-019/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+20. [TikTok và kho mã frontend 200 nghìn tệp](lessons/sd-02-020/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+21. [Netflix dùng Java thế nào qua ba đời kiến trúc](lessons/sd-02-021/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+22. [Kiến trúc microservice của Airbnb qua ba giai đoạn](lessons/sd-02-022/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+23. [Kiến trúc lõi của Reddit: đường đồng bộ và đường chạy sau](lessons/sd-02-023/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+24. [Shopify: mười nguyên tắc cho hệ thống thanh toán bền](lessons/sd-02-024/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+25. [Hành trình của một tin nhắn Slack](lessons/sd-02-025/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+26. [Chín blog kỹ thuật đáng đọc, và cách đọc chúng](lessons/sd-02-026/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+27. [Ngăn xếp công nghệ của Uber, từ ứng dụng tới DevOps](lessons/sd-02-027/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+28. [API của Netflix qua bốn giai đoạn](lessons/sd-02-028/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+29. [Discord lưu hàng nghìn tỷ tin nhắn thế nào](lessons/sd-02-029/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+31. [Lớp API của Uber qua ba thế hệ](lessons/sd-02-031/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+32. [Ngăn xếp công nghệ của Netflix](lessons/sd-02-032/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
 
 ## AI và học máy
 
@@ -132,6 +161,40 @@ Các bài chưa viết của nhóm này không có trong danh sách; số thứ 
 14. [Tám chiến lược đẩy khóa ra, và Redis thật sự có những gì](lessons/sd-06-014/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
 15. [Bộ nhớ đệm hỏng theo những kiểu nào](lessons/sd-06-015/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
 
+## Thanh toán và công nghệ tài chính
+
+Các bài chưa viết của nhóm này không có trong danh sách; số thứ tự là vị trí của bài trong nhóm.
+
+1. [Mua hàng trực tuyến: bốn mảng việc sau một đơn hàng](lessons/sd-07-001/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+2. [Ví số ở ngân hàng và ví trên blockchain](lessons/sd-07-002/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+3. [Lệnh cắt lỗ: giá kích hoạt không phải giá bán](lessons/sd-07-003/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+4. [Web 1.0, 2.0 và 3.0: ai giữ dữ liệu, ai kiếm tiền](lessons/sd-07-004/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+5. [SWIFT: tin nhắn thanh toán giữa các ngân hàng](lessons/sd-07-005/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+6. [Thanh toán bằng mã QR: bốn cách từ hai câu hỏi](lessons/sd-07-006/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+7. [Tài khoản nóng: khi mọi giao dịch cùng đổ vào một số dư](lessons/sd-07-007/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+8. [Đối soát thanh toán: ba nỗi đau và cách gỡ](lessons/sd-07-008/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+9. [UPI của Ấn Độ: đăng ký, liên kết tài khoản, chuyển tiền](lessons/sd-07-009/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+10. [Quét mã để trả tiền: hai quy trình, mười hai bước](lessons/sd-07-010/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+11. [Dòng tiền sau một đơn hàng: bù trừ và quyết toán](lessons/sd-07-011/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+12. [Hệ thống thanh toán: từ nút Mua tới sổ cái](lessons/sd-07-012/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+13. [Học về thanh toán: bản đồ bảy phần của ngành](lessons/sd-07-013/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+14. [Hệ sinh thái thanh toán qua một giao dịch thẻ](lessons/sd-07-014/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+15. [Thanh toán ngoại tệ: 100 đô la thành 88 euro](lessons/sd-07-015/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+16. [Tránh trả tiền hai lần: thử lại và khóa chống trùng](lessons/sd-07-016/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+17. [Apple Pay và Google Pay: ai giữ thông tin thẻ](lessons/sd-07-017/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+18. [Quẹt thẻ tín dụng: Visa đứng ở đâu](lessons/sd-07-018/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+19. [ACH: trả lương theo lô, tới sáng hôm sau](lessons/sd-07-019/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+20. [Visa kiếm tiền thế nào: các khoản phí của một lần quẹt thẻ](lessons/sd-07-020/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+## Kiến trúc phần mềm
+
+Các bài chưa viết của nhóm này không có trong danh sách; số thứ tự là vị trí của bài trong nhóm.
+
+6. [Lớp trung gian cơ sở dữ liệu: một cửa chung và ba cái giá](lessons/sd-08-006/lesson.md) — bài mới viết tại repo này (có phép đo riêng); chờ review kỹ thuật.
+7. [Chín việc làm khi phát triển dịch vụ nhỏ: việc nào có chỗ đối chiếu](lessons/sd-08-007/lesson.md) — bài mới viết tại repo này (có phép đo riêng); chờ review kỹ thuật.
+8. [Năm mẫu thiết kế đầu tiên, tìm trong thư viện chuẩn của Python](lessons/sd-08-008/lesson.md) — bài mới viết tại repo này (có phép thử riêng); chờ review kỹ thuật.
+9. [Bảy thuật ngữ của thiết kế hướng miền, và cái giá của một khối dữ liệu quá lớn](lessons/sd-08-009/lesson.md) — bài mới viết tại repo này (có phép đo riêng); chờ review kỹ thuật.
+10. [Tám khái niệm lập trình hướng đối tượng, thử từng cái trong Python](lessons/sd-08-010/lesson.md) — bài mới viết tại repo này (có phép đo riêng); chờ review kỹ thuật.
+
 ## Công cụ và năng suất
 
 1. [Các lệnh Git theo việc cần làm](lessons/sd-09-001/lesson.md) — bản nháp; chờ review kỹ thuật.
@@ -191,7 +254,7 @@ Các bài chưa viết của nhóm này không có trong danh sách; số thứ 
 
 ## Bảo mật
 
-Các bài từ sd-14-016 trở đi chưa viết; số thứ tự dưới đây chỉ tính các bài đã viết.
+Bài nào của nhóm này chưa có trong danh sách dưới đây là chưa viết hoặc đang ở một đợt khác chưa gộp; số thứ tự chỉ tính các bài có trong danh sách.
 
 1. [DevSecOps là gì?](lessons/sd-14-001/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 2. [Encoding, encryption và tokenization](lessons/sd-14-002/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
@@ -208,6 +271,16 @@ Các bài từ sd-14-016 trở đi chưa viết; số thứ tự dưới đây c
 13. [Tường lửa: sáu cách viết một luật](lessons/sd-14-013/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 14. [Bốn cơ chế xác thực: khóa SSH, token OAuth, chứng chỉ và mật khẩu](lessons/sd-14-014/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 15. [Chữ ký số: ký bằng khóa riêng, kiểm bằng khóa công khai](lessons/sd-14-015/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+16. [Quản lý dữ liệu nhạy cảm trong hệ thống](lessons/sd-14-016/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+17. [HTTPS và bắt tay TLS: dựng kênh mã hóa thế nào?](lessons/sd-14-017/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+18. [Mã hóa đối xứng và bất đối xứng](lessons/sd-14-018/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+19. [Session và JWT: hai cách nhớ người đã đăng nhập](lessons/sd-14-019/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+20. [JWT: ba phần và hai cách ký](lessons/sd-14-020/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+26. [Google Authenticator hoạt động thế nào? TOTP và mã sáu số](lessons/sd-14-026/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+27. [Các loại VPN: mỗi loại giải bài toán nào?](lessons/sd-14-027/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+28. [Cookie là gì? Tấm thẻ khách quen và điều nó không phải](lessons/sd-14-028/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+29. [Các luồng OAuth 2.0: chọn luồng nào cho ứng dụng nào?](lessons/sd-14-029/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+30. [Tấn công mạng theo bảy tầng OSI: tầng nào chịu đòn gì?](lessons/sd-14-030/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 
 ## Nền tảng máy tính
 
@@ -254,9 +327,9 @@ và hình đạt; không coi đọc nguồn là mọi claim đã đúng, không 
 
 ## Các nhóm còn lại theo thứ tự nguồn
 
-API và phát triển web (còn sd-01-050) → Tình huống thực tế (đã viết một phần) →
-Cơ sở dữ liệu và lưu trữ (đã viết một phần) → Bộ nhớ đệm và hiệu năng (đã viết một phần) → Thanh toán và công nghệ tài chính →
-Kiến trúc phần mềm → Phát triển phần mềm (đã viết một phần) →
+Tình huống thực tế (còn sd-02-030) →
+Cơ sở dữ liệu và lưu trữ (đã viết một phần) → Bộ nhớ đệm và hiệu năng (đã viết một phần) →
+Kiến trúc phần mềm (đã viết một phần) → Phát triển phần mềm (đã viết một phần) →
 Đám mây và hệ thống phân tán → Hệ thống hoạt động thế nào? → Bảo mật (đã viết một phần).
 
 Nhóm “Nền tảng máy tính” (cuối mục lục nguồn) được viết trước theo yêu cầu người dùng ngày 2026-10-13; nhóm “API và phát triển web” viết tiếp theo thứ tự source-map.

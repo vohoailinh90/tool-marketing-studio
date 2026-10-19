@@ -1,0 +1,89 @@
+{
+  "id": "sd-02-004",
+  "title_vi": "Telegram có an toàn không? Còn tùy ai giữ chìa khóa",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "draft",
+  "source_ref": "sd-02-004",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/is-telegram-secure.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/is-telegram-secure.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "6599b75301e666b72eaddd0dc715c27982a7a14e",
+    "retrieved_body_sha256": "08e35d057cbbdc3d142b0afb641d231b0b37cbee41b3d71125a9368fdd6429c8",
+    "retrieved_body_bytes": 1631
+  },
+  "diagram": "../diagrams/sd-02-004-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-02-025",
+      "relation": "see_also",
+      "reason_vi": "Hành trình của một tin nhắn Slack."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-19"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "source_claims_listed_with_the_pinned_source; the author's general-knowledge glosses are not checked against primary documentation"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending",
+      "reason": "figure text measured in Chromium by scripts.figures check --browser (14 px at a 375 px screen); no whole-lesson render at 320, 375 and 430 px recorded"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "A secure chat generally means the message is encrypted at the sender side and only decryptable at the receiver side, called end-to-end encryption (E2EE).",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/is-telegram-secure.md",
+      "section": "Definition",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Telegram's usual private and group chats are not end-to-end encrypted; the source reads this as third parties being able to intercept and read messages, which the lesson qualifies: client-server encryption stops network eavesdroppers, but Telegram's server side can decrypt.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/is-telegram-secure.md",
+      "section": "Usual chats",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "The source says encrypted messages are stored on Telegram servers split into pieces in different countries and that decryption keys are also split; Telegram's FAQ (as quoted by Belkasoft) says cloud chat data is stored in several data centres and only the decryption keys are split into parts kept apart from the data, so the lesson follows Telegram: an attacker holding one data centre must still gather every key part. The source calls the attack possible but extremely difficult.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/is-telegram-secure.md",
+      "section": "Usual chats",
+      "verified_by": "Source body read from the pinned commit for the source's wording; Telegram's FAQ entry 'Do you process data requests?' could not be opened from the authoring environment and was checked through Belkasoft's quotation (https://belkasoft.com/how-to-investigate-telegram-crime).",
+      "source_secondary": "https://telegram.org/faq#q-do-you-process-data-requests"
+    },
+    {
+      "claim_vi": "Secret chats are end-to-end encrypted one-to-one chats; per the source they do not support group chat, do not replace the normal one-to-one chat, and are only enabled for mobile devices.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/is-telegram-secure.md",
+      "section": "Secret chats",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "In usual chats Telegram's own system can decrypt messages (needed to sync history across devices), so their protection rests on trusting Telegram.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/is-telegram-secure.md",
+      "section": "Giới hạn cần nhớ",
+      "verified_by": "Author's inference from the definition of E2EE; not checked against Telegram documentation."
+    }
+  ],
+  "design_notes_vi": "Hai nhóm thẻ đặt chat thường cạnh secret chat theo câu hỏi ai giải mã được; khung cuối nhắc giới hạn. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "The lesson adds the distinction between client-server encryption and end-to-end encryption and an explanation of why secret chats have fewer features; both are the author's general knowledge.",
+    "Feature limits of secret chats are as stated by the source (early 2024) and were not checked against current Telegram documentation.",
+    "Where the source says messages themselves are split into pieces across countries, the lesson follows Telegram's FAQ (data in several data centres, only the keys split), checked through Belkasoft's quotation."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích thêm là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
+}

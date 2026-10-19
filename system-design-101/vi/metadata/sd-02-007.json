@@ -1,0 +1,81 @@
+{
+  "id": "sd-02-007",
+  "title_vi": "McDonald's: chuẩn hóa sự kiện trước, mở rộng sau",
+  "language": "vi",
+  "kind": "topology",
+  "content_status": "draft",
+  "source_ref": "sd-02-007",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/mcdonald's-event-driven-architecture.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/mcdonald's-event-driven-architecture.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "01c92e9f68eeb53998f1de7d797b85f6183330da",
+    "retrieved_body_sha256": "db49eece543b5551460112cdc6652a83690674a8a30879438cc82fb74566004e",
+    "retrieved_body_bytes": 1551
+  },
+  "diagram": "../diagrams/sd-02-007-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-02-029",
+      "relation": "see_also",
+      "reason_vi": "Một hệ thống lưu trữ lượng tin nhắn lớn khác: Discord."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-19"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "source_claims_listed_with_the_pinned_source; the author's general-knowledge glosses are not checked against primary documentation"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending",
+      "reason": "figure text measured in Chromium by scripts.figures check --browser (14 px at a 375 px screen); no whole-lesson render at 320, 375 and 430 px recorded"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "McDonald's standardizes events with an event registry (standardized schema), custom SDKs (process events, handle errors), an event gateway (identity authentication and authorization) and utilities and tools (fix events, keep the cluster healthy, administrative tasks).",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/mcdonald's-event-driven-architecture.md",
+      "section": "Components",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "To scale, McDonald's uses a regional architecture on AWS that provides global availability.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/mcdonald's-event-driven-architecture.md",
+      "section": "Scaling",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Within a region producers shard events by domain and each domain is processed by an MSK cluster that auto-scales on MSK metrics such as CPU usage, with a workflow based on step functions and reassignment tasks.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/mcdonald's-event-driven-architecture.md",
+      "section": "Scaling",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Sharding by domain means more clusters to operate and isolates load spikes and failures per domain.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/mcdonald's-event-driven-architecture.md",
+      "section": "Giới hạn cần nhớ",
+      "verified_by": "Author's general knowledge; not checked against primary documentation."
+    }
+  ],
+  "design_notes_vi": "Khung đầu là lớp chuẩn hóa, khung hai là luồng mở rộng trong một vùng; khung cuối ba điều cần nhớ. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "The lesson separates a standardization layer from a scaling layer and adds the trade-offs of sharding by domain; both readings are the author's.",
+    "The McDonald's technical blog post cited by the source was not opened."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích thêm là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
+}

@@ -1,5 +1,22 @@
 id: sd-10-023
-status: doing
+status: done
 owner: claude/sd101-decks-w5-5
 claimed_at: '2026-10-19T06:20:04Z'
-heartbeat_at: '2026-10-19T06:20:04Z'
+done_at: '2026-10-19T06:24:38Z'
+moda_canvas: cvs_6688MTW4M28BPAE0QMNNE0BAKY
+moda_url: https://moda.app/canvas/c64229ae-1282-42ec-a702-f4ad5c05aa7e
+slide_count: 9
+size: 1920x1080
+exports: pending
+layouts:
+  slides:
+  - card-grid
+  - flow
+  - one-highlighted-sentence
+  - connection-diagram
+  - two-column-comparison
+  - numbered-rows
+  - card-grid
+  - lookup-table
+  - two-column-comparison
+  first_concept: 3

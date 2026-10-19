@@ -7,7 +7,7 @@ exports of finished decks, which have no claim of their own. Read it before you 
 range whose session is marked ended.
 
 Coordinator: `claude/system-design-ppt-coordination-o93528` (session `session_01EEyBDZ6v19PCc7JPGubEEn`). Board written
-2026-10-19 00:45 UTC. The same board is posted as a GitHub issue titled *SD101 slides: coordination board*; comment there to
+2026-10-19 00:45 UTC, updated 06:30 UTC. The same board is posted as a GitHub issue titled *SD101 slides: coordination board*; comment there to
 take or give back a range.
 
 ## Process every session follows (owner decision 2026-10-19)
@@ -17,44 +17,42 @@ take or give back a range.
 - The session does all the work itself: no subagent reviews of slides; it checks each slide with `canvas_screenshot` and the
   repository's scripts.
 
-## State at writing (from every remote branch)
+## State at 2026-10-19 06:30 UTC (from every remote branch)
 
 | | lessons |
 |---|---|
 | Source map | 404 positions; 178 lessons written (`progress.json`), 226 not written yet (no deck possible before the lesson) |
-| Decks done with PPTX (`exports: badged` on some branch, usually `main`) | 52 |
-| Decks done without PPTX on any branch (`exports: pending`) | 20: sd-14-001..008, sd-15-001..012 |
-| Decks being built (`doing`) | 27, among them the other account's `claude/sd101-decks-w1-1` .. `w5-1` |
-| Decks nobody has claimed | 79 (sd-01: 20, sd-04: 18, sd-13: 16, sd-06: 12, sd-09: 12, sd-10: 1) |
-
-## Ranges
-
-### Building new decks (claim lesson by lesson, 3 at a time, inside the group)
-
-| Range | Session | Holds now |
-|---|---|---|
-| free lessons of sd-01 (from sd-01-027) | `session_01ARzV9v8j9Ux8mYa9UcKRzC` | none yet |
-| free lessons of sd-04 | `session_013D8efqJ38789pjA4WvcwwT` | none yet |
-| free lessons of sd-06 | `session_01XSxLqDPHaDeZhrxWwesxJf` (`claude/sd101-slides-sd06`) | sd-06-001..003 |
-| free lessons of sd-09, then sd-10 | `session_01MXmeiiiaXLzfKLWZzK9sru` (`claude/sd101-slides-sd-09`) | sd-09-006..008 |
-| free lessons of sd-13 | `session_01EhxTYrCJpuk4mcqCLwPdds` (`claude/sd13-slides-0219`) | sd-13-009..011 |
-
-The other account's sessions keep their own claims; a group range here is not a claim, so both accounts may still claim free
-lessons of the same group through the tool, which settles each lesson.
-
-### PPTX exports of finished decks (`exports: pending`; no claim exists for these, so this board is the lock)
-
-| Range | Session |
-|---|---|
-| sd-14-001..008 (finished records only on `claude/trusting-gauss-foyunq`, not on `main` yet), sd-15-001..012 | export session A, `session_015U1QMJBxBFrqQh6qyz6yMm` |
+| Decks done | 158; every one has a badged PPTX on some branch except sd-14-001..008 and sd-06-009 |
+| Decks being built (`doing`) | 20 (below) |
+| Decks nobody has claimed | 0: every written lesson is claimed or done |
 
 A deck counts as exported when its record says `exports: badged` (or `done`) on **any** branch, `main` first: a builder's
 branch can still carry an older `pending` record of a deck whose PPTX is already on `main`. Never export a deck again
 that has one.
 
-An export session `canvas_read`s the deck's recorded canvas first. A canvas this account cannot read (`canvas_not_found`, as
-seen for sd-03-001) belongs to the other account's Moda: list it in the issue for that account instead of building a second
-canvas.
+## Ranges
+
+The owner allows **at most two account-A sessions working at once** (decision 2026-10-19). The coordinator resumes the
+sessions below one after another; none of them claims a new lesson.
+
+| Holds (`doing`) | Session | Order |
+|---|---|---|
+| sd-06-009..011 | `session_01XSxLqDPHaDeZhrxWwesxJf` (`claude/sd101-slides-sd06`) | running |
+| sd-09-017..019 | `session_01MXmeiiiaXLzfKLWZzK9sru` (`claude/sd101-slides-sd-09`) | running |
+| sd-13-020 | `session_01EhxTYrCJpuk4mcqCLwPdds` (`claude/sd13-slides-0219`) | next |
+| sd-01-038..040 | `session_01ARzV9v8j9Ux8mYa9UcKRzC` (`claude/sd101-slides-sd01-0210`) | then |
+| sd-04-041..043 | `session_013D8efqJ38789pjA4WvcwwT` (`claude/sd101-slides-sd04`) | then |
+| sd-14-009..015 | `claude/trusting-gauss-foyunq` (heartbeat 2026-10-18 07:11 UTC; stale after 72 h, then `claim --take-stale`) | not ours |
+
+### PPTX exports still missing
+
+| Decks | Who |
+|---|---|
+| sd-15-001..012 | exported by `session_015U1QMJBxBFrqQh6qyz6yMm`, PR #162 |
+| sd-14-001..008 | **the other account**: their canvases answer `canvas_not_found` for account A's Moda. Free for the account that owns them |
+
+A canvas this account cannot read (`canvas_not_found`) belongs to the other account's Moda: list it in the issue for that
+account instead of building a second canvas.
 
 ## Not covered yet
 

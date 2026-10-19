@@ -1,9 +1,9 @@
 # Ngăn xếp công nghệ của Netflix
 
 **Bài nguồn tổng hợp ngăn xếp công nghệ của Netflix thành tám mảng: di động và web, giao tiếp giữa giao diện và máy chủ, dịch vụ phía sau, cơ sở dữ liệu, truyền tin, lưu video, xử lý dữ liệu, và tích hợp và chuyển giao liên tục.**
-Bài này gom tám mảng thành ba nhóm theo loại việc: ứng dụng và dịch vụ, nơi lưu dữ liệu, và dữ liệu cùng phát hành. Bài nguồn không nói mảng nào phục vụ một lần xem phim, cũng không mô tả yêu cầu đi qua các công cụ theo thứ tự nào, nên đây chỉ là cách gom nhóm.
+Danh sách đó chỉ là tên. Bài này dùng nó làm dữ liệu cho một phép thử của người biên soạn: nếu một công cụ ngừng chạy, người đang xem phim có thấy ngay không? Trả lời câu đó cho từng mảng cho thấy vì sao một công ty lớn giữ nhiều công cụ cho cùng một loại việc. Hình gom tám mảng thành ba nhóm theo loại việc; bài nguồn không nói mảng nào phục vụ một lần xem phim, nên cả cách gom lẫn phép thử đều là lập luận riêng.
 
-![Ba nhóm thẻ. Ứng dụng và dịch vụ: ứng dụng di động viết bằng Swift và Kotlin, web dùng React; giao diện nói chuyện với máy chủ bằng GraphQL; dịch vụ phía sau dùng Zuul, Eureka và Spring Boot. Lưu dữ liệu: cơ sở dữ liệu EVCache, Cassandra và CockroachDB; video lưu trên S3 và Open Connect. Dữ liệu và phát hành: truyền tin bằng Kafka và Flink; xử lý dữ liệu bằng Flink, Spark, Tableau và Redshift; phát hành bằng Jenkins, Gradle, Spinnaker và Chaos Monkey.](../../diagrams/sd-02-032-main.svg)
+![Ba nhóm thẻ. Ứng dụng và dịch vụ: ứng dụng di động viết bằng Swift và Kotlin, web dùng React; giao diện nói chuyện với máy chủ bằng GraphQL; dịch vụ phía sau dùng Zuul, Eureka và Spring Boot. Lưu dữ liệu: cơ sở dữ liệu EVCache, Cassandra và CockroachDB; video lưu trên S3 và Open Connect. Dữ liệu và phát hành: truyền tin bằng Kafka và Flink; xử lý dữ liệu bằng Flink, Spark, Tableau và Redshift; phát hành bằng Jenkins, Gradle, Spinnaker và Chaos Monkey. Khung cuối là phép thử của người biên soạn: ứng dụng, cổng hay Open Connect hỏng thì người xem thấy ngay; EVCache hỏng có thể chỉ chậm hơn; Kafka, Spark hay Jenkins hỏng thì thấy muộn hoặc không thấy.](../../diagrams/sd-02-032-main.svg)
 
 ## Từ viết tắt
 
@@ -30,18 +30,39 @@ Bài nguồn nói nó tổng hợp từ nhiều bài blog kỹ thuật và dự 
 
 **Phần phát hành.** Cho CI và CD, Netflix dùng nhiều công cụ như Jira, Confluence, PagerDuty, Jenkins, Gradle, Chaos Monkey, Spinnaker và Atlas.
 
+## Thử lập luận: hỏng thì ai thấy?
+
+Phần này là lập luận của người biên soạn, dựa trên vai trò thường gặp của mỗi công cụ, không phải trên bài nguồn; Netflix có thể dùng chúng khác đi.
+
+**Phép thử.** Với mỗi công cụ, hỏi: nếu nó ngừng chạy lúc này, người đang xem phim nhận ra trong vài giây, nhận ra sau vài giờ, hay không nhận ra?
+
+| Mảng | Nếu ngừng chạy | Người xem thấy khi nào |
+|---|---|---|
+| Ứng dụng, GraphQL, Zuul, Eureka | Yêu cầu từ ứng dụng không tới được dịch vụ | Ngay lập tức |
+| Open Connect | Video không còn máy gần để lấy | Ngay, hoặc phim chậm và mờ hơn |
+| EVCache | Đọc phải đi thẳng xuống cơ sở dữ liệu | Có thể chỉ thấy chậm hơn, nếu cơ sở dữ liệu chịu nổi |
+| Kafka, Flink | Sự kiện xem phim chưa được xử lý | Sau vài giờ, ví dụ gợi ý phim cũ đi |
+| Spark, Tableau, Redshift | Báo cáo và phân tích bị trễ | Không thấy |
+| Jenkins, Gradle, Spinnaker | Chưa đưa được bản mới ra | Không thấy, bản đang chạy vẫn chạy |
+
+**Điều rút ra.**
+- Các mảng không cần cùng một mức sẵn sàng. Mảng ở dòng đầu phải chạy liên tục; mảng ở dòng cuối dừng một ngày thì người xem cũng không biết. Đó là một lý do để không dồn mọi việc vào một công cụ: công cụ nào gánh việc ở dòng đầu thì phải được chăm như dòng đầu.
+- Ba cơ sở dữ liệu là ba câu trả lời khác nhau cho cùng câu hỏi. Theo hiểu biết chung, EVCache là bộ nhớ đệm, dữ liệu mất được thì nạp lại; Cassandra chia dữ liệu ra rất nhiều máy để ghi nhiều và vẫn chạy khi vài máy hỏng; CockroachDB giữ dữ liệu nhất quán giữa các máy, hợp với dữ liệu không được sai. Một cơ sở dữ liệu duy nhất phải chọn một trong ba ưu tiên đó cho mọi loại dữ liệu.
+- Bộ nhớ đệm có hai mặt. EVCache làm đọc nhanh, nhưng nếu cơ sở dữ liệu phía sau chỉ chịu được lượng đọc khi có bộ nhớ đệm, mất bộ nhớ đệm sẽ kéo cơ sở dữ liệu sập theo, và dòng "chỉ thấy chậm hơn" thành "thấy ngay".
+- Chaos Monkey là phép thử này làm thật: tắt máy chủ đang chạy để xem bảng trên có đúng không, thay vì đoán.
+
 ## Giới hạn cần nhớ
 
-Bài nguồn chỉ nêu tên công cụ, không nói mỗi công cụ làm gì ở Netflix, dùng ở quy mô nào hay có còn dùng không. Bài nguồn viết vài tên khác cách viết thường gặp (`ZUUL`, `EV cache`, `Fink`, `Altas`); bài này viết Zuul, EVCache, Flink và Atlas, theo cách đọc của người biên soạn. Vai trò của Open Connect và Chaos Monkey ở phần dưới là kiến thức chung, không từ bài nguồn.
+Bài nguồn chỉ nêu tên công cụ, không nói mỗi công cụ làm gì ở Netflix, dùng ở quy mô nào hay có còn dùng không. Bài nguồn viết vài tên khác cách viết thường gặp (`ZUUL`, `EV cache`, `Fink`, `Altas`); bài này viết Zuul, EVCache, Flink và Atlas, theo cách đọc của người biên soạn. Vai trò của từng công cụ trong phần *Thử lập luận* và phần dưới là kiến thức chung của người biên soạn, không từ bài nguồn.
 
 ## Nhìn hình thử trả lời
 
-Một người bấm xem một bộ phim trên ứng dụng Netflix ở điện thoại. Bài nguồn chia công cụ của Netflix thành những mảng nào, và nó có cho biết lần bấm xem đó dùng tới mảng nào, theo thứ tự nào không?
+Giữa buổi tối đông người xem, EVCache ngừng chạy, còn Cassandra phía sau vẫn chạy. Theo phép thử ở trên, người đang xem phim sẽ thấy gì, và điều gì quyết định họ chỉ thấy chậm hay thấy lỗi?
 
 <details>
 <summary>Xem đáp án</summary>
 
-Tám mảng: di động và web (Swift, Kotlin; React), giao tiếp giữa giao diện và máy chủ (GraphQL), dịch vụ phía sau (Zuul, Eureka, Spring Boot), cơ sở dữ liệu (EVCache, Cassandra, CockroachDB), truyền tin (Kafka, Flink), lưu video (S3, Open Connect), xử lý dữ liệu (Flink, Spark, Tableau, Redshift) và tích hợp, chuyển giao liên tục. Bài nguồn chỉ nêu tên công cụ theo mảng; nó không nói lần bấm xem dùng tới mảng nào hay đi qua các công cụ theo thứ tự nào, nên không thể đọc danh sách này như một đường đi. Muốn biết phải đọc tài liệu kỹ thuật của chính Netflix.
+Mọi lượt đọc trước đây do bộ nhớ đệm trả lời giờ đi thẳng xuống Cassandra. Nếu Cassandra chịu được lượng đọc đó, người xem chỉ thấy trang mở chậm hơn. Nếu nó chỉ chịu được khi phần lớn lượt đọc đã dừng ở bộ nhớ đệm, nó quá tải và người xem thấy lỗi ngay. Điều quyết định là phía sau còn dư bao nhiêu sức khi mất bộ nhớ đệm. Đây là lập luận của người biên soạn; bài nguồn chỉ nêu tên EVCache và Cassandra, không nói Netflix xếp chúng thế nào.
 
 </details>
 

@@ -1,8 +1,8 @@
 {
   "id": "sd-02-032",
   "title": "Netflix xếp thành tám mảng",
-  "subtitle": "Từ ứng dụng tới phát hành.",
-  "desc": "Ba nhóm thẻ. Ứng dụng và dịch vụ: di động viết bằng Swift và Kotlin, web dùng React; GraphQL giữa giao diện và máy chủ; dịch vụ phía sau dùng Zuul, Eureka, Spring Boot. Lưu dữ liệu: cơ sở dữ liệu EVCache, Cassandra, CockroachDB; video trên S3 và Open Connect. Dữ liệu và phát hành: truyền tin bằng Kafka và Flink; xử lý dữ liệu bằng Flink, Spark, Tableau, Redshift; phát hành bằng Jenkins, Spinnaker, Chaos Monkey.",
+  "subtitle": "Hỏng thì người xem thấy khi nào?",
+  "desc": "Ba nhóm thẻ. Ứng dụng và dịch vụ: di động viết bằng Swift và Kotlin, web dùng React; GraphQL giữa giao diện và máy chủ; dịch vụ phía sau dùng Zuul, Eureka, Spring Boot. Lưu dữ liệu: cơ sở dữ liệu EVCache, Cassandra, CockroachDB; video trên S3 và Open Connect. Dữ liệu và phát hành: truyền tin bằng Kafka và Flink; xử lý dữ liệu bằng Flink, Spark, Tableau, Redshift; phát hành bằng Jenkins, Spinnaker, Chaos Monkey. Khung cuối: phép thử của người biên soạn, hỏng thì người xem thấy khi nào.",
   "sections": [
     {
       "kind": "parts",
@@ -60,6 +60,15 @@
           "role": "Jenkins, Spinnaker.",
           "icon": "rocket"
         }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Phép thử của bài này",
+      "items": [
+        "Ứng dụng, cổng, Open Connect hỏng: thấy ngay.",
+        "EVCache hỏng: có thể chỉ chậm hơn.",
+        "Kafka, Spark, Jenkins hỏng: thấy muộn, hoặc không."
       ]
     }
   ]

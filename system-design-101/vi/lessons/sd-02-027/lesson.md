@@ -11,7 +11,7 @@ Bài này đọc tám mảng theo đường đi của một yêu cầu đặt xe
 - **VIPER** (View, Interactor, Presenter, Entity, Router) — một kiến trúc ứng dụng di động chia màn hình thành năm vai trò; theo nguồn, RIB dựa trên nó.
 - **MVC** (Model, View, Controller) — kiến trúc chia ứng dụng thành dữ liệu, giao diện và phần điều khiển; kiến trúc quen thuộc mà Uber không chọn.
 - **gRPC** (gRPC Remote Procedure Calls) — tên viết tắt đệ quy của một hệ thống gọi hàm từ xa, tức gọi một hàm chạy trên máy khác như gọi hàm trên máy mình.
-- **QUIC** (Quick UDP Internet Connections) — một giao thức truyền dữ liệu chạy trên UDP, nhanh hơn khi mạng chập chờn.
+- **QUIC** (Quick UDP Internet Connections) — một giao thức truyền dữ liệu chạy trên UDP, chở nhiều luồng dữ liệu trong một kết nối: mất một gói tin chỉ làm chậm luồng chứa gói đó, không chặn các luồng khác. Nó không hứa lúc nào cũng nhanh hơn, và có mạng chặn hẳn UDP.
 - **UDP** (User Datagram Protocol) — giao thức gửi gói tin không cần bắt tay trước.
 - **API** (Application Programming Interface) — giao diện lập trình ứng dụng: cách các dịch vụ gọi nhau.
 - **SQL** (Structured Query Language) — ngôn ngữ truy vấn có cấu trúc; chữ SQL trong tên MySQL và PostgreSQL.
@@ -30,14 +30,14 @@ Bài nguồn nói nó tổng hợp từ nhiều bài blog kỹ thuật và dự 
 - **Cơ sở dữ liệu:** phần OLTP chủ yếu dùng DocStore nhất quán mạnh, chạy trên MySQL và PostgreSQL cùng bộ máy lưu trữ RocksDB.
 
 **Phần dữ liệu.**
-- **Dữ liệu lớn:** họ Hadoop; Hudi và Parquet làm định dạng tệp, Alluxio làm bộ đệm; dữ liệu chuỗi thời gian lưu trong Pinot và AresDB.
+- **Dữ liệu lớn:** họ Hadoop; nguồn xếp Hudi và Parquet vào nhóm định dạng tệp, Alluxio làm bộ đệm; dữ liệu chuỗi thời gian lưu trong Pinot và AresDB.
 - **Xử lý dữ liệu:** Hive, Spark và Marmaray, một khung nạp dữ liệu mã nguồn mở; truyền tin và dòng dữ liệu dùng Apache Kafka và Apache Flink.
 
 **Phần phát hành.** Uber dùng một monorepo với môi trường phát triển đơn giản gọi là devpod; chuyển giao liên tục bằng Spinnaker của Netflix; số đo gửi tới uMetric, cảnh báo trên uMonitor, và M3 là cơ sở dữ liệu quan sát thống nhất.
 
 ## Giới hạn cần nhớ
 
-Bài nguồn chỉ nêu tên và một dòng vai trò. Nó không nói mỗi công cụ dùng ở quy mô nào, từ năm nào, hay có còn dùng không; tên mới của Flipr cũng không được giải thích. Giải nghĩa RIB và QUIC ở phần viết tắt là kiến thức chung của người biên soạn.
+Bài nguồn chỉ nêu tên và một dòng vai trò. Nó không nói mỗi công cụ dùng ở quy mô nào, từ năm nào, hay có còn dùng không; tên mới của Flipr cũng không được giải thích. Giải nghĩa RIB và QUIC ở phần viết tắt là kiến thức chung của người biên soạn. Cũng theo người biên soạn: chỉ Parquet là định dạng tệp; Hudi là lớp bảng đặt trên các tệp đó (thường là Parquet), lo việc cập nhật và ghi theo giao dịch, nên đừng coi hai thứ là cùng một loại.
 
 ## Nhìn hình thử trả lời
 

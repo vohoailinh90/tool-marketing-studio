@@ -90,10 +90,16 @@
       "verified_by": "Read from the pinned commit; digest run."
     },
     {
-      "claim_vi": "zlib's deflate compresses literals and match lengths with one Huffman tree and match distances with another. A Huffman code built by the author for abracadabra takes 23 bits against 88 bits at 8 bits per letter.",
+      "claim_vi": "zlib's deflate compresses literals and match lengths with one Huffman tree and match distances with another.",
       "source": "https://github.com/madler/zlib/blob/767c4c947852e143f582c85f14cf573411df1b35/doc/algorithm.txt",
       "section": "Compression algorithm (deflate)",
-      "verified_by": "Read from the pinned commit; the Huffman construction was run by the author."
+      "verified_by": "Read from the pinned commit."
+    },
+    {
+      "claim_vi": "A Huffman code built by the author for abracadabra takes 23 bits against 88 bits at 8 bits per letter.",
+      "source": "https://github.com/vohoailinh90/tool-marketing-studio",
+      "section": "Huffman example",
+      "verified_by": "Computed by the author with a short Python program; it is the lesson's own experiment, not a statement of the zlib document."
     },
     {
       "claim_vi": "Toy RSA: n = 61 x 53 = 3233, public exponent 17, private exponent 2753; 65 encrypts to 2790 and decrypts back to 65.",

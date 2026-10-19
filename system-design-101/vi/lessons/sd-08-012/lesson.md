@@ -23,7 +23,7 @@
 | REST và `GraphQL` | REST lấy dữ liệu qua nhiều địa chỉ; `GraphQL` lấy gọn bằng truy vấn riêng nhưng chi phí thiết kế cao hơn | đo REST ba lời gọi so với một truy vấn chọn trường (không dựng `GraphQL` thật) |
 | Có trạng thái và không trạng thái | Có trạng thái nhớ tương tác cũ; không trạng thái thì không | chưa đo |
 | Đọc xuyên và ghi xuyên bộ nhớ đệm | Đọc xuyên nạp từ cơ sở dữ liệu khi trượt; ghi xuyên ghi đồng thời vào bộ đệm và kho | chưa đo |
-| Đồng bộ và bất đồng bộ | Đồng bộ làm việc lần lượt; bất đồng bộ chạy nền, việc mới không phải chờ việc cũ | đo bằng `asyncio` |
+| Đồng bộ và bất đồng bộ | Đồng bộ làm việc lần lượt; bất đồng bộ chạy nền, việc mới không phải chờ việc cũ | đo bằng `asyncio`: so chờ lần lượt với xếp các lần chờ chạy đồng thời |
 
 Cột "Ý của bài nguồn" là tóm lược các câu của nguồn, không thêm gì. Bài nguồn không đưa số liệu nào.
 
@@ -50,7 +50,7 @@ Ngày 2026-10-19, một máy ảo 4 lõi, Python 3.13.16, mỗi phép đo chạy
 
 **REST và một truy vấn chọn trường** (một máy chủ nhỏ viết bằng thư viện chuẩn, cùng dữ liệu một người dùng, các đơn và địa chỉ): ba lời gọi REST trả về tổng cộng 4.083 byte, trung vị 758 đến 814 micro giây; một truy vấn chỉ xin đúng các trường cần trả về 354 byte, trung vị 233 đến 254 micro giây.
 
-Bốn kết quả cho bốn bài học khác nhau. Một, phi chuẩn hoá không tự nhanh hơn khi đã có chỉ mục: cái nó đổi lấy là phải sửa nhiều chỗ khi dữ liệu đổi và dung lượng gấp khoảng 2,6 lần. Hai, bất đồng bộ thắng lớn khi phải chờ và thua khi việc quá nhỏ vì mỗi việc có chi phí quản lý riêng. Ba, thêm tiến trình không cho tốc độ gấp theo số lượng: phần không chia được và việc phối hợp ăn bớt lợi ích, đúng với lời khuyên của tài liệu Microsoft rằng phối hợp giới hạn lợi ích của mở rộng ngang. Lưu ý đây là song song hoá trên một máy, một phép tương tự: mở rộng ngang thật, qua nhiều máy được cấp riêng, chưa được đo. Bốn, cái nhận được từ truy vấn chọn trường ở đây là bớt byte và bớt lời gọi, chứ chi phí thiết kế mà nguồn nhắc thì phép thử không đo được.
+Bốn kết quả cho bốn bài học khác nhau. Một, phi chuẩn hoá không tự nhanh hơn khi đã có chỉ mục: cái nó đổi lấy là phải sửa nhiều chỗ khi dữ liệu đổi và dung lượng gấp khoảng 2,6 lần. Hai, cái thắng lớn đến từ việc xếp 50 lần chờ chạy chồng lên nhau chứ không đến từ chữ `async` tự nó: nếu mỗi lần chờ vẫn được đợi xong rồi mới bắt đầu lần sau thì vẫn là 1,010 giây, và hàm đồng bộ cũng chạy chồng được nhờ luồng hay tiến trình; còn khi việc quá nhỏ, mỗi việc `asyncio` có chi phí quản lý riêng nên chậm hơn. Ba, thêm tiến trình không cho tốc độ gấp theo số lượng: phần không chia được và việc phối hợp ăn bớt lợi ích, đúng với lời khuyên của tài liệu Microsoft rằng phối hợp giới hạn lợi ích của mở rộng ngang. Lưu ý đây là song song hoá trên một máy, một phép tương tự: mở rộng ngang thật, qua nhiều máy được cấp riêng, chưa được đo. Bốn, cái nhận được từ truy vấn chọn trường ở đây là bớt byte và bớt lời gọi, chứ chi phí thiết kế mà nguồn nhắc thì phép thử không đo được.
 
 ## Giới hạn cần nhớ
 

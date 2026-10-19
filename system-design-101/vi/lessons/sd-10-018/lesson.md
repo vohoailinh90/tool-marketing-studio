@@ -3,7 +3,7 @@
 **Bộ cân bằng tải chia yêu cầu cho nhiều máy cùng làm một việc; bài nguồn nêu sáu cách chia: round robin, sticky round-robin, weighted round-robin, hash, least connections và least response time.**
 Bài giữ sáu tên đó và cách chia nhóm "tĩnh" và "động" của nguồn, rồi giải thích từng cách bằng tài liệu của nginx và của `HAProxy`, hai bộ cân bằng tải đang dùng ngoài đời.
 
-![Ba khối: hai nhóm thẻ và một khung ghi nhớ. Theo lượt và trọng số: round robin dùng từng máy lần lượt, sticky round-robin giữ một khách ở cùng một máy, weighted round-robin cho máy trọng số cao nhiều lượt hơn. Theo khóa băm hoặc theo tải: hash băm địa chỉ IP của khách hoặc URL để chọn máy, least connections chọn máy ít kết nối nhất, least response time chọn máy phản hồi nhanh. Khung cuối nêu ba điều cần nhớ.](../../diagrams/sd-10-018-main.svg)
+![Ba khối: hai nhóm thẻ và một khung ghi nhớ. Theo lượt và trọng số: round robin dùng từng máy lần lượt, sticky round-robin giữ một khách ở cùng một máy, weighted round-robin cho máy trọng số cao nhiều lượt hơn. Theo khóa băm hoặc theo tải: hash băm địa chỉ IP của khách hoặc URL để chọn máy, least connections chọn máy ít kết nối nhất, least response time chọn máy phản hồi trung bình nhanh nhất và ít kết nối nhất. Khung cuối nêu ba điều cần nhớ.](../../diagrams/sd-10-018-main.svg)
 
 ## Từ viết tắt
 

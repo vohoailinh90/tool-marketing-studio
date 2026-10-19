@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1074" viewBox="0 0 320 1074" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1093" viewBox="0 0 320 1093" role="img" aria-labelledby="title desc">
 <title id="title">Sáu thuật toán cân bằng tải</title>
-<desc id="desc">Ba khối: hai nhóm thẻ và một khung ghi nhớ. Theo lượt và trọng số: round robin dùng từng máy lần lượt, sticky round-robin giữ một khách ở cùng một máy, weighted round-robin cho máy trọng số cao nhiều lượt hơn. Theo khóa băm hoặc theo tải: hash băm địa chỉ IP của khách hoặc URL để chọn máy, least connections chọn máy ít kết nối nhất, least response time chọn máy phản hồi nhanh. Khung cuối nêu ba điều cần nhớ.</desc>
+<desc id="desc">Ba khối: hai nhóm thẻ và một khung ghi nhớ. Theo lượt và trọng số: round robin dùng từng máy lần lượt, sticky round-robin giữ một khách ở cùng một máy, weighted round-robin cho máy trọng số cao nhiều lượt hơn. Theo khóa băm hoặc theo tải: hash băm địa chỉ IP của khách hoặc URL để chọn máy, least connections chọn máy ít kết nối nhất, least response time chọn máy phản hồi trung bình nhanh nhất và ít kết nối nhất. Khung cuối nêu ba điều cần nhớ.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="1074" fill="#f8fafc"/>
+<rect width="320" height="1093" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Sáu thuật toán cân bằng</text>
 <text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">tải</text>
@@ -24,7 +24,7 @@
 <text x="78" y="377.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Weighted round-robin</text>
 <text x="78" y="401.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Trọng số cao, nhiều lượt</text>
 <text x="78" y="420.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hơn.</text>
-<rect x="8" y="462" width="304" height="330" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="8" y="462" width="304" height="349" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
 <text x="20" y="490.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Theo khóa băm hoặc theo</text>
 <text x="20" y="512.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">tải</text>
 <rect x="20" y="529" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
@@ -36,26 +36,27 @@
 <circle cx="50" cy="664" r="18" fill="#0f766e"/><g transform="translate(39.2 653.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="6" rx="1" width="6" x="16" y="16"/><rect height="6" rx="1" width="6" x="2" y="16"/><rect height="6" rx="1" width="6" x="9" y="2"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"/><path d="M12 12V8"/></g>
 <text x="78" y="656.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Least connections</text>
 <text x="78" y="680.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chọn máy ít kết nối nhất.</text>
-<rect x="20" y="712" width="280" height="68" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
-<circle cx="50" cy="746" r="18" fill="#0f766e"/><g transform="translate(39.2 735.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="10" x2="14" y1="2" y2="2"/><line x1="12" x2="15" y1="14" y2="11"/><circle cx="12" cy="14" r="8"/></g>
+<rect x="20" y="712" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="755.5" r="18" fill="#0f766e"/><g transform="translate(39.2 744.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="10" x2="14" y1="2" y2="2"/><line x1="12" x2="15" y1="14" y2="11"/><circle cx="12" cy="14" r="8"/></g>
 <text x="78" y="738.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Least response time</text>
-<text x="78" y="762.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chọn máy phản hồi nhanh.</text>
-<rect x="8" y="804" width="304" height="262" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
-<text x="20" y="832.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Nhớ gì</text>
-<rect x="20" y="849" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
-<circle cx="43" cy="872" r="11" fill="#16a34a"/>
-<polyline points="37.9,872.4 41.7,876.4 48.5,868" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="875.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bài nguồn gọi bốn cách đầu</text>
-<text x="64" y="894.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">là tĩnh, hai cách sau là động.</text>
-<rect x="20" y="920" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
-<circle cx="43" cy="943" r="11" fill="#16a34a"/>
-<polyline points="37.9,943.4 41.7,947.4 48.5,939" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="946.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">HAProxy dùng hai từ đó theo</text>
-<text x="64" y="965.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nghĩa khác.</text>
-<rect x="20" y="991" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
-<circle cx="43" cy="1014" r="11" fill="#16a34a"/>
-<polyline points="37.9,1014.4 41.7,1018.4 48.5,1010" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="1017.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đổi số máy có thể làm hash</text>
-<text x="64" y="1036.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chuyển nhiều khóa.</text>
+<text x="78" y="762.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chọn máy phản hồi nhanh</text>
+<text x="78" y="781.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">và ít kết nối.</text>
+<rect x="8" y="823" width="304" height="262" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="851.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Nhớ gì</text>
+<rect x="20" y="868" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="891" r="11" fill="#16a34a"/>
+<polyline points="37.9,891.4 41.7,895.4 48.5,887" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="894.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Bài nguồn gọi bốn cách đầu</text>
+<text x="64" y="913.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">là tĩnh, hai cách sau là động.</text>
+<rect x="20" y="939" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="962" r="11" fill="#16a34a"/>
+<polyline points="37.9,962.4 41.7,966.4 48.5,958" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="965.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">HAProxy dùng hai từ đó theo</text>
+<text x="64" y="984.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nghĩa khác.</text>
+<rect x="20" y="1010" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1033" r="11" fill="#16a34a"/>
+<polyline points="37.9,1033.4 41.7,1037.4 48.5,1029" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1036.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đổi số máy có thể làm hash</text>
+<text x="64" y="1055.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chuyển nhiều khóa.</text>
 </g>
 </svg>

@@ -2,7 +2,7 @@
   "id": "sd-10-018",
   "title": "Sáu thuật toán cân bằng tải",
   "subtitle": "Sáu cách chia yêu cầu, nhóm theo cái chúng dựa vào.",
-  "desc": "Ba khối: hai nhóm thẻ và một khung ghi nhớ. Theo lượt và trọng số: round robin dùng từng máy lần lượt, sticky round-robin giữ một khách ở cùng một máy, weighted round-robin cho máy trọng số cao nhiều lượt hơn. Theo khóa băm hoặc theo tải: hash băm địa chỉ IP của khách hoặc URL để chọn máy, least connections chọn máy ít kết nối nhất, least response time chọn máy phản hồi nhanh. Khung cuối nêu ba điều cần nhớ.",
+  "desc": "Ba khối: hai nhóm thẻ và một khung ghi nhớ. Theo lượt và trọng số: round robin dùng từng máy lần lượt, sticky round-robin giữ một khách ở cùng một máy, weighted round-robin cho máy trọng số cao nhiều lượt hơn. Theo khóa băm hoặc theo tải: hash băm địa chỉ IP của khách hoặc URL để chọn máy, least connections chọn máy ít kết nối nhất, least response time chọn máy phản hồi trung bình nhanh nhất và ít kết nối nhất. Khung cuối nêu ba điều cần nhớ.",
   "sections": [
     {"kind": "parts", "heading": "Theo lượt và trọng số",
      "items": [{"name": "Round robin", "role": "Dùng từng máy lần lượt.", "icon": "repeat"},
@@ -11,7 +11,7 @@
     {"kind": "parts", "heading": "Theo khóa băm hoặc theo tải",
      "items": [{"name": "Hash", "role": "Băm IP của khách hoặc URL để chọn máy.", "icon": "hash"},
                {"name": "Least connections", "role": "Chọn máy ít kết nối nhất.", "icon": "network"},
-               {"name": "Least response time", "role": "Chọn máy phản hồi nhanh.", "icon": "timer"}]},
+               {"name": "Least response time", "role": "Chọn máy phản hồi nhanh và ít kết nối.", "icon": "timer"}]},
     {"kind": "notes", "heading": "Nhớ gì",
      "items": ["Bài nguồn gọi bốn cách đầu là tĩnh, hai cách sau là động.", "HAProxy dùng hai từ đó theo nghĩa khác.", "Đổi số máy có thể làm hash chuyển nhiều khóa."]}
   ]

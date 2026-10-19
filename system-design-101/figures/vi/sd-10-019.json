@@ -1,49 +1,16 @@
 {
   "id": "sd-10-019",
   "title": "Bốn trụ cột hướng đối tượng",
-  "subtitle": "Mỗi trụ cột kèm ví dụ của bài nguồn.",
-  "desc": "Hai nhóm thẻ và một khung ghi nhớ. Che bớt chi tiết: trừu tượng ẩn chi tiết cài đặt, ví dụ lớp Vehicle với phương thức stop trừu tượng; đóng gói gói dữ liệu và phương thức vào một lớp, ví dụ trường private cùng getter và setter. Dùng lại và thay đổi: kế thừa cho lớp con thừa hưởng từ lớp cha, ví dụ Car kế thừa Vehicle; đa hình cho cùng một phương thức chạy khác nhau theo đối tượng gọi nó. Khung cuối nêu ba điều cần nhớ.",
+  "subtitle": "Mỗi trụ cột một câu hỏi, kèm ví dụ của bài.",
+  "desc": "Hai nhóm thẻ và một khung ghi nhớ. Che bớt chi tiết: trừu tượng cho người dùng chỉ thấy giao diện đơn giản, ví dụ gọi area của một Shape mà không cần biết công thức; đóng gói gói dữ liệu và hàm vào một lớp rồi kiểm soát truy cập, ví dụ Circle giữ bán kính bên trong. Dùng lại và thay đổi: kế thừa cho lớp con giữ hoặc thêm thuộc tính và phương thức của lớp cha, ví dụ Circle và Square kế thừa Shape; đa hình cho mỗi lớp có hàm riêng, ví dụ area chạy theo từng hình. Khung cuối nêu ba điều cần nhớ.",
   "sections": [
-    {
-      "kind": "parts",
-      "heading": "Che bớt chi tiết",
-      "items": [
-        {
-          "name": "Trừu tượng",
-          "role": "Ẩn chi tiết cài đặt, chỉ cho thấy phần thiết yếu. Ví dụ: Vehicle có phương thức stop trừu tượng.",
-          "icon": "eye"
-        },
-        {
-          "name": "Đóng gói",
-          "role": "Gói dữ liệu và phương thức vào lớp, hạn chế truy cập trực tiếp. Ví dụ: trường private cùng getter, setter.",
-          "icon": "lock"
-        }
-      ]
-    },
-    {
-      "kind": "parts",
-      "heading": "Dùng lại và thay đổi",
-      "items": [
-        {
-          "name": "Kế thừa",
-          "role": "Lớp con thừa hưởng từ lớp cha, dùng lại mã. Ví dụ: Car kế thừa Vehicle.",
-          "icon": "git-branch"
-        },
-        {
-          "name": "Đa hình",
-          "role": "Cùng một phương thức chạy khác nhau theo đối tượng gọi nó.",
-          "icon": "shuffle"
-        }
-      ]
-    },
-    {
-      "kind": "notes",
-      "heading": "Nhớ gì",
-      "items": [
-        "Bốn trụ cột: trừu tượng, đóng gói, kế thừa, đa hình.",
-        "Đóng gói bằng quyền truy cập là cách của từng ngôn ngữ.",
-        "Kế thừa giúp dùng lại mã."
-      ]
-    }
+    {"kind": "parts", "heading": "Che bớt chi tiết",
+     "items": [{"name": "Trừu tượng", "role": "Chỉ lộ giao diện đơn giản. Ví dụ: gọi area của Shape.", "icon": "eye"},
+               {"name": "Đóng gói", "role": "Gói dữ liệu và hàm vào lớp, kiểm soát truy cập. Ví dụ: Circle giữ bán kính.", "icon": "lock"}]},
+    {"kind": "parts", "heading": "Dùng lại và thay đổi",
+     "items": [{"name": "Kế thừa", "role": "Lớp con giữ hoặc thêm phần của lớp cha. Ví dụ: Circle, Square từ Shape.", "icon": "git-branch"},
+               {"name": "Đa hình", "role": "Mỗi lớp có hàm riêng. Ví dụ: area chạy theo từng hình.", "icon": "shuffle"}]},
+    {"kind": "notes", "heading": "Nhớ gì",
+     "items": ["Bốn trụ cột: trừu tượng, đóng gói, kế thừa, đa hình.", "Kiểm soát truy cập là cách của từng ngôn ngữ.", "Ví dụ Shape do bài tự nghĩ."]}
   ]
 }

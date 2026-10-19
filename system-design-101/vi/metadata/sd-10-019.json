@@ -28,7 +28,7 @@
   "verification": {
     "source_body": {
       "status": "read",
-      "checked_on": "2026-10-18"
+      "checked_on": "2026-10-19"
     },
     "claims": {
       "status": "pending",
@@ -48,28 +48,34 @@
   },
   "claims": [
     {
-      "claim_vi": "Abstraction hides implementation details and shows only essential features of an object; example: a Vehicle class with an abstract stop method.",
+      "claim_vi": "The source names four pillars of object-oriented programming (abstraction, encapsulation, inheritance, polymorphism), each with a short definition and example; the lesson keeps the four names and order, not the definitions or examples.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/the-fundamental-pillars-of-object-oriented-programming.md",
+      "section": "Whole body",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "MDN: abstraction reduces complexity by hiding technical complexity behind simpler interfaces; advantages include avoiding low-level code and duplication and changing the internal implementation without affecting the user.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/abstraction/index.md",
       "section": "Abstraction",
-      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
     },
     {
-      "claim_vi": "Encapsulation wraps data (fields) and methods in a single unit (class) and restricts direct access using access modifiers; example: private fields with public getters and setters.",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/the-fundamental-pillars-of-object-oriented-programming.md",
+      "claim_vi": "MDN: encapsulation is packing data and functions into one component, for example a class, and controlling access to it so the object is a black box whose users know only its interface.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/encapsulation/index.md",
       "section": "Encapsulation",
-      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
     },
     {
-      "claim_vi": "Inheritance creates a new class (child) that inherits attributes and methods from an existing class (parent), promoting code reuse; example: Car inherits from Vehicle.",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/the-fundamental-pillars-of-object-oriented-programming.md",
+      "claim_vi": "MDN: inheritance is a major OOP feature; classes can have superclasses and subclasses, the developer chooses which attributes and methods of the superclass to keep and adds their own; some languages allow multiple inheritance.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/inheritance/index.md",
       "section": "Inheritance",
-      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
     },
     {
-      "claim_vi": "Polymorphism allows methods to perform differently based on the object they are invoked on; when two types share an inheritance chain they can be used interchangeably with no errors.",
-      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/the-fundamental-pillars-of-object-oriented-programming.md",
+      "claim_vi": "MDN: polymorphism is the presentation of one interface for multiple data types; in OOP each class is responsible for its own code and data, so each class has its own function that behaves properly for any object.",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/polymorphism/index.md",
       "section": "Polymorphism",
-      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
     },
     {
       "claim_vi": "Python tutorial: derived classes may override methods of their base classes; all methods in Python are effectively virtual.",
@@ -90,15 +96,15 @@
       "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
     },
     {
-      "claim_vi": "The source gives no code and does not rank the pillars; the claim that interchangeable use works without errors is not checked in every language.",
+      "claim_vi": "The Shape, Circle and Square example is the lesson's own illustration; the source's Vehicle and Car examples and its remark that two types sharing an inheritance chain are interchangeable are not used and not checked; the MDN gloss in the abbreviations section is general knowledge.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/the-fundamental-pillars-of-object-oriented-programming.md",
-      "section": "Limits",
+      "section": "Đọc hình, Giới hạn cần nhớ",
       "verified_by": "Author's general knowledge; not checked against primary documentation."
     }
   ],
-  "design_notes_vi": "Bốn thẻ xếp dọc theo thứ tự của nguồn, mỗi thẻ kèm ví dụ của nguồn, và một khung ghi nhớ. Không dùng ảnh nguồn.",
+  "design_notes_vi": "Hai nhóm thẻ (che bớt chi tiết; dùng lại và thay đổi) và một khung ghi nhớ. Lời giải thích từ MDN và tài liệu Python; ví dụ Shape do bài tự nghĩ. Không dùng ảnh nguồn.",
   "source_deviations": [
-    "Source is four short paragraphs with one example for three of the pillars; the lesson keeps the order and examples and does not use the source image.",
+    "Source is four short paragraphs with an example for three of the pillars; the lesson keeps the four names and their order, explains each from MDN and the Python documentation, replaces the source's Vehicle and Car examples with its own Shape example and does not use the source image.",
     "Python behavior is not in the source and comes from the pinned CPython documentation; the lesson notes that access modifiers belong to some languages and Python relies on convention."
   ],
   "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích thêm là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."

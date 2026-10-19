@@ -98,7 +98,7 @@
       "verified_by": "Author's general knowledge; not checked against the cited page, which only says the session meaning is kept server side and the store must be protected. Not measured."
     },
     {
-      "claim_vi": "A signed JWT's header and payload are only base64url encoded, so anyone holding the token can read the claims; the header carries an alg field naming the signature algorithm; PyJWT printed {\"alg\":\"HS256\",\"typ\":\"JWT\"} and the payload from a token with no key used.",
+      "claim_vi": "A signed JWT's header and payload are only base64url encoded, so anyone holding the token can read the claims; the header carries an alg field naming the signature algorithm; PyJWT printed {\"alg\":\"HS256\",\"typ\":\"JWT\"} and the payload from a token with no key used. The lesson says this holds for the signed token tried here; an encrypted JWT (whose payload cannot be read without the key) was not tried.",
       "source": "https://github.com/OWASP/CheatSheetSeries/blob/f9a631ec47a5fd134bb83b57ce690d7946360cea/cheatsheets/JSON_Web_Token_Cheat_Sheet.md",
       "section": "Signed JWTs are not confidential; JWT structure",
       "verified_by": "Read from a copy of the OWASP CheatSheetSeries file fetched at commit f9a631ec47a5fd134bb83b57ce690d7946360cea (the head of master when read). Ran exp_jwt.py (scratchpad) with system Python 3.13 and PyJWT 2.14.0 and throw-away keys on the authoring machine; one run, output kept as exp_jwt.out."

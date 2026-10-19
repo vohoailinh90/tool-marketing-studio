@@ -3,7 +3,7 @@
   "lang": "vi",
   "title": "Ba lớp của SSH",
   "subtitle": "Đọc từ trên xuống, theo thứ tự chạy thật.",
-  "desc": "Bốn thẻ xếp dọc, nối bằng mũi tên. Kết nối TCP: một ổ cắm mạng giữa hai máy. Một, lớp truyền tải: trao khóa, mã hóa, kiểm khóa máy chủ. Hai, lớp xác thực: máy chủ kiểm người dùng, trong đường đã mã hóa. Ba, lớp kết nối: chia thành nhiều kênh: lệnh, chuyển tiếp cổng. Khung cuối ghi bốn điều quan sát khi chạy thử: trên dây chỉ thấy phiên bản và tên thuật toán; khóa máy chủ lạ làm máy khách ngắt trước khi xác thực; khóa lạ hoặc mật khẩu khi máy chủ không bật bị từ chối ở lớp xác thực; ba kênh cùng lúc vẫn là một kết nối TCP và một lần xác thực.",
+  "desc": "Bốn thẻ xếp dọc, nối bằng mũi tên. Kết nối TCP: một ổ cắm mạng giữa hai máy. Một, lớp truyền tải: trao khóa, mã hóa, kiểm khóa máy chủ. Hai, lớp xác thực: máy chủ kiểm người dùng, trong đường đã mã hóa. Ba, lớp kết nối: chia thành nhiều kênh: lệnh, chuyển tiếp cổng. Khung cuối ghi bốn điều quan sát khi chạy thử: trong byte bắt được có chữ phiên bản và tên thuật toán, không có lệnh hay tên người dùng, nhưng kích thước vẫn đếm được; khóa máy chủ lạ làm máy khách ngắt trước khi xác thực; khóa lạ hoặc mật khẩu khi máy chủ không bật bị từ chối ở lớp xác thực; ba kênh cùng lúc vẫn là một kết nối TCP và một lần xác thực.",
   "sections": [
     {
       "kind": "parts",
@@ -49,7 +49,7 @@
       "kind": "notes",
       "heading": "Quan sát khi chạy thử",
       "items": [
-        "Trên dây chỉ thấy phiên bản và tên thuật toán; lệnh và tên người dùng thì không.",
+        "Trong byte bắt được có chữ phiên bản và tên thuật toán, không có lệnh hay tên người dùng; kích thước vẫn đếm được.",
         "Khóa máy chủ lạ: máy khách ngắt trước khi xác thực bắt đầu.",
         "Khóa lạ, hoặc mật khẩu khi máy chủ không bật: bị từ chối ở lớp xác thực.",
         "Ba kênh cùng lúc: vẫn một kết nối TCP và một lần xác thực."

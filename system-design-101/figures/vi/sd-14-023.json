@@ -16,7 +16,7 @@
         },
         {
           "name": "JWT",
-          "role": "Token tự mang dữ liệu. Header có trường alg do người gửi viết: người kiểm phải ghim thuật toán.",
+          "role": "JWT ký tự mang dữ liệu, ai cũng đọc được. Header có trường alg do người gửi viết: phải ghim thuật toán.",
           "icon": "file-text"
         },
         {

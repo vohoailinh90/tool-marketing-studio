@@ -20,10 +20,10 @@
 <rect x="20" y="311" width="280" height="126" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
 <circle cx="50" cy="374" r="18" fill="#1d4ed8"/><g transform="translate(39.2 363.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></g>
 <text x="78" y="337.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">JWT</text>
-<text x="78" y="361.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Token tự mang dữ liệu.</text>
-<text x="78" y="380.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Header có trường alg do</text>
-<text x="78" y="400.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">người gửi viết: người kiểm</text>
-<text x="78" y="419.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">phải ghim thuật toán.</text>
+<text x="78" y="361.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">JWT ký tự mang dữ liệu, ai</text>
+<text x="78" y="380.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cũng đọc được. Header có</text>
+<text x="78" y="400.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trường alg do người gửi</text>
+<text x="78" y="419.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">viết: phải ghim thuật toán.</text>
 <rect x="20" y="451" width="280" height="146" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
 <circle cx="50" cy="524" r="18" fill="#1d4ed8"/><g transform="translate(39.2 513.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="11" rx="2" ry="2" width="18" x="3" y="11"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></g>
 <text x="78" y="477.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">PASETO</text>

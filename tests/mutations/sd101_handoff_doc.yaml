@@ -1,0 +1,12 @@
+# Mutation manifest — see scripts/mutation_check.py
+#
+# A document that spells out the `finish` command is copied by the next session; if it lacks a required option, the copy exits 2.
+# These drop the layout options from the handoff and require the test that reads the document to notice.
+
+target: docs/sd101-slides-handoff.md
+note: The handoff is the first thing a deck-building session reads, so its finish command must be one `finish` accepts.
+mutations:
+- label: the handoff's finish command loses the layout table
+  find: "    --layouts KIND,KIND,... --first-concept 3 --publish     # the layout table: one kind per slide, in order\n"
+  replace: "    --publish\n"
+  test: tests.test_sd101_slides.FinishDocsTests.test_the_handoff_names_every_required_option_of_finish

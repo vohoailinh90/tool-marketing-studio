@@ -48,7 +48,7 @@
       "verified_by": "Source body read at the pinned commit."
     },
     {
-      "claim_vi": "Own experiment, 2026-10-19, Python 3: a price-then-time order book on 2,000 random limit orders (price 95 to 105, quantity 1 to 10) produced 1,442 executions with total volume 4,373; replaying the same sequence gave an identical list; swapping one random adjacent pair changed the executions in 51 of 200 trials; a small example of two sell orders of 5 at 100 then a buy of 7 at 100 filled 5 against the first and 2 against the second.",
+      "claim_vi": "Own experiment, 2026-10-19, Python 3: a price-then-time order book on 2,000 random limit orders (price 95 to 105, quantity 1 to 10) produced 1,442 matches (one record per buy/sell pairing, not per side) with total volume 4,373; replaying the same sequence gave an identical list; swapping one random adjacent pair changed the list of matches in 51 of 200 trials; a small example of two sell orders of 5 at 100 then a buy of 7 at 100 filled 5 against the first and 2 against the second.",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/design-stock-exchange.md",
       "section": "Thử nghiệm: sổ lệnh",
       "verified_by": "Script run in the session with a fixed seed; results copied from output."

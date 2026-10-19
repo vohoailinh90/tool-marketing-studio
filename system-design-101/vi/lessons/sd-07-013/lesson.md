@@ -22,7 +22,7 @@ Nguồn nói các nước có khung thanh toán khác nhau, nhưng nhìn chung n
 6. **Mạng bù trừ** (clearing networks): nơi các giao dịch được tính bù trừ.
 7. **Hệ thống quyết toán** (settlement systems): nơi tiền thật di chuyển.
 
-Ba phần cuối, bù trừ và quyết toán, là hai việc mà bài về dòng tiền sau một đơn hàng giải thích bằng ví dụ.
+Hai phần cuối, bù trừ và quyết toán, là hai việc mà bài về dòng tiền sau một đơn hàng giải thích bằng ví dụ.
 
 **Tài liệu để đọc tiếp** theo nguồn: tài liệu về các hệ thống thanh toán ở Hoa Kỳ của GlenBrook; trang web của Ngân hàng Thanh toán Quốc tế (BIS); tài liệu của PayPal, của Stripe và của SWIFT.
 

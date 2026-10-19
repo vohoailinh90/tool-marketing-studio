@@ -81,7 +81,7 @@
       "verified_by": "Read the file at the pinned commit (raw.githubusercontent.com)."
     },
     {
-      "claim_vi": "wg(8): AllowedIPs is a comma-separated list of IP addresses with CIDR masks from which incoming traffic for the peer is allowed and to which outgoing traffic for the peer is directed; 0.0.0.0/0 matches all IPv4 addresses.",
+      "claim_vi": "wg(8): AllowedIPs is a comma-separated list of IP addresses with CIDR masks from which incoming traffic for the peer is allowed and to which outgoing traffic for the peer is directed; the catch-all 0.0.0.0/0 matches all IPv4 addresses and ::/0 matches all IPv6 addresses, so a list holding only 0.0.0.0/0 leaves IPv6 traffic outside the tunnel (an inference from the two catch-alls; the lesson's experiments use IPv4 addresses only and no IPv6 case was run).",
       "source": "https://github.com/WireGuard/wireguard-tools/blob/a998407747005ea7e4e0258d96f105c97241e1d3/src/man/wg.8",
       "section": "Đọc hình; Nhìn hình trả lời",
       "verified_by": "Read the file at the pinned commit (raw.githubusercontent.com)."

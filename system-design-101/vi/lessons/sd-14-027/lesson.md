@@ -3,13 +3,15 @@
 **VPN chia loại dễ nhất theo bài toán: đưa một máy lẻ vào mạng riêng (truy cập từ xa), nối hai mạng (site-to-site), hay cho mọi lưu lượng của một máy ra Internet qua một máy chủ trung gian (VPN riêng tư cá nhân). Cả ba dùng cùng một đường hầm; khác ở đầu bên kia và ở những địa chỉ được đưa vào hầm.**
 Bài này chỉ phân loại và gợi cách chọn, không giải thích bên trong một đường hầm. Bài nguồn chỉ có một ảnh và một câu, nên bài dựng từ tài liệu và thử nghiệm riêng.
 
-![Hai khung xếp dọc. Khung trên có ba thẻ, mỗi thẻ là một bài toán. Truy cập từ xa: một máy lẻ vào mạng riêng, chỉ dải của mạng riêng vào hầm. Nối hai mạng: hai cổng, mỗi cổng khai dải của cả hai đầu. VPN riêng tư cá nhân: mọi gói của máy vào hầm tới một máy chủ trung gian. Khung dưới có bốn câu hỏi để chọn, về đầu bên kia, địa chỉ vào hầm, tầng của hầm và quyền sau khi vào mạng.](../../diagrams/sd-14-027-main.svg)
+![Hai khung xếp dọc. Khung trên có ba thẻ, mỗi thẻ là một bài toán. Truy cập từ xa: một máy lẻ vào mạng riêng, chỉ dải của mạng riêng vào hầm. Nối hai mạng: hai cổng, mỗi cổng khai dải của cả hai đầu. VPN riêng tư cá nhân: mọi gói của máy vào hầm, cả IPv4 lẫn IPv6, tới một máy chủ trung gian. Khung dưới có bốn câu hỏi để chọn, về đầu bên kia, địa chỉ vào hầm, tầng của hầm và quyền sau khi vào mạng.](../../diagrams/sd-14-027-main.svg)
 
 ## Từ viết tắt
 
 - **VPN** (Virtual Private Network) — mạng riêng ảo: đường hầm mã hóa qua mạng công cộng để máy hoặc mạng ở xa nói chuyện như trong một mạng riêng.
 - **IPsec** (Internet Protocol SECurity) — an toàn giao thức Internet: một họ giao thức mã hóa gói IP, nhiều phần mềm VPN dùng.
 - **IP** (Internet Protocol) — giao thức Internet: quy ước đánh địa chỉ và chuyển gói tin giữa các máy; địa chỉ IP là địa chỉ của một máy trên mạng.
+- **IPv4** (Internet Protocol version 4) — phiên bản 4 của giao thức Internet: kiểu địa chỉ IP bốn số, như `203.0.113.10`.
+- **IPv6** (Internet Protocol version 6) — phiên bản 6 của giao thức Internet: kiểu địa chỉ IP mới, dài hơn kiểu bốn số.
 - **OWASP** (Open Worldwide Application Security Project) — tổ chức cộng đồng về bảo mật ứng dụng; bài dùng hướng dẫn của họ để đối chiếu.
 - **MDN** (Mozilla Developer Network) — tên cũ của MDN Web Docs, tài liệu tra cứu công nghệ web; bài dùng nó để đối chiếu.
 
@@ -21,13 +23,15 @@ Bài này chỉ phân loại và gợi cách chọn, không giải thích bên t
 
 **2 · Nối hai mạng (site-to-site).** Hai văn phòng, mỗi nơi một mạng riêng, máy bên này tới máy bên kia như cùng một mạng; hai đầu hầm là hai cổng. Ví dụ Site-to-Site của strongSwan nối `10.1.0.0/16` với `10.2.0.0/16`: chỉ hai cổng được cấu hình, mỗi cổng khai cả `local_ts` lẫn `remote_ts`. Với mạng nằm sau một máy khách, OpenVPN dùng hai dòng: `route` đưa gói từ hệ điều hành vào OpenVPN, `iroute` đưa tiếp tới đúng máy khách đó.
 
-**3 · VPN riêng tư cá nhân.** Không có mạng riêng nào để vào; bài toán là đi ra Internet qua một máy chủ khác. Cơ chế vẫn là danh sách ấy, nhưng là mọi địa chỉ: man page wg-quick có ví dụ máy khách "tunneling all traffic" với `AllowedIPs = 0.0.0.0/0` và một dòng `DNS`, còn mẫu `server.conf` của OpenVPN mô tả `redirect-gateway` là cho mọi lưu lượng, kể cả tra tên miền, đi qua VPN. Giấu địa chỉ thật hay tránh Wi-Fi công cộng là mục đích của người dùng, không phải điều hầm tự bảo đảm (hiểu biết chung của người biên soạn).
+**3 · VPN riêng tư cá nhân.** Không có mạng riêng nào để vào; bài toán là đi ra Internet qua một máy chủ khác. Cơ chế vẫn là danh sách ấy, nhưng là mọi địa chỉ, cả hai họ: man page wg ghi `0.0.0.0/0` khớp mọi địa chỉ IPv4 và `::/0` khớp mọi địa chỉ IPv6, nên một danh sách chỉ có `0.0.0.0/0` để gói IPv6 đi thẳng ra ngoài hầm. Man page wg-quick có ví dụ máy khách "tunneling all traffic" với `AllowedIPs = 0.0.0.0/0` (chỉ phần IPv4) và một dòng `DNS`, còn mẫu `server.conf` của OpenVPN mô tả `redirect-gateway` là cho mọi lưu lượng, kể cả tra tên miền, đi qua VPN. Giấu địa chỉ thật hay tránh Wi-Fi công cộng là mục đích của người dùng, không phải điều hầm tự bảo đảm (hiểu biết chung của người biên soạn).
 
 **Hầm ở tầng nào.** Trục thứ hai chọn thứ được chở, không chọn bài toán. OpenVPN `dev tun` chở gói IP (mặc định), `dev tap` chở khung Ethernet để bắc cầu Ethernet; hai đầu phải cùng loại. Tài liệu nhân Linux cũng chia thiết bị tun (gói IP) và tap (khung Ethernet). Mã WireGuard trong nhân chỉ xử lý gói IP. Mỗi đầu hầm còn phải chứng minh mình là ai: xem [bài sd-14-014](../sd-14-014/lesson.md).
 
 ## Giới hạn cần nhớ
 
 Đường hầm chỉ quyết định gói nào đi qua; nó không quyết định ai được làm gì sau đó, và không che gói nằm ngoài danh sách.
+
+Về họ địa chỉ: các lần thử trong bài chỉ dùng địa chỉ IPv4; việc `::/0` khớp mọi địa chỉ IPv6 lấy từ man page wg, chưa chạy thử.
 
 Về quyền: Zero Trust cheat sheet của OWASP viết rằng một kết nối VPN tự nó không được cấp quyền vào tài nguyên khác.
 
@@ -40,7 +44,7 @@ Một máy xách tay có `AllowedIPs = 10.1.0.0/16` mở một trang web công c
 <details>
 <summary>Xem đáp án</summary>
 
-Không: địa chỉ trang không thuộc `10.1.0.0/16` nên gói đi thẳng. Đổi danh sách thành `0.0.0.0/0` (wg-quick khi gặp tuyến này dùng `ip-rule` để thay đường mặc định) và giữ một đường riêng tới chính máy chủ VPN, nếu không gói đã mã hóa gửi tới nó cũng bị đưa vào hầm; OpenVPN làm việc này ở bước đầu của `redirect-gateway`.
+Không: địa chỉ trang không thuộc `10.1.0.0/16` nên gói đi thẳng. Đổi danh sách thành `0.0.0.0/0, ::/0`, tức mọi địa chỉ IPv4 và IPv6 (chỉ viết `0.0.0.0/0` thì gói IPv6 vẫn đi thẳng; wg-quick khi gặp tuyến mặc định, `0.0.0.0/0` hay `::/0`, dùng `ip-rule` để thay đường mặc định) và giữ một đường riêng tới chính máy chủ VPN, nếu không gói đã mã hóa gửi tới nó cũng bị đưa vào hầm; OpenVPN làm việc này ở bước đầu của `redirect-gateway`.
 
 </details>
 

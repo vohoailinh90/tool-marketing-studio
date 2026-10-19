@@ -3,7 +3,7 @@
   "lang": "vi",
   "title": "Ba bài toán của VPN",
   "subtitle": "Cùng một đường hầm, khác danh sách địa chỉ đi vào hầm",
-  "desc": "Hai khung xếp dọc. Khung trên có ba thẻ, mỗi thẻ là một bài toán. Truy cập từ xa: một máy lẻ vào mạng riêng, chỉ dải của mạng riêng vào hầm. Nối hai mạng: hai cổng, mỗi cổng khai dải của cả hai đầu. VPN riêng tư cá nhân: mọi gói của máy vào hầm tới một máy chủ trung gian. Khung dưới có bốn câu hỏi để chọn, về đầu bên kia, địa chỉ vào hầm, tầng của hầm và quyền sau khi vào mạng.",
+  "desc": "Hai khung xếp dọc. Khung trên có ba thẻ, mỗi thẻ là một bài toán. Truy cập từ xa: một máy lẻ vào mạng riêng, chỉ dải của mạng riêng vào hầm. Nối hai mạng: hai cổng, mỗi cổng khai dải của cả hai đầu. VPN riêng tư cá nhân: mọi gói của máy vào hầm, cả IPv4 lẫn IPv6, tới một máy chủ trung gian. Khung dưới có bốn câu hỏi để chọn, về đầu bên kia, địa chỉ vào hầm, tầng của hầm và quyền sau khi vào mạng.",
   "sections": [
     {
       "kind": "parts",
@@ -21,7 +21,7 @@
         },
         {
           "name": "VPN riêng tư cá nhân",
-          "role": "Mọi gói của máy vào hầm, tới một máy chủ trung gian.",
+          "role": "Mọi gói của máy vào hầm, cả IPv4 lẫn IPv6, tới một máy chủ trung gian.",
           "icon": "globe"
         }
       ]

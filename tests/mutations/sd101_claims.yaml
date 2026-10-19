@@ -651,3 +651,15 @@ mutations:
   find: "                branch = default_branch(root, remote)\n"
   replace: "                branch = default_branch(root, remote, ask=False)\n"
   test: tests.test_sd101_claims.BoardTests.test_the_board_is_read_from_the_branch_the_remote_calls_its_default_now
+- label: a board row whose Range cell does not parse whole silently reserves only what does
+  find: '        if not matches or not BOARD_SEPARATORS.fullmatch(BOARD_RANGE.sub(" ", cell)):'
+  replace: '        if not matches:'
+  test: tests.test_sd101_claims.BoardTests.test_a_reserving_row_whose_range_cell_does_not_parse_whole_fails_closed
+- label: a board range that ends before it starts silently reserves nothing
+  find: '            if last < first:'
+  replace: '            if False:'
+  test: tests.test_sd101_claims.BoardTests.test_a_reserving_row_whose_range_cell_does_not_parse_whole_fails_closed
+- label: a board table with a Range column but a mistyped Work column silently reserves nothing
+  find: '            if "range" in header and "work" not in header:'
+  replace: '            if False:'
+  test: tests.test_sd101_claims.BoardTests.test_a_table_with_a_range_column_but_no_work_column_fails_closed

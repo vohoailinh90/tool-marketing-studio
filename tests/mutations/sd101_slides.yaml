@@ -530,3 +530,7 @@ mutations:
   find: "        if (group and not lesson_id.startswith(group)) or lesson_id in reserved:"
   replace: "        if group and not lesson_id.startswith(group):"
   test: tests.test_sd101_slides.ClaimTests.test_next_skips_the_decks_the_board_reserves_but_a_claim_by_id_takes_them
+- label: next carries on past a board it cannot read whole and crashes instead of stopping with exit 2
+  find: "    except claims_module().ClaimsError as error:\n        raise SlidesError(str(error)) from error\n    chosen: list[str] = []"
+  replace: "    except SlidesError as error:\n        raise\n    chosen: list[str] = []"
+  test: tests.test_sd101_slides.ClaimTests.test_next_stops_on_a_board_it_cannot_read_whole

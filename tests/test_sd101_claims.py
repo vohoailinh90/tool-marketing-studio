@@ -86,6 +86,21 @@ class BoardTests(unittest.TestCase):
         self.assertEqual({"sd-01-001", "sd-01-002", "sd-02-001", "sd-14-009", "sd-14-010"},
                          claims.board_reservations(text, "deck"))
 
+    def test_a_reserving_row_whose_range_cell_does_not_parse_whole_fails_closed(self) -> None:
+        for cell in ("sd-01-001...005", "sd-01-001..05", "sd-1-001", "", "sd-01-001 to 005", "sd-01-005..001"):
+            with self.subTest(cell=cell), self.assertRaises(claims.ClaimsError):
+                claims.board_reservations(BOARD_TEXT + f"| {cell} | deck and PPTX | `claude/e` | assigned |\n", "deck")
+        done = BOARD_TEXT + "| sd-01-001...005 | deck and PPTX | `claude/e` | done |\n"
+        self.assertEqual({"sd-01-001", "sd-01-002", "sd-02-001"}, claims.board_reservations(done, "deck"),
+                         "a done row reserves nothing, so its range is never read")
+        listed = BOARD_TEXT + "| sd-03-001, sd-03-004..005 and sd-03-007; sd-03-009 | deck | `claude/e` | assigned |\n"
+        self.assertEqual({"sd-01-001", "sd-01-002", "sd-02-001", "sd-03-001", "sd-03-004", "sd-03-005", "sd-03-007",
+                          "sd-03-009"}, claims.board_reservations(listed, "deck"))
+
+    def test_a_table_with_a_range_column_but_no_work_column_fails_closed(self) -> None:
+        with self.assertRaises(claims.ClaimsError):
+            claims.board_reservations("| Range | Wrok | Status |\n|---|---|---|\n| sd-01-001 | deck | assigned |\n", "deck")
+
     def test_text_outside_the_tables_reserves_nothing(self) -> None:
         self.assertEqual(set(), claims.board_reservations("The decks of sd-11-001..049 are not reserved.\n", "deck"))
 

@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1142" viewBox="0 0 320 1142" role="img" aria-labelledby="title desc">
+<title id="title">Sáu mẫu nhắn tin trên đám mây</title>
+<desc id="desc">Ba khung. Hai khung đầu, mỗi khung ba trong sáu mẫu nhắn tin trên đám mây, mỗi mẫu một thẻ: yêu cầu bất đồng bộ rồi trả lời sau, đăng và đăng ký, thẻ nhận hàng cho thông điệp lớn, hàng đợi ưu tiên, saga, nhiều bên cùng tranh nhau nhận. Khung ba, thử nhỏ: ba người nhận thông điệp có thời gian xử lý khác nhau nên xong không theo thứ tự gửi; hàng đợi ưu tiên không bao giờ phục vụ thông điệp thấp khi tải cao liên tục; saga hỏng ở bước ba thì bù ngược hai bước đã xong.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1142" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Sáu mẫu nhắn tin trên</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">đám mây</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Dịch vụ nói chuyện với nhau thế nào.</text>
+<rect x="8" y="104" width="304" height="346" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="132.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Ba mẫu đầu</text>
+<rect x="20" y="149" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="192.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 181.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></g>
+<text x="78" y="175.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Yêu cầu bất đồng bộ</text>
+<text x="78" y="199.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nhận việc, trả lời kết quả</text>
+<text x="78" y="218.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">sau.</text>
+<rect x="20" y="250" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="293.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 282.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16.247 7.761a6 6 0 0 1 0 8.478"/><path d="M19.075 4.933a10 10 0 0 1 0 14.134"/><path d="M4.925 19.067a10 10 0 0 1 0-14.134"/><path d="M7.753 16.239a6 6 0 0 1 0-8.478"/><circle cx="12" cy="12" r="2"/></g>
+<text x="78" y="276.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Đăng và đăng ký</text>
+<text x="78" y="300.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Người gửi không chờ người</text>
+<text x="78" y="319.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhận.</text>
+<rect x="20" y="351" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="394.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 383.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></g>
+<text x="78" y="377.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Thẻ nhận hàng</text>
+<text x="78" y="401.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Gửi tham chiếu, không gửi</text>
+<text x="78" y="420.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cả khối.</text>
+<rect x="8" y="462" width="304" height="327" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="490.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Ba mẫu sau</text>
+<rect x="20" y="507" width="280" height="68" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="541" r="18" fill="#0f766e"/><g transform="translate(39.2 530.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5h10"/><path d="M11 12h10"/><path d="M11 19h10"/><path d="M4 4h1v5"/><path d="M4 9h2"/><path d="M6.5 20H3.4c0-1 2.6-1.925 2.6-3.5a1.5 1.5 0 0 0-2.6-1.02"/></g>
+<text x="78" y="533.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Hàng đợi ưu tiên</text>
+<text x="78" y="557.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Việc gấp được xử lý trước.</text>
+<rect x="20" y="589" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="632.5" r="18" fill="#0f766e"/><g transform="translate(39.2 621.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></g>
+<text x="78" y="615.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Saga</text>
+<text x="78" y="639.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nhất quán qua nhiều dịch</text>
+<text x="78" y="658.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">vụ.</text>
+<rect x="20" y="690" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="733.5" r="18" fill="#0f766e"/><g transform="translate(39.2 722.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5"/><path d="M8 3H3v5"/><path d="M12 22v-8.3a4 4 0 0 0-1.172-2.872L3 3"/><path d="m15 9 6-6"/></g>
+<text x="78" y="716.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Tranh nhau nhận</text>
+<text x="78" y="740.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nhiều bên cùng lấy từ một</text>
+<text x="78" y="759.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hàng.</text>
+<rect x="8" y="801" width="304" height="333" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="829.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Thử nhỏ</text>
+<rect x="20" y="846" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="869" r="11" fill="#16a34a"/>
+<polyline points="37.9,869.4 41.7,873.4 48.5,865" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="872.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ba bên nhận: xong lệch thứ</text>
+<text x="64" y="891.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tự gửi.</text>
+<rect x="20" y="917" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="940" r="11" fill="#16a34a"/>
+<polyline points="37.9,940.4 41.7,944.4 48.5,936" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="943.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tải cao liên tục: việc thấp</text>
+<text x="64" y="962.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">không được phục vụ.</text>
+<rect x="20" y="988" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1011" r="11" fill="#16a34a"/>
+<polyline points="37.9,1011.4 41.7,1015.4 48.5,1007" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1014.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Saga hỏng ở bước 3: bù</text>
+<text x="64" y="1033.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">ngược bước 2, bước 1.</text>
+<rect x="20" y="1059" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1082" r="11" fill="#16a34a"/>
+<polyline points="37.9,1082.4 41.7,1086.4 48.5,1078" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1085.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tham chiếu 60 byte thay</text>
+<text x="64" y="1104.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khối 5 megabyte.</text>
+</g>
+</svg>

@@ -1,0 +1,70 @@
+{
+  "title": "Khi yêu cầu web gặp lỗi",
+  "subtitle": "Thử lại sao cho không làm tệ thêm.",
+  "desc": "Hai khung và một khung ghi chú. Khung một, phía trình duyệt, bốn bước: đọc mã lỗi, chờ rồi mới thử lại với thời gian chờ tăng dần, thêm ngẫu nhiên vào thời gian chờ, dừng sau vài lần. Khung hai, phía máy chủ, ba thành phần nối nhau: bộ giới hạn tốc độ, cầu dao, dịch vụ phía sau. Khung ba, thử mô phỏng 1000 máy khách thử lại: chờ cố định hoặc tăng dần không ngẫu nhiên thì 100 máy bỏ cuộc, có ngẫu nhiên thì không máy nào bỏ cuộc và số yêu cầu giảm gần một nửa.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Phía trình duyệt",
+      "items": [
+        {
+          "title": "Đọc mã lỗi",
+          "text": "4xx: sửa yêu cầu trước. 5xx: có thể thử lại."
+        },
+        {
+          "title": "Chờ rồi thử",
+          "text": "Thời gian chờ tăng dần sau mỗi lần."
+        },
+        {
+          "title": "Thêm ngẫu nhiên",
+          "text": "Mỗi máy chờ một khoảng khác nhau."
+        },
+        {
+          "title": "Dừng đúng lúc",
+          "text": "Giới hạn số lần thử."
+        }
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Phía máy chủ",
+      "items": [
+        {
+          "name": "Bộ giới hạn tốc độ",
+          "role": "Từ chối bớt khi vượt mức cho phép.",
+          "icon": "gauge"
+        },
+        {
+          "name": "Cầu dao",
+          "role": "Ngắt đường khi lỗi vượt ngưỡng.",
+          "icon": "zap"
+        },
+        {
+          "name": "Dịch vụ phía sau",
+          "role": "Chỉ nhận phần đã được lọc.",
+          "icon": "server"
+        }
+      ],
+      "flow": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ]
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Mô phỏng 1000 máy khách",
+      "items": [
+        "Chờ cố định hoặc tăng dần mà không ngẫu nhiên: 100 máy bỏ cuộc.",
+        "Có ngẫu nhiên: không máy nào bỏ cuộc.",
+        "Số yêu cầu tới máy chủ: 5400 so với 2747."
+      ]
+    }
+  ],
+  "id": "sd-11-019"
+}

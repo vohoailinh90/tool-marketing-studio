@@ -1,0 +1,60 @@
+{
+  "title": "Khóa phân tán: sáu nơi dùng",
+  "subtitle": "Và một cái bẫy khi khóa hết hạn.",
+  "desc": "Ba khung. Hai khung đầu, mỗi khung ba trong sáu tình huống dùng khóa phân tán: bầu người dẫn đầu, lập lịch tác vụ, cấp phát tài nguyên, điều phối vi dịch vụ, quản lý tồn kho, quản lý phiên. Khung ba, thử nghiệm: máy A giữ khóa hết hạn sau 10 bước rồi tạm dừng tới bước 15, máy B lấy khóa ở bước 12 và ghi; khi A tỉnh dậy ghi đè, kho nhận cả hai; nếu kho kiểm tra số thứ tự khóa thì lần ghi của A bị từ chối.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Ba tình huống đầu",
+      "items": [
+        {
+          "name": "Bầu người dẫn đầu",
+          "role": "Mỗi lúc chỉ một nút dẫn.",
+          "icon": "users"
+        },
+        {
+          "name": "Lập lịch tác vụ",
+          "role": "Mỗi tác vụ một máy chạy.",
+          "icon": "clock"
+        },
+        {
+          "name": "Cấp phát tài nguyên",
+          "role": "Một lúc một tiến trình dùng.",
+          "icon": "hard-drive"
+        }
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Ba tình huống sau",
+      "items": [
+        {
+          "name": "Điều phối vi dịch vụ",
+          "role": "Cập nhật liên quan có thứ tự.",
+          "icon": "workflow"
+        },
+        {
+          "name": "Quản lý tồn kho",
+          "role": "Không bán quá số còn.",
+          "icon": "store"
+        },
+        {
+          "name": "Quản lý phiên",
+          "role": "Một máy sửa phiên mỗi lúc.",
+          "icon": "user"
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Thử khóa hết hạn",
+      "items": [
+        "A giữ khóa tới bước 10, dừng tới bước 15.",
+        "B lấy khóa ở bước 12 và ghi.",
+        "Không kiểm tra số khóa: A ghi đè B.",
+        "Có kiểm tra số khóa: A bị từ chối."
+      ]
+    }
+  ],
+  "id": "sd-11-031"
+}

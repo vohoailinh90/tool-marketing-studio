@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1442" viewBox="0 0 320 1442" role="img" aria-labelledby="title desc">
+<title id="title">Hai loại khóa, hai bài toán</title>
+<desc id="desc">Ba khung xếp dọc. Khung 1, hai loại khóa: đối xứng dùng một khóa chung để mã hóa và giải mã, nhanh, hợp với dữ liệu lớn, nhưng hai bên phải có chung khóa; bất đối xứng dùng cặp khóa, khóa công khai mã hóa và khóa riêng giải mã, chậm, và RSA-2048 mỗi lần mã hóa tối đa 190 byte. Khung 2, ghép lại bốn bước: người gửi tạo khóa AES ngẫu nhiên, mã hóa dữ liệu bằng AES-GCM, gói khóa AES bằng khóa công khai RSA của người nhận; người nhận mở gói bằng khóa riêng rồi giải mã dữ liệu. Khung 3, cần nhớ: không loại nào mặc định an toàn hơn, khóa công khai phải đúng của người nhận, ký số dùng vai ngược lại, một lần thử TLS 1.3 dùng X25519 và AES-256-GCM.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1442" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Hai loại khóa, hai bài</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">toán</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Thực tế hay ghép cả hai: khóa chung</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">cho dữ liệu, cặp khóa để trao khóa.</text>
+<rect x="8" y="123" width="304" height="363" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">1 · Hai loại khóa</text>
+<rect x="20" y="168" width="280" height="146" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="241" r="18" fill="#1d4ed8"/><g transform="translate(39.2 230.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"/><circle cx="16.5" cy="7.5" fill="#FFFFFF" r=".5"/></g>
+<text x="78" y="194.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Đối xứng: một khóa</text>
+<text x="78" y="214.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">chung</text>
+<text x="78" y="238.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cùng khóa mã hóa và giải</text>
+<text x="78" y="257.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mã. Nhanh, hợp với dữ liệu</text>
+<text x="78" y="277.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lớn. Hai bên phải có chung</text>
+<text x="78" y="296.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khóa.</text>
+<rect x="20" y="328" width="280" height="146" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="401" r="18" fill="#1d4ed8"/><g transform="translate(39.2 390.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="16" r="1"/><rect height="12" rx="2" width="18" x="3" y="10"/><path d="M7 10V7a5 5 0 0 1 10 0v3"/></g>
+<text x="78" y="354.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Bất đối xứng: cặp</text>
+<text x="78" y="374.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">khóa</text>
+<text x="78" y="398.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Khóa công khai mã hóa,</text>
+<text x="78" y="417.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khóa riêng giải mã. Chậm;</text>
+<text x="78" y="437.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">RSA-2048 mỗi lần mã hóa</text>
+<text x="78" y="456.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tối đa 190 byte.</text>
+<rect x="8" y="498" width="304" height="511" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="526.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">2 · Ghép lại: gói khóa</text>
+<rect x="20" y="543" width="280" height="107" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="569" r="14" fill="#0f766e"/>
+<text x="46" y="574.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="569.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Tạo khóa AES ngẫu</text>
+<text x="70" y="589.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">nhiên</text>
+<text x="70" y="613.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Một khóa chung, dùng một</text>
+<text x="70" y="632.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lần.</text>
+<rect x="20" y="672" width="280" height="107" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="698" r="14" fill="#0f766e"/>
+<text x="46" y="703.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="698.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Mã hóa dữ liệu bằng</text>
+<text x="70" y="718.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">AES-GCM</text>
+<text x="70" y="742.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nhanh, và phát hiện dữ liệu</text>
+<text x="70" y="761.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bị sửa.</text>
+<polyline points="46,652 46,670" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="801" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="827" r="14" fill="#0f766e"/>
+<text x="46" y="832.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="827.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Gói khóa AES bằng RSA</text>
+<text x="70" y="851.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Dùng khóa công khai của</text>
+<text x="70" y="870.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">người nhận.</text>
+<polyline points="46,781 46,799" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="910" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="936" r="14" fill="#0f766e"/>
+<text x="46" y="941.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">4</text>
+<text x="70" y="936.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Người nhận mở gói</text>
+<text x="70" y="960.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Khóa riêng lấy lại khóa AES,</text>
+<text x="70" y="979.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">rồi giải mã.</text>
+<polyline points="46,890 46,908" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="1021" width="304" height="413" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="1049.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">3 · Cần nhớ</text>
+<rect x="20" y="1066" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1089" r="11" fill="#16a34a"/>
+<polyline points="37.9,1089.4 41.7,1093.4 48.5,1085" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1092.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Hai loại giải hai bài toán</text>
+<text x="64" y="1111.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khác nhau; không loại nào</text>
+<text x="64" y="1131.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mặc định an toàn hơn.</text>
+<rect x="20" y="1157" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1180" r="11" fill="#16a34a"/>
+<polyline points="37.9,1180.4 41.7,1184.4 48.5,1176" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1183.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Khóa công khai không cần</text>
+<text x="64" y="1202.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">giữ kín, nhưng phải đúng là</text>
+<text x="64" y="1222.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">của người nhận.</text>
+<rect x="20" y="1248" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1271" r="11" fill="#16a34a"/>
+<polyline points="37.9,1271.4 41.7,1275.4 48.5,1267" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1274.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ký số dùng vai ngược lại:</text>
+<text x="64" y="1293.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khóa riêng ký, khóa công</text>
+<text x="64" y="1313.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khai kiểm.</text>
+<rect x="20" y="1339" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1362" r="11" fill="#16a34a"/>
+<polyline points="37.9,1362.4 41.7,1366.4 48.5,1358" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1365.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Một lần thử TLS 1.3: X25519</text>
+<text x="64" y="1384.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trao đổi khóa, AES-256-GCM</text>
+<text x="64" y="1404.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mã hóa dữ liệu.</text>
+</g>
+</svg>

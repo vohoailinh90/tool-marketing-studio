@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1159" viewBox="0 0 320 1159" role="img" aria-labelledby="title desc">
+<title id="title">Năm đường dữ liệu có thể lọt ra</title>
+<desc id="desc">Ba khung xếp dọc, dưới tiêu đề năm đường dữ liệu có thể lọt ra; bắt đầu từ danh sách dữ liệu nhạy cảm và chỗ nó nằm. Khung 1: trên đường truyền dùng TLS, không dùng SSL 2 và 3; trong kho lưu mã hóa AES-GCM và để khóa riêng khỏi dữ liệu; trong các bản sao (log, bản xuất, môi trường thử) bỏ, che hoặc thay dữ liệu trước khi chép. Khung 2: qua người và dịch vụ thì quyền tối thiểu theo vai trò (RBAC) và ghi lại ai xem; theo thời gian thì thu hồi quyền, xoay khóa, xóa khi hết hạn lưu. Khung 3, cần nhớ: mã hóa chỉ giữ được khi khóa nằm riêng; băm một mã ngắn không làm nó ẩn; chia khóa cho nhiều người là một thiết kế, không phải luật chung; bài không đọc luật nào.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1159" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Năm đường dữ liệu có</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">thể lọt ra</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Bắt đầu từ danh sách dữ liệu nhạy</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">cảm và chỗ nó nằm. Mỗi lớp chặn</text>
+<text x="16" y="123.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">một đường.</text>
+<rect x="8" y="143" width="304" height="366" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="171.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">1 · Kênh, kho và bản sao</text>
+<rect x="20" y="188" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="231.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 220.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></g>
+<text x="78" y="214.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Trên đường truyền</text>
+<text x="78" y="238.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Dùng TLS, không dùng SSL</text>
+<text x="78" y="257.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">2 và 3.</text>
+<rect x="20" y="289" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="332.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 321.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></g>
+<text x="78" y="315.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Trong kho lưu</text>
+<text x="78" y="339.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mã hóa AES-GCM, khóa để</text>
+<text x="78" y="358.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">riêng khỏi dữ liệu.</text>
+<rect x="20" y="390" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="443.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 432.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></g>
+<text x="78" y="416.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Trong các bản sao</text>
+<text x="78" y="440.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Log, bản xuất, môi trường</text>
+<text x="78" y="459.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thử: bỏ, che hoặc thay</text>
+<text x="78" y="479.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trước khi chép.</text>
+<rect x="8" y="521" width="304" height="265" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="549.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">2 · Quyền và thời gian</text>
+<rect x="20" y="566" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="609.5" r="18" fill="#0f766e"/><g transform="translate(39.2 598.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><path d="M16 3.128a4 4 0 0 1 0 7.744"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><circle cx="9" cy="7" r="4"/></g>
+<text x="78" y="592.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Qua người và dịch vụ</text>
+<text x="78" y="616.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Quyền tối thiểu theo vai</text>
+<text x="78" y="635.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trò (RBAC), ghi lại ai xem.</text>
+<rect x="20" y="667" width="280" height="107" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="720.5" r="18" fill="#0f766e"/><g transform="translate(39.2 709.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></g>
+<text x="78" y="693.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Theo thời gian</text>
+<text x="78" y="717.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Thu hồi quyền khi xong</text>
+<text x="78" y="736.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">việc, xoay khóa, xóa khi</text>
+<text x="78" y="756.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hết hạn lưu.</text>
+<rect x="8" y="798" width="304" height="353" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="826.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">3 · Cần nhớ</text>
+<rect x="20" y="843" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="866" r="11" fill="#16a34a"/>
+<polyline points="37.9,866.4 41.7,870.4 48.5,862" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="869.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Mã hóa chỉ giữ được khi khóa</text>
+<text x="64" y="888.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nằm riêng khỏi dữ liệu.</text>
+<rect x="20" y="914" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="937" r="11" fill="#16a34a"/>
+<polyline points="37.9,937.4 41.7,941.4 48.5,933" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="940.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Băm một mã ngắn không</text>
+<text x="64" y="959.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">làm nó ẩn: thử hết là ra.</text>
+<rect x="20" y="985" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1008" r="11" fill="#16a34a"/>
+<polyline points="37.9,1008.4 41.7,1012.4 48.5,1004" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1011.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chia khóa cho nhiều người là</text>
+<text x="64" y="1030.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">một thiết kế, không phải luật</text>
+<text x="64" y="1050.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chung.</text>
+<rect x="20" y="1076" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1099" r="11" fill="#16a34a"/>
+<polyline points="37.9,1099.4 41.7,1103.4 48.5,1095" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1102.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Luật mỗi nơi một khác; bài</text>
+<text x="64" y="1121.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">này không đọc luật nào.</text>
+</g>
+</svg>

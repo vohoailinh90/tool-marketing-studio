@@ -11,7 +11,7 @@ Tên mười một bước lấy từ bài nguồn (và thứ tự theo nguồn)
 - **REST** (REpresentational State Transfer) — kiểu thiết kế dịch vụ qua giao thức web: mỗi tài nguyên (như một phiếu mượn) có một địa chỉ riêng; bài chỉ nhắc tên.
 - **gRPC** (gRPC Remote Procedure Calls) — khung gọi thủ tục từ xa mã nguồn mở: bên gọi gọi một phương thức của dịch vụ ở máy khác như gọi hàm tại chỗ.
 - **QL** (Query Language) — ngôn ngữ truy vấn: chữ QL trong tên GraphQL, một cách làm API mà bài chỉ nhắc tên.
-- **OAuth** (Open AUTHorization) — chuẩn ủy quyền mở: cho một ứng dụng được làm một số việc thay bạn mà không biết mật khẩu của bạn.
+- **OAuth** (Open AUTHorization) — chuẩn ủy quyền mở; thực ra OAuth là tên giao thức, không phải chữ viết tắt chính thức, và cách đọc "Open AUTHorization" chỉ để dễ nhớ: cho một ứng dụng được làm một số việc thay bạn mà không biết mật khẩu của bạn.
 - **OpenID** (Open IDentity) — danh tính mở: tên một họ chuẩn về danh tính; bài chỉ dùng nó trong tên OpenID Connect.
 - **OIDC** (OpenID Connect) — kết nối OpenID: lớp xác thực đặt trên OAuth2 để biết người đăng nhập là ai (không phải giao thức OpenID Authentication 2.0 cũ); bài chỉ nhắc tên.
 - **PKCE** (Proof Key for Code Exchange) — cơ chế chứng minh khóa khi đổi mã: cách chống việc kẻ xấu chặn mã ủy quyền rồi đem đổi lấy quyền truy cập.

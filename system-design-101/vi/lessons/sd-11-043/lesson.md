@@ -32,6 +32,40 @@ Ngày 2026-10-19, người biên soạn viết một mô phỏng thời gian ả
 
 Đây là hình dạng của lựa chọn: lúc mạng đứt, một hệ thống đổi câu trả lời lỗi lấy tính đúng, hệ thống kia đổi tính đúng tạm thời lấy câu trả lời. Phần "sau khi nối lại, B hội tụ về giá trị mới" chính là ý "nhất quán cuối cùng" của BASE. Mô phỏng đơn giản hóa mạnh: chỉ hai bản, một giá trị, một lần đứt, sao chép tức thì khi nối lại; nó minh họa chứ không chứng minh định lý.
 
+<details>
+<summary>Xem chương trình mô phỏng và kết quả</summary>
+
+Chạy `python3 cap.py`; mã nằm trọn ở đây vì bài không thêm tệp mã vào kho. Chương trình không dùng số ngẫu nhiên nên kết quả luôn như nhau.
+
+```python
+# Two replicas A and B. Partition during t in [3,7). The client writes x=1 at t=4 (to A) and retries at t=7 if it was refused.
+# The client then reads x from B at t=4..9. Anti-entropy copies A to B after the partition heals.
+def run(mode):
+    A=B=0; wrote=False; refused_w=0; r={'refused':0,'stale':0,'latest':0}
+    for t in range(10):
+        part=3<=t<7
+        if not part: B=A                       # anti-entropy after heal
+        if not wrote and t>=4:
+            if mode=='CP' and part: refused_w+=1   # CP: a write needs both replicas
+            else: A=1; wrote=True
+            if not part: B=A
+        if 4<=t<=9:
+            if mode=='CP' and part: r['refused']+=1
+            elif B==1: r['latest']+=1
+            else: r['stale']+=1
+    return refused_w, r
+for m in ('CP','AP'): print(m, run(m))
+```
+
+Kết quả chương trình in ra:
+
+```text
+CP (3, {'refused': 3, 'stale': 0, 'latest': 3})
+AP (0, {'refused': 0, 'stale': 3, 'latest': 3})
+```
+
+</details>
+
 ## Giới hạn cần nhớ
 
 Cách phát biểu CAP và các phê bình của nó ở đây theo bài nguồn, chưa đối chiếu với bài báo gốc về định lý; mô phỏng không thay cho chứng minh. Các nguyên tắc SOLID và KISS được nêu ngắn như nguồn; bài không kiểm lịch sử của chúng và không cho ví dụ mã. Bốn từ viết tắt này không cùng cấp độ: không nên đặt CAP cạnh KISS như hai lựa chọn của cùng một quyết định.

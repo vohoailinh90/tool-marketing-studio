@@ -37,7 +37,7 @@
     },
     "claims": {
       "status": "pending",
-      "reason": "source_claims_listed_with_the_pinned_source; the Python, JDK and Effective Go statements were read in raw copies at the pinned commits, but the per-paradigm language lists are the source's word and the glosses are the author's general knowledge"
+      "reason": "source_claims_listed_with_the_pinned_source; the Python, MDN, Spring, AspectJ, JDK (List, Flow), Reactive Streams and Effective Go statements were read in raw copies at the pinned commits and are recorded in the claims below; the per-paradigm language lists are the source's word, and the reading of the Python term procedural as imperative, the general definition of reactive programming and the glosses are the author's general knowledge, not checked"
     },
     "technical_review": {
       "status": "pending",

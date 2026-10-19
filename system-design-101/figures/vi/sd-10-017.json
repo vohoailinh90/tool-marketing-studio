@@ -1,7 +1,7 @@
 {
   "id": "sd-10-017",
   "title": "Bảy mươi năm ngôn ngữ lập trình",
-  "subtitle": "Các mốc của bài nguồn, mỗi ngôn ngữ tả bằng tài liệu của chính nó.",
+  "subtitle": "Các mốc của bài nguồn, ngôn ngữ đã đọc tài liệu thì tả bằng tài liệu đó.",
   "desc": "Ba chuỗi bước theo thời gian. Các thế hệ đầu: thẻ đục lỗ; hợp ngữ hướng về máy; từ 1957 ngôn ngữ hướng về con người như Fortran và LISP. Từ 1972 đến thập niên 1990: Smalltalk và C năm 1972; ngôn ngữ hướng đối tượng như Objective-C và C++ thập niên 1980; Python đầu thập niên 1990, kế nhiệm một ngôn ngữ cũ; JavaScript vào trình duyệt Netscape tháng 9 năm 1995, cùng năm Java, PHP và Ruby theo bài nguồn. Từ năm 2000: C# năm 2000; các ngôn ngữ thập niên 2010 như Rust, Go, Carbon, Kotlin, Swift, TypeScript và Dart, mỗi ngôn ngữ tự nêu một mục tiêu riêng. Khung cuối nêu ba điều cần nhớ.",
   "sections": [
     {"kind": "steps", "heading": "Các thế hệ đầu",
@@ -18,6 +18,6 @@
                {"title": "Thập niên 2010", "text": "Rust, Go, Carbon, Kotlin: mỗi cái một mục tiêu."},
                {"title": "Cũng thập niên 2010", "text": "TypeScript trên JavaScript; Swift; Dart."}]},
     {"kind": "notes", "heading": "Nhớ gì",
-     "items": ["Mốc thời gian là của bài nguồn, trừ Python và JavaScript.", "Mỗi ngôn ngữ nhắm một mục tiêu do chính nó nêu.", "Không phải danh sách đầy đủ."]}
+     "items": ["Mốc thời gian là của bài nguồn, trừ Python và JavaScript.", "Ngôn ngữ đã đọc tài liệu nêu mục tiêu riêng; Fortran, LISP, Java theo nguồn.", "Không phải danh sách đầy đủ."]}
   ]
 }

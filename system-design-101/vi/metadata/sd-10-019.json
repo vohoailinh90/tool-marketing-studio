@@ -32,7 +32,7 @@
     },
     "claims": {
       "status": "pending",
-      "reason": "source_claims_listed_with_the_pinned_source; the Python statements were read in raw copies of the CPython documentation at the pinned commit, but the polymorphism sentence of the source is not checked in every language"
+      "reason": "source_claims_listed_with_the_pinned_source; the MDN statements and the Python tutorial and abc statements were read in raw copies at the pinned commits and are recorded in the claims below, but the polymorphism sentence of the source is not checked in every language, the Shape example is the lesson's own and the glosses are the author's general knowledge, not checked"
     },
     "technical_review": {
       "status": "pending",

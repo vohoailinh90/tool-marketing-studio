@@ -1,5 +1,26 @@
 id: sd-09-009
-status: doing
+status: done
 owner: claude/sd101-decks-w4-2
 claimed_at: '2026-10-19T00:42:36Z'
-heartbeat_at: '2026-10-19T00:42:36Z'
+done_at: '2026-10-19T00:45:00Z'
+moda_canvas: cvs_773DQQMC7D8XM9AAQ7JA4G7WN9
+moda_url: https://moda.app/canvas/e71b6f7a-30ed-4768-952a-e7928903f2a9
+slide_count: 10
+size: 1920x1080
+exports: pending
+layouts:
+  slides:
+  - card-grid
+  - numbered-rows
+  - one-highlighted-sentence
+  - two-column-comparison
+  - flow
+  - card-grid
+  - lookup-table
+  - connection-diagram
+  - numbered-rows
+  - lookup-table
+  first_concept: 3
+  cannot:
+    timeline: the tools of this concept have no order in time
+    one-big-number: the lesson states no number for this concept

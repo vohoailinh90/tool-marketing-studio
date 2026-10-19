@@ -102,10 +102,16 @@
       "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
     },
     {
-      "claim_vi": "An origin server may build a response at request time from application logic and data (a dynamic or personalised resource), so it does not necessarily hold a master copy; a CDN holds copies that can answer in its place (MDN, CDN page).",
-      "source": "https://github.com/httpwg/http-core/blob/bde37f634681bd5462568b73aa722af9c9a3ef5e/rfc9110.xml",
+      "claim_vi": "An origin server may build a response at request time from application logic and data (a dynamic or personalised resource), so it does not necessarily hold a master copy.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/top-6-most-commonly-used-server-types.md",
       "section": "Origin Server",
-      "verified_by": "RFC 9110 defines the role by authoritative responses (read); the dynamic-resource example is the author's general knowledge."
+      "verified_by": "Author's general knowledge; not checked against primary documentation. RFC 9110 defines the role by authoritative responses and does not describe dynamic generation."
+    },
+    {
+      "claim_vi": "A CDN is a group of servers spread over many locations that store copies of data, so that servers close to the end user can answer requests in place of the origin (MDN, CDN page).",
+      "source": "https://github.com/mdn/content/blob/a1aa79c09717761fc72c20bac94bb9c430ed487a/files/en-us/glossary/cdn/index.md",
+      "section": "Glossary: CDN",
+      "verified_by": "Read from a raw copy at the pinned commit in the URL (a later change to the default branch does not alter it)."
     },
     {
       "claim_vi": "An IP address is a network-layer address assigned to a network interface of a device; it is not necessarily a single decimal-number sequence and does not necessarily identify exactly one machine. The grouping of the six types into two sets, the statement that the six types are roles rather than machines, and the typical order of events for a page load are the author's general knowledge.",

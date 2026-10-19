@@ -17,14 +17,14 @@ Bài này tách hai lớp đó: lớp giữ cho sự kiện đúng khuôn, và l
 **Chuẩn hóa.** Theo nguồn, McDonald's chuẩn hóa sự kiện bằng bốn thành phần:
 - Sổ đăng ký sự kiện: nơi định nghĩa schema chuẩn, tức khuôn dữ liệu mà mỗi loại sự kiện phải theo.
 - SDK riêng: để các đội xử lý sự kiện và xử lý lỗi theo cùng một cách.
-- Cổng sự kiện: xác thực danh tính và phân quyền trước khi sự kiện vào hệ thống.
+- Cổng sự kiện: xác thực danh tính và phân quyền. Bài nguồn không nói những sự kiện nào phải đi qua cổng này, nên đừng hiểu là mọi sự kiện đều qua đây.
 - Tiện ích và công cụ: sửa sự kiện hỏng, giữ cụm khỏe, làm các việc quản trị.
 
 **Mở rộng.** McDonald's dùng kiến trúc theo vùng trên AWS để có tính sẵn sàng toàn cầu. Trong một vùng, bên phát chia sự kiện theo miền nghiệp vụ, và mỗi miền được một cụm MSK xử lý. Cụm tự co giãn dựa trên chỉ số của MSK, như mức dùng CPU; quy trình co giãn dựa trên Step Functions và các tác vụ phân bổ lại.
 
 ## Giới hạn cần nhớ
 
-Chia theo miền nghĩa là có nhiều cụm hơn để vận hành, và một sự kiện liên quan tới hai miền phải đi qua hai nơi. Đây là đánh đổi chung của người biên soạn, bài nguồn không bàn. Bài nguồn cũng không nói vì sao sổ đăng ký và cổng được tách riêng; cách đọc "lớp đúng khuôn, lớp chịu tải" là của bài này.
+Chia theo miền nghĩa là có nhiều cụm hơn để vận hành, và bên phát phải biết mỗi sự kiện thuộc miền nào để gửi tới đúng cụm. Đây là đánh đổi chung của người biên soạn, bài nguồn không bàn. Bài nguồn cũng không nói vì sao sổ đăng ký và cổng được tách riêng; cách đọc "lớp đúng khuôn, lớp chịu tải" là của bài này.
 Mọi mô tả là theo bài nguồn, tóm tắt một bài trên blog kỹ thuật của McDonald's; bài blog đó chưa được mở để đối chiếu.
 
 ## Nhìn hình thử trả lời

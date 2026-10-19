@@ -65,5 +65,5 @@ Bài nguồn có một ảnh và tám đoạn, mỗi đoạn định nghĩa mộ
 - [Reactive Streams — README](https://github.com/reactive-streams/reactive-streams-jvm/blob/a625d3aba756e9842ad1291a5b73f5db280b6168/README.md), [OpenJDK — Flow](https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/concurrent/Flow.java) và [List](https://github.com/openjdk/jdk/blob/3104115c2a0587895997965c9e88a1181f52ee47/src/java.base/share/classes/java/util/List.java): luồng bất đồng bộ, nhà xuất bản và người đăng ký, tham số kiểu. Đọc từ kho mã.
 - [Go — Effective Go](https://github.com/golang/website/blob/d1edce5b8ec957935895f507f3253d6e02447a6c/_content/doc/effective_go.html): đồng thời khác song song. Đọc từ kho mã.
 
-Đã đọc nguồn ngày 2026-10-19. Cách hiểu chung về mô hình phản ứng và các câu giải nghĩa FP, OOP, AOP, SQL và MDN trong mục từ viết tắt là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn.
+Đã đọc nguồn ngày 2026-10-19. Cách hiểu chung về mô hình phản ứng và các câu giải nghĩa FP, OOP, AOP, SQL, JDK và MDN trong mục từ viết tắt là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn.
 Bài viết và hình được thiết kế độc lập.

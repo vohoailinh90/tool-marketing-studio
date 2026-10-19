@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1173" viewBox="0 0 320 1173" role="img" aria-labelledby="title desc">
+<title id="title">Quản lý cấu hình và hạ tầng bằng mã</title>
+<desc id="desc">Ba khung. Khung một, quản lý cấu hình truyền thống: duy trì trạng thái các mục đã cấp, thiết lập ban đầu thường làm tay, thay đổi bằng lệnh từng bước. Khung hai, hạ tầng bằng mã: tự động cấp phát, thường khai báo trạng thái mong muốn, tệp được quản lý phiên bản. Khung ba, bốn bước khi hạ tầng bị sửa tay: so sánh mong muốn với thực tế, liệt kê thay đổi, áp dụng, chạy lại không còn thay đổi.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1173" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Quản lý cấu hình và hạ</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">tầng bằng mã</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Giữ trạng thái, hay khai báo trạng</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">thái.</text>
+<rect x="8" y="123" width="304" height="304" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Quản lý cấu hình truyền</text>
+<text x="20" y="173.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">thống</text>
+<rect x="20" y="190" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="213" r="11" fill="#16a34a"/>
+<polyline points="37.9,213.4 41.7,217.4 48.5,209" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="216.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Giữ trạng thái của các mục</text>
+<text x="64" y="235.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đã cấp: máy, mạng, ứng</text>
+<text x="64" y="255.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dụng.</text>
+<rect x="20" y="281" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="304" r="11" fill="#16a34a"/>
+<polyline points="37.9,304.4 41.7,308.4 48.5,300" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="307.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Thiết lập ban đầu thường</text>
+<text x="64" y="326.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">làm tay.</text>
+<rect x="20" y="352" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="375" r="11" fill="#16a34a"/>
+<polyline points="37.9,375.4 41.7,379.4 48.5,371" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="378.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Thay đổi bằng các lệnh từng</text>
+<text x="64" y="397.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bước.</text>
+<rect x="8" y="439" width="304" height="262" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="467.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Hạ tầng bằng mã</text>
+<rect x="20" y="484" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="507" r="11" fill="#16a34a"/>
+<polyline points="37.9,507.4 41.7,511.4 48.5,503" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="510.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tự động cấp phát và quản lý</text>
+<text x="64" y="529.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hạ tầng bằng mã.</text>
+<rect x="20" y="555" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="578" r="11" fill="#16a34a"/>
+<polyline points="37.9,578.4 41.7,582.4 48.5,574" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="581.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Thường khai báo trạng thái</text>
+<text x="64" y="600.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mong muốn.</text>
+<rect x="20" y="626" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="649" r="11" fill="#16a34a"/>
+<polyline points="37.9,649.4 41.7,653.4 48.5,645" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="652.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tệp được lưu phiên bản,</text>
+<text x="64" y="671.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">duyệt như mã.</text>
+<rect x="8" y="713" width="304" height="452" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="741.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Khi hạ tầng bị sửa tay</text>
+<rect x="20" y="758" width="280" height="87" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="46" cy="784" r="14" fill="#b45309"/>
+<text x="46" y="789.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="784.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">So sánh</text>
+<text x="70" y="808.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Trạng thái mong muốn với</text>
+<text x="70" y="827.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trạng thái thực.</text>
+<rect x="20" y="867" width="280" height="87" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="46" cy="893" r="14" fill="#b45309"/>
+<text x="46" y="898.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="893.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Lập kế hoạch</text>
+<text x="70" y="917.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Liệt kê những thay đổi cần</text>
+<text x="70" y="936.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">làm.</text>
+<polyline points="46,847 46,865" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="976" width="280" height="87" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="46" cy="1002" r="14" fill="#b45309"/>
+<text x="46" y="1007.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="1002.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Áp dụng</text>
+<text x="70" y="1026.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đưa thực tế về đúng như</text>
+<text x="70" y="1045.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khai báo.</text>
+<polyline points="46,956 46,974" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="1085" width="280" height="68" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="46" cy="1111" r="14" fill="#b45309"/>
+<text x="46" y="1116.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">4</text>
+<text x="70" y="1111.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Chạy lại</text>
+<text x="70" y="1135.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Không còn thay đổi nào.</text>
+<polyline points="46,1065 46,1083" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+</g>
+</svg>

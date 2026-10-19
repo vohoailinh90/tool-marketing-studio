@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1157" viewBox="0 0 320 1157" role="img" aria-labelledby="title desc">
+<title id="title">Ứng dụng mười hai yếu tố</title>
+<desc id="desc">Ba khung, mỗi khung bốn quy tắc của ứng dụng mười hai yếu tố. Khung một: một mã nguồn, khai báo phụ thuộc, cấu hình trong môi trường, dịch vụ phụ trợ gắn vào. Khung hai: tách dựng, phát hành, chạy; tiến trình không giữ trạng thái; mở cổng mạng; mở rộng bằng thêm tiến trình. Khung ba: tiến trình dễ bỏ, môi trường phát triển giống chạy thật, nhật ký là dòng sự kiện, việc quản trị chạy một lần.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1157" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Ứng dụng mười hai yếu</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">tố</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Mười hai quy tắc, ba nhóm.</text>
+<rect x="8" y="104" width="304" height="355" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="132.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Mã, phụ thuộc, cấu hình (1</text>
+<text x="20" y="154.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">đến 4)</text>
+<rect x="20" y="171" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="194" r="11" fill="#16a34a"/>
+<polyline points="37.9,194.4 41.7,198.4 48.5,190" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="197.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Codebase: một mã nguồn,</text>
+<text x="64" y="216.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhiều bản triển khai.</text>
+<rect x="20" y="242" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="265" r="11" fill="#16a34a"/>
+<polyline points="37.9,265.4 41.7,269.4 48.5,261" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="268.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Dependencies: khai báo rõ,</text>
+<text x="64" y="287.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">không dựa vào máy.</text>
+<rect x="20" y="313" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="336" r="11" fill="#16a34a"/>
+<polyline points="37.9,336.4 41.7,340.4 48.5,332" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="339.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Config: để trong biến môi</text>
+<text x="64" y="358.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trường.</text>
+<rect x="20" y="384" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="407" r="11" fill="#16a34a"/>
+<polyline points="37.9,407.4 41.7,411.4 48.5,403" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="410.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Backing services: coi như tài</text>
+<text x="64" y="429.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nguyên gắn vào.</text>
+<rect x="8" y="471" width="304" height="333" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="499.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Dựng và chạy (5 đến 8)</text>
+<rect x="20" y="516" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="539" r="11" fill="#16a34a"/>
+<polyline points="37.9,539.4 41.7,543.4 48.5,535" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="542.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Build, release, run: ba giai</text>
+<text x="64" y="561.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đoạn tách bạch.</text>
+<rect x="20" y="587" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="610" r="11" fill="#16a34a"/>
+<polyline points="37.9,610.4 41.7,614.4 48.5,606" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="613.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Processes: tiến trình không</text>
+<text x="64" y="632.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">giữ trạng thái.</text>
+<rect x="20" y="658" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="681" r="11" fill="#16a34a"/>
+<polyline points="37.9,681.4 41.7,685.4 48.5,677" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="684.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Port binding: tự mở cổng</text>
+<text x="64" y="703.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mạng.</text>
+<rect x="20" y="729" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="752" r="11" fill="#16a34a"/>
+<polyline points="37.9,752.4 41.7,756.4 48.5,748" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="755.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Concurrency: mở rộng bằng</text>
+<text x="64" y="774.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thêm tiến trình.</text>
+<rect x="8" y="816" width="304" height="333" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="844.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Vận hành (9 đến 12)</text>
+<rect x="20" y="861" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="884" r="11" fill="#16a34a"/>
+<polyline points="37.9,884.4 41.7,888.4 48.5,880" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="887.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Disposability: khởi động</text>
+<text x="64" y="906.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhanh, tắt êm.</text>
+<rect x="20" y="932" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="955" r="11" fill="#16a34a"/>
+<polyline points="37.9,955.4 41.7,959.4 48.5,951" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="958.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Dev/prod parity: phát triển</text>
+<text x="64" y="977.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">giống chạy thật.</text>
+<rect x="20" y="1003" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1026" r="11" fill="#16a34a"/>
+<polyline points="37.9,1026.4 41.7,1030.4 48.5,1022" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1029.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Logs: dòng sự kiện ra đầu ra</text>
+<text x="64" y="1048.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chuẩn.</text>
+<rect x="20" y="1074" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1097" r="11" fill="#16a34a"/>
+<polyline points="37.9,1097.4 41.7,1101.4 48.5,1093" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1100.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Admin processes: việc quản</text>
+<text x="64" y="1119.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trị chạy một lần.</text>
+</g>
+</svg>

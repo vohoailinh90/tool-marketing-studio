@@ -1,0 +1,48 @@
+{
+  "title": "Quản lý cấu hình và hạ tầng bằng mã",
+  "subtitle": "Giữ trạng thái, hay khai báo trạng thái.",
+  "desc": "Ba khung. Khung một, quản lý cấu hình truyền thống: duy trì trạng thái các mục đã cấp, thiết lập ban đầu thường làm tay, thay đổi bằng lệnh từng bước. Khung hai, hạ tầng bằng mã: tự động cấp phát, thường khai báo trạng thái mong muốn, tệp được quản lý phiên bản. Khung ba, bốn bước khi hạ tầng bị sửa tay: so sánh mong muốn với thực tế, liệt kê thay đổi, áp dụng, chạy lại không còn thay đổi.",
+  "sections": [
+    {
+      "kind": "notes",
+      "heading": "Quản lý cấu hình truyền thống",
+      "items": [
+        "Giữ trạng thái của các mục đã cấp: máy, mạng, ứng dụng.",
+        "Thiết lập ban đầu thường làm tay.",
+        "Thay đổi bằng các lệnh từng bước."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Hạ tầng bằng mã",
+      "items": [
+        "Tự động cấp phát và quản lý hạ tầng bằng mã.",
+        "Thường khai báo trạng thái mong muốn.",
+        "Tệp được lưu phiên bản, duyệt như mã."
+      ]
+    },
+    {
+      "kind": "steps",
+      "heading": "Khi hạ tầng bị sửa tay",
+      "items": [
+        {
+          "title": "So sánh",
+          "text": "Trạng thái mong muốn với trạng thái thực."
+        },
+        {
+          "title": "Lập kế hoạch",
+          "text": "Liệt kê những thay đổi cần làm."
+        },
+        {
+          "title": "Áp dụng",
+          "text": "Đưa thực tế về đúng như khai báo."
+        },
+        {
+          "title": "Chạy lại",
+          "text": "Không còn thay đổi nào."
+        }
+      ]
+    }
+  ],
+  "id": "sd-11-025"
+}

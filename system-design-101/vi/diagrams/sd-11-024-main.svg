@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="902" viewBox="0 0 320 902" role="img" aria-labelledby="title desc">
+<title id="title">Hạ tầng bằng mã</title>
+<desc id="desc">Hai khung. Khung một, bốn bậc nối nhau của việc cấp hạ tầng bằng mã: container, điều phối container, hạ tầng bằng mã, GitOps. Khung hai, thử nghiệm: chạy một kịch bản kiểu từng bước hai lần tạo 6 máy thay vì 3, còn khai báo trạng thái mong muốn chạy lần hai thay đổi 0 máy; giảm từ 3 xuống 2 chỉ xóa 1 máy.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="902" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Hạ tầng bằng mã</text>
+<text x="16" y="60.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Bốn bậc, và vì sao khai báo hơn từng</text>
+<text x="16" y="79.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">bước.</text>
+<rect x="8" y="99" width="304" height="501" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="127.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Bốn bậc</text>
+<rect x="20" y="144" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="187.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 176.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 7.7c0-.6-.4-1.2-.8-1.5l-6.3-3.9a1.72 1.72 0 0 0-1.7 0l-10.3 6c-.5.2-.9.8-.9 1.4v6.6c0 .5.4 1.2.8 1.5l6.3 3.9a1.72 1.72 0 0 0 1.7 0l10.3-6c.5-.3.9-1 .9-1.5Z"/><path d="M10 21.9V14L2.1 9.1"/><path d="m10 14 11.9-6.9"/><path d="M14 19.8v-8.1"/><path d="M18 17.5V9.4"/></g>
+<text x="78" y="170.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Container</text>
+<text x="78" y="194.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đóng gói ứng dụng bằng</text>
+<text x="78" y="213.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mã.</text>
+<rect x="20" y="263" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="306.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 295.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="8" rx="2" width="8" x="3" y="3"/><path d="M7 11v4a2 2 0 0 0 2 2h4"/><rect height="8" rx="2" width="8" x="13" y="13"/></g>
+<text x="78" y="289.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Điều phối</text>
+<text x="78" y="313.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Quản nhiều container cùng</text>
+<text x="78" y="332.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lúc.</text>
+<rect x="20" y="382" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="425.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 414.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></g>
+<text x="78" y="408.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Hạ tầng bằng mã</text>
+<text x="78" y="432.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Khai báo hạ tầng trong</text>
+<text x="78" y="451.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tệp.</text>
+<rect x="20" y="501" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="544.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 533.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6a9 9 0 0 0-9 9V3"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/></g>
+<text x="78" y="527.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">GitOps</text>
+<text x="78" y="551.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đổi hạ tầng qua quy trình</text>
+<text x="78" y="570.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">của Git.</text>
+<polyline points="160,233 160,261" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="160,352 160,380" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="160,471 160,499" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="612" width="304" height="282" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="640.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Thử nghiệm nhỏ</text>
+<rect x="20" y="657" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="680" r="11" fill="#16a34a"/>
+<polyline points="37.9,680.4 41.7,684.4 48.5,676" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="683.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Kịch bản từng bước chạy hai</text>
+<text x="64" y="702.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">lần: 6 máy thay vì 3.</text>
+<rect x="20" y="728" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="751" r="11" fill="#16a34a"/>
+<polyline points="37.9,751.4 41.7,755.4 48.5,747" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="754.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Khai báo đủ 3 máy: lần đầu</text>
+<text x="64" y="773.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thay đổi 3, lần hai thay đổi</text>
+<text x="64" y="793.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">0.</text>
+<rect x="20" y="819" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="842" r="11" fill="#16a34a"/>
+<polyline points="37.9,842.4 41.7,846.4 48.5,838" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="845.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Giảm từ 3 xuống 2: chỉ xóa</text>
+<text x="64" y="864.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đúng 1 máy.</text>
+</g>
+</svg>

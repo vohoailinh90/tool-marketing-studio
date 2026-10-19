@@ -1,0 +1,123 @@
+{
+  "id": "sd-02-024",
+  "title_vi": "Shopify: mười nguyên tắc cho hệ thống thanh toán bền",
+  "language": "vi",
+  "kind": "checklist",
+  "content_status": "draft",
+  "source_ref": "sd-02-024",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/10-principles-for-building-resilient-payment-systems-by-shopify.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/10-principles-for-building-resilient-payment-systems-by-shopify.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "6c7e81aff912ca876c847eddafeef37fc8a6e3c2",
+    "retrieved_body_sha256": "bce697e40feb3fd54fabee3c0dba6517db136fa8162a7f2889e02935bfd2fa04",
+    "retrieved_body_bytes": 2081
+  },
+  "diagram": "../diagrams/sd-02-024-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-02-015",
+      "relation": "see_also",
+      "reason_vi": "Giao dịch và khóa chống trùng khi lưu tiền."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-19"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "source_claims_listed_with_the_pinned_source; the author's general-knowledge glosses are not checked against primary documentation"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending",
+      "reason": "figure text measured in Chromium by scripts.figures check --browser (14 px at a 375 px screen); no whole-lesson render at 320, 375 and 430 px recorded"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Lower timeouts: the default is 60 seconds; a 5-second read and 1-second write timeout are decent setups per Shopify.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/10-principles-for-building-resilient-payment-systems-by-shopify.md",
+      "section": "Đọc hình",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Shopify built Semian, a Ruby circuit breaker for Net::HTTP, MySQL, Redis and gRPC.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/10-principles-for-building-resilient-payment-systems-by-shopify.md",
+      "section": "Đọc hình",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Capacity example: 50 requests in the queue at 100 ms each give a throughput of 500 requests per second.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/10-principles-for-building-resilient-payment-systems-by-shopify.md",
+      "section": "Đọc hình",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Google's SRE book lists four golden signals: latency, traffic, errors and saturation.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/10-principles-for-building-resilient-payment-systems-by-shopify.md",
+      "section": "Đọc hình",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Structured logs are stored centrally and searchable.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/10-principles-for-building-resilient-payment-systems-by-shopify.md",
+      "section": "Đọc hình",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Use ULID instead of random version 4 UUID for idempotency keys.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/10-principles-for-building-resilient-payment-systems-by-shopify.md",
+      "section": "Đọc hình",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Reconciliation breaks with financial partners are stored in the database.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/10-principles-for-building-resilient-payment-systems-by-shopify.md",
+      "section": "Đọc hình",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Shopify regularly simulates large flash sales for benchmark results.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/10-principles-for-building-resilient-payment-systems-by-shopify.md",
+      "section": "Đọc hình",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Each incident channel has three roles: IMOC, SRM and service owners.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/10-principles-for-building-resilient-payment-systems-by-shopify.md",
+      "section": "Đọc hình",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Retrospectives ask three questions: what happened, what incorrect assumptions were held, what prevents a repeat.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/10-principles-for-building-resilient-payment-systems-by-shopify.md",
+      "section": "Đọc hình",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "How a circuit breaker opens and closes.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/10-principles-for-building-resilient-payment-systems-by-shopify.md",
+      "section": "Xem sâu hơn",
+      "verified_by": "Author's general knowledge; not checked against primary documentation."
+    }
+  ],
+  "design_notes_vi": "Ba khung theo thời điểm: khi gọi dịch vụ khác, để nhìn thấy và chuẩn bị, sau sự cố. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "The grouping of the ten principles by when they act is the author's.",
+    "Shopify's original article was not opened."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích thêm là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
+}

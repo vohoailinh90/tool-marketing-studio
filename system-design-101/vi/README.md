@@ -64,6 +64,11 @@ Các mục gần nhau hoặc dùng chung nguồn vẫn giữ ID và vị trí ri
 1. [Figma mở rộng Postgres: ba bậc thang](lessons/sd-02-001/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
 2. [API của các API: nối ứng dụng bằng trigger và action](lessons/sd-02-002/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
 3. [Pinterest cắt thời gian clone bằng một dòng refspec](lessons/sd-02-003/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+23. [Kiến trúc lõi của Reddit: đường đồng bộ và đường chạy sau](lessons/sd-02-023/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+24. [Shopify: mười nguyên tắc cho hệ thống thanh toán bền](lessons/sd-02-024/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+25. [Hành trình của một tin nhắn Slack](lessons/sd-02-025/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+26. [Chín blog kỹ thuật đáng đọc, và cách đọc chúng](lessons/sd-02-026/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
+27. [Ngăn xếp công nghệ của Uber, từ ứng dụng tới DevOps](lessons/sd-02-027/lesson.md) — bản nháp mới viết; chờ review kỹ thuật.
 
 ## AI và học máy
 

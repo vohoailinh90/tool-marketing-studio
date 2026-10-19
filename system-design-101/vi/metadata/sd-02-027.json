@@ -1,0 +1,117 @@
+{
+  "id": "sd-02-027",
+  "title_vi": "Ngăn xếp công nghệ của Uber, từ ứng dụng tới DevOps",
+  "language": "vi",
+  "kind": "architecture",
+  "content_status": "draft",
+  "source_ref": "sd-02-027",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/uber-tech-stack.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/uber-tech-stack.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body independently hashed as Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "f91132481dde59f10f0a3af7a83b0d240d0540cc",
+    "retrieved_body_sha256": "bea95e0dfcc24b4578943967145d56e719183729752298653af91489b680dda8",
+    "retrieved_body_bytes": 2169
+  },
+  "diagram": "../diagrams/sd-02-027-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-02-018",
+      "relation": "see_also",
+      "reason_vi": "Một ngăn xếp tương tự ở Netflix."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-19"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "source_claims_listed_with_the_pinned_source; the author's general-knowledge glosses are not checked against primary documentation"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending",
+      "reason": "figure text measured in Chromium by scripts.figures check --browser (14 px at a 375 px screen); no whole-lesson render at 320, 375 and 430 px recorded"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "The overview is based on many Uber engineering blogs and open-source projects.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/uber-tech-stack.md",
+      "section": "Đọc hình",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Web: Fusion.js, a React framework, and visualization.js for geospatial visualisation.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/uber-tech-stack.md",
+      "section": "Đọc hình",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Mobile: the cross-platform RIB architecture with VIPER instead of MVC; Swift for iOS and Java for Android.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/uber-tech-stack.md",
+      "section": "Đọc hình",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Service mesh: Uber Gateway on NGINX; gRPC and QUIC between client and server; Apache Thrift for API definition.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/uber-tech-stack.md",
+      "section": "Đọc hình",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Services: Flipr (later renamed), H3, Spring Boot, uAct and Cadence.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/uber-tech-stack.md",
+      "section": "Đọc hình",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Database: OLTP mainly on strongly-consistent DocStore using MySQL, PostgreSQL and RocksDB.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/uber-tech-stack.md",
+      "section": "Đọc hình",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Big data on Hadoop with Hudi, Parquet and Alluxio; time series in Pinot and AresDB.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/uber-tech-stack.md",
+      "section": "Đọc hình",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Data processing with Hive, Spark and Marmaray; messaging with Kafka and Flink.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/uber-tech-stack.md",
+      "section": "Đọc hình",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "DevOps: monorepo, devpod, Spinnaker, uMetric, uMonitor and M3.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/uber-tech-stack.md",
+      "section": "Đọc hình",
+      "verified_by": "Source body read from the pinned commit; the statement is in the source text."
+    },
+    {
+      "claim_vi": "Expansions of RIB and QUIC and why Uber builds its own tools.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/uber-tech-stack.md",
+      "section": "Xem sâu hơn",
+      "verified_by": "Author's general knowledge; not checked against primary documentation."
+    }
+  ],
+  "design_notes_vi": "Hai dải bước theo đường đi của một yêu cầu và một cột các mảng đứng ngoài. Không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Flipr's new name (UCDP in the source) is not spelled out because the source does not expand it.",
+    "Uber's engineering posts were not opened."
+  ],
+  "editorial_note_vi": "Bài mới viết trong kho này, chờ review kỹ thuật. Phần giải thích thêm là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu chuẩn. Chưa user testing hoặc phê duyệt phát hành."
+}

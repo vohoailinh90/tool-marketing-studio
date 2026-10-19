@@ -11,7 +11,7 @@ Bài này đọc SapFix như một dây chuyền: phát hiện, đề xuất, ki
 
 ## Đọc hình
 
-**Phát hiện.** Lập trình viên gửi một thay đổi (Meta gọi là Diff) để review qua Phabricator, mà bài nguồn gọi là hệ thống CI của Facebook. SapFix lấy các ca kiểm thử phù hợp từ Sapienz, hệ thống tự thiết kế ca kiểm thử của Facebook, và chạy chúng trên Diff đó.
+**Phát hiện.** Lập trình viên gửi một thay đổi (Meta gọi là Diff) để review qua Phabricator, mà bài nguồn gọi là hệ thống CI của Facebook. Theo bài nguồn, SapFix lấy các ca kiểm thử phù hợp từ Sapienz, hệ thống tự thiết kế ca kiểm thử của Facebook, và chạy chúng trên Diff đó.
 
 **Đề xuất.** Khi thấy một crash do Diff gây ra, SapFix thử sinh bản sửa theo bốn kiểu: theo mẫu, đột biến, hoàn tác toàn bộ, hoàn tác một phần. Nó chạy kiểm thử trên từng bản build đã vá để xem bản nào chạy được, giống thử từng mảnh ghép.
 
@@ -21,7 +21,7 @@ Bài này đọc SapFix như một dây chuyền: phát hiện, đề xuất, ki
 
 ## Giới hạn cần nhớ
 
-Con số 165 bản vá là số bản *được sinh ra*, không phải số bản được chấp nhận; bài nguồn không nói bao nhiêu bản được nhận. Trung bình khoảng 2,9 bản vá cho mỗi crash (165 chia 57), đúng với cách SapFix đưa ra vài ứng viên rồi chọn. Mọi con số là theo bài nguồn; bài báo của Meta chưa được mở để đối chiếu.
+Con số 165 bản vá là số bản *được sinh ra*, không phải số bản được chấp nhận; bài nguồn không nói bao nhiêu bản được nhận. Trung bình khoảng 2,9 bản vá cho mỗi crash (165 chia 57), đúng với cách SapFix đưa ra vài ứng viên rồi chọn. Mọi con số là theo bài nguồn; bài báo của Meta chưa được mở để đối chiếu. Cách bài nguồn chia việc giữa hai công cụ (SapFix chọn và chạy ca kiểm thử của Sapienz) cũng chưa được đối chiếu: có thể trong hệ thống thật, Sapienz là bên chạy kiểm thử và tìm ra crash, còn SapFix chỉ bắt đầu từ lúc có crash.
 Hoàn tác là bản sửa an toàn nhất nhưng cũng bỏ luôn tính năng mới, nên người duyệt vẫn phải hiểu điều mình nhận.
 
 ## Nhìn hình thử trả lời

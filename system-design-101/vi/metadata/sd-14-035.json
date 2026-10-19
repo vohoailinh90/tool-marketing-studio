@@ -200,7 +200,7 @@
       "verified_by": "Read authlib/oidc/core/claims.py at the pinned commit (validate_auth_time docstring and code); not run. The OpenID Connect specification text was not reachable."
     }
   ],
-  "design_notes_vi": "Hai khung: bốn câu hỏi API hỏi một access token (chữ ký, hạn, audience, scope) và ba việc token không làm được (chứng minh đăng nhập, cho biết ai đang cầm, tự nâng quyền). Không dùng ảnh nguồn.",
+  "design_notes_vi": "Ba khung dọc: bốn phép thử của thí nghiệm trên một access token JWT (chữ ký, hạn, audience, scope); một khung ghi rõ đó chưa phải danh sách đầy đủ (token JWT còn phải kiểm bên phát hành và loại token, token chuỗi mờ không có chữ ký nên API hỏi máy chủ ủy quyền); và ba việc token không làm được (chứng minh đăng nhập, cho biết ai đang cầm, tự nâng quyền). Không dùng ảnh nguồn.",
   "source_deviations": [
     "The source names the entities as User, Server and Identity Provider; OWASP, the OAuth 2.1 draft and authlib name the roles resource owner, client, authorization server and resource server, and 'Identity Provider' is not one of them there (authlib draws the OpenID Provider as the authorization server).",
     "The source says the OAuth token represents your identity and permissions; the OAuth 2.1 draft says an access token represents authorization granted to the client (scope, lifetime) and that OAuth is not an authentication protocol, so the lesson says the token does not prove who just logged in.",

@@ -4,7 +4,7 @@
 
 Bài chỉ nói về bước thương lượng: phiên bản TLS, bộ mã, nhóm trao đổi khóa, thuật toán chữ ký. Việc máy chủ chứng minh danh tính nằm ở [bài sd-14-014](../sd-14-014/lesson.md) (chứng chỉ) và [bài sd-14-015](../sd-14-015/lesson.md) (chữ ký số). Kết quả trong bài là một lần chạy OpenSSL 3.0.13 trên máy người viết (cục bộ, chứng chỉ tự ký dùng một lần), không phải trình duyệt hay máy chủ thật.
 
-![Ba khung dọc. Khung một: client gửi danh sách phiên bản, bộ mã, nhóm khóa, chữ ký; máy chủ chọn mỗi loại một mục hoặc gửi cảnh báo rồi dừng. Khung hai: có điểm chung thì hai bên cùng tính ra khóa đối xứng, mỗi chiều một khóa, và HTTP đi qua bộ mã đã chọn; không có thì kết nối dừng. Khung ba: máy chủ chỉ chọn mục client đã đưa; thứ tự ưu tiên mặc định là của client; HTTP không đổi dù TLS 1.2 hay 1.3.](../../diagrams/sd-14-032-main.svg)
+![Ba khung dọc, vẽ một bắt tay đầy đủ; phiên nối lại với dữ liệu gửi sớm (early data) nằm ngoài hình. Khung một: client gửi danh sách phiên bản, bộ mã, nhóm khóa, chữ ký; máy chủ chọn mỗi loại một mục hoặc gửi cảnh báo rồi dừng. Khung hai: có điểm chung thì hai bên cùng tính ra khóa đối xứng, mỗi chiều một khóa, và HTTP đi qua bộ mã đã chọn; không có thì kết nối dừng. Khung ba: máy chủ chỉ chọn mục client đã đưa; thứ tự ưu tiên mặc định là của client; HTTP không đổi dù TLS 1.2 hay 1.3.](../../diagrams/sd-14-032-main.svg)
 
 ## Từ viết tắt
 

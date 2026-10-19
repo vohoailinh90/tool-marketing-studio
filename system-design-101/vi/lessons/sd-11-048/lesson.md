@@ -1,6 +1,6 @@
 # Đường ống dữ liệu lớn trên ba đám mây: năm chặng, và kiểm bảng nguồn bằng bảng của Microsoft
 
-**Mọi đường ống dữ liệu lớn đều đi qua năm chặng: thu thập, hồ dữ liệu, tính toán, kho dữ liệu, trình bày. Bài nguồn gán cho mỗi chặng một dịch vụ của AWS, Azure và Google Cloud. Bài này giữ năm chặng, rồi lấy hai trang so sánh của Microsoft làm thước đo: trong mười phép ghép của bảng nguồn, bảy phép được Microsoft ghép giống vậy, ba phép thì không.**
+**Bài nguồn chia vòng đời của dữ liệu lớn thành năm chặng: thu thập, hồ dữ liệu, tính toán, kho dữ liệu, trình bày. Đó là một mô hình để học, không phải đường ống nào cũng có đủ năm chặng. Bài nguồn gán cho mỗi chặng một dịch vụ của AWS, Azure và Google Cloud. Bài này giữ năm chặng, rồi lấy hai trang so sánh của Microsoft làm thước đo: trong mười phép ghép của bảng nguồn, bảy phép được Microsoft ghép giống vậy, ba phép thì không.**
 Phép kiểm chỉ đối chiếu tên dịch vụ trong các bảng, không đo hiệu năng hay chi phí.
 
 ![Ba khung. Khung một, năm chặng: thu thập, hồ dữ liệu, tính toán, kho dữ liệu, trình bày. Khung hai, các dịch vụ bài nguồn nêu: AWS dùng Kinesis, S3, EMR, Redshift, QuickSight; Azure dùng Event Hubs, Data Lake Store, Databricks, Cosmos DB, Power BI; Google Cloud dùng PubSub, Cloud Storage, DataProc và DataFlow, BigQuery, Data Studio. Khung ba, kiểm bằng hai trang của Microsoft: bảy trên mười phép ghép khớp; ba phép lệch là Cloud Storage với Data Lake Store, và hai phép kho dữ liệu với Cosmos DB.](../../diagrams/sd-11-048-main.svg)

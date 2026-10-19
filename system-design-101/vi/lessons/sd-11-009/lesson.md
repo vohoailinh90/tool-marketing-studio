@@ -21,7 +21,7 @@ Tên sáu biến thể giữ theo bài nguồn; phần giải thích và thử n
 - **Heartbeat with Acknowledgement (nhịp có xác nhận).** Bên nhận phản hồi để bên gửi biết nhịp đã tới nơi.
 - **Heartbeat with Quorum (nhịp theo đa số).** Nhiều nút giám sát cùng quan sát; nút chỉ bị coi là hỏng khi đủ đa số đồng ý. Một nút giám sát nghe lỗi vì đường truyền riêng của nó không còn kéo cả hệ thống đi theo.
 
-**Thử nghiệm: ngưỡng chờ bao lâu?** Giả định (đây là mô hình tự đặt, không phải số đo thật): một nhịp mỗi giây; độ trễ mạng là 20 ms cộng một khoảng ngẫu nhiên trung bình 80 ms; 1% số nhịp bị chậm thêm từ 0,5 đến 2 giây. Mô phỏng 2 000 000 nhịp (khoảng 556 giờ) cho thấy số lần nghi nhầm một nút còn sống: ngưỡng 1,5 giây khoảng 38 lần mỗi giờ, 2 giây khoảng 12,5 lần mỗi giờ, 3 giây hai lần trong cả 556 giờ, 5 giây không lần nào. Ngưỡng càng cao càng ít báo nhầm, nhưng nút hỏng thật cũng bị phát hiện chậm đúng bằng ngưỡng đó.
+**Thử nghiệm: ngưỡng chờ bao lâu?** Giả định (đây là mô hình tự đặt, không phải số đo thật): một nhịp mỗi giây; độ trễ mạng là 20 ms cộng một khoảng ngẫu nhiên trung bình 80 ms; 1% số nhịp bị chậm thêm từ 0,5 đến 2 giây. Mỗi lần khoảng cách giữa hai nhịp liên tiếp tới nơi vượt ngưỡng được tính là một lần nghi nhầm. Mô phỏng 2 000 000 nhịp (khoảng 556 giờ, hạt giống ngẫu nhiên 1) cho thấy: ngưỡng 1,5 giây khoảng 38 lần mỗi giờ, 2 giây khoảng 24 lần mỗi giờ, 3 giây khoảng 492 lần trong cả 556 giờ (chưa tới một lần mỗi giờ), 5 giây không lần nào. Ngưỡng càng cao càng ít báo nhầm, nhưng nút hỏng thật cũng bị phát hiện chậm đúng bằng ngưỡng đó.
 
 ## Giới hạn cần nhớ
 

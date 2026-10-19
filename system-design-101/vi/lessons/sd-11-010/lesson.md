@@ -13,7 +13,7 @@ Chủ đề giữ theo bài nguồn; phần giải thích là của người bi�
 
 **Vì sao nó gây lỗi.** Phần mềm hay giả định mỗi phút có đúng 60 giây và thời gian không bao giờ lùi. Gặp giây thứ 61, mã có thể từ chối giá trị, hai sự kiện cách nhau một giây thật có thể mang cùng một mốc, hoặc một phép trừ thời gian cho ra số âm.
 
-**Cách nhìn thời gian quyết định có phải lo hay không.** Có những cách biểu diễn thời gian đếm cả giây nhuận (giờ nguyên tử quốc tế, giờ vệ tinh định vị) và có những cách phớt lờ nó, như Unix timestamp, vốn coi mỗi ngày dài đúng 86 400 giây. Với Unix timestamp, giây nhuận không có số riêng, nên hoặc một giây bị lặp, hoặc hệ thống phải làm điều gì đó để che.
+**Cách nhìn thời gian quyết định có phải lo hay không.** Giờ nguyên tử quốc tế và giờ của vệ tinh định vị chạy liên tục, không bao giờ chèn giây nhuận; thước có chèn là giờ dân sự quốc tế, nơi mới có 23:59:60, nên chênh lệch giữa giờ dân sự và hai thước kia đổi đi một giây mỗi lần chèn. Còn Unix timestamp phớt lờ giây nhuận, vì nó coi mỗi ngày dài đúng 86 400 giây. Với Unix timestamp, giây nhuận không có số riêng, nên hoặc một giây bị lặp, hoặc hệ thống phải làm điều gì đó để che.
 
 **Ba cách đối phó.**
 

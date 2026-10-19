@@ -1,7 +1,7 @@
 # Kiến trúc microservice của Airbnb qua ba giai đoạn
 
-**Theo bài nguồn, Airbnb đi qua ba giai đoạn: một khối nguyên (2008–2017), microservice (2017–2020), rồi kết hợp microservice và macroservice (từ 2020); mỗi bước giải quyết vấn đề của bước trước và sinh ra vấn đề mới.**
-Bài này đọc ba giai đoạn theo cặp "giải pháp, vấn đề mới", dựa trên bài nói của Jessica Tai mà nguồn dẫn lại.
+**Theo bài nguồn, Airbnb đi qua ba giai đoạn: một khối nguyên (2008–2017), microservice (2017–2020), rồi kết hợp microservice và macroservice (từ 2020); hai bước đầu đều giải quyết một vấn đề rồi sinh ra vấn đề mới, còn bước thứ ba thì nguồn chưa nói nó sinh vấn đề gì.**
+Bài này đọc ba giai đoạn theo cặp "giải pháp, vấn đề mới" ở những chỗ nguồn có nêu, dựa trên bài nói của Jessica Tai mà nguồn dẫn lại.
 
 ![Ba bước nối nhau. Bước một, khối nguyên 2008 đến 2017: một ứng dụng Ruby on Rails; vấn đề là quyền sở hữu mã giữa các đội rối, có mã không ai sở hữu, và triển khai chậm. Bước hai, microservice 2017 đến 2020: dịch vụ lấy dữ liệu, dịch vụ dữ liệu cho logic nghiệp vụ, dịch vụ quy trình ghi, dịch vụ gộp cho giao diện, mỗi dịch vụ có một đội sở hữu; vấn đề là hàng trăm dịch vụ và phụ thuộc khó cho con người quản lý. Bước ba, micro kết hợp macroservice từ 2020: tập trung thống nhất các API. Khung cuối: ba điều cần nhớ.](../../diagrams/sd-02-022-main.svg)
 

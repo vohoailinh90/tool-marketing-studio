@@ -24,7 +24,7 @@ Bài nguồn nói nó tổng hợp từ nhiều bài blog kỹ thuật và dự 
 - **Xử lý dữ liệu:** Flink và Spark xử lý, Tableau vẽ biểu đồ, Redshift xử lý dữ liệu có cấu trúc trong kho dữ liệu.
 - **CI/CD:** Jira, Confluence, PagerDuty, Jenkins, Gradle, Chaos Monkey, Spinnaker, Atlas (nguồn viết "Altas") và các công cụ khác.
 
-Năm lớp đầu nằm trên đường đi của một yêu cầu xem phim. Hai lớp xử lý dữ liệu và CI/CD đứng ngoài đường đi đó: một lớp đọc lại dữ liệu đã sinh ra để phân tích, lớp kia đưa mã mới vào các dịch vụ.
+Năm lớp nằm trên đường đi của một yêu cầu xem phim: ứng dụng, giao tiếp, dịch vụ phía sau, cơ sở dữ liệu và lưu video. Ba lớp đứng ngoài đường đi đó: truyền tin và dòng dữ liệu chuyển sự kiện giữa các dịch vụ, xử lý dữ liệu đọc lại dữ liệu đã sinh ra để phân tích, CI/CD đưa mã mới vào các dịch vụ. Cách chia này là của người biên soạn; bài nguồn chỉ xếp tám lớp, không nói lớp nào phục vụ lần xem.
 
 ## Giới hạn cần nhớ
 
@@ -37,7 +37,7 @@ Một người bấm xem một bộ phim trên điện thoại. Theo hình, nh�
 <details>
 <summary>Xem đáp án</summary>
 
-Ứng dụng di động gửi yêu cầu qua GraphQL tới các dịch vụ phía sau (qua Zuul), dịch vụ đọc cơ sở dữ liệu, rồi video được phát từ lớp lưu video. Lớp xử lý dữ liệu và lớp CI/CD không nằm trên đường đi này: chúng làm việc trước (phát hành mã) hoặc sau (phân tích dữ liệu).
+Ứng dụng di động gửi yêu cầu qua GraphQL tới các dịch vụ phía sau (qua Zuul), dịch vụ đọc cơ sở dữ liệu, rồi video được phát từ lớp lưu video. Ba lớp truyền tin và dòng dữ liệu, xử lý dữ liệu và CI/CD không nằm trên đường đi này: chúng chuyển sự kiện giữa các dịch vụ, làm việc trước (phát hành mã) hoặc sau (phân tích dữ liệu).
 
 </details>
 

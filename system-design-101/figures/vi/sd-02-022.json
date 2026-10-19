@@ -1,7 +1,7 @@
 {
   "id": "sd-02-022",
   "title": "Airbnb qua ba giai đoạn",
-  "subtitle": "Mỗi bước giải một vấn đề và sinh vấn đề mới.",
+  "subtitle": "Hai bước đầu giải một vấn đề và sinh vấn đề mới.",
   "desc": "Ba bước. Khối nguyên 2008 đến 2017, Ruby on Rails: sở hữu mã rối, triển khai chậm. Microservice 2017 đến 2020: dịch vụ lấy dữ liệu, logic nghiệp vụ, quy trình ghi, gộp cho giao diện, mỗi dịch vụ một đội; vấn đề là hàng trăm dịch vụ khó quản lý. Micro kết hợp macroservice từ 2020: thống nhất API. Khung cuối nêu ba điều cần nhớ.",
   "sections": [
     {
@@ -47,7 +47,7 @@
       "kind": "notes",
       "heading": "Nhớ gì",
       "items": [
-        "Giải pháp của bước này là vấn đề của bước sau.",
+        "Hai bước đầu: giải pháp sinh vấn đề mới.",
         "Microservice có bốn loại dịch vụ chính.",
         "Nguồn không định nghĩa macroservice."
       ]

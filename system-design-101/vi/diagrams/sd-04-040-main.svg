@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1122" viewBox="0 0 320 1122" role="img" aria-labelledby="title desc">
+<title id="title">Các loại cơ sở dữ liệu và hai nghĩa của chữ cột</title>
+<desc id="desc">Bốn khung dọc. Khung một, quan hệ và phân tích: cơ sở dữ liệu quan hệ dùng bảng, khóa và giao dịch; hệ phân tích OLAP tổng hợp rất nhiều dòng và thường lưu theo cột. Khung hai, bốn nhóm NoSQL: đồ thị cho quan hệ giữa các đối tượng; khóa và giá trị để lấy đúng một khóa thật nhanh; tài liệu cho bản ghi dạng JSON, mỗi bản một kiểu; và cột, chữ này có hai nghĩa. Khung ba, hai nghĩa của chữ cột: lưu theo cột, mỗi cột một chỗ, nén tốt, dùng cho phân tích; cột rộng như Cassandra, các dòng gom theo khóa phân vùng, mỗi dòng có nhiều cột. Khung bốn, đo một triệu dòng bán hàng: SQLite lưu theo dòng nặng 25,4 MB; DuckDB lưu theo cột nặng 2,1 MB; cột năm chỉ có một giá trị nên DuckDB lưu một hằng số.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1122" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Các loại cơ sở dữ liệu và</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">hai nghĩa của chữ cột</text>
+<rect x="8" y="78" width="304" height="211" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="106.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Quan hệ và phân tích</text>
+<rect x="20" y="123" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="146" r="11" fill="#16a34a"/>
+<polyline points="37.9,146.4 41.7,150.4 48.5,142" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="149.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Quan hệ: bảng, khóa, giao</text>
+<text x="64" y="168.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dịch.</text>
+<rect x="20" y="194" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="217" r="11" fill="#16a34a"/>
+<polyline points="37.9,217.4 41.7,221.4 48.5,213" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="220.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Phân tích (OLAP): tổng hợp</text>
+<text x="64" y="239.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">rất nhiều dòng, thường lưu</text>
+<text x="64" y="259.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">theo cột.</text>
+<rect x="8" y="301" width="304" height="316" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="329.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Bốn nhóm NoSQL</text>
+<rect x="20" y="346" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="369" r="11" fill="#16a34a"/>
+<polyline points="37.9,369.4 41.7,373.4 48.5,365" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="372.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đồ thị: quan hệ giữa các đối</text>
+<text x="64" y="391.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tượng.</text>
+<rect x="20" y="417" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="440" r="11" fill="#16a34a"/>
+<polyline points="37.9,440.4 41.7,444.4 48.5,436" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="443.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Khóa–giá trị: lấy đúng một</text>
+<text x="64" y="462.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khóa thật nhanh.</text>
+<rect x="20" y="488" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="511" r="11" fill="#16a34a"/>
+<polyline points="37.9,511.4 41.7,515.4 48.5,507" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="514.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tài liệu: bản ghi dạng JSON,</text>
+<text x="64" y="533.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mỗi bản một kiểu.</text>
+<rect x="20" y="559" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="582" r="11" fill="#16a34a"/>
+<polyline points="37.9,582.4 41.7,586.4 48.5,578" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="585.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cột: chữ này có hai nghĩa.</text>
+<rect x="8" y="629" width="304" height="211" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="657.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Hai nghĩa của chữ cột</text>
+<rect x="20" y="674" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="697" r="11" fill="#16a34a"/>
+<polyline points="37.9,697.4 41.7,701.4 48.5,693" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="700.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lưu theo cột: mỗi cột một</text>
+<text x="64" y="719.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chỗ, nén tốt, cho phân tích.</text>
+<rect x="20" y="745" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="768" r="11" fill="#16a34a"/>
+<polyline points="37.9,768.4 41.7,772.4 48.5,764" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="771.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cột rộng (Cassandra): dòng</text>
+<text x="64" y="790.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">gom theo khóa phân vùng,</text>
+<text x="64" y="810.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mỗi dòng nhiều cột.</text>
+<rect x="8" y="852" width="304" height="262" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="880.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Đo: 1 triệu dòng bán hàng</text>
+<rect x="20" y="897" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="920" r="11" fill="#16a34a"/>
+<polyline points="37.9,920.4 41.7,924.4 48.5,916" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="923.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">SQLite, lưu theo dòng: 25,4</text>
+<text x="64" y="942.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">MB.</text>
+<rect x="20" y="968" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="991" r="11" fill="#16a34a"/>
+<polyline points="37.9,991.4 41.7,995.4 48.5,987" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="994.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">DuckDB, lưu theo cột: 2,1</text>
+<text x="64" y="1013.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">MB.</text>
+<rect x="20" y="1039" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1062" r="11" fill="#16a34a"/>
+<polyline points="37.9,1062.4 41.7,1066.4 48.5,1058" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1065.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cột năm chỉ một giá trị:</text>
+<text x="64" y="1084.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">DuckDB lưu một hằng số.</text>
+</g>
+</svg>

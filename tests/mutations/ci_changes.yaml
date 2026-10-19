@@ -75,3 +75,104 @@ mutations:
   find: " --jobs ${{ vars.MUTATION_JOBS || '2' }}\n"
   replace: "\n"
   test: tests.test_ci_changes.WorkflowUsesItTests.test_the_mutation_check_runs_on_several_tree_copies_unless_the_variable_says_otherwise
+- label: a pull request runs every manifest instead of the ones that name a changed file
+  find: "        return [name for name in names if manifest_files(name, root, cache) & wanted]"
+  replace: "        return names"
+  test: tests.test_ci_changes.SelectedManifestsTests.test_an_unrelated_change_chooses_no_manifest
+- label: a change to the checker or the workflow runs only the manifests that name it
+  find: "    if any(path in RUN_ALL or shared_test_file(path, root) for path in changed):"
+  replace: "    if any(shared_test_file(path, root) for path in changed):"
+  test: tests.test_ci_changes.SelectedManifestsTests.test_a_shared_file_runs_every_manifest
+- label: a manifest is not chosen by the module of a test it names
+  find: "    named |= tests\n"
+  replace: ""
+  test: tests.test_ci_changes.SelectedManifestsTests.test_the_real_manifests_are_chosen_by_target_entry_file_test_module_and_themselves
+- label: a manifest is not chosen by the file of one of its entries
+  find: "        named.add(entry.get(\"file\", \"\"))\n"
+  replace: ""
+  test: tests.test_ci_changes.SelectedManifestsTests.test_a_manifest_is_chosen_by_the_file_one_of_its_entries_mutates
+- label: manifests that cannot be read choose none instead of all
+  find: "        if not names:\n            return None\n"
+  replace: "        if not names:\n            return []\n"
+  test: tests.test_ci_changes.SelectedManifestsTests.test_manifests_that_cannot_be_read_run_every_manifest
+- label: a pull request no manifest names still runs the check
+  find: "            needed, reason = False, f\"{reason}, but no mutation manifest names a changed file\""
+  replace: "            pass"
+  test: tests.test_ci_changes.MainTests.test_a_pull_request_no_manifest_names_skips_the_check
+- label: the chosen manifests are not written for the workflow
+  find: "                handle.write(f\"manifests={' '.join(chosen) if chosen else 'all'}\\n\")"
+  replace: "                handle.write(\"manifests=all\\n\")"
+  test: tests.test_ci_changes.MainTests.test_a_pull_request_runs_only_the_manifests_that_name_a_changed_file
+- label: the workflow step ignores the chosen manifests and runs them all
+  file: .github/workflows/ci.yml
+  find: "then set -- --all; else set -- $MANIFESTS; fi"
+  replace: "then set -- --all; else set -- --all; fi"
+  test: tests.test_ci_changes.WorkflowUsesItTests.test_the_step_runs_the_chosen_manifests_or_all_of_them
+- label: a change to shared test support runs only the manifests that name it
+  find: "    if any(path in RUN_ALL or shared_test_file(path, root) for path in changed):"
+  replace: "    if any(path in RUN_ALL for path in changed):"
+  test: tests.test_ci_changes.SelectedManifestsTests.test_a_shared_test_file_no_manifest_names_runs_every_manifest
+- label: test modules count as shared test support, so any test change runs everything
+  find: "        return imported_by_other_tests(path, root)"
+  replace: "        return True"
+  test: tests.test_ci_changes.SelectedManifestsTests.test_a_shared_test_file_no_manifest_names_runs_every_manifest
+- label: a deleted or renamed file runs only the manifests that still name a file
+  find: "    if any(not in_store(path) and not (root / path).exists() for path in changed):\n        return None\n"
+  replace: ""
+  test: tests.test_ci_changes.SelectedManifestsTests.test_a_deleted_or_renamed_file_runs_every_manifest
+- label: a test module other tests import helpers from counts as an ordinary test module
+  find: "        return imported_by_other_tests(path, root)"
+  replace: "        return False"
+  test: tests.test_ci_changes.SelectedManifestsTests.test_a_test_module_other_tests_import_helpers_from_runs_every_manifest
+- label: a relative import of a test module is not recognised
+  find: "                base = \".\".join(parts[:len(parts) - node.level + 1]) if node.level - 1 <= len(parts) else \"\""
+  replace: "                base = \"__nowhere__\""
+  test: tests.test_ci_changes.SelectedManifestsTests.test_a_test_module_other_tests_import_helpers_from_runs_every_manifest
+- label: "`from tests import test_x` is not recognised"
+  find: "            if any(f\"{origin}.{alias.name}\" == module for alias in node.names):"
+  replace: "            if False:"
+  test: tests.test_ci_changes.SelectedManifestsTests.test_a_test_module_other_tests_import_helpers_from_runs_every_manifest
+- label: a module whose name only starts like the changed one counts as importing it
+  find: "            if any(alias.name == module or alias.name.startswith(module + \".\") for alias in node.names):"
+  replace: "            if any(alias.name.startswith(module) for alias in node.names):"
+  test: tests.test_ci_changes.SelectedManifestsTests.test_an_import_of_a_different_module_with_a_shared_prefix_is_not_an_import
+- label: a test file that does not parse counts as not importing anything
+  find: "    except (OSError, UnicodeDecodeError, SyntaxError, ValueError):\n        return True\n"
+  replace: "    except (OSError, UnicodeDecodeError, SyntaxError, ValueError):\n        return False\n"
+  test: tests.test_ci_changes.SelectedManifestsTests.test_a_test_file_that_does_not_parse_counts_as_importing
+- label: a module the named tests import does not choose their manifest
+  find: "        named |= local_dependencies(test, root, cache)"
+  replace: "        pass"
+  test: tests.test_ci_changes.SelectedManifestsTests.test_a_module_the_named_tests_import_directly_or_through_others_chooses_the_manifest
+- label: only the modules a test imports directly count, not the ones they import in turn
+  find: "            pending.append(dependency)"
+  replace: "                    pass"
+  test: tests.test_ci_changes.SelectedManifestsTests.test_a_module_the_named_tests_import_directly_or_through_others_chooses_the_manifest
+- label: a bare import of a module in scripts/ is not followed
+  find: '    for base in ("", "scripts/"):'
+  replace: '    for base in ("",):'
+  test: tests.test_ci_changes.SelectedManifestsTests.test_a_module_the_named_tests_import_directly_or_through_others_chooses_the_manifest
+- label: a dependency that does not parse crashes the selection instead of running every manifest
+  find: "    except (OSError, ValueError, AttributeError, TypeError, SyntaxError, yaml.YAMLError):"
+  replace: "    except (OSError, ValueError, AttributeError, TypeError, yaml.YAMLError):"
+  test: tests.test_ci_changes.SelectedManifestsTests.test_a_module_the_named_tests_import_directly_or_through_others_chooses_the_manifest
+- label: a relative import in a module the named tests reach is not followed
+  find: "                above = parts[:len(parts) - node.level + 1] if node.level <= len(parts) + 1 else []"
+  replace: "                above = [\"__nowhere__\"]"
+  test: tests.test_ci_changes.SelectedManifestsTests.test_a_module_the_named_tests_import_directly_or_through_others_chooses_the_manifest
+- label: a module loaded by spec_from_file_location is not followed
+  find: "        if any(call in text for call in DYNAMIC_IMPORTS):"
+  replace: "        if False:"
+  test: tests.test_ci_changes.SelectedManifestsTests.test_a_module_loaded_by_path_chooses_the_manifest_of_the_tests_that_reach_it
+- label: a module loaded by a path under another folder is not found by its file name
+  find: "        found |= {path for path in python_files if posixpath.basename(path) == base}"
+  replace: "        pass"
+  test: tests.test_ci_changes.SelectedManifestsTests.test_a_module_loaded_by_path_chooses_the_manifest_of_the_tests_that_reach_it
+- label: a module loaded by a path no literal names is ignored instead of running every manifest
+  find: "    if not found:\n        raise ValueError(f\"{file} loads a module by a path this script cannot read\")\n"
+  replace: ""
+  test: tests.test_ci_changes.SelectedManifestsTests.test_a_module_loaded_by_path_chooses_the_manifest_of_the_tests_that_reach_it
+- label: a manifest whose values have the wrong type crashes the selection instead of running every manifest
+  find: "    except (OSError, ValueError, AttributeError, TypeError, SyntaxError, yaml.YAMLError):"
+  replace: "    except (OSError, ValueError, AttributeError, SyntaxError, yaml.YAMLError):"
+  test: tests.test_ci_changes.SelectedManifestsTests.test_manifests_that_cannot_be_read_run_every_manifest

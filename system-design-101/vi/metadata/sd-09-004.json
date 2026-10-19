@@ -1,0 +1,69 @@
+{
+  "id": "sd-09-004",
+  "title_vi": "Git và GitHub giải quyết việc gì?",
+  "language": "vi",
+  "kind": "explanation",
+  "content_status": "draft",
+  "source_ref": "sd-09-004",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/git-vs-github.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/git-vs-github.md",
+    "blob_sha": "00c4028d2b62fbfc4fc855211da258e46a5894b8",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "retrieved_body_sha256": "0116469323420e40b981fd206fe64d969f7b221206b5dbb4efa7b5c624ab0eef",
+    "retrieved_body_bytes": 1486
+  },
+  "diagram": "../diagrams/sd-09-004-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-13"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "Đã đọc thân bài nguồn, đối chiếu danh mục và liệt kê tài liệu sơ cấp. Một số trang trả HTTP 403; chưa xác minh toàn bộ claim nên giữ pending."
+    },
+    "technical_review": {
+      "status": "pending"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-13",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 14.73,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium: complete lesson with details open at 320/375/430px; SVG text bounding boxes within viewBox; min effective text 14.73px at 320 and 17.54px at 375. Screenshots captured locally; no learner testing or live GitHub preview. Đã xem contact sheet 20 bài ở 320px; chưa kiểm tra trên GitHub hoặc điện thoại thật."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "Git là hệ thống quản lý phiên bản phân tán. Kho cục bộ chứa lịch sử để so sánh, tạo nhánh và commit. Remote có thể là GitHub, một dịch vụ khác hoặc kho do nhóm tự vận hành.\n\nGitHub lưu kho và cung cấp pull request, issue, quyền truy cập và tự động hóa như GitHub Actions. Khi bạn commit, mốc mới trước tiên có ở máy bạn. Sau push thành công, remote mới nhận các đối tượng cần thiết và cập nhật nhánh được gửi. Người khác thường fetch hoặc pull để nhận thay đổi vào kho của họ.",
+      "sources": [
+        "https://git-scm.com/about",
+        "https://docs.github.com/en/get-started/using-git/about-git"
+      ]
+    },
+    {
+      "claim_vi": "Không cần tài khoản GitHub để dùng Git cục bộ. GitHub có gói miễn phí và trả phí; không nên mô tả mọi sử dụng đều phải trả tiền.",
+      "sources": [
+        "https://git-scm.com/about",
+        "https://docs.github.com/en/get-started/using-git/about-git"
+      ]
+    }
+  ],
+  "design_notes_vi": "Thẻ dọc tự thiết kế từ ví dụ mới; mũi tên biểu diễn thứ tự đọc. Không sử dụng ảnh nguồn.",
+  "editorial_note_vi": "Đợt Công cụ và năng suất theo yêu cầu người dùng 2026-10-13. Chưa review kỹ thuật độc lập hoặc thử người học; không tự merge/phát hành."
+}

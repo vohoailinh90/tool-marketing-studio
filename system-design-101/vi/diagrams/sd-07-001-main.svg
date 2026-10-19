@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1116" viewBox="0 0 320 1116" role="img" aria-labelledby="title desc">
+<title id="title">Bốn mảng việc sau một đơn hàng</title>
+<desc id="desc">Hai khung. Khung một, bốn mảng việc nối nhau: mua hàng từ nhà cung cấp, kho giữ hàng, nền tảng bán hàng, vận chuyển. Khung hai, đường đi của một đơn trên nền tảng bán hàng: người mua đăng nhập, chọn hàng bỏ vào giỏ, đặt đơn, hệ thống giữ hàng trong kho rồi mới thanh toán.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1116" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Bốn mảng việc sau một</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">đơn hàng</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Từ nhà cung cấp tới tay người mua.</text>
+<rect x="8" y="104" width="304" height="501" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="132.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Bốn mảng việc</text>
+<rect x="20" y="149" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="192.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 181.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m11 17 2 2a1 1 0 1 0 3-3"/><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"/><path d="m21 3 1 11h-2"/><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"/><path d="M3 4h8"/></g>
+<text x="78" y="175.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Mua hàng</text>
+<text x="78" y="199.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chọn nhà cung cấp, đặt</text>
+<text x="78" y="218.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hàng, trả hàng.</text>
+<rect x="20" y="268" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="311.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 300.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.97 12.92A2 2 0 0 0 2 14.63v3.24a2 2 0 0 0 .97 1.71l3 1.8a2 2 0 0 0 2.06 0L12 19v-5.5l-5-3-4.03 2.42Z"/><path d="m7 16.5-4.74-2.85"/><path d="m7 16.5 5-3"/><path d="M7 16.5v5.17"/><path d="M12 13.5V19l3.97 2.38a2 2 0 0 0 2.06 0l3-1.8a2 2 0 0 0 .97-1.71v-3.24a2 2 0 0 0-.97-1.71L17 10.5l-5 3Z"/><path d="m17 16.5-5-3"/><path d="m17 16.5 4.74-2.85"/><path d="M17 16.5v5.17"/><path d="M7.97 4.42A2 2 0 0 0 7 6.13v4.37l5 3 5-3V6.13a2 2 0 0 0-.97-1.71l-3-1.8a2 2 0 0 0-2.06 0l-3 1.8Z"/><path d="M12 8 7.26 5.15"/><path d="m12 8 4.74-2.85"/><path d="M12 13.5V8"/></g>
+<text x="78" y="294.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Kho</text>
+<text x="78" y="318.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nhận hàng, quản lý tồn</text>
+<text x="78" y="337.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">kho.</text>
+<rect x="20" y="387" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="430.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 419.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 21v-5a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v5"/><path d="M17.774 10.31a1.12 1.12 0 0 0-1.549 0 2.5 2.5 0 0 1-3.451 0 1.12 1.12 0 0 0-1.548 0 2.5 2.5 0 0 1-3.452 0 1.12 1.12 0 0 0-1.549 0 2.5 2.5 0 0 1-3.77-3.248l2.889-4.184A2 2 0 0 1 7 2h10a2 2 0 0 1 1.653.873l2.895 4.192a2.5 2.5 0 0 1-3.774 3.244"/><path d="M4 10.95V19a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8.05"/></g>
+<text x="78" y="413.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Nền tảng bán hàng</text>
+<text x="78" y="437.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đăng bán, định giá, nhận</text>
+<text x="78" y="456.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đơn.</text>
+<rect x="20" y="506" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="549.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 538.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></g>
+<text x="78" y="532.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Vận chuyển</text>
+<text x="78" y="556.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Giao hàng theo lệnh xuất</text>
+<text x="78" y="575.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">kho.</text>
+<polyline points="160,238 160,266" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="160,357 160,385" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<polyline points="160,476 160,504" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="617" width="304" height="491" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="645.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Một đơn trên nền tảng</text>
+<rect x="20" y="662" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="688" r="14" fill="#0f766e"/>
+<text x="46" y="693.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="688.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Đăng nhập</text>
+<text x="70" y="712.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Người mua đăng ký hoặc</text>
+<text x="70" y="731.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đăng nhập vào ứng dụng.</text>
+<rect x="20" y="771" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="797" r="14" fill="#0f766e"/>
+<text x="46" y="802.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="797.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Chọn hàng</text>
+<text x="70" y="821.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Duyệt danh sách, xem chi</text>
+<text x="70" y="840.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tiết, bỏ vào giỏ.</text>
+<polyline points="46,751 46,769" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="880" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="906" r="14" fill="#0f766e"/>
+<text x="46" y="911.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="906.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Đặt đơn</text>
+<text x="70" y="930.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Người mua gửi đơn mua</text>
+<text x="70" y="949.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hàng.</text>
+<polyline points="46,860 46,878" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="989" width="280" height="107" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="1015" r="14" fill="#0f766e"/>
+<text x="46" y="1020.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">4</text>
+<text x="70" y="1015.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Giữ hàng, trả tiền</text>
+<text x="70" y="1039.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Hệ thống đơn hàng giữ chỗ</text>
+<text x="70" y="1058.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">trong kho, rồi người mua</text>
+<text x="70" y="1078.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thanh toán.</text>
+<polyline points="46,969 46,987" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+</g>
+</svg>

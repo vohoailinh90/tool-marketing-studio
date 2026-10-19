@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1134" viewBox="0 0 320 1134" role="img" aria-labelledby="title desc">
+<title id="title">Chín blog kỹ thuật và bốn câu hỏi</title>
+<desc id="desc">Ba khung. Hai khung đầu là chín blog theo bài nguồn: Netflix TechBlog, Uber Blog, Cloudflare Blog, Engineering at Meta, LinkedIn Engineering, Discord Blog, AWS Architecture, Slack Engineering, Stripe Blog. Khung ba là bốn câu hỏi khi đọc một bài: bài toán gì, ràng buộc gì, đánh đổi gì, điều gì dùng được ở quy mô của mình.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1134" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Chín blog kỹ thuật và</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">bốn câu hỏi</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Danh sách của nguồn, cách đọc của</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">bài.</text>
+<rect x="8" y="123" width="304" height="319" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Chín blog theo nguồn (1–5)</text>
+<rect x="20" y="168" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="191" r="11" fill="#16a34a"/>
+<polyline points="37.9,191.4 41.7,195.4 48.5,187" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="194.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Netflix TechBlog</text>
+<rect x="20" y="222" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="245" r="11" fill="#16a34a"/>
+<polyline points="37.9,245.4 41.7,249.4 48.5,241" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="248.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Uber Blog</text>
+<rect x="20" y="276" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="299" r="11" fill="#16a34a"/>
+<polyline points="37.9,299.4 41.7,303.4 48.5,295" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="302.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Cloudflare Blog</text>
+<rect x="20" y="330" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="353" r="11" fill="#16a34a"/>
+<polyline points="37.9,353.4 41.7,357.4 48.5,349" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="356.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Engineering at Meta</text>
+<rect x="20" y="384" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="407" r="11" fill="#16a34a"/>
+<polyline points="37.9,407.4 41.7,411.4 48.5,403" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="410.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">LinkedIn Engineering</text>
+<rect x="8" y="454" width="304" height="265" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="482.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Chín blog theo nguồn (6–9)</text>
+<rect x="20" y="499" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="522" r="11" fill="#16a34a"/>
+<polyline points="37.9,522.4 41.7,526.4 48.5,518" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="525.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Discord Blog</text>
+<rect x="20" y="553" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="576" r="11" fill="#16a34a"/>
+<polyline points="37.9,576.4 41.7,580.4 48.5,572" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="579.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">AWS Architecture</text>
+<rect x="20" y="607" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="630" r="11" fill="#16a34a"/>
+<polyline points="37.9,630.4 41.7,634.4 48.5,626" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="633.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Slack Engineering</text>
+<rect x="20" y="661" width="280" height="46" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="684" r="11" fill="#16a34a"/>
+<polyline points="37.9,684.4 41.7,688.4 48.5,680" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="687.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Stripe Blog</text>
+<rect x="8" y="731" width="304" height="395" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="759.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Bốn câu hỏi khi đọc</text>
+<rect x="20" y="776" width="280" height="68" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="46" cy="802" r="14" fill="#b45309"/>
+<text x="46" y="807.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="802.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Bài toán</text>
+<text x="70" y="826.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Họ giải bài toán gì?</text>
+<rect x="20" y="866" width="280" height="68" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="46" cy="892" r="14" fill="#b45309"/>
+<text x="46" y="897.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="892.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Ràng buộc</text>
+<text x="70" y="916.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Quy mô, đội ngũ, hạ tầng.</text>
+<polyline points="46,846 46,864" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="956" width="280" height="68" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="46" cy="982" r="14" fill="#b45309"/>
+<text x="46" y="987.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="982.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Đánh đổi</text>
+<text x="70" y="1006.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Họ trả giá điều gì?</text>
+<polyline points="46,936 46,954" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="1046" width="280" height="68" rx="10" fill="#fef3c7" stroke="#b45309" stroke-width="1.5"/>
+<circle cx="46" cy="1072" r="14" fill="#b45309"/>
+<text x="46" y="1077.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">4</text>
+<text x="70" y="1072.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Dùng được</text>
+<text x="70" y="1096.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Điều gì hợp với mình?</text>
+<polyline points="46,1026 46,1044" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+</g>
+</svg>

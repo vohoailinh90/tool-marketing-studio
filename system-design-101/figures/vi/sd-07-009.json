@@ -1,0 +1,83 @@
+{
+  "id": "sd-07-009",
+  "title": "UPI: từ đăng ký đến chuyển tiền",
+  "subtitle": "NPCI chuyển lệnh, ngân hàng ghi sổ.",
+  "desc": "Hai khung. Khung một, chuẩn bị: Bob cung cấp số điện thoại và xác minh bằng mật khẩu dùng một lần; đặt địa chỉ thanh toán ảo; ứng dụng tạo địa chỉ đó với ngân hàng thu; liên kết tài khoản ngân hàng qua NPCI và đặt mã PIN. Khung hai, chuyển tiền sau khi ứng dụng của Alice gửi địa chỉ của Bob và 100 rupee tới NPCI: NPCI nhờ ngân hàng của Bob tra chi tiết; NPCI gửi yêu cầu trừ tới ngân hàng của Alice, ngân hàng đó trừ 100 rupee và báo lại; NPCI gửi yêu cầu cộng tới ngân hàng của Bob, ngân hàng đó cộng 100 rupee và báo lại; rồi NPCI báo thành công cho các ứng dụng.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Chuẩn bị của Bob",
+      "items": [
+        {
+          "title": "Đăng ký",
+          "text": "Số điện thoại, xác minh bằng mật khẩu dùng một lần."
+        },
+        {
+          "title": "Đặt địa chỉ",
+          "text": "Địa chỉ thanh toán ảo, tạo với ngân hàng thu."
+        },
+        {
+          "title": "Liên kết",
+          "text": "Tài khoản ngân hàng, qua NPCI."
+        },
+        {
+          "title": "Đặt PIN",
+          "text": "Dùng cho xác thực hai yếu tố."
+        }
+      ]
+    },
+    {
+      "kind": "sequence",
+      "heading": "Alice trả Bob 100 rupee",
+      "actors": [
+        {
+          "name": "NPCI",
+          "icon": "route"
+        },
+        {
+          "name": "Bank Alice",
+          "icon": "store"
+        },
+        {
+          "name": "Bank Bob",
+          "icon": "store"
+        }
+      ],
+      "messages": [
+        {
+          "from": 0,
+          "to": 2,
+          "text": "Tra chi tiết địa chỉ"
+        },
+        {
+          "from": 2,
+          "to": 0,
+          "text": "Chi tiết tài khoản",
+          "reply": true
+        },
+        {
+          "from": 0,
+          "to": 1,
+          "text": "Yêu cầu trừ 100"
+        },
+        {
+          "from": 1,
+          "to": 0,
+          "text": "Đã trừ 100 ở Alice",
+          "reply": true
+        },
+        {
+          "from": 0,
+          "to": 2,
+          "text": "Yêu cầu cộng 100"
+        },
+        {
+          "from": 2,
+          "to": 0,
+          "text": "Đã cộng 100 cho Bob",
+          "reply": true
+        }
+      ]
+    }
+  ]
+}

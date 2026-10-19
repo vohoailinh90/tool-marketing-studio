@@ -1,0 +1,43 @@
+{
+  "id": "sd-04-034",
+  "lang": "vi",
+  "title": "Tám cấu trúc sau chỉ mục, mỗi cái một kiểu câu hỏi",
+  "desc": "Bốn khung dọc. Một, trong bộ nhớ: skiplist, danh sách nhiều tầng giữ thứ tự, dùng cho tập có thứ tự của Redis; bảng băm tìm đúng một khóa, không trả lời theo khoảng. Hai, trên đĩa: B-tree tìm đúng khóa lẫn theo khoảng; SSTable là tệp đã sắp xếp, ghi một lần không sửa; LSM gom lượt ghi trong bộ nhớ rồi xả ra SSTable, ghi nhanh nhưng phải gộp tệp ở nền. Ba, câu hỏi đặc thù: chỉ mục đảo đi từ một từ tới các tài liệu chứa nó; cây hậu tố tìm chuỗi con, PostgreSQL dùng bộ ba ký tự cho việc này; R-tree tìm điểm gần nhất, PostgreSQL dùng GiST. Bốn, đã thử: chỉ mục băm phục vụ phép bằng, phép between vẫn quét cả bảng; B-tree phục vụ cả hai; tập có thứ tự 128 phần tử là listpack, 129 là skiplist.",
+  "sections": [
+    {
+      "kind": "notes",
+      "heading": "Trong bộ nhớ",
+      "items": [
+        "Skiplist: danh sách nhiều tầng, giữ thứ tự; tập có thứ tự của Redis.",
+        "Bảng băm: tìm đúng một khóa, không trả lời theo khoảng."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Trên đĩa",
+      "items": [
+        "B-tree: cây cân bằng, tìm đúng khóa lẫn theo khoảng.",
+        "SSTable: tệp đã sắp xếp, ghi một lần không sửa.",
+        "LSM: gom ghi trong bộ nhớ, xả ra SSTable; ghi nhanh, phải gộp nền."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Câu hỏi đặc thù",
+      "items": [
+        "Chỉ mục đảo: từ một từ tới các tài liệu chứa nó.",
+        "Cây hậu tố: tìm chuỗi con; PostgreSQL dùng bộ ba ký tự.",
+        "R-tree: gần nhất, trong vùng; PostgreSQL dùng GiST."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Đã thử trên PostgreSQL 16 và Redis 7.0",
+      "items": [
+        "Chỉ mục băm: phép = dùng được, between vẫn quét cả bảng.",
+        "B-tree: cả = lẫn between đều dùng chỉ mục.",
+        "Tập có thứ tự 128 phần tử: listpack; 129: skiplist."
+      ]
+    }
+  ]
+}

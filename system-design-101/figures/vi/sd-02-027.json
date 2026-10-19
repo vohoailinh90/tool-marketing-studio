@@ -1,0 +1,61 @@
+{
+  "id": "sd-02-027",
+  "title": "Uber xếp thành tám mảng",
+  "subtitle": "Từ ứng dụng tới phát hành.",
+  "desc": "Hai dải bước và một cột. Phía người dùng: web dùng framework Fusion; di động dùng kiến trúc RIB, Swift và Java. Phía Uber: lưới dịch vụ Uber Gateway trên NGINX với gRPC và QUIC; dịch vụ dùng Flipr, H3, Spring Boot, uAct, Cadence; cơ sở dữ liệu DocStore trên MySQL, PostgreSQL, RocksDB. Đứng ngoài đường đi: dữ liệu lớn họ Hadoop, xử lý bằng Hive, Spark, Kafka, Flink; phát hành bằng monorepo, Spinnaker, M3.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Phía người dùng",
+      "items": [
+        {
+          "title": "Web",
+          "text": "Fusion, framework React."
+        },
+        {
+          "title": "Di động",
+          "text": "Kiến trúc RIB; Swift, Java."
+        }
+      ]
+    },
+    {
+      "kind": "steps",
+      "heading": "Phía Uber",
+      "items": [
+        {
+          "title": "Lưới dịch vụ",
+          "text": "Uber Gateway; gRPC, QUIC."
+        },
+        {
+          "title": "Dịch vụ",
+          "text": "Flipr, H3, uAct, Cadence."
+        },
+        {
+          "title": "Cơ sở dữ liệu",
+          "text": "DocStore trên MySQL."
+        }
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Đứng ngoài đường đi",
+      "items": [
+        {
+          "name": "Dữ liệu lớn",
+          "role": "Hadoop, Hudi, Pinot.",
+          "icon": "database"
+        },
+        {
+          "name": "Xử lý dữ liệu",
+          "role": "Hive, Spark, Kafka, Flink.",
+          "icon": "chart-column"
+        },
+        {
+          "name": "Phát hành",
+          "role": "Monorepo, Spinnaker, M3.",
+          "icon": "rocket"
+        }
+      ]
+    }
+  ]
+}

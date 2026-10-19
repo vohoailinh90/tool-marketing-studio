@@ -288,7 +288,8 @@ What the loop does not change:
   standard image. The slides are written to `build/figures/facebook/` (gitignored) and uploaded by the owner; a session never uploads.
   The one exception, decided by the owner on 2026-10-17: a lesson's **slide deck** (`docs/sd101-slides.md`: built on Moda, 1920x1080,
   8 to 10 slides, claimed with `scripts/sd101_slides.py`) is its own Facebook product, not a figure. Only the PNG files that `exported`
-  records, exported without the `moda.app` badge (which is never removed), go to Facebook, and the owner uploads them.
+  records go to Facebook, and the owner uploads them: exported without the `moda.app` badge (which is never removed) or, since
+  2026-10-18, with it when the deck is recorded `exports: badged` (the owner accepts the badge on them); a badged PPTX never does.
 
 ## System Design lessons: claim before you write
 
@@ -297,6 +298,8 @@ Several sessions write lessons of `system-design-101/vi/` at the same time. The 
 404 source-map positions is free (`todo`), being written (`doing`, owned by a branch) or handed over
 (`written`). Full protocol: `docs/sd101-claims.md`.
 
+- **First** read `docs/sd101-assignments.md`: a range reserved there for another session is not yours (`claim --next`
+  skips it; claim by id only inside a range reserved for you).
 - **Before** writing or editing a lesson body: `python3 scripts/sd101_claims.py claim --next N --publish`
   (or `claim <id>... --publish`). Never take `progress.json`'s `next_id`, and never start a lesson the
   registry shows as `doing` or `written` — it reads every remote branch, so another session's pushed claim is visible.
@@ -314,17 +317,29 @@ Every written lesson also becomes a Facebook slide deck built on Moda; `docs/sd1
 files and the exports. Several sessions build decks at once and `claims.jsonl` knows nothing about decks, so
 `scripts/sd101_slides.py` holds those claims (one `lessons/<id>/slides/deck.yaml` per lesson).
 
+- **First** read `docs/sd101-assignments.md`: a range reserved there for another session is not yours (`claim --next`
+  skips it; claim by id only inside a range reserved for you).
 - **Before** building a deck: `python3 scripts/sd101_slides.py claim --next N --publish` (or `claim <id>... --publish`).
   Never start a lesson the tool shows as `doing` or `done`; `status` lists what is free. `claim` and `verify` stop with
   exit 2 when the remote cannot be read: fix that, do not guess.
 - **While working**: `touch --publish` now and then; `verify` must exit 0 before you push. If you lost a claim, stop on that
   lesson and `release` it. A claim of a dead session (no heartbeat for 72 h) is taken over with `claim --take-stale`.
-- **When done**: `finish <id> --canvas <cvs_...> --url <editor link> --slides <n> --publish` and commit the rest of the lesson's
+- **When done**: `finish <id> --canvas <cvs_...> --url <editor link> --slides <n> --layouts <kind,kind,...> --first-concept <n>
+  [--cannot KIND=REASON] --publish` (`--layouts`: the layout kind of every slide in order; `--first-concept`: the slide of the lesson's first
+  concept; `--cannot`: only when its signature layout fell back; `docs/sd101-slides.md`, *Layout table*) and commit the rest of the lesson's
   `slides/` folder. `--publish` pushes the finished record and checks the claim again afterwards; if the record reaches the
   remote any other way (a plain `git push`), run `verify` afterwards: it checks finished decks too.
+- **Variety.** The decks share the brand (fonts, neutrals, footer, size, 8 to 10 slides) but not their layouts:
+  `docs/sd101-slides.md` (*Variety between decks*) sets the layout kinds, the signature layout, the accent rotation and the
+  layout table, which `finish` takes (`--layouts`, `--first-concept`, `--cannot`) and checks. A deck
+  that repeats the sample's layouts slide for slide is not finished.
+- **Starting or resuming decks** (Claude Code or Codex): `docs/sd101-slides-handoff.md` is the order of work, and
+  `python3 scripts/sd101_slide_brief.py <id>` cuts a lesson into slide roles, names the canvas and fixes the colour of each concept
+  (the lesson's own lines only; condensing them and drawing the slides is the session's job).
 - **The Moda watermark stays.** The free plan puts a `moda.app` badge on exported PNG and PPTX files and has no switch for
-  it; never remove it from a file. A deck is finished with `exports: pending`, and its files are added (`exported <id>`)
-  only once Moda exports them without the badge.
+  it; never remove it from a file. A deck is finished with `exports: pending`. Its PPTX, and its PNG files (all or none), may be
+  added as the free plan exports them, badge and all (`exported <id> --badged`, owner decision 2026-10-18; the PPTX is a
+  reference copy, not for Facebook), and its files are added as done (`exported <id>`) only once Moda exports them without the badge.
 
 ## Languages (Vietnamese / Japanese / English)
 

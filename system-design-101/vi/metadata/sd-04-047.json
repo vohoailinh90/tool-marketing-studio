@@ -1,0 +1,106 @@
+{
+  "id": "sd-04-047",
+  "title_vi": "Bảy cách mở rộng cơ sở dữ liệu: thử theo thứ tự rẻ trước, đắt sau",
+  "language": "vi",
+  "kind": "decision",
+  "content_status": "draft",
+  "source_ref": "sd-04-047",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/7-must-know-strategies-to-scale-your-database.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/7-must-know-strategies-to-scale-your-database.md",
+    "blob_sha": "9b74b227315c4608dacce9408036c8e8acac124d",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a local clone at the pinned commit and hashed as a Git blob; the computed OID matches the tree OID and the source map. No source-image bytes used.",
+    "retrieved_body_sha256": "81aea075cf820866c5e61fbb5c3cd988937bdc656278ea53e1ddb3823565ec34",
+    "retrieved_body_bytes": 1137
+  },
+  "diagram": "../diagrams/sd-04-047-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-04-035",
+      "relation": "related",
+      "reason_vi": "Bài đó thử bản sao chỉ đọc và việc đọc dữ liệu cũ."
+    },
+    {
+      "lesson_id": "sd-04-036",
+      "relation": "related",
+      "reason_vi": "Bài đó thử shard và các khó khăn của nó."
+    },
+    {
+      "lesson_id": "sd-04-043",
+      "relation": "related",
+      "reason_vi": "Bài đó đo chỉ mục và kết nối trong bảng tra hiệu năng."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "scope": "Đo ba lần trên PostgreSQL 16.15 (2 triệu dòng) và Redis 7.0.15 cùng một máy: báo cáo tính trực tiếp so với materialized view, view cũ sau một đơn mới, thời gian làm mới; bộ đệm đặt bên cạnh với hạn 2 giây, số cũ cho tới khi hết hạn. Đọc rules.sgml (Materialized Views) của nhánh REL_16_STABLE. KHÔNG kiểm: phi chuẩn hóa, máy to hơn, bản sao, shard trong bài này."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "not_yet_reviewed"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright 1.56): cả bài dựng từ Markdown thành HTML, mục tùy chọn mở, ở 320, 375 và 430 px; không cuộn ngang; chữ hình hiệu dụng nhỏ nhất 13,5 px ở 320 px và 15 px ở 375 px; không hộp chữ nào ra ngoài viewBox; python3 -m scripts.figures check --browser đạt. Không phải thử trên GitHub, trên điện thoại thật hay với người học."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "id": "source-seven",
+      "claim_vi": "Nguồn liệt kê bảy cách: chỉ mục theo mẫu câu hỏi, materialized view tính sẵn kết quả phức tạp, phi chuẩn hóa để bớt phép nối, mở rộng theo chiều dọc (thêm CPU, bộ nhớ, đĩa), bộ đệm, bản sao để chia lượt đọc, shard để chia cả lượt ghi lẫn đọc.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/7-must-know-strategies-to-scale-your-database.md",
+      "section": "Whole guide",
+      "verified_by": "Đọc thân nguồn ghim ngày 2026-10-18."
+    },
+    {
+      "id": "matview-docs",
+      "claim_vi": "Materialized view của PostgreSQL lưu kết quả như một bảng, không cập nhật trực tiếp được, và lấy dữ liệu mới bằng REFRESH MATERIALIZED VIEW.",
+      "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/rules.sgml",
+      "section": "Materialized Views",
+      "verified_by": "Đọc bản clone nông nhánh REL_16_STABLE ngày 2026-10-18."
+    },
+    {
+      "id": "matview-measure",
+      "claim_vi": "Trên 2 triệu dòng: tính tổng theo 50 cửa hàng trực tiếp mất 102 đến 107 mili giây, đọc materialized view 0,47 đến 1,23 mili giây; sau một đơn 1.000 cho cửa hàng 0, view vẫn nói 1.919.950 khi bảng nói 1.920.950; làm mới mất 98 đến 125 mili giây.",
+      "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/rules.sgml",
+      "section": "Phép đo của người biên soạn",
+      "verified_by": "Chạy đoạn mã in trong bài ba lần ngày 2026-10-18."
+    },
+    {
+      "id": "cache-measure",
+      "claim_vi": "Bộ đệm đặt bên cạnh bằng Redis, hạn 2 giây: lần đầu hỏi PostgreSQL 40 đến 54 mili giây, lần hai từ bộ đệm 0,15 đến 0,22 mili giây; ngay sau một đơn 5.000 vẫn trả 1.919.954 từ bộ đệm, hết hạn thì 1.924.954.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/7-must-know-strategies-to-scale-your-database.md",
+      "section": "Caching (phép đo của người biên soạn)",
+      "verified_by": "Chạy đoạn mã in trong bài ba lần ngày 2026-10-18."
+    }
+  ],
+  "design_notes_vi": "Bốn khung: bốn cách rẻ trên cùng máy, ba cách đắt hơn, phép đo materialized view, phép đo bộ đệm. Thứ tự rẻ trước đắt sau là của người biên soạn. Sơ đồ dựng bằng scripts/figures, không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Nguồn liệt kê bảy cách; bài xếp lại theo chi phí (đặt bộ đệm trước máy to hơn) và đo hai cách ở giữa.",
+    "Bài thêm cái giá chung của các cách nhanh hơn: số cũ trong một khoảng thời gian, đo được trên cả materialized view lẫn bộ đệm."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này, bản nháp chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

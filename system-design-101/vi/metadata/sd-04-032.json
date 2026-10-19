@@ -1,0 +1,89 @@
+{
+  "id": "sd-04-032",
+  "title_vi": "Chọn cơ sở dữ liệu theo câu hỏi bạn sẽ hỏi: tám loại và hai phép đo",
+  "language": "vi",
+  "kind": "decision",
+  "content_status": "draft",
+  "source_ref": "sd-04-032",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/how-to-choose-the-right-database.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-to-choose-the-right-database.md",
+    "blob_sha": "1aeb5d544e8c819450d8c1e2166c2b8a5fa898da",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a local clone at the pinned commit and hashed as a Git blob; the computed OID matches the tree OID and the source map. No source-image bytes used.",
+    "retrieved_body_sha256": "cf8ba7e7245aa1a576faed9b50ad1e33b807a04d8dc02022c46623ccc783cd2a",
+    "retrieved_body_bytes": 962
+  },
+  "diagram": "../diagrams/sd-04-032-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-04-026",
+      "relation": "related",
+      "reason_vi": "Bài đó so cách xếp dữ liệu của các mô hình; bài này chọn loại hệ theo kiểu câu hỏi."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "scope": "Đo bằng Python 3.13.16, SQLite 3.45.1 (có FTS5) và DuckDB 1.5.6 trên một máy 4 nhân: like so với FTS5 trên 200.000 ghi chú; tổng theo cửa hàng trên 5 triệu dòng, một luồng; chạy đoạn mã ba lần. KHÔNG kiểm: tài liệu của SQLite và DuckDB (không mở được), kho khóa–giá trị, tài liệu, đồ thị, vector và không gian; tách riêng phần nhanh nhờ lưu theo cột và phần nhờ chạy theo lô."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "not_yet_reviewed"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright 1.56): cả bài dựng từ Markdown thành HTML, mục tùy chọn mở, ở 320, 375 và 430 px; không cuộn ngang; chữ hình hiệu dụng nhỏ nhất 13,5 px ở 320 px và 15 px ở 375 px; không hộp chữ nào ra ngoài viewBox; python3 -m scripts.figures check --browser đạt. Không phải thử trên GitHub, trên điện thoại thật hay với người học."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "id": "source-eight",
+      "claim_vi": "Nguồn liệt kê tám loại: OLTP cho giao dịch cần nhất quán mạnh, OLAP cho phân tích, tìm toàn văn, kho tài liệu dạng JSON, kho khóa–giá trị, đồ thị, vector nhúng và dữ liệu không gian.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-to-choose-the-right-database.md",
+      "section": "Whole guide",
+      "verified_by": "Đọc thân nguồn ghim ngày 2026-10-18."
+    },
+    {
+      "id": "like-vs-fts",
+      "claim_vi": "Trên 200.000 ghi chú, like '%mã123456%' quét cả bảng (kế hoạch SCAN notes) mất 37 đến 49 mili giây; FTS5 trả cùng 1 dòng trong 0,01 đến 0,02 mili giây.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-to-choose-the-right-database.md",
+      "section": "Full-Text Search (phép đo của người biên soạn)",
+      "verified_by": "Chạy đoạn mã in trong bài ba lần ngày 2026-10-18; mỗi lần lấy lần nhanh nhất trong ba lần lặp. Số đo của một máy."
+    },
+    {
+      "id": "row-vs-column",
+      "claim_vi": "Tổng qty*price theo 50 cửa hàng trên 5 triệu dòng: SQLite khoảng 1,9 giây, DuckDB một luồng 31 đến 33 mili giây, cùng đáp án.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-to-choose-the-right-database.md",
+      "section": "OLAP (phép đo của người biên soạn)",
+      "verified_by": "Chạy đoạn mã in trong bài ba lần ngày 2026-10-18 (SQLite 1.864 đến 1.928 ms). Khoảng cách gộp hai lý do, lưu theo cột và chạy theo lô; bài không tách riêng."
+    }
+  ],
+  "design_notes_vi": "Ba khung: bốn loại cho câu hỏi nhỏ ghi nhiều, bốn loại cho câu hỏi đặc thù, hai phép đo. Cách xếp tám loại theo kiểu câu hỏi là của người biên soạn. Sơ đồ dựng bằng scripts/figures, không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Nguồn chỉ liệt kê tám loại kèm một dòng mô tả; bài xếp chúng theo kiểu câu hỏi và đo hai kiểu (tìm theo từ, tổng hợp nhiều dòng) để thấy khoảng cách.",
+    "Bài thêm lời khuyên bắt đầu bằng một hệ chính và chỉ thêm hệ khi đo được một kiểu câu hỏi quá chậm; đây là ý kiến của người biên soạn."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này, bản nháp chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

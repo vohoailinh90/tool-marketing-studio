@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1362" viewBox="0 0 320 1362" role="img" aria-labelledby="title desc">
+<title id="title">Cookie là gì, và không phải là gì</title>
+<desc id="desc">Ba nhóm xếp dọc. Cookie đi lại: máy chủ gửi Set-Cookie, trình duyệt giữ hộ, mỗi yêu cầu sau trình duyệt tự gắn tên và giá trị vào tiêu đề Cookie, thuộc tính không gửi lại. Ba kiểu cookie: mang dữ liệu thì người dùng sửa được; mang mã ngẫu nhiên thì máy chủ tra bảng của mình; mang dữ liệu kèm mã xác thực thì sửa bị từ chối nhưng vẫn đọc và sao chép được. Ba điều cookie không phải: chương trình, két sắt, bằng chứng danh tính.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1362" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Cookie là gì, và không</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">phải là gì</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Mẩu chữ máy chủ nhờ trình duyệt giữ</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">hộ, rồi nhận lại ở mỗi yêu cầu</text>
+<rect x="8" y="123" width="304" height="442" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Cookie đi lại thế nào</text>
+<rect x="20" y="168" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="194" r="14" fill="#1d4ed8"/>
+<text x="46" y="199.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="194.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Máy chủ gửi Set-Cookie</text>
+<text x="70" y="218.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Tên và giá trị, kèm vài</text>
+<text x="70" y="237.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thuộc tính dặn trình duyệt</text>
+<text x="70" y="257.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">cách dùng.</text>
+<rect x="20" y="297" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="323" r="14" fill="#1d4ed8"/>
+<text x="46" y="328.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="323.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Trình duyệt giữ hộ</text>
+<text x="70" y="347.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nó lưu cookie theo trang đã</text>
+<text x="70" y="366.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đặt ra nó, cho tới khi hết</text>
+<text x="70" y="386.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">hạn hoặc bị xóa.</text>
+<polyline points="46,277 46,295" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="426" width="280" height="127" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="46" cy="452" r="14" fill="#1d4ed8"/>
+<text x="46" y="457.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="452.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Mỗi yêu cầu sau tự</text>
+<text x="70" y="472.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">mang theo</text>
+<text x="70" y="496.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chỉ tên và giá trị được gắn</text>
+<text x="70" y="515.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">vào tiêu đề Cookie; thuộc</text>
+<text x="70" y="535.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tính không gửi lại.</text>
+<polyline points="46,406 46,424" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="577" width="304" height="483" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="605.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Ba kiểu cookie, ba cách tin</text>
+<rect x="20" y="622" width="280" height="126" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="685" r="18" fill="#0f766e"/><g transform="translate(39.2 674.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></g>
+<text x="78" y="648.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Mang dữ liệu</text>
+<text x="78" y="672.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">theme=dark: máy chủ đọc</text>
+<text x="78" y="691.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thẳng, không tra gì. Người</text>
+<text x="78" y="711.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dùng sửa được, máy chủ</text>
+<text x="78" y="730.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tin theo.</text>
+<rect x="20" y="762" width="280" height="126" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="825" r="18" fill="#0f766e"/><g transform="translate(39.2 814.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"/><circle cx="16.5" cy="7.5" fill="#FFFFFF" r=".5"/></g>
+<text x="78" y="788.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Mang mã ngẫu nhiên</text>
+<text x="78" y="812.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">sid=chuỗi ngẫu nhiên:</text>
+<text x="78" y="831.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">máy chủ tra bảng của</text>
+<text x="78" y="851.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mình. Mã bừa thì không ra</text>
+<text x="78" y="870.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dữ liệu nào.</text>
+<rect x="20" y="902" width="280" height="146" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="50" cy="975" r="18" fill="#0f766e"/><g transform="translate(39.2 964.2) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></g>
+<text x="78" y="928.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Mang dữ liệu kèm mã</text>
+<text x="78" y="948.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">xác thực</text>
+<text x="78" y="972.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Sửa là bị từ chối, nhưng</text>
+<text x="78" y="991.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">vẫn đọc được, và bản sao</text>
+<text x="78" y="1011.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nguyên vẹn vẫn dùng</text>
+<text x="78" y="1030.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">được.</text>
+<rect x="8" y="1072" width="304" height="282" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="1100.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Ba điều cookie không phải</text>
+<rect x="20" y="1117" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1140" r="11" fill="#16a34a"/>
+<polyline points="37.9,1140.4 41.7,1144.4 48.5,1136" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1143.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Không phải chương trình: chỉ</text>
+<text x="64" y="1162.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">là chữ, không tự chạy gì.</text>
+<rect x="20" y="1188" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1211" r="11" fill="#16a34a"/>
+<polyline points="37.9,1211.4 41.7,1215.4 48.5,1207" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1214.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Không phải két sắt: người</text>
+<text x="64" y="1233.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dùng đọc và sửa được giá trị.</text>
+<rect x="20" y="1259" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1282" r="11" fill="#16a34a"/>
+<polyline points="37.9,1282.4 41.7,1286.4 48.5,1278" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1285.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Không phải bằng chứng</text>
+<text x="64" y="1304.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">danh tính: ai cầm đúng mã</text>
+<text x="64" y="1324.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thì được nhận là chủ.</text>
+</g>
+</svg>

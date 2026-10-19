@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="820" viewBox="0 0 320 820" role="img" aria-labelledby="title desc">
+<title id="title">Unicast, broadcast, multicast và anycast</title>
+<desc id="desc">A gửi gói. Unicast tới B; broadcast cục bộ tới B,C,D; multicast tới nhóm B,D; anycast định tuyến tới C trong tập B,C,D cùng địa chỉ dịch vụ.</desc>
+<defs><marker id="arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0 0L6 3L0 6Z" fill="#334155"/></marker></defs>
+<rect width="320" height="820" fill="#f8fafc"/><g font-family="Arial, sans-serif" font-size="16" fill="#0f172a">
+<text x="16" y="30" font-size="20" font-weight="bold">MỘT GÓI → ĐÍCH NÀO?</text>
+<rect x="12" y="50" width="296" height="168" rx="12" fill="#dbeafe"/><text x="24" y="78" font-weight="bold">Unicast · đích B</text>
+<circle cx="44" cy="133" r="18" fill="white" stroke="#334155"/><text x="38" y="139">A</text>
+<path d="M62 133 L115 110" fill="none" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
+<circle cx="115" cy="133" r="18" fill="#0f766e" stroke="#334155"/><text x="109" y="139" fill="white">B</text>
+<circle cx="187" cy="133" r="18" fill="white" stroke="#334155"/><text x="181" y="139" fill="#0f172a">C</text>
+<circle cx="259" cy="133" r="18" fill="white" stroke="#334155"/><text x="253" y="139" fill="#0f172a">D</text>
+<text x="24" y="193">Một địa chỉ riêng</text>
+<rect x="12" y="230" width="296" height="168" rx="12" fill="#dcfce7"/><text x="24" y="258" font-weight="bold">Broadcast · cục bộ</text>
+<circle cx="44" cy="313" r="18" fill="white" stroke="#334155"/><text x="38" y="319">A</text>
+<path d="M62 313 L115 290" fill="none" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
+<circle cx="115" cy="313" r="18" fill="#0f766e" stroke="#334155"/><text x="109" y="319" fill="white">B</text>
+<path d="M62 313 L187 290" fill="none" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
+<circle cx="187" cy="313" r="18" fill="#0f766e" stroke="#334155"/><text x="181" y="319" fill="white">C</text>
+<path d="M62 313 L259 290" fill="none" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
+<circle cx="259" cy="313" r="18" fill="#0f766e" stroke="#334155"/><text x="253" y="319" fill="white">D</text>
+<text x="24" y="373">Mọi host trong phạm vi</text>
+<rect x="12" y="410" width="296" height="168" rx="12" fill="#fef3c7"/><text x="24" y="438" font-weight="bold">Multicast · nhóm B,D</text>
+<circle cx="44" cy="493" r="18" fill="white" stroke="#334155"/><text x="38" y="499">A</text>
+<path d="M62 493 L115 470" fill="none" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
+<circle cx="115" cy="493" r="18" fill="#0f766e" stroke="#334155"/><text x="109" y="499" fill="white">B</text>
+<circle cx="187" cy="493" r="18" fill="white" stroke="#334155"/><text x="181" y="499" fill="#0f172a">C</text>
+<path d="M62 493 L259 470" fill="none" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
+<circle cx="259" cy="493" r="18" fill="#0f766e" stroke="#334155"/><text x="253" y="499" fill="white">D</text>
+<text x="24" y="553">Một địa chỉ nhóm</text>
+<rect x="12" y="590" width="296" height="168" rx="12" fill="#ede9fe"/><text x="24" y="618" font-weight="bold">Anycast · chọn C</text>
+<circle cx="44" cy="673" r="18" fill="white" stroke="#334155"/><text x="38" y="679">A</text>
+<circle cx="115" cy="673" r="18" fill="white" stroke="#334155"/><text x="109" y="679" fill="#0f172a">B</text>
+<path d="M62 673 L187 650" fill="none" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
+<circle cx="187" cy="673" r="18" fill="#0f766e" stroke="#334155"/><text x="181" y="679" fill="white">C</text>
+<circle cx="259" cy="673" r="18" fill="white" stroke="#334155"/><text x="253" y="679" fill="#0f172a">D</text>
+<text x="24" y="733">B,C,D: cùng địa chỉ dịch vụ</text>
+<text x="16" y="800">Tô đậm: đích dự kiến của gói.</text></g></svg>

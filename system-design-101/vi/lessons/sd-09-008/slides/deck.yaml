@@ -1,0 +1,23 @@
+id: sd-09-008
+status: done
+owner: claude/sd101-slides-sd-09
+claimed_at: '2026-10-19T00:37:00Z'
+done_at: '2026-10-19T00:50:56Z'
+moda_canvas: cvs_7XGV6TKVK9899TSKK4MSQ9RG6W
+moda_url: https://moda.app/canvas/fd86cda9-ee69-4253-acce-64a66e9c40dc
+slide_count: 10
+size: 1920x1080
+exports: badged
+layouts:
+  slides:
+  - one-big-number
+  - one-highlighted-sentence
+  - layers
+  - flow
+  - two-column-comparison
+  - card-grid
+  - 2x2-matrix
+  - numbered-rows
+  - lookup-table
+  - card-grid
+  first_concept: 3

@@ -1,0 +1,49 @@
+{
+  "id": "sd-02-013",
+  "title": "Hệ thống thông báo đi qua những chặng nào?",
+  "subtitle": "Một cổng vào, nhiều kênh ra.",
+  "desc": "Hai khung bước. Khung một, vào và xử lý: các dịch vụ nghiệp vụ gửi thông báo tới cổng thông báo, từng cái hoặc theo lô; dịch vụ phân phối kiểm tra, định dạng theo mẫu và lên lịch theo kênh người dùng chọn; thông báo vào bộ định tuyến, thường là hàng đợi tin nhắn. Khung hai, ra và đo: dịch vụ kênh gửi qua trong ứng dụng, email, SMS, mạng xã hội; dịch vụ theo dõi và phân tích ghi số liệu cho đội vận hành. Khung ba nêu ba điều cần nhớ.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Vào và xử lý",
+      "items": [
+        {
+          "title": "Cổng thông báo",
+          "text": "Nhận từ dịch vụ nghiệp vụ: từng cái hoặc theo lô."
+        },
+        {
+          "title": "Dịch vụ phân phối",
+          "text": "Kiểm tra, định dạng theo mẫu, lên lịch theo kênh ưa thích."
+        },
+        {
+          "title": "Bộ định tuyến",
+          "text": "Thường là hàng đợi tin nhắn."
+        }
+      ]
+    },
+    {
+      "kind": "steps",
+      "heading": "Ra và đo",
+      "items": [
+        {
+          "title": "Dịch vụ kênh",
+          "text": "Trong ứng dụng, email, SMS, mạng xã hội."
+        },
+        {
+          "title": "Theo dõi và phân tích",
+          "text": "Ghi số liệu gửi; đội vận hành xem báo cáo."
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Nhớ gì",
+      "items": [
+        "Mẫu và kênh ưa thích được định nghĩa trước.",
+        "Hàng đợi tách phần xử lý khỏi từng kênh.",
+        "Số liệu gửi quay lại để cải thiện trải nghiệm."
+      ]
+    }
+  ]
+}

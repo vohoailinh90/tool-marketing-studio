@@ -52,6 +52,12 @@ SUMMARY = (
     "<relative-time datetime=\"2026-10-01T14:24:16.794722Z\">2026-10-01T14:24:16.794722Z</relative-time>"
     " | `7e7d3da` | Manual request |\n\n\n\n" + ABOUT
 )
+# The shape the connector gave the summary on 2026-10-18: a hidden state line under the marker.
+STATE = ('<!-- codex-review-state:v1 {"code_review":{"commit_sha":"7e7d3da508","has_any_findings":true,'
+         '"has_unresolved_findings":true,"status":"completed"},"security_review":{"commit_sha":null,'
+         '"has_any_findings":null,"has_unresolved_findings":null,"status":null}} -->')
+STATE_SUMMARY = SUMMARY.replace("<!-- codex-pull-request-review-summary -->\n",
+                                "<!-- codex-pull-request-review-summary -->\n" + STATE + "\n", 1)
 
 
 def review_body(sha: str) -> str:
@@ -170,6 +176,17 @@ class RealShapeTests(unittest.TestCase):
         self.assertIn("6 review round(s) used, no limit", out)
         self.assertIn("OK: no review-round limit", out)
         self.assertNotIn("LIMIT", out)
+
+    def test_the_summary_with_its_state_line_is_not_a_round(self):
+        # vohoailinh90/tool-marketing-studio PR 121: the count called this comment an unrecognized bot post.
+        self.assertNotEqual(STATE_SUMMARY, SUMMARY)
+        posts = [ask(1, 1), comment(2, BOT, STATE_SUMMARY, at(1, 20)), bot_review(10, 5), ask(3, 10), bot_review(11, 14)]
+        code, out = self.run(posts)
+        self.assertEqual(code, 0, out)
+        self.assertIn("2 review round(s) used", out)
+        self.assertIn("not counted: gh:2 -- review-status summary comment", out)
+        self.assertNotIn("UNRECOGNIZED", out)
+        self.assertNotIn("WARNING", out)
 
     def test_two_reviews_and_the_summary_count_two_rounds_not_three(self):
         # PR 194's state before its third round: the old counter said 3 here, the summary comment taken for a round.
@@ -463,6 +480,54 @@ class StrictnessTests(unittest.TestCase):
         code, out = self.run([comment(2, BOT, body, at(1)), ask(1, 2), bot_review(10, 5)])
         self.assertIn("2 review round(s) used", out)
         self.assertIn("round 1: gh:2 -- UNRECOGNIZED", out)
+
+    def test_a_state_line_that_is_not_the_one_codex_writes_counts(self):
+        for label, line in (("another comment", STATE.replace("codex-review-state:v1", "codex-review-note:v1")),
+                            ("another version", STATE.replace("state:v1", "state:v2")),
+                            ("not JSON", "<!-- codex-review-state:v1 {not json} -->"),
+                            ("not an object", "<!-- codex-review-state:v1 [1, 2] -->"),
+                            ("NaN is not JSON", '<!-- codex-review-state:v1 {"status": NaN} -->'),
+                            ("Infinity is not JSON", '<!-- codex-review-state:v1 {"status": -Infinity} -->'),
+                            ("no closing", STATE.replace(" -->", ""))):
+            with self.subTest(label):
+                body = SUMMARY.replace("<!-- codex-pull-request-review-summary -->\n",
+                                       "<!-- codex-pull-request-review-summary -->\n" + line + "\n", 1)
+                self.assertNotEqual(body, SUMMARY)
+                code, out = self.run([comment(2, BOT, body, at(1))])
+                self.assertIn("round 1: gh:2 -- UNRECOGNIZED", out)
+
+    def test_a_state_line_nested_deeper_than_the_parser_reads_counts_instead_of_crashing(self):
+        deep = '<!-- codex-review-state:v1 {"a":' + "[" * 200000 + "]" * 200000 + "} -->"
+        body = SUMMARY.replace("<!-- codex-pull-request-review-summary -->\n",
+                               "<!-- codex-pull-request-review-summary -->\n" + deep + "\n", 1)
+        self.assertNotEqual(body, SUMMARY)
+        code, out = self.run([comment(2, BOT, body, at(1))])
+        self.assertIn("round 1: gh:2 -- UNRECOGNIZED", out)
+
+    def test_two_state_lines_count(self):
+        body = STATE_SUMMARY.replace(STATE + "\n", STATE + "\n" + STATE + "\n", 1)
+        self.assertEqual(body.count("codex-review-state"), 2)
+        code, out = self.run([comment(2, BOT, body, at(1))])
+        self.assertIn("round 1: gh:2 -- UNRECOGNIZED", out)
+
+    def test_a_state_line_with_text_around_it_counts(self):
+        for body in (STATE_SUMMARY.replace(STATE, "Note: " + STATE), STATE_SUMMARY.replace(STATE, STATE + " done")):
+            with self.subTest(body[:90]):
+                self.assertNotEqual(body, STATE_SUMMARY)
+                code, out = self.run([comment(2, BOT, body, at(1))])
+                self.assertIn("round 1: gh:2 -- UNRECOGNIZED", out)
+
+    def test_a_state_line_carrying_a_result_counts_as_a_result(self):
+        body = STATE_SUMMARY.replace('"status":"completed"}', '"status":"completed","note":"Reviewed commit: 7e7d3da508"}', 1)
+        self.assertNotEqual(body, STATE_SUMMARY)
+        code, out = self.run([ask(1, 1), comment(2, BOT, body, at(3))])
+        self.assertIn("round 1: gh:2", out)
+        self.assertNotIn("not counted", out)
+
+    def test_another_bot_posting_the_state_summary_is_refused(self):
+        code, out = self.run([ask(1, 1), comment(2, "review-helper[bot]", STATE_SUMMARY, at(3))])
+        self.assertEqual(code, 2, out)
+        self.assertIn("posts what Codex posts", out)
 
     def test_a_summary_with_another_heading_or_sentence_counts(self):
         for old, new in (("## Codex Review Summary", "## Codex Review Status"),

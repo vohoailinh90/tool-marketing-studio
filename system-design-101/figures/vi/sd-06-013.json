@@ -1,0 +1,72 @@
+{
+  "id": "sd-06-013",
+  "title": "Truy vấn khóa không tồn tại",
+  "subtitle": "Bộ đệm không giữ được thứ không có, nên lần nào cũng xuyên tới cơ sở dữ liệu.",
+  "desc": "Ba khung. Khung một, trình tự: kẻ tấn công xin một mã không tồn tại; bộ đệm không có nên hỏi cơ sở dữ liệu; cơ sở dữ liệu trả không có; bộ đệm không cất gì và trả không có; kẻ tấn công xin một mã khác và mọi thứ lặp lại. Khung hai, cất giá trị rỗng: cùng một mã lặp lại 20 nghìn lần chỉ còn 1 lần hỏi cơ sở dữ liệu; 20 nghìn mã khác nhau vẫn là 20 nghìn lần hỏi, kèm 20 nghìn khóa rác. Khung ba, bộ lọc Bloom: trả lời chắc chắn không có thì chặn ngay, có thể có thì mới hỏi tiếp; thử với tỷ lệ lọt 1 phần trăm, 0,87 phần trăm mã giả lọt qua, bộ lọc tốn khoảng 120 nghìn byte cho 100 nghìn mã.",
+  "sections": [
+    {
+      "kind": "sequence",
+      "heading": "Mã không tồn tại",
+      "actors": [
+        {
+          "name": "Kẻ tấn công",
+          "icon": "user"
+        },
+        {
+          "name": "Bộ đệm",
+          "icon": "zap"
+        },
+        {
+          "name": "Cơ sở dữ liệu",
+          "icon": "database"
+        }
+      ],
+      "messages": [
+        {
+          "from": 0,
+          "to": 1,
+          "text": "Xin mã không có"
+        },
+        {
+          "from": 1,
+          "to": 2,
+          "text": "Trượt: hỏi tiếp"
+        },
+        {
+          "from": 2,
+          "to": 1,
+          "text": "Không có",
+          "reply": true
+        },
+        {
+          "from": 1,
+          "to": 0,
+          "text": "Không có, không cất",
+          "reply": true
+        },
+        {
+          "from": 0,
+          "to": 1,
+          "text": "Xin mã khác"
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Cất giá trị rỗng",
+      "items": [
+        "Một mã lặp lại 20 nghìn lần: chỉ 1 lần hỏi.",
+        "20 nghìn mã khác nhau: vẫn 20 nghìn lần hỏi, thêm 20 nghìn khóa rác."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Bộ lọc Bloom",
+      "items": [
+        "Chắc chắn không có: chặn ngay.",
+        "Có thể có: mới hỏi tiếp.",
+        "Thử tỷ lệ lọt 1%: lọt 0,87%, tốn khoảng 120 nghìn byte cho 100 nghìn mã."
+      ]
+    }
+  ]
+}

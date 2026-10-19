@@ -1,0 +1,110 @@
+{
+  "id": "sd-04-042",
+  "title_vi": "Khóa trong cơ sở dữ liệu: thử từng loại trên PostgreSQL bằng hai phiên",
+  "language": "vi",
+  "kind": "concept",
+  "content_status": "draft",
+  "source_ref": "sd-04-042",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/what-are-the-differences-among-database-locks.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-are-the-differences-among-database-locks.md",
+    "blob_sha": "7760057dbe5e8407501be3b95484b08c566d03b7",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a local clone at the pinned commit and hashed as a Git blob; the computed OID matches the tree OID and the source map. No source-image bytes used.",
+    "retrieved_body_sha256": "2865a6be5854296fed1202de658ad194e9a4080edbe76a5bcff914b1a5449d32",
+    "retrieved_body_bytes": 1874
+  },
+  "diagram": "../diagrams/sd-04-042-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-04-044",
+      "relation": "related",
+      "reason_vi": "Mức cô lập trong ACID là điều quyết định khóa vị từ ở phép thử bác sĩ trực."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "scope": "Chạy PostgreSQL 16.15 với psycopg 3.3.6, hai phiên, lock_timeout 500 ms: khóa chia sẻ và độc quyền trên dòng, đọc thường, deadlock, lệch ghi ở repeatable read và serializable (đếm SIReadLock), alter table chặn select; chạy hai lần. Đọc mvcc.sgml của nhánh REL_16_STABLE và tìm các tên khóa của nguồn trong tài liệu PostgreSQL. KHÔNG kiểm: SQL Server, MySQL, khóa trang, hiệu năng."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "not_yet_reviewed"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright 1.56): cả bài dựng từ Markdown thành HTML, mục tùy chọn mở, ở 320, 375 và 430 px; không cuộn ngang; chữ hình hiệu dụng nhỏ nhất 13,5 px ở 320 px và 15 px ở 375 px; không hộp chữ nào ra ngoài viewBox; python3 -m scripts.figures check --browser đạt. Không phải thử trên GitHub, trên điện thoại thật hay với người học."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "id": "source-nine",
+      "claim_vi": "Nguồn liệt kê khóa chia sẻ, độc quyền, cập nhật (tránh deadlock), cấu trúc, nạp hàng loạt, khoảng khóa (chặn bản ghi ma), và khóa theo dòng, trang, bảng.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/what-are-the-differences-among-database-locks.md",
+      "section": "Whole guide",
+      "verified_by": "Đọc thân nguồn ghim ngày 2026-10-18."
+    },
+    {
+      "id": "names-not-in-pg",
+      "claim_vi": "Tài liệu PostgreSQL 16 không có các tên key-range lock, bulk update lock hay update lock.",
+      "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/mvcc.sgml",
+      "section": "Explicit Locking",
+      "verified_by": "grep -il trên mọi tệp .sgml của doc/src/sgml và doc/src/sgml/ref ở nhánh REL_16_STABLE ngày 2026-10-18: không có kết quả."
+    },
+    {
+      "id": "row-locks",
+      "claim_vi": "Khi A giữ for share dòng 1: B for share được, B for update phải chờ (bị hủy vì lock_timeout), B đọc thường được, B for update dòng 2 được; tài liệu nói khóa dòng không ảnh hưởng việc đọc, chỉ chặn người ghi và người khóa cùng dòng.",
+      "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/mvcc.sgml",
+      "section": "Row-Level Locks",
+      "verified_by": "Chạy đoạn mã in trong bài hai lần ngày 2026-10-18."
+    },
+    {
+      "id": "deadlock",
+      "claim_vi": "Hai giao dịch giữ dòng 1 và dòng 2 rồi xin chéo: PostgreSQL hủy một bên với deadlock detected, bên kia hoàn tất; tài liệu nói hệ tự phát hiện deadlock và hủy một giao dịch.",
+      "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/mvcc.sgml",
+      "section": "Deadlocks",
+      "verified_by": "Chạy hai lần ngày 2026-10-18; cả hai lần bên bị hủy là A."
+    },
+    {
+      "id": "write-skew",
+      "claim_vi": "Hai bác sĩ cùng đếm 2 người trực rồi tự nghỉ: ở repeatable read cả hai chốt được, còn 0 người; ở serializable có 4 khóa SIReadLock, bên chốt sau bị hủy với could not serialize access due to read/write dependencies among transactions, còn 1 người; tài liệu nói khóa vị từ này không chặn ai.",
+      "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/mvcc.sgml",
+      "section": "Serializable Isolation Level",
+      "verified_by": "Chạy hai lần ngày 2026-10-18."
+    },
+    {
+      "id": "access-exclusive",
+      "claim_vi": "Khi A đang alter table chưa chốt, B select thường bị chặn; ACCESS EXCLUSIVE xung đột với mọi chế độ khóa.",
+      "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/mvcc.sgml",
+      "section": "Table-Level Locks",
+      "verified_by": "Chạy hai lần ngày 2026-10-18; đọc mô tả ACCESS EXCLUSIVE."
+    }
+  ],
+  "design_notes_vi": "Bốn khung: khóa trên một dòng, deadlock, lệch ghi của hai bác sĩ trực, khóa bảng. Sơ đồ dựng bằng scripts/figures, không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Nguồn liệt kê chín loại khóa theo tên; bài thử trên PostgreSQL ai chặn ai, và nói rõ vài tên của nguồn không có trong tài liệu PostgreSQL.",
+    "Nguồn gán việc chặn bản ghi ma cho khóa theo khoảng khóa; bài cho thấy PostgreSQL làm việc tương tự bằng khóa vị từ của mức serializable, loại khóa không chặn mà hủy giao dịch."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này, bản nháp chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

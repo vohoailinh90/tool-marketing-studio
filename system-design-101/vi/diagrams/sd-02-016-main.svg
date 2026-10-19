@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1156" viewBox="0 0 320 1156" role="img" aria-labelledby="title desc">
+<title id="title">Airbnb đi từ khối nguyên tới bốn tầng dịch vụ</title>
+<desc id="desc">Một khung trước, một khung sau. Trước: Monorail, khối nguyên Ruby on Rails lo cả máy khách và máy chủ, gặp vấn đề khi tăng trưởng quá nhanh. Sau: cổng chuyển yêu cầu tới bốn tầng dịch vụ từ dưới lên: dịch vụ dữ liệu là lối vào đọc ghi dữ liệu; dữ liệu dẫn xuất áp logic cơ bản; tầng giữa giữ logic quan trọng; trình bày gộp dữ liệu cho giao diện. Khung ba nêu ba điều cần nhớ.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="1156" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Airbnb đi từ khối nguyên</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">tới bốn tầng dịch vụ</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Monorail trước, kiến trúc hướng dịch</text>
+<text x="16" y="103.8" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">vụ sau.</text>
+<rect x="8" y="123" width="304" height="265" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="151.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Trước: Monorail</text>
+<rect x="20" y="168" width="280" height="87" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="211.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 200.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></g>
+<text x="78" y="194.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Một khối nguyên</text>
+<text x="78" y="218.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Ruby on Rails, lo cả máy</text>
+<text x="78" y="237.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khách lẫn máy chủ.</text>
+<rect x="20" y="269" width="280" height="107" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="50" cy="322.5" r="18" fill="#1d4ed8"/><g transform="translate(39.2 311.7) scale(0.9)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></g>
+<text x="78" y="295.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Tăng trưởng quá</text>
+<text x="78" y="315.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">nhanh</text>
+<text x="78" y="339.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Khối nguyên bắt đầu gặp</text>
+<text x="78" y="358.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">vấn đề.</text>
+<rect x="8" y="400" width="304" height="474" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="428.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Sau: bốn tầng dịch vụ, từ</text>
+<text x="20" y="450.3" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">dưới lên</text>
+<rect x="20" y="467" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="493" r="14" fill="#0f766e"/>
+<text x="46" y="498.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">1</text>
+<text x="70" y="493.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Dịch vụ dữ liệu</text>
+<text x="70" y="517.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Lối vào cho mọi thao tác</text>
+<text x="70" y="536.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đọc ghi dữ liệu.</text>
+<rect x="20" y="576" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="602" r="14" fill="#0f766e"/>
+<text x="46" y="607.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">2</text>
+<text x="70" y="602.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Dữ liệu dẫn xuất</text>
+<text x="70" y="626.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Đọc từ dịch vụ dữ liệu, áp</text>
+<text x="70" y="645.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">logic cơ bản.</text>
+<polyline points="46,556 46,574" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="685" width="280" height="68" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="711" r="14" fill="#0f766e"/>
+<text x="46" y="716.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">3</text>
+<text x="70" y="711.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Tầng giữa</text>
+<text x="70" y="735.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Logic nghiệp vụ quan trọng.</text>
+<polyline points="46,665 46,683" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="20" y="775" width="280" height="87" rx="10" fill="#ccfbf1" stroke="#0f766e" stroke-width="1.5"/>
+<circle cx="46" cy="801" r="14" fill="#0f766e"/>
+<text x="46" y="806.5" font-size="16" fill="#ffffff" font-weight="bold" text-anchor="middle">4</text>
+<text x="70" y="801.8" font-size="16" fill="#0f172a" font-weight="bold" text-anchor="start">Trình bày</text>
+<text x="70" y="825.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Gộp dữ liệu, áp logic cho</text>
+<text x="70" y="844.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">giao diện.</text>
+<polyline points="46,755 46,773" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="886" width="304" height="262" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="914.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Nhớ gì</text>
+<rect x="20" y="931" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="954" r="11" fill="#16a34a"/>
+<polyline points="37.9,954.4 41.7,958.4 48.5,950" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="957.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Máy khách gửi yêu cầu tới</text>
+<text x="64" y="976.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">một cổng.</text>
+<rect x="20" y="1002" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1025" r="11" fill="#16a34a"/>
+<polyline points="37.9,1025.4 41.7,1029.4 48.5,1021" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1028.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Dữ liệu chỉ được đọc ghi qua</text>
+<text x="64" y="1047.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">dịch vụ dữ liệu.</text>
+<rect x="20" y="1073" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1096" r="11" fill="#16a34a"/>
+<polyline points="37.9,1096.4 41.7,1100.4 48.5,1092" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1099.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Sau khi chuyển xong,</text>
+<text x="64" y="1118.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Monorail bị bỏ hẳn.</text>
+</g>
+</svg>

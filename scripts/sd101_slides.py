@@ -8,7 +8,9 @@ the same file and never conflict at merge:
   status doing   a session is building the deck (owner = its branch, claimed_at, heartbeat_at; generation and
                  taken_from after a takeover)
   status done    the deck exists on Moda (moda_canvas, moda_url, slide_count, size) and `exports` says whether its
-                 PNG and PPTX files are in the folder as well (`done`) or not yet (`pending`)
+                 PNG and PPTX files are in the folder as well (`done`), its PPTX (with all its PNG files, or none)
+                 exported with the moda.app badge (`badged`), or none yet (`pending`); `layouts`, the deck's layout
+                 table (docs/sd101-slides.md, *Variety between decks*), is checked by `finish` and kept in the record
 
 Visibility follows sd101_claims.py: every command fetches all branches of the remote. On the default branch every
 record counts; on any other branch only the records whose owner is that branch (a copy inherited by merging is not a
@@ -19,8 +21,10 @@ heartbeat is older than the lease is stale and is taken over on purpose with `cl
   python3 scripts/sd101_slides.py claim --next 3 --publish          # or: claim sd-01-002 sd-01-003 --publish
   python3 scripts/sd101_slides.py verify                            # exit 0 = every claim of mine is still mine
   python3 scripts/sd101_slides.py touch --publish                   # renew the heartbeat while you work
-  python3 scripts/sd101_slides.py finish sd-01-002 --canvas cvs_... --url https://moda.app/canvas/... --slides 10
+  python3 scripts/sd101_slides.py finish sd-01-002 --canvas cvs_... --url https://moda.app/canvas/... --slides 10 \\
+      --layouts one-highlighted-sentence,flow,... --first-concept 3     # one layout kind per slide, in order
   python3 scripts/sd101_slides.py exported sd-01-002 --publish      # its PPTX and PNG files are now in slides/
+  python3 scripts/sd101_slides.py exported sd-01-002 --badged --publish   # its PPTX (and PNG files), moda.app badge and all
   python3 scripts/sd101_slides.py release sd-01-003 --publish       # give a lesson back
 
 There is no compare-and-swap on a git remote: two sessions that read before either pushed can both claim a lesson.
@@ -49,23 +53,35 @@ DEFAULT_STORE = ROOT / "system-design-101" / "vi"
 SLIDES_DIR = "slides"
 RECORD = "deck.yaml"
 STATUSES = ("doing", "done")
-EXPORTS = ("pending", "done")
+EXPORTS = ("pending", "badged", "done")
 KEY_ORDER = ("id", "status", "owner", "session", "taken_from", "generation", "claimed_at", "heartbeat_at", "done_at",
-             "moda_canvas", "moda_url", "slide_count", "size", "exports")
+             "moda_canvas", "moda_url", "slide_count", "size", "exports", "layouts")
 DOING_KEYS = {"id", "status", "owner", "session", "taken_from", "generation", "claimed_at", "heartbeat_at"}
 DONE_KEYS = {"id", "status", "owner", "session", "taken_from", "generation", "claimed_at", "done_at", "moda_canvas",
-             "moda_url", "slide_count", "size", "exports"}
+             "moda_url", "slide_count", "size", "exports", "layouts"}  # layouts: decks finished before it existed have none
 STAMP = re.compile(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z")
 LESSON_ID = re.compile(r"sd-\d{2}-\d{3}")
 CANVAS_ID = re.compile(r"cvs_[0-9A-Za-z]{20,}")
 DECK_SIZE = "1920x1080"  # docs/sd101-slides.md: every canvas and exported PNG
 MODA_URL = "https://moda.app/canvas/"
 SLIDE_COUNTS = range(8, 11)  # docs/sd101-slides.md: 8 to 10 slides, one progress dot each
+# docs/sd101-slides.md, *Variety between decks*: the closed list of layout kinds, in the order that fixes the signature
+# layout (the first concept's slide takes the kind at position lesson number mod 12, counted from 0)
+LAYOUT_KINDS = ("sequence-diagram", "flow", "two-column-comparison", "2x2-matrix", "lookup-table", "card-grid",
+                "numbered-rows", "connection-diagram", "layers", "timeline", "one-big-number", "one-highlighted-sentence")
+MIN_LAYOUT_KINDS = 5  # a deck uses at least this many different kinds
+# A deck finished on or after this day must carry its layout table; one finished before it (by a tool that did not take
+# the table) is grandfathered. A checkout that predates the table finishes decks with no `layouts`: after this day the
+# record check says so instead of letting them through.
+LAYOUTS_REQUIRED_FROM = datetime.datetime(2026, 10, 20, tzinfo=datetime.timezone.utc)
+LAYOUT_KEYS = {"slides", "first_concept", "cannot"}
 LEASE_HOURS = 72
 CLOCK_SKEW_HOURS = 1
 PUSH_BACKOFF_SECONDS = (2, 4, 8, 16)
 PNG_SIGNATURE = b"\x89PNG\r\n\x1a\n"
 PPTX_PARTS = ("[Content_Types].xml", "ppt/presentation.xml")  # what any PowerPoint file holds
+MODA_BADGE = b"moda-export-watermark"  # the name of the picture Moda's free plan puts on every slide it exports
+PPTX_SLIDE = re.compile(r"ppt/slides/slide\d+\.xml")  # one slide of a presentation (its relations live in _rels/)
 PNG_CHANNELS = {0: 1, 2: 3, 3: 1, 4: 2, 6: 4}  # samples per pixel by colour type
 PNG_DEPTHS = {0: (1, 2, 4, 8, 16), 2: (8, 16), 3: (1, 2, 4, 8), 4: (8, 16), 6: (8, 16)}  # the bit depths each type allows
 ADAM7 = ((0, 0, 8, 8), (4, 0, 8, 8), (0, 4, 4, 8), (2, 0, 4, 4), (0, 2, 2, 4), (1, 0, 2, 2), (0, 1, 1, 2))  # x0, y0, dx, dy
@@ -170,6 +186,56 @@ def _count(value: object) -> bool:
     return isinstance(value, int) and not isinstance(value, bool) and value >= 1
 
 
+def kind_name(text: str) -> str:
+    """A layout kind as the record spells it: `Two-column comparison` and `two_column_comparison` both read
+    `two-column-comparison`."""
+    return re.sub(r"[\s_]+", "-", text.strip().lower())
+
+
+def layout_problems(layouts: object, lesson_id: str, slide_count: object) -> list[str]:
+    """What is wrong with a deck's layout table (docs/sd101-slides.md, *Variety between decks*); empty when it holds.
+
+    The table is `slides` (one kind per slide, in order), `first_concept` (the number of the slide of the lesson's first
+    concept) and `cannot` (only after a fallback: each kind passed over, with why it could not show the content)."""
+    if not isinstance(layouts, dict):
+        return ["layouts must be a mapping with slides, first_concept and, after a fallback, cannot"]
+    problems = [f"layouts: key {key!r} is not allowed" for key in layouts if key not in LAYOUT_KEYS]
+    kinds = layouts.get("slides")
+    if not (isinstance(kinds, list) and all(isinstance(kind, str) for kind in kinds)):
+        return problems + ["layouts: slides must be the list of every slide's layout kind, in order"]
+    unknown = sorted({kind for kind in kinds if kind not in LAYOUT_KINDS})
+    if unknown:
+        problems.append(f"layouts: {', '.join(repr(kind) for kind in unknown)} is not one of the kinds "
+                        f"({', '.join(LAYOUT_KINDS)})")
+    total = slide_count if _count(slide_count) else len(kinds)
+    if len(kinds) != total:
+        problems.append(f"layouts: slides holds {len(kinds)} kinds for {total} slides; one kind per slide")
+    if len(set(kinds)) < MIN_LAYOUT_KINDS:
+        problems.append(f"layouts: {len(set(kinds))} different kinds; a deck uses at least {MIN_LAYOUT_KINDS}")
+    repeats = [f"{number} and {number + 1}" for number, (before, after) in enumerate(zip(kinds, kinds[1:]), start=1)
+               if before == after]
+    if repeats:
+        problems.append(f"layouts: the same kind on adjacent slides {', '.join(repeats)}")
+    first = layouts.get("first_concept")
+    if not (_count(first) and 2 <= first <= total - 1):
+        return problems + [f"layouts: first_concept must be the number of the first concept's slide, from 2 to {total - 1} "
+                           "(the cover and the terms and sources slide are not concepts)"]
+    cannot = layouts.get("cannot", {})
+    if not (isinstance(cannot, dict) and all(isinstance(kind, str) and _text(why) for kind, why in cannot.items())):
+        return problems + ["layouts: cannot must give, for each kind that could not show the content, the reason"]
+    if first > len(kinds) or kinds[first - 1] not in LAYOUT_KINDS or not LESSON_ID.fullmatch(lesson_id):
+        return problems
+    start = int(lesson_id[-3:]) % len(LAYOUT_KINDS)
+    chosen = LAYOUT_KINDS.index(kinds[first - 1])
+    passed = [LAYOUT_KINDS[(start + step) % len(LAYOUT_KINDS)] for step in range((chosen - start) % len(LAYOUT_KINDS))]
+    if sorted(cannot) != sorted(passed):  # the kinds before the chosen one, each with its reason, or the kind itself
+        problems.append(f"layouts: slide {first}, the first concept's, takes {LAYOUT_KINDS[start]} for {lesson_id} or, when "
+                        f"the content cannot be shown that way, the next kind that can show it; it is {kinds[first - 1]}, "
+                        f"so cannot must name {', '.join(passed) or 'no kind'} and names "
+                        f"{', '.join(sorted(cannot)) or 'no kind'}")
+    return problems
+
+
 def record_problems(record: object, lesson_id: str) -> list[str]:
     """What is wrong with one deck.yaml, in words; empty when it is well formed."""
     if not isinstance(record, dict):
@@ -217,6 +283,13 @@ def record_problems(record: object, lesson_id: str) -> list[str]:
         problems.append(f"size must be {DECK_SIZE}")
     if record.get("exports") not in EXPORTS:
         problems.append(f"exports must be one of {', '.join(EXPORTS)}")
+    if "layouts" in record:
+        problems += layout_problems(record["layouts"], lesson_id, record.get("slide_count"))
+    else:
+        finished = parse_stamp(record.get("done_at"))
+        if finished is not None and finished >= LAYOUTS_REQUIRED_FROM:
+            problems.append(f"layouts is missing: a deck finished on or after {LAYOUTS_REQUIRED_FROM:%Y-%m-%d} records its "
+                            "layout table (`finish --layouts ... --first-concept N`; docs/sd101-slides.md, Layout table)")
     return problems
 
 
@@ -371,6 +444,14 @@ def pptx_damage(path: pathlib.Path) -> str | None:
     return f"{', '.join(missing)} missing" if missing else None
 
 
+def pptx_badges(path: pathlib.Path) -> tuple[int, int]:
+    """How many slides of a whole PowerPoint file carry the badge Moda's free plan adds to every slide it exports, and
+    how many slides the file has."""
+    with zipfile.ZipFile(path) as archive:
+        slides = [name for name in archive.namelist() if PPTX_SLIDE.fullmatch(name)]
+        return sum(MODA_BADGE in archive.read(name) for name in slides), len(slides)
+
+
 def folder_problems(slides_dir: pathlib.Path, lesson_id: str) -> list[str]:
     """What is wrong with a lesson's slides/ folder: the record, and the exports the record promises."""
     problems: list[str] = []
@@ -393,29 +474,46 @@ def folder_problems(slides_dir: pathlib.Path, lesson_id: str) -> list[str]:
     problems += [f"{RECORD}: {problem}" for problem in found]
     if found:
         return problems
-    exported = record["status"] == "done" and record["exports"] == "done"
+    exports = record["exports"] if record["status"] == "done" else "pending"
     want = {RECORD}
-    if exported:
-        want |= {f"{lesson_id}.pptx", *(f"{number:02d}.png" for number in range(1, record["slide_count"] + 1))}
+    if exports in ("badged", "done"):
+        want.add(f"{lesson_id}.pptx")
+    pngs = {f"{number:02d}.png" for number in range(1, record["slide_count"] + 1)}
+    if exports == "done" or (exports == "badged" and pngs & set(names)):  # a badged PNG set is whole or absent
+        want |= pngs
+    unexpected = {"done": "", "badged": " (a badged export is the PPTX, with all its PNG files or none)"}.get(
+        exports, " (exports are not recorded as done)")
     for name in names:
         if name not in want:
-            problems.append(f"{name} is not expected here" + ("" if exported else " (exports are not recorded as done)"))
+            problems.append(f"{name} is not expected here{unexpected}")
     for name in sorted(want - set(names)):
         problems.append(f"{name} is missing")
-    if exported:
-        width, height = (int(part) for part in record["size"].split("x"))
-        for name in sorted(want & set(names)):
-            path = slides_dir / name
-            if name.endswith(".png"):
-                damage = png_damage(path)
-                if damage:
-                    problems.append(f"{name} is not a whole PNG: {damage}")
-                elif png_size(path) != (width, height):
-                    problems.append(f"{name} is not a {width}x{height} PNG")
-            if name.endswith(".pptx"):
-                damage = pptx_damage(path)
-                if damage:
-                    problems.append(f"{name} is not a PowerPoint file: {damage}")
+    for name in sorted(want & set(names)):
+        path = slides_dir / name
+        if name.endswith(".png"):
+            width, height = (int(part) for part in record["size"].split("x"))  # PNG files belong to finished decks only
+            damage = png_damage(path)
+            if damage:
+                problems.append(f"{name} is not a whole PNG: {damage}")
+            elif png_size(path) != (width, height):
+                problems.append(f"{name} is not a {width}x{height} PNG")
+        if name.endswith(".pptx"):
+            damage = pptx_damage(path)
+            if damage:
+                problems.append(f"{name} is not a PowerPoint file: {damage}")
+                continue
+            badged, total = pptx_badges(path)
+            if total != record["slide_count"]:  # a file short of slides is not the deck, badge or no badge
+                problems.append(f"{name} holds {total} slides, the deck {record['slide_count']}: export the whole deck "
+                                "from Moda again")
+            elif exports == "done" and badged:  # files recorded done are the ones that may go to Facebook
+                problems.append(f"{name} carries the moda.app badge: record it with `exported {lesson_id} --badged`")
+            elif exports == "badged" and not badged:  # a badge-free file belongs in done, with its PNG files
+                problems.append(f"{name} does not carry the moda.app badge: add its PNG files and record it with "
+                                f"`exported {lesson_id}`")
+            elif exports == "badged" and badged < total:  # the badge is never removed, not even from one slide
+                problems.append(f"{name} carries the moda.app badge on {badged} of {total} slides: the badge is never "
+                                "removed, so export the deck from Moda again")
     return problems
 
 
@@ -748,9 +846,13 @@ def my_records(context: Context, statuses: tuple[str, ...] = ("doing",)) -> list
 
 def free_lessons(context: Context, holdings: dict[str, list[Holding]], moment: datetime.datetime, group: str | None,
                  count: int, take_stale: bool) -> list[str]:
+    try:
+        reserved = claims_module().reserved_on_board(context.root, context.remote, context.offline, "deck")
+    except claims_module().ClaimsError as error:
+        raise SlidesError(str(error)) from error
     chosen: list[str] = []
     for lesson_id in sorted(holdings):
-        if group and not lesson_id.startswith(group):
+        if (group and not lesson_id.startswith(group)) or lesson_id in reserved:
             continue
         if len(chosen) >= count:
             break
@@ -959,11 +1061,20 @@ def cmd_finish(context: Context, args: argparse.Namespace) -> int:
     if reason:  # an expired lease too: renew it (touch --publish) so nobody can take the claim while the deck goes out
         print(reason, file=sys.stderr)
         return 1
+    layouts = {"slides": [kind_name(kind) for kind in args.layouts.split(",")], "first_concept": args.first_concept}
+    cannot: dict[str, str] = {}
+    for item in args.cannot:
+        kind, equals, why = item.partition("=")
+        if not equals or kind_name(kind) in cannot:
+            raise SlidesError(f"--cannot wants one KIND=REASON for each kind, not {item!r}")
+        cannot[kind_name(kind)] = why.strip()
+    if cannot:
+        layouts["cannot"] = cannot
     path = context.writable_record(lesson_id)
     old = parse_record(path.read_text(encoding="utf-8")) or {}
     record = {key: old[key] for key in ("id", "owner", "session", "taken_from", "generation", "claimed_at") if key in old}
     record.update(status="done", done_at=stamp(now()), moda_canvas=args.canvas, moda_url=args.url,
-                  slide_count=args.slides, size=DECK_SIZE, exports=args.exports)
+                  slide_count=args.slides, size=DECK_SIZE, exports=args.exports, layouts=layouts)
     problems = record_problems(record, lesson_id)
     if problems:
         print("\n".join(f"{lesson_id}: {problem}" for problem in problems), file=sys.stderr)
@@ -986,7 +1097,8 @@ def cmd_finish(context: Context, args: argparse.Namespace) -> int:
 
 
 def cmd_exported(context: Context, args: argparse.Namespace) -> int:
-    """A finished deck whose PPTX and PNG files were added to its folder: record that exports are done."""
+    """A finished deck whose PPTX and PNG files were added to its folder: record that exports are done; with --badged,
+    one whose PPTX (and PNG files, all or none) were added as Moda's free plan exports them, badge and all."""
     path = context.writable_record(args.id)
     previous = path.read_text(encoding="utf-8") if path.is_file() else ""
     record = parse_record(previous) if previous else None
@@ -1009,16 +1121,18 @@ def cmd_exported(context: Context, args: argparse.Namespace) -> int:
                 print(f"{reason}; the finished record of this deck is not on {context.remote}/{context.me} yet, so it "
                       "cannot go out with the exports", file=sys.stderr)
                 return 1
-    record["exports"] = "done"
+    record["exports"] = "badged" if args.badged else "done"
     path.write_text(render(record), encoding="utf-8")
     found = folder_problems(path.parent, args.id)
     if found:
         path.write_text(previous, encoding="utf-8")
         print("\n".join(f"{args.id}: {problem}" for problem in found), file=sys.stderr)
         return 1
-    print(f"exports of {args.id} are done")
+    print(f"exports of {args.id} are {record['exports']}")
     if args.publish:
-        publish(context, [path.parent], f"Slides: exports of {args.id}")
+        kind = "exports" if not args.badged else "badged PPTX" + (" and PNG files" if any(
+            entry.suffix == ".png" for entry in path.parent.iterdir()) else "")
+        publish(context, [path.parent], f"Slides: {kind} of {args.id}")
         problem = finished_problem(context, args.id) if mine else None
         if problem:
             print(problem, file=sys.stderr)
@@ -1103,11 +1217,22 @@ def build_parser() -> argparse.ArgumentParser:
     finish.add_argument("--url", required=True, help="the Moda editor link, https://moda.app/canvas/...")
     finish.add_argument("--slides", type=int, required=True)
     finish.add_argument("--exports", choices=EXPORTS, default="pending",
-                        help="done only when <id>.pptx and 01.png.. are in slides/")
+                        help="done only when <id>.pptx and 01.png.. are in slides/, badged when <id>.pptx (with all "
+                        "its PNG files, or none) is there, exported with the moda.app badge")
+    finish.add_argument("--layouts", required=True, metavar="KIND,KIND,...",
+                        help="the layout kind of every slide, in order, from: " + ", ".join(LAYOUT_KINDS))
+    finish.add_argument("--first-concept", type=int, required=True, metavar="N",
+                        help="the number of the slide of the lesson's first concept (it takes the signature layout)")
+    finish.add_argument("--cannot", action="append", default=[], metavar="KIND=REASON",
+                        help="only when the signature layout fell back: each kind passed over, and why the content "
+                        "cannot be shown that way")
     finish.add_argument("--publish", action="store_true")
     finish.set_defaults(run=cmd_finish)
-    exported = commands.add_parser("exported", help="record that a finished deck's PPTX and PNG files are in its folder")
+    exported = commands.add_parser("exported", help="record that a finished deck's PPTX and PNG files are in its folder "
+                                   "(with --badged: its PPTX, and its PNG files, moda.app badge and all)")
     exported.add_argument("id", metavar="sd-XX-NNN")
+    exported.add_argument("--badged", action="store_true",
+                          help="<id>.pptx (and 01.png.., all or none) is there, exported with the moda.app badge")
     exported.add_argument("--publish", action="store_true")
     exported.set_defaults(run=cmd_exported)
     release = commands.add_parser("release", help="give back lessons you will not build")

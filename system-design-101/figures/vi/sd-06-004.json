@@ -1,0 +1,39 @@
+{
+  "id": "sd-06-004",
+  "title": "Ba nghĩa của chữ biên",
+  "subtitle": "Máy chủ biên, điện toán biên và chơi game trên mây giải ba bài toán khác nhau.",
+  "desc": "Hai khung. Khung một, ba nghĩa của chữ biên. Máy chủ biên giữ bản sao nội dung ở gần người dùng; trong thử nghiệm với máy gốc chậm 200 mili giây, lượt có bản sao trả trong chưa tới 1 mili giây, lượt phải về gốc mất khoảng 200 mili giây. Điện toán biên chạy mã ở gần người dùng, cho phần không lưu sẵn được như trang riêng của từng người. Chơi game trên mây: máy chủ chạy game và gửi về từng khung hình, không có gì để lưu sẵn. Khung hai, cái giá: thêm một bên thứ ba có thể hỏng hay bị chặn; thêm một chỗ có thể bị tấn công để phát nội dung độc; trình duyệt không dùng chung bản đã tải giữa các trang web khác nhau.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Ba nghĩa",
+      "items": [
+        {
+          "name": "Máy chủ biên",
+          "role": "Giữ bản sao ở gần. Đo thử: có bản sao thì dưới 1 ms, phải về gốc thì khoảng 200 ms.",
+          "icon": "server"
+        },
+        {
+          "name": "Điện toán biên",
+          "role": "Chạy mã ở gần, cho phần không lưu sẵn được như trang riêng của từng người.",
+          "icon": "cpu"
+        },
+        {
+          "name": "Game trên mây",
+          "role": "Máy chủ chạy game, gửi về từng khung hình. Không có gì để lưu sẵn.",
+          "icon": "video"
+        }
+      ],
+      "flow": []
+    },
+    {
+      "kind": "notes",
+      "heading": "Cái giá",
+      "items": [
+        "Thêm một bên thứ ba: họ hỏng hay bị chặn thì trang của bạn hỏng theo.",
+        "Thêm một chỗ có thể bị tấn công để phát nội dung độc.",
+        "Trình duyệt không dùng chung bản đã tải giữa các trang web khác nhau."
+      ]
+    }
+  ]
+}

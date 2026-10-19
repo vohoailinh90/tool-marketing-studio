@@ -1,0 +1,96 @@
+{
+  "id": "sd-04-043",
+  "title_vi": "Bảng tra hiệu năng cơ sở dữ liệu: đo ba mục trước khi tin cả mười",
+  "language": "vi",
+  "kind": "checklist",
+  "content_status": "draft",
+  "source_ref": "sd-04-043",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/a-cheatsheet-on-database-performance.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/a-cheatsheet-on-database-performance.md",
+    "blob_sha": "f9ce7e311363b1c2994ed99ec6a7cf62222177a1",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a local clone at the pinned commit and hashed as a Git blob; the computed OID matches the tree OID and the source map. No source-image bytes used.",
+    "retrieved_body_sha256": "570fba0ba485ddf2dc1aa77b149fbb60e54673d74c1e6a801fa4596f42643561",
+    "retrieved_body_bytes": 2012
+  },
+  "diagram": "../diagrams/sd-04-043-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-04-047",
+      "relation": "related",
+      "reason_vi": "Bài đó bàn bảy cách mở rộng cơ sở dữ liệu theo thứ tự chi phí; bài này đo ba mục của bảng tra hiệu năng."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "scope": "Đo ba lần trên PostgreSQL 16.15 qua TCP tới cùng máy, Python 3.13.16 và psycopg 3.3.6: 200 câu select 1 với kết nối mới so với một kết nối; chèn 200.000 dòng với 0, 3, 6 chỉ mục thêm; select * so với chỉ mục kèm cột. Đọc indices.sgml (REL_16_STABLE). KHÔNG kiểm: bộ gom kết nối thật, bộ đệm, shard, bản sao, phần cứng, theo dõi, chuẩn hóa, phân vùng; kết nối qua mạng thật có mã hóa."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "not_yet_reviewed"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright 1.56): cả bài dựng từ Markdown thành HTML, mục tùy chọn mở, ở 320, 375 và 430 px; không cuộn ngang; chữ hình hiệu dụng nhỏ nhất 13,5 px ở 320 px và 15 px ở 375 px; không hộp chữ nào ra ngoài viewBox; python3 -m scripts.figures check --browser đạt. Không phải thử trên GitHub, trên điện thoại thật hay với người học."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "id": "source-ten",
+      "claim_vi": "Nguồn liệt kê mười mục: chỉ mục (quá nhiều chỉ mục làm chậm ghi), tối ưu truy vấn (EXPLAIN, tránh SELECT *), dùng lại kết nối, bộ đệm, shard, bản sao, phần cứng, theo dõi, chuẩn hóa hay phi chuẩn hóa, phân vùng.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/a-cheatsheet-on-database-performance.md",
+      "section": "Whole guide",
+      "verified_by": "Đọc thân nguồn ghim ngày 2026-10-18."
+    },
+    {
+      "id": "connection-cost",
+      "claim_vi": "Qua TCP tới cùng máy, mở kết nối mới cho mỗi câu select 1 tốn 3,30 đến 4,08 mili giây mỗi câu; dùng lại một kết nối tốn 0,075 đến 0,089 mili giây.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/a-cheatsheet-on-database-performance.md",
+      "section": "Connection Pooling (phép đo của người biên soạn)",
+      "verified_by": "Chạy đoạn mã in trong bài ba lần ngày 2026-10-18 trên một máy."
+    },
+    {
+      "id": "index-write-cost",
+      "claim_vi": "Chèn 200.000 dòng: chỉ khóa chính 747 đến 869 mili giây; thêm 3 chỉ mục 1.347 đến 1.743; thêm 6 chỉ mục 2.892 đến 4.160.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/a-cheatsheet-on-database-performance.md",
+      "section": "Indexing (phép đo của người biên soạn)",
+      "verified_by": "Chạy ba lần ngày 2026-10-18; máy có một bản sao nhận nhật ký không đồng bộ."
+    },
+    {
+      "id": "covering-index",
+      "claim_vi": "select * where a = 42 (200 dòng) dùng Bitmap Heap Scan đọc 202 trang; select a, f với chỉ mục (a) include (f) sau vacuum dùng Index Only Scan đọc 5 trang; quét chỉ từ chỉ mục dựa vào bản đồ hiển thị của bảng.",
+      "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/indices.sgml",
+      "section": "Index-Only Scans and Covering Indexes",
+      "verified_by": "Đọc indices.sgml tại commit 8e928803020e5b5694cde58e4851fce64ef9d520 và chạy ba lần ngày 2026-10-18 cho cùng số trang."
+    }
+  ],
+  "design_notes_vi": "Bốn khung: mười mục nhóm theo chỗ tác động, ba phép đo (kết nối, chỉ mục khi ghi, chỉ lấy cột cần). Hình ghi khoảng dao động qua ba lần chạy. Sơ đồ dựng bằng scripts/figures, không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Nguồn là một danh sách mười mục; bài nhóm lại theo chỗ tác động và đo ba mục để thấy cỡ của từng đánh đổi.",
+    "Bài thêm rằng bỏ select * còn mở đường cho quét chỉ từ chỉ mục, điều nguồn không nói."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này, bản nháp chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

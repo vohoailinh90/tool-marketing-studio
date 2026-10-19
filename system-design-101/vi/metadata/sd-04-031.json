@@ -1,0 +1,124 @@
+{
+  "id": "sd-04-031",
+  "title_vi": "PostgreSQL \"nuốt\" cả thế giới cơ sở dữ liệu? Thử phần có sẵn, đếm phần cần cài thêm",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "draft",
+  "source_ref": "sd-04-031",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/is-postgresql-eating-the-database-world.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/is-postgresql-eating-the-database-world.md",
+    "blob_sha": "4c19df78eac2ad049765220d2f80d33a009fd1d9",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a local clone at the pinned commit and hashed as a Git blob; the computed OID matches the tree OID and the source map. No source-image bytes used.",
+    "retrieved_body_sha256": "fbb6db28bb3e6b3e526d40f0ea7cf9f275bf227fdba1f6e9d2d541351aee5ff8",
+    "retrieved_body_bytes": 1773
+  },
+  "diagram": "../diagrams/sd-04-031-main.svg",
+  "prerequisites": [],
+  "related": [
+    {
+      "lesson_id": "sd-04-029",
+      "relation": "related",
+      "reason_vi": "Bài đó kiểm bảy việc mà nguồn của nó liệt kê, chia thành có sẵn và cần tiện ích; bài này thử bốn tính năng có sẵn thay cho hệ chuyên dụng."
+    }
+  ],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-18"
+    },
+    "claims": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "scope": "Chạy PostgreSQL 16.15 không tiện ích: chỉ mục brin và B-tree trên 2 triệu dòng thời gian, jsonb với gin, tìm toàn văn với to_tsvector và gin, with recursive; sửa 5% dòng rồi đo lại brin. Đọc brin.sgml, gin.sgml, json.sgml, textsearch.sgml (REL_16_STABLE) và README của CockroachDB tại commit cố định. KHÔNG kiểm: pgvector, PostGIS, Citus, Hydra và các tiện ích khác của nguồn; so sánh với hệ chuyên dụng; dữ liệu thật."
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "not_yet_reviewed"
+    },
+    "mobile": {
+      "status": "checked",
+      "checked_on": "2026-10-18",
+      "widths_px": [
+        320,
+        375,
+        430
+      ],
+      "minimum_diagram_text_px": 13.5,
+      "whole_lesson_no_horizontal_overflow": true,
+      "text_outside_viewbox": false,
+      "optional_sections_checked_open": true,
+      "evidence": "Chromium (Playwright 1.56): cả bài dựng từ Markdown thành HTML, mục tùy chọn mở, ở 320, 375 và 430 px; không cuộn ngang; chữ hình hiệu dụng nhỏ nhất 13,5 px ở 320 px và 15 px ở 375 px; không hộp chữ nào ra ngoài viewBox; python3 -m scripts.figures check --browser đạt. Không phải thử trên GitHub, trên điện thoại thật hay với người học."
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "id": "source-eight-areas",
+      "claim_vi": "Nguồn nói PostgreSQL hỗ trợ gần như mọi trường hợp và kể tám mảng (chuỗi thời gian, học máy, OLAP, hệ dẫn xuất, bản đồ, tìm kiếm, truy vấn liên hợp, đồ thị) cùng các tiện ích tiêu biểu.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/is-postgresql-eating-the-database-world.md",
+      "section": "Whole guide",
+      "verified_by": "Đọc thân nguồn ghim ngày 2026-10-18."
+    },
+    {
+      "id": "brin-size",
+      "claim_vi": "Trên bảng 2 triệu dòng ghi theo thời gian (100 MB), chỉ mục brin nặng 24.576 byte và B-tree 44.949.504 byte; truy vấn một ngày (86.401 dòng) qua brin đọc 640 khối và lọc lại 14.079 dòng.",
+      "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/brin.sgml",
+      "section": "Introduction",
+      "verified_by": "Đọc brin.sgml (tóm tắt theo nhóm trang liền nhau, hợp với cột tương quan với vị trí vật lý) và chạy ngày 2026-10-18: pg_relation_size, explain analyze (Heap Blocks: lossy=640, Rows Removed by Index Recheck: 14079)."
+    },
+    {
+      "id": "brin-degrades",
+      "claim_vi": "Sau khi sửa ngẫu nhiên khoảng 5% số dòng (dời ts tối đa 30 ngày) và vacuum analyze, cùng truy vấn đọc 960 khối và lọc bỏ 62.414 dòng.",
+      "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/brin.sgml",
+      "section": "Introduction",
+      "verified_by": "Chạy một lần ngày 2026-10-18; dùng random() nên con số đổi giữa các lần chạy."
+    },
+    {
+      "id": "jsonb-gin",
+      "claim_vi": "Với 300.000 tài liệu jsonb và chỉ mục gin (jsonb_path_ops), tìm body @> {tags: [t7]} trả 6.000 tài liệu qua Bitmap Heap Scan dùng chỉ mục.",
+      "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/json.sgml",
+      "section": "jsonb Indexing",
+      "verified_by": "Chạy ngày 2026-10-18."
+    },
+    {
+      "id": "fts-gin",
+      "claim_vi": "to_tsvector('simple') hạ chữ thường và tách từ; chỉ mục gin tìm đúng 1 dòng chứa 'đợi' và '12344' trong 300.000 dòng; câu 'hàng & đợi' khớp 100.000 dòng nên bộ lập kế hoạch quét cả bảng.",
+      "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/textsearch.sgml",
+      "section": "Full Text Search",
+      "verified_by": "Chạy ngày 2026-10-18: to_tsvector('simple','Hàng đợi tin nhắn') trả 'hàng':1 'nhắn':4 'tin':3 'đợi':2; explain cho hai câu tìm."
+    },
+    {
+      "id": "recursive",
+      "claim_vi": "with recursive đi từ Trưởng nhóm A xuống 3 cấp dưới, sâu 2 tầng.",
+      "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/queries.sgml",
+      "section": "WITH Queries (recursive)",
+      "verified_by": "Chạy ngày 2026-10-18 trên bảng 6 người."
+    },
+    {
+      "id": "extensions-missing",
+      "claim_vi": "pgvector, PostGIS và Citus không có trong bản cài PostgreSQL 16.15 thử nghiệm.",
+      "source": "https://github.com/postgres/postgres/blob/8e928803020e5b5694cde58e4851fce64ef9d520/doc/src/sgml/contrib.sgml",
+      "section": "Additional Supplied Modules and Extensions",
+      "verified_by": "Chạy select name from pg_available_extensions ngày 2026-10-18: không có vector, postgis, citus."
+    },
+    {
+      "id": "cockroach-wire",
+      "claim_vi": "README của CockroachDB ghi nó hỗ trợ giao thức truyền của PostgreSQL, nên dùng được trình điều khiển của PostgreSQL.",
+      "source": "https://github.com/cockroachdb/cockroach/blob/d30c905fff79ef825adc96bcc647f1872a90f2ff/README.md",
+      "section": "README",
+      "verified_by": "Đọc bản clone nông tại commit d30c905fff79ef825adc96bcc647f1872a90f2ff ngày 2026-10-18 (dòng 54)."
+    }
+  ],
+  "design_notes_vi": "Ba khung: bốn tính năng có sẵn đã thử, ba mảng cần tiện ích ngoài, và lưu ý rằng nói giao thức PostgreSQL chưa phải PostgreSQL. Tên chỉ mục viết thường (brin, gin) như trong lệnh SQL. Sơ đồ dựng bằng scripts/figures, không dùng ảnh nguồn.",
+  "source_deviations": [
+    "Nguồn trình bày tám mảng qua tiện ích; bài thử bốn việc chỉ bằng tính năng có sẵn và tách rõ tính năng có sẵn, tiện ích ngoài và hệ khác chỉ nói giao thức PostgreSQL.",
+    "Nguồn xếp CockroachDB, AlloyDB, Supabase và các hệ khác vào cùng mảng 'dẫn xuất' của PostgreSQL; bài nhấn rằng hỗ trợ giao thức chỉ nói về cách kết nối."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này, bản nháp chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

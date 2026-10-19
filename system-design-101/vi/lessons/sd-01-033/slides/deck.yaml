@@ -1,0 +1,25 @@
+id: sd-01-033
+status: done
+owner: claude/sd101-decks-w2-2
+claimed_at: '2026-10-19T00:43:11Z'
+done_at: '2026-10-19T01:07:15Z'
+moda_canvas: cvs_2SY2KV5FJT8ST80AF8FGYQB0ET
+moda_url: https://moda.app/canvas/59f0a7b2-be5a-4674-8029-e87c3d7581da
+slide_count: 9
+size: 1920x1080
+exports: badged
+layouts:
+  slides:
+  - card-grid
+  - connection-diagram
+  - one-highlighted-sentence
+  - two-column-comparison
+  - sequence-diagram
+  - numbered-rows
+  - flow
+  - lookup-table
+  - card-grid
+  first_concept: 3
+  cannot:
+    timeline: SOAP và REST không có trình tự thời gian
+    one-big-number: bài không có con số cho khái niệm này

@@ -1,0 +1,61 @@
+{
+  "id": "sd-02-019",
+  "title": "Tám chặng của một thay đổi ở Netflix",
+  "subtitle": "Mỗi chặng một việc, một công cụ.",
+  "desc": "Tám chặng nối nhau: lập kế hoạch (Jira, Confluence), viết mã (Java), build (Gradle), đóng gói (AMI), kiểm thử (công cụ hỗn loạn), triển khai (Spinnaker, canary), giám sát (Atlas, Kayenta), sự cố (PagerDuty). Khung cuối nêu ba điều cần nhớ.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Từ việc cần làm tới AMI",
+      "items": [
+        {
+          "title": "Lập kế hoạch",
+          "text": "Jira lên việc, Confluence viết tài liệu."
+        },
+        {
+          "title": "Viết mã",
+          "text": "Java cho dịch vụ phía sau."
+        },
+        {
+          "title": "Build",
+          "text": "Gradle và plugin tự viết."
+        },
+        {
+          "title": "Đóng gói",
+          "text": "Gói và phụ thuộc vào một AMI."
+        }
+      ]
+    },
+    {
+      "kind": "steps",
+      "heading": "Từ kiểm thử tới sự cố",
+      "items": [
+        {
+          "title": "Kiểm thử",
+          "text": "Thử trên môi trường thật, công cụ hỗn loạn."
+        },
+        {
+          "title": "Triển khai",
+          "text": "Spinnaker, phát hành canary."
+        },
+        {
+          "title": "Giám sát",
+          "text": "Số đo về Atlas, Kayenta tìm bất thường."
+        },
+        {
+          "title": "Sự cố",
+          "text": "Chia theo ưu tiên, xử lý bằng PagerDuty."
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Nhớ gì",
+      "items": [
+        "Mỗi bản phát hành là một AMI đóng sẵn.",
+        "Canary chạy bản mới trên ít máy trước.",
+        "Giám sát và sự cố tạo việc mới cho kế hoạch."
+      ]
+    }
+  ]
+}

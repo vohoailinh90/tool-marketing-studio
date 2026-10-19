@@ -190,7 +190,7 @@ class SourceMapPinTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             altered = Path(tmp) / "source-map.json"
             altered.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
-            problems = check.check_store(check.DEFAULT_STORE, altered, pin_roster=pin_roster)
+            _, _, problems = check.load_source_map(altered, pin_roster)  # every "source map" problem comes from here
         return [str(problem) for problem in problems if str(problem).startswith("source map")]
 
     def test_the_unaltered_source_map_has_no_problem(self) -> None:

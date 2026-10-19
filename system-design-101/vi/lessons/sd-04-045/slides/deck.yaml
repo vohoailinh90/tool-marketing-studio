@@ -1,0 +1,24 @@
+id: sd-04-045
+status: done
+owner: claude/sd101-decks-w3-3
+claimed_at: '2026-10-19T02:14:03Z'
+done_at: '2026-10-19T02:24:30Z'
+moda_canvas: cvs_3JVJ55H3GE8BC9DZWR57YWH075
+moda_url: https://moda.app/canvas/72dc8a58-8e0e-42d8-96ff-9829fdc880e5
+slide_count: 9
+size: 1920x1080
+exports: badged
+layouts:
+  slides:
+  - connection-diagram
+  - one-highlighted-sentence
+  - one-big-number
+  - sequence-diagram
+  - two-column-comparison
+  - numbered-rows
+  - flow
+  - timeline
+  - lookup-table
+  first_concept: 3
+  cannot:
+    timeline: the concept compares two lists of uses and has no order in time

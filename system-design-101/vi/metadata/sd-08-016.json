@@ -101,7 +101,7 @@
       "verified_by": "Program run by the author on 2026-10-19 (four runs); one process, no parallelism."
     },
     {
-      "claim_vi": "Load-balancing test: three local HTTP servers, one stopped, 300 requests round robin: 200 succeeded without health checks, 297 with a passive check that removes a backend after 3 consecutive failures (three runs); availability of k copies with instant failover 1-(1-a)^k, simulated 500,000 times.",
+      "claim_vi": "Load-balancing test: three local HTTP servers, one stopped, 300 requests round robin: 200 succeeded without health checks, 297 with a passive check that removes a backend after 3 consecutive failures (three runs); availability of k copies with independent failures and instant failover 1-(1-a)^k, simulated 500,000 times with independent failures; correlated failures (same host, zone or deployment) are not covered by the formula.",
       "source": "https://docs.python.org/3.13/library/http.server.html",
       "section": "Experiment",
       "verified_by": "Program run by the author on 2026-10-19 (three runs)."

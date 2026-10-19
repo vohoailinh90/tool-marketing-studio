@@ -27,7 +27,7 @@
     "claims": {
       "status": "checked",
       "checked_on": "2026-10-19",
-      "evidence": "Eight steps from the source body; boot(7) read from a local clone of man-pages at ae6b221; bootup(7) and systemd.special(7) downloaded from systemd at cb070c8 on 2026-10-19; unit-file reading by a Python 3.13.16 program on a systemd 255 installation (this machine's PID 1 is not systemd, so no boot was run and no boot time was measured). The count is specific to this image and ignores unit conditions and template units. GRUB and UEFI official documents were not read."
+      "evidence": "Eight steps from the source body; boot(7) read from a local clone of man-pages at ae6b221; bootup(7) and systemd.special(7) downloaded from systemd at cb070c8 on 2026-10-19; unit-file reading by a Python 3.13.16 program on a systemd 255 installation (this machine's PID 1 is not systemd, so no boot was run and no boot time was measured). The count is specific to this image, ignores unit conditions and template units, and counts explicit declarations only (not systemd's synthesized ordering). GRUB and UEFI official documents were not read."
     },
     "technical_review": {
       "status": "pending",
@@ -71,7 +71,7 @@
       "verified_by": "File downloaded from systemd at commit cb070c87eb12f3cf1f85873db38ff756a111460e on 2026-10-19."
     },
     {
-      "claim_vi": "Static reading of unit files on a systemd 255 installation: default.target links to graphical.target; following Requires, Wants, BindsTo, Requisite and .wants/.requires directories gives 78 units (35 services, 18 targets, 8 timers, 7 sockets, 6 mounts, 2 paths, 1 automount, 1 slice), 11 names with no file; 94 After/Before edges inside the set; longest ordering chain 15 units; 41 of 78 units wait for no other unit of the set; sysinit.target pulls 41 units; PID 1 of the machine is not systemd although /sbin/init links to systemd.",
+      "claim_vi": "Static reading of unit files on a systemd 255 installation: default.target links to graphical.target; following Requires, Wants, BindsTo, Requisite and .wants/.requires directories gives 78 units (35 services, 18 targets, 8 timers, 7 sockets, 6 mounts, 2 paths, 1 automount, 1 slice), 11 names with no file; 94 explicit After/Before edges inside the set; longest chain of explicitly declared ordering 15 units; 41 of 78 units declare no wait on another unit of the set (systemd also adds synthesized ordering from DefaultDependencies=yes, from the Wants/Requires of target units and implicit dependencies of mounts, sockets and paths, which this reading does not model, so the figures are not the actual boot ordering); sysinit.target pulls 41 units; PID 1 of the machine is not systemd although /sbin/init links to systemd.",
       "source": "https://github.com/systemd/systemd/blob/cb070c87eb12f3cf1f85873db38ff756a111460e/man/systemd.special.xml",
       "section": "Experiment",
       "verified_by": "Program run by the author on 2026-10-19; reads declarations only, ignores conditions and template units."

@@ -67,7 +67,7 @@ Chỉ mục đổi ghi chậm lấy đọc nhanh hàng nghìn lần. Phân mản
 
 **Cân tải.** Ba máy chủ HTTP nhỏ trên máy, một máy tắt hẳn; 300 yêu cầu theo vòng tròn. Không kiểm tra sức khoẻ: 200 yêu cầu thành công (66,7%) trong cả ba lần chạy. Có kiểm tra thụ động, bỏ máy ra sau 3 lần lỗi liên tiếp: 297 thành công (99,0%), ba yêu cầu đầu tiên là cái giá của việc phát hiện.
 
-**Dự phòng.** Nếu mỗi bản chạy được với xác suất a và việc chuyển sang bản khác là tức thì, k bản chạy được với xác suất 1 trừ (1 trừ a) mũ k: hai bản 99% cho 99,99%, ba bản cho 99,9999%. Phép mô phỏng 500.000 lần khớp công thức đến chữ số thứ năm sau dấu phẩy. Điều công thức giấu đi là chữ "tức thì": phát hiện hỏng và chuyển bản mất thời gian thật, và cân tải ở trên là một lần đo cái giá đó.
+**Dự phòng.** Nếu mỗi bản chạy được với xác suất a, các bản hỏng độc lập với nhau và việc chuyển sang bản khác là tức thì, k bản chạy được với xác suất 1 trừ (1 trừ a) mũ k: hai bản 99% cho 99,99%, ba bản cho 99,9999%. Điều kiện "độc lập" quan trọng không kém: hai bản đặt cùng một máy, cùng một vùng hay cùng một lần triển khai thường hỏng cùng lúc, và hai bản 99% hỏng hoàn toàn đồng thời vẫn chỉ đạt 99%, không phải 99,99%. Phép mô phỏng 500.000 lần, với các bản hỏng độc lập, khớp công thức đến chữ số thứ năm sau dấu phẩy. Điều công thức giấu đi là chữ "tức thì" và chữ "độc lập": phát hiện hỏng và chuyển bản mất thời gian thật, và cân tải ở trên là một lần đo cái giá đó.
 
 ## Giới hạn cần nhớ
 

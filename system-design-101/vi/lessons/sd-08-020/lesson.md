@@ -2,7 +2,7 @@
 
 **Bài nguồn kể tám bước từ lúc bật nguồn tới màn hình đăng nhập. Bài này giữ đủ tám bước, đặt từng bước cạnh trang `boot(7)` của Linux và trang `bootup(7)` của systemd để xem bước nào được xác nhận, bước nào thiếu (đáng kể nhất là `initramfs`), và đọc các tệp đơn vị systemd của một máy thật bằng một chương trình nhỏ để thấy `default.target` thực sự kéo theo bao nhiêu thứ và chúng xếp thứ tự ra sao.**
 
-![Ba khung. Khung một, tám bước khởi động Linux của nguồn: bật nguồn và chạy POST, phát hiện thiết bị, chọn thiết bị khởi động, bộ nạp khởi động GRUB, nhân và systemd là tiến trình đầu tiên, đạt mục tiêu mặc định, chạy tập lệnh khởi động, màn hình đăng nhập. Khung hai, điều tài liệu độc lập thêm hoặc sửa: phần sụn chỉ khởi tạo tối thiểu rồi giao cho bộ nạp, hoặc nạp nhân trực tiếp; giữa bộ nạp và systemd có thể có initramfs; mục tiêu mặc định thường là bí danh của graphical target hoặc multi-user target. Khung ba, đọc tĩnh các tệp đơn vị systemd của máy đo: mục tiêu mặc định kéo 78 đơn vị, chuỗi thứ tự dài nhất 15 đơn vị, 41 đơn vị không phải chờ ai.](../../diagrams/sd-08-020-main.svg)
+![Ba khung. Khung một, tám bước khởi động Linux của nguồn: bật nguồn và chạy POST, phát hiện thiết bị, chọn thiết bị khởi động, bộ nạp khởi động GRUB, nhân và systemd là tiến trình đầu tiên, đạt mục tiêu mặc định, chạy tập lệnh khởi động, màn hình đăng nhập. Khung hai, điều tài liệu độc lập thêm hoặc sửa: phần sụn chỉ khởi tạo tối thiểu rồi giao cho bộ nạp, hoặc nạp nhân trực tiếp; giữa bộ nạp và systemd có thể có initramfs; mục tiêu mặc định thường là bí danh của graphical target hoặc multi-user target. Khung ba, đọc tĩnh các tệp đơn vị systemd của máy đo: mục tiêu mặc định kéo 78 đơn vị, theo khai báo tường minh, chuỗi dài nhất 15 đơn vị và 41 đơn vị không khai báo chờ ai.](../../diagrams/sd-08-020-main.svg)
 
 ## Từ viết tắt
 
@@ -39,12 +39,12 @@ Máy dùng để viết bài có systemd 255 cài sẵn, nhưng tiến trình s�
 | `default.target` là | liên kết tới `graphical.target` |
 | Số đơn vị `default.target` kéo theo (cả bắc cầu) | 78: 35 dịch vụ, 18 mục tiêu, 8 bộ hẹn giờ, 7 ổ cắm, 6 điểm gắn, 2 đường dẫn, 1 điểm gắn tự động, 1 lát |
 | Số đơn vị tên được nhắc nhưng không có tệp | 11 |
-| Số cạnh thứ tự (`After`, `Before`) trong tập đó | 94 |
-| Chuỗi thứ tự dài nhất | 15 đơn vị |
-| Số đơn vị không phải đợi đơn vị nào trong tập | 41 trên 78 |
+| Số cạnh thứ tự khai báo tường minh (`After`, `Before`) trong tập đó | 94 |
+| Chuỗi dài nhất theo các khai báo tường minh | 15 đơn vị |
+| Số đơn vị không khai báo phải đợi đơn vị nào trong tập | 41 trên 78 |
 | Số đơn vị `sysinit.target` kéo theo | 41 |
 
-Chuỗi dài nhất đi qua `local-fs-pre.target`, `local-fs.target`, `systemd-tmpfiles-setup.service`, `sysinit.target`, `basic.target`, `multi-user.target`, `graphical.target`, và dừng ở `systemd-update-utmp-runlevel.service`. Hai điều đọc được. Một, `bootup(7)` nói quá trình khởi động chạy song song, và con số đồng ý: 78 đơn vị mà chuỗi tuần tự dài nhất chỉ 15, hơn nửa số đơn vị (41) không phải đợi gì. Hai, những gì nguồn gom thành "chạy các tập lệnh khởi động" thực ra là một đồ thị của vài chục đơn vị với hàng chục ràng buộc thứ tự, không phải một danh sách chạy lần lượt.
+Chuỗi dài nhất theo các khai báo tường minh đi qua `local-fs-pre.target`, `local-fs.target`, `systemd-tmpfiles-setup.service`, `sysinit.target`, `basic.target`, `multi-user.target`, `graphical.target`, và dừng ở `systemd-update-utmp-runlevel.service`. Cẩn thận khi đọc ba con số 94, 15 và 41: chúng chỉ đếm các dòng `After` và `Before` được viết ra trong tệp. Khi một đơn vị dùng `DefaultDependencies=yes` (mặc định), systemd còn tự thêm các ràng buộc thứ tự mà tệp không viết, mục tiêu cũng được sắp thứ tự theo các đơn vị nó `Wants` hay `Requires`, và điểm gắn, ổ cắm, đường dẫn có thêm ràng buộc ngầm của riêng chúng. Vì vậy đồ thị thật có nhiều cạnh hơn, chuỗi thật dài hơn 15 và ít hơn 41 đơn vị không phải đợi gì; bài không dùng ba con số để kết luận mức song song của một lần khởi động thật. Điều còn đứng vững: `bootup(7)` nói quá trình khởi động chạy song song, và những gì nguồn gom thành "chạy các tập lệnh khởi động" thực ra là một đồ thị của vài chục đơn vị với nhiều ràng buộc thứ tự, không phải một danh sách chạy lần lượt.
 
 ## Giới hạn cần nhớ
 

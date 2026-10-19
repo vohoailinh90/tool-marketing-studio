@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1348" viewBox="0 0 320 1348" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1367" viewBox="0 0 320 1367" role="img" aria-labelledby="title desc">
 <title id="title">Khởi động Linux: tám bước và điều tài liệu thêm vào</title>
-<desc id="desc">Ba khung. Khung một, tám bước khởi động Linux của nguồn: bật nguồn và chạy POST, phát hiện thiết bị, chọn thiết bị khởi động, bộ nạp khởi động GRUB, nhân và systemd là tiến trình đầu tiên, đạt mục tiêu mặc định, chạy tập lệnh khởi động, màn hình đăng nhập. Khung hai, điều tài liệu độc lập thêm hoặc sửa: phần sụn chỉ khởi tạo tối thiểu rồi giao cho bộ nạp, hoặc nạp nhân trực tiếp; giữa bộ nạp và systemd có thể có initramfs; mục tiêu mặc định thường là bí danh của graphical target hoặc multi-user target. Khung ba, đọc tĩnh các tệp đơn vị systemd của máy đo: mục tiêu mặc định kéo 78 đơn vị, chuỗi thứ tự dài nhất 15 đơn vị, 41 đơn vị không phải chờ ai.</desc>
+<desc id="desc">Ba khung. Khung một, tám bước khởi động Linux của nguồn: bật nguồn và chạy POST, phát hiện thiết bị, chọn thiết bị khởi động, bộ nạp khởi động GRUB, nhân và systemd là tiến trình đầu tiên, đạt mục tiêu mặc định, chạy tập lệnh khởi động, màn hình đăng nhập. Khung hai, điều tài liệu độc lập thêm hoặc sửa: phần sụn chỉ khởi tạo tối thiểu rồi giao cho bộ nạp, hoặc nạp nhân trực tiếp; giữa bộ nạp và systemd có thể có initramfs; mục tiêu mặc định thường là bí danh của graphical target hoặc multi-user target. Khung ba, đọc tĩnh các tệp đơn vị systemd của máy đo: mục tiêu mặc định kéo 78 đơn vị, theo khai báo tường minh, chuỗi dài nhất 15 đơn vị và 41 đơn vị không khai báo chờ ai.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="1348" fill="#f8fafc"/>
+<rect width="320" height="1367" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Khởi động Linux: tám</text>
 <text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">bước và điều tài liệu</text>
@@ -61,7 +61,7 @@
 <text x="64" y="918.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Nhân tạo tiến trình số 1 chạy</text>
 <text x="64" y="937.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chương trình init; không nhất</text>
 <text x="64" y="957.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thiết là systemd.</text>
-<rect x="8" y="999" width="304" height="341" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="8" y="999" width="304" height="360" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
 <text x="20" y="1027.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Đọc tĩnh một máy thật</text>
 <rect x="20" y="1044" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
 <circle cx="43" cy="1067" r="11" fill="#16a34a"/>
@@ -69,18 +69,19 @@
 <text x="64" y="1070.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mục tiêu mặc định kéo 78</text>
 <text x="64" y="1089.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đơn vị; 35 là dịch vụ, 18 là</text>
 <text x="64" y="1109.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">mục tiêu.</text>
-<rect x="20" y="1135" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<rect x="20" y="1135" width="280" height="102" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
 <circle cx="43" cy="1158" r="11" fill="#16a34a"/>
 <polyline points="37.9,1158.4 41.7,1162.4 48.5,1154" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="1161.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Chuỗi thứ tự dài nhất 15 đơn</text>
-<text x="64" y="1180.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">vị; 41 đơn vị không phải chờ</text>
-<text x="64" y="1200.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đơn vị nào.</text>
-<rect x="20" y="1226" width="280" height="102" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
-<circle cx="43" cy="1249" r="11" fill="#16a34a"/>
-<polyline points="37.9,1249.4 41.7,1253.4 48.5,1245" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="1252.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Máy đo không khởi động</text>
-<text x="64" y="1271.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bằng systemd: chỉ đọc tệp,</text>
-<text x="64" y="1291.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">không đo thời gian khởi</text>
-<text x="64" y="1310.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">động.</text>
+<text x="64" y="1161.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Theo khai báo tường minh:</text>
+<text x="64" y="1180.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">chuỗi dài nhất 15 đơn vị; 41</text>
+<text x="64" y="1200.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">đơn vị không khai báo chờ</text>
+<text x="64" y="1219.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">ai.</text>
+<rect x="20" y="1245" width="280" height="102" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1268" r="11" fill="#16a34a"/>
+<polyline points="37.9,1268.4 41.7,1272.4 48.5,1264" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1271.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Máy đo không khởi động</text>
+<text x="64" y="1290.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bằng systemd: chỉ đọc tệp,</text>
+<text x="64" y="1310.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">không đo thời gian khởi</text>
+<text x="64" y="1329.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">động.</text>
 </g>
 </svg>

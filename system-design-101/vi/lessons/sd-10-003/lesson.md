@@ -26,7 +26,7 @@ Hình chia bảy vùng theo vị trí trong một ứng dụng; cả cách chia 
 
 **Phía máy chủ.**
 - Backend là chương trình chạy trên máy chủ. Theo MDN, máy chủ web chờ thông điệp yêu cầu từ trình duyệt, xử lý khi nó tới rồi trả lời bằng thông điệp HTTP; với trang động, nội dung trả về thường được dựng từ dữ liệu lấy trong cơ sở dữ liệu.
-- Cơ sở dữ liệu là nơi lưu dữ liệu bền vững. MDN định nghĩa nó là hệ thống lưu trữ gom dữ liệu có tổ chức, giúp việc tìm, sắp xếp và mở rộng dễ hơn.
+- Cơ sở dữ liệu là nơi lưu dữ liệu có tổ chức. MDN định nghĩa nó là hệ thống lưu trữ gom dữ liệu có tổ chức, giúp việc tìm, sắp xếp và mở rộng dễ hơn. Dữ liệu có được giữ lại lâu dài hay không là chọn lựa khi cài đặt và cấu hình, không phải điều mọi cơ sở dữ liệu đều đảm bảo (kiến thức chung của người biên soạn).
 
 **Phía vận hành.**
 - Điện toán đám mây là cách dùng máy, lưu trữ và dịch vụ theo nhu cầu, lấy từ một kho tài nguyên dùng chung và cấp phát nhanh. Thường là thuê từ một nhà cung cấp bên ngoài, nhưng một tổ chức cũng có thể tự dựng và tự vận hành đám mây riêng, kể cả đặt ngay trong cơ sở của mình (kiến thức chung của người biên soạn).

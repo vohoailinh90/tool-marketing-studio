@@ -191,7 +191,7 @@ Các bài chưa viết của nhóm này không có trong danh sách; số thứ 
 
 ## Bảo mật
 
-Các bài từ sd-14-031 trở đi chưa viết; số thứ tự dưới đây chỉ tính các bài đã viết.
+Bài nào của nhóm này chưa có trong danh sách dưới đây là chưa viết hoặc đang ở một đợt khác chưa gộp; số thứ tự chỉ tính các bài có trong danh sách.
 
 1. [DevSecOps là gì?](lessons/sd-14-001/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
 2. [Encoding, encryption và tokenization](lessons/sd-14-002/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.

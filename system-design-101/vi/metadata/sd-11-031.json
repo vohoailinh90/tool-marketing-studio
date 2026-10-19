@@ -1,0 +1,63 @@
+{
+  "id": "sd-11-031",
+  "title_vi": "Khóa phân tán: sáu nơi dùng, và cái bẫy khi khóa hết hạn",
+  "language": "vi",
+  "kind": "reference",
+  "content_status": "draft",
+  "source_ref": "sd-11-031",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/why-do-we-need-to-use-a-distributed-lock.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/why-do-we-need-to-use-a-distributed-lock.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a git fetch of the pinned commit and hashed as a Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "2c857ade3704d0a98d1772ea94686d8aaf5f0d29",
+    "retrieved_body_sha256": "89230774e7d7ac38673190534eb23bd60c222cf1a61022293ae200c5058a8aa6",
+    "retrieved_body_bytes": 1791
+  },
+  "diagram": "../diagrams/sd-11-031-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-19"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "source_body_read_and_discrete_time_simulation_run_but_Kleppmann_article_and_lock_service_docs_not_opened_in_this_session"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending",
+      "reason": "figure drawn by scripts/figures and measured by python3 -m scripts.figures check --browser; no whole-lesson browser check at 320, 375 and 430 px was done for this lesson"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "The source defines a distributed lock as a mechanism ensuring mutual exclusion across a distributed system and lists six use cases: leader election, task scheduling, resource allocation, microservices coordination, inventory management, session management, with a one-or-two-sentence gloss each.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/why-do-we-need-to-use-a-distributed-lock.md",
+      "section": "Whole guide",
+      "verified_by": "Source body read at the pinned commit."
+    },
+    {
+      "claim_vi": "Toy run: client A acquires a lock at step 0 with TTL 10 and pauses until step 15; B acquires it at step 12 and writes; A then writes. Without a fencing check the store accepts both writes and ends with A's value; with a store that rejects tokens lower than the highest seen, B's write (token 2) is accepted and A's (token 1) is rejected.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/why-do-we-need-to-use-a-distributed-lock.md",
+      "section": "Experiment",
+      "verified_by": "Run by the author on 2026-10-19 with a small Python program; discrete time, no real lock service."
+    }
+  ],
+  "design_notes_vi": "Một khung sáu thẻ cho sáu tình huống và một khung ghi chú kết quả thử khóa hết hạn.",
+  "source_deviations": [
+    "The source gives a definition and six use cases; the lesson keeps them and adds an expiry experiment and a note on fencing tokens that the source does not contain.",
+    "The lesson does not claim that a distributed lock is the right tool for each of the six cases."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này (gói W17), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

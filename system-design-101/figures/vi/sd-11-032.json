@@ -1,0 +1,60 @@
+{
+  "title": "Sáu mẫu nhắn tin trên đám mây",
+  "subtitle": "Dịch vụ nói chuyện với nhau thế nào.",
+  "desc": "Ba khung. Hai khung đầu, mỗi khung ba trong sáu mẫu nhắn tin trên đám mây, mỗi mẫu một thẻ: yêu cầu bất đồng bộ rồi trả lời sau, đăng và đăng ký, thẻ nhận hàng cho thông điệp lớn, hàng đợi ưu tiên, saga, nhiều bên cùng tranh nhau nhận. Khung ba, thử nhỏ: ba người nhận thông điệp có thời gian xử lý khác nhau nên xong không theo thứ tự gửi; hàng đợi ưu tiên không bao giờ phục vụ thông điệp thấp khi tải cao liên tục; saga hỏng ở bước ba thì bù ngược hai bước đã xong.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Ba mẫu đầu",
+      "items": [
+        {
+          "name": "Yêu cầu bất đồng bộ",
+          "role": "Nhận việc, trả lời kết quả sau.",
+          "icon": "send"
+        },
+        {
+          "name": "Đăng và đăng ký",
+          "role": "Người gửi không chờ người nhận.",
+          "icon": "radio"
+        },
+        {
+          "name": "Thẻ nhận hàng",
+          "role": "Gửi tham chiếu, không gửi cả khối.",
+          "icon": "inbox"
+        }
+      ]
+    },
+    {
+      "kind": "parts",
+      "heading": "Ba mẫu sau",
+      "items": [
+        {
+          "name": "Hàng đợi ưu tiên",
+          "role": "Việc gấp được xử lý trước.",
+          "icon": "list-ordered"
+        },
+        {
+          "name": "Saga",
+          "role": "Nhất quán qua nhiều dịch vụ.",
+          "icon": "route"
+        },
+        {
+          "name": "Tranh nhau nhận",
+          "role": "Nhiều bên cùng lấy từ một hàng.",
+          "icon": "split"
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Thử nhỏ",
+      "items": [
+        "Ba bên nhận: xong lệch thứ tự gửi.",
+        "Tải cao liên tục: việc thấp không được phục vụ.",
+        "Saga hỏng ở bước 3: bù ngược bước 2, bước 1.",
+        "Tham chiếu 60 byte thay khối 5 megabyte."
+      ]
+    }
+  ],
+  "id": "sd-11-032"
+}

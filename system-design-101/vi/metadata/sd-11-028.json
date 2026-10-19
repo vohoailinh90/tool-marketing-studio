@@ -1,0 +1,70 @@
+{
+  "id": "sd-11-028",
+  "title_vi": "Năm cách sinh mã định danh duy nhất, và mỗi cách trả giá ở đâu",
+  "language": "vi",
+  "kind": "comparison",
+  "content_status": "draft",
+  "source_ref": "sd-11-028",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/explaining-5-unique-id-generators-in-distributed-systems.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/explaining-5-unique-id-generators-in-distributed-systems.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from a git fetch of the pinned commit and hashed as a Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "70ff4595d22da724c293abf65d03811d959a47fa",
+    "retrieved_body_sha256": "a8f7b8df2889814a271e78dfc66576c5d1e322c0b38303be6c2df8979e18cb99",
+    "retrieved_body_bytes": 2155
+  },
+  "diagram": "../diagrams/sd-11-028-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-19"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "source_body_read_and_numbers_computed_by_small_program_but_RFC_4122_and_Redis_docs_not_opened_in_this_session"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending",
+      "reason": "figure drawn by scripts/figures and measured by python3 -m scripts.figures check --browser; no whole-lesson browser check at 320, 375 and 430 px was done for this lesson"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "The source describes five generators: UUID (128 bits, no service call, not sequential, poor for database indexing, collisions improbable), Snowflake (timestamp, machine ID, serial number, first bit unused, no network call, data-center id may be added), database auto-increment (transaction management guarantees uniqueness in one table, needs network, can expose business data such as user counts), database segment (batches cached in ID servers, saves I/O), and Redis key-value (in memory, faster than a database).",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/explaining-5-unique-id-generators-in-distributed-systems.md",
+      "section": "Whole guide",
+      "verified_by": "Source body read at the pinned commit."
+    },
+    {
+      "claim_vi": "Toy run: 20000 inserts into a sorted list; random 128-bit values land before 5005.5 existing entries on average (19987 inserts not at the end); sequential values 0; time-ordered 64-bit values from two workers with random arrival inside the millisecond 0.25 (4998 inserts not at the end).",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/explaining-5-unique-id-generators-in-distributed-systems.md",
+      "section": "Experiment",
+      "verified_by": "Run by the author on 2026-10-19 with a small Python program; counts only, no database benchmark."
+    },
+    {
+      "claim_vi": "Birthday estimate for one billion random version-4 UUIDs (122 random bits) is about 9.4e-20; a segment allocator with batch 1 / 100 / 1000 makes 100000 / 1000 / 100 database calls for 100000 ids; a crash after 2500 ids of a 1000-batch leaves a gap of 500.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/explaining-5-unique-id-generators-in-distributed-systems.md",
+      "section": "Experiment",
+      "verified_by": "Computed by the author on 2026-10-19; RFC 4122 itself was not opened in this session."
+    }
+  ],
+  "design_notes_vi": "Một khung năm thẻ cho năm cách sinh mã và một khung ghi chú kết quả thử chèn.",
+  "source_deviations": [
+    "The source gives five short paragraphs; the lesson keeps the five generators and adds a four-question comparison table, an insertion-position experiment, a collision estimate and a segment-gap count, none of which are in the source.",
+    "The comparison table is the author's analysis, not a measurement.",
+    "Redis behaviour after a restart is the author's inference, not tested here."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này (gói W17), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

@@ -222,6 +222,16 @@ Các bài chưa viết của nhóm này không có trong danh sách; số thứ 
 
 23. [Sau thay đổi API: chọn bộ kiểm tra theo rủi ro](lessons/sd-10-023/lesson.md)
 
+## Đám mây và hệ thống phân tán
+
+Các bài chưa viết của nhóm này không có trong danh sách; số thứ tự là vị trí của bài trong nhóm.
+
+28. [Năm cách sinh mã định danh duy nhất, và mỗi cách trả giá ở đâu](lessons/sd-11-028/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+29. [Bốn cách chờ khi thử lại: tăng đều hay gấp đôi, có ngẫu nhiên hay không](lessons/sd-11-029/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+30. [Giám sát đám mây: chín khía cạnh, và vì sao cảnh báo là khâu dễ sai nhất](lessons/sd-11-030/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+31. [Khóa phân tán: sáu nơi dùng, và cái bẫy khi khóa hết hạn](lessons/sd-11-031/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+32. [Sáu mẫu nhắn tin trên đám mây, và điều mỗi mẫu giải](lessons/sd-11-032/lesson.md) — bài mới viết tại repo này; chờ review kỹ thuật.
+
 ## DevOps và CI/CD
 
 1. [Tắt êm một API trên Kubernetes: năm chỗ làm rớt request](lessons/sd-13-001/lesson.md)
@@ -330,7 +340,7 @@ và hình đạt; không coi đọc nguồn là mọi claim đã đúng, không 
 Tình huống thực tế (còn sd-02-030) →
 Cơ sở dữ liệu và lưu trữ (đã viết một phần) → Bộ nhớ đệm và hiệu năng (đã viết một phần) →
 Kiến trúc phần mềm (đã viết một phần) → Phát triển phần mềm (đã viết một phần) →
-Đám mây và hệ thống phân tán → Hệ thống hoạt động thế nào? → Bảo mật (đã viết một phần).
+Đám mây và hệ thống phân tán (đã viết một phần) → Hệ thống hoạt động thế nào? → Bảo mật (đã viết một phần).
 
 Nhóm “Nền tảng máy tính” (cuối mục lục nguồn) được viết trước theo yêu cầu người dùng ngày 2026-10-13; nhóm “API và phát triển web” viết tiếp theo thứ tự source-map.
 

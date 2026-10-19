@@ -34,7 +34,7 @@ ceiling can hold it — and a model reading test output can be wrong about wheth
 a test failed, where a script cannot. It belongs in the repository.
 
 Usage:
-    python3 scripts/mutation_check.py tests/mutations/<name>.yaml
+    python3 scripts/mutation_check.py tests/mutations/<name>.yaml [tests/mutations/<other>.yaml ...]
     python3 scripts/mutation_check.py --all
     python3 scripts/mutation_check.py --all --jobs 2
 """
@@ -256,9 +256,9 @@ def check(manifest_path: pathlib.Path, allow_outside: bool = False,
     return [check_entry(entry, manifest, baseline, allow_outside) for entry in manifest["mutations"]]
 
 
-def manifests(selected: str | None) -> list[pathlib.Path]:
+def manifests(selected: list[str] | None) -> list[pathlib.Path]:
     if selected:
-        return [pathlib.Path(selected).resolve()]
+        return list(dict.fromkeys(pathlib.Path(name).resolve() for name in selected))
     return sorted(MANIFEST_DIR.glob("*.yaml"))
 
 
@@ -419,7 +419,7 @@ def positive_int(text: str) -> int:
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    parser.add_argument("manifest", nargs="?", help="manifest to run; omit with --all")
+    parser.add_argument("manifest", nargs="*", help="manifests to run; omit with --all")
     parser.add_argument("--all", action="store_true", help="run every manifest")
     parser.add_argument(
         "--allow-dirty", action="store_true",

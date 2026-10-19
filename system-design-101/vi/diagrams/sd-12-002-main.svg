@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="320" height="826" viewBox="0 0 320 826" role="img" aria-labelledby="title desc">
 <title id="title">Thư điện tử đi thế nào</title>
-<desc id="desc">Hai khung. Khung một, bốn vai nối nhau: ứng dụng thư của người gửi, máy chủ thư của người gửi, máy chủ thư của người nhận, chương trình giao thư bỏ thư vào hộp thư của người nhận. Khung hai, ba điều cần nhớ: hai chặng giữa các máy chủ dùng SMTP còn chặng cuối dùng IMAP hoặc POP3; máy chủ gửi tìm máy chủ nhận nhờ bản ghi MX trong DNS; nếu máy chủ nhận chưa sẵn sàng thì thư xếp hàng và được thử lại.</desc>
+<desc id="desc">Hai khung. Khung một, bốn vai nối nhau: ứng dụng thư của người gửi, máy chủ thư của người gửi, máy chủ thư của người nhận, chương trình giao thư bỏ thư vào hộp thư của người nhận. Khung hai, ba điều cần nhớ: SMTP đẩy thư từ ứng dụng của người gửi tới máy chủ của họ rồi sang máy chủ của người nhận, còn IMAP hoặc POP3 là việc riêng: ứng dụng của người nhận lấy thư về từ hộp thư; máy chủ gửi tìm máy chủ nhận nhờ bản ghi MX trong DNS; nếu máy chủ nhận chưa sẵn sàng thì thư xếp hàng và được thử lại.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="826" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">

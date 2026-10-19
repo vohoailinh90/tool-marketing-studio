@@ -69,7 +69,7 @@
       "claim_vi": "Own experiment, 2026-10-19: Python 3, bucket capacity 100, seed 7; uniform points: 100k -> 2,221 leaves, depth 6, mean 45.0 points per leaf; 1M -> 16,384 leaves, depth 7, mean 61.0. Clustered (20 Gaussian clusters): 100k -> 2,668 leaves, depth 11, mean 37.5; 1M -> 21,583 leaves, depth 13, mean 46.3. Share of 2,000 queries (at data points) landing in a leaf with fewer than 100 points: 95.8%, 100%, 99.2%, 99.3%. Build time for 1M points 3.5 s (uniform) and 4.8 s (clustered).",
       "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/quadtree.md",
       "section": "Thử nghiệm",
-      "verified_by": "Script run in the session (not committed); results copied from its output."
+      "verified_by": "Script embedded verbatim in the lesson (details block); run in the session and results copied from its output."
     }
   ],
   "design_notes_vi": "Hai khung đều là các bước đánh số: xây cây và tìm quán. Kết quả thử nghiệm nằm trong bảng của bài, không vẽ.",

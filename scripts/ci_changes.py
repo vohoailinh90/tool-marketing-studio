@@ -22,6 +22,7 @@ from __future__ import annotations
 import os
 import pathlib
 import posixpath
+import re
 import subprocess
 import sys
 from collections.abc import Mapping
@@ -76,20 +77,37 @@ def manifest_files(manifest: str, root: pathlib.Path) -> set[str]:
     return {name for name in named if name}
 
 
-def shared_test_file(path: str) -> bool:
-    """A file under tests/ that is neither a test module nor a manifest: support code, fixtures and the web checks the
-    tests run, which no manifest names but every test may lean on."""
+def imported_by_other_tests(path: str, root: pathlib.Path) -> bool:
+    """Whether another test file imports this test module (`from tests.test_render import ...`): its helpers then
+    decide tests no manifest names it for. A tree that cannot be read counts as importing it."""
+    module = path[:-len(".py")].replace("/", ".")
+    pattern = re.compile(rf"^\s*(from|import)\s+{re.escape(module)}\b|^\s*from\s+tests\s+import\s+[^\n]*\b{re.escape(module.rsplit('.', 1)[-1])}\b",
+                         re.MULTILINE)
+    try:
+        for other in (root / "tests").rglob("*.py"):
+            if other.relative_to(root).as_posix() != path and pattern.search(other.read_text(encoding="utf-8")):
+                return True
+    except (OSError, UnicodeDecodeError):
+        return True
+    return False
+
+
+def shared_test_file(path: str, root: pathlib.Path) -> bool:
+    """A file under tests/ that every test may lean on but no manifest names: support code, fixtures, the web checks the
+    tests run, and a test module other tests import helpers from."""
     name = posixpath.basename(path)
     if not path.startswith("tests/") or path.startswith("tests/mutations/"):
         return False
-    return not (name.startswith("test_") and name.endswith(".py"))
+    if name.startswith("test_") and name.endswith(".py"):
+        return imported_by_other_tests(path, root)
+    return True
 
 
 def selected_manifests(changed: list[str], root: pathlib.Path) -> list[str] | None:
     """The manifests that name a changed file, or None when every manifest has to run: a RUN_ALL file or shared test
     file changed, a changed file is gone (deleted or renamed, so a manifest may still name what is no longer there), or
     the manifests could not be read."""
-    if any(path in RUN_ALL or shared_test_file(path) for path in changed):
+    if any(path in RUN_ALL or shared_test_file(path, root) for path in changed):
         return None
     if any(not in_store(path) and not (root / path).exists() for path in changed):
         return None

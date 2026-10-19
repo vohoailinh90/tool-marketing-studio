@@ -96,6 +96,20 @@ class SelectedManifestsTests(unittest.TestCase):
                 self.assertIsNone(ci_changes.selected_manifests([path], ROOT))
         self.assertEqual(["tests/mutations/ci_changes.yaml"], ci_changes.selected_manifests(["tests/test_ci_changes.py"], ROOT))
 
+    def test_a_test_module_other_tests_import_helpers_from_runs_every_manifest(self):
+        self.assertIsNone(ci_changes.selected_manifests(["tests/test_render.py"], ROOT))  # tests/test_diagram.py imports it
+        with tempfile.TemporaryDirectory() as tmp:
+            folder = Path(tmp)
+            write(folder, "tests/mutations/tool.yaml", MANIFEST.format(target="scripts/tool.py"))
+            write(folder, "tests/test_helpers_here.py", "def helper():\n    return 1\n")
+            write(folder, "tests/test_alone.py", "x = 1\n")
+            self.assertEqual([], ci_changes.selected_manifests(["tests/test_helpers_here.py"], folder))
+            for importer in ("from tests.test_helpers_here import helper\n", "import tests.test_helpers_here\n",
+                             "from tests import test_alone, test_helpers_here\n"):
+                with self.subTest(importer):
+                    write(folder, "tests/test_user.py", importer)
+                    self.assertIsNone(ci_changes.selected_manifests(["tests/test_helpers_here.py"], folder))
+
     def test_a_deleted_or_renamed_file_runs_every_manifest(self):
         self.assertIsNone(ci_changes.selected_manifests(["tests/test_gone_since_this_change.py"], ROOT))
         self.assertIsNone(ci_changes.selected_manifests(["scripts/gone_since_this_change.py"], ROOT))

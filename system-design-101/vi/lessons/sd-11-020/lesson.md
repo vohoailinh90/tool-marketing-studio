@@ -33,7 +33,7 @@ Hai phép tính cho thấy dư thừa làm gì, nếu các thành phần hỏng 
 - **Song song** (chỉ cần một cái sống): độ sẵn sàng chung = 1 − (1 − a)². Hai bản 99% cho 1 − 0,01² = 0,9999, tức 99,99%. Ba bản cho 99,9999%.
 - **Nối tiếp** (cần tất cả cùng sống): độ sẵn sàng chung = tích các độ sẵn sàng. Ba phần mỗi phần 99,9% cho 0,999³ ≈ 0,9970, tức khoảng 99,7%, kém hơn từng phần.
 
-Vì vậy một chuỗi dài nối tiếp thì yếu hơn mắt xích yếu nhất, và dư thừa ở những mắt xích đó là cách rẻ nhất để kéo lên.
+Vì vậy một chuỗi dài nối tiếp thì yếu hơn mắt xích yếu nhất, và dư thừa ở những mắt xích đó là một cách để kéo lên (bài không so chi phí với các cách khác).
 
 ## Giới hạn cần nhớ
 

@@ -54,7 +54,7 @@ Phép đo chạy trên một máy, bằng Python, với máy chủ đồ chơi, 
 
 ## Nhìn hình trả lời
 
-Một đồng nghiệp muốn "thêm thử lại tối đa 5 lần cho mọi lời gọi giữa các dịch vụ cho chắc". Theo phép đo, bạn lo điều gì, và nên đặt thêm gì?
+Một đồng nghiệp muốn "thêm thử lại tối đa 3 lần cho mọi lời gọi giữa các dịch vụ cho chắc". Theo phép đo, bạn lo điều gì, và nên đặt thêm gì?
 
 <details>
 <summary>Xem đáp án</summary>

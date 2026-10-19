@@ -10,6 +10,7 @@
 - **CAP** (Consistency Availability Partition) — nhất quán, sẵn sàng, chịu chia cắt mạng (chữ P là khả năng chịu chia cắt, partition tolerance): tên một định lý nói rằng khi mạng bị chia cắt, hệ phân tán phải chọn giữa trả lời mọi yêu cầu và trả lời đúng dữ liệu mới nhất; bài chỉ nhắc tên.
 - **DNS** (Domain Name System) — hệ thống tên miền: dịch tên một máy thành địa chỉ số của nó.
 - **ELK** (Elasticsearch Logstash Kibana) — ba công cụ đi cùng nhau để thu, tìm và xem nhật ký của hệ thống; bản đồ liệt kê nó ở vùng công cụ.
+- **GoF** (Gang of Four) — nhóm bốn tác giả: tên gọi tắt của bốn tác giả cuốn sách kinh điển về các mẫu thiết kế hướng đối tượng; bản đồ chỉ nhắc "GoF" như một cái tên để tra cứu về sau.
 - **HTTPS** (HyperText Transfer Protocol Secure) — giao thức truyền siêu văn bản an toàn: cách các trang web được gửi qua mạng sau khi đã mã hóa.
 - **MVC** (Model View Controller) — mô hình, khung nhìn, bộ điều khiển: một cách chia ứng dụng thành ba vai (chi tiết ở bài riêng của nhóm).
 - **NoSQL** (Not Only SQL) — không chỉ SQL: tên chung của các cơ sở dữ liệu không theo mô hình bảng quan hệ cổ điển; nhiều loại vẫn có hàng và cột hoặc một ngôn ngữ truy vấn riêng.

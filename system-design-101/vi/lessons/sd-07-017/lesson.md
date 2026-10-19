@@ -18,7 +18,7 @@ Nguồn tách quy trình thành hai luồng: đăng ký thẻ và thanh toán c�
 
 **Thanh toán cơ bản.** Luồng này bắt đầu khi bạn bấm nút "Trả" trên điện thoại.
 
-- *Apple Pay.* Với iPhone, máy chủ của trang bán hàng chuyển DAN cho ngân hàng.
+- *Apple Pay.* Với iPhone, theo sơ đồ nguồn, máy chủ của trang bán hàng chuyển DAN cho ngân hàng. Giản lược: với thanh toán trực tuyến hoặc trong ứng dụng, trang bán hàng nhận một mã thanh toán Apple Pay đã mã hóa và gửi mã đó tới bên xử lý thanh toán của mình, chứ không gửi DAN trực tiếp cho ngân hàng phát hành.
 - *Google Pay.* Máy chủ của trang bán hàng chuyển mã thanh toán cho máy chủ Google. Máy chủ Google tra ra thông tin thẻ rồi chuyển cho ngân hàng. Đây là luồng của sơ đồ nguồn; với thanh toán trên web hiện nay, Google Pay thường trả mã do cổng thanh toán mà trang bán hàng đã cấu hình phát ra, và trang bán hàng xử lý qua cổng đó chứ không gửi về máy chủ Google.
 
 Trên sơ đồ gốc có một mũi tên đỏ, nghĩa là thông tin thẻ có mặt trên mạng công cộng, dù đã được mã hóa.
@@ -35,7 +35,7 @@ Cửa hàng trực tuyến nhận được thứ gì khi khách trả bằng App
 <details>
 <summary>Xem đáp án</summary>
 
-Với Apple Pay, máy chủ bán hàng nhận DAN và chuyển nó cho ngân hàng; ngân hàng là nơi đã cấp DAN và tra được thẻ tương ứng. Apple không lưu thông tin thẻ nên không tra được.
+Với Apple Pay, theo sơ đồ nguồn, máy chủ bán hàng nhận DAN và chuyển nó cho ngân hàng (thực tế qua bên xử lý thanh toán); ngân hàng là nơi đã cấp DAN và tra được thẻ tương ứng. Apple không lưu thông tin thẻ nên không tra được.
 Với Google Pay, máy chủ bán hàng nhận mã thanh toán và chuyển cho máy chủ Google; máy chủ Google tra ra thông tin thẻ đã lưu rồi chuyển cho ngân hàng. Việc "ngân hàng tra được thẻ từ DAN" là cách người biên soạn đọc câu "bank returns DAN"; nguồn không mô tả bước tra.
 
 </details>

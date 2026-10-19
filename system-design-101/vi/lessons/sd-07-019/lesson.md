@@ -15,7 +15,7 @@ Nguồn kể quy trình qua ví dụ một công ty trả lương 100 đô la ch
 
 ## Đọc hình
 
-**Chuẩn bị (bước 0).** Bên khởi tạo (originator, ở đây là công ty trả lương) phải mở tài khoản ở một ngân hàng thương mại, vì chỉ ngân hàng mới được khởi tạo giao dịch ACH trực tiếp; ngân hàng đó là ODFI. Người nhận phải cho phép bên khởi tạo thực hiện một số loại giao dịch nhất định.
+**Chuẩn bị (bước 0).** Bên khởi tạo (originator, ở đây là công ty trả lương) phải có quan hệ với một tổ chức nhận tiền gửi đủ điều kiện (ngân hàng, hợp tác xã tín dụng...), vì chỉ tổ chức như vậy mới được đưa giao dịch vào mạng ACH; tổ chức đó là ODFI, và nó khác với bên khởi tạo không phải ngân hàng. Người nhận phải cho phép bên khởi tạo thực hiện một số loại giao dịch nhất định.
 
 **1. Công ty tới ngân hàng gốc (bước 1 và 2).** Công ty tạo ra các giao dịch trả lương và gửi cho một bên xử lý thứ ba như Gusto, bên này hỗ trợ các dịch vụ liên quan tới ACH, chẳng hạn tạo tệp ACH. Bên xử lý thứ ba thay mặt công ty tạo tệp ACH rồi tải lên một máy chủ SFTP do ODFI lập. Việc này phải xong trước giờ chốt 19 giờ mà ngân hàng ODFI quy định.
 

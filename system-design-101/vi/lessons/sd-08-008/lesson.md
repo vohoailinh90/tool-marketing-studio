@@ -4,10 +4,6 @@
 
 ![Ba khung. Khung một, năm mẫu và chỗ gặp trong thư viện chuẩn Python: nhà máy là cách thay hàm tạo bản ghi nhật ký; người xây là bộ dựng cây thẻ lồng nhau từng bước; nguyên mẫu là việc sao chép đối tượng có móc riêng; đơn thể duy nhất là bộ ghi nhật ký gốc; chuỗi trách nhiệm là bộ ghi nhật ký đi ngược lên cha. Khung hai, thử với ba bộ ghi lồng nhau: lỗi đi qua ba bộ xử lý theo thứ tự, thông tin chỉ qua hai, và dừng lan lên thì chỉ còn hai bộ đầu. Khung ba, đếm tên trong thư viện chuẩn: 16 tên có chữ Factory, 11 chữ Builder, 1 chữ Singleton nhưng không thuộc mẫu, 0 chữ Prototype.](../../diagrams/sd-08-008-main.svg)
 
-## Từ viết tắt
-
-- **XML** (Xtensible Markup Language) — ngôn ngữ đánh dấu mở rộng (chữ X lấy từ eXtensible, "mở rộng"): định dạng văn bản chia dữ liệu thành các thẻ lồng nhau; thư viện chuẩn của Python có bộ dựng cây thẻ.
-
 ## Đọc hình
 
 Định nghĩa ngắn của từng mẫu dưới đây là kiến thức chung của người biên soạn (bài nguồn chỉ nêu tên); phần "chỗ gặp" được kiểm trên mã nguồn của Python 3.13.

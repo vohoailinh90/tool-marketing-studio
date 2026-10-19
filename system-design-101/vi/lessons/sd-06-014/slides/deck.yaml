@@ -1,5 +1,22 @@
 id: sd-06-014
-status: doing
+status: done
 owner: claude/sd101-decks-w1-3
 claimed_at: '2026-10-19T01:06:28Z'
-heartbeat_at: '2026-10-19T01:11:53Z'
+done_at: '2026-10-19T01:14:27Z'
+moda_canvas: cvs_0RWHBZZVKH965VGGXQ8YWWNB4P
+moda_url: https://moda.app/canvas/18e457ff-ee71-498b-b843-b747b9caac96
+slide_count: 9
+size: 1920x1080
+exports: pending
+layouts:
+  slides:
+  - card-grid
+  - one-highlighted-sentence
+  - two-column-comparison
+  - lookup-table
+  - one-big-number
+  - numbered-rows
+  - connection-diagram
+  - two-column-comparison
+  - lookup-table
+  first_concept: 3

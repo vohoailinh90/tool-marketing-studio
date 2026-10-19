@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="701" viewBox="0 0 320 701" role="img" aria-labelledby="title desc">
+<title id="title">Tải một tệp lên kho đối tượng</title>
+<desc id="desc">Hai khung. Khung một, sau khi khách gọi PUT: dịch vụ API kiểm tra quyền, gửi dữ liệu cho kho dữ liệu và nhận lại mã UUID của đối tượng, rồi ghi một dòng siêu dữ liệu vào kho siêu dữ liệu và báo thành công cho khách. Khung hai, ba điều rút ra: dữ liệu được lưu trước, siêu dữ liệu ghi sau; sự cố giữa hai bước để lại dữ liệu mồ côi mà không ai trỏ tới; dữ liệu mồ côi được dọn bằng cách quét định kỳ.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
+<rect width="320" height="701" fill="#f8fafc"/>
+<g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
+<text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Tải một tệp lên kho đối</text>
+<text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">tượng</text>
+<text x="16" y="84.2" font-size="15" fill="#475569" font-weight="normal" text-anchor="start">Dữ liệu và siêu dữ liệu nằm ở hai nơi.</text>
+<rect x="8" y="104" width="304" height="315" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="132.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Sau khi khách gọi PUT</text>
+<rect x="20" y="149" width="84" height="105" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="62" cy="171" r="14" fill="#1d4ed8"/><g transform="translate(53.6 162.6) scale(0.7)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect height="8" rx="2" ry="2" width="20" x="2" y="2"/><rect height="8" rx="2" ry="2" width="20" x="2" y="14"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></g>
+<text x="62" y="202.9" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">Dịch vụ</text>
+<text x="62" y="221.6" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">API</text>
+<rect x="118" y="149" width="84" height="105" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="160" cy="171" r="14" fill="#1d4ed8"/><g transform="translate(151.6 162.6) scale(0.7)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></g>
+<text x="160" y="202.9" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">Kho dữ</text>
+<text x="160" y="221.6" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">liệu</text>
+<rect x="216" y="149" width="84" height="105" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="1.5"/>
+<circle cx="258" cy="171" r="14" fill="#1d4ed8"/><g transform="translate(249.6 162.6) scale(0.7)" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></g>
+<text x="258" y="202.9" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">Kho</text>
+<text x="258" y="221.6" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">siêu dữ</text>
+<text x="258" y="240.4" font-size="15" fill="#0f172a" font-weight="bold" text-anchor="middle">liệu</text>
+<polyline points="62,254 62,407" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
+<polyline points="160,254 160,407" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
+<polyline points="258,254 258,407" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4 4"/>
+<text x="111" y="282.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Lưu dữ liệu</text>
+<polyline points="63,296 157,296" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="111" y="324.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Trả mã</text>
+<text x="111" y="343.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">UUID</text>
+<polyline points="159,357 65,357" fill="none" stroke="#334155" stroke-width="1.8" stroke-dasharray="5 4" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<text x="160" y="385.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="middle">Ghi siêu dữ liệu</text>
+<polyline points="63,399 255,399" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
+<rect x="8" y="431" width="304" height="262" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<text x="20" y="459.2" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Ba điều rút ra</text>
+<rect x="20" y="476" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="499" r="11" fill="#16a34a"/>
+<polyline points="37.9,499.4 41.7,503.4 48.5,495" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="502.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Dữ liệu lưu trước, siêu dữ</text>
+<text x="64" y="521.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">liệu ghi sau.</text>
+<rect x="20" y="547" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="570" r="11" fill="#16a34a"/>
+<polyline points="37.9,570.4 41.7,574.4 48.5,566" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="573.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Sự cố giữa hai bước để lại dữ</text>
+<text x="64" y="592.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">liệu mồ côi.</text>
+<rect x="20" y="618" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="641" r="11" fill="#16a34a"/>
+<polyline points="37.9,641.4 41.7,645.4 48.5,637" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="644.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Dữ liệu mồ côi được dọn</text>
+<text x="64" y="663.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">bằng cách quét định kỳ.</text>
+</g>
+</svg>

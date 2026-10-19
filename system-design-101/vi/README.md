@@ -348,6 +348,9 @@ Các bài chưa viết của nhóm này không có trong danh sách; số thứ 
 13. [Chat một-một: vì sao tin nhắn cần mã thứ tự và đường đi cho người ngoại tuyến](lessons/sd-12-013/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
 14. [Một lệnh đi qua sàn chứng khoán: đường găng và khớp lệnh lặp lại được](lessons/sd-12-014/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
 15. [Thông báo đẩy tới điện thoại: thẻ đăng ký, hàng đợi và việc dọn thẻ cũ](lessons/sd-12-015/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
+16. [Tải một tệp lên kho đối tượng kiểu S3: dữ liệu và siêu dữ liệu ở hai nơi](lessons/sd-12-016/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
+17. [Tìm quán gần bạn bằng geohash: chia ô, so tiền tố, và chỗ nó sót](lessons/sd-12-017/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
+18. [Công cụ tìm kiếm hoạt động thế nào: thu thập, lập chỉ mục và phục vụ kết quả](lessons/sd-12-018/lesson.md) — bài mới viết tại repo này (có thử nghiệm riêng); chờ review kỹ thuật.
 
 ## DevOps và CI/CD
 

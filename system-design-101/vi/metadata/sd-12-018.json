@@ -1,0 +1,75 @@
+{
+  "id": "sd-12-018",
+  "title_vi": "Công cụ tìm kiếm hoạt động thế nào: thu thập, lập chỉ mục và phục vụ kết quả",
+  "language": "vi",
+  "kind": "flow",
+  "content_status": "draft",
+  "source_ref": "sd-12-018",
+  "source_snapshot": {
+    "repository": "ByteByteGoHq/system-design-101",
+    "commit_sha": "b28380a4710c5ec9638ec037d4168e288f334cba",
+    "path": "data/guides/how-do-search-engines-work.md",
+    "snapshot_url": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-search-engines-work.md",
+    "blob_identity_status": "verified_against_retrieved_body",
+    "note": "Pinned commit/path body read from raw.githubusercontent.com at the pinned commit and hashed as a Git blob; computed OID matches the source map. Non-empty source was read; no source-image bytes used.",
+    "blob_sha": "7342179cf9cca0e463a20934fb711bc4ef969d69",
+    "retrieved_body_sha256": "cd04d99921ed769d6045e93f2d3ae725e80db153d9a75f940c57d81c2388e63b",
+    "retrieved_body_bytes": 1827
+  },
+  "diagram": "../diagrams/sd-12-018-main.svg",
+  "prerequisites": [],
+  "related": [],
+  "verification": {
+    "source_body": {
+      "status": "read",
+      "checked_on": "2026-10-19"
+    },
+    "claims": {
+      "status": "pending",
+      "reason": "claims_rest_on_the_source_body_and_the_authors_general_knowledge_not_on_an_independent_reference"
+    },
+    "technical_review": {
+      "status": "pending",
+      "reason": "awaiting_technical_review_in_destination_repository"
+    },
+    "mobile": {
+      "status": "pending",
+      "reason": "figure drawn by scripts/figures; the non-browser python3 -m scripts.figures check passes, but the browser measurement (--browser) and a whole-lesson check at 320, 375 and 430 px were not run because the sandbox browser build is unavailable"
+    },
+    "user_testing": {
+      "status": "not_performed"
+    }
+  },
+  "claims": [
+    {
+      "claim_vi": "The source describes three processes: crawling (crawlers start from seed pages and follow links), indexing (extract keywords, content type, freshness, language and other signals into an index) and serving results (query analysis, retrieval from the index, ranking).",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-search-engines-work.md",
+      "section": "Whole body",
+      "verified_by": "Source body read at the pinned commit."
+    },
+    {
+      "claim_vi": "Own experiment, 2026-10-19, Python 3: synthetic web of 20,000 pages, 100 words each from a 2,000-word Zipf vocabulary, 2 to 8 links per page (70 percent to popular pages); breadth-first crawl from 3 seeds found pages per layer 3, 15, 76, 360, 1,658, 5,552, 7,446, 2,888, 481, 54, 5, 1; 18,539 of 20,000 reached, 1,461 unreachable.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-search-engines-work.md",
+      "section": "Thử nghiệm: thu thập",
+      "verified_by": "Script run in the session with a fixed seed; results copied from output."
+    },
+    {
+      "claim_vi": "Own experiment: with an inverted index of 2,000 terms, queries of two words matched 13,906, 280 and 18 pages; scanning every page took about 54.2, 69.0 and 66.4 ms and index intersection about 11.5, 1.1 and 0.2 ms on the session machine; a tf times idf style score ranks matches.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-search-engines-work.md",
+      "section": "Thử nghiệm: chỉ mục và xếp hạng",
+      "verified_by": "Script run in the session; timings are machine specific and used only to compare columns."
+    },
+    {
+      "claim_vi": "The advice for an unlinked new page (get a known page to link to it, or tell the search engine its address) is the author's general knowledge and was not checked against any search engine's documentation.",
+      "source": "https://github.com/ByteByteGoHq/system-design-101/blob/b28380a4710c5ec9638ec037d4168e288f334cba/data/guides/how-do-search-engines-work.md",
+      "section": "Nhìn hình trả lời",
+      "verified_by": "Author's general knowledge, not checked against the primary document in this session (the egress proxy allows GitHub only)."
+    }
+  ],
+  "design_notes_vi": "Khung một là ba việc nối nhau; khung hai là ba ghi chú từ thử nghiệm. Hai bảng thử nghiệm nằm trong bài.",
+  "source_deviations": [
+    "The source describes the three processes without numbers; the lesson keeps them and adds three experiments on a synthetic web.",
+    "The scoring rule in the experiment is the author's simple choice and is not claimed to match any real engine."
+  ],
+  "editorial_note_vi": "Bài mới viết tại repo này (gói W19), giữ ở trạng thái draft chờ review kỹ thuật. Chưa user testing hoặc phê duyệt phát hành."
+}

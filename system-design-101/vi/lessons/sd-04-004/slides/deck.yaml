@@ -1,5 +1,22 @@
 id: sd-04-004
-status: doing
+status: done
 owner: claude/sd101-decks-w21-sd04
 claimed_at: '2026-10-19T20:20:19Z'
-heartbeat_at: '2026-10-19T20:23:55Z'
+done_at: '2026-10-19T20:35:45Z'
+moda_canvas: cvs_52QHVMPQ4D90HSKDDFZ7HQPVMT
+moda_url: https://moda.app/canvas/a2bc774b-5c8d-4823-99b5-aff9e37b6e9a?source=agent
+slide_count: 9
+size: 1920x1080
+exports: pending
+layouts:
+  slides:
+  - card-grid
+  - connection-diagram
+  - lookup-table
+  - sequence-diagram
+  - timeline
+  - card-grid
+  - two-column-comparison
+  - one-highlighted-sentence
+  - card-grid
+  first_concept: 3

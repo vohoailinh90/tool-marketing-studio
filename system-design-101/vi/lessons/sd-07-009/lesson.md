@@ -21,12 +21,13 @@ Bài gọi các ngân hàng theo vai (ngân hàng thu, ngân hàng phát hành);
 **Chuẩn bị của Bob.** Bob muốn mở tài khoản và đưa số điện thoại, rồi xác minh số bằng OTP. Anh đặt một địa chỉ thanh toán ảo (VPA). Ứng dụng thanh toán của anh tạo địa chỉ đó với ngân hàng thu; ngân hàng trả lại địa chỉ, và ứng dụng đưa nó cho Bob.
 Tiếp theo anh liên kết tài khoản ngân hàng của mình với địa chỉ đó: yêu cầu được chuyển tới NPCI. NPCI đóng vai bộ chuyển mạch giữa các ngân hàng thu và các ngân hàng phát hành, và từ địa chỉ tra ra chi tiết tài khoản ở từng ngân hàng phát hành. Bob xác thực bằng chi tiết tài khoản và đặt mã PIN, dùng cho xác thực hai yếu tố; yêu cầu này đi thẳng tới ngân hàng phát hành.
 
-**Alice trả Bob 100 rupee.** Alice nhập địa chỉ UPI của Bob và số tiền 100 rupee. Ứng dụng của Alice kiểm tra rồi chuyển yêu cầu tới NPCI qua một ngân hàng. NPCI nhờ ngân hàng của Bob tra chi tiết của địa chỉ đó. Rồi NPCI trừ 100 rupee ở tài khoản ngân hàng của Alice, và ra lệnh cho ngân hàng của Bob cộng 100 rupee vào tài khoản của Bob. Khi thành công, NPCI báo cho các ứng dụng thanh toán, qua các ngân hàng thu.
+**Alice trả Bob 100 rupee.** Alice nhập địa chỉ UPI của Bob và số tiền 100 rupee. Ứng dụng của Alice kiểm tra rồi chuyển yêu cầu tới NPCI qua một ngân hàng. NPCI nhờ ngân hàng của Bob tra chi tiết của địa chỉ đó. Rồi NPCI gửi yêu cầu trừ tiền tới ngân hàng của Alice; chính ngân hàng đó trừ 100 rupee trong tài khoản của Alice và báo lại. Sau đó NPCI gửi yêu cầu cộng tiền tới ngân hàng của Bob, và ngân hàng của Bob cộng 100 rupee vào tài khoản của Bob rồi báo lại. Khi thành công, NPCI báo cho các ứng dụng thanh toán, qua các ngân hàng thu.
+Nguồn viết gọn là "NPCI trừ tiền ở tài khoản của Alice"; thực ra NPCI chỉ chuyển yêu cầu và nhận xác nhận, còn việc ghi sổ tài khoản của khách là của ngân hàng giữ tài khoản đó.
 
 ## Giới hạn cần nhớ
 
 Bài nguồn là một bản tóm tắt: nó không nói điều gì xảy ra nếu một bước lỗi giữa chừng (đã trừ tiền Alice mà chưa cộng cho Bob), cũng không nói về hạn mức hay phí; bài này không bổ sung những điều đó.
-Con số 60% là của nguồn, tại thời điểm nguồn viết; bài chưa kiểm tra nó. Phần giải nghĩa PIN và 2FA là kiến thức chung của người biên soạn.
+Con số 60% là của nguồn, tại thời điểm nguồn viết; bài chưa kiểm tra nó. Phần giải nghĩa PIN và 2FA, và việc chỉ rõ ngân hàng nào trừ, ngân hàng nào cộng, là kiến thức chung của người biên soạn.
 
 ## Nhìn hình trả lời
 

@@ -7,17 +7,17 @@
 ## Đọc hình
 
 **Ở ngân hàng.** Bob đến Bank of America, mở tài khoản và gửi 100 đô la. Hệ thống ví của ngân hàng tạo tài khoản B1234 cho anh, tiền mặt vào kho của ngân hàng và ví của anh có 100 đô la. Nếu muốn dùng dịch vụ của Citibank, anh phải làm lại từ đầu.
-Khi Bob dùng ứng dụng chuyển 50 đô la cho Alice, người có tài khoản C512 ở Citibank, sổ trừ 50 ở B1234 và cộng 50 vào C512 ngay. Nhưng tiền thật chưa di chuyển: nó chỉ di chuyển khi hai ngân hàng đối chiếu và thanh toán bù trừ mọi giao dịch vào cuối ngày. Cuối cùng Bob rút 50 còn lại: trừ B1234, anh nhận tiền mặt.
+Khi Bob dùng ứng dụng chuyển 50 đô la cho Alice, người có tài khoản C512 ở Citibank, sổ trừ 50 ở B1234 và cộng 50 vào C512 ngay. Nhưng theo mô hình gọn của nguồn, tiền thật chưa di chuyển: nó chỉ di chuyển khi hai ngân hàng đối chiếu và thanh toán bù trừ mọi giao dịch vào cuối ngày. Thực tế, lúc nào ngân hàng nhận ghi tiền và lúc nào hai ngân hàng thanh toán với nhau tùy hệ thống chuyển tiền mà họ dùng: có hệ thống thanh toán ngay từng giao dịch, có hệ thống gom giao dịch thành nhiều đợt trong ngày. Cuối cùng Bob rút 50 còn lại: trừ B1234, anh nhận tiền mặt.
 
 **Trên blockchain.** Không có tiền mặt, chỉ có tiền mã hóa. Bob tạo một địa chỉ làm nơi nhận và cất khóa riêng trong ví tiền mã hóa như Metamask. Để chuyển, anh nhập địa chỉ của Alice, gửi 2 ether và ký giao dịch bằng khóa riêng để cho phép chuyển.
 Khi giao dịch được xác nhận trên blockchain, địa chỉ của Bob còn 8 ether và của Alice có 101 ether. Nguồn không nói số dư lúc đầu; con số 10 và 99 suy ra từ hai số cuối và số tiền chuyển.
 
-**Điểm khác.** Blockchain là sổ cái phân tán, đưa ra một giao diện chung cho các thao tác thường làm với ví. Thay vì mở nhiều tài khoản ở nhiều ngân hàng, bạn chỉ cần một địa chỉ. Giao dịch được xác nhận gần như theo thời gian thực, khỏi chờ đối chiếu cuối ngày.
+**Điểm khác.** Blockchain là sổ cái phân tán, đưa ra một giao diện chung cho các thao tác thường làm với ví. Thay vì mở nhiều tài khoản ở nhiều ngân hàng, bạn chỉ cần một địa chỉ. Giao dịch được xác nhận gần như theo thời gian thực, khỏi chờ một đợt đối chiếu giữa các ngân hàng như trong mô hình trên.
 Từ đó nguồn cho rằng có thể gộp dịch vụ ví của nhiều ngân hàng thành một dịch vụ toàn cầu. Đó là nhận định của nguồn, không phải điều đã xảy ra.
 
 ## Giới hạn cần nhớ
 
-Bài nguồn so sánh ở mức ý tưởng và không nhắc ba điều sau, vốn là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu của một blockchain cụ thể: giao dịch trên blockchain thường phải trả phí và vẫn cần thời gian để được xác nhận ("gần thời gian thực" không phải "tức thì"); khóa riêng do bạn tự giữ, nên mất khóa là mất quyền dùng địa chỉ đó; và con số của ví dụ (8 và 101 ether) không kể đến phí.
+Chuyện "đối chiếu cuối ngày" là mô hình gọn của nguồn, không đúng cho mọi hệ thống chuyển tiền giữa các ngân hàng. Bài nguồn so sánh ở mức ý tưởng và không nhắc ba điều sau, vốn là kiến thức chung của người biên soạn, chưa đối chiếu với tài liệu của một blockchain cụ thể: giao dịch trên blockchain thường phải trả phí và vẫn cần thời gian để được xác nhận ("gần thời gian thực" không phải "tức thì"); khóa riêng do bạn tự giữ, nên mất khóa là mất quyền dùng địa chỉ đó; và con số của ví dụ (8 và 101 ether) không kể đến phí.
 Ngân hàng cũng có điều blockchain không có: ngân hàng biết tài khoản thuộc về ai và chịu trách nhiệm với khách của mình. Bài không so hơn thua, chỉ chỉ ra hai thiết kế đặt trách nhiệm ở hai nơi khác nhau.
 
 ## Nhìn hình trả lời

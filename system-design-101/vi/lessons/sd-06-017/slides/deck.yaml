@@ -5,7 +5,7 @@ claimed_at: '2026-10-19T20:20:20Z'
 done_at: '2026-10-19T20:28:09Z'
 moda_canvas: cvs_5YGRE5D6AV95SSG67XW8A5E09T
 moda_url: https://moda.app/canvas/be861c56-995b-4973-9818-fde21457013a
-slide_count: 8
+slide_count: 9
 size: 1920x1080
 exports: badged
 layouts:
@@ -14,6 +14,7 @@ layouts:
   - two-column-comparison
   - card-grid
   - connection-diagram
+  - layers
   - numbered-rows
   - flow
   - layers

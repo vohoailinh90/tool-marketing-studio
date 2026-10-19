@@ -2,7 +2,7 @@
   "id": "sd-07-002",
   "title": "Ví ở ngân hàng và ví blockchain",
   "subtitle": "Ai giữ sổ, khi nào tiền thật sự chuyển.",
-  "desc": "Ba khung. Khung một, ở ngân hàng: gửi tiền mở tài khoản riêng ở từng ngân hàng; chuyển khoản trừ và cộng ngay trong sổ, còn lúc tiền thật chuyển giữa hai ngân hàng thì tùy hệ thống chuyển tiền (nguồn lấy ví dụ đối chiếu cuối ngày); rút tiền trừ tài khoản và nhận tiền mặt. Khung hai, trên blockchain: tạo địa chỉ và giữ khóa riêng trong ví; chuyển bằng cách nhập địa chỉ người nhận và ký bằng khóa riêng; khi giao dịch được xác nhận, số dư hai địa chỉ đổi theo. Khung ba, điểm khác: một sổ cái chung thay cho nhiều sổ riêng, một địa chỉ thay cho nhiều tài khoản, xác nhận gần thời gian thực.",
+  "desc": "Ba khung. Khung một, ở ngân hàng: gửi tiền mở tài khoản riêng ở từng ngân hàng; chuyển khoản trừ và cộng ngay trong sổ, còn lúc tiền thật chuyển giữa hai ngân hàng thì tùy hệ thống chuyển tiền (nguồn lấy ví dụ đối chiếu cuối ngày); rút tiền trừ tài khoản và nhận tiền mặt. Khung hai, trên blockchain: tạo địa chỉ và giữ khóa riêng trong ví; chuyển bằng cách nhập địa chỉ người nhận và ký bằng khóa riêng; khi giao dịch được xác nhận, số dư hai địa chỉ đổi theo. Khung ba, điểm khác: trên cùng một mạng, một sổ cái chung thay cho nhiều sổ riêng và một địa chỉ thay cho nhiều tài khoản; khác mạng thì khác sổ, khác địa chỉ; xác nhận gần thời gian thực.",
   "sections": [
     {
       "kind": "steps",
@@ -44,8 +44,8 @@
       "kind": "notes",
       "heading": "Điểm khác",
       "items": [
-        "Một sổ cái chung thay cho sổ riêng của từng ngân hàng.",
-        "Một địa chỉ thay cho nhiều tài khoản ở nhiều nơi.",
+        "Sổ cái chung của một mạng thay cho sổ riêng của từng ngân hàng.",
+        "Trên một mạng, một địa chỉ thay cho nhiều tài khoản; khác mạng thì khác địa chỉ.",
         "Xác nhận gần thời gian thực, không chờ đợt đối chiếu giữa các ngân hàng."
       ]
     }

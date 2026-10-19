@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1260" viewBox="0 0 320 1260" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="1300" viewBox="0 0 320 1300" role="img" aria-labelledby="title desc">
 <title id="title">Ví ở ngân hàng và ví blockchain</title>
-<desc id="desc">Ba khung. Khung một, ở ngân hàng: gửi tiền mở tài khoản riêng ở từng ngân hàng; chuyển khoản trừ và cộng ngay trong sổ, còn lúc tiền thật chuyển giữa hai ngân hàng thì tùy hệ thống chuyển tiền (nguồn lấy ví dụ đối chiếu cuối ngày); rút tiền trừ tài khoản và nhận tiền mặt. Khung hai, trên blockchain: tạo địa chỉ và giữ khóa riêng trong ví; chuyển bằng cách nhập địa chỉ người nhận và ký bằng khóa riêng; khi giao dịch được xác nhận, số dư hai địa chỉ đổi theo. Khung ba, điểm khác: một sổ cái chung thay cho nhiều sổ riêng, một địa chỉ thay cho nhiều tài khoản, xác nhận gần thời gian thực.</desc>
+<desc id="desc">Ba khung. Khung một, ở ngân hàng: gửi tiền mở tài khoản riêng ở từng ngân hàng; chuyển khoản trừ và cộng ngay trong sổ, còn lúc tiền thật chuyển giữa hai ngân hàng thì tùy hệ thống chuyển tiền (nguồn lấy ví dụ đối chiếu cuối ngày); rút tiền trừ tài khoản và nhận tiền mặt. Khung hai, trên blockchain: tạo địa chỉ và giữ khóa riêng trong ví; chuyển bằng cách nhập địa chỉ người nhận và ký bằng khóa riêng; khi giao dịch được xác nhận, số dư hai địa chỉ đổi theo. Khung ba, điểm khác: trên cùng một mạng, một sổ cái chung thay cho nhiều sổ riêng và một địa chỉ thay cho nhiều tài khoản; khác mạng thì khác sổ, khác địa chỉ; xác nhận gần thời gian thực.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
-<rect width="320" height="1260" fill="#f8fafc"/>
+<rect width="320" height="1300" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">
 <text x="16" y="34" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">Ví ở ngân hàng và ví</text>
 <text x="16" y="58" font-size="20" fill="#0f172a" font-weight="bold" text-anchor="start">blockchain</text>
@@ -57,23 +57,25 @@
 <text x="70" y="908.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">nhận, số dư hai địa chỉ đổi</text>
 <text x="70" y="928.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">theo.</text>
 <polyline points="46,819 46,837" fill="none" stroke="#334155" stroke-width="1.8" stroke-linejoin="round" marker-end="url(#arrow)"/>
-<rect x="8" y="970" width="304" height="282" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+<rect x="8" y="970" width="304" height="322" rx="14" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
 <text x="20" y="998.1" font-size="17" fill="#0f172a" font-weight="bold" text-anchor="start">Điểm khác</text>
-<rect x="20" y="1015" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<rect x="20" y="1015" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
 <circle cx="43" cy="1038" r="11" fill="#16a34a"/>
 <polyline points="37.9,1038.4 41.7,1042.4 48.5,1034" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="1041.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Một sổ cái chung thay cho sổ</text>
-<text x="64" y="1060.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">riêng của từng ngân hàng.</text>
-<rect x="20" y="1086" width="280" height="63" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
-<circle cx="43" cy="1109" r="11" fill="#16a34a"/>
-<polyline points="37.9,1109.4 41.7,1113.4 48.5,1105" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="1112.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Một địa chỉ thay cho nhiều</text>
-<text x="64" y="1131.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">tài khoản ở nhiều nơi.</text>
-<rect x="20" y="1157" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
-<circle cx="43" cy="1180" r="11" fill="#16a34a"/>
-<polyline points="37.9,1180.4 41.7,1184.4 48.5,1176" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="64" y="1183.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Xác nhận gần thời gian thực,</text>
-<text x="64" y="1202.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">không chờ đợt đối chiếu giữa</text>
-<text x="64" y="1222.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">các ngân hàng.</text>
+<text x="64" y="1041.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Sổ cái chung của một mạng</text>
+<text x="64" y="1060.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thay cho sổ riêng của từng</text>
+<text x="64" y="1080.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">ngân hàng.</text>
+<rect x="20" y="1106" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1129" r="11" fill="#16a34a"/>
+<polyline points="37.9,1129.4 41.7,1133.4 48.5,1125" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1132.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Trên một mạng, một địa chỉ</text>
+<text x="64" y="1151.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">thay cho nhiều tài khoản;</text>
+<text x="64" y="1171.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">khác mạng thì khác địa chỉ.</text>
+<rect x="20" y="1197" width="280" height="83" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="1.5"/>
+<circle cx="43" cy="1220" r="11" fill="#16a34a"/>
+<polyline points="37.9,1220.4 41.7,1224.4 48.5,1216" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="64" y="1223.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">Xác nhận gần thời gian thực,</text>
+<text x="64" y="1242.8" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">không chờ đợt đối chiếu giữa</text>
+<text x="64" y="1262.2" font-size="15" fill="#0f172a" font-weight="normal" text-anchor="start">các ngân hàng.</text>
 </g>
 </svg>

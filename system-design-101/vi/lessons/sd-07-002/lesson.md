@@ -1,8 +1,8 @@
 # Ví số ở ngân hàng và ví trên blockchain
 
-**Ví ở ngân hàng là một tài khoản trong sổ riêng của từng ngân hàng, còn ví trên blockchain là một địa chỉ trên một sổ cái chung. Khác nhau ở chỗ ai giữ sổ, tiền thật sự chuyển khi nào, và bạn phải mở ví bao nhiêu lần.**
+**Ví ở ngân hàng là một tài khoản trong sổ riêng của từng ngân hàng, còn ví trên blockchain là một địa chỉ trên sổ cái chung của một mạng blockchain. Khác nhau ở chỗ ai giữ sổ, tiền thật sự chuyển khi nào, và bạn phải mở ví bao nhiêu lần.**
 
-![Ba khung. Khung một, ở ngân hàng: gửi tiền mở tài khoản riêng ở từng ngân hàng; chuyển khoản trừ và cộng ngay trong sổ, còn lúc tiền thật chuyển giữa hai ngân hàng thì tùy hệ thống chuyển tiền (nguồn lấy ví dụ đối chiếu cuối ngày); rút tiền trừ tài khoản và nhận tiền mặt. Khung hai, trên blockchain: tạo địa chỉ và giữ khóa riêng trong ví; chuyển bằng cách nhập địa chỉ người nhận và ký bằng khóa riêng; khi giao dịch được xác nhận, số dư hai địa chỉ đổi theo. Khung ba, điểm khác: một sổ cái chung thay cho nhiều sổ riêng, một địa chỉ thay cho nhiều tài khoản, xác nhận gần thời gian thực.](../../diagrams/sd-07-002-main.svg)
+![Ba khung. Khung một, ở ngân hàng: gửi tiền mở tài khoản riêng ở từng ngân hàng; chuyển khoản trừ và cộng ngay trong sổ, còn lúc tiền thật chuyển giữa hai ngân hàng thì tùy hệ thống chuyển tiền (nguồn lấy ví dụ đối chiếu cuối ngày); rút tiền trừ tài khoản và nhận tiền mặt. Khung hai, trên blockchain: tạo địa chỉ và giữ khóa riêng trong ví; chuyển bằng cách nhập địa chỉ người nhận và ký bằng khóa riêng; khi giao dịch được xác nhận, số dư hai địa chỉ đổi theo. Khung ba, điểm khác: trên cùng một mạng, một sổ cái chung thay cho nhiều sổ riêng và một địa chỉ thay cho nhiều tài khoản; khác mạng thì khác sổ, khác địa chỉ; xác nhận gần thời gian thực.](../../diagrams/sd-07-002-main.svg)
 
 ## Đọc hình
 
@@ -12,7 +12,7 @@ Khi Bob dùng ứng dụng chuyển 50 đô la cho Alice, người có tài kho�
 **Trên blockchain.** Không có tiền mặt, chỉ có tiền mã hóa. Bob tạo một địa chỉ làm nơi nhận và cất khóa riêng trong ví tiền mã hóa như Metamask. Để chuyển, anh nhập địa chỉ của Alice, gửi 2 ether và ký giao dịch bằng khóa riêng để cho phép chuyển.
 Khi giao dịch được xác nhận trên blockchain, địa chỉ của Bob còn 8 ether và của Alice có 101 ether. Nguồn không nói số dư lúc đầu; con số 10 và 99 suy ra từ hai số cuối và số tiền chuyển.
 
-**Điểm khác.** Blockchain là sổ cái phân tán, đưa ra một giao diện chung cho các thao tác thường làm với ví. Thay vì mở nhiều tài khoản ở nhiều ngân hàng, bạn chỉ cần một địa chỉ. Giao dịch được xác nhận gần như theo thời gian thực, khỏi chờ một đợt đối chiếu giữa các ngân hàng như trong mô hình trên.
+**Điểm khác.** Blockchain là sổ cái phân tán, đưa ra một giao diện chung cho các thao tác thường làm với ví. Thay vì mở nhiều tài khoản ở nhiều ngân hàng, trên cùng một mạng bạn chỉ cần một địa chỉ. Mỗi mạng blockchain là một sổ cái riêng: tài sản trên Bitcoin và trên Ethereum nằm ở hai sổ khác nhau, cần hai địa chỉ khác nhau và không chuyển thẳng qua lại được. Giao dịch được xác nhận gần như theo thời gian thực, khỏi chờ một đợt đối chiếu giữa các ngân hàng như trong mô hình trên.
 Từ đó nguồn cho rằng có thể gộp dịch vụ ví của nhiều ngân hàng thành một dịch vụ toàn cầu. Đó là nhận định của nguồn, không phải điều đã xảy ra.
 
 ## Giới hạn cần nhớ
@@ -27,8 +27,8 @@ Trong cả hai cách, ai là bên nhìn thấy "bạn có bao nhiêu tiền"? V�
 <details>
 <summary>Xem đáp án</summary>
 
-Ở ngân hàng, mỗi ngân hàng giữ sổ của mình và chỉ ngân hàng đó biết số dư của bạn ở đó. Khi chuyển sang ngân hàng khác, mỗi bên sửa sổ riêng của mình ngay, còn tiền thật di chuyển sau, lúc hai ngân hàng đối chiếu và thanh toán bù trừ cuối ngày. Vì vậy có một khoảng thời gian sổ đã đổi mà tiền thật chưa đổi.
-Trên blockchain, mọi người dùng chung một sổ cái và số dư của một địa chỉ nằm ngay trong sổ cái đó; chuyển xong và được xác nhận là sổ đã đổi, nên không có khoảng chờ đối chiếu cuối ngày.
+Ở ngân hàng, mỗi ngân hàng giữ sổ của mình và chỉ ngân hàng đó biết số dư của bạn ở đó. Khi chuyển sang ngân hàng khác, mỗi bên sửa sổ riêng của mình, còn lúc tiền thật di chuyển giữa hai ngân hàng tùy hệ thống chuyển tiền. Trong mô hình gọn của nguồn, hai ngân hàng đối chiếu và thanh toán bù trừ cuối ngày, nên có một khoảng thời gian sổ đã đổi mà tiền thật chưa đổi; hệ thống thanh toán ngay từng giao dịch rút ngắn hoặc xóa khoảng đó, hệ thống chia nhiều đợt trong ngày thì làm nó ngắn lại.
+Trên blockchain, mọi người trên cùng một mạng dùng chung một sổ cái và số dư của một địa chỉ nằm ngay trong sổ cái của mạng đó; chuyển xong và được xác nhận là sổ đã đổi, nên không có khoảng chờ đối chiếu cuối ngày.
 
 </details>
 

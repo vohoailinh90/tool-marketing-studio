@@ -26,7 +26,7 @@ Ngày 2026-10-19, một chương trình mô phỏng nhỏ (không có mạng th�
 | Tăng gấp đôi (2, 4, ... trần 64), không ngẫu nhiên | 900 | 100 | 5400 | 254 |
 | Tăng gấp đôi, cộng ngẫu nhiên từ 0 tới mức đó | 1000 | 0 | 2747 | 21 |
 
-Kết quả giải thích vì sao "tăng dần" chưa đủ: nếu mọi máy bắt đầu cùng nhịp, chúng cùng chờ rồi cùng quay lại thành những đợt đồng bộ, mỗi đợt vẫn lớn hơn sức máy chủ, nên chỉ thêm thời gian chờ chứ không bớt đợt. Ngẫu nhiên rải các lần thử ra theo thời gian, nên mỗi nhịp máy chủ nhận ít hơn mức nó chịu được.
+Kết quả giải thích vì sao "tăng dần" chưa đủ: nếu mọi máy bắt đầu cùng nhịp, chúng cùng chờ rồi cùng quay lại thành những đợt đồng bộ, mỗi đợt vẫn lớn hơn sức máy chủ, nên chỉ thêm thời gian chờ chứ không bớt đợt. Ngẫu nhiên rải các lần thử ra theo thời gian nên các đợt nhỏ đi và tản ra. Nó không làm mọi nhịp nằm dưới sức máy chủ: trong lần chạy này 2747 yêu cầu gồm 1000 lần đầu và 1747 lần thử lại, trong đó 900 lần thử lại thành công nên 847 lần vẫn bị từ chối. Điều thay đổi là mọi máy đều xong trong ngân sách thử lại, và tổng số yêu cầu gần giảm một nửa so với 5400.
 
 ## Giới hạn cần nhớ
 

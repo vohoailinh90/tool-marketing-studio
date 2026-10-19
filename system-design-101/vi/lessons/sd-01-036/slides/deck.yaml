@@ -1,5 +1,21 @@
 id: sd-01-036
-status: doing
+status: done
 owner: claude/sd101-slides-sd01-0210
 claimed_at: '2026-10-19T00:50:15Z'
-heartbeat_at: '2026-10-19T00:54:15Z'
+done_at: '2026-10-19T00:54:19Z'
+moda_canvas: cvs_4RGZD893G285SBH7CKGM5FDAD0
+moda_url: https://moda.app/canvas/9887da84-8e02-4172-b89d-93850af6a9a0
+slide_count: 8
+size: 1920x1080
+exports: pending
+layouts:
+  slides:
+  - connection-diagram
+  - one-highlighted-sentence
+  - sequence-diagram
+  - flow
+  - two-column-comparison
+  - one-highlighted-sentence
+  - lookup-table
+  - card-grid
+  first_concept: 3

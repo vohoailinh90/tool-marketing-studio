@@ -1,0 +1,28 @@
+{
+  "id": "sd-12-009",
+  "title": "Soạn thảo chung thời gian thực",
+  "subtitle": "Hợp nhất các thao tác cùng lúc.",
+  "desc": "Hai khung. Khung một, năm thành phần xử lý thao tác soạn thảo: máy chủ WebSocket nhận thao tác từ máy khách, hàng đợi thông điệp lưu các thao tác, máy chủ thao tác tệp lấy thao tác ra và biến đổi, kho lưu trữ giữ siêu dữ liệu, nội dung và thao tác. Khung hai, ba thuật toán hợp nhất: OT biến đổi thao tác, DS đồng bộ chênh lệch, CRDT dùng kiểu dữ liệu tự hợp nhất.",
+  "sections": [
+    {
+      "kind": "parts",
+      "heading": "Các thành phần",
+      "items": [
+        {"name": "Máy chủ WebSocket", "role": "Nhận thao tác từ máy khách.", "icon": "wifi"},
+        {"name": "Hàng đợi thông điệp", "role": "Lưu các thao tác.", "icon": "inbox"},
+        {"name": "Máy chủ thao tác tệp", "role": "Biến đổi thao tác.", "icon": "server"},
+        {"name": "Kho lưu trữ", "role": "Siêu dữ liệu, nội dung, thao tác.", "icon": "database"}
+      ],
+      "flow": [[0, 1], [1, 2], [2, 3]]
+    },
+    {
+      "kind": "notes",
+      "heading": "Ba hướng hợp nhất",
+      "items": [
+        "OT: biến đổi thao tác.",
+        "DS: đồng bộ chênh lệch.",
+        "CRDT: kiểu dữ liệu tự hợp nhất."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "id": "sd-12-010",
+  "title": "Ví, sổ cái, tệp quyết toán",
+  "subtitle": "Ba nơi giữ số tiền phải khớp nhau.",
+  "desc": "Hai khung. Khung một, đường đi của một khoản thanh toán: dịch vụ thanh toán nhận lệnh, gọi nhà cung cấp thanh toán, cập nhật ví người bán, rồi ghi một dòng vào sổ cái. Khung hai, ba chỗ phải khớp: ví khớp với sổ cái, sổ cái khớp với tệp quyết toán mỗi đêm, và việc cập nhật ví cùng ghi sổ nên làm trong một giao dịch.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Một khoản thanh toán",
+      "items": [
+        {"title": "Nhận lệnh", "text": "Dịch vụ thanh toán lưu sự kiện."},
+        {"title": "Gọi nhà cung cấp", "text": "Bộ thực thi gọi PSP."},
+        {"title": "Cập nhật ví", "text": "Ghi số tiền của người bán."},
+        {"title": "Ghi sổ cái", "text": "Thêm một dòng mới."}
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Ba chỗ phải khớp",
+      "items": [
+        "Ví khớp với sổ cái.",
+        "Sổ cái khớp với tệp quyết toán mỗi đêm.",
+        "Cập nhật ví và ghi sổ nên làm trong một giao dịch."
+      ]
+    }
+  ]
+}

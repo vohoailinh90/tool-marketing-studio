@@ -1,0 +1,46 @@
+{
+  "id": "sd-08-003",
+  "title": "Đọc một sơ đồ lớp",
+  "subtitle": "Hộp ba ngăn, năm kiểu đường nối, và chuyện mã không kể hết.",
+  "desc": "Ba khung. Khung một, một lớp là hộp ba ngăn: tên lớp, thuộc tính, phương thức; dấu cộng, trừ, thăng, ngã trước tên chỉ quyền truy cập. Khung hai, năm kiểu đường nối: kết hợp, tập hợp, hợp thành, kế thừa, hiện thực. Khung ba, quét thư viện chuẩn Python: 288 lớp có 214 đường kế thừa nhưng chỉ 12 chỗ lớp tự tạo một đối tượng của lớp khác; mã cho thấy ai tạo ra đối tượng chứ không cho thấy ai làm nó mất đi, nên chỉ nhìn mã không phân biệt được tập hợp với hợp thành.",
+  "sections": [
+    {
+      "kind": "steps",
+      "heading": "Một lớp là hộp ba ngăn",
+      "items": [
+        {
+          "title": "Tên lớp",
+          "text": "Chữ in đậm ở ngăn trên cùng."
+        },
+        {
+          "title": "Thuộc tính",
+          "text": "Dữ liệu của lớp, ví dụ: giá."
+        },
+        {
+          "title": "Phương thức",
+          "text": "Việc lớp làm được, ví dụ: tinhThue()."
+        }
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Năm kiểu đường nối",
+      "items": [
+        "Kết hợp: biết và dùng lâu dài.",
+        "Tập hợp: có các phần, phần sống riêng được.",
+        "Hợp thành: có các phần, phần mất theo.",
+        "Kế thừa: là một loại của.",
+        "Hiện thực: thực hiện một giao diện."
+      ]
+    },
+    {
+      "kind": "notes",
+      "heading": "Thử: quét thư viện chuẩn Python",
+      "items": [
+        "288 lớp, 214 đường kế thừa.",
+        "Chỉ 12 chỗ lớp tự tạo đối tượng lớp khác.",
+        "Mã cho thấy ai tạo, không cho thấy ai làm mất."
+      ]
+    }
+  ]
+}

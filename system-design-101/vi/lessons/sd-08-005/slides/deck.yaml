@@ -1,0 +1,22 @@
+id: sd-08-005
+status: done
+owner: claude/sd101-lessons-w8-1
+claimed_at: '2026-10-19T04:05:06Z'
+done_at: '2026-10-19T04:26:32Z'
+moda_canvas: cvs_0CDHDEEJMR9YTR4EG18K51RA7K
+moda_url: https://moda.app/canvas/0c6c5ae7-4a98-4fb5-823a-0144ca1c28f3
+slide_count: 9
+size: 1920x1080
+exports: badged
+layouts:
+  slides:
+  - timeline
+  - numbered-rows
+  - card-grid
+  - two-column-comparison
+  - one-big-number
+  - 2x2-matrix
+  - numbered-rows
+  - card-grid
+  - lookup-table
+  first_concept: 3

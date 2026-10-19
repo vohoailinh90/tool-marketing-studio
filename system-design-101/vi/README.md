@@ -209,6 +209,11 @@ Các bài chưa viết của nhóm này không có trong danh sách; số thứ 
 8. [Năm mẫu thiết kế đầu tiên, tìm trong thư viện chuẩn của Python](lessons/sd-08-008/lesson.md) — bài mới viết tại repo này (có phép thử riêng); chờ review kỹ thuật.
 9. [Bảy thuật ngữ của thiết kế hướng miền, và cái giá của một khối dữ liệu quá lớn](lessons/sd-08-009/lesson.md) — bài mới viết tại repo này (có phép đo riêng); chờ review kỹ thuật.
 10. [Tám khái niệm lập trình hướng đối tượng, thử từng cái trong Python](lessons/sd-08-010/lesson.md) — bài mới viết tại repo này (có phép đo riêng); chờ review kỹ thuật.
+1. [Giao tiếp giữa các tiến trình trên Linux](lessons/sd-08-001/lesson.md) — bài mới viết tại repo này (có phép đo riêng); chờ review kỹ thuật.
+2. [Điều phối hay tự phối hợp: các dịch vụ làm việc với nhau thế nào](lessons/sd-08-002/lesson.md) — bài mới viết tại repo này (có mô phỏng đếm riêng); chờ review kỹ thuật.
+3. [Đọc một sơ đồ lớp UML](lessons/sd-08-003/lesson.md) — bài mới viết tại repo này (có phép quét mã riêng); chờ review kỹ thuật.
+4. [Prime Video gộp về một khối: khi ranh giới giữa các thành phần quá đắt](lessons/sd-08-004/lesson.md) — bài mới viết tại repo này (có phép đo riêng); chờ review kỹ thuật.
+5. [Dịch vụ nhỏ không phải đũa thần: khi nào một khối hợp hơn](lessons/sd-08-005/lesson.md) — bài mới viết tại repo này (có phép đo riêng); chờ review kỹ thuật.
 
 ## Công cụ và năng suất
 
@@ -378,6 +383,7 @@ Kiến trúc phần mềm (đã viết một phần) → Phát triển phần m�
 API và phát triển web (còn sd-01-050) → Tình huống thực tế (đã viết một phần) →
 Cơ sở dữ liệu và lưu trữ (đã viết một phần) → Bộ nhớ đệm và hiệu năng (đã viết một phần) → Thanh toán và công nghệ tài chính →
 Kiến trúc phần mềm → Công cụ và năng suất → Phát triển phần mềm (đã viết một phần) →
+Kiến trúc phần mềm (đã viết một phần) → Phát triển phần mềm (đã viết một phần) →
 Đám mây và hệ thống phân tán → Hệ thống hoạt động thế nào? → Bảo mật (đã viết một phần).
 
 Nhóm “Nền tảng máy tính” (cuối mục lục nguồn) được viết trước theo yêu cầu người dùng ngày 2026-10-13; nhóm “API và phát triển web” viết tiếp theo thứ tự source-map.

@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="320" height="1070" viewBox="0 0 320 1070" role="img" aria-labelledby="title desc">
 <title id="title">Discord đổi nơi lưu tin nhắn</title>
-<desc id="desc">Ba bước. MongoDB năm 2015: một bản sao, 100 triệu tin nhắn thì bộ nhớ không chứa nổi. Cassandra: 12 máy năm 2017, 177 máy đầu năm 2022 với hàng nghìn tỷ tin nhắn. ScyllaDB: tương thích Cassandra, viết bằng C++, đi cùng dịch vụ dữ liệu viết bằng Rust. Khung hai: ba lý do Cassandra chậm. Khung ba: độ trễ p99 trước và sau.</desc>
+<desc id="desc">Ba bước. MongoDB năm 2015: một cụm duy nhất, 100 triệu tin nhắn thì bộ nhớ không chứa nổi. Cassandra: 12 máy năm 2017, 177 máy đầu năm 2022 với hàng nghìn tỷ tin nhắn. ScyllaDB: tương thích Cassandra, viết bằng C++, đi cùng dịch vụ dữ liệu viết bằng Rust. Khung hai: ba lý do Cassandra chậm. Khung ba: độ trễ p99 trước và sau.</desc>
 <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#334155" stroke-width="1.5"/></marker></defs>
 <rect width="320" height="1070" fill="#f8fafc"/>
 <g font-family="DejaVu Sans, Arial, sans-serif" fill="#0f172a">

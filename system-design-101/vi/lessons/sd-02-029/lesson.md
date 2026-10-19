@@ -3,7 +3,7 @@
 **Theo bài nguồn, Discord đã đổi nơi lưu tin nhắn hai lần: MongoDB, rồi Cassandra, rồi ScyllaDB; mỗi lần đổi là vì độ trễ không còn đoán trước được.**
 Bài này đọc ba chặng đó theo con số của nguồn, rồi xem vì sao Cassandra chậm dần khi cụm máy lớn lên.
 
-![Ba bước nối nhau. MongoDB, năm 2015: một bản sao duy nhất; khoảng tháng 11 năm 2015 có 100 triệu tin nhắn, bộ nhớ không còn chứa nổi dữ liệu và chỉ mục, độ trễ thất thường. Cassandra: năm 2017 có 12 máy và hàng tỷ tin nhắn; đầu năm 2022 có 177 máy và hàng nghìn tỷ tin nhắn, độ trễ lại thất thường. ScyllaDB: tương thích Cassandra, viết bằng C++, đi cùng một API khối nguyên và một dịch vụ dữ liệu viết bằng Rust. Khung hai: ba lý do Cassandra chậm. Khung ba: độ trễ p99 trước và sau.](../../diagrams/sd-02-029-main.svg)
+![Ba bước nối nhau. MongoDB, năm 2015: một cụm MongoDB duy nhất; khoảng tháng 11 năm 2015 có 100 triệu tin nhắn, bộ nhớ không còn chứa nổi dữ liệu và chỉ mục, độ trễ thất thường. Cassandra: năm 2017 có 12 máy và hàng tỷ tin nhắn; đầu năm 2022 có 177 máy và hàng nghìn tỷ tin nhắn, độ trễ lại thất thường. ScyllaDB: tương thích Cassandra, viết bằng C++, đi cùng một API khối nguyên và một dịch vụ dữ liệu viết bằng Rust. Khung hai: ba lý do Cassandra chậm. Khung ba: độ trễ p99 trước và sau.](../../diagrams/sd-02-029-main.svg)
 
 ## Từ viết tắt
 
@@ -16,7 +16,7 @@ Bài này đọc ba chặng đó theo con số của nguồn, rồi xem vì sao 
 ## Đọc hình
 
 **Ba chặng theo nguồn.**
-1. **MongoDB.** Năm 2015, bản đầu tiên của Discord chạy trên một bản sao MongoDB duy nhất. Khoảng tháng 11 năm 2015, MongoDB giữ 100 triệu tin nhắn và RAM không còn chứa nổi dữ liệu cùng chỉ mục; độ trễ trở nên thất thường, nên tin nhắn phải chuyển sang cơ sở dữ liệu khác. Discord chọn Cassandra.
+1. **MongoDB.** Năm 2015, bản đầu tiên của Discord chạy trên một cụm MongoDB duy nhất (nguồn viết "a single MongoDB replica"). Khoảng tháng 11 năm 2015, MongoDB giữ 100 triệu tin nhắn và RAM không còn chứa nổi dữ liệu cùng chỉ mục; độ trễ trở nên thất thường, nên tin nhắn phải chuyển sang cơ sở dữ liệu khác. Discord chọn Cassandra.
 2. **Cassandra.** Năm 2017, Discord có 12 máy Cassandra và lưu hàng tỷ tin nhắn. Đầu năm 2022, cụm có 177 máy với hàng nghìn tỷ tin nhắn; độ trễ lại thất thường và việc bảo trì trở nên quá tốn kém.
 3. **ScyllaDB.** ScyllaDB là cơ sở dữ liệu tương thích Cassandra, viết bằng C++. Discord thiết kế lại: một API khối nguyên, một dịch vụ dữ liệu viết bằng Rust, và phần lưu trữ trên ScyllaDB.
 

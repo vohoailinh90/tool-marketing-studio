@@ -2,7 +2,7 @@
   "id": "sd-02-029",
   "title": "Discord đổi nơi lưu tin nhắn",
   "subtitle": "Mỗi lần đổi vì độ trễ thất thường.",
-  "desc": "Ba bước. MongoDB năm 2015: một bản sao, 100 triệu tin nhắn thì bộ nhớ không chứa nổi. Cassandra: 12 máy năm 2017, 177 máy đầu năm 2022 với hàng nghìn tỷ tin nhắn. ScyllaDB: tương thích Cassandra, viết bằng C++, đi cùng dịch vụ dữ liệu viết bằng Rust. Khung hai: ba lý do Cassandra chậm. Khung ba: độ trễ p99 trước và sau.",
+  "desc": "Ba bước. MongoDB năm 2015: một cụm duy nhất, 100 triệu tin nhắn thì bộ nhớ không chứa nổi. Cassandra: 12 máy năm 2017, 177 máy đầu năm 2022 với hàng nghìn tỷ tin nhắn. ScyllaDB: tương thích Cassandra, viết bằng C++, đi cùng dịch vụ dữ liệu viết bằng Rust. Khung hai: ba lý do Cassandra chậm. Khung ba: độ trễ p99 trước và sau.",
   "sections": [
     {
       "kind": "steps",
